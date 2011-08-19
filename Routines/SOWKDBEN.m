@@ -1,0 +1,19 @@
+SOWKDBEN ;B'HAM ISC/SAB-Routine to enter/edit notes (closing,dicharge planning) ; 01/06/92 15:30 [ 09/22/94  7:44 AM ]
+ ;;3.0; Social Work ;**34**;27 Apr 93
+SE K DIC S DIC("S")="I $D(^SOWK(650,""W"",DUZ,+Y))",DIC="^SOWK(650,",DIC(0)="AEQMZ",DIC("A")="SELECT CASE: " D ^DIC G:"^"[$E(X) CLOS G:Y<1 SE S DA=+Y,C=^SOWK(650,DA,0),PN=$P(C,"^"),SWPT=$P(C,"^",8),SWSW=$P(C,"^",3) K DIC("A")
+ I '$D(^SOWK(655.2,SWPT)) G BEG1
+ I '$D(^SOWK(655.2,SWPT,23,"AG",PN)) G BEG
+ S DA(1)=SWPT,DIE="^SOWK(655.2,"_DA(1)_",23," S DA=$O(^SOWK(655.2,SWPT,23,"AG",PN,0))
+ED W @IOF G:$G(TYPE)=1 ED1 S DR=$S($G(TYPE)=2:"18;2;3;4///^S X=""T""",$G(TYPE)=3:"18;6;5;7///^S X=""T""",1:"") D ^DIE W @IOF G SE
+ED1 S:'$D(^SOWK(655.2,SWPT,17,0)) ^SOWK(655.2,SWPT,17,0)="^655.38PA^0^0"
+ S DA=SWPT,DIE="^SOWK(655.2,",DR=17,DR(2,655.38)=".01;2" D ^DIE K DR S DR="17.1///^S X=""T""" D ^DIE W @IOF G SE
+CLOS K PN,SWPT,TYPE,SWSW,DFN,DIC,DIE,Y,X,DA,DR,C,SUP,SWWRK,DINUM
+ Q
+BEG I '$D(^SOWK(655.2,SWPT,23,0)) S ^SOWK(655.2,SWPT,23,0)="^655.218PA^0^0"
+ S (DA,X)=$P(^SOWK(655.2,SWPT,23,0),"^",3)+1
+ S DA(1)=SWPT,(DIE,DIC)="^SOWK(655.2,"_DA(1)_",23,",DIC("DR")=".01///"_SWSW_";1///"_PN,DIC(0)="L"
+ D:'$D(^SOWK(655.2,DA(1),23,"AG",PN)) FILE^DICN K DIC("DR") G:$D(TYPE) ED
+ Q
+BEG1 D WAIT^DICD K DIC S SUP=$P(^VA(200,$P(C,"^",3),654),"^",2),SWWRK=$P(C,"^",3)
+ S (DINUM,DA,X)=SWPT,DIC(0)="L",DIC="^SOWK(655.2,",DIC("DR")=".03////"_SWWRK_";.04////"_SUP_";.031////"_$P(C,"^")_";.02///"_DT K DD,DO D FILE^DICN S DA=+Y,DFN=SWPT D BEG Q:'$G(TYPE)  D ED
+ Q

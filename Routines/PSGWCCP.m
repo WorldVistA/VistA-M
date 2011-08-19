@@ -1,0 +1,34 @@
+PSGWCCP ;BHAM ISC/CML-Print Crash Cart Location List ; 05/13/91 9:22
+ ;;2.3; Automatic Replenishment/Ward Stock ;;4 JAN 94
+ W !!!,"This option will list crash carts and their locations.",!!,"Right margin for this report is 80 columns.",!,"You may queue the report to print at a later time.",!!
+ I '$O(^PSI(58.1,0)) W *7,!!,"There are no AOUs defined!" Q
+DEV K %ZIS,IOP S %ZIS="QM",%ZIS("B")="" D ^%ZIS I POP W !,"NO DEVICE SELECTED OR REPORT PRINTED!" G QUIT
+ I $D(IO("Q")) K IO("Q") S PSGWIO=ION,ZTIO="" K ZTSAVE,ZTDTH,ZTSK S ZTRTN="ENQ^PSGWCCP",ZTDESC="Crash Cart Location List",ZTSAVE("PSGWIO")=""
+ I  D ^%ZTLOAD,HOME^%ZIS K ZTSK G QUIT
+ U IO
+ ;
+ENQ ;ENTRY POINT WHEN QUEUED
+ K ^TMP("PSGWCCP",$J) F AOU=0:0 S AOU=$O(^PSI(58.1,AOU)) G:('AOU)&($D(ZTQUEUED)) PRTQUE G:'AOU PRINT I $D(^PSI(58.1,AOU,0)),$P(^(0),"^",5) D BUILD
+ ;
+BUILD ;BUILD DATA ELEMENTS
+ S LOC=$P(^PSI(58.1,AOU,0),"^",6),AOUNM=$P(^(0),"^"),LOCNM="NONE LISTED" I LOC,$D(^SC(LOC,0)) S LOCNM=$P(^(0),"^")
+ S ^TMP("PSGWCCP",$J,AOUNM)=LOCNM Q
+PRTQUE ;AFTER DATA IS COMPILED, QUEUE THE PRINT
+ K ZTSAVE,ZTIO S ZTIO=PSGWIO,ZTRTN="PRINT^PSGWCCP",ZTDESC="Print Crash Cart Location List",ZTDTH=$H,ZTSAVE("^TMP(""PSGWCCP"",$J,")=""
+ D ^%ZTLOAD K ^TMP("PSGWCCP",$J) G QUIT
+PRINT ;
+ S $P(LN,"-",80)="",PG=0,%DT="",(AOUNM,QFLG)="",X="T" D ^%DT X ^DD("DD") S HDT=Y D HDR
+ I '$D(^TMP("PSGWCCP",$J)) W !?17,"***** NO DATA AVAILABLE FOR THIS REPORT *****" S QFLG=1 G DONE
+ F LL=0:0 S AOUNM=$O(^TMP("PSGWCCP",$J,AOUNM)) Q:AOUNM=""!(QFLG)  D:$Y+4>IOSL PRTCHK Q:QFLG  W !,AOUNM,?35,^(AOUNM)
+DONE I $E(IOST)'="C" W @IOF
+ I $E(IOST)="C" D:'QFLG SS^PSGWUTL1
+QUIT ;
+ K %DT,AOU,AOUNM,LOC,LOCNM,HDT,LL,LN,PG,PSGWDT,X,Y,PSGWIO,ZTSK,ZTIO,DA,IO("Q"),%,%I,%H,ANS,QFLG
+ K ^TMP("PSGWCCP",$J) D ^%ZISC
+ S:$D(ZTQUEUED) ZTREQ="@" Q
+HDR ;HEADER
+ W:$Y @IOF S PG=PG+1 W !?28,"CRASH CART LOCATION LIST",?71,"PAGE: ",PG,!?30,"PRINTED: ",HDT,!!,"CRASH CART",?35,"LOCATION",!,LN
+ Q
+PRTCHK ;
+ I $E(IOST)="C" W !!,"Press <RETURN> to Continue or ""^"" to Exit: " R ANS:DTIME S:'$T ANS="^" D:ANS?1."?" HELP^PSGWUTL1 I ANS="^" S QFLG=1 Q
+ D HDR Q

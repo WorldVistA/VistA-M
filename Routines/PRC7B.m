@@ -1,0 +1,83 @@
+PRC7B ;WISC/PLT-Receiver/Copy FND/PCL/PAC/CPF FMS message for V5 ; 06/29/94  2:30 PM
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ QUIT  ;invalid entry
+ ;
+ ;invoked from task manager (see trin^prcosrv2)
+ ;copy conversion message to file 420.92
+ ;PRCDA=ri of file 423.6 passed
+EN ;Conversion message from sever FMS MESSAGE SEVER routine PRCOSRV2
+ N PRCRI,PRCTY,PRCERR,PRCSEQ,A,B
+ S PRCRI(423.6)=PRCDA,PRCTY=""
+ ;check txn message
+ S PRCERR="",PRCSQE="" D CHECK(PRCRI(423.6))
+ I PRCERR D  G EXIT
+ . N A,B,C
+ . S A(1)="IFCAP/FMS CONVERSION MESSAGE PAC/CPF/FND/PCL IS IN INVALID FORMAT."
+ . S A(2)="PLEASE CALL FMS-CONVERSION TEAM USER TO RESEND THIS MESSAGE:"
+ . S A(3)=$P($G(^PRCF(423.6,PRCDA,0)),"^")_" WITH IFCAP ERROR: "_PRCERR
+ . I PRCTY="" S B(.5)=""
+ . E  S X=$$FIRST^PRC0B1("^PRCF(423.5,""B"""_",""CTL-"_PRCTY_""",",0) S X=$S(X:"G."_$$MG^PRC0B2($P(^PRCF(423.5,X,0),"^",2)),1:.5),B(X)=""
+ . S C="IFCAP/FMS CONVERSION ERROR MESSAGE-PAC/CPF/FND/PCL^IFCAP FMS MESSAGE SERVER"
+ . D MM^PRC0B2(C,"A(",.B)
+ . QUIT
+ ;copy fms records to file 420.92
+ S A=$T(@PRCTY)
+ D COPY(PRCRI(423.6),$P(A," ",1)_"^"_$P(A,";",3,999))
+ I PRCERR D  G EXIT
+ . N A,B,C
+ . S A(1)="IFCAP/FMS CONVERSION MESSAGE "_PRCTY_" COPY FAILURE"
+ . S A(2)="PLEASE CALL FMS-CONVERSION TEAM USER TO RESEND THIS MESSAGE:"
+ . S A(3)=$P($G(^PRCF(423.6,PRCDA,0)),"^")_" WITH IFCAP ERROR: "_PRCERR
+ . S X=$$FIRST^PRC0B1("^PRCF(423.5,""B"""_",""CTL-"_PRCTY_""",",0) S X=$S(X:"G."_$$MG^PRC0B2($P(^PRCF(423.5,X,0),"^",2)),1:.5),B(X)=""
+ . S C="IFCAP/FMS COPY ERROR MESSAGE-PAC/CPF/FND/PCL^IFCAP FMS MESSAGE SERVER"
+ . D MM^PRC0B2(C,"A(",.B)
+ . QUIT
+ ;send copy done message
+ D
+ . N A,B,C
+ . S A(1)="IFCAP/FMS CONVERSION MESSAGE "_PRCTY_" COPY DONE."
+ . S A(2)="READY FOR CONVERSION THIS MESSAGE DURING POST-INITIAL IFCAP v.5"
+ . S A(3)=$P($G(^PRCF(423.6,PRCDA,0)),"^")
+ . S X=$$FIRST^PRC0B1("^PRCF(423.5,""B"""_",""CTL-"_PRCTY_""",",0) S X=$S(X:"G."_$$MG^PRC0B2($P(^PRCF(423.5,X,0),"^",2)),1:.5),B(X)=""
+ . S C="IFCAP/FMS COPY DONE MESSAGE-PAC/CPF/FND/PCL^IFCAP FMS MESSAGE SERVER"
+ . D MM^PRC0B2(C,"A(",.B)
+ . QUIT
+ ;
+EXIT ;delete fms conversion message in file 423.6
+ D KILL^PRCOSRV3(PRCRI(423.6))
+ QUIT
+ ;
+CHECK(PRCA,PRCB) ;PRCA=ri of file 423.6, PRCB=^1 txn class from FMS, ^2=description
+ N PRCC,PRCD,A
+ S PRCC=$O(^PRCF(423.6,PRCA,1,9999)) I 'PRCC S PRCERR=2 QUIT  ;no message
+ S PRCD=$G(^PRCF(423.6,PRCA,1,PRCC,0)) I PRCD="" S PRCERR=2 QUIT
+ S PRCTY=$P(PRCD,"^",5),A="" S:PRCTY?1.5A A=$T(@PRCTY)
+ I $P(PRCD,"^")'="CTL"!(A="") S PRCERR=3,PRCTY="" QUIT  ;wrong type
+ S PRCSEQ=+$P(PRCD,"^",13)_"-"_(+$P(PRCD,"^",14))
+ F  S PRCC=$O(^PRCF(423.6,PRCA,1,PRCC)) Q:'PRCC  S PRCD=^(PRCC,0)
+ I PRCD'="{" S PRCERR=4 QUIT  ;missing txn delimeter
+ QUIT
+ ;
+COPY(PRCA,PRCB) ;PRCA=ri of file 423.6, PRCB=^1 txn class from FMS, ^2=description
+ N PRCC,PRCD,A,X,Y
+ S X=$P(PRCB,"^"),X("DR")="1////"_$P(PRCB,"^",2)_";2///^S X=""N"""_";5////"_PRCSEQ
+ D ADD^PRC0B1(.X,.Y,"420.92;^PRCU(420.92,")
+ I Y=-1 S PRCERR=101 QUIT  ;copy failure
+ S PRCRI(420.92)=+Y
+ S PRCC=$O(^PRCF(423.6,PRCA,1,9999))
+ F  S PRCC=$O(^PRCF(423.6,PRCA,1,PRCC)) Q:'PRCC  S PRCD=^(PRCC,0) D:PRCD["~"  Q:PRCERR
+ . S A="420.92;^PRCU(420.92,;"_PRCRI(420.92)_";3~420.923;^PRCU(420.92,"_PRCRI(420.92)_",1,"
+ . S X=0,X("DR")=".01///^S X=DA;1///^S X=$TR(PRCD,""^"",""~"")"
+ . D ADD^PRC0B1(.X,.Y,A) I Y=-1 S PRCERR=102
+ . QUIT
+ I 'PRCERR D EDIT^PRC0B(.X,"420.92;^PRCU(420.92,;"_PRCRI(420.92),"2.5///^S X=""N""","LS")
+ QUIT
+ ;
+ ;
+PAC ;;STATION FCC/PRJ CONVERSION
+CPF ;;STATION CONTROL POINT CONVERSION
+FND ;;ALD/FUND CONVERSION
+PCL ;;PROGRAM CONVERSION
+SUB ;;SUB OBJECT CLASS
+ ;

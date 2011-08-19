@@ -1,0 +1,72 @@
+PRSEED1 ;HISC-MD/ENTER-EDIT STUDENT RECORD ; MAY 93
+ ;;4.0;PAID;**18**;Sep 21, 1995
+EN1 ; ENTRY FROM OPTION PRSE-I-EMP
+ S X=$G(^PRSE(452.7,1,"OFF")) I X=""!(X=1) D MSG6^PRSEMSG Q
+ K ^TMP($J) S (PRSESW,NOUT,NSW)=0,PRSESRCE="VA",PRSEGF="GOVERNMENT FUNDED",PRSELCL="L",PRSECOD="N" D EN2^PRSEUTL3($G(DUZ)) I PRSESER=""&'(DUZ(0)="@") D MSG3^PRSEMSG G Q1
+TYPE S DIR(0)="SO^M:Mandatory Training (MI);C:Continuing Education;O:Other/Miscellaneous;W:Ward/Unit-Location Training",DIR("A")="Select a Training Type" D ^DIR K DIR I $D(DTOUT)!$D(DUOUT)!(U[X) S POUT=1 G Q1
+ S PRSESEL=Y
+OTHER S NOUT=0 D SCUB G:"^^"[X!($D(POUT)) TYPE
+ASK D NAM I $D(POUT) K POUT G OTHER
+ S (NSW,NDUPSW)=0,PRSENAM=$S($D(^PRSE(452.1,"B",PRSENAM)):"`"_$O(^PRSE(452.1,"B",PRSENAM,0)),1:PRSENAM) D RECHK^PRSEED7 G:NOUT OTHER I 'NDUPSW S DIC("S")="I $P($G(^(0)),U,7)=PRSESEL" K POUT D ADD^PRSEED12 G Q1:$G(POUT)
+ S PRSENAM=PRSENAM(0)
+ I '+$O(^PRSE(452.6,"B","MANDATORY TRAINING",0)) S:'$D(^PRSE(452.6,0)) ^(0)="PRSE SVC REASONS FOR TRAINING^452.6^0^0" S X="MANDATORY TRAINING",DIC(0)="L",DIC="^PRSE(452.6,",DLAYGO=452.6 K DD,DO D FILE^DICN
+ I 'NDUPSW,'NSW W !?9,PRSENAM(0),"  ",PRSESTUD,"  " S Y=PRSEDT D DT^DIQ S NSW=1
+ G ASK
+Q1 W ! D ^PRSEKILL
+ Q
+NAM ;
+ K POUT,X,Y
+ I $S($G(DUZ(0))["@":1,+$$EN4^PRSEUTL3($G(DUZ)):1,1:0) I $P($G(^PRSE(452.7,1,0)),U,3) D  Q:$G(POUT)  G NAM1
+ . W !
+ . S Y=$$ADD^XUSERNEW(9)
+ . I $G(Y)'>0 S POUT=1
+ ;
+ I $S($P($G(^PRSE(452.7,1,0)),U,3)'>0:1,'+$$EN4^PRSEUTL3($G(DUZ)):1,$G(DUZ(0))'["@":1,1:0) D  I $G(NAMOUT) K NAMOUT G NAM
+ . R !,"Select Student Name: ",X:DTIME
+ . I X=""!($E(X)="^") S POUT=1 Q
+ . S DIC=200,DIC(0)="EQM"
+ . W ! D ^DIC I +Y'>0 K DIC S NAMOUT=1 D  Q
+ . . W !?5,"Student ",X," could not be found in file.  Contact the",!?5,"Education Package Coordinator or IRM to add new entries.",!
+ . S PRDA(0)=Y
+ . ;S DIE=DIC,DA=+Y,DR="9R" D ^DIE K DIC,DIE,DR,DA
+ . S Y=PRDA(0)
+ ;
+NAM1 Q:$G(POUT)
+ I $G(Y)'>0 G NAM
+ S PRSESTUD=$P(Y,U,2),VA200DA=+Y
+ S (PRSESSN,SSN)=$P($G(^VA(200,VA200DA,1)),U,9)
+ I PRSESSN="" W $C(7),!,"NO SSN FOR THIS STUDENT-CANNOT CONTINUE" G NAM
+ I $G(SSN)'="" S PRDA=$O(^PRSPC("SSN",SSN,0)) I PRDA>0,$P($G(^PRSPC(+PRDA,0)),U,49)="" D MSG3^PRSEMSG G NAM
+ S PRSESER=$$EN3^PRSEUTL3($G(VA200DA)) S:PRSESER="" PRSESER("TX")="NON-EMPLOYEE"
+ S PRDA=+$G(VA200DA)
+ Q:$D(POUT)
+ S PRSPDA(1)=$S('+$G(PRSESSN):"",(+$O(^PRSPC("SSN",PRSESSN,0))>0):$O(^PRSPC("SSN",PRSESSN,0)),1:"")
+ I $S($G(NOUT):1,$G(X)="?":1,1:0) G NAM
+ I PRSESEL="M",'(+PRSPDA(1)>0) D WRT Q
+ I $P($G(^PRSPC(+PRSPDA(1),1)),U,33)="Y" D WRT Q  ;quit if separation=Y
+ I '$G(VA200DA) W $C(7),!!,"STUDENT NOT IN NEW PERSON FILE-CANNOT CONTINUE" S POUT=1 Q
+ Q
+SCUB ;
+ S (PRSENAM,PRSEDT)=""
+ F  K POUT S Y=-1 R !!,"Select TRAINING CLASS: ",X:DTIME S:'$T X="^^" S:X="" Y="" Q:"^^"[X  D  Q:Y]""
+ .S DIC("S")="S DATA=$G(^PRSE(452,Y,0)),PRSEIEN=$G(^PRSE(452,""AK"",$P($G(DATA),U,2),Y)) I ($P($G(^PRSE(452,+Y,6)),U)=""L""!($G(^(6))="""")),$P(DATA,U,21)=PRSESEL,(PRSEIEN=$G(PRSESER)!(DUZ(0)[""@""!(+$$EN4^PRSEUTL3($G(DUZ)))))"
+ .S DIC("W")="W ?($X+4),$P($G(^PRSE(452,+Y,0)),U,13)"
+ .S DLAYGO=452,DIC=452,DIC(0)=$E("SZE",1,(X'=" ")+2),D="AK" D IX^DIC K DIC I X?1"?".E!(Y>0) W:X=" " "   ",$P(Y(0),U,2) S PRSEPREV=Y,Y=$S(Y>0:$P(Y(0),U,2),1:"") Q
+ .I X=" ",'(+Y>0)!($L(X)<3) S POUT=1 Q
+ .I '(+Y>0) W !!?3,$C(7),"'"_X_"' IS NOT CURRENTLY IN THE STUDENT TRACKING #452 FILE" S (X,Y)="",POUT=1 Q
+ Q:Y=""!(Y<0)!($D(POUT))  S PRSENAM=Y K Y
+ D EN4^PRSEUTL1($G(PRSENAM)) F  K POUT S Y=-1 W !!,"Select CLASS DATE: "_$S($G(PRSEY(1))'="":PRSEY(1)_"// ",1:"") R X:DTIME S:'$T X="^^" S:X=""&(+$G(PRSEY)) X=$G(PRSEY) S:X=""&'(+$G(PRSEY)>0) Y="" Q:"^^"[X  D  Q:Y'=""!(Y<0)
+ .I X'?1"?".E S %DT="T" D ^%DT S:Y'>0 Y="" Q:Y'>0  D  Q
+ ..S X=Y,Y=$O(^PRSE(452,"AL"_PRSENAM,+X,0)) I Y>0 W "   " S Y=X D DT^DIQ Q
+ ..W !!?3,$C(7),PRSENAM_" IS NOT LISTED FOR THIS DATE " S POUT=1 Q
+ .W @IOF S (Z,X)=0 F  S X=$O(^PRSE(452,"AL"_PRSENAM,X)) Q:X'>0!Z  S DA=0 F  S DA=$O(^PRSE(452,"AL"_PRSENAM,X,DA)) Q:DA'>0  D  Q:Z
+ ..S Y=$P($G(^PRSE(452,DA,0)),U,3) W !?8 D DT^DIQ
+ ..I $Y>(IOSL-3) R !?8,"""^"" TO STOP: ",Z:DTIME S:'$T Z="^^" S Z=(Z="^"!(Z="^^")) W @IOF
+ ..Q
+ .S %DT="ET" D HELP^%DTC
+ .S Y=""
+ .Q
+ Q:Y=""!(Y<0)  S PRSEDT=+X,PRSEDA=$O(^PRSE(452,"AL"_PRSENAM,PRSEDT,0)) Q:'(PRSEDA>0)
+ Q
+ ;
+WRT W $C(7),!!,"CANNOT PROCESS NON-EMPLOYEE FOR MI CLASSES" S POUT=1 Q

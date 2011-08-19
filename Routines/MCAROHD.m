@@ -1,0 +1,39 @@
+MCAROHD ; GENERATED FROM 'MCARHEMD' PRINT TEMPLATE (#985) ; 10/04/96 ; (FILE 694, MARGIN=80)
+ G BEGIN
+N W !
+T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
+ S DISTP=DISTP+1,DILCT=DILCT+1 D:'(DISTP#100) CSTP^DIO2
+ Q
+DT I $G(DUZ("LANG"))>1,Y W $$OUT^DIALOGU(Y,"DD") Q
+ I Y W $P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC",U,$E(Y,4,5))_" " W:Y#100 $J(Y#100\1,2)_"," W Y\10000+1700 W:Y#1 "  "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12) Q
+ W Y Q
+M D @DIXX
+ Q
+BEGIN ;
+ S:'$D(DN) DN=1 S DISTP=$G(DISTP),DILCT=$G(DILCT)
+ I $D(DXS)<9 F X=0:0 S X=$O(^DIPT(985,"DXS",X)) Q:'X  S Y=$O(^(X,"")) F X=X:0 Q:Y=""  S DXS(X,Y)=^(Y),Y=$O(^(Y))
+ D T Q:'DN  D N D N:$X>28 Q:'DN  W ?28 X DXS(1,9) K DIP K:DN Y W X
+ D T Q:'DN  D N D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="NO. CELLS COUNTED: "_$P(DIP(1),U,13) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="NEUTROPHILS: "_$P(DIP(1),U,11) K DIP K:DN Y W X
+ D N:$X>39 Q:'DN  W ?39 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="ORTHOCHROMATIC NORMOBLASTS: "_$P(DIP(1),U,1) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="BANDS: "_$P(DIP(1),U,12) K DIP K:DN Y W X
+ D N:$X>39 Q:'DN  W ?39 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="POLYCHROMATIC NORMOBLASTS: "_$P(DIP(1),U,2) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="METAMYELOCYTES: "_$P(DIP(1),U,14) K DIP K:DN Y W X
+ D N:$X>39 Q:'DN  W ?39 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="BASOPHILIC NORMOBLASTS: "_$P(DIP(1),U,3) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="MYELOCYTES: "_$P(DIP(1),U,15) K DIP K:DN Y W X
+ D N:$X>39 Q:'DN  W ?39 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="PRONORMOBLASTS: "_$P(DIP(1),U,4) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="PROMYLOCYTES: "_$P(DIP(1),U,16) K DIP K:DN Y W X
+ D N:$X>39 Q:'DN  W ?39 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="LYMPHOBLASTS: "_$P(DIP(1),U,5) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="MYELOBLASTS: "_$P(DIP(1),U,17) K DIP K:DN Y W X
+ D N:$X>39 Q:'DN  W ?39 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="PLASMA CELLS: "_$P(DIP(1),U,6) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="EOSINOPHILS: "_$P(DIP(1),U,18) K DIP K:DN Y W X
+ D N:$X>39 Q:'DN  W ?39 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="MONOCYTES: "_$P(DIP(1),U,7) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="BASOPHILS: "_$P(DIP(1),U,19) K DIP K:DN Y W X
+ D N:$X>39 Q:'DN  W ?39 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="HISTIOCYTES: "_$P(DIP(1),U,8) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(694,D0,4)):^(4),1:"") S X="LYMPHOCYTES: "_$P(DIP(1),U,20) K DIP K:DN Y W X
+ D N:$X>39 Q:'DN  W ?39 X DXS(2,9.2) S X=$S(DIP(2):DIP(3),DIP(4):X) K DIP K:DN Y W X
+ D T Q:'DN  D N W ?0 W " "
+ K Y
+ Q
+HEAD ;
+ W !,"--------------------------------------------------------------------------------",!!

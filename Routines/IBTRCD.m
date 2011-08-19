@@ -1,0 +1,121 @@
+IBTRCD ;ALB/AAS - CLAIMS TRACKING - EXPAND CONTACTS SCREEN ; 02-JUL-1993
+ ;;2.0;INTEGRATED BILLING;**210**;21-MAR-94
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+% ;
+EN ; -- main entry point for IBT EXPAND/EDIT COMMUNICATIONS
+ I '$D(DT) D DT^DICRW
+ K XQORS,VALMEVL,IBTRC,IBTRD,IBTRV,IBTRN,DFN
+ I '$G(IBTRC) G EN^IBTRC
+ D EN^VALM("IBT EXPAND/EDIT COMMUNICATIONS")
+ Q
+ ;
+HDR ; -- header code
+ D PID^VADPT
+ S VALMHDR(1)="Expanded Insurance Reviews for: "_$$PT^IBTUTL1(DFN)_"   ROI: "_$$EXPAND^IBTRE(356,.31,$P($G(^IBT(356,+$G(IBTRN),0)),"^",31))
+ S VALMHDR(2)="                           for: "_$$EXPAND^IBTRE(356,.18,$P(IBTRND,"^",18))_" on "_$$DAT1^IBOUTL($P(IBTRND,"^",6),"2P")
+ Q
+ ;
+INIT ; -- init variables and list array
+ N IBTRCD,IBTRCD1
+ K VALMQUIT
+ S VALMCNT=0,VALMBG=1
+ D BLD,HDR
+ Q
+ ;
+BLD ; -- build display
+ K ^TMP("IBTRCD",$J),^TMP("IBTRCDDX",$J)
+ D KILL^VALM10()
+ S IBTRCD=$G(^IBT(356.2,IBTRC,0)),IBTRCD1=$G(^IBT(356.2,IBTRC,1))
+ S IBTRND=$G(^IBT(356,IBTRN,0))
+ F I=1:1:27 D BLANK^IBTRED(.I)
+ S VALMCNT=27
+ D ACTION,EN^IBTRCD0
+ Q
+ ;
+ ;
+ACTION ; -- Ins. Action infomation display
+ N OFFSET,START,TCODE,IBACTION,IBLCNT
+ S START=1,OFFSET=45,IBLCNT=0
+ D SET^IBCNSP(START,OFFSET," Action Information ",IORVON,IORVOFF)
+ D SET^IBCNSP(START+1,OFFSET,"   Type Contact: "_$$EXPAND^IBTRE(356.2,.04,$P(IBTRCD,"^",4)))
+ S TCODE=$$TCODE^IBTRC(IBTRC) I TCODE D @TCODE
+ Q
+10 ; -- pre-cert contact
+15 ; -- admission review
+20 ; -- urgent/emergent ins. contact
+30 ; -- continued stay contact
+ S IBLCNT=2
+ D SET^IBCNSP(START+IBLCNT,OFFSET,"         Action: "_$$EXPAND^IBTRE(356.2,.11,$P(IBTRCD,"^",11)))
+ S IBACTION=$P($G(^IBE(356.7,+$P(IBTRCD,"^",11),0)),"^",3)
+ S IBACTION=IBACTION+100 D @IBACTION
+ S IBLCNT=IBLCNT+1
+ Q
+ ;
+40 ; -- Discharge contact
+100 ; -- No type of action
+ Q
+50 ; -- outpatient treatment
+ S IBLCNT=2
+ D SET^IBCNSP(START+IBLCNT,OFFSET," Opt Treatment: "_$$EXPAND^IBTRE(356.2,.26,$P(IBTRCD,"^",26)))
+ S IBLCNT=IBLCNT+1
+ D SET^IBCNSP(START+IBLCNT,OFFSET,"         Action: "_$$EXPAND^IBTRE(356.2,.11,$P(IBTRCD,"^",11)))
+ S IBLCNT=IBLCNT+1
+ D SET^IBCNSP(START+IBLCNT,OFFSET,"   Auth. Number: "_$P(IBTRCD,"^",28))
+ ;D SET^IBCNSP(START+IBLCNT,OFFSET,"Treatment Auth: "_$$EXPAND^IBTRE(356.2,.27,$P(IBTRCD,"^",27)))
+ Q
+60 ; -- Appeal
+65 ; -- Nth appeal
+ D SET^IBCNSP(START+2,OFFSET,"    Appeal Type: "_$$EXPAND^IBTRE(356.2,.23,$P(IBTRCD,"^",23)))
+ D SET^IBCNSP(START+3,OFFSET,"    Case Status: "_$$EXPAND^IBTRE(356.2,.1,$P(IBTRCD,"^",10)))
+ D SET^IBCNSP(START+4,OFFSET,"No Days Pending: "_$$EXPAND^IBTRE(356.2,.25,$P(IBTRCD,"^",25)))
+ D SET^IBCNSP(START+5,OFFSET,"  Final Outcome: "_$$EXPAND^IBTRE(356.2,.29,$P(IBTRCD,"^",29)))
+ Q
+70 ; -- Patient
+80 ; -- Other
+85 ; -- Insurance verification
+ Q
+ ;
+110 ; -- approval actions
+ S IBLCNT=IBLCNT+1
+ D SET^IBCNSP(START+IBLCNT,OFFSET,"Authorized From: "_$S($P(IBTRCD1,"^",8):"ENTIRE VISIT",1:$$DAT1^IBOUTL($P(IBTRCD,"^",12))))
+ S IBLCNT=IBLCNT+1
+ D SET^IBCNSP(START+IBLCNT,OFFSET,"  Authorized To: "_$S($P(IBTRCD1,"^",8):"ENTIRE VISIT",1:$$DAT1^IBOUTL($P(IBTRCD,"^",13))))
+ S IBLCNT=IBLCNT+1
+ D SET^IBCNSP(START+IBLCNT,OFFSET,"Authorized Diag: "_$$DIAG^IBTRE6($P(IBTRCD,"^",14),1,$$TRNDATE^IBACSV($G(IBTRN))))
+ S IBLCNT=IBLCNT+1
+ D SET^IBCNSP(START+IBLCNT,OFFSET,"   Auth. Number: "_$P(IBTRCD,"^",28))
+ Q
+120 ; -- denial actions
+ S IBLCNT=IBLCNT+1
+ D SET^IBCNSP(START+IBLCNT,OFFSET,"    Denied From: "_$S($P(IBTRCD1,"^",7):"ENTIRE VISIT",1:$$DAT1^IBOUTL($P(IBTRCD,"^",15))))
+ S IBLCNT=IBLCNT+1
+ D SET^IBCNSP(START+IBLCNT,OFFSET,"      Denied To: "_$S($P(IBTRCD1,"^",7):"ENTIRE VISIT",1:$$DAT1^IBOUTL($P(IBTRCD,"^",16))))
+ S IBI=0 F  S IBI=$O(^IBT(356.2,IBTRC,12,IBI)) Q:'IBI!(IBLCNT>6)  D
+ .S IBLCNT=IBLCNT+1
+ .D SET^IBCNSP(START+IBLCNT,OFFSET," Denial Reasons: "_$$EXPAND^IBTRE(356.212,.01,+$G(^IBT(356.2,IBTRC,12,IBI,0))))
+ Q
+130 ; -- penalty
+ S IBI=0 F  S IBI=$O(^IBT(356.2,IBTRC,13,IBI)) Q:'IBI!(IBLCNT>6)  D
+ .S IBLCNT=IBLCNT+1
+ .D SET^IBCNSP(START+IBLCNT,OFFSET,"        Penalty: "_$$EXPAND^IBTRE(356.213,.01,+$G(^IBT(356.2,IBTRC,13,IBI,0))))
+ Q
+140 ; -- case pending
+ S IBLCNT=IBLCNT+1
+ D SET^IBCNSP(START+IBLCNT,OFFSET,"   Case Pending: "_$$EXPAND^IBTRE(356.2,.2,$P(IBTRCD,"^",20)))
+ Q
+150 ; -- no coverage
+ S IBLCNT=IBLCNT+1
+ D SET^IBCNSP(START+IBLCNT,OFFSET,"    No Coverage: "_$$EXPAND^IBTRE(356.2,.21,$P(IBTRCD,"^",21)))
+ Q
+ ;
+ ;
+HELP ; -- help code
+ S X="?" D DISP^XQORM1 W !!
+ Q
+ ;
+EXIT ; -- exit code
+ K VALMQUIT,IBTRC,IBTRCD,IBTRCD1
+ K ^TMP("IBTRCD",$J),^TMP("IBTRCDDX",$J)
+ D CLEAN^VALM10,FULL^VALM1
+ Q

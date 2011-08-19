@@ -1,0 +1,77 @@
+SPNLPIN ;ISC-SF/REM - INPUT/OUTPUT PROCESS FOR REGISTRANT ;10/25/2001
+ ;;2.0;Spinal Cord Dysfunction;**3,16**;01/02/1997
+ ;
+EN1 ;Enter/Edits a new registrant into the local registry.
+ N SPNLFLAG
+ S SPNLFLAG=0 K DIC
+ F  D  Q:SPNLFLAG=1
+ . S DIC="^SPNL(154,",DIC(0)="AELMQZ",DIC("A")="Select PATIENT: "
+ . S DLAYGO=154
+ . W ! D ^DIC K DIC I +Y<0 S SPNLFLAG=1 Q  ;Lookup/adds entry.
+ . S DA=+Y I $P($G(Y),U,3)=1 D  ;Will stuff defaults for new entries.
+ .. S DR=".03///SCD - CURRENTLY SERVED"
+ .. S DR=DR_";.05///NOW;.06///`"_DUZ
+ .. S DIE=154 D ^DIE K DIE
+ .. Q
+ . S DDSFILE=154,DR="[SPNLPFM1]" ;Invokes ScrnMan.
+ . S DDSPARM="C" D ^DDS
+ . K DDSPARM,DDSCHANG,CNT,SPNLTRIG,DR,DIE
+ . S DR=".05///NOW;.06///`"_DUZ,DIE=154 D ^DIE K DIE
+ . I $D(DIMSG) W !,"The screen-based entry process has failed!!",! Q
+ . K DDSPARM,DDSCHANG,CNT,SPNLTRIG,DR,DIE
+ . Q
+ K DA,DDSFILE,DR,DIC,Y,DIMSG,X,SPNLTRIG,CNT
+ Q
+INA ;Will inactivate registrant.
+ N SPNLNAME,SPNLRECN,SPNLFLAG
+ S SPNLRECN=0 F  D  Q:SPNLFLAG<0
+ .K DIC S DIC="^SPNL(154,",DIC(0)="AEMQZ"
+ .S DIC("A")="Select PATIENT: ",DIC("S")="I $P(^(0),U,3)=1"
+ .W ! D ^DIC S SPNLFLAG=Y K DIC Q:SPNLFLAG<0
+ .S SPNLRECN=+Y,SPNLNAME=Y(0,0)
+ .W *7 S DIR(0)="Y",DIR("A")="  Are you sure you want "_SPNLNAME_" inactive",DIR("B")="NO" D ^DIR K DIR
+ .I Y=1 S DR=".03///SCD - NOT CURRENTLY SERVED",DIE=154,DA=SPNLRECN D ^DIE K DIE W !,"  "_SPNLNAME_" is now inactive.",! Q
+ .I Y=0 W !,"  NOTHING HAS BEEN DONE.",*7,!
+ K Y,X,DA,DR,DIE
+ Q
+ACT ;Will activate registrant.
+ N SPNLNAME,SPNLRECN,SPNLFLAG,SPNFLG
+ S SPNFLG=0
+ S SPNLRECN=0 F  S SPNLRECN=$O(^SPNL(154,SPNLRECN)) Q:SPNLRECN<1  D  Q:SPNFLG
+ .I $P($G(^SPNL(154,SPNLRECN,0)),U,3)=2 S SPNFLG=1
+ .Q
+ I SPNFLG S SPNLRECN=0 F  D  Q:SPNLFLAG<0
+ .K DIC S DIC="^SPNL(154,",DIC(0)="AEMQZ"
+ .S DIC("A")="Select PATIENT: ",DIC("S")="I $P(^(0),U,3)=2"
+ .W ! D ^DIC S SPNLFLAG=Y K DIC Q:SPNLFLAG<0
+ .S SPNLRECN=+Y,SPNLNAME=Y(0,0)
+ .W *7 S DIR(0)="Y",DIR("A")="  Are you sure you want "_SPNLNAME_" active",DIR("B")="NO" D ^DIR K DIR
+ .I Y=1 S DR=".03///SCD - CURRENTLY SERVED",DIE=154,DA=SPNLRECN D ^DIE K DIE W !,"  "_SPNLNAME_" is now active.",! Q
+ .I Y=0 W !,"  NOTHING HAS BEEN DONE.",*7,!
+ E  W !,"There are no INACTIVE patient in the SCD Registry."
+ K Y,X,DA,DR,DIE
+ Q
+PRT1 ;Print report of registrant's general information from file 154. 
+ N SPNLEXIT,SPNLTMP
+ S SPNLEXIT=0 D EN1^SPNPRTMT Q:SPNLEXIT  ;Filters
+ D EN^SPNLRU1 I $G(ABORT)=1 D END Q
+ S DIS(0)="I $$TRAUMA^SPNLRU1(D0),$$EN2^SPNPRTMT(D0)"
+ I $D(SPNLTRM1) S DHD="SCD Registrant General Report ("_SPNLTRM1_")"
+ M SPNLTMP=^TMP($J,"SPNPRT")
+ S DIOBEG="K ^TMP($J,""SPNPRT"") M ^TMP($J,""SPNPRT"")=SPNLTMP K DIOBEG"
+ S DIOEND="K ^TMP($J,""SPNPRT""),DIOEND"
+ K DIC S DIC=154,L=0,FLDS="[SPNLPT1]" D EN1^DIP S DIR(0)="E" D ^DIR
+ D END Q
+PRT2 ;Print report of registrant's injury information from file 154.
+ N SPNLEXIT,SPNLTMP
+ S SPNLEXIT=0 D EN1^SPNPRTMT Q:SPNLEXIT  ;Filters
+ D EN^SPNLRU1 I $G(ABORT)=1 D END Q
+ S DIS(0)="I $$TRAUMA^SPNLRU1(D0),$$EN2^SPNPRTMT(D0)"
+ I $D(SPNLTRM1) S DHD="SCD Registrant General Report ("_SPNLTRM1_")"
+ M SPNLTMP=^TMP($J,"SPNPRT")
+ S DIOBEG="K ^TMP($J,""SPNPRT"") M ^TMP($J,""SPNPRT"")=SPNLTMP K DIOBEG"
+ S DIOEND="K ^TMP($J,""SPNPRT""),DIOEND"
+ K DIC S DIC=154,L=0,FLDS="[SPNLPT2]" D EN1^DIP S DIR(0)="E" D ^DIR
+END ;
+ K DIC,L,FLDS,DIR,ABORT,SPNLTRAM,SPNLTRM1,SPNTD,DHD,SPNCAUSE,SPND1,SPNETIOL
+ Q

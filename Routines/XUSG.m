@@ -1,0 +1,69 @@
+XUSG ;SFISC/RWF - SIGNON from GUI screen ;01/23/96  12:41
+ ;;8.0;KERNEL;**16**;Jul 10, 1995
+A K (ZUGUI1,ZUGUI2)
+ S XQXFLG("GUI")=$G(ZUGUI1)_"^"_$G(ZUGUI2) S:'$L(ZUGUI2) KWAPI=1
+ D SET1^XUS(1)
+ D PREP^XG,K^XG() K TMP
+ D GET^XGCLOAD("XU XUS W1",$NA(TMP("XUS")))
+ ;move INTRO text in to window.
+ D INTRO^XUS1A($NA(TMP("XUS","G","INTRO","CHOICE")))
+ S TMP("XUS","G","UCIVOL","TITLE")="UCI: "_XUCI_"   Volume set: "_XQVOL,TMP("XUS","G","DEV","TITLE")="Device: "_$S($D(IO("ZIO")):IO("ZIO"),1:$I)
+ D M^XG("XUS",$NA(TMP("XUS"))) K TMP("XUS")
+ D CLEAR S XUM=$$SET2^XUS() G:XUM NO
+ D SET^XGLTIMER("XUS","TIMER",2,60,"TO^XUSG")
+ D ESTA^XG() I $D(DTOUT)!(DUZ=0)!(XUM>0) G QUIT
+PGM ;
+ S Y=+$G(^%ZIS(1,XUDEV,201)) I Y>0 D CHK S XQY=Y G:Y O
+ S Y=+$G(^VA(200,DUZ,201)) I Y>0 D CHK S XQY=Y G:Y O
+ S XUM=5 G NO
+O D CHEK^XQ83
+ ;S:$P($G(XQXFLG("GUI")),U,2)="" KWAPI=1
+ S (XUA,PGM)="XQ" ;$S($D(KWAPI):"XQ",1:"XQSUITE")
+ D K^XG("XUS"),CLEAN^XG
+P G NEXT^XUS1
+ ;
+QUIT D K^XG("XUS")
+ Q  ;G HALT^ZU?
+CANCEL ;
+ S DUZ=0
+ D ESTO^XG
+ Q
+OK ;See if code is good.
+ S AV=$G(TMP("ACODE")) S:'$L($P(AV,";",2)) $P(AV,";",2)=$G(TMP("VCODE"))
+ G:AV="^;^" CANCEL
+ D CLEAR Q:AV=";"  S DUZ=$$CHECKAV^XUS(AV,.XUSER) K AV
+ S XUM=$$UVALID^XUS() G:XUM NO
+ D USERG^XUSG1 ;if needed call SEC^XUS3:($D(^%ZIS(1,XUDEV,"TIME"))!$D(^(95)))
+ D ESTO^XG
+ Q
+KEYDOWN ;Keydown to convert key to *
+ I $D(%DEBUG) D  W !
+ . W ! S X="^$E" F  S X=$Q(@X) Q:X=""  W !,X," = ",@X
+ . Q
+ N GNM,WNM,KEY
+ S WNM=@XGEVENT@("WINDOW"),X=@XGEVENT@("ELEMENT"),GTYPE=$P(X,","),GNM=$P(X,",",2)
+ S KEY=$$UCASE(@XGEVENT@("KEY")),VALUE=$G(TMP(GNM))
+ ;I (KEY="DELETE")!(KEY="BACKSPACE") S VALUE=$E(VALUE,1,$L(VALUE)-1)
+ I "^DELETE^BACKSPACE^BS^"[(U_KEY_U) S VALUE=$E(VALUE,1,$L(VALUE)-1)
+ I $L(KEY)>1 S KEY=$$KEYCNV^XGLKEY(KEY)
+ I $L(KEY)=1 S VALUE=VALUE_KEY
+ S X=$TR($J("",$L(VALUE))," ","*"),TMP(GNM)=VALUE
+ D S^XG(WNM,"G",GNM,"VALUE",X),S^XG(WNM,"G",GNM,"INSELECT",$L(X)_",0")
+ Q
+NO S XUM=$$NO^XUS3()
+ D CLEAR Q:'XUM
+ D ESTO^XG
+ Q
+CLEAR ;
+ F X="ACODE","VCODE" D S^XG("XUS","G",X,"VALUE","") K TMP(X)
+ D SD^XG($PD,"FOCUS","XUS,ACODE")
+ Q
+UCASE(%) ;
+ Q $TR(%,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+CHK ;Check if valid option
+ I $D(^DIC(19,Y,0)),$S($P(^(0),U,6)="":1,1:$D(^XUSEC($P(^(0),U,6),DUZ))) Q
+ S Y=0 Q
+TO ;CALL ON A TIME OUT
+ D ^XGLMSG("E","TIME OUT",5)
+ D ESTO^XG
+ Q

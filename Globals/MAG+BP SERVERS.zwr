@@ -1,0 +1,7 @@
+BP SERVERS
+ZWR
+^MAG(2006.8,0)="BP SERVERS^2006.8^1^1"
+^MAG(2006.8,1,0)="UAT^1^1^1^^^^^^^^^1^1^1^1^1^1^^^^^1"
+^MAG(2006.8,1,1)="Unassigned Tasks"
+^MAG(2006.8,"C",1,"Unassigned Tasks",1)=""
+^MAG(2006.8,"D",1,"UAT",1)=""

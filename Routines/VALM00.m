@@ -1,0 +1,58 @@
+VALM00 ;MJK/ALB - List Manager (cont.);10:04 AM  7 Dec 1992
+ ;;1;List Manager;;Aug 13, 1993
+ ;
+KEYS(PRTCL,KILL) ; -- set up default objects
+ N X,I,Y,NUM,CNT
+ K:$G(KILL) VALMKEY
+ I VALM("DEFS") D
+ .S VALMKEY(10001)=+$O(^ORD(101,"B","VALM NEXT SCREEN",0))_"^NEXT^10001"
+ .S VALMKEY(10002)=+$O(^ORD(101,"B","VALM PREVIOUS SCREEN",0))_"^PREV^10002"
+ .S VALMKEY(10003)=+$O(^ORD(101,"B","VALM QUIT",0))_"^QUIT^10003"
+ S VALMKEY=$G(VALMKEY)+0
+ G:PRTCL="" KEYSQ
+ S X=+$O(^ORD(101,"B",PRTCL,0)),(VALMKEY,I)=0,NUM=9999
+ F  S I=$O(^ORD(101,X,10,I)) Q:'I  S Y=$G(^(I,0)) I $P(Y,U,2)]"" D
+ .S:'$P(Y,U,3) $P(Y,U,3)=NUM,NUM=NUM-1
+ .S VALMKEY(+$P(Y,U,3))=$P(Y,U,1,3),VALMKEY=VALMKEY+1
+ S VALMKEY=VALMKEY_U_PRTCL
+KEYSQ Q
+ ;
+ATR ; -- set default video ctrls
+ N FLD,COL,WIDTH,ON,OFF
+ S FLD=""
+ F  S FLD=$O(VALMDDF(FLD)) Q:FLD=""  D
+ .S (ON,OFF)="",X=VALMDDF(FLD),COL=+$P(X,U,2),WIDTH=+$P(X,U,3)
+ .D ATRFLD(.FLD,.ON,.OFF)
+ .D:ON]"" CNTRL^VALM10(0,.COL,.WIDTH,.ON,.OFF,1)
+ Q
+ ;
+ATRFLD(FLD,ON,OFF) ; -- get field video ctrls ; ON/OFF by reference only
+ N CTRL,M
+ S CTRL=$P(VALMDDF(FLD),U,5)
+ F M=1:1:$L(CTRL) D ONOFF($E(CTRL,M),.ON,.OFF)
+ATRFLDQ Q
+ ;
+ONOFF(CTRL,ON,OFF) ; -- get video ctrls ; ON/OFF by reference only
+ N I
+ S I=$F("HRUB",CTRL) S:I I=I-1
+ S ON=ON_@($P("IOINHI^IORVON^IOUON^IOBON","^",I))
+ S OFF=OFF_@($P("IOINORM^IORVOFF^IOUOFF^IOBOFF","^",I))
+ Q
+ ;
+SETUP(NAME) ; -- on-the-fly list
+ D @NAME
+ S Y=1 F X="ARRAY" I '$D(VALM(X)) S Y=0 G SETUPQ
+ I $E(VALM("ARRAY"))'="" S VALM("ARRAY")=" "_VALM("ARRAY")
+ S VALM("IFN")=0
+ S:'$D(VALM("TM")) VALM("TM")=$S('$D(VALM("HDR")):2,1:5)
+ S:'$D(VALM("BM")) VALM("BM")=$S('$D(VALM("HDR")):16,1:14)
+ S:'$D(VALM("TYPE")) VALM("TYPE")=2 ; def to display
+ S:'$D(VALM("TITLE")) VALM("TITLE")="Standard List Display"
+ I '$G(VALM("MAX")) S VALM("MAX")=1
+ S:'$D(VALM("FIXED")) VALM("FIXED")=0
+ S:'$D(VALM("RM")) VALM("RM")=240
+ S:'$D(VALM("DEFS")) VALM("DEFS")=1
+ S:'$D(VALMCC) VALMCC=1
+ S:'$D(VALM("HIDDEN")) VALM("HIDDEN")="VALM HIDDEN ACTIONS"
+SETUPQ Q Y
+ ;

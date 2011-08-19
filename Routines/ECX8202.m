@@ -1,0 +1,11 @@
+ECX8202 ; COMPILED XREF FOR FILE #727.82 ; 10/15/04
+ ; 
+ S DIKZK=1
+ S DIKZ(0)=$G(^ECX(727.82,DA,0))
+ S X=$P(DIKZ(0),U,1)
+ I X'="" S ^ECX(727.82,"AINV",-X,DA)=""
+ S X=$P(DIKZ(0),U,2)
+ I X'="" S ^ECX(727.82,"AM",$E(X,1,30),DA)=""
+ S X=$P(DIKZ(0),U,3)
+ I X'="" S ^ECX(727.82,"AC",$E(X,1,30),DA)=""
+END Q

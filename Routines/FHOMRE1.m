@@ -1,0 +1,97 @@
+FHOMRE1 ;Hines OIFO/RTK-OUTPATIENT MEALS EARLY/LATE TRAY  ;5/20/03  08:35
+ ;;5.5;DIETETICS;**2,11**;Jan 28, 2005;Build 4
+ ;
+ ;09/08/2006 KAM/BAY Remedy Call 149576 - Add check for provide bagged meal
+ ;
+ S FHMSG1="E" D EN1,END Q
+EN1 D GETOPT^FHOMUTL I FHFIND=0 Q
+ K NUM D DISP^FHOMRR1 I $G(NUM)="" Q
+EL1 K DIR S DIR(0)="NAO^1:"_NUM,DIR("A")="Early/Late Tray For Which Order? "
+ D ^DIR Q:$D(DIRUT)
+ S FHRMSEL=Y,FHC=FHRMSEL,FHRNUM=$P(FHLIST(FHRMSEL),U,1)
+ S FHRMDT=$P(FHLIST(FHRMSEL),U,2),Y=FHRMDT D DD^%DT W !,Y,!
+ I $P($G(^FHPT(FHDFN,"OP",FHRNUM,0)),U,15)="C" W !!?3,"The selected order has been cancelled!",! D EL1 Q
+ I $D(^FHPT(FHDFN,"OP",FHRNUM,2)) W !,"Early/Late Tray already exists for this meal." K DIR S DIR(0)="YA",DIR("A")="Do you wish to overwrite? ",DIR("B")="N" D ^DIR Q:$D(DIRUT)  Q:Y'=1
+ ; Only allow selection of one order at a time, rather than a range
+ ; because they could be different meals which could have different
+ ; allowable meal window times.
+ K DIR S DIR(0)="SAO^E:EARLY;L:LATE",DIR("A")="Early or Late (E or L)? "
+ D ^DIR I $D(DIRUT) D EXMSG^FHOMUTL Q
+ S FHEL=Y
+ORD S FHLOC=$P($G(^FHPT(FHDFN,"OP",FHRNUM,0)),U,3),FHORN="",FHMSG1="E"
+ S FHDIET=$P($G(^FHPT(FHDFN,"OP",FHRNUM,0)),U,2)
+ S FHCOMM=$P($G(^FH(119.6,FHLOC,0)),U,8),FHCOMM1=$G(^FH(119.73,FHCOMM,1))
+ S FHMEAL=$P($G(^FHPT(FHDFN,"OP",FHRNUM,0)),U,4)
+ S FH1=$S(FHMEAL="B":1,FHMEAL="N":7,1:13) I FHEL="L" S FH1=FH1+3
+TIME S FH3=FH1+2,FHCNT=0 F FHT=FH1:1:FH3 D
+ .I $P(FHCOMM1,U,FHT)="" Q
+ .S FHCNT=FHCNT+1,FHTM(FHCNT)=$P(FHCOMM1,U,FHT)
+ W !,"Select Time: ( " F J=1:1:FHCNT W J,"=",FHTM(J)," "
+ R ") ",FHS:DTIME I FHS=""!(FHS["^") D EXMSG^FHOMUTL Q
+ I (FHS'?1N)!(FHS<1)!(FHS>FHCNT) W !!,"Invalid time selection!" D TIME Q
+ S FHTIME=FHTM(FHS),X=FHRMDT_"@"_FHTIME,%DT="XT" D ^%DT S FHDTM=Y
+ D NOW^%DTC I FHDTM<% W !!,"Cannot order for a Date/Time before now!" D TIME Q
+ ;09/08/2006 KAM/BAY Rem Call 149576 Check file 119.73 PROVIDE BAGGED MEAL
+ ;
+ S FHBAG="N" I $P($G(^FH(119.73,FHCOMM,2)),U,10)="Y" D
+ . K DIR S DIR(0)="SAO^Y:Yes;N:No",DIR("A")="Bagged Meal? ",DIR("B")="N"
+ . D ^DIR I $D(DIRUT) D EXMSG^FHOMUTL Q
+ . S FHBAG=Y
+ D SET,UPD100,OKMSG^FHOMUTL,END Q
+ ;
+SET S DA=FHRNUM,DA(1)=FHDFN,DIE="^FHPT("_DA(1)_",""OP"","
+ S FHORN=$S($G(FHORN)="":"",1:FHORN)
+ D NOW^%DTC S FHTODAY=$E(%,1,12)
+ S DR="14////^S X=FHTIME;15////^S X=FHBAG;16////^S X=DUZ;17////^S X=FHTODAY;17.5////^S X=FHORN;17.6////^S X=""@""" D ^DIE
+ S FHACT="O",FHOPTY="E",FHAET=FHTIME D SETAET^FHOMRO2
+ Q
+END K A,FHFIND,FHCLST,FHC,FHCOMM,FH1,FH3,FHTEXT,NUM
+ K FHSEL,FHT,FHCNT,FHCOMM1,FHS Q
+ Q
+HL7SET ;
+ ; Entry point for E/L trays placed from CPRS/OERR
+ S (FHRFLG,FHSFLG)=0,FHMEAL=$E(FHSVCP,1),FILL=""
+ S FHEL=$E(FHSVCP,2),FHTM=$E(FHSVCP,3)
+ I FHEL'?1"E",FHEL'?1"L" S TXT="Missing E/L" D GETOR^FHWOR,ERR^FHOMWOR Q
+ I FHTM<1!(FHTM>3) S TXT="Invalid time" D GETOR^FHWOR,ERR^FHOMWOR Q
+ S FHRMDT=STDT,ENDT=FHRMDT_.9999
+ S FH1=$S(FHMEAL="B":1,FHMEAL="N":7,1:13) I FHEL="L" S FH1=FH1+3
+ S FH1=FH1+FHTM-1
+ S FHCOMM=$P($G(^FH(119.6,FHLOC,0)),U,8),FHCOMM1=$G(^FH(119.73,FHCOMM,1))
+ S FHTIME=$P(FHCOMM1,U,FH1),X1=STDT,X2=-1 D C^%DTC S STDT1=X
+RM ; Check recurring meals
+ I '$D(^FHPT(FHDFN,"OP","B",FHRMDT)) D SM Q
+ F FHRMDT=STDT1:0 S FHRMDT=$O(^FHPT(FHDFN,"OP","B",FHRMDT)) Q:FHRMDT'>0!(FHRMDT>ENDT)  F FHRNUM=0:0 S FHRNUM=$O(^FHPT(FHDFN,"OP","B",FHRMDT,FHRNUM)) Q:FHRNUM'>0  D
+ .Q:$P($G(^FHPT(FHDFN,"OP",FHRNUM,0)),U,4)'=FHMEAL
+ .Q:$P($G(^FHPT(FHDFN,"OP",FHRNUM,0)),U,15)="C"
+ .S FHRNUM1=FHRNUM,FHRFLG=1 D SET Q
+ S FILL="E;"_$G(FHRNUM1)
+SM ; Check special meals
+ F FHSMDT=STDT:0 S FHSMDT=$O(^FHPT(FHDFN,"SM",FHSMDT)) Q:FHSMDT'>0!(FHSMDT>ENDT)  D SETELSM
+ ;
+ I FHRFLG=0,FHSFLG=0 D REJECT Q
+ I FILL="" D REJECT Q
+ D SEND^FHWOR
+ Q
+SETELSM ; Set E/L for Special Meals
+ Q:$P($G(^FHPT(FHDFN,"SM",FHSMDT,0)),U,9)'=FHMEAL
+ S FHSFLG=1,DA=FHSMDT,DA(1)=FHDFN,DIE="^FHPT("_DA(1)_",""SM"","
+ D NOW^%DTC S FHTODAY=$E(%,1,12)
+ S FHORN=$S($G(FHORN)="":"",1:FHORN),FILL="G;"_FHSMDT
+ S DR="8////^S X=FHTIME;9////^S X=FHBAG;10////^S X=DUZ;11////^S X=FHORN" D ^DIE
+ S FHZN=$G(^FHPT(FHDFN,"SM",FHSMDT,0))
+ S FHACT="O",FHOPTY="S",FHSTAT="",FHOPDT=FHTODAY D SETSM^FHOMRO2
+ Q
+REJECT ; Reject if no recurring or special meals found
+ S TXT="No Recurring or Special Meal ordered for this date/meal"
+ D GETOR^FHWOR,ERR^FHOMWOR Q
+ Q
+UPD100 ;Backdoor message to update file #100 with a new EL order
+ Q:'$$PATCH^XPDUTL("OR*3.0*215")  ;must have CPRSv26 for O.M. backdoor
+ Q:'DFN  K MSG D MSHOM^FHOMUTL  ;Sets MSG(1), MSG(2) & MSG(3) for OM
+ S FILL="E;"_FHRNUM,FHODT=$$FMTHL7^XLFDT(FHRMDT)
+ S FHOMELN=FHMEAL_FHEL_FHS,FHOBAG="" I FHBAG="Y" S FHOBAG="bagged"
+ S MSG(4)="ORC|SN||"_FILL_"^FH||||^^^"_FHODT_"^"_FHODT_"||||||||"_FHTODAY
+ S MSG(5)="ODT|"_$S(FHEL="E":"EARLY",1:"LATE")_"|^^^"_FHOMELN_"^^99FHD|"_FHOBAG
+ D EVSEND^FHWOR
+ Q

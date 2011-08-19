@@ -1,0 +1,136 @@
+ECXFEKE1 ;BIR/DMA,CML-Print Feeder Keys (CONTINUED); [ 03/28/96  5:44 PM ] ; 4/3/02 2:45pm
+ ;;3.0;DSS EXTRACTS;**11,8,40**;Dec 22, 1997
+ ;
+SELLABKE() ;** Function to prompt user selection of type of Lab Feeder Key
+ ;
+ ;** Variable Definitions
+ ;**  ECXKEY    - Value of user selection returned to calling code
+ ;**                Returns  N - LMIP Code formated feeder keys
+ ;**                         O - Locally formated feeder keys
+ ;**                        -1 - User uparrow (^) or Time out
+ ;
+ N ECXKEY
+ W !!,"The Feeder Key List for the Feeder System LAB can be printed by:"
+ W !,?5,"(O)ld Feeder Key sort by Local Feeder Key values"
+ W !,?5,"(N)ew Feeder Key sort by LMIP Codes"
+ S DIR(0)="S^O:OLD;N:NEW"
+ S:$D(^ECX(728,1,"LMIP")) DIR("B")="NEW"
+ S:'$D(^ECX(728,1,"LMIP")) DIR("B")="OLD"
+ D ^DIR
+ S:$D(DIRUT) ECXKEY=-1
+ S:'$D(DIRUT) ECXKEY=Y
+ K Y,DIR,DIRUT,DTOUT,DUOUT
+ Q ECXKEY
+ ;
+SUR F EC=1:1:16 S EC1=$P($T(@("S"_EC)),";",3),EC2=$P(EC1,U),ECD=$P(EC1,U,2),^TMP($J,"SUR",EC2_"-10",EC)=ECD_" PATIENT TIME",^TMP($J,"SUR",EC2_"-40",EC)=ECD_" SURGEON TIME" D
+ .S ^TMP($J,"SUR",EC2_"-60",EC)=ECD_" RECOVERY ROOM TIME",^TMP($J,"SUR",EC2_"-70",EC)=ECD_" TECHNICIAN TIME",^TMP($J,"SUR",EC2_"-30",EC)=ECD_" CLEANUP TIME"
+ .S ^TMP($J,"SUR",EC2_"-22",1)=ECD_" ANESTHESIA TIME (SPECIAL)"
+ .S ^TMP($J,"SUR",EC2_"-21",1)=ECD_" ANESTHESIA TIME (GENERAL)"
+ .S ^TMP($J,"SUR",EC2_"-23",1)=ECD_" ANESTHESIA TIME (LOCAL)"
+ .S ^TMP($J,"SUR",EC2_"-24",1)=ECD_" ANESTHESIA TIME (SPI/EPI)"
+ .S ^TMP($J,"SUR",EC2_"-25",1)=ECD_" ANESTHESIA TIME (OTHER)"
+ .S ^TMP($J,"SUR",EC2_"-26",1)=ECD_" ANESTHESIA TIME (UNKNOWN)"
+ .S ^TMP($J,"SUR",EC2_"-27",1)=ECD_" ANESTHESIA TIME (MONITORED)"
+ S EC=0 F  S EC=$O(^SRO(131.9,EC)) Q:'EC  I $D(^(EC,0)) S ECD=$P(^(0),U),^TMP($J,"SUR",$$RJ^XLFSTR(EC,5,0),EC)=ECD
+ Q
+S1 ;;050^GENERAL(OR WHEN NOT DEFINED BELOW)
+S2 ;;051^GYNECOLOGY
+S3 ;;052^NEUROSURGERY
+S4 ;;053^OPHTHALMOLOGY
+S5 ;;054^ORTHOPEDICS
+S6 ;;055^OTORHINOLARYNGOLOGY (ENT)
+S7 ;;056^PLASTIC SURGERY (INCLUDES HEAD AND NECK)
+S8 ;;057^PROCTOLOGY
+S9 ;;058^THORACIC SURGERY (INC. CARDIAC SURG.)
+S10 ;;059^UROLOGY
+S11 ;;060^ORAL SURGERY (DENTAL)
+S12 ;;061^PODIATRY
+S13 ;;062^PERIPHERAL VASCULAR
+S14 ;;500^CARDIAC SURGERY
+S15 ;;501^TRANSPLANTATION
+S16 ;;502^ANESTHESIOLOGY
+ ;
+DEN F EC=3:1 S EC1=$T(DEN+EC) Q:EC1'?1"D"2N.E  S ECD=$P(EC1,";",3),EC1=$P(EC1," "),^TMP($J,"DEN",EC1,EC)=ECD
+ Q
+ ;
+D08C ;;COMPLETE EXAM
+D08S ;;SCREENING EXAM
+D09 ;;ADMIN PROCEDURE
+D10 ;;X-RAYS EXTRAORAL #
+D11 ;;X-RAYS INTRAORAL #
+D12 ;;PROPHY NATURAL DENTITION
+D13 ;;PROPHY DENTURE
+D14 ;;OPERATING ROOM
+D15 ;;NEOPLASM CONFIRMED MALIGNANT #
+D16 ;;NEOPLASM REMOVED #
+D17 ;;BIOPSY/SMEAR #
+D18 ;;FRACTURE #
+D20 ;;OTHER SIGNIF. SURG. (CTV)
+D21 ;;SURFACES RESTORED #
+D22 ;;ROOT CANAL THERAPY #
+D23 ;;PERIDONTAL QUADS (SURGICAL) #
+D24 ;;PERIO QUADS (ROOT PLANE) #
+D25G ;;PATIENT ED (CTV) GROUP
+D25I ;;PATIENT ED (CTV) INDIVIDUAL
+D26S ;;SPOT CHECK EXAM (STAFF)
+D26F ;;SPOT CHECK EXAM (FEE)
+D27 ;;INDIVIDUAL CROWNS #
+D28 ;;POST & CORES #
+D29 ;;FIXED PARTIALS (ABUT) #
+D30 ;;FIXED PARTIALS (PONT ONLY) #
+D31 ;;REMOVABLE PARTIALS #
+D32 ;;COMPLETE DENTURES #
+D33 ;;PROSTHETIC REPAIR #
+D34 ;;SPLINT AND SPEC. PROCESS (CTV)
+D35 ;;EXTRACTIONS #
+D36 ;;SURGICAL EXTRACTIONS #
+D37 ;;OTHER SIG TREATMENT (CTV)
+D38 ;;DIVISION (STATION DIVISION)
+D39C ;;COMPLETIONS
+D39T ;;TERMINATIONS
+D40 ;;INTERDISCIPLINARY CONSULT
+D41 ;;EVALUATIONS
+D42 ;;PRE AUTHORIZATION/2ND OPINION
+D43M ;;SPOT CHECK DISCREPANCY (STAFF)
+D43R ;;SPOT CHECK DISCREPANCY (FEE)
+ ;
+PRINT ;
+ ;setting EC9=EC1 is just for the benefit of the new ECS feeder key list - don't want to mess-up the other lists
+ S (QFLG,PG)=0,$P(LN,"-",81)=""
+ S EC="" F  S EC=$O(^TMP($J,EC)),EC1="" Q:EC=""  Q:QFLG  D HEAD F  S EC1=$O(^TMP($J,EC,EC1)),EC9=EC1,EC2=""  Q:EC1=""  Q:QFLG  D
+ .I EC="CLI" S EC9=$P(EC9,";",2)
+ .I EC="ECS",$G(ECECS)="N" S EC9=$P(EC9,";",2)
+ .I EC="LAB",EC9[".8" S EC9=$$ADD0(EC9)
+ .F  S EC2=$O(^TMP($J,EC,EC1,EC2)) Q:EC2=""  D
+ ..D:($Y+3>IOSL) HEAD Q:QFLG
+ ..I EC="PHA" W !,?2,$E(EC9,2,99),?24,$E($P(^TMP($J,EC,EC1,EC2),U),1,40),?67,$$RJ^XLFSTR($P(^(EC2),U,2),12) Q
+ ..W !,?5,EC9,?27,^TMP($J,EC,EC1,EC2)
+ I $E(IOST)="C"&('QFLG) S DIR(0)="E" D  D ^DIR K DIR
+ .S SS=22-$Y F JJ=1:1:SS W !
+ K EC,EC1,EC2,EC3,EC9,ECCSC,ECD,ECLIST,ECNDC,ECNDF,ECNFC,ECPHA,ECECS,ECLAB,ECSC,ECST,ECY,JJ,LN,P1,P2,P3,PG,POP,QFLG,SC,SS,X,Y,^TMP($J),DIR,DIRUT,DUOUT
+ W:$E(IOST)'="C" @IOF D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@"
+ Q
+HEAD ;
+ I $E(IOST)="C" S SS=22-$Y F JJ=1:1:SS W !
+ I $E(IOST)="C",PG>0 S DIR(0)="E" D ^DIR K DIR I 'Y S QFLG=1 Q
+ W:$Y!($E(IOST)="C") @IOF
+ S PG=PG+1 W !,?21,"Feeder Key List For Feeder System ",EC,?70,"Page: ",PG
+ I EC="PHA" W !,?22,"(NEW Feeder Key from NDF Match)",!!,?2,"Feeder Key",?24,"Description",?66,"Price Per",!,?66,"Dispense Unit",!,LN,! Q
+ I $D(ECECS)&(EC="ECS") W !?21,$S(ECECS="O":"(OLD Feeder Key sorted by Category-Procedure)",1:"(NEW Feeder Key sorted by Procedure-CPT Code)")
+ I $D(ECLAB)&(EC="LAB") W !?15,$S(ECLAB="O":"(OLD Feeder Key sorted by Local Feeder Key values)",1:"      (NEW Feeder Key sorted by LMIP Codes)")
+ W !!,?5,"Feeder Key",?27,"Description",!,LN,!
+ Q
+ADD0(ECXFKEY) ;** Append zeros to decimal place on feeder key
+ ;
+ ;** Variable Definitions
+ ;**  ECXFKEY   - Value of Feeder Key
+ ;**                Returns  feeder key with zeros appended to make a
+ ;**                          four place decimal.
+ ;
+ N ECXD,LPCNT,LPEND,ECXFEKEY,ECXDEC
+ S ECXDEC=$P(ECXFKEY,".",2)
+ S LPEND=4-$L(ECXDEC)
+ F LPCNT=1:1:LPEND S ECXDEC=ECXDEC_"0"
+ S ECXFEKEY=$P(ECXFKEY,".",1)_"."_ECXDEC
+ Q ECXFEKEY
+ ;

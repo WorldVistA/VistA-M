@@ -1,0 +1,57 @@
+FSCMR ;SLC/STAFF-NOIS Most Recent ;9/6/98  21:23
+ ;;1.1;NOIS;;Sep 06, 1998
+ ;
+MRE(USER,CALL) ; from FSCEF, FSCELID, FSCES, FSCLMPE1, FSCRPCEB, FSCRPCEC, FSCRPCEN, FSCRPCNC, FSCRPCPF
+ N DA,DIE,DIK,DR,X,Y
+ S DA=$G(^FSCD("MRE","AUC",USER,CALL))
+ I DA D
+ .S DR="1///"_$$NOW^XLFDT
+ .S DIE="^FSCD(""MRE"","
+ .D ^DIE
+ E  D
+ .L +^FSCD("MRE",0):5 I '$T Q
+ .S DA=1+$P(^FSCD("MRE",0),U,3)
+ .F  Q:'$D(^FSCD("MRE",DA,0))  S DA=DA+1
+ .S $P(^FSCD("MRE",0),U,3)=DA,$P(^(0),U,4)=$P(^(0),U,4)+1
+ .S ^FSCD("MRE",DA,0)=USER_U_$$NOW^XLFDT_U_CALL
+ .L -^FSCD("MRE",0)
+ .S DIK="^FSCD(""MRE"","
+ .D IX1^DIK
+ Q
+ ;
+MRA(USER,CALL) ; from FSCNAR, FSCRPCAP
+ N DA,DIE,DIK,DR,X,Y
+ S DA=$G(^FSCD("MRA","AUC",USER,CALL))
+ I DA D
+ .S DR="1///"_$$NOW^XLFDT
+ .S DIE="^FSCD(""MRA"","
+ .D ^DIE
+ E  D
+ .L +^FSCD("MRA",0):5 I '$T Q
+ .S DA=1+$P(^FSCD("MRA",0),U,3)
+ .F  Q:'$D(^FSCD("MRA",DA,0))  S DA=DA+1
+ .S $P(^FSCD("MRA",0),U,3)=DA,$P(^(0),U,4)=$P(^(0),U,4)+1
+ .S ^FSCD("MRA",DA,0)=USER_U_$$NOW^XLFDT_U_CALL
+ .L -^FSCD("MRA",0)
+ .S DIK="^FSCD(""MRA"","
+ .D IX1^DIK
+ Q
+ ;
+MRU(USER,LIST,INDEX) ; from FSCLM, FSCLMPC, FSCLMPQU, FSCRPCL, FSCRPCSL, FSCRPCSL
+ S INDEX=+$G(INDEX)
+ N DA,DIE,DIK,DR,X,Y
+ S DA=+$G(^FSCD("MRU","AUL",USER,LIST,INDEX))
+ I DA D
+ .S DR="1///"_$$NOW^XLFDT
+ .S DIE="^FSCD(""MRU"","
+ .D ^DIE
+ E  D
+ .L +^FSCD("MRU",0):5 I '$T Q
+ .S DA=1+$P(^FSCD("MRU",0),U,3)
+ .F  Q:'$D(^FSCD("MRU",DA,0))  S DA=DA+1
+ .S $P(^FSCD("MRU",0),U,3)=DA,$P(^(0),U,4)=$P(^(0),U,4)+1
+ .S ^FSCD("MRU",DA,0)=USER_U_$$NOW^XLFDT_U_LIST_U_INDEX
+ .L -^FSCD("MRU",0)
+ .S DIK="^FSCD(""MRU"","
+ .D IX1^DIK
+ Q

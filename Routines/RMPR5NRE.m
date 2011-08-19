@@ -1,0 +1,63 @@
+RMPR5NRE ;HIN/RVD-PROS INVENTORY REMOVE UTILITY ;2/11/98
+ ;;3.0;PROSTHETICS;**33,37**;Feb 09, 1996
+ D DIV4^RMPRSIT I $D(Y),(Y<0) K DIC("B") Q
+ S X="NOW" D ^%DT D DD^%DT S RMDAT=Y
+ W @IOF
+ ;
+LOC ;get location
+ S RMFLG=0
+ S DZ="??",D="B"
+ K DTOUT,DUOUT,DIC("B"),DIC("S")
+ S DIC="^RMPR(661.3,",DIC(0)="AEQM"
+ S DIC("S")="I $P(^RMPR(661.3,+Y,0),U,3)=RMPR(""STA"")"
+ S DIC(0)="AEQM"
+ ;I $D(^RMPR(661.3,"B")) D DQ^DICQ
+ S DIC("A")="Enter LOCATION: " D MIX^DIC1
+ G:Y'>0!$D(DTOUT)!$D(DUOUT) EXIT S RMLODA=+Y
+ S RMLOC=$P($G(^RMPR(661.3,+Y,0)),U,1)
+ ;
+LIST ;list current HCPCS @ this Location
+ K DTOUT,DUOUT,DIC("S"),DIR
+ S DIC("A")="Select HCPCS to Remove: "
+ S DA(1)=RMLODA,DIC(0)="AEMQ",DIC("W")="S RZ=$P(^RMPR(661.3,RMLODA,1,+Y,0),U,1) I RZ W ?15,$P(^RMPR(661.1,RZ,0),U,2)"
+ S DIC="^RMPR(661.3,"_RMLODA_",1," D ^DIC
+ I +Y'>0!$D(DTOUT)!$D(DUOUT) W !,"** No HCPCS selected..." H 2 G LOC
+ S RMHCDA=+Y,RMDAHC=$P(^RMPR(661.3,RMLODA,1,+Y,0),U,1),RMHCPC=$P(^RMPR(661.1,RMDAHC,0),U,1)
+ ;
+ITEM G:'RMHCDA LIST K DIC
+ S DA(1)=RMHCDA,DA(2)=RMLODA,DZ="??",D="B"
+ S DIC("A")="Enter Item to Remove: "
+ S DIC="^RMPR(661.3,"_DA(2)_",1,"_DA(1)_",1,",DIC(0)="AEMNQ"
+ ;I $D(^RMPR(661.1,RMDAHC,3,"B")) D DQ^DICQ
+ D ^DIC G:Y'>0!$D(DTOUT)!$D(DUOUT) LOC S RMITDA=+Y
+ S RM3=^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0)
+ S RMIT=$P(RM3,U,1),RMBA=$P(RM3,U,2),RMCO=$P(RM3,U,3),RMSO=$P(RM3,U,9)
+ S RMDAIT=$P(RMIT,"-",2)
+ S RM1=^RMPR(661.1,RMDAHC,3,RMDAIT,0)
+ S DIR("A")="Are you sure you want to DEACTIVATE/REMOVE this item (Y/N)"
+ S DIR(0)="Y" D ^DIR G:$D(DTOUT)!(+Y=0)!$D(DUOUT) LOC
+ S DA=RMITDA,DA(2)=RMLODA,DA(1)=RMHCDA,DIK=DIC D ^DIK
+ S DA(1)=RMLODA
+ I '$D(^RMPR(661.3,RMLODA,1,RMHCDA,1,"B")) S DIK="^RMPR(661.3,"_DA(1)_",1,",DA=RMHCDA D ^DIK
+ I '$D(^RMPR(661.3,"C",RMDAHC)) S RMFLG=1
+ W !,"**** Item has been removed from Location ",$P(^RMPR(661.3,RMLODA,0),U,1),!
+ ;
+ ;create item stattistics in file 661.2
+STAT D BAL^RMPR5NU1
+ K DD,DO S DIC="^RMPR(661.2,",DIC(0)="L",X=DT,DLAYGO=661.2 D FILE^DICN
+ G:$D(DTOUT)!(Y'>0) LOC S DA=+Y
+ I 'RMFLG D
+ .S RMMESF="Item Deactivated by "_$E($P(^VA(200,DUZ,0),U,1),1,15)_": (-"_RMBA_")"
+ .S ^RMPR(661.2,DA,0)=DT_"^^^"_RMDAHC_"^^^"_DUZ_"^^"_RMIT_"^^^"_RMTOBA_"^"_RMMESF_"^"_$J(RMTOCO,0,2)_"^"_RMPR("STA")_"^"_RMLODA_"^"_$J(RMAVA,0,2)
+ .S DIK=DIC D IX1^DIK
+ ;
+DEAC I RMFLG D
+ .S RMMESF="Deactivated by "_$E($P(^VA(200,DUZ,0),U,1),1,15)_": ("
+ .S ^RMPR(661.2,DA,0)=DT_"^^^"_RMDAHC_"^^^"_DUZ_"^^"_RMIT_"^^^"_RMTOBA_"^"_RMMESF_"^"_$J(RMTOCO,0,2)_"^"_RMPR("STA")_"^"_RMLODA_"^"_$J(RMAVA,0,2)
+ .S DIK=DIC D IX1^DIK
+ .S $P(^RMPR(661.1,RMDAHC,0),U,9)=0 W !,"**** HCPCS has been deactivated from Pros Inventory...."
+ H 1 G LOC
+ ;
+EXIT ;MAIN EXIT POINT
+ N RMPRSITE,RMPR D KILL^XUSCLEAN
+ Q

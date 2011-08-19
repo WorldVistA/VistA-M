@@ -1,0 +1,83 @@
+PSUPR4 ;BIR/PDW - PBMS PROCUREMENT EMAIL GENERATOR ;10 JUL 1999
+ ;;4.0;PHARMACY BENEFITS MANAGEMENT;;MARCH, 2005
+ ;DBIA(s)
+ ; Reference to file  #4.3 supported by DBIA 2496
+ ; Reference to file #40.8 supported by DBIA 2438
+ ;PSULC  = Line processing in ^tmp
+ ;PSUTLC = Total Line count
+ ;PSUMC  = Message counter
+ ;PSUMLC = Message Line Counter
+ ; RETURNS 
+ ;PSUMSG("M") = # Messages
+ ;PSUMSG("L") = # Lines
+ ;
+EN(PSUMSG) ;Scan and process for Division(s)
+ ; PSUMSGT ("M")= # MESSAGES  ("L")= # LINES
+ ;
+ I $G(PSUMASF)!$G(PSUDUZ)!$G(PSUPBMG) D
+ .NEW PSUMAX,PSULC,PSUTMC,PSUTLC,PSUMC
+ .; Scan TMP, split lines, transmit per MAX lines in Netmail
+ .S PSUMAX=$$VAL^PSUTL(4.3,1,8.3)
+ .S:PSUMAX'>0 PSUMAX=10000
+ .;
+ .I '$D(^XTMP(PSUPRSUB,"RECORDS")) D NODATA Q
+DIV .;   Scan by division and send divisional messages
+ .;
+ .S PSUDIV="" F  S PSUDIV=$O(^XTMP(PSUPRSUB,"RECORDS",PSUDIV)) Q:PSUDIV=""  D MSG
+ Q
+ ;
+MSG ;EP Send divisional message
+ ;   Split and store into ^XTMP(PSUPRSUB,"MESSAGE",PSUMC,PSULC)
+ K ^XTMP(PSUPRSUB,"MESSAGE")
+ S PSUMC=1,PSUMLC=0
+ F PSULC=1:1 S X=$G(^XTMP(PSUPRSUB,"RECORDS",PSUDIV,PSULC)) Q:X=""  D
+ . I $D(^XTMP(PSUPRSUB,"RECORDS",PSUDIV,PSULC,1)) S X=X_^XTMP(PSUPRSUB,"RECORDS",PSUDIV,PSULC,1)
+ . S PSUMLC=PSUMLC+1
+ . I PSUMLC>PSUMAX S PSUMC=PSUMC+1,PSUMLC=0,PSULC=PSULC+1 Q  ; +  message
+ . I $L(X)<235 S ^XTMP(PSUPRSUB,"MESSAGE",PSUMC,PSUMLC)=X Q
+ . F I=235:-1:1 S Z=$E(X,I) Q:Z="^"
+ . S Z=$E(X,1,I),X=$E(X,I+1,999)
+ . S ^XTMP(PSUPRSUB,"MESSAGE",PSUMC,PSUMLC)=Z
+ . S PSUMLC=PSUMLC+1
+ . F  Q:X=""  D
+ .. F I=235:-1:1 S Z=$E(X,I) Q:Z="^"
+ .. S Z=$E(X,1,I),X=$E(X,I+1,999)
+ .. S ^XTMP(PSUPRSUB,"MESSAGE",PSUMC,PSUMLC)="*"_Z
+ .. S PSUMLC=PSUMLC+1
+ ;
+ ;   Count Lines sent
+ S PSUTLC=0
+ F PSUM=1:1:PSUMC S X=$O(^XTMP(PSUPRSUB,"MESSAGE",PSUM,""),-1),PSUTLC=PSUTLC+X
+ ;
+ S PSUMSG(PSUDIV,5,"M")=$G(PSUMSG(PSUDIV,5,"M"))+PSUMC
+ S PSUMSG(PSUDIV,5,"L")=$G(PSUMSG(PSUDIV,5,"L"))+PSUTLC
+ ;   Transmit Messages
+VARS ; Setup variables for contents
+ ;
+ ;    Loop through messages generated and transmit them
+ F PSUM=1:1:PSUMC D
+ . S X=PSUDIV,DIC=40.8,DIC(0)="X",D="C" D IX^DIC ;**1
+ . S X=+Y S PSUDIVNM=$$VAL^PSUTL(40.8,X,.01)
+ . S XMSUB="V. 4.0 PBMPR "_$G(PSUMON)_" "_PSUM_"/"_PSUMC_" "_PSUDIV_" "_PSUDIVNM
+ . S XMTEXT="^XTMP(PSUPRSUB,""MESSAGE"",PSUM,"
+ . S XMDUZ=DUZ
+ . M XMY=PSUXMYH
+ . S XMCHAN=1
+ . I $G(PSUMASF)!$G(PSUDUZ)!$G(PSUPBMG) D
+ ..I '$G(PSUSMRY) D ^XMD
+ ;
+ Q
+NODATA ;EP transmit NO DATA FOUND
+ S XMDUZ=DUZ
+ M XMY=PSUXMYH
+ S PSUM=1,PSUMC=1
+ S PSUDIV=PSUSNDR
+ S X=PSUDIV,DIC=40.8,DIC(0)="X",D="C" D IX^DIC ;**1
+ S X=+Y S PSUDIVNM=$$VAL^PSUTL(40.8,X,.01)
+ S XMSUB="V. 4.0 PBMPR "_$G(PSUMON)_" "_PSUM_"/"_PSUMC_" "_PSUDIV_" "_PSUDIVNM
+ S X(1)="No data to report"
+ S XMTEXT="X("
+ S XMCHAN=1
+ I $G(PSUMASF)!$G(PSUDUZ)!$G(PSUPBMG) D ^XMD
+ S PSUMSG(PSUDIV,5,"M")=1,PSUMSG(PSUDIV,5,"L")=0
+ Q

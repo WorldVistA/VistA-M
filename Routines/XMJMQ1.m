@@ -1,0 +1,163 @@
+XMJMQ1 ;ISC-SF/GMB-Q,QD,QN Query recipients (cont.) ;04/17/2002  10:11
+ ;;8.0;MailMan;;Jun 28, 2002
+ ; Replaces ^XMA5,^XMA5A (ISC-WASH/THM/CAP)
+QINIT(XMDUZ,XMK,XMKN,XMZ,XMRESPM,XMABORT) ;
+ N XMZSTR,XMSUBJ,XMRESPS
+ S XMABORT=0
+ S XMZSTR=$$EZBLD^DIALOG(34537,XMZ) ; [#_XMZ_]
+ S XMSUBJ=$P(^XMB(3.9,XMZ,0),U)
+ S:XMSUBJ["~U~" XMSUBJ=$$DECODEUP^XMXUTIL1(XMSUBJ)
+ S XMSUBJ=$$EZBLD^DIALOG(34536,XMSUBJ) ; Subj: _XMSUBJ
+ S XMRESPS=+$P($G(^XMB(3.9,XMZ,3,0)),U,4)
+ S XMRESPM=$$EZBLD^DIALOG($S(XMRESPS=1:34557.1,1:34557),XMRESPS) ; XMRESPS_ response / responses
+ W @IOF
+ D PAGE1HDR^XMJMP1(XMDUZ,XMK,XMKN,XMZ,XMRESPS,^XMB(3.9,XMZ,0),XMSUBJ,XMZSTR)
+ D INFO(XMDUZ,XMK,XMZ,0,"","","",.XMABORT)
+ Q
+INFO(XMDUZ,XMK,XMZ,XMPHDR,XMSUBJ,XMZSTR,XMPAGE,XMABORT) ;
+ N XMREC,XMRECIPS,XMDIALOG
+ S XMREC=^XMB(3.9,XMZ,0)
+ I $Y+4>IOSL D  Q:XMABORT
+ . D PAGE^XMJMQ(.XMABORT)
+ E  W !
+ W !,$$EZBLD^DIALOG(34559,XMZ_"@"_^XMB("NETNAME")) ; Local Message-ID:
+ S XMDIALOG=$S($P(XMREC,U,7)["P":34543,$P(XMREC,U,7)["S":34560,$P(XMREC,U,8):34561,1:0) I XMDIALOG D W(XMDIALOG) ; Priority! / [SPOOL] / <RESPONSE>
+ S XMRECIPS=+$P($G(^XMB(3.9,XMZ,1,0)),U,4)
+ I XMRECIPS D W($S(XMRECIPS=1:34562.1,1:34562),XMRECIPS) ; (_XMRECIPS_ Recipient(s))
+ I "^Y^y^"[(U_$P(XMREC,U,5)_U) D W(34564) ; Confirmation requested.
+ I $D(^XMB(3.9,XMZ,"K")) D W($S(" "[$P(XMREC,U,10):34565,1:34566),$P(XMREC,U,10)) ; Scramble Hint:
+ I $O(^XMB(3.9,XMZ,2005,0)) D LIST^XMA2B ; MIME body parts
+ I "^Y^y^"[(U_$P(XMREC,U,9)_U) D W(34567) ; Closed.
+ I "^Y^y^"[(U_$P(XMREC,U,11)_U) D W(34568) ; Confidential.
+ I "^Y^y^"[(U_$P(XMREC,U,12)_U) D W(34570) ; 'Information only' for all recipients.
+ I $D(^XMB(3.9,XMZ,.5)) D
+ . S XMREC=^XMB(3.9,XMZ,.5)
+ . I $P(XMREC,U,1)'="" D W(34571,$P(XMREC,U,1)) ; Delivery basket:
+ ; The following is already listed in the message header:
+ ;I $D(^XMB(3.7,XMDUZ,2,XMK,1,XMZ,0)) D
+ ;. N XMVAPOR
+ ;. S XMVAPOR=$P($G(^XMB(3.7,XMDUZ,2,XMK,1,XMZ,0)),U,5)
+ ;. I XMVAPOR D W(34572,$$MMDT^XMXUTIL1(XMVAPOR)) ; Automatic Deletion Date:
+ D LATER(XMDUZ,XMZ,XMPHDR,XMSUBJ,XMZSTR,.XMPAGE,.XMABORT)
+ Q
+LATER(XMDUZ,XMZ,XMPHDR,XMSUBJ,XMZSTR,XMPAGE,XMABORT) ; List dates message will be new on 'later'
+ Q:'$O(^XMB(3.73,"AC",XMZ,XMDUZ,0))
+ N XMIEN,XMSEP
+ I $Y+3>IOSL D PAGE^XMJMQ(.XMABORT) Q:XMABORT
+ W !,$$EZBLD^DIALOG(34595) ; Message will be NEW on:
+ S XMIEN="",XMSEP=" "
+ F  S XMIEN=$O(^XMB(3.73,"AC",XMZ,XMDUZ,XMIEN)) Q:XMIEN=""  D
+ . D W2(XMSEP,$$FMTE^XLFDT($E($P(^XMB(3.73,XMIEN,0),U),1,12)),.XMABORT)
+ . S XMSEP=", "
+ Q
+W(XMPIECE,XMPARM) ;
+ S XMPIECE=$$EZBLD^DIALOG(XMPIECE,.XMPARM)
+ I 1+$L(XMPIECE)+$X>IOM D  Q:XMABORT
+ . I $Y+3>IOSL D PAGE^XMJMQ(.XMABORT) Q:XMABORT
+ . W !
+ W " ",XMPIECE
+ Q
+W2(XMSEP,XMPIECE,XMABORT) ;
+ I $X+$L(XMSEP)+$L(XMPIECE)>IOM D  Q:XMABORT
+ . I $Y+3>IOSL D PAGE^XMJMQ(.XMABORT) Q:XMABORT
+ . W !,XMPIECE
+ E  W XMSEP,XMPIECE
+ Q
+NETWORK(XMZ,XMABORT) ;
+ N I,J,XMLINE,XMPOS,XMPHDR
+ I $O(^XMB(3.9,XMZ,2,0))'<1 D  Q
+ . W !!,$$EZBLD^DIALOG(34550) ; This message originated locally.  There is no network header.
+ I $D(^XMB(3.9,XMZ,.7)) W !!,$$EZBLD^DIALOG(34551,$P(^XMB(3.9,XMZ,.7),U,1)) ; Envelope From:
+ W !!,$$EZBLD^DIALOG(34552),! ; Network header:
+ S (I,XMPHDR)=0
+ F  S I=$O(^XMB(3.9,XMZ,2,I)) Q:I=""!(I'<1)  D  Q:XMABORT
+ . S XMLINE=^XMB(3.9,XMZ,2,I,0)
+ . I $Y+3>IOSL D PAGE^XMJMQ(.XMABORT) Q:XMABORT
+ . I $L(XMLINE)<IOM W !,XMLINE Q
+ . S XMPOS=0
+ . F  D  Q:XMLINE=""!XMABORT
+ . . I $L(XMLINE)+XMPOS+1>IOM F J=IOM-XMPOS-1:-1:IOM-XMPOS-20 Q:", -;)"[$E(XMLINE,J)
+ . . I $Y+3>IOSL D PAGE^XMJMQ(.XMABORT) Q:XMABORT
+ . . W !,?XMPOS,$E(XMLINE,1,J)
+ . . S XMPOS=10
+ . . S XMLINE=$E(XMLINE,J+1,999)
+ Q
+SUMMARY(XMZ,XMPHDR,XMSUBJ,XMZSTR,XMPAGE,XMABORT) ;
+ N XMTYPE
+ I $Y+3>IOSL D PAGE^XMJMQ(.XMABORT) Q:XMABORT
+ W !
+ I '$O(^XMB(3.9,XMZ,6,0)),'$O(^XMB(3.9,XMZ,7,0)) D  Q
+ . N XMTEXT
+ . D BLD^DIALOG(34596,"","","XMTEXT","F")
+ . D MSG^DIALOG("WM","","","","XMTEXT")
+ . ;This is an old message which has no summary recipient list.
+ . ;Only the Detail Query (QD) is available.
+ W !,$$EZBLD^DIALOG(34597),! ; This message was addressed as follows:
+ D PRTADDR(XMZ,6,.XMTYPE,.XMABORT) Q:XMABORT  ; addressed to
+ D PRTADDR(XMZ,7,.XMTYPE,.XMABORT)            ; deliver later to
+ Q
+PRTADDR(XMZ,XMNODE,XMTYPE,XMABORT) ;
+ N XMTO
+ S XMTO="*" ; List Broadcasts first
+ F  S XMTO=$O(^XMB(3.9,XMZ,XMNODE,"B",XMTO)) Q:$E(XMTO,1,1)'="*"  D PRTSUMRY(XMZ,XMNODE,XMTO,.XMTYPE,.XMABORT)  Q:XMABORT
+ Q:XMABORT
+ S XMTO="G." ; List Groups next
+ F  S XMTO=$O(^XMB(3.9,XMZ,XMNODE,"B",XMTO)) Q:$E(XMTO,1,2)'="G."  D PRTSUMRY(XMZ,XMNODE,XMTO,.XMTYPE,.XMABORT)  Q:XMABORT
+ Q:XMABORT
+ S XMTO=""  ; Now list the rest
+ F  S XMTO=$O(^XMB(3.9,XMZ,XMNODE,"B",XMTO)) Q:XMTO=""  D  Q:XMABORT
+ . Q:$E(XMTO,1,2)="G."
+ . Q:$E(XMTO,1,1)="*"
+ . D PRTSUMRY(XMZ,XMNODE,XMTO,.XMTYPE,.XMABORT)
+ Q
+PRTSUMRY(XMZ,XMNODE,XMTO,XMTYPE,XMABORT) ;
+ N XMIEN,XMREC
+ S XMIEN=$O(^XMB(3.9,XMZ,XMNODE,"B",XMTO,0)) Q:'XMIEN
+ S XMREC=$G(^XMB(3.9,XMZ,XMNODE,XMIEN,0)) Q:XMREC=""
+ I $Y+3>IOSL D PAGE^XMJMQ(.XMABORT) Q:XMABORT
+ I $P(XMREC,U,2)'="" D
+ . S XMTYPE=$P(XMREC,U,2)
+ . I '$D(XMTYPE(XMTYPE)) S XMTYPE(XMTYPE)=$$EXTERNAL^DILFD(3.91,6.5,"",XMTYPE) I $D(DIERR) S XMTYPE(XMTYPE)=XMTYPE
+ . W !,XMTYPE(XMTYPE),":",$P(XMREC,U,1)
+ E  W !,$P(XMREC,U,1)
+ Q:XMNODE=6
+ N XMPARM
+ S XMPARM(1)=$$MMDT^XMXUTIL1($P(XMREC,U,5)),XMPARM(2)=$P(XMREC,U,4)
+ D W(34598,.XMPARM) ; for delivery x by y
+ Q
+SEARCH(XMZ,XMNAME,XMRESPM) ;
+ N XMPHDR,XMUSER,XMSITE
+ S XMPHDR=0
+ I $Y+5>IOSL D  Q:XMABORT
+ . D PAGE^XMJMQ(.XMABORT)
+ E  W !
+ W !,$$EZBLD^DIALOG(34554,XMNAME),! ; Searching for recipients that match '_XMNAME_'.
+ I XMNAME["@" D
+ . S XMSITE=$$UP^XLFSTR($P(XMNAME,"@",2,99))
+ . ;S XMUSER=$P(XMNAME,"@",1)_$S(XMNAME[",":"@",1:",")
+ . S XMUSER=$P($P(XMNAME,"@",1),",",1)_","
+ . S XMNAME=XMUSER_XMSITE
+ E  D  Q:XMABORT
+ . D FIND^DIC(200,"","@;.01","AP",XMNAME,"","B^BB^C^D","I $D(^XMB(3.9,XMZ,1,""C"",+Y))")
+ . I '$D(DIERR) D PSEARCH(200,XMZ,XMRESPM,.XMABORT) Q:XMABORT
+ Q:$O(^XMB(3.9,XMZ,1,"C",":"))=""  ; Quit if there aren't any non-local addressees
+ N XMSCREEN
+ S XMSCREEN=$S(+XMNAME=XMNAME:"I '$D(^XMB(3.9,XMZ,1,""C"",XMNAME))",1:"")
+ D FIND^DIC(3.91,","_XMZ_",","","CP",XMNAME,"","C",XMSCREEN)
+ I '$D(DIERR) D PSEARCH(3.91,XMZ,XMRESPM,.XMABORT)
+ Q:$E(XMNAME)'?1U  ; Quit if the search string does not begin with an upper case letter
+ Q:$O(^XMB(3.9,XMZ,1,"C","`"))=""  ; Quit if there aren't any lower case addressees
+ ; FM will translate lower case to upper case in its search, but won't
+ ; translate upper to lower, so we do it here.
+ S XMSCREEN="I ^(0)]""`""" ; Limit search to lower case addresses
+ S XMNAME=$S($D(XMSITE):$$LOW^XLFSTR(XMUSER)_XMSITE,1:$$LOW^XLFSTR(XMNAME))
+ D FIND^DIC(3.91,","_XMZ_",","","CP",XMNAME,"","C",XMSCREEN)
+ I '$D(DIERR) D PSEARCH(3.91,XMZ,XMRESPM,.XMABORT)
+ Q
+PSEARCH(XMFILE,XMZ,XMRESPM,XMABORT) ; Print search results
+ N XMI,XMIEN,XMTYPE,XMREC
+ S XMI=0
+ F  S XMI=$O(^TMP("DILIST",$J,XMI)) Q:'XMI  S XMREC=^(XMI,0) D  Q:XMABORT
+ . S XMIEN=$S(XMFILE=200:$O(^XMB(3.9,XMZ,1,"C",$P(XMREC,U,1),0)),1:$P(XMREC,U,1))
+ . D WNAME^XMJMQ(XMZ,$P(XMREC,U,2),XMIEN,XMRESPM,.XMTYPE,.XMABORT)
+ Q

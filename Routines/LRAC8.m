@@ -1,0 +1,14 @@
+LRAC8 ;SLC/DCM/MILW/JMC - REFORMAT ^LAC WHEN FILE 64.5 IS CHANGED ; 10/2/87  11:30 ;
+ ;;5.2;LAB SERVICE;;Sep 27, 1994
+ ;Routine will only go thru LAC global once instead of for each header changed.
+ENT S LRDFN=0
+ F  S LRDFN=$O(^LAC("LRAC",LRDFN)) Q:'LRDFN  D
+ . S LRMH=0
+ . F  S LRMH=$O(^LAB(64.5,"AZ",LRMH)) Q:'LRMH  D
+ . . S LRSH=0
+ . . F  S LRSH=$O(^LAB(64.5,"AZ",LRMH,LRSH)) Q:'LRSH  I $D(^LAC("LRAC",LRDFN,1,LRMH,1,LRSH)) D 
+ . . . K ^LAC("LRAC",LRDFN,1,LRMH,1,LRSH)
+ . . . I $O(^LAC("LRAC",LRDFN,1,LRMH,1,0))<1 K ^LAC("LRAC",LRDFN,1,LRMH) S $P(^LAC("LRAC",LRDFN,1,0),"^",3,4)=""
+ K LRMH,LRSH,LRDFN,LRIDT,LRFDT,LRTF
+ K ^LAB(64.5,"AZ")
+ Q

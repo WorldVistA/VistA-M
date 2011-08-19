@@ -1,0 +1,35 @@
+SDPARM1 ;ALB/CAW - Build Display for Division(s) ; 3/10/92
+ ;;5.3;Scheduling;**27**;08/13/93
+ ;
+CONT ;
+ S SDDLN=0
+ F SDDIV=0:0 S SDDIV=$O(SDPARM(40.8,SDDIV)) Q:'SDDIV  S SDDLN=SDDLN+1 D DIV S SDDLN(SDDIV)=SDDLN
+ Q
+DIV ;
+ ;
+11 ;
+ D SET^SDPARM($$SETSTR^VALM1("Division: "_SDPARM(40.8,SDDIV,.01,"E"),"",1,79))
+ D CNTRL^VALM10(SDLN,10,25,IOINHI,IOINORM,0)
+ ;
+12 S X=""
+ S X=$$SETSTR^VALM1("Address Loc. on Letters:",X,1,24)
+ S X=$$SETSTR^VALM1(SDPARM(40.8,SDDIV,30.01,"E"),X,26,6)
+ S X=$$SETSTR^VALM1("OP Lab Test Start Time:",X,37,23)
+ S X=$$SETSTR^VALM1($$TIME(SDPARM(40.8,SDDIV,30.02,"E")),X,SDSCOL,5)
+ D SET^SDPARM(X)
+ ;
+13 S X=""
+ S X=$$SETSTR^VALM1("OP EKG Start Time:",X,42,18)
+ S X=$$SETSTR^VALM1($$TIME(SDPARM(40.8,SDDIV,30.03,"E")),X,SDSCOL,5)
+ D SET^SDPARM(X)
+ ;
+14 S X=""
+ S X=$$SETSTR^VALM1("OP X-ray Start Time:",X,40,20)
+ S X=$$SETSTR^VALM1($$TIME(SDPARM(40.8,SDDIV,30.04,"E")),X,SDSCOL,5)
+ D SET^SDPARM(X)
+ ;
+ D SET^SDPARM("")
+ Q
+TIME(X) ; -- format time only :=   hr:min
+ I X="" Q X
+ Q $E(X_"0000",1,2)_":"_$E(X_"0000",3,4)

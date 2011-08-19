@@ -1,0 +1,27 @@
+DGRUGBGJ ;ALB/BOK/MLI - RUG-II BACK GROUND TRIGGER ; 07 MAR 87
+ ;;5.3;Registration;**7,54,89**;Aug 13, 1993
+ S U="^",X="N",%DT="R" D ^%DT S DGDT=+Y K X,Y S DGST=$S($D(^DG(43,1,"RUG")):$P(^("RUG"),U),1:0),DGSD=$S(+DGST:DGST-1,1:(DGDT-2)),IOP=$S($D(ION):ION,1:""),DGED=DGDT D ^%ZIS
+EN S DGFLG=0
+ F R=DGSD:0 S R=$O(^DGPM("AMV2",R)) Q:R'>0!(R'<DGED)  F DFN=0:0 S DFN=$O(^DGPM("AMV2",R,DFN)) Q:DFN'>0  S DGADM=$O(^(DFN,0)) I $D(^DGPM(+DGADM,0)) S X=^(0) D CK
+ADM F R=DGSD:0 S R=$O(^DGPM("AMV1",R)) Q:R'>0!(R'<DGED)  F DFN=0:0 S DFN=$O(^DGPM("AMV1",R,DFN)) Q:DFN'>0  S DGADM=$O(^(DFN,0)) I $D(^DGPM(+DGADM,0)) S W0=$P(^(0),U,6),S=$S($D(^DIC(42,+W0,0)):$P(^(0),U,3),1:"") I S]"","NHI"[S S DGD=R\1 D FILE
+PRT S W=0 F W1=0:0 S W=$O(^UTILITY($J,"PAI",W)) Q:W=""  D HEAD F I=0:0 S I=$O(^UTILITY($J,"PAI",W,I)) Q:I'>0  F D=0:0 S D=$O(^UTILITY($J,"PAI",W,I,D)) Q:D'>0  S DGI=^(D) W !,$E($P(DGI,U),1,25),?27,$P(DGI,U,2),?55 S Y=D D DT^DIQ
+ W !
+QUIT S X="N",%DT="R" D ^%DT S $P(^DG(43,1,"RUG"),U)=+Y W @IOF
+ K %DT,D,DA,DFN,DGADM,DGD,DGDT,DGED,DGFLG,DGI,DGMT,DGSD,DGSSN,DGST,DIC,DIE,DLAYGO,DR,I,N,N1,R,S,S1,W,W0,W1,X,Y,^UTILITY($J),VAERR,VAIP Q
+HEAD W @IOF,!,$P(^DIC(42,+W,0),U),?60,"DATE: " S Y=$P(DGDT,".") D DT^DIQ
+ W !!,"PATIENT ASSESSMENT INSTRUMENTS HAVE BEEN CREATED FOR THE FOLLOWING PATIENTS ",!?25,"DUE TO ADMISSION/TRANSFER IN",!!,?5,"NAME",?31,"SSN",?46,"DATE OF ADMISSION/TRANSFER IN"
+ Q
+CK S DGMT=$S($P(X,"^",18):$P(X,"^",18),1:"")
+ I $S(DGMT=4:1,DGMT=14:1,DGMT=44:1,1:0) S W0=+$P(X,U,6),S=$S($D(^DIC(42,+W0,0)):$P(^(0),U,3),1:" "),DGFLG=0 I "NHI"[S D PREV I 'DGFLG S DGD=R\1 D FILE
+ Q
+PREV S VAIP("D")=R D IN5^VADPT
+ S N=+VAIP(15,1) I N>0 S W1=+VAIP(15,4),S1=$P(^DIC(42,W1,0),U,3) S:((S="NH"&(S1="NH"))!(S="I"&(S1="I"))) DGFLG=1
+ I N<0,$D(^DGPM(DGADM,0)) S W1=$P(^(0),"^",6),S1=$P(^DIC(42,W1,0),"^",3) I (S="NH"&(S1="NH"))!(S="I"&(S1="I")) S DGFLG=1
+ Q
+FILE Q:$D(^DG(45.9,"AT",1,DGD,DFN))
+ S DLAYGO=45.9,DGSSN=$E($P(^DPT(DFN,0),U,9),1,9),X=DFN,DIC="^DG(45.9,",DIC(0)="L" D FILE^DICN G:Y'>0 BUL
+ S DA=+Y,DIE="^DG(45.9,",W0=W0_";DIC(42,"
+ S DR="6///1;2///"_DGD_";3///"_DGSSN_";7///"_DGD_";70////^S X=W0;9///"_S_";80///5"
+ D ^DIE
+ S ^UTILITY($J,"PAI",W0,DFN,DGD)=$P(^DPT(DFN,0),U)_U_DGSSN Q
+BUL W !,"There was an attempt to set up a PAI record on ",$P(^DPT(DFN,0),U),"  ",$P(^(0),U,9),!,"Please verify that this patient's data is accurate and create a PAI record." Q

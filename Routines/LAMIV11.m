@@ -1,0 +1,39 @@
+LAMIV11 ;SLC/DLG/FHS/DAL - PROCESS VITEK GPS & YBC CARDS ;7/20/90  09:38 ;
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;;Sep 27, 1994
+ Q:$E(IN,1,2)'="01"  ;No MIC results
+ ;Find the organism and mic results
+ S O=$E(IN,5,6),V=$E(IN,10),V=$S("0"[V:"0F","1"[V:"0FB",1:"") Q:V=""  S TYPE=$O(^LAB(62.4,TSK,7,"B",V,0)) Q:TYPE<1
+ S V=$O(^LAB(62.4,TSK,7,TYPE,1,"C",O,0)) Q:V<1  S ORG(ISOL)=+^LAB(62.4,TSK,7,TYPE,1,V,0)
+ F I2=17:6:92 S V=$E(IN,I2) D MICF
+ S LRT=CARD,CARD=$O(^LAB(62.4,TSK,7,"B","10",0))
+ S RMK="",FL=$E(IN,3) F CODE=46,47 D MSG
+ I $E(IN,3)=1 S FL=$E(IN,8) F CODE=48,49 D MSG
+ I $E(IN,3)=1 S FL=$E(IN,9) F CODE=50,51 D MSG
+ S CARD=LRT K LRT Q
+MICF S O=$E(IN,(I2+4)),I4=$O(^LAB(62.4,TSK,7,CARD,2,"C",O,0)) Q:I4'>0  S I3=$P(^LAB(62.4,TSK,7,CARD,2,I4,0),U,2) X $P(^(0),U,3) S:V]"" MIC(ISOL,I3)=V
+ Q
+511 S C=0,U="^",I1=3,I2=7 Q:$E(IN,1,2)'="FF"  ;0F, 5.11, Gram Pos ID card
+ ;CARD "OFB" is for the Catalase -/Non-Beta-Hemolytic or Catalase +/Coagulase + part
+ I $E(IN,3,4)="FF" S CARD=$O(^LAB(62.4,TSK,7,"B","0FB",0)) Q:CARD'>0  F I=11,15 S X1=$O(^LAB(62.4,TSK,7,CARD,1,"C",$E(IN,I,I+1),0)) D L2:X1>0 Q:$D(ORG)
+ I $E(IN,3,4)'="FF" S CARD=$O(^LAB(62.4,TSK,7,"B","0F",0)) Q:CARD'>0  F I=3,7 S X1=$O(^LAB(62.4,TSK,7,CARD,1,"C",$E(IN,I,I+1),0)) D L2:X1>0 Q:$D(ORG)
+ S RMK="",CODE=46,FL=$E(IN,90) D MSG S CODE=47,FL=$E(IN,91) D MSG
+ Q
+L2 N X2 S (X,X2)=$E(IN,I+2,I+3) D PROB I X>80 S ORG(ISOL,1)=X2,ORG(ISOL)=+^LAB(62.4,TSK,7,CARD,1,X1,0) ;accept if prob>80%
+ Q
+HEX S XX=X,X="" F II=1:1:$L(XX) S X=X*16+($F("0123456789ABCDEF",$E(XX,II))-2)
+ Q
+54 S C=0,U="^" ;05, 5.4, Yeast card
+ F I=1,5 S X1=$O(^LAB(62.4,TSK,7,CARD,1,"C",$E(IN,I,I+1),0)) D L2:X1>0
+ D RMK
+ Q
+RMK S RMK="" S CODE=41,FL=$E(IN,42) D MSG S CODE=42,FL=$E(IN,42) D MSG F CODE=44:1:46 S FL=$E(IN,CODE) D MSG
+ S CODE=41,FL=$E(IN,43) D MSG S CODE=42 D MSG
+ Q
+MSG F X1=0:0 S X1=$O(^LAB(62.4,TSK,7,CARD,4,"B",CODE,X1)) Q:X1'>0  D MS2
+ Q
+MS2 S X3=^LAB(62.4,TSK,7,CARD,4,X1,0)
+ S X4=$P(X3,U,2) I $L(X4),X4'=FL Q  ;
+ S:$L(RMK) RMK=RMK_", " S RMK=RMK_$P(X3,U,3)
+ Q
+PROB D HEX I X>100 S X="" Q
+ S:X=0 X="<1" S X=X_"% Probability" Q

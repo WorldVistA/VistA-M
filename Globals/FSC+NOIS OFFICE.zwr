@@ -1,0 +1,9 @@
+NOIS OFFICE
+ZWR
+^FSC("ISC",0)="NOIS OFFICE^7105.3^1^1"
+^FSC("ISC",1,0)="IRM"
+^FSC("ISC",1,99,0)="^7105.399^1^1"
+^FSC("ISC",1,99,1,0)="Irm"
+^FSC("ISC",1,99,"B","Irm",1)=""
+^FSC("ISC","ACL","IRM",1,1)=""
+^FSC("ISC","B","IRM",1)=""

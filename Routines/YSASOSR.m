@@ -1,0 +1,67 @@
+YSASOSR ;WHITE CITY/DCL - BUILD ASI OUTPUT IN ARRAY BY DOMAIN ;1/13/97  09:55
+ ;;5.01;MENTAL HEALTH;**24**;Dec 30, 1994
+ Q
+ ;
+CSR(YSI2DA,YSI2R,YSI2SR) ;Converts Status Report fields to text, pass IEN and Target Root and Script Root.
+ Q:$G(YSI2SR)=""
+ Q:$D(@YSI2SR)'>9
+ Q:'$G(YSI2DA)
+ Q:$G(YSI2R)']""
+ N YSI2N,YSI2NC,YSI2TR,YSI2N2,YSI2S,YSI2WP
+ S YSI2N=0,YSI2NC=$O(@YSI2R@(""),-1)+1,YSI2TR="YSI2WP"
+ F  S YSI2N=$O(@YSI2SR@(YSI2N)) Q:YSI2N'>0  D
+ .Q:'$D(@YSI2SR@(YSI2N,0))  S YSI2S=^(0)
+ .K @YSI2TR
+ .S YSI2S=$$STR(YSI2S,YSI2DA,YSI2TR)
+ .;Q:YSI2S=""
+ .I $D(@YSI2TR)'>9,$L(YSI2S)>79 D  Q
+ ..I $L(YSI2S," ")'>1 D  Q
+ ...S YSI2S=$E(YSI2S,1,79)
+ ...Q
+ ..N F,T,I,X
+ ..S (F,T)=1,X=""
+ ..F I=1:1:$L(YSI2S," ") S X=$P(YSI2S," ",F,I) D:$L(X)'<79
+ ...S @YSI2R@(YSI2NC)=$P(YSI2S," ",F,I-1),YSI2NC=YSI2NC+1
+ ...S F=I
+ ...Q
+ ..I $TR($P(YSI2S," ",F,245)," ")]"" S @YSI2R@(YSI2NC)=$P(YSI2S," ",F,245),YSI2NC=YSI2NC+1
+ .I YSI2S]"" S @YSI2R@(YSI2NC)=YSI2S,YSI2NC=YSI2NC+1 Q
+ .Q:$D(@YSI2TR)'>9
+ .S YSI2N2=0
+ .F  S YSI2N2=$O(@YSI2TR@(YSI2N2)) Q:YSI2N2'>0  S @YSI2R@(YSI2NC)=@YSI2TR@(YSI2N2),YSI2NC=YSI2NC+1
+ .Q
+ Q
+ ;
+STR(YSI2X,YSI2IEN,YSI2TR) ;Extrinsic function.  Pass string return resolved value
+ ;STRING,IEN,wpTARGET ROOT - all required - CAN ONLY HANDLE 1 WP FIELD PER LINE
+ Q:$G(YSI2X)']"" ""
+ Q:$L(YSI2X,"|")'>2 YSI2X
+ Q:$G(YSI2TR)']"" ""
+ I $L(YSI2X,"/")=3 N YSI2G D  Q:YSI2G="" $P(YSI2X,"/",3,99) Q $P(YSI2X,"/")_" "_$P($P(YSI2X,"/",2),"|")_YSI2G_$$STR($P($P(YSI2X,"/",2),"|",3,99),YSI2IEN,YSI2TR)_$P(YSI2X,"/",3,99)
+ .N DIERR
+ .S YSI2G=$$F($P(YSI2X,"|",2))
+ .Q
+ N YSI2I,YSI2Y,DIERR,YSI2Z
+ S YSI2Y=""
+ F YSI2I=1:1:$L(YSI2X,"|") D
+ .I (YSI2I#2) S YSI2Y=YSI2Y_$P(YSI2X,"|",YSI2I) Q
+ .Q:$TR($P(YSI2X,"|",YSI2I)," ")']""
+ .S YSI2Z=$$F($P(YSI2X,"|",YSI2I))
+ .S:'$D(@YSI2TR) YSI2Y=YSI2Y_YSI2Z
+ .K DIERR
+ .Q
+ Q:$TR(YSI2Y," ")="" ""
+ Q YSI2Y
+ ;
+F(YSHF) ;return field value in database
+ Q:$G(YSHF)=""
+ N YSHX,DIERR
+ S YSHX=$$GET1^DIQ(604,YSI2IEN,$P(YSHF,"^"),"",$G(YSI2TR))
+ I $P(YSHF,"^",2) Q $J(YSHX,$P(YSHF,"^",2))
+ Q YSHX
+ ;
+TEST(X) ;
+ N YSAS1,YSAS2,YSAS3
+ S YSAS1=4,YSAS2="^TMP($J,""ASI"","_X_")",YSAS3="^YSTX(604.8,1,"_$G(X,10)_")"
+ D CSR(YSAS1,YSAS2,YSAS3)
+ Q

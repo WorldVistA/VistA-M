@@ -1,0 +1,22 @@
+SOWKHELP ;B'HAM ISC/SAB-Social Work help routine ; 12/20/91 9:12
+ ;;3.0; Social Work ;;27 Apr 93
+YN ;HELP FOR Y/N
+ W !!?5,"'Y' for Yes",!?5,"'N' for No"
+ Q
+MN W @IOF F C=1:1 S S=$T(MONTH+C) Q:S=""  W !,$P(S,";",3)," = ",$P(S,";",4,99)
+ K C,S Q
+QT ;PRINTS END OF QUARTER MONTHS
+ W @IOF,*7,!,"03 = MARCH",!,"06 = JUNE",!,"09 = SEPTEMBER",!,"12 = DECEMBER" Q
+MONTH ;MONTHS FOR SWARS
+ ;;01;JANUARY
+ ;;02;FEBRUARY
+ ;;03;MARCH
+ ;;04;APRIL
+ ;;05;MAY
+ ;;06;JUNE
+ ;;07;JULY
+ ;;08;AUGUST
+ ;;09;SEPTEMBER
+ ;;10;OCTOBER
+ ;;11;NOVEMBER
+ ;;12;DECEMBER

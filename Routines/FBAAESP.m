@@ -1,0 +1,6 @@
+FBAAESP ;AISC/GRR-ENTER SITE PARAMETERS ;08JUN88
+ ;;3.5;FEE BASIS;;JAN 30, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RD W !! S DIC("A")="Select Site: ",DIC="^FBAA(161.4,",DIC(0)="AELQ",DLAYGO=161.4 D ^DIC K DIC("A") G END:X=""!(X="^"),RD:Y<0 S DA=+Y
+ S DIE=DIC,DR="[FBAA SITE PARAMETERS]" D ^DIE G RD
+END K DIC,DLAYGO,Y,X,DIE,V,W,Z,DR,DA Q

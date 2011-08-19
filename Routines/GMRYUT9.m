@@ -1,0 +1,39 @@
+GMRYUT9 ;HIRMFO/YH-LIST/SELECT IV LINES ;10/15/96
+ ;;4.0;Intake/Output;;Apr 25, 1997
+IVLINE ;
+ K GMRYZ S GN=0,GN(1)="" F  S GN(1)=$O(GST(GSITE,GN(1))) Q:GN(1)=""  S GN(2)=0  F  S GN(2)=$O(GST(GSITE,GN(1),GN(2))) Q:GN(2)'>0  S GN=GN+1,GMRYZ(GN)=GN(2)_"^"_GN(1)
+ I GN=0 Q
+LIST W !!,GSITE_" - "_GSITE(GSITE),! F I=1:1:GN S GN(1)=GMRYZ(I) D WRITE
+ W !,GMESSG S GMRX="" R GMRX:DTIME I '$T!(GMRX["^") S GMROUT=1 Q
+ Q:GMRX=""  I GMRX["?" W !,GMESSG,!,"or enter ^ to quit.",! G LIST
+ S GMRN=GN D VALIDAT
+ I '$D(GSEL) W !,"ERROR ENTRY, TRY AGAIN",! G LIST
+ S GMRYZ=$O(GSEL(0)) I GMRYZ'>0!('$D(GMRYZ(+GMRYZ))) W !,"ERROR ENTRY, TRY AGAIN",! G LIST
+ Q:$D(GFLUSH)
+ S $P(^GMR(126,DA(2),"IVM",DA(1),1,DA,0),"^",7)=+GMRYZ(GMRYZ),$P(^(0),"^",3)="Y"
+ ;ADD 1/10TH SECOND TO THE DATE/TIME FOR EACH ADDITIONAL TUBE CHANGED
+ F  S GMRYZ=$O(GSEL(GMRYZ)) Q:GMRYZ'>0!GMROUT  I $D(GMRYZ(GMRYZ)) D
+ .D WAIT^GMRYUT0 Q:GMROUT  K DD S X=GX,DIC="^GMR(126,"_DA(2)_",""IVM"","_DA(1)_",1,",DIC(0)="ML" D FILE^DICN L -^GMR(126,DFN) Q:+Y'>0  S DA=+Y
+ .S $P(^GMR(126,DA(2),"IVM",DA(1),1,DA,0),"^",3)="Y",$P(^(0),"^",7)=+GMRYZ(GMRYZ)
+ .Q
+ Q
+WRITE W !,?3,I_". " S GN(2)=$P(GN(1),"^",2),GN(1)=+GN(1)
+ W " "_GST(GSITE,GN(2),GN(1),2)_$S(GN(2)'="BLANK":"("_GN(2)_")",1:"")
+ Q
+VALIDAT ;
+ F GMRX(1)=1:1 S GMRX(2)=$P(GMRX,",",GMRX(1)) Q:GMRX(2)=""  D VAL1
+ Q
+VAL1 ;
+ I GMRX(2)["-" D VAL2 Q
+ S:GMRX(2)>0&(GMRX(2)<(GMRN+1)) GSEL(GMRX(2))=""
+ Q
+VAL2 ;
+ S GMRX(3)=$P(GMRX(2),"-") Q:GMRX(3)<1!(GMRX(3)>GMRN)  S GMRX(4)=$P(GMRX(2),"-",2) S:GMRX(4)>GMRN GMRX(4)=GMRN F GMRX(5)=GMRX(3):1:GMRX(4) S GSEL(GMRX(5))=""
+ Q
+ADDRC S DR="1///^S X=GMRY;4///^S X=""`""_DUZ" D WAIT^GMRYUT0 I 'GMROUT D ^DIE L -^GMR(126,DFN)
+ K GMRX,DIE,DR Q
+KILLRC S DIK="^GMR(126,"_DA(2)_",""IVM"","_DA(1)_",1," D ^DIK K DIK W !!,"Data not completed, the record of site maintenance is deleted!!!",! Q
+PATIENT ;OBTAIN PATIENT WARD
+ D PT^GMRYUT0
+ I $D(GMRNUR) S X=$S($D(^NURSF(214,DFN,0)):+$P(^(0),"^",3),1:"") S X=$S(X>0&($D(^NURSF(211.4,+X,0))):+$P(^(0),"^"),1:"") S GMRWARD(1)=$S(X>0&($D(^SC(+X,0))):$P($P(^(0),"^"),"NUR ",2),1:"")
+ Q

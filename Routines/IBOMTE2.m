@@ -1,0 +1,46 @@
+IBOMTE2 ;ALB/CPM-ESTIMATE MEANS TEST CHARGES (COPAY);17-DEC-91
+ ;;2.0;INTEGRATED BILLING;**153,183**;21-MAR-94
+ ;
+ ; Process each day in the admission for co-payments.
+ D COHDR F IBI=1:1:IBLOS D  Q:IBQUIT
+ . S IBCLCT=IBCLCT+1,IBCLDAY=IBCLDAY+1
+ . I IBCLCT>365 D
+ ..  S %H=IBI+IBFCTR D YMD^%DTC W !," ** NEW BILLING CLOCK TO BEGIN ON ",$$DAT1^IBOUTL(X)," **"
+ ..  S (IBCLCT,IBCLDAY)=1,IBCLDT=X D DED^IBAUTL3
+ ..  I IBGMT>0 S IBMED=$$REDUCE^IBAGMT(IBMED) ;GMT Deductible
+ . Q:IBCLDAY>360
+ . S IBMAX=IBMED I IBCLDAY>90,'IBNH S IBMAX=IBMED/2
+ . I IBCLDOL'<IBMAX D  Q
+ ..  S IBCLDOL=0,X=90-(IBCLDAY#90)
+ ..  S IBI=IBI+X,IBCLCT=IBCLCT+X,IBCLDAY=IBCLDAY+X
+ ..  I IBCLCT>365 S IBI=IBI-(IBCLCT-365),IBCLDAY=0,IBCLCT=365
+ ..  D:$D(IBA) WRITE
+ . S %H=IBI+IBFCTR D YMD^%DTC S IBDT=X D COPAY^IBAUTL2
+ . I IBGMT>0 S IBCHG=$$REDUCE^IBAGMT(IBCHG) ;GMT Copay Adjustment
+ . S IBCHARG=IBMAX-IBCLDOL S:IBCHG<IBCHARG IBCHARG=IBCHG
+ . S IBCHG=IBCHARG S:IBCHG<0 IBCHG=0 S IBCLDOL=IBCLDOL+IBCHG
+ . I '$D(IBA) S IBA=IBDT_"^"_IBDT_"^"_IBCLDAY_"^"_IBCLDAY_"^"_IBCLCT_"^"_IBCLCT_"^"_IBCHG Q
+ . S $P(IBA,"^",2)=IBDT,$P(IBA,"^",4)=IBCLDAY,$P(IBA,"^",6)=IBCLCT,$P(IBA,"^",7)=$P(IBA,"^",7)+IBCHG
+ D:$D(IBA) WRITE
+ ;
+ ; Print copayment totals.
+ I 'IBCHGT D NOCOP^IBOMTE1 Q
+ W !?62,"----------",!
+ I IBGMT>0 W ?3,"Copayment amount reduced due to Patient's GMT Status"
+ S X=IBCHGT,X2="2$",X3=12 D COMMA^%DTC W ?61,X
+ Q
+ ;
+ ;
+WRITE ; Write out detail line for copayments.
+ I $Y>(IOSL-5) D PAUSE^IBOUTL Q:IBQUIT  D HDR^IBOMTE1,COHDR
+ S IBTOT=IBTOT+$P(IBA,"^",7),IBCHGT=IBCHGT+$P(IBA,"^",7)
+ W !,$$DAT1^IBOUTL($P(IBA,"^")),?12,$$DAT1^IBOUTL($P(IBA,"^",2)),?26,$J($P(IBA,"^",3),3)
+ W ?35,$J($P(IBA,"^",4),3),?44,$J($P(IBA,"^",5),3),?53,$J($P(IBA,"^",6),3)
+ S X=$P(IBA,"^",7),X2="2$",X3=12 D COMMA^%DTC W ?61,X
+ K IBA Q
+ ;
+COHDR ; Print copayment subheader.
+ W !,"COPAYMENT CHARGES for ",$P($G(^DGCR(399.1,IBBS,0)),"^"),!,IBLINE
+ W !,"   Billing Dates",?27,"Inpt. Days",?45,"Clock Days"
+ W !,"  From         To",?26,"1st     Last",?44,"1st     Last",?66,"Charge"
+ W !,IBLINE Q

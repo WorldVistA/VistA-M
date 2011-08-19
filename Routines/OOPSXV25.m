@@ -1,0 +1,16 @@
+OOPSXV25 ;WIOFO/LLH-POST INIT ROUTINE, FILL FIELD 331 ;07/12/04
+ ;;2.0;ASISTS;**8**;Jun 03, 2002
+ ; Patch 8 - auto populate file 2260, field 331
+ ;
+ENT ;
+ N IEN,FILE,OWCP,OC6,SUF,STR
+ S FILE=2260,IEN=0
+ D BMES^XPDUTL("Updating new OWCP Code field") H 1
+ D MES^XPDUTL(" ")
+ F  S IEN=$O(^OOPS(FILE,IEN)) Q:IEN'>0  D
+ .S STR=$G(^OOPS(FILE,IEN,"CA")),OWCP=$$GET1^DIQ(FILE,IEN,70)
+ .S SUF=$P(STR,U,17),OC6=$P(STR,U,18)
+ .I $G(OWCP)'="",$G(OC6)="" S $P(^OOPS(FILE,IEN,"CA"),U,18)=OWCP_SUF
+ D BMES^XPDUTL("Update Complete") H 1
+ D MES^XPDUTL(" ")
+ Q

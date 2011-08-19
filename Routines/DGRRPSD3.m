@@ -1,0 +1,108 @@
+DGRRPSD3 ; ALB/SGG - rtnDGRR PatientServices Demographics Tertiary ;09/30/03  ; Compiled November 4, 2003 12:01:00
+ ;;5.3;Registration;**557**;Aug 13, 1993
+ ;
+ ;
+DOC ;<DataSet Name='TertiaryDemographics'
+ ;
+ ;
+ ;
+ ;          NAME COMPONENTS
+ ;.092      PLACE OF BIRTH [CITY] (F), [0;11]
+ ;.093      PLACE OF BIRTH [STATE] (P5'), [0;12]
+ ;.096      WHO ENTERED PATIENT (P200'I), [0;15]
+ ;          WHO ENTERED PATIENT VPID FROM #200
+ ;.097      DATE ENTERED INTO FILE (D), [0;16]
+ ;.2401     FATHER'S NAME (FX), [.24;1]
+ ;.2402     MOTHER'S NAME (FX), [.24;2]
+ ;.2403     MOTHER'S MAIDEN NAME (FaX), [.24;3]      
+ ;.07       OCCUPATION (F), [0;7]
+ ; MULTIPLE BIRTH INDICATOR NEEDS SORTED $P(^DPT(PTID,"MPIMB"),"^").
+ ;
+ ;1         ALIAS (Multiple-2.01), [.01;0]
+ ;          .01  ALIAS (MFX), [0;1]
+ ;          1    ALIAS SSN (F), [0;2]
+ ;          
+GETPSARY(PSARRAY) ;
+ NEW CNT
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="<DataSet Name='TertiaryDemographics'"
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^Last^"_$$LAST()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^First^"_$$FIRST()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^Middle^"_$$MIDDLE()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^Prefix^"_$$PREFIX()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^Suffix^"_$$SUFFIX()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^Degree^"_$$DEGREE()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^CityOfBirth^"_$$CITYOB()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^StateOfBirth^"_$$STATEOB()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^WhoEnteredPatientVPID^"_$$WHOVPID()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^WhoEnteredPatient^"_$$ENTBYWHO()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^DatePatientEntered^"_$$ENTDATE()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^FathersName^"_$$DADNAME()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^MothersName^"_$$MOMNAME()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^MothersMaidenName^"_$$MADNAME()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^Occupation^"_$$OCCUPAT()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^MultipleBirthIndicator^"_$$MULTIBI()
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)=">"
+ DO ALISINFO
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="</DataSet>"_"^^^1"
+ QUIT
+ ;
+LAST() QUIT $P(GLOB("NAME"),"^",1)
+ ;
+FIRST() QUIT $P(GLOB("NAME"),"^",2)
+ ;
+MIDDLE() QUIT $P(GLOB("NAME"),"^",3)
+ ;
+PREFIX() QUIT $P(GLOB("NAME"),"^",5)
+ ;
+SUFFIX() QUIT $P(GLOB("NAME"),"^",4)
+ ;
+DEGREE() QUIT $P(GLOB("NAME"),"^",6)
+ ;
+CITYOB() QUIT $P(GLOB(0),"^",11)
+ ;
+STATEOB() ;
+ NEW DATA
+ SET DATA=$P(GLOB(0),"^",12)
+ IF DATA'="" SET DATA=$P($G(^DIC(5,DATA,0)),"^",2)
+ QUIT DATA
+ ;
+ENTBYWHO() ;
+ NEW DATA
+ SET DATA=$P(GLOB(0),"^",15)
+ IF DATA'="" SET DATA=$P($G(^VA(200,DATA,0)),"^",1)
+ QUIT DATA
+ ;
+WHOVPID() ;
+ QUIT $$VPID^XUPS($P(GLOB(0),"^",15))
+ ;
+ENTDATE() QUIT $P(GLOB(0),"^",16)
+ ;
+DADNAME() QUIT $P(GLOB(.24),"^",1)
+ ;
+MOMNAME() QUIT $P(GLOB(.24),"^",2)
+ ;
+MADNAME() QUIT $P(GLOB(.24),"^",3)
+ ;
+OCCUPAT() QUIT $P(GLOB(0),"^",7)
+ ;
+MULTIBI() ;
+ NEW DATA
+ SET DATA=$P($G(^DPT(PTID,"MPIMB")),"^",1)
+ SET DATA=$S(DATA="Y":"YES",DATA="N":"NO",1:"")
+ QUIT DATA
+ ;
+ALISINFO ;
+ NEW ALISCNT,ROWCNT,ALIS,ALISSSN
+ SET ALISCNT=0,ROWCNT=0
+ FOR  SET ALISCNT=$O(^DPT(PTID,.01,ALISCNT)) QUIT:(ALISCNT<1)  DO
+ .SET ALIS=$P($G(^DPT(PTID,.01,ALISCNT,0)),"^",1)
+ .SET ALISSSN=$P($G(^DPT(PTID,.01,ALISCNT,0)),"^",2)
+ .IF +$L(ALIS_ALISSSN) DO
+ ..SET ROWCNT=ROWCNT+1
+ ..SET CNT=$G(CNT)+1,PSARRAY(CNT)="<Alias Row='"_ROWCNT_"'"
+ ..SET CNT=$G(CNT)+1,PSARRAY(CNT)="^Alias^"_ALIS_"^^ALIAS^"_ROWCNT
+ ..SET CNT=$G(CNT)+1,PSARRAY(CNT)="^SSN^"_ALISSSN_"^^ALIAS^"_ROWCNT
+ ..SET CNT=$G(CNT)+1,PSARRAY(CNT)="></Alias>"
+ IF ROWCNT=0 DO
+ .SET CNT=$G(CNT)+1,PSARRAY(CNT)="<Alias Row='1' Alias='' SSN=''></Alias>"
+ QUIT

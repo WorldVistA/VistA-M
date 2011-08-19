@@ -1,0 +1,72 @@
+PRCSFMS1 ;WISC/KMB-FMS TRANSACTIONS FOR CP QUARTERLY REPORT ;10-17-94 11:05
+V ;;5.1;IFCAP;**90**;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+BEGIN ;   this routine is called from PRCSQR
+ ;   find FMS transactions, for selected quarter, for CP
+ N Z1,FMSTOT,LINE,STRING,RDATE1,FIRST,FINAL,AMT,TYPE,MINUS,OBL,REF,RECNO,P1,PRCSAPP S (P1,Z1)=0
+ D NOW^%DTC S Y=% D DD^%DT S RDATE1=Y
+ S FMSTOT=0 S:'$D(PRCS("O")) PRCS("O")=0 S FINAL=PRCS("O"),STRING=PRC("SITE")_"-"_PRC("FY")_"-"_PRC("QTR")_"-"_+PRC("CP")
+ S:'$D(PRCS("PRE")) PRCS("PRE")=0 S PRCSAPP=PRCS("PRE")
+ S MINUS="" S:'$D(PRCS("C")) PRCS("C")=0 S FIRST=PRCS("C")
+ S RECNO="" F  S RECNO=$O(^PRCS(417,"C",STRING,RECNO)) Q:RECNO=""  D  Q:Z1=U
+ .I P1=0 D HDR1
+ .I IOSL-$Y<8 D HOLD1 Q:Z1=U
+ .S AMT=$P(^PRCS(417,RECNO,0),"^",20),REF=$P(^(0),"^",22),OBL=$P(^(0),"^",18),TYPE=$P(^(0),"^",17)
+ .S PRCSAPP=PRCSAPP-AMT,FIRST=FIRST-AMT,FINAL=FINAL-AMT
+ .S Y=$P(REF,".") D DD^%DT W !,Y
+ .W ?13,OBL,?24,TYPE,?32,$J(AMT,0,2),?42,$J(PRCSAPP,0,2),?54,$J(FIRST,0,2)
+ .W ?68,$J(FINAL,0,2)
+ .S FMSTOT=FMSTOT+AMT
+ I FMSTOT<0 S MINUS="-",FMSTOT=-FMSTOT
+ I Z1'=U W !!,"FMS transaction total for this quarter: ",MINUS,"$"_$J(FMSTOT,0,2)
+ S L="",$P(L,"=",IOM)="=" W !,L S L=""
+ S PRCS("PRE")=PRCSAPP,PRCS("C")=FIRST,PRCS("O")=FINAL Q
+HOLD1 ;
+ Q:$D(C1)
+ G HDR1:$D(ZTQUEUED),HDR1:IO'=IO(0) W !,"Press return to continue, uparrow (^) to exit: " R Z1:DTIME S:'$T Z1=U D:Z1'=U HDR1 Q
+HDR1 ;
+ S P1=1
+ S P=P+1 W @IOF W "QUARTERLY REPORT "_"- "_Z(0)_" "_$E($P(PRC("CP")," ",2),1,10),?50,RDATE1,?73,"PAGE ",P
+ W !,?40,"FMS Transactions",!
+ W !,"TRANS",?32,"TRANS",?42,"CONTROL PT.",?54,"UNCOMMITTED",?68,"UNOBLIGATED",!,"DATE",?13,"REF #",?24,"TYPE",?32,"AMOUNT",?42,"REQ TOT",?54,"BALANCE",?68,"BALANCE"
+ S L="",$P(L,"=",IOM)="=" W !,L S L="" Q
+NONE ; find PO with no 2237 for running balance
+ N PRCSAPP,P1,Y,RDATE,TOTAL,AMT,AMT1,PI,REC,FIRST,FINAL,NET,STRING,NONNET
+ N YEAR,L,RDATE1,CP,LINE,MINUS,TYPR,RQTR
+ D NOW^%DTC S Y=% D DD^%DT S RDATE1=Y
+ S CP=$P(PRC("CP")," "),REC="",TOTAL=0,P1=0,Z1=""
+ S STRING="2^2^2^3^3^3^4^4^4^1^1^1"
+ S:'$D(PRCS("O")) PRCS("O")=0 S FINAL=PRCS("O")
+ S:'$D(PRCS("PRE")) PRCS("PRE")=0 S PRCSAPP=PRCS("PRE")
+ S MINUS="" S:'$D(PRCS("C")) PRCS("C")=0 S FIRST=PRCS("C")
+ S PRCC=+$$YEAR^PRC0C(PRC("FY"))
+ S PRCE=$$QTRDATE^PRC0D(PRCC,PRC("QTR"))
+ S REC=$P(PRCE,"^",8)+100,REC=$$DATE^PRC0C(REC,"H")
+ S PRCG=$$QTRDATE^PRC0D(+REC,$P(REC,"^",2))
+ S PRCE=$P(PRCE,"^",7)-1,PRCG=$P(PRCG,"^",7)-1
+ F  S PRCE=$O(^PRC(442,"AB",PRCE)) QUIT:PRCE>PRCG!'PRCE  D  Q:Z1=U
+ . S REC=0 F  S REC=$O(^PRC(442,"AB",PRCE,REC)) QUIT:'REC  S PRCF=$G(^PRC(442,REC,0)) I $P(PRCF,"^",12)="",+PRCF=PRC("SITE"),+$P(PRCF,"^",3)=+PRC("CP") D:$P($G(^(12)),"^",2)]""  Q:Z1=U
+ ..S AMT=$P($G(^PRC(442,REC,0)),"^",16) S:AMT="" AMT=0
+ ..S:$P($G(^PRC(442,REC,7)),"^",2)=45 AMT=0
+ ..I $P($G(^PRC(442,REC,0)),"^",2)=25,$P($G(^PRC(442,REC,7)),"^",2)=22 S AMT=0
+ ..S PRCSAPP=PRCSAPP-AMT,FIRST=FIRST-AMT,FINAL=FINAL-AMT,TOTAL=TOTAL+AMT
+ ..D:P1=0 HDR2
+ ..W !,$P(^PRC(442,REC,0),"^")
+ ..S Y=$P(^PRC(442,REC,1),"^",15) D DD^%DT W ?15,Y
+ ..W ?30,$J(AMT,0,2),?41,$J(PRCSAPP,0,2),?55,$J(FIRST,0,2),?69,$J(FINAL,0,2)
+ ..Q:Z1=U  I IOSL-$Y<8 D HOLD2 Q:Z1=U
+ .. QUIT
+ . QUIT
+ S PRCS("C")=FIRST,PRCS("O")=FINAL,PRCS("PRE")=PRCSAPP
+ I TOTAL<0 S MINUS="-",TOTAL=-TOTAL
+ I Z1'=U W !!,"PO transaction (no 2237) total for this quarter: ",MINUS,"$",$J(TOTAL,0,2)
+ S L="",$P(L,"=",IOM)="=" W !,L S L="" QUIT
+HOLD2 ;
+ Q:$D(C1)
+ G HDR2:$D(ZTQUEUED),HDR2:IO'=IO(0) W !,"Press return to continue, uparrow (^) to exit: " R Z1:DTIME S:'$T Z1=U D:Z1'=U HDR2 Q
+HDR2 ;
+ S P1=1
+ S P=P+1 W @IOF W "QUARTERLY REPORT "_Z(0)_" "_$E($P(PRC("CP")," ",2),1,10),?50,RDATE1,?73,"PAGE ",P
+ W !,?5,"__________PO TRANSACTIONS WITHOUT 2237______________",!
+ W !,"PO/",?15,"PO ",?30,"OBLIGATED",?41,"CONTROL PT.",?55,"UNCOMMITTED",?69,"UNOBLIGATED",!,"OBL#",?15,"DATE",?30,"AMOUNT",?42,"REQ TOT",?55,"BALANCE",?69,"BALANCE"
+ S L="",$P(L,"=",IOM)="=" W !,L S L="" Q

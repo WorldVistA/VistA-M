@@ -1,0 +1,55 @@
+SDOQMPL ;ALB/SCK - Stop Code list for Access Performance Measure extract ; [07/15/96]
+ ;;5.3;SCHEDULING;**47**;AUG 13, 1993
+ Q
+ ;
+EXPIRE ;  Expiration date for data collection in FileMan date format.
+ ;;2961001
+ ;
+STOPS ; Stop codes for data collection 
+ ;;323
+ ;;301
+ ;;322
+ ;;201
+ ;;210
+ ;;211
+ ;;302
+ ;;303
+ ;;304
+ ;;305
+ ;;306
+ ;;307
+ ;;308
+ ;;309
+ ;;310
+ ;;312
+ ;;313
+ ;;314
+ ;;315
+ ;;316
+ ;;318
+ ;;401
+ ;;402
+ ;;403
+ ;;404
+ ;;405
+ ;;406
+ ;;407
+ ;;409
+ ;;410
+ ;;411
+ ;;413
+ ;;414
+ ;;415
+ ;;417
+ ;;418
+ ;;420
+ ;;426
+ ;;502
+ ;;507
+ ;;508
+ ;;509
+ ;;510
+ ;;511
+ ;;519
+ ;;524
+ ;;$$END

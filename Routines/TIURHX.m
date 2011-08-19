@@ -1,0 +1,53 @@
+TIURHX ;SLC/JER - Display reassignment history ;21-MAR-2001 16:47:04
+ ;;1.0;TEXT INTEGRATION UTILITIES;**61,100**;Jun 20, 1997
+DISPLAY ; Display Reassignment History of Selected Documents
+ N TIUDA,TIUD,TIUDATA,TIUI,Y,DIROUT,TIUQUIT
+ I '$D(VALMY) D EN^VALM2(XQORNOD(0))
+ S TIUI=0
+ F  S TIUI=$O(VALMY(TIUI)) Q:+TIUI'>0  D  Q:$D(TIUQUIT)
+ . N TIUVIEW
+ . S TIUDATA=$G(^TMP("TIURIDX",$J,TIUI))
+ . D CLEAR^VALM1
+ . W !!,"Reviewing #",+TIUDATA
+ . S TIUDA=+$P(TIUDATA,U,2)
+ . S TIUVIEW=$$CANDO^TIULP(TIUDA,"VIEW")
+ . I +TIUVIEW'>0 D  Q  ; Exclude records user can't print
+ . . W !!,$C(7),$P(TIUVIEW,U,2),! ; Echo denial message
+ . . I $$READ^TIUU("EA","RETURN to continue...") ; pause
+ . . D RESTORE^TIULM(+TIUI)
+ . D EN
+ . I +$G(TIUQUIT) D FIXLSTNW^TIULM Q
+ . D RESTORE^VALM10(+TIUI)
+ K VALMY S VALMBCK="R"
+ Q
+EN ; Option entry
+ K ^TMP("TIURHX",$J) N TIU
+ D EN^VALM("TIU DISPLAY REASSIGN HISTORY")
+ Q
+MAIN ; Control branching
+ N TIUVIEW S TIUVIEW=$$CANDO^TIULP(TIUDA,"VIEW")
+ I +TIUVIEW'>0 D  Q
+ . W !!,$C(7),$P(TIUVIEW,U,2),!
+ . S VALMQUIT=1
+ . I $$READ^TIUU("EA","RETURN to continue...")
+ D GET^TIUSRV(TIUDA,0,1)
+ Q
+HDR ; Build Header
+ N TIUDTYP
+ ; I '$D(TIUPRM0)!'$D(TIUPRM1) D SETPARM^TIULE
+ D:$D(TIU)'>9 GETTIU^TIULD(.TIU,+TIUDA)
+ S VALMHDR(1)=$$CENTER^TIULS($P($G(TIU("DOCTYP")),U,2))
+ S VALMHDR(2)=$$SETREC("HDR")
+ Q
+SETREC(LINE) ; Calls $$SETSTR^VALM1 for each line of ^TMP("TIUAUDIT",$J,
+ N Y
+ I LINE="HDR" D
+ . S Y=$$SETSTR^VALM1($$NAME^TIULS(TIU("PNM"),"LAST,FI MI"),$G(Y),1,15)
+ . S Y=$$SETSTR^VALM1(TIU("SSN"),$G(Y),16,12)
+ . S Y=$$SETSTR^VALM1($P($G(TIU("WARD")),U,2),$G(Y),30,20)
+ . I +TIU("DOCTYP")=1 D
+ . . S Y=$$SETSTR^VALM1("Adm: "_$$DATE^TIULS(+TIU("EDT"),"MM/DD/YY"),$G(Y),51,13)
+ . . S Y=$$SETSTR^VALM1("Dis: "_$$DATE^TIULS(+TIU("LDT"),"MM/DD/YY"),$G(Y),66,13)
+ . I +TIU("DOCTYP")'=1 D
+ . . S Y=$$SETSTR^VALM1("Visit Date: "_$$DATE^TIULS(+TIU("EDT"),"MM/DD/YY@HR:MIN"),$G(Y),53,26)
+ Q Y

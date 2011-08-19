@@ -1,0 +1,113 @@
+LRCAPPHX ;DALOI/FHS - RESET AND RESUBMIT PCE WORKLOAD FOR EMPTY PCE NODES ;5/1/2001
+ ;;5.2;LAB SERVICE;**278**;Sep 27, 1994
+EN ;
+ L +^LRO("LRCAPPH","NITE"):1 I '$T W:'$D(LRQUIET) !!,$$CJ^XLFSTR("PCE API is currently running",80) G FIN
+ I '$D(LRQUIET) D
+ . W @IOF
+ . W !,$$CJ^XLFSTR(" Resend PCE CPT Workload ",IOM)
+ . W !,$$CJ^XLFSTR("Only orders that have NO recorded PCE workload will be rescanned",IOM)
+ N DIR,DIRUT,DTOUT,DUOUT,LRCE,LRCOUNT,LREND,LREND,LRNOD,LRSET,LRSN,X,Y
+ N LRDPF,LRDUZ,LRSDT,LREDT,LRTS,LRDLOC
+DATE ;Get date range
+ W !
+ S DIR("A")="Enter Starting Date: "
+ S DIR(0)="DO^::EX" D ^DIR,RD G FIN:$G(LREND)
+ G FIN:Y<1
+ S LRSDT=Y,DIR("A")="Enter Stop/End Date: "
+ D ^DIR,RD G FIN:$G(LREND)
+ G FIN:Y<1
+ S LREDT=Y
+SW ;Exchange dates if out of sequence
+ Q:$G(LRSDT)'?7N.E!($G(LREDT)'?7N.E)
+ I LRSDT>LREDT S X=LRSDT,LRSDT=LREDT,LREDT=X
+ S LRSDT=LRSDT-.0001,LRCOUNT=0
+LOOP ;Check entries to determine if appropriate to resend
+ F  S LRSDT=+$O(^LRO(69,LRSDT)) Q:LRSDT<1!(LRSDT>LREDT)  D
+ . I '$D(LRQUIET) W !,$$FMTE^XLFDT(LRSDT),!
+ . S LRSN=0 F  S LRSN=$O(^LRO(69,LRSDT,1,LRSN)) Q:LRSN<1  D
+ . . S (LRCE,LRSET)=0
+ . . S LRCE=$P($G(^LRO(69,LRSDT,1,LRSN,.1)),U) Q:'LRCE
+ . . I $L($G(^LRO(69,LRSDT,1,LRSN,"PCE")))>1 Q
+ . . D SET
+ . . I $G(LRSET) S ^LRO(69,"AA",LRCE,LRSDT_"|"_LRSN)="",LRCOUNT=$G(LRCOUNT)+1
+ . . I '$D(LRQUIET),'(LRCOUNT#20) W "."
+ G END
+ Q
+SET ;Reset node if not canceled
+ S LRTS=0 F  S LRTS=$O(^LRO(69,LRSDT,1,LRSN,2,LRTS)) Q:LRTS<1  D
+ . S LRNOD(1)=$G(^LRO(69,LRSDT,1,LRSN,2,LRTS,0))
+ . I $S('+LRNOD(1):1,$P(LRNOD(1),U,9)="CA":1,$P(LRNOD(1),U,11):1,1:0) Q
+ . S LRSET=1,$P(LRNOD(1),U,12)=""
+ . S ^LRO(69,LRSDT,1,LRSN,2,LRTS,0)=LRNOD(1)
+ Q
+RD ;
+ S LREND=0
+ I $D(DUOUT)!($D(DTOUT))!($D(DIRUT)) S LREND=1
+ Q
+END ;Indicate if accessions were reset and process ^LRO(69,"AA" data
+ I '$O(^LRO(69,"AA",0)) W:'$D(LRQUIET) !!?5,"No PCE Workload to process",!! G FIN
+ S LRINS=+$P($G(^XMB(1,1,"XUS")),U,17) G FIN:'LRINS
+ W:'$D(LRQUIET) !,$$CJ^XLFSTR("Processing PCE Workload",80)
+ I $G(^LRO(69,"AE"))'=DT D EN0^LRCAPPH3 S ^LRO(69,"AA")=DT
+ I $D(ZTQUEUED) S ZTREQ="@" K LRDBUG
+ I '$G(LRDBUG) K ^TMP("LRMOD",$J)
+ S LRDPRAC=+$P($G(^LAB(69.9,1,12)),U)
+ S LRDLOC=+$G(^LAB(69.9,1,.8))
+ I LRDPRAC D
+ . N DIC,X
+ . S DIC(0)="NZ",DIC=200,X="`"_LRDPRAC
+ . D ^DIC S LRDPRAC=$S(Y<1:0,$P($G(Y(0)),U,11):0,1:+Y)
+ . I $$GET^XUA4A72(LRDPRAC)<1 S LRDPRAC=0
+ S LROK=+$G(^LAB(69.9,1,.8)) G:'LROK FIN
+ I $P($G(^SC(LROK,0)),U)'["LAB DIV " G FIN
+ K LROK
+ S:'$D(^LAB(69.9,1,"NITE")) ^("NITE")=""
+ S LRWRKL=$S($P(^LAB(69.9,1,0),U,14):1,1:0)
+ I $D(XRTL) S XRTN="LRCAPPH" D T0^%ZOSV
+ S LRPKG=$O(^DIC(9.4,"C","LR",0))
+ S:'LRPKG LRPKG=$O(^DIC(9.4,"B","LAB SERVICE",0))
+ G:'LRPKG FIN
+ S LRVSIT=$P($G(^LAB(69.9,1,"VSIT")),U)
+ S X="PXAI" X ^%ZOSF("TEST") I '$T G FIN
+ S:'$G(LRNP) $P(^LAB(69.9,1,"NITE"),U,2)=$$NOW^XLFDT
+ S LRPCEON=$$PKGON^VSIT("PX")
+ S ^TMP("LRMOD",$J)=""
+AA ;
+ W:'$D(LRQUIET) !,$$CJ^XLFSTR("Will Print Every 20th. Order Number Re-scanned",80)
+ S (LRCEX,LRCEXV,LRCOUNT,LREND,LROA)=0
+ F  S LRCEX=$O(^LRO(69,"AA",LRCEX)) Q:LRCEX=""!(LREND)  D
+ . K LRXCPT S LRCOUNT=LRCOUNT+1 I '$D(LRQUIET),'(LRCOUNT#20) W LRCEX_"  "
+ . S (LROA,LRCC)=""
+ . F  S LROA=$O(^LRO(69,"AA",LRCEX,LROA)) Q:LROA=""  D
+ . . S LRCDT=+LROA,LRSN=+$P(LROA,"|",2)
+ . . I LRCDT,LRSN D LOOK
+ . . K:'$G(^LRO(69,"AA",LRCEX,LROA)) ^(LROA)
+FIN L -^LRO("LRCAPPH","NITE")
+ W:'$D(LRQUIET) !,"END",!
+ K AFTER812,AC,ANS,CH1,CLN,CM,CX,D,D0,DDER
+ K DEF,DFN,DI,DIF,DIG,DIH,DISL,DIU,DIV,DQ
+ K EC,FPRI,J,LI,LL,LN,LV,N,PG
+ K LRVSITN,PXALOOK,PXASUB,PXJ,PXJJ,SDCNT,SDFLAG,SDT1
+ K SPEL,SUBL,T,TYPEI,Z1
+ D END0^LRCAPPH
+ K ^TMP("LRMOD",$J)
+ Q
+LOOK ;Process only collected specimens
+ Q:'$D(^LRO(69,LRCDT,1,LRSN,0))#2  S NODE=^(0)
+ S LRDFN=+NODE Q:'$D(^LR(LRDFN,0))#2
+ S LRDPF=+$P(^(0),U,2),DFN=+$P(^(0),U,3)
+ Q:'DFN!(LRDPF'=2)
+ S LRDUZ=$S($P(NODE,U,2):$P(NODE,U,2),1:DUZ)
+ Q:'$D(^LRO(69,LRCDT,1,LRSN,1))#2  S NODE(1)=^(1)
+ Q:$P(NODE(1),U,4)'="C"
+ S LRNT=+NODE(1),LRIN=$S($P(NODE(1),U,8):$P(NODE(1),U,8),1:LRINS)
+ S LRCE=+$G(^LRO(69,LRCDT,1,LRSN,.1)) Q:'LRCE
+ D EN3^LRCAPPH1
+ Q
+DQ ;Queue with START DATE(LRSDT) AND END DATE(LREDT) defined
+ ;Recommended that this routine not be queued. User feedback
+ ;can be very important. Screen displays are very helpful.
+ N LRQUIET
+ S LRQUIET=1
+ D SW
+ Q 

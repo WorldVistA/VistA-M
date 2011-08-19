@@ -1,0 +1,49 @@
+MCOBGC ; GENERATED FROM 'MCCONSULTBRPR' PRINT TEMPLATE (#1025) ; 10/04/96 ; (FILE 699.5, MARGIN=80)
+ G BEGIN
+N W !
+T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
+ S DISTP=DISTP+1,DILCT=DILCT+1 D:'(DISTP#100) CSTP^DIO2
+ Q
+DT I $G(DUZ("LANG"))>1,Y W $$OUT^DIALOGU(Y,"DD") Q
+ I Y W $P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC",U,$E(Y,4,5))_" " W:Y#100 $J(Y#100\1,2)_"," W Y\10000+1700 W:Y#1 "  "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12) Q
+ W Y Q
+M D @DIXX
+ Q
+BEGIN ;
+ S:'$D(DN) DN=1 S DISTP=$G(DISTP),DILCT=$G(DILCT)
+ I $D(DXS)<9 F X=0:0 S X=$O(^DIPT(1025,"DXS",X)) Q:'X  S Y=$O(^(X,"")) F X=X:0 Q:Y=""  S DXS(X,Y)=^(Y),Y=$O(^(Y))
+ W ?0 S DIP(1)=$S($D(^MCAR(699.5,D0,0)):^(0),1:"") S X="DATE/TIME OF CONSULTATION: "_$P(DIP(1),U,1) S Y=X K DIP K:DN Y S Y=X D DT
+ D N:$X>39 Q:'DN  W ?39 W "MEDICAL PATIENT: "
+ S X=$G(^MCAR(699.5,D0,0)) S Y=$P(X,U,2) S Y=$S(Y="":Y,$D(^MCAR(690,Y,0))#2:$P(^(0),U,1),1:Y) S Y=$S(Y="":Y,$D(^DPT(Y,0))#2:$P(^(0),U,1),1:Y) W $E(Y,1,30)
+ D T Q:'DN  D N D N:$X>4 Q:'DN  W ?4 W "PROBLEM ORIENTED CONSULT?: "
+ S Y=$P(X,U,3) W:Y]"" $S($D(DXS(1,Y)):DXS(1,Y),1:Y)
+ D T Q:'DN  D N D N:$X>4 Q:'DN  W ?4 W "SUBJECTIVE: "
+ S I(1)=20,J(1)=699.532 F D1=0:0 Q:$O(^MCAR(699.5,D0,20,D1))'>0  S D1=$O(^(D1)) D:$X>18 T Q:'DN  D A1
+ G A1R
+A1 ;
+ S X=$G(^MCAR(699.5,D0,20,D1,0)) S DIWL=1,DIWR=55 D ^DIWP
+ Q
+A1R ;
+ D A^DIWW
+ D T Q:'DN  D N D N:$X>4 Q:'DN  W ?4 W "OBJECTIVE: "
+ S I(1)=21,J(1)=699.533 F D1=0:0 Q:$O(^MCAR(699.5,D0,21,D1))'>0  S D1=$O(^(D1)) D:$X>17 T Q:'DN  D B1
+ G B1R
+B1 ;
+ S X=$G(^MCAR(699.5,D0,21,D1,0)) S DIWL=1,DIWR=55 D ^DIWP
+ Q
+B1R ;
+ D A^DIWW
+ D T Q:'DN  D N D N:$X>4 Q:'DN  W ?4 W "ASSESSMENT/FINDINGS: "
+ S I(1)=22,J(1)=699.534 F D1=0:0 Q:$O(^MCAR(699.5,D0,22,D1))'>0  S D1=$O(^(D1)) D:$X>27 T Q:'DN  D C1
+ G C1R
+C1 ;
+ S X=$G(^MCAR(699.5,D0,22,D1,0)) S DIWL=1,DIWR=55 D ^DIWP
+ Q
+C1R ;
+ D 0^DIWW K DIP K:DN Y
+ W ?27 S MCFILE=699.5 D DISP^MCMAG K DIP K:DN Y
+ W ?38 K MCFILE K DIP K:DN Y
+ D ^DIWW K Y K DIWF
+ Q
+HEAD ;
+ W !,"--------------------------------------------------------------------------------",!!

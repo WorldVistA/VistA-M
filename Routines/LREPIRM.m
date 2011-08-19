@@ -1,0 +1,163 @@
+LREPIRM ;DALOI/SED - EMERGING PATHOGENS SEARCH ; 7/16/96
+ ;;5.2;LAB SERVICE;**175,281**;Sep 27, 1994
+ ; Reference to ^ORD(101 supported by IA #972
+ ;
+ ;Search Parameters  - LREPI(#)
+ ;Search Date -Start LRRPS
+ ;             Stop  LRRPE
+ ;
+MAN ;USED TO RERUN THE OPTION FOR ANY PRIOR MONTHS 
+ S LRRTYPE=1
+ W @IOF,?(IOM/2-15),"Laboratory Search rerun option"
+PROT ;SELECT PROTOCOL
+ K DIC,LRPROT,X,Y
+ S DIC="69.4",DIC("A")="Select Protocol: "
+ S DIC(0)="AEMNQ"
+ S DIC("W")="W ?40,$P(^(0),U,5)"
+ D ^DIC
+ G:+Y'>0 EXIT
+ S LRPROT=+Y
+OVR K DIR,DIRUT
+ S DIR(0)="Y",DIR("B")="NO",DIR("A")="Override Any Inactive indicators: "
+ S DIR("?")="Enter (Y)es if the overriding of any Inactive indicator is desired. "
+ D ^DIR
+ G:$D(DIRUT) PROT
+ S LROVR=+Y
+CRI K LRCYCLE,LREPI S LRMSG="Search Parameters" D ALL G:$D(DIRUT) OVR
+ K DIR,DIRUT,DTOUT,DUOUT,DIROUT
+ I +LRALL D PICKALL
+ I +LRALL'>0 D
+ .W @IOF
+ .F  Q:$D(DIRUT)  D
+ ..S DIR(0)="PAO^69.5:EMZ",DIR("A")="Select Search Parameters: "
+ ..S DIR("?")="Select the Search Parameters. "
+ ..S DIR("S")="D CHK^LREPIRM I LROK"
+ ..D ^DIR
+ ..Q:$D(DIRUT)
+ ..S LREPI(+Y)=""
+ G:$D(DTOUT)!$D(DUOUT)!$D(DIROUT) CRI
+ I '$D(LREPI) W !,"Sorry No Search Parameters Selected" G CRI
+DATE ;Select Search Date
+ K DIR,DIRUT
+ S DIR("A")="Select Search Date: "
+ S DIR(0)="DOA^:"_DT_":E" D ^DIR
+ G:$D(DIRUT) CRI
+ K DIR,DIRUT,LRCYCLE
+ S LRTYPE=$O(LREPI(0))
+ S LRCYCLE=$P(^LAB(69.5,LRTYPE,0),U,5)
+ S X=Y I LRCYCLE="M" D
+ .D DAYS
+ .S LRRPE=$E(Y,1,5)_X,LRRPS=$E(Y,1,5)_"01"
+ I LRCYCLE="D" S (LRRPE,LRRPS)=Y
+ K X,Y,X1,LRCYCLE,LRTYPE
+ D TASK  ;;*Cincinnati - Toggle Task On/Off*
+ ;D EN^LREPI  ;;Cincinnati - Toggle Console Execution On/Off*
+EXIT ;
+ K D0,LRAUTO,LRBEG,LRDT,LREND,LRRNDT,LREPI,LRRPE,LRRPS,LRPREV,ZTSAVE
+ K LRRSD,LRLAG,ZTREQ,ZTRTN,ZTIO,ZTDESC,ZTDTH,ZTSK,X,Y,X1,%DT
+ Q
+ ;
+TASK ;LETS TASK THIS JOB
+ Q:'$D(LREPI)
+ K ZTSAVE
+ S (ZTSAVE("LREPI("),ZTSAVE("LRRPS"),ZTSAVE("LRRPE"))=""
+ S ZTSAVE("LRRTYPE")="",ZTSAVE("LRPREV")="" S:LRRTYPE=0 ZTDTH=DT
+ S ZTIO="",ZTRTN="EN^LREPI",ZTDESC="Laboratory EPI",ZTREQ="@"
+ D ^%ZTLOAD
+ I '$D(ZTQUEUED)&($D(ZTSK)) W @IOF,!!,"The Task has been queued",!,"Task # ",$G(ZTSK) H 5
+ Q
+PICKALL ;SELECT ALL ASSOCIATED PARAMETERS
+ S Y=0 F  S Y=$O(^LAB(69.5,Y)) Q:+Y'>0!(Y>99)  D CHK S:LROK LREPI(Y)=""
+ Q
+CHK ;CHECK TO SEE IF ITS OK
+ I Y>99 S LROK=0 Q
+CHKL ;CHECK FOR LOCAL PATHOGENS
+ S:'$D(LRCYCLE) LRCYCLE=$P(^LAB(69.5,Y,0),U,5)
+ S LROK=1
+ S:$P(^LAB(69.5,Y,0),U,7)'=LRPROT LROK=0 Q
+ S:'LROVR&($P(^LAB(69.5,Y,0),U,2)="1") LROK=0 Q
+ S:$P(^LAB(69.5,Y,0),U,7)="" LROK=0 Q
+ S:'$D(^ORD(101,$P(^LAB(69.5,Y,0),U,7),0)) LROK=0 Q
+ S:$P(^LAB(69.5,Y,0),U,5)=LRCYCLE LROK=0 Q
+ Q
+ALL K DIR,DIRUT
+ S DIR(0)="Y",DIR("B")="YES",DIR("A")="Include All "_LRMSG
+ S DIR("?")="Enter (Y)es or return for all entries to be Selected"
+ D ^DIR
+ S LRALL=+Y
+ Q
+AUTO ; CHECKS TO SEE IF IT IS TIME TO RUN A SEARCH
+ K %DT,X,Y,LREPI,^TMP($J)
+ S D0=0
+ F  S D0=$O(^LAB(69.5,D0)) Q:+D0'>0!(+D0>99)  D
+ .Q:$P(^LAB(69.5,D0,0),U,2)="1"
+ .Q:$P(^LAB(69.5,D0,0),U,7)=""
+ .Q:'$D(^ORD(101,$P(^LAB(69.5,D0,0),U,7),0))
+ .S LRCYC=$P(^LAB(69.5,D0,0),U,5)
+ .Q:LRCYC=""
+ .S LRRNDT=$P(^LAB(69.5,D0,0),U,4)
+ .S LRLAG=$P(^LAB(69.5,D0,0),U,3)
+ .S:+$G(LRLAG)'>0 LRLAG="1"
+ .S X="T-"_+(LRLAG-1) D ^%DT Q:+Y'>0
+ .S LRRSD=+Y
+ .;Look at the monthly runs
+ .I LRCYC="M" D
+ ..S X=$S($E(LRRSD,4,5)="01":($E(LRRSD,1,3)-1),1:$E(LRRSD,1,3))
+ ..S X1=$S($E(LRRSD,4,5)="01":"12",1:($E(LRRSD,4,5)-1))
+ ..S:X1<10 X1="0"_X1
+ ..S X=X_X1
+ ..K X1,Y D DAYS
+ ..S LRRPS=$E(X1,1,5)_"01",LRRPE=$E(X1,1,5)_X
+ ..S:LRLAG<10 LRLAG="0"_LRLAG
+ ..S LRDT=$E(DT,1,5)_LRLAG
+ ..I LRRNDT="" S ^TMP($J,"CYC",LRCYC,LRRPS,D0)=LRRPE Q
+ ..Q:DT<LRDT
+ ..Q:DT>LRDT
+ ..S ^TMP($J,"CYC",LRCYC,LRRPS,D0)=LRRPE Q
+ .;LOOK FOR DAILY RUNS
+ .I LRCYC="D" D
+ ..S (LRRPS,LRRPE)=LRRSD
+ ..I LRRNDT="" S ^TMP($J,"CYC",LRCYC,LRRPS,D0)=LRRPE Q
+ ..;Q:LRRNDT>LRRPS
+ ..S ^TMP($J,"CYC",LRCYC,LRRPS,D0)=LRRPE Q
+ ;Lets Task the Jobs
+ K LRRPE,LRRPS,LRCYC,D0
+ F LRCYC="M","D" I $D(^TMP($J,"CYC",LRCYC)) D
+ .S LRRPS=0
+ .F  S LRRPS=$O(^TMP($J,"CYC",LRCYC,LRRPS)) Q:+LRRPS'>0  D
+ ..K LREPI
+ ..S D0=0 F  S D0=$O(^TMP($J,"CYC",LRCYC,LRRPS,D0)) Q:+D0'>0!(D0>99)  D
+ ...S LRRPE=$P(^TMP($J,"CYC",LRCYC,LRRPS,D0),U,1),LREPI(D0)=LRRPS_U_LRRPE
+ ..S LRRTYPE=0
+ ..D TASK
+ K LREPI
+ F LRCYC="M","D" I $D(^TMP($J,"CYC",LRCYC)) D
+ .S LRRPS=0
+ .F  S LRRPS=$O(^TMP($J,"CYC",LRCYC,LRRPS)) Q:+LRRPS'>0  D
+ ..K LREPI
+ ..S D0=0 F  S D0=$O(^TMP($J,"CYC",LRCYC,LRRPS,D0)) Q:+D0'>0!(D0>99)  D
+ ...Q:'$P(^LAB(69.5,D0,0),U,13)
+ ...S LRRPE=$P(^TMP($J,"CYC",LRCYC,LRRPS,D0),U,1),LREPI(D0)=LRRPS_U_LRRPE
+ ..S LRRTYPE=0
+ I $D(LREPI) D
+ .S LRPREV=1
+ .S D0=0 F  S D0=$O(LREPI(D0)) Q:D0'>0  S LRRPS=$P(LREPI(D0),U),LRRPE=$P(LREPI(D0),U,2) D PREV,TASK
+ G EXIT
+DAYS ;GET DAYS OF THE MONTH
+ S X1=X,X=+$E(X,4,5),X=$S("^1^3^5^7^8^10^12^"[(U_X_U):31,X'=2:30,$E(X1,1,3)#4:28,1:29)
+ Q
+ ;
+PREV S LRPRECYC=$P(^LAB(69.5,D0,0),U,13),LRRPS=$P(LREPI(D0),U),LRRPE=$P(LREPI(D0),U,2) D
+ .I $P(^LAB(69.5,D0,0),U,5)="D" D
+ ..S X1=$P(LRRPS,"."),X2=LRPRECYC D C^%DTC S (LRRPS,LRRPE)=X
+ .I $P(^LAB(69.5,D0,0),U,5)="M" D
+ ..S X1=$P(LRRPS,"."),X2=$E(X1,4,5),X3=X2-LRPRECYC
+ ..I X3>0 S LRRPS=$E(X1,1,3)_$S($L(X3)=1:"0"_X3,1:X3)_"01"
+ ..I X3'>0 S X3=12+X3,LRRPS=$E(X1,1,3)_$S($L(X3)=1:"0"_X3,1:X3)_"01"
+ ..S X1=$P(LRRPE,"."),X2=$E(X1,4,5),X3=X2-LRPRECYC
+ ..I X3'>0 S X3=12+X3
+ ..S DAYS=$S("^1^3^5^7^8^10^12^"[(U_+X3_U):31,+X3'=2:30,$E(X1,1,3)#4:28,1:29)
+ ..S LRRPE=$E(X1,1,3)_$S($L(X3)=1:"0"_X3,1:X3)_DAYS
+ ..K X,X1,X2,X3,DAYS
+ Q
+ ;

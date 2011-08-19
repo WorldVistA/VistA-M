@@ -1,0 +1,100 @@
+MCDUP1 ;WASH/DCB-Repoints the pointed to file and removes the dup ;11/8/95  10:50
+ ;;2.3;Medicine;;09/13/1996
+COMPILE(FILE) ;
+ ; This routine requires ^TMP($J,"DUP",FILE
+ N POINT,TEMP,POINTER,NFILE
+ W !,?10,"CHECKING FILES FOR POINTERS TO DUPLICATE ENTRIES:"
+ S NFILE=+$P(FILE,"(",2)
+ Q:'$D(^TMP($J,"DUP","RT",NFILE))  ;The global that holds the repointing table
+ S ^TMP($J,"DUP","RT",NFILE,0)=0 ;For null input
+ D POINTER^MCDUPM(FILE,.POINT) ;get THE POINTERS
+ ;Loop through the pointers file and repoint the records
+ S TEMP="" F  S TEMP=$O(POINT(TEMP)) Q:TEMP=""  D REPOINT(FILE,TEMP,.POINT)
+ Q
+REPOINT(FILE,POINTER,POINT) ;Repoints the records
+ N MFILE,FIELD,PFILE
+ S MFILE=+$P(FILE,"(",2),PFILE=POINT(POINTER,"FILE"),FIELD=POINT(POINTER,"FIELD")
+ W !,?20,PFILE," "
+ ;Determine if its a subfile or a mainfile.
+ I $P(^DD(PFILE,0),U)="FIELD" D
+ . D MAINFILE(PFILE,MFILE,FIELD)
+ . Q
+ E  D
+ . D SUBFILE(PFILE,MFILE,FIELD)
+ . Q
+ Q
+MAINFILE(PFILE,FILE,FIELD) ;Repoints records within the main file
+ N REC,TEMP,NODE,PIECE,CFILE,DA,DR
+ ;get the node and piece
+ S TEMP=$$GET1^DID(PFILE,FIELD,"","GLOBAL SUBSCRIPT LOCATION")
+ S NODE=$P(TEMP,";"),PIECE=$P(TEMP,";",2)
+ S CFILE=$$GET1^DID(PFILE,"","","GLOBAL NAME") ; get the global location
+ S REC=0 F  S REC=+$O(@(CFILE_"REC)")) Q:REC=0  D  ;Go through the file
+ .; Get the old and new pointers.
+ .S OLDREC=+$P($G(@(CFILE_"REC,NODE)")),U,PIECE)
+ .S NEWREC=$P(^TMP($J,"DUP","RT",FILE,OLDREC),U),$P(^TMP($J,"DUP","RT",FILE,OLDREC),U,2)=+$P(^TMP($J,"DUP","RT",FILE,OLDREC),U,2)+1
+ .; If old and new don't match then repoint the record to the new pointer
+ .I OLDREC'=NEWREC D
+ ..S TEMP="$P("_CFILE_REC_","_NODE_"),U,"_PIECE_")"
+ ..S TEMP2="M"_U_PFILE_U_REC_U_FIELD_U_NODE_U_PIECE
+ ..D JOURNAL(.VAL,FILE,TEMP,TEMP2,OLDREC,NEWREC)
+ Q
+SUBFILE(SUBFILE,FILE,SFIELD) ;Repoint records within the Subfile.
+ N SNODE,SPIECE,FIELD,DIE,DR,DA,TEMP,MFILE,CFILE,MREC,SREC,NAME,MNODE,MPIECE
+ S MAINFILE=^DD(SUBFILE,0,"UP") ;Get the main file
+ S NAME=$P(^DD(SUBFILE,0)," SUB-FIELD^",1) ;Get the field name
+ S TEMP=$$GET1^DID(SUBFILE,SFIELD,"","GLOBAL SUBSCRIPT LOCATION")
+ S SNODE=$P(TEMP,";"),SPIECE=$P(TEMP,";",2) ;Get the node of piece of the subfile
+ S FIELD=$O(^DD(MAINFILE,"B",NAME,"")) ;Get the field number in the main file
+ S TEMP=$$GET1^DID(MAINFILE,FIELD,"","GLOBAL SUBSCRIPT LOCATION")
+ S MNODE=$P(TEMP,";"),MPIECE=$P(TEMP,";",2) ; Get the main node and piece of the file
+ I ^DD(MAINFILE,0)["SUB-FIELD" D SUBF(SUBFILE,FILE,SFIELD,MAINFILE,SNODE,FIELD,MNODE,MPIECE) Q
+ S CFILE=$$GET1^DID(MAINFILE,"","","GLOBAL NAME") ; Get global location
+ S MREC=0 F  S MREC=+$O(@(CFILE_"MREC)")) Q:MREC=0  D  ;Loop through Main file
+ .S SREC=0 F  S SREC=+$O(@(CFILE_"MREC,MNODE,SREC)")) Q:SREC=0  D  ;Loop through the subfile within the main file.
+ ..; Get the old and new pointer
+ ..S OLDREC=+$P($G(@(CFILE_"MREC,MNODE,SREC,SNODE)")),U,SPIECE)
+ ..Q:'$D(^MCAR(FILE,OLDREC,0))
+ ..S NEWREC=$P(^TMP($J,"DUP","RT",FILE,OLDREC),U),$P(^TMP($J,"DUP","RT",FILE,OLDREC),U,2)=+$P(^TMP($J,"DUP","RT",FILE,OLDREC),U,2)+1
+ ..;if old and new pointers don't match then repoint the subfile to the new pointer.
+ ..I OLDREC'=NEWREC D
+ ...S TEMP="$P("_CFILE_MREC_","_MNODE_","_SREC_","_SNODE_"),U,"_SPIECE_")"
+ ...S TEMP2="S"_U_MAINFILE_U_MREC_U_FIELD_U_MNODE_U_SUBFILE_U_SREC_U_SFIELD_U_SNODE_U_SPIECE
+ ...D JOURNAL(.VAL,FILE,TEMP,TEMP2,OLDREC,NEWREC)
+ Q
+SUBF(SUBFILE,FILE,SFIELD1,SFILE1,SNODE1,SFIELD,SNODE,SPIECE) ;
+ ;Repoints subfile within a subfile
+ N MFIELD,MFN,MNODE,MAINFILE,REC,SREC,SREC1
+ S MAINFILE=^DD(SFILE1,0,"UP"),CFILE=$$GET1^DID(MAINFILE,"","","GLOBAL NAME")
+ S MFN=""
+ F  S MFN=$O(^DD(SFILE1,0,"NM",MFN)) Q:MFN=""  D
+ . S MFIELD=0
+ . F  S MFIELD=$O(^DD(MAINFILE,"B",MFN,MFIELD)) Q:MFIELD'>0  D
+ .. I $G(^DD(MAINFILE,MFIELD,0))]"" D SUBF0
+ .. Q
+ . Q
+ Q
+SUBF0 ;
+ S TEMP=$$GET1^DID(MAINFILE,MFIELD,"","GLOBAL SUBSCRIPT LOCATION")
+ S MNODE=$P(TEMP,";")
+ S TEMP=$$GET1^DID(SUBFILE,SFIELD1,"","GLOBAL SUBSCRIPT LOCATION")
+ S SNODE1=$P(TEMP,";")
+ S SPIECE=$P(TEMP,";",2)
+ S REC=0 F  S REC=+$O(@(CFILE_"REC)")) Q:REC=0  D
+ .S SREC=0 F  S SREC=+$O(@(CFILE_"REC,MNODE,SREC)")) Q:SREC=0  D
+ ..S SREC1=0 F  S SREC1=+$O(@(CFILE_"REC,MNODE,SREC,SNODE,SREC1)")) Q:SREC1=0  D
+ ...S OLDREC=+$P($G(@(CFILE_"REC,MNODE,SREC,SNODE,SREC1,SNODE1)")),U,SPIECE)
+ ...Q:'$D(^TMP($J,"DUP","RT",FILE,OLDREC))
+ ...S NEWREC=$P(^TMP($J,"DUP","RT",FILE,OLDREC),U),$P(^TMP($J,"DUP","RT",FILE,OLDREC),U,2)=+$P(^TMP($J,"DUP","RT",FILE,OLDREC),U,2)+1
+ ...I OLDREC'=NEWREC D
+ ....S TEMP="$P("_CFILE_REC_","_MNODE_","_SREC_","_SNODE_","_SREC1_","_SNODE1_"),U,"_SPIECE_")"
+ ....S TEMP2="SS"_U_MAINFILE_U_REC_U_FIELD_U_MNODE_U_SUBFILE_U_SREC_U_SFIELD_U_SNODE_U_SFILE1_U_SREC1_U_SFIELD1_U_SNODE1_U_SPIECE
+ ....D JOURNAL(.VAL,FILE,TEMP,TEMP2,OLDREC,NEWREC)
+ Q
+JOURNAL(VAL,FILE,TEMP,TEMP2,OLDREC,NEWREC) ;Stores the changes that was made
+ S VAL=$G(VAL)+1
+ S ^TMP($J,"DUP","J",FILE,VAL,0)=TEMP
+ S ^TMP($J,"DUP","J",FILE,VAL,1)=TEMP2
+ S ^TMP($J,"DUP","J",FILE,VAL,"OLD")=OLDREC
+ S ^TMP($J,"DUP","J",FILE,VAL,"NEW")=NEWREC
+ Q

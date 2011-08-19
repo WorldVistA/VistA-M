@@ -1,0 +1,157 @@
+GMRCIEV1 ;SLC/JFR - IFC EVENTS CONT'D ;01/27/03 09:28
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,28,31**;DEC 27, 1997
+ Q  ;no-no-no
+RESUB(GMRCDA,GMRCACT) ;build HL7 msg with edits from resubit
+ ;Input:
+ ;  GMRCDA  = ien from file 123
+ ;  GMRCACT = ien of the activity from 40 multiple
+ ;
+ N HL,HLL,SEG,GMRC773,GMRCIQT
+ S SEG=1
+ K ^TMP("HLS",$J)
+ D INIT^HLFNC2("GMRC IFC ORM EVENT",.HL)
+ I $G(HL) D  Q  ; if HL array can't be built, log it with an error
+ . D LOGMSG^GMRCIUTL(GMRCDA,GMRCACT,,904)
+ D  I $D(GMRCIQT) D NOMPI^GMRCIEVT(GMRCDA,GMRCACT) Q  ;build PID seg
+ . N GMRCDFN S GMRCDFN=$P(^GMR(123,+GMRCDA,0),U,2)
+ . I '$G(GMRCDFN) S GMRCIQT=1 Q
+ . I $$GETICN^MPIF001(GMRCDFN)<1 S GMRCIQT=1 Q
+ . I $$IFLOCAL^MPIF001(GMRCDFN) S GMRCIQT=1 Q
+ . S ^TMP("HLS",$J,SEG)=$$EN^VAFCPID(GMRCDFN,"1,2,3,4,5,7,8,19")
+ . S SEG=SEG+1
+ . Q
+ ;
+ ;build ORC seg based on GMRCACT
+ S ^TMP("HLS",$J,SEG)=$$ORC^GMRCISEG(GMRCDA,"XO","IP",GMRCACT)
+ S SEG=SEG+1
+ ;
+ ; include Inpatient or Outpatient
+ S ^TMP("HLS",$J,SEG)=$$OBR^GMRCISG1(GMRCDA,GMRCACT)
+ S SEG=SEG+1
+ ;
+ D  ;load up reason for request
+ . K ^TMP("GMRCRFR",$J)
+ . D OBXWP^GMRCISEG(GMRCDA,"XO",GMRCACT,$NA(^TMP("GMRCRFR",$J)))
+ . I '$D(^TMP("GMRCRFR",$J)) Q
+ . N I S I=0
+ . F  S I=$O(^TMP("GMRCRFR",$J,I)) Q:'I  D
+ .. S ^TMP("HLS",$J,SEG)=^TMP("GMRCRFR",$J,I)
+ .. S SEG=SEG+1
+ . K ^TMP("GMRCRFR",$J)
+ . Q
+ D  ;prov DX changed, send it
+ . S ^TMP("HLS",$J,SEG)=$$OBXPD^GMRCISG1(GMRCDA)
+ . S SEG=SEG+1
+ ;
+ D  ;send ed-res comment and file as is
+ . N I
+ . K ^TMP("GMRCMT",$J)
+ . D OBXWP^GMRCISEG(GMRCDA,"",GMRCACT,$NA(^TMP("GMRCMT",$J)))
+ . Q:'$O(^TMP("GMRCMT",$J,0))
+ . S I=0 F  S I=$O(^TMP("GMRCMT",$J,I)) Q:'I  D
+ .. S ^TMP("HLS",$J,SEG)=^TMP("GMRCMT",$J,I)
+ .. S SEG=SEG+1
+ . K ^TMP("GMRCMT",$J)
+ . Q
+ S ^TMP("HLS",$J,SEG)=$$OBXTZ^GMRCISEG ;always include local time zone
+ S HLL("LINKS",1)=$$ROUTE^GMRCIEVT(GMRCDA) I '$L(HLL("LINKS",1)) D  Q
+ . D LOGMSG^GMRCIUTL(GMRCDA,GMRCACT,"",903) ;log error
+ D GENERATE^HLMA("GMRC IFC ORM EVENT","GM",1,.GMRC773)
+ N ERR S ERR=$S($P(GMRC773,U,2):904,1:"") ; if err from HL7, log it
+ D LOGMSG^GMRCIUTL(GMRCDA,GMRCACT,+GMRC773,ERR)
+ Q
+ ;
+SF(GMRCDA,GMRCACT) ;send SIG FINDING update
+ ;Input:
+ ;  GMRCDA  = ien from file 123
+ ;  GMRCACT = ien of the activity from 40 multiple
+ N HL,HLL,SEG,GMRC773,GMRCIQT,GMRCOS
+ S SEG=1
+ K ^TMP("HLS",$J)
+ D INIT^HLFNC2("GMRC IFC ORM EVENT",.HL)
+ I $G(HL) D  Q  ; if HL array can't be built, log it with an error
+ . D LOGMSG^GMRCIUTL(GMRCDA,GMRCACT,,904)
+ D  I $D(GMRCIQT) D NOMPI^GMRCIEVT(GMRCDA,GMRCACT) Q  ;build PID seg
+ . N GMRCDFN S GMRCDFN=$P(^GMR(123,+GMRCDA,0),U,2)
+ . I '$G(GMRCDFN) S GMRCIQT=1 Q
+ . I $$GETICN^MPIF001(GMRCDFN)<1 S GMRCIQT=1 Q
+ . I $$IFLOCAL^MPIF001(GMRCDFN) S GMRCIQT=1 Q
+ . S ^TMP("HLS",$J,SEG)=$$EN^VAFCPID(GMRCDFN,"1,2,3,4,5,7,8,19")
+ . S SEG=SEG+1
+ . Q
+ ;
+ ;build ORC seg based on GMRCACT
+ S GMRCOS=$S($P(^GMR(123,GMRCDA,0),U,12)="2":"CM",1:"IP")
+ S ^TMP("HLS",$J,SEG)=$$ORC^GMRCISEG(GMRCDA,"RE","CM",GMRCACT)
+ S SEG=SEG+1
+ I $O(^GMR(123,GMRCDA,40,GMRCACT,1,0)) D  ;load up comment to send
+ . K ^TMP("GMRCMT",$J)
+ . D OBXWP^GMRCISEG(GMRCDA,"",GMRCACT,$NA(^TMP("GMRCMT",$J)))
+ . Q:'$O(^TMP("GMRCMT",$J,0))
+ . N I S I=0 F  S I=$O(^TMP("GMRCMT",$J,I)) Q:'I  D
+ .. S ^TMP("HLS",$J,SEG)=^TMP("GMRCMT",$J,I)
+ .. S SEG=SEG+1
+ . K ^TMP("GMRCMT",$J)
+ . Q
+ S ^TMP("HLS",$J,SEG)=$$OBXSF^GMRCISEG(GMRCDA),SEG=SEG+1
+ S ^TMP("HLS",$J,SEG)=$$OBXTZ^GMRCISEG ;always include local time zone
+ S HLL("LINKS",1)=$$ROUTE^GMRCIEVT(GMRCDA) I '$L(HLL("LINKS",1)) D  Q
+ . D LOGMSG^GMRCIUTL(GMRCDA,GMRCACT,"",903) ;log error
+ D GENERATE^HLMA("GMRC IFC ORM EVENT","GM",1,.GMRC773)
+ N ERR S ERR=$S($P(GMRC773,U,2):904,1:"") ; if err from HL7, log it
+ D LOGMSG^GMRCIUTL(GMRCDA,GMRCACT,+GMRC773,ERR)
+ Q
+ ;
+FWD(GMRCDA,GMRCACT) ;bld HL7 msg upon FWD action
+ ;Input:
+ ;  GMRCDA  = ien from file 123
+ ;  GMRCACT = ien of the activity from 40 multiple
+ N HL,HLL,SEG,GMRC773,GMRCIQT,GMRCOS
+ S SEG=1
+ K ^TMP("HLS",$J)
+ D INIT^HLFNC2("GMRC IFC ORM EVENT",.HL)
+ I $G(HL) D  Q  ; if HL array can't be built, log it with an error
+ . D LOGMSG^GMRCIUTL(GMRCDA,GMRCACT,,904)
+ D  I $D(GMRCIQT) D NOMPI^GMRCIEVT(GMRCDA,GMRCACT) Q  ;build PID seg
+ . N GMRCDFN S GMRCDFN=$P(^GMR(123,+GMRCDA,0),U,2)
+ . I '$G(GMRCDFN) S GMRCIQT=1 Q
+ . I $$GETICN^MPIF001(GMRCDFN)<1 S GMRCIQT=1 Q
+ . I $$IFLOCAL^MPIF001(GMRCDFN) S GMRCIQT=1 Q
+ . S ^TMP("HLS",$J,SEG)=$$EN^VAFCPID(GMRCDFN,"1,2,3,4,5,7,8,19")
+ . S SEG=SEG+1
+ . Q
+ ;
+ ;build ORC seg based on GMRCACT
+ S ^TMP("HLS",$J,SEG)=$$ORC^GMRCISEG(GMRCDA,"XX","IP",GMRCACT)
+ S SEG=SEG+1
+ S ^TMP("HLS",$J,SEG)=$$OBR^GMRCISG1(GMRCDA,GMRCACT),SEG=SEG+1
+ I $O(^GMR(123,GMRCDA,40,GMRCACT,1,0)) D  ;load up comment to send
+ . K ^TMP("GMRCMT",$J)
+ . D OBXWP^GMRCISEG(GMRCDA,"",GMRCACT,$NA(^TMP("GMRCMT",$J)))
+ . Q:'$O(^TMP("GMRCMT",$J,0))
+ . N I S I=0 F  S I=$O(^TMP("GMRCMT",$J,I)) Q:'I  D
+ .. S ^TMP("HLS",$J,SEG)=^TMP("GMRCMT",$J,I)
+ .. S SEG=SEG+1
+ . K ^TMP("GMRCMT",$J)
+ . Q
+ S ^TMP("HLS",$J,SEG)=$$OBXSF^GMRCISEG(GMRCDA),SEG=SEG+1
+ S ^TMP("HLS",$J,SEG)=$$OBXTZ^GMRCISEG ;always include local time zone
+ S HLL("LINKS",1)=$$ROUTE^GMRCIEVT(GMRCDA) I '$L(HLL("LINKS",1)) D  Q
+ . D LOGMSG^GMRCIUTL(GMRCDA,GMRCACT,"",903) ;log error
+ D GENERATE^HLMA("GMRC IFC ORM EVENT","GM",1,.GMRC773)
+ N ERR S ERR=$S($P(GMRC773,U,2):904,1:"") ; if err from HL7, log it
+ D LOGMSG^GMRCIUTL(GMRCDA,GMRCACT,+GMRC773,ERR)
+ Q
+ ;
+FWD2IFC(GMRCDA,GMRCACT) ;pkg up and send request upon fwd'ing into IFC serv
+ ;Input:
+ ;  GMRCDA  = ien from file 123
+ ;  GMRCACT = ien of the activity from 40 multiple
+ N GMRCACTN
+ I '$P(^GMR(123,GMRCDA,0),U,22),'$D(^GMR(123.6,"C",GMRCDA)) D  Q
+ . D NW^GMRCIEVT(GMRCDA)
+ . S GMRCACTN=1
+ . F  S GMRCACTN=$O(^GMR(123,GMRCDA,40,GMRCACTN)) Q:'GMRCACTN  D
+ .. D TRIGR^GMRCIEVT(GMRCDA,GMRCACTN)
+ D FWD(GMRCDA,GMRCACT)
+ Q

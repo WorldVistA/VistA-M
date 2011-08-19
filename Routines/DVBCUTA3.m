@@ -1,0 +1,116 @@
+DVBCUTA3 ;ALB/GTS-AMIE C&P UTILITY ROUTINE A-3 ; 2/10/95  11:15 AM
+ ;;2.7;AMIE;;Apr 10, 1995
+ ;
+ ;** Version Changes
+ ;   2.7 - New routine (Enhc 15)
+ ;
+INRSLK() ;** Lookup insufficient reason
+ N REASVAR,DVBAOUT,REASIN
+ S REASVAR=-1,REASIN=""
+ K DTOUT,DUOUT
+ F  Q:($D(DTOUT)!(+REASVAR>0)!($D(DVBAOUT)))  DO
+ .I '$D(DVBAXMDA) DO
+ ..R !,"INSUFFICIENT REASON: ",REASIN:DTIME
+ ..S:'$T DVBAOUT=""
+ .I $D(DVBAXMDA),(+DVBAXMDA'>0) DO
+ ..R !,"INSUFFICIENT REASON: ",REASIN:DTIME
+ ..S:'$T DVBAOUT=""
+ .I $D(DVBAXMDA),(+DVBAXMDA>0&(+$P(^DVB(396.4,DVBAXMDA,0),U,11)'>0)) DO
+ ..R !,"INSUFFICIENT REASON: ",REASIN:DTIME
+ ..S:'$T DVBAOUT=""
+ .I $D(DVBAXMDA),(+DVBAXMDA>0&(+$P(^DVB(396.4,DVBAXMDA,0),U,11)>0)) DO
+ ..W !,"INSUFFICIENT REASON: "
+ ..S:'$T DVBAOUT=""
+ ..I +$P(^DVB(396.4,DVBAXMDA,0),U,11)>0 DO
+ ...W $P(^DVB(396.94,$P(^DVB(396.4,DVBAXMDA,0),U,11),0),U,1)_"//"
+ ..R REASIN:DTIME
+ ..S:'$T DVBAOUT=""
+ ..I '$D(DVBAOUT),(REASIN="") S REASIN=$P(^DVB(396.94,$P(^DVB(396.4,DVBAXMDA,0),U,11),0),U,1)
+ .I REASIN="^" DO
+ ..S TVAR(1,0)="0,0,0,0,0^NOT ALLOWED"
+ ..D WR^DVBAUTL4("TVAR")
+ ..K TVAR
+ .I '$D(DVBAOUT),(REASIN="") S REASIN="^"
+ .I REASIN="^" DO
+ ..S TVAR(1,0)="0,0,0,0,0^??"
+ ..S TVAR(2,0)="0,5,0,1,0^Enter the insufficient reason this exam is being returned."
+ ..S TVAR(3,0)="0,1,0,1,0^ANSWER WITH 2507 INSUFFICIENT REASONS INSUFFICIENT CODE"
+ ..D WR^DVBAUTL4("TVAR")
+ ..K TVAR
+ .I REASIN="?" DO
+ ..K DIR S DIR(0)="YAO"
+ ..S DIR("A",1)="     Enter the insufficient reason this exam is being returned. "
+ ..S DIR("A",2)=" ANSWER WITH 2507 INSUFFICIENT REASONS INSUFFICIENT CODE"
+ ..S DIR("A")=" DO YOU WANT THE ENTIRE 13-ENTRY 2507 INSUFFICIENT REASONS LIST? "
+ ..D ^DIR
+ ..D:+Y=1 RESHELP
+ ..K Y,DIR
+ .I REASIN["??" DO
+ ..S TVAR(1,0)="0,0,0,1,0^This field contains a pointer to the Insufficient Reason file (396.94)."
+ ..D WR^DVBAUTL4("TVAR")
+ ..K TVAR
+ ..D RESHELP
+ .I REASIN'="^",(REASIN'["?") DO
+ ..S DIC="^DVB(396.94,",X=REASIN,DIC(0)="MQE"
+ ..D ^DIC
+ ..S REASVAR=Y
+ ..K DIC,X,Y
+ S:($D(DTOUT)!($D(DVBAOUT))) REASVAR=-1
+ Q REASVAR
+ ;
+RESHELP ;** Help for insufficient reasons
+ N LPVAR
+ S TVAR(1,0)="0,0,0,2,0^CHOOSE FROM:"
+ D WR^DVBAUTL4("TVAR")
+ K TVAR
+ F LPVAR=0:0  S LPVAR=$O(^DVB(396.94,LPVAR)) Q:+LPVAR=0  DO
+ .S TVAR(1,0)="0,3:0,0,1,0^"_$P(^DVB(396.94,LPVAR,0),U,1)
+ .D WR^DVBAUTL4("TVAR")
+ .K TVAR
+ W !
+ Q
+ ;
+LNKLIST ;** List links for user
+ I '$D(TMP("DVBC LINK")) DO
+ .S TVAR(1,0)="0,0,0,1,0^There are no links to this 2507 request."
+ .D WR^DVBAUTL4("TVAR")
+ .K TVAR
+ .D CONTMES^DVBCUTL4
+ I $D(TMP("DVBC LINK")) DO
+ .N DVBAMORE
+ .W !,?2,"Current Appointment Links",!
+ .W !,?1,"Initial Appt",?21,"Clock Stop Appt",?41,"Current Appt",?61,"Clinic"
+ .S ARYDA=""
+ .N GETOUT
+ .F ARYDA=1:1 Q:('$D(TMP("DVBC LINK",ARYDA))!($D(GETOUT)))  DO
+ ..S SELDA=""
+ ..S SELDA=$O(TMP("DVBC LINK",ARYDA,SELDA))
+ ..W !,?1,$P(TMP("DVBC LINK",ARYDA,SELDA),U,1)
+ ..W ?21,$P(TMP("DVBC LINK",ARYDA,SELDA),U,2),?41,$P(TMP("DVBC LINK",ARYDA,SELDA),U,3)
+ ..W ?61,$E($P(TMP("DVBC LINK",ARYDA,SELDA),U,4),1,18)
+ ..S DVBAMORE=$O(TMP("DVBC LINK",ARYDA))
+ ..I (+DVBAMORE'>0)!(+DVBAMORE>0&(ARYDA#5=0)) DO
+ ...K DIR
+ ...S DIR(0)="F,O^^",DIR("A")="Enter [Return] to continue or ""^"" to exit"
+ ...K GETOUT D ^DIR S:$D(DTOUT)!($D(DUOUT)) GETOUT=1
+ ...I '$D(GETOUT) W ! K DIR,DIRUT,X
+ .K TMP("DVBC LINK"),ARYDA,SELDA,DIR,X
+ Q
+ ;
+LNKARY(REQDA,DVBADFN) ;** Set up the link array (In TMP local)
+ N LKDA,ARYDA
+ S LKDA="",ARYDA=0
+ F  S LKDA=$O(^DVB(396.95,"AR",REQDA,LKDA)) Q:+LKDA=0  DO
+ .S ARYDA=ARYDA+1
+ .S Y=$P(^DVB(396.95,LKDA,0),U,1) X ^DD("DD")
+ .S TMP("DVBC LINK",ARYDA,LKDA)=Y K Y
+ .S Y=$P(^DVB(396.95,LKDA,0),U,2) X ^DD("DD")
+ .S TMP("DVBC LINK",ARYDA,LKDA)=TMP("DVBC LINK",ARYDA,LKDA)_"^"_Y K Y
+ .S Y=$P(^DVB(396.95,LKDA,0),U,3) X ^DD("DD")
+ .S TMP("DVBC LINK",ARYDA,LKDA)=TMP("DVBC LINK",ARYDA,LKDA)_"^"_Y K Y
+ .S DA=DVBADFN,DA(2.98)=$P(^DVB(396.95,LKDA,0),U,3),DR="1900",DR(2.98)=".01",DIC=2
+ .S DIQ="DVBACLIN" K ^UTILITY("DIQ",$J)
+ .D EN^DIQ1 K ^UTILITY("DIQ",$J)
+ .S TMP("DVBC LINK",ARYDA,LKDA)=TMP("DVBC LINK",ARYDA,LKDA)_"^"_DVBACLIN(2.98,$P(^DVB(396.95,LKDA,0),U,3),.01)
+ .K DVBACLIN
+ Q

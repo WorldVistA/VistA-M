@@ -1,0 +1,93 @@
+DVBHQDB ;ISC-ALBANY/PKE-HINQ Queue batch processs ;8/4/87  18:04 ; 5/10/01 10:36am
+ ;;4.0;HINQ;**12,15,20,33,34,38,55**;03/25/92
+ S X="A" X ^%ZOSF("LPC") K X
+ I $D(DUZ)#2'=1 W !,"User DUZ not defined" Q
+ I $D(^VA(200,DUZ,.1)) S DVBNUM=$P(^(.1),"^",9) I DVBNUM
+ E  W !,"  HINQ Employee Number not in New Person file",!,"  Notify System Manager",! G EX
+ S U="^" W !,"When you enter your HINQ password all 'P'ending",!,"requests in the Suspense file will be generated.",!
+ I $D(^DVB(395,1,"HQ")),'$D(^DVB(395.5,"AD","P")) W !!,?$X+10,"No requests Pending",! H 3 G EX
+PASS X ^%ZOSF("EOFF") R !,"Enter HINQ PASSWORD: ",DVBP:DTIME X ^%ZOSF("EON") Q:'$T!("^."[DVBP)  S X=DVBP X ^DD("FUNC",13,1) S DVBP=X I DVBP'?4E W "? ",!,$C(7),"Please enter 4 characters." G PASS
+ ;VBA has changed the format of the HINQ password to allow numbers and 
+ ;special characters - DVB*4*55,ERC
+ I $D(DVBP),$L(DVBP)=4
+ E  G EX
+ ;
+DEV S DVBIP=$P($G(^DVB(395,1,"HQIP")),"^",1)
+ I DVBIP,DVBIP?1.3N1P1.3N1P1.3N1P1.3N
+ E  W !?3,"RDPC IP Address not defined or invalid in DVB parameter file #395" H 3 G EX
+ S DVBDEV=""
+ S X=7 F Z=1:1:4 S X=X_(100-$A(DVBP,Z))
+ U IO(0) W ?$X+10,"Direct Requests Queued "
+ D TSK,^%ZTLOAD W:$G(ZTSK) " #",ZTSK G EX
+QUE ;entry from taskman, lock to prevent more than one job at a time
+ L +^DVB("DVBHINQ BATCH"):9 E  H 33 S DVBABORT=1,DVBTSK=ZTSK D REQ G EX
+ S DVBABORT=0,DVBP=DVBDAY I '$D(^DVB(395.5,"AD","P")) G EX
+ I ('$D(DVBNUM)),('$D(DVBP)) G EX
+ S U="^",DVBABORT=1,DVBTSK=ZTSK D ENTSK^DVBHQDL I DVBABORT D REQ,BYEF G EX
+ S X=DVBP,DVBP="" D UTIL,COD,BYPASS,BYE,MAIL,22,UTIL I DVBABORT,'$D(DVBBADP) D REQ G EX
+ ;
+ G EX
+ ;
+COD S X=$E(X,2,7)_$E(X,9,10) F Z=1:2:8 S DVBP=DVBP_$C((100-$E(X,Z,Z+1)))
+ Q
+BYPASS U IO S (DFN,DVBCS,DVBACT,DVBCT,DVBECT)=0,DVBPCT=1
+ ;
+LIST Q:'$D(^DVB(395.5,"AD","P"))
+ F DVBCT=1:1 S DFN=$O(^DVB(395.5,"AD","P",DFN)) Q:'DFN  I $D(^DVB(395.5,DFN,0)),"PV"[$P(^(0),"^",4) K Y(0),Y,DVBNAM,DVBSTN,DVBZ D BYPASS1^DVBHIQD D:$D(DVBZ) MES^DVBHQD1 Q:'DFN!(DVBABORT=3)  I DVBCT>49 S DFN=0,DVBABORT=99 Q
+ Q
+ ;
+CHK I DVBABORT D BYE,MAIL G EX
+ Q
+ ;
+MAIL S DVBDFN=0
+ F  S DVBDFN=$O(^TMP("DVBHINQ",$J,DVBDFN)),DVBCS=0 Q:'DVBDFN  K X S DVBSZ=0 F  S DVBSZ=$O(^TMP("DVBHINQ",$J,DVBDFN,DVBSZ)) S:DVBSZ X(DVBSZ)=^(DVBSZ) D MAL:'DVBSZ,SC^DVBHQST Q:'DVBSZ  D ST
+ ;nopend
+ Q
+ ; first a summary
+ ;I $D(X)>9,$D(^DPT(DVBDFN,0)) D A^DVBHQST I $D(^DVB(395,1,0)),$P(^(0),U,4) D A^DVBHIQR,EN^DVBHIQM
+MAL I $D(X)>9,$D(^DPT(DVBDFN,0)) DO
+ .K DVBERR D A^DVBHQST ;errs
+ .D A^DVBHIQR ;variables
+ .I '$P(^DVB(395.5,DVBDFN,0),"^",6) DO
+ ..I '$D(DVBERR),'$D(DVBNETER),'$D(DVBABREV) S DFN=DVBDFN D EN^DVBHT1
+ ..K DVBDIQ
+ .I $D(^DVB(395,1,0)),$P(^(0),"^",4) D EN^DVBHIQM Q  ;mail messages
+ .I $D(^DVB(395,1,0)),$P(^(0),"^",4)=""!($P(^(0),"^",4)=0) D CLEAN^DVBHUTL1
+ Q
+TSK S DVBDAY=$E(X,1,7)_"."_$E(X,8,9) X ^%ZOSF("UCI") S ZTUCI=Y
+ S ZTRTN="QUE^DVBHQDB",ZTIO=DVBDEV,ZTDTH=$H
+TSK1 F J="DVBDAY","DVBNUM","DVBDEV" S ZTSAVE(J)=""
+ S ZTDESC="This job is to process the HINQ Suspense file."
+ Q
+ ;
+REQ Q:'$D(DVBTSK)  S DVBAUTO=$P(^DVB(395,1,"HQ"),U,7),DVBATOLM=$P(^("HQ"),U,8),DVBATOCT=$P(^("HQ"),U,9),DVBDIFF=+$P(^("HQ"),U,12)
+ I DVBATOCT>(DVBATOLM-1)!(DVBAUTO=0) Q
+ D ^DVBHQTM S X1=$P($H,",") I $D(DVBSTOP) S X1=X1+1,X2=28800-(DVBDIFF*3600)
+ E  S X2=$P($H,",",2)
+ ;Requeue task in 3 hours:  DVB*38  MLR  5.10.01
+ I $G(DVBVBA)="NO" S X2=X2+10800 K DVBVBA
+ ;S X2=X2+(300),ZTDTH=X1_","_X2
+ S X2=X2+($S(DVBABORT=99:60,1:300)),ZTDTH=X1_","_X2
+ S ZTIO=DVBDEV,$P(^DVB(395,1,"HQ"),U,9)=DVBATOCT+1,ZTRTN="QUE^DVBHQDB"
+ D TSK1,^%ZTLOAD
+ Q
+EX ;K DVBAS,DVBOS,ZTSK,DVBNUM,XH,X,Y,Y(0),Z,Z1,DVBATOCT,DVBATOLM,DVBAUTO,DVBDFN,DVBBADP,DVBDEV,DVBDAY,DVBT,DVBP,DVBUCI,DFN,DVBABORT,DVBTSK,DVBDIFF,DVBSTOP,J,ZTIO QUIT
+ D KILL^XUSCLEAN
+ L -^DVB("DVBHINQ BATCH") D CLOSE^%ZISTCP Q
+ ;
+BYEF I IO']"" Q
+ U IO F Z=1:1:30 I $D(X(Z)),X(Z)["???" I DVBLOG'["VHA" W "BYEF",$C(13) Q
+ E  W "$%$DIS",$C(13),! Q
+ F Z=1:1:6 R X1:1 Q:'$T
+ Q
+BYE I DVBLOG'["VHA" U IO W "$$$BYEF",$C(13) F G=1:1:9 R X1:3 Q:'$T
+ I DVBLOG["VHA" U IO W "$%$DIS",$C(13),! F G=1:1:6 R X1:1 Q:'$T  I X1["0900 BYE" Q
+ Q
+UTIL K ^TMP("DVBHINQ",$J) Q
+ ; leaves mini open but signs off VBA
+ ; then mails responses and closes mini
+ST K:DVBSZ=1 ^DVB(395.5,DVBDFN,"RS") I '$D(^DVB(395.5,DVBDFN,"RS",0)) S ^(0)="^395.512A^^"
+ S $P(^DVB(395.5,DVBDFN,"RS",0),U,3,4)=DVBSZ_"^"_DVBSZ,^(DVBSZ,0)=X(DVBSZ) Q
+ ;
+22 S XMB="DVB HINQ RESPONSE",XMB(1)=DVBCT,XMB(2)=DVBECT,XMTEXT="DVBTXT(",XMB(3)=DVBACT,XMB(4)=DVBCT-DVBECT-DVBACT,XMB(5)=$S(XMB(3):"(CHECK MAIL MESSAGES)",1:"")
+ D ^XMB K DVBTE,DVBCT,XMSUB,XMTEXT,XMY,N,DVBY Q

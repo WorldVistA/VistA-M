@@ -1,0 +1,13 @@
+EPA DESIGNATED PRODUCT
+ZWR
+^PRCD(420.55,0)="EPA DESIGNATED PRODUCT^420.55I^5^5"
+^PRCD(420.55,1,0)="A^^Meets requirements EPA. Contains the required minimum recovered material content."
+^PRCD(420.55,2,0)="B^^Justification - Time EPA. Product does not contain the required minimum recovered material. Justification based on inability to acquire the product competitively within reasonable time."
+^PRCD(420.55,3,0)="C^^Justification - Price EPA. Product does not contain the required minimum recovered material. Justification based on inability to acquire the product at a reasonable price (FAR 23.405(c)(2))."
+^PRCD(420.55,4,0)="D^^Justification - Performance."
+^PRCD(420.55,5,0)="E^^Not required."
+^PRCD(420.55,"B","A",1)=""
+^PRCD(420.55,"B","B",2)=""
+^PRCD(420.55,"B","C",3)=""
+^PRCD(420.55,"B","D",4)=""
+^PRCD(420.55,"B","E",5)=""

@@ -1,0 +1,49 @@
+LBRYRPT1 ;ISC2/DJM - PATRON REPORTS ;[ 06/11/97  1:16 PM ]
+ ;;2.5;Library;**2,5**;Mar 11, 1996
+JTA ;
+ I $G(LBRYPTR)="" D  I $G(LBRYPTR)="" W !!,$C(7),"No Site has been selected" G EXIT
+ . D ^LBRYASK
+ D NOW^%DTC S Y=%\1 X ^DD("DD")
+ W @IOF,"VA Library Patron Journal Title for "_LBRYNAM_"   "_Y,!
+ S DIC="^LBRY(680.5,",DIC(0)="AEMQ"
+ S DIC("S")="I $P(^LBRY(680.5,+Y,0),U,2)]"""""
+ D ^DIC K DIC("S") G:Y<0 FINI S LBRYNUM=$P(Y,U,2)
+ S (FR,TO)=LBRYNUM,BY=.01,FLDS="[LBRY PATRON TITLES]",L=0
+ D EN1^DIP G FINI
+SLJ ;
+ I $G(LBRYPTR)="" D  I $G(LBRYPTR)="" W !!,$C(7),"No Site has been selected" G EXIT
+ . D ^LBRYASK
+ D NOW^%DTC S Y=%\1 X ^DD("DD")
+ W @IOF,"VA Library Patron Subject List for "_LBRYNAM_"   "_Y,!
+ S DIC="^LBRY(680.3,",DIC(0)="AEQ" D ^DIC G:Y<0 FINI
+ S LBRYSN=+Y,LBRYNM=$P(Y,U,2)
+QUEUE S %ZIS="MQ" K IO("Q") D ^%ZIS G:POP FINI I '$D(IO("Q")) U IO
+ D SLJ1^LBRYRPT1 D ^%ZISC G FINI
+QUEUE1 S ZTRTN="SLJ1^LBRYRPT1",ZTSAVE("LBRYSN")="",ZTSAVE("LBRYNM")=""
+ K IO("Q") D ^%ZTLOAD D ^%ZISC K ZTSK
+FINI K DIC,FR,TO,BY,FLDS,L,LBRYNUM,LBRYSN,LBRYNM,POP,Y,%ZIS,%
+ Q
+SLJ1 K ^TMP($J,"LBRYSLJ") S X=""
+SL S X=$O(^LBRY(680,"C",LBRYSN,X)) G:X="" SLJ2
+ I $P(^LBRY(680,X,0),U,4)'=LBRYPTR G SL
+ S LBR6805=$P(^LBRY(680,X,0),U)
+ S NM=$P(^LBRY(680.5,LBR6805,0),U) S:$E(NM,1,4)="THE " NM=$E(NM,5,999)
+ S ^TMP($J,"LBRYSLJ",$E(NM,1,60))=NM
+ G SL
+SLJ2 S PG=1 D NOW^%DTC S Y=% X ^DD("DD")
+ S LBDT=$P(Y,"@",1)_" "_$P(Y,"@",2) G PRINT
+H0 G:IO'=IO(0)!($D(ZTSK)) H R LZ:DTIME E  S LZ="^" Q
+ Q:LZ["^"
+H W @IOF,"Subject List of Journals Available",?47,LBDT,?69,"PAGE ",PG,!
+ S PG=PG+1
+ F I=1:1:80 W "-"
+ W !!,"SUBJECT: ",LBRYNM,!
+ Q
+T W ! Q
+PRINT S LZ="" D H
+ F  S X=$O(^TMP($J,"LBRYSLJ",X)) Q:X=""  D  Q:LZ["^"
+ . S X1=^TMP($J,"LBRYSLJ",X),LN=$L(X1)+8,NU=LN\80,NU=$S(LN#80>0:NU+1,1:NU)
+ . D:$Y+NU>(IOSL-2) H0 Q:LZ["^"  D T W "TITLE: ",X1
+EXIT K:$D(ZTSK) ^%ZTSK(ZTSK),ZTSK
+ K X,X1,I,XP,%,LN,LZ,NU,NM,PG,LBDT,Y,^TMP($J,"LBRYSLJ"),LBRYNUM,LBRYNM,LBR6805
+ Q

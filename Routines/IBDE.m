@@ -1,0 +1,38 @@
+IBDE ;ALB/CJM - ENCOUNTER FORM - IMP/EXP UTILITY ;AUG 12,1993
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+ ;
+MAIN ;
+ N FORMLIST,BLKLIST,FORMCNT,BLKCNT,IBTKBLK,SCREEN
+ S SCREEN="F" ;a flag that indicates wheter user is looking at the block screen(=B) or the form screen(=F)
+ S IBTKBLK=0 ;if 1 overrides check preventing deletion of tk blocks
+ K XQORS,VALMEVL
+ D EN^VALM("IBDE IMP/EXP FORMS")
+ Q
+HDR ;
+ S VALMHDR(1)="LIST OF FORMS READY FOR IMPORT OR EXPORT"
+ S VALMHDR(3)="(** there are "_$S($O(^IBE(358.1,"D",0)):"also",1:"no")_" toolkit blocks in the work space **)"
+ Q
+ONENTRY ;
+ S FORMLIST="^TMP(""IBDF"",$J,""IMP/EXP WS"",""FORMS"")"
+ S BLKLIST="^TMP(""IBDF"",$J,""IMP/EXP WS"",""BLOCKS"")"
+ D IDXBLKS^IBDE3,IDXFORMS
+ Q
+ONEXIT ;
+ K ^TMP("IBDF",$J,"IMP/EXP WS"),VALMY,VALMBCK,X,Y,I,DA,D0
+ Q
+ ;
+IDXFORMS ;build an array of forms used by IBCLINIC for the list processor
+ N FORM,NODE
+ K @FORMLIST
+ S (FORM,VALMCNT)=0 F  S FORM=$O(^IBE(358,FORM)) Q:'FORM  D
+ .I $D(^IBE(358,FORM,0)) D
+ ..S VALMCNT=VALMCNT+1,@FORMLIST@(VALMCNT,0)=$$DISPLAY(FORM,VALMCNT),@FORMLIST@("IDX",VALMCNT,VALMCNT)=FORM D FLDCTRL^VALM10(VALMCNT) ;set video for ID column
+ S FORMCNT=VALMCNT
+ Q
+ ;
+DISPLAY(FORM,ID) ;
+ N NODE,RET
+ S RET=$J(ID,3)_"  "
+ S NODE=$G(^IBE(358,FORM,0))
+ S RET=RET_$$PADRIGHT^IBDFU($P(NODE,"^",1),30)_"  "_$P(NODE,"^",3)
+ Q RET

@@ -1,0 +1,15 @@
+TITLE
+ZWR
+^DIC(3.1,0)="TITLE^3.1^1^1"
+^DIC(3.1,0,"DD")="#"
+^DIC(3.1,0,"DEL")="#"
+^DIC(3.1,0,"GL")="^DIC(3.1,"
+^DIC(3.1,1,0)="Special user"
+^DIC(3.1,"%",0)="^1.005^1^1"
+^DIC(3.1,"%",1,0)="XU"
+^DIC(3.1,"%","B","XU",1)=""
+^DIC(3.1,"%D",0)="^^3^3^2940913^^"
+^DIC(3.1,"%D",1,0)="This file may be used to indicate a user's title.  It is pointed to by"
+^DIC(3.1,"%D",2,0)="the NEW PERSON. It is only cross-referenced by name.  It is not distributed"
+^DIC(3.1,"%D",3,0)="with data."
+^DIC(3.1,"B","Special user",1)=""

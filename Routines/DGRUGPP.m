@@ -1,0 +1,36 @@
+DGRUGPP ;ALB/BOK/MLI - PRINT PAIS FOR A DATE RANGE ; 25 FEB 87  12:00
+ ;;5.3;Registration;**89**;Aug 13, 1993
+DATE K DGW S X="",U="^" R !!,"SORT BY",!,"     (A)SSESSMENT OR (T)RANSFER/ADMISSION DATE: ASSESSMENT//",X:DTIME S Z="^ASSESSMENT DATE^TRANSFER/ADMISSION" Q:X["^"!('$T)  I X="" S X="A" W X
+ D IN^DGHELP I %=-1 W !!?12,"CHOOSE FROM:",!?12,"A - Sort by Assessment date range",!?12,"T - Sort by Transfer in/Admission date range" G DATE
+ S DGA=$S(X="A":"AA",1:"AC")
+ D ASK2^SDDIV G QUIT^DGRUGPP1:Y<0 S %DT("A")="START DATE: ",%DT="AEPX",%DT(0)="-DT" D ^%DT Q:X["^"  G:Y<0 DATE S DGSD=Y-.1
+ S %DT("A")="  END DATE: ",%DT(0)=DGSD+.1 D ^%DT Q:X["^"  G:Y<0 DATE S DGED=Y_.9
+ N ERR S ERR=$$CHOSE^DGRUGU1()
+ I +ERR<0 G QUIT^DGRUGPP1
+ S SEL=$P(ERR,"^",2)
+ S DGPGM="PAIS^DGRUGPP",DGVAR="DGA^DGSD^DGED^DGW#^VAUTD#^DGCL#"
+ W !!,*7,!!,"THIS REPORT REQUIRES 132 COLUMN OUTPUT"
+ D ZIS^DGUTQ G:POP QUIT^DGRUGPP1 D PAIS,CLOSE^DGUTQ,QUIT^DGRUGPP1 Q
+PAIS U IO S X=132 X ^%ZOSF("RM")
+ F M=DGSD:0 S M=$O(^DG(45.9,DGA,M)) Q:M'>0!(M>DGED)  D
+ .F DGPT=0:0 S DGPT=$O(^DG(45.9,DGA,M,DGPT)) Q:DGPT'>0  D
+ ..I $D(^DG(45.9,DGPT,"R")) D
+ ...S X=$P(^DG(45.9,DGPT,"R"),"^")
+ ...I $P($G(^DG(45.9,DGPT,0)),"^",6)'=3,$D(DGW),(DGW)!($D(DGW(+X))) D CHECK I $T D SET
+ ...I $P($G(^DG(45.9,DGPT,0)),"^",6)=3,$D(DGCL),(DGCL)!($D(DGCL(+X))) D SET
+ F X=0:0 S X=$O(^UTILITY($J,"WD",X)) Q:X'>0  D
+ .F DGPT=0:0 S DGPT=$O(^UTILITY($J,"WD",X,DGPT)) Q:DGPT'>0  D
+ ..F M=0:0 S M=$O(^UTILITY($J,"WD",X,DGPT,M)) Q:M'>0  D EN^DGRUGPP1 S FIRST=""
+QT K FIRST,SEL,DGCL,VAUTNI,VAUTSTR,VAUTVB
+ Q
+SET I +X,($P($G(^DG(45.9,DGPT,0)),"^",6)'=3) I $D(DGW),DGW!($D(DGW(+X))) S ^UTILITY($J,"WD",+X,DGPT,M)=$P(^DIC(42,+X,0),U)
+ I +X,($P($G(^DG(45.9,DGPT,0)),"^",6)=3) I $D(DGCL),DGCL!($D(DGCL(+X))) S ^UTILITY($J,"WD",+X,DGPT,M)=$P(^FBAAV(+X,0),U)
+ Q
+CHECK I X&($P($G(^DG(45.9,DGPT,0)),"^",6)'=3) S DIV=$S('$D(^DIC(42,+X,0)):0,+$P(^(0),U,11):$P(^(0),U,11),1:$O(^DG(40.8,0))) I (VAUTD)!($D(VAUTD(+DIV)))
+ Q
+RUGWARD S DIC="^DIC(42,",VAUTSTR="ward",VAUTVB="DGW",DIC("S")="I $P(^(0),U,3)]"""",""NHI""[$P(^(0),U,3),$S(VAUTD:1,$D(VAUTD(+$P(^(0),U,11))):1,'$P(^(0),U,11)&$D(VAUTD(+$O(^DG(40.8,0)))):1,1:0)"
+ S VAUTNI=2 D FIRST^VAUTOMA Q
+THER S DGHM=$P(DGI,"^",E+16) W ?12,"TIME PER WEEK==> DAYS: ",$P(DGI,"^",E+(E-47)+2),"  HOURS: ",$J($S(DGHM']"":"",DGHM<100:0,DGHM<1000:$E(DGHM,1,1),1:+$E(DGHM,1,2)),2)
+ W "  MINUTES: ",$J($S(DGHM']"":"",DGHM<100:+DGHM,DGHM<1000:+$E(DGHM,2,3),1:+$E(DGHM,3,4)),2)
+ Q
+LEV S E(1)=E+(E-47) W E,".",$J($P(^DD(45.9,(E(1)+1),0),U),30),": " W:$P(DGI,U,(E(1)+1))]"" $E($P($P(^DD(45.9,(E(1)+1),0),$P(DGI,U,(E(1)+1))_":",2),";",1),1,27)

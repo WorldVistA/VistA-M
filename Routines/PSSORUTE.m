@@ -1,0 +1,36 @@
+PSSORUTE ;OIFO BAY PINES/ELR-CONTINUATION OF PSSORUTL ;07/20/04
+ ;;1.0;PHARMACY DATA MANAGEMENT;**83,93**;9/30/97
+ ;
+ ;Reference to ^PS(52.41 is supported by DBIA # 2844.
+ ;Reference to ^PSRX is supported by DBIA # 2845.
+ ;Reference to ^PS(53.1 is supported by DBIA # 2140.
+ ;
+NU S PSONDU=$S($G(PSONDS)&($G(PSONDU)):$P($G(^PS(50.607,+$G(PSONDU),0)),"^"),1:"")
+ Q
+SETU S PSSUNITX=$P($G(^PSDRUG(PSIEN,"DOS")),"^",2)
+ S PSSUNITX=$S($P($G(^PS(50.607,+$G(PSSUNITX),0)),"^")'=""&($P($G(^(0)),"^")'["/"):$P($G(^(0)),"^"),1:"")
+ Q
+STATUS(PSSDFN,PSSON) ;Return the status of the Pharmacy order
+ ;
+ N ST,TYPE,LEN,PKG,A,STO,RX2,STA,%,Y
+ D NOW^%DTC S %=$P(%,".") I $P(PSSON,";",2)="" Q ""
+ S LEN=$L($P(PSSON,";")),PKG=$P(PSSON,";",2) I PSSON?.N S TYPE="O"
+ I PSSON'?.N S TYPE=$E(PSSON,LEN),PSSON=$E(PSSON,1,LEN-1)
+ I PKG="I" D  Q ST
+ . I TYPE="P" S A=$P($G(^PS(53.1,PSSON,0)),"^",9),ST=$$CODES(A,53.1,28) Q
+ . I TYPE="V" S A=$P($G(^PS(55,PSSDFN,"IV",PSSON,0)),"^",17),ST=$$CODES(A,55.01,100) Q
+ . I TYPE="U" S A=$P($G(^PS(55,PSSDFN,5,PSSON,0)),"^",9),ST=$$CODES(A,55.06,28)
+ I PKG="O" D  Q ST
+ . I TYPE="P"!(TYPE="S") D  Q
+ .. S A=$P($G(^PS(52.41,PSSON,0)),"^",3),ST="" I A]"" S ST="PENDING" Q
+ . I TYPE="N" S A=$P(^PS(55,PSSDFN,"NVA",PSSON,0),"^",7) S ST=$S('A:"ACTIVE",1:"DISCONTINUED") Q
+ . I TYPE="R"!(TYPE="O") S RX2=$G(^PSRX(PSSON,2)),STA=$G(^PSRX(PSSON,"STA")),STO=$S(STA<12&($P(RX2,"^",6)<%):11,1:STA)
+ . S ST=$P("ERROR^ACTIVE^NON-VERIFIED^REFILL FILL^HOLD^NON-VERIFIED^ACTIVE/SUSP^^^^^DONE^EXPIRED^DISCONTINUED^DISCONTINUED^DISCONTINUED^DISCONTINUED (EDIT)^HOLD^","^",STO+2)
+ Q ""
+CODES(PSSCD,PSSF,PSSFLD) ; Get name from code.
+ ; PSSF = one of following files: ^PS(55, ^PS(53.1, ^PS(52.6, ^PS(52.41
+ N PSSDD,Y
+ D FIELD^DID(PSSF,PSSFLD,"","POINTER","PSSDD")
+ S Y=$G(PSSDD("POINTER")) K PSSDD
+ S Y=$P($P(";"_Y,";"_PSSCD_":",2),";")
+ Q Y

@@ -1,0 +1,48 @@
+PRCOSS5 ;WISC/DJM/DL-SSO Server Interface to IFCAP ; 1/27/98  1500
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;Routine to handle messages from PRCOSSO.  Messages are specified in MSGX.  Results are sent out as MailMan message to G.SSO.
+ Q
+MSG1(C) ;WRONG STATION NUMBER
+ N DATE1,PRCO,S,SITE,TIME1 S S=";;",SITE=$P(C,U,3) D DT S PRCO(1)=$P($T(MSGS+1),S,2)_DATE1_" at "_TIME1_" "_$P($T(MSGS+2),S,2),PRCO(2)=SITE_".  "_$P($T(MSGS+3),S,2) G SEND
+MSG2(C) ;NO "LC" SEGMENT
+ N PRCO,S D MF1 S PRCO(2)="has no "_$C(34)_"LC"_$C(34)_" segment." G SEND
+MSG3(C) ;NO COUNT IN "LC" SEGMENT
+ N PRCO,S D MF1 S PRCO(2)=$P($T(MSGS+4),S,2) G SEND
+MSG4(C) ;WRONG SEGMENT TYPE
+ N PRCO,S D MF1 S PRCO(2)=$P($T(MSGS+5),S,2) G SEND
+MSG5(C) ;WRONG COUNT OF "SL" SEGMENTS
+ N PRCO,S D MF1 S PRCO(2)=$P($T(MSGS+6),S,2),PRCO(3)=$P($T(MSGS+7),S,2) G SEND
+MSG6(C) ;MISSING NSN WITHIN "SL" SEGMENT
+ N PRCO,S D MF1 S PRCO(2)=$P($T(MSGS+8),S,2) G SEND
+MSG7(C) ;NO GENERIC INVENTORY FILE ENTRY FOUND
+ N PRCO,SITE S SITE=$P(C,U,3),PRCO(1)="I can find NO warehouse entry in the GENERIC INVENTORY file for station "_SITE G SEND
+MSG8(C) ;NO CATALOG SOURCE WITHIN "SL" SEGMENT
+ N PRCO,S D MF1 S PRCO(2)=$P($T(MSGS+9),S,2) G SEND
+DT ;CONVERTS TRANS DATE AND TRANS TIME INTO HUMAN READABLE FORM
+ N AP,DATE,DAY,DAYS,II,MO,S,TIME,TOTAL,YR S DATE=$P(C,U,5),TIME=$P(C,U,6)
+ S S=":",YR=$E(DATE,1,4),DAY=+$E(DATE,5,7),DAYS="31^28^31^30^31^30^31^31^30^31^30^31"
+ S $P(DAYS,U,2)=$S(YR#400=0:29,(YR#4=0&(YR#100'=0)):29,1:28)
+ S TOTAL="" F MO=1:1:12 S DAY=DAY-$P(DAYS,U,MO) Q:DAY'>0  S TOTAL=TOTAL+$P(DAYS,U,MO)
+ S DAY=+$E(DATE,5,7)-TOTAL,YR=YR-1700,MO=$S($L(MO)=1:"0"_MO,1:MO),DAY=$S($L(DAY)=1:"0"_DAY,1:DAY),Y=YR_MO_DAY_"."_TIME D DD^%DT S DATE1=$P(Y,"@"),TIME1=$P(Y,"@",2),$P(TIME1,S)=+$P(TIME1,S)
+ S AP=$S($P(TIME1,S)>11:"P",1:"A")_"M" S:AP="PM"&($P(TIME1,S)>12) $P(TIME1,S)=$P(TIME1,":")-12 S:$P(TIME1,S)=0 $P(TIME1,S)=12 S:TIME1="12:00" TIME1="12 "_$S(AP="AM":"midnight",1:"noon"),AP=""
+ S TIME1=TIME1_$S($L(AP):" "_AP,1:"") Q
+SEND K ^TMP("SSO") D MAIL Q:XMZ'>0  D MAIL1 Q
+MAIL ;HERE THE MAILMAN MESSAGE IS CREATED.
+ S XMSUB="IFCAP 'SSO' message",XMDUZ="IFCAP 'SSO' SERVER" F I=1:1:5 D GET^XMA2 I I<5 Q:XMZ>0
+ I XMZ'>0 S ^TMP("SSO",$J,$H)="CAN'T CREATE MAILMAN MESSAGE"
+ Q  ;EXIT HERE AFTER 'CREATING' THE MAILMAN MESSAGE.  THE CALLING ROUTINE CAN CHECK XMZ TO SEE IF THE MAIL CALL ERRORED OUT.
+MAIL1 ;THIS IS THE PLACE WHERE THE TEXT IS ADDED TO THE MAILMAN MESSAGE AND THE MESSAGE IS 'FORWARDED' TO ITS RECEIPENTS.
+ S II=0,JJ=1 F  S II=$O(PRCO(II)) Q:II=""  S ^XMB(3.9,XMZ,2,JJ,0)=PRCO(II),JJ=JJ+1
+ S JJ=JJ-1,^XMB(3.9,XMZ,2,0)="^3.9A^"_JJ_"^"_JJ_"^"_DT,XMDUN="IFCAP 'SSO' MESSAGE",X="G.SSO" D WHO^XMA21 S:'$L($O(XMY(""))) XMY(.5)="" D ENT1^XMD Q
+MF1 N DATE1,SITE,TIME1 S S=";;",SITE=$P(C,U,3) D DT S PRCO(1)=$P($T(MSGS+1),S,2)_DATE1_" at "_TIME1_" for station "_SITE Q
+MSGS ;THE MESSAGE LINE OR LINE FRAGEMENT
+ ;;The SSO transaction dated 
+ ;;is for station 
+ ;;This station is not listed in your site parameter file.
+ ;;has no LINE COUNT in the "LC" segment.
+ ;;has a wrong segment type after the "LC" segment.
+ ;;has a wrong count.  The "LC" segment LINE COUNT and the number
+ ;;of "SL" segments following don't agree.
+ ;;is missing NSN within "SL" segment/s.
+ ;;is missing SOURCE CODE within "SL" segment/s.

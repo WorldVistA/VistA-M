@@ -1,0 +1,36 @@
+IBOMBL ;ALB/SGD - MAS BILLING LOG  ;25 MAY 88 11:42
+ ;;Version 2.0 ; INTEGRATED BILLING ;; 21-MAR-94
+ ;
+ ;MAP TO DGCROMBL
+ ;
+ I '$D(DT) D DT^DICRW
+DATE S %DT="AEPX",%DT("A")="Start with DATE: ",%DT(0)=-DT D ^%DT G Q:Y<0 S IBBEG=Y
+DATE1 S %DT="EPX" R !,"Go to DATE: ",X:DTIME S:X=" " X=IBBEG G Q:(X="")!(X["^") D ^%DT G DATE1:Y<0 S IBEND=Y I IBEND<IBBEG W *7," ??",!,"ENDING DATE must follow BEGINNING DATE." G DATE1
+ I IBEND>DT W *7," ??" G DATE1
+ ;
+ W !!,*7,"*** Margin width of this output is 132 ***"
+ ;S DGPGM="BEGIN^IBOMBL",DGVAR="IBBEG^IBEND^DUZ" D ZIS^DGUTQ G Q:POP U IO
+ S %ZIS="QM" D ^%ZIS G:POP Q
+ I $D(IO("Q")) K IO("Q") D  G Q
+ .S ZTRTN="BEGIN^IBOMBL",ZTSAVE("IB*")="",ZTDESC="IB - MAS BILLING LOG"
+ .D ^%ZTLOAD K ZTSK D HOME^%ZIS
+ U IO
+ ;
+BEGIN S Y=IBBEG X ^DD("DD") S IBHD="MAS Billing Log of Printed Bills for "_$S(IBBEG'=IBEND:"period covering ",1:"")_Y I IBBEG<IBEND S Y=IBEND X ^DD("DD") S IBHD=IBHD_" through "_Y
+ S (IBL,IBL1)="",$P(IBL,"=",131)="",$P(IBL1,"-",131)="",(IBNEX,IBPG)=0,X=132 X ^%ZOSF("RM") D HEAD
+ F I=0:0 S IBNEX=$O(^DGCR(399,IBNEX)) Q:'IBNEX  I $D(^DGCR(399,IBNEX,"S")) S IBS=^DGCR(399,IBNEX,"S") D:($P(IBS,"^",12)'<(IBBEG\1))&($P(IBS,"^",12)'>(IBEND\1_.2359)) PRINT I $Y>$S($D(IOSL):(IOSL-6),1:6) D HEAD
+ I '$D(IBFLAG) W !!,?30,"No matches found."
+Q K IB0,IBS,IBFLAG,IBPG,IBBEG,IBEND,IBHD,IBL,IBL1,IBNEX,POP,I,X,X2,Y,%DT,%
+ I '$D(ZTQUEUED) D ^%ZISC
+ Q
+ ;
+PRINT S IBFLAG=1,IB0=^DGCR(399,IBNEX,0) S DFN=$P(IB0,"^",2) D PID^VADPT6 W ! I DFN]"",$D(^DPT(DFN,0)) W $P(^DPT(DFN,0),"^",1),?30,VA("BID") K VA("BID"),VA("PID")
+ W ?39,$P(IB0,"^",1) I $P(IBS,"^",12)]"" S Y=$P(IBS,"^",12) X ^DD("DD") W ?50,Y
+ I $D(^DGCR(399,IBNEX,"U1")) S IBU1=^DGCR(399,IBNEX,"U1") I $P(IBU1,"^",1)]"" S X=$S($P(IBU1,"^",2)]"":$P(IBU1,"^",1)-$P(IBU1,"^",2),1:$P(IBU1,"^",1)),X2="2$" D COMMA^%DTC W ?64,$J(X,15)
+ I $P(IB0,"^",7),$D(^DGCR(399.3,$P(IB0,"^",7),0)) W ?81,$P(^(0),"^",1)
+ W ?102,$S($P(IB0,"^",5)']"":"UNKNOWN",$P(IB0,"^",5)<3:"INPATIENT",1:"OUTPATIENT")
+ I $P(IBS,"^",17)]"" S Y=$P(IBS,"^",17) X ^DD("DD") W ?116,Y
+ Q
+HEAD S IBPG=IBPG+1 W !,@IOF,!,?94,"Date/Time Printed: " D NOW^%DTC S Y=$E(%,1,12) X ^DD("DD") W Y,!!,IBHD,?120,"Page ",IBPG,!,IBL1,!!
+ W "PATIENT NAME",?30,"PT ID",?38,"BILL NO.",?50,"DATE OF BILL",?67,"AMT. BILLED",?81,"BILL CATEGORY",?102,"INPT./OPT.",?116,"DATE CANCELLED",!,IBL
+ Q

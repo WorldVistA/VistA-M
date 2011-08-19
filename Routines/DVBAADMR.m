@@ -1,0 +1,16 @@
+DVBAADMR ;ALB ISC/THM-ADMISSION REVIEW FOR AMIE ;21 JUL 89;
+ ;;2.7;AMIE;;Apr 10, 1995
+ D NOPARM^DVBAUTL2 G:$D(DVBAQUIT) KILL^DVBAUTIL
+ S LN="ADMISSION REVIEW REPORT" D HOME^%ZIS
+ ;
+EN1 S %DT(0)=-DT W @IOF,!?(IOM-$L(LN)\2),LN,!!! S %DT="AE",%DT("A")="Enter ADMISSION REVIEW DATE: " D ^%DT S RVDT=Y K %DT(0)
+ I +Y<0 G END
+ W *7,!!,"Note:  This program requires 132 columns to correctly print the report.",!!
+ D PRINT
+ I $D(IOST) I IOST?1"C-".E W !!,"Press [RETURN] to continue or ""^"" to exit    " R ANS:DTIME I ANS=U!('$T) G END
+ G EN1
+ ;
+END K %DT,RVDT,FR,TO,L,DIC,ANS,DIJ,DP,P,X,Y,LN,IOY,DA,DO,C,D,DE,DHD,DIK,DIS,I,J,K,IOP,BY,FLDS
+ W @IOF,! Q
+ ;
+PRINT S DHD="Admission Review Report for "_$P(^DVB(396.1,1,0),U,1)_" for " S Y=RVDT X ^DD("DD") S DHD=DHD_Y,L=0,DIC="^DGPM(",FR=RVDT,TO=RVDT,BY="[DVBA ADMISSION REVIEW]",FLDS="[DVBA ADMISSION REVIEW]" D EN1^DIP Q

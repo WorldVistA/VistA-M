@@ -1,0 +1,66 @@
+YTAPI6 ;ALB/ASF PSYCH TEST API FLAT ITEMS ;8/16/01  15:12
+ ;;5.01;MENTAL HEALTH;**71**;Dec 30, 1994
+QUEST(YSDATA,YS) ;
+ ;returns item information 
+ N YSSONE,S,R,N,YSET,N1,YSN2,N4,YSAA,I,II,DFN,YSCODE,YSADATE,YSSCALE,YSBED,YSEND
+ N IFN,R3,SFN1,SFN2,YSBEG,YSCK,YSDFN,YSED,YSIFN,YSINUM,YSITEM,YSN2,YSNODE,YSPRIV,YSQT,YSR,YSSTAFF,YSTYPE,YSQ
+ K ^TMP($J,"YSDATA")
+ K YSDATA
+ D PARSE^YTAPI(.YS)
+ S YSITEM=$G(YS("ITEM"),0)
+ I '$D(^YTT(601,"B",YSCODE)) S ^TMP($J,"YSDATA",1)="[ERROR]",^TMP($J,"YSDATA",2)="INCORRECT TEST CODE" Q
+ S YSET=$O(^YTT(601,"B",YSCODE,0))
+ I (YSITEM>0)&('$D(^YTT(601,YSET,"Q",YSITEM))) S ^TMP($J,"YSDATA",1)="[ERROR]",^TMP($J,"YSDATA",2)="item number not correct" Q
+ S N=0,YSQ=2
+ S ^TMP($J,"YSDATA",1)="[DATA]"
+ S ^TMP($J,"YSDATA",2)=YSCODE_U_$P($G(^YTT(601,YSET,"P")),U)_U_$S(YSITEM=0:"all Items",1:"item: "_YSITEM)
+ I YSITEM>0 D MAIN S $P(^TMP($J,"YSDATA",2),U,4)=1 Q  ;--> OUT
+ ;S N=$O(^YTT(601,YSET,"Q",599))
+ ;I N>599 S ^TMP($J,"YSDATA",1)="[ERROR]",^TMP($J,"YSDATA",2)="too many questions" Q
+ S N=0
+ ;Loop thru test for all items
+ S YSITEM=0
+ F  S YSITEM=$O(^YTT(601,YSET,"Q",YSITEM)) Q:YSITEM'>0  D
+ . S $P(^TMP($J,"YSDATA",2),U,4)=YSITEM
+ . D MAIN
+ Q
+MAIN ;
+ S YSNODE="I"
+ ;[INTRO]
+ D GETTEXT
+ S YSNODE="T"
+ ;[TEXT]
+ D GETTEXT
+ ;[BOTTOM]
+ D BTM
+ ;[RESPONSE]
+ D RESP
+ ;[MOVE]
+ M YSDATA=^TMP($J,"YSDATA")
+ Q
+GETTEXT ;pull text and intros
+ S N1=0 F  S N1=$O(^YTT(601,YSET,"Q",YSITEM,YSNODE,N1)) Q:N1'>0  D
+ . S X=^YTT(601,YSET,"Q",YSITEM,YSNODE,N1,0)
+ . S YSQ=YSQ+1,^TMP($J,"YSDATA",YSQ)=YSITEM_U_YSNODE_U_X
+ Q
+RESP ;get approp responses
+ I $G(^YTT(601,YSET,"Q",YSITEM,1))?1N.E D  Q
+ . S G=^YTT(601,YSET,"Q",YSITEM,1)
+ . S G1=$E(G,1)
+ . S A=$S(G1=3:$E("123456789",1,$E(G,3,3))_"X",G1<3:"YNX",1:"")
+ . I A="" S YSDAT(1)="[ERROR]",YSDATA(2)="bad resp interview" Q
+ . S YSQ=YSQ+1,^TMP($J,"YSDATA",YSQ)=YSITEM_U_"A"_U_A_U_G1_U_$P(G,U,2)
+ S A="",N1=YSITEM+.1
+ F  S N1=$O(^YTT(601,YSET,"Q",N1),-1) Q:N1'>0  S A=$P(^YTT(601,YSET,"Q",N1,0),U,2) Q:A'=""
+ I A="" S ^TMP($J,"YSDATA",1)="[ERROR]",^TMP($J,"YSDATA",2)="no acceptable responses found for item "_YSITEM Q
+ S YSQ=YSQ+1,^TMP($J,"YSDATA",YSQ)=YSITEM_U_"A"_U_A
+ Q
+BTM ; get bottom of text
+ S B="",N1=YSITEM+.1
+ F  S N1=$O(^YTT(601,YSET,"Q",N1),-1) Q:N1'>0  S B=$G(^YTT(601,YSET,"Q",N1,"B")) Q:$D(^YTT(601,YSET,"Q",N1,"B"))
+ Q:B=""
+ S YSQ=YSQ+1,^TMP($J,"YSDATA",YSQ)=YSITEM_U_"T"_U
+ F I=2:2 S X=$P(B,",",I) Q:X=""  D
+ . S X=$E(X,2,$L(X)-1)
+ . I (X'?1"Answer".E)&(X'?1"ANSWER".E) S YSQ=YSQ+1,^TMP($J,"YSDATA",YSQ)=YSITEM_U_"T"_U_X
+ Q

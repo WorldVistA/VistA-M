@@ -1,0 +1,44 @@
+LRAC9 ;SLC/DCM - PRINT CUMULATIVE REPORT ; 3/3/88  13:25 ;
+ ;;5.2;LAB SERVICE;**225**;Sep 27, 1994
+C S ^TMP($J,"K",LRSH,LRFDT,LRKL)=$P(X,U,3),X1=" "_$P(X,U,2),X=$P(X,U,1),LRKL=LRKL+1
+ I $L($P(LRG,U,4)) S LRCW=LRCW-3 Q
+ I "<>"[$E(X,1),$E(X,2,$L(X))?.N.P1N S X2=$E(X,1),X=$E(X,2,$L(X))
+ S LRCW(1)=LRCW-3
+ I X?.N.P1N!(LRDP="")!(X?.N1".".N) S X=$S(LRDP="":$J(X,LRCW(1)),1:$J(X,LRCW(1),LRDP)) Q:'$D(X2)  F X3=1:1:$L(X) I $E(X,X3)'=" " S X=$E(X,1,X3-2)_X2_$E(X,X3,$L(X)) Q
+ K X3 Q
+C1 ;from LRAC4
+ S LRCW=$S('$L(X1):7,1:10),X1=$S($L(X1)=1:" "_X1_" ",$L(X1)=0:X1,1:" "_X1)
+ I $L($P(LRG,U,4)) S LRCW=7 Q
+ S X=$S($L(X1):X_X1,1:X)
+ Q
+QRS1 W ?LRCL S LRCW=$P(LRG,U,2),LRDP=$P(^(0),U,6) Q:(IOM-LRCL)<LRCW
+ S LRCL=LRCL+LRCW I $D(^LAC(LRXLR,LRDFN,1,LRMH,1,LRSH,1,LRFDT,1,I(I),0)) S X=^(0) D C W:$L($P(LRG,U,4))&($L(X)) @$P(LRG,U,4),X1 I '$L($P(LRG,U,4)) W X_X1
+ K X2 Q
+QRS ;from LRAC5
+ S LRCTR=LRCTR+1 F I=J:1:LRJS I $D(^LAC(LRXLR,LRDFN,1,LRMH,1,LRSH,1,LRFDT,1,I(I),0)) S:$L(^(0)) LRFALT=1
+ Q:'LRFALT
+ S LRFALT=0,LRTM=1 D UDT^LRAC3 S LRCL=$S($D(LRCALE(LRMH,LRSH)):23,1:19),LRTM=0 W ! W:$D(LRCALE(LRMH,LRSH)) $E(LRTLOC,1,5) W:LRNXSW&($D(LRCALE(LRMH,LRSH))) ?6 W:'LRNXSW&('$D(LRCALE(LRMH,LRSH))) ?2 W:'LRNXSW&($D(LRCALE(LRMH,LRSH))) ?8 W LRUDT
+ F I=J:1:LRJS S LRG=^LAB(64.5,1,1,LRMH,1,LRSH,1,I(I),0) D QRS1
+ I $D(IA) W !?2,IA,! K IA,IAX,IADA,IARNO
+ Q
+TXT1 ;from LRAC3, LRAC4, LRAC5
+ D EQUALS^LRX
+ S LRCL=(IOM/2)-24 W !!?LRCL F I=1:1:8 W "- "
+ F I=1:1:8 W " ",$E("COMMENTS",I)
+ W " " F I=1:1:8 W " -"
+ W !?7,"KEY: ""L""=Abnormal low, ""H""=Abnormal high, ""*""=Critical value",!
+ Q:'$D(LRTM(0))  S C6=0 F  S C6=$O(^TMP($J,"TM",C6)) Q:C6=""  D:$Y>(IOSL-8) OVFL^LRAC7 W !,"  ",$P(^TMP($J,"TM",C6),U,1),". " S L(0)=0,L=0 F  S L=$O(^TMP($J,"TM",C6,L)) Q:'L  S L(0)=L(0)+1 W:L(0)>1 !,"     " W ^TMP($J,"TM",C6,L)
+ K C6,L Q
+LRLO ;from LRAC4, LRAC5
+ S @("LRLO="_$S($L($P(^LAB(64.5,"A",1,LRMH,LRSH,I(I)),U,2)):$P(^(I(I)),U,2),$L($P(^LAB(64.5,"A",1,LRMH,LRSH,I(I)),U,11)):$P(^(I(I)),U,11),1:""""""))
+LRHI S @("LRHI="_$S($L($P(^LAB(64.5,"A",1,LRMH,LRSH,I(I)),U,3)):$P(^(I(I)),U,3),$L($P(^LAB(64.5,"A",1,LRMH,LRSH,I(I)),U,12)):$P(^(I(I)),U,12),1:"""""")),P7=$P(^(I(I)),U,7)
+ S LRLOHI=$S($L(LRHI):LRLO_"-"_LRHI_" ",1:LRLO) Q
+TXT ;from LRAC4
+ S LRVAR=0
+ S LRIV=0 F  S LRIV=$O(^LAC(LRXLR,LRDFN,1,LRMH,1,LRSH,1,LRFDT,"TX",LRIV)) Q:'LRIV  S LRVAR=LRVAR+1 W:LRVAR>1 !?3 W ^LAC(LRXLR,LRDFN,1,LRMH,1,LRSH,1,LRFDT,"TX",LRIV,0)
+ Q
+REG ;from LRAC5, LRAC6, LRMIPSZ1
+ ;This line tag is used by DoD sites only
+ Q:'$L(DUZ("AG"))  I "NAFARMY"'[DUZ("AG") Q
+ S IADA=$P(^LR(LRDFN,0),U,3) I IADA'="",$D(^DPT(IADA,0)) S IAX=LRFDT D ^LRAIRNUM I IARNO'="" S IA="INPAT REG # "_IARNO
+ Q

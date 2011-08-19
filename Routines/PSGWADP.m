@@ -1,0 +1,40 @@
+PSGWADP ;BHAM ISC/PTD,CML-Print Data for AMIS Stats ; 06 Aug 93 / 2:20 PM
+ ;;2.3; Automatic Replenishment/Ward Stock ;;4 JAN 94
+ D NOW^%DTC S PSGWDT=$P(%,".")
+ W !!!,"This report shows data stored for AR/WS AMIS statistics.",!,"Use Enter/Edit AMIS Data (Single Drug) to make corrections.",!!,"Right margin for this report is 132 columns.",!,"You may queue the report to print at a later time.",!!
+ I '$O(^PSI(58.1,0)) W !,"You MUST create AOUs before running this report!" K %,PSGWDT,%I,%H Q
+DEV K %ZIS,IOP S %ZIS="QM",%ZIS("B")="" D ^%ZIS I POP W !,"NO DEVICE SELECTED OR REPORT PRINTED!" G END^PSGWADP1
+ I $D(IO("Q")) K IO("Q") S PSGWIO=ION,ZTIO="" K ZTSAVE,ZTDTH,ZTSK S ZTRTN="ENQ^PSGWADP",ZTDESC="Compile Data for AMIS Stats",ZTSAVE("PSGWIO")="",ZTSAVE("PSGWDT")=""
+ I  D ^%ZTLOAD,HOME^%ZIS K ZTSK G END^PSGWADP1
+ U IO
+ ;
+ENQ ;ENTRY POINT WHEN QUEUED
+AOU K ^TMP("PSGWADP",$J) F PSGWAOU=0:0 S PSGWAOU=$O(^PSI(58.1,PSGWAOU)) G:('PSGWAOU)&($D(ZTQUEUED)) PRTQUE G:'PSGWAOU PRINT^PSGWADP1 D XREF
+ ;
+XREF F PSGWDR=0:0 S PSGWDR=$O(^PSI(58.1,PSGWAOU,1,"B",PSGWDR)) Q:'PSGWDR  F PSGWITM=0:0 S PSGWITM=$O(^PSI(58.1,PSGWAOU,1,"B",PSGWDR,PSGWITM)) Q:'PSGWITM  D BUILD
+ Q
+ ;
+BUILD I $P(^PSI(58.1,PSGWAOU,1,PSGWITM,0),"^",10)="Y",$P(^(0),"^",3)="" S $P(^(0),"^",10)=""
+ I $P(^PSI(58.1,PSGWAOU,1,PSGWITM,0),"^",3)'="" Q:$P(^(0),"^",3)'>PSGWDT
+ I '$O(^PSI(58.1,PSGWAOU,1,PSGWITM,2,0)) S K=9999 D SETGL Q
+ F PSGWTY=0:0 S PSGWTY=$O(^PSI(58.1,PSGWAOU,1,PSGWITM,2,PSGWTY)) Q:'PSGWTY  S K=PSGWTY D SETGL S ^TMP("PSGWADP",$J,"DN",PSGWNM)=""
+ Q
+ ;
+SETGL I '$O(^PSDRUG(PSGWDR,0)) S DIK="^PSI(58.1,"_PSGWAOU_",1,",DA=PSGWITM,DA(1)=PSGWAOU D ^DIK K DIK Q
+ I $O(^PSDRUG(PSGWDR,0)) S PSGWNM=$S($P(^PSDRUG(PSGWDR,0),"^")'="":$P(^(0),"^"),1:"ZZNAME MISSING")
+ I $D(^PSDRUG(PSGWDR,660)) S LOC1=^(660)
+ I $D(^PSDRUG(PSGWDR,"PSG")) S LOC2=^("PSG")
+ I $D(LOC1),$D(LOC2) D ODUNIT S ^TMP("PSGWADP",$J,K,PSGWNM)=$P(LOC1,"^",2)_"^"_$P(LOC1,"^",3)_"^"_$P(LOC1,"^",5)_"^"_$P(LOC1,"^",6)_"^"_$P(LOC2,"^",2)_"^"_$P(LOC2,"^",3)
+ I $D(LOC1),'$D(LOC2) D ODUNIT S ^TMP("PSGWADP",$J,K,PSGWNM)=$P(LOC1,"^",2)_"^"_$P(LOC1,"^",3)_"^"_$P(LOC1,"^",5)_"^"_$P(LOC1,"^",6)_"^^"
+ I '$D(LOC1),$D(LOC2) S ^TMP("PSGWADP",$J,K,PSGWNM)="^^^^"_$P(LOC2,"^",2)_"^"_$P(LOC2,"^",3)
+ I '$D(LOC1),'$D(LOC2) S ^TMP("PSGWADP",$J,K,PSGWNM)="^^^^^"
+ K LOC1,LOC2
+ Q
+ ;
+ODUNIT S OUPTR=$P(LOC1,"^",2) I OUPTR'="" S OUNIT=$S($D(^DIC(51.5,OUPTR,0)):$P(^DIC(51.5,OUPTR,0),"^"),1:""),$P(LOC1,"^",2)=OUNIT
+ Q
+ ;
+PRTQUE ;AFTER DATA IS COMPILED, QUEUE THE PRINT
+ K ZTSAVE,ZTIO S ZTIO=PSGWIO,ZTRTN="PRINT^PSGWADP1",ZTDESC="Print Data for AMIS Stats",ZTDTH=$H,ZTSAVE("^TMP(""PSGWADP"",$J,")=""
+ D ^%ZTLOAD K ^TMP("PSGWADP",$J) G END^PSGWADP1
+ ;

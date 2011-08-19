@@ -1,0 +1,183 @@
+SDWLDISP ;;IOFO BAY PINES/TEH - WAIT LIST - DISPOSITION WAIT LIST ENTRY;06/12/2002 ; 20 Aug 2002  2:10 PM  ; Compiled January 26, 2007 10:21:25
+ ;;5.3;scheduling;**263,273,427,454,446**;AUG 13 1993;Build 77
+ ;
+ ;
+ ;******************************************************************
+ ;                             CHANGE LOG
+ ;                                               
+ ;   DATE                        PATCH                   DESCRIPTION
+ ;   ----                        -----                   -----------
+ ;  11/19/2002                 SD*5.3*273              EN1+4 CHECK FOR "^"
+ ;  11/19/2002                 SD*5.3*273              REMOVED DIC("S") SCREEN FROM PAT
+ ;  08/07/2008                 SD*5.3*446              check out EWL if DFN defined
+ ;  04/12/2006                 SD*5.3*446              Inter-facility transfer/New Disposition type: CL
+ ;
+ ;
+ ;
+EN ;
+ S SDWLERR=0
+ I $D(SDWLLIST),SDWLLIST D
+ .I $G(DFN)'>0 S SDWLERR=1 Q
+ .I $D(DFN),'$D(^SDWL(409.3,"B",DFN)) D HD,1^VADPT,DEM^VADPT W !,VADM(1),?40,VA("PID"),*7,!,"This Patient has NO entries on the Electronic Wait List." S DIR(0)="E" D ^DIR S DUOUT=1 Q
+ I $D(DUOUT) Q
+ I 'SDWLERR,$D(SDWLLIST),SDWLLIST D HD S SDWLDFN=DFN K DIR,DIC,DR,DIE,VADM D 1^VADPT,DEM^VADPT W !,VADM(1),?40,VA("PID") S (SDWLBDT,SDWLEDT)="" D DIS G EN1
+ K DIR,DIC,DR,DIE
+ ;OPTION HEADER
+ ;
+ S SDWLOP=" - Disposition Patient" D HD
+ ;
+ ;PATIENT LOOK-UP FROM WAIT LIST PATIENT FILE (^SDWL(409.3,IEN,0).
+ ;
+ D PAT G END:'$D(SDWLDFN),END:SDWLDFN<0,END:SDWLDFN=""
+ ;
+ ;DISPLAY PATIENT DATA FROM ^SDWL(409.3,IEN,0).
+ ;
+ D DIS
+ ;PROMPT USER FOR RECORD FOR DISPOSITIONING.
+ ;
+EN1 K DIR,DIC,DIE,DR,X,Y,SDWLERR S SDWLPS=$S(SDWLCN>1:1,SDWLCN=1:2,1:0),SDWLERR=0
+ I SDWLPS=0 W !!,"Patient has no Wait List Entries to Disposition." S DIR(0)="E" D ^DIR G END
+ I SDWLPS=1 S DIR(0)="FOA^^" S DIR("A")="Select Wait List (1-"_SDWLCN_") or '^' to Quit? "
+ I SDWLPS=2 S DIR(0)="FOA^^" S DIR("A")="Disposition This 'ENTRY' or '^' to Quit? Yes // "
+ W ! D ^DIR G END:X["^" S SDWLY=Y W !
+ I SDWLPS=1 D
+ .S SDWLERR=$S(X?1N.N:0,X?1"N".E:1,X?1"n".E:1,X="":1,X?1"Y".E:0,X?1"y".E:0,$D(DUOUT):1,X["^":1,1:2)
+ I $D(SDWLERR),SDWLERR=2 W *7," Invalid Entry" G EN1
+ I SDWLPS=2 D
+ .S SDWLERR=$S(X="":0,X?1"Y".E:0,X?1"y":0,X?1"N".E:1,X?1"n".E:1,X["^":1,1:2)
+ I SDWLERR=2 W *7," Invalid Entry" G EN1
+ G END:SDWLERR
+ I SDWLPS=2,'SDWLY S SDWLY=1
+ S SDWLERR=0 I SDWLY?1N.N D  G EN1:SDWLERR
+ .K DIR,DIC,DR
+ .;
+ .;CHECK FOR VALID ENTRY
+ .;
+ .I '$D(^TMP("SDWLD",$J,SDWLDFN,+SDWLY)) W " Invalid Entry " S SDWLERR=1 Q
+ .S SDWLDA=$P($G(^TMP("SDWLD",$J,SDWLDFN,+SDWLY)),"~",2)
+ .;
+ .;LOCK DATA FILE
+ .;
+ .L ^SDWL(409.3,SDWLDA):5 I '$T W !,"Another User is Editing this Entry. Try Later." S DUOUT=1
+ I $D(DUOUT) G END
+ ;
+ ;GET PATIENT DATA FROM ^SDWL(409.3,IEN,0).
+ ;
+ D GETDATA
+ ;
+ ;ENTER DISPOSITION
+ ;  
+ D EDIT G END:$D(DUOUT) I $D(SDWLERR) G END:SDWLERR
+ W !,"*** Patient has been removed from Wait List. ***"
+ K DIR,DIE,DR,DIC
+ S DIR(0)="E" D ^DIR I $D(DUOUT) G END
+ D END G EN
+ ;
+ Q
+PAT ;PATIENT LOOK-UP
+ ;
+ S DIC(0)="EMNAQ",DIC=409.3 D ^DIC S (SDWLDFN,DFN)=$P(Y,U,2) G PAT1:DFN<0
+ G PAT1:DFN=""
+ S SDWLNAM=$$GET1^DIQ(2,DFN_",",.01)
+ S X=$$GET1^DIQ(2,DFN_",",".351") I X'="" W !!,*7,"PATIENT'S DATE OF DEATH HAS BEEN RECORDED"  ;SD*5.3*454 allow user to disposition deceased patient
+ D 1^VADPT
+PAT1 Q
+ ;
+DIS ;DISPLAY DATA FOR PATIENT
+ ;
+ S SDWLDISC="",SDWLCN=0,SDWLHDR="Wait List Disposition"
+ D EN^SDWLD(SDWLDFN,VA("PID"),VADM(1))
+ K VADM,VAIN,VA,SDWLDISC
+ Q
+GETDATA ;PATIENT DATA RETRIEVAL
+ ;
+ S SDWLDATA=$G(^SDWL(409.3,SDWLDA,0))
+ S SDWLIN=$P(SDWLDATA,U,3),SDWLCL=+$P(SDWLDATA,U,4),SDWLTY=$P(SDWLDATA,U,5),SDWLST=$P(SDWLDATA,U,6)
+ S SDWLSP=$P(SDWLDATA,U,7),SDWLSS=$P(SDWLDATA,U,8),SDWLSC=$P(SDWLDATA,U,9),SDWLPRI=$P(SDWLDATA,U,10),SDWLRB=$P(SDWLDATA,U,11)
+ S SDWLPROV=$P(SDWLDATA,U,12),SDWLDAPT=$P(SDWLDATA,U,16),SDWLST=$P(SDWLDATA,U,17),SDWLDUZ=DUZ,SDWLEDT=DT
+ S SDWLSCL="" I SDWLSC S SDWLSCL=+$P(^SDWL(409.32,SDWLSC,0),U,1)
+ I $D(^SDWL(409.3,SDWLDA,"DIS")) S SDWLDISP=$P(^SDWL(409.3,SDWLDA,"DIS"),U,3)
+ Q
+EDIT ;ENTER/EDIT DISPOSITION
+ ;
+ S SDWLDUZ=DUZ,SDWLERR=0 N DIR,DR,DIE,DIC,DA
+ I $D(SDWLDISP) S DIR("B")=$$EXTERNAL^DILFD(409.3,21,,SDWLDISP)
+ S DIR(0)="SO^D:DEATH;NC:REMOVED/NON-VA CARE;SA:REMOVED/SCHEDULED-ASSIGNED;CC:REMOVED/VA CONTRACT CARE;NN:REMOVED/NO LONGER NECESSARY;ER:ENTERED IN ERROR;CL:CLINIC CHANGE^"
+ S DIR("L",1)="Disposition Reason:",DIR("L",2)="",DIR("L",3)="D DEATH",DIR("L",4)="NC REMOVED/NON-VA CARE",DIR("L",5)="SA REMOVED/SCHEDULED-ASSIGNED"
+ S DIR("L",6)="CC REMOVED/VA CONTRACT CARE",DIR("L",7)="NN REMOVED/NO LONGER NECESSARY",DIR("L")="ER ENTERED IN ERROR"
+ S:SDWLTY=4 DIR("L",8)="CL CLINIC CHANGE"
+ D ^DIR
+ I X="" S DUOUT=1 Q
+ I X="^" S DUOUT=1 Q
+ ;S SDWLDISP=$S(X["D":"D",X["d":"D",X["NC":"NC",X["nc":"NC",X["SA":"SA",X["sa":"SA",X["CC":"CC",X["cc":"CC",X["NN":"NN",X["nn":"NN",X["ER":"ER",X["er":"ER",1:0)
+ ;I SDWLDISP=0 S SDWLERR=1
+ S SDWLDISP=$TR(X,"acdelnrst","ACDELNRST") S:"^D^NC^SA^CC^NN^ER^TR^"_$S(SDWLTY=4:"CL^",1:"")'[("^"_SDWLDISP_"^") SDWLERR=1
+ I SDWLERR W *7,"Invalid Entry" G EDIT
+ I SDWLDISP="SA" I "3,4"[SDWLTY D PKAPP(SDWLDA,SDWLTY,.SDWLDATA) Q  ; QUIT OR NOT?
+ I SDWLDISP="CL" S SDWLERR=$$EN^SDWLE7 Q:SDWLERR  ; OG ; 446
+ S DIE("NO^")="NO EDITING"
+ S DIE="^SDWL(409.3,",DA=SDWLDA,DR="21////^S X=SDWLDISP" D ^DIE
+ S DR="19////^S X=DT" D ^DIE
+ S DR="20////^S X=SDWLDUZ" D ^DIE
+ S DR="23////^S X=""C""" D ^DIE
+ I SDWLSCL K:$D(^SDWL(409.3,"SC",SDWLSCL,SDWLDA)) ^SDWL(409.3,"SC",SDWLSCL,SDWLDA)
+ I SDWLSS K:$D(^SDWL(409.3,"SS",SDWLDFN,SDWLSS,SDWLDA)) ^SDWL(409.3,"SS",SDWLDFN,SDWLSS,SDWLDA)
+ ; OG ; SD*5.3*446 Inter-facility transfer.
+ D DIS^SDWLE6(SDWLDA)
+ Q
+PKAPP(SDWLDA,SDWLTY,SDWLDATA) ;identify appointemnt to close with
+ ;SDWLDA -ien OF 409.3 to be closed
+ ;SDWLTY - type of EWL entry
+ ;SDWLDATA - 0 node of SDWLDA
+ N SDCL,SDSP,SDORG,SDPCL,SDPSP S (SDCL,SDSP)="" N PROC S PROC=1
+ S SDPCL=$$GET1^DIQ(409.3,SDWLDA_",",8,"I"),SDPSP=$$GET1^DIQ(409.3,SDWLDA_",",7,"I")
+ I SDWLTY=4 S SDCL=$$GET1^DIQ(409.32,SDPCL_",",.01,"I")
+ I SDWLTY=3 S SDSP=$$GET1^DIQ(409.31,SDPSP_",",.01,"I")
+ S SDORG=$$GET1^DIQ(409.3,SDWLDA_",",1,"I")
+ ;display app/encounters
+ N SDDS,SDAP S SDDS=$$CHKENC^SDWLQSC1(DFN,SDORG,SDCL,SDSP,PROC)
+ I SDWLDISP="SA" D
+ .I $O(^TMP($J,"APPT",""))=$O(^TMP($J,"APPT",""),-1) S SDAP=$O(^TMP($J,"APPT","")) D  Q
+ ..Q:SDAP=""
+ ..D APPTD^SDWLEVAL D SING(SDWLDA,SDWLTY,SDWLDATA)
+ .I $O(^TMP($J,"APPT",""))'=$O(^TMP($J,"APPT",""),-1) D APPTD^SDWLEVAL D  I SDAP="^" W !,"Disposition canceled by user",! Q
+ ..W ! K DIR,X
+ ..N STR,SS,SDA S SDA=$O(^TMP($J,"APPT",""),-1) I SDA=1 S DIR("B")=1
+ ..S DIR(0)="N^1:"_SDA S DIR("A")="Select appt for Removal Reason or '^' to Quit>",DIR("?")="Select Appointment to close with the open EWL."
+ ..D ^DIR
+ ..S SDAP=X Q:X="^"!'X  D SING(SDWLDA,SDWLTY,SDWLDATA)
+ Q:SDAP="^"  ;should we allow to quit or to proceed without filing an appointment?
+ S DIE="^SDWL(409.3,",DA=SDWLDA,DR="21////^S X=SDWLDISP" D ^DIE
+ S DR="19////^S X=DT" D ^DIE
+ S DR="20////^S X=SDWLDUZ" D ^DIE
+ S DR="23////^S X=""C""" D ^DIE
+ Q
+SING(SDWLDA,SDWLTY,SDWLDATA) ;called for filing with appointment if any
+ S DIE="^SDWL(409.3,",DA=SDWLDA,DR="21////^S X=SDWLDISP" D ^DIE
+ S DR="19////^S X=DT" D ^DIE
+ S DR="20////^S X=SDWLDUZ" D ^DIE
+ S DR="23////^S X=""C""" D ^DIE
+ ;if "SA" update with appoint data
+ ;get appt data to file (for a particular appt #)
+ I SDWLDISP="SA" N SDA D DATP^SDWLEVAL(SDAP,.SDA) D
+ .I $D(SDA) S DIE="^SDWL(409.3,",DA=SDWLDA D
+ ..S DR="13////"_SDA(1)_";13.1////"_DT_";13.2////"_SDA(2)_";13.3////"_SDA(15)_";13.4////"_SDA(13)_";13.5////"_SDA(14)_";13.6////"_SDA(16)_";13.8////"_SDA(3)_";13.7////"_DUZ
+ ..D ^DIE
+ N SDWLSCL,SDWLSS,SDWLDFN
+ S SDWLSCL=$P(SDWLDATA,U,9)
+ ;S SDWLSCL=$P($G(^TMP($J,"SDWLPL",SDC)),U,9)
+ S SDWLSS=$P(SDWLDATA,U,8)
+ ;S SDWLSS=$P($G(^TMP($J,"SDWLPL",SDC)),U,10)
+ I SDWLSCL K:$D(^SDWL(409.3,"SC",SDWLSCL,SDWLDA)) ^SDWL(409.3,"SC",SDWLSCL,SDWLDA)
+ S SDWLDFN=$P($G(^TMP($J,"APPT",1)),U,4)
+ I SDWLSS,SDWLDFN K:$D(^SDWL(409.3,"SS",SDWLDFN,SDWLSS,SDWLDA)) ^SDWL(409.3,"SS",SDWLDFN,SDWLSS,SDWLDA)
+ Q
+HD ;HEADER
+ ;
+ W:$D(IOF) @IOF W !!,?80-$L("Wait List - Disposition Patient")\2,"Wait List - Disposition Patient",!!
+ ;
+END ;QUIT OPTION
+ K DIC,DIR,DR,DIE,SDWLDFN,DUOUT,SDWLSCL
+ K SDWLCL,SDWSLCN,SDWLDA,SDWLDAPT,SDWLDATA,SDWLDFN,SDWLDISP,SDWLDUZ,SDWLEDT,SDWLERR,SDWLIN,SDWLNAM,SDWLOP,SDWLPRI
+ K SDWLPROV,SDWLPS,SDWLRB,SDWLSC,SDWLSP,SDWLSS,SDWLST,SDWLTY,SDWLY,X,Y,SDWLHDR
+ Q

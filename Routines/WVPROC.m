@@ -1,0 +1,223 @@
+WVPROC ;HCIOFO/FT,JR - WV ADD/EDIT WV PROCEDURE; ;5/10/99  10:22
+ ;;1.0;WOMEN'S HEALTH;**3,6**;Sep 30, 1998
+ ;;  Original routine created by IHS/ANMC/MWR
+ ;;* MICHAEL REMILLARD, DDS * ALASKA NATIVE MEDICAL CENTER *
+ ;;  CALLED BY VARIOUS OPTIONS TO ADD/EDIT PROCEDURES.
+ ;
+ ;
+ADDNEW ;EP
+ ;---> CALLED BY OPTION: "WV ADD A NEW PROCEDURE".
+ D SETVARS^WVUTL5 S WVPOP1=0
+ N DA,DIC,DIE,Y
+ F  D  Q:WVPOP1
+ .D NEW
+ .Q:WVPOP
+ .D EDIT2^WVPROC1(DA,.WVPOP)
+ .Q:WVPOP
+ .D PCDVARS^WVUTL3(DA,1)
+ .D NORMAL^WVPROC1
+ D EXIT
+ Q
+ ;
+EXIT ;EP
+ D KILLALL^WVUTL8
+ Q
+ ;
+ ;
+NEW ;EP
+ ;---> SELECT A PATIENT.
+ D SETVARS^WVUTL5 K DIC
+ D TITLE^WVUTL5("ADD A NEW PROCEDURE")
+NEWNT ;EP
+ ;---> ENTER NEW WITHOUT A TITLE (ALLOWS OTHER TITLES, E.G., HISTORICAL)
+ ;---> LOOKUP AND SELECT PATIENT FROM WV PATIENT FILE.
+ ; Quit if no default case manager
+ I '$$DCM^WVUTL9(DUZ(2)) D NODCM^WVUTL9 S (WVPOP,WVPOP1)=1 Q
+ D PATLKUP^WVUTL8(.Y,"ADD")
+ I Y<0 S (WVPOP,WVPOP1)=1 Q
+ S WVDFN=+Y
+ ;
+NEW1 ;EP
+ ;---> ADD A NEW PROCEDURE.
+ ;---> PATIENT SELECTED ALREADY BUT NOT PROCEDURE.
+ ;---> REQUIRED VARIABLE: WVDFN
+ ;
+ ;---> NOW SELECT PROCEDURE TYPE FROM WV PROCEDURE TYPE FILE.
+ N A,WVPCDN,S
+ S A="   Select PROCEDURE: "
+ ;---> SCREEN: ACTIVE FIELD CAN BE "YES" OR NULL, BUT NOT "NO".
+ S S="I $P($G(^WV(790.02,DUZ(2),Y)),U)'=0"
+ D DIC^WVFMAN(790.2,"QEMA",.Y,A,"PAP SMEAR",S,"",.WVPOP)
+ Q:Y<0
+ ;---> WVPCDN=IEN OF PROCEDURE TYPE, FILE 790.2.
+ S WVPCDN=+Y
+ ;
+ ;---> IF IT'S A UNILATERAL MAMMOGRAM, PROMPT FOR LEFT OR RIGHT.
+ S WVLFRT=""
+ I WVPCDN=26 D  I $D(DIRUT) S WVPOP=1 Q
+ .N DIR
+ .S DIR("?")="   Select LEFT or RIGHT for this Unilateral Mammogram."
+ .S DIR(0)="SAM^l:LEFT;r:RIGHT",DIR("A")="   LEFT OR RIGHT: "
+ .D ^DIR K DIR
+ .Q:$D(DIRUT)
+ .S WVLFRT=Y
+ ;
+ ;---> IF IT'S A COLPOSCOPY, PROMPT FOR PAP THAT INITIATED IT.
+ S WVPPAP=""
+ I WVPCDN=2 D  Q:WVPOP
+ .W !!?3,"Select the PAP Smear that initiated this Colposcopy."
+ .N A,S
+ .S DIC("?",1)="If a previous abnormal PAP Smear was the reason for"
+ .S DIC("?")="this Colposcopy, enter the Accession# of that PAP here."
+ .S A="   PAP Smear: ",S="D PAPSCRN^WVUTL2"
+ .D DIC^WVFMAN(790.1,"QEMA",.Y,A,"",S,"",.WVPOP)
+ .Q:Y<0
+ .;---> WVPPAP=IEN OF PREVIOUS PAP IN WV PROCEDURE FILE 790.1.
+ .S WVPPAP=+Y
+ ;
+ ;---> ASK DATE, CHECK FOR DUPLICATE PROCEDURE ON SAME DATE.
+ D DATECHK Q:WVPOP
+ D NEW2(WVDFN,WVPCDN,WVPCDT,"",WVPPAP,.DA,.WVERROR)
+ Q
+ ;
+NEW2(DFN,PCDIEN,DATE,DRSTRG,PREVPAP,DA,ERROR) ;EP
+ ;---> ADD A NEW PROCEDURE.
+ ;---> PATIENT AND PROCEDURE ALREADY SELECTED.
+ ;---> NOW GENERATE ACCESSION# FOR WV PROCEDURE FILE ENTRY.
+ ;---> REQUIRED VARIABLES: DFN=IEN IN WV PATIENT FILE
+ ;--->                     PCDIEN=IEN OF PROCEDURE TYPE (#790.2).
+ ;
+ S X=$$ACCSSN^WVUTL5(PCDIEN) N DIC
+ I X']"" D  Q
+ .S ERROR=-1
+ .Q:$D(ZTQUEUED)  ;quit if a background (tasked) job
+ .W !!?5,*7,"UNABLE TO GENERATE ACCESSION#. CONTACT YOUR SITE MANAGER."
+ .D DIRZ^WVUTL3
+ .Q
+ ;
+ I $G(DRSTRG)']"" D
+ .;---> DEFAULTS: DATE OF PROCEDURE IS TODAY, STATUS IS OPEN.
+ .S DRSTRG=".02////"_DFN_";.04////"_PCDIEN
+ .S DRSTRG=DRSTRG_";.09///"_$S($D(WVLFRT):WVLFRT,1:"")_";.12///"_DATE
+ .S DRSTRG=DRSTRG_";.14///o"
+ .S DRSTRG=DRSTRG_";.18////"_DUZ_";.19///T;.3////"_$G(PREVPAP)
+ .S DRSTRG=DRSTRG_";.34////"_$G(DUZ(2))
+ ;
+ D FILE^WVFMAN(790.1,DRSTRG,"ML",X,790,.Y)
+ ;---> IF Y<0, CHECK PERMISSIONS.
+ I Y<0 D  Q
+ .S ERROR=Y
+ .Q:$D(ZTQUEUED)  ;quit if a background (tasked) job
+ .W !?5,*7,"UNABLE TO CREATE NEW PROCEDURE."
+ .D DIRZ^WVUTL3 S WVPOP=1
+ .Q
+ S DA=+Y
+ Q
+ ;
+ ;
+EDIT ;EP
+ ;---> CALLED BY OPTION: "WV EDIT PROCEDURE".
+ ;---> EDIT AN EXISTING PROCEDURE.
+ D TITLE^WVUTL5("EDIT A PROCEDURE")
+ D LKUPPCD(.Y)
+ Q:Y<0
+LT ; Called from WVLABADD routine to immediately edit a procedure created
+ ; from a lab test.
+ ;---> DA=IEN OF PROCEDURE IN PROCEDURE FILE 790.1.
+ S DA=+Y
+ I $P($G(^WV(790.1,+DA,0)),U,15)]"" D ^WVRADWP
+ I $P($G(^WV(790.1,+DA,2)),U,17)]"" D
+ .D ^WVLABWP
+ .Q:'$D(^TMP("WVLAB",$J))
+ .S WVLOOP=0
+ .F  S WVLOOP=$O(^TMP("WVLAB",$J,WVLOOP)) Q:WVLOOP'>0  D
+ ..S ^WV(790.1,DA,9,WVLOOP,0)=$G(^TMP("WVLAB",$J,WVLOOP,0)) S WVLOOP(1)=WVLOOP
+ ..Q
+ .S ^WV(790.1,DA,9,0)="^^"_$G(WVLOOP(1))_"^"_$G(WVLOOP(1))
+ .K ^TMP("WVLAB",$J)
+ .Q
+ D EDIT2^WVPROC1(DA,.WVPOP) Q:WVPOP!($D(WVNOFOL))
+ D EX^WVRADWP
+ D PCDVARS^WVUTL3(DA,1)
+ D NORMAL^WVPROC1
+ D EXIT
+ Q
+ ;
+ ;
+HISTORIC ;EP
+ ;---> CALLED BY OPTION: "WV ADD AN HISTORICAL PROCEDURE".
+ ;---> ADD HISTORICAL PROCEDURES (NO PROVIDER, WARD/CLINIC, FACILITY).
+ D SETVARS^WVUTL5 S WVPOP1=0 N DA,DIE,Y
+ F  D  Q:WVPOP1
+ .D TITLE^WVUTL5("ENTER HISTORICAL DATA")
+ .D NEWNT W !
+ .Q:(WVPOP!('$G(DA)))
+ .S WVPN=$P(^WV(790.1,DA,0),U,4)
+ .S DR=".05;.08;.1;.14////c"
+ .D DIE^WVFMAN(790.1,DR,DA,.WVPOP)
+ D EXIT
+ Q
+ ;
+ ;
+LABEDIT ;EP
+ ;---> CALLED BY OPTION: "WV LAB EDIT PROCEDURE".
+ S WVNOFOL=1 D EDIT,EXIT
+ Q
+ ;
+ ;
+RADMOD(DA) ;EP
+ ;---> MODIFY A PROCEDURE THAT WAS IMPORTED FROM RADIOLOGY AND
+ ;---> HAS BEEN CHANGED.
+ ;---> DA=IEN OF PROCEDURE IN WV PROCEDURE FILE #790.1.
+ Q:'$G(DA)
+ S DR=".13////"_DT_";.14////o"
+ D DIE^WVFMAN(790.1,DR,DA,.WVPOP)
+ Q
+ ;
+ ;
+LKUPPCD(Y) ;EP
+ ;---> LOOKUP A PROCEDURE.
+ N A
+ D SETVARS^WVUTL5
+ S A="Select ACCESSION# or PATIENT NAME: "
+ D DIC^WVFMAN(790.1,"QEMA",.Y,A,"","","",.WVPOP)
+ Q
+ ;
+DATECHK ;EP
+ ;---> PROMPT FOR DATE, CHECK FOR DUPLICATE PROCEDURE ON SAME DATE.
+ N WVNEW,DIR,DIRUT,N,Y S WVPOP=0
+ S DIR("?",1)="   Enter the date on which this procedure was performed:"
+ S DIR("?")="   (NOTE: Dates in the future may NOT be entered.)"
+ S DIR(0)="DA^0:DT:EX",DIR("A")="   Select DATE:      ",DIR("B")="TODAY"
+ D ^DIR K DIR
+ I Y<1 S WVPOP=1 Q
+ S WVPCDT=Y D DD^%DT W "  ",Y
+ S N=0,WVNEW=0
+ F  S N=$O(^WV(790.1,"C",WVDFN,N)) Q:('N)!(WVPOP)!(WVNEW)  D
+ .S Y=^WV(790.1,N,0)
+ .;---> QUIT IF NOT THE SAME PROCEDURE TYPE.
+ .Q:$P(Y,U,4)'=WVPCDN
+ .;---> QUIT IF NOT THE SAME PROCEDURE DATE.
+ .Q:$P(Y,U,12)'=WVPCDT
+ .;---> QUIT IF THIS PROCEDURE HAS A RESULT/DIAG OF "ERROR/DISREGARD".
+ .Q:$P(Y,U,5)=8
+ .N WVPN S WVPN=$P(^WV(790.2,$P(Y,U,4),0),U)
+ .W !!?5,"A ",WVPN," already exists for this patient on this date,"
+ .W !?5,"with an Accession# of ",$P(Y,U)
+ .W ".  You may edit that procedure by"
+ .W !?5,"calling up ",$P(Y,U)," under the ""Edit a Procedure"" option."
+ .W !?5,"Or you may enter another ",WVPN," for this patient"
+ .W !?5,"on this date."
+ .W !!?5,"Do you REALLY want to add another ",WVPN," for this patient"
+ .W !?5,"on this date?"
+ .S DIR("?")="       Enter NO to avoid adding another "_WVPN
+ .S DIR("?")=DIR("?")_" on this date."
+ .S DIR(0)="Y",DIR("A")="     Enter Yes or No",DIR("B")="NO"
+ .D ^DIR K DIR
+ .I $D(DIRUT)!('Y) S WVPOP=1 Q
+ .S WVNEW=1
+ Q
+ ;
+ERROR1 ;EP
+ W !!?10,*7,"NEW PROCEDURE ENTRY FOR THIS PATIENT FAILED."
+ Q

@@ -1,0 +1,70 @@
+PRCHQ3 ;(WASH ISC)/LKG - RFQ Quote E/E ;9/18/96  14:46
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+EN ;Entrance point
+ S PRCEDIT=$$EDITOR^PRCHQ1C
+ I PRCEDIT="" D EN^DDIOL("Edit mode not indicated, aborting the edit.") G OUT
+B S DIC="^PRC(444,",DIC(0)="AEMQZ",DIC("S")="I "";0;5;""'[("";""_$P(^(0),U,8)_"";"")"
+ S DIC("A")="Select Request for Quotation #: " D ^DIC K DIC
+ I +Y'>0!$D(DTOUT)!$D(DUOUT) G OUT
+ S PRCDA=+Y,PRCRFQ=$P(Y(0),U)
+ L +^PRC(444,PRCDA):3 E  W !,"RFQ "_PRCRFQ_" is being edited by another user. Please try later!" G OUT
+A K DA,Y S DA(1)=PRCDA,DIC="^PRC(444,DA(1),8,",DIC(0)="AELMQ"
+ S DIC("S")="I $P($G(^(1)),U,7)="""""
+ S DLAYGO="444.024",DIC("A")="Select Quote's Vendor: "
+ S DIC("P")=$P(^DD(444,24,0),U,2) D ^DIC K DIC,DLAYGO
+ G EX:$D(DTOUT)!$D(DUOUT) I +Y<1 L -^PRC(444,PRCDA) G B
+ S PRCQDA=+Y,PRCVPT=$P(Y,U,2)
+ I '$P(Y,U,3) D  G EX:$D(DTOUT)!$D(Y)
+ . S DA=PRCQDA,DA(1)=PRCDA,DIE="^PRC(444,DA(1),8,"
+ . S DR=".01The vendor for this quote;S PRCVPT=X" D ^DIE K DIE,DR
+ I PRCVPT["PRC(444.1" D  G EX:$D(DTOUT)!$G(PRCOUT)
+ . N PRCX,PRC,PRCI
+ . K DA S DA=+PRCVPT
+ . L +^PRC(444.1,DA):3 E  W !,"Another user is editing this vendor - Please try later!" S PRCOUT=1 Q
+ . S PRC=$G(^PRC(444.1,DA,1)) F PRCI=1:1:7 S PRC(PRCI)=$P(PRC,U,PRCI)
+ . I PRCEDIT="s" D
+ . . S DDSFILE=444.1,DR="[PRCHQ3]",DDSPAGE=1 D ^DDS
+ . . K DA,DDSFILE,DR,DDSPAGE,DDSCHANG,DDSSAVE,DIMSG
+ . I PRCEDIT="i" D
+ . . W !,"Editing RFQ VENDOR File entry..."
+ . . S DIE="^PRC(444.1,"
+ . . S DR=".01R;S PRC(0)=X;18.3;38;4.8;5;46;1R;S PRC(1)=X;2;S PRC(2)=X;3;S PRC(3)=X;4;S PRC(4)=X;4.2R;S PRC(5)=X;4.4R;S PRC(6)=X;4.6;S PRC(7)=X"
+ . . S DR(1,444.1,1)="17.1//^S X=PRC(0);17.15;17.3//^S X=PRC(1);17.4//^S X=PRC(2);17.5//^S X=PRC(3);17.7//^S X=PRC(5);17.8//^S X=$S(PRC(6)]"""":$P($G(^DIC(5,PRC(6),0)),U),1:"""");17.9//^S X=PRC(7);8.3;9;10;50;60"
+ . . D ^DIE K DIE,DR
+ . L -^PRC(444.1,+PRCVPT)
+ . Q:$D(DTOUT)
+ . S PRCX=$G(^PRC(444.1,+PRCVPT,0))
+ . S PRCVN=$P(PRCX,U),PRCVD=$P(PRCX,U,2),PRCVC=$P(PRCX,U,3)
+ . S PRCVT=$P(PRCX,U,4),PRCVP=$P(PRCX,U,6),PRCVF=$P(PRCX,U,7)
+ I PRCVPT["PRC(440" D
+ . S PRCVN=$P($G(^PRC(440,+PRCVPT,0)),U)
+ . S PRCVD=$P($G(^PRC(440,+PRCVPT,7)),U,12)
+ . S PRCVT=$P($G(^PRC(440,+PRCVPT,3)),U,8)
+ . S PRCVC=$P($G(^PRC(440,+PRCVPT,0)),U,9)
+ . S PRCVP=$P($G(^PRC(440,+PRCVPT,0)),U,10)
+ . S PRCVF=$P($G(^PRC(440,+PRCVPT,10)),U,6)
+ K DA
+ I PRCEDIT="s" D
+ . S DA=PRCQDA,DA(1)=PRCDA,DDSFILE=444,DDSFILE(1)=444.024,DR="[PRCHQ2]"
+ . S DDSPAGE=1,DDSPARM="C" D ^DDS
+ . K DDSSAVE,DIMSG,DDSFILE,DR,DDSPAGE,DA,PRCMSG
+ . I $G(DDSCHANG)=1 D QUOTETOT^PRCHQ1B(PRCDA,PRCQDA)
+ . K DDSCHANG
+ I PRCEDIT="i" D
+ . N %,%H,%I,PRCFOB,PRCSHP
+ . S PRCMSG="" D ESIG^PRCUESIG(DUZ,.PRCMSG)
+ . I PRCMSG'=1 D EN^DDIOL("Electronic Signature Failed, Edit aborted") Q
+ . S DA=PRCQDA,DA(1)=PRCDA,DIE="^PRC(444,PRCDA,8,"
+ . S DR="S PRCFOB=$P($G(^PRC(444,PRCDA,8,PRCQDA,1)),U);S PRCSHP=$P($G(^PRC(444,PRCDA,8,PRCQDA,1)),U,2);1R;2R;3R;10;4;5;6;S PRCFOB=X;S:PRCFOB=""D"" PRCSHP=0;7//^S X=PRCSHP"
+ . S DR(1,444.024,1)="W:PRCFOB=""D""&(X>0) !,""Warning - Usually there are no shipping charges on FOB Destination"";W:PRCFOB=""O""&(X'>0) !,""Warning - No Shipping Charges on Origin FOB?"""
+ . S DR(1,444.024,2)="9;11"
+ . S DR(2,444.026)=".01;1;1.5;11;12;16;2R;3R;13R;14;15;5;4;7;8;9;10;6;17"
+ . D ^DIE K DIE,DR
+ . D NOW^%DTC S $P(^PRC(444,PRCDA,8,PRCQDA,1),U,4,6)=1_U_DUZ_U_%
+ . D LINENETS^PRCHQ1C(PRCDA,PRCQDA),QUOTETOT^PRCHQ1B(PRCDA,PRCQDA)
+EX L -^PRC(444,PRCDA)
+ K PRCVN,PRCVD,PRCVT,PRCVC,PRCVP,PRCVF,PRCVPT,PRCQDA,PRCOUT,DA,PRCMSG
+ G A:'$D(DTOUT)&'$D(DUOUT)
+OUT K DTOUT,DUOUT,PRCDA,PRCRFQ,PRCEDIT
+ Q

@@ -1,0 +1,93 @@
+ORLP3C1 ; slc/CLA - Utilities to convert OE/RR 2.5 lists ;12/15/97 [ 04/03/97  10:50 AM ]
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9**;Dec 17, 1997
+ Q
+POSTORLP ;convert user defaults for pt from ^VA(200 to Parameters
+ N ORLPC,ERR
+ S ORLPC=$$GET^XPAR("SYS","ORLPC CONVERSION",1,"Q")
+ I +$G(ORLPC)>0 D BMES^XPDUTL("User pt selection defaults already converted.") Q
+ D BMES^XPDUTL("Converting user pt selection defaults to parameters...")
+ D USERDEF
+ D EN^XPAR("SYS","ORLPC CONVERSION",1,"1",.ERR) ;1:conversion done
+ S ORLPC=$$GET^XPAR("SYS","ORLPC CONVERSION",1,"Q")
+ D BMES^XPDUTL("Conversion of user pt selection defaults completed.")
+ Q
+USERDEF ;move pt selection defaults from file 200 to parameter file [#8989.5]
+ N NAME,ORDUZ,ORPDUZ,OR1,OR2,WARD,TEAM,FROM,CLIN,BEG,END,SORT,PROV,SPEC,ERR,ORCT
+ S XPDIDTOT=$P(^VA(200,0),U,4),ORCT=0
+ D UPDATE^XPDID(0)
+ S ORDUZ=0,NAME=""
+ F  S NAME=$O(^VA(200,"B",NAME)) Q:NAME=""  S ORDUZ=0,ORDUZ=$O(^(NAME,ORDUZ)) D
+ .Q:'$L($G(ORDUZ))
+ .S ORPDUZ="USR.`"_ORDUZ
+ .S (WARD,TEAM,FROM,CLIN,BEG,END,SORT,PROV,SPEC)=""
+ .S OR1=$G(^VA(200,ORDUZ,100.1)),OR2=$G(^VA(200,ORDUZ,100.2))
+ .D:$L($G(OR1)) OR1
+ .D:$L($G(OR2)) OR2
+ .S ORCT=ORCT+1
+ .I '(ORCT#100) D UPDATE^XPDID(ORCT)
+ K XPDIDTOT
+ Q
+OR1 ;set defaults from ^VA(200,ORDUZ,100.1)
+ N X
+ S WARD=$P(OR1,U,4),TEAM=$P(OR1,U,5),FROM=$P(OR1,U,6),CLIN=$P(OR1,U,7)
+ S BEG=$P(OR1,U,8),END=$P(OR1,U,9)
+ I $L($G(WARD)) D
+ .Q:$L($$GET^XPAR(ORPDUZ,"ORLP DEFAULT WARD",1,"Q"))
+ .D EN^XPAR(ORPDUZ,"ORLP DEFAULT WARD",1,"`"_WARD,.ERR)
+ .I +ERR>0 S X="Error: "_ERR_" - converting default WARD "_WARD_" for user "_$G(NAME)_"!" D BMES^XPDUTL(X)
+ I $L($G(TEAM)) D
+ .Q:$L($$GET^XPAR(ORPDUZ,"ORLP DEFAULT TEAM",1,"Q"))
+ .D EN^XPAR(ORPDUZ,"ORLP DEFAULT TEAM",1,"`"_TEAM,.ERR)
+ .I +ERR>0 S X="Error: "_ERR_" - converting default TEAM "_TEAM_" for user "_$G(NAME)_"!" D BMES^XPDUTL(X)
+ I $L($G(FROM)) D
+ .S FROM=$S(FROM="P":"T",FROM="V":"P",1:FROM)  ;convert to param codes
+ .Q:$L($$GET^XPAR(ORPDUZ,"ORLP DEFAULT LIST SOURCE",1,"Q"))
+ .D EN^XPAR(ORPDUZ,"ORLP DEFAULT LIST SOURCE",1,FROM,.ERR)
+ .I +ERR>0 S X="Error: "_ERR_" - converting default LIST SRC "_FROM_" for user "_$G(NAME)_"!" D BMES^XPDUTL(X)
+ I $L($G(CLIN)) D
+ .Q:$L($$GET^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC MONDAY",1,"Q"))
+ .D EN^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC MONDAY",1,"`"_CLIN,.ERR)
+ .I +ERR>0 S X="Error: "_ERR_" - converting default CLINIC MON "_CLIN_" for user "_$G(NAME)_"!" D BMES^XPDUTL(X)
+ .Q:$L($$GET^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC TUESDAY",1,"Q"))
+ .D EN^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC TUESDAY",1,"`"_CLIN,.ERR)
+ .I +ERR>0 S X="Error: "_ERR_" - converting default CLINIC TUE "_CLIN_" for user "_$G(NAME)_"!" D BMES^XPDUTL(X)
+ .Q:$L($$GET^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC WEDNESDAY",1,"Q"))
+ .D EN^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC WEDNESDAY",1,"`"_CLIN,.ERR)
+ .I +ERR>0 S X="Error: "_ERR_" - converting default CLINIC WED "_CLIN_" for user "_$G(NAME)_"!" D BMES^XPDUTL(X)
+ .Q:$L($$GET^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC THURSDAY",1,"Q"))
+ .D EN^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC THURSDAY",1,"`"_CLIN,.ERR)
+ .I +ERR>0 S X="Error: "_ERR_" - converting default CLINIC THU "_CLIN_" for user "_$G(NAME)_"!" D BMES^XPDUTL(X)
+ .Q:$L($$GET^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC FRIDAY",1,"Q"))
+ .D EN^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC FRIDAY",1,"`"_CLIN,.ERR)
+ .I +ERR>0 S X="Error: "_ERR_" - converting default CLINIC FRI "_CLIN_" for user "_$G(NAME)_"!" D BMES^XPDUTL(X)
+ .Q:$L($$GET^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC SATURDAY",1,"Q"))
+ .D EN^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC SATURDAY",1,"`"_CLIN,.ERR)
+ .I +ERR>0 S X="Error: "_ERR_" - converting default CLINIC SAT "_CLIN_" for user "_$G(NAME)_"!" D BMES^XPDUTL(X)
+ .Q:$L($$GET^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC SUNDAY",1,"Q"))
+ .D EN^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC SUNDAY",1,"`"_CLIN,.ERR)
+ .I +ERR>0 S X="Error: "_ERR_" - converting default CLINIC SUN "_CLIN_" for user "_$G(NAME)_"!" D BMES^XPDUTL(X)
+ I $L($G(BEG)) D
+ .Q:$L($$GET^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC START DATE",1,"Q"))
+ .D EN^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC START DATE",1,BEG,.ERR)
+ .I +ERR>0 S X="Error: "_ERR_" - converting default CLIN STRT DATE "_BEG_" for user "_$G(NAME)_"!" D BMES^XPDUTL(X)
+ I $L($G(END)) D
+ .Q:$L($$GET^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC STOP DATE",1,"Q"))
+ .D EN^XPAR(ORPDUZ,"ORLP DEFAULT CLINIC STOP DATE",1,END,.ERR)
+ .I +ERR>0 S X="Error: "_ERR_" - converting default CLIN STOP DATE "_END_" for user "_$G(NAME)_"!" D BMES^XPDUTL(X)
+ Q
+OR2 ;set defaults from ^VA(200,ORDUZ,100.2)
+ N X
+ S SORT=$P(OR2,U,2),PROV=$P(OR2,U,5),SPEC=$P(OR2,U,6)
+ I $L($G(SORT)) D
+ .Q:$L($$GET^XPAR(ORPDUZ,"ORLP DEFAULT LIST ORDER",1,"Q"))
+ .D EN^XPAR(ORPDUZ,"ORLP DEFAULT LIST ORDER",1,SORT,.ERR)
+ .I +ERR>0 S X="Error: "_ERR_" - converting default LIST ORDER "_SORT_" for user "_$G(NAME)_"!" D BMES^XPDUTL(X)
+ I $L($G(PROV)) D
+ .Q:$L($$GET^XPAR(ORPDUZ,"ORLP DEFAULT PROVIDER",1,"Q"))
+ .D EN^XPAR(ORPDUZ,"ORLP DEFAULT PROVIDER",1,"`"_PROV,.ERR)
+ .I +ERR>0 S X="Error: "_ERR_" - converting default PROVIDER "_PROV_" for user "_$G(NAME)_"!" D BMES^XPDUTL(X)
+ I $L($G(SPEC)) D
+ .Q:$L($$GET^XPAR(ORPDUZ,"ORLP DEFAULT SPECIALTY",1,"Q"))
+ .D EN^XPAR(ORPDUZ,"ORLP DEFAULT SPECIALTY",1,"`"_SPEC,.ERR)
+ .I +ERR>0 S X="Error: "_ERR_" - converting default SPECIALTY "_SPEC_" for user "_$G(NAME)_"!" D BMES^XPDUTL(X)
+ Q

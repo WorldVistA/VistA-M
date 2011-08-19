@@ -1,0 +1,48 @@
+PSADRU ;BIR/LTL-Drugs Not Found in Linked Inventory ;7/23/97
+ ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**15**; 10/24/97
+ ;This routine reports the inventory/DA items.
+ ;References to $$DESCR^PRCPUX1 are covered by IA #259
+ ;References to $$INVNAME^PRCPUX1 are covered by IA #259
+ ;References to ^PSDRUG( are covered by IA #2095
+ ;References to ^PRCP( are covered by IA #214
+ ;
+SETUP N D0,D1,DA,DIE,DIC,DIR,DIRUT,DLAYGO,DR,DTOUT,DUOUT,PSA,PSADRUG,PSAINV,PSAOUT,X,Y
+ ;LOOK UP LOCATION
+LOOK D ^PSADA I '$G(PSALOC) S PSAOUT=1 G QUIT
+ I '$O(^PSD(58.8,+PSALOC,1,0)) W !!,"There are no drugs in ",PSALOCN S PSAOUT=1 G QUIT
+NOINV I '$O(^PSD(58.8,PSALOC,4,0)) W !,$G(PSALOCN)_" is not linked to an Inventory Point.",! D  G:$G(PSAOUT) QUIT
+ .S DIR(0)="Y",DIR("A")="Would you like to attempt a link now",DIR("B")="Yes" D ^DIR K DIR S:Y'=1 PSAOUT=1 Q:Y'=1  D  I $D(Y) S PSAOUT=1 Q
+INV ..S DIE=58.8,DA=PSALOC,DR="[PSAGIP]" D ^DIE K DIE
+DEV K IO("Q") N %ZIS,IOP,POP S %ZIS="Q" D ^%ZIS I POP W !,"NO DEVICE SELECTED OR REPORT PRINTED!" S PSAOUT=1 G QUIT
+ I $D(IO("Q")) N ZTDESC,ZTIO,ZTRTN,ZTSAVE,ZTDTH,ZTSK S ZTRTN="START^PSADRU",ZTDESC="DA Location items not found in Inventory",ZTSAVE("PSA*")="" D ^%ZTLOAD,HOME^%ZIS S PSAOUT=1 G QUIT
+START N %DT,PSALN,PSAIT,PSAL,PSAD,PSAPG,PSARPDT,X,Y S (PSAPG,PSAOUT)=0,Y=DT D DD^%DT S PSARPDT=Y,PSAIT=0
+ S PSA=0
+ D HEADER
+LOOP F  S PSA=$O(^PSD(58.8,+PSALOC,1,PSA)) Q:'PSA  D:$Y+6>IOSL HEADER Q:PSAOUT  D  Q:PSAOUT
+ .W !!,$P($G(^PSDRUG(+PSA,0)),U)
+ .S PSA(1)=$O(^PSDRUG(+PSA,441,0))
+ .I 'PSA(1) W !!,"NOT CONNECTED TO THE ITEM MASTER FILE",!,PSALN Q
+ .S PSA(2)=$G(^PSDRUG(+PSA,441,+PSA(1),0)),PSAINV=0
+ .I '$O(^PSDRUG(+PSA,441,+PSA(1))) D  Q
+ ..W !!,"CONNECTED TO: (",PSA(2),") ",$$DESCR^PRCPUX1(0,PSA(2))
+ ..I '$O(^PRCP(445,"AE",+PSA(2),0)) W !!,"BUT NOT STOCKED BY AN INVENTORY POINT.",!,PSALN Q
+ ..F  S PSAINV=$O(^PRCP(445,"AE",+PSA(2),PSAINV)) Q:'PSAINV  W !!,"AND STOCKED BY ",$$INVNAME^PRCPUX1(PSAINV),!,PSALN
+ .W !!,"CONNECTED TO THE FOLLOWING ITEMS:"
+ .S PSA(1)=0
+ .F  S PSA(1)=$O(^PSDRUG(+PSA,441,PSA(1))) Q:'PSA(1)  D:$Y+6>IOSL HEADER Q:PSAOUT  D
+ ..S PSA(2)=$G(^PSDRUG(+PSA,441,+PSA(1),0)),PSAINV=0
+ ..W !!,"(",PSA(2),") ",$$DESCR^PRCPUX1(0,PSA(2))
+ ..I '$O(^PRCP(445,"AE",+PSA(2),0)) W !!,"BUT NOT STOCKED BY AN INVENTORY POINT.",!,PSALN Q
+ ..F  S PSAINV=$O(^PRCP(445,"AE",+PSA(2),PSAINV)) Q:'PSAINV  W !!,"AND STOCKED BY ",$$INVNAME^PRCPUX1(PSAINV),!,PSALN
+QUIT I $E(IOST)'="C" W @IOF
+ I $E(IOST,1,2)="C-",'$G(PSAOUT) W !! S DIR(0)="EA",DIR("A")="END OF REPORT!  Press <RET> to return to the menu." D ^DIR
+ D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@" K IO("Q")
+ K PSAIT Q
+HEADER I $E(IOST,1,2)'="P-",PSAPG S DIR(0)="E" D ^DIR K DIR I 'Y S PSAOUT=1 Q
+ I $$S^%ZTLOAD W !!,"Task #",$G(ZTSK),", ",$G(ZTDESC)," was stopped by ",$P($G(^VA(200,+$G(DUZ),0)),U),"." S PSAOUT=1 Q
+ ;DAVE B found bug in next line while making changes for 
+ ;PSA*3*25 because the value is a pointer not free text.
+ D OPSITE^PSAUTL1 S PSAINV(2)=PSAOSITN
+ ;S:$E(PSAINV(2),10)="(" PSAINV(2)=$E(PSAINV(2),1,8)
+ W:$Y @IOF S $P(PSALN,"-",81)="",PSAPG=PSAPG+1 W !,PSAINV(2)_"'S Items Relationship to an Inventory Point",?56,PSARPDT,?70,"PAGE: "_PSAPG,!,PSALN
+ Q

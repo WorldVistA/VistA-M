@@ -1,0 +1,190 @@
+PSS50C1 ;BIR/RTR - APIs for encapsulation continued; 5 Sep 03
+ ;;1.0;PHARMACY DATA MANAGEMENT;**85**;9/30/97
+ ;
+SETWS ;
+ S ^TMP($J,LIST,+PSS(1),.01)=$G(^TMP("PSSP50",$J,50,PSS(1),.01,"I"))
+ S ^TMP($J,LIST,"B",$G(^TMP("PSSP50",$J,50,PSS(1),.01,"I")),+PSS(1))=""
+ S ^TMP($J,LIST,+PSS(1),300)=$G(^TMP("PSSP50",$J,50,PSS(1),300,"I"))
+ S ^TMP($J,LIST,+PSS(1),301)=$S($G(^TMP("PSSP50",$J,50,PSS(1),301,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),301,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),301,"E")))
+ S ^TMP($J,LIST,+PSS(1),302)=$G(^TMP("PSSP50",$J,50,PSS(1),302,"I"))
+ Q
+ ;
+LOOP ;
+ N PSS50DD6,PSS50ER6,PSSPCATS D FIELD^DID(50,301,"Z","POINTER","PSS50DD6","PSS50ER6") S PSSPCATS=$G(PSS50DD6("POINTER"))
+ N PSSENCT
+ S PSSENCT=0
+ S PSS(1)=0 F  S PSS(1)=$O(^PSDRUG(PSS(1))) Q:'PSS(1)  D
+ .I $P($G(^PSDRUG(PSS(1),0)),"^")="" Q
+ .I $G(PSSFL),$P($G(^PSDRUG(PSS(1),"I")),"^"),$P($G(^("I")),"^")'>PSSFL Q
+ .I $G(PSSRTOI)=1,'$P($G(^PSDRUG(PSS(1),2)),"^") Q
+ .;Naked reference below refers to ^PSDRUG(PSS(1),2)
+ .I $G(PSSPK)]"" N PSSZ5,PSSZ6 S PSSZ5=0 F PSSZ6=1:1:$L(PSSPK) Q:PSSZ5  I $P($G(^(2)),"^",3)[$E(PSSPK,PSSZ6) S PSSZ5=1
+ .I $G(PSSPK)]"",'PSSZ5 Q
+ .D SETWSL
+ .S PSSENCT=PSSENCT+1
+ S ^TMP($J,LIST,0)=$S($G(PSSENCT):$G(PSSENCT),1:"-1^NO DATA FOUND")
+ Q
+ ;
+SETWSL ;
+ N PSSZNODE,PSSPSGND
+ S PSSZNODE=$G(^PSDRUG(PSS(1),0)),PSSPSGND=$G(^("PSG"))
+ S ^TMP($J,LIST,+PSS(1),.01)=$P(PSSZNODE,"^")
+ S ^TMP($J,LIST,"B",$P(PSSZNODE,"^"),+PSS(1))=""
+ S ^TMP($J,LIST,+PSS(1),300)=$P(PSSPSGND,"^")
+ N PSSPCAT S PSSPCAT=$P(PSSPSGND,"^",2)  D
+ .I PSSPCAT'="",PSSPCATS'="",PSSPCATS[(PSSPCAT_":") S ^TMP($J,LIST,+PSS(1),301)=PSSPCAT_"^"_$P($E(PSSPCATS,$F(PSSPCATS,(PSSPCAT_":")),999),";") Q
+ .S ^TMP($J,LIST,+PSS(1),301)=""
+ S ^TMP($J,LIST,+PSS(1),302)=$P(PSSPSGND,"^",3)
+ Q
+ ;
+LOOPMR ;
+ N PSSENCT
+ S PSSENCT=0
+ S PSS(1)=0 F  S PSS(1)=$O(^PSDRUG(PSS(1))) Q:'PSS(1)  D
+ .I $P($G(^PSDRUG(PSS(1),0)),"^")="" Q
+ .I $G(PSSFL),$P($G(^PSDRUG(PSS(1),"I")),"^"),$P($G(^("I")),"^")'>PSSFL Q
+ .I $G(PSSRTOI)=1,'$P($G(^PSDRUG(PSS(1),2)),"^") Q
+ .;Naked reference below refers to ^PSDRUG(PSS(1),2)
+ .I $G(PSSPK)]"" N PSSZ5,PSSZ6 S PSSZ5=0 F PSSZ6=1:1:$L(PSSPK) Q:PSSZ5  I $P($G(^(2)),"^",3)[$E(PSSPK,PSSZ6) S PSSZ5=1
+ .I $G(PSSPK)]"",'PSSZ5 Q
+ .D SETMRTNL
+ .S PSSENCT=PSSENCT+1
+ S ^TMP($J,LIST,0)=$S($G(PSSENCT):$G(PSSENCT),1:"-1^NO DATA FOUND")
+ Q
+ ;
+SETMRTN ;
+ S ^TMP($J,LIST,+PSS(1),.01)=$G(^TMP("PSSP50",$J,50,PSS(1),.01,"I"))
+ S ^TMP($J,LIST,"B",$G(^TMP("PSSP50",$J,50,PSS(1),.01,"I")),+PSS(1))=""
+ S ^TMP($J,LIST,+PSS(1),17.2)=$S($G(^TMP("PSSP50",$J,50,PSS(1),17.2,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),17.2,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),17.2,"E")))
+ S ^TMP($J,LIST,+PSS(1),17.5)=$G(^TMP("PSSP50",$J,50,PSS(1),17.5,"I"))
+ S ^TMP($J,LIST,+PSS(1),31)=$G(^TMP("PSSP50",$J,50,PSS(1),31,"I"))
+ Q
+SETMRTNL ;
+ N PSSZNODE,PSS50CL,PSS50CL1,PSS50CL2
+ S PSSZNODE=$G(^PSDRUG(PSS(1),0)),PSS50CL=$G(^("CLOZ")),PSS50CL1=$G(^("CLOZ1")),PSS50CL2=$G(^(2))
+ S ^TMP($J,LIST,+PSS(1),.01)=$P(PSSZNODE,"^")
+ S ^TMP($J,LIST,"B",$P(PSSZNODE,"^"),+PSS(1))=""
+ N PSSCLZAR D GETS^DIQ(50,+PSS(1),"17.2","IE","PSSCLZAR")
+ S ^TMP($J,LIST,+PSS(1),17.2)=$S($G(PSSCLZAR(50,+PSS(1)_",",17.2,"I"))="":"",1:$G(PSSCLZAR(50,+PSS(1)_",",17.2,"I"))_"^"_$G(PSSCLZAR(50,+PSS(1)_",",17.2,"E")))
+ S ^TMP($J,LIST,+PSS(1),17.5)=$P(PSS50CL1,"^")
+ S ^TMP($J,LIST,+PSS(1),31)=$P(PSS50CL2,"^",4)
+ Q
+SETZRO ;
+ S ^TMP($J,LIST,+PSS(1),.01)=$G(^TMP("PSSP50",$J,50,PSS(1),.01,"I"))
+ S ^TMP($J,LIST,"B",$G(^TMP("PSSP50",$J,50,PSS(1),.01,"I")),+PSS(1))=""
+ S ^TMP($J,LIST,+PSS(1),2)=$G(^TMP("PSSP50",$J,50,PSS(1),2,"I"))
+ S ^TMP($J,LIST,+PSS(1),3)=$G(^TMP("PSSP50",$J,50,PSS(1),3,"I"))
+ S ^TMP($J,LIST,+PSS(1),4)=$G(^TMP("PSSP50",$J,50,PSS(1),4,"I"))
+ S ^TMP($J,LIST,+PSS(1),5)=$G(^TMP("PSSP50",$J,50,PSS(1),5,"I"))
+ S ^TMP($J,LIST,+PSS(1),6)=$G(^TMP("PSSP50",$J,50,PSS(1),6,"I"))
+ S ^TMP($J,LIST,+PSS(1),8)=$G(^TMP("PSSP50",$J,50,PSS(1),8,"I"))
+ S ^TMP($J,LIST,+PSS(1),51)=$S($G(^TMP("PSSP50",$J,50,PSS(1),51,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),51,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),51,"E")))
+ S ^TMP($J,LIST,+PSS(1),52)=$S($G(^TMP("PSSP50",$J,50,PSS(1),52,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),52,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),52,"E")))
+ S ^TMP($J,LIST,+PSS(1),101)=$G(^TMP("PSSP50",$J,50,PSS(1),101,"I"))
+ Q
+LOOPZR ;
+ N PSS50DD7,PSS50DD8,PSS50ER7,PSS50ER8,PSS51NFD,PSS52NFD
+ D FIELD^DID(50,51,"Z","POINTER","PSS50DD7","PSS50ER7") S PSS51NFD=$G(PSS50DD7("POINTER"))
+ D FIELD^DID(50,52,"Z","POINTER","PSS50DD8","PSS50ER8") S PSS52NFD=$G(PSS50DD8("POINTER"))
+ N PSSENCT
+ S PSSENCT=0
+ S PSS(1)=0 F  S PSS(1)=$O(^PSDRUG(PSS(1))) Q:'PSS(1)  D
+ .I $P($G(^PSDRUG(PSS(1),0)),"^")="" Q
+ .I $G(PSSFL),$P($G(^PSDRUG(PSS(1),"I")),"^"),$P($G(^("I")),"^")'>PSSFL Q
+ .I $G(PSSRTOI)=1,'$P($G(^PSDRUG(PSS(1),2)),"^") Q
+ .;Naked reference below refers to ^PSDRUG(PSS(1),2)
+ .I $G(PSSPK)]"" N PSSZ5,PSSZ6 S PSSZ5=0 F PSSZ6=1:1:$L(PSSPK) Q:PSSZ5  I $P($G(^(2)),"^",3)[$E(PSSPK,PSSZ6) S PSSZ5=1
+ .I $G(PSSPK)]"",'PSSZ5 Q
+ .D LOOPZRD
+ .S PSSENCT=PSSENCT+1
+ S ^TMP($J,LIST,0)=$S($G(PSSENCT):$G(PSSENCT),1:"-1^NO DATA FOUND")
+ Q
+LOOPZRD ;
+ N PSSZNODE
+ S PSSZNODE=$G(^PSDRUG(PSS(1),0))
+ S ^TMP($J,LIST,+PSS(1),.01)=$P(PSSZNODE,"^")
+ S ^TMP($J,LIST,"B",$P(PSSZNODE,"^"),+PSS(1))=""
+ S ^TMP($J,LIST,+PSS(1),2)=$P(PSSZNODE,"^",2)
+ S ^TMP($J,LIST,+PSS(1),3)=$P(PSSZNODE,"^",3)
+ S ^TMP($J,LIST,+PSS(1),4)=$P(PSSZNODE,"^",4)
+ S ^TMP($J,LIST,+PSS(1),5)=$P(PSSZNODE,"^",5)
+ S ^TMP($J,LIST,+PSS(1),6)=$P(PSSZNODE,"^",6)
+ S ^TMP($J,LIST,+PSS(1),8)=$P(PSSZNODE,"^",8)
+ N PSS51NF S PSS51NF=$P(PSSZNODE,"^",9)  D
+ .I PSS51NF'="",PSS51NFD'="",PSS51NFD[(PSS51NF_":") S ^TMP($J,LIST,+PSS(1),51)=PSS51NF_"^"_$P($E(PSS51NFD,$F(PSS51NFD,(PSS51NF_":")),999),";") Q
+ .S ^TMP($J,LIST,+PSS(1),51)=""
+ N PSS52NF S PSS52NF=$P(PSSZNODE,"^",11)  D
+ .I PSS52NF'="",PSS52NFD'="",PSS52NFD[(PSS52NF_":") S ^TMP($J,LIST,+PSS(1),52)=PSS52NF_"^"_$P($E(PSS52NFD,$F(PSS52NFD,(PSS52NF_":")),999),";") Q
+ .S ^TMP($J,LIST,+PSS(1),52)=""
+ S ^TMP($J,LIST,+PSS(1),101)=$P(PSSZNODE,"^",10)
+ Q
+LOOPB ;
+ N PSSENCT,PSSZNAM
+ S PSSENCT=0
+ S PSS(1)=0 F  S PSS(1)=$O(^PSDRUG(PSS(1))) Q:'PSS(1)  D
+ .S PSSZNAM=$P($G(^PSDRUG(PSS(1),0)),"^")
+ .I PSSZNAM="" Q
+ .I $G(PSSFL),$P($G(^PSDRUG(PSS(1),"I")),"^"),$P($G(^("I")),"^")'>PSSFL Q
+ .I $G(PSSRTOI)=1,'$P($G(^PSDRUG(PSS(1),2)),"^") Q
+ .;Naked reference below refers to ^PSDRUG(PSS(1),2)
+ .I $G(PSSPK)]"" N PSSZ5,PSSZ6 S PSSZ5=0 F PSSZ6=1:1:$L(PSSPK) Q:PSSZ5  I $P($G(^(2)),"^",3)[$E(PSSPK,PSSZ6) S PSSZ5=1
+ .I $G(PSSPK)]"",'PSSZ5 Q
+ .S ^TMP($J,LIST,+PSS(1),.01)=PSSZNAM
+ .S ^TMP($J,LIST,"B",PSSZNAM,+PSS(1))=""
+ .S PSSENCT=PSSENCT+1
+ S ^TMP($J,LIST,0)=$S($G(PSSENCT):$G(PSSENCT),1:"-1^NO DATA FOUND")
+ Q
+CSYN ;
+ ;PSSIEN = internal entry number from Drug (#50) file
+ ;PSSVAL = Synonym name
+ ;LIST = Global return subscript
+ I $G(LIST)']"" Q
+ K ^TMP($J,LIST)
+ I '$G(PSSIEN)!($G(PSSVAL)="") S ^TMP($J,LIST,0)="-1^NO DATA FOUND" Q
+ N PSSCSNAM,PSSCSX,PSSCSSYN
+ S PSSCSNAM=$P($G(^PSDRUG(PSSIEN,0)),"^") I PSSCSNAM="" S ^TMP($J,LIST,0)="-1^NO DATA FOUND" Q
+ S PSSCSX=$O(^PSDRUG("C",PSSVAL,PSSIEN,"")) I 'PSSCSX S ^TMP($J,LIST,0)="-1^NO DATA FOUND" Q
+ S PSSCSSYN=$P($G(^PSDRUG(PSSIEN,1,PSSCSX,0)),"^") I PSSCSSYN="" S ^TMP($J,LIST,0)="-1^NO DATA FOUND" Q
+ S ^TMP($J,LIST,PSSIEN,.01)=PSSCSNAM
+ S ^TMP($J,LIST,PSSIEN,"SYN",0)=1
+ S ^TMP($J,LIST,PSSIEN,"SYN",PSSCSX,.01)=PSSCSSYN
+ S ^TMP($J,LIST,PSSIEN,"SYN",PSSCSX,403)=$P($G(^PSDRUG(PSSIEN,1,PSSCSX,0)),"^",7)
+ S ^TMP($J,LIST,"C",PSSCSSYN,PSSIEN)=""
+ S ^TMP($J,LIST,0)=1
+ Q
+DSPUNT ;
+ ;PSSIEN = internal entry number from Drug (#50) file
+ ;PSSIEN2 = internal entry from the Synonym multiple
+ ;LIST = Global return subscript
+ I $G(LIST)']"" Q
+ K ^TMP($J,LIST)
+ I +$G(PSSIEN)'>0!(+$G(PSSIEN2)'>0) S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ N PSSDSNAM,PSSDSX,PSSDSSYN
+ S PSSDSNAM=$P($G(^PSDRUG(PSSIEN,0)),"^") I PSSDSNAM="" S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ S PSSDSSYN=$P($G(^PSDRUG(PSSIEN,1,PSSIEN2,0)),"^") I PSSDSSYN="" S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ S ^TMP($J,LIST,PSSIEN,.01)=PSSDSNAM
+ S ^TMP($J,LIST,PSSIEN,"SYN",0)=1
+ S ^TMP($J,LIST,PSSIEN,"SYN",PSSIEN2,.01)=PSSDSSYN
+ S ^TMP($J,LIST,PSSIEN,"SYN",PSSIEN2,403)=$P($G(^PSDRUG(PSSIEN,1,PSSIEN2,0)),"^",7)
+ S ^TMP($J,LIST,"C",PSSDSSYN,PSSIEN)=""
+ S ^TMP($J,LIST,0)=1
+ Q
+ ;
+SETSCRN ;Set Screen
+ I +$G(PSSFL)>0 D
+ .;Naked reference below refers to ^PSDRUG(+Y,"I")
+ .I SCR("S")]"" S SCR("S")=SCR("S")_" S PSS5ND=$P($G(^(""I"")),""^"") I PSS5ND=""""!(PSS5ND>PSSFL)" Q
+ .;Naked reference below refers to ^PSDRUG(+Y,"I")
+ .S SCR("S")="S PSS5ND=$P($G(^(""I"")),""^"") I PSS5ND=""""!(PSS5ND>PSSFL)"
+ I $G(PSSRTOI)=1 D
+ .;Naked reference below refers to ^PSDRUG(+Y,2)
+ .I SCR("S")]"" S SCR("S")=SCR("S")_" I $P($G(^(2)),""^"")" Q
+ .;Naked reference below refers to ^PSDRUG(+Y,2)
+ .S SCR("S")="I $P($G(^(2)),""^"")"
+ I $G(PSSPK)]"" D
+ .;Naked reference below refers to ^PSDRUG(+Y,2)
+ .I SCR("S")]"" S SCR("S")=SCR("S")_" S PSSZ3=0 F PSSZ4=1:1:$L(PSSPK) Q:PSSZ3  I $P($G(^(2)),""^"",3)[$E(PSSPK,PSSZ4) S PSSZ3=1" Q
+ .;Naked reference below refers to ^PSDRUG(+Y,2)
+ .S SCR("S")="S PSSZ3=0 F PSSZ4=1:1:$L(PSSPK) Q:PSSZ3  I $P($G(^(2)),""^"",3)[$E(PSSPK,PSSZ4) S PSSZ3=1"
+ ;I $G(PSSPK)]"" S SCR("S")=$S(SCR("S")]"":SCR("S")_" I $G(^PSDRUG(+Y,2)),$P($G(^PSDRUG(+Y,2)),""^"",3)[PSSPK",1:"I $G(^PSDRUG(+Y,2)),$P($G(^PSDRUG(+Y,2)),""^"",3)[PSSPK")
+ Q

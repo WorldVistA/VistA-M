@@ -1,0 +1,89 @@
+OCXODGPM ;SLC/RJS,CLA - External Interface - PROCESS MAS MOVEMENT EVENT ;4/30/99  15:03
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+ ;
+ Q
+SILENT(OUTMSG) ;
+ ;
+ N OCXRDT,OCXOZZT
+ S OCXRDT=($H*86400+$P($H,",",2))
+ S:'$D(OUTMSG) OUTMSG=""
+ D CHECK(.OUTMSG)
+ Q
+VERBOSE ;
+ ;
+ N OCXX,OUTMSG,OCXOZZT
+ S OCXRDT=($H*86400+$P($H,",",2))
+ S OUTMSG=""
+ D CHECK(.OUTMSG)
+ W:$O(OUTMSG(0)) !,"Order Check Message: ",$C(7)
+ S OCXX=0 F  S OCXX=$O(OUTMSG(OCXX)) Q:'OCXX  W !,OUTMSG(OCXX)
+ W:$O(OUTMSG(0)) !,$C(7)
+ Q
+ ;
+CHECK(OUTMSG) ;
+ ;
+ ;
+ I $$RTEST D  Q
+ .N OMSG,OTMOUT,OCXM
+ .S OMSG="^25^^Order Checking is recompiling and momentarily disabled"
+ .S OCXM=0 F  S OCXM=$O(OUTMSG(OCXM)) Q:'OCXM  Q:(OUTMSG(OCXM)[OMSG)
+ .Q:OCXM
+ .S OUTMSG($O(OUTMSG(""),-1)+1)=OMSG
+ ;
+ N OCXSUB,OCXTEST,OCXDATA,OCXEL,OCXSEG0,OCXOLOG,OCXOSRC
+ ;
+ S (OCXTEST,OCXDATA)=""
+ S OCXOSRC="DGPM PATIENT MOVEMENT PROTOCOL"
+ ;
+ S OCXOLOG=$$LOG($G(DGPMDA),$G(DGPM0),$G(DGPMA),$G(DGPMP))
+ ;
+ D UPDATE^OCXOZ01(+$G(DFN),OCXOSRC,.OUTMSG)
+ ;
+ D FINISH^OCXOLOG(OCXOLOG)
+ ;
+ Q
+ ;
+RTEST() ;
+ N DATE,TMOUT
+ Q:'$L($T(^OCXOZ01)) 1
+ I '($P($G(^OCXD(861,1,0)),U,1)="SITE PREFERENCES") K ^OCXD(861,1) S ^OCXD(861,1,0)="SITE PREFERENCES"
+ S DATE=$P($G(^OCXD(861,1,0)),U,3)
+ I DATE,((+DATE)=(+$H)),(((+$P($H,",",2))-(+$P(DATE,",",2)))<1800) Q 1
+ Q 0
+ ;
+LOG(OCXD1,OCXD2,OCXD3,OCXD4) ;
+ ;
+ ;   Log Messages
+ ;
+ I $G(OCXTRACE),$$CDATA^OCXOZ01 D  Q 0
+ .W !,"  Raw Input Data "
+ .W !,"    DFN: ",$G(DFN)
+ .W !," DGPMDA: ",$G(DGPMDA)
+ .W !,"  DGPMA: ",$G(DGPMA)
+ .W !,"  DGPM0: ",$G(DGPM0)
+ .W !,"  DGPMP: ",$G(DGPMP)
+ .W !
+ ;
+ Q:'$L($T(LOG^OCXOZ01)) 0 Q:'$$LOG^OCXOZ01 0
+ N OCXNL
+ S OCXARY="OCXNL"
+ S OCXNL(1)="DGPMDA="_$G(OCXD1)
+ S OCXNL(2)="DGPM0="_$G(OCXD2)
+ S OCXNL(3)="DGPMA="_$G(OCXD3)
+ S OCXNL(4)="DGPMP="_$G(OCXD4)
+ Q $$NEW^OCXOLOG(OCXARY,"DGPM",+$G(DUZ),+$G(DFN))
+ ;
+ERROR Q
+ ;
+ ; **** Old Labels to insure backwards compatibility ****
+ ;
+PROC(OUTMSG) ;
+ D SILENT(.OUTMSG)
+ Q
+ ;
+EN D VERBOSE Q
+ ;
+NOW() N X,Y,%DT S X="N",%DT="T" D ^%DT Q +Y
+ ;

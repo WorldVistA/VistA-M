@@ -1,0 +1,45 @@
+PSGTAP0 ;BIR/CML3-SEND PICK LIST TO TRAVENOL'S ATC 212 ;18 APR 95 / 4:21 PM
+ ;;5.0; INPATIENT MEDICATIONS ;**119**;16 DEC 97
+ ;
+S1 ;
+ W $C(48) F Q=1:1:75 R *X:$S(Q<15:1,1:5) G:X=49 S1 I X=48 Q
+ E  S QUIT=1 Q
+ W A F Q=1:1:75 R *X:$S(Q<15:1,1:5) G:X=49 S1 I X=48 Q
+ S:'$T QUIT=1 Q
+ ;
+S2 ;
+ W $C(48) F Q=1:1:75 R X:$S(Q<15:1,1:5) G:$A(X)=49 S2 I $A(X)=48 Q
+ E  S QUIT=1 Q
+ W A F Q=1:1:75 R X:$S(Q<15:1,1:5) G:$A(X)=49 S2 I $A(X)=48 Q
+ S:'$T QUIT=1 Q
+ Q
+ ;
+ENQ ;
+ N ATCFF,DNUNIT
+ F  Q:$$LOCK^PSGPLUTL(PSGPLG,"PSGTAP")
+ F  L +^PS(53.55,PSGPLG):1 Q:$T
+ D NOW^%DTC S %=%_"0000000000000",DAT=$E(%,4,5)_$E(%,6,7)_$E(%,2,3)_$E(%,9,10)_$E(%,11,12) I PSGPLG<0 S QUIT=0 G QUIT
+ I PSGTAPR S ND=$P($G(^PS(53.55,PSGPLG,0)),"^",2) I ND,$O(^(1,0)) G RESTART
+ I $D(^PS(53.55,PSGPLG)) S DIK="^PS(53.55,",DA=PSGPLG D ^DIK
+ S (DINUM,X)=PSGPLG,DIC="^PS(53.55,",DIC(0)="L" K DD,DO D FILE^DICN I Y'>0 S QUIT=0 G QUIT
+ S ^PS(53.55,PSGPLG,1,0)="^53.56A",BLKS="                      ",G=PSGPLG,(DD,PSGORD,PSJJORD,ND,P,R,S,T,W,O,D)=""
+ S ATCFF=+$P($G(^PS(59.7,1,26)),"^",7)
+ F  S T=$O(^PS(53.5,"AC",G,T)) Q:T=""  F  S W=$O(^PS(53.5,"AC",G,T,W)) Q:W=""  F  S R=$O(^PS(53.5,"AC",G,T,W,R)) Q:R=""  F  S P=$O(^PS(53.5,"AC",G,T,W,R,P)) Q:P=""  D  ;
+ .S (DFN,PSGP)=+$P(P,"^",2) D PID^VADPT S PND=$S($D(^DPT(PSGP,0)):^(0),1:0),PL=$E($S($D(^(.1)):^(.1),1:"N/F")_BLKS,1,12),PN=$E($P(PND,"^")_BLKS,1,20),PID=$E(VA("PID")_BLKS,1,12),S="A"
+ .F  S S=$O(^PS(53.5,"AC",G,T,W,R,P,S)) Q:"Z"[S  F  S PSGORD=$O(^PS(53.5,"AC",G,T,W,R,P,S,PSGORD)) Q:PSGORD=""  S O=$P(PSGORD,"^",2) D
+ ..S ON=+$G(^PS(53.5,G,1,PSGP,1,O,0)) F  S DD=$O(^PS(53.5,"AC",G,T,W,R,P,S,PSGORD,DD)) Q:DD=""  S D=+$P(DD,"^",2),C=$G(^PS(53.5,G,1,PSGP,1,O,1,D,0)),D=$P(C,"^"),C=$S($P(C,"^",3)]"":+$P(C,"^",3),1:$P(C,"^",2)) I C>0,C?1.3N D  ;
+ ...S DN=$G(^PS(55,PSGP,5,ON,1,D,0))
+ ...S DNUNIT=$P(DN,"^",2) I DNUNIT#1,ATCFF,+DNUNIT S DNUNIT=(DNUNIT\1)+1
+ ...I DN,'(DNUNIT#1),$S('$P(DN,"^",3):1,1:DT<$P(DN,"^",3)) S A=$P($G(^PSDRUG(+DN,8.5)),"^",2) I A]"",$D(^(212,"AC",PSGPLWG)) D
+ ....S A=$E(A_BLKS,1,15) I C>99 F ND=ND+1:1 S ^PS(53.55,PSGPLG,1,ND,0)=PN_PID_PL_"BAT"_A_"1 ^099",C=C-99 Q:C<100
+ ....Q:C<1  S:$L(C)<3 C=$E("000",1,3-$L(C))_C S ND=ND+1,^PS(53.55,PSGPLG,1,ND,0)=PN_PID_PL_"BAT"_A_"1 ^"_C Q
+ S QUIT=$O(^PS(53.55,PSGPLG,1,0)) G:'QUIT QUIT S ^(0)="^53.56A^"_ND_"^"_ND,ND=0
+ ;
+RESTART ;
+ X ^%ZOSF("LABOFF") S QUIT=0
+ F  S ND=$O(^PS(53.55,PSGPLG,1,ND)) Q:'ND  S A=$G(^(ND,0)) I A]"" S A=$C(50)_$C(52)_$P(A,"^")_$C(53)_$C(54)_$P(A,"^",2)_DAT_$C(55)_$C(13) D S1:'PSGSPD,S2:PSGSPD Q:QUIT  S $P(^PS(53.55,PSGPLG,0),"^",2)=ND
+ ;
+QUIT ;
+ I 'QUIT S DIK="^PS(53.55,",DA=PSGPLG D ^DIK
+ L -^PS(53.55,PSGPLG)
+ D UNLOCK^PSGPLUTL(PSGPLG,"PSGTAP") D ^%ZISC Q

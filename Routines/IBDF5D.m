@@ -1,0 +1,34 @@
+IBDF5D ;ALB/CJM - ENCOUNTER FORM - (copy page) ;DEC 12, 1994
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+ ;
+COPYPAGE ;
+ N FROMFORM,PAGE,TOLINE,NODE,ROW,COL,BEGIN,END,QUIT,BLOCK
+ D FULL^VALM1
+ S VALMBCK="R"
+ S FROMFORM=$$SLCTFORM^IBDFU4("") Q:'FROMFORM
+ Q:'$$FORMSIZE^IBDFU1C(.FROMFORM)
+ I FROMFORM("PAGES")=1 D
+ .S BEGIN=0,END=FROMFORM("PAGE_HT")-1
+ E  D  Q:QUIT
+ .S QUIT=0
+ .K DIR S DIR(0)="N^1:"_FROMFORM("PAGES")_":0",DIR("A")="Copy Page Number",DIR("B")=1,DIR("?")="Which page do you want to copy?" D ^DIR K DIR I $D(DIRUT) S QUIT=1 Q
+ .S PAGE=Y I 'PAGE S QUIT=1 Q
+ .S BEGIN=((PAGE-1)*FROMFORM("PAGE_HT"))-1,END=(BEGIN+FROMFORM("PAGE_HT"))-1
+ K DIR S DIR(0)="N^1:"_IBFORM("HT")_":0",DIR("A")="Copy To Line Number",DIR("B")=($$CURY^IBDFU4)+1,DIR("?")="Begining at what line should the page be pasted?" D ^DIR K DIR I 'X!$D(DIRUT) S QUIT=1 Q
+ I 'Y S QUIT=1 Q
+ S TOLINE=Y-1
+ S BLOCK=0
+ F  S BLOCK=$O(^IBE(357.1,"C",FROMFORM,BLOCK)) Q:'BLOCK  S NODE=$G(^IBE(357.1,BLOCK,0)) Q:NODE=""  S ROW=$P(NODE,"^",4),COL=$P(NODE,"^",5) D
+ .N NEWBLOCK
+ .I '(ROW>END),'(ROW<BEGIN)  S NEWBLOCK=$$COPYBLK^IBDFU2(BLOCK,IBFORM,357.1,357.1,(ROW#FROMFORM("PAGE_HT"))+TOLINE,COL)
+ D IDXFORM^IBDF5A()
+ Q
+ ;
+COPY ;ask user whether to copy a block or a page
+ S VALMBCK="R"
+ K DIR S DIR(0)="SB^P:PAGE COPY;B:BLOCK COPY;",DIR("A")="Copy an entire page or a single block?",DIR("?")="You can copy either a single block or an entire page."
+ D ^DIR K DIR I $D(DIRUT) Q
+ D:Y="P" COPYPAGE
+ D:Y="B" COPYBLK^IBDF5C
+ K DIR
+ Q

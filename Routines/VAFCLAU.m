@@ -1,0 +1,69 @@
+VAFCLAU ;BHAM/DRI-LIST MANAGER ROUTINE FOR MPI/PD VAFC EXCPT LOCAL AUDIT IN PDR ;3/14/02
+ ;;5.3;Registration;**477**;Aug 13, 1993
+EN ;main entry point for VAFC EXCPT AUDIT LOCAL
+ D EN^VALM("VAFC EXCPT LOCAL AUDIT")
+ Q
+HDR ; header code
+ S VALMHDR(1)="MPI/PD PATIENT AUDIT DATA"
+ S VALMHDR(2)=""
+ Q
+INIT ;
+ K @VALMAR ;K ^TMP("VAFCLAU",$J)
+ I '$D(DFN) G EXIT
+ I '$D(^TMP("VAFCRAUD",$J)) G EXIT
+ S LIN=1,X=0,STR="",TXT=""
+ F  S X=$O(^TMP("VAFCRAUD",$J,X)) Q:'X  D
+ . S TXT=^TMP("VAFCRAUD",$J,X)
+ . I $E(TXT,1,12)'="Enter RETURN" D
+ .. S STR=$$SETSTR^VALM1(TXT,STR,2,78)
+ .. D ADDTMP
+ S VALMCNT=LIN-1
+ Q
+ADDTMP ;
+ S ^TMP("VAFCLAU",$J,LIN,0)=STR
+ S ^TMP("VAFCLAU",$J,"IDX",LIN,LIN)=""
+ S LIN=LIN+1,STR=""
+ Q
+RSEND ;Send remote AUDIT Query
+ S VALMBCK=""
+ D FULL^VALM1
+ D SEND^VAFCRAUD(ICN,VAFCBDT,VAFCEDT)
+ D PAUSE^VALM1
+ D INIT
+ S VALMBCK="R"
+ Q
+RCHK ;Check remote AUDIT Query
+ S VALMBCK=""
+ D FULL^VALM1
+ D CHKSTAT^VAFCRAUD(ICN)
+ D PAUSE^VALM1
+ D INIT
+ S VALMBCK="R"
+ Q
+RDISP ;Display remote AUDIT Query
+ S VALMBCK=""
+ D FULL^VALM1
+ W !!,"Display data returned from remote patient audit queries."
+ S TFL="",L="",Y="",STATUS=""
+ I '$D(^XTMP("VAFCRAUD"_ICN)) W !!,"No remote query sent for this patient. " G QRD
+ D GETTFL^VAFCRAUD(ICN,.TFL)
+ W !!,"-> For Patient ",$P($G(^DPT(DFN,0)),"^",1),!
+ I $D(TFL(0)) D
+ . S X=0 F  S X=$O(TFL(X)) Q:'X  I '$D(^XTMP("VAFCRAUD"_ICN,X)) K TFL(X)
+ D SELTF^VAFCRAUD
+ I '$D(TFARR) W !,"No remote query sent for this patient." G QRD
+ I ((Y="")!(Y="^")) G QRD
+ D PAUSE^VALM1
+ D EN^VAFCRAU(ICN)
+QRD D PAUSE^VALM1
+ D INIT
+ S VALMBCK="R"
+ Q
+HELP ;
+ S X="?" D DISP^XQORM1 W !!
+ Q
+EXIT ;
+ S VALMBCK=""
+ K ^TMP("VAFCLAU",$J),LIN,X,STR,TXT,Y,STATUS,TFL,TFARR,L
+ S VALMBCK="R"
+ Q

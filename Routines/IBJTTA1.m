@@ -1,0 +1,64 @@
+IBJTTA1 ;ALB/ARH - TPI AR ACCOUNT/CLAIM PROFILE BUILD ; 06-MAR-1995
+ ;;Version 2.0 ; INTEGRATED BILLING ;**39**; 21-MAR-94
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+BLD ;
+ N X,IBY,IBS,IBI,IBD0,IBDS,IBDU1,IBCNT,IBLN,IBAR
+ S IBD0=$G(^DGCR(399,+IBIFN,0)),IBDS=$G(^DGCR(399,+IBIFN,"S")),IBDU1=$G(^DGCR(399,+IBIFN,"U1"))
+ S IBAR=$$BILL^RCJIBFN2(IBIFN)
+ ;
+ S VALMCNT=0,IBCNT=0,X=""
+ ;
+ ; original bill
+ ;
+ S IBS=$P(IBD0,U,13),(IBI,IBY)="" D
+ . I IBS=1 S IBI="ENTERED",IBY=$P(IBDS,U,1) Q
+ . I IBS=2 S IBI="REVIEWED",IBY=$P(IBDS,U,4) S:$P(IBDS,U,7)>IBY IBI="REVIEWED (2nd)",IBY=$P(IBDS,U,7) Q
+ . I IBS=3 S IBI="AUTHORIZED",IBY=$P(IBDS,U,10) Q
+ . I IBS=4 S IBI="PRINTED (First)",IBY=$P(IBDS,U,12) S:$P(IBDS,U,14)>IBY IBI="PRINTED (Last)",IBY=$P(IBDS,U,14) Q
+ . I IBS=5 S IBI="TRANSMITTED",IBY="" Q
+ . I IBS=7 S IBI="CANCELLED",IBY=$P(IBDS,U,17) Q
+ . I IBS=0 S IBI="CLOSED",IBY="" Q
+ S IBY=$$DATE(IBY),X=$$SETFLD^VALM1(IBY,X,"DATE")
+ S IBY="IB Status: "_IBI,X=$$SETFLD^VALM1(IBY,X,"TRTY")
+ ;
+ S IBY=+IBDU1-$P(IBDU1,U,2),IBY=$J(IBY,11,2),X=$$SETFLD^VALM1(IBY,X,"TAMT")
+ S IBY=$P(IBAR,U,1),IBY=$J(IBY,11,2),X=$$SETFLD^VALM1(IBY,X,"CAMT")
+ D SET(X)
+ ;
+ ; AR profile of transactions
+ ;
+ D TRN^RCJIBFN2(IBIFN)
+ I $D(^TMP("RCJIB",$J)) S IBI=0 F  S IBI=$O(^TMP("RCJIB",$J,IBI)) Q:'IBI  D
+ . S IBLN=^TMP("RCJIB",$J,IBI)
+ . S IBY=IBCNT+1,X=$$SETFLD^VALM1(IBY,X,"NUMBER")
+ . S IBY=$P(IBLN,U,1),X=$$SETFLD^VALM1(IBY,X,"TRNUM")
+ . S IBY=$$DATE(+$P(IBLN,U,2)),X=$$SETFLD^VALM1(IBY,X,"DATE")
+ . S IBY=$P($$STNO^RCJIBFN2(+$P(IBLN,U,3)),U,1),X=$$SETFLD^VALM1(IBY,X,"TRTY")
+ . S IBY=$J($P(IBLN,U,4),11,2),X=$$SETFLD^VALM1(IBY,X,"TAMT")
+ . S IBY=$J($P(IBLN,U,5),11,2),X=$$SETFLD^VALM1(IBY,X,"CAMT")
+ . D SET(X,+IBI)
+ ;
+ D SET("") D SET("")
+ S X="   Total Collected:   "_$J(+$P(IBAR,U,4),10,2) D SET(X)
+ I +$P(IBAR,U,5) S X="   Percent Collected: "_$J($P(IBAR,U,5),10,2)_"%" D SET(X)
+ ;
+ ; reason cancelled
+ I +$P(IBDS,U,18) K IBY D RCANC^IBJTU2(IBIFN,.IBY,47) I +IBY D
+ . S X="   Reason Cancelled by ("_$P(IBY,U,3)_"): ",X=X_$J(" ",(32-$L(X)))
+ . S IBI=0 F  S IBI=$O(IBY(IBI)) Q:'IBI  S X=X_IBY(IBI) D SET(X) S X=$J(" ",32)
+ ;
+ K ^TMP("RCJIB",$J) I '$D(^TMP("IBJTTAX",$J)) K ^TMP("IBJTTA",$J,"IDX")
+ Q
+ ;
+DATE(X) ; date in external format
+ N Y S Y="" I $G(X)?7N.E S Y=$E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3)
+ Q Y
+ ;
+SET(X,TRNS) ; set up list manager screen array
+ S VALMCNT=VALMCNT+1 N CNT
+ S:+$G(TRNS) IBCNT=IBCNT+1 S CNT=$S(+IBCNT:IBCNT,1:1)
+ S ^TMP("IBJTTA",$J,VALMCNT,0)=X
+ S ^TMP("IBJTTA",$J,"IDX",VALMCNT,+CNT)=""
+ S:$G(TRNS) ^TMP("IBJTTAX",$J,CNT)=VALMCNT_U_IBIFN_U_$G(TRNS)
+ Q

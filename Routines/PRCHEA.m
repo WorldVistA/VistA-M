@@ -1,0 +1,83 @@
+PRCHEA ;WOIFO/ID/RSD,SF-ISC/TKW-EDIT ROUTINES FOR SUPPLY SYSTEM ;3/5/98  11:05 AM
+V ;;5.1;IFCAP;**81**;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+EN3 ;ADD A REQUISITION
+ ;
+ ;Variables PRCHNRQ and PRCHZZZ9 are flags stating that this is a
+ ;REQUESITION.
+ ;
+ N PRCHP,PRCHZZZ9
+ D ST
+EN30 S (PRCHNRQ,PRCHZZZ9)=1,PRCHP("A")="REQUISITION NUMBER",PRCHP("T")=8,PRCHP("S")=1 D EN^PRCHPAT I '$D(PRCHPO) K PRCHNRQ Q
+ D LCK1 G:'$D(DA) EN30 S X=1,DA=PRCHPO D ENS^PRCHSTAT
+ S Z=$P(^PRC(442,PRCHPO,0),"-",2),$P(^PRC(442,PRCHPO,18),"^",3)=$S($E(Z):$E(Z,2,6),1:$E(Z)_$E(Z,3,6))
+ D ^PRCHNPO L
+ G EN30
+ ;
+EN4 ;EDIT A REQUISITION
+ ;
+ ;Variables PRCHNREQ and PRCHZZZ9 are flags stating that this is a
+ ;REQUESITION.
+ ;
+ N PRCHP,PRCHZZZ9
+ D ST
+EN40 S (PRCHNRQ,PRCHZZZ9)=1,PRCHP("A")="REQUISTION NUMBER: "
+ S PRCHP("S")="$P($G(^(7)),U,2)<9,($P(^(0),U,2)=5!($P(^(0),U,2)=8)!($P(^(0),U,2)=25)!($P(^(0),U,2)=26))"
+ S:$G(PRCHPC) PRCHP("S")="$P($G(^(7)),U,2)<9,$P($G(^(1)),U,10)=DUZ,$P(^(0),U,2)=25"
+ D EN3^PRCHPAT I '$D(PRCHPO) K PRCHNRQ Q
+ I 'X W " ??",$C(7) G EN40
+ D LCK1 G:'$D(DA) EN40 D ^PRCHNPO L
+ G EN40
+ ;
+EN5 ;EDIT BOC IN ITEM FILE
+ S DIC="^PRC(441,",DIC(0)="AEMQ",DR=12 D ^DIC G:Y<0 Q S DA=+Y W ! F I=0:0 S I=$O(^PRC(441,DA,1,I)) Q:'I  W !?3,^(I,0)
+ W ! S DIE=DIC D ^DIE,Q W !
+ G EN5
+ ;
+EN6 ;AMENDMENTS
+ N PRCHP S PRCHFLG=0 D ST
+EN60 K PRCHP Q:'$D(PRC("SITE"))  S PRCHP("S")="$P($G(^(7)),U,2)>19,(453328'[$P($G(^(7)),U,2)),($P(^(0),U,2)"
+ S:'$D(PRCHNRQ) PRCHP("S")=PRCHP("S")_"<8)" S:$D(PRCHNRQ) PRCHP("A")="REQUISITION NO.: ",PRCHP("S")=PRCHP("S")_"=8"
+ S PRCHFLG=1 D EN3^PRCHPAT Q:'$D(PRCHPO)
+ ;I X=28!(X=33) W $C(7),!,"Amendments not allowed until after order has been Obligated!!" G EN60
+ I 'X W $C(7)," ??" G EN60
+ D ^PRCHAM
+ G EN60
+ ;
+EN7 ;CANCEL UNOBLIGATED PO
+ N PRCHP D ST
+EN70 Q:'$D(PRC("SITE"))  S PRCHP("S")="$P($G(^(7)),U,2)<9,($P(^(0),U,2)"
+ S:'$D(PRCHNRQ) PRCHP("S")=PRCHP("S")_"<8!($P(^(0),U,2)>24))"
+ S:$D(PRCHNRQ) PRCHP("A")="REQUISITION NO.: ",PRCHP("S")=PRCHP("S")_"=8)" S:$D(PRCHIMP) PRCHP("A")="IMPREST FUND P.O.NO.: ",PRCHP("S")="($P($G(^(7)),U,2)<9!($P($G(^(7)),U,2)=22))&($P(^(0),U,2)=7)"
+ D EN3^PRCHPAT Q:'$D(PRCHPO)  I 'X W $C(7)," ??" G EN70
+ I $P(^PRC(442,PRCHPO,0),U,12) W $C(7),!!,"WARNING--2237 HAS NOT BEEN REMOVED FROM THIS ORDER!!" G EN70
+ D LCK1 G:'$D(DA) EN70 S %A="     SURE YOU WANT TO CANCEL PURCHASE ORDER ",%B="",%="" D ^PRCFYN I %'=1 W ?40," <NOTHING CANCELLED>",$C(7) G EN70
+ S X=$O(^PRCD(442.3,"C",45,0)),$P(^PRC(442,PRCHPO,0),U,15,16)="0^0" K ^(9) S (X,Y)=45,DA=PRCHPO D UPD^PRCHSTAT
+ ; PRC*5.1*81 - if site runs DynaMed, may need to build update txn
+ I $$GET^XPAR("SYS","PRCV COTS INVENTORY",1,"Q")=1 D DEL^PRCV442A(PRCHPO)
+ G EN70
+ ;
+EN8 ;GRAB A PO NUMBER
+ D ST
+EN80 Q:'$D(PRC("SITE"))  K PRCHX W !!,"How many Purchase Order numbers do you want: " R X:DTIME Q:X["^"  I X'=+X!(X<1)!(X>5)!'(X?1N) W " ??",$C(7),!,"Enter a number between 1 and 5." G EN80
+ S PRCHX=X,DIC="^PRC(442.6,",DIC(0)="QEAMZ",DIC("S")="I +$P(^(0),U,1)=PRC(""SITE""),($P(^(0),U,5)=2!($P(^(0),U,5)="""")!($P(^(0),U,5)=6)!($P(^(0),U,5)=7))",D="C" D IX^DIC I Y<0 K DIC Q
+ S DA=+Y D LCK K DIC G:'$D(DA) EN80 D WAIT^DICD S PRCHY=Y,PRCHY(0)=Y(0) F PRCHI=1:1:PRCHX D EN81
+ L  W !,"Here is your Purchase Order Numbers: " F I=0:0 S I=$O(PRCHX(I)) Q:'I  W !?37,PRCHX(I)
+ R !!,"Press RETURN to continue",X:DTIME K DIC,DA,PRCHX,PRCHY,Z Q
+EN81 S X=$P(PRCHY,U,2),Z=$S(+$P(PRCHY(0),U,4)<$P(PRCHY(0),U,2):+$P(PRCHY(0),U,2),1:+$P(PRCHY(0),U,4)),L=$L(X)#2-3
+EN82 I Z>$P(PRCHY(0),U,3) L  W !?3,"UPPER BOUND HAS BEEN EXCEEDED FOR COMMON NUMBERING SERIES ",$P(PRCHY,U,2),$C(7) S PRCHI=PRCHX+1 Q
+ S Z="000"_Z,Z=$E(Z,$L(Z)+L,$L(Z)),X=X_Z I $D(^PRC(442,"B",X)) S Z=Z+1,X=$P(PRCHY,U,2) G EN82
+ S $P(^PRC(442.6,+PRCHY,0),U,4)=+Z,DIC(0)="L",DIC="^PRC(442,",DLAYGO=442 D ^DIC L ^PRC(442.6,+PRCHY):5 G EN82:Y<0!'(+$P(Y,U,3)) E  S PRCHI=PRCHX+1 Q
+ S PRCHX(PRCHI)=$P(Y,U,2) D NOW^%DTC S $P(^PRC(442,+Y,12),U,4,5)=DUZ_U_X S DA=+Y,(X,Y)=1 D UPD^PRCHSTAT
+ Q
+ ;
+Q K DIC,DIE,DR,DA,PRCHREAV,PRCHX,PRCHY L  W !
+ Q
+ ;
+LCK1 S DIC="^PRC(442,"
+ ;
+LCK L @(DIC_DA_"):0") E  W !,$C(7),"ANOTHER USER IS EDITING THIS ENTRY!" K DA
+ Q
+ ;
+ST S PRCF("X")="S" D ^PRCFSITE
+ Q

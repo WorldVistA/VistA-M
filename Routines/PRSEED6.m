@@ -1,0 +1,94 @@
+PRSEED6 ;HISC/MD-ENTER/EDIT-CLASS REGISTRATION ;12/14/1999
+ ;;4.0;PAID;**5,18,44,53**;Sep 21, 1995
+EN1 ; ENTRY FROM PRSE-CLS-REG
+ S X=$G(^PRSE(452.7,1,"OFF")) I X=""!(X=1) D MSG6^PRSEMSG Q
+ K ^TMP("PRSE",$J) S (NOUT,NSW)=0 D EN2^PRSEUTL3($G(DUZ)) I PRSESER="",'(DUZ(0)="@") D MSG3^PRSEMSG G QQ
+SEL S DIR(0)="SO^R:Class Registration Calendar Report;S:Student Registration",DIR("A")="Choose a Selection from the above choices" D ^DIR K DIR G:$D(DTOUT)!($D(DUOUT))!(U[X)!(Y="") QQ
+ I Y="R" S:$G(PRSESLF) SSLF=1 W ! D EN1^PRSECAL,QQ G EN1^PRSEED5:$G(SSLF),EN1
+ E  S REGSW=1 D INS^PRSEUTL G:$D(DTOUT)!($D(DUOUT))!(U[X)!(Y="") QQ
+CLAS ; SELECT CLASS IN 452.8 FILE
+ W ! S PRSETYP=PRSESEL,PRSE=0,DIC=452.1,DIC(0)="AEQMZ",DIC("A")="CLASS NAME: ",DIC("S")="I +$$DICS^PRSEUTL(.PRSE)"
+ S DIC("W")="W ?($X+5),$P($G(^PRSP(454.1,+$P(^(0),U,8),0)),U)"
+ D ^DIC K DIC G:X="" EN1 I $D(DTOUT)!($D(DUOUT))!(X=U)!'(Y>0) S POUT=1 G QQ
+ ;
+ S PRSEPROG=Y(0,0),PRSEPROG(1)=Y(0),PRSEMI=+Y,X=$P(Y,U,2),DIC="^PRSE(452.8,",DIC(0)="",DIC("S")="I $P(^(0),U)=PRSEMI" D ^DIC K DIC I $D(DTOUT)!($D(DUOUT)) S POUT=1 G QQ
+ ;
+ W ! D NOW^%DTC S PRSEDT("NOW")=%,PRSEY=^PRSE(452.8,+Y,0),PRSETYP=$P(^PRSE(452.8,+Y,0),U,5),(PRX,DA(2),PRSEDA)=+Y,Y=$$EN4^PRSEUTL2($G(PRX))
+ S Z=$O(^PRSE(452.8,+PRX,3,"C",0)) I '((9999999-Z)<PRSEDT("NOW")) S DIC("B")=PRSEDT
+ I PRSEDT=0 D MSG20^PRSEMSG G CLAS
+ D NOW^%DTC S PRSEDT("NOW")=%
+ S DA(1)=PRSEDA,DIC(0)="AEMQZ",DIC="^PRSE(452.8,DA(1),3,",DIC("A")="Select DATE: ",DIC("S")="N Z S Z=+$G(^(0)) S:'$P(Z,""."",2) $P(Z,""."",2)=$P(PRSEDT(""NOW""),""."",2) I '(+Z<PRSEDT(""NOW""))"
+ S DIC("W")="W:$P(^(0),U,5)=0 ?($X+1),""* REGISTRATION UNAVAILABLE *"""
+ D ^DIC K DIC I $D(DTOUT)!($D(DUOUT))!(U[X) S POUT=1 G QQ
+ I $D(^PRSE(452.8,DA(2),3,+Y,0)),$P(^(0),U,5)=0 D MSG4^PRSEMSG G CLAS
+ ;
+ S PRSEGLO=$P($G(^PRSE(452.8,0)),U)
+ S PRSEDA(2)=PRSEDA,PRSEDA(1)=+Y I '$D(^PRSE(452.8,PRSEDA(2),3,PRSEDA(1),1,0)) S ^(0)="^452.8894P^^"
+ S PRSEDAT=$P($G(^PRSE(452.8,PRSEDA(2),3,PRSEDA(1),0)),U)
+ L +^PRSE(452.8,PRSEDA(2),3,PRSEDA(1),0):0 I '$T D MSG^PRSEMSG G CLAS
+ ; register/unregister students
+ K POUT F  D STUD Q:X="^"!$G(POUT)
+ L -^PRSE(452.8,PRSEDA(2),3,PRSEDA(1),0)
+ G QQ:$G(POUT)
+ G CLAS
+ ;
+STUD ; STUDENT REGISTRATION
+ N VA200 ; ien to file 200 ^ name
+ S DA(2)=PRSEDA,DA(1)=PRSEDA(1)
+ D EN2^PRSEUTL3($G(DUZ)) ; determine user service
+ S DATA=$P($G(^PRSE(452.8,DA(2),3,DA(1),0)),U,5)
+ S DATA(1)=$P($G(^PRSE(452.8,DA(2),3,DA(1),1,0)),U,4)
+ ;
+ I $D(PRSESLF) D  S X="^" Q
+ . S PRS("SAV")=+$G(PRSESER)
+ . S:$G(PRSESER) PRSESER=$P($G(^PRSP(454.1,+PRSESER,0)),U)
+ . S PRSEEMP=+DUZ
+ . D ADD
+ . S PRSESER=+$G(PRS("SAV"))
+ . S REGSW=1
+ ;
+ W !!,"Enter STUDENT NAME: " R X:DTIME I (U[X)!(X[U) S X="^" Q
+ S PRSESAVX=X
+ ; if ? then list registered students
+ I PRSESAVX["?" S D="B",DIC="^PRSE(452.8,DA(2),3,DA(1),1,",DIC(0)="EMZ" D DQ^DICQ K DIC S X=PRSESAVX
+ ; perform lookup with X in NEW PERSON file
+ S DIC=200,DIC(0)="EMZ"
+ S DIC("W")="W ?($X+3),$P($G(^PRSP(454.1,+$$EN3^PRSEUTL3(+$G(Y)),0)),U)"
+ D ^DIC K DIC Q:X=U
+ Q:PRSESAVX["?"  ; ? was entered so there is no student to process
+ S VA200=Y
+ ;
+ ; if lookup failed
+ I +VA200'>0 D  I +VA200'>0 Q
+ . W !,"A NEW PERSON record has not been identified for student ",X,!
+ . ; if laygo allowed then support addition to NEW PERSON
+ . I $P($G(^PRSE(452.7,1,0)),U,3)>0,($G(DUZ(0))["@")!(+$$EN4^PRSEUTL3($G(DUZ))) D  Q
+ . . S DIR(0)="Y",DIR("B")="YES"
+ . . S DIR("A")="Do you want to add a non VA employee to the NEW PERSON (#200) file"
+ . . D ^DIR K DIR S:$D(DTOUT)!$D(DUOUT) POUT=1 Q:$D(DIRUT)!'Y
+ . . S VA200=$$ADD^XUSERNEW("9R")
+ . ; laygo not allowed
+ . D MSG15^PRSEMSG
+ ;
+ S PRSESER=$$EN3^PRSEUTL3(+VA200)
+ S PRSESSN=$$GET1^DIQ(200,+VA200,9)
+ I PRSESSN="" W !,$C(7),"NO SSN IN NEW PERSON FILE-CANNOT CONTINUE" W ! Q
+ S DA=$P(^PRSE(452.8,DA(2),3,DA(1),1,0),U,3)+1
+ S (PRDA,PRSEEMP)=+VA200
+ S PRSENAM=$P(VA200,U,2)
+ S PRSESER=$P($G(^PRSP(454.1,+$$EN3^PRSEUTL3($G(PRDA)),0)),U)
+ D ADD
+ Q
+ ;
+ADD ; PREVIOUS ATTENDANCE CHK
+ I +DATA>0,DATA(1)'<DATA,'$D(^PRSE(452.8,DA(2),3,DA(1),1,"B",+PRSEEMP)) D MSG17^PRSEMSG Q
+ N X S DA=($P(^PRSE(452.8,DA(2),3,DA(1),1,0),U,3)+1) I $D(^PRSE(452,"AA",PRSETYP,PRSEEMP,PRSEPROG,(9999999-PRSEDAT))) S Y=PRSEDAT D DD^%DT S PRSEDAT=Y,PRSECLS=PRSEPROG D MSG18^PRSEMSG Q
+ I '$D(^PRSE(452.8,DA(2),3,DA(1),1,"B",+PRSEEMP)) D
+ADD1 .S:PRSESER="" PRSESER="NON-EMPLOYEE" W !!,"Do you want to register "_PRSENAM_" - "_PRSESER_" for",!,PRSEPROG S %=1 D YN^DICN I %=0 W $C(7),!!,"Answer YES or NO." G ADD1
+ .I '(%=1)&'(%=2) S POUT=1 Q
+ .Q
+ I '$G(POUT),$D(^PRSE(452.8,DA(2),3,DA(1),1,"B",+PRSEEMP)) S DA=$O(^(+PRSEEMP,0)) D MSG7^PRSEMSG,DEL^PRSEED3
+ Q:$G(%)=2  I $G(%)=1 K DD,DO S DIC="^PRSE(452.8,DA(2),3,DA(1),1,",DIC("DR")="1////"_PRSESER_";3////"_PRSESSN_";4////^S X=""E""",DIC(0)="L",X=+PRSEEMP,DLAYGO=452.8894 D FILE^DICN
+ Q
+QQ D ^PRSEKILL
+ Q

@@ -1,0 +1,27 @@
+PRCSED1 ;SF-ISC/LJP/DXH - CONTROL POINT ACTIVITY EDITS CON'T ;7.26.99
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ENT ;ADJUST SUB-CONTROL POINT AMOUNTS FOR NON-CEILING TRANSACTIONS 
+ D EN3F^PRCSUT(1) G W2^PRCSED:'$D(PRC("SITE")),EXIT^PRCSED:Y<0
+ S DIC="^PRCS(410,",DIE=DIC,DIC(0)="AEQM",DIC("S")="I $D(^(3)),+^(3)=+PRC(""CP""),$P(^(0),U,5)=PRC(""SITE""),$P(^(0),U,2)'=""C"" I $D(^PRC(420,""A"",DUZ,PRC(""SITE""),+PRC(""CP""),1))!($D(^(2)))"
+ASK S DIC("A")="Select TRANSACTION NUMBER: " D ^PRCSDIC G EXIT^PRCSED:Y<0 K DIC("S"),DIC("A") S DA=+Y L +^PRCS(410,DA):15 G ASK:$T=0
+ S DR="[PRCSENE]",DIE=DIC D ^DIE L -^PRCS(410,DA) W ! G ENT
+ENA ;CREATE 1358 ADJUSTMENT
+ D ENF^PRCSUT(1) S X(1)=X,X(2)=Z
+ G W2^PRCSED:'$D(PRC("SITE")) G EXIT^PRCSED:'$D(PRC("QTR"))!(Y<0)
+ENA1 S DIC=410,DIC("A")="Select OBLIGATION NUMBER: ",DIC(0)="AEQZ",D="D",DIC("S")="I $P(^(0),U,2)=""O"",$P(^(0),U,4)=1,PRC(""SITE"")=+^(0),+PRC(""CP"")=+$P($P(^(0),U),""-"",4)" D IX^DIC
+ K DIC("A"),DIC("S") I $D(DTOUT)!$D(DUOUT) G EXIT^PRCSED
+ I Y<0 W $C(7),!!,"Obligation number is required." G ENA1
+ S Y410=+Y,PRCSOBN=$S($D(^PRCS(410,+Y,10)):$P(^(10),U,3),1:"") W:$D(^PRC(442,+PRCSOBN,8)) !," Fiscal's 1358 Balance:  $ ",$J($P(^(8),U,2),9,2),! K PRCSOBN
+ S X=X(1),Z=X(2)
+ S (DIC,DLAYGO)=410.1 D EN1^PRCSUT3 Q:'X  S X1=X D EN2^PRCSUT3 Q:'$D(X1)  S X=X1 D W^PRCSED L +^PRCS(410,DA):15 G ENA:$T=0 I $D(^PRC(420,PRC("SITE"),1,+PRC("CP"),0)) S:$P(^(0),U,11)="Y" PRCS2=1
+ S DIC(0)="AEMQ",DIE=DIC,DR="3///1"_$S($D(PRCSIP):";4////"_PRCSIP,1:""),X4=1 D ^DIE
+ S $P(^PRCS(410,DA,0),U,2)="A",$P(^(0),U,4)=1
+ S $P(^PRCS(410,DA,4),U,5)=$P(^PRCS(410,+Y410,4),U,5),^PRCS(410,"D",X,DA)=""
+ D OBL^PRCSES2
+ENA2 S DIC(0)="AEMQ",DIE="^PRCS(410,",DR="[PRCSEN1358A]" D ^DIE
+ I $D(^PRC(420,PRC("SITE"),1,+PRC("CP"),0)),$P(^(0),U,12)>0 G ENA3
+ I $D(^PRCS(410,DA,4)) S X=$P(^(4),U,6),X2=^(3),X1=$P(X2,U,7)+$P(X2,U,9) I $J(X,0,2)'=$J(X1,0,2)!('X)!('X1) W $C(7),!,"Adjustment $ Amount does not equal the BOC $ Amount.",!,"Please correct the error.",! G ENA2
+ENA3 D:$O(^PRCS(410,DA,12,0)) SCPC0^PRCSED D W1^PRCSEB I $D(PRCS2),+^PRCS(410,DA,0) D W6^PRCSEB
+ L -^PRCS(410,DA) D W3^PRCSED G EXIT^PRCSED:%'=1 W !! K PRCS2 G ENA
+ Q

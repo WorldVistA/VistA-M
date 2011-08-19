@@ -1,0 +1,62 @@
+SRONPEN ;B'HAM ISC/ADM - NON-O.R. PROCEDURE REPORT ; [ 07/26/04  9:50 AM ]
+ ;;3.0; Surgery ;**132**;24 Jun 93
+ I '$D(SRSITE) D ^SROVAR G:'$D(SRSITE) END S SRSITE("KILL")=1
+ S SRSOUT=0 I '$D(SRTN) D NON G:'$D(SRTN) END S SRTN("KILL")=1
+ I $P($G(^SRF(SRTN,"NON")),"^")'="Y" W !!,?5,"The case selected is not a Non-OR Procedure.",! D FOOT G END
+ N SRAGE,SRDIV,SRHDR,SRLOC,SRPRINT,SRSEL,SRSINED,SRDTITL
+ S SRDTITL="Procedure Report"
+DISPLY K %ZIS,IO("Q") S %ZIS="Q" D ^%ZIS I POP G END
+ I $D(IO("Q")) K IO("Q") S ZTDESC="Procedure Report",ZTRTN="EN^SRONPEN",(ZTSAVE("SRSITE("),ZTSAVE("SRTN"))="" D ^%ZTLOAD G END
+EN D OPTOP^SRONP2(SRTN) S DFN=$P(^SRF(SRTN,0),"^"),VAINDT=$P(^SRF(SRTN,0),"^",9)
+ S Y=$E(VAINDT,1,7) D D^DIQ S SRSDATE=Y D OERR^VADPT
+ S SRHDR=" "_VADM(1)_" ("_VA("PID")_")   Case #"_SRTN_" - "_SRSDATE
+ S Y=$E($$NOW^XLFDT,1,12) D DD^%DT S SRPRINT="Printed: "_Y
+ S SRLOC=" Pt Loc: "_$P(VAIN(4),"^",2)_"  "_VAIN(5)
+ S SRAGE="",Z=$P(VADM(3),"^") I Z S X=$E($P(^SRF(SRTN,0),"^",9),1,12),Y=$E(X,1,7),SRAGE=$E(Y,1,3)-$E(Z,1,3)-($E(Y,4,7)<$E(Z,4,7))
+ S SRDIV=$$SITE^SROUTL0(SRTN) I SRDIV S X=$P(^SRO(133,SRDIV,0),"^"),SRDIV=$$EXTERNAL^DILFD(133,.01,"",X)
+ S SRDIV=$S(SRDIV'="":SRDIV,1:SRSITE("SITE"))
+ U IO S (SRPAGE,SRSOUT)=0,$P(SRLINE,"-",80)="" D HDR
+ S SRI=0 F  S SRI=$O(^TMP("SRNOR",$J,SRTN,SRI)) Q:'SRI  D  Q:SRSOUT
+ .I $E(IOST)="P",$Y+11>IOSL D FOOT Q:SRSOUT  D HDR
+ .I $E(IOST)'="P",$Y+3>IOSL D FOOT Q:SRSOUT  D HDR
+ .W !,^TMP("SRNOR",$J,SRTN,SRI)
+ D:'SRSOUT FOOT D END
+ Q
+SRHDR S DFN=$P(^SRF(SRTN,0),"^") D DEM^VADPT
+ S Y=$E($P(^SRF(SRTN,0),"^",9),1,7) D D^DIQ S SRSDATE=Y
+ S SRHDR=" "_VADM(1)_" ("_VA("PID")_")  Case #"_SRTN_" - "_SRSDATE
+ Q
+END K ^TMP("SRNOR",$J)
+ W @IOF I $D(ZTQUEUED) Q:$G(ZTSTOP)  S ZTREQ="@" Q
+ D ^SRSKILL K VAIN,VAINDT I $D(SRSITE("KILL")) K SRSITE
+ I $D(SRTN("KILL")) K SRTN
+ D ^%ZISC
+ Q
+NON ; select patient and case
+ K DIC S DIC("A")="Select Patient: ",DIC=2,DIC(0)="QEAMZ" D ^DIC I Y<0 S SRSOUT=1 G END
+ S DFN=+Y D DEM^VADPT S SRNM=VADM(1)
+ W @IOF,!,"Non-O.R. Procedures for "_SRNM_" ("_VA("PID")_")" I $D(^DPT(DFN,.35)) S Y=$P(^(.35),"^") I Y D D^DIQ S Y=$P(Y,"@")_" "_$P(Y,"@",2) W !,"  (DIED ON "_Y_")"
+ W !! S (SRDT,CNT)=0 F  S SRDT=$O(^SRF("ADT",DFN,SRDT)) Q:'SRDT!$D(SRTN)  S SROP=0 F  S SROP=$O(^SRF("ADT",DFN,SRDT,SROP)) Q:'SROP!$D(SRTN)  I $P($G(^SRF(SROP,"NON")),"^")="Y" D LIST
+SEL W !!!,"Select Procedure: " R X:DTIME I '$T!("^"[X) G END
+ I '$D(SRCASE(X)) W !!,"Enter the number corresponding to the procedure for which you want to print",!,"a report." G SEL
+ S SRTN=+SRCASE(X)
+ Q
+LIST ; list case
+ I $Y+5>IOSL S SRBACK=0 D SEL^SROPER Q:$D(SRTN)!(SRSOUT)  W @IOF,!,?1,"NON-O.R. PROCEDURES FOR "_VADM(1)_" ("_VA("PID")_")",! I SRBACK S CNT=0,SROP=SRCASE(1)-1,SRDT=$P(SRCASE(1),"^",2)
+ S CNT=CNT+1,SRSDATE=$P(^SRF(SROP,0),"^",9),SROPER=$P(^SRF(SROP,"OP"),"^"),SRCASE(CNT)=SROP
+ K SROPS,MM,MMM S:$L(SROPER)<55 SROPS(1)=SROPER I $L(SROPER)>54 S SROPER=SROPER_"  " F M=1:1 D LOOP Q:MMM=""
+ S Y=SRSDATE D D^DIQ S SRSDATE=$P(Y,"@")_" "_$P(Y,"@",2)
+ W !,CNT_".",?4,SRSDATE,?20,SROPS(1) I $D(SROPS(2)) W !,?20,SROPS(2) I $D(SROPS(3)) W !,?20,SROPS(3) I $D(SROPS(4)) W !,?20,SROPS(4)
+ W !
+ Q
+LOOP ; break procedure if greater than 55 characters
+ S SROPS(M)="" F LOOP=1:1 S MM=$P(SROPER," "),MMM=$P(SROPER," ",2,200) Q:MMM=""  Q:$L(SROPS(M))+$L(MM)'<55  S SROPS(M)=SROPS(M)_MM_" ",SROPER=MMM
+ Q
+FOOT I $E(IOST)'="P" W ! K DIR S DIR(0)="E" D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) S SRSOUT=1
+ Q
+HDR ; heading
+ I $D(ZTQUEUED) D ^SROSTOP I SRHALT S SRSOUT=1 Q
+ S SRPAGE=SRPAGE+1 I $Y'=0 W @IOF
+ W !,VADM(1)_" ("_VA("PID"),")  Age: "_SRAGE,?(79-$L("PAGE "_SRPAGE)),"PAGE "_SRPAGE
+ W !,"NON-O.R. PROCEDURE - CASE #"_SRTN,?52,SRPRINT,!,SRLINE,!
+ Q

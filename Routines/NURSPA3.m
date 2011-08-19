@@ -1,0 +1,52 @@
+NURSPA3 ; GENERATED FROM 'NURS-P-STF' PRINT TEMPLATE (#574) ; 04/03/98 ; (continued)
+ G BEGIN
+N W !
+T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
+ S DISTP=DISTP+1,DILCT=DILCT+1 D:'(DISTP#100) CSTP^DIO2
+ Q
+DT I $G(DUZ("LANG"))>1,Y W $$OUT^DIALOGU(Y,"DD") Q
+ I Y W $P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC",U,$E(Y,4,5))_" " W:Y#100 $J(Y#100\1,2)_"," W Y\10000+1700 W:Y#1 "  "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12) Q
+ W Y Q
+M D @DIXX
+ Q
+BEGIN ;
+ S:'$D(DN) DN=1 S DISTP=$G(DISTP),DILCT=$G(DILCT)
+ S X=$G(^NURSF(210,D0,20,D1,0)) D N:$X>34 Q:'DN  W ?34,$E($P(X,U,4),1,30)
+ D N:$X>14 Q:'DN  W ?14 W "TYPE OF EXPERIENCE: "
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,1),1,30)
+ D N:$X>18 Q:'DN  W ?18 W "TITLE/POSITION: "
+ D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,2) S Y=$S(Y="":Y,$D(^NURSF(211.3,Y,0))#2:$P(^(0),U,1),1:Y) W $E(Y,1,10)
+ D N:$X>0 Q:'DN  W ?0 W "DATE PREVIOUS ASSIGNMENT STARTED: "
+ D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,5) D DT
+ D N:$X>2 Q:'DN  W ?2 W "DATE PREVIOUS ASSIGNMENT ENDED: "
+ D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,6) D DT
+ Q
+I1R ;
+ W ?47 W !,NURSX K DIP K:DN Y
+ D N:$X>27 Q:'DN  W ?27 W "MILITARY EXPERIENCE"
+ D N:$X>27 Q:'DN  W ?27 W "-------------------"
+ W ?48 D EN5^NURSAUTL K DIP K:DN Y
+ W ?59 W !,NURSX K DIP K:DN Y
+ D N:$X>27 Q:'DN  W ?27 W "PRIVILEGES"
+ D N:$X>27 Q:'DN  W ?27 W "----------"
+ S I(1)=16,J(1)=210.19 F D1=0:0 Q:$O(^NURSF(210,D0,16,D1))'>0  X:$D(DSC(210.19)) DSC(210.19) S D1=$O(^(D1)) Q:D1'>0  D:$X>39 T Q:'DN  D J1
+ G J1R
+J1 ;
+ D T Q:'DN  D N D N:$X>3 Q:'DN  W ?3 W "PRIVILEGE: "
+ S X=$G(^NURSF(210,D0,16,D1,0)) D N:$X>14 Q:'DN  W ?14 S Y=$P(X,U,1) S Y=$S(Y="":Y,$D(^NURSF(212.6,Y,0))#2:$P(^(0),U,1),1:Y) W $E(Y,1,50)
+ D N:$X>0 Q:'DN  W ?0 W "DATE GRANTED: "
+ D N:$X>14 Q:'DN  W ?14 S Y=$P(X,U,2) D DT
+ D N:$X>4 Q:'DN  W ?4 W "COMMENTS: "
+ S I(2)=1,J(2)=210.192 F D2=0:0 Q:$O(^NURSF(210,D0,16,D1,1,D2))'>0  S D2=$O(^(D2)) D:$X>16 T Q:'DN  D A2
+ G A2R
+A2 ;
+ S X=$G(^NURSF(210,D0,16,D1,1,D2,0)) S DIWL=15,DIWR=78 D ^DIWP
+ Q
+A2R ;
+ D A^DIWW
+ Q
+J1R ;
+ K Y K DIWF
+ Q
+HEAD ;
+ W !,"--------------------------------------------------------------------------------",!!

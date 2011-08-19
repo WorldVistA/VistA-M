@@ -1,0 +1,22 @@
+DVBCENQ ;ALB/GTS-557/THM-2507 INQUIRY ; 10/22/90  7:20 AM
+ ;;2.7;AMIE;;Apr 10, 1995
+ ;
+ G EN
+PRINT D VARS^DVBCUTIL,^DVBCENQ1
+ I $D(ZTQUEUED) G EXIT ;entry point for TaskMan
+ S (NAME,SSN,CNUM,ADR1,ADR2,ADR3,CITY,STATE,ZIP,HOMPHON,BUSPHON,OTHDIS)=""
+ Q
+ ;
+EN K ^TMP($J) S Y=DT X ^DD("DD") S FDT(0)=Y D HOME^%ZIS S FF=IOF
+ W @FF,"2507 Request Inquiry",!!!
+ S DIC="^DVB(396.3,",DIC(0)="AEQM",DIC("W")="W ""    Date of request: "" S DVBCDT=$P(^(0),U,2) W $E(DVBCDT,4,5)_""/""_$E(DVBCDT,6,7)_""/""_$E(DVBCDT,2,3)",DIC("A")="Enter VETERAN NAME: " D ^DIC G:X=""!(X=U) EXIT
+ I +Y<0 W "  ???",*7 G EN
+ S JI=$P(Y,U,2),(DA,DA(1),REQDA)=+Y
+ ;
+DEVICE W ! S %ZIS="AEQ",%ZIS("B")="HOME",%ZIS("A")="Output device: " D ^%ZIS G:POP EXIT
+ I $D(IO("Q")) S ZTRTN="PRINT^DVBCENQ",ZTIO=ION,ZTDESC="C&P Request Inquiry" F I="FDT(0)","DA*","REQDA","DVBC*","Y","JI","DUZ","FDT(0)" S ZTSAVE(I)=""
+ I  D ^%ZTLOAD G:'$D(ZTSK) EXIT W !!,"Request queued",!! G EXIT
+ U IO D PRINT D ^%ZISC G EN
+ ;
+EXIT K ^TMP($J),TSTA1,TSTAT,XCNP
+ D:$D(ZTQUEUED) KILL^%ZTLOAD G KILL^DVBCUTIL

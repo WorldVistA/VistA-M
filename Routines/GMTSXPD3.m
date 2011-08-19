@@ -1,0 +1,156 @@
+GMTSXPD3 ; SLC/KER - Health Summary Dist (Index/ADH)     ; 07/18/2000
+ ;;2.7;Health Summary;**35,37**;Oct 20, 1995
+ Q
+ ;                      
+BUILD ; Rebuild AD Hoc Health Summary 
+ ;   Set Variable GMTSQT for QUIET Rebuild
+ N GMTSENV,DIK,DA,X,Y,INCLUDE S GMTSENV=$$ENV Q:'GMTSENV  S INCLUDE=0 D M(" "),RC,RT,RB
+ Q
+BUILDQ ; Quiet Rebuild
+ N GMTSQT S GMTSQT="" D BUILD Q
+ ;
+TSK(X) ; Tasked Rebuild 
+ ;   Returns   0  Not tasked
+ ;            -1  Currently running
+ ;             #  Task Number
+ ;
+ S X=0,ZTRTN="TSKB^GMTSXPD3",ZTDESC="Rebuilding AD Hoc Health Summary",ZTIO="",ZTDTH=$H
+ S:$D(^TMP("GMTSXPD3")) X=-1 Q:X<0 X
+ ; DBIA 10063 call ^%ZTLOAD
+ I '$D(^TMP("GMTSXPD3")) S ^TMP("GMTSXPD3")="" D ^%ZTLOAD
+ S X=+($G(ZTSK))
+ ; DBIA 10086 call HOME^%ZIS
+ D HOME^%ZIS K ZTSAVE,ZTRTN,ZTDESC,ZTIO,ZTDTH,ZTSK
+ Q X
+TSKB S ^TMP("GMTSXPD3")="" S:$D(ZTQUEUED) ZTREQ="@" D BUILDQ K ^TMP("GMTSXPD3")
+ Q
+TO(GMTSCOM,GMTSTIM,GMTSOCC) ;  Update Ad Hoc default time and occurrences
+ N GMTSTAD,GMTSTAS,GMTSTAN,GMTSTNN,GMTSTOT,GMTSTOC,GMTSTOO,GMTSTAV
+ N GMTSTTA,GMTSTOA,GMTSTQN,GMTST1,GMTST2,GMTSTLL,GMTSOLL
+ S GMTSCOM=$G(GMTSCOM) Q:'$L(GMTSCOM)  S GMTSTIM=$$UP($G(GMTSTIM)),GMTSTAD=$$A S:+GMTSTIM=0 GMTSTIM=""
+ S GMTSOCC=+($G(GMTSOCC)) S:GMTSOCC=0 GMTSOCC="" S GMTSCOM=$$R(GMTSCOM),GMTSTOC=$$C(GMTSCOM),GMTSTTA=0 S:GMTSCOM=GMTSTOC GMTSTTA=$$TA(GMTSCOM)
+ S GMTSTOA=0 S:GMTSCOM=GMTSTOC GMTSTOA=$$OA(GMTSCOM) S GMTSTOT=$$T(GMTSTIM),GMTSTOO=$$O(GMTSOCC)
+ S GMTSTAD=$$A,GMTSTAS=$$S(GMTSTAD,GMTSTOC),GMTSTAN=$$N(GMTSTAD,GMTSTAS),GMTSTAV=""
+ S:$L(GMTSTAN) GMTSTAV=@GMTSTAN S GMTSTNN=GMTSTAV,GMTSTQN="" S:$L(GMTSTNN,"^")>2&(GMTSTOO=GMTSOCC) $P(GMTSTNN,"^",3)=GMTSOCC
+ S:$L(GMTSOCC)&(GMTSTOO=GMTSOCC) $P(GMTSTNN,"^",3)=GMTSOCC S:$L(GMTSTNN,"^")>3&(GMTSTOT=GMTSTIM) $P(GMTSTNN,"^",4)=GMTSTIM
+ S:$L(GMTSTIM)&(GMTSTOT=GMTSTIM) $P(GMTSTNN,"^",4)=GMTSTIM S:'GMTSTTA&($L(GMTSTNN,"^")>3) GMTSTNN=$P(GMTSTNN,"^",1,3)
+ S:'GMTSTTA&($P(GMTSTNN,"^",3)="") GMTSTNN=$P(GMTSTNN,"^",1,2) S:'GMTSTOA&($L(GMTSTNN,"^")=3) GMTSTNN=$P(GMTSTNN,"^",1,2)
+ S:'GMTSTOA&($L(GMTSTNN,"^")>3) $P(GMTSTNN,"^",3)=""
+ S:+GMTSTAS>0&($D(^GMT(142,+($G(GMTSTAD)),1,+GMTSTAS,0))) $P(GMTSTQN,"^",1)=GMTSTAS
+ S:+GMTSTOC>0&(GMTSTOC=GMTSCOM)&($D(^GMT(142.1,+($G(GMTSTOC)),0))) $P(GMTSTQN,"^",2)=GMTSTOC
+ S:+GMTSTOA>0&($L(GMTSTOO)) $P(GMTSTQN,"^",3)=GMTSTOO,GMTSOCC=GMTSTOO
+ S:+GMTSTTA>0&($L(GMTSTOT)) $P(GMTSTQN,"^",4)=GMTSTOT,GMTSTIM=GMTSTOT
+ S:+GMTSTOA=0&($L(GMTSTOO)) GMTSTOO="" S:+GMTSTTA=0&($L(GMTSTOT)) GMTSTOT=""
+ Q:'$L(GMTSTAN)  Q:'$L(GMTSTQN)  Q:'$D(^GMT(142,+($G(GMTSTAD)),0))  Q:'$D(^GMT(142,+($G(GMTSTAD)),1,+($G(GMTSTAS)),0))
+ Q:GMTSTOT'=GMTSTIM  Q:GMTSTOO'=GMTSOCC  Q:GMTSCOM'=GMTSTOC  Q:$P(GMTSTNN,"^",1,2)'=$P(GMTSTQN,"^",1,2)
+ S GMTSCOM=$P(GMTSTQN,"^",2),GMTSOCC=$P(GMTSTQN,"^",3),GMTSTIM=$P(GMTSTQN,"^",4)
+ Q:+GMTSCOM=0  S GMTSCOM=$P($G(^GMT(142.1,+GMTSCOM,0)),"^",1) Q:'$L(GMTSCOM)
+ S GMTST1=" Setting time and occurrence limits for GMTS HS ADHOC OPTION component" D BM(GMTST1)
+ S GMTSOLL=$$OLL(+GMTSOCC),GMTSTLL=$$TLL(GMTSTIM)
+ I $L(GMTSOLL),$L(GMTSTLL) D
+ . S GMTST1=" "_GMTSCOM_" (Limits - "_GMTSTLL_" and "_GMTSOLL_")" D M(GMTST1)
+ I '$L(GMTSOLL)!('$L(GMTSTLL)) D
+ . S GMTST1=" "_GMTSCOM D M(GMTST1)
+ . S GMTST1=$S($L($G(GMTSTIM))&($L($G(GMTSTLL))):"   Limits:        ",1:"   Time Limits:        ")
+ . S GMTST2=$S($L($G(GMTSTIM))&('$L($G(GMTSTLL))):GMTSTIM,$L($G(GMTSTIM))&($L($G(GMTSTLL))):GMTSTLL,1:"No time limit <null>") D M((GMTST1_GMTST2))
+ . S GMTST1=$S($L($G(GMTSTIM))&($L($G(GMTSTLL))):"                  ",1:"   Occurrence Limits:  ")
+ . S GMTST2=$S($L($G(GMTSOCC))&('$L($G(GMTSOLL))):GMTSOCC,$L($G(GMTSOCC))&($L($G(GMTSOLL))):GMTSOLL,1:"No occurrence limit <null>") D M((GMTST1_GMTST2))
+ S @GMTSTAN=GMTSTQN
+ Q
+ ;                      
+ ; Indexing                     
+RT ;   Re-Index HS Type File
+ N GMTST,GMTSL,GMTSQ,GMTSC,GMTSE,DA,DIK,DIC,X,Y
+ S U="^",GMTSE=59,GMTST=" Re-Indexing Health Summary Type file "
+ S GMTSL=$L(GMTST),(GMTSC,DA)=0 F  S DA=$O(^GMT(142,DA)) Q:+DA=0  S GMTSC=GMTSC+1
+ S GMTSC=GMTSC-1,GMTSQ=GMTSC\(GMTSE-$L(GMTST)) S:GMTSQ'>0 GMTSQ=1 D M(GMTST)
+ S DIK="^GMT(142,",(GMTSC,DA)=0 F  S DA=$O(^GMT(142,DA)) Q:+DA=0  D
+ . ; DBIA 10013 call IX^DIK
+ . D IX^DIK Q:$D(GMTSQT)
+ . S GMTSC=GMTSC+1 S:GMTSC#GMTSQ=0 GMTSL=GMTSL+1 Q:GMTSL>GMTSE
+ . W:GMTSC#GMTSQ=0 "."
+ I '$D(GMTSQT),GMTSL'>GMTSE F  S GMTSL=GMTSL+1 Q:GMTSL>GMTSE  W "."
+ W:'$D(GMTSQT) ?GMTSE," < done >"
+ Q
+RC ;   Re-Index HS Component File
+ N GMTST,GMTSL,GMTSQ,GMTSC,GMTSE,DA,DIK,DIC,X,Y
+ S U="^",GMTSE=59,GMTST=" Re-Indexing Health Summary Component file ",GMTSL=$L(GMTST),(GMTSC,DA)=0
+ F  S DA=$O(^GMT(142.1,DA)) Q:+DA=0  S GMTSC=GMTSC+1
+ S GMTSC=GMTSC-1,GMTSQ=GMTSC\(GMTSE-$L(GMTST)) S:GMTSQ'>0 GMTSQ=1 D M(GMTST)
+ S DIK="^GMT(142.1,",(GMTSC,DA)=0 F  S DA=$O(^GMT(142.1,DA)) Q:+DA=0  D
+ . ; DBIA 10013 call IX^DIK
+ . D IX^DIK Q:$D(GMTSQT)
+ . S GMTSC=GMTSC+1 S:GMTSC#GMTSQ=0 GMTSL=GMTSL+1 Q:GMTSL>GMTSE
+ . W:GMTSC#GMTSQ=0 "."
+ I '$D(GMTSQT),GMTSL'>GMTSE F  S GMTSL=GMTSL+1 Q:GMTSL>GMTSE  W "."
+ W:'$D(GMTSQT) ?GMTSE," < done >"
+ Q
+RA ;   Re-Index HS Type "Ad Hoc"
+ ; DBIA 10013 call IX1^DIK
+ N GMTST,DA,DIK S DIK="^GMT(142,",DA=$$A,U="^" Q:+DA=0  D IX1^DIK
+ Q
+RB ;   Re-Build Ad Hoc Health Summary Type
+ D RB^GMTSXPD4 Q
+ ;                      
+ ; Check Input
+T(X) ;   Time Input Transform
+ ; DBIA 10104 call $$UP^XLFSTR
+ S X=$$UP^XLFSTR($G(X)) S:$L(X)>5!($L(X)<1)!'((X?1N.N1U)!(X?1N.N1"D")!(X?1N.N1"W")!(X?1N.N1"M")!(X?1N.N1"Y")) X="1Y" Q X
+O(X) ;   Occurrence Input Transform
+ S X=$G(X) S:+X'=X!(X>99999)!(X<1)!(X?.E1"."1N.N) X="10" Q X
+C(X) ;   Component Input Transform
+ S X=$G(X) Q:'$L(X) "Error" Q:+X'>0 "Error" Q:'$D(^GMT(142.1,+X,0)) "Error" S X=+X Q X
+R(X) ;   Resolve Pointer
+ S X=$G(X) Q:'$L(X) "" N GMTSA S GMTSA=X I $D(^GMT(142.1,+X,0)) S X=+X Q X
+ S:$D(^GMT(142.1,"B",X)) GMTSA=+($O(^GMT(142.1,"B",X,0))) S:GMTSA=X&($D(^GMT(142.1,"B",$$UP(X)))) GMTSA=+($O(^GMT(142.1,"B",$$UP(X),0))) I GMTSA'=X S X=GMTSA Q X
+ S:GMTSA=X&($D(^GMT(142.1,"C",X))) GMTSA=+($O(^GMT(142.1,"C",X,0))) S:GMTSA=X&($D(^GMT(142.1,"C",$$UP(X)))) GMTSA=+($O(^GMT(142.1,"C",$$UP(X),0))) I GMTSA'=X S X=GMTSA Q X
+ S:GMTSA=X&($D(^GMT(142.1,"D",X))) GMTSA=+($O(^GMT(142.1,"D",X,0))) S:GMTSA=X&($D(^GMT(142.1,"D",$$UP(X)))) GMTSA=+($O(^GMT(142.1,"D",$$UP(X),0))) I GMTSA'=X S X=GMTSA Q X
+ Q ""
+A(X) ;   Ad Hoc IEN
+ S X=0 S X=+($O(^GMT(142,"AB","GMTS HS ADHOC OPTION",0))) Q:+X>0 +X
+ S X=+($O(^GMT(142,"B","GMTS HS ADHOC OPTION",0))) Q:+X>0 +X
+ S X=+($O(^GMT(142,"E","Ad Hoc Health Summary Type",0))) Q:+X>0 +X Q 0
+S(GMTSA,GMTSC) ;   Structure IEN
+ N GMTST1,GMTST2 S GMTSA=+($G(GMTSA)) Q:GMTSA=0 ""
+ S GMTSC=+($G(GMTSC)) Q:GMTSC=0 ""
+ Q:'$D(^GMT(142,GMTSA,1,"C",GMTSC)) ""
+ Q:'$D(^GMT(142,"AE",GMTSC,GMTSA)) ""
+ S GMTST1=+($O(^GMT(142,GMTSA,1,"C",GMTSC,0)))
+ S GMTST2=+($O(^GMT(142,"AE",GMTSC,GMTSA,0)))
+ Q:GMTST1'=GMTST2!(GMTST1=0)!(GMTST2=0) "" S GMTSA=GMTST1 Q GMTSA
+N(GMTSA,GMTSC) ;   Structure IEN
+ N GMTST1,GMTST2
+ S GMTSA=+($G(GMTSA)) Q:GMTSA=0 "" S GMTSC=+($G(GMTSC)) Q:GMTSC=0 ""
+ S GMTST1="^GMT(142,"_GMTSA_",1,"_GMTSC_",0)",GMTST2=$G(@GMTST1)
+ Q:'$D(@GMTST1) "" Q:'$L(GMTST2) "" S GMTSA=GMTST1 Q GMTSA
+ Q
+TA(X) ;   Time Limits Applicable             S   Y:yes     0;3
+ N GMTSA S GMTSA=$P($G(^GMT(142.1,+($G(X)),0)),"^",3),X=$S(GMTSA="Y":1,1:0) Q X
+OA(X) ;   Maximum Occurrences Applicable     S   Y:yes     0;5
+ N GMTSA S GMTSA=$P($G(^GMT(142.1,+($G(X)),0)),"^",5),X=$S(GMTSA="Y":1,1:0) Q X
+TLL(X) ;   Time Limits (Litteral)
+ S X=$$UP($G(X))
+ N GMTSU,GMTSQ S GMTSQ=+X,GMTSU=$E(X,$L(X)) Q:GMTSU="^"!(GMTSU="") "" Q:GMTSQ=0 ""
+ Q:"^D^W^M^Y^"'[GMTSU "" S GMTSU=$S(GMTSU="D":" day",GMTSU="W":" week",GMTSU="M":" month",GMTSU="Y":" year",1:"") Q:'$L(GMTSU) ""
+ S GMTSU=$S(+GMTSQ>1:(GMTSU_"s"),1:GMTSU) S X=+GMTSQ_GMTSU
+ Q X
+OLL(X) ;   Occurrence Limits (Litteral)
+ S X=+($G(X)) Q:X=0 ""
+ N GMTSU,GMTSQ S GMTSQ=+X,GMTSU=" occurrence",GMTSU=$S(+GMTSQ>1:(GMTSU_"s"),1:GMTSU) S X=+GMTSQ_GMTSU
+ Q X
+ ;                      
+ ; Other
+ENV(X) ;   Environment check
+ ; DBIA 10086 call HOME^%ZIS
+ D HOME^%ZIS
+ ; DBIA 2056 call $$GET1^DIQ
+ I '$L($$GET1^DIQ(200,+($G(DUZ)),.01)) D BM("    Invalid User (DUZ)"),M("") Q 0
+ Q 1
+BM(X) ;   Blank Line with Message
+ ; DBIA 10141 call BMES^XPDUTL
+ Q:$D(GMTSQT)  D:$D(XPDNM) BMES^XPDUTL($G(X)) W:'$D(XPDNM) !!,$G(X) Q
+M(X) ;   Message
+ ; DBIA 10141 call MES^XPDUTL
+ Q:$D(GMTSQT)  D:$D(XPDNM) MES^XPDUTL($G(X)) W:'$D(XPDNM) !,$G(X) Q
+UP(X) ;   Uppercase
+ Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")

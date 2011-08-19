@@ -1,0 +1,71 @@
+DVBHS4 ; ALB/JLU;Routine for HINQ screen 4 ;10/04/91
+ ;;4.0;HINQ;**4,49**;03/25/92 
+ ;
+ N Y
+ K DVBX(1)
+ F LP2=.323,.324,.328,.329,.3291,.3299 S X="DVBDIQ(2,"_DFN_","_LP2_")" K @X
+ I $D(X(1)) S DVBX(1)=X(1)
+ S DIC="^DPT(",DA=DFN,DIQ(0)="E",DIQ="DVBDIQ("
+ S DR=".323;.324:.328;.329;.3291:.3299"
+ D EN^DIQ1
+ I $D(DVBX(1)) S X(1)=DVBX(1) K DVBX(1)
+ ;
+ S DVBSCRN=4 D SCRHD^DVBHUTIL
+ S DVBJS=44
+ W ?325,DVBON,"HINQ Data",DVBOFF
+ W !,?5,"EOD",?17,"RAD",?27,"Bran. Ser.",?44,"Char. Ser.",?69,"Ser. Num."
+ D LINE
+ ;
+ ;DVB*4*49 - all MS data should be in the BIRLS segment, so if second 
+ ;node of all these arrays is populated, kill the first node
+ I +$G(DVBEOD(2))>0 K DVBEOD(1)
+ I +$G(DVBRAD(2))>0 K DVBRAD(1)
+ I $G(DVBBOS(2))]"" K DVBBOS(1)
+ I $G(DVBCSVC(2))]"" K DVBCSVC(1)
+ I $G(DVBSN(2))]"" K DVBSN(1)
+ W ! I $D(DVBEOD(1)),DVBEOD(1)?8N S M=$E(DVBEOD(1),1,2) D MM^DVBHQM11 W M," ",$E(DVBEOD(1),3,4),",",$E(DVBEOD(1),5,8)
+ I $D(DVBRAD(1)),DVBRAD(1)?8N S M=$E(DVBRAD(1),1,2) D MM^DVBHQM11 W ?14,M," ",$E(DVBRAD(1),3,4),",",$E(DVBRAD(1),5,8)
+ I $D(DVBBOS(1)) S Y=DVBBOS(1) D XBOS^DVBHQM12 S Y=$E(Y,1,16) W ?27,Y
+ I $D(DVBCSVC(1)) S I=1,Y=DVBCSVC(1) D DISCHG^DVBHQM1 W ?44,Y K Y
+ I $D(DVBSN(1)) W ?69,DVBSN(1)
+ W ! I $D(DVBEOD(2)),DVBEOD(2)?7N S Y=DVBEOD(2) X ^DD("DD") W ?1,Y K Y
+ I $D(DVBRAD(2)),DVBRAD(2)?7N S Y=DVBRAD(2) X ^DD("DD") W ?14,Y K Y
+ I $D(DVBBOS(2)) S Y=DVBBOS(2) D XBOS^DVBHQM12 S Y=$E(Y,1,16) W ?27,Y
+ I $D(DVBCSVC(2)) S Y=$$DISCH2^DVBHQM1(DVBCSVC(2)) W ?44,Y K Y
+ I $D(DVBSN(2)) W ?69,DVBSN(2)
+ W ! I $D(DVBEOD(3)),DVBEOD(3)?7N S Y=DVBEOD(3) X ^DD("DD") W ?1,Y K Y
+ I $D(DVBRAD(3)),DVBRAD(3)?7N S Y=DVBRAD(3) X ^DD("DD") W ?14,Y K Y
+ I $D(DVBBOS(3)) S Y=DVBBOS(3) D XBOS^DVBHQM12 S Y=$E(Y,1,16) W ?27,Y
+ I $D(DVBCSVC(3)) S Y=$$DISCH2^DVBHQM1(DVBCSVC(3)) W ?44,Y K Y
+ I $D(DVBSN(3)) W ?69,DVBSN(3)
+ W ! I $D(DVBEOD(4)),DVBEOD(4)?7N S Y=DVBEOD(4) X ^DD("DD") W ?1,Y K Y
+ I $D(DVBRAD(4)),DVBRAD(4)?7N S Y=DVBRAD(4) X ^DD("DD") W ?14,Y K Y
+ I $D(DVBBOS(4)) S Y=DVBBOS(4) D XBOS^DVBHQM12 S Y=$E(Y,1,16) W ?27,Y
+ I $D(DVBCSVC(4)) S Y=$$DISCH2^DVBHQM1(DVBCSVC(4)) W ?44,Y K Y
+ I $D(DVBSN(4)) W ?69,DVBSN(4)
+ I $D(DVBSCR) K DVBSCR D LINE W ! Q
+ W !,?34,DVBON,"Patient File",DVBOFF
+ D LINE
+ W !,DVBON,"(1)",DVBOFF," Last episode"
+ W !,DVBDIQ(2,DFN,.326,"E")
+ W ?15,DVBDIQ(2,DFN,.327,"E")
+ W ?34,$E(DVBDIQ(2,DFN,.325,"E"),1,30)
+ W ?51,$E(DVBDIQ(2,DFN,.324,"E"),1,14)
+ W ?67,$E(DVBDIQ(2,DFN,.328,"E"),1,10)
+ W !,DVBON,"(2)",DVBOFF," NTL episode"
+ W !,DVBDIQ(2,DFN,.3292,"E")
+ W ?15,DVBDIQ(2,DFN,.3293,"E")
+ W ?34,$E(DVBDIQ(2,DFN,.3291,"E"),1,30)
+ W ?51,$E(DVBDIQ(2,DFN,.329,"E"),1,14)
+ W ?67,$E(DVBDIQ(2,DFN,.3294,"E"),1,10)
+ W !,DVBON,"(3)",DVBOFF," NNTL episode"
+ W !,DVBDIQ(2,DFN,.3297,"E")
+ W ?15,DVBDIQ(2,DFN,.3298,"E")
+ W ?34,$E(DVBDIQ(2,DFN,.3296,"E"),1,30)
+ W ?51,$E(DVBDIQ(2,DFN,.3295,"E"),1,14)
+ W ?67,$E(DVBDIQ(2,DFN,.3299,"E"),1,10)
+ W !,DVBON,"(4)",DVBOFF X DVBLIT1
+ W ?4,"Per. of Ser.:",?18,$E(DVBDIQ(2,DFN,.323,"E"),1,25)
+ Q
+LINE W !,"-------------------------------------------------------------------------------"
+ Q

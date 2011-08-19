@@ -1,0 +1,48 @@
+VAQCON93 ;ALB/JRP - MESSAGE CONSTRUCTION;22-APR-93
+ ;;1.5;PATIENT DATA EXCHANGE;;NOV 17, 1993
+SEND10(TRANPTR) ;BUILD AND SEND A 1.0 MESSAGE
+ ;INPUT  : TRANPTR - Pointer to VAQ - TRANSACTION file
+ ;OUTPUT : 0 - Success
+ ;        -1^Error_Text - Error
+ ;
+ ;CHECK INPUT
+ Q:('(+$G(TRANPTR))) "-1^Did not pass pointer to VAQ - TRANSACTION file"
+ Q:('$D(^VAT(394.61,TRANPTR))) "-1^Did not pass a valid pointer to the VAQ - TRANSACTION file"
+ ;DECLARE VARIABLES
+ N TMP,DOMAIN,XMZ,XMY,XMDUN,TYPE,LINE,SITE,STATUS,XMCHAN
+ S XMCHAN=1
+ ;GET MESSAGE TYPE & STATUS
+ S TMP=$$STATYPE^VAQCON1(TRANPTR)
+ S STATUS=$P(TMP,"^",1)
+ Q:(STATUS="-1") "-1^Could not determine type of message to send"
+ S TYPE=$P(TMP,"^",2)
+ Q:((TYPE="RET")!(STATUS="VAQ-UNACK")) "-1^Equivalent message not available in version 1.0 format"
+ Q:((STATUS="VAQ-AUTO")!(STATUS="VAQ-PROC")!(STATUS="VAQ-TUNSL")) "-1^Message not required"
+ Q:(TYPE="REC") "-1^Transaction is being received, not transmitted"
+ ;GET REMOTE DOMAIN
+ S DOMAIN=""
+ S:(TYPE="REQ") DOMAIN=$P($G(^VAT(394.61,TRANPTR,"ATHR2")),"^",2)
+ S:((TYPE="UNS")!(TYPE="RES")!(TYPE="ACK")) DOMAIN=$P($G(^VAT(394.61,TRANPTR,"RQST2")),"^",2)
+ Q:(DOMAIN="") "-1^Could not determine remote domain"
+ ;GET LOCAL SITE
+ S TMP=+$O(^VAT(394.81,0))
+ S SITE=+$G(^VAT(394.81,TMP,0))
+ S TMP=$P($G(^DIC(4,SITE,0)),"^",1)
+ I (TMP="") S TMP=$P($$SITE^VASITE,"^",2) S:(TMP=-1) TMP="UNKNOWN"
+ S SITE=TMP
+ ;MAKE STUB MESSAGE
+ S TMP="PDX (V1.0) TRANSMISSION FROM "_SITE
+ S XMZ=$$MAKESTUB^VAQCON1(TMP,"PDX")
+ Q:(XMZ<1) "-1^Could not create stub message"
+ ;BUILD MESSAGE
+ S LINE=$$XMIT10^VAQCON94(TRANPTR,XMZ,"",1)
+ I (LINE<0) S TMP=$$KILLSTUB^VAQCON1(XMZ) Q LINE
+ ;SET ZERO NODE
+ S TMP=$$SETZERO^VAQCON1(XMZ,LINE)
+ I (TMP<0) S LINE=$$KILLSTUB^VAQCON1(XMZ) Q TMP
+ ;SEND MESSAGE
+ S TMP="S.VAQ-PDX-SERVER"_"@"_DOMAIN
+ S XMY(TMP)=""
+ S XMDUN="Patient Data eXchange"
+ D ENT1^XMD
+ Q 0

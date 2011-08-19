@@ -1,0 +1,133 @@
+ONCSPC8 ;Hines OIFO/GWB -PCE Study of Soft Tissue Sarcoma ;05/30/00
+ ;;2.11;ONCOLOGY;**6,16,26**;Mar 07, 1995
+ ;Print
+ K IOP,%ZIS S %ZIS="MQ" W ! D ^%ZIS K %ZIS,IOP G:POP KILL
+ I $D(IO("Q")) S ONCOLST="ONCONUM^ONCOPA^PATNAM^SPACES^TOPNAM^SSN^TOPTAB^TOPCOD^DASHES^SITTAB^SITEGP" D TASK G KILL
+ U IO D PRT D ^%ZISC K %ZIS,IOP G KILL
+PRT S PG=0,EX="",LIN=$S(IOST?1"C".E:IOSL-2,1:IOSL-6),IEN=ONCONUM
+ D NOW^%DTC S ONDATE=%,Y=ONDATE X ^DD("DD") S ONDATE=Y
+ K DIQ S DIC="^ONCO(160,",DR="9;15",DA=ONCOPA,DIQ="ONC" D EN^DIQ1
+ S DR=".04;.05;.06;.1;.12;3;9;18;20;22;24;26;29;32;33;34;34.1;34.2;37.1;37.2;37.3;38;19;50;51;51.2;51.3;53;53.2;54.2;58.1;58.2;58.3;59;70;71;71.1;71.2;71.3;71.4;81;82;83;85;86;87;88;89;308;329;361;362;371;375;433;441;500:567"
+ S DIC="^ONCO(165.5,",DA=ONCONUM,DIQ="ONC" D EN^DIQ1
+I S TABLE="TABLE I - GENERAL INFORMATION"
+ D HDR W !?25,TABLE,!
+ S D0=ONCOPA D DOB1^ONCOES S Y=X D DATEOT^ONCOPCE S DOB=Y
+ W !,"ACCESSION NUMBER..................: ",ONC(165.5,IEN,.05) D P Q:EX=U
+ W !,"SEQUENCE NUMBER...................: ",ONC(165.5,IEN,.06) D P Q:EX=U
+ W !,"POSTAL CODE AT DIAGNOSIS..........: ",ONC(165.5,IEN,9) D P Q:EX=U
+ W !,"DATE OF BIRTH.....................: ",DOB D P Q:EX=U
+ W !,"RACE..............................: ",ONC(165.5,IEN,.12) D P Q:EX=U
+ W !,"SPANISH ORIGIN....................: ",ONC(160,ONCOPA,9) D P Q:EX=U
+ W !,"SEX...............................: ",ONC(165.5,IEN,.1) D P Q:EX=U
+ W !,"PRIMARY PAYER AT DIAGNOSIS........: ",ONC(165.5,IEN,18) D P Q:EX=U
+ W !,"FAMILY HIST OF SOFT TISSUE SARCOMA: ",ONC(165.5,IEN,500) D P Q:EX=U
+ W !,"PERSONAL HISTORY OF ANY CANCER....: ",ONC(165.5,IEN,501)
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR G II
+ D P Q:EX=U
+II S TABLE="TABLE II - INITIAL DIAGNOSIS"
+ I IOST'?1"C".E W ! D P Q:EX=U  W ! D P Q:EX=U
+ W !?20,TABLE,! D P Q:EX=U
+ W !,"CLASS OF CASE.....................: ",ONC(165.5,IEN,.04) D P Q:EX=U
+ W !,"DIAGNOSTIC WORKUP:" D P Q:EX=U
+ W !!,"  ANGIOGRAM OF PRIMARY............: ",ONC(165.5,IEN,502) D P Q:EX=U
+ W !,"  BONE MARROW ASPIRATE/BIOPSY.....: ",ONC(165.5,IEN,503) D P Q:EX=U
+ W !,"  BONE SCAN.......................: ",ONC(165.5,IEN,504) D P Q:EX=U
+ W !,"  CHEST X-RAY.....................: ",ONC(165.5,IEN,505) D P Q:EX=U
+ W !,"  CT SCAN OF CHEST................: ",ONC(165.5,IEN,506) D P Q:EX=U
+ W !,"  CT SCAN OF PRIMARY..............: ",ONC(165.5,IEN,507) D P Q:EX=U
+ W !,"  LIVER FUNCTION STUDIES..........: ",ONC(165.5,IEN,508) D P Q:EX=U
+ W !,"  LYMPHANGIOGRAM..................: ",ONC(165.5,IEN,509) D P Q:EX=U
+ W !,"  MRI OF PRIMARY..................: ",ONC(165.5,IEN,510) D P Q:EX=U
+ W !,"  MRI OF OTHER....................: ",ONC(165.5,IEN,511) D P Q:EX=U
+ W !,"  SKELETAL X-RAY..................: ",ONC(165.5,IEN,512) D P Q:EX=U
+ W !,"  SONOGRAM........................: ",ONC(165.5,IEN,513)
+ I IOST?1"C".E K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR W !?15,TABLE_" (continued)" G HW
+ D P Q:EX=U
+HW W !!,"HISTOLOGIC WORKUP:",! D P Q:EX=U
+ W !,"  CYTOGENETICS....................: ",ONC(165.5,IEN,514) D P Q:EX=U
+ W !,"  ELECTRON MICROSCOPY.............: ",ONC(165.5,IEN,515) D P Q:EX=U
+ W !,"  FLOW CYTOMETRY..................: ",ONC(165.5,IEN,329) D P Q:EX=U
+ W !,"  IMMUNOHISTOCHEMISTRY............: ",ONC(165.5,IEN,516) D P Q:EX=U
+ W !,"  IN SITU HYBRIDIZATION...........: ",ONC(165.5,IEN,517) D P Q:EX=U
+B W !!,"BIOPSIES:                           HISTOLOGY/BEHAVIOR/GRADE",! D P Q:EX=U
+ W !,"  FINE NEEDLE ASPIRATION..........: ",ONC(165.5,IEN,528) D P Q:EX=U
+ W !,"  CORE NEEDLE ASPIRATION..........: ",ONC(165.5,IEN,529) D P Q:EX=U
+ W !,"  INCISIONAL BIOPSY...............: ",ONC(165.5,IEN,530) D P Q:EX=U
+ W !,"  EXCISIONAL BIOPSY...............: ",ONC(165.5,IEN,531) D P Q:EX=U
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR W !?15,TABLE_" (continued)" G OCOB
+ D P Q:EX=U
+OCOB W !!,"OUTSIDE CONFIRMATION OF BIOPSY....: ",ONC(165.5,IEN,518) D P Q:EX=U
+DOID W !,"DATE OF INITIAL DIAGNOSIS.........: ",ONC(165.5,IEN,3) D P Q:EX=U
+ W !,"PRIMARY SITE......................: ",TOPCOD," ",ONC(165.5,IEN,20) D P Q:EX=U
+ S SUB=ONC(165.5,IEN,519)
+ S (SUB1,SUB2)="",LOS=$L(SUB) I LOS<45 S SUB1=SUB G SUB
+ S NOP=$L($E(SUB,1,44)," ")
+ S SUB1=$P(SUB," ",1,NOP-1),SUB2=$P(SUB," ",NOP,999)
+SUB W !,"SUBSITE...........................: ",SUB1 W:SUB2'="" !,?36,SUB2 D P Q:EX=U
+ W !,"HISTOLOGY/BEHAVIOR CODE...........: ",ONC(165.5,IEN,22) D P Q:EX=U
+ W !,"GRADE.............................: ",ONC(165.5,IEN,24) D P Q:EX=U
+ W !,"ADDNL GRADE CODING SYSTEM.........: ",ONC(165.5,IEN,520) D P Q:EX=U
+ W !,"VALUE OF ADDNL CODING SYSTEM......: ",ONC(165.5,IEN,521) D P Q:EX=U
+ W !,"DIAGNOSTIC CONFIRMATION...........: ",ONC(165.5,IEN,26)
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR G III
+ D P Q:EX=U
+III S TABLE="TABLE III - EXTENT OF DISEASE AND AJCC STAGE"
+ I IOST'?1"C".E W ! D P Q:EX=U  W ! D P Q:EX=U
+ W !?15,TABLE,! D P Q:EX=U
+ W !,"PRETREATMENT TUMOR SIZE (mm)......: ",ONC(165.5,IEN,29) D P Q:EX=U
+ W !,"PATHOLOGIC TUMOR SIZE (mm)........: ",ONC(165.5,IEN,522) D P Q:EX=U
+ W !,"DEPTH OF TUMOR....................: ",ONC(165.5,IEN,523) D P Q:EX=U
+ W !,"MULTIFOCAL........................: ",ONC(165.5,IEN,433) D P Q:EX=U
+ W !,"REGIONAL NODES EXAMINED...........: ",ONC(165.5,IEN,33) D P Q:EX=U
+ W !,"REGIONAL NODES POSITIVE...........: ",ONC(165.5,IEN,32) D P Q:EX=U
+ W !!,"SITE(S) OF DISTANT METASTASIS:",! D P Q:EX=U
+ W !,"  SITE OF DISTANT METASTASIS #1...: ",ONC(165.5,IEN,34) D P Q:EX=U
+ W !,"  SITE OF DISTANT METASTASIS #2...: ",ONC(165.5,IEN,34.1) D P Q:EX=U
+ W !,"  SITE OF DISTANT METASTASIS #3...: ",ONC(165.5,IEN,34.2)
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR W !?15,TABLE_" (continued)" G AJCCCS
+ D P Q:EX=U
+AJCCCS W !!,"AJCC CLINICAL STAGE (cTNM):",! D P Q:EX=U
+ W !,"  T-CODE..........................: ",ONC(165.5,IEN,37.1) D P Q:EX=U
+ W !,"  N-CODE..........................: ",ONC(165.5,IEN,37.2) D P Q:EX=U
+ W !,"  M-CODE..........................: ",ONC(165.5,IEN,37.3) D P Q:EX=U
+ W !,"  AJCC STAGE......................: ",ONC(165.5,IEN,38) D P Q:EX=U
+ W !,"  CLINICAL STAGED BY..............: ",ONC(165.5,IEN,19)
+AJCCPS W !!,"AJCC PATHOLOGIC STAGE (pTNM):",! D P Q:EX=U
+ W !,"  T-CODE..........................: ",ONC(165.5,IEN,85) D P Q:EX=U
+ W !,"  N-CODE..........................: ",ONC(165.5,IEN,86) D P Q:EX=U
+ W !,"  M-CODE..........................: ",ONC(165.5,IEN,87) D P Q:EX=U
+ W !,"  AJCC STAGE......................: ",ONC(165.5,IEN,88) D P Q:EX=U
+ W !,"  PATHOLOGIC STAGED BY............: ",ONC(165.5,IEN,89)
+ I IOST?1"C".E K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR W !?15,TABLE_" (continued)" G CON
+ D P Q:EX=U
+CON W !!,"CONSULTATIONS:",! D P Q:EX=U
+ W !,"  MEDICAL ONCOLOGIST..............: ",ONC(165.5,IEN,524) D P Q:EX=U
+ W !,"  RADIATION ONCOLOGIST............: ",ONC(165.5,IEN,525)
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR G IV
+ D P Q:EX=U
+IV D ^ONCSPC8A
+KILL ;Kill Variables and Exit
+ K CDS,CDSOT,CS,CSDAT,CSIEN,CSPNT,DLC,DOB,DOIT,FIL,LIN,LOS,NCDS
+ K NCDSIEN,NCDSOT,NOP,ONC,ONDATE,PG,SUB,SUB1,SUB2,SURG,SURG1,SURG2,SURGDT
+ K TABLE
+ K %,DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ Q
+P ;Print
+ I ($Y'<(LIN-1)) D  Q:EX=U  W !?15,TABLE_" (continued)",!
+ .I IOST?1"C".E K DIR S DIR(0)="E" D ^DIR I 'Y S EX=U Q
+ .D HDR Q
+ Q
+TASK ;Queue a task
+ K IO("Q"),ZTUCI,ZTDTH,ZTIO,ZTSAVE
+ S ZTRTN="PRT^ONCSPC8",ZTREQ="@",ZTSAVE("ZTREQ")=""
+ S ZTDESC="Print Soft Tissue Sarcoma PCE"
+ F V2=1:1 S V1=$P(ONCOLST,"^",V2) Q:V1=""  S ZTSAVE(V1)=""
+ D ^%ZTLOAD D ^%ZISC U IO W !,"Request Queued",!
+ K V1,V2,ONCOLST,ZTSK Q
+HDR ;Header
+ W @IOF S PG=PG+1 N BLANKS S $P(BLANKS," ",SITTAB-$L(PATNAM)-4)=" "
+ W " ",PATNAM,BLANKS,SITEGP,!,?1,SSN,?TOPTAB-3,TOPNAM," ",TOPCOD
+ W $S($L(PG)=2:" ",1:"  "),PG,!,DASHES
+ W !?20,"PCE Study of Soft Tissue Sarcoma"
+ W ?59,ONDATE,!,DASHES
+ Q

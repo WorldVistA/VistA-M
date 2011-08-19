@@ -1,0 +1,67 @@
+PSODEDT ;BHAM ISC/SAB - edit due answer sheet ; 06/03/92 17:26
+ ;;7.0;OUTPATIENT PHARMACY;**2,268**;DEC 1997;Build 9
+SEQNUM K DIC S DIC="^PS(50.0731,",DIC("A")="Select DUE ANSWER SEQUENCE NUMBER ('^S' to Search): ",DIC(0)="QEAM" D ^DIC K DIC
+ G:(X="^")!($D(DTOUT))!(X="") EXIT
+ S PSA=+Y
+ I (PSA<1)&($E(X,1,2)="^S") D SEARCH G:PSA<1 SEQNUM
+ I PSA<1 W "  ??",$C(7) G SEQNUM
+EDIT S DIE="^PS(50.0731,",(DA,PSODUEL)=PSA,DR=".01" L +^PS(50.0731,PSODUEL):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3) I '$T W !,"Entry is being edited by another user. Try Later!" G EXIT
+ D ^DIE L -^PS(50.0731,PSODUEL) K DIE,DA,DR,PSODUEL
+ G:$D(Y) EXIT
+ D:$D(^PS(50.0731,PSA,0)) DIE^PSODLKP
+ G PSODEDT
+EXIT K ^TMP("PSOD",$J)
+ K DA,DIC,DIE,DIQ,DIR,DIROUT,DIRUT,DR,DTOUT,DUOUT,DX,DY,FLD,I,ID,IX,IXN
+ K IXS,N,PID,PSDPOP,PSA,PSCH,PSDIG,PSEED,PSFLAG,PSHI,PSHIT,PSIX,PSL,PSLEN
+ K PSLO,PSMARG,PSQ,PSQN,PSQNUM,PSQP,PSTXT,PSTYP,PSWRAP,X,Y
+ QUIT
+ ;
+SEARCH K DIR,DUOUT,DTOUT,PSCH,PSIX,PID,^TMP("PSOD",$J)
+ W !!!!!,"If you do not know the Sequence Number, you may search by any or all of the",!,"following fields: "
+ W !!?5,"QUESTIONNAIRE",!?5,"DRUG",!?5,"PROVIDER",!!?5,"Type '^' to exit.",!
+ S PSFLAG=0
+ F FLD=1,2,4 Q:$D(DTOUT)!$D(DUOUT)  S DIR(0)="50.0731,"_FLD_"O" D ASK
+ Q:'PSFLAG
+ S IXS=""
+ F FLD=1,2,4 I $D(PSCH(FLD)),PSCH(FLD) S IXS=$S(FLD=1:"Q",FLD=2:"D",1:"P")_IXS
+ I $L(IXS)>1 S PSEED=$E(IXS) F N=0:0 S IX=PSEED D GETIXN S N=$O(^PS(50.0731,PSEED,PSCH(IXN),N)) Q:'N  S PSHIT=1 D GETN I PSHIT S ^TMP("PSOD",$J,N)=""
+ I $L(IXS)=1 S IX=IXS D GETIXN F N=0:0 S N=$O(^PS(50.0731,IXS,PSCH(IXN),N)) Q:'N  S ^TMP("PSOD",$J,N)=""
+ I '$D(^TMP("PSOD",$J)) W !!?5,"No Matches Found!!!",!! Q
+ I '$O(^TMP("PSOD",$J,$O(^TMP("PSOD",$J,0)))) S PSA=$O(^TMP("PSOD",$J,0)) W !! Q
+ S PSDPOP=0
+CHOICES W !!?2,"CHOOSE FROM...",!!
+ S DIC="^PS(50.0731,",DR="1:9",DIQ="PID",DIQ(0)="E"
+ S PSL=$S($D(IOSL):IOSL-3,1:21),(DX,DY)=0 X ^%ZOSF("XY")
+ F N=0:0 S N=$O(^TMP("PSOD",$J,N)) Q:'N  D DISPLAY Q:PSDPOP
+ K DIC,DIQ
+ S PSA=0
+ Q
+ASK K DA
+ D ^DIR K DIR
+ S PSCH(FLD)=+Y,PSFLAG=PSFLAG+Y
+ Q
+GETN F I=2:1:$L(IXS) S IX=$E(IXS,I) D GETIXN S PSHIT=PSHIT*$D(^PS(50.0731,IX,PSCH(IXN),N))
+ Q
+GETIXN S IXN=$S(IX="Q":1,IX="D":2,1:4)
+ Q
+DISPLAY I $Y,$Y>PSL S (DX,DY)=0 X ^%ZOSF("XY") S DIR(0)="E" D ^DIR W $C(13),$J("",45),$C(13) I 'Y S PSDPOP=1 Q
+ S (PSQNUM,DA)=N,PSQ=""
+ D EN^DIQ1
+ F ID=.01:0 S ID=$O(PID(50.0731,DA,ID)) Q:'ID  S PSQ=PSQ_PID(50.0731,DA,ID,"E")_$S($L(PID(50.0731,DA,ID,"E")):"/",1:"")
+ D WRAP
+ Q
+WRAP ;Enter here from PSODACT,PSODLKP,PSODEDT to format Question
+ ;Needs PSQ=text, PSQNUM=question number
+ NEW I,K
+ S PSTXT=$P(PSQ,"^") W !,PSQNUM,"."
+ S PSWRAP=1,PSMARG=$S('$G(PSORM):80,$D(IOM):IOM,1:80)-5
+W1 S:$L(PSTXT)<PSMARG PSWRAP(PSWRAP)=PSTXT I $L(PSTXT)'<PSMARG F I=PSMARG:-1:0 I $E(PSTXT,I)?1P S PSWRAP(PSWRAP)=$E(PSTXT,1,I),PSTXT=$E(PSTXT,I+1,999),PSWRAP=PSWRAP+1 G W1
+ F K=1:1:PSWRAP W ?($L(PSQNUM)+2),PSWRAP(K),!
+ Q
+QUES2 I PSTYP=1 W !!,?5,"Enter Y for YES, N for NO, U for UNKNOWN."
+ I PSTYP=2 W !!,?5,"Enter a FREE TEXT answer from 1 to ",PSLEN," characters."
+ I PSTYP=3 W !!,?5,"Enter a number between ",PSLO," and ",PSHI,!,?5,"with a maximum of ",PSDIG," decimal digits."
+ W !?5,"Enter carriage return to bypass."
+ W !?5,"Enter '^' to exit."
+ D WRAP
+ Q

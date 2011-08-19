@@ -1,0 +1,81 @@
+AFJXPNHA ;FO-OAKLAND/GMB-SEND SERVER MSG TO ADD PTS TO DB ;1/17/96  13:14
+ ;;5.1;Network Health Exchange;**31**;Jan 23, 1996
+ ; Totally rewritten 11/2001.  (Previously FJ/CWS/RF/BC.)
+ ; Entry points used:
+ ; ENTER - option AFJXNH ADD PATIENTS
+ENTER ;
+ D PROCESS("NIGHTLY NETWORK PT/ID UPDATE",$$FMADD^XLFDT(DT,-2))
+ Q
+PROCESS(AXSUB,AXCUTOFF,AXHDR,AXMAX,AXALIVE) ; Process data
+ ; AXSUB    - Message subject
+ ; AXCUTOFF - Only include patients added after this FM date.
+ ;            If zero, then all patients are included.
+ ; AXHDR    - Include 5 header lines in the message? 0=no; 1=yes
+ ; AXMAX    - Maximum number of lines per message.  If zero, no max.
+ ; AXALIVE  - Include only living patients? 0=no; 1=yes
+ N AXTO
+ S AXCUTOFF=+$G(AXCUTOFF),AXHDR=+$G(AXHDR),AXMAX=+$G(AXMAX),AXALIVE=+$G(AXALIVE)
+ D GETADDR(.AXTO) Q:'$D(AXTO)
+ K ^TMP("AFJX",$J)
+ D SENDPTS
+ Q
+GETADDR(AXTO) ;
+ N AX25IEN,AX25REC,AXDOMREC
+ S AX25IEN=0
+ F  S AX25IEN=$O(^AFJ(537025,AX25IEN)) Q:'AX25IEN  D
+ . S AX25REC=$G(^AFJ(537025,AX25IEN,0)) Q:AX25REC=""
+ . Q:'$P(AX25REC,U,4)
+ . S AXDOMREC=$G(^DIC(4.2,$P(AX25REC,U),0))
+ . I $P(AXDOMREC,U,2)["C" D  Q
+ . . ;N DIK,DA ; Domain is closed, so delete it from Authorized Sites
+ . . ;S DIK="^AFJ(537025,",DA=AX25IEN D ^DIK
+ . S AXTO("S.AFJXNETP@"_$P(AXDOMREC,U,1))=""
+ Q
+SENDPTS ;
+ N AXLINE,AXSITE,AXNICK,AXDFN,AXREC,AXDATE,AXNAME,AXSSN,AXDOB,AXPART
+ S AXSITE=^XMB("NETNAME")
+ S AXLINE=$S(AXHDR:5,1:0)
+ S AX25IEN=+$O(^AFJ(537025,"B",^XMB("NUM"),0))
+ S AXNICK=$P($G(^AFJ(537025,AX25IEN,0)),U,7)
+ I 'AXCUTOFF S AXDFN=0
+ E  D
+ . N AXDAYS
+ . S AXDAYS=$$FMDIFF^XLFDT(DT,AXCUTOFF)
+ . I AXDAYS>10 S AXDFN=0 Q
+ . S AXDFN=$O(^DPT(":"),-1)-(AXDAYS*500)
+ . I AXDFN<1 S AXDFN=0
+ F  S AXDFN=$O(^DPT(AXDFN)) Q:'AXDFN  D
+ . I AXALIVE Q:$G(^DPT(AXDFN,.35))
+ . S AXREC=$G(^DPT(AXDFN,0))
+ . S AXDATE=$P(AXREC,U,16) I AXDATE<AXCUTOFF Q
+ . S AXNAME=$P(AXREC,U,1) I $E(AXNAME)'?1U!($E(AXNAME,1,2)="ZZ")!($E(AXNAME,1,3)="EEE") Q  ;VHA DIRECTIVE 96-0006
+ . S AXSSN=$P(AXREC,U,9) I AXSSN["P"!(AXSSN?5"0"4N) Q  ;VHA DIRECTIVE 96-0006
+ . S AXDOB=$P(AXREC,U,3)
+ . ; The last 3 pieces are not used by ^AFJXPNHT.  (So why send them?)
+ . S AXLINE=AXLINE+1,^TMP("AFJX",$J,AXLINE,0)=AXSSN_U_AXDOB_U_AXNAME_U_AXSITE_U_AXDATE_U_AXNICK
+ . I AXMAX,AXLINE=AXMAX D
+ . . D SEND(.AXTO)
+ . . S AXLINE=$S(AXHDR:5,1:0)
+ Q:'$D(^TMP("AFJX",$J))
+ D SEND(.AXTO)
+ Q
+SEND(AXTO) ;
+ N XMSUB,XMDUZ,XMTEXT,XMY
+ M XMY=AXTO
+ S XMDUZ=.5
+ S XMSUB=AXSUB
+ I AXMAX D
+ . S AXPART=$G(AXPART)+1
+ . S XMSUB=XMSUB_" Part "_AXPART
+ I AXHDR D HEADER
+ S XMTEXT="^TMP(""AFJX"",$J,"
+ D ^XMD
+ K ^TMP("AFJX",$J)
+ Q
+HEADER ;
+ S ^TMP("AFJX",$J,1,0)=$$REPEAT^XLFSTR("@",60)
+ S ^TMP("AFJX",$J,2,0)=XMSUB_" AS OF "_$$FMTE^XLFDT($$NOW^XLFDT)
+ S ^TMP("AFJX",$J,3,0)=$$REPEAT^XLFSTR("@",60)
+ S ^TMP("AFJX",$J,4,0)=^XMB("NETNAME")_" Patient File DPT(0) "_$G(^DPT(0))
+ S ^TMP("AFJX",$J,5,0)=""
+ Q

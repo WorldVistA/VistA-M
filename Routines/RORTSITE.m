@@ -1,0 +1,87 @@
+RORTSITE ;HCIOFO/SG - PREPARE TEST SITES FOR GOING LIVE ; 5/10/02 11:43am
+ ;;1.0;CLINICAL CASE REGISTRIES;;May 14, 2002
+ ;
+ Q
+ ;
+ ;***** PREPARE TEST SITE
+START ;
+ N RORERROR      ; Error processing data
+ N RORLOG        ; Log subsystem constants & variables
+ N RORPARM       ; Application parameters
+ ;
+ N DA,DATE,DIR,DIROUT,DIRUT,DTOUT,DUOUT,RC,REGIEN,X,Y
+ K DIR  S DIR(0)="Y",DIR("B")="NO"
+ S DIR("A")="Prepare the site for going live"
+ D ^DIR  W !  Q:$D(DIRUT)!'$G(Y)
+ ;
+ S RORPARM("DEBUG")=2       ; Debug mode (display messages)
+ S RORPARM("ERR")=1         ; Enable error processing
+ S RORPARM("LOG")=1         ; Enable error recording
+ D INIT^RORUTL01("ROR",1)
+ ;
+ S REGIEN=$$REGIEN^RORUTL02("VA HEPC")
+ I REGIEN<0  D:REGIEN>-3  G ERROR
+ . S RC=$$ERROR^RORERR(REGIEN,"START^RORTSITE")
+ ;
+ W !,"Updating registry records...",!
+ S RC=$$RECORDS(REGIEN,.DATE)  G:RC<0 ERROR
+ W "Processed records: "_+RC_", Errors: "_+$P(RC,U,2),!
+ ;
+ W !,"Updating registry parameters..."
+ G:$$REGPARM(REGIEN,DATE)<0 ERROR
+ W !,"Ok",!
+ Q
+ ;
+ ;***** DISPLAYS THE ERRORS
+ERROR ;
+ D DSPSTK^RORERR()
+ Q
+ ;
+ ;***** PREPARE REGISTRY RECORDS
+RECORDS(REGIEN,BNDRYDT) ;
+ N CNT,DATE,ECNT,IEN,IENS,LD1,PATIEN,RC,ROOT,RORBUF,RORFDA,RORMSG,TMP
+ S ROOT=$$ROOT^DILFD(798,,1)
+ ;--- Get the lag period
+ S LD1=$$GET1^DIQ(798.1,REGIEN_",",15.1,,,"RORMSG")
+ S RC=$$DBS^RORERR("RORMSG",-9,"RECORDS^RORTSITE")  Q:RC<0 RC
+ ;--- Calculate the date
+ S BNDRYDT=$$FMADD^XLFDT($$DT^XLFDT,-$S(LD1>0:LD1,1:1)-1)
+ ;--- Store the date into the records of the registry
+ S IEN="",(CNT,ECNT)=0
+ F  S IEN=$O(@ROOT@("AC",REGIEN,IEN))  Q:IEN=""  D
+ . S CNT=CNT+1  W:'(CNT#10) *13,CNT
+ . S IENS=IEN_",",DATE=BNDRYDT
+ . K RORBUF,RORMSG
+ . D GETS^DIQ(798,IENS,"2;8","EI","RORBUF","RORMSG")
+ . I $G(DIERR)  D  S ECNT=ECNT+1  Q
+ . . S RC=$$DBS^RORERR("RORMSG",-9,"RECORDS^RORTSITE")
+ . ;--- Check the inactivation date if the record is not active
+ . I '$G(RORBUF(798,IENS,8,"E"))  D  S:DATE>TMP DATE=TMP
+ . . S TMP=$G(RORBUF(798,IENS,2,"I"))
+ . ;--- Update the record
+ . S RORFDA(798,IENS,3)=1               ; NEW PATIENT
+ . S RORFDA(798,IENS,4)=1               ; UPDATE DEMOGRAPHICS
+ . S RORFDA(798,IENS,5)=1               ; UPDATE LOCAL REGISTRY DATA
+ . S RORFDA(798,IENS,9.1)=DATE          ; DATA ACKNOWLEDGED UNTIL
+ . S RORFDA(798,IENS,9.2)=DATE          ; DATA EXTRACTED UNTIL
+ . S RORFDA(798,IENS,10)="@"            ; MESSAGE ID
+ . D FILE^DIE(,"RORFDA","RORMSG")
+ . I $G(DIERR)  D  S ECNT=ECNT+1  Q
+ . . S RC=$$DBS^RORERR("RORMSG",-9,"RECORDS^RORTSITE")
+ W:IEN="" *13
+ Q $S(RC<0:-9,1:CNT_U_ECNT)
+ ;
+ ;***** PREPARE REGISTRY PARAMETERS
+REGPARM(REGIEN,DATE) ;
+ N IENS,RC,RORFDA,RORMSG
+ S IENS=REGIEN_","
+ S RORFDA(798.1,IENS,2)=2960101         ; DATA EXTRACTED UNTIL
+ S RORFDA(798.1,IENS,2.1)="@"           ; LAST BATCH ID
+ S RORFDA(798.1,IENS,2.2)="@"           ; AWAITING ACKNOWLEDGEMENT
+ S RORFDA(798.1,IENS,2.3)="@"           ; LAST MESSAGE ID
+ S RORFDA(798.1,IENS,15.9)=1            ; DAYS TO WAIT FOR ACK
+ S RORFDA(798.1,IENS,21.02)=DATE        ; HDT END DATE
+ S RORFDA(798.1,IENS,21.05)=$$NOW^XLFDT ; HDT DATE/TIME
+ S RORFDA(798.1,IENS,25)=1              ; ENABLE PROTOCOLS
+ D FILE^DIE(,"RORFDA","RORMSG")
+ Q $$DBS^RORERR("RORMSG",-9,"REGPARM^RORTSITE",,798.1,IENS)

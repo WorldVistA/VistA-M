@@ -1,0 +1,89 @@
+RMPRPIYQ ;HINCIO/ODJ - PIP EDIT - PROMPTS ;3/8/01
+ ;;3.0;PROSTHETICS;**61**;Feb 09, 1996
+ Q
+ ; The following subroutines are for selecting HCPCS
+ ; and Inventory Item
+ ;
+ ;***** OK - Prompt for an OK
+OK(RMPRYN,RMPREXC) ;
+ N DIR,X,Y,DA,DUOUT,DTOUT,DIROUT,DIRUT
+ S RMPREXC=""
+ S RMPRYN="N"
+ S DIR("A")="         ...OK"
+ S DIR("B")="Yes"
+ S DIR(0)="Y"
+ D ^DIR
+ I $D(DTOUT) S RMPREXC="T" G OKX
+ I $D(DIROUT) S RMPREXC="P" G OKX
+ I X=""!(X["^") S RMPREXC="^" G OKX
+ S RMPRYN="N" S:Y RMPRYN="Y"
+OKX Q
+ ;
+ ;***** LOCN - Prompt for Inventory Location based on 661.4 file
+ ;             and a given HCPCS and PIP Item
+LOCN(RMPRSTN,RMPR11,RMPR5,RMPREXC) ;
+ N RMPRERR,DIR,X,Y,DUOUT,DTOUT,DIROUT,DA,DIRUT,RMPRA,RMPRGBLR,RMPR4
+ N RMPRMAX,RMPRLIN,RMPRGBL,RMPRHCPC,RMPRITEM
+ S RMPRERR=0
+ S RMPREXC=""
+ S RMPRHCPC=RMPR11("HCPCS")
+ S RMPRITEM=RMPR11("ITEM")
+ K RMPR5
+ S RMPRMAX=15
+ S RMPRLIN=0
+ ;
+ ; See if just 1 location - no need to list if there is
+ S RMPRGBLR="^RMPR(661.4,""XSHIL"","_RMPRSTN_","""_RMPRHCPC_""","""_RMPRITEM_""")"
+ S RMPRGBL=$Q(@RMPRGBLR)
+ I $$LOCNE() G LOCNX
+ S RMPR5("IEN")=$QS(RMPRGBL,6)
+ S RMPRGBL=$Q(@RMPRGBL)
+ I $$LOCNE() S RMPRERR=$$GET^RMPRPIX5(.RMPR5) G LOCNX
+ ;
+ ; Selection list of items if more than 1
+ S RMPRGBL=RMPRGBLR
+LOCNL1 S RMPRGBL=$Q(@RMPRGBL)
+ I $$LOCNE G:'RMPRLIN LOCNX G LOCNP
+ I RMPRLIN,'(RMPRLIN#RMPRMAX) D  G LOCNP
+ . S DIR("A",1)="Press <RETURN> to see more, '^' to exit this list, or"
+ . Q
+LOCNL2 S RMPRLIN=RMPRLIN+1
+ I RMPRLIN=1 D LOCNH
+ S RMPR5("IEN")=$QS(RMPRGBL,6)
+ S RMPRERR=$$GET^RMPRPIX5(.RMPR5)
+ K RMPR4
+ S RMPR4("IEN")=$QS(RMPRGBL,7)
+ I RMPR4("IEN")'="" S RMPRERR=$$GET^RMPRPIX4(.RMPR4)
+ W !,$J(RMPRLIN,2)," ",$E(RMPR5("NAME"),1,20)
+ W ?24,$J($G(RMPR4("RE-ORDER QTY")),5)
+ S RMPRA(RMPRLIN)=RMPR5("IEN")
+ K RMPR5
+ G LOCNL1
+ ;
+ ; Prompt for selection
+LOCNP S DIR(0)="FAO"
+ S DIR("A")="Choose 1 - "_RMPRLIN_" : "
+ D ^DIR
+ I $D(DTOUT) S RMPREXC="T" G LOCNX
+ I $D(DIROUT) S RMPREXC="P" G LOCNX
+ I X="",$D(DIR("A",1)) K DIR("A",1) D LOCNH G LOCNL2
+ I X="" S RMPREXC="^" G LOCNX
+ I X["^"!($D(DUOUT)) S RMPREXC="^" G LOCNX
+ I '$D(RMPRA(X)) D  G LOCNP
+ . W !,"Please select a Location by entering a line number in range 1 - "
+ . W RMPRLIN
+ . Q
+ S RMPR5("IEN")=RMPRA(X)
+ S RMPRERR=$$GET^RMPRPIX5(.RMPR5)
+LOCNX Q
+LOCNE() ;
+ Q:$QS(RMPRGBL,1)'=661.4 1
+ Q:$QS(RMPRGBL,2)'="XSHIL" 1
+ Q:$QS(RMPRGBL,3)'=RMPRSTN 1
+ Q:$QS(RMPRGBL,4)'=RMPRHCPC 1
+ Q:$QS(RMPRGBL,5)'=RMPRITEM 1
+ Q 0
+LOCNH W !
+ W !,"Select a Location...",!
+ W ?3,"Location",?24,"Re-Order Qty."
+ Q

@@ -1,0 +1,166 @@
+OCXDI02H ;SLC/RJS,CLA - OCX PACKAGE DIAGNOSTIC ROUTINES ;SEP 7,1999 at 10:30
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+S ;
+ ;
+ D DOT^OCXDIAG
+ ;
+ ;
+ K REMOTE,LOCAL,OPCODE,REF
+ F LINE=1:1:500 S TEXT=$P($T(DATA+LINE),";",2,999) Q:TEXT  I $L(TEXT) D  Q:QUIT
+ .S ^TMP("OCXDIAG",$J,$O(^TMP("OCXDIAG",$J,"A"),-1)+1)=TEXT
+ ;
+ G ^OCXDI02I
+ ;
+ Q
+ ;
+DATA ;
+ ;
+ ;;D^ ; ;
+ ;;R^"860.8:",100,6
+ ;;D^ ; S OCXLIST="",OCXOI=OCXNAME F  S OCXD0=$O(^ORD(101.43,"S."_OCXPKG,OCXOI)) Q:'$L(OCXOI) Q:'($E(OCXOI,1,$L(OCXNAME))=OCXNAME)  D
+ ;;R^"860.8:",100,7
+ ;;D^ ; .S OCXD0=0 F  S OCXD0=$O(^ORD(101.43,"S."_OCXPKG,OCXD0)) Q:'OCXD0  S OCXLIST=OCXLIST_U_OCXD0
+ ;;R^"860.8:",100,8
+ ;;D^ ; Q OCXLIST
+ ;;R^"860.8:",100,9
+ ;;D^ ; ;
+ ;;EOR^
+ ;;KEY^860.8:^LOG DATA FIELD WITH VALUE
+ ;;R^"860.8:",.01,"E"
+ ;;D^LOG DATA FIELD WITH VALUE
+ ;;R^"860.8:",.02,"E"
+ ;;D^LOGDF
+ ;;R^"860.8:",100,1
+ ;;D^  ;LOGDF(DFLD,CONTEXT,VALUE) ;
+ ;;R^"860.8:",100,2
+ ;;D^  ; ;
+ ;;R^"860.8:",100,3
+ ;;D^  ; I $G(DFLD),$G(CONTEXT),$L($G(VALUE)) D
+ ;;R^"860.8:",100,4
+ ;;D^  ; .Q:'$D(^OCXS(860.4,DFLD,0))
+ ;;R^"860.8:",100,5
+ ;;D^  ; .S ^OCXS(860.4,DFLD,"LINK",CONTEXT,"STAT")=$G(^OCXS(860.4,DFLD,"LINK",CONTEXT,"STAT"))+1
+ ;;R^"860.8:",100,6
+ ;;D^  ; Q 0
+ ;;EOR^
+ ;;KEY^860.8:^EXTERNAL TO OERR PACKAGE
+ ;;R^"860.8:",.01,"E"
+ ;;D^EXTERNAL TO OERR PACKAGE
+ ;;R^"860.8:",.02,"E"
+ ;;D^EXTOERR
+ ;;R^"860.8:",100,1
+ ;;D^EXTOERR(PKG1,PKG2) ;
+ ;;R^"860.8:",100,2
+ ;;D^ ;
+ ;;R^"860.8:",100,3
+ ;;D^ I $L($G(PKG1)),'(PKG1="ORDER ENTRY") Q PKG1
+ ;;R^"860.8:",100,4
+ ;;D^ Q $G(PKG2)
+ ;;R^"860.8:",100,5
+ ;;D^ ;
+ ;;EOR^
+ ;;KEY^860.8:^STRING CONTAINS ONE OF A LIST OF VALUES
+ ;;R^"860.8:",.01,"E"
+ ;;D^STRING CONTAINS ONE OF A LIST OF VALUES
+ ;;R^"860.8:",.02,"E"
+ ;;D^CLIST
+ ;;R^"860.8:",100,1
+ ;;D^  ;CLIST(DATA,LIST) ;   DOES THE DATA FIELD CONTAIN AN ELEMENT IN THE LIST
+ ;;R^"860.8:",100,2
+ ;;D^  ; ;
+ ;;R^"860.8:",100,3
+ ;;D^T+; W:$G(OCXTRACE) !!,"$$CLIST(",DATA,",""",LIST,""")"
+ ;;R^"860.8:",100,4
+ ;;D^  ; N PC F PC=1:1:$L(LIST,","),0 I PC,$L($P(LIST,",",PC)),(DATA[$P(LIST,",",PC)) Q
+ ;;R^"860.8:",100,5
+ ;;D^  ; Q ''PC
+ ;;EOR^
+ ;;KEY^860.8:^GET WARD SERVICE
+ ;;R^"860.8:",.01,"E"
+ ;;D^GET WARD SERVICE
+ ;;R^"860.8:",.02,"E"
+ ;;D^WARDSERV
+ ;;R^"860.8:",100,1
+ ;;D^ ;WARDSERV(WARD) ;
+ ;;R^"860.8:",100,2
+ ;;D^ ; ;
+ ;;R^"860.8:",100,3
+ ;;D^ ; N CODESET,PC,SERV,DIC,X,Y,DA
+ ;;R^"860.8:",100,4
+ ;;D^ ; S CODESET="M:MEDICINE;S:SURGERY;P:PSYCHIATRY;NH:NHCU;NE:NEUROLOGY;I:INTERMEDIATE MED;R:REHAB MEDICINE;SCI:SPINAL CORD INJURY;D:DOMICILIARY;B:BLIND REHAB;NC:NON-COUNT"
+ ;;R^"860.8:",100,5
+ ;;D^ ; S DIC=42,DIC(0)="NZ",X="`"_(+WARD) D ^DIC Q:(Y<1) ""
+ ;;R^"860.8:",100,6
+ ;;D^ ; S SERV=$P($G(Y(0)),U,3)
+ ;;R^"860.8:",100,7
+ ;;D^ ; Q:'$L(SERV) "" Q:'$L(CODESET) ""
+ ;;R^"860.8:",100,8
+ ;;D^ ; F PC=1:1:$L(CODESET,";"),0 I PC,($P($P(CODESET,";",PC),":",1)=SERV) Q
+ ;;R^"860.8:",100,9
+ ;;D^ ; Q:'PC "" Q $P($P(CODESET,";",PC),":",2)
+ ;;R^"860.8:",100,10
+ ;;D^ ; ;
+ ;;EOR^
+ ;;KEY^860.8:^GET ORDERABLE ITEM FROM ORDER NUMBER
+ ;;R^"860.8:",.01,"E"
+ ;;D^GET ORDERABLE ITEM FROM ORDER NUMBER
+ ;;R^"860.8:",.02,"E"
+ ;;D^ORDITEM
+ ;;R^"860.8:",100,1
+ ;;D^ ;ORDITEM(OIEN) ;
+ ;;R^"860.8:",100,2
+ ;;D^ ;
+ ;;R^"860.8:",100,3
+ ;;D^ ; Q:'$G(OIEN) ""
+ ;;R^"860.8:",100,4
+ ;;D^ ; ;
+ ;;R^"860.8:",100,5
+ ;;D^ ; N OITXT,X S OITXT=$$OI^ORQOR2(OIEN) Q:'OITXT "No orderable item found."
+ ;;R^"860.8:",100,6
+ ;;D^ ; S X=$G(^ORD(101.43,+OITXT,0)) Q:'$L(X) "No orderable item found."
+ ;;R^"860.8:",100,7
+ ;;D^ ; Q $P(X,U,1)
+ ;;R^"860.8:",100,8
+ ;;D^ ; ;
+ ;;EOR^
+ ;;KEY^860.8:^CONVERT DATE FROM OCX FORMAT TO READABLE FORMAT
+ ;;R^"860.8:",.01,"E"
+ ;;D^CONVERT DATE FROM OCX FORMAT TO READABLE FORMAT
+ ;;R^"860.8:",.02,"E"
+ ;;D^INT2DT
+ ;;R^"860.8:",1,1
+ ;;D^  ;INT2DT(OCXDT,OCXF) ;      This Local Extrinsic Function converts an OCX internal format
+ ;;R^"860.8:",1,2
+ ;;D^  ; ; date into an Externl Format (Human Readable) date.   'OCXF=SHORT FORMAT OCXF=LONG FORMAT
+ ;;R^"860.8:",1,3
+ ;;D^  ; ;
+ ;;R^"860.8:",100,1
+ ;;D^  ;INT2DT(OCXDT,OCXF) ;      This Local Extrinsic Function converts an OCX internal format
+ ;;R^"860.8:",100,2
+ ;;D^  ; ; date into an Externl Format (Human Readable) date.   'OCXF=SHORT FORMAT OCXF=LONG FORMAT
+ ;;R^"860.8:",100,3
+ ;;D^  ; ;
+ ;;R^"860.8:",100,4
+ ;;D^  ; Q:'$L($G(OCXDT)) "" S OCXF=+$G(OCXF)
+ ;;R^"860.8:",100,5
+ ;;D^  ; N OCXYR,OCXLPYR,OCXMON,OCXDAY,OCXHR,OCXMIN,OCXSEC,OCXCYR
+ ;;R^"860.8:",100,6
+ ;;D^  ; S (OCXYR,OCXLPYR,OCXMON,OCXDAY,OCXHR,OCXMIN,OCXSEC,OCXAP)=""
+ ;;R^"860.8:",100,7
+ ;;D^  ; S OCXSEC=$E(OCXDT#60+100,2,3),OCXDT=OCXDT\60
+ ;;R^"860.8:",100,8
+ ;;D^  ; S OCXMIN=$E(OCXDT#60+100,2,3),OCXDT=OCXDT\60
+ ;;R^"860.8:",100,9
+ ;;D^  ; S OCXHR=$E(OCXDT#24+100,2,3),OCXDT=OCXDT\24
+ ;;R^"860.8:",100,10
+ ;;D^  ; S OCXCYR=($H\1461)*4+1841+(($H#1461)\365)
+ ;;R^"860.8:",100,11
+ ;;D^  ; S OCXYR=(OCXDT\1461)*4+1841,OCXDT=OCXDT#1461
+ ;;R^"860.8:",100,12
+ ;;D^  ; S OCXLPYR=(OCXDT\365),OCXDT=OCXDT-(OCXLPYR*365),OCXYR=OCXYR+OCXLPYR
+ ;;R^"860.8:",100,13
+ ;;D^  ; S OCXCNT="031^059^090^120^151^181^212^243^273^304^334^365"
+ ;1;
+ ;

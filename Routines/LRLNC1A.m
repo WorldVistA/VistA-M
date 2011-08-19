@@ -1,0 +1,21 @@
+LRLNC1A ; DALCOI/CA/FHS - ADD/EDIT RESULT NLT CODES IN LAB TEST FILE (#60) ; 1-OCT-1998
+ ;;5.2;LAB SERVICE;**278**;Sep 27,1994
+ ;=================================================================
+TEST ;ADD/EDIT RESULT NLT CODE
+ W !!
+ N DIC,DA,Y,X,DIE S DIE("NO^")="OUTOK"
+ S DIC=60,DIC(0)="AEQZNM"
+ S DIC("A")="Lab Test: ",DIC("S")="I ""BO""[$P(^(0),U,3)"
+ D ^DIC
+ I $D(DUOUT)!($D(DTOUT))!(Y=-1) D EXIT Q
+ S LRIEN=+Y,LRTEST=$P(Y,U,2)
+ ;Check for RESULT NLT CODE and if not one let enter
+ K DIE,DR,DA S DA=LRIEN,DIE="^LAB(60,",DR=64.1
+ D ^DIE
+ I $D(DUOUT)!$D(DTOUT) K DUOUT,DTOUT Q
+ S DIC=DIE,DR="64" W !! W ?5,"IEN: [",DA,"] ",$P(^LAB(60,LRIEN,0),U) S S=$Y D EN^LRDIQ W !
+ S LRNLT=$P($G(^LAB(60,LRIEN,64)),U,2)
+ D EXIT
+ G TEST
+EXIT K DA,DIC,DIE,DR,DTOUT,DUOUT,LRIEN,LRNLT,LRTEST,S,Y
+ Q

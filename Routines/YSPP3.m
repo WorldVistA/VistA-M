@@ -1,0 +1,16 @@
+YSPP3 ;ALB/ASF-PATIENT INQUIRY-PART 3 VT,DENTAL ; 10/7/88  10:48 ;
+ ;;5.01;MENTAL HEALTH;**37**;Dec 30, 1994
+ ;
+ ;  Called by routine YSPP2
+VIET ;
+ S C=$P(A(.321),U),L=$S(C="Y":"YES",C="N":"NO",1:"UNK") W !,"   VIETNAM: ",L S L=$P(A(.321),U,4),L1=$P(A(.321),U,5) W ?24,"FROM: " W:L>0 $$FMTE^XLFDT(L,"5ZD")
+ W ?45,"TO: " W:L1>0 $$FMTE^XLFDT(L,"5ZD")
+AO ;
+ W !," A/O EXPOS: " S L=$S($P(A(.321),U,2)="Y":"YES",1:"NO") W L G DEN:L="NO"
+ S L=$P(A(.321),U,7) W ?22,"AO REG: ",$$FMTE^XLFDT(L,"5ZD")
+ S L=$P(A(.321),U,9) I +L>0 W ?40,"AO EXAM: ",$$FMTE^XLFDT(L,"5ZD")
+ W ?60,"AO #: ",$P(A(.321),U,10)
+DEN ;
+ W !!,"  DENTAL INJURY IN SERV: ",$S($P(A(.36),U,8)="Y":"YES",1:"NO")
+ W !,"TEETH EXTRACTED IN SERVICE: ",$S($P(A(.36),U,9)="Y":"YES",1:"NO")
+ Q:$D(YSNOFORM)  D WAIT1^YSUTL:'YST,ENFT^YSFORM:YST Q

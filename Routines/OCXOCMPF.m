@@ -1,0 +1,96 @@
+OCXOCMPF ;SLC/RJS,CLA - ORDER CHECK CODE COMPILER (Parse a Rule Relation Expression continued...) ;10/29/98  12:37
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+ Q
+ ;
+SYNTXER(EXP,PTR,FLD1,FLD2) ;
+ N OCXWTXT,OCXDASH
+ S OCXDASH="",$P(OCXDASH,"_",250)="_"
+ S OCXWTXT(1)=" "_EXP
+ S OCXWTXT(2)="_"_$E(OCXDASH,1,$L($P(EXP," ",1,PTR-1)))_"/"
+ S OCXWTXT(3)=" "
+ I 'FLD1,FLD2 S OCXWTXT(4)=" Syntax Error: A Boolean expression cannot start with a  '"_$$TKTXT(FLD2)_"'."
+ I 'FLD1,'FLD2 S OCXWTXT(4)=" Unknown Symbol:  '"_$P(EXP," ",PTR)_"'."
+ I FLD1,FLD2 S OCXWTXT(4)=" Syntax Error: A '"_$$TKTXT(FLD2)_"' cannot follow a '"_$$TKTXT(FLD1)_"'."
+ I '$D(OCXWTXT(4)) S OCXWTXT(4)="Unknown error with:  '"_$P(EXP," ",PTR)_"'."
+ D WARN^OCXOCMPV(.OCXWTXT,2,OCXD0,$P($T(+1)," ",1)) Q
+ Q
+ ;
+OPCODE(TXT) ;
+ ;
+ N OPNUM,SUB,OPFUNC,OPCNT,OCXX,OCXPFN
+ S OPNUM=0 F  S OPNUM=$O(^OCXS(863.9,"B",TXT,OPNUM)) Q:'OPNUM  Q:($P($G(^OCXS(863.9,OPNUM,0)),U,2)=OCXBOOL)
+ I 'OPNUM F  S OPNUM=$O(^OCXS(863.9,"SYN",TXT,OPNUM)) Q:'OPNUM  Q:($P($G(^OCXS(863.9,OPNUM,0)),U,2)=OCXBOOL)
+ Q:'OPNUM ""
+ S OPFUNC=$$GETPARM(39,OPNUM,"OCXO GENERATE CODE FUNCTION")
+ I OPFUNC S OCXPFN=+OPFUNC
+ E  S OCXPFN=0 F  S OCXPFN=$O(^OCXS(863.7,"B",$E(OPFUNC,1,30),OCXPFN)) Q:'OCXPFN  Q:($P($G(^OCXS(863.7,+OCXPFN,0)),U,1)=OPFUNC)
+ S OCXX=0 F OPCNT=0:1 S OCXX=$O(^OCXS(863.7,+OCXPFN,"PAR",OCXX)) Q:'OCXX
+ ;
+ Q:(OPCNT=1) 0
+ ;
+ Q OPCNT_U_OPFUNC
+ ;
+GETPARM(FILE,INST,PARM) ;
+ Q:'$L(FILE) "" Q:'$L(INST) "" Q:'$L(PARM) ""
+ N OCXP,OCXP1,OCXI,OCXGL
+ S OCXGL="^OCXS" S:(FILE=1) OCXGL="^OCXD" S:(FILE=7) OCXGL="^OCXD" S:(FILE=10) OCXGL="^OCXD" S FILE=FILE/10+860
+ Q:'$D(@OCXGL@(+FILE,0)) ""
+ I (PARM=+PARM),$D(^OCXS(863.8,PARM,0)) S OCXP=PARM
+ E  S OCXP=$O(^OCXS(863.8,"B",PARM,0))
+ Q:'OCXP ""
+ I (INST=+INST),$D(@OCXGL@(FILE,INST,0)) S OCXI=INST
+ E  S OCXI=$O(@OCXGL@(FILE,"B",INST,0))
+ Q:'OCXI ""
+ S OCXP1=$O(@OCXGL@(FILE,OCXI,"PAR","B",OCXP,0)) S:'OCXP1 OCXP1=$O(@OCXGL@(FILE,OCXI,"PAR","B",PARM,0))
+ Q:'OCXP1 ""
+ Q $G(@OCXGL@(FILE,OCXI,"PAR",OCXP1,"VAL"))
+ ;
+PARCNT(EXP) ;
+ N CNT,PTR
+ ;
+ S CNT=$L(EXP,"(")-$L(EXP,")") I CNT D  Q ""
+ .N MSG
+ .S MSG(1)=" "_EXP,MSG(2)=" "
+ .S MSG(3)=" "_$S((CNT<0):(-CNT),1:CNT)_" Unmatched "_$S((CNT>0):"LEFT '('",1:"RIGHT ')'")_" parenthesis in expression"
+ .S MSG(4)="   PARCNT^OCXOCMPF "
+ .D WARN^OCXOCMPV(.MSG,2,OCXD0,$P($T(+1)," ",1)) Q
+ ;
+ F  Q:'(EXP["(")  S EXP=$P(EXP,"(",1)_" @ "_$P(EXP,"(",2,999)
+ S EXP=$TR(EXP,"@","(")
+ F  Q:'(EXP[")")  S EXP=$P(EXP,")",1)_" @ "_$P(EXP,")",2,999)
+ S EXP=$TR(EXP,"@",")")
+ ;
+ F  Q:'(EXP["  ")  S EXP=$P(EXP,"  ",1)_" "_$P(EXP,"  ",2,999)
+ ;
+ F PTR=1:1:$L(EXP) Q:'($E(EXP,PTR)=" ")
+ S EXP=$E(EXP,PTR,$L(EXP))
+ ;
+ F PTR=$L(EXP):-1:1 Q:'($E(EXP,PTR)=" ")
+ S EXP=$E(EXP,1,PTR)
+ ;
+ Q EXP
+ ;
+TKTXT(T) Q $S(T=1:"Data Field 1",T=2:"Data Field 2",T=3:"AND Operator",T=4:"OR Operator",T=5:"Left Parenthesis",T=6:"Right Parenthesis",1:"Token not found")
+ ;
+EXPAND(OPFUNC,OCXP) ;
+ ;
+ N OCXCOD1,OCXCODE,OCXD1
+ S OCXCODE="",OCXP=$G(^OCXS(863.7,+OPFUNC,"EX")),OCXCOD1="S OCXCODE=$$"_OCXP
+ S OCXD1=0 F  S OCXD1=$O(^OCXS(863.7,+OPFUNC,"PAR",OCXD1)) Q:'OCXD1  D
+ .N OCXPOS,OCXVNAM
+ .S OCXPOS=+$G(^OCXS(863.7,+OPFUNC,"PAR",OCXD1,"IN")) Q:'OCXPOS  Q:$D(OCXP(OCXPOS))
+ .S OCXVNAM=+$G(^OCXS(863.7,+OPFUNC,"PAR",OCXD1,0)) Q:'OCXVNAM
+ .S OCXVNAM=$P($G(^OCXS(863.8,+OCXVNAM,0)),U,2) Q:'$L(OCXVNAM)
+ .S OCXP(+OCXPOS)=OCXVNAM
+ I $O(OCXP(0)) D
+ .S OCXCOD1=OCXCOD1_"(",OCXD1=0 F  S OCXD1=$O(OCXP(OCXD1)) Q:'OCXD1  D
+ ..I ($E(OCXP(OCXP(OCXD1)),1)="""") S OCXCOD1=OCXCOD1_""""""_OCXP(OCXP(OCXD1))_""""""
+ ..E  S OCXCOD1=OCXCOD1_""""_OCXP(OCXP(OCXD1))_""""
+ ..I $O(OCXP(OCXD1)) S OCXCOD1=OCXCOD1_","
+ ..E  S OCXCOD1=OCXCOD1_")"
+ .X OCXCOD1
+ ;
+ Q OCXCODE
+ ;

@@ -1,0 +1,20 @@
+PRSAOTE ;HISC/REL-OT/CT Edit ;12-SEP-00
+ ;;4.0;PAID;**2,61**;Sep 21, 1995
+ S PRSTLV=2 D ^PRSAUTL G:TLI<1 EX
+ K DIC S DIC("A")="Select EMPLOYEE: ",DIC("S")="I $P(^(0),""^"",8)=TLE",DIC(0)="AEQM",DIC="^PRSPC(",D="ATL"_TLE W ! D IX^DIC S DFN=+Y K DIC
+ I DFN<1 G EX
+ D HDR^PRSAOTS
+ K %DT S %DT="AEFX",%DT("A")="Begin with Date: ",%DT("B")="T" W ! D ^%DT K %DT S:$D(DTOUT) Y=0 G:Y<1 EX S DTI=Y
+ S NUM=1 D DISP^PRSAOTS
+ G:'CNT EX
+X1 R !!,"Edit Which Request #? ",X:DTIME G:'$T!("^"[X) EX I X'?1N.N!(X<1)!(X>CNT) W *7," Enter # of Request to Edit" G X1
+ S X=+X,DA=R(X),ZOLD=$G(^PRST(458.2,DA,0))
+ S DDSFILE=458.2,DR="[PRSA OT REQ]" D ^DDS K DS
+ S %=$P(^PRST(458.2,DA,0),"^",3) I '% S DIK="^PRST(458.2," D ^DIK K DIK G EX
+ I ZOLD=^PRST(458.2,DA,0) G EX
+ S STAT=$P(^PRST(458.2,DA,0),"^",8) I STAT?1U K ^PRST(458.2,"A"_STAT,DFN,DA)
+ S ^PRST(458.2,DA,0)=$P(^PRST(458.2,DA,0),"^",1,12) K ^(1)
+ D NOW^%DTC S $P(^PRST(458.2,DA,0),"^",8)="R",$P(^(0),"^",11,12)=DUZ_"^"_%,^PRST(458.2,"AR",DFN,DA)=""
+ S X=$P($G(^PRSPC(DFN,0)),"^",29) I X S:X>100 X=X/2080 S $P(^PRST(458.2,DA,0),"^",10)=+$J(X*1.5*$P(^PRST(458.2,DA,0),"^",6),0,2)
+ D UPD^PRSASAL,APP^PRSASAL
+EX G KILL^XUSCLEAN

@@ -1,0 +1,51 @@
+RMPFETL ;DDC/KAW-ENTER/EDIT VETERAN ELIGIBILITY [ 06/16/95   3:06 PM ]
+ ;;2.0;REMOTE ORDER/ENTRY SYSTEM;;JUN 16, 1995
+ADD ;; input: DFN,RMPFTE,RMPFX
+ ;;output: RMPFTE
+ S P=$P(RMPFSYS,U,8) G ADD0:P
+ I RMPFTE="" W !!,"*** ROES ELIGIBILITY CANNOT BE DETERMINED FROM THE DATABASE FOR THIS PATIENT ***" D ^RMPFETL1
+ G END
+ADD0 G ADD1:P=2
+ I '$D(^XUSEC("RMPF SUPERVISOR",DUZ)),'$D(^XUSEC("RMPF SYSTEM MANAGER",DUZ)) W:RMPFTE="" !!,"*** ONLY A ROES SUPERVISOR CAN ENTER/EDIT ELIGIBILITIES ***" G END
+ADD1 G ADD2:RMPFTE="" S AC="edit" D HEAD
+ W !!,"Eligibility determined from the DHCP database: ",$P(RMPFTE,U,1)
+ D WARN,SUB G END
+ADD2 S AC="enter" D HEAD
+ W !!,"Eligibility for ROES orders cannot be determined from the DHCP database."
+ D SUB G END
+EDIT ;; input: RMPFX,DFN,RMPFTE
+ ;;output: RMPFTE
+ S S2=$G(^RMPF(791810,RMPFX,2)),XX=$P(S2,U,2),YY=$P(S2,U,4)
+ S P=$P(RMPFSYS,U,8) G END:'P,EDIT1:YY!(P=2)
+ G EDIT1:$D(^XUSEC("RMPF SUPERVISOR",DUZ))!$D(^XUSEC("RMPF SYSTEM MANAGER",DUZ)),END
+EDIT1 S (SV,RMPFTE)=$P(^RMPF(791810.4,XX,0),U,1),AC="edit"
+ D HEAD W !!,"Eligibility associated with this order: ",$P(RMPFTE,U,1)
+ I 'YY S X="DHCP DATABASE" G EDIT2
+ S X=$P(S2,U,3),X=$P($G(^VA(200,X,0)),U,1)
+EDIT2 W !?13,"Eligibility determined by: ",X
+ I X="DHCP DATABASE" D WARN
+ D SUB G END:$D(RMPFOUT),END:RMPFTE=SV
+ S DR="2.02///"_$P(RMPFTE,U,1)_";2.03////"_DUZ_";2.04////1;2.05////"_DT
+ S DIE="^RMPF(791810,",DA=RMPFX D ^DIE
+END K RMPFNAM,RMPFSSN,RMPFDOB,RMPFDOD,DIC,DA,DR,DIE,D0,DI,DQ,I,S2,SV,AC
+ K DISYS,%,X,Y,XX,YY,AC,P Q
+SUB W !!,"Do you wish to ",AC," the eligibility? NO// "
+ D READ Q:$D(RMPFOUT)
+SUB1 I $D(RMPFQUT) W !!,"Enter a <Y> if you wish to select an eligibility",!?5,"an <N> or <RETURN> if you wish to continue." G SUB
+ S:Y="" Y="N" S Y=$E(Y,1) I "YyNn"'[Y S RMPFQUT="" G SUB1
+ Q:"Nn"[Y
+E1 W ! S DIC=791810.4,DIC(0)="AEQM"
+ S:$P(RMPFTE,U,1)'="" DIC("B")=$P(RMPFTE,U,1) D ^DIC Q:Y=-1
+ S RMPFTE=$P(Y,U,2)_U_1
+ Q
+HEAD D PAT^RMPFUTL
+ W @IOF,!?29,"ENTER/EDIT ELIGIBILITY"
+ W !!,"Patient: ",RMPFNAM,?40,"SSN: ",RMPFSSN,?63,"DOB: ",RMPFDOB,!
+ F I=1:1:79 W "-"
+ Q
+READ K RMPFOUT,RMPFQUT
+ R Y:DTIME I '$T W $C(7) R Y:5 G READ:Y="." S:'$T Y=U
+ I Y?1"^".E S (RMPFOUT,Y)="" Q
+ S:Y?1"?".E (RMPFQUT,Y)=""
+ Q
+WARN W !!?11,"*** DO NOT EDIT UNLESS YOU ARE SURE YOU WANT TO SEND ***",!?11,"***          ANOTHER ELIGIBILITY TO THE DDC          ***" Q

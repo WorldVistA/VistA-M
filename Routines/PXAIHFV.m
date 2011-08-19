@@ -1,0 +1,13 @@
+PXAIHFV ;ISL/PKR - VALIDATE HEALTH FACTOR DATA ;7/24/96  13:56
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;;Aug 12, 1996
+ ;
+VAL ;Make sure the required field is present.
+ I '$D(PXAA("HEALTH FACTOR")) D
+ . S STOP=1
+ . S PXAERRF=1
+ . S PXADI("DIALOG")=8390001.001
+ . S PXAERR(9)="HEALTH FACTOR"
+ . S PXAERR(10)="AFTER"
+ . S PXAERR(11)=$G(PXAA("HEALTH FACTOR"))
+ . S PXAERR(12)="You are missing the name of the health factor"
+ Q

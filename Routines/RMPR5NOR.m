@@ -1,0 +1,127 @@
+RMPR5NOR ;HIN/RVD-PROS INVENTORY ORDER/RECEIVE UTILITY ;2/11/98
+ ;;3.0;PROSTHETICS;**33,37,46**;Feb 09, 1996
+ D DIV4^RMPRSIT I $D(Y),(Y<0) K DIC("B") Q
+ S X="NOW" D ^%DT D DD^%DT S RMDAT=Y
+ ;
+ W @IOF
+LOC ;ask for location
+ W !!,"Ordering ITEM from Supply or Vendor....",! K DTOUT,DUOUT,DIC("B")
+ S DZ="??",D="B",DIC("S")="I $P(^RMPR(661.3,+Y,0),U,3)=RMPR(""STA"")"
+ S DIC="^RMPR(661.3,",DLAYGO=661.3,DIC(0)="AEQM"
+ S D="B",DIC("A")="Enter Pros Location: " D MIX^DIC1
+ G:$D(DTOUT)!(Y'>0)!$D(DUOUT) EXIT S (DA,RMLODA)=+Y,DIK=DIC
+ S RMLOC=$P(^RMPR(661.3,RMLODA,0),U,1)
+ I $P(^RMPR(661.3,DA,0),U,3)="" S $P(^(0),U,3)=RMPR("STA") D IX1^DIK
+ ;
+LIST ;list current HCPCS @ this Location
+ K DTOUT,DUOUT,DIC("S"),DIC("B")
+ S DIC("A")="Select HCPCS to ORDER: "
+ ;S DIR("?")="^S RFL=0 D DSP^RMPR5NU1"
+ ;S DIR="^RMPR(661.1," D ^DIR G:(Y="^")!(Y="")!$D(DTOUT)!$D(DUOUT) LOC
+ S DIC(0)="AEMQ",DIC("W")="S RZ=$P(^RMPR(661.3,RMLODA,1,+Y,0),U,1) I RZ W ?25,$P($G(^RMPR(661.1,RZ,0)),U,2)"
+ S DIC="^RMPR(661.3,"_RMLODA_",1," D ^DIC
+ I +Y'>0!$D(DTOUT)!$D(DUOUT) W !,"** No HCPCS selected..." G LOC
+ S RMHCDA=+Y,RMDAHC=$P(^RMPR(661.3,RMLODA,1,+Y,0),U,1),RMHCPC=$P(^RMPR(661.1,RMDAHC,0),U,1)
+ ;
+L ;list current ITEM for this HCPCS
+ K DTOUT,DUOUT,DIC("S")
+ S DA(2)=RMLODA,DA(1)=RMHCDA
+ S DIC="^RMPR(661.3,"_DA(2)_",1,"_DA(1)_",1,"
+ S DIC("A")="Enter Item to ORDER: "
+ S DIC="^RMPR(661.3,"_DA(2)_",1,"_DA(1)_",1,",DIC(0)="AEMNQ"
+ D ^DIC G:Y'>0!$D(DTOUT)!$D(DUOUT) LIST S RMITDA=+Y
+ S (RMITFLG,RMHCFLG,RMAV,RMAVA,RMCO,RMBAL)=0
+ S RMIT=$P(^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0),U,1)
+ S RMDAIT=$P(RMIT,"-",2)
+ S RMITEM=$P(^RMPR(661.1,RMDAHC,3,RMDAIT,0),U,1)
+ S RMORD=$P(^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0),U,11)
+ ;
+ORDER ;order item from vendor or supply.
+ K DIR,Y S DIR(0)="661.312,31",DIR("A")="Quantity to Order" D ^DIR
+ I $D(DUOUT)!$D(DTOUT) W !,"*** Item was not ordered...." H 1 G LOC
+ I X="" W $C(7),!,"Enter quantity 1 to 99999.." G ORDER
+ S RMORDER=Y K DIR,Y
+ S DIE="^RMPR(661.3,"_DA(2)_",1,"_DA(1)_",1,"
+ S DA=RMITDA,DR="31////^S X=$G(RMORDER)" D ^DIE
+ S RM3=^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0)
+ S RMSO=$P(RM3,U,9)
+ D BAL^RMPR5NU1
+ S X=DT,DIC(0)="AEQL",DLAYGO=661.2,DIC="^RMPR(661.2," K DD,DO
+ D FILE^DICN K DLAYGO S RMCOM="Order from supply or vendor"
+ S ^RMPR(661.2,+Y,0)=DT_"^^^"_RMDAHC_"^^^"_DUZ_"^^"_RMIT_"^"_RMORDER_"^^"_RMTOBA_"^"_RMCOM_"^"_$J(RMTOCO,0,2)_"^"_RMPR("STA")_"^"_RMLODA_"^"_$J(RMAVA,0,2) S DA=+Y,DIK=DIC D IX1^DIK K Y
+ W !,"*** Item ",RMITEM," was ordered...."
+ H 1 G LOC
+ ;
+REC ;receive item from supply, Vendor or Returned Item.
+ W @IOF
+ D DIV4^RMPRSIT I $D(Y),(Y<0) K DIC("B") Q
+ S X="NOW" D ^%DT D DD^%DT S RMDAT=Y
+ S X="NOW" D ^%DT S RMDAT1=Y D DD^%DT S RMDAT2=Y
+REC1 W !!,"*** Receiving Item from Supply, Vendor or Veteran...",!
+ K DTOUT,DUOUT,DIC("B")
+ S DZ="??",D="B",DIC("S")="I $P(^RMPR(661.3,+Y,0),U,3)=RMPR(""STA"")"
+ S DIC="^RMPR(661.3,",DIC(0)="AEQM"
+ S D="B",DIC("A")="Enter Receiving Location: " D MIX^DIC1
+ G:$D(DTOUT)!(Y'>0)!$D(DUOUT) EXIT S (DA,RMLODA)=+Y,DIK=DIC
+ S RMLOC=$P(^RMPR(661.3,RMLODA,0),U,1)
+ I $P(^RMPR(661.3,DA,0),U,3)="" S $P(^(0),U,3)=RMPR("STA") D IX1^DIK
+ ;
+LITEM ;list current HCPCS @ this Location
+ K DTOUT,DUOUT,DIC("S"),DIC("B")
+ S DIC("A")="Select HCPCS to RECEIVE: "
+ ;S DIR("?")="^S RFL=0 D DSP^RMPR5NU1"
+ ;S DIR="^RMPR(661.1," D ^DIR G:(Y="^")!(Y="")!$D(DTOUT)!$D(DUOUT) REC1
+ S DIC(0)="AEMQ",DIC("W")="S RZ=$P(^RMPR(661.3,RMLODA,1,+Y,0),U,1) I RZ W ?25,$P($G(^RMPR(661.1,RZ,0)),U,2)"
+ S DIC="^RMPR(661.3,"_RMLODA_",1," D ^DIC
+ I +Y'>0!$D(DTOUT)!$D(DUOUT) W !,"** No HCPCS selected..." H 1 G REC1
+ S RMHCDA=+Y,RMDAHC=$P(^RMPR(661.3,RMLODA,1,+Y,0),U,1),RMHCPC=$P(^RMPR(661.1,RMDAHC,0),U,1)
+ ;
+ ;list current ITEM for this HCPCS
+ K DTOUT,DUOUT,DIC("S"),DIC("B")
+ S DA(2)=RMLODA,DA(1)=RMHCDA
+ S DIC="^RMPR(661.3,"_DA(2)_",1,"_DA(1)_",1,"
+ S DIC("A")="Enter Item to RECEIVE: "
+ S DIC="^RMPR(661.3,"_DA(2)_",1,"_DA(1)_",1,",DIC(0)="AEMNQ"
+ D ^DIC G:Y'>0!$D(DTOUT)!$D(DUOUT) LITEM
+ S RMITDA=+Y
+ ;S RM1=^RMPR(661.1,RMDAHC,3,RMDAIT,0),RMITEM=$P(RM1,U,1)
+ S RM3=^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0),RMIT=$P(RM3,U,1)
+ S RMQU=$P(RM3,U,2),RMCO=$P(RM3,U,3),RMSO=$P(RM3,U,9)
+ ;
+ ;update LOCATION.
+UPDLOC ;W ! S DIC("A")="Receiving LOCATION: ",DIC="^RMPR(661.3,",DLAYGO=661.3
+ ;
+UPDQ R !,"Quantity to Receive: ",RMQTREC:DTIME
+ G:$D(DTOUT)!$D(DUOUT)!(RMQTREC="^") MESS
+ I RMQTREC["?"!(RMQTREC'>0)!(RMQTREC>999) W $C(7),!,"Enter quantity 1 to 999.." G UPDQ
+ ;
+UPDC ;ask for total Item cost
+ K DIR,Y,DA S DIR(0)="661.312,23",DIR("A")="Total Cost of Item " D ^DIR
+ G:$D(DUOUT)!$D(DTOUT) MESS
+ I X="" W $C(7),!,"Enter Cost 0 to 999999.." G UPDC
+ S RMCOREC=Y K DIR,Y
+ S RMCOA=RMCO+RMCOREC
+ S $P(^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0),U,3)=RMCOA
+ S RMQUA=RMQU+RMQTREC
+ I RMQUA>0 S RMAVA=RMCOA/RMQUA
+ I RMQUA<1 S RMAVA=RMCOREC/RMQTREC
+ S $P(^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0),U,10)=$J(RMAVA,0,2)
+ S RMORD=$P(^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0),U,11)
+ ;
+ ;update Total Item Cost and delete ordered date
+ S $P(^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0),U,2)=RMQUA
+ S RMSO=$P(^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0),U,9)
+ ;
+STAT D BAL^RMPR5NU1
+ S X=DT,DIC(0)="AEQL",DLAYGO=661.2,DIC="^RMPR(661.2," K DD,DO
+ D FILE^DICN K DLAYGO S RMCOM="Received from supply or vendor"
+ S ^RMPR(661.2,+Y,0)=DT_"^^^"_RMDAHC_"^^^"_DUZ_"^"_RMQTREC_"^"_RMIT_"^^"_RMQTREC_"^"_RMTOBA_"^"_RMCOM_"^"_$J(RMTOCO,0,2)_"^"_RMPR("STA")_"^"_RMLODA_"^"_$J(RMAVA,0,2)
+ S DA=+Y,DIK=DIC D IX1^DIK
+ W !,"****Current Balance @ Location ",$P(^RMPR(661.3,RMLODA,0),U,1)," is now: ",RMQUA
+ I RMORD S $P(^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0),U,11)=RMORD-RMQTREC
+ H 1 G REC1
+ ;
+MESS W !,"Nothing Received....."
+EXIT ;MAIN EXIT POINT
+ N RMPRSITE,RMPR D KILL^XUSCLEAN
+ Q

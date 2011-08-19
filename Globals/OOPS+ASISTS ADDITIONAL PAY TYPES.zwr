@@ -1,0 +1,13 @@
+ASISTS ADDITIONAL PAY TYPES
+ZWR
+^OOPS(2262.5,0)="ASISTS ADDITIONAL PAY TYPES^2262.5^5^5"
+^OOPS(2262.5,1,0)="ND^Night Differential"
+^OOPS(2262.5,2,0)="SP^Sunday Premium"
+^OOPS(2262.5,3,0)="HP^Holiday Premium"
+^OOPS(2262.5,4,0)="SUB^Subsistence"
+^OOPS(2262.5,5,0)="QTR^Quarter"
+^OOPS(2262.5,"B","HP",3)=""
+^OOPS(2262.5,"B","ND",1)=""
+^OOPS(2262.5,"B","QTR",5)=""
+^OOPS(2262.5,"B","SP",2)=""
+^OOPS(2262.5,"B","SUB",4)=""

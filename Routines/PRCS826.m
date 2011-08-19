@@ -1,0 +1,47 @@
+PRCS826 ;WISC/CLH/TEN-826 CEILING RPT ;6/29/00  12:22
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+CEIL(SI,FY,QTR,CA,CO) ;
+ N TN,IN,CP
+ ;
+ ;   CALCULATE TOTAL CEILING DOLLARS FOR USER SELECTED QUARTER.
+ ;
+ S TN=SI_"-"_FY_"-"_QTR_"-000"
+ ;
+ ; PICK ALL TRANSACTIONS FOR USER SELECTED QUARTER.
+ ;
+ F  D  Q:'TN!($P(TN,"-",3)'=QTR)
+ . S TN=$O(^PRCS(410,"AE",TN))
+ . Q:('TN)!($P(TN,"-",3)'=QTR)
+ . S CP=+$P(TN,"-",4)
+ . S CA(CP)=0
+ . S IN=0
+ . ;  PICK ALL "CEILING" TRANSACTION TYPES WITHIN QTR.
+ . F  D  Q:'IN
+ .. S IN=$O(^PRCS(410,"AE",TN,IN))
+ .. Q:'IN
+ .. I $D(^PRCS(410,IN,0)),$P(^PRCS(410,IN,0),U,2)="C" S CA(CP)=CA(CP)+$P($G(^PRCS(410,IN,6)),"^") ;"C"=CEILING
+ .. Q
+ . Q
+ ;
+ ;   CALCULATE TOTAL USER SELECTED FISCAL YEAR-TO-DATE OBLIGATIONS.
+ ;
+ S TN=SI_"-"_FY_"-1-000"
+ ;
+ ;  PICK ALL TRANSACTIONS FOR USER SELECTED FISCAL YEAR.
+ ;
+ F  D  Q:'TN!($P(TN,"-",2)'=FY)
+ . S TN=$O(^PRCS(410,"AE",TN))
+ . Q:('TN)!($P(TN,"-",2)'=FY)
+ . S CP=+$P(TN,"-",4)
+ . I '$D(CO(CP)) S CO(CP)=0
+ . S IN=0
+ . ;  PICK ALL "OBLIGATION" TRANSACTION TYPES WITHIN FISCAL YEAR.
+ . F  D  Q:'IN
+ .. S IN=$O(^PRCS(410,"AE",TN,IN))
+ .. Q:'IN
+ .. I $D(^PRCS(410,IN,0)),$P(^PRCS(410,IN,0),U,2)="O" S CO(CP)=CO(CP)+$P($G(^PRCS(410,IN,4)),U,3) ;"O"=OBLIGATION
+ .. Q
+ . Q
+ ;
+ Q  ;QUIT PROGRAM

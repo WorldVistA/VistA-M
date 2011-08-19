@@ -1,0 +1,59 @@
+IBORAT ;ALB/RJS - BILLING RATES LISTING - 3/02/92
+ ;;Version 2.0 ; INTEGRATED BILLING ;**52**; 21-MAR-94
+ ;
+ ;MAIN ROUTINE FOR IB BILLING RATES LISTING
+ ;CALLS IBORAT1A,IBORAT1B,IBORAT1C
+ ; patch IB*2*52 removed part of report that printed the Third Party rates in 399.5
+ ;    routines IBORAT2A,IBORAT2B,IBORAT2C were deleted and reference to them in this routine
+ ;
+START ;
+ ;***
+ ;S XRTL=$ZU(0),XRTN="IBORAT-1" D T0^%ZOSV ;start rt clock
+ D PROMPT I Y=-1 Q
+ D OPEN G END:POP
+ I $D(IO("Q")) D QUEUED,HOME^%ZIS G END
+ U IO
+ ;***
+ ;I $D(XRT0) S:'$D(XRTN) XRTN="IBORAT" D T1^%ZOSV ;stop rt clock
+REPORT ;
+ ;***
+ ;S XRTL=$ZU(0),XRTN="IBORAT-2" D T0^%ZOSV ;start rt clock
+ S IBOUTPUT=0,IBZ=0
+ D ^IBORAT1A,^IBORAT1B,^IBORAT1C
+ I 'IBZ G NEXT
+ I IBDONE G END
+ F IBAAA=$Y:1:(IOSL-3) W !
+ I ($E(IOST,1,2)="C-")
+ I  S DIR(0)="E" D ^DIR K DIR I Y=0!(Y="")!($D(DIRUT)) G END
+NEXT ;
+ I 'IBZ W !,"No data for this date range"
+END ;
+ ;KILL ^TMP GLOBAL
+ K ^TMP($J)
+ ;***
+ ;I $D(XRT0) S:'$D(XRTN) XRTN="IBORAT" D T1^%ZOSV ;stop rt clock
+ I $D(ZTQUEUED) S ZTREQ="@" Q
+ ;IBORAT***** KILLING VARIABLES IN IBORAT******
+ K %DT,%IS,IBENDATE,POP,IBSTDATE,Y,IBAAA,IBZ
+ ;IBORAT1**** KILLING SHARED VARIABLES FROM OTHER ROUTINES *****
+ K DIRUT,IBDONE,IBEDATE,IBENDATE,IBOUTPUT,IBPAGE,IBSDATE,IBSTDATE,IBTITLE,IBTODAY,IBPAYORS
+ D ^%ZISC
+ Q
+PROMPT ;
+ W !
+ S %DT="AEPX",IBOUTPUT=0
+ S %DT("A")="Enter Beginning Date:" D ^%DT
+ S IBSTDATE=Y
+ I Y=-1 Q
+ S %DT("A")="Enter Ending Date:" D ^%DT
+ S IBENDATE=Y
+ I Y=-1 Q
+ I IBENDATE<IBSTDATE W !,"Ending Date Less than Beginning Date Please Re-enter" G PROMPT
+ Q
+QUEUED ;
+ S ZTRTN="REPORT^IBORAT",ZTDESC="IB BILLING RATES & MEDICARE DEDUCTIBLE REPORT",ZTSAVE("IBSTDATE")="",ZTSAVE("IBENDATE")="" D ^%ZTLOAD W !!,$S($D(ZTSK):"Request Queued",1:"Request Cancelled")
+ K ZTSK
+ Q
+OPEN ;
+ S %ZIS="QM" D ^%ZIS
+ Q

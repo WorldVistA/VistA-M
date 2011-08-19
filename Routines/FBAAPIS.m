@@ -1,0 +1,5 @@
+FBAAPIS ;AISC/GRR-PHARMACY INVOICE STATUS ;06MAR87
+ ;;3.5;FEE BASIS;;JAN 30, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RD W !! S DIC="^FBAA(162.1,",DIC(0)="AEQ" D ^DIC G Q:X=""!(X="^"),RD:Y<0 S DA=+Y,DIE=DIC,DR=0 W ! D EN^DIQ G RD
+Q K DR,DA,X,Y,DIE,DIC,A,D0,DRX,S Q

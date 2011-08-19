@@ -1,0 +1,29 @@
+XUMFXACK ;ISS/RAM - MFS app ack ;06/28/00
+ ;;8.0;KERNEL;**299**;Jul 10, 1995
+ ;
+ ;
+ Q
+ ;
+REPLY(ERROR) ; -- master file response (called from XUMFXH)
+ ;
+ Q:HL("MTN")="MFR"
+ Q:HL("MTN")="MFK"
+ Q:HL("MTN")="ACK"
+ ;
+ S:(TYPE<10) TYPE=(TYPE+10)
+ ;
+ I HL("MTN")="MFQ" D
+ .S IFN=+$G(WHAT) I 'IFN D  Q
+ ..S ERROR="1^REPLY MFQ couldn't resolve IFN"
+ ..D EM^XUMFX(ERROR,.ERR)
+ .S XREF=$P(WHO,HLCS,9),ROOT=$$ROOT^DILFD(IFN,,1)
+ .S IEN=$O(@ROOT@(XREF,$P(WHO,HLCS),0))
+ .S IEN=$S(IEN:IEN,1:$P(WHO,HLCS))
+ ;
+ S IFN=$G(IFN),IEN=$G(IEN)
+ ;
+ D MAIN^XUMFXP(IFN,IEN,TYPE,.PARAM,.ERROR)
+ D MAIN^XUMFXI(IFN,IEN,TYPE,.PARAM,.ERROR)
+ ;
+ Q
+ ;

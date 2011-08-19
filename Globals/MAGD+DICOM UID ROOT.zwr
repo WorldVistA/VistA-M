@@ -1,0 +1,6 @@
+DICOM UID ROOT
+ZWR
+^MAGD(2006.15,0)="DICOM UID ROOT^2006.15^1^1"
+^MAGD(2006.15,1,0)="Veterans' Administration"
+^MAGD(2006.15,1,"UID ROOT")="1.2.840.113754"
+^MAGD(2006.15,"B","Veterans' Administration",1)=""

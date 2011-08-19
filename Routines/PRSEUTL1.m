@@ -1,0 +1,61 @@
+PRSEUTL1 ;HISC/JH/MD-EDUCATION GLOBOL SEARCH UTILITY ;22-JAN-1998
+ ;;4.0;PAID;**35**;Sep 21, 1995
+EN2 ; NEW PERSON/SUPPLIER-PRESENTER FILE LOOKUP FOR REGISTRATIONS
+ N Y,PRSESAVX S POUT=0,PRSENAM=$P($G(^PRSE(452.8,DA(1),3,DA,0)),U,4) W !,?2,"PRESENTER/SUPPLIER: "_$S(PRSENAM="":"",1:PRSENAM_"// ") R PRSX:DTIME I '$T!(PRSX="^") S POUT=1 Q
+ I PRSX="",$G(PRSENAM)'="" S PRSX=PRSENAM Q
+ I PRSX="@" S PRSENAM=PRSX Q
+ S (X,PRSESAVX)=PRSX
+ S DIC=200,DIC(0)="EMZ" D ^DIC K DIC I $D(DTOUT) S POUT=1 Q
+ S %="" I +Y>0 D  Q:Y
+ .F  D  Q:%
+ ..W !!?5,"Is this the one you want" S %=2 D YN^DICN I '% W !!?10,"Answer Y(es) or N(o)"
+ .I %=1 S PRSENAM=Y(0,0) Q
+ .S Y=0 Q
+ S X=PRSESAVX I X'="",X'["?",$G(%)'="" W !!,X
+ S:+$P($G(^PRSE(452.7,1,0)),U,4) DLAYGO=452.2 S DIC=452.2,DIC(0)="QEMZ"_$S(+$P($G(^PRSE(452.7,1,0)),U,4):"L",1:"") D ^DIC D:+Y'>0&(PRSESAVX]"")&(DIC(0)'["L") MSG5^PRSEMSG K DIC I $D(DTOUT) S POUT=1 Q
+ I $P(Y,U,3) S PRSENAM=Y(0,0) Q
+ I +Y>0 D  Q:Y
+ .F  D  Q:%
+ ..W !!?5,"Is this the one you want" S %=2 D YN^DICN I '% W !!?10,"Answer Y(es) or N(o)"
+ .I %=1 S PRSENAM=Y(0,0) Q
+ .S Y=0 Q
+ G:X["?" EN2 I Y'>0,PRSESAVX]"" G EN2
+ Q
+SRT ;SORT BY DATE OR CLASS TITLE
+ S DIR(0)="SO^D:Date/Time;C:Class Title",DIR("A")="Select Sort Parameter(s)" D ^DIR K DIR I $D(DUOUT)!$D(DTOUT)!("^"[X) S POUT=1 Q
+ S PRSESEL=Y
+ Q
+EN3 ; SERVICE LOOKUP
+ W ! S PSP=0,DIC=454.1,DIC(0)="AEQZ",DIC("A")="Select SERVICE (Press Return for all Services): " D ^DIC K DIC I $D(DTOUT)!($D(DUOUT)) S POUT=1 Q
+ I '$D(DTOUT),X="" S PSP=1 Q
+ I $D(DTOUT)!(X["^^") S POUT=1 Q
+ S PSPC=$P($G(Y),U,2),PSPC(1)=+Y
+ S:PSPC="MISCELLANEOUS" PSPC="NON-EMPLOYEE"
+ Q
+EN4(PRSENAM) ; LATEST PAST DATE FROM 452 FILE
+ N Y S Y=$S(+$O(^PRSE(452,"DAT",PRSENAM,0))>0:(9999999-$O(^PRSE(452,"DAT",PRSENAM,0))),1:"") I +Y>0 S PRSEY=Y D D^DIQ S PRSEY(1)=Y
+ Q
+EN5 ; ADD ENTRY TO PROGRAM CLASS FILE FROM E/E STUDENT RECORD
+ Q:$G(PRSENAM)=""  S PRSEDA(2)="" W !,$C(7),"There is no entry for ",PRSENAM(0)," in the PRSE Program Class #452.1 File.",!,"Would you like to add this entry" D YN^DICN
+ I %=0 W !!,"ANSWER 'YES' or 'NO'" G EN5
+ I %=1 D
+ . S X=PRSENAM,DIC(0)="L",DIC="^PRSE(452.1,",DLAYGO=452.1
+ . S DIC("DR")="5////"_$G(PRSESEL)_";4////1;7////1"
+ . K DD,DO D FILE^DICN K DIC S PRSEDA(2)=+Y
+ . S DIE="^PRSE(452.1,",DA=PRSEDA(2)
+ . S DR=".01////"_PRSENAM_";.5"_$S($$EN11^PRSEUTL3($E(PRSENAM,1,25),DA)'>0:"////"_$E(PRSENAM,1,25),1:"")_";1;3;8"
+ . D ^DIE K PRSEDUPL
+ . Q
+ S POUT=1
+ Q
+EN6 ; SORT SELECTION
+ S DIR(0)="SO^C:(C)lass/Student;S:(S)tudent/Class",DIR("A")="Sort By" D ^DIR Q:+$G(DIRUT)  S PRSESORT=Y
+ Q
+EN7 ; ED. TRACKING REPORT PROMPTS
+ K DUOUT,DTOUT
+ W ! S NSP=0,PRSECLS="",DIC("A")="Select TRAINING CLASS (Press return for all classes): "
+ S PRSECLS="",NSP=0,DIC="^PRSE(452.1,",DIC(0)="AEMQZ",DIC("W")="W ?$X+3,$P($G(^PRSP(454.1,+$P($G(^(0)),U,8),0)),U)" D ^DIC K DIC
+ I '$D(DTOUT),'$D(DUOUT),X="" S NSP=1 Q
+ I $D(DTOUT)!($D(DUOUT))!(+Y'>0) S POUT=1 Q
+ S (PRSECLS,NSPC)=$G(Y(0,0)),PRSECLS(0)=+Y
+ Q

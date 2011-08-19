@@ -1,0 +1,37 @@
+RCEVDRV1 ;WASH-ISC@ALTOONA,PA/RGY-Add event to enter file driver #1 ;7/7/95  11:01 AM
+V ;;4.5;Accounts Receivable;**10**;Mar 20, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+OPEN(TYPE,DEB,DOE,RCDUZ,SITE,ERROR,EVN,BAL) ;Add new event to event file
+ NEW DIC,D0,DIE,DA,X,DLAYGO,DR,DEBT,EVENT,DIS,RCOK
+ S DEBT=$$DEBT^RCEVUTL(DEB),ERROR="",EVN=-1
+ I DEBT<0 S ERROR="Unable to locate or add Debtor '"_DEB_"' (PRCADRV1)" G Q
+ I $O(^RC(341,"AC",DEBT,0,0)) S EVN=0 F  S EVN=$O(^RC(341,"AC",DEBT,0,EVN)) Q:EVN=""  D DEL(EVN)
+ F EVN=+$P(^RC(341,0),"^",3)+1:1 L +^RC(341,EVN):0 I $T S RCOK=0 D  L -^RC(341,EVN) Q:RCOK
+ .I $D(^RC(341,EVN)) Q
+ .S DINUM=EVN,DIC="^RC(341,",DIC(0)="L",DLAYGO=341,X=SITE_"-"_EVN_"-0" K DD,DO D FILE^DICN K DIC,DLAYGO,DO
+ .S DIE="^RC(341,",DR="[RCEV OPEN EVENT]",DA=EVN D ^DIE
+ .S RCOK=1
+ .Q
+Q Q
+CLOSE(EVN,ERR) ;Close event
+ S DIE="^RC(341,",DR="[RCEV CLOSE EVENT]",DA=EVN D ^DIE
+ Q
+DEL(EVN) ;Delete event
+ NEW DIK,DA
+ I $P($G(^RC(341,EVN,0)),"^",11)=1 G Q2
+ S DA=EVN,DIK="^RC(341," D ^DIK
+Q2 Q
+PUR ;Purge events
+ NEW DATE,EVN,EVN2,DEBT,LST,N0,PURDT
+ S DATE=0,EVN2=""
+ F  S DATE=$O(^RC(341,"C",DATE)) Q:'DATE  S EVN=0 F  S EVN=$O(^RC(341,"C",DATE,EVN)) Q:'EVN  D
+ .S N0=$G(^RC(341,EVN,0)) Q:N0=""
+ .S DEBT=$P(N0,"^",5) Q:DEBT=""
+ .S LST=$O(^RC(341,"AD",DEBT,2,"")) Q:LST=""
+ .S PURDT=$O(^RC(341,"AD",DEBT,2,LST)) Q:PURDT=""
+ .S EVN2=$O(^RC(341,"AD",DEBT,2,PURDT,EVN2)) Q:EVN2=""!(EVN=EVN2)
+ .S PURDT=9999999.999999-PURDT
+ .Q:DATE>PURDT
+ .I $P(N0,"^",7)<PURDT,$P(N0,"^",2)'=$O(^RC(341.1,"AC",1,0)),EVN'=$P($$LST^RCFN01($P(N0,"^",5),2),"^",2) S DA=EVN,DIK="^RC(341," D ^DIK
+ .Q
+ Q

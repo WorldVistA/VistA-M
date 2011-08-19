@@ -1,0 +1,80 @@
+PSN5067 ;BIR/LDT - API FOR INFORMATION FROM FILE 50.67; 5 Sep 03
+ ;;4.0; NATIONAL DRUG FILE;**109**; 30 Oct 98
+ ;
+ALL(PSNIEN,PSNFT,PSNFL,LIST) ;
+ ;PSNIEN - IEN of entry in NDC/UPN file (#50.67).
+ ;PSNFT - Free Text TRADE NAME in NDC/UPN file (#50.67).
+ ;PSNFL - Inactive flag - "" - All entries.
+ ;        FileMan Date - Only entries with no Inactive Date or an Inactive Date greater than this date.
+ ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where
+ ;       Field Number is the Field Number of the data piece being returned.
+ ;Returns SEQUENCE NUMBER field (#.01), NDC field (#1), UPN field (#2), MANUFACTURER field (#3), TRADE NAME field (#4),
+ ;VA PRODUCT NAME field (#5), INACTIVATION DATE field (#7), PACKAGE SIZE field (#8), PACKAGE TYPE field (#9), and
+ ;OTX/RX INDICATOR field (#10) of the NDC/UPN file (#50.67).
+ N DIERR,ZZERR,PSN5067,PSN,SCR
+ I $G(LIST)']"" Q
+ K ^TMP($J,LIST)
+ I $G(PSNIEN)']"",($G(PSNFT)']"") S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ I $G(PSNIEN)]"",(+$G(PSNIEN)'>0) S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ S SCR("S")=""
+ I +$G(PSNFL)>0 N ND D SETSCRN
+ I $G(PSNIEN)]"" N PSNIEN2 S PSNIEN2=$$FIND1^DIC(50.67,"","B","`"_PSNIEN,,SCR("S"),"") D
+ .I +PSNIEN2'>0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ .S ^TMP($J,LIST,0)=1
+ .D GETS^DIQ(50.67,+PSNIEN2,".01:10","IE","PSN5067") S PSN(1)=0
+ .F  S PSN(1)=$O(PSN5067(50.67,PSN(1))) Q:'PSN(1)  D SETZRO
+ I $G(PSNIEN)="",$G(PSNFT)]"" D
+ .I PSNFT["??" D LOOP Q
+ .D FIND^DIC(50.67,,"@;.01;1","QP",PSNFT,,"T",SCR("S"),,"")
+ .I +$G(^TMP("DILIST",$J,0))=0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ .I +^TMP("DILIST",$J,0)>0 S ^TMP($J,LIST,0)=+^TMP("DILIST",$J,0) N PSNXX S PSNXX=0 F  S PSNXX=$O(^TMP("DILIST",$J,PSNXX)) Q:'PSNXX  D
+ ..S PSNIEN=+^TMP("DILIST",$J,PSNXX,0) K PSN5067 D GETS^DIQ(50.67,+PSNIEN,".01:10","IE","PSN5067") S PSN(1)=0
+ ..F  S PSN(1)=$O(PSN5067(50.67,PSN(1))) Q:'PSN(1)  D SETZRO
+ K ^TMP("DILIST",$J)
+ Q
+ ;
+SETZRO ;
+ S ^TMP($J,LIST,+PSN(1),.01)=$G(PSN5067(50.67,PSN(1),.01,"I"))
+ S ^TMP($J,LIST,+PSN(1),1)=$G(PSN5067(50.67,PSN(1),1,"I"))
+ S ^TMP($J,LIST,+PSN(1),2)=$G(PSN5067(50.67,PSN(1),2,"I"))
+ S ^TMP($J,LIST,+PSN(1),3)=$S($G(PSN5067(50.67,PSN(1),3,"I"))="":"",1:PSN5067(50.67,PSN(1),3,"I")_"^"_PSN5067(50.67,PSN(1),3,"E"))
+ S ^TMP($J,LIST,+PSN(1),4)=$G(PSN5067(50.67,PSN(1),4,"I"))
+ I $G(PSN5067(50.67,PSN(1),4,"I"))'="" S ^TMP($J,LIST,"B",$G(PSN5067(50.67,PSN(1),4,"I")),+PSN(1))=""
+ S ^TMP($J,LIST,+PSN(1),5)=$S($G(PSN5067(50.67,PSN(1),5,"I"))="":"",1:PSN5067(50.67,PSN(1),5,"I")_"^"_PSN5067(50.67,PSN(1),5,"E"))
+ S ^TMP($J,LIST,+PSN(1),7)=$S($G(PSN5067(50.67,PSN(1),7,"I"))="":"",1:PSN5067(50.67,PSN(1),7,"I")_"^"_PSN5067(50.67,PSN(1),7,"E"))
+ S ^TMP($J,LIST,+PSN(1),8)=$S($G(PSN5067(50.67,PSN(1),8,"I"))="":"",1:PSN5067(50.67,PSN(1),8,"I")_"^"_PSN5067(50.67,PSN(1),8,"E"))
+ S ^TMP($J,LIST,+PSN(1),9)=$S($G(PSN5067(50.67,PSN(1),9,"I"))="":"",1:PSN5067(50.67,PSN(1),9,"I")_"^"_PSN5067(50.67,PSN(1),9,"E"))
+ S ^TMP($J,LIST,+PSN(1),10)=$S($G(PSN5067(50.67,PSN(1),10,"I"))="":"",1:PSN5067(50.67,PSN(1),10,"I")_"^"_PSN5067(50.67,PSN(1),10,"E"))
+ Q
+ ;
+LOOP ;
+ N PSN567D,PSN567E,PSN567RX,PSN567ND,PSNVAL
+ D FIELD^DID(50.67,10,"Z","POINTER","PSN567D","PSN567E") S PSN567RX=$G(PSN567D("POINTER"))
+ N PSNENCT
+ S PSNENCT=0
+ S PSNVAL=0 F  S PSNVAL=$O(^PSNDF(50.67,PSNVAL)) Q:'PSNVAL  D
+ .I $P($G(^PSNDF(50.67,PSNVAL,0)),"^")="" Q
+ .I $G(PSNFL),$P($G(^PSNDF(50.67,PSNVAL,0)),"^",7),$P($G(^(0)),"^",7)'>PSNFL Q
+ .S PSN567ND=$G(^PSNDF(50.67,PSNVAL,0))
+ .S ^TMP($J,LIST,+PSNVAL,.01)=$P(PSN567ND,"^")
+ .I $P(PSN567ND,"^",5)'="" S ^TMP($J,LIST,"B",$P(PSN567ND,"^",5),+PSNVAL)=""
+ .S ^TMP($J,LIST,+PSNVAL,1)=$P(PSN567ND,"^",2)
+ .S ^TMP($J,LIST,+PSNVAL,2)=$P(PSN567ND,"^",3)
+ .S ^TMP($J,LIST,+PSNVAL,3)=$S($P(PSN567ND,"^",4):$P(PSN567ND,"^",4)_"^"_$P($G(^PS(55.95,+$P(PSN567ND,"^",4),0)),"^"),1:"")
+ .S ^TMP($J,LIST,+PSNVAL,4)=$P(PSN567ND,"^",5)
+ .S ^TMP($J,LIST,+PSNVAL,5)=$S($P(PSN567ND,"^",6):$P(PSN567ND,"^",6)_"^"_$P($G(^PSNDF(50.68,+$P(PSN567ND,"^",6),0)),"^"),1:"")
+ .N Y S Y=$P(PSN567ND,"^",7) D
+ ..I Y S ^TMP($J,LIST,+PSNVAL,7)=$G(Y) X ^DD("DD") S ^TMP($J,LIST,+PSNVAL,7)=^TMP($J,LIST,+PSNVAL,7)_"^"_$G(Y) Q
+ ..S ^TMP($J,LIST,+PSNVAL,7)=""
+ .S ^TMP($J,LIST,+PSNVAL,8)=$S($P(PSN567ND,"^",8):$P(PSN567ND,"^",8)_"^"_$P($G(^PS(50.609,+$P(PSN567ND,"^",8),0)),"^"),1:"")
+ .S ^TMP($J,LIST,+PSNVAL,9)=$S($P(PSN567ND,"^",9):$P(PSN567ND,"^",9)_"^"_$P($G(^PS(50.608,+$P(PSN567ND,"^",9),0)),"^"),1:"")
+ .N PSN567NR S PSN567NR=$P(PSN567ND,"^",10)  D
+ ..I PSN567NR'="",PSN567RX'="",PSN567RX[(PSN567NR_":") S ^TMP($J,LIST,+PSNVAL,10)=PSN567NR_"^"_$P($E(PSN567RX,$F(PSN567RX,(PSN567NR_":")),999),";") Q
+ ..S ^TMP($J,LIST,+PSNVAL,10)=""
+ .S PSNENCT=PSNENCT+1
+ S ^TMP($J,LIST,0)=$S($G(PSNENCT):$G(PSNENCT),1:"-1^NO DATA FOUND")
+ Q
+ ;
+SETSCRN ;
+ S SCR("S")="S ND=$P($G(^PSNDF(50.67,+Y,0)),""^"",7) I ND=""""!(ND>PSNFL)"
+ Q

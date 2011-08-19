@@ -1,0 +1,69 @@
+IBAMTD1 ;ALB/CPM-MOVEMENT EVENT DRIVER INTERFACE (CON'T) ;21-OCT-91
+ ;;2.0;INTEGRATED BILLING;**45,153,179,183,202**;21-MAR-94
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+EN ; Create charges for one-day admissions
+ ;  Input:  DFN, DGPMA, IBDT, IBBS, IBCLDA
+ ;          IBCLCT/IBCLDAY/IBCLDOL/IBCLDT (if IBCLDA'=0)
+ ;
+ ; - quit if patient is not a Means Test patient at discharge
+ G:'$$BIL^DGMTUB(DFN,+DGPMA) END
+ N IBGMT,IBGMTR,IBGMTEFD
+ S IBGMT=$$ISGMTPT^IBAGMT(DFN,+DGPMA),IBGMTR=0
+ S IBGMTEFD=$$GMTEFD^IBAGMT()
+ ; - handle clock
+ I $D(IBCLDT),IBCLDT>IBDT S IBY="-1^IB034" G END
+ I IBCLDA D COUNT^IBAMTD S IBCLCT=IBCLCT+1 I IBCLCT>365 S IBWHER=2 D CLOCKCL^IBAUTL3 G:IBY<1 END S IBCLDA=0
+ I 'IBCLDA S IBCLDT=IBDT,IBWHER=7 D CLADD^IBAUTL3 G:IBY<1 END S IBCLCT=1,(IBCLDAY,IBCLDOL)=0
+ ; - build event
+ S IBNH=$P($G(^DGCR(399.1,IBBS,0)),"^")["NURSING",IBSL="405:"_$P(DGPMA,"^",14),IBEVDT=IBDT,IBWHER=6
+ D EVADD^IBAUTL3 G:IBY<1 END
+ S IBCLDAY=IBCLDAY+1
+ ; - cancel any OPT charges
+ D OPT(DFN,IBDT)
+ ; - process per diem
+ G:IBDT<$$DIEM^IBAUTL5 COPAY
+ S IBX="P",IBWHER=8 D TYPE^IBAUTL2 G:IBY<1 END
+ ;If the patient has GMT Status, and the Action Type is MT Inpt (must be), then reduce the charge
+ S IBGMTR=0 I IBGMT>0,DGPMA'<IBGMTEFD,$$ISGMTTYP^IBAGMT(IBATYP) S IBGMTR=1,IBCHG=$$REDUCE^IBAGMT(IBCHG) ;GMT Charge Adjustment
+ S IBWHER=13 D CHADD^IBAUTL2 G:IBY<1 END
+ S IBNOS=IBN,IBWHER=26 D FILER^IBAUTL5 G:IBY<1 END
+COPAY ; - process co-payment
+ G:IBCLDAY>360 LAST
+ I IBCLDAY>1,IBCLDAY#90=1 S IBCLDOL=0
+ S IBMAX=IBMED
+ I IBGMT>0,DGPMA'<IBGMTEFD S IBMAX=$$REDUCE^IBAGMT(IBMAX) ;GMT Adjustment of Medicare Deductible
+ I IBCLDAY>90,'IBNH S IBMAX=IBMAX/2
+ G:IBCLDOL'<IBMAX LAST
+ S IBWHER=14 D COPAY^IBAUTL2 G:IBY<1 END
+ ;If the patient has GMT Status, then reduce the charge
+ S IBGMTR=0 I IBGMT>0,DGPMA'<IBGMTEFD S IBGMTR=1,IBCHG=$$REDUCE^IBAGMT(IBCHG)
+ S IBCHARG=IBMAX-IBCLDOL I IBCHG<IBCHARG S IBCHARG=IBCHG
+ S IBCHG=IBCHARG S:IBCHG<0 IBCHG=0
+ S IBCLDOL=IBCLDOL+IBCHG
+ S IBWHER=18 D CHADD^IBAUTL2 G:IBY<1 END
+ S IBNOS=IBN,IBWHER=27 D FILER^IBAUTL5 G:IBY<1 END
+LAST ; - close event, update billing clock
+ S IBWHER=23,IBEVCLD=IBDT D EVCLOSE^IBAUTL3,CLUPD^IBAUTL3,CLOCKCL^IBAUTL3:IBCLCT>364
+END Q
+ ;
+ ;
+UNFLAG ; Unflag continuous patient, if not transferring from the facility.
+ N TRAN S TRAN=$P(DGPMA,"^",18)=10
+ I 'TRAN!(IBASIH) W:'$G(DGQUIET) !,"Unflagging patient as continuous since 7/1/86..." D
+ . D NOW^%DTC S DIE="^IBE(351.1,",DA=+$O(^IBE(351.1,"B",DFN,0))
+ . S DR=".02////"_$P(+DGPMA,".")_";.05////"_DUZ_";.06////"_% D ^DIE K DIE,DA,DR
+ . W:'$G(DGQUIET) "completed."
+ ; - send bulletin to Means Test Billing mailgroup, if patient did not die.
+ I $P($G(^DG(405.1,+$P(DGPMA,"^",4),0)),"^")'["DEATH" D CTPT^IBAMTBU
+ Q
+ ;
+OPT(DFN,IBDATE) ; Cancel any OPT charges on days billed for inpatient care.
+ ;  Input:    DFN  --  Pointer to patient in file #2
+ ;         IBDATE  --  Date to check for OPT charges
+ N IBN,IBCRES,IBDUZ S IBDUZ=DUZ
+ S IBN=$$BFO^IBECEAU(DFN,IBDATE) I 'IBN G OPTQ
+ S IBCRES=$O(^IBE(350.3,"B","RECD INPATIENT CARE",0))
+ S:'IBCRES IBCRES=25
+ D CANCH^IBECEAU4(IBN,IBCRES)
+OPTQ Q

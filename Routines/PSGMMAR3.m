@@ -1,0 +1,55 @@
+PSGMMAR3 ;BIR/CML3-MD MARS - SORT O/P ORDERS ;21 Oct 98 / 12:22 PM
+ ;;5.0; INPATIENT MEDICATIONS ;**20,111,131,145**;16 DEC 97;Build 17
+ ;
+ ; Reference to ^PS(59.7 supported by DBIA #2181.
+ ;
+S1 ; Print non-blank prn.
+ Q:PSGMARB=1
+ NEW INIT,NEED,LT,RT,BL,PG,LAB
+ S BL=$S($P($G(^PS(59.7,1,26)),U):6,1:4),(PG,LT,RT)=1
+ S NO=$S(PSGSS="P"!(PSGSS="C")!(PSGSS="L"):$O(^TMP($J,PN,PWDN,"N"))="",PSGRBPPN="P":$O(^TMP($J,TM,WDN,PN,RB,"N"))="",1:$O(^TMP($J,TM,WDN,RB,PN,"N"))="")
+ Q:NO
+ D NOW^%DTC S PSGDT=%,(DAO,DAOO)="",PST="N",PSGMAROC=0
+ K ^TMP($J,"1PRN")
+ I PSGSS'="P",PSGSS'="C",PSGSS'="L" D
+ . I PSGRBPPN="P" F  S PST=$O(^XTMP(PSGREP,TM,PN,WDN,RB,PST)) Q:PST=""  F  S DAOO=$O(^XTMP(PSGREP,TM,PN,WDN,RB,PST,DAOO)) Q:DAOO=""  S PSGMARTS=^(DAOO) D SET    ;DAM 5-01-07 add XTMP global
+ . I PSGRBPPN="R" F  S PST=$O(^TMP($J,TM,WDN,RB,PN,PST)) Q:PST=""  F  S DAOO=$O(^TMP($J,TM,WDN,RB,PN,PST,DAOO)) Q:DAOO=""  S PSGMARTS=^(DAOO) D SET
+ I PSGSS="P"!(PSGSS="C")!(PSGSS="L") F  S PST=$O(^TMP($J,PN,PWDN,PST)) Q:PST=""  D
+ . N DAOO S DAOO=""
+ . F  S DAOO=$O(^TMP($J,PN,PWDN,PST,DAOO)) Q:DAOO=""  I $D(^TMP($J,PN,PWDN,PST,DAOO))#10 S PSGMARTS=^(DAOO) D SET
+ . Q
+ ;
+ D EN^PSGMMAR4
+ Q
+ ;
+SET ; set ^tmp array
+ S PSGORD=$P(DAOO,U,2)
+ I PSGORD["V" D IVPRN^PSGMMIV Q
+ I +PSGMSORT,PSGORD["P" S PSJPSTO=PST,PST="OZ"
+ S PSGORD=+PSGORD_$S(PSGORD["P":"P",1:"A") D ^PSGLOI
+ S TS=0 D MARLB^PSGMUTL(47)
+ I ((MARLB/6)+PSGMAROC)>BL S:PSGMAROC PG=PG+1,(LT,RT)=1,PSGMAROC=0
+ I ((MARLB/6)+PSGMAROC)>(BL/2) S PSGMAROC=$S(PSGMAROC>(BL/2):PSGMAROC,1:(BL/2)) D LTRT(.RT,"^")
+ E  D LTRT(.LT,"")
+ D LAB
+ I $D(PSJPSTO) S PST=PSJPSTO K PSJPSTO
+ Q
+ ;
+LAB ;***Print the 1st label for the order.
+ NEW X,J S J=0
+ ;naked reference below goes with full reference on right of =
+ F X=1:1:MARLB S J=J+1,^(J)=$G(^TMP($J,"1PRN",PG,LAB,J))_UP_MARLB(X) D
+ . I X=6,(MARLB>6) D
+ . . S J=0
+ . . I PSGMAROC>(BL/2) D LTRT(.RT,"^")
+ . . E  D LTRT(.LT,"")
+ Q
+ ;
+LTRT(X,Y)         ;***Increment Left or Right label value.
+ S LAB=X,X=X+1,UP=Y,PSGMAROC=PSGMAROC+1
+ Q
+BLANK ; Print blank prn form
+ NEW INIT,NEED,LT,RT,BL,PG,LAB,UP
+ S BL=$S($P($G(^PS(59.7,1,26)),U):6,1:4),(PG,LT,RT)=1
+ I PSGMARB'=2 D PSGMARB^PSGMMAR4
+ Q

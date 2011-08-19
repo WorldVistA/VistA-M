@@ -1,0 +1,15 @@
+QAOSCNV4 ;HISC/DAD-AUTO ALLOCATE QAOSCLIN KEY FROM CLIN REVR FILE (#741.3) ;11/24/92  13:30
+ ;;3.0;Occurrence Screen;;09/14/1993
+ W !!,"Allocating the QAOSCLIN security key to the persons in the"
+ W !,"QA OCCURRENCE SCREEN CLINICAL REVIEWER file (#741.3)"
+ W !,"----------------------------------------------------------"
+ K ^TMP($J,"QAOSCLIN ADD"),^TMP($J,"QAOSCLIN DEL")
+ F QAOSDUZ=0:0 S QAOSDUZ=$O(^QA(741.3,"B",QAOSDUZ)) Q:QAOSDUZ'>0  D
+ . S QAOSDUZ(0)=$P($G(^VA(200,QAOSDUZ,0)),"^")
+ . Q:QAOSDUZ(0)=""
+ . S ^TMP($J,"QAOSCLIN ADD",QAOSDUZ(0),QAOSDUZ)=""
+ . Q
+ S QAOSCLIN(0)="QAOSCLIN",QAOSCLIN=+$O(^DIC(19.1,"B",QAOSCLIN(0),0))
+ D DOIT^QAOSCKEY
+ K QAOSDUZ,^TMP($J,"QAOSCLIN ADD")
+ Q

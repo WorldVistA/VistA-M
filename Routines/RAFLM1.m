@@ -1,0 +1,55 @@
+RAFLM1 ;HISC/GJC-Radiology Film Usage Report ;4/22/97  12:22
+ ;;5.0;Radiology/Nuclear Medicine;**10**;Mar 16, 1998
+ ; count & store in tmp global
+RADTI ;
+ F RADTI=0:0 S RADTI=$O(^RADPT("AR",RADTE,RADFN,RADTI)) Q:RADTI'>0  I $D(^RADPT(RADFN,"DT",RADTI,0)) S RAD0=^(0) D RACNI Q:RAEOS
+ Q
+RACNI S RADIV=$P($G(^RA(79,+$P(RAD0,U,3),0)),U),RADIV=$S($D(^DIC(4,+RADIV,0)):+RADIV,1:99)
+ Q:'$D(^TMP($J,"RA",RADIV))
+ F RACNI=0:0 S RACNI=$O(^RADPT(RADFN,"DT",RADTI,"P",RACNI)) Q:RACNI'>0  I $D(^(RACNI,0)) S RAP0=^(0),RAPIFN=+$P(RAP0,"^",2) I $D(RACRT(+$P(RAP0,"^",3))) D ITNAME^RAWKL1 I RAITYPE?3AP1"-".N D CHK Q:RAEOS
+ Q
+ ;
+CHK Q:'$D(^TMP($J,"RA",RADIV,RAITYPE))
+ F I=0:0 S I=$O(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"M",I)) Q:I'>0  I $D(^(I,0)) S RAQI=+^(0) D EXTRA^RAUTL12(RAQI)
+ Q:'$D(^RAMIS(71,RAPIFN,0))  S RAPRI=^(0),RAPRC=$$LJ^XLFSTR($E($P(RAPRI,"^"),1,27),29," ") D CPT^RAFLM Q:'$D(^RAMIS(71,RAPIFN,2))
+ F I=0:0 S I=$O(^RAMIS(71,RAPIFN,2,I)) Q:I'>0  I $D(^(I,0)) S RAZ=^(0),RAMJ=$S($D(^RAMIS(71.1,+RAZ,0)):^(0),1:"") D PRC
+ Q:'$D(RAMIS(1))  S RAMUL=$S(J=1:RAMUL(1),1:1),RAMIS=RAMIS(1)
+FLM F I=0:0 S I=$O(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"F",I)) Q:I'>0  D  Q:RAEOS
+ . Q:$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"F",I,0))']""
+ . S RANUM=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"F",I,0))
+ . Q:$D(^RA(78.4,"AW",1,+RANUM))  ;Quit if a wasted piece of film
+ . S RAFLM=$S($D(^RA(78.4,+RANUM,0)):^(0),1:"UNKNOWN")
+ . S:$P(RAFLM,U,2)="Y" RACINE=""
+ . S RANUM=+$P(RANUM,U,2),RAFLM=$P(RAFLM,U)
+ . I RAINPUT=0,'$D(^TMP($J,"RAFILM",RAFLM)) K RACINE Q
+ . D:RANUM STORE
+ . K RACINE
+ . Q
+ K RAMIS,RAMUL,RAZ,RAMJ,RAMULP,RAMULPFL
+ Q
+ ;
+STORE ; Store the data into ^TMP($J,"RA", by division )
+ I $D(ZTQUEUED) D STOPCHK^RAUTL9 S:$G(ZTSTOP)=1 RAEOS=1 Q:RAEOS
+ I $D(RAOR) S A=25 D AUX ;If operating room
+ I $D(RAPORT) S A=26 D AUX ;If portable
+ I $D(RAMULP) S A="MULP" D AUX ;If modifier
+ S:'$D(^TMP($J,"RA",RADIV,RAITYPE,RAFLM,RAMIS,RAPRC)) ^(RAPRC)="0^0^"_$S($P(RAPRI,"^",6)="S":"*",1:"") S X=^(RAPRC),$P(^(RAPRC),"^",1,2)=($P(X,"^")+RAMUL)_"^"_($P(X,"^",2)+RANUM)
+ I '$D(RACINE) S X=^TMP($J,"RA",RADIV),$P(^(RADIV),"^",1,2)=($P(X,"^")+RAMUL)_"^"_($P(X,"^",2)+RANUM)
+ I '$D(RACINE) S X=^TMP($J,"RA",RADIV,RAITYPE),$P(^(RAITYPE),"^",1,2)=($P(X,"^")+RAMUL)_"^"_($P(X,"^",2)+RANUM)
+ S:'($D(^TMP($J,"RA",RADIV,RAITYPE,RAFLM))#2) ^(RAFLM)="0^0^^"_$S($D(RACINE):1,1:"") S X=^(RAFLM),$P(^(RAFLM),"^",1,2)=($P(X,"^")+RAMUL)_"^"_($P(X,"^",2)+RANUM)
+ Q
+ ;
+PRC I +RAZ=25 S RAOR="" Q
+ I +RAZ=26 S RAPORT="" Q
+ S:$P(RAZ,"^",3)="Y" RABILAT="" F J=1:1 I '$D(RAMIS(J)) S RAMIS(J)=$S(RAMJ]"":+RAZ,1:99),RAMUL(J)=$S($P(RAZ,U,2)'="":+$P(RAZ,U,2),1:1) S:$D(RABILAT)&(RAMUL(J)<2) RAMUL(J)=RAMUL(J)*2 S:J>1 RAMULP="" Q
+ K RABILAT
+ Q
+ ;
+AUX S:'$D(^TMP($J,"RA",RADIV,RAITYPE,RAFLM,A,RAPRC)) ^(RAPRC)="0^0^"_$S($P(RAPRI,"^",6)="S":"*",1:"")
+ S X=^TMP($J,"RA",RADIV,RAITYPE,RAFLM,A,RAPRC),^(RAPRC)=($P(X,"^")+RAMUL)_"^"_($P(X,"^",2)+RANUM)_"^"_$P(X,"^",3)
+ Q
+CPT Q:'$P(RAPRI,"^",9)  S RACPT=+$P(RAPRI,"^",9)
+ S RACPT=$$NAMCODE^RACPTMSC(RACPT,DT),RACPT=$P(RACPT,"^")
+ Q:RACPT=""
+ S RAPRC=RAPRC_"("_RACPT_")"
+ Q

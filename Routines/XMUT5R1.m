@@ -1,0 +1,49 @@
+XMUT5R1 ;(WASH ISC)/CAP-Mail Statistics Report ;05/28/2002  07:19
+ ;;8.0;MailMan;;Jun 28, 2002
+ ; Entry points used by MailMan options (not covered by DBIA):
+ ; STATS   XMMGR-NEWMESS/LOGON-STATS
+ ; 0       XMMGR-BKFILER-LONGTERM-STATS (not part of 8.0)
+STATS ;
+0 ;
+ N XMEND,XMSTART,XMABORT
+ S XMABORT=0
+ D INIT(.XMSTART,.XMEND,.XMABORT) Q:XMABORT
+ D REPORT(XMSTART,XMEND)
+ Q
+INIT(XMSTART,XMEND,XMABORT) ;
+ N DIR,X,Y,DIRUT
+ S XMEND=$$FMADD^XLFDT($E(DT,1,5)_"01",-1)  ; last day of last month
+ S XMSTART=$E(XMEND,1,5)_"01"  ; first day of last month
+ Q:$D(ZTQUEUED)
+ S DIR("A")="START Date"
+ S DIR("B")=$$FMTE^XLFDT(XMSTART,"2D")   ; MM/DD/YY
+ S DIR(0)="D^:"_$$FMADD^XLFDT(DT,-1)_":EX"
+ D ^DIR I $D(DIRUT) S XMABORT=1 Q
+ S XMSTART=Y
+ K X,Y,DIR,DIRUT
+ S XMEND=$$FMADD^XLFDT(XMSTART,-1)
+ S XMEND=$$SCH^XLFDT("1M",XMEND)       ; 1 month from XMSTART
+ S DIR("A")="END Date"
+ S DIR("B")=$$FMTE^XLFDT($$MIN^XLFMTH(XMEND,DT),"2D")   ; MM/DD/YY
+ S DIR(0)="D^"_$$FMADD^XLFDT(XMSTART,+1)_":DT:EX"
+ D ^DIR I $D(DIRUT) S XMABORT=1 Q
+ S XMEND=Y
+ Q
+REPORT(XMA,XMB) ;
+ZTSK ;Entry for Tasked report
+ ;XMA=Start Date FM format
+ ;XMAH=Start Date $H format
+ ;XMB=End Date FM format
+ ;XMBH=End Date $H format
+ N XMC,XMD,XMV,BY,DIC,FLDS,FR,TO,L,X
+ S X=XMB
+ I '$D(ZTQUEUED) W !!,"Calling FileMan template ..."
+ S XMD=$$FMTE^XLFDT(DT,"1D")  ; mmm dd, yyyy
+ S XMC=$P(^XMB("NETNAME"),".")_" MailMan Activity Report"
+ S XMV=^%ZOSF("PROD")
+ S BY="[XMMGR-BKFILER-DAY@23:30]",FLDS="[XMMGR-BKFILER-LONGTERM-STATS]",FR=XMA,TO=XMB_".2359",DIC="^XMBX(4.2998,",L="Report on Statistics"
+ S:$D(ZTQUEUED) IOP=ZTIO
+ D EN1^DIP
+ K DIS,XMA,XMB,XMAH,XMBH,X,Y,Z,%ZIS,ZTRTN,ZTSAVE,ZTDTH
+ I '$D(ZTQUEUED) K ZTSK
+ Q

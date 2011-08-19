@@ -1,0 +1,17 @@
+IIV TRANSMISSION STATUS
+ZWR
+^IBE(365.14,0)="IIV TRANSMISSION STATUS^365.14^7^7"
+^IBE(365.14,1,0)="Ready to Transmit"
+^IBE(365.14,2,0)="Transmitted"
+^IBE(365.14,3,0)="Response Received"
+^IBE(365.14,4,0)="Hold"
+^IBE(365.14,5,0)="Communication Failure"
+^IBE(365.14,6,0)="Retry"
+^IBE(365.14,7,0)="Cancelled"
+^IBE(365.14,"B","Cancelled",7)=""
+^IBE(365.14,"B","Communication Failure",5)=""
+^IBE(365.14,"B","Hold",4)=""
+^IBE(365.14,"B","Ready to Transmit",1)=""
+^IBE(365.14,"B","Response Received",3)=""
+^IBE(365.14,"B","Retry",6)=""
+^IBE(365.14,"B","Transmitted",2)=""

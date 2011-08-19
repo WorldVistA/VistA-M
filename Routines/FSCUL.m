@@ -1,0 +1,66 @@
+FSCUL ;SLC/STAFF-NOIS Utilities Lists ;1/13/98  17:13
+ ;;1.1;NOIS;;Sep 06, 1998
+ ;
+EXPAND(CHOICE,OK,DEFAULT) ; from FSCLMPC, FSCLMPD
+ N CNT,DIC,DIR,X,Y K DIC,DIR,Y
+ S OK=1
+ S DIR(0)="SA^BRIEF:BRIEF;DETAILED:DETAILED;CUSTOM:CUSTOM;FIELDS:FIELDS;STATISTIC:STATISTIC"
+ S DIR("A")="Select (B)rief, (D)etailed, (C)ustom, (F)ields, or (S)tatistic: "
+ S DIR("B")=$G(DEFAULT,"BRIEF")
+ D ^DIR K DIR
+ I $D(DUOUT)!$D(DTOUT) S OK=0,CHOICE=$G(CHOICE)
+ I OK K CHOICE S CHOICE=Y
+ S CHOICE=$S(CHOICE="BRIEF":"B",CHOICE="DETAILED":"D",CHOICE="CUSTOM":"F",CHOICE="FIELDS":"C",1:"S")
+ Q:'OK
+ I CHOICE="F" D
+ .S DIC=7107.6,DIC(0)="AEMOQ",DIC("A")="Select Format: " D ^DIC K DIC S:Y<1 OK=0 S CHOICE("F")=Y
+ I CHOICE="C" D
+ .S DIC=7107.2,DIC(0)="AEMOQZ",DIC("A")="Select Field: " F CNT=1:1 D ^DIC Q:Y<1  S CHOICE(CNT)=Y(0)
+ .K DIC
+ I CHOICE="S" D
+ .K ^TMP("FSC STATS",$J) S DIC=7107.2,DIC(0)="AEMOQZ",DIC("A")="Select Field: " F CNT=1:1 D ^DIC Q:Y<1  S CHOICE(CNT)=Y(0)
+ .K DIC
+ Q
+ ;
+SELECT(CHOICE,PARAM,DEFAULT,SELECT,OK) ; from FSCEB, FSCLMPC, FSCLMPCC, FSCLMPD, FSCLMPE, FSCLMPM, FSCLMPNB, FSCLMPNR, FSCLMPQR, FSCLMPQS, FSCLMPS, FSCNAS
+ ; select a list of numbers
+ ; ex. D ("1-7,15-22","S","","VALUES",.OK)
+ ; returns ^TMP("FSC SELECT",$J,SELECT)=entry
+ ;         ^TMP("FSC SELECT",$J,SELECT,entry #)=""
+ ;         OK = 1:valid, 0:invalid
+ N ENTRY,PROMPT,X K ^TMP("FSC SELECT",$J,"AVAIL"),^(SELECT) S OK=1
+ S PROMPT=$P(PARAM,U,2),PARAM=$P(PARAM,U)
+ I CHOICE=+CHOICE S ^TMP("FSC SELECT",$J,SELECT)=CHOICE,^(SELECT,CHOICE)="" Q
+ I $P(CHOICE,"-")=$P(CHOICE,"-",2,99) S ^TMP("FSC SELECT",$J,SELECT)=+CHOICE,^(SELECT,+CHOICE)="" Q
+ D NUMS(CHOICE,"AVAIL")
+ S OK="" F  W !,$S($L(PROMPT):PROMPT,1:"Select Calls")," (",CHOICE,"): ",$S($L($G(DEFAULT)):DEFAULT_"// ",1:"") R X:DTIME D  Q:$L(OK)
+ .S:'$T X=U S:'$L(X) X=DEFAULT S:'$L(X) X=U I X[U S OK=0 Q
+ .I $E(X)'="?",$E(X)'=$E(+X) S OK="" W "  invalid entry" Q
+ .I X["?" D  Q
+ ..I X["???" D  Q
+ ...W "HELP FRAME" ;***
+ ..I X="??" D  Q
+ ...W "EXTENDED HELP" ;***
+ ..I PARAM["S" W "  enter only a single number" Q
+ ..W "  enter a number or number range (ex. 5,8-11)"
+ .S ENTRY=X
+ .K ^TMP("FSC SELECT",$J,SELECT)
+ .S ^TMP("FSC SELECT",$J,SELECT)=ENTRY
+ .I PARAM["S" D  Q:'OK
+ ..S OK=1
+ ..I ENTRY'=+ENTRY W "  enter a single number" S OK=""
+ .D NUMS(ENTRY,SELECT)
+ .S OK=1,X="" F  S X=$O(^TMP("FSC SELECT",$J,SELECT,X)) Q:X=""  I '$D(^TMP("FSC SELECT",$J,"AVAIL",X)) S OK="" Q
+ .I OK Q
+ .W "  enter an appropriate number"
+ .K ^TMP("FSC SELECT",$J,SELECT)
+ K ^TMP("FSC SELECT",$J,"AVAIL")
+ Q
+ ;
+NUMS(STRING,SUB) ;
+ Q:STRING="1-0"  N CNT,UNIT,UNIT1,UNIT2
+ F CNT=1:1 S UNIT=$P(STRING,",",CNT) Q:'$L(UNIT)  D
+ .I UNIT'["-" S ^TMP("FSC SELECT",$J,SUB,UNIT)="" Q
+ .S UNIT1=+UNIT,UNIT2=+$P(UNIT,"-",2),^TMP("FSC SELECT",$J,SUB,UNIT1)="",^TMP("FSC SELECT",$J,SUB,UNIT2)=""
+ .F  S UNIT1=UNIT1+1 Q:UNIT1'<UNIT2  S ^TMP("FSC SELECT",$J,SUB,UNIT1)=""
+ Q

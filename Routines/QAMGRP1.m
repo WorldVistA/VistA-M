@@ -1,0 +1,136 @@
+QAMGRP1 ;HISC/DAD-AUTO LOAD GROUP DATA: ICD DIAGNOSES ;9/3/93  13:14
+ ;;1.0;Clinical Monitoring System;;09/13/1993
+ F QAQLABEL="AN1","AN2","AN3","AN4","AN5","TR8A","TR8B","TR10","TR11","TR12","CV4" S QAQCHECK=0 D LOOP Q:QAQCHECK=-1
+ G:QAQCHECK'=-1 ^QAMGRP2
+EXIT K X,DIC,DLAYGO,QAMD0,Y,OFFSET,LINE,ST,END,NUM,D0,DIK,DA,LASTD0,TAB,QAQCOUNT,QAQCHECK,QAQLABEL,NUMBER
+ Q
+LOOP ;
+ S X=$P($T(@QAQLABEL),";;",2) W !!,"Loading: ",X
+ S QAMD0=+$O(^QA(743.5,"B",$E(X,1,30),0)) I QAMD0 W !!?5,"*** ",X," already exists !! ***",*7 D  G:(QAQCHECK=-1)!(QAQCHECK=2) XIT
+ASK . W !!?5,"Do you want to check this group's completeness"
+ . S %=2 D YN^DICN I '% W !!?10,"Please answer Y(es) or N(o)" G ASK
+ . S QAQCHECK=%
+ . Q
+ W !!,"Working",! S (QAQCOUNT,TAB)=0
+ I QAQCHECK'>0 K DD,DIC,DINUM,DO S DIC="^QA(743.5,",DIC(0)="LM",DIC("DR")=".02////80",DLAYGO=743.5 D FILE^DICN S QAMD0=+Y
+ F OFFSET=1:1 S LINE=$P($T(@QAQLABEL+OFFSET),";;",2) Q:LINE=""  D
+ . S ST=+LINE,END=$S(LINE["-":+$P(LINE,"-",2),1:ST),NUM=ST-.000001
+ . F  S NUM=$O(^ICD9("BA",NUM)) Q:(NUM'>0)!(NUM>END)  D
+ .. F D0=0:0 S D0=$O(^ICD9("BA",NUM,D0)) Q:D0'>0  D
+ ... S NUMBER=$P($G(^ICD9(D0,0)),"^") Q:NUMBER'>0
+ ... S X=NUMBER_";"_D0
+ ... G:$O(^QA(743.5,QAMD0,"GRP","B",$E(X,1,30),0)) SKIP
+ ... S ^QA(743.5,QAMD0,"GRP",D0,0)=X
+ ... S QAQADICT=743.51,QAQAFLD=.01,DA(1)=QAMD0,DA=D0 D ENSET^QAQAXREF
+SKIP ... S LASTD0=D0,QAQCOUNT=QAQCOUNT+1
+ ... W:'TAB ! W ?TAB,NUMBER S TAB=TAB+$S(TAB=70:-70,1:10)
+ ... Q
+ .. Q
+ . Q
+ S ^QA(743.5,QAMD0,"GRP",0)="^743.51A^"_LASTD0_"^"_QAQCOUNT
+ W !!,QAQCOUNT," ICD-9-CM Diagnosis Codes ",$S(QAQCHECK=1:"checked",1:"loaded"),".",!
+XIT Q
+ ;
+AN1 ;;AN-1 DIAG GROUP
+ ;;431
+ ;;433.0
+ ;;433.1
+ ;;433.2
+ ;;433.3
+ ;;433.8
+ ;;433.9
+ ;;434.0
+ ;;434.1
+ ;;434.9
+ ;;436
+ ;;668.20
+ ;;668.21
+ ;;668.22
+ ;;997.0
+ ;;
+AN2 ;;AN-2 DIAG GROUP
+ ;;736.05
+ ;;736.79
+ ;;781.4
+ ;;782.0
+ ;;
+AN3 ;;AN-3 DIAG GROUP
+ ;;410.01
+ ;;410.11
+ ;;410.21
+ ;;410.31
+ ;;410.41
+ ;;410.51
+ ;;410.61
+ ;;410.71
+ ;;410.81
+ ;;410.91
+ ;;
+AN4 ;;AN-4 DIAG GROUP
+ ;;427.11
+ ;;427.5
+ ;;668.11
+ ;;668.12
+ ;;669.41
+ ;;669.42
+ ;;997.1
+ ;;
+AN5 ;;AN-5 DIAG GROUP
+ ;;669.1
+ ;;799.1
+ ;;995.4
+ ;;998.0
+ ;;
+TR8A ;;TR-8A DIAG GROUP (GUNSHOT)
+ ;;879.2-879.5
+ ;;
+TR8B ;;TR-8B DIAG GROUP (KNIFE)
+ ;;879.2-879.5
+ ;;
+TR10 ;;TR-10 DIAG GROUP
+ ;;821.01
+ ;;821.11
+ ;;
+TR11 ;;TR-11 DIAG GROUP
+ ;;852.2
+ ;;852.5
+ ;;868.03
+ ;;868.13
+ ;;860.2
+ ;;860.3
+ ;;860.4
+ ;;860.5
+ ;;901.0
+ ;;902.0
+ ;;423.9
+ ;;560.0
+ ;;560.1
+ ;;
+TR12 ;;TR-12 DIAG GROUP-BASIC TRAUMA
+ ;;800.-801.9
+ ;;802.1
+ ;;802.3-802.399999
+ ;;802.5
+ ;;802.7
+ ;;802.9-809.1
+ ;;810.1
+ ;;811.1
+ ;;812.1
+ ;;812.3
+ ;;812.5
+ ;;813.1
+ ;;813.3
+ ;;813.5
+ ;;813.9
+ ;;818-822.1
+ ;;823.1
+ ;;823.3
+ ;;823.9
+ ;;827
+ ;;939.9
+ ;;950-959.9
+ ;;
+CV4 ;;CV-4 DIAG GROUP
+ ;;410.0-410.1
+ ;;997.1
+ ;;

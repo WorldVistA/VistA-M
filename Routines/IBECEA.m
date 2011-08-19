@@ -1,0 +1,73 @@
+IBECEA ;ALB/RLW - Cancel/Edit/Add Patient Charges ;12-JUN-92
+ ;;2.0; INTEGRATED BILLING ;**199,135**;21-MAR-94
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+EN ; Cancel/Edit/Add Patient Charges -- invoke the List Manager.
+ K XQORS,VALMEVL
+EN1 ; Entrypoint to avoid killing XQORS
+ I '$$CHECK^IBECEAU(1) G ENQ
+ D EN^VALM("IB CHARGES")
+ENQ K IBSITE,IBFAC,IBSERV
+ Q
+ ;
+EN1AR ; AR entry for charge maintenance
+ N DIR,X,Y
+ D EN1
+ S DIR(0)="EA",DIR("A")="PRESS RETURN TO CONTINUE. "
+ W ! D ^DIR K DIR
+ Q
+ ;
+INIT ; List Manager (IB CHARGES) main entry point.
+ S IBJOB=4,IBWHER="IBECEA",IBDUZ=DUZ
+ S IBACMAR="^TMP(""IBACM"",$J)",IBACMIDX="^TMP(""IBACMIDX"",$J)",VALMIDX="^TMP(""IBCMLIDX"",$J)"
+ I '$$SLPT S VALMQUIT="" D FNL G INITQ
+ I $$SLDT S VALMQUIT="" D FNL G INITQ
+ I $$SLRX S VALMQUIT="" D FNL G INITQ
+ D ARRAY^IBECEA0
+INITQ Q
+ ;
+PAT ; 'Change Patient' protocol entry action.
+ N IBDFN S IBDFN=DFN
+ I '$$SLPT D MSG S DFN=IBDFN G PATQ
+DATE ; 'Change Date' protocol entry action.
+ N IBDT1,IBDT2,IBRXXX S IBDT1=IBABEG,IBDT2=IBAEND,IBRXXX=IBRX
+ I $$SLDT D MSG S IBABEG=IBDT1,IBAEND=IBDT2 S:$D(IBDFN) DFN=IBDFN G PATQ
+ I $$SLRX D MSG S IBABEG=IBDT1,IBAEND=IBDT2,IBRX=IBRXXX S:$D(IBDFN) DFN=IBDFN G PATQ
+ D ARRAY^IBECEA0,HDR S VALMBCK="R"
+PATQ Q
+ ;
+MSG ; Quick message display.
+ N DIR,DIRUT,DUOUT,DTOUT,X,Y
+ W !!,*7,"No changes were made!",!
+ S DIR(0)="E" D ^DIR S VALMBCK=""
+ Q
+ ;
+HDR ; Build screen header.
+ S IBNAM=$$PT^IBEFUNC(DFN)
+ S VALMHDR(1)=$$SETSTR^VALM1($$FDATE^VALM1(IBABEG)_" THRU "_$$FDATE^VALM1(IBAEND),"Cancel/Edit/Add Charges",59,22)
+ S VALMHDR(2)=$E("Patient: "_$P(IBNAM,"^"),1,25)_" "_$E(IBNAM)_$P(IBNAM,"^",3)
+ Q
+ ;
+SLPT() ; Select a patient.
+ N DIC,X,Y
+ N DPTNOFZY S DPTNOFZY=1  ;Suppress PATIENT file fuzzy lookups
+ S DIC="^DPT(",DIC(0)="AEMQ" D ^DIC S DFN=+Y
+ Q Y>0
+ ;
+SLDT() ; Select Charge dates.
+ N DIR,DIRUT,DUOUT,DTOUT,X,Y
+ S DIR(0)="DA^2860101:NOW:EX",DIR("A")="Search for CHARGES from: ",DIR("B")=$$DAT2^IBOUTL($$FMADD^XLFDT(DT,-365)) D ^DIR S IBABEG=+Y G:'Y SLDTQ
+ S DIR(0)="DA^"_+Y_":NOW:EX",DIR("A")="                     to: ",DIR("B")=$$DAT2^IBOUTL(DT) D ^DIR S IBAEND=+Y+.999999
+SLDTQ Q $D(DIRUT)!($D(DUOUT))
+ ;
+SLRX() ; Include Rx copay charges?
+ N DIR,DIRUT,DUOUT,DTOUT,X,Y
+ S DIR(0)="Y",DIR("A")="Include RX COPAY charges",DIR("B")="NO" D ^DIR S IBRX=Y
+ Q $D(DIRUT)!($D(DUOUT))
+ ;
+FNL ; List Manager (IB CHARGES) exit action.
+ K:$D(IBACMAR) @IBACMAR,IBACMAR K:$D(IBACMIDX) @IBACMIDX,IBACMIDX K:$D(VALMIDX) @VALMIDX,VALMIDX
+ K IBABEG,IBAEND,DFN,IBAT,IBAX,IBY,VA,IBRX,IBWHER,X,^TMP("IBECEA",$J),^TMP("IBCMLIDX",$J),DFN,IBSAVY,IBARTYP,IBPRNT,IBDUZ,IBJOB,IBXA,IBNOW,IBLDT,IBL,IBIL,IBNAM
+ Q
+ ;
+EXIT Q

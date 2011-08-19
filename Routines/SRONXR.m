@@ -1,0 +1,22 @@
+SRONXR ;B'HAM ISC/ADM - CROSS REFERENCES ; 17 JAN 1992 9:00 AM
+ ;;3.0; Surgery ;;24 Jun 93
+AST ; 'AST' x-ref on TIME PROCEDURE BEGAN
+ S SRSS=$P($G(^SRF(DA,"NON")),"^",8) I 'SRSS K SRSS Q
+ I $P(^ECC(723,SRSS,0),"^")["ANESTHESIOLOGY" S $P(^SRF(DA,.2),"^")=X
+ K SRSS
+ Q
+KILLAST ; kill logic for 'AST' x-ref on TIME PROCEDURE BEGAN
+ S SRSS=$P($G(^SRF(DA,"NON")),"^",8) I 'SRSS K SRSS Q
+ I $P(^ECC(723,SRSS,0),"^")["ANESTHESIOLOGY" S $P(^SRF(DA,.2),"^")=""
+ K SRSS
+ Q
+AND ; 'AND' x-ref on TIME PROCEDURE ENDED
+ S SRSS=$P($G(^SRF(DA,"NON")),"^",8) I 'SRSS K SRSS Q
+ I $P(^ECC(723,SRSS,0),"^")["ANESTHESIOLOGY" S $P(^SRF(DA,.2),"^",4)=X
+ K SRSS
+ Q
+KILLAND ; kill logic for 'AND' x-ref on TIME PROCEDURE ENDED
+ S SRSS=$P($G(^SRF(DA,"NON")),"^",8) I 'SRSS K SRSS Q
+ I $P(^ECC(723,SRSS,0),"^")["ANESTHESIOLOGY" S $P(^SRF(DA,.2),"^",4)=""
+ K SRSS
+ Q

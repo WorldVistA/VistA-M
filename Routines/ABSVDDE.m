@@ -1,0 +1,22 @@
+ABSVDDE ;VAMC ALTOONA/CTB - DELETE DAILY ENTRYS IN FILE 503331 ;4/13/94  11:42 AM
+V ;;4.0;VOLUNTARY TIMEKEEPING;;JULY 6, 1994
+ D ^ABSVSITE G OUT:'%
+ D NOW^ABSVQ S XDATE=X I +$E(X,4,5)=1 S XDATE=$E(X,1,3)-1_1200
+ E  S MO=0_($E(X,4,5)-1),MO=$E(MO,$L(MO)-1,$L(MO)) S XDATE=$E(X,1,3)_MO_"00"
+ S ABSVXA="This option will delete ALL entries in the Daily Entry File up to the month ",ABSVXA(1)="specified.  Do you wish to continue",ABSVXB="",%=1 D ^ABSVYN I %'=1 S X="  NO ACTION TAKEN" D MSG^ABSVQ G OUT
+ F ZZ=1:1 W ! S %DT("A")="Select Month/Year to end purge: ",%DT="AE" D ^%DT Q:$E(Y,4,7)'="0000"  W *7,"  ??"
+ K ZZ I Y<0 S X="  No month selected" D MSG^ABSVQ G OUT
+ S Y=$E(Y,1,5)_"00" I Y'<XDATE W !,"You may not delete entries for: Last month, the current month or",!,"any future months using this option.",*7 G OUT
+ S MONTH=Y D D^ABSVQ S FULLMON=Y
+ S ABSVXA="ARE YOU SURE YOU WANT DELETE ALL ENTRIES TO "_Y,ABSVXB="",%=2 D ^ABSVYN I %'=1 S X="  Option terminated*" D MSG^ABSVQ G OUT
+ S ZTRTN="DQ^ABSVDDE",ZTDESC="DELETE VOLUNTARY DAILY ENTRIES TO "_FULLMON,ZTSAVE("MONTH")="",ZTSAVE("FULLMON")="",ZTSAVE("ABSV*")="" D ^ABSVQ
+OUT K %,%DT,COUNT,DA,FULLMON,I,MO,MONTH,POP,X,XDATE,Y Q
+DQ ;ENTRY POINT FROM TASK MANAGER FOR DAILY RECORD DELETION
+ D NOW^ABSVQ W "Beginning Deletion on ",ABSVXX
+ S COUNT=0,DA=0 F  S DA=$O(^ABS(503331,DA)) Q:'DA  I $D(^ABS(503331,DA,0)),$P(^(0),"^",2)'>MONTH,$P(^(0),"^",7)=ABSV("SITE") D DEL S COUNT=COUNT+1 W "."
+ W !!,"FINISHED DELETION PASS TO ",FULLMON,", ",COUNT," ENTRIES DELETED." D NOW^ABSVQ W !,"Deletion completed on ",ABSVXX
+ I $D(ZTQUEUED) D KILL^%ZTLOAD
+ K ABSVXX Q
+DEL ;DELETE SINGLE ENTRY IN FILE 503331
+ S DIK="^ABS(503331," D ^DIK
+ QUIT

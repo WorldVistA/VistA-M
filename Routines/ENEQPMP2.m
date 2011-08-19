@@ -1,0 +1,20 @@
+ENEQPMP2 ;(WASH ISC)/DH-PMI Procedures ;4.21.97
+ ;;7.0;ENGINEERING;**35**;Aug 17, 1993
+PROCE ;Edit PM PROCEDURE
+ I '$D(^XUSEC("ENEDPM",DUZ)) W !!,"Sorry, you need Security Key 'ENEDPM'." D HLD G EXIT
+ N DIC,DIE,DA,DR,FLDS,BY,L,DHD,DIOEND,X
+PROCE1 W @IOF,! S DIC="^ENG(6914.2,",DIC(0)="AQELM",DLAYGO=6914.2 D ^DIC K DLAYGO G:Y'>0 EXIT S DA=+Y
+ L +^ENG(6914.2,DA):1 I '$T W !!,*7,"Someone else is editing this entry." G EXIT
+ S ENLOCK=DA
+ S DIE="^ENG(6914.2,",DR=".01:99" D ^DIE
+ L -^ENG(6914.2,ENLOCK)
+ G PROCE1
+ ;
+PROCD ;Print PM PROCEDURE
+ S L=0,DIC="^ENG(6914.2,",BY="#PM REFERENCE",FLDS=".01,1,2,3;C2",DHD="PMI Procedure(s)",DIOEND="I IO=IO(0),$E(IOST,1,2)=""C-"" R !,""Press <RETURN> to continue..."",X:DTIME"
+ D EN1^DIP
+EXIT K ENLOCK
+ Q
+HLD I $E(IOST,1,2)="C-" W !,"Press <RETURN> to continue..." R X:DTIME
+ Q
+ ;ENEQPMP2

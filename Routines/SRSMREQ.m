@@ -1,0 +1,19 @@
+SRSMREQ ;B'HAM ISC/MAM - MAKE OPERATION REQUESTS; [ 01/08/98   9:54 AM ]
+ ;;3.0; Surgery ;**37,68,77**;24 Jun 93
+ S (SRSOUT,SRWL)=0 I $D(ORVP) S (DFN,SRSDPT)=+ORVP G DEAD
+PAT W ! S DIC=2,DIC(0)="QEAMZ",DIC("A")="Select Patient: " D ^DIC K DIC I Y<0 S SRSOUT=1 G END
+ S (SRSDPT,DFN)=+Y
+DEAD D DEM^VADPT S SRNM=VADM(1),SRSSN=VA("PID")
+ I $D(^DPT(SRSDPT,.35)),$P(^(.35),"^")'="" S Y=$E($P(^(.35),"^"),1,7) D D^DIQ W !!,"The records show that "_SRNM_" died on "_Y_".",! G:$D(ORVP) END G PAT
+ S SRSOTH=0 D LFTOVR^SRSREQUT
+ G:SRSOTH=1 END
+DATE W ! S P(3)="",%DT="AEFX",%DT("A")="Make a Request for which Date ?  " D ^%DT G:Y<0 END I Y<DT W !!,"Requests cannot be made for past dates.  ",! G DATE
+ S SRSDATE=Y D D^DIQ S SREQDT=Y,ST="REQUESTS",SRSOP="",SRSDAY=P(3),SRSST=0
+ K SRLATE D LATE^SRSREQ I $D(SRLATE) G DATE
+ S SRSC="" D CONCUR^SRSREQ G:SRSC=0 END W !
+ I $G(SRSC)=1 S SRSCON=2,SRCC=1 D CON^SRSRQST G R2^SRSCONR
+ I $D(ORNP),$D(^VA(200,ORNP,0)) S DIR("B")=$P(^VA(200,ORNP,0),"^")
+ D ^SRSRQST
+END I 'SRSOUT W ! K DIR S DIR(0)="FOA",DIR("A")="  Press RETURN to continue.  " D ^DIR
+ K SRTN D ^SRSKILL W @IOF
+ Q

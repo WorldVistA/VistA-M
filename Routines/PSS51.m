@@ -1,0 +1,192 @@
+PSS51 ;BIR/LDT - API FOR INFORMATION FROM FILE 51; 5 Sep 03
+ ;;1.0;PHARMACY DATA MANAGEMENT;**85**;9/30/97
+ ;
+ALL(PSSIEN,PSSFT,LIST) ;
+ ;PSSIEN - IEN of entry in MEDICATION INSTRUCTION file (#51).
+ ;PSSFT - Free Text name in MEDICATION INSTRUCTION file (#51).
+ ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the
+ ;Field Number of the data piece being returned.
+ ;Returns NAME field (#.01), SYNONYM field (#.05), EXPANSION field (#1), OTHER LANGUAGE EXPANSION field (#1.1),
+ ;MED ROUTE field (#2), SCHEDULE field (#3), INSTRUCTIONS field (#4), ADDITIONAL INSTRUCTION field (#5),
+ ;PLURAL field (#9), DEFAULT ADMIN TIMES field (#10), INTENDED USE field (#30), and FREQUENCY (IN MINUTES)
+ ;field (#31) of MEDICATION INSTRUCTION file (#51).
+ N DIERR,ZZERR,PSS51,PSS
+ I $G(LIST)']"" Q
+ K ^TMP($J,LIST)
+ I +$G(PSSIEN)'>0,($G(PSSFT)']"") S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ I $G(PSSIEN)]"",+$G(PSSIEN)'>0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ I +$G(PSSIEN)>0 N PSSIEN2 S PSSIEN2=$$FIND1^DIC(51,"","A","`"_PSSIEN,,,"") D
+ .I +PSSIEN2'>0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ .S ^TMP($J,LIST,0)=1
+ .D GETS^DIQ(51,+PSSIEN2,".01;1;.5;30;2;3;4;31;10;5;1.1;9","IE","PSS51") S PSS(1)=0
+ .F  S PSS(1)=$O(PSS51(51,PSS(1))) Q:'PSS(1)  D SETZRO
+ I +$G(PSSIEN)'>0,$G(PSSFT)]"" D
+ .I PSSFT["??" D LOOP(1) Q
+ .D FIND^DIC(51,,"@;.01;1","QP",PSSFT,,"B",,,"")
+ .I +$G(^TMP("DILIST",$J,0))=0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ .I +^TMP("DILIST",$J,0)>0 S ^TMP($J,LIST,0)=+^TMP("DILIST",$J,0) N PSSXX S PSSXX=0 F  S PSSXX=$O(^TMP("DILIST",$J,PSSXX)) Q:'PSSXX  D
+ ..S PSSIEN=+^TMP("DILIST",$J,PSSXX,0) K PSS51 D GETS^DIQ(51,+PSSIEN,".01;1;.5;30;2;3;4;31;10;5;1.1;9","IE","PSS51") S PSS(1)=0
+ ..F  S PSS(1)=$O(PSS51(51,PSS(1))) Q:'PSS(1)  D SETZRO
+ K ^TMP("DILIST",$J)
+ Q
+ ;
+WARD(PSSIEN,PSSFT,LIST) ;
+ ;PSSIEN - IEN of entry in MEDICATION INSTRUCTION file (#51).
+ ;PSSFT - Free Text name in MEDICATION INSTRUCTION file (#51).
+ ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the
+ ;Field Number of the data piece being returned.
+ ;Returns NAME field (#.01),  WARD field (#.01), and DEFAULT ADMIN TIMES field (#.02) of WARD multiple (#51.01)
+ ;of MEDICATION INSTRUCTION file (#51).
+ N DIERR,ZZERR,PSS51,PSS,CNT
+ I $G(LIST)']"" Q
+ K ^TMP($J,LIST)
+ I +$G(PSSIEN)'>0,($G(PSSFT)']"") S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ I $G(PSSIEN)]"",+$G(PSSIEN)'>0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ I +$G(PSSIEN)>0 N PSSIEN2 S PSSIEN2=$$FIND1^DIC(51,"","A","`"_PSSIEN,,,"") D
+ .I +PSSIEN2'>0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ .S ^TMP($J,LIST,0)=1
+ .D GETS^DIQ(51,+PSSIEN2,".01;20*","IE","PSS51") S PSS(1)=0
+ .F  S PSS(1)=$O(PSS51(51,PSS(1))) Q:'PSS(1)  D SETWARD1 S PSS(2)=0,CNT=0 D
+ ..F  S PSS(2)=$O(PSS51(51.01,PSS(2))) Q:'PSS(2)  D SETWARD2 S CNT=CNT+1
+ ..S ^TMP($J,LIST,+PSS(1),"WARD",0)=$S(CNT>0:CNT,1:"-1^NO DATA FOUND")
+ I +$G(PSSIEN)'>0,$G(PSSFT)]"" D
+ .I PSSFT["??" D LOOP(2) Q
+ .D FIND^DIC(51,,"@;.01","QP",PSSFT,,"B",,,"")
+ .I +$G(^TMP("DILIST",$J,0))=0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ .I +^TMP("DILIST",$J,0)>0 S ^TMP($J,LIST,0)=+^TMP("DILIST",$J,0) N PSSXX S PSSXX=0 F  S PSSXX=$O(^TMP("DILIST",$J,PSSXX)) Q:'PSSXX  D
+ ..S PSSIEN=+^TMP("DILIST",$J,PSSXX,0) K PSS51 D GETS^DIQ(51,+PSSIEN,".01;20*","IE","PSS51") S PSS(1)=0
+ ..F  S PSS(1)=$O(PSS51(51,PSS(1))) Q:'PSS(1)  D SETWARD1 S PSS(2)=0,CNT=0 D
+ ...F  S PSS(2)=$O(PSS51(51.01,PSS(2))) Q:'PSS(2)  D SETWARD2 S CNT=CNT+1
+ ...S ^TMP($J,LIST,+PSS(1),"WARD",0)=$S(CNT>0:CNT,1:"-1^NO DATA FOUND")
+ K ^TMP("DILIST",$J)
+ Q
+ ;
+LOOKUP(PSSIEN,PSSFT,LIST) ;
+ ;PSSIEN - IEN of entry in MEDICATION INSTRUCTION file (#51).
+ ;PSSFT - Free Text name in MEDICATION INSTRUCTION file (#51).
+ ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the
+ ;Field Number of the data piece being returned.
+ ;Returns NAME field (#.01), and EXPANSION field (#1) of MEDICATION INSTRUCTION file (#51).
+ N DIERR,ZZERR,PSS51,PSS
+ I $G(LIST)']"" Q
+ K ^TMP($J,LIST)
+ I +$G(PSSIEN)'>0,($G(PSSFT)']"") S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ I $G(PSSIEN)]"",+$G(PSSIEN)'>0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ I +$G(PSSIEN)>0 N PSSIEN2 S PSSIEN2=$$FIND1^DIC(51,"","A","`"_PSSIEN,,,"") D
+ .I +PSSIEN2'>0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ .S ^TMP($J,LIST,0)=1
+ .D GETS^DIQ(51,+PSSIEN2,".01;1","IE","PSS51") S PSS(1)=0
+ .F  S PSS(1)=$O(PSS51(51,PSS(1))) Q:'PSS(1)  D SETZRO2
+ I +$G(PSSIEN)'>0,$G(PSSFT)]"" D
+ .I PSSFT["??" D LOOP(3) Q
+ .D FIND^DIC(51,,"@;.01;1","QP",PSSFT,,"B",,,"")
+ .I +$G(^TMP("DILIST",$J,0))=0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ .I +^TMP("DILIST",$J,0)>0 S ^TMP($J,LIST,0)=+^TMP("DILIST",$J,0) N PSSXX S PSSXX=0 F  S PSSXX=$O(^TMP("DILIST",$J,PSSXX)) Q:'PSSXX  D
+ ..S PSSIEN=+^TMP("DILIST",$J,PSSXX,0) K PSS51 D GETS^DIQ(51,+PSSIEN,".01;1","IE","PSS51") S PSS(1)=0
+ ..F  S PSS(1)=$O(PSS51(51,PSS(1))) Q:'PSS(1)  D SETZRO2
+ K ^TMP("DILIST",$J)
+ Q
+ ;
+CHK(PSSFT,LIST) ;
+ ;PSSFT - Free Text name in MEDICATION INSTRUCTION file (#51).
+ ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the
+ ;Field Number of the data piece being returned.
+ ;Returns NAME field (#.01) of MEDICATION INSTRUCTION file (#51).
+ N DIERR,ZZERR,PSS51,SCR,PSS
+ I $G(LIST)']"" Q
+ K ^TMP($J,LIST)
+ I $G(PSSFT)']"" S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ S SCR("S")="I $P($G(^PS(51,+Y,0)),""^"",4)<2"
+ I PSSFT["??" D LOOP(4) Q
+ D FIND^DIC(51,,"@;.01","QP",PSSFT,,"B",SCR("S"),,"")
+ I +$G(^TMP("DILIST",$J,0))=0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ I +^TMP("DILIST",$J,0)>0 S ^TMP($J,LIST,0)=+^TMP("DILIST",$J,0) N PSSXX S PSSXX=0 F  S PSSXX=$O(^TMP("DILIST",$J,PSSXX)) Q:'PSSXX  D
+ .S PSSIEN=+^TMP("DILIST",$J,PSSXX,0) K PSS51 D GETS^DIQ(51,+PSSIEN,".01","IE","PSS51") S PSS(1)=0
+ .F  S PSS(1)=$O(PSS51(51,PSS(1))) Q:'PSS(1)  D
+ ..S ^TMP($J,LIST,+PSS(1),.01)=$G(PSS51(51,PSS(1),.01,"I"))
+ ..S ^TMP($J,LIST,"B",$G(PSS51(51,PSS(1),.01,"I")),+PSS(1))=""
+ Q
+ ;
+SETZRO ;
+ S ^TMP($J,LIST,+PSS(1),.01)=$G(PSS51(51,PSS(1),.01,"I"))
+ S ^TMP($J,LIST,"B",$G(PSS51(51,PSS(1),.01,"I")),+PSS(1))=""
+ S ^TMP($J,LIST,+PSS(1),1)=$G(PSS51(51,PSS(1),1,"I"))
+ S ^TMP($J,LIST,+PSS(1),.5)=$G(PSS51(51,PSS(1),.5,"I"))
+ S ^TMP($J,LIST,+PSS(1),30)=$S($G(PSS51(51,PSS(1),30,"I"))="":"",1:PSS51(51,PSS(1),30,"I")_"^"_PSS51(51,PSS(1),30,"E"))
+ S ^TMP($J,LIST,+PSS(1),2)=$S($G(PSS51(51,PSS(1),2,"I"))="":"",1:PSS51(51,PSS(1),2,"I")_"^"_PSS51(51,PSS(1),2,"E"))
+ S ^TMP($J,LIST,+PSS(1),3)=$G(PSS51(51,PSS(1),3,"I"))
+ S ^TMP($J,LIST,+PSS(1),4)=$G(PSS51(51,PSS(1),4,"I"))
+ S ^TMP($J,LIST,+PSS(1),31)=$G(PSS51(51,PSS(1),31,"I"))
+ S ^TMP($J,LIST,+PSS(1),5)=$G(PSS51(51,PSS(1),5,"I"))
+ S ^TMP($J,LIST,+PSS(1),1.1)=$G(PSS51(51,PSS(1),1.1,"I"))
+ S ^TMP($J,LIST,+PSS(1),10)=$G(PSS51(51,PSS(1),10,"I"))
+ S ^TMP($J,LIST,+PSS(1),9)=$G(PSS51(51,PSS(1),9,"I"))
+ Q
+ ;
+SETWARD1 ;
+ S ^TMP($J,LIST,+PSS(1),.01)=$G(PSS51(51,PSS(1),.01,"I"))
+ S ^TMP($J,LIST,"B",$G(PSS51(51,PSS(1),.01,"I")),+PSS(1))=""
+ Q
+ ;
+SETWARD2 ;
+ S ^TMP($J,LIST,+PSS(1),"WARD",+PSS(2),.01)=$S($G(PSS51(51.01,PSS(2),.01,"I"))="":"",1:PSS51(51.01,PSS(2),.01,"I")_"^"_PSS51(51.01,PSS(2),.01,"E"))
+ S ^TMP($J,LIST,+PSS(1),"WARD",+PSS(2),.02)=$G(PSS51(51.01,PSS(2),.02,"I"))
+ Q
+ ;
+SETZRO2 ;
+ S ^TMP($J,LIST,+PSS(1),.01)=$G(PSS51(51,PSS(1),.01,"I"))
+ S ^TMP($J,LIST,"B",$G(PSS51(51,PSS(1),.01,"I")),+PSS(1))=""
+ S ^TMP($J,LIST,+PSS(1),1)=$G(PSS51(51,PSS(1),1,"I"))
+ Q
+ ;
+LOOP(PSS) ;
+ N CNT,PSSIEN S CNT=0
+ S PSSIEN=0  F  S PSSIEN=$O(^PS(51,PSSIEN)) Q:'PSSIEN  D @PSS
+ S ^TMP($J,LIST,0)=$S(CNT>0:CNT,1:"-1^NO DATA FOUND")
+ Q
+1 ;
+ K PSS51 D GETS^DIQ(51,+PSSIEN,".01;1;.5;30;2;3;4;31;10;5;1.1;9","IE","PSS51") S PSS(1)=0
+ F  S PSS(1)=$O(PSS51(51,PSS(1))) Q:'PSS(1)  D SETZRO S CNT=CNT+1
+ Q
+ ;
+2 ;
+ N CNT2 S CNT2=0
+ K PSS51 D GETS^DIQ(51,+PSSIEN,".01;20*","IE","PSS51") S PSS(1)=0
+ F  S PSS(1)=$O(PSS51(51,PSS(1))) Q:'PSS(1)  D SETWARD1 S CNT=CNT+1,PSS(2)=0 D
+ .F  S PSS(2)=$O(PSS51(51.01,PSS(2))) Q:'PSS(2)  D SETWARD2 S CNT2=CNT2+1
+ .S ^TMP($J,LIST,+PSS(1),"WARD",0)=$S(CNT2>0:CNT2,1:"-1^NO DATA FOUND")
+ Q
+ ;
+3 ;
+ K PSS51 D GETS^DIQ(51,+PSSIEN,".01;1","IE","PSS51") S PSS(1)=0
+ F  S PSS(1)=$O(PSS51(51,PSS(1))) Q:'PSS(1)  D SETZRO2 S CNT=CNT+1
+ Q
+ ;
+4 ;
+ Q:$P($G(^PS(51,+PSSIEN,0)),"^",4)>1
+ K PSS51 D GETS^DIQ(51,+PSSIEN,".01","IE","PSS51") S PSS(1)=0
+ F  S PSS(1)=$O(PSS51(51,PSS(1))) Q:'PSS(1)  D
+ .S ^TMP($J,LIST,+PSS(1),.01)=$G(PSS51(51,PSS(1),.01,"I"))
+ .S ^TMP($J,LIST,"B",$G(PSS51(51,PSS(1),.01,"I")),+PSS(1))=""
+ .S CNT=CNT+1
+ Q
+ ;
+A(PSSFT,LIST) ;
+ ;PSSFT - Free Text Name in Medication Instruction file (#51).
+ ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,
+ ;Returns NAME field (#.01),  EXPANSION field (#1), OTHER LANGUAGE EXPANSION field (#1.1), and PLURAL field (#9)
+ ;of MEDICATION INSTRUCTION file (#51).
+ N PSSAENT,PSSAENTN
+ I $G(LIST)']"" Q
+ K ^TMP($J,LIST)
+ I $G(PSSFT)']"" S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ I '$D(^PS(51,"A",PSSFT))  S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ S PSSAENT=$O(^PS(51,"B",PSSFT,0)) I 'PSSAENT S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ S PSSAENTN=$G(^PS(51,PSSAENT,0)) I $P(PSSAENTN,"^")="" S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ S ^TMP($J,LIST,0)=1
+ S ^TMP($J,LIST,+PSSAENT,.01)=$P(PSSAENTN,"^")
+ S ^TMP($J,LIST,"A",$P(PSSAENTN,"^"),+PSSAENT)=""
+ S ^TMP($J,LIST,+PSSAENT,1)=$P(PSSAENTN,"^",2)
+ S ^TMP($J,LIST,+PSSAENT,1.1)=$P($G(^PS(51,+PSSAENT,4)),"^")
+ S ^TMP($J,LIST,+PSSAENT,9)=$P($G(^PS(51,+PSSAENT,9)),"^")
+ Q

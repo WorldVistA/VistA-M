@@ -1,0 +1,62 @@
+XQSRV2 ;SEA/MJM - Server Task handler ;11/19/93  10:55 ;4/9/92  11:14 AM
+ ;;8.0;KERNEL;;Jul 10, 1995
+ ;
+AUDIT ;If audit is required fill in the data (AUDIT #2) the results.
+ D ^XQDATE S XQDONE=%
+ I XQMB6="  " S XQMB6="No errors reported by the Menu System."
+ S $P(^XUSEC(19,XQLTL,0),U,5)=XQDONE
+ S ^XUSEC(19,XQLTL,3)=XQMB6
+ Q
+ ;
+ZTSK ;Server Taskman Entry
+ S U="^",X="ERROR^XQSRV2",@^%ZOSF("TRAP")
+ ;
+RUN ;Do first audit, save off what I need, and clean out partition
+ D:XQAUDIT AUDIT^XQSRV1
+ F %="XMCHAN","XMFROM","XMREC","XMXX" S ^XUTL("XQ",$J,%)=@%
+ F %="XQ220","XQAUDIT","XQDATE","XQLTL","XQMB","XQMB6","XQMSG","XQNOUSR","XQREPLY","XQRTN","XQSND","XQSOP","XQSUB","XQSUP" S ^XUTL("XQ",$J,%)=@%
+ D KILL^XUSCLEAN
+ S (XQER,XQER1)=""
+ F %="XMCHAN","XMFROM","XMREC","XMXX" S @%=^XUTL("XQ",$J,%)
+ F %="XQ220","XQAUDIT","XQDATE","XQLTL","XQMB","XQMB6","XQMSG","XQNOUSR","XQREPLY","XQRTN","XQSND","XQSOP","XQSUB","XQSUP" S @%=^XUTL("XQ",$J,%)
+ S XMZ=XQMSG S:'$D(XMFROM) XMFROM=XQSND
+ ;
+ S XQER="Entry Action: "
+ I $D(^DIC(19,+XQY,20))#2,$L(^(20)) X ^(20) I $D(XQUIT) S XQER="XQUIT variable encountered after Entry Action.  Routine not run." G OUT
+ ;
+ S XQER="Header: "
+ I $D(^DIC(19,+XQY,26))#2,$L(^(26)) X ^(26)
+ ;
+ S XQER="Routine "_XQRTN_": "
+ I XQRTN'=U S:'$D(XMZ) XMZ=^XUTL("XQ",$J,"XQMSG") D @XQRTN
+ ;
+ S XQER="Exit Action: "
+ I $D(^DIC(19,+XQY,15))#2,$L(^(15)) X ^(15)
+ ;
+ S:XQER1="" XQER=""
+ F %="XMCHAN","XMFROM","XMREC","XMXX" S @%=^XUTL("XQ",$J,%)
+ F %="XQ220","XQAUDIT","XQDATE","XQLTL","XQMB","XQMB6","XQMSG","XQNOUSR","XQREPLY","XQRTN","XQSND","XQSOP","XQSUB","XQSUP" S @%=^XUTL("XQ",$J,%)
+ ;
+OUT ;Clean up and quit
+ S:'$D(XQMB6) XQMB6="" S XQMB6=XQMB6_" "_XQER_" "_XQER1 S:XQMB6[";;" XQMB6=$P(XQMB6,";;",2)
+ I 'XQNOUSR,(XQSUP'="Y") D BULL^XQSRV4
+ I XQREPLY="R"!(XQREPLY="E"&(XQER]""))!(XQREPLY="E"&(XQER1]"")) D ^XQSRV3
+ D:XQNOUSR NOUSER^XQSRV3
+ D:XQAUDIT AUDIT
+ ;
+KILL ;Pass Mailman back variables and kill off XQ's
+ S XM1Z=XQMSG,XMXX="S."_XQSOP,XMB("TYPE")=5
+ I XQER]""!(XQER1]"") S %=XQER_XQER1,XQSRVOK=$E(%,1,30)
+ ;
+ K %,%Y,DIC,X,XQ,XQ220,XQAUDIT,XQBUL,XQCHK,XQDATE,XQDONE,XQDT,XQDTH,XQEND,XQER,XQER1,XQHERE,XQI,XQII,XQJ,XQLTL,XQMB,XQMD,XQMS,XQMSG
+ K XQN,XQNOBUL,XQNOUSR,XQREPLY,XQRES,XQRTN,XQSND,XQSOP,XQSRV,XQSTART,XQSTXT,XQSUB,XQSUP,XQUIT,XQVOL,XQX,XQY,XQY0,XQZ,Y,ZTSK
+ K ^XUTL("XQ",$J)
+ Q
+ ;
+ERROR ;Figure out the error message, load it in XQER, and call ^%ZTER
+ I $D(^XUTL("XQ",$J,"XMCHAN")) F %="XMCHAN","XMFROM","XMREC","XMXX" S @%=^(%)
+ I $D(^XUTL("XQ",$J,"XQ220")) F %="XQ220","XQAUDIT","XQDATE","XQLTL","XQMB","XQMB6","XQMSG","XQNOUSR","XQREPLY","XQRTN","XQSND","XQSOP","XQSUB","XQSUP" S @%=^(%)
+ S XQER1=$E($ZE,1,70)
+ S %ZTERLGR=$$LGR^%ZOSV D ^%ZTER
+ G OUT
+ Q

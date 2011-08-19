@@ -1,0 +1,15 @@
+HBHC EXPRESSIVE COMMUNICATION
+ZWR
+^HBHC(631.2,0)="HBHC EXPRESSIVE COMMUNICATION^631.2I^9^6"
+^HBHC(631.2,1,0)="Speaks and is Usually Understood  (1)"
+^HBHC(631.2,2,0)="Speaks But is Understood Only With Difficulty  (2)"
+^HBHC(631.2,3,0)="Uses Only Sign Language, Symbol Board or Writing  (3)"
+^HBHC(631.2,4,0)="Uses Only Gestures, Grunts, or Primitive Symbols  (4)"
+^HBHC(631.2,5,0)="Does Not Convey Needs  (5)"
+^HBHC(631.2,9,0)="Not Determined  (9)"
+^HBHC(631.2,"B","Does Not Convey Needs  (5)",5)=""
+^HBHC(631.2,"B","Not Determined  (9)",9)=""
+^HBHC(631.2,"B","Speaks But is Understood Only ",2)=""
+^HBHC(631.2,"B","Speaks and is Usually Understo",1)=""
+^HBHC(631.2,"B","Uses Only Gestures, Grunts, or",4)=""
+^HBHC(631.2,"B","Uses Only Sign Language, Symbo",3)=""

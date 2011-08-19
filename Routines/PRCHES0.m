@@ -1,0 +1,51 @@
+PRCHES0 ;WISC/RHD/AKS-ESIG MAINTENANCE ROUTINE ; 05/15/93  1:30 PM
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;ROUTINE FOR MAINTAINING SUBFIELD 3 (ELECTRONIC SIGNATURE)
+ ; FIELD .05 (2237 REFERENCE NUMBER), FILE 442
+DECODE(LEVEL0,LEVEL1) ;Extrinsic Function to return hashed electronic sig to readable form.
+ ;returns "" if unsuccessful
+ NEW RECORD,VERSION,PERSON,SIG,CHECKSUM
+ ;get record and check version
+ S RECORD=$G(^PRC(442,LEVEL0,13,LEVEL1,0)) I RECORD="" Q ""
+ S VERSION=$P(RECORD,"^",14)
+ S PERSON=+$P(RECORD,"^",2)
+ I VERSION'="",VERSION'=1 Q ""
+ S SIG=$P(RECORD,"^",3)
+D1 ;decode e signature for version 1
+ S CHECKSUM=$$SUM^PRCUESIG(LEVEL0_"^"_LEVEL1_"^"_$$STRING(RECORD))
+ Q $$DECODE^PRCUESIG(SIG,PERSON,CHECKSUM)
+ENCODE(LEVEL0,LEVEL1,USERNUM,Y) ;usage:D ENCODE^PRCHES0(...)
+ ;Encode esig for version 1 only
+ NEW RECORD,SIGBLOCK,CHECKSUM,OLDUSER
+ ;get record
+ S USERNUM=+USERNUM
+ I USERNUM=0 S Y=-3 Q  ;-3 no user number
+ S SIGBLOCK=$P($G(^VA(200,USERNUM,20)),"^",2)
+ I SIGBLOCK="" S Y=-2 Q  ;-2 = no sig block in file 200
+ S RECORD=$G(^PRC(442,LEVEL0,13,LEVEL1,0))
+ I RECORD="" S Y=-1 Q  ;-1 no record
+ I $P(RECORD,"^",3)'="" S Y=-4 Q  ;-4 cannot re-sign record
+ S OLDUSER=+$P(RECORD,"^",2)
+ I OLDUSER=0 S $P(RECORD,"^",2)=USERNUM
+ I OLDUSER>0 S USERNUM=OLDUSER
+ S:$P(RECORD,"^",4)="" $P(RECORD,"^",4)=$$NOW^PRCUESIG
+ S CHECKSUM=$$SUM^PRCUESIG(LEVEL0_"^"_LEVEL1_"^"_$$STRING(RECORD))
+ S $P(RECORD,"^",3)=$$ENCODE^PRCUESIG(SIGBLOCK,USERNUM,CHECKSUM)
+ S $P(RECORD,"^",13,14)=$$SUM^PRCUESIG(SIGBLOCK)_"^"_1
+ S ^PRC(442,LEVEL0,13,LEVEL1,0)=RECORD
+ S Y=1 Q
+REMOVE(LEVEL0,LEVEL1) ;Entry Point to remove esig
+ NEW I,RECORD
+ S RECORD=$G(^PRC(442,LEVEL0,13,LEVEL1,0)) I RECORD="" Q
+ F I=2,3,4,13 S $P(RECORD,"^",I)=""
+ S ^PRC(442,LEVEL0,13,LEVEL1,0)=RECORD
+ Q
+VERIFY(LEVEL0,LEVEL1)      ;extrinsic function to verify esig  Returns 1 if valid, 0 if not valid
+ NEW RECORD,VERSION,SIGBLOCK
+ S RECORD=$G(^PRC(442,LEVEL0,13,LEVEL1,0))
+ S VERSION=$P(RECORD,"^",14),SIGBLOCK=$P(RECORD,"^",13)
+ I VERSION_SIGBLOCK="" Q 1
+ Q $$SUM^PRCUESIG($$DECODE(LEVEL0,LEVEL1))=SIGBLOCK
+STRING(X)          ;Build String of critical fields
+ Q $P(X,"^")_"^"_$P(X,"^",4)_"^"_$P(X,"^",9)

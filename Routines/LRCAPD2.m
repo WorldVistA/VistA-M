@@ -1,0 +1,90 @@
+LRCAPD2 ;DALISC/FHS - WORKLOAD CODE LIST REPORT ; 12/3/1997
+ ;;5.2;LAB SERVICE;**153,201,351**;Sep 27, 1994
+EN ;
+ W !!?5,"Produce a list of WKLD Code by Lab Section"
+ K DIR,ZTSAVE,DX
+ S DIR(0)="S^0:All;1:Billable Only",DIR("A")="Select WKLD CODE type to Print ",DIR("B")="Billable" D RDIR G:$G(LREND) CLEAN
+ S LRBIL=Y,ZTSAVE("LRBIL")=""
+ S DIR(0)="S^1:WORKLOAD LAB SECTION;2:LOCAL ACC AREA"
+ S DIR("A")="Sort WKLD CODES By " D RDIR G:$G(LREND) CLEAN
+ S LRSEC=Y,ZTSAVE("LRSEC")="" D
+ . I Y=2 D  Q:$G(LREND)  S LRAA=Y,ZTSAVE("LRAA")="" Q
+ . . S DIR(0)="P^68:QEZM",DIR("A")="Select Local Accession Area"
+ . . D RDIR
+ . I Y=1 D  Q:$G(LREND)  S LRSECT=Y,ZTSAVE("LRSECT")=""
+ . . S DIR(0)="P^64.21:QEZM",DIR("A")="Select WKLD CODE LAB SECTION "
+ . . D RDIR
+ G:$G(LREND) CLEAN
+ S DIR(0)="S^1:Actived Codes Only;0:All WKLD Codes"
+ S DIR("A")="Print Activated(reported) or All Codes" D RDIR
+ G:$G(LREND) CLEAN
+ S LRACT=Y,ZTSAVE("LRACT")=""
+ S DIR(0)="S^1:WKLD Name;2:NLT Code Number"
+ S DIR("A")="Print report sorted by "
+ D RDIR G:$G(LREND) CLEAN
+ S LRSORT=Y,ZTSAVE("LRSORT")=""
+ ;Q
+ K %ZIS S %ZIS="QN",%ZIS("A")="Printer Name " D ^%ZIS G:POP CLEAN
+ I IO'=IO(0)!($D(IO("Q"))) D   D ^%ZTLOAD,^%ZISC G CLEAN
+ . 
+ . S ZTRTN="DQ^LRCAPD2",ZTIO=ION,ZTDESC="PRINT WKLD CODES FROM ^LAB(60 " W !!?10,"Report Queued to "_ION,!
+ G DQ
+RDIR ;
+ S LREND=0 D ^DIR
+ S LREND=$S($D(DIRUT):1,$D(DUOUT):1,$D(DIRUT):1,$E(Y)="^":1,1:0)
+ K DIR
+ Q
+DQ ;
+ I $D(ZTQUEUED) S ZTREQ="@" K LRDBUG
+ K ^TMP("LR",$J)
+ S (LRTS,LREND,LRPAG)=0,$P(LRLINE,"_",(IOM+1))=""
+ S LRPDT=$TR($$FMTE^XLFDT($$NOW^XLFDT,"1M"),"@"," ")
+ ;test list
+ W:$E(IOST,1,2)="C-" @IOF
+ S LRTSN=0
+SCR F  S LRTSN=$O(^LAM(LRTSN)) Q:LRTSN<1  I $D(^(LRTSN,0))#2 S LRX=^(0) D
+ . I $G(LRBIL),'$P(LRX,U,5) Q
+ . I $G(LRSECT),$P(LRX,U,15)'=+LRSECT Q
+ . I $G(LRACT),'$P(LRX,U,17) Q
+ . I $G(LRAA),+$G(^(6))'=LRAA Q
+ . I LRSORT=1 S ^TMP("LR",$J,$P(LRX,U),$P(LRX,U,2))=LRTSN
+ . I LRSORT=2 S ^TMP("LR",$J,$P(LRX,U,2),$P(LRX,U))=LRTSN
+PRT K DIR,DR,DA,DX,LREND,ZTSAVE
+ S LRGLB="",LRGLB=$O(^TMP("LR",$J,LRGLB)) I LRGLB="" D  G CLEAN
+ . W !?10,"No WKLD CODES matched your Screening Criteria",!!
+ S LRHEAD0=LRPDT_"   NLT Codes Listed by "_$S(LRSORT=1:"Name ",1:"Code Numbers ")_"     Page "
+ S LRHEAD=" Sorted by " D
+ . I $G(LRBIL) S LRHEAD=LRHEAD_"Billable Codes "
+ . I $G(LRSECT) S LRHEAD=LRHEAD_"By { "_$P(^LAB(64.21,+LRSECT,0),U)_" } WKLD SECTION "
+ . I $G(LRACT) S LRHEAD2="Active NLT Codes Only "
+ . I '$G(LRACT) S LRHEAD2="Not sorted by Active Codes"
+ . I $G(LRAA) S LRHEAD3=$G(LRHEAD2)_"Accession Area "_$P(^LRO(68,+$G(LRAA),0),U)_" "
+ D HEAD S LRGLB="^TMP(""LR"","_$J_")",DIC="^LAM(",DR="0:99",S=1
+ F  S LRGLB=$Q(@LRGLB) Q:$QS(LRGLB,1)'="LR"!($QS(LRGLB,2)'=$J)!($G(LREND))  D
+ . K DA S DA=@LRGLB
+ . I $Y>(IOSL-7) D PAUSE Q:$G(LREND)
+ . S S=$Y D EN^LRDIQ S:$D(DIRUT) LREND=1
+ G CLEAN
+ Q
+HEAD ;
+ S LRPAG=$G(LRPAG)+1
+ W $$CJ^XLFSTR(LRHEAD0_LRPAG,IOM)
+ W $$CJ^XLFSTR(LRHEAD,IOM)
+ I $D(LRHEAD2) W $$CJ^XLFSTR(LRHEAD2,IOM)
+ I $D(LRHEAD3) W $$CJ^XLFSTR(LRHEAD3,IOM)
+ Q
+PAUSE ;
+ I $E(IOST)="P" W @IOF D HEAD Q
+ Q:$E(IOST,1,2)'="C-"
+ K DIR,X,Y S DIR(0)="E" D RDIR Q:$G(LREND)
+ W @IOF D HEAD
+ Q
+CLEAN I $D(ZTQUEUED) S ZTREQ="@"
+ Q:$G(LRDBUG)
+ W !! W:$E(IOST,1,2)="P-" @IOF
+ D ^%ZISC
+ K LRHEAD,LRHEAD2,LRHEAD3,LRPDT,LRSEC,LRSECT,LRSORT,LRAA,LRACT,LRBIL
+ K %ZIS,DA,DIC,DR,LRI,LRLINE,LRHED,LRI,LRJ,LRK,LRTS,LRTSN,LRX,NAME,NAME1
+ K %,LRCC,LREND,X,Y,ZTSK,DTOUT,DUOUT,DIRUT,LRPAG,DIR
+ K ^TMP("LR",$J),ZTSAVE,LRGLB,S,DX
+ Q

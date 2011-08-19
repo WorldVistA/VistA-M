@@ -1,0 +1,27 @@
+SD53P389 ;;BP OIFO/RJV Fix ASDCN xref.
+ ;;5.3;Scheduling;**389**;Aug 13, 1993
+ ;
+ ;Routine to loop thru appointments and if no xref for
+ ;cancelled, create it.
+ ;
+ Q
+CHK ;
+ N STATUS,SC,SDDFN,SDAPDTE
+ S SDDFN=0,STATUS="",SC=""
+ F  S SDDFN=$O(^DPT(SDDFN)) Q:+SDDFN=0  D
+ .S SDAPDTE=0 F  S SDAPDTE=$O(^DPT(SDDFN,"S",SDAPDTE)) Q:SDAPDTE=""  D
+ ..S SC=$P(^DPT(SDDFN,"S",SDAPDTE,0),"^",1)
+ ..S STATUS=$P(^DPT(SDDFN,"S",SDAPDTE,0),"^",2)
+ ..I STATUS["C",'$D(^DPT("ASDCN",SC,SDAPDTE,SDDFN)) D
+ ...W !,SDDFN_" - "_SDAPDTE_" - "_SC
+ Q
+ASDCN ;
+ N STATUS,SC,SDDFN,SDAPDTE
+ S SDDFN=0,STATUS="",SC=""
+ F  S SDDFN=$O(^DPT(SDDFN)) Q:+SDDFN=0  D
+ .S SDAPDTE=0 F  S SDAPDTE=$O(^DPT(SDDFN,"S",SDAPDTE)) Q:SDAPDTE=""  D
+ ..S SC=$P(^DPT(SDDFN,"S",SDAPDTE,0),"^",1)
+ ..S STATUS=$P(^DPT(SDDFN,"S",SDAPDTE,0),"^",2)
+ ..I STATUS["C",'$D(^DPT("ASDCN",SC,SDAPDTE,SDDFN)) D
+ ...S ^DPT("ASDCN",SC,SDAPDTE,SDDFN)=$S(STATUS["P":1,1:"")
+ Q

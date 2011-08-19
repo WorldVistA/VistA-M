@@ -1,0 +1,89 @@
+MCARDNJ ;WISC/TJK,JA-INPUT TO SCREEN ;8/31/92  15:28
+ ;;2.3;Medicine;;09/13/1996
+ K DJDN
+ I '$D(DJDN)&($P(DJJ,U,2)'="") G EN2^MCARDNJ1
+ ;
+ S:'$D(DJDPL) DJDPL=""
+EN ;
+ I $D(DJDN)=0 S:$D(DJKEY) DJNX=DJKEY
+ S DJQ=0,DJP=0,DJMU=0 I DJDPL'=DJNM D ^MCARDPL G TK
+EN2 ;
+ S MCMASS=1 K MCDID
+ D:$D(MCHELPSW) FUNC^MCARDNQ2
+ S V=DJF-.01
+NXT ;
+ I $D(V(V)),DJST>1,($G(DJAT)=.01) S ^TMP($J,"DJST",DJST-1,"KEY")=V(V)
+ S V=$O(DJJ($S($D(DJNX):DJNX-.001,1:V))) S:V="" V=-1
+ G LST:V<0,TK:$P(DJJ(V),U,5)&($P(DJJ(V),U,3)=.01)&('$D(DJDN)),COMPUTE^MCARDNJ2:$P(DJJ(V),U,4)["C" I $P(DJJ(V),U,5),$P(DJJ(V),U,4)'["W" G NXT
+ I $D(DJFLAG) S V=DJFLAG K DJFLAG
+ ;
+TK K DJNX S DJMU=0,@$P(DJJ(V),U,2),DJAT=$P(DJJ(V),U,3),DJ0=^DD(DJDD,DJAT,0),DJ4=$P(DJJ(V),U,4),DJ3=$P(DJJ(V),U,3) D START^MCARDHLP
+ S:DJ4["M" DJMU=1 ;    if a multiple, set the multiple flag
+ G LH:DJAT<0,NXT:DJAT=.001 X XY G EN2:'DJJ(V)
+ I DJ4["W" S MCMASS=1 K MCDID I '($D(DJDIS)!($P(DJJ(V),U,5))) X DJCP S DA=DJDN,DR=DJ3,DIE=DIC D ^DIE D N^MCARDNJ2 D:$D(Y) EN3^MCARDNJ1 G NXT
+ I DJ4["W" S MCMASS=1 K MCDID I $D(DJDIS)!($P(DJJ(V),U,5)=1) D WP^MCARDNJ1 G NXT
+ G:$D(DJDIS)&($D(DJDN)) LST
+ S YMLH=$O(^MCAR(697.3,DJN,1,"A",V,0)) S:YMLH="" YMLH=-1
+ I $G(^MCAR(697.3,DJN,1,YMLH,2))'="" X ^(2) S @$P(DJJ(V),U,2) X XY G:$D(DJNX) NXT
+ I DJAT'=.01,$D(^MCAR(697.3,DJN,1,YMLH,3)),V(V)="" S V(V)=^(3),DIE=DIC,DA=DJDN,DR=DJAT_"///"_V(V) D ^DIE D EN3^MCARDNJ1
+R ;    get input from user
+ D:'$D(DJNX) HL,Z^MCARDNJ2 ;    invoke the user input routine
+ I X="",DJ4["R",DJAT'=.01,V(V)="" G Q1
+ S DJXX=$E(X,1) G TK:X="^D"&($P(DJJ,U,4)=""),TK:X="^U"&($P(DJJ,U,2)=""),LS1:(X="^D"!(X="^U"))&($D(DJDN)),LS:X="^N"&($D(DJDN))
+ I $E(X,1)=U G FUNC^MCARDBL
+RETURN G T4:(DJSM!(DJXX="<")!(DJXX=">")!(X?1"^"))&($D(DJDN)),OUT:X=U&(DJAT=.01)&('$D(DJDN)),TK:X?1"^".A
+ S:$D(DJSW1) DJDIS=1 K DJSW1
+ I DJMU GOTO ^MCARDML ;    if a multiple, invoke the multiple processor
+ ;
+EN3 G T4:DJSM,OUT:X=""&(DJAT=.01)&('$D(DJDN)),OUT:X="^"&(DJAT=.01)&('$D(DJDN)),T1^MCARDNJ1:X="" X XY S $P(DJDB," ",DJJ(V))=" " D W(DJDB) K DJDB
+ S DJXX=$E(X,1) G U:X?1"^"&(DJAT=.01),T4:DJXX="^"!(DJXX="<")!(DJXX=">"),K1^MCARDNJ1:X?1"?".E&(DJAT[".01")&('$D(DJDN)),Q1:X?1"?".E
+ I X["^" W *7 G TK
+ I X="@" D:DJAT>0 ^MCARDNK S:DJST>1&(DJAT=.01) ^TMP($J,"DJST",DJST-1,"KEY")="" G TK:X'="@",T3
+ G ^MCARDNJ1
+T3 S V(V)=$S(X="@":"",1:X)
+ G:DJAT=.01&(V(V)="") Q G T4
+Q1 D ^MCARDNQ S @$P(DJJ(V),U,2) X XY G R
+HL G H1:'$D(V(V)),H1:V(V)="",H2
+H1 X XY W DJHIN X XY S $P(DJDB,".",DJJ(V))="."
+ I $L(DJDB)<80 W DJDB
+ E  W $E(DJDB,1,80-DX),!,$E(DJDB,80-DX+1,$L(DJDB))
+ W DJLIN K DJDB X XY
+ Q
+H2 S DJDB="" S:(DJJ(V)-$L(V(V))) $P(DJDB," ",DJJ(V)-$L(V(V)))=" " X XY D W(DJDB) X XY W DJHIN X XY S V(V)=$S($D(Y(0,0)):$E(Y(0,0),1,+DJJ(V)),1:V(V))
+ I $L(V(V))<80 W V(V)
+ E  W $E(V(V),1,80-DX),!,$E(V(V),80-DX+1,$L(V(V)))
+ K Y(0,0) X XY K DJDB
+ Q
+LH I DJ4["R" X DJCL W DJHIN X XY W "DATA REQUIRED",DJLIN,*7 S @$P(DJJ(V),U,2) X XY G TK
+T4 ;
+ G:'($D(DJDN)) TK S @$P(DJJ(V),U,2) X XY
+ I '$D(V(V)) D  G T5
+ .S $P(DJDB,".",DJJ(V))="."
+ .W DJLIN D W(DJDB) K DJDB
+ I V(V)="" D  G T5
+ .S $P(DJDB,".",DJJ(V))="."
+ .W DJLIN D W(DJDB) K DJDB
+U I V(V)'="" S @$P(DJJ(V),U,2) X XY W DJHIN X XY S DJDB="" S:(DJJ(V)-$L(V(V))) $P(DJDB," ",DJJ(V)-$L(V(V)))=" " D W(V(V)_$G(DJDB)) K DJDB
+T5 Q:X?1"^"&($P(DJJ,U,2)="")&('$D(DJDN))  G LS1:X?1"^",NX:X'?1"^".N
+ S DJY=$P(X,U,2) I X?1"^".N,$D(DJJ(DJY)),'$P(DJJ(DJY),U,5),$P(DJJ(DJY),U,4)'["C" S V=DJY-.01 K DIC("S") G NXT
+ E  X DJCL W *7,"Number is out of range or field is read only or computed." S V=V-.01 G NXT
+NX G NXT:X=">" I X="<" S DJ0=V G EN2:V<2 F V=-1:0 S V=$O(DJJ(V)) S:V="" V=-1 I (V'=-1),($O(DJJ(V)))=DJ0 G:($P(DJJ(V),U,4)["C")!($P(DJJ(V),U,5)=1)!($P(DJJ(V),U,4)["W") NX S V=V-.001 G NXT
+ G Q1:X["^",NXT
+P G TK:$P(DJJ,U,2)="" S DJN=$P(DJJ,U,2) S:DJN'=+DJN DJN=$O(^MCAR(697.3,"B",DJN,0)) S:DJN="" DJN=-1 S DJFF=0 D REST D N^MCARDPL G EN2
+Q I $P(^MCAR(697.3,DJN,0),U,3)'="" F DJK=0:0 S (DJDPL,DJNM)=$P(^MCAR(697.3,DJN,0),U,3),DJN=$O(^MCAR(697.3,"B",DJNM,0)) S:DJN="" DJN=-1 Q:$P(^MCAR(697.3,DJN,0),U,3)=""
+ K V,DJ0,DJAT,DJDN,DJ3,DJ4,DJQ I '$D(DJW1) D ^MCARDPL G EN2
+OUT K DJSV,DJ0,DJAT,DJK,DJDN,DJ3,V,DJJ,DJQ,DIC,DJDD,DX,DY,DJSM,DJDIC,DJKEY,DO,MCMASS S DJFF=0 Q
+LST G ^MCARDNJ2:$D(DJDIS) S X="D"
+LS X DJCL G Q:X["N"&(DJP=0) Q:X["N"&(DJP=1)
+LS1 G:X?1"^" OUT I X["D"&($P(DJJ,U,4)]"")&($D(DJDN)) D SAVE S DJN=$P(DJJ,U,4) S DJN=$O(^MCAR(697.3,"B",DJN,0)) S:DJN="" DJN=-1 S DJFF=0 D N^MCARDPL Q:$D(DJY)  S (DA,W(V))=DJDN D ^MCARD1 G EN2
+ I X["D"&($P(DJJ,U,4)="") S:$P(DJJ,U,2)'="" DJFF=0 G Q
+ G:X["U" P
+ G TK
+ E  W *7 G LS
+KILL K DB Q
+SAVE S %X="V(",%Y="^TMP($J,""DJ"",DJN," D %XY^%RCR K V Q
+REST K V S %X="^TMP($J,""DJ"",DJN,",%Y="V(" D %XY^%RCR Q
+W(X) ;WRITE OUT A FIELD
+ I $L(X)<80 W X
+ E  W $E(X,1,80-DX),!,$E(X,80-DX+1,$L(X))
+ Q

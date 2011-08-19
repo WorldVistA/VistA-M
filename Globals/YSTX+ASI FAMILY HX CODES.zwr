@@ -1,0 +1,11 @@
+ASI FAMILY HX CODES
+ZWR
+^YSTX(604.5,0)="ASI FAMILY HX CODES^604.5I^4^4"
+^YSTX(604.5,1,0)="0^Clearly NO for all relatives in that category"
+^YSTX(604.5,2,0)="1^Clearly YES for any relavites in that category"
+^YSTX(604.5,3,0)="X^Uncertain or don't know"
+^YSTX(604.5,4,0)="N^Never was a relative"
+^YSTX(604.5,"B",0,1)=""
+^YSTX(604.5,"B",1,2)=""
+^YSTX(604.5,"B","N",4)=""
+^YSTX(604.5,"B","X",3)=""

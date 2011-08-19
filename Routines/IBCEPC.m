@@ -1,0 +1,78 @@
+IBCEPC ;ALB/WCJ - Insurance company plan type list ;22-DEC-2005
+ ;;2.0;INTEGRATED BILLING;**320,348**;21-MAR-94;Build 5
+EN ; -- main entry point for IBCE INSCO BILL PROV MAINT
+ D EN^VALM("IBCE INSCO BILL PROV MAINT")
+ Q
+ ;
+HDR ; -- header code
+ N PCF,PCDISP
+ I '$D(IBCNS) N IBCNS S IBCNS=IBINS
+ S PCF=$P($G(^DIC(36,+IBCNS,3)),U,13),PCDISP=$S(PCF="P":"(Parent)",1:"")
+ S VALMHDR(1)="Insurance Co: "_$P($G(^DIC(36,+IBCNS,0)),U)_PCDISP
+ Q
+ ;
+INIT ; Initialize
+ N IBLCT,IBCT
+ I '$D(IBCNS) N IBCNS S IBCNS=IBINS
+ S (IBCT,IBLCT)=0
+ ; Display the list
+ D SET1(.IBLCT,"Transmit no billing Provider Sec ID for the following Electronic Plan Types:",IBCT+1)
+ D LIST^DIC(36.013,","_IBCNS_",",".01",,10,,,,,,"TAR","ERR")
+ F IBCT=1:1:+$G(TAR("DILIST",0)) D
+ . D SET1(.IBLCT,IBCT_"   "_TAR("DILIST",1,IBCT),IBCT)
+ . S ^TMP("IBCE INSCO BILL PROV MAINT",$J,"ZIDX",IBCT)=TAR("DILIST",2,IBCT)_U_TAR("DILIST",1,IBCT)
+ S VALMBG=1,VALMCNT=IBLCT
+ Q
+ ;
+SET1(IBLCT,TEXT,IBCT) ;
+ S IBLCT=IBLCT+1 D SET^VALM10(IBLCT,TEXT,$G(IBCT))
+ Q
+ ;
+EXPND ;
+ Q
+HELP ;
+ Q
+EXIT ;
+ D CLEAN^VALM10
+ Q
+ADD ;
+ D FULL^VALM1
+ S VALMBCK="R"
+ N DIR,X,Y,DIC,DA
+ I '$D(IBCNS) N IBCNS S IBCNS=IBINS
+ S DIR("A")="Plan Type: ",DIR(0)="36.013,.01AOr"
+ D ^DIR K DIR
+ Q:$D(DTOUT)!$D(DUOUT)
+ ;
+ S X=Y
+ S DIC(0)="L",DA(1)=IBCNS
+ S DIC="^DIC(36,"_DA(1)_",13,"
+ D ^DIC
+ K ^TMP("IBCE INSCO BILL PROV MAINT",$J)
+ D INIT
+ ;
+ Q
+DEL ;
+ S VALMBCK="R"
+ I '$D(^TMP("IBCE INSCO BILL PROV MAINT",$J,"ZIDX")) Q    ;nothing to delete
+ N IBDA
+ I '$D(IBCNS) N IBCNS S IBCNS=IBINS
+ D SEL
+ Q:'$G(IBDA)
+ N DA,DIK,X,Y
+ S DA=+IBDA,DA(1)=IBCNS
+ S DIK="^DIC(36,"_IBCNS_",13,"
+ D ^DIK
+ K ^TMP("IBCE INSCO BILL PROV MAINT",$J)
+ D INIT
+ Q
+ ;
+SEL ;
+ N Z
+ K IBDA
+ D FULL^VALM1
+ D EN^VALM2($G(XQORNOD(0)),"OS")
+ S Z=+$O(VALMY(0)) Q:'Z
+ ; fac/ins co default
+ S IBDA=$G(^TMP("IBCE INSCO BILL PROV MAINT",$J,"ZIDX",Z))
+ Q

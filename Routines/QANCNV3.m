@@ -1,0 +1,25 @@
+QANCNV3 ;HISC/GJC,DAD-Conversion of data from V1.01 to V2.0 ;10/9/92
+ ;;2.0;Incident Reporting;**1**;08/07/1992
+DESC ;Incident descriptive data.
+ S QANDSCPT=0 ;flag condition for descriptive data '1' for yes, '0' for no
+ I $D(^PRMQ(513.72,PRMQIEN,"PM",0)) S QANDSCPT=1 D DESC1
+ I $D(^PRMQ(513.72,PRMQIEN,"MS",0)) S QANDSCPT=1 D DESC2
+ I $D(^PRMQ(513.72,PRMQIEN,"AS",0)) S QANDSCPT=1 D DESC3
+ I $P(PRMQ0,U,14)]"" S QANDSCPT=1,^TMP($J,"QAN DESC DESCRIPTION",$P(PRMQ0,U,14))=""
+ I $P(PRMQ0,U,18)]"" S QANDSCPT=1,^TMP($J,"QAN DESC PROCEDURE",$P(PRMQ0,U,18))=""
+ Q
+DESC1 ;Descriptive data part 1
+ F QAN=0:0 S QAN=$O(^PRMQ(513.72,PRMQIEN,"PM",QAN)) Q:QAN'>0  S QANDESC(0)=$P(^(QAN,0),U) D
+ . I QANDESC(0)]"" S Y=QANDESC(0),C=$P($G(^DD(513.7222,.01,0)),U,2) D Y^DIQ
+ . I QANDESC(0)]"",(Y]"") S ^TMP($J,"QAN DESC PROTECTIVE MEASURES",Y)=""
+ Q
+DESC2 ;Descriptive data part 2
+ F QAN=0:0 S QAN=$O(^PRMQ(513.72,PRMQIEN,"MS",QAN)) Q:QAN'>0  S QANDESC(0)=$P(^(QAN,0),U) D
+ . I QANDESC(0)]"" S Y=QANDESC(0),C=$P($G(^DD(513.7223,.01,0)),U,2) D Y^DIQ
+ . I QANDESC(0)]"",(Y]"") S ^TMP($J,"QAN DESC PATIENT MENTAL STATUS",Y)=""
+ Q
+DESC3 ;Descriptive data part 3
+ F QAN=0:0 S QAN=$O(^PRMQ(513.72,PRMQIEN,"AS",QAN)) Q:QAN'>0  S QANDESC(0)=$P(^(QAN,0),U) D
+ . I QANDESC(0)]"" S Y=QANDESC(0),C=$P($G(^DD(513.7224,.01,0)),U,2) D Y^DIQ
+ . I QANDESC(0)]"",(Y]"") S ^TMP($J,"QAN DESC PATIENT ACTIVITY STATUS",Y)=""
+ Q

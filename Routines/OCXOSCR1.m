@@ -1,0 +1,85 @@
+OCXOSCR1 ;SLC/RJS,CLA -  Post selection action for the Order Check DataField File;6/19/01  16:35
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,105**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+ I $G(OCXSCR) K OCXSCR Q
+ ;
+ Q
+ ;
+S ;
+ ;
+ N OCXD0,OCXD1,OCXREC,OCXDISP,OCXNAM,OCXABBR,OCXDF,OCXHDR
+ ;
+ W ! D WAIT^DICD W ! S OCXHDR="This Datafield is used by: "
+ I $D(^OCXS(860.4,+Y)) M OCXDF=^OCXS(860.4,+Y)
+ E  Q
+ ;
+ S OCXD0=0 F  S OCXD0=$O(^OCXS(860.3,OCXD0)) Q:'OCXD0  D
+ .K OCXREC M OCXREC=^OCXS(860.3,OCXD0)
+ .K OCXDISP S OCXDISP(1)="** Element: "_$P(OCXREC(0),U,1)
+ .S OCXD1=0 F  S OCXD1=$O(OCXREC("COND",OCXD1)) Q:'OCXD1  D
+ ..S OCXDISP(2)="  Expression Number: "_+OCXREC("COND",OCXD1,0)
+ ..I ($G(OCXREC("COND",OCXD1,"DFLD1"))=+Y) S OCXDISP(2)="  Primary Data Field 2" D DISPLAY
+ ..I ($G(OCXREC("COND",OCXD1,"DFLD2"))=+Y) S OCXDISP(2)="  Data Field 2" D DISPLAY
+ ..I ($G(OCXREC("COND",OCXD1,"DFLD3"))=+Y) S OCXDISP(2)="  Data Field 3" D DISPLAY
+ ;
+ S OCXNAME=$P($G(OCXDF(0)),U,1),OCXABBR=$P($G(OCXDF(1)),U,1)
+ ;
+ W ! S OCXD0=0 F  S OCXD0=$O(^OCXS(860.2,OCXD0)) Q:'OCXD0  D
+ .K OCXREC M OCXREC=^OCXS(860.2,OCXD0)
+ .K OCXDISP S OCXDISP(1)="** Rule: "_$P(OCXREC(0),U,1)
+ .S OCXD1=0 F  S OCXD1=$O(OCXREC("C",OCXD1)) Q:'OCXD1  D
+ ..S OCXDISP(2)="  Condition: "_$P(OCXREC("C",OCXD1,0),U,1)
+ ..S OCXVAL=$G(OCXREC("C",OCXD1,"EXP"))
+ ..I $L(OCXVAL),(OCXVAL[("|"_OCXNAME_"|")) D DISPLAY
+ ..I $L(OCXVAL),(OCXVAL[("|"_OCXABBR_"|")) D DISPLAY
+ ..I $L(OCXVAL),(OCXVAL[("."_OCXNAME_"|")) D DISPLAY
+ ..I $L(OCXVAL),(OCXVAL[("."_OCXABBR_"|")) D DISPLAY
+ .S OCXD1=0 F  S OCXD1=$O(OCXREC("R",OCXD1)) Q:'OCXD1  D
+ ..S OCXDISP(2)="  Relation Index: "_$P(OCXREC("R",OCXD1,0),U,1)
+ ..;
+ ..S OCXVAL=$G(OCXREC("R",OCXD1,"E"))
+ ..S OCXDISP(2)="  Expression field"
+ ..I $L(OCXVAL),(OCXVAL[("|"_OCXNAME_"|")) D DISPLAY
+ ..I $L(OCXVAL),(OCXVAL[("|"_OCXABBR_"|")) D DISPLAY
+ ..I $L(OCXVAL),(OCXVAL[("."_OCXNAME_"|")) D DISPLAY
+ ..I $L(OCXVAL),(OCXVAL[("."_OCXABBR_"|")) D DISPLAY
+ ..;
+ ..S OCXVAL=$G(OCXREC("R",OCXD1,"MSG"))
+ ..S OCXDISP(2)="  Notification Message field"
+ ..I $L(OCXVAL),(OCXVAL[("|"_OCXNAME_"|")) D DISPLAY
+ ..I $L(OCXVAL),(OCXVAL[("|"_OCXABBR_"|")) D DISPLAY
+ ..I $L(OCXVAL),(OCXVAL[("."_OCXNAME_"|")) D DISPLAY
+ ..I $L(OCXVAL),(OCXVAL[("."_OCXABBR_"|")) D DISPLAY
+ ..;
+ ..S OCXVAL=$G(OCXREC("R",OCXD1,"OCMSG"))
+ ..S OCXDISP(2)="  Order Check Message field"
+ ..I $L(OCXVAL),(OCXVAL[("|"_OCXNAME_"|")) D DISPLAY
+ ..I $L(OCXVAL),(OCXVAL[("|"_OCXABBR_"|")) D DISPLAY
+ ..I $L(OCXVAL),(OCXVAL[("."_OCXNAME_"|")) D DISPLAY
+ ..I $L(OCXVAL),(OCXVAL[("."_OCXABBR_"|")) D DISPLAY
+ ..;
+ ..S OCXVAL=$G(OCXREC("R",OCXD1,"MCODE"))
+ ..S OCXDISP(2)="  Execute code field"
+ ..I $L(OCXVAL),(OCXVAL[("|"_OCXNAME_"|")) D DISPLAY
+ ..I $L(OCXVAL),(OCXVAL[("|"_OCXABBR_"|")) D DISPLAY
+ ..I $L(OCXVAL),(OCXVAL[("."_OCXNAME_"|")) D DISPLAY
+ ..I $L(OCXVAL),(OCXVAL[("."_OCXABBR_"|")) D DISPLAY
+ W !
+ ;
+SELECT ;
+ ;
+ N DIC,X,Y
+ ;
+ F  S DIC=860.4,DIC(0)="AEMQN" D ^DIC Q:(Y<1)  I (Y>0) D S
+ ;
+ Q
+ ;
+DISPLAY ;
+ ;
+ N OCXX
+ W !
+ I $L(OCXHDR) W !,OCXHDR,! S OCXHDR=""
+ S OCXX=0 F  S OCXX=$O(OCXDISP(OCXX)) Q:'OCXX  W OCXDISP(OCXX)
+ Q
+ ;

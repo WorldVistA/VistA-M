@@ -1,0 +1,43 @@
+PXBGHF ;ISL/PKR - Gather skin test data.  Follow the convention established by PXBGCPT. ;7/24/96  14:00
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;;Aug 12, 1996
+ ;
+HF(VISIT) ;Gather the entries in the V Health Factor file.
+ N DA,DIC,DIQ,DR,IEN
+ ;
+ K ^TMP("PXBU",$J)
+ I $D(^AUPNVHF("AD",VISIT)) D
+ . S IEN=0
+ . F  S IEN=$O(^AUPNVHF("AD",VISIT,IEN)) Q:IEN'>0  D
+ .. S ^TMP("PXBU",$J,"HF",IEN)=""
+ ;
+ N ENCDT,ENCPRV,HF,HFCTR,LVL,PATIENT,TEMP
+ I $D(^TMP("PXBU",$J,"HF")) D
+ . S IEN=0
+ . F  S IEN=$O(^TMP("PXBU",$J,"HF",IEN)) Q:IEN'>0  D
+ .. K TEMP
+ .. S DIC=9000010.23,DA=IEN
+ .. S DR=".01;.02;.04;1201;1204;811"
+ .. S DIQ="TEMP(",DIQ(0)="E"
+ .. D EN^DIQ1
+ .. S HF=$G(TEMP(9000010.23,DA,.01,"E"))
+ .. S PATIENT=$G(TEMP(9000010.23,DA,.02,"E"))
+ .. S LVL=$G(TEMP(9000010.23,DA,.04,"E"))
+ .. S ENCDT=$G(TEMP(9000010.23,DA,1201,"E"))
+ .. S ENCPRV=$G(TEMP(9000010.23,DA,1204,"E"))
+ .. S HFCTR(HF,IEN)=HF_U_PATIENT_U_LVL_U_ENCDT_U_ENCPRV
+ ;
+ N PXBC
+ S PXBC=0
+ I $D(HFCTR) D
+ . S HF=""
+ . F  S HF=$O(HFCTR(HF)) Q:HF=""  D
+ .. S IEN=0
+ .. F  S IEN=$O(HFCTR(HF,IEN)) Q:IEN=""  D
+ ... S PXBC=PXBC+1
+ ... S PXBKY(HF,IEN)=HFCTR(HF,IEN)
+ ... S PXBSAM(PXBC)=HFCTR(HF,IEN)
+ ... S PXBSKY(PXBC,IEN)=HFCTR(HF,IEN)
+ ;
+ K ^TMP("PXBU",$J)
+ S PXBCNT=PXBC
+ Q

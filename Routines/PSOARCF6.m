@@ -1,0 +1,32 @@
+PSOARCF6 ;BHAM ISC/LGH,LC - WRITE PSRX INFO TO FILE ; 08/19/92
+ ;;7.0;OUTPATIENT PHARMACY;;DEC 1997
+EN ;
+TAPE D PSOAT Q:$G(PSORWND)=0  W RX(RX0,0),!
+ I $D(RX(RX0,1,0)) D
+ .F X=0:0 S X=$O(RX(RX0,1,X)) Q:'X  I $G(RX(RX0,1,X,0))]"" D TAPE1
+ I $D(RX(RX0,4,0)) D
+ .F X=0:0 S X=$O(RX(RX0,4,X)) Q:'X  I $G(RX(RX0,4,X,0))]"" D TAPE4
+ I $D(RX(RX0,5,0)) D
+ .F X=0:0 S X=$O(RX(RX0,5,X)) Q:'X  I $G(RX(RX0,5,X,0))]"" D TAPE5
+TAPE2 W RX(RX0,2),!
+ W RX(RX0,3),!
+ANODE I $D(RX(RX0,"A",0)) F X=0:0 S X=$O(RX(RX0,"A",X)) Q:'X  D ANODE1
+LNODE I $D(RX(RX0,"L",0)) F X=0:0 S X=$O(RX(RX0,"L",X)) Q:'X  D LNODE1
+PNODE I $D(RX(RX0,"P",0)) F X=0:0 S X=$O(RX(RX0,"P",X)) Q:'X  D PNODE1
+IBNODE I $D(RX(RX0,"IB")) W "IB$$"_RX(RX0,"IB"),!
+CNODE I $D(RX(RX0,"C")) W "C$$"_RX(RX0,"C"),!
+DNODE I $D(RX(RX0,"D")) W "D$$"_RX(RX0,"D"),!
+SNODE I $D(RX(RX0,"SAND")) W "S$$"_RX(RX0,"SAND"),!
+ K RX(RX0)
+ Q
+ ;
+ ;
+PSOAT U PSOAT S:$$STATUS^%ZISH PSORWND=$$REWIND^%ZIS(PSOAIO,PSOAIOT,PSOAPAR) I $G(PSORWND)=0 U IO(0) W !!,"HFS file failed to rewind" Q
+ U PSOAT
+ Q
+TAPE1 W 1_","_X_"$$"_RX(RX0,1,X,0),! Q
+TAPE4 W 4_","_X_"$$"_RX(RX0,4,X,0),! Q
+TAPE5 W 5_","_X_"$$"_RX(RX0,5,X,0),! Q
+ANODE1 W "A"_","_X_"$$"_RX(RX0,"A",X,0),! Q
+LNODE1 W "L"_","_X_"$$"_RX(RX0,"L",X,0),! Q
+PNODE1 W "P"_","_X_"$$"_RX(RX0,"P",X,0),! Q

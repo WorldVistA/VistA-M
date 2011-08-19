@@ -1,0 +1,145 @@
+IBJDF8I1 ;ALB/RRG-ADD/EDIT IB DM WORKLOAD PARAMETERS-(CONT.) ;11/06/00
+ ;;2.0;INTEGRATED BILLING;**123**;21-MAR-94
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+EDIT ; - Edit existing assignments
+ ;
+ N IBASDA0,IBASNNUM W !
+ S DIR("A")="Choose a valid Assignment Number to edit: "
+ S DIR(0)="LA^1:"_(IBNEWASN-1)_"^K:'$D(IBAS(X)) X"
+ S DIR("?")="Must be a valid assignment listed above..."
+ D ^DIR K IBAS I ($D(DTOUT))!($D(DUOUT))!(Y'>0) S IBQUIT=1 L -^IBE(351.73,IBCL) Q
+ S IBASNNUM=X K DIR,DIROUT,DTOUT,DUOUT,Y
+ I '$D(^IBE(351.73,IBCL,1,IBASNNUM)) G EDIT
+ S IBASDA0=$G(^IBE(351.73,IBCL,1,IBASNNUM,0)),IBBCAT=$P(IBASDA0,"^",2)
+ W !?3,"Bill Category for assignment # "_IBASNNUM_" is "_$P(^PRCA(430.2,IBBCAT,0),"^",1)
+ S IBFOTP=$$CATTYP^IBJD1(IBBCAT)
+ ;
+EDIT1 ; - Add/Edit assignment parameters
+ ;
+ N IBMINBAL,IBRCFLG
+ S DIR(0)="351.731,.03",DA(1)=IBCL,DA=IBASNNUM
+ D ^DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 L -^IBE(351.73,IBCL) Q
+ S IBMINBAL=Y K DIR,DIROUT,DTOUT,DUOUT,Y
+ S IBRCFLG=$P($G(^IBE(351.73,IBCL,1,IBASNNUM,0)),"^",5)
+ S DIR(0)="Y",DIR("B")=$S(IBRCFLG=0:"NO",1:"YES")
+ S DIR("A")="EXCLUDE RECEIVABLES REFERRED TO RC"
+ S DIR("?")="^S IBOFF=67 D HELP^IBJDF8H"
+ D ^DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 L -^IBE(351.73,IBCL) Q
+ S IBRCFLG=Y K DIR,DIROUT,DTOUT,DUOUT,Y
+ S DA(1)=IBCL,DIE="^IBE(351.73,"_DA(1)_",1,",DA=IBASNNUM
+ S DR=".03///"_IBMINBAL_";.05///"_IBRCFLG D ^DIE K DIE,DR,DA
+ I IBFOTP="F" D FPEDIT I IBQUIT L -^IBE(351.73,IBCL) Q
+ I IBFOTP="T" D TPEDIT I IBQUIT L -^IBE(351.73,IBCL) Q
+ Q
+ ;
+FPEDIT ; - First Party edit questions
+ ;
+ N IBFPDATA,IBSDEF,IBTDEF,IBSN,IBDSLP,IBDEF
+ S IBFPDATA=$G(^IBE(351.73,IBCL,1,IBASNNUM,1)),IBDSLP=$P(IBFPDATA,"^",1)
+ S IBDEF=$S(IBDSLP'="":IBDSLP,1:45),DA(1)=IBCL
+ S DIE="^IBE(351.73,"_DA(1)_",1,",DA=IBASNNUM,DR="1.01//^S X=IBDEF"
+ D ^DIE K DIE,DA,DR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
+ ;
+ ; - Determine range of patient by name or last 4 of SSN
+ ;
+ S IBSN=$$SNL() I (IBSN="")!(IBSN="^") S IBQUIT=1 Q
+ ;
+ I IBSN="N" S IBSDEF=$P(IBFPDATA,"^",2),IBTDEF=$P(IBFPDATA,"^",3)
+ I IBSN="L" S IBSDEF=$P(IBFPDATA,"^",4),IBTDEF=$P(IBFPDATA,"^",5)
+ ;
+PAT S DIR(0)="FO",DIR("A")="START WITH "_$S(IBSN="N":"PATIENT NAME",1:"LAST 4 OF SSN")
+ S DIR("B")=$S(IBSDEF="":"FIRST",1:IBSDEF)
+ S DIR("?")="^S IBOFF=33 D HELP^IBJDF8H"
+ D ^DIR K DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
+ S IBSNF=X I X="FIRST" S IBSNF="@"
+ S DIR(0)="FO",DIR("A")="GO TO "_$S(IBSN="N":"PATIENT NAME",1:"LAST 4 OF SSN")
+ S DIR("B")=$S(IBTDEF="":"LAST",1:IBTDEF)
+ S DIR("?")="^S IBOFF=40 D HELP^IBJDF8H"
+ D ^DIR K DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
+ S IBSNL=X I X="LAST" S IBSNL="@"
+ I (IBSNL'="@")&($G(IBSNL)']$G(IBSNF))&($G(IBSNL)'=$G(IBSNF))&(IBSNF'="@") W !!,?3,"* The Go To Patient Name/SSN must follow after the Start With Name/SSN. *",! G PAT
+ S DA(1)=IBCL,DIE="^IBE(351.73,"_DA(1)_",1,",DA=IBASNNUM
+ I IBSN="N" S DR="1.02///"_IBSNF_";1.03///"_IBSNL_";1.04///@;1.05///@" D ^DIE
+ I IBSN="L" S DR="1.04///"_IBSNF_";1.05///"_IBSNL_";1.02///@;1.03///@" D ^DIE
+ K DIE,DA,DR
+ L -^IBE(351.73,IBCL)
+ Q
+ ;
+TPEDIT ; - Third Party edit questions
+ ;
+ N IBTPDATA,IBDSLT,IBDEF
+ S IBTPDATA=$G(^IBE(351.73,IBCL,1,IBASNNUM,2)),IBDSLT=$P(IBTPDATA,"^",1)
+ S DA(1)=IBCL,DIE="^IBE(351.73,"_DA(1)_",1,",DA=IBASNNUM
+ S IBDEF=$S(IBDSLT'="":IBDSLT,1:45),DR="2.01//^S X=IBDEF"
+ D ^DIE K DIE,DA,DR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
+ ;
+TYP ; - Select type of receivables to print
+ S DIR("A")="TYPE OF RECEIVABLE: "
+ I $P(IBTPDATA,"^",8) S DIR("B")=$P(IBTPDATA,"^",8)
+ S DIR(0)="SAX^1:INPATIENT;2:OUTPATIENT;3:PROSTHETICS;4:PHARMACY REFILL;5:ALL RECEIVABLES"
+ D ^DIR K DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
+ S DA(1)=IBCL,DIE="^IBE(351.73,"_DA(1)_",1,",DA=IBASNNUM,DR="2.08///"_Y
+ D ^DIE K DIE,DR,DA
+ K DIROUT,DTOUT,DUOUT,Y
+ ;
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y,IBRF,IBRL,IBSDEF,IBTDEF
+ICR S IBSDEF=$P(IBTPDATA,"^",2),IBTDEF=$P(IBTPDATA,"^",3)
+ S DIR(0)="FO",DIR("A")="START WITH INSURANCE CARRIER"
+ S DIR("B")=$S(IBSDEF="":"FIRST",1:IBSDEF)
+ S DIR("?")="^S IBOFF=47 D HELP^IBJDF8H"
+ D ^DIR K DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
+ S IBRF=X I X="FIRST" S IBRF="@"
+ S DIR(0)="FO",DIR("A")="GO TO INSURANCE CARRIER"
+ S DIR("B")=$S(IBTDEF="":"LAST",1:IBTDEF)
+ S DIR("?")="^S IBOFF=54 D HELP^IBJDF8H"
+ D ^DIR K DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
+ S IBRL=X I X="LAST" S IBRL="@"
+ I ($G(IBRL)']$G(IBRF))&($G(IBRL)'=$G(IBRF))&(IBRL'="@") W !!,?3,"* The Go to Insurance Carrier Name must follow after the Start with Insurance Carrier. *",! G ICR
+ S DA(1)=IBCL,DIE="^IBE(351.73,"_DA(1)_",1,",DA=IBASNNUM
+ S DR="2.02///"_IBRF_";2.03///"_IBRL D ^DIE K DIE,DR,DA
+ ;
+NAM ; - Determine range of patients
+ ;
+ ; - Determine range of patient by name or last 4 of SSN
+ ;
+ S IBSN=$$SNL() I (IBSN="")!(IBSN="^") S IBQUIT=1 Q
+ ;
+ I IBSN="N" S IBSDEF=$P(IBTPDATA,"^",4),IBTDEF=$P(IBTPDATA,"^",5)
+ I IBSN="L" S IBSDEF=$P(IBTPDATA,"^",6),IBTDEF=$P(IBTPDATA,"^",7)
+ ;
+NAM1 S DIR(0)="FO",DIR("A")="START WITH "_$S(IBSN="N":"PATIENT NAME",1:"LAST 4 OF SSN")
+ S DIR("B")=$S(IBSDEF="":"FIRST",1:IBSDEF)
+ S DIR("?")="^S IBOFF=33 D HELP^IBJDF8H"
+ D ^DIR K DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
+ S IBSNF=X I X="FIRST" S IBSNF="@"
+ S DIR(0)="FO",DIR("A")="GO TO "_$S(IBSN="N":"PATIENT NAME",1:"LAST 4 OF SSN")
+ S DIR("B")=$S(IBTDEF="":"LAST",1:IBTDEF)
+ S DIR("?")="^S IBOFF=40 D HELP^IBJDF8H"
+ D ^DIR K DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
+ S IBSNL=X I X="LAST" S IBSNL="@"
+ I (IBSNL'="@")&($G(IBSNL)']$G(IBSNF))&($G(IBSNL)'=$G(IBSNF))&(IBSNF'="@") W !!,?3,"* The Go To Patient Name/SSN must follow after the Start With Name/SSN. *",! G NAM1
+ S DA(1)=IBCL,DIE="^IBE(351.73,"_DA(1)_",1,",DA=IBASNNUM
+ I IBSN="N" S DR="2.04///"_IBSNF_";2.05///"_IBSNL_";2.06///@;2.07///@" D ^DIE
+ I IBSN="L" S DR="2.06///"_IBSNF_";2.07///"_IBSNL_";2.04///@;2.05///@" D ^DIE
+ K DIE,DA,DR
+ ;
+ L -^IBE(351.73,IBCL)
+ Q
+ ;
+SNL() ; - Determine the patient data to be stored-either by Name or
+ ;   last 4 SSN
+ N DIR,DIRUT,DTOUT,DUOUT,DIROUT,IBSN,IBDEF,IBWLDAT
+ I IBFOTP="F" S IBWLDAT=$G(^IBE(351.73,IBCL,1,IBASNNUM,1)) D
+ . S IBDEF=$S($P(IBWLDAT,"^",2)'="":"NAME",$P(IBWLDAT,"^",3)'="":"NAME",$P(IBWLDAT,"^",4)'="":"LAST 4",$P(IBWLDAT,"^",5)'="":"LAST 4",1:"")
+ I IBFOTP="T" S IBWLDAT=$G(^IBE(351.73,IBCL,1,IBASNNUM,2)) D
+ . S IBDEF=$S($P(IBWLDAT,"^",4)'="":"NAME",$P(IBWLDAT,"^",5)'="":"NAME",$P(IBWLDAT,"^",6)'="":"LAST 4",$P(IBWLDAT,"^",7)'="":"LAST 4",1:"")
+ S IBSN=""
+ S DIR(0)="SA^N:NAME;L:LAST 4"
+ S DIR("A")="Sort Patients by (N)ame or (L)ast 4 of the SSN: "
+ I IBDEF'="" S DIR("B")=IBDEF
+ S DIR("?")="^D HNL^IBJD"
+ W ! D ^DIR K DIR I Y=""!(X="^") Q "^"
+ S IBSN=Y
+ Q IBSN
+ ;

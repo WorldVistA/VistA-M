@@ -1,0 +1,17 @@
+PSNDDI1 ;BIR/SAB-BUILDS XREF IN DRUG INTERACTION FILE ;01/12/98 5:18
+ ;;4.0; NATIONAL DRUG FILE;; 30 Oct 98
+BEGIN D XREF,EX
+ Q
+XREF ;code to create 'APD' xref on Drug Interaction file (#56)
+ ;I '$D(ZTSK),'$D(PSMSG) D WAIT^DICD W "Building 'APD' X-Ref."
+ S ID1=$P(^PS(56,DA,0),"^",2),ID2=$P(^(0),"^",3),TOT=0
+ F I1=0:0 S I1=$O(^PS(50.416,ID1,1,I1)) Q:'I1  S R2=$P(^(I1,0),"^") F I2=0:0 S I2=$O(^PS(50.416,ID2,1,I2)) Q:'I2  S D2=$P(^(I2,0),"^") W:+$G(PSMSG) "." D SEC
+ F I1=0:0 S I1=$O(^PS(50.416,"APS",ID1,I1)) Q:'I1  F I3=0:0 S I3=$O(^PS(50.416,I1,1,I3)) Q:'I3  S R2=$P(^(I3,0),"^") F I5=0:0 S I5=$O(^PS(50.416,"APS",ID2,I5)) Q:'I5  F I6=0:0 S I6=$O(^PS(50.416,I5,1,I6)) Q:'I6  S D2=$P(^(I6,0),"^") D SEC
+ F I1=0:0 S I1=$O(^PS(50.416,ID1,1,I1)) Q:'I1  S R2=$P(^(I1,0),"^") F I5=0:0 S I5=$O(^PS(50.416,"APS",ID2,I5)) Q:'I5  F I6=0:0 S I6=$O(^PS(50.416,I5,1,I6)) Q:'I6  S D2=$P(^(I6,0),"^") D SEC
+ F I2=0:0 S I2=$O(^PS(50.416,ID2,1,I2)) Q:'I2  S D2=$P(^(I2,0),"^") F I1=0:0 S I1=$O(^PS(50.416,"APS",ID1,I1)) Q:'I1  F I3=0:0 S I3=$O(^PS(50.416,I1,1,I3)) Q:'I3  S R2=$P(^(I3,0),"^") D SEC
+ S $P(^PS(56,DA,0),"^",6)=TOT
+EX K TOT,I5,I6,D2,I3,I1,I2,R2,ID2,ID1
+ Q
+SEC I +$G(DEL) K ^PS(56,"APD",R2,D2,DA),^PS(56,"APD",D2,R2,DA) Q
+ S ^PS(56,"APD",R2,D2,DA)="",^PS(56,"APD",D2,R2,DA)="",TOT=TOT+2
+ Q

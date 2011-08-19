@@ -1,0 +1,11 @@
+SCHEDULING REPORT QUERY TEMPLATE
+ZWR
+^SD(404.95,0)="SCHEDULING REPORT QUERY TEMPLATE^404.95^1^1"
+^SD(404.95,1,0)="System Default^.5^2^1"
+^SD(404.95,1,1,0)="^^2^2^2960507^^"
+^SD(404.95,1,1,1,0)="This is the standard query template used when the user"
+^SD(404.95,1,1,2,0)="has not specified a default query."
+^SD(404.95,"AC",.5,1)=""
+^SD(404.95,"AD",2,1)=""
+^SD(404.95,"B","System Default",1)=""
+^SD(404.95,"C",1,1)=""

@@ -1,0 +1,96 @@
+IBDF13 ;ALB/CJM - ENCOUNTER FORM - EDITING TOOLKIT BLKS ; 24-JUN-1993
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+ ;
+LIST ;displays list of toolkit blocks, then allows editng
+ N IBFORM,IBTKFORM,IBTKBLK,IBFASTXT,IOVL,IOHL,IOBRC,IOBLC,IOTRC,IOTLC,IBBLK,BLKLIST,D0,DA,IBDEVICE
+ S (IBTKFORM,IBFASTXT,IBBLK)=0,IBTKBLK=1
+ S IBFORM("NAME")="LIST OF TOOLKIT BLOCKS",IBFORM("TOOLKIT")=1,IBFORM("COMPILED")=0,IBFORM("HT")=80,IBFORM("WIDTH")=133,IBFORM("PAGE_HT")=80,IBFORM("PAGES")=1,IBFORM("SCAN")=1,IBFORM("SCAN","ICR")=1,IBFORM("SCAN",1)=1
+ ;
+ D DEVICE^IBDFUA(1,.IBDEVICE)
+ K XQORS,VALMEVL
+ D PRNTPRMS^IBDFU1C(.IBPRINT,0,1,0,0)
+ S IBFORM=$$TKFORM^IBDFU2C
+ D EN^VALM("IBDF EDIT TOOL KIT BLOCKS") ;list processor displays list of toolkit blocks
+ Q
+ ;
+SELECT() ;allows the user to select from the displayed list of TK blocks
+ N CHOICE,IBBLK
+ S IBBLK=""
+ D EN^VALM2($G(XQORNOD(0)),"S")
+ S CHOICE=$O(VALMY("")) S:CHOICE IBBLK=$G(@VALMAR@("IDX",CHOICE,CHOICE))
+ Q IBBLK
+EDITBLK ;allows user to select a blk, then displays it for edit
+ ;allows user to discard or save changes to the block
+ ;
+ ;If IBBLK and IBBLK2 are used to point to two copies of the block, one in the workspace and the other on the form
+ ;the copy on the form is not edited, the copy in the workspace is
+ N IBBLK,IBBLK2,IBTKODR,IBJUNK,IFSAVE
+ ;N IBMEMARY
+ S VALMBCK="R"
+ S IBBLK2=""
+ S IBBLK=$$SELECT
+ I IBBLK D
+ .S (IBBLK2,IBTKODR,IBJUNK)=""
+ .D COPYBLK^IBDF5B(IBBLK,.IBBLK2,.IBBLK,.IBTKODR,.IBJUNK) I 'IBBLK S IBBLK=IBBLK2,IBBLK2="" Q  ;sets IBBLK to the work copy, IBBLK2 to the copy actually on the form
+ D:IBBLK2 EN^VALM("IBDF FORM BLOCK EDIT")
+ I IBBLK,IBBLK2 D
+ .S IFSAVE=$$ASKSAVE^IBDF5B
+ .I IFSAVE D SAVECOPY^IBDF5B(.IBBLK,.IBBLK2,IBTKODR) S IBBLK=IBBLK2,IBBLK2=""
+ .I 'IFSAVE D DLTCOPY^IBDF5B(IBBLK) S IBBLK=IBBLK2,IBBLK2=""
+ S IBPRINT("WITH_DATA")=0
+ D:'$G(IBFASTXT) IDXBLKS^IBDF7
+ Q
+DLTBLOCK ;allows user to select a blk, then deletes it
+ N IBBLK
+ S VALMBCK="R"
+ S IBBLK=$$SELECT
+ I IBBLK Q:'$$RUSURE^IBDFU5($P($G(^IBE(357.1,IBBLK,0)),"^"))  D DLTBLK^IBDFU3(IBBLK,IBFORM,357.1),IDXBLKS^IBDF7
+ Q
+CHGORDER ;allows user to select a blk, then change it's order in the toolkit
+ N IBBLK
+ S VALMBCK="R"
+ S IBBLK=$$SELECT
+ I IBBLK K DIE,DA S DIE=357.1,DA=IBBLK,DR=".14R" D ^DIE K DIE,DA,DR,DIC
+ D IDXBLKS^IBDF7
+ Q
+NEWBLK ;creates a new toolkit block
+ N IBBLK
+ S VALMBCK="R"
+ S IBBLK=$$CREATE^IBDF5C()
+ D:IBBLK IDXBLKS^IBDF7
+ Q
+COPYBLK ;allows the user to select a block to copy
+ N IBBLK,CHOICE,NEWBLK
+ S VALMBCK="R"
+ D FULL^VALM1
+ K DIR S DIR(0)="SO^1:ON THE LIST OF TOOLKIT BLOCKS;2:ON A TOOLKIT FORM;3:ON A FORM NOT IN THE TOOLKIT"
+ S DIR("A")="WHERE IS THE BLOCK THAT YOU WANT COPIED?"
+ D ^DIR K DIR
+ Q:(Y=-1)!$D(DIRUT)
+ S CHOICE=Y,IBBLK=""
+ D:CHOICE=1 RE^VALM4
+ S:CHOICE=1 IBBLK=$$SELECT
+ S:CHOICE=2 IBBLK=$$SELECT2(1)
+ S:CHOICE=3 IBBLK=$$SELECT2(0)
+ I IBBLK S NEWBLK=$$COPYBLK^IBDFU2(IBBLK,IBFORM,357.1,357.1,0,0,$$TKORDER()) I NEWBLK D
+ .K DIE,DA S DIE=357.1,DA=NEWBLK,DR=".01;.13R;.14R" D ^DIE
+ .I '$G(DA) D DLTCNTNT^IBDFU3(NEWBLK,357.1)
+ .K DIE,DA,DR,DIC
+ .D IDXBLKS^IBDF7
+ S VALMBCK="R"
+ Q
+TKORDER() ;returns an unused number for the list of toolkit blocks
+ N NUMBER
+ F NUMBER=1:1:10000 Q:'$D(^IBE(357.1,"D",NUMBER))
+ Q NUMBER
+SELECT2(TK) ;allows the user to select a form, then a block from it
+ ;TK=0 if form is not to be chosen from the TK
+ ;TK=1 if the form is to be chosen from the TK
+ ;TK="" means ask the user whether or not the form is in the TK
+ N IBFORM,IBBLK
+ S IBBLK=""
+ S IBFORM=$$SLCTFORM^IBDFU4($G(TK))
+ I IBFORM D
+ .W !!,"NOW CHOOSE THE BLOCK TO COPY!",!
+ .S IBBLK=$$SLCTBLK^IBDFU8(IBFORM,IOSL)
+ Q IBBLK

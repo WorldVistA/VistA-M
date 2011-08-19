@@ -1,0 +1,87 @@
+FHOMRT1 ;Hines OIFO/RTK OUTPATIENT MEALS TUBEFEEDING ORDERS  ;6/02/03  14:15
+ ;;5.5;DIETETICS;**1,2**;Jan 28, 2005
+ ;
+ S FHMSG1="T" D GETOPT^FHOMUTL I FHFIND=0 Q
+ K NUM D DISP^FHOMRR1 I $G(NUM)="" Q
+TF1 W ! K DIR S DIR("A")="Select Order(s)",DIR(0)="LO^1:"_NUM D ^DIR
+ Q:$D(DIRUT)  S FHCLST=Y
+ S FHCAN1=0 F A=1:1:NUM S FHC=$P(FHCLST,",",A) Q:FHC=""  S FHRNUM=FHLIST(FHC) I $P($G(^FHPT(FHDFN,"OP",+FHRNUM,0)),U,15)'="C" S FHCAN1=1
+ I FHCAN1=0 W !!?3,"The selected order(s) have been cancelled!",! D TF1 Q
+FHTUB K TUN S NO=0,FHWF=$S($D(^ORD(101)):1,1:0) D ^FHORT10
+ I $O(TUN(0))="" D EXMSG^FHOMUTL Q
+ S (FHTC,FHTK)=0,FHORN="" W !
+ F FHK=0:0 S FHK=$O(TUN(FHK)) Q:FHK<1  D
+ .S FHTC=FHTC+$P(TUN(FHK),"^",4)+$P(TUN(FHK),"^",5)
+ .S FHTK=FHTK+$P(TUN(FHK),"^",6),FHSTR=$P(TUN(FHK),"^",2)
+ .S FHPRO=$P(TUN(FHK),"^",1)
+ .W !,"Product: ",$P($G(^FH(118.2,FHPRO,0)),"^",1),", "
+ .W $S(FHSTR=4:"Full",FHSTR=2:"1/2",FHSTR=1:"1/4",1:"3/4"),", "
+ .W $P(TUN(FHK),"^",3)
+ .Q
+ W !!,"Total Kcal: ",FHTK,?36,"Total Quantity: ",FHTC
+ I FHTC>5000 W !!,"WARNING: Total amount exceeds 5000ml: ",FHTC," ml",!,"Please Edit the Tubefeeding and Modify." D FHTUB Q
+ ;
+ W ! K DIR S DIR("A")="Tubefeeding Comment: ",DIR(0)="FAO^1:160" D ^DIR
+ I Y="^" D EXMSG^FHOMUTL Q
+ S FHTEXT=Y
+ W ! K DIR S DIR("A")="Is this correct?: ",DIR(0)="YA",DIR("B")="Y"
+ D ^DIR I $D(DIRUT)!(Y=0) D EXMSG^FHOMUTL,END Q
+ W !
+ F A=1:1:NUM S FHC=$P(FHCLST,",",A) Q:FHC=""  S FHRNUM=FHLIST(FHC) D CHK
+ D OKMSG^FHOMUTL Q
+ D END Q
+CHK ;
+ I $P($G(^FHPT(FHDFN,"OP",+FHRNUM,0)),U,15)="C" S FHDTX=$P(FHRNUM,U,2),FHDTX=$$FMTE^XLFDT(FHDTX,"P") W !?3,"The order for ",$E(FHDTX,1,12)," has been cancelled -- not ordered!" Q
+ D SET,UPD100
+ Q
+SET ;
+ K ^FHPT(FHDFN,"OP",+FHRNUM,"TF") S FHEV=""
+ S FHORN=$S($G(FHORN)="":"",1:FHORN)
+ K DIE S DA(1)=FHDFN,DIE="^FHPT("_DA(1)_",""OP"",",DA=+FHRNUM
+ S DR="18////^S X=FHTEXT;20////^S X=FHTC;21////^S X=FHTK;21.5////^S X=FHORN;21.7////^S X=DUZ" D ^DIE
+ F K=0:0 S K=$O(TUN(K)) Q:K<1  D
+ .S Y=K K DIC,DO S DA(2)=FHDFN,DA(1)=+FHRNUM
+ .S DIC="^FHPT("_DA(2)_",""OP"","_DA(1)_",""TF"","
+ .S DIC(0)="L",DIC("P")=$P(^DD(115.016,19,0),U,2),X=+Y,DINUM=X
+ .D FILE^DICN I Y=-1 Q
+ .K DIE S DA(2)=FHDFN,DA(1)=+FHRNUM,DA=+Y
+ .S FH1=$P(TUN(K),U,2),FH2=$P(TUN(K),U,3),FH3=$P(TUN(K),U,4)
+ .S FH4=$P(TUN(K),U,5),FH5=$P(TUN(K),U,6)
+ .S DIE="^FHPT("_DA(2)_",""OP"","_DA(1)_",""TF"","
+ .S DR="1////^S X=FH1;2////^S X=FH2;3////^S X=FH3;4////^S X=FH4;5////^S X=FH5" D ^DIE
+ .S X3=TUN(K),TUN=$P(X3,U,1),XX=$G(^FH(118.2,TUN,0)) D CALC^FHORX3
+ .S FHEV=FHEV_P2_" "_$P(XX,"^",1)_", "
+ .Q
+ S FHACT="O",FHOPTY="T",FHAET=$E(FHEV,1,$L(FHEV)-2) D SETAET^FHOMRO2
+ Q
+END ;
+ K A,FHFIND,FHCLST,FHC,FHRNUM,FHTEXT,FHTODAY,NUM Q
+ Q
+HL7SET ;
+ ; Entry point for TF's placed from CPRS/OERR
+ K TUN S (NO,TC,TK,TP,TW,S2)=0,CTR=5
+ F NUM=1:1:5 S DATA=$G(FHMSG(CTR)) Q:DATA=""  S CTR=CTR+1,DATA1=$G(FHMSG(CTR)) Q:DATA1=""  D ^FHWOR51 S CTR=CTR+1 Q:TXT'=""
+ I TXT'="" D ERR^FHOMWOR Q
+ I $O(TUN(0))="" Q
+ S (FHCOND,FHTC,FHTK)=0,FHTEXT=$E($P(DATA,"|",5),1,160)
+ F FHK=0:0 S FHK=$O(TUN(FHK)) Q:FHK<1!(FHCOND=1)  D
+ .I '$D(^FH(118.2,FHK)) S FHCOND=1 Q
+ .S FHTC=FHTC+$P(TUN(FHK),"^",4)+$P(TUN(FHK),"^",5)
+ .S FHTK=FHTK+$P(TUN(FHK),"^",6)
+ .Q
+ I FHCOND=1 S TXT="Invalid TF Product" D GETOR^FHWOR,ERR^FHOMWOR Q
+ I FHTC>5000 S TXT="Total amount exceeds 5000ml" D ERR^FHOMWOR Q
+ S X1=STDT,X2=-1 D C^%DTC S STDT1=X
+ F FHRMDT=STDT1:0 S FHRMDT=$O(^FHPT(FHDFN,"OP","B",FHRMDT)) Q:FHRMDT'>0!(FHRMDT>ENDT)  F FHRNUM=0:0 S FHRNUM=$O(^FHPT(FHDFN,"OP","B",FHRMDT,FHRNUM)) Q:FHRNUM'>0  D SET
+ I '$D(FHRNUM) Q
+ S FILL="T;"_FHRNUM_";"_FHTK_";"_FHTC_";"_FHTEXT_";"_FHORN
+ D SEND^FHWOR Q
+UPD100 ;Backdoor message to update file #100 with a new TF order
+ Q:'$$PATCH^XPDUTL("OR*3.0*215")  ;must have CPRSv26 for O.M. backdoor
+ Q:'DFN  K MSG D MSHOM^FHOMUTL  ;Sets MSG(1), MSG(2) & MSG(3) for OM
+ S FILL="T;"_FHRNUM,MNUM=4,TFCOM=FHTEXT D NOW^%DTC S FHNOW=%
+ S (FHODT,SDT)=$P(FHRNUM,U,2),FHODT=$$FMTHL7^XLFDT(FHODT)
+ S MSG(MNUM)="ORC|SN||"_FILL_"^FH||||^^^"_FHODT_"|||"_DUZ_"||"_DUZ_"|||"_FHNOW
+ F FHTF=0:0 S FHTF=$O(TUN(FHTF)) Q:FHTF<1  S XX=$G(TUN(FHTF)) D TF1^FHWOR5
+ D EVSEND^FHWOR
+ Q

@@ -1,0 +1,40 @@
+PSARIN ;BIR/LTL-Loadable Inventory Items Report ;7/23/97
+ ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**15**; 10/24/97
+ ;This routine reports the inventory/DA items.
+ ;
+ ;References to $$INVNAME^PRCPUX1 are covered by IA #259
+ ;References to $$UNITCODE^PRCPUX1 are covered by IA #259
+ ;References to ^PSDRUG( are covered by IA #2095
+ ;References to ^PSDRUG("AB" are covered by IA #2095
+ ;References to ^PRC( are covered by IA #214
+ ;References to ^PRCP( are covered by IA #214
+ ;
+SETUP N D0,D1,DA,DIE,DIC,DIR,DIRUT,DLAYGO,DR,DTOUT,DUOUT,PSADRUG,PSAINV,PSAOUT,X,Y
+ ;LOOK UP LOCATION
+LOOK D ^PSADA I '$G(PSALOC) S PSAOUT=1 G QUIT
+NOINV I '$O(^PSD(58.8,+PSALOC,4,0)) W !,$G(PSALOCN)_" is not linked to an Inventory Point.",! D  G:$G(PSAOUT) QUIT
+ .S DIR(0)="Y",DIR("A")="Would you like to attempt a link now",DIR("B")="Yes" D ^DIR K DIR S:Y'=1 PSAOUT=1 Q:Y'=1  D  I $D(Y)!('$G(PSAINV)) S PSAOUT=1 Q
+INV ..S DIE=58.8,DA=PSALOC,DR="[PSAGIP]" D ^DIE K DIE
+DEV K IO("Q") N %ZIS,IOP,POP S %ZIS="Q" D ^%ZIS I POP W !,"NO DEVICE SELECTED OR REPORT PRINTED!" S PSAOUT=1 G QUIT
+ I $D(IO("Q")) N ZTDESC,ZTIO,ZTRTN,ZTSAVE,ZTDTH,ZTSK S ZTRTN="START^PSARIN",ZTDESC="Inventory items to load into DA Location",ZTSAVE("PSA*")="" D ^%ZTLOAD,HOME^%ZIS S PSAOUT=1 G QUIT
+START N %DT,PSALN,PSAIT,PSAL,PSAD,PSAPG,PSARPDT,X,Y S (PSAPG,PSAOUT)=0,Y=DT D DD^%DT S PSARPDT=Y,PSAIT=0
+ S PSAD="W !!,PSAIT,?10,$E($$DESCR^PRCPUX1(PSAINV,PSAIT),1,33),?45,$E($P(^PSDRUG($O(^PSDRUG(""AB"",PSAIT,0)),0),U),1,34)"
+ S PSAINV=$O(^PSD(58.8,+PSALOC,4,0))
+ I $O(^PSD(58.8,+PSALOC,4,+PSAINV)) D  S:Y<1 PSAOUT=1 G QUIT
+ .S DIC="^PSD(58.8,+PSALOC,4,",DIC(0)="AEMQ",DA(1)=PSALOC D ^DIC K DIC
+ .S PSAINV=+Y
+ D HEADER
+LOOP F  S PSAIT=$O(^PRCP(445,PSAINV,1,PSAIT)) Q:'PSAIT  D:$Y+4>IOSL HEADER Q:PSAOUT  I '$G(^PRC(441,PSAIT,3)),$O(^PSDRUG("AB",PSAIT,"")) S PSADRUG=$O(^PSDRUG("AB",PSAIT,"")) D:'$D(^PSD(58.8,PSALOC,1,PSADRUG,0))
+ .S PSADRUG(1)=PSADRUG
+ .I $S('$D(^PSDRUG(PSADRUG,"I")):1,+^("I")>DT:1,1:0) X PSAD W !!,"Inventory balance:  " S PSAIT(1)=$G(^PRCP(445,+PSAINV,1,+PSAIT,0)) D
+ ..W $P(PSAIT(1),U,7)," ",$$UNITCODE^PRCPUX1($P(PSAIT(1),U,5))," times dispensing unit conv factor = ",$P(PSAIT(1),U,7)*$S($P(PSAIT(1),U,29):$P(PSAIT(1),U,29),1:1)," ",$P(PSAIT(1),U,28)
+QUIT I $E(IOST)'="C" W @IOF
+ I $E(IOST,1,2)="C-",'$G(PSAOUT) W !! S DIR(0)="EA",DIR("A")="END OF REPORT!  Press <RET> to return to the menu." D ^DIR
+ D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@" K IO("Q")
+ K PSAIT Q
+HEADER I $E(IOST,1,2)'="P-",PSAPG S DIR(0)="E" D ^DIR K DIR I 'Y S PSAOUT=1 Q
+ I $$S^%ZTLOAD W !!,"Task #",$G(ZTSK),", ",$G(ZTDESC)," was stopped by ",$P($G(^VA(200,+$G(DUZ),0)),U),"." S PSAOUT=1 Q
+ S PSAINV(1)=$E($P(^PSD(58.8,PSALOC,0),U),1,10)
+ S:$E(PSAINV(1),10)="(" PSAINV(1)=$E(PSAINV(1),1,9)
+ W:$Y @IOF S $P(PSALN,"-",81)="",PSAPG=PSAPG+1 W !,$E($$INVNAME^PRCPUX1(PSAINV),1,24)_" items to load into "_PSAINV(1),?56,PSARPDT,?70,"PAGE: "_PSAPG,!,PSALN,!,"ITEM",?10,"DESCRIPTION",?50,"DRUG FILE LINK"
+ Q

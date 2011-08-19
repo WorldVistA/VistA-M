@@ -1,0 +1,168 @@
+XQALSUR1 ;ISC-SF.SEA/JLI - SURROGATES FOR ALERTS ;11/21/07  08:35
+ ;;8.0;KERNEL;**366,443**;Jul 10, 1995;Build 4
+ Q
+ ;
+RETURN(XQAUSER) ; P366 - return alerts to the user
+ N XQAI,X0,XQASTRT,XQASURO,XQAEND
+ ; identify periods in the surrogate multiple that haven't been returned
+ F XQAI=0:0 S XQAI=$O(^XTV(8992,XQAUSER,2,"AC",1,XQAI)) Q:XQAI'>0  S X0=^XTV(8992,XQAUSER,2,XQAI,0) I $P(X0,U,4)=1 D
+ . S XQASTRT=$P(X0,U) S XQAEND=$P(X0,U,3)
+ . ; and clear the flag indicating we need to restore these alerts
+ . N XQAFDA S XQAFDA(8992.02,XQAI_","_XQAUSER_",",.04)="@" D FILE^DIE("","XQAFDA")
+ . ; restore alerts to intended user, remove from surrogate if completed (i.e., no other surrogates and not intended recipient)
+ . D PUSHBACK(XQAUSER,XQASTRT,XQAEND)
+ . Q
+ Q
+ ;
+PUSHBACK(XQAUSER,XQASTRT,XQAEND) ; P366 - identify alerts in alert tracking file for return and return them
+ N XQAINIT,XQAI,X0,X30,XNOSURO,XQADT,XQAJ,XQAK,XQAL,XQAOTH,XQASUROP
+ S XQAINIT=$$FIND1^DIC(8992.2,,"X","INITIAL RECIPIENT")
+ F XQADT=XQASTRT-.0000001:0 S XQADT=$O(^XTV(8992.1,"AUD",XQAUSER,XQADT)) Q:XQADT'>0  Q:XQADT>XQAEND  F XQAI=0:0 S XQAI=$O(^XTV(8992.1,"AUD",XQAUSER,XQADT,XQAI)) Q:XQAI'>0  D
+ . S XQAJ=$O(^XTV(8992.1,XQAI,20,"B",XQAUSER,0)) Q:XQAJ'>0
+ . N XSURO,XNOSURO,XQAID S XNOSURO=0,XQAID=$P(^XTV(8992.1,XQAI,0),U)
+ . F XQAK=0:0 S XQAK=$O(^XTV(8992.1,XQAI,20,XQAJ,1,"B",XQAK)) Q:XQAK'>0  F XQAL=0:0 S XQAL=$O(^XTV(8992.1,XQAI,20,XQAJ,1,"B",XQAK,XQAL)) Q:XQAL'>0  D
+ . . S X0=^XTV(8992.1,XQAI,20,XQAJ,1,XQAL,0) S:$P(X0,U,2)>0 XSURO($P(X0,U,2))="" S:$P(X0,U,2)'>0 XNOSURO=1 ; sent to XSURO as surrogate
+ . . Q
+ . I 'XNOSURO D
+ . . N XQA,XQACMNT,XQALTYPE
+ . . S XQA(XQAUSER)="",XQACMNT="RESTORED FROM SURROGATE",XQALTYPE="RESTORE FROM SURROGATE"
+ . . N XQAUSER,XQAI S XQAUSER=$O(^XTV(8992,"AXQA",XQAID,0)) Q:XQAUSER'>0  D RESETUP^XQALFWD(XQAID,.XQA,XQACMNT)
+ . . Q
+ . ; walk through each of those it was sent to as a surrogate for XQAUSER
+ . F XQASUROP=0:0 S XQASUROP=$O(XSURO(XQASUROP)) Q:XQASUROP'>0  S XQAJ=$O(^XTV(8992.1,XQAI,20,"B",XQASUROP,0)) D
+ . . ; and identify each time they were considered a recipient of the alert
+ . . S XNOSURO=0 F XQAK=0:0 Q:XNOSURO  S XQAK=$O(^XTV(8992.1,XQAI,20,XQAJ,1,"B",XQAK)) Q:XQAK'>0  F XQAL=0:0 S XQAL=$O(^XTV(8992.1,XQAI,20,XQAJ,1,"B",XQAK,XQAL)) Q:XQAL'>0  S X0=^XTV(8992.1,XQAI,20,XQAJ,1,XQAL,0) D  Q:XNOSURO
+ . . . I $P(X0,U,3)'="Y" S XNOSURO=1 Q  ; this one got it directly as a recipient as well
+ . . . ; walk through the SURROGATE FOR entries for this user
+ . . . F XQAOTH=0:0 S XQAOTH=$O(^XTV(8992.1,XQAI,20,XQAJ,3,XQAOTH)) Q:XQAOTH'>0  S X30=^(XQAOTH,0) D  Q:XNOSURO
+ . . . . I +X30=XQAUSER S $P(^XTV(8992.1,XQAI,20,XQAJ,3,XQAOTH,0),U,3)=$$NOW^XLFDT() Q  ; mark this user as returned
+ . . . . I $P(X30,U,3)'>0 S XNOSURO=1 Q  ; another surrogate hasn't been returned yet, so leave the alert
+ . . . . Q
+ . . . Q
+ . . I 'XNOSURO D
+ . . . N XQAKILL,XQAUSER,XQAI S XQAKILL=1,XQAUSER=XQASUROP D DELETE^XQALDEL
+ . . . Q
+ . . Q
+ . Q
+ Q
+ ;
+SUROLIST(XQAUSER,XQALIST) ; returns for XQAUSER a list of current and/or future surrogates in XQALIST
+ ;  usage  D SUROLIST^XQALSUR1(DUZ,.XQALIST)
+ ;
+ ;  returns  XQALIST=count
+ ;           XQALIST(1)=IEN2^NEWPERSON,USER2^STARTDATETIME^ENDDATETIME
+ ;           XQALIST(2)=3^NAME,USER3^3050407.1227^3050406
+ ;
+ N XQA0,XQADATE,XQAIEN,XQAL,XQALCNT,XQALEND,XQANOW,XQASTART,XQASURO,XQAVALU
+ D CHEKSUBS^XQALSUR2(XQAUSER)
+ S XQALCNT=$$CURRSURO^XQALSURO(XQAUSER)
+ S XQANOW=$$NOW^XLFDT(),XQALCNT=0
+ S XQADATE="" F  S XQADATE=$O(^XTV(8992,XQAUSER,2,"B",XQADATE)) Q:XQADATE'>0  S XQAIEN="" F  S XQAIEN=$O(^XTV(8992,XQAUSER,2,"B",XQADATE,XQAIEN)) Q:XQAIEN'>0  D
+ . S XQA0=^XTV(8992,XQAUSER,2,XQAIEN,0),XQASTART=$P(XQA0,U),XQASURO=$P(XQA0,U,2),XQALEND=$P(XQA0,U,3) I XQALEND>0,XQALEND'>XQANOW Q
+ . S XQALCNT=XQALCNT+1,XQAVALU=$$GET1^DIQ(200,XQASURO_",",.01),XQAL(XQALCNT)=XQASURO_U_XQAVALU_U_XQASTART_U_XQALEND
+ . Q
+ ; now rearrange by earliest to last
+ K XQALIST S XQALIST=0
+ S XQALCNT="" F  S XQALCNT=$O(XQAL(XQALCNT)) Q:XQALCNT'>0  D
+ . ; if end date not specified, and start date follows, set end date to next start date
+ . I $D(XQAL(XQALCNT+1)),($P(XQAL(XQALCNT),U,4)>$P(XQAL(XQALCNT+1),U,3))!($P(XQAL(XQALCNT),U,4)'>0) S $P(XQAL(XQALCNT),U,4)=$P(XQAL(XQALCNT+1),U,3)
+ . S XQALIST=XQALIST+1,XQALIST(XQALIST)=XQAL(XQALCNT)
+ . Q
+ Q
+ ;
+DCYCLIC(XQALSURO,XQAUSER,XQALSTRT,XQALEND) ; code added to prevent cyclical surrogates - use dates for surrogacy
+ N XQALNEXT,XQALIST,I,XQALAST
+ I XQALSURO=XQAUSER Q "This forms a circle which leads back to this user during this period - can't do it!"
+ S XQALNEXT=$$CURRSURO^XQALSURO(XQALSURO,XQALSTRT,XQALEND) I XQALNEXT>0 D
+ . F I=1:1 Q:$P(XQALNEXT,U,I)=""  S XQALAST=$$DCYCLIC($P(XQALNEXT,U,I),XQAUSER,XQALSTRT,XQALEND) I XQALAST'>0 S XQALSURO=XQALAST Q
+ . Q
+ Q XQALSURO
+ ;
+DATESURO(XQAUSER,XQALSTRT,XQALEND) ; returns surrogate(s) for XQAUSER in date range XQALSTRT to XQALEND, may be multiple values ^-separated
+ N XQALY,XQA0,XQALIEN,XQALS
+ S XQALY="" I XQALEND'>0 S XQALEND=4000101
+ F XQALS=0:0 S XQALS=$O(^XTV(8992,XQAUSER,2,"B",XQALS)) Q:XQALS'>0  Q:XQALS'<XQALEND  D
+ . F XQALIEN=0:0 S XQALIEN=$O(^XTV(8992,XQAUSER,2,"B",XQALS,XQALIEN)) Q:XQALIEN'>0  S XQA0=^XTV(8992,XQAUSER,2,XQALIEN,0) Q:$P(XQA0,U,3)'>XQALSTRT  S XQALY=XQALY_$S(XQALY="":"",1:U)_$P(XQA0,U,2)
+ . Q
+ Q XQALY
+ ;
+SURRO1(XQAUSER) ;
+ N XQALSURO,XQALSTRT,XQALEND
+ D CHKREMV^XQALSURO
+SURRO11 ;
+ S XQALSURO=$$NEWDLG() I XQALSURO'>0 Q
+ I $$CYCLIC^XQALSURO(XQALSURO,XQAUSER)'>0 W $C(7),!,$$CYCLIC^XQALSURO(XQALSURO,XQAUSER),! G SURRO11
+ S XQALSTRT=+$$STRTDLG() I XQALSTRT<0 Q
+ S XQALEND=+$$ENDDLG() I XQALEND<0 Q
+ D SETSURO^XQALSURO(XQAUSER,XQALSURO,XQALSTRT,XQALEND)
+ G SURRO11 ;
+ Q
+ ;
+ ; P366 - added OPTIONAL second and third arguments to permit deletion of a specific pending surrogate and start date
+REMVSURO(XQAUSER,XQALSURO,XQALSTRT) ; SR - ends the currently active surrogate relationship
+ I $G(XQAUSER)'>0 Q
+ S XQALSURO=$G(XQALSURO),XQALSTRT=$G(XQALSTRT)
+ N XQALFM,XQALXREF,XQALSTR1,XQALSUR1,XQALNOW,XQALEND,XQA0
+ D CHEKSUBS^XQALSUR2(XQAUSER)
+ S XQALSUR1=+$P($G(^XTV(8992,XQAUSER,0)),U,2) S:XQALSURO'>0 XQALSURO=XQALSUR1
+ S XQALSTR1=$P($G(^XTV(8992,XQAUSER,0)),U,3) S:XQALSTRT'>0 XQALSTRT=XQALSTR1
+ S XQALEND=$P($G(^XTV(8992,XQAUSER,0)),U,4)
+ S XQALXREF=0 I XQALSTRT>0 F  S XQALXREF=$O(^XTV(8992,XQAUSER,2,"B",XQALSTRT,XQALXREF)) Q:XQALXREF'>0  I $P(^XTV(8992,XQAUSER,2,XQALXREF,0),U,2)=XQALSURO D
+ . S XQALEND=$P(^XTV(8992,XQAUSER,2,XQALXREF,0),U,3) D DELETENT(XQAUSER,XQALXREF,XQALSURO,XQALSTRT,XQALSUR1,XQALSTR1,XQALEND)
+ . Q
+ S XQALSURO=$$CURRSURO^XQALSURO(XQAUSER) ; make sure current surrogate is updated if necessary.
+ Q
+ ;
+DELETENT(XQAUSER,XQALXREF,XQALSURO,XQALSTRT,XQALSUR1,XQALSTR1,XQALEND) ;
+ N XQALNOW,XQALFM
+ S XQAUSER=XQAUSER_",",XQALXREF=XQALXREF_","_XQAUSER
+ I XQALXREF>0 D
+ . S XQALNOW=$$NOW^XLFDT()
+ . I XQALSTRT>XQALNOW S XQALFM(8992.02,XQALXREF,.01)=XQALNOW ; if scheduled for later, mark start as now
+ . I (XQALEND>XQALNOW)!(XQALEND'>0) S XQALFM(8992.02,XQALXREF,.03)=XQALNOW ; update end time for surrogate to now
+ . I XQALSTRT'>XQALNOW S XQALFM(8992.02,XQALXREF,.04)=1
+ . Q
+ I XQALSUR1=XQALSURO,XQALSTRT=XQALSTR1 D
+ . S XQALFM(8992,XQAUSER,.02)="@"
+ . S XQALFM(8992,XQAUSER,.03)="@"
+ . S XQALFM(8992,XQAUSER,.04)="@"
+ . Q
+ I $D(XQALFM) D FILE^DIE("","XQALFM")
+ ; ZEXCEPT: XTMUNIT   (EXTERNAL VALUE - INDICATING UNIT TEST BEING RUN)
+ I XQALSURO>0,'$D(XTMUNIT) D
+ . N XQAMESG,XMSUB,XMTEXT
+ . S XQAMESG(1,0)="You have been REMOVED as a surrogate recipient for alerts for"
+ . S XQAMESG(2,0)=$$GET1^DIQ(200,XQAUSER,.01,"E")_" (IEN="_$P(XQAUSER,",")_")."
+ . S XMTEXT="XQAMESG(",XMSUB="Removal as surrogate recipient"
+ . D SENDMESG^XQALSURO
+ . Q
+ Q
+ ;
+NEWDLG() ; new surrogate dialog
+ N DIR,Y S DIR(0)="Y",DIR("A")="Do you want to SET a new surrogate recipient",DIR("?")="A surrogate will receive your alerts until they are removed as surrogate.",DIR("B")="NO"
+ S Y=$$ASKDIR(.DIR) I 'Y Q 0
+ ;
+ S DIR(0)="P^200:AEMQ",DIR("A")="Select USER to be SURROGATE" S Y=$$ASKDIR(.DIR)  ; COS-0401-41366
+ I Y>0 W "  ",$P(Y,U,2)
+ Q +Y
+ ;
+STRTDLG() ; new surrogate start date/time dialog
+ N DIR
+ S DIR(0)="DO^::ATEX",DIR("A")="Specify Date/Time SURROGATE becomes active" ; BRX-1000-10427
+ S DIR("A",1)="",DIR("A",2)=""
+ S DIR("A",3)="if no date/time is entered, alerts will start going to"
+ S DIR("A",4)="the SURROGATE immediately."
+ Q +$$ASKDIR(.DIR)
+ ;
+ENDDLG() ; new surrogate end date/time dialog
+ N DIR
+ S DIR(0)="DO^::AETX",DIR("A")="Specify Date/Time SURROGATE should be removed" ; BRX-1000-10427
+ S DIR("A",1)="",DIR("A",2)=""
+ S DIR("A",3)="if no date/time is entered, YOU must remove the SURROGATE"
+ S DIR("A",4)="to terminate alerts going to the SURROGATE"
+ Q +$$ASKDIR(.DIR)
+ ;
+ASKDIR(DIR) ;
+ N Y,DTOUT,DUOUT
+ D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) S Y=-1
+ Q Y

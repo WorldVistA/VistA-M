@@ -1,0 +1,138 @@
+VAQLED01 ;ALB/JFP,JRP - PDX LOAD/EDIT, STATUS SCREEN;01MAR93
+ ;;1.5;PATIENT DATA EXCHANGE;**6**;NOV 17, 1993
+EP ; -- Main entry point for the list processor
+ K XQORS,VALMEVL
+ D EN^VALM("VAQ LED STATUS PDX5") ; -- Protocol = VAQ PDX5 (MENU)
+ Q
+ ;
+INIT ; -- Build array of PDX transactions for entered patient
+ K SFLAG,STATPTR,X,Y,ND,NODE,DATETIME,DOMAIN,TRDE,TRNO,SDI
+ K VALMY,SDAT,DFN,DFNTR,DFNPT,VAQRSLT,VAQUNSOL,VAQECNT,VAQTRNO,VAQDFN
+ K ^TMP("VAQL1",$J),^TMP("VAQIDX",$J)
+ D STATPTR^VAQUTL95 ; -- Set status pointers
+ S TRDE="",(VAQECNT,VALMCNT)=0
+ I (VAQISSN="")&(VAQPTNM="") D  Q
+ .S TRNO=0,X=$$SETSTR^VALM1(" ","",1,79) D TMP
+ .S X=$$SETSTR^VALM1(" ** Insufficient Information for Patient Look-up...","",1,80) D TMP
+ D:$D(XRTL) T0^%ZOSV ; -- Capacity start
+ F  S TRDE=$O(^VAT(394.61,$S(VAQISSN'="":"SSN",1:"NAME"),$S(VAQISSN'="":VAQISSN,1:VAQPTNM),TRDE))  Q:TRDE=""  D SETD
+ I VAQECNT=0 D
+ .S TRNO=0,X=$$SETSTR^VALM1(" ","",1,79) D TMP
+ .S X=$$SETSTR^VALM1(" ** PDX results not found for patient entered... ","",1,80) D TMP
+ S:$D(XRT0) XRTN=$T(+0) D:$D(XRT0) T1^%ZOSV
+ Q
+ ;
+SETD ; -- Set data for display in list processor
+ N NAME,SSN,TMP
+ S SFLAG=0
+ S STATPTR=$P($G(^VAT(394.61,TRDE,0)),U,2)
+ S:VAQRSLT=STATPTR SFLAG=SFLAG+1
+ S:VAQUNSOL=STATPTR SFLAG=SFLAG+1
+ Q:SFLAG=0
+ ; -- Filter out transactions marked as purged OR excede life cap
+ S VAQFLAG=$$EXPTRN^VAQUTL97(TRDE) ; -- naked set from SETD+2
+ Q:VAQFLAG=1
+ ;
+ F ND=0,"QRY","RQST1","RQST2","ATHR1","ATHR2" S NODE(ND)=$G(^VAT(394.61,TRDE,ND))
+ S TRNO=+NODE(0)
+ S VAQTDTE=$S(((STATPTR=VAQRSLT)!(STATPTR=VAQUNSOL)):+NODE("ATHR1"),1:+NODE("RQST1"))
+ S DATETIME=$$DOBFMT^VAQUTL99(VAQTDTE,0)
+ S TMP=$P(VAQTDTE,".",2)_"000000"
+ S DATETIME=DATETIME_"@"_$E(TMP,1,2)_":"_$E(TMP,3,4)_":"_$E(TMP,5,6)
+ S DATETIME=DATETIME_$S((STATPTR=VAQRSLT):" (Rs)",(STATPTR=VAQUNSOL):" (Uns)",1:" (Req)")
+ ;
+ S DOMAIN=$P(NODE("ATHR2"),U,2)
+ S VAQECNT=VAQECNT+1
+ S X=$$SETFLD^VALM1(VAQECNT,"","ENTRY")
+ S X=$$SETFLD^VALM1(DOMAIN,X,"DOMAIN")
+ S X=$$SETFLD^VALM1(DATETIME,X,"DATE")
+ S X=$$SETFLD^VALM1(TRNO,X,"TRNO")
+ D TMP
+ ;GET REQUESTED PATIENT INFO
+ S NAME=$P(NODE("QRY"),"^",1)
+ S SSN=$$DASHSSN^VAQUTL99($P(NODE("QRY"),"^",2))
+ S TMP=NAME_"  ("_SSN_")"
+ S:(STATPTR=VAQUNSOL) TMP="Not Applicable"
+ S X="    Requested Patient: "_TMP
+ D TMP
+ ;GET RELEASED PATIENT INFO
+ S TMP=$$RLSEPAT^VAQUTL92(TRDE)
+ S NAME=$P(TMP,"^",1)
+ S SSN=$$DASHSSN^VAQUTL99($P(TMP,"^",2))
+ S TMP=NAME_"  ("_SSN_")"
+ S:((STATPTR'=VAQUNSOL)&(STATPTR'=VAQRSLT)) TMP="Not Applicable"
+ S X="     Released Patient: "_TMP
+ D TMP
+ ;BLANK LINE
+ S X=" " D TMP
+ Q
+ ;
+TMP ; -- Set the array used by list processor
+ S VALMCNT=VALMCNT+1
+ S ^TMP("VAQL1",$J,VALMCNT,0)=$E(X,1,79)
+ S ^TMP("VAQL1",$J,"IDX",VALMCNT,VAQECNT)=""
+ S ^TMP("VAQIDX",$J,VAQECNT)=VALMCNT_"^"_TRNO
+ Q
+ ;
+HD ; -- Make header line for list processor
+ N TMP
+ S VALMHDR(1)=" "
+ S TMP="PDX Transactions referencing "_VAQPTNM_"  ("_VAQESSN_")"
+ S VALMHDR(2)=$$INSERT^VAQUTL1(TMP,"",(40-($L(TMP)/2)))
+ S VALMHDR(3)=" "
+ Q
+ ;
+LED ; -- load/edit
+ S ^TMP("VAQL1",$J)=VAQPTNM_"^"_VAQISSN
+ S VAQBCK=0
+ D EN^VALM2($G(XQORNOD(0)),"S")
+ Q:'$D(VALMY)
+ D CLEAR^VALM1
+ D SIGNA ; -- Signature
+ I VAQSIG<0 K VAQSIG D PAUSE^VAQUTL95 S VALMBCK="R" Q
+ S SDI=+$O(VALMY(0))  Q:'SDI
+ S SDAT=$G(^TMP("VAQIDX",$J,SDI))
+ S VAQTRNO=$P(SDAT,U,2),DFN=""
+ S DFNTR=+$O(^VAT(394.61,"B",VAQTRNO,0))
+ S VAQPTID=$$RLSEPAT^VAQUTL92(DFNTR)
+ S VAQPTNM=$P(VAQPTID,"^",1)
+ S VAQISSN=$P(VAQPTID,"^",2)
+ S VAQESSN=$$DASHSSN^VAQUTL99(VAQISSN)
+ S VAQIDOB=$P(VAQPTID,"^",3)
+ S VAQEDOB=$$DOBFMT^VAQUTL99(VAQIDOB)
+ S VAQPTID=""
+ D EP^VAQLED03 ; -- Finds local matches in database
+ S SDI=^TMP("VAQL1",$J)
+ I VAQBCK=1 K VALMBCK Q
+ S VAQPTNM=$P(SDI,"^",1),VAQISSN=$P(SDI,"^",2)
+ D INIT
+ S VALMBCK="R"
+ Q
+ ;
+EXPAND ; -- Displays MAS minimal information from PDX data file (394.62)
+ D EN^VALM2($G(XQORNOD(0)),"S")
+ Q:'$D(VALMY)
+ S SDI=""
+ F  S SDI=$O(VALMY(SDI))  Q:SDI=""  D
+ .S SDAT=$G(^TMP("VAQIDX",$J,SDI))
+ .S VAQTRNO=$P(SDAT,U,2),DFN=""
+ .S DFN=$O(^VAT(394.61,"B",VAQTRNO,DFN))
+ .D TR^VAQDIS01 ; -- expands entry from 394.62 (data file)
+ S VALMBCK="R"
+ Q
+ ;
+CREATE ; -- Creates new patient
+ D EP^VAQLED07 Q
+ ;
+SIGNA ; -- Signature
+ S:'$D(VAQSIG) VAQSIG=$$VRFYUSER^VAQAUT(DUZ) Q
+ ;
+EXIT ; -- Note: The list processor cleans up its own variables.
+ ;          All other variables cleaned up here.
+ K X,Y,ND,NODE,DATETIME,DOMAIN,TRDE,TRNO,SFLAG,STATPTR
+ K VALMY,SDI,SDAT,DFN,DFNTR,DFNPT,VAQRSLT,VAQUNSOL,VAQECNT
+ K VAQSIG,VAQTRNO,VAQDFN,VAQPTNM,VAQIDOB,VAQEDOB,VAQISSN,VAQPTID
+ K VAQCDTE,VAQTDTE,VAQFLAG,VAQBCK
+ K ^TMP("VAQL1",$J),^TMP("VAQIDX",$J)
+ K VAQADFL ; -- set in VAQDIS01
+ Q

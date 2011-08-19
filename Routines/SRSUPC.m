@@ -1,0 +1,33 @@
+SRSUPC ;B'HAM ISC/MAM - UPDATE CANCEL REASON & DATE; [ 01/31/01  8:59 AM ]
+ ;;3.0; Surgery ;**100**;24 Jun 93
+PAT ;
+ W @IOF S DIC=2,DIC(0)="QEAMZ",DIC("A")="Update Cancellation Information for which Patient: " D ^DIC K DIC G:Y'>0 END S DFN=+Y
+ D DEM^VADPT S SRNAME=VADM(1)
+ W ! S (SROP,CNT)=0 F  S SROP=$O(^SRF("B",DFN,SROP)) Q:'SROP  S SRSDATE=$P(^SRF(SROP,0),"^",9) D LIST
+ I '$D(SRCASE(1)) W !!,"There are no cancelled cases for "_SRNAME_"." G END
+OPT R !!!,"Select Operation:  ",OPT:DTIME I '$T!("^"[OPT) K SRTN G END
+ I OPT["?"!('$D(SRCASE(OPT))) W !!,"Enter the number of the desired operation" G OPT
+ S SROP=SRCASE(OPT),SRSDATE=$P(^SRF(SROP,0),"^",9),SRSDATE=$E(SRSDATE,4,5)_"-"_$E(SRSDATE,6,7)_"-"_$E(SRSDATE,2,3)
+ W @IOF,!,VADM(1),?32,VA("PID"),?50,"Case # ",SROP,!!,SRSDATE D CASE W !!
+ I $$LOCK^SROUTL(SROP) S DIE=130,DA=SRCASE(OPT),DR="17T;18T;67T" D ^DIE,UNLOCK^SROUTL(SROP)
+END W !!,"Press RETURN to continue  " R X:DTIME
+ W @IOF K SROP D ^SRSKILL
+ Q
+LOOP ; break operation name if longer than 65 characters
+ S SROPS(M)="" F LOOP=1:1 S MM=$P(SROPER," "),MMM=$P(SROPER," ",2,200) Q:MMM=""  Q:$L(SROPS(M))+$L(MM)'<65  S SROPS(M)=SROPS(M)_MM_" ",SROPER=MMM
+ Q
+OTHER ; other operations
+ S SRLONG=1 I $L(SROPER)+$L($P(^SRF(SROP,13,SROTHER,0),"^"))>235 S SRLONG=0,SROTHER=999,SROPERS=" ..."
+ I SRLONG S SROPERS=$P(^SRF(SROP,13,SROTHER,0),"^")
+ S SROPER=SROPER_$S(SROPERS=" ...":SROPERS,1:", "_SROPERS)
+ Q
+LIST ;
+ S SRCAN=0
+ I $D(^SRF(SROP,30)),$P(^(30),"^")'="" S SRCAN=1
+ I $D(^SRF(SROP,31)),$P(^(31),"^",8)'="" S SRCAN=1
+ I 'SRCAN Q
+ S CNT=CNT+1,SRCASE(CNT)=SROP
+ W !,CNT_". "_$E(SRSDATE,4,5)_"-"_$E(SRSDATE,6,7)_"-"_$E(SRSDATE,2,3)
+CASE S SROPER=$P(^SRF(SROP,"OP"),"^") I $O(^SRF(SROP,13,0)) S SROTHER=0 F I=0:0 S SROTHER=$O(^SRF(SROP,13,SROTHER)) Q:'SROTHER  D OTHER
+ D ^SROP1 K SROPS,MM,MMM S:$L(SROPER)<65 SROPS(1)=SROPER I $L(SROPER)>64 S SROPER=SROPER_"  " F M=1:1 D LOOP Q:MMM=""
+ W ?14,SROPS(1) I $D(SROPS(2)) W !,?14,SROPS(2) I $D(SROPS(3)) W !,?14,SROPS(3) W:$D(SROPS(4)) !,?14,SROPS(4) W:$D(SROPS(5)) !,?14,SROPS(5)

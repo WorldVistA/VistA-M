@@ -1,0 +1,49 @@
+PRCOVUP1 ;WISC/DJM-VENDOR CONVERSION UPDATE SERVER ROUTINE ;1/3/95  2:12 PM
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+IN ;THIS ROUTINE WILL BE CALLED FROM THE 'FMS' SERVER VIA FILE 423.5
+ ;ENTRY FOR THE VENDOR CONVERSION TRANSACTION (CVU).
+ ;PRCDA IS THE INTERNAL ENTRY NUMBER FOR THE RECORD FROM FILE 423.6.
+ ;
+ N AAN,CALM,IEN,II,PONUM,TRANS,LOOP,PRCMG,PRCXM,LINE,STATION,ENTRY1,ENTRY,ENCK,VEN3,VEN7,MGP,NAME,DIE,DR,DA,MTI,FMSVC,X,Y
+ S LINE=$G(^PRCF(423.6,PRCDA,1,10000,0)) Q:LINE=""
+ S MGP=$O(^PRCF(423.5,"B",$P(LINE,U)_"-"_$P(LINE,U,5),0)),MGP=$G(^PRCF(423.5,+MGP,0)),PRCMG=$P($G(^XMB(3.8,+$P(MGP,U,2),0)),U)
+ S TRANS=$P(LINE,U,5)
+ S LOOP=10000,PRVCNT=0
+ F  S LOOP=$O(^PRCF(423.6,PRCDA,1,LOOP)) Q:LOOP'>0  D  Q:LINE["{"
+ .S LINE=$G(^PRCF(423.6,PRCDA,1,LOOP,0)) Q:LINE["{"
+ . D CALM Q:$G(ENTRY)  ;attempt to update vendor from calmid first
+ .  S PONUM=$P(LINE,U,22),PONUM=$E(PONUM,1,3)_"-"_$E(PONUM,4,9)
+ .  S IEN=+$O(^PRC(442,"B",PONUM,0)) Q:'IEN
+ .  S ENTRY=+$P($G(^PRC(442,IEN,1)),U) D:$G(^PRC(440,ENTRY,0))]""
+ ..  D VENDOR
+ D ^PRCOVUP2 ;generate completion message
+ S DA=PRCDA,DIK="^PRCF(423.6," D ^DIK K DIK ;clean up message in 423.6
+ Q
+ ;
+CALM ;start here to find calm id first
+ S CALM=$P(LINE,U,21) I CALM="" Q
+ S (ENTRY,ENTRY1)=0 F  S ENTRY1=$O(^PRC(440,"AF",CALM,ENTRY1)) Q:'ENTRY1  D
+ . S ENTRY=ENTRY1 D VENDOR ;update all vendors with same calm id
+ Q
+ ;
+VENDOR ;COME HERE TO CHECK FOR ENTRY IN 440
+ ;
+ S VEN3=$G(^PRC(440,ENTRY,3)),VEN7=$G(^PRC(440,ENTRY,7))
+ I $P(VEN3,U,4)]"" Q  ;quit if fms code already populated
+ S $P(VEN3,U,5)=$P(LINE,U,7),$P(VEN3,U,9)=$P(LINE,U,14),$P(VEN3,U,12)="C"
+ S $P(VEN3,U,11)=$P(LINE,U,15),$P(VEN3,U,14)=$P(LINE,U,16)
+ S $P(VEN3,U,13)=$P(LINE,U,17)
+ S $P(VEN3,U,10)=$P(LINE,U,20)
+ I $L($P(LINE,U,23))=9,$P(LINE,U,23)?9N S $P(VEN3,U,8)=$P(LINE,U,23)
+ S $P(VEN3,U,7)=$E($P(LINE,U,8),1,30) ;set fms vendor name
+ S $P(VEN7,U,3)=$P(LINE,U,9),$P(VEN7,U,4)=$P(LINE,U,10),$P(VEN7,U,7)=$P(LINE,U,11)
+ N X S X=$P(LINE,U,13) D:$L(X)>5  S $P(VEN7,U,9)=X
+ . S X=$E(X,1,5)_$S($L(X)=9:$S(+$E(X,6,9):"-"_$E(X,6,9),1:""),1:"") ;put dash into zip code
+ I $P(LINE,U,12)]"" S $P(VEN7,U,8)=$O(^DIC(5,"C",$P(LINE,U,12),0))
+ S ^PRC(440,ENTRY,3)=VEN3,^PRC(440,ENTRY,7)=VEN7 ;no x-ref on fields
+ ;
+ S FMSVC=$P(LINE,U,6)
+ S DIE="^PRC(440,",DA=ENTRY,DR="34////^S X=FMSVC;15////@"
+ D ^DIE
+ Q

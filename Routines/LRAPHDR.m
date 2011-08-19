@@ -1,0 +1,7 @@
+LRAPHDR ;AVAMC/REG - ANATOMIC PATH DEFAULTS ;8/13/95  16:42 ;
+ ;;5.2;LAB SERVICE;**72**;Sep 27, 1994
+ D END S DIC="^LRO(68,",DIC(0)="AEQM",DIC("S")="I ""AUCYEMSP""[$P(^(0),U,2)&($G(^(3,+DUZ(2),0)))" D ^DIC K DIC G:Y<1 END S DA=+Y,X=^LRO(68,DA,0),LRSS=$P(X,U,2),LRY=$P(X,U)
+ I '$D(^LRO(69.2,DA,0)) W $C(7),!!,"Not an entry in the Pathology PArameter File (#69.2)" G LRAPHDR
+ S DIE="^LRO(69.2,",DR="[LRAPHDR]" D ^DIE
+ I "SPCYEM"[LRSS W ! S DIE="^LAB(69.9,",DA=1,DR=$S(LRSS="SP":"11.1;11.2",LRSS="CY":11.3,LRSS="EM":11.4,1:"") D ^DIE
+END D V^LRU Q

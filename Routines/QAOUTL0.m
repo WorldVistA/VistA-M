@@ -1,0 +1,40 @@
+QAOUTL0 ;HISC/DAD-OCCURRENCE SCREEN UTILITIES ;2/4/93  08:45
+ ;;3.0;Occurrence Screen;;09/14/1993
+ENDISP ;
+ N X,Y,UNDL,QAOS,QAOSDFN,QAOSZERO,QAOSWARD,QAOSDATE,QAOSPDUE,QAOSMDUE,QAOSSCRN
+ S:$D(QAOSWHAT)[0 QAOSWHAT="REVIEWED"
+ K UNDL S $P(UNDL,"-",18+$L(QAOSWHAT))=""
+ S QAOSZERO=$G(^QA(741,QAOSD0,0))
+ S QAOSDFN=$S($D(^DPT(+QAOSZERO,0))#2:$P(^(0),"^"),1:+QAOSZERO)
+ S QAOSWARD=+$P(QAOSZERO,"^",5),QAOSWARD=$P($G(^SC(QAOSWARD,0)),"^")
+ S Y=$P(QAOSZERO,"^",3) D DD^%DT S QAOSDATE=Y
+ S Y=$P(QAOSZERO,"^",12) X ^DD("DD") S QAOSPDUE=Y
+ S Y=$P(QAOSZERO,"^",13) X ^DD("DD") S QAOSMDUE=Y
+ S QAOS=QAOSPDUE_QAOSMDUE
+ S QAOSSCRN=+$G(^QA(741,QAOSD0,"SCRN"))
+ S QAOSSCRN=$S($D(^QA(741.1,QAOSSCRN,0))#2:^(0),1:QAOSSCRN)
+ S QAOSSCRN=$P(QAOSSCRN,"^")_"  "_$P(QAOSSCRN,"^",2)
+ W @IOF
+ W !!?5,"OCCURRENCE BEING ",QAOSWHAT W:QAOS]"" ?51,"REVIEW DUE DATES"
+ W !?5,UNDL W:QAOS]"" ?51,"----------------"
+ W !?5,"NAME        : ",QAOSDFN W:QAOS]"" ?51,"PEER : ",QAOSPDUE
+ W !?5,"WARD/CLINIC : ",QAOSWARD W:QAOS]"" ?51,"MGMT : ",QAOSMDUE
+ W !?5,"DATE        : ",QAOSDATE
+ W !?5,"SCREEN      : ",QAOSSCRN,!
+ Q
+ENCHOS ;
+ R !!,"Select OPEN, CLOSED, or BOTH types of occurrences? BOTH// ",QAOSTYPE:DTIME S:'$T QAOSTYPE="^"
+ S QAOSQUIT=$S($E(QAOSTYPE)="^":1,1:0) Q:QAOSQUIT
+ S X=QAOSTYPE X ^%ZOSF("UPPERCASE") S QAOSTYPE=Y
+ I $F("^BOTH^OPEN^CLOSED","^"_QAOSTYPE)'>0 D  G ENCHOS
+ . W:$E(QAOSTYPE)'="?" " ??",*7 W !
+ . W !?5,"Valid entries are OPEN, CLOSED, BOTH, or Up-Arrow (^) to exit."
+ . W !?10,"Enter OPEN to select occurrences whose status is open."
+ . W !?10,"Enter CLOSED to select occurrences whose status is closed."
+ . W !?10,"Enter BOTH to select both OPEN and CLOSED occurrences."
+ . W !?10,"Enter Up-Arrow (^) to EXIT."
+ . Q
+ W $P($P("^BOTH^OPEN^CLOSED^","^"_QAOSTYPE,2),"^")
+ S QAOSTYPE=$S(QAOSTYPE["B":"",1:$E(QAOSTYPE))
+ S QALIMIT="I +$P(^QA(741,+Y,0),""^"",11)"_$S(QAOSTYPE="O":"=0",QAOSTYPE="C":"=1",1:"<2")
+ Q

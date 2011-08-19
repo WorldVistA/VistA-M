@@ -1,0 +1,142 @@
+FHORD9 ; HISC/REL/NCA/RVD - Diet Order Census ;7/1/94  14:24 
+ ;;5.5;DIETETICS;**5**;Jan 28, 2005;Build 53
+ ;
+ ;patch #5 - added screen for cancelled guest meals.
+ ;
+ D NOW^%DTC S DT=%\1 K %,^TMP($J)
+ D DIV^FHOMUTL G:'$D(FHSITE) KIL
+ S FHP=$O(^FH(119.71,0)) I FHP'<1,$O(^FH(119.71,FHP))<1 G F0
+D0 R !!,"Select PRODUCTION FACILITY: ",X:DTIME G:'$T!("^"[X) KIL
+ K DIC S DIC="^FH(119.71,",DIC(0)="EMQ" D ^DIC G:Y<1 D0 S FHP=+Y
+F0 R !!,"Effective Date/Time: ",X:DTIME G:'$T!("^"[X) KIL S %DT="ETSX" D ^%DT G:Y<1 F0 S TIM=Y
+ I (TIM\1)<DT W *7,"  Cannot be before TODAY!" G F0
+ W ! K IOP,%ZIS S %ZIS("A")="Select LIST Printer: ",%ZIS="MQ" D ^%ZIS K %ZIS,IOP G:POP KIL
+ I $D(IO("Q")) S FHPGM="Q1^FHORD9",FHLST="FHP^TIM^FHSITE^FHSITENM" D EN2^FH G KIL
+ U IO D Q1 D ^%ZISC K %ZIS,IOP G KIL
+Q1 ; Calculate census
+ K ^TMP($J) S CT=0 D NOW^%DTC S NOW=% K %,D,P
+ F WRD=0:0 S WRD=$O(^FH(119.6,WRD)) Q:WRD<1  S X=^(WRD,0) D
+ .I '$G(FHSITE) D WRD
+ .I ($G(FHSITE)),($P(X,U,8)=FHSITE) D WRD
+ ;
+ ;get outpatient data
+ S:'$G(FHSITE) FHSITE=""
+ S:'$D(FHSITENM) FHSITENM="CONSOLIDATED"
+ D GETSM^FHOMRBLD(TIM,FHSITE,"","")
+ D GETGM^FHOMRBL1(TIM,FHSITE,"","")
+ S FHTIM=$P(TIM,".",1),FHTIM=FHTIM-.000001
+ D GETRM^FHOMRBLD(FHTIM,FHSITE,"","")
+ D PROSG   ;process recurring, special and guest meal from "OP" node
+ G ^FHORD91
+WRD ; Calculate census for ward
+ K S S X1="" F D2=5,6 S N1=$P(X,"^",D2) Q:$G(^FH(119.72,+N1,"I"))="Y"  S N2=$P($G(^FH(119.72,+N1,0)),"^",3) I N2=FHP S S($E("TC",D2-4))=N1,D(N1)="",X1=X1_$E("TC",D2-4)
+ Q:'$D(S)
+ S:$L(X1)>1 X1=$E(X1,1) Q:'$D(S(X1))  S SP=S(X1)
+ F FHDFN=0:0 S FHDFN=$O(^FHPT("AW",WRD,FHDFN)) Q:FHDFN<1  S ADM=$G(^FHPT("AW",WRD,FHDFN)) I ADM>0 S K=SP D W3
+ Q
+W3 Q:'$D(^FHPT(FHDFN,"A",ADM,0))
+ S X0=^FHPT(FHDFN,"A",ADM,0)
+ S FHORD=$P(X0,"^",2),X1=$P(X0,"^",3),TF=$P(X0,"^",4),N1=$P(X0,"^",5) S:N1="" N1="T"
+ I FHORD<1 S A1=$O(^FHPT(FHDFN,"A",ADM,"AC",0)) G:A1=""!(A1>TIM) W4 D U1 G:'FHORD W4 S X1=""
+ I X1>1,X1'>TIM D U1 G:'FHORD W4
+ I '$D(^FHPT(FHDFN,"A",ADM,"DI",FHORD,0)) D U1 G:'FHORD W4
+ S X=^FHPT(FHDFN,"A",ADM,"DI",FHORD,0),FHOR=$P(X,"^",2,6),FHLD=$P(X,"^",7),X1=$P(X,"^",8)
+ S:X1="" X1=N1 S:X1="D" X1="T" Q:'$D(S(X1))  S K=S(X1) D CNT
+ I FHLD="" S Z=$P(X,"^",13) S:Z="" FHLD="X" I Z S:'$D(P(Z,K)) P(Z,K)=0 S P(Z,K)=P(Z,K)+1 Q
+ I FHLD="P" S:'$D(P(.8,K)) P(.8,K)=0 S P(.8,K)=P(.8,K)+1 Q
+ I FHLD="N" D  Q
+ .I TF="" S:'$D(P(.5,K)) P(.5,K)=0 S P(.5,K)=P(.5,K)+1 Q
+ .S:'$D(P(.7,K)) P(.7,K)=0 S P(.7,K)=P(.7,K)+1 Q
+ Q:'TF  S:'$D(P(.7,K)) P(.7,K)=0 S P(.7,K)=P(.7,K)+1 Q
+W4 G:'TF CNT S:'$D(P(.7,K)) P(.7,K)=0 S P(.7,K)=P(.7,K)+1
+CNT S:'$D(P(.6,K)) P(.6,K)=0 S P(.6,K)=P(.6,K)+1 Q
+U1 S (A1,FHORD)=0 F K1=0:0 S K1=$O(^FHPT(FHDFN,"A",ADM,"AC",K1)) Q:K1<1!(K1>TIM)  S A1=K1
+ Q:'A1  S X1=$P(^FHPT(FHDFN,"A",ADM,"AC",A1,0),"^",2) G U2:X1<1,U2:'$D(^FHPT(FHDFN,"A",ADM,"DI",X1,0)) S FHORD=X1 Q
+U2 S X1="",A1=0
+U3 S A1=$O(^FHPT(FHDFN,"A",ADM,"AC",A1)) G:A1="" U1 S X2=$P(^(A1,0),"^",2)
+ I X2<1 K ^FHPT(FHDFN,"A",ADM,"AC",A1) G U3
+ I '$D(^FHPT(FHDFN,"A",ADM,"DI",X2,0)) K ^FHPT(FHDFN,"A",ADM,"AC",A1) G U3
+ G U3
+PROSG ;process outpatient data from ^tmp($j global.
+ S FHPLNM=""
+ S:$G(FHSITE) FHPLNM=$P($G(^FH(119.73,FHSITE,0)),U,1)
+REC ;for recurring meals
+ S FHDT=TIM+.999999
+ ;S FHTMPS=$NA(^TMP($J,"OP","R",FHPLNM))
+ S FHTMPS="^TMP($J,""OP"",""R"")"
+ S FHN="" F  S FHN=$O(@FHTMPS@(FHN)) Q:FHN=""  S FHI="" F  S FHI=$O(@FHTMPS@(FHN,FHI)) Q:FHI=""  S FHJ="" F  S FHJ=$O(@FHTMPS@(FHN,FHI,FHJ)) Q:FHJ=""  D
+ .I (FHPLNM'=""),(FHN'=FHPLNM) Q
+ .F FHK=0:0 S FHK=$O(@FHTMPS@(FHN,FHI,FHJ,FHK)) Q:(FHK'>0)!(FHK>FHDT)  D
+ ..S (FHRDAT,FHIJKDAT)=@FHTMPS@(FHN,FHI,FHJ,FHK)
+ ..Q:$P(FHRDAT,U,19)="C"   ;quit if status is cancelled.
+ ..S (FHPDIET,FHDIET,FHSER,FHLOC)="***"
+ ..S:$D(^FH(119.6,"B",FHI)) FHLOC=$O(^FH(119.6,"B",FHI,0))
+ ..S:$G(FHLOC) FHSER=$P($G(^FH(119.6,FHLOC,0)),U,5)
+ ..S:'$G(FHSER) FHSER=$P($G(^FH(119.6,FHLOC,0)),U,6)
+ ..S:'$G(FHSER) FHSER=$O(^FH(119.72,0))
+ ..I $D(^FH(119.72,FHSER,0)),$P(^FH(119.72,FHSER,0),U,3)'=FHP Q
+ ..I $G(FHSITE),$P($G(^FH(119.6,FHLOC,0)),U,8)'=FHSITE Q
+ ..S FHDIET=$P($G(^FH(119.9,1,0)),U,2)
+ ..S FHREIEN=$P(FHIJKDAT,U,1)
+ ..S FHDIETN=$P(FHIJKDAT,U,3)
+ ..S:$D(^FH(111,"B",FHDIETN)) FHDIET=$O(^FH(111,"B",FHDIETN,0))
+ ..S:$D(^FH(111,FHDIET,0)) FHPDIET=$P(^FH(111,FHDIET,0),U,5)
+ ..S:'$D(P(FHPDIET,FHSER)) P(FHPDIET,FHSER)=0
+ ..S P(FHPDIET,FHSER)=P(FHPDIET,FHSER)+1
+ ..S:'$D(P(.6,FHSER)) P(.6,FHSER)=0 S P(.6,FHSER)=P(.6,FHSER)+1
+ ..;if tubefeeding, also count the TF data.
+ ..I $D(^FHPT(FHREIEN,"OP",FHK,"TF")) D
+ ...I '$D(P(.7,FHSER)) S P(.7,FHSER)=1
+ ...E  S P(.7,FHSER)=P(.7,FHSER)+1
+ ...S:'$D(P(.6,FHSER)) P(.6,FHSER)=0 S P(.6,FHSER)=P(.6,FHSER)+1
+ ;
+SPEC ;for special meals
+ S FHTMPS="^TMP($J,""OP"",""S"")" I '$D(FHPLNM) S FHPLNM=""
+ S FHN="" F  S FHN=$O(@FHTMPS@(FHN)) Q:FHN=""  S FHI="" F  S FHI=$O(@FHTMPS@(FHN,FHI)) Q:FHI=""  S FHJ="" F  S FHJ=$O(@FHTMPS@(FHN,FHI,FHJ)) Q:FHJ=""  D
+ .I (FHPLNM'=""),(FHN'=FHPLNM) Q
+ .F FHK=0:0 S FHK=$O(@FHTMPS@(FHN,FHI,FHJ,FHK)) Q:(FHK'>0)!(FHK>FHDT)  D
+ ..S (FHRDAT,FHIJKDAT)=@FHTMPS@(FHN,FHI,FHJ,FHK)
+ ..S (FHPDIET,FHDIET,FHSER,FHLOC)="***"
+ ..S:$D(^FH(119.6,"B",FHI)) FHLOC=$O(^FH(119.6,"B",FHI,0))
+ ..S:$G(FHLOC) FHSER=$P($G(^FH(119.6,FHLOC,0)),U,5)
+ ..S:'$G(FHSER) FHSER=$P($G(^FH(119.6,FHLOC,0)),U,6)
+ ..S:'$G(FHSER) FHSER=$O(^FH(119.72,0))
+ ..I $D(^FH(119.72,FHSER,0)),$P(^FH(119.72,FHSER,0),U,3)'=FHP Q
+ ..I $G(FHSITE),$P($G(^FH(119.6,FHLOC,0)),U,8)'=FHSITE Q
+ ..S FHDIET=$P($G(^FH(119.9,1,0)),U,2)
+ ..S FHSTAT=$P(FHIJKDAT,U,3)
+ ..Q:FHSTAT'="A"     ;quit if status is not Authorized
+ ..S FHDIETN=$P(FHIJKDAT,U,4)
+ ..S:$D(^FH(111,"B",FHDIETN)) FHDIET=$O(^FH(111,"B",FHDIETN,0))
+ ..S:$D(^FH(111,FHDIET,0)) FHPDIET=$P(^FH(111,FHDIET,0),U,5)
+ ..S:'$D(P(FHPDIET,FHSER)) P(FHPDIET,FHSER)=0
+ ..S P(FHPDIET,FHSER)=P(FHPDIET,FHSER)+1
+ ..S:'$D(P(.6,FHSER)) P(.6,FHSER)=0 S P(.6,FHSER)=P(.6,FHSER)+1
+ ;
+GUEST ;for guest meals.
+ ;If no diet, use default outpatient diet in file #119.9.
+ ;S FHTMPS=$NA(^TMP($J,"OP","G",FHPLNM))
+ S FHTMPS="^TMP($J,""OP"",""G"")" I '$D(FHPLNM) S FHPLNM=""
+ S FHN="" F  S FHN=$O(@FHTMPS@(FHN)) Q:FHN=""  S FHI="" F  S FHI=$O(@FHTMPS@(FHN,FHI)) Q:FHI=""  S FHJ="" F  S FHJ=$O(@FHTMPS@(FHN,FHI,FHJ)) Q:FHJ=""  D
+ .I (FHPLNM'=""),(FHN'=FHPLNM) Q
+ .F FHK=0:0 S FHK=$O(@FHTMPS@(FHN,FHI,FHJ,FHK)) Q:(FHK'>0)!(FHK>FHDT)  D
+ ..S (FHRDAT,FHIJKDAT)=@FHTMPS@(FHN,FHI,FHJ,FHK)
+ ..I $P(FHRDAT,U,7)="C" Q
+ ..S (FHPDIET,FHDIET,FHSER,FHLOC)="***"
+ ..S:$D(^FH(119.6,"B",FHI)) FHLOC=$O(^FH(119.6,"B",FHI,0))
+ ..S:$G(FHLOC) FHSER=$P($G(^FH(119.6,FHLOC,0)),U,5)
+ ..S:'$G(FHSER) FHSER=$P($G(^FH(119.6,FHLOC,0)),U,6)
+ ..S:'$G(FHSER) FHSER=$O(^FH(119.72,0))
+ ..I $D(^FH(119.72,FHSER,0)),$P(^FH(119.72,FHSER,0),U,3)'=FHP Q
+ ..I $G(FHSITE),$P($G(^FH(119.6,FHLOC,0)),U,8)'=FHSITE Q
+ ..S FHDIET=$P($G(^FH(119.9,1,0)),U,2)
+ ..S FHDIETN=$P(FHIJKDAT,U,6)
+ ..S:$D(^FH(111,FHDIETN,0)) FHPDIET=$P(^FH(111,FHDIETN,0),U,5)
+ ..S:'$D(P(FHPDIET,FHSER)) P(FHPDIET,FHSER)=0
+ ..S P(FHPDIET,FHSER)=P(FHPDIET,FHSER)+1
+ ..S:'$D(P(.6,FHSER)) P(.6,FHSER)=0 S P(.6,FHSER)=P(.6,FHSER)+1
+ ;
+ Q
+ ;
+KIL K ^TMP($J) G KILL^XUSCLEAN
+ ;K %,%H,%I,%T,%DT,%ZIS,A1,ADM,CHK,CT,D,D1,D2,FHDFN,DFN,DIC,DOW,DTP,FHLD,FHOR,FHP,FHPAR,K,K1,KK,L1,LP,N,N1,N2,N3,NOW,NXW,FHORD,P,P1,POP,S,SP,TF,TIM,TOT,TYP,WRD,WRDN,X,X0,X1,X2,Y,Z K ^TMP($J) Q

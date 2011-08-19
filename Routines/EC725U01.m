@@ -1,0 +1,108 @@
+EC725U01 ;ALB/GTS/JAP/JAM - EC National Procedure Update; 08/11/99
+ ;;2.0; EVENT CAPTURE ;**20**;8 May 96
+ ;
+ ;this routine is used as a post-init in KIDS build 
+ ;to modify the the EC National Procedure file #725
+ ;
+INACT ;* inactivate national procedures
+ ;
+ ;  ECXX is in format:
+ ;   NATIONAL NUMBER^INACTIVATION DATE^FIRST NATIONAL NUMBER SEQUENCE^
+ ;   LAST NATIONAL NUMBER SEQUENCE
+ ;
+ N ECX,ECXX,ECEXDT,ECINDT,ECDA,DIC,DIE,DA,DR,X,Y,%DT,ECBEG,ECEND,ECADD
+ N ECSEQ,CODE,CODX
+ D MES^XPDUTL(" ")
+ D BMES^XPDUTL("Inactivating procedures EC NATIONAL PROCEDURE File (#725)...")
+ D MES^XPDUTL(" ")
+ F ECX=1:1 K DD,DO,DA S ECXX=$P($T(OLD+ECX),";;",2) Q:ECXX="QUIT"  D
+ .S ECEXDT=$P(ECXX,U,2),X=ECEXDT,%DT="X" D ^%DT S ECINDT=$P(Y,".",1)
+ .S CODE=$P(ECXX,U),ECBEG=$P(ECXX,U,3),ECEND=$P(ECXX,U,4),CODX=CODE
+ .I ECBEG="" D UPINACT Q
+ .F ECSEQ=ECBEG:1:ECEND D
+ ..S ECADD="000"_ECSEQ,ECADD=$E(ECADD,$L(ECADD)-2,$L(ECADD))
+ ..S CODE=CODX_ECADD
+ ..D UPINACT
+ Q
+UPINACT ;Update codes as inactive
+ ;
+ S ECDA=+$O(^EC(725,"D",CODE,0))
+ I $D(^EC(725,ECDA,0)) D
+ .S DA=ECDA,DR="2////^S X=ECINDT",DIE="^EC(725," D ^DIE
+ .D MES^XPDUTL(" ")
+ .D BMES^XPDUTL("   "_CODE_" inactivated as of "_ECEXDT_".")
+ Q
+ ;
+OLD ;national procedures to be inactivated
+ ;;SP^10/1/1999^125^126
+ ;;SP^10/1/1999^142^145
+ ;;SP^10/1/1999^148^150
+ ;;SP^10/1/1999^152^155
+ ;;SP^10/1/1999^157^160
+ ;;SP^10/1/1999^162^168
+ ;;SP^10/1/1999^170^206
+ ;;SP^10/1/1999^257^259
+ ;;SW005^10/1/1999
+ ;;SW008^10/1/1999
+ ;;SW016^10/1/1999
+ ;;SW022^10/1/1999
+ ;;SW029^10/1/1999
+ ;;SW030^10/1/1999
+ ;;SW040^10/1/1999
+ ;;SW041^10/1/1999
+ ;;SW042^10/1/1999
+ ;;SW070^10/1/1999
+ ;;QUIT
+ ;
+CPTCHG ;* change cpt codes
+ ;
+ ;  ECXX is in format:
+ ;  NATIONAL NUMBER^NEW CPT^FIRST NATIONAL NUMBER SEQUENCE^LAST NATIONAL
+ ;  NUMBER SEQUENCE
+ ;
+ N ECX,ECXX,CPT,DIC,DIE,DA,DR,X,Y,ECBEG,ECEND,ECADD,NAME,ECSEQ,FL
+ D MES^XPDUTL(" ")
+ D BMES^XPDUTL("Changing CPT Codes in EC NATIONAL PROCEDURE file (#725)")
+ D BMES^XPDUTL("   Also adding '10M' to some procedure description...")
+ D MES^XPDUTL(" ")
+ F ECX=1:1 S ECXX=$P($T(CPT+ECX),";;",2) Q:ECXX="QUIT"  D
+ .S ECBEG=$P(ECXX,U,3),ECEND=$P(ECXX,U,4)
+ .I ECBEG="" S CPT($P(ECXX,U,1))=$P(ECXX,U,2)_U_0 Q
+ .F ECSEQ=ECBEG:1:ECEND D
+ ..S ECADD="000"_ECSEQ,ECADD=$E(ECADD,$L(ECADD)-2,$L(ECADD))
+ ..S CPT($P(ECXX,U)_ECADD)=$P(ECXX,U,2)_U_1
+ S ECXX=""
+ F  S ECXX=$O(CPT(ECXX)) Q:ECXX=""  D
+ .S ECX=$O(^EC(725,"D",ECXX,0))
+ .Q:+ECX=0
+ .I '$D(^EC(725,ECX,0))!(+ECX=0) D  Q
+ ..D MES^XPDUTL(" ")
+ ..D BMES^XPDUTL("   Can't find entry for"_ECXX)
+ ..D BMES^XPDUTL("   ...NAME field (#.01) nor CPT code updated.")
+ .S CPT=$P(CPT(ECXX),U),FL=$P(CPT(ECXX),U,2),DA=ECX
+ .I FL S NAME=$P(^EC(725,ECX,0),U) D  I FL S NAME=NAME_" 10M"
+ ..I $E(NAME,$L(NAME)-3,$L(NAME))=" 10M" S FL=0 ;10M already added
+ .S DR=$S(FL:".01////^S X=NAME;",1:"")_"4////"_CPT,DIE="^EC(725," D ^DIE
+ .D MES^XPDUTL(" ")
+ .D BMES^XPDUTL("   Entry #"_ECX_" for "_ECXX)
+ .D BMES^XPDUTL("   ...updated to use CPT code "_CPT_$S(FL:" with desc. "_NAME_".",1:"."))
+ Q
+ ;
+CPT ;cpt codes to be changed
+ ;;CH^99499^1^15
+ ;;CH^99499^17^71
+ ;;CH^99499^73^84
+ ;;SW002^99261
+ ;;SW003^99238
+ ;;SW013^99211
+ ;;SW014^99263
+ ;;SW019^99411
+ ;;SW025^99411
+ ;;SW026^99411
+ ;;SW033^99262
+ ;;SW034^99263
+ ;;SW056^99212
+ ;;SW057^99213
+ ;;SW058^99214
+ ;;SW059^99215
+ ;;QUIT

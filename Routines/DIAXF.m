@@ -1,0 +1,15 @@
+DIAXF ;SFISC/DCM-FILE EXTRACTED DATA ;5/13/96  14:01
+ ;;22.0;VA FileMan;;Mar 30, 1999
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+EN ;
+ Q:'$D(^TMP("DIAX",$J))
+ N DIAXDAZ
+ S DIAXDAZ="^TMP(""DIAXDAZ"",$J)" K @DIAXDAZ
+ D UPDATE^DIE("E","^TMP(""DIAX"",$J)",DIAXDAZ,DIAXERR)
+ I $G(DIERR) D  Q
+ . K ^TMP("DIAX",$J) I $D(@DIAXDAZ) D  Q
+ . . N NODE,DA,DIK S NODE=$Q(@(DIAXDAZ))
+ . . S DA=@NODE,DIK=DIAXDFRT
+ . . D ^DIK K @DIAXDAZ Q
+ S DIAXDA=@($Q(@DIAXDAZ)) K @DIAXDAZ
+ Q

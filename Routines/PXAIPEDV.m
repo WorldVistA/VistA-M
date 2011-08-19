@@ -1,0 +1,13 @@
+PXAIPEDV ;ISL/PKR - VALIDATE PATIENT EDUCATION DATA ;7/24/96  13:58
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;;Aug 12, 1996
+ ;
+VAL ;Make sure the required field is present.
+ I '$D(PXAA("TOPIC")) D
+ . S STOP=1
+ . S PXAERRF=1
+ . S PXADI("DIALOG")=8390001.001
+ . S PXAERR(9)="PATIENT EDUCATION"
+ . S PXAERR(10)="AFTER"
+ . S PXAERR(11)=$G(PXAA("TOPIC"))
+ . S PXAERR(12)="You are missing the education topic"
+ Q

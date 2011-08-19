@@ -1,0 +1,205 @@
+XMXADDR ;ISC-SF/GMB-Address checker ;04/29/2003  08:51
+ ;;8.0;MailMan;**18**;Jun 28, 2002
+ ; Replaces ^XMA21,^XMA210,^XMA24 (ISC-WASH/CAP/AML/LL)
+ ; XMIA     1=Interactive; 0=not
+CHKADDR(XMDUZ,XMTO,XMINSTR,XMRESTR,XMFULL) ; Check addressee(s) NON-INTERACTIVE
+ ; This entry point is meant for calls in which the addressees are
+ ; already in an array:
+ ; XMTO("addressee 1")=""
+ ; XMTO("addressee 2")=""
+ ; or for just a single addressee:  "addressee 1"
+ N XMADDR,XMIA
+ ;K XMERR,^TMP("XMERR",$J) DO NOT PUT THIS LINE IN HERE!
+ S XMIA=0
+ I $G(XMTO)]"",$O(XMTO(""))="" D  Q
+ . N XMERROR K XMFULL
+ . D ADDRESS(XMDUZ,XMTO,.XMFULL,.XMERROR) Q:'$D(XMERROR)
+ . S XMERROR("PARAM","ID")="XMTO",XMERROR("PARAM","VALUE")=XMTO
+ . D ERRSET^XMXUTIL(XMERROR,.XMERROR)
+ . S:'$D(XMFULL) ^TMP("XMERR",$J,XMERR,"PARM")=XMTO
+ I $O(XMTO(""))="" D  Q
+ . ;S XMERR=$G(XMERR)+1,^TMP("XMERR",$J,XMERR,"TEXT",1)="Null addressee"
+ S XMADDR=""
+ F  S XMADDR=$O(XMTO(XMADDR)) Q:XMADDR=""  D
+ . N XMERROR,XMFULL,XMFWDADD
+ . D ADDRESS(XMDUZ,XMADDR,.XMFULL,.XMERROR) Q:'$D(XMERROR)
+ . S XMERROR("PARAM","ID")="XMTO",XMERROR("PARAM","VALUE")=XMADDR
+ . D ERRSET^XMXUTIL(XMERROR,.XMERROR)
+ . S:'$D(XMFULL) ^TMP("XMERR",$J,XMERR,"PARM")=XMADDR
+ Q
+INIT ;
+ K ^TMP("XMY",$J),^TMP("XMY0",$J),^TMP("XMYL",$J)
+INITLATR ;
+ N XMNOW
+ S XMNOW=$$NOW^XLFDT
+ S XMINLATR=$E($$FMADD^XLFDT(XMNOW,"","",5),1,12)  ; Staggered delivery must be at least 5 minutes from now
+ S XMAXLATR=$$SCH^XLFDT("1M",XMNOW)  ; Staggered delivery must be at most 1 month from now
+ S XMBIGGRP=$P(^XMB(1,1,0),U,7)  ; Big group size
+ Q
+CLEANUP ;
+ K ^TMP("XMY",$J),^TMP("XMY0",$J),^TMP("XMYL",$J),XMINLATR,XMAXLATR,XMBIGGRP
+ Q
+ADDR(XMDUZ,XMADDR,XMINSTR,XMRESTR,XMFULL) ; Check one addressee (INTERACTIVE)
+ N XMIA,XMFWDADD
+ S XMIA=1
+ D ADDRESS(XMDUZ,XMADDR,.XMFULL)
+ Q
+ADDRESS(XMDUZ,XMADDR,XMFULL,XMERROR) ; Check one addressee
+ ; XMADDR   (in) Addressee (if number, assumed to be a person's DUZ)
+ ; XMFULL   (out) The full address of the addressee
+ N XMSTRIKE,XMPREFIX,XMLATER,XMGCIRCL,XMGMBRS,XMG
+ D CHKPARM(.XMADDR,.XMSTRIKE,.XMPREFIX,.XMLATER) Q:$D(XMERROR)
+ I $G(XMINSTR("ADDR FLAGS"))["X",$G(XMINSTR("ADDR FLAGS"))'["Y" S XMSTRIKE=0,XMLATER="",XMPREFIX=""
+ I XMADDR["@"!(XMADDR["!") D
+ . I $D(XMRESTR("NONET")) D  Q
+ . . ;Messages longer than |1| lines may not be sent across the network.
+ . . D SETERR^XMXADDR4($G(XMIA),"!",39001,XMRESTR("NONET"))
+ . D REMOTE^XMXADDR3(XMDUZ,XMADDR,XMSTRIKE,XMPREFIX,.XMLATER,.XMFULL)
+ E  D LOCAL(XMDUZ,XMADDR,XMSTRIKE,XMPREFIX,.XMLATER,.XMFULL,.XMG)
+ D:'$D(XMERROR) SET(XMFULL,$G(XMG),XMSTRIKE,XMPREFIX,XMLATER)
+ Q
+LOCAL(XMDUZ,XMADDR,XMSTRIKE,XMPREFIX,XMLATER,XMFULL,XMG) ;
+ I $E(XMADDR,1)="*" D  Q
+ . D BRODCAST^XMXADDR2(XMDUZ,XMADDR,XMSTRIKE,XMPREFIX,.XMLATER,.XMFULL)
+ I $L(XMADDR)>2,".G.g.D.d.H.h.S.s."[("."_$E(XMADDR,1,2)) D  Q
+ . N XMADDR1
+ . S XMADDR1=$E(XMADDR,1)
+ . I "Gg"[XMADDR1 D EXPAND^XMXADDRG(XMDUZ,XMADDR,XMSTRIKE,XMPREFIX,.XMLATER,.XMFULL,.XMG) Q
+ . I "Ss"[XMADDR1 D SERVER^XMXADDR3(XMADDR,XMSTRIKE,XMPREFIX,.XMLATER,.XMFULL) Q
+ . I "DdHh"[XMADDR1 D DEVICE^XMXADDR3(XMADDR,XMSTRIKE,XMPREFIX,.XMLATER,.XMFULL) Q
+ I XMADDR?1N.N,$L(XMADDR)>25 D  Q
+ . D SETERR^XMXADDR4($G(XMIA),"!,$C(7)",39002) ;Not found.
+ I $G(XMIA) D
+ . D IPERSON^XMXADDR1(XMDUZ,.XMADDR,XMSTRIKE,XMPREFIX,.XMLATER,.XMG,.XMFULL) Q:$D(XMERROR)
+ . I XMLATER="?",XMG'=.6 D QLATER(XMFULL,.XMLATER)
+ E  D
+ . D PERSON^XMXADDR1(XMDUZ,.XMADDR,XMSTRIKE,XMPREFIX,XMLATER,.XMG,.XMFULL)
+ Q:$D(XMERROR)
+ D:XMFULL'["@" INDIV(XMDUZ,XMG,XMSTRIKE,XMPREFIX,XMLATER)
+ Q
+INDIV(XMDUZ,XMG,XMSTRIKE,XMPREFIX,XMLATER) ;
+ N XMGREC,XMIASAVE
+ I $D(XMFWDADD) D  Q
+ . ;You can't have a message forwarded to a local user.
+ . D SETERR^XMXADDR4(0,"",38001)
+ S XMGREC=^XMB(3.7,XMG,0)
+ I $P(XMGREC,U,2)=""!(XMG=DUZ) D SETEXP(XMG,"",XMSTRIKE,XMPREFIX,XMLATER) Q
+ ; Addressee has a forwarding address.
+ ; Ignore it if message is from remote postmaster (OR envelope from is empty) and forwarding address is to a remote site (to avoid looping error messages to bad fwding address).
+ I $D(XMRESTR("NET RECEIVE")),($$UP^XLFSTR(XMRESTR("NET RECEIVE"))["POSTMASTER"!("<>"[XMRESTR("NET RECEIVE"))),$$FIND1^DIC(4.2,"","QX",$P($P(XMGREC,U,2),"@",2),"B^C")'=^XMB("NUM") D SETEXP(XMG,"",XMSTRIKE,XMPREFIX,XMLATER) Q
+ N XMFULL,XMERROR
+ S XMFWDADD=XMG
+ I $G(XMIA) S XMIA=0,XMIASAVE=1
+ D REMOTE^XMXADDR3(XMDUZ,$P(XMGREC,U,2),XMSTRIKE,XMPREFIX,.XMLATER,.XMFULL)
+ K XMFWDADD
+ I $G(XMIASAVE) S XMIA=1
+ I '$D(XMERROR) D  Q:'$P(XMGREC,U,8)  ; quit if no local delivery
+ . Q:XMSTRIKE
+ . ; Note that recipient fwded
+ . I $D(XMINSTR("NET FWD BY")),$D(XMRESTR("NET RECEIVE")) S ^TMP("XMY",$J,XMFULL,"F")=XMG_U_XMINSTR("NET FWD BY") Q
+ . S ^TMP("XMY",$J,XMFULL,"F")=XMG
+ D SETEXP(XMG,"",XMSTRIKE,XMPREFIX,XMLATER)
+ Q:'$D(XMERROR)
+ D DELFWD^XMVVITA(XMG,$P(XMGREC,U,2),.XMERROR)
+ I $G(XMIA),'$D(XMGCIRCL) W !,$C(7),"     ",$$EZBLD^DIALOG(38130.3) ; Forwarding Address ignored.
+ Q
+SET(XMTO,XMG,XMSTRIKE,XMPREFIX,XMLATER) ;
+ I $G(XMINSTR("ADDR FLAGS"))["X",$G(XMINSTR("ADDR FLAGS"))'["Y" Q
+ I XMSTRIKE D  Q
+ . I $G(XMIA) D
+ . . I $E(XMTO,1,2)="G."!($E(XMTO,1,2)="*;") D
+ . . . I $D(^TMP("XMY0",$J,XMTO,"L")) D  Q
+ . . . . W $$EZBLD^DIALOG(39003) ;Later'd Group Deleted.
+ . . . . K ^TMP("XMYL",$J,XMTO)
+ . . . W !,$$EZBLD^DIALOG(39004) ;Members Deleted.
+ . . E  W:$X>70 ! W $$EZBLD^DIALOG(39005) ;Deleted.
+ . . ; 39006 - * (Broadcast to all local users)
+ . . I XMTO'=$$EZBLD^DIALOG(39006),$D(^TMP("XMY0",$J,$$EZBLD^DIALOG(39006))) W !,$$EZBLD^DIALOG(39007) ;But Broadcast will still go to all local users
+ . . Q:'$D(^TMP("XMYL",$J))
+ . . N XMGRP,XMTEXT ;But message will still go to all members of the following later'd group(s):
+ . . D BLD^DIALOG(39008,"","","XMTEXT","F")
+ . . D MSG^DIALOG("WM","","","","XMTEXT")
+ . . S XMGRP="" F  S XMGRP=$O(^TMP("XMYL",$J,XMGRP)) Q:XMGRP=""  W !,XMGRP
+ . K ^TMP("XMY0",$J,XMTO)
+ . K:$D(^TMP("XMYL",$J,XMTO)) ^TMP("XMYL",$J,XMTO)
+ S ^TMP("XMY0",$J,XMTO)=XMG    ; =XMIEN
+ I XMPREFIX'="" S ^TMP("XMY0",$J,XMTO,1)=$$UP^XLFSTR(XMPREFIX)
+ I XMLATER S ^TMP("XMY0",$J,XMTO,"L")=XMLATER I $E(XMTO,1,2)="G."!($E(XMTO,1,2)="*;") S ^TMP("XMYL",$J,XMTO)=""
+ I XMLATER="?",$G(XMIA) W !,$C(7),$$EZBLD^DIALOG(39009) ;'Later' not appropriate for this addressee
+ Q
+SETEXP(XMTO,XMIEN,XMSTRIKE,XMPREFIX,XMLATER) ;
+ Q:$G(XMINSTR("ADDR FLAGS"))["X"
+ I XMSTRIKE K ^TMP("XMY",$J,XMTO) Q
+ I XMLATER,XMTO'=XMDUZ Q
+ S ^TMP("XMY",$J,XMTO)=XMIEN
+ I XMPREFIX'="" S ^TMP("XMY",$J,XMTO,1)=$$UP^XLFSTR(XMPREFIX)
+ I $D(XMINSTR("NET FWD BY")),$D(XMRESTR("NET RECEIVE")) S ^TMP("XMY",$J,XMTO,"F")=XMINSTR("NET FWD BY")
+ Q
+GOTADDR() ; Function returns 1 if addressees exist; 0 if not.
+ Q:$D(^TMP("XMY",$J)) 1
+ Q:$D(^TMP("XMYL",$J)) 1
+ Q:'$D(^TMP("XMY0",$J)) 0
+ N XMTO
+ S XMTO=$O(^TMP("XMY0",$J,""))
+ Q:$D(^TMP("XMY0",$J,XMTO,"L")) 1
+ Q 0
+CHKPARM(XMADDR,XMSTRIKE,XMPREFIX,XMLATER) ;
+ I $E(XMADDR,1)="-" D
+ . S XMSTRIKE=1
+ . S XMADDR=$E(XMADDR,2,999)
+ E  S XMSTRIKE=0
+ I $E(XMADDR,1)=" "!($E(XMADDR,$L(XMADDR))=" ") S XMADDR=$$STRIP^XMXUTIL1(XMADDR)
+ I $P(XMADDR,"@",1)="" D  Q
+ . D SETERR^XMXADDR4($G(XMIA),"!",39010) ;Null addressee
+ I $E(XMADDR,1)'="""",XMADDR[":" D  Q
+ . D PREFIX(.XMADDR,.XMPREFIX,.XMLATER)
+ . I XMSTRIKE,XMLATER="?" S XMLATER=""
+ S XMPREFIX=""
+ S XMLATER=""
+ Q
+PREFIX(XMADDR,XMPREFIX,XMLATER) ;
+ N XMPRE
+ S XMPRE=$P(XMADDR,":",1)
+ I XMPRE="" D  Q
+ . D SETERR^XMXADDR4($G(XMIA),"!",39011) ;Null recipient type
+ S (XMLATER,XMPREFIX)=""
+ S XMPRE=$$UP^XLFSTR(XMPRE)
+ I $P(XMPRE,"@",1)["L",'$D(XMRESTR("NET RECEIVE")) D
+ . D LATER($P(XMPRE,"@",2,99),.XMLATER)
+ . S XMPRE=$TR($P(XMPRE,"@",1),"L")
+ D:XMPRE'="" RTYPE(XMPRE,.XMPREFIX)
+ I $D(XMERROR),$D(XMRESTR("NET RECEIVE")),$$FIND1^DIC(4.2,"","QX",$P(XMADDR,"@",2),"B^C")'=^XMB("NUM") K XMERROR Q
+ S XMADDR=$P(XMADDR,":",2)
+ Q
+LATER(XMWHEN,XMLATER) ; (XMWHEN=user-supplied date/time)
+ I $G(XMIA),XMWHEN="" S XMLATER="?" Q
+ I '$D(XMINLATR) D INITLATR
+ D DT^DILF("FTX",XMWHEN,.XMLATER,XMINLATR)
+ Q:XMLATER>0
+ S XMLATER=$S($G(XMIA):"?",1:"")
+ Q
+RTYPE(XMPRE,XMPREFIX) ;
+ N XMINTRNL
+ D CHK^DIE(3.91,6.5,"",XMPRE,.XMINTRNL)
+ I XMINTRNL="^" D  Q  ;Invalid recipient type '|1|'
+ . D SETERR^XMXADDR4($G(XMIA),"!",39012,XMPRE)
+ S XMPREFIX=XMINTRNL
+ Q
+QLATER(XMFULL,XMLATER) ;
+ N DIR,Y
+ I '$D(XMINLATR) D INITLATR
+ W !
+ S DIR(0)="DO^"_XMINLATR_":"_XMAXLATR_":EXT"
+ ;Later Delivery must be at least 5 minutes from now.
+ D BLD^DIALOG(39013,"","","DIR(""A"")") ;When Later
+ S DIR("B")=$$MMDT^XMXUTIL1($$FMADD^XLFDT($$NOW^XLFDT,"","",5)) ; (in 5 minutes)
+ S DIR("B")=$P(DIR("B")," ",1,3)_"@"_$P(DIR("B")," ",4)
+ D ^DIR I $D(DIRUT) D  Q
+ . S XMLATER=""
+ . D SETERR^XMXADDR4(0,"",37002) ;up-arrow or time out.
+ . W !,XMFULL,$$EZBLD^DIALOG(39015) ;removed from recipient list.
+ S XMLATER=Y
+ ;>> Remember, you won't be able to 'minus' anyone from the ...
+ I $E(XMFULL,1,2)="G." W !!,$$EZBLD^DIALOG(39016) ; group <<
+ I $E(XMFULL,1,2)="*;" W !!,$$EZBLD^DIALOG(39017) ; limited broadcast <<
+ Q

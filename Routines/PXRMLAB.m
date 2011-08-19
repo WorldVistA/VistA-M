@@ -1,0 +1,72 @@
+PXRMLAB ; SLC/PKR - Handle laboratory test findings. ;03/02/2006
+ ;;2.0;CLINICAL REMINDERS;**4**;Feb 04, 2005;Build 21
+ ;
+ ;=============================================
+EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;Evaluate lab findings.
+ D EVALFI^PXRMINDX(DFN,.DEFARR,ENODE,.FIEVAL)
+ Q
+ ;
+ ;=============================================
+EVALPL(FINDPA,ENODE,TERMARR,PLIST) ;Evaluate lab term findings
+ ;for patient lists.
+ D EVALPL^PXRMINDL(.FINDPA,ENODE,.TERMARR,PLIST)
+ Q
+ ;
+ ;=============================================
+EVALTERM(DFN,FINDPA,ENODE,TERMARR,TFIEVAL) ;Evaluate lab terms.
+ D EVALTERM^PXRMINDX(DFN,.FINDPA,ENODE,.TERMARR,.TFIEVAL)
+ Q
+ ;
+ ;=============================================
+GETDATA(DASP,FIEVT) ;Return Lab data. The first piece of DASP is the item.
+ N DAS,DATA,ITEM
+ ;DBIA #4245
+ S ITEM=$P(DASP,"~",1)
+ S DAS=$P(DASP,"~",2)
+ D LRPXRM^LRPXAPI(.DATA,DAS,ITEM)
+ S FIEVT("DATA")=DATA
+ S FIEVT("TEST NAME")=$P(DATA,U,2)
+ I DAS["CH" S FIEVT("VALUE")=$P(DATA,U,3),FIEVT("FLAG")=$P(DATA,U,4)
+ E  S (FIEVT("VALUE"),FIEVT("FLAG"))=""
+ I $D(DATA("SPECIMEN")) S FIEVT("SPECIMEN")=$P(DATA("SPECIMEN"),U,2)
+ Q
+ ;
+ ;=============================================
+MHVOUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the MHV output.
+ N DATE,FLAG,IND,JND,NAME,NOUT,TEXTOUT,TEST,VALUE
+ S TEST=IFIEVAL("TEST NAME")
+ S NAME="Laboratory test: "_TEST_" = "
+ S IND=0
+ F  S IND=+$O(IFIEVAL(IND)) Q:IND=0  D
+ . S VALUE=$G(IFIEVAL(IND,"VALUE"))
+ . S FLAG=$G(IFIEVAL(IND,"FLAG"))
+ . I FLAG'="" S VALUE=VALUE_FLAG
+ . S DATE=IFIEVAL(IND,"DATE")
+ . S TEMP=NAME_VALUE_" ("_$$EDATE^PXRMDATE(DATE)_")"
+ . D FORMATS^PXRMTEXT(INDENT+2,PXRMRM,TEMP,.NOUT,.TEXTOUT)
+ . F JND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(JND)
+ . S NLINES=NLINES+1,TEXT(NLINES)=""
+ Q
+ ;
+ ;=============================================
+OUTPUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the clinical
+ ;maintenance output.
+ N DATE,FLAG,IND,JND,NOUT,TEMP,TEXTOUT,TEST,VALUE
+ S TEST=IFIEVAL("TEST NAME")
+ S TEMP="Laboratory test: "_TEST
+ I $D(IFIEVAL("SPECIMEN")) S TEMP=TEMP_"; specimen: "_IFIEVAL("SPECIMEN")
+ S NLINES=NLINES+1
+ S TEXT(NLINES)=$$INSCHR^PXRMEXLC(INDENT," ")_TEMP
+ S IND=0
+ F  S IND=+$O(IFIEVAL(IND)) Q:IND=0  D
+ . S DATE=IFIEVAL(IND,"DATE")
+ . S TEMP=$$EDATE^PXRMDATE(DATE)
+ . S VALUE=$G(IFIEVAL(IND,"VALUE"))
+ . S FLAG=$G(IFIEVAL(IND,"FLAG"))
+ . I VALUE'="" S TEMP=TEMP_" value - "_VALUE
+ . I FLAG'="" S TEMP=TEMP_" "_FLAG
+ . D FORMATS^PXRMTEXT(INDENT+2,PXRMRM,TEMP,.NOUT,.TEXTOUT)
+ . F JND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(JND)
+ S NLINES=NLINES+1,TEXT(NLINES)=""
+ Q
+ ;

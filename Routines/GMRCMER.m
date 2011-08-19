@@ -1,0 +1,42 @@
+GMRCMER ;SLC/DCM - Print Medicine Results in List Manager Format ;1/10/02  14:26
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,4,15,23**;DEC 27, 1997
+ ;
+EN ; -- main entry point for GMRC ASSOCIATE RESULTS
+ D EN^VALM("GMRC ASSOCIATE RESULTS")
+ Q
+ ;
+HDRAR ; -- header code uses Detailed Display header to format VALMHDR
+ N GMRCVTIT
+ S GMRCVTIT="Procedure/Medicine Resulting"
+ I '$G(DFN),$G(ORVP) S DFN=+ORVP
+ D HDR^GMRCSLDT
+ S VALMHDR(2)=$$CJ^XLFSTR("Available Medicine Results",80)
+ Q
+ ;
+HDR ;header for results display
+ D HDR^GMRCSLDT
+ Q
+ ;
+INITAR ; -- init variables and list array for ASSOCIATE RESULTS
+ K ^TMP("GMRCR",$J,"DTLIST")
+ S VALMCNT=$O(^TMP("GMRCR",$J,"DT",999999),-1)
+ Q
+INIT ; -- init variables and list array for RESULTS DISPLAY
+ K ^TMP("GMRCR",$J,"DTLIST")
+ N LINE
+ S DSPLINE=0,VARMAR=$NA(^TMP("GMRCR",$J,"DTLIST")),LINE=1
+ F  S DSPLINE=$O(^TMP("GMRCR",$J,"DT",DSPLINE)) Q:DSPLINE=""!(DSPLINE?1A.E)  S DATA=^(DSPLINE,0) D SET^VALM10(LINE,DATA) S LINE=LINE+1
+ S VALMCNT=$O(^TMP("GMRCR",$J,"DTLIST"," "),-1)
+ K DSPLINE,DATA,LINE
+ Q
+ ;
+HELP ; -- help code for display actions
+ D HELP^GMRCSLDT
+ Q
+ ;
+EXIT ; -- exit code
+ K ^TMP("GMRCR",$J,"DT"),^TMP("GMRCR",$J,"DTLIST")
+ S:$D(GMRCLCT) VALMCNT=GMRCLCT
+ K GLOBAL,GMRCMODE,GMRCND,GMRCSGAD,GMRCCSIG,GMRCCSDT,GMRCSIGT,GMRCSR,GMRCSIGM,GMRCCTIT,GMRCLCT,GMRCADD,GMRCADDT,GMRCSDT,GMRCSIG,GMRCTUFN,ND,ND1
+ Q
+ ;

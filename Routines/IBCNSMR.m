@@ -1,0 +1,236 @@
+IBCNSMR ;ALB/AAS - MEDICARE BILLS ; 02-SEPT-97
+ ;;2.0;INTEGRATED BILLING;**92,240**;21-MAR-94
+ ;
+% G RPRT^IBCNSMRA
+ ;
+DQ ; -- entry point from task manager
+ N I,J,X,Y,IBINSCO,INSCO,NODE,CNT,IBI,IBINSNM,IBNM
+ S IBQUIT=0
+ K ^TMP("IB-MRA",$J),^TMP("IB-MRA-CNT",$J)
+ ;
+ S I=0
+ F  S I=$O(^IBE(350.9,1,99,I)) Q:'I  S INSCO(+$G(^IBE(350.9,1,99,I,0)))=""
+ ;
+ S IBI=0
+ F  S IBI=$O(^DGCR(399,IBI)) Q:'IBI!(IBQUIT)  D
+ .S IBQUIT=$$STOP Q:IBQUIT
+ .S IBINSCO="" K NODE
+ .S NODE(0)=$G(^DGCR(399,IBI,0)) Q:NODE(0)=""
+ .S NODE("C")=$G(^DGCR(399,IBI,"C"))
+ .S NODE("M")=$G(^DGCR(399,IBI,"M")) Q:NODE("M")=""
+ .S NODE("U")=$G(^DGCR(399,IBI,"U")) Q:NODE("U")=""
+ .I $D(INSCO(+NODE("M"))) S IBINSCO=+NODE("M")
+ .I 'IBINSCO,$D(INSCO(+$P(NODE("M"),"^",2))) S IBINSCO=$P(NODE("M"),"^",2)
+ .I 'IBINSCO,$D(INSCO(+$P(NODE("M"),"^",3))) S IBINSCO=$P(NODE("M"),"^",3)
+ .I IBINSCO S IBINSNM=$P($G(^DIC(36,IBINSCO,0)),"^") D BLDDATA
+ ;
+ I 'IBQUIT D PRINT^IBCNSMR0
+ G END^IBCNSMRA
+END Q
+ ;
+BLDDATA ; -- for each bill sent to a selected ins. co. build temp node
+ N X,YEAR,TYPE,TYPENO,PROC,DIAG,ORGAMNT,BOTH,IBSTAT,DFN,ALIVE,ARSTAT,IBQUIT,RXBILL,PROSBILL,BILLNO,LOCCARE,RATETYP,RN,WHO,TIMEFRM,TOTPAID,REFGC,DATEPR
+ S IBQUIT=0
+ S BILLNO=$P(NODE(0),"^")
+ S YEAR=$E(+NODE("U"),2,3)
+ S TYPENO=$P(NODE(0),"^",5)
+ S TYPE=$S(TYPENO<3:"INPATIENT",1:"OUTPATIENT")
+ S PROC=$$PROC(IBI)
+ S DIAG=$$DIAG(IBI)
+ S IBSTAT=$P(NODE(0),"^",13)
+ S ARSTAT=$$STA^PRCAFN(IBI)
+ S DFN=$P(NODE(0),"^",2)
+ S ALIVE=$S(+$G(^DPT(DFN,.35)):"DEAD",1:"ALIVE")
+ S ORGAMNT=$$ORI^PRCAFN(IBI)
+ S LOCCARE=$P(NODE(0),"^",4)
+ S WHO=$P(NODE(0),"^",11)
+ S RATETYP=$P(NODE(0),"^",7)
+ S RN=$P($G(^DGCR(399.3,+RATETYP,0)),"^")
+ S TIMEFRM=$P(NODE(0),"^",6)
+ S TOTPAID=$$TPR^PRCAFN(IBI)
+ S REFGC=$P($G(^PRCA(430,IBI,6)),"^",4)'=""
+ S DATEPR=$P($G(^DGCR(399,IBI,"S")),"^",12)
+ S BOTH="NONE"
+ S RXBILL=0
+ S PROSBILL=0
+ I $O(^IBA(362.4,"AIFN"_IBI,"")) S RXBILL=1
+ I $O(^IBA(362.5,"AIFN"_IBI,"")) S PROSBILL=1
+ D COUNT
+ D:'IBQUIT SET
+ Q
+ ;
+COUNT ; -- set totals for all ins, and by ins co.
+ S CNT=$G(CNT)+1
+ S CNT(0)=$G(CNT(0))+ORGAMNT
+ S CNT(3,IBINSNM)=$G(CNT(3,IBINSNM))+1
+ S CNT(3,IBINSNM,0)=$G(CNT(3,IBINSNM,0))+ORGAMNT
+ I TYPE="INPATIENT" D
+ .S CNT("IN")=$G(CNT("IN"))+1
+ .S CNT("IN",0)=$G(CNT("IN",0))+ORGAMNT
+ .I TOTPAID>0 D
+ ..S CNT("IN",1)=$G(CNT("IN",1))+1
+ ..S CNT("IN",2)=$G(CNT("IN",2))+TOTPAID
+ I TYPE="OUTPATIENT" D
+ .S CNT("OP")=$G(CNT("OP"))+1
+ .S CNT("OP",0)=$G(CNT("OP",0))+ORGAMNT
+ .I TOTPAID>0 D
+ ..S CNT("OP",1)=$G(CNT("OP",1))+1
+ ..S CNT("OP",2)=$G(CNT("OP",2))+TOTPAID
+ I TOTPAID>0 D
+ .S CNT(1)=$G(CNT(1))+1
+ .S CNT(2)=$G(CNT(2))+TOTPAID
+ .S CNT(3,IBINSNM,1)=$G(CNT(3,IBINSNM,1))+1
+ .S CNT(3,IBINSNM,2)=$G(CNT(3,IBINSNM,2))+TOTPAID
+ ;
+ ;I ALIVE'="ALIVE" D  ; decided to keep dead patients in the report 10/28/97
+ ;.S CNT("A")=$G(CNT("A"))+1
+ ;.S CNT("A",0)=$G(CNT("A",0))+ORGAMNT
+ ;.;S IBQUIT=1
+ ;.I TOTPAID>0 D
+ ;..S CNT("A",1)=$G(CNT("A",1))+1
+ ;..S CNT("A",2)=$G(CNT("A",2))+TOTPAID
+ ;
+ I DIAG="YES"&(PROC="NO") D
+ .S BOTH="DIAG"
+ .S IBQUIT=1
+ .S CNT("D")=$G(CNT("D"))+1
+ .S CNT("D",0)=$G(CNT("D",0))+ORGAMNT
+ .I TOTPAID>0 D
+ ..S CNT("D",1)=$G(CNT("D",1))+1
+ ..S CNT("D",2)=$G(CNT("D",2))+TOTPAID
+ ;
+ I PROC="YES"&(DIAG="NO") D
+ .S BOTH="PROC"
+ .S IBQUIT=1
+ .S CNT("P")=$G(CNT("P"))+1
+ .S CNT("P",0)=$G(CNT("P",0))+ORGAMNT
+ .I TOTPAID>0 D
+ ..S CNT("P",1)=$G(CNT("P",1))+1
+ ..S CNT("P",2)=$G(CNT("P",2))+TOTPAID
+ ;
+ I PROC="YES"&(DIAG="YES") D
+ .S BOTH="BOTH"
+ .S CNT("B")=$G(CNT("B"))+1
+ .S CNT("B",0)=$G(CNT("B",0))+ORGAMNT
+ .I TOTPAID>0 D
+ ..S CNT("B",1)=$G(CNT("B",1))+1
+ ..S CNT("B",2)=$G(CNT("B",2))+TOTPAID
+ ;
+ I BOTH="NONE" D
+ .S CNT("N")=$G(CNT("N"))+1
+ .S CNT("N",0)=$G(CNT("N",0))+ORGAMNT
+ .I TOTPAID>0 D
+ ..S CNT("N",1)=$G(CNT("N",1))+1
+ ..S CNT("N",2)=$G(CNT("N",2))+TOTPAID
+ ;
+ I BOTH'="BOTH" S IBQUIT=1
+ ;
+ I IBSTAT=7,+ARSTAT=210 D  ;bill canceled before completion
+ .S CNT("C")=$G(CNT("C"))+1
+ .S CNT("C",0)=$G(CNT("C",0))+ORGAMNT
+ .S IBQUIT=1
+ .I TOTPAID>0 D
+ ..S CNT("C",1)=$G(CNT("C",1))+1
+ ..S CNT("C",2)=$G(CNT("C",2))+TOTPAID
+ ;
+ I TYPENO=2!(TYPENO=4) D
+ .S CNT("T")=$G(CNT("T"))+1
+ .S CNT("T",0)=$G(CNT("T",0))+ORGAMNT
+ .S IBQUIT=1
+ .I TOTPAID>0 D
+ ..S CNT("T",1)=$G(CNT("T",1))+1
+ ..S CNT("T",2)=$G(CNT("T",2))+TOTPAID
+ ;
+ I WHO'="i" D
+ .S CNT("W")=$G(CNT("W"))+1
+ .S CNT("W",0)=$G(CNT("W",0))+ORGAMNT
+ .S IBQUIT=1
+ .I TOTPAID>0 D
+ ..S CNT("W",1)=$G(CNT("W",1))+1
+ ..S CNT("W",2)=$G(CNT("W",2))+TOTPAID
+ ;
+ I DATEPR="",IBSTAT<3 D
+ .S CNT("F")=$G(CNT("F"))+1
+ .S CNT("F",0)=$G(CNT("F",0))+ORGAMNT
+ .S IBQUIT=1
+ .I TOTPAID>0 D
+ ..S CNT("F",1)=$G(CNT("F",1))+1
+ ..S CNT("F",2)=$G(CNT("F",2))+TOTPAID
+ ;
+ I $G(RXBILL) D
+ .S CNT("X")=$G(CNT("X"))+1
+ .S CNT("X",0)=$G(CNT("X",0))+ORGAMNT
+ .S IBQUIT=1
+ .I TOTPAID>0 D
+ ..S CNT("X",1)=$G(CNT("X",1))+1
+ ..S CNT("X",2)=$G(CNT("X",2))+TOTPAID
+ ;
+ I $G(PROSBILL) D
+ .S CNT("Z")=$G(CNT("Z"))+1
+ .S CNT("Z",0)=$G(CNT("Z",0))+ORGAMNT
+ .S IBQUIT=1
+ .I TOTPAID>0 D
+ ..S CNT("Z",1)=$G(CNT("Z",1))+1
+ ..S CNT("Z",2)=$G(CNT("Z",2))+TOTPAID
+ ;
+ I $S(RN["MEANS":1,RN["DENTAL":1,RN["TORT":1,RN["TRICARE":1,RN["CHAMPVA":1,RN["MEDICARE":1,RN["WORKERS":1,RN["CRIME":1,RN["SHARING":1,1:0) D
+ .S CNT("R")=$G(CNT("R"))+1
+ .S CNT("R",0)=$G(CNT("R",0))+ORGAMNT
+ .S IBQUIT=1
+ .I TOTPAID>0 D
+ ..S CNT("R",1)=$G(CNT("R",1))+1
+ ..S CNT("R",2)=$G(CNT("R",2))+TOTPAID
+ Q
+ ;
+PROC(IBI) ; -- does bill have any procedures
+ N PROC
+ S PROC="NO"
+ I $O(^DGCR(399,IBI,"CP",0)) S PROC="YES"
+ I +NODE("C")!($P(NODE("C"),"^",4))!($P(NODE("C"),"^",7)) S PROC="YES"
+ Q PROC
+ ;
+DIAG(IBI) ; -- does bill have any diagnosis
+ N DIAG
+ S DIAG="NO"
+ I $O(^IBA(362.3,"AIFN"_IBI,0)) S DIAG="YES"
+ I $P(NODE("C"),"^",10)!($P(NODE("C"),"^",14)) S DIAG="YES"
+ Q DIAG
+ ;
+SET ; -- set up tmp global
+ S CNT("M")=$G(CNT("M"))+1,CNT("M",0)=$G(CNT("M",0))+ORGAMNT
+ I REFGC D
+ .S CNT("M",4)=$G(CNT("M",4))+1
+ .S CNT("M",5)=$G(CNT("M",5))+ORGAMNT
+ .I TOTPAID>0 D
+ ..S CNT("M",6)=$G(CNT("M",6))+1
+ ..S CNT("M",7)=$G(CNT("M",7))+TOTPAID
+ I TOTPAID>0 D
+ .S CNT("M",1)=$G(CNT("M",1))+1
+ .S CNT("M",2)=$G(CNT("M",2))+TOTPAID
+ I TYPE="INPATIENT" D
+ .S CNT("M","IN")=$G(CNT("M","IN"))+1
+ .S CNT("M","IN",0)=$G(CNT("M","IN",0))+ORGAMNT
+ .I TOTPAID>0 D
+ ..S CNT("M","IN",1)=$G(CNT("M","IN",1))+1
+ ..S CNT("M","IN",2)=$G(CNT("M","IN",2))+TOTPAID
+ I TYPE="OUTPATIENT" D
+ .S CNT("M","OP")=$G(CNT("M","OP"))+1
+ .S CNT("M","OP",0)=$G(CNT("M","OP",0))+ORGAMNT
+ .I TOTPAID>0 D
+ ..S CNT("M","OP",1)=$G(CNT("M","OP",1))+1
+ ..S CNT("M","OP",2)=$G(CNT("M","OP",2))+TOTPAID
+ ;
+ S ^TMP("IB-MRA",$J,+$G(IBINSCO),+$G(YEAR),$G(TYPE,"UNKNOWN"),BOTH,$G(ARSTAT,"UNKNOWN"),+$G(IBSTAT),IBI)=BILLNO_"^"_DFN
+ ;
+ S ^TMP("IB-MRA-CNT",$J,IBINSCO,YEAR,TYPE,BOTH,ARSTAT,IBSTAT)=(+$G(^TMP("IB-MRA-CNT",$J,IBINSCO,YEAR,TYPE,BOTH,ARSTAT,IBSTAT))+1)
+ ;
+ S ^TMP("IB-MRA-CNT",$J,IBINSCO,YEAR,TYPE,BOTH,ARSTAT,IBSTAT,0)=+$G(^TMP("IB-MRA-CNT",$J,IBINSCO,YEAR,TYPE,BOTH,ARSTAT,IBSTAT,0))+ORGAMNT
+ ;
+ I TOTPAID>0 D
+ .S ^TMP("IB-MRA-CNT",$J,IBINSCO,YEAR,TYPE,BOTH,ARSTAT,IBSTAT,1)=+$G(^TMP("IB-MRA-CNT",$J,IBINSCO,YEAR,TYPE,BOTH,ARSTAT,IBSTAT,1))+1
+ .S ^TMP("IB-MRA-CNT",$J,IBINSCO,YEAR,TYPE,BOTH,ARSTAT,IBSTAT,2)=+$G(^TMP("IB-MRA-CNT",$J,IBINSCO,YEAR,TYPE,BOTH,ARSTAT,IBSTAT,2))+TOTPAID
+ Q
+ ;
+STOP() ; -- determine if user requested task to stop
+ I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ
+ Q +$G(ZTSTOP)

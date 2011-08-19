@@ -1,0 +1,47 @@
+RMPRFO ;PHX/RFM,HPL-DRIVER FOR PROSTHETIC LETTERS ; 1/5/04 1:41pm
+ ;;3.0;PROSTHETICS;**55,77,82,105**;Feb 09, 1996
+ ;
+ ; ODJ - patch 55 - 1/29/01 - replace hard code 121 mail symbol with
+ ;                            call to extrinsic to read site param.
+ ;                            nois AUG-1097-32118
+ ;RVD patch #77 - remove link to suspense
+ ;KAM patch #82 - remove SSN from Patient Correspondence print
+ N RMPRAA68 K ^TMP($J,1),^TMP($J,"RMPR") D HOME^%ZIS S RMPRIN=0
+ K RMPRFF,DFN
+ S RMPRDEL="S RMPRGO=$S($D(^RMPR(665.4,RMPRIN,0)):""DEL^RMPRFO1"",1:""EXIT^RMPRFO1"") G @RMPRGO"
+ I '$D(RMPRFF)!($G(DFN)="") D DIV4^RMPRSIT G:$D(X) EXIT^RMPRFO1 S DIC="^DPT(",DIC(0)="AEMQ",DIC("A")="Select PATIENT: "
+ I $D(RMPRFF)&($G(DFN)>0) S DIC="^DPT(",DIC(0)="N"
+ D ^DIC G:Y<0 EXIT^RMPRFO1
+ K DIC S DFN=+Y
+CUM K ^TMP($J,1),^TMP($J,"RMPR")
+ S Y=DT D DD^%DT S NAME=Y D TRANS^RMPRUTL1 S RMPRDATE=RMPRNAME
+ S DIC="^RMPR(665.2,",DIC(0)="AEMQ",DIC("A")="Select FORM LETTER TYPE: " D ^DIC G:Y<0 EXIT^RMPRFO1
+ K DIC S RMPRFA=+Y
+ S RMPRTY=$P(Y,U,2)
+ I $P(^RMPR(665.2,RMPRFA,0),U,3) D VEN^RMPRFO3 D EXIT^RMPRFO1 Q
+ D DEM^VADPT,ADD^VADPT
+ F RI=1:1:17 S ^TMP($J,1,RI,0)=" "
+HEAD1 S %=1 W !,"Would you like a header on this letter" D YN^DICN S RMPRAA68=% G:RMPRAA68<0 EXIT^RMPRFO1
+ I RMPRAA68=0 W !,"Answer `YES` for a header, `NO` for no header" G HEAD1
+ W @IOF I RMPRAA68=2 S RMPRHED=1 G HEADER
+ S ^TMP($J,1,1,0)="|SETTAB(""C"")|"
+ S ^TMP($J,1,2,0)="|TAB|Department of Veterans Affairs"
+ S NAME=$P(^RMPR(669.9,RMPRSITE,2),U,4) I NAME]"" S NAME=$S($D(^DIC(5,NAME)):$P(^DIC(5,NAME,0),U),1:"STATE") W $$PARS^RMPRUTL1(NAME)
+ S ^TMP($J,1,3,0)="|TAB|"_$P(^RMPR(669.9,RMPRSITE,0),U)
+ S ^TMP($J,1,4,0)="|TAB|"_$P(^RMPR(669.9,RMPRSITE,2),U,2)
+ S ^TMP($J,1,5,0)="|TAB|"_$P(^RMPR(669.9,RMPRSITE,2),U,3)_", "_FIXDNAME_" "_$P(^RMPR(669.9,RMPRSITE,2),U,5) K FIXDNAME
+HEADER S ^TMP($J,1,9,0)="|SETTAB(5,50)||TAB|"_RMPRDATE
+ I '$D(RMPRHED) D
+ . S ^TMP($J,1,11,0)="|TAB|"_$P(VADM(1),",",2)_" "_$P(VADM(1),",",1)_"|TAB|In Reply Refer To: "_$$STA^RMPRUTIL_"/"_$$ROU^RMPRUTIL(RMPRSITE)
+ . Q
+ E  D
+ . S ^TMP($J,1,11,0)="|TAB|"_$P(VADM(1),",",2)_" "_$P(VADM(1),",",1)_"|TAB|"_"             "_$$STA^RMPRUTIL_"/"_$$ROU^RMPRUTIL(RMPRSITE)
+ . Q
+ S ^TMP($J,1,12,0)="|TAB|"_VAPA(1)
+ I VAPA(2)]"" S ^TMP($J,1,13,0)="|TAB|"_VAPA(2)_"|TAB|"_VADM(1),^TMP($J,1,14,0)="|TAB|"_VAPA(4)_","_" "_$P(VAPA(5),U,2)_" "_VAPA(6)
+ E  S ^TMP($J,1,13,0)="|TAB|"_VAPA(4)_","_" "_$P(VAPA(5),U,2)_" "_VAPA(6)_"|TAB|"_VADM(1)
+ S NAME=$P(VADM(1),",")
+ I $P(NAME," ",2)?1A.A D
+ .S NAME1=NAME,NAME=$P(NAME," ",1) D TRANS^RMPRUTL1 S RMPRNAM1=RMPRNAME,NAME=NAME1,NAME=$P(NAME," ",2) D TRANS^RMPRUTL1 S RMPRNAM2=RMPRNAME,RMPRNAME=RMPRNAM1_" "_RMPRNAM2
+ E  D TRANS^RMPRUTL1
+ G NAME^RMPRFO1

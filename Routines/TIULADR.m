@@ -1,0 +1,19 @@
+TIULADR ; SLC/JER - Adverse Reactions/Allergies ;01/29/04
+ ;;1.0;TEXT INTEGRATION UTILITIES;**46,175**;Jun 20, 1997
+MAIN(DFN,DISPLAY,TARGET,LINE) ; Control branching
+ N TIUI,TIUJ,GMRAL,TIUY
+ I +$G(DISPLAY) W !,"Gathering Allergy Data."
+ D EN1^GMRADPT ; DBIA #10099
+ I $D(GMRAL)'>9 D  G ADRX
+ . S LINE=+$G(LINE)+1
+ . I $D(GMRAL),GMRAL=0 S @TARGET@(LINE,0)="Patient has answered NKA"
+ . E  S @TARGET@(LINE,0)="No Allergy Assessment" ; **175**
+ S TIUI=0,TIUY=""
+ F  S TIUI=$O(GMRAL(TIUI)) Q:+TIUI'>0  D
+ . N X,Y,TIUX
+ . S TIUX=$P($G(GMRAL(TIUI)),U,2)
+ . S TIUY=$$FILL^TIULS(TIUX,TIUY,79)
+ . I TIUY=TIUX S LINE=+$G(LINE)+1
+ . S @TARGET@(LINE,0)=TIUY
+ . I +$G(DISPLAY) W "."
+ADRX Q "~@"_$NA(@TARGET)

@@ -1,0 +1,33 @@
+GMRVXVM0 ;HIRMFO/YH,RM-GMRV VITAL MEASUREMENT CONVERSION ;8/1/96
+ ;;4.0;Vitals/Measurements;;Apr 25, 1997
+QUEUE ; Entry to queue/requeue GMRV Vital Measurement Conversion
+ D BMES^XPDUTL("Data conversion queued to run in the background")
+ S ZTDTH=$$HADD^XLFDT($H,"","","",60),ZTDESC="V/M V4.0 FILE 120.5 CONVERSION"
+ S ZTRTN="CONV5^GMRVXVM0",(ZTIO,ZTSAVE("DUZ"))=""
+ D ^%ZTLOAD
+ Q
+ALERT ;Set up ALERT variables if conversion bombs out
+ S XQA(DUZ)="",XQAMSG="V/M VERSION 4 data conversion has aborted for file 120.5"
+ D SETUP^XQALERT K XQA,XQAMSQ
+ Q
+ ;
+ ;  This job should be queued to run in the background.
+ Q
+CONV5 ;Convert patient data in ^GMR(120.5)
+ N GMRV S XMSUB="V/M V4.0 FILE 120.5 CONVERSION",XMY(DUZ)="",XMTEXT="GMRV("
+ I +$G(^GMRD(120.57,1,"PHASEII"))=1 S GMRV(1)="Data conversion has completed." D ^XMD Q
+ S X="ALERT^GMRVXVM0",@^%ZOSF("TRAP")
+ S ^GMRD(120.57,1,"PHASEII")=$P($G(^GMRD(120.57,1,"PHASEII"))_"^^^","^",1,4)
+ N GMRVDA,GMRVLST,GMRVDATA,GMRV52,GMRV53
+ S GMRVDA=+$P(^GMRD(120.57,1,"PHASEII"),U,2),GMRVDA(1)=+$P(^GMR(120.5,0),"^",3)
+ F  S GMRVDA=$O(^GMR(120.5,GMRVDA)) Q:GMRVDA'>0  S GMRVDATA=$G(^GMR(120.5,GMRVDA,0)),GMRV52=+$P(GMRVDATA,"^",7),GMRV53=+$P(GMRVDATA,"^",9) D:GMRV52>0!(GMRV53>0)  S $P(^GMRD(120.57,1,"PHASEII"),"^",2)=GMRVDA
+ . S GMRVLST=0 I $D(^GMRD(120.52,GMRV52)) S GMRVLST=GMRVLST+1
+ .  I $D(^GMRD(120.52,GMRV52)),'$D(^GMR(120.5,GMRVDA,5,"B",GMRV52)) S ^GMR(120.5,GMRVDA,5,GMRVLST,0)=GMRV52,^GMR(120.5,GMRVDA,5,"B",GMRV52,GMRVLST)=""
+ .  I GMRV53>0 S GMRV53(1)=GMRV53_";GMRD(120.53," I $D(^GMRD(120.52,"AOLD",GMRV53(1))) S GMRV53(2)=$O(^GMRD(120.52,"AOLD",GMRV53(1),0)),GMRVLST=GMRVLST+1 D:GMRV53(2)>0
+ .  .  I '$D(^GMR(120.5,GMRVDA,5,"B",GMRV53(2))) S ^GMR(120.5,GMRVDA,5,GMRVLST,0)=GMRV53(2),^GMR(120.5,GMRVDA,5,"B",GMRV53(2),GMRVLST)=""
+ .  S ^GMR(120.5,GMRVDA,5,0)="^120.505P^"_GMRVLST_"^"_GMRVLST
+ .  Q
+ I $P(^GMRD(120.57,1,"PHASEII"),"^",2)<GMRVDA(1) S GMRV(1)="Conversion not completed, please check the record after the record # "_$P(^GMRD(120.57,1,"PHASEII"),"^",2)_" in the ^GMR(120.5) file" D ^XMD Q
+ S $P(^GMRD(120.57,1,"PHASEII"),"^")=1
+ S GMRV(1)="FILE 120.5 CONVERSION COMPLETED" D ^XMD
+ Q

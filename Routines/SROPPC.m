@@ -1,0 +1,48 @@
+SROPPC ;B'HAM ISC/MAM - COMPARISON DIAGNOSIS REPORT ; [ 09/22/98  11:36 AM ]
+ ;;3.0; Surgery ;**77,50**;24 Jun 93
+CHK ; compare pre and postop diagnosis
+ Q:'$D(^SRF(K,.2))  I '$P(^SRF(K,.2),"^",12) Q
+ S SRTN=K K SRPRE,SRPOST I $D(^SRF(SRTN,33)) S SRPRE("*")=$P(^SRF(SRTN,33),"^"),SRPOST("*")=$P(^SRF(SRTN,34),"^")
+ S (SRDG,CNT)=0 F  S SRDG=$O(^SRF(SRTN,14,SRDG)) Q:SRDG=""  S CNT=CNT+1,SRPRE(CNT)=$P(^SRF(SRTN,14,SRDG,0),"^")
+ S (CNT,SRDG)=0 F  S SRDG=$O(^SRF(SRTN,15,SRDG)) Q:SRDG=""  S CNT=CNT+1,SRPOST(CNT)=$P(^SRF(SRTN,15,SRDG,0),"^")
+ S:'$D(SRPRE("*")) SRPRE("*")="" S:'$D(SRPOST("*")) SRPOST("*")="" I SRPRE("*")'=SRPOST("*") S SRF=1
+ Q
+SET ; set variables
+ Q:SRPOST("*")=""!(SRPRE("*")="")
+ S S(0)=^SRF(K,0),SRTN=K,DFN=$P(S(0),"^") D DEM^VADPT S SRNM=VADM(1)
+ S SROD=$E($P(S(0),"^",9),4,5)_"/"_$E($P(S(0),"^",9),6,7)_"/"_$E($P(S(0),"^",9),2,3),SRWC=$S('$D(^SRF(K,"1.0")):"",1:$P(^("1.0"),"^",8))
+ S:$P(S(0),"^",4)'="" SRTS=$P(^SRO(137.45,$P(S(0),"^",4),0),"^")
+ S:'$D(SRTS) SRTS=""
+PRINT ; print case
+ I $Y+5>IOSL D ASK Q:SRQ
+ I SRTS["(" S SRTS=$P(SRTS,"(")
+ W !,SROD,?10,SRNM,?42,SRPRE("*"),?84,SRPOST("*") W ?126,SRWC,!,SRTN,?10,VA("PID") W:$D(SRPRE(1)) ?42,SRPRE(1) W:$D(SRPOST(1)) ?84,SRPOST(1)
+ W !,?10,SRTS,! W:$D(SRPRE(2)) ?42,SRPRE(2) W:$D(SRPOST(2)) ?84,SRPOST(2)
+ Q
+END W:$E(IOST)="P" @IOF I $D(ZTQUEUED) Q:$G(ZTSTOP)  S ZTREQ="@" Q
+ D ^SRSKILL K SRTN D ^%ZISC W @IOF
+ Q
+ASK I $E(IOST,1)'="P" W !!,"Press RETURN to continue or '^' to quit.  " R X:DTIME I '$T!(X="^") S SRQ=1 Q
+ D HDR Q
+HDR ; print heading
+ I $D(ZTQUEUED) D ^SROSTOP I SRHALT S SRQ=1 Q
+ W:$Y @IOF W !,?(132-$L(SRINST)\2),SRINST,!,?58,"SURGICAL SERVICE",?100,"REVIEWED BY: ",!,?46,"COMPARISON OF PREOP AND POSTOP DIAGNOSIS",?100,"DATE REVIEWED: "
+ W !,?(132-$L(SRFRTO)\2),SRFRTO,?100,SRPRINT
+ W !!,"DATE",?10,"PATIENT",?42,"PREOPERATIVE DIAGNOSIS",?84,"POSTOPERATIVE DIAGNOSIS",?121,"WOUND CLASS",!,"CASE #",?10,"ID #",!,?10,"SURGICAL SPECIALTY",! F I=1:1:IOM W "-"
+ Q
+EN ; entry point
+ W @IOF,!,"Comparison of Preoperative and Postoperative Diagnosis",!
+ D DATE^SROUTL(.SRSD,.SRED,.SRQ) G:SRQ END
+ S SRD=SRSD-.0001
+ N SRINSTP S SRINST=$$INST^SROUTL0() G:SRINST="^" END S SRINSTP=$P(SRINST,U),SRINST=$S(SRINST["ALL DIVISIONS":SRINST,1:$P(SRINST,U,2))
+ K IOP,%ZIS,POP,IO("Q") S %ZIS("A")="Print the Report on which Device: ",%ZIS="QM" W !!,"This report is designed to use a 132 column format.",! D ^%ZIS G:POP END
+ I $D(IO("Q")) K IO("Q") S ZTDESC="COMPARE DIAGNOSIS",ZTRTN="EN1^SROPPC",(ZTSAVE("SRED"),ZTSAVE("SRSD"),ZTSAVE("SRINST"),ZTSAVE("SRINSTP"),ZTSAVE("SRD"))="" D ^%ZTLOAD G END
+EN1 ; entry when queued
+ U IO N SRFRTO S (SRT,SRQ)=0,J=SRD,Y=SRSD X ^DD("DD") S SRFRTO="FROM: "_Y_"  TO: ",Y=SRED X ^DD("DD") S SRFRTO=SRFRTO_Y,Y=DT X ^DD("DD") S SRPRINT="DATE PRINTED: "_Y
+ D HDR F  S J=$O(^SRF("AC",J)) Q:'J!(J>(SRED+.9999))!SRQ  S K=0 F  S K=$O(^SRF("AC",J,K)) Q:'K!SRQ  I $D(^SRF(K,0)),$$MANDIV^SROUTL0(SRINSTP,K) S SRF=0 D CHK I SRF S SRT=SRT+1 D SET
+ I 'SRT W !!,"No data for selected date range."
+ G:SRQ END F Z=$Y:1:(IOSL-10) W !
+ W ! F I=1:1:IOM W "-"
+ W !,"WOUND CLASSIFICATION CODES:  ",!,"C: CLEAN, CC: CLEAN/CONTAMINATED, D: CONTAMINATED, I: INFECTED"
+ I $E(IOST)'="P",'SRQ W !!,"Press RETURN to continue  " R X:DTIME
+ G END

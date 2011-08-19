@@ -1,0 +1,36 @@
+SR88UTL ;BIR/ADM - Post-install process for SR*3*88 ; [ 07/30/99  1:04 PM ]
+ ;;3.0; Surgery ;**88**;24 Jun 93
+ Q
+LAB ; pre-install action for SR*3*88
+ I $G(^SRO(139.2,2,0))'="TROPONIN I" D
+ .F DA=2,3 S DIK="^SRO(139.2," D ^DIK
+ .S ^SRO(139.2,2,0)="TROPONIN I",^SRO(139.2,2,2)=72
+ .S ^SRO(139.2,3,0)="TROPONIN T",^SRO(139.2,3,2)=72
+ .S DIK="^SRO(139.2,",DIK(1)=".01" D ENALL^DIK K DA,DIK
+ Q
+EN1 ; transmit anesthesia start and end times to NSQIP database
+ K ^TMP("SRA",$J) S SITE=+$P($$SITE^SROVAR,"^",3),SRI=0,SROPD=2981000
+ F  S SROPD=$O(^SRF("AC",SROPD)) Q:'SROPD  S SRTN=0 F  S SRTN=$O(^SRF("AC",SROPD,SRTN)) Q:'SRTN  I $P($G(^SRF(SRTN,.4)),"^",2)="T" D
+ .K SRP F I=1:1:16 S SRP(I)=""
+ .S SRA=$G(^SRF(SRTN,0)) Q:SRA=""  S SRP(1)=SITE,SRP(2)=SRTN,DFN=$P(SRA,"^"),SRP(5)=$P(SRA,"^",9) D DEM^VADPT S SRP(4)=VA("PID")
+ .S X=$$SITE^SROUTL0(SRTN),SRDIV=$S(X:$P(^SRO(133,X,0),"^"),1:""),SRP(3)=$S(SRDIV:$$GET1^DIQ(4,SRDIV,99),1:SITE)
+ .S SRA=$G(^SRF(SRTN,.2)),SRP(6)=$P(SRA,"^"),SRP(7)=$P(SRA,"^",4)
+ .S SRTMP=SRP(1) F I=2:1:7 S SRTMP=SRTMP_"^"_SRP(I)
+ .S SRI=SRI+1,^TMP("SRA",$J,SRI)=SRTMP
+ S SRD=^XMB("NETNAME") S XMSUB="** SR*3*88 FROM VAMC-"_SITE_" **",XMDUZ=$S($D(DUZ):DUZ,1:.5)
+ S XMY("G.SRCOSERV@ISC-CHICAGO.VA.GOV")=""
+ S XMTEXT="^TMP(""SRA"",$J," N I D ^XMD
+END K DFN,I,SITE,SRA,SRD,SRDIV,SRI,SROPD,SRP,SRTMP,SRTN,VA,X,XMDUZ,XMSUB,XMTEXT,XMY,^TMP("SRA",$J)
+ ; send FY99 workload reports
+FY99 K ^TMP("SRWL",$J) F I=2981000,2981100,2981200,2990100,2990200,2990300,2990400,2990500,2990600,2990700,2990800,2990900 I DT>I S ^TMP("SRWL",$J,I)=""
+ D WL^SROATMIT
+ S ZTREQ="@"
+ Q
+POST ; post-install action for SR*3*88
+ N SRD D LAB S SRD=^XMB("NETNAME") I $E(SRD,1,3)="ISC"!(SRD["ISC-")!(SRD["ISC.")!(SRD["FORUM")!(SRD["TST.")!(SRD["TEST")!(SRD["UTL.")!(SRD["TRAIN")!(SRD[".IHS.GOV") Q
+ D NOW^%DTC S ZTDTH=$E(%,1,12),ZTRTN="EN1^SR88UTL",ZTDESC="Surgery Risk Assessment Retransmission",ZTIO="" D ^%ZTLOAD
+ Q
+WL ; queue FY99 workload reports
+ S ZTRTN="FY99^SR88UTL",ZTDESC="Surgery FY99 Workload Reports",ZTIO="" D ^%ZTLOAD
+ I $D(ZTSK) W !!,"Queued as task #"_ZTSK
+ Q

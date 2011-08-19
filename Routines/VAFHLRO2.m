@@ -1,0 +1,149 @@
+VAFHLRO2 ;BP/JRP - BUILD OUTPATIENT HL7 ROLE SEGMENT;11/18/1997 ; 7/3/01 4:09pm
+ ;;5.3;Registration;**160,215,389**;Aug 13, 1993
+ ;
+ ; ** Do not call this routine directly  **
+ ; ** Use supported call OUTPAT^VAFHLROL **
+ ;
+OUTPAT ;Build role segment for transmission of outpatient data
+ ;
+ ;Input  : As defined in OUTPAT^VAFHLROL
+ ;Output : As defined in OUTPAT^VAFHLROL
+ ;Notes  : Existance & validity of input assumed
+ ;       : Refer to OUTPAT^VAFHLROL for details
+ ;
+ ;Declare variables
+ N PTR200,CODEONLY,INSTID,ACTION,ROLE,ALTROLE,PERSON,TMP,RDATE
+ N VAFHLROL,CMPSEP,REPSEP,ESCSEP,SUBSEP
+ ;Break out individual seperators from encoding characters
+ S CMPSEP=$E(ENCODE,1)
+ S REPSEP=$E(ENCODE,2)
+ S ESCSEP=$E(ENCODE,3)
+ S SUBSEP=$E(ENCODE,4)
+ ;Initialize output array
+ K @OUTARR S @OUTARR@(0)=""
+ ;Get pointer to provider out of parameter array
+ S PTR200=+$G(@PARAM@("PTR200"))
+ S:('$D(^VA(200,PTR200,0))) PTR200=0
+ ;Get internal/external flag
+ S CODEONLY=+$G(@PARAM@("CODEONLY"))
+ ;Build segment into temporary location
+ S VAFHLROL(0)="ROL"
+S1 ;Role Instance ID (seq #1)
+ S INSTID=$G(@PARAM@("INSTID"),NULL)
+ S TMP=$P(INSTID,CMPSEP,1)
+ D:((TMP=NULL)!(TMP="")) ERROR^VAFHLRO1(1,OUTARR,"could not be determined")
+ S VAFHLROL(1)=FLDSEP_INSTID
+S2 ;Action Code (seq #2)
+ S ACTION=$G(@PARAM@("ACTION"),NULL)
+ S TMP=",AD,UP,DE,CO,LI,UN,UC,"
+ I (TMP'[(","_ACTION_",")) D
+ .I ((ACTION=NULL)!(ACTION="")) D ERROR^VAFHLRO1(2,OUTARR,"could not be determined") Q
+ .D ERROR^VAFHLRO1(2,OUTARR,"was not valid")
+ S VAFHLROL(2)=FLDSEP_ACTION
+S3 ;Role (seq #3, comp #1 - 3)
+ I ($D(@PARAM@("ROLE"))) D  G S3C4
+ .;Use input value
+ .S ROLE=$G(@PARAM@("ROLE"),NULL)
+ .I ((ROLE="")!(ROLE=NULL)) D ERROR^VAFHLRO1(3,OUTARR,"could not be determined")
+ .S TMP=$P(ROLE,CMPSEP,1)
+ .S:(TMP="") TMP=NULL
+ .S VAFHLROL(3,1)=FLDSEP_TMP
+ .S TMP=$P(ROLE,CMPSEP,2)
+ .S:(TMP="") TMP=NULL
+ .S VAFHLROL(3,2)=CMPSEP_TMP
+ .S TMP=$P(ROLE,CMPSEP,3)
+ .S:(TMP="") TMP=NULL
+ .S VAFHLROL(3,3)=CMPSEP_TMP
+ ;Calculate value
+ I ('PTR200) D  G S3C4
+ .D ERROR^VAFHLRO1(3,OUTARR,"could not be determined")
+ .S VAFHLROL(3)=FLDSEP_NULL_CMPSEP_NULL_CMPSEP_NULL
+ K ROLE S RDATE=$G(@PARAM@("RDATE"))
+ D ROLE^VAFHLRO3(PTR200,"ROLE",NULL,RDATE)
+ I ('$D(ROLE)) D  G S3C4
+ .D ERROR^VAFHLRO1(3,OUTARR,"could not be determined")
+ .S VAFHLROL(3)=FLDSEP_NULL_CMPSEP_NULL_CMPSEP_NULL
+ ;Strip out external values
+ I (CODEONLY) F TMP=1:1:3 S ROLE(2,TMP)=NULL
+ ;Copy and add appropriate seperators
+ ; (Convert any HL7 characters into spaces)
+ S TMP=FLDSEP_ENCODE
+ S VAFHLROL(3,1)=FLDSEP_$TR(ROLE(1),TMP,"      ")
+ S VAFHLROL(3,2,1)=CMPSEP_$TR(ROLE(2,1),TMP,"     ")
+ S VAFHLROL(3,2,2)=SUBSEP_$TR(ROLE(2,2),TMP,"     ")
+ S VAFHLROL(3,2,3)=SUBSEP_$TR(ROLE(2,3),TMP,"     ")
+ S VAFHLROL(3,3)=CMPSEP_$TR(ROLE(3),TMP,"     ")
+S3C4 ;Alternate Role (seq #3, comp #4 - 6)
+ I ('$D(@PARAM@("ALTROLE"))) D  G S4
+ .S VAFHLROL(3,4)=CMPSEP_NULL_CMPSEP_NULL_CMPSEP_NULL
+ ;Use input value
+ S TMP=NULL_CMPSEP_NULL_CMPSEP_NULL
+ S ALTROLE=$G(@PARAM@("ALTROLE"),TMP)
+ S:(ALTROLE="") ALTROLE=TMP
+ S TMP=$P(ALTROLE,CMPSEP,1)
+ S:(TMP="") TMP=NULL
+ S VAFHLROL(3,4)=CMPSEP_TMP
+ S TMP=$P(ALTROLE,CMPSEP,2)
+ S:(TMP="") TMP=NULL
+ S VAFHLROL(3,5)=CMPSEP_TMP
+ S TMP=$P(ALTROLE,CMPSEP,3)
+ S:(TMP="") TMP=NULL
+ S VAFHLROL(3,6)=CMPSEP_TMP
+S4 ;Role Person (seq #4)
+ I ($D(@PARAM@("PERSON"))) D  G DONE
+ .;Use input value
+ .S PERSON=$G(@PARAM@("PERSON"),NULL)
+ .I ((PERSON="")!(PERSON=NULL)) D ERROR^VAFHLRO1(4,OUTARR,"could not be determined")
+ .S TMP=$P(PERSON,CMPSEP,1)
+ .S:(TMP="") TMP=NULL
+ .S VAFHLROL(4,1)=FLDSEP_TMP
+ .S TMP=$P(PERSON,CMPSEP,2)
+ .S:(TMP="") TMP=NULL
+ .S VAFHLROL(4,2)=CMPSEP_TMP
+ .S TMP=$P(PERSON,CMPSEP,3)
+ .S:(TMP="") TMP=NULL
+ .S VAFHLROL(4,3)=CMPSEP_TMP
+ .S TMP=$P(PERSON,CMPSEP,4)
+ .S:(TMP="") TMP=NULL
+ .S VAFHLROL(4,4)=CMPSEP_TMP
+ .S TMP=$P(PERSON,CMPSEP,5)
+ .S:(TMP="") TMP=NULL
+ .S VAFHLROL(4,5)=CMPSEP_TMP
+ .S TMP=$P(PERSON,CMPSEP,6)
+ .S:(TMP="") TMP=NULL
+ .S VAFHLROL(4,6)=CMPSEP_TMP
+ .S TMP=$P(PERSON,CMPSEP,7)
+ .S:(TMP="") TMP=NULL
+ .S VAFHLROL(4,7)=CMPSEP_TMP
+ .S TMP=$P(PERSON,CMPSEP,8)
+ .S:(TMP="") TMP=NULL
+ .S VAFHLROL(4,8)=CMPSEP_TMP
+ ;Calculate value
+ I ('PTR200) D  G DONE
+ .D ERROR^VAFHLRO1(4,OUTARR,"could not be determined")
+ .S VAFHLROL(4)=FLDSEP_NULL_CMPSEP_NULL_CMPSEP_NULL_CMPSEP_NULL_CMPSEP_NULL_CMPSEP_NULL_CMPSEP_NULL_CMPSEP_NULL
+ K PERSON D PERSON^VAFHLRO3(PTR200,"PERSON",NULL)
+ I ('$D(PERSON)) D  G DONE
+ .D ERROR^VAFHLRO1(4,OUTARR,"could not be determined")
+ .S VAFHLROL(4)=FLDSEP_NULL_CMPSEP_NULL_CMPSEP_NULL_CMPSEP_NULL_CMPSEP_NULL_CMPSEP_NULL_CMPSEP_NULL_CMPSEP_NULL
+ ;Strip out external values
+ I (CODEONLY) F TMP=2:1:7 S PERSON(1,TMP)=NULL
+ ;Copy and add appropriate seperators
+ ; (Convert any HL7 characters into spaces)
+ S TMP=FLDSEP_ENCODE
+ S VAFHLROL(4,1,1,1)=FLDSEP_$TR(PERSON(1,1,1),TMP,"     ")
+ S VAFHLROL(4,1,1,2)=SUBSEP_$TR(PERSON(1,1,2),TMP,"     ")
+ S VAFHLROL(4,1,2)=CMPSEP_$TR(PERSON(1,2),TMP,"     ")
+ S VAFHLROL(4,1,3)=CMPSEP_$TR(PERSON(1,3),TMP,"     ")
+ S VAFHLROL(4,1,4)=CMPSEP_$TR(PERSON(1,4),TMP,"     ")
+ S VAFHLROL(4,1,5)=CMPSEP_$TR(PERSON(1,5),TMP,"     ")
+ S VAFHLROL(4,1,6)=CMPSEP_$TR(PERSON(1,6),TMP,"     ")
+ S VAFHLROL(4,1,7)=CMPSEP_$TR(PERSON(1,7),TMP,"     ")
+ S VAFHLROL(4,1,8)=CMPSEP_$TR(PERSON(1,8),TMP,"     ")
+ S VAFHLROL(4,2,1)=REPSEP_$TR(PERSON(2,1),TMP,"     ")
+ F TMP=1:1:7 S VAFHLROL(4,2,TMP+1)=CMPSEP_$TR(PERSON(2,TMP+1),TMP,"    ")
+ S VAFHLROL(4,2,9)=CMPSEP_$TR(PERSON(2,9),TMP,"     ")
+DONE ;Collapse into output location
+ D FIXLEN^VAFHLRO1("VAFHLROL",OUTARR,MAXLEN,0)
+ ;Done
+ Q

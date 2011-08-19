@@ -1,0 +1,18 @@
+SPNDOCA ;SD/WDE- DATA VALIDATION FOR THE SPN FIM1 SCREEN; 04/21/2003
+ ;;2.0;Spinal Cord Dysfunction;**20**;01/02/1997
+EN ;
+ S X1=$P($G(^SPNL(154.1,DA,0)),U,4)
+ Q:X1=""
+ S X2=$P($G(^SPNL(154.1,DA,8)),U,1)
+ Q:X2=""
+ D ^%DTC
+ Q:$G(X)=""
+ Q:$G(X)=0
+ S SPNXXZ=X
+ I DDSX>SPNXXZ D
+ .S DDSERROR=1
+ .W *7
+ .S SPNDOCB="The number of days cannot exceed "_SPNXXZ
+ .D HLP^DDSUTL(SPNDOCB)
+ K SPNDOCB,X1,X2,SPNXXZ
+ Q

@@ -1,0 +1,235 @@
+PRCOEDIS ;WISC/DJM-IFCAP X-REF ROUTINE FOR FILE 443.75 ; [8/31/98 1:24pm]
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+S1 ; SET 'AC' X-REF -- CALLED FROM FIELD 1.  RFQ
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,4)="RFQ",$P(N0,U,6)]"",$P(N0,U,10)]"" S ^PRC(443.75,"AC",$P(N0,U,4),X,$P(N0,U,6),$P(N0,U,10),DA)=""
+ Q
+ ;
+K1 ; KILL 'AC' X-REF -- CALLED FROM FIELD 1.  RFQ
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,4)="RFQ",$P(N0,U,6)]"",$P(N0,U,10)]"" K ^PRC(443.75,"AC",$P(N0,U,4),X,$P(N0,U,6),$P(N0,U,10),DA)
+ Q
+ ;
+S2 ; SET 'AD' X-REF -- CALLED FROM FIELD 3.  RFQ
+ ; ACTUALLY WILL SET 'AC' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,2)]"",$P(N0,U,6)]"",$P(N0,U,10)]"",X="RFQ" S ^PRC(443.75,"AC",X,$P(N0,U,2),$P(N0,U,6),$P(N0,U,10),DA)=""
+ Q
+ ;
+K2 ; KILL 'AD' X-REF -- CALLED FROM FIELD 3.  RFQ
+ ; ACTUALLY WILL KILL 'AC' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,2)]"",$P(N0,U,6)]"",$P(N0,U,10)]"",X="RFQ" K ^PRC(443.75,"AC",X,$P(N0,U,2),$P(N0,U,6),$P(N0,U,10),DA)
+ Q
+ ;
+S3 ; SET 'AE' X-REF -- CALLED FROM FIELD 5.  RFQ
+ ; ACTUALLY WILL SET 'AC' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,2)]"",$P(N0,U,4)="RFQ",$P(N0,U,10)]"" S ^PRC(443.75,"AC",$P(N0,U,4),$P(N0,U,2),X,$P(N0,U,10),DA)=""
+ Q
+ ;
+K3 ; KILL 'AE' X-REF -- CALLED FROM FIELD 5.  RFQ
+ ; ACTUALLY WILL KILL 'AC' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,2)]"",$P(N0,U,4)="RFQ",$P(N0,U,10)]"" K ^PRC(443.75,"AC",$P(N0,U,4),$P(N0,U,2),X,$P(N0,U,10),DA)
+ Q
+ ;
+S4 ; SET 'AF' X-REF -- CALLED FROM FIELD 1.  TXT
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,3)]"",$P(N0,U,4)="TXT",$P(N0,U,6)]"" S ^PRC(443.75,"AF",$P(N0,U,4),X,$P(N0,U,6),$P(N0,U,3),DA)=""
+ Q
+ ;
+K4 ; KILL 'AF' X-REF -- CALLED FROM FIELD 1.  TXT
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,3)]"",$P(N0,U,4)="TXT",$P(N0,U,6)]"" K ^PRC(443.75,"AF",$P(N0,U,4),X,$P(N0,U,6),$P(N0,U,3),DA)
+ Q
+ ;
+S5 ; SET 'AG' X-REF -- CALLED FROM FIELD 2.  TXT
+ ; ACTUALLY WILL SET 'AF' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,2)]"",$P(N0,U,4)="TXT",$P(N0,U,6)]"" S ^PRC(443.75,"AF",$P(N0,U,4),$P(N0,U,2),$P(N0,U,6),X,DA)=""
+ Q
+ ;
+K5 ; KILL 'AG' X-REF -- CALLED FROM FIELD 2.  TXT
+ ; ACTUALLY WILL KILL 'AF' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,2)]"",$P(N0,U,4)="TXT",$P(N0,U,6)]"" K ^PRC(443.75,"AF",$P(N0,U,4),$P(N0,U,2),$P(N0,U,6),X,DA)
+ Q
+ ;
+S6 ; SET 'AH' X-REF -- CALLED FROM FIELD 3.  TXT
+ ; ACTUALLY WILL SET 'AF' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,2)]"",$P(N0,U,3)]"",$P(N0,U,6)]"",X="TXT" S ^PRC(443.75,"AF",X,$P(N0,U,2),$P(N0,U,6),$P(N0,U,3),DA)=""
+ Q
+ ;
+K6 ; KILL 'AH' X-REF -- CALLED FROM FIELD 3.  TXT
+ ; ACTUALLY WILL KILL 'AF' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,2)]"",$P(N0,U,3)]"",$P(N0,U,6)]"",X="TXT" K ^PRC(443.75,"AF",X,$P(N0,U,2),$P(N0,U,6),$P(N0,U,3),DA)
+ Q
+ ;
+S7 ; SET 'AI' X-REF -- CALLED FROM FIELD 5.  TXT
+ ; ACTUALLY WILL SET 'AF' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,2)]"",$P(N0,U,3)]"",$P(N0,U,4)="TXT" S ^PRC(443.75,"AF",$P(N0,U,4),$P(N0,U,2),X,$P(N0,U,3),DA)=""
+ Q
+ ;
+K7 ; KILL 'AI' X-REF -- CALLED FROM FIELD 5.  TXT
+ ; ACTUALLY WILL KILL 'AF' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,2)]"",$P(N0,U,3)]"",$P(N0,U,4)="TXT" K ^PRC(443.75,"AF",$P(N0,U,4),$P(N0,U,2),X,$P(N0,U,3),X,DA)
+ Q
+ ;
+S8 ; SET 'AN' X-REF -- CALLED FROM FIELD 6.5.  RFQ
+ ; ACTUALLY WILL SET 'AC' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,2)]"",$P(N0,U,4)="RFQ",$P(N0,U,6)]"" S ^PRC(443.75,"AC",$P(N0,U,4),$P(N0,U,2),$P(N0,U,6),X,DA)=""
+ Q
+ ;
+K8 ; KILL 'AN' X-REF -- CALLED FROM FIELD 6.5.  RFQ
+ ; ACTUALLY WILL KILL 'AC' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,2)]"",$P(N0,U,4)="RFQ",$P(N0,U,6)]"" K ^PRC(443.75,"AC",$P(N0,U,4),$P(N0,U,2),$P(N0,U,6),X,DA)
+ Q
+ ;
+S9 ; SET 'AO' X-REF -- CALLED FROM FIELD 1.  PHA
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,4)="PHA",$P(N0,U,6)]"" S ^PRC(443.75,"AO",$P(N0,U,4),X,$P(N0,U,6),DA)=""
+ Q
+ ;
+K9 ; KILL 'AO' X-REF -- CALLED FROM FIELD 1.  PHA
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,4)="PHA",$P(N0,U,6)]"" K ^PRC(443.75,"AO",$P(N0,U,4),X,$P(N0,U,6),DA)
+ Q
+ ;
+S10 ; SET 'AP' X-REF -- CALLED FROM FIELD 3.  PHA
+ ; ACTUALLY WILL SET 'AO' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I X="PHA",$P(N0,U,2)]"",$P(N0,U,6)]"" S ^PRC(443.75,"AO",X,$P(N0,U,2),$P(N0,U,6),DA)=""
+ Q
+ ;
+K10 ; KILL 'AP' X-REF -- CALLED FROM FIELD 3.  PHA
+ ; ACTUALLY WILL KILL 'AO' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I X="PHA",$P(N0,U,2)]"",$P(N0,U,6)]"" K ^PRC(443.75,"AO",X,$P(N0,U,2),$P(N0,U,6),DA)
+ Q
+ ;
+S11 ; SET 'AQ' X-REF -- CALLED FROM FIELD 5.  PHA
+ ; ACTUALLY WILL SET 'AO' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,2)]"",$P(N0,U,4)="PHA" S ^PRC(443.75,"AO",$P(N0,U,4),$P(N0,U,2),X,DA)=""
+ Q
+ ;
+K11 ; KILL 'AQ' X-REF -- CALLED FROM FIELD 5.  PHA
+ ; ACTUALLY WILL KILL 'AO' X-REF.
+ N N0
+ S N0=$G(^PRC(443.75,DA,0))
+ I $P(N0,U,2)]"",$P(N0,U,4)="PHA" K ^PRC(443.75,"AO",$P(N0,U,4),$P(N0,U,2),X,DA)
+ Q
+ ;
+S12 ; SET 'AL' X-REF FOR ALL ACCEPTED OR REJECTED TRANSACTIONS.
+ ; CALLED FROM FIELD 10.
+ ;
+ ; SEE IF FIELD 24 IS SET.  IF SO DON'T SET THIS X-REF.
+ ;
+ S Z0=$G(^PRC(443.75,DA,1))
+ S Z1=$P(Z0,U)
+ S Z17=$P(Z0,U,17)
+ I Z1]""&(Z17=2) D
+ .  S ^PRC(443.75,"AL",Z17,Z1,+$E(X,1,30),DA)=""
+ .  ;
+ .  ; NOW KILL 'AJ' X-REF FOR THIS RECORD.
+ .  ;
+ .  S Z0=$G(^PRC(443.75,DA,0))
+ .  S Z4=$P(Z0,U,4)
+ .  S Z7=$P(Z0,U,7)
+ .  ;
+ .  ; THE 1 AFTER "AJ" IS THE LEVEL.
+ .  ;
+ .  K:Z4]""&(Z7>0) ^PRC(443.75,"AJ",1,Z4,+$E(Z7,1,30),DA)
+ .  Q
+ K Z0,Z1,Z4,Z7,Z17
+ Q
+ ;
+K12 ; KILL 'AL' X-REF FOR ALL ACCEPTED OR REJECTED TRANSACTIONS.
+ ; CALLED FROM FIELD 10.
+ ;
+ S Z0=$G(^PRC(443.75,DA,1))
+ S Z17=$P(Z0,U,17)
+ S Z1=$P(Z0,U)
+ I Z17=2&(Z1]"") D
+ .  K ^PRC(443.75,"AL",2,Z1,+$E(X,1,30),DA)
+ .  ;
+ .  ; NOW LETS RESTORE 'AJ' X-REF FOR THIS RECORD.
+ .  ;
+ .  S Z0=$G(^PRC(443.75,DA,0))
+ .  S Z4=$P(Z0,U,4)
+ .  S Z7=$P(Z0,U,7)
+ .  ;
+ .  ; THE 1 AFTER "AJ" IS THE LEVEL.
+ .  ;
+ .  S:Z4]""&(Z7>0) ^PRC(443.75,"AJ",1,Z4,+$E(Z7,1,30),DA)=""
+ .  Q
+ K Z0,Z1,Z4,Z7
+ Q
+ ;
+S13 ; SET 'AM' X-REF FOR ALL POA TRANSACTIONS.
+ ; CALLED FROM FIELD 24.
+ ;
+ S Z0=$G(^PRC(443.75,DA,1))
+ S Z1=$P(Z0,U)
+ S Z2=$P(Z0,U,2)
+ S Z15=$P(Z0,U,15)
+ S Z17=$P(Z0,U,17)
+ I Z17=3&(Z15]"") D
+ .  S ^PRC(443.75,"AM",3,Z15,+$E(X,1,30),DA)=""
+ .  ;
+ .  ; NOW KILL 'AL' X-REF FOR THIS RECORD.
+ .  ; THE 2 AFTER "AL" IS THE LEVEL.
+ .  ;
+ .  K:Z1]""&(Z2>0) ^PRC(443.75,"AL",2,Z1,+$E(Z2,1,30),DA)
+ .  Q
+ K Z0,Z1,Z2,Z15
+ Q
+ ;
+K13 ; KILL 'AM' X-REF FOR ALL POA TRANSACTIONS.
+ ; CALLED FROM FIELD 24.
+ ;
+ S Z0=$G(^PRC(443.75,DA,1))
+ S Z1=$P(Z0,U)
+ S Z2=$P(Z0,U,2)
+ S Z15=$P(Z0,U,15)
+ S Z17=$P(Z0,U,17)
+ I Z15]""&(Z17=3) D
+ .  K ^PRC(443.75,"AM",Z17,Z15,+$E(X,1,30),DA)
+ .  ;
+ .  ; NOW SET 'AL' X-REF FOR THIS RECORD.
+ .  ; THE 2 AFTER "AL" IS THE LEVEL.
+ .  ;
+ .  S:Z1]""&(Z2>0) ^PRC(443.75,"AL",2,Z1,+$E(Z2,1,30),DA)=""
+ .  Q
+ K Z0,Z1,Z2,Z15
+ Q

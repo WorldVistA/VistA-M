@@ -1,0 +1,52 @@
+NURSAGP3 ;HISC/MD-MULTIPLE SERVICE CATEGORY SELECTION UTILITY ;4/17/97
+ ;;4.0;NURSING SERVICE;;Apr 25, 1997
+ ; This routine allows a user to select one or more of the service
+ ; category(ies) at one time:
+ ; The user's selections are returned in a global array
+ ; TMP("NURSCAT",$J,Free-Text service category name)=""
+EN1 ; SELECT SERVICE CATEGORY
+ N DA,Y,X
+ K NUROUT,^TMP("NURSCAT",$J)
+ D DISP I $O(^TMP("NURSCAT",$J,0))="" S NUROUT=1
+QUIT K NURSTAB,NURS,NURSAQ,NURSND,DIC,NURSCAT,DLAYGO,I,NURSMAX,NURSCLA,NURSCNT,NURSI,NURSMI
+ Q
+DISP ;
+ ; Define list of user selectable service category(ies) from the
+ ; NURS Service Positon (#211.3) File.
+ ;
+ K NURSTAB,NURSCAT S NURSX="",NURSMAX=0
+ F NURSX="R (RN-REGISTERED NURSE)","L (LPN-LIC. PRACTICAL NURSE)","N (NA-NURSING ASSISTANT)","C (CK-CLERICAL)","S (SE-SUMMER EMPLOYEE)","A (AO-ADMIN. OFFICER)","O (OT-OTHER)" D
+ . I $G(NRNLPN)'="",'(NURSX["(RN-"),'(NURSX["(LPN-") Q
+ . S NURSMAX=NURSMAX+1,NURSCAT(NURSMAX)=NURSX
+ . Q
+ S NURSX="" F  S NURSX=$O(^NURSF(211.3,"F",NURSX)) Q:NURSX=""  S DA=$O(^NURSF(211.3,"F",NURSX,0)) I '$G(NRNLPN) D
+ .   S NURSMAX=NURSMAX+1,NURSCAT(NURSMAX)=$$UP^XLFSTR(NURSX)
+ .   Q
+ S NURSMAX=NURSMAX+1,NURSCAT(NURSMAX)="ALL"
+ S NURSTRT=1,(NUROUT,NURSDONE)=0
+ F  D DSP I $G(NURSDONE)!$G(NUROUT) Q
+ Q
+DSP ;
+ ; Display the list of selectable service category(ies) from file 211.3.
+ ;
+ W @IOF W !,$S('($G(NURSI)>7):"NURSING Service Categories",1:"OTHER Service Categories"),!,$$REPEAT^XLFSTR("-",26) S NURSAQ=$Y
+ F NURS=NURSTRT:1:NURSMAX S NURSI=NURS D  I $Y>(IOSL+NURSAQ-10),NURS'=NURSMAX S NURSTRT=NURS+1 Q
+ .  Q:$D(NURSCAT(NURSI))[0
+ .  I NURSI=8 W !!,"OTHER Service Categories",!,$$REPEAT^XLFSTR("-",24)
+ .  W ! W:$G(NURSCAT(NURSI))'="" ?1,$J(NURSI,2),".  ",$G(NURSCAT(NURSI))
+ .  Q
+ S NURSDONE=(NURS=NURSMAX)
+ I 'NURSDONE W !!,"<<More>>",! S DIR(0)="E" D ^DIR I $G(DIRUT) S NUROUT=1 Q
+ G:NUROUT QUIT
+ I 'NURSDONE G DSP
+ASK ;
+ ;  Interactive user service category selection.
+ ;
+ W !!,"Select SERVICE CATEGORY: " R NURSX:DTIME
+ S:'$T NURSX="^" I "^"[NURSX S:$E(NURSX)="^" NUROUT=1 Q
+ I NURSX=NURSMAX!($$UP^XLFSTR(NURSX)="ALL") S NURSX="1"_$S(NURSMAX>2:"-"_(NURSMAX-1),1:"")
+ D:'(NURSX?2."?") VALENT^NURSUT4 I (NURSX["?"!($G(NURSBAD))) S:NURSX?2."?" (NURSTRT,NURSI)=1 G DSP:NURSX?2."?",ASK
+ K ^TMP("NURSCAT") F NURSI=1:1 S NURSCLA=$P(NURSX,",",NURSI) Q:NURSCLA=""  S NURSND=$P(NURSCLA,"-",2)_"+"_NURSCLA F NURSCNT=+NURSCLA:1:NURSND I +$G(NURSCAT(NURSCNT))'="" D
+ . S X=NURSCAT(NURSCNT),Y=$S(X["(RN-":"R",X["(LPN-":"L",X["(NA-":"N",X["(CK-":"C",X["(SE-":"S",X["AO-":"A",X["OT-":"O",1:X)
+ .  S ^TMP("NURSCAT",$J,Y)=""
+ Q

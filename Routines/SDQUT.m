@@ -1,0 +1,83 @@
+SDQUT ;ALB/MJK - Query Object Utility Methods ;8/12/96
+ ;;5.3;Scheduling;**131**;Aug 13, 1993
+ ;
+REG(SDQ,SDGREF) ; -- regular xref validator
+ N SDSUB
+ S SDSUB=$G(^TMP("SDQUERY CLASS",$J,SDQ,"GL SUBSCRIPTS"))+1
+ IF $QS(SDGREF,SDSUB)'=$G(@SDQUERY@(SDQ,"INDEX INTERNAL")) S SDGREF="" G REGQ
+ IF $QS(SDGREF,SDSUB+1)'=$G(@SDQUERY@(SDQ,"MASTER VALUE")) S SDGREF="" G REGQ
+REGQ Q
+ ;
+ ;
+REGDT(SDQ,SDGREF) ;-- regular date/time xref validator
+ N SDSUB,SDT,SDBEG,SDEND
+ S SDSUB=$G(^TMP("SDQUERY CLASS",$J,SDQ,"GL SUBSCRIPTS"))+1
+ S SDBEG=$G(@SDQUERY@(SDQ,"BEGIN DATE"))
+ S SDEND=$G(@SDQUERY@(SDQ,"END DATE"))
+ ;
+ IF $QS(SDGREF,SDSUB)'=$G(@SDQUERY@(SDQ,"INDEX INTERNAL")) S SDGREF="" G REGDTQ
+ S SDT=$QS(SDGREF,SDSUB+1)
+ IF SDT>SDEND!(SDT<SDBEG) S SDGREF="" G REGDTQ
+REGDTQ Q
+ ;
+ ;
+COM(SDQ,SDGREF) ; -- composite xref validator
+COMQ Q
+ ;
+ ;
+COMDT(SDQ,SDGREF) ;-- composite xref with date/time validator
+ N SDSUB,SDT,SDBEG,SDEND
+ S SDSUB=$G(^TMP("SDQUERY CLASS",$J,SDQ,"GL SUBSCRIPTS"))+1
+ S SDBEG=$G(@SDQUERY@(SDQ,"BEGIN DATE"))
+ S SDEND=$G(@SDQUERY@(SDQ,"END DATE"))
+ IF $QS(SDGREF,SDSUB)'=$G(@SDQUERY@(SDQ,"INDEX INTERNAL")) S SDGREF="" G COMDTQ
+ IF $QS(SDGREF,SDSUB+1)'=$G(@SDQUERY@(SDQ,"MASTER VALUE")) S SDGREF="" G COMDTQ
+ S SDT=$QS(SDGREF,SDSUB+2)
+ IF SDT>SDEND!(SDT<SDBEG) S SDGREF="" G COMDTQ
+COMDTQ Q
+ ;
+ ;
+REFRESH(SDQ,SDERR) ; -- refresh query
+ ;  API ID: 94
+ ; API NAME: SDQ REFRESH
+ ;
+REFRESHG ; -- goto entry point
+ ; -- do validation checks
+ IF '$$QRY^SDQVAL(.SDQ,$G(SDERR)) G REFRESHQ
+ IF '$$QRYACT^SDQVAL(.SDQ,$G(SDERR)) G REFRESHQ
+ ;
+ D ACTIVE^SDQPROP(.SDQ,"FALSE","SET",$G(SDERR))
+ D ACTIVE^SDQPROP(.SDQ,"TRUE","SET",$G(SDERR))
+REFRESHQ Q
+ ;
+ ;
+GETENTRY(SDQ,SDERR) ; -- get ID/IEN number for cursor entry
+ ;   API ID: 95
+ ; API NAME: SDQ GET CURRENT ENCOUNTER ID
+ ;
+ ; -- do validation checks
+ IF '$$QRY^SDQVAL(.SDQ,$G(SDERR)) Q ""
+ IF '$$QRYACT^SDQVAL(.SDQ,$G(SDERR)) Q ""
+ ;
+ N SDID,SDGREF,SDSUB
+ S SDGREF=$G(^TMP("SDQUERY LIST",$J,SDQ,+$G(@SDQUERY@(SDQ,"CURSOR"))))
+ S SDSUB=+$G(@SDQUERY@(SDQ,"IEN SUBSCRIPT"))
+ S SDID=$QS(SDGREF,SDSUB)
+ Q SDID
+ ;
+ ;
+POST ; -- post error action logic
+ ;W !,"Error: ",!
+ ;ZW DIPI ZW DIPE
+ Q
+ ;
+ ;
+PREP ; -- Prepare environment / clean up generic error arrays
+ D CLEAN^DILF
+ Q
+ ;
+ ;
+ERRCHK(SDQERRS) ; -- is an error present in error array?
+ IF $G(SDQERRS)]"" Q $O(@SDQERRS@("DIERR",0))>0
+ Q $O(^TMP("DIERR",$J,0))>0
+ ;

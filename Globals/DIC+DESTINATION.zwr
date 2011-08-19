@@ -1,0 +1,7 @@
+DESTINATION
+ZWR
+^DIC(.2,0)="DESTINATION^.21^^0"
+^DIC(.2,0,"GL")="^DIC(.2,"
+^DIC(.2,"%D",0)="^^2^2^2940908^"
+^DIC(.2,"%D",1,0)="This file stores destinations of data (e.g., a specific form or"
+^DIC(.2,"%D",2,0)="system).  A field can be associated with a destination of its data."

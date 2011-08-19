@@ -1,0 +1,8 @@
+NURARST ;HIRMFO/MD-GENERIC RESOURCE MANAGEMENT PRINT SELECTION ROUTINE ;JULY 1990
+ ;;4.0;NURSING SERVICE;;Apr 25, 1997
+LOSER W !!,"By (1) Location or (2) Service:  " R SEL:DTIME I '$T!("^"[SEL) S NUROUT=1 Q
+ I SEL'=1&(SEL'=2) W !!,$C(7),"Select Sort Parameter by choosing '1' or '2'" G LOSER
+ I $D(ANS1),ANS1=1 S T=$T(DISPL+1),OPT=$S(SEL=1:"^NURAR"_$P(T,";",3),SEL=2:"^NURAR"_$P(T,";",4),1:"") D:OPT'="" @OPT
+ Q
+DISPL ;
+ ;;11A;1A

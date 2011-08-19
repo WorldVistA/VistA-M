@@ -1,0 +1,86 @@
+QAOSWRK0 ;HISC/DAD-WORKSHEET DRIVER ROUTINE ;6/15/93  10:18
+ ;;3.0;Occurrence Screen;;09/14/1993
+ D HOME^%ZIS
+ASKTYPE ;
+ K DIR S DIR(0)="LO^1:4^K:X[""."" X",DIR("A")="Select Worksheet Type(s)"
+ S DIR("?")="Select the type(s) of worksheet(s) you want printed, e.g., 1,2 or 1-4"
+ S DIR("?",1)="Choose from:",DIR("?",2)="  1  Clinical worksheet"
+ S DIR("?",3)="  2  Peer worksheet",DIR("?",4)="  3  Management worksheet"
+ S DIR("?",5)="  4  Committee worksheet",DIR("?",6)=""
+ W ! K DIRUT D ^DIR K DIR G:$D(DIRUT) EXIT S QAOSTYPE=$E(Y,1,$L(Y)-1)
+ASKHOW ;
+ K DIR S DIR(0)="SOB^1:Patient(s);2:Date Range;3:Blank"
+ S DIR("A")="How do you want the worksheet(s) printed"
+ S DIR("A",1)="Enter 1 to print the worksheet(s) for selected patient(s), or"
+ S DIR("A",2)="Enter 2 to print the worksheet(s) for a range of dates, or"
+ S DIR("A",3)="Enter 3 to print completely blank worksheets.",DIR("A",4)=""
+ W ! K DIRUT D ^DIR K DIR G:$D(DIRUT) EXIT S QAOSHOW=Y,QAOSQUIT=0
+ W:QAOSHOW=1 ! K ^TMP($J,"PATLIST") S (QAOSREC,QAOSQUIT,QAQQUIT)=0
+ I QAOSHOW=3 D ASKCOPY G EXIT:QAOSQUIT,DEV
+ D ^QAQDATE:QAOSHOW=2,ASKPAT:QAOSHOW=1 G EXIT:QAOSQUIT!QAQQUIT
+ASKDATA ;
+ K DIR S DIR(0)="SOB^1:Blank;2:With Data"
+ S DIR("A")="Choose",DIR("A",1)="Enter 1 to print blank worksheets, or"
+ S DIR("A",2)="Enter 2 to print worksheets for reviews currently in process/complete",DIR("A",3)="",DIR("B")=1
+ W ! K DIRUT D ^DIR K DIR G:$D(DIRUT) EXIT S QAOSDATA=Y
+DEV ;
+ K %ZIS,IOP S %ZIS="QM" W ! D ^%ZIS G:POP EXIT
+ I $D(IO("Q")) D  G EXIT
+ . S ZTRTN="ENTSK^QAOSWRK0",ZTDESC="PRINT OCCURRENCE SCREEN WORKSHEETS"
+ . S ZTSAVE("QAO*")="",ZTSAVE("QAQ*")="",ZTSAVE("^TMP($J,")=""
+ . D ^%ZTLOAD
+ . Q
+ENTSK ;
+ U IO D BLNKLOOP:QAOSHOW=3,DATELOOP:QAOSHOW=2,PATLOOP:QAOSHOW=1
+EXIT ;
+ W ! S IONOFF=1 D ^%ZISC K ^TMP($J,"PATLIST")
+ K %ZIS,DIC,DIR,DIRUT,IONOFF,LOC,OCCDATE,PATNAM,POP,QA,QAOSD,QAOSDATA
+ K QAOSDSEL,QAOSD0,QAOSHOW,QAOSQUIT,QAOSREC,QAOSTYPE,SCRN,X,Y,ZTDESC
+ K ZTRTN,ZTSAVE,LEN,LOCDPT,LOCQA,REVR,DIW,DIWI,DIWT,DIWTC,DIWX,DN,I,Y,Z
+ K QAOSMDUE,QAOSMDAY,HEADER,IEN405,LOC405,NAME,QAODC,QAODFN,QAODT,QAOSDFN
+ K QAOSI,QAOSWHEN,QAOTS,SCREEN,SRV,SSN,UNDL,UNSC,WARD,QAOSCOPY,QAOCOPYS
+ K QAOSONE,QAOSPDUE,QAOSPDAY,QAOSS0
+ D KVAR^VADPT,K^QAQDATE S:$D(ZTQUEUED) ZTREQ="@"
+ Q
+ASKCOPY ;
+ K DIR S DIR(0)="NAO^1:10:0"
+ S DIR("A")="How many copies of each worksheet do you want: ",DIR("B")=1
+ S DIR("?",1)="Enter the number of copies of each worksheet you want printed."
+ S DIR("?")="Your answer must be from 1 to 10."
+ W ! D ^DIR S QAOSQUIT=$S($D(DIRUT):1,$D(DIRUT):1,1:0),QAOCOPYS=Y
+ Q
+BLNKLOOP ;
+ F QAOSCOPY=1:1:QAOCOPYS S (QAOSQUIT,QAOSD0)=0,QAOSDATA=1 D CALLROU
+ Q
+DATELOOP ;
+ S QAOSQUIT=0 F QAOSD=QAQNBEG-.000001:0 S QAOSD=$O(^QA(741,"C",QAOSD)) Q:(QAOSD'>0)!(QAOSD>QAQNEND)!QAOSQUIT  F QAOSD0=0:0 S QAOSD0=$O(^QA(741,"C",QAOSD,QAOSD0)) Q:QAOSD0'>0!QAOSQUIT  D:$D(^QA(741,"AD",2,QAOSD0))[0 CALLROU
+ Q
+ASKPAT ;
+ W !,$S(QAOSREC:"Another one: ",1:"Select PATIENT: ")
+ R X:DTIME S:'$T X="^" S QAOSQUIT=$S(X="^":1,1:0)
+ I X=""!QAOSQUIT S:'QAOSREC QAOSQUIT=1 Q
+ I $E(X)="?" W @IOF,!!?3,"Select a patient by name or SSN.  To deselect a patient type a minus (-)",!?3,"sign and the patient name or SSN, e.g. -DOE,JOHN" D PATLIST
+ S DIC="^QA(741,",DIC(0)="EMQ",DIC("S")="I $P(^(0),""^"",11)<2"
+ S QAOSDSEL=0 S:$E(X)="-" QAOSDSEL=1,X=$E(X,2,999)
+ D ^DIC K DIC("S") G:+Y=-1 ASKPAT
+ I QAOSDSEL S:QAOSREC QAOSREC=QAOSREC-1 K ^TMP($J,"PATLIST",+Y)
+ E  S QAOSREC=QAOSREC+1,^TMP($J,"PATLIST",+Y)=""
+ G ASKPAT
+PATLIST ;
+ S QAOSQUIT=0 W:QAOSREC !!," YOU HAVE ALREADY SELECTED:"
+ F QAOSD0=0:0 S QAOSD0=$O(^TMP($J,"PATLIST",QAOSD0)) Q:QAOSD0'>0!QAOSQUIT  D PATDISP
+ W ! Q
+PATDISP ;
+ S LOC=^QA(741,QAOSD0,0),SCRN=+$G(^("SCRN"))
+ S PATNAM=+LOC,PATNAM=$S($D(^DPT(PATNAM,0))#2:$P(^(0),"^"),1:PATNAM)
+ S Y=$P(LOC,"^",3) X ^DD("DD") S OCCDATE=Y
+ S SCRN=$S($D(^QA(741.1,SCRN,0))#2:+^(0),1:SCRN)
+ W !?5,PATNAM,?30,OCCDATE,?50,SCRN
+ I $Y>(IOSL-4) K DIR S DIR(0)="E" D ^DIR K DIR S QAOSQUIT=$S(Y'>0:1,1:0) I 'QAOSQUIT W:$O(^TMP($J,"PATLIST",QAOSD0))>0 @IOF,!," YOU HAVE ALREADY SELECTED:"
+ Q
+PATLOOP ;
+ S QAOSQUIT=0 F QAOSD0=0:0 S QAOSD0=$O(^TMP($J,"PATLIST",QAOSD0)) Q:QAOSD0'>0!QAOSQUIT  D CALLROU
+ Q
+CALLROU ;
+ D:QAOSTYPE["1" ^QAOSPCL0 Q:QAOSQUIT  D:QAOSTYPE["1" ^QAOSPCL1 Q:QAOSQUIT  D:QAOSTYPE["2" ^QAOSPPR0 Q:QAOSQUIT  D:QAOSTYPE["3" ^QAOSPMG0 Q:QAOSQUIT  D:QAOSTYPE["4" ^QAOSPCM0
+ Q

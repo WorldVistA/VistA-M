@@ -1,0 +1,262 @@
+ACKQDWLP ;AUG/JLTP BIR/PTD HCIOFO/BH-Print A&SP Capitation Report ; [ 03/28/96   10:45 AM ]
+ ;;3.0;QUASAR;**1**;Feb 11, 2000
+ ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
+ ;
+ ;   Developed within V.3, works at Div level rather than site level -
+ ;   - pre v.3
+ ;
+ K ^TMP("ACKQDWLP",$J)
+OPTN ; Introduce option
+ W @IOF,!,"This option produces a four-part Capitation Report.",!,"It includes Demographic, Diagnostic and Procedure data.",!
+ ;
+DIV ; select Div (user may select one/many/ALL)
+ S ACKDIV=$$DIV^ACKQUTL2(3,.ACKDIV,"IA") G:'ACKDIV EXIT
+ D GETDT^ACKQWL G:$D(DIRUT) EXIT D INIT^ACKQWL
+ ;
+DEV W !!,"The right margin for this report is 80.",!,"You can queue it to run at a later time.",!
+ K %ZIS,IOP S %ZIS="QM",%ZIS("B")="" D ^%ZIS I POP W !,"NO DEVICE SELECTED OR REPORT PRINTED." G EXIT
+ I $D(IO("Q")) K IO("Q") S ZTRTN="DQ^ACKQDWLP",ZTDESC="QUASAR - Print A&SP Capitation Report",ZTSAVE("ACK*")="" D ^%ZTLOAD D HOME^%ZIS K ZTSK G EXIT
+DQ ;  Entry point when queued.
+ U IO
+ D NOW^%DTC S ACKCDT=$$NUMDT^ACKQUTL(%)_" at "_$$FTIME^ACKQUTL(%),ACKPG=0 K ^TMP("ACKQWLD",$J)
+ D COMPILE,PRINT
+ ;
+EXIT ;  ALWAYS EXIT HERE
+ K %I,ACKBFY,ACKCDT,ACKDA,ACKEM,ACKM,ACKPG,AS,CDR,CPT,DIR,DIRUT,DTOUT
+ K ACKDIV,DUOUT,I,ICD,LN,T,X,XAS,Y,ZIP,^TMP("ACKQDWLP",$J)
+ W:$E(IOST)="C" @IOF D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@"
+ Q
+ ;
+COMPILE ; Comp properly sorted data in ^TMP
+ N ACK1,ACKVDVN,ACK6,ACKREC,ACKAUD,ACKSPE
+ ;
+ S ACK1=""
+ F  S ACK1=$O(ACKDIV(ACK1)) Q:ACK1=""  D
+ . S ACKVDVN=$P(ACKDIV(ACK1),U,1)
+ . D ZIPSTAT,ICDSTAT,CPTSTAT,ECSTAT^ACKQDWLU
+ Q
+ ;
+ZIPSTAT ; ZIP stats
+ N ACKCODE
+ S ACK6=0
+ F  S ACK6=$O(^ACK(509850.7,ACKDA,5,ACKVDVN,3,ACK6)) Q:ACK6=""!(ACK6'?.N)  D
+ . S ACKREC=^ACK(509850.7,ACKDA,5,ACKVDVN,3,ACK6,0)
+ . S ACKAUD=$P(ACKREC,U,2,5),ACKSPE=$P(ACKREC,U,6,9)
+ . S ACKCODE=$P(ACKREC,U,1)
+ . I $TR(ACKAUD,"^","")'="" D
+ . . S ^TMP("ACKQDWLP",$J,"R",ACKVDVN,3,"A",ACKCODE)=ACKAUD
+ . . S ^TMP("ACKQDWLP",$J,"S",3,"A",ACKCODE,ACKVDVN)=ACKAUD
+ . I $TR(ACKSPE,"^","")'="" D
+ . . S ^TMP("ACKQDWLP",$J,"R",ACKVDVN,3,"S",ACKCODE)=ACKSPE
+ . . S ^TMP("ACKQDWLP",$J,"S",3,"S",ACKCODE,ACKVDVN)=ACKSPE
+ Q
+ ;
+ICDSTAT ; ICD stats
+ N ACKCODE
+ S ACK6=0
+ F  S ACK6=$O(^ACK(509850.7,ACKDA,5,ACKVDVN,1,ACK6)) Q:ACK6=""!(ACK6'?.N)  D
+ . S ACKREC=^ACK(509850.7,ACKDA,5,ACKVDVN,1,ACK6,0)
+ . S ACKAUD=$P(ACKREC,U,2,4),ACKSPE=$P(ACKREC,U,5,7)
+ . S ACKCODE=$P(ACKREC,U,1)
+ . S ACKCODE=$$GET1^DIQ(80,ACKCODE,.01)
+ . S ACKCODE=($S(ACKCODE?.NP:+ACKCODE,1:ACKCODE))
+ . I $TR(ACKAUD,"^","")'="" D
+ . . S ^TMP("ACKQDWLP",$J,"R",ACKVDVN,1,"A",ACKCODE)=ACKAUD
+ . . S ^TMP("ACKQDWLP",$J,"S",1,"A",ACKCODE,ACKVDVN)=ACKAUD
+ . I $TR(ACKSPE,"^","")'="" D
+ . . S ^TMP("ACKQDWLP",$J,"R",ACKVDVN,1,"S",ACKCODE)=ACKSPE
+ . . S ^TMP("ACKQDWLP",$J,"S",1,"S",ACKCODE,ACKVDVN)=ACKSPE
+ Q
+ ;
+CPTSTAT ; CPT Stats
+ N ACKCODE
+ S ACK6=0
+ F  S ACK6=$O(^ACK(509850.7,ACKDA,5,ACKVDVN,2,ACK6)) Q:ACK6=""!(ACK6'?.N)  D
+ . S ACKREC=^ACK(509850.7,ACKDA,5,ACKVDVN,2,ACK6,0)
+ . S ACKAUD=$P(ACKREC,U,2,4),ACKSPE=$P(ACKREC,U,5,7)
+ . S ACKCODE=$P(ACKREC,U,1)
+ . I $TR(ACKAUD,"^","")'="" D
+ . . S ^TMP("ACKQDWLP",$J,"R",ACKVDVN,2,"A",ACKCODE)=ACKAUD
+ . . S ^TMP("ACKQDWLP",$J,"S",2,"A",ACKCODE,ACKVDVN)=ACKAUD
+ . I $TR(ACKSPE,"^","")'="" D
+ . . S ^TMP("ACKQDWLP",$J,"R",ACKVDVN,2,"S",ACKCODE)=ACKSPE
+ . . S ^TMP("ACKQDWLP",$J,"S",2,"S",ACKCODE,ACKVDVN)=ACKSPE
+ Q
+ ;
+PRINT ; Display results
+ N ACKDNME,ACKK1,ACKDIEN
+ ;
+ S ACKDNME=""
+ N ACKK1,ACKDIEN,ACKPASS
+ S ACKPASS=0,ACKK1=""
+ F  S ACKK1=$O(ACKDIV(ACKK1)) Q:ACKK1=""  D
+ . S ACKDIEN=$P(ACKDIV(ACKK1),U,1)
+ . I $D(^TMP("ACKQDWLP",$J,"R",ACKDIEN)) S ACKPASS=1
+ I 'ACKPASS D DHD,LINE W !!,"No Capitation data found for selected Divisions." D:$E(IOST)="C" PAUSE^ACKQUTL Q
+ ;
+ S ACKK1=""
+ F  S ACKK1=$O(ACKDIV(ACKK1)) Q:ACKK1=""!($D(DIRUT))  D
+ . S ACKDIEN=$P(ACKDIV(ACKK1),U,1)
+ . S ACKDNME=$P(ACKDIV(ACKK1),U,3)
+ . ;
+ . I '$O(^TMP("ACKQDWLP",$J,"R",ACKDIEN,0)) D  Q
+ .. D DHD,LINE
+ .. W !!,"No data found for this Division."
+ .. D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)
+ . ;
+ . I $D(^TMP("ACKQDWLP",$J,"R",ACKDIEN,3)) D DHD,HD1,ZIP Q:$D(DIRUT)
+ . I $D(^TMP("ACKQDWLP",$J,"R",ACKDIEN,1)) D DHD,HD2,ICD Q:$D(DIRUT)
+ . I $D(^TMP("ACKQDWLP",$J,"R",ACKDIEN,2)) D DHD,HD3,CPT Q:$D(DIRUT)
+ . I $D(^TMP("ACKQDWLP",$J,"R",ACKDIEN,5)) D DHD,HD4,EC Q:$D(DIRUT)
+ . ;
+ Q:$D(DIRUT)
+ D SUMZIP^ACKQDWLR Q:$D(DIRUT)
+ D SUMICD^ACKQDWLR Q:$D(DIRUT)
+ D SUMCPT^ACKQDWLR Q:$D(DIRUT)
+ D SUMEC^ACKQDWLR Q:$D(DIRUT)
+ Q
+ ;
+ZIP ; For all visits
+ N ACKZCT,ACKZTT,ACKZUT,ACKZCPT
+ S AS=""
+ F  S AS=$O(^TMP("ACKQDWLP",$J,"R",ACKDIEN,3,AS)) Q:AS=""!($D(DIRUT))  D
+ .S ACKZCT=0,ACKZTT=0,ACKZUT=0,ACKZCPT=0
+ .I $Y>(IOSL-5) D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)  D DHD,HD1
+ .S XAS=$S(AS="A":"Audiology",1:"Speech Pathology")
+ .W !," "_XAS,":"
+ .S (ZIP,T)="" F  S ZIP=$O(^TMP("ACKQDWLP",$J,"R",ACKDIEN,3,AS,ZIP)) Q:ZIP=""!($D(DIRUT))  D
+ ..I $Y>(IOSL-5) D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)  D DHD,HD1 W !," "_XAS,":"
+ ..S X=^TMP("ACKQDWLP",$J,"R",ACKDIEN,3,AS,ZIP)
+ ..;  Print Zip data
+ ..W !," "_ZIP    ;  Write zero's instead of nulls
+ ..W ?25,$S($P(X,U,1):$P(X,U,1),1:"0")
+ ..W ?39,$S($P(X,U,2):$P(X,U,2),1:"0")
+ ..W ?55,$S($P(X,U,3):$P(X,U,3),1:"0")
+ ..W ?69,$S($P(X,U,4):$P(X,U,4),1:"0")
+ ..;
+ ..;  Calculate Totals
+ ..S ACKZCT=ACKZCT+$P(X,U,1),ACKZTT=ACKZTT+$P(X,U,2)
+ ..S ACKZUT=ACKZUT+$P(X,U,3),ACKZCPT=ACKZCPT+$P(X,U,4)
+ ..;
+ .Q:$D(DIRUT)
+ .S $P(LN,"-",80)="" W !,LN
+ .W !," "_XAS," Total: ",?25,ACKZCT,?39,ACKZTT,?55,ACKZUT,?69,ACKZCPT,!
+ Q:$D(DIRUT)
+ D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)
+ Q
+ ;
+ICD ; ICD stats
+ N ACKICT,ACKITT,ACKIUT
+ ;  D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)  D DHD,HD2
+ S AS=0 F  S AS=$O(^TMP("ACKQDWLP",$J,"R",ACKDIEN,1,AS)) Q:AS=""!($D(DIRUT))  D
+ .S ACKICT=0,ACKITT=0,ACKIUT=0
+ .I $Y>(IOSL-5) D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)  D DHD,HD2
+ .S XAS=$S(AS="A":"Audiology",1:"Speech Pathology")
+ .W !," "_XAS,":"
+ .S ICD="" F  S ICD=$O(^TMP("ACKQDWLP",$J,"R",ACKDIEN,1,AS,ICD)) Q:ICD=""!($D(DIRUT))  D
+ ..I $Y>(IOSL-5) D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)  D DHD,HD2
+ ..S ACKSTR=^TMP("ACKQDWLP",$J,"R",ACKDIEN,1,AS,ICD)
+ ..;  Display data
+ ..W !," "_ICD
+ ..W ?25,$S($P(ACKSTR,U,1):$P(ACKSTR,U,1),1:"0")
+ ..W ?39,$S($P(ACKSTR,U,2):$P(ACKSTR,U,2),1:"0")
+ ..W ?55,$S($P(ACKSTR,U,3):$P(ACKSTR,U,3),1:"0")
+ ..;  Calculate Totals
+ ..S ACKICT=ACKICT+$P(ACKSTR,U,1),ACKITT=ACKITT+$P(ACKSTR,U,2)
+ ..S ACKIUT=ACKIUT+$P(ACKSTR,U,3)
+ ..;
+ .Q:$D(DIRUT)
+ .S $P(LN,"-",80)="" W !,LN
+ .W !," "_XAS," Total: ",?25,ACKICT,?39,ACKITT,?55,ACKIUT,!
+ .Q:$D(DIRUT)
+ Q:$D(DIRUT)
+ D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)
+ Q
+ ;
+CPT ; CPT stats
+ N ACKCCT,ACKCTT,ACKCUT
+ ;
+ S AS=0 F  S AS=$O(^TMP("ACKQDWLP",$J,"R",ACKDIEN,2,AS)) Q:AS=""!($D(DIRUT))  D
+ .S ACKCCT=0,ACKCTT=0,ACKCUT=0
+ .I $Y>(IOSL-5) D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)  D DHD,HD3
+ .S XAS=$S(AS="A":"Audiology",1:"Speech Pathology")
+ .W !," "_XAS,":"
+ .S CPT="" F  S CPT=$O(^TMP("ACKQDWLP",$J,"R",ACKDIEN,2,AS,CPT)) Q:CPT=""!($D(DIRUT))  D
+ ..I $Y>(IOSL-5) D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)  D DHD,HD3
+ ..S ACKSTR=^TMP("ACKQDWLP",$J,"R",ACKDIEN,2,AS,CPT)
+ ..;  Display data
+ ..W !," "_$$GET1^DIQ(509850.4,CPT_",",.01)
+ ..W ?25,$S($P(ACKSTR,U,1):$P(ACKSTR,U,1),1:"0")
+ ..W ?39,$S($P(ACKSTR,U,2):$P(ACKSTR,U,2),1:"0")
+ ..W ?55,$S($P(ACKSTR,U,3):$P(ACKSTR,U,3),1:"0")
+ ..;  Calculate Totals
+ ..S ACKCCT=ACKCCT+$P(ACKSTR,U,1),ACKCTT=ACKCTT+$P(ACKSTR,U,2)
+ ..S ACKCUT=ACKCUT+$P(ACKSTR,U,3)
+ ..;
+ .Q:$D(DIRUT)
+ .S $P(LN,"-",80)="" W !,LN
+ .W !," "_XAS," Total: ",?25,ACKCCT,?39,ACKCTT,?55,ACKCUT,!
+ .Q:$D(DIRUT)
+ Q:$D(DIRUT)
+ D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)
+ Q
+ ;
+EC ; EC stats
+ N ACKCCT,ACKCTT,ACKCUT
+ ;
+ S AS=0 F  S AS=$O(^TMP("ACKQDWLP",$J,"R",ACKDIEN,5,AS)) Q:AS=""!($D(DIRUT))  D
+ .S ACKCCT=0,ACKCTT=0,ACKCUT=0
+ .I $Y>(IOSL-5) D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)  D DHD,HD4
+ .S XAS=$S(AS="A":"Audiology",1:"Speech Pathology")
+ .W !," "_XAS,":"
+ .S EC="" F  S EC=$O(^TMP("ACKQDWLP",$J,"R",ACKDIEN,5,AS,EC)) Q:EC=""!($D(DIRUT))  D
+ ..I $Y>(IOSL-5) D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)  D DHD,HD4
+ ..S ACKSTR=^TMP("ACKQDWLP",$J,"R",ACKDIEN,5,AS,EC)
+ ..;  Display data
+ ..W !," "_$$GET1^DIQ(725,EC_",",1,"I")
+ ..W ?25,$S($P(ACKSTR,U,1):$P(ACKSTR,U,1),1:"0")
+ ..W ?39,$S($P(ACKSTR,U,2):$P(ACKSTR,U,2),1:"0")
+ ..W ?55,$S($P(ACKSTR,U,3):$P(ACKSTR,U,3),1:"0")
+ ..;  Calculate Totals
+ ..S ACKCCT=ACKCCT+$P(ACKSTR,U,1),ACKCTT=ACKCTT+$P(ACKSTR,U,2)
+ ..S ACKCUT=ACKCUT+$P(ACKSTR,U,3)
+ ..;
+ .Q:$D(DIRUT)
+ .S $P(LN,"-",80)="" W !,LN
+ .W !," "_XAS," Total: ",?25,ACKCCT,?39,ACKCTT,?55,ACKCUT,!
+ .Q:$D(DIRUT)
+ Q:$D(DIRUT)
+ D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)
+ Q
+ ;  
+DHD ;
+ N X
+ W:($E(IOST)="C")!(ACKPG>0) @IOF
+ S ACKPG=ACKPG+1
+ W "Printed: ",ACKCDT,?(IOM-8),"Page: ",ACKPG
+ W ! D CNTR^ACKQUTL("Audiology & Speech Pathology")
+ W ! D CNTR^ACKQUTL("Capitation Report")
+ I ACKPASS W ! D CNTR^ACKQUTL("for DIVISION: "_ACKDNME)
+ W ! D CNTR^ACKQUTL($$XDAT^ACKQUTL(ACKM)) W !
+ Q
+ ;
+HD1 ;  Header for all visits
+ N X
+ W !,?23,"CLINIC",?36,"TELEPHONE",?53,"UNIQUE"
+ W !," ZIP CODE",?23,"VISITS",?37,"VISITS",?52,"PATIENTS",?68,"C&P"
+ D LINE Q
+ ;
+HD2 ;  Head for ICD stats
+ N X W !,?23,"CLINIC",?36,"TELEPHONE"
+ W !," ICD",?23,"VISITS",?37,"VISITS",?53,"UNIQUE" D LINE Q
+ ;
+HD3 ;  Head for CPT stats
+ N X W !,?23,"CLINIC",?36,"TELEPHONE"
+ W !," CPT",?23,"VISITS",?37,"VISITS",?53,"UNIQUE" D LINE Q
+ ;
+HD4 ;  Head for EC stats
+ N X W !,?23,"CLINIC",?36,"TELEPHONE"
+ W !,"  EC",?23,"VISITS",?37,"VISITS",?53,"UNIQUE" D LINE Q
+ ;
+LINE S X="",$P(X,"-",IOM)="-" W !,X Q
+ ;

@@ -1,0 +1,24 @@
+SOWKOPT ;B'HAM ISC/SAB-ROUTINE TO DELETE OPTIONS AND TEMPLATES IN OLD NAMESPACE ; 02/10/92 13:30
+ ;;3.0; Social Work ;**49**;27 Apr 93
+ W !!,*7,"DELETING OLD NAMESPACE (SW) SORT TEMPLATES...",!!
+ S DIK="^DIBT(",OPT="SW" F I=0:0 S OPT=$O(^DIBT("B",OPT)) Q:$E(OPT,1,2)'="SW"!(OPT="")  F T=0:0 S T=$O(^DIBT("B",OPT,T)) Q:'T  I $D(^DIBT(T)),$P(^DIBT(T,0),"^",4)'<650,$P(^(0),"^",4)'>656 S DA=T D ^DIK W !,OPT_" Sort Template...<DELETED>"
+ W !!,*7,"DELETING OLD NAMESPACE (SW) INPUT TEMPLATES...",!!
+ S DIK="^DIE(",OPT="SW" F I=0:0 S OPT=$O(^DIE("B",OPT)) Q:$E(OPT,1,2)'="SW"!(OPT="")  F T=0:0 S T=$O(^DIE("B",OPT,T)) Q:'T  I $D(^DIE(T)),$P(^DIE(T,0),"^",4)'<650,$P(^(0),"^",4)'>656 S DA=T D ^DIK W !,OPT_" Input Temple...<DELETED>"
+ W !!,*7,"DELETING OLD NAMESPACE (SW) PRINT TEMPLATES...",!!
+ S DIK="^DIPT(",OPT="SW" F I=0:0 S OPT=$O(^DIPT("B",OPT)) Q:$E(OPT,1,2)'="SW"!(OPT="")  F T=0:0 S T=$O(^DIPT("B",OPT,T)) Q:'T  I $D(^DIPT(T)),$P(^DIPT(T,0),"^",4)'<650,$P(^(0),"^",4)'>656 S DA=T D ^DIK W !,OPT_" Print Template...<DELETED>"
+ W !!,*7,"DELETING OLD NAMESPACE (SW) OPTIONS...",!!
+ S DIK="^DIC(19,",OPT="SW" F I=0:0 S OPT=$O(^DIC(19,"B",OPT)) Q:$E(OPT,1,2)'="SW"!(OPT="")  F T=0:0 S T=$O(^DIC(19,"B",OPT,T)) Q:'T  I $E(OPT,1,4)'="SWFG",$E(OPT,1,3)'="SWZ" S DA=T D ^DIK W !,OPT_" Menu Option...<DELETED>"
+ W !!,*7,"DELETING OBSOLETE OPTIONS...",!!
+ S DIK="^DIC(19," F OPT="SOWKDPP","SOWKDPPD","SOWKPDR","SOWKPDRD","SOWKARSC","SOWKDBPRO" S DA=$O(^DIC(19,"B",OPT,0)) I DA D ^DIK W !,OPT_" Menu Option...<DELETED>"
+ S DIK="^DIC(19," F OPT="SOWKARSCTRANS","SOWKARSD","SOWKARSDEL","SOWKARSDEL1","SOWKARSM","SOWKARSN","SOWKARSQ","SOWKARSR","SOWKARST","SOWKARSTRANS","SOWKARSTRC" S DA=$O(^DIC(19,"B",OPT,0)) I DA D ^DIK W !,OPT_" Menu Option...<DELETED>"
+ K DIK,OPT,DA,I,T Q
+WRK S ^VA(200,DA,654)=1_"^"_IMM_"^"_NUM_"^^"_POS
+ S:IMM ^VA(200,"ASWC",IMM,DA)="" S ^VA(200,"ASWB",DA,DA)="" S:NUM ^VA(200,"ASWD",NUM,DA)="" S:POS=1!(POS=2)!(POS=3) ^VA(200,"ASWE",DA,POS)=""
+ Q
+XREF ;Entry point to re-index 'CP' and 'BS5' x-refs in file #650 for lookups
+ W !! S ZTIO="",ZTDESC="Option to re-index the 'CP' and 'BS5' x-refs in file #650",ZTRTN="XRF^SOWKOPT" D ^%ZTLOAD
+ W:$D(ZTSK) *7,!!,"Option QUEUED to run" K ZTSK Q
+XRF K ^SOWK(650,"CP"),^("BS5")
+ F DA=0:0 S DA=$O(^SOWK(650,DA)) Q:'DA  I '$P(^SOWK(650,DA,0),"^",2)!'$P(^(0),"^",3)!'$P(^(0),"^",13) S DIK="^SOWK(650," D ^DIK
+ F DA=0:0 S DA=$O(^SOWK(650,DA)) Q:'DA  S X=$P(^SOWK(650,DA,0),"^",8) X ^DD(650,7,1,2,1),^DD(650,7,1,3,1)
+ K DA,X D KILL^%ZTLOAD K ZTSK Q

@@ -1,0 +1,19 @@
+IBQLPRG ;LEB/MRY - PURGE UMR FILE AFTER ROLLUP ; 22-APR-95
+ ;;1.0;UTILIZATION MGMT ROLLUP LOCAL;;Oct 01, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+ N DIR,DIK,DA
+ ; --
+ W !,"Purge Rollup Data"
+ S DIR(0)="SA^L:LOCAL;A:ALL",DIR("A")="Purge Local or ALL: ",DIR("B")="ALL" D ^DIR G:$D(DUOUT)!($D(DTOUT)) END
+ S IBDNLD=Y
+ S ZTRTN="PURGE^IBQLPRG",ZTDESC="IBQ - LOCAL PURGE ",ZTSAVE("IBDNLD")="",ZTIO=""
+ D ^%ZTLOAD G END
+ ;
+PURGE ; -- Purge entries
+ S DIK="^IBQ(538,"
+ S IBTRN=0 F  S IBTRN=$O(^IBQ(538,IBTRN)) Q:'IBTRN  D 
+ .I IBDNLD="L" Q:$P(^IBQ(538,IBTRN,1),"^",6)'="L"
+ .S DA=IBTRN D ^DIK
+ Q
+END K IBDNLD,IBTRN Q

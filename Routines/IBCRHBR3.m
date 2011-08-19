@@ -1,0 +1,210 @@
+IBCRHBR3 ;ALB/ARH - RATES: UPLOAD HOST FILES (RC) PARSE ; 10-OCT-1998
+ ;;2.0;INTEGRATED BILLING;**106,138,148,169**;21-MAR-94
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+ ; IBFLINE required and VERS expected on entry
+ ;
+A ; Inpatient Facility DRG Charges:  process a single line, parse out into individual fields and store in XTMP
+ N IBDRG,IBSNS,IBDESC,IBRB,IBANC,IBBEG,IBEND,LINE,IBXIFN,IBXTMP S IBXTMP="IBCR RC A"
+ ;
+ S IBDRG=$$P(IBFLINE,1),IBDRG=$$STRIP(IBDRG) Q:IBDRG'?3N  ; DRG
+ S IBDESC=$$P(IBFLINE,2) ; description
+ S IBSNS=$$P(IBFLINE,3),IBSNS=$$STRIP(IBSNS) ; surgery/non-surgery
+ S IBRB=$$P(IBFLINE,4),IBRB=$$STRIP(IBRB) ; room & board
+ S IBANC=$$P(IBFLINE,5),IBANC=$$STRIP(IBANC) ; ancillary
+ S IBBEG=$$P(IBFLINE,6),IBBEG=$$STRIP(IBBEG) ; start date
+ S IBEND=$$P(IBFLINE,7),IBEND=$$STRIP(IBEND) ; end date
+ ;
+ S LINE=IBDRG_U_IBSNS_U_IBRB_U_IBANC_U_IBBEG_U_IBEND S IBXIFN=$$SET(IBFILE,IBXTMP,LINE)
+ ;
+ Q
+ ;
+B ; Inpatient Facility Area Factors:  process a single line, parse out into individual fields and store in XTMP
+ N IBSITE,IBNAME,IBSRB,IBSAN,IBNRB,IBNAN,IBSNF,IBBEG,IBEND,LINE,IBXIFN,IBXTMP S IBXTMP="IBCR RC B"
+ ;
+ S IBSITE=$$P(IBFLINE,1),IBSITE=$$STRIP(IBSITE) Q:IBSITE'?3N.UN  ; site
+ S IBNAME=$$P(IBFLINE,2) ; facility name
+ S IBSRB=$$P(IBFLINE,3),IBSRB=$$STRIP(IBSRB) ; surgical room&board
+ S IBSAN=$$P(IBFLINE,4),IBSAN=$$STRIP(IBSAN) ; surgical ancillary
+ S IBNRB=$$P(IBFLINE,5),IBNRB=$$STRIP(IBNRB) ; non-surgical room&board
+ S IBNAN=$$P(IBFLINE,6),IBNAN=$$STRIP(IBNAN) ; non-surgical ancillary
+ S IBSNF=$$P(IBFLINE,7),IBSNF=$$STRIP(IBSNF) ; skilled nursing
+ S IBBEG=$$P(IBFLINE,8),IBBEG=$$STRIP(IBBEG) ; start date
+ S IBEND=$$P(IBFLINE,9),IBEND=$$STRIP(IBEND) ; end date
+ ;
+ S LINE=IBSITE_U_IBSRB_U_IBSAN_U_IBNRB_U_IBNAN_U_IBSNF_U_IBBEG_U_IBEND
+ S IBXIFN=$$SET(IBFILE,IBXTMP,LINE) D SETSITE(IBXTMP,IBXIFN,IBSITE,IBNAME)
+ ;
+ Q
+ ;
+C ; Outpatient Facility CPT Charges:  process a single line, parse out into individual fields and store in XTMP
+ N IBCPT,IBCHG,IBBEG,IBEND,IBLMT,LINE,IBXIFN,IBXTMP S IBXTMP="IBCR RC C"
+ ;
+ S IBCPT=$$P(IBFLINE,1),IBCPT=$$STRIP(IBCPT) I IBCPT'?5NU Q  ; CPT
+ S IBCHG=$$P(IBFLINE,2),IBCHG=$$STRIP(IBCHG) ; charge
+ S IBBEG=$$P(IBFLINE,3),IBBEG=$$STRIP(IBBEG) ; start date
+ S IBEND=$$P(IBFLINE,4),IBEND=$$STRIP(IBEND) ; end date
+ S IBLMT=$$P(IBFLINE,5),IBLMT=$$STRIP(IBLMT) ; site limited flag
+ ;
+ S LINE=IBCPT_U_IBCHG_U_IBBEG_U_IBEND_U_IBLMT S IBXIFN=$$SET(IBFILE,IBXTMP,LINE)
+ ;
+ Q
+ ;
+D ; Outpatient Facility Area Factors:  process a single line, parse out into individual fields and store in XTMP
+ N IBSITE,IBNAME,IBAF,IBBEG,IBEND,IBZIP,IBLMT,LINE,IBXIFN,IBXTMP S IBXTMP="IBCR RC D"
+ ;
+ S IBSITE=$$P(IBFLINE,1),IBSITE=$$STRIP(IBSITE) Q:IBSITE'?3N.UN  ; site
+ S IBNAME=$$P(IBFLINE,2) ; facility name
+ S IBAF=$$P(IBFLINE,3),IBAF=$$STRIP(IBAF) ; area factor
+ S IBBEG=$$P(IBFLINE,4),IBBEG=$$STRIP(IBBEG) ; start date
+ S IBEND=$$P(IBFLINE,5),IBEND=$$STRIP(IBEND) ; end date
+ S IBZIP=$$P(IBFLINE,6),IBZIP=$$STRIP(IBZIP) ; 3-digit zip
+ S IBLMT=$$P(IBFLINE,7),IBLMT=$$STRIP(IBLMT) ; site limited flag
+ ;
+ S LINE=IBSITE_U_IBAF_U_IBBEG_U_IBEND_U_IBLMT
+ S IBXIFN=$$SET(IBFILE,IBXTMP,LINE) D SETSITE(IBXTMP,IBXIFN,IBSITE,IBNAME,IBZIP)
+ ;
+ Q
+ ;
+E ; Physician CPT Charges:  process a single line, parse out into individual fields and store in XTMP
+ N IBCPT,IBMOD,IBDESC,IBCG,IBWE,IBPE,IBCV,IBBEG,IBEND,LINE,IBXIFN,IBXTMP S IBXTMP="IBCR RC E"
+ ;
+ S IBCPT=$$P(IBFLINE,1),IBCPT=$$STRIP(IBCPT) I IBCPT'?5NU Q  ; CPT
+ S IBMOD="" ;IBMOD=$$P(IBFLINE,2),IBMOD=$$STRIP(IBMOD),IBMOD=$S('IBMOD:"",1:IBMOD) ; modifier
+ S IBDESC=$$P(IBFLINE,3) ; description
+ S IBCG=$$P(IBFLINE,4) ; code group
+ S IBWE=$$P(IBFLINE,5),IBWE=$$STRIP(IBWE) ; work expense
+ S IBPE=$$P(IBFLINE,6),IBPE=$$STRIP(IBPE) ; practice expense
+ S IBCV=$$P(IBFLINE,7),IBCV=$$STRIP(IBCV) ; conversion factor
+ S IBBEG=$$P(IBFLINE,8),IBBEG=$$STRIP(IBBEG) ; start date
+ S IBEND=$$P(IBFLINE,9),IBEND=$$STRIP(IBEND) ; end date
+ ;
+ S LINE=IBCPT_U_IBMOD_U_IBWE_U_IBPE_U_IBCG_U_IBCV_U_IBBEG_U_IBEND S IBXIFN=$$SET(IBFILE,IBXTMP,LINE)
+ ;
+ Q
+ ;
+F ; Physician CPT Charges (A&P):  process a single line, parse out into individual fields and store in XTMP
+ N IBCPT,IBMOD,IBDESC,IBCG,IBCHG,IBBEG,IBEND,LINE,IBXIFN,IBXTMP S IBXTMP="IBCR RC F"
+ ;
+ S IBCPT=$$P(IBFLINE,1),IBCPT=$$STRIP(IBCPT) I IBCPT'?5NU Q  ; CPT
+ S IBMOD="" ;IBMOD=$$P(IBFLINE,2),IBMOD=$$STRIP(IBMOD),IBMOD=$S('IBMOD:"",1:IBMOD) ; modifier
+ S IBDESC=$$P(IBFLINE,3) ; description
+ S IBCG=$$P(IBFLINE,4) ; code group
+ S IBCHG=$$P(IBFLINE,5),IBCHG=$$STRIP(IBCHG) ; average charge
+ S IBBEG=$$P(IBFLINE,6),IBBEG=$$STRIP(IBBEG) ; start date
+ S IBEND=$$P(IBFLINE,7),IBEND=$$STRIP(IBEND) ; end date
+ ;
+ S LINE=IBCPT_U_IBMOD_U_IBCHG_U_IBCG_U_IBBEG_U_IBEND S IBXIFN=$$SET(IBFILE,IBXTMP,LINE)
+ ;
+ Q
+ ;
+G ; Physician CPT Charges (ET):  process a single line, parse out into individual fields and store in XTMP
+ N IBCPT,IBMOD,IBDESC,IBCG,IBTRVU,IBCV,IBBEG,IBEND,LINE,IBXIFN,IBXTMP S IBXTMP="IBCR RC G"
+ ;
+ S IBCPT=$$P(IBFLINE,1),IBCPT=$$STRIP(IBCPT) I IBCPT'?5NU Q  ; CPT
+ S IBMOD="" ;IBMOD=$$P(IBFLINE,2),IBMOD=$$STRIP(IBMOD),IBMOD=$S('IBMOD:"",1:IBMOD) ; modifier
+ S IBDESC=$$P(IBFLINE,3) ; description
+ S IBCG=$$P(IBFLINE,4) ; code group
+ S IBTRVU=$$P(IBFLINE,5),IBTRVU=$$STRIP(IBTRVU) ; total rvu
+ S IBCV=$$P(IBFLINE,6),IBCV=$$STRIP(IBCV) ; conversion factor
+ S IBBEG=$$P(IBFLINE,7),IBBEG=$$STRIP(IBBEG) ; start date
+ S IBEND=$$P(IBFLINE,8),IBEND=$$STRIP(IBEND) ; end date
+ ;
+ S LINE=IBCPT_U_IBMOD_U_IBTRVU_U_IBCG_U_IBCV_U_IBBEG_U_IBEND S IBXIFN=$$SET(IBFILE,IBXTMP,LINE)
+ ;
+ Q
+ ;
+H ; Physician Area Factors:  process a single line, parse out into individual fields and store in XTMP
+ N IBSITE,IBNAME,IBWA,IBWE,IBPE,IBBEG,IBEND,IBZIP,IBX,IBK,LINE,LINE2,IBXIFN,IBXTMP S IBXTMP="IBCR RC H"
+ ;
+ S IBSITE=$$P(IBFLINE,1),IBSITE=$$STRIP(IBSITE) Q:IBSITE'?3N.UN  ; site
+ S IBNAME=$$P(IBFLINE,2) ; facility name
+ S IBWA=$$P(IBFLINE,3),IBWA=$$STRIP(IBWA) ; work adjuster
+ S IBWE=$$P(IBFLINE,4),IBWE=$$STRIP(IBWE) ; work expense
+ S IBPE=$$P(IBFLINE,5),IBPE=$$STRIP(IBPE) ; practice expense
+ S IBBEG=$$P(IBFLINE,30),IBBEG=$$STRIP(IBBEG) ; start date
+ S IBEND=$$P(IBFLINE,31),IBEND=$$STRIP(IBEND) ; end date
+ S IBZIP=$$P(IBFLINE,32),IBZIP=$$STRIP(IBZIP) ; 3-digit zip
+ ;
+ S LINE2="" F IBK=6:1:29 S IBX=$$P(IBFLINE,IBK),IBX=$$STRIP(IBX),LINE2=LINE2_IBX_U
+ ;
+ S LINE=IBSITE_U_IBWA_U_IBWE_U_IBPE_U_IBBEG_U_IBEND
+ S IBXIFN=$$SET(IBFILE,IBXTMP,LINE) D SET1(IBXTMP,IBXIFN,"BC",LINE2),SETSITE(IBXTMP,IBXIFN,IBSITE,IBNAME,IBZIP)
+ ;
+ Q
+ ;
+I ; Physician Unit Area Factors:  process a single line, parse out into individual fields and store in XTMP
+ N IBSITE,IBNAME,IBAF,IBBEG,IBEND,IBZIP,LINE,IBXIFN,IBXTMP S IBXTMP="IBCR RC I"
+ ;
+ S IBSITE=$$P(IBFLINE,1),IBSITE=$$STRIP(IBSITE) Q:IBSITE'?3N.UN  ; site
+ S IBNAME=$$P(IBFLINE,2) ; facility name
+ S IBAF=$$P(IBFLINE,3),IBAF=$$STRIP(IBAF) ; area factor
+ S IBBEG=$$P(IBFLINE,4),IBBEG=$$STRIP(IBBEG) ; start date
+ S IBEND=$$P(IBFLINE,5),IBEND=$$STRIP(IBEND) ; end date
+ S IBZIP=$$P(IBFLINE,6),IBZIP=$$STRIP(IBZIP) ; 3-digit zip
+ ;
+ S LINE=IBSITE_U_IBAF_U_IBBEG_U_IBEND
+ S IBXIFN=$$SET(IBFILE,IBXTMP,LINE) D SETSITE(IBXTMP,IBXIFN,IBSITE,IBNAME,IBZIP)
+ ;
+ Q
+ ;
+SETHDR(IBFILE,IBXRF1) ; set up header for XTMP file
+ ;
+ N IBX S IBX=IBFILE_" RC v"_$G(VERS)_" Host File Upload, "_$P($$HTE^XLFDT($H,2),":",1,2)_" by "_$P($G(^VA(200,+$G(DUZ),0)),U,1)
+ S ^XTMP(IBXRF1,0)=$$FMADD^XLFDT(DT,2)_U_DT_U_IBX_U_0_U_0
+ I IBXRF1="IBCR RC SITE" S ^XTMP(IBXRF1,"VERSION")=$G(VERS),^XTMP(IBXRF1,"VERSION INACTIVE")=$$VERSEDT^IBCRHBRV($G(VERS))
+ Q
+ ;
+SET(IBFILE,IBXRF1,LINE) ; set data parsed from host file to XTMP
+ N IBX,IBK
+ S IBX=$G(^XTMP(IBXRF1,0)) I IBX="" D SETHDR(IBFILE,IBXRF1)
+ S IBK=+$P(IBX,U,5)+1,$P(^XTMP(IBXRF1,0),U,5)=IBK
+ S ^XTMP(IBXRF1,IBK)=LINE
+ Q IBK
+ ;
+SET1(IBXRF1,IBXIFN,IBXRF3,LINE) ; set data parsed from host file to XTMP, second line
+ ;
+ S ^XTMP(IBXRF1,IBXIFN,IBXRF3)=LINE
+ Q
+ ;
+SETSITE(IBXTMP,IBXIFN,SITE,NAME,ZIP) ; set up site file and xref
+ ;
+ N IBX,IBK,IBI,IBXRF1,IBJ I SITE=""!(NAME="") Q
+ S IBXRF1="IBCR RC SITE" S ZIP=$G(ZIP) I ZIP'?3N S ZIP=""
+ S IBX=$G(^XTMP(IBXRF1,0)) I IBX="" D SETHDR("RC SITE LIST",IBXRF1)
+ ;
+ S IBK=0 F  S IBK=$O(^XTMP(IBXRF1,"B",NAME,IBK)) Q:'IBK  S IBX=$G(^XTMP(IBXRF1,IBK)) I $P(IBX,U,1)=SITE Q
+ ;
+ I +IBK,ZIP'="" S IBX=$G(^XTMP(IBXRF1,IBK)) D
+ . I $P(IBX,U,3)'="",$P(IBX,U,3)'=ZIP W !,?10,"SITE ERROR: ",IBX,"--",ZIP S IBK=0 Q
+ . S $P(^XTMP(IBXRF1,IBK),U,3)=ZIP
+ . S IBI="ZC "_ZIP S ^XTMP(IBXRF1,"B",IBI,IBK)=""
+ ;
+ I 'IBK D
+ . S IBK=$P(^XTMP(IBXRF1,0),U,5)+1,$P(^XTMP(IBXRF1,0),U,5)=IBK
+ . S ^XTMP(IBXRF1,IBK)=SITE_U_NAME_U_ZIP
+ . ;
+ . I NAME'="" S IBI=NAME S ^XTMP(IBXRF1,"B",IBI,IBK)=""
+ . I ZIP'="" S IBI="ZC "_ZIP S ^XTMP(IBXRF1,"B",IBI,IBK)=""
+ . I SITE'="" S IBI=SITE_" " S ^XTMP(IBXRF1,"B",IBI,IBK)="",^XTMP(IBXRF1,"C",IBI,IBK)=""
+ ;
+ S ^XTMP(IBXRF1,IBK,IBXTMP)=IBXIFN
+ Q
+ ;
+ ;
+STRIP(IBVAL) ; strip blanks, $, and commas
+ N IBI,IBY,IBX S IBY=""
+ F IBI=1:1:200 S IBX=$E(IBVAL,IBI) Q:IBX=""  I IBX'=" ",IBX'=",",IBX'="$" S IBY=IBY_IBX
+ Q IBY
+ ;
+ ;
+P(LINE,P) ; parse the line and return the piece requested (replaces $P since may be two dilimiters)
+ ; the pieces are delimited by a comma, any piece that includes a comma within the text is surrounded by quotes
+ N I,U1,U2,PC S U1=",",U2="""",PC=""
+ ;
+ F I=1:1:P D
+ . I $E(LINE)=U2 S LINE=$E(LINE,2,9999),PC=$P(LINE,U2,1),LINE=$P(LINE,U2_U1,2,9999) Q
+ . ;
+ . S PC=$P(LINE,U1,1),LINE=$P(LINE,U1,2,9999)
+ ;
+ Q PC

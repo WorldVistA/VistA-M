@@ -1,0 +1,14 @@
+EMBOSSER EQUIPMENT FILE
+ZWR
+^DIC(39.3,0)="EMBOSSER EQUIPMENT FILE^39.3^"
+^DIC(39.3,0,"DD")="@"
+^DIC(39.3,0,"DEL")="@"
+^DIC(39.3,0,"GL")="^DIC(39.3,"
+^DIC(39.3,0,"LAYGO")="@"
+^DIC(39.3,0,"RD")="d"
+^DIC(39.3,0,"WR")="@"
+^DIC(39.3,"%D",0)="^^4^4^2930609^"
+^DIC(39.3,"%D",1,0)="This file stores the devices that are used as embossers.  For each"
+^DIC(39.3,"%D",2,0)="embosser, the type of embosser (data card, addressograph, or plain "
+^DIC(39.3,"%D",3,0)="printer) and usage statistics (number printed and error statistics)"
+^DIC(39.3,"%D",4,0)="are stored in this file."

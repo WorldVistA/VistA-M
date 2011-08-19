@@ -1,0 +1,93 @@
+PSJ0103 ;BIR/JLC - Check for Non-Standard Schedules ;01-MAR-04
+ ;;5.0; INPATIENT MEDICATIONS ;**103**;16 DEC 97
+ ;
+ ;Reference to ^PS(50.606 is supported by DBIA# 2174.
+ ;Reference to ^PS(50.7 is supported by DBIA# 2180.
+ ;Reference to ^PS(51.1 is supported by DBIA# 2177.
+ ;Reference to ^PS(52.6 is supported by DBIA# 1231.
+ ;Reference to ^PS(55 is supported by DBIA# 2191.
+ ;
+ENNV ;
+ I $G(DUZ)="" W !,"Your DUZ is not defined." Q
+ W !,"NUMBER OF DAYS: 365// " R X:DTIME I X="^"!'$T Q
+ I X="" S X=365
+ I X'?1.3N!(X<0)!(X?1.2"?") W:X'?1.2"?" $C(7) W "Must be number, 1-999 days." G ENNV
+ S PSJDAYS=X K ZTSAVE,ZTSK S ZTSAVE("PSJDAYS")="",ZTRTN="ENQN^PSJ0103",ZTDESC="Schedule Search",ZTIO="" D ^%ZTLOAD
+ W !!,"The check of Pharmacy orders is",$S($D(ZTSK):"",1:" NOT")," queued",!
+ I $D(ZTSK) W " (to start NOW).",!!,"YOU WILL RECEIVE A MAILMAN MESSAGE WHEN TASK #"_ZTSK_" HAS COMPLETED."
+ Q
+ENQN ;
+ N PSJBEG,PSJPDFN,PSJORD,PSJSCHD,CREAT,EXPR,OCNT,PSJND0,PSJND2,X,A,S1,S2,OK
+ D NOW^%DTC S CREAT=$E(%,1,7),EXPR=$$FMADD^XLFDT(CREAT,30,0,0,0) K ^XTMP("PSJSC") S PSJSCHD=0
+ F  S PSJSCHD=$O(^PS(51.1,"AC","PSJ",PSJSCHD)) Q:PSJSCHD=""  I $$DANGER(PSJSCHD) S ^XTMP("PSJSC","DAN51.1",PSJSCHD)=""
+ S %H=$H-PSJDAYS D YMD^%DTC S PSJBEG=X F  S PSJBEG=$O(^PS(55,"AUDS",PSJBEG)) Q:PSJBEG=""  S PSJPDFN=0 F  S PSJPDFN=$O(^PS(55,"AUDS",PSJBEG,PSJPDFN)) Q:'PSJPDFN  D
+ . S PSJORD=0 F  S PSJORD=$O(^PS(55,"AUDS",PSJBEG,PSJPDFN,PSJORD)) Q:'PSJORD  D
+ .. S PSJND2=$G(^PS(55,PSJPDFN,5,PSJORD,2)),PSJND0=^(0),PSJSCHD=$P(PSJND2,"^") D
+ ... S ^XTMP("PSJSC","ALL",PSJSCHD)=""
+ ... I $$DANGER(PSJSCHD) S ^XTMP("PSJSC","DAN",PSJSCHD)="" I $P(PSJND0,"^",9)="A" S ^XTMP("PSJSC","DANON",PSJSCHD,PSJPDFN,"UD",PSJORD)=$P(PSJND0,"^",2)_"^"_$P(^PS(55,PSJPDFN,5,PSJORD,.2),"^",1,2)
+ ... I $D(^PS(51.1,"AC","PSJ",PSJSCHD)) Q
+ ... D MISC(PSJSCHD) Q:OK
+ ... S ^XTMP("PSJSC","NSS",PSJSCHD)="" I $P(PSJND0,"^",9)="A" S ^XTMP("PSJSC","NSSON",PSJSCHD,PSJPDFN,"UD",PSJORD)=$P(PSJND0,"^",2)_"^"_$P(^PS(55,PSJPDFN,5,PSJORD,.2),"^",1,2)
+ S %H=$H-PSJDAYS D YMD^%DTC S PSJBEG=X F  S PSJBEG=$O(^PS(55,"AIVS",PSJBEG)) Q:PSJBEG=""  S PSJPDFN=0 F  S PSJPDFN=$O(^PS(55,"AIVS",PSJBEG,PSJPDFN)) Q:'PSJPDFN  D
+ . S PSJORD=0 F  S PSJORD=$O(^PS(55,"AIVS",PSJBEG,PSJPDFN,PSJORD)) Q:'PSJORD  D
+ .. S PSJND0=$G(^PS(55,PSJPDFN,"IV",PSJORD,0)),PSJSCHD=$P(PSJND0,"^",9) I PSJSCHD]"" D
+ ... S ^XTMP("PSJSC","ALL",PSJSCHD)=""
+ ... S ITEM="" S A=$O(^PS(55,PSJPDFN,"IV",PSJORD,"AD",0)) I A S ITEM="A^"_$P(^(A,0),"^")_"^"_$P(^(0),"^",2)
+ ... I ITEM="" S A=$O(^PS(55,PSJPDFN,"IV",PSJORD,"SOL",0)) I A S ITEM="S^"_$P(^(A,0),"^")_"^"_$P(^(0),"^",2)
+ ... I $$DANGER(PSJSCHD) S ^XTMP("PSJSC","DAN",PSJSCHD)="" I $P(PSJND0,"^",17)="A" S ^XTMP("PSJSC","DANON",PSJSCHD,PSJPDFN,"IV",PSJORD)=$P(PSJND0,"^",6)_"^"_ITEM
+ ... I $D(^PS(51.1,"AC","PSJ",PSJSCHD)) Q
+ ... D MISC(PSJSCHD) Q:OK
+ ... S ^XTMP("PSJSC","NSS",PSJSCHD)="" I $P(PSJND0,"^",17)="A" S ^XTMP("PSJSC","NSSON",PSJSCHD,PSJPDFN,"IV",PSJORD)=$P(PSJND0,"^",6)_"^"_ITEM
+ S S1=0 F  S S1=$O(^PS(52.6,S1)) Q:'S1  D
+ . S A=$G(^PS(52.6,S1,0)),PSJSCHD=$P(A,"^",5) Q:PSJSCHD=""
+ . I '$D(^PS(51.1,"AC","PSJ",PSJSCHD)) D MISC(PSJSCHD) I 'OK S ^XTMP("PSJSC","QC","NSS",$P(A,"^"))=""
+ . I $$DANGER(PSJSCHD) S ^XTMP("PSJSC","QC","DAN",$P(A,"^"))=""
+ . S S2=0 F  S S2=$O(^PS(52.6,S1,1,S2)) Q:'S2  D
+ .. S A=$G(^PS(52.6,S1,1,S2,0)),PSJSCHD=$P(A,"^",5) Q:PSJSCHD=""
+ .. I '$D(^PS(51.1,"AC","PSJ",PSJSCHD)) D MISC(PSJSCHD) I 'OK S ^XTMP("PSJSC","QC","NSS",$P(A,"^"))=""
+ .. I $$DANGER(PSJSCHD) S ^XTMP("PSJSC","QC","DAN",$P(A,"^"))=""
+ S S1=0 F  S S1=$O(^PS(53.2,S1)) Q:'S1  D
+ . S S2=0 F  S S2=$O(^PS(53.2,S1,2,S2)) Q:'S2  D
+ .. S A=$G(^PS(53.2,S1,2,S2,0)),PSJSCHD=$P(A,"^",5) Q:PSJSCHD=""
+ .. I '$D(^PS(51.1,"AC","PSJ",PSJSCHD)) D MISC(PSJSCHD) I 'OK S ^XTMP("PSJSC","OS","NSS",$P(^PS(53.2,S1,0),"^"))=""
+ .. I $$DANGER(PSJSCHD) S ^XTMP("PSJSC","OS","DAN",$P(^PS(53.2,S1,0),"^"))=""
+ S S1=0 F  S S1=$O(^PS(50.7,S1)) Q:'S1  D
+ . S A=^PS(50.7,S1,0),PSJSCHD=$P(A,"^",8),PSJDOF=$$GET1^DIQ(50.606,$P(A,"^",2),.01) Q:PSJSCHD=""
+ . I '$D(^PS(51.1,"AC","PSJ",PSJSCHD)) D MISC(PSJSCHD) I 'OK S ^XTMP("PSJSC","OI","NSS",$P(A,"^"))=PSJDOF
+ . I $$DANGER(PSJSCHD) S ^XTMP("PSJSC","OI","DAN",$P(A,"^"))=PSJDOF
+ S:$D(^XTMP("PSJSC")) ^XTMP("PSJSC",0)=EXPR_"^"_CREAT
+ D SENDMSG^PSJA0103
+DONE ;
+ K PSG,X,XMDUZ,XMSUB,XMTEXT,XMY,Y,ZTDESC,ZTDTH,ZTIO,ZTREQ,ZTRTN,ZTSAVE,ZTSK S ZTREQ="@"
+ Q
+DANGER(A) ;
+ N B,C,BAD
+ S B=$TR(A,".",""),BAD=0
+ F I=1:1:$L(B," ") S C=$P(B," ",I) I C="QD"!(C="QOD")!(C="HS")!(C="TIW")!(C="QHS") S BAD=1 Q
+ Q BAD
+MISC(X) ;
+ N A,I,C
+ S OK=1 I X["PRN" D  Q
+ . S C=$L(X," ") F I=1:1:C S A=$P(X," ",I) S:A="PRN" X=$P(X," ",1,I-1) I I<C S X=X_" "_$P(X," ",I+2,99)
+ . I X="" S OK=0 Q
+ . I '$D(^PS(51.1,"AC","PSJ",X)) S OK=0
+ I X?2.4N1"-".E!(X?2.4N) D ENCHK I '$D(X) S OK=0 Q
+ D DW I '$D(X) S OK=0
+ Q
+ENCHK ;
+ I $S($L($P(X,"-"))>4:1,$L(X)>119:1,$L(X)<2:1,X'>0:1,1:X'?.ANP) K X Q
+ S X(1)=$P(X,"-") I X(1)'?2N,X(1)'?4N K X Q
+ S X(1)=$L(X(1)) I X'["-",X>$E(2400,1,X(1)) K X Q
+ F X(2)=2:1:$L(X,"-") S X(3)=$P(X,"-",X(2)) I $S($L(X(3))'=X(1):1,X(3)>$E(2400,1,X(1)):1,1:X(3)'>$P(X,"-",X(2)-1)) K X Q
+ K:$D(X) X(1),X(2),X(3) Q
+ ;
+DW ;
+ S SWD="SUNDAYS^MONDAYS^TUESDAYS^WEDNESDAYS^THURSDAYS^FRIDAYS^SATURDAYS",SDW=X,X=$P(X,"@",2)
+ I X]"" D ENCHK Q:'$D(X)
+ S X=$P(SDW,"@"),X(1)="-" I X?.E1P.E,X'["-" F QX=1:1:$L(X) I $E(X,QX)?1P S X(1)=$E(X,QX) Q
+ F Q=1:1:$L(X,X(1)) K:SWD="" X Q:SWD=""  S Z=$P(X,X(1),Q) D DWC Q:'$D(X)
+ K X(1) S:$D(X) X=SDW Q
+DWC I $L(Z)<2 K X Q
+ F QX=1:1:$L(SWD,"^") S Y=$P(SWD,"^",QX) I $P(Y,Z)="" S SWD=$P(SWD,Y,2) S:$L(SWD) SWD=$E(SWD,2,50) Q
+ E  K X
+ Q

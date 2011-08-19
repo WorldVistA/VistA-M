@@ -1,0 +1,112 @@
+SDWLMR ;;IOFO BAY PINES/TEH - WAIT LIST - DISPOSITION WAIT LIST ENTRY;06/12/2002 ; 20 Aug 2002  2:10 PM
+ ;;5.3;scheduling;**263**;AUG 13 1993
+ ;
+ ;
+ ;******************************************************************
+ ;                             CHANGE LOG
+ ;                                               
+ ;   DATE                        PATCH                   DESCRIPTION
+ ;   ----                        -----                   -----------
+ ;   
+ ;   
+ ;
+ ;
+ ;
+ ;
+EN ;
+ ;OPTION HEADER
+ N SDWLDA,SDWLDFN,SDWLCN,SDWLPS,SDWLY
+ ;
+ D HD
+ ;
+ ;PATIENT LOOK-UP FROM WAIT LIST PATIENT FILE (^SDWL(409.3,IEN,0).
+ ;
+ D PAT G END:'$D(SDWLDA),END:'$D(SDWLDFN)
+ ;
+ ;DISPLAY PATIENT DATA FROM ^SDWL(409.3,IEN,0).
+ ;
+ D DIS
+ ;
+ ;PROMPT USER FOR MEDICAL REVIEW ENTRY
+ ;
+ S SDWLPS=$S(SDWLCN>1:1,SDWLCN=1:2,1:1)
+ I SDWLPS=1 S DIR(0)="FOA^^" S DIR("A")="Select Wait List (1-"_SDWLCN_")? "
+ I SDWLPS=2 S DIR(0)="FOA^^" S DIR("A")="Edit this 'Entry'? 1// "
+ W ! D ^DIR S SDWLY=Y W !
+ I SDWLPS=2,'SDWLY S SDWLY=1
+ I SDWLPS=1!(SDWLPS=2) I SDWLY?1N.N D
+ .;
+ .;CHECK FOR VALID ENTRY
+ .;
+ .I '$D(^TMP("SDWLD",$J,SDWLDFN,+SDWLY)) W !,"Invalid Entry " Q
+ .S SDWLDA=$P($G(^TMP("SDWLD",$J,SDWLDFN,+SDWLY)),"~",2)
+ .;
+ .;LOCK DATA FILE
+ .;
+ .L +^SDWL(409.3,SDWLDA):5 I '$T W !,"Another Terminal is Editting this Entry! Try Later." S DUOUT=1
+ I $D(DUOUT) Q
+ ;
+ ;GET PATIENT DATA FROM ^SDWL(409.3,IEN,0).
+ ;
+ D GETDATA
+ ;
+ ;ADVANCED DISPLAY OF PATIENT FIELDS IN ^SDWL(409.3,IEN,0)
+ ;
+ ;FIELD          DESCRIPTION                                     REQUIRED
+ ;-----          -----------                                     --------
+ ;
+ ;      13               MEDICAL REVIEW COMPLETED
+ ;      14               MEDICAL REVIEW DATE
+ ;      15               MEDICAL REVIEW USER
+ ;
+ D DISP
+ ;
+ ;ENTER DISPOSITION
+ ;
+ D EDIT
+ L -^SDWL(409.3,SDWLDA)
+ ;
+ Q
+PAT ;PATIENT LOOK-UP
+ ;
+ S DIC(0)="AQEMNZ",DIC="^SDWL(409.3,",DIC("A")="ENTER WAIT LIST PATIENT NAME: " D ^DIC
+ G PATEND:Y<0
+ N DFN S (SDWLDFN,DFN)=$P(Y,U,2),SDWLDA=$P(Y,U,1)
+ D 1^VADPT
+PATEND Q
+ ;
+DIS ;DISPLAY DATA FOR PATIENT
+ ;
+ D EN^SDWLD(SDWLDFN,VA("PID"),VADM(1))
+ Q
+GETDATA ;PATIENT DATA RETRIEVAL
+ ;
+ S SDWLDATA=$G(^SDWL(409.3,SDWLDA,0))
+ S SDWLIN=$P(SDWLDATA,U,3),SDWLCL=+$P(SDWLDATA,U,4),SDWLTY=$P(SDWLDATA,U,5),SDWLST=$P(SDWLDATA,U,6)
+ S SDWLSP=$P(SDWLDATA,U,7),SDWLSS=$P(SDWLDATA,U,8),SDWLSC=$P(SDWLDATA,U,9),SDWLPRI=$P(SDWLDATA,U,10),SDWLRB=$P(SDWLDATA,U,11)
+ I SDWLSP'="" S SDWLTYN=SDWLSP
+ I SDWLSS'="" S SDWLTYN=SDWLSS
+ I SDWLSC'="" S SDWLTYN=SDWLSC
+ I SDWLST'="" S SDWLTYN=SDWLST
+ S SDWLPROV=$P(SDWLDATA,U,12),SDWLDAPT=$P(SDWLDATA,U,16),SDWLST=$P(SDWLDATA,U,17),SDWLDUZ=DUZ,SDWLEDT=DT
+ Q
+DISP ;DISPLAY
+ W !,"Wait List: ",$$EXTERNAL^DILFD(409.3,4,,SDWLTY),?40,"Date Entered: ",$$GET1^DIQ(409.3,SDWLDA,14,,,)
+ W !,"Priority: ",$$GET1^DIQ(409.3,SDWLDA,SDWLPRI,,,),?20,"Institution: ",$$GET1^DIQ(409.3,SDWLDA,SDWLIN,,,)
+ W ?40,"Entered By: ",$$GET1^DIQ(409.3,SDWLDA,9,,,)
+ W !,"Requesting Provider: ",$$GET1^DIQ(409.3,SDWLDA,15,,,),?40,"Date Desired: ",$$GET1^DIQ(409.3,SDWLDA,16,,,)
+ Q
+ ;
+EDIT ;ENTER/EDIT DISPOSITION
+ ;
+ S DIE="^SDWL(409.3,",DA=SDWLDA,DR="13Medical Record Documented " D ^DIE
+ S DR="14Date Medical Review Completed " D ^DIE
+ S DR="15Completed By " D ^DIE
+ Q
+ ;
+HD ;HEADER
+ ;
+ W:$D(IOF) @IOF W !!,?80-$L("WAIT LIST - DISPOSITION PATIENT")\2,"WAIT LIST - DISPOSITION PATIENT",!!
+ ;
+END ;QUIT OPTION
+ Q

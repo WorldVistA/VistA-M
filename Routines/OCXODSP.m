@@ -1,0 +1,118 @@
+OCXODSP ;SLC/RJS,CLA -  Rule Display (Expert System Display Main Screen) ;10/29/98  12:37
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+ ;
+S ;
+ ;
+ ;
+EN ;
+ ;
+ N OCXACT,OCXOPT,IOP,OCXOFF
+ ;
+ I '$D(IOM) S IOP="HOME" D ^%ZIS K IOP
+ S OCXOFF=5
+ ;
+ F  K OCXACT S OCXACT="" D DISP(.OCXACT) S OCXOPT=$$GETOPT(.OCXACT) Q:(OCXOPT=U)  X:$L(OCXOPT) OCXOPT
+ ;
+ Q
+ ;
+DISP(OCXACT) ;
+ ;
+ N OCXTHLN,OCXTNLN,OCXTRLN,OCXTULN,OCXTNLN
+ S OCXTNLN=$C(27,91,48,109),OCXTRLN=$C(27,91,55,109),OCXTULN=$C(27,91,52,109),OCXTHLN=$C(27,91,49,109)
+ ;
+ W @IOF,OCXTNLN
+ W !,$$CENTER($$FIELD("Expert System Display"),80),!
+ I $L($T(VERSION^OCXOCMP)) W !,$$CENTER($$FIELD($$VERSION^OCXOCMP),80),!
+ W !
+ W !,"       ",$$OPT("Rule","RULE",.OCXACT),"     ",$$FIELD("Display a Rule")
+ W !
+ W !,"       ",$$OPT("Element","ELEM",.OCXACT),"  ",$$FIELD("Display an Element")
+ W !
+ W !,"       ",$$OPT("Field","DFLD",.OCXACT),"    ",$$FIELD("Display a Data Field")
+ W !!
+ ;
+ Q
+ ;
+CENTER(X,M) ;
+ N SP S SP="",$P(SP," ",80)=" " Q $E(SP,1,((M\2)-($L(X)\2)))_X
+ ;
+SEP(OCXHDR) ;
+ ;
+ N SPACES S SPACES="",$P(SPACES," ",200)=" " Q OCXTNLN_OCXTHLN_OCXTULN_$G(OCXHDR)_SPACES_OCXTNLN
+ ;
+FIELD(OCXHDR) ;
+ ;
+ Q OCXTHLN_$G(OCXHDR)_OCXTNLN
+ ;
+DATA(OCXVAL,OCXLEN) ;
+ ;
+ N SPACES S SPACES="",$P(SPACES," ",OCXLEN+5)=" ",OCXVAL=$G(OCXVAL)
+ I ($L(OCXVAL)>OCXLEN) Q $E(OCXVAL,1,OCXLEN-3)_"..."
+ Q $E((OCXVAL_SPACES),1,OCXLEN)
+ ;
+ ;
+DIC(OCXDIC,OCXDIC0,OCXDICA,OCXX,OCXDICS,OCXDR) ;
+ ;
+ N DIC,X,Y
+ S DIC=$G(OCXDIC) Q:'$L(DIC) -1
+ S DIC(0)=$G(OCXDIC0) S:$L($G(OCXX)) X=OCXX
+ S:$L($G(OCXDICS)) DIC("S")=OCXDICS
+ S:$L($G(OCXDICA)) DIC("A")=OCXDICA
+ S:$L($G(OCXDR)) DIC("DR")=OCXDR
+ D ^DIC Q:(Y<1) 0 Q Y
+ ;
+GETOPT(OCXACT) ;
+ ;
+ N OCXOPT,OCXTHLN,OCXTNLN,OCXTRLN,OCXTULN
+ ;
+ S OCXTNLN=$C(27,91,48,109),OCXTRLN=$C(27,91,55,109),OCXTULN=$C(27,91,52,109),OCXTHLN=$C(27,91,49,109)
+ ;
+ W !!,OCXTHLN,"Option List -> "
+ ;
+ S OCXOPT="" F  S OCXOPT=$O(OCXACT("B",OCXOPT)) Q:'$L(OCXOPT)  D
+ .W:($X>70) !,"                 " W OCXOPT W:$L($O(OCXACT("B",OCXOPT))) ", "
+ ;
+ W !!,OCXTNLN,"Choose an Option: " R OCXOPT:DTIME E  Q U
+ Q:'$L(OCXOPT) U
+ Q:(OCXOPT[U) U
+ ;
+ S OCXOPT=$TR(OCXOPT,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ ;
+ Q:$D(OCXACT(OCXOPT)) OCXACT(OCXOPT)
+ ;
+ I '($E($O(OCXACT(OCXOPT)),1,$L(OCXOPT))=OCXOPT) W !!,"Selection not in list... " H 2 Q ""
+ I ($E($O(OCXACT($O(OCXACT(OCXOPT)))),1,$L(OCXOPT))=OCXOPT) W !!,"Selection is ambiguous and matches more than one option... " H 2 Q ""
+ ;
+ Q OCXACT($O(OCXACT(OCXOPT)))
+ ;
+OPT(OCXSUB,OCXLN,OCXACT) ;
+ ;
+ N OCXSUBC
+ S OCXSUBC=$TR(OCXSUB,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ Q:$D(OCXACT(OCXSUB)) ""
+ S OCXACT("B",OCXSUB)=""
+ S OCXACT(OCXSUBC)="D "_OCXLN
+ Q OCXTHLN_OCXTRLN_" "_OCXSUB_" "_OCXTNLN
+ ;
+RULE ;
+ S OCXD0=+$$DIC("^OCXS(860.2,","AEMQ") Q:'OCXD0
+ K IOP D ^%ZIS Q:POP
+ U IO W ! D EN^OCXODSP1(OCXD0,0,IOM-10) D PAUSE,^%ZISC
+ Q
+ELEM ;
+ S OCXD0=+$$DIC("^OCXS(860.3,","AEMQ") Q:'OCXD0
+ K IOP D ^%ZIS Q:POP
+ U IO W ! D EN^OCXODSP2(OCXD0,0,IOM-10) D PAUSE,^%ZISC
+ Q
+DFLD ;
+ S OCXD0=+$$DIC("^OCXS(860.4,","AEMQ") Q:'OCXD0
+ K IOP D ^%ZIS Q:POP
+ U IO W ! D MULT^OCXODSP3(OCXD0,0,IOM-10) D PAUSE,^%ZISC
+ Q
+ ;
+ ;
+PAUSE I ($E($G(IOST),1)="C") N OCXX W !!," Press <enter> to continue...    " R OCXX:DTIME
+ W @IOF Q
+ ;

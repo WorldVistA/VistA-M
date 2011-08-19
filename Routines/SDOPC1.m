@@ -1,0 +1,7 @@
+SDOPC1 ;ALB/BOK - OPC GENERATION CONT. ;3/13/92  14:33
+ ;;5.3;Scheduling;**5,20,132**;Aug 13, 1993
+ ;
+INPT S SDMT="**",SDINPT=0
+ S X=+$O(^DGPM("APTT1",DFN,$P(SDVD1,"."))) I $P(X,".")=$P(SDVD1,"."),$D(^DGPM(+$O(^(X,0)),0)),$P(^(0),U,25)=1,$D(^DIC(42,+$P(^(0),U,6),0)),$P(^(0),U,3)'="D" S SDINPT=1 Q
+ D DOM^SDOPC4(DFN,SDVD1,.SDMT,.SDEP,.SDINPT) I SDINPT!(SDMT="X0") D INPT^SDOPC0 Q
+ Q

@@ -1,0 +1,129 @@
+AFJXPRE ;FO-OAKLAND/GMB-Pre/Post-init ;10/19/2001  07:29
+ ;;5.1;Network Health Exchange;**30,31**;Jan 23, 1996
+ENTER ;
+ D BMES^XPDUTL("Change Domain fields to point to file 4.2.")
+ I $D(^DD(537000,0,"ID","W8")) D  Q
+ . D BMES^XPDUTL("Already done - we don't need to do it again.")
+ N AXCHANGE,AXLAST10
+ S AXLAST10=$O(^AFJ(537010,99999999999999),-1)
+ D FILE000
+ D FILE025
+ D:$G(AXCHANGE) FILE010
+ D DD000
+ Q
+FILE000 ;
+ D BMES^XPDUTL("File 537000: Change field 8 from free text to point to file 4.2")
+ N AXCNT,AXREF,AXIEN,AXDOM,AXDOMSAV,AXDOMIEN,XPDIDTOT
+ S XPDIDTOT=0
+ D UPDATE^XPDID(0)
+ S XPDIDTOT=$P(^AFJ(537000,0),U,4)
+ D BMES^XPDUTL("Change "_XPDIDTOT_" records...")
+ S (AXREF,AXDOMSAV)="",(AXIEN,AXCNT)=0
+ F  S AXREF=$O(^AFJ(537000,"C",AXREF)) Q:AXREF=""  D
+ . F  S AXIEN=$O(^AFJ(537000,"C",AXREF,AXIEN)) Q:'AXIEN  D
+ . . S AXCNT=AXCNT+1
+ . . I AXCNT#1000=0 D UPDATE^XPDID(AXCNT)
+ . . Q:+AXREF=AXREF
+ . . S AXDOM=$P($G(^AFJ(537000,AXIEN,1)),U)
+ . . I AXDOM="" K ^AFJ(537000,"C",AXREF,AXIEN)
+ . . I AXDOM'=AXDOMSAV D
+ . . . S AXDOMSAV=AXDOM
+ . . . S AXDOMIEN=$$FIND1^DIC(4.2,"","MX",AXDOM,"B^C")
+ . . ; *** What if AXDOMIEN=0? ***
+ . . S DIE="^AFJ(537000,",DA=AXIEN,DR="8////"_AXDOMIEN
+ . . D ^DIE
+ D UPDATE^XPDID(XPDIDTOT)
+ D BMES^XPDUTL(AXCNT_" records in file 537000.")
+ I AXCNT'=$P(^AFJ(537000,0),U,4) D
+ . D MES^XPDUTL("Changing the count in the zero node in file 537000 from "_$P(^AFJ(537000,0),U,4)_" to "_AXCNT_".")
+ . S $P(^AFJ(537000,0),U,4)=AXCNT
+ D BMES^XPDUTL("File 537000: Let's check our work...")
+ S AXREF=":"
+ F  S AXREF=$O(^AFJ(537000,"C",AXREF)) Q:AXREF=""  K ^(AXREF)
+ S XPDIDTOT=0
+ D UPDATE^XPDID(0)
+ S XPDIDTOT=$P(^AFJ(537000,0),U,4)
+ S (AXIEN,AXCNT)=0
+ F  S AXIEN=$O(^AFJ(537000,AXIEN)) Q:'AXIEN  D
+ . S AXCNT=AXCNT+1
+ . I AXCNT#1000=0 D UPDATE^XPDID(AXCNT)
+ . S AXDOM=$P($G(^AFJ(537000,AXIEN,1)),U)
+ . Q:+AXDOM=AXDOM
+ . Q:AXDOM=""
+ . S AXDOMIEN=$$FIND1^DIC(4.2,"","MX",AXDOM,"B^C")
+ . ; *** What if AXDOMIEN=0? ***
+ . S DIE="^AFJ(537000,",DA=AXIEN,DR="8////"_AXDOMIEN
+ . D ^DIE
+ D UPDATE^XPDID(XPDIDTOT)
+ D BMES^XPDUTL(AXCNT_" records in file 537000.")
+ I AXCNT=$P(^AFJ(537000,0),U,4) Q
+ D MES^XPDUTL("Changing the count in the zero node in file 537000 from "_$P(^AFJ(537000,0),U,4)_" to "_AXCNT_".")
+ S $P(^AFJ(537000,0),U,4)=AXCNT
+ Q
+FILE025 ;
+ D BMES^XPDUTL("File 537025: Change field .01 from free text to point to file 4.2")
+ N AXCNT,AXIEN,AXDOM,AXDOMIEN,XPDIDTOT
+ S XPDIDTOT=0
+ D UPDATE^XPDID(0)
+ S XPDIDTOT=$P(^AFJ(537025,0),U,4)
+ D BMES^XPDUTL("Change "_XPDIDTOT_" records...")
+ S (AXIEN,AXCNT)=0
+ F  S AXIEN=$O(^AFJ(537025,AXIEN)) Q:'AXIEN  D
+ . S AXCNT=AXCNT+1
+ . D UPDATE^XPDID(AXCNT)
+ . S AXDOM=$P(^AFJ(537025,AXIEN,0),U)
+ . Q:+AXDOM=AXDOM
+ . S AXCHANGE=1
+ . S AXDOMIEN=$$FIND1^DIC(4.2,"","MX",AXDOM,"B^C")
+ . I AXDOMIEN D  Q
+ . . S AXCHANGE(AXIEN)=AXDOMIEN
+ . . S DIE="^AFJ(537025,",DA=AXIEN,DR=".01////"_AXDOMIEN
+ . . D ^DIE
+ . S AXCNT=AXCNT-1
+ . S DIK="^AFJ(537025,",DA=AXIEN D ^DIK
+ D UPDATE^XPDID(XPDIDTOT)
+ D BMES^XPDUTL(AXCNT_" records in file 537025.")
+ I AXCNT=$P(^AFJ(537025,0),U,4) Q
+ D MES^XPDUTL("Changing the count in the zero node in file 537025 from "_$P(^AFJ(537025,0),U,4)_" to "_AXCNT_".")
+ S $P(^AFJ(537025,0),U,4)=AXCNT
+ Q
+FILE010 ;
+ D BMES^XPDUTL("File 537010: Change field .01 in the 'Records Available At' multiple")
+ D MES^XPDUTL("from pointing to file 537025 to point to file 4.2")
+ N AXCNT,AXPT,AXPTR,AXDOMIEN,XPDIDTOT
+ S XPDIDTOT=0
+ D UPDATE^XPDID(0)
+ S XPDIDTOT=$P(^AFJ(537010,0),U,4)
+ D BMES^XPDUTL("Change "_XPDIDTOT_" records...")
+ S (AXPT,AXCNT)=0
+ F  S AXPT=$O(^AFJ(537010,AXPT)) Q:'AXPT  D
+ . S AXCNT=AXCNT+1
+ . I AXCNT#1000=0 D UPDATE^XPDID(AXCNT)
+ . Q:AXPT>AXLAST10
+ . S AXIEN=0
+ . F  S AXIEN=$O(^AFJ(537010,AXPT,1,AXIEN)) Q:'AXIEN  D
+ . . S AXPTR=+$P($G(^AFJ(537010,AXPT,1,AXIEN,0)),U)
+ . . I $D(AXCHANGE(AXPTR)) D  Q
+ . . . N AXFDA
+ . . . S AXFDA(537010.04,AXIEN_","_AXPT_",",.01)=AXCHANGE(AXPTR)
+ . . . D FILE^DIE("","AXFDA")
+ . . S DA(1)=AXPT,DA=AXIEN
+ . . S DIK="^AFJ(537010,"_AXPT_",1,"
+ . . D ^DIK
+ D UPDATE^XPDID(XPDIDTOT)
+ D BMES^XPDUTL(AXCNT_" records in file 537010.")
+ I AXCNT=$P(^AFJ(537010,0),U,4) Q
+ D MES^XPDUTL("Changing the count in the zero node in file 537010 from "_$P(^AFJ(537010,0),U,4)_" to "_AXCNT_".")
+ S $P(^AFJ(537010,0),U,4)=AXCNT
+ Q
+DD000 ;
+ D BMES^XPDUTL("Change identifiers in file 537000 to write identifiers.")
+ K ^DD(537000,0,"ID",1)
+ K ^DD(537000,0,"ID",3)
+ K ^DD(537000,0,"ID",7)
+ K ^DD(537000,0,"ID",8)
+ S ^DD(537000,0,"ID","W1")="N AX S AX=$P(^(0),U,2) D EN^DDIOL($E(AX,4,5)_""-""_$E(AX,6,7)_""-""_$E(AX,2,3),"""",""?0"")"
+ S ^DD(537000,0,"ID","W3")="D EN^DDIOL($P(^(0),U,4),"""",""?0"")"
+ S ^DD(537000,0,"ID","W7")="D EN^DDIOL($P(^(0),U,8),"""",""?0"")"
+ S ^DD(537000,0,"ID","W8")="D EN^DDIOL($$GET1^DIQ(537000,Y_"","",8),"""",""?0"")"
+ Q

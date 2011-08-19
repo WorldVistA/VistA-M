@@ -1,0 +1,30 @@
+XUCT011 ; GENERATED FROM 'XUSERINQ' PRINT TEMPLATE (#27) ; 12/12/07 ; (continued)
+ G BEGIN
+N W !
+T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
+ S DISTP=DISTP+1,DILCT=DILCT+1 D:'(DISTP#100) CSTP^DIO2
+ Q
+DT I $G(DUZ("LANG"))>1,Y W $$OUT^DIALOGU(Y,"DD") Q
+ I Y W $P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC",U,$E(Y,4,5))_" " W:Y#100 $J(Y#100\1,2)_"," W Y\10000+1700 W:Y#1 "  "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12) Q
+ W Y Q
+M D @DIXX
+ Q
+BEGIN ;
+ S:'$D(DN) DN=1 S DISTP=$G(DISTP),DILCT=$G(DILCT)
+ D N:$X>8 Q:'DN  W ?8 X DXS(28,9.2) S X=$P(DIP(101),U,2) S D0=I(0,0) S D1=I(1,0) K DIP K:DN Y W X
+ S X=$G(^VA(200,D0,"ORD",D1,0)) D N:$X>45 Q:'DN  W ?45 S Y=$P(X,U,2) D DT
+ D N:$X>58 Q:'DN  W ?58 S Y=$P(X,U,3) D DT
+ Q
+B1R ;
+ D T Q:'DN  D N W ?0 S X="CPRS Parameter info (User Specific)",%=$L(X),%1=$X,$P(%2,"-",%)="-" W X,!,?%1,%2 K %1,%2 S X="" K DIP K:DN Y W X
+ W ?11 D GPARAM^XUSER1(D0,"ORWOR WRITE ORDERS LIST",.DIP),SHLIST^XUSER1(.DIP,3,3) K DIP K:DN Y
+ W ?22 D GPARAM^XUSER1(D0,"ORWDX WRITE ORDERS LIST",.DIP),SHLIST^XUSER1(.DIP,3,3) K DIP K:DN Y
+ W ?33 D GPARAM^XUSER1(D0,"OR ADD ORDERS MENU",.DIP),SHLIST^XUSER1(.DIP,3,3) K DIP K:DN Y
+ D T Q:'DN  D N W ?0 W ""
+ W ?2 D CLEAN^DILF K DIP K:DN Y
+ W ?13 S Y=IOSL N IOSL S IOSL=$S(IOST["P-":999,1:Y),Y=D0 D EN^XMA7 K DIP K:DN Y
+ D T Q:'DN  D N W ?0 W ""
+ K Y
+ Q
+HEAD ;
+ W !,"--------------------------------------------------------------------------------",!!

@@ -1,0 +1,48 @@
+PSDUTL2 ;BIR/JPW-Utility FM and X-Refs (cont'd) ; 6 Sept 92
+ ;;3.0; CONTROLLED SUBSTANCES ;;13 Feb 97
+SAG ;sets 'AG' xref in file 58.81 (field 11)
+ S PSDNL=+$P(^PSD(58.81,DA,0),"^",18) I 'PSDNL K PSDNL Q
+ S ^PSD(58.81,"AG",X,PSDNL,DA)="" K PSDNL
+ Q
+KAG ;kills 'AG' x-ref in file 58.81 (field 11)
+ S PSDNL=+$P(^PSD(58.81,DA,0),"^",18) I 'PSDNL K PSDNL Q
+ K ^PSD(58.81,"AG",X,PSDNL,DA),PSDNL
+ Q
+SAG1 ;set 'AG' x-ref on field 17 in 58.81
+ S PSDOST=+$P(^PSD(58.81,DA,0),"^",12) I 'PSDOST K PSDOST Q
+ S ^PSD(58.81,"AG",PSDOST,X,DA)="" K PSDOST
+ Q
+KAG1 ;kill 'AG' x-ref on field 17 in 58.81
+ S PSDOST=+$P(^PSD(58.81,DA,0),"^",12) I 'PSDOST K PSDOST Q
+ K ^PSD(58.81,"AG",PSDOST,X,DA),PSDOST
+ Q
+SAC ;set 'AC' x-ref on field 1 in 58.87
+ S PSDNL=+$P(^PSD(58.87,DA,0),"^",13) I 'PSDNL K PSDNL Q
+ S PSDTYPE=+$P(^PSD(58.87,DA,0),"^",12) I 'PSDTYPE K PSDTYPE Q
+ S ^PSD(58.87,"AC",PSDTYPE,PSDNL,X,DA)="" K PSDNL,PSDTYPE
+ Q
+KAC ;kill 'AC' x-ref on field 1 in 58.87
+ S PSDNL=+$P(^PSD(58.87,DA,0),"^",13),PSDTYPE=+$P(^(0),"^",12)
+ I 'PSDNL!('PSDTYPE) K PSDNL,PSDTYPE Q
+ K ^PSD(58.87,"AC",PSDTYPE,PSDNL,X,DA),PSDNL,PSDTYPE
+ Q
+SAC1 ;set 'AC' x-ref on field 11 in 58.87
+ S PSDNL=+$P(^PSD(58.87,DA,0),"^",13),PSDDAT=+$P(^(0),"^",2)
+ I 'PSDNL!('PSDDAT) K PSDNL,PSDDAT Q
+ S ^PSD(58.87,"AC",X,PSDNL,PSDDAT,DA)="" K PSDNL,PSDDAT
+ Q
+KAC1 ;kill 'AC' x-ref on field 11 in 58.87
+ S PSDNL=+$P(^PSD(58.87,DA,0),"^",13),PSDDAT=+$P(^(0),"^",2)
+ I 'PSDNL!('PSDDAT) K PSDNL,PSDDAT Q
+ K ^PSD(58.87,"AC",X,PSDNL,PSDDAT,DA),PSDNL,PSDDAT
+ Q
+SAC2 ;set 'AC' x-ref on field 12 in 58.87
+ S PSDTYPE=+$P(^PSD(58.87,DA,0),"^",12),PSDDAT=+$P(^(0),"^",2)
+ I 'PSDTYPE!('PSDDAT) K PSDTYPE,PSDDAT Q
+ S ^PSD(58.87,"AC",PSDTYPE,X,PSDDAT,DA)="" K PSDTYPE,PSDDAT
+ Q
+KAC2 ;kill 'AC' x-ref on field 12 in 58.87
+ S PSDTYPE=+$P(^PSD(58.87,DA,0),"^",12),PSDDAT=+$P(^(0),"^",2)
+ I 'PSDTYPE!('PSDDAT) K PSDTYPE,PSDDAT Q
+ K ^PSD(58.87,"AC",PSDTYPE,X,PSDDAT,DA),PSDTYPE,PSDDAT
+ Q

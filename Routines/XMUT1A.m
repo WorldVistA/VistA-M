@@ -1,0 +1,67 @@
+XMUT1A ;(WASH ISC)/CAP-Recover msgs for a user (cont.) ;04/17/2002  11:50
+ ;;8.0;MailMan;;Jun 28, 2002
+ ; Entry points used by MailMan options (not covered by DBIA):
+ ; DEL      XMUT-REC-DELETE
+ ; LIST     XMUT-REC-RPT
+NOKL G FX:$D(^DOPT("XMUT1",1)) S DIK="^DOPT(""XMUT1"","
+GO S ^DOPT("XMUT1",0)="Recover Messages Function^1N^"
+ F I=1:1 S X=$E($T(TABLE+I),4,99) Q:X=""  S ^DOPT("XMUT1",I,0)=X
+ D IXALL^DIK
+FX S DIC="^DOPT(""XMUT1"",",DIC(0)="AEQZ" D ^DIC K DIC Q:Y<0
+ S X=$P(Y(0),U,2,99) K DD,DO,Y D @X
+ D ^%ZISC
+ W ! K DIE,DIF G FX
+TABLE ;;;DESCRIPTION^PROGRAM OR TAG^PROGRAM
+ ;;FIND MESSAGES FOR USER^A^XMUT1
+ ;;LIST MESSAGES IN USER'S BASKETS^M^XMUT1
+ ;;LOAD MESSAGES INTO IN-BASKET^G^XMUT1
+ ;;LIST MESSAGES FOUND^LIST^XMUT1A
+ ;;DELETE LIST OF RECOVERED MESSAGES FROM THE UTILITY GLOBAL^DEL^XMUT1A
+ ;;
+LIST ;LIST MESSAGES FOUND
+ N J,C,F,I,X,XME0
+ S (J,C,F)="" W !!,"CHOOSE FROM:",!
+ F I=0:0 S I=$O(^TMP("XMUT1",I)) Q:'I  I $D(^VA(200,I,0)) W !,$J(I,8),"   ",$$NAME^XMXUTIL(I) I 'J S J=I
+ I 'J G NO
+L W !!,"WHICH ONE: ",J,"//" R X:DTIME I X="" S X=J
+ Q:"^"[$E(X)  I X="?" D H1 G L
+ I X="??" G LIST
+ I '$D(^TMP("XMUT1",X)) D H1 G LIST
+ S XME0=X,ZTSAVE("XME0")=""
+ D EN^XUTMDEVQ("ZTSK^XMUT1A","MailMan List Messages Found (XMUT-REC-RPT)",.ZTSAVE)
+ Q
+ZTSK ;
+ D NOW^%DTC S Y=%,XMF0=^DD("DD") K %,%I,%H X XMF0
+ S XMC0=0,XMB0=0 S XMA0=$$NAME^XMXUTIL(XME0)_" - "_Y D H
+N S XMC0=$O(^TMP("XMUT1",XME0,XMC0)) G NQ:'XMC0
+ S I=$G(^XMB(3.9,XMC0,0))
+ I I="" W !!,"Message removed from list - no longer in 3.9 file.",! K ^TMP("XMUT1",XME0,XMC0) G N
+ S XMD0=XMD0+1,Y=$P(I,"^",3) I Y?7N!(Y?7N1"."1N.N) X XMF0
+ W !?2,Y,?22,$P(I,"^")
+ G N:IOSL-6>XMD0 I $E(IOST,1,2)'="C-" D H G N
+ I '$D(ZTQUEUED) U IO(0) K DIR S DIR(0)="E" D ^DIR K DIR,DIRUT G NQ:X["^" U IO
+ D H G N
+H S XMB0=XMB0+1,XMD0=5
+ W @IOF,!,"CONTENTS OF MAILBOXES FOR ",XMA0,?60,"PAGE: ",XMB0,!!
+ W "  DATE@TIME",?22,"SUBJECT",!!
+ Q
+NQ K XMA0,XMB0,XMD0,XMC0,XME0,XMF0
+ I $D(ZTQUEUED) W @IOF K ZTSK S ZTREQ="@" Q
+ D ^%ZISC
+ Q
+ ;
+DEL ;DELETE LIST FROM ^TMP("XMUT1"...
+ S (J,C,F)="" W !!,"CHOOSE FROM:",!
+ F I=0:0 S I=$O(^TMP("XMUT1",I)) Q:'I  I $D(^VA(200,I,0)) W !,$J(I,8),"   ",$$NAME^XMXUTIL(I) I 'J S J=I
+ I 'J G NO
+D W !!,"WHICH ONE ",J,"//" R X:DTIME I X="" S X=J
+ Q:"^"[$E(X)  I X="?" D H1 G D
+ I X="??" D H1 G DEL
+ I '$D(^TMP("XMUT1",X)) D H1 G DEL
+ S XME0=X,XMB0=$G(^VA(200,XME0,0))
+ I XMB0="" W !,"  NO SUCH USER !!!",$C(7) G DQ
+ S DIR(0)="Y",DIR("B")="NO",DIR("A")="DO YOU MEAN '"_$$NAME^XMXUTIL(XME0)_"' "
+ D ^DIR K DIR,DIRUT Q:"^"[X!("yY"'[X)
+DQ K ^TMP("XMUT1",XME0) W "  << DELETED !!!" K XME0 Q
+H1 W !!,"Choose NUMBER from list.  Or enter '??' for a list.",!,$C(7) Q
+NO W !!!,"NO MESSAGES RECOVERED FOR ANYBODY !!!" Q

@@ -1,0 +1,116 @@
+ENFAR9 ;WIRMFO/SAB-FAP DOCUMENT HISTORY OF EQUIPMENT ;7.21.97
+ ;;7.0;ENGINEERING;**29,39**;AUG 17, 1993
+ ;
+EN ; entry
+ ; ask equipment
+ D GETEQ^ENUTL G:Y'>0 EXIT
+ S ENDA("EQ")=+Y
+ ; ask detailed
+ S DIR(0)="Y",DIR("A")="Include transaction details",DIR("B")="YES"
+ D ^DIR K DIR G:$D(DIRUT) EXIT
+ S ENDETAIL=+Y
+ ; ask device
+ S %ZIS="QM" D ^%ZIS G:POP EXIT
+ I $D(IO("Q")) D  G EN
+ . S ZTRTN="QEN^ENFAR9",ZTDESC="FAP Document History of Equipment"
+ . S ZTSAVE("ENDA(""EQ"")")="",ZTSAVE("ENDETAIL")=""
+ . D ^%ZTLOAD,HOME^%ZIS K ZTSK
+QEN ; queued entry
+ U IO
+ ; find FAP documents
+ K ENDOC
+ S ENVALFA=0,ENVALFB=0
+ S (END,ENPG)=0 D NOW^%DTC S Y=% D DD^%DT S ENDTR=Y
+ D HD
+ F ENFILE=6915.2:.1:6915.6 D
+ . S ENDA("F?")=0
+ . F  S ENDA("F?")=$O(^ENG(ENFILE,"B",ENDA("EQ"),ENDA("F?"))) Q:'ENDA("F?")  D
+ . . S ENDT=$$GET1^DIQ(ENFILE,ENDA("F?"),1,"I")
+ . . S:ENDT ENDOC(ENDT,ENFILE,ENDA("F?"))=""
+ I '$D(ENDOC) W !!,"  NO FAP DOCUMENTS FOUND"
+ I $D(ENDOC) D
+ . ; load FA Type -> SGL table
+ . K ENFATT S I=0 F  S I=$O(^ENG(6914.3,I)) Q:'I  S X=^(I,0) I $P(X,U)]"",$P(X,U,3)]"" S ENFATT($P(X,U,3))=$P(X,U)
+ . I ENDETAIL D  ; for calls to ENFARC2
+ . . S ENTAG("HD")="HD^ENFAR9"
+ . . S ENTAG("HDC")="HDC^ENFAR9"
+ . . S ENTAG("FT")="FT^ENFAR9"
+ . ; print data
+ . S ENDT="" F  S ENDT=$O(ENDOC(ENDT)) Q:ENDT=""  D  Q:END
+ . . S ENFILE="" F  S ENFILE=$O(ENDOC(ENDT,ENFILE)) Q:ENFILE=""  D  Q:END
+ . . . S ENDA("F?")=$O(ENDOC(ENDT,ENFILE,0))
+ . . . D @("DOC"_$P(ENFILE,".",2))
+ . . . I 'ENDETAIL,$Y+6>IOSL D FT,HD Q:END
+ . . . I ENDETAIL,$Y+11>IOSL D FT,HD Q:END
+ . . . W !,ENTRC,?6,ENTRN,?16,$TR($$FMTE^XLFDT(ENDT,"2DF")," ",0),?26,ENSN
+ . . . W:ENFAT]"" ?33,$G(ENFATT(ENFAT))
+ . . . W:ENVAL]"" ?38,$J("$"_$FN(ENVAL,",",2),14)
+ . . . W ?54,$E($P($$GET1^DIQ(ENFILE,ENDA("F?"),1.5),","),1,10)
+ . . . W ?65,$J("$"_$FN(ENVALFA+ENVALFB,",",2),14)
+ . . . I ENDETAIL W:ENFILE'[".6" ! D @("F"_$P(ENFILE,".",2)_"^ENFARC2") W !
+ I 'END D FT
+ D ^%ZISC
+ I $E(IOST,1,2)="C-" W ! G EN
+EXIT I $D(ZTQUEUED) S ZTREQ="@"
+ K END,ENDA,ENDETAIL,ENDOC,ENDT,ENDTR,ENFAT,ENFATT,ENFILE
+ K ENPG,ENSN,ENTAG,ENTRC,ENTRN,ENVAL,ENVALFA,ENVALFB,I,X,Y
+ Q
+HD ; header
+ I $E(IOST,1,2)="C-",ENPG S DIR(0)="E" D ^DIR K DIR I 'Y S END=1 Q
+ I $E(IOST,1,2)="C-"!ENPG W @IOF S $X=0
+ S ENPG=ENPG+1
+ W "FAP DOCUMENT HISTORY FOR EQUIPMENT",?49,ENDTR,?72,"page ",ENPG
+ W !,"  ENTRY #: ",ENDA("EQ")
+ W "   CURRENT VALUE: $",$FN($$GET1^DIQ(6914,ENDA("EQ"),12),",",2)
+ W !!,"TRANSACTION",?26,"STA",?33,"SGL",?38,"DOCUMENT VALUE",?54,"SENDER",?65,"ASSET VALUE"
+ W !,"CODE*",?6,"NUMBER",?16,"DATE",?26,"NBR",?65,"AFTER DOCUMENT"
+ W !,"-----",?6,"---------",?16,"--------",?26,"-----",?33,"----"
+ W ?38,"--------------",?54,"----------",?65,"--------------"
+ Q
+HDC ; header for continued transaction
+ W !,?5,"Transaction: ",$E(ENTRC,1,2),"-",ENTRN," (continued)"
+ Q
+FT ; footer
+ W !!," * Betterment # follows FB and FC. T (Turn-In) or D (Final Disp.) follows FD."
+ Q
+DOC2 ; FA document
+ S ENTRC="FA 00"
+ S ENTRN=$E($$GET1^DIQ(ENFILE,ENDA("F?"),10),1,9)
+ S ENSN=$E($$GET1^DIQ(ENFILE,ENDA("F?"),24),1,5)
+ S ENFAT=$$GET1^DIQ(ENFILE,ENDA("F?"),25)
+ S ENVAL=$$GET1^DIQ(ENFILE,ENDA("F?"),53)
+ S ENVALFA=ENVAL,ENVALFB=0
+ S ENDA("FA")=ENDA("F?")
+ Q
+DOC3 ; FB document
+ S ENTRC="FB "_$$GET1^DIQ(ENFILE,ENDA("F?"),23)
+ S ENTRN=$E($$GET1^DIQ(ENFILE,ENDA("F?"),10),1,9)
+ S ENSN=$E($$GET1^DIQ(ENFILE,ENDA("F?"),21),1,5)
+ S ENFAT=$$GET1^DIQ(ENFILE,ENDA("F?"),22)
+ S ENVAL=$$GET1^DIQ(ENFILE,ENDA("F?"),36)
+ S ENVALFB=ENVALFB+ENVAL
+ Q
+DOC4 ; FC document
+ S ENTRC="FC "_$$GET1^DIQ(ENFILE,ENDA("F?"),27)
+ S ENTRN=$E($$GET1^DIQ(ENFILE,ENDA("F?"),10),1,9)
+ S ENSN=$E($$GET1^DIQ(ENFILE,ENDA("F?"),25),1,5)
+ S ENFAT=$$GET1^DIQ(ENFILE,ENDA("F?"),26)
+ S ENVAL=$$GET1^DIQ(ENFILE,ENDA("F?"),54)
+ I ENTRC["00",ENVAL]"" S ENVALFA=ENVAL
+ I ENTRC'["00",ENVAL]"" S ENVALFB=ENVALFB+(ENVAL-$$GET1^DIQ(ENFILE,ENDA("F?"),103))
+ Q
+DOC5 ; FD document
+ S ENTRC="FD "_$$GET1^DIQ(ENFILE,ENDA("F?"),100,"I")
+ S ENTRN=$E($$GET1^DIQ(ENFILE,ENDA("F?"),10),1,9)
+ S ENSN=$E($$GET1^DIQ(ENFILE,ENDA("F?"),27),1,5)
+ S ENFAT=$$GET1^DIQ(ENFILE,ENDA("F?"),28)
+ S ENVAL=""
+ Q
+DOC6 ; FR document
+ S ENTRC="FR"
+ S ENTRN=$E($$GET1^DIQ(ENFILE,ENDA("F?"),10),1,9)
+ S ENSN=$E($$GET1^DIQ(ENFILE,ENDA("F?"),24),1,5)
+ S ENFAT=$$GET1^DIQ(ENFILE,ENDA("F?"),25)
+ S ENVAL=""
+ Q
+ ;ENFAR9

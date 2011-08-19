@@ -1,0 +1,47 @@
+MCARPAL ;WISC/TJK-PACEMAKER ACTIVE PATIENT LIST ;5/7/96  13:35
+ ;;2.3;Medicine;**16**;09/13/1996
+ W @IOF,!!,"ACTIVE PATIENT LIST"
+ W !! F I=1:1:80 W "*"
+ W !,"*",?37,"NOTICE",?79,"*"
+ W !,"*",?79,"*",!,"*",?10,"This report has been set up to print with a line length of 132",?79,"*",!,"*",?10,"characters. Select a device that uses a 132 character line length.",?79,"*"
+ W !,"*",?79,"*",! F I=1:1:80 W "*"
+ W !!,"<RETURN> to continue " R X:DTIME G EXIT:'$T,EXIT:X=U
+ K IO("Q") S %ZIS="QM" D ^%ZIS G EXIT:POP
+ I $D(IO("Q")) K IO("Q") S ZTRTN="CALC^MCARPAL",ZTDESC="PACEMAKER ACTIVE PATIENT LIST" D ^%ZTLOAD K ZTSK G EXIT
+ U IO
+CALC K ^TMP($J) S DFN=""
+CALC1 S DFN=$O(^MCAR(698,"C",DFN)) G PRINT:DFN=""
+ S MCAREG="" S:$D(^MCAR(690,DFN,"P2")) MCAREG=$P(^("P2"),U) G CALC1:'MCAREG
+ G CALC1:(MCAREG=2)!(MCAREG=3)!(MCAREG=5)!(MCAREG=6)!(MCAREG=8)
+ D DEM^VADPT S MCARNM=VADM(1),DOB=$P(VADM(3),U,2),SSN=VADM(2)
+ F DIC=698,698.1,698.2 S:DIC'=698.2 CT=0 S MCARCD=$S(DIC=698:"G",1:"L") D LEAD
+ S ^TMP($J,MCARNM,0)=MCAREG_U_DOB_U_SSN G CALC1
+PRINT S PG=0,LN="-------------------------------------" D HEAD S MCARNM=""
+PRINT1 S MCARNM=$O(^TMP($J,MCARNM)) G EXIT:MCARNM="" S X=^(MCARNM,0)
+ S A="" I $Y>(IOSL-3) R:IOST'?1"P-".E !,"<RETURN> to Continue",A:DTIME G EXIT:A=U D HEAD
+ W !!,MCARNM S Y=$P(X,U,3) W !,$E(Y,1,3),"-",$E(Y,4,5),"-",$E(Y,6,9)
+ W ?17 S Y=$P(X,U,2) W Y
+ S Y=$P(X,U) W ?29,$S(Y=1:"EAST PSC FOLLOW-UP",Y=4:"REGISTRY ONLY",Y=7:"WEST PSC FOLLOW-UP",1:"")
+ S A="" F I=1:1 Q:'$D(^TMP($J,MCARNM,"G",I))&('$D(^TMP($J,MCARNM,"L",I)))  D PR I $Y>(IOSL-3) R:IOST'?1"P-".E !,"<RETURN> to Continue",A:DTIME Q:A=U  D HEAD
+ G EXIT:A=U,PRINT1
+EXIT ;
+ I IOST'?1"P-".E R !!,"PRESS RETURN TO CONTINUE",X:DTIME
+ K A,CT,DFN,DIC,DOB,I,LN,MCARCD,MCAREG,MCARNM,PG,POP,SSN,X,Y,Z,VA,VADM
+ W:IOST?1"P-".E @IOF D ^%ZISC Q
+LEAD F I=0:0 S I=$O(^MCAR(DIC,"C",DFN,I)) Q:I=""  S CT=CT+1,Y=^MCAR(DIC,I,0),^TMP($J,MCARNM,MCARCD,CT)=$P(Y,U,1)_U_$P(Y,U,3)_U_$P(Y,U,4)_U_$P(Y,U,5)_$S(MCARCD="G":"",1:U_DIC)
+ Q
+PR W:I>1 !
+ I $D(^TMP($J,MCARNM,"G",I)) S X=^(I),Y=$P(X,U,1) W ?51,$E(Y,4,5),"/",$E(Y,6,7),"/",$E(Y,2,3) D MANUF W ?60,Y,?64,Z,?77,$P(X,U,4)
+ I $D(^TMP($J,MCARNM,"L",I)) S X=^(I),Y=$P(X,U,1) W ?90,$S($P(X,U,5)=698.1:"V: ",1:"A: "),$E(Y,4,5),"/",$E(Y,6,7),"/",$E(Y,2,3) D MANUF W ?102,Y,?106,Z,?119,$P(X,U,4)
+ Q
+MANUF S Y=$P(X,U,3) I Y,$D(^MCAR(698.6,Y,0)) S Y=$P(^(0),U,2)
+ S Z=$P(X,U,2) I Z,$D(^MCAR(698.4,Z,0)) S Z=$P(^(0),U)
+ Q
+HEAD S PG=PG+1 W @IOF,!!,?47,"VETERANS ADMINISTRATION MEDICAL CENTER",?120,"Pg.",PG
+ ;W !,?132-$L(^DD("SITE"))/2,^DD("SITE")
+ W !,?132-$L($$GET1^DIQ(4.3,1,217))/2,$$GET1^DIQ(4.3,1,217)
+ W !,?52,"PACEMAKER ACTIVE PATIENT LIST"
+ W !!,"PATIENT",?51,"GENERATOR IMPLANT DATA",?93,"V AND A LEAD IMPLANT DATA"
+ W !,"SSN",?17,"DOB",?29,"STATUS",?51,"DATE",?60,"MFR MODEL",?77,"SER. NO.",?93,"DATE",?102,"MFR MODEL",?119,"SER. NO."
+ W !,?51,LN,?93,LN
+ Q

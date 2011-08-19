@@ -1,0 +1,96 @@
+PSS50P66 ;BIR/LDT - API FOR INFORMATION FROM FILE 50.606; 5 Sep 03
+ ;;1.0;PHARMACY DATA MANAGEMENT;**85**;9/30/97
+ ;
+ALL(PSSIEN,PSSFT,PSSFL,LIST) ;
+ ;PSSIEN - IEN of entry in DOSAGE FORM file (#50.606).
+ ;PSSFT - Free Text name in DOSAGE FORM file (#50.606).
+ ;PSSFL - Inactive flag - "" - All entries.
+ ;        FileMan Date - Only entries with no Inactive Date or an Inactive Date greater than this date.
+ ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where
+ ;       Field Number is the Field Number of the data piece being returned.
+ ;Returns NAME field (#.01), VERB field (#3), PREPOSITION field (#5), INACTIVE DATE field (#7),
+ ;MED ROUTE FOR DOSAGE FORM multiple (#50.6061), MED ROUTE FOR DOSAGE FORM field (#.01), and NOUN multiple (#50.6066),
+ ;NOUN field (#.01) of DOSAGE FORM file (#50.606).
+ N DIERR,ZZERR,PSS,CNT,CNT1,SCR
+ I $G(LIST)']"" Q
+ K ^TMP($J,LIST)
+ I $G(PSSIEN)']"",($G(PSSFT)']"") S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ I $G(PSSIEN)]"",+$G(PSSIEN)'>0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ S SCR("S")=""
+ I +$G(PSSFL)>0 N ND D SETSCRN
+ I +$G(PSSIEN)>0 N PSSIEN2 S PSSIEN2=$$FIND1^DIC(50.606,"","X","`"_PSSIEN,,SCR("S"),"") D
+ .I +PSSIEN2'>0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ .S ^TMP($J,LIST,0)=1
+ .D GETS^DIQ(50.606,+PSSIEN2,".01;3;5;7;1*;6*","IE","^TMP($J,""PSS50P66""") S PSS(1)=0 D
+ ..F  S PSS(1)=$O(^TMP($J,"PSS50P66",50.606,PSS(1))) Q:'PSS(1)  D SETZRO
+ ..S (CNT,PSS(2))=0 F  S PSS(2)=$O(^TMP($J,"PSS50P66",50.6061,PSS(2))) Q:'PSS(2)  D SETMRDF S CNT=CNT+1
+ ..S ^TMP($J,LIST,+PSSIEN,"MRDSFRM",0)=$S($G(CNT)>0:CNT,1:"-1^NO DATA FOUND")
+ ..S (CNT1,PSS(3))=0 F  S PSS(3)=$O(^TMP($J,"PSS50P66",50.6066,PSS(3))) Q:'PSS(3)  D SETNOUN S CNT1=CNT1+1
+ ..S ^TMP($J,LIST,+PSSIEN,"NOUN",0)=$S($G(CNT1)>0:CNT1,1:"-1^NO DATA FOUND")
+ I $G(PSSIEN)="",$G(PSSFT)]"" D
+ .I PSSFT["??" D LOOP Q
+ .D FIND^DIC(50.606,,"@;.01","QP",PSSFT,,"B",SCR("S"),,"")
+ .I +$G(^TMP("DILIST",$J,0))=0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ .I +^TMP("DILIST",$J,0)>0 S ^TMP($J,LIST,0)=+^TMP("DILIST",$J,0) N PSSXX S PSSXX=0 F  S PSSXX=$O(^TMP("DILIST",$J,PSSXX)) Q:'PSSXX  D
+ ..S PSSIEN=+^TMP("DILIST",$J,PSSXX,0) K ^TMP($J,"PSS50P66") D GETS^DIQ(50.606,+PSSIEN,".01;3;5;7;1*;6*","IE","^TMP($J,""PSS50P66""") S PSS(1)=0
+ ..F  S PSS(1)=$O(^TMP($J,"PSS50P66",50.606,PSS(1))) Q:'PSS(1)  D SETZRO
+ ..S (CNT,PSS(2))=0 F  S PSS(2)=$O(^TMP($J,"PSS50P66",50.6061,PSS(2))) Q:'PSS(2)  D SETMRDF S CNT=CNT+1
+ ..S ^TMP($J,LIST,+PSSIEN,"MRDSFRM",0)=$S($G(CNT)>0:CNT,1:"-1^NO DATA FOUND")
+ ..S (CNT1,PSS(3))=0 F  S PSS(3)=$O(^TMP($J,"PSS50P66",50.6066,PSS(3))) Q:'PSS(3)  D SETNOUN S CNT1=CNT1+1
+ ..S ^TMP($J,LIST,+PSSIEN,"NOUN",0)=$S($G(CNT1)>0:CNT1,1:"-1^NO DATA FOUND")
+ K ^TMP("DILIST",$J),^TMP($J,"PSS50P66")
+ Q
+ ;
+ADD(PSSIEN,PSSMR) ;
+ ;PSSIEN - IEN of entry in DOSAGE FORM file (#50.606).
+ ;PSSMR - IEN of entry in MEDICATION ROUTES file (#51.2).
+ ;0 (zero)is returned if ADD was unsuccessful.  1 (one) will indicate successful ADD.
+ ;Adding new entry to MED ROUTE FOR DOSAGE FORM multiple (#50.6061) of the DOSAGE FORM file (#50.606).
+ I (+$G(PSSIEN)'>0),(+$G(PSSMR)'>0) Q 0
+ N PSS,QFLG
+ N PSSIEN2 S PSSIEN2=$$FIND1^DIC(51.2,"","A","`"_PSSMR,,,"")
+ I +PSSIEN2'>0 Q 0
+ N PSSIEN3 S PSSIEN3=$$FIND1^DIC(50.606,"","A","`"_PSSIEN,,,"")
+ I +PSSIEN3'>0 Q 0
+ D LIST^DIC(50.6061,","_PSSIEN_",","@;.01IE","P",,,,,,,)
+ I +^TMP("DILIST",$J,0)'>0 D
+ .S PSS(1,50.6061,"+2,"_PSSIEN_",",.01)=$G(PSSMR)
+ I +^TMP("DILIST",$J,0)>0 S (QFLG,PSS)=0 F  S PSS=$O(^TMP("DILIST",$J,PSS)) Q:'PSS  Q:QFLG  D
+ .I $P($G(^TMP("DILIST",$J,PSS,0)),"^",2)=PSSMR S QFLG=1 Q
+ .S PSS(1,50.6061,"+2,"_PSSIEN_",",.01)=$G(PSSMR)
+ I $G(QFLG) Q 0
+ D UPDATE^DIE("","PSS(1)") Q 1
+ Q
+ ;
+SETZRO ;
+ S ^TMP($J,LIST,+PSS(1),.01)=$G(^TMP($J,"PSS50P66",50.606,PSS(1),.01,"I"))
+ S ^TMP($J,LIST,"B",$G(^TMP($J,"PSS50P66",50.606,PSS(1),.01,"I")),+PSS(1))=""
+ S ^TMP($J,LIST,+PSS(1),3)=$G(^TMP($J,"PSS50P66",50.606,PSS(1),3,"I"))
+ S ^TMP($J,LIST,+PSS(1),5)=$G(^TMP($J,"PSS50P66",50.606,PSS(1),5,"I"))
+ S ^TMP($J,LIST,+PSS(1),7)=$S($G(^TMP($J,"PSS50P66",50.606,PSS(1),7,"I"))="":"",1:^TMP($J,"PSS50P66",50.606,PSS(1),7,"I")_"^"_^TMP($J,"PSS50P66",50.606,PSS(1),7,"E"))
+ Q
+SETMRDF ;
+ S ^TMP($J,LIST,+PSSIEN,"MRDSFRM",+PSS(2),.01)=$S($G(^TMP($J,"PSS50P66",50.6061,PSS(2),.01,"I"))="":"",1:^TMP($J,"PSS50P66",50.6061,PSS(2),.01,"I")_"^"_^TMP($J,"PSS50P66",50.6061,PSS(2),.01,"E"))
+ Q
+ ;
+SETNOUN ;
+ S ^TMP($J,LIST,+PSSIEN,"NOUN",+PSS(3),.01)=$S($G(^TMP($J,"PSS50P66",50.6066,PSS(3),.01,"I"))="":"",1:^TMP($J,"PSS50P66",50.6066,PSS(3),.01,"I"))
+ Q
+ ;
+LOOP ;
+ N PSSIEN,CNT2,CNT1
+ S (CNT2,PSSIEN)=0 F  S PSSIEN=$O(^PS(50.606,PSSIEN)) Q:'PSSIEN  D
+ .I +$G(PSSFL)>0,$P($G(^PS(50.606,PSSIEN,0)),"^",2)]"",$P($G(^(0)),"^",2)'>PSSFL Q
+ .K ^TMP($J,"PSS50P66") D GETS^DIQ(50.606,+PSSIEN,".01;3;5;7;1*;6*","IE","^TMP($J,""PSS50P66""") S PSS(1)=0 D
+ ..F  S PSS(1)=$O(^TMP($J,"PSS50P66",50.606,PSS(1))) Q:'PSS(1)  D SETZRO S CNT2=CNT2+1
+ ..S (CNT,PSS(2))=0 F  S PSS(2)=$O(^TMP($J,"PSS50P66",50.6061,PSS(2))) Q:'PSS(2)  D SETMRDF S CNT=CNT+1
+ ..S (CNT1,PSS(3))=0 F  S PSS(3)=$O(^TMP($J,"PSS50P66",50.6066,PSS(3))) Q:'PSS(3)  D SETNOUN S CNT1=CNT1+1
+ ..S ^TMP($J,LIST,+PSSIEN,"MRDSFRM",0)=$S($G(CNT)>0:CNT,1:"-1^NO DATA FOUND")
+ ..S ^TMP($J,LIST,0)=$S($G(CNT2)>0:CNT2,1:"-1^NO DATA FOUND")
+ ..S ^TMP($J,LIST,+PSSIEN,"NOUN",0)=$S($G(CNT1)>0:CNT1,1:"-1^NO DATA FOUND")
+ K ^TMP($J,"PSS50P66")
+ Q
+ ;
+SETSCRN ;
+ S SCR("S")="S ND=$P($G(^PS(50.606,+Y,0)),""^"",2) I ND=""""!(ND>PSSFL)"
+ Q

@@ -1,0 +1,20 @@
+XTRUTL2 ;ISCSF/RWF - SEED THE ROUTINE FILE ;1/15/97  09:33
+ ;;1;;**20**
+ Q
+SEED ;
+ ;N BUILD K ^UTILITY($J)
+ S BUILD=$$BUILD^XTRUTL1 Q:BUILD'>0  W !,BUILD S BUILD=+BUILD
+ D RTN^XTRUTL1(BUILD) ;Build List
+ W !,"Working on list",!
+ S RN=""
+ F  S RN=$O(^UTILITY($J,RN)) Q:RN=""  D SE2
+ W !,"Done",!
+ Q
+SE2 ;
+ S IEN=$$RFLK(RN) Q:IEN'>0
+ S X=^DIC(9.8,IEN,0) Q:$P(X,U,6)>MAX
+ W $J(RN,10) W:$X>70 !
+ D UD1^XTRUTL(RN)
+ Q
+RFLK(X) ;
+ Q $O(^DIC(9.8,"B",X,0))

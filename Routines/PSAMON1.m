@@ -1,0 +1,47 @@
+PSAMON1 ;BIR/LTL,JMB-Monthly Summary - CONT'D;9/11/97
+ ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;; 10/24/97
+ ;This routine allows the user to print a report per pharmacy location
+ ;of the drug, beginning balance, ending balance, total received, total
+ ;dispensed, and total adjustments. Specific or all drugs can be selected
+ ;for the report. The report can be sent to the screen and printer.
+ ;
+PRINT ;Prints totals report
+ S (PSAGADJ,PSAGDISP,PSAGREC,PSAGTF,PSAPG)=0 D HEADER
+ S PSADRUG="" F  S PSADRUG=$O(^TMP("PSAG",$J,PSADRUG)) Q:PSADRUG=""!(PSAOUT)  D  Q:PSAOUT
+ .D:$Y+4>IOSL HEADER Q:PSAOUT
+ .S PSANODE=^TMP("PSAG",$J,PSADRUG),PSAGREC=PSAGREC+$P(PSANODE,"^"),PSAGDISP=PSAGDISP+$P(PSANODE,"^",2),PSAGADJ=PSAGADJ+$P(PSANODE,"^",3),PSAGTF=PSAGTF+$P(PSANODE,"^",4)
+ .D WRAPDRG
+ .W ?36,$J($P(PSANODE,"^"),6,0),?49,$J($P(PSANODE,"^",2),6,0),?60,$J($P(PSANODE,"^",3),6,0),?73,$J($P(PSANODE,"^",4),6,0),!
+ .W:$O(^TMP("PSAG",$J,PSADRUG))'="" PSASLN W:$O(^TMP("PSAG",$J,PSADRUG))="" PSADLN
+ I 'PSAOUT D:$Y+4>IOSL HEADER Q:PSAOUT  W !,"GRAND TOTAL",?36,$J(PSAGREC,6,0),?49,$J(PSAGDISP,6,0),?60,$J(PSAGADJ,6,0),?73,$J(PSAGTF,6,0),!,PSADLN,!
+ ;
+END I $E($G(IOST))="C",'$G(PSAOUT) D
+ .S PSAS=22-$Y F PSASS=1:1:PSAS W !
+ .S DIR(0)="EA",DIR("A")="END OF REPORT!  Press <RET> to return to the menu." D ^DIR K DIR I $G(DIRUT) S PSAOUT=1
+ W @IOF
+ Q
+ ;
+HEADER ;prints header info
+ I $E(IOST,1,2)="C-",PSAPG D  Q:PSAOUT
+ .S PSAS=22-$Y F PSASS=1:1:PSAS W !
+ .S DIR(0)="E" D ^DIR K DIR I $G(DIRUT) S PSAOUT=1
+ I $$S^%ZTLOAD W !!,"Task #",$G(ZTSK),", ",$G(ZTDESC)," was stopped by ",$P($G(^VA(200,+$G(DUZ),0)),U),"." S PSAOUT=1 Q
+ I $E(IOST,1,2)="C-" W @IOF
+ I $E(IOST)'="C",PSAPG W @IOF
+ S PSAPG=PSAPG+1 W:$E(IOST)'="C" !,PSARPDT W:$E(IOST,1,2)="C-" !
+ W ?20,"DRUG ACCOUNTABILITY/INVENTORY INTERFACE",?71,"PAGE: ",PSAPG
+ W !?19,"MONTHLY SUMMARY TOTALS REPORT FOR "_PSAMONN
+ F PSAPC=1:1 S PSAPICK=+$P(PSASEL,",",PSAPC) Q:'PSAPICK  D
+ .S PSALOCN="" F  S PSALOCN=$O(PSAMENU(PSAPICK,PSALOCN)) Q:PSALOCN=""!(PSAOUT)  S PSALOC=0 F  S PSALOC=$O(PSAMENU(PSAPICK,PSALOCN,PSALOC)) Q:'PSALOC!(PSAOUT)  D
+ ..W:$L(PSALOCN)>79 !!,$P(PSALOCN,"(IP)",1)_"(IP)",!?17,$P(PSALOCN,"(IP)",2) W:$L(PSALOCN)<80 !?((80-$L(PSALOCN))/2),PSALOCN
+ W !!?36,"TOTAL",?48,"TOTAL",?60,"TOTAL",?72,"TOTAL"
+ W !,"DRUG",?34,"RECEIVED",?46,"DISPENSED",?58,"ADJUSTED",?69,"TRANSFERRED",!,PSADLN
+ Q
+ ;
+WRAPDRG ;Wraps the drug name if it is longer than 34 characters
+ I $L(PSADRUG)<36 W !,PSADRUG Q
+ S PSAPC1="" F PSAPCS=1:1 S PSAPC=$P(PSADRUG," ",PSAPCS) Q:PSAPC=""  D
+ .I $L(PSAPC1)+$L(PSAPC)+1<36 S PSAPC1=PSAPC1_PSAPC_" " Q
+ .I $L(PSAPC1)+$L(PSAPC)+1>35 W !,PSAPC1 S PSAPC1=PSAPC_" "
+ W:$L(PSAPC1) !?4,PSAPC1
+ Q

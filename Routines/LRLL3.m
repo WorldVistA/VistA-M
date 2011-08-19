@@ -1,0 +1,19 @@
+LRLL3 ;SLC/RWF - LOAD LIST BUILD UTILITY ;2/5/91  14:34 ;
+ ;;5.2;LAB SERVICE;;Sep 27, 1994
+PROF ;from LRLL, LRLL1
+ K ^TMP($J),LRCTRL,LRDSPEC,LRTP
+ S LRAA=$P(^LRO(68.2,LRINST,10,LRPROF,0),U,2)
+ S LRAD=$S($D(^LRO(68,LRAA,0)):$P(^(0),U,3),1:"") Q:LRAD=""  S LRAD=$S(LRAD="Y":$E(DT,1,3)_"0000","D"[LRAD:DT,"M"[LRAD:$E(DT,1,5)_"00","Q"[LRAD:$E(DT,1,3)_"0000"+(($E(DT,4,5)-1)\3*300+100),1:DT)
+ S I=0 F  S I=$O(^LRO(68.2,LRINST,10,LRPROF,1,I)) Q:I<1  S LRTP(+^(I,0))=$P(^(0),U,2)
+ S T=0 F  S T=$O(^LRO(68.2,LRINST,10,LRPROF,2,T)) Q:T<1  S C=0 F  S C=$O(^LRO(68.2,LRINST,10,LRPROF,2,T,1,C)) Q:C<1  S LRCT=^(C,0) D CTRLTST S LRCTRL(T,C)=X
+ F I=0:0 S I=$O(^LRO(68.2,LRINST,10,LRPROF,3,I)) Q:I<1  S LRDSPEC(+^(I,0))=""
+ Q
+CTRLTST ;from LRLL1, LRLL2
+ S X=LRCT_U,J=0 F  S J=$O(^LAB(62.3,LRCT,2,J)) Q:J<1  S Y=+^(J,0) S:$D(^LRO(68.2,LRINST,10,LRPROF,1,"B",+Y)) X=X_+Y_U
+ I '$P(X,U,2) W !,"CONTROL ",$P(^LAB(62.3,+X,0),U,1)," HAS NO TEST FOR THIS PROFILE."
+ Q
+CLEAR ;from LRLL
+ W !,"WANT TO UNLOAD THE ",$S(LRTYPE:"LOAD",1:"WORK")," LIST FIRST" S %=2 D YN^DICN W:%=0 !,"If you're not sure, we'll skip it." W:%=-1 !,"Nothing cleared." S DUOUT=(%=-1) Q:%'=1
+ D CLEAR^LRLLS3 S (LAST,^LRO(68.2,LRINST,2))=DT_"^1^1^0^0"
+ I LRTYPE W !,"Do you want to delete all unverified ",$P(^LRO(68.2,LRINST,0),"^",1)," instrument data" S %=2 D YN^DICN S DUOUT=(%=-1) Q:%'=1  K ^LAH(LRINST)
+ Q

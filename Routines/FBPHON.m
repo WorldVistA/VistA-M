@@ -1,0 +1,53 @@
+FBPHON ;AISC/CMR-LIST PAYMENTS ;5/13/1999
+ ;;3.5;FEE BASIS;**4,69**;JAN 30, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ S DIR(0)="P^161.2:EMZ" D ^DIR K DIR Q:$D(DIRUT)  S FBV=+Y
+ S DIR(0)="P^161:EMZ",DIR("A")="Payments for veteran" D ^DIR K DIR I $D(DIRUT) G FBPHON
+ S DFN=+Y
+ Q
+START S U="^"
+ K ^TMP($J,"FBPHON"),^TMP("FBPHON",$J),^TMP("FBPHIDX",$J)
+ I '$G(DFN)!('$G(FBV)) S VALMQUIT="" Q
+ D GATHER^FBPHON1(DFN,FBV)
+ I '$D(^TMP($J,"FBPHON")),'$G(FBCP) W !!,*7,"There are no payments to this vendor for this patient." S DIR(0)="E" D ^DIR S VALMQUIT=1 G END ;FBCP set only if changing pt
+OUTPUT ;
+ S (FBLINE,FBENTRY)=0,FBAADT="" F  S FBAADT=$O(^TMP($J,"FBPHON",FBAADT)) Q:'FBAADT  S FBI=0 F  S FBI=$O(^TMP($J,"FBPHON",FBAADT,FBI)) Q:'FBI  S FBX=^(FBI) D
+ .S FBBDT=$P($P(FBX,U,2),"-"),FBEDT=$P($P(FBX,U,2),"-",2)
+ .S FB1=$P(FBX,U,9) D FBCKI^FBAACCB1(FB1):$P(FBX,U)["C",FBCKP^FBAACCB1(+FB1,$P(FB1,",",2)):$P(FBX,U)="PHAR",FBCKO^FBAACCB2(+FB1,$P(FB1,",",2),$P(FB1,",",3),$P(FB1,",",4)):$P(FBX,U)="OPT"
+ .S FBLINE=FBLINE+1,FBENTRY=FBENTRY+1,FBFL=$P(FBX,U,10),FBFL=FBFL_$S($G(FBCAN)]"":"+",1:"")
+ .S FBTEXT=$S($L(FBENTRY)=1:" "_FBENTRY,1:FBENTRY)_FBFL,FBTEXT=$$SETSTR^VALM1($$DATE(FBBDT)_$S($G(FBEDT):" - "_$$DATE(FBEDT),1:""),FBTEXT,6,19)
+ .S FBTEXT=$$SETSTR^VALM1($S($P(FBX,U)="OPT":"CPT: ",$P(FBX,U)="PHAR":"RX # ",1:""),FBTEXT,25,5),FBTEXT=$$SETSTR^VALM1($P(FBX,U,3),FBTEXT,30,8)
+ .I $P($P(FBX,U,3),",",2)]"" S FBTEXT=$$SETSTR^VALM1("&",FBTEXT,38,1)
+ .S FBTEXT=$$SETSTR^VALM1($J($FN($P(FBX,U,4),",",2),10),FBTEXT,40,10),FBTEXT=$$SETSTR^VALM1($J($FN($P(FBX,U,5),",",2),10),FBTEXT,51,10),FBTEXT=$$SETSTR^VALM1($P(FBX,U,6),FBTEXT,62,6)
+ .S FBTEXT=$$SETSTR^VALM1($J($P(FBX,U,7),7)_"  "_$S($G(^FBAA(161.7,+$P(FBX,U,8),0)):$J(+^(0),5),1:""),FBTEXT,66,15)
+ .S ^TMP("FBPHON",$J,FBLINE,0)=FBTEXT K FBTEXT
+ .D IDX S ^TMP("FBPHIDX",$J,FBENTRY)=FBX_"^"_$G(FBCK)
+ .S A2=$P(FBX,U,5) D PMNT
+ .K FBBDT,FBEDT,FB1,FBX,A2,^TMP($J,"FBPHON",FBAADT,FBI)
+ S VALMCNT=FBLINE,VALMBG=1
+END ;
+ K FBAAOUT,FBX,FBBDT,FBEDT,FBI,FBAADT,FBFL,FBLINE,FBENTRY,^TMP($J,"FBPHON")
+ Q
+HDR S VALMHDR(1)="VENDOR: "_$$VNAME^FBNHEXP(FBV),VALMHDR(1)=$$SETSTR^VALM1("Patient Name: "_$$NAME^FBCHREQ2(DFN),VALMHDR(1),40,40)
+ S VALMHDR(2)="    ID: "_$$VID^FBNHEXP(FBV),VALMHDR(2)=$$SETSTR^VALM1("SSN: "_$$SSN^FBAAUTL(DFN),VALMHDR(2),49,31)
+ S VALMHDR(3)="'*' Reimb. to Patient  '+' Cancel Activity  '#' Voided Payment  '&' Addnl Codes"
+ Q
+DATE(J) ;external date format
+ Q $S('$D(J):"",1:$E(J,4,5)_"/"_$E(J,6,7)_"/"_$E(J,2,3))
+ ;
+PMNT ;sets ^TMP with payment information if it exists
+ I $G(FBCK)]"" S FBLINE=FBLINE+1,^TMP("FBPHON",$J,FBLINE,0)="      >>>Check # "_FBCK I $G(FBCKDT) S ^(0)=^(0)_"  Date Paid:  "_$$DATX^FBAAUTL(FBCKDT)_$S(FBCKINT>0:"  Interest: "_$FN(FBCKINT,",",2),1:"")_"<<<" D IDX D
+ .I FBDIS-FBCKINT'=+A2 S FBLINE=FBLINE+1,^TMP("FBPHON",$J,FBLINE,0)="      >>>Amount paid altered to $ "_$FN((FBDIS-FBCKINT),",",2)_" on the Fee Payment Voucher document.<<<" D IDX
+ I $G(FBCANDT)>0 S FBLINE=FBLINE+1,^TMP("FBPHON",$J,FBLINE,0)="      >>>Check cancelled on: "_$$DATX^FBAAUTL(FBCANDT)_"   Reason:  "_$P($G(^FB(162.95,+FBCANR,0)),"^")_"<<<" D IDX D
+ .S FBLINE=FBLINE+1,^TMP("FBPHON",$J,FBLINE,0)=$$SETSTR^VALM1($S(FBCAN="R":"Check WILL be replaced.",FBCAN="C":"Check WILL be re-issued.",FBCAN="X":"Check WILL NOT be replaced.",1:""),"",10,70) D IDX
+ K FBCAN,FBCK,FBCKDT,FBCANDT,FBCANR,FBCKINT,FBDIS,FBCKIN
+ Q
+IDX ;sets IDX node
+ S ^TMP("FBPHON",$J,"IDX",FBLINE,FBENTRY)=""
+ Q
+EXIT ;
+ K ^TMP("FBPHON",$J),^TMP("FBPHIDX",$J),VALMY,^TMP("VALMIDX",$J)
+ Q
+HLP ;help text
+ S X="?" D DISP^XQORM1 W !!
+ Q

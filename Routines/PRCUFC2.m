@@ -1,0 +1,43 @@
+PRCUFC2 ;WISC/SJG-CONVERSION ROUTINE TO PROCESS OBLIGATIONS ;4/27/94  11:30
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+ QUIT
+ ; No top level entry
+ ; Special Fund Control Point = 2
+SUPPO ; Entry point for Original Entry Supply Fund Conversion Documents
+ S PRCFA("MOD")="E^0^Original Entry"
+ S PRCFA("IDES")="Supply Fund Conversion Original Entry"
+ D DET^PRCUFCU1,RECD^PRCUFCU1,CALC^PRCUFCU1,SUPP
+ Q
+SUPPM ; Entry point for Modification Entry Supply Fund Conversion Documents
+ S PRCFA("MOD")="M^1^Modification Entry"
+ S PRCFA("IDES")="Supply Fund Conversion Modification Entry"
+ D DET^PRCUFCU1,RECD^PRCUFCU1,CALC^PRCUFCU1
+ I PRCFCHG("BOC","TOT")=0 S FATAL=1 Q
+ F PRCFA="VEND","FOB","DEL","DELSCH","PPT" S PRCFA(PRCFA)=1
+ D SUPP
+ Q
+SUPP ; Processing common for all Supply Fund documents
+ F PRCFA="VEND","FOB","DEL","DELSCH","PPT" S PRCFA(PRCFA)=1
+ S PO(0)=ND(0),PO=LOOP,PRCFA("PODA")=+LOOP
+ S PRCFA("BBFY")=$$BBFY^PRCFFU5(PO)
+ S IDFLAG="I"
+ S PARAM1="^"_PRC("SITE")_"^"_PRC("CP")_"^"_PRC("FY")_"^"_PRCFA("BBFY")
+SUPP1 D DOCREQ^PRC0C(PARAM1,"SPE","PRCFMO")
+ S PRCFMO("G/N")=$P(PRCFMO,U,12)
+ S PRCFA("REF")=$P(PO(0),U),PRCFA("SYS")="FMS"
+ S PRCFA("SFC")=$P(PO(0),U,19),PRCFA("MP")=$P(PO(0),U,2)
+ S PRCFA("TT")=$S(PRCFA("MP")=2:"SO",PRCFA("MP")=1:"MO",PRCFA("MP")=8:"MO",1:"MO")
+SUPP2 D NOW^%DTC S PRCFA("OBLDATE")=X
+ S MOD=$P(PRCFA("MOD"),U,2) D STACK^PRCUFCE(MOD)
+ K ^TMP($J,"PRCMO")
+ N FMSINT S FMSINT=+PO,FMSMOD=$P(PRCFA("MOD"),U,1)
+ D NEW^PRCUFCA(FMSINT,PRCFA("TT"),FMSMOD)
+ N LOOP S LOOP=0 F  S LOOP=$O(^TMP($J,"PRCMO",GECSFMS("DA"),LOOP)) Q:'LOOP  D SETCS^GECSSTAA(GECSFMS("DA"),^(LOOP))
+ K ^TMP($J,"PRCMO")
+SUPP3 D SETSTAT^GECSSTAA(GECSFMS("DA"),"Q")
+ ;I '$D(POESIG) I $D(PRCFA("PODA")),+PRCFA("PODA")>0 S POESIG=1
+ D SETPARAM^GECSSDCT(GECSFMS("DA"),+PO)
+ N FMSDOCT S FMSDOCT=$P(PRCFA("REF"),"-",2) D EN7^PRCFFU41(PRCFA("TT"),FMSMOD,PRCFA("OBLDATE"),FMSDOCT)
+ QUIT

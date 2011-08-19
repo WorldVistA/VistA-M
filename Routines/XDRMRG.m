@@ -1,0 +1,119 @@
+XDRMRG ;IHS/OHPRD/JCM - MERGE DUPLICATE RECORDS ;02/10/95  11:15
+ ;;7.3;TOOLKIT;;Apr 25, 1995
+START ;
+ D INIT
+ D:XDRM("PRE-MERGE")]"" @XDRM("PRE-MERGE")
+ G:XDRMRG("QFLG") END
+ D @$S('$D(XDRM("DINUMS")):"SINGLE",1:"MULTI")
+ G:XDRMRG("QFLG") END
+ I XDRM("POST-MERGE")]"" W:'$D(XDRM("NOTALK")) !!,"I will now do any post merge action that needs to occur, this may take some time please be patient." D @XDRM("POST-MERGE")
+ I XDRM("POST-MERGE")']"",$P(XDRM(0),U,26) D DELETE
+ D STATUS
+END D EOJ
+ Q
+ ;
+INIT ;
+ F XDRI="XDRMRGFR","XDRMRGTO" K ^TMP(XDRI,$J)
+ S %X=XDRGL_XDRMRG("FR")_",",%Y="^TMP(""XDRMRGFR"",$J,"_XDRMRG("FR")_"," D %XY^%RCR
+ S %X=XDRGL_XDRMRG("TO")_",",%Y="^TMP(""XDRMRGTO"",$J,"_XDRMRG("TO")_"," D %XY^%RCR
+ K %X,%Y
+ S (XDRQFLG,XDRMRG("QFLG"))=0
+ I $D(XDRM("AUTO")),'$D(XDRM("NOTALK")) S (XDRM("NOTALK"),XDRM("NON-INTERACTIVE"))=""
+ I '$D(XDRM("DINUMS")),$O(^VA(15.1,XDRFL,12,0)) F XDRI=0:0 S XDRI=$O(^(XDRI)) Q:'XDRI  S XDRM("DINUMS",XDRI)=""
+ K XDRI
+ Q
+ ;
+SINGLE ;
+ S XDRMRGFL=XDRFL,XDRMRGL=XDRGL
+ I '$D(XDRM("NON-INTERACTIVE")) K DITM D DITM2 G:XDRMRG("QFLG") SINGLEX I 1
+ E  D DIT0
+ D PACKAGE
+ D DITMGMRG
+SINGLEX Q
+ ;
+MULTI ;
+ S XDRMRGFL=XDRFL,XDRMRGL=XDRGL
+ I '$D(XDRM("NON-INTERACTIVE")) K DITM D DITM2 G:XDRMRG("QFLG") MULTIX I 1
+ E  D DIT0
+ F XDRMRGFL=0:0 S XDRMRGFL=$O(XDRM("DINUMS",XDRMRGFL)) Q:'XDRMRGFL!(XDRMRG("QFLG"))  S XDRMRGL=^DIC(XDRMRGFL,0,"GL") D @$S('$D(XDRM("NON-INTERACTIVE")):"DITM2",1:"DIT0")
+ G:XDRMRG("QFLG") MULTIX
+ S XDRMRGFL=XDRFL,XDRMRGL=XDRGL
+ D PACKAGE
+ F XDRI=0:0 S XDRI=$O(XDRM("DINUMS",XDRI)) Q:'XDRI  S DITMGMRG("EXCLUDE",XDRI)=""
+ K XDRI
+ D DITMGMRG
+ F XDRMRGFL=0:0 S XDRMRGFL=$O(XDRM("DINUMS",XDRMRGFL)) Q:'XDRMRGFL  S XDRMRGL=^DIC(XDRMRGFL,0,"GL") D DITMGMRG
+MULTIX Q
+ ;
+DITM2 ;
+ S:XDRMRGFL'=XDRFL X="DITM2^XDRMRG1",@^%ZOSF("TRAP") K X
+ S:$D(XDRM("NOTALK")) DITM("NOTALK")=""
+ S:'$D(DITM("NOTALK")) DITM("DDSP")=""
+ S DITM("DIMERGE")=1
+ S DITM("DFF")=XDRMRGFL,DITM("DIC")=XDRMRGL
+ S DITM("DIT(1)")=XDRMRG("FR"),DITM("DIT(2)")=XDRMRG("TO"),DITM("DDEF")=2
+ S DITM("PACKAGE")="",DITM("EXCLUDE",15)="",IOP=IO(0)
+ W:'$D(XDRM("NOTALK")) !!,"I will now merge the ",$P(^DIC(XDRMRGFL,0),U,1)," file, this may take some time please be patient."
+ D ^DITM2 K DITM,IOP
+ D:$D(DIRUT)!($D(DMSG))!($D(DUOUT)) ASK
+ K DIRUT,DMSG
+ Q
+ ;
+ASK ;
+ W !!
+ S DIR(0)="YO",DIR("A")="Do you wish to continue MERGING these records",DIR("B")="N"
+ D ^DIR
+ I $D(DTOUT)!($D(DUOUT)) S XDRMRG("QFLG")=1 G ASKX
+ S:'Y XDRMRG("QFLG")=1
+ASKX K DIR,DA,Y
+ Q
+ ;
+DIT0 ;
+ S:XDRMRGFL'=XDRFL X="DIT0^XDRMRG1",@^%ZOSF("TRAP") K X
+ W:'$D(XDRM("NOTALK")) !!,"I will now merge the ",$P(^DIC(XDRMRGFL,0),U,1)," file, this may take some time please be patient."
+ K DA
+ S (DIT("T"),DIT("F"))=XDRMRGL
+ S (D0,DA("T"))=XDRMRG("TO"),DA("F")=XDRMRG("FR")
+ D EN^DIT0 K D0,DA,DIC,DIK,DIT
+ Q
+ ;
+PACKAGE ;
+ F XDRMPKGE=0:0 S XDRMPKGE=$O(^VA(15,XDRMPDA,11,XDRMPKGE)) Q:'XDRMPKGE  D:$P(^VA(15,XDRMPDA,11,XDRMPKGE,0),U,2)=1 MERGE
+ K XDRMPKGE
+ Q
+ ;
+MERGE ;
+ S X="MERGE^XDRMRG1",@^%ZOSF("TRAP") K X
+ W:'$D(XDRM("NOTALK")) !!,"I will now merge all files associated with the ",$P(^DIC(9.4,XDRMPKGE,0),U,1)," package."
+ W:'$D(XDRM("NOTALK")) !,"This may take some time, Please be patient."
+ I $D(^DIC(9.4,XDRMPKGE,20,XDRFL,0))#2,$P(^(0),U,3)]"" S XDRMRG("PKGMRG")=U_$P(^(0),U,3) D @XDRMRG("PKGMRG")
+ W:'$D(XDRM("NOTALK")) !!,"Completed merging all files associated with the ",$P(^DIC(9.4,XDRMPKGE,0),U,1)," package."
+ Q
+DITMGMRG ;
+ S X="DITMGMRG^XDRMRG1",@^%ZOSF("TRAP") K X
+ W:'$D(XDRM("NOTALK")) !!,"I will now merge all files that point to the ",$P(^DIC(XDRMRGFL,0),U,1)," file that do not have a specific package merge ... This may take some time, please be patient."
+ S DITMGMRG("FILE")=XDRMRGFL,DITMGMRG("FR")=XDRMRG("FR"),DITMGMRG("TO")=XDRMRG("TO")
+ S DITMGMRG("EXCLUDE",15)="",DITMGMRG("PACKAGE")=""
+ S:$D(XDRM("NOTALK")) DITMGMRG("NOTALK")=""
+ S:$G(XDRM("TOP FILE")) DITMGMRG("TOP FILE")=XDRM("TOP FILE")
+ D EN^DITMGMRG K DITMGMRG
+ Q
+ ;
+DELETE ;
+ W:'$D(XDRM("NOTALK")) !!,"I will now delete the From Record from the ",$P(^DIC(XDRFL,0),U,1)," file and any files that   were excluded from the repointing. This may take some time, please be patient."
+ K XDRMRGFL,XDRMRGL
+ I $D(XDRM("DINUMS")) F XDRMRGFL=0:0 S XDRMRGFL=$O(XDRM("DINUMS",XDRMRGFL)) Q:'XDRMRGFL  S XDRMRGL=^DIC(XDRMRGFL,0,"GL") S DIK=XDRMRGL,DA=XDRMRG("FR") D DIK
+ S DIK=XDRGL,DA=XDRMRG("FR") D DIK
+ Q
+ ;
+DIK ;
+ S X="DIK^XDRMRG1",@^%ZOSF("TRAP") K X
+ D ^DIK K DIK,DA
+ Q
+STATUS ;
+ S DIE="^VA(15,",DA=XDRMPDA,DR=".05////2;.08////"_DT D ^DIE K DIE,DR,DA
+ Q
+EOJ ;
+ F XDRI="XDRMRGFR","XDRMRGTO" K ^TMP(XDRI,$J)
+ K DITM,DITMGMRG,XDRMRGFL,XDRMGL
+ Q

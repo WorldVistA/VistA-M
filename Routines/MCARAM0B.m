@@ -1,0 +1,19 @@
+MCARAM0B ;WASH ISC/JKL-MUSE AUTO INSTRUMENT REINIT-TRAN CORRES EKG ;2/24/95  10:50
+ ;;2.3;Medicine;;09/13/1996
+ ;
+ ;
+ ; Called from ^MCARAM0
+ ; Deletes EKG records without corresponding dated transaction records 
+ ; Deletes Error Summary records without corresponding dated EKG records
+ N MCNAME,MCSSN,MCDATE,MCIEN,MCROOT,DA,DIK
+ S (MCIEN,MCDATE)=0
+ S MCROOT="^MCAR(691.5,"
+ F  S MCDATE=$O(^MCAR(691.5,"B",MCDATE)) Q:MCDATE=""  S MCIEN=0 F  S MCIEN=$O(^MCAR(691.5,"B",MCDATE,MCIEN)) Q:MCIEN=""  I '$D(^MCAR(700.5,"B",MCDATE)) D DEL
+ S MCROOT="^MCAR(700.5,",MCDATE=0,MCIEN=0
+ F  S MCDATE=$O(^MCAR(700.5,"B",MCDATE)) Q:MCDATE=""  S MCIEN=0 F  S MCIEN=$O(^MCAR(700.5,"B",MCDATE,MCIEN)) Q:MCIEN=""  I '$D(^MCAR(691.5,"B",MCDATE)) D DEL
+ Q
+DEL ;
+ S MCCNT=MCCNT+1
+ S DIK=MCROOT,DA=MCIEN D ^DIK
+ W:MCCNT#100=0 "."
+ Q

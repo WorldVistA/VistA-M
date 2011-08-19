@@ -1,0 +1,17 @@
+GMRAPEM2 ;HIRMFO/YMP,RM,WAA-CHANGE OF OBSERVED DATA TO HISTORICAL STORAGE ;12/1/95  13:45
+ ;;4.0;Adverse Reaction Tracking;;Mar 29, 1996
+OUTPUT ;Display the word processing field for a patient allergy record.
+ D DISP G EXIT
+ Q
+DISP S GMRAOUT=0
+ F GMRAYY="O","V","E" D DISP1^GMRAPEM1(GMRAPA,GMRAYY,.GMRAOUT) Q:GMRAOUT
+ Q
+PRINT ;PRINT OUT THE DATA
+ D PRINT^GMRAPEM1
+ Q
+HEAD ;Print header data.
+ D EOP^GMRADSP3
+ Q
+EXIT ;Exit point.
+ K GMRAVCM
+ Q

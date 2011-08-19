@@ -1,0 +1,13 @@
+EVALUATED PREFERENCE
+ZWR
+^PRCD(420.54,0)="EVALUATED PREFERENCE^420.54I^5^5"
+^PRCD(420.54,1,0)="SDA^^Small Disadvantaged Business (SDB) Price Evaluation Adjustment."
+^PRCD(420.54,2,0)="SPS^^Small Disadvantaged Business (SDB) Preference Consideration."
+^PRCD(420.54,3,0)="HZE^^Hubzone Price Evaluation Preference."
+^PRCD(420.54,4,0)="HSD^^Combined HUB/SDB Preference."
+^PRCD(420.54,5,0)="NONE^^No Evaluation."
+^PRCD(420.54,"B","HSD",4)=""
+^PRCD(420.54,"B","HZE",3)=""
+^PRCD(420.54,"B","NONE",5)=""
+^PRCD(420.54,"B","SDA",1)=""
+^PRCD(420.54,"B","SPS",2)=""

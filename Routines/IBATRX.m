@@ -1,0 +1,28 @@
+IBATRX ;LL/ELZ - TRANSFER PRICING RX ROUTINE ; 24-FEB-99
+ ;;2.0;INTEGRATED BILLING;**115,309,347**;21-MAR-94;Build 24
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+RX(DFN,DT1,DT2,ARRAY) ; look up all rxs for a patient and date range
+ ;
+ N PIFN,RIFN,IBX,IBY,DTE,DTR,RX,IBCNT,IBRX0,IBRX2,IBS,IBRF,LIST,LIST2,NODE,RFNUM,IBRX K ARRAY,POARR S POARR=0
+ S IBCNT=0,DT1=$G(DT1)-.0001,DT2=$G(DT2) S:'DT2 DT2=9999999 Q:'$G(DFN)
+ S LIST="IBRXARR"
+ D PROF^PSO52API(DFN,LIST,DT1,DT2)
+ S DTE=0 F  S DTE=$O(^TMP($J,LIST,"B",DTE)) Q:'DTE  D
+ . S IBRX=0 F  S IBRX=$O(^TMP($J,LIST,"B",DTE,IBRX)) Q:'IBRX  D
+ .. S IBRX(0)=$$RXZERO^IBRXUTL(DFN,IBRX)
+ .. S IBRX(2)=$$RXSEC^IBRXUTL(DFN,IBRX)
+ .. D ZERO^IBRXUTL(+$P(IBRX(0),"^",6))
+ .. ; original fill
+ .. S DTR=$P(IBRX(2),"^",2) I DTR'<DT1,DTR'>DT2 D
+ ... S ARRAY(IBRX,+DTR)=$P(IBRX(0),"^")_"^"_0_"^"_$P(IBRX(0),"^",6)_"^"_$G(^TMP($J,"IBDRUG",+$P(IBRX(0),"^",6),.01))_"^"_$P(IBRX(0),"^",7)_"^"_$P(IBRX(0),"^",17)
+ .. ; refills
+ .. S NODE="R"
+ .. S LIST2="IBRXARR2"
+ .. D RX^PSO52API(DFN,LIST2,IBRX,,NODE,,)
+ .. S IBRF=0 F  S IBRF=$O(^TMP($J,LIST2,DFN,IBRX,"RF",IBRF)) Q:IBRF'>0  D
+ ... S IBY=$$ZEROSUB^IBRXUTL(DFN,IBRX,IBRF) Q:IBY=""
+ ... S ARRAY(IBRX,+IBY)=$P(IBRX(0),"^")_"^"_IBRF_"^"_$P(IBRX(0),"^",6)_"^"_$G(^TMP($J,"IBDRUG",+$P(IBRX(0),"^",6),.01))_"^"_$P(IBY,"^",4)_"^"_$P(IBY,"^",11)
+ .. K ^TMP($J,LIST2)
+ K ^TMP($J,"IBDRUG"),^TMP($J,LIST)
+ Q

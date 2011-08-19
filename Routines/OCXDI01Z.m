@@ -1,0 +1,220 @@
+OCXDI01Z ;SLC/RJS,CLA - OCX PACKAGE DIAGNOSTIC ROUTINES ;SEP 7,1999 at 10:30
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+S ;
+ ;
+ D DOT^OCXDIAG
+ ;
+ ;
+ K REMOTE,LOCAL,OPCODE,REF
+ F LINE=1:1:500 S TEXT=$P($T(DATA+LINE),";",2,999) Q:TEXT  I $L(TEXT) D  Q:QUIT
+ .S ^TMP("OCXDIAG",$J,$O(^TMP("OCXDIAG",$J,"A"),-1)+1)=TEXT
+ ;
+ G ^OCXDI020
+ ;
+ Q
+ ;
+DATA ;
+ ;
+ ;;R^"863.3:",.05,"E"
+ ;;D^HL7 LOCAL OI TEXT
+ ;;R^"863.3:",.06,"E"
+ ;;D^35
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^OCXODATA("OBR",4)
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO VT-BAR PIECE NUMBER
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:3",1,"E"
+ ;;D^5
+ ;;R^"863.3:","863.32:4",.01,"E"
+ ;;D^OCXO HL7 SEGMENT ID
+ ;;R^"863.3:","863.32:5",.01,"E"
+ ;;D^OCXO DATA DRIVE SOURCE
+ ;;R^"863.3:","863.32:5",1,"E"
+ ;;D^HL7
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.MOVE_TYPE_CURRENT
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.MOVE_TYPE_CURRENT
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^DGPM
+ ;;R^"863.3:",.05,"E"
+ ;;D^MOVEMENT TYPE
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^DGPMA
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO VT-BAR PIECE NUMBER
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:3",1,"E"
+ ;;D^2
+ ;;R^"863.3:","863.32:4",.01,"E"
+ ;;D^OCXO HL7 SEGMENT ID
+ ;;R^"863.3:","863.32:5",.01,"E"
+ ;;D^OCXO FILE POINTER
+ ;;R^"863.3:","863.32:5",1,"E"
+ ;;D^405.3
+ ;;R^"863.3:","863.32:6",.01,"E"
+ ;;D^OCXO DATA DRIVE SOURCE
+ ;;R^"863.3:","863.32:6",1,"E"
+ ;;D^DGPM
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.MOV_DATE_CUR
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.MOV_DATE_CUR
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^DGPM
+ ;;R^"863.3:",.05,"E"
+ ;;D^MOVEMENT DATE
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^DGPMA
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO VT-BAR PIECE NUMBER
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:3",1,"E"
+ ;;D^1
+ ;;R^"863.3:","863.32:4",.01,"E"
+ ;;D^OCXO HL7 SEGMENT ID
+ ;;R^"863.3:","863.32:5",.01,"E"
+ ;;D^OCXO FILE POINTER
+ ;;R^"863.3:","863.32:6",.01,"E"
+ ;;D^OCXO DATA DRIVE SOURCE
+ ;;R^"863.3:","863.32:6",1,"E"
+ ;;D^DGPM
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.OERR_ORDER_FLAGGED
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.OERR_ORDER_FLAGGED
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^OERR
+ ;;R^"863.3:",.05,"E"
+ ;;D^ORDER FLAGGED
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^OCXORD
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO VT-BAR PIECE NUMBER
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:3",1,"E"
+ ;;D^4
+ ;;R^"863.3:","863.32:4",.01,"E"
+ ;;D^OCXO HL7 SEGMENT ID
+ ;;R^"863.3:","863.32:5",.01,"E"
+ ;;D^OCXO FILE POINTER
+ ;;R^"863.3:","863.32:6",.01,"E"
+ ;;D^OCXO DATA DRIVE SOURCE
+ ;;R^"863.3:","863.32:6",1,"E"
+ ;;D^ORD
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.OERR_ORD_REQ_CHART_SIG
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.OERR_ORD_REQ_CHART_SIG
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^OERR
+ ;;R^"863.3:",.05,"E"
+ ;;D^ORDER REQ CHART SIG
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^OCXORD
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO VT-BAR PIECE NUMBER
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:3",1,"E"
+ ;;D^5
+ ;;R^"863.3:","863.32:4",.01,"E"
+ ;;D^OCXO HL7 SEGMENT ID
+ ;;R^"863.3:","863.32:5",.01,"E"
+ ;;D^OCXO FILE POINTER
+ ;;R^"863.3:","863.32:6",.01,"E"
+ ;;D^OCXO DATA DRIVE SOURCE
+ ;;R^"863.3:","863.32:6",1,"E"
+ ;;D^ORD
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.SERV_ORD_REQ_SIG
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.SERV_ORD_REQ_SIG
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^OERR
+ ;;R^"863.3:",.05,"E"
+ ;;D^SERVICE ORD. REQ. SIG.
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^OCXORD
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO VT-BAR PIECE NUMBER
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:3",1,"E"
+ ;;D^6
+ ;;R^"863.3:","863.32:4",.01,"E"
+ ;;D^OCXO HL7 SEGMENT ID
+ ;;R^"863.3:","863.32:5",.01,"E"
+ ;;D^OCXO FILE POINTER
+ ;;R^"863.3:","863.32:6",.01,"E"
+ ;;D^OCXO DATA DRIVE SOURCE
+ ;;R^"863.3:","863.32:6",1,"E"
+ ;;D^ORD
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.ORD_REQ_CO_SIG
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.ORD_REQ_CO_SIG
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^OERR
+ ;;R^"863.3:",.05,"E"
+ ;;D^ORDER REQ. CO-SIG.
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^OCXORD
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO VT-BAR PIECE NUMBER
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:3",1,"E"
+ ;;D^7
+ ;;R^"863.3:","863.32:4",.01,"E"
+ ;;D^OCXO HL7 SEGMENT ID
+ ;;R^"863.3:","863.32:5",.01,"E"
+ ;;D^OCXO FILE POINTER
+ ;;R^"863.3:","863.32:6",.01,"E"
+ ;1;
+ ;

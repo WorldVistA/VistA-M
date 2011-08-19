@@ -1,0 +1,25 @@
+TIUEDIU ; SLC/JER - Enter/Edit Utility Subroutines;12/04/97 14:40
+ ;;1.0;TEXT INTEGRATION UTILITIES;**7**;Jun 20, 1997
+BUFFER(DA) ; Save original text
+ K ^TIU(8925,+DA,"TEMP")
+ M ^TIU(8925,+DA,"TEMP")=^TIU(8925,+DA,"TEXT")
+ D MERGTEMP^TIUEDI1(DA)
+ Q
+COMMIT(DA,HUSH) ; Overwrite original text
+ N DIE,DR,TIUSAVE S TIUSAVE=1
+ I '+$G(HUSH),(+$P($G(TIUPREF),U,7)>0) D  Q:'TIUSAVE
+ . S TIUSAVE=$$READ^TIUU("YO","Save changes","YES")
+ . I $D(DTOUT) S TIUSAVE=1 Q
+ . I $S(+TIUSAVE:1,$D(DTOUT):1,1:0) Q
+ . W !!,$C(7),"Changes abandoned..."
+ . K ^TIU(8925,+DA,"TEMP") M ^TIU(8925,+DA,"TEMP")=^TIU(8925,+DA,"TEXT")
+ . K ^TIU(8925,+DA,"TEXT")
+ . D MERGTEXT^TIUEDI1(DA,.TIU)
+ . K ^TIU(8925,+DA,"TEMP")
+ W:'+$G(HUSH) !!,"Saving "_$$PNAME^TIULC1(+$P(TIUTYP(1),U,2))_" with changes..."
+ K ^TIU(8925,+DA,"TEXT")
+ D MERGTEXT^TIUEDI1(DA,.TIU)
+ K ^TIU(8925,+DA,"TEMP")
+ K ^TIU(8925,"ASAVE",DUZ,DA)
+ S TIUCMMT=1
+ Q

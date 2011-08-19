@@ -1,0 +1,61 @@
+MCPOS0B ;HIRMFO/RMP,DAD-Medicine View file update ;5/1/96  13:30
+ ;;2.3;Medicine;;09/13/1996
+ ;
+ D STUFF("MCPMV",690.2)
+ Q
+ ;
+START(FILE) ;DESIGNED TO CREATE MCPMV - Medicine View file
+ N COUNT,TEMP,REC,PROC,CODE
+ S COUNT=0,TEMP=""
+ F  S TEMP=$O(^MCAR(FILE,"B",TEMP)) Q:TEMP=""  D
+ . S REC=$O(^MCAR(FILE,"B",TEMP,""))
+ . S COUNT=COUNT+1
+ . S PROC=$S($D(^MCAR(FILE,REC,3)):$$PROC(REC),1:"")
+ . W !,";;",$P(^MCAR(FILE,REC,0),U)_"^"_PROC
+ . Q
+ Q
+PROC(REC) ;
+ N CNT,ARRAY,TEMP,SUBENTRY
+ S CNT=0,(ARRAY)=""
+ F  S CNT=$O(^MCAR(FILE,REC,3,CNT)) Q:CNT'?1N.N  D
+ . S TEMP=$P(^MCAR(697.2,^MCAR(FILE,REC,3,CNT,0),0),U)
+ . S:$L(ARRAY)>0 ARRAY=ARRAY_","
+ . S ARRAY=ARRAY_TEMP
+ . Q
+ Q ARRAY
+ ;
+STUFF(ROUTINE,FILE) ;ROUTINE is set to "MCPMV"
+ ;FILE is set to 690.2
+ N TEMP,COUNT,HOLD,VALUE,LOOP,MCD0,MCD1,MCDATA
+ S MCDATA(1)=""
+ S MCDATA(2)="Update the pointers from the Medicine View file (#690.2)"
+ S MCDATA(3)="to the Procedure/Subspecialty file (#697.2)."
+ D MES^XPDUTL(.MCDATA)
+ ;
+ F LOOP=1:1 S HOLD=$P($T(DATA+LOOP^@(ROUTINE)),";;",2) Q:HOLD=""  D
+ . S (DLAYGO,DIC)=FILE,DIC(0)="L"
+ . S (VALUE,X)=$P(HOLD,U)
+ . D ^DIC I Y=-1 K DIC,DA Q
+ . S (MCD0,DA)=+Y
+ . S MCD1=0
+ . F  S MCD1=$O(^MCAR(FILE,MCD0,3,MCD1)) Q:MCD1'>0  D
+ .. S DIK="^MCAR("_FILE_","_MCD0_",3,",(D0,DA(1))=MCD0,(D1,DA)=MCD1
+ .. D ^DIK
+ .. Q
+ . D SCODE($P(HOLD,U,2),MCD0,FILE)
+ . Q
+ Q
+ ;
+SCODE(STEMP,SDA,FILE) ;
+ N ENTRY,CODE,TYPE,DATE,LOOP
+ F LOOP=1:1 S ENTRY=$P(STEMP,",",LOOP) Q:ENTRY=""  D
+ . K DD,DIC,DINUM,DO
+ . S DA(1)=SDA,DIC="^MCAR("_FILE_","_DA(1)_",3,",DIC(0)="L"
+ . S DIC("P")=$$GET1^DID(FILE,4,"","SPECIFIER"),DLAYGO=FILE
+ . S (X,CODE)=$P(ENTRY,"~")
+ . S X=+$O(^MCAR(697.2,"B",X,0))
+ . I $P($G(^MCAR(697.2,X,0)),U)'=CODE Q
+ . D FILE^DICN
+ . K DIE,DR,DA,Y
+ . Q
+ Q

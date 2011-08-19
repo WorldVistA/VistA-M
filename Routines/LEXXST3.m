@@ -1,0 +1,111 @@
+LEXXST3 ; ISL Lexicon Status (KIDS/Routines Patch) ; 05/14/2003
+ ;;2.0;LEXICON UTILITY;**4,5,8,25**;Sep 23, 1996
+ Q
+KIDS ; KIDS entries
+ N LEXBLD D GB,SB Q
+GB ; Get KIDs builds
+ K LEXBLD Q:'$D(^DIC(9.4,"C","LEX"))
+ N LEXC,LEXIN,LEXPIN,LEXPN,LEXPA S LEXPA=$$PAC("LEX") Q:LEXPA=0
+ N LEXB S LEXB=0 F  S LEXB=$O(^XPD(9.6,"C",LEXPA,LEXB)) Q:+LEXB=0  D
+ . S LEXPN=$P($G(^XPD(9.6,LEXB,0)),"^",1)
+ . S LEXIN=$$INS(LEXPN)
+ . I LEXPN'["*" D
+ . . S LEXC=+($G(LEXBLD(1,0))),LEXC=LEXC+1
+ . . S LEXBLD(1,0)=LEXC,LEXBLD(1,LEXC)=LEXB_"^"_LEXPN_"^"_LEXIN
+ . I LEXPN["*" D
+ . . S LEXC=+($P(LEXPN,"*",3)) I $D(LEXBLD(2,LEXC)) D
+ . . . S LEXC=LEXC+99999
+ . . S LEXBLD(2,0)=LEXC,LEXBLD(2,LEXC)=LEXB_"^"_LEXPN_"^"_LEXIN
+ Q
+SB ; Save KIDs builds
+ I '$D(LEXBLD) D NOINS Q
+ I +($G(LEXBLD(1,0)))=0 D NOPAC G SP
+ N LEXLN,LEXIN I +($G(LEXBLD(1,0)))>0 D
+ . D BL,TT("KIDS INSTALLATION (PACKAGE)"),BL
+ . N LEXI S LEXI=0 F  S LEXI=$O(LEXBLD(1,LEXI)) Q:+LEXI=0  D
+ . . S LEXLN=$P($G(LEXBLD(1,LEXI)),"^",2) Q:'$L(LEXLN)
+ . . S LEXIN=$P($G(LEXBLD(1,LEXI)),"^",3) S:$L(LEXIN) LEXLN=LEXLN_$J("",(40-$L(LEXLN)))_"  "_LEXIN
+ . . S LEXLN="      "_LEXLN D TL(LEXLN)
+SP ; Save patches
+ I +($G(LEXBLD(2,0)))=0 D NOPAT Q
+ I +($G(LEXBLD(2,0)))>0 D
+ . D BL,TT("KIDS INSTALLATIONS (PATCHES)"),BL
+ . N LEXI S LEXI=0 F  S LEXI=$O(LEXBLD(2,LEXI)) Q:+LEXI=0  D
+ . . S LEXLN=$P($G(LEXBLD(2,LEXI)),"^",2) Q:'$L(LEXLN)
+ . . S LEXIN=$P($G(LEXBLD(2,LEXI)),"^",3) S:$L(LEXIN) LEXLN=LEXLN_$J("",(40-$L(LEXLN)))_"  "_LEXIN
+ . . S LEXLN="      "_LEXLN D TL(LEXLN)
+ Q
+NOINS ; None found
+ D BL,TT("KIDS INSTALLATION (PACKAGE/PATCHES)"),BL D TL("      NONE FOUND") Q
+NOPAC ; No package
+ D BL,TT("KIDS INSTALLATION (PACKAGE)"),BL,TL("      NONE FOUND") Q
+NOPAT ; No patches
+ D BL,TT("KIDS INSTALLATIONS (PATCHES)"),BL,TL("      NONE FOUND") Q
+PAC(LEXX) ; Package Entry
+ S LEXX=+($O(^DIC(9.4,"C",LEXX,0))) Q LEXX
+INS(LEXX) ; Installation Entry
+ S LEXX=$G(LEXX) Q:LEXX="" LEXX Q:'$D(^XPD(9.7,"B",LEXX)) ""
+ N LEXIA,LEXM,LEXI S (LEXIA,LEXM)=0
+ F  S LEXIA=$O(^XPD(9.7,"B",LEXX,LEXIA)) Q:+LEXIA=0  D
+ . S LEXI=$P($G(^XPD(9.7,LEXIA,1)),"^",3),LEXI=+LEXI
+ . S:LEXI>LEXM LEXM=LEXI
+ S:+LEXM=0 LEXM="" S:+LEXM>0 LEXM=$$FTE^LEXXST4(+LEXM)
+ S LEXX=LEXM Q LEXX
+ ;
+RTN ; Find Patched Routines
+ I '$D(^DIC(9.4,"C","LEX"))!('$D(^DIC(9.8,"B","LEXA1"))) D NORTN Q
+ N LEX,LEXPT,LEXP,LEXRT,LEXC,LEXT S LEXRT="LEW~",LEXC="LEX"
+ ; PCH 5 replace indirection $T(@LEXRT) with executable string
+ F  S LEXRT=$O(^DIC(9.8,"B",LEXRT)) Q:LEXRT=""!($E(LEXRT,1,$L(LEXC))'=LEXC)  D
+ . ; PCH 8 quit if routine is a environment check, pre/post install
+ . Q:$E(LEXRT,4)?1N
+ . N LEXEXC,X S X=LEXRT X ^%ZOSF("TEST") I $T D
+ . . S LEXT="",LEXEXC="S LEXT=$T("_LEXRT_"+1^"_LEXRT_")" X LEXEXC
+ . . S LEXT=$G(LEXT),LEXP=$$TRIM($P($G(LEXT),";",5)) I +LEXP>0 D
+ . . . N LEXPN,LEXPT F LEXPN=1:1 Q:$P(LEXP,",",LEXPN)=""  D
+ . . . . S LEXPT=$P(LEXP,",",LEXPN) I '$D(LEX(LEXPT,LEXRT)) D
+ . . . . . N LEXI F LEXI=1:1 Q:$L($G(LEX(LEXPT,LEXI)))<200
+ . . . . . S LEX(LEXPT,LEXI)=$G(LEX(LEXPT,LEXI))_", "_LEXRT,LEX(LEXPT,LEXRT)=""
+ . . . . . S:$E($G(LEX(LEXPT,LEXI)),1,2)=", " LEX(LEXPT,LEXI)=$E(LEX(LEXPT,LEXI),3,$L(LEX(LEXPT,LEXI)))
+ D PAT
+ Q
+PAT ; Save Patch Routines
+ D:+($O(LEX(0)))=0 NORTN Q:+($O(LEX(0)))=0
+ D:+($O(LEX(0)))>0 BL,TT("PATCHED ROUTINES")
+ N LEXSP,LEXLN,LEXLP S LEXLP=+($O(LEX(9999999),-1)),LEXSP="               "
+ I LEXLP>0 D BL,TL(("   LAST ROUTINE PATCH #  "_LEXLP))
+ I +($O(LEX(0)))>0 D BL,TL("      PATCH    ROUTINES"),TL("      ------------------------------------------------------------------------")
+ N LEXPN,LEXI S LEXPN=0 F  S LEXPN=$O(LEX(LEXPN)) Q:+LEXPN=0  F LEXI=1:1 Q:'$D(LEX(LEXPN,LEXI))  D
+ . S LEXLN=$G(LEX(LEXPN,LEXI)) I $L(LEXLN),LEXI'>1 S LEXLN=$J("",(9-$L(LEXPN)))_LEXPN_"      "_LEXLN D PL(LEXLN,LEXI)
+ . I $L(LEXLN),LEXI>1 D PL(LEXLN,LEXI)
+ D:+($O(LEX(0)))>0 BL
+ Q
+PL(LEXX,LEXI) ; Patch Line
+ S LEXX=$G(LEXX) Q:'$L(LEXX)  S LEXI=+($G(LEXI)) I LEXI>1 D
+ . N LEXNX,LEXNI S LEXNI=$O(^TMP("LEXINS",$J,9999999999),-1) Q:+LEXNI'>0
+ . S LEXNX=$G(^TMP("LEXINS",$J,LEXNI))
+ . I $L(LEXNX) D
+ . . K ^TMP("LEXINS",$J,LEXNI)
+ . . S ^TMP("LEXINS",$J,0)=(LEXNI-1),LEXX=LEXNX_", "_LEXX
+ N LEXLL S LEXLL=78 S:LEXI>1 LEXLL=60 D:$L(LEXX)'>LEXLL TL(LEXX) Q:$L(LEXX)'>LEXLL  N LEXP,LEXNL
+PL2 ; Patch Line (over 78 characters)
+ F LEXP=78:-1:1 Q:$E(LEXX,(LEXP-1),LEXP)=", "
+ I LEXP>1 S LEXNL=$E(LEXX,1,(LEXP-1)) D TL(LEXNL) S LEXX=$E(LEXX,(LEXP+1),$L(LEXX))
+ S LEXLL=60 I $L(LEXX)>LEXLL S LEXX=LEXSP_LEXX G PL2
+ S:$L(LEXX)'>LEXLL&(LEXX'[LEXSP) LEXX=LEXSP_LEXX D TL(LEXX)
+ Q
+NORTN ; No patched routines found
+ D BL,TT("PATCHED ROUTINES"),BL D TL("      NONE FOUND") Q
+TT(LEXX) ; Title Line
+ D TT^LEXXST($G(LEXX)) Q
+TL(LEXX) ; Text Line
+ D TL^LEXXST($G(LEXX)) Q
+BL ; Blank Line
+ D BL^LEXXST Q
+TRIM(LEXX) ; Trim spaces
+ S LEXX=$G(LEXX),LEXX=$TR(LEXX,"*","")
+ F  Q:$E(LEXX,1)'=" "  S LEXX=$E(LEXX,2,$L(LEXX))
+ F  Q:$E(LEXX,$L(LEXX))'=" "  S LEXX=$E(LEXX,1,($L(LEXX)-1))
+ F  Q:LEXX'["  "  S LEXX=$P(LEXX,"  ",1)_" "_$P(LEXX,"  ",2)
+ Q LEXX
+ Q

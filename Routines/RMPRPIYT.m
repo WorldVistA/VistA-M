@@ -1,0 +1,99 @@
+RMPRPIYT ;HINCIO/ODJ - TR - Transfer Items ;3/8/01
+ ;;3.0;PROSTHETICS;**61**;Feb 09, 1996
+ Q
+ ;
+ ;***** TR - Replaces TR option in old PIP (RMPR5NTU)
+ ;           Callable from VISTA menu, no vars required other than
+ ;           global VISTA vars (DUZ, etc)
+TR N RMPRERR,RMPRSTN,RMPREXC,RMPR5F,RMPR5T,RMPR1,RMPR11,RMPR,RMPRQTY
+ N RMPRVI,RMPRVO,RMPRVNDR,RMPROVAL,RMPRLCN,RMPR6,RMPR7
+ ;
+ ;***** STN - Prompt for Station
+STN S RMPROVAL=$G(RMPRSTN("IEN"))
+ W @IOF S RMPRERR=$$STN^RMPRPIY1(.RMPRSTN,.RMPREXC)
+ I RMPRERR G TRX
+ I RMPREXC'="" G TRX
+ I RMPROVAL'=RMPRSTN("IEN") K RMPR1,RMPR11
+ ;
+ ;***** HCPCS - prompt for HCPCS and Item
+HCPCS W !!,"Transfer item quantity to another location.",!
+HCPCS2 D HCPCS^RMPRPIY7(RMPRSTN("IEN"),$G(RMPR1("HCPCS")),.RMPR1,.RMPR11,.RMPREXC)
+ I RMPREXC="T" G TRX
+ I RMPREXC="P" G STN
+ I RMPREXC="^" D  G TRX
+ . W !,"** No HCPCS selected." H 1
+ . Q
+ ;I $G(RMPR11("IEN"))'="" D  G QTY
+HCPCS3 D ITEM^RMPRPIYP(RMPRSTN("IEN"),RMPR1("HCPCS"),.RMPR11,.RMPREXC)
+ I RMPREXC="T" G TRX
+ I RMPREXC="P"!(RMPREXC="^") G HCPCS
+ S RMPR11("STATION")=RMPRSTN("IEN")
+ S RMPR11("STATION IEN")=RMPRSTN("IEN")
+ ;
+ ; display selected HCPCS and item and continue
+HCPCS4 W !!,"HCPCS: "_$G(RMPR1("HCPCS"))_" "_$G(RMPR1("SHORT DESC"))
+ W !!,"IFCAP Item: ",$G(RMPR11("ITEM MASTER"))
+ W !!,"PIP Item desc.: ",$G(RMPR11("DESCRIPTION"))
+ ;
+ ;***** CURST - call prompt for current stock record
+CURST S RMPRLCN=""
+ D PVEN^RMPRPIYR(RMPRSTN("IEN"),.RMPRLCN,RMPR11("HCPCS"),RMPR11("ITEM"),.RMPR6,.RMPR7,.RMPREXC)
+ I RMPREXC="T" G TRX
+ I RMPREXC="P" W ! G HCPCS2
+ I RMPREXC="^" G HCPCS
+ S RMPR5F("IEN")=RMPRLCN
+ S RMPRERR=$$GET^RMPRPIX5(.RMPR5F)
+ S RMPR5F("STATION IEN")=RMPRSTN("IEN")
+ S RMPR5T("STATION IEN")=RMPRSTN("IEN")
+ S RMPR5F("STATION")=RMPRSTN("IEN")
+ W !
+ ;
+ ;***** QTY - Prompt for Quantity
+QTY S RMPRERR=$$QTY^RMPRPIYU(.RMPRQTY,.RMPREXC,.RMPR5F,.RMPR11)
+ I RMPREXC="T" G TRX
+ I RMPREXC="^" G HCPCS
+ I RMPREXC="P" G CURST
+ ;
+ ;***** TLOCN - Prompt for 'TO' Location
+TLOCN D LOCNM^RMPRPIYU(RMPRSTN("IEN"),.RMPR5T,.RMPREXC)
+ I RMPREXC="^" G HCPCS
+ I RMPREXC="T" D  G TRX
+ . W !,"*** Nothing transferred."
+ . H 1
+ . Q
+ I RMPREXC="P" G QTY
+ S RMPR5T("STATION")=RMPRSTN("IEN")
+ I RMPR5F("IEN")=RMPR5T("IEN") D  G TLOCN
+ . W !
+ . W "*** Forwarding and Receiving Location is the same!!!!"
+ . Q
+ ;
+ ;***** TRANS - Now create a transfer transaction
+TRANS S RMPR11("STATION")=RMPRSTN("IEN")
+ S RMPR("QUANTITY")=RMPRQTY
+ S RMPR("USER")=$G(DUZ)
+ S RMPR("IEN")=$G(RMPR5T("IEN"))
+ S RMPRERR=$$ETOI^RMPRPIX7(.RMPR7,.RMPR7I)
+ S RMPRERR=$$VNDIEN^RMPRPIX6(.RMPR6)
+ I RMPRERR=1 G HCPCS
+ S RMPR("VENDOR IEN")=RMPR6("VENDOR IEN")
+ S RMPR5F("UNIT")=RMPR7I("UNIT")
+ S RMPR5T("UNIT")=RMPR7I("UNIT")
+ S RMPRERR=$$TRNF^RMPRPIUT(.RMPR,.RMPR5F,.RMPR5T,.RMPR11)
+ I RMPRERR=1 D  G QTY
+ . W !
+ . W "Quantity to transfer is greater than current balance: "
+ . W RMPR("QOH")
+ . Q
+ I RMPRERR D  G TRX
+ . W !
+ . W "There were problems with the transfer, please contact support"
+ . H 3
+ . Q
+ W !
+ W "QTY "_RMPRQTY_" transferred from "_RMPR5F("NAME")_" to "_RMPR5T("NAME")
+ H 1
+ K RMPR5F,RMPR5T,RMPRQTY,RMPR,RMPR6,RMPR7
+ G HCPCS
+TRX D KILL^XUSCLEAN
+ Q

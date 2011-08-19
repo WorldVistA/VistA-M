@@ -1,0 +1,112 @@
+IBDF10A ;ALB/CJM - ENCOUNTER FORM - (shifting data fields,lines,text areas,blocks);3/29/93
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+FLDS(WAY,AMOUNT,TOP,BOTTOM,LEFT,RIGHT) ;shifts all of the data fields in IBBLK falling within the rectangle defined by TOP,BOTTOM,LEFT,RIGHT by AMOUNT
+ ;WAY="D" for down, "U" for up, "L" for left, "R" for right
+ N SUB,NODE,IBX,IBY,FLD,PIECE,POS,VERT,SIZE,BLKSIZE
+ S VERT=$S("UD"[WAY:1,1:0)
+ S BLKSIZE=$S(VERT:IBBLK("H"),1:IBBLK("W"))
+ ;shifts to the left or up are negative
+ S:"UL"[WAY AMOUNT=AMOUNT*(-1)
+ S FLD="" F  S FLD=$O(^IBE(357.5,"C",IBBLK,FLD)) Q:'FLD  D
+ .S PIECE=$S(VERT:11,1:10)
+ .S NODE=$G(^IBE(357.5,FLD,0)) Q:NODE=""
+ .S IBX=$P(NODE,"^",10),IBY=$P(NODE,"^",11),POS=$P(NODE,"^",PIECE) I $$INRANGE(IBX,IBY,TOP,BOTTOM,LEFT,RIGHT) D
+ ..S SIZE=$S(VERT:$P(NODE,"^",12),1:$S($L($P(NODE,"^",6))>$P(NODE,"^",14):$L($P(NODE,"^",6)),1:$P(NODE,"^",14)))
+ ..S $P(^IBE(357.5,FLD,0),"^",PIECE)=$S(("LU"[WAY)&(POS+AMOUNT<0):0,("RD"[WAY)&((POS+AMOUNT+SIZE)>BLKSIZE):BLKSIZE-SIZE,1:POS+AMOUNT)
+ .S SUB=0 F  S SUB=$O(^IBE(357.5,FLD,2,SUB)) Q:'SUB  D
+ ..S NODE=$G(^IBE(357.5,FLD,2,SUB,0)) Q:NODE=""
+ ..S PIECE=$S(VERT:5,1:4) S POS=$P(NODE,"^",PIECE),IBX=$P(NODE,"^",4),IBY=$P(NODE,"^",5) I $$INRANGE(IBX,IBY,TOP,BOTTOM,LEFT,RIGHT) D
+ ...S SIZE=$S(VERT:1,1:$L($P(NODE,"^",1)))
+ ...S $P(^IBE(357.5,FLD,2,SUB,0),"^",PIECE)=$S(("LU"[WAY)&(POS+AMOUNT<0):0,("RD"[WAY)&((POS+AMOUNT+SIZE)>BLKSIZE):BLKSIZE-SIZE,1:POS+AMOUNT)
+ ..S PIECE=$S(VERT:6,1:7) S POS=$P(NODE,"^",PIECE),IBX=$P(NODE,"^",7),IBY=$P(NODE,"^",6) I $$INRANGE(IBX,IBY,TOP,BOTTOM,LEFT,RIGHT) D
+ ...S SIZE=$S(VERT:1,1:$P(NODE,"^",8))
+ ...S $P(^IBE(357.5,FLD,2,SUB,0),"^",PIECE)=$S("LU"[WAY&(POS+AMOUNT<0):0,"RD"[WAY&((POS+AMOUNT+SIZE)>BLKSIZE):BLKSIZE-SIZE,1:POS+AMOUNT)
+ Q
+MFLDS(WAY,AMOUNT,TOP,BOTTOM,LEFT,RIGHT) ;shifts the multiple choice fields in IBBLK falling within the rectangle defined by TOP,BOTTOM,LEFT,RIGHT by AMOUNT
+ ;WAY="D" for down, "U" for up, "L" for left, "R" for right
+ N SUB,NODE,IBX,IBY,FLD,PIECE,POS,VERT,SIZE,BLKSIZE
+ S VERT=$S("UD"[WAY:1,1:0)
+ S BLKSIZE=$S(VERT:IBBLK("H"),1:IBBLK("W"))
+ ;shifts to the left or up are negative
+ S:"UL"[WAY AMOUNT=AMOUNT*(-1)
+ S FLD="" F  S FLD=$O(^IBE(357.93,"C",IBBLK,FLD)) Q:'FLD  D
+ .S PIECE=$S(VERT:4,1:3)
+ .S NODE=$G(^IBE(357.93,FLD,0)) Q:NODE=""
+ .I $P(NODE,"^",2)]"" D
+ ..S IBX=$P(NODE,"^",3),IBY=$P(NODE,"^",4),POS=$P(NODE,"^",PIECE) I $$INRANGE(IBX,IBY,TOP,BOTTOM,LEFT,RIGHT) D
+ ...S SIZE=$S(VERT:1,1:$L($P(NODE,"^",2)))
+ ...S $P(^IBE(357.93,FLD,0),"^",PIECE)=$S(("LU"[WAY)&(POS+AMOUNT<0):0,("RD"[WAY)&((POS+AMOUNT+SIZE)>BLKSIZE):BLKSIZE-SIZE,1:POS+AMOUNT)
+ .S SUB=0 F  S SUB=$O(^IBE(357.93,FLD,1,SUB)) Q:'SUB  D
+ ..S NODE=$G(^IBE(357.93,FLD,1,SUB,0)) Q:NODE=""
+ ..S PIECE=$S(VERT:3,1:2) S POS=$P(NODE,"^",PIECE),IBX=$P(NODE,"^",2),IBY=$P(NODE,"^",3) I $$INRANGE(IBX,IBY,TOP,BOTTOM,LEFT,RIGHT) D
+ ...S SIZE=$S(VERT:1,1:$L($P(NODE,"^",1)))
+ ...S $P(^IBE(357.93,FLD,1,SUB,0),"^",PIECE)=$S(("LU"[WAY)&(POS+AMOUNT<0):0,("RD"[WAY)&((POS+AMOUNT+SIZE)>BLKSIZE):BLKSIZE-SIZE,1:POS+AMOUNT)
+ ..S PIECE=$S(VERT:7,1:6) S POS=$P(NODE,"^",PIECE),IBX=$P(NODE,"^",6),IBY=$P(NODE,"^",7) I $$INRANGE(IBX,IBY,TOP,BOTTOM,LEFT,RIGHT) D
+ ...S SIZE=$S(VERT:1,1:3)
+ ...S $P(^IBE(357.93,FLD,1,SUB,0),"^",PIECE)=$S("LU"[WAY&(POS+AMOUNT<0):0,"RD"[WAY&((POS+AMOUNT+SIZE)>BLKSIZE):BLKSIZE-SIZE,1:POS+AMOUNT)
+ Q
+ ;
+HFLDS(WAY,AMOUNT,TOP,BOTTOM,LEFT,RIGHT) ;shifts the hand print fields in IBBLK falling within the rectangle defined by TOP,BOTTOM,LEFT,RIGHT by AMOUNT
+ ;WAY="D" for down, "U" for up, "L" for left, "R" for right
+ N SUB,NODE,IBX,IBY,FLD,PIECE,POS,VERT,SIZE,BLKSIZE
+ S VERT=$S("UD"[WAY:1,1:0)
+ S BLKSIZE=$S(VERT:IBBLK("H"),1:IBBLK("W"))
+ ;shifts to the left or up are negative
+ S:"UL"[WAY AMOUNT=AMOUNT*(-1)
+ S FLD="" F  S FLD=$O(^IBE(359.94,"C",IBBLK,FLD)) Q:'FLD  D
+ .S PIECE=$S(VERT:4,1:3)
+ .S NODE=$G(^IBE(359.94,FLD,0)) Q:NODE=""
+ .I $P(NODE,"^",2)]"" D
+ ..S IBX=$P(NODE,"^",3),IBY=$P(NODE,"^",4),POS=$P(NODE,"^",PIECE) I $$INRANGE(IBX,IBY,TOP,BOTTOM,LEFT,RIGHT) D
+ ...S SIZE=$S(VERT:1,1:$L($P(NODE,"^",2)))
+ ...S $P(^IBE(359.94,FLD,0),"^",PIECE)=$S(("LU"[WAY)&(POS+AMOUNT<0):0,("RD"[WAY)&((POS+AMOUNT+SIZE)>BLKSIZE):BLKSIZE-SIZE,1:POS+AMOUNT)
+ Q
+ ;
+LINES(WAY,AMOUNT,TOP,BOTTOM,LEFT,RIGHT) ;shifts all of the lines in IBBLK falling within the range START->END by AMOUNT - if END="" range extends all the way out
+ ;WAY="D" for down, "U" for up, "L" for left, "R" for right
+ N SUB,NODE,POS,LINE,PIECE,VERT,IBX,IBY,SIZE,BLKSIZE
+ S VERT=$S("UD"[WAY:1,1:0)
+ S BLKSIZE=$S(VERT:IBBLK("H"),1:IBBLK("W"))
+ ;shifts to the left or up are negative
+ S:"UL"[WAY AMOUNT=AMOUNT*(-1)
+ S LINE="" F  S LINE=$O(^IBE(357.7,"C",IBBLK,LINE)) Q:'LINE  D
+ .S NODE=$G(^IBE(357.7,LINE,0)) Q:NODE=""
+ .S PIECE=$S(VERT:3,1:2)
+ .S POS=$P(NODE,"^",PIECE),IBY=$P(NODE,"^",3),IBX=$P(NODE,"^",2) I $$INRANGE(IBX,IBY,TOP,BOTTOM,LEFT,RIGHT) D
+ .S SIZE=$S(((($P(NODE,"^",4)="V")&VERT)!(($P(NODE,"^",4)="H")&'VERT)):$P(NODE,"^",5),1:1)
+ .S $P(^IBE(357.7,LINE,0),"^",PIECE)=$S("LU"[WAY&(POS+AMOUNT<0):0,"RD"[WAY&((POS+AMOUNT+SIZE)>BLKSIZE):BLKSIZE-SIZE,1:POS+AMOUNT)
+ Q
+TXT(WAY,AMOUNT,TOP,BOTTOM,LEFT,RIGHT) ;shifts all of the text areas in IBBLK falling within the range START->END by AMOUNT - if END="" range extends all the way out
+ ;WAY="D" for down, "U" for up, "L" for left, "R" for right
+ N SUB,NODE,POS,TXT,PIECE,VERT,IBX,IBY,BLKSIZE,SIZE
+ S VERT=$S("UD"[WAY:1,1:0)
+ S BLKSIZE=$S(VERT:IBBLK("H"),1:IBBLK("W"))
+ ;shifts to the left or up are negative
+ S:"UL"[WAY AMOUNT=AMOUNT*(-1)
+ S TXT="" F  S TXT=$O(^IBE(357.8,"C",IBBLK,TXT)) Q:'TXT  D
+ .S NODE=$G(^IBE(357.8,TXT,0)) Q:NODE=""
+ .S PIECE=$S(VERT:4,1:3)
+ .S POS=$P(NODE,"^",PIECE),IBY=$P(NODE,"^",4),IBX=$P(NODE,"^",3) I $$INRANGE(IBX,IBY,TOP,BOTTOM,LEFT,RIGHT) D
+ .S SIZE=$S(VERT:$P(NODE,"^",6),1:$P(NODE,"^",5))
+ .S $P(^IBE(357.8,TXT,0),"^",PIECE)=$S("LU"[WAY&(POS+AMOUNT<0):0,"RD"[WAY&((POS+AMOUNT+SIZE)>BLKSIZE):BLKSIZE-SIZE,1:POS+AMOUNT)
+ Q
+ ;
+INRANGE(X,Y,TOP,BOTTOM,LEFT,RIGHT) ;
+ ;determines if (X,Y) is in the rectangle defined by TOP,BOTTOM,LEFT,RIGHT - returns 1 if yes,0 if no
+ I (X'<LEFT),((RIGHT="")!(X'>RIGHT)),(Y'<TOP),((BOTTOM="")!(Y'>BOTTOM)) Q 1
+ Q 0
+BLOCKS(WAY,AMOUNT,TOP,BOTTOM,LEFT,RIGHT) ;shifts blocks whose top left-hand corner is within the rectangular region defined by TOP,BOTTOM,LEFT,RIGHT
+ N SUB,NODE,POS,BLOCK,PIECE,VERT,IBX,IBY,BLKSIZE,FORMSIZE,NAME
+ S VERT=$S("UD"[WAY:1,1:0)
+ ;shifts to the left or up are negative
+ S:"UL"[WAY AMOUNT=AMOUNT*(-1)
+ S BLOCK="" F  S BLOCK=$O(^IBE(357.1,"C",IBFORM,BLOCK)) Q:'BLOCK  D
+ .S NODE=$G(^IBE(357.1,BLOCK,0)) Q:NODE=""
+ .S NAME=$P(NODE,"^")
+ .S PIECE=$S(VERT:4,1:5)
+ .S BLKSIZE=$S(VERT:$P(NODE,"^",7),1:$P(NODE,"^",6))
+ .S FORMSIZE=$S(VERT:IBFORM("HT"),1:IBFORM("WIDTH"))
+ .S POS=$P(NODE,"^",PIECE),IBY=$P(NODE,"^",4),IBX=$P(NODE,"^",5)
+ .I $$INRANGE(IBX,IBY,TOP,BOTTOM,LEFT,RIGHT) D
+ ..S $P(^IBE(357.1,BLOCK,0),"^",PIECE)=$S(("LU"[WAY)&(POS+AMOUNT<0):0,("DR"[WAY)&((POS+AMOUNT+BLKSIZE)>FORMSIZE):FORMSIZE-BLKSIZE,1:POS+AMOUNT)
+ Q

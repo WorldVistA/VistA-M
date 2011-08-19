@@ -1,0 +1,38 @@
+EEOEXMT2 ;HISC/JWR - TRANSMIT ROUTINE, CREATES SERVER MESSAGE (VERSION 2.0);11/28/92  12:00
+ ;;2.0;EEO Complaint Tracking;**1**;Apr 27, 1995
+ I '$D(^TMP("EEOXMT",$J)) D EXIT Q
+ D DT^DICRW S SERV=$O(^EEO(789.5,0)),SERV=^EEO(789.5,SERV,0),AEE=+SERV,SERV=$P(^DIC(4.2,$P(SERV,"^",2),0),"^")
+ S XMSUB=$$SITE^EEOEEXMT_" EEO SERVER MESSAGE"_" DATA"
+ K CLIENT,CLIENTNO S BEE=0 F  S BEE=$O(^DIC(4.2,BEE)) Q:BEE'>0  I $P($G(^(BEE,0)),"^",13)=AEE S CLIENTNO=AEE,CLIENT=$P(^(0),"^") Q
+ I '$D(CLIENTNO) S CLIENTNO=$O(^EEO(789.5,"B",""))
+ K XMY
+ S XMY("S.EEO UPLINK SERVER@"_SERV)=""
+RES ;Takes the transmit global ^TMP($J, and breaks it down for encryption
+ S XMDUZ=DUZ K ^TMP($J)
+ S VEE=$S(CLIENTNO=$$SITE^EEOEEXMT:AEE,1:CLIENTNO)
+ S ^TMP($J,1)=$$SITE^EEOEEXMT_"^DATA"_"^"_20,FEE=2
+ S ^TMP($J,FEE)="&&&&&",EEE=BEE,BEE="",FEE=FEE+1 F  S BEE=$O(^TMP("EEOXMT",$J,BEE)) Q:BEE=""  S CEE="" F  S CEE=$O(^TMP("EEOXMT",$J,BEE,CEE)) Q:CEE=""  S DEE="" F  S DEE=$O(^TMP("EEOXMT",$J,BEE,CEE,DEE)) Q:DEE=""  D
+ .S EEE="" F  S EEE=$O(^TMP("EEOXMT",$J,BEE,CEE,DEE,EEE)) Q:EEE=""  S GEE="" F  S GEE=$O(^TMP("EEOXMT",$J,BEE,CEE,DEE,EEE,GEE)) Q:GEE=""  S DECR=^TMP("EEOXMT",$J,BEE,CEE,DEE,EEE,GEE) D ENCRY
+ S XMTEXT="^TMP($J," K XMZ D:'$D(XMY("S.EEO UPLINK SERVER@"_$P(^DIC(4.2,$P(^XMB(1,1,0),"^",1),0),"^",1))) ^XMD Q:'$D(XMZ)
+ ;W "      " H 1 W "@"_SERV
+ K ^TMP($J)
+EXIT ;Kills variables/arrays
+ K ^TMP("EEOXMT",$J),XMDUZ,EEO,EEON0,EEON5,EEOS,EFLG,LABEL,NO,NOD,PFILE,PIECE,EEON1,EEON2,EEON3,EEON6,EEON12
+ Q
+SITE() ;Determination of site number is made here
+ Q $P(^DIC(4,$O(^DIC(4,"D",$P(^EEO(789.5,1,0),"^"),"")),99),"^")
+SERVNO() ;Determination of message destination 
+ Q +^EEO(789.5,$O(^EEO(789.5,0)),0)
+LONG ;Breaks strings too long to encrypt into smaller strings, and encrpts
+ K EEOPT S EENOD=DECR,EEOL=$L(EENOD),EEOC="" F EEOC=0:50:250 S X=$E(EENOD,EEOC+1,EEOC+50) Q:X=""  D EN^XUSHSHP D
+ .I $D(EEOPT) S EEOPT=EEOPT_X Q
+ .I '$D(EEOPT) S EEOPT=X Q
+ S ^TMP($J,FEE+1)=EEOPT K EEOPT,EEOL,EENOD,EEOC
+ Q
+ENCRY ;General encryption entry point
+ S X1=$$SITE^EEOEEXMT,X2=FEE
+ S X=DEE_"^"_BEE_"^"_CEE_"^"_EEE_"^"_GEE
+ D EN^XUSHSHP S ^TMP($J,FEE)=X
+ I $L(DECR)<50 S X=DECR,X2=FEE+1 D EN^XUSHSHP S ^TMP($J,FEE+1)=X,FEE=FEE+2 Q
+ I $L(DECR)'<50 S X2=FEE+1 D LONG S FEE=FEE+2
+ Q

@@ -1,0 +1,173 @@
+DG488M ;ALB/GN - MONITOR/MAIL CLEANUP PATIENT RELATION & INCOME FILES;12/11/02 ; 2/4/03 12:56pm
+ ;;5.3;REGISTRATION;**488**;5-1-2001
+ ;
+ Q
+ ;
+MONITOR ; Monitor job while running
+ N IOINORM,IOINHI,IOUON,IOUOFF,IOBON,IOBOFF,IORVON,IORVOFF,IOHOME
+ N IOELEOL,NAMSPC,DGT12,DG12,DG12X,DGT21,DG21,DG21X,DGT22,DG22,DG22X
+ N STAT,DGLINE,DGBLNK,NOWTIM,%H,DTOUT,I,DGLEN,DGQUIT,TITLE,TLEN,X,REC
+ N NAMSPC,NOWTIME,PCT,TESTING,TASKID,MODE,BTIME,DGFIL,DGIEN,STIME,RUN
+ S:'$D(U) U="^"
+ S NAMSPC=$$NAMSPC^DG488
+ S DGQUIT=0
+ D SCRNSET
+ S TESTING=+$G(^XTMP(NAMSPC,0,"TESTING"))
+ S TASKID=$G(^XTMP(NAMSPC,0,"TASKID"))
+ ;
+ F  D  Q:DGQUIT
+ . ;check lock status
+ . L +^XTMP(NAMSPC):3
+ . I '$T S RUN=1
+ . E  S RUN=0
+ . L -^XTMP(NAMSPC)
+ . ;get last run info
+ . D GETLAST^DG488
+ . S:STAT="" STAT="NOT RUNNING"
+ . S NOWTIME=$$NOW^XLFDT
+ . I (RUN&(STAT'="RUNNING"))!('RUN&(STAT="RUNNING")) D
+ . . S STAT="ERRORED"
+ . D CLRSCR
+ . S $P(DGBLNK," ",81)=""
+ . S DGLINE=DGBLNK
+ . S TITLE=$P($G(^XTMP(NAMSPC,0),"^^DG488 JOB"),U,3)
+ . S TLEN=(80-$L(TITLE)\2)
+ . W $$FMTE^XLFDT($$NOW^XLFDT,"2P")
+ . S MODE=$S(TESTING:"TEST",1:"LIVE")
+ . W ?32,"** ",MODE," MODE **"
+ . W ?63,"Task ID: ",TASKID
+ . W !!
+ . ;title line
+ . W ?TLEN,IOINHI,IOUON,TITLE,IOUOFF,IOINORM,!
+ . ;begin next line
+ . S DGLINE=DGBLNK
+ . S DGLINE=$$FMTLINE(DGLINE,4,"Status")
+ . S DGLINE=$$FMTLINE(DGLINE,30,"Last ien")
+ . S DGLINE=$$FMTLINE(DGLINE,58,"Completed Time")
+ . W !!,IORVON,DGLINE,IORVOFF
+ . ;begin next line
+ . S DGLINE=DGBLNK
+ . S DGLINE=$$FMTLINE(DGLINE,4,STAT)
+ . S DGLINE=$$FMTLINE(DGLINE,26,DGFIL_"/"_DGIEN)
+ . S DGLINE=$$FMTLINE(DGLINE,58,$$FMTE^XLFDT(STIME,2))
+ . W !,DGLINE
+ . ;begin next line
+ . S DGLINE=DGBLNK
+ . S DGLINE=$$FMTLINE(DGLINE,5,"Tot 408.12 recs")
+ . S DGLINE=$$FMTLINE(DGLINE,30,"408.12 recs purged")
+ . S DGLINE=$$FMTLINE(DGLINE,55,"408.12 bad xrefs")
+ . W !!,IORVON,DGLINE,IORVOFF
+ . ;begin next line
+ . S DGLINE=DGBLNK
+ . S DGLINE=$$FMTLINE(DGLINE,7,$J($FN(DGT12,","),10))
+ . S DGLINE=$$FMTLINE(DGLINE,32,$J($FN(DG12,","),10))
+ . S DGLINE=$$FMTLINE(DGLINE,57,$J($FN(DG12X,","),10))
+ . W !,DGLINE
+ . ;begin next line
+ . S DGLINE=DGBLNK
+ . S DGLINE=$$FMTLINE(DGLINE,5,"Tot 408.21 recs")
+ . S DGLINE=$$FMTLINE(DGLINE,30,"408.21 recs purged")
+ . S DGLINE=$$FMTLINE(DGLINE,55,"408.21 bad xrefs")
+ . W !!,IORVON,DGLINE,IORVOFF
+ . ;begin next line
+ . S DGLINE=DGBLNK
+ . S DGLINE=$$FMTLINE(DGLINE,7,$J($FN(DGT21,","),10))
+ . S DGLINE=$$FMTLINE(DGLINE,32,$J($FN(DG21,","),10))
+ . S DGLINE=$$FMTLINE(DGLINE,57,$J($FN(DG21X,","),10))
+ . W !,DGLINE
+ . ;begin next line
+ . S DGLINE=DGBLNK
+ . S DGLINE=$$FMTLINE(DGLINE,5,"Tot 408.22 recs")
+ . S DGLINE=$$FMTLINE(DGLINE,30,"408.22 recs purged")
+ . S DGLINE=$$FMTLINE(DGLINE,55,"408.22 bad xrefs")
+ . W !!,IORVON,DGLINE,IORVOFF
+ . ;begin next line
+ . S DGLINE=DGBLNK
+ . S DGLINE=$$FMTLINE(DGLINE,7,$J($FN(DGT22,","),10))
+ . S DGLINE=$$FMTLINE(DGLINE,32,$J($FN(DG22,","),10))
+ . S DGLINE=$$FMTLINE(DGLINE,57,$J($FN(DG22X,","),10))
+ . W !,DGLINE
+ . ;begin next line
+ . S DGLINE=DGBLNK
+ . W !!!
+ . K DIR
+ . S DIR("T")=5
+ . W ?15,"screen refreshes automatically every "_DIR("T")_" seconds",!
+ . W !!,"Press "_IORVON_"<Enter>"_IORVOFF_" to Stop Monitor...",!
+ . S DIR(0)="EA"
+ . D ^DIR
+ . I '$D(DTOUT) S DGQUIT=1
+ . I STAT'="RUNNING" S DGQUIT=1
+ W @IOF
+ Q
+ ;
+FMTLINE(DGLINE,DGTB,DGTX) ; format a line
+ N DGEND
+ S DGLEN=$L(DGTX)
+ S DGEND=DGTB+DGLEN-1
+ S $E(DGLINE,DGTB,DGEND)=DGTX
+ Q DGLINE
+ ;
+SCRNSET ; setup screen variables
+ S:'$D(IOST(0)) IOST(0)="C-VT320"
+ S X="IOINORM;IOINHI;IOUON;IOUOFF;IOBON;IOBOFF;IORVON;IORVOFF;IOHOME"
+ S X=X_";IOELEOL" D ENDR^%ZISS
+ Q
+ ;
+CLRSCR ; clear screen and return to normal
+ W IOHOME,IORVOFF,IOBOFF,IOUOFF,IOINORM,@IOF
+ S $X=0,$Y=0
+ Q
+ ;
+MAIL ; mail stats
+ N HTEXT,TEXT,NAMSPC,LIN
+ S LIN=0
+ S NAMSPC=$$NAMSPC^DG488
+ K ^TMP(NAMSPC,$J)
+ ;get last run data
+ D GETLAST^DG488
+ ;build text for message
+ S HTEXT=ZTDESC_" "_STAT_" on "
+ S HTEXT=HTEXT_$$FMTE^XLFDT(STIME)
+ D BLDLINE(HTEXT)
+ D BLDLINE("Elapsed time: "_$$FMDIFF^XLFDT(STIME,BTIME,3))
+ D BLDLINE("")
+ I TESTING S TEXT="** TESTING **" D BLDLINE(TEXT)
+ D BLDLINE("")
+ S TEXT="     Total 408.12 Records Processed: "_$J($FN(DGT12,","),11)
+ D BLDLINE(TEXT)
+ S TEXT="          408.12 bad records purged: "_$J($FN(DG12,","),11)
+ D BLDLINE(TEXT)
+ S TEXT="            408.12 bad xrefs purged: "_$J($FN(DG12X,","),11)
+ D BLDLINE(TEXT)
+ D BLDLINE("")
+ S TEXT="     Total 408.21 Records Processed: "_$J($FN(DGT21,","),11)
+ D BLDLINE(TEXT)
+ S TEXT="          408.21 bad records purged: "_$J($FN(DG21,","),11)
+ D BLDLINE(TEXT)
+ S TEXT="            408.21 bad xrefs purged: "_$J($FN(DG21X,","),11)
+ D BLDLINE(TEXT)
+ D BLDLINE("")
+ S TEXT="     Total 408.22 Records Processed: "_$J($FN(DGT22,","),11)
+ D BLDLINE(TEXT)
+ S TEXT="          408.22 bad records purged: "_$J($FN(DG22,","),11)
+ D BLDLINE(TEXT)
+ S TEXT="            408.22 bad xrefs purged: "_$J($FN(DG22X,","),11)
+ D BLDLINE(TEXT)
+ ;send the message
+ D MAILIT(HTEXT)
+ K ^TMP(NAMSPC,$J)
+ Q
+ ;
+BLDLINE(TEXT) ;
+ S LIN=LIN+1
+ S ^TMP(NAMSPC,$J,"MSG",LIN)=TEXT
+ Q
+MAILIT(HTEXT) ; send the mail message
+ N XMY,XMDUZ,XMSUB,XMTEXT
+ S XMY(DUZ)="",XMDUZ=.5
+ S XMSUB=HTEXT_" Results"
+ S XMTEXT="^TMP(NAMSPC,$J,""MSG"","
+ D ^XMD
+ Q
+ ;

@@ -1,0 +1,30 @@
+SROUTIN ;B'HAM ISC/MAM - INITIALIZE ^TMP FOR UTILIZATION ; [ 07/27/98   2:33 PM ]
+ ;;3.0; Surgery ;**50**;24 Jun 93
+ALL ; all ORs
+ S SROR=0 F  S SROR=$O(^SRS(SROR)) Q:'SROR  I $$ORDIV^SROUTL0(SROR,SRDIV),'$P(^SRS(SROR,0),"^",6) S (SRSDATE,X)=SRSD D H^%DTC S SRD=%Y D ONE
+ Q
+ONE ; one operating room
+ D DAY F I=0:0 S SRSDATE=SRSDATE+1 Q:'SRSDATE!(SRSDATE>SRED1)  D DAY
+ Q
+DAY ; check for correct date
+ S SRDOW=$S(SRD=0:"Sunday",SRD=1:"Monday",SRD=2:"Tuesday",SRD=3:"Wednesday",SRD=4:"Thursady",SRD=5:"Friday",SRD=6:"Saturday")
+ I $E(SRSDATE,6,7)>28 S X=SRSDATE,%DT="" D ^%DT I Y<0 D DATE
+ I $P($G(^SRU(SRSDATE,1,SROR,0)),"^",4)["Y" S SRTIME=0,(SRORST,SROREND)=SRSDATE D SET Q
+ S TIMES=^SRU(SRSDATE,1,SROR,0),SRORST=$P(TIMES,"^",2),SROREND=$P(TIMES,"^",3)
+ S X=SRORST,X1=SROREND D MIN S SRTIME=X
+SET S ^TMP("SR",$J,SRSDATE,SROR)="0^0^"_SRTIME_"^0^"_SRORST_"^"_SROREND
+ I '($D(^TMP("SR",$J,SRSDATE))#2) S ^TMP("SR",$J,SRSDATE)="0^0^0^0"_"^"_SRDOW
+ I '($D(^TMP("SR",$J,"OR",SROR))#2) S ^TMP("SR",$J,"OR",SROR)="0^0^0^0"
+ I '($D(^TMP("SR",$J))#2) S ^TMP("SR",$J)="0^0^0^0"
+ S X=$P(^TMP("SR",$J,SRSDATE),"^",3),$P(^(SRSDATE),"^",3)=X+SRTIME
+ S X=$P(^TMP("SR",$J,"OR",SROR),"^",3),$P(^(SROR),"^",3)=X+SRTIME
+ S X=$P(^TMP("SR",$J),"^",3),$P(^($J),"^",3)=X+SRTIME
+ S SRD=$S(SRD=6:0,1:SRD+1)
+ Q
+MIN ; minutes between two times
+ S Y=$E(X1_"000",9,10)-$E(X_"000",9,10)*60+$E(X1_"00000",11,12)-$E(X_"00000",11,12),X2=X,X=$P(X,".",1)'=$P(X1,".",1) D ^%DTC:X S X=X*1440+Y
+ Q
+DATE ; correct date
+ I $E(SRSDATE,4,5)=12 S SRSDATE=$E(SRSDATE,1,3)_"0101"+10000 Q
+ S SRNEWM=$E(SRSDATE,4,5)+1 S:$L(SRNEWM)=1 SRNEWM="0"_SRNEWM S SRNEWM=SRNEWM_"01",SRSDATE=$E(SRSDATE,1,3)_SRNEWM
+ Q

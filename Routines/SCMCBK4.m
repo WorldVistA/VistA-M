@@ -1,0 +1,81 @@
+SCMCBK4 ;bp/cmf - multiple patient assignments mail queue - RPCVersion = 1; AUG 5, 1998
+ ;;5.3;Scheduling;**148,157**;AUG 13, 1993
+ Q
+ ;
+ ;
+QUEUED(SCX) ;if XWBAPVER=1
+ ;       ;SCX=1: called from ptfile^scmcbk
+ ;       ;SCX=2: called from posfile^scmcbk
+ ;
+ S SCOK("Result")=0
+ S SC("DUZ")=DUZ
+ S ZTDTH=$H
+ S SCX=$$S(SCX)
+ S ZTRTN=$P(SCX,"::")
+ S ZTDESC=$P(SCX,"::",2)
+ S ZTSAVE("SC(")=""
+ ;;;S ZTSAVE("^TMP("_SC("JOB")_",")=""
+ S ZTSAVE("^TMP($J,")=""
+ D ^%ZTLOAD
+ I $D(ZTSK) S SCOK("Result")=1
+ D EXIT1^SCRPTM
+ ;;;K SCX,^TMP(SC("JOB"))
+ K SCX,^TMP($J)
+ Q
+ ;
+QMPTTM ; process patient team assignments
+ N SCADDFLD,SCTEAM,SCFILE,SCJOB,SCNEW,SCOLD,SCBAD,SCERMSG,SCX,SCDTVAR
+ ;
+ D SETUP
+ ;
+ S SCADDFLD(.08)=$G(SC("TYPE"),99)
+ S SCADDFLD(.1)=$G(SC("RESTRICT"),0)
+ S SCADDFLD(.11)=$G(SC("DUZ"),.5)
+ S SCADDFLD(.12)=DT
+ ;
+ ;       ;like $$ACPTATM^SCAPMC6(...
+ ;;;S SCX=$$ACPTATM^SCMCBK5("^TMP(SCJOB,""SC PATIENT LIST"")",SCTEAM,"SCADDFLD",SCDTVAR,"SCERMSG","SCNEW","SCOLD","SCBAD")
+ S SCX=$$ACPTATM^SCMCBK5("^TMP($J,""SC PATIENT LIST"")",SCTEAM,"SCADDFLD",SCDTVAR,"SCERMSG","SCNEW","SCOLD","SCBAD")
+ ;
+ D CLEANUP
+FILEQ Q
+ ;
+ ;
+QMPTPO ;process patient position assignments
+ N SCADDFLD,SCTEAM,SCFILE,SCJOB,SCNEW,SCOLD,SCBAD,SCERMSG
+ N SCX,SCPOS,SCDTVAR,SCMAFLD,SCADTM,SCNEW1
+ ;
+ D SETUP
+ S SCADTM=1
+ ;
+ S SCADDFLD(.05)=$G(SC("TYPE"),0)
+ S SCADDFLD(.06)=$G(SC("DUZ"),.5)
+ S SCADDFLD(.07)=DT
+ ;
+ ;       ;like $$ACPTATP^SCAPMC21(...
+ ;;;S SCX=$$ACPTATP^SCMCBK8("^TMP(SCJOB,""SC PATIENT LIST"")",SCPOS,"SCADDFLD",SCDTVAR,"SCERMSG",SCADTM,"","SCNEW","SCNEW1","SCOLD","SCBAD")
+ S SCX=$$ACPTATP^SCMCBK8("^TMP($J,""SC PATIENT LIST"")",SCPOS,"SCADDFLD",SCDTVAR,"SCERMSG",SCADTM,"","SCNEW","SCNEW1","SCOLD","SCBAD")
+ ;
+ D CLEANUP
+ Q
+ ;
+SETUP D CHK^SCUTBK
+ D TMP^SCUTBK
+ D PARSE^SCMCBK1(.SC)
+ S SCMAIL1=$G(SC("DUZ"),.5)
+ S SCJOB=$J
+ ;;;G:+$G(SCJOB)=0 FILEQ
+ Q
+ ;
+CLEANUP ;;;K ^TMP(SCJOB,"SC PATIENT LIST")
+ K ^TMP($J,"SC PATIENT LIST")
+ D CLRVAR^SCMCBK1
+ Q
+ ;
+S(SCX) ;return text string
+ Q $P($T(T+SCX),";;",2)
+ ;
+T ;;
+ ;;QMPTTM^SCMCBK4::PCMM Multiple Patient Team Assignment
+ ;;QMPTPO^SCMCBK4::PCMM Multiple Patient Position Assignment
+ ;

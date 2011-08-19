@@ -1,0 +1,33 @@
+MCBPFTP7 ;WISC/TJK,ALG-PFT BRIEF REPORT-SPECIAL STUDIES (PT 2) ;6/29/99  12:48
+ ;;2.3;Medicine;**25**;09/13/1996
+INT ;
+ K DXS,DIOT(2),^UTILITY($J) S ^UTILITY($J,1)=MCFF,D0=MCARGDA ;I $G(MCBP)=1 D ^MCOBPF
+ ;E  D ^MCAROPF
+ I $G(MCBP)=1 D
+ . D ^MCOBPF
+ . Q
+ E  D
+ . D ^MCAROPF
+ . Q
+EXIT Q:$E(MCDOT)=" "  D CONT Q:$D(MCOUT)  D PV Q
+PV Q:'$D(MCPV)  Q:'$D(^MCAR(700.1,MCPV))
+ D HEAD^MCARP W !!?25,"PREDICTED VALUE FORMULAS USED",!
+ F J="TLC","FVC","FEV1","MVV" D
+   .S I=$G(^MCAR(700.1,MCPV,J)) Q:'I
+   .Q:'$D(^MCAR(700.2,I,0))  S I=$G(^(0))
+   .W !,?5,$S(J="DLCOSB":"DLCO-SB",J="FEF2575":"FEF25-75",J="COHB":"COHB CORR.",J="HB":"HB CORR.",1:J)
+   .D PVW
+   .K J Q
+ G PVEXIT:'$D(MCRC1)
+ W !!?25,"RACE CORRECTION FORMULAS USED",!
+ ;I $D(MCRC2) S I=$P($G(^MCAR(700.1,MCPV,"RC")),U,2) I I,$D(^MCAR(700.2,I,0)) S I=$G(^(0)) W !,?5,"TLC,FVC,FEV1" D PVW G PVEXIT
+ I $D(MCRC2) D  G PVEXIT
+ . F J=2,6 S I=$P($G(^MCAR(700.1,MCPV,"RC")),U,J) I I,$D(^MCAR(700.2,I,0)) S I=$G(^(0)) W !,?5,$S(J=2:"TLC,FVC,FEV1",J=6:"MVV",1:"") D PVW
+ . Q
+ ;F J=1 S I=$P($G(^MCAR(700.1,MCPV,"RC")),U,J) I I,$D(^MCAR(700.2,I,0)) S I=$G(^(0)) W !,?5,$S(J=1:"TLC,FVC,FEV1") D PVW
+ F J=1,5 S I=$P($G(^MCAR(700.1,MCPV,"RC")),U,J) I I,$D(^MCAR(700.2,I,0)) S I=$G(^(0)) W !,?5,$S(J=1:"TLC,VC,FVC,FEV1",J=5:"MVV",1:"") D PVW
+PVEXIT W !,"NOTE:  HT=height,WT=weight,ACT=actual measurement value" D CONT Q
+PVW W ?21,$P(I,U),?50,$P(I,U,3) Q
+CONT Q:$E(IOST,1,2)'="C-"  R !,"Press Return to Continue, '^' to escape: ",MCY:DTIME S:'$T MCY=U S:MCY=U MCOUT=1 Q
+COMP S I=0 F  S I=$O(^MCAR(700,MCARGDA,24,I)) Q:I'?1N.N  I $D(^(I,0)),$P(^(0),U,2)="Y" S J=$P(^(0),U,1) W:$D(^MCAR(693.2,J,0)) ?17,$P(^(0),U,1),!
+ Q

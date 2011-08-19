@@ -1,0 +1,97 @@
+DGRUADT1 ;ALB/SCK - MAIN BUILDER FOR RAI/MDS ADT MESSAGING ; 7-8-1999
+ ;;5.3;Registration;**190,480**;Aug 13, 1993
+ ;
+BLDMSG(DFN,EVCODE,DGIEN,VAFHDT,DGWARD,DGOLDT,DGDTYP) ;
+ ; INPUT
+ ;   DFN     - Ien in Patient File
+ ;   EVCODE  - HL7 event code
+ ;   DGIEN   - Ien of the Movement
+ ;   VAFHDT  - Date of event
+ ;   DGWARD  - Associated ward
+ ;   DGOLDT  - Old date of ADT even for change to date [Optional]
+ ;   DGDTYP  - Change Date type [Optional]
+ ;              A - Admission date
+ ;              T - Transfer Date
+ ;              D - Discharge Date
+ ;
+ Q:"A01,A02,A03,A08,A11,A12,A13,A21,A22"'[$G(EVCODE)
+ ;
+ K HL,HLA,XMTARRY,HLRST
+ ;
+ D INIT^HLFNC2("DGRU-RAI-"_EVCODE_"-SERVER",.HL)
+ I $O(HL(""))']"" D  Q
+ . D ERRBUL(DFN,DT,EVCODE,"-1^Server Protocol not found")
+ ;
+ S DGOLDT=$G(DGOLDT),DGDTYP=$G(DGDTYP)
+ D:EVCODE="A01" EN^DGRUGA01(DFN,DGIEN,"XMTARRY")
+ D:EVCODE="A02" EN^DGRUGA02(DFN,DGIEN,"XMTARRY")
+ D:EVCODE="A03" EN^DGRUGA03(DFN,DGIEN,"XMTARRY")
+ ; The A11 message is a special case and requires sending the Ward.
+ D:EVCODE="A11" EN^DGRUGA11(DFN,DGIEN,"XMTARRY",$G(DGWARD),$G(VAFHDT)) ;GRR 1/26/00 TEST
+ D:EVCODE="A12" EN^DGRUGA12(DFN,DGIEN,"XMTARRY")
+ D:EVCODE="A13" EN^DGRUGA13(DFN,DGIEN,"XMTARRY")
+ D:EVCODE="A21" EN^DGRUGA21(DFN,DGIEN,"XMTARRY")
+ D:EVCODE="A22" EN^DGRUGA22(DFN,DGIEN,"XMTARRY")
+ D:EVCODE="A08" EN^DGRUGA08(DFN,DGIEN,"XMTARRY",DGDTYP_"^"_DGOLDT)
+ ;
+ I '$O(XMTARRY(0)) D  Q
+ . D ERRBUL(DFN,DT,EVCODE,"-1^Unable to build segment list to transmit")
+ ;
+ N NDX
+ S NDX=0
+ F  S NDX=$O(XMTARRY(NDX)) Q:'NDX  D  Q:(+XMTARRY(NDX)<0)
+ . I +XMTARRY(NDX)<0 D ERRBUL(DFN,DT,EVCODE,"-1^An error occurred in one of the segments")
+ ;
+ ; Load data array
+ M HLA("HLS")=XMTARRY
+ ;
+ ; Write out message text if in trace mode
+ I $D(DGTRACE) D
+ . N X S X=0
+ . F  S X=+$O(HLA("HLS",X)) Q:'X  W !,HLA("HLS",X)
+ ;
+ I $D(HLA("HLS")) D
+ . D GENERATE^HLMA("DGRU-RAI-"_EVCODE_"-SERVER","LM",1,.HLRST)
+ . D MSGBUL(DFN,DT,EVCODE,HLRST)
+ . I $D(DGTRACE),$D(HLRST) D
+ . . W !,"Message ID: ",+$G(HLRST)
+ ;
+ I +$P(HLRST,"^",2)>0 D  Q
+ . D ERRBUL(DFN,DT,EVCODE,"-1^"_$P(HLRST,"^",2,3))
+ ;
+ K HLA,HLERR
+ Q
+ ;
+MSGBUL(DFN,DT,EVCODE,MSGID) ;
+ N XMY,XMDUZ,XMDT,XMZ,XMB,XMCHAN,XMSUB
+ ;
+ S XMCHAN=1
+ S XMSUB="RAI/MDS HL7 MESSAGE XMIT"
+ S (XMDUZ,XMDUZ)="RAI/MDS APPLICATION"
+ ;
+ S XMB="DGRU HL7SND"
+ S XMB(1)=EVCODE
+ S XMB(2)=$$GET1^DIQ(2,DFN,.01)
+ S XMB(3)=+MSGID
+ S XMB(4)=$$FMTE^XLFDT(DT)
+ S XMB(5)=$$GET1^DIQ(2,DFN,.09) ; p-480 mg
+ S XMDT=$$NOW^XLFDT
+ D ^XMB
+ Q
+ ;
+ERRBUL(DFN,DT,EVCODE,ERRMSG) ;
+ N XMY,XMDUZ,XMDT,XMZ,XMB,XMCHAN,XMSUB
+ ;
+ S XMCHAN=1
+ S XMSUB="RAI/MDS HL7 ADT ERROR"
+ S (XMDUZ,XMDUZ)="RAI/MDS APPLICATION"
+ ;
+ S XMB="DGRU RAI ERROR"
+ S XMB(1)=$$GET1^DIQ(2,DFN,.01)
+ S XMB(2)=EVCODE
+ S XMB(3)=">>> "_$P(ERRMSG,"^",2)
+ S XMB(4)=$S($G(DUZ)>0:$$GET1^DIQ(200,DUZ,.01),1:"")
+ S XMB(5)=$$FMTE^XLFDT($$NOW^XLFDT)
+ S XMDT=DT
+ D ^XMB
+ Q

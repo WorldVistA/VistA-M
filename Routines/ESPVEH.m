@@ -1,0 +1,5 @@
+ESPVEH ;DALISC/CKA - VEHICLE INQUIRY ;12/91
+ ;;1.0;POLICE & SECURITY;;Mar 31, 1994
+START S DIC="^ESP(910.2,",DIC("A")="Select Vehicle Registration: ",DIC(0)="AEMQ",DIC("S")="I $P(^(0),""^"",4)=1" D ^DIC K DIC I Y<0 G Q
+ S DIC="^ESP(910.2,",DA=+Y D EN^DIQ G START
+Q Q

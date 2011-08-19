@@ -1,0 +1,79 @@
+GMTSUIX ; SLC/KER - Health Summary Set/Kill Indexes        ; 08/27/2002
+ ;;2.7;Health Summary;**30,32,29,56**;Oct 20, 1995
+ ;
+ ; External References
+ ;   DBIA 10060  ^VA(200,
+ ;   DBIA  2056  $$GET1^DIQ  (file #200)
+ ;   DBIA 10040  ^SC(  file #44
+ ;   DBIA 10013  IX1^DIK
+ ;                    
+ Q
+STNT ; Set word indexes for NAME and TITLE
+ N GMTSTR,GMTSIEN,GMTSPSN,GMTSCNT,GMTSWORD S GMTSTR=$G(X) Q:'$L(GMTSTR)  S GMTSIEN=+($G(DA)) Q:+GMTSIEN=0
+ S GMTSCNT=1 F GMTSPSN=1:1:$L(GMTSTR)+1 D
+ . S GMTSWORD=$E(GMTSTR,GMTSPSN) I "(,.?! '-/&:;)"[GMTSWORD D
+ . . S GMTSWORD=$TR($E($E(GMTSTR,GMTSCNT,GMTSPSN-1),1,30),"""",""),GMTSCNT=GMTSPSN+1 I $L(GMTSWORD)>0 D
+ . . . S @("^GMT(142,""AW"","""_$$UP(GMTSWORD)_""","_GMTSIEN_")")=""
+ Q
+KTNT ; Kill word indexes for NAME and TITLE
+ N GMTSTR,GMTSIEN,GMTSPSN,GMTSCNT,GMTSWORD S GMTSTR=$G(X) Q:'$L(GMTSTR)  S GMTSIEN=+($G(DA)) Q:+GMTSIEN=0
+ S GMTSCNT=1 F GMTSPSN=1:1:$L(GMTSTR)+1 D
+ . S GMTSWORD=$E(GMTSTR,GMTSPSN) I "(,.?! '-/&:;)"[GMTSWORD D
+ . . S GMTSWORD=$TR($E($E(GMTSTR,GMTSCNT,GMTSPSN-1),1,30),"""",""),GMTSCNT=GMTSPSN+1 I $L(GMTSWORD)>0 D
+ . . . K @("^GMT(142,""AW"","""_$$UP(GMTSWORD)_""","_GMTSIEN_")")
+ Q
+ ;                    
+STO ; Set word indexes for OWNER
+ N GMTSTR,GMTSIEN,GMTSPSN,GMTSCNT,GMTSWORD
+ S GMTSTR=+($G(X)) Q:GMTSTR'>0  Q:GMTSTR>0&(GMTSTR<1)
+ S GMTSTR=$$GET1^DIQ(200,(+GMTSTR_","),.01)  Q:'$L(GMTSTR)
+ S GMTSIEN=+($G(DA)) Q:+GMTSIEN=0
+ S GMTSCNT=1 F GMTSPSN=1:1:$L(GMTSTR)+1 D
+ . S GMTSWORD=$E(GMTSTR,GMTSPSN) I "(,.?! '-/&:;)"[GMTSWORD D
+ . . S GMTSWORD=$TR($E($E(GMTSTR,GMTSCNT,GMTSPSN-1),1,30),"""",""),GMTSCNT=GMTSPSN+1 I $L(GMTSWORD)>0 D
+ . . . S @("^GMT(142,""AW"","""_$$UP(GMTSWORD)_""","_GMTSIEN_")")=""
+ Q
+KTO ; Kill word indexes for OWNER
+ N GMTSTR,GMTSIEN,GMTSPSN,GMTSCNT,GMTSWORD
+ S GMTSTR=+($G(X)) Q:GMTSTR'>0  Q:GMTSTR>0&(GMTSTR<1)
+ S GMTSTR=$$GET1^DIQ(200,(+GMTSTR_","),.01)  Q:'$L(GMTSTR)
+ S GMTSIEN=+($G(DA)) Q:+GMTSIEN=0
+ S GMTSCNT=1 F GMTSPSN=1:1:$L(GMTSTR)+1 D
+ . S GMTSWORD=$E(GMTSTR,GMTSPSN) I "(,.?! '-/&:;)"[GMTSWORD D
+ . . S GMTSWORD=$TR($E($E(GMTSTR,GMTSCNT,GMTSPSN-1),1,30),"""",""),GMTSCNT=GMTSPSN+1 I $L(GMTSWORD)>0 D
+ . . . K @("^GMT(142,""AW"","""_$$UP(GMTSWORD)_""","_GMTSIEN_")")
+ Q
+ ;                    
+STL ; Set word indexes for LOCATION
+ N GMTSTR,GMTSIEN,GMTSPSN,GMTSCNT,GMTSWORD,GMTSIEN1,GMTSIEN2
+ S GMTSTR=$P($G(^SC(+($G(X)),0)),U,1) Q:'$L(GMTSTR)  S GMTSIEN1=+($G(DA(1))) Q:+GMTSIEN1=0  S GMTSIEN2=+($G(DA)) Q:+GMTSIEN2=0
+ S GMTSCNT=1 F GMTSPSN=1:1:$L(GMTSTR)+1 D
+ . S GMTSWORD=$E(GMTSTR,GMTSPSN) I "(,.?! '-/&:;)"[GMTSWORD D
+ . . S GMTSWORD=$TR($E($E(GMTSTR,GMTSCNT,GMTSPSN-1),1,30),"""",""),GMTSCNT=GMTSPSN+1 I $L(GMTSWORD)>0 D
+ . . .S @("^GMT(142,""AW"","""_$$UP(GMTSWORD)_""","_GMTSIEN1_","_GMTSIEN2_")")=""
+ Q
+KTL ; Kill word indexes for LOCATION
+ N GMTSTR,GMTSIEN,GMTSPSN,GMTSCNT,GMTSWORD,GMTSIEN1,GMTSIEN2
+ S GMTSTR=$P($G(^SC(+($G(X)),0)),U,1) Q:'$L(GMTSTR)  S GMTSIEN1=+($G(DA(1))) Q:+GMTSIEN1=0  S GMTSIEN2=+($G(DA)) Q:+GMTSIEN2=0
+ S GMTSCNT=1 F GMTSPSN=1:1:$L(GMTSTR)+1 D
+ . S GMTSWORD=$E(GMTSTR,GMTSPSN) I "(,.?! '-/&:;)"[GMTSWORD D
+ . . S GMTSWORD=$TR($E($E(GMTSTR,GMTSCNT,GMTSPSN-1),1,30),"""",""),GMTSCNT=GMTSPSN+1 I $L(GMTSWORD)>0 D
+ . . . K @("^GMT(142,""AW"","""_$$UP(GMTSWORD)_""","_GMTSIEN1_","_GMTSIEN2_")")
+ Q
+ ;                    
+RXT ; Re-index Health Summary Type file #142
+ W:'$D(GMTSQ) !,"Re-indexing Health Summary Type file #142"
+ N DIK,DA,IX S DA=0 F  S DA=$O(^GMT(142,DA)) Q:+DA=0  D
+ . S IX="~" F  S IX=$O(^GMT(142,DA,1,IX),-1) Q:+IX>0!(IX="")  I IX="0" K:$E(IX,1)?1U!($E(IX,1)?1L) ^GMT(142,DA,1,IX)
+ . S IX="~" F  S IX=$O(^GMT(142,DA,20,IX),-1) Q:+IX>0!(IX="")  I IX="0" K:$E(IX,1)?1U!($E(IX,1)?1L) ^GMT(142,DA,20,IX)
+ S IX="~" F  S IX=$O(^GMT(142,IX),-1) Q:+IX>0!(IX="")  I IX'="0" K:$E(IX,1)?1U!($E(IX,1)?1L) ^GMT(142,IX)
+ W:'$D(GMTSQ) ! S DA=0 F  S DA=$O(^GMT(142,DA)) Q:+DA=0  S DIK="^GMT(142," D IX1^DIK W:'$D(GMTSQ) "."
+ Q
+ ;                    
+UP(X) ; Uppercase
+ Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+TRIM(X) ; Trim Spaces
+ S X=$G(X) Q:X="" X F  Q:$E(X,1)'=" "  S X=$E(X,2,$L(X))
+ F  Q:$E(X,$L(X))'=" "  S X=$E(X,1,($L(X)-1))
+ F  Q:X'["  "  S X=$P(X,"  ",1)_" "_$P(X,"  ",2,229)
+ Q X

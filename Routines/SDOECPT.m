@@ -1,0 +1,107 @@
+SDOECPT ;ALB/MJK - ACRP CPT APIs For An Encounter ;8/12/96
+ ;;5.3;Scheduling;**131,196**;Aug 13, 1993
+ ;06/22/99 ACS - Added CPT modifier API calls
+ ;06/22/99 ACS - Added CPT modifier logic for the AMB CARE toolkit
+ ;
+CPT(SDOE,SDERR) ; -- SDOE ASSIGNED A PROCEDURE
+ ;   API ID: 65
+ ;
+ ;
+ N SDOK
+ S SDOK=0
+ ;
+ ; -- do validation checks
+ IF '$$VALOE^SDOEOE(.SDOE,$G(SDERR)) G CPTQ
+ IF $$OLD^SDOEUT(SDOE) S SDOK=$$OLDCPT(SDOE) G CPTQ
+ ;
+ S SDOK=$$CPT^PXAPIOE($$VIEN^SDOEUT(.SDOE),$G(SDERR))
+CPTQ Q SDOK
+ ;
+ ;
+GETCPT(SDOE,SDCPT,SDERR) ; -- SDOE GET PROCEDURES
+ ;   API ID: 61
+ ;
+ ;
+GETCPTG ; -- goto entry point
+ ; -- do validation checks
+ IF '$$VALOE^SDOEOE(.SDOE,$G(SDERR)) G GETCPTQ
+ IF $$OLD^SDOEUT(SDOE) D OLDCPTS(SDOE,.SDCPT) G GETCPTQ
+ ;
+ ;D GETCPT^PXAPIOE($$VIEN^SDOEUT(.SDOE),.SDCPT,$G(SDERR))
+ N MODNODE
+ D CPTARR^PXAPIOE($$VIEN^SDOEUT(.SDOE),.SDCPT,$G(SDERR))
+ S MODNODE=0
+ ;
+ ; spin through array VAFPROC built from global file ^AUPNVCPT
+ F  S MODNODE=+$O(@SDCPT@(MODNODE)) Q:'MODNODE  S @SDCPT@(MODNODE)=$G(@SDCPT@(MODNODE,0))
+GETCPTQ Q
+ ;
+ ;
+FINDCPT(SDOE,SDCPTID,SDERR) ; -- SDOE FIND PROCEDURE
+ ;   API ID: 71
+ ;
+ ;
+ N SDCPTS,SDOK,I
+ S SDCPTS="SDCPTS"
+ ;
+ ; -- do validation checks
+ IF '$$VALCPT(.SDCPTID,$G(SDERR)) S SDOK=0 G FINDCPTQ
+ ;
+ ;D GETCPT(.SDOE,.SDCPTS,$G(SDERR))
+ D GETCPT(.SDOE,SDCPTS,$G(SDERR))
+ S (I,SDOK)=0
+ F  S I=$O(SDCPTS(I)) Q:'I  S SDOK=(+SDCPTS(I)=SDCPTID) Q:SDOK
+FINDCPTQ Q SDOK
+ ;
+ ;
+VALCPT(SDCPTID,SDERR) ; -- validate CPT input
+ ;
+ ; -- do checks
+ ;IF SDCPTID,$D(^ICPT(SDCPTID,0)) Q 1
+ IF SDCPTID,$$CPT^ICPTCOD(SDCPTID,,1)>0 Q 1
+ ;
+ ; -- build error msg
+ N SDIN,SDOUT
+ S SDIN("ID")=SDCPTID
+ S SDOUT("ID")=SDCPTID
+ D BLD^SDQVAL(4096800.005,.SDIN,.SDOUT,$G(SDERR))
+ Q 0
+ ;
+ ;
+OLDCPT(SDOE) ; -- at least one cpt for OLD encounter?
+ N SDXARY
+ D OLDCPTS(SDOE,"SDXARY")
+ Q (+$G(SDXARY)>0)
+ ;
+OLDCPTS(SDOE,SDARY) ; -- get cpt's for OLD encounter
+ N SDIEN,SDCNT,Y,X,SDYARY
+ D COUNT(.SDOE,"SDYARY")
+ S (SDIEN,SDCNT)=0
+ F  S SDIEN=$O(SDYARY(SDIEN)) Q:'SDIEN  D
+ . S SDCNT=SDCNT+1,X=$G(SDYARY(SDIEN))
+ . S $P(Y,U,1)=SDIEN       ; -- cpt ien
+ . S $P(Y,U,16)=+X         ; -- quantity
+ . S @SDARY@(SDIEN)=Y
+ S @SDARY=SDCNT
+ Q
+ ;
+COUNT(SDOE,SDZARY) ; -- count/find cpt's for OLD encounter
+ N SDFN,SDATE,SDCL,SDT,SDSC,SDSC0,SDPR,SDPROC,I,SDOE0
+ S SDOE0=$G(^SCE(SDOE,0))
+ S SDFN=+$P(SDOE0,U,2)
+ S SDATE=+SDOE0
+ S SDCL=+$P(SDOE0,U,4)
+ S SDT=+$G(^SDV("ADT",SDFN,$P(SDATE,".")))
+ ;
+ S SDSC=0 F  S SDSC=$O(^SDV(SDT,"CS",SDSC)) Q:'SDSC  D
+ . S SDSC0=$G(^SDV(SDT,"CS",SDSC,0))
+ . S SDPR=$G(^SDV(SDT,"CS",SDSC,"PR"))
+ .; 
+ .; -- only for clinic assoicated with encounter
+ .;    ('old' data lumped all cpts together for day)
+ .;
+ . IF $P($G(^DIC(40.7,+SDSC0,0)),U,2)=900,$P(SDSC0,U,3)=SDCL D
+ ..; F I=1:1:5 S SDPROC=+$P(SDPR,U,I) IF $D(^ICPT(SDPROC,0)) S @SDZARY@(SDPROC)=$G(@SDZARY@(SDPROC))+1
+ .. F I=1:1:5 S SDPROC=+$P(SDPR,U,I) IF $$CPT^ICPTCOD(SDPROC,,1)>0 S @SDZARY@(SDPROC)=$G(@SDZARY@(SDPROC))+1
+ Q
+ ;

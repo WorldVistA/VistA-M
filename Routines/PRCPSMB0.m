@@ -1,0 +1,61 @@
+PRCPSMB0 ;WISC/RFJ-isms transaction: balance update                 ;25 Oct 91
+ ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ D ^PRCPUSEL Q:'$G(PRCP("I"))
+ I PRCP("DPTYPE")'="W" W !,"THIS OPTION SHOULD ONLY BE USED BY THE WAREHOUSE INVENTORY POINT." Q
+ ;I $$ISMSFLAG^PRCPUX2(PRC("SITE"))'=2 W !,"YOU NEED TO TURN THE ISMS SWITCH 'ON' BEFORE YOU CAN USE THIS OPTION." Q
+ N %,CODESHT,COUNT,DESCR,ITEMDA,PRCPFLAG,PRCPXMZ,ZTSK
+ S IOP="HOME" D ^%ZIS K IOP D Q
+ W !!,"To select ALL items, press RETURN."
+ F  S ITEMDA=$$ITEM^PRCPUITM(PRCP("I"),0,"","") Q:'ITEMDA  D
+ .   S CODESHT=$$BALANCE^PRCPSMB1(PRCP("I"),ITEMDA) I $E(CODESHT,1,2)'="BU" W !?5,CODESHT Q
+ .   S DESCR=$$DESCR^PRCPUX1(PRCP("I"),ITEMDA)
+ .   W @IOF,!!,"I WILL TRANSMIT THE FOLLOWING BALANCES TO ISMS:"
+ .   W !,ITEMDA,?7,$E(DESCR,1,50),?60,$P(CODESHT,"^",2),!!?5,"ISSUE UNIT",?23,": ",$P(CODESHT,"^",3),!?5,"QUANTITY ON-HAND",?23,": ",$P(CODESHT,"^",4)/100
+ .   W !?5,"ON-HAND VALUE",?23,": ",$J(+$P(CODESHT,"^",5)/100,0,2),!?5,"QUANTITY DUE-OUT",?23,": ",+$P(CODESHT,"^",6)/100
+ .   W !?5,"AVERAGE COST",?23,": ",$J(+$P(CODESHT,"^",7)/10000,0,3),!?5,"LAST RECEIPT COST",?23,": ",$J(+$P(CODESHT,"^",8)/10000,0,3),!?5,"LAST SALE COST",?23,": ",$J(+$P(CODESHT,"^",9)/10000,0,3)
+ .   W !!?1,"CS: ",CODESHT
+ .   S ^TMP($J,"BAL",ITEMDA)=DESCR_"^"_$P(CODESHT,"^",2),^TMP($J,"BAL",ITEMDA,"CS")=CODESHT
+ I ITEMDA["^" D Q Q
+ I '$O(^TMP($J,"BAL",0)) S XP="Do you want to select ALL items",XH="Enter 'YES' to select ALL items, 'NO' or '^' to exit." W ! I $$YN^PRCPUYN(1)=1 D  D Q Q
+ .   W !!,"I will queue this to run as a background job.  When I finish building the",!,"code sheet, I will send you a mailman message with the code sheet number",!,"and items NOT transmitted because of errors found."
+ .   S ZTRTN="DQ^PRCPSMB0",ZTIO="",ZTDESC="ISMS Balance Transaction:All Items",ZTSAVE("PRC*")="",ZTSAVE("ZTREQ")="@" D ^%ZTLOAD K ZTSK
+ I '$O(^TMP($J,"BAL",0)) W !,"NO ITEMS SELECTED." D Q Q
+ W @IOF,!,"YOU HAVE SELECTED THE FOLLOWING ITEMS TO UPDATE ISMS BALANCES:" S ITEMDA=0,COUNT=1 F  S ITEMDA=$O(^TMP($J,"BAL",ITEMDA)) Q:'ITEMDA!($D(PRCPFLAG))  S %=^(ITEMDA) I %'="",$D(^TMP($J,"BAL",ITEMDA,"CS")) D
+ .   W !,ITEMDA,?7,$E($P(%,"^"),1,50),?60,$P(%,"^",2) S ^TMP($J,"STRING",COUNT)=^TMP($J,"BAL",ITEMDA,"CS"),COUNT=COUNT+1
+ .   I $Y>(IOSL-5) D P^PRCPUREP
+ I $D(PRCPFLAG) D Q Q
+ I '$O(^TMP($J,"STRING",0)) W !!,"NO CODE SHEETS CREATED." D Q Q
+ S XP="*** ARE YOU SURE YOU WANT TO CREATE THE ISMS TRANSACTION",XP(1)="    AND TRANSMIT IT TO AUSTIN",XH="ENTER 'YES' TO CREATE THE ISMS TRANSACTION AND TRANSMIT IT TO AUSTIN",XH(1)="ENTER 'NO' OR '^' TO EXIT."
+ W !! I $$YN^PRCPUYN(1)'=1 D Q Q
+ D TRANSMIT^PRCPSMCS(PRC("SITE"),"BAL","","ISM","")
+ W !!?4,"Transmitted in MailMan Messages:" I $D(PRCPXMZ) S %=0 F  S %=$O(PRCPXMZ(%)) Q:'%  W " ",PRCPXMZ(%),"  "
+Q K ^TMP($J,"BAL"),^TMP($J,"STRING"),^TMP($J,"MAIL")
+ Q
+ ;
+ ;
+DQ ;  queue comes here to send all items to isms
+ N CODESHT,COUNT,ITEMDA,LINE,PRCPCS,XMDUZ,XMSUB,XMTEXT,XMY
+ K ^TMP($J,"MAIL"),^TMP($J,"STRING")
+ S COUNT=1,LINE=5,ITEMDA=0 F  S ITEMDA=$O(^PRCP(445,PRCP("I"),1,ITEMDA)) Q:'ITEMDA  D
+ .   L +^PRCP(445,PRCP("I"),1,ITEMDA)
+ .   S CODESHT=$$BALANCE^PRCPSMB1(PRCP("I"),ITEMDA)
+ .   I $E(CODESHT,1,2)'="BU" D  Q
+ .   .   S ^TMP($J,"MAIL",LINE)="ITEM # "_ITEMDA_$E("        ",$L(ITEMDA),8)_$E($$DESCR^PRCPUX1(PRCP("I"),ITEMDA),1,50),LINE=LINE+1
+ .   .   S ^TMP($J,"MAIL",LINE)="    "_CODESHT,LINE=LINE+1
+ .   S ^TMP($J,"STRING",COUNT)=CODESHT,COUNT=COUNT+1
+ .   L -^PRCP(445,PRCP("I"),1,ITEMDA)
+ ;
+ ;  create mailman messages
+ K PRCPXMZ I COUNT>1 D TRANSMIT^PRCPSMCS(PRC("SITE"),"BAL","","ISM","")
+ S ^TMP($J,"MAIL",1)="ISMS BALANCE UPDATE TRANSACTION (IM-6): ALL ITEMS SELECTED"
+ S ^TMP($J,"MAIL",2)=$S('$D(PRCPXMZ):"  *** BALANCE UPDATE TRANSACTION WAS NOT CREATED AND TRANSMITTED TO ISMS ***",1:"  MAILMAN MESSAGE(S):")
+ I $D(PRCPXMZ) S %=0 F  S %=$O(PRCPXMZ(%)) Q:'%  S ^(2)=^TMP($J,"MAIL",2)_"  "_+PRCPXMZ(%)
+ S ^TMP($J,"MAIL",3)="",^(4)=$S(LINE=5:"ALL INVENTORY ITEM BALANCES HAVE BEEN TRANSMITTED TO ISMS.",1:"THE FOLLOWING ITEMS DID NOT HAVE THEIR BALANCES TRANSMITTED TO ISMS:")
+ S XMSUB="ISMS BALANCE UPDATE TRANSACTION",XMTEXT="^TMP($J,""MAIL"",",XMDUZ=DUZ,XMY(DUZ)="" D ^XMD
+ D Q Q
+ ;
+ ;
+TASKMAN ;  taskman comes here to transmit all balances in the background
+ S PRCP("I")=0 F  S PRCP("I")=$O(^PRCP(445,"AC","W",PRCP("I"))) Q:'PRCP("I")  S PRC("SITE")=+$G(^PRCP(445,PRCP("I"),0)) I PRC("SITE") D DQ
+ Q

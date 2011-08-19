@@ -1,0 +1,103 @@
+PRCHREC4 ;ID/RSD,SF/TKW-CONTINUATION--PROCESS RECEIVING ;[7/6/98 10:03am] [7/6/98 10:15am]
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+PRT ; IF METHOD OF PROCESSING=IMPREST FUNDS, UPDATE CONTROL POINT
+ ; OBLIGATED BALANCE
+ ;I $D(^PRCD(442.5,+$P(^PRC(442,DA,0),U,2),0)),$P(^(0),U,3)=12 D OBL^PRCHNRQ
+ ;
+PRT1 ; PRINT RECEIVING REPORT IN WAREHOUSE AND IN FISCAL, EXCEPT FOR
+ ; IMPREST FUNDS, WHICH PRINT WHERE REQUESTED BY USER, OR PROOF
+ ; OF DELIVERY FOR GUARANTEED DELIVERY, WHICH PRINTS ONLY IN FISCAL.
+ ;
+ G:$D(PRCHPOO) PRTF1
+ G:$G(MOPCHK)=25 PRT2
+ I '$P($G(^PRC(442,PRCHPO,24)),U),$D(PRCHIMP) K PRCHQ S PRCHQ("DEST2")="IFR",PRCHQ("DEST")="R",D0=PRCHPO,PRCHQ="^PRCHFPNT",PRCHFPT=PRCHRPT D ^PRCHQUE G PRTF
+PRT2 ;
+ K PRCHQ
+ I $P(PRC("PARAM"),U,12)="W" S PRCHQ("DEST")="R",D0=PRCHPO,PRCHQ="^PRCHFPNT",PRCHFPT=PRCHRPT D ^PRCHQUE
+ S DIR("A")="Do you want to print an additional copy"
+ S DIR("B")="NO"
+ S DIR(0)="Y"
+ D ^DIR
+ K DIR
+ I Y=1 D
+ . S D0=PRCHPO
+ . S PRCHFPT=PRCHRPT
+ . S PRCHQ("DEST")="R"
+ . S %ZIS="Q"
+ . D ^%ZIS
+ . G:POP FINI
+ . ;
+ . ; IF USER WANTS TO QUEUE THE SECOND PRINT -- DO IT.
+ . ;
+ . I $D(IO("Q")) D  Q
+ . . S ZTRTN="^PRCHFPNT"
+ . . S ZTSAVE("PRCHFPT")=""
+ . . S ZTSAVE("PRCHQ(""DEST"")")=""
+ . . S ZTSAVE("D0")=""
+ . . D ^%ZTLOAD
+ . . D HOME^%ZIS
+ . . K IO("Q")
+ . . Q
+ . ;
+ . ; USER WANTED TO PRINT THE SECOND COPY LOCALLY.
+ . ;
+ . U IO
+ . D ^PRCHFPNT
+ . D ^%ZISC
+FINI . S:$D(ZTQUEUED) ZTREQ="@"
+ . Q
+ ;
+ Q:$G(MOPCHK)=25
+ ;
+PRTF Q:$P(PRC("PARAM"),U,8)'="Y"
+ I '$P($G(^PRC(442,PRCHPO,24)),U) D W Q:%'=1
+ ;I $P(^PRC(442,PRCHPO,0),U,19)=2,$P(^(0),U,2)'=25 D W Q:%'=1
+ ;
+PRTF1 I $D(PRCHPOO) S %A="Print a Copy of Proof of Order (Receiving Report) ",%B="Enter 'Y' (YES), to print Proof of Order on Fiscal Receiving Report Printer",%=1 D ^PRCFYN Q:%'=1
+ S PRCHQ("DEST")="R",PRCHQ("DEST2")="FR",D0=PRCHPO,PRCHQ="^PRCHFPNT",PRCHFPT=PRCHRPT
+ ;I $P($G(^PRC(442,PRCHPO,24)),U) I $P(^PRC(442,PRCHPO,0),U,19)'=2 S PRCHQ("DEST2")=""
+ D ^PRCHQUE
+ Q
+ ;
+W W !!,"Do you want to also print Receiving Report in FISCAL " S %=1 D YN^DICN Q:%'=0
+ W !!,"If you wish to allow Fiscal to process this receiving report immediately",!,"without waiting for acceptance by the service, answer 'Y' (yes) to this",!,"question."
+ G W
+WW W !!,"Do you want to print Receiving Report " S %=2 D YN^DICN Q:%'=0
+ W !!,"Please enter Yes or No."
+ G WW
+ ;
+ENTD ;PROMPT FOR ENTRY OF SCHEDULED DELIVERY DATE.
+ S PRCHDLVD="" I $D(PRCHRPT),$D(^PRC(442,PRCHPO,11,+PRCHRPT,1)) S PRCHDLVD=$P(^(1),U,8)
+ S PRCHPONO=$P(^PRC(442,PRCHPO,0),U,1) I '$O(^PRC(442.8,"B",PRCHPONO,0)) G EX
+ ;
+E2 W !! D D2 S PRCH="" I PRCHDLVD S Y=PRCHDLVD D DD^%DT S PRCH=Y
+ W !!,"Enter Scheduled Delivery Date: "_PRCH_"// " R X:DTIME S:'$T!(X["^") (X,PRCHDLVD)="^" S:X="" X=PRCH Q:X=""!(X="^")  I X["?" D W2 G E2
+ S Y=X D ^%DT I '$O(^PRC(442.8,"AF",PRCHPONO,Y,0)) D W2 G E2
+ S PRCHDLVD=Y D DD^%DT W "   "_Y S %A="RIGHT DATE ",%=1 D ^PRCFYN I %'=1 G E2
+ W !!,"Please wait: " K ^TMP("PRCHREC4",$J) F I=0:0 S I=$O(^PRC(442.8,"AF",PRCHPONO,PRCHDLVD,I)) Q:'I  I $D(^PRC(442.8,I,0)) S X=^(0) I $P(X,U,2) S ^TMP("PRCHREC4",$J,$P(X,U,2),I)=$P(X,U,4)_U_$P(X,U,5) W "."
+ W !!
+ G EX
+ ;
+UPDD ;UPDATE SCHEDULED DELIVERY DATE FIELD
+ K DIE,DA S DIE="^PRC(442,"_PRCHPO_",11,",DA(1)=PRCHPO,DA=PRCHRPT,DR=".05///"_PRCHDLVD D ^DIE K DIE,DA
+ Q
+ ;
+DSPD ;DISPLAY MULTIPLE DELIVERY DATES
+ Q:'$D(^PRC(442,DA(1),0))  Q:$P(^(0),U,1)=""  S PRCHPONO=$P(^(0),U,1) I '$O(^PRC(442.8,"B",PRCHPONO,0)) G EX
+ ;
+D2 W "Scheduled Delivery Dates:",! F I=0:0 S I=$O(^PRC(442.8,"AF",PRCHPONO,I)) Q:'I  S Y=I D DD^%DT W "  ",Y,!
+ Q
+ ;
+EX K PRCHPONO,I,X,Y
+ Q
+ ;
+W2 W $C(7),!!,"Select from one of the listed Scheduled Delivery Dates!",!!
+ Q
+ ;
+KILL ;CALLED FROM PRCHREC
+ S:$D(PRCHPOO) PRCFA("PARTIAL")=PRCHRPT
+ L  K DIE,DIC,PRCHES,PRCHFPT,PRCHIMP,PRCHLC,PRCHNM,PRCHNRQ,PRCHR,PRCHRAM,PRCHRAMN,PRCHRD,PRCHRDA,PRCHRDY,PRCHRES,PRCHRFIN,PRCHRIT,PRCHROV,PRCHRPT,PRCHRQ,PRCHRQ1
+ K PRCHRQ2,PRCHRQ3,PRCHRS,PRCHRT0,PRCHRT,PRCHRT2,PRCHRTP,PRCHX,PRCHDLVD,X1,^TMP("PRCHREC4",$J),ROUTINE
+ Q

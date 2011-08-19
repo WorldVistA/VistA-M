@@ -1,0 +1,74 @@
+SDPPDIS1 ;ALB/CAW - Patient Profile - Disposition ; 5/3/92
+ ;;5.3;Scheduling;**6**;Aug 13, 1993
+ ;
+ ;
+EN1 ;
+ N SDBEN,SDBENE,SDCAR,SDCARE,SDDIS,SDSC,SDSTAT,SDSTATUS,SDVER,SDYN,SDSTART,SDSTOP
+ S SDSTART=$S($D(SDBEG):9999999,1:9999999-SDBD),SDSTOP=$S($D(SDEND):0,1:9999999-SDED),SDFST=20,SDSEC=60,SDLEN=20
+ I SDSTOP'=0 S SDSTOP=SDSTOP-1
+ F SD=SDSTOP:0 S SD=$O(^DPT(DFN,"DIS",SD)) Q:'SD!(SD>(SDSTART+.9))  S SDDIS(0)=$G(^(SD,0)),SDDIS(2)=$G(^(2)),SDDIS(3)=$G(^(3)) D INFO
+ Q
+INFO ; Set up info for display
+ ;
+LOGIN ; Log In Date/Time and Log Out Date/Time
+ S X="",X=$$SETSTR^VALM1("Log In Date/Time:",X,2,17)
+ S X=$$SETSTR^VALM1($$FDTTM^VALM1(+SDDIS(0)),X,SDFST,SDLEN)
+ S X=$$SETSTR^VALM1("Log Out Date/Time:",X,41,18)
+ S X=$$SETSTR^VALM1($$FDTTM^VALM1($P(SDDIS(0),U,6)),X,SDSEC,SDLEN)
+ D SET(X)
+BENE ; Type of Benefit Applied For and Disposition
+ S X="",X=$$SETSTR^VALM1("Benefit Appl. For:",X,1,18)
+ S SDBEN=$P(SDDIS(0),U,3),SDBENE=$S(SDBEN=1:"HOSPITAL",SDBEN=2:"DOMICILIARY",SDBEN=3:"OUTPATIENT MEDICAL",SDBEN=4:"OUTPATIENT DENTAL",SDBEN=5:"NURSING HOME CARE",1:"UNKNOWN")
+ S X=$$SETSTR^VALM1(SDBENE,X,SDFST,SDLEN)
+ S X=$$SETSTR^VALM1("Disposition:",X,47,12)
+ S X=$$SETSTR^VALM1($P($G(^DIC(37,+$P(SDDIS(0),U,7),0)),U),X,SDSEC,SDLEN)
+ D SET(X)
+CARE ; Type of Care Applied For and Status
+ S X="",X=$$SETSTR^VALM1("Care Applied For:",X,2,17)
+ S SDCAR=$P(SDDIS(0),U,11),SDCARE=$S(SDCAR=1:"DENTAL",SDCAR=2:"PLASTIC SURGERY",SDCAR=3:"STERILIZATION",SDCAR=4:"PREGNANCY",SDCAR=5:"ALL OTHER",1:"UNKNOWN")
+ S X=$$SETSTR^VALM1(SDCARE,X,SDFST,SDLEN)
+ S X=$$SETSTR^VALM1("Status:",X,52,7)
+ S SDSTAT=$P(SDDIS(0),U,2),SDSTATUS=$S(SDSTAT=0:"10/10 VISIT",SDSTAT=1:"UNSCHEDULED",SDSTAT=2:"APPLICATION W/O EXAM",1:"UNKNOWN")
+ S X=$$SETSTR^VALM1(SDSTATUS,X,SDSEC,SDLEN)
+ D SET(X)
+FAC ; Facility Applying To and Amis 400 Series
+ S X="",X=$$SETSTR^VALM1("Fac. Applying To:",X,2,17)
+ S X=$$SETSTR^VALM1($P($G(^DG(40.8,+$P(SDDIS(0),U,4),0)),U),X,SDFST,SDLEN)
+ S X=$$SETSTR^VALM1("AMIS 420 Series:",X,43,16)
+ S X=$$SETSTR^VALM1($P(SDDIS(0),U,17),X,SDSEC,SDLEN)
+ D SET(X)
+REG ; Registration Eligiblity Code and Eligibility Verified at Registration
+ S X="",X=$$SETSTR^VALM1("Reg. Elig. Code:",X,3,16)
+ S X=$$SETSTR^VALM1($P($G(^DIC(8,+$P(SDDIS(0),U,13),0)),U),X,SDFST,SDLEN)
+ S X=$$SETSTR^VALM1("Elig Ver. at Reg.:",X,41,18)
+ S SDVER=$S($P(SDDIS(0),U,14)=0:"NO",$P(SDDIS(0),U,14)=1:"YES",1:"UNKNOWN")
+ S X=$$SETSTR^VALM1(SDVER,X,SDSEC,SDLEN)
+ D SET(X)
+WHOE ; Who entered 10/10 and SC at Registration
+ S X="",X=$$SETSTR^VALM1("Who entered 10/10:",X,1,18)
+ S X=$$SETSTR^VALM1($P($G(^VA(200,+$P(SDDIS(0),U,5),0)),U),X,SDFST,SDLEN)
+ S X=$$SETSTR^VALM1("SC at Reg.:",X,48,11)
+ S SDSC=$S($P(SDDIS(0),U,15)=0:"NO",$P(SDDIS(0),U,15)=1:"YES",1:"UNKNOWN")
+ S X=$$SETSTR^VALM1(SDSC,X,SDSEC,SDLEN)
+ D SET(X)
+WHOD ; Who dispositioned and SC % At Registration
+ S X="",X=$$SETSTR^VALM1("Who Dispositioned:",X,1,18)
+ S X=$$SETSTR^VALM1($P($G(^VA(200,+$P(SDDIS(0),U,9),0)),U),X,SDFST,SDLEN)
+ I $P(SDDIS(0),U,16)'="" D
+ .S X=$$SETSTR^VALM1("SC % At Reg.:",X,46,13)
+ .S X=$$SETSTR^VALM1($P(SDDIS(0),U,16)_"%",X,SDSEC,SDLEN)
+ D SET(X)
+ACTIVE ; Active (registration has not been dispositioned) and Reason Late Disp
+ S X=""
+ I $P(SDDIS(0),U,10)'="" D
+ .S X=$$SETSTR^VALM1("Active:",X,12,7)
+ .S X=$$SETSTR^VALM1("YES",X,SDFST,SDLEN)
+ I $P(SDDIS(0),U,8)'="" D
+ .S X=$$SETSTR^VALM1("Reason Late Disp.:",X,41,18)
+ .S X=$$SETSTR^VALM1($P($G(^DIC(30,$P(SDDIS(0),U,8),0)),U),X,SDSEC,SDLEN)
+ D:X'="" SET(X)
+ D ^SDPPDIS2 Q
+SET(X) ; Set in ^TMP global for display
+ ;
+ S SDLN=SDLN+1,^TMP("SDPPALL",$J,SDLN,0)=X
+ Q

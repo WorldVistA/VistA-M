@@ -1,0 +1,110 @@
+ONCNPC8B ;HIRMFO/GWB - PCE Study of Non-Hodgkin's Lymphoma - Print (continued);5/14/97
+ ;;2.11;ONCOLOGY;**11,15,16**;Mar 07, 1995
+III S TABLE="TABLE III - EXTENT OF DISEASE AND AJCC STAGE"
+ I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HDR^ONCNPC8
+ W !?4,TABLE,!?4,"--------------------------------------------" D P Q:EX=U
+ACSG W !,"32. AJCC CLINICAL STAGE GROUP.......: ",ONC(165.5,IEN,38) D P Q:EX=U
+CSB W !,"33. CLINICALLY STAGED BY............: ",ONC(165.5,IEN,19) D P Q:EX=U
+APSG W !,"34. AJCC PATHOLOGIC STAGE GROUP.....: ",ONC(165.5,IEN,88) D P Q:EX=U
+PSB W !,"35. PATHOLOGICALLY STAGED BY........: ",ONC(165.5,IEN,89) D P Q:EX=U
+TOSS W !,"36. TYPE OF STAGING SYS (PEDIATRIC).: ",ONC(165.5,IEN,849) D P Q:EX=U
+PS W !,"37. PEDIATRIC STAGE.................: ",ONC(165.5,IEN,850) D P Q:EX=U
+SB W !,"38. STAGED BY (PEDIATRIC STAGE).....: ",ONC(165.5,IEN,851) D P Q:EX=U
+ W ! D P Q:EX=U
+ES W !,"39. EXTRANODAL SITES:"
+ W !,"      EXTRANODAL SITE 1.............: ",ONC(165.5,IEN,852) D P Q:EX=U
+ W !,"      EXTRANODAL SITE 2.............: ",ONC(165.5,IEN,853) D P Q:EX=U
+ W !,"      EXTRANODAL SITE 3.............: ",ONC(165.5,IEN,854) D P Q:EX=U
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR^ONCNPC8 G IV
+ D P Q:EX=U
+IV S TABLE="TABLE IV - FIRST COURSE OF TREATMENT"
+ I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HDR^ONCNPC8
+ W !?4,TABLE,!?4,"------------------------------------" D P Q:EX=U
+ S D0=ONCONUM D DFC^ONCOCOM S DOIT=Y
+ W !,"40. FIRST COURSE OF TREATMENT DATE..: ",DOIT D P Q:EX=U
+ W !!?4,"SURGERY",!?4,"-------" D P Q:EX=U
+CDS S CDS=ONC(165.5,IEN,58.2)
+ S (CDS1,CDS2)="",LOS=$L(CDS) I LOS<45 S CDS1=CDS G S
+ S NOP=$L($E(CDS,1,41)," ")
+ S CDS1=$P(CDS," ",1,NOP-1),CDS2=$P(CDS," ",NOP,999)
+S W !,"41. SURGERY OF PRIMARY SITE DATE....: ",ONC(165.5,IEN,50) D P Q:EX=U
+ W !,"42A.SURGERY OF PRIMARY SITE.........: ",CDS1 W:CDS2'="" !,?39,CDS2
+ W !,"42B.EXTRANODAL SURGERY SITE.........: ",ONC(165.5,IEN,855) D P Q:EX=U
+ W !,"42C.EXTRANODAL SURGICAL PROCEDURE...: ",ONC(165.5,IEN,856) D P Q:EX=U
+ S LINE="------------------------------------------------"
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR^ONCNPC8 W !?4,TABLE_" (continued)",!?4,LINE G R
+ W ! D P Q:EX=U
+R W !?4,"RADIATION THERAPY",!?4,"-----------------" D P Q:EX=U
+ W !,"43. DATE RADIATION STARTED..........: ",ONC(165.5,IEN,51) D P Q:EX=U
+ W !,"44. RADIATION.......................: ",ONC(165.5,IEN,51.2) D P Q:EX=U
+ W !!,"45. IRRADIATED FIELDS:" D P Q:EX=U
+ W !,"      LYMPH NODES ABOVE DIAPHRAGM...: ",ONC(165.5,IEN,857) D P Q:EX=U
+ W !,"      LYMPH NODES BELOW DIAPHRAGM...: ",ONC(165.5,IEN,858) D P Q:EX=U
+ W !,"      BRAIN.........................: ",ONC(165.5,IEN,859) D P Q:EX=U
+ W !,"      OTHER EXTRANODAL SITE(S)......: ",ONC(165.5,IEN,860) D P Q:EX=U
+ W !,"      TOTAL BODY....................: ",ONC(165.5,IEN,861) D P Q:EX=U
+ W !!,"46. RADIATION/CHEMOTHERAPY SEQUENCE.: ",ONC(165.5,IEN,862)
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR^ONCNPC8 W !?4,TABLE_" (continued)",!?4,LINE G C
+ W ! D P Q:EX=U
+C W !?4,"CHEMOTHERAPY",!?4,"------------" D P Q:EX=U
+ W !,"47. PROTOCOL........................: ",ONC(165.5,IEN,863) D P Q:EX=U
+SC W !!?4,"SYSTEMIC CHEMOTHERAPY",!?4,"---------------------" D P Q:EX=U
+ W !,"48. SYSTEMIC CHEMOTHERAPY...........: ",ONC(165.5,IEN,864) D P Q:EX=U
+ W !,"49. SYSTEMIC CHEMOTHERAPY DATE......: ",ONC(165.5,IEN,865) D P Q:EX=U
+ W !,"50. NUMBER OF PLANNED CYCLES........: ",ONC(165.5,IEN,866)
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR^ONCNPC8 W !?4,TABLE_" (continued)",!?4,LINE G AADSC
+ D P Q:EX=U
+AADSC W !,"51. AGENT ADMINISTERED DURING SYSTEMIC CHEMOTHERAPY:",! D P Q:EX=U
+ W !,"    SINGLE-AGENT CHEMOTHERAPY:",?42,"COMBINATION CHEMOTHERAPY:",! D P Q:EX=U
+ W !,"    CHLORAMBUCIL.....: ",ONC(165.5,IEN,867),?42,"CHOP.............: ",ONC(165.5,IEN,871) D P Q:EX=U
+ W !,"    CYCLOPHOSPHAMIDE.: ",ONC(165.5,IEN,868),?42,"CVP..............: ",ONC(165.5,IEN,872) D P Q:EX=U
+ W !,"    DOXORUBICIN......: ",ONC(165.5,IEN,869),?42,"COMLA............: ",ONC(165.5,IEN,873) D P Q:EX=U
+ W !,"    FLUDARABINE......: ",ONC(165.5,IEN,870),?42,"MACOP-B..........: ",ONC(165.5,IEN,874) D P Q:EX=U
+ W !,?42,"M-BACOD..........: ",ONC(165.5,IEN,875) D P Q:EX=U
+ W !,?42,"PRO-MACE-Cyta BOM: ",ONC(165.5,IEN,876) D P Q:EX=U
+ W !,?42,"OTHER............: ",ONC(165.5,IEN,877) D P Q:EX=U
+ W !!,"52. HIGH DOSE W STEM CELL RESCUE....: ",ONC(165.5,IEN,878)
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR^ONCNPC8 W !?4,TABLE_" (continued)",!?4,LINE G IC
+ D P Q:EX=U
+IC W !?4,"INTRATHECAL CHEMOTHERAPY",!?4,"------------------------" D P Q:EX=U
+ W !,"53. INTRATHECAL CHEMOTHERAPY........: ",ONC(165.5,IEN,879) D P Q:EX=U
+ W !,"54. PURPOSE.........................: ",ONC(165.5,IEN,880) D P Q:EX=U
+I W !!?4,"IMMUNMOTHERAPY",!?4,"--------------" D P Q:EX=U
+ W !,"55. IMMUNOTHERAPY:"
+ W !,"      INTERLEUKIN-2 (IL-2)..........: ",ONC(165.5,IEN,881) D P Q:EX=U
+ W !,"      INTERFERON....................: ",ONC(165.5,IEN,882) D P Q:EX=U
+ W !,"      MONOCLONAL ANTIBODIES.........: ",ONC(165.5,IEN,883) D P Q:EX=U
+ W !,"      VACCINE THERAPY...............: ",ONC(165.5,IEN,884) D P Q:EX=U
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR^ONCNPC8 G V
+ W ! D P Q:EX=U
+V S TABLE="TABLE V - FIRST RECURRENCE"
+ W !?4,TABLE,!?4,"--------------------------" D P Q:EX=U
+ W !,"56. DATE OF FIRST RECURRENCE........: ",ONC(165.5,IEN,70) D P Q:EX=U
+ W !,"57. TYPE OF FIRST RECURRENCE........: ",ONC(165.5,IEN,71) D P Q:EX=U
+ W !,"58. OTHER TYPE OF FIRST RECURRENCE..: ",ONC(165.5,IEN,71.4) D P Q:EX=U
+ ;I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR^ONCNPC8 G VI
+ W ! D P Q:EX=U
+VI S TABLE="TABLE VI - STATUS AT LAST CONTACT"
+ I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HDR^ONCNPC8
+ W !?4,TABLE,!?4,"---------------------------------" D P Q:EX=U
+ S DLC="" I $D(^ONCO(160,ONCOPA,"F","B")) S DLC=$O(^ONCO(160,ONCOPA,"F","B",""),-1)
+ I DLC'="" S Y=DLC D DATEOT^ONCOPCE S DLC=Y
+ W !,"59. DATE OF LAST CONTACT OR DEATH...: ",DLC
+ W !,"60. VITAL STATUS....................: ",ONC(160,ONCOPA,15) D P Q:EX=U
+ S CS="" I $D(^ONCO(165.5,IEN,"TS","AA")) D
+ .S CSDAT=$O(^ONCO(165.5,IEN,"TS","AA",""))
+ .S CSIEN=$O(^ONCO(165.5,IEN,"TS","AA",CSDAT,""))
+ .S CSPNT=$P(^ONCO(165.5,IEN,"TS",CSIEN,0),U,2)
+ .S CS=$P(^ONCO(164.42,CSPNT,0),U,1)
+ W !,"61. CANCER STATUS...................: ",CS
+ W !,"62. COMPLETED BY....................: ",ONC(165.5,IEN,81) D P Q:EX=U
+ W !,"63. REVIEWED BY CANCER COMMITTEE....: ",ONC(165.5,IEN,82) D P Q:EX=U
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR
+KILL ;Kill Variables and Exit
+ K %,DIR,DIROUT,DIRUT,DTOUT,DUOUT,FILN,ONCOBL,EX,TXT,X,Y,SCTIEN,LINE
+ Q
+P ;Display Data
+ I ($Y'<(LIN-1)) D  Q:EX=U  W !?4,TABLE_" (continued)",!?4,LINE
+ .I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR I 'Y S EX=U Q
+ .D HDR^ONCNPC8 Q
+ Q

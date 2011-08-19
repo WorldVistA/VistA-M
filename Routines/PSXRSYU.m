@@ -1,0 +1,98 @@
+PSXRSYU ;BIR/WPB,BAB-CMOP SYSTEM File Utility ;09 SEP 1998  6:48 AM
+ ;;2.0;CMOP;**1,18,41**;11 Apr 97
+BATCH ;sets up the variables and makes the entry to PSX(550.2
+ I $G(PSXRTRN)=1 G EN
+ ;Q:'$D(^TMP($J,"PSX"))
+EN D NOW^%DTC S (PSXTDT,DTTM)=% K %
+ K DD,DO
+ S PSXDUZ=DUZ
+L L +^PSX(550.2,0):600 I '$T S PSXFILE="CMOP Transmission" D RALRT^PSXUTL Q
+F S X=$O(^PSX(550.2,"B","A"),-1)+1 ; later use Julian number for batch name
+ S DIC="^PSX(550.2,",DIC(0)="Z"
+ S DIC("DR")="1////1;2////"_PSOSITE_";3////"_+PSXSYS_";4////"_PSXDUZ_";6////"_DTTM_";17////"_$S($G(PSXCS)=1:"C",1:"N")
+ D FILE^DICN G:$P($G(Y),U,3)'=1 F S PSXBAT=+Y
+ L -^PSX(550.2,0)
+ K DA,DIC,DUOUT,DTOUT,X,Y,DTTM
+ Q
+BATCHNM() ;
+ ;Make batch number as YYJDTHHMMSS where JDT is 3 digit julian date
+ ;make julian date: get current year append 1st month 1st day compute diff from today.
+ N J1,J2,JDT,X1,X2
+ D NOW^%DTC
+ S X1=$E(%,1,3)_"0101",X2=DT+1,JDT=$$FMDIFF^XLFDT(X1,X2,1)
+ ;change sign - to +
+ S JDT=(JDT*-1)
+ ;pad with 0s
+ I $L(JDT)<3 F I=1:1:(3-$L(JDT)) S JDT="0"_JDT
+ S J1=$E(%,2,3),J2=$E(%,9,12),BATCH=J1_JDT_J2
+ K %
+ Q BATCH
+AFTER L +^PSX(550.2,PSXBAT):600 Q:'$T
+ S DA=PSXBAT,DIE="^PSX(550.2,"
+ S DR="1////2" D ^DIE K DA,DIE,DR
+ L -^PSX(550.2,PSXBAT)
+AFTER1 L +^PSX(550,+PSXSYS):600 Q:'$T
+ S DA=+PSXSYS,DIE="^PSX(550,",DR="6////"_PSXBAT D ^DIE K DIE,DA,DR
+ L -^PSX(550,+PSXSYS)
+ Q
+PSXSTAT ;
+ L +^PSX(550,+PSXSYS,0):30 I '$T,$E(IOST)="C" W !!,"The CMOP System file is in use, try again later." S PSXLOCK=1 Q
+ N TSK K DIC,DA,DR,DIE
+ S TSK=$S($G(PSXSTAT)="H":"@",$G(PSXSTAT)="T":$G(PSXZTSK),1:"@")
+ S DA=+PSXSYS
+ S DIE=550,DR="2////^S X=PSXSTAT;9///^S X=TSK"
+ D ^DIE
+ L -^PSX(550,+PSXSYS,0)
+ K PSXSTAT
+ Q
+ ;Called by Taskman to update file 550.2 for transmissions.
+ACK S ZTREQ="@"
+ F YY="PSXBATNM^2","BMSG^4","EMSG^5","ADT^6","PSXSENDR^8","PSXMSGCT^9","PSXRXCT^10","PSXRTRN^11","PSXDIV^12","PSXREF^13" D PIECE^PSXUTL(XMRG,U,YY)
+ ;
+ S PSXSER="S."_XQSOP,PSXXMZ=XQMSG,PSXSTART=BMSG,PSXEND=EMSG
+ S PSXBAT=$O(^PSX(550.2,"B",PSXBATNM,0))
+ ;
+ ;S PSXBAT=$P(XMRG,U,2),ADT=$P(XMRG,U,6),BMSG=$P(XMRG,U,4),EMSG=$P(XMRG,U,5),PSXSENDR=$P(XMRG,U,8),PSXMSGCT=$P(XMRG,U,9),PSXRXCT=$P(XMRG,U,10),PSXRTRN=$P(XMRG,U,11),PSXSER="S."_XQSOP,PSXXMZ=XQMSG
+ ;S PSXDIV=$P(XMRG,U,12),PSXSTART=BMSG,PSXEND=EMSG,PSXREF=$P(XMRG,U,13)
+ D SET^PSXSYS S PSXSYST=+PSXSYS
+ S ZX=$$KSP^XUPARAM("INST"),DIC="4",DIC(0)="OMXZ",X=ZX D ^DIC S PSXSITE=$P(Y,"^",2) K DIC,X,Y
+ L +^PSX(550.2,PSXBAT):600 Q:'$T
+ K DA,DIE,DR
+ S DA=PSXBAT,DIE="^PSX(550.2,",DR="1////3;7////"_ADT D ^DIE K DA,DIE,DR
+ L -^PSX(550.2,PSXBAT)
+ S:$P($G(^PSX(550.2,PSXBAT,1)),U,3)'="" PSXRTRN=1
+ K XMZ
+ I $P(XMRG,U,1)="$$ACKN" S PSXFLAG=3 D EN^PSXNOTE S XMSER=PSXSER,XMZ=PSXXMZ D REMSBMSG^XMA1C K ADT G EX1
+ G:$P(XMRG,U,1)="$$VACK" ACKN^PSXRXQU
+EX1 K PSXBAT,ADT,BMSG,EMSG,PSXSENDR,PSXMSGCT,PSXRXCT,PSXRTRN,PSXSER,PSXDIV,PSXSTART,PSXEND,PSXREF,PSXFLAG Q
+ACT ;actives/inactivates the systems status in PSX(550
+ S SYSTEM=$P(XMRG,U,3),STAT=$P(XMRG,U,2),DTTM=$P(XMRG,U,4),NAME=$P(XMRG,U,5),OLDDTTM=$P(XMRG,U,6),XMSER="S."_XQSOP,TXMZ=XQMSG,OFF=$P(XMRG,U,7),ZTREQ="@"
+ I (STAT="A")!(STAT="I") D
+ .S RESP=$S(STAT="A":"A",STAT="I":"D",1:"")
+ .L +^PSX(550,SYSTEM):DTIME Q:'$T
+ .S DA=SYSTEM,DIE="^PSX(550,",DR="1////"_STAT D ^DIE K DIE,DA
+ .F RECD=0:0 S RECD=$O(^PSX(550,"AC",RECD)) Q:RECD'>0  S RC=RECD,TYPE=$P($G(^PSX(550,SYSTEM,1,RC,0)),U,1) I TYPE=OLDDTTM  S DA(1)=SYSTEM,DA=RC,DIE="^PSX(550,"_SYSTEM_",1,",DR="2////"_DTTM_";3////"_RESP_";4////"_STAT D ^DIE K DIE,DA,DR,X
+ .L -^PSX(550,SYSTEM)
+ I STAT="D" D
+ .L +^PSX(550,SYSTEM):DTIME Q:'$T
+ .F RECD=0:0 S RECD=$O(^PSX(550,"AC",RECD)) Q:RECD'>0  S RC=RECD,TYPE=$P($G(^PSX(550,SYSTEM,1,RC,0)),U,1) Q:TYPE'=OLDDTTM  S DA(1)=SYSTEM,DA=RC,DIE="^PSX(550,"_SYSTEM_",1,",DR="2////"_DTTM_";3////N" D ^DIE K DIE,DA,DR,X
+ .L -^PSX(550,SYSTEM)
+ K RECD,RC
+ S SYS=$P($G(^PSX(550,SYSTEM,0)),U,1)
+ D GRP^PSXNOTE
+ S XQAMSG=$S(STAT="A":"Permission to transmit to "_SYS_" has been received.",STAT="I":"Permission to transmit to "_SYS_" has been denied.",1:"") D GRP1^PSXNOTE,SETUP^XQALERT
+ S Y=DTTM X ^DD("DD") S DTTM=Y
+ S XMZ=$G(TXMZ),XMSER="S.PSXX CMOP SERVER" D:$G(XMZ)>0 REMSBMSG^XMA1C K XMZ,XMSER
+ Q:$G(STAT)="D"
+MSG S XMSUB=($S(STAT="A":"CMOP Activation Approved",STAT="I":"CMOP Activation Disapproved",1:"")),LCNT=6,XMDUZ=.5
+ D XMZ^XMA2 G:XMZ<1 MSG
+ S ^XMB(3.9,XMZ,2,1,0)="Request to activate CMOP processing."
+ S ^XMB(3.9,XMZ,2,2,0)=""
+ S ^XMB(3.9,XMZ,2,3,0)="CMOP              :  "_SYS
+ S ^XMB(3.9,XMZ,2,4,0)="Approving Official:  "_$P(NAME,",",2)_" "_$P(NAME,",",1)
+ S ^XMB(3.9,XMZ,2,5,0)="Action Date/Time  :  "_$P(DTTM,":",1,2)
+ S ^XMB(3.9,XMZ,2,6,0)="Action            :  "_$S(STAT="A":"Approved",STAT="I":"Disapproved",1:"")
+ S ^XMB(3.9,XMZ,2,0)="^3.92A^"_LCNT_U_LCNT_U_DT,XMDUN="CMOP MANAGER"
+ K XMY S XMDUZ=.5
+ D GRP^PSXNOTE,ENT1^XMD
+ Q

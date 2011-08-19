@@ -1,0 +1,70 @@
+ABSVGGG3 ;VAMC ALTOONA/CTB - GENERIC LABEL PRINTING ROUTINE;5/18/00  3:56 PM ;1/12/01  8:04 PM
+V ;;4.0;VOLUNTARY TIMEKEEPING;**7,10,15,22,23**;JULY 1994;
+ ;GIVEN LIST OF RECORDS IN ^TMP($J,"VLABEL",N)=DA
+ ;PRINT MULTI COLUMN LABEL
+ ;NLABEL=NUMBER OF LABELS/ROW
+ ;NLINES=NUMBER OF LINES/LABEL
+ ;NPAGE=NUMBER OF LABELS/PAGE
+ S NLINES=6
+ ;DIC=GLOBAL REFERENCE OF FILE
+ ;DR=FIELD NUMBERS TO BE INCLUDED IN LABEL
+ ;print volunteer labels by name
+ K ^TMP("VLABEL")
+ N COUNT,ABSVX,B,DIJ,DIPASS,DISYS,DP,IOP,NODE,P,POP,TYPE,X,ABSVTERM,LASER
+ S ABSVTERM=IO
+ S DIC=503338.1,DIC(0)="AQEMNZ",DIC("A")="Select Label Type: " D ^DIC
+ I Y<0 S X="   Cannot proceed without type of label.  Option terminated." D MSG^ABSVQ QUIT
+ S PARAMS=Y(0),LASER=$P(PARAMS,"^",9)
+ S X=($P(PARAMS,"^",2)*$P(PARAMS,"^",3))-1
+ S:X<0 X=0
+ S $P(PARAMS,"^",10)=0
+ I $P(PARAMS,"^",2)>1 D
+ . S DIR(0)="NA^0:"_X_":0",DIR("A")="Skip used labels of first page: ",DIR("B")=0,DIR("?")="Enter the number of labels on the first page that have already been used."
+ . D ^DIR K DIR
+ . Q:Y["^"  S $P(PARAMS,"^",10)=Y
+ . QUIT
+ S %ZIS("A")="Please Select Label Device: ",%ZIS="QD" D ^%ZIS I POP D HOME^%ZIS QUIT
+ I 'LASER D ALIGN^ABSVLBL I '% S IOP=ION D ^%ZISC
+ I $D(IO("Q")) D  I '$D(DQTIME) S X="   <Option Terminated>*" D MSG^ABSVQ QUIT
+  . K DQTIME,%DT
+  . S %DT="AER",%DT("A")="Select Date/Time to Print: ",%DT("B")="NOW" D ^%DT
+  . Q:Y<0
+  . S DQTIME=X
+  . QUIT
+ S DIR(0)="SO^1:FACILITY;2:STATE;3:VISN;4:ALL"
+ S DIR("L",1)="     Sort Labels By: "
+ S DIR("L",2)=" "
+ S DIR("L",3)="      1  FACILITY      2  STATE"
+ S DIR("L")="      3  VISN          4  ALL"
+ S DIR("?")="Enter a code from the list"
+ D ^DIR K DIR
+ I $$DIR^ABSVU2 QUIT
+ S TYPE=+Y D @TYPE Q:'$D(BY)
+ S IOP=$S($D(IO("Q")):"Q;",1:"")_ION D ^%ZISC
+DQ S DIC=503339.2,L=0,FLDS="" S DHIT="S COUNT=$G(COUNT)+1,^TMP($J,""VLABEL"",COUNT)=D0",DHD="@@"
+ S DIOBEG="W ! K ^TMP($J,""VLABEL""),^TMP($J,""XVLABEL"")",DIOEND="D LABEL^ABSVLBL2(LABELDIC,LABELDR,PARAMS)"
+ S LABELDIC=DIC,LABELDR="3;4;4.5;22"
+ D EN1^DIP
+ K COL,PARAMS,OFFSET,LABELDIC,LABELDR,NCOL,NEXT,NLABEL,NLINES,NNPAGE,NPAGE,ABSV("INST"),ABSV("SITE"),ABSV("SITENAME"),ABSV("PARAM"),ABSV("PER")
+ QUIT
+1 K DIC
+ S DIC=503339.2,DIC(0)="AEMNZQ",DIC("A")="Select Primary Station Number: " D ^DIC
+ I Y<0 D NO QUIT
+ S BY=.01,(FR,TO)=$P(Y,"^",2)
+ QUIT
+2 K DIC
+ S DIC=5,DIC(0)="AEMNZQ" D ^DIC
+ I Y<0 D NO QUIT
+ S BY=6,(FR,TO)=$P(Y,"^",2)
+ QUIT
+3 K DIR
+ S DIR(0)="NA^1:22:0",DIR("A")="Select VISN Number: "
+ D ^DIR
+ K DIR
+ I $$DIR^ABSVU2 QUIT
+ S BY=2,(FR,TO)=+Y
+ QUIT
+4 S BY=1,FR="A",TO="ZZZ"
+ QUIT
+NO S X="No Selection Made, Option Terminating!*" D MSG^ABSVQ
+ QUIT

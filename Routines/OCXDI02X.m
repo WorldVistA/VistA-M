@@ -1,0 +1,231 @@
+OCXDI02X ;SLC/RJS,CLA - OCX PACKAGE DIAGNOSTIC ROUTINES ;SEP 7,1999 at 10:30
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+S ;
+ ;
+ D DOT^OCXDIAG
+ ;
+ ;
+ K REMOTE,LOCAL,OPCODE,REF
+ F LINE=1:1:500 S TEXT=$P($T(DATA+LINE),";",2,999) Q:TEXT  I $L(TEXT) D  Q:QUIT
+ .S ^TMP("OCXDIAG",$J,$O(^TMP("OCXDIAG",$J,"A"),-1)+1)=TEXT
+ ;
+ G ^OCXDI02Y
+ ;
+ Q
+ ;
+DATA ;
+ ;
+ ;;D^FILLER
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^RA
+ ;;R^"860.3:","860.31:2",.01,"E"
+ ;;D^2
+ ;;R^"860.3:","860.31:2",1,"E"
+ ;;D^CONTROL CODE
+ ;;R^"860.3:","860.31:2",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:2",3,"E"
+ ;;D^OH
+ ;;EOR^
+ ;;KEY^860.3:^RADIOLOGY ORDER CANCELLED
+ ;;R^"860.3:",.01,"E"
+ ;;D^RADIOLOGY ORDER CANCELLED
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^FILLER
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^RA
+ ;;R^"860.3:","860.31:2",.01,"E"
+ ;;D^2
+ ;;R^"860.3:","860.31:2",1,"E"
+ ;;D^CONTROL CODE
+ ;;R^"860.3:","860.31:2",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:2",3,"E"
+ ;;D^OD
+ ;;EOR^
+ ;;KEY^860.3:^RADIOLOGY ORDER DISCONTINUED
+ ;;R^"860.3:",.01,"E"
+ ;;D^RADIOLOGY ORDER DISCONTINUED
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^FILLER
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^RA
+ ;;R^"860.3:","860.31:2",.01,"E"
+ ;;D^2
+ ;;R^"860.3:","860.31:2",1,"E"
+ ;;D^CONTROL CODE
+ ;;R^"860.3:","860.31:2",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:2",3,"E"
+ ;;D^DC
+ ;;EOR^
+ ;;KEY^860.3:^HL7 ORC STAT ORDER
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 ORC STAT ORDER
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^ORDER PRIORITY (ORC)
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^S
+ ;;EOR^
+ ;;KEY^860.3:^HL7 OBR FINAL RESULTS
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 OBR FINAL RESULTS
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^REQUEST STATUS (OBR)
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^F
+ ;;EOR^
+ ;;KEY^860.3:^HL7 OBX FINAL RESULTS
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 OBX FINAL RESULTS
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^RESULT STATUS (OBX)
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^F
+ ;;EOR^
+ ;;KEY^860.3:^HL7 MED ORDER CANCELLED
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 MED ORDER CANCELLED
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^FILLER
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^STARTS WITH
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^PS
+ ;;R^"860.3:","860.31:2",.01,"E"
+ ;;D^2
+ ;;R^"860.3:","860.31:2",1,"E"
+ ;;D^CONTROL CODE
+ ;;R^"860.3:","860.31:2",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:2",3,"E"
+ ;;D^OC
+ ;;EOR^
+ ;;KEY^860.3:^HL7 ORDER STATUS CHANGED
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 ORDER STATUS CHANGED
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^CONTROL CODE
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^SC
+ ;;EOR^
+ ;;KEY^860.3:^RADIOLOGY EXAM ID IN LONG FORMAT
+ ;;R^"860.3:",.01,"E"
+ ;;D^RADIOLOGY EXAM ID IN LONG FORMAT
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;EOR^
+ ;;KEY^860.3:^RAD RESULTS VERIFIED
+ ;;R^"860.3:",.01,"E"
+ ;;D^RAD RESULTS VERIFIED
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^FILLER
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^RA
+ ;;R^"860.3:","860.31:2",.01,"E"
+ ;;D^2
+ ;;R^"860.3:","860.31:2",1,"E"
+ ;;D^REQUEST STATUS (OBR)
+ ;;R^"860.3:","860.31:2",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:2",3,"E"
+ ;;D^F
+ ;;R^"860.3:","860.31:3",.01,"E"
+ ;;D^3
+ ;;R^"860.3:","860.31:3",1,"E"
+ ;;D^ABNORMAL FLAG
+ ;;R^"860.3:","860.31:3",2,"E"
+ ;;D^NOT EQUAL TO
+ ;;R^"860.3:","860.31:3",3,"E"
+ ;;D^A
+ ;;EOR^
+ ;;KEY^860.3:^HL7 LAB REQUEST CANCELLED
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 LAB REQUEST CANCELLED
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^FILLER
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^STARTS WITH
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^LR
+ ;;R^"860.3:","860.31:2",.01,"E"
+ ;;D^2
+ ;;R^"860.3:","860.31:2",1,"E"
+ ;;D^CONTROL CODE
+ ;;R^"860.3:","860.31:2",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:2",3,"E"
+ ;;D^CA
+ ;;EOR^
+ ;;KEY^860.3:^HL7 RADIOLOGY RESULT ABNORMAL
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 RADIOLOGY RESULT ABNORMAL
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^FILLER
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^RA
+ ;;R^"860.3:","860.31:2",.01,"E"
+ ;;D^2
+ ;;R^"860.3:","860.31:2",1,"E"
+ ;1;
+ ;

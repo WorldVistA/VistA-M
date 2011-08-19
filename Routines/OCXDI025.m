@@ -1,0 +1,230 @@
+OCXDI025 ;SLC/RJS,CLA - OCX PACKAGE DIAGNOSTIC ROUTINES ;SEP 7,1999 at 10:30
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+S ;
+ ;
+ D DOT^OCXDIAG
+ ;
+ ;
+ K REMOTE,LOCAL,OPCODE,REF
+ F LINE=1:1:500 S TEXT=$P($T(DATA+LINE),";",2,999) Q:TEXT  I $L(TEXT) D  Q:QUIT
+ .S ^TMP("OCXDIAG",$J,$O(^TMP("OCXDIAG",$J,"A"),-1)+1)=TEXT
+ ;
+ G ^OCXDI026
+ ;
+ Q
+ ;
+DATA ;
+ ;
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:3",1,"E"
+ ;;D^1
+ ;;R^"863.3:","863.32:4",.01,"E"
+ ;;D^OCXO HL7 SEGMENT ID
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.HL7_RX_OI_TEXT
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.HL7_RX_OI_TEXT
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.05,"E"
+ ;;D^ORDERABLE ITEM
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^OCXODATA("RXO",1)
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO VT-BAR PIECE NUMBER
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:3",1,"E"
+ ;;D^5
+ ;;R^"863.3:","863.32:4",.01,"E"
+ ;;D^OCXO HL7 SEGMENT ID
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.WARD_ROOM-BED
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.WARD_ROOM-BED
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.05,"E"
+ ;;D^WARD ROOM-BED
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO EXTERNAL FUNCTION CALL
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^WARDRMBD(|PATIENT IEN|)
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:3",1,"E"
+ ;;D^2
+ ;;EOR^
+ ;;KEY^863.3:^INPATIENT
+ ;;R^"863.3:",.01,"E"
+ ;;D^INPATIENT
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.05,"E"
+ ;;D^INPATIENT
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO EXTERNAL FUNCTION CALL
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^WARDRMBD(|PATIENT IEN|)
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:2",1,"E"
+ ;;D^1
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.HL7_SEND_APP
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.HL7_SEND_APP
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^HL7
+ ;;R^"863.3:",.05,"E"
+ ;;D^PACKAGE ID
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^OCXODATA("MSH",2)
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO VT-BAR PIECE NUMBER
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO HL7 SEGMENT ID
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.HL7_RECV_APP
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.HL7_RECV_APP
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^HL7
+ ;;R^"863.3:",.05,"E"
+ ;;D^PACKAGE ID
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^OCXODATA("MSH",4)
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO VT-BAR PIECE NUMBER
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO HL7 SEGMENT ID
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.HL7_EXT_APP
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.HL7_EXT_APP
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^HL7
+ ;;R^"863.3:",.05,"E"
+ ;;D^PACKAGE ID
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO EXTERNAL FUNCTION CALL
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^EXTOERR(|SENDING APPLICATION|,|RECIEVING APPLICATION|)
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.HL7_PATIENT_ID
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.HL7_PATIENT_ID
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^HL7
+ ;;R^"863.3:",.05,"E"
+ ;;D^IEN
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO HL7 SEGMENT ID
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO VT-BAR PIECE NUMBER
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:3",1,"E"
+ ;;D^OCXODATA("PID",3)
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.FAC_TREAT_SPEC_CURR
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.FAC_TREAT_SPEC_CURR
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^DGPM
+ ;;R^"863.3:",.05,"E"
+ ;;D^TREATING SPECIALTY
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^DGPMA
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:2",1,"E"
+ ;;D^9
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO FILE POINTER
+ ;;R^"863.3:","863.32:3",1,"E"
+ ;;D^45.7
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.FAC_TREAT_SPEC_PREV
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.FAC_TREAT_SPEC_PREV
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^DGPM
+ ;;R^"863.3:",.05,"E"
+ ;;D^TREATING SPECIALTY
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^DGPM0
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:2",1,"E"
+ ;;D^9
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO FILE POINTER
+ ;;R^"863.3:","863.32:3",1,"E"
+ ;;D^45.7
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.MOVE_WARD_CURR
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.MOVE_WARD_CURR
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^DGPM
+ ;;R^"863.3:",.05,"E"
+ ;;D^WARD NAME
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^DGPMA
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:2",1,"E"
+ ;1;
+ ;

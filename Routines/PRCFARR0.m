@@ -1,0 +1,40 @@
+PRCFARR0 ;ISC-SF/TKW-BUILD RECEIVING REPORT FOR ELECTRONIC TRANSMISSION TO AUSTIN ;2/1/95  12:34
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+EN ; ENTRY POINT FOR AUTOMATIC TRANSMISSION
+S5 ;#5    ACCT.INFO-EST.SHIP,FOB,TOTAL AMT.(PARTIAL),TOTAL FMS AMT.,DATE RCVD.,DISCOUNT INFO,PRODUCT TYPE,LIQUIDATION CODE, FMS VENDOR ID & ALT. ADDRESS INDICATOR
+ S Z(1)="" N FMSTOT,PRCTOT S FMSTOT=0,PRCTOT=0 ; Initialize FMS Total Amount
+ I PRCFPR=1 S X=$P(PRCF0,"^",13) D FAMT S Z(1)=X,FMSTOT=FMSTOT+X,PRCTOT=PRCTOT+X
+ S Z=$P($P(PRCF11,"^",13),"%")
+ N MULT S MULT=1 I Z D
+ . S X=$FN(Z,"",3),MULT=1-(X/100)
+ . S X=$P(X,".",1)_$P(X,".",2)
+ . S Z=X,Z=$S(($L(Z))<5:"0"_Z,1:Z)
+ . Q
+ ; values for 4th and 5th piece added in routine PRCFARR3
+ S PRCFX="5^"_Z(1)_"^"_$P(PRCF1,"^",6)_"^^^"
+ S PRCFX=PRCFX_$E(PRCF11,4,7)_$E(PRCF11,2,3)_"^"_Z_"^"
+ S Z=$P($P(PRCF11,"^",13),"%",2)
+ S PRCFX=PRCFX_$S(Z:+Z,1:"")_$S($P(Z,+Z,2)'="":"^P",1:"^")_"^^"
+ N I F I=1,2 I "0"[$P(Z,"%",I) S $P(PRCFX,U,9)=""
+ S PRCFX=PRCFX_$S(PRCFPR=1&($P(PRCF11,"^",9)="F"):"C",1:"P")_"^"
+PPT ;N PPT,I S PPT="",I=0
+ ;N PPR F  S I=$O(^PRC(442,PRCFA("PODA"),5,I)) Q:+I'=I  S PPR=$G(^(I,0)) D
+ ;. Q:PPR=""  I $P(PPR,U,1)="NET",$P(PPR,U,5)]"" S PPT=$P(PPR,U,5)
+ ;. I PPT="" S PPT=$P(PPR,U,5)
+ ;. Q
+ S $P(PRCFX,U,10)=$P($G(^PRC(442,PRCFA("PODA"),12)),U,15)
+VC N PRCFVP,PRCFV3 S PRCFVP=+PRCF1,PRCFV3=$G(^PRC(440,PRCFVP,3))
+ N VC S VC=$P(PRCFV3,U,4) S:VC="" VC=$S($P($G(^PRC(440,PRCFVP,2)),U,2)]"":"MISCG",1:"MISCN")
+ S $P(PRCFX,U,12)=VC
+ I VC'?1"MISC".E S $P(PRCFX,U,13)=$P(PRCFV3,U,5)
+ I VC?1"MISC".E S $P(PRCFX,U,14)=$E($P($G(^PRC(440,PRCFVP,0)),U,1),1,30)
+ S $P(PRCFX,U,15)=$$FAP($P($G(^PRC(442,PRCFA("PODA"),11,PRCFPR,1)),U,17))
+ S ^TMP("PRCFARR",$J,5,0)=PRCFX_U,$P(^(0),U,16)="",PRCFX=""
+ G EN^PRCFARR1
+FAMT I 'X S X="" Q
+ S X=$P(X,".")_$E($P(X,".",2)_"00",1,2) Q
+FAP(X) ;Return Fiscal Accounting Period When Passed FM Date
+ Q:X="" X
+ S X=$P("04^05^06^07^08^09^10^11^12^01^02^03",U,+$E(X,4,5))_(X\10000+$S($E(X,4,5)>9:1701,1:1700))
+ Q X

@@ -1,0 +1,14 @@
+FBXIP23 ;WCIOFO/SAB-PATCH INSTALL ROUTINE ;9/25/2000
+ ;;3.5;FEE BASIS;**23**;JAN 30, 1995
+ Q
+ ;
+INIT ; Initialze the mail code field (#5.5) in the FEE BASIS SITE PARAMETER
+ ; (#161.4) file.
+ N STAT
+ S STAT=0
+ F  S STAT=$O(^FBAA(161.4,STAT)) Q:'STAT  D
+ .Q:$P($G(^FBAA(161.4,STAT,1)),"^",11)'=""
+ .S $P(^FBAA(161.4,STAT,1),"^",11)=136
+ Q
+ ;
+ ;FBXIP23

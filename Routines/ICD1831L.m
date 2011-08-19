@@ -1,0 +1,70 @@
+ICD1831L ;ALB/JAP - FY 2008 DRG UPDATE ; 10/17/07 2:33pm
+ ;;18.0;DRG Grouper;**31**;Oct 20, 2000;Build 7
+ ;
+CONV80(ICDINPUT) ;convert CMSv24 DRG to MSv25 DRG for file #80
+ ; input ICDINPUT - string containing Dx, MDC, and DRGs
+ ;                  <.01_field>_^_<mdc_ien>_^_<drg1_ien>_^_<drg2_ien>_^...
+ N ICDX,ICDRSLT
+ ;if no DRGs passed in, try to get data from set of new Diagnoses
+ ;S ICDX=$P(ICDINPUT,U,3,99) I ICDX="" S ICDRSLT=$$NEW80^ICD1831L(ICDINPUT) Q ICDRSLT
+ S ICDRSLT=$$NEW80^ICD1831L(ICDINPUT) I +$P(ICDRSLT,U,2),+$P(ICDRSLT,U,3) Q ICDRSLT
+ Q $$GETV25^ICD1831L(ICDINPUT)
+ ;
+CONV801(ICDINPUT) ;convert CMSv24 DRG to MSv25 DRG for file #80.1
+ ; input ICDINPUT - string containing Dx, MDC, and DRGs
+ ;                  <.01_field>_^_<mdc_ien>_^_<drg1_ien>_^_<drg2_ien>_^...
+ Q $$GETV25^ICD1831L(ICDINPUT)
+ ;
+GETV25(ICDINPUT) ;get MSv25 DRGs from crosswalk tables
+ N ICDRSLT,ICD01,ICDOMDC,ICDMDC,ICDX,ICDXX,ICDD,ICDOD,ICDTAG,ICDROU,ICDTEXT,I,J
+ S ICDRSLT=""
+ I $G(ICDINPUT)="" Q ICDRSLT
+ S ICD01=$P(ICDINPUT,U,1),ICDOMDC=$P(ICDINPUT,U,2),ICDX=$P(ICDINPUT,U,3,99)
+ ;quit if there are no DRGs to convert
+ I ICDX="" S ICDRSLT=ICD01_U_U Q ICDRSLT
+ ;otherwise perform conversion for each DRG
+ F I=1:1 Q:($P(ICDX,U,I)="")  D
+ .S ICDOD=+$P(ICDX,U,I) S ICDROU=$S(ICDOD<300:"ICD1831M",1:"ICD1831N")
+ .S ICDTAG="DRG"_ICDOD_"^"_ICDROU
+ .S ICDTEXT=$T(@ICDTAG),ICDTEXT=$P(ICDTEXT,";;",2)
+ .S ICDXX=$P(ICDTEXT,";",1),ICDMDC=$P(ICDTEXT,";",2)
+ .Q:(ICDXX="")
+ .;Q:(ICDMDC'=ICDOMDC)
+ .F J=1:1 Q:($P(ICDXX,U,J)="")  S ICDD($P(ICDXX,U,J))=""
+ ;set data into result
+ S ICDRSLT=ICD01_U_ICDOMDC
+ S I=0 F  S I=$O(ICDD(I)) Q:'I  S ICDRSLT=ICDRSLT_U_I
+ Q ICDRSLT
+ ;
+NEW80(ICDINPUT) ;get DRG/MDC for new entries in file #80
+ N ICDRSLT,ICD01,ICDTAG,ICDTEXT,ICDMDC,ICDXX,ICDD,I
+ S ICDRSLT=""
+ I $G(ICDINPUT)="" Q ICDRSLT
+ S ICD01=$P(ICDINPUT,U,1)
+ S ICDTAG="DX"_$TR(ICD01,".","")_"^ICD1831R"
+ S ICDTEXT=$T(@ICDTAG),ICDTEXT=$P(ICDTEXT,";;",2)
+ ;quit if no DRG data could be found for Diagnosis
+ I ICDTEXT="" S ICDRSLT=ICD01_U_U Q ICDRSLT
+ ;otherwise return DRGs
+ S ICDXX=$P(ICDTEXT,";",1),ICDMDC=$P(ICDTEXT,";",2)
+ F I=1:1 Q:($P(ICDXX,U,I)="")  S ICDD(I)=$P(ICDXX,U,I)
+ S ICDRSLT=ICD01_U_ICDMDC
+ F I=1:1 Q:('$D(ICDD(I)))  S ICDRSLT=ICDRSLT_U_ICDD(I)
+ Q ICDRSLT
+ ;
+NEW801(ICDINPUT,ICDARRAY) ;get DRG/MDC for new entries in file #80.1
+ N ICD01,ICDROU,ICDTAG,ICDTEXT,ICDMDC,ICDXX,I,J
+ K ICDARRAY
+ Q:($G(ICDINPUT)="")
+ S ICD01=$P(ICDINPUT,U,1)
+ S ICDROU="^ICD1831Q"
+ S ICDTAG="PR"_$TR(ICD01,".","")_ICDROU
+ S ICDTEXT=$T(@ICDTAG)
+ Q:(ICDTEXT="")
+ F I=1:1 D  Q:(ICDTEXT="END")
+ .S ICDTAG="PR"_$TR(ICD01,".","")_"+"_I_ICDROU
+ .S ICDTEXT=$T(@ICDTAG),ICDTEXT=$P(ICDTEXT,";;",2)
+ .I ICDTEXT'="END" D
+ ..S ICDXX=$P(ICDTEXT,";",1),ICDMDC=$P(ICDTEXT,";",2)
+ ..F J=1:1 Q:($P(ICDXX,U,J)="")  S ICDARRAY(ICDMDC,$P(ICDXX,U,J))=""
+ Q

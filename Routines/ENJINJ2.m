@@ -1,0 +1,24 @@
+ENJINJ2 ;(WASH ISC)/JA-Display Screen Handler Functions ;9.24.98
+ ;;7.0;ENGINEERING;**55**;Aug 17, 1993
+ ;OPTION LINE
+FUNC1 ;FUNCTION COMMANDS
+ X DJCP W @DJHIN X XY W "FUNCTIONS",@DJLIN
+ W !!,"  ^ -- Quit"
+ W:$P(^ENG(6910.9,DJN,0),"^",3)]"" ?41,"U -- Up a page"
+ W !,"  N -- New record"
+ W:$P(^ENG(6910.9,DJN,0),"^",5)]"" ?41,"D -- Down a page"
+LST X DJCL W "FUNCTION: ",$S($P(DJJ,U,4)="":"N",1:"D"),"//" R X:DTIME S:'$T X="^" S:X=""!(X["D")!(X["d") X="D" G MOD:X?1"^"1N.N G Q:(X["N"!(X["n"))&(DJP=0) Q:X["N"&(DJP=1)
+LS1 G:X?1"^" OUT I ((X["D")!(X["d"))&($P(DJJ,U,4)]"")&($D(DJDN)) D SAVE S DJN=$P(DJJ,U,4) S DJN=$O(^ENG(6910.9,"B",DJN,0)) S DJFF=0 D N^ENJDPL Q:$D(DJY)  S (DA,W(V))=DJDN D ^ENJC2 G EN2^ENJINJ
+ I (X["D"!(X["d"))&($P(DJJ,U,4)="") S:$P(DJJ,U,2)'="" DJFF=0 G Q
+ G:X["U"!(X["u") PREV
+ G LST
+MOD I $D(DJJ($P(X,U,2))) S V=$P(X,"^",2) S:DJ4["M"&($D(DJDIS)) DJSW1=1,DJDIS=0 S V=V-.001 G NXT
+ E  W *7 G LST
+PREV G LST:$P(DJJ,U,2)="" S DJN=$P(DJJ,U,2) S:DJN'=+DJN DJN=$O(^ENG(6910.9,"B",DJN,0)) S DJFF=0 D REST D N^ENJDPL G NXT
+Q I $P(^ENG(6910.9,DJN,0),U,3)'="" F DJK=0:0 S (DJDPL,DJNM)=$P(^ENG(6910.9,DJN,0),U,3),DJN=$O(^ENG(6910.9,"B",DJNM,0)) Q:$P(^ENG(6910.9,DJN,0),U,3)=""
+ K V,DJ0,DJAT,DJDN,DJ3,DJ4,DJQ I '$D(DJW1) D ^ENJDPL G EN2^ENJINJ
+OUT K DJSV,DJ0,DJAT,DJK,DJDN,DJ3,V,DJJ,DJQ,DIC,DJDD,DX,DY,DJSM,DJDIC,DJKEY S DJFF=0 Q
+KILL K DB,DC,DE,DG,DH,DI,DK,DL,DM,DP,DR,DW Q
+SAVE S %X="V(",%Y="^TMP($J,""DJ"",DJN," D %XY^%RCR K V Q
+REST K V S %X="^TMP($J,""DJ"",DJN,",%Y="V(" D %XY^%RCR Q
+NXT G NXT^ENJINJ

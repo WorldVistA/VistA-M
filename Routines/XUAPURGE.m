@@ -1,0 +1,27 @@
+XUAPURGE ;SF/RWF - PURGE %ZUA GLOBAL FILES. ;1/22/93  14:37 ;
+ ;;8.0;KERNEL;;Jul 10, 1995
+PMPURGE ;Programmer mode purge
+ D BEG G END:'$D(EDATE)
+ S ZTIO="",ZTRTN="PMPURG^ZUA",ZTDESC="Purge Programmer Mode Entry Log",ZTUCI=^%ZOSF("MGR") F G="BDATE","EDATE" S ZTSAVE(G)=""
+ D ^%ZTLOAD G OKEND
+OKEND W:$D(ZTSK) !,"Request queued"
+END K %DT,BDATE,EDATE,ZTIO,ZTRTN,ZTUCI,ZTSAVE,ZTSK Q
+BEG W !!,"You will be asked for a date range to purge, Begin to End"
+ S %DT("A")="PURGE BEGIN DATE: ",%DT="AETX" D ^%DT S BDATE=Y G:Y<1 END S %DT(0)=BDATE,%DT("A")="PURGE END DATE: " D ^%DT S EDATE=Y G:Y<1 END
+ Q
+FAPURGE ;Failed access purge
+ D BEG G:'$D(EDATE) END
+ S ZTIO="",ZTRTN="PURGE^ZUA",ZTDESC="Purge User Failed Access Attempts",ZTUCI=^%ZOSF("MGR") F G="BDATE","EDATE" S ZTSAVE(G)=""
+ D ^%ZTLOAD
+ G OKEND
+OPTPURGE ;Option audit purge
+ D BEG G:'$D(EDATE) END
+ S ZTIO="",ZTRTN="PURGE^XUAPURGE",ZTDESC="Purge Menu Option Audit Entries" F G="BDATE","EDATE" S ZTSAVE(G)=""
+ D ^%ZTLOAD K ZTIO,ZTRTN,ZTDESC,ZTUCI,ZTSAVE
+ G OKEND
+PURGE F REC=BDATE-.000001:0 S REC=$O(^XUSEC(19,REC)) Q:REC'>0!(REC>EDATE)  S DIK="^XUSEC(19,",DA=REC D ^DIK K DA
+ G END
+PRFAA ;Print faild access log with text
+ I '$D(^XUSEC("XUMGR",DUZ)) S X="" Q
+ S X2=$P(D0,".") D DE^XUSHSHP
+ Q

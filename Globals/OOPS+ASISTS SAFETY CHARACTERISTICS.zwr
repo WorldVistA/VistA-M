@@ -1,0 +1,18 @@
+ASISTS SAFETY CHARACTERISTICS
+ZWR
+^OOPS(2261.9,0)="ASISTS SAFETY CHARACTERISTICS^2261.9^5^5"
+^OOPS(2261.9,1,0)="Self-Sheathing^1"
+^OOPS(2261.9,2,0)="Self-Blunting^2"
+^OOPS(2261.9,3,0)="Retracting^3"
+^OOPS(2261.9,4,0)="Sheathing^4"
+^OOPS(2261.9,5,0)="Two Handed Requirements^5"
+^OOPS(2261.9,"B","Retracting",3)=""
+^OOPS(2261.9,"B","Self-Blunting",2)=""
+^OOPS(2261.9,"B","Self-Sheathing",1)=""
+^OOPS(2261.9,"B","Sheathing",4)=""
+^OOPS(2261.9,"B","Two Handed Requirements",5)=""
+^OOPS(2261.9,"C","RETRACTING",3)=""
+^OOPS(2261.9,"C","SELF-BLUNTING",2)=""
+^OOPS(2261.9,"C","SELF-SHEATHING",1)=""
+^OOPS(2261.9,"C","SHEATHING",4)=""
+^OOPS(2261.9,"C","TWO HANDED REQUIREMENTS",5)=""

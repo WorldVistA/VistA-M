@@ -1,0 +1,57 @@
+RMPRCDP ;PHX/DWL,HNB-PURGE FILE 664 ;8/29/1994
+ ;;3.0;PROSTHETICS;**3**;Feb 09, 1996
+EN1 ;Purge 664, Canceled Transactions
+ D DIV4^RMPRSIT Q:$D(X)
+EN4 K IOP,ZTIO,%ZIS S %ZIS="MQ",%ZIS("B")="" D ^%ZIS G:POP END
+ ;I IOST["C-" W !,$C(7),"YOU MAY NOT SELECT YOUR TERMINAL" G EN4
+ I $D(IO("Q")) D
+ .S ZTRTN="EN11^RMPRCDP"
+ .S ZTDESC="CANCEL TRANSACTIONS IN FILE 664 FOR A STATION/DIVISION"
+ .F RD="I","RMPRIEN","RMPRDT","RMPRSITE","RMPR(" S ZTSAVE(RD)=""
+ I $D(IO("Q")) K IO("Q") D ^%ZTLOAD W !,$S($D(ZTSK):"<REQUEST QUEUED!>",1:"<REQUEST NOT QUEUED!>") G END
+EN11 S (I,RMPRIEN)=0,RMPRDT=$P(^RMPR(669.9,RMPRSITE,0),U,10) G:RMPRDT'>89 END
+ S X1=DT,X2=-RMPRDT D C^%DTC S RMPRDT=X D NOW^%DTC S Y=% X ^DD("DD")
+ U IO W !!,"Purge Canceled Prosthetic Purchasing Transactions For: ",!,$P(^RMPR(669.9,RMPRSITE,0),U,1)," On ",Y,!!
+ F  S RMPRIEN=$O(^RMPR(664,RMPRIEN)) Q:RMPRIEN'>0  D
+ .;quit if it is a purchase card transaction, non get purged
+ .Q:$D(^RMPR(664,RMPRIEN,4))
+ .I ($P(^RMPR(664,RMPRIEN,0),U,5))&($P(^(0),U,5)<RMPRDT&($P(^(0),U,14)=RMPR("STA"))) D
+ ..S DA=RMPRIEN,DIC="^RMPR(664," D EN^DIQ
+ ..S DA=RMPRIEN,DIK=DIC D ^DIK W "Deleted...",! S RDEL=1
+ I '$D(RDEL) S $P(L,"-",IOM)="" W !,L,!,?5,"NO CANCELED PURCHASING TRANSACTIONS DELETED"
+ G END
+EN ;PURGE 664 FILE OF ENTRIES CLOSED OUT FOR A STATION/DIVISION
+ D DIV4^RMPRSIT Q:$D(X)
+EN5 K IOP,%ZIS,ZTIO S %ZIS="MQ",%ZIS("B")="" D ^%ZIS G:POP END
+ ;I IOST["C-" W !,$C(7),"YOU MAY NOT SELECT YOUR OWN TERMINAL" G EN5
+ I $D(IO("Q")) S ZTRTN="EN2^RMPRCDP",ZTDESC="PURGE 664 OF CLOSED OUT ENTRIES" F RD="I","RMPRIEN","RMPRDT","RMPRSITE","RMPR(" S ZTSAVE(RD)=""
+ I $D(IO("Q")) K IO("Q") D ^%ZTLOAD W !,$S($D(ZTSK):"<REQUEST QUEUED!>",1:"<REQUEST NOT QUEUED>") G END
+EN2 S (I,RMPRIEN)=0,RMPRDT=$P(^RMPR(669.9,RMPRSITE,0),U,9) G:RMPRDT'>89 END
+ S X1=DT,X2=-RMPRDT D C^%DTC S RMPRDT=X D NOW^%DTC S Y=% X ^DD("DD")
+ U IO W !!,"Purge Closed Prosthetic Purchasing Transactions For",!,$P(^RMPR(669.9,RMPRSITE,0),U,1)," On ",Y,!!
+ F  S RMPRIEN=$O(^RMPR(664,RMPRIEN)) Q:RMPRIEN'>0  D
+ .;quit if it is a purchase card transaction, non get purged
+ .Q:$D(^RMPR(664,RMPRIEN,4))
+ .I ($P(^RMPR(664,RMPRIEN,0),U,8))&($P(^(0),U,8)<RMPRDT&($P(^(0),U,14)=RMPR("STA"))) D
+ ..S DA=RMPRIEN,DIC="^RMPR(664," D EN^DIQ
+ ..S DA=RMPRIEN,DIK=DIC D ^DIK W "Deleted",! S RDEL=1
+ I '$D(RDEL) S $P(L,"-",IOM)="" W !,L,!,?5,"NO CLOSED PURCHASING TRANSACTIONS DELETED",!
+END K I,RD,RMPRIEN,RMPRDT,RMPR,DIK,DA,DIC,X1,X2,L,RDEL,ZTSK D ^%ZISC
+ Q
+EN3 ;Purge Non-Obligated Transactions
+ ;IF C.P. and Reference Number missing, transaction not obligated to IFCAP
+ D DIV4^RMPRSIT Q:$D(X)
+ K IOP,%ZIS,ZTIO S %ZIS="MQ",%ZIS("B")="" D ^%ZIS G:POP END
+ I $D(IO("Q")) S ZTRTN="EN3A^RMPRCDP",ZTDESC="Purge Non-Obligated Transactions For Station # "_RMPR("STA"),ZTSAVE("RMPR*")=""
+ I $D(IO("Q")) K IO("Q") D ^%ZTLOAD W !,$S($D(ZTSK):"<REQUEST QUEUED!>",1:"<REQUEST NOT QUEUED>")
+ G END
+EN3A ;
+ S RMPRA=0 F  S RMPRA=$O(^RMPR(664,RMPRA)) Q:RMPRA'>0  D
+ .;quit if this is a purchase card transaction, non should be purged
+ .Q:$D(^RMPR(664,RMPRA,4))
+ .I '$P(^RMPR(664,RMPRA,0),U,6)&('$P(^(0),U,7))&($P(^(0),U,14)=RMPR("STA")) D
+ ..S DA=RMPRA,DIC="^RMPR(664," D EN^DIQ
+ ..S DA=RMPRA,DIK=DIC D ^DIK W "Deleted...",! S RDEL=1
+ I $G(RDEL)'=1 W !!,"No Non-Obligated Transactions deleted."
+ K RMPRA,DIK,DA,I,DIC D ^%ZISC
+ Q

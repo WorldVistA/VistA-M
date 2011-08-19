@@ -1,0 +1,48 @@
+IBDFN1 ;ALB/CJM - ENCOUNTER FORM - INTERFACE ROUTINES ;NOV 16,1992
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+CLINIC ;returns clinic name
+ S @IBARY=$S($G(IBCLINIC):$P($G(^SC(IBCLINIC,0)),"^",1),1:"UNSPECIFIED")
+ Q
+DIVISION ;returns the name of the division of IBCLINIC in ien^name format
+ Q:'$G(IBCLINIC)
+ S @IBARY=$P($$DIVISION^IBDF1B5(+IBCLINIC),"^",2)
+ Q
+INST ;returns the name of the institution of IBCLINIC
+ Q:'$G(IBCLINIC)
+ N INST
+ S INST=$P($G(^SC(IBCLINIC,0)),"^",4)
+ I 'INST S INST=+$$DIVISION^IBDF1B5(+IBCLINIC) S:INST INST=$P($$SITE^VASITE(,INST),"^")
+ S:INST INST=$$GET1^DIQ(4,INST,.01)
+ S @IBARY=INST
+ Q
+ ;
+SAMEDAY ;get all future, same day appts
+ N TO
+ S TO=(IBAPPT\1)+.999999
+ D GETAPPTS(TO)
+ Q
+ ;
+ALLFUTR ;get all future appts
+ D GETAPPTS()
+ Q
+ ;
+CLNCFUTR ;get all future appts for the same clinic
+ Q:'$G(IBCLINIC)
+ D GETAPPTS("",IBCLINIC)
+ Q
+ ;
+GETAPPTS(TO,CLINIC) ;
+ Q:'$G(DFN)!('$G(IBAPPT))
+ N CNT,SUB,NODE,TIME
+ K VASD,VADPT
+ S VASD("F")=IBAPPT
+ S:$G(TO) VASD("T")=TO
+ S:$G(CLINIC) VASD("C",CLINIC)=""
+ D SDA^VADPT
+ I '$G(VAERR) S (SUB,CNT)=0 F  S SUB=$O(^UTILITY("VASD",$J,SUB)) Q:'SUB  D
+ .S NODE=$G(^UTILITY("VASD",$J,SUB,"E")) Q:NODE=""
+ .S CNT=CNT+1
+ .S TIME=$P(NODE,"^",1)
+ .S @IBARY@(CNT)=$P(TIME,"@",1)_"^"_$P(TIME,"@",2)_"^"_NODE
+ K ^UTILITY("VASD",$J),VADPT,VASD,VAERR
+ Q

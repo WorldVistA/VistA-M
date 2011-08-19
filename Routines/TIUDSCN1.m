@@ -1,0 +1,81 @@
+TIUDSCN1 ; SLC/JER - Discharge Summary Conversion routine
+ ;;1.0;TEXT INTEGRATION UTILITIES;**9**;Jun 20, 1997
+STUFREC(DA,PARENT,GMRD0,GMRDACT) ; Stuff fixed field data
+ N FDA,FDARR,IENS,FLAGS,TIUMSG
+ S IENS=""""_DA_",""",FDARR="FDA(8925,"_IENS_")",FLAGS="K"
+ S @FDARR@(.02)=$G(DFN),@FDARR@(.03)=$P($G(TIU("VISIT")),U)
+ S @FDARR@(.07)=$P(TIU("EDT"),U),@FDARR@(.08)=$P(TIU("LDT"),U)
+ S @FDARR@(.09)=$P(GMRD0,U,9),@FDARR@(.1)=$P(GMRD0,U,10)
+ S @FDARR@(.13)="H"
+ S @FDARR@(1201)=$P(GMRDACT,U,6),@FDARR@(1202)=$P(GMRDACT,U)
+ S @FDARR@(1205)=$P($G(TIU("LOC")),U),@FDARR@(1211)=$P($G(TIU("VLOC")),U)
+ S (@FDARR@(1208),@FDARR@(1209))=$P(GMRDACT,U,9)
+ S @FDARR@(1301)=$S(+$P(GMRD0,U,8)>0:$P(GMRD0,U,8),1:$P(GMRDACT,U,3))
+ I +$P(GMRD0,U,8)'>0 S @FDARR@(.12)=1
+ S @FDARR@(1307)=$P(GMRDACT,U,3)
+ S @FDARR@(1302)=$P(GMRDACT,U,5),@FDARR@(1303)="C"
+ S @FDARR@(1304)=$P(GMRDACT,U,19)
+ S @FDARR@(1305)=$P(GMRDACT,U,8),@FDARR@(1306)=$P(GMRDACT,U,7)
+ S @FDARR@(1401)=TIU("AD#"),@FDARR@(1402)=$P($G(TIU("TS")),U)
+ S @FDARR@(1403)=$P(GMRD0,U,13),@FDARR@(1404)=$P($G(TIU("SVC")),U)
+ S @FDARR@(1501)=$P(GMRDACT,U,4),@FDARR@(1502)=$P(GMRDACT,U,17)
+ S @FDARR@(1505)=$P(GMRDACT,U,18),@FDARR@(1506)=$$NEEDSIG(GMRDACT)
+ S @FDARR@(1507)=$P(GMRDACT,U,11),@FDARR@(1508)=$P(GMRDACT,U,20)
+ S @FDARR@(1511)=$P(GMRDACT,U,21)
+ S @FDARR@(1601)=$P(GMRDACT,U,14),@FDARR@(1602)=$P(GMRDACT,U,13)
+ S @FDARR@(1603)=$P(GMRDACT,U,15),@FDARR@(1609)=$P(GMRDACT,U,16)
+ I +$G(PARENT)>0 S @FDARR@(.06)=PARENT
+ D FILE^DIE(FLAGS,"FDA","TIUMSG") ; File record
+ M ^TIU(8925,+TIUDA,"TEXT")=^GMR(128,+GMRDA,"TEXT")
+ S FLAGS="EK"
+ S @FDARR@(.05)=$$STATUS^TIULC(DA)
+ S @FDARR@(1503)=$$SIGNAME^TIULS($P(GMRDACT,U,17))
+ S @FDARR@(1504)=$$SIGTITL^TIULS($P(GMRDACT,U,17))
+ S @FDARR@(1509)=$$SIGNAME^TIULS($P(GMRDACT,U,20))
+ S @FDARR@(1510)=$$SIGTITL^TIULS($P(GMRDACT,U,20))
+ S @FDARR@(1604)=$$SIGNAME^TIULS($P(GMRDACT,U,13))
+ S @FDARR@(1605)=$$SIGTITL^TIULS($P(GMRDACT,U,13))
+ D FILE^DIE(FLAGS,"FDA","TIUMSG") ; File record
+ Q
+NEEDSIG(GMRDACT) ; Evaluates whether cosignature is needed
+ Q $S($P(GMRDACT,U)'=$P(GMRDACT,U,9):1,1:0)
+ADDFAIL(GMRDA) ; Log when addendum fails to convert
+ N TIUNOVCT
+ S ^GMR(128,"CNV","FAIL",GMRDA)="NO ORIGINAL FOUND FOR ADDENDUM"
+ S TIUNOVCT=+$P($G(^GMR(128,"CNV","FAIL",0)),U,2)+1
+ S $P(^GMR(128,"CNV","FAIL",0),U,2)=TIUNOVCT
+ Q
+DELETE(TIUDA) ; Delete stub should conversion fail
+ N DA,DIDEL,DIE,DR
+ S DA=TIUDA,(DIE,DIDEL)=8925,DR=".01///@" D ^DIE
+ Q
+MOVEONE ; Individual DS conversion
+ N GMRDA,TIUDFLT,TIUPRMT,TIUOUT S TIUOUT=0 W !
+ D JUSTIFY^TIUU("*** INDIVIDUAL DISCHARGE SUMMARY CONVERSION ***","C")
+ W !
+ F  D  Q:+$G(TIUOUT)
+ . N TIUCONT,TIUMAX
+ . S TIUDFLT=$O(^GMR(128,"CNV","FAIL",0)),TIUMAX=+$P($G(^GMR(128,0)),U,3)
+ . S TIUPRMT="Enter IEN of Summary to be Converted"
+ . S GMRDA=+$$READ^TIUU("NO^1:"_TIUMAX,TIUPRMT,TIUDFLT)
+ . I +GMRDA'>0 D  Q
+ . . W !!,"   ... Okay then, I'm outa here!" S TIUOUT=1
+ . I +$G(^GMR(128,+GMRDA,0))'>0 D  Q
+ . . W !!,"Discharge Summary Record #",GMRDA," Doesn't exist...",!
+ . . S TIUPRMT="  ... Convert another"
+ . . S TIUCONT=+$$READ^TIUU("Y",TIUPRMT,"NO") W !
+ . . S:'TIUCONT TIUOUT=1
+ . I +$G(^GMR(128,"CNV","SUCCEED",+GMRDA)) D  Q
+ . . W !!,$C(7),"Discharge Summary Record #",GMRDA
+ . . W " Already converted successfully...",!
+ . . S TIUPRMT="  ... Convert another"
+ . . S TIUCONT=+$$READ^TIUU("Y",TIUPRMT,"NO") W !
+ . . S:'TIUCONT TIUOUT=1
+ . K ^GMR(128,"CNV","FAIL",GMRDA)
+ . W !!,"Alright then, here goes!"
+ . D CONVERT^TIUDSCNV(GMRDA,1)
+ . I +$G(^GMR(128,"CNV","SUCCEED",+GMRDA)) W !!,"Record #",GMRDA," Converted Successfully!",!
+ . S TIUPRMT="  ... Convert another"
+ . S TIUCONT=+$$READ^TIUU("Y",TIUPRMT,"NO") W !
+ . S:'TIUCONT TIUOUT=1
+ Q

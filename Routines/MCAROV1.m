@@ -1,0 +1,44 @@
+MCAROV1 ; GENERATED FROM 'MCAREP3' PRINT TEMPLATE (#978) ; 10/04/96 ; (continued)
+ G BEGIN
+N W !
+T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
+ S DISTP=DISTP+1,DILCT=DILCT+1 D:'(DISTP#100) CSTP^DIO2
+ Q
+DT I $G(DUZ("LANG"))>1,Y W $$OUT^DIALOGU(Y,"DD") Q
+ I Y W $P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC",U,$E(Y,4,5))_" " W:Y#100 $J(Y#100\1,2)_"," W Y\10000+1700 W:Y#1 "  "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12) Q
+ W Y Q
+M D @DIXX
+ Q
+BEGIN ;
+ S:'$D(DN) DN=1 S DISTP=$G(DISTP),DILCT=$G(DILCT)
+ D N:$X>44 Q:'DN  W ?44 S DIP(1)=$S($D(^MCAR(692,D0,6,D1,0)):^(0),1:"") S X="VENT CYCLE LENGTH (MSEC): "_$P(DIP(1),U,4) K DIP K:DN Y W X
+ D N:$X>9 Q:'DN  W ?9 S DIP(1)=$S($D(^MCAR(692,D0,6,D1,0)):^(0),1:"") S X="QRS DURATION: "_$P(DIP(1),U,5) K DIP K:DN Y W X
+ D N:$X>44 Q:'DN  W ?44 S DIP(1)=$S($D(^MCAR(692,D0,6,D1,0)):^(0),1:"") S X="QRS AXIS: "_$P(DIP(1),U,6) K DIP K:DN Y W X
+ D N:$X>9 Q:'DN  W ?9 S DIP(1)=$S($D(^MCAR(692,D0,6,D1,0)):^(0),1:"") S X="QT: "_$P(DIP(1),U,8) K DIP K:DN Y W X
+ D N:$X>44 Q:'DN  W ?44 X $P(^DD(692.02,8,0),U,5,99) S DIP(2)=X S X="QTC: ",DIP(1)=X S X=DIP(2),DIP(3)=X S X=3,DIP(4)=X S X=0,X=$J(DIP(3),DIP(4),X) S Y=X,X=DIP(1),X=X_Y K DIP K:DN Y W X
+ D N:$X>9 Q:'DN  W ?9 S DIP(1)=$S($D(^MCAR(692,D0,6,D1,0)):^(0),1:"") S X="P-R DURATION: "_$P(DIP(1),U,7) K DIP K:DN Y W X
+ D N:$X>9 Q:'DN  W ?9 W "RHYTHM: "
+ S I(2)=1,J(2)=692.21 F D2=0:0 Q:$O(^MCAR(692,D0,6,D1,1,D2))'>0  X:$D(DSC(692.21)) DSC(692.21) S D2=$O(^(D2)) Q:D2'>0  D:$X>19 T Q:'DN  D A2
+ G A2R
+A2 ;
+ S X=$G(^MCAR(692,D0,6,D1,1,D2,0)) W ?19 S Y=$P(X,U,1) S Y=$S(Y="":Y,$D(^MCAR(693.3,Y,0))#2:$P(^(0),U,1),1:Y) W $E(Y,1,30)
+ Q
+A2R ;
+ D N:$X>9 Q:'DN  W ?9 W "INTERPRETATION: "
+ S X=$G(^MCAR(692,D0,6,D1,0)) D N:$X>27 Q:'DN  S DIWL=28,DIWR=77 S Y=$P(X,U,10) S X=Y D ^DIWP
+ D A^DIWW
+ Q
+C1R ;
+ S I(1)=4,J(1)=692.019 F D1=0:0 Q:$O(^MCAR(692,D0,4,D1))'>0  X:$D(DSC(692.019)) DSC(692.019) S D1=$O(^(D1)) Q:D1'>0  D:$X>79 T Q:'DN  D D1
+ G D1R
+D1 ;
+ D T Q:'DN  D N D N:$X>4 Q:'DN  W ?4 X DXS(9,9.2) S X=X_Y K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 W "MEDICATIONS ON DISCHARGE:"
+ S X=$G(^MCAR(692,D0,4,D1,0)) D N:$X>34 Q:'DN  S DIWL=35,DIWR=76 S Y=$P(X,U,2) S X=Y D ^DIWP
+ D A^DIWW
+ Q
+D1R ;
+ K Y K DIWF
+ Q
+HEAD ;
+ W !,"--------------------------------------------------------------------------------",!!

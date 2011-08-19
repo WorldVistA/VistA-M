@@ -1,0 +1,24 @@
+SDC3 ;ALB/LDB - CANCELLATION LETTERS; 23-DEC-88@12:30
+ ;;5.3;Scheduling;**330,340,398**;Aug 13, 1993
+EN N SDBAD F L1=0:0 S L1=$O(^SC(+SC,"S",SD,1,L1)) Q:L1'>0  S A=+^(L1,0) D CHECK,SET:$D(SDOK)
+ Q
+CHECK K SDOK I $S('$D(^DPT(+A,.35)):1,$P(^DPT(+A,.35),"^",1)']"":1,1:0),$D(^DPT(+A,"S",SD)),$P(^DPT(+A,"S",SD,0),"^",2)="C"!($P(^(0),"^",2)="CA") S SDOK=1
+ D B I SDBAD K SDOK
+ Q
+SET S ^UTILITY("SDLT",$J,+SDLET,+A,SD,+SC)="" I $P(^DPT(+A,"S",SD,0),"^",2)="CA"&($P(^(0),"^",10)]"") S SD8=$P(^(0),"^",10) I $D(^DPT(+A,"S",SD8,0)),$P(^(0),"^",2)'["C" S ^UTILITY("SDLT",$J,+SDLET,"A",+A,SD8,+SC)=""
+ Q
+PR F SD1=0:0 S SD1=$O(^UTILITY("SDLT",$J,SD1)) Q:SD1=""  S SDLET=SD1 D PR0
+ I $D(^TMP($J,"BADADD")) D BADADD^SDLT K ^TMP($J,"BADADD")
+ Q
+PR0 S S81=0 F SD8=0:0 D:SD8'=S81 PR1 S S81=SD8,SD8=$O(^UTILITY("SDLT",$J,SD1,SD8)) Q:SD8'>0  S A=SD8 D B Q:SDBAD  D ^SDLT F S82=0:0 S S82=$O(^UTILITY("SDLT",$J,SD1,SD8,S82)) Q:S82'>0  S SDC=$O(^(S82,-1)),SDX=S82,S=^DPT(+A,"S",S82,0) D WRAPP^SDLT
+ K SD8,S81,S82
+ Q
+PR1 I $D(^UTILITY("SDLT",$J,SD1,"A",SD8)),A=SD8 W !!,"The cancelled appointments have been rescheduled as follows:",! D PR2
+ D REST^SDLT Q
+PR2 F SD82=0:0 S SD82=$O(^UTILITY("SDLT",$J,SD1,"A",SD8,SD82)),SDX=SD82 Q:SD82'>0  S SC=$O(^(SD82,-1)),S=^DPT(+A,"S",SD82,0) D WRAPP^SDLT
+ K SD82
+ Q
+ ;CHECK FOR BAD ADDRESS
+B S SDBAD=$$BADADR^DGUTL3(+A)
+ S:SDBAD ^TMP($J,"BADADD",$P(^DPT(+A,0),"^"),+A)=""
+ Q

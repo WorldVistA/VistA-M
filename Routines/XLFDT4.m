@@ -1,0 +1,26 @@
+XLFDT4 ;ISCSF/RWF - Exclude time ;7/8/94  07:58
+ ;;8.0;KERNEL;**71**;Jul 10, 1995
+ Q
+WI(XLSCH,XLRD) ;Test Entry Point
+WITHIN ;EF. Called from XLFDT, Return 1 XLRD is in XLSCH, else 0.
+ ;XLSCH contact schedule, XLRD Reference date
+ N XL1,XLCT,XLDOW,XLFOK
+ S:'$D(XLRD) XLRD=$$NOW^XLFDT()
+ Q:XLSCH="ANY" 1
+ S XLCT=$E($P(XLRD,".",2)_"0000",1,4),XLDOW=$E("UMTWRFS",$$FMTH^XLFDT(XLRD)+4#7+1)
+ F XL1=1:1:$L(XLSCH,",") S XLFOK=$$CHECK(XLCT,XLDOW,$P(XLSCH,",",XL1)) Q:XLFOK
+ Q XLFOK
+CHECK(XLT,XLD,XLS) ;EF. Check one time.
+ ;XLT is reference time, XLD is reference DOW, XLS is schedule
+ N %,XLT1,XLT2,XLDP,XLTP,XLNEG,XLOK
+ I XLS?1U.E D
+ . I XLS?1U S XLDP=XLS,XLTP=""
+ . E  F I=1:1:$L(XLS) I $E(XLS,I)?1N S XLDP=$E(XLS,1,I-1),XLTP=$E(XLS,I,$L(XLS)) Q
+ . Q
+ E  S XLDP="",XLTP=XLS
+ S XLT1=$P(XLTP,"-"),XLT2=$P(XLTP,"-",2) S:XLT2="" XLT2=XLT1
+ I XLT1<XLT2 S XLNEG=0
+ E  S XLNEG=1,%=XLT1,XLT1=XLT2,XLT2=%
+ S XLOK=(XLDP="")!(XLDP="ANY")!((XLDP="D")&("SU"'[XLD))!((XLDP="E")&("SU"[XLD))!(XLDP[XLD) Q:'XLOK 0
+ S XLOK=(XLTP="")!(((XLT1'>XLT)&(XLT'>XLT2))'=XLNEG) Q:'XLOK 0
+ Q 1

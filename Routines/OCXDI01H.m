@@ -1,0 +1,225 @@
+OCXDI01H ;SLC/RJS,CLA - OCX PACKAGE DIAGNOSTIC ROUTINES ;SEP 7,1999 at 10:30
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+S ;
+ ;
+ D DOT^OCXDIAG
+ ;
+ ;
+ K REMOTE,LOCAL,OPCODE,REF
+ F LINE=1:1:500 S TEXT=$P($T(DATA+LINE),";",2,999) Q:TEXT  I $L(TEXT) D  Q:QUIT
+ .S ^TMP("OCXDIAG",$J,$O(^TMP("OCXDIAG",$J,"A"),-1)+1)=TEXT
+ ;
+ G ^OCXDI01I
+ ;
+ Q
+ ;
+DATA ;
+ ;
+ ;;D^OCXB
+ ;;EOR^
+ ;;KEY^863.7:^ORPHANED PARAMETERS
+ ;;R^"863.7:",.01,"E"
+ ;;D^ORPHANED PARAMETERS
+ ;;R^"863.7:",.02,"E"
+ ;;D^PARAMETERIZED SUBROUTINE
+ ;;R^"863.7:",1,"E"
+ ;;D^If an object is removed, which of its parameters will be orphaned.
+ ;;R^"863.7:",2,1
+ ;;D^Given a class, instance, method and output array reference, which of the
+ ;;R^"863.7:",2,2
+ ;;D^objects parameters will be 'orphaned' if the parameter is deleted.
+ ;;R^"863.7:",3,"E"
+ ;;D^ORPHAN^OCXFMGR2
+ ;;R^"863.7:","863.74:1",.01,"E"
+ ;;D^CLASS NUMBER
+ ;;R^"863.7:","863.74:1",1.1,"E"
+ ;;D^1
+ ;;R^"863.7:","863.74:1",1.2,"E"
+ ;;D^OCXCLASS
+ ;;R^"863.7:","863.74:2",.01,"E"
+ ;;D^INTERNAL ENTRY NUMBER
+ ;;R^"863.7:","863.74:2",1.1,"E"
+ ;;D^2
+ ;;R^"863.7:","863.74:2",1.2,"E"
+ ;;D^OCXINST
+ ;;R^"863.7:","863.74:3",.01,"E"
+ ;;D^METHOD
+ ;;R^"863.7:","863.74:3",1.1,"E"
+ ;;D^3
+ ;;R^"863.7:","863.74:3",1.2,"E"
+ ;;D^OCXMETH
+ ;;R^"863.7:","863.74:4",.01,"E"
+ ;;D^OUTPUT VARIABLE
+ ;;R^"863.7:","863.74:4",1.1,"E"
+ ;;D^4
+ ;;R^"863.7:","863.74:4",1.2,"E"
+ ;;D^OCXM
+ ;;EOR^
+ ;;KEY^863.7:^GCC DATE/TIME BEFORE
+ ;;R^"863.7:",.01,"E"
+ ;;D^GCC DATE/TIME BEFORE
+ ;;R^"863.7:",.02,"E"
+ ;;D^EXTRINSIC FUNCTION
+ ;;R^"863.7:",3,"E"
+ ;;D^BEFORE^OCXF21
+ ;;R^"863.7:","863.74:1",.01,"E"
+ ;;D^PRIMARY DATA FIELD
+ ;;R^"863.7:","863.74:1",1.1,"E"
+ ;;D^1
+ ;;R^"863.7:","863.74:2",.01,"E"
+ ;;D^COMPARISON VALUE
+ ;;R^"863.7:","863.74:2",1.1,"E"
+ ;;D^2
+ ;;EOR^
+ ;;KEY^863.7:^GCC DATE/TIME AFTER
+ ;;R^"863.7:",.01,"E"
+ ;;D^GCC DATE/TIME AFTER
+ ;;R^"863.7:",.02,"E"
+ ;;D^EXTRINSIC FUNCTION
+ ;;R^"863.7:",3,"E"
+ ;;D^AFTER^OCXF21
+ ;;R^"863.7:","863.74:1",.01,"E"
+ ;;D^PRIMARY DATA FIELD
+ ;;R^"863.7:","863.74:1",1.1,"E"
+ ;;D^1
+ ;;R^"863.7:","863.74:2",.01,"E"
+ ;;D^COMPARISON VALUE
+ ;;R^"863.7:","863.74:2",1.1,"E"
+ ;;D^2
+ ;;EOR^
+ ;;KEY^863.7:^GCC DATE/TIME EQUALS
+ ;;R^"863.7:",.01,"E"
+ ;;D^GCC DATE/TIME EQUALS
+ ;;R^"863.7:",.02,"E"
+ ;;D^EXTRINSIC FUNCTION
+ ;;R^"863.7:",3,"E"
+ ;;D^ON^OCXF21
+ ;;R^"863.7:","863.74:1",.01,"E"
+ ;;D^PRIMARY DATA FIELD
+ ;;R^"863.7:","863.74:1",1.1,"E"
+ ;;D^1
+ ;;R^"863.7:","863.74:2",.01,"E"
+ ;;D^COMPARISON VALUE
+ ;;R^"863.7:","863.74:2",1.1,"E"
+ ;;D^2
+ ;;EOR^
+ ;;KEY^863.7:^GCC FREE TEXT CONTAINS
+ ;;R^"863.7:",.01,"E"
+ ;;D^GCC FREE TEXT CONTAINS
+ ;;R^"863.7:",.02,"E"
+ ;;D^EXTRINSIC FUNCTION
+ ;;R^"863.7:",3,"E"
+ ;;D^CONT^OCXF22
+ ;;R^"863.7:","863.74:1",.01,"E"
+ ;;D^PRIMARY DATA FIELD
+ ;;R^"863.7:","863.74:1",1.1,"E"
+ ;;D^1
+ ;;R^"863.7:","863.74:2",.01,"E"
+ ;;D^COMPARISON VALUE
+ ;;R^"863.7:","863.74:2",1.1,"E"
+ ;;D^2
+ ;;EOR^
+ ;;KEY^863.7:^GCC FREE TEXT EQUALS
+ ;;R^"863.7:",.01,"E"
+ ;;D^GCC FREE TEXT EQUALS
+ ;;R^"863.7:",.02,"E"
+ ;;D^EXTRINSIC FUNCTION
+ ;;R^"863.7:",3,"E"
+ ;;D^AEQ^OCXF22
+ ;;R^"863.7:","863.74:1",.01,"E"
+ ;;D^PRIMARY DATA FIELD
+ ;;R^"863.7:","863.74:1",1.1,"E"
+ ;;D^1
+ ;;R^"863.7:","863.74:2",.01,"E"
+ ;;D^COMPARISON VALUE
+ ;;R^"863.7:","863.74:2",1.1,"E"
+ ;;D^2
+ ;;EOR^
+ ;;KEY^863.7:^GCC NUMERIC GREATER THAN
+ ;;R^"863.7:",.01,"E"
+ ;;D^GCC NUMERIC GREATER THAN
+ ;;R^"863.7:",.02,"E"
+ ;;D^EXTRINSIC FUNCTION
+ ;;R^"863.7:",3,"E"
+ ;;D^GRT^OCXF20
+ ;;R^"863.7:","863.74:1",.01,"E"
+ ;;D^PRIMARY DATA FIELD
+ ;;R^"863.7:","863.74:1",1.1,"E"
+ ;;D^1
+ ;;R^"863.7:","863.74:2",.01,"E"
+ ;;D^COMPARISON VALUE
+ ;;R^"863.7:","863.74:2",1.1,"E"
+ ;;D^2
+ ;;EOR^
+ ;;KEY^863.7:^GCC NUMERIC LESS THAN
+ ;;R^"863.7:",.01,"E"
+ ;;D^GCC NUMERIC LESS THAN
+ ;;R^"863.7:",.02,"E"
+ ;;D^EXTRINSIC FUNCTION
+ ;;R^"863.7:",3,"E"
+ ;;D^LESS^OCXF20
+ ;;R^"863.7:","863.74:1",.01,"E"
+ ;;D^PRIMARY DATA FIELD
+ ;;R^"863.7:","863.74:1",1.1,"E"
+ ;;D^1
+ ;;R^"863.7:","863.74:2",.01,"E"
+ ;;D^COMPARISON VALUE
+ ;;R^"863.7:","863.74:2",1.1,"E"
+ ;;D^2
+ ;;EOR^
+ ;;KEY^863.7:^GCC BOOLEAN LOGICAL AND
+ ;;R^"863.7:",.01,"E"
+ ;;D^GCC BOOLEAN LOGICAL AND
+ ;;R^"863.7:",.02,"E"
+ ;;D^EXTRINSIC FUNCTION
+ ;;R^"863.7:",3,"E"
+ ;;D^AND^OCXF23
+ ;;R^"863.7:","863.74:1",.01,"E"
+ ;;D^PRIMARY DATA FIELD
+ ;;R^"863.7:","863.74:1",1.1,"E"
+ ;;D^1
+ ;;R^"863.7:","863.74:2",.01,"E"
+ ;;D^COMPARISON VALUE
+ ;;R^"863.7:","863.74:2",1.1,"E"
+ ;;D^2
+ ;;EOR^
+ ;;KEY^863.7:^GCC BOOLEAN LOGICAL OR
+ ;;R^"863.7:",.01,"E"
+ ;;D^GCC BOOLEAN LOGICAL OR
+ ;;R^"863.7:",.02,"E"
+ ;;D^EXTRINSIC FUNCTION
+ ;;R^"863.7:",3,"E"
+ ;;D^OR^OCXF23
+ ;;R^"863.7:","863.74:1",.01,"E"
+ ;;D^PRIMARY DATA FIELD
+ ;;R^"863.7:","863.74:1",1.1,"E"
+ ;;D^1
+ ;;R^"863.7:","863.74:2",.01,"E"
+ ;;D^COMPARISON VALUE
+ ;;R^"863.7:","863.74:2",1.1,"E"
+ ;;D^2
+ ;;EOR^
+ ;;KEY^863.7:^GCC BOOLEAN LOGICAL NOT
+ ;;R^"863.7:",.01,"E"
+ ;;D^GCC BOOLEAN LOGICAL NOT
+ ;;R^"863.7:",.02,"E"
+ ;;D^EXTRINSIC FUNCTION
+ ;;R^"863.7:",3,"E"
+ ;;D^NOT^OCXF23
+ ;;R^"863.7:","863.74:1",.01,"E"
+ ;;D^PRIMARY DATA FIELD
+ ;;R^"863.7:","863.74:1",1.1,"E"
+ ;;D^1
+ ;;EOR^
+ ;;KEY^863.7:^GCC FREE TEXT STARTS WITH
+ ;;R^"863.7:",.01,"E"
+ ;;D^GCC FREE TEXT STARTS WITH
+ ;;R^"863.7:",.02,"E"
+ ;;D^EXTRINSIC FUNCTION
+ ;;R^"863.7:",3,"E"
+ ;;D^START^OCXF22
+ ;;R^"863.7:","863.74:1",.01,"E"
+ ;1;
+ ;

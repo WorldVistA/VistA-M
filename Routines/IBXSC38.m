@@ -1,0 +1,3 @@
+IBXSC38 ; ;08/13/09
+ S X=DG(DQ),DIC=DIE
+ ;

@@ -1,0 +1,76 @@
+RCXVDC10 ;ALBANY OI@ALTOONA,PA/TJK-AR Data Extraction Data Creation ;08/18/05
+ ;;4.5;Accounts Receivable;**232**;Mar 20, 1995
+ ;
+ ;  Monthly transmissions 
+ Q
+EN ;Entry point from nightly process to set up monthly batch jobs
+ N RCXVMO,RCXVDA,IENARRAY,RCDA
+ S X1=$E(DT,1,5)_"01",X2=-1 D C^%DTC S RCXVMO=$E(X,1,5)_"00"
+EN1 ;branch point for historical job
+ F RCXVBTY="P","B","I" K RCXVDA,IENARRAY D NBT^RCXVDEQ S RCDA(RCXVBTY)=RCXVDA
+ S RCXVDA=RCDA("I"),$P(^RCXV(RCXVDA,0),U,10)=RCXVMO D D3547A
+ S RCXVDA=RCDA("P"),$P(^RCXV(RCXVDA,4),U)=RCXVMO
+ S RCXVDA=RCDA("B"),$P(^RCXV(RCXVDA,5),U)=RCXVMO
+ Q
+D3547 ;IB Patient Copay account data
+ ;DFN,RCXVBTN defined in routine RCXVTSK
+ ;RCXVBTN=Internal number of batch file in ^RCXV(
+ N I,RCFLAG,RCXVDA,RCXVMO,SSN,RCXVDT,RCXVCO,VADM
+ S RCXVMO=$P(^RCXV(RCXVBTN,0),U,10)
+ S (I,RCFLAG)=0 F  S I=$O(^IBAM(354.7,DFN,1,I)) Q:'I  S RCXVCO=$G(^(I,0)) D  Q:RCFLAG
+ . I +RCXVCO=RCXVMO S RCFLAG=1
+ . Q
+ Q:'RCFLAG
+ ; Write data into FTP file
+ D DEM^VADPT S SSN=$P(VADM(2),U)
+ S RCXVDT=$P(RCXVCO,U),RCXVDA=SSN_RCXVU_$E($$HLDATE^HLFNC(RCXVDT),1,8)
+ S RCXVDA=RCXVDA_RCXVU_$P(RCXVCO,U,2)
+ S X=$P(RCXVCO,U,3),X=$S(X=1:"YES",X=2:"OVER",1:"NO")
+ S RCXVDA=RCXVDA_RCXVU_X_RCXVU_$P(RCXVCO,U,4)
+ S ^TMP($J,"RCXVDC10",DFN)=RCXVDA
+ W "REC:"_$P(RCXVDA,RCXVU,1),!
+ W "354.7:"_$P(RCXVDA,RCXVU,2,5),!
+ Q
+PREREG ;Pre-Registration
+ N IBDATA,X1,X2,IBEDT,IBBDT,RCXVDA
+ S IBBDT=$E(RCXVMO,1,5)_"01",IBEDT=$$ENDT(IBBDT)
+ S IBDATA=$$PREREG^IBRFN4(IBBDT,IBEDT)
+ S RCXVDA=$E($$HLDATE^HLFNC(IBBDT),1,8)
+ S RCXVDA=RCXVDA_RCXVU_$E($$HLDATE^HLFNC(IBEDT),1,8)_RCXVU_IBDATA
+ S ^TMP($J,"RCXVDC10","PRE-REG")=RCXVDA
+ W "PRE-REG:"_RCXVDA,!
+ Q 
+BUFFER ;Insurance buffer
+ S IBBDT=$E(RCXVMO,1,5)_"01",IBEDT=$$ENDT(IBBDT)
+ S IBDATA=$$BUFFER^IBRFN4(IBBDT,IBEDT)
+ S RCXVDA=$E($$HLDATE^HLFNC(IBBDT),1,8)
+ S RCXVDA=RCXVDA_RCXVU_$E($$HLDATE^HLFNC(IBEDT),1,8)_RCXVU_IBDATA
+ S ^TMP($J,"RCXVDC10","BUFFER")=RCXVDA
+ W "BUFFER:"_RCXVDA,!
+ Q 
+ENDT(IBBDT) ;Calculates end date
+ S X1=IBBDT,X2=+31 D C^%DTC
+ S X1=$E(X,1,5)_"01",X2=-1 D C^%DTC
+ Q X
+D3547A ;Sets Patient list from 354.7 into 348.4
+ N I,DFN,RCXVDA
+ S RCXVDA=RCDA("I")
+ F I=0,1,2 D
+ . S DFN=0 F  S DFN=$O(^IBAM(354.7,"AC",RCXVMO,I,DFN)) Q:'DFN  D
+ . . D FIL^RCXVDEQ("I")
+ . . ;  If this patient already exists in this batch, quit
+ . . I $D(^RCXV(RCXVDA,3,DFN)) Q 
+ . . ;; File record
+ . . NEW DIC,DIE,X,DA,DLAYGO,Y,DINUM
+ . . S DA(1)=RCXVDA,DIC="^RCXV("_DA(1)_",3,",DIE=DIC,(X,DINUM)=DFN
+ . . S DLAYGO=348.43,DIC(0)="L",DIC("P")=DLAYGO
+ . . I '$D(^RCXV(DA(1),3,0)) S ^RCXV(DA(1),3,0)="^348.43^^"
+ . . D FILE^DICN
+ . . Q
+ . Q
+ S $P(^RCXV(RCXVDA,0),U,10)=RCXVMO
+ ;
+ Q
+HIST ;entry point from post-init for historical job
+ D EN1
+ Q

@@ -1,0 +1,136 @@
+ONCTPC8 ;Hines OIFO/GWB -PCE Study of Thyroid Cancer ;05/30/00
+ ;;2.11;ONCOLOGY;**6,11,16,24,26**;Mar 07, 1995
+ ;Print
+ K IOP,%ZIS S %ZIS="MQ" W ! D ^%ZIS K %ZIS,IOP G:POP KILL
+ I $D(IO("Q")) S ONCOLST="ONCONUM^ONCOPA^PATNAM^SPACES^TOPNAM^SSN^TOPTAB^TOPCOD^DASHES^SITTAB^SITEGP" D TASK G KILL
+ U IO D PRT D ^%ZISC K %ZIS,IOP G KILL
+PRT S PG=0,EX="",LIN=$S(IOST?1"C".E:IOSL-2,1:IOSL-6),IEN=ONCONUM
+ D NOW^%DTC S ONDATE=%,Y=ONDATE X ^DD("DD") S ONDATE=Y
+ K DIQ S DIC="^ONCO(160,",DR="9;15;22.9",DA=ONCOPA,DIQ="ONC" D EN^DIQ1
+ S DR=".04;.05;.06;.1;.12;3;9;18;20;22;24;26;29;32;33;34;34.1;34.2;37.1;37.2;37.3;38;19;50;51;51.2;53.2;54.2;58.1;58.2;58.3;59;70;71;71.1;71.2;71.3;71.4;81;82;85;86;87;88;89;308;400:446"
+ S DIC="^ONCO(165.5,",DA=ONCONUM,DIQ="ONC" D EN^DIQ1
+I S TABLE="TABLE I - GENERAL INFORMATION"
+ D HDR W !?25,TABLE,!
+ S D0=ONCOPA D DOB1^ONCOES S Y=X D DATEOT^ONCOPCE S DOB=Y
+ W !,"ACCESSION NUMBER..................: ",ONC(165.5,IEN,.05) D P Q:EX=U
+ W !,"SEQUENCE NUMBER...................: ",ONC(165.5,IEN,.06) D P Q:EX=U
+ W !,"POSTAL CODE AT DIAGNOSIS..........: ",ONC(165.5,IEN,9) D P Q:EX=U
+ W !,"DATE OF BIRTH.....................: ",DOB D P Q:EX=U
+ W !,"RACE..............................: ",ONC(165.5,IEN,.12) D P Q:EX=U
+ W !,"SPANISH ORIGIN....................: ",ONC(160,ONCOPA,9) D P Q:EX=U
+ W !,"SEX...............................: ",ONC(165.5,IEN,.1) D P Q:EX=U
+ W !,"PRIMARY PAYER AT DIAGNOSIS........: ",ONC(165.5,IEN,18) D P Q:EX=U
+ W !,"FAMILY HISTORY OF THYROID CANCER..: ",ONC(165.5,IEN,400)
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR W !?15,TABLE_" (continued)" G PHNTC
+ D P Q:EX=U
+PHNTC W !!,"PERSONAL HISTORY OF NON-THYROID CANCER:" D P Q:EX=U
+ W ! D P Q:EX=U
+ W !,"  LYMPHOMA........................: ",ONC(165.5,IEN,401) D P Q:EX=U
+ W !,"  CHILDHOOD MALIGNANCY............: ",ONC(165.5,IEN,402) D P Q:EX=U
+ W !,"  OTHER...........................: ",ONC(165.5,IEN,308) D P Q:EX=U
+ W ! D P Q:EX=U
+ W !,"PRIOR EXPOSURE TO RADIATION.......: ",ONC(165.5,IEN,403) D P Q:EX=U
+ W !,"PERSONAL HISTORY OF GOITER........: ",ONC(165.5,IEN,404) D P Q:EX=U
+ W !,"FAMILY HISTORY OF THYROID DISEASE.: ",ONC(165.5,IEN,405) D P Q:EX=U
+ W !,"PERSONAL HISTORY OF GRAVES DISEASE: ",ONC(165.5,IEN,406) D P Q:EX=U
+ W !,"PERSONAL HISTORY OF THYROIDITIS...: ",ONC(165.5,IEN,406)
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR G II
+ D P Q:EX=U
+II S TABLE="TABLE II - INITIAL DIAGNOSIS/CANCER IDENTIFICATION"
+ I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HDR
+ W !?15,TABLE,! D P Q:EX=U
+ W !,"CLASS OF CASE.....................: ",ONC(165.5,IEN,.04) D P Q:EX=U
+ W !!,"SYMPTOMS/SIGNS PRESENT:",! D P Q:EX=U
+ W !,"  DYSPHAGIA.......................: ",ONC(165.5,IEN,408) D P Q:EX=U
+ W !,"  HOARSENESS OR VOICE CHANGE......: ",ONC(165.5,IEN,409) D P Q:EX=U
+ W !,"  NECK NODAL MASS.................: ",ONC(165.5,IEN,410) D P Q:EX=U
+ W !,"  PAIN, BONE......................: ",ONC(165.5,IEN,411) D P Q:EX=U
+ W !,"  PAIN, NECK......................: ",ONC(165.5,IEN,412) D P Q:EX=U
+ W !,"  PATHOLOGIC FRACTURE.............: ",ONC(165.5,IEN,413) D P Q:EX=U
+ W !,"  STRIDOR/DIFFICULTY BREATHING....: ",ONC(165.5,IEN,414) D P Q:EX=U
+ W !,"  THYROID MASS....................: ",ONC(165.5,IEN,415) D P Q:EX=U
+ W !,"  WEIGHT LOSS.....................: ",ONC(165.5,IEN,416) D P Q:EX=U
+ W !,"  OTHER...........................: ",ONC(165.5,IEN,417)
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR W !?15,TABLE_" (continued)" G DSW
+ D P Q:EX=U
+DSW W !!,"DIAGNOISTIC/SURGICAL WORKUP:",! D P Q:EX=U
+ W !,"  BONE SCAN.......................: ",ONC(165.5,IEN,418) D P Q:EX=U
+ W !,"  CHEST X-RAY.....................: ",ONC(165.5,IEN,419) D P Q:EX=U
+ W !,"  CT SCAN OF NECK.................: ",ONC(165.5,IEN,420) D P Q:EX=U
+ W !,"  CT SCAN OF CHEST................: ",ONC(165.5,IEN,421) D P Q:EX=U
+ W !,"  INCISIONAL BIOPSY...............: ",ONC(165.5,IEN,422) D P Q:EX=U
+ W !,"  LARYNGOSCOPY....................: ",ONC(165.5,IEN,423) D P Q:EX=U
+ W !,"  NECK X-RAY (AP & LATERAL........: ",ONC(165.5,IEN,424) D P Q:EX=U
+ W !,"  NEEDLE ASPIRATION OF NECK NODE..: ",ONC(165.5,IEN,425) D P Q:EX=U
+ W !,"  NEEDLE ASPIRATION OF THYROID....: ",ONC(165.5,IEN,426) D P Q:EX=U
+ W !,"  MRI OF NECK.....................: ",ONC(165.5,IEN,427) D P Q:EX=U
+ W !,"  THYROID SCAN....................: ",ONC(165.5,IEN,428) D P Q:EX=U
+ W !,"  ULTRASOUND OF THYROID...........: ",ONC(165.5,IEN,429) D P Q:EX=U
+ W !,"  OTHER...........................: ",ONC(165.5,IEN,430)
+ I IOST?1"C".E K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR W !?15,TABLE_" (continued)" G DOID
+ D P Q:EX=U
+DOID W !!,"DATE OF INITIAL DIAGNOSIS.........: ",ONC(165.5,IEN,3) D P Q:EX=U
+ W !,"PRIMARY SITE (ICD-O-2)............: ",TOPCOD," ",ONC(165.5,IEN,20)
+ W !,"HISTOLOGY/BEHAVIOR CODE (ICD-O-2).: ",ONC(165.5,IEN,22) D P Q:EX=U
+ W !,"GRADE.............................: ",ONC(165.5,IEN,24) D P Q:EX=U
+ W !,"BLOOD VESSEL INVASION.............: ",ONC(165.5,IEN,431) D P Q:EX=U
+ W !,"EXTRA-THYROIDAL EXTENSION.........: ",ONC(165.5,IEN,432) D P Q:EX=U
+ W !,"DIAGNOSTIC CONFIRMATION...........: ",ONC(165.5,IEN,26)
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR G III
+ D P Q:EX=U
+III S TABLE="TABLE III - EXTENT OF DISEASE AND AJCC STAGE"
+ I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HDR
+ W !?15,TABLE,! D P Q:EX=U
+ W !,"SIZE OF TUMOR (mm)................: ",ONC(165.5,IEN,29) D P Q:EX=U
+ W !,"MULTIFOCAL........................: ",ONC(165.5,IEN,433) D P Q:EX=U
+ W !,"REGIONAL NODES EXAMINED...........: ",ONC(165.5,IEN,33) D P Q:EX=U
+ W !,"REGIONAL NODES POSITIVE...........: ",ONC(165.5,IEN,32) D P Q:EX=U
+ W !,"LOCATION OF POSITIVE NODES........: ",ONC(165.5,IEN,434) D P Q:EX=U
+ W !!,"SITE(S) OF DISTANT METASTASIS:",! D P Q:EX=U
+ W !,"  SITE OF DISTANT METASTASIS #1...: ",ONC(165.5,IEN,34) D P Q:EX=U
+ W !,"  SITE OF DISTANT METASTASIS #2...: ",ONC(165.5,IEN,34.1) D P Q:EX=U
+ W !,"  SITE OF DISTANT METASTASIS #3...: ",ONC(165.5,IEN,34.2)
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR W !?15,TABLE_" (continued)" G AJCCCS
+ D P Q:EX=U
+AJCCCS W !!,"AJCC CLINICAL STAGE (cTNM):",! D P Q:EX=U
+ W !,"  T-CODE........................: ",ONC(165.5,IEN,37.1) D P Q:EX=U
+ W !,"  N-CODE........................: ",ONC(165.5,IEN,37.2) D P Q:EX=U
+ W !,"  M-CODE........................: ",ONC(165.5,IEN,37.3) D P Q:EX=U
+ W !,"  AJCC STAGE....................: ",ONC(165.5,IEN,38) D P Q:EX=U
+AJCCPS W !!,"AJCC PATHOLOGIC STAGE (pTNM):",! D P Q:EX=U
+ W !,"  T-CODE........................: ",ONC(165.5,IEN,85) D P Q:EX=U
+ W !,"  N-CODE........................: ",ONC(165.5,IEN,86) D P Q:EX=U
+ W !,"  M-CODE........................: ",ONC(165.5,IEN,87) D P Q:EX=U
+ W !,"  AJCC STAGE....................: ",ONC(165.5,IEN,88)
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR W !?15,TABLE_" (continued)" G SB
+ D P Q:EX=U
+SB W !!,"STAGED BY:",! D P Q:EX=U
+ W !,"  CLINICAL STAGE................: ",ONC(165.5,IEN,19) D P Q:EX=U
+ W !,"  PATHOLOGIC STAGE..............: ",ONC(165.5,IEN,89)
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HDR G IV
+ D P Q:EX=U
+IV D ^ONCTPC8A
+KILL ;Kill Variables and Exit
+ K CDS,CDSOT,CS,CSDAT,CSIEN,CSPNT,DLC,DOB,DOIT,FIL,LIN,LOS,NCDS
+ K NCDSIEN,NCDSOT,ONC,ONDATE,PG,SURG,SURG1,SURG2,SURGDT,TABLE
+ K %,DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ Q
+P ;Print
+ I ($Y'<(LIN-1)) D  Q:EX=U  W !?15,TABLE_" (continued)",!
+ .I IOST?1"C".E K DIR S DIR(0)="E" D ^DIR I 'Y S EX=U Q
+ .D HDR Q
+ Q
+TASK ;Queue a task
+ K IO("Q"),ZTUCI,ZTDTH,ZTIO,ZTSAVE
+ S ZTRTN="PRT^ONCTPC8",ZTREQ="@",ZTSAVE("ZTREQ")=""
+ S ZTDESC="Print Thyroid PCE"
+ F V2=1:1 S V1=$P(ONCOLST,"^",V2) Q:V1=""  S ZTSAVE(V1)=""
+ D ^%ZTLOAD D ^%ZISC U IO W !,"Request Queued",!
+ K V1,V2,ONCOLST,ZTSK Q
+HDR ;Header
+ W @IOF S PG=PG+1 N BLANKS S $P(BLANKS," ",SITTAB-$L(PATNAM)-4)=" "
+ W " ",PATNAM,BLANKS,SITEGP,!,?1,SSN,?TOPTAB-3,TOPNAM," ",TOPCOD
+ W $S($L(PG)=2:" ",1:"  "),PG,!,DASHES
+ W !?20," PCE Study of Thyroid Cancer"
+ W ?59,ONDATE,!,DASHES
+ Q

@@ -1,0 +1,46 @@
+LASMACA ;SLC/RWF - GETS DATA FROM SMAC ;8/16/90  11:03 ;
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;;Sep 27, 1994
+ ;CROSS LINK BY,  ID =smac IDEE #(bar code),  IDE =smac MED REC #, IDE2 =labnum
+LA1 S:$D(ZTQUEUED) ZTREQ="@" S LANM=$T(+0),TSK=$O(^LAB(62.4,"C",LANM,0)),U="^",LRTEC="" Q:TSK<1
+ Q:'$D(^LA(TSK,"I",0))
+ S LRTOP=$P(^LAB(69.9,1,1),U,3) D ^LASET ;SET LRTOP
+ S TP=0,SS="CH",X="TRAP^"_LANM,@^%ZOSF("TRAP")
+ I TC(1,2)?.N1P.N F I=1:1:TC S Y=+TC(I,2),E=+$P(TC(I,2),",",2),TC(I,2)="S V=$E(Y("_Y_"),"_E_","_(E+3)_"),T=$E(Y("_Y_"),"_(E+4)_")"
+ S IDT=0
+LA2 G ENT
+D2S S RMK=$P(RMK,"   ",1)_" "_$P(RMK,"   ",2,99) G D2S:RMK["   " Q
+ENT K TV S END=0,BAD=0,IDE="",ID=""
+C1 S TOUT=0 D IN G LAST:TOUT,C1:$E(IN,13)'="/"
+ S I=1 D REC F I=2:1:4 D IN,REC:'TOUT
+ G ENT:TOUT!BAD D SAVE G ENT
+LAST K ^LA("LOCK",TSK),^LA("STOP",TSK) Q:$D(LRMODE)  L ^LA(TSK) H 2 K ^LA(TSK)
+ Q
+REC ;
+ IF $E(IN,$P("13^36^7^5",U,I))'=$E("/// ",I) S BAD=1
+ Q:END!BAD  S Y(I)=IN
+ Q
+SAVE S K=",",FG=0
+ S RMK=$E(Y(2),6,35),NSS=$E(RMK,1,5) D D2S S IDE=$E(Y(1),1,12),ID=$E(Y(3),1,6),IDE2=$E(Y(3),8,11)
+ S DILU=$S(NSS["SX":+$P(NSS,"SX",2),NSS["UX":+$P(NSS,"UX",2),1:0),SPEC=$S($E(NSS)="U":$P(^LAB(69.9,1,1),U,2),1:$P(^LAB(69.9,1,1),U,3))
+ F II=1:1:TC X TC(II,2) S:V="    "!(V="----") T="B" S:T'="B"&DILU V=V*DILU S:T'="B"&TC(II,3) V=V/TC(II,3) S @TC(II,1)=$S("/*="[T:+V,1:"")_$S("CGTLD*"[T:T,1:""),FG=("CGTLD*"[T)+FG
+ S TRAY=+$E(ID,1,3),CUP=+$E(ID,4,6)
+ Q:ID?.P
+LA3 X LAGEN ;D ^LACRIT:SPEC=$P(^LAB(69.9,1,1),U,3)
+ IF $D(^LRO(68.2,LWL,8,0)) S:FG ^LRO(68.2,LWL,8,ISQN)=FG
+ F I=0:0 S I=$O(TV(I)) Q:I<1  D LA4
+ I RMK'?." " S ^LAH(LWL,1,ISQN,1)=RMK
+ I DPF=62.3 D CONTROL^LAGEN
+ Q
+LA4 I $D(TV(I,1)),TV(I,1)]"" S ^LAH(LWL,1,ISQN,I)=TV(I,1)
+ Q
+ Q
+IN S CNT=^LA(TSK,"I",0)+1 IF '$D(^(CNT)) S TOUT=TOUT+1 S:$D(^LA("STOP",TSK)) TOUT=99 Q:TOUT>30  H 5 G IN
+ S ^LA(TSK,"I",0)=CNT,IN=^(CNT),TOUT=0
+ S:IN["~" CTRL=$P(IN,"~",2),IN=$P(IN,"~",1)
+ Q
+OUT S CNT=^LA(TSK,"O")+1,^("O")=CNT,^("O",CNT)=OUT
+ LOCK ^LA("Q") S Q=^LA("Q")+1,^("Q")=Q,^("Q",Q)=TSK LOCK
+ Q
+TRAP D ^LABERR K OLD,^LA("LOCK",TSK) Q
+ ;Y(I),START $E, DIVIDE BY
+ ;IDE=MEDICAL REC. NUM, ID=IDEE

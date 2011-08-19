@@ -1,0 +1,64 @@
+WIIADT1 ;VISN20/WDE/WHN/WII RPC TO GET DATA FROM FILE 987.7 ; [6/26/08 07:21am]
+ ;;1.0;Wounded Injured and Ill Warriors;**1**;06/26/2008;Build 28;
+ ;THIS ROUTINE IS CALLED FROM THE REMOTE PROCEDURE WII ADT.  It creates a list of entries from  WII ADT ALL SITES (#987.7)
+ ;No outside API'S or DBIA's are used
+EN(RESULTS,WIISTDT) ;Entry Point
+ K ^TMP($J)
+ S RESULTS=$NA(^TMP($J))
+ D NOW^%DTC S DT=X K X,Y,%
+ I $G(WIISTDT)="" D LOOP1
+ I $G(WIISTDT)'="" D LOOP2  ;this is to recreate the list
+ I $D(^TMP($J))=0 S ^TMP($J,1,0)="No data has been transmitted with the date you selected"
+ D CLEAN
+ Q
+ ;---------------------------------------------------------------------------------------------------------------
+LOOP1 ;tag is used to collect records that have a status of 1
+ S (WIICNT,WIIENT)=0 F  S WIIENT=$O(^WII(987.7,"C",1,WIIENT)) Q:(WIIENT="")!('+WIIENT)  D
+ . D BUILD
+ . Q
+ I $D(^TMP($J))=0 S RESULTS="NO DATA TO TRANSMIT"
+ D CLEAN
+ Q
+LOOP2 ;
+ S X=WIISTDT D ^%DT S WIISTDT=Y K Y
+ S (WIIENT,WIICNT)=0 F  S WIIENT=$O(^WII(987.7,"D",WIISTDT,WIIENT)) Q:(WIIENT="")!('+WIIENT)  D
+ . D BUILD
+ . Q
+ D CLEAN
+ Q
+BUILD ;
+ S WIIDATA=$G(^WII(987.7,WIIENT,0)) Q:WIIDATA=""
+ S WIIP1=$P($G(WIIDATA),U,2),WIIP1=WIIP1_"         ",WIIP1=$E(WIIP1,1,6)  ;FACILITY SIZE 6
+ S WIIP2=" "  ;PLACE HOLDER FOR FUTURE.  WILL BE ADD DELETE UPDATE CHARACTER SIZE 1
+ S WIIP3A=$P($G(WIIDATA),U,5),WIIP3A=$P($G(WIIP3A),"@",1),WIIP3A=WIIP3A_"                  ",WIIP3A=$E(WIIP3A,1,10)  ;admit date no time
+ S WIIP3B=$P($G(WIIDATA),U,5),WIIP3B=$P($G(WIIP3B),"@",2)
+ S WIIP3B=$$STRIP^XLFSTR(WIIP3B,":") ;now strip off the colon makes it
+ S WIIP3B=WIIP3B_"     ",WIIP3B=$E(WIIP3B,1,4)  ;admit TIME no DATE
+ S WIIP4A=$P($G(WIIDATA),U,3),WIIP4A=WIIP4A_"                                        ",WIIP4A=$E(WIIP4A,1,35)  ;LAST NAME
+ S WIIP5A=$P($G(WIIDATA),U,4),WIIP5A=WIIP5A_"           ",WIIP5A=$E(WIIP5A,1,9)  ;SSN
+ S WIIP5B=$P($G(WIIDATA),U,4),WIIP5B=WIIP5B_"  ",WIIP5B=$E(WIIP5B,10)  ;Pseudo CHARACTER
+ S WIIP6A=$P($G(WIIDATA),U,6),WIIP6A=$P($G(WIIP6A),"@",1),WIIP6A=WIIP6A_"                  ",WIIP6A=$E(WIIP6A,1,10)  ;discharge date no time
+ S WIIP6B=$P($G(WIIDATA),U,6),WIIP6B=$P($G(WIIP6B),"@",2)
+ S WIIP6B=$$STRIP^XLFSTR(WIIP6B,":") ;now strip off the colon
+ S WIIP6B=WIIP6B_"      ",WIIP6B=$E(WIIP6B,1,4)  ;discharge TIME no DATE
+ ;NOW GET THE FULL NAME COMPONETS 
+ S WIIDATA=$G(^WII(987.7,WIIENT,1))
+ S WIIP4B=$P($G(WIIDATA),U,7),WIIP4B=WIIP4B_"                                ",WIIP4B=$E(WIIP4B,1,35)  ;FIRST NAME
+ S WIIP4C=$P($G(WIIDATA),U,8),WIIP4C=WIIP4C_"                        ",WIIP4C=$E(WIIP4C,1,2)  ;MIDDLE NAME
+ S WIISTRG=WIIP1_WIIP2_WIIP3A_WIIP3B_WIIP4A_WIIP4B_WIIP4C_WIIP5A_WIIP5B_WIIP6A_WIIP6B
+ S WIICNT=WIICNT+1
+ S ^TMP($J,WIICNT,0)=WIISTRG
+ S WIIDFAS=$P($G(^WII(987.7,WIIENT,0)),U,9)  ;if there is a date then the user regenerated the list no need to go on.
+ I WIIDFAS'="" Q
+ S DIE="^WII(987.7,",DA=WIIENT,DR="8///"_DT_";9///2"
+ D ^DIE
+ Q
+CLEAN ;
+ S RESULTS=$NA(^TMP($J))
+ K XMDUZ,XMY,WIIREV,WIIDFAS
+ K WIIENT,WIICNT,WIIDATA,WIIP2,WIIP3,WIIP4,WIIP5,WIIP6,WIIP7,WIIP8,WIIP9,WIIP10,WIISTRG
+ K DA,DIC,DIE,DR
+ K WII1,WII3,WII4,WIIDELIM,WIITMP
+ K WIIP8,WIIP9,WIIP10,WIIP11
+ K WIIP3A,WIIP3B,WIIP4A,WIIP4B,WIIP4C,WIIP1,WIIP5A,WIIP5B,WIIP5C,WIIP6A,WIIP6B
+ Q

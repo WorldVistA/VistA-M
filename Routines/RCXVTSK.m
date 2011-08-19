@@ -1,0 +1,210 @@
+RCXVTSK ;DAOU/ALA-AR Data Extract Nightly Task ;23-JUL-03
+ ;;4.5;Accounts Receivable;**201,227,228,232**;Mar 20, 1995
+ ;
+ ;** Program Description **
+ ;  This program is the nightly task program for the
+ ;  CBO Data Extract to the Boston Allocation Resource
+ ;  Center
+ ;
+EN ;  Entry point
+ ;
+ ;  If a test system has 'turned off' extract, quit
+ I '$$GET1^DIQ(342,"1,",20.04,"I") Q
+ ;
+ N $ES,$ET
+ S $ET="D ER^RCXVTSK"
+ ;
+ L +^RCXVTSK:60 E  Q
+ ;
+ ;  Purge completed batches
+ S IEN="",DIK="^RCXV("
+ F  S IEN=$O(^RCXV("AC","C",IEN)) Q:IEN=""  D
+ . S DA=IEN D ^DIK
+ ;
+ K ^TMP("RCXVMSG",$J)
+ ;
+ ;  Find all deposits/receipts
+ S RCXVD0="",RCXVRNUM=0,RCXVDT=$$FMADD^XLFDT(DT,-1)
+ F  S RCXVD0=$O(^RCY(344,"ASTAT",0,RCXVD0)) Q:RCXVD0=""  D
+ . S RCXVEDT=$P($G(^RCY(344,RCXVD0,0)),U,12)\1
+ . I RCXVEDT'=RCXVDT Q
+ . S RCXVRNUM=RCXVRNUM+1
+ . D FIL^RCXVDEQ("R")
+ . D UDR^RCXVDEQ
+ ;
+ K RCXVD0,RCXVRNUM,RCXVDT,RCXVEDT,RCXVDA,RCVXCTY,RCXVBDT
+ ;
+ S RCXVBTN="",RCXVU="^",RCXVXDT=DT
+ ;
+ ;  If the CCPC calculation is scheduled to run, don't
+ ;  run the nightly task
+ ; Patch 228 changes software to allow nightly task on CCPC date
+ ;S X1=$$STD^RCCPCFN,X2=-3 D C^%DTC I X=DT L -^RCXVTSK K X Q
+ ;K X1,X2
+ ;
+MONTHLY ;Set up monthly transmission batches
+ I $E(DT,6,7)="01" D EN^RCXVDC10
+NM ;  Find all new batches to be transmitted
+ S RBSQ=0,RBTOT=0
+ F  S RCXVBTN=$O(^RCXV("AC","P",RCXVBTN)) Q:RCXVBTN=""  D
+ . I $G(^RCXV(RCXVBTN,0))="" Q
+ . S RBSQ=RBSQ+1,RBTOT=RBTOT+1
+ . I $P(^RCXV(RCXVBTN,0),U,1)'=RCXVBTN S RCXVUP(348.4,RCXVBTN_",",.01)=RCXVBTN
+ . S RCXVUP(348.4,RCXVBTN_",",.05)=RBSQ
+ F  S RCXVBTN=$O(RCXVUP(348.4,RCXVBTN)) Q:RCXVBTN=""  D
+ . S RCXVUP(348.4,RCXVBTN,.06)=RBTOT
+ D FILE^DIE("","RCXVUP","RCXVERR")
+ K RCXVUP
+ ;
+ S RCXVBTN=""
+STRT ;  Start the build and transmission of batches
+ D ^RCXVCHK
+ F RCSTAT="T","P" F  S RCXVBTN=$O(^RCXV("AC",RCSTAT,RCXVBTN)) Q:RCXVBTN=""  D
+ . S RCXVBLN=0,RQFL=0
+ . S RCXVSITE=$P($$SITE^VASITE(),U,3)
+ . S RCXVDIR=$P($G(^RC(342,1,20)),U,1)
+ . S RCXVBDT=$P($G(^RCXV(RCXVBTN,0)),U,2)
+ . S RCXVBTY=$P($G(^RCXV(RCXVBTN,0)),U,4)
+ . S RCXVSEQ=$P($G(^RCXV(RCXVBTN,0)),U,5)
+ . S RCXVSTOT=$P($G(^RCXV(RCXVBTN,0)),U,6)
+ . S RCXVLDOM=$P($G(^RC(342,1,20)),U,8)
+ . ;S RCXVLEG=+$P($G(^RC(342,1,20)),U,7)
+ . ;
+ . I RCSTAT'="T" D  Q:RQFL
+ .. I $G(RCXVSEQ)="" S RQFL=1 Q
+ .. I $P(^RCXV(RCXVBTN,0),U,3)="C" S RQFL=1 Q
+ .. S RCXVUP(348.4,RCXVBTN_",",.03)="T"
+ .. D FILE^DIE("I","RCXVUP","RCXVERR")
+ .. K RCXVUP
+ . ;
+ . ; If a file has been transmitted but no acknowledgement
+ . ; has been received after 5 days, resend
+ . I RCSTAT="T" D  Q:RQFL
+ .. S RCXVTRD=$P($G(^RCXV(RCXVBTN,0)),U,8)\1
+ .. S RCXVARD=$P($G(^RCXV(RCXVBTN,0)),U,9)\1
+ .. I $$FMADD^XLFDT(RCXVTRD,5)>DT S RQFL=1
+ .. ;I RCXVARD=0,RCXVLEG,RCXVTRD'=0 S RQFL=1
+ . ;
+ . Q:RQFL
+ . ; FILENAME=SITE_DATE_BATCH# 
+ . S RCXVFILE="RCXV"_RCXVSITE_RCXVBDT_RCXVBTN_".TXT"
+ . S RCXVSCR="TMP_RCXV"_RCXVSITE_"_"_RCXVBTN
+ . D OPEN^%ZISH("RCXVHNDL",RCXVDIR,RCXVFILE,"W")
+ . U IO
+ . S RCXVDMN=$P($G(^XTV(8989.3,1,0)),U,1)
+ . S RCXVDMN=$P($G(^DIC(4.2,RCXVDMN,0)),U,1)
+ . S RCXVRN=$P($G(^RCXV(RCXVBTN,1,0)),U,4) ; # OF REC FOR BILLS
+ . I RCXVRN="" S RCXVRN=$P($G(^RCXV(RCXVBTN,2,0)),U,4) ; # REC DEP/REC
+ . S RCXVRT=$P($G(^RCXV(RCXVBTN,0)),U,4) ; TYPE OF DATA 
+ . W "HDR:"_RCXVSITE_RCXVU_RCXVDMN_RCXVU_RCXVRT_RCXVU_RCXVRN_RCXVU_RCXVBDT_RCXVU_RCXVXDT_RCXVU_RCXVSEQ_RCXVU_RCXVSTOT_RCXVU_RCXVLDOM,!
+ . F  S RCXVBLN=$O(^RCXV(RCXVBTN,1,RCXVBLN)) Q:'RCXVBLN  D
+ .. S DFN=$P(^RCXV(RCXVBTN,1,RCXVBLN,0),U,2)
+ .. D EN^RCXVDC
+ . ;
+ . S RCXVD0=0
+ . F  S RCXVD0=$O(^RCXV(RCXVBTN,2,RCXVD0)) Q:'RCXVD0  D
+ .. S RCXVEDT=$P($G(^RCY(344,RCXVD0,0)),U,12)\1
+ .. D D344^RCXVDC8
+ . ;
+ . S RCXVD0=0
+ . F  S RCXVD0=$O(^RCXV(RCXVBTN,3,RCXVD0)) Q:'RCXVD0  D
+ .. S DFN=RCXVD0
+ .. D D3547^RCXVDC10
+ . ;
+ . I $D(^RCXV(RCXVBTN,4)) S RCXVMO=$G(^(4)) D PREREG^RCXVDC10
+ . ;
+ . I $D(^RCXV(RCXVBTN,5)) S RCXVMO=$G(^(5)) D BUFFER^RCXVDC10
+ . ;
+ . D CLOSE^%ZISH("RCXVHNDL")
+ . ;
+ . S $P(^RC(342,1,20),U,9)=$$NOW^XLFDT()
+ . ;
+ . ;  FTP directly to ARC
+ . D EN^RCXVFTP(RCXVFILE,RCXVDIR)
+ ;
+ ;  Check on FTP transfer messages
+ D ^RCXVFTR
+ ;
+ L -^RCXVTSK
+EXIT D MSG^RCXVCHK
+ K IEN,DIK,DA,RCXVBLN,RCXVBTN,RCSTAT,RCXVBDT,RCXVDMN,RCXVXDT,RCXVTRD
+ K RCXVSITE,RCXVFILE,RCXVRN,RCXVRT,RCXVDIR,RCXVATP,RCXVU,DTACT,RBSQ,RBTOT
+ K RCFDATE,RCXVCFLG,RCXVDBN,RCXVIDT,RCXVSEQ,RCXVSTOT,RCXVTRD,CCT,DTENT
+ K RCBLN,RCDBTR,RCDEBT,RCTRAN,RCXVTR,RCBCN,RCXVPFDT,RCXVPTDT,RCXRMB
+ K RCXVLDOM,RCXVARD,RCXVSUB,RCXVBTY,RCXVLEG,RCXVSCR,Y,X,RCXVMO
+ K ^TMP("RCXVMSG",$J),^TMP("RCXVA",$J),^TMP("RCXVIN",$J)
+ Q
+ ;
+HIS ;  Historical data extract
+ ;
+ L +^RCXVTSK:60 E  HANG 600 G HIS
+ ;
+ I $G(DT)="" D DT^DICRW
+ ;
+ I $G(RCXVFFD)="" D
+ . S RCFDATE=$$FYCY^IBCU8(DT)
+ . S RCXVFFD=$P(RCFDATE,U,3),RCXVFTD=$P(RCFDATE,U,4)
+ ;
+ S RCXVDAT=RCXVFFD-.01
+ F  S RCXVDAT=$O(^PRCA(430,"ACTDT",RCXVDAT)) Q:RCXVDAT=""!(RCXVDAT>RCXVFTD)  D
+ . S IEN=""
+ . F  S IEN=$O(^PRCA(430,"ACTDT",RCXVDAT,IEN)) Q:IEN=""  D
+ .. I $P(^PRCA(430,IEN,0),U,8)=16!($P(^PRCA(430,IEN,0),U,8)=40) Q
+ .. S RCXVBLN=IEN,DFN=$P(^PRCA(430,IEN,0),U,7)
+ .. D FIL^RCXVDEQ("H")
+ ;
+ L -^RCXVTSK
+ ;
+ D EN
+ K RCXVDAT,RCFDATE,RCXVFFD,RCXVFTD,IEN,DFN,RCXVBLN
+ ;
+ Q
+ ;
+CUR ;  Find all current fiscal year bills
+ ;
+ L +^RCXVTSK:60 E  HANG 600 G CUR
+ ;
+ S TTYP=""
+ F  S TTYP=$O(^PRCA(433,"AT",TTYP)) Q:TTYP=""  D
+ . I '+$P(^PRCA(430.3,TTYP,0),U,6) Q
+ . S RDATE=RCXVFFD-.01
+ . F  S RDATE=$O(^PRCA(433,"AT",TTYP,RDATE)) Q:RDATE=""!(RDATE\1>RCXVFTD)  D
+ .. S IEN=""
+ .. F  S IEN=$O(^PRCA(433,"AT",TTYP,RDATE,IEN)) Q:IEN=""  D
+ ... S RCXVBLN=$P(^PRCA(433,IEN,0),U,2)
+ ... I RCXVBLN="" Q
+ ... S X=$P($G(^PRCA(430,RCXVBLN,0)),U,8)
+ ... I X=16!(X=40) Q
+ ... ; Line below changed for patch 228 to do FY05 extract
+ ... D FIL^RCXVDEQ("E")
+ ;
+ L -^RCXVTSK
+ ;
+ D EN
+ K TTYP,RDATE,RCXVFFD,RCXVFTD,RCXVBLN
+ Q
+ ;
+ACT ;  Active data extract
+ ;
+ L +^RCXVTSK:60 E  HANG 600 G ACT
+ ;
+ NEW STAT,CSTAT,QFL
+ ;  Set up the AR Data Queue for all 'Active' and 'Suspended' bills
+ F STAT=16,40 S IEN="" F  S IEN=$O(^PRCA(430,"AC",STAT,IEN)) Q:IEN=""  D
+ . S RCXVBLN=IEN,DFN=$P(^PRCA(430,IEN,0),U,7)
+ . I $P(^PRCA(430,IEN,0),U,2)="" Q
+ . S CSTAT=$P(^PRCA(430,IEN,0),U,8)
+ . I CSTAT'=STAT S QFL=0 D  Q:QFL
+ .. I CSTAT'=16!(CSTAT'=40) S QFL=1
+ . D FIL^RCXVDEQ("A")
+ ;
+ L -^RCXVTSK
+ ;
+ D EN
+ Q
+ ;
+ER ; Unlock and log error
+ L -^RCXVTSK
+ D ^%ZTER
+ D UNWIND^%ZTER
+ Q

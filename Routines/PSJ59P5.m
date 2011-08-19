@@ -1,0 +1,75 @@
+PSJ59P5 ;BIR/LDT,TSS - API FOR INFORMATION FROM FILE 59.5; 5 Sep 03
+ ;;5.0; INPATIENT MEDICATIONS ;**163,172**;16 DEC 97;Build 13
+ ;
+ ;Reference to ^DG(40.8 - DBIA 2269
+ ;
+ALL(PSJIEN,PSJFT,LIST) ;
+ ;PSJIEN - IEN of entry in 59.5.
+ ;PSJFT - Free Text name in 59.5 or "??" for all names
+ ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the
+ ;       Field Number of the data piece being returned.
+ ;Returns NAME field (#.01), DIVISION field (#.02), and INACTIVATION DATE field (#19) of IV ROOM file (#59.5).
+ N DIERR,ZZERR,PSJ59P5,SCR,PSJ,PSJIEN2
+ I $G(LIST)']"" Q
+ K ^TMP($J,LIST)
+ I +$G(PSJIEN)'>0,($G(PSJFT)']"") S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ I $G(PSJIEN)]"",+$G(PSJIEN)'>0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ I +$G(PSJIEN)>0 S PSJIEN2=$$FIND1^DIC(59.5,"","A","`"_PSJIEN,,,"") D
+ .I +PSJIEN2'>0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ .S ^TMP($J,LIST,0)=1
+ .D GETS^DIQ(59.5,+PSJIEN2,".01;.02;19","IE","PSJ59P5") S PSJ(1)=0
+ .F  S PSJ(1)=$O(PSJ59P5(59.5,PSJ(1))) Q:'PSJ(1)  D SETALL
+ I +$G(PSJIEN)'>0,$G(PSJFT)="??" D  Q
+ .D LOOPDIR
+ I +$G(PSJIEN)'>0,$G(PSJFT)]"" D
+ .D FIND^DIC(59.5,,"@;.01;","QP",PSJFT,,"B",,,"")
+ .I +$G(^TMP("DILIST",$J,0))=0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ .I +^TMP("DILIST",$J,0)>0 S ^TMP($J,LIST,0)=+^TMP("DILIST",$J,0) N PSJXLP S PSJXLP=0 F  S PSJXLP=$O(^TMP("DILIST",$J,PSJXLP)) Q:'PSJXLP  D
+ ..S PSJIEN=+^TMP("DILIST",$J,PSJXLP,0) K PSJ59P5 D GETS^DIQ(59.5,+PSJIEN,".01;.02;19","IE","PSJ59P5") S PSJ(1)=0
+ ..F  S PSJ(1)=$O(PSJ59P5(59.5,PSJ(1))) Q:'PSJ(1)  D SETALL
+ K ^TMP("DILIST",$J)
+ Q
+ ;
+LOOPDIR ;LOOP FOR A DIRECT READ.
+ N PSJCNT S PSJCNT=0
+ S PSJIEN2=0
+ F  S PSJIEN2=$O(^PS(59.5,PSJIEN2)) Q:'PSJIEN2  D
+ .D SETDIR
+ D COUNT
+ Q
+ ;
+SETALL ;
+ S ^TMP($J,LIST,+PSJ(1),.01)=$G(PSJ59P5(59.5,PSJ(1),.01,"I"))
+ S ^TMP($J,LIST,"B",$G(PSJ59P5(59.5,PSJ(1),.01,"I")),+PSJ(1))=""
+ S ^TMP($J,LIST,+PSJ(1),.02)=$S($G(PSJ59P5(59.5,PSJ(1),.02,"I"))="":"",1:PSJ59P5(59.5,PSJ(1),.02,"I")_"^"_PSJ59P5(59.5,PSJ(1),.02,"E"))
+ S ^TMP($J,LIST,+PSJ(1),19)=$S($G(PSJ59P5(59.5,PSJ(1),19,"I"))="":"",1:PSJ59P5(59.5,PSJ(1),19,"I")_"^"_PSJ59P5(59.5,PSJ(1),19,"E"))
+ Q
+ ;
+SETDIR ;
+ S ^TMP($J,LIST,+PSJIEN2,.01)=$P($G(^PS(59.5,PSJIEN2,0)),U,1)
+ S ^TMP($J,LIST,"B",$P($G(^PS(59.5,PSJIEN2,0)),U,1),+PSJIEN2)=""
+ S ^TMP($J,LIST,+PSJIEN2,.02)=$S($P($G(^PS(59.5,PSJIEN2,0)),U,4)="":"",1:$P($G(^PS(59.5,PSJIEN2,0)),U,4)_"^"_$P($G(^DG(40.8,$P($G(^PS(59.5,PSJIEN2,0)),U,4),0)),U,1))
+ S ^TMP($J,LIST,+PSJIEN2,19)=$S($P($G(^PS(59.5,PSJIEN2,"I")),U,1)="":"",1:$P($G(^PS(59.5,PSJIEN2,"I")),U,1)_"^"_$$GETDATE($P($G(^PS(59.5,PSJIEN2,"I")),U,1)))
+ S PSJCNT=PSJCNT+1
+ Q
+ ;
+GETDATE(PSJDATE) ;RETURNS FORMATTED DATE
+ N Y S Y=PSJDATE X ^DD("DD")
+ Q $G(Y)
+ ;
+WRT(PSJDFN,PSJVAL,LIST) ;Sets Division field
+ ;PSJDFN = IV ROOM (REQUIRED)
+ ;PSJVAL = Division (REQUIRED)
+ ;LIST: Subscript name used in ^TMP global [REQUIRED]
+ I $G(PSJDFN)'>0 Q
+ I $G(PSJVAL)="" Q
+ I $G(LIST)="" Q
+ I '$D(^PS(59.5,PSJDFN)) S ^TMP($J,LIST,0)=0 Q
+ I $G(PSJVAL)'>0 S ^TMP($J,LIST,0)=0 Q
+ I '$D(^DG(40.8,PSJVAL,0)) S ^TMP($J,LIST,0)=0 Q
+ S $P(^PS(59.5,PSJDFN,0),"^",4)=PSJVAL,^TMP($J,LIST,0)=1 K PSJVAL,PSJDFN Q
+COUNT ;
+ I PSJCNT>0 S ^TMP($J,LIST,0)=PSJCNT
+ ELSE  S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND"
+ Q
+ ;

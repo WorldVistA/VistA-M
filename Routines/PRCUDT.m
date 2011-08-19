@@ -1,0 +1,20 @@
+PRCUDT ;WISC/DJM/DL-DATE utility for transactions for IFCAP ;1/28/98  1445
+V ;;5.0;IFCAP;**155**;4/21/95
+ Q
+DT(C,DATE1,TIME1) ;CONVERTS TRANS DATE AND TRANS TIME INTO HUMAN READABLE FORM
+ ;   INPUT
+ ;     C       THE TRANSACTION HEADER SEGMENT
+ ;
+ ;   OUTPUT
+ ;   DATE1     THE DATE FORMATTED AS "JAN 14, 1992"
+ ;   TIME1     THE TIME FORMATTED AS "9:42:34 AM" or
+ ;                                   "midnight" for 00:00:00 or
+ ;                                   "noon" for 12:00:00
+ ;
+ N AP,DATE,DAY,DAYS,II,MO,S,TIME,TOTAL,YR S DATE=$P(C,U,5),TIME=$P(C,U,6)
+ S S=":",YR=$E(DATE,1,4),DAY=+$E(DATE,5,7),DAYS="31^28^31^30^31^30^31^31^30^31^30^31"
+ S $P(DAYS,U,2)=$S(YR#400=0:29,(YR#4=0&(YR#100'=0)):29,1:28)
+ S TOTAL="" F MO=1:1:12 S DAY=DAY-$P(DAYS,U,MO) Q:DAY'>0  S TOTAL=TOTAL+$P(DAYS,U,MO)
+ S DAY=+$E(DATE,5,7)-TOTAL,YR=YR-1700,MO=$S($L(MO)=1:"0"_MO,1:MO),DAY=$S($L(DAY)=1:"0"_DAY,1:DAY),Y=YR_MO_DAY_"."_TIME D DD^%DT S DATE1=$P(Y,"@"),TIME1=$P(Y,"@",2),$P(TIME1,S)=+$P(TIME1,S)
+ S AP=$S($P(TIME1,S)>11:"P",1:"A")_"M" S:AP="PM"&($P(TIME1,S)>12) $P(TIME1,S)=$P(TIME1,":")-12 S:$P(TIME1,S)=0 $P(TIME1,S)=12 S:TIME1="12:00" TIME1="12 "_$S(AP="AM":"midnight",1:"noon"),AP=""
+ S TIME1=TIME1_$S($L(AP):" "_AP,1:"") Q

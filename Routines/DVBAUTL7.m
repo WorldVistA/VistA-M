@@ -1,0 +1,163 @@
+DVBAUTL7 ;ALB/GTS;UTILITY ROUTINE;12/6/94
+ ;;2.7;AMIE;**17**;Apr 10, 1995
+ ;
+ ;** Version Changes
+ ;   2.7 - New routine (Enhc 16)
+ ;
+SEL7131() ;** Select a 7131 request
+ K Y
+ F  DO  Q:$D(Y)
+ .S DIC="^DVB(396,",DIC(0)="AEMQ"
+ .S DIC("W")="D REQDT^DVBAUTL7"
+ .D ^DIC
+ .D:+Y>0 CHECK
+ K DIC,X
+ Q +Y
+ ;
+CHECK ;** Check 7131 for a pending report
+ K DVBAOPEN
+ N DVBAX
+ F DVBAX=9,11,13,15,17,19,21,23,7,28,26 DO
+ .I '$D(DVBAOPEN) DO
+ ..I DVBAX'=7 DO
+ ...S:$P(^DVB(396,+Y,0),U,DVBAX)="P" DVBAOPEN=""
+ ..I DVBAX=7 DO
+ ...S:$P(^DVB(396,+Y,1),U,DVBAX)="P" DVBAOPEN=""
+ I '$D(DVBAOPEN) K Y
+ I '$D(DVBAOPEN) DO
+ .S VAR(1,0)="1,0,0,2:2,0^You must select a 7131 with Pending reports!"
+ .D WR^DVBAUTL4("VAR")
+ .K VAR,PAR1,PAR2
+ K DVBAOPEN
+ Q
+ ;
+INITRPT(DVBAIEN) ;** Set nodes for division updates on 7131
+ ;** Variable Descriptions
+ ;      DVBARPT(RPT #)=Report name^Selected - Y/N^Status - P/C^Division #
+ ;      DVBA0 and DVBA6 are the 7131 rec's 0 and 6 node respectively
+ ;
+ ;** Note: DVBARPT local array returned to calling rtn
+ ;
+ N DVBA0,DVBA6,DVBAX,SUBSCPT,RPTNME,RPTSTAT,RPTSEL,SELPCE,DVBADIV,DIVNUM
+ S DVBA0=^DVB(396,DVBAIEN,0)
+ S:$D(^DVB(396,DVBAIEN,6)) DVBA6=^DVB(396,DVBAIEN,6)
+ S:'$D(^DVB(396,DVBAIEN,6)) DVBA6=""
+ S SUBSCPT=0
+ F DVBAX=9,11,13,15,17,19,21,23,7,28,26 DO  ;**Subscpt's = Status Pce's
+ .S SUBSCPT=SUBSCPT+1
+ .S RPTNME=$T(@DVBAX)
+ .S RPTNME=$P(RPTNME,";;",2)
+ .I DVBAX'=7 DO  ;**Set up Rpt Selection Pce #'s
+ ..I DVBAX<17 DO
+ ...S:DVBAX=9 SELPCE=5
+ ...S:DVBAX=11 SELPCE=6
+ ...S:DVBAX=13 SELPCE=7
+ ...S:DVBAX=15 SELPCE=8
+ ..S:(DVBAX>15&(DVBAX'=26)) SELPCE=DVBAX-1
+ ..S RPTSTAT=$P(^DVB(396,DVBAIEN,0),U,DVBAX)
+ .S:DVBAX=7 RPTSTAT=$P(^DVB(396,DVBAIEN,1),U,DVBAX),SELPCE=24
+ .S:DVBAX'=26 RPTSEL=$P(^DVB(396,DVBAIEN,0),U,SELPCE)
+ .I DVBAX=26 DO
+ ..S SELPCE=25
+ ..S:$P(^DVB(396,DVBAIEN,0),U,SELPCE)'="" RPTSEL="YES"
+ ..S:$P(^DVB(396,DVBAIEN,0),U,SELPCE)="" RPTSEL="NO"
+ .S DIVNUM=$P(DVBA6,U,DVBAX)
+ .S:+DIVNUM>0 DVBADIV=$P(^DG(40.8,DIVNUM,0),U,1)
+ .S:+DIVNUM'>0 DVBADIV=""
+ .S DVBARPT(SUBSCPT)=RPTNME_"^"_RPTSEL_"^"_RPTSTAT_"^"_DVBADIV_"^"_DIVNUM_"^"_DIVNUM
+ Q
+ ;
+SETDR ;** Set DR string for 7131 division/tran date field updates
+ S:$D(DR) DR=DR_";"_FLDDIV_"///"_REQDIV_";"_FLDDTE_"///"_REQDTE
+ S:'$D(DR) DR=FLDDIV_"///"_REQDIV_";"_FLDDTE_"///"_REQDTE
+ Q
+ ;
+CLEARDR ;** Set DR string to clear 7131 division/tran date fields (7131 edit)
+ S:$D(DR) DR=DR_";"_FLDDIV_"///@;"_FLDDTE_"///@"
+ S:'$D(DR) DR=FLDDIV_"///@;"_FLDDTE_"///@"
+ Q
+ ;
+REQDT ;** Output 7131 date for DIC("W")
+ N DVBADTE,DVBATIME,DVBADTWK,DVBAX
+ S DVBADTWK=$P(^DVB(396,+Y,0),U,4)
+ S DVBATIME=$P(DVBADTWK,".",2)
+ S DVBADTWK=$P(DVBADTWK,".",1)
+ S DVBADTE=$$FMTE^XLFDT(DVBADTWK,"5DZ")
+ I +DVBATIME>0 DO
+ .F DVBAX=$L(DVBATIME):1:3 S DVBATIME=DVBATIME_"0"
+ .S DVBATIME=$E(DVBATIME,1,2)_":"_$E(DVBATIME,3,4)
+ .S DVBADTE=DVBADTE_" @ "_DVBATIME
+ W ?35,$S($P(^(2),U,10)="L":"Activity Date:  ",$P(^(2),U,10)="A":"Admission Date: ",1:""),DVBADTE
+ Q
+ ;
+FILE ;** Update 7131 record - Called from DVBADXFR
+ N DVBAX,DVBADTWK
+ S DVBADTWK=DVBATDT
+ S DVBADTWK=$P(DVBATDT,"@",2)
+ S REQDTE=$P(DVBATDT,"@",1)_"@"_$P(DVBADTWK,":",1)_":"_$P(DVBADTWK,":",2)
+ F DVBAX=1:1:11  DO
+ .I $P(DVBARPT(DVBAX),U,5)'=$P(DVBARPT(DVBAX),U,6) DO
+ ..I DVBAX=1 DO
+ ...S REQDIV=$P(DVBARPT(DVBAX),U,5)
+ ...S FLDDIV=4.6,FLDDTE=4.7
+ ...D SETDR
+ ..I DVBAX=2 DO
+ ...S REQDIV=$P(DVBARPT(DVBAX),U,5)
+ ...S FLDDIV=5.6,FLDDTE=5.7
+ ...D SETDR
+ ..I DVBAX=3 DO
+ ...S REQDIV=$P(DVBARPT(DVBAX),U,5)
+ ...S FLDDIV=6.6,FLDDTE=6.7
+ ...D SETDR
+ ..I DVBAX=4 DO
+ ...S REQDIV=$P(DVBARPT(DVBAX),U,5)
+ ...S FLDDIV=7.6,FLDDTE=7.7
+ ...D SETDR
+ ..I DVBAX=5 DO
+ ...S REQDIV=$P(DVBARPT(DVBAX),U,5)
+ ...S FLDDIV=9.6,FLDDTE=9.7
+ ...D SETDR
+ ..I DVBAX=6 DO
+ ...S REQDIV=$P(DVBARPT(DVBAX),U,5)
+ ...S FLDDIV=11.6,FLDDTE=11.7
+ ...D SETDR
+ ..I DVBAX=7 DO
+ ...S REQDIV=$P(DVBARPT(DVBAX),U,5)
+ ...S FLDDIV=13.6,FLDDTE=13.7
+ ...D SETDR
+ ..I DVBAX=8 DO
+ ...S REQDIV=$P(DVBARPT(DVBAX),U,5)
+ ...S FLDDIV=15.6,FLDDTE=15.7
+ ...D SETDR
+ ..I DVBAX=9 DO
+ ...S REQDIV=$P(DVBARPT(DVBAX),U,5)
+ ...S FLDDIV=17.6,FLDDTE=17.7
+ ...D SETDR
+ ..I DVBAX=10 DO
+ ...S REQDIV=$P(DVBARPT(DVBAX),U,5)
+ ...S FLDDIV=20.6,FLDDTE=20.7
+ ...D SETDR
+ ..I DVBAX=11 DO
+ ...S REQDIV=$P(DVBARPT(DVBAX),U,5)
+ ...S FLDDIV=18.6,FLDDTE=18.7
+ ...D SETDR
+ I $D(DR) DO
+ .S DIE="^DVB(396,"
+ .S DA=REQDA
+ .D ^DIE
+ .K DIE,DA,DR
+ Q
+ ;
+RPTNMS ;
+9 ;;Notice of Discharge
+11 ;;Hospital Summary
+13 ;;Certificate (21-day)
+15 ;;Other/Exam (Review Remarks)
+17 ;;Special Report
+19 ;;Competency Report
+21 ;;VA Form 21-2680
+23 ;;Asset Information
+7 ;;Admission Report
+28 ;;Beginning Date Care
+26 ;;OPT Treatment Report (Date Range)
+ Q

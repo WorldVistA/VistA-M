@@ -1,0 +1,47 @@
+SDWLIFT4 ;IOFO BAY PINES/OG - INTER-FACILITY TRANSFER: REMOVE TRANSFER DETAILS  ; Compiled March 23, 2005 11:22:00
+ ;;5.3;Scheduling;**415**;AUG 13 1993
+ ;
+ ;
+ ;******************************************************************
+ ;                             CHANGE LOG
+ ;                                               
+ ;   DATE                        PATCH                   DESCRIPTION
+ ;   ----                        -----                   -----------
+ ;
+ ;
+ Q
+EN ; INITIALIZE VARIABLES FOR REMOVE
+ N SDWLINFO
+ D GETDATA^SDWLIFT5(.SDWLINFO,0)
+ S SDWLIFTN=$$GETTN^SDWLIFT(.SDWLINFO)
+ S VALMBCK="R"
+ Q:'SDWLIFTN
+ D EN^VALM("SDWL TRANSFER REQ REMV")
+ D INIT^SDWLIFT1(0)
+ S VALMBCK="R"
+ Q
+REMOVE ;
+ N X,DIC,DIK,DA,DR,Y
+ S X="`"_SDWLIFTN,DIC=409.35,DIC(0)="Z" D ^DIC
+ I $P(Y(0),U,4)="R" D REMREQ
+ E  S DA=SDWLIFTN,DIK="^SDWL(409.35," D ^DIK
+ K ^TMP("SDWLIFT",$J,"EP")
+ Q
+REMREQ ; send removal request to SDWL-XFER-SERVER
+ N SDWLRIN,DIE,DA,DR
+ S SDWLRIN=$$GET1^DIQ(409.35,SDWLIFTN,6)
+ D SEND(SDWLRIN,$$GET1^DIQ(4,$$FIND1^DIC(4,"","X",$$GET1^DIQ(409.35,SDWLIFTN,1,"I"),"D"),60))
+ S DIE=409.35,DA=SDWLIFTN,DR="3///C" D ^DIE
+ Q
+SEND(SDWLRIN,SDWLDMN) ;
+ N XMSUB,XMY,XMTEXT,XMDUZ,SDWLX
+ S XMSUB="SDWL TRANSFER REMOVAL REQUEST"
+ S XMY("S.SDWL-XFER-SERVER@"_SDWLDMN)=""
+ S XMTEXT="SDWLX("
+ S XMDUZ="POSTMASTER"
+ S SDWLX(1,0)="6"_U_"RECEIVING FACILITY TRANSFER ID"_U_SDWLRIN
+ S SDWLX(0)=1
+ D ^XMD
+ Q
+EXIT ; Tidy up
+ K SDWLIFTN

@@ -1,0 +1,6 @@
+DENTAL BED SECTION
+ZWR
+^DIC(220.4,0)="DENTAL BED SECTION^220.4^"
+^DIC(220.4,0,"GL")="^DIC(220.4,"
+^DIC(220.4,"%D",0)="^^1^1^2881028^^^"
+^DIC(220.4,"%D",1,0)="This file is a table of bedsections used for the Dental reporting system."

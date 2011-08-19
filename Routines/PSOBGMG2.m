@@ -1,0 +1,95 @@
+PSOBGMG2 ;BHAM ISC/LC - bingo board manager (cont'd) ; 06/19/96
+ ;;7.0;OUTPATIENT PHARMACY;**10,268**;DEC 1997;Build 9
+ ;
+ASTART ;
+ S DGP=0 F  S DGP=$O(^PS(59.3,DGP)) Q:'DGP  I $P($G(^PS(59.3,DGP,3)),"^")=1,$P($G(^(3)),"^",3)'="" D
+ .S X=DT_"."_$P($P(^PS(59.3,DGP,3),"^",3),".",2) D H^%DTC S ZTDTH=%H_","_%T D ASTART1
+ K BOT,COLM,DEV,DEV1,DEVSB,DGP,DWT,FLG,FTX,NWT,PSOUT,STOP,TASK,TCK,TOP,VOFF,VON,DIC,DIQ,DA,DR,DPTR
+ K ZH,ZTDESC,ZTDTH,ZTIO,ZTQUEUED,ZTRTN,ZTSAVE,ZTSK,ZV,%H,%T,%Y
+ Q
+ASTART1 ;start via Taskman
+ S (ASTRT,ZV,ZH,PSOUT,FLG)=0,PSOSITE=$P(^PS(59.3,DGP,3),"^",8)
+ S:$P($G(^PS(59.3,DGP,0)),"^",4)'="" DEV=$P($G(^PS(59.3,DGP,0)),"^",4) I '$D(DEV) S ASTRT=3 Q
+ S DIC="^%ZIS(1,",DA=DEV,DR=".01;3",DIQ="DPTR",DIQ(0)="I" D EN^DIQ1
+ S DEV1=$G(DPTR(3.5,DA,.01,DIQ(0))),DEVSB=$G(DPTR(3.5,DA,3,DIQ(0))) I '$D(DEV1) S ASTRT=3 Q
+ S DEL2=1 D DEL
+ S IOST(0)=$G(DEVSB) S X="IODHLT;IODHLB;IORVOFF;IORVON" D ENDR^%ZISS S TOP=IODHLT,BOT=IODHLB,VOFF=IORVOFF,VON=IORVON K IODHLT,IODHLB,IORVOFF,IORVON,DIC
+ S COLM=$P($G(^PS(59.3,DGP,3)),"^",5),DWT=$P($G(^(3)),"^",6),NWT=$P($G(^(3)),"^",7)
+ S ADA=DGP,FTX="PRESCRIPTIONS ARE READY FOR:"
+ S ^PS(59.3,DGP,"STOP")=0,STOP=0 S TCK=$P(^PS(59.3,DGP,0),"^",2)
+ S (ZTSAVE("PSOSITE"),ZTSAVE("DEV1"),ZTSAVE("DGP"),ZTSAVE("ASTRT"),ZTSAVE("ZV"),ZTSAVE("ZH"),ZTSAVE("PSOUT"),ZTSAVE("FLG"),ZTSAVE("TOP"),ZTSAVE("BOT"),ZTSAVE("VOFF"))=""
+ S (ZTSAVE("VON"),ZTSAVE("COLM"),ZTSAVE("DWT"),ZTSAVE("NWT"),ZTSAVE("ADA"),ZTSAVE("FTX"),ZTSAVE("STOP"),ZTSAVE("TCK"))=""
+ S ZTIO=DEV1,ZTRTN=$S($G(TCK)'="T":"ANAME^PSOBGMGR",1:"TICKET^PSOBGMGR"),ZTDESC="Run Bingo Board Display"
+ D ^%ZTLOAD I $D(ZTSK) S TASK=ZTSK D
+ .S DA=ADA,DR="15////"_TASK_"",DIE="^PS(59.3," L +^PS(59.3,DA):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3) E  W !!,$C(7),"File is being edited!",! Q
+ .D ^DIE K DIE,DR L -^PS(59.3,DA)
+ S:$D(ZTQUEUED) ZTREQ="@"
+ Q
+ASTOP ;
+ ;stop and purge
+ S ZTSK=$P(^PS(59.3,ADA,3),"^",9) D DQ^%ZTLOAD S $P(^PS(59.3,ADA,3),"^",9)=""
+ Q
+DEL ;Del T-1's in 52.11
+ I $G(DEL2) D
+ .S DIK="^PS(52.11,",DA=0 F  S DA=$O(^PS(52.11,DA)) Q:'DA  D:$P($G(^PS(52.11,DA,0)),"^",3)=DGP ^DIK
+ .K DIK,DA
+ S DIK="^PS(52.11," F DEL=0:0 S DEL=$O(^PS(52.11,DEL)) Q:'DEL  D
+ .S DEL1=$P($P($G(^(DEL,0)),"^",5),".") I $G(DEL1)<DT S DA=DEL D ^DIK
+ K DIK,DEL,DEL1,DEL2
+ Q
+INIT ;init auto-start
+ S LL=0 D:'$D(PSOPAR) ^PSOLSET I '$D(PSOSITE) Q
+ W ! S DIR(0)="Y",DIR("A")="You want to edit Display Group(s) Start/Stop times",DIR("?")="Enter 'Y' for Yes or 'N' for No.",DIR("B")="NO"
+ D ^DIR G:$G(DIRUT) INIX I $G(Y)'=1 G INIJB1
+INIT1 S DIC="^PS(59.3,",DIC(0)="AEQOZ",DIC("S")="I $P($G(^(0)),U,4)'="""""
+ D ^DIC G:$D(DTOUT)!$D(DUOUT) INIX
+ G:$G(LL)=0&($G(Y)<0) INIX G:$G(LL)>0&($G(Y)<0) INIJ
+ S DA=+Y K Y,DIC
+STRTM S BSTRT=$P(^PS(59.3,DA,3),"^",3) I $G(BSTRT) D
+ .S BSTRT=$P(BSTRT,".",2),APM=$S($G(BSTRT)>1200:"PM",1:"AM")
+ .I $G(BSTRT)'<1300 S BSTRT1=+$E(BSTRT,1,2)-12_":"_$E(BSTRT,3,4)_APM
+ .I $G(BSTRT)>1200,$G(BSTRT)<1300 S BSTRT1=+$E(BSTRT,1,2)_":"_$E(BSTRT,3,4)_"PM"
+ .I $G(BSTRT)<1200 S BSTRT1=+$E(BSTRT,1,2)_":"_$E(BSTRT,3,4)_APM
+ S DIR(0)="F^1:7^K:X'?1.2N1"":""2N.A X"
+ S DIR("A")="Enter Start Time" S:$G(BSTRT1) DIR("B")=BSTRT1
+ S DIR("?",1)="Enter time as HH:MM in 12 hour format (For example, '8:00' or '8:00AM)"
+ S DIR("?")="You must enter 'PM' for time that is after 12:00 noon."
+ D ^DIR G:$D(DIRUT) INIX
+ I $P(Y,":")>12 W !?5,$C(7),"Time must be in 12 hour format",! G STRTM
+ I $L($P(Y,":"))=1 S Y="0"_Y
+ I $G(Y)["AM" S YY=$E(Y,1,5),STRTM1=DT_"."_$P(YY,":")_$E($P(YY,":",2),1,2)
+ I $G(Y)["PM" S YY=$E(Y,1,5),STRTM=$P(YY,":")_$E($P(YY,":",2),1,2) S:STRTM'<1200 STRTM1=DT_"."_STRTM S:STRTM<1200 STRTM=STRTM+1200,STRTM1=DT_"."_STRTM
+ I $G(Y)'["AM"&($G(Y)'["PM") S YY=$E(Y,1,5),STRTM1=DT_"."_$P(YY,":")_$E($P(YY,":",2),1,2)
+ I $G(EDT) S DIE="^PS(59.3,",DR="9////"_STRTM1_"" L +^PS(59.3,DA):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3) E  W !!,$C(7),Y(0,0)," is being edited!",! K EDT Q
+ I $G(EDT) D ^DIE L -^PS(59.3,DA) I $G(DIRUT)!($G(X)="") K EDT G EDTEX
+STPTM K DIR("B"),Y,YY S BSTOP=$P(^PS(59.3,DA,3),"^",4) I $G(BSTOP) D
+ .S BSTOP=$P(BSTOP,".",2),APM=$S($G(BSTOP)>1200:"PM",1:"AM")
+ .I $G(BSTOP)'<1300 S BSTOP1=+$E(BSTOP,1,2)-12_":"_$E(BSTOP,3,4)_APM
+ .I $G(BSTOP)>1200,$G(BSTOP)<1300 S BSTOP1=+$E(BSTOP,1,2)_":"_$E(BSTOP,3,4)_"PM"
+ .I $G(BSTOP)<1200 S BSTOP1=+$E(BSTOP,1,2)_":"_$E(BSTOP,3,4)_APM
+ S DIR(0)="F^1:7^K:X'?1.2N1"":""2N.A X"
+ S DIR("A")="Enter Stop Time" S:$G(BSTOP1) DIR("B")=BSTOP1
+ S DIR("?",1)="Enter time as HH:MM in 12 hour format (For example, '8:00' or '8:00AM)"
+ S DIR("?")="You must enter 'AM' for time that is before 12:00 noon."
+ D ^DIR G:$D(DIRUT) INIX
+ I $P(Y,":")>12 W !?5,$C(7),"Time must be in 12 hour format",! G STPTM
+ I $L($P(Y,":"))=1 S Y="0"_Y
+ I $G(Y)["AM" S YY=$E(Y,1,5),STPTM1=DT_"."_$P(YY,":")_$E($P(YY,":",2),1,2)
+ I $G(Y)["PM" S YY=$E(Y,1,5),STPTM=$P(YY,":")_$E($P(YY,":",2),1,2) S:STPTM'<1200 STPTM1=DT_"."_STPTM S:STPTM<1200 STPTM=STPTM+1200,STPTM1=DT_"."_STPTM
+ I $G(Y)'["AM"&($G(Y)'["PM") S YY=$E(Y,1,5),STPTM=$P(YY,":")_$E($P(YY,":",2),1,2) S:STPTM'<1200 STPTM1=DT_"."_STPTM S:STPTM<1200 STPTM=STPTM+1200,STPTM1=DT_"."_STPTM
+ I $G(EDT) S DIE="^PS(59.3,",DR="10////"_STPTM1_"" L +^PS(59.3,DA):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3) E  W !!,$C(7),Y(0,0)," is being edited!",! K EDT Q
+ I $G(EDT) D ^DIE L -^PS(59.3,DA) I $G(DIRUT)!($G(X)="") K EDT G EDTEX
+EDTEX I $G(EDT) K BSTRT,BSTRT1,BSTOP,BSTOP1,STRTM,STRTM1,STPTM,STPTM1,Y,YY Q
+ S DIE="^PS(59.3,",DR="8///1;14////"_PSOSITE_";9////"_STRTM1_";10////"_STPTM1_""
+ L +^PS(59.3,DA):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3) E  W !!,$C(7),Y(0,0)," is being edited!",! Q
+ D ^DIE L -^PS(59.3,DA) I $G(DIRUT)!($G(X)="") G INIX
+ W ! S LL=LL+1 K BSTRT,BSTRT1,BSTOP,BSTOP1,STRTM,STRTM1,STPTM,STPTM1 G INIT1
+INIJ S BTDV=$P(^PS(59.3,DA,0),"^",4),BTST=$P(^PS(59.3,DA,3),"^",3),BTSP=$P(^(3),"^",4) I $G(BTDV)&$G(BTST) D INIJB1
+INIX K APM,BTDV,BTDV1,BTSP,BTSP1,BTST,BTST1,DA,DIC,DIE,DIR,DUOUT,DTOUT,LL,STRTM,STRTM,STPTM,STPTM1,BSTRT,BSTRT1,BSTOP,BSTOP1,X,Y,YY,EDT
+ Q
+INIJB1 ;
+ K %DT,DIC,DTOUT S DIC(0)="XZM",DIC="^DIC(19,",X="PSO BINGO AUTOSTART" D ^DIC
+ I $O(^DIC(19.2,"B",+Y,0)) D EDIT^XUTMOPT("PSO BINGO AUTOSTART") G OUT1
+ D RESCH^XUTMOPT("PSO BINGO AUTOSTART","","","24H","L"),EDIT^XUTMOPT("PSO BINGO AUTOSTART")
+OUT1 K Y,DIC,X,PSOTM,PSOOPTN,PSOPTN,%DT,DTOUT
+ Q

@@ -1,0 +1,152 @@
+XPDIN00G ; ; 03-JUL-1995
+ ;;8.0;KERNEL;;JUL 10, 1995
+ F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,"DIBT",39,0)
+ ;;=XPD DISPLAY ENTRY^2940404.1515^@^9.6^^@^2940405
+ ;;^UTILITY(U,$J,"DIBT",39,2,1)
+ ;;=9.6^0^NUMBER^@^
+ ;;^UTILITY(U,$J,"DIBT",39,2,1,"ASK")
+ ;;=
+ ;;^UTILITY(U,$J,"DIBT",39,2,1,"F")
+ ;;=3.99999^4
+ ;;^UTILITY(U,$J,"DIBT",39,2,1,"T")
+ ;;=4^4
+ ;;^UTILITY(U,$J,"DIBT",39,2,2)
+ ;;=9.68^.01^ENTRIES^^
+ ;;^UTILITY(U,$J,"DIBT",39,2,2,9.6)
+ ;;=KRN
+ ;;^UTILITY(U,$J,"DIBT",39,2,2,9.67)
+ ;;=NM
+ ;;^UTILITY(U,$J,"DIE",39,0)
+ ;;=XPD EDIT BUILD^2931105.1421^@^9.6^^@^2931105
+ ;;^UTILITY(U,$J,"DIE",39,"DIAB",1,1,9.602,0)
+ ;;=ALL
+ ;;^UTILITY(U,$J,"DIE",39,"DIAB",1,1,9.64,0)
+ ;;=ALL
+ ;;^UTILITY(U,$J,"DIE",39,"DIAB",1,2,9.68,0)
+ ;;=ALL
+ ;;^UTILITY(U,$J,"DIE",39,"DR",1,9.6)
+ ;;=.01;1;2;3;6;7;11;12;13;20;200.1;200.2;913;914;916;
+ ;;^UTILITY(U,$J,"DIE",39,"DR",2,9.602)
+ ;;=.01:4
+ ;;^UTILITY(U,$J,"DIE",39,"DR",2,9.64)
+ ;;=.01:223
+ ;;^UTILITY(U,$J,"DIE",39,"DR",2,9.67)
+ ;;=10;
+ ;;^UTILITY(U,$J,"DIE",39,"DR",3,9.65)
+ ;;=.01
+ ;;^UTILITY(U,$J,"DIE",39,"DR",3,9.68)
+ ;;=.01
+ ;;^UTILITY(U,$J,"DIPT",57,0)
+ ;;=XPD BUILD ENTRY^2940405.0815^@^9.6^^@^2940405
+ ;;^UTILITY(U,$J,"DIPT",57,"F",1)
+ ;;=.01;N;C1;""~2;C3;N;""~3,.01;N;C5;""~"ENVIRONMENT CHECK ROUTINE: ";N;S1;""~913;N;C30;""~"POST-INIT ROUTINE: ";N;C1;""~914;N;C20;""~
+ ;;^UTILITY(U,$J,"DIPT",57,"F",2)
+ ;;="PRE-INIT ROUTINE: ";N;C1;""~916;N;C20;""~7,.01;S1;N;""~7,10,.01;C5;N;X~7,10,.03;C40;N;X~
+ ;;^UTILITY(U,$J,"DIPT",57,"H")
+ ;;=BUILD ENTRY
+ ;;^UTILITY(U,$J,"DIST(.403,",11,0)
+ ;;=XPD EDIT BUILD^#^^^2931104^^^9.6^0^0^1
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,0)
+ ;;=^.4031I^15^15
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,1,0)
+ ;;=1^^1,1^4
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,1,1)
+ ;;=Page 1
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,1,40,0)
+ ;;=^.4032PI^46^2
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,1,40,45,0)
+ ;;=XPD EDIT BUILD HDR^1^1,1^d
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,1,40,46,0)
+ ;;=XPD EDIT BUILD1^2^1,1^e
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,1,40,"AC",1,45)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,1,40,"AC",2,46)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,1,40,"B",45,45)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,1,40,"B",46,46)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,2,0)
+ ;;=2^^1,1^14^4
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,2,1)
+ ;;=Page 2
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,2,12)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,2,40,0)
+ ;;=^.4032PI^57^3
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,2,40,45,0)
+ ;;=XPD EDIT BUILD HDR^1^1,1^d
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,2,40,47,0)
+ ;;=XPD EDIT BUILD2^2^1,1^e
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,2,40,57,0)
+ ;;=XPD EDIT BUILD30^3^5,1^e
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,2,40,57,2)
+ ;;=12^^f^1
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,2,40,"AC",1,45)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,2,40,"AC",2,47)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,2,40,"AC",3,57)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,2,40,"B",45,45)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,2,40,"B",47,47)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,2,40,"B",57,57)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,3,0)
+ ;;=3^^5,1^^^1^17,79
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,3,1)
+ ;;=Kernel File^1,3,2
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,3,40,0)
+ ;;=^.4032PI^53^2
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,3,40,48,0)
+ ;;=XPD EDIT BUILD3^1^3,2^e
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,3,40,48,2)
+ ;;=9^^n
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,3,40,53,0)
+ ;;=XPD EDIT BUILD31^2^1,2^d
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,3,40,"AC",1,48)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,3,40,"AC",2,53)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,3,40,"B",48,48)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,3,40,"B",53,53)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,4,0)
+ ;;=4^^1,1^2^1
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,4,1)
+ ;;=File^
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,4,40,0)
+ ;;=^.4032PI^59^3
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,4,40,45,0)
+ ;;=XPD EDIT BUILD HDR^1^1,1^d
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,4,40,58,0)
+ ;;=XPD EDIT BUILD40^2^5,1^e
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,4,40,58,2)
+ ;;=12^^n
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,4,40,59,0)
+ ;;=XPD EDIT BUILD41^3^1,1^d
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,4,40,"AC",1,45)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,4,40,"AC",2,58)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,4,40,"AC",3,59)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,4,40,"B",45,45)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,4,40,"B",58,58)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,4,40,"B",59,59)
+ ;;=
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,5,0)
+ ;;=5^^6,3^^^1^17,77
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,5,1)
+ ;;=Record Merge^2,2,8
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,5,40,0)
+ ;;=^.4032PI^50^1
+ ;;^UTILITY(U,$J,"DIST(.403,",11,40,5,40,50,0)
+ ;;=XPD EDIT BUILD5^1^1,3^e

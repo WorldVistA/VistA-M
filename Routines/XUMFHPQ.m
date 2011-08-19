@@ -1,0 +1,235 @@
+XUMFHPQ ;ISS/RAM - MFS param server-side handler ;06/28/00
+ ;;8.0;KERNEL;**299**;Jul 10, 1995
+ ;
+ Q
+ ;
+MAIN ; -- entry point
+ ;
+ N CNT,ERR,I,X,HLFS,HLCS,ERROR,HLRESLTA,IFN,IEN,TYPE
+ N VALUE,PARAM,ROOT,SEG,HLSCS,MTYP
+ ;
+ D INIT,PROCESS,RESPONSE,SEND,EXIT
+ ;
+ Q
+ ;
+INIT ; -- initialize
+ ;
+ K ^TMP("DILIST",$J),^TMP("DIERR",$J)
+ K ^TMP("HLS",$J),^TMP("HLA",$J)
+ ;
+ S ERROR=0,CNT=1,MTYP="HLA"
+ S HLFS=HL("FS"),HLCS=$E(HL("ECH")),HLSCS=$E(HL("ECH"),4)
+ ;
+ Q
+ ;
+PROCESS ; -- pull message text
+ ;
+ F  X HLNEXT Q:HLQUIT'>0  D
+ .Q:$P(HLNODE,HLFS)=""
+ .D @($P(HLNODE,HLFS))
+ ;
+ Q
+ ;
+MSH ; -- MSH segment
+ ;
+ Q
+ ;
+MSA ; -- MSA segment
+ ;
+ N CODE
+ ;
+ S CODE=$P(HLNODE,HLFS,2)
+ ;
+ I CODE="AE"!(CODE="AR") D
+ .S ERROR=ERROR_U_$P(HLNODE,HLFS,4)_U_$G(ERR)
+ .D EM^XUMFHPR(ERROR,.ERR)
+ ;
+ Q
+ ;
+QRD ; -- QRD segment
+ ;
+ Q:ERROR
+ ;
+ N WHO,WHAT
+ ;
+ S WHO=$P(HLNODE,HLFS,9)
+ I WHO="" D  Q
+ .S ERROR="1^QRD segment has null missing WHO parameter"
+ .D EM^XUMFHPR(ERROR,.ERR)
+ S WHAT=$P(HLNODE,HLFS,10)
+ I WHAT="" D  Q
+ .S ERROR="1^QRD segment has null missing WHAT parameter"
+ .D EM^XUMFHPR(ERROR,.ERR)
+ ;
+ S IFN=+WHAT
+ I IFN'=4.001 S ERROR="1^QRD segment invalid WHAT for protocol" Q
+ ;
+ S IEN=$$FIND1^DIC(4.001,,"B",$P(WHO,HLCS))
+ ;
+ I 'IEN D  Q
+ .S ERROR="1^"_$P(WHO,HLCS)_" not a supported master file"
+ ;
+ Q
+ ;
+ ;
+RESPONSE ;  -- build MFR
+ ;
+ D INI1,MSA1,QRD1,MFI1,MFE1,ZZZ1,ZZS1
+ ;
+ Q
+ ;
+INI1 ; -- initialize
+ ;
+ Q:ERROR
+ ;
+ D MAIN^XUMFXP(IFN,IEN,11,.PARAM,.ERROR)
+ I $G(ERROR) D
+ .S ERROR="1error INI1 of XUMFHPQ"
+ .D EM^XUMFHPR(ERROR,.ERR)
+ ;
+ Q
+ ;
+MSA1 ; - ACK 
+ ;
+ S ^TMP(MTYP,$J,CNT)="MSA"_HLFS_$S(ERROR:"AE",1:"AA")_HLFS_HL("MID")
+ S CNT=CNT+1
+ ;
+ Q
+ ;
+QRD1 ; -- query definition segment
+ ;
+ Q:ERROR
+ ;
+ N QDT,QFC,QP,QID,ZDRT,ZDRDT,QLR,WHO,WHAT,WDDC,WDCVQ,QRL,QRD
+ ;
+ S QDT=$G(^TMP("XUMF MFS",$J,"PARAM","QDT"))
+ S QFC=$G(^TMP("XUMF MFS",$J,"PARAM","QFC"))
+ S QP=$G(^TMP("XUMF MFS",$J,"PARAM","QP"))
+ S QID=$G(^TMP("XUMF MFS",$J,"PARAM","QID"))
+ S ZDRT=$G(^TMP("XUMF MFS",$J,"PARAM","DRT"))
+ S ZDRDT=$G(^TMP("XUMF MFS",$J,"PARAM","DRDT"))
+ S QLR=$G(^TMP("XUMF MFS",$J,"PARAM","QLR"))
+ S WHO=$G(^TMP("XUMF MFS",$J,"PARAM","WHO"))
+ S WHAT=$G(^TMP("XUMF MFS",$J,"PARAM","WHAT"))
+ S WDDC=$G(^TMP("XUMF MFS",$J,"PARAM","WDDC"))
+ S WDCVQ=$G(^TMP("XUMF MFS",$J,"PARAM","WDCVQ"))
+ S QRL=$G(^TMP("XUMF MFS",$J,"PARAM","QRL"))
+ S QRD="QRD"_HLFS_QDT_HLFS_QFC_HLFS_QP_HLFS_QID_HLFS_ZDRT_HLFS_ZDRDT
+ S QRD=QRD_HLFS_QLR_HLFS_WHO_HLFS_WHAT_HLFS_WDDC_HLFS_WDCVQ_HLFS_QRL
+ S ^TMP(MTYP,$J,CNT)=QRD
+ S CNT=CNT+1
+ ;
+ Q
+ ;
+MFI1 ; master file identifier segment
+ ;
+ Q:ERROR
+ ;
+ N ID,APP,EVENT,ENDT,EFFDT,RESP,MFI
+ ;
+ S ID=$G(^TMP("XUMF MFS",$J,"PARAM","MFI"))
+ S APP=$G(^TMP("XUMF MFS",$J,"PARAM","MFAI"))
+ S EVENT=$G(^TMP("XUMF MFS",$J,"PARAM","FLEV"))
+ S ENDT=$G(^TMP("XUMF MFS",$J,"PARAM","ENDT"))
+ S EFFDT=$G(^TMP("XUMF MFS",$J,"PARAM","MFIEDT"))
+ S RESP=$G(^TMP("XUMF MFS",$J,"PARAM","RLC"))
+ S:APP="" APP="MFS" S:EVENT="" EVENT="REP" S:RESP="" RESP="NE"
+ S:ENDT="" ENDT=$$NOW^XLFDT S:EFFDT="" EFFDT=$$NOW^XLFDT
+ S MFI=$$MFI^XUMFMFI(ID,APP,EVENT,ENDT,EFFDT,RESP)
+ I $E(MFI)="-" S ERROR=MFI Q
+ S ^TMP(MTYP,$J,CNT)=MFI
+ S CNT=CNT+1
+ ;
+ Q
+ ;
+MFE1 ; master file entry segment
+ ;
+ Q:ERROR
+ ;
+ N EVENT,MFN,EDT,CODE,MFE
+ ;
+ S EVENT=$G(^TMP("XUMF MFS",$J,"PARAM","RLEC"))
+ S MFN=$G(^TMP("XUMF MFS",$J,"PARAM","MFNCID"))
+ S EDT=$G(^TMP("XUMF MFS",$J,"PARAM","MFEEDT"))
+ S CODE=$G(^TMP("XUMF MFS",$J,"PARAM","PKV"))
+ S:EDT="" EDT=$$NOW^XLFDT S:EVENT="" EVENT="MAD"
+ S MFE=$$MFE^XUMFMFE(EVENT,MFN,EDT,CODE)
+ I $E(MFE)="-" S ERROR=MFE Q
+ S ^TMP(MTYP,$J,CNT)=MFE
+ S CNT=CNT+1
+ ;
+ Q
+ ;
+ZZZ1 ; ZZZ segment
+ ;
+ Q:ERROR
+ ;
+ N NODE,SEQ,VALUE,FIELD
+ ;
+ S NODE=""
+ ;
+ ;zero node
+ F SEQ=1:1:6 D
+ .S FIELD=".0"_SEQ
+ .S VALUE=$$GET1^DIQ(4.001,IEN_",",FIELD)
+ .S $P(NODE,HLFS,SEQ)=VALUE
+ ;
+ ;mfe node
+ F SEQ=1:1:9 D
+ .S FIELD="4."_SEQ
+ .S VALUE=$$GET1^DIQ(4.001,IEN_",",FIELD)
+ .S $P(NODE,HLFS,SEQ+6)=VALUE
+ F SEQ=1,2,4:1:7 D
+ .S FIELD="4.1"_SEQ
+ .S VALUE=$$GET1^DIQ(4.001,IEN_",",FIELD)
+ .S $P(NODE,HLFS,SEQ+15)=VALUE
+ ;
+ S ^TMP(MTYP,$J,CNT)="ZMF"_HLFS_NODE
+ S CNT=CNT+1
+ ;
+ Q
+ ;
+ZZS1 ; - ZZS segment
+ ;
+ Q:ERROR
+ ;
+ N IDX,FLD,VALUE,NODE
+ ;
+ S IDX=0
+ F  S IDX=$O(^DIC(4.001,IEN,1,IDX)) Q:'IDX  D
+ .S IENS=IDX_","_IEN_",",NODE=""
+ .F I=1:1:9 D
+ ..S FLD=".0"_I
+ ..S VALUE=$$GET1^DIQ(4.011,IENS,FLD)
+ ..S $P(NODE,HLFS,I)=VALUE
+ .;
+ .S NODE="ZZS"_HLFS_NODE
+ .S ^TMP(MTYP,$J,CNT)=NODE
+ .S CNT=CNT+1
+ ;
+ Q
+ ;
+SEND ; -- send HL7 message
+ ;
+ S HLP("PRIORITY")="I"
+ ;
+ D GENACK^HLMA1(HL("EID"),HLMTIENS,HL("EIDS"),"GM",1,.HLRESLT)
+ ;
+ ; check for error
+ I ($P($G(HLRESLT),U,3)'="") D  Q
+ .S ERROR=1_U_$P(HLRESLT,HLFS,3)_U_$P(HLRESLT,HLFS,2)_U_$P(HLRESLT,U)
+ ;
+ ; successful call, message ID returned
+ S ERROR="0^"_$P($G(HLRESLT),U,1)
+ ;
+ Q
+ ;
+EXIT ; -- exit
+ ;
+ D CLEAN^DILF
+ ;
+ K ^TMP("HLS",$J),^TMP("HLA",$J)
+ K ^TMP("XUMF MFS",$J)
+ ;
+ Q
+ ;

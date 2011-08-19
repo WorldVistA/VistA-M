@@ -1,0 +1,42 @@
+RMPFDM ;DDC/KAW-DISPLAY SYSTEM STATUS [ 06/16/95   3:06 PM ]
+ ;;2.0;REMOTE ORDER/ENTRY SYSTEM;**16**;JUN 16, 1995
+RMPFSET I '$D(RMPFMENU) D MENU^RMPFUTL I '$D(RMPFMENU) W !!,$C(7),"*** A MENU SELECTION MUST BE MADE ***" Q  ;;RMPFMENU must be defined
+ I '$D(RMPFSTAN)!'$D(RMPFDAT)!'$D(RMPFSYS) D ^RMPFUTL Q:'$D(RMPFSTAN)!'$D(RMPFDAT)!'$D(RMPFSYS)
+ W @IOF,!?24,"REMOTE ORDER/ENTRY SYSTEM STATUS"
+ W !,"Station: ",RMPFSTAP,?68,RMPFDAT,!
+ F I=1:1:80 W "-"
+ W !!,?31,"Current",?60,"Messages"
+ W !?6,"Order Status",?31,"Number",?43,"Oldest Date",?60,"To Read"
+ W !,"-------------------------",?30,"--------",?43,"------------",?60,"--------",!
+ S ST=0
+S1 S ST=$O(^RMPF(791810,"AC",ST)) G R3:'ST S (RMPFX,CT,DX)=0,RMPFMGG=""
+ S SP="" I $D(^RMPF(791810.2,ST,0)) S SP=$P(^(0),U,1)
+S2 S RMPFX=$O(^RMPF(791810,"AC",ST,RMPFX)) I 'RMPFX D WRITE G S1
+ G S2:'$D(^RMPF(791810,RMPFX,0)) S S0=^(0)
+ S X=$P(S0,U,15) S:X="" X=0 G S2:X'=$O(^RMPF(791810.5,"C",RMPFMENU,0))
+ G S2:$P($P($G(^RMPF(791810,RMPFX,"STA")),U,1)," - ",1)'=$P(RMPFSTAP," - ",1) S CT=CT+1
+ S D=$P(S0,".",1) S:'DX DX=D I D<DX S DX=D
+ S X=0 F I=1:1 S X=$O(^RMPF(791810,RMPFX,201,X)) Q:'X  S Y=0 F J=1:1 S Y=$O(^RMPF(791810,RMPFX,201,X,101,Y)) Q:'Y  I $D(^(Y,0)),'$P(^(0),U,6) S RMPFMGG="***" Q
+ G S2
+R3 I IOST?1"P-".E W @IOF G END
+ F I=1:1 Q:$Y>21  W !
+ W !,"Enter <P>rint or <RETURN> to continue." D READ G END:Y=""
+ S Y=$E(Y,1) I "Pp"[Y D QUE
+END K US,PT,MG,NM,CT,LD,I,D,SP,ST,DX,Y,RMPFX,RMPFS,RMPFOUT,RMPFQUT,X
+ K RMPFMGG,J Q
+WRITE Q:'CT  S LD="",Y=DX I Y D DD^%DT S LD=Y
+ W !,SP,?30,$J(CT,8),?43,LD,?63,$S(RMPFMGG'="":"YES",1:"NO")
+ Q
+QUE W ! S %ZIS="NPQ" D ^%ZIS G END:POP
+ I IO=IO(0),'$D(IO("S")) D ^RMPFDM G QUEE
+ I $D(IO("S")) S %ZIS="",IOP=ION D ^%ZIS G ^RMPFDM
+ S ZTRTN="^RMPFDM",ZTSAVE("RMPF*")=""
+ S ZTIO=ION D ^%ZTLOAD
+ D HOME^%ZIS S RMPFOUT=""
+ W:$D(ZTSK) !!,"*** Request Queued ***" H 1
+QUEE K %T,%ZIS,POP,ZTRTN,ZTSAVE,ZTIO,ZTSK Q
+READ K RMPFOUT,RMPFQUT
+ R Y:DTIME I '$T W $C(7) R Y:5 G READ:Y="." S:'$T Y=U
+ I Y?1"^".E S (RMPFOUT,Y)="" Q
+ S:Y?1"?".E (RMPFQUT,Y)=""
+ Q

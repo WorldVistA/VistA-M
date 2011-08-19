@@ -1,0 +1,10 @@
+XDR2NULL ;SF-IRMFO,SEA/JLI - IDENTIFY ENTRIES WITH NULL SSN ;
+ ;;7.3;TOOLKIT;**23**;Apr 25, 1995
+ ;;
+ ;;
+EN ;
+ K ^TMP("XDR2NULL",$J)
+ F I=0:0 S I=$O(^DPT(I)) Q:I'>0  S X=$G(^(I,0)) D
+ . I X="" S ^TMP("XDR2NULL",$J,0,"BAD NODE",I)=""
+ . I $P(X,U,9)="" S ^TMP("XDR2NULL",$J,I)=""
+ Q

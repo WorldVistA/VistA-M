@@ -1,0 +1,182 @@
+SPNAGGU ;SD/CM- AGGREGATE OUTCOME REPORT UTILITIES; 2-21-2003
+ ;;2.0;Spinal Cord Dysfunction;**20,21**;01/02/97
+ ;
+INPT ;SPNLSTDT=Last date of ASIA HIGHEST NEURO LEVEL (most recent)
+ ;SPNSEVC =Count of unique pts in diag category of 'severe'
+ ;SPNMODC =  "    "   "     "   "  "      "     "  'moderate'
+ ;SPNPARC =  "    "   "     "   "  "      "     "  'para'
+ ;SPNLOWC =  "    "   "     "   "  "      "     "  'low'
+ ;SPNDIAGC=Total count of unique pts over all diag categories
+ ;SPNDCS  =Set to 1 if diag category criteria for 'severe' are met
+ ;SPNDCM  =Set to 1 if diag category criteria for 'moderate' are met
+ ;SPNDCP  =Set to 1 if diag category criteria for 'para' are met
+ ;SPNDCL  =Set to 1 if diag category criteria for 'low' are met
+ ;SPNAGES =Cumulative Age in Severe, SPNAGEM=Cum. Age in Moderate, etc
+ ;BMAS    =Base Minimum Age Severe, BMAM=Base Minimum Age Moderate, etc
+ ;AGESC   =Age Range Severe Count, AGEMC=Age Range Moderate Count, etc
+ ;MINAGES =Minimum Age Severe, MINAGEM=Minimum Age Moderate, etc
+ ;BHAS    =Base Maximum Age Severe, BHAM=Base Maximum Age Moderate, etc
+ ;MAXAGES =Maximum Age Severe, MAXAGEM=Maximum Age Moderate, etc
+ ;AGEL    =Low value of Age range, AGEH=High value of Age range
+ ;SPNSEXS =No. of Male pts in Severe, SPNSEXM=No. Male in Moderate, etc
+ ;SPNLORS =Cumulative Length of Rehab Severe, SPNLORM=Cum. LOR Mod, etc
+ ;BMLS    =Base Minimum LOR Severe, BMLM=Base Minimum LOR Moderate, etc
+ ;LORSC   =Length of Rehab Severe Count, LORMC=LOR Moderate Count, etc
+ ;MINLORS =Minimum LOR Severe, MINLORM=Minimum LOR Moderate, etc
+ ;BHLS    =Base Maximum LOR Severe, BHLM=Base Maximum LOR Moderate, etc
+ ;MAXLORS =Maximum LOR Severe, MAXLORM=Maximum LOR Moderate, etc
+ ;LORRN   =Length of Rehab record number (node w/ Rehab Finish data)
+ ;LORL    =Low value of LOR range, LORH=High value of LOR range
+ ;TFSRN   =Total FIM Start record number
+ ;TFS     =Total FIM Start score, TFF=Total FIM Finish score
+ ;TFCUMS  =Total FIM cumulative change Severe, TFCUMM=Tot FIM ch Mod,etc
+ ;TFCS    =Total FIM Count Severe, TFCM=Total FIM Count Moderate, etc
+ ;TFGRN   =Total FIM Goal record number
+ ;TFG     =Total FIM Goal score
+ ;TFGCUMS =Total FIM Goal cumul change Severe,TFGCUMM=TF Goal ch Mod,etc
+ ;TFGCS   =Total FIM Goal Count Severe,TFGCM=Tot FIM Goal Count Mod, etc 
+ ;COMDISS =No. of Severe pts w/ DISPOSITION<5, COMDISM=No. Mod pts, etc
+ ;TFURN   =Total FIM Follow-Up record number
+ ;TFU     =Total FIM Follow-Up score
+ ;TFUCUMS =Total FIM F/U cumul change Severe,TFUCUMM=TF F/U ch Mod, etc
+ ;TFUCS   =Total FIM F/U Count Severe,TFUCM=Tot FIM F/U Count Mod, etc
+ ;SLSRN   =SWLS Start record number, SLFRN=SWLS Finish record number
+ ;SLS     =SWLS Start score
+ ;SLF     =SWLS Finish score
+ ;SLCUMS  =SWLS cumul change Severe,SLCUMM=SWLS cumul change Mod, etc
+ ;SLCS    =SWLS Count Severe,SLCM=Count Moderate, etc
+ ;SLURN   =SWLS Follow-Up record number
+ ;SLU     =SWLS Follow-Up score
+ ;SLUCUMS =SWLS F/U cumul change Severe,SLUCUMM=SWLS F/U Chng Mod, etc
+ ;SLUCS   =SWLS F/U Count Severe,SLUCM=SWLS F/U Count Mod, etc
+ S U="^"
+ S SPNDIAGC=0,SPNSEVC=0,SPNMODC=0,SPNPARC=0,SPNLOWC=0
+ S SPNLSTDT="",SPNNODUP=""
+ S SPNSDATE=0,SPNMDATE=0,SPNPDATE=0,SPNLDATE=0
+ S SPNSEXS=0,SPNSEXM=0,SPNSEXP=0,SPNSEXL=0
+ S SPNAGES=0,SPNAGEM=0,SPNAGEP=0,SPNAGEL=0
+ S SPNT1=30,SPNT2=40,SPNT3=50,SPNT4=60,SPNT5=70
+ S BMAS=0,BMAM=0,BMAP=0,BMAL=0,AGESC=0,AGEMC=0,AGEPC=0,AGELC=0
+ S MINAGES=0,MINAGEM=0,MINAGEP=0,MINAGEL=0
+ S MAXAGES=0,MAXAGEM=0,MAXAGEP=0,MAXAGEL=0
+ S BHAS=0,BHAM=0,BHAP=0,BHAL=0
+ S SPNLORS=0,SPNLORM=0,SPNLORP=0,SPNLORL=0
+ S BMLS=0,BMLM=0,BMLP=0,BMLL=0,LORSC=0,LORMC=0,LORPC=0,LORLC=0
+ S MINLORS=0,MINLORM=0,MINLORP=0,MINLORL=0
+ S MAXLORS=0,MAXLORM=0,MAXLORP=0,MAXLORL=0
+ S BHLS=0,BHLM=0,BHLP=0,BHLL=0,LORRN=0,V=0,LORL=0,LORH=0,AGEL=0,AGEH=0
+ S TFSRN=0,TFS=0,TFF=0,TFCUMS=0,TFCUMM=0,TFCUMP=0,TFCUML=0
+ S TFCS=0,TFCM=0,TFCP=0,TFCL=0
+ S TFGRN=0,TFG=0,TFGCUMS=0,TFGCUMM=0,TFGCUMP=0,TFGCUML=0
+ S TFGCS=0,TFGCM=0,TFGCP=0,TFGCL=0
+ S COMDISS=0,COMDISM=0,COMDISP=0,COMDISL=0
+ S TFURN=0,TFU=0,TFUCUMS=0,TFUCUMM=0,TFUCUMP=0,TFUCUML=0
+ S TFUCS=0,TFUCM=0,TFUCP=0,TFUCL=0
+ S SLSRN=0,SLFRN=0,SLS=0,SLF=0,SLCUMS=0,SLCUMM=0,SLCUMP=0,SLCUML=0
+ S SLCS=0,SLCM=0,SLCP=0,SLCL=0
+ S SLU=0,SLURN=0,SLUCUMS=0,SLUCUMM=0,SLUCUMP=0,SLUCUML=0
+ S SLUCS=0,SLUCM=0,SLUCP=0,SLUCL=0
+ Q
+PARAMS ;
+CT ;Care Type
+CED ;date range for Care End Date
+OIEN ;
+DIAGCAT ;
+ ;
+MINLORS(SPNPD1) ;
+ S MAX1=LORCALL
+ S X=0 F  S X=$O(^TMP($J,"SPNLRNS",X)) Q:'+X  D
+ .Q:'$D(^TMP($J,"SPNLRNS",X))
+ .S MAX2=$P(^TMP($J,"SPNLRNS",X),U,1)
+ .I MAX2<MAX1 S MAX1=MAX2
+ .Q
+ Q MAX1
+MAXLORS(SPNPD1) ;
+ S MAX1=0
+ S X=0 F  S X=$O(^TMP($J,"SPNLRXS",X)) Q:'+X  D
+ .Q:'$D(^TMP($J,"SPNLRXS",X))
+ .S MAX2=$P(^TMP($J,"SPNLRXS",X),U,1)
+ .I MAX2>MAX1 S MAX1=MAX2
+ .Q
+ Q MAX1
+MINLORM(SPNPD1) ;
+ S MAX1=LORCALL
+ S X=0 F  S X=$O(^TMP($J,"SPNLRNM",X)) Q:'+X  D
+ .Q:'$D(^TMP($J,"SPNLRNM",X))
+ .S MAX2=$P(^TMP($J,"SPNLRNM",X),U,1)
+ .I MAX2<MAX1 S MAX1=MAX2
+ .Q
+ Q MAX1
+MAXLORM(SPNPD1) ;
+ S MAX1=0
+ S X=0 F  S X=$O(^TMP($J,"SPNLRXM",X)) Q:'+X  D
+ .Q:'$D(^TMP($J,"SPNLRXM",X))
+ .S MAX2=$P(^TMP($J,"SPNLRXM",X),U,1)
+ .I MAX2>MAX1 S MAX1=MAX2
+ .Q
+ Q MAX1
+MINLORP(SPNPD1) ;
+ S MAX1=LORCALL
+ S X=0 F  S X=$O(^TMP($J,"SPNLRNP",X)) Q:'+X  D
+ .Q:'$D(^TMP($J,"SPNLRNP",X))
+ .S MAX2=$P(^TMP($J,"SPNLRNP",X),U,1)
+ .I MAX2<MAX1 S MAX1=MAX2
+ .Q
+ Q MAX1
+MAXLORP(SPNPD1) ;
+ S MAX1=0
+ S X=0 F  S X=$O(^TMP($J,"SPNLRXP",X)) Q:'+X  D
+ .Q:'$D(^TMP($J,"SPNLRXP",X))
+ .S MAX2=$P(^TMP($J,"SPNLRXP",X),U,1)
+ .I MAX2>MAX1 S MAX1=MAX2
+ .Q
+ Q MAX1
+MINLORL(SPNPD1) ;
+ S MAX1=LORCALL
+ S X=0 F  S X=$O(^TMP($J,"SPNLRNL",X)) Q:'+X  D
+ .Q:'$D(^TMP($J,"SPNLRNL",X))
+ .S MAX2=$P(^TMP($J,"SPNLRNL",X),U,1)
+ .I MAX2<MAX1 S MAX1=MAX2
+ .Q
+ Q MAX1
+MAXLORL(SPNPD1) ;
+ S MAX1=0
+ S X=0 F  S X=$O(^TMP($J,"SPNLRXL",X)) Q:'+X  D
+ .Q:'$D(^TMP($J,"SPNLRXL",X))
+ .S MAX2=$P(^TMP($J,"SPNLRXL",X),U,1)
+ .I MAX2>MAX1 S MAX1=MAX2
+ .Q
+ Q MAX1
+STATS ;finds record with Rehab Finish, so Length of Rehab can be obtained
+ S LORRN=0,TFSRN=0,TFGRN=0
+ S V=SPNPD1 F  S V=$O(^SPNL(154.1,"B",SPNPD0,V)) Q:'+V  D GETLOR
+ Q
+GETLOR ;gets Rec No. for LOR, TFS (TFF is same rec no. as LOR), and TFG
+ Q:'$D(^SPNL(154.1,V,0))
+ Q:'+$P(^SPNL(154.1,V,2),U,17)
+ Q:$P($G(^SPNL(154.1,V,8)),U,3)'=CARETYP
+ ;Q:$P($G(^SPNL(154.1,V,8)),U,2)<BDATE!($P($G(^SPNL(154.1,V,8)),U,2)>EDATE)
+ I $P(^SPNL(154.1,V,2),U,17)=1,($P(^SPNL(154.1,V,0),U,2)=2) S TFSRN=V
+ I $P(^SPNL(154.1,V,2),U,17)=2,($P(^SPNL(154.1,V,0),U,2)=2) S TFGRN=V
+ I $P($G(^SPNL(154.1,V,8)),U,4)'="" S LORRN=V
+ Q
+EXIT ;
+ K BDATE,EDATE,I,SPNLEXIT,SPNPD0,SPNPD1,SPNLSTDT,SPNDIAGC,SPNSEVC,SPNMODC,SPNPARC,SPNLOWC,SPNSDATE,SPNMDATE,SPNPDATE,SPNLDATE,SPNNODUP,SPNSEXS,SPNSEXM,SPNSEXP,SPNSEXL
+ K SPNT1,SPNT2,SPNT3,SPNT4,SPNT5,SPNDCS,SPNDCM,SPNDCP,SPNDCL,SPNAGROU
+ K SPNAGES,SPNAGEM,SPNAGEP,SPNAGEL
+ K BMAS,BMAM,BMAP,BMAL,BHAS,BHAM,BHAP,BHAL
+ K AGESC,AGEMC,AGEPC,AGELC,MINAGES,MINAGEM,MINAGEP,MINAGEL
+ K MAXAGES,MAXAGEM,MAXAGEP,MAXAGEL,CARETYP,LINE
+ K SPNLORS,SPNLORM,SPNLORP,SPNLORL
+ K BMLS,BMLM,BMLP,BMLL,BHLS,BHLM,BHLP,BHLL
+ K LORSC,LORMC,LORPC,LORLC,MINLORS,MINLORM,MINLORP,MINLORL
+ K MAXLORS,MAXLORM,MAXLORP,MAXLORL,LORRN,V,LORL,LORH,AGEL,AGEH
+ K TFSRN,TFS,TFF,TFCUMS,TFCUMM,TFCUMP,TFCUML,TFCS,TFCM,TFCP,TFCL
+ K TFGRN,TFG,TFGCUMS,TFGCUMM,TFGCUMP,TFGCUML,TFGCS,TFGCM,TFGCP,TFGCL
+ K COMDISS,COMDISM,COMDISP,COMDISL,ZTSAVE
+ K TFURN,TFU,TFUCUMS,TFUCUMM,TFUCUMP,TFUCUML,TFUCS,TFUCM,TFUCP,TFUCL
+ K SLSRN,SLFRN,SLS,SLF,SLCUMS,SLCUMM,SLCUMP,SLCUML,SLCS,SLCM,SLCP,SLCL
+ K SLURN,SLU,SLUCUMS,SLUCUMM,SLUCUMP,SLUCUML,SLUCS,SLUCM,SLUCP,SLUCL
+ K AGECALL,ASIAONE,ASIAFRTN,SEXCALL,LORCALL,LOR5CALL
+ K TFSCALL,TFGCALL,TFUCALL,SLSCALL,SLFCALL,SLUCALL
+ Q

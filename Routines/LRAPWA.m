@@ -1,0 +1,8 @@
+LRAPWA ;AVAMC/REG - GETP AP ACCESSION FOR WORKLOAD ;8/3/91  13:01
+ ;;5.2;LAB SERVICE;;Sep 27, 1994
+ K X,Y,LR("CK") R !!,"Select Accession Number: ",LRAN:DTIME Q:LRAN=""!(LRAN[U)  I LRAN'?1N.N W $C(7),!!,"Enter a number."  G LRAPWA
+ W "  for ",LRH(0) I '$D(^LRO(68,LRAA,1,LRAD,1,LRAN,0)) W $C(7),!!,"Accession # ",LRAN," for ",LRH(0)," not in ACCESSION file",!! G LRAPWA
+ S X=^LRO(68,LRAA,1,LRAD,1,LRAN,0),LRLLOC=$P(X,"^",7),LRDFN=+X Q:'$D(^LR(LRDFN,0))  S X=^(0) D ^LRUP
+ W !,LRP,"  ID: ",SSN S LRI=$P(^LRO(68,LRAA,1,LRAD,1,LRAN,3),"^",5),LRA=^LR(LRDFN,LRSS,LRI,0),LRRC=$P(LRA,"^",10)
+ S DIE="^LR(LRDFN,LRSS,",DA=LRI,DA(1)=LRDFN D CK^LRU Q:$D(LR("CK"))  D ^DIE D FRE^LRU
+ Q

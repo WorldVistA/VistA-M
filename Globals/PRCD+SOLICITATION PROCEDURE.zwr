@@ -1,0 +1,17 @@
+SOLICITATION PROCEDURE
+ZWR
+^PRCD(420.52,0)="SOLICITATION PROCEDURE^420.52I^7^7"
+^PRCD(420.52,1,0)="NP^^Negotiated Proposal."
+^PRCD(420.52,2,0)="SB^^Sealed Bid."
+^PRCD(420.52,3,0)="TS^^Two Step."
+^PRCD(420.52,4,0)="SP1^^Simplified Acquisition Procedure FAR 13."
+^PRCD(420.52,5,0)="AE^^Architect Engineer."
+^PRCD(420.52,6,0)="BR^^Basic Research."
+^PRCD(420.52,7,0)="AS^^Alternative Source."
+^PRCD(420.52,"B","AE",5)=""
+^PRCD(420.52,"B","AS",7)=""
+^PRCD(420.52,"B","BR",6)=""
+^PRCD(420.52,"B","NP",1)=""
+^PRCD(420.52,"B","SB",2)=""
+^PRCD(420.52,"B","SP1",4)=""
+^PRCD(420.52,"B","TS",3)=""

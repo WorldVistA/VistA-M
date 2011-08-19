@@ -1,0 +1,156 @@
+TIUFLP1 ;SLC/AJB - TIU FORM LETTER PRINT; 06 MAR 07
+ ;;1.0;TEXT INTEGRATION UTILITIES;**222**;Jun 20, 1997
+ Q
+PRINT ; main entry point
+ N CONT,NDOC,TIUDA,TIUI,TIUJ,TIUPR
+ S CONT=1,NDOC=0,(TIUI,TIUJ)=""
+ S TIUPR=$NA(^TMP("TIUPR",$J))
+ F  S TIUI=$O(@TIUPR@(TIUI)) Q:TIUI=""  D  Q:'+CONT
+ . F  S TIUJ=$O(@TIUPR@(TIUI,TIUJ)) Q:TIUJ=""  D  Q:'+CONT
+ . . S TIUDA="" F  S TIUDA=$O(@TIUPR@(TIUI,TIUJ,TIUDA)) Q:'+TIUDA  D  Q:'+CONT
+ . . . S NDOC=NDOC+1 I NDOC>1 W @IOF
+ . . . N DFN,NOL,PAGE,PAGES,TIU,TIUD9,TIUERR,TIUISADD,TIULQ,TIUPN,TIUPNL,TIUTYP,TIUY
+ . . . I '$D(^TIU(8925,+TIUDA,0)) D  Q
+ . . . . W !,"Document #",TIUDA," no longer exists in the TIU DOCUMENT file.",!
+ . . . . S CONT=$$STOP
+ . . . S DFN=$P(^TIU(8925,TIUDA,0),U,2),PAGE=1,PAGES=""
+ . . . S TIULQ=$NA(^TMP("TIULQ",$J)) K @TIULQ D EXTRACT^TIULQ(+TIUDA,TIULQ,.TIUERR,"","",1)
+ . . . I +$G(TIUERR) W !,$P(TIUERR,U,2),! S CONT=$$STOP Q
+ . . . S TIULQ=$NA(^TMP("TIULQ",$J,TIUDA))
+ . . . S TIUTYP=+$G(^TIU(8925,+TIUDA,0))
+ . . . D SETUP(TIUTYP,TIUDA)
+ . . . D PAGES
+ . . . D REPORT Q:'+CONT  I $E(IOST,1,2)="C-" D  S CONT=$$STOP
+ . . . . F  Q:$Y'<(IOSL-NOL("FTR")-$S(+TIUPN:1,1:0)-3)  W !
+ . . . D ADDENDA Q:'+CONT  I +$G(TIUISADD),$E(IOST,1,2)="C-" D  S CONT=$$STOP
+ . . . . F  Q:$Y'<(IOSL-NOL("FTR")-$S(+TIUPN:1,1:0)-3)  W !
+ Q
+CONTINUE() ; controls paging
+ I $E(IOST,1,2)="C-" G CONTY:$Y<(IOSL-NOL("FTR")-2) D  S CONT=$$STOP G CONTX
+ . D HFCPNT("FTR")
+ G:$Y<(IOSL-NOL("FTR")) CONTY
+ I IOSL<250 F  Q:$Y'<(IOSL-NOL("FTR"))  W !
+ D HFCPNT("FTR") S:$E(IOST,1,2)="C-" CONT=$$STOP
+CONTX I +CONT W @IOF
+CONTY Q CONT
+IDKID(TIUDA,KIDDA) ; print ID children note
+ N KNUM,NODE,NOL,PAGE,PAGES,TIU,TIULQ,TIUTYP
+ S PAGE=1,PAGES="",TIULQ=$NA(^TMP("TIULQ",$J,TIUDA)),TIUTYP=+$G(^TIU(8925,+KIDDA,0))
+ D SETUP(TIUTYP,KIDDA)
+ D IDPAGES
+ S KNUM=NOL(KIDDA),TIULQ=$NA(^TMP("TIULQ",$J,TIUDA,"ZZID",KNUM,KIDDA))
+ W @IOF
+ D REPORT
+ Q
+IDPAGES ; calculates # of pages for ID child note
+ N IDK,ISKID,TIUX
+ S NOL="",NOL=$O(@TIULQ@("TEXT",NOL),-1),NOL("PARENT")=NOL ; # of lines in parent document
+ S IDK=0 F  S IDK=$O(@TIULQ@("ZZID",IDK)) Q:'+IDK  S NOL="",NOL=$O(@TIULQ@("ZZID",IDK,KIDDA,"TEXT",NOL),-1) I +NOL S NOL(KIDDA)=IDK,NOL("IDK",KIDDA)=(NOL-NOL("PARENT")) ; # of lines ID child
+ D IDK
+ S NOL("IDK",KIDDA)=NOL("IDK",KIDDA)+NOL("HDR")+NOL("CLS") ; add # of lines in ID child body,heading,closing
+ S PAGES=NOL("IDK",KIDDA)\(IOSL-NOL("FTR")-$S($E(IOST,1,2)="C-":2,1:0)) I +NOL("IDK",KIDDA)#(IOSL-NOL("FTR")-$S($E(IOST,1,2)="C-":2,1:0)) S PAGES=PAGES+1 ; calculate # of pages for ID child
+ Q
+HFCPNT(NODE) ; heading,footer,closing print (page numbers optional)
+ N TIUI S TIUI=0 F  S TIUI=$O(TIU(NODE,TIUI)) Q:TIUI=""!('+CONT)  D
+ . I NODE="HDR" W TIU(NODE,TIUI,0),! Q
+ . I NODE="CLS" D  Q
+ . . I $Y<(IOSL-$S($E(IOST,1,2)="C-":2,1:0)-$S(+TIUPN:2,1:0)) W TIU(NODE,TIUI,0),!
+ . . E  D  S:$E(IOST,1,2)="C-" CONT=$$STOP W @IOF
+ . . . I +TIUPN S TIUY="Page "_PAGE_" of "_PAGES S TIUY=$S(TIUPNL="CJ":$$CENTER^TIULS(TIUY),TIUPNL="RJ":$$SPACER(TIUY,IOM,1),1:TIUY) W !,TIUY S PAGE=PAGE+1,TIUI=TIUI-1
+ . I IOSL<250 F  Q:$Y'<(IOSL-NOL("FTR")-$S($E(IOST,1,2)="C-":2,1:0))  W !
+ . W TIU(NODE,TIUI,0),!
+ Q:'+CONT
+ I NODE="FTR",+TIUPN S TIUY="Page "_PAGE_" of "_PAGES S TIUY=$S(TIUPNL="CJ":$$CENTER^TIULS(TIUY),TIUPNL="RJ":$$SPACER(TIUY,IOM,1),1:TIUY) W TIUY S PAGE=PAGE+1
+ Q
+PAGES ; calculates total # of pages
+ N ADD,TIUX
+ S NOL="",NOL=$O(@TIULQ@("TEXT",NOL),-1),NOL("PARENT")=NOL ; # of lines in parent document
+ S ADD="" F  S ADD=$O(@TIULQ@("ZADD",ADD)) Q:'+ADD  S NOL="",NOL=$O(@TIULQ@("ZADD",ADD,"TEXT",NOL),-1) S NOL("ADD",ADD)=(NOL-NOL("PARENT")) ; # of lines in each addendum
+IDK F NOL="HDR","FTR","CLS" S ADD="",NOL(NOL)=$O(TIU(NOL,ADD),-1) ; # of lines in heading,footer & closing
+ I +NOL("HDR") S TIU("HDR",(NOL("HDR")+1),0)=" ",NOL("HDR")=NOL("HDR")+1 F TIUX=1:1:+$P(TIUD9,U,6) S NOL("HDR")=NOL("HDR")+1,TIU("HDR",NOL("HDR"),0)=" " ; adds one blank line in header & # of lines desired by user
+ I '+NOL("HDR") F TIUX=1:1:+$P(TIUD9,U,6) S TIU("HDR",TIUX,0)=" ",NOL("HDR")=TIUX ; if no header, add # of lines desired by user
+ F NOL="FTR","CLS" I +NOL(NOL) D  ; add blank line to beginning of footer & closing
+ . N TMP S TMP=0 F  S TMP=$O(TIU(NOL,TMP)) Q:'+TMP  S TMP(NOL,(TMP+1),0)=TIU(NOL,TMP,0)
+ . S TMP(NOL,1,0)=" " M TIU(NOL)=TMP(NOL)
+ . S NOL(NOL)=NOL(NOL)+1
+ I +NOL("FTR"),+TIUPN S NOL("FTR")=NOL("FTR")+1 ; if pages numbers, add one line to # of lines in the footer
+ I '+NOL("FTR"),+TIUPN S NOL("FTR")=1 ; if no footer and pages numbers, add one line to footer
+ I +$G(ISKID) Q
+ S NOL("PARENT")=NOL("PARENT")+NOL("HDR")+NOL("CLS") ; add # of lines in parent,heading & closing
+ S PAGES=NOL("PARENT")\(IOSL-NOL("FTR")-$S($E(IOST,1,2)="C-":2,1:0)) I +NOL("PARENT")#(IOSL-NOL("FTR")-$S($E(IOST,1,2)="C-":2,1:0)) S PAGES=PAGES+1 ; calculate # of pages for parent
+ S ADD="" F  S ADD=$O(NOL("ADD",ADD)) Q:'+ADD  D  ; calculate # of pages for addenda (one page minimum per)
+ . N ADPAGES S ADPAGES=NOL("ADD",ADD)\(IOSL-NOL("FTR")-$S($E(IOST,1,2)="C-":2,1:0)) I +NOL("ADD",ADD)#(IOSL-NOL("FTR")-$S($E(IOST,1,2)="C-":2,1:0)) S ADPAGES=ADPAGES+1
+ . S PAGES=PAGES+ADPAGES
+ Q
+REPORT ; print parent note
+ I PAGE=1 D HFCPNT("HDR")
+ N TMP S TMP=0 F  S TMP=$O(@TIULQ@("TEXT",TMP)) Q:'+TMP!('+CONT)  D
+ . N X
+ . S CONT=$$CONTINUE() Q:'+CONT
+ . S X=@TIULQ@("TEXT",TMP,0) S:X="" X=" " W X,!
+ I '+CONT S TIUCONT=0
+ Q:'+CONT
+ D HFCPNT("CLS")
+FFTR D HFCPNT("FTR")
+ Q
+ADDENDA ; print addenda
+ S TIULQ=$NA(^TMP("TIULQ",$J,TIUDA,"ZADD"))
+ S TMP=0 F  S TMP=$O(@TIULQ@(TMP)) Q:'+TMP!('+CONT)  D
+ . W @IOF ; start each addenda on new page
+ . W $$DATE^TIULS(@TIULQ@(TMP,1301,"I"),"MM/DD/CCYY HR:MIN")," ","ADDENDUM",?40,"STATUS:  ",@TIULQ@(TMP,.05,"E"),!
+ . W "AUTHOR: ",$E(@TIULQ@(TMP,1202,"E"),1,30),?40,"EXPECTED COSIGNER: ",$E(@TIULQ@(TMP,1208,"E"),1,20),!
+ . N TIUI S TIUI=0 F  S TIUI=$O(@TIULQ@(TMP,"TEXT",TIUI)) Q:'+TIUI!('+CONT)  D
+ . . N X
+ . . S CONT=$$CONTINUE Q:'+CONT
+ . . S X=@TIULQ@(TMP,"TEXT",TIUI,0) S:X="" X=" " W X,!
+ . Q:'+CONT
+ . D FFTR ; print final footer
+ . S TIUISADD=1
+ Q
+GUIVIEW(TIUDA,SEG,TIUL,TIUARR) ;
+ N DFN,NODE,ROOT,TIUD9,TIUA,TIUI,TIUJ,TIUTYP,TIUX,TIUY,X
+ S DFN=$P($G(^TIU(8925,TIUDA,0)),U,2),TIUTYP=+$G(^TIU(8925,TIUDA,0))
+ I $G(TIUL)'>0 S TIUL=0
+ I $P($G(^TIU(8925.1,+$G(TIUTYP),0)),U)["ADDENDUM",+$G(TIUDA) S TIUTYP=+$G(^TIU(8925,+$P($G(^TIU(8925,+TIUDA,0)),U,6),0))
+ F  D  Q:+TIUI!('+TIUTYP)
+ . S TIUI=+$O(^TIU(8925.95,"B",TIUTYP,0)) I +TIUI Q
+ . S TIUTYP=$O(^TIU(8925.1,"AD",TIUTYP,0))
+ I '+TIUI Q
+ S TIUD9=$G(^TIU(8925.95,+TIUI,9))
+ F NODE=6,7,8 S ROOT=$NA(^TIU(8925.95,+TIUI,NODE)) D
+ . S TIUJ=$S(NODE=6:"HDR",NODE=7:"FTR",1:"CLS")
+ . K ^TMP("TIUBOIL",$J)
+ . D BLRPLT^TIUSRVD(.TIUY,"",DFN,"",ROOT)
+ . M TIUX(TIUJ)=^TMP("TIUBOIL",$J)
+ . K ^TMP("TIUBOIL",$J)
+ . S TIUY=$P(TIUD9,U,(NODE-5)) I +$L(TIUY) S TIUA=0 F  S TIUA=$O(TIUX(TIUJ,TIUA)) Q:'+TIUA  S TIUX(TIUJ,TIUA,0)=$S(TIUY="CJ":$$CENTER^TIULS(TIUX(TIUJ,TIUA,0)),TIUY="RJ":$$SPACER(TIUX(TIUJ,TIUA,0),IOM,1),1:TIUX(TIUJ,TIUA,0))
+ S TIUI=0 F  S TIUI=$O(TIUX(SEG,TIUI)) Q:'+TIUI  S TIUL=TIUL+1,@TIUARR@(TIUL)=TIUX(SEG,TIUI,0)
+ F TIUI=1:1:+$P(TIUD9,U,6) S TIUL=TIUL+1,@TIUARR@(TIUL)=" "
+ Q
+SETUP(TIUTYP,TIUDA) ;
+ N DFN,TIUDAD,TIUI,TIUJ,TIUY
+ S (TIUD9,TIUPN)="" I '+$G(TIUDA) Q
+ I '+$G(TIUTYP),+$G(TIUDA) S TIUTYP=+$G(^TIU(8925,TIUDA,0))
+ S DFN=$P(^TIU(8925,TIUDA,0),U,2)
+ I $P($G(^TIU(8925.1,+$G(TIUTYP),0)),U)["ADDENDUM",+$G(TIUDA) S TIUTYP=+$G(^TIU(8925,+$P($G(^TIU(8925,+TIUDA,0)),U,6),0))
+ S TIUI=+$O(^TIU(8925.95,"B",TIUTYP,0)) I +TIUI D  Q
+ . N NODE,ROOT
+ . S TIUD9=$G(^TIU(8925.95,+TIUI,9)),TIUPN=$P(TIUD9,U,4),TIUPNL=$P(TIUD9,U,5)
+ . F NODE=6,7,8 S ROOT=$NA(^TIU(8925.95,+TIUI,NODE)) D
+ . . S TIUJ=$S(NODE=6:"HDR",NODE=7:"FTR",1:"CLS")
+ . . K ^TMP("TIUBOIL",$J)
+ . . D BLRPLT^TIUSRVD(.TIUY,"",DFN,"",ROOT)
+ . . M TIU(TIUJ)=^TMP("TIUBOIL",$J)
+ . . K ^TMP("TIUBOIL",$J)
+ . . S TIUY=$P(TIUD9,U,(NODE-5)) I +$L(TIUY) N TIUX S TIUX=0 F  S TIUX=$O(TIU(TIUJ,TIUX)) Q:'+TIUX  S TIU(TIUJ,TIUX,0)=$S(TIUY="CJ":$$CENTER^TIULS(TIU(TIUJ,TIUX,0)),TIUY="RJ":$$SPACER(TIU(TIUJ,TIUX,0),IOM,1),1:TIU(TIUJ,TIUX,0))
+ S TIUDAD=$O(^TIU(8925.1,"AD",+TIUTYP,0)) I +TIUDAD D SETUP(TIUDAD,TIUDA)
+ Q
+SPACER(TEXT,LENGTH,REV) ;
+ N SPACER S SPACER=""
+ S $P(SPACER," ",(LENGTH-$L(TEXT)))=" "
+ S:'$D(REV) TEXT=TEXT_SPACER
+ S:$D(REV) TEXT=SPACER_TEXT
+ Q TEXT
+STOP() ;
+ N DIR,Y,TIUCONT S DIR(0)="E" W ! D ^DIR S TIUCONT=Y
+ Q TIUCONT

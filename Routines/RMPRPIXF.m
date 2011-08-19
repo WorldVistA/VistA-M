@@ -1,0 +1,114 @@
+RMPRPIXF ;HINES OIFO/ODJ - Cont of EI - Edit Locations ;10/7/02  14:46
+ ;;3.0;PROSTHETICS;**61**;Feb 09, 1996
+ Q
+ ;
+ ;***** TRANS - Modify current stock record
+TRANS K RMPR7M,RMPR6M
+ ;
+ I $G(RMHCC) D  Q
+ .;call deactivate the item
+ .N RS,RL,RD,RV,R6
+ .S RS=RMPR11("STATION"),RL=RMPR5("IEN"),RD=RMPR7("DATE&TIME")
+ .S RMPR6("QUANTITY")=0
+ .S R6=$O(^RMPR(661.6,"ASLD",RS,RL,RD,0)) I $D(^RMPR(661.6,R6,0)) S RV=$P(^RMPR(661.6,R6,0),U,12)
+ .Q:'$G(RV)
+ .S RMPR6("VENDOR")=RV
+ .S RMPR6("VENDOR IEN")=RV
+ .S RMPR11("HCPCS")=RH,RMPR11("ITEM")=RI,RMPR5("IEN")=RL
+ .S RMPRERR=$$REC^RMPRPIU9(.RMPR6,.RMPR11,.RMPR5)
+ .I RMPRERR=1 W !!,"*** ERROR IN API RMPRPIU9 ***",!
+ .;create a new entry
+ .S RMPR11("STATION")=RMPRSTN("IEN")
+ .S RMPR11("STATION IEN")=RMPRSTN("IEN")
+ .S RMPR6("QUANTITY")=RMPRQTY
+ .S RMPR6("VALUE")=RMPRTVAL
+ .S RMPR6("VENDOR")=RMPRVEND("IEN")
+ .S RMPR6("UNIT")=RMPRUNI("IEN")
+ .S RMPRERR=$$REC^RMPRPIU8(.RMPR6,.RMPR11,.RMPR5,1) ;receipt API
+ .I RMPRERR D
+ .. W !!,"** Inventory could not be updated, please contact support",!
+ .. Q
+ .E  D
+ .. W !!,"** Inventory updated.",!
+ .K RMPR6,RMPRTVAL,RMPRQTY,RMPRUCST
+ ;
+ ; Modify Vendor in the 661.6 transaction record if changed
+ I RMPRVEND("IEN")'=RMPR6("VENDOR IEN") D
+ . S RMPR6M("VENDOR")=RMPRVEND("IEN")
+ . S RMPR6M("IEN")=RMPR6("IEN")
+ . S RMPRERR=$$UPD^RMPRPIX6(.RMPR6M,)
+ . K RMPR6M
+ . Q
+ K RMPR6I
+ S RMPRERR=$$ETOI^RMPRPIX6(.RMPR6,.RMPR6I)
+ ;
+ ;if unit of issue changed
+ I RMPRUNI("UNIT")'=RMPR7("UNIT") S RMPR7M("UNIT")=RMPRUNI("UNIT") D
+ . S RMPR7M("IEN")=RMPR7("IEN")
+ . S RMPRERR=$$UPD^RMPRPIX7(.RMPR7M,)
+ ; Modify Location in 661.6 and 661.7 if changed
+ I RMPR6I("LOCATION")'=RMPR5("IEN") D
+ . S RMPR6M("LOCATION")=RMPR5("IEN")
+ . S RMPR6M("IEN")=RMPR6("IEN")
+ . S RMPRERR=$$UPD^RMPRPIX6(.RMPR6M,)
+ . S RMPR7M("LOCATION")=RMPR5("IEN")
+ . S RMPR7M("IEN")=RMPR7("IEN")
+ . S RMPRERR=$$UPD^RMPRPIX7(.RMPR7M,)
+ . K RMPR6M,RMPR7M
+ . Q
+ ;
+ ; Modify Quantity or Value in current stock 661.7 record, the
+ ; transaction record 661.6 and running balance 661.9, if changed
+ I +RMPRQTY'=+RMPR6("QUANTITY")!(+RMPRTVAL'=+RMPR6("VALUE")) D
+ . K RMPR69,RMPR9M
+ . I RMPR6I("TRAN TYPE")=9 D
+ .. S RMPR69("TRANS IEN")=RMPR6("IEN")
+ .. S RMPRERR=$$GET^RMPRPIXB(.RMPR69)
+ .. Q
+ . S (RMPR9M("TQTY"),RMPR9M("TCST"),RMPRGLQ,RMPRGLAM)=0
+ . I +RMPRQTY'=+RMPR6("QUANTITY") D  Q:RMPR7M("QUANTITY")<0
+ .. S RMPR6M("QUANTITY")=RMPRQTY
+ .. S RMPRGLQ=RMPRQTY-RMPR6("QUANTITY")
+ .. S RMPR7M("QUANTITY")=RMPR7("QUANTITY")+RMPRGLQ
+ .. S RMPR9M("TQTY")=RMPRGLQ
+ .. S:$D(RMPR69) RMPR69("GAIN/LOSS")=RMPR69("GAIN/LOSS")+RMPRGLQ
+ .. Q
+ . I +RMPRTVAL'=+RMPR6("VALUE") D
+ .. S RMPR6M("VALUE")=RMPRTVAL
+ .. S RMPRGLAM=RMPRTVAL-RMPR6("VALUE")
+ .. S RMPR7M("VALUE")=RMPR7("VALUE")+RMPRGLAM,RMPR7M("VALUE")=$J(RMPR7M("VALUE"),0,2)
+ .. S RMPR9M("TCST")=RMPRGLAM
+ .. S:$D(RMPR69) RMPR69("GAIN/LOSS VALUE")=RMPR69("GAIN/LOSS VALUE")+RMPRGLAM
+ .. Q
+ . S RMPR7M("IEN")=RMPR7("IEN")
+ . S RMPRERR=$$UPD^RMPRPIX7(.RMPR7M,)
+ . S RMPR6M("IEN")=RMPR6("IEN")
+ . S RMPRERR=$$UPD^RMPRPIX6(.RMPR6M,)
+ . I $D(RMPR69) S RMPRERR=$$UPD^RMPRPIXB(.RMPR69)
+ . S RMPR9M("STA")=RMPRSTN("IEN")
+ . S RMPR9M("HCP")=RMPR11("HCPCS")
+ . S RMPR9M("ITE")=RMPR11("ITEM")
+ . S RMPRERR=$$DTIEN^RMPRPIX6(.RMPR6)
+ . S RMPR9M("RDT")=$P(RMPR6("DATE&TIME"),".",1)
+ . S RMPRERR=$$UPCR^RMPRPIXJ(.RMPR9M)
+ . K RMPR7M,RMPR6M,RMPR9M
+ . Q
+ I $D(RMPR7M("QUANTITY")),RMPR7M("QUANTITY")<1 D  G QTY^RMPRPIY6
+ . W !,"The quantity cannot be allowed because it would cause a",!
+ . W "negative on hand quantity.",!
+ . W "Please check your inventory and use the reconciliation option",!
+ . W "as needed.",!
+ . Q
+TRANSX I 'RMPRERR D
+ . W !!,"** Item "
+ . W RMPR11("HCPCS-ITEM")
+ . W " was "
+ . W "Edited by "
+ . W $$GETUSR^RMPRPIU0(DUZ)
+ . W:$D(RMPRGLQ) ": ("_$S(RMPRGLQ>0:"+",1:"")_RMPRGLQ_")"
+ . W " @ Location ",RMPR5("NAME")
+ . Q
+ E  D
+ . W !!,"** The Item could not be modified due to a problem - please contact support"
+ . Q
+ Q

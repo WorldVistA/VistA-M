@@ -1,0 +1,76 @@
+DGYKREL ;ALB/REW - Religion Update Post-Init for 10/1 Maintenance Patch ; 6/9/94
+ ;;5.3;Registration;**31**;Aug 13, 1993
+ ;
+EN ;
+ ; This will update the Religion File (#13).  The EN tag may be re-run
+ N DGPRINT
+ S DGPRINT=$S($D(ZTQUEUED):0,1:1)
+ W:DGPRINT !!,">>> Updating Religion File (#13) ..."
+ I '$$OKREL W:$G(DGPRINT) !,"Problem with Religion File (#13) Update.  Please Call your ISC Support."
+ E  W:$G(DGPRINT) !!,"...Religion File (#13) update completed."
+ Q
+OKREL() ;
+ N DGOK
+ S DGOK=1
+ N DGRLLINE,DGRLNODE
+ F DGRLLINE=1:1 S DGRLNODE=$P($T(RELDATA+DGRLLINE),";;",2) Q:DGRLNODE']""  D UPRELIG(DGRLNODE,.DGOK)
+ Q DGOK
+UPRELIG(DGRLNODE,DGOK) ;update a religion
+ N B4NAME,B4CODE,NOWNAME,NOWCODE,DGRELIG,DGRLIFN
+ S B4NAME=$P(DGRLNODE,U,1)
+ S B4CODE=$P(DGRLNODE,U,2)
+ S NOWNAME=$P(DGRLNODE,U,3)
+ S NOWCODE=$P(DGRLNODE,U,4)
+ ;Check for existing religions of same before-name
+ W:$G(DGPRINT) !
+ S DGRLIFN=0 F  S DGRLIFN=$O(^DIC(13,"B",B4NAME,DGRLIFN)) Q:'DGRLIFN  D
+ .S DGRELIG(DGRLIFN)=""
+ .W:$G(DGPRINT) !,"FOUND MATCH ON NAME.  IEN= ",DGRLIFN," FOR ",B4NAME," (Code=",B4CODE,")"
+ .D CHGREL(DGRLIFN,.DGOK)
+ ;Check for existing religions of same before-code
+ S DGRLIFN=0 F  S DGRLIFN=$O(^DIC(13,"C",B4CODE,DGRLIFN)) Q:'DGRLIFN  D
+ .Q:$D(DGRELIG(DGRLIFN))  ;don't re-do update done based on name
+ .S DGRELIG(DGRLIFN)=""
+ .W:$G(DGPRINT) !,"FOUND MATCH ON CODE.  IEN= ",DGRLIFN," FOR ",B4NAME," (Code=",B4CODE,")"
+ .D CHGREL(DGRLIFN,.DGOK)
+ ;If no existing entires by name or code add a new one
+ I '$D(DGRELIG) D
+ .W:$G(DGPRINT) !,"FOUND NO ",B4NAME," (Code=",B4CODE,")"
+ .D NEWREL
+ Q
+NEWREL ;adds a new religion entry
+ I ('$L($G(NOWCODE)))!('$L($G(NOWNAME))) S DGOK=0 W:$G(DGPRINT) !,"MISSING INPUT" G QTNR
+ ;Q
+ N DIC,DIE,DA,DR,X,Y,DGRLIFN
+ S DIC(0)="L",DIC="^DIC(13,"
+ S X=NOWNAME
+ D ^DIC
+ S DA=+Y
+ I DA'>0 D  G QTNR
+ .S DGRLIFN=0
+ .S DGOK=0
+ .W:$G(DGPRINT) !,"No religion added"
+ .F  S DGRLIFN=$O(^DIC(13,"B",NOWNAME,DGRLIFN)) Q:'DGRLIFN  D
+ ..W:$G(DGPRINT) !,"....IEN= ",DGRLIFN," NAME= ",NOWNAME," (Code= ",NOWCODE,") ALREADY EXISTS."
+ I Y W:$G(DGPRINT) !,"...NEW RELIGION ",NOWNAME," (Code=",NOWCODE,")",$S((+$P(Y,U,3)):" ADDED",1:" ALREADY EXISTS")
+ S DR="3///^S X=NOWCODE"
+ S DIE=DIC
+ D ^DIE
+QTNR Q
+CHGREL(DGRLIFN,DGOK) ;
+ N DA,DIC,DIE,DGOLDNM,DGOLDCD,DR,X
+ S DA=DGRLIFN,DIE="^DIC(13,"
+ S DGOLDNM=$P($G(^DIC(13,+DGRLIFN,0)),U,1)
+ S DGOLDCD=$P($G(^DIC(13,+DGRLIFN,0)),U,4)
+ I (DGOLDNM=NOWNAME)&(DGOLDCD=NOWCODE) D
+ .W:$G(DGPRINT) !,"...NO CHANGE NEEDED FOR RELIGION ",DGOLDNM," (Code=",DGOLDCD,")"
+ E  D
+ .W !,"...CHANGING RELIGION ",DGOLDNM," (Code=",DGOLDCD,") TO ",NOWNAME," (Code=",NOWCODE,")"
+ .S DR=".01///^S X=NOWNAME;3///^S X=NOWCODE"
+ .D ^DIE
+ Q
+RELDATA ;may not need #24
+ ;;PROTESTANT, OTHER^24^PROTESTANT, OTHER^24
+ ;;PROTESTANT, NO PREFERENCE^25^PROTESTANT, NO DENOMINATION^25
+ ;;NATIVE AMERICAN^30^NATIVE AMERICAN^30
+ ;;BUDDHIST^31^BUDDHIST^31

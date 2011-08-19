@@ -1,0 +1,43 @@
+PSDNBT ;BIR/JPW-GS Trans Between NAOUs Not Rec Report ; 2 Aug 94
+ ;;3.0; CONTROLLED SUBSTANCES ;;13 Feb 97
+ I '$D(PSDSITE) D ^PSDSET Q:'$D(PSDSITE)
+ ;S OK=$S($D(^XUSEC("PSJ RPHARM",DUZ)):1,$D(^XUSEC("PSJ PHARM TECH",DUZ)):1,1:0) I 'OK W $C(7),!!,?9,"** Please contact your Pharmacy Coordinator for access to",!,?12,"review this narcotics report.",! K OK Q
+ W !!,"Green Sheets Transferred Between NAOUs Pending Receipt",!!
+DEV ;ask device and queue info
+ W !!,"This report is designed for a 132 column format.",!,"You may queue this report to print at a later time.",!!
+ K %ZIS,IOP,IO("Q"),POP S %ZIS="QM",%ZIS("B")="" D ^%ZIS I POP W !,"NO DEVICE SELECTED OR REPORT PRINTED!" G END
+ I $D(IO("Q")) K IO("Q"),ZTIO,ZTSAVE,ZTDTH,ZTSK S ZTRTN="START^PSDNBT",ZTDESC="CS Transfer GS Not Recd Report" S ZTSAVE("PSDSITE")="" D ^%ZTLOAD,HOME^%ZIS K ZTSK G END
+ U IO
+START ;compile data
+ K ^TMP("PSDNBT",$J)
+ F JJ=0:0 S JJ=$O(^PSD(58.8,JJ)) Q:'JJ  I $D(^PSD(58.8,JJ,0)),$P(^(0),"^",3)=+PSDSITE S NAOU(JJ)=""
+ F PSD=0:0 S PSD=$O(^PSD(58.81,"AD",10,PSD)) Q:'PSD  F PSDA=0:0 S PSDA=$O(^PSD(58.81,"AD",10,PSD,PSDA)) Q:'PSDA  I $D(^PSD(58.81,PSDA,0)),$D(^PSD(58.81,PSDA,7)) D
+ .Q:$D(^PSD(58.81,"AE",PSDA))  S NODE=^PSD(58.81,PSDA,0),PSDPN=$S($P(NODE,"^",17)]"":$P(NODE,"^",17),1:"UNKNOWN")
+ .S NAOU=+$P(NODE,"^",18) Q:'$D(NAOU(NAOU))  S NAOUN=$S($P($G(^PSD(58.8,NAOU,0)),"^")]"":$P(^(0),"^"),1:"ZZ/"_NAOU) I NAOUN'="UNKNOWN"
+ .Q:'$D(NAOU(NAOU))
+ .S DRUG=+$P(NODE,"^",5),DRUGN=$S($P($G(^PSDRUG(DRUG,0)),"^")]"":$P(^(0),"^"),1:"ZZ/"_DRUG)
+ .S NODE7=^PSD(58.81,PSDA,7),QTY=+$P(NODE7,"^",7),NAOUT=$P(NODE7,"^",3),TRFD=+$P(NODE7,"^"),NURSF=+$P(NODE7,"^",2)
+ .S NAOUTN=$P($G(^PSD(58.8,NAOUT,0)),"^") I TRFD S Y=TRFD X ^DD("DD") S TRFD=Y
+ .I NURSF S NURSF=$P($G(^VA(200,NURSF,0)),"^"),NURSF=$P(NURSF,",")_","_$E($P(NURSF,",",2))
+ .S ^TMP("PSDNBT",$J,DRUGN,PSDPN,PSDA)=NAOUTN_"^"_NAOUN_"^"_QTY_"^"_TRFD_"^"_NURSF
+PRINT ;print 
+ D NOW^%DTC S Y=X X ^DD("DD") S RPDT=Y
+ S (PG,PSDOUT)=0
+ K LN S $P(LN,"-",132)="" I '$D(^TMP("PSDNBT",$J)) D HDR W !!,?30,"****  NO GREEN SHEETS TRANSFERRED BETWEEN NAOUs PENDING RECEIPT  ****",! G DONE
+ D HDR S DRUG="" F  S DRUG=$O(^TMP("PSDNBT",$J,DRUG)) Q:DRUG=""!(PSDOUT)  W !!,?5,"= > ",DRUG,! D
+ .S NUM="" F  S NUM=$O(^TMP("PSDNBT",$J,DRUG,NUM)) Q:NUM=""!(PSDOUT)  F PSD=0:0 S PSD=$O(^TMP("PSDNBT",$J,DRUG,NUM,PSD)) Q:'PSD!(PSDOUT)  D
+ ..I $Y+5>IOSL D HDR Q:PSDOUT  W !!,?5,"=> ",DRUG,!
+ ..S NODE=^TMP("PSDNBT",$J,DRUG,NUM,PSD) W !,NUM,?12,$P(NODE,"^",4),?38,$E($P(NODE,"^",2),1,25),?60,$J($P(NODE,"^",3),6),?80,$P(NODE,"^",5),?100,$E($P(NODE,"^"),1,30)
+DONE I $E(IOST)'="C" W @IOF
+ I $E(IOST,1,2)="C-",'PSDOUT W ! K DIR,DIRUT S DIR(0)="EA",DIR("A")="END OF REPORT!  Press <RET> to return to the menu" D ^DIR K DIR
+END ;
+ K %,%DT,%H,%I,%ZIS,DA,DIC,DIR,DIROUT,DIRUT,DTOUT,DRUG,DRUGN,DUOUT,IO("Q"),JJ,LN,NAOU,NAOUN,NAOUT,NAOUTN,NODE,NODE7,NUM,NURSF
+ K OK,POP,PG,PHARM,PHARMN,POP,PSD,PSDA,PSDDT,PSDOUT,PSDPN,PSDS,PSDSN,PSDST,QTY,RPDT,TRFD,X,Y,ZTDESC,ZTDTH,ZTRTN,ZTSAVE,ZTSK
+ K ^TMP("PSDNBT",$J),^TMP("PSDFNDT",$J) D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@"
+ Q
+HDR ;header for log
+ I $E(IOST,1,2)="C-",PG W ! K DA,DIR S DIR(0)="E" D ^DIR K DIR I 'Y S PSDOUT=1 Q
+ S PG=PG+1 W:$Y @IOF W !,?25,"GREEN SHEETS TRANSFERRED BETWEEN NAOUs PENDING RECEIPT",?115,"Page: ",PG,!,?40,RPDT,!
+ W !!,?5,"=> DRUG",!,?16,"DATE",?38,"NAOU",?82,"NURSE",?104,"NAOU"
+ W !,"DISP #",?11,"TRANSFERRED FROM",?32,"TRANSFERRED FROM",?62,"QUANTITY",?80,"TRANSFERRING",?100,"TRANSFERRED TO",!,LN
+ Q

@@ -1,0 +1,162 @@
+RMPR5NTU ;HIN/RVD-PROS INVENTORY TRANS/UPDATE UTILITY ;2/11/98
+ ;;3.0;PROSTHETICS;**33,34,37**;Feb 09, 1996
+ D DIV4^RMPRSIT I $D(Y),(Y<0) K DIC("B") Q
+ W @IOF
+ ;
+TRAN ;ask for Location.
+ S X="NOW" D ^%DT S RMDAT1=Y D DD^%DT S RMDAT=Y
+ K DTOUT,DUOUT,DIC("B")
+ W !!,"Transferring Item Quantity to Another LOCATION....."
+ S DZ="??",D="B",DIC("S")="I $P(^RMPR(661.3,+Y,0),U,3)=RMPR(""STA"")"
+ S DIC="^RMPR(661.3,",DIC(0)="AEQM"
+ ;I $D(^RMPR(661.3,"B")) D DQ^DICQ
+ S D="B",DIC("A")="From Location:  " D MIX^DIC1
+ G:Y'>0!$D(DTOUT)!$D(DUOUT) EXIT
+ S (RMLOFDA,RMLODA)=+Y,(RMLOC,RMLOF)=$P(^RMPR(661.3,+Y,0),U,1) K DIC("S"),DIC("B")
+ S DA(1)=RMLOFDA,DIC="^RMPR(661.3,"_DA(1)_",1,"
+ ;
+THCPCS ;ask for HCPCS to transfer.
+ S DIC("A")="Enter HCPCS to Transfer: " K DTOUT,DUOUT,DIC("S"),DIC("B")
+ S DIC(0)="AEMQ",DIC("W")="S RZ=$P(^RMPR(661.3,RMLODA,1,+Y,0),U,1) I RZ W ?25,$P($G(^RMPR(661.1,RZ,0)),U,2)"
+ S DIC="^RMPR(661.3,"_RMLODA_",1,",DA(1)=RMLODA D ^DIC
+ I +Y'>0!$D(DTOUT)!$D(DUOUT) W !,"** No HCPCS selected..." G TRAN
+ S RMHCFDA=+Y,RMDAHC=$P(^RMPR(661.3,RMLODA,1,+Y,0),U,1),RMHCPC=$P(^RMPR(661.1,RMDAHC,0),U,1)
+ S DIC(0)="ANEMQ",DA(1)=RMHCFDA,DA(2)=RMLOFDA
+ S DIC="^RMPR(661.3,"_DA(2)_",1,"_DA(1)_",1,"
+ ;
+LIST ;ask for PSAS Item to transfer.
+ ;I $D(^RMPR(661.3,RMLOFDA,1,RMHCFDA,1,"B")) S DZ="??",D="B" D DQ^DICQ
+ ;S DIC("B")=$O(^RMPR(661.3,RMLOFDA,1,RMHCFDA,1,"B",0))
+ S DIC("A")="Enter item to transfer: " D ^DIC
+ G:(+Y'>0)!$D(DTOUT)!$D(DUOUT) TRAN
+ L +^RMPR(661.3,RMLOFDA,1,RMHCFDA,1,+Y):2
+ I '$T W !,"Record in use. Try again later..." G TRAN
+ S RMITFDA=+Y,RMIT=$P(^RMPR(661.3,RMLOFDA,1,RMHCFDA,1,+Y,0),U,1)
+ S RMDAFIT=$P(RMIT,"-",2)
+ S RM3=^RMPR(661.3,RMLOFDA,1,RMHCFDA,1,RMITFDA,0)
+ S RMBA=$P(RM3,U,2),RMCO=$P(RM3,U,3),RMSO=$P(RM3,U,9),RMAV=$P(RM3,U,10)
+ ;
+TRANQ ;ask for Quantity to transfer.
+ S RMQTY=0 R !,"Enter Quantity to transfer: ",RMQTY:DTIME
+ I $D(DTOUT)!($D(DUOUT))!(RMQTY="^") W !,"*** Nothing transferred ..." G EXIT
+ I RMQTY["?"!(RMQTY<.0001) W $C(7),!!,"Current balance is = ",RMBA W:RMBA>0 !,"Enter quantity 1 to ",RMBA," or" W " enter '^' to QUIT? " G TRANQ
+ I RMQTY>RMBA W !!,$C(7),"Quantity to transfer is greater than current balance.." G TRANQ
+ ;
+TRANT ;ask for forwarding Location.
+ S DIC("S")="I $D(^RMPR(661.3,""C"",RMDAHC,+Y)),($P(^RMPR(661.3,+Y,0),U,1)'=RMLOF)"
+ S DZ="??",D="B"
+ S DIC="^RMPR(661.3,",DIC(0)="AEQM"
+ S DIC("A")="Enter Receiving Location:  ",DIC="^RMPR(661.3," K DIC("B")
+ S DIC(0)="AEQ",D="B" D MIX^DIC1
+ I $D(DTOUT)!($D(DUOUT)) W !,"*** Nothing transferred ..." G EXIT
+ G:Y'>0 TRANT
+ S RMLORDA=+Y
+ I RMLOFDA=RMLORDA W !,$C(7),"***Forwarding and Receiving Location is the same!!!!" G TRANT
+ ;
+TRANI S RMHCRDA=$O(^RMPR(661.3,RMLORDA,1,"B",RMDAHC,0))
+ S RMDARHC=$P(^RMPR(661.3,RMLORDA,1,RMHCRDA,0),U,1)
+ ;ask/enter forwarding item
+ S DIC(0)="ANEMQ",DA(1)=RMHCRDA,DA(2)=RMLORDA K DIC("S")
+ S DIC="^RMPR(661.3,"_DA(2)_",1,"_DA(1)_",1,"
+ S DIC("A")="Enter Receiving Item: " D ^DIC
+ G:(+Y'>0)!$D(DTOUT)!$D(DUOUT) EXIT
+ L +^RMPR(661.3,RMLORDA,1,RMHCRDA,1,+Y):2
+ I '$T W !,"Record in use. Try again later..." G TRANI
+ S RMITRDA=+Y,RMIT=$P(^RMPR(661.3,RMLORDA,1,RMHCRDA,1,+Y,0),U,1)
+ ;
+ S RMTO=$G(^RMPR(661.3,RMLORDA,1,RMHCRDA,1,RMITRDA,0))
+ S RMBAR=$P(RMTO,U,2),RMBAR=RMBAR+RMQTY,RMCOR=RMAV*RMBAR
+ S RMLOR=$P(^RMPR(661.3,RMLORDA,0),U,1)
+ S RMFR=$G(^RMPR(661.3,RMLOFDA,1,RMHCFDA,1,RMITFDA,0))
+ S RMBAF=$P(RMFR,U,2),RMBAF=RMBAF-RMQTY,RMCOF=RMAV*RMBAF
+ W !,"Quantity ",RMQTY," was transferred from ",RMLOF," to ",RMLOR
+ S $P(^RMPR(661.3,RMLOFDA,1,RMHCFDA,1,RMITFDA,0),U,2)=RMBAF
+ S $P(^RMPR(661.3,RMLORDA,1,RMHCRDA,1,RMITRDA,0),U,2)=RMBAR
+ S $P(^RMPR(661.3,RMLOFDA,1,RMHCFDA,1,RMITFDA,0),U,3)=RMCOF
+ S $P(^RMPR(661.3,RMLORDA,1,RMHCRDA,1,RMITRDA,0),U,3)=RMCOR
+ S RMRSTA=$P($G(^RMPR(661.3,RMLORDA,0)),U,3)
+ ;
+STAT ;create transfer stat for an item
+ D BAL^RMPR5NU1
+ L -^RMPR(661.3,RMLORDA,1,RMHCRDA,1,RMITRDA)
+ L -^RMPR(661.3,RMLOFDA,1,RMHCFDA,1,RMITFDA)
+ S DIC="^RMPR(661.2,",DLAYGO=661.2,X=RMDAT1,DIC(0)="L" K DD,DO
+ D FILE^DICN G:Y'>0 TRAN S DA=+Y
+ S RMMES="QTY "_RMQTY_" transferred from "_$E(RMLOF,1,8)_" to "_$E(RMLOR,1,8)
+ S ^RMPR(661.2,DA,0)=RMDAT1_"^^^"_RMDAHC_"^^^"_DUZ_"^^"_RMIT_"^^^"_RMTOBA_"^"_RMMES_"^"_$J(RMTOCO,0,2)_"^"_RMPR("STA")_"^"_RMLORDA_"^"_$J(RMAVA,0,2)
+ S DIK=DIC D IX1^DIK
+ I RMPR("STA")'=RMRSTA D
+ .S RMFSTA=RMPR("STA"),RMPR("STA")=RMRSTA D BAL^RMPR5NU1
+ .S DIC="^RMPR(661.2,",DLAYGO=661.2,X=RMDAT1,DIC(0)="L" K DD,DO
+ .D FILE^DICN G:Y'>0 TRAN S DA=+Y
+ .S RMMES="QTY "_RMQTY_" transferred from "_$E(RMLOF,1,8)_" to "_$E(RMLOR,1,8)
+ .S ^RMPR(661.2,DA,0)=RMDAT1_"^^^"_RMDAHC_"^^^"_DUZ_"^^"_RMIT_"^^^"_RMTOBA_"^"_RMMES_"^"_$J(RMTOCO,0,2)_"^"_RMRSTA_"^"_RMLORDA_"^"_$J(RMAVA,0,2)
+ .S RMPR("STA")=RMFSTA
+ .S DIK=DIC D IX1^DIK
+ W !,"*** Item was transferred..."
+ H 1 G TRAN
+ ;
+UPD ;update current inventory item balance.
+ W @IOF
+UPD1 W !!,"Updating Item in a Location.....",!
+ D DIV4^RMPRSIT I $D(Y),(Y<0) K DIC("B") Q
+ S X="NOW" D ^%DT S RMDAT1=Y D DD^%DT S RMDAT=Y K DTOUT,DUOUT,DIC("B")
+ S DZ="??",D="B",DIC("S")="I $P(^RMPR(661.3,+Y,0),U,3)=RMPR(""STA"")"
+ S DIC="^RMPR(661.3,",DIC(0)="AEQM"
+ ;I $D(^RMPR(661.3,"B")) D DQ^DICQ
+ S DIC("A")="Enter Pros Location: "
+ D MIX^DIC1 G:(+Y'>0)!($D(DTOUT))!$D(DUOUT) EXIT S RMLODA=+Y
+ S RMLOC=$P(^RMPR(661.3,+Y,0),U,1)
+ ;
+HCPC S DA(1)=RMLODA,DIC="^RMPR(661.3,"_DA(1)_",1," K DTOUT,DUOUT
+ K DTOUT,DUOUT,DIC("S"),DIR
+ S DIC("A")="Select HCPCS to Update: "
+ S DIC(0)="AEMQ",DIC("W")="S RZ=$P(^RMPR(661.3,RMLODA,1,+Y,0),U,1) I RZ W ?25,$P($G(^RMPR(661.1,RZ,0)),U,2)"
+ S DIC="^RMPR(661.3,"_RMLODA_",1," D ^DIC
+ I +Y'>0!$D(DTOUT)!$D(DUOUT) W !,"** No HCPCS selected..." G UPD1
+ S RMHCDA=+Y,RMDAHC=$P(^RMPR(661.3,RMLODA,1,+Y,0),U,1),RMHCPC=$P(^RMPR(661.1,RMDAHC,0),U,1)
+ ;
+ITEM ;
+ S DIC(0)="ANEMQ",DA(1)=RMHCDA,DA(2)=RMLODA
+ S DIC="^RMPR(661.3,"_DA(2)_",1,"_DA(1)_",1,"
+ G:'$D(^RMPR(661.3,RMLODA,1,RMHCDA,1,"B")) HCPC
+ ;I $D(^RMPR(661.3,RMLODA,1,RMHCDA,1,"B")) S DZ="??",D="B" D DQ^DICQ
+ S DIC("B")=$O(^RMPR(661.3,RMLODA,1,RMHCDA,1,"B",0))
+ S DIC("A")="Enter ITEM to Update: " D ^DIC K DIC("B")
+ G:(+Y'>0)!($D(DTOUT))!$D(DUOUT) HCPC S RMITDA=+Y
+ L +^RMPR(661.3,RMLODA,1,RMHCDA,1,+Y):2
+ I '$T W !,"Record in use. Try again later..." G ITEM
+ S RMIT=$P(^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0),U,1)
+ S RMHCPC=$P(RMIT,"-",1),RMDAIT=$P(RMIT,"-",2)
+ S RM3=^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0)
+ S RMBA=$P(RM3,U,2),RMCO=$P(RM3,U,3),RMUNI=$P(RM3,U,4),RMSOB=$P(RM3,U,9)
+ S RMRORA=$P(RM3,U,6),RMDIIA=$P(RM3,U,7),RMVENA=$P(RM3,U,5)
+ S DA(2)=RMLODA,DA(1)=RMHCDA,DA=RMITDA
+ S DIE="^RMPR(661.3,"_DA(2)_",1,"_DA(1)_",1,"
+ S DR="29R" D ^DIE
+ I $P(^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0),U,9)="C" S DR="22R;24;25R;26;27"
+ E  S DR="22R;24;27"
+ D ^DIE
+ S (RMAVD,RMBAD,RMCOD)=0
+ S RM3=^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0)
+ S RMBAA=$P(RM3,U,2),RMSO=$P(RM3,U,9),RMAVA=$P(RM3,U,10)
+ S RMRORAA=$P(RM3,U,6),RMDIIAA=$P(RM3,U,7),RMVENAA=$P(RM3,U,5)
+ S RMUNIA=$P(RM3,U,4)
+ I RMBAA=RMBA,RMRORA=RMRORAA,RMDIIA=RMDIIAA,RMVENA=RMVENAA,RMSO=RMSOB,RMUNI=RMUNIA W !,"*** Nothing updated...." G UPD1
+ S:RMBA'=RMBAA RMBAD=RMBAA-RMBA S RMCOA=RMBAA*RMAVA
+ S $P(^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA,0),U,3)=RMCOA
+ ;
+STATUPD ;create UPDATE stat for an item
+ D BAL^RMPR5NU1
+ L -^RMPR(661.3,RMLODA,1,RMHCDA,1,RMITDA)
+ S DIC="^RMPR(661.2,",DLAYGO=661.2,X=RMDAT1,DIC(0)="L" K DD,DO
+ D FILE^DICN G:Y'>0 UPD1 S DA=+Y
+ S RMMESF="QTY updated by "_$E($P(^VA(200,DUZ,0),U,1),1,15)_":"
+ S ^RMPR(661.2,DA,0)=RMDAT1_"^^^"_RMDAHC_"^^^"_DUZ_"^"_RMBAD_"^"_RMIT_"^^^"_RMTOBA_"^"_RMMESF_"^"_$J(RMTOCO,0,2)_"^"_RMPR("STA")_"^"_RMLODA_"^"_$J(RMAVA,0,2)
+ W !,"*** Item was updated..."
+ S DIK=DIC D IX1^DIK
+ H 1 G UPD1
+ ;
+EXIT ;MAIN EXIT POINT
+ N RMPRSITE,RMPR D KILL^XUSCLEAN
+ Q

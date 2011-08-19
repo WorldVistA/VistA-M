@@ -1,0 +1,73 @@
+RGEX04 ;BAY/ALS-LIST MANAGER ROUTINE FOR MPI/PD EXCEPTION PDAT QUERY ;10/31/01
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**23,25,41**;30 Apr 99
+EN ;main entry point for RG EXCPT PDAT
+ D EN^VALM("RG EXCPT PDAT")
+ Q
+HDR ; header code
+ S VALMHDR(1)="MPI/PD PATIENT DATA"
+ S VALMHDR(2)=""
+ Q
+INIT ;
+ K ^TMP("RGEXC4",$J)
+ K @VALMAR
+ ;I '$D(ICN) G EXIT
+ I '$D(^TMP("RGPDAT",$J)) G EXIT
+ S LIN=1,X=0,STR="",TXT=""
+ F  S X=$O(^TMP("RGPDAT",$J,X)) Q:'X  D
+ . S TXT=^TMP("RGPDAT",$J,X)
+ . I $E(TXT,1,12)'="Enter RETURN" D
+ .. S STR=$$SETSTR^VALM1(TXT,STR,2,78)
+ .. D ADDTMP
+ S VALMCNT=LIN-1
+ Q
+ADDTMP ;
+ S ^TMP("RGEXC4",$J,LIN,0)=STR
+ S ^TMP("RGEXC4",$J,"IDX",LIN,LIN)=""
+ S LIN=LIN+1,STR=""
+ Q
+RSEND ;Send remote PDAT Query
+ S VALMBCK="",RICN=ICN
+ D FULL^VALM1
+ D SEND^RGRPDAT
+ D PAUSE^VALM1
+ S ICN=RICN
+ D INIT
+ S VALMBCK="R"
+ Q
+RCHK ;Check remote PDAT Query
+ S VALMBCK="",RICN=ICN
+ D FULL^VALM1
+ D CHKSTAT^RGRPDAT
+ D PAUSE^VALM1
+ S ICN=RICN
+ D INIT
+ S VALMBCK="R"
+ Q
+RDISP ;Display remote PDAT Query
+ S VALMBCK="",RICN=ICN
+ D FULL^VALM1
+ W !!,"Display data returned from remote patient data queries."
+ S TFL="",L="",Y="",ICNARR="",STATUS=""
+ I '$D(^XTMP("RGPDAT"_ICN)) W !!,"No remote query sent for this patient. " G QRD
+ D GETTFL^RGRPDAT(ICN,.TFL)
+ W !!,"-> For ICN ",$P(ICN,"V",1),!
+ I $D(TFL(0)) D
+ . S X=0 F  S X=$O(TFL(X)) Q:'X  I '$D(^XTMP("RGPDAT"_ICN,X)) K TFL(X)
+ D SELTF^RGRPDAT
+ I '$D(TFARR) W !,"No remote query sent for this patient." G QRD
+ I ((Y="")!(Y="^")) G QRD
+ D PAUSE^VALM1
+ D EN^RGEX05(RICN)
+QRD D PAUSE^VALM1
+ S ICN=RICN
+ D INIT
+ S VALMBCK="R"
+ Q
+HELP ;
+ S X="?" D DISP^XQORM1 W !!
+ Q
+EXIT ;
+ S VALMBCK=""
+ K ^TMP("RGEXC4",$J),^TMP("RGPDAT",$J),LIN,X,STR,TXT,RICN,Y,STATUS,TFL,TFARR,L,ICNARR
+ S VALMBCK="R"
+ Q

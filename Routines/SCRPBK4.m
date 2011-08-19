@@ -1,0 +1,163 @@
+SCRPBK4 ;MJK/ALB - RPC Broker Utilities ; 27 FEB 96
+ ;;5.3;Scheduling;**41**;AUG 13, 1993
+ ;
+VALID(SCDATA,SCVM,SCQDEF) ; -- query definition validation
+ ;
+ ; input:  SCVM -> validation mode (FULL or SELECTIONS only)
+ ;
+ ;output:
+ ;    SCDATA(0) -> 1 - meaning validation checks found no errors
+ ;                        
+ ;                --- OR ---
+ ;
+ ;    SCDATA(0) -> 0 - meaning errors found ^ <number of errors>
+ ;SCDATA(1...n) -> error text
+ ;
+ ; -- SEE BOTTOM OF SCRPBK FOR MORW VARIABLE DEFINITIONS
+ ;
+ ; Related RPC: SCRP QUERY VALIDATE
+ ;
+ N SCQREC,SCTYPE,SCLOG,DIERR,SCER
+ S SCLOG="SCDATA"
+ ; -- build query record
+ D PARSE^SCRPBK5(.SCQDEF,.SCQREC)
+ ; -- validate query record
+ D VALCHK(SCLOG,.SCQREC,SCVM)
+ ; -- report back any erros found(if any) or 1 for success
+ D HDREC^SCUTBK3(.SCDATA,$G(DIERR),"Template Validation ("_SCVM_")")
+ Q
+ ;
+VALCHK(SCLOG,SCQREC,SCVM) ; -- determine validation mode and do appropriate checks
+ IF SCVM="FULL" D VALFLDS(SCLOG,.SCQREC)
+ IF SCVM="FULL"!(SCVM="SELECTIONS") D VALSELS(SCLOG,.SCQREC)
+ Q
+ ;
+VALFLDS(SCLOG,SCQREC) ; -- validate field data
+ N X,SCAN,SCFLD
+ ;
+ ; -- required single fields
+ D GETFLDS^SCRPBK2(+SCQREC("REPORTID"),.SCAN)
+ S SCFLD=""
+ F  S SCFLD=$O(SCAN(SCFLD)) Q:SCFLD=""  S X=SCAN(SCFLD) D
+ . IF $P(X,U,2),'$D(SCQREC("FIELDS",SCFLD)) D
+ . . D SETFLD(SCLOG,$P($G(^SD(404.93,+X,0),"UNKNOWN"),U))
+ Q
+ ;
+VALSELS(SCLOG,SCQREC) ; -- validate file entry selections
+ N SCTYPE,SCAN
+ ;
+ ; -- have all required selections been made?
+ K SCAN
+ D GETYPE^SCRPBK2(+SCQREC("REPORTID"),.SCAN)
+ S SCTYPE=""
+ F  S SCTYPE=$O(SCAN(SCTYPE)) Q:SCTYPE=""  S X=SCAN(SCTYPE) D
+ . IF $P(X,U,2),'$D(SCQREC("SELECTIONS",SCTYPE)) D
+ . . D SETFLD(SCLOG,SCTYPE)
+ ;
+ ; -- are selections consistent?
+ S SCTYPE=""
+ F  S SCTYPE=$O(SCQREC("SELECTIONS",SCTYPE)) Q:SCTYPE=""  IF $D(SCAN(SCTYPE)) D
+ . IF SCTYPE="DIVISION" D DIV(SCLOG,.SCQREC,SCTYPE)
+ . IF SCTYPE="TEAM" D TEAM(SCLOG,.SCQREC,SCTYPE)
+ . IF SCTYPE="PRACTITIONER" D PRAC(SCLOG,.SCQREC,SCTYPE)
+ . IF SCTYPE="ROLE" D ROLE(SCLOG,.SCQREC,SCTYPE)
+ . IF SCTYPE="CLINIC" D CLIN(SCLOG,.SCQREC,SCTYPE)
+ . IF SCTYPE="USERCLASS" D USER(SCLOG,.SCQREC,SCTYPE)
+ Q
+ ;
+DIV(SCLOG,SCQREC,SCTYPE) ; -- validate division selections
+ N SCSEL,Y,SC0
+ S SCSEL=""
+ F  S SCSEL=$O(SCQREC("SELECTIONS",SCTYPE,SCSEL)) Q:SCSEL=""  D
+ . S Y=SCSEL,SC0=$G(^DIC(4,+SCSEL,0))
+ . IF $D(^SCTM(404.51,"AINST",+Y)) D
+ . . Q
+ . ELSE  D
+ . . D SETSEL(SCLOG,SCTYPE,"NO TEAMS FOR DIVISION",SC0)
+ Q
+ ;
+TEAM(SCLOG,SCQREC,SCTYPE) ; -- validate team selections
+ N SCSEL,Y,SC0,VAUTD
+ S SCSEL=""
+ D BUILD^SCRPBK3(.SCQREC,"DIVISION",.VAUTD)
+ F  S SCSEL=$O(SCQREC("SELECTIONS",SCTYPE,SCSEL)) Q:SCSEL=""  D
+ . S Y=+SCSEL,SC0=$G(^SCTM(404.51,+SCSEL,0))
+ . IF $D(VAUTD(+$P(SC0,U,7))) D
+ . . Q
+ . ELSE  D
+ . . D SETSEL(SCLOG,SCTYPE,"DIVISION",SC0)
+ Q
+ ;
+PRAC(SCLOG,SCQREC,SCTYPE) ; -- validate practitioner selections
+ N SCSEL,Y,SC0,VAUTT
+ S SCSEL=""
+ IF SCQREC("REPORTID")=3 D
+ . S VAUTT=1
+ ELSE  D
+ . D BUILD^SCRPBK3(.SCQREC,"TEAM",.VAUTT)
+ F  S SCSEL=$O(SCQREC("SELECTIONS",SCTYPE,SCSEL)) Q:SCSEL=""  D
+ . S Y=+SCSEL,SC0=$G(^VA(200,Y,0))
+ . IF $D(VAUTT),$$PRACS^SCRPU1() D
+ . . Q
+ . ELSE  D
+ . . D SETSEL(SCLOG,SCTYPE,"TEAM",SC0)
+ Q
+ ;
+ROLE(SCLOG,SCQREC,SCTYPE) ; -- validate role selections
+ N SCSEL,Y,SC0,VAUTT
+ S SCSEL=""
+ D BUILD^SCRPBK3(.SCQREC,"TEAM",.VAUTT)
+ F  S SCSEL=$O(SCQREC("SELECTIONS",SCTYPE,SCSEL)) Q:SCSEL=""  D
+ . S Y=+SCSEL,SC0=$G(^SD(403.46,Y,0))
+ . IF $D(VAUTT),$$RL^SCRPU1() D
+ . . Q
+ . ELSE  D
+ . . D SETSEL(SCLOG,SCTYPE,"TEAM",SC0)
+ Q
+ ;
+CLIN(SCLOG,SCQREC,SCTYPE) ; -- validate clinic selections
+ N SCSEL,Y,SC0,SCRPTID,VAUTD,VAUTT
+ S SCSEL="",SCRPTID=SCQREC("REPORTID")
+ IF SCRPTID=2 D
+ . D BUILD^SCRPBK3(.SCQREC,"DIVISION",.VAUTD)
+ ELSE  D
+ . D BUILD^SCRPBK3(.SCQREC,"TEAM",.VAUTT)
+ ;
+ F  S SCSEL=$O(SCQREC("SELECTIONS",SCTYPE,SCSEL)) Q:SCSEL=""  D
+ . S Y=+SCSEL,SC0=$G(^SC(Y,0))
+ . IF SCRPTID=2,$D(VAUTD),$$CLSC2^SCRPU1() D  Q
+ . . Q
+ . ELSE  D  Q
+ . . D SETSEL(SCLOG,SCTYPE,"DIVISION",SC0)
+ . IF SCRPTID'=2,$D(VAUTT),$$CLSC^SCRPU1() D
+ . . Q
+ . ELSE  D
+ . . D SETSEL(SCLOG,SCTYPE,"TEAM",SC0)
+ Q
+ ;
+USER(SCLOG,SCQREC,SCTYPE) ; -- validate user selections
+ N SCSEL,Y,SC0,VAUTT
+ S SCSEL=""
+ D BUILD^SCRPBK3(.SCQREC,"TEAM",.VAUTT)
+ F  S SCSEL=$O(SCQREC("SELECTIONS",SCTYPE,SCSEL)) Q:SCSEL=""  D
+ . S Y=+SCSEL,SC0=$G(^USR(8930,+SCSEL,0))
+ . IF $D(VAUTT),$$USRCL^SCRPU1() D
+ . . Q
+ . ELSE  D
+ . . D SETSEL(SCLOG,SCTYPE,"TEAM",SC0)
+ Q
+ ;
+SETFLD(SCLOG,SCFLD) ; -- set field error in error log
+ N SCPARM
+ S SCPARM("FIELD")=SCFLD
+ D BLD^DIALOG(4035001.001,.SCPARM,"",SCLOG,"S")
+ Q
+ ;
+SETSEL(SCLOG,SCTYPE,SCDTYPE,SC0) ; -- set file entry error in error log
+ N SCPARM
+ S SCPARM("TYPE")=SCTYPE
+ S SCPARM("SELECTION")=$P(SC0,U)
+ S SCPARM("DEPENDENT")=SCDTYPE
+ D BLD^DIALOG(4035001.002,.SCPARM,"",SCLOG,"S")
+ Q
+ ;

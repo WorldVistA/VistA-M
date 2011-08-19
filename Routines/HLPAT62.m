@@ -1,0 +1,12 @@
+HLPAT62 ;SFISC/GMB - Post-patch stuff ;11/15/2000  15:16
+ ;;7.1;MailMan;**62**;Jun 02, 1994
+ENTER ;
+ Q:$D(^HLCS(870,"AISTAT"))
+ N HLXX
+ S HLXX=0
+ F  S HLXX=$O(^HLCS(870,HLXX)) Q:'HLXX  D
+ . Q:'$O(^HLCS(870,HLXX,1,0))
+ . N DIK,DA
+ . S DA(1)=HLXX,DIK="^HLCS(870,"_DA(1)_",1,",DIK(1)="1^AISTAT"
+ . D ENALL^DIK
+ Q

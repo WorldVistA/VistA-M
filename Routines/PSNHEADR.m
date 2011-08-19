@@ -1,0 +1,10 @@
+PSNHEADR ;BIR/WRT-Header routine for NDF Info From Your Local Drug File Report ;01/12/98   5:18 PM
+ ;;4.0; NATIONAL DRUG FILE;; 30 Oct 98
+BEGIN D TITLE
+DONE K MJT
+ Q
+TITLE W !,?33,"NATIONAL DRUG INFO FROM YOUR LOCAL FILE"
+ S %DT="",X="T" D ^%DT X ^DD("DD") W !?100,"Date printed: ",Y,!?100,"Page: ",DC,!
+ W !,"LOCAL DRUG INFO",?42,"NDF INFO",?110,"NDF",?122,"NDF",!,"LOCAL DRUG NAME",?42,"VA PRODUCT NAME",?108,"PKG SIZE",?120,"PKG TYPE",!
+ F MJT=1:1:132 W "-"
+ Q

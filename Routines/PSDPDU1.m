@@ -1,0 +1,32 @@
+PSDPDU1 ;BIR/JPW-Print Breakdown/Disp Unit (cont'd) ; 2 Aug 94
+ ;;3.0; CONTROLLED SUBSTANCES ;;13 Feb 97
+START ;entry point for report
+ K ^TMP("PSDPDU",$J)
+ F PSD=0:0 S PSD=$O(NAOU(PSD)) G:'PSD PRINT S:$D(^PSD(58.8,PSD,0)) NAOUN=$S($P(^(0),"^")]"":$P(^(0),"^"),1:"ZZ/"_PSD) F DRUG=0:0 S DRUG=$O(^PSD(58.8,PSD,1,DRUG)) Q:'DRUG  I $D(^PSD(58.8,PSD,1,DRUG,0)) D
+ .Q:'$D(^PSD(58.8,PSD,1,DRUG,0))  I +$P(^PSD(58.8,PSD,1,DRUG,0),"^",14) D NOW^%DTC I $P(^PSD(58.8,PSD,1,DRUG,0),"^",14)'>X Q
+ .Q:'$D(^PSDRUG(DRUG,0))  I $D(^PSDRUG(DRUG,0)) S DRUGN=$S($P(^PSDRUG(DRUG,0),"^")]"":$P(^(0),"^"),1:"ZZ/"_DRUG)
+ .S PSDP=$P($G(^PSD(58.8,PSD,0)),"^",4)
+ .S NODE=^PSD(58.8,PSD,1,DRUG,0),NBKU=$P(NODE,"^",8),NPKG=$P(NODE,"^",9)
+ .S NDU=$S($P($G(^PSDRUG(DRUG,660)),"^",8)]"":$P($G(^(660)),"^",8),1:"NO DATA"),NDUP=$S($P($G(^(660)),"^",6)]"":$P($G(^(660)),"^",6),1:"NO DATA")
+ .S ^TMP("PSDPDU",$J,NAOUN,DRUGN)=NBKU_"^"_NPKG_"^"_NDU_"^"_NDUP
+PRINT ;prints data for stock drugs
+ K LN S $P(LN,"-",132)="",(PG,PSDOUT)=0,%DT="",X="T" D ^%DT X ^DD("DD") S RPDT=Y D HDR Q:PSDOUT
+ I '$D(^TMP("PSDPDU",$J)) W !!,?45,"*****  NO DATA AVAILABLE FOR THIS REPORT  *****" G DONE
+ S NAOU="" F  S NAOU=$O(^TMP("PSDPDU",$J,NAOU)) Q:NAOU=""!(PSDOUT)  D:$Y+5>IOSL HDR Q:PSDOUT  W !!,"=> ",$S(NAOU["ZZ/":"#"_$P(NAOU,"/",2)_" NAME MISSING",1:NAOU) D
+ .S DRUG="" F  S DRUG=$O(^TMP("PSDPDU",$J,NAOU,DRUG)) Q:DRUG=""!(PSDOUT)  D  Q:PSDOUT
+ ..S NODE=^TMP("PSDPDU",$J,NAOU,DRUG),NBKU=$P(NODE,"^"),NPKG=$P(NODE,"^",2),NDU=$P(NODE,"^",3),NDUP=$P(NODE,"^",4)
+ ..I $Y+5>IOSL D HDR Q:PSDOUT  W !!,"=> ",$S(NAOU["ZZ/":"#"_$P(NAOU,"/",2)_" NAME MISSING",1:NAOU)
+ ..W !,?4,DRUG,?58,NBKU,?75,$J(NPKG,6),?93,$J(NDU,6),?118,$J(NDUP,6)
+DONE I $E(IOST)'="C" W @IOF
+ I $E(IOST,1,2)="C-",'PSDOUT W ! K DIR,DIRUT S DIR(0)="EA",DIR("A")="END OF REPORT!  Press <RET> to return to the menu" D ^DIR K DIR
+END ;
+ K %,%DT,%H,%I,%ZIS,ANS,DA,DIR,DIROUT,DIRUT,DRUG,DRUGN,DTOUT,DUOUT,IO("Q"),LN,NAOU,NAOUN,NBKU,NDU,NDUP,NODE,NODED,NPKG,PG,POP,PSD,PSDP,PSDT,PSDOUT,RPDT,TYP,TYPE,X,Y,^TMP("PSDPDU",$J)
+ K ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,ZTSK
+ D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@"
+ Q
+HDR ;lists header information
+ I $E(IOST,1,2)="C-",PG K DA,DIR S DIR(0)="E" D ^DIR K DIR I 'Y S PSDOUT=1 Q
+ W:$Y @IOF S PG=PG+1 W !,"Breakdown/Dispensing Unit Listing  -  Date: "_RPDT,?121,"PAGE: "_PG,!!,"=> DISPENSING SITE"
+ W !,?57,"BREAKDOWN",?75,"PACKAGE",?92,"DISPENSING",?115,"PRICE PER"
+ W !,?12,"DRUG",?59,"UNIT",?76,"SIZE",?95,"UNIT",?115,"DISP UNIT",!,LN,!
+ Q

@@ -1,0 +1,34 @@
+%INDX5 ;SF-ISC/RWF - CROSS REFERENCE ALL ROUTINES ;12/1/93  08:17 ;
+ ;;7.3;TOOLKIT;;Apr 25, 1995
+ G END:$D(IND("QUIT")) I INP(8) W !,"Called Routines",! D ^%INDX52 ;Get called routines
+ K ARG,CCN,CH,COM,ERR,GK,GRB,I,INDDA,INDDS,L,LAB,LAB0,LC,LIN,LOC,PC,PRV,R,RTN,S,STR,TXT,V,X,Y
+ D ^%INDX53:INP(7) ;Load routine file
+ S RN="$" W !!,"--- CROSS REFERENCING ---",!
+A S RN=$O(^UTILITY($J,RN)),L="",LABO=0 I RN="" G B
+ F I=1:1 S L=$O(^UTILITY($J,1,RN,"X",L)) Q:L=""  S XX2=^(L,0),XX1=$P(L," ",2),T=$P(XX1,"+",1),P=$P(L," ",1) D AA
+ G A
+AA I '$D(^UTILITY($J,1,P)),P'["%" S X=P X ^%ZOSF("TEST") I '$T S RTN=RN,LAB=$P(XX2,","),ERR=52,ERR(1)=P D ^%INDX1
+ I T]"",$D(^UTILITY($J,1,P)) S:T["$" T=$E(T,3,99) I T]"",'$D(^UTILITY($J,1,P,"T",T)) S RTN=P,LAB=XX1,ERR=38 D ^%INDX1
+ Q
+B D ^%INDX51
+END W:$D(IND("QUIT")) !!,"--- ",$S($D(ZTSTOP):"TASK ",1:""),"STOPPED ---" W !!,"--- END ---"
+ I IO'=IO(0) U IO(0) W !,"--- D O N E ---" U IO
+ D ^%ZISC
+ S:$D(ZTQUEUED) ZTREQ="@"
+CLEAN ;Come here from %INDX6 if queued output.
+ K %,%1,%2,%I1,%IN1,%UCN,A,ARG,C,C9,CCN,CH,COM,DA,DIC,DUOUT,ERR,ERTX,F,F1,G,GK,GRB,H,HED,HS
+ K ^UTILITY($J),I,IND,INDB,INDC,INDDA,INDDS,INDF,INDFN,INDLC,INDPM,INDX,INDXDT,INDXJ,INP,IP,J,K,K1,K3,L,LAB,LABO,LBL,LC,LIN,LINE,LOC,NRO,OFF,P,PC,PGM,POP,POST,Q,R,RDTIME,RHS,ROU,RTN,S,S1,STR,SYM,TAB,TAG,TXT,TY,V,VZ,X,X1,X2,X3,Y
+ Q
+CRX S RTN="$" F I=0:0 S RTN=$O(^UTILITY($J,RTN)) Q:RTN=""  F LOC="L","G","MK","X" D CR0
+ K VZ Q
+CR0 S S=-1 I LOC="X" K VZ I '$D(^UTILITY($J,1,"***","X",RTN_" ")) S ^UTILITY($J,1,"***","X",RTN_" ")=""
+CR1 S S=$O(^UTILITY($J,1,RTN,LOC,S)) Q:S=""  S X=$G(^UTILITY($J,1,RTN,LOC,S)) S:$G(^UTILITY($J,1,"***",LOC,S))'[X ^(S)=$G(^(S))_X
+ F J=0:1 Q:'$D(^UTILITY($J,1,RTN,LOC,S,J))  D CR2
+ G CR1
+CR2 S PC="" I LOC'="X" S:^UTILITY($J,1,RTN,LOC,S,J)["*" PC=PC_"*" S:^(J)["!" PC=PC_"!" S:^(J)["~" PC=PC_"~" G CR3
+ Q:$D(VZ(S))  S S1=$S($P(S," ",2)]"":$P(S," ",2)_"^",1:"")_$P(S," ",1),VZ(S)=""
+ S X1=LOC,X2=S,X3=RTN,LOC="Z",S=RTN,RTN=S1 D CR3 S LOC=X1,S=X2,RTN=X3 K X1,X2,X3
+ D CR3 Q
+CR3 S K=0
+CR4 S ARG="" I $D(^UTILITY($J,1,"***",LOC,S,K)) S ARG=^(K) I $L(ARG)>230 S K=K+1 G CR4
+ S ^UTILITY($J,1,"***",LOC,S,K)=ARG_RTN_PC_"," Q

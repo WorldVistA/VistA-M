@@ -1,0 +1,79 @@
+PRCHQ4A ;(WASH IRMFO)/LKG-RFQ Set up Transmission Records ; [8/11/98 9:47am]
+ ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+CT(PRCA) ;Set up Control segment for Text Message (864)
+ N PRCD,PRCE,PRCF,PRCY,PRCZ,X,Y
+ S PRCD=$G(^PRC(444,PRCDA,7,PRCA,0)) Q:PRCD=""
+ S PRCE=$G(^PRC(444,PRCDA,7,PRCA,1))
+ S PRCF=$P(PRCD,U,6),X=$P(PRCF,".") D JDN^PRCUTL
+ S X=$P(PRCF,".",2),X=X_$E("000000",$L(X)+1,6)
+ S PRCY="CT^"_$P(PRCD,U,5)_"^"_$P(PRCE,U)_"^"_Y_"^"_X_"^"_$P(PRCD,U,8)_"^"_$P(PRCD,U,9)_"^0^0^|"
+ S ^TMP($J,"STRING",1)=PRCY
+ I $P(PRCY,U,2)'>0 S PRCZ(1)="Sender's Message # is missing"
+ I $P(PRCY,U,3)="" S PRCZ(2)="Message Description is missing"
+ I $P(PRCY,U,4)'?7N S PRCZ(3)="Invalid Effective Date"
+ I $P(PRCY,U,5)'?6N S PRCZ(4)="Invalid Effective Time"
+ I $P(PRCY,U,6)="" S PRCZ(5)="Official's Name is missing"
+ I $P(PRCY,U,7)="" S PRCZ(6)="Official's Phone # is missing"
+ I $D(PRCZ) S PRCERR=3 D:'$D(ZTQUEUED) EN^DDIOL(.PRCZ)
+ Q
+VEL(PRCA,PRCN) ;Get vendor recipients for 864 Text Message; invokes VE^PRCHQ4
+ N PRCW,PRCX,PRCY,X S PRCX=0,PRCW=0
+ F  S PRCX=$O(^PRC(444,PRCDA,7,PRCA,3,PRCX)) Q:PRCX'?1.N  D
+ . S PRCY=$P($G(^PRC(444,PRCDA,7,PRCA,3,PRCX,0)),U) Q:PRCY=""
+ . S X=$S(PRCY["PRC(440,":$P($G(^PRC(440,$P(PRCY,";"),7)),U,12),1:$P($G(^PRC(444.1,$P(PRCY,";"),0)),U,2))
+ . I X="" D DUNERR^PRCHQ4(PRCY) Q
+ . D VE^PRCHQ4(X,.PRCN) S PRCW=PRCW+1
+ I $P($G(^PRC(444,PRCDA,7,PRCA,1)),U,2)="y" D VE^PRCHQ4("PUBLIC",.PRCN) S PRCW=PRCW+1
+ Q PRCW
+TRANS840(PRCTYPE) ;RFQ transmission code
+ ;;Requires input variables: PRCDA,PRCRFQ
+ K ^TMP($J,"STRING"),^TMP($J,"VE") N PRCCOUNT,PRCPXMZ,XMZ,X,PRCSORC,PRCDEST
+ D HE^PRCHQ4 S PRCCOUNT=1
+ S $P(^TMP($J,"STRING",1),U,18)=$$VELST^PRCHQ4(.PRCCOUNT)
+ I $P(^TMP($J,"STRING",1),U,18)=0 D EN^DDIOL("No Vendors for Electronic Transmission")
+ D ST^PRCHQ4(.PRCCOUNT)
+ D MI^PRCHQ4(PRCTYPE,.PRCCOUNT)
+ D AC^PRCHQ4(.PRCCOUNT)
+ S $P(^TMP($J,"STRING",1),U,14)=$$TX^PRCHQ4("^PRC(444,PRCDA,4)",.PRCCOUNT)
+ D IT^PRCHQ4(.PRCCOUNT)
+ S PRCSORC=$O(^PRC(411,"B",$P(PRCRFQ,"-"),""))
+ I PRCSORC="" S PRCERR=4 D EN^DDIOL("Sending Station not in File 411")
+ I $G(PRCERR)!($P($G(^TMP($J,"STRING",1)),U,18)=0) K ^TMP($J,"STRING"),^TMP($J,"VE") Q
+ S PRCDEST=$S($P($G(^PRC(411,PRCSORC,9)),U,4)="T":"EDT",1:"EDP")
+ D TRANSMIT^PRCPSMCS($P(PRCRFQ,"-"),"RFQ",PRCRFQ,PRCDEST,200,1)
+ K ^TMP($J,"STRING") S XMZ=$O(PRCPXMZ(0))
+ I XMZ>0 D
+ . N PRCV
+ . S $P(^PRC(444,PRCDA,1),U,11)=PRCPXMZ(XMZ)
+ . S X=$P($$NET^XMRENT(PRCPXMZ(XMZ)),U) S %DT="ST" D ^%DT
+ . S:Y'=-1 $P(^PRC(444,PRCDA,1),U,18)=Y
+ . S X="MailMan Msg #: "_PRCPXMZ(XMZ)
+ . D EN^DDIOL(X)
+ . S PRCV=""
+ . F  S PRCV=$O(^TMP($J,"VE",PRCV)) Q:PRCV=""  D ENTER^PRCOEDI(PRCRFQ,"RFQ",PRCPXMZ(XMZ),PRCV,$P($G(^PRC(444,PRCDA,0)),U,4),PRCDA,PRCTYPE)
+ K ^TMP($J,"VE")
+ Q
+TRANS864 ;864 TEXT MESSAGE transmission code
+ ;;Requires input variables: PRCDA, PRCDA2,PRCRFQ
+ K ^TMP($J,"STRING"),^TMP($J,"VE") N PRCCOUNT,PRCPXMZ,XMZ,X,PRCSORC,PRCDEST
+ D CT^PRCHQ4A(PRCDA2) S PRCCOUNT=1
+ I $G(PRCERR) K ^TMP($J,"STRING") Q
+ S $P(^TMP($J,"STRING",1),U,9)=$$VEL^PRCHQ4A(PRCDA2,.PRCCOUNT)
+ I $P(^TMP($J,"STRING",1),U,9)=0 D:'$D(ZTQUEUED) EN^DDIOL("No Vendors for Electronic Transmission") K ^TMP($J,"STRING"),^TMP($J,"VE") S PRCERR=1 Q
+ S $P(^TMP($J,"STRING",1),U,8)=$$TX^PRCHQ4("^PRC(444,PRCDA,7,PRCDA2,2)",.PRCCOUNT)
+ I $P(^TMP($J,"STRING",1),U,8)'>0 D:'$D(ZTQUEUED) EN^DDIOL("No text in message") K ^TMP($J,"STRING"),^TMP($J,"VE") S PRCERR=2 Q
+ S PRCSORC=$O(^PRC(411,"B",$P(PRCRFQ,"-"),""))
+ I PRCSORC="" S PRCERR=4 D:'$D(ZTQUEUED) EN^DDIOL("Sending Station not in File 411") K ^TMP($J,"STRING"),^TMP($J,"VE") Q
+ S PRCDEST=$S($P($G(^PRC(411,PRCSORC,9)),U,4)="T":"EDT",1:"EDP")
+ D TRANSMIT^PRCPSMCS($P(PRCRFQ,"-"),"TXT",PRCRFQ,PRCDEST,200,1)
+ K ^TMP($J,"STRING") S XMZ=$O(PRCPXMZ(0))
+ I XMZ>0 D
+ . N PRCV
+ . S $P(^PRC(444,PRCDA,7,PRCDA2,1),U,3)=PRCPXMZ(XMZ)
+ . S X="MailMan Msg #: "_PRCPXMZ(XMZ)
+ . D:'$D(ZTQUEUED) EN^DDIOL(X)
+ . S PRCV=""
+ . F  S PRCV=$O(^TMP($J,"VE",PRCV)) Q:PRCV=""  D ENTER^PRCOEDI(PRCRFQ,"TXT",PRCPXMZ(XMZ),PRCV,$P($G(^PRC(444,PRCDA,0)),U,4),PRCDA,"",$P($G(^PRC(444,PRCDA,7,PRCDA2,0)),U,5))
+ K ^TMP($J,"VE")
+ Q

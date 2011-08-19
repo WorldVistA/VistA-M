@@ -1,0 +1,25 @@
+PRCNX1 ; COMPILED XREF FOR FILE #413 ; 10/15/04
+ ; 
+ S DIKZK=2
+ S DIKZ(0)=$G(^PRCN(413,DA,0))
+ S X=$P(DIKZ(0),U,3)
+ I X'="" K ^PRCN(413,"AE",$E(X,1,30),DA)
+ S X=$P(DIKZ(0),U,6)
+ I X'="" K ^PRCN(413,"AD",$E(X,1,30),DA)
+ S X=$P(DIKZ(0),U,7)
+ I X'="" K ^PRCN(413,"AC",$E(X,1,30),DA)
+ S DIKZ(2)=$G(^PRCN(413,DA,2))
+ S X=$P(DIKZ(2),U,14)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^PRCN(413,D0,2)):^(2),1:"") S X=$P(Y(1),U,15),X=X S DIU=X K Y S X="" X ^DD(413,30,1,1,2.4)
+ S DIKZ(2)=$G(^PRCN(413,DA,2))
+ S X=$P(DIKZ(2),U,18)
+ I X'="" S SK=1 D XREF^PRCNCMRP K SK
+ S DIKZ(6)=$G(^PRCN(413,DA,6))
+ S X=$P(DIKZ(6),U,3)
+ I X'="" K ^PRCN(413,"E",$E(X,1,30),DA)
+ S DIKZ(0)=$G(^PRCN(413,DA,0))
+ S X=$P(DIKZ(0),U,1)
+ I X'="" K ^PRCN(413,"B",$E(X,1,30),DA)
+END G ^PRCNX2

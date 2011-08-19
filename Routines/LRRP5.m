@@ -1,0 +1,125 @@
+LRRP5 ;DALOI/JBM/WTY - COLLECTION REPORT ;9/22/00
+ ;;5.2;LAB SERVICE;**121,201,248**;Sep 27, 1994
+ ;
+ ;Reference to ^%DT supported by IA #10003
+ ;Reference to ^%ZIS supported by IA #10086
+ ;Reference to ^%ZISC supported by IA #10089
+ ;Reference to ^%ZTLOAD supported by IA #10063
+ ;Reference to ^DIC supported by IA #10006
+ ;Reference to ^DIR supported by IA #10026
+ ;
+EN ;
+ S LREND=0
+ S DIR(0)="69.01,4",DIR("A")="Type of collection for report? "
+ S DIR("B")="SEND PATIENT"
+ D ^DIR
+ I ($D(DTOUT)#2)!($D(DUOUT)#2)!($D(DIRUT)#2) S LREND=1 G WRAPUP
+ S LRRCTYP=Y,LRRCNAM=Y(0)
+DATE ;
+ S %DT="AEX",%DT("A")="Date ordered? : "
+ D ^%DT I (X=U)!(X="") S LREND=1 G WRAPUP
+ S LRODT=Y,LRODAT=$$Y2K^LRX(LRODT)
+REPTYP ;
+ W !,"REPORT selection: "
+ K DIR,X,Y S DIR(0)="S^1:Detailed report;2:Summary report"
+ D ^DIR
+ I ($D(DTOUT))!($D(DUOUT)) S LREND=1 G WRAPUP
+ S LRRPT=+X
+DEVICE ;
+ K IOP,IO("Q") S %ZIS="QP" D ^%ZIS
+ I POP S LREND=1 G WRAPUP
+ I $D(IO("Q")) D QUE S LREND=1 G WRAPUP
+DQ ;
+ D INIT
+ D PROCESS
+ D CNTSUM
+ D PRINT^LRRP5A
+ D WRAPUP
+ Q
+INIT ;
+ S:$D(ZTQUEUED) ZTREQ="@" K ^TMP($J) U IO
+ S LRDAT=$$Y2K^LRX(DT),(LRPAG,LREND)=0
+ Q
+PROCESS ;For ea. specimen on date selected
+ ;  If collection type = requested type
+ ;    Get patient name & SSN,order#,collection sample & ordering location
+ ;    Store by patient,ssn,order#,collection sample
+ S LRSN=0
+ F  S LRSN=$O(^LRO(69,LRODT,1,LRSN)) Q:'+LRSN  D
+ .S LRREC=$G(^LRO(69,LRODT,1,LRSN,0)) Q:LRREC=""
+ .S LRDFN=$P(LRREC,U),LRCTYP=$P(LRREC,U,4),LRLOC=$P(LRREC,U,9)
+ .Q:(LRDFN="")!(LRRCTYP'=LRCTYP)!(LRLOC="")
+ .;name/ssn
+ .S DIC=63,DIC(0)="NXZ",X="`"_LRDFN D ^DIC Q:Y=-1
+ .S LRDPF=$P(Y(0),U,2),DFN=$P(Y(0),U,3) Q:DFN=""  D PT^LRX Q:PNM=""
+ .S LRPAT=PNM,LRSSN=SSN S:LRSSN="" LRSSN="NO ENTRY"
+ .;order#
+ .S LRORD=$G(^LRO(69,LRODT,1,LRSN,.1)) Q:LRORD=""
+ .S LRCLCTD=$P($G(^LRO(69,LRODT,1,LRSN,1)),U,4)
+ .;collection sample
+ .S LRCS=$P($G(^LRO(69,LRODT,1,LRSN,0)),U,3) Q:LRCS=""
+ .S DIC=62,DIC(0)="NXZ",X="`"_LRCS D ^DIC Q:Y=-1
+ .S LRCS1=$P(Y(0),U)
+ .;location
+ .S DIC=44,DIC(0)="NXZ",X="`"_LRLOC D ^DIC Q:Y=-1
+ .S LRLOC=$S(+$L($P(Y(0),U,2)):$P(Y(0),U,2),1:$P(Y,U,2))
+ .I LRCLCTD="C" D
+ ..S LRCLCTD="[C]"
+ ..S $P(^TMP($J,"LOCTOT",LRLOC,LRPAT,LRSSN,0),U)=1
+ .E  D
+ ..S LRCLCTD="   "
+ ..S $P(^TMP($J,"LOCTOT",LRLOC,LRPAT,LRSSN,0),U,2)=1
+ .S LRTNN=+$G(^TMP($J,"PAT",LRPAT,LRSSN,LRORD,LRCS1,0))
+ .;  For ea. test
+ .;    Get name & urgency
+ .;    store by patient,ssn,order#,spec,test#
+ .S LRTN=0
+ .F  S LRTN=$O(^LRO(69,LRODT,1,LRSN,2,LRTN)) Q:'+LRTN  D
+ ..S LRREC=$G(^LRO(69,LRODT,1,LRSN,2,LRTN,0)) Q:LRREC=""  Q:$P(LRREC,"^",11)
+ ..S DIC=60,DIC(0)="NXZ",X="`"_$P(LRREC,U) D ^DIC Q:Y=-1
+ ..S LRTST=$P(Y,U,2),LRIFN=+Y,LRPNAM=$P($G(^LAB(60,LRIFN,.1)),U)
+ ..S:LRPNAM'="" LRTST=LRPNAM
+ ..S LRTST=$E(LRTST,1,7)
+ ..S DIC=62.05,DIC(0)="NXZ",X="`"_$P(LRREC,U,2) D ^DIC Q:Y=-1
+ ..S LRTST=LRTST_"("_$E($P(Y,U,2),1)_")"
+ ..S LRTNN=LRTNN+1,^TMP($J,"PAT",LRPAT,LRSSN,LRORD,LRCS1,LRTNN)=LRTST
+ .S ^TMP($J,"PAT",LRPAT,LRSSN,LRORD,LRCS1,0)=LRTNN_U_LRLOC_U_LRCLCTD
+ Q
+CNTSUM ;
+ N LRC,LRU,LRP,LRREC,LRLOC,LRPAT,LRSSN
+ S LRLOC=""
+ F  S LRLOC=$O(^TMP($J,"LOCTOT",LRLOC)) Q:LRLOC=""  D
+ .S LRPAT="",LRPATCNT=0
+ .F  S LRPAT=$O(^TMP($J,"LOCTOT",LRLOC,LRPAT)) Q:LRPAT=""  D
+ ..S LRSSN=""
+ ..F  S LRSSN=$O(^TMP($J,"LOCTOT",LRLOC,LRPAT,LRSSN)) Q:LRSSN=""  D
+ ...S LRREC=$G(^TMP($J,"LOCTOT",LRLOC,LRPAT,LRSSN,0))
+ ...Q:'$L(LRREC)
+ ...S LRPATCNT=LRPATCNT+1
+ ...S LRC=+$P(LRREC,U),LRU=+$P(LRREC,U,2)
+ ...S LRP=$S((LRC)&(LRU):4,('LRC)&(LRU):3,1:2)
+ ...S $P(^(0),U,LRP)=$P($G(^TMP($J,"LOCTOT",LRLOC,0)),U,LRP)+1
+ .S $P(^TMP($J,"LOCTOT",LRLOC,0),U)=LRPATCNT
+ Q
+PAUSE ;
+ K DIR S DIR(0)="E" D ^DIR
+ S:($D(DTOUT)#2)!($D(DUOUT)#2)!($D(DIRUT)#2) LREND=1
+ Q
+WRAPUP ;
+ D:($E(IOST,1,2)="C-")&('LREND) PAUSE
+ W @IOF D:'$D(ZTQUEUED) ^%ZISC
+ K ^TMP($J),LRPATCNT,LRTGLNAM,LRTGLORD,LRCLCTD,LRTNN,LRTAB
+ K DTOUT,DUOUT,DIRUT,DIROUT,X,Y,%,%ZIS,DIC,VADM,VA,VAERR,DFN,%Y,%DT,I,POP
+ K DIR,PNM,SSN,LRODAT,LRDAT,LRPAG,LRCTYP,LRRCTYP,LRRCNAM,LRDUMY,LRIFN
+ K LRTN,LRTST,LRURG,LRLOC,LRPAT,LRSSN,LRREC,LRORD,LRDFN,LRODT,LRDPF,LRWRD
+ K LRSN,LRPNAM,LRSPC,LREND,ZTIO,ZTQUEUED,ZTRTN,ZTSAVE,ZTDESC,AGE,DOB,SEX
+ K LRLCNT,LRBUF,LRBLANK,LRCS3,LRRPT,LRCS1,ZTREQ
+ Q
+QUE ;
+ K IO("Q") I '$D(ZTIO),$D(ION),ION="" S ZTIO=""
+ S ZTDESC="LRRP5 - COLLECTION REPORT",ZTRTN="DQ^LRRP5"
+ S ZTSAVE("LR*")="" D ^%ZTLOAD
+ W:$D(ZTSK) !!,"Report queued"
+ W:'$D(ZTSK) !!,"Report canceled!"
+ D HOME^%ZIS
+ Q

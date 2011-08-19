@@ -1,0 +1,35 @@
+YSCEN26 ;ALB/ASF-MH CENSUS PATIENT LIST FOR STAFF ;4/3/90  10:20 ;08/12/93 16:51
+ ;;5.01;MENTAL HEALTH;;Dec 30, 1994
+WHO ; Called by routine YSCEN3
+ R !,"Sort by (T)herapist, (P)hysician or (R)esident: ",X2:DTIME S YSTOUT='$T,YSUOUT=X2["^" Q:YSTOUT!YSUOUT  S X2=$TR($E(X2_1),"trp","TRP") I "TPR"'[X2 W !,"Select above for listing by either Physician, Resident or primary Therapist",! G WHO
+ S YSCR="AC",YSOPT9L="PRIMARY THERAPIST" S:"P"[X2 YSCR="ACP",YSOPT9L="PHYSICIAN" S:"R"[X2 YSCR="ACR",YSOPT9L="RESIDENT"
+ I YSOPT9L'="PRIMARY THERAPIST" S DIC("S")="I $S(+$G(^(""I""))=0:1,$G(^(""I""))'<DT:1,1:0)",D="AK.PROVIDER"
+ S:'$D(D)#2 D="B" S DIC="^VA(200,",DIC("A")="Select "_YSOPT9L_": ",DIC(0)="AEQ" D MIX^DIC1 K D,DIC
+ D:X="" MSG1 G:X="" WHO Q:Y<1  G:'$D(^YSG("INP",YSCR,+Y)) EMPT S YSWHO=+Y,POP="",(Q3,P1,W1)=0,T6="S",%ZIS="Q" K IOP I $D(YSFLG) S:YSFLG IOP=0
+ D ^%ZIS S YSUOUT=$G(POP)
+ Q
+ ;
+S1 ; Called by routines YSCEN2, YSCEN23, YSCEN35
+ ;
+ I $G(YSCOPY)=1 S YSOPT9L=$S('$D(YSOPT9L):"",1:YSOPT9L_" list for: ")
+ K ^UTILITY("YSCEN",$J),^UTILITY($J)
+ S DA=0 F  S DA=$O(^YSG("INP",YSCR,YSWHO,DA)) Q:'DA  S G=^YSG("INP",DA,0),G7=^(7),YSDFN=+$P(G,U,2),W1=+$P(G7,U),T6=+$P(G7,U,4),^UTILITY("YSCEN",$J,W1,T6,$P(^DPT(YSDFN,0),U),YSDFN)=DA
+ S YSRD=0 F  S YSRD=$O(^YSG("CEN","AFS",YSRD)) Q:'YSRD  S W1=$O(^(YSRD,0)),W2=$P(^DIC(42,W1,0),U) I $D(^UTILITY("YSCEN",$J,W1)) D SS2
+ I $G(YSCOPY)>0&($G(YSCOP)>0),YSCOPY<YSCOP QUIT
+ G END
+SS2 ;
+ S YSOR=0 F  S YSOR=$O(^YSG("SUB","AOR",W1,YSOR)) Q:'YSOR  S T6=$O(^(YSOR,0)) D SS3,SS4
+ Q
+SS3 ;
+ S N1="",YSTM=0 F  S N1=$O(^UTILITY("YSCEN",$J,W1,T6,N1)) Q:N1=""  S YSDFN=$O(^(N1,0)),DA=^(YSDFN) I $D(^YSG("INP","AWC",W1,T6,DA)) S YSTM=YSTM+1,^UTILITY($J,N1,YSDFN)=DA
+ Q
+SS4 ;
+ Q:'$D(^UTILITY($J))  D:$D(YSOPT2) @YSOPT2 D:'$D(YSOPT2) L3^YSCEN2,WAIT^YSCEN1 K ^UTILITY($J)
+ Q
+END ;
+ K ^UTILITY($J),^UTILITY("YSCEN") D KILL^%ZTLOAD
+ K DIE,DIC,DR,DIK,I,I7,N,P1,X1,X2,YSCR,YSOPT9L,YSWHO,YSOPT1,YSOPT1L,YSOPT2,W1,YSNM,YSSSN,YSAGE,X,G2,G,ZTSK Q
+EMPT ;
+ W !,"No patients are listed for this staff member as ",YSOPT9L,!,$C(7) S Y=-1 G WHO
+MSG1 ;
+ W !!,"Since STAFF was selected as a sort option a valid ",YSOPT9L," is required.",! H 4 Q

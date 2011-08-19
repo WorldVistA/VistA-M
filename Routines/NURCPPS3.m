@@ -1,0 +1,37 @@
+NURCPPS3 ;HIRMFO/JH,RM-NURSING CARE PLAN DATABASE SEARCH part 3 ;8/29/96
+ ;;4.0;NURSING SERVICE;;Apr 25, 1997
+CONT S NURSPNAM=$E(GMRGVNAM,1,20),NURSSSN=GMRGVSSN,NURAGE=GMRGVAGE
+ S DIC="^DPT(",DR=".05;.08",DA=DFN,DIQ="NURSPAT(",DIQ(0)="I" D EN^DIQ1
+ S NURSMAR=$P($G(^DIC(11,+$G(NURSPAT(2,DFN,.05,"I")),0)),"^",3),NURSMAR=$E(NURSMAR_" ")
+ S NURSREL=$P($G(^DIC(13,+$G(NURSPAT(2,DFN,.08,"I")),0)),"^"),NURSREL=$E(NURSREL_"    ",1,4)
+ S NURSWD=$E(GMRGVWRD,1,8)_$E("        ",$L(GMRGVWRD)+1,8),NURSRB=$E(GMRGVRBD,1,10)_$E("          ",$L(GMRGVRBD)+1,10),NURSPROV=$E(GMRGVPRV,1,20),NURSDIAG=GMRGVDX
+ W !!,"This Report may be Queued to print on another device,",!,"freeing your terminal for other use.",!
+ S GMRGPDT="N" F X="GMRGOUT","NURSPRT","NURSSSN","GMRGPDA","GMRGPDT","GMRGPAR","DFN","NURSPNAM","NURSPLN","NURSREL","NURAGE","NURSRB","NURSWD","NURSMAR","NURSPROV","NURSDIAG" S ZTSAVE(X)=""
+ S ZTDESC="Patient Care Plan Print",ZTRTN="LATER^NURCPPS3" D EN7^NURSUT0 Q:POP!($D(ZTSK))
+ U IO D:'$D(IO("Q")) WAIT^DICD
+LATER F X="NURSDATA","NURSAUD","NURSEVAL","NURSOT","GMRGNAR","NURSGO","NURSIN","NURSTARG","NURSORD" K ^TMP($J,X)
+ K NURSAL D ALLERGY^NURCUT1(DFN,.NURSAL)
+ S NURSJ=1,X=1,NURSALGR(1)="Reactions: " F NURSI=0:0 S NURSI=$O(NURSAL(NURSI)) Q:NURSI'>0  D
+ .   I $L(NURSALGR(X))+$L(NURSAL(NURSI))+2>IOM S NURSJ=1,NURSALGR(X)=NURSALGR(X)_",",X=X+1,NURSALGR(X)="           " ; start next line
+ .   S NURSALGR(X)=NURSALGR(X)_$S(NURSJ>1:", ",1:"")_$P(NURSAL(NURSI),U),NURSJ=NURSJ+1 ; add this allergy to end of line
+ .   Q
+ K NURSAL,NURCLEG I NURSPLN="A" D
+ .   S NURCLEG(1)="   E-prob eval dt      U-prob unresolved at discharge    S-prob suspended",NURCLEG(2)="   T-goal target dt    DC-order/goal discontinued        M-goal met"
+ .   S NURCLEG(3)="   @-entered in error  R-prob resolved/order reinstated",X=X+3
+ .   Q
+ I NURSPLN="C" S NURCLEG(1)="   E-prob eval dt      U-prob unresolved at discharge    S-prob suspended",NURCLEG(2)="   T-goal target dt    R-prob resolved/order reinstated",X=X+2
+ S NURSIOSL=IOSL-5-X-$S($E(IOST)="C":2,1:0)
+ I GMRGPDT]"" S X=GMRGPDT,%DT="TS" D ^%DT Q:Y'>0  S GMRGPDT=Y
+ S NURSOUT=0,NURSPOI=0 I GMRGPDA>0 S NURSPOI=$O(^NURSC(216.8,"B",GMRGPDA,0)) Q:NURSPOI'>0
+ S NURSRM=$S(IOM'<132:104,1:30+(IOM-80))
+ S NURSSS="",$P(NURSSS," ",132)=""
+ S NURSITHD=$G(^DIC(213.9,1,"CPH")) ; get site configured report params.
+ S NURSTITL=$S($P(NURSITHD,U)]"":$P(NURSITHD,U),1:"PATIENT PLAN OF CARE - Patient Print")
+ F NURSP=0:0 S NURSP=$O(^NURSC(216.8,NURSPOI,"PROB",NURSP)) Q:NURSP'>0  S NURSPRB=+^(NURSP,0) I $S(NURSPLN="A"&$O(^GMR(124.3,GMRGPDA,1,"B",NURSPRB,0)):1,NURSPLN="C"&$O(^GMR(124.3,GMRGPDA,1,"ALIST",NURSPRB,0)):1,1:0) D STOR
+ ;
+ S NURSGCK=+$O(^GMRD(124.25,"AA","NURSC","GOALS/EXPECTED OUTCOMES",0)),NURSICK=+$O(^GMRD(124.25,"AA","NURSC","NURSING INTERVENTION",0)),NURSGOCK=+$O(^GMRD(124.25,"AA","NURSC","GOAL",0)),NURSINCK=+$O(^GMRD(124.25,"AA","NURSC","ORDERABLE",0))
+ S NURSP(0)="" F NURSX=0:0 S NURSP(0)=$O(NURSPRB(NURSP(0))) Q:NURSP(0)=""  F NURSP=0:0 S NURSP=$O(NURSPRB(NURSP(0),NURSP)) Q:NURSP'>0  D PROB^NURCPPS2
+ S NURSERR=$G(^GMR(124.3,GMRGPDA,5)) I +NURSERR S Y=$P(NURSERR,"^",2) D D^DIQ S NURSERR(1)="",NURSERR(2)="** ENTERED IN ERROR BY: "_$E($P($G(^VA(200,+$P(NURSERR,"^",3),0)),"^"),1,20)_" ON: "_Y_" **",$P(NURSERR(1),"*",$L(NURSERR(2))+1)=""
+ U IO D EN1^NURCPP5:IOM'<132,EN1^NURCPP1:IOM<132 I $E(IOST)="C" W:ANS'["^" !,$C(7),"Press any key to continue. " R:ANS'["^" X:DTIME S:'$T!(X="^")!(X="^^") NURSOUT=1 ;Call Data Processing Output Routines, then quit.
+ Q
+STOR S NURSK=$S($D(^GMRD(124.2,+NURSPRB,0)):$P(^(0),"^"),1:"") Q:NURSK=""  S NURSPRB(NURSK,NURSPRB)=$O(^GMR(124.3,GMRGPDA,1,"B",NURSPRB,0)) Q

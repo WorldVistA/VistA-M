@@ -1,0 +1,119 @@
+SCRPBK1 ;MJK/ALB - RPC Broker Utilities ; 27 FEB 96
+ ;;5.3;Scheduling;**41,177**;AUG 13, 1993
+ ;
+GETDATA(SCDATA,SCTYPE,SCRPTID,SCRPTN,SCTEXT,SCSELS) ;
+ ; -- get file type entries for Selections form
+ ;
+ ; output:  SCDATA(1..n) := info about entity.  NOTE this is now in a
+ ;         global location rather than an array for this RPC.
+ ;
+ ; -- SEE BOTTOM OF SCRPBK FOR MORE VARIABLE DEFINITIONS
+ ;
+ ; Related RPC: SCRP SELECTION SOURCE
+ ;
+ S SCDATA=$NA(^TMP($J,"PCMM","SCDATA"))
+ ;
+ IF SCTYPE="DIVISION" D DIV G GETDATAQ
+ ;
+ IF SCTYPE="TEAM" D TEAM G GETDATAQ
+ ;
+ IF SCTYPE="PRACTITIONER" D PRAC G GETDATAQ
+ ;
+ IF SCTYPE="ROLE" D ROLE G GETDATAQ
+ ;
+ IF SCTYPE="CLINIC" D CLIN G GETDATAQ
+ ;
+ IF SCTYPE="USERCLASS" D USER G GETDATAQ
+ ;
+GETDATAQ Q
+ ;
+CHK(SCX,SCLEN) ; -- check if text matches user input
+ Q SCX=""!($E(SCX,1,SCLEN)'=SCTEXT)
+ ;
+BACK(X) ; -- backup one char for scanning
+ Q $S(X="":"",$L(X)=1:$C($A(X)-1)_$C(122),1:$E(X,1,$L(X)-1)_$C($A($E(X,$L(X)))-1)_$C(122))
+ ;
+DIV ; -- get institution file entries
+ N SCI,Y,SCX,SCLEN,SCINC
+ S SCI=0,SCINC=0,SCX=$$BACK(SCTEXT),SCLEN=$L(SCTEXT)
+ F  S SCI=$O(^SCTM(404.51,"AINST",SCI)) Q:'SCI  D
+ . S Y=SCI,SC0=$G(^DIC(4,Y,0))
+ . Q:$$CHK($P(SC0,U),SCLEN)
+ . D SET($P(SC0,U)_U_SCTYPE_U_SCI,.SCINC,SCDATA)
+ Q
+ ;
+TEAM ; -- get team file entries
+ N SCI,Y,SCX,SCLEN,SCINC,VAUTD
+ S SCI=0,SCINC=0,SCX=$$BACK(SCTEXT),SCLEN=$L(SCTEXT)
+ D VAUTD(.SCSELS,.VAUTD)
+ F  S SCX=$O(^SCTM(404.51,"B",SCX)) Q:$$CHK(SCX,SCLEN)  D
+ . F  S SCI=$O(^SCTM(404.51,"B",SCX,SCI)) Q:'SCI  D
+ . . S Y=SCI,SC0=$G(^SCTM(404.51,Y,0))
+ . . IF $D(VAUTD(+$P(^(0),U,7))) D SET($P(SC0,U)_U_SCTYPE_U_SCI,.SCINC,SCDATA)
+ Q
+ ;
+PRAC ; -- get practitioner entries
+ N SCI,Y,SCX,SCLEN,SCINC,VAUTT
+ S SCI=0,SCINC=0,SCX=$$BACK(SCTEXT),SCLEN=$L(SCTEXT)
+ D VAUTT(.SCSELS,.VAUTT)
+ F  S SCX=$O(^VA(200,"B",SCX)) Q:$$CHK(SCX,SCLEN)  D
+ . F  S SCI=$O(^VA(200,"B",SCX,SCI)) Q:'SCI  D
+ . . S Y=SCI,SC0=$G(^VA(200,Y,0))
+ . . IF $D(VAUTT),$$PRACS^SCRPU1() D SET($P(SC0,U)_U_SCTYPE_U_SCI,.SCINC,SCDATA)
+ Q
+ ;
+ROLE ; -- get standard role file entries
+ N SCI,Y,SCX,SCLEN,SCINC,VAUTT
+ S SCI=0,SCINC=0,SCX=$$BACK(SCTEXT),SCLEN=$L(SCTEXT)
+ D VAUTT(.SCSELS,.VAUTT)
+ F  S SCX=$O(^SD(403.46,"B",SCX)) Q:$$CHK(SCX,SCLEN)  D
+ . F  S SCI=$O(^SD(403.46,"B",SCX,SCI)) Q:'SCI  D
+ . . S Y=SCI,SC0=$G(^SD(403.46,SCI,0))
+ . . IF $D(VAUTT),$$RL^SCRPU1() D SET($P(SC0,U)_U_SCTYPE_U_SCI,.SCINC,SCDATA)
+ Q
+ ;
+CLIN ; -- get clinic entries
+ N SCI,Y,SCX,SCLEN,SCINC,VAUTD,VAUTT,SCLIN
+ S SCLIN="^TMP($J,""PCMM"",""SCLIN"")"
+ K @SCLIN
+ S SCI=0,SCINC=0,SCLEN=$L(SCTEXT)
+ IF SCRPTID=2 D
+ . Q
+ ELSE  D
+ . D VAUTT(.SCSELS,.VAUTT)
+ F SCXREF="B","C","TEAMS" S SCX=$$BACK(SCTEXT) D  Q:SCTEXT=""
+ . F  S SCX=$O(^SC(SCXREF,SCX)) Q:$$CHK(SCX,SCLEN)  D
+ . . F  S SCI=$O(^SC(SCXREF,SCX,SCI)) Q:'SCI  IF '$D(@SCLIN@(SCI)) D
+ . . . S Y=SCI,SC0=$G(^SC(Y,0))
+ . . . IF SCRPTID=2,$$CLSC2^SCRPU1() D SET($P(SC0,U)_U_SCTYPE_U_SCI,.SCINC,SCDATA) S @SCLIN@(SCI)=""
+ . . . IF SCRPTID'=2,$D(VAUTT),$$CLSC^SCRPU1() D SET($P(SC0,U)_U_SCTYPE_U_SCI,.SCINC,SCDATA)
+ K @SCLIN
+ Q
+ ;
+USER ; -- get user class file entries
+ N SCI,Y,SCX,SCLEN,SCINC,VAUTT
+ S SCI=0,SCINC=0,SCX=$$BACK(SCTEXT),SCLEN=$L(SCTEXT)
+ D VAUTT(.SCSELS,.VAUTT)
+ F  S SCX=$O(^USR(8930,"B",SCX)) Q:$$CHK(SCX,SCLEN)  D
+ . F  S SCI=$O(^USR(8930,"B",SCX,SCI)) Q:'SCI  D
+ . . S Y=SCI,SC0=$G(^USR(8930,SCI,0))
+ . . IF $D(VAUTT),$$USRCL^SCRPU1() D SET($P(SC0,U)_U_SCTYPE_U_SCI,.SCINC,SCDATA)
+ Q
+ ;
+VAUTD(SCSELS,VAUTD) ; -- build division util array
+ N I,X
+ F I=1:1 S X=$G(SCSELS(I)) Q:X=""  IF $P(X,U,2)="DIVISION" S VAUTD(+$P(X,U,3))=$P(X,U)
+ S:$D(VAUTD) VAUTD=0
+ Q
+ ;
+VAUTT(SCSELS,VAUTT) ; -- build team util array
+ N I,X
+ IF SCRPTID=3 S VAUTT=1 G VAUTTQ
+ F I=1:1 S X=$G(SCSELS(I)) Q:X=""  IF $P(X,U,2)="TEAM" S VAUTT(+$P(X,U,3))=$P(X,U)
+ S:$D(VAUTT) VAUTT=0
+VAUTTQ Q
+ ;
+SET(X,INC,SCDATA) ; -- set value in return array
+ S INC=$G(INC)+1,@SCDATA@(INC)=X
+ Q
+ ;

@@ -1,0 +1,120 @@
+PSSUTIL1 ;BIR/RTR-Utility routine ;08/21/00
+ ;;1.0;PHARMACY DATA MANAGEMENT;**38,66,69**;9/30/97
+ ;Reference to ^PS(50.607 supported by DBIA #2221
+ ;Reference to ^PSNAPIS supported by DBIA 2531
+ ;
+EN(PSSDRIEN) ;
+ N PSSMASH,PSSMNDFS,PSSMSSTR,PSSMUNIT,PSSUNZ,PSSMA,PSSMB,PSSMA1,PSSMB1,PSSUNX,PSSMASH2,PSSMASH3,PSSNAT1,PSSNAT3,PSSNODEU
+ I '$G(PSSDRIEN) Q "|^^^^^99PSU"
+ S PSSMSSTR=$P($G(^PSDRUG(PSSDRIEN,"DOS")),"^"),PSSMUNIT=$P($G(^("DOS")),"^",2)
+ S PSSNAT1=$P($G(^PSDRUG(PSSDRIEN,"ND")),"^"),PSSNAT3=$P($G(^("ND")),"^",3) I PSSNAT1,PSSNAT3 S PSSNODEU=$$DFSU^PSNAPIS(PSSNAT1,PSSNAT3) S PSSMNDFS=$P(PSSNODEU,"^",4) S:'$G(PSSMUNIT) PSSMUNIT=$P(PSSNODEU,"^",5)
+ S PSSUNZ=$P($G(^PS(50.607,+$G(PSSMUNIT),0)),"^")
+ I PSSUNZ'["/" Q $S($G(PSSMSSTR)'="":$G(PSSMSSTR),$G(PSSMNDFS)'="":$G(PSSMNDFS),1:"")_"|"_"^^^"_$S($G(PSSMUNIT):$G(PSSMUNIT),1:"")_"^"_$G(PSSUNZ)_"^"_"99PSU"
+ S PSSMASH=0
+ I $G(PSSMSSTR),$G(PSSMNDFS),+$G(PSSMSSTR)'=+$G(PSSMNDFS) S PSSMASH=1
+ I 'PSSMASH Q PSSMSSTR_"|"_"^^^"_$S($G(PSSMUNIT):$G(PSSMUNIT),1:"")_"^"_$G(PSSUNZ)_"^"_"99PSU"
+ S PSSMA=$P(PSSUNZ,"/"),PSSMB=$P(PSSUNZ,"/",2),PSSMA1=+$G(PSSMA),PSSMB1=+$G(PSSMB)
+ S PSSMASH2=PSSMSSTR/PSSMNDFS,PSSMASH3=PSSMASH2*($S($G(PSSMB1):$G(PSSMB1),1:1))
+ S PSSUNX=$G(PSSMA)_"/"_$G(PSSMASH3)_$S('$G(PSSMB1):$G(PSSMB),1:$P(PSSMB,PSSMB1,2))
+ Q $S($G(PSSMSSTR)'="":$G(PSSMSSTR),$G(PSSMNDFS)'="":$G(PSSMNDFS),1:"")_"|"_"^^^^"_$G(PSSUNX)_"^"_"99PSU"
+ ;
+ Q
+ ;
+DRG(PSSDD,PSSOI,PSSPK) ;
+ ; PSSDD - Array of Drugs
+ ; PSSOI - Orderable Item (Pharmacy)
+ ; PSSPK - Application Package ("O"-Outpatient;"I"-IV;"X"-Non-VA Med)
+ ;Return active dispense drugs for package based on Orderable Item 
+ N PSSL,PSSAP,PSSIN,PSSND
+ Q:'$G(PSSOI)
+ I $G(PSSPK)'="O",$G(PSSPK)'="I",$G(PSSPK)'="X" Q
+ F PSSL=0:0 S PSSL=$O(^PSDRUG("ASP",PSSOI,PSSL)) Q:'PSSL  D
+ . S PSSIN=$P($G(^PSDRUG(PSSL,"I")),"^"),PSSAP=$P($G(^(2)),"^",3)
+ . I PSSIN,PSSIN<DT Q
+ . S PSSND=$P($G(^PSDRUG(PSSL,"ND")),"^")
+ . I PSSPK="O"!(PSSPK="X") D  Q
+ . . S:PSSAP[PSSPK PSSDD(PSSL_";"_PSSND)=$P($G(^PSDRUG(PSSL,0)),"^")
+ . I PSSAP["I"!(PSSAP["U") D
+ . . S PSSDD(PSSL_";"_PSSND)=$P($G(^PSDRUG(PSSL,0)),"^")
+ Q
+ ;
+ITEM(PSSIT,PSSDR) ;Return Orderable Item to CPRS
+ N PSSNEW
+ I '$G(PSSIT)!('$G(PSSDR)) Q -1
+ I '$D(^PS(50.7,+$G(PSSIT),0))!('$D(^PSDRUG(+$G(PSSDR),0))) Q -1
+ S PSSNEW=+$P($G(^PSDRUG(+$G(PSSDR),2)),"^")
+ I PSSNEW,PSSNEW=$G(PSSIT) Q 0
+ I PSSNEW,PSSNEW'=$G(PSSIT) Q 1_"^"_PSSNEW
+ Q -1
+ ;
+ Q
+ ;
+EN1(PSSOA,PSSOAP) ;
+ ;Return Orderable Item Forumary Alternatives to CPRS
+ ;PSSOA = Pharmacy Orderable Item number
+ ;PSSOAP = "I" For Inpatient, "O" For Outpatient
+ Q:'$G(PSSOA)
+ I $G(PSSOAP)'="O",$G(PSSOAP)'="I" Q
+ N PSSOAL,PSSOALD,PSSOAN,PSSOAIT,PSSOADT,PSSOAZ
+ S PSSOAL="" F  S PSSOAL=$O(^PSDRUG("ASP",PSSOA,PSSOAL)) Q:PSSOAL=""  D
+ .S PSSOALD="" F  S PSSOALD=$O(^PSDRUG(PSSOAL,65,PSSOALD)) Q:PSSOALD=""  D
+ ..S PSSOAN=$P($G(^PSDRUG(PSSOAL,65,PSSOALD,0)),"^") I PSSOAN S PSSOAIT=$P($G(^PSDRUG(PSSOAN,2)),"^") D:PSSOAIT
+ ...Q:PSSOAIT=PSSOA
+ ...Q:$D(PSSOA(PSSOAIT))
+ ...Q:'$D(^PS(50.7,PSSOAIT,0))!($P($G(^PS(50.7,PSSOAIT,0)),"^",12))
+ ...Q:$P($G(^PS(50.7,PSSOAIT,0)),"^",4)&(+$P($G(^(0)),"^",4)'>DT)
+ ...S PSSOAZ="" F  S PSSOAZ=$O(^PSDRUG("ASP",PSSOAIT,PSSOAZ)) Q:PSSOAZ=""!($D(PSSOA(PSSOAIT)))  D
+ ....Q:$P($G(^PSDRUG(PSSOAZ,"I")),"^")&(+$P($G(^("I")),"^")'>DT)
+ ....Q:$P($G(^PSDRUG(PSSOAZ,0)),"^",9)
+ ....I $G(PSSOAP)="O" S:$P($G(^PSDRUG(PSSOAZ,2)),"^",3)["O" PSSOA(PSSOAIT)="" Q
+ ....I $P($G(^PSDRUG(PSSOAZ,2)),"^",3)["I"!($P($G(^(2)),"^",3)["U") S PSSOA(PSSOAIT)=""
+ Q
+SCH(SCH) ;Expand schedule for Outpatient order in CPRS
+ N SQFLAG,SCLOOP,SCLP,SCLPS,SCLHOLD,SCIN,SODL,SST,SCHEX
+ S SCHEX=$G(SCH) S SQFLAG=0
+ I $G(SCH)="" G SCHQT
+ ;I SCH[""""!($A(SCH)=45)!(SCH?.E1C.E)!($L(SCH," ")>3)!($L(SCH)>20)!($L(SCH)<1) K SCH Q
+ F SCLOOP=0:0 S SCLOOP=$O(^PS(51.1,"B",SCH,SCLOOP)) Q:'SCLOOP!(SQFLAG)  I $P($G(^PS(51.1,SCLOOP,0)),"^",8)'="" S SCHEX=$P($G(^(0)),"^",8),SQFLAG=1
+ I SQFLAG G SCHQT
+ I $P($G(^PS(51,"A",SCH)),"^")'="" S SCHEX=$P(^(SCH),"^") G SCHQT
+ S SCLOOP=0 F SCLP=1:1:$L(SCH) S SCLPS=$E(SCH,SCLP) I SCLPS=" " S SCLOOP=SCLOOP+1
+ I SCLOOP=0 S SCHEX=SCH G SCHQT
+ S SCLOOP=SCLOOP+1
+ K SCLHOLD F SCIN=1:1:SCLOOP S (SODL,SCLHOLD(SCIN))=$P(SCH," ",SCIN) D
+ .Q:$G(SODL)=""
+ .S SQFLAG=0 F SST=0:0 S SST=$O(^PS(51.1,"B",SODL,SST)) Q:'SST!($G(SQFLAG))  I $P($G(^PS(51.1,SST,0)),"^",8)'="" S SCLHOLD(SCIN)=$P($G(^(0)),"^",8),SQFLAG=1
+ .Q:$G(SQFLAG)
+ .I $P($G(^PS(51,"A",SODL)),"^")'="" S SCLHOLD(SCIN)=$P(^(SODL),"^")
+ S SCHEX="",SQFLAG=0 F SST=1:1:SCLOOP S SCHEX=SCHEX_$S($G(SQFLAG):" ",1:"")_$G(SCLHOLD(SST)),SQFLAG=1
+SCHQT ;
+ S SCH=SCHEX
+ Q
+ ;
+IVDEA(PSSIVOI,PSSIVOIP) ;DEA Special Handling to CPRS for IV Fluids dialogue
+ ;parameter 1 is Orderable Item
+ ;parameter 2 is "A" for Additive, "S" for Solution
+ ;Return variables:  1 -  DEA contains a 1 or a 2
+ ;2 - DEA contains a 3, 4, or 5
+ ;0 - first 2 conditions not met, but active additive/solutions exist
+ ;null - no active additive/solution for the Orderable Item
+ N PSSIVDO,PSSIVDD,PSSIVL,PSSIVLP,PSSIVDEA,PSSIVLPX
+ S (PSSIVDO,PSSIVDD)=0
+ I $G(PSSIVOIP)'="S" S PSSIVOIP="A"
+ I '$G(PSSIVOI) G IVQ
+ S PSSIVL="" F  S PSSIVL=$O(^PSDRUG("ASP",PSSIVOI,PSSIVL)) Q:PSSIVL=""!(PSSIVDO=1)  D
+ .I $P($G(^PSDRUG(PSSIVL,"I")),"^"),$P($G(^("I")),"^")<DT Q
+ .I $P($G(^PSDRUG(PSSIVL,2)),"^",3)'["I",$P($G(^(2)),"^",3)'["U" Q
+ .I PSSIVOIP="A" D  Q
+ ..S PSSIVLP="",PSSIVLPX=0 F  S PSSIVLP=$O(^PSDRUG("A526",PSSIVL,PSSIVLP)) Q:PSSIVLP=""!(PSSIVDO=1)!(PSSIVLPX)  D
+ ...I $D(^PS(52.6,PSSIVLP,0)) I '$P($G(^("I")),"^")!($P($G(^("I")),"^")>DT) S (PSSIVDD,PSSIVLPX)=1 D IVX
+ .S PSSIVLP="",PSSIVLPX=0 F  S PSSIVLP=$O(^PSDRUG("A527",PSSIVL,PSSIVLP)) Q:PSSIVLP=""!(PSSIVDO=1)!(PSSIVLPX)  D
+ ..I $D(^PS(52.7,PSSIVLP,0)) I '$P($G(^("I")),"^")!($P($G(^("I")),"^")>DT) S (PSSIVDD,PSSIVLPX)=1 D IVX
+IVQ ;
+ I PSSIVDO=0,'PSSIVDD S PSSIVDO=""
+ Q PSSIVDO
+ ;
+IVX ;
+ S PSSIVDEA=$P($G(^PSDRUG(PSSIVL,0)),"^",3)
+ I PSSIVDEA[1!(PSSIVDEA[2) S PSSIVDO=1 Q
+ I PSSIVDEA[3!(PSSIVDEA[4)!(PSSIVDEA[5) S PSSIVDO=2
+ Q

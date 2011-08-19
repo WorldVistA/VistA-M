@@ -1,0 +1,37 @@
+SOWKHR1 ;B'HAM ISC/SAB-ROUTINE TO PRINT HIGH RISK SCREENING PROFILES ; 01 Mar 93 / 8:47 AM
+ ;;3.0; Social Work ;;27 Apr 93
+ U IO W:$Y @IOF,! F Q=1:1:80 W "_"
+ W !,?20,"SOCIAL WORK SERVICE-REPORTS AND SUMMARIES"
+ F E=1:1:2 W ! F W=1:1:80 W "-"
+ W !,?23,"SOCIAL WORK HIGH RISK SCREENING PROFILE",!!
+ F B=0:0 S B=$O(S(B)) Q:'B  W "WORKER: "_$P(^VA(200,$P(S(B),"^"),0),"^"),?45,$P(S(B),"^",2)_" "_$P(S(B),"^",3),!
+ I '$O(S(0)) W "SOCIAL WORKER: CASE NOT OPENED TO SOCIAL WORK SERVICE",!
+ W !,"DATE ADMITTED: "_$P(VAIN(7),"^",2),?$X+20,"DATE SCREENED:____________ ",!!
+ W "CLAIM #: "_VAEL(7),!,"PROVIDER: "_$P(VAIN(2),"^",2),!,"PATIENT ADDRESS: "_$S(VAPA(1)]"":VAPA(1)_" "_VAPA(2)_" "_VAPA(4)_", "_$P(VAPA(5),"^",2)_" "_VAPA(6)_" PHONE: "_VAPA(8),1:"PATIENT ADDRESS UNAVAILABLE"),!
+ W !,"NOK NAME: "_VAOA(9)_"   "_"RELATIONSHIP: "_VAOA(10),!!,"NOK ADDRESS: "_VAOA(1)_" "_VAOA(2)_" "_VAOA(4)_", "_$P(VAOA(5),"^",2)_" "_VAOA(6)_" "_" PHONE: "_VAOA(8),!!
+AD W !,"ADDITIONAL CONTACTS:" F Z=1:1:60 W "_"
+ W !! F Z=1:1:80 W "_"
+ W !!,"DOB: "_$P(VADM(3),"^",2)_"  AGE: "_VADM(4),"   MARITAL STATUS: "_$P(VADM(10),"^",2),!!,"EMPLOYMENT STATUS: "_$P(VAPD(7),"^",2) I MON D IC
+ I SK W !!,"INSURANCE COVERAGE: " F K=1:1 Q:'$D(IC(K))  W IC(K)_" "
+ W !!,"VETERANS STATUS: "_$S(+VAEL(3):"SC ",1:"NSC ") W:+VAMB(1) "A&A " W:+VAMB(2) "HB "
+ W ?55," SC CONDITION: "_$S(+VAEL(3):$P(VAEL(3),"^",2)_"%",1:""),!
+ W !,"ADMISSION DIAGNOSIS: "_VAIN(9)
+ W !!,"LOCATION LAST VA TREATMENT: " I $D(^DPT(DFN,1010.15)),$P(^DPT(DFN,1010.15),"^",2)]"" W $S($D(^DIC(4,$P(^DPT(DFN,1010.15),"^",2),0)):$P(^DIC(4,$P(^DPT(DFN,1010.15),"^",2),0),"^"),1:"UNKNOWN")
+ W !!,"POSITIVE SCREENING CRITERIA: " F T=1:1 Q:'$D(T(T))  W:$X+$L(T(T))>80 ! W T(T)
+ W !!,"SOCIAL WORKER ASSESSMENT & PLAN:" F Z=1:1:48 W "_"
+ F A=1:1:3 W !! F Z=1:1:80 W "_"
+ W !,"PATIENT NAME: "_$P(^DPT(DFN,0),"^"),!,"ID#: "_VA("PID"),?50 F Z=1:1:30 W "_"
+ W !,"WARD NO.: "_$P(VAIN(4),"^",2),!,"ROOM NO.: "_VAIN(5)
+ W ?50,"Social Worker",!!!,?25,"Social Work Service Reports and Summaries",!,?25,"10-9034 VAF VICE 10-1349" F T=1:1 Q:'$D(T(T))  S T(T)=""
+ I '$D(^SOWK(655,DFN)) S ^SOWK(655,DFN,0)=DFN,^SOWK(655,"B",DFN,DFN)="",^SOWK(655,0)=$P(^SOWK(655,0),"^",1,2)_"^"_DFN_"^"_($P(^SOWK(655,0),"^",4)+1),$P(^SOWK(655,DFN,0),"^",5)="HR" S (B,C,T,K)=0 K IC,S Q
+ E  S $P(^SOWK(655,DFN,0),"^",5)="HR" S (B,C,T,K)=0 K S,IC Q
+IC W !,"UNEARNED INCOME (Current):",!?5,"DISABILITY PAYMENT",?37,$J(DP,5,0),?45,"MILITARY RETIREMENT",?75,$J(MP,5,0)
+ W !?5,"A&A AMOUNT",?37,$J(AA,5,0),?45,"UNEMPLOYMENT COMPENSATION",?75,$J(VAINC(12),5,0),!?5,"HB AMOUNT",?37,$J(HB,5,0),?45,"OTHER RETIREMENT",?75,$J(OI,5,0)
+ W !?5,"VA PENSION",?37,$J(PE,5,0),?45,"TOTAL INCOME FROM EMPLOYMENT",?75,$J(VAINC(14),5,0),!,"INCOME SCREENING ("_$$FDTTM(VAINC(1))_"):",?45,"INTEREST,DIVIDEND,ANNUITY",?75,$J(VAINC(15),5,0)
+ W !,?5,"SOCIAL SECURITY (Includes SSI)",?37,$J(SI+SC,5,0),?45,"WORKERS COMP OR BLACK LUNG",?75,$J(VAINC(16),5,0),!,?5,"U.S. CIVIL SERVICE",?37,$J(VAINC(9),5,0),?45,"*ALL OTHER INCOME",?75,$J(VAINC(17),5,0)
+ W !,?5,"U.S. RAILROAD RETIREMENT",?37,$J(VAINC(10),5,0),?75 F N=1:1:5 W "-"
+ W !,"TOTAL INCOME:",?73,"$",?75,$J(INC,5,0),!,"*-This total may include amounts already listed under current 'UNEARNED INCOME'."
+ Q
+FDTTM(Y) ;return formatted date
+ D DD^%DT
+ Q $S(Y[1700:"",1:Y)

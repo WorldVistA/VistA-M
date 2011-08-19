@@ -1,0 +1,26 @@
+PRXCNTEG ;ISC/XTSUMBLD KERNEL - Package checksum checker ;2951023.122155
+ ;;5.0;IFCAP;**40**;4/21/95
+ ;;7.3;2951023.122155
+ S XT4="I 1",X=$T(+3) W !!,"Checksum routine created on ",$P(X,";",4)," by KERNEL V",$P(X,";",3),!
+CONT F XT1=1:1 S XT2=$T(ROU+XT1) Q:XT2=""  S X=$P(XT2," ",1),XT3=$P(XT2,";",3) X XT4 I $T W !,X X ^%ZOSF("TEST") S:'$T XT3=0 X:XT3 ^%ZOSF("RSUM") W ?10,$S('XT3:"Routine not in UCI",XT3'=Y:"Calculated "_$C(7)_Y_", off by "_(Y-XT3),1:"ok")
+ ;
+ K %1,%2,%3,X,Y,XT1,XT2,XT3,XT4 Q
+ONE S XT4="I $D(^UTILITY($J,X))",X=$T(+3) W !!,"Checksum routine created on ",$P(X,";",4)," by KERNEL V",$P(X,";",3),!
+ W !,"Check a subset of routines:" K ^UTILITY($J) X ^%ZOSF("RSEL")
+ W ! G CONT
+ROU ;;
+PRCD1E ;;2366285
+PRCFFU19 ;;2211910
+PRCHNPO6 ;;10854506
+PRCSUT ;;14588172
+PRXCI001 ;;9333944
+PRXCI002 ;;3204069
+PRXCI003 ;;9378870
+PRXCI004 ;;1335235
+PRXCINI1 ;;4835294
+PRXCINI2 ;;5232607
+PRXCINI3 ;;16807878
+PRXCINI4 ;;3357779
+PRXCINI5 ;;549313
+PRXCINIS ;;2215295
+PRXCINIT ;;10190935

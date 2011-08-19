@@ -1,0 +1,145 @@
+SDQPROP ;ALB/MJK - Query Object Property Methods ;8/12/96
+ ;;5.3;Scheduling;**131**;Aug 13, 1993
+ ;
+DATE(SDQ,SDBEG,SDEND,SDACT,SDERR) ; -- set/get date range property
+ ;   API ID: 82
+ ; API NAME: SDQ DATE RANGE
+ ;
+DATEG ; -- goto entry point
+ ; -- do validation checks
+ IF '$$QRY^SDQVAL(.SDQ,$G(SDERR)) G DATEQ
+ IF '$$ACTION^SDQVAL(.SDACT,$G(SDERR)) G DATEQ
+ IF SDACT="SET",'$$QRYINACT^SDQVAL(.SDQ,$G(SDERR)) G DATEQ
+ IF SDACT="SET",SDBEG=0 S SDBEG=2900101
+ IF SDACT="SET",'$$RANGE^SDQVAL(.SDBEG,.SDEND,$G(SDERR)) G DATEQ
+ ;
+ IF SDACT="SET" D
+ . S @SDQUERY@(SDQ,"BEGIN DATE")=SDBEG
+ . S @SDQUERY@(SDQ,"END DATE")=SDEND
+ IF SDACT="GET" D
+ . S SDBEG=$G(@SDQUERY@(SDQ,"BEGIN DATE"))
+ . S SDEND=$G(@SDQUERY@(SDQ,"END DATE"))
+ ;
+DATEQ Q
+ ;
+ ;
+FILTER(SDQ,SDFIL,SDACT,SDERR) ; -- set/get filter property
+ ;   API ID: 83
+ ; API NAME: SDQ FILTER
+ ;
+FILTERG ; -- goto entry point
+ ; -- do validation checks
+ IF '$$QRY^SDQVAL(.SDQ,$G(SDERR)) G FILTERQ
+ IF '$$ACTION^SDQVAL(.SDACT,$G(SDERR)) G FILTERQ
+ IF SDACT="SET",'$$QRYINACT^SDQVAL(.SDQ,$G(SDERR)) G FILTERQ
+ IF SDACT="SET",'$$FILTER^SDQVAL(.SDFIL,$G(SDERR)) G FILTERQ
+ ;
+ IF SDACT="SET" S @SDQUERY@(SDQ,"FILTER")=SDFIL
+ IF SDACT="GET" S SDFIL=$G(@SDQUERY@(SDQ,"FILTER"),"IF 1")
+ ;
+FILTERQ Q
+ ;
+ ;
+INDEX(SDQ,SDIDX,SDACT,SDERR) ; -- set/get index property
+ ;   API ID: 85
+ ; API NAME: SDQ INDEX NAME
+ ;
+INDEXG ; -- goto entry point
+ ; -- do validation checks
+ IF '$$QRY^SDQVAL(.SDQ,$G(SDERR)) G INDEXQ
+ IF '$$ACTION^SDQVAL(.SDACT,$G(SDERR)) G INDEXQ
+ IF SDACT="SET",'$$QRYINACT^SDQVAL(.SDQ,$G(SDERR)) G INDEXQ
+ IF SDACT="SET",'$$INDEX^SDQVAL(.SDQ,.SDIDX,$G(SDERR)) G INDEXQ
+ ;
+ IF SDACT="SET" D SETIDX(.SDQ,.SDIDX)
+ IF SDACT="GET" S SDIDX=$G(@SDQUERY@(SDQ,"INDEX EXTERNAL"))
+ ;
+INDEXQ Q
+ ;
+ ;
+SETIDX(SDQ,SDIDX) ; -- set index related info
+ N SDIDXI,SDTYPE,SDVAL
+ S SDIDXI=$O(^TMP("SDQUERY CLASS",$J,SDQ,"INDEX","B",SDIDX,0))
+ S X=$G(^TMP("SDQUERY CLASS",$J,SDQ,"INDEX",SDIDXI,0))
+ S @SDQUERY@(SDQ,"INDEX EXTERNAL")=$P(X,"^",1)
+ S @SDQUERY@(SDQ,"INDEX INTERNAL")=$P(X,"^",2)
+ S (SDTYPE,@SDQUERY@(SDQ,"INDEX TYPE"))=$P(X,"^",3)
+ ;
+ ; -- at which subscript is ien located + subscripts in global root
+ S @SDQUERY@(SDQ,"IEN SUBSCRIPT")=$S(SDTYPE=1:3,SDTYPE=2:3,SDTYPE=4:4,1:999)+$P($G(^TMP("SDQUERY CLASS",$J,SDQ,"GL SUBSCRIPTS")),"^",3)
+ ;
+ ; -- get override entry validator if defined, otherwise use default
+ S SDVAL=$G(^TMP("SDQUERY CLASS",$J,SDQ,"INDEX",SDIDXI,"VALIDATOR"))
+ IF SDVAL="" D
+ . IF SDTYPE=1 S SDVAL="D REG^SDQUT(.SDQ,.SDGREF)"     ; regular
+ . IF SDTYPE=2 S SDVAL="D REGDT^SDQUT(.SDQ,.SDGREF)"   ; regular date range
+ . ; IF SDTYPE=3 S SDVAL="D COM^SDQUT(.SDQ,.SDGREF)"     ; composite
+ . IF SDTYPE=4 S SDVAL="D COMDT^SDQUT(.SDQ,.SDGREF)"   ; composite date range
+ ;
+ S @SDQUERY@(SDQ,"VALIDATOR")=SDVAL
+ Q
+ ;
+ ;
+ACTIVE(SDQ,SDSTAT,SDACT,SDERR) ; -- activate query
+ ;  API ID: 88
+ ; API NAME: SDQ ACTIVE STATUS
+ ;
+ACTIVEG ; -- goto entry point
+ ; -- do validation checks
+ IF '$$QRY^SDQVAL(.SDQ,$G(SDERR)) G ACTIVEQ
+ IF '$$ACTION^SDQVAL(.SDACT,$G(SDERR)) G ACTIVEQ
+ ;
+ ; -- did above produce errors?
+ ; -- if so, it's important to stop processing to prevent other errors
+ IF $G(SDERR)="",$O(^TMP("DIERR",$J,0)) G ACTIVEQ
+ IF $G(SDERR)]"",$O(@SDERR@("DIERR",0)) G ACTIVEQ
+ ;
+ IF SDACT="SET" D  G ACTIVEQ
+ . IF '$$STATUS^SDQVAL(.SDSTAT,$G(SDERR)) Q
+ . IF SDSTAT="TRUE",'$$PROP^SDQVAL(.SDQ,$G(SDERR)) Q
+ . IF SDSTAT="TRUE",'$G(@SDQUERY@(SDQ,"ACTIVE")) D START(.SDQ)
+ . IF SDSTAT="FALSE",$G(@SDQUERY@(SDQ,"ACTIVE")) D STOP(.SDQ)
+ ;
+ IF SDACT="GET" D  G ACTIVEQ
+ . S SDSTAT=$S(@SDQUERY@(SDQ,"ACTIVE"):"TRUE",1:"FALSE")
+ ;
+ACTIVEQ Q
+ ;
+ ;
+START(SDQ) ; -- set up active query
+ N Y,SDTYPE,SDIDX,SDGL,SDMST,SDBEG
+ S SDTYPE=$G(@SDQUERY@(SDQ,"INDEX TYPE"))
+ S SDIDX=$G(@SDQUERY@(SDQ,"INDEX INTERNAL"))
+ S SDMST=$G(@SDQUERY@(SDQ,"MASTER VALUE"))
+ S SDBEG=$G(@SDQUERY@(SDQ,"BEGIN DATE"))
+ S SDGL=$G(^TMP("SDQUERY CLASS",$J,SDQ,"GL"))
+ S Y=""
+ ;
+ IF SDTYPE=1 S Y=SDGL_""""_SDIDX_""","""_SDMST_""")"     ; regular
+ IF SDTYPE=2 S Y=SDGL_""""_SDIDX_""","_(SDBEG-.000001)_")" ; regular d/t
+ IF SDTYPE=3 S Y=SDGL_""""_SDIDX_""","""_SDMST_""")"     ; composite
+ IF SDTYPE=4 S Y=SDGL_""""_SDIDX_""","""_SDMST_""","_(SDBEG-.000001)_")"  ; composite d/t
+ ;
+ S @SDQUERY@(SDQ,"GLOBAL REF")=Y
+ S @SDQUERY@(SDQ,"CURSOR")=0
+ S @SDQUERY@(SDQ,"ACTIVE")=1
+ S @SDQUERY@(SDQ,"MORE")=1
+ S @SDQUERY@(SDQ,"BOF")=1
+ S @SDQUERY@(SDQ,"EOF")=0
+ S @SDQUERY@(SDQ,"COUNT")=0
+ K ^TMP("SDQUERY LIST",$J,SDQ)
+ D NEXT^SDQNAV(.SDQ,$G(SDERR))
+STARTQ Q
+ ;
+ ;
+STOP(SDQRY) ; -- stop query / also called from CREATE^SDQ to set up query
+ ;
+ S @SDQUERY@(SDQ,"GLOBAL REF")=""
+ S @SDQUERY@(SDQ,"CURSOR")=0
+ S @SDQUERY@(SDQ,"ACTIVE")=0
+ S @SDQUERY@(SDQ,"MORE")=0
+ S @SDQUERY@(SDQ,"BOF")=0
+ S @SDQUERY@(SDQ,"COUNT")=0
+ K ^TMP("SDQUERY LIST",$J,SDQ)
+ Q
+ ;

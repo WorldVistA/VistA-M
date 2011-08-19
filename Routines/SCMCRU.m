@@ -1,0 +1,55 @@
+SCMCRU ;ALB/REW - PCMM Report Utilities ; 9 Feb 1996
+ ;;5.3;Scheduling;**41**;AUG 13, 1993
+ ;FORM FEED & STOPPING UTILITIES
+FIRST() ;First heading of report
+ ; RETURNS STOP; 0=GO,1=STOP
+ N STOP
+ D STOPCHK
+ D:$G(STOP) STOPPED
+ I '$G(STOP),$E($G(IOST),1,2)="C-" W @IOF
+ Q $G(STOP)
+ ;
+SUBSEQ() ;enter for further headings of report
+ ; RETURNS STOP; 0=GO,1=STOP
+ N STOP,DIR,X,Y
+ D STOPCHK
+ I $E($G(IOST),1,2)="C-" S DIR(0)="E" D ^DIR S:$D(DIRUT) STOP=1
+ D:$G(STOP) STOPPED
+ I '$G(STOP) W @IOF
+ Q $G(STOP)
+ ;
+STOPCHK I $D(ZTQUEUED),$$S^%ZTLOAD S (ZTSTOP,STOP)=1
+ Q
+STOPPED ;
+ W !?5,"------------- Report stopped at user's request ------------"
+ K ZTREQ
+ Q
+ENDREP I $E(IOST,1,2)'["C-" W:$Y&'$D(IONOFF) @IOF Q
+ ;
+FOOTER ;
+ ;    print SCFOOT
+ ;RETURNS SCSTOP=1 IF STOP CALLED FOR
+ S SCPAGE=$G(SCPAGE)+1
+ F I=$Y:1:$S($D(IOSL):(IOSL-5),1:61) W !
+ W !,$G(SCFOOT),?66,"PAGE: ",SCPAGE
+ S SCSTOP=$$SUBSEQ
+ I SCSTOP D STOPPED
+ Q
+HEADER ;
+ ;  prints SCHEAD
+ W !,$G(SCHEAD)
+ Q
+WAIT I $E(IOST)="C" S DIR(0)="E" D ^DIR S:'Y SCSTOP=1
+ Q
+ ;
+OUT(LINE,FORMAT) ;
+ W:$D(FORMAT) @FORMAT
+ W $G(LINE)
+ I $Y>(IOSL-4) D FOOTER D HEADER
+QTOUT Q
+ ;
+DDNAME(FILE,FIELD) ;return the fieldname
+ N SCX
+ D FIELD^DID(FILE,FIELD,"","LABEL","SCX")
+ Q $G(SCX("LABEL"))
+ ;

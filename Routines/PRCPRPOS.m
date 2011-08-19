@@ -1,0 +1,12 @@
+PRCPRPOS ;WISC/RFJ-posted stock report                              ;29 Jul 91
+ ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ D ^PRCPUSEL Q:'$G(PRCP("I"))
+ N %,PRCPSORT,PRCPINV,PRCPWARE,X I PRCP("DPTYPE")="W" W !?2,"START WITH NSN: FIRST// @    <<-- ENTER '@' TO PRINT ITEMS WITHOUT A NSN" S BY="[PRCP SORT:NSN]"
+ E  W !?2,"START WITH GROUP CATEGORY CODE: FIRST// @   <<-- ENTER '@' TO PRINT ITEMS",!?51,"WITHOUT A GROUP CATEGORY CODE" S BY="[PRCP SORT:GROUP]"
+ S PRCPWARE=$O(^PRC(440,"AC","S",0))_";PRC(440,",DIC="^PRCP(445,",L=0,FLDS="[PRCP REPORT:POSTED STOCK]",DIS(0)="I D0=PRCP(""I"")",PRCPSORT="D SORT^PRCPRPOS",DIOEND="D END^PRCPUREP" D EN1^DIP Q
+ ;
+SORT ;sort lookup on mandatory source=warehouse
+ I '$D(PRCPWARE) S PRCPWARE=$O(^PRC(440,"AC","S",0))_";PRC(440,"
+ S %=$G(^PRCP(445,D0,1,D1,0)) I $P(%,"^",12)=PRCPWARE S X=D1 Q
+ S X="" Q

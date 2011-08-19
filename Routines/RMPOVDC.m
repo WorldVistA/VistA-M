@@ -1,0 +1,140 @@
+RMPOVDC ;HINCIO/RVD - HOME OXYGEN VENDOR/HCPCS/FCP UPDATE ;11/03/00
+ ;;3.0;PROSTHETICS;**56**;Feb 09, 1996
+ ;
+ Q
+EXIT N RMPR,RMPRSITE
+ K RQUIT,RMPOXITE
+ D KILL^XUSCLEAN
+ Q
+ ;
+START ;
+ D KEY() G:$G(RQUIT) EXIT
+ D SITE G:'$D(RMPOXITE) EXIT
+ K DIR S RMCNT=0
+ S DIR(0)="S^1:Update VENDOR;2:Update HCPCS;3:Update FCP;4:Update ITEM;5:Update UNIT COST"
+ S DIR("A")="Type of Update",DIR("B")="Update VENDOR" D ^DIR
+ Q:$D(DIRUT)!($D(DTOUT))
+ S RMPRCHA=$S(Y=1:"VEN",Y=2:"HCPCS",Y=3:"FCP",Y=4:"ITEM",Y=5:"COST",1:"RQUIT")
+ D @RMPRCHA
+ D EXIT
+ Q
+ ;
+VEN ;change vendor utility
+ N RI,RJ,RD,RIT,RMSTA,DIE,DA,DIC,Y,X
+ K RMOLDVEN,RMNEWVEN
+ S DIC("A")="Enter Existing Vendor to UPdate: ",DA(1)=RMPOXITE,RMCNT=0
+ S DIC(0)="AEMQZ",DIC="^RMPR(669.9,"_DA(1)_",""RMPOVDR""," D ^DIC
+ Q:Y<0!($$RQUIT)  S RMOLDVEN=+Y,DIC("S")="I +Y'=RMOLDVEN"
+ S DIC("A")="Enter NEW Vendor: "
+ D ^DIC Q:Y<0!($$RQUIT)  S RMNEWVEN=+Y
+ K DIC,DA
+ ;change vendor in file #665
+ S DIE="^RMPR(665,"
+ W:$D(^PRC(440,RMOLDVEN,0)) !!,"Updating HO template for vendor ",$P(^PRC(440,RMOLDVEN,0),U,1),"  to  "
+ W:$D(^PRC(440,RMNEWVEN,0)) $P(^PRC(440,RMNEWVEN,0),U,1)," ...."
+ F RI=0:0 S RI=$O(^RMPR(665,RI)) Q:RI'>0!$G(RQUIT)  S RD=$G(^RMPR(665,RI,"RMPOA")),RMSTA=$P(RD,U,7),RMIDT=$P(RD,U,3) I RMSTA=RMPOXITE,((RMIDT="")!(RMIDT>DT)) D
+ .F RJ=0:0 S RJ=$O(^RMPR(665,RI,"RMPOC",RJ)) Q:RJ'>0!$G(RQUIT)  S RIT=$G(^RMPR(665,RI,"RMPOC",RJ,0)),RMVEN=$P(RIT,U,2) I RMVEN=RMOLDVEN D
+ ..S DA(1)=RI,DIE="^RMPR(665,"_DA(1)_","_"""RMPOC"""_","
+ ..S DA=RJ,DR="1///^S X=RMNEWVEN" D ^DIE S RMCNT=RMCNT+1
+ W !,"** ",RMCNT," Records updated **"
+ Q
+ ;
+FCP ;change FCP utility.
+ N RI,RJ,RD,RIT,RMSTA,DIE,DA,DIC,DIR,Y,X,RMFCP,RMODES,RMNDES
+ N RMOLDFCP
+ S DIC("A")="Enter Existing Fund Control Point to Update: ",DA(1)=RMPOXITE
+ S DIC(0)="AEMQZ",DIC="^RMPR(669.9,"_DA(1)_",""RMPOFCP""," D ^DIC
+ Q:Y<0!($$RQUIT)  S RMOLDFCP=+Y,RMODES=$P(Y,U,2)
+ S DIC("A")="Enter NEW Fund Control Point: "
+ S DIC("S")="I +Y'=RMOLDFCP"
+ D ^DIC Q:Y<0!($$RQUIT)  S RMNDES=$P(Y,U,2)
+ K DIC,DA
+ ;change FCP in file #665
+ W !!,"Updating HO template for FCP ",RMODES,"  to  ",RMNDES,"......"
+ F RI=0:0 S RI=$O(^RMPR(665,RI)) Q:RI'>0!$G(RQUIT)  S RD=$G(^RMPR(665,RI,"RMPOA")),RMSTA=$P(RD,U,7),RMIDT=$P(RD,U,3) I RMSTA=RMPOXITE,((RMIDT="")!(RMIDT>DT)) D
+ .F RJ=0:0 S RJ=$O(^RMPR(665,RI,"RMPOC",RJ)) Q:RJ'>0!$G(RQUIT)  S RIT=$G(^RMPR(665,RI,"RMPOC",RJ,0)),RMFCP=$P(RIT,U,6) I RMFCP=RMODES D
+ ..S DA(1)=RI,DIE="^RMPR(665,"_DA(1)_","_"""RMPOC"""_","
+ ..S DA=RJ,DR="5////^S X=RMNDES" D ^DIE S RMCNT=RMCNT+1
+ W !,"** ",RMCNT," Records updated **"
+ Q
+ ;
+HCPCS ; change HCPCS utility.
+ N RI,RJ,RD,RIT,RMSTA,DIE,DA,DIC,DIR,Y,X,RMODES,RMNDES
+ N RMOLDHCP,RMNEWHCP,RMHCPC
+ S DIC("A")="Enter Existing HCPCS to Update: "
+ S DIC(0)="AEMQZ",DIC="^RMPR(661.1," D ^DIC
+ Q:Y<0!($$RQUIT)  S RMOLDHCP=+Y,RMODES=$P(^RMPR(661.1,+Y,0),U,1)
+ S DIC("S")="I +Y'=RMOLDHCP"
+ S DIC("A")="Enter NEW HCPCS: "
+ D ^DIC Q:Y<0!($$RQUIT)  S RMNEWHCP=+Y,RMNDES=$P(^RMPR(661.1,+Y,0),U,1)
+ K DIC,DA
+ ;change HCPCS in file #665
+ W !!,"Updating HO template for HCPCS ",RMODES,"  to  ",RMNDES,"......"
+ F RI=0:0 S RI=$O(^RMPR(665,RI)) Q:RI'>0!$G(RQUIT)  S RD=$G(^RMPR(665,RI,"RMPOA")),RMSTA=$P(RD,U,7),RMIDT=$P(RD,U,3) I RMSTA=RMPOXITE,((RMIDT="")!(RMIDT>DT)) D
+ .F RJ=0:0 S RJ=$O(^RMPR(665,RI,"RMPOC",RJ)) Q:RJ'>0!$G(RQUIT)  S RIT=$G(^RMPR(665,RI,"RMPOC",RJ,0)),RMHCPC=$P(RIT,U,7) I RMHCPC=RMOLDHCP D
+ ..S DA(1)=RI,DIE="^RMPR(665,"_DA(1)_","_"""RMPOC"""_","
+ ..S DA=RJ,DR="6////^S X=RMNEWHCP" D ^DIE S RMCNT=RMCNT+1
+ W !,"** ",RMCNT," Records updated **"
+ Q
+ ;
+ITEM ; change ITEM utility.
+ N RI,RJ,RD,RIT,RMSTA,DIE,DA,DIC,DIR,Y,X,RMITEM
+ N RMOITEM,RMNITEM
+ S DIC("A")="Enter Existing ITEM to Update: "
+ S DIC(0)="AEMQZ",DIC="^RMPR(661," D ^DIC
+ Q:Y<0!($$RQUIT)  S RMOITEM=+Y,RMOIFIT=$P($G(^RMPR(661,+Y,0)),U,1)
+ S DIC("A")="Enter NEW ITEM: " K X,Y
+ D ^DIC Q:Y<0!($$RQUIT)
+ S RMNITEM=+Y,RMNIFIT=$P($G(^RMPR(661,+Y,0)),U,1)
+ K DIC,DA
+ ;change ITEM in file #665
+ W !!,"Updating HO template for item ",$P($G(^PRC(441,RMOIFIT,0)),U,2),"  to  ",$P($G(^PRC(441,RMNIFIT,0)),U,2),"......"
+ F RI=0:0 S RI=$O(^RMPR(665,RI)) Q:RI'>0!$G(RQUIT)  S RD=$G(^RMPR(665,RI,"RMPOA")),RMSTA=$P(RD,U,7),RMIDT=$P(RD,U,3) I RMSTA=RMPOXITE,((RMIDT="")!(RMIDT>DT)) D
+ .F RJ=0:0 S RJ=$O(^RMPR(665,RI,"RMPOC",RJ)) Q:RJ'>0!$G(RQUIT)  S RIT=$G(^RMPR(665,RI,"RMPOC",RJ,0)),RMITEM=$P(RIT,U,1) I RMITEM=RMOITEM D
+ ..S DA(1)=RI,DIE="^RMPR(665,"_DA(1)_","_"""RMPOC"""_","
+ ..S DA=RJ,DR=".01////^S X=RMNITEM" D ^DIE S RMCNT=RMCNT+1
+ W !,"** ",RMCNT," Records updated **"
+ Q
+ ;
+COST ; change UNIT COST utility.
+ N RI,RJ,RD,RIT,RMSTA,DIE,DA,DIC,DIR,Y,X,RMITDES,RMIT,RMITEM,RMIFIT
+ N RMNCOST
+ S DIC("A")="Enter an ITEM for UNIT COST Update: "
+ S DIC(0)="AEMQZ",DIC="^RMPR(661," D ^DIC Q:Y<0!($$RQUIT)
+ S RMIT=+Y,RMIFIT=$P($G(^RMPR(661,RMIT,0)),U,1)
+ I $G(RMIFIT),$D(^PRC(441,RMIFIT,0)) S RMITDES=$P(^PRC(441,RMIFIT,0),U,2)
+ S DIR("A")="Enter new UNIT COST for item "_RMITDES
+ S DIR(0)="667.3,3" D ^DIR Q:Y<0!($$RQUIT)  S RMNCOST=+Y
+ K DIC,DA
+ ;change HCPCS in file #665
+ W !!,"Updating HO template for unit cost of item "_RMITDES_"  to  ",$J(RMNCOST,0,2),"......"
+ F RI=0:0 S RI=$O(^RMPR(665,RI)) Q:RI'>0!$G(RQUIT)  S RD=$G(^RMPR(665,RI,"RMPOA")),RMSTA=$P(RD,U,7),RMIDT=$P(RD,U,3) I RMSTA=RMPOXITE,((RMIDT="")!(RMIDT>DT)) D
+ .F RJ=0:0 S RJ=$O(^RMPR(665,RI,"RMPOC",RJ)) Q:RJ'>0!$G(RQUIT)  S RIT=$G(^RMPR(665,RI,"RMPOC",RJ,0)),RMITEM=$P(RIT,U,1) I RMITEM=RMIT D
+ ..S DA(1)=RI,DIE="^RMPR(665,"_DA(1)_","_"""RMPOC"""_","
+ ..S DA=RJ,DR="3////^S X=RMNCOST" D ^DIE S RMCNT=RMCNT+1
+ W !,"** ",RMCNT," Records updated **"
+ Q
+ ;
+LJ(S,W,C) ; LEFT JUSTIFY S IN A FIELD W WIDE PADDING WITH CHAR F
+ S C=$G(C," ")   ;DEFAULT PAD CHAR IS SPACE
+ S $P(S,C,W-$L(S)+$L(S,C))=""
+ Q S
+ ;
+SITE ; get Home Oxygen site
+ K DIC,DIE,DA,DR,DD,RMPOXITE
+ S DIC="^RMPR(669.9,",DIC(0)="QEAMLZ",DIC("A")="Select SITE: "
+ D ^DIC Q:Y<0!($$RQUIT)
+ S RMPOXITE=+Y
+ Q
+ ;
+KEY() ;user must have the RMPRSUPERVISOR key in order to change
+ ;vendor, HCPCS, FCP and items.
+ N RMKEY
+ S RMKEY=$O(^DIC(19.1,"B","RMPRSUPERVISOR",0))
+ I '$D(^VA(200,DUZ,51,RMKEY)) D  Q
+ . W !!,"You do not hold a RMPSUPERVISOR key !!"
+ . S RQUIT=1
+ Q
+ ;
+RQUIT() S RQUIT=$D(DTOUT)!$D(DUOUT)!$D(DIRUT) Q RQUIT
+EQUIT() S RQUIT=$D(DTOUT)!$D(Y) Q RQUIT

@@ -1,0 +1,15 @@
+SOWKCS ;B'HAM ISC/SAB-Routine to inquire into RCH file by worker ; 04 Feb 93 / 2:36 PM
+ ;;3.0; Social Work ;;27 Apr 93
+SEA W ! S DIC("S")="I $D(^VA(200,+Y,654)),$P(^VA(200,+Y,654),""^"")",DIC("A")="SELECT WORKER: ",DIC="^VA(200,",DIC(0)="AQEM" D ^DIC G:"^"[X CLO G SEA:Y<0 S DA=+Y K DIC
+ K %ZIS,IOP,ZTSK S SOWKION=ION,%ZIS="QM" D ^%ZIS K %ZIS I POP S IOP=SOWKION D ^%ZIS K IOP,SOWKION G CLO
+ K SOWKION I $D(IO("Q")) S ZTDESC="RCH INQUIRY REPORT",ZTRTN="ENQ^SOWKCS" F G="COM","DA" S:$D(@G) ZTSAVE(G)=""
+ I  K IO("Q") D ^%ZTLOAD W:$D(ZTSK) !!,"Task Queued to Print",! K ZTSK,DA,G G CLO Q
+ENQ U IO W:$Y @IOF W "HOME REGISTRY FOR A SINGLE WORKER: ",$S($G(COM):"COMPLETE",1:"SUMMARY"),!,"SOCIAL WORKER: "_$P(^VA(200,DA,0),"^"),!! G LOK
+CLO W ! W:$E(IOST)'["C" @IOF D ^%ZISC K COM,SWNB,DA,DIC,A,I,IOP,POP,%ZIS,STA,SWD,SWN,SWSN,X,Y D:$D(ZTSK) KILL^%ZTLOAD Q
+ Q
+PRI U IO W !,"HOME: ",?25,SWN,!,"LAST ASSESSMENT DATE: ",?25,SWD,!,"NUMBER OF BEDS: ",?25,SWNB,!,"ADDRESS 1: ",?25,$P(A,"^",5)
+ W !,"ADDRESS 2: ",?25,$P(A,"^",14),!,"CITY: ",?25,$P(A,"^",6),!,"STATE: ",?25,STA,!,"ZIP: ",?25,$P(A,"^",8),!,"TELEPHONE 1: ",?25,$P(A,"^",9),!,"TELEPHONE 2: ",?25,$P(A,"^",15) Q:'$G(COM)
+ W !,"LICENSED BY STATE ?: ",?25,$P(A,"^",10),!,"VETS ONLY ?: ",?25,$P(A,"^",12),!
+ Q
+LOK F I=0:0 S I=$O(^SOWK(652,I)) Q:'I  S A=^SOWK(652,I,0) I $P(A,"^",4)=DA S SWN=$P(A,"^"),SWSN=$P(A,"^",3),SWNB=$P(A,"^",11),Y=$P(A,"^",13) X ^DD("DD") S SWD=Y,STA=$P(A,"^",7),STA=$P(^DIC(5,STA,0),"^") D PRI
+ G CLO Q

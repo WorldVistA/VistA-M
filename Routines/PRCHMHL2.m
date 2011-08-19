@@ -1,0 +1,9 @@
+PRCHMHL2 ;WISC/DJM-TRANSMIT HLS TRANS TO MAILMAN (CONT) ;9-17-92/09:54
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+MSG(AZ) ;FUNCTION   ENTER: REASON CODE
+ ;           EXIT:  REASON SENTENCE
+ N SA S SA="" I +AZ'=AZ!(AZ>999)!(AZ<1)!(AZ?.E1"."1N.N) G EXIT
+ S SA=$G(^PRCF(423.4,AZ,0)) I SA]"",$P(SA,U,3)="A" S SA=$P(SA,U,2) G EXIT
+ I SA]"",$P(SA,U,3)'="A" S SA="" G EXIT
+EXIT Q SA

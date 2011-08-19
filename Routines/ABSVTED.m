@@ -1,0 +1,61 @@
+ABSVTED ;VAMC ALTOONA/CTB - TIME CARD EDIT ;9/4/97  3:51 PM
+V ;;4.0;VOLUNTARY TIMEKEEPING;**7**;JULY 6, 1994
+OUT K %,%DT,%W,%X,%Y,%Y1,C,D,D0,DA,DDC,DDH,DI,DIC,DIE,DIK,DQ,DR,DUOUT,I,MONTH,NAME,TC,X,X1,Y,ABSVY
+ QUIT
+MARK G ^ABSVTED3
+STATUS ;CHANGE TRANSMISSION STATUS OF TIME CARD
+ I '$D(X),'$D(DA) Q
+ S TC=$P(^ABS(503335,DA,0),"^",1,99) I $P(TC,"^",6)="" S ABSVXA="This time card does not have a valid transmission status.  Should I mark it READY FOR TRANSMISSION",ABSVXB="",%=1 D ^ABSVYN Q:%'=1
+ D WAIT^ABSVYN
+ S X1=$P(TC,"^",6),$P(^ABS(503335,DA,0),"^",6)=X K ^ABS(503335,"AF",X1,DA) S ^ABS(503335,"AF",X,DA)=""
+ S X="  --Done--" D MSG^ABSVQ Q
+SUS ;SUSPEND TIME CARD TRANSMISSION
+ D ^ABSVSITE G OUT:'%
+SUS1 S DIC=503335,DIC(0)="AFEMQ",DIC("S")="I $P(^(0),U,6)=1,$P(^(0),U,12)=ABSV(""SITE"")",DIC("A")="Suspend time card for VOLUNTEER: "
+ F  D MDIV^ABSVSITE,^DIC G:+Y<0 OUT Q:$$ACTIVE^ABSVU2(+$P(Y,"^",2),ABSV("INST"))
+ K DIC S DA=+Y
+ S ABSVXA="Do you want to SUSPEND transmission on this volunteer's time card",ABSVXB="",%=1 D ^ABSVYN G:%<0 OUT G:%'=1 SUS1
+ S X=0 D STATUS^ABSVU
+ S DIE="^ABS(503335,",DR="37///@" D ^DIE K DIE
+ S ABSVXA="Suspend another time card",ABSVXB="",%=1 D ^ABSVYN G:%'=1 OUT G SUS1
+REL ;RELEASE SUSPENDED TIME CARD
+ D ^ABSVSITE G OUT:'%
+ S DIC=503335,DIC(0)="AEMQ",DIC("S")="I $P(^(0),U,6)=0,$P(^(0),U,12)=ABSV(""SITE"")",DIC("A")="Release suspended time card for VOLUNTEER: "
+ F  D MDIV^ABSVSITE,^DIC G:+Y<0 OUT  Q:$$ACTIVE^ABSVU2($P(Y,"^",2),ABSV("INST"))
+ K DIC S DA=+Y
+ S ABSVXA="Are you sure you want to RELEASE this volunteer's time card",ABSVXB="",%=1 D ^ABSVYN G:%'=1 REL S X=1 D STATUS^ABSVU
+ W ! S ABSVXA="Do you wish to backdate this card",ABSVXB="",%=1
+ D ^ABSVYN Q:%<0
+ I %=1 S DIE="^ABS(503335,",DR="37///BD" D ^DIE K DIE S X="  <Backdate Added>" D MSG^ABSVQ
+ W ! S ABSVXA="Release another time card",ABSVXB="",%=1 D ^ABSVYN G:%'=1 OUT G REL
+ QUIT
+BD ;BACKDATE A TIMECARD
+ S ABSVY("BACKDATE")=""
+H ;EDIT COLUMNS 49 & 50 ON TIME CARD
+ D ^ABSVSITE G:'% OUT
+H1 S DIC=503335,DIC(0)="AEMQ",DIC("S")="I $P(^(0),U,6)<2,$P(^(0),U,12)=ABSV(""SITE"")",DIC("A")="Select VOLUNTEER: "
+ D MDIV^ABSVSITE,^DIC G:+Y<0 OUT K DIC S DA=+Y
+ I $P(^ABS(503335,DA,0),U,6)>1 W !!,*7,"***  TIME CARD HAS BEEN TRANSMITTED.  NO FURTHER EDITING ALLOWED ***",!! G H
+ S DIE="^ABS(503335,",DR=$S($D(ABSVY("BACKDATE")):"37///BD",1:"[ABSV HOSP USE ONLY]") D ^DIE
+ I $D(ABSVY("BACKDATE")) W "  --Done--",*7,!
+ K DIE G H1
+TC ;EDIT ENTIRE TIME CARD.
+ Q:$D(ABSVX("CREATE"))  D ^ABSVSITE G OUT:'%
+TC2 S DIC=503335,DIC(0)="AEMQ",DIC("A")="Edit time card for VOLUNTEER: ",DIC("S")="I $P(^ABS(503335,+Y,0),U,6)<3,$P(^(0),U,12)=ABSV(""SITE"")"
+ F  D MDIV^ABSVSITE,^DIC G:+Y<0 OUT Q:$$ACTIVE^ABSVU2(+$P(Y,U,2),ABSV("INST"))
+ K DIC S DA=+Y
+TC1 S DIE="^ABS(503335,",DR="[ABSV TIME CARD EDIT]" D ^DIE K DIE
+ S Y=0 I $D(^ABS(503335,DA,1)) S X=^(1),Y=0 F I=1:1:31 S Y=Y+$P(X,"^",I)
+ I Y=$P(X,"^",32) W !,"No Change in Total Hours.",!
+ E  W !,"New Total Hours for this card is: ",Y,! S $P(^ABS(503335,DA,1),"^",32)=Y
+ I $D(ABSVX("MRT")) K ABSVX("MRT") Q
+ Q:$D(ABSVX("CREATE"))
+ S ABSVXA="Mark time card for READY FOR TRANSMISSION",ABSVXB="",%=1 D ^ABSVYN G:%'=1 TC S X=1 D STATUS^ABSVU G TC2
+DELSUS ;DELETE SUSPENDED TIME CARD
+ D ^ABSVSITE G:'% OUT
+ S DIC=503335,DIC(0)="AEMNQ",DIC("S")="I $P(^(0),U,6)=0,$P(^(0),U,12)=ABSV(""SITE"")",DIC("A")="Delete suspended time card for VOLUNTEER: "
+ D MDIV^ABSVSITE,^DIC K DIC G:+Y<0 OUT S DA=+Y
+ S ABSVXA="Are you sure you want to delete this time card",ABSVXB="",%=1 D ^ABSVYN G:%'=1 DELSUS
+ S ABSVXA="ARE YOU SURE YOU WANT TO DO THIS",ABSVXB="",%=2 D ^ABSVYN G:%'=1 DELSUS
+ S DIK="^ABS(503335," D ^DIK S X="  -- SUSPENDED TIME CARD HAS BEEN DELETED --*" D MSG^ABSVQ K DIK
+ S ABSVXA="Delete another suspended time card",ABSVXB="",%=2 D ^ABSVYN G:%'=1 OUT K DA G DELSUS

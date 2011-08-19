@@ -1,0 +1,49 @@
+PSS50NDF ;BIR/LDT - CONTINUATION OF API FOR INFORMATION FROM FILE 50; 5 Sep 03
+ ;;1.0;PHARMACY DATA MANAGEMENT;**85**;9/30/97
+ ;External reference to PS(50.605 supported by DBIA 2138
+ ;
+SETND ;
+ S ^TMP($J,LIST,+PSS(1),.01)=$G(^TMP("PSSP50",$J,50,PSS(1),.01,"I"))
+ S ^TMP($J,LIST,"B",$G(^TMP("PSSP50",$J,50,PSS(1),.01,"I")),+PSS(1))=""
+ S ^TMP($J,LIST,+PSS(1),20)=$S($G(^TMP("PSSP50",$J,50,PSS(1),20,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),20,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),20,"E")))
+ S ^TMP($J,LIST,+PSS(1),21)=$G(^TMP("PSSP50",$J,50,PSS(1),21,"I"))
+ S ^TMP($J,LIST,+PSS(1),22)=$S($G(^TMP("PSSP50",$J,50,PSS(1),22,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),22,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),22,"E")))
+ S ^TMP($J,LIST,+PSS(1),23)=$S($G(^TMP("PSSP50",$J,50,PSS(1),23,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),23,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),23,"E")))
+ S ^TMP($J,LIST,+PSS(1),24)=$S($G(^TMP("PSSP50",$J,50,PSS(1),24,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),24,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),24,"E")))
+ N PSS50NCL S PSS50NCL=$S($G(^TMP("PSSP50",$J,50,PSS(1),25,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),25,"I")))
+ S ^TMP($J,LIST,+PSS(1),25)=$S($G(^TMP("PSSP50",$J,50,PSS(1),25,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),25,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),25,"E")))
+ I PSS50NCL S ^TMP($J,LIST,+PSS(1),25)=^TMP($J,LIST,+PSS(1),25)_"^"_$P($G(^PS(50.605,PSS50NCL,0)),"^",2)
+ S ^TMP($J,LIST,+PSS(1),27)=$G(^TMP("PSSP50",$J,50,PSS(1),27,"I"))
+ S ^TMP($J,LIST,+PSS(1),29)=$S($G(^TMP("PSSP50",$J,50,PSS(1),29,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),29,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),29,"E")))
+ Q
+LOOP ;
+ N PSSENCT
+ S PSSENCT=0
+ S PSS(1)=0 F  S PSS(1)=$O(^PSDRUG(PSS(1))) Q:'PSS(1)  D
+ .I $P($G(^PSDRUG(PSS(1),0)),"^")="" Q
+ .I $G(PSSFL),$P($G(^PSDRUG(PSS(1),"I")),"^"),$P($G(^("I")),"^")'>PSSFL Q
+ .I $G(PSSRTOI)=1,'$P($G(^PSDRUG(PSS(1),2)),"^") Q
+ .;Naked reference below refers to ^PSDRUG(PSS(1),2)
+ .I $G(PSSPK)]"" N PSSZ5,PSSZ6 S PSSZ5=0 F PSSZ6=1:1:$L(PSSPK) Q:PSSZ5  I $P($G(^(2)),"^",3)[$E(PSSPK,PSSZ6) S PSSZ5=1
+ .I $G(PSSPK)]"",'PSSZ5 Q
+ .D SETNDL
+ .S PSSENCT=PSSENCT+1
+ S ^TMP($J,LIST,0)=$S($G(PSSENCT):$G(PSSENCT),1:"-1^NO DATA FOUND")
+ Q
+SETNDL ;
+ N PSSZNODE,PSS50NDN
+ S PSSZNODE=$G(^PSDRUG(PSS(1),0)),PSS50NDN=$G(^("ND"))
+ S ^TMP($J,LIST,+PSS(1),.01)=$P(PSSZNODE,"^")
+ S ^TMP($J,LIST,"B",$P(PSSZNODE,"^"),+PSS(1))=""
+ N PSS50NDA D GETS^DIQ(50,+PSS(1),"20;21;22;23;24;25;27;29","IE","PSS50NDA")
+ S ^TMP($J,LIST,+PSS(1),20)=$S($G(PSS50NDA(50,+PSS(1)_",",20,"I"))="":"",1:$G(PSS50NDA(50,+PSS(1)_",",20,"I"))_"^"_$G(PSS50NDA(50,+PSS(1)_",",20,"E")))
+ S ^TMP($J,LIST,+PSS(1),21)=$G(PSS50NDA(50,+PSS(1)_",",21,"I"))
+ S ^TMP($J,LIST,+PSS(1),22)=$S($G(PSS50NDA(50,+PSS(1)_",",22,"I"))="":"",1:$G(PSS50NDA(50,+PSS(1)_",",22,"I"))_"^"_$G(PSS50NDA(50,+PSS(1)_",",22,"E")))
+ S ^TMP($J,LIST,+PSS(1),23)=$S($G(PSS50NDA(50,+PSS(1)_",",23,"I"))="":"",1:$G(PSS50NDA(50,+PSS(1)_",",23,"I"))_"^"_$G(PSS50NDA(50,+PSS(1)_",",23,"E")))
+ S ^TMP($J,LIST,+PSS(1),24)=$S($G(PSS50NDA(50,+PSS(1)_",",24,"I"))="":"",1:$G(PSS50NDA(50,+PSS(1)_",",24,"I"))_"^"_$G(PSS50NDA(50,+PSS(1)_",",24,"E")))
+ N PSS50NLL S PSS50NLL=$S($G(PSS50NDA(50,+PSS(1)_",",25,"I"))="":"",1:$G(PSS50NDA(50,+PSS(1)_",",25,"I")))
+ S ^TMP($J,LIST,+PSS(1),25)=$S($G(PSS50NDA(50,+PSS(1)_",",25,"I"))="":"",1:$G(PSS50NDA(50,+PSS(1)_",",25,"I"))_"^"_$G(PSS50NDA(50,+PSS(1)_",",25,"E")))
+ I PSS50NLL S ^TMP($J,LIST,+PSS(1),25)=^TMP($J,LIST,+PSS(1),25)_"^"_$P($G(^PS(50.605,PSS50NLL,0)),"^",2)
+ S ^TMP($J,LIST,+PSS(1),27)=$G(PSS50NDA(50,+PSS(1)_",",27,"I"))
+ S ^TMP($J,LIST,+PSS(1),29)=$S($G(PSS50NDA(50,+PSS(1)_",",29,"I"))="":"",1:$G(PSS50NDA(50,+PSS(1)_",",29,"I"))_"^"_$G(PSS50NDA(50,+PSS(1)_",",29,"E")))
+ Q

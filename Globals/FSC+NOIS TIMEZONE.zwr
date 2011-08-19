@@ -1,0 +1,11 @@
+NOIS TIMEZONE
+ZWR
+^FSC("TIMEZONE",0)="NOIS TIMEZONE^7106.5^4^4"
+^FSC("TIMEZONE",1,0)="Central^-5"
+^FSC("TIMEZONE",2,0)="Eastern^-4"
+^FSC("TIMEZONE",3,0)="Mountain^-6"
+^FSC("TIMEZONE",4,0)="Pacific^-7"
+^FSC("TIMEZONE","B","Central",1)=""
+^FSC("TIMEZONE","B","Eastern",2)=""
+^FSC("TIMEZONE","B","Mountain",3)=""
+^FSC("TIMEZONE","B","Pacific",4)=""

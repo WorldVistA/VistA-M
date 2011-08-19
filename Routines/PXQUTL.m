@@ -1,0 +1,192 @@
+PXQUTL ;ISL/JVS - FUNCTION CALLS FOR DEBUGGING UTILITIES;8/29/96  10:34 ;3/26/97  09:25
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**4,14,29,121**;Aug 12, 1996
+ ;
+LCFLE() ;--LOCATION FILES
+ N LOCCNT,IHSCNT
+ ;--COUNT FROM LOCATION FILE 4
+ S LOCCNT=$P($G(^DIC(4,0)),"^",3)
+ ;--COUNT FROM IHS LOCATION FILE 9999999.06
+ S IHSCNT=$P($G(^AUTTLOC(0)),"^",3)
+ Q LOCCNT_"^"_IHSCNT
+ ;
+PTFLE() ;--PATIENT FILES
+ N DPTCNT,IHSCNT
+ ;--COUNT FROM DPT FILE 2
+ S DPTCNT=$P($G(^DPT(0)),"^",3)
+ ;--COUNT FORM AUPNPAT FILE 9000010
+ S IHSCNT=$P($G(^AUPNPAT(0)),"^",3)
+ Q DPTCNT_"^"_IHSCNT
+ ;
+RE(ENTRY) ;--RECORD ENTRY TO BE PRINTED
+ Q:$G(ENTRY)="" ""
+ I $L(ENTRY)>80 S ENTRY=$E(ENTRY,1,78)_""""
+ S PXQRECI=PXQRECI+1
+ S ^TMP("PXQRECORD",$J,PXQRECI,ENTRY)=""
+ Q ""
+ ;
+READ ;--READ
+ N VAR,I,ANS,DX,DY
+ W !,"**************************************************************"
+ S (DX,DY)=0 X ^%ZOSF("XY")
+ S I=0
+ I '$G(CNT) S CNT=0
+ F  S I=$O(^TMP("PXQRECORD",$J,I)) Q:I=""  D
+ .S VAR=$O(^TMP("PXQRECORD",$J,I,0))
+ .;--NEW 3/25/97
+ .I VAR["^" S VAR=$TR(VAR,"?!","11")
+ .;--END OF NEW
+ .I VAR'["?"&(VAR'["!") W !,$O(^TMP("PXQRECORD",$J,I,0))
+ .I VAR["?"!(VAR["!") W !,@$O(^TMP("PXQRECORD",$J,I,0))
+ .S CNT=CNT+1
+ .;I $Y>(IOSL-2) D
+ .I CNT>(IOSL-4) S CNT=0 D
+ ..I IOST["C-" R !,"ENTER to continue",ANS:DTIME
+ ..I $G(ANS)="^" S I=9999999999999
+ ..S (DX,DY)=0 X ^%ZOSF("XY")
+ K ^TMP("PXQRECORD",$J),PXQPRM
+ I IOST["C-",$G(ANS)'="^" R !,"      END OF DISPLAY",ANS:DTIME
+ ;I IOST["C-",$G(ANS)'="^" W !,"      END OF DISPLAY"
+ Q
+ASKPAT() ;Ask user for a patient
+ ;DIC on file 9000001
+ N DIR,DIC,Y,X,DA
+ S DIR(0)="PO^9000001:AEMQ"
+ S DIR("A")="Patient Name"
+ D ^DIR
+ Q $S(+Y>0:+Y,1:-1)
+ ;
+ ;
+ASKNUM() ;Ask user for a VISIT
+ ;DIC on file 9000010
+ N DIR,DIC,Y,X,DA
+ I $D(^DISV(DUZ,"PXQREP3")) S DIR("B")=$G(^DISV(DUZ,"PXQREP3"))
+ S DIR(0)="P^9000010:AEMQ"
+ S DIR("A")="Enter VISIT (UNIQUE ID or `1239)"
+ D ^DIR
+ Q $S(+Y>0:+Y,1:-1)
+ ;
+ASKNUM1() ;Ask user for a VISIT
+ ;DIC on file 9000010
+ N DIC,Y,X,DA
+ I $D(^DISV(DUZ,"PXQREP3")) S DIR("B")=$G(^DISV(DUZ,"PXQREP3"))
+ S DIR(0)="P^9000010:AEMQ"
+ S DIR("A")="Enter VISIT (UNIQUE ID or `1239)"
+ D ^DIR
+ Q $S(+Y>0:+Y,1:-1)
+ ;
+ASKENC() ;Ask user for a ENCOUNTER
+ ;DIC on file 409.68
+ N DIR,DIC,Y,X,DA
+ S DIR(0)="P^409.68:AEMQ"
+ S DIR("A")="Enter ENCOUNTER (`2344)"
+ D ^DIR
+ Q $S(+Y>0:+Y,1:-1)
+ ;
+ ;
+SOR(IEN) ;--SOURCE IF SELECTED FROM MENU
+ Q:'$G(IEN) ""
+ W $$RE^PXQUTL("!")
+ W $$RE^PXQUTL("----------------VISIT "_IEN_"---SOURCES-------------")
+ ;
+ ;
+ ;
+ S DATEC=$P($G(^AUPNVSIT(IEN,0)),"^",2) D
+ .S Y=DATEC D DD^%DT S DATEC=Y
+ W $$RE^PXQUTL("?5,""CREATED :  ""_DATEC")
+ ;
+ ;
+ S DATEE=$P($G(^AUPNVSIT(IEN,0)),"^",13) D
+ .S Y=DATEE D DD^%DT S DATEE=Y
+ W $$RE^PXQUTL("?5,""EDITED  :  ""_DATEE")
+ ;
+ ;
+ S USER=$S(+$P($G(^AUPNVSIT(IEN,0)),"^",23)>0:$P(^VA(200,+$P($G(^AUPNVSIT(IEN,0)),"^",23),0),"^",1),1:"")
+ W $$RE^PXQUTL("?5,""USER    :  ""_USER")
+ ;
+ ;
+ I $D(^DIC(19,+$P($G(^AUPNVSIT(IEN,0)),"^",24),0)) D
+ .S OPTION=$S(+$P($G(^AUPNVSIT(IEN,0)),"^",24)>0:$P(^DIC(19,+$P($G(^AUPNVSIT(IEN,0)),"^",24),0),"^",2),1:"")
+ .W $$RE^PXQUTL("?5,""OPTION  :  ""_OPTION")
+ ;
+ I $D(^ORD(101,+$P($G(^AUPNVSIT(IEN,0)),"^",25),0)) D
+ .S PROTOCOL=$S(+$P($G(^AUPNVSIT(IEN,0)),"^",25)>0:$P(^ORD(101,+$P($G(^AUPNVSIT(IEN,0)),"^",25),0),"^",2),1:"")
+ .W $$RE^PXQUTL("?5,""PROTOCOL:  ""_PROTOCOL")
+ ;
+ ;
+ I $D(^DIC(9.4,+$P($G(^AUPNVSIT(IEN,812)),"^",2),0)) D
+ .S PACKAGE=$S(+$P($G(^AUPNVSIT(IEN,812)),"^",2)>0:$P(^DIC(9.4,+$P($G(^AUPNVSIT(IEN,812)),"^",2),0),"^",1),1:"")
+ .W $$RE^PXQUTL("?5,""PACKAGE :  ""_PACKAGE")
+ ;
+ ;
+ I $P($G(^AUPNVSIT(IEN,812)),"^",3) D
+ .I $D(^PX(839.7,$P($G(^AUPNVSIT(IEN,812)),"^",3),0)) D
+ ..S SOURCE=$S(+$P($G(^AUPNVSIT(IEN,812)),"^",3)>0:$P(^PX(839.7,+$P($G(^AUPNVSIT(IEN,812)),"^",3),0),"^",1),1:"")
+ ..W $$RE^PXQUTL("?5,""SOURCE  :  ""_SOURCE")
+ ;
+ W $$RE^PXQUTL("______________________________________________________")
+ Q ""
+ ;
+SDV ;--IF AN APPOINTMENT ON THAT DAY
+ N JUNK,PATIENT,ENTRY,CNT,CS,DAY,DAY2,ERR,POINT,STOP
+ N PXC,PXCC,PXCCC,PXCCCC,ICPTSTR
+ S (PXC,PXCC,PXCCC,PXCCCC,ICPTSTR)=""
+ I $G(BROKEN),'$G(DFN),'$G(PATIENT),'$G(DATE) Q
+ I $G(DFN) S PATIENT=DFN
+ I '$G(DFN) S (PATIENT,DFN)=$P(^AUPNVSIT(IEN,0),"^",5)
+ Q:'$G(PATIENT)
+ I '$G(BROKEN) S DATE=$P(^AUPNVSIT(IEN,0),"^",1)
+ S CNT=0
+ S DAY=$P(DATE,".",1)
+ F  S DAY=$O(^SDV("C",PATIENT,DAY)) Q:DAY'[$P(DATE,".",1)  S CNT=CNT+1 D
+ .W $$RE^PXQUTL("!")
+ .W !
+ .S REF="^SDV(DAY)"
+ .F  S REF=$Q(@REF) Q:REF'[DAY  S DAY2=$P($P(REF,"(",2),",") I '$G(ERR),$P($G(^SDV(DAY2,0)),"^",2)=PATIENT,REF'["""CS"",""B""," S ENTRY=REF_" = "_@REF W $$RE^PXQUTL(ENTRY) I REF["""PR""" D CPT2
+ .;---
+ .W $$RE^PXQUTL(" ")
+ .S CS=0 F  S CS=$O(^SDV(DAY2,"CS",CS)) Q:CS'>0  D
+ ..Q:$P($G(^SDV(DAY2,0)),"^",2)'=PATIENT
+ ..S POINT=$P($G(^SDV(DAY2,"CS",CS,0)),"^",1)
+ ..S STOP=$G(^DIC(40.7,POINT,0))
+ ..W $$RE^PXQUTL("STOP CODE "_POINT_" = "_STOP)
+ .S PXC=0 F  S PXC=$O(PXQSDV(PXC)) Q:PXC=""  Q:'$D(PXQSDV)  D
+ ..S PXCC=$O(PXQSDV(PXC,0))
+ ..;S PXCCC=$E($P($G(^ICPT(PXC,0)),"^",2),1,30)
+ ..;S PXCCCC=$P($G(^ICPT(PXC,0)),"^",1)
+ ..S ICPTSTR=$$CPT^ICPTCOD(PXC,DAY)
+ ..S PXCCC=$E($P(ICPTSTR,"^",3),1,30)
+ ..S PXCCCC=$P(ICPTSTR,"^",2)
+ ..S ENTRY="CPT "_$G(PXCCCC)_" - "_$G(PXCCC)_" = "_$G(PXCC)_" TIMES"
+ ..W $$RE^PXQUTL(ENTRY)
+ D CPT
+ K PXQSDV,DATE
+ W $$RE^PXQUTL(" ")
+ Q
+CPT ;--PROCEDURES
+ I $D(^AUPNVCPT("AD",VISIT)),CNT=0 W $$RE^PXQUTL("THERE ARE PROCEDURES IN PCE BUT NO RECORD IN SCHEDULING **")
+ Q
+CPT2 ;--COUNT PROCEDURES
+ N PXQC,PXQQ
+ S PXQQ=0
+ F I=1:1:5 S PXQC=$P(@REF,"^",I) I PXQC]"" D
+ .I $D(PXQSDV(PXQC)) S PXQQ=$O(PXQSDV(PXQC,0))
+ .K PXQSDV(PXQC,PXQQ)
+ .S PXQSDV(PXQC,(PXQQ+1))=""
+ .S PXQQ=0
+ Q
+ ;
+ ;
+EXP(ROOT,IEN) ;---EXPAND ENTRIES
+ N I,REF,REF2,ENTRY
+ I ROOT["SCE",$P($G(^SCE(IEN,0)),"^",6)']"",$G(PXQPRM)=1 D
+ .W $$RE^PXQUTL("    ~~~~ERROR~~~")
+ .W $$RE^PXQUTL("** There is more Than 1 PARENT OUTPATIENT ENCOUNTER  pointing to the same VISIT**")
+ .W $$RE^PXQUTL(" ")
+ I ROOT["SCE"&($P($G(^SCE(IEN,0)),"^",6)']"") S PXQPRM=1
+ I $G(BROKEN),ROOT["AUPNVCPT" S (DFN,PATIENT)=$P($G(^AUPNVCPT(IEN,0)),"^",2)
+ I $G(BROKEN),ROOT["SCE",'$G(DATE) S DATE=$P($G(^SCE(IEN,0)),"^",1),(DFN,PATIENT)=$P($G(^SCE(IEN,0)),"^",2)
+ S REF=$P(ROOT,"""",1)_IEN_")"
+ S REF2=$P(ROOT,"""",1)_IEN
+ F  S REF=$Q(@REF) Q:REF'[REF2  S ENTRY=REF_" = "_@REF W $$RE^PXQUTL($G(ENTRY))
+ W $$RE^PXQUTL(" ")
+ Q ""

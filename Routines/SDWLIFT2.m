@@ -1,0 +1,57 @@
+SDWLIFT2 ;IOFO BAY PINES/OG - INTER-FACILITY TRANSFER: DISPLAY TRANSFER DETAILS  ; Compiled March 23, 2005 12:38:06  ; Compiled January 25, 2007 12:35:43
+ ;;5.3;Scheduling;**415,446**;AUG 13 1993;Build 77
+ ;
+ ;
+ ;******************************************************************
+ ;                             CHANGE LOG
+ ;                                               
+ ;   DATE                        PATCH                   DESCRIPTION
+ ;   ----                        -----                   -----------
+ ;
+ ;
+ Q
+EN ; INITIALIZE VARIABLES FOR DISPLAY
+ ; SDWLFMT: which set of data?
+ ; 0 - Active
+ ; 2 - Inactive
+ N SDWLOK,SDWLI
+ K SDWLINFO
+ D GETDATA^SDWLIFT5(.SDWLINFO,SDWLFMT)
+ S SDWLIFTN=$$GETTN^SDWLIFT(.SDWLINFO)
+ I 'SDWLIFTN S VALMBCK="R" Q
+ K SDWLINFO D GETDATA^SDWLIFT5(.SDWLINFO,SDWLFMT)
+ S (SDWLOK,SDWLI)=0 F  S SDWLI=$O(SDWLINFO(SDWLI)) Q:'SDWLI  I SDWLINFO(SDWLI,1)=SDWLIFTN S SDWLOK=1 Q
+ D:SDWLOK EN^VALM("SDWL TRANSFER REQ VIEW")
+ D INIT^SDWLIFT1(SDWLFMT)
+ S VALMBCK="R"
+ Q
+ ;
+INIT ; Default initialization options.
+ N DIC,D,X,WP,SDWLI,DFN,TMP,SDWLTY,SDWLDA,VADM
+ S SDWLDA=$$GET1^DIQ(409.35,SDWLIFTN,.01,"I")
+ D GETS^DIQ(409.35,SDWLIFTN,"1;3;7",,"TMP")
+ S DFN=$$GET1^DIQ(409.3,SDWLDA,.01,"I")
+ D DEM^VADPT
+ S VALMCNT=1
+ D SET^VALM10(VALMCNT,"Name: "_$E(VADM(1)_SDWLSPS,1,31)_"Status:        "_TMP(409.35,SDWLIFTN_",",3))
+ I TMP(409.35,SDWLIFTN_",",7)'="" S VALMCNT=VALMCNT+1 D SET^VALM10(VALMCNT,"Transfer accepted by: "_TMP(409.35,SDWLIFTN_",",7))
+ S VALMCNT=VALMCNT+1
+ D SET^VALM10(VALMCNT,"SSN:  "_$E($P(VADM(2),U,2)_SDWLSPS,1,31)_"Date of birth: "_$P(VADM(3),U,2))
+ S VALMCNT=VALMCNT+1
+ D SET^VALM10(VALMCNT,"Wait List Type:  "_$$GET1^DIQ(409.3,SDWLDA,4)_" : "_$$GET1^DIQ(409.3,SDWLDA,4+$$GET1^DIQ(409.3,SDWLDA,4,"I")))
+ S VALMCNT=VALMCNT+1
+ D SET^VALM10(VALMCNT,"Transfer to: "_$$GET1^DIQ(4,$$FIND1^DIC(4,"","X",TMP(409.35,SDWLIFTN_",",1),"D"),.01))
+ S VALMCNT=VALMCNT+1
+ D SET^VALM10(VALMCNT,"Comments: ")
+ S X=$$GET1^DIQ(409.35,SDWLIFTN_",",5,"Z","WP")
+ S SDWLI=0 F  S SDWLI=$O(WP(SDWLI)) Q:'SDWLI  S VALMCNT=VALMCNT+1 D SET^VALM10(VALMCNT,WP(SDWLI,0))
+ Q
+ ;
+HD ; -- Make header line for list processor
+ S X=$$SETSTR^VALM1("User: "_SDWLDZN,"",1,79)
+ S VALMHDR(1)=X,VALMHDR(2)=""
+ Q
+EXIT ; Tidy up
+ K SDWLIFTN
+ K VALMHDR
+ Q

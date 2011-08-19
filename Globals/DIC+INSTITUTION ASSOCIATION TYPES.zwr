@@ -1,0 +1,16 @@
+INSTITUTION ASSOCIATION TYPES
+ZWR
+^DIC(4.05,0)="INSTITUTION ASSOCIATION TYPES^4.05^2^2"
+^DIC(4.05,0,"AUDIT")="@"
+^DIC(4.05,0,"DD")="@"
+^DIC(4.05,0,"DEL")="@"
+^DIC(4.05,0,"GL")="^DIC(4.05,"
+^DIC(4.05,0,"LAYGO")="@"
+^DIC(4.05,0,"WR")="@"
+^DIC(4.05,1,0)="VISN"
+^DIC(4.05,2,0)="PARENT FACILITY"
+^DIC(4.05,"%D",0)="^^2^2^2980701^^^^"
+^DIC(4.05,"%D",1,0)="This file is used to link entries in the Institution file into associations"
+^DIC(4.05,"%D",2,0)="that are meaningful."
+^DIC(4.05,"B","PARENT FACILITY",2)=""
+^DIC(4.05,"B","VISN",1)=""

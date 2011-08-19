@@ -1,0 +1,18 @@
+TIUPEDSP ;SLC/JER - Display Filing Event ;12/13/94  17:58
+ ;;1.0;TEXT INTEGRATION UTILITIES;;Jun 20, 1997
+ ;;Text Integration Utility;;
+EN ; Option entry
+ K ^TMP("TIUEVENT",$J) N TIU
+ D EN^VALM("TIU DISPLAY FILING EVENT")
+ K ^TMP("TIUEVENT",$J)
+ Q
+MAIN ; Control branching
+ D GET^TIUSRVE(TIUDA)
+ Q
+HDR ; Build Header
+ N TIUETYP S TIUETYP=$G(^TMP("TIUEVENT",$J,0),"Filing Event")
+ S VALMHDR(1)=$$CENTER^TIULS($$TITLE^TIUU(TIUETYP))
+ Q
+CLEAN ; Clean up your mess!
+ K ^TMP("TIUEVENT",$J) D CLEAN^VALM10 K VALMY
+ Q

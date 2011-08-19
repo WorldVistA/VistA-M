@@ -1,0 +1,56 @@
+TIUFHLP1 ; SLC/MAM - On-line help library: EDITVW, FIELD ;4/5/05
+ ;;1.0;TEXT INTEGRATION UTILITIES;**14,184**;Jun 20, 1997
+ ;
+EDITVW ; Write Field Description for Fields Shown in Edit View Templates D
+ N TIUI,FLDNM,FLDNO,MSG,FILEDA,TYPE,PFILEDA
+ S FILEDA=TIUFINFO("FILEDA"),TYPE=$P(TIUFNOD0,U,4)
+ S PFILEDA=+$O(^TIU(8925.1,"AD",FILEDA,0))
+ ; NOTE ON DISPLAY OF HERITABLE FIELDS: text in desc of protocol TIUFD ACTION MENU MGR:
+ I "MN"[TIUFWHO,TYPE'="O" D ITEM^TIUFHLP(^TMP("TIUF",$J,"INHERIT"))
+BASICS W !!,$$CENTER^TIUFL("Help on Basics",80),! K DIROUT
+ F FLDNO=.01,.02,.03,.04,.1,0,.13,.07,.05,.06,.11,.08,.15,3.02,3.03 K DIRUT D  Q:$D(DIRUT)
+ . I FLDNO=0!(FLDNO=3.03),"NM"'[TIUFWHO Q
+ . I FLDNO=.11,TIUFTMPL'="A"!(TYPE="O") Q  ;orphan
+ . I FLDNO=3.02,"N"'[TIUFWHO Q  ;OK to Distribute
+ . I TYPE="O",(FLDNO=.1)!(FLDNO=.08)!(FLDNO=.15)!(FLDNO=.12)!(FLDNO=3.03) Q
+ . D FIELD(8925.1,FLDNO)
+ Q:$D(DTOUT)!$D(DIROUT)
+ I TYPE="O" G BOILTX
+ITEMS W !!,$$CENTER^TIUFL("Help on Items",80),!
+ F FLDNO=10 K DIRUT D FIELD(8925.1,FLDNO) Q:$D(DIRUT)
+ F FLDNO=2,3,4 K DIRUT D FIELD(8925.14,FLDNO) Q:$D(DIRUT)
+ Q:$D(DTOUT)!$D(DIROUT)
+BOILTX W !!,$$CENTER^TIUFL("Help on Boilerplate Text",80),!
+ D FIELD(8925.1,3)
+ Q:$D(DTOUT)!$D(DIROUT)  Q:$G(TIUFSTMP)="X"
+ I TYPE="CO" G UPLOAD
+TECH N PNODE61,PCUSTOM
+ I "MN"'[TIUFWHO Q
+ W !!,$$CENTER^TIUFL("Help on Technical Fields",80),!
+ I TYPE'="O" F FLDNO=4.1,4.2,4.3,4.4,4.45,4.6,4.7,4.9,5,6,6.14,6.1,6.12,6.13,7,8 K DIRUT D FIELD(8925.1,FLDNO) Q:$D(DIRUT)
+ I TYPE="O" D FIELD(8925.1,9)
+ Q:$D(DTOUT)!$D(DIROUT)
+ I TYPE="O"!(TYPE="CO") G EDVWX
+UPLOAD W !!,$$CENTER^TIUFL("Help on Upload",80),!
+ F FLDNO=1.01,1.02,1.03,4,4.5,4.8 K DIRUT D FIELD(8925.1,FLDNO) Q:$D(DIRUT)
+ Q:$D(DTOUT)!$D(DIROUT)
+ W !!,$$CENTER^TIUFL("Help on Upload Record Header",80),!
+ W !,"NOTE: The following fields are for Captioned Headers.  (Fields for Delimited",!,"Headers are similar.)",!
+ F FLDNO=.01:.01:.04,1,.05:.01:.07 K DIRUT D FIELD(8925.12,FLDNO) Q:$D(DIRUT)
+EDVWX D CLEAN^DILF
+ Q
+ ;
+FIELD(FILENO,FLDNO) ; Writes (sub)field description for Display Template D
+ N FLDNM,TIUI,MSG,HERE
+ S FLDNM=$S(FILENO=8925.1:^TMP("TIUF",$J,FLDNO,"LABEL"),FILENO=8925.14:$S(FLDNO=2:"Mnemonic",FLDNO=3:"Sequence",1:"Menu Text"),FILENO=8925.11:^TMP("TIUF",$J,1,FLDNO,"LABEL"),1:"")
+ I FLDNM="" S FLDNM=^TMP("TIUF",$J,2,FLDNO,"LABEL")
+ K DIRUT W:$$CONTINUE^TIUFHLP !?1,$G(IOINHI),$P(FLDNM,U),$G(IOINORM),! Q:$D(DIRUT)
+ I FLDNO=0 W "   The Internal File Number is the number of the entry in the TIU Document",! W:$$CONTINUE^TIUFHLP "   Definition File.  IFN is included in the display to help programmers with",! W:$$CONTINUE^TIUFHLP "   debugging.",! Q
+ D HELP^DIE(FILENO,"",FLDNO,"D")
+ S HERE=1 I $G(TIUFTMPL)="J",(FLDNO=.04)!(FLDNO=.07) S HERE=0
+ F TIUI=1:1:$G(DIHELP) S MSG=^TMP("DIHELP",$J,TIUI) K DIRUT D  Q:$D(DIRUT)
+ . I FLDNO=.04,$G(TIUFTMPL)="J",MSG["O OBJECT" S HERE=1
+ . I FLDNO=.07,$G(TIUFTMPL)="J",MSG["OBJECT STATUS",MSG'["OBJECT STATUS," S HERE=1
+ . W:HERE&$$CONTINUE^TIUFHLP ?3,MSG,!
+ Q
+ ;

@@ -1,0 +1,30 @@
+RMPRRET9 ;PHX/RFM-RETURN ITEMS FROM FILE 667.1 ;8/29/1994
+ ;;3.0;PROSTHETICS;;Feb 09, 1996
+EN K DIC S DIC=667.1,DIC(0)="AEQMZ",DIC("A")="Select ITEM: " D ^DIC G:Y<0 EXIT S RMPRITEM=+Y
+EN1 K DIR S DIR(0)="660.1,3",DIR("A")="QTY",DIR("B")=1 D ^DIR G:$$CK EXIT I X="" W !,"Enter `^` to exit" G EN1
+ S RMPRQTY=X
+ K DIR S DIR(0)="660.1,4",DIR("A")="UNIT COST",DIR("B")=0 D ^DIR G:$$CK EXIT S (RMPRCOST,RMPRCST)=X
+RETU K DIR S DIR(0)="660.1,13",DIR("A")="RETURNED STATUS",DIR("B")="RETURNED" D ^DIR G:$$CK EXIT I X="" W !,"Enter the Returned Status or `^` to exit" G RETU
+ S RMPRSTAT=+Y
+SER K DIR S DIR(0)="660.1,5R",DIR("A")="SERIAL NO." D ^DIR G:$$CK EXIT S RMPRSER=X
+ K DIR S DIR(0)="660.1,10",DIR("B")="TODAY" D ^DIR G:$$CK!(Y<0) EXIT S RMPRDRET=+Y
+POS ;D WAIT^DICD H 1
+ K DD,DO S DIC="^RMPR(660.1,",DIC(0)="L",X=DT,DLAYGO=660.1 D FILE^DICN K DLAYGO G:Y<0 EXIT
+ S IEN=+Y,^RMPR(660.1,IEN,0)=DT_U_DFN_U_U_RMPRQTY_U_RMPRCST_U_$G(RMPRSER)_"^^^"_2_"^^"_RMPRDRET_"^^^"_RMPRSTAT_U_RMPR("STA"),$P(^(0),U,21)=RMPRITEM,DIK=DIC,DA=IEN D IX1^DIK
+ G EXIT
+CK() Q $D(DUOUT)!($D(DTOUT))
+EDT ;EDIT RETURNED/CONDEMNED ITEMS
+ D DIV4^RMPRSIT G:$D(X) EXIT S DIC("S")="I $P(^(0),U,15)=RMPR(""STA""),'$P(^(0),U,10),$P(^(0),U,11)",DLAYGO=660.1
+ S DIC="^RMPR(660.1,",DIC(0)="AEQMZ",DIC("W")="D DSP^RMPRRET9",DIC("A")="Select PATIENT: " D ^DIC G:+Y'>0 EXIT
+ L +^RMPR(660.1,+Y,0):1 I '$T W !!,$C(7),?5,"Someone else is Editing this entry" G EXIT
+ S ZA=+Y,ZA(1)=^RMPR(660.1,+Y,0),DA=+Y S DR=".01;5;@3;10R;I $P(^RMPR(660.1,DA,0),U,11)>$P(ZA(1),U) W !,$C(7),""Date of Return cannot be greater than the Posting Date"" S Y=""@3""",DIE=DIC D ^DIE G:$D(DTOUT)!($D(Y(0))) EX
+ I '$D(DA) S:$D(^RMPR(660,+$P(ZA(1),U,16),0)) $P(^RMPR(660,+$P(ZA(1),U,16),0),U,20)="" S:$D(^RMPR(667.3,+$P(ZA(1),U,22),0)) $P(^RMPR(667.3,$P(ZA(1),U,22),0),U,12)="" D:$P(ZA(1),U,12) INV G EX
+ I $G(^RMPR(660,+$P(^RMPR(660.1,+ZA,0),U,16),0))'="" S $P(^RMPR(660,$P(^RMPR(660.1,ZA,0),U,16),0),U,11)=$P(^RMPR(660.1,ZA,0),U,6)
+EX L -^RMPR(660.1,ZA,0) G EXIT
+DSP S ZA=^RMPR(660.1,+Y,0) W ?15,$S($P(ZA,U,3):$P(^PRC(441,$P(^RMPR(661,$P(ZA,U,3),0),U,1),0),U,2),1:$S($D(^RMPR(667.1,+$P(ZA,U,21),0)):$P(^(0),U,1),1:"  ")),"  ",$P(ZA,U,6)," ",$E($P(^DPT($P(ZA,U,2),0),U,1),1,30) W ! Q
+INV ;UPDATE INVENTORY
+ I '$P(^RMPR(669.9,RMPRSITE,0),U,3) Q
+ S PRCPPRIV=1 K PRCP("ITEM") S PRCP("QTY")=-1*$P(ZA(1),U,4),PRCP("ITEM")=$S($P(ZA(1),U,3):$S($D(^RMPR(661,+$P(ZA(1),U,3),0)):$P(^(0),U),1:0),1:0),PRCP("TYP")="A" I PRCP("ITEM") S PRCP("I")=$P(ZA(1),U,12) D ^PRCPUSA
+ I $D(PRCP("ITEM")) W !,$C(7),7,"Error encountered while posting this item to GIP.  Please",!,"post this item manually.",!
+ Q
+EXIT N RMPR,RMPRSITE D KILL^XUSCLEAN Q

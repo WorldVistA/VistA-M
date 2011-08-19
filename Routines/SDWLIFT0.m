@@ -1,0 +1,69 @@
+SDWLIFT0 ;IOFO BAY PINES/OG - INTER-FACILITY TRANSFER: CONTROL REQUESTS;  ; Compiled September 28, 2006 16:56:45
+ ;;5.3;Scheduling;**415,446**;AUG 13 1993;Build 77
+ ;
+ ;******************************************************************
+ ;                             CHANGE LOG
+ ;
+ ;   DATE                        PATCH                   DESCRIPTION
+ ;   ----                        -----                   -----------
+ ;   04/17/2006                  SD*5.3*446              Add status on receipt
+ ;
+MSGSVRRQ ;handle transfer request
+ N DIC,DIE,DA,DR,DO,X,Y,%,XMY,XMSUB,XMTEXT,XMDUZ,XMMG,SDWLI,SDWLCI,SDWLI0,SDWLCOMM,SDWLMSG,SDWLRIN,SDWLIFTN,SDWLNM,SDWLDTM
+ D RMSG^SDWLIFT
+ S SDWLI=1,DIC="^SDWL(409.36,",DIC(0)="",(SDWLNM,X)=$P(SDWLMSG(SDWLI,0),U,3)
+ D FILE^DICN
+ I Y<0 S SDWLMSG(1,0)="Error creating new request: "_SDWLMSG(1,0) D ERR^SDWLIFT(.SDWLMSG) Q
+ S DA=+Y,DR="",(SDWLCI,SDWLI0)=0
+ F  S SDWLI=$O(SDWLMSG(SDWLI)) Q:'SDWLI  D
+ .;I $P(SDWLMSG(SDWLI,0),U)=.361 S X=$P(SDWLMSG(SDWLI,0),U,3),DIC=8 D ^DIC S SDWLI0=SDWLI0+1,$P(DR,";",SDWLI0)=".361///"_$S(Y=-1:"",1:+Y) Q  ; Primary eligibility code. Expansion transmitted, get IEN.
+ .I $P(SDWLMSG(SDWLI,0),U)=.4 S SDWLCI=SDWLCI+1,SDWLCOMM(SDWLCI)=$P(SDWLMSG(SDWLI,0),U,3) Q
+ .I $P(SDWLMSG(SDWLI,0),U)=2 S SDWLDTM=$P(SDWLMSG(SDWLI,0),U,3) Q  ;Transmission Date/Time: not written to #409.36, just returned for verification
+ .S SDWLI0=SDWLI0+1,$P(DR,";",SDWLI0)=$P(SDWLMSG(SDWLI,0),U)_"///"_$P(SDWLMSG(SDWLI,0),U,3)
+ .I $P(SDWLMSG(SDWLI,0),U)=.1 S SDWLSTN=$P(SDWLMSG(SDWLI,0),U,3),SDWLRIN=$$FIND1^DIC(4,"","X",SDWLSTN,"D")  ;Requesting facility
+ .I $P(SDWLMSG(SDWLI,0),U)=.5 S SDWLIFTN=$P(SDWLMSG(SDWLI,0),U,3)  ;Requesting facility's transfer ID
+ .Q
+ D NOW^%DTC
+ S DR=DR_";.2///"_%_";1///P",DIE=DIC D ^DIE  ; 446 ; OG ; added status.
+ S DA(1)=DA,DIC=DIC_DA(1)_",""COMM"",",SDWLI=0
+ F  S SDWLI=$O(SDWLCOMM(SDWLI)) Q:'SDWLI  S X=SDWLCOMM(SDWLI) K DO D FILE^DICN
+ ;send acknowledgement message back reporting success or failure
+ S XMY("S.SDWL-XFER-SERVER@"_$$GET1^DIQ(4,SDWLRIN,60))="",XMSUB="SDWL TRANSFER ACKNOWLEDGEMENT",XMTEXT="SDWLX(",XMDUZ="POSTMASTER"
+ S SDWLI=1,SDWLX(SDWLI)=".5"_U_"SENDING FACILITY TRANSFER ID"_U_SDWLIFTN
+ S SDWLI=SDWLI+1,SDWLX(SDWLI)=".01"_U_"NAME"_U_SDWLNM
+ S SDWLI=SDWLI+1,SDWLX(SDWLI)=1_U_"STATION NUMBER"_U_$P($$SITE^VASITE(),U,3)
+ S SDWLI=SDWLI+1,SDWLX(SDWLI)=2_U_"TRANSMISSION DATE/TIME"_U_SDWLDTM
+ S SDWLI=SDWLI+1,SDWLX(SDWLI)=6_U_"RECEIVING FACILITY TRANSFER ID"_U_DA
+ D ^XMD
+ K XMY,SDWLX,SDWLMSG
+ I $G(XMMG)["Error" S SDWLMSG(0)=1,SDWLMSG(1,0)="Message aborted with the following error: "_XMMG D ERR^SDWLIFT(.SDWLMSG) Q
+ S XMY("G.SDWL-TRANSFER-ADMIN")="",XMSUB="INTER-FACILITY XFER: New request",XMTEXT="SDWLX(",XMDUZ="POSTMASTER"
+ S SDWLX(0)=1,SDWLX(SDWLX(0),0)="A request has arrived to transfer "_SDWLNM_" from "_$$GET1^DIQ(4,SDWLRIN,.01)_" ("_SDWLSTN_")."
+ D:$L(SDWLX(SDWLX(0),0))>80 COL80^SDWLIFT(.SDWLX)
+ S SDWLX(0)=SDWLX(0)+1,SDWLX(SDWLX(0),0)="",SDWLX(0)=SDWLX(0)+1,SDWLX(SDWLX(0),0)="Details available at menu option, SDWL TRANSFER ACCEPT"
+ D ^XMD
+ I $G(XMMG)["Error" S SDWLMSG(0)=1,SDWLMSG(1,0)="Message aborted with the following error: "_XMMG D ERR^SDWLIFT(.SDWLMSG)
+ Q
+MSGSVRRM ;remove request
+ N DIE,DA,DR,DIK,DIC,D,X,XMY,XMSUB,XMTEXT,XMDUZ,XMMG,TMP,SDWLNM,SDWLIFTN,SDWLINST,SDWLSTN,SDWLDMN,SDWLX,SDWLMSG
+ D RMSG^SDWLIFT
+ S DIE=409.36,DA=$P(SDWLMSG(1,0),U,3)
+ D GETS^DIQ(DIE,DA_",",".01;.5",,"TMP")
+ S SDWLNM=TMP(DIE,DA_",",.01)  ;Patient name
+ S SDWLIFTN=TMP(DIE,DA_",",.5)  ;Sending facility's request id
+ S SDWLSTN=$$GET1^DIQ(DIE,DA,.1)  ;Requesting station number
+ S SDWLINST=$$FIND1^DIC(4,"","X",SDWLSTN,"D"),SDWLDMN=$$GET1^DIQ(4,SDWLINST,60)
+ S DIK="^SDWL(409.36," D ^DIK
+ S XMY("S.SDWL-XFER-SERVER@"_SDWLDMN)="",XMSUB="SDWL TRANSFER REMOVAL REQUEST ACKNOWLEDGEMENT",XMTEXT="SDWLX(",XMDUZ="POSTMASTER"
+ S SDWLX(1,0)=".5"_U_"SENDING FACILITY TRANSFER ID"_U_SDWLIFTN
+ S SDWLX(0)=1
+ D ^XMD
+ I $G(XMMG)["Error" S SDWLMSG(0)=1,SDWLMSG(1,0)="Message aborted with the following error: "_XMMG D ERR^SDWLIFT(.SDWLMSG)
+ K XMY,SDWLMSG,SDWLX
+ S XMY("G.SDWL-TRANSFER-ADMIN")="",XMSUB="INTER-FACILITY XFER: Removal of request",XMTEXT="SDWLX(",XMDUZ="POSTMASTER"
+ S SDWLX(0)=1,SDWLX(SDWLX(0),0)="The request to transfer "_SDWLNM_" from "_$$GET1^DIQ(4,SDWLINST,.01)_" ("_SDWLSTN_") has been recalled."
+ D:$L(SDWLX(SDWLX(0),0))>80 COL80^SDWLIFT(.SDWLX)
+ S SDWLX(0)=SDWLX(0)+1,SDWLX(SDWLX(0),0)="",SDWLX(0)=SDWLX(0)+1,SDWLX(SDWLX(0),0)="The details have been removed from the system."
+ D ^XMD
+ I $G(XMMG)["Error" S SDWLMSG(0)=1,SDWLMSG(1,0)="Message aborted with the following error: "_XMMG D ERR^SDWLIFT(.SDWLMSG)
+ Q

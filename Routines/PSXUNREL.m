@@ -1,0 +1,159 @@
+PSXUNREL ;BIR/WPB-Report of Rx's Not Released by the Vendor ;29 Jun 2001  2:34 PM
+ ;;2.0;CMOP;**23,28,34,38**;11 Apr 97
+ ;Reference to CMOP^PSNAPIS supported by DBIA #2574
+EN I '$D(^PSX(552.4,"AR")) W !,"All Rx's have been released." Q
+ D EX
+ S DIC=552.1,DIC(0)="AEQMZ",DIC("A")="Select CMOP Batch # or RETURN for all:  "
+ D ^DIC K DIC I $D(DUOUT)!($D(DTOUT))!(X["^") G EX
+ K DIRUT,DTOUT
+ S:+Y>0 PSXBEG=+Y K Y,X
+ S PSXANS=""
+ I $G(PSXBEG) G DEV
+Q1 S DIR(0)="S^C:Controlled Subs;N:Non-Controlled Subs;B:Both",DIR("?")="Enter ""C"" to report controlled substances, ""N"" for non-controlled substances or ""B"" to include both."
+ D ^DIR K DIR S PSXANS=$G(Y) I $D(DIRUT) K Y,X D EX G EN
+ D DATE Q:$G(STOP)
+DEV S %ZIS="Q",%ZIS("B")="HOME" D ^%ZIS S PSXLION=ION,PGL=($G(IOSL)-2) I POP W !,"NO DEVICE SELECTED" G EX
+ I $D(IO("Q")) D QUE,EX Q
+ G:$G(PSXBEG)>0 JOB
+ D JOBA,EX
+ Q
+DATE ;DATE SECTION
+ K STOP
+ S %DT="AEXT",%DT("A")="Enter to BEGIN SUMMARY: ",%DT(0)="-DT",%DT("B")="TODAY"
+ D ^%DT K %DT("A")
+ I Y<0!($D(DTOUT)) S STOP=1 Q
+ S START=Y
+ S %DT("A")="Enter date to END SUMMARY:  ",%DT(0)="-DT",%DT("B")="TODAY" D ^%DT
+ K %DT
+ I Y<0!($D(DTOUT)) S STOP=1 Q
+ S END=Y\1+.24
+ I END<START W !,"Ending date must follow starting date!" G DATE
+DIVISION ;
+ S ZZFAC1=0,DIC=552,DIC(0)="AEQMZ",DIC("A")="Select FACILITY or RETURN for all: "
+ D ^DIC K DIC I $D(DUOUT)!($D(DTOUT))!(X["^") G EX
+ S:$G(Y)'>0 ALL=1,FAC1=0 Q:$G(Y)'>0
+ I +Y>0 S ZZFAC1=$$GET1^DIQ(552,+Y,5)
+ ; getting site/divnum
+ I ZZFAC1'>0 S XX=$P(Y,U,2)_",",ZZFAC1=$$GET1^DIQ(4,XX,99)
+ K Y,X,DIC,DUOUT,DTOUT
+ Q
+QUE S ZTRTN=$S($G(PSXBEG)>0:"JOB^PSXUNREL",$G(PSXBEG)="":"JOBA^PSXUNREL",1:""),ZTDESC="CMOP Unreleased Rx Report",ZTIO=PSXLION
+ F X="PSXBEG","PGL","PSXANS","START","END","ZZFAC1" S ZTSAVE(X)=""
+ D ^%ZTLOAD
+ I $D(ZTSK)[0 W !!,"Job Canceled"
+ E  W !!,"Job Queued"
+ Q
+ ;Called by Taskman to run Report of Rx's not released by Vendor
+JOB S:$D(ZTQUEUED) ZTREQ="@"
+ I '$D(ZTQUEUED) U IO
+ I $G(PSXBEG) S RC5=$O(^PSX(552.4,"B",PSXBEG,"")),REC5=$P(^PSX(552.4,RC5,0),"^",1),REC5=REC5-1,PSXEND=REC5+1 D JOB1 G:$G(STOP) EX
+ I $G(IOST)["C-" S DIR(0)="E",DIR("A")="<CR> - CONTINUE" D ^DIR G EX
+ G EX
+ Q
+ ;Called by Taskman to run Report of Rx's not released by Vendor
+ ; information stored for printing
+ ; S ^TMP($J,"PSX",BAT)=ATM_U_TDTM_U_REC5
+ ; S ^TMP($J,"PSX",BAT,"TYP")=PSXTYP
+ ; S ^TMP($J,"PSX",BAT,ORDER,RX,FILL)=VAPRT_U_DRGID
+ ;
+JOBA S REC5=0,PSXEND=999999999
+ S:$D(ZTQUEUED) ZTREQ="@"
+ I '$D(ZTQUEUED) U IO
+JOB1 ;(515,"AR",IEN514,RXN)
+ K ^TMP($J,"PSX")
+ S $P(LINE,"-",IOM-1)=""
+ F  S REC5=$O(^PSX(552.4,"AR",REC5)) Q:REC5'>0!(REC5>PSXEND)  D
+ .I '$D(^PSX(552.1,REC5)) Q
+ .I $D(START) I START'=0 S ZZCHKDT=$P(^PSX(552.1,REC5,0),U,6) Q:((ZZCHKDT<START)!(ZZCHKDT>END))
+ .I $D(ZZFAC1) I ZZFAC1>0 Q:ZZFAC1'=$P(^PSX(552.1,REC5,0),"-")
+ .S ATM=$P($G(^PSX(552.1,REC5,0)),U,6) Q:$G(ATM)']""
+ .S BAT=$P(^PSX(552.1,REC5,0),U,1)
+ .S TDTM=$P(^PSX(552.1,REC5,0),U,3),REC4=$O(^PSX(552.4,"B",REC5,""))
+ .S ^TMP($J,"PSX",BAT)=ATM_U_TDTM_U_REC5
+ .S RX="" F  S RX=$O(^PSX(552.4,"AR",REC5,RX)) Q:RX=""  D JOB2
+ .I '$D(^TMP($J,"PSX",BAT,"TYP")) K ^TMP($J,"PSX",BAT)
+ .S:$D(DIRUT) REC5=99999999999999
+ D JOB3
+ K REC,PSXEND,PSXBEG,AREC,BAT,TDTM,ATM,OLDBAT,RECD,DRGID,FILL
+ K SITEN,ST,SITE,PHAR,LCNT,LINE,REC4,REC5,RC5,DIRUT,RX
+ Q
+JOB2 ;store information
+ S RECD=$O(^PSX(552.4,REC4,1,"B",RX,"")) Q:$G(RECD)=""
+ S PSXTYP=$P($G(^PSX(552.4,REC4,1,RECD,0)),U,14)
+ I $G(PSXANS)="N",PSXTYP=1 Q
+ I $G(PSXANS)="C",PSXTYP="" Q
+ Q:$D(DIRUT)
+ S DRGID=$P(^PSX(552.4,REC4,1,RECD,0),U,4),(NDFPTR,VAPRT)=""
+ D ORDNUM
+ S ORDER=$S($L(CORDER(1)):CORDER(1),1:"NONE")
+ I $G(DRGID)]"" S VAPRT=$$CMOP^PSNAPIS(DRGID)
+ S FILL=$P(^PSX(552.4,REC4,1,RECD,0),U,12)
+ S VAPRT=$G(VAPRT)
+ S ^TMP($J,"PSX",BAT,ORDER,RX,FILL)=VAPRT_U_DRGID
+ I $G(^TMP($J,"PSX",BAT,"TYP")) Q
+ S ^TMP($J,"PSX",BAT,"TYP")=PSXTYP
+ Q
+JOB3 ;Print records from ^TMP
+ K STOP
+ I '$D(^TMP($J,"PSX")) D  G EX
+ .W @IOF,!!,?15,"NO UNRELEASED DATA TO PRINT",!!
+ . I $E(IOST)="C" S DIR(0)="E",DIR("A")="<cr> - continue" D ^DIR K DIR
+ S BAT="" F  S BAT=$O(^TMP($J,"PSX",BAT)) Q:BAT=""  S ZN=^(BAT) D  Q:$G(STOP)
+ . S ATM=$P(ZN,U),TDTM=$P(ZN,U,2),REC5=$P(ZN,U,3)
+ . D HDR,ORDER,PG1
+ Q
+ORDER ;Print by order,rx,fill
+ S ORDER=""
+ F  S ORDER=$O(^TMP($J,"PSX",BAT,ORDER)) Q:ORDER=""  S RX="" D  Q:$G(STOP)
+ . F  S RX=$O(^TMP($J,"PSX",BAT,ORDER,RX)) Q:RX=""  S FILL="" D  Q:$G(STOP)
+ ..F  S FILL=$O(^TMP($J,"PSX",BAT,ORDER,RX,FILL)) Q:FILL=""  S ZN=^(FILL) D  Q:$G(STOP)
+ ... S VAPRT=$P(ZN,U),DRGID=$P(ZN,U,2)
+ ... W !,ORDER,?18,RX,?28,FILL,?33,$E($G(VAPRT),1,35),?70,DRGID
+ ... D PG
+ Q
+ORDNUM ;Return Order Number
+ K CORDER
+ S CORDER=BAT,CORDER(1)=""
+ F  S CORDER=$O(^PSX(552.2,"B",CORDER)) D  Q:((CORDER="")!(CORDER(1)'=""))
+ .I $P(CORDER,"-",1,2)'=BAT S CORDER="" Q
+ .S ZZNODE=$O(^PSX(552.2,"B",CORDER,0)) Q:ZZNODE<1
+ .S:$D(^PSX(552.2,"AC",ZZNODE,RX)) CORDER(1)=CORDER
+ Q
+HDR W @IOF
+ D NOW^%DTC
+ S SITEN=+BAT
+ ;N X,Y S DIC=4,DIC(0)="MNZ",X=SITEN S:$D(^PSX(552,"D",X)) X=$E(X,2,99) D ^DIC S SITE=$S($G(Y)]"":$P(Y,"^",2),1:"UNKNOWN") K X,Y,DIC ;****DOD L1
+ N X,Y S X=SITEN,AGNCY="VASTANUM" S:$D(^PSX(552,"D",X)) AGNCY="DMIS",X=$E(X,2,99) S SITE=$$IEN^XUMF(4,AGNCY,X),SITE=$S($G(SITE)]"":$$NAME^XUAF4(SITE),1:"UNKNOWN") K X,Y,AGNCY ;****DOD L1
+ S PHAR=$P(^PSX(552.1,REC5,"P"),U,1)
+ S PSXTYP=^TMP($J,"PSX",BAT,"TYP")
+ S PSXTYP=$S(+PSXTYP:"Controlled Substance",1:"Non-Controlled Substance")
+ W !,?15,"Report of Unreleased Rxs for Transmission ",BAT
+ W !,?23,"Printed : ",$$FMTE^XLFDT(%,"1P"),!
+ W !,"Facility: ",SITE,?41,"Pharmacy Division: ",PHAR
+ W !,"Transmitted: ",$$FMTE^XLFDT(TDTM,"1P"),?41,"Received: ",$$FMTE^XLFDT(ATM,"1P")
+ W !,"Batch Type: ",PSXTYP,!!
+ W "ORDER #",?18,"RX NUMBER",?28,"FILL",?33,"DRUG NAME",?70,"DRUG ID",!,LINE
+ W !
+ Q
+PG ;line handler
+ I (($Y+3)<IOSL) Q
+ I $G(IOST)["P-" D HDR Q
+ S DIR(0)="E" D ^DIR K DIR,DIR(0) S:$D(DIRUT) STOP=1
+ K DIROUT,DTOUT,DUOUT,DIRUT
+ D:'$G(STOP) HDR
+ Q
+PG1 ;
+ I $E(IOST)'="C" Q
+ K DIR
+ S DIR(0)="E" D ^DIR K DIR,DIR(0) S:$D(DIRUT) STOP=1
+ K DIROUT,DTOUT,DUOUT,DIRUT
+ Q
+EX ;
+ K LINE,PHAR,BAT,SITE,OLDBAT,REC,TDTM,SUB,RECD,DRGID,FILL,LCNT,RCD,%,SITEN,X,ST,ATM,%,%ZIS,PSXLION,ZTDESC,ZTIO,ZTRTN,ZTSAVE("PSXBEG"),ZTSK
+ K DUOUT,DTOUT,X,Y,RC5,REC4,DIROUT,DIR,DIR(0),ZTQUEUED,STOP,PSXANS,VAPRT,NDFPTR
+ K FAC1,START,END,PSXTYP,STOP,PSXBEG,CORDER
+ K ALL,ORDER,PGL,ZN,ZZCHKDT,ZZFAC,ZZNODE,ZZXC,ZZXX,ZZFAC1
+ K ^TMP($J,"PSX")
+ W @IOF
+ D ^%ZISC
+ Q

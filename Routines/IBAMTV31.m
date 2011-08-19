@@ -1,0 +1,50 @@
+IBAMTV31 ;ALB/CPM - LIST CHARGES PENDING REVIEW ; 03-JUN-94
+ ;;Version 2.0 ; INTEGRATED BILLING ;**15,52**; 21-MAR-94
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+SP ; 'Select Patient' entry action.
+ N IBCOMMIT,IBNBR,IBBG
+ S IBCOMMIT=0 D EN^VALM2($G(XQORNOD(0))) I '$O(VALMY(0)) G SPQ
+ S IBNBR="" F  S IBNBR=$O(VALMY(IBNBR)) Q:'IBNBR  D
+ .S DFN=^TMP("IBAMTV3",$J,"IDX",IBNBR,IBNBR) Q:'DFN
+ .W !,"Generating a list of pending charges for ",$P($$PT^IBEFUNC(DFN),"^")," ..." H 2
+ .N VALMHDR,VALMY S IBCOMMIT=1
+ .D EN^VALM("IB MT REVIEW INDIV CHARGES")
+SPQ S VALMBCK=$S(IBCOMMIT:"R",1:"")
+ I IBCOMMIT S IBBG=VALMBG D INIT^IBAMTV3 S VALMBG=IBBG
+ Q
+ ;
+HDR ; Build screen header.
+ N IBPT,VA,VAEL,VAERR
+ D ELIG^VADPT
+ S IBPT=$$PT^IBEFUNC(DFN)
+ S VALMHDR(1)="Release Charges 'Pending Review'"_$J("",21)_"List of all Pending Charges"
+ S VALMHDR(2)=$$SETSTR^VALM1("Date","Patient: "_$P(IBPT,"^")_"  "_$E(IBPT)_$P(IBPT,"^",3)_$S(VAEL(3):"  **SC VETERAN**",1:""),69,4)
+ Q
+ ;
+INIT ; Build list.
+ N IBAX,IBN,IBND,IBATYP,IBND1
+ S VALMBG=1,VALMCNT=0,VALMBCK="R"
+ K ^TMP("IBAMTV31",$J)
+ S IBN=0 F  S IBN=$O(^IB("AJ",DFN,IBN)) Q:'IBN  D
+ .S IBND=$G(^IB(IBN,0)),IBND1=$G(^(1)) Q:'IBND!'IBND1
+ .S VALMCNT=VALMCNT+1
+ .S IBATYP=$P($G(^IBE(350.1,+$P(IBND,"^",3),0)),"^") S:$E(IBATYP,1,2)="DG" IBATYP=$E(IBATYP,4,99)
+ .S IBAX=$$SETSTR^VALM1($$DAT1^IBOUTL($P(IBND,"^",14)),VALMCNT,+$P(VALMDDF("FDATE"),"^",2),+$P(VALMDDF("FDATE"),"^",3))
+ .S IBAX=$$SETSTR^VALM1($$DAT1^IBOUTL($P(IBND,"^",15)),IBAX,+$P(VALMDDF("TDATE"),"^",2),+$P(VALMDDF("TDATE"),"^",3))
+ .S IBAX=$$SETSTR^VALM1(IBATYP,IBAX,+$P(VALMDDF("TYPE"),"^",2),+$P(VALMDDF("TYPE"),"^",3))
+ .S IBAX=$$SETSTR^VALM1("$"_$P(IBND,"^",7),IBAX,+$P(VALMDDF("AMOUNT"),"^",2),+$P(VALMDDF("AMOUNT"),"^",3))
+ .S IBAX=$$SETSTR^VALM1($$DAT1^IBOUTL($P(IBND1,"^",2)\1),IBAX,+$P(VALMDDF("CREATED"),"^",2),+$P(VALMDDF("CREATED"),"^",3))
+ .S ^TMP("IBAMTV31",$J,VALMCNT,0)=IBAX
+ .S ^TMP("IBAMTV31",$J,"IDX",VALMCNT,VALMCNT)=IBN
+ I '$D(^TMP("IBAMTV31",$J)) S ^TMP("IBAMTV31",$J,1,0)=" ",^TMP("IBAMTV31",$J,2,0)="  There are no charges pending review for this patient.",VALMCNT=2
+ Q
+ ;
+HELP ; Help code.
+ S X="?" D DISP^XQORM1 W !!
+ Q
+ ;
+EXIT ; Exit action.
+ K ^TMP("IBAMTV31",$J)
+ D FULL^VALM1,CLEAN^VALM10
+ Q

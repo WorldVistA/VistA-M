@@ -1,0 +1,54 @@
+RGDRM02 ;BAY/ALS-MPI/PD AWARE DUPLICATE RECORD MERGE ;03/10/00
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**6,42**;30 Apr 99
+MRGTF(DFNFRM,DFNTO) ; Merge Treating Facility entries 
+ I '$D(DFNFRM)!'$D(DFNTO) Q
+ Q:'$D(^DGCN(391.91,"APAT",DFNFRM))
+ ; Add Treating Facilities in FROM record to Treating 
+ ; Facility List for TO record
+ S INST=0
+ F  S INST=$O(^DGCN(391.91,"APAT",DFNFRM,INST)) Q:'INST  D
+ . I '$D(^DGCN(391.91,"APAT",DFNTO,INST)) DO
+ .. ;S STANUM=0
+ .. ;S STANUM=$P($$NS^XUAF4(INST),"^",2)
+ .. D FILE^VAFCTFU(DFNTO,INST,1) ;**42
+ .. I '$D(^DGCN(391.91,"APAT",DFNTO,INST)) D
+ ... D START^RGHLLOG($G(HLMTIEN)),EXC^RGHLLOG(212,"Treating Facility Add failed for DFN: "_DFNTO_", Treating Facility: "_INST,DFNTO),STOP^RGHLLOG(0) Q
+ . ;Delete FROM record Treating Facility data
+ . S IEN=0
+ . F  S IEN=$O(^DGCN(391.91,"APAT",DFNFRM,INST,IEN)) Q:'IEN  D
+ .. S DA=IEN,DIK="^DGCN(391.91,"
+ .. D ^DIK K DIK,DA
+ K INST,STANUM,IEN
+ Q
+MRGSUB(DFNFRM,DFNTO) ; Merge Subscription entries.
+ I '$D(DFNFRM)!'$D(DFNTO) Q
+ N SUBFRM,SUBTO
+ S SUBFRM=$$SUBNUM^MPIFAPI(DFNFRM)
+ Q:SUBFRM<0  ;No subscriptions in FRM record, quit
+ S SUBTO=$$SUBNUM^MPIFAPI(DFNTO)
+ I SUBTO<0 S SUBTO=$$GETSCN^RGJCREC(DFNTO)
+ S ENTRYF=0,ENTRYT=0
+ D GET^HLSUB(SUBFRM,0,"",.FROM)
+ D GET^HLSUB(SUBTO,0,"",.TO)
+ F  S ENTRYF=$O(FROM("LINKS",ENTRYF)) Q:'ENTRYF  D
+ . S LINKF=$P(FROM("LINKS",ENTRYF),"^",2)
+ . S MATCH=0
+ . F  S ENTRYT=$O(TO("LINKS",ENTRYT)) Q:'ENTRYT  D
+ .. S LINKT=$P(TO("LINKS",ENTRYT),"^",2)
+ .. I LINKF=LINKT S MATCH=1 Q
+ . I MATCH=0 D
+ .. S TYPE=0
+ .. D UPD^HLSUB(SUBTO,LINKF,TYPE,"","","",.ER)
+ .. K TO
+ .. D GET^HLSUB(SUBTO,0,"",.TO)  ; get new list
+ .. S L=0,LINK="",ADD=0
+ .. F  S L=$O(TO("LINKS",L)) Q:'L  D
+ ... S LINK=$P(TO("LINKS",L),"^",2) I LINK=LINKF S ADD=1
+ .. I ADD=0 D
+ ... D START^RGHLLOG($G(HLMTIEN)),EXC^RGHLLOG(224,"Subscription Add Failed for DFN: "_DFNTO_", Subscriber: "_LINKF,DFNTO),STOP^RGHLLOG(0) Q
+ ; Delete FROM record subscription data and pointer to subscription file
+ N RGARR,RGERR
+ S RGARR(991.05)="@"
+ S RGERR=$$UPDATE^MPIFAPI(DFNFRM,"RGARR")
+ K ENTRYF,ENTRYT,LINKF,LINKT,TO,MATCH,FROM,LNAME,LIEN,TYPE,ER,ADD,L,LINK
+ Q

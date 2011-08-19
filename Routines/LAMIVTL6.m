@@ -1,0 +1,85 @@
+LAMIVTL6 ;DAL/HOAK Vitek setup 031896
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**12**;Sep 27,1994
+INIT ;
+ ; This process works with LAB(61.38, in setting up the vitek
+ ; literal interface
+ I '$G(OK) S OK=1
+CONTROL ;
+ Q:'$D(^LAB(61.38,1,2,1,0))  ;wild card field not set to yes
+ D GETWILD
+ Q
+GETWILD ;
+ I $G(^LAB(61.38,1,2,1,0))=1 D
+ .  D PIC
+ .  S LRWCRD=0
+ .  F  S LRWCRD=$O(^LAB(61.38,1,2,1,LRWCRD)) Q:LRWCRD'>0  D
+ ..  I ^LAB(61.38,1,2,1,LRWCRD)'="" S LRTIC=^(LRWCRD) D
+ ...  S LRCN=^DD(61.382,LRWCRD,0) D RECORD
+ Q
+PIC ;
+ S LRX=^LRO(68,LRAA,1,LRAD,1,LRAN,0)
+ S LRWARD=$P(LRX,"^",7)
+ S:LRWARD="" LRWARD="UNK"
+ S LRWRD=LRWARD
+ S LRSERV=$P(LRX,"^",9)
+ S LRTREAT=$S(LRSERV]"":$P(^DIC(45.7,LRSERV,0),"^",1),1:"UNK")
+ S LRDOC=$P(LRX,"^",8),LRPHY=LRDOC
+ S:LRDOC]"" LRDOC=$P($G(^VA(200,+LRDOC,0)),U)
+ S:LRDOC="" LRDOC="UNKNOWN"
+ S LRACN1=^LRO(68,LRAA,1,LRAD,1,LRAN,0)
+ S LRSN=$P(LRACN1,U,5)
+ S LRODT1=$P(LRACN1,U,4)
+ S:LRPHY]"" LRBEEP=$G(^VA(200,LRPHY,.13))
+ S:$G(LRBEEP) LRBEEP=$P(LRBEEP,U,8)
+ S LRSPEC=0
+ S LRSPEC=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,5,LRSPEC)) Q:LRSPEC'>0  D
+ .  S LRX=^LRO(68,LRAA,1,LRAD,1,LRAN,5,LRSPEC,0)
+ .  S LRSP=$P(^LAB(62,$P(LRX,U,2),0),"^",1)
+ .  S LRSI=$P(^LAB(61,+LRX,0),"^",2)
+ S LRX=^LRO(68,LRAA,1,LRAD,1,LRAN,3)
+ S LRDC=$P(LRX,"^",1)
+ S LRTC=$P(LRDC,".",2)
+ S LRSPEC=LRSP
+ Q
+EDIT ;
+ ; SAVE BUG. Ab(s) saved in LRD0
+ ;  \/
+ S LRB0=$P(^LAB(61.2,+^LR(LRDFN,LRSUB,LRIDT,3,LRPIC,0),0),U)
+ K DIR
+ S DIR(0)="E"
+ S LRPIC=0
+ ;
+ D VERIFY^LAMIVTL4  ;default to time honored editor
+ ;
+ S LRPIC=$O(^LR(LRDFN,LRSUB,LRIDT,3,LRPIC)) Q:LRPIC'>0!('OK)  D
+ .  S LRBUG=$P(^LAB(61.2,+^LR(LRDFN,LRSUB,LRIDT,3,LRPIC,0),0),U)
+ .  I LRBUG'=LRB0 D CHORG QUIT  ;don't do Ab(s) they change with new org
+ .  S LRRX=1
+ .  F  S LRRX=$O(^LR(LRDFN,LRSUB,LRIDT,3,LRPIC,LRRX)) Q:+LRRX'>0  D
+ ..  S LRNTRP=^LR(LRDFN,LRSUB,LRIDT,3,LRPIC,LRRX)
+ ..  S LRDRUG=$P(^LAB(62.06,$O(^LAB(62.06,"AD",LRRX,0)),0),U)
+ ..  W !,$E(LRDRUG,1,30),?32,$P(LRNTRP,U),?38,$P(LRNTRP,U,2)
+ ..  I $G(LRD0(LRRX))'=LRNTRP D CHAB
+ Q
+CHORG ;
+ ;Organism has changed..lets track it.
+ K DIE,DR,DA
+ S DIE="^LR(LRDFN,LRSUB,"
+ S DA=LRIDT
+ S DA(1)=LRDFN,DR=.99_"////"_LRB0_"Was changed to "_LRBUG_" BY "_DUZ_" ON "_DT
+ D ^DIE
+ Q
+CHAB ;
+ K DIE,DR,DA
+ S DIE="^LR(LRDFN,LRSUB,"
+ S DA=LRIDT
+ S DA(1)=LRDFN,DR=99_"///"_LRDRUG_"Was changed to "_LRBUG_" BY "_DUZ_" ON "_DT
+ D ^DIE
+ Q
+RECORD ;
+ S LRTIC=LRTIC_":"
+ S LRTIC=$P(LRCN,LRTIC,2)
+ S LRTIC=$P(LRTIC,";")
+ S LRTAC=$P(LRCN,U)
+ S:$D(LRTIC) LRECORD=LRECORD_LRTAC_@LRTIC_"|"
+ Q

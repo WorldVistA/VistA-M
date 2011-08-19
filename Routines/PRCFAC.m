@@ -1,0 +1,50 @@
+PRCFAC ;WISC/CTB-CODE SHEET GENERATOR ; 05/11/93  10:46 AM
+V ;;5.1;IFCAP;**97**;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+LOG ;CREATE LOG CODE SHEETS
+ S PRCHLOG="" D EN1 K PRCHLOG,PRCFASYS Q
+NEWCS K DA,PRCFDEL L +^PRCF(423,0):1 I '$T W $C(7),"Batching or purging is now going on.",!,"  Code sheet operations are temporarily suspended.",! Q
+ S X=PRC("SITE")_"-CSC-"_PRC("FY") D COUNTER^PRCFACP I Y<0 K DA Q
+ S X=Y_"-"_PRC("FY") S:$D(PRCFA("KP")) X="KP-"_X G:$D(^PRCF(423,"B",X)) NEWCS S DLAYGO=423,DIC=423,DIC(0)="LZ" D ^DIC K DLAYGO Q:Y<0  G:$P(Y,U,3)'=1 NEWCS
+ G:$P(Y,"^",3)'=1 NEWCS W:'$D(PRCHAUTO) !!,"THIS CODE SHEET HAS BEEN ASSIGNED ID # ",$P(Y(0),U),!! S PRCFA("CSNAME")=$P(Y(0),"^")
+ S (PRCFA("CSDA"),DA)=+Y I '$D(PRCFA("TTDATE")) D NOW^%DTC K %,%H,%I S PRCFA("TTDATE")=$E(X,4,7)_$E(X,2,3)
+ S X=$P(^PRCF(423,+Y,0),U,1)_U_PRC("SITE")_U_PRCFA("EDIT")_U_PRCFA("TT")_U_PRCFA("TTDATE")_U_$S($D(PRCFA("REF")):$P(PRCFA("REF"),"^"),1:"")
+ S X=X_"^^"_$S($D(PRC("PER")):+PRC("PER"),1:"")_"^^"_$S($D(PRCFA("SYS")):PRCFA("SYS"),1:"")
+ S ^PRCF(423,+Y,0)=X,$P(^("TRANS"),U,1)="",$P(^("TRANS"),U,15)=$G(PRCFA("TTLEN"))
+ I $D(PRCFA("REF")),PRCFA("REF")]"" S ^PRCF(423,"C",PRCFA("REF"),+Y)=""
+ K C,DIC,X,Y I '$D(PRCHLOG) K PRCFA("REF"),PRCFA("TTLEN")
+ Q
+TT K PRCFDEL S:$D(PRCFA("TT")) DIC("B")=PRCFA("TT") S DIC("A")="Select LOG TRANSACTION TYPE: " S DIC=420.4,DIC(0)="AEQMNZ"
+ I '$D(PRCFASYS) S PRCFASYS=$S('$D(PRCHLOG):"FEEFENIRSISMCLIPRC",1:"LOG")
+ S DIC("S")="I PRCFASYS[$P(^(0),U,6)" I $D(PRCFA("DICS")) S DIC("S")=DIC("S")_" "_PRCFA("DICS")
+ ;I $D(PRCFA("ARCS")) S DIC("S")="I $P(^(0),U,7)=1"
+ W:'$D(PRCFA("TTF")) ! S:$D(PRCFA("TTF")) X=PRCFA("TTF"),DIC(0)="MNZ" D ^DIC K DIC I +Y<0 S %=0 Q
+ I "PRC"'[PRCFASYS,$P(Y(0),U,3)=""!($P(Y(0),U,5)'="Y") W !,"THIS TRANSACTION TYPE IS NOT YET ",$S($P(Y(0),"^",5)'="Y":"ACTIVATED",1:"AVAILABLE"),$C(7) Q:$D(PRCFA("TTF"))  G TT
+ S PRCFA("TT")=$P(Y(0),U,1),PRCFA("TTDA")=+Y,PRCFA("EDIT")=$P(Y(0),U,3),PRCFA("SYS")=$P(Y(0),"^",6),PRCFA("TTLEN")=$P(Y(0),"^",8),%=1
+ ;K C,Y Q
+ Q
+SE S U="^" D ^PRCFSITE G:'% OUT
+ S %DT="",X="T" D ^%DT S PRCFA("TTDATE")=$E(Y,4,7)_$E(Y,2,3) Q
+EN1 ;CREATE A CODE SHEET
+ K PRCFDEL,PRCFA("PODA") G:$D(PRCFAA) OUT
+ S PRCF("X")="AS" D SE G:'$D(PRC("SITE")) OUT
+AM D TT G OUT:%'>0,EN1:'% D NEWCS G:'$D(DA) OUT S DIE="^PRCF(423,"
+ S DR=PRCFA("EDIT") D ^DIE I $D(Y)=0 D ^PRCFACXM S X=PRCFA("TT"),X1=PRCFA("TTDATE") K PRCFA,P,PO,PODA S PRCFA("TT")=X,PRCFA("TTDATE")=X1 K X,X1 G EN1
+ D DEL^PRCFACXM,OUT1 G EN1
+OUT1 K %,%DT,%X,%Y,A,B,C,DIG,DIH,DIU,DIV,DIW,DIK,DQ,I,M,N,PRCFASYS,X1,XL1 Q
+EN2 ;EDIT EXISTING TRANSACTION
+ K PRCFDEL S PRCF("X")="AS" D SE G:'$D(PRC("SITE")) OUT K Q1
+ S:'$D(PRCFASYS) PRCFASYS="FEEFENIRSCLI" K Q1 S DIC="^PRCF(423,",DIC(0)="AEMNQZ",DIC("S")="S ZX=^(0) I $P(ZX,U,10)]"""",PRCFASYS[$P(ZX,U,10),$P(ZX,U,2)=PRC(""SITE"")" D ^DIC K DIC("A") I Y<0 K PRCFASYS G OUT
+ K DIE S DA=+Y,PRCFA("CSDA")=DA,DIE=DIC,PRCFA("EDIT")=$P(Y(0),"^",3),PRCFA("SYS")=$P(Y(0),"^",10),PRCFA("TTLEN")=$P(^PRCF(423,DA,"TRANS"),"^",15) K DIC
+ I $P(Y,"^",2)["KP" W $C(7),!,"Code Sheet has been Key Punched and may not be edited with this option." G EN2
+EN21 S DR="" S:$D(PRCFA("EDIT")) DR=PRCFA("EDIT") S:$D(Y(0)) DR=$P(Y(0),U,3),PRCFA("TT")=$P(Y(0),"^",4) I DR="" W !,"THIS CODE SHEET CANNOT BE EDITED, IT MUST BE RE-ENTERED UNDER ANOTHER NUMBER.",$C(7) G EN2
+ D ^DIE,^PRCFACXM G EN2
+OUT K %,B,D,D0,DA,DG,DIC,DIE,DIG,DIH,DIU,DIV,DIW,DLAYGO,DQ,DR,I,J,K,M,N,PRCFA,PRCFASYS,Q,Q1,S,X,XL1,Y,Z,PRCENT Q
+EN73 D ^PRCFSITE G:'% OUT
+EN731 K DIC("A") S D="C",DIC("S")="I $D(^(7)),+$P(^(0),U)=PRC(""SITE"") S FSO=$P(^PRCD(442.3,+^(7),0),U,3) I FSO=10",DIC("A")="Select Purchase Order Number: ",DIC=442,DIC(0)="AEQZ" D IX^DIC K DIC("S"),DIC("A"),FSO G:+Y<0 OUT S DA=+Y
+EN732 W !,$C(7) S %A="Are you sure that you do not want to obligate this order"
+ S %=1,%B="Answering 'YES' will return the order to Supply, unobligated." D ^PRCFYN S PRCENT=% D:PRCENT=1 ^PRCFACS1 G:PRCENT=2 EN731 I PRCENT<0 W !,"No Action Taken." R X:3 G OUT
+LCK L @("+"_DIC_DA_"):0") E  W !,$C(7),"ANOTHER USER IS EDITING THIS ENTRY!" K DA Q
+ D REMOVE^PRCHES5(DA) S X=8 D ENF^PRCHSTAT W !!,"...Purchase Order has been returned, Supply has been notified...",$C(7),!
+ I $G(DIC),$G(DA) L @("-"_DIC_DA_"):0")
+ Q

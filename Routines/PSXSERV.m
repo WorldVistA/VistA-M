@@ -1,0 +1,23 @@
+PSXSERV ;BIR/BAB,WPB-Server Management Utility ;[ 04/08/97   2:06 PM ]
+ ;;2.0;CMOP;;11 Apr 97
+START ;Receive initial incoming message for CMOP route by message type
+ S TTXMZ=XMZ
+ X XMREC G:$G(XMER)<0 EX
+ I $E(XMRG,1,6)["$$XMIT" S ZTRTN="HDR^PSXRECV",ZTDESC="CMOP Data Transmission",ZTIO="PSX" G QUE
+ I $E(XMRG,1,6)["$$ACKN" S ZTRTN="ACK^PSXRSYU",ZTDESC="CMOP Data Transmission Acknowledgement",ZTIO="PSX" G QUE
+ I $E(XMRG,1,6)["$$VACK" S ZTRTN="ACK^PSXRSYU",ZTDESC="CMOP Data Transmission Acknowledgement",ZTIO="PSX" G QUE
+ I $E(XMRG,1,6)["$$RMIT" S ZTRTN="HDR^PSXRECV",ZTDESC="CMOP Data Transmission",ZTIO="PSX" G QUE
+ I $E(XMRG,1,5)["$$VND" S ZTRTN="EN^PSXVND",ZTDESC="CMOP Remote Release Filer",ZTIO="PSX" G QUE
+ I $E(XMRG,1,5)["$$RTN" S ZTRTN="RTN^PSXVEND",ZTDESC="CMOP Release Acknowledgement Filer",ZTIO="PSX" G QUE
+ I $E(XMRG,1,5)["$$ACT" S ZTRTN="EN^PSXACT",ZTDESC="CMOP Activiation at Host",ZTIO="PSX" G QUE
+ I $E(XMRG,1,5)["$$SYS" S ZTRTN="ACT^PSXRSYU",ZTDESC="CMOP Activation at Remote",ZTIO="PSX" G QUE
+ I $E(XMRG,1,6)["$$DACT" S ZTRTN="DEACT^PSXACT",ZTDESC="CMOP Inactivation",ZTIO="PSX" G QUE
+ I $E(XMRG,1,6)["$$AUTO" S ZTRTN="AUTO^PSXMISC",ZTDESC="CMOP Auto Transmission Notice at Host",ZTIO="PSX" G QUE
+ I $E(XMRG,1,6)["$$INV" S ZTRTN="INV^PSXVEND",ZTDESC="CMOP Invalid Release Data Filer",ZTIO="PSX" G QUE
+ G:$E(XMRG,1,5)["$$END" EX
+QUE S ZTDTH=$H,ZTSAVE("XMREC")="",ZTSAVE("XMZ")="",ZTSAVE("XQMSG")="",ZTSAVE("XQSOP")="",ZTSAVE("XMER")="",ZTSAVE("TTXMZ")="",ZTSAVE("XMFROM")="",ZTSAVE("XMRG")="" D ^%ZTLOAD
+ ;Insert code to generate MM msg if invalid message type received
+EX ;S XMZ=TTXMZ,XMSER="S.PSXX CMOP SERVER" D REMSBMSG^XMA1C
+ K ZTDTH,ZTRTN,ZTIO,ZTSAVE("XMER"),ZTDESC,ZTSAVE("XMRG"),ZTSAVE("XQMSG"),ZTSAVE("XMFROM"),ZTSAVE("XQSOP"),ZTSAVE("XMZ"),ZTSAVE("XMREC"),ZTSAVE("XMSER"),TTXMZ
+ S ZTREQ="@"
+ Q

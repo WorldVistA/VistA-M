@@ -1,0 +1,47 @@
+GMRGED8 ;HIRMFO/JH,RM-PATIENT DATA EDIT (cont.) ;9/1/95
+ ;;3.0;Text Generator;;Jan 24, 1996
+EN1 ;Entry point for building Split Screen Array ( ^TMP($J,"GMR",I) )
+ ;from a single array GMRGSEL( ) passed from the calling routine.
+ ;
+ K ^TMP($J,"GMR"),^("GMR1") S ^TMP($J,"GMR",0)=""
+ S J=1,GMRGSELC=0 F L=0:0 S L=$O(GMRGSEL(L)) Q:L=""  D BRK G QUIT:GMRGOUT
+ D:$O(GMRGSEL(0)) PAD G QUIT
+BRK S GMRGPRT=$P(GMRGSEL(L),"^",3),GMRGSEL=GMRGSEL(L),GMRGPRT(0)=$S($D(GMRGSEL(L,1)):GMRGSEL(L,1),1:""),GMRGXPRT=$P(GMRGSEL,"^",2),GMRGXPRT(0)=$P(GMRGPRT(0),"^",2),GMRGXPRT(1)="^^1^"_(GMRGIO("S")&'$P(GMRGSITE(0),"^",2))_"^1" D EN1^GMRGRUT2
+ S GMRGLEN=29,GMRGPL=$S($P(GMRGSEL(L),"^",3)=1:1_"^** ",1:0_"^   ")_$S($D(^GMRD(124.2,"ATY",2,$P(GMRGSEL(L),"^"))):"+",1:" ")_$J(L,2)_".  ^",GMRGPLN=GMRGXPRT D BRK1
+ Q
+BRK1 F I=1:1 Q:GMRGPLN=""  D FITLINE^GMRGRUT1 S ^TMP($J,"GMR1",J)=GMRGPL_GMRGPLN(0) S GMRGPL=$S($P(GMRGSEL(L),"^",3)=1:1_"^         ^",1:0_"^         ^"),GMRGPLN=GMRGPLN(1),GMRGLEN=29,J=J+1
+ ;
+ADD ;Check for added text
+ K GMRGHPRT X:$D(^GMRD(124.2,+GMRGSEL(L),10)) ^(10) Q:GMRGOUT!'$D(GMRGHPRT)
+ S GMRGHPR=$S($D(GMRGHPRT(1)):GMRGHPRT(1),1:""),GMRGCOL=$S($P(GMRGHPR,"^")<0:0,$P(GMRGHPR,"^")>17:17,1:GMRGHPR),GMRGPLN=$P(GMRGHPR,"^",2) S GMRGSPP="",GMRGSP=" " F JJ=1:1:GMRGCOL-1 S GMRGSPP=GMRGSPP_GMRGSP
+ S GMRGPL=0_"^         ^"_GMRGSPP D REST,NUR
+ Q
+REST S GMRGLEN=29 D FITLINE^GMRGRUT1 F GMRG1=0:0 S ^TMP($J,"GMR1",J)=GMRGPL_GMRGPLN(0),J=J+1 D PAD:J=29 Q:GMRGPLN(1)=""  S GMRGPL=0_"^"_GMRGSPP,GMRGPLN=GMRGPLN(1),GMRGLEN=29 D FITLINE^GMRGRUT1
+ Q
+PAD ;Pack Utility Array into Split Screen Format
+ S GMRGSTAR(0)="",J=J-1,(JJ,LL)=1 F I=1:1 S GMRGSTAR(0,I)=JJ-1 D PAGE Q:LL>J
+ Q
+PRN ;Entery point to print one (1) line from Split Screen Array,
+ ;with I equal to the ien number of line to be printed.
+ ;
+ S GMRGXPRT(1)="^^^"_GMRGIO("S")_"^^"_$P(GMRGSITE(0),"^",2),GMRGXPRT(4)=GMRGIO("RVON"),GMRGXPRT(5)=GMRGIO("RVOF")
+ W !,$P(^TMP($J,"GMR",I),"^",2) S GMRGXPRT=$P(^(I),"^",3) D HION^GMRGRUT2:$P(^(I),"^")=1 W GMRGXPRT D HIOF^GMRGRUT2:$P(^TMP($J,"GMR",I),"^")=1
+ W:$P(^TMP($J,"GMR",I),"^",6)'="" ?40,$P(^(I),"^",5) S GMRGXPRT=$P(^(I),"^",6) D HION^GMRGRUT2:$P(^(I),"^",4)=1 W GMRGXPRT D HIOF^GMRGRUT2:$P(^TMP($J,"GMR",I),"^",4)=1
+ S X=$P(^TMP($J,"GMR",I),"^",5) I X?.E1N.E F Y=1:1:$L(X) Q:$E(X)?1N  S X=$E(X,2,$L(X))
+ S:X GMRGSTAR(3)=+X K GMRGXPRT Q
+NUR ;Check For Additional Text
+ I 'GMRGOUT,$P(GMRGTERM(0),"^",9) S ^TMP($J,"GMR1",J)="Additional Text: " S J=J+1 I $S($P(GMRGTERM,"^",3)="":0,1:1) D NUR1
+ Q
+NUR1 S GMRGPL="         ^",GMRGPLN=$S(+$P(GMRGTERM,"^",3)'>0:"",$D(^GMR(124.3,GMRGPDA,1,$P(GMRGTERM,"^",3),"ADD")):^("ADD"),1:"") S GMRGSPP="" D REST
+ Q
+QUIT K I,J,JJ,K,L,M,N,O,GMRG1,GMRGSP,GMRGSPP,GMRGSPLI,GMRGS,GMRGPL,GMRGPLN,GMRGCOL,GMRGHPR,GMRGHPRT,GMRGXPRT,GMRLINS,^TMP($J,"GMR1") Q
+PAGE ;
+ S II=$S(J-LL+1>28:14,1:J-LL+2\2)-1,M=LL,MM=LL+II F II=II:0 D NXT1 Q:LL-M>14  S MM=LL Q:LL>II  S LL=LL+1 Q:'$D(^TMP($J,"GMR1",LL))
+ S LL=MM+1,O=LL,OO=LL+II F II=II:0 D NXT1 Q:(LL-O)>14  S OO=LL Q:(LL-MM)>II  S LL=LL+1 Q:'$D(^TMP($J,"GMR1",LL))
+ S L=$S((MM-M)>(OO-O):MM-M,1:OO-O),LL=OO+1
+ F JJ=JJ:1:(JJ+L) S ^TMP($J,"GMR",JJ)=$S(M'>MM:$G(^TMP($J,"GMR1",M)),1:"^^")_"^"_$S(O'>OO:$G(^TMP($J,"GMR1",O)),1:""),O=O+1,M=M+1
+ S JJ=JJ+1 Q
+NXT1 ;
+ Q:$S('$D(^TMP($J,"GMR1",LL+1)):1,$P(^(LL+1),"^",2)?.E1N.E:1,1:0)
+ S LL=LL+1
+ G NXT1

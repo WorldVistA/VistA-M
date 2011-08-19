@@ -1,0 +1,48 @@
+RMPFQP ;DDC/KAW-PRINT VA FORM 10-2477a; [ 06/16/95   3:06 PM ]
+ ;;2.0;REMOTE ORDER/ENTRY SYSTEM;;JUN 16, 1995
+RMPFSET I '$D(RMPFMENU) D MENU^RMPFUTL I '$D(RMPFMENU) W !!,$C(7),"*** A MENU SELECTION MUST BE MADE ***" Q  ;;RMPFMENU must be defined
+ I '$D(RMPFSTAN)!'$D(RMPFDAT)!'$D(RMPFSYS) D ^RMPFUTL Q:'$D(RMPFSTAN)!'$D(RMPFDAT)!'$D(RMPFSYS)
+ W @IOF,!!,"PRINT VA FORM 10-2477a"
+TYPE D SEL G END:$D(RMPFOUT)!(Y="")
+ S RMPFRTN=$S("Bb"[Y:"^RMPFQP2","Oo"[Y:"^RMPFQP3",1:"^RMPFQP4")
+ G QUE:"Bb"[Y I "Pp"[Y D PAT G END:'$D(DFN),QUE
+ D PAT G END:'$D(DFN)!$D(RMPFOUT) S (DX,CX)=0
+ F I=1:1 S DX=$O(^RMPF(791810,"AE",DFN,DX)) Q:'DX  S EX=0 F J=1:1 S EX=$O(^RMPF(791810,"AE",DFN,DX,EX)) Q:'EX  S RMPFX=EX,CX=CX+1
+PAT1 I CX=0 W !!,"*** NO ORDERS EXIST FOR THIS PATIENT ***" G TYPE
+ G QUE:CX=1 S (RMPFORD,RMPFTP)="P" D ^RMPFDS1 I 'RMPFCX S CX=0 G PAT1
+ D SEL^RMPFDX G END:$D(RMPFOUT),TYPE:'$D(RMPFX)
+ D QUE G END:$D(RMPFOUT),RMPFSET
+END K RMPFRTN,RMPFORD,RMPFTP,RMPFP,RMPFX,RMPFS,RMPFR,RMPFOUT,RMPFQUT
+ K EX,DX,CX,DFN,RMPFCNT,RMPFO,ZTSK,DISYS,J,I,KX,RMPFHAT
+ K RMPFCX,RMPFRSTA,ZTRTN,ZTDESC,ZTIO,ZTSAVE,POP,%,%Y,%ZIS,X,Y,%T,C,DIC
+ Q
+PAT K DFN W ! S DIC=2,DIC(0)="AEQM" D ^DIC G END:Y=-1 S DFN=+Y Q
+READ K RMPFOUT,RMPFQUT
+ R Y:DTIME I '$T W $C(7) R Y:5 G READ:Y="." S:'$T Y=U
+ I Y?1"^".E S (RMPFOUT,Y)="" Q
+ S:Y?1"?".E (RMPFQUT,Y)=""
+ Q
+SEL W !!,"Print an <O>rder, <P>atient data only or a <B>lank Form 10-2477a: "
+ D READ Q:$D(RMPFOUT)
+SEL1 I $D(RMPFQUT) W !!,"Enter an <O> to select an order to print,",!?7,"a <P> to print only the patient information or",!?7,"a <B> to print a blank Form 10-2477a." G SEL
+ Q:Y=""  S Y=$E(Y,1) I "OoBbPp"'[Y S RMPFQUT="" G SEL1
+ K X Q
+CHOOSE K RMPFX G CHE:'$D(RMPFS)
+ F I=1:1 Q:$Y>21  W !
+CH1 W !,"Select a Number or <RETURN> to continue: " D READ
+ G CHE:$D(RMPFOUT)
+CH2 I $D(RMPFQUT) W !!,"Enter the number to the left of the order or",!?5,"<RETURN> to continue." G CH1
+ G CHE:Y="" I '$D(RMPFS(Y)) S RMPFQUT="" G CH2
+ S RMPFX=RMPFS(Y)
+CHE K RMPFS,Y Q
+QUE W ! S %ZIS="NPQ" D ^%ZIS Q:POP  S RMPFCNT=1
+ I IO=IO(0),'$D(IO("S")) D @(RMPFRTN) Q
+ I $D(IO("S")) S %ZIS="",IOP=ION D ^%ZIS G @(RMPFRTN)
+NUM W !!,"Number of copies to print: 1// " D READ
+ Q:$D(RMPFOUT)
+NUM1 I $D(RMPFQUT) W !!,"Enter a number from 1 to 10 for the number of copies to print." G NUM
+ S:Y="" Y=1 I 'Y!(Y<1)!(Y>10) S RMPFQUT="" G NUM1
+ S RMPFCNT=$P(Y,".",1)
+ S ZTRTN=RMPFRTN,ZTDESC="FORM 10-2477a",ZTIO=ION,ZTSAVE("RM*")="",ZTSAVE("DFN")=""
+ D ^%ZTLOAD,HOME^%ZIS Q:'$D(ZTSK)
+ W:$D(ZTSK) !!,"*** Request Queued ***" H 1 Q

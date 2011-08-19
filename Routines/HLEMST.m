@@ -1,0 +1,224 @@
+HLEMST ;ALB/CJM -ListManager Screen for displaying an Event Statistics;12 JUN 1997 10:00 am
+ ;;1.6;HEALTH LEVEL SEVEN;**109**;Oct 13,1995
+ ;
+EN ;Entry point to viewing a Event Statistics
+ ;Input:  EVENT is the ien of an event
+ ;Output:  none
+ ;
+ N IDX,BEGIN
+ I $G(PROFILE),$D(PROFILE("SITES")),$D(PROFILE("TYPES"))
+ E  N PROFILE S PROFILE=$$PROFILE^HLEMSL() Q:'PROFILE  S PROFILE=$$GET^HLEMP(PROFILE,.PROFILE)
+ S BEGIN=$$ASKBEGIN()
+ Q:'BEGIN
+ ;
+ S IDX="^TMP(""HLEM"",$J,""STATISTICS"")"
+ K @IDX
+ D WAIT^DICD
+ D EN^VALM("HLEM DISPLAY STATISTICS")
+ ;
+ K @IDX
+ Q
+ ;
+ ;
+HDR ;Header code
+ S VALMHDR(1)="Year   Month     Day   Hour    Event                                   Count"
+ Q
+ ;
+INIT ;Init variables and list array
+ N ARY
+ S ARY="^TMP($J,""HLSTATS"")"
+ S VALMSG="USER PROFILE: "_$G(PROFILE("NAME"))_"        STARTING: "_$$FMTE^XLFDT(BEGIN)
+ D SETUP(BEGIN,ARY,.PROFILE)
+ D DISPLAY(ARY,IDX)
+ K @ARY
+ D HDR
+ S VALMBCK="R"
+ Q
+ ;
+SETUP(START,ARY,PROFILE) ;
+ ;sets up a work array with the required statistics
+ ;START is the starting date
+ ;
+ N SITE,TYPE,IDX
+ K @ARY
+ S SITE=0
+ S START("YEAR")=1700+(+$E(START,1,3)),START("MONTH")=+$E(START,4,5),START("DAY")=+$E(START,6,7),START("HOUR")=$E($P(START,".",2),1,2)
+ S IDX="^HLEV(776.4,""AF"")"
+ F  S SITE=$O(@IDX@(SITE)) Q:'SITE  D:$G(PROFILE("ALL SITES"))!$D(PROFILE("SITES",SITE))
+ .S SITE("NAME")=$$STATION^HLEMSU(SITE)
+ .Q:'$L(SITE("NAME"))
+ .S $P(SITE("NAME"),"^",3)=SITE
+ .S TYPE=0
+ .F  S TYPE=$O(@IDX@(SITE,TYPE)) Q:'TYPE  D:PROFILE("ALL TYPES")!$D(PROFILE("TYPES",TYPE))
+ ..S TYPE("NAME")=$$CODE^HLEMT(TYPE)
+ ..S:(+TYPE("NAME")=TYPE("NAME")) TYPE("NAME")=$E($P($G(^HLEV(776.3,TYPE,4)),"^"),1,40)
+ ..Q:'$L(TYPE("NAME"))
+ ..N IDX S IDX="^HLEV(776.4,""AF"",SITE,TYPE,""RECEIVED"")"
+ ..D YEAR(.SITE,.TYPE,.START)
+ Q
+ ;
+YEAR(SITE,TYPE,START) ;
+ N YEAR
+ S YEAR=START("YEAR")-1
+ F  S YEAR=$O(@IDX@("YEAR",YEAR)) Q:'YEAR  D:(YEAR'<START("YEAR"))
+ .D:(YEAR>START("YEAR"))
+ ..S @ARY@(SITE("NAME"),YEAR)=$G(@ARY@(SITE("NAME"),YEAR))+$G(@IDX@("YEAR",YEAR))
+ ..S @ARY@(SITE("NAME"),YEAR,"TYPE",TYPE("NAME"))=$G(@ARY@(SITE("NAME"),YEAR,"TYPE",TYPE("NAME")))+$G(@IDX@("YEAR",YEAR))
+ .D MONTH(.SITE,.TYPE,.START,YEAR)
+ Q
+ ;
+MONTH(SITE,TYPE,START,YEAR) ;
+ N MONTH
+ S MONTH=START("MONTH")-1
+ F  S MONTH=$O(@IDX@("YEAR",YEAR,"MONTH",MONTH)) Q:'MONTH  D:(YEAR>START("YEAR"))!(YEAR=START("YEAR")&(MONTH'<START("MONTH")))
+ .D:(MONTH>START("MONTH"))!(YEAR>START("YEAR"))
+ ..S @ARY@(SITE("NAME"),YEAR,MONTH)=$G(@ARY@(SITE("NAME"),YEAR,MONTH))+$G(@IDX@("YEAR",YEAR,"MONTH",MONTH))
+ ..S @ARY@(SITE("NAME"),YEAR,MONTH,"TYPE",TYPE("NAME"))=$G(@ARY@(SITE("NAME"),YEAR,MONTH,"TYPE",TYPE("NAME")))+$G(@IDX@("YEAR",YEAR,"MONTH",MONTH))
+ .D DAY(.SITE,.TYPE,.START,YEAR,MONTH)
+ Q
+ ;
+DAY(SITE,TYPE,START,YEAR,MONTH) ;
+ N DAY
+ S DAY=0
+ F  S DAY=$O(@IDX@("YEAR",YEAR,"MONTH",MONTH,"DAY",DAY)) Q:'DAY  Q:START>((YEAR-1700)_$$RJ^XLFSTR(MONTH,2,"0")_$$RJ^XLFSTR(DAY,2,"0"))  D
+ .S @ARY@(SITE("NAME"),YEAR,MONTH,DAY)=$G(@ARY@(SITE("NAME"),YEAR,MONTH,DAY))+$G(@IDX@("YEAR",YEAR,"MONTH",MONTH,"DAY",DAY))
+ .S @ARY@(SITE("NAME"),YEAR,MONTH,DAY,"TYPE",TYPE("NAME"))=$G(@ARY@(SITE("NAME"),YEAR,MONTH,DAY,"TYPE",TYPE("NAME")))+$G(@IDX@("YEAR",YEAR,"MONTH",MONTH,"DAY",DAY))
+ .D HOUR(.SITE,.TYPE,.START,YEAR,MONTH,DAY)
+ Q
+ ;
+HOUR(SITE,TYPE,START,YEAR,MONTH,DAY) ;
+ N HOUR
+ S HOUR=""
+ F  S HOUR=$O(@IDX@("YEAR",YEAR,"MONTH",MONTH,"DAY",DAY,"HOUR",HOUR)) Q:(HOUR="")  D:(HOUR'<START("HOUR"))
+ .S @ARY@(SITE("NAME"),YEAR,MONTH,DAY,HOUR)=$G(@ARY@(SITE("NAME"),YEAR,MONTH,DAY,HOUR))+$G(@IDX@("YEAR",YEAR,"MONTH",MONTH,"DAY",DAY,"HOUR",HOUR))
+ .S @ARY@(SITE("NAME"),YEAR,MONTH,DAY,HOUR,"TYPE",TYPE("NAME"))=$G(@ARY@(SITE("NAME"),YEAR,MONTH,DAY,HOUR,"TYPE",TYPE("NAME")))+$G(@IDX@("YEAR",YEAR,"MONTH",MONTH,"DAY",DAY,"HOUR",HOUR))
+ Q
+ ;
+DISPLAY(ARY,IDX) ;Build event statistics screen
+ N YEAR,SITE
+ D CLEAN^VALM10
+ K @IDX,VALMHDR
+ S VALMBG=1,VALMCNT=0
+ ;
+ S SITE=""
+ I '$O(@ARY@(SITE)),$$SET^HLEMSU(1,"There are no statistics for this profile and date range!",10,"H")
+ E  F  S SITE=$O(@ARY@(SITE)) Q:(SITE="")  D
+ .I VALMCNT,$$SET^HLEMSU(VALMCNT,$G(@IDX@(VALMCNT,0)),1,"U")
+ .S VALMCNT=$$SET^HLEMSU($$INC^HLEMU(.VALMCNT),$$LJ^XLFSTR($P(SITE,"^"),30)_$$LJ^XLFSTR("Station #: "_$P(SITE,"^",2),50),1,"H")
+ .S @IDX@("SITE",$P(SITE,"^"))=VALMCNT
+ .S @IDX@("SITE",$P(SITE,"^",3))=VALMCNT
+ .S YEAR=";"
+ .F  S YEAR=$O(@ARY@(SITE,YEAR),-1) Q:'YEAR  D DYEAR(ARY,IDX,SITE,YEAR)
+ ;Build header
+ D HDR
+ Q
+ ;
+DYEAR(ARY,IDX,SITE,YEAR) ;
+ N EVENT,MONTH
+ S VALMCNT=$$SET^HLEMSU($$INC^HLEMU(.VALMCNT),$$LJ^XLFSTR(YEAR,71)_$$LJ^XLFSTR($G(@ARY@(SITE,YEAR)),20),1)
+ S EVENT=""
+ F  S EVENT=$O(@ARY@(SITE,YEAR,"TYPE",EVENT)) Q:EVENT=""  D
+ .S VALMCNT=$$SET^HLEMSU($$INC^HLEMU(.VALMCNT),$$LJ^XLFSTR(EVENT,40)_$$LJ^XLFSTR($G(@ARY@(SITE,YEAR,"TYPE",EVENT)),20),32)
+ S MONTH=";"
+ F  S MONTH=$O(@ARY@(SITE,YEAR,MONTH),-1) Q:(MONTH="")  D
+ .D DMONTH(ARY,IDX,SITE,YEAR,MONTH)
+ Q
+ ;
+DMONTH(ARY,IDX,SITE,YEAR,MONTH) ;
+ N EVENT,DAY
+ S VALMCNT=$$SET^HLEMSU($$INC^HLEMU(.VALMCNT),$$LJ^XLFSTR($$MONTHTXT(MONTH),64)_$$LJ^XLFSTR($G(@ARY@(SITE,YEAR,MONTH)),20),8)
+ S EVENT=""
+ F  S EVENT=$O(@ARY@(SITE,YEAR,MONTH,"TYPE",EVENT)) Q:EVENT=""  D
+ .S VALMCNT=$$SET^HLEMSU($$INC^HLEMU(.VALMCNT),$$LJ^XLFSTR(EVENT,40)_$$LJ^XLFSTR($G(@ARY@(SITE,YEAR,MONTH,"TYPE",EVENT)),20),32)
+ S DAY=";"
+ F  S DAY=$O(@ARY@(SITE,YEAR,MONTH,DAY),-1) D  Q:'DAY
+ .D:DAY DDAY(ARY,IDX,SITE,YEAR,MONTH,DAY)
+ Q
+ ;
+DDAY(ARY,IDX,SITE,YEAR,MONTH,DAY) ;
+ N EVENT,HOUR
+ S VALMCNT=$$SET^HLEMSU($$INC^HLEMU(.VALMCNT),$$LJ^XLFSTR($$DAYTXT(DAY),54)_$$LJ^XLFSTR($G(@ARY@(SITE,YEAR,MONTH,DAY)),20),18)
+ S EVENT=""
+ F  S EVENT=$O(@ARY@(SITE,YEAR,MONTH,DAY,"TYPE",EVENT)) Q:EVENT=""  D
+ .S VALMCNT=$$SET^HLEMSU($$INC^HLEMU(.VALMCNT),$$LJ^XLFSTR(EVENT,40)_$$LJ^XLFSTR($G(@ARY@(SITE,YEAR,MONTH,DAY,"TYPE",EVENT)),20),32)
+ S HOUR=";"
+ F  S HOUR=$O(@ARY@(SITE,YEAR,MONTH,DAY,HOUR),-1) Q:'HOUR  D DHOUR(ARY,IDX,SITE,YEAR,MONTH,DAY,HOUR)
+ Q
+ ;
+DHOUR(ARY,IDX,SITE,YEAR,MONTH,DAY,HOUR) ;
+ N EVENT
+ S VALMCNT=$$SET^HLEMSU($$INC^HLEMU(.VALMCNT),$$LJ^XLFSTR($$HOURTXT(HOUR),48)_$$LJ^XLFSTR($G(@ARY@(SITE,YEAR,MONTH,DAY,HOUR)),20),24)
+ S EVENT=""
+ F  S EVENT=$O(@ARY@(SITE,YEAR,MONTH,DAY,HOUR,"TYPE",EVENT)) Q:EVENT=""  D
+ .S VALMCNT=$$SET^HLEMSU($$INC^HLEMU(.VALMCNT),$$LJ^XLFSTR(EVENT,40)_$$LJ^XLFSTR($G(@ARY@(SITE,YEAR,MONTH,DAY,HOUR,"TYPE",EVENT)),20),32)
+ Q
+ ;
+HELP ;Help code
+ S X="?" D DISP^XQORM1 W !!
+ Q
+ ;
+EXIT ;Exit code
+ D CLEAN^VALM10
+ D CLEAR^VALM1
+ K @IDX
+ Q
+ ;
+EXPND ;Expand code
+ Q
+ ;
+X(FIELD,VALUE) ;
+ ;changes a field value in file 774.4 to external form
+ Q $$EXTERNAL^DILFD(776.4,FIELD,"F",VALUE)
+ ;
+ASKBEGIN(DEFAULT) ;
+ ;Description: Asks the user to enter a beginning date.
+ ;Input: DEFAULT - the suggested default dt/time (optional)
+ ;Output: Returns the date as the function value, or 0 if the user does n to select a date
+ ;
+ N DIR,X,Y
+ S DIR(0)="D^::TX"
+ S DIR("A")="Enter the begining date"
+ S DIR("B")=$$FMTE^XLFDT($S($G(DEFAULT):DEFAULT,1:$$FMADD^XLFDT(DT,-1)))
+ S DIR("?")="Please enter the earliest date for which you would like to see Event Logging Statistics."
+ D ^DIR
+ Q:$D(DIRUT) 0
+ Q Y
+ ;
+MONTHTXT(M) ;
+ ;Given the month as a number 1-12, returns the name
+ Q $S(M=1:"January",M=2:"February",M=3:"March",M=4:"April",M=5:"May",M=6:"June",M=7:"July",M=8:"August",M=9:"September",M=10:"October",M=11:"November",M=12:"December",1:"Unknown")
+ ;
+DAYTXT(D) ;
+ ;Given the day as a number, returns the day also as a number, but with
+ ;a suffix of either "st","nd","rd","th"
+ I D>9,D<20 Q D_"th"
+ N DIGIT
+ S DIGIT=$E(D,$L(D))
+ Q D_$S(DIGIT=1:"st",DIGIT=2:"nd",DIGIT=3:"rd",1:"th")
+ ;
+HOURTXT(H) ;
+ I H<12 Q H_"am"
+ I H=12 Q "12N"
+ I H>12 Q (H-12)_"pm"
+ Q
+ ;
+SELECT ;Allows the user to change profiles, then rebuilds the Event Log Statistics screen
+ N PROF,ASKBEGIN
+ D FULL^VALM1
+ S PROF=$$SELECT^HLEMP1($G(DUZ),20)
+ I PROF,PROF'=$G(PROFILE) D
+ .S ASKBEGIN=$$ASKBEGIN($G(BEGIN))
+ .S:ASKBEGIN BEGIN=ASKBEGIN
+ .S PROFILE=$$GET^HLEMP(PROF,.PROFILE)
+ .D INIT^HLEMST
+ S VALMBCK="R"
+ Q
+ ;
+CHNGDATE ;Allows the user to change the starting date, then rebuilds the Event Log Statistics screen
+ N ASKBEGIN
+ S ASKBEGIN=$$ASKBEGIN($G(BEGIN))
+ I ASKBEGIN D
+ .S BEGIN=ASKBEGIN
+ .D INIT^HLEMST
+ S VALMBCK="R"
+ Q

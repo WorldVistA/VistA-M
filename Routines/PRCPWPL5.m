@@ -1,0 +1,77 @@
+PRCPWPL5 ;WISC/RFJ-whse post issue book (post end)                  ;13 Jan 94
+ ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ Q
+ ;
+ ;
+ENDPOST ;  end of posting
+ K VALMBCK
+ ;
+ I $G(DRUGACCT) D EX^PSAGIP
+ W !!?4,"TOTAL LINE ITEMS POSTED     : "_TOTLINES
+ ;
+ N %,ISMSFLAG,ITEMDA,LINEDA,PRCPDEV,PRCPFLAG,PRCPNAME,PRCPPOST,PRCPTRID,PRCPTRNO,PRCPUSER,QTYOUT,X,Y,ZTSK
+ ;
+ ;  set for running balance report
+ S $P(^PRCS(410,PRCPDA,445),"^",3)=$P($G(^PRCS(410,PRCPDA,445)),"^",3)+TOTALSAL,$P(^PRCS(410,PRCPDA,4),"^",4)=DT,X=TOTALSAL
+ ; add/edit seller and edit buyer entries in file 410
+ I '$G(CANTEEN) D
+ . I $P($G(^PRCS(410,PRCPDA,4)),U,10)="" D IB^PRCS0B(PRCPPSTA_"^"_PRCPWSTA,PRCPPFCP_"^"_PRCPWFCP,PRCPDA,X_"^"_X) Q
+ . N A,B
+ . S A=^PRCS(410,PRCPDA,0),B=$P($G(^(3)),"^",11),A=$P($$QTRDATE^PRC0D($P(A,"-",2),$P(A,"-",3)),"^",7)
+ . S PRCPRBSL=PRCPWSTA_"^"_PRCPWFCP_"^"_"A"_"^"_"^"_DT_"^"_-TOTALSAL_"^"_$P(^PRCS(410,PRCPDA,4),"^",5)_"-ADJ"
+ . S $P(PRCPRBSL,"^",10,11)=A_"^"_+$$DATE^PRC0C(B,"I")
+ . D A410^PRC0F(.PRCPXX,PRCPRBSL)
+ . S PRCPRBBY=PRCPPSTA_"^"_PRCPPFCP_"^"_"A"_"^"_"^"_DT_"^"_TOTALSAL_"^"_$P(^PRCS(410,PRCPDA,4),"^",5)_"-ADJ"
+ . S $P(PRCPRBBY,"^",10,11)=A_"^"_+$$DATE^PRC0C(B,"I")
+ . D A410^PRC0F(.PRCPXX,PRCPRBBY)
+ . K PRCPRBSL,PRCPRBBY,PRCPXX
+ ;
+ ;  make issue book a final
+ I '$D(PRCPFINL) W ! S PRCPFINL=$S($$FINALASK^PRCPWPL2=1:1,1:0)
+ I $G(PRCPFINL) D FINAL
+ ;
+ D UNLOCK^PRCPWPL3
+ ;
+ I TOTLINES=0 Q:$G(PRCPFINL)  S VALMSG="NO LINE ITEMS TO POST",VALMBCK="R" Q
+ ;
+ ;  print picking ticket
+ S Y=DT D DD^%DT S PRCPPOST=Y,PRCPTRNO=PRCPIBNM,PRCPTRID="R"_PRCPWORD,PRCPNAME=$P($$INVNAME^PRCPUX1(PRCPPRIM),"-",2,99),PRCPUSER=$$USER^PRCPUREP(DUZ)
+ S PRCPDEV=$P($G(^PRCP(445,PRCPINPT,"DEV")),"^")
+ I PRCPDEV'="" S ZTIO=PRCPDEV D QUEUE W !!,"Picking Ticket Queued on printer ",PRCPDEV G CODESHTS
+DEVICE ;
+ S %ZIS("A")="PRINT PICKING TICKET OF DEVICE: ",%ZIS("B")="",%ZIS="Q" W ! D ^%ZIS K %ZIS G:POP CODESHTS
+ I $D(IO("Q")) D QUEUE G CODESHTS
+ I IO=IO(0) W !,"YOU CANNOT PRINT THE PICKING TICKET ON YOUR TERMINAL.",!,"IF YOU DO NOT WANT TO PRINT THE PICKING TICKET, PRESS '^'." G DEVICE
+ D DQ^PRCPRPIT,^%ZISC
+ ;
+CODESHTS ;  create code sheets
+ K X S X(1)="The program will automatically create and transmit the code sheets to Austin.  Please verify the accuracy of the data and submit adjustment code sheets if necessary."
+ W ! D DISPLAY^PRCPUX2(5,75,.X)
+ I '$G(CANTEEN) D IV^PRCPSFIV(PRCP("I"),"R"_PRCPWORD,PRCPIBNM,"","")
+ I $G(CANTEEN) D SV^PRCPSFSV(PRCP("I"),"R"_PRCPWORD,"","")
+ S ISMSFLAG=$$ISMSFLAG^PRCPUX2(PRC("SITE"))
+ I ISMSFLAG'=2 D DQ^PRCPSLOI(PRCPIBNM,"R"_PRCPWORD)
+ I ISMSFLAG=2 D DQ^PRCPSMPI(PRCPIBNM,"R"_PRCPWORD)
+ D R^PRCPUREP
+ Q
+ ;
+ ;
+FINAL ;  make issue book a final
+ S $P(^PRCS(410,PRCPDA,9),"^",3)=DT,$P(^PRCS(410,PRCPDA,10),"^",4)=$O(^PRCD(442.3,"C",40,0))
+ S LINEDA=0 F  S LINEDA=$O(^PRCS(410,PRCPDA,"IT",LINEDA)) Q:'LINEDA  S ITEMDA=+$P(^(LINEDA,0),"^",5),QTYOUT=$P(^(0),"^",2)-$P(^(0),"^",12) I QTYOUT>0 D
+ .   I $D(^PRCP(445,PRCPINPT,1,ITEMDA,0)) D SETOUT^PRCPUDUE(PRCPINPT,ITEMDA,-QTYOUT)
+ .   I $G(PRCPFPRI) D KILLTRAN^PRCPUTRA(PRCPPRIM,ITEMDA,PRCPDA)
+ ;
+ ;  remove 2237 from request worksheet file
+ N DA,DIC,DIK
+ S DIK="^PRC(443,",DA=PRCPDA D ^DIK
+ W !!,"ISSUE BOOK IS NOW FINAL !"
+ Q
+ ;
+ ;
+QUEUE ;  queue to print picking ticket
+ S ZTDESC="Picking Ticket (Whse to Primary)",ZTRTN="DQ^PRCPRPIT",ZTDTH=$H
+ S ZTSAVE("PRCP*")="",ZTSAVE("ZTREQ")="@"
+ D ^%ZTLOAD
+ Q

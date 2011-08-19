@@ -1,0 +1,33 @@
+ABSVTED5 ;VAMC ALTOONA/CTB - BACKDATE LOOP ;11/17/93  8:56 AM
+V ;;4.0;VOLUNTARY TIMEKEEPING;;JULY 6, 1994
+LOOP ;LOOPS THROUGH TIME CARDS FOR 1 MONTH AND ONE STATION NUMBER TO
+ ;STUFF THE BACKDATE
+ ;DOES NOT BACKDATE SUSPENDED TIME CARDS
+ NEW %,%DT,%W,%Y,ABSVX,C,COUNT,D,D0,DA,DATE,DI,DIC,DIE,DIR,DQ,DR,DTOUT,DUOUT,DIRUT,DIROUT,I,MONTH,N,NAME,POP,REC,SSN,START,VOLDA,X,Y
+ D ^ABSVSITE Q:'%
+ S %DT="AEQ",%DT("A")="Select Month: " D ^%DT Q:Y<0
+ S DATE=+Y,MONTH=$E(DATE,1,5)_"00"
+ I '$D(^ABS(503335,"AK",MONTH)) S X="There are no time cards on file for "_$$FULLDAT^ABSVU2(MONTH)_".  Are you sure you have run the ROLL UP Option?  NO further action taken." D MSG^ABSVQ QUIT
+ W !!
+ S ABSVXA="This option will select ALL time cards for the month selected which are marked 'READY FOR TRANSMISSION' and will insert a 'BD' into the appropriate columns."
+ S ABSVXA(.5)="",ABSVXA(1)="OK TO CONTINUE",ABSVXB="",%=2
+ D ^ABSVYN I %'=1 S X="   <NO ACTION TAKEN>*" D MSG^ABSVQ QUIT
+ K ^TMP("ABSVAWARD",$J)
+ W !! D WAIT^ABSVYN
+ S DA=0 F  S DA=$O(^ABS(503335,"AK",MONTH,DA)) Q:'DA  S REC=^ABS(503335,DA,0) I $P(REC,"^",12)=ABSV("SITE"),+$P(REC,"^",6)=1 D
+ . S VOLDA=+REC,X=$G(^ABS(503330,VOLDA,0)),NAME=$P(X,"^"),SSN=$P(X,"^",2) Q:NAME=""
+ . S ^TMP("ABSVAWARD",$J,NAME,DA)=SSN
+ . QUIT
+ I $D(^TMP("ABSVAWARD",$J))<10 S X="There are no time cards which are marked 'Ready For Transmission' for "_$$FULLDAT^ABSVU2(MONTH)_" for Station "_ABSV("SITE")_".  No further action taken." D MSG^ABSVQ G OUT
+ W !!
+ S COUNT=0,DA=0,NAME=$G(START),DR="37///BD",DIE="^ABS(503335,"
+ F  S NAME=$O(^TMP("ABSVAWARD",$J,NAME)) Q:NAME=""  D  I $D(DTOUT) G OUT
+ . S DA=0 F  S DA=$O(^TMP("ABSVAWARD",$J,NAME,DA)) Q:'DA  D  Q:$D(DTOUT)
+ . . W !,NAME,"   ",$$EXTSSN^ABSVU2(^TMP("ABSVAWARD",$J,NAME,DA)) D ^DIE S COUNT=COUNT+1
+ . . QUIT
+ . QUIT
+ W !!,"LOOP COMPLETED - "_COUNT_" RECORDS MARKED"
+ W ! D ENCON^ABSVQ
+ QUIT
+ ;
+OUT K ^TMP("ABSVAWARD",$J),^TMP("ABSVLIST",$J)

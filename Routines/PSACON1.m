@@ -1,0 +1,28 @@
+PSACON1 ;BIR/LTL-Display Connected Drug and Procurement History - CONT'D ;7/23/97
+ ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;; 10/24/97
+ ;This routine is call by PSACON.
+ ;
+VEN N PSALN,PSAPG,PSARPDT S (PSA(7),PSAPG,PSAOUT)=0
+ S Y=DT X ^DD("DD") S PSARPDT=Y D HEADER
+ F  S PSA(7)=$O(^PRC(441,+PSA(1),2,PSA(7))) Q:'PSA(7)  S ^TMP("PSA",$J,(9999999-$P($G(^PRC(441,+PSA(1),2,+PSA(7),0)),U,6)),PSA(7))=$G(^PRC(441,+PSA(1),2,+PSA(7),0))
+ S (PSA(7),PSA(77))=0
+ F  S PSA(7)=$O(^TMP("PSA",$J,PSA(7))) Q:PSAOUT!('PSA(7))  D:$Y+4>IOSL HEADER Q:PSAOUT  F  S PSA(77)=$O(^TMP("PSA",$J,+PSA(7),PSA(77))) Q:PSAOUT!('PSA(77))  D
+ .S PSA(66)=$G(^TMP("PSA",$J,+PSA(7),+PSA(77)))
+ .S PSA(4)=$$UNITCODE^PRCPUX1($P($G(PSA(66)),U,7))
+ .W !!,$E($$VENNAME^PRCPUX1(PSA(77)_"PRC(440"),1,20)
+ .W ?22,$P($G(PSA(66)),U,8),"/",PSA(4)
+ .W ?32,"$",$J($P($G(PSA(66)),U,2),7,2),"/",PSA(4)
+ .W ?45,"$",$J($P($G(PSA(66)),U,2)/PSA(5),7,3),"/",PSA(8)
+ .S Y=$P($G(PSA(66)),U,6) X ^DD("DD")
+ .W ?60,Y
+ .I $O(^PRC(440,+PSA(77),4,0)) S PSA(55)=0 F  S PSA(55)=$O(^PRC(440,+PSA(77),4,PSA(55))) Q:'PSA(55)  S:$P($G(^PRC(440,+PSA(77),4,+PSA(55),0)),U,2)'<DT PSA(44)=1
+ .W:$G(PSA(44)) ?73,"YES" K PSA(44)
+ I $E(IOST)'="C" W @IOF
+ I $E(IOST,1,2)="C-",'PSAOUT S DIR(0)="EA",DIR("A")="END OF LIST!  Press <RET> to return to the option." W ! D ^DIR K DIR S:Y<1 PSAOUT=1
+ D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@" K IO("Q") D HOME^%ZIS
+ K ^TMP("PSA",$J) Q
+HEADER I $E(IOST,1,2)'="P-",PSAPG S DIR(0)="E" D ^DIR K DIR I 'Y S PSAOUT=1 Q
+ I $$S^%ZTLOAD W !!,"Task #",$G(ZTSK),", ",$G(ZTDESC)," was stopped by ",$P($G(^VA(200,+$G(DUZ),0)),U),"." S PSAOUT=1 Q
+ W:$Y @IOF S $P(PSALN,"-",81)="",PSAPG=PSAPG+1
+ W !,$E($$DESCR^PRCPUX1(0,PSA(1)),1,45),?50,PSARPDT,?70,"PAGE: ",PSAPG,!,PSALN,!,"VENDOR",?23,"PKG",?32,"COST/PKG",?45,"COST/UNIT",?60,"PRICE DATE  CONTRACT",!,PSALN
+ Q

@@ -1,0 +1,24 @@
+LBRYLTF ;SSI/ALA-CREATE LOCAL SERIAL TITLE TRANSACTION ;[ 04/19/2000  10:36 AM ]
+ ;;2.5;Library;**8**;Mar 11, 1996
+ ;
+ ;  Set up a transaction in the Library Transaction file for upload
+ ;  to FORUM
+TR ;  Put local serial title into transaction file
+ S SRVFLG=1,LBRTYP="LTF" D TRN^LBRYUTL K SRVFLG,LBRTYP
+ S FX="0;1^0;5^0;6^3;5^3;8^3;1^3;3^3;4",TX="1;1^1;4^2;1^2;2^3;1^3;3^4;2^4;3"
+ F I=1:1:8 S FR=$P(FX,U,I),TO=$P(TX,U,I) D
+ . S ND1=$P(FR,";"),PC1=$P(FR,";",2),ND2=$P(TO,";"),PC2=$P(TO,";",2)
+ . S $P(^LBRY(682.1,LBRYDA,ND2),U,PC2)=$P($G(^LBRY(680.5,LBRYCLS,ND1)),U,PC1)
+ S PF="3;6-680.5^3;7-680.5^3;2-680.1^0;4-680.2^0;3-680.9",PT="2;3^3;2^4;1^4;4^4;5"
+ F I=1:1:5 S FR=$P(PF,U,I),TO=$P(PT,U,I) D
+ . S PO=$P(FR,"-"),GLB=$P(FR,"-",2)
+ . S ND1=$P(PO,";"),PC1=$P(PO,";",2),ND2=$P(TO,";"),PC2=$P(TO,";",2)
+ . S TDA=$P($G(^LBRY(680.5,LBRYCLS,ND1)),U,PC1)
+ . I TDA'="" S $P(^LBRY(682.1,LBRYDA,ND2),U,PC2)=$S(TDA'["*":$P(^LBRY(GLB,$P($G(^LBRY(680.5,LBRYCLS,ND1)),U,PC1),0),U),1:TDA)
+ I $D(^LBRY(680.5,LBRYCLS,1)) S IN=0 F  S IN=$O(^LBRY(680.5,LBRYCLS,1,IN)) Q:IN'>0  D
+ . S INP=$P(^LBRY(680.8,^LBRY(680.5,LBRYCLS,1,IN,0),0),U)
+ . S ^LBRY(682.1,LBRYDA,6,IN,0)=INP
+ I $D(^LBRY(680.5,LBRYCLS,2)) S IN=0 F  S IN=$O(^LBRY(680.5,LBRYCLS,2,IN)) Q:IN'>0  S ^LBRY(682.1,LBRYDA,7,IN,0)=^LBRY(680.5,LBRYCLS,2,IN,0)
+ Q
+EXIT K FX,TX,FR,TO,ND1,PC1,ND2,PC2,PF,PT,PO,GLB,IN,INP
+ Q

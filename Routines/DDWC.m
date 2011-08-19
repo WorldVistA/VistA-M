@@ -1,0 +1,161 @@
+DDWC ;SFISC/MKO-CHANGE (REPLACE) ;3:36 PM  5 Jul 1996
+ ;;22.0;VA FileMan;;Mar 30, 1999
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+CHG ;Change
+ N DDWOPT
+ D SETUP^DDWC1
+ F  D PROC Q:DDWOPT=-1
+ D RESTORE^DDWC1
+ K DDWCHG(1)
+ Q
+ ;
+PROC ;Main procedure
+ N DDWCOD,DDWT
+ ;
+ D:$D(DDWMARK) UNMARK^DDW7
+ D EN^DIR0(IOTM+DDWMR,14,30,"",$G(DDWFIND),100,"","","AKTW",.DDWT,.DDWCOD)
+ I DDWT=""!($P(DDWCOD,U)="TO") S DDWOPT=-1 Q
+ S DDWFIND=DDWT,DDWT=$$UC(DDWT)
+ ;
+ K DDWCHG(1)
+ D EN^DIR0(IOTM+DDWMR+1,14,30,"",$G(DDWCHG),100,"","","AKTW",.DDWCHG,.DDWCOD)
+ I $P(DDWCOD,U)="TO" S DDWOPT=-1 Q
+ S:DDWCHG?1L.E DDWCHG(1)=$$UC($E(DDWCHG))_$E(DDWCHG,2,999)
+ ;
+ F  D OPT Q:DDWOPT]""
+ Q
+ ;
+OPT ;Prompt for and process option
+ W $P(DDGLVID,DDGLDEL,6)
+ F  D  Q:DDWOPT]""
+ . D CUP(DDWMR+4,15) W " "_$C(8)
+ . R DDWOPT#1:DTIME E  S DDWOPT="Q" Q
+ . I DDWOPT=U S DDWOPT="Q"
+ . I DDWOPT="" S DDWOPT="E" Q
+ . I DDWOPT="?" S DDWOPT="H" Q
+ . S DDWOPT=$$UC(DDWOPT)
+ . I "^F^R^A^Q^"'[(U_DDWOPT_U) W $C(7) S DDWOPT=""
+ D CUP(DDWMR+4,15) W $P(DDGLVID,DDGLDEL,10)_" "
+ D @DDWOPT
+ Q
+ ;
+F ;Find next
+ D FINDT^DDWF(DDWFIND)
+ S DDWOPT=""
+ Q
+ ;
+R ;Replace
+ N DDWE
+ I '$D(DDWMARK) D CERR Q
+ D RS(.DDWE) Q:$G(DDWE)
+ D F
+ Q
+ ;
+RS(DDWE) ;Change selected text
+ N DDWDIF
+ S DDWDIF=$L(DDWCHG)-$P(DDWMARK,U,4)+$P(DDWMARK,U,2)-1
+ I $L(DDWN)+DDWDIF>245 D  Q
+ . S DDWE=1,DDWOPT=""
+ . D MSG($C(7)_"Unable to change text.  Resultant line is too long.")
+ ;
+ S DDWE=0,DDWED=1
+ S $E(DDWN,$P(DDWMARK,U,2),$P(DDWMARK,U,4))=$S($E(DDWN,$P(DDWMARK,U,2))?1U:$G(DDWCHG(1),DDWCHG),1:DDWCHG)
+ S DDWL(DDWRW)=DDWN
+ D CUP(DDWRW,1) W $P(DDGLCLR,DDGLDEL)_$E(DDWN,1+DDWOFS,IOM+DDWOFS)
+ K DDWMARK D IND^DDW7()
+ D POS(DDWRW,DDWC+DDWDIF,"R")
+ Q
+ ;
+A ;Change all
+ N DDWE,DDWF,DDWI,DDWND,DDWX
+ D MSG^DDW("Changing text ...")
+ I $D(DDWMARK) D RS(.DDWE) G:$G(DDWE) AEND
+ ;
+ S DDWX=$F($$UC(DDWL(DDWRW)),DDWT,DDWC)
+ I DDWX D
+ . S DDWL(DDWRW)=$$REP(DDWL(DDWRW),DDWFIND,.DDWCHG,DDWX,.DDWE),DDWF=1
+ . S:$G(DDWE) DDWE=DDWRW+DDWA_U_DDWE
+ ;
+ I '$G(DDWE) F DDWI=DDWRW+1:1:DDWMR D  Q:$G(DDWE)
+ . S DDWX=$F($$UC(DDWL(DDWI)),DDWT)
+ . S:DDWX DDWL(DDWI)=$$REP(DDWL(DDWI),DDWFIND,.DDWCHG,DDWX,.DDWE),DDWF=1
+ . S:$G(DDWE) DDWE=DDWI+DDWA_U_DDWE
+ ;
+ I '$G(DDWE) F DDWI=DDWSTB:-1:1 D  Q:$G(DDWE)
+ . S DDWND=^TMP("DDW1",$J,DDWI)
+ . S DDWX=$F($$UC(DDWND),DDWT)
+ . S:DDWX ^TMP("DDW1",$J,DDWI)=$$REP(DDWND,DDWFIND,.DDWCHG,DDWX,.DDWE),DDWF=1
+ . S:$G(DDWE) DDWE=DDWA+DDWMR+DDWSTB-DDWI+1_U_DDWE
+ ;
+ I $G(DDWF) D
+ . D:$G(DDWE) MSG^DDW($C(7)_"Unable to complete replacement.  A resultant line is too long.") H 2
+ . F DDWI=1:1:$$MIN(DDWMR,DDWCNT-DDWA) D
+ .. D CUP(DDWI,1)
+ .. W $P(DDGLCLR,DDGLDEL)_$E(DDWL(DDWI),1+DDWOFS,IOM+DDWOFS)
+ . D:$G(DDWE) LINE^DDWG(+DDWE,1),POS(DDWRW,$P(DDWE,U,2),"R")
+ E  D MSG^DDW("Text not found.") H 2 D FLUSH
+ ;
+AEND D MSG^DDW(),CUP(DDWRW,DDWC)
+ S DDWOPT=$S($G(DDWE):-1,1:"")
+ Q
+ ;
+REP(DDWND,DDWFIND,DDWCHG,DDWX,DDWE) ;String replacement of DDWND
+ N DDWDIF,DDWFST,DDWSV
+ S DDWDIF=$L(DDWCHG)-$L(DDWFIND)
+ F  D  Q:'DDWX!$G(DDWE)
+ . S DDWSV=DDWND,DDWFST=DDWX-$L(DDWFIND)
+ . I $L(DDWND)+DDWDIF>245 S DDWE=DDWFST Q
+ . S $E(DDWND,DDWFST,DDWX-1)=$S($E(DDWND,DDWFST)?1U:$G(DDWCHG(1),DDWCHG),1:DDWCHG)
+ . S DDWX=DDWX+DDWDIF
+ . S DDWX=$F($$UC(DDWND),DDWFIND,DDWX)
+ Q $S($G(DDWE):DDWSV,1:DDWND)
+ ;
+E ;Edit Find
+ D FLUSH
+ Q
+ ;
+Q ;Quit option
+ D FLUSH
+ S DDWOPT=-1
+ Q
+ ;
+H ;Help
+ D MSG("Press the highlighted letter of one of the Options.")
+ S DDWOPT=""
+ Q
+ ;
+CERR ;The Change options are disabled
+ D MSG($C(7)_"You must Find the text before you can Change it.")
+ S DDWOPT=""
+ Q
+ ;
+MSG(DDWX) ;
+ D CUP(DDWMR+5,1) W $P(DDGLCLR,DDGLDEL)_$G(DDWX) H 2
+ D CUP(DDWMR+5,1) W $P(DDGLCLR,DDGLDEL)
+ D FLUSH
+ Q
+ ;
+FLUSH ;Flush read buffer
+ N DDWX F  R *DDWX:0 E  Q
+ Q
+ ;
+UC(X) ;Return uppercase of X
+ Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ ;
+MIN(X,Y) ;
+ Q $S(X<Y:X,1:Y)
+ ;
+CUP(Y,X) ;Pos cursor
+ S DY=IOTM+Y-2,DX=X-1 X IOXY
+ Q
+ ;
+POS(R,C,F) ;Pos cursor based on char pos C
+ N DDWX
+ S:$G(C)="E" C=$L($G(DDWL(R)))+1
+ S:$G(F)["N" DDWN=$G(DDWL(R))
+ S:$G(F)["R" DDWRW=R,DDWC=C
+ ;
+ S DDWX=C-DDWOFS
+ I DDWX>IOM!(DDWX<1) D SHIFT^DDW3(C,.DDWOFS)
+ S DY=IOTM+R-2,DX=C-DDWOFS-1 X IOXY
+ Q

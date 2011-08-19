@@ -1,0 +1,70 @@
+YSASO2 ;692/DCL-ASI/ASF COMPOSITE SCORES FOR LITE ;5/22/97  11:10
+ ;;5.01;MENTAL HEALTH;**24,30**;Dec 30, 1994
+ Q
+OUT3(YSASIEN,YSASOK) ;Entry Point pass IEN from file 604 FOR LITE
+ Q:$G(YSASIEN)'>0
+ N YSASY,YSASSR,YSASCS,YSASN,YSASAGE,X,Y,C1,C2,C3,YSASS,YSASC,YSASMSG
+ S YSASIEN=YSASIEN_",",C1=24,C2=40,C3=55,YSASOK=1,YSASMSG=""
+ S YSASN=$$F("NAME"),YSASAGE=$$F("NAME:AGE"),YSASNA=YSASN_"  ("_YSASAGE_")"
+ W:$D(IOF) @IOF
+ W !,YSASNA,?C2,"Composite"
+ W !,$TR($J("",$L(YSASNA))," ","-"),?C2,"Scores"
+ W !," Adm: ",$$F(1),?C2,"--------"
+ S YSASC=$$F(.61)
+ W !," Int: ",$$F(.05),?C1,"    MEDICAL",?C2,$S(YSASC="":"  ----",1:YSASC)
+ S YSASC=$$F(.62)
+ S X=$$F(.09)
+ W !,"  By: ",$S(X]"":$P(X,","),1:"<INCOMPLETE>"),?C1," EMPLOYMENT",?C2,$S(YSASC="":"  ----",1:YSASC)
+ S YSASC=$$F(.63)
+ W !?C1,"    ALCOHOL",?C2,$S(YSASC="":"  ----",1:YSASC)
+ S YSASC=$$F(.635)
+ W !?C1,"       DRUG",?C2,$S(YSASC="":"  ----",1:YSASC)
+ S YSASC=$$F(.64)
+ W !?C1,"      LEGAL",?C2,$S(YSASC="":"  ----",1:YSASC)
+ S YSASC=$$F(.65)
+ W !?C1,"     FAMILY",?C2,$S(YSASC="":"  ----",1:YSASC)
+ S YSASC=$$F(.66)
+ W !?C1,"PSYCHIATRIC",?C2,$S(YSASC="":"  ----",1:YSASC)
+ Q
+ ;
+F(YSASFLD) ;Pass field name - IEN is expected to be in YSASIEN
+ N DIERR
+ Q:$G(YSASFLD)=""
+ Q $$GET1^DIQ(604,YSASIEN,YSASFLD)
+ ;
+CHECKALL(YSASIEN,YSFLAG) ; all reqiured fields
+ ;ysflag 1= ok 0= missing 2= X OR N
+ N N1,YSASCLS,X,YSASFLD,YSF
+ S YSFLAG=1
+ S YSASCLS=$$GET1^DIQ(604,YSASIEN_",",.04,"I")
+ S YSASCLS=YSASCLS+3
+ S N1=0 F  S N1=$O(^YSTX(604.66,N1)) Q:N1'>0  D:($P(^YSTX(604.66,N1,0),U,8)&($P(^YSTX(604.66,N1,0),U,YSASCLS)))  Q:YSFLAG=0
+ . S YSASFLD=$P(^YSTX(604.66,N1,0),U,3)
+ . S YSF=$S(YSASFLD>10.02&(YSASFLD<10.44):"I",$P(^DD(604,YSASFLD,0),U,2)?1"P".E:"",1:"I")
+ . S X=$$GET1^DIQ(604,YSASIEN,YSASFLD,YSF)
+ . S:X="" YSFLAG=0
+ . S:X="X"!(X="N") YSFLAG=2
+ ;
+ Q
+TESTIT ;
+ S YSASIEN=72 D CHECKALL(YSASIEN,.YSFLAG)
+  W !,"YSFLAG=",YSFLAG D:YSFLAG'=1 REPTMSG(YSASIEN)
+ Q
+ Q
+REPTMSG(YSASIEN) ;report missing requires
+ N N1,X,YSASFLD,YSASCLS,YSF
+ S YSASDT=$$GET1^DIQ(604,YSASIEN_",",.05)
+ S YSASPT=$$GET1^DIQ(604,YSASIEN_",",.02)
+ S YSASCLS=$$GET1^DIQ(604,YSASIEN_",",.04,"I")
+ S YSASCLS=YSASCLS+3
+ W @IOF,YSASPT," interviewed on ",YSASDT,!,"Required ASI Items    M=missing, X= not answered, N= not applicable",!
+ S N1=0 F  S N1=$O(^YSTX(604.66,N1)) Q:N1'>0  D:($P(^YSTX(604.66,N1,0),U,8)&($P(^YSTX(604.66,N1,0),U,YSASCLS)))
+ . S YSASFLD=$P(^YSTX(604.66,N1,0),U,3)
+ . S YSF=$S(YSASFLD>10.02&(YSASFLD<10.44):"I",$P(^DD(604,YSASFLD,0),U,2)?1"P".E:"",1:"I")
+ . S X=$$GET1^DIQ(604,YSASIEN,YSASFLD,YSF)
+ . D:X=""!(X="N")!(X="X")
+ .. W:$X>60 !
+ .. W $J($P(^YSTX(604.66,N1,0),U,11)_":"_$S(X="":"M",1:X),10)
+ ;
+ W ! K DIR S DIR(0)="E" D ^DIR
+ Q

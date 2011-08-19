@@ -1,0 +1,52 @@
+QANUTL2 ;HISC/GJC-Utilities for Incident Reporting (Patient Data) ;5/25/93  15:04
+ ;;2.0;Incident Reporting;**1,7,19,23,27,26**;08/07/1992
+ ;
+HDH ;Header
+ W @IOF,!!?(IOM-$L(QANHEAD(0))\2),QANHEAD(0),!,QANLINE(0),!
+ Q
+EN2 ;Edit fields for follow-up data input.  Invoked from: ^QANVAL.
+ ;VARIABLES PASSED IN *** QANDFN: Patient's ien   QANIEN: Incident's ien.
+ I +QANDFN'>0!(+QANIEN'>0) S QANXIT=1 Q
+ L +(^QA(742,QANDFN),^QA(742.4,QANIEN)):5 I '$T W !!?16,$C(7),"Another person is editing this incident record." D EXIT Q
+ S QANHEAD(0)="Edit the following patient data for "_QANAME_" AGE: "_$S(QANAGE]"":QANAGE,1:"<N/A>") S $P(QANLINE(0),"-",81)="",QANEOP=""
+ D HDH S QANGLB0=$G(^QA(742.4,QANIEN,0)) S:QANGLB0="" QANXIT=1 D:QANXIT EXIT Q:QANXIT
+ K DA,DIE,DR S DIE="^QA(742.4,",DA=QANIEN,DR=".09////"_3 D ^DIE
+ ;if there is a division entered, allow it to edited
+ I $P(^QA(742.4,QANIEN,0),U,22)]"" S DR=52 D ^DIE
+ K DA,DIE,DR
+ S QANIRIN(0)=$P(QANGLB0,U,2),QANDED=$O(^QA(742.1,"BUPPER","DEATH",0))
+ D K3 S DIE="^QA(742.4,",DA=QANIEN,DR=".02R~;I X'=QANDED S Y=""@1"";.15R~;@1;.03;.04;.05;S X=X;.07;.08" D ^DIE,K3 D EXIT:$D(Y) Q:$D(Y)
+ S QANIRIN=$P(^QA(742.4,QANIEN,0),U,2) ;New Incident
+ I (QANIRIN(0)=QANDED),(QANIRIN(0)'=QANIRIN) D K3 S DA=QANIEN,DIE="^QA(742.4,",DR=".15///@" D ^DIE D K3 ;If changed from death, delete type of death.
+ K QAUDIT S QAUDIT("FILE")="742.4^50",QAUDIT("DA")=QANIEN,QAUDIT("COMMENT")="Edit an incident record",QAUDIT("ACTION")="e" D ^QAQAUDIT
+ I QANIRIN(0)'=QANIRIN D K3 S DIE="^QA(742.4,",DA=QANIEN,DR=".17///^S X=1" D ^DIE,K3 ;Resetting an incident reopens a case nationally.
+ I $D(^QA(742.1,"BUPPER","DEATH",QANIRIN))!($D(^QA(742.1,"BUPPER","SUICIDE",QANIRIN)))!($D(^QA(742.1,"BUPPER","HOMICIDE",QANIRIN))) D K3 S DIE="^QA(742,",DA=QANDFN,DR=".1///"_3 D ^DIE,K3 D EXIT:$D(Y) Q:$D(Y)
+ I $D(^QA(742.1,"BUPPER","FALL",QANIRIN)) D K3 S DIE="^QA(742,",DA=QANDFN,DR=".09" D ^DIE,K3 D EXIT:$D(Y) Q:$D(Y)
+ I $D(^QA(742.1,"BUPPER","PATIENT ABUSE",QANIRIN)) D K3 S DIE="^QA(742.4,",DA=QANIEN,DR=".18" D ^DIE,K3 D EXIT:$D(Y) Q:$D(Y)
+ I $D(^QA(742.1,"BUPPER","MEDICATION ERROR",QANIRIN)) D K3 S DIE="^QA(742,",DA=QANDFN,DR=".11" D ^DIE,K3 D EXIT:$D(Y) Q:$D(Y)
+ I $D(^QA(742.1,"BUPPER","MEDICATION ERROR",QANIRIN)),$D(X),$D(^QA(742.13,"B","OTHER",+X))#2 D EN10^QANUTL
+ D K3 S QAN6O=+$P(^QA(742,QANDFN,0),U,6),DIE="^QA(742,",DA=QANDFN,DR=".06;S X=X" D ^DIE,K3 D EXIT:$D(Y) Q:$D(Y)
+ S QAN6N=+$P(^QA(742,QANDFN,0),U,6) I QAN6O'=QAN6N D K3 S QAN6T=$P($G(^SC(QAN6N,0)),U,3),DIE="^QA(742,",DA=QANDFN,DR=".05///^S X="_$S(QAN6T="W":1,1:0) D ^DIE,K3 D EXIT:$D(Y) Q:$D(Y)
+ D K3 S DIE="^QA(742,",DA=QANDFN,DR=".07;.08;.15;.1;S X=X" D ^DIE,K3 D EXIT:$D(Y) Q:$D(Y)
+ I $D(^QA(742.1,"BUPPER","PATIENT ABUSE",QANIRIN)),(+$P($G(^QA(742.4,QANIEN,0)),U,16)=1),(+$P($G(^QA(742,QANDFN,0)),U,10)=3) D HOMCIDE^QANUTL
+ I $D(^QA(742.1,"BUPPER","SUICIDE ATTEMPT",QANIRIN)),(+$P($G(^QA(742,QANDFN,0)),U,10)=3) D SUIATMP^QANUTL
+ K QAUDIT S QAUDIT("FILE")="742^50",QAUDIT("DA")=QANDFN,QAUDIT("COMMENT")="Edit a patient record",QAUDIT("ACTION")="e" D ^QAQAUDIT
+ D CHECK^QANUTL4 D:QANYN<0 EXIT Q:QANYN<0
+ D BDCAST^QANUTL5
+ D K3 S DIE="^QA(742,",DA=QANDFN,DR=".12;S X=X" D ^DIE,K3 D EXIT:$D(Y) Q:$D(Y)
+ D K3 S DIE="^QA(742.4,",DA=QANIEN,DR=".12;S:X']""""!(X=1) Y=""@1"" S:X=2 Y=""@2"";.22;@2;.13;S X=X;.14;@1;.16;.2;S X=X" D ^DIE,K3 D EXIT:$D(Y) Q:$D(Y)
+ I "12"[+$P(^QA(742.1,QANIRIN,0),U,2) D K3 S DIE="^QA(742.4,",DA=QANIEN,DR=".1;S X=X;.11" D ^DIE,K3 D EXIT:$D(Y) Q:$D(Y)
+CLOSE S %=2 F  W !!,"Do you wish to close this particular incident" D YN^DICN Q:"-112"[%  W !!,"Enter ""N""o if you wish the incident to stay open,",!,"""Y""es if you wish to close the incident."
+ S QAN("%")=%
+ I QAN("%")=1 D K3 S DIE="^QA(742.4,",DA=QANIEN,DR=".21///@" D ^DIE,K3
+ I QAN("%")=1 K QAUDIT S QAUDIT("FILE")="742.4^50",QAUDIT("DA")=QANIEN,QAUDIT("COMMENT")="Close an incident record",QAUDIT("ACTION")="c" D ^QAQAUDIT
+ I QAN("%")=1 K QAUDIT S QAUDIT("FILE")="742^50",QAUDIT("DA")=QANDFN,QAUDIT("COMMENT")="Close a patient record",QAUDIT("ACTION")="c" D ^QAQAUDIT
+ D K3 S DIE="^QA(742.4,",DA=QANIEN,DR=".09///"_$S(QAN("%")=1:0,1:"") D ^DIE,K3
+ D K3 S DIE="^QA(742,",DA=QANDFN,DR=".13///"_$S(QAN("%")=1:0,1:"") D ^DIE,K3
+EXIT L -(^QA(742,QANDFN),^QA(742.4,QANIEN)) ;Unlock QA IR globals.
+ K QAN6N,QAN6O,QAN6T,QANHEAD(0),QANINS,QANLINE(0),QANEOP,QANIRIN,QANDED
+ K QANLCTN,QANGLB0,QANGLB1,QANGLB2,INCQAN,MSSG0,MSSG1,MSSG2,MSSG3,MSSG4
+ Q
+K3 ;
+ K DIE,DA,DR
+ Q

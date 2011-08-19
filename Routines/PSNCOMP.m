@@ -1,0 +1,79 @@
+PSNCOMP ;BIR/WRT-match local name with NDF finds matches ; 12/18/98 13:31
+ ;;4.0; NATIONAL DRUG FILE;**3,47**; 30 Oct 98
+ ;
+ ;Reference to ^PSDRUG supported by DBIA #2352,#221
+ ;
+START F PSNB=NBR:0 S PSNB=$O(^PSDRUG(PSNB)) Q:'PSNB  D BLDIT I $D(PSNFL) Q:PSNFL=1
+ S:+PSNB<1 PSNB=99999999 S:PSNB'=$P(^PSNTRAN("END"),"^",1) $P(^PSNTRAN("END"),"^",1)=$S($D(^PSNTRAN(PSNB,0)):PSNB,1:PSNB-1) S IFN=$S($D(^PSNTRAN(PSNB,0)):PSNB,1:PSNB-1),^PSNTRAN(IFN,"END")=IFN I '$D(^PSNTRAN(IFN,0)) S ^PSNTRAN(IFN,0)=0
+DONE K PSNB D KILL^PSNHIT Q
+ Q
+BLDIT ; START ATTEMPT TO MATCH
+ Q:'$D(^PSDRUG(PSNB,0))  Q:$P(^PSDRUG(PSNB,0),"^",1)']""
+ I $D(^PSDRUG(PSNB,"ND")),$P(^PSDRUG(PSNB,"ND"),"^",2)]"" Q
+ I $D(PSNFLB),$D(^PSNTRAN(PSNB,0)) Q
+ D KILL^PSNHIT,^PSNDEA Q:$D(PSNINACT)  Q:'$D(PSNDEA)  K PSNDEA
+NAM D:$D(XRTL) T0^%ZOSV ; START
+ S TT=0,TTT=0 S (PSNLOC,PSNNAM)=$P(^PSDRUG(PSNB,0),"^",1) W !!,"Match local drug  ",PSNNAM W:$P(^PSDRUG(PSNB,0),"^",9)=1 ?64,"N/F",?70," with "
+ W !,?40,"ORDER UNIT: "
+ I $D(^PSDRUG(PSNB,660)) S PSNODE=^PSDRUG(PSNB,660) I $P(PSNODE,"^",2) S PSNOU=$P(PSNODE,"^",2) I $D(^DIC(51.5)),$D(^DIC(51.5,PSNOU)) W ?52,$S('$D(PSNOU):"",1:$P(^DIC(51.5,PSNOU,0),"^",1))
+ W !,?24,"DISPENSE UNITS/ORDER UNITS: ",$S('$D(PSNODE):"",1:$P(PSNODE,"^",5)),!,?37,"DISPENSE UNIT: ",$S('$D(PSNODE):"",1:$P(PSNODE,"^",8)) S NOM31=0,DUNCE=0
+ D NDC31 S NO31=0 Q:$D(DIRUT)  W:NOM31=1 !,"No match on that NDC....",! I $D(Y(0)),Y(0)="YES" Q
+GOSYN ; Match by Synonym NDC
+ S NOMSYN=0 D SYN^PSNNDC Q:$D(DIRUT)  W:NOMSYN=1 !,"No match by Synonym NDC... now first word",! I $D(Y(0)),Y(0)="YES" S NOMSYM=0 Q
+TRY1 W !,?5 S X=$P(PSNNAM," ",1),DIC="^PSNDF(50.6,",DIC(0)="Q" D ^DIC K DIC S:Y>0 PSNDA=+Y G:Y>0 ^PSNHIT I Y<0 W !!,"Match on first word failed...",! G TRY3
+ Q
+ Q
+NDC31 ; Match by NDC field 31
+ I '$D(^PSDRUG(PSNB,2)) W !,"No NDC to match...",! S NO31=1 Q
+ I $D(^PSDRUG(PSNB,2)) S CODE=$P($G(^PSDRUG(PSNB,2)),"^",4) W:CODE']"" !,"No NDC to match...",! I CODE]"" W !,"I will try to match NDC:   ",CODE,"   to NDF." S TT=1,ANS=CODE,NOM31=0 D STRT0^PSNNDC
+ Q
+SETIT S PSNNAME=PSNNAM F X=",","/"," ","-" S PSNNAM=PSNNAME,PSNNAME="" F MJL=1:1 Q:MJL>$L(PSNNAM,X)  S PSNNAME=PSNNAME_$S($P(PSNNAM,X,MJL)]"":$P(PSNNAM,X,MJL)_$S(MJL<$L(PSNNAM,X):" ",1:""),1:"")
+ I $P(PSNNAM," ")'?1A.E S PSNSP=$F(PSNNAM," "),PSNNAM=$E(PSNNAM,PSNSP,$L(PSNNAM))
+ Q
+TRY2 S X="" F MJL=2:1 Q:MJL>$L(PSNNAM," ")  I $L($P(PSNNAM," ",MJL))>$L(X) S X=$P(PSNNAM," ",MJL)
+ S DIC="^PSNDF(50.6,",DIC(0)="Q" D ^DIC K DIC G:Y>0 ^PSNHIT
+TRY3 W !!,"No match . . . attempting to match by Trade Name" I $D(PSNTRFL) G:PSNTRFL UPNDC
+ S X=$O(^PSDRUG(PSNB,1,0)) I 'X S PSNTRFL=1 W !,"There are no Trade Names...unable to match",! G UPNDC
+ I '$O(^PSDRUG(PSNB,1,X)) S (PSNNAM,X)=$P(^PSDRUG(PSNB,1,X,0),"^"),PSNTRFL=1 G TRD
+TRADE K ANS W !!,"Trade Names in YOUR local file for this drug are: "
+ S PSNFL=0,END=$P(^PSDRUG(PSNB,1,0),"^",3),WR="Enter choice or press RETURN to continue: ",FL=0
+ F JJ=0:0 S JJ=$O(^PSDRUG(PSNB,1,JJ)) Q:'JJ  I $D(^PSDRUG(PSNB,1,JJ,0)),$P(^PSDRUG(PSNB,1,JJ,0),"^",3)=0 S FL=1 W !,JJ," ",$P(^PSDRUG(PSNB,1,JJ,0),"^",1) I JJ#10=0,END'=10 W !!,WR R ANS:DTIME S:'$T ANS="^" S:ANS["^" PSNFL=1 Q:PSNFL  Q:ANS]""
+ I FL=0 S PSNTRFL=1 W !,"There are no Trade Names...unable to match",! G UPNDC
+ I $D(ANS),ANS?.E1C.E G TRADE
+ I $D(ANS),ANS["?" D TRD1^PSNHELP G TRADE
+ Q:PSNFL  I $D(ANS),ANS']"" K ANS
+TRPIC I '$D(ANS) R !!?10,"Enter your choice: ",ANS:DTIME S:'$T ANS="^"
+ I ANS?.E1C.E K ANS G TRPIC
+ S:ANS["^" PSNFL=1 Q:PSNFL  G:ANS']"" UPNDC I ANS["?" D TR2^PSNHELP G TRPIC
+ I '$D(^PSDRUG(PSNB,1,ANS)) W !,"Invalid choice, try again!!" G TRADE
+ S (X,PSNNAM)=$P(^PSDRUG(PSNB,1,ANS,0),"^",1),PSNTRFL=1
+TRD S DIC="^PSNDF(50.67,",DIC(0)="Q",D="T" D IX^DIC K DIC S:Y>0 ZZXX=$P(^PSNDF(50.67,+Y,0),"^",6) S:Y>0 PSNDA=$P(^PSNDF(50.68,ZZXX,0),"^",2) G:Y>0 ^PSNHIT
+ W !!,"Unable to match Trade Name",! ; G PUNT
+UPNDC W !,"Do you want to attempt to match by NDC or UPN:" S DIR(0)="S^N:NDC;U:UPN;",DIR("B")="NDC" D ^DIR Q:$D(DIRUT)  S PSNINQ=Y(0) G:PSNINQ="UPN" UCODE
+TRY4 K ANS R !!,"Please enter NDC Code <WITH DASHES>: ",ANS:DTIME S:'$T ANS="^" G:ANS']"" PUNT I ANS="^" S PSNFL=1 Q
+ I ANS?.E1C.E K ANS G TRY4
+ I ANS["?" D NDC1^PSNHELP G TRY4
+ I ANS'?.N1"-".N1"-".N W !!,"Format should be MANUFACTURER'S CODE""-""PRODUCT CODE""-""PACKAGE CODE",!,"(i.e. 9999-999-99)" G TRY4
+NDC F VV=1:1:3 S VV1=$S(VV=1:6,VV=2:4,VV=3:2) D NDCSET
+ S ANS=$P(ANS,"-",1)_$P(ANS,"-",2)_$P(ANS,"-",3) K VV,VV1
+ I '$D(^PSNDF(50.67,"NDC",ANS)) K ANS G PUNT
+ S PSNIEN=$O(^PSNDF(50.67,"NDC",ANS,0)),PSNFNM=$P(^PSNDF(50.67,PSNIEN,0),"^",6),PSNSIZE=$P(^PSNDF(50.67,PSNIEN,0),"^",8),PSNTYPE=$P(^PSNDF(50.67,PSNIEN,0),"^",9)
+ I $D(^PSNDF(50.68,PSNFNM,7)) S PSNPD=$P(^PSNDF(50.68,PSNFNM,7),"^",3) I PSNPD]"",(PSNPD<DT) W !,"NDC Code ("_ANS_") has been inactivated!!" G TRY4
+ S PSNNDF=$P(^PSNDF(50.68,PSNFNM,0),"^",2),PSNFORM=$P(^PSNDF(50.68,PSNFNM,0),"^"),PSNCLASS=$P(^PSNDF(50.68,PSNFNM,3),"^")
+ ; D ING^PSNHELP I ANS["^" S PSNFL=1 Q
+ S PSNVAR="PUNT^PSNCOMP" D ASK^PSNSTCK D:"Yy"[ANS SET^PSNHIT Q
+PUNT ;Match by VA Generic
+ W !!,"Unable to match by Name, Trade Name or NDC Code/UPN ",!
+ K LIST,^TMP($J) S DIC="^PSNDF(50.6,",DIC(0)="QEAM",DIC("W")="W $S($P(^PSNDF(50.6,+Y,0),U,2):""   **INACTIVE**"",1:"""")" D ^DIC K DIC S:Y>0 PSNDA=+Y
+ I Y>0,$P($G(^PSNDF(50.6,+Y,0)),"^",2) W !,"This entry has been inactivated!!" G PUNT
+ G:Y>0 ^PSNHIT G:X']"" OOPS^PSNHIT I X["^" S PSNFL=1 Q
+NDCSET I $L($P(ANS,"-",VV))<VV1 S $P(ANS,"-",VV)=$E("0000000",1,VV1-$L($P(ANS,"-",VV)))_$P(ANS,"-",VV)
+ Q
+UCODE K PSNUP R !!,"Enter UPN: ",PSNUP:DTIME S:'$T PSNUP="^" G:PSNUP']"" PUNT I PSNUP="^" S PSNFL=1 Q
+ I PSNUP?.E1C.E.E K PSNUP G UCODE
+ I PSNUP["?" W !,"Enter a UPN to attempt to match to NDF",! G UCODE
+ I '$D(^PSNDF(50.67,"UPN",PSNUP)) K PSNUP G PUNT
+ S PSNIEN=$O(^PSNDF(50.67,PSNUP,0)),PSNFNM=$P(^PSNDF(50.67,PSNIEN,0),"^",6),PSNSIZE=$P(^PSNDF(50.67,PSNIEN,0),"^",8),PSNTYPE=$P(^PSNDF(50.67,PSNIEN,0),"^",9)
+ I $D(^PSNDF(50.68,PSNFNM,7)) S PSNPD=$P(^PSNDF(50.68,PSNFNM,7),"^",3) I PSNPD]"",PSNPD<DT Q
+ S PSNNDF=$P(^PSNDF(50.68,PSNFNM,0),"^",2),PSNFORM=$P(^PSNDF(50.68,PSNFNM,0),"^"),PSNCLASS=$P(^PSNDF(50.68,PSNFNM,3),"^")
+ S PSNVAR="PUNT^PSNCOMP" D ASK^PSNSTCK D:"Yy"[ANS SET^PSNHIT Q

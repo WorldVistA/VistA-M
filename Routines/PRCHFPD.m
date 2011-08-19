@@ -1,0 +1,80 @@
+PRCHFPD ;SF-ISC/KSS,WISC/RWS,SC-NEW FPDS REPORT <25K ;7-10-89/2:30 PM
+V ;;5.1;IFCAP;**16**;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+FPD S %DT("A")="START WITH P.O. DATE: ",%DT="AE" D ^%DT
+ I Y'>0 K %DT,Y Q
+ S PRCHF=Y,%DT("A")="GO TO P.O. DATE: "
+ ;
+F1 D ^%DT G FPD:Y'>0 I PRCHF>Y W !,"Last date cannot be prior to first date." G FPD
+ S PRCHT=Y D DD^%DT S PRCHPT=Y S Y=PRCHF D DD^%DT S PRCHPF=Y
+ G F2
+ ;
+INIT S PRCHN=0 K ^TMP("CN",$J)
+ F PRCHO=0:0 S PRCHN=$O(^PRCD(420.6,"B",PRCHN)) Q:PRCHN=""  S (^TMP("CN",$J,PRCHN),^TMP("CN",$J,PRCHN,"A"))=0
+ Q
+ ;
+F2 K %DT,PRCHN,PRCHO
+ S DHD="[PRCH FPDS <25K HEADER]",DIOBEG="D INIT^PRCHFPD",L=0,FLDS="[PRCH FPDS <25K PRINT]",BY="[PRCH FPDS <25K]",FR=PRCHF_","_PRC("SITE")_"-,9,0",TO=PRCHT_","_PRC("SITE")_"z,,25000",DIC="^PRC(442,",DIOEND="D P^PRCHFPD" D EN1^DIP
+ ;
+FEND K ^TMP("CN",$J),^TMP("TOT",$J),PRCHF,PRCHI,PRCHG,PRCHN,PRCHP,PRCHPF,PRCHPT,PRCHQ,PRCHS,PRCHT,PRCHTN,PTCHTA,PRCHV,PRCHY
+ ;
+K K DIC,DHD,L,FLDS,BY,FR,TO
+ Q
+ ;
+P ;PRINT TOTALS FROM 'DIOEND' VARIABLE WITH PRINT TEMPLATE
+ F PRCHP="A","B","C","D","E","X","Y","Z" S ^TMP("TOT",$J,PRCHP)=0
+ S PRCHS="        $     # P.O.  ",$P(PRCHG,"-",20)="-  "
+ W !,"TOTALS:",!,?1,PRCHS,PRCHS,PRCHS,PRCHS,PRCHS,"(T)OTAL $     # P.O."
+ S (PRCHTN,PRCHTA)=0 F PRCHN=1:1:4 S ^TMP("CN",$J,"T"_PRCHN)=0,^TMP("CN",$J,"T"_PRCHN,"A")=0
+ F PRCHN=1:1:4 W !,?1 F PRCHP="A","B","C","D","E" D P3 D:PRCHP="E" P5
+ W !,?1,PRCHG,PRCHG,PRCHG,PRCHG,PRCHG,PRCHG
+ W:IOST="C-" ?1
+ W:IOST'="C-" !,?1
+ F PRCHP="A","B","C","D","E" W "TOT NO.("_PRCHP_") ",$J(^TMP("TOT",$J,PRCHP),9),"  "
+ W "A-E",$J(PRCHTA,11,2)," ",$J(PRCHTN,5)
+ W !!,?22,PRCHS,PRCHS,PRCHS,"(T)OTAL $     # P.O."
+ S (PRCHTN,PRCHTA)=0 F PRCHN=1:1:4 S ^TMP("CN",$J,"T"_PRCHN)=0,^TMP("CN",$J,"T"_PRCHN,"A")=0
+ F PRCHN=1:1:4 W !,?22 F PRCHP="X","Y","Z" D P3 D:PRCHP="Z" P5
+ W !,?22,PRCHG,PRCHG,PRCHG,PRCHG,!,?22 F PRCHP="X","Y","Z" W "TOT NO.("_PRCHP_") ",$J(^TMP("TOT",$J,PRCHP),9),"  "
+ W "X-Z",$J(PRCHTA,11,2)," ",$J(PRCHTN,5)
+ S L="L" I ^TMP("CN",$J,"L")'=0 S ^("K")=^("K")+^("L"),L=^("L","A"),^("A")=^TMP("CN",$J,"K","A")+L,L=""
+ ;'I' category is being changed to 'T1' as per FPDS
+ ;W !!,?22,PRCHS,PRCHS,PRCHS,PRCHS,!,?22 F PRCHP="I",L,"N","S" D P4
+ W !!,?22,PRCHS,PRCHS,PRCHS,PRCHS,!,?22 F PRCHP="T1",L,"N","LV" D P4
+ W !,?22 F PRCHP="J","M","P","U" D P4
+ ;Removing Category K & leaving the format of report as is, at a later time we might re-use the position for future categories per FPDS --- SC
+ ;W !,?22 F PRCHP="K","O","Q","W" D P4
+ W !,?22 F PRCHP="","HP","O","W" D P4
+ W !,?22 F PRCHP="","HZ","RV","LW" D P4
+ W !,?22 F PRCHP="","","S","OO" D P4
+ ;
+PEND W @IOF Q
+ ;
+P3 S PRCHV=PRCHP_PRCHN,^TMP("TOT",$J,PRCHP)=^TMP("TOT",$J,PRCHP)+^TMP("CN",$J,PRCHV)
+ S ^TMP("CN",$J,"T"_PRCHN)=^TMP("CN",$J,"T"_PRCHN)+^TMP("CN",$J,PRCHV),^TMP("CN",$J,"T"_PRCHN,"A")=^TMP("CN",$J,"T"_PRCHN,"A")+^TMP("CN",$J,PRCHV,"A")
+ W PRCHV," ",$J(^TMP("CN",$J,PRCHV,"A"),11,2)," ",$J(^TMP("CN",$J,PRCHV),5),"  "
+ Q
+ ;
+P4 I PRCHP="" W "                      " Q  ;BLANK ANY CATEGORY WHERE CODE IS NULL
+ W $J(PRCHP,2)," ",$J(^TMP("CN",$J,PRCHP,"A"),11,2)," ",$J(^TMP("CN",$J,PRCHP),5),"  "
+ Q
+ ;
+P5 W "T"_PRCHN," ",$J(^TMP("CN",$J,"T"_PRCHN,"A"),11,2)," ",$J(^TMP("CN",$J,"T"_PRCHN),5) S PRCHTN=PRCHTN+^TMP("CN",$J,"T"_PRCHN),PRCHTA=PRCHTA+^TMP("CN",$J,"T"_PRCHN,"A")
+ Q
+ ;
+CALC ;LOOP THRU AMOUNTS IN TEMPLATE (442)
+ S PRCHJ=0 F PRCHO=0:0 S PRCHJ=$O(^PRC(442,D0,9,PRCHJ)) Q:PRCHJ'>0  I $D(^(PRCHJ,0)) S PRCHX=^(0) D C1
+ K PRCHA,PRCHC,PRCHJ,PRCHK,PRCHL,PRCHO,PRCHX,PRCHY
+ ;
+CEND Q
+ ;
+C1 ;LOOP THRU CODES AND ADD TO ^TMP("CN",$J,ARRAY)
+ F PRCHK=2,4,5 S PRCHY=$P(PRCHX,U,PRCHK) D C2:PRCHY
+ ;LOOP THRU BREAKOUT CODES AND ADD TO ^TMP("CN",$J,ARRAY)
+ S PRCHL=0 F PRCHO=0:0 S PRCHL=$O(^PRC(442,D0,9,PRCHJ,1,PRCHL)) Q:PRCHL'>0  I $D(^(PRCHL,0)) S PRCHY=$P(^(0),U,1) D C2:PRCHY
+ Q
+ ;
+C2 Q:'$D(^PRCD(420.6,PRCHY,0))
+ S PRCHC=$P(^PRCD(420.6,PRCHY,0),U,1),^TMP("CN",$J,PRCHC)=^TMP("CN",$J,PRCHC)+1,PRCHA=$P(PRCHX,U,1),^TMP("CN",$J,PRCHC,"A")=^TMP("CN",$J,PRCHC,"A")+PRCHA
+ Q

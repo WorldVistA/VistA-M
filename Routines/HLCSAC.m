@@ -1,0 +1,78 @@
+HLCSAC ;ISCSF/RWF - MPI direct connect client ;05/31/2000  09:40
+ ;;1.6;HEALTH LEVEL SEVEN;**43,64**;Jul 17,1995
+ ;
+EN(HLDP,INPUT,OUTPUT) ;Call to do direct connect to MPI
+ N HCSCMD,HLCS,HCSDAT,HCSER,HCSEXIT,HCSTRACE,HLDT1,HLOS
+ N HLDRETR,HLDBSIZE,HLDREAD,HLDBACK,HLDWAIT,HLTCPADD,HLTCPORT,HLTCPCS,HLTCPLNK,X,Y
+ ;HLCS=error
+ S HLCS="",HCSTRACE="C: ",POP=1
+ N $ESTACK,$ETRAP S $ETRAP="D ERROR^HLCSAC"
+ D SETUP G:HLCS ERR
+ D OPEN G:HLCS ERR
+ D HELO G:HLCS ERR
+ D DATA G:HLCS ERR
+ D TURN G:HLCS ERR
+ D GET G:HLCS ERR
+ D QUIT
+ Q 0
+ERR ;Report back an error
+ D TRACE("ERROR "_HLCS)
+ D:'POP QUIT
+ Q HLCS
+ ;
+ERROR ;Trap an error
+ D ^%ZTER G UNWIND^%ZTER
+ ;
+OPEN ;Open connection
+ N HLI
+ D TRACE("Make Connection")
+ F HLI=1:1:HLDRETR D  Q:'POP
+ . D CALL^%ZISTCP(HLTCPADD,HLTCPORT,1)
+ I POP S HLCS="-1^Inital Connection Failed" Q
+ D TRACE("Got Connection")
+ U IO
+ Q
+HELO ;start conversation
+ S X=$$POST("HELO "_$$KSP^XUPARAM("WHERE"))
+ I $E(X,1)'=2 S HLCS="-1^Initial HELO Failed"
+ I $E(X,1,3)="421" S HLCS="-1^Busy"
+ Q
+DATA ;Send data
+ D TRACE("Send Data")
+ D SDATA^HLCSAS1(INPUT,"MPI"),CREAD^HLCSAS
+ I $E(HCSCMD,1)'=2 S HLCS="-1^No 220 after send "_HCSDAT Q
+ Q
+ ;
+TURN ;Turn channel
+ S X=$$POST("TURN ") I $E(X,1)'=2 S HLCS="-1^No 220 after Turn"
+ Q
+GET ;Get responce
+ D CREAD^HLCSAS I HCSCMD[220 G GET
+ I HCSCMD'["DATA" S HLCS="-1^No DATA cmd "_HCSCMD Q
+ D DATA^HLCSAS1(OUTPUT)
+ Q
+QUIT ;Shut down
+ D SEND^HLCSAS("QUIT ")
+ D CLOSE^%ZISTCP,USE^%ZISUTL("HCS-HOME"),RMDEV^%ZISUTL("HCS-HOME")
+ Q
+ ;
+POST(MSG) ;Send a command and get responce
+ D SEND^HLCSAS(MSG)
+ D CREAD^HLCSAS
+ Q HCSCMD
+ ;
+TRACE(S1) ;
+ Q
+ N %,H
+ I S1=-1 K ^TMP("HCSA",$J) Q
+ S H=$P($H,",",2),H=(H\3600)_":"_(H#3600\60)_":"_(H#60)_" "
+ L +^TMP("HCSA",$J) S %=$G(^TMP("HCSA",$J,0))+1,^(0)=%,^(%)=H_HCSTRACE_S1 L -^TMP("HCSA",$J)
+ Q
+SETUP ;
+ I ($G(HLDP)']"")!($G(INPUT)']"")!($G(OUTPUT)']"") S HLCS="-1^Missing input paramerter" Q
+ S X=$$INIT^HLCSTCP
+ I 'X S HLCS="-1^Bad Logical Link" Q
+ I $G(HLP("ACKTIME")) S HLDREAD=HLP("ACKTIME")
+ S (HCS("STAT"),HCSEXIT)=0
+ D TRACE(-1),TRACE("Client Setup")
+ Q

@@ -1,0 +1,162 @@
+PRCOE2 ;WISC/DJM-IFCAP SEGMENTS IT,DE ;12/26/02  18:18
+V ;;5.1;IFCAP;**63**;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;
+ ;;THIS ROUTINE AT THE 'IT' ENTRY POINT CREATES ONE 'IT' SEGMENTS FOR EACH
+ ;;ITEM IN THE P.O. TRANSACTION.  IT ALSO CREATES ALL THE 'DE' SEGMENTS
+ ;;NEEDED FOR EACH 'IT' SEGMENT.  THE LAST THING DONE IN THIS ROUTINE IS
+ ;;TO UPDATE THE 'HE' SEGMENT AT FIELD NAME 'LINE COUNT' TO REFLECT THE
+ ;;NUMBER OF 'IT' SEGMENTS IN THIS TRANSACTION.
+ ;;
+ ;;THIS ROUTINE CREATES THE 'COMMENTS' SEGMENT AT THE 'CO' ENTRY POINT.
+ ;;ADDITIONALLY, THE 'HE' SEGMENT AT THE FIELD NAME 'COMMENT COUNT' IS
+ ;;UPDATED TO REFLECT THE NUMBER OF 'CO' SEGMENTS CREATED.
+ ;;
+IT(VAR1,VAR2,TOTAL) ;ITEMS INFORMATION SEGMENT
+ N AZ,B,C,CN,DC,DE,DELDT,DIS,DIWF,DIWL,DIWR,FOBPOINT,FSC,HAZM,I0,I2
+ N I4,INC,INN,ITEM,ITEMCNT,J,LI,LIN,LOT,LPRC,LPRC1,M,MPN,MPNO,N,N1L
+ N NSN,UC,UNIT,UP,UPN,VPN,X,TD,SKU,SKUF,SERNO,SEQU,SCH
+ N SCHX,RP,PDA,OS,OT,IT,ICNT
+ S (ITEM,ITEMCNT)=0
+ S OS=$P($G(^PRC(442,VAR1,7)),"^",1)+0 ; order status
+ S TOTAL=$P($G(^PRC(442,VAR1,2,0)),U,4)+7
+ F  S ITEM=$O(^PRC(442,VAR1,2,ITEM)) Q:ITEM'>0  S ITEMCNT=ITEMCNT+1 D  Q:VAR2]""
+ .S I0=$G(^PRC(442,VAR1,2,ITEM,0))
+ .S I2=$G(^PRC(442,VAR1,2,ITEM,2))
+ .I I2="" S VAR2="NI2N^"_ITEM Q
+ .S I4=$G(^PRC(442,VAR1,2,ITEM,4))
+ .S NSN=$P(I0,U,13)
+ .S FSC=$P(I2,U,3)
+ .S FSC=$S(FSC]"":$P($G(^PRC(441.2,FSC,0)),U),1:"")
+ .S NSN=$S(NSN]"":NSN,1:FSC)
+ .S B="IT^"_$P(I0,U)_"^"_NSN_"^" ; FIELDS 1, 2, 3
+ .S RP=$P(I0,U,5)
+ .S INN=""
+ .S:RP>0 INN=$G(^PRC(441,RP,0))
+ .S INC=$P(INN,U,12)
+ .I $P(I0,U,13)="",INC="" S INC=77777
+ .S B=B_INC_"^" ; FIELD 4
+ .S VPN=$P(I0,U,6)
+ .S:$E(VPN,1)="#" VPN=$E(VPN,2,99)
+ .S B=B_VPN_"^" ; FIELD 5
+ .;
+IT0 .S MPN=$S(RP>0:$G(^PRC(441,RP,3)),1:"")
+ .I MPN="" S B=B_"^" G IT1 ; FIELD 6 - CONDITION 1
+ .S MPNO=$P(MPN,U,5)
+ .S:$E(MPNO,1)="#" MPNO=$E(MPNO,2,99)
+ .S B=B_MPNO_"^" ; FIELD 6 - CONDITION 2
+ .;
+IT1 .S N=$P(I0,U,15)
+ .I N]"" S N=$TR($P(N,"-",1,3),"-")
+ .S B=B_N_"^" ; FIELD 7 (NDC)
+ .;
+ .S Q=$P(I0,U,2)
+ .I OS=45 S Q=0 ; zero for cancelled orders
+ .I Q="" S VAR2="NQTY^"_$P(I0,U) Q
+ .S Q=Q\1+(Q#1>0)_"00"
+ .S B=B_Q_"^" ; FIELD 8 (quantity)
+ .;
+ .S UP=$P(I0,U,3)
+ .I UP="" S VAR2="NUOP^"_$P(I0,U) Q
+ .S UPN=$G(^PRCD(420.5,UP,0))
+ .I UPN="" S VAR2="NUPN^"_$P(I0,U) Q
+ .S UNIT=$P(UPN,U)
+ .I UNIT="" S VAR2="NUNI^"_$P(I0,U) Q
+ .S B=B_UNIT_"^" ; FIELD 9
+ .;
+ .S UC=$P(I0,U,9)
+ .I UC="" S VAR2="NAUC^"_$P(I0,U) Q
+ .I UC="N/C"!(OS=45) S UC=0 ; no charge or canceled
+ .S UC=$TR($J(UC,11,4)," .","0") ; pad and strip decimal point
+ .;
+IT2 .S B=B_UC_"^^" ; FIELDS 10, 11
+ .S LIN=$P(I0,U)
+ .S (DIS,TD)=0
+ .F  S DIS=$O(^PRC(442,VAR1,3,DIS)) G:DIS'>0 IT3 D   Q:LIN=LI
+ . .S DC=$G(^PRC(442,VAR1,3,DIS,0))
+ . .S LI=$P(DC,U,6)
+ . .Q
+ .S TD=1
+ .S PDA=$P(DC,U,2)
+ .I $E(PDA,1)'="$" D  G IT3
+ . .S N=$TR($J(PDA,5,2)," .","0")
+ . .S B=B_N_"^^" ; FIELDS 12, 13 - CONDITION 1
+ .S PDA=$E(PDA,2,99)
+ .S N=$TR($J(PDA,10,2)," .","0")
+ .S B=B_"^"_N_"^" ; FIELDS 12, 13 - CONDITION 2
+ .;
+IT3 .S:'TD B=B_"^^" ; FIELDS 12, 13 - CONDITION 3
+ .I $P(I0,U,16)>0 D
+ . .S SKU=$P(I0,U,16)
+ . .S SKU=$G(^PRCD(420.5,SKU,0))
+ . .S SKUF=$S($P(I0,U,17)>0:$P(I0,U,17),1:1)
+ . .S SKU=$P(SKU,U)
+ . .S B=B_SKU_"^"_SKUF_"^" ; FIELDS 14, 15 - CONDITION 1
+ .I $P(I0,U,16)'>0 S B=B_UNIT_"^1^" ; FIELDS 14, 15 - CONDITION 2
+ .;
+IT4 .S B=B_"^"_$S($P(I4,U,15)]"":$P(I4,U,15),1:"N")_"^"_$S($P(I4,U,16)]"":$P(I4,U,16),1:"N")_"^" ; FIELDS 16, 17, 18
+ .S CN=$P(I2,U,2)
+ .S OT=$P(^PRC(442,VAR1,1),U,7)
+ .S OT=","_OT_","
+ .S OT=$S(",1,4,6,10,"[OT:"D",1:"")
+ .I OT="D",CN="" S VAR2="NCNO^"_$P(I0,U) Q:VAR2]""
+ .S B=B_CN_"^" ; FIELD 19
+ .S LPRC=$P($G(^PRC(442,VAR1,1)),U,19)
+ .S LPRC1=""
+ .I LPRC>0 S LPRC1=$P($G(^PRC(443.8,LPRC,0)),U)
+ .I LPRC>0 S:LPRC1=10 LPRC1="A"
+ .S B=B_LPRC1_"^" ; FIELD 20
+ .;
+IT5 .S (IT,ICNT)=0
+ .S AZ=$G(^PRC(442,VAR1,2,ITEM,1,0))
+ .G:$P(AZ,U,4)'>0 IT6
+ .S DIWR=70
+ .S DIWL=1
+ .S DIWF=""
+ .S DE=0
+ .K ^UTILITY($J,"W")
+ .F  S DE=$O(^PRC(442,VAR1,2,ITEM,1,DE)) Q:DE=""  D
+ . .S X=$G(^PRC(442,VAR1,2,ITEM,1,DE,0))
+ . .D DIWP^PRCUTL($G(DA))
+ .S J=$G(^UTILITY($J,"W",1))
+ .G:J="" IT6
+ .I J>900 S J=900
+ .S IT=1
+ .S ICNT=""
+ .F I=1:1:J D
+ . .S N=$G(^UTILITY($J,"W",1,I,0)) S:$L(N)=0 N=" " S N=$TR(N,"^")
+ . .S M="DE^"_$P(I0,U)_"^"_I_"^"_N_"^|" ; DE SEGMENT FIELDS 1, 2, 3, 4, 5
+ . .S ^TMP($J,"STRING",ITEMCNT+6+I)=M
+ . .S TOTAL=TOTAL+1
+ . .S ICNT=ICNT+1
+ .K ^UTILITY($J,"W")
+ .;
+IT6 .S B=B_$S(IT:ICNT,1:0)_"^^" ; FIELDS 21, 22
+ .;
+IT7 .S LOT=$P(I4,U,17)
+ .S SERNO=$P(I4,U,18)
+ .S HAZM=$P(I2,U,14)
+ .S B=B_LOT_"^"_SERNO_"^"_HAZM_"^^" ; FIELDS 23, 24, 25, 26
+ .;
+IT8 .S IT=0
+ .S AZ=$P(^PRC(442,VAR1,0),U)
+ .S SCH=0
+ .S SEQU=0
+ .F  S SCH=$O(^PRC(442.8,"AC",AZ,ITEM,SCH)) Q:SCH=""  D
+ .  .S SCHX=$G(^PRC(442.8,SCH,0))
+ .  .Q:SCHX=""
+ .  .S SEQU=SEQU+1
+ .  .S IT=1
+ .  .S X=$P(SCHX,U,3)
+ .  .D JD^PRCFDLN
+ .  .S DELDT=$E(X,1,3)+1700_$E(Y,1,3)
+ .  .S M="SC^"_$P(I0,U)_"^"_SEQU_"^"_($P(SCHX,U,5)*100)_"^"_UNIT_"^"_DELDT_"^|"
+ .  .S ^TMP($J,"STRING",ITEMCNT+6+ICNT+SEQU)=M
+ .  .S TOTAL=TOTAL+1
+IT9 .S B=B_$S(IT:SEQU,1:0)_"^"_$P(INN,U,15)_"^|" ;FIELDS 27, 28, 29
+ .S ^TMP($J,"STRING",ITEMCNT+6)=B
+ .S ITEMCNT=ITEMCNT+ICNT+SEQU
+ .S B=^TMP($J,"STRING",1) ;ADD 1 TO HE SEGMENT FIELD 12
+ .S $P(B,U,12)=$P(B,U,12)+1
+ .S ^TMP($J,"STRING",1)=B
+ Q

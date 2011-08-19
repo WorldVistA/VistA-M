@@ -1,0 +1,41 @@
+SCCVDSP1 ; ALB/TMP - SCHED VSTS CONV/ARCHIVE TEMPLATE DETAIL; 25-NOV-97
+ ;;5.3;Scheduling;**211**;Aug 13, 1993
+ ;
+INIT(SCCVTYP) ; -- build template detail screen
+ I SCCVTYP="CST" D BLD^SCCVCDS1
+ ;I SCCVTYP="AST" D BLD^SCCVADS1
+ Q
+ ;
+FNL(SCCVTYP) ; -- Clean up template detail display
+ K ^TMP("SCCV."_SCCVTYP_".EDIT.DX",$J),^TMP("SCCV."_SCCVTYP_".EDIT",$J)
+ D CLEAN^VALM10
+ Q
+ ;
+HDR(SCCVDA,SCCVTYP) ; -- Template screen header
+ I SCCVTYP="CST" D HDR^SCCVCDS1
+ ;I SCCVTYP="AST" D HDR^SCCVADS1
+ Q
+ ;
+ ;
+PHIS(SCCVH,SCCVTYP) ; -- View/Print history
+ ;Assumes SCCVDA = the entry # from list manager selection
+ Q:'$G(SCCVDA)
+ D FULL^VALM1
+ N SCCVANY,SCCVLOGT,FLDS,BY,L,DIC,TO,FR,DIR,DIOEND
+ S SCCVANY=1
+ I SCCVTYP="CST" D
+ . S SCCVLOGT=$S(SCCVH="R":"REQUEST",SCCVH="E":"EVENT",1:"ERROR")
+ . I SCCVH="ERR" D
+ .. S SCCVANY=+$O(^SD(404.98,SCCVDA,"ERROR","A"),-1)
+ .. I SCCVANY D
+ ... W !!,"FYI: There are "_SCCVANY_" lines in the error list"
+ I SCCVTYP="AST" D
+ . ;S SCCVLOGT=$S($G(SCCVH)="":"HISTORY",1:"ERROR")
+ S FLDS="[SCCV "_SCCVLOGT_" LOG PRINT]",BY="[SCCV "_SCCVLOGT_" LOG]"
+ S L=0,DIC="^SD(404.9"_$S(SCCVTYP="CST":"8,",1:"9,"),(TO,FR)=SCCVDA
+ S DIOEND="I '$G(SCCVANY) W !,""NO ""_SCCVLOGT_""S FOUND FOR THIS ""_SCCVTYP,!"
+ D EN1^DIP
+ D PAUSE^SCCVU
+ S VALMBCK="R"
+ Q
+ ;

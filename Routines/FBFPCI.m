@@ -1,0 +1,108 @@
+FBFPCI ;WOIFO/SAB-FPPS AUDIT REPORT ;8/6/2003
+ ;;3.5;FEE BASIS;**61**;JAN 30, 1995
+ ;
+ASKCI ; ask FPPS CLAIM ID
+ K DA
+ S DIR(0)="162.7,32"
+ D ^DIR K DIR I $D(DIRUT) S FBQUIT=1 G EXIT
+ S FBFPPSC=Y
+ ;
+ ; ask device
+ S %ZIS="QM" D ^%ZIS I POP S FBQUIT=1 G EXIT
+ I $D(IO("Q")) D  S FBQUIT=0 G EXIT
+ . S ZTRTN="QEN^FBFPCI",ZTDESC="FPPS Claim Inquiry"
+ . F FBX="FBFPPSC" S ZTSAVE(FBX)=""
+ . D ^%ZTLOAD,HOME^%ZIS K ZTSK
+ ;
+QEN ; queued entry
+ U IO
+ ;
+GATHER ; collect and sort data
+ S FBQUIT=0
+ K ^TMP($J)
+ ;
+ ; check inpatient invoices
+ F FBDA=0 F  S FBDA=$O(^FBAAI("AFC",FBFPPSC,FBDA)) Q:'FBDA  D
+ . S FBY0=$G(^FBAAI(FBDA,0))
+ . S FBAAIN=$P(FBY0,U)
+ . S FBPROG=$P(FBY0,U,12)
+ . I FBAAIN]"" S ^TMP($J,162.5,FBAAIN)=FBPROG
+ ;
+ ; check outpatient/ancillary invoices
+ S FBDA3=0
+ F  S FBDA3=$O(^FBAAC("AFC",FBFPPSC,FBDA3)) Q:'FBDA3  D
+ .S FBDA2=0
+ .F  S FBDA2=$O(^FBAAC("AFC",FBFPPSC,FBDA3,FBDA2)) Q:'FBDA2  D
+ ..S FBDA1=0
+ ..F  S FBDA1=$O(^FBAAC("AFC",FBFPPSC,FBDA3,FBDA2,FBDA1)) Q:'FBDA1  D
+ ...S FBDA=0
+ ...F  S FBDA=$O(^FBAAC("AFC",FBFPPSC,FBDA3,FBDA2,FBDA1,FBDA)) Q:'FBDA  D
+ ....S FBY0=$G(^FBAAC(FBDA3,1,FBDA2,1,FBDA1,1,FBDA,0))
+ ....S FBAAIN=$P(FBY0,U,16)
+ ....I FBAAIN]"" S ^TMP($J,162.03,FBAAIN,FBDA3,FBDA2,FBDA1,FBDA)=""
+ ;
+ ; check pharmacy invoices
+ S FBDA=0 F  S FBDA=$O(^FBAA(162.1,"AFC",FBFPPSC,FBDA)) Q:'FBDA  D
+ . S FBY0=$G(^FBAA(162.1,FBDA,0))
+ . S FBAAIN=$P(FBY0,U)
+ . I FBAAIN]"" S ^TMP($J,162.1,FBAAIN)=""
+ ;
+ ; check unauthorized claims
+ S FBDA=0 F  S FBDA=$O(^FB583("AFC",FBFPPSC,FBDA)) Q:'FBDA  D
+ . S FBY0=$G(^FB583(FBDA,0))
+ . S FBPN=$$GET1^DIQ(162.7,FBDA_",",2)
+ . S FBVN=$$GET1^DIQ(162.7,FBDA_",",1)
+ . S FBDT=$$GET1^DIQ(162.7,FBDA_",",.01)
+ . S ^TMP($J,162.7,FBDT,FBDA)=FBPN_U_FBVN
+ ;
+PRINT ; report data
+ S FBPG=0 D NOW^%DTC S Y=% D DD^%DT S FBDTR=Y
+ K FBDL S FBDL="",$P(FBDL,"-",IOM)=""
+ ;
+ D HD
+ ;
+ ; show invoices
+ F FBFILE=162.5,162.03,162.1 D
+ . S FBAAIN="" F  S FBAAIN=$O(^TMP($J,FBFILE,FBAAIN)) Q:FBAAIN=""  D
+ . . I $Y+7>IOSL D HD Q:FBQUIT
+ . . I FBFILE=162.5 D
+ . . . S FBPROG=$P($G(^TMP($J,FBFILE,FBAAIN)),U)
+ . . . W !,"Inpatient ("
+ . . . W $S(FBPROG=6:"CH",FBPROG=7:"CNH",1:"")
+ . . . W ") Invoice: ",FBAAIN
+ . . I FBFILE=162.03 W !,"Outpatient/Ancillary Invoice: ",FBAAIN
+ . . I FBFILE=162.1 W !,"Pharmacy Invoice: ",FBAAIN
+ ;
+ ; show unauthorized claims
+ S FBDT="" F  S FBDT=$O(^TMP($J,162.7,FBDT)) Q:FBDT=""  D
+ . S FBDA=0 F  S FBDA=$O(^TMP($J,162.7,FBDT,FBDA)) Q:'FBDA  D
+ . . I $Y+7>IOSL D HD Q:FBQUIT
+ . . S FBX=$G(^TMP($J,162.7,FBDT,FBDA))
+ . . W !,"Unauthorized Claim: ",$P(FBX,U),"   ",$P(FBX,U,2),"   ",FBDT
+ ;
+ I '$D(^TMP($J)) W !,"No VistA invoices found with specified FPPS CLAIM ID."
+ ;
+ I FBQUIT W !!,"REPORT STOPPED AT USER REQUEST"
+ ;
+ I 'FBQUIT,$E(IOST,1,2)="C-" S DIR(0)="E" D ^DIR K DIR I 'Y S FBQUIT=1
+ D ^%ZISC
+ ;
+EXIT ;
+ I $D(ZTQUEUED) S ZTREQ="@"
+ K ^TMP($J)
+ K FBAAIN,FBDA,FBDA1,FBDA2,FBDA3,FBDL,FBDT,FBDTR,FBFILE
+ K FBPN,FBFPPSC,FBPG,FBPROG,FBVN,FBX,FBY0
+ K %,DIC,DIR,DIROUT,DIRUT,DTOUT,DUOUT,I,J,POP,X,Y
+ I 'FBQUIT,$E(IOST,1,2)="C-" W ! G ASKCI
+ K FBQUIT
+ Q
+HD ; page header
+ I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1,FBQUIT=1 Q
+ I $E(IOST,1,2)="C-",FBPG S DIR(0)="E" D ^DIR K DIR I 'Y S FBQUIT=1 Q
+ I $E(IOST,1,2)="C-"!FBPG W @IOF
+ S FBPG=FBPG+1
+ W !,"FPPS Claim Inquiry for ID: ",FBFPPSC,?49,FBDTR,?72,"page ",FBPG
+ W !,FBDL
+ Q
+ ;
+ ;FBFPCI

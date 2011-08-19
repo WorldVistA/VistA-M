@@ -1,0 +1,21 @@
+LRBLST ;AVAMC/REG - BB SUPERVISOR ;9/18/89  10:08 ;
+ ;;5.2;LAB SERVICE;**247,408**;Sep 27, 1994;Build 8
+ ;Per VHA Directive 97-033 this routine should not be modified.  Medical Device # BK970021
+ Q  D B G:Y=-1 END W !!?5,"Edit TESTS TO BE ",$S(LR=1:"DISPLAYED ON PATIENT LOOK-UP",1:"PRINTED ON TRANSFUSION REPORT"),!
+ I '$D(^LRO(69.2,LRAA,61,0)) S ^(0)="^69.61PA^^"
+ S LRQ=$O(^LAB(61,"B","BLOOD",0)) I 'LRQ W !!,$C(7),"BLOOD must be an entry in the TOPOGRAPHY file !" G END
+ I '$D(^LRO(69.2,LRAA,61,LRQ,0)) S X=^LRO(69.2,LRAA,61,0),^(0)="^69.61PA^"_LRQ_"^"_($P(X,"^",4)+1),^(LRQ,0)=LRQ
+ I '$D(^LRO(69.2,LRAA,61,LRQ,LR,0)) S ^(0)=$S(LR=1:"^69.62PAI^^",1:"^69.63PAI^^")
+ASK W ! S DA(2)=LRAA,DA(1)=LRQ,DIC="^LRO(69.2,LRAA,61,LRQ,LR,",DIC(0)="AEQLM",DLAYGO=69 D ^DIC K DIC,DLAYGO G:X=""!(X[U) END S DA=+Y,X(1)=$P(Y,U,2)
+ S X=$P(^LRO(69.2,LRAA,61,LRQ,LR,DA,0),U,2) I X,'$D(^LAB(60,X(1),1,X)) S $P(^LRO(69.2,LRAA,61,LRQ,LR,DA,0),U,2)=""
+ S DIE("NO^")=1,DIE="^LRO(69.2,LRAA,61,LRQ,LR,",DR=".01;.02:99" D ^DIE K DIE,DR,DA G ASK
+ ;
+L Q  D B Q:Y=-1  S DA=LRAA,DIE="^LRO(69.2,",DR=.07 D ^DIE Q
+B S X="BLOOD BANK" D ^LRUTL Q:Y=-1
+ I '$D(^LRO(69.2,LRAA,0)) S ^(0)=LRAA_"^"_LRAA(2),X=^LRO(69.2,0),^(0)=$P(X,"^",1,2)_"^"_LRAA_"^"_($P(X,"^",4)+1),^LRO(69.2,"B",LRAA,LRAA)=""
+ Q
+ ;
+END D V^LRU Q
+ ;
+EN Q  D V^LRU S LR=1 G LRBLST
+EN1 D V^LRU S LR=2 G LRBLST

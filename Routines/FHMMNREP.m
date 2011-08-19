@@ -1,0 +1,99 @@
+FHMMNREP ;Hines OIFO/RTK,AAC - Multidiv Monitor Report ;10/10/03  11:49
+ ;;5.5;DIETETICS;;Jan 28, 2005
+ ;
+COM ;Get Communication Offices
+ S (ZCO,CO,COXX,CONAME,CONAM,WARD,FHCOMM)="",(ZCOMM,CONUMX,ALLCOMM)=0
+ ;S ZZOUT=$G(^FH(119.73,0)),ZOUT=$P(ZZOUT,"^",4)
+ S ZZCOUNT=0 F ZZCOUNT=0:0 S ZZCOUNT=$O(^FH(119.73,ZZCOUNT)) Q:ZZCOUNT'>0  S ZOUT=ZZCOUNT
+ R !!,"Print report for all Communications Offices Y or N: ",ZCO:DTIME W ! S ZCO=$TR(ZCO,"y","Y")
+ Q:ZCO="^"
+ I ZCO'="Y" D N2 I (Y=-1)&(CO="") Q
+ ;
+DATE ;sets date
+ S (FHTADM,FHTMON)=0
+ W ! S %DT="AEPT",%DT("A")="Enter beginning date: " D ^%DT Q:Y<0
+ S FHSDT=Y,%DT(0)=FHSDT,%DT("A")="Enter ending date: " D ^%DT K %DT(0)
+ S FHEDT=Y I Y<0 D END Q
+ D SORTCR S FHSORT=Y I Y="^" D END Q
+ I FHSORT="C" D FHCL Q:'$D(FHCLIEN)  S FHNXIEN=CLNAM
+ I FHSORT="W" D FHWA Q:'$D(FHWRIEN)  S FHNXIEN=WRDNAM
+ D DEV,END Q
+ ;
+FHCL ;
+ K DIR S DIR(0)="Y",DIR("A")="Select ALL Clinicians",DIR("B")="Y" D ^DIR
+ I Y=1 S (FHCLIEN,CLNAM)="ALL"
+ I Y=0 K DIC S DIC="^VA(200,",DIC(0)="AEQM",DIC("A")="Select CLINICIAN: " D ^DIC S FHCLIEN=$P(Y,U,1),CLNAM=$P($G(^VA(200,FHCLIEN,0)),U,1)
+ I (Y=-1)!($D(DUOUT))!($D(DTOUT)) D END Q
+ Q
+FHWA ;
+ K DIR S DIR(0)="Y",DIR("A")="Select ALL Wards",DIR("B")="Y" D ^DIR
+ I Y=1 S (FHWRIEN,WRDNAM)="ALL"
+ I Y=0 K DIC S DIC="^FH(119.6,",DIC(0)="AEQM" D ^DIC S FHWRIEN=$P(Y,U,1),WRDNAM=$P($G(^FH(119.6,FHWRIEN,0)),U,1)
+ I (Y=-1)!($D(DUOUT))!($D(DTOUT)) D END Q
+ Q
+EN ;
+ ;^TMP($J,"FHDATA") SUBSCRIPTS (CLINIC OR WARD NAME,DGPM DATE,DGPM ENTRY)
+ ;^TMP($J,"FHDATA") PIECES="PatName^SSN^Monitors?^DischargeDt^DFN^Status"
+ ;
+ K ^TMP($J,"FHDATA"),FHMON
+ S I=FHSDT F  S I=$O(^DGPM("ATT1",I)) Q:'I!(I>FHEDT)  D
+ .S J=0 F  S J=$O(^DGPM("ATT1",I,J)) Q:'J  D
+ ..S ZCOMM=ZCOMM+1
+ ..S DFN=$P($G(^DGPM(J,0)),U,3)
+ ..S FHZ115="P"_DFN D CHECK^FHOMDPA I FHDFN="" Q
+ ..I '$D(^FHPT(FHDFN,"A",J,"MO","B")) Q
+ ..S II=$P(I,".")
+ ..S FHWARD=$P($G(^DGPM(J,0)),U,6)
+ ..Q:'$D(^FH(119.6,"AW",FHWARD))
+ ..S WRD=$O(^FH(119.6,"AW",FHWARD,""))
+ ..S FHCOMM=$P($G(^FH(119.6,WRD,0)),"^",8),CLN=$P($G(^FH(119.6,WRD,0)),"^",2)
+ ..Q:FHCOMM=""  Q:$D(^FH(119.73,FHCOMM,"I"))
+ ..S FHTADM=FHTADM+1
+ ..S ALLCOMM=ALLCOMM+1
+ ..;S CLN=$P($G(^DGPM(J,0)),U,19),WRD=$P($G(^DGPM(J,0)),U,6)
+ ..S INDX=$S(FHSORT="C":CLN,1:WRD) I INDX="" Q
+ ..S INDX=$S(FHSORT="C":$P($G(^VA(200,CLN,0)),U,1),1:$P($G(^FH(119.6,WRD,0)),U,1))
+ ..S $P(^TMP($J,"FHDATA",FHCOMM,INDX,II,J),U,1)=FHCOMM
+ ..S $P(^TMP($J,"FHDATA",FHCOMM,INDX,II,J),U,2)=$E($P($G(^DPT(DFN,0)),U,1),1,23)
+ ..S $P(^TMP($J,"FHDATA",FHCOMM,INDX,II,J),U,5)=DFN
+ ..S $P(^TMP($J,"FHDATA",FHCOMM,INDX,II,J),U,3)=$E($P($G(^DPT(DFN,0)),U,9),6,9)
+ ..I $D(^FHPT(FHDFN,"A",J,"MO","B")) S $P(^TMP($J,"FHDATA",FHCOMM,INDX,II,J),U,7)="Yes",FHTMON=FHTMON+1,MCNT=0  D
+ ...F FHMN=0:0 S FHMN=$O(^FHPT(FHDFN,"A",J,"MO",FHMN)) Q:FHMN'>0  S MCNT=MCNT+1,FHMON(DFN,J,MCNT)=$P($G(^FHPT(FHDFN,"A",J,"MO",FHMN,0)),"^",1)
+ ..S Y=$P($P($G(^FHPT(FHDFN,"A",J,0)),U,14),".",1) I Y X ^DD("DD") S $P(^TMP($J,"FHDATA",FHCOMM,INDX,II,J),U,4)=Y
+ ..I $D(^FHPT(FHDFN,"S",0)) S NS=$O(^FHPT(FHDFN,"S",0)),STAT=$P($G(^FHPT(FHDFN,"S",NS,0)),U,2) S $P(^TMP($J,"FHDATA",FHCOMM,INDX,II,J),U,6)=$P($G(^FH(115.4,STAT,0)),U,1)
+ ..Q
+ .Q
+ D ^FHMMNPRT
+ Q
+ ;
+THEND ;Q
+ ;
+DEV ;get device and set up queue
+ W ! K %ZIS,IOP S %ZIS="Q" D ^%ZIS Q:POP
+ I '$D(IO("Q")) U IO D EN,^%ZISC,END Q
+ S ZTRTN="EN^FHMMNREP",ZTSAVE("FHSDT")="",ZTSAVE("FHEDT")="",ZTSAVE("ZCOMM")=""
+ S ZTSAVE("FHNDT")="",ZTSAVE("FHPER")="",ZTSAVE("FHSORT")=""
+ S ZTSAVE("FHNXIEN")="",ZTSAVE("FHTADM")="",ZTSAVE("FHTMON")=""
+ S ZTSAVE("ALLCOMM")="",ZTSAVE("ZCO")="",ZTSAVE("COXX")="",ZTSAVE("ZOUT")=""
+ S ZTSAVE("CONUMX")="",ZTSAVE("CO")="",ZTSAVE("CONAME")=""
+ S ZTDESC="Dietetics Monitor Report" D ^%ZTLOAD
+ D ^%ZISC K %ZIS,IOP
+ D END Q
+ ;
+N2 ;Find Communication Office
+ S DIC=119.73,DIC(0)="AEQ",DIC("A")="Select Communication Offices: "
+ D ^DIC I Y=-1&(CO="") Q
+ I Y=-1 Q
+ S CON=$P(Y,"^",1),CO=CON_"^"_CO,CONAM=$P(Y,"^",2),CONAME=CONAM_"^"_CONAME S CONUMX=$L(CO,"^") G N2
+ I Y=-1 K DIC Q
+ Q
+ ;
+SORTCR ;
+ K DIR S DIR(0)="SB^C:CLINICIAN;W:WARD",DIR("A")="Sort by Clinician/Ward"
+ D ^DIR
+ Q
+END ;kill and quit
+ K CLN,CLNAM,FHDFN,DFN,I,II,INDX,J,SSN,MCNT
+ K FHCLIEN,FHEDT,FHMN,FHNDT,FHNXIEN,FHTADM,FHTMON
+ K FHPER,FHSDT,FHSORT,FHWRIEN,WRD,WRDNAM,X,Y,Z
+ Q

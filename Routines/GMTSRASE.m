@@ -1,0 +1,26 @@
+GMTSRASE ; SLC/JER - Selected Radiology Extract ;2/28/91  15:52
+ ;;2.5;Health Summary;;Dec 16, 1992
+MAIN ; Controls branching and execution
+ N GMIDT,GMW,GMPN
+ K ^TMP("RASE",$J)
+ S GMIDT=0 F GMW=0:0 S GMIDT=$O(^RADPT(DFN,"DT","AP",TEST,GMIDT)) Q:GMIDT'>0  S GMPN=0 F GMW=0:0 S GMPN=$O(^RADPT(DFN,"DT","AP",TEST,GMIDT,GMPN)) Q:GMPN'>0  D GET
+ Q
+GET ; Gets data associated with study and sets ^TMP("RASE",$J,
+ N GMED,GMRP,GMST,GMPTR,GMW,GMI
+ S GMED=+^RADPT(DFN,"DT",GMIDT,0)
+ S GMRP=$P(^RADPT(DFN,"DT",GMIDT,"P",GMPN,0),U,2),GMST=$P(^(0),U,3),GMPTR=$P(^(0),U,17)
+ S GMRP=$S($D(^RAMIS(71,+GMRP,0)):$P(^(0),U,1),1:"UNKNOWN")
+ S GMST=$S($D(^RA(72,+GMST,0)):$P(^(0),U,1),1:"UNKNOWN")
+ S ^TMP("RASE",$J,GMIDT,GMPN,0)=GMED_U_GMRP_U_GMST
+ I $D(^RARPT(+GMPTR,"I",0)) D GETIMP
+ Q
+GETIMP ; Gets Radiologist's Impression
+ N GMLN,GMW
+ K ^UTILITY($J,"W") S GMLN=0 F GMW=0:0 S GMLN=$O(^RARPT(GMPTR,"I",GMLN)) Q:GMLN'>0  S X=^RARPT(GMPTR,"I",GMLN,0) D FORMAT
+ I $D(^UTILITY($J,"W")) F GMLN=1:1:^UTILITY($J,"W",3) S ^TMP("RASE",$J,GMIDT,GMPN,GMLN)=^UTILITY($J,"W",3,GMLN,0)
+ K ^UTILITY($J,"W")
+ Q
+FORMAT ; Calls ^DIWP to format each line of text
+ N DIWF,DIWL,DIWR
+ S DIWF="C73R",DIWL=3,DIWR=76 D ^DIWP
+ Q

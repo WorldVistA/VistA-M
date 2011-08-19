@@ -1,0 +1,47 @@
+TIUFX ; SLC/MAM - LM Screen X (Boilerplate Text) INIT, DS/BOILTX ;10/26/95  15:35
+ ;;1.0;TEXT INTEGRATION UTILITIES;;Jun 20, 1997
+ ;
+HDR ; -- header code
+ S VALMHDR(1)=$$FHDR
+HDRX ;
+ Q
+ ;
+FHDR() ; Function returns Type_Name for headers; Requires Array TIUFNOD0.
+ N NAME,TYPE
+ S NAME=$P(TIUFNOD0,U)
+ S TYPE=$$MIXED^TIULS(TIUFNOD0("TYPE"))
+ I TYPE'="" S TYPE=TYPE_" "
+ Q $$CENTER^TIUFL(TYPE_NAME,79)
+ ;
+INIT ; -- init variables and list array
+ N TEMPLATE
+ K ^TMP("TIUF3",$J),^TMP("TIUF3IDX",$J)
+ D CLEAN^VALM10
+ S VALMCNT=0 D DSBOILTX^TIUFD(.VALMCNT)
+INITX I $D(DTOUT) S VALMQUIT=1
+ Q
+ ;
+STATUS ; Action Status for Subtemplate X Boilerplate Text
+ N FILEDA,PFILEDA,FIELDS,DTOUT,DIRUT,DIROUT
+ S VALMBCK=""
+ S FILEDA=$P(TIUFINFO,U,2),PFILEDA=+$O(^TIU(8925.1,"AD",FILEDA,0)),FIELDS=";.07;"
+ L +^TIU(8925.1,FILEDA):1 I '$T W !!," Another user is editing this entry.",! H 2 G STATX
+ D ASKFLDS^TIUFLF1(FILEDA,FIELDS,PFILEDA)
+ D NODE0ARR^TIUFLF(FILEDA,.TIUFNOD0) G:$D(DTOUT) STATX
+STATX ;
+ L -^TIU(8925.1,+$G(FILEDA))
+ I $D(DTOUT) S VALMBCK="Q"
+ I $G(TIUFFULL) S VALMBCK="R" D RESET^TIUFXHLX
+ Q
+ ;
+EXIT ; -- Exit Code for LM Template X
+ N NEWSTAT,NEWHASBT,CNTCHNG,LINENO
+ I TIUFTMPL="A" D  ; Update line if no new status and yes new boil and Type is Title
+ . S NEWSTAT=$S(TIUFNOD0("STATUS")'=TIUFXSTA:1,1:0)
+ . S NEWHASBT=$S(TIUFNOD0("BOILPT")'=TIUFXBT:1,1:0)
+ . I 'NEWSTAT,NEWHASBT,(TIUFNOD0("TYPE")="TITLE") D AUPDATE^TIUFLA1(TIUFNOD0,FILEDA,.CNTCHNG) S:CNTCHNG TIUFVCN1=TIUFVCN1-1 ;doesn't match.
+ . I NEWSTAT!(NEWHASBT&(TIUFNOD0("TYPE")="COMPONENT")) S TIUFREDO=1 ; One new status affects status globally.  One new CO Boilerplate Text affects Has Boil globally.
+ ; Update entry itself in TIUFTMPL; entry will be reexpanded when leave EV:
+ I "HC"[TIUFTMPL D LINEUP^TIUFLLM1(.TIUFINFO,TIUFTMPL)
+ K ^TMP("TIUF3",$J),^TMP("TIUFB",$J),^TMP("TIUF3IDX",$J),^TMP("TIUFBIDX",$J)
+ Q

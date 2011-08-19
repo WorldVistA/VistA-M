@@ -1,0 +1,142 @@
+RMPRPI09 ;HIN/RVD-PRINT ORDER AND RECIEVE ITEM REPORT ;9/18/02  15:13
+ ;;3.0;PROSTHETICS;**61,132**;Feb 09, 1996;Build 13
+ ;
+ ;DBIA #800 - global read of file #440.
+ ;
+ D DIV4^RMPRSIT I $D(Y),(Y<0) Q
+ S X="NOW" D ^%DT D DD^%DT S RMDAT=Y
+ ;
+EN K RMPRI S RMPREND=0 D HOME^%ZIS
+ ;
+TYPE ;select type of report
+ K DIR
+ S DIR(0)="S^1:30 Days Old or Less;2:60 Days Old or Less;3:90 Days Old or Less;4:Over 90 Days Old or Less "
+ S DIR("A")="Select number of days old",DIR("B")="30 Days Old or Less"
+ D ^DIR
+ I Y="",$D(DTOUT) G EXIT1
+ I Y="^"!(Y="^^") G EXIT1
+ S RMTY=Y
+ ;
+ ;
+CAT ;select STATUS of report
+ K DIR
+ S DIR(0)="S^O:OPEN;R:RECIEVED;C:CANCEL"
+ S DIR("A")="Select Category of report",DIR("B")="OPEN"
+ D ^DIR
+ I Y="",$D(DTOUT) G EXIT1
+ I Y="^"!(Y="^^") G EXIT1
+ S RMCAT=Y
+ K DIR
+ ;
+DT ;
+ S %ZIS="MQ" K IOP D ^%ZIS G:POP EXIT1
+ I '$D(IO("Q")) U IO G PRINT
+ K IO("Q") S ZTDESC="PIP ORDER AND RECEIVE ITEM REPORT"
+ S ZTRTN="PRINT^RMPRPI09",ZTIO=ION,ZTSAVE("RMPR(")=""
+ S ZTSAVE("RMPR(""STA"")")="",ZTSAVE("RMDAT")=""
+ S ZTSAVE("RMTY")="",ZTSAVE("RMDRA")="",ZTSAVE("RMCAT")=""
+ D ^%ZTLOAD W:$D(ZTSK) !,"REQUEST QUEUED!" H 1 G EXIT1
+ ;
+PRINT I $E(IOST)["C" W !!,"Processing report....."
+ K RMPRT,RMPRFLG,^TMP($J)
+ S RMCAL=$S(RMTY=1:30,RMTY=2:60,RMTY=3:90,RMTY=4:"OVER 90")
+ S X="T-"_RMCAL D ^%DT S RDT=Y-1 K Y S:'RDT RDT=0
+ S RMCAY=$S(RMCAT="O":"OPEN",RMCAT="R":"RECIEVED",RMCAT="C":"CANCEL")
+ S RS=RMPR("STA")
+ S RMPAGE=1,RMPREND=0
+ W:$E(IOST)["C" @IOF
+ D HEAD
+ G:RMCAT="R" REC
+ ;
+OPCA ;for open and cancel order
+ S RI=""
+ F STS=RMCAT,"R" Q:STS="R"&(RMCAT="C")  F  S RI=$O(^RMPR(661.41,"ASSHID",RS,STS,RI)) Q:RI=""!RMPREND=1  F RK=0:0 S RK=$O(^RMPR(661.41,"ASSHID",RS,STS,RI,RK)) Q:RK'>0!RMPREND=1  D
+ .F RM=RDT:0 S RM=$O(^RMPR(661.41,"ASSHID",RS,STS,RI,RK,RM)) Q:RM'>0!RMPREND=1  D
+ ..F RN=0:0 S RN=$O(^RMPR(661.41,"ASSHID",RS,STS,RI,RK,RM,RN)) Q:RN'>0!RMPREND=1  D
+ ...S RM3=$G(^RMPR(661.41,RN,0))
+ ...I $P(RM3,U,8)-$P(RM3,U,9)<1 Q
+ ...S ^TMP($J,"RMPRPI09",RS,RMCAT,RI,RK,RM,RN)=""
+ ...Q
+ S RI=""
+ F  S RI=$O(^TMP($J,"RMPRPI09",RS,RMCAT,RI)) Q:RI=""!RMPREND=1  F RK=0:0 S RK=$O(^TMP($J,"RMPRPI09",RS,RMCAT,RI,RK)) Q:RK'>0!RMPREND=1  D
+ .F RM=RDT:0 S RM=$O(^TMP($J,"RMPRPI09",RS,RMCAT,RI,RK,RM)) Q:RM'>0!RMPREND=1  D
+ ..F RN=0:0 S RN=$O(^TMP($J,"RMPRPI09",RS,RMCAT,RI,RK,RM,RN)) Q:RN'>0!RMPREND=1  D
+ ...S RM3=$G(^RMPR(661.41,RN,0))
+ ...S (RMVNAM,RMIDE)=""
+ ...S RMDOR=$P(RM3,U,1)
+ ...S RMIT=$P(RM3,U,2)
+ ...S RMVEN=$P(RM3,U,5)
+ ...S RMHCPC=$P(RM3,U,6)
+ ...S RMDRE=$P(RM3,U,7)
+ ...S RMQOR=$P(RM3,U,8)
+ ...S RMQRE=$P(RM3,U,9)
+ ...S RMCOM=$P(RM3,U,10)
+ ...S RMSTA=$P(RM3,U,11)
+ ...I '$D(RMPRFLG) D HEAD1
+ ...S:RMDOR RMDOR=$E(RMDOR,4,5)_"/"_$E(RMDOR,6,7)_"/"_$E(RMDOR,2,3)
+ ...S:RMDRE RMDRE=$E(RMDRE,4,5)_"/"_$E(RMDRE,6,7)_"/"_$E(RMDRE,2,3)
+ ...S:RMVEN RMVNAM=$P($G(^PRC(440,RMVEN,0)),U,1)
+ ...S RMIDA=$O(^RMPR(661.11,"ASHI",RS,RMHCPC,RMIT,0))
+ ...S:RMIDA RMIDE=$P($G(^RMPR(661.11,RMIDA,0)),U,3)
+ ...W !,RMHCPC_"-"_RMIT,?10,$E(RMIDE,1,20),?31,$E(RMVNAM,1,11),?44,RMDOR,?54,RMDRE,?64,$J(RMQOR,6),?72,$J(RMQRE,6)
+ ...W:RMCOM'="" !,?5,"Comment: ",RMCOM
+ ...S (RMPRFLG,RMPRT)=1
+ ...I $E(IOST)["C",($Y>(IOSL-7)) S DIR(0)="E" D ^DIR S:$D(DTOUT)!(Y=0) RMPREND=1 Q:RMPREND  W @IOF D HEAD,HEAD1 Q
+ ...I $Y>(IOSL-6) W @IOF D HEAD,HEAD1 Q
+ W:$G(RMPRT) !,RMPR("L"),!,"<End of Report>"
+ G EXIT
+ ;
+REC ;process a Recieved order.
+ S RI=""
+ F  S RI=$O(^RMPR(661.6,"ASTHIDS",RS,1,RI)) Q:RI=""!RMPREND=1  F RK=0:0 S RK=$O(^RMPR(661.6,"ASTHIDS",RS,1,RI,RK)) Q:RK'>0!RMPREND=1  D
+ .F RM=RDT:0 S RM=$O(^RMPR(661.6,"ASTHIDS",RS,1,RI,RK,RM)) Q:RM'>0!RMPREND=1  D
+ ..F RN=0:0 S RN=$O(^RMPR(661.6,"ASTHIDS",RS,1,RI,RK,RM,RN)) Q:RN'>0!RMPREND=1  F RP=0:0 S RP=$O(^RMPR(661.6,"ASTHIDS",RS,1,RI,RK,RM,RN,RP)) Q:RP'>0!RMPREND=1  D
+ ...S RM3=$G(^RMPR(661.6,RP,0))
+ ...S (RMVNAM,RMIDE)=""
+ ...S RMDOR=$P(RM3,U,1)
+ ...S RMIT=RK
+ ...S RMVEN=$P(RM3,U,12)
+ ...S RMHCPC=RI
+ ...S RMDRE=RM
+ ...S RMQOR=""
+ ...S RMQRE=$P(RM3,U,5)
+ ...S RMCOM=$P(RM3,U,8)
+ ...S RMSTA=RS
+ ...I '$D(RMPRFLG) D HEAD1
+ ...;S:RMDOR RMDOR=$E(RMDOR,4,5)_"/"_$E(RMDOR,6,7)_"/"_$E(RMDOR,2,3)
+ ...S:RMDRE RMDRE=$E(RMDRE,4,5)_"/"_$E(RMDRE,6,7)_"/"_$E(RMDRE,2,3)
+ ...S:RMVEN RMVNAM=$P($G(^PRC(440,RMVEN,0)),U,1)
+ ...S RMIDA=$O(^RMPR(661.11,"ASHI",RS,RMHCPC,RMIT,0))
+ ...S:RMIDA RMIDE=$P($G(^RMPR(661.11,RMIDA,0)),U,3)
+ ...W !,RMHCPC_"-"_RMIT,?10,$E(RMIDE,1,20),?31,$E(RMVNAM,1,11),?54,RMDRE,?64,$J(RMQOR,6),?72,$J(RMQRE,6)
+ ...W:RMCOM'="" !,?5,"Comment: ",RMCOM
+ ...S (RMPRFLG,RMPRT)=1
+ ...I $E(IOST)["C",($Y>(IOSL-7)) S DIR(0)="E" D ^DIR S:$D(DTOUT)!(Y=0) RMPREND=1 Q:RMPREND  W @IOF D HEAD,HEAD1 Q
+ ...I $Y>(IOSL-6) W @IOF D HEAD,HEAD1 Q
+ W:$G(RMPRT) !,RMPR("L"),!,"<End of Report>"
+ G EXIT
+ ;
+HEAD W !,"*** PIP ORDER AND RECEIVE ITEM REPORT ***"," for ",RMCAL," days old or Less,  ",RMCAY," order"
+ W !,"Station: ",$E($P($G(^DIC(4,RS,0)),U,1),1,20),?30,"Run Date: ",RMDAT
+ W ?68,"PAGE: ",RMPAGE
+ S RMPAGE=RMPAGE+1
+ Q
+ ;
+HEAD1 I $E(IOST)["C",($Y>(IOSL-7)) S DIR(0)="E" D ^DIR S:$D(DTOUT)!(Y=0) RMPREND=1 Q:RMPREND  W @IOF D HEAD
+ I $E(IOST)'["C",($Y>(IOSL-6)) W @IOF D HEAD
+ W !,RMPR("L")
+ W !,?45,"DATE",?56,"DATE",?66,"QTY",?75,"QTY"
+ W !,"HCPCS",?10,"ITEM",?31,"VENDOR",?44,"ORDERED",?54,"RECIEVED"
+ W ?64,"ORDERED",?72,"RECIEVED"
+ W !,"-----",?10,"----",?31,"------",?44,"-------",?54,"--------"
+ W ?64,"-------",?72,"--------"
+ S RMPRFLG=1
+ Q
+ ;
+EXIT W:'$G(RMPRT) !,RMPR("L"),!!,"No DATA to print !!!"
+ I $E(IOST)["C",'RMPREND W ! S DIR(0)="E" D ^DIR
+ ;
+EXIT1 D ^%ZISC
+ K ^TMP($J)
+ N RMPR,RMPRSITE D KILL^XUSCLEAN
+ Q

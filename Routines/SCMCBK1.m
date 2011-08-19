@@ -1,0 +1,284 @@
+SCMCBK1 ;LB/SCK - Broker Utilities for multiple patient assignments;
+ ;;5.3;Scheduling;**41,51,210,297**;AUG 13, 1993
+ ;;1T1;;
+ Q
+ ;
+PARSE(SC) ;
+ S SCTEAM=$G(SC("TEAM"),"")
+ S SCPOS=$G(SC("POSITION"),"")
+ S SCDTVAR=$G(SC("DATE"),DT)
+ S SCDTRNG("BEGIN")=$G(SC("BEGIN"),DT)
+ S SCDTRNG("END")=$G(SC("END"),DT)
+ S SCDTRNG("INCL")=$G(SC("INCL"),0)
+ S SCJOB=$G(SC("JOB"),"")
+ S SCSTART=$G(SC("BSTART"),0)
+ S SCEND=$G(SC("BEND"),0)
+ S SCLAST=$G(SC("BLAST"),0)
+ S SCFILE=$G(SC("FILE"),"")
+ S SCJOBID=$G(SC("JOBID"),"")
+ S SCNUM=$G(SC("MAX"),300)
+ S SCCLN=$G(SC("CLINIC"),"")
+ S SCSCDE=$G(SC("STOPCODE"),"")
+ S SCFRMTM=$G(SC("FROMTEAM"),"")
+ S SCFRMPOS=$G(SC("FROMPOS"),"")
+ S SCDFN=$G(SC("DFN"),"")
+ S SCMORE=$G(SC("MORE"),"")
+ Q
+ ;
+NEWVAR ;
+ ;bp/cmf 210t0 begin
+ D CLRVAR Q
+ ;bp/cmf 210t0 end
+ N SCCLN,SCSCDE,SCTEAM,SCDTRNG,SCLOC,SCERMSG,SCNUM,SCCOUNT,SCMORE,SCOK1,SCER2,SCOUT,BLOCK,SCBLOCK,SCFRMTM,SCFRMPOS,SCSRCE,SCSRCTYP
+ N SCADDFLD,SCNEW,SCOLD,SCBAD,SUBRTN,SCX,SCTMP
+ ;
+ K ^TMP($J,"SC PCMM IN")
+ K ^TMP($J,"PCMM TMP")
+ K ^TMP("SC TMP LIST",$J)
+ K ^TMP($J,"SC PATIENT LIST")
+ ;
+ Q
+ ;
+CLRVAR ;  Clear all parsing variables        
+ ;
+ K SCNUM,SCSCDE,SCCLN,SCJOBID,SCFILE,SCLAST,SCEND,SCSTART,SCJOB,SCDTRNG
+ K SCDTVAR,SCPOS,SCTEAM,SCFRMTM,SCFRMPOS,SCDFN,BLOCK,SCBLOCK,SCX,SUBRTN
+ K SCTMP,SCBAD,SCOLD,SCNEW,SCLOC,SCERMSG,SCCOUNT,SCMORE,SCOK1
+ K SCER2,SCOUT,SCSRCE,SCSRCTYP,SCADDFLD
+ ;
+ K ^TMP($J,"SC PCMM IN")
+ K ^TMP($J,"PCMM TMP")
+ K ^TMP("SC TMP LIST",$J)
+ K ^TMP($J,"SC PATIENT LIST")
+ Q
+ ;
+PTCLEN(SCOK,SC) ;  Enroll patient in associated clinic for a position
+ ;       ' SC PAT ENROLL CLN '
+ ;
+ N SCCLN,SCDFN,SCDTVAR,SCERMSG,SCADDFLD
+ ;
+ D CHK^SCUTBK
+ D TMP^SCUTBK
+ ;
+ D PARSE(.SC)
+ S SCADDFLD(1)=$G(SC("ADD1"),"O")
+ S SCOK=0
+ ;
+ ;Enroll Patient in all associated clincs not entrolled in
+ F SCCLN=0:0 S SCCLN=$O(^SCTM(404.57,SCPOS,5,SCCLN)) Q:'SCCLN  D
+ .I $D(^DPT(SCDFN,"DE","B",SCCLN)) Q
+ .S SCOK=$$ACPTCL^SCAPMC18(SCDFN,SCCLN,"SCADDFLD",SCDTVAR,"SCERMSG")
+ ;
+ D CLRVAR
+ Q
+ ;
+CHKPOS(SCOK,SC) ;  Check for primary care pratitioner and attending positions for patient
+ ;    ' SC CHECK FOR PC POS '
+ ;  Piece 1 of SCOK = 1 if ok for practitioner role
+ ;                    0 if not ok
+ ;  Piece 2 of SCOK = 1 if ok for ateending role
+ ;                    0 if not ok
+ ;
+ N SCPOS,SCDTVAR,SCDFN
+ ;
+ D CHK^SCUTBK
+ D TMP^SCUTBK
+ ;
+ D PARSE(.SC)
+ ;
+ S SCOK=$$PCRLPTTP^SCMCTPU2(SCDFN,SCPOS,SCDTVAR)
+ ;
+ D CLRVAR
+ Q
+ ;
+NOPCTM(SCOK,SC) ;  Build list of patients with a primary care assignment, but no primary care team;
+ ;    ' SC BLD NOPC TM LIST '
+ ;
+ N I1
+ D NEWVAR
+ ;
+ D CHK^SCUTBK
+ D TMP^SCUTBK
+ ;
+ D PARSE(.SC)
+ ;
+ K ^TMP($J,"SCPCNO")
+ ;  Build exclude list
+ S BLOCK=$S(SCPOS'="":"BLKPOS^SCMCBK",1:"BLKTM^SCMCBK")
+ S SCBLOCK=$S(SCPOS'="":SCPOS,1:SCTEAM)
+ D @BLOCK
+ ;
+ S SCOK=0
+ ;
+ S SCLOC="^TMP($J,""SC PCMM IN"")"
+ D PTPCNOTM^SCAPMC20(.SCLOC,SCDTVAR)
+ K ^TMP("SCMC",$J,"EXCLUDE PT")
+ ;
+ S I=""
+ F  S I=$O(^TMP($J,"SC PCMM IN",I)) Q:'I  D
+ . S ^TMP($J,"PCMM TMP",I)=^TMP($J,"SC PCMM IN",I)
+ ;
+ D ALPHA^SCAPMCU2("^TMP($J,""PCMM TMP"")","^TMP($J,""SCPCNO"")")
+ S I1="" F  S I1=$O(^TMP($J,"SCPCNO",I1)) Q:'I1  S I=I1
+ ;
+ S SCOK=$J_U_+I_U_1
+ ;
+ D CLRVAR
+ Q
+ ;
+ASGNALL(SCOK,SC) ;  Assign all entries for the selection source to the appropriate team.
+ ;    '  SC FILE ALL PAT TM ASGN  '
+ ;
+ D NEWVAR
+ ;
+ D CHK^SCUTBK
+ D TMP^SCUTBK
+ ;
+ D PARSE(.SC)
+ S SCSRCE=$G(SC("SOURCE"),"")
+ S SCADDFLD(.08)=$G(SC("TYPE"),99)
+ S SCADDFLD(.1)=$G(SC("RESTRICT"),0)
+ S SCADDFLD(.11)=DUZ
+ S SCADDFLD(.12)=DT
+ ;
+ S DTMP=$G(SCDTRNG("END"))
+ S SCDTTRNG("END")=3990101
+ S SCOK2=$$PTTM^SCAPMC(SCTEAM,"SCDTRNG","^TMP(""SCMC"",$J,""EXCLUDE PT"")","SCER2")
+ S SCDTRNG("END")=DTMP
+ ;
+ S SCSRCTYP=$P(SCSRCE,U,1)
+ D @SCSRCTYP
+ ;
+ K SCBAD,SCOLD,SCNEW
+ S SCX=$$ACPTATM^SCAPMC6("^TMP($J,""SC PATIENT LIST"")",SCTEAM,"SCADDFLD",SCDTVAR,"SCERMSG","SCNEW","SCOLD","SCBAD")
+ ;
+ K ^TMP("SCMC",$J,"EXCLUDE PT")
+ D BAD(.SCBAD,.SCOLD,.SCOK)
+ S SCOK(.1)=SCX
+ ;
+ D CLRVAR
+ Q
+ ;
+CLN ;    File all patients in selected clinic.
+ ;
+ S SCOK1=$$PTCLBR^SCAPMC26($P($G(SCSRCE),U,2),.SCTEAM,"SCDTRNG")
+ S I=0 F  S I=$O(^TMP($J,"SCCLPT",I)) Q:'I  D
+ . S ^TMP($J,"SC PATIENT LIST",$P($G(^TMP($J,"SCCLPT",I)),U))=""
+ K ^TMP($J,"SCCLPT")
+ Q
+ ;
+STOPC ;   File all patients in the selected stop code
+ ;
+ S SCOK1=$$PTST^SCAPMC27($P($G(SCSRCE),U,2),"SCDTRNG",SCNUM,.SCTMP,"ERRMSG",0)
+ M ^TMP($J,"PCMM TMP")=@SCTMP
+ S I=0 F  S I=$O(^TMP($J,"PCMM TMP",I)) Q:'I  D
+ . S ^TMP($J,"SC PATIENT LIST",$P($G(^TMP($J,"PCMM TMP",I)),U))=""
+ Q
+ ;
+APPT ;   File all patients for the selected clinic appointment range
+ S SCOK1=$$PTAP^SCAPMC28($P($G(SCSRCE),U,2),"SCDTRNG",SCNUM,.SCTMP,"SCERMSG",0)
+ M ^TMP($J,"PCMM TMP")=@SCTMP
+ S I=0 F  S I=$O(^TMP($J,"PCMM TMP",I)) Q:'I  D
+ . S ^TMP($J,"SC PATIENT LIST",$P($G(^TMP($J,"PCMM TMP",I)),U))=""
+ Q
+ ;
+TEAM ;  File all patients for the selected team
+ S SCOK1=$$PTTM^SCAPMC2($P($G(SCSRCE),U,2),"SCDTRNG",.SCTMP,"SCERMSG")
+ M ^TMP($J,"PCMM TMP")=@SCTMP
+ S I=0 F  S I=$O(^TMP($J,"PCMM TMP",I)) Q:'I  D
+ . S ^TMP($J,"SC PATIENT LIST",$P($G(^TMP($J,"PCMM TMP",I)),U))=""
+ Q
+ ;
+ASGALLP(SCOK,SC) ;  Assign all entries in the selected source to the selected team and position
+ ;
+ N DTMP
+ D NEWVAR
+ D CHK^SCUTBK
+ D TMP^SCUTBK
+ ;
+ D PARSE(.SC)
+ S SCSRCE=$G(SC("SOURCE"),"")
+ S SCADDFLD(.05)=$G(SC("TYPE"),0)
+ S SCADDFLD(.06)=DUZ
+ S SCADDFLD(.07)=DT
+ ;
+ S DTMP=$G(SCDTRNG("END"))
+ S SCDTRNG("END")=3990101
+ S SCOK2=$$PTTP^SCAPMC(SCPOS,"SCDTRNG","^TMP(""SCMC"",$J,""EXCLUDE PT"")","SCER2")
+ S SCDTRNG("END")=DTMP
+ ;
+ S SCSRCTYP=$P(SCSRCE,U,1)
+ D @SCSRCTYP
+ ;
+ K SCBAD,SCOLD,SCNEW
+ S SCX=$$ACPTATP^SCAPMC21("^TMP($J,""SC PATIENT LIST"")",SCPOS,"SCADDFLD",SCDTVAR,"SCERRMSG",1,"","SCNEW","SCNEW1","SCOLD","SCBAD")
+ ;
+ K ^TMP("SCMC",$J,"EXCLUDE PT")
+ D BAD2(.SCBAD,.SCOLD,.SCOK)
+ S SCOK(.1)=SCX
+ ;
+ D CLRVAR
+ Q
+ ;
+PCLN ;  File all patients in selected clinic to the new position and team
+ ;
+ S SCOK1=$$PTCLBR^SCAPMC26($P($G(SCSRCE),U,2),.SCTEAM,"SCDTRNG")
+ S I=0 F  S I=$O(^TMP($J,"SCCLPT",I)) Q:'I  D
+ . S ^TMP($J,"SC PATIENT LIST",$P($G(^TMP($J,"SCCLPT",I)),U))=""
+ ;
+ Q
+ ;
+PSTOPC ;  File all patients in with the selected stop code to the new position and team
+ ;
+ S SCOK1=$$PTST^SCAPMC27($P($G(SCSRCE),U,2),"SCDTRNG",500,.SCTMP,"SCERMSG",0)
+ M ^TMP($J,"PCMM TMP")=@SCTMP
+ S I=0 F  S I=$O(^TMP($J,"PCMM TMP",I)) Q:'I  D
+ . S ^TMP($J,"SC PATIENT LIST",$P($G(^TMP($J,"PCMM TMP",I)),U))=""
+ Q
+ ;
+PAPPT ;
+ S SCOK1=$$PTAP^SCAPMC28($P($G(SCSRCE),U,2),"SCDTRNG",500,.SCTMP,"SCERMSG",0)
+ M ^TMP($J,"PCMM TMP")=@SCTMP
+ S I=0 F  S I=$O(^TMP($J,"PCMM TMP",I)) Q:'I  D
+ . S ^TMP($J,"SC PATIENT LIST",$P($G(^TMP($J,"PCMM TMP",I)),U))=""
+ Q
+ ;
+PTEAM ;
+ S SCOK1=$$PTTM^SCAPMC2($P($G(SCSRCE),U,2),"SCDTRNG",.SCTMP,"SCERMSG")
+ M ^TMP($J,"PCMM TMP")=@SCTMP
+ S I=0 F  S I=$O(^TMP($J,"PCMM TMP",I)) Q:'I  D
+ . S ^TMP($J,"SC PATIENT LIST",$P($G(^TMP($J,"PCMM TMP",I)),U))=""
+ Q
+ ;
+PPOS ;
+ S SCOK1=$$PTTP^SCAPMC11($P($G(SCSRCE),U,2),"SCDTRNG",.SCTMP,"SCERMSG")
+ M ^TMP($J,"PCMM TMP")=@SCTMP
+ S I=0 F  S I=$O(^TMP($J,"PCMM TMP",I)) Q:'I  D
+ . S ^TMP($J,"SC PATIENT LIST",$P($G(^TMP($J,"PCMM TMP",I)),U))=""
+ Q
+ ;
+BAD(SCBAD,SCOLD,SCOK) ;
+ N SCDFN,SCPARM,DIERR
+ S SCDFN=0
+ F  S SCDFN=$O(SCBAD(SCDFN)) Q:'SCDFN  D
+ . S SCPARM("PATIENT")=$P($G(^DPT(SCDFN,0)),U)_"   "_$P($G(^DPT(SCDFN,.36)),U,4)
+ . D BLD^DIALOG(40442001.001,.SCPARM,"","SCOK","S")
+ ;
+ F  S SCDFN=$O(SCOLD(SCDFN)) Q:'SCDFN  D
+ . S SCPARM("PATIENT")=$P($G(^DPT(SCDFN,0)),U)_"   "_$P($G(^DPT(SCDFN,.36)),U,4)
+ . D BLD^DIALOG(40442001.002,.SCPARM,"","SCOK","S")
+ D HDREC^SCUTBK3(.SCOK,$G(DIERR),"Patient Assignment to Teams")
+ Q
+ ;
+BAD2(SCBAD,SCOLD,SCOK) ;
+ N SCDFN,SCPARM,DIERR
+ S SCDFN=0
+ F  S SCDFN=$O(SCBAD(SCDFN)) Q:'SCDFN  D
+ . S SCPARM("PATIENT")=$P($G(^DPT(SCDFN,0)),U)_"   "_$P($G(^DPT(SCDFN,.36)),U,4)
+ . D BLD^DIALOG(40443001.001,.SCPARM,"","SCOK","S")
+ ;
+ F  S SCDFN=$O(SCOLD(SCDFN)) Q:'SCDFN  D
+ . S SCPARM("PATIENT")=$P($G(^DPT(SCDFN,0)),U)_"   "_$P($G(^DPT(SCDFN,.36)),U,4)
+ . D BLD^DIALOG(40443001.002,.SCPARM,"","SCOK","S")
+ D HDREC^SCUTBK3(.SCOK,$G(DIERR),"Patient Assignment to Positions")
+ Q

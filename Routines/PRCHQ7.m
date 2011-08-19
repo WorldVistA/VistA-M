@@ -1,0 +1,89 @@
+PRCHQ7 ;(WASH IRMFO)/LKG/DL-RFQ SERVER UNPACKING VENDOR TEXT MSG ;2/6/98 0930
+ ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ Q
+IN ;
+ K ^TMP("DIERR",$J),^TMP($J,"PRCERR")
+ S PRCI=0 S PRCI=$O(^PRCF(423.6,PRCDA,1,PRCI)) I PRCI="" S PRCERR=1 G ERR
+ S PRCX=$G(^PRCF(423.6,PRCDA,1,PRCI,0))
+ I $P(PRCX,U)'="ISM"!($P(PRCX,U,4)'="TXT") S PRCERR=2 G ERR
+ S PRCRFQ=$P($P(PRCX,U,7)," ")
+ S PRCI=$O(^PRCF(423.6,PRCDA,1,PRCI)) I PRCI="" S PRCERR=3 G ERR
+ S PRCX=$G(^PRCF(423.6,PRCDA,1,PRCI,0)) I $P(PRCX,U)'="CT" S PRCERR=3 G ERR
+ K PRC S X=$O(^PRC(444,"B",PRCRFQ,"")) I X'?1.N S PRCERR=4 G ERR
+ S PRC("D0")=X L +^PRC(444,PRC("D0")):7200 E  S PRCERR=5 G ERR
+ S PRCC=$P($G(^PRC(444,PRC("D0"),1)),U,5)+1,$P(^(1),U,5)=PRCC
+ K DD,DO,DA,DIC S DA(1)=PRC("D0"),DIC="^PRC(444,DA(1),7,",DIC(0)="L"
+ S DIC("P")=$P(^DD(444,21,0),U,2),X=PRCC,DINUM=PRCC,DLAYGO=444.021
+ D FILE^DICN K DIC,DINUM,DLAYGO I +Y<1 S PRCERR=6 G ERR
+ S PRC("D1")=+Y L -^PRC(444,PRC("D0"))
+ L +^PRC(444,PRC("D0"),7,PRC("D1")):7200 E  S PRCERR=5 G ERR
+ K PRCAR S PRCIENS=PRC("D1")_","_PRC("D0")_",",PRCAR(444.021,PRCIENS,1)="I"
+ S X=$$JD2FMD^PRCHQ7($P(PRCX,U,4))_$S($P(PRCX,U,5)]"":".",1:"")_$P(PRCX,U,5)
+ I $P(X,".")'?7N!($P(X,".",2)'?.6N) S PRCERR=10 G ERR
+ S PRCAR(444.021,PRCIENS,5)=X
+ S PRCAR(444.021,PRCIENS,15)=PRCDA D FILE^DIE("","PRCAR") D:$D(^TMP("DIERR",$J)) ERRCOPY^PRCHQ6A
+ S PRCY=$P(PRCX,U,2) S:PRCY]"" PRCAR(444.021,PRCIENS,4)=PRCY
+ S PRCY=$P(PRCX,U,3) S:PRCY]"" PRCAR(444.021,PRCIENS,9)=PRCY
+ S PRCAR(444.021,PRCIENS,6)="NOW"
+ S PRCY=$P(PRCX,U,6) S:PRCY]"" PRCAR(444.021,PRCIENS,7)=PRCY
+ S PRCY=$P(PRCX,U,7) S:PRCY]"" PRCAR(444.021,PRCIENS,8)=PRCY
+ D FILE^DIE("E","PRCAR") K PRCAR D:$D(^TMP("DIERR",$J)) ERRCOPY^PRCHQ6A
+ S PRCTL=+$P(PRCX,U,8)
+ S PRCI=$O(^PRCF(423.6,PRCDA,1,PRCI)) I PRCI="" S PRCERR=7 G ERR
+ S PRCX=$G(^PRCF(423.6,PRCDA,1,PRCI,0)) I $P(PRCX,U)'="VE" S PRCERR=8 G ERR
+ S PRCY=$P(PRCX,U,2),PRCVEN=PRCY S:PRCY]"" PRCAR(444.021,PRCIENS,2)=PRCY
+ S PRCY=$P(PRCX,U,3) S:PRCY]"" PRCAR(444.021,PRCIENS,2.5)=PRCY
+ D FILE^DIE("E","PRCAR") K PRCAR,PRCIENS D:$D(^TMP("DIERR",$J)) ERRCOPY^PRCHQ6A
+ S PRCC=0
+ F  S PRCI=$O(^PRCF(423.6,PRCDA,1,PRCI)) Q:PRCI=""!$D(PRCERR)  D
+ . Q:'$D(^PRCF(423.6,PRCDA,1,PRCI,0))  Q:^(0)="$"!(^(0)="~")  I $P(^(0),U)'="TX" S PRCERR=9 Q
+ . S PRCC=PRCC+1
+ . S ^PRC(444,PRC("D0"),7,PRC("D1"),2,PRCC,0)=$P(^PRCF(423.6,PRCDA,1,PRCI,0),U,3)
+ I $D(PRCERR) G ERR
+ D NOW^%DTC S ^PRC(444,PRC("D0"),7,PRC("D1"),2,0)="^^"_PRCC_"^"_PRCC_"^"_X_"^^^^"
+ I PRCC'=PRCTL S PRCERR=9 G ERR
+ I $D(^TMP($J,"PRCERR")) S PRCERR=11 G ERR
+ K XMB,XMY S XMB="PRCHQ 864 NORMAL",XMB(1)=$G(PRCRFQ),XMB(2)=$G(PRCVEN),XMB(3)=$G(PRC("D1"))
+ S X=$P($G(^PRC(444,PRC("D0"),0)),U,4) S:X?1.N XMY(X)=""
+ S XMDUZ="864 Text Message Filer" D ^XMB K XMB,XMDUZ,XMZ
+EX I $D(PRC("D0")) D
+ . I '$D(PRC("D1")) L -^PRC(444,PRC("D0")) Q
+ . L -^PRC(444,PRC("D0"),7,PRC("D1"))
+ K DA,PRC,PRCAR,PRCC,PRCDA,PRCI,PRCIENS,PRCRFQ,PRCTL,PRCVEN,PRCX,PRCY,X,Y
+ K ^TMP("DIERR",$J),^TMP($J,"PRCERR")
+ S:$D(ZTQUEUED) ZTREQ="@"
+ Q
+JD2FMD(PRCJD) ;Converts from Julian Date to FileMan Date
+ N PRCYR,X,Y,I S Y=""
+ I PRCJD?7N D
+ . S Y="31^28^31^30^31^30^31^31^30^31^30^31",PRCYR=$E(PRCJD,1,4)
+ . S $P(Y,"^",2)=$S(PRCYR#400=0:29,(PRCYR#4=0&(PRCYR#100'=0)):29,1:28)
+ . S X=+$E(PRCJD,5,7)
+ . F I=1:1:13 Q:X'>$P(Y,"^",I)!(I=13)  S X=X-$P(Y,"^",I)
+ . S Y=$S(I=13:"",1:PRCYR-1700_$E(100+I,2,3)_$E(100+X,2,3))
+ Q Y
+ERR ;Error processing
+ K XMB,XMZ
+ S XMB="PRCHQ 864 ERROR",XMB(1)=$G(PRCRFQ),XMB(2)=$P($T(ERMSG+PRCERR),";;",2)
+ S XMB(3)=$G(PRCVEN) F PRCY=4:1:13 S XMB(PRCY)=""
+ I $D(^TMP($J,"PRCERR")) D
+ . S PRCX=0,PRCY=3
+ . F  S PRCX=$O(^TMP($J,"PRCERR",PRCX)) Q:PRCX'?1.N!(PRCY>12)  D
+ . . S:$D(^TMP($J,"PRCERR",PRCX)) PRCY=PRCY+1,XMB(PRCY)=^(PRCX)
+ I $D(PRC("D0")) S X=$P($G(^PRC(444,PRC("D0"),0)),U,4) S:X?1.N XMY(X)=""
+ S XMDUZ="864 Text Message Filer" D ^XMB K XMB,XMDUZ,XMZ
+ K PRCERR
+ G EX
+ERMSG ;List of Error Messages
+ ;;No segments to file
+ ;;First segment has format error or is wrong type
+ ;;Second segment not the 'CT' type
+ ;;RFQ entry not found
+ ;;Unable to add new message entry
+ ;;No segments after 'CT' segment
+ ;;3rd segment not 'VE' type
+ ;;Next segment not 'TX' type
+ ;;Count of 'TX' segments differs from value on 'CT' segment
+ ;;Effective Date/Time converted to invalid value
+ ;;Value(s) failed input transform

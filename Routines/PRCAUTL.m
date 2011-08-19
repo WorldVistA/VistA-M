@@ -1,0 +1,75 @@
+PRCAUTL ;SF-ISC/YJK-AR UTILITY ROUTINES ;8/16/95  11:41 AM
+ ;;4.5;Accounts Receivable;**20,34,88,198,236**;Mar 20, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+SETTR ;Set a new transaction number. Return PRCAEN,X,DA
+ F DINUM=$P(^PRCA(433,0),"^",3)+1:1 I '$D(^PRCA(433,DINUM)) L +^PRCA(433,DINUM):1 Q:$T
+ S RCDA=DINUM,DIC="^PRCA(433,",DIC(0)="L",DLAYGO=433,X=DINUM K DD,DO D FILE^DICN L -^PRCA(433,RCDA) K RCDA,DIC,DINUM,DLAYGO,DO G:Y<0 SETTR
+ S (PRCAEN,DA)=+Y,$P(^PRCA(433,PRCAEN,0),U,8)=$S($D(PRCA("APPR")):PRCA("APPR"),1:"")
+ S $P(^PRCA(433,PRCAEN,0),U,9)=DUZ
+ Q
+BILL ;Look up a bill number - return PRCABN
+ K DIC,DA
+BILLN N DPTNOFZY,DPTNOFZK S (DPTNOFZY,DPTNOFZK)=1
+ W ! K PRCABN S DIC="^PRCA(430,",DIC(0)="AEQMZ" D ^DIC G:Y<0 EXIT S PRCABN=+Y,PRCATY=$P(^PRCA(430,PRCABN,0),U,2),PRCA("SEG")=$S(+$P(^(0),U,21)>240:$P(^(0),U,21),1:"")
+ S PRCA("STATUS")=$P(^PRCA(430,PRCABN,0),U,8),PRCA("APPR")=$P(^(0),U,18)
+EXIT K DIC Q
+ ;
+DEBTOR ;Check a debtor name,active address and other debtor's info.
+ ;Return the name and address - PRCA("DEBTNM"),PRCAST1,PRCAST2,PRCACT,PRCAST,PRCAKP.
+ D DEBNAM Q:PRCADBPT=""  D DEBADDR Q
+DEBNAM S PRCADBPT=$P(^PRCA(430,PRCABN,0),U,9) Q:PRCADBPT=""  I '$D(^RCD(340,PRCADBPT,0)) S PRCADBPT="" Q
+ S A1=$P(^RCD(340,PRCADBPT,0),";",1),A2=$P($P(^(0),U,1),";",2),PRCA3=U_A2_A1_",0)",PRCA("DEBTNM")=$S($D(@PRCA3):$P(^(0),U,1),1:"")
+ K A1,A2,PRCA3 Q
+DEBADDR S PRCADB=$P(^RCD(340,PRCADBPT,0),"^") S X=$$DADD^RCAMADD(PRCADB) S PRCAST1=$P(X,U,1),PRCAST2=$P(X,U,2),PRCACT=$P(X,U,4),PRCAKP=$P(X,U,6)
+ S PRCAST=$P(X,U,5)
+ S PRCA("DEBTOR")=1 K PRCADB,PRCADBPT,Z Q  ;end of DEBTOR
+ ;
+PATTR ;This transfers the pat# field in the file 430 to FILE 433
+ ;Input variable : PRCABN,PRCAEN
+ Q:('$D(PRCABN))!('$D(PRCAEN))  K ^PRCA(433,PRCAEN,4) S A1="" F I=0:0 S A1=$O(^PRCA(430,PRCABN,2,A1)) Q:A1=""  D PATR1
+ S ^PRCA(433,PRCAEN,4,0)="^433.01I^"_$P($G(^PRCA(430,PRCABN,2,0)),U,3,4) K A1,A2,X
+ S $P(^PRCA(433,PRCAEN,0),U,8)=$P(^PRCA(430,PRCABN,0),U,18) Q  ;end of PATTRAN
+PATR1 I $D(^PRCA(430,PRCABN,2,A1,0)) S X=$P(^(0),U,1,3),$P(X,U,4)=1,^PRCA(433,PRCAEN,4,A1,0)=X Q
+ S X=0 F I=0:0 S X=$O(^PRCA(430,PRCABN,2,A1,X)) Q:X=""  S A2=$O(^(X,0)) I A2]"" S ^PRCA(433,PRCAEN,4,A1,X,A2)=""
+ Q
+ ;
+TRANUP ;update the fiscal year amounts (file 430) from trans.file (433).
+ Q:('$D(PRCAEN))!('$D(PRCABN))
+ S Z1=0 F Z2=0:0 S Z1=$O(^PRCA(433,PRCAEN,4,Z1)) Q:Z1'>0  S $P(^PRCA(430,PRCABN,2,Z1,0),U,2)=$P(^PRCA(433,PRCAEN,4,Z1,0),U,2)
+ S $P(^PRCA(433,PRCAEN,0),U,4)=2 K Z2,Z1 Q  ;end of Z2ANUP
+UNIT ;move the DESCRIPTION field in the 430 to 433.
+ Q:'$D(PRCABN)!('$D(PRCAEN))  Q:'$D(^PRCA(430,PRCABN,101,0))  S PRCAK1=0
+ F I=0:0 S PRCAK1=$O(^PRCA(430,PRCABN,101,PRCAK1)) Q:'PRCAK1  S ^PRCA(433,PRCAEN,6,PRCAK1,0)=$P(^PRCA(430,PRCABN,101,PRCAK1,0),U,1,6),^PRCA(433,PRCAEN,6,"B",$P(^(0),U,1),PRCAK1)=""
+ S ^PRCA(433,PRCAEN,6,0)="^433.061DA^"_$P(^PRCA(430,PRCABN,101,0),U,3,4)
+ K PRCAK1,I Q
+TRUNIT ;transfer the DESCRIPTION field in the 433 to 430.
+ Q:'$D(PRCABN)!('$D(PRCAEN))  Q:'$D(^PRCA(433,PRCAEN,6,0))  S PRCAK1=0
+ F I=0:0 S PRCAK1=$O(^PRCA(433,PRCAEN,6,PRCAK1)) Q:'PRCAK1  S $P(^PRCA(430,PRCABN,101,PRCAK1,0),U,1,6)=$P(^PRCA(433,PRCAEN,6,PRCAK1,0),U,1,6)
+ K PRCAK1 Q
+UPATDD ;delete 433,"ATD" cross-reference of old debtor
+ Q:'$D(DA)  N PRCABN,PRCAEN,PRCADEB,PRCAATD
+ S PRCABN=DA,PRCADEB=$E(X,1,30) Q:PRCADEB=""
+ S PRCAEN=0 F  S PRCAEN=$O(^PRCA(433,"C",PRCABN,PRCAEN)) Q:PRCAEN=""  S PRCAATD=$G(^PRCA(433,PRCAEN,1)) I $P(PRCAATD,"^",9),$D(^PRCA(433,"ATD",PRCADEB,$P(PRCAATD,"^",9),PRCAEN)) K ^PRCA(433,"ATD",PRCADEB,$P(PRCAATD,"^",9),PRCAEN)
+ Q
+UPATDS ;set 433,"ATD" cross-reference of new debtor
+ Q:'$D(DA)  N PRCABN,PRCAEN,PRCADEB,PRCAATD
+ S PRCABN=DA,PRCADEB=$E(X,1,30) Q:PRCADEB=""
+ I $G(^RCD(340,+PRCADEB,0))'["DPT" Q
+ S PRCAEN=0 F  S PRCAEN=$O(^PRCA(433,"C",PRCABN,PRCAEN)) Q:PRCAEN=""  S PRCAATD=$G(^PRCA(433,PRCAEN,1)) I $P(PRCAATD,"^",9) S ^PRCA(433,"ATD",PRCADEB,$P(PRCAATD,"^",9),PRCAEN)=""
+ Q
+ ;
+EMERES(DFN) ;This code flags a patient that is a victim of an emergent crisis.
+ ;If DT falls within the emergency response begin date and end date of
+ ;file 342 AR SITE PARAMETER the billing process that calls this will be
+ ;suspended.
+ I '$G(DFN) Q ""
+ N X,PRCABEG,PRCAEND
+ ;this code calls the registration utility to flag a patient that is in
+ ;an emergent crisis.
+ ;
+ S X=$$EMGRES^DGUTL(DFN) I X]"" D
+ .S PRCABEG=$P($G(^RC(342,1,30)),"^",1)
+ .S PRCAEND=$P($G(^RC(342,1,30)),"^",2)
+ .I PRCAEND']"",PRCABEG]"" S PRCAEND=9999999
+ .I DT<PRCABEG!(DT>PRCAEND) S X=""
+ Q X

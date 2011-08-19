@@ -1,0 +1,19 @@
+DGPMHST ;ALB/JDS - HISTORICAL INPATIENT OUTPUT- FORMERLY DGIN ;01 JAN 1986
+ ;;5.3;Registration;;Aug 13, 1993
+ ;
+ ;  NOTE:  This used to be named DGIN
+ ;                               ----
+EN K TD,DGF S %DT="AEXPT",%DT("A")="Enter date of Stay: " D ^%DT G Q:Y'>0 G EN:+Y>(DT+1) S DGT=+Y,DG2=DGT,L=0,DGT=$S(DGT[".":DGT,1:DGT_".2400"),DG2=DGT
+EN1 S Y=DGT X ^DD("DD") S DHD="INPATIENT LIST FOR "_Y,L=0
+EN2 S DIS(1)="D SET^DGPMHST I DG1 S ^UTILITY($J,""DG"",DFN)=DG1"
+ S DIC("A")="Enter WARD: ",DIC="^DGPM(",FLDS="[DGPM INPATIENT PRINT]",FR=",",TO=DGT_"," K BY
+ I '$D(TD),$D(^DG(43,1,"GL")),$P(^("GL"),U,2) S BY="[DGPM INP HISTORICAL DIVISION]" S FR=FR_"@,",TO=TO_","
+ I '$D(BY) S BY="[DGPM INP HISTORICAL 1 DIVISION]"
+ S FR=FR_"?,",TO=TO_"?,"
+ D EN1^DIP
+Q Q:$D(DGF)  K DGT,^UTILITY($J,"DG")
+ K %DT,%X,%H,DFN,DG1,DGA1,DGX,DP,P,DGXFR0,B,%Y,DG2,DNP,FLDS,FR,TO,%,DHD,DIS,K,L,POP,X,X1 Q
+SET S DG1=0 Q:'$D(^DGPM(D0,0))  Q:$P(^DGPM(D0,0),"^",3)']""  S DFN=$P(^DGPM(D0,0),U,3) Q:$D(^UTILITY($J,"DG1",DFN))  S ^(DFN)=1
+ D ^DGPMSTAT
+ Q:'DG1  S $P(DG1,U,4)=+DG1,$P(DG1,U,1)=+^DGPM(DGA1,0) I $P(^(0),U,17)]"" S $P(DG1,U,6)=+^DGPM($P(^(0),U,17),0)
+ I $P(DG1,U,3) S $P(DG1,U,5)=+DGXFR0 S A=$P(DG1,U,3),$P(DG1,U,7)=$S(A=1:1,A=2:2,A=3:3,A=25:3,"^43^45^"[(U_A_U):4,1:0)

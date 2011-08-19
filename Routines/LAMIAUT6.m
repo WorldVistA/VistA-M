@@ -1,0 +1,47 @@
+LAMIAUT6 ;SLC/FHS - DISPLAY MICRO DRUGS IN ORDER ;7/20/90  09:34
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;;Sep 27, 1994
+EN ;
+ K LRCNODE S LRCNODE=^LAH(LRLL,1,LRIFN,3,IR,0),^(0)=$P(LRCNODE,U,1,2) Q:LREND
+ I $L($P(LRCNODE,U,3)) F A=3:1:99 Q:'$L($P(LRCNODE,U,A))  I $O(^LAB(62.4,LRINST,7,$P(LRCNODE,U,A),2,0)) S LRCNODE($P(LRCNODE,U,A))=""
+ I LRCNODE=""!('$O(LRCNODE(0))) G BLIND
+ S (LREND,LRCARD)=0
+ F A=1:1 S LRCARD=$O(LRCNODE(LRCARD)) Q:LREND!(LRCARD="")  D HDR,AC R !,"RETURN TO CONT. ('^' TO SKIP )  ",XX:DTIME S:'$T!($E(XX)="^") LREND=1
+ Q
+HDR W @IOF,!?5,"Isolate ("_IR_")",!?7,$P(^LAB(61.2,LRORGN,0),U)," *** ",$P(^LAB(62.4,LRINST,7,LRCARD,0),U,2)," Card ***"
+ Q
+AC ;
+ F IX=0:0 S IX=$O(^LAB(62.4,LRINST,7,LRCARD,2,"AC",IX)) Q:IX=""  S IXI=$O(^LAB(62.4,LRINST,7,LRCARD,2,"AC",IX,0)) Q:IXI=""  I $D(^LAB(62.4,LRINST,7,LRCARD,2,IXI,0)) S LRDRD=$P(^(0),U,2) D LOOK
+ Q
+LOOK ;
+ Q:'$D(^LAB(62.06,"AD",LRDRD))  I $D(^LAH(LRLL,1,LRIFN,3,IR,LRDRD)) S LRDRDX=^(LRDRD),LRDRNAME=$S($D(^LAB(62.06,+$O(^LAB(62.06,"AD",LRDRD,0)),0)):$P(^(0),U),1:"") I $L(LRDRNAME) W !,LRDRNAME,"  " F AA=1:1:3 W @(@("TAB"_AA)),$P(LRDRDX,U,AA)
+ Q
+BLIND ;
+ W @IOF,!!?5,"Isolate ( "_IR_" )",!?7,$P(^LAB(61.2,LRORGN,0),U),!!
+ F LRDRD=2:0 S LRDRD=$O(^LAH(LRLL,1,LRIFN,3,IR,LRDRD)) Q:LRDRD=""  D LOOK
+ I $O(^LAH(LRLL,1,LRIFN,3,IR,1,0)) W !!,"Organism Comment:" F LRORGCOM=0:0 S LRORGCOM=$O(^LAH(LRLL,1,LRIFN,3,IR,1,LRORGCOM)) Q:LRORGCOM=""  W !?10,^(LRORGCOM,0)
+ K LRDRD R !!?7,"RETURN TO CONT. ('^' TO SKIP) ",XX:DTIME W ! S:$E(XX)="^" LREND=1
+ K LRDRD
+ Q
+COM ;
+ Q:'$O(^LAH(LRLL,1,LRIFN,4,0))  W !!?5,"BACT RPT REMARK",$C(7) F LRSCOM=0:0 S LRSCOM=$O(^LAH(LRLL,1,LRIFN,4,LRSCOM)) Q:LRSCOM=""  I $D(^(LRSCOM,0)) W !?10,^(0)
+ R !!?10,"PRESS RETURN TO CONTINUE",X:DTIME W !
+ Q
+ Q
+DUP ;
+ S SX=X,LREND=0 D ^LAMIAUT3 S X=SX K SX W !?5,"( No ) will add another organism",!?5,"( Yes ) will overlay existing data",!!
+ W !?10,"You already have  "_LRBDUP(+X)_" "_$S($D(^LAB(61.2,+X,0)):$P(^(0),U),1:"Unknown")_" in the patient's file, ",!,"Do you want to add data to one of Them ? "
+ S %=2 D YN^DICN S:%<1 LREND=1 Q:LREND  G:%=0 DUP I %=1 G DUPCK
+ F II=1:1 Q:'$D(^LR(LRDFN,"MI",LRIDT,3,II))&('$D(^LAH(LRLL,1,LRIFN,3,II)))
+ S LRMOVE(II)="A",LRORG=II,$P(^LR(LRDFN,"MI",LRIDT,3,0),U,3)=II,$P(^(0),U,4)=$P(^(0),U,4)+1 Q
+ Q
+DUPCK ;
+ I LRBDUP(X)=1 S LRORG=$O(LRBDUP(X,0)) G SWITCH
+ W !?7,"Add to which ISOLATE # CHOOSE FROM ( " F K=0:0 S K=$O(LRBDUP(+X,K)) Q:K=""  W K_"  "
+ W ")  " S LREND=0 R LRORG:DTIME S:'$T!($E(LRORG)="^") LREND=1 Q:LREND
+ I $E(LRORG)="?" G DUP
+ I LRORG="" W !!?7,$C(7),"Please select a number or '^' ",! G DUPCK
+ I '$D(LRBDUP(X,+LRORG)) W !!?10,$C(7)," NO SUCH ISOLATE # FOR THIS ORGANISM ",!! G DUPCK
+SWITCH ;
+ I $D(LRMOVE(LRORG))!(^LAH(LRLL,1,LRIFN,3,IR,0)='LRORGN) W !!?10,"I am sorry, I cannot transfer to this Isolate, ",!," You must MANAULLY EDIT  " S LREND=1 Q
+ S LRMOVE(LRORG)="O"
+ Q

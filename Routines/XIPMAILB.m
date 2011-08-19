@@ -1,0 +1,169 @@
+XIPMAILB ;OOIFO/SO- SCAN STATE(#5) FILE FOR EXCEPTIONS;6:41 AM  4 Feb 2006;12/30/05  07:38
+ ;;8.0;KERNEL;**378**;Jul 10, 1995;Build 59
+ ; Checking State file for NAME duplicates
+ N I1,LN,ERR,ERRTBL
+ S LN=1,ERR=0
+ S XIPM("B",LN)="Begin checking STATE(#5)...",LN=LN+1
+ S I1=0
+ F  S I1=$O(^DIC(5,I1)) Q:'I1  D
+ . I '$D(^DIC(5,I1,0)) Q  ;Bogus entry
+NC . D
+ .. ;Duplicate Name check
+ .. N VALUE,DIERR,Z,ZERR
+ .. S VALUE=$P(^DIC(5,I1,0),U)
+ .. I VALUE="" Q  ;No NAME
+ .. D FIND^DIC(5,"","@;.01;1;2","MPQX",VALUE,"","","I $P(^(0),U,1)=VALUE","","Z","ZERR")
+ .. I $D(DIERR) Q
+ .. I $P(Z("DILIST",0),U)<2 Q
+ .. N I2
+ .. S I2=0,ERRTBL=""
+ .. F  S I2=$O(Z("DILIST",I2)) Q:'I2  D
+ ... I $D(ERRTBL($P(Z("DILIST",I2,0),U))) Q  ; Already reported error
+ ... S XIPM("B",LN)="IEN: "_$P(Z("DILIST",I2,0),U)_", State: "_$P(Z("DILIST",I2,0),U,2)_", is a duplicate State NAME(#.01)"
+ ... S LN=LN+1,ERR=1
+ ... S ERRTBL($P(Z("DILIST",I2,0),U))="" ; Table IEN
+ ... Q
+ .. Q
+ . K ERRTBL S ERRTBL=""
+AC . D
+ .. ;Duplicate Abbreviation check
+ .. N VALUE,DIERR,Z,ZERR
+ .. S VALUE=$P(^DIC(5,I1,0),U,2)
+ .. I VALUE="" Q  ;No ABBREVIATION
+ .. D FIND^DIC(5,"","@;.01;1;2","MPQX",VALUE,"","","I $P(^(0),U,2)=VALUE","","Z","ZERR")
+ .. I $D(DIERR) Q
+ .. I $P(Z("DILIST",0),U)<2 Q
+ .. N I2
+ .. S I2=0
+ .. F  S I2=$O(Z("DILIST",I2)) Q:'I2  D
+ ... I $D(ERRTBL($P(Z("DILIST",I2,0),U))) Q  ; Already reported error
+ ... S XIPM("B",LN)="IEN: "_$P(Z("DILIST",I2,0),U)_", ABREV: "_$P(Z("DILIST",I2,0),U,3)_", is a duplicate State ABBREVIATION(#1)"
+ ... S LN=LN+1,ERR=1
+ ... S ERRTBL($P(Z("DILIST",I2,0),U))="" ; Table IEN
+ ... Q
+ .. Q
+ . K ERRTBL S ERRTBL=""
+VC . D
+ .. ;Duplicate VA State Code check
+ .. N VALUE,DIERR,Z,ZERR
+ .. S VALUE=$P(^DIC(5,I1,0),U,3)
+ .. I VALUE="" Q  ;No VA STATE CODE
+ .. D FIND^DIC(5,"","@;.01;1;2","MPQX",VALUE,"","","I $P(^(0),U,3)=VALUE","","Z","ZERR")
+ .. I $D(DIERR) Q
+ .. I $P(Z("DILIST",0),U)<2 Q
+ .. N I2
+ .. S I2=0
+ .. F  S I2=$O(Z("DILIST",I2)) Q:'I2  D
+ ... I $D(ERRTBL($P(Z("DILIST",I2,0),U))) Q  ; Already reported error
+ ... S XIPM("B",LN)="IEN: "_$P(Z("DILIST",I2,0),U)_", VA CODE: "_$P(Z("DILIST",I2,0),U,4)_", is a duplicate State VA STATE CODE(#2)"
+ ... S LN=LN+1,ERR=1=""
+ ... S ERRTBL($P(Z("DILIST",I2,0),U))="" ; Table IEN
+ ... Q
+ .. Q
+ . Q
+TC ; Now check for missing States against table
+ N TMP,I,DATA
+ F I=1:1 S DATA=$T(D5+I) Q:$P(DATA,";;",2)["EOD"  D
+ . S DATA=$P(DATA,";;",2)
+ . ;             NAME^ABBREVIATION^VA STATE CODE
+ . S TMP($P(DATA,U,2)_U_$P(DATA,U,3)_U_$P(DATA,U,1))=""
+ . Q
+ S I1=0
+ F  S I1=$O(^DIC(5,I1)) Q:'I1  D
+ . N X,X1
+ . I '$D(^DIC(5,I1,0))#2 Q
+ . S X=^DIC(5,I1,0)
+ . I '$P(X,U,5) Q  ;Not a recognized VHA/AAC State
+ . S X=$P(X,U,1,3)
+ . I $D(TMP(X)) S TMP(X)=1 Q
+ . S XIPM("B",LN)="IEN: "_I1_", NAME: "_$P(X,U,1)_", ABREV: "_$P(X,U,2)_", VA CODE: "_$P(X,U,3)_", is not a recognized VistA State",LN=LN+1,ERR=1
+ . Q
+ S I1=""
+ F  S I1=$O(TMP(I1)) Q:I1=""  I TMP(I1)="" D
+ . S XIPM("B",LN)="NAME: "_$P(I1,U,1)_", ABREV: "_$P(I1,U,2)_", VA CODE: "_$P(I1,U,3)_", State not found in STATE(#5) file",LN=LN+1,ERR=1
+ .Q
+EXIT I 'ERR S XIPM("B",LN)="No problems found."
+ Q
+ ;
+D5 ;VA STATE CODE^NAME^ABBREVIATION^AAC RECOGNIZED^US STATE OR POSSESSION
+ ;;01^ALABAMA^AL^1^1
+ ;;02^ALASKA^AK^1^1
+ ;;58^ALBERTA^AB^1^0
+ ;;60^AMERICAN SAMOA^AS^1^1
+ ;;04^ARIZONA^AZ^1^1
+ ;;05^ARKANSAS^AR^1^1
+ ;;87^ARMED FORCES AF,EU,ME,CA^AE^1^1
+ ;;85^ARMED FORCES AMER (EXC CANADA)^AA^1^1
+ ;;88^ARMED FORCES PACIFIC^AP^1^1
+ ;;59^BRITISH COLUMBIA^BC^1^0
+ ;;06^CALIFORNIA^CA^1^1
+ ;;08^COLORADO^CO^1^1
+ ;;09^CONNECTICUT^CT^1^1
+ ;;10^DELAWARE^DE^1^1
+ ;;11^DISTRICT OF COLUMBIA^DC^1^1
+ ;;93^EUROPE^EU^1^0
+ ;;64^FEDERATED STATES OF MICRONESIA^FM^1^1
+ ;;12^FLORIDA^FL^1^1
+ ;;90^FOREIGN COUNTRY^FG^1^0
+ ;;13^GEORGIA^GA^1^1
+ ;;66^GUAM^GU^1^1
+ ;;15^HAWAII^HI^1^1
+ ;;16^IDAHO^ID^1^1
+ ;;17^ILLINOIS^IL^1^1
+ ;;18^INDIANA^IN^1^1
+ ;;19^IOWA^IA^1^1
+ ;;20^KANSAS^KS^1^1
+ ;;21^KENTUCKY^KY^1^1
+ ;;22^LOUISIANA^LA^1^1
+ ;;23^MAINE^ME^1^1
+ ;;61^MANITOBA^MB^1^0
+ ;;68^MARSHALL ISLANDS^MH^1^1
+ ;;24^MARYLAND^MD^1^1
+ ;;25^MASSACHUSETTS^MA^1^1
+ ;;92^MEXICO^MX^1^0
+ ;;26^MICHIGAN^MI^1^1
+ ;;27^MINNESOTA^MN^1^1
+ ;;28^MISSISSIPPI^MS^1^1
+ ;;29^MISSOURI^MO^1^1
+ ;;30^MONTANA^MT^1^1
+ ;;31^NEBRASKA^NE^1^1
+ ;;32^NEVADA^NV^1^1
+ ;;62^NEW BRUNSWICK^NB^1^0
+ ;;33^NEW HAMPSHIRE^NH^1^1
+ ;;34^NEW JERSEY^NJ^1^1
+ ;;35^NEW MEXICO^NM^1^1
+ ;;36^NEW YORK^NY^1^1
+ ;;63^NEWFOUNDLAND^NF^1^0
+ ;;37^NORTH CAROLINA^NC^1^1
+ ;;38^NORTH DAKOTA^ND^1^1
+ ;;69^NORTHERN MARIANA ISLANDS^MP^1^1
+ ;;73^NORTHWEST TERRITORIES^NT^1^0
+ ;;65^NOVA SCOTIA^NS^1^0
+ ;;94^NUNAVUT PROVINCE^NU^1^0
+ ;;39^OHIO^OH^1^1
+ ;;40^OKLAHOMA^OK^1^1
+ ;;75^ONTARIO^ON^1^0
+ ;;41^OREGON^OR^1^1
+ ;;70^PALAU^PW^1^0
+ ;;42^PENNSYLVANIA^PA^1^1
+ ;;96^PHILIPPINES^PH^1^0
+ ;;77^PRINCE EDWARD ISLAND^PE^1^0
+ ;;72^PUERTO RICO^PR^1^1
+ ;;80^QUEBEC^QC^1^0
+ ;;44^RHODE ISLAND^RI^1^1
+ ;;82^SASKATCHEWAN^SK^1^0
+ ;;45^SOUTH CAROLINA^SC^1^1
+ ;;46^SOUTH DAKOTA^SD^1^1
+ ;;47^TENNESSEE^TN^1^1
+ ;;48^TEXAS^TX^1^1
+ ;;74^U.S. MINOR OUTLYING ISLANDS^UM^1^1
+ ;;49^UTAH^UT^1^1
+ ;;50^VERMONT^VT^1^1
+ ;;78^VIRGIN ISLANDS^VI^1^1
+ ;;51^VIRGINIA^VA^1^1
+ ;;53^WASHINGTON^WA^1^1
+ ;;54^WEST VIRGINIA^WV^1^1
+ ;;55^WISCONSIN^WI^1^1
+ ;;56^WYOMING^WY^1^1
+ ;;83^YUKON TERRITORY^YT^1^0
+ ;;99999^EOD^EOD^EOD^EOD

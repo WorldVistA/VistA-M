@@ -1,0 +1,12 @@
+YSXRAW2 ; COMPILED XREF FOR FILE #627 ; 10/15/04
+ ; 
+ S DIKZK=1
+ S DIKZ(0)=$G(^DIC(627,DA,0))
+ S X=$P(DIKZ(0),U,1)
+ I X'="" S ^DIC(627,"B",$E(X,1,30),DA)=""
+ S X=$P(DIKZ(0),U,2)
+ I X'="" S ^DIC(627,"D",$E(X,1,30),DA)=""
+ S DIKZ(2)=$G(^DIC(627,DA,2))
+ S X=$P(DIKZ(2),U,1)
+ I X'="" X ^DD(627,3,1,1,1)
+END Q

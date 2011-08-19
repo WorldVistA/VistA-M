@@ -1,0 +1,84 @@
+PSJADT ;BIR/CML3,MLM-AUTO DC/HOLD ON PATIENT ADT ;24 Aug 98 / 2:01 PM
+ ;;5.0; INPATIENT MEDICATIONS ;**3,30,51,50,83**;16 DEC 97
+ ;
+ ; Reference to ^PS(55 is supported by DBIA# 2191.
+ ; Reference to ^PS(59.7 is supported by DBIA# 2181.
+ ; Reference to ^DIC(42 is supported by DBIA# 1377.
+ ; Reference to ^UTILITY("DGPM" is supported by DBIA# 1181.
+ ;
+ W:'$D(PSJQUIET)&'$D(DGQUIET) !!,"...Inpatient Medications check..."
+ N PSJDEL,PSJSYSU,PSJSYSL,PSJSYSP,PSJSYSP0,PSJSYSW,PSJSYSW0,VA200,VAIN,VAIP,X D ENCV^PSGSETU
+ K PSJADTWD S PSGP=DFN,(PSJCF,PSJAM,PSJDM,PSJTM,PSJTMT,PSJFW)=0,PSJPIND=$G(^PS(55,PSGP,5.1)),VA200=1,(PSJNOO,P("NAT"))="A"
+ ;Added 1 for Admissions that are deleted to the loop in PSJDEL
+ ;Q:$D(PSJQUIET)  F PSJDEL=2,3 I $G(^UTILITY("DGPM",$J,PSJDEL,DGPMDA,"P")),'$G(^("A")) D ENDEL^PSJADT1(DFN,DGPMP,$P($G(^UTILITY("DGPM",$J,+PSJDEL,"P")),U,18),PSJDEL) S PSJCF=1 Q       
+ Q:$D(PSJQUIET)  F PSJDEL=1,2,3,6 I $G(^UTILITY("DGPM",$J,PSJDEL,DGPMDA,"P")),'$G(^("A")) D ENDEL^PSJADT1(DFN,DGPMP,$P($G(^UTILITY("DGPM",$J,+PSJDEL,"P")),U,18),PSJDEL) S PSJCF=1 Q
+ D:$G(PSJDEL)=2!$G(PSJDEL)=6 ENUW^PSJADT1 G:PSJCF DONE Q:$D(PSJQUIET)
+ S Y=3 F Q=0:0 S Q=$O(^UTILITY("DGPM",$J,3,Q)) Q:'Q  I $G(^(Q,"A")),$D(^("P")) S PSJDD=^("A") S X=+PSJDD D LC I X S PSJDM=Q,PSJDCA=$P(PSJDD,"^",14),PSJDD=+PSJDD Q
+ S Y=1 F Q=0:0 S Q=$O(^UTILITY("DGPM",$J,1,Q)) Q:'Q  I $G(^(Q,"A")),$D(^("P")),'^("P") S X=+^("A") D LC I X S PSJAM=Q Q
+ I PSJDM S PSJDF=0 D DIS
+ I PSJAM D ADM
+ I PSJCF G DONE
+ ;
+TRN ;
+ S Y=2,Q=0
+ F  S Q=$O(^UTILITY("DGPM",$J,2,Q)) Q:'Q  I $G(^(Q,"A")),$D(^("P")),'^("P") S X=+^("A") D LC I X S PSJTM=Q,$P(PSJPIND,"^",4)=+^UTILITY("DGPM",$J,2,Q,"A"),PSJTMT=$P(^UTILITY("DGPM",$J,2,Q,"A"),"^",18) Q
+ G:'PSJTM DONE I $S('PSJTMT:1,PSJTMT<5:0,PSJTMT>26:1,1:PSJTMT<22) G DONE
+ K VAIP S VAIP("D")="L" D IN5^VADPT S PSJFW=+VAIP(15,4),PSJPAD=+VAIP(13,1)
+ ;Transfer to authorized or unauthorized absence.
+ I PSJTMT<4 S PSGOEHA=$P($G(^PS(59.7,1,22,PSJFW,0)),U,PSJTMT+1) G:PSGOEHA'=1&(PSGOEHA'=2) DONE D  G DONE
+ .I PSGOEHA=1 D ENHOLD^PSJADT1(1,PSJTMT,PSJPAD,$S(PSJTMT=3:8580,1:8570)) Q
+ .S PSGALO=$S(PSJTMT=3:1090,1:1060) D ^PSJADT0
+ ;Return from UA or AA
+ I PSJTMT>21 G:$P(PSJPIND,"^",7)'=2 DONE D  G DONE
+ .S $P(PSJPIND,"^",7)="",$P(PSJPIND,"^",10)="",PSGALO=$S(PSJTMT=22!(PSJTMT=26):8080,1:8070),PSGOEHA=0 D ENHOLD^PSJADT1(0,$S(PSGALO=8080:3,1:2),PSJPAD,PSGALO)
+ G:PSJTMT'=4 DONE S PSJADTWD=PSJFW D INP^VADPT I $D(^PS(59.7,1,22,"AFT",PSJFW,+VAIN(4))) S PSGALO=1080 D ENDC^PSJADT0 G DONE
+ S FS=$S($D(^DIC(42,PSJFW,0)):$P(^(0),"^",3),1:""),TS=$S($D(^DIC(42,+VAIN(4),0)):$P(^(0),"^",3),1:"") I FS]"",TS]"",$D(^PS(59.7,1,23,"AFT",FS,TS)) S PSGALO=1070 D ENDC^PSJADT0 G DONE
+ D ENUW^PSJADT1
+ ;
+DONE ;
+ I '$D(^PS(55,PSGP,0)) D ENSET0^PSGNE3(PSGP) S $P(^PS(55,PSGP,5.1),"^",11)=2 ; Mark as converted for POE
+ S ^PS(55,PSGP,5.1)=PSJPIND,PSJNKF=1
+ K AM,DA,DIE,DIS,DR,FS,ON,ORIFN,PSGAL,PSGALO,PSGALR,PSGOEHA,PSGTOL,PSGTOO,PSGUOW,PSIVLN,PSIVNST,PSIVREA,PSIVRES,PSJADTWD,PSJAM,PSJCF,PSJDA,PSJDD,PSJDCA,PSJDF,PSJDM,PSJFW,PSJIVDCF,PSJIVON,PSJPAD,PSJPDD,PSJPIND,PSJPWD,PSJPWDN
+ K PSJNOO,P("NAT"),PSJS,PSJTM,PSJTMT,N,P,PS,Q1,Q2,RZ,ST,TS,TSCN,Z D ENKV^PSGSETU W:'$D(PSJQUIET)&'$D(DGQUIET) ".done..." Q
+ ;
+DIS ; discharge
+ K VAIP S VAIP("E")=PSJDCA D IN5^VADPT S PSJPAD=+VAIP(13,1),(PSJADTWD,PSJFW)=+VAIP(17,4),PSGALO=$S(PSJDF:1010,1:1030) D ENDC^PSJADT0 S $P(PSJPIND,"^",8)=1,PSJCF=1
+ Q
+ ;
+ADM ; admit
+ ;   ************  old way  **************************
+ ;S $P(PSJPIND,"^",3)=+^UTILITY("DGPM",$J,1,PSJAM,"A"),$P(PSJPIND,"^",4)="",$P(PSJPIND,"^",8)="" Q:PSJCF
+ ;S Q=$O(^DGPM("ATID3",DFN,0)) S:Q Q=$O(^(Q,0)) K VAIP S:Q VAIP("E")=Q S:'Q VAIP("D")="LAST" D IN5^VADPT S PSJPAD=+VAIP(13,1),PSJFW=+VAIP(17,4),PSJADTWD=.5 S PSGALO=1050 D ENDC^PSJADT0 S PSJCF=1
+ ;   ************  new way  **************************
+ S $P(PSJPIND,"^",3)=+^UTILITY("DGPM",$J,1,PSJAM,"A"),$P(PSJPIND,"^",4)="",$P(PSJPIND,"^",8)="" Q:PSJCF
+ D IN5^VADPT S VAIP("E")=VAIP(14) S VAIP("D")="LAST" D IN5^VADPT S PSJPAD=+VAIP(13,1),PSJFW=+VAIP(17,4),PSJADTWD=.5 S PSGALO=1050 D ENDC^PSJADT0 S PSJCF=1
+ Q
+ ;
+LC ; is movement the latest one of its type?
+ ;S X=$E(9999999.9999999-X,1,14),Z=$E($O(^DGPM("ATID"_Y,PSGP,0)),1,14) I Z,X>Z S X=0
+ ; *****************************************************************
+ ; ** NEW WAY **
+ N PSJRSB S PSJRSB("Y")=Y,PSJRSB("X")=X
+ N VAIP S:Y=3 VAIP("D")="L" D IN5^VADPT S Z=+VAIP(3)
+ S X=PSJRSB("X") ; set X again, may have changed during ^VADPT
+ I Z,X<Z S X=0 ; change to x<z because dates are not inverted now
+ S Y=PSJRSB("Y") ; set Y again, may have changed during ^VADPT
+ ; *****************************************************************
+ ; begin PAL-0402-61286
+ I Y=3,$S('^UTILITY("DGPM",$J,3,Q,"P"):0,X>($G(PSGDT)):1,$P(PSJDD,"^",18)=$P(^("P"),"^",18):0,$P(PSJDD,"^",18)=12:0,1:$P(PSJDD,"^",18)'=38) S X=0
+ ;I Y=3,$S('^UTILITY("DGPM",$J,3,Q,"P"):0,$P(PSJDD,"^",18)=$P(^("P"),"^",18):0,$P(PSJDD,"^",18)=12:0,1:$P(PSJDD,"^",18)'=38) S X=0
+ ; end PAL-0402-61286
+ Q
+ ;
+END ; he be dead
+ S DFN=DA N D,DA,DB,DC,DE,DG,DH,DI,DIC,DIE,DIG,DIH,DIK,DIR,DIQ,DIU,DIV,DIW,DK,DL,DM,DP,DR,DQ,DU,DV,DW,D0,D1,D2,MR,NX,VAIN,VAIP
+ ;Naked reference below refers to ^DGPM("ATID1",PSGP,9999999.9999999-X)
+ ; changed to remove ref to ^DGPM
+ ; ** OLD WAY **
+ ;S PSJQUIET=1 D PSJADT S PSJDD=X,PSJDCA=$O(^(+$O(^DGPM("ATID1",PSGP,9999999.9999999-X)),0)),PSJDF=1
+ ; ******************************************************************
+ ; ** NEW WAY **
+ S PSJQUIET=1 D PSJADT S PSJDD=X N VAIP S VAIP("D")=$P(X,".") D IN5^VADPT
+ S PSJDCA=$G(VAIP(13)),PSJDF=1
+ ; ******************************************************************
+ D INP^VADPT,DIS,DONE K PSJQUIET Q

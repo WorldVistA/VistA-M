@@ -1,0 +1,51 @@
+DIET ;SFISC/XAK-DISPLAY INPUT TEMPLATE    ALSO DOES AUDITING! ;22MAR2006
+ ;;22.0;VA FileMan;**69,49,104,129,147**;Mar 30, 1999
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ N DICMX
+ I '$D(^DIE(D0,0)) G EXIT
+ S DICMX="W X,!"
+EN ;
+ N DI,DIET,DIETS,D
+ S DIET=D0 D GET^DIETED("DIETS")
+ F D=0:0 S D=$O(DIETS(D)) Q:'D  S X=DIETS(D) X DICMX Q:'$D(D)
+EXIT S X="" Q
+ ;
+ ;
+ ;
+AUD N DP,DG,DPS,DIEX,DIIX,DIANUM ; DI*22*49
+ S DIIX="3^.01^A",DP=+DO(2) D AUDIT:DP>0 Q
+AUDIT ;
+ N C,DIEDA,DIEF,%T,%F,%D,%,Y
+ I $D(^DD(DP,+$P(DIIX,U,2),"AX")) X ^("AX") Q:'$T
+ K % S DIEX=X D @+DIIX
+ K DIIX,DPS,DIEX
+ Q
+3 ;
+ I $D(DG),$D(DIANUM($P(DIIX,U,2))) S Y=X,(DIEX(1),C)=$P(^DD(DP,+$P(DIIX,U,2),0),U,2) D Y^DIQ S @DIANUM($P(DIIX,U,2))=Y K DIANUM($P(DIIX,U,2)) G I
+2 ;
+ S:$D(DP(1)) DPS=DP(1) S DIEDA="",DIEF="",%=1,DP(1)=DP,%F=+DP,X=DA
+ F C=1:1 Q:'$D(^DD(DP(1),0,"UP"))  S %F=^("UP"),%=$O(^DD(%F,"SB",DP(1),0)) S:%="" %=-1 S DIEDA=DA(C)_","_DIEDA,DIEF=%_","_DIEF,DP(1)=%F
+ D ADD I $D(DG),+DIIX=2 S DIANUM($P(DIIX,U,2))="^DIA("_%F_","_+Y_",3)"
+ S (DIEX(1),C)=$P(^DD(DP,+$P(DIIX,U,2),0),U,2),Y=DIEX D Y^DIQ
+ S ^DIA(%F,"B",DIEDA_DA,%D)="",X=DIEX S:$D(DPS) DP(1)=DPS
+ S ^DIA(%F,%D,0)=DIEDA_DA_U_%T_U_DIEF_+$P(DIIX,U,2)_U_DUZ_U_$P(DIIX,U,3),^(+DIIX)=Y
+I I (DIEX(1)["D")!(DIEX(1)["P")!(DIEX(1)["V")!(DIEX(1)["S") S ^(DIIX+.1)=X_U_DIEX(1)
+ Q
+ ;
+ACCESSED(%F,REF) ;WILL FLAG ENTRY 'REF' IN FILE '%F' AS BEING ACCESSED BY CURRENT USER, CURRENT TIME, CURRENT OPTION
+ N Y,X,%T,%D
+ D:'$G(DT) DT^DICRW
+ Q:'%F!'REF  S %F=+%F,(REF,X)=+REF Q:'$D(^DIC(%F))
+ D ADD ;COMES BACK WITH %T AND Y--THE AUDIT REF
+ S ^DIA(%F,Y,0)=REF_U_%T_U_.01_U_DUZ_U_U_"i"
+ S ^DIA(%F,"B",REF,Y)=""
+ Q
+ ;
+ADD S Y=$O(^DIA(%F,"A"),-1) I 'Y S ^DIA(%F,0)=$P(^DIC(%F,0),U)_" AUDIT^1.1I"
+ F Y=Y+1:1 I '$D(^(Y)) D LOCK^DILF("^DIA(%F,Y)") I  Q:'$D(^(Y))  L -^DIA(%F,Y) ;**PATCH 147
+ S ^(Y,0)=X L -^DIA(%F,Y)
+ S %T=$G(XQY),%D=$S($D(XQORNOD)#2:XQORNOD,$D(HLORNOD)#2:HLORNOD,1:"") I %T!%D S ^DIA(%F,Y,4.1)=%T_U_%D
+ S $P(^(0),U,3,4)=Y_U_($P(^DIA(%F,0),U,4)+1)
+TIME S %D=Y,%T=$$HTFM^DILIBF($H)
+ S ^DIA(%F,"C",%T,Y)="",^DIA(%F,"D",DUZ,Y)=""
+ Q

@@ -1,0 +1,31 @@
+VAQEXT05 ;ALB/JFP - TIME/OCCURRENCE LIMITS;20-MAY-93
+ ;;1.5;PATIENT DATA EXCHANGE;;NOV 17, 1993
+AUTO(TRAN) ;AUTOMATIC PROCESSING OF REQUESTS
+ ;INPUT  : TRAN - Pointer to VAQ - TRANSACTION file
+ ;OUTPUT : 1 - Request processed
+ ;         -1^Error_Text - Error
+ ;
+ ;       Note: The array MAXARR and the variable MAXARR must be kilt
+ ;             by the programmer.
+ ;
+ ;CHECK INPUT
+ S TRAN=+$G(TRAN)
+ Q:(('TRAN)!('$D(^VAT(394.61,TRAN)))) "-1^Valid transaction not passed"
+ ;DECLARE VARIABLES
+ N TMP,AUTOPROC,LIMITARR
+ S LIMITARR="^TMP(""VAQ-AUTOCHK"",""REQLIMITS"","_$J_")"
+ S MAXARR="^TMP(""VAQ-AUTOCHK"",""OVERLIMITS"","_$J_")"
+ S AUTOPROC="1^Automatic Process"
+ K @LIMITARR,@MAXARR
+ ;
+ S TMP=$$BLDSEGS^VAQADM22(TRAN,LIMITARR)
+ ;CHECK TIME & OCCURRENCE LIMITS OF REQUESTED SEGMENTS
+ I (TMP) D
+ .S TMP=$$MAXCHCK^VAQADM23(LIMITARR,MAXARR)
+ .;ALL LIMITS OK
+ .Q:('TMP)
+ .;SOME LIMITS DIDN'T PASS
+ .S AUTOPROC="-20^Maximum limits exceeded"
+ K @LIMITARR
+ Q AUTOPROC
+ ;

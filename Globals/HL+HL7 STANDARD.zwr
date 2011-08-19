@@ -1,0 +1,8 @@
+HL7 STANDARD
+ZWR
+^HL(771.8,0)="HL7 STANDARD^771.8^1^1"
+^HL(771.8,1,0)="HEALTH LEVEL SEVEN"
+^HL(771.8,1,1,0)="^^2^2^2940722^"
+^HL(771.8,1,1,1,0)="Health Level Seven (HL7) is a standard protocol used to exchange clinical,"
+^HL(771.8,1,1,2,0)="text type data between applications."
+^HL(771.8,"B","HEALTH LEVEL SEVEN",1)=""

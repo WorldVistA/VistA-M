@@ -1,0 +1,61 @@
+SOWKRF ;B'HAM ISC/SAB-Routine to print Referral report ; 02 Mar 94 / 9:50 AM [ 02/27/97  9:38 AM ]
+ ;;3.0; Social Work ;**17,25,31,35,48,53**;27 Apr 93
+ S:$G(SOWKAB)'="ALL" SOWKFD="" G:SOWKFD]"" ENQ
+BEG W ! S %DT="AEXP",%DT("A")="ALL CASES STARTING FROM: " D ^%DT G:"^"[X CLOS G:Y'>0 BEG S SOWKFD=Y
+EN S %DT("A")="ALL CASES ENDING: " D ^%DT G:"^"[X CLOS G:Y'>0 EN S SOWKFB=Y
+ F L=0:0 W !,"Do you want Complete Service" S %=2 D YN^DICN Q:%  I %Y["?" D YN^SOWKHELP
+ I %=1 S SWA=1,SWB=0 G ACM
+ F L=0:0 W !,"Do you want report by Supervisor " S %=2 D YN^DICN Q:%  I %Y["?" D YN^SOWKHELP
+ I %=1 S SWB=1,SWA=0
+ G:%=2 SWW G:%=-1 CLOS S DIC="^VA(200,",DIC(0)="AEQ",DIC("A")="Enter Supervisor's last name: ",D="B",DIC("S")="I $D(^VA(200,""ASWC"",+Y))"
+ D IX^DIC G:"^"[X CLOS S SWZ=+Y K DIC,D G:Y'>0 CLOS G AMD
+SWW S DIC("S")="I $D(^VA(200,+Y,654)),$P(^VA(200,+Y,654),""^"")",DIC="^VA(200,",DIC(0)="AEQ",DIC("A")="Enter Social Worker's last name: "
+ D ^DIC G:"^"[X CLOS S SWZ=+Y K DIC G:Y'>0 CLOS S (SWA,SWB)=0 G ACB
+ ;CALCULATES TOTAL
+ACM D DEV I $D(ZTSK)!($D(OUT))!(POP) K ZTSK G CLOS
+ENQ Q:"^"[X
+EN1 D CLE G:SWB ENQ1 G:'SWA&'SWB ENQ2
+ F I=0:0 S I=$O(^SOWK(650,I)) Q:'I  S H=^SOWK(650,I,0) F C=0:0 S C=$O(^SOWK(650,I,1,C)) Q:'C  I $P(H,"^",18)'<SOWKFD,$P(H,"^",18)'>SOWKFB S W=$P(^SOWK(650,I,1,C,0),"^") D RES
+CA ;PRINT TOTALS
+ S:US PT=(US/US)*100 S:NU NPT=(NU/NU)*100
+ F O=0:0 S O=$O(^SOWK(653,O)) Q:'O  S:US TP(O)=(US(O)/US)*100 S:NU NA(O)=(NU(O)/NU)*100
+ U IO W:$Y @IOF W $S(SWA:"COMPLETE SERVICE",SWB:"SUPERVISOR: "_$P(^VA(200,SWZ,0),"^"),1:"SOCIAL WORKER: "_$P(^VA(200,SWZ,0),"^"))
+ W !,$E(SOWKFD,4,5)_"/"_$E(SOWKFD,6,7)_"/"_$E(SOWKFD,2,3)_" TO "_$E(SOWKFB,4,5)_"/"_$E(SOWKFB,6,7)_"/"_$E(SOWKFB,2,3),?30,"RESOURCES/REFERRALS",!!,?43,"UNABLE",!,?45,"TO"
+ W !?25,"USED",?34,"PERCENT",?43,"ACCESS",?52,"PERCENT"
+ F I=0:0 S I=$O(^SOWK(653,I)) Q:'I!($G(OUT1)=1)  D CHK Q:$G(OUT1)=1  W !,$E($P(^SOWK(653,I,0),"^"),1,24),?25,$J(US(I),3,0),?36,$J(TP(I),3,0),?43,$J(NU(I),3,0),?54,$J(NA(I),3,0)
+ G:$G(OUT1)=1 CLOS
+ W !,"TOTALS",?25,$J(US,3,0),?36,$J(PT,3,0),?43,$J(NU,3,0),?54,$J(NPT,3,0),!
+CLOS I $E(IOST)["C",('$G(OUT1)) R !,"Press <RETURN> to continue: ",SWXX:DTIME K SWXX W @IOF
+ I $G(SOWKAB)'="ALL" W:$E(IOST)'["C" @IOF D ^%ZISC K SOWKAB
+ K US,IOP,%,%Y,L,OUT1,SW,NU,H,NPT,PT,O,C,D,DIC,Y,NA,TP,POP,%DT,G,I,W D:$D(ZTSK) KILL^%ZTLOAD
+ Q
+AMD D DEV I $D(ZTSK)!($D(OUT))!(POP) K ZTSK G CLOS
+ENQ1 D CLE
+ F I=0:0 S I=$O(^SOWK(650,I)) Q:'I  D RF
+ G CA
+ACB D DEV I $D(ZTSK)!($D(OUT))!(POP) K ZTSK G CLOS
+ENQ2 D CLE
+ F I=0:0 S I=$O(^SOWK(650,I)) Q:'I  S H=^SOWK(650,I,0) F C=0:0 S C=$O(^SOWK(650,I,1,C)) Q:'C  I $P(H,"^",3)=SWZ,$P(H,"^",18)'<SOWKFD,$P(H,"^",18)'>SOWKFB S W=$P(^SOWK(650,I,1,C,0),"^") D RES
+ G CA
+ Q
+DEV ;
+ S OUT1=0
+ K ZTSK,OUT,%ZIS,IOP S SOWKION=ION,%ZIS="QM",%ZIS("B")="" D ^%ZIS K %ZIS I POP S IOP=SOWKION D ^%ZIS K IOP,SOWKION S POP=1 Q
+ K SOWKION
+ I $D(IO("Q")) S ZTRTN=$S(SWA:"EN1^SOWKRF",SWB:"ENQ1^SOWKRF",'SWA&'SWB:"ENQ2^SOWKRF",1:"EN1^SOWKRF") F G="SWZ","SOWKAB","SOWKFD","SOWKFB","SWA","SWB","X","OUT1" S:$D(@G) ZTSAVE(G)=""
+ I  K IO("Q") D ^%ZTLOAD I '$D(ZTSK) S OUT=1 K G,SWZ,SOWKFD,SOWKFB,SWA,SWB,X Q
+ I $D(ZTSK) K G,SWZ,SOWKFD,SOWKFB,SWA,SWB,X W !,"Task Queued to Print !!",!
+ Q
+CLE S (PT,NPT,US,NU)=0
+ F I=0:0 S I=$O(^SOWK(653,I)) Q:'I  S (NA(I),TP(I),US(I),NU(I))=0
+ Q
+RF S H=^SOWK(650,I,0),SW=$P(H,"^",3) F C=0:0 S C=$O(^SOWK(650,I,1,C)) Q:'C  I $P(H,"^",18)'<SOWKFD,$P(H,"^",18)'>SOWKFB,$P(^VA(200,SW,654),"^",2)=SWZ S W=$P(^SOWK(650,I,1,C,0),"^") D RES
+ Q
+RES I $P(^SOWK(650,I,1,C,0),"^",3) S US(W)=US(W)+1,US=US+1 Q
+ S NU(W)=NU(W)+1,NU=NU+1
+ Q
+CHK ;checks for the end of page
+ Q:($Y+5)'>IOSL
+ N SWXX
+ I $E(IOST)["C" R !,"Press <RETURN> to continue: ",SWXX:DTIME I SWXX["^" S OUT1=1
+ W @IOF Q

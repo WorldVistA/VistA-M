@@ -1,0 +1,38 @@
+PRCPSMSP ;WISC/RFJ-isms purchase order transaction                  ;24 Oct 91
+ ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ D ^PRCPUSEL Q:'$G(PRCP("I"))
+ I PRCP("DPTYPE")'="W" W !,"THIS OPTION SHOULD ONLY BE USED BY THE WAREHOUSE INVENTORY POINT." Q
+ I $$ISMSFLAG^PRCPUX2(PRC("SITE"))'=2 W !,"YOU NEED TO TURN THE ISMS SWITCH 'ON' BEFORE YOU CAN USE THIS OPTION." Q
+ N %,%I,COUNT,D,DA,DIC,PARTLDA,PODA,PRCPFLAG,PRCPWAIT,PURORDER,TOTAL,X,Y
+ S IOP="HOME" D ^%ZIS K IOP,^TMP($J,"PO"),^TMP($J,"STRING")
+SELECTPO W !!,"Select PURCHASE ORDER: " R X:DTIME S:'$T X="^" G:X["^"!(X="") Q I X["?" D  G SELECTPO
+ .   S D="G",DIC="^PRC(442,",DIC(0)="QECM",DIC("W")="D DICW^PRCPPOU1",DIC("S")="I $D(^PRC(442,""G"",PRCP(""I""),+Y)) S %=$P($G(^PRCD(442.3,+$G(^PRC(442,+Y,7)),0)),U,2) I %>24,%<42" D IX^DIC K DIC
+ S DIC="^PRC(442,",DIC(0)="EQMZ",DIC("S")="I $D(^PRC(442,""G"",PRCP(""I""),+Y)) S %=$P($G(^PRCD(442.3,+$G(^PRC(442,+Y,7)),0)),U,2) I %>24,%<42" D ^DIC K DIC G:Y<0 SELECTPO S PODA=+Y,PURORDER=$P($P(^PRC(442,PODA,0),"^"),"-",2)
+ S PRCPWAIT=1 S:'$D(^PRC(442,PODA,2,0)) ^(0)="^442.11D^^" K DIC W !!,"To select ALL line partial dates, press RETURN."
+ F  S DIC="^PRC(442,"_PODA_",11,",DA(1)=PODA,DIC(0)="QEAMZ",DIC("S")="I $P(^(0),U,16)'=""""" D ^DIC K DIC S DA=+Y D:DA>0  Q:DA'>0
+ .   S PARTLDA=DA W !,"   ...creating code sheets" K ^TMP($J,"STRING") D DQ^PRCPSMPR
+ .   I $O(^TMP($J,"STRING",0))="" W "  NO code sheets created!" Q
+ .   K ^TMP($J,"PO",PARTLDA) S (COUNT,TOTAL)=0 F  S COUNT=$O(^TMP($J,"STRING",COUNT)) Q:'COUNT  S ^TMP($J,"PO",PARTLDA,COUNT)=^TMP($J,"STRING",COUNT),TOTAL=TOTAL+1 W !?6,^(COUNT)
+ .   W !,"TOTAL CODE SHEETS CREATED: ",+TOTAL,!
+ I '$O(^TMP($J,"PO",0)) S XP="Do you want to select ALL partial dates",XH="Enter 'YES' to select ALL partial dates, 'NO' or '^' to exit." W ! I $$YN^PRCPUYN(1)=1 D
+ .   W @IOF S DA=0 F  S DA=$O(^PRC(442,PODA,11,DA)) Q:'DA!($D(PRCPFLAG))  D
+ .   .   S PARTLDA=DA W !!,"PARTIAL: ",DA,?15," ...creating code sheets" K ^TMP($J,"STRING") D DQ^PRCPSMPR
+ .   .   I $O(^TMP($J,"STRING",0))="" W "  NO code sheets created!" Q
+ .   .   K ^TMP($J,"PO",PARTLDA) S (COUNT,TOTAL)=0 F  S COUNT=$O(^TMP($J,"STRING",COUNT)) Q:'COUNT  S ^TMP($J,"PO",PARTLDA,COUNT)=^TMP($J,"STRING",COUNT),TOTAL=TOTAL+1 W !?6,^(COUNT)
+ .   .   W !,"TOTAL CODE SHEETS CREATED: ",+TOTAL,!
+ .   .   I $Y>(IOSL-5) D P^PRCPUREP W @IOF
+ .   I '$D(PRCPFLAG) D R^PRCPUREP
+ I $D(PRCPFLAG) D Q Q
+ I '$O(^TMP($J,"PO",0)) W !,"NO PARTIAL DATES SELECTED." D Q Q
+ K ^TMP($J,"STRING")
+ W @IOF,!,"YOU HAVE SELECTED THE FOLLOWING PARTIAL DATES TO UPDATE ISMS PURCHASES:" S DA=0,COUNT=1 F  S DA=$O(^TMP($J,"PO",DA)) Q:'DA!($D(PRCPFLAG))  D
+ .   S %=$G(^PRC(442,PODA,11,DA,0)),Y=$P(%,"^") W !,"PARTIAL ",DA,?15,"DATE: ",$E(Y,4,5),"-",$E(Y,6,7),"-",$E(Y,2,3),?40,$S($P(%,"^",9)="F":"FINAL",1:"PARTIAL")
+ .   S %=0 F  S %=$O(^TMP($J,"PO",DA,%)) Q:'%  S ^TMP($J,"STRING",COUNT)=^TMP($J,"PO",DA,%),COUNT=COUNT+1
+ .   I $Y>(IOSL-5) D P^PRCPUREP W @IOF
+ I $D(PRCPFLAG) D Q Q
+ I '$O(^TMP($J,"STRING",0)) W !!,"NO CODE SHEETS CREATED." D Q Q
+ S XP="*** ARE YOU SURE YOU WANT TO CREATE THE ISMS TRANSACTION",XP(1)="    AND TRANSMIT IT TO AUSTIN",XH="ENTER 'YES' TO CREATE THE ISMS TRANSACTION AND TRANSMIT IT TO AUSTIN",XH(1)="ENTER 'NO' OR '^' TO EXIT."
+ W !! I $$YN^PRCPUYN(1)'=1 D Q Q
+ D CODESHT^PRCPSMGO(PRC("SITE"),"REP",PURORDER)
+Q K ^TMP($J,"PO"),^TMP($J,"STRING") Q

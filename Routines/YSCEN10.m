@@ -1,0 +1,56 @@
+YSCEN10 ;DALISC/LJA - MH Census File Utility(s) ;08/02/93 17:01
+ ;;5.01;MENTAL HEALTH;;Dec 30, 1994
+ ;
+CKWT ;  Check that MH Census entry's Team's Ward Location matches
+ ;  that entry's Ward...
+ ;  YSCENDA -- req
+ S YSCENOK=0
+ QUIT:$G(YSCENDA)'>0  ;->
+ N YSCENDO,YSCENDTA,YSCENI,YSCENLP,YSCENPB,YSCENRNO,YSCENX,YSCENWNO
+ S YSCENRT=0 ;# Rotating Teams
+ K DIQ
+ S DIC=618,DA=+YSCENDA,DIQ="YSCENDTA",DIQ(0)="IE",DR=".01;2.8:3.4"
+ D EN^DIQ1
+ ;
+SETVAR ;  Ward information
+ S YSCENWNO=$G(YSCENDTA(618,+YSCENDA,.01,"I"))_U_$G(YSCENDTA(618,+YSCENDA,.01,"E"))
+ ;
+ ;  Default Team information
+ S YSCENDNO=$G(YSCENDTA(618,+YSCENDA,2.8,"I"))_U_$G(YSCENDTA(618,+YSCENDA,2.8,"E"))
+ ;
+ ;  Team Rotation 1
+ S YSCENX=$G(YSCENDTA(618,+YSCENDA,3,"I"))_U_$G(YSCENDTA(618,+YSCENDA,3,"E"))
+ I +YSCENX S YSCENRNO(1)=YSCENX
+ ;
+ ;  Team Rotation 2
+ S YSCENX=$G(YSCENDTA(618,+YSCENDA,3.1,"I"))_U_$G(YSCENDTA(618,+YSCENDA,.01,"E"))
+ I +YSCENX S YSCENRNO(2)=YSCENX
+ ;
+ ;  Team Rotation 3
+ S YSCENX=$G(YSCENDTA(618,+YSCENDA,3.2,"I"))_U_$G(YSCENDTA(618,+YSCENDA,3.2,"E"))
+ I +YSCENX S YSCENRNO(3)=YSCENX
+ ;
+ ;  Team Rotation 4
+ S YSCENX=$G(YSCENDTA(618,+YSCENDA,3.3,"I"))_U_$G(YSCENDTA(618,+YSCENDA,3.3,"E"))
+ I +YSCENX S YSCENRNO(4)=YSCENX
+ ;
+ ;  Team Rotation 5
+ S YSCENX=$G(YSCENDTA(618,+YSCENDA,3.4,"I"))_U_$G(YSCENDTA(618,+YSCENDA,3.4,"E"))
+ I +YSCENX S YSCENRNO(5)=YSCENX
+ ;
+LOOPCK ;  Loop and check
+ S YSCENLP=1 ;Assume no problems exist
+ K YSCENPB
+ I +YSCENWNO'=+YSCENDNO S YSCENPB(1)="" ; Default team check
+ ;
+ ;  Loop thru Team Rotations...
+ S YSCENI=0
+ F  S YSCENI=$O(YSCENRNO(YSCENI)) QUIT:+YSCENI'>0  D
+ .  I +YSCENWNO'=+YSCENRNO(+YSCENI) S YSCENPB(+YSCENI)=""
+ ;
+CHECK ;  Check results
+ I '$D(YSCENPB) S YSCENOK=1 QUIT  ;->
+ ;
+ QUIT
+ ;
+EOR ;YSCEN10 - MH Census File Utility(s) ;8/2/93 15:30

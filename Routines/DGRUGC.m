@@ -1,0 +1,55 @@
+DGRUGC ;ALB/BOK/MLI - CREATE A PATIENT ASSESSMENT RECORD ; 27 OCT 86
+ ;;5.3;Registration;**7,89,99**;Aug 13, 1993
+EN D Q
+EN1 K DIC S DIC(0)="AMEQZ",DIC="^DPT(" D ^DIC G Q:Y'>0 S DFN=+Y
+ I '$D(DGCNH) S DIC("A")="Select PATIENT ADMISSION: ",DIC(0)="AEQZ",DIC="^DGPM(",DIC("S")="I $P(^(0),U,2)=1" W ! D DFN^DGPMUTL G Q:Y'>0 W ! S (DA,DGDE)=+Y G NOAD:'$D(^DGPM(+Y,0))
+ASK I '$D(DGCNH) S X="" W !!,"(A)dmission/transfer or (S)emi Annual Census: A//"
+ I '$D(DGCNH) S Z="^ADMISSION TRANSFER^SEMI ANNUAL" R X:DTIME G Q:X["^"!('$T) I X="" S X="A" W X
+ I '$D(DGCNH) D IN^DGHELP I %=-1 W !!,?12,"CHOOSE FROM:",!?12,"A - Assessment purpose is admission transfer",!?12,"S - Assessment purpose is semi-annual census",! S %="" G ASK
+ I $D(DGCNH) S DGAP=3
+ I '$D(DGCNH) S DGAP=$S(X="A":1,1:2) I DGAP=2 S DGSEMI=""
+ I '$D(DGCNH) S DGNO=0,DGCR="" I $D(^DGPM(DGDE,0)) S (DGAD,DGDT)=$P(^(0),U),DGWD=$P(^(0),U,6),DFN=$P(^(0),U,3) D WDCK
+ I '$D(DGCNH) F I=DGAD:0 S I=$O(^DGPM("APCA",DFN,DGDE,I)) Q:'I  F J=0:0 S J=$O(^DGPM("APCA",DFN,DGDE,I,J)) Q:'J  I $D(^DGPM(J,0)) S DGDT=+^(0),DGWD=$P(^(0),U,6) D WDCK
+ I '$D(DGCNH),'$D(^UTILITY($J,"DTS")) W !,"NEITHER ADMISSION NOR TRANSFERS ARE TO INTERMEDIATE CARE OR NURSING HOME WARDS",!?8,"AFTER THE LAST CLOSEOUT" D QUIT G EN
+ I '$D(DGCNH) D SELECT^DGRUGC1 G EN:DGFL!'$D(DGD) S DGD=$P(DGD,".") I DGAP=1,$D(^DG(45.9,"AT",DGAP,DGD,DFN)) W !!,*7,"There is already an admission/transfer assessment created for that",!,"admission/transfer date",! D QUIT G EN1
+ I $D(DGCNH) S DGI="",DGCR=""
+ S X=DFN,DIC="^DG(45.9,",DIC(0)="L" D FILE^DICN G BUL^DGRUGBGJ:Y'>0 S DA=+Y,$P(^DG(45.9,DA,0),U,6)=DGAP,$P(^(0),U,9)=$P(DGI,U,2)
+ S:'$D(DGCNH) $P(^("R"),U)=$P(DGI,U)_";"_"DIC(42,"
+ I $D(DGCNH),$P(DGI,U)'="" S $P(^("R"),U)=$P(DGI,U)_";"_"FBAAV("
+ S DIE="^DG(45.9,",DR="[DGRUG]" S:'$D(DGCNH) DIE("NO^")="" D ^DIE
+ I $D(Y) D REMOVE(DA) W !,"Record Deleted." Q
+ I '$D(DGCNH) W !,"ADMISSION/TRANSFER DATE: " S Y=DGD D DT^DIQ
+ I $D(DGCNH) D
+ . N X,Y,DIR
+ . S DIR(0)="45.9,7AO",DIR("A")="ADMISSION/TRANSFER DATE: " D ^DIR
+ . S DGD=$G(Y(0))
+ W !!,"ASSESSMENT RECORD CREATED",!! S DR="7///"_DGD_";80///5" D ^DIE D QUIT G EN
+QUIT K ^UTILITY($J),%,%Y,DA,DFN,DGA1,DGAD,DGAP,DGCO,DGCR,DGCT,DGD,DGDE,DGDT,DGFL,DGFT,DGFY,DGI,DGII,DGNO,DGPT,DGR,DGSV,DGT,DGWD,DGX,DICR,DIE,DIK,DIC,DIV,DR,I,J,K,X,Y,Z
+ K DIRUT,DUOUT,DTOUT,DIROUT
+ I $D(DGFCNH) K DGFCNH,DGCNH
+ Q
+Q D QUIT K DIC,DFN,DGAP,DGSEMI Q
+REMOVE(DA) ;
+ S DIK="^DG(45.9," D ^DIK K DIK,DA G QUIT
+NOAD W !,*7,"THERE ARE NO ADMISSIONS ON FILE FOR THIS PATIENT" G EN
+DEL S DA=DFN,DIK="^DG(45.9," D ^DIK K DIK,DA G QUIT
+WR I $D(^(0)) S DGR=^(0),DGAD=$P(DGR,U,2),DA=+Y I DGAD W:'$D(DICR) $P($S($D(^DPT(+DGR,0)):^(0),1:""),U,9) W "  ","Assessment date: " S Y=DGAD D DT^DIQ S Y=DA
+ K DGAD,DGR Q
+OPEN W !! S DIC="^DG(45.9,",DIC(0)="AEQMN",DIC("S")="I $$OSCREEN^DGRUGU1()",DIC("A")="Enter the PAF record to reopen: " D ^DIC G QUIT:Y'>0 S DA=+Y,DIC(0)="NE",X=DA K DIC("S")
+OKO W !!,DA,"  ",$P(^DPT(+^DG(45.9,DA,0),0),U,1) S %=2 W !,"Ok to reopen" D YN^DICN I %Y["?" D YN G OKO
+ I %=1 S DR="80///1",DIE="^DG(45.9," D ^DIE W !!,"*OPENED*"
+ K DIC G QUIT
+KIL W !! S DIC("S")="I $$KSCREEN^DGRUGU1(Y)",DIC="^DG(45.9,",DIC(0)="AEQMN",DIC("A")="Enter PAF record to delete: " D ^DIC G QUIT:Y'>0 S DA=+Y,X=DA K DIC("S")
+OKD S %=2 W !,"Ok to delete ",$P(^DPT(+^DG(45.9,DA,0),0),U,1)," PAF record " D YN^DICN I %Y["?" D YN G OKD
+ I %=1 S DIK=DIC D ^DIK W !,"*DELETED*" K DIC G QUIT
+ I '% W !,"Answer YES or NO",! G KIL
+ G QUIT
+CLOSE D LO^DGUTL W !! S DIC("S")="I $$CSCREEN^DGRUGU1()",DIC="^DG(45.9,",DIC(0)="AEQMN",DIC("A")="Enter PAF record to close: " D ^DIC K DIC G QUIT:Y'>0 S DA=+Y K DIC("S")
+OKC S %=1 W !,"Ok to close" D YN^DICN I %Y["?" D YN G OKC
+ I %=1 S DR="80///2;81///"_DT_";82////"_DUZ,DIE="^DG(45.9," D ^DIE W !!,"*CLOSED*"
+ K DA,DIC,DIE,DR G CLOSE
+WDCK I '$D(DT) S %DT="",X="T" D ^%DT S DT=Y
+ S DGCO=0 D CLOUT I (DGCO!$D(DGSEMI))&$D(^DIC(42,+DGWD,0)) S DGSV=$P(^(0),U,3) I DGSV]"","NHI"[DGSV S DGNO=DGNO+1,^UTILITY($J,"DTS",DGNO,10000000-DGDT,DGDT)=DGWD_"^"_$E(DGSV) I DGDT=DGAD S ^(DGDT)=^(DGDT)_"^"_"*"
+ Q
+YN W !?5,"ANSWER 'Y'ES OR 'N'O" Q
+CLOUT S DGCO=$E(DT,1,3)-$S($E(DT,4,7)<600:1,1:0)_$S($E(DT,4,7)<600:1001,1:"0401") S DGCO=$S(DGCO>DGDT:0,1:1) Q

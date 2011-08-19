@@ -1,0 +1,29 @@
+PRCFARR1 ;ISC-SF/TKW-CONT. OF RR FOR TRANSMISSION ;5/11/94  1:01 PM
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+EN ;#6    FISCAL DATA-PURCH.AUTHORITY,CONTRACTING OFFICER,P.O.DATE,TOTAL AMT.OF P.O.,APPROPRIATION,COST CENTER,FUND CONTROL PT.,OBLIGATED BY
+ S X="" F I=0:0 S I=$O(^PRC(442,PRCFPO,14,I)) Q:'I  S Y=+^(I,0) I $D(^PRC(442.4,Y,0)) S:X]"" X=X_"," S X=X_$P(^(0),"^",2)
+ S PRCFX="6^"_X_"^",DA=PRCFPO,X=$$DECODE^PRCHES5(PRCFPO)
+ D RUP^PRCFARR3 S $P(X," ",35)=" ",X=$E(X,1,34)_" ",Y=$P(PRCF12,"^",3)
+ S X=X_$E(Y,4,5)_"/"_$E(Y,6,7)_"/"_$E(Y,2,3)_"@"
+ S X=X_$E(Y,9,10)_":"_$E(Y,11,12),$P(PRCFX,"^",3)=X
+ S X=$P(PRCF1,"^",15),$P(PRCFX,"^",4)=$E(X,4,7)_$E(X,2,3)
+ S X=$P(PRCF0,"^",15) D FAMT^PRCFARR S $P(PRCFX,"^",5)=X
+ ;S X="000000"_+$E($P(PRCF0,"^",5),1,6),X=$E(X,($L(X)-5),$L(X))
+ ;S $P(PRCFX,"^",6,8)=$P(PRCF0,"^",4)_"^"_X_"^"_$P($P(PRCF0,"^",3)," ")_"^"
+ ;I $D(^PRC(442,PRCFPO,10,1,0)),$P(^(0),"^",5)]"" S X=$$DECODE^PRCHES4(PRCFPO,1)
+ S ^TMP("PRCFARR",$J,6,0)=PRCFX_"^"
+ ;#7    PAT BOCS & AMOUNTS,WHSE.SIGNATURE & RCVD.DATE,SERVICE SIGNATURE & RCVD.DATE
+ S PRCFX="7^" ;I $P(PRCF0,"^",7)=$P(PRCF11,"^",3)&($P(PRCF0,"^",9)=$P(PRCF11,"^",5)) G E1
+ ;S Z=$S($P(PRCF0,"^",8):$P(PRCF0,"^",6),1:""),X=$P(PRCF0,"^",7) D FAMT^PRCFARR S $P(PRCFX,"^",2,3)=Z_"^"_X
+ ;S X=$P(PRCF0,"^",9) D FAMT^PRCFARR S $P(PRCFX,"^",4,5)=$P(PRCF0,"^",8)_"^"_X
+E1 S Z="",X=$$DECODE^PRCHES1(PRCFPO,PRCFPR) D RUP^PRCFARR3
+ S $P(PRCFX,"^",2)=X
+ S $P(PRCFX,"^",3)=$E($P(PRCF11,"^",11),4,7)_$E($P(PRCF11,"^",11),2,3)_"^^"
+ I $P(PRCF11,"^",16)]"" D
+ .S X=$$DECODE^PRCHES2(PRCFPO,PRCFPR) D RUP^PRCFARR3
+ .S $P(PRCFX,"^",4)=X
+ .S $P(PRCFX,"^",5)=$E($P(PRCF11,"^",17),4,7)_$E($P(PRCF11,"^",17),2,3)
+ .Q
+ S ^TMP("PRCFARR",$J,7,0)=PRCFX_"^",$P(^(0),U,6)=""
+ G EN^PRCFARR2

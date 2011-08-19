@@ -1,0 +1,47 @@
+FHOMSA1 ;Hines OIFO/RTK SPECIAL MEALS AUTHORIZE MEAL  ;4/11/03  12:55
+ ;;5.5;DIETETICS;**2**;Jan 28, 2005
+ ;
+ I '$D(^XUSEC("FHAUTH",DUZ)) W !!!,"To access this option you most hold the 'FHAUTH' key!",!! H 3 Q
+ S STDT=DT,FHS="P" D LIST^FHOMSS1 W !
+ I NUM=0 W !,"NO PENDING SPECIAL MEALS TO AUTHORIZE" Q
+ K DIR S DIR("A")="Select Which Meal(s)?",DIR(0)="LO^1:"_NUM D ^DIR
+ Q:$D(DIRUT)  S FHCLST=Y
+ W ! K DIR S DIR("A")="Authorize or Deny? "
+ S DIR(0)="SAO^A:AUTHORIZE;D:DENY",DIR("B")="A" D ^DIR
+ Q:$D(DIRUT)  S FHSTAT=Y
+ I FHSTAT="D" W ! K DIR S DIR("A")="Comment: ",DIR(0)="FA^1:80" D ^DIR S FHCOMM=Y
+ I FHCOMM="^" W !!?3,"Changes NOT saved!",! H 2 Q
+ W ! K DIR S DIR("A")="Are you sure? ",DIR(0)="YA",DIR("B")="Y" D ^DIR
+ Q:$D(DIRUT)  I Y=0 D END Q
+ D SIG^XUSESIG I X1="" W !!?5,"<< Incorrect Electronic Signature!! >>" Q
+ F A=1:1:NUM S FHC=$P(FHCLST,",",A) Q:FHC=""  S FHCDT=FHLIST(FHC) D UPD,UPD100
+ W "  ... done" Q
+ Q
+UPD ;Update the status,authorizor,date/time of special meal request
+ D NOW^%DTC S FHTODAY=$E(%,1,12)
+ S DA=$P(FHCDT,U,2),FHDA=DA,DA(1)=$P(FHCDT,U,1),FHDFN=DA(1)
+ S DIE="^FHPT("_DA(1)_",""SM"","
+ S DR="1////^S X=FHSTAT;5////^S X=DUZ;6////^S X=FHTODAY;7////^S X=FHCOMM"
+ D ^DIE
+ D ALERT
+ S FHZN=$G(^FHPT(FHDFN,"SM",FHDA,0))
+ S FHACT="O",FHOPTY="S",FHOPDT=$P(FHTODAY,".",1) D SETSM^FHOMRO2
+ Q
+ALERT ;Send alert back to requestor
+ K XQA S (FHAUDA,FHDFN)=$P(FHCDT,U,1),FHAUSMDT=$P(FHCDT,U,2)
+ S FHREQ=$P($G(^FHPT(FHAUDA,"SM",FHAUSMDT,0)),U,5) I FHREQ="" Q
+ S FHAUSTT=$S(FHSTAT="A":"AUTHORIZED",1:"DENIED")
+ S FHAUNAM=$P($G(^VA(200,DUZ,0)),U,1)
+ D PATNAME^FHOMUTL
+ S XQA(FHREQ)=""
+ S XQAMSG=$E(FHPTNM,1,9)_" ("_$E(FHPTNM,1,1)_$P(FHSSN,"-",3)_"): "
+ S XQAMSG=XQAMSG_"SPECIAL MEAL HAS BEEN "_FHAUSTT_" BY "_FHAUNAM
+ D SETUP^XQALERT
+ Q
+UPD100 ;Backdoor message to update file #100 if SM order is denied
+ Q:FHSTAT'="D"
+ D PATNAME^FHOMUTL Q:'DFN
+ S FHCATXT=FHCOMM D CNSM100^FHOMRC2
+ Q
+END ;
+ K FHAUDA,FHAUNAM,FHAUSMDT,FHAUSTT,FHS,FHSTAT Q

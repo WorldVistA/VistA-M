@@ -1,0 +1,21 @@
+IBJTU4 ;ALB/ARH - TPI UTILITIES - AR CALLS ; 2/14/95
+ ;;Version 2.0 ; INTEGRATED BILLING ;**39**; 21-MAR-94
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+ ;
+ARSTATA(IBIFN) ; return AR current status of bill (430.3): name (.01) ^ abbreviation (1) ^ status number (2)
+ N X S X=$$STAT^RCJIBFN2(+$G(IBIFN)),X=$$STNO^RCJIBFN2(X)
+ Q X
+ ;
+ACTIVE(IBIFN) ; returns true if bill should be on active list, i.e. AR CURRENT STATUS not COLLECTED/CLOSED or CANCELED
+ N IBSTAT,X S X=1
+ S IBSTAT=$P($$ARSTATA(+$G(IBIFN)),U,1)
+ I IBSTAT["ARCHIVED" S X=0 G ACTE
+ I IBSTAT["CANCELLATION" S X=0 G ACTE
+ I IBSTAT["CANCELLED BILL" S X=0 G ACTE
+ I IBSTAT["COLLECTED/CLOSED" S X=0 G ACTE
+ I IBSTAT["IN-ACTIVE" S X=0 G ACTE
+ I IBSTAT["PENDING ARCHIVE" S X=0 G ACTE
+ I IBSTAT["REFUNDED" S X=0 G ACTE
+ I IBSTAT["WRITE-OFF" S X=0 G ACTE
+ACTE Q X

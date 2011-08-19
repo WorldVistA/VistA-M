@@ -1,0 +1,50 @@
+AFJXSFAL ;FO-OAKLAND/GMB-ALERT & VIEW PT INQUIRY ;1/17/96  13:16
+ ;;5.1;Network Health Exchange;**31,32,33,34**;Jan 23, 1996
+ ; Totally rewritten 11/2001.  (Previously FJ/CWS.)
+ ; Entry points:
+ ; ENTER   - Invoked by server option AFJXNHDONE
+ ; PROCESS - Invoked when the user processes an alert set up by ENTER
+ENTER ;
+ N XMZ,XMSER
+ D ALERT
+ S XMSER="S.AFJXNHDONE",XMZ=XQMSG D REMSBMSG^XMA1C
+ Q
+ALERT ; Return alert to requestor
+ N AXREC,AXDUZ,AXDOM,AXI
+ S AXREC=$G(^XMB(3.9,XQMSG,2,1,0))
+ S AXDUZ=$P(AXREC,U,2)
+ S AXDOM=$S(XQSND["@":$P($P(XQSND,"@",2),">"),1:^XMB("NETNAME"))
+ S XQAROU="PROCESS^AFJXSFAL"
+ F AXI=3:1:($L(XQSUB," ")-1) Q:$P(XQSUB," ",AXI)?3N.E
+ S XQAMSG="NHE Results for "_$P(XQSUB," ",3,AXI)_" from "_$P(AXDOM,".",1)
+ S XQADATA=XQMSG
+ S XQA(AXDUZ)=""
+ S XQAID="AFJX"
+ D SETUP^XQALERT
+ Q
+PROCESS ;
+ N ZTSAVE,AXMZ
+ S AXMZ=XQADATA
+ S ZTSAVE("AXMZ")=""
+ D EN^XUTMDEVQ("PRINT^AFJXSFAL","AFJX Print NHE Inquiry Results",.ZTSAVE)
+ Q
+PRINT ;
+ N AXPAGE,AXHDR,AXI,AXREC,AXABORT
+ S AXI=3,(AXABORT,AXPAGE)=0
+ I $G(^XMB(3.9,AXMZ,2,2,0))'="" S AXHDR(1)=^(0),AXI=2
+ I $G(^XMB(3.9,AXMZ,2,3,0))'="" S AXHDR(2)=^(0),AXI=3
+ I $E(IOST,1,2)="C-" W @IOF
+ E  W $C(13)
+ D HDR
+ F  S AXI=$O(^XMB(3.9,AXMZ,2,AXI)) Q:'AXI  S AXREC=^(AXI,0) D  Q:AXABORT
+ . I $Y+3+($E(IOST,1,2)="C-")>IOSL D  Q:AXABORT
+ . . I $E(IOST,1,2)="C-" W ! D PAGE^XMXUTIL(.AXABORT) Q:AXABORT
+ . . W @IOF D HDR
+ . W !,AXREC
+ Q
+HDR ;
+ S AXPAGE=AXPAGE+1
+ W "NHE Results for ",$$NAME^XMXUTIL(DUZ),?70,$J("Page "_AXPAGE,9)
+ N I S I=0 F  S I=$O(AXHDR(I)) Q:'I  W !,AXHDR(I)
+ W !,$$REPEAT^XLFSTR("=",79)
+ Q

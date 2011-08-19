@@ -1,0 +1,57 @@
+YSCEN23 ;ALB/ASF-MH CENSUS PATIENT LIST ;4/16/92  10:02 ;08/12/93 17:03
+ ;;5.01;MENTAL HEALTH;**37**;Dec 30, 1994
+ ;
+ ; Called from the top by MENU option YSCENWL
+ ;
+LNS ;
+ R !,"How many lines between patients? 3// ",YSF4:DTIME S YSTOUT='$T,YSUOUT=YSF4["^" G:YSTOUT!(YSUOUT) END^YSCEN2
+ S YSR1="YSF4",YSR2=3,YSR3=20 D ^YSCEN14 G LNS:YSF4="?",END^YSCEN2:YSF4=-1
+DSP ;
+ R !,"Display Primary DX ? Y// ",F:DTIME S YSTOUT='$T,YSUOUT=F["^" G:YSTOUT!(YSUOUT) END^YSCEN2
+ S YSR1="F",YSR2="Y",YSR3="YN" D ^YSCEN14 G DSP:F="?",END^YSCEN2:F=-1 S F=$S(F="N":0,1:1)
+ D A^YSCEN3 I YSTOUT!YSUOUT G END^YSCEN2
+ G:Y<1!($G(POP)) END^YSCEN2 U IO(0) D COPIES^YSCEN1 G:YSCOP'>0 END^YSCEN2
+ I $D(IO("Q")) K IO("Q") S ZTRTN="A1^YSCEN23",Q3=0 F ZZ="P1","W1","W2","T6","F","Q3","YSCOP","YSF4","YSCR","YSWHO","YSOPT9L" S ZTSAVE(ZZ)="",ZTDESC="YS IP PROFILE"
+ I  D ^%ZTLOAD W !,$S($D(ZTSK):"QUEUED",1:"Not queued"),$C(7) G END^YSCEN2
+A1 ;
+ U IO
+ S:'$D(W1) W1=0 D:W1 FS0^YSCEN K YSOPT1,YSOPT2 S YSOPT1L="WORK LIST" I T6'?1A F YSCOPY=1:1:YSCOP W @IOF S P=0 D L2^YSCEN2,L3,WAIT^YSCEN1
+ I T6="S" S YSOPT2="L3^YSCEN23,WAIT^YSCEN1" F YSCOPY=1:1:YSCOP W @IOF D S1^YSCEN26
+ I T6="A" S YSC1=0 F  S YSC1=$O(^YSG("SUB","AOR",W1,YSC1)) Q:'YSC1  S T6=$O(^(YSC1,0)) Q:'T6!Q3  D:'$P(^YSG("SUB",T6,1),U,5) A11,WAIT^YSCEN1:$Y+2<IOSL
+ K T6,W1,IOP G END0^YSCEN2
+A11 ;
+ K ^UTILITY($J) F YSCOPY=1:1:YSCOP W @IOF D L2^YSCEN2,L3,WAIT^YSCEN1:$Y+4+YSF4>IOSL
+ Q
+L3 ;
+ D H1^YSCEN2 I '$D(^UTILITY($J)) W !!,"No Patients",$C(7) Q
+ S N1="" F  S N1=$O(^UTILITY($J,N1)) Q:N1=""!Q3  D
+ .S YSDFN=0 F  S YSDFN=$O(^UTILITY($J,N1,YSDFN)) Q:'YSDFN  S DA=^(YSDFN) D L7 Q:Q3
+ Q
+L7 ;
+ I $Y>(IOSL-YSF4-7) D WAIT^YSCEN1 Q:Q3  D H1^YSCEN2
+ D ENPT^YSUTL S G=^YSG("INP",DA,0) W !,YSNM,?30,YSBID,?35,$J(YSAGE,3)
+ S X=$P(G,U,3),X(1)=$$FMTE^XLFDT(X,"5ZD") W ?39,X(1)
+ I $D(^YSG("INP",DA,1)) S G1=^(1) W $P(G1,U),$P(G1,U,2),$P(G1,U,3) K G1
+ S X1=DT,X2=X D ^%DTC W ?50,$J(X,4) S X=$P(G,U,5) W ?56 D:X?1N.N D3^YSCEN2 W:$D(^DPT(YSDFN,.101)) ?70,^(.101)
+ S YSPDX=0 I F D PDX^YSCEN6 I 'YSPDX W !,"No primary Dx"
+ W:YSPDX !,YSPDX(4)," Primary DX: ",YSPDX(3)," ",$E(YSPDX(1),1,30)," on ",$$FMTE^XLFDT(X,"5ZD")
+ F ZZ=1:1:YSF4 W !
+ F ZZ=1:1:10 W "========"
+ Q
+LG ;  Called by routine YSCEN22
+ ;
+ S PTI(0)=^DPT(YSDFN,0) S DFN=YSDFN D DEM^VADPT,PID^VADPT
+ S PTI(.11)=$G(^DPT(YSDFN,.11)),PTI(.13)=$G(^(.13)),I=+$P(PTI(0),U,3),PTI(.362)=$G(^(.362)),PTI(.361)=$P($G(^(.361)),U),YSSSN=VA("PID")
+ I $D(^DPT(YSDFN,.121)) S X=$S($P(^(.121),U,8):$P(^(.121),U,8),1:9999999) I DT'<$P(^(.121),U,7),DT'>X S PTI(.11)=^(.121),YSADR=""
+ I '$D(IOF) S IOP=IO D ^%ZIS K IOP Q:POP
+ U IO W @IOF,!,VADM(1),?32,"SSN: ",YSSSN,?58,"DOB: ",$P(VADM(3),U,2) ;MAS PATCH (PID)
+ W !,$P(PTI(.11),U),?32,"C-#: ",$S($D(^DPT(YSDFN,.31)):$P(^(.31),U,3),1:"Unknown"),?53,"Religion: ",$E($P($G(^DIC(13,+$P(PTI(0),U,8),0)),U),1,17)
+ W !,$P(PTI(.11),U,4),?42,"Elig: " I $D(^DPT(YSDFN,.36)),$D(^DIC(8,+^(.36),0)) W $P(^(0),U)
+ W !,$P($G(^DIC(5,+$P(PTI(.11),U,5),0)),U)
+ W "  ",$$ZIP4^YSPP(+YSDFN,1),?42,"HB:",$P(PTI(.362),U,2),?55,"A&A:",$P(PTI(.362),U)
+ W !,"PHONE: ",$P(PTI(.13),U),?42,"***ELIGIBILITY ",$S(PTI(.361)="P":"PENDING VERIFICATION",PTI(.361)="R":"PENDING RE-VERIFICATION",PTI(.361)="V":"VERIFIED",1:"NOT VERIFIED"),"***"
+ ;I $D(YSADR) S YSEND=$P(PTI(.11),U,8) W !,"(Temporary Address - ",$S('YSEND:"no end date",1:"until "_$E(YSEND,4,5)_"/"_$E(YSEND,6,7)_"/"_$E(YSEND,2,3)),")" K YSADR,YSEND
+ I $D(YSADR) S YSEND=$P(PTI(.11),U,8) W !,"(Temporary Address - ",$S('YSEND:"no end date",1:"until "_$$FMTE^XLFDT(X,"5ZD")),")" K YSADR,YSEND
+ Q:'$D(^DPT(YSDFN,.33))  S PTI(.33)=^(.33) W !!,"Emergency Contact: ",$P(PTI(.33),U),?42,"E-Relationship: ",$P(PTI(.33),U,2)
+ W !,"E-Address: ",$P(PTI(.33),U,3),?42,"E-Phone: ",$P(PTI(.33),U,9) W:$P(PTI(.33),U,4)]"" !?10,$P(PTI(.33),U,4),?42,$P(PTI(.33),U,5) W !?3,$P(PTI(.33),U,6),?$X+3
+ W ?$X+3,$P($G(^DIC(5,+$P(PTI(.33),U,7),0)),U,2),?$X+2,$$ZIP4^YSPP(+YSDFN,4)

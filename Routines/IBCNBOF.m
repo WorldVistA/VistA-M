@@ -1,0 +1,112 @@
+IBCNBOF ;ALB/ARH-Ins Buffer: Employee Report (Entered);1 Jun 97
+ ;;2.0;INTEGRATED BILLING;**82**;21-MAR-94
+ ;
+EN ;get parameters then run the report
+ ;
+ K ^TMP($J) D HOME^%ZIS S IBHDR="INSURANCE BUFFER EMPLOYEE REPORT" W @IOF,!!,?25,IBHDR
+ W !!,"This report produces a count of the number of entries added to the Buffer",!,"file for a specified date range sorted by employee.  Also included are",!,"sub-totals and percentages based on the current status of those entries."
+ ;
+ S IBEMPL=+$$EMPL^IBCNBOE G:IBEMPL="" EXIT  W !!
+ I +IBEMPL S IBEMPL=$$SELEMPL^IBCNBOE("Enters/Creates") G:IBEMPL="" EXIT  W !!
+ ;
+ S IBBEG=$$DATES^IBCNBOE("Beginning") G:'IBBEG EXIT
+ S IBEND=$$DATES^IBCNBOE("Ending",IBBEG) G:'IBEND EXIT  W !!
+ ;
+ S IBMONTH=$$MONTH^IBCNBOE G:IBMONTH="" EXIT  W !!
+ ;
+DEV ;get the device
+ W !,"Report requires 132 columns."
+ S %ZIS="QM",%ZIS("A")="OUTPUT DEVICE: " D ^%ZIS G:POP EXIT
+ I $D(IO("Q")) S ZTRTN="RPT^IBCNBOF",ZTDESC=IBHDR,ZTSAVE("IB*")="" D ^%ZTLOAD K IO("Q") G EXIT
+ U IO
+ ;
+RPT ; run report
+ S IBQUIT=0
+ ;
+ D SEARCH(IBBEG,IBEND,IBMONTH,IBEMPL) G:IBQUIT EXIT
+ D PRINT(IBBEG,IBEND,IBMONTH,IBEMPL)
+ ;
+EXIT K ^TMP($J),IBHDR,IBBEG,IBEND,IBMONTH,IBQUIT,IBEMPL
+ Q:$D(ZTQUEUED)
+ D ^%ZISC
+ Q
+ ;
+SEARCH(IBBEG,IBEND,IBMONTH,IBEMPL) ; search/sort statistics for employee report
+ N IBXDT,IBBUFDA,IBB0,IBXREF,IBS1,IBEMP
+ S IBBEG=$G(IBBEG)-.01,IBEND=$S('$G(IBEND):9999999,1:$P(IBEND,".")+.9)
+ ;
+ S IBXDT=IBBEG F  S IBXDT=$O(^IBA(355.33,"B",IBXDT)) Q:'IBXDT!(IBXDT>IBEND)  D  S IBQUIT=$$STOP Q:IBQUIT
+ . S IBBUFDA=0 F  S IBBUFDA=$O(^IBA(355.33,"B",IBXDT,IBBUFDA)) Q:'IBBUFDA  D
+ .. ;
+ .. S IBB0=$G(^IBA(355.33,IBBUFDA,0)),IBEMP=+$P(IBB0,U,2) I 'IBEMP Q
+ .. I +IBEMPL,IBEMPL'=IBEMP Q
+ .. ;
+ .. I $G(IBMONTH) D SET("IBCNBOF",IBEMP,$E(+IBB0,1,5),$P(IBB0,U,4),+$P(IBB0,U,7),+$P(IBB0,U,8),+$P(IBB0,U,9))
+ .. D SET("IBCNBOF",IBEMP,99999,$P(IBB0,U,4),+$P(IBB0,U,7),+$P(IBB0,U,8),+$P(IBB0,U,9))
+ .. D SET("IBCNBOF","~",99999,$P(IBB0,U,4),+$P(IBB0,U,7),+$P(IBB0,U,8),+$P(IBB0,U,9))
+ ;
+ Q
+ ;
+SET(XREF,S1,S2,STAT,NC,NG,NP) ;
+ S ^TMP($J,XREF,S1,S2,"CNT")=$G(^TMP($J,XREF,S1,S2,"CNT"))+1
+ I STAT="E" S ^TMP($J,XREF,S1,S2,"EN")=$G(^TMP($J,XREF,S1,S2,"EN"))+1
+ I STAT="R" S ^TMP($J,XREF,S1,S2,"RJ")=$G(^TMP($J,XREF,S1,S2,"RJ"))+1
+ I STAT="A" S ^TMP($J,XREF,S1,S2,"AC")=$G(^TMP($J,XREF,S1,S2,"AC"))+1
+ I +NC S ^TMP($J,XREF,S1,S2,"NC")=$G(^TMP($J,XREF,S1,S2,"NC"))+1
+ I +NG S ^TMP($J,XREF,S1,S2,"NG")=$G(^TMP($J,XREF,S1,S2,"NG"))+1
+ I +NP S ^TMP($J,XREF,S1,S2,"NP")=$G(^TMP($J,XREF,S1,S2,"NP"))+1
+ Q
+ ;
+ ;
+PRINT(IBBEG,IBEND,IBMONTH,IBEMPL) ;
+ N IBXREF,IBS1,IBS2,IBRDT,IBPGN,IBRANGE,IBLN,IBI
+ ;
+ S IBRANGE=$$FMTE^XLFDT(IBBEG)_" - "_$$FMTE^XLFDT(IBEND)
+ S IBRDT=$$FMTE^XLFDT($J($$NOW^XLFDT,0,4),2),IBRDT=$TR(IBRDT,"@"," "),IBPGN=0
+ D HDR
+ ;
+ S IBXREF="IBCNBOF",IBS1="" F  S IBS1=$O(^TMP($J,IBXREF,IBS1)) Q:IBS1=""  D
+ . I +$G(IBMONTH) W ! S IBLN=IBLN+1
+ . ;
+ . S IBS2=0 F  S IBS2=$O(^TMP($J,IBXREF,IBS1,IBS2)) Q:IBS2=""  D:IBLN>(IOSL-3) HDR Q:IBQUIT  D
+ .. D PRTLN  S IBLN=IBLN+1
+ Q
+ ;
+PRTLN ;
+ N IBEMP,IBCNT,IBEN,IBAC,IBRJ,IBNC,IBNG,IBNP,DATM
+ ;
+ S IBEMP=$P($G(^VA(200,+IBS1,0)),U,1) I IBS1="~" S IBEMP="TOTAL"
+ S IBCNT=$G(^TMP($J,IBXREF,IBS1,IBS2,"CNT")) Q:'IBCNT
+ S IBEN=$G(^TMP($J,IBXREF,IBS1,IBS2,"EN"))
+ S IBAC=$G(^TMP($J,IBXREF,IBS1,IBS2,"AC"))
+ S IBRJ=$G(^TMP($J,IBXREF,IBS1,IBS2,"RJ"))
+ S IBNC=$G(^TMP($J,IBXREF,IBS1,IBS2,"NC"))
+ S IBNG=$G(^TMP($J,IBXREF,IBS1,IBS2,"NG"))
+ S IBNP=$G(^TMP($J,IBXREF,IBS1,IBS2,"NP"))
+ S DATM=$S(IBS2=99999:"TOTAL",1:$$FMTE^XLFDT(IBS2_"00"))
+ ;
+ W !,$E(IBEMP,1,15),?17,DATM,?25,$J($FN(IBCNT,","),7)
+ W ?35,$J($FN(IBEN,","),7),?43,$J("("_$FN(((IBEN/IBCNT)*100),",",1)_"%)",8)
+ W ?54,$J($FN(IBAC,","),7),?62,$J("("_$FN(((IBAC/IBCNT)*100),",",1)_"%)",8)
+ W ?73,$J($FN(IBRJ,","),7),?81,$J("("_$FN(((IBRJ/IBCNT)*100),",",1)_"%)",8)
+ W ?92,$J($FN(IBNC,","),7),?102,$J($FN(IBNG,","),7),?112,$J($FN(IBNP,","),7)
+ Q
+ ;
+HDR ;print the report header
+ S IBQUIT=$$STOP Q:IBQUIT
+ I IBPGN>0 S IBQUIT=$$PAUSE Q:IBQUIT
+ S IBPGN=IBPGN+1,IBLN=5 I IBPGN>1!($E(IOST,1,2)["C-") W @IOF
+ W !,"INSURANCE BUFFER (ENTERING) EMPLOYEE REPORT   ",IBRANGE," "
+ W ?(IOM-22),IBRDT,?(IOM-7)," PAGE ",IBPGN,!,?39,"NOT YET",?93,"NEW",?104,"NEW",?113,"NEW"
+ W !,"EMPLOYEE",?17,"MONTH",?27,"TOTAL",?39,"PROCESSED",?58,"ACCEPTED",?77,"REJECTED",?93,"INS CO",?104,"GROUP",?113,"POLICY",!
+ S IBI="",$P(IBI,"-",IOM+1)="" W IBI
+ Q
+ ;
+PAUSE() ;pause at end of screen if beeing displayed on a terminal
+ N IBX,DIR,DIRUT,DUOUT,X,Y S IBX=0
+ I $E(IOST,1,2)["C-" W !! S DIR(0)="E" D ^DIR K DIR I $D(DUOUT)!($D(DIRUT)) S IBX=1
+ Q IBX
+ ;
+STOP() ;determine if user has requested the queued report to stop
+ I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ I +$G(IBPGN) W !,"***TASK STOPPED BY USER***"
+ Q +$G(ZTSTOP)

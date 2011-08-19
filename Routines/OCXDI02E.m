@@ -1,0 +1,167 @@
+OCXDI02E ;SLC/RJS,CLA - OCX PACKAGE DIAGNOSTIC ROUTINES ;SEP 7,1999 at 10:30
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+S ;
+ ;
+ D DOT^OCXDIAG
+ ;
+ ;
+ K REMOTE,LOCAL,OPCODE,REF
+ F LINE=1:1:500 S TEXT=$P($T(DATA+LINE),";",2,999) Q:TEXT  I $L(TEXT) D  Q:QUIT
+ .S ^TMP("OCXDIAG",$J,$O(^TMP("OCXDIAG",$J,"A"),-1)+1)=TEXT
+ ;
+ G ^OCXDI02F
+ ;
+ Q
+ ;
+DATA ;
+ ;
+ ;;R^"860.8:",100,5
+ ;;D^  ; F OCXTERM="SERUM CREATININE","SERUM UREA NITROGEN" D  Q:$L(OCXV)
+ ;;R^"860.8:",100,6
+ ;;D^  ; .Q:'$$TERMLKUP(OCXTERM,.OCXTL) ""
+ ;;R^"860.8:",100,7
+ ;;D^  ; .S OCXX=0 F  S OCXX=$O(OCXTL(OCXX)) Q:'OCXX  D  Q:$L(OCXV)
+ ;;R^"860.8:",100,8
+ ;;D^  ; ..S OCXS=0 F  S OCXS=$O(OCXSLIST(OCXS)) Q:'OCXS  D  Q:$L(OCXV)
+ ;;R^"860.8:",100,9
+ ;;D^  ; ...S OCXV=$$OIRES^ORQQLR1(DFN,OCXX,OCXS)
+ ;;R^"860.8:",100,10
+ ;;D^  ; Q OCXV
+ ;;R^"860.8:",100,11
+ ;;D^  ;
+ ;;EOR^
+ ;;KEY^860.8:^DETERMINE IF RENAL LAB RESULTS ARE ABNORMAL HIGH OR LOW
+ ;;R^"860.8:",.01,"E"
+ ;;D^DETERMINE IF RENAL LAB RESULTS ARE ABNORMAL HIGH OR LOW
+ ;;R^"860.8:",.02,"E"
+ ;;D^ABREN
+ ;;R^"860.8:",100,1
+ ;;D^  ;ABREN(DFN) ;
+ ;;R^"860.8:",100,2
+ ;;D^  ; ;
+ ;;R^"860.8:",100,3
+ ;;D^  ; N OCXFLAG,OCXVAL,OCXLIST,OCXTEST,UNAV,OCXTLIST,OCXTERM,OCXSLIST,OCXSPEC
+ ;;R^"860.8:",100,4
+ ;;D^  ; S (OCXLIST,OCXTLIST)="",UNAV="0^<Unavailable>"
+ ;;R^"860.8:",100,5
+ ;;D^  ; S OCXSLIST="" Q:'$$TERMLKUP("SERUM SPECIMEN",.OCXSLIST) UNAV
+ ;;R^"860.8:",100,6
+ ;;D^  ; F OCXTERM="SERUM CREATININE","SERUM UREA NITROGEN" D
+ ;;R^"860.8:",100,7
+ ;;D^  ; .Q:'$$TERMLKUP(OCXTERM,.OCXTLIST)
+ ;;R^"860.8:",100,8
+ ;;D^  ; .S OCXTEST=0 F  S OCXTEST=$O(OCXTLIST(OCXTEST)) Q:'OCXTEST  D
+ ;;R^"860.8:",100,9
+ ;;D^  ; ..S OCXSPEC=0 F  S OCXSPEC=$O(OCXSLIST(OCXSPEC)) Q:'OCXSPEC  D
+ ;;R^"860.8:",100,10
+ ;;D^  ; ...S OCXVAL=$$LOCL^ORQQLR1(DFN,OCXTEST,OCXSPEC),OCXFLAG=$P(OCXVAL,U,5)
+ ;;R^"860.8:",100,11
+ ;;D^  ; ...I $L(OCXVAL),((OCXFLAG["H")!(OCXFLAG["L")) D 
+ ;;R^"860.8:",100,12
+ ;;D^  ; ....N OCXY S OCXY=""
+ ;;R^"860.8:",100,13
+ ;;D^  ; ....S OCXY=$P(OCXVAL,U,2)_": "_$P(OCXVAL,U,3)_" "_$P(OCXVAL,U,4)
+ ;;R^"860.8:",100,14
+ ;;D^  ; ....S OCXY=OCXY_" "_$S($L(OCXFLAG):"["_OCXFLAG_"]",1:"")
+ ;;R^"860.8:",100,15
+ ;;D^  ; ....S OCXY=OCXY_" "_$$FMTE^XLFDT($P(OCXVAL,U,7),"2P")
+ ;;R^"860.8:",100,16
+ ;;D^  ; ....S:$L(OCXLIST) OCXLIST=OCXLIST_" " S OCXLIST=OCXLIST_OCXY
+ ;;R^"860.8:",100,17
+ ;;D^  ; Q:'$L(OCXLIST) UNAV  Q 1_U_OCXLIST
+ ;;R^"860.8:",100,18
+ ;;D^  ; ;  
+ ;;EOR^
+ ;;KEY^860.8:^DOES THIS RADIOLOGY PROCEDURE USE A CONTRAST MEDIA
+ ;;R^"860.8:",.01,"E"
+ ;;D^DOES THIS RADIOLOGY PROCEDURE USE A CONTRAST MEDIA
+ ;;R^"860.8:",.02,"E"
+ ;;D^CM
+ ;;R^"860.8:",100,1
+ ;;D^  ;CM(OCXOI) ;
+ ;;R^"860.8:",100,2
+ ;;D^  ; ;
+ ;;R^"860.8:",100,3
+ ;;D^  ; N OCXVAL S OCXVAL=$$CM^ORQQRA(OCXOI) Q:((OCXVAL["B")!(OCXVAL["M")) 1_U_OCXVAL Q 0
+ ;;R^"860.8:",100,4
+ ;;D^  ; ;  
+ ;;EOR^
+ ;;KEY^860.8:^IS THIS A CHOLECYSTOGRAM RADIOLOGY PROCEDURE
+ ;;R^"860.8:",.01,"E"
+ ;;D^IS THIS A CHOLECYSTOGRAM RADIOLOGY PROCEDURE
+ ;;R^"860.8:",.02,"E"
+ ;;D^CH
+ ;;R^"860.8:",100,1
+ ;;D^  ;CH(OCXOI) ;
+ ;;R^"860.8:",100,2
+ ;;D^  ; ;
+ ;;R^"860.8:",100,3
+ ;;D^  ; N OCXVAL S OCXVAL=$$CM^ORQQRA(OCXOI) Q:(OCXVAL["C") 1_U_OCXVAL Q 0
+ ;;R^"860.8:",100,4
+ ;;D^  ; ;
+ ;;EOR^
+ ;;KEY^860.8:^GET DATA FROM THE ACTIVE DATA FILE
+ ;;R^"860.8:",.01,"E"
+ ;;D^GET DATA FROM THE ACTIVE DATA FILE
+ ;;R^"860.8:",.02,"E"
+ ;;D^GETDATA
+ ;;R^"860.8:",100,1
+ ;;D^  ;GETDATA(DFN,OCXL,OCXDFI) ;     This Local Extrinsic Function returns runtime data
+ ;;R^"860.8:",100,2
+ ;;D^  ; ;
+ ;;R^"860.8:",100,3
+ ;;D^  ; N OCXE,VAL,PC S VAL=""
+ ;;R^"860.8:",100,4
+ ;;D^  ; F PC=1:1:$L(OCXL,U) S OCXE=$P(OCXL,U,PC) I OCXE S VAL=$G(^TMP("OCXCHK",$J,DFN,OCXE,OCXDFI)) Q:$L(VAL)
+ ;;R^"860.8:",100,5
+ ;;D^  ; Q VAL
+ ;;R^"860.8:",100,6
+ ;;D^  ; ;
+ ;;EOR^
+ ;;KEY^860.8:^DATE PATIENT DECEASED
+ ;;R^"860.8:",.01,"E"
+ ;;D^DATE PATIENT DECEASED
+ ;;R^"860.8:",.02,"E"
+ ;;D^DECEASED
+ ;;EOR^
+ ;;KEY^860.8:^SITE FLAGGED ORDER
+ ;;R^"860.8:",.01,"E"
+ ;;D^SITE FLAGGED ORDER
+ ;;R^"860.8:",.02,"E"
+ ;;D^SITEORD
+ ;;R^"860.8:",100,1
+ ;;D^  ;SITEORD(ORNUM) ;Ext. funct return 1 (Yes) or 0 (No) if the site has flagged the
+ ;;R^"860.8:",100,2
+ ;;D^  ; ; orderable item (determined via order number ORNUM) to trigger a
+ ;;R^"860.8:",100,3
+ ;;D^  ; ; notification when ordered
+ ;;R^"860.8:",100,4
+ ;;D^  ; N ORBFLAG,OI S ORBFLAG="",OI=""
+ ;;R^"860.8:",100,5
+ ;;D^T+; W:$G(OCXTRACE) !!,"Site Flagged Order function, ORNUM: ",ORNUM
+ ;;R^"860.8:",100,6
+ ;;D^  ; Q:'$L($G(ORNUM)) ORBFLAG
+ ;;R^"860.8:",100,7
+ ;;D^  ; S OI=$$OI^ORQOR2(ORNUM)
+ ;;R^"860.8:",100,8
+ ;;D^  ; Q:'$L($G(OI)) ORBFLAG
+ ;;R^"860.8:",100,9
+ ;;D^  ; S ORBFLAG=$$GET^XPAR("ALL","ORB ORDERABLE ITEM ORDERED","`"_OI,"Q")
+ ;;R^"860.8:",100,10
+ ;;D^T+; W:$G(OCXTRACE) !,"                Results (ORBFLAG): ",ORBFLAG,!!
+ ;;R^"860.8:",100,11
+ ;;D^  ; Q ORBFLAG
+ ;;R^"860.8:",100,12
+ ;;D^  ; ;
+ ;;EOR^
+ ;;KEY^860.8:^SITE FLAGGED RESULT
+ ;;R^"860.8:",.01,"E"
+ ;;D^SITE FLAGGED RESULT
+ ;;R^"860.8:",.02,"E"
+ ;;D^SITERES
+ ;;R^"860.8:",100,1
+ ;;D^  ;SITERES(ORNUM) ;Ext. funct return 1 (Yes) if the site has flagged the
+ ;1;
+ ;

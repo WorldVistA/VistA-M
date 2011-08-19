@@ -1,0 +1,74 @@
+PRCFACBT ;WISC/CTB/CLH-BACKGROUND RELEASE OF CODE SHEETS ;5/18/93  08:37
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;PRCF("BTCH") - required and equal to batch number
+ ;PRCFASYS - required and equal to the system identifier
+ ;PRC(* - required and equal to standard system-wide variables returned
+ ;        in ^PRCFSITE
+ N B,PBATN,PBAT,DIE,BY,FR,TO,FLDS,PRCFKEY,PRCFRT,X,DIC,%,PBAT,PTRN,PTR,ADD,%I,%Y,DA,ISYS,I,L,N,PRCOUT,PTYP,X9,XCNP,XMDUZ,XMHOLD,XMZ,Y,ZN,ZTREQ,ZTSK
+ D NOW^%DTC S PRCFKEY=%_"-"_DUZ
+ S PRCFRT=0,X=PRCF("BTCH")
+ S DIC=421.2,DIC(0)="XMN",DIC("S")="S XXX=^(0) I $P(XXX,U,4)="""",$P(XXX,U,3)=""B"",PRCFASYS[$P(XXX,""-"",2),+XXX=PRC(""SITE"")"
+ D ^DIC K DIC,XXX I Y<0 S PRCOUT=1 G OUT
+ S PBAT=$P(Y,U,2),PBATN=+Y S $P(^PRCF(421.2,PBATN,0),"^",15)=PRCFKEY,^PRCF(421.2,"AD",PRCFKEY,PBATN)=""
+ I '$D(^PRCF(421.2,"AD",PRCFKEY)) S PRCOUT=1 G OUT
+ ;
+ N PBATN,PBAT,DIE,BY,FR,TO,FLDS
+ K ^TMP("PRCFBTCH",$J)
+ D DT^DICRW
+ F  S PBATN=$O(^PRCF(421.2,"AD",PRCFKEY,0)) Q:+PBATN=0  S PBAT=$P(^PRCF(421.2,PBATN,0),"^") D  K ^PRCF(421.2,"AD",PRCFKEY,PBATN) S $P(^PRCF(421.2,PBATN,0),"^",15)="",I=1
+ .I $D(^PRCF(423,"AD",PBAT)) S N=0 F  S N=$O(^PRCF(423,"AD",PBAT,N)) Q:N'=+N  S ^PRCF(423,"AK",PRCFKEY,N)="",$P(^PRCF(423,N,"TRANS"),"^",11)=PRCFKEY D:"ISMPRC"[PRCFASYS ^PRCFAIS D:"FEEFENLOGCAPIRS"[PRCFASYS TX2^PRCFAIS Q
+ .I $G(PRCOUT)]"",PRCOUT=1 Q
+ .Q:+PBATN'>0
+ .S DA=PBATN
+ .S:$G(P)]"" PX=P
+ .D NOW^%DTC
+ .S XDT=%
+ .S X1=$P(PRC("PER"),"^",2)
+ .S $P(^PRCF(421.2,DA,0),"^",4+PRCFRT)=XDT
+ .K XDT
+ .S MESSAGE=""
+ .I PRCFRT=0 D ENCODE^PRCFAES1(DA,DUZ,.MESSAGE)
+ .I PRCFRT=3 D ENCODE^PRCFAES2(DA,DUZ,.MESSAGE)
+ .K MESSAGE
+ .K P I $D(PX) S P=PX K PX Q
+ .Q
+ G:$G(PRCOUT) OUT
+ K ^TMP("PRCFBTCH",$J)
+ S ZTIO=$O(^PRC(411,PRC("SITE"),2,"AC","S","")),ZTSAVE("*")="",ZTRTN="DQ^PRCFACBT",ZTDESC="Transmit Code sheets",ZTDTH=$H D ^%ZTLOAD K IO("Q")
+ Q
+DQ ;Entry point to transmit code sheets in background
+ S IOP=IO,DIC="^PRCF(423,",L=0,BY="[PRCFA BATCH TRANSMIT SORT]",FLDS="[PRCFA BACKGROUND TRANSMIT]",(FR,TO)=PRCFKEY,PRCFX="",DIOEND="W @IOF"
+ D EN1^DIP
+ ;this section will take the globals created during the print and
+ ;give them to mailman for transmission
+ S N=0 F  S N=$O(^TMP("PRCFBTCH",$J,N)) Q:N'=+N  S PTYP=$O(^PRCF(423.9,"AC",N,0)) Q:PTYP=""  I $P(^PRCF(423.9,PTYP,0),"^",4)["Y" D
+ .S M=0 F  S M=$O(^TMP("PRCFBTCH",$J,N,M)) Q:M=""  D
+ ..Q:'$D(^PRCF(423.9,PTYP,0))  D:"3,1,4,2,9,10,12"[N
+ ...;TAKE 4th '-' PIECE OF BATCH NUMBER AND MAKE IT INTO MMCCC
+ ...;  WHERE MM = MONTH
+ ...;       CCC = LAST 3 DIGITS OF COUNTER VALUE
+ ...S SHRINK=$G(^TMP("PRCFBTCH",$J,N,M,1,0)) Q:SHRINK=""  I $P(SHRINK,".",3)=999 S SHRINK1=$P(SHRINK,".",6),SHRINK2=$E(SHRINK1,1,2)_$E(SHRINK1,$L(SHRINK1)-2,99),$P(SHRINK,".",6)=SHRINK2,^TMP("PRCFBTCH",$J,N,M,1,0)=SHRINK
+ ...K SHRINK,SHRINK1,SHRINK2 Q
+ ..S M1=$P(M,"-",4),M2=$E(M1,1,2)_$E(M1,$L(M1)-2,99),MM=$P(M,"-",1,3)_"-"_M2 K M1,M2 D
+ ...K ADD S ADD=$P($G(^PRCF(423.9,PTYP,0)),U,2) S:ADD]"" XMY(ADD)="" S:$G(PRCFA("EDI"))]"" XMY(PRCFA("EDI"))="" S:$G(PRCFA("ISM"))]"" XMY(PRCFA("ISM"))="" K PRCFA("EDI"),PRCFA("ISM")
+ ...K ADD
+ ...I $D(^PRCF(423.9,PTYP,1,0)) D
+ ....S L=0 F  S L=$O(^PRCF(423.9,PTYP,1,L)) Q:L'=+L  I $D(^PRCF(423.9,PTYP,1,L,0)) S ADD=$P(^(0),"^",1) S XMY(ADD)=""
+ ....Q
+ ..S XMDUZ=DUZ,XMSUB="ISMS/EDI BATCH "_MM,XMTEXT="^TMP(""PRCFBTCH"","_$J_","_N_","""_M_""","
+ ..D XMD
+ ..I $D(M),M["" S X=$O(^PRCF(421.2,"B",M,0)) Q:X=""
+ ..S:$D(^PRCF(421.2,X,0)) $P(^(0),"^",12)=XMZ,^PRCF(421.2,"D",XMZ,X)=""
+ ..Q
+ .Q
+ S N=0 F  S N=$O(^PRCF(423,"AK",PRCFKEY,N)) Q:'N  S $P(^PRCF(423,N,"TRANS"),"^",11)=""
+ K %,%DT,%I,BATCH,BATTYPE,DP,I,J,K,L,M,N,PRCFX,PTYP,X,Y,Z1,Z2
+OUT S ZTREQ="@" K PRCF("BTCH"),^TMP("PRCFBTCH",$J),^PRCF(423,"AK",PRCFKEY),PRCFKEY
+ Q
+ ;
+XMD N I,J,K,L,M,N
+ D ^XMD
+ S:$D(PRCOPODA) $P(^PRC(442,PRCOPODA,12),U,10)=XMZ
+ Q
+ ;

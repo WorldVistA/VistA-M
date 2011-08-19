@@ -1,0 +1,59 @@
+DGBTOA5 ;ALB/SCK - BENEFICIARY TRAVEL OUTPUTS FRONT END/STATISTICS; 2/22/93@10:00 7/2/93
+ ;;1.0;Beneficiary Travel;**5**;September 25, 2001
+ Q
+START ;
+ N X3 K DIR
+ S (DGBTBG,DGBTEND)=0 W @IOF
+OPT ; display report options for reports, front-end for claims reports
+ W !?18,"BENEFICIARY TRAVEL REPORT OUTPUTS",!
+ F II=1:1:2 W !!?18,II,".....",$P($T(OPTIONS+II),";",3)
+ S DIR(0)="NO^1:2",DIR("A",1)="",DIR("A")="Enter Option",DIR("?")="Enter the desired report option number or either '^' or [RETURN] to exit" D ^DIR K DIR G:$D(DIRUT) EXIT
+ IF +Y=1 D CSTATS G OPT
+ IF +Y=2 D ^DGBTOA1 G OPT
+ ;
+EXIT ;
+ K BY,DIRUT,DIS,FLDS,FR,II,L,M1,OPT,TO
+ K ^TMP("BT",$J)
+ K DGBTBG,DGBTEND,NOW,ACTCDE,BTCLAIM,CDATE,COUNT,CURACT,CURID,CURNAME,DEDCT,DGBTBEG,MILES,PAGE,PAY,PRVACT,TCOUNT,TDEDCT,TMILES,TPAY,DFN,VA
+ Q
+ ;
+CSTATS ;
+ I '$$RANGE Q
+PRINT ;
+ W !!,"This report requires 132 columns to print",!
+ S %ZIS="PMQ" D ^%ZIS G PRINTQ:POP
+ I $D(IO("Q")) D QUE G PRINTQ
+ W ! D WAIT^DICD
+ D ACCTS^DGBTOA6
+ D:'$D(ZTQUEUED) ^%ZISC
+PRINTQ Q
+ ;
+QUE ;
+ N X
+ S ZTRTN="ACCTS^DGBTOA6",ZTDESC="DGBT PAYABLE CLAIMS REPORT"
+ F X="DGBTBG","DGBTEND","DGBTBEG" S ZTSAVE(X)=""
+ D ^%ZTLOAD W:$D(ZTSK) !,"TASK #",ZTSK
+ D HOME^%ZIS K IO("Q")
+ Q
+ ;
+RANGE() ;
+ N Y
+ S Y=DT D DD^%DT S NOW=Y
+ S DGBTBEG=$$DATE("Beginning",NOW) I DGBTBEG'>0 S Y=0 G RANGEQ
+ S DGBTBG=DGBTBEG-.0001
+ S DGBTEND=$$DATE("Ending",NOW) I DGBTEND'>0 S Y=0 G RANGEQ
+ S DGBTEND=DGBTEND+.9999,Y=1
+RANGEQ Q (Y)
+ ;
+DATE(STR,NDATE) ;
+ N Y S Y=0
+ S DIR(0)="D^:DT:EX",DIR("A")="Enter "_STR_" Search Date: ",DIR("B")=NDATE,DIR("?")="^D HELP^DGBTOA5"
+ D ^DIR K DIR S:$D(DUOUT)!($D(DTOUT)) Y=-1
+ Q (Y)
+ ;
+HELP ;
+ S %DT="EX" D ^%DT Q
+ ;
+OPTIONS ;
+ ;;Payable Claims Statistics
+ ;;Standard Claims Output

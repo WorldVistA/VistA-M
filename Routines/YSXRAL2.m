@@ -1,0 +1,7 @@
+YSXRAL2 ; COMPILED XREF FOR FILE #615.5 ; 10/15/04
+ ; 
+ S DIKZK=1
+ S DIKZ(0)=$G(^YSR(615.5,DA,0))
+ S X=$P(DIKZ(0),U,1)
+ I X'="" S ^YSR(615.5,"B",$E(X,1,30),DA)=""
+END Q

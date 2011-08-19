@@ -1,0 +1,194 @@
+ORWPCE3 ; SLC/KCM/REV/JM - Get a PCE encounter for a TIU document;11/21/03 ;11/30/09  13:55
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,190,280**;Dec 17, 1997;Build 85
+ Q
+PCE4NOTE(LST,IEN,DFN,VSITSTR) ; Return encounter for an associated note
+ ; LST(1)=HDR^AllowEdit^CPTRequired^VStr^Author^hasCPT
+ ; LST(n)=TYP+^CODE^CAT^NARR^QUAL1^QUAL2 (QUAL1=Primary!Qty, QUAL2=Prv)
+ N VISIT,VSTR,ILST,LOC,CODE,PRIM,QTY,CAT,NARR,PRV,X0,X12,X802,X811,VTYP
+ N IPOV,ICPT,IPRV,IIMM,ISK,IPED,IHF,IXAM,ITRT,ICOM,MIDX,MIEN,MCNT,MODS
+ I +$G(IEN)<1 D  I 1 ; Get PCE Data on a new note not yet saved
+ . S (X0,X12)=""
+ . S VISIT=$$GETENC^PXAPI(DFN,$P(VSITSTR,";",2),$P(VSITSTR,";"))
+ . S VSTR=VSITSTR
+ E  D
+ . S X0=^TIU(8925,IEN,0),X12=$G(^(12))
+ . S VISIT=$P(X12,U,7)
+ . I 'VISIT S VISIT=$P(X0,U,3)
+ . D NOTEVSTR^ORWPCE(.VSTR,IEN)
+ S VTYP=$P(VSTR,";",3)
+ S ILST=1
+ S ICOM=0
+ S LST(1)="HDR"_U_("HID"[VTYP)_U_$P(X0,U,11)_U_VSTR_U_$P(X12,U,2)
+ ;add hasCPT node
+ S LST(1)=LST(1)_U_0
+ I VISIT'>0 D  Q
+ . I $G(VSTR)'="" M LST=^TMP("ORWPCE",$J,VSTR)  ; get cached visit data
+ I $P(LST(1),U,2),VTYP="H" Q                    ; quit if admission
+ K ^TMP("PXKENC",$J)
+ D ENCEVENT^PXAPI(VISIT)
+ I '$D(^TMP("PXKENC",$J,VISIT,"VST",VISIT,0)) Q
+ S $P(LST(1),U,6)=$D(^TMP("PXKENC",$J,VISIT,"CPT"))\10
+ S X0=^TMP("PXKENC",$J,VISIT,"VST",VISIT,0),LOC=+$P(X0,U,22)
+ S ILST=ILST+1,LST(ILST)="VST^DT^"_$P(X0,U)
+ S ILST=ILST+1,LST(ILST)="VST^PT^"_$P(X0,U,5)
+ S ILST=ILST+1,LST(ILST)="VST^HL^"_LOC_"^^"_$P($G(^SC(LOC,0)),U)
+ S ILST=ILST+1,LST(ILST)="VST^PS^0"  ;outpt
+ ;S X0=$G(^TMP("PXKENC",$J,VISIT,"VST",VISIT,800))
+ N VAL
+ D SCSEL^ORWPCE(.VAL,$P(X0,U,5),$P(X0,U),LOC,VISIT)
+ S ILST=ILST+1,LST(ILST)="VST^SC^"_$P($P(VAL,";",1),U,2)
+ S ILST=ILST+1,LST(ILST)="VST^AO^"_$P($P(VAL,";",2),U,2)
+ S ILST=ILST+1,LST(ILST)="VST^IR^"_$P($P(VAL,";",3),U,2)
+ S ILST=ILST+1,LST(ILST)="VST^EC^"_$P($P(VAL,";",4),U,2)
+ S ILST=ILST+1,LST(ILST)="VST^MST^"_$P($P(VAL,";",5),U,2)
+ I $P(VAL,";",6)'="" D
+ .S ILST=ILST+1,LST(ILST)="VST^HNC^"_$P($P(VAL,";",6),U,2)
+ I $P(VAL,";",7)'="" D
+ .S ILST=ILST+1,LST(ILST)="VST^CV^"_$P($P(VAL,";",7),U,2)
+ ;for provider
+ ; LST(n)="PRV"^ien^^^name^primary/secondary flag
+ S IPRV=0 F  S IPRV=$O(^TMP("PXKENC",$J,VISIT,"PRV",IPRV)) Q:'IPRV  D
+ . S X0=^TMP("PXKENC",$J,VISIT,"PRV",IPRV,0)
+ . ;Q:$P(X0,U,4)'="P"
+ . S CODE=$P(X0,U),NARR=$P($G(^VA(200,CODE,0)),U)
+ . S PRIM=($P(X0,U,4)="P")
+ . S ILST=ILST+1
+ . S LST(ILST)="PRV"_U_CODE_"^^^"_NARR_"^"_PRIM
+ S IPOV=0 F  S IPOV=$O(^TMP("PXKENC",$J,VISIT,"POV",IPOV)) Q:'IPOV  D
+ . S X0=^TMP("PXKENC",$J,VISIT,"POV",IPOV,0),X802=$G(^(802)),X811=$G(^(811))
+ . S CODE=$P(X0,U)
+ . S:CODE CODE=$P(^ICD9(CODE,0),U)
+ . S CAT=$P(X802,U)
+ . S:CAT CAT=$P(^AUTNPOV(CAT,0),U)
+ . S NARR=$P(X0,U,4)
+ . S:NARR NARR=$P(^AUTNPOV(NARR,0),U)
+ . S PRIM=($P(X0,U,12)="P")
+ . S PRV=$P(X12,U,4)
+ . S ILST=ILST+1
+ . S LST(ILST)="POV"_U_CODE_U_CAT_U_NARR_U_PRIM_U_PRV
+ . I X811]"" D
+ .. S ICOM=ICOM+1
+ .. S $P(LST(ILST),U,10)=ICOM
+ .. S ILST=ILST+1
+ .. S LST(ILST)="COM"_U_ICOM_U_X811
+ S ICPT=0 F  S ICPT=$O(^TMP("PXKENC",$J,VISIT,"CPT",ICPT)) Q:'ICPT  D
+ . S X0=^TMP("PXKENC",$J,VISIT,"CPT",ICPT,0),X802=$G(^(802)),X12=$G(^(12)),X811=$G(^(811))
+ . S CODE=$$CODEC^ICPTCOD($P(X0,U)) ;ICR #1995
+ . S:CODE=-1 CODE=""
+ . S CAT=$P(X802,U)
+ . S:CAT CAT=$P(^AUTNPOV(CAT,0),U)
+ . S NARR=$P(X0,U,4)
+ . S:NARR NARR=$P(^AUTNPOV(NARR,0),U)
+ . S QTY=$P(X0,U,16)
+ . S PRV=$P(X12,U,4)
+ . S MCNT=0,MIDX=0,MODS=""
+ . F  S MIDX=$O(^TMP("PXKENC",$J,VISIT,"CPT",ICPT,1,MIDX)) Q:'MIDX  D
+ . . S MIEN=$G(^TMP("PXKENC",$J,VISIT,"CPT",ICPT,1,MIDX,0))
+ . . I +MIEN S MCNT=MCNT+1,MODS=MODS_";/"_MIEN
+ . I +MCNT S MODS=MCNT_MODS
+ . S ILST=ILST+1
+ . S LST(ILST)="CPT"_U_CODE_U_CAT_U_NARR_U_QTY_U_PRV_U_U_U_MODS
+ . I X811]"" D
+ .. S ICOM=ICOM+1
+ .. S $P(LST(ILST),U,10)=ICOM
+ .. S ILST=ILST+1
+ .. S LST(ILST)="COM"_U_ICOM_U_X811
+ ;for immunization:
+ ; LST(n)="IMM"^Code^^^Series^prv^Reaction^Contraindicated^Refused
+ S IIMM=0 F  S IIMM=$O(^TMP("PXKENC",$J,VISIT,"IMM",IIMM)) Q:'IIMM  D
+ . S X0=^TMP("PXKENC",$J,VISIT,"IMM",IIMM,0),X12=$G(^(12)),X811=$G(^(811))
+ . S CODE=$P(X0,U)
+ . S:CODE NARR=$P(^AUTTIMM(CODE,0),U)
+ . S QTY=$P(X0,U,4)
+ . S CAT=""
+ . S PRV=$P(X12,U,4)
+ . S ILST=ILST+1
+ . S LST(ILST)="IMM"_U_CODE_U_CAT_U_NARR_U_QTY_U_PRV_U_$P(X0,U,6,7)
+ . I X811]"" D
+ .. S ICOM=ICOM+1
+ .. S $P(LST(ILST),U,10)=ICOM
+ .. S ILST=ILST+1
+ .. S LST(ILST)="COM"_U_ICOM_U_X811
+ ;for skin test:
+ ; LST(n)="SK"^Code^^^result^prv^reading^d/t read^d/t given
+ S ISK=0 F  S ISK=$O(^TMP("PXKENC",$J,VISIT,"SK",ISK)) Q:'ISK  D
+ . S X0=^TMP("PXKENC",$J,VISIT,"SK",ISK,0),X12=$G(^(12)),X811=$G(^(811))
+ . S CODE=$P(X0,U)
+ . S:CODE NARR=$P(^AUTTSK(CODE,0),U)
+ . S QTY=$P(X0,U,4)
+ . S CAT=""
+ . S PRV=$P(X12,U,4)
+ . S ILST=ILST+1
+ . S LST(ILST)="SK"_U_CODE_U_CAT_U_NARR_U_QTY_U_PRV_U_$P(X0,U,5,6)_U_$P(X12,U)
+ . I X811]"" D
+ .. S ICOM=ICOM+1
+ .. S $P(LST(ILST),U,10)=ICOM
+ .. S ILST=ILST+1
+ .. S LST(ILST)="COM"_U_ICOM_U_X811
+ ;for patient education:
+ ; LST(n)="PED"^Code^^^level of understanding^prv
+ S IPED=0 F  S IPED=$O(^TMP("PXKENC",$J,VISIT,"PED",IPED)) Q:'IPED  D
+ . S X0=^TMP("PXKENC",$J,VISIT,"PED",IPED,0),X12=$G(^(12)),X811=$G(^(811))
+ . S CODE=$P(X0,U)
+ . S:CODE NARR=$P(^AUTTEDT(CODE,0),U)
+ . S QTY=$P(X0,U,6)
+ . S CAT=""
+ . S PRV=$P(X12,U,4)
+ . S ILST=ILST+1
+ . S LST(ILST)="PED"_U_CODE_U_CAT_U_NARR_U_QTY_U_PRV
+ . I X811]"" D
+ .. S ICOM=ICOM+1
+ .. S $P(LST(ILST),U,10)=ICOM
+ .. S ILST=ILST+1
+ .. S LST(ILST)="COM"_U_ICOM_U_X811
+ ;for health factors:
+ ; LST(n)="HF"^Code^^^level/severity^prv
+ S IHF=0 F  S IHF=$O(^TMP("PXKENC",$J,VISIT,"HF",IHF)) Q:'IHF  D
+ . S X0=^TMP("PXKENC",$J,VISIT,"HF",IHF,0),X12=$G(^(12)),X811=$G(^(811))
+ . S CODE=$P(X0,U)
+ . S:CODE NARR=$P(^AUTTHF(CODE,0),U)
+ . S QTY=$P(X0,U,4)
+ . S CAT=""
+ . S PRV=$P(X12,U,4)
+ . S ILST=ILST+1
+ . S LST(ILST)="HF"_U_CODE_U_CAT_U_NARR_U_QTY_U_PRV
+ . I X811]"" D
+ .. S ICOM=ICOM+1
+ .. S $P(LST(ILST),U,10)=ICOM
+ .. S ILST=ILST+1
+ .. S LST(ILST)="COM"_U_ICOM_U_X811
+ ;for exam:
+ ; LST(n)="XAM"^Code^^^result^prv
+ S IXAM=0 F  S IXAM=$O(^TMP("PXKENC",$J,VISIT,"XAM",IXAM)) Q:'IXAM  D
+ . S X0=^TMP("PXKENC",$J,VISIT,"XAM",IXAM,0),X12=$G(^(12)),X811=$G(^(811))
+ . S CODE=$P(X0,U)
+ . S:CODE NARR=$P(^AUTTEXAM(CODE,0),U)
+ . S QTY=$P(X0,U,4)
+ . S CAT=""
+ . S PRV=$P(X12,U,4)
+ . S ILST=ILST+1
+ . S LST(ILST)="XAM"_U_CODE_U_CAT_U_NARR_U_QTY_U_PRV_U_$P(X0,U,6,7)
+ . I X811]"" D
+ .. S ICOM=ICOM+1
+ .. S $P(LST(ILST),U,10)=ICOM
+ .. S ILST=ILST+1
+ .. S LST(ILST)="COM"_U_ICOM_U_X811
+ ;for treatment:
+ ; LST(n)="TRT"^Code^CAT^NARR^QTY^prv
+ S ITRT=0 F  S ITRT=$O(^TMP("PXKENC",$J,VISIT,"TRT",ITRT)) Q:'ITRT  D
+ . S X0=^TMP("PXKENC",$J,VISIT,"TRT",ITRT,0),X802=$G(^(802)),X12=$G(^(12)),X811=$G(^(811))
+ . S CODE=$P(X0,U)
+ . S QTY=$P(X0,U,4)
+ . S CAT=$P(X802,U)
+ . S NARR=$P(X0,U,6)
+ . S:CAT CAT=$P(^AUTNPOV(CAT,0),U)
+ . S:NARR NARR=$P(^AUTNPOV(NARR,0),U)
+ . S PRV=$P(X12,U,4)
+ . S ILST=ILST+1
+ . S LST(ILST)="TRT"_U_CODE_U_CAT_U_NARR_U_QTY_U_PRV
+ . I X811]"" D
+ .. S ICOM=ICOM+1
+ .. S $P(LST(ILST),U,10)=ICOM
+ .. S ILST=ILST+1
+ .. S LST(ILST)="COM"_U_ICOM_U_X811
+ Q

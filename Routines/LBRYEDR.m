@@ -1,0 +1,16 @@
+LBRYEDR ;ISC2/DJM-LIBRARY EDIT ROUTINES ;[ 05/23/97  12:13 PM ]
+ ;;2.5;Library;**2**;Mar 11, 1996
+SUB W @IOF,"VA Library Serials Subject Setup for "_LBRYNAM
+ S Y=DT X ^DD("DD") W "   ",Y,!!!
+ S DIC="^LBRY(680.3,",DIC(0)="AELQZ",DLAYGO=680.3
+ L ^LBRY(680.3,0) D ^DIC L  K DLAYGO G:Y<0 EXIT
+ S DA=+Y,DIE=DIC,DR=".01" D LOCK G:LBRYL=0 EXIT D ^DIE L
+ G SUB
+LOCK ;LOCK GLOBAL BEING ACCESSED BY A USER
+ L @(DIC_DA_"):1") S LBRYL=$T
+ I LBRYL=0 D
+ . W !!,$C(7),"This entry is being used by another user.  Try later."
+ . S XZ="CONTINUE// " D PAUSE^LBRYUTL K XZ
+ Q
+EXIT K DIC,DIE,DR,LBRYL,DA
+ Q

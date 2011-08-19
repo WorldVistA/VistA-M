@@ -1,0 +1,105 @@
+SDWLROF ;;IOFO BAY PINES/TEH - WAIT LIST OVERDUE REPORT 1;06/12/2002 ; 29 Aug 2002  2:54 PM
+ ;;5.3;scheduling;**263,414**;AUG 13 1993
+ ;
+ ;
+ ;******************************************************************
+ ;                             CHANGE LOG
+ ;                                               
+ ;   DATE                        PATCH                   DESCRIPTION
+ ;   ----                        -----                   -----------
+ ;   
+ ;   
+ ;   
+ ;
+EN D INIT
+ I $$S^%ZTLOAD G END
+ D SORT
+ I $$S^%ZTLOAD G END
+ D PRINT
+ I $$S^%ZTLOAD G END
+ K ^TMP("SDWLQOF",$J)
+ Q
+INIT ;Initialize variables
+ ;
+ I $D(CT1) S SDWLCT1=CT1
+ I $D(CT2) S SDWLCT2=CT2
+ I $D(DATE) S SDWLDATE=DATE
+ I $D(FORM) S SDWLFORM=FORM
+ I $D(INS) S SDWLINS=INS
+ S SDWLPG=0
+ I $D(ZTSAVE) D
+ .F SDWLI="CT1","CT2","FORM","INS" S SDWL="SDWL"_SDWLI,@SDWL=$G(ZTSAVE(SDWLI))
+ I SDWLINS="ALL" S SDWLIN("ALL")=""
+ S SDWLTXP=$P(SDWLCT1,U,3),SDWLF=$P(SDWLCT1,U,2)
+ I SDWLINS'="ALL" F SDWLI=1:1 S SDWLIN=$P($P(SDWLINS,";",SDWLI),U,1) Q:SDWLIN=""  S SDWLIN(SDWLIN)="",^TMP("SDWLQOF",$J,SDWLIN)=0
+ I SDWLCT2'="ALL" F SDWLI=1:1 S SDWLCL=$P($P(SDWLCT2,";",SDWLI),U,1) Q:SDWLCL=""  S SDWLCT2(SDWLCL)=""
+ D NOW^%DTC S Y=% D DD^%DT S SDWLDTP=Y
+ Q
+SORT ;Sort Records
+ K ^TMP("SDWLROF",$J)
+ S SDWLDA=0,SDWLCNT=0 F  S SDWLDA=$O(^SDWL(409.3,SDWLDA)) Q:SDWLDA<1  D
+ .S SDWLX=$G(^SDWL(409.3,SDWLDA,0)),SDWLERR=0,SDWLDFN=+SDWLX I 'SDWLDFN Q
+ .;-Check for Institution Sort
+ .I SDWLINS'="ALL" D
+ ..I '$D(SDWLIN(+$P(SDWLX,U,3))) S SDWLERR=1
+ .;-Check for Date Range Compliance
+ .I $P(SDWLX,U,16)'<DT,$P(SDWLX,U,16)'=DT S SDWLERR=2
+ .S SDWLTYP=$P(SDWLCT1,U,1),SDWLTYPE=$S(SDWLTYP="C":+$P(SDWLX,U,9),1:+$P(SDWLX,U,8)) I SDWLTYPE=""!('SDWLTYPE) S SDWLERR=7 Q
+ .I SDWLCT2'="ALL" D
+ ..I '$D(SDWLCT2(SDWLTYPE)) S SDWLERR=3
+ .I SDWLTYP="" S SDWLERR=4
+ .I $P(SDWLX,U,17)["C" S SDWLERR=6
+ .Q:SDWLERR  D
+ ..S SDWLSCC=2,DFN=SDWLDFN D ELIG^VADPT I $D(VAEL(3)) S SDWLSCN=$P(VAEL(3),U,2) I SDWLSCN>49 S SDWLSCC=1
+ ..S ^TMP("SDWLROF",$J,+$P(SDWLX,U,3),SDWLTYPE,SDWLSCC,SDWLDA)=""
+ ..S SDWLCNT=SDWLCNT+1,^TMP("SDWLROF",$J,+$P(SDWLX,U,3))=SDWLCNT
+ Q
+PRINT ;Print Report
+ D HD S SDWLCNT=0 I '$D(^TMP("SDWLROF",$J)) W !!,?80-$L("*** No Patient Records to Report ***")\2,"*** No Patient Records to Report ***" Q
+ S SDWLA="" F  S SDWLA=$O(^TMP("SDWLROF",$J,SDWLA)) G END:$$S^%ZTLOAD Q:SDWLA=""  D  Q:$D(DUOUT)
+ .D LINE W !!,"Institution: " S X=$$EXTERNAL^DILFD(409.3,2,,SDWLA) W X I '$G(^TMP("SDWLROF",$J,SDWLA)) W !!,"*** No Patient Records to Report ***"
+ .S SDWLB="" F  S SDWLB=$O(^TMP("SDWLROF",$J,SDWLA,SDWLB)) Q:SDWLB=""  D  Q:$D(DUOUT)
+ ..W !!,"Clinic/Service: " S X=$$EXTERNAL^DILFD(409.3,SDWLTXP,,SDWLB) W X,! Q:$D(DUOUT)
+ ..S SDWLC="" F  S SDWLC=$O(^TMP("SDWLROF",$J,SDWLA,SDWLB,SDWLC)) Q:SDWLC=""  D  Q:$D(DUOUT)
+ ...S SDWLD="" F  S SDWLD=$O(^TMP("SDWLROF",$J,SDWLA,SDWLB,SDWLC,SDWLD)) Q:SDWLD=""  D  Q:$D(DUOUT)
+ ....S (DFN,SDWLDFN)=$P($G(^SDWL(409.3,SDWLD,0)),U,1) D 1^VADPT,DEM^VADPT,ELIG^VADPT,ADD^VADPT
+ ....S SDWLELIG=$P(VAEL(1),U,2)
+ ....S SDWLNAM=VADM(1),SDWLSSN=VA("BID")
+ ....S SDWLDEAD=1
+ ....S SDWLAPTD=$P(^SDWL(409.3,SDWLD,0),U,16),SDWLCOM=$P(^SDWL(409.3,SDWLD,0),U,18)
+ ....S SDWLRBY=$P(^SDWL(409.3,SDWLD,0),U,12),SDWLRPV=$P(^SDWL(409.3,SDWLD,0),U,13)
+ ....S SDWLPH=$G(VAPA(8))
+ ....I SDWLAPTD'="" S Y=SDWLAPTD D DD^%DT S SDWLAPTD=Y
+ ....W !!,SDWLNAM
+ ....W ?35,SDWLSSN I SDWLAPTD'="" W ?50,"Desired Date: ",SDWLAPTD
+ ....W !,"Primary Eligibility: ",SDWLELIG
+ ....W !,"Comments: ",SDWLCOM,!
+ ....I SDWLRBY W !,"Requested by: ",$$EXTERNAL^DILFD(409.3,11,,SDWLRBY)
+ ....I SDWLRPV W ?35,"Requesting Provider: " S X=$$EXTERNAL^DILFD(409.3,12,,SDWLRPV) W X
+ ....W !,"Telephone (Home): ",$P(SDWLPH,U,1) I $P(SDWLPH,U,2) W !,?10,"(Work): ",$P(SDWLPH,U,2)
+ ....W !,"*****"
+ ....I $D(SDWLSPT) S DIR(0)="E" D ^DIR I X["^" S DUOUT=1 Q
+ ....I '$D(SDWLSPT),'$D(DUOUT),$Y>(IOSL-5) D HD
+ ....K VAEL,VADM,VA,VAPA
+ W !!,"** End of Report **"
+ Q
+LINE ;Draw Line
+ W !,"_______________________________________________________________________________"
+ Q
+HD ;Header
+ W:$D(IOF) @IOF W !,SDWLDTP,?80-$L("Appt Wait List Overdue Report")\2,"Appt Wait List Overdue Report"
+ S Y=DT D DD^%DT S SDWLPD=Y W ?57,SDWLPD S SDWLPG=SDWLPG+1 W ?72,"Page: ",SDWLPG
+ W !!,?30,"Institution: " I SDWLINS="ALL" D
+ .W ?45,SDWLINS
+ F I=1:1 S X=$P($P(SDWLINS,";",I),"^",2) Q:X=""  W:I>1 ! W ?45,X
+ S X=$P(SDWLCT2,U,2)
+ W !?26,"Report Category: ",$S($P(SDWLCT1,U,1)="C":"CLINIC",1:"SPECIALTY") I X="ALL" W " ALL"
+ I X'="ALL" D
+ .F I=1:1 S X=$P($P(SDWLCT2,";",I),"^",2) Q:X=""  W !,?45,$$EXTERNAL^DILFD(SDWLF,.01,,X)
+ S X=$G(SDWLFORM) W !,?28,"Output Format: ",$S(SDWLFORM="S":"Summary",1:"Detailed")
+ Q
+END K SDWL,SDWLA,SDWLAPTD,SDWLB,SDWLBD,SDWLBDT,SDWLC,SDWLCAT,SDWLCNT,SDWLCOM,SDWLCT1,SDWLCT2,SDWLCTX,SDWLD
+ K SDLWDA,SDLWDEAD,SDWLDFN,SDWLE,SDWLEDT,SDWLELIG,SDWLERR,SDWLF,SDWLFD,SDWLI,SDWLIN,SDWLINS,SDWLINST
+ K SDWLNAM,SDWLPD,SDWLPG,SDWLPH,SDWLPROM,SDWLRBY,SDWLPRV,SDWLSCC,SDWLSPT,SDWLSSN,SDWLTAG,SDLTK,SDWLTXP
+ K SDWLTYP,SDWLTYPE,SDWLX,CT1,CT2,DATE,I,INS,OPEN,FORM
+ Q

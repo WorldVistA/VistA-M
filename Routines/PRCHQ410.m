@@ -1,0 +1,110 @@
+PRCHQ410 ;WISC/KMB-CREATE 2237 FOR RFQ ;8/6/96  20:54
+ ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;Extrinsic function $$REQUEST^PRCHQ410(SDA,QUOTE,ITEMARR)
+ ;;Builds 2237 from winning quote during award
+ ;;Returns resulting 2237's internal entry # if exits normally; 0 if premature
+ ;;SDA - RFQ internal entry number
+ ;;QUOTE - Quote's internal entry number
+ ;;ITEMARR - Closed Global Root of Index for items assigned to Quote
+ ;;    i.e. "^TMP($J,"RFQ",QUOTE,FOB_CODE)" where the descendents are
+ ;;   ^TMP($J,"RFQ",QUOTE,FOB_CODE,RFQ_LINE_NBR_OF_ITEM)
+REQUEST(SDA,QUOTE,ITEMARR) ;           create 2237 from RFQ
+ N CP,CTR,DA,DIC,DIE,DLAYGO,DR,STA,V,VF,VP,X,X1,XDA,Y,Z,ZP,TDATE,CDATE,TOTAL,MESSAGE
+ N PRC,PRCDA,PRCDRN,PRCSDA,PRC410DA,PRCQ,PRCU,PRCV,PRCW,PRCX,PRCY,PRCZ
+ N PRCCOUNT,PRCIENS,PRCINV,PRCITM,PRCNODE,PRCSCP,PRCSSCP,PRCSSI,PRCTOT
+ N PRCXND,PRCX1,PRCO2237
+ K ^TMP($J,"PRCHQ410") S XDA=0
+ G:'$D(SDA) EX
+ ;
+ S PRCX=0
+ F  S PRCX=$O(@ITEMARR@(PRCX)) Q:PRCX=""  I $D(^PRC(444,SDA,2,PRCX,3)),$P(^(3),U,6)="" Q
+ G:PRCX="" EX
+ S PRC410DA=$P($G(^PRC(444,SDA,0)),"^",9)
+ S (STA,PRC("SITE"))=$P(^PRC(444,SDA,0),"-"),PRC("SST")=$P($G(^(0)),"^",10)
+ S CP=$P(^PRC(444,SDA,0),U,14),PRC("CP")=$P($G(^PRC(420,STA,1,+CP,0)),"^")
+ G:PRC("CP")="" EX
+ D NOW^%DTC S PRC("FY")=$E(100+$E(X,2,3)+$S($E(X,4,5)>9:1,1:0),2,3)
+ S PRC("QTR")=$P("2^2^2^3^3^3^4^4^4^1^1^1","^",+$E(X,4,5))
+ S (Y,TDATE)=X D DD^%DT S CDATE=Y
+ ;
+ ;
+ S Z=PRC("SITE")_"-"_PRC("FY")_"-"_PRC("QTR")_"-"_$P(PRC("CP")," ")
+ S PRC("BBFY")=$$BBFY^PRCSUT(PRC("SITE"),PRC("FY"),PRC("CP"),1)
+ S X=$P(Z,"-",1,2)_"-"_$P(PRC("CP")," ")
+ D EN1^PRCSUT3 G:$G(X)']"" EX S (PRCX1,X1)=X D EN2^PRCSUT3 G:'$D(X1) EX S XDA=DA
+ L +^PRCS(410,DA):30 E  W !,"Unable to lock 2237 entry" S XDA=0 G EX
+ S PRCXND=0,PRCCOUNT=0,TOTAL=+$P($G(^PRC(444,SDA,8,QUOTE,1)),U,2)
+ F  S PRCXND=$O(@ITEMARR@(PRCXND)) Q:PRCXND=""  D
+ . Q:$P($G(^PRC(444,SDA,2,PRCXND,3)),U,6)]""
+ . S PRCCOUNT=PRCCOUNT+1,X=$P(^PRC(444,SDA,2,PRCXND,0),U)
+ . S PRCDA=$O(^PRC(444,SDA,8,QUOTE,3,"B",X,"")) Q:PRCDA=""
+ . S PRCQ(0)=$G(^PRC(444,SDA,8,QUOTE,3,PRCDA,0)),PRCQ(1)=$G(^PRC(444,SDA,8,QUOTE,3,PRCDA,1))
+ . S:$G(PRCO2237)="" PRCO2237=$P($G(^PRC(444,SDA,2,PRCXND,3)),U)
+ . K DA,DIC S DA(1)=XDA,DIC="^PRCS(410,DA(1),""IT"",",DIC(0)="LX",DLAYGO=410.02
+ . S DIC("P")=$P(^DD(410,10,0),U,2),X=PRCCOUNT D ^DIC K DIC,DLAYGO
+ . Q:+Y<1  S PRCSDA=+Y
+ . S $P(^PRC(444,SDA,2,PRCXND,3),U,6,7)=XDA_U_PRCCOUNT
+ . S ^PRC(444,"AE",XDA,SDA,PRCXND)=""
+ . S PRCY=$G(^PRC(444,SDA,2,PRCXND,3)) S:PRCY>0 PRCZ=$P(PRCY,U,2)
+ . I PRCY>0,PRCZ>0 S ^TMP($J,"PRCHQ410",+PRCY,PRCZ)=""
+ . S DA=PRCSDA,DIE="^PRCS(410,DA(1),""IT"","
+ . S $P(^PRCS(410,XDA,"IT",DA,0),U,2)=$P(PRCQ(0),U,2)
+ . S DR="3////^S X=$P(PRCQ(0),U,3)" D ^DIE
+ . S PRCY=$P($G(^PRC(444,SDA,2,PRCXND,1)),U,8) I PRCY]"" S DR="4////^S X=$P($G(^PRCD(420.2,PRCY,0)),U)" D ^DIE
+ . S PRCY=$P($G(^PRC(444,SDA,2,PRCXND,0)),U,4) I PRCY]"" S DR="5///^S X=PRCY" D ^DIE
+ . S PRCY=$P(PRCQ(0),U,4) S:PRCY="" PRCY=$P(PRCQ(0),U,9) S:PRCY="" PRCY=$P(PRCQ(0),U,6)
+ . I PRCY]"" S DR="6///^S X=PRCY" D ^DIE
+ . S $P(^PRCS(410,XDA,"IT",DA,0),U,7)=$P(PRCQ(1),U,3)
+ . S TOTAL=$P(PRCQ(0),U,2)*$P(PRCQ(1),U,3)+TOTAL
+ . S PRCNODE=$S($P($G(^PRC(444,SDA,8,QUOTE,3,PRCDA,2,0)),U,4)>0:"^PRC(444,SDA,8,QUOTE,3,PRCDA,2)",1:"^PRC(444,SDA,2,PRCXND,2)")
+ . K ^TMP("DIERR",$J) S PRCIENS=PRCSDA_","_XDA_","
+ . D WP^DIE(410.02,PRCIENS,1,"",PRCNODE) K ^TMP("DIERR",$J)
+ . S ZP=0
+ . F  S ZP=$O(^PRC(444,SDA,8,QUOTE,3,PRCDA,3,ZP)) Q:+ZP'=ZP  D
+ . . S PRCY=$G(^PRC(444,SDA,8,QUOTE,3,PRCDA,3,ZP,0))
+ . . S CTR=$P(PRCY,U),X=PRCX1_"-"_PRCCOUNT_"-"_CTR K DIC
+ . . S DIC=410.6,DIC(0)="LX",DLAYGO=410.6 D ^DIC K DIC,DLAYGO
+ . . I +Y<1 W !,"Unable to add Delivery Schedule Entry" Q
+ . . S DA=+Y
+ . . L +^PRCS(410.6,DA):30 E  W !,"Unable to lock Delivery Schedule Entry" Q
+ . . S DIE=410.6,DR="1////^S X=$P(PRCY,U,2);3////^S X=$P(PRCY,U,3)"
+ . . D ^DIE
+ . . S PRCY=$G(^PRC(444,SDA,2,PRCXND,4,CTR,0))
+ . . S:PRCY="" PRCY=$G(^PRC(444,SDA,2,PRCXND,4,1,0))
+ . . I PRCY]"" S DR="2////^S X=$P(PRCY,U,4);4////^S X=$P(PRCY,U,5)" D ^DIE
+ . . K DR,DIE L -^PRCS(410.6,DA)
+ . . S PRCDRN=DA K DA,DIC
+ . . S DA(2)=XDA,DA(1)=PRCSDA,DIC="^PRCS(410,DA(2),""IT"",DA(1),2,",DIC(0)="LX"
+ . . S DIC("P")=$P(^DD(410.02,12,0),U,2),X=CTR D ^DIC Q:+Y<1  S DA=+Y
+ . . S DIE=DIC K DIC S DR="1////^S X=PRCDRN" D ^DIE K DIE,DR,DA
+ K DA S DA=XDA
+ S DIE=410,DR="448////^S X=$P($G(^PRC(444,SDA,0)),U,10)" D ^DIE
+ S DR=".5///^S X=$P($P($G(^PRC(444,SDA,0)),U),""-"")" D ^DIE
+ S DR="1////O;3////4" D ^DIE
+ S PRCY=$P($G(^PRCS(410,PRC410DA,0)),U,6) I PRCY]"" S DR="4////^S X=PRCY" D ^DIE
+ S DR="5////^S X=$P(^PRCS(410,PRC410DA,1),U)" D ^DIE
+ S DR="6.3////^S X=$P($G(^PRC(444,SDA,0)),U,11)" D ^DIE
+ S DR="7.5////^S X=$P($G(^PRC(444,SDA,0)),U,6)" D ^DIE
+ S DR="7////^S X=$P($G(^PRC(444,SDA,1)),U,2)" D ^DIE
+ S $P(^PRCS(410,XDA,4),U)=TOTAL,$P(^PRCS(410,XDA,4),U,8)=TOTAL
+ S DR="21////^S X=TDATE" D ^DIE
+ S DR="15.5///^S X=$P($G(^PRCS(410,PRC410DA,3)),U,3)" D ^DIE
+ I PRCFOB="O" S X=$P($G(^PRC(444,SDA,8,QUOTE,1)),U,2) I X>0 S DR="48.1///"_X D ^DIE
+ S DR="50///^S X=PRCCOUNT" D ^DIE
+ S PRCY=$P($G(^PRCS(410,PRC410DA,7)),U) I PRCY]"" S DR="40////^S X=PRCY" D ^DIE
+ S PRCY=$P($G(^PRC(444,SDA,1)),U,4) I PRCY]"" S DR="46///^S X=PRCY" D ^DIE
+ S DR="56///60" D ^DIE
+ S:PRCO2237]"" PRCO2237=$S($D(^PRCS(410,PRCO2237,0)):$P(^(0),U),1:"")
+ I PRCO2237]"" S DR="51///^S X=PRCO2237" D ^DIE
+ K DIE,DR
+ S ^PRCS(410,XDA,"CO",0)="^^1^1^"_TDATE
+ S ^PRCS(410,XDA,"CO",1,0)="This 2237 is derived from RFQ #"_$P($G(^PRC(444,SDA,0)),U)
+ D ERS410^PRC0G(DA_"^A")
+ K ^TMP("DIERR",$J) S PRCIENS=XDA_","
+ D:$D(^PRC(444,SDA,3)) WP^DIE(410,PRCIENS,9,"","^PRC(444,SDA,3)")
+ K ^TMP("DIERR",$J) S PRCIENS=XDA_","
+ D:$D(^PRCS(410,PRC410DA,8)) WP^DIE(410,PRCIENS,45,"","^PRCS(410,PRC410DA,8)")
+ K ^TMP("DIERR",$J)
+ G IN^PRCHQ41B
+EX Q XDA

@@ -1,0 +1,183 @@
+FHNO5 ; HISC/REL - Enter/Edit Supplemental Fdgs. ;7/27/94  14:45 
+ ;;5.5;DIETETICS;**5**;Jan 28, 2005;Build 53
+ ;patch #5 - add SF to outpatient.
+ D NOW^%DTC S NOW=%
+ASK K DIC,X,DFN,FHDFN,FHPTNM,Y S (FHMEAL,ADM,FHIDFLG,FHPNNSV)="",FHALL=1 D ^FHOMDPA
+ G:'FHDFN KIL
+ S WARD="" I $G(DFN)'="" S WARD=$G(^DPT(DFN,.1))
+ I WARD="" D SFOUT G ASK
+ K ADM
+A0 W !!,"Return for OUTPATIENT or 'C' for CURRENT Admission: " R X:DTIME G:X["^" KIL D:X="c" TR^FH
+ I (X="")&'($D(^FHPT(FHDFN,"OP"))) G ASK
+ I (X="") D SFOUT G ASK
+ I WARD'="",X="C" S ADM=$G(^DPT("CN",WARD,DFN)) G:$G(ADM) S0
+ S DIC="^FHPT(FHDFN,""A"",",DIC(0)="EQM" D ^DIC G:Y<1 A0 S ADM=+Y
+ G:'$G(ADM) ASK
+ D S0
+ G ASK
+S0 D LIS^FHNO7 S PNO=Y
+SFA K DIC S FHNNSV="",DIC="^FH(118.1,",DIC(0)="EQM",OLD=$S('NM:"",1:$P(^FH(118.1,NM,0),"^",1))
+ W !!,"Supplemental Feeding Menu: " W:NM OLD," // " R X:DTIME
+ G KIL:'$T Q:X["^"
+ S FHNMSAV=NM
+ S FHXSAV=X
+ I X="" Q:'NM  G S1
+ I X="@" D CAN W "  .. cancelled" Q
+ D ^DIC K DIC G SFA:Y<1 S NM=+Y
+ S FHNMSAV=NM
+S1 Q:'NM
+ S KK=1,PNN="^"_NOW_"^"_DUZ_"^"_NM_"^"_$S(NM=1:$P(PNO,"^",5,29),1:^FH(118.1,NM,1))
+ I WARD="" D   ;if outpatient, only allow SF for specific meal.
+ .S T1=$S(FHMEAL="B":"10am",FHMEAL="N":"2pm",1:"8pm")
+ .S KK=$S(FHMEAL="B":1,FHMEAL="N":5,1:9)
+ .S FHKK9=$S(FHMEAL="B":5,FHMEAL="N":14,1:23)
+ I NM=1,WARD="" D OIS^FHNO7,CAN S FHSFQT9=$P(FHPNNSV,"^",FHKK9,FHKK9+6),PNN=FHPNNSV G:"^^^^^^^^"'[FHSFQT9 ADD
+ I NM'=1 G UPD:$P(PNO,"^",4,29)=$P(PNN,"^",4,29) D CAN G ADD
+ S DIC="^FH(118,",DIC(0)="EQM",DIC("S")="I $P(^(0),U,3)'=""Y"""
+G1 G:KK>12 G5
+ I ((WARD="")&(FHMEAL="B")&(KK>4))!((WARD="")&(FHMEAL="N")&(KK>8)) G G5
+ I WARD'="" S T1=$P("10am^2pm^8pm","^",KK-1\4+1)
+ S T2="#"_(KK-1#4+1),P1=KK*2+3
+ S DIC("A")=T1_" Feeding "_T2_": "
+ S OLD=$P(PNN,"^",P1) I OLD S DIC("A")=DIC("A")_$P(^FH(118,+OLD,0),"^",1)_"// "
+G2 W !!,DIC("A") R X:DTIME G:'$T!(X["^") G5
+ I X="" G:OLD G3 S KK=$S(KK<5:5,KK<9:9,1:13) G G1
+ I OLD,X="@" S $P(PNN,"^",P1)="",$P(PNN,"^",P1+1)="" S KK=KK+1 G G1
+ D ^DIC G:Y<1 G2 S Y=+Y,K1=$S(KK<5:1,KK<9:5,1:9)
+ F L=K1:1:K1+3 I L'=KK,$P(PNN,"^",L*2+3)=Y W *7," .. DUPLICATE OF EXISTING ITEM!" G G2
+ S:OLD'=Y $P(PNN,"^",P1)=Y
+G3 S OLD=$P(PNN,"^",P1+1)
+G4 W !,T1," ",T2," Qty: ",$S(OLD="":1,1:OLD),"// " R X:DTIME G:'$T!(X["^") G5
+ S:X="@" X=0 I X="" S:OLD="" $P(PNN,"^",P1+1)=1 S KK=KK+1 G G1
+ I X'?1N.N!(X>20) W *7," ??" S X="?"
+ I X["?" W !?5,"Enter a whole number between 1 and 20" G G4
+ I 'X S $P(PNN,"^",P1)="",$P(PNN,"^",P1+1)="" S KK=KK+1 G G1
+ S $P(PNN,"^",P1+1)=X,KK=KK+1 G G1
+G5 S KK=3,X="" F T1=0:1:2 S P1=T1*8-1 F T2=1:1:4 S KK=KK+2 I $P(PNN,"^",KK) S P1=P1+2,$P(X,"^",P1,P1+1)=$P(PNN,"^",KK,KK+1)
+ I X="" D CAN Q
+G6 Q:WARD=""
+ S P1=$P(PNN,"^",29) S:P1="" P1="D" W !!,"Dietary or Therapeutic? ",P1,"// " R Y:DTIME S:'$T!("^"[Y) Y=P1
+ S:$P("dietary",Y,1)="" Y="D" S:$P("therapeutic",Y,1)="" Y="T"
+ I $P("DIETARY",Y,1)'="",$P("THERAPEUTIC",Y,1)'="" W *7,!?5," Answer D for Dietary use or T for Therapeutic use" G G6
+ S $P(X,"^",25)=$E(Y,1),PNN=$P(PNN,"^",1,4)_"^"_X
+ G:$P(PNO,"^",5,29)=X UPD D CAN
+ADD ; Add SF
+ Q:'$D(WARD)
+ I WARD="" G ADDOUT
+ L +^FHPT(FHDFN,"A",ADM,"SF",0)
+ I '$D(^FHPT(FHDFN,"A",ADM,"SF",0)) S ^FHPT(FHDFN,"A",ADM,"SF",0)="^115.07^^"
+ S X=^FHPT(FHDFN,"A",ADM,"SF",0),NO=$P(X,"^",3)+1,^(0)=$P(X,"^",1,2)_"^"_NO_"^"_($P(X,"^",4)+1)
+ L -^FHPT(FHDFN,"A",ADM,"SF",0) I $D(^FHPT(FHDFN,"A",ADM,"SF",NO)) G ADD
+ S ^FHPT(FHDFN,"A",ADM,"SF",NO,0)=NO_"^"_$P(PNN,"^",2,99)
+ S $P(^FHPT(FHDFN,"A",ADM,0),"^",7)=NO
+ I NO'="" S EVT="F^O^"_NO D ^FHORX
+UPD Q:'$D(WARD)  I WARD="" G UPDOUT
+ S:NO $P(^FHPT(FHDFN,"A",ADM,"SF",NO,0),"^",30,31)=NOW_"^"_DUZ
+ Q
+CAN ; Cancel SF
+ Q:'$D(WARD)
+ I WARD="" G CANOUT
+ S NO=$P(^FHPT(FHDFN,"A",ADM,0),"^",7),$P(^(0),"^",7)=""
+ S:NO $P(^FHPT(FHDFN,"A",ADM,"SF",NO,0),"^",32,33)=NOW_"^"_DUZ
+ I NO'="" S EVT="F^C^"_NO D ^FHORX
+ Q
+SFOUT ;outpt SF
+ K FHSFLG,FHNMSAV,FHXSAV,X,OLD,FHLOC,FHLOCN
+ D SF^FHNO7
+ I '$G(FHSFLG) W !,"NO OUTPATIENT DATA ON FILE for today's date and the future!!" Q
+ D ASK0
+ Q
+ASK0 ;ask Rec Meal
+ K FHDM14,FHFLG,FHCK,FHDMIEN,FHIEN
+ S (FHTOTML("B"),FHTOTML("N"),FHTOTML("E"),FHTOTML("A"))=0
+ F FHI=DT-1:0 S FHI=$O(^FHPT("RM",FHI)) Q:FHI'>0  F FHJ=0:0 S FHJ=$O(^FHPT("RM",FHI,FHDFN,FHJ)) Q:FHJ'>0  D
+ .S FHOPDAT=$G(^FHPT(FHDFN,"OP",FHJ,0))
+ .Q:$P(FHOPDAT,U,15)="C"
+ .S FHML=$P(FHOPDAT,U,4)
+ .S FHN=0
+ .S:FHML="B" FHN=1
+ .S:FHML="N" FHN=2
+ .S:FHML="E" FHN=3
+ .S FHDM14(FHI,FHN,FHML)=FHI_U_FHJ
+ F FHI=0:0 S FHI=$O(FHDM14(FHI)) Q:FHI'>0  D
+ .F FHN=1,2,3 Q:FHN=""  F FHJ="B","N","E" Q:FHJ=""  D
+ ..I (FHJ="B")&$D(FHDM14(FHI,FHN,FHJ)) S FHTOTML("B")=FHTOTML("B")+1,(FHDMIEN(FHI,FHJ),FHIEN(FHJ))=FHDM14(FHI,FHN,FHJ)
+ ..I (FHJ="N")&$D(FHDM14(FHI,FHN,FHJ)) S FHTOTML("N")=FHTOTML("N")+1,(FHDMIEN(FHI,FHJ),FHIEN(FHJ))=FHDM14(FHI,FHN,FHJ)
+ ..I (FHJ="E")&$D(FHDM14(FHI,FHN,FHJ)) S FHTOTML("E")=FHTOTML("E")+1,(FHDMIEN(FHI,FHJ),FHIEN(FHJ))=FHDM14(FHI,FHN,FHJ)
+ Q:'$D(FHDM14)
+R1 S (FHCNSFF,FHADSFF)=0,(FHLOCN,FHSFMEN)="",(FH1,FHQ,FHDTC)=0,(FHDTML,FHX)="" R !!,"Enter a Meal (B,N,E or ALL): ALL// ",FHDTML:DTIME
+ Q:'$T!(FHDTML["^")
+ S:FHDTML="" FHDTML="ALL"
+ I FHDTML["?" S FHQ=1 G MS1
+ S X=FHDTML D TR^FH S (FHX,FHDTML)=X
+ I FHDTML="A" S FHQ=1 G MS1
+ S FHALML=FHX
+ I FHDTML="ALL" S FHDTML=$E(FHDTML,1),FHALML="BNE"
+ I $L(FHDTML)=3 S:("BNE")'[$E(FHDTML,1) FHQ=1 S:("BNE")'[$E(FHDTML,2) FHQ=1 S:("BNE")'[$E(FHDTML,3) FHQ=1 S FHCK($E(FHDTML,1))="",FHCK($E(FHDTML,2))="",FHCK($E(FHDTML,3))=""
+ I $L(FHDTML)=2 S:("BNE")'[$E(FHDTML,1) FHQ=1 S:("BNE")'[$E(FHDTML,2) FHQ=1 S FHCK($E(FHDTML,1))="",FHCK($E(FHDTML,2))=""
+ I $L(FHDTML)=1 S:("ABNE")'[$E(FHDTML,1) FHQ=1 S FHCK(FHDTML)=""
+ I FHDTML="A" S (FHCK("B"),FHCK("N"),FHCK("E"))=""
+ S:$L(FHDTML)>3 FHQ=1
+ G:FHQ MS1
+ I $L(FHDTML)=3 S:'$G(FHTOTML($E(FHDTML,1))) FH1=1 S:'$G(FHTOTML($E(FHDTML,2))) FH1=1 S:'$G(FHTOTML($E(FHDTML,3))) FH1=1 I FH1 W !!,"There is no outpatient data for this Meal!!" G R1
+ I $L(FHDTML)=2 S:'$G(FHTOTML($E(FHDTML,1))) FH1=1 S:'$G(FHTOTML($E(FHDTML,2))) FH1=1 I FH1 W !!,"There is no outpatient data for this Meal!!" G R1
+MS1 I FHQ W *7,!,"Select B for Breakfast, N for Noon, E for Evening or ALL for all meals",!,"Answer may be multiple meals, e.g., BN or NE" G R1
+ S:$L(FHDTML)>1 FHDTML="A"
+ S (FHFLG,FHLIS)=0
+ I (FHDTML'="A"),(FHTOTML(FHDTML)'>0) W !!,"There is no outpatient data for this Meal!!" G R1
+ I FHDTML'="A",(FHTOTML(FHDTML)=1) F FHI=DT-1:0 S FHI=$O(FHDMIEN(FHI)) G:FHI'>0 EVNT I $D(FHDMIEN(FHI,FHDTML)) S FHDMDAT=FHDMIEN(FHI,FHDTML) D PR1
+ I FHDTML'="A",(FHTOTML(FHDTML)>1) D CHK^FHSPED
+ I 'FHFLG,FHDTML="A" G ALL
+ I $G(FHFLG) F FHI=FHDT1-1:0 S FHI=$O(FHDM14(FHI)) G:(FHI'>0)!(FHI>FHDT2) EVNT F FHN=1,2,3 Q:FHN=""  I $D(FHDM14(FHI,FHN,FHDTML)) S FHDMDAT=FHDM14(FHI,FHN,FHDTML) D PR1
+ Q
+ALL S FHCT=0,(FHDT1,FHDT2,FHDTSV)=DT
+ F FHI=DT-1:0 S FHI=$O(FHDM14(FHI)) S:'FHI FHDT2=FHDTSV Q:FHI'>0  S FHCT=FHCT+1,FHDTSV=FHI S:FHCT=1 FHDT1=FHI F FHN=1,2,3 Q:FHN=""  D
+ .S FHJ="" F  S FHJ=$O(FHDM14(FHI,FHN,FHJ)) Q:FHJ=""  I $D(FHDM14(FHI,FHN,FHJ)) S FHDMDAT=FHDM14(FHI,FHN,FHJ) D PR1
+ ;
+EVNT S:'$D(FHDTP) FHDTP=""
+ I $D(FHDT1) S DTP=FHDT1 D DTP^FH S FHDTP=DTP
+ I $D(FHDT2) S DTP=FHDT2 D DTP^FH S:FHDTP'=DTP FHDTP=FHDTP_" to "_DTP
+ I FHCNSFF=1 S FHACT="C",FHTXT="Outpatient Supplemental Feeding:  ("_FHALML_") , "_FHLOCN_", Cancelled "_FHDTP D OPFILE^FHORX
+ I FHADSFF=1 S FHACT="O",FHTXT="Outpatient Supplemental Feeding: "_FHSFMEN_" ("_FHALML_") , "_FHLOCN_", "_FHDTP D OPFILE^FHORX
+ Q
+PR1 S FHDTE=$P(FHDMDAT,U,1),ADM=$P(FHDMDAT,U,2)
+ I '$G(^FHPT(FHDFN,"OP",ADM,0)) Q
+ S FHDTC=FHDTC+1,DTP=$P($G(^FHPT(FHDFN,"OP",ADM,0)),U,1) D DTP^FH S:FHDTC=1 FHDTP=DTP
+ S FHMEAL=$P(^FHPT(FHDFN,"OP",ADM,0),U,4)
+ I $G(FHIDFLG) D CAN S PNN=FHPNNSV,FHKK9=$S(FHMEAL="B":5,FHMEAL="N":14,1:23) S FHSFQT9=$P(FHPNNSV,"^",FHKK9,FHKK9+6) G:"^^^^^^^^"'[FHSFQT9 ADD Q
+ S (PNO,WARD,FHLOCN,FHSFMEN)=""
+ S FHLOC=$P($G(^FHPT(FHDFN,"OP",ADM,0)),U,3) S:$G(FHLOC) FHLOCN=$P($G(^FH(119.6,FHLOC,0)),U,1)
+ I $D(FHXSAV),FHXSAV="@" D CAN W !,"  .. cancelled" Q
+ I $D(X),X="^" Q
+ I $D(FHNMSAV),FHNMSAV'="" D S1 Q
+ D CAD
+ D LIS^FHNO7 S PNO=Y
+ I $G(FHLIS),$G(NO) S PNO=^FHPT(FHDFN,"OP",ADM,"SF",NO,0)
+ I '$G(FHLIS) D SFA S FHLIS=FHLIS+1 Q
+ I $G(FHLIS) S NM=FHNMSAV D S1
+ Q
+CAD ;
+ S FHCFLG=""
+ S NO=$P($G(^FHPT(FHDFN,"OP",ADM,"SF",0)),"^",3)
+ I NO S FHCFLG=$P($G(^FHPT(FHDFN,"OP",ADM,"SF",NO,0)),"^",32)
+ Q
+ADDOUT ; Add outpt SF
+ S FHMEAL=$P($G(^FHPT(FHDFN,"OP",ADM,0)),U,4),FHSFMEN=""
+ L +^FHPT(FHDFN,"OP",ADM,"SF",0)
+ I '$D(^FHPT(FHDFN,"OP",ADM,"SF",0)) S ^FHPT(FHDFN,"OP",ADM,"SF",0)="^115.1627^^"
+ S X=^FHPT(FHDFN,"OP",ADM,"SF",0),NO=$P(X,"^",3)+1,^(0)=$P(X,"^",1,2)_"^"_NO_"^"_($P(X,"^",4)+1)
+ L -^FHPT(FHDFN,"OP",ADM,"SF",0) I $D(^FHPT(FHDFN,"OP",ADM,"SF",NO)) G ADDOUT
+ I FHMEAL="B" S $P(PNN,U,13,20)="^^^^^^^",$P(PNN,U,21,28)="^^^^^^^"
+ I FHMEAL="N" S $P(PNN,U,5,12)="^^^^^^^",$P(PNN,U,21,28)="^^^^^^^"
+ I FHMEAL="E" S $P(PNN,U,5,12)="^^^^^^^",$P(PNN,U,13,20)="^^^^^^^"
+ S ^FHPT(FHDFN,"OP",ADM,"SF",NO,0)=NO_"^"_$P(PNN,"^",2,99)
+ S:$G(FHNMSAV) FHSFMEN=$P($G(^FH(118.1,FHNMSAV,0)),U,1)
+ S FHADSFF=1
+UPDOUT S:NO $P(^FHPT(FHDFN,"OP",ADM,"SF",NO,0),"^",30,31)=NOW_"^"_DUZ
+ Q
+CANOUT ; Cancel outpt SF
+ S NO=$P($G(^FHPT(FHDFN,"OP",ADM,"SF",0)),"^",3)
+ S:NO $P(^FHPT(FHDFN,"OP",ADM,"SF",NO,0),"^",32,33)=NOW_"^"_DUZ
+ S FHCNSFF=1
+ Q
+KIL G KILL^XUSCLEAN

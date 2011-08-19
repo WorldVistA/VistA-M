@@ -1,0 +1,190 @@
+WVUTL1A ;HCIOFO/JR,FT-Continuation of ^WVUTL1 (Utilities) ;4/10/01  11:29
+ ;;1.0;WOMEN'S HEALTH;**4,7,14**;Sep 30, 1998
+ ;
+ ; This routine uses the following IAs:
+ ;  #1252 - $$OUTPTPR^SDUTL3     (supported)
+ ;  #2483 - FILE 2, Field 1901   (private)
+ ;  #2716 - $$GETSTAT^DGMSTAPI   (supported)
+ ; #10035 - ^DPT(DFN,.104        (supported)
+ ; #10060 - FILE 200 fields      (supported)
+ ; #10090 - FILE 4 fields        (supported)
+ ;
+PRIOR() ;EP
+ ;---> CALLED FROM WV NOTIF-EDITBLK-1 TO GET VALUE AND TEXT OF
+ ;---> NOTIFICATION PRIORITY AND RESULT/REMINDER, FROM PURPOSE OF
+ ;---> NOTIFICATION WHEN FIRST DISPLAYING SCREEN.
+ ;---> REQUIRED VARIABLE: DA=IEN OF NOTIFICATION.
+ N X
+ Q:'$D(DA) "UNKNOWN"
+ Q:'$D(^WV(790.4,DA,0)) "UNKNOWN"
+ S X=$P(^WV(790.4,DA,0),U,4)
+ Q:'X "UNKNOWN"
+ Q $$PRIOR1
+ ;
+PRIOR1() ;EP
+ ;---> CALLED FROM WV NOTIF-EDITBLK-1 TO GET VALUE AND TEXT OF
+ ;---> NOTIFICATION PRIORITY FROM PURPOSE OF NOTIFICATION AS AN
+ ;---> ACTION WHEN EDITING PURPOSE OF NOTIFICATION.  ALSO DISPLAY
+ ;---> WHETHER PURPOSE IS A RESULT OR A REMINDER.
+ ;---> REQUIRED VARIABLE: X=IEN IN NOTIFICATION PURPOSE FILE.
+ N R,Y,Z
+ Q:'$D(X) "UNDEFINED"
+ Q:'X "UNKNOWN"
+ Q:'$D(^WV(790.404,X,0)) "UNKNOWN"
+ S Y=$P(^WV(790.404,X,0),U,2) D
+ .I 'Y S R="UNKNOWN" Q
+ .I '$$VFIELD^DILFD(790.404,.02) S R="^DD MISSING"
+ .S R=$$EXTERNAL^DILFD(790.404,.02,"",Y)
+ S Z=$P(^WV(790.404,X,0),U,6)
+ Q:Z="" R
+ Q:Z R_", RESULT"
+ Q R_", REMINDER"
+ ;
+ ;
+NTPROC() ;EP
+ ;---> CALLED FROM WV NOTIF-EDITBLK-1(?) BLOCK TO DISPLAY PROCEDURE
+ ;---> NAME, BASED ON ACCESSION# PTR, WHEN FIRST DISPLAYING SCREEN.
+ ;---> REQUIRED VARIABLE: X=ACCESSION# OF PROCEDURE
+ N X
+ S X=$P(^WV(790.4,DA,0),U,6)
+ Q $$PROC
+ ;
+PROC() ;EP
+ ;---> DISPLAY PROCEDURE TYPE OF THIS PROCEDURE.
+ ;---> REQUIRED VARIABLE: X=IEN OF PROCEDURE IN PROC FILE #790.1.
+ N WVY,WVYY,Y,Z S WVYY="INVALID ACC# OR PTR"
+ Q:X']"" ""
+ Q:'$D(^WV(790.1,X,0)) WVYY
+ S WVY=$P(^WV(790.1,X,0),U,4)
+ Q:'WVY WVYY
+ Q:'$D(^WV(790.2,WVY,0)) WVYY
+ S Z=$P(^WV(790.2,WVY,0),U)
+ ;---> IF UNILATERAL AND LEFT/RIGHT HAS A VALUE, REPLACE "UNILATERAL"
+ ;---> WITH LEFT OR RIGHT.
+ S Y=$P(^WV(790.1,X,0),U,9)
+ S Y=$S(Y="l":"LEFT",Y="r":"RIGHT",1:"")
+ Q:Y="" Z
+ Q $P(Z," ")_" "_Y
+ ;
+PROC1() ;EP
+ ;---> DISPLAY PROCEDURE TYPE OF THIS PROCEDURE, USING DA.
+ ;---> CALLED BY WV PROC-HEADER-1, WHICH CANNOT USE X.
+ ;---> REQUIRED VARIABLE: DA=IEN OF PROCEDURE IN PROC FILE #790.1.
+ N X S X=DA
+ Q $$PROC
+PROVI(DFN) ;
+ ;---> RETURNS THE PRIMARY CARE PROVIDER
+ ;---> REQUIRED VARIABLE: DFN
+ Q:$G(DFN)'>0 "UNKNOWN"
+ N X S X=$P($G(^DPT(DFN,.104)),U)
+ S X=$S(X>0:$$GET1^DIQ(200,X,.01,"E"),1:"")
+ I X="" S X=$P($$OUTPTPR^SDUTL3(DFN),U,2)
+ S:X="" X="UNKNOWN"
+ Q X
+SCR(X) ;
+ Q:$G(X)'>0 0
+ S WVJX=$S(X>0:$P($G(^WV(790.07,X,0)),U,2),1:0)
+ Q WVJX
+QUAD(X) ;
+ Q:$TR(X,"ULR,")'="" 0
+ N TEST,CN,CNT,WVJX S WVJX=X,CN=""
+ S (CN("LL"),CN("UL"),CN("UR"),CN("LR"))="",TEST=1
+ F  S CN=$O(CN(CN)) Q:CN=""  I $P(WVJX,CN,2,5)[CN S WVJX=$P(WVJX,CN,1,2)_$P(WVJX,CN,3)
+ F CN=1:1:11 I $E(WVJX,CN)=","&($E(WVJX,CN+1)=",") S WVJX=$E(WVJX,1,CN)_$E(WVJX,CN+2,11) S CN=CN-1
+ F CN=1:1:4 S CNT=$P(X,",",CN) I CNT'="" I '$D(CN(CNT)) S TEST=0 Q
+ S:$E(WVJX,$L(WVJX))="," WVJX=$E(WVJX,1,$L(WVJX)-1)
+ S:$E(WVJX,1)="," WVJX=$E(WVJX,2,11)
+ S:TEST>0 TEST=TEST_"^"_WVJX
+ Q TEST
+REF ;
+ N X,Y,B,L
+ Q:$G(DA)=""  S X=DA
+ S Y=X,X=$P($G(^WV(790.07,X,0)),U)
+ S L="abcdefghijklmnopqrstuvwxyz"
+ S B="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+ S X=$TR($E(X,1,$L(X)),L,B)
+ I WVACT="SET" S ^WV(790.07,"C",X,Y)=""
+ I WVACT="KIL" K ^WV(790.07,"C",X,Y)
+ K WVACT Q
+FAC N X,Y
+ S WVJBFAC="",WVJCFAC="",WVJPCP=""
+ Q:$G(WVDFN)'>0
+ S X=$G(^WV(790,WVDFN,0))
+ S WVJBFAC=$P(X,U,25),WVJCFAC=$P(X,U,26),WVJPCP=$$PROVI(WVDFN)
+ S:WVJBFAC>0 WVJBFAC=$E($$GET1^DIQ(4,WVJBFAC,.01,"E"),1,18)
+ S:WVJCFAC>0 WVJCFAC=$E($$GET1^DIQ(4,WVJCFAC,.01,"E"),1,18)
+ Q
+RAXS(DA) ; 
+ I $G(DA)'>0 Q 0
+ S WVJJ0=$G(^WV(790.1,DA,0))
+ I '$D(WVJJ0) Q 0
+ I "^BU^MB^MU^MS^"'[$E(WVJJ0,1,2) Q 0
+ I $P(WVJJ0,U,15)="" Q 0
+ Q 1
+FACIL(DFN,TYP) ;Gets Treatment Facility, if typ="C" for Cervix, "B" for Breast
+ N X,Y
+ S Y=""
+ I $G(DFN)'>0 Q Y
+ S X=$G(^WV(790,DFN,0))
+ S:TYP="B" Y=$P(X,U,25) S:TYP="C" Y=$P(X,U,26)
+ S:Y>0 Y=$E($$GET1^DIQ(4,Y,.01,"E"),1,18)
+ Q Y
+MST(WVDFN) ;Gets Military Sexual Trauma
+ I $G(WVDFN)'>0 Q ""
+ N X,WVMST
+ S WVMST=$$GETSTAT^DGMSTAPI(WVDFN)
+ S WVMST=$S($P(WVMST,U,6)]"":$P(WVMST,U,6),1:"")
+ S:WVMST="" WVMST="Unknown, not screened"
+ I $E($$VET(WVDFN))'="Y" S WVMST="<N/A Not a Veteran>"
+ Q WVMST
+ ;
+SC(WVJ) ;Screen called from File 790.02 to elim. inactive from selectable
+ I $G(XQY0)["WV ADD/EDIT CASE MANAGERS" Q 1
+ I $G(WVJOPEN)>0 Q 1
+ N WVINACT
+ S WVINACT=$P($G(^WV(790.01,+WVJ,0)),U,2) ;date inactivated
+ I WVINACT>0,WVINACT<$G(DT) Q 0
+ Q 1
+LOOK(WVJ) ;Display select fields with lookup on 790, not file#2 Identif.
+ Q:WVJ'>0
+ N DIC,DA,DR,DIQ,Y
+ S DIC="^WV(790,",DA=WVJ,DIQ="WVJAR(",DIQ(0)="E"
+ S DR=".06;.1;.16" D EN^DIQ1
+ S WVJ=WVJAR(790,WVJ,.06,"E")_"    "_WVJAR(790,WVJ,.1,"E")
+ K WVJAR
+ Q WVJ
+LOOKL(WVJ) ;
+ N Y,WVX,WVP,WVY,WVDT,WVP,X,WVDTS,WVMARK
+ S X1=DT,X2=-30 D C^%DTC S WVDTS=X
+ S WVX="" F  S WVX=$O(^WV(790.3,"C",+WVJ,WVX)) Q:WVX'>0  D
+ .S WVY=$G(^WV(790.3,WVX,0)),WVDT=+WVY,WVP=$P(WVY,U,3)
+ .Q:WVDT'>WVDTS  S WVMARK=1
+ .S Y=WVDT D DD^%DT S WVDT=Y
+ .;S WVP=$S(WVP'>0:"",1:$P($G(^WV(790.1,WVP,0)),U,4))
+ .S:WVP'="" WVP=$P($G(^WV(790.2,WVP,0)),U)
+ .W !?32,WVDT,?47,WVP
+ W:$G(WVMARK)=1 !
+ Q
+RUNDT(WVY) ;Get and format run date for various reports 
+ ; Center when WVY="C"
+ N Y,WVJ
+ I $D(WVJRNOW) Q WVJRNOW
+ D NOW^%DTC S Y=% D DD^%DT
+ S Y=$E(Y,1,12)_"  "_$E(Y,14,18)
+ S:$L(Y)'>10 Y=""
+ S (WVJRNOW,WVJ)="Run Date: "_Y
+ I $G(WVY)="C" S (WVJ,WVJRNOW)="                         "_WVJRNOW
+ Q WVJ
+ ;
+LINE ; Called from the WV LINE FOR MENUS option. That option is merely a
+ ; place holder in the menu and used for visual purposes. This is 
+ ; entry point does nothing.
+ Q
+VET(DFN) ; Check if patient is a veteran.
+ N WVETERAN
+ S WVETERAN=$$GET1^DIQ(2,DFN,1901,"I")
+ Q $S(WVETERAN="Y":"Yes",WVETERAN="N":"No",1:"Unknown")
+ ;
+CST(WVDFN) ; Return Civilian Sexual Trauma value
+ Q $$GET1^DIQ(790,+WVDFN,.28,"E")
+ ;

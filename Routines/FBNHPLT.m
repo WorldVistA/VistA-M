@@ -1,0 +1,26 @@
+FBNHPLT ;AISC/GRR-PRINT CNH PAYMENTS AND TOTALS FOR A MONTH ;1DEC00
+ ;;3.5;FEE BASIS;**25**;JAN 30, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ASK S %DT(0)=-DT,%DT="AEPMX",%DT("A")="Community Nursing Home Payment List for which Month/Year: " D ^%DT K %DT G END:X="^"!(X=""),ASK:Y<0
+ S FBPAYDT=$E(+Y,1,5)_"00",VAR="FBPAYDT",VAL=FBPAYDT,PGM="START^FBNHPLT" D ZIS^FBAAUTL G:FBPOP END W !
+START K ^TMP($J) S Q="",$P(Q,"=",80)="=",(FBGTOT,FBVTOT)=0,FBENDDT=$E(FBPAYDT,1,5)_31 U IO W:$E(IOST,1,2)["C-" @IOF D HED
+BEG F FBJ=FBPAYDT:0 S FBJ=$O(^FBAAI("AD",FBJ)) Q:FBJ'>0!(FBJ>FBENDDT)  F IFN=0:0 S IFN=$O(^FBAAI("AD",FBJ,IFN)) Q:IFN'>0  I $D(^FBAAI(IFN,0)) S FBZ=^(0) D SETUP
+ S FBSW=1 F FBVEN=0:0 S FBVEN=$O(^TMP($J,FBVEN)) Q:FBVEN'>0  D:'FBSW TOT S FBSW=0 D GETVEN F DFN=0:0 S DFN=$O(^TMP($J,FBVEN,DFN)) Q:DFN'>0  S IFN=$O(^TMP($J,FBVEN,DFN,0)) Q:IFN'>0  I $D(^FBAAI(IFN,0)) S FBZ=^(0) D MORE
+ S FBGTOT=FBGTOT+FBVTOT D TOT W !!,"Grand Total Dollars: ",$J(FBGTOT,7,2)
+END K FBGTOT,FBVTOT,FBJ,DFN,FBVEN,FBZ,IFN,VAR,VAL,PGM,FBSW,FBAP,FBENDDT,FBNAME,FBPAYDT,FBVID,FBVNAME,Q,SSN,X,X1,Y
+ D CLOSE^FBAAUTL Q
+GETVEN S FBGTOT=FBGTOT+FBVTOT,FBVTOT=0,FBVNAME=$S($D(^FBAAV(FBVEN,0)):$P(^(0),"^",1),1:""),FBVID=$S(FBVNAME'="":$P(^(0),"^",2),1:"")
+PVHED I $Y+3>IOSL W @IOF D HED
+ W !!,FBVNAME,?50,FBVID
+ Q
+HED W "Community Nursing Home Payment List & Totals for: ",$P("January^February^March^April^May^June^July^August^September^October^November^December","^",+$E(FBPAYDT,4,5))," ",(1700+$E(FBPAYDT,1,3)),!
+ D NOW^%DTC S Y=% X ^DD("DD") W ?10,"Processed: ",Y,!
+ W "Vendor Name",?50,"Vendor ID",!,?8,"Veteran Name",?39,"   SSN",?51,"Amount Paid",!,Q
+ Q
+MORE S FBNAME=$$NAME^FBCHREQ2(DFN),SSN=$$SSN^FBAAUTL(DFN),FBAP=$P(FBZ,"^",9),FBVTOT=FBVTOT+FBAP
+ I $Y+3>IOSL D PVHED
+ W !,?8,FBNAME,?39,SSN,?51,$J(FBAP,7,2)
+ Q
+TOT W !,?51,"-------",!,?35,"Vendor Total:",?51,$J(FBVTOT,7,2) Q
+SETUP I $P(FBZ,"^",14)="",$P(FBZ,"^",12)=7,'$D(^FBAAI(IFN,"FBREJ")) S ^TMP($J,$P(FBZ,"^",3),$P(FBZ,"^",4),IFN)=""
+ Q

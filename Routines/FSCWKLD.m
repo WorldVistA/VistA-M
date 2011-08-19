@@ -1,0 +1,47 @@
+FSCWKLD ;SLC/STAFF-NOIS Workload ;1/11/98  15:08
+ ;;1.1;NOIS;;Sep 06, 1998
+ ;
+HC(CALL) ; $$(call) -> # hrs
+ I '$D(^FSCD("CALL",+CALL,0)) Q ""
+ N TOTAL,WKLD
+ S TOTAL=0
+ S WKLD=0 F  S WKLD=$O(^FSCD("WKLD","B",CALL,WKLD)) Q:WKLD<1  D
+ .I $G(^FSCD("WKLD",WKLD,0)),'$P(^(0),U,5) S TOTAL=TOTAL+$P(^(0),U,4)
+ Q TOTAL
+ ;
+HCUD(CALL,USER,DATE) ; $$(call,user,date) -> # hrs
+ N TOTAL,WKLD
+ S TOTAL=0
+ S WKLD=+$G(^FSCD("WKLD","AK",CALL,USER,DATE)) I 'WKLD Q ""
+ I '$P($G(^FSCD("WKLD",WKLD,0)),U,5) S TOTAL=$P(^(0),U,4)
+ Q TOTAL
+ ;
+HCD(CALL,DATE) ; $$(call,date) -> # hrs
+ N TOTAL,WKLD
+ S TOTAL=0
+ S WKLD=0 F  S WKLD=$O(^FSCD("WKLD","B",CALL,WKLD)) Q:WKLD<1  D
+ .I $P(^FSCD("WKLD",WKLD,0),U,3)=DATE,'$P(^(0),U,5) S TOTAL=TOTAL+$P(^(0),U,4)
+ Q TOTAL
+ ;
+HD(DATE) ; $$(date) -> # hrs
+ N TOTAL,WKLD
+ S TOTAL=0
+ S WKLD=0 F  S WKLD=$O(^FSCD("WKLD","D",DATE,WKLD)) Q:WKLD<1  D
+ .I '$P(^FSCD("WKLD",WKLD,0),U,5) S TOTAL=TOTAL+$P(^FSCD("WKLD",WKLD,0),U,4)
+ Q TOTAL
+ ;
+HUD(USER,DATE) ; $$(user,date) -> # hrs
+ I '$G(USER) Q ""
+ I '$G(DATE) Q ""
+ N TOTAL,WKLD
+ S TOTAL=0
+ S WKLD=0 F  S WKLD=$O(^FSCD("WKLD","AUD",USER,DATE,WKLD)) Q:WKLD<1  D
+ .I $G(^FSCD("WKLD",WKLD,0)),'$P(^(0),U,5) S TOTAL=TOTAL+$P(^(0),U,4)
+ Q TOTAL
+ ;
+HUC(USER,CALL) ; $$(user,call) -> # hrs
+ N DATE,TOTAL,WKLD
+ S TOTAL=0
+ S DATE=0 F  S DATE=$O(^FSCD("WKLD","AK",CALL,USER,DATE)) Q:DATE<1  S WKLD=+^(DATE) D
+ .I '$P(^FSCD("WKLD",WKLD,0),U,5) S TOTAL=TOTAL+$P(^(0),U,4)
+ Q TOTAL

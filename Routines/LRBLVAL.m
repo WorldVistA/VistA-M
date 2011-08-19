@@ -1,0 +1,10 @@
+LRBLVAL ;AVAMC/REG - OPTION VALIDATOR ;3/9/94  13:18
+ ;;5.2;LAB SERVICE;**247,408**;Sep 27, 1994;Build 8
+ ;Per VHA Directive 97-033 this routine should not be modified.  Medical Device # BK970021
+ Q  K DIC,DA W ! S (DIC,DIE)=66.2,DIC(0)="AEQM" D ^DIC G:Y<1 END S DA=+Y,DR=".07:99" D ^DIE G LRBLVAL
+I K DIC,DA W ! S DIC="^LAB(66.2,",DIC(0)="AEQM" D ^DIC G:Y<1 END S DA=+Y D EN^DIQ G I
+ ;
+P K DIC,DA S L=0,DIC="^LAB(66.2,",FLDS="[CAPTIONED]",BY="[LRBLVAL]" G EN1^DIP
+ Q
+ ;
+END D V^LRU Q

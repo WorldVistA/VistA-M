@@ -1,0 +1,74 @@
+ORCHTAB4 ;SLC/MKB,dcm-Add item to tab listing ;4/17/97  11:08
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**27**;Dec 17, 1997
+ ;
+LABS ; -- lab tests by section
+ N HDR,IDT,SEQ,TEST,CMMT,X,DATA,ORTX
+ Q:'$D(^TMP("LRRR",$J,+ORVP,SUB))  ; no data
+ S HDR=$S(SUB="MI":"MICROBIOLOGY",SUB="BB":"BLOOD BANK",SUB="AP":"ANATOMIC PATHOLOGY",1:"CHEMISTRY/HEMATOLOGY")
+ D BLANK^ORCHTAB:LCNT,SUBHDR^ORCHTAB(HDR)
+ S IDT=0 F  S IDT=$O(^TMP("LRRR",$J,+ORVP,SUB,IDT)) Q:IDT'>0  D
+ . S SEQ=0 F  S SEQ=$O(^TMP("LRRR",$J,+ORVP,SUB,IDT,SEQ)) Q:SEQ'>0  S TEST=^(SEQ) D
+ . . S X=9999999-IDT,X=$$DATETIME^ORCHTAB(X) ; MM/DD/YY or MM/DD HH:MM
+ . . S DATA=$$PAD^ORCHTAB(X,16)_$$PAD^ORCHTAB($P(TEST,U,16),15)_$P(TEST,U,6),X="" ;$P(TEST,U,17)
+ . . I SUB="MI" S X=$$PAD^ORCHTAB($P(TEST,U,15),10)_" "_$P(TEST,U,2)
+ . . I SUB="CH" S X=$$PAD^ORCHTAB($P(TEST,U,15),7)_" "_$J($P(TEST,U,2),9)_" "_$$PAD^ORCHTAB($P(TEST,U,3),2)_" "_$$PAD^ORCHTAB($P(TEST,U,4),10)_" "_$E($P(TEST,U,5),1,8)
+ . . I $L(X) D LINE^ORCHTAB,SETVIDEO^ORCHTAB(LCNT,24,2,IOINHI,IOINORM):SUB="CH"
+ . . I $L($P(TEST,U,5))>8 S X=$$REPEAT^XLFSTR(" ",32)_$E($P(TEST,U,5),9,16),DATA="" D LINE^ORCHTAB
+LR1 . I SEQ="N" D  ; add comments
+ . . K ORTX,DATA S SEQ=0,ORTX=1,ORTX(1)="Comment: "
+ . . F  S SEQ=$O(^TMP("LRRR",$J,+ORVP,SUB,IDT,"N",SEQ)) Q:SEQ'>0  S X=^(SEQ) D TXT^ORCHTAB
+ . . S SEQ=0 F  S SEQ=$O(ORTX(SEQ)) Q:SEQ'>0  S X=ORTX(SEQ) D:$L(X) LINE^ORCHTAB
+ Q
+ ;
+LRCUM ; -- Lab cumulative report
+ N ORY D EN^LR7OSUM(.ORY,+ORVP,$G(BEG),$G(END))
+ S LCNT=$O(^TMP("LRC",$J,"?"),-1)
+ M:LCNT ^TMP("OR",$J,"LABS")=^TMP("LRC",$J) ; report
+ M:LCNT ^TMP("OR",$J,"LABS","HDR")=^TMP("LRH",$J) ; subhdrs
+ S ORTITLE="Lab Cumulative Display"
+ S ORCAPTN("ITEM")="",ORCAPTN("DATA")=""
+ S ORCHANGE="ORCHANGE LAB CUM",ORMENU="ORCHART LABS MENU"
+ K ^TMP("LRC",$J),^TMP("LRH",$J)
+ Q
+ ;
+XRAY ; -- radiology
+ N X,ID,DATE,STATUS,DATA,ORTX,ORIFN
+ S DATE=$$DATETIME^ORCHTAB(9999999.9999-$P(ORI,"-")),STATUS=$P(ORX,U,3)
+ S:$$UP^XLFSTR(STATUS)="RELEASED/NOT VERIFIED" STATUS="Rel/Not Ver"
+ S X=$P(ORX,U)_$S($P(ORX,U,4)="Y":" *ABNORMAL*",1:""),ORIFN=$P(ORX,U,2)
+ S:$L(X)'>ORMAX ORTX=1,ORTX(1)=X I $L(X)>ORMAX D TXT^ORCHTAB
+ S DATA(1)=$$PAD^ORCHTAB(DATE,16)_$J(ORIFN,4)_"  "_STATUS,DATA=1
+ S ID=ORI D ADD^ORCHTAB
+ I $P(ORX,U,4)="Y" S I=$F(^TMP("OR",$J,ORTAB,LCNT,0),"*ABNORMAL*") D:I SETVIDEO^ORCHTAB(LCNT,I-10,10,IOINHI,IOINORM)
+ Q
+ ;
+CSLT ; -- consult
+ N I,X,ID,DATA,ORIFN,ORTX S X=$P(ORX,U,7)
+ I X'?.E1" Cons",X'?.E1" Proc" S I=$P(ORX,U,5) S:I="Consult"&'$L($P(ORX,U,7)) X=$P(ORX,U,4)_" Consult" S:I'="Consult" X=I ;old format
+ S ORIFN=X S:$L(X)'>ORMAX ORTX=1,ORTX(1)=X I $L(X)>ORMAX D TXT^ORCHTAB
+ S ID=$P(ORX,U),DATA(1)=$$PAD^ORCHTAB($$DATE^ORCHTAB($P(ORX,U,2)),10)_$J(ID,6)_"  "_$$LOW^XLFSTR($P(ORX,U,3)),DATA=1
+ D ADD^ORCHTAB I $L($P(ORX,U,6)) D  ;Sig Findings indicator
+ . S I=+$P($G(^TMP("OR",$J,ORTAB,"IDX",NUM)),U,2) Q:'I
+ . S $E(^TMP("OR",$J,ORTAB,I,0),5)="*"
+ Q
+ ;
+RPT ; -- reports
+ N ORJG,ID,DATA,ORIFN,I,X S ID=+ORVP
+ S ORJG="Health Summary^GMTSS" D BLD
+ S ORJG="Adhoc Health Summary^GMTSA" D BLD
+ S ORJG="Vitals Cumulative^GMRVC" D BLD
+ D BLANK^ORCHTAB,SUBHDR^ORCHTAB("Lab")
+ F ORJG="Lab Cumulative^LRC","Lab Results by Day^LRI","Lab Results by Test^LRGEN","Lab Test Status^STAT","Lab Graph^LRG","Blood Bank Report^LRB","Anatomic Path Report^LRAA" D BLD
+ D BLANK^ORCHTAB,SUBHDR^ORCHTAB("Orders")
+ F ORJG="Daily Order Summary^ORS","Order Summary for Date Range^ORD","Custom Order Summary^ORC","Chart Copy Summary^ORP","Outpatient RX Profile^PSO" D BLD
+ D BLANK^ORCHTAB,SUBHDR^ORCHTAB("Dietetics")
+ S ORJG="Dietetic Profile^FHP" D BLD
+ Q:$$FHWORADT^FHWORA(+ORVP)'>0
+ S I=0 F  S I=$O(^TMP($J,"FHADT",+ORVP,I)) Q:I'>0  S X=$G(^(I)) D
+ . S ID=+ORVP_";"_X,DATA=1,DATA(1)=X
+ . S ORJG="Nutritional Assessment^FHA" D BLD
+ Q
+BLD ;
+ S ORTX=1,ORTX(1)=$P(ORJG,U),ORIFN=$P(ORJG,U,2)
+ D ADD^ORCHTAB
+ Q

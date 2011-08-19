@@ -1,0 +1,60 @@
+PRCADR3 ;SF-ISC/YJK-TRANSACTION PROFILE ;6/15/93  9:43 AM
+V ;;4.5;Accounts Receivable;**78,153**;Mar 20, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;PRINT THE TRANSACTION PROFILE.
+EN1 ;
+ Q:'$D(D0)  Q:'$D(^PRCA(433,D0,1))  S Z=$P(^(1),U,2) Q:Z'>0  S PRCATYPE=$P(^PRCA(430.3,Z,0),U,3) K Z S PRCAGL=^PRCA(433,D0,1) W ! D EN3
+ W:(PRCATYPE=2)!(PRCATYPE=20) "RECEIPT #:",?13,$P(PRCAGL,U,3),!
+ W:(PRCATYPE=21)!(PRCATYPE=1) "ADJUSTMENT #:",?15,$P(PRCAGL,U,4),!
+ I (PRCATYPE=8)!(PRCATYPE=9) W "TERMINATION REASON:" D TERM
+ D EN2
+ I PRCATYPE=12 D ADM
+ D @$S((PRCATYPE=2)!(PRCATYPE=20)!(PRCATYPE=7):"COLL",1:"BAL")
+ K PRCATYPE,PRCAGL Q
+ADM Q:'$D(^PRCA(433,D0,2))  S PRCAGL=^(2) F I=1:1:9 S Z(I)=$J($P(PRCAGL,U,I),0,2)
+ K I W !!,"ADMINISTRATIVE COST CHARGE",!,"---------------------------",! S Z=4,Z0=22
+ W:Z(1)>0 ?Z,"IRS LOCATOR:",?Z0,Z(1),!
+ W:Z(2)>0 ?Z,"CREDIT AGENCY:",?Z0,Z(2),!
+ W:Z(3)>0 ?Z,"DMV LOCATOR:",?Z0,Z(3),!
+ W:Z(4)>0 ?Z,"CONSUMER REP.:",?Z0,Z(4),!
+ W:Z(5)>0 ?Z,"MARSHALL FEE:",?Z0,Z(5),!
+ W:Z(6)>0 ?Z,"COURT COST:",?Z0,Z(6),!
+ W:Z(7)>0 ?Z,"INTEREST CHARGE:",?Z0,Z(7),!
+ W:Z(8)>0 ?Z,"ADM. CHARGE: ",?Z0,Z(8),!
+ W:Z(9)>0 ?Z,"PENALTY CHARGE: ",?Z0,Z(9),!
+ I PRCAIO=PRCAIO(0) W !,"PRESS <RETURN> TO CONTINUE: " R X:DTIME W !
+ K Z,PRCAGL,Z1 Q
+TERM S Z0=$P(^DD(433,17,0),U,3),Z1=$P(^PRCA(433,D0,1),U,7),Z2=$P(Z0,";",Z1)
+ S Z2=$P(Z2,":",2) W ?20,Z2,! K Z0,Z1,Z2 Q
+COLL Q:('$D(^PRCA(433,D0,8)))&('$D(^(3)))  S (PRCATL,PRCATL1)=0
+ F I=1:1:5 S (Z(I),Z2(I))=0
+ I ('$D(^PRCA(433,D0,8)))!('$D(^(3))) K Z,Z2,PRCATL,PRCATL1 Q
+ S PRCAGL1=^PRCA(433,D0,8),PRCAGL=^(3) F I=1:1:5 S Z(I)=$J($P(PRCAGL,U,I),0,2),PRCATL=PRCATL+Z(I)
+ F I=1:1:5 S Z2(I)=$J($P(PRCAGL1,U,I),0,2),PRCATL1=PRCATL1+Z2(I)
+C1 S Z=40,Z1=49,Z0=4,Z2=20 W !!,?Z2,"BALANCES",?40,"COLLECTED",!,?Z2,"--------",?40,"---------",!
+ W ?Z0,"PRINCIPAL:",?Z2,Z2(1),?Z,Z(1),!
+ W ?Z0,"INTEREST:",?Z2,Z2(2),?Z,Z(2),!
+ W ?Z0,"ADMINISTRATIVE:",?Z2,Z2(3),?Z,Z(3),!
+ W ?Z0,"MARSHALL FEE:",?Z2,Z2(4),?Z,Z(4),!
+ W ?Z0,"COURT COST:",?Z2,Z2(5),?Z,Z(5)
+ W !,?Z2,"---------",?Z,"----------",!,?Z0,"TOTAL:",?Z2,$J(PRCATL1,0,2),?Z,$J(PRCATL,0,2)
+ I PRCAIO=PRCAIO(0),PRCATYPE'=12 W !,"PRESS <RETURN> TO CONTINUE: " R X:DTIME W !
+ K Z0,I,Z,Z1,Z2,PRCAGL1,PRCAGL,PRCATL,PRCATL1 Q
+BAL Q:'$D(^PRCA(433,D0,8))  S PRCAGL=^(8),PRCATL=0 F I=1:1:5 S Z(I)=$J($P(PRCAGL,U,I),0,2),PRCATL=PRCATL+Z(I)
+ S Z=3,Z1=19 W !,"BALANCES",!,"--------",!
+ W ?Z,"PRINCIPAL: ",?Z1,Z(1),!,?Z,"INTEREST: ",?Z1,Z(2),!,?Z,"ADMINISTRATIVE: ",?Z1,Z(3),!,?Z,"MARSHALL FEE: ",?Z1,Z(4),!,?Z,"COURT COST: ",?Z1,Z(5),!
+ W ?Z1,"------------",!,?Z,"TOTAL",?Z1,$J(PRCATL,0,2),!
+ I PRCAIO=PRCAIO(0),PRCATYPE'=12 W !,"PRESS <RETURN> TO CONTINUE: " R X:DTIME W !
+ K Z,PRCATL,PRCAGL,Z1 Q
+EN2 ;print the appropriation,pat ref #. (multiple) and amount.
+ W !,"FISCAL YEAR",?17,"PRINCIPAL AMOUNT",?42,"FY TRANS. AMOUNT"
+ W !,"-----------",?17,"----------------",?42,"----------------"
+ S PRCAFN=0 F PRCAE1=0:0 S PRCAFN=$O(^PRCA(433,D0,4,PRCAFN)) Q:PRCAFN'>0  D WRPAT
+ I $P(^PRCA(433,D0,0),U,10) W !,"NOTE:**** This transaction is flagged as invalid for patient statement.",!,?10,"It WILL NOT appear on the patient statement.****"
+END1 K PRCAE1,PRCAFN Q  ;end of EN1
+WRPAT Q:'$D(^PRCA(433,D0,4,PRCAFN,0))  S PRCAFY=$P(^(0),U,1),PRCAMT=$P(^(0),U,2),PRCATRM=$J($P(^(0),U,5),0,2)
+ W !,$J(PRCAFY,11),?17,$J(PRCAMT,16,2),?42,$J(PRCATRM,16,2)
+ K PRCAPAT,PRCATRM,PRCAFY,PRCAMT Q
+EN3 S Y=$P(^PRCA(433,D0,0),U,5) D D^PRCAQUE S PRCADT=Y
+ W "TRANS. AMOUNT: ",$S($P(^PRCA(433,D0,1),U,5)<0:"-$",1:"$"),$FN($TR($P(^PRCA(433,D0,1),U,5),"-"),",",2) S Y=$P(^(1),"^",9) I Y]"" X ^DD("DD") W:$X>35 ! W ?34,"DATE POSTED: ",$P(Y,"@")," ",$P(Y,"@",2)
+ W ! K PRCADT Q

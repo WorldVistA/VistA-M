@@ -1,0 +1,109 @@
+PSS50WS ;BIR/LDT - API FOR INFORMATION FROM FILE 50; 5 Sep 03
+ ;;1.0;PHARMACY DATA MANAGEMENT;**85**;9/30/97
+ ;
+ ;Reference to ^PS(50.605 is supported by DBIA #2138
+ ;Reference to ^PS(50.609 supported by DBIA #2137
+ ;External reference to PSNDF(50.6 supported by DBIA #2079
+ ;Reference to ^PSNDF(50.68 supported by DBIA #3735
+ ;
+ARWS ;
+ ;PSSIEN - IEN of entry in 50
+ ;PSSFT - Free Text name in 50
+ ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the Field Number of the data
+ ;       piece being returned.
+ ;Returns PSG node of 50
+ N DIERR,ZZERR,PSS50,PSSP50,PSS,SCR,PSSMLCT
+ I $G(LIST)']"" Q
+ K ^TMP($J,LIST)
+ I +$G(PSSIEN)'>0,($G(PSSFT)']"") S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ I +$G(PSSIEN)>0 N PSSIEN2 S PSSIEN2=$$FIND1^DIC(50,"","A","`"_PSSIEN,,,"") D  K ^TMP("PSSP50",$J) Q
+ .K ^TMP("DIERR",$J)
+ .I +PSSIEN2'>0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ .S ^TMP($J,LIST,0)=1
+ .K ^TMP("PSSP50",$J) D GETS^DIQ(50,+PSSIEN2,".01;2;3;12:16;20:25;31;51;52;301;302","IE","^TMP(""PSSP50"",$J)") S PSS(1)=0
+ .F  S PSS(1)=$O(^TMP("PSSP50",$J,50,PSS(1))) Q:'PSS(1)  D SETWS
+ I $G(PSSIEN)'="" S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ I $G(PSSFT)]"" D
+ .I PSSFT["??" D LOOP Q
+ .K ^TMP("DILIST",$J)
+ .D FIND^DIC(50,,"@;.01","QP",PSSFT,,"B",,,"")
+ .I +$G(^TMP("DILIST",$J,0))=0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
+ .I +^TMP("DILIST",$J,0)>0 S ^TMP($J,LIST,0)=+^TMP("DILIST",$J,0) N PSSXX S PSSXX=0 F  S PSSXX=$O(^TMP("DILIST",$J,PSSXX)) Q:'PSSXX  D
+ ..S PSSIEN=+^TMP("DILIST",$J,PSSXX,0)
+ ..K ^TMP("PSSP50",$J) D GETS^DIQ(50,+PSSIEN,".01;2;3;12:16;20:25;31;51;52;301;302","IE","^TMP(""PSSP50"",$J)") S PSS(1)=0
+ ..F  S PSS(1)=$O(^TMP("PSSP50",$J,50,PSS(1))) Q:'PSS(1)  D SETWS
+ K ^TMP("DILIST",$J),^TMP("PSSP50",$J)
+ Q
+ ;
+SETWS ;
+ S ^TMP($J,LIST,+PSS(1),.01)=$G(^TMP("PSSP50",$J,50,PSS(1),.01,"I"))
+ S ^TMP($J,LIST,"B",$G(^TMP("PSSP50",$J,50,PSS(1),.01,"I")),+PSS(1))=""
+ ;
+ ;
+ S ^TMP($J,LIST,+PSS(1),2)=$G(^TMP("PSSP50",$J,50,PSS(1),2,"I"))
+ S ^TMP($J,LIST,+PSS(1),3)=$G(^TMP("PSSP50",$J,50,PSS(1),3,"I"))
+ N PSSUTN S PSSUTN=$G(^TMP("PSSP50",$J,50,PSS(1),12,"I"))
+ S ^TMP($J,LIST,+PSS(1),12)=$S($G(PSSUTN)="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),12,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),12,"E")))
+ I PSSUTN'="" S ^TMP($J,LIST,+PSS(1),12)=^TMP($J,LIST,+PSS(1),12)_"^"_$P($G(^DIC(51.5,PSSUTN,0)),"^",2)
+ S ^TMP($J,LIST,+PSS(1),13)=$G(^TMP("PSSP50",$J,50,PSS(1),13,"I"))
+ S ^TMP($J,LIST,+PSS(1),14.5)=$G(^TMP("PSSP50",$J,50,PSS(1),14.5,"I"))
+ S ^TMP($J,LIST,+PSS(1),15)=$G(^TMP("PSSP50",$J,50,PSS(1),15,"I"))
+ S ^TMP($J,LIST,+PSS(1),16)=$G(^TMP("PSSP50",$J,50,PSS(1),16,"I"))
+ S ^TMP($J,LIST,+PSS(1),20)=$S($G(^TMP("PSSP50",$J,50,PSS(1),20,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),20,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),20,"E")))
+ S ^TMP($J,LIST,+PSS(1),21)=$G(^TMP("PSSP50",$J,50,PSS(1),21,"I"))
+ S ^TMP($J,LIST,+PSS(1),22)=$S($G(^TMP("PSSP50",$J,50,PSS(1),22,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),22,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),22,"E")))
+ S ^TMP($J,LIST,+PSS(1),23)=$S($G(^TMP("PSSP50",$J,50,PSS(1),23,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),23,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),23,"E")))
+ S ^TMP($J,LIST,+PSS(1),25)=$S($G(^TMP("PSSP50",$J,50,PSS(1),25,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),25,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),25,"E"))_"^"_$P($G(^PS(50.605,+^TMP("PSSP50",$J,50,PSS(1),25,"I"),0)),"^",2))
+ S ^TMP($J,LIST,+PSS(1),31)=$G(^TMP("PSSP50",$J,50,PSS(1),31,"I"))
+ S ^TMP($J,LIST,+PSS(1),51)=$S($G(^TMP("PSSP50",$J,50,PSS(1),51,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),51,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),51,"E")))
+ S ^TMP($J,LIST,+PSS(1),52)=$S($G(^TMP("PSSP50",$J,50,PSS(1),52,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),52,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),52,"E")))
+ S ^TMP($J,LIST,+PSS(1),301)=$S($G(^TMP("PSSP50",$J,50,PSS(1),301,"I"))="":"",1:$G(^TMP("PSSP50",$J,50,PSS(1),301,"I"))_"^"_$G(^TMP("PSSP50",$J,50,PSS(1),301,"E")))
+ S ^TMP($J,LIST,+PSS(1),302)=$G(^TMP("PSSP50",$J,50,PSS(1),302,"I"))
+ Q
+LOOP ;
+ N PSS50D13,PSS50D14,PSS50D15,PSS50E13,PSS50E14,PSS50E15,PSS51NFD,PSS52NFD,PSSG2N
+ D FIELD^DID(50,51,"Z","POINTER","PSS50D13","PSS50E13") S PSS51NFD=$G(PSS50D13("POINTER"))
+ D FIELD^DID(50,52,"Z","POINTER","PSS50D14","PSS50E14") S PSS52NFD=$G(PSS50D14("POINTER"))
+ D FIELD^DID(50,301,"Z","POINTER","PSS50D15","PSS50E15") S PSSG2N=$G(PSS50D15("POINTER"))
+ N PSSENCT
+ S PSSENCT=0
+ S PSS(1)=0 F  S PSS(1)=$O(^PSDRUG(PSS(1))) Q:'PSS(1)  D
+ .I $P($G(^PSDRUG(PSS(1),0)),"^")="" Q
+ .I $G(PSSFL),$P($G(^PSDRUG(PSS(1),"I")),"^"),$P($G(^("I")),"^")'>PSSFL Q
+ .I $G(PSSRTOI)=1,'$P($G(^PSDRUG(PSS(1),2)),"^") Q
+ .;Naked reference below refers to ^PSDRUG(PSS(1),2)
+ .I $G(PSSPK)]"" N PSSZ5,PSSZ6 S PSSZ5=0 F PSSZ6=1:1:$L(PSSPK) Q:PSSZ5  I $P($G(^(2)),"^",3)[$E(PSSPK,PSSZ6) S PSSZ5=1
+ .I $G(PSSPK)]"",'PSSZ5 Q
+ .D SETWSLP
+ .S PSSENCT=PSSENCT+1
+ S ^TMP($J,LIST,0)=$S($G(PSSENCT):$G(PSSENCT),1:"-1^NO DATA FOUND")
+ Q
+ ;
+SETWSLP ;
+ N PSSZNODE,PSS660,PSSNDNOD,PSS2NODE,PSSG2NOD S PSSZNODE=$G(^PSDRUG(PSS(1),0)),PSS2NODE=$G(^(2)),PSS660=$G(^(660)),PSSG2NOD=$G(^("PSG")),PSSNDNOD=$G(^("ND"))
+ S ^TMP($J,LIST,+PSS(1),.01)=$P(PSSZNODE,"^")
+ S ^TMP($J,LIST,"B",$P(PSSZNODE,"^"),+PSS(1))=""
+ S ^TMP($J,LIST,+PSS(1),2)=$P(PSSZNODE,"^",2)
+ S ^TMP($J,LIST,+PSS(1),3)=$P(PSSZNODE,"^",3)
+ S ^TMP($J,LIST,+PSS(1),12)=$S($P(PSS660,"^",2):$P(PSS660,"^",2)_"^"_$P($G(^DIC(51.5,+$P(PSS660,"^",2),0)),"^")_"^"_$P($G(^(0)),"^",2),1:"")
+ S ^TMP($J,LIST,+PSS(1),13)=$P(PSS660,"^",3)
+ S ^TMP($J,LIST,+PSS(1),14.5)=$P(PSS660,"^",8)
+ S ^TMP($J,LIST,+PSS(1),15)=$P(PSS660,"^",5)
+ S ^TMP($J,LIST,+PSS(1),16)=$P(PSS660,"^",6)
+ S ^TMP($J,LIST,+PSS(1),20)=$S($P(PSSNDNOD,"^"):$P(PSSNDNOD,"^")_"^"_$P($G(^PSNDF(50.6,+$P(PSSNDNOD,"^"),0)),"^"),1:"")
+ S ^TMP($J,LIST,+PSS(1),21)=$P(PSSNDNOD,"^",2)
+ S ^TMP($J,LIST,+PSS(1),22)=$S($P(PSSNDNOD,"^",3):$P(PSSNDNOD,"^",3)_"^"_$P($G(^PSNDF(50.68,+$P(PSSNDNOD,"^",3),0)),"^"),1:"")
+ S ^TMP($J,LIST,+PSS(1),23)=$S($P(PSSNDNOD,"^",4):$P(PSSNDNOD,"^",4)_"^"_$P($G(^PS(50.609,+$P(PSSNDNOD,"^",4),0)),"^"),1:"")
+ S ^TMP($J,LIST,+PSS(1),25)=$S($P(PSSNDNOD,"^",6):$P(PSSNDNOD,"^",6)_"^"_$P($G(^PS(50.605,+$P(PSSNDNOD,"^",6),0)),"^")_"^"_$P($G(^(0)),"^",2),1:"")
+ S ^TMP($J,LIST,+PSS(1),31)=$P(PSS2NODE,"^",4)
+ N PSS51NF S PSS51NF=$P(PSSZNODE,"^",9)  D
+ .I PSS51NF'="",PSS51NFD'="",PSS51NFD[(PSS51NF_":") S ^TMP($J,LIST,+PSS(1),51)=PSS51NF_"^"_$P($E(PSS51NFD,$F(PSS51NFD,(PSS51NF_":")),999),";") Q
+ .S ^TMP($J,LIST,+PSS(1),51)=""
+ N PSS52NF S PSS52NF=$P(PSSZNODE,"^",11)  D
+ .I PSS52NF'="",PSS52NFD'="",PSS52NFD[(PSS52NF_":") S ^TMP($J,LIST,+PSS(1),52)=PSS52NF_"^"_$P($E(PSS52NFD,$F(PSS52NFD,(PSS52NF_":")),999),";") Q
+ .S ^TMP($J,LIST,+PSS(1),52)=""
+ N PSSG2 S PSSG2=$P(PSSG2NOD,"^",2)  D
+ .I PSSG2'="",PSSG2N'="",PSSG2N[(PSSG2_":") S ^TMP($J,LIST,+PSS(1),301)=PSSG2_"^"_$P($E(PSSG2N,$F(PSSG2N,(PSSG2_":")),999),";") Q
+ .S ^TMP($J,LIST,+PSS(1),301)=""
+ S ^TMP($J,LIST,+PSS(1),302)=$P(PSSG2NOD,"^",3)
+ Q

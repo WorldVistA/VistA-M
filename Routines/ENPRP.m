@@ -1,0 +1,56 @@
+ENPRP ;(WIRMFO)/DH/SAB-Project Progress Reports ;6/11/97
+ ;;7.0;ENGINEERING;**18,28**;Aug 17, 1993
+SINGLE ; Print one project (current reports only)
+ S DIC="^ENG(""PROJ"",",DIC(0)="AEQM" D ^DIC K DIC G:Y'>0 SINGLEX
+ S ENDA=+Y
+ S DIR(0)="S^1:FIRST PAGE;2:SECOND PAGE;B:BOTH PAGES"
+ S DIR("A")="PRINT WHICH PAGES:",DIR("B")="B"
+ D ^DIR K DIR G:$D(DIRUT) SINGLEX
+ S ENOPT=Y
+ S %ZIS="QM" D ^%ZIS G:POP SINGLEX
+ I $D(IO("Q")) D  G SINGLEX
+ . S ZTDESC="Print Project Report (10-0051)",ZTRTN="SINGLEQ^ENPRP"
+ . S ZTSAVE("ENDA")="",ZTSAVE("ENOPT")=""
+ . D ^%ZTLOAD,HOME^%ZIS K ZTSK
+SINGLEQ ; Queued entry point for Display one project
+ U IO
+ S X="IOINLOW;IOINHI;IOINORM" D ENDR^%ZISS
+ S (END,ENPG)=0 S ENDT=$$FMTE^XLFDT($$NOW^XLFDT)
+ D ^ENPRP1
+ W IOINORM
+ D ^%ZISC
+ D KILL^%ZISS
+ I $D(ZTQUEUED) S ZTREQ="@" Q
+ I $E(IOST,1,2)="C-" G SINGLE
+SINGLEX ; Exit for Display one project
+ K DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ K END,ENDA,ENDT,ENOPT,ENPG
+ Q
+ ;
+ALL ;Print all projects (current reports)
+ S DIR(0)="S^1:FIRST PAGE;2:SECOND PAGE;B:BOTH PAGES"
+ S DIR("A")="PRINT WHICH PAGES:",DIR("B")="B"
+ D ^DIR K DIR G:$D(DIRUT) ALLX
+ S ENOPT=Y
+ S %ZIS="QM" D ^%ZIS Q:POP
+ I $D(IO("Q")) D  G ALLX
+ . S ZTDESC="Print All Project Reports (10-0051)",ZTRTN="ALLQ^ENPRP"
+ . S ZTSAVE("ENOPT")=""
+ . D ^%ZTLOAD,HOME^%ZIS K ZTSK Q
+ALLQ ; Queued entry point for Display all projects
+ U IO
+ S X="IOINLOW;IOINHI;IOINORM" D ENDR^%ZISS
+ S (END,ENPG)=0 S ENDT=$$FMTE^XLFDT($$NOW^XLFDT)
+ S ENPN="" F  S ENPN=$O(^ENG("PROJ","B",ENPN)) Q:ENPN=""  D  Q:END
+ . S ENDA=0 F  S ENDA=$O(^ENG("PROJ","B",ENPN,ENDA)) Q:'ENDA  D:$P($G(^ENG("PROJ",ENDA,0)),U,5)="Y" ^ENPRP1 Q:END
+ W IOINORM
+ I 'END,$E(IOST,1,2)="C-" S DIR(0)="E" D ^DIR K DIR
+ D ^%ZISC
+ D KILL^%ZISS
+ I $D(ZTQUEUED) S ZTREQ="@" Q
+ALLX ; Exit for Display all projects
+ K DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ K END,ENDA,ENDT,ENOPT,ENPG
+ Q
+ ;
+ ;ENPRP

@@ -1,0 +1,49 @@
+MCGBL ;WISC/TJK-PROGRAM TO DETERMINE BLANK FIELDS FOR GI ;7/18/96  14:09
+ ;;2.3;Medicine;;09/13/1996
+ N I,J S DJBLO="" I '$D(^MCAR(699,MCARGDA,1)) S DJBLO="4,5,6,7,8,9" G BLANK
+SIGNS I '$D(^MCAR(699,MCARGDA,1,"B",MCSIGN)) S DJBLO="4"
+ F I="MCSURV","MCDISF","MCTHER","MCFDT","MCPROTO" S J=$S(I="MCSURV":5,I="MCDISF":6,I="MCTHER":7,I="MCFDT":8,1:9) S:'$D(^MCAR(699,MCARGDA,1,"B",@I)) DJBLO=DJBLO_","_J
+BLANK S:$E(DJBLO,1)="," DJBLO=$E(DJBLO,2,99)
+ D ^MCARDBL Q
+ABNO S DJBLO="" S:'$D(^MCAR(699,MCARGDA,3,"B",MCABNO)) DJBLO="1,2,3"
+ S:'$D(^MCAR(699,MCARGDA,3,"B",MCPAIN)) DJBLO=DJBLO_",4" G BLANK
+STENT Q:'$D(^MCAR(699,MCARGDA,30,D1,2,"B"))  S DJBLO="" S:'$D(^("B",MCSTENT)) DJBLO="1,2,3"
+SPHINC S:'$D(^MCAR(699,MCARGDA,30,D1,2,"B",MCSPHIN)) DJBLO=DJBLO_",4,5" S:'$D(^(MCBOUGIE)) DJBLO=DJBLO_",6" S:'$D(^(MCHEATP)) DJBLO=DJBLO_",7,8" S:'$D(^(MCGTUBE)) DJBLO=DJBLO_",9" S:'$D(^(MCJTUBE)) DJBLO=DJBLO_",10" G BLANK
+HEM S DJBLO="1,2,3,4,5,6,7" I '$D(^MCAR(694,MCARGDA,6)) D ^MCARDBL Q
+ S MCARNP=$P(^MCAR(694,MCARGDA,6),U,3) I MCARNP="" D ^MCARDBL Q
+ Q:MCARNP=5  S DJBLO="2,3,4,5,6",DJBLO=$P(DJBLO,",",MCARNP+1,5) D ^MCARDBL Q
+HEMUB S MCARNP=$P(^MCAR(694,MCARGDA,6),U,3),DJBLO="2,3,4,5,6",DJBLO=$P(DJBLO,",",1,MCARNP) D ^MCARDBL
+ Q
+HEM1 I $D(^MCAR(694,MCARGDA,6)),$P(^(6),U,1)="Y" Q
+ S DJBLO="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20" D ^MCARDBL
+ Q
+RHEUM Q:'$D(MCSEX)  S DJBLO=$S(MCSEX="F":"63,64,65",1:"58") D ^MCARDBL Q
+ ;
+PFTSS1 ;    Pulmonary Function Tests-Special Studies-Screen 1
+ ;
+ ;    Set up fields to be blanked out, based on study type.
+ ;    (See field 2 on screen MCPFT060.)
+ S DJBLO=""
+ I MCPFTSS'="MECHANICS" S DJBLO=DJBLO_"2,3,4,"
+ I MCPFTSS'="SMALL AIRWAY" S DJBLO=DJBLO_"5,6,7,8,9,"
+ D ^MCARDBL
+ ;
+ ;    Change the starting field number, if necessary.
+ I MCPFTSS="MECHANICS" ;    no need to change
+ E  I MCPFTSS="SMALL AIRWAY" S DJNX=5
+ E  S DJNX=25.1 ;    dummy field at end of screen
+ Q
+ ;
+PFTSS2 ;    Pulmonary Function Tests-Special Studies-Screen 2
+ ;
+ ;    Set up fields to be blanked out, as in PFTSS1.
+ S DJBLO=""
+ I MCPFTSS'="EXERCISE" S DJBLO=DJBLO_"31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,"
+ I MCPFTSS'="MAXIMUM PRESSURES" S DJBLO=DJBLO_"56,"
+ D ^MCARDBL
+ ;
+ ;    Change the starting field number, if necessary.
+ I MCPFTSS="EXERCISE" ;    no need to change
+ E  I MCPFTSS="MAXIMUM PRESSURES" S DJNX=56
+ E  S DJNX=57 ;    notes field applies to all types
+ Q

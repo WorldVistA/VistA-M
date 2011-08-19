@@ -1,0 +1,47 @@
+PSDRFX ;B'ham ISC/JPW,LTL,BJW - File Dispensing Info ; 14 May 98
+ ;;3.0; CONTROLLED SUBSTANCES ;**7,66**;13 Feb 97;Build 3
+ ;inserted line 15 to save date return for activity rpt
+UPDAT I $G(PSDPN) F JJ=0:0 S JJ=$O(^PSD(58.8,"F",PSDPN,NAOU,PSDR,JJ)) Q:'JJ  S ORD=+JJ
+ ;$S(WQTY:18,CQTY:9,1:17) S:PSDTYP=9 QTY=CQTY-OQTY
+ W ?40,"Recording transaction...  "
+ D UPDATE W "done."
+END ;kill variables
+ K %,%DT,%H,%I,BAL,CQTY,DA,DIC,DIE,DIK,DINUM,DLAYGO,DR,JJ,LQTY,NAOUN,NODE,NUR2,OK,ORD
+ K PSD,PSDER,PSDREC,PSDRN,PSDT,PSDTN,QTY,WQTY,X,Y
+ Q
+UPDATE ;update 58.8 and 58.81
+ ;updating drug balance in 58.8
+ F  L +^PSD(58.8,NAOU,1,PSDR,0):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  Q
+ D NOW^%DTC S (PSDTN,PSDT)=+%
+ S BAL=$P(^PSD(58.8,NAOU,1,PSDR,0),"^",4),$P(^(0),"^",4)=$P(^(0),"^",4)+WQTY
+ L -^PSD(58.8,NAOU,1,PSDR,0)
+ S $P(^PSD(58.81,+PSDA(1),3),"^")=$G(PSDRET)
+ S $P(^PSD(58.81,+PSDA(1),3),U,2)=$P($G(^(3)),U,2)+WQTY K WQTY
+ S $P(^PSD(58.81,+PSDA(1),3),U,3)=$G(PSDRE(1)) G EDIT
+ ;update order balance
+ I $G(ORD),$D(^PSD(58.8,NAOU,1,PSDR,3,ORD,0)),PSDTYP'=9 S $P(^(0),"^",22)=$P(^(0),"^",22)-PSDQ,DA=+$P(^(0),"^",17) D:$P(^(0),"^",22)=0  K DA,DIE,DR
+ .K DIE,DR S DIE="^PSD(58.81,",DR="10////12;11////1" D ^DIE K DA,DIE,DR
+ .K DA,DIE,DR S DIE="^PSD(58.8,"_NAOU_",1,"_PSDR_",3,",DA=+ORD,DA(1)=+PSDR,DA(2)=+NAOU,DR="10////12;11////1" D ^DIE K DA,DIE,DR
+ADD ;find entry number in 58.81
+ F  L +^PSD(58.81,0):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  Q
+FIND S PSDREC=$P(^PSD(58.81,0),"^",3)+1 I $D(^PSD(58.81,PSDREC)) S $P(^PSD(58.81,0),"^",3)=PSDREC G FIND
+ K DIC,DLAYGO S DIC(0)="L",(DIC,DLAYGO)=58.81,(X,DINUM)=PSDREC D ^DIC K DIC,DLAYGO
+ L -^PSD(58.81,0)
+EDIT ;edit transaction in 58.81
+ S $P(^PSD(58.81,PSDA(1),0),U,16)=$G(PSDRE)
+ S $P(^PSD(58.81,PSDA(1),0),U,6)=$S($G(WQTY)&('$G(PSDQ(1))):PSDQ+WQTY,'$G(PSDQ(2)):PSDQ,1:OQTY-$G(PSDQ(2)))
+ S:$G(WQTY) $P(^PSD(58.81,PSDA(1),9),U,4)=WQTY
+ S $P(^PSD(58.81,PSDA(1),9),U,6)=$G(NUR2)
+ K DA,DIK S DA=PSDA(1),DIK="^PSD(58.81," D IX^DIK K DA,DIK
+ ;I PSDTYP'=17 D ERR
+ Q
+ERR ;err log update
+ F  L +^PSD(58.89,0):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  Q
+FIND9 S PSDER=$P(^PSD(58.89,0),"^",3)+1 I $D(^PSD(58.89,PSDER)) S $P(^PSD(58.89,0),"^",3)=PSDER G FIND9
+ K DIC,DLAYGO S DIC(0)="L",(DIC,DLAYGO)=58.89,(X,DINUM)=PSDER D ^DIC K DIC,DLAYGO
+ L -^PSD(58.89,0)
+EDIT9 ;edit error log
+ K DA,DIE,DR S DA=PSDER,DIE=58.89,DR="1////"_PSDREC_";2////"_PSDT_";6////"_NAOU D ^DIE K DA,DIE,DR
+ S PHARM1=NUR1,QTY=PSDQ
+ S:$G(NAOUN)']"" NAOUN=$P($G(^PSD(58.8,NAOU,0)),U) D ^PSDRFM
+ Q

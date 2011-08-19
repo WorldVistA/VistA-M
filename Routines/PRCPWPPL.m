@@ -1,0 +1,56 @@
+PRCPWPPL ;WISC/RFJ-primary receive issue book (list manager)        ;20 Jan 93
+ ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ D ^PRCPUSEL Q:'$G(PRCP("I"))
+ I PRCP("DPTYPE")'="P" W !,"ONLY THE PRIMARY CAN RECEIVE ISSUE BOOKS!" Q
+ I $P(^PRCP(445,PRCP("I"),0),"^",16)'="N" W !,"BEFORE USING THIS OPTION, THE 'PRIMARY UPDATED BY WAREHOUSE' MUST BE SET TO NO." Q
+ I $$CHECK^PRCPCUT1(PRCP("I")) Q
+ N PRCPDA,PRCPFINL,PRCPIBNM,PRCPINPT,PRCPWHSE,PRCPPVNO,X,Y
+ S PRCPINPT=PRCP("I")
+ S X="" W ! D ESIG^PRCUESIG(DUZ,.X) I X'>0 Q
+ S PRCPPVNO=+$O(^PRC(440,"AC","S",0))_";PRC(440," I '$D(^PRC(440,+PRCPPVNO,0)) W !!,"THERE IS NOT A VENDOR IN THE VENDOR FILE (#440) DESIGNATED AS A SUPPLY WHSE." Q
+ F  S PRCPDA=$$SELECTIB Q:PRCPDA<1  D
+ .   L +^PRCS(410,PRCPDA):5 I '$T D SHOWWHO^PRCPULOC(410,PRCPDA,0) Q
+ .   D ADD^PRCPULOC(410,PRCPDA,0,"Receive Issue Book")
+ .   S PRCPIBNM=$P(^PRCS(410,PRCPDA,0),"^")
+ .   S PRCPWHSE=0 F  S PRCPWHSE=$O(^PRCP(445,"AC","W",PRCPWHSE)) Q:'PRCPWHSE  I +$G(^PRCP(445,PRCPWHSE,0))=+PRCPIBNM Q
+ .   I 'PRCPWHSE W !,"THERE IS NOT A WAREHOUSE DESIGNATED FOR STATION '",+PRCPIBNM,"'." D UNLOCK Q
+ .   I $P($G(^PRCS(410,PRCPDA,9)),"^",3) S PRCPFINL=1
+ .   D EN^VALM("PRCP ISSUE BOOK RECEIVING")
+ .   D UNLOCK
+ Q
+ ;
+ ;
+UNLOCK ;  unlock issue book
+ D CLEAR^PRCPULOC(410,PRCPDA,0)
+ L -^PRCS(410,PRCPDA)
+ Q
+ ;
+ ;
+INIT ;  build array
+ K ^TMP($J,"PRCPWPPLPOST")
+ D REBUILD^PRCPWPPB
+ Q
+ ;
+ ;
+HDR ;  header
+ N SPACE
+ S SPACE="                                                                                "
+ S VALMHDR(1)=$E("ISSUE BOOK: "_PRCPIBNM_"   FROM: "_$E($$INVNAME^PRCPUX1(PRCPWHSE),1,15)_SPACE,1,69)_$S($G(PRCPFINL):"** FINAL **",1:"")
+ S VALMHDR(2)="LINE DESCRIPTION                       IM#   NSN ** Q U A N T I T Y  (in U/R) **"
+ S VALMHDR(3)="          UNIT   CONV   UNIT   UNIT/IS  UNIT/REC            WHSE    PRIM    *TO*"
+ S VALMHDR(4)="           /IS   FACT   /REC   AVGCOST  UNITCOST ORDERED  POSTED   REC'D RECEIVE"
+ Q
+ ;
+ ;
+EXIT ;  exit
+ K ^TMP($J,"PRCPWPPL"),^TMP($J,"PRCPWPPLPOST"),^TMP($J,"PRCPWPPLLIST")
+ Q
+ ;
+ ;
+SELECTIB() ;  select issue book
+ N %,DIC,I,X,Y,Z
+ S DIC="^PRCS(410,",DIC(0)="QEAMZ",DIC("A")="Select TRANSACTION NUMBER: "
+ S DIC("S")="I $P(^(0),U,6)=PRCP(""I""),$P(^(0),U,2)=""O"",$P(^(0),U,4)=5,$P($G(^(3)),U,4)=+PRCPPVNO,$P($G(^(7)),U,6)]"""",$S('$D(^PRC(443,+Y,0)):1,$P(^(0),U,3)]"""":1,1:0)"
+ W ! D ^PRCSDIC
+ Q +Y

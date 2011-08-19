@@ -1,0 +1,141 @@
+FHPRO2 ; HISC/REL/NCA/RVD - Forecast/Census Calculations ;1/23/98  16:10
+ ;;5.5;DIETETICS;**3**;Jan 28, 2005
+ ;RVD 5/17/05 - as part of AFP project.
+ ;if date is range, save all the value of DOW for every day in fhdodt.
+ S FHD1SAV=D1
+ F FHDTI=1:1 S X1=FHD1SAV,X2=FHDTI-1 D C^%DTC Q:FHDTI'>0!(X>FHDT2)  D
+ .D DOW^%DTC S FHDODT(FHDTI)=Y+1,FHDODAY(FHDTI)=X
+ S X=D1 D DOW^%DTC S (FHDOWSV,DOW)=Y+1
+ S DTP=D1\1 D DTP^FH S FHDSTART=DTP,DTP=FHDT2\1 D DTP^FH S FHDTSTOP=DTP
+ S FHSTARTD=$P("SUN^MON^TUES^WEDNES^THURS^FRI^SATUR","^",DOW)
+ S X=FHDT2 D DOW^%DTC S DOW=Y+1
+ S FHSTOPDT=$P("SUN^MON^TUES^WEDNES^THURS^FRI^SATUR","^",DOW)
+ S DOW=FHDOWSV
+ S X1=FHDT2,X2=D1 D ^%DTC S FHNUMDAY=X+1  ;number of days fr start to end
+ D NOW^%DTC S NOW=%,PG=0
+ S FHMLSAV=MEAL
+ D DATE^FHPRO4
+ ;I (MEAL="B")!(MEAL="N")!(MEAL="E") D Q2 D:FHP8["Y" P3^FHPRO7 D AFP^FHPRO6 D:FHP9["Y" AAR^FHPRO7 Q
+ F FHMEAL="B","N","E" S MEAL=FHMEAL D Q2
+ D:FHP8["Y" P3^FHPRO7 D:FHP10["Y" AFP^FHPRO6 D:FHP9["Y" AAR^FHPRO7
+ Q
+Q2 S K3=$F("BNE",MEAL)-1 ;FHX1=$P(FHDA,"^",K3+1) Q:'FHX1
+ Q:'$D(FHMEALAR(MEAL))
+ D CEN:FHP6["C",FOR:FHP6["F",LIS
+ G ^FHPRO3
+FOR ; Calculate for Forecast
+ K ^TMP($J,"FH"),^TMP($J,"FHD") ;F P0=0:0 S P0=$O(M2(P0)) Q:P0<1  S ^TMP($J,"FH",P0)=M2(P0)
+ K D F P0=0:0 S P0=$O(M2(P0)) Q:P0<1  S S1=M2(P0) D PER S ^TMP($J,"FH",P0)=S0
+ F P0=0:0 S P0=$O(^TMP($J,"FH",P0)) Q:P0<1  I $D(^FH(119.72,P0,"B")) D F1
+ F LL=0:0 S LL=$O(D(LL)) Q:LL<1  S ^TMP($J,"FH",0,LL)=D(LL)
+ K D Q
+F1 F LL=0:0 S LL=$O(^FH(119.72,P0,"B",LL)) Q:LL<1  D
+ .F FHDDI=0:0 S FHDDI=$O(FHDODT(FHDDI)) Q:FHDDI'>0  D
+ ..S FHDDIDO=FHDODT(FHDDI)
+ ..S FHPX1=FHDODAY(FHDDI)
+ ..Q:'$D(FHMEALAR(MEAL,FHPX1))  ;meal is not for certain date.
+ ..S Y=$P(^FH(119.72,P0,"B",LL,0),"^",3*FHDDIDO-2+K3)
+ ..I Y>0 S D(LL)=$G(D(LL))+Y,^TMP($J,"FH",P0)=^TMP($J,"FH",P0)+Y,^TMP($J,"FH",P0,LL)=$G(^TMP($J,"FH",P0,LL))+Y
+ ..I Y>0 S:'$D(^TMP($J,"FHD",FHPX1,P0,LL)) ^TMP($J,"FHD",FHPX1,P0,LL)=0 S ^TMP($J,"FHD",FHPX1,P0,LL)=^TMP($J,"FHD",FHPX1,P0,LL)+Y
+ Q
+PER S S0=0 F K=0:0 S K=$O(^FH(119.72,P0,"A",K)) Q:K<1  D
+ .S ^TMP($J,"FH",P0,K)=0,D(K)=0
+ .F FHDDI=0:0 S FHDDI=$O(FHDODT(FHDDI)) Q:FHDDI'>0  D
+ ..S FHDDIDO=FHDODT(FHDDI)
+ ..S FHPX1=FHDODAY(FHDDI)
+ ..S Z=$P(^FH(119.72,P0,"A",K,0),"^",FHDDIDO+1)
+ ..S FHS1=$P(S1,"^",FHDDI)
+ ..S Z=$J(Z*FHS1/100,0,0)
+ ..I Z S ^TMP($J,"FH",P0,K)=^TMP($J,"FH",P0,K)+Z,S0=S0+Z,D(K)=$G(D(K))+Z
+ ..I Z S:'$D(^TMP($J,"FHD",FHPX1,P0,K)) ^TMP($J,"FHD",FHPX1,P0,K)=0 S ^TMP($J,"FHD",FHPX1,P0,K)=^TMP($J,"FHD",FHPX1,P0,K)+Z
+ Q
+LIS ;print listing
+ Q:'$D(FHMEALAR(MEAL))
+ S (FHRETYP,FHW1NM,FHSITENM)=""
+ I $G(FHSITE),$D(^FH(119.73,FHSITE,0)) S FHSITENM=$P(^FH(119.73,FHSITE,0),U,1)
+ S:$G(FHSITE) FHRETYP="Comm Office: "_FHSITENM
+ S:'$G(FHSITE) FHRETYP="Consolidated"
+ I FHSTARTD'=FHSTOPDT D
+ .S TIM=FHSTARTD_"DAY "_FHDSTART_" to "_FHSTOPDT_"DAY "_FHDTSTOP_"  "_$P("BREAKFAST^NOON^EVENING","^",K3)
+ .S TIMAFP=FHSTARTD_"DAY "_FHDSTART_" to "_FHSTOPDT_"DAY "_FHDTSTOP
+ I FHSTARTD=FHSTOPDT D
+ .S TIM=FHSTARTD_"DAY "_FHDSTART_"  "_$P("BREAKFAST^NOON^EVENING","^",K3)
+ .S TIMAFP=FHSTARTD_"DAY "_FHDSTART
+ ;S:FHSTARTD'=FHSTOPDT TIM=FHSTARTD_"DAY "_FHDSTART_" to "_FHSTOPDT_"DAY "_FHDTSTOP_"  "_$P("BREAKFAST^NOON^EVENING","^",K3)
+ ;S:FHSTARTD=FHSTOPDT TIM=FHSTARTD_"DAY "_FHDSTART_"  "_$P("BREAKFAST^NOON^EVENING","^",K3)
+ S TIMAFP=TIMAFP_" ( "_FHMEALHE_" )"
+ S DTP=NOW D DTP^FH
+ K S,D,N S L1=38
+ F P0=0:0 S P0=$O(^TMP($J,"FH",P0)) Q:P0=""  S X=^FH(119.72,P0,0),N1=$P(X,"^",1),N2=$P(X,"^",2),N3=$P(X,"^",4) S:N3="" N3=$E(N1,1,6) S S(N3,P0)=$J(N3,8)_"^"_N2,L1=L1+14
+ S:L1<80 L1=80
+ S Z=$S(FHP6["F":"F O R E C A S T E D",1:"A C T U A L")_"   D I E T   C E N S U S"
+ W:'($E(IOST,1,2)'="C-"&'PG) @IOF S PG=PG+1
+ S DTP=NOW D DTP^FH W !,DTP,?(L1-$L(Z)\2),Z,?(L1-7),"Page ",PG
+ W !,FHRETYP
+ S Z=$P(^FH(119.71,FHP,0),"^",1)
+ W !?(L1-$L(Z)\2),Z,!!?(L1-$L(TIM)\2),TIM
+ W !!?(L1-31\2),"P R O D U C T I O N   D I E T S",!!?29
+ S X="" F  S X=$O(S(X)) Q:X=""  F K=0:0 S K=$O(S(X,K)) Q:K=""  W $P(S(X,K),"^",1)
+ W "    Total" S LN="",$P(LN,"-",L1+1)="" W !,LN,! K LN
+ F P1=0:0 S P1=$O(^FH(116.2,"AP",P1)) Q:P1<1  F K=0:0 S K=$O(^FH(116.2,"AP",P1,K)) Q:K<1  I $D(^TMP($J,"FH",0,K)) D PRO
+ I FHP6["C" W !?3,"N P O",?31 S K=.5 D P1 K NP(.5)
+ I FHP6["C" W !?3,"P A S S",?31 S K=.8 D P1 K NP(.8)
+ I FHP6["C" W !?3,"TF Only",?31 S K=.7 D P1 K NP(.7)
+ I FHP6["C" W !?3,"No Order",?31 S K=.6 D P1 K NP(.6)
+ W !!,"TOTAL MEALS",?31 S TOT=""
+ S X="" F  S X=$O(S(X)) Q:X=""  F K1=0:0 S K1=$O(S(X,K1)) Q:K1=""  D
+ .S Z=$G(^TMP($J,"FH",K1)) S:Z TOT=TOT+Z W $J(Z,6),"  "
+ W $J(TOT,7) Q
+ W !!!,"*** Includes other gratuitous/paid meals.",! K S,D,N,P Q
+PRO W !,$P($G(^FH(116.2,K,0)),"^",1),?31
+P1 S (TOT,X)="" F  S X=$O(S(X)) Q:X=""  F K1=0:0 S K1=$O(S(X,K1)) Q:K1=""  D
+ .S Z=$S(K>.9:$G(^TMP($J,"FH",K1,K)),1:$G(NP(K,K1)))
+ .S:Z TOT=TOT+Z W $J(Z,6),"  "
+ W $J(TOT,7) Q
+CEN ; Calculate for Census
+ K ^TMP($J,"FH"),^TMP($J,"FHD")
+ S X=D1_"@"_$S(MEAL="B":"7AM",MEAL="N":"11AM",1:"4PM"),%DT="TX" D ^%DT S TIM=Y
+ K D,P F WRD=0:0 S WRD=$O(^FH(119.6,WRD)) Q:WRD<1  S X=^(WRD,0) D
+ .I $G(FHSITE),($P(X,U,8)'=FHSITE) Q
+ .S FHSERFLG=0
+ .S FHSER=$P(X,U,5) S:$G(FHSER) SP(FHSER)="" I $G(FHSER),$D(^FH(119.72,FHSER,0)),$P(^FH(119.72,FHSER,0),U,3)=FHP S FHSERFLG=1
+ .S FHSER=$P(X,U,6) S:$G(FHSER) SP(FHSER)="" I $G(FHSER),$D(^FH(119.72,FHSER,0)),$P(^FH(119.72,FHSER,0),U,3)=FHP S FHSERFLG=1
+ .Q:'$G(FHSERFLG)
+ .I '$G(FHSITE) D WRD^FHORD9 Q
+ .I $G(FHSITE),$P(X,U,8)=FHSITE D WRD^FHORD9
+ S FHDTOT=0
+ F FHIJ=0:0 S FHIJ=$O(FHMEALAR(MEAL,FHIJ)) Q:FHIJ'>0  D
+ .S FHDTOT=FHDTOT+1
+ .F FHI=0:0 S FHI=$O(P(FHI)) Q:FHI'>0  F FHJ=0:0 S FHJ=$O(P(FHI,FHJ)) Q:FHJ'>0  D
+ ..Q:FHI<1
+ ..S:'$D(^TMP($J,"FHD",FHIJ,FHJ,FHI)) ^TMP($J,"FHD",FHIJ,FHJ,FHI)=0
+ ..S ^TMP($J,"FHD",FHIJ,FHJ,FHI)=^TMP($J,"FHD",FHIJ,FHJ,FHI)+P(FHI,FHJ)
+ ;
+ F FHI=0:0 S FHI=$O(P(FHI)) Q:FHI'>0  F FHJ=0:0 S FHJ=$O(P(FHI,FHJ)) Q:FHJ'>0  D
+ .I P(FHI,FHJ)>0 S P(FHI,FHJ)=P(FHI,FHJ)*FHDTOT
+ ;go proccess outpatient data
+ D OUT^FHPRO3
+ ;
+COMB ;
+ K D,NP,T F LP=0:0 S LP=$O(P(.5,LP)) Q:LP<1  S:'$D(NP(.5,LP)) NP(.5,LP)=0 S NP(.5,LP)=NP(.5,LP)+P(.5,LP) S:'$D(D(LP)) D(LP)=0 S D(LP)=D(LP)+P(.5,LP)
+ K P(.5) F LP=0:0 S LP=$O(P(.7,LP)) Q:LP<1  S:'$D(NP(.7,LP)) NP(.7,LP)=0 S NP(.7,LP)=NP(.7,LP)+P(.7,LP) S:'$D(D(LP)) D(LP)=0 S D(LP)=D(LP)+P(.7,LP)
+ K P(.7) F LL=0:0 S LL=$O(P(.6,LL)) Q:LL<1  S:'$D(NP(.6,LL)) NP(.6,LL)=0 S NP(.6,LL)=NP(.6,LL)+P(.6,LL)
+ K P(.6) F LL=0:0 S LL=$O(P(.8,LL)) Q:LL<1  S:'$D(NP(.8,LL)) NP(.8,LL)=0 S NP(.8,LL)=NP(.8,LL)+P(.8,LL) S:'$D(D(LL)) D(LL)=0 S D(LL)=D(LL)+P(.8,LL)
+ K P(.8) F LL=0:0 S LL=$O(P(LL)) Q:LL<1  F P0=0:0 S P0=$O(P(LL,P0)) Q:P0<1  S:'$D(T(P0)) T(P0)=0 S T(P0)=T(P0)+P(LL,P0)
+ F LP=0:0 S LP=$O(NP(.6,LP)) Q:LP<1  S:$D(T(LP)) NP(.6,LP)=NP(.6,LP)-T(LP)-$G(D(LP)) S:'$D(D(LP)) D(LP)=0 S D(LP)=D(LP)+NP(.6,LP)
+ F P0=0:0 S P0=$O(^FH(119.72,P0)) Q:P0<1  I $P(^(P0,0),"^",3)=FHP I $D(^FH(119.72,P0,"B")) D D0
+ K ^TMP($J,"FH") F LL=0:0 S LL=$O(P(LL)) Q:LL<1  S P(LL,0)=0 F P0=0:0 S P0=$O(P(LL,P0)) Q:P0<1  S ^TMP($J,"FH",P0,LL)=P(LL,P0) S:'$D(D(P0)) D(P0)="" S D(P0)=D(P0)+P(LL,P0),P(LL,0)=P(LL,0)+P(LL,P0)
+ F P0=0:0 S P0=$O(D(P0)) Q:P0<1  S ^TMP($J,"FH",P0)=D(P0)
+ F LL=0:0 S LL=$O(P(LL)) Q:LL<1  I $G(P(LL,0)) S ^TMP($J,"FH",0,LL)=P(LL,0)
+ K P,D Q
+D0 ;
+ I '$D(SP(P0)) Q
+ I $G(^FH(119.72,P0,"I"))="Y" Q
+ ;get all the AO for all dates being asked.
+ F LL=0:0 S LL=$O(^FH(119.72,P0,"B",LL)) Q:LL<1  F FHDOII=0:0 S FHDOII=$O(FHDODAY(FHDOII)) Q:FHDOII'>0  D
+ .S (FHDOD1,X)=FHDODAY(FHDOII) D DOW^%DTC S DOW=Y+1
+ .Q:'$D(FHMEALAR(MEAL,FHDOD1))  ;meal is not for certain date.
+ .S Y=$P(^FH(119.72,P0,"B",LL,0),"^",3*DOW-2+K3) I Y>0 S:'$D(P(LL,P0)) P(LL,P0)=0 S P(LL,P0)=P(LL,P0)+Y
+ .I Y>0 S:'$D(^TMP($J,"FHD",FHDOD1,P0,LL)) ^TMP($J,"FHD",FHDOD1,P0,LL)=0 S ^TMP($J,"FHD",FHDOD1,P0,LL)=^TMP($J,"FHD",FHDOD1,P0,LL)+Y
+ ;F LL=0:0 S LL=$O(^FH(119.72,P0,"B",LL)) Q:LL<1  S Y=$P(^FH(119.72,P0,"B",LL,0),"^",3*DOW-2+K3) I Y>0 S:'$D(P(LL,P0)) P(LL,P0)=0 S P(LL,P0)=P(LL,P0)+Y
+ Q

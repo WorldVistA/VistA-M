@@ -1,0 +1,42 @@
+XPDKEY ;SFISC/RWF,RSD - Tools to work on KEYS ;9/21/95  13:47
+ ;;8.0;KERNEL;**5**;Jul 10, 1995
+ Q
+ ;XPDOLD=current Key name,  XPDNEW=new Key name
+ ;return 1 for success, 0 for failure
+RENAME(XPDOLD,XPDNEW) ;EF. Rename a Security Key
+ Q:$D(XPDOLD)+$D(XPDNEW)'=2 0
+ N DA,DIERR,DIK,XPD,XPDKEY,XPDI
+ S XPDKEY=$O(^DIC(19.1,"B",XPDOLD,0)) Q:XPDKEY'>0 0
+ S XPD(19.1,XPDKEY_",",.01)=XPDNEW D UPDATE^DIE("","XPD")
+ I $D(DIERR) Q 0
+ S XPDI=0,DA=XPDKEY,DIK="^VA(200,XPDI,51,",DIK(1)=.01
+ F  S XPDI=$O(^VA(200,"AB",XPDKEY,XPDI)) Q:'XPDI  S DA(1)=XPDI D EN1^DIK
+ D LOCKS(XPDOLD,XPDNEW)
+ Q 1
+ ;
+LOCKS(XPDOLD,XPDNEW) ;check file 19 for LOCKS and REVERSE/LOCK fields
+ N XPD,XPDI,X,Y
+ Q:$D(XPDOLD)+$D(XPDNEW)'=2
+ S XPDI=0
+ F  S XPDI=$O(^DIC(19,XPDI)) Q:'XPDI  S X=$G(^(XPDI,0)),Y=$G(^(3)) D:$L(X)
+ .K XPD
+ .S:$P(X,"^",6)=XPDOLD XPD(19,XPDI_",",3)=XPDNEW
+ .S:$P(Y,"^")=XPDOLD XPD(19,XPDI_",",3.01)=XPDNEW
+ .D:$D(XPD) UPDATE^DIE("","XPD")
+ Q
+ ;
+DEL(XPDA) ; Delete a key.
+ N DA,DIK,XPD,XPDKEY,XPDI
+ Q:'$D(^DIC(19.1,+$G(XPDA),0))  S XPDKEY=$P(^(0),"^")
+ S XPDI=0,DA=XPDA
+ F  S XPDI=$O(^VA(200,"AB",XPDA,XPDI)) Q:'XPDI  D
+ . S DA(1)=XPDI,DIK="^VA(200,XPDI,51," D ^DIK
+ . S DIK="^VA(200,XPDI,52," D ^DIK
+ K DA S DA=XPDA,DIK="^DIC(19.1,"
+ D ^DIK,LOCKS(XPDKEY,"@")
+ Q
+ ;
+LKUP(X) ;Lookup a in the KEY file.
+ Q:'$L(X) ""
+ I X?1N.NP Q $P($G(^DIC(19.1,X,0)),"^")
+ Q $O(^DIC(19.1,"B",X,0))

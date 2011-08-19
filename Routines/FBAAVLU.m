@@ -1,0 +1,60 @@
+FBAAVLU ;AISC/DMK-LOOK UP VENDOR FOR TIME FRAME ;8/10/2003
+ ;;3.5;FEE BASIS;**4,61**;JAN 30, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ D DT^DICRW
+RDV S FBAAOUT=0 K FBAANQ W !! S DIC="^FBAAV(",DIC(0)="AEQM",DIC("A")="Select Medical Vendor: ",DIC("S")="I $P(^(0),""^"",7)'=3" D ^DIC K DIC("S"),DIC("A") G Q:X="^"!(X=""),RDV:Y<0 S DA=+Y
+ D DATE^FBAAUTL G:FBPOP RDV S ZZ=9999999.9999,BEG=ZZ-ENDDATE,END=ZZ-BEGDATE
+ S VAR="DA^BEG^END",VAL=DA_"^"_BEG_"^"_END,PGM="START^FBAAVLU" D ZIS^FBAAUTL G:FBPOP Q S:IO=IO(0) FBAANQ=1
+START S Q="",$P(Q,"-",80)="-",HNAM="",FBDEL=$S($P($G(^FBAAV(DA,"ADEL")),"^")="Y":1,1:0) U IO W:$E(IOST,1,2)["C-" @IOF D HED
+ F J=0:0 S J=$O(^FBAAC("AB",DA,J)) Q:J'>0!(FBAAOUT)  F FBK=BEG-1:0 S FBK=$O(^FBAAC(J,DA,"AD",FBK)) Q:FBK>END!(FBK'>0)!(FBAAOUT)  S K=DA D MORE
+ G:$D(FBAANQ) RDV
+Q D CLOSE^FBAAUTL K DA,%DT,M,HNAM,J,BEG,BEGDATE,V,DIC,END,ENDDATE,A1,A2,B,B1,B2,PI,T,FBAACPT,FBAADT,FBAAPD,FBIN,FBAANQ,FBAAOUT,K,L,PTNAM,ZS,PGM,Q,VAL,VAR,X,Y,ZZ,FBDEL,FBMOD,FBMODLE Q
+MORE F L=0:0 S L=$O(^FBAAC(J,DA,"AD",FBK,L)) Q:L'>0!(FBAAOUT)  F M=0:0 S M=$O(^FBAAC(J,1,DA,1,L,1,M)) Q:M'>0!(FBAAOUT)  S B=^(M,0) I $P(B,"^",6)]""  S T=$P(B,"^",5),FBAAPD=$P(B,"^",14),ZS=$P(B,"^",20),V=$P(B,"^",21) D
+ .D FBCKO^FBAACCB2(J,K,L,M),WRT
+ Q
+WRT ;
+ N FBAARCE,FBADJLA,FBADJLR,FBCSID,FBFPPSC,FBFPPSL,FBRRMKL,FBUNITS
+ N FBX,FBY2,FBY3,TAMT
+ I $E(IOST,1,2)["C-",$Y+4>IOSL S DIR(0)="E" D ^DIR K DIR S:'Y FBAAOUT=1 Q:FBAAOUT  W @IOF D HED
+ E  I $Y+4>IOSL W @IOF D HED
+ S FBAADT=$P(^FBAAC(J,1,DA,1,L,0),"^",1),FBAADT=$E(FBAADT,4,5)_"/"_$E(FBAADT,6,7)_"/"_$E(FBAADT,2,3),B1=$P(B,"^",8),B2=$S(B1="":"",$D(^FBAA(161.7,B1,0)):$P(^FBAA(161.7,B1,0),"^",1),1:""),PTNAM=$S($D(^DPT(J,0)):$P(^DPT(J,0),"^"),1:"")
+ S FBAAPD=$S(FBAAPD]"":$E(FBAAPD,4,5)_"/"_$E(FBAAPD,6,7)_"/"_$E(FBAAPD,2,3),1:"NOT PAID")
+ S A1=$P(B,"^",2)+.0001,A2=$P(B,"^",3)+.0001,A1=$P(A1,".",1)_"."_$E($P(A1,".",2),1,2),A2=$P(A2,".",1)_"."_$E($P(A2,".",2),1,2),FBIN=$P(B,"^",16)
+ S FBAACPT=$$CPT^FBAAUTL4($P(B,"^",1))
+ S FBMODLE=$$MODL^FBAAUTL4("^FBAAC("_J_",1,"_K_",1,"_L_",1,"_M_",""M"")","E")
+ S FBY3=$G(^FBAAC(J,1,K,1,L,1,M,3))
+ S FBFPPSC=$P(FBY3,U)
+ S FBFPPSL=$P(FBY3,U,2)
+ S FBX=$$ADJLRA^FBAAFA(M_","_L_","_K_","_J_",")
+ S FBADJLR=$P(FBX,U)
+ S FBADJLA=$P(FBX,U,2)
+ S TAMT=$FN($P(B,"^",4),"",2)
+ S FBAARCE=$$GET1^DIQ(162.03,M_","_L_","_K_","_J_",",48)
+ S FBY2=$G(^FBAAC(J,1,K,1,L,1,M,2))
+ S FBUNITS=$P(FBY2,U,14)
+ S FBCSID=$P(FBY2,U,16)
+ S FBRRMKL=$$RRL^FBAAFR(M_","_L_","_K_","_J_",")
+ W:PTNAM'=HNAM !,PTNAM
+ W !,$S(ZS="R":"*",1:""),$S(V="VP":"#",1:""),$S($G(FBCAN)]"":"+",1:""),?2,FBAADT,?12,FBAACPT_$S($G(FBMODLE)]"":"-"_$P(FBMODLE,","),1:""),?22,FBAARCE,?31,FBUNITS,?38,FBCSID,?60,FBIN,?71,B2
+ I $P($G(FBMODLE),",",2)]"" D  Q:FBAAOUT
+ . N FBI
+ . F FBI=2:1 S FBMOD=$P(FBMODLE,",",FBI) Q:FBMOD=""  D  Q:FBAAOUT
+ . . I $Y+4>IOSL D  Q:FBAAOUT
+ . . . I $E(IOST,1,2)="C-" S DIR(0)="E" D ^DIR K DIR I 'Y S FBAAOUT=1 Q
+ . . . W @IOF D HED W !,"(continued)"
+ . . W !,?17,"-",FBMOD
+ W !?4,"$",$J(A1,8),?17,"$",$J(A2,8)
+ ; write adjustment reasons, if null then write suspend code
+ W ?30,$S(FBADJLR]"":FBADJLR,1:T)
+ ; write adjustment amounts, if null then write amount suspended
+ W ?40,"$",$S(FBADJLA]"":FBADJLA,1:TAMT)
+ W ?56,FBRRMKL,?70,FBAAPD
+ I FBFPPSC]"" W !,?5,"FPPS Claim ID: ",FBFPPSC,?32,"FPPS Line Item: ",FBFPPSL
+ D PMNT^FBAACCB2
+ S HNAM=PTNAM
+ Q
+HED S FBAAOUT=0 W ?26,"** VENDOR LOOK-UP **",!,!,?23,"Vendor: ",$P(^FBAAV(DA,0),"^",1),!,?14,"('*' Reimb. to Patient  '+' Cancel. Activity)",!,"PATIENT",?14,"('#' Voided Payment)"
+ W !?2,"SVC DATE",?12,"CPT-MOD",?22,"REV.CODE",?31,"UNITS",?38,"PATIENT ACCOUNT NO.",?60,"INVOICE #",?71,"BATCH #"
+ W !?4,"AMT CLAIMED",?17,"AMT PAID",?30,"ADJ CODE",?40,"ADJ AMOUNT",?56,"REMIT REMARK",?70,"DATE PAID"
+ W !,Q,!
+ Q

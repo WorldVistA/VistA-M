@@ -1,0 +1,47 @@
+ORELR3 ; slc/dcm - Cross check file 100 with file 69 ;2/21/96  13:30 ;
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**20,42,169**;Dec 17, 1997
+PURG(ORIFN) ;
+ N ORX,X,ORPK,X3,X,DA,DIK
+ Q:'$D(ORIFN)
+ Q:'$D(^OR(100,ORIFN,0))
+ I $D(^OR(100,ORIFN,3)),$P(^(3),"^",9) S X=$P(^(3),"^",9) I $O(^OR(100,X,2,0)) S $P(^(0),"^",4)=$P(^(0),"^",4)-1 K ^(ORIFN) I '$O(^(0)) D:ORIFN'=X PURG(X)
+ S (ORX,X)=^OR(100,ORIFN,0),ORPK=$G(^(4)),X3=$G(^(3))
+ D P(ORPK)
+ S DA=ORIFN,DIK="^OR(100," D ^DIK
+ Q
+P(ORPK) ;Purge
+ N LRXODT,LRXSN
+ I ORPK'[";",ORPK D  Q
+ . S LRXODT=0 F  S LRXODT=$O(^LRO(69,"C",+ORPK,LRXODT)) Q:LRXODT<1  D
+ .. S LRXSN=0 F  S LRXSN=$O(^LRO(69,"C",+ORPK,LRXODT,LRXSN)) Q:LRXSN<1  D
+ ... D TST
+ S LRXODT=$P(ORPK,";",2),LRXSN=$P(ORPK,";",3)
+ I LRXODT,LRXSN,$D(^LRO(69,LRXODT,1,LRXSN,2,0)) D TST
+ Q
+TST ;Get the test level
+ N I,X
+ S I=0 F  S I=$O(^OR(100,ORIFN,4.5,"ID","ORDERABLE",I)) Q:I<1  I $D(^OR(100,ORIFN,4.5,I,1)) S X=^(1) I $D(^ORD(101.43,+X,0)) S X=+$P(^(0),"^",2) I X D
+ . I $D(^LRO(69,LRXODT,1,LRXSN,2,"B",X)) S X=$O(^(X,0)),$P(^LRO(69,LRXODT,1,LRXSN,2,X,0),"^",7)="P"
+ Q
+DC ;Lapse old pending/active/unrel orders
+ Q:'$D(^OR(100,ORIFN,3))
+ Q:$P(^OR(100,ORIFN,3),"^",3)'=5&($P(^(3),"^",3)'=11)&($P(^(3),"^",3)'=6)  N X3 S X3=$P(^(3),"^",3)
+ I ORPENDT,ORSTRT<ORPENDT D
+ . I ORSTRT="",ORENT'<ORPENDT Q
+ . I X3=5 S PCNT=PCNT+1,TTCNT=TTCNT+1 W "p"
+ . I X3=6 Q:$D(^LRO(69,LRODT,1,LRSN,0))  S APCNT=APCNT+1,TTCNT=TTCNT+1 W "a"
+ . I X3=11 S UCNT=UCNT+1,TTCNT=TTCNT+1 W "u"
+ . I ORAFIX,ORPEND D:ORSTS=11 PURG(ORIFN) D:ORSTS'=11 STATUS^ORCSAVE2(ORIFN,14)
+ Q
+DAD(ORIFN) ;Check mult ord status
+ Q:'$O(^OR(100,ORIFN,2,0))
+ N SAME,J,X,D
+ S SAME=1,J=0
+ F  S J=$O(^OR(100,ORIFN,2,J)) Q:'J  I $D(^OR(100,J,3)),$P(^(3),"^",3)'=ORPSTS S SAME=0 Q
+ Q:SAME
+ S (J,X,D)=0 F  S J=$O(^OR(100,ORIFN,2,J)) Q:J<1  D  Q:X
+ . I '$D(^OR(100,J)) S HCNT=HCNT+1 D WRT^ORELR2(ORIFN,"Bad Child ptr:"_J) D  Q
+ .. I ORAFIX K ^OR(100,ORIFN,2,J) I '$O(^(0)) D PURG(ORIFN)
+ . I $D(^OR(100,J)) S K=$P($G(^(J,3)),"^",3),X=$S(K=1:"",K=2:"",K=7:"",K=14:"",1:1) Q:X  S:K'=1 D=1
+ I 'X,ORSTS'=$S(D:2,1:1) S PTCNT=PTCNT+1 D WRT^ORELR2(ORIFN,"Parent status update") I ORAFIX S ORSTS=$S(D:2,1:1) I ORSTS'=ORPSTS D STATUS^ORCSAVE2(ORIFN,ORSTS)
+ Q

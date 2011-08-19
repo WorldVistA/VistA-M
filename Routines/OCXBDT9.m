@@ -1,0 +1,79 @@
+OCXBDT9 ;SLC/RJS,CLA - BUILD OCX PACKAGE DIAGNOSTIC ROUTINES (Build Runtime Library Routine OCXDI5) ;8/04/98  13:21
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+EN() ;
+ ;
+ N R,LINE,TEXT,NOW,RUCI,P1NAME,D0,D1,P2NUM,P2NAM,XCM
+ S NOW=$$NOW^OCXBDT3,RUCI=$$CUCI^OCXBDT
+ F LINE=1:1:999 S TEXT=$P($T(TEXT+LINE),";",2,999) Q:TEXT  S TEXT=$P(TEXT,";",2,999) S R(LINE,0)=$$CONV^OCXBDT3(TEXT)
+ ;
+ S D0=0 F  S D0=$O(^ORD(101,D0)) Q:'D0  D
+ .S PNAME=$P($G(^ORD(101,D0,0)),U,1)
+ .Q:'$L(PNAME)
+ .S D1=0 F  S D1=$O(^ORD(101,D0,10,D1)) Q:'D1  D
+ ..S P2NUM=+^ORD(101,D0,10,D1,0),P2NAME=$P($G(^ORD(101,P2NUM,0)),U,1)
+ ..I ($E(P2NAME,1,15)="OCX ORDER CHECK") D ADD
+ S R($O(R(""),-1)+1,0)=" ;1;"
+ S R($O(R(""),-1)+1,0)="$"
+ ;
+ M ^TMP("OCXBDT",$J,"RTN")=R
+ S DIE="^TMP(""OCXBDT"","_$J_",""RTN"",",XCN=0,X="OCXDI5"
+ W !,X X ^%ZOSF("SAVE") W "  ... ",XCM," Lines filed" K ^TMP("OCXBDT",$J,"RTN")
+ ;
+ Q XCM
+ ;
+ADD S R($O(R(""),-1)+1,0)=" ;;"_PNAME_U_P2NAME W !!,"Protocol: ",PNAME," -> ",P2NAME Q
+ ;
+TEXT ;
+ ;;OCXDI5 ;SLC/RJS,CLA - OCX PACKAGE DIAGNOSTIC UTILITY ROUTINE ;|NOW|
+ ;;|OCXLIN2|
+ ;;|OCXLIN3|
+ ;; ;
+ ;;EN() ;
+ ;; ;  Protocol Utilities
+ ;; ;
+ ;; N OCXLINE,OCXTEXT,OCXQUIT
+ ;; S OCXQUIT=0
+ ;; F OCXLINE=1:1:500 S OCXTEXT=$P($T(DATA+OCXLINE),";",2,999) Q:OCXTEXT  I $L(OCXTEXT) D  Q:OCXQUIT
+ ;; .D DOT^OCXDIAG
+ ;; .S OCXTEXT=$P(OCXTEXT,";",2,999)
+ ;; .S OCXQUIT=$$ADD($P(OCXTEXT,U,1),$P(OCXTEXT,U,2))
+ ;; Q OCXQUIT
+ ;; ;
+ ;;ADD(OCXX,OCXITEM) ;
+ ;; ;
+ ;; N OCXD0,OCXD1,OCXD2,DIE,DIC,DR,X,Y,DA,OCXQUIT
+ ;; S OCXD0=$$DIC("^ORD(101,",OCXX) Q:'OCXD0 0
+ ;; S OCXD1=$$DIC("^ORD(101,",OCXITEM) Q:'OCXD1 0
+ ;; S OCXD2=0 F  S OCXD2=$O(^ORD(101,OCXD0,10,OCXD2)) Q:'OCXD2  Q:(+^ORD(101,OCXD0,10,OCXD2,0)=OCXD1)
+ ;; Q:OCXD2 0 S OCXQUIT=0
+ ;; I OCXFLGR W !!," '"_OCXITEM_"' is missing as an Item to the '"_OCXX_"' protocol."
+ ;; Q:'OCXFLGC 0 I OCXFLGA S OCXQUIT=$$READ("Y"," Do you want to add '"_OCXITEM_"' as an Item to '"_OCXX_"'  ?","YES") I 'OCXQUIT Q (OCXQUIT[U)
+ ;; S:'$D(^ORD(101,OCXD0,10,0)) ^ORD(101,OCXD0,10,0)="^101.01PA^^"
+ ;; S (DIE,DIC)="^ORD(101,"_OCXD0_",10,"
+ ;; F DA=1:1 Q:'$D(^ORD(101,OCXD0,10,DA,0))
+ ;; S DA(1)=OCXD0
+ ;; S DR=".01///"_OCXITEM
+ ;; S OCXSCR=1 D ^DIE
+ ;; I OCXFLGR W !,"  added"
+ ;; I 'OCXFLGR W !," '"_OCXITEM_"' added as an Item to the '"_OCXX_"' protocol"
+ ;; ;
+ ;; Q 0
+ ;; ;
+ ;;DIC(DIC,X) S DIC(0)="",OCXSCR=1 D ^DIC Q:(+Y>0) +Y Q 0
+ ;; ;
+ ;;READ(OCXZ0,OCXZA,OCXZB,OCXZL) ;
+ ;; N OCXLINE,DIR,DTOUT,DUOUT,DIRUT,DIROUT
+ ;; Q:'$L($G(OCXZ0)) U
+ ;; S DIR(0)=OCXZ0
+ ;; S:$L($G(OCXZA)) DIR("A")=OCXZA
+ ;; S:$L($G(OCXZB)) DIR("B")=OCXZB
+ ;; F OCXLINE=1:1:($G(OCXZL)-1) W !
+ ;; D ^DIR
+ ;; I $D(DTOUT)!$D(DUOUT)!$D(DIRUT)!$D(DIROUT) Q U
+ ;; Q Y
+ ;; ;
+ ;;DATA ;:
+ ;1;
+ ;

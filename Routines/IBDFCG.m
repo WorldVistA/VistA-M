@@ -1,0 +1,154 @@
+IBDFCG ;MAF/ALB - CLINIC GROUP FORMS SCREEN ; 09-FEB-1995
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+ ;
+ ;
+EN ; -- main entry point for IBDF EF CLINIC GROUP LT
+ D EN^VALM("IBDF EF CLINIC GROUP LT")
+ Q
+ ;
+ ;
+HDR ; -- header code
+ S VALMHDR(1)="This is a list of the Clinic Groups and the Clinics"
+ S VALMHDR(2)="and Divisions under them."
+ Q
+ ;
+ ;
+INIT ; -- init variables and list array
+ N IBDFNODE,IBDFCL,IBDIFN,IBDFCGNM,IBDFCNUM,IBDCNT,IBDCNT1,IBDVAL,IBDVAL1,IBDFVAL,IBFASTXT,IBDCG,IBDCL,IBDDV,IBDFCFLG,IBDFCIEN,IBDFCN,IBDFDFLG,IBDFDIEN,IBDFGN,IBDFX,IBDVALM
+ K IBDCLN1,IBDFCG
+ S (IBDCNT,IBFASTXT,IBDCNT1,VALMCNT)=0
+ K ^TMP("IBMF",$J),^TMP("IBDFCG",$J),^TMP("CGIDX",$J),IBDCLN D KILL^VALM10()
+ S (IBDFGN,IBDFCGNM)=0
+ F IBDFGN=0:0 S IBDFCGNM=$O(^IBD(357.99,"B",IBDFCGNM)) Q:IBDFCGNM']""  F IBDIFN=0:0 S IBDIFN=$O(^IBD(357.99,"B",IBDFCGNM,IBDIFN)) Q:IBDIFN'>0  I IBDIFN]"" D ARRAY
+ S (IBDFCG,IBDFCGNM)=0
+ F IBDFCN=0:0 S IBDFCGNM=$O(IBDCLN1(IBDFCGNM)) Q:IBDFCGNM']""  F IBDCG=0:0 S IBDCG=$O(IBDCLN1(IBDFCGNM,IBDCG)) Q:'IBDCG  I $D(IBDCLN1(IBDFCGNM,IBDCG)) S IBDCNT1=IBDCNT1+1 D GROUPS D
+ .F IBDFX=IBDFX:0 S IBDFX=$O(^TMP("IBMF",$J,IBDCG,IBDFX)) Q:'IBDFX  D SETG1
+ .I $O(IBDCLN1(IBDFCGNM))]"" S IBDCNT=IBDCNT+1,VALMCNT=VALMCNT+1 S X="",X=$$SETSTR^VALM1(X,X,1,80) D TMP
+ ;
+ I '$D(^TMP("IBDFCG",$J)) D NUL
+ Q
+ ;
+ ;
+ARRAY ; -- Setting up array for clinic groups and the divisions and clinics
+ S IBDCLN1(IBDFCGNM,IBDIFN)=IBDIFN
+ S (IBDDV,IBDCL)=0 D CLIN^IBDFCG1 D DIV^IBDFCG1
+ S (IBDFX,IBDDV,IBDCL,IBDFCFLG,IBDFDFLG,IBDFCIEN,IBDFDIEN)=0
+ F IBDFX=0:0 S IBDFX=IBDFX+1 D:'IBDFCFLG CLIN1^IBDFCG1 D:'IBDFDFLG DIV1^IBDFCG1 Q:IBDFCFLG=1&(IBDFDFLG=1)
+ Q
+ ;
+ ;
+SETG1 ; -- Creating the list entries
+ S IBDCNT=IBDCNT+1,VALMCNT=VALMCNT+1
+ S X=""
+ S IBDFVAL=$O(^TMP("IBMF",$J,IBDCG,IBDFX,"D",0))
+ S IBDFVAL=$G(^TMP("IBMF",$J,IBDCG,IBDFX,"D",+IBDFVAL)) S X=$$SETSTR^VALM1(IBDFVAL,X,28,26)
+ S IBDFVAL=$O(^TMP("IBMF",$J,IBDCG,IBDFX,"C",0))
+ S IBDFVAL=$G(^TMP("IBMF",$J,IBDCG,IBDFX,"C",+IBDFVAL)) S X=$$SETSTR^VALM1(IBDFVAL,X,56,23)
+ D TMP
+ Q
+ ;
+ ;
+GROUPS ; -- Creating the Listman Clinic Name titles for the list
+ S IBDCNT=IBDCNT+1,VALMCNT=VALMCNT+1
+ S IBDFCG(IBDFCGNM)=IBDCNT_"^"_IBDCG
+ S X="",X=$$SETSTR^VALM1(IBDCNT1_"  "_IBDFCGNM,X,1,26)
+ S IBDFX=1
+ I '$O(^TMP("IBMF",$J,IBDCG,IBDFX,"D",0)),'$O(^TMP("IBMF",$J,IBDCG,IBDFX,"C",0)) D TMP,CNTRL^VALM10(VALMCNT,1,26,IOINHI,IOINORM,0) Q
+ S IBDVAL=$O(^TMP("IBMF",$J,IBDCG,IBDFX,"D",0)) I IBDVAL S IBDVAL=^TMP("IBMF",$J,IBDCG,IBDFX,"D",IBDVAL) S X=$$SETSTR^VALM1(IBDVAL,X,28,26) I '$O(^TMP("IBMF",$J,IBDCG,IBDFX,"C",0)) D TMP,CNTRL^VALM10(VALMCNT,1,26,IOINHI,IOINORM,0)
+ S IBDVAL=$O(^TMP("IBMF",$J,IBDCG,IBDFX,"C",0)) I IBDVAL S IBDVAL=^TMP("IBMF",$J,IBDCG,IBDFX,"C",IBDVAL) S X=$$SETSTR^VALM1(IBDVAL,X,56,24) D TMP,CNTRL^VALM10(VALMCNT,1,26,IOINHI,IOINORM,0)
+ Q
+ ;
+ ;
+TMP S ^TMP("IBDFCG",$J,IBDCNT,0)=X,^TMP("IBDFCG",$J,"IDX",VALMCNT,IBDCNT1)=""
+ S ^TMP("CGIDX",$J,IBDCNT1)=VALMCNT_"^"_IBDCG
+ Q
+ ;
+ ;
+EDIT ; -- Edit a selected Clinic Group
+ N IBDVALM,VALMY
+ S VALMBCK=""
+ D EN^VALM2($G(XQORNOD(0))) G REP:'$O(VALMY(0)) S IBDVALM=0
+ D FULL^VALM1 S VALMBCK="R"
+ F IBDVALM=0:0 S IBDVALM=$O(VALMY(IBDVALM)) Q:'IBDVALM  S DA=^TMP("CGIDX",$J,IBDVALM),DA=$P(DA,"^",2) D
+ .D MESS
+ .W !!,"Clinic Group: "_$P($G(^IBD(357.99,DA,0)),"^",1)
+ .S DIE="^IBD(357.99,",DA=DA,DR=".01;I $O(^IBD(357.99,DA,11,0)) S Y=""@99"";10;@99;I $O(^IBD(357.99,DA,10,0)) S Y=""@999"";11;@999" D ^DIE K DA,DIE,DR
+ D REP1 Q
+ ;
+DEL ; -- Delete Clinic Group
+ N IBDVALM,VALMY,DIR,DIRUT,DUOUT
+ S VALMBCK=""
+ D EN^VALM2($G(XQORNOD(0))) G REP:'$O(VALMY(0)) S IBDVALM=0
+ D FULL^VALM1 S VALMBCK="R"
+ F IBDVALM=0:0 S IBDVALM=$O(VALMY(IBDVALM)) Q:'IBDVALM  S DA=^TMP("CGIDX",$J,IBDVALM),DA=$P(DA,"^",2) D
+ .I $O(^IBD(357.09,"ACG",DA,0)) W !!,"In use by parameter group, Not deleted",! D PAUSE^VALM1 Q
+ .W !!,"Clinic Group: "_$P($G(^IBD(357.99,DA,0)),"^",1)
+ .W ! S DIR(0)="Y",DIR("B")="NO",DIR("A")="Are You Sure you want to delete "_$P($G(^IBD(357.99,DA,0)),"^",1)
+ .D ^DIR K DIR I Y'=1 W !,"Entry ",$P($G(^IBD(357.99,DA,0)),"^",1)," not Deleted!" Q
+ .D DP1
+ ;
+DELQ D INIT
+ S VALMBCK="R" Q
+ ;
+DP1 ; -- actual deletion
+ S DIK="^IBD(357.99," D ^DIK
+ W !,"Entry ",IBDVALM," Deleted"
+ Q
+ ;
+QE ; -- Quick edit Review entry
+ Q
+ ;
+MESS ; -- Message prior to editing a group
+ W !!,"Enter the clinics for this clinic group.  Enter as many Clinics as you want."
+ W !,"If you want all clinics for a division, do not enter any clinics but enter"
+ W !,"the division name at the Select Division: prompt."
+ Q
+ ;
+ADD1 ; -- Add/Edit Clinic Group
+ N DLAYGO
+ D FULL^VALM1
+ D MESS
+ W ! S DIC("A")="Select GROUP NAME: ",DIC="^IBD(357.99,",DIC(0)="AELQMN",DIC("DR")=".01",DLAYGO=357.99 D ^DIC K DIC G:Y<1 REP1 S DA=+Y
+ S DIE="^IBD(357.99,",DA=DA,DR="I $O(^IBD(357.99,DA,11,0)) S Y=""@99"";10;I $O(^IBD(357.99,DA,10,0)) S Y=""@999"";11;@999" D ^DIE K DA,DIE,DR G ADD1
+ ;
+ ;
+REP D INIT^IBDFPE S VALMBCK="R" Q
+ ;
+ ;
+REP1 D INIT^IBDFCG S VALMBCK="R" Q
+ ;
+ ;
+JUMP ; -- Jump action to display a specific clinic group on the screen.
+ D FULL^VALM1
+ I $D(XQORNOD(0)),$P(XQORNOD(0),"^",4)]"" S X=$P(XQORNOD(0),"^",4) S X=$P(X,"=",2) I X]"" D:X?1.6N JSEL S DIC="^IBD(357.99,",DIC(0)="QEZ" D ^DIC K DIC G:Y<0 JMP S Y=+Y D JUMP1 Q
+JMP S DIC="^IBD(357.99,",DIC(0)="AEMN",DIC("A")="Select Clinic Group you wish to move to: " D ^DIC K DIC
+ I X["^" S VALMBG=1,VALMBCK="R" Q
+JUMP1 I Y<0 G JUMP
+ N IBDFCAT
+ S IBDFCAT=$P(^IBD(357.99,+Y,0),"^",1)
+ I '$D(IBDFCG(IBDFCAT)) W !!,"There is no data listed for this Clinic Group" G JMP
+ S VALMBG=+IBDFCG(IBDFCAT) S VALMBCK="R" Q
+ Q
+ ;
+ ;
+JSEL ; -- Convert number selected to name
+ S IBDVALM=X I $D(^TMP("CGIDX",$J,IBDVALM)) S X=$P(^TMP("CGIDX",$J,IBDVALM),"^",2),X=$P(^IBD(357.99,X,0),"^",1)
+ Q
+ ;
+ ;
+HELP ; -- help code
+ S X="?" D DISP^XQORM1 W !!
+ Q
+ ;
+ ;
+EXIT ; -- exit code
+ K IBDCLN,IBDCLN1,IBDFCG
+ K ^TMP("IBMF",$J)
+ Q
+ ;
+EXPND ; -- expand code
+ Q
+ ;
+NUL ; -- NULL MESSAGE
+ S ^TMP("IBDFCG",$J,1,0)=" ",^TMP("IBDFCG",$J,2,0)="There are no CLINIC GROUPS listed.",^TMP("CGIDX",$J,1)=1,^TMP("CGIDX",$J,2)=2
+ Q

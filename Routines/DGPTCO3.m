@@ -1,0 +1,46 @@
+DGPTCO3 ;ALB/MJK/DHH - Census Status Report ; 3/23/2005
+ ;;5.3;Registration;**136,383,432,643**;Aug 13, 1993
+ ;
+EN D CHKCUR^DGPTCO1 W ! D DATE^DGPTCO1
+ S DIC("A")="Generate PTF Census Status Report for Census date: ",DIC="^DG(45.86,",DIC(0)="AEMQ" S:Y]"" DIC("B")=Y
+ D ^DIC K DIC G ENQ:Y<0
+ S DGCN=+Y,DGCDT=+$P(Y,U,2)_".9" K DGCHOICE
+ D STATUS^DGPTCO2 G ENQ:'$D(DGCHOICE("STATUS"))
+ S %ZIS="NQ" D ^%ZIS K %ZIS G ENQ:POP D DOQ G ENQ:POP S DGIOP=ION_";"_IOM_";"_IOSL
+ I 'DGQ D START G ENQ
+ S ZTRTN="START^DGPTCO3",ZTIO=DGIOP,ZTDESC="Fee Basis Census Status Report"
+ F X="DGCHOICE(","DGCDT","DGCN","DGIOP" S ZTSAVE(X)=""
+ D ^%ZTLOAD D ^%ZISC
+ENQ K DGQ,DHIT,DIOEND,DGC,DGCN,DGCDT,DGIOP,DGCHOICE,DIS
+ Q
+ ;
+START ; -- produce report
+ ;Lock global to prevent duplicate entries in Census Workfile
+ L +^DG(45.85,"DGPT CENSUS REGEN WORKFILE"):5 I '$T D   Q
+ .N DGPTMSG
+ .D BLDMSG^DGPTCR
+ .I $E(IOST,1,2)'="C-" D SNDMSG^DGPTCR,ENQ Q
+ .N DGPTLINE
+ .S DGPTLINE=0
+ .F  S DGPTLINE=$O(DGPTMSG(DGPTLINE)) Q:'DGPTLINE  W !,?5,DGPTMSG(DGPTLINE,0)
+ .Q
+ I '$D(^DG(45.85,"ACENSUS",DGCN)) D REGEN^DGPTCR
+ S DIC="^DG(45.85,",(BY,FLDS)="[DGPT FEE BASIS]",L=0,FR=DGCN_",,@",TO=DGCN_",,"
+ I DGCHOICE("STATUS")'="All" S (FR,TO)=DGCN_",,"_DGCHOICE("STATUS")
+ S Y=$P(DGCDT,".") X ^DD("DD") S DHD="Census Status Report for "_Y
+ S IOP=DGIOP K DGC
+ D EN1^DIP,ENQ
+ L -^DG(45.85,"DGPT CENSUS REGEN WORKFILE")
+END Q
+ ;
+DOQ ;-- check if output device is queued. if not ask 
+ S DGQ=0
+ I $D(IO("Q")) S DGQ=1 G DOQT
+ I IO=IO(0) G DOQT
+ S DIR(0)="Y",DIR("A")="DO YOU WANT YOUR OUTPUT QUEUED",DIR("B")="YES"
+ D ^DIR
+ I Y S DGQ=1
+DOQT ;
+ K Y,DIR
+ Q
+ ;

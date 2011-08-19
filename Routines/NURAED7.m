@@ -1,0 +1,32 @@
+NURAED7 ;HIRMFO/MD-DATA STOREGE TMP FOR THE POSITION EDIT CONTINUED ;1/15/96
+ ;;4.0;NURSING SERVICE;;Apr 25, 1997
+EDVD ; EDIT VACANCY DATE
+ S Y=$P(NURSOPOS,"^",8) D:Y D^DIQ S NURSDFLT=Y
+ W !,"VACANCY DATE: "_$S(NURSDFLT'="":NURSDFLT_"// ",1:"") R X:DTIME S:'$T X="^^" I X="^^"!(X="^") S NUROUT=1 Q
+ I X="" S:NURSDFLT'="" $P(NURSNPOS,"^",8)=$P(NURSOPOS,"^",8) G DVR
+DVD I NURLS="P",X="@",NURSDFLT'="" W !!,?3,$C(7),"PAST ASSIGNMENTS CANNOT BE RE-ACTIVATED FROM THIS SCREEN A NEW ASSIGNMENT",!,?3,"MUST BE ADDED FROM THE CURRENT SCREEN." S NUROUT=1 Q
+ I X="@",NURSDFLT'="" W !?3,$C(7),"SURE YOU WANT TO DELETE" S %=0 D YN^DICN S:%=-1 NUROUT=1 Q:NUROUT  S:%=1 $P(NURSNPOS,"^",8)="" W:%=2 $C(7),"  ??" G EDVR:%=1,EDVD:%=2 W !?5,$C(7),"ANSWER YES OR NO" G DVD
+ I X="@" W $C(7),"  ??" G EDVD
+ I X?1"?".E W !?5,$C(7),"Vacancy date for this position.",!
+ S %DT="E" D ^%DT G:+Y'>0 EDVD I +Y<$P(NURSNPOS,"^",3) S NURSBAD="1^3" D EN4^NURSUT3 G EDVD
+ S $P(NURSNPOS,"^",8)=+Y
+EDVR ; EDIT VACANCY REASON
+ G:$P(NURSOPOS,U,10)=""&'$P(NURSNPOS,U,8) QE
+ S NURSDFLT=$S($D(^NURSF(211.9,+$P(NURSOPOS,U,10),0)):$P(^(0),U,2),1:"")
+ W !,"VACANCY REASON: "_$S(NURSDFLT'="":NURSDFLT_"// ",1:"") R X:DTIME S:'$T X="^^" I X="^^"!(X=U) S NUROUT=1 Q
+ I X="" S:NURSDFLT'="" $P(NURSNPOS,U,10)=$P(NURSOPOS,U,10) G EDTT
+DVR I X="@",NURSDFLT'="" W !?3,$C(7),"SURE YOU WANT TO DELETE" S %=0 D YN^DICN S:%=-1 NUROUT=1 Q:NUROUT  S:%=1 $P(NURSNPOS,U,10)="" W:%=2 $C(7),"  ??" G EDTT:%=1,EDVR:%=2 W !?5,$C(7),"ANSWER YES OR NO" G DVR
+ I X?1"?".E W !?5,$C(7),"Reason why position is vacant or why employee transferred.",!
+ S DIC="^NURSF(211.9,",DLAYGO=211.9,DIC(0)="ELQM" D ^DIC I $D(DTOUT)!$D(DUOUT) S NUROUT=1 Q
+ G:+Y'>0 EDVR S $P(NURSNPOS,U,10)=+Y
+EDTT ; EDIT TRANSFER TO
+ G:$P(NURSOPOS,U,9)=""&($P(NURSNPOS,U,10)'=$O(^NURSF(211.9,"B","TRA",0))) QE
+ S NURSDFLT=$P(NURSOPOS,U,9)
+ W !,"TRANSFER TO: "_$S(NURSDFLT'="":NURSDFLT_"// ",1:"") R X:DTIME S:'$T X="^^" I X="^^"!(X=U) S NUROUT=1 Q
+ I X="" S:NURSDFLT'="" $P(NURSNPOS,U,9)=$P(NURSOPOS,U,9) G QE
+DTT I X="@",NURSDFLT'="" W !?3,$C(7),"SURE YOU WANT TO DELETE" S %=0 D YN^DICN S:%=-1 NUROUT=1 Q:NUROUT  S:%=1 $P(NURSNPOS,U,10)="" W:%=2 $C(7),"  ??" G QE:%=1,EDTT:%=2 W !?5,$C(7),"ANSWER YES OR NO" G DTT
+ I X="@" W $C(7),"  ??" G EDTT
+ I $L(X)>30!($L(X)<2)!(X?1"?".E) W !?5,$C(7),"The name of the location/service (if not nursing) where this employee was",!?5,"temporarily transferred.",!!?5,"Answer must be 3-30 characters in length." G EDTT
+ S $P(NURSNPOS,U,9)=X
+QE S $P(NURSNPOS,U,4)=$P(NURSOPOS,U,4) K NURSDFLT
+ Q

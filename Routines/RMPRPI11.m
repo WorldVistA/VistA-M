@@ -1,0 +1,128 @@
+RMPRPI11 ;HIN/ODJ-PRINT BAR CODE LABELS ;10/8/02  13:11
+ ;;3.0;PROSTHETICS;**61**;Feb 09, 1996
+ ;
+ Q
+ ;
+ ;***** SELP - Prompt for Bar Code printer
+SELP(RMPRBCP,RMPREXC,RMPRQ,RMPRIOP) ;
+ N POP
+START S %ZIS("A")="Select Bar Code Printer: "
+ S %ZIS("B")=""
+ S %ZIS="QN" K IOP
+ D ^%ZIS
+ S RMPRQ=0
+ S RMPREXC=""
+ I POP S RMPREXC="P" G SELPX
+ I '$D(IO("Q")) D  G SELPX
+ . S RMPRBCP=$G(IOST)
+ . S:RMPRBCP="" RMPREXC="^"
+ . S RMPRIOP=$G(ION)
+ . Q
+ ;I '$D(IO("Q")) U IO D TEST G SELPX
+ ;K IO("Q") S ZTDESC="SLAVE PRINT TEST"
+ ;S ZTRTN="TEST^RMPRPI11",ZTIO=ION
+ ;D ^%ZTLOAD W:$D(ZTSK) !,"REQUEST QUEUED!",! H 1 G SELPX
+SELPX Q
+TEST S IOP=ION,%ZIS="" D ^%ZIS
+ W !!,"TESTING SLAVE DEVICE",!!
+ W @IOF
+ D ^%ZISC
+ Q
+ ;
+ ; Print bar code for printer using ZPLII command set (ZEBRAS)
+ ; applies to Z4000 and all Zebra printers.
+ZPLII(RMPRBARC,RMPRITXT,RMPRNCOP) ;
+ N RMPRUNIT,RMPRLTYP,RMPRLWID,RMPRLHGT,RMPRMMIN
+ N RMPRXDIM,RMPRQUIZ,RMPRHCPC,RMPRBLEN,RMPRDT,RMPRBHGT,RMPRCRLF
+ N RMPRLEFT,RMPRDOWN,RMPRLCNT
+ S RMPRUNIT="MM"   ; use mm units
+ S RMPRLTYP=""     ; <not used yet>
+ S RMPRLWID=75     ; Lable width   75mm
+ S RMPRLHGT=25    ; Label height 25mm
+ ;if printer resolution not defined in terminal type file,
+ ;default to 8 dpm
+ I '$G(RMPRLRES) S RMPRLRES=8     ; 8 for 203dpi & 12 for 300dpi
+ S RMPRMMIN=25.333 ; mm to the inch conversion factor
+ I '+$G(RMPRNCOP) S RMPRNCOP=1
+ ;
+ ; Set the X dimension in dots (width of narrow bar)
+ ; minimum recommended X dimension is .25mm (7.5/1000th inch)
+ I RMPRUNIT="MM" D
+ . S RMPRXDIM=RMPRLRES*.25
+ . Q
+ I RMPRUNIT="IN" D
+ . S RMPRXDIM=RMPRLRES*.0075
+ . Q
+ S:RMPRXDIM'=(RMPRXDIM\1) RMPRXDIM=.5+(RMPRXDIM\1)
+ ;
+ ; Calculate the quiet zone in dots
+ ; this should be greater of 10 X dimensions or 2.5333 mm (.1 inch)
+ I RMPRUNIT="MM" D
+ . S RMPRQUIZ=((2.5333*RMPRLRES)\1)+1
+ . S:RMPRQUIZ<(10*RMPRXDIM) RMPRQUIZ=10*RMPRXDIM
+ . Q
+ I RMPRUNIT="IN" D
+ . S RMPRQUIZ=((.1*RMPRLRES)\1)+1
+ . S:RMPRQUIZ<(10*RMPRXDIM) RMPRQUIZ=10*RMPRXDIM
+ . Q
+ ;
+ ; Calculate length (in dots) of symbol to be printed
+ ; Symbol is [HCPCS code][-][Date and Time]
+ ; [HCPCS code] and [-] will be alphanumeric
+ ; [Date and Time] will be numeric using code C
+ S RMPRHCPC=$P(RMPRBARC,"-",1)
+ S RMPRBLEN=((11*($L(RMPRHCPC)+5))+35)*RMPRXDIM
+ S RMPRDT=$P(RMPRBARC,"-",2)
+ S RMPRBLEN=RMPRBLEN+(((5.5*($L(RMPRDT)))+35)*RMPRXDIM)
+ ;
+ ; Calculate bar height in dots
+ ; this should be .15 times symbol length or .25 inches
+ I RMPRUNIT="MM" D
+ . S RMPRBHGT=((6.33325*RMPRLRES)\1)+2
+ . S:RMPRBHGT<(((.15*RMPRBLEN)\1)+1) RMPRBHGT=2+((.15*RMPRBLEN)\1)
+ . Q
+ I RMPRUNIT="IN" D
+ . S RMPRBHGT=((.25*RMPRLRES)\1)+2
+ . S:RMPRBHGT<(((.15*RMPRBLEN)\1)+1) RMPRBHGT=2+((.15*RMPRBLEN)\1)
+ . Q
+ ;
+ ; *** Print the symbol ***
+ S RMPRCRLF=$C(13)_$C(10)
+ S RMPRLCNT=0
+ I '$D(RMPR("NAME")),$D(RMPRITXT("NAME")) S RMPR("NAME")=RMPRITXT("NAME")
+ I '$D(RMPR("NAME")),$D(RMPRSTN("SITE NAME")) S RMPR("NAME")=RMPRSTN("SITE NAME")
+ I '$D(RMPR("NAME")) S RMPR("NAME")=""
+ZPLIIP W "^XA",RMPRCRLF
+ W "^LH"_RMPRQUIZ_","_RMPRQUIZ,RMPRCRLF
+ W "^BY"_RMPRXDIM_",3.0,"_RMPRBHGT,RMPRCRLF
+ S RMPRLEFT=RMPRQUIZ+5
+ S RMPRDOWN=(RMPRQUIZ\2)-10
+ ;
+ ; the BAR CODE
+ W "^FO"_RMPRLEFT_","_RMPRDOWN_","_"^BCN,"_RMPRBHGT_",Y,N,N,A^FD"_RMPRBARC_"^FS",RMPRCRLF
+ S RMPRDOWN=RMPRDOWN+((1.33*RMPRBHGT)\1)
+ ;
+ ; Description fields
+ S RMPRIND=RMPRLEFT+20
+ S RMPRITXT("DT")=$E(RMPRITXT("DATE"),1,6)_$E(RMPRITXT("DATE"),9,10)
+ W "^FO"_RMPRLEFT_","_RMPRDOWN,RMPRCRLF
+ W:RMPRLRES=12 "^AE,^FD"_$E(RMPRITXT("ITEM")_$J("",12),1,12)_$E("$ "_$J(RMPRITXT("UNIT PRICE"),0,2)_$J("",10),1,10)_" "_RMPRITXT("DT")_"^FS",RMPRCRLF
+ W:RMPRLRES=8 "^AF,^FD"_$E(RMPRITXT("ITEM")_$J("",12),1,12)_$E("$ "_$J(RMPRITXT("UNIT PRICE"),0,2)_$J("",10),1,10)_" "_RMPRITXT("DT")_"^FS",RMPRCRLF
+ S RMPRDOWN=RMPRDOWN+14+(RMPRQUIZ\1.5)
+ W "^FO"_RMPRLEFT_","_RMPRDOWN,RMPRCRLF
+ W:RMPRLRES=12 "^AF^FD"_RMPRITXT("ITEM DESC")_"^FS",RMPRCRLF
+ W:RMPRLRES=8 "^AD^FD"_RMPRITXT("ITEM DESC")_"^FS",RMPRCRLF
+ S RMPRDOWN=RMPRDOWN+10+(RMPRQUIZ\1.5)
+ W "^FO"_RMPRLEFT_","_RMPRDOWN,RMPRCRLF
+ W "^AF^FD"_RMPRITXT("MASTER DESC")_"^FS",RMPRCRLF
+ S RMPRDOWN=RMPRDOWN+8+(RMPRQUIZ\1.5)
+ W "^FO"_RMPRLEFT_","_RMPRDOWN,RMPRCRLF
+ W:RMPRLRES=12 "^AF^FD"_$E(RMPRITXT("VENDOR"),1,18)_"  #  "_$E(RMPRITXT("LOCATION"),1,18)_" # "_$E(RMPR("NAME"),1,15)_"^FS",RMPRCRLF
+ W:RMPRLRES=8 "^AD^FD"_$E(RMPRITXT("VENDOR"),1,18)_"  #  "_$E(RMPRITXT("LOCATION"),1,18)_" # "_$E(RMPR("NAME"),1,15)_"^FS",RMPRCRLF
+ ;W:RMPRLRES=8 "^AD^FD"_RMPRITXT("VENDOR")_"^FS",RMPRCRLF
+ ;
+ ; finish
+ W "^XZ",RMPRCRLF
+ S RMPRLCNT=1+RMPRLCNT
+ I RMPRLCNT<RMPRNCOP G ZPLIIP
+ZPLIIX Q

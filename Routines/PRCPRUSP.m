@@ -1,0 +1,113 @@
+PRCPRUSP ;WISC/RFJ/VAC-usage demand item report (print report)          ; 3/6/07 9:00am
+V ;;5.1;IFCAP;**1,98**;Oct 20, 2000;Build 37
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;*98 Modified to accommodate On-Demand Items
+ Q
+ ;
+ ;
+PRINT ;  print report
+ D NOW^%DTC S Y=% D DD^%DT S NOW=Y
+ S PAGE=1,SCREEN=$$SCRPAUSE^PRCPUREP U IO D H
+ ;
+ ;  whse
+ I PRCP("DPTYPE")="W" D
+ . S NSN=""
+ . F  S NSN=$O(^TMP($J,"PRCPRUSE",NSN)) Q:NSN=""  D  Q:$D(PRCPFLAG)
+ . . S DESCR=0
+ . . F  S DESCR=$O(^TMP($J,"PRCPRUSE",NSN,DESCR)) Q:DESCR']""  D  Q:$D(PRCPFLAG)
+ . . . S ITEMDA=0
+ . . . F  S ITEMDA=$O(^TMP($J,"PRCPRUSE",NSN,DESCR,ITEMDA)) Q:'ITEMDA  D  Q:$D(PRCPFLAG)
+ . . . . S DATA=^TMP($J,"PRCPRUSE",NSN,DESCR,ITEMDA)
+ . . . . I $G(ZTQUEUED),$$S^%ZTLOAD S PRCPFLAG=1 W !?10,"<<< TASKMANAGER JOB TERMINATED BY USER >>>" Q
+ . . . . I $Y>(IOSL-8) D:SCREEN P^PRCPUREP Q:$D(PRCPFLAG)  D H
+ . . . . W !,$TR(NSN,"-"),?15,$E($P(DATA,"^"),1,15)
+ . . . . D USAGE
+ . . . . Q:$D(PRCPFLAG)
+ ;
+ Q:$D(PRCPFLAG)
+ ;  primary and secondary
+ I PRCP("DPTYPE")'="W" D
+ . S GROUP=""
+ . F  S GROUP=$O(^TMP($J,"PRCPRUSE",GROUP)) Q:GROUP=""  D  Q:$D(PRCPFLAG)
+ . . I $G(ZTQUEUED),$$S^%ZTLOAD S PRCPFLAG=1 W !?10,"<<< TASKMANAGER JOB TERMINATED BY USER >>>" Q
+ . . Q:$D(PRCPFLAG)
+ . . I $Y>(IOSL-8) D:SCREEN P^PRCPUREP Q:$D(PRCPFLAG)  D H
+ . . W !!?5,"GROUP: ",$S(GROUP=" ":"<<NONE>>",1:GROUP)
+ . . S DESCR=""
+ . . F  S DESCR=$O(^TMP($J,"PRCPRUSE",GROUP,DESCR)) Q:DESCR=""  D  Q:$D(PRCPFLAG)
+ . . . S ITEMDA=0
+ . . . F  S ITEMDA=$O(^TMP($J,"PRCPRUSE",GROUP,DESCR,ITEMDA)) Q:'ITEMDA  D  Q:$D(PRCPFLAG)
+ . . . . S DATA=^TMP($J,"PRCPRUSE",GROUP,DESCR,ITEMDA)
+ . . . . S ODITEM=$$ODITEM^PRCPUX2(PRCP("I"),ITEMDA)
+ . . . . Q:ODITEM="Y"&(ODIFLG=1)
+ . . . . Q:ODITEM=""&(ODIFLG=2)
+ . . . . I $Y>(IOSL-6) D:SCREEN P^PRCPUREP Q:$D(PRCPFLAG)  D H
+ . . . . W !,$E($$DESCR^PRCPUX1(PRCP("I"),ITEMDA),1,25)
+ . . . . D USAGE
+ . . . . Q:$D(PRCPFLAG)
+ . . . Q:$D(PRCPFLAG)
+ . . Q:$D(PRCPFLAG)
+ . Q:$D(PRCPFLAG)
+ ;
+ I '$D(PRCPFLAG) D END^PRCPUREP
+ K ^TMP($J,"PRCPRUSE"),^TMP($J,"PRCPURS1")
+ D ^%ZISC
+ Q
+ ;
+ ;
+USAGE ;  display usage
+ I PRCP("DPTYPE")="W" D
+ .W ?31,ITEMDA
+ .W ?38,$J($P(DATA,"^",2),8)
+ .W $J($P(DATA,"^",3),12,3)
+ .W $J($P(DATA,"^",4),12,3)
+ .W $J($P(DATA,"^",5),9)
+ I PRCP("DPTYPE")'="W" D
+ .S ODITEM=$$ODITEM^PRCPUX2(PRCP("I"),ITEMDA)
+ .W ?27,ITEMDA
+ .I ODITEM="Y" W ?35,"D"
+ .W ?38,$J($P(DATA,"^",2),8)
+ .W ?47,$J($P(DATA,"^",3),12,3)
+ .W $J($P(DATA,"^",4),12,3)
+ .W $J($P(DATA,"^",5),9),!
+ .I $Y>(IOSL-6) D:SCREEN P^PRCPUREP Q:$D(PRCPFLAG)  D H W !
+ .S REORDER=$G(^PRCP(445,PRCP("I"),1,ITEMDA,0))
+ .W ?4,"NORM: ",$P(REORDER,"^",9)
+ .W ?26,"REORD: ",$P(REORDER,"^",10)
+ .W ?48,"OPT: ",$P(REORDER,"^",4)
+ .W ?67,"EMER: ",$P(REORDER,"^",11)
+ .I $Y>(IOSL-6) D:SCREEN P^PRCPUREP Q:$D(PRCPFLAG)  D H
+ Q:$D(PRCPFLAG)
+ S (COLUMN,TOTUSED,TOTCOST,TTOTUSED,TTOTCOST)=0
+ S DATE=$E(DATESTRT,1,5)-1
+ F  S DATE=DATE+1 S:$E(DATE,4,5)=13 DATE=($E(DATE,1,3)+1)_"01" Q:DATE>$E(DATEEND,1,5)!($D(PRCPFLAG))  D
+ .   I $Y>(IOSL-4) D:SCREEN P^PRCPUREP Q:$D(PRCPFLAG)  D H
+ .   S DATA=$G(^PRCP(445,PRCP("I"),1,ITEMDA,2,DATE,0))
+ .   S MONYR=$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",+$E(DATE,4,5))_$E(DATE,2,3)
+ .   S TOTUSED=TOTUSED+$P(DATA,"^",2),TOTCOST=TOTCOST+$P(DATA,"^",3)
+ .   S COLUMN=COLUMN+1
+ .   W:COLUMN=1 !?4 W:COLUMN=2 ?31 W:COLUMN=3 ?58
+ .   W MONYR,$J(+$P(DATA,"^",2),7),$J(+$P(DATA,"^",3),10,2)
+ .   I COLUMN=3 S COLUMN=0
+ Q:$D(PRCPFLAG)
+ S TTOTUSED=TTOTUSED+TOTUSED,TTOTCOST=TTOTCOST+TOTCOST
+ W !?4,"---------------------------------------- CUMULATIVE TOTAL"
+ W ?63,$J(TTOTUSED,7),$J(TTOTCOST,10,2),!
+ Q
+ ;
+ ;
+H S %=NOW_"  PAGE "_PAGE,PAGE=PAGE+1 I PAGE'=2!(SCREEN) W @IOF
+ W $C(13),"USAGE DEMAND ITEM REPORT: ",$E(PRCP("IN"),1,20),?(80-$L(%)),%
+ S %="",$P(%,"-",81)=""
+ W !?5,"USAGE DATE RANGE FROM ",DATESTRD,"  TO  ",DATEENDD,"  (",TOTALDAY," DAYS)"
+ I PRCP("DPTYPE")'="W" D
+ .I ODIFLG=1 W !,?5,"STANDARD ITEMS ONLY"
+ .I ODIFLG=2 W !,?5,"ON-DEMAND ITEMS ONLY"
+ .I ODIFLG=3 W !,?5,"ALL ITEMS (STANDARD AND ON-DEMAND)"
+ I PRCP("DPTYPE")="W" W !,"NSN",?15,"DESCRIPTION"
+ E  W !,"DESCRIPTION"
+ I PRCP("DPTYPE")'="W" D
+ . W ?27,"IM",?35,"OD",?40,"UNIT/IS",?53,"LAST $",?66,"AVG $",?73,"ON-HAND",!,%
+ I PRCP("DPTYPE")="W" D
+ . W ?31,"IM",?38,$J("UNIT/IS",8),$J("LAST $",12),$J("AVG $",12),$J("ON-HAND",9),!,%
+ Q

@@ -1,0 +1,76 @@
+ABSVTC ;VAMC ALTOONA/CTB_CLH - ALTOONA CREATE TIME CARD ;3/8/00  4:21 PM
+V ;;4.0;VOLUNTARY TIMEKEEPING;**6,10,18**;JULY 6, 1994
+ K ^TMP("ABSV",$J),N,REC,TCREC,X
+ S ABSVXA="This program should ONLY be run during the first six (6) workdays of each month."
+ S ABSVXA(1)="ARE YOU SURE YOU WANT TO CONTINUE",%=2 D ^ABSVYN Q:%'=1
+ W !!
+ D ^ABSVSITE G OUT:'%
+ W !!
+ S %DT="AE",%DT("A")="Select Processing Month: " D ^%DT G OUT:Y<0
+ S DATE=$E(Y,1,5)_"00" I $D(^ABS(503331,"AF",DATE))<9 W !,"No daily records have been entered for this month.",*7 Q
+ I $D(^ABS(503335,"AK",DATE)) D  I %'=1 S X="<  No Action Taken>*" D MSG^ABSVQ G OUT
+ . S N=0,COUNT=0 F I=1:1 S N=$O(^ABS(503335,"AK",DATE,N)) Q:'N  I $D(^ABS(503335,N,0)),$P(^(0),"^",12)=ABSV("SITE") S COUNT=COUNT+1
+ . I 'COUNT S %=1 Q
+ . S ABSVXA=COUNT_" Time Card"_$S((I-1)>0:"s",1:"")_" already exist"_$S((I-1)>0:"",1:"s")_" for station "_ABSV("SITE")_" for "_$$FULLDAT^ABSVU2(DATE)_"."
+ . S ABSVXA(1)="Continuing will DELETE all these cards from the system.",ABSVXA(1.5)="  "
+ . S ABSVXA(2)="ARE YOU SURE YOU WANT TO CONTINUE",ABSVXB="",%=2 D ^ABSVYN
+ . QUIT:%'=1
+ . S ABSVXA="ARE YOU ABSOLUTELY POSITIVE",ABSVXB="",%=2 W !,*7 D ^ABSVYN
+ . I %=1 W !!,"OK, Here we go.",!,*7
+ . QUIT
+ S ZTDESC="Roll up Voluntary time card data",ZTRTN="QUE^ABSVTC",ZTSAVE("DATE")="",ZTSAVE("ABSV*")="" D ^ABSVQ
+OUT K %,%DT,ABSVXW,ABSVXX,ABSVX1,ABSVXY1,COMB,COUNT,DATE,DAY,DCC,DIJ,DIOP,DIPT,DLAYGO,F,FLDS,HRS,I,L,N,NAME,O,ORG,R1,REC,W,X,Y,VOLDA,Z,ZX
+ Q
+QUE ;
+ ;THE FOLLOWING LINE DELETES ALL TIME CARDS FOR THE MONTH
+ I $D(^ABS(503335,"AK",DATE)) D
+ . I '$D(ZTQUEUED)&(IO=IO(0)) S X="**while I clean up the time card file" D WAIT^ABSVYN
+ . S DA=0 F  S DA=$O(^ABS(503335,"AK",DATE,DA)) Q:'DA  I $D(^ABS(503335,DA,0)),$P(^(0),"^",12)=ABSV("SITE") S DIK="^ABS(503335," D ^DIK W "."
+ . QUIT
+ ;
+ ;THE FOLLOWING CODE ROLLS UP ALL THE TIME FOR EACH VOLUNTEER AND STORES IN IT ^TMP("ABSV",$J,VOLUNTEER DA NUMBER)
+ I '$D(ZTQUEUED)&(IO=IO(0)) S X="**while I roll up the times for each volunteer" D WAIT^ABSVYN
+ K ^TMP("ABSV",$J)
+ S N=0 F  S N=$O(^ABS(503331,"AF",DATE,N)) Q:'N  I $D(^ABS(503331,N,0)) S REC=^(0) I $P(REC,"^",2)=DATE,$P(REC,"^",7)=ABSV("SITE") D
+ . S NAME=$P(REC,"^"),HRS=$P(REC,"^",5),COMB=$P(REC,"^",6),DAY=+$E($P(REC,"^",3),6,7)
+ . S:'$D(^TMP("ABSV",$J,NAME,COMB)) $P(^(COMB),"^",32)="" S:'$D(^TMP("ABSV",$J,NAME,COMB,0)) ^(0)=$P(REC,"^",4)_"^"_$P(REC,"^",8)
+ . I +HRS'=0 S:HRS>9 HRS=9 S $P(^(COMB),"^",DAY)=$P(^TMP("ABSV",$J,NAME,COMB),"^",DAY)+HRS,$P(^(COMB),"^",32)=$P(^(COMB),"^",32)+HRS
+ . QUIT
+ ;
+ S VOLDA=0 F  S VOLDA=$O(^TMP("ABSV",$J,VOLDA)) Q:'VOLDA  W "." D
+ . S COMB=0 F  S COMB=$O(^TMP("ABSV",$J,VOLDA,COMB)) Q:COMB=""  W "." D
+ . . Q:'$D(^ABS(503330,+$G(VOLDA),0))
+ . . S X=VOLDA,DLAYGO=503335,DIC="^ABS(503335,",DIC(0)="LMNZ"
+ . . K DO D FILE^DICN K DIC,DLAYGO
+ . . I +Y<0 W "*Problem with "_$P(^ABS(503330,VOLDA,0),"^")_", Combination "_COMB_".  Time Card was not created. *" QUIT
+ . . S DA=+Y,ORG=$G(^TMP("ABSV",$J,VOLDA,COMB,0)),DR="1////"_COMB_";2////0;4////"_DATE_";1.9////1;1.1////"_$P(ORG,"^")_";1.2////"_$P(ORG,"^",2)_";3////"_ABSV("SITE")_";4.5////1"
+ . . S DIE="^ABS(503335," D ^DIE
+ . . S ^ABS(503335,DA,1)=^TMP("ABSV",$J,VOLDA,COMB)
+ . . QUIT
+ . QUIT
+ ;;PRINT TIME CARD
+ S IOP=ABIOP
+X S DIC="^ABS(503335,",L=0,(TO,FR)=DATE,DIS(0)="I $P($G(^ABS(503335,D0,0)),U,12)=ABSV(""SITE"")",BY="[ABSV TC SORT]",FLDS="[ABSV TC PRINT]" D EN1^DIP
+ S IOP=ABIOP
+ S DIC="^ABS(503335,",L=0,(TO,FR)=DATE,DIS(0)="I $P($G(^ABS(503335,D0,0)),U,12)=ABSV(""SITE""),$$COUNT^ABSVTC($G(^ABS(503335,D0,1)))>26",BY="[ABSV TC SORT]",FLDS="[ABSV TC PRINT]",DHD="TIMECARDS HAVING MORE THAN 26 ENTRIES" D EN1^DIP
+ S IOP=ABIOP
+ S DIC="^ABS(503335,",L=0,(TO,FR)=DATE,DIS(0)="I $P($G(^ABS(503335,D0,0)),U,12)=ABSV(""SITE""),'$$COMB^ABSVTC(D0)",BY="[ABSV TC SORT]",FLDS="[ABSV ERROR LIST]",DHD="TIMECARDS WITH COMBINATIONS NOT FOUND IN MASTER FILE" D EN1^DIP
+ K ^TMP("ABSV",$J),%W,%X,B,DP,DR
+ QUIT
+COUNT(X) ;DOES RECORD HAVE MORE THAN 26 ENTRIES
+ N COUNT,I
+ S COUNT=0
+ F I=1:1:31 I $P(X,"^",I)>0 S COUNT=COUNT+1
+ Q COUNT
+COMB(D0) ;DETERMINES IF COMBINATION STILL EXISTS IN MASTER FILE
+ ;VERIFIES THAT 135AQ is not used in combination
+ N N,DA,OK,X,XCOMB,XSITE,SITE,COMB
+ S OK=0,X=$G(^ABS(503335,D0,0)),DA=+X,COMB=$P(X,"^",2),SITE=$P(X,"^",12)
+ S N=0 F  S N=$O(^ABS(503330,DA,1,N)) Q:'N  S X=$G(^ABS(503330,DA,1,N,0)) Q:X=""  D  Q:OK
+ . S XCOMB=$P(X,"^",5),XSITE=$P(X,"-")
+ . I (XCOMB=COMB),XSITE=SITE S OK=1
+ . QUIT
+ Q OK
+VISIT(D0) ;
+ N Z,I,X S Z=$G(^ABS(503335,D0,1)) S X=0 F I=1:1:31 I $P(Z,"^",I)]"" S X=X+1
+ Q X

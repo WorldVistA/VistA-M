@@ -1,0 +1,166 @@
+RCDPEWL ;ALB/TMK - ELECTRONIC EOB MESSAGE WORKLIST ;06-FEB-2003
+ ;;4.5;Accounts Receivable;**173,208**;Mar 20, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ; IA for read access to ^IBM(361.1 = 4051
+ ;
+EN ; Main entry point
+ N RCFASTXT,DA,DIC,X,Y,RCERA,RCNOED
+ D FULL^VALM1
+ ;
+ S DIR(0)="SA^L:LIST;S:SPECIFIC",DIR("A")="DO YOU WANT A (L)IST OF ERAs OR A (S)PECIFIC ONE?: ",DIR("B")="LIST" W ! D ^DIR K DIR
+ G:$D(DTOUT)!$D(DUOUT) ENQ
+ I Y="S" D  G ENQ
+ . S DIC="^RCY(344.4,",DIC(0)="AEMQ" D ^DIC
+ . I Y>0 D WL^RCDPEWL7(+Y)
+ ;
+ D PARAMS^RCDPEWL0
+ I '$D(^TMP("RCERA_PARAMS",$J)) G ENQ
+ D EN^VALM("RCDPE WORKLIST ERA LIST")
+ ;
+ENQ Q
+ ;
+DISP(RCERA,RCNOED) ; Entry to worklist from receipt processing
+ ; RCERA = ien of entry in file 344.49
+ ; RCNOED = 1 if receipt exists/no editing allowed
+ ;        = 2 if no edit and called from receipt processing
+ ;
+ N DUOUT,DTOUT,DIC,DIK,X,Y,DIR,RCQUIT,DA,DIE,DR,RCSCR,RC0,RCDAT,RCUNM
+ ;
+ S RCSCR("NOEDIT")=+$G(RCNOED)
+ S RCQUIT=0,RC0=$G(^RCY(344.4,RCERA,0))
+ ;I $$HACERA^RCDPEU(RCERA) S DIR(0)="YA",DIR("A")="THIS ERA IS FROM CHAMPVA (HAC) - ARE YOU SURE YOU WANT TO CONTINUE?: ",DIR("B")="YES" D ^DIR K DIR G:Y'=1 DISPQ
+ I 'RCSCR("NOEDIT"),'$O(^RCY(344.49,"B",RCERA,0)) D  G:RCQUIT DISPQ
+ . S DIR(0)="YA",DIR("B")="NO",DIR("A",1)="NO WORKLIST SCRATCH PAD ENTRY EXISTS FOR THIS ERA",DIR("A")="DO YOU WANT TO CREATE ONE NOW?: "
+ . W ! D ^DIR K DIR
+ . I Y'=1 S RCERA=-1,RCQUIT=1 Q
+ . ;
+ . I $P(RC0,U,15)'="" W !!,"PAYMENT METHOD CODE REPORTED: "_$P(RC0,U,15),!
+ . I $P(RC0,U,15)="" W !!,"NO PAYMENT METHOD CODE REPORTED",!
+ . ;I $P(RC0,U,9)=0,$P(RC0,U,13)="",'$$HACERA^RCDPEU(RCERA) D  Q:RCQUIT
+ . I $P(RC0,U,9)=0,$P(RC0,U,13)="" D  Q:RCQUIT
+ .. S RCQUIT=0,RCUNM=0
+ .. I +$P(RC0,U,5)=0,"ACH"'[(U_$P(RC0,U,15)_U) D  Q:RCQUIT!RCUNM
+ ... S DIR("A",1)="THIS ERA HAS NO PAYMENT ASSOCIATED WITH IT AND CAN BE MARKED AS",DIR("A",2)="'MATCH-0 PAYMENT' TO REMOVE IT FROM THE ERA AGING REPORT IF NO PAPER CHECK OR",DIR("A",3)="EFT IS EXPECTED TO BE RECEIVED FOR THIS ERA"
+ ... S DIR("?")="DO NOT RESPOND YES HERE UNLESS YOU ARE SURE THERE WILL BE NO EFT OR PAPER",DIR("?",1)=" CHECK TO BE RECEIVED FOR THIS 0-PAYMENT ERA"
+ ... S DIR("A")="DO YOU WANT TO DO THIS?: "
+ ... S DIR(0)="YA"
+ ... D ^DIR K DIR
+ ... I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
+ ... I Y'=1 Q
+ ... S DIE="^RCY(344.4,",DR=".09////3;.14////3",DA=RCERA D ^DIE S RCUNM=1
+ .. I 'RCUNM D
+ ... S DIR("A",1)="THIS ERA DOES NOT HAVE A MATCHING EFT",DIR("A")="ENTER THE NUMBER OF THE PAPER CHECK YOU RECEIVED FOR THIS ERA: ",DIR(0)="344.01,.07A"
+ ... I $P(RC0,U,13)'="" S DIR("B")=$P(RC0,U,13)
+ ... I $G(DIR("B"))="",$P(RC0,U,2)'="" S DIR("B")=$P(RC0,U,2)
+ ... W ! D ^DIR K DIR
+ ... I $D(DTOUT)!$D(DUOUT)!(Y="") D  S RCQUIT=1 Q
+ .... S DIR(0)="EA",DIR("A",1)="THERE MUST EITHER BE A PAPER CHECK OR AN EFT FOR THIS ERA",DIR("A")="PRESS RETURN TO CONTINUE " W !!  D ^DIR K DIR
+ ... S RCDAT("CHECK#")=Y
+ ... S DIR(0)="344.01,.1O",DIR("B")=$$FMTE^XLFDT($P(RC0,U,4),2)
+ ... W ! D ^DIR K DIR
+ ... I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
+ ... S RCDAT("CHECKDT")=Y
+ ... S DIR(0)="344.01,.08O"
+ ... W ! D ^DIR K DIR
+ ... I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
+ ... S RCDAT("BANK")=Y
+ ... S DIR("A",1)="ERA #"_RCERA_" (TRACE #:"_$P(RC0,U,2)_") MATCHED TO PAPER CHECK "_RCDAT("CHECK#"),DIR("A")="IS THIS CORRECT?: ",DIR(0)="YA",DIR("B")="YES" W ! D ^DIR K DIR
+ ... I Y'=1 S RCQUIT=1 Q
+ ... S DIE="^RCY(344.4,",DA=RCERA,DR=".13////"_RCDAT("CHECK#")_";.09////2" D ^DIE
+ ;
+ S RCSCR=+$O(^RCY(344.49,"B",RCERA,0))
+ I 'RCSCR D  ; Build the entry in file 344.49
+ . I RCSCR("NOEDIT") D  Q
+ .. S DIR("A")="NO WORKLIST ENTRY EXISTS FOR THIS ERA - PRESS RETURN TO CONTINUE ",DIR(0)="EA" W ! D ^DIR K DIR
+ . ;
+ . S RCSCR=+$$ADDREC(RCERA,.RCDAT)
+ . I RCSCR D  Q:'RCSCR
+ .. F X=1:1:6 L +^RCY(344.4,RCSCR):5 Q:$T  I X=6 D  Q
+ ... S DA=RCSCR,DIK="^RCY(344.49," D ^DIK S RCSCR=0
+ ... S DIR(0)="EA",DIR("A",1)="ANOTHER USER HAS LOCKED THIS ENTRY - NEW RECORD NOT CREATED",DIR("A")="PRESS RETURN TO CONTINUE " W ! D ^DIR K DIR
+ .. Q:'RCSCR
+ .. D SETBATCH^RCDPEWLB(RCSCR)
+ .. D ADDLINES^RCDPEWLA(RCSCR)
+ .. K ^TMP($J,"BATCHES")
+ ;
+ I RCSCR D  G:'RCSCR DISPQ
+ . Q:'$$BAT^RCDPEWL7(RCSCR)
+ . I 'RCSCR("NOEDIT"),'$G(^TMP("RCBATCH_SELECTED",$J)) L +^RCY(344.4,RCSCR):5 I '$T W !!,"Another user is currently editing this entry",! S DIR(0)="E" D ^DIR K DIR S RCSCR=0 Q
+ . D EN^VALM("RCDPE EOB WORKLIST")
+ ;
+DISPQ L -^RCY(344.4,+$G(RCERA))
+ Q
+ ;
+INIT ; -- set up initial variables
+ N RCQUIT,RCREV,RCSORT
+ S VALMCNT=0,VALMBG=1
+ S RCQUIT=0
+ I '$D(RCSCR) S VALMQUIT=1 Q
+ S RCREV=+$O(^RCY(344.49,RCSCR,2,"B",DUZ,0))
+ I $P($G(^RCY(344.49,RCSCR,2,RCREV,0)),U,2)=1 S $P(^TMP($J,"RC_SORTPARM"),U,2)=1
+ S RCSORT=$$SELSORT^RCDPEWLA(.RCQUIT)
+ I $G(RCQUIT) S VALMQUIT=1
+ I '$G(RCQUIT) D BLD^RCDPEWL1(RCSORT)
+ Q
+ ;
+ADDREC(RCERA,RCDAT) ; Add a record to file 344.49
+ ; RCERA = ien of file 344.4
+ ; RCDAT = array containing additional data to add to new entry
+ ;
+ N DIC,DLAYGO,X,Y,DO,DD,RCY,DINUM
+ S RCY=0,DIC("DR")=""
+ S DIC(0)="L",DLAYGO=344.49,(DINUM,X)=RCERA,DIC="^RCY(344.49,"
+ I $G(RCDAT("CHECK#"))'="" S DIC("DR")=".04////"_RCDAT("CHECK#")_";"
+ I $G(RCDAT("CHECKDT"))'="" S DIC("DR")=DIC("DR")_".05////"_RCDAT("CHECKDT")_";"
+ I $G(RCDAT("BANK"))'="" S DIC("DR")=DIC("DR")_".06////"_RCDAT("BANK")_";"
+ K DD,DO D FILE^DICN K DIC
+ I Y>0 S RCY=+Y
+ Q RCY
+ ;
+HDR ; Creates header lines for the selected ERA display
+ N X,Z,RC,RCT
+ I '$G(RCSCR) S VALMQUIT=1 Q
+ S RC=$G(^RCY(344.4,+RCSCR,0))
+ S VALMHDR(1)=$E("ERA Entry #: "_$P(RC,U)_$J("",31),1,31)_"Payer Name/ID: "_$P(RC,U,6)_"/"_$P(RC,U,3)
+ S VALMHDR(2)=$E("Total Amt Pd: "_$J(+$P(RC,U,5),"",2)_$J("",31),1,31)
+ S Z=+$O(^RCY(344.31,"AERA",+RCSCR,0))
+ I Z S VALMHDR(2)=VALMHDR(2)_"EFT #/TRACE #: "_$P($G(^RCY(344.3,+$G(^RCY(344.31,Z,0)),0)),U)_"/"_$P(RC,U,2)
+ I 'Z,$P(RC,U,13)'="" S VALMHDR(2)=VALMHDR(2)_"PAPER CHECK #: "_$P(RC,U,13)
+ S RCT=2
+ I $G(^TMP("RCBATCH_SELECTED",$J)) D
+ . N Z,Z0
+ . S Z=+$G(^TMP("RCBATCH_SELECTED",$J)),Z0=$G(^RCY(344.49,RCSCR,3,Z,0))
+ . S RCT=RCT+1,VALMHDR(RCT)="BATCH: "_Z_"  "_$P(Z0,U,2)_"  "_$$EXTERNAL^DILFD(344.493,.03,"",$P(Z0,U,3))
+ I $G(RCSCR("NOEDIT")) S RCT=RCT+1,VALMHDR(RCT)="*** RECEIPT ALREADY CREATED ("_$P($G(^RCY(344,+$P(RC,U,8),0)),U)_") ***"
+ Q
+ ;
+FNL ; -- Clean up list
+ K ^TMP("RCDPE-EOB_WLDX",$J),^TMP("RCDPE-EOB_WL",$J),^TMP($J,"RC_SORTPARM"),^TMP($J,"RC_BILL")
+ D CLEAN^VALM10,CLEAR^VALM1
+ K RCFASTXT
+ Q
+ ;
+SEL(RCDA) ; Select entry from worklist scratch pad screen
+ ; RCDA = array returned if selections made
+ ;    RCDA(n)=ien of entry(s) in file 344.41 
+ ;            where n = the line # selected  
+ K RCDA
+ N VALMY
+ D EN^VALM2($G(XQORNOD(0)),"S")
+ S RCDA=0 F  S RCDA=$O(VALMY(RCDA)) Q:'RCDA  S RCDA(RCDA)=$P($G(^TMP("RCDPE-EOB_WLDX",$J,RCDA)),U,2,5)
+ Q
+ ;
+NOEDIT ; Display no edit allowed if receipt exists
+ N DIR,X,Y
+ S DIR(0)="EA",DIR("A",1)="THIS ACTION IS NOT AVAILABLE SINCE THE ERA ALREADY HAS A RECEIPT."
+ S DIR("A")="PRESS RETURN TO CONTINUE "
+ W ! D ^DIR K DIR W !
+ Q
+ ;
+NOBATCH ; Display action not allowed if working at batch level not the ERA level
+ N DIR,X,Y
+ S DIR(0)="EA",DIR("A",1)="THIS ACTION IS NOT VALID WHEN IN A BATCH WITHIN THE ERA."
+ S DIR("A")="PRESS RETURN TO CONTINUE "
+ W ! D ^DIR K DIR W !
+ Q
+ ;

@@ -1,0 +1,17 @@
+ASISTS INCIDENT SOURCE
+ZWR
+^OOPS(2261.22,0)="ASISTS INCIDENT SOURCE^2261.22^7^7"
+^OOPS(2261.22,1,0)="Unpowered Equipment, Furnishings, Supplies^01AA"
+^OOPS(2261.22,2,0)="Powered Equipment, Appliances, Machines^11AA"
+^OOPS(2261.22,3,0)="Building Material, Feature or Condition^33AA"
+^OOPS(2261.22,4,0)="Toxic Substance, Radiation Source^44AA"
+^OOPS(2261.22,5,0)="Vehicle^77AA"
+^OOPS(2261.22,6,0)="Person^81AA"
+^OOPS(2261.22,7,0)="Patient Handling^82ZZ"
+^OOPS(2261.22,"B","Building Material, Feature or ",3)=""
+^OOPS(2261.22,"B","Patient Handling",7)=""
+^OOPS(2261.22,"B","Person",6)=""
+^OOPS(2261.22,"B","Powered Equipment, Appliances,",2)=""
+^OOPS(2261.22,"B","Toxic Substance, Radiation Sou",4)=""
+^OOPS(2261.22,"B","Unpowered Equipment, Furnishin",1)=""
+^OOPS(2261.22,"B","Vehicle",5)=""

@@ -1,0 +1,72 @@
+VAQEXT04 ;ALB/JFP,CMM,JRP - PDX, PROCESS EXTERNAL (MANUAL),PROCESS SCREEN;01MAR93
+ ;;1.5;PATIENT DATA EXCHANGE;**10,14,25**;NOV 17, 1993
+PM ; -- Process remote request, manually
+ K ^TMP("VAQR5",$J)
+ D SEL^VALM2
+ Q:'$D(VALMY)
+ ;COPY VALMY ARRAY INTO TMP GLOBAL (IT'S USED LATER ON)
+ S SDI="" F  S SDI=$O(VALMY(SDI))  Q:SDI=""  S ^TMP("VAQR5",$J,SDI)=""
+ ;LOOP THROUGH COPY OF VALMY
+ S SDI="" F  S SDI=$O(^TMP("VAQR5",$J,SDI))  Q:SDI=""  D
+ .S SDAT=$G(^TMP("VAQR3","VAQIDX",$J,SDI))
+ .S VAQTRNO=$P(SDAT,U,2),VAQTRDE=""
+ .S VAQTRDE=$O(^VAT(394.61,"B",VAQTRNO,VAQTRDE))
+ .F ND=0,"QRY" S NODE(ND)=$G(^VAT(394.61,VAQTRDE,ND))
+ .S VAQPTNM=$P(NODE("QRY"),U,1),VAQISSN=$P(NODE("QRY"),U,2)
+ .S VAQESSN=$$DASHSSN^VAQUTL99(VAQISSN)
+ .S VAQIDOB=$P(NODE("QRY"),U,3),VAQEDOB=$$DOBFMT^VAQUTL99(VAQIDOB)
+ .S VAQPTID=$P(NODE("QRY"),U,4)
+ .D FIND
+ S VALMBG=1
+ D INIT^VAQEXT01
+ S VALMBCK="R"
+ K ^TMP("VAQR5",$J)
+ QUIT
+ ;
+FIND ; -- Looks for match in local data base
+ N DPTD,HSDI,VAQCHK,DFNARR
+ S HSDI=SDI
+ I VAQISSN="" D
+ .S DX=0,DY=VALM("BM")+1 X IOXY W IOEDEOP
+ S VAQDFN=-1
+ ;Look for exact match on SSN
+ S:(VAQISSN'="") VAQDFN=$$GETDFN^VAQUTL97(VAQISSN,1)
+ ;No match found
+ I (VAQDFN<0) D NFND^VAQEXT02 S SDI=HSDI Q
+ ;Exact match found
+ S DFN=$P(VAQDFN,U,1),VAQHDOB=$P(^DPT(DFN,0),U,3)
+ I (VAQHDOB=VAQIDOB)&VAQDFN>0 D  Q
+ . S DPTD(DFN)=""
+ . D EP^VAQEXT02
+ . S VAQDFN=1
+ . S SDI=HSDI
+ ;DOB not match but SSN does match - process as not found
+ I (VAQHDOB'=VAQIDOB)&VAQDFN>0 D
+ . D NFND^VAQEXT02 S SDI=HSDI
+ Q
+ ;Dont use code below per request nois id CTX-0597-70919
+ ;Look for possible matches (duplicates)
+ S DFNTR=$P(SDAT,U,2)
+ S VAQCHK=""
+ D EP^VAQLED03
+ S DPTD=+$G(DPTD)
+ ;Include exact lookup on name as possible match
+ S VAQDFN=+$$GETDFN^VAQUTL97(VAQPTNM,1)
+ S:(VAQDFN>0) DPTD=DPTD+1,DPTD(VAQDFN)=""
+ ;No possible matches - process as not found
+ I ('DPTD) D NFND^VAQEXT02 S SDI=HSDI Q
+ ;Possible matches found
+ D EP^VAQEXT02
+ S SDI=HSDI
+ Q
+ ;
+TASK ; -- Load taskman variables and task off
+ S ZTRTN="GENXMIT^VAQADM50",ZTDESC="PDX, MANUAL PROCESS",ZTDTH=$H,ZTIO=""
+ S ZTSAVE("VAQTRN(")=""
+ I ZTRTN'="" D ^%ZTLOAD
+ I '$D(ZTSK)  W !,"Error queueing Transaction (manual)...call IRM " D PAUSE^VAQUTL95
+ K ZTRTN,ZTDESC,ZTDTH,ZTIO,ZTSAVE,ZTSK
+ QUIT
+ ;
+END ; -- End of code
+ QUIT

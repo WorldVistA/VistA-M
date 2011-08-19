@@ -1,0 +1,11 @@
+FBAAPIN1 ;AISC/GRR-INVOICE DISPLAY CONTINUED ;04APR90
+ ;;3.5;FEE BASIS;;JAN 30, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ K ^UTILITY($J,"W") S DIWL=3,DIWF="WC79"
+ F FBRR=0:0 S FBRR=$O(@(FBFILE_FBRR_")")) Q:FBRR'>0  S FBXX=^(FBRR,0),X=FBXX D ^DIWP I ($Y+5)>IOSL S DIR(0)="E" D ^DIR K DIR S:'Y FBAAOUT=1 Q:FBAAOUT  D HED^FBAAPIN
+ Q:FBAAOUT
+ D ^DIWW:$D(FBXX) K FBXX
+ Q
+HELP I X=" " W !,*7,"Answer must be numeric" Q
+ W @IOF S DIC="^FBAAC(",DIC(0)="",D="C",DZ="??" D DQ^DICQ
+ Q

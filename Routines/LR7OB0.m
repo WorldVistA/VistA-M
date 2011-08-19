@@ -1,0 +1,107 @@
+LR7OB0 ;slc/dcm - Build message, backdoor from Lab ;8/11/97
+ ;;5.2;LAB SERVICE;**121,187**;Sep 27, 1994
+ ;
+NEW(ORD,CONTROL,NAT) ;Create OE/RR order from Lab order #
+ ;Need ORD
+ ;CONTROL=Order control (SN =new order)
+ ;NAT=Nature of order
+ Q:'$L($T(MSG^XQOR))
+ N MSG,CHMSG,BBMSG,APMSG,LRORD,LRODT,LRSN,LRNIFN,LRTMPO
+ K ^TMP("LRAP",$J),^TMP("LRCH",$J),^TMP("LRBB",$J)
+ D ORD^LR7OB1(ORD)
+ I '$D(LRTMPO("LRIFN")) D EN(ORD,CONTROL),CALL Q
+ S LRNIFN=0 F  S LRNIFN=$O(LRTMPO("LRIFN",LRNIFN)) Q:LRNIFN<1  D EN(ORD,CONTROL),CALL
+ Q
+NEW1(ODT,SN,CONTROL,NAT) ;Create OE/RR order from Lab order date & LRSN
+ Q:'$L($T(MSG^XQOR))
+ N MSG,CHMSG,BBMSG,APMSG,LRORD,LRODT,LRSN,LRNIFN,LRTMPO,X
+ K ^TMP("LRAP",$J),^TMP("LRCH",$J),^TMP("LRBB",$J)
+ D ORD1^LR7OB1(ODT,SN)
+ I '$D(LRTMPO("LRIFN")) D EN1(ODT,SN,CONTROL),CALL Q
+ S LRNIFN=0 F  S LRNIFN=$O(LRTMPO("LRIFN",LRNIFN)) Q:LRNIFN<1  S X=LRTMPO("LRIFN",LRNIFN) D
+ . I CONTROL="ZC",$P(X,"^",7) S X=$P($G(^OR(100,+$P(X,"^",7),3)),"^",3) I X=1!(X=2)!(X=14) Q
+ . D EN1(ODT,SN,CONTROL),CALL
+ Q
+FIRST S LOC="",ROOM=""
+ I $P(LRDPF,"^",2)="DPT(" D INP^VADPT I VAIN(1) S ROOM=VAIN(5),LOC=$S($G(CONTROL)="ZC":+$P(^TMP("LRX",$J,69),"^",7),1:+$G(^DIC(42,+VAIN(4),44)))
+ S MSG(1)=$$MSH^LR7OU0("ORM")
+ S MSG(2)=$$PID^LR7OU0(LRDPF)
+ S MSG(3)=$$PV1^LR7OU0(LOC,$G(ROOM),"")
+ S STDT=$$HL7DT^LR7OU0($P(^TMP("LRX",$J,69),"^",2)) ;Obs Start D/T
+ S X1=CONTROL ;Order Control
+ S X2=$P(^TMP("LRX",$J,69),"^")_";"_ODT_";"_SN ;Lab #
+ S X=$G(LRSTATI),X3=$S(X=1:"CA",X=2:"CM",X=6:"SC",1:"IP") ;Status (DFLT=Pend)
+ S X4="^^^"_STDT_"^"_$$HL7DT^LR7OU0($P(^TMP("LRX",$J,69),"^",9)) ;Quantity/Timing
+ S X5=$$HL7DT^LR7OU0($P(^TMP("LRX",$J,69),"^",5)) ;Date ordered/entered
+ S X6=$P(^TMP("LRX",$J,69),"^",6) ;Provider
+ S X7=STDT ;Order Effective D/T
+ S X8=$G(NAT) ;Reason
+ S X9=$S($G(LRNIFN):$S($D(LRTMPO("LRIFN",LRNIFN)):$P(LRTMPO("LRIFN",LRNIFN),"^",7),1:$P(^TMP("LRX",$J,69),"^",11)),1:$P(^TMP("LRX",$J,69),"^",11)) ;OE/RR #
+ S X10=$P(^TMP("LRX",$J,69),"^",12)
+ I $D(LINK)#2,$E(LINK)="~" S X9=LINK ;Set to multiple orders if doing conversion
+ S MSG="MSG",(CTR,ORCMSG)=4 D ORC^LR7OU01(CTR) S MSG=""
+ Q
+EN(ORD,CONTROL,NAT) ;Build msg based on order #
+ ;ORD=Lab order #
+ ;CONTROL=Order control
+ N I,J,D0,DR,DA,DIC,DIE,CAT,ROOM,LOC,VAIN,VAERR,STDT,X,CTR,II,IFN,IFN1,IFN2,Z,Z1,LOC,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,Y10,Y,COBR,COBX,DFN,LRDPF,LRDFN,LRFIRST,SEX,ORCMSG,OBRMSG,MSG,CHMSG,BBMSG,APMSG,ODT,SN
+ S ODT=0,LRFIRST=1,MSG=""
+ F  S ODT=$O(^LRO(69,"C",ORD,ODT)) Q:ODT<1  S SN=0 F  S SN=$O(^LRO(69,"C",ORD,ODT,SN)) Q:SN<1  D 69^LR7OB3
+ Q
+EN1(ODT,SN,CONTROL,NAT) ;Build msg based on date and LRSN
+ ;See doc under EN.
+ ;SN=Specimen # in ^LRO(69,ODT,SN,
+ N I,J,D0,DR,DA,DIC,DIE,CAT,ROOM,LOC,VAIN,VAERR,STDT,X,CTR,IFN,IFN1,IFN2,Z,Z1,LOC,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,Y10,Y,COBR,COBX,DFN,LRDPF,LRDFN,LRFIRST,SEX,ORCMSG,OBRMSG,MSG,CHMSG,BBMSG,APMSG
+ K ^TMP("LRX",$J)
+ S LRFIRST=1,MSG="" D 69^LR7OB3
+ Q
+EN2(AC,ACDT,ACN,CONTROL,CH,BB,AP,NAT) ;Build msg based on Accession area,Acc dt,#
+ ;AC=Accession area
+ ;ACDT=Accession Date
+ ;ACN=Accession #
+ ;CONTROL=Order control
+ ;Y=Output array to pass message in
+ N I,J,D0,DR,DA,DIC,DIE,CAT,ROOM,LOC,VAIN,VAERR,STDT,X,CTR,IFN,IFN1,IFN2,Z,Z1,LOC,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,Y10,COBR,COBX,DFN,LRDPF,LRDFN,LRFIRST,SEX,ORCMSG,OBRMSG,XMSG,CHMSG,BBMSG,APMSG,BYPASS
+ K ^TMP("LRX",$J)
+ S SS=$P($G(^LRO(68,+$G(AC),0)),"^",2),MSG="^TMP(""LR"_$S("CYEMSPAU"[SS:"AP",SS="BB":"BB",SS="MI":"CH",1:"CH")_""",$J)"
+ S (BYPASS,LRFIRST)=1 D A68^LR7OB68(ACDT,AC,ACN)
+ Q:'$D(^TMP("LRX",$J,69))  Q:'$D(ODT)  Q:'$D(SN)
+ D FIRST,SNEAK^LR7OB3 K Y M @MSG=MSG
+ K ^TMP("LRX",$J)
+ Q
+EN3(LABPAT,SS,INVDT,CONTROL,Y) ;Build msg from 63
+ ;LABPAT=LRDFN (Lab patient ptr)
+ ;SS=Lab Subscript (AU,BB,CH,CY,EM,MI,SP)
+ ;INVDT=Inverse date/time
+ ;CONTROL=Order control
+ ;Y=Output array to pass message in
+ N I,J,D0,DR,DA,DIC,DIE,CAT,ROOM,LOC,VAIN,VAERR,STDT,X,CTR,IFN,IFN1,IFN2,Z,Z1,LOC,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,Y10,COBR,COBX,DFN,LRDPF,LRDFN,LRFIRST,SEX,ORCMSG,OBRMSG,XMSG,CHMSG,BBMSG,APMSG
+ K ^TMP("LRX",$J)
+ Q:'$G(INVDT)  S:'$D(CONTROL) CONTROL="RE"
+ S MSG="XMSG"
+ S BYPASS=1 D EN^LR7OB630(LABPAT,SS,INVDT)
+ Q:'$D(^TMP("LRX",$J,69))  Q:'$D(ODT)  Q:'$D(SN)
+ D FIRST,SNEAK^LR7OB3 K Y M Y=XMSG
+ K ^TMP("LRX",$J),BYPASS
+ Q
+ALL(RECEIVE) ;Build HL7 message for all patients in file 63
+ ;RECEIVE=Routine entry point to receive message array for each LRIDT
+ N LRDFN
+ S LRDFN=0 S:'$D(RECEIVE) RECEIVE=""
+ F  S LRDFN=$O(^LR(LRDFN)) Q:LRDFN<1  D PAT(LRDFN,RECEIVE)
+ Q
+PAT(LRDFN,RECEIVE) ;Get data for single patient from file 63
+ ;LRDFN=Lab Patient id
+ ;RECEIVE=Routine entry point to receive message array for each LRIDT
+ N SS,LRIDT
+ S SS="A" F  S SS=$O(^LR(LRDFN,SS)) Q:SS=""  D
+ . I SS="AU" D EN3(LRDFN,SS,"","SN",.Y) D REC Q
+ . I SS'="AU" S LRIDT=0 F  S LRIDT=$O(^LR(LRDFN,SS,LRIDT)) Q:LRIDT<1  D EN3(LRDFN,SS,LRIDT,"RR",.Y),REC
+ Q
+REC ;Send to receiving routine
+ I $L($G(RECEIVE)),RECEIVE["^" S X=$P(RECEIVE,"^",2) X ^%ZOSF("TEST") I $T D @RECEIVE
+ Q
+CALL ;Make call to OE/RR and cleanup
+ D CALL^LR7OB1(CONTROL)
+ K ^TMP("LRAP",$J),^TMP("LRCH",$J),^TMP("LRBB",$J)
+ Q

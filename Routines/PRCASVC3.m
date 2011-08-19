@@ -1,0 +1,41 @@
+PRCASVC3 ;WASH-ISC@ALTOONA,PA/RGY-SERVICE BILL CREATOR ;4/27/94  10:09 AM
+ ;;4.5;Accounts Receivable;**158,202,270**;Mar 20, 1995;Build 25
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;INPUT     PRCASV("SITE")=IFCAP site, PRCASV("SER")=Service/Section
+ ;OUTPUT    PRCASV("ARREC")=Internal rec. # <OR> -1^Error message
+ ;          PRCASV("ARBIL")=Bill # <OR> -1^Error message
+ ;
+SETUP ;RETURN THE INTERNAL RECORD NUMBER OF FILE 430
+ N %,%X,%Y,D,D0,DA,DD,DI,DIC,DICR,DIE,DIG,DIH,DINUM,DIU,DIV,DIW,DLAYGO
+ N DO,DQ,DR,PRCAP,RCDA,X,Y
+ ;
+RTRY ;S (PRCASV("ARBIL"),PRCASV("ARREC"))=-1
+ ; only set to -1 if NOT from new CRD option
+ S:'$G(PRCASV("ARCRD")) (PRCASV("ARBIL"),PRCASV("ARREC"))=-1
+ I $S('$D(PRCASV("SITE"))#2:1,'PRCASV("SITE"):1,1:0) D  Q
+ . S PRCASV("ARBIL")="-1^PRCA001"
+ S DINUM=$S($D(^PRCA(430,0)):$P(^PRCA(430,0),"^",3),1:-1)+1
+ I 'DINUM S PRCASV("ARREC")="-1^PRCA005" Q
+ F DINUM=DINUM:1 I '$D(^PRCA(430,DINUM)),'$D(^DGCR(399,DINUM)) L +^PRCA(430,DINUM):1 Q:$T
+ S RCDA=DINUM,DIC="^PRCA(430,",DIC(0)="QL",DLAYGO=430
+ ; new code for CRD option below
+ ;S (PRCASV("ARBIL"),X)=$$BNUM^RCMSNUM(PRCASV("SITE"))
+ S:'$G(PRCASV("ARCRD")) (PRCASV("ARBIL"),X)=$$BNUM^RCMSNUM(PRCASV("SITE"))
+ I $G(PRCASV("ARCRD"))=1 D
+ .L +^PRCA(430,PRCASV("ARREC")):1 I '$T S X=-1 Q
+ .S PRCFDA(430,PRCASV("ARREC")_",",.01)=PRCASV("ARITN") D FILE^DIE("","PRCFDA") ; add iteration# to old bill
+ .L -^PRCA(430,PRCASV("ARREC"))
+ .S X=PRCASV("ARBIL") ; New bill keeps original #
+ S DIC="^PRCA(430,",DIC(0)="QL",DLAYGO=430 ; Be sure fileman call above did not reset any variables
+ ; end of new CRD code
+ I $P(X,"^")=-1 L -^PRCA(430,RCDA) Q
+ K DD,DO D FILE^DICN
+ I Y<0 L -^PRCA(430,RCDA) G RTRY
+ S (PRCASV("ARREC"),DA)=+Y,$P(^PRCA(430,DA,0),U,12)=PRCASV("SITE")
+ S $P(^PRCA(430,DA,100),U,2)=PRCASV("SER")
+ I $G(DUZ)!$G(RCDUZ) S $P(^PRCA(430,DA,9),U,8)=$S($G(RCDUZ):RCDUZ,1:DUZ)
+ S PRCASV("STATUS")=$O(^PRCA(430.3,"AC",201,""))
+ S DIE="^PRCA(430,",DR="[PRCASV STATUS]" D ^DIE
+ K PRCASV("STATUS")
+ L -^PRCA(430,RCDA)
+ Q

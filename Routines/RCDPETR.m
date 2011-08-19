@@ -1,0 +1,187 @@
+RCDPETR ;ALB/TMK - EOB TRANSFER IN/TRANSFER OUT REPORTS ;04-NOV-02
+ ;;4.5;Accounts Receivable;**173**;Mar 20, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ; IA for read access to ^IBM(361.1 = 4051
+ Q
+ ;
+RPT ; Transfer In/Out Report
+ N DIR,X,Y,POP,RCRPT,RCDT1,RCDT2,ZTRTN,ZTSK,ZTDESC,%ZIS
+ S DIR(0)="SBO^I:TRANSFER IN REPORT;O:TRANSFER OUT REPORT;B:BOTH REPORTS",DIR("A")="SELECT REPORT" D ^DIR K DIR
+ I $D(DTOUT)!$D(DUOUT)!(Y="") G RPTQ
+ S RCRPT=Y
+ S DIR("?")="ENTER THE EARLIEST TRANSFERRED FROM/TO DATE TO INCLUDE ON THE REPORT"
+ S DIR(0)="DAO^:"_DT_":APE",DIR("A")="START DATE: " D ^DIR K DIR
+ I $D(DTOUT)!$D(DUOUT)!(Y="") G RPTQ
+ S RCDT1=Y
+ S DIR("?")="ENTER THE LATEST TRANSFERRED FROM/TO DATE TO INCLUDE ON THE REPORT"
+ S DIR(0)="DAO^"_RCDT1_":"_DT_":APE",DIR("A")="END DATE: " D ^DIR K DIR
+ I $D(DTOUT)!$D(DUOUT)!(Y="") G RPTQ
+ S RCDT2=Y
+ ; Ask device
+ S %ZIS="QM" D ^%ZIS G:POP RPTQ
+ I $D(IO("Q")) D  G RPTQ
+ . S ZTRTN="EN^RCDPETR("_RCRPT_","_RCDT1_","_RCDT2_")",ZTDESC="AR - EDI LOCKBOX TRANSFERRED EEOB REPORT"
+ . D ^%ZTLOAD
+ . W !!,$S($D(ZTSK):"Your task number "_ZTSK_" has been queued.",1:"Unable to queue this job.")
+ . K ZTSK,IO("Q") D HOME^%ZIS
+ U IO
+ D EN(RCRPT,RCDT1,RCDT2)
+RPTQ Q
+ ;
+EN(RCRPT,RCDT1,RCDT2) ; Entry point for queued job
+ N Q,Z,Z0,Z1,Z2,ZCT,RCSTOP,RCPG,RCDAT,RCDAT1,RCCT,RCACC,RCNOT,RCRCV,RCNRCV
+ K ^TMP($J,"RCDPE_TROUT"),^("RCDPE_TRIN")
+ S (RCSTOP,ZCT)=0
+ I RCRPT="O"!(RCRPT="B") D  ; Transfer out
+ . S Z=RCDT1-.0001
+ . F  S Z=$O(^RCY(344.4,"ATOUT",Z)) Q:'Z!RCSTOP  S Z0=0 F  S Z0=$O(^RCY(344.4,"ATOUT",Z,Z0)) Q:'Z0!(Z0>RCDT2)!RCSTOP  S Z1=0 F  S Z1=$O(^RCY(344.4,"ATOUT",Z,Z0,Z1)) Q:'Z1  D  Q:RCSTOP
+ .. Q:$$STOP(.ZCT,.RCSTOP,0)
+ .. ; EOB transferred out was found in date range
+ .. S ^TMP($J,"RCDPE_TROUT",Z,Z0,Z1)=$G(^RCY(344.4,Z0,1,Z1,0))
+ .. ; sbscrpts are: date,ien file 344.4,ien file 344.41
+ ;
+ I 'RCSTOP,(RCRPT="I"!(RCRPT="B")) D  ; Transfer in
+ . S Z=RCDT1-.0001 ;  Look for accepted ones
+ . F  S Z=$O(^IBM(361.1,"ATIN",Z)) Q:'Z!(Z>RCDT2)!RCSTOP  S Z0="" F  S Z0=$O(^IBM(361.1,"ATIN",Z,Z0)) Q:Z0=""!RCSTOP  S Z1=0 F  S Z1=$O(^IBM(361.1,"ATIN",Z,Z0,Z1)) Q:'Z1  D  Q:RCSTOP  ; IA 4051
+ .. ; EOB transfer in/accepted was found in date range
+ .. Q:$$STOP(.ZCT,.RCSTOP,0)
+ .. S ^TMP($J,"RCDPE_TRIN",Z,361.1,Z0,Z1)=$G(^IBM(361.1,Z1,0)) ; IA 4051
+ .. ;sbscrpts are: date,file,transferred from name,ien file 361.1
+ .. S ^TMP($J,"RCDPE_TRIN",Z,361.1,Z0,Z1,7)=$G(^IBM(361.1,Z1,7)) ; IA 4051
+ .. S ^TMP($J,"RCDPE_TRIN",Z,361.1,Z0,Z1,1)=$G(^IBM(361.1,Z1,1)) ; IA 4051
+ . Q:RCSTOP
+ . S Z=RCDT1-.0001 ;  Look for pending accept ones
+ . F  S Z=$O(^RCY(344.5,"ATIN",Z)) Q:Z'!(Z>RCDT2)!RCSTOP  S Z0="" F  S Z0=$O(^RCY(344.5,"ATIN",Z,Z0)) Q:Z0=""!RCSTOP  S Z1=0 F  S Z1=$O(^RCY(344.5,"ATIN",Z,Z0,Z1)) Q:'Z1  D  Q:RCSTOP
+ .. ; EOB transfer in/pending acceptance was found in date range
+ .. S ^TMP($J,"RCDPE_TRIN",Z,344.5,Z0,Z1)=$G(^RCY(344.5,Z1,0))
+ .. ;sbscrpts are: date,file,transferred from name,ien file 344.5
+ ;
+ G:RCSTOP ENQ
+ S (RCPG,RCCT,Z,RCACC,RCNOT,RCRCV,RCNRCV)=0
+ F  S Z=$O(^TMP($J,"RCDPE_TROUT",Z)) Q:'Z!RCSTOP  S Z0="" F  S Z0=$O(^TMP($J,"RCDPE_TROUT",Z,Z0)) Q:Z0=""!RCSTOP  S Z1=0 F  S Z1=$O(^TMP($J,"RCDPE_TROUT",Z,Z0,Z1)) Q:'Z1  S RCDAT=$G(^(Z1)) D  Q:RCSTOP
+ . I 'RCPG!(($Y+5)>IOSL) D HDR(.RCCT,.RCPG,.RCSTOP,1,RCDT1,RCDT2) Q:RCSTOP
+ . S Q=$$SETSTR^VALM1($P(RCDAT,U,5),"",1,11)
+ . S Q=$$SETSTR^VALM1($$FMTE^XLFDT($P(RCDAT,U,12),"2D"),Q,14,8)
+ . S Q=$$SETSTR^VALM1($P($G(^DIC(4,+$P(RCDAT,U,11),0)),U),Q,24,20)
+ . S Q=$$SETSTR^VALM1($$FMTE^XLFDT($P($G(^RCY(344.4,+Z0,0)),U,4),"2D"),Q,46,8)
+ . S Q=$$SETSTR^VALM1($J(+$P(RCDAT,U,3),"",2),Q,56,12)
+ . S Q=$$SETSTR^VALM1($S('$P(RCDAT,U,16):"NOT REC'D",$P(RCDAT,U,10)="":"REC'D",$P(RCDAT,U,10)=0:"NOT ACCPTD",1:"ACCPTD"),Q,70,10)
+ . I '$P(RCDAT,U,16) S RCNRCV=RCNRCV+1
+ . I $P(RCDAT,U,16)=1,$P(RCDAT,U,10)="" S RCRCV=RCRCV+1
+ . I $P(RCDAT,U,10) S RCACC=RCACC+1
+ . I $P(RCDAT,U,10)=0 S RCNOT=RCNOT+1
+ . D SETLINE(Q,.RCCT)
+ ;
+ G:RCSTOP ENQ
+ ; 
+ I RCRPT="B"!(RCRPT="O") D
+ . I '$O(^TMP($J,"RCDPE_TROUT",0)) D  Q
+ .. D HDR(.RCCT,.RCPG,.RCSTOP,1,RCDT1,RCDT2) Q:RCSTOP
+ .. D SETLINE("** THERE WERE NO EEOBs TRANSFERRED OUT WITHIN THE DATE RANGE SELECTED",.RCCT)
+ . I ($Y+5)>IOSL D HDR(.RCCT,.RCPG,.RCSTOP,1,RCDT1,RCDT2) Q:RCSTOP
+ . D SETLINE(" ",.RCCT)
+ . D SETLINE(" TOTAL # EEOBs NOT CONFIRMED AS 'RECEIVED' BY OTHER SITES: "_RCNRCV,.RCCT)
+ . D SETLINE(" TOTAL # EEOBs STILL JUST 'RECEIVED' BY OTHER SITES: "_RCRCV,.RCCT)
+ . D SETLINE(" TOTAL # EEOBs ACCEPTED BY OTHER SITES: "_RCACC,.RCCT)
+ . D SETLINE(" TOTAL # EEOBs NOT ACCEPTED BY OTHER SITES: "_RCNOT,.RCCT)
+ ;
+ G:RCSTOP ENQ
+ ;
+ I RCPG D ASK()
+ S (RCACC,RCNOT,RCPG)=0
+ S Z=0 F  S Z=$O(^TMP($J,"RCDPE_TRIN",Z)) Q:'Z  S Z0=0 F  S Z0=$O(^TMP($J,"RCDPE_TRIN",Z,Z0)) Q:'Z0  S Z1="" F  S Z1=$O(^TMP($J,"RCDPE_TRIN",Z,Z0,Z1)) Q:Z1=""  S Z2=0 F  S Z2=$O(^TMP($J,"RCDPE_TRIN",Z,Z0,Z1,Z2)) Q:'Z2  D
+ . S RCDAT=$G(^TMP($J,"RCDPE_TRIN",Z,Z0,Z1,Z2))
+ . I Z0=361.1 S RCDAT(7)=$G(^TMP($J,"RCDPE_TRIN",Z,Z0,Z1,Z2,7)),RCDAT(1)=$G(^(1))
+ . I 'RCPG!(($Y+5)>IOSL) D HDR(.RCCT,.RCPG,.RCSTOP,0,RCDT1,RCDT2) Q:RCSTOP
+ . I Z0=361.1 D
+ .. S Q=$$SETSTR^VALM1($$BN1^PRCAFN(+RCDAT),"",1,11)
+ .. S Q=$$SETSTR^VALM1($$FMTE^XLFDT($P(RCDAT,U,5),"2D"),Q,14,8)
+ .. S Q=$$SETSTR^VALM1($P(RCDAT(7),U),Q,24,20)
+ .. S Q=$$SETSTR^VALM1($$FMTE^XLFDT($P(RCDAT,U,6),"2D"),Q,46,8)
+ .. S Q=$$SETSTR^VALM1($J(+$P(RCDAT(1),U),"",2),Q,56,12)
+ .. S Q=$$SETSTR^VALM1("ACCEPTED",Q,70,10)
+ .. S RCACC=RCACC+1
+ . E  D
+ .. D RAWBILL(Z2,.RCDAT1)
+ .. S RCDAT1=+$O(RCDAT1(0)),RCDAT1=$G(RCDAT1(RCDAT1))
+ .. S Q=$$SETSTR^VALM1($P(RCDAT1,U),"",1,11)
+ .. S Q=$$SETSTR^VALM1($$FMTE^XLFDT($P(RCDAT,U,3),"2D"),Q,14,8)
+ .. S Q=$$SETSTR^VALM1($P(RCDAT,U,12),Q,24,20)
+ .. S Q=$$SETSTR^VALM1($S($G(RCDAT1(0)):$E(RCDAT1(0),5,6)_"/"_$E(RCDAT1(0),7,8)_"/"_$E(RCDAT1(0),3,4),1:""),Q,46,8)
+ .. S Q=$$SETSTR^VALM1($J(+$P(RCDAT1,U,2),"",2),Q,56,12)
+ .. S Q=$$SETSTR^VALM1("PENDING",Q,70,10)
+ .. S RCNOT=RCNOT+1
+ . D SETLINE(Q,.RCCT)
+ ;
+ G:RCSTOP ENQ
+ ; 
+ I RCRPT="B"!(RCRPT="I") D
+ . I '$O(^TMP($J,"RCDPE_TRIN",0)) D  Q
+ .. D HDR(.RCCT,.RCPG,.RCSTOP,0,RCDT1,RCDT2) Q:RCSTOP
+ .. D SETLINE("** THERE WERE NO EEOBs TRANSFERRED 'IN' WITHIN THE DATE RANGE SELECTED",.RCCT)
+ . I ($Y+5)>IOSL D HDR(.RCCT,.RCPG,.RCSTOP,0,RCDT1,RCDT2) Q:RCSTOP
+ . D SETLINE(" ",.RCCT)
+ . D SETLINE(" TOTAL # EEOBs YOU ACCEPTED: "_RCACC,.RCCT)
+ . D SETLINE(" TOTAL # EEOBs STILL PENDING: "_RCNOT,.RCCT)
+ ;
+ENQ I '$D(ZTQUEUED) D ^%ZISC I 'RCSTOP,RCPG D ASK()
+ I $D(ZTQUEUED) S ZTREQ="@"
+ K ^TMP($J,"RCDPE_TROUT"),^("RCDPE_TRIN")
+ Q
+ ;
+HDR(RCCT,RCPG,RCSTOP,RCINOUT,RCDT1,RCDT2) ;Prints report heading
+ ; Function returns RCPG = current page # and RCCT = running line count
+ ;   and RCSTOP = 1 if user aborted print
+ ; Parameters must be passed by reference
+ N Z,Z0
+ I RCPG!($E(IOST,1,2)="C-") D
+ . I RCPG&($E(IOST,1,2)="C-") D ASK(.RCSTOP) Q:RCSTOP
+ . W @IOF,*13 ; Write form feed
+ S RCPG=RCPG+1
+ S Z0="EDI LOCKBOX EEOBs TRANSFERRED "_$S(RCINOUT=1:"OUT",1:"IN")_" REPORT"
+ S Z=$$SETSTR^VALM1($J("",80-$L(Z0)\2)_Z0,"",1,79)
+ S Z=$$SETSTR^VALM1("Page: "_RCPG,Z,70,10)
+ D SETLINE(Z,.RCCT)
+ S Z0="RUN DATE: "_$$FMTE^XLFDT(DT,2),Z0=$J("",80-$L(Z0)\2)_Z0
+ S Z=$$SETSTR^VALM1(Z0,"",1,79)
+ D SETLINE(Z,.RCCT)
+ D SETLINE(" ",.RCCT)
+ D SETLINE("DATE RANGE SELECTED: "_$$FMTE^XLFDT(RCDT1,2)_"-"_$$FMTE^XLFDT(RCDT2,2),.RCCT)
+ D SETLINE(" ",.RCCT)
+ S Z=$$SETSTR^VALM1($E("BILL #"_$J("",13),1,13)_"TRANS DT"_$J("",2)_$E("TRANS "_$S(RCINOUT=1:"TO",1:"FROM")_$J("",21),1,21)_"EEOB DATE"_$J("",2)_$E("AMT PAID"_$J("",14),1,14)_"STATUS","",1,80)
+ D SETLINE(Z,.RCCT)
+ D SETLINE($TR($J("",IOM-1)," ","="),.RCCT)
+ I $$STOP(99,.RCSTOP,0)
+ Q
+ ;
+SETLINE(Z,RCCT) ; Writes line
+ ; Z = txt to output
+ ; RCCT = line counter
+ S RCCT=RCCT+1
+ W !,Z
+ Q
+ ;
+ASK(RCSTOP) ; Ask to continue
+ ; If passed by reference ,RCSTOP is returned as 1 if print is aborted
+ I $E(IOST,1,2)'["C-" Q
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ S DIR(0)="E" W ! D ^DIR
+ I ($D(DIRUT))!($D(DUOUT)) S RCSTOP=1 Q
+ Q
+ ;
+STOP(CT,RCSTOP,RCPG) ; Function returns 1 if queued job/user requested forced exit
+ ; Function returns CT if passed by ref to only check every 100 records
+ S CT=CT+1
+ I (CT#100) Q 0
+ I $D(ZTQUEUED),$$S^%ZTLOAD S (RCSTOP,ZTSTOP)=1 K ZTREQ I +$G(RCPG) W !,"***TASK STOPPED BY USER***" Q 1
+ Q 0
+ ;
+RAWBILL(RC3445,RCDAT) ; Returns bill specific data for entry in file 344.5
+ ; RC3445 = Ien file 344.5
+ ; FUNCTION RETURNS RCDAT(SEQ #)=Bill #^amt pd^EOB date  (pass by ref)
+ N DAT,Z,Z0,RCT
+ S (RCT,Z)=0 F  S Z=$O(^RCY(344.5,RC3445,2,Z)) Q:'Z  S Z0=$G(^(Z,0)) D
+ . I +Z0=835 S RCDAT(0)=$P(Z0,U,3) Q
+ . I +Z0=10 S RCT=RCT+1,RCDAT(RCT)=$P(Z0,U,2)_U_$J($P(Z0,U,11)/100,"",2)
+ Q
+ ;

@@ -1,0 +1,43 @@
+LRRP6B3 ;DALISC/J0/DRH - WORKLOAD CODE SUMMARY REPORT-DETAILED ;12/08/92
+ ;;5.2;LAB SERVICE;;Sep 27, 1994
+EN ;
+DET ;
+ D HDR
+ S LRSUBH="Workload Code:  "
+ S LRCAPNAM=""
+ F  S LRCAPNAM=$O(^TMP("LR",$J,"WKLD/TST",LRCAPNAM)) Q:(LREND)!(LRCAPNAM="")  D
+ . I $Y+9>IOSL D:$E(IOST,1,2)="C-" PAUSE Q:LREND  W @IOF D HDR
+ . W !!,LRSUBH,?16,$E(LRCAPNAM,1,30),?48,$J(LRCC(LRCAPNAM),12,4)
+ . W !,$E(LRDASH,1,60)
+ . S LRTST=""
+ . F  S LRTST=$O(^TMP("LR",$J,"WKLD/TST",LRCAPNAM,LRTST)) Q:(LREND)!(LRTST="")  D
+ . . I $Y+6>IOSL D
+ . . . D:$E(IOST,1,2)="C-" PAUSE Q:LREND  W @IOF D HDR
+ . . . W !!,LRSUBH,?16,$E(LRCAPNAM,1,30),?48,$J(LRCC(LRCAPNAM),12,4)
+ . . . W !,$E(LRDASH,1,60)
+ . . Q:LREND
+ . . W !,$E(LRTST,1,44)
+ . . W ?46,$J(^TMP("LR",$J,"WKLD/TST",LRCAPNAM,LRTST),5)
+ . Q:LREND
+ . W !,$E(LRDASH,1,60),!,"TOTAL",?46,$J(^TMP("LR",$J,"WKLD/TST",LRCAPNAM),5)
+ Q:LREND
+ I '$D(^TMP("LR",$J,"WKLD/TST")) S LRTIC=" Workload/Test " D NODATA W !!!! QUIT
+ D:$E(IOST,1,2)="C-" PAUSE Q:LREND  W @IOF
+ Q
+HDR ;
+ S LRPAG=LRPAG+1
+ W !,"Detailed Workload Report (by WKLD Code) for ",LRDATRNG
+ W ?72,"PAGE ",$J(LRPAG,3)
+ S LRDAT1="(Print date: "_LRDAT_")"
+ W !?IOM-(IOM-$L(LRDAT1)),LRDAT1 K LRDAT1
+ ;W !!?5,"TEST",?52,"COUNT"
+ W !,$E(LRSTAR,1,34),"  DETAILED  ",$E(LRSTAR,1,34)
+ Q
+NODATA ;
+ W !!,"No",LRTIC,"data for this date range.",!!!
+ D PAUSE
+ Q
+PAUSE ;
+ K DIR S DIR(0)="E" D ^DIR
+ S:($D(DTOUT)#2)!($D(DUOUT)#2)!($D(DIRUT)#2) LREND=1
+ Q

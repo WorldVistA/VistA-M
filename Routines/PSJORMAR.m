@@ -1,0 +1,116 @@
+PSJORMAR ;BIR/MV-CREATE AN ARRAY FOR THE MAR LABEL. ;19 Mar 99 / 9:33 AM
+ ;;5.0; INPATIENT MEDICATIONS ;**2,15,26,65**;16 DEC 97
+ ;
+ ; References to ^PS(55 supported by DBIA #2191.
+ ; References to ^PSD(58.8 supported by DBIA #2283.
+ ; References to ^PSI(58.1 supported by DBIA #2284.
+ ; Reference to ^VA(200 is supported by DBIA #10060.
+ ; Reference to ^VALM1 is supported by DBIA #10116.
+ ;
+MAR(DFN,ON,PT,MARLB,ACT)         ;
+ ;Input
+ ;  DFN     : Patient's internal entry number
+ ;  ON      : Order number (ex: 53U (U/D), 14V (IV), 1000P (pending)
+ ;  PT      : =1 to print patient data on the right label.
+ ;          : =0 will not print the patient data
+ ;  MARLB   : Array name
+ ;  ACT     : Action on order or null
+ ;          :NW:NEW;DC:DISCONTINUE;HD:HOLD;RL:RELEASE HOLD
+ ;Output
+ ;  MARLB(X): There are 5 lines print per label.  An order may contain
+ ;          : multiple labels.
+ ;
+ NEW NODE,TYPE
+ NEW C,DRG,DRGI,DRGN,DRGT,DRUGNAME,F,FIL,L,ND,P,PSGDT,PSGLAD
+ NEW PSGLAGE,PSGLBID,PSGLBS5,PSGLDESC,PSGLDOB,PSGLDT
+ NEW PSGLDX,PSGLFD,PSGLNF,PSGLOD,PSGLPID,PSGLPN,PSGLPR
+ NEW PSGLR,PSGLRB,PSGLRN,PSGLRPH,PSGLRTN,PSGLSD,PSGLSEX
+ NEW PSGLSI,PSGLSM,PSGLSSN,PSGLST,PSGLTM,PSGLTS,PSGLWD
+ NEW PSGLWG,PSGLWDN,PSGLWGN,PSGLWS,PSGMARGD,PSGOES
+ NEW PSGOP,PSGORD,PSGP,PSGS0XT,PSGS0Y,PSGST,PSGTOL
+ NEW PSGVADR,PSIVUP,PSJCONT,PSJOPC,PSJORIFN,PST,Q,QQ,S,SD
+ NEW STOP,T,TS,VA,X
+ NEW PSJPON,PSJROC,PSJF,PSJLDT
+ S (PSGP,PSGOP)=DFN,PSGORD=ON D ^PSGLPI
+ D NOW^%DTC S PSJLDT=$E(%,1,12)
+ I ON["P" S NODE(0)=$G(^PS(53.1,+ON,0)),TYPE=$P(NODE(0),U,4)
+ I $G(TYPE)="F"!(ON["V") D IV Q
+ S:ON["U" NODE(0)=$G(^PS(55,DFN,5,+ON,0))
+ I $G(ACT)="NW" D
+ .S PSJPON=$P(NODE(0),U,25) I $G(PSJPON)]"" D
+ ..S PSJROC=$S(PSJPON["U":$P(^PS(55,PSGP,5,+PSJPON,0),U,27),PSJPON["V":$P(^PS(55,PSGP,"IV",+PSJPON,2),U,9),1:$P(^PS(53.1,+PSJPON,0),U,27))
+ ..S PSJF=$S(PSJPON["U":"^PS(55,"_PSGP_",5,"_+PSJPON,PSJPON["V":"^PS(55,"_PSGP_",""IV"","_+PSJPON,1:"^PS(53.1,"_+PSJPON)
+ ..S:$G(PSJROC)]"" $P(@(PSJF_",7)"),U,1,2)=PSJLDT_"^"_$S(PSJROC="R":"R",1:"DE")
+ S PSJF=$S(ON["U":"^PS(55,"_PSGP_",5,"_+ON,1:"^PS(53.1,"_+ON)
+ I $G(ACT)]""&($G(ACT)'="NW") S $P(@(PSJF_",7)"),U,1,2)=PSJLDT_"^"_$S(ACT="DC":"D",ACT="HD":"H1",1:"H0")
+ D UD
+ Q
+IV ;
+ D ^PSJORMA2,TS
+ Q
+UD ;Gather data for U/D order.
+ ;S PSGOP=DFN,PSGORD=ON D ^PSGLPI
+ ;S PSGP(0)=PSGLPN,PSSN=PSGLSSN
+ I $G(NODE(0))="" D  Q
+ . S MARLB(1)=PSGLPN_" "_PSGLSSN
+ . S MARLB(2)=""
+ . S MARLB(3)="Order #: "_ON_" does not exist."
+ . S MARLB(4)="Please check."
+ . S MARLB(5)=""
+ S F=$S(ON["U":"^PS(55,DFN,5,+ON,",1:"^PS(53.1,+ON,")
+ S NODE(2)=$G(@(F_"2)"))
+ S NODE(4)=$G(@(F_"4)"))
+ S NODE(7)=$G(@(F_"7)"))
+ S PSGLDT=+NODE(7),PSGLR=$P(NODE(7),U,2)
+ S PSGLRN=+NODE(4),PSGLRPH=$P(NODE(4),U,3)
+ S PSGLOD=$E($$ENDTC^PSGMI($P(NODE(0),U,14)),1,5)
+ S PSGLSD=$$BLANK^PSGMUTL(11),PSGLFD=$$BLANK^PSGMUTL(14)
+ I ON["U" D
+ . S PSGLSD=$$ENDTC1^PSGMI($P(NODE(2),U,2)),PSGLSD=$E(PSGLSD,1,5)_$E(PSGLSD,9,14)
+ . S PSGLFD=$$ENDTC1^PSGMI($P(NODE(2),U,4))
+ S PSGLST=$P(NODE(0),U,7),PST=$S(PSGLST="C"!(PSGLST="O"):PSGLST,PSGLST="OC":"OA",PSGLST="P":"OP",$P(NODE(2),"^")["PRN":"OR",1:"CR")
+ ;S (PSGLST,PST)=$P(NODE(0),U,7)
+ D TS^PSGMAR3($P(NODE(2),U,5))
+ I $P(NODE(0),U,22) S PSGLSI="*** NOT TO BE GIVEN ***"
+ E  S PSGLSI=$G(@(F_"6)"))
+ I PSGLSI="",$P($G(@(F_"0)")),U,9)="P",$O(@(F_"12,0)")) S X=0 F  S X=$O(@(F_"12,"_X_")")) Q:'X  S Z=$G(^(X,0)),Y=$L(PSGLSI) S:Y+$L(Z)'>179 PSGLSI=PSGLSI_Z_" " I Y+$L(Z)>179 S PSGLSI="SEE PROVIDER COMMENTS"
+ S PSGLSM=$S('$P(NODE(0),U,5):0,$P(NODE(0),U,6):1,1:2)
+ N PSGNOW D NOW^%DTC S PSGNOW=% S (PSGLNF,PSGLWS)=0 F X=0:0 S X=$O(@(F_"1,"_X_")")) Q:'X!(PSGLWS)  S Y=$G(^(X,0)) I $P(Y,U,3)>PSGNOW!'$P(Y,U,3) S PSGLWS=$S($D(^PSI(58.1,"D",+Y,+PSGLWD)):1,$D(^PSD(58.8,"D",+Y,+PSGLWD)):1,1:0)
+ S:'PSGLRN PSGLRN="_____" I PSGLRN,$D(^VA(200,+PSGLRN,0))#2 S X=^(0),X=$S($P(X,U,2)]"":$P(X,U,2),1:$P(X,U)),PSGLRN=$S(X'[",":X,1:$E(X,$F(X,","))_$E(X))
+ S:'PSGLRPH PSGLRPH="_____" I PSGLRPH,$D(^VA(200,+PSGLRPH,0))#2 S X=^(0),X=$S($P(X,U,2)]"":$P(X,U,2),1:$P(X,U)),PSGLRPH=$S(X'[",":X,1:$E(X,$F(X,","))_$E(X))
+ D MARLB^PSJORMA1(37)
+ S P(9)=$P(NODE(0),U,9),P(3)=$P(NODE(2),U,4)
+ ;
+TS ;Attach amdin times to the label.
+ ;D NOW^%DTC S PSGDT=$E(%,1,12),PSGLFD=$P(NODE(2),U,4)
+ D NOW^%DTC S PSGDT=$E(%,1,12)
+ I P(3)]"",$E(P(3),1,12)'>PSGDT D
+ . F X=1:1:5 S TS(X)="****"
+ . S TS(3)=$S(P(9)["D":"DC'D",1:"EX'D"),TS(0)=5
+ F X=0:0 S X=$O(MARLB(X)) Q:'X  S MARLB(X)=$$SETSTR^VALM1("|"_$G(TS(X)),MARLB(X),43,9)
+ D:$G(PT) PT
+ Q
+ ;
+PT ;Hook up patient info to label
+ ;S MARLB(1)=$$SETSTR^VALM1(PSGLPN,MARLB(1),52,87)
+ S MARLB(1)=MARLB(1)_PSGLPN
+ S X=$S(PSGLRB]"":PSGLRB,1:"*NF*")
+ S MARLB(1)=$$SETSTR^VALM1(X,MARLB(1),(97-$L(X)),$L(X))
+ ;S MARLB(2)=$$SETSTR^VALM1(PSGLSSN,MARLB(2),52,17)
+ S MARLB(2)=MARLB(2)_PSGLSSN
+ S MARLB(2)=$$SETSTR^VALM1(PSGLDOB_"  ("_PSGLAGE_")",MARLB(2),70,14)
+ S MARLB(2)=$$SETSTR^VALM1($S(PSGLTM]"":PSGLTM,1:"NOT FOUND"),MARLB(2),88,15)
+ S MARLB(3)=MARLB(3)_PSGLSEX
+ S MARLB(3)=$$SETSTR^VALM1("DX: "_PSGLDX,MARLB(3),65,($L(PSGLDX)+4))
+ S:PSGLDT MARLB(4)=MARLB(4)_$$ENDTC^PSGMI(PSGLDT)
+ S Y=PSGLR,X=$S(Y="NR":"RENEWAL ",Y="N":"NEW ",1:"")_"ORDER"
+ S Y=X_$S(Y="E":" EDITED",Y="DE":" DC'ED (EDIT)",Y["D":" DISCONTINUED",Y="H1":" ON HOLD",Y="H0":" OFF OF HOLD",Y="RE":" REINSTATED",1:"")
+ ;I PSGLFD]"",(PSGLFD'>PSGDT),(PSGLR'["D") S Y=Y_" (EXPIRED)"
+ I P(3)]"",(P(3)'>PSGDT),(PSGLR'["D") S Y=Y_" (EXPIRED)"
+ I Y="ORDER" S Y=""
+ ;;S:ON["P" Y=""
+ S MARLB(4)=$$SETSTR^VALM1(Y,MARLB(4),(97-$L(Y)),$L(Y))
+ S MARLB(5)=MARLB(5)_$S(PSGLWGN]"":$E(PSGLWGN,1,21),1:"NOT FOUND")
+ S X=$S(PSGLWDN]"":$E(PSGLWDN,1,21),1:"NOT FOUND")
+ S MARLB(5)=$$SETSTR^VALM1(X,MARLB(5),(97-$L(X)),$L(X))
+ Q

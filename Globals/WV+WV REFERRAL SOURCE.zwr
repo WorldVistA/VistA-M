@@ -1,0 +1,18 @@
+WV REFERRAL SOURCE
+ZWR
+^WV(790.07,0)="WV REFERRAL SOURCE^790.07s^5^5"
+^WV(790.07,1,0)="Self^1"
+^WV(790.07,2,0)="Provider^1"
+^WV(790.07,3,0)="Other^1"
+^WV(790.07,4,0)="Unknown^1"
+^WV(790.07,5,0)="Health Fair^1"
+^WV(790.07,"B","Health Fair",5)=""
+^WV(790.07,"B","Other",3)=""
+^WV(790.07,"B","Provider",2)=""
+^WV(790.07,"B","Self",1)=""
+^WV(790.07,"B","Unknown",4)=""
+^WV(790.07,"C","HEALTH FAIR",5)=""
+^WV(790.07,"C","OTHER",3)=""
+^WV(790.07,"C","PROVIDER",2)=""
+^WV(790.07,"C","SELF",1)=""
+^WV(790.07,"C","UNKNOWN",4)=""

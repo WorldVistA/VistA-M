@@ -1,0 +1,165 @@
+LRTOCOST ;KC/RENO/DALISC/FHS ORDERING STATISTICS/COST REPORT ; 12/3/1997
+ ;;5.2;LAB SERVICE;**153,201,221**;Sep 27, 1994
+ ;Original routine written by Keith Cox - Reno VAMC
+EN S LREND=0 K LRGLB
+ W @IOF,!!,$$CJ^XLFSTR("*** DATE RANGE SELECTION ***",80),!
+ S LREDT=$$FMTE^XLFDT(DT) D ^LRWU3 G:$G(LREND) EXIT
+ S LREDT=$P(LREDT,"."),LRSDT=$P(LRSDT,".")
+ S LRPBDAY=$$FMTE^XLFDT(LREDT)
+ S LRPEDAY=$$FMTE^XLFDT(LRSDT)
+DIV ;
+ K DIR,LRCDIV D  G:$G(LREND) EXIT
+ . S DIR(0)="PO^DIC(4,:AENM",DIR("A")="Select Accessioning Div "
+ . W !!?10,"<Optional Screen>  Press return to select all Divisions",!
+ . F  D READ Q:$G(LREND)!(Y<1)  S LRCDIV(+Y)=Y
+REF K DIR,LRLLOC,LRPRAC,LRSITE
+ S DIR("A")="Sort Report By ",DIR(0)="S^0:ALL Patients;1:REFFERAL Patients Only" D READ G:$G(LREND)!($D(DIRUT)) EXIT
+ S LRREF=Y W ! I LRREF=1 S LRSORT=1 G SORTBY
+SORT K DIR S DIR("A")="Sort Report By ",DIR(0)="S^0:PROVIDER;1:LOCATION" D READ G:$G(LREND)!($D(DIRUT)) EXIT
+ S LRSORT=Y
+ ;
+SORTBY K DIR S (LRLLOC,LRPRAC)=""
+ I LRREF=1,LRSORT=1 D  G:$G(LREND) EXIT
+ . S DIR(0)="PO^DIC(4,:AENM",DIR("A")="Select Referral Site "
+ . W !!?10,"<Optional Screen>  Press return to select all Referral Sites",!
+ . F  D READ Q:$G(LREND)!(Y<1)  S LRLLOC($P(Y,U,2))=""
+ K DIR
+ I LRSORT=0,LRREF=0 D  G:$G(LREND) EXIT
+ . S DIR(0)="PO^VA(200,:AENM",DIR("A")="Search for What Ordering Provider "
+ . W !!?10,"<Optional Screen>  Press return to select all Providers",!
+ . F  D READ Q:$G(LREND)!(Y<1)  S LRPRAC(+Y)=""
+ K DIR
+ I LRREF=0,LRSORT=1 D  G:$G(LREND) EXIT
+ . S DIR(0)="PO^SC(:AENZM",DIR("A")="Select Ordering Location "
+ . W !!?10,"<Optional Screen>  Press return to select all Locations ",!
+ . F  D READ Q:$G(LREND)!(Y<1)  S LRLLOC($P(Y(0),U,2))=""
+ I LRSORT D
+ . W !!?5,"You can search for locations using a Free Text screen"
+ . W !?8,"Your entry must match exactly the stored location"
+ . S DIR(0)="FO^2:30",DIR("A")="Enter Non-Standard Locations"
+ . W !!?10,"<Optional Screen>  Press return to select all Locations ",!
+ . F  D READ Q:$G(LREND)!('$L(Y))  S LRLLOC(Y)=""
+PRICE K DIR S DIR("A")="Print report using ",DIR(0)="S^1:Cost;2:Price" D READ
+ G:$G(LREND)!($D(DIRUT)) EXIT
+ S LRPRICE=Y
+TEST K DIR,LRT S LRT=""
+ D  G:$G(LREND) EXIT
+ . S DIR(0)="PO^LAB(60,:AENM",DIR("A")="Select Ordered Tests "
+ . W !!?10,"<Optional Screen>  Press return to select all Tests",!
+ . F  D READ Q:$G(LREND)!(Y<1)  S LRT(+Y)=""
+ K DIR
+DET S DIR("A")="Would you like a detailed patient listing? ",DIR(0)="S^0:No;1:Yes" D READ G:$G(LREND)!($D(DIRUT)) EXIT
+ S LRDET=Y W !!
+QUE K ZTSAVE,I,DIR
+ S ZTSAVE("LR*")=""
+ D EN^XUTMDEVQ("START^LRTOCOST","Lab Order Stats",.ZTSAVE) D EXIT
+ Q
+START S:$D(ZTQUEUED) ZTREQ="@"
+ W:$E(IOST,1,2)="C-" @IOF
+ K ^TMP("LR",$J) S LRODT=LREDT-.0001
+ S ^TMP("LR",$J,0)=DT_U_DT_U_"LEDI COST REPORT"
+ F  S LRODT=$O(^LRO(69,LRODT)) Q:LRODT<1!(LRODT>LRSDT)  D LOOP
+PRT I $D(LRCDIV) S LRDIVP="Division(s) / ",I=0 F  S I=$O(LRCDIV(I)) Q:I<1  S LRDIVP=LRDIVP_$P(LRCDIV(I),U,2)_" / "
+ S LRPAGE=0,LRLINE="",$P(LRLINE,"-",81)="",LRPNOW=$$FMTE^XLFDT($$NOW^XLFDT) D HDR G:$G(LREND) EXIT
+PPHY S LRPPHY="" F  S LRPPHY=$O(^TMP("LR",$J,1,LRPPHY)) Q:LRPPHY=""!($G(LREND))  S LRPHY=0 F  S LRPHY=$O(^TMP("LR",$J,1,LRPPHY,LRPHY)) Q:LRPHY=""!($G(LREND))  D PHYS,PTST,PURG
+RTOT S (LRFTOT,LRFCTOT)=0 D HDR G:$G(LREND) EXIT W !,"FACILITY TOTALS by : "_$S($G(LRSORT):"Location ",1:"Provider")
+ W !?10,$S($G(LRREF):" Referral Patients ",1:"All Patients "),!
+ W !!?28,"  ***TESTS***    QUANTITY       "_$S(LRPRICE=1:" COST",1:"PRICE")_"    TOTAL COST  "
+ S LRPTST="" F  S LRPTST=$O(^TMP("LR",$J,3,LRPTST)) Q:LRPTST=""!($G(LREND))  D:($Y>(IOSL-4)) HDR Q:$G(LREND)  D RTOT1 D:$Y>(IOSL-4) HDR
+ G:$G(LREND) EXIT
+ W !?45,"--------",?69,"----------",!?43,$J(LRFTOT,10),?69,$J(LRFCTOT,10,2)
+ D:$Y>(IOSL-4) HDR G:$G(LREND) EXIT W !!?28,"***URGENCY***" S LRPURG=""
+ F  S LRPURG=$O(^TMP("LR",$J,4,LRPURG)) Q:LRPURG=""!($G(LREND))  D:$Y>(IOSL-4) HDR Q:$G(LREND)  W !,$J(LRPURG,41),": ",$J(^TMP("LR",$J,4,LRPURG),10)
+DETAIL I $G(LRDET) D
+ . S LRLOC=""
+ . S I=$O(^TMP("LR",$J,6,0)) I '$L(I) D HDR W !?7,"No Detailed data to report",!! Q
+ . S LRGLB="^TMP(""LR"","_$J_",6)",LRPNM=""
+ . D HDR Q:$G(LREND)
+ . F  S LRGLB=$Q(@LRGLB) Q:$QS(LRGLB,2)'=$J!($QS(LRGLB,3)'=6)!($G(LREND))  D
+ . . D:$Y>(IOSL-4) HDR Q:$G(LREND)
+ . . S LRLOCN=$QS(LRGLB,4) I LRLOCN'=LRLOC W !!?10,"***** "_LRLOCN_" *****" S LRLOC=LRLOCN
+ . . S LRNAME=$QS(LRGLB,5)_"  "_$QS(LRGLB,6)_" "_$$FMTE^XLFDT($QS(LRGLB,7))
+ . . I LRNAME'=LRPNM W !!,LRNAME S LRPNM=LRNAME
+ . . W !?10,$QS(LRGLB,8)_" $ "_@LRGLB
+EXIT W ! W:$E(IOST,1,2)="P-" @IOF D ^%ZISC
+ K ^TMP("LR",$J)
+ K DIR,DIRUT,DTOUT,DUOUT,I,LR0,LRBDAY,LRCDIV,LRCDT,LRCOST,LRDET,LRDIV,LRDFN,LREDAY
+ K LRDIVP,LRDPF,LRTST,LRPPHY,LRPNOW,LRFTOT
+ K LREDT,LREND,LRFCTOT,LRGLB,LRII,LRLINE,LRLLOC,LRLOC,LRLOCN,LRNAME
+ K LRNLT,LRNODE,LRODT,LRPAGE,LRPBDAY,LRPCTOT,LRPEDAY,LRPHY,LRPNM
+ K LRPRAC,LRPRICE,LRPTOT,LRPTST,LRPURG,LRREF,LRSDT,LRSITE,LRSN,LRSORT
+ K LRSPC,LRT,LRTCT,LRURG,PNM,POP,SSN,X,Y,ZTSAVE
+ Q
+LOOP S LRSN=0 F  S LRSN=$O(^LRO(69,LRODT,1,LRSN)) Q:LRSN<1  I $D(^(LRSN,0))#2 S LRNODE=^(0) D
+ . Q:$P($G(^LRO(69,LRODT,1,LRSN,1)),U,4)'="C"  S LRCDT=+$G(^(1)),LRDIV=$P($G(^(1)),U,8)
+ . Q:'LRCDT  I $D(LRCDIV),'$D(LRCDIV(+LRDIV)) Q
+ . S LRSPC=+$G(^LRO(69,LRODT,1,LRSN,4,1,0))
+ . Q:'$D(^LR(+LRNODE,0))#2  S LRDPF=$P(^(0),U,2),LRDFN=$P(^(0),U,3)
+ . Q:$S('$G(LRDPF):1,'$G(LRDFN):1,LRDPF=2:0,LRDPF=67:0,1:1)
+ . I $G(LRREF) Q:LRDPF'=67
+ . I '$G(LRSORT) S LRPHY=$P(LRNODE,U,6) I $L(LRPHY) D LOOP1
+ . I $G(LRSORT) S LRPHY=$P(LRNODE,U,7) I $L(LRPHY) D LOOP1
+ Q
+LOOP1 I '$G(LRSORT),$D(LRPRAC)=11,'$D(LRPRAC(LRPHY)) Q
+ I $G(LRSORT),$D(LRLLOC)=11,'$D(LRLLOC(LRPHY)) Q
+ S LRII=0 F  S LRII=$O(^LRO(69,LRODT,1,LRSN,2,LRII)) Q:LRII<1  S LR0=^LRO(69,LRODT,1,LRSN,2,LRII,0),LRTST=+LR0,LRURG=$P(LR0,U,2) I '$P(LR0,U,11),LRTST,LRURG,$P(LR0,U,3) D SET
+ Q
+SET I $D(LRT)=11,'$D(LRT(LRTST))#2 Q
+ I $G(LRSORT) S LRPPHY=LRPHY
+ I '$G(LRSORT) S LRPPHY=$S($D(^VA(200,+LRPHY,0)):$P(^(0),U),1:LRPHY)
+ Q:'$D(^LAB(60,+LRTST,0))#2  S LRPTST=$P(^(0),U),LRNLT=+$P($G(^(64)),U)
+ S LRCOST=""
+ I LRPRICE=1 S LRCOST=$S($P($G(^LAM(LRNLT,5,LRSPC,0)),U,2):$P(^(0),U,2),1:"")
+ I LRPRICE=2 S LRCOST=$S($P($G(^LAM(LRNLT,5,LRSPC,0)),U,3):$P(^(0),U,3),1:"")
+ I 'LRCOST D
+ . I LRPRICE=1 S LRCOST=+$S($P($G(^LAM(LRNLT,0)),U,10):$P(^(0),U,10),1:LRCOST)
+ . I LRPRICE=2 S LRCOST=+$S($P($G(^LAM(LRNLT,0)),U,11):$P(^(0),U,11),1:LRCOST)
+ I 'LRCOST S LRCOST=+$P(^LAB(60,+LRTST,0),U,11)
+ S ^TMP("LR",$J,5,LRPTST)=$S(LRCOST:LRCOST,1:1)
+ S ^TMP("LR",$J,1,LRPPHY,LRPHY,LRPTST)=$G(^TMP("LR",$J,1,LRPPHY,LRPHY,LRPTST))+1,^TMP("LR",$J,3,LRPTST)=$G(^TMP("LR",$J,3,LRPTST))+1
+ S LRPURG=$P(^LAB(62.05,LRURG,0),U),^TMP("LR",$J,2,LRPPHY,LRPHY,LRPURG)=$G(^TMP("LR",$J,2,LRPPHY,LRPHY,LRPURG))+1,^TMP("LR",$J,4,LRPURG)=$G(^TMP("LR",$J,4,LRPURG))+1
+ I $G(LRDET) D
+ . ;S LRDPF=$P(^LR(+LRNODE,0),U,2),LRDFN=$P(^(0),U,3)
+ . S X=^DIC(LRDPF,0,"GL")_LRDFN_",0)",X=$S($D(@X):@X,1:"")
+ . Q:X=""
+ . S PNM=$P(X,U),SSN=$P(X,U,9)
+ . S ^TMP("LR",$J,6,LRPPHY,PNM,SSN,LRCDT,LRPTST)=$S(LRCOST:LRCOST,1:1)
+ Q
+HDR Q:$G(LREND)  I $E(IOST)="C",$G(LRPAGE) S DIR(0)="E" D ^DIR S:$D(DUOUT)!($D(DIRUT))!($D(DTOUT)) LREND=1 Q:$G(LREND)
+ W:$G(LRPAGE) @IOF
+ S LRPAGE=$G(LRPAGE)+1
+ I $D(LRGLB) W LRLINE,!,$$CJ^XLFSTR("<*>  Detailed Patient Listing  <*>",80)
+ W:'$D(LRGLB) LRLINE,!?17,"<*>  LABORATORY TEST ORDERING STATISTICS  <*>"
+ I $L($G(LRDIVP)) W !,$$CJ^XLFSTR(LRDIVP,80)
+ I $G(LRREF) W !,$$CJ^XLFSTR("Referral Patients Only Report",80)
+ W !,$$CJ^XLFSTR("For tests ordered during the date range ",80)
+ W !,$$CJ^XLFSTR(LRPBDAY_" to "_LRPEDAY,80)
+ W !,$$CJ^XLFSTR("Dollar Amounts computed using "_$S(LRPRICE=1:"COST",1:"PRICE "),80)
+ I $D(LRT)=11 D
+ . W !,$$CJ^XLFSTR("** SELECTED TESTS ONLY **",80)
+ . W ! S I="" F  S I=$O(LRT(I)) Q:I<1  W $P($G(^LAB(60,I,0)),U)_" / " W:$X+30>80 !
+ W !,"Date printed: ",LRPNOW,?(60-$L(LRPAGE)),"Page: ",LRPAGE,!,LRLINE,!
+ Q
+PHYS Q:$G(LREND)  S (LRPTOT,LRPCTOT)=0 D:$Y>(IOSL-8) HDR Q:$G(LREND)  W !!,$S($G(LRSORT):"Location: ",1:"Provider: "),LRPPHY I '$G(LRSORT) W:LRPHY " (",LRPHY,")"
+ Q
+PTST Q:$G(LREND)  D:$Y>(IOSL-8) HDR Q:$G(LREND)
+ W !?28,"  ***TESTS***    QUANTITY      "_$S(LRPRICE=1:"  COST",1:" PRICE")_"   TOTAL COST  " S LRPTST=""
+ F  S LRPTST=$O(^TMP("LR",$J,1,LRPPHY,LRPHY,LRPTST)) Q:LRPTST=""!($G(LREND))  D:$Y>(IOSL-4) HDR Q:$G(LREND)  D PTST1
+ Q:$G(LREND)
+ W !?45,"--------",?69,"----------",!?43,$J(LRPTOT,10),?67,"$",$J(LRPCTOT,10,2)
+ Q
+PTST1 D:$Y>(IOSL-4) HDR Q:$G(LREND)
+ W !,$J(LRPTST,41),": " S LRTCT=^TMP("LR",$J,1,LRPPHY,LRPHY,LRPTST),LRCOST=^TMP("LR",$J,5,LRPTST) W $J(LRTCT,10),?55,$J(LRCOST,10,2),?67,"$",$J(LRTCT*LRCOST,10,2)
+ S LRPTOT=LRPTOT+LRTCT,LRPCTOT=LRPCTOT+(LRTCT*LRCOST)
+ Q
+PURG Q:$G(LREND)  D:($Y>(IOSL-6)) HDR Q:$G(LREND)  W !!?28,"***URGENCY***"
+ S LRPURG="" F  S LRPURG=$O(^TMP("LR",$J,2,LRPPHY,LRPHY,LRPURG)) Q:LRPURG=""  D
+ . D:$Y>(IOSL-4) HDR Q:$G(LREND)  W !,$J(LRPURG,41),": ",$J(^TMP("LR",$J,2,LRPPHY,LRPHY,LRPURG),10)
+ Q
+RTOT1 D:$Y>(IOSL-4) HDR Q:$G(LREND)
+ W !,$J(LRPTST,41),": " S LRTCT=^TMP("LR",$J,3,LRPTST),LRCOST=^TMP("LR",$J,5,LRPTST) W $J(LRTCT,10),?55,$J(LRCOST,10,2),?67,"$",$J(LRTCT*LRCOST,10,2)
+ S LRFTOT=LRFTOT+LRTCT,LRFCTOT=LRFCTOT+(LRTCT*LRCOST)
+ Q
+READ ;
+ D ^DIR S:$D(DTOUT)!($D(DUOUT)) LREND=1
+ Q

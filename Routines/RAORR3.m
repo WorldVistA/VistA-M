@@ -1,0 +1,19 @@
+RAORR3 ;HISC/CAH,FPT,GJC AISC/DMK-OE/RR results display ;9/12/94  11:12
+ ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
+ ;ORACTION=8
+ ;$P(XQORNOD(0),"^",3)="Results Display"
+ ;Called from RAORD2
+ ;SET ^TMP($J,"RAEX",1)=Variables needed to display/print report
+ N %
+ S RADTE=9999999.9999-RADTI
+ S RANME=$P($G(^DPT(RADFN,0)),"^"),DFN=RADFN,RASSN=$$SSN^RAUTL
+ S Y=RADTE D D^RAUTL S RADATE=Y
+ S RACN=+RA(0),RAPRC=$P($G(^RAMIS(71,+$P(RA(0),"^",2),0)),"^"),RAPRC=$S(RAPRC="":"Unknown",1:RAPRC)
+ S RARPT=+$P(RA(0),"^",17),RAST=+$P(RA(0),"^",3)
+ S ^TMP($J,"RAEX",1)=RADFN_"^"_RADTI_"^"_RACNI_"^"_RANME_"^"_RASSN_"^"_RADATE_"^"_RADTE_"^"_RACN_"^"_RAPRC_"^"_RARPT_"^"_RAST
+ S X=^TMP($J,"RAEX",1),RADUP(1)=$P(X,"^",10)_"^"_$P(X,"^",8)
+ ;
+ I $S($D(ZTQUEUED):1,$E(IOST,1,2)'="C-":1,1:0) S RAMIE=1 D DQ^RAORDQ
+ I $E(IOST,1,2)="C-" D OERR^RART1
+ K RA,RACI,RACNI,RADATE,RAMIE,RANME,RASSN,RAST,RADIV,RADIVPAR,RADPT0,RADTI,RAORD0,RAOSTS,RADFN,RAOIFN,^TMP($J,"RAEX")
+ Q

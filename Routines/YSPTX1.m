@@ -1,0 +1,51 @@
+YSPTX1 ;SLC/DKG-CONTINUATION OF YSPTX ; 5/23/89  15:19 ;
+ ;;5.01;MENTAL HEALTH;;Dec 30, 1994
+ ;
+ENT ; Called by routine YSPTX
+ S YSIDT=9999999-YSYDT,A1="" D NN^YSPTX G END^YSPTX:YSUOUT!YSTOUT I A2<1 W " ?",$C(7) G FN^YSPTX
+ G:A1]""&("Nn"[A1) FN^YSPTX S %DT="T",X="N" D ^%DT S ^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,A2,1,0)=Y,DIC="^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,A2,1,"
+ W !!,YSFHDR,": " K ^UTILITY($J,"W")
+ D ENDTM^YSUTL S DWPK=1 D EN^DIWE
+ S YSPM=0 I YSTY(0),$D(^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,A2,1,1,0)) S YSPM=1
+ I '$D(^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,A2,1,1,0)) K ^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,A2,1,0) G:'$D(^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,A2)) END^YSPTX D CLN G END^YSPTX
+CG ;
+ L +^PTX(YSDFN) I '$D(^PTX(YSDFN,0)) S ^(0)=YSDFN,^PTX("B",YSDFN,YSDFN)=""
+ S YSTN=$P(^PTX(0),U,4)+1,L=$P(^PTX(0),U,3)
+ S L=$S(YSDFN>L:YSDFN,1:L),^PTX(0)=$P(^PTX(0),U,1,2)_U_L_U_YSTN
+ S:'$D(^PTX(YSDFN,YSTY,YSIDT,0)) ^(0)=YSYDT
+ I $D(^PTX(YSDFN,YSTY,0)) S YSNU=$P(^(0),U,4)+1,^(0)=$P(^(0),U,1,3)_U_YSNU
+ E  S ^(0)=YSFN1_YSIDT_"^1"
+ I $D(^PTX(YSDFN,YSTY,YSIDT,1,0)) S YSUR=$P(^(0),U,3),YSUR=$S(DUZ>YSUR:DUZ,1:YSUR),YSNU=$P(^(0),U,4)+1,^(0)=$P(^(0),U,1,2)_U_YSUR_U_YSNU
+ E  S ^(0)=YSFN2_DUZ_"^1"
+ S:'$D(^PTX(YSDFN,YSTY,YSIDT,1,DUZ,0)) ^(0)=DUZ
+ I $D(^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,0)) S YSNN=$P(^(0),U,3)+1,^(0)=$P(^(0),U,1,2)_U_YSNN_U_YSNN
+ E  S ^(0)=YSFN3_"1^1"
+ S:'$D(^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,A2,0)) ^(0)=YSDTM S:YSPM ^(2)="P"
+ K:YSTY="CN" ^YSG("CNT","AA",YSDFN,"CN"),^YSG("CNT",1) I YSTY="MS" S N=0 F  S N=$O(^YSG("CNT",YSDFN,"MSU",N)) Q:'N  S ^YSG("CNT",YSDFN,"MSU",N,0)="NEW"
+ L -^PTX(YSDFN) G FN^YSPTX
+CLN ;
+ I $P(^PTX(YSDFN,YSTY,0),U,4)=1 K ^PTX(YSDFN) Q
+ I $P(^PTX(YSDFN,YSTY,YSIDT,1,0),U,4)=1 S YSP4=$P(^PTX(YSDFN,YSTY,0),U,4),$P(^PTX(YSDFN,YSTY,0),U,4)=YSP4-1 K ^PTX(YSDFN,YSTY,YSIDT),YSP4 Q
+ I $P(^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,0),U,4)=1 K ^PTX(YSDFN,YSTY,YSIDT,1,DUZ) G RS0
+ I $P(^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,0),U,3)=A2 S $P(^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,0),U,3)=A2-1,$P(^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,0),U,4)=A2-1 K ^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,A2) G RS0
+ S YSP4=$P(^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,0),U,4),$P(^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,0),U,4)=YSP4-1 K ^PTX(YSDFN,YSTY,YSIDT,1,DUZ,1,A2)
+RS0 ;
+ S YSP4=$P(^PTX(YSDFN,YSTY,0),U,4),$P(^PTX(YSDFN,YSTY,0),U,4)=YSP4-1
+ S YSP4=$P(^PTX(YSDFN,YSTY,YSIDT,1,0),U,4),$P(^PTX(YSDFN,YSTY,YSIDT,1,0),U,4)=YSP4-1
+ S YSP4=$P(^PTX(0),U,4),$P(^PTX(0),U,4)=YSP4-1
+ Q
+ ;The following lines support "help" in Routine ^YSPTX
+QUES1 ; Called by routine YSPTX
+ W !!?3,"Please enter appropriate response indicating action to be taken.",!
+ Q
+ ;
+QUES2 ; Called by routine YSPTX
+ W !!?3,"""Y"" will permit editing of text entered this date.",!?3,"""N"" will permit entry of new text.",!
+ Q
+ ;
+QUES3 ; Called by routine YSPTX
+ W !!?3,"Enter corresponding number of text to be accessed.",!
+ Q
+ ;
+QUES4 ; Called by routine YSPTX
+ W !!?3,"""Y"" will permit entry of new text.  ""N"" returns to edit question.",! Q

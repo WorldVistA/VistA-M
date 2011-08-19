@@ -1,0 +1,16 @@
+PRCO441 ;ISC2/DJM-UPDATE UNIT OF ISSUE IN 441 FROM 445 ;11-13-92/12:05
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ N A,B,C,D,E,F,G,FILE,ITEM,POINTER,UCF,UOFI,VENDOR,X,Y,Z,SKU
+ W !,"UPDATING 'UNIT CONVERSION FACTOR' AND 'SKU' IN FILE 441 FROM FILE 445.",!
+ S X=0 F  S X=$O(^PRCP(445,X)) Q:X'>0  S A=$G(^PRCP(445,X,0)) I A]"" D:"WP"[$P(A,U,3)
+ .S Y=0 F  S Y=$O(^PRCP(445,X,1,Y)) Q:Y'>0  S B=$G(^PRCP(445,X,1,Y,0)) I B]"" S ITEM=$P(B,U),UOFI=$P(B,U,5),E=$G(^PRC(441,ITEM,3)) S $P(E,U,8)=UOFI,^PRC(441,ITEM,3)=E D  W "."
+ ..S Z=0 F  S Z=$O(^PRCP(445,X,1,Y,5,Z)) Q:Z'>0  S C=$G(^PRCP(445,X,1,Y,5,Z,0)) Q:C=""  S POINTER=$P(C,U),FILE=$P(POINTER,";",2),VENDOR=$P(POINTER,";") I FILE="PRC(440," S UCF=$P(C,U,4) D
+ ...S D=$G(^PRC(441,ITEM,2,VENDOR,0)) Q:D=""  S F=$P(A,U,3),G=$P(D,U,10) I F="P",G="" S $P(D,U,10)=UCF,^PRC(441,ITEM,2,VENDOR,0)=D Q
+ ...I F="W" S $P(D,U,10)=UCF,^PRC(441,ITEM,2,VENDOR,0)=D
+ ...Q
+ ..Q
+ .Q
+ S X=0 F  S X=$O(^PRC(441,X)) Q:X'>0  S D=$G(^PRC(441,X,3)),SKU=$P(D,U,8) D  W "."
+ .S Y=0 F  S Y=$O(^PRC(441,X,2,Y)) Q:Y'>0  S A=$G(^PRC(441,X,2,Y,0)),B=$P(A,U,8),C=$P(A,U,10) S:C="" $P(A,U,10)=1,^PRC(441,X,2,Y,0)=A S:SKU="" $P(D,U,8)=B,^PRC(441,X,3)=D
+ .Q

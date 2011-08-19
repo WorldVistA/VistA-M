@@ -1,0 +1,7 @@
+PSOBPOST ;BIR/RTR - Patch PSO*6*136 post init routine
+ ;;6.0;OUTPATIENT PHARMACY;**136**;APRIL 1993
+ ;
+ K ^PS(51,"B")
+ K DIK S DIK="^PS(51,",DIK(1)=".01^B" D ENALL^DIK
+ K DIK S DIK="^PS(51,",DIK(1)=".5^AE" D ENALL^DIK
+ K DIK Q

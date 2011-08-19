@@ -1,0 +1,13 @@
+SPNLGUCD ;ISCSF/RWF - SCD Patient hashing ;07/08/94  10:17
+ ;;2.0;Spinal Cord Dysfunction;;01/02/1997
+ Q
+EN(X) ;EF.
+ N X1,X2,PA,PI,PJ,PL,PR,PX,PY,PY1,PZ
+ S X1=37,X2=13
+ D EN^XUSHSHP
+ Q X
+DE(X) ;EF.
+ N X1,X2,PA,PI,PJ,PL,PR,PX,PY,PY1,PZ
+ S X1=37,X2=13
+ D DE^XUSHSHP
+ Q X

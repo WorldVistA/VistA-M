@@ -1,0 +1,34 @@
+PSAHELP ;BHM/DAV - UNIT OF MEASURE ASSISTANCE ;7/23/97
+ ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**12,17,21**; 10/24/97
+ Q:PSANDC=0
+ ;
+ ;References to ^PSDRUG( are covered by IA# 2095
+ ;References to ^DIC(51.5, are covered by IA #1931
+ ;This routine was created because the routines that were to
+ ;be altered, were too large for corrections.
+ S PSAVSN=$S($P($P(PSADATA,"^",5),"~")'="":$E($P($P(PSADATA,"^",5),"~"),1,14),1:"VSN UNKNOWN")
+ D PSANDC1 S PSANDC1=PSANDCX
+ ;Provide an Adjusted Unit of measure if available.
+ I '$D(PSADRG) G NOUOM
+ S PSASYN=$P(PSADATA,"^",7)
+ I PSASYN="" G SYN
+ I '$D(^PSDRUG("AVSN",PSAVSN,PSADRG,PSASYN)) G SYN
+ I $P($G(^PSDRUG(PSADRG,1,PSASYN,0)),"^",2)=PSANDC1 S PSAUOM=$P(^PSDRUG(PSADRG,1,PSASYN,0),"^",5) G HAVEUOM
+ ;
+SYN S PSA=0 F  S PSA=$O(^PSDRUG(PSADRG,1,PSA)) Q:PSA'>0  I $P($G(^PSDRUG(PSADRG,1,PSA,0)),"^",2)=PSANDC1 G SETUOM
+ I $G(PSAUOM)'="" G HAVEUOM
+ G NOUOM
+SETUOM S DATA=$G(^PSDRUG(PSADRG,1,PSA,0)),UOM=$S($P(DATA,"^",5)'="":$P(DATA,"^",5),$P($G(^PSDRUG(PSADRG,"660")),"^",2)'="":$P(^PSDRUG(PSADRG,"660"),"^",2),1:"") K DATA
+HAVEUOM ;
+ I $G(PSAUOM)="" G NOUOM
+ S UOM=$P($G(^DIC(51.5,PSAUOM,0)),"^"),UOMDATA=UOM_"~"_PSAUOM
+ S $P(PSADATA,"^",12)=UOMDATA,$P(^XTMP("PSAPV",PSACTRL,"IT",PSALINE),"^",12)=UOMDATA
+ K UOMDATA,UOM Q
+NOUOM W ?50,"(Blank)"
+ Q
+PSANDC1 ;Called to format NDC to delimited format
+ I $L(PSANDC)=12 S PSANDCX=$E(PSANDC,1,6)_"-"_$E(PSANDC,7,10)_"-"_$E(PSANDC,11,12) Q
+ I $L(PSANDC)=11 S PSANDCX=$E(PSANDC,1,5)_"-"_$E(PSANDC,6,9)_"-"_$E(PSANDC,10,11) Q
+ S PSANDCX=PSANDC
+ I $G(PSANDCX)="" S PSANDCX="Unknown NDC"
+ Q

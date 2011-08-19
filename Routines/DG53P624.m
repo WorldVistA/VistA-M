@@ -1,0 +1,219 @@
+DG53P624 ;ALB/CMF - PATCH DG*5.3*624 INSTALL UTILITIES ; 09/30/04 8:14am
+ ;;5.3;Registration;**624**;Aug 13, 1993
+ ;
+ENV ;Main entry point for Environment check point.
+ ;
+ S XPDABORT=""
+ D PROGCHK(.XPDABORT) ;checks programmer variables
+ I XPDABORT="" K XPDABORT
+ Q
+ ;
+ ;
+PRE ;Main entry point for Pre-init items.
+ ;
+ Q
+ ;
+ ;
+POST ;Main entry point for Post-init items.
+ D MAPRS
+ D BULLETIN
+ Q
+ ;
+MAPRS ; set maximum annual pension rate parameters
+ D BMES^XPDUTL("*****")
+ D MES^XPDUTL("Setting Maximum Annual Pension Rate Parameters")
+ ;
+ ;set MAPR rate parameter to 5(%)
+ D SETPARM("DGMT MAPR GLOBAL RATE",1999,5)
+ D SETPARM("DGMT MAPR GLOBAL RATE",2000,5)
+ D SETPARM("DGMT MAPR GLOBAL RATE",2001,5)
+ D SETPARM("DGMT MAPR GLOBAL RATE",2002,5)
+ D SETPARM("DGMT MAPR GLOBAL RATE",2003,5)
+ D SETPARM("DGMT MAPR GLOBAL RATE",2004,5)
+ ;
+ ;set MAPR max values                         
+ D SETPARM("DGMT MAPR 0 DEPENDENTS",1999,8989)
+ D SETPARM("DGMT MAPR 0 DEPENDENTS",2000,9304)
+ D SETPARM("DGMT MAPR 0 DEPENDENTS",2001,9556)
+ D SETPARM("DGMT MAPR 0 DEPENDENTS",2002,9690)
+ D SETPARM("DGMT MAPR 0 DEPENDENTS",2003,9894)
+ D SETPARM("DGMT MAPR 0 DEPENDENTS",2004,10162)
+ ;
+ D SETPARM("DGMT MAPR 1 DEPENDENTS",1999,11773)
+ D SETPARM("DGMT MAPR 1 DEPENDENTS",2000,12186)
+ D SETPARM("DGMT MAPR 1 DEPENDENTS",2001,12516)
+ D SETPARM("DGMT MAPR 1 DEPENDENTS",2002,12692)
+ D SETPARM("DGMT MAPR 1 DEPENDENTS",2003,12959)
+ D SETPARM("DGMT MAPR 1 DEPENDENTS",2004,13309)
+ ;
+ D SETPARM("DGMT MAPR N DEPENDENTS",1999,1532)
+ D SETPARM("DGMT MAPR N DEPENDENTS",2000,1586)
+ D SETPARM("DGMT MAPR N DEPENDENTS",2001,1630)
+ D SETPARM("DGMT MAPR N DEPENDENTS",2002,1653)
+ D SETPARM("DGMT MAPR N DEPENDENTS",2003,1688)
+ D SETPARM("DGMT MAPR N DEPENDENTS",2004,1734)
+ ;
+ D MES^XPDUTL("...Rates set.")
+ D MES^XPDUTL("*****")
+ Q
+ ;
+SETPARM(DGPARM,DGINST,DGVALU) ;set PACKAGE entity parameters
+ ;
+ ;  DBIA: #2263 SUPPORTED PARAMETER TOOL ENTRY POINTS
+ ;
+ ;  Input:
+ ;    DGPARM - PARAMETER DEFINITION name
+ ;    DGINST - parameter instance
+ ;    DGVALU - parameter value
+ ;
+ ;  Output:
+ ;    None
+ ;
+ N DGERR
+ ;
+ D EN^XPAR("PKG",DGPARM,DGINST,DGVALU,.DGERR)
+ I '$G(DGERR) D
+ .D MES^XPDUTL(DGPARM_" parameter, instance "_DGINST_", set to "_DGVALU_".")
+ E  D
+ .D MES^XPDUTL(DGPARM_" parameter, instance "_DGINST_", FAILED! ("_DGVALU_")")
+ Q
+ ;
+ ;
+PROGCHK(XPDABORT) ;checks for necessary programmer variables
+ ;
+ I '$G(DUZ)!($G(DUZ(0))'="@")!('$G(DT))!($G(U)'="^") DO
+ .D BMES^XPDUTL("*****")
+ .D MES^XPDUTL("Your programming variables are not set up properly.")
+ .D MES^XPDUTL("Installation aborted.")
+ .D MES^XPDUTL("*****")
+ .S XPDABORT=2
+ Q
+ ;
+BULLETIN ;
+ N ZTDTH,ZTIO,ZTDESC,ZTRTN,ZTSAVE
+ S ZTDTH=$H
+ S ZTIO=""
+ S ZTDESC="DG*5.3*624 Post-Install message"
+ S ZTRTN="DQMESS^DG53P624"
+ S ZTSAVE("DUZ")=""
+ S ZTSAVE("JVAL")=$J
+ D ^%ZTLOAD
+ I $G(ZTSK) D BMES^XPDUTL("POST-INSTALL CLEANUP MESSAGE QUEUED TO SEND")
+ I '$G(ZTSK) D BMES^XPDUTL("PROBLEM: POST-INSTALL CLEANUP MESSAGE NOT SENT")
+ ;
+ I $D(^XTMP("DG",$J,"PATCH 624 ERROR MESSAGE")) DO
+ . D BMES^XPDUTL("PROBLEM SENDING MESSAGE")
+ . D MES^XPDUTL("CHECK FOR ^XTMP(""DG"",$J,""PATCH 624 CLEANUP BULLETIN"") GLOBAL")
+ . D MES^XPDUTL("CHECK FOR ^XTMP(""DG"",$J,""PATCH 624 ERROR MESSAGE"") GLOBAL")
+ D BMES^XPDUTL("Means Test database cleanup has been completed.  Check your VA Mailman")
+ D MES^XPDUTL("mailbox for the ""DG*5.3*624 External value cleanup"" message.")
+ D BMES^XPDUTL("If you do not receive an E-mail, remember to check the following globals:")
+ D MES^XPDUTL("  ^XTMP(""DG"",$J,""PATCH 624 CLEANUP BULLETIN"")")
+ D MES^XPDUTL("  ^XTMP(""DG"",$J,""PATCH 624 ERROR MESSAGE"")")
+ Q
+ ;
+DQMESS ;
+ N DGMMLNE
+ ;*Create bulletin head to identify cleanup records
+ K ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN")
+ S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",1)="This message indicates the patients in the Income Person file (408.13)"
+ S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",2)=" and the Income Relation file (408.22) that have had external values"
+ S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",3)=" in the STATE, LIVED WITH PATIENT, and CONTRIBUTED TO SUPPORT"
+ S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",4)=" fields converted to internal pointer or set of code values."
+ S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",5)=" "
+ S DGMMLNE=6
+ ;
+ ;*Perform cleanup
+ D STATE
+ D CLEAN
+ ;
+ ;*Send message
+ I $O(^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",11))="" DO
+ .S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",11)=" "
+ .S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",12)=" No corrupted records found."
+ .S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",13)=" "
+ ;
+ ;* Queue message to be sent
+ S XMSUB="DG*5.3*624 External value cleanup"
+ S XMDUZ="DG*5.3*624 Install Cleanup"
+ S XMTEXT="^XTMP(""DG"",JVAL,""PATCH 624 CLEANUP BULLETIN"","
+ S XMY(DUZ)=""
+ S XMY(.5)=""
+ S XMY("G.EAS_1_57@FORUM.VA.GOV")=""
+ D ^XMD
+ S DGMMLNE=$P($$FMADD^XLFDT($$NOW^XLFDT,,,5),".")_U_$G(XMMG)_U_$G(XMZ)
+ S ^XTMP("DG",JVAL,"PATCH 624 ERROR MESSAGE",0)=DGMMLNE
+ S DGMMLNE=$P($$FMADD^XLFDT($$NOW^XLFDT,,,5),".")
+ S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",0)=DGMMLNE
+ I '$D(XMMG) K ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN")
+ Q
+ ;
+STATE ;Correct STATE field in 408.13/1.6 with text instead of pointers
+ N DA,STATE,PTR
+ ;* Setup message text
+ S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",DGMMLNE)="Checking STATE field (1.6) in the INCOME PERSON file (408.13)..."
+ S DGMMLNE=DGMMLNE+1
+ S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",DGMMLNE)=" "
+ S DGMMLNE=DGMMLNE+1
+ ;
+ S DA=0 F  S DA=$O(^DGPR(408.13,DA)) Q:'DA  D
+ . Q:'$D(^DGPR(408.13,DA,1))
+ . S STATE=$P(^DGPR(408.13,DA,1),"^",6)
+ . Q:(+STATE=STATE)  Q:(STATE']"")
+ . S PTR=$O(^DIC(5,"B",STATE,""))
+ . S $P(^DGPR(408.13,DA,1),"^",6)=PTR
+ .;
+ . S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",DGMMLNE)="  State for "_$P(^DGPR(408.13,DA,0),"^",1)_"'s entry "_DA_" has been changed: "
+ . S DGMMLNE=DGMMLNE+1
+ . S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",DGMMLNE)="     "_STATE_" has been changed to "_PTR_" IEN from STATE file (5)."
+ . S DGMMLNE=DGMMLNE+1
+ . S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",DGMMLNE)=" "
+ . S DGMMLNE=DGMMLNE+1
+ Q
+ ;
+CLEAN ;Clean up text "YES" and "NO" values in 408.22/.06 and 408.22/.1
+ N DA,LWP,CTS
+ ;*Setup message text
+ S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",DGMMLNE)="Checking LIVED WITH PATIENT field (.06) in the INCOME RELATION file (408.22)..."
+ S DGMMLNE=DGMMLNE+1
+ S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",DGMMLNE)=" "
+ S DGMMLNE=DGMMLNE+1
+ ;
+ S DA=0 F  S DA=$O(^DGMT(408.22,DA)) Q:'DA  D
+ . S LWP=$P($G(^DGMT(408.22,DA,0)),"^",6)   ;Lived With Patient
+ . Q:(+LWP=LWP)  Q:(LWP']"")
+ . S $P(^DGMT(408.22,DA,0),"^",6)=$S(LWP="YES":1,LWP="NO":0,1:"")
+ . S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",DGMMLNE)="  LIVED WITH PATIENT for "_$P($G(^DPT($P($G(^DGMT(408.22,DA,0)),"^",1),0)),"^",1)_"'s entry "_DA_" has been changed: "
+ . S DGMMLNE=DGMMLNE+1
+ . S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",DGMMLNE)="     "_LWP_" has been changed to "_$S(LWP="YES":1,LWP="NO":0,1:"NULL")_"."
+ . S DGMMLNE=DGMMLNE+1
+ . S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",DGMMLNE)=" "
+ . S DGMMLNE=DGMMLNE+1
+ .;
+ . S DIK="^DGMT(408.22,"
+ . S DIK(1)=".06"
+ . D EN^DIK
+ . K DIK
+ ;
+ ;
+ S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",DGMMLNE)="Checking CONTRIBUTED TO SUPPORT field (.1) in the INCOME RELATION file (408.22)..."
+ S DGMMLNE=DGMMLNE+1
+ S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",DGMMLNE)=" "
+ S DGMMLNE=DGMMLNE+1
+ ;
+ S DA=0 F  S DA=$O(^DGMT(408.22,DA)) Q:'DA  D
+ . S CTS=$P($G(^DGMT(408.22,DA,0)),"^",10)   ;Contributed To Support
+ . Q:(+CTS=CTS)  Q:(CTS']"")
+ . S $P(^DGMT(408.22,DA,0),"^",10)=$S(CTS="YES":1,CTS="NO":0,1:"")
+ . S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",DGMMLNE)="  CONTRIBUTED TO SUPPORT for "_$P($G(^DPT($P($G(^DGMT(408.22,DA,0)),"^",1),0)),"^",1)_"'s entry "_DA_" has been changed: "
+ . S DGMMLNE=DGMMLNE+1
+ . S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",DGMMLNE)="     "_CTS_" has been changed to "_$S(CTS="YES":1,CTS="NO":0,1:"NULL")_"."
+ . S DGMMLNE=DGMMLNE+1
+ . S ^XTMP("DG",JVAL,"PATCH 624 CLEANUP BULLETIN",DGMMLNE)=" "
+ . S DGMMLNE=DGMMLNE+1
+ .;
+ . S DIK="^DGMT(408.22,"
+ . S DIK(1)=".06"
+ . D EN^DIK
+ . K DIK
+ Q

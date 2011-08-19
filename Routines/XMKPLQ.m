@@ -1,0 +1,98 @@
+XMKPLQ ;ISC-SF/GMB-Post local msgs to correct queues ;07/28/2000  14:34
+ ;;8.0;MailMan;;Jun 28, 2002
+ ; Replaces ^XMADJF0, ZTSK^XMADGO (ISC-WASH/CAP)
+GO ;
+ ; Variables provided through TASKMAN:  XMHANG
+ N XMACTIVE,XMUID,XMQLIST,XMTSTAMP,XMGROUP,XMCNT,XMQUEUE,XMREC
+ I $D(ZTQUEUED) S ZTREQ="@"
+ L +^XMBPOST("POST_Mover"):1 E  Q
+ I $D(ZTQUEUED) S %=$$PSET^%ZTLOAD(ZTSK)
+ S XMACTIVE=$$TSTAMP^XMXUTIL1
+ F  D  Q:$P($G(^XMB(1,1,0)),U,16)
+ . D GETQ(.XMQLIST) ; Get new parameters for grouping
+ . S XMTSTAMP=""
+ . F  S XMTSTAMP=$O(^XMBPOST("BOX",XMTSTAMP)) Q:XMTSTAMP=""  D  Q:$$TSTAMP^XMXUTIL1-XMACTIVE>30
+ . . S XMGROUP=""
+ . . F  S XMGROUP=$O(^XMBPOST("BOX",XMTSTAMP,XMGROUP)) Q:XMGROUP=""  D
+ . . . S XMUID=0
+ . . . F  S XMUID=$O(^XMBPOST("BOX",XMTSTAMP,XMGROUP,XMUID)) Q:XMUID=""  S XMREC=^(XMUID)  D
+ . . . . S XMCNT=+XMREC
+ . . . . S XMQUEUE=$$WHICHQ(XMQLIST(XMGROUP),XMCNT)
+ . . . . I XMGROUP="M" D
+ . . . . . D MQUEUE(XMTSTAMP,XMUID,XMQUEUE,XMREC)
+ . . . . E  D
+ . . . . . D RQUEUE(XMTSTAMP,XMUID,XMQUEUE,XMREC)
+ . . . . D STATS(XMGROUP,XMQUEUE,XMCNT)
+ . . . . K ^XMBPOST("BOX",XMTSTAMP,XMGROUP,XMUID)
+ . I $$TSTAMP^XMXUTIL1-XMACTIVE>30 D  Q
+ . . D ZTSK
+ . . S XMACTIVE=$$TSTAMP^XMXUTIL1
+ . H XMHANG
+ L -^XMBPOST("POST_Mover")
+ I $D(ZTQUEUED) D PCLEAR^%ZTLOAD(ZTSK)
+ Q
+GETQ(XMQLIST) ;
+ N X
+ S X=$G(^XMB(1,1,6))
+ S XMQLIST("M")=$P(X,U),XMQLIST("R")=$P(X,U,2)
+ Q
+WHICHQ(XMQLIST,XMCNT) ;
+ N XMQUEUE,XMQLEN
+ I XMQLIST'["," Q 1
+ S XMQLEN=$L(XMQLIST,",")
+ F XMQUEUE=1:1:$L(XMQLIST,",") Q:XMCNT<$P(XMQLIST,",",XMQUEUE)
+ Q $S(XMCNT<$P(XMQLIST,",",XMQUEUE):XMQUEUE,1:XMQUEUE+1)
+RQUEUE(XMTSTAMP,XMUID,XMQUEUE,XMREC) ; Put replies into queue
+ N XMZ,XMTSQ
+ ;If the response is already in the queue, find out its Timestamp
+ ;and file the new response right next to it.
+ S XMZ=$P(XMUID,U,1)
+ S XMTSQ=$O(^XMBPOST("R",XMQUEUE,"B",XMZ,0))
+ I XMTSQ S XMTSTAMP=XMTSQ
+ E  S ^XMBPOST("R",XMQUEUE,"B",XMZ,XMTSTAMP)=""
+ S ^XMBPOST("R",XMQUEUE,XMTSTAMP,XMZ,$P(XMUID,U,2))=XMREC
+ Q
+MQUEUE(XMTSTAMP,XMUID,XMQUEUE,XMREC) ; Put new & forwarded messages into queue
+ S ^XMBPOST("M",XMQUEUE,XMTSTAMP,XMUID)=XMREC
+ Q
+STATS(XMGROUP,XMQUEUE,XMCNT) ;
+ N XMSTATS
+ L +^XMBPOST("QSTATS",XMGROUP,XMQUEUE)
+ S XMSTATS=$G(^XMBPOST(XMGROUP,XMQUEUE)),^(XMQUEUE)=($P(XMSTATS,U,1)+1)_U_($P(XMSTATS,U,2)+XMCNT)
+ L -^XMBPOST("QSTATS",XMGROUP,XMQUEUE)
+ Q
+ZTSK ; START Delivery Background Processes
+ Q:$P(^XMB(1,1,0),U,16)  ;Quit if Background Filer Stop Flag
+ N XMGROUP,XMQUEUE,ZTRTN,ZTSAVE,ZTDESC
+ F XMGROUP="M","R" D  ; Check each queue for messages
+ . S XMQUEUE=""
+ . F  S XMQUEUE=$O(^XMBPOST(XMGROUP,XMQUEUE)) Q:XMQUEUE'>0  D
+ . . Q:$D(^XMBPOST(XMGROUP,XMQUEUE))<10  ; Quit if nothing in queue
+ . . L +^XMBPOST(XMGROUP,XMQUEUE):1 E  Q  ; If node locked, there is already one running
+ . . S (ZTSAVE("XMGROUP"),ZTSAVE("XMQUEUE"),ZTSAVE("XMHANG"))=""
+ . . S ZTDESC=$$EZBLD^DIALOG($S(XMGROUP="M":36230,1:36231),XMQUEUE) ; MailMan: Message/Response Delivery Queue |1|
+ . . S ZTRTN="GO^XMTDL"
+ . . D TASKIT(ZTRTN,ZTDESC,.ZTSAVE) H 0 ; Start a job, Give TaskMan a chance to start it (hang)
+ . . L -^XMBPOST(XMGROUP,XMQUEUE)
+ Q
+TASKIT(ZTRTN,ZTDESC,ZTSAVE) ;
+ N X,ZTSK,ZTQUEUED,ZTCPU,ZTDTH,ZTIO
+ I '$D(ZTCPU),$D(^XMB(1,1,0)) S X=$P(^(0),U,12) I X'="" S ZTCPU=$P(X,",",2)
+ S ZTIO="",ZTDTH=$H
+ D ^%ZTLOAD
+ Q
+JOB ;Start background filer when TaskMan can't
+JOBGO S IO="",IO(0)="" D DT^DICRW G GO^XMTDL
+ Q
+CHKQ ; Input transform for file 4.3, fields 241 and 242
+ K:$L(X)>120!($L(X)<1) X Q:'$D(X)
+ K:X'?1.N.9(1","1.N) X Q:'$D(X)
+ N I
+ F I=1:1:$L(X,",")-1 I $P(X,",",I)'<$P(X,",",I+1) K X Q
+ Q
+HELPQ ; Executable help for file 4.3, fields 241 and 242
+ ;You determine the number of delivery queues (10 max.) ...
+ N XMTEXT
+ D BLD^DIALOG(36232,"","","XMTEXT","F")
+ D MSG^DIALOG("WM","",79,"","XMTEXT")
+ Q

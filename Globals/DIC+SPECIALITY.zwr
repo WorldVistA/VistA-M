@@ -1,0 +1,10 @@
+SPECIALITY
+ZWR
+^DIC(7.1,0)="SPECIALITY^7.1^"
+^DIC(7.1,0,"GL")="^DIC(7.1,"
+^DIC(7.1,"%",0)="^1.005^1^1"
+^DIC(7.1,"%",1,0)="VA"
+^DIC(7.1,"%","B","VA",1)=""
+^DIC(7.1,"%D",0)="^^2^2^2950202^"
+^DIC(7.1,"%D",1,0)="This file identifies locally added specialties and their"
+^DIC(7.1,"%D",2,0)="associated services."

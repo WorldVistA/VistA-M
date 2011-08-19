@@ -1,0 +1,40 @@
+OCXOSCR2 ;SLC/RJS,CLA -  Post selection action for the Order Check Element File;10/29/98  12:37
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,74**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+ I $G(OCXSCR) K OCXSCR Q
+ ;
+ Q
+ ;
+S N OCXD0,OCXD1,OCXREC,OCXDISP,OCXNAM,OCXABBR,OCXELE,OCXHDR
+ ;
+ W ! D WAIT^DICD W ! S OCXHDR="This Element is used by: "
+ I $D(^OCXS(860.3,+Y)) M OCXELE=^OCXS(860.3,+Y)
+ E  Q
+ ;
+ W ! S OCXD0=0 F  S OCXD0=$O(^OCXS(860.2,OCXD0)) Q:'OCXD0  D
+ .K OCXREC M OCXREC=^OCXS(860.2,OCXD0)
+ .K OCXDISP S OCXDISP(1)="** Rule: "_$P(OCXREC(0),U,1)
+ .S OCXD1=0 F  S OCXD1=$O(OCXREC("C",OCXD1)) Q:'OCXD1  D
+ ..S OCXDISP(2)="  Condition: "_$P(OCXREC("C",OCXD1,0),U,1)
+ ..I ($P(OCXREC("C",OCXD1,0),U,2)=+Y) D DISPLAY
+ W !
+ ;
+ Q
+ ;
+SELECT ;
+ ;
+ N DIC,X,Y
+ ;
+ F  S DIC=860.3,DIC(0)="AEMQN" D ^DIC Q:(Y<1)  I (Y>0) D S
+ ;
+ Q
+ ;
+DISPLAY ;
+ ;
+ N OCXX
+ W !
+ I $L(OCXHDR) W !,OCXHDR,! S OCXHDR=""
+ S OCXX=0 F  S OCXX=$O(OCXDISP(OCXX)) Q:'OCXX  W OCXDISP(OCXX)
+ Q
+ ;

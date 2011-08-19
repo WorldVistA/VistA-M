@@ -1,0 +1,87 @@
+RGRSDYN1 ;ALB/RJS-BUILD DYNAMIC LINK LIST FOR A TFU ;06/09/97
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**1,3,8,23,27**;30 Apr 99
+ ;Reference to ^DGCN(391.91 supported by IA #2911
+ ;Reference to $$SEND2^VAFCUTL1 supported by IA #2779
+EN(CLIENT,CLASS) ;
+ ;CLIENT=HL7 CLIENT PROTOCOL AT TARGET SYSTEM
+ ;DATA CLASS (Opt.) = Pull from Subs. Registry ONLY
+ ;For now, anything else is both DESCRIPTIVE AND CLINICAL
+ S CLASS=$G(CLASS),CLIENT=$G(CLIENT)
+ Q:CLIENT=""  ;No receiver
+ N PPF,DFN,HERE,RGRS,PPFIEN,ICN,MPI
+PARS ;Parse local outbound message
+ N RGDC
+ D INITIZE^RGRSUTIL,EN^RGRSPAR1("RGRS")
+ ;Get DFN
+ S ICN=$G(RGRS("ICN")) Q:$G(ICN)']""
+ S DFN=$$GETDFN^MPIF001(ICN) Q:+DFN'>0
+ Q:+$$SEND2^VAFCUTL1(DFN,"T")  ;don't broadcast test patients
+ Q:$$IFLOCAL^MPIF001(DFN)
+ S PPF=$$GETVCCI^MPIF001(DFN)\1 Q:+PPF'>0
+ S PPFIEN=$$LKUP^XUAF4(PPF)
+ S HERE=$P($$SITE^VASITE,"^",3)\1
+NOTPPF ; if not ppf send only to ppf
+ I PPF'=HERE D  Q
+ . N PPFLINK,INDEX
+ . D LINK^HLUTIL3(PPFIEN,.PPFLINK)
+ . S INDEX=$O(PPFLINK(0))
+ . I INDEX]"" S HLL("LINKS",1)=CLIENT_"^"_PPFLINK(INDEX)
+ISPPF ;
+ I PPF=HERE D  Q
+ . N PARENT,INDEX,SUBCONTL,CHILDREN,INDEX1,NODE
+ . S NODE=$$MPINODE^MPIFAPI(DFN)
+ . S SUBCONTL=$P($G(NODE),"^",5)
+ . ;Get subscribers, return updated HLL array
+ . ;replaced with GET line tag: I SUBCONTL]"" D GET^HLSUB(SUBCONTL,+CLASS,CLIENT,.HLL)
+ . ;D GET(DFN,SUBCONTL,+CLASS,CLIENT,.HLL)
+ . D GETLINKS(.HLL)
+ . ;Get MPI link from SITE PARAMETER
+ . S MPI=$$MPILINK^MPIFAPI() D
+ . . I $P($G(MPI),U)'=-1 S HLL("LINKS",9999999999)=CLIENT_"^"_MPI
+ . . I $P($G(MPI),U)=-1 D
+ . . . N RGLOG,RGMTXT
+ . . . S RGMTXT=""
+ . . . D START^RGHLLOG(HLMTIEN,"","") D EXC^RGHLLOG(224,"No MPI link identified"_RGMTXT,DFN) D STOP^RGHLLOG(0)
+ ;
+ Q
+GETLINKS(HLL) ;
+ N RGTF,RGHL,X
+ S X=$$QUERYTF^VAFCTFU1($G(ICN),"RGTF")
+ ;LOOP THOUGH TF LIST AND GET LINK FOR EACH
+ N LP,CNT,STN,STNIEN,RGHL S CNT=1,LP=0 K ERROR
+ F  S LP=$O(RGTF(LP)) Q:LP=""  D
+ .S STN=$$STA^XUAF4($G(RGTF(LP)))
+ .S STNIEN=$$IEN^XUAF4(STN)
+ .Q:$P($$SITE^VASITE(),"^",3)=STN
+ .K RGHL D LINK^HLUTIL3(STNIEN,.RGHL)
+ .I '$O(RGHL(0)) S ERROR="-1^Unknown Logical Link for Station # "_STN_" Unable to send msg for patient "_DFN
+ .I $D(ERROR) D EXC^RGHLLOG(224,ERROR,DFN) K ERROR Q
+ .S HLL("LINKS",CNT)=CLIENT_"^"_$P(RGHL($O(RGHL(0))),"^"),CNT=CNT+1
+ Q
+GET(RGDFN,RGSCN,RGTP,RGCLP,RGLL) ;GET Subscribers
+ ;RGDFN - Patient IEN from FILE (#2)
+ ;RGSCN - Subcription Control Number
+ ;RGTP  - SUBSCRIBER TYPE (0,1,2)/Null=all
+ ;RGCLP - HL7 CLIENT PROTOCOL (required)
+ ;RGLL  - HLL("LINKS",x)=CLIENT PROTOCOL^LOGICAL LINK (passed by reference)
+ N RG,RGI,RGLLIEN,RGLLI,RGLLS,RGLLN,RGLLZ,RGTF,RGTFF,RGTFI,RGX,HLER
+ S U="^"
+ ;get subscribers
+ I RGSCN'="" D GET^HLSUB(RGSCN,RGTP,RGCLP,.RGLL)
+ ;check for a treating facility that is not a subscriber
+ S RGI=0 F  S RGI=$O(^DGCN(391.91,"B",RGDFN,RGI)) Q:'RGI  I $D(^DGCN(391.91,RGI,0)) S RGTF=$G(^DGCN(391.91,RGI,0)),RGTFI=$P(RGTF,U,2) D:RGTFI'=+$$SITE^VASITE
+ .;checking INSTITUTION of links to the TREATING FACILITY INSTITUTION
+ .;RGTFF=1 - Flag for adding Treating Facility to Subcription Control
+ .S RGTFF=1
+ .S RGX=0 F  S RGX=$O(RGLL("LINKS",RGX)) Q:'RGX!(RGTFF=0)  D
+ ..S RGLLIEN=$P(RGLL("LINKS",RGX),U,6)
+ ..I $G(RGLL)="" S RGLL("ERR",RGX)="No logical link defined for "_$P(RGLL("LINKS",RGX),U)_"." Q
+ ..S RGLLI=RGTFI,RGLLN=$P(RGLL("LINKS",RGX),U,2)
+ ..I '$L(RGLLI),'$D(RGLL("ERR",RGX)) S RGLL("ERR",RGX)="Link "_$P(RGLL("LINKS",RGX),U,2)_" does not contain a link to the INSTUTUTION (#4) file." Q
+ ..I $L(RGLLI) S:RGLLI'=RGTFI RGTFF=1 I RGLLI=RGTFI S RGTFF=0 Q
+ .;If TF not in Subscriber list, kill list, add to subscription control file then get new list 
+ .I RGTFF=1 D LINK^HLUTIL3("`"_RGTFI,.RG,"I") S RGLLI=$O(RG(0)) D
+ ..I +$G(RGLLI)>0 S RGLLN=$P(RG(RGLLI),U),RGLLI=RGTFI
+ ..I +$G(RGLLI)>0 S:RGSCN="" RGSCN=$$GETSCN^RGJCREC(RGDFN) D UPD^HLSUB(RGSCN,RGLLN,RGTP,$$NOW^XLFDT,,,.HLER) K RGLL("LINKS") D GET^HLSUB(RGSCN,RGTP,RGCLP,.RGLL)
+ ..I +$G(RGLLI)'>0 W !,"Unable to find Logical link for "_$$GET1^DIQ(4,+RGTFI_",",.01)
+ Q

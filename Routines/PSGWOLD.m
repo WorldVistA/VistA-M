@@ -1,0 +1,61 @@
+PSGWOLD ;BHAM ISC/PTD,CML-Purge Old Inventory Data (Auto Replenish, On-Demands, Returns & Backorder Data) ; 21 Jul 93 / 3:16 PM
+ ;;2.3; Automatic Replenishment/Ward Stock ;;4 JAN 94
+ W !!,"This option will purge data from files PSI(58.1), PSI(58.3), and PSI(58.19).",!,"You should retain the data for at least 1 quarter.",!,"Therefore, the option will NOT ALLOW DELETION of data newer than ""T-100"".",!!
+ W ?34,"**WARNING**",!?22,"Since this option is CPU intensive,",!?17,"it should be QUEUED to run in the ""off"" hours!",!!
+BDT S BDT=0 I '$O(^PSI(58.19,"B",BDT)) W !,"There is NO data in the Pharmacy AOU Inventory file.",!! K BDT Q
+ E  S BDT=$P($O(^PSI(58.19,"B",BDT)),".")
+EDT S %DT="AEXP",%DT("A")="Purge INVENTORY data older than (and including): ",%DT("B")="T-100" D ^%DT K %DT G:Y<0 END S (EDT,X2)=Y
+ D NOW^%DTC S X1=$P(%,".") D ^%DTC I X<100 W !!,"Data less than 100 days old may NOT BE DELETED!",!! G EDT
+ I BDT>EDT W !!,"No INVENTORY data to purge in selected date range.",!! G END
+ASK S Y=EDT X ^DD("DD") W !!,"I will now delete INVENTORY data that is older than (and including) ",Y,!,"Are you SURE that is what you want to do?  NO// " R X:DTIME
+ G:'$T!("^Nn"[$E(X)) END
+ I "YyNn"'[$E(X) W !!,"Answer ""yes"" if you wish to purge INVENTORY data.",!,"Answer ""no"" or <return> if you do not.",!! G ASK
+ S ZTIO="",ZTRTN="ENQ^PSGWOLD",ZTDESC="Purge Inventory Data" F G="BDT","EDT" S:$D(@G) ZTSAVE(G)=""
+ D ^%ZTLOAD,HOME^%ZIS I $D(ZTSK) W !,"INVENTORY purge queued!" K ZTSK
+ G END
+ ;
+ENQ ;ENTRY POINT WHEN QUEUED
+ S LPDT=BDT-1,DATDA=0
+DTLP S LPDT=$O(^PSI(58.19,"B",LPDT)) G:($P(LPDT,".")>EDT)!'LPDT BO
+DTDA S DATDA=$O(^PSI(58.19,"B",LPDT,DATDA)),AOUDA=0 G:'DATDA DTLP S DELFL="" D INVK G AOULP
+AOULP S AOUDA=$O(^PSI(58.1,AOUDA)),DRGDA=0 G:'AOUDA DTDA
+DRGLP S DRGDA=$O(^PSI(58.1,AOUDA,1,DRGDA)) G:'DRGDA AOULP
+ ;
+AR ;DELETE DATA IN THE INVENTORY SUBFILE 58.12
+ I $D(^PSI(58.1,AOUDA,1,DRGDA,1,DATDA,0)) S DIE="^PSI(58.1,"_AOUDA_",1,"_DRGDA_",1,",DA=DATDA,DA(1)=DRGDA,DA(2)=AOUDA,DR=".01///@" D ^DIE K DIE
+ G RETURNS
+ ;
+RETURNS ;DELETE DATA IN THE RETURNS SUBFILE 58.15
+ S RETDT=0
+RETLP S RETDT=$O(^PSI(58.1,AOUDA,1,DRGDA,3,RETDT)) G:'RETDT OD
+ I RETDT'>EDT S DIE="^PSI(58.1,"_AOUDA_",1,"_DRGDA_",3,",DA=RETDT,DA(1)=DRGDA,DA(2)=AOUDA,DR=".01///@" D ^DIE K DIE G RETLP
+ G RETLP
+ ;
+OD ;DELETE DATA IN THE ON-DEMAND REQUEST SUBFILE 58.28
+ S ODA=0
+ODLP S ODA=$O(^PSI(58.1,AOUDA,1,DRGDA,5,ODA)) G:'ODA DRGLP S ODT=$P($P(^PSI(58.1,AOUDA,1,DRGDA,5,ODA,0),"^"),".")
+ I ODT'>EDT S DIE="^PSI(58.1,"_AOUDA_",1,"_DRGDA_",5,",DA=ODA,DA(1)=DRGDA,DA(2)=AOUDA,DR=".01///@" D ^DIE K DIE G ODLP
+ G ODLP
+ ;
+BO ;DELETE DATA IN FILE 58.3 - BACKORDER FILE
+ S (DRG,BODTDA)=0
+BXREF F JJ=0:0 S DRG=$O(^PSI(58.3,DRG)) Q:'DRG  I '$O(^PSI(58.3,DRG,1,0)) S DIE="^PSI(58.3,",DA=DRG,DR=".01///@" D ^DIE K DIE
+BODTLP S DELFL="",BODTDA=$O(^PSI(58.3,"D",BODTDA)),BODRG=0 G:'BODTDA DONE
+BODRGLP S BODRG=$O(^PSI(58.3,"D",BODTDA,BODRG)),BOAOU=0 D:'BODRG INVK G:'BODRG BODTLP
+BOAOULP S BOAOU=$O(^PSI(58.3,"D",BODTDA,BODRG,BOAOU)),BOINV=0 G:'BOAOU BODRGLP
+BOINVLP S BOINV=$O(^PSI(58.3,"D",BODTDA,BODRG,BOAOU,BOINV)) G:'BOINV BOAOULP
+ I (($P(^PSI(58.3,BODRG,1,BOAOU,1,BOINV,0),"^",5)'="")&($P(^(0),"^",5)'>EDT)) S DIE="^PSI(58.3,"_BODRG_",1,"_BOAOU_",1,",DA=BOINV,DA(1)=BOAOU,DA(2)=BODRG,DR=".01///@" D ^DIE K DIE D BODEL G BOINVLP
+ S DELFL="NO" G BOINVLP
+ ;
+INVK ;DELETE DATA IN FILE 58.19 - PHARMACY AOU INVENTORY FILE
+ I DELFL="" S DIK="^PSI(58.19,",DA=$S(DATDA="":BODTDA,1:DATDA) D ^DIK K DIK
+ Q
+ ;
+BODEL ;IF ALL BACKORDER DATES DELETED FOR BO AOU, THEN DELETE AOU FROM SUBFILE.  IF ALL AOUS DELETED FOR DRUG, THEN DELETE DRUG FROM FILE.
+ I '$O(^PSI(58.3,BODRG,1,BOAOU,1,0)) S DIE="^PSI(58.3,"_BODRG_",1,",DA=BOAOU,DA(1)=BODRG,DR=".01///@" D ^DIE K DIE
+ I '$O(^PSI(58.3,BODRG,1,0)) S DIE="^PSI(58.3,",DA=BODRG,DR=".01///@" D ^DIE K DIE
+ Q
+ ;
+DONE D ^PSGWOLD1
+END K ZTSK,BDT,EDT,X,Y,LPDT,DATDA,AOUDA,INVDA,DRGDA,ODA,ODT,RETDT,BODTDA,BODRG,BOAOU,BOINV,DELFL,DRG,JJ,%,%I,%H,DA,DR,G,ZTIO
+ S:$D(ZTQUEUED) ZTREQ="@" Q

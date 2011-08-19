@@ -1,0 +1,117 @@
+GMTSLRCP ; SLC/JER,KER - Cytopathology Comp Dvr ; 09/21/2001
+ ;;2.7;Health Summary;**28,47**;Oct 20, 1995
+ ;
+ ; External References
+ ;    DBIA   525  ^LR( all fields
+ ;    DBIA 10035  ^DPT( field 63 Read w/Fileman
+ ;    DBIA  2056  $$GET1^DIQ (file 2)
+ ;                   
+MAIN ; Cytopathology
+ N GMI,IX,IX0,IX1,MAX,LRDFN
+ S LRDFN=+($$GET1^DIQ(2,(+($G(DFN))_","),63,"I")) Q:+LRDFN=0  Q:'$D(^LR(LRDFN))
+ S MAX=$S(+($G(GMTSNDM))>0:+($G(GMTSNDM)),1:999) D ^GMTSLRPE
+ Q:'$D(^TMP("LRCY",$J))  S IX=""
+ F GMI=1:1:MAX S IX=$O(^TMP("LRCY",$J,IX)) Q:IX=""  D  Q:$D(GMTSQIT)
+ . D:GMI>1 CKP^GMTSUP Q:$D(GMTSQIT)  W:GMI>1&'GMTSNPG ! S IX0=""
+ . F  S IX0=$O(^TMP("LRCY",$J,IX,IX0)) Q:IX0=""  D  Q:$D(GMTSQIT)
+ . . D TRVRS
+ K ^TMP("LRCY",$J)
+ Q
+TRVRS ; Traverses/Interprets ^TMP("LRCY",$J,
+ N GMS,SPEC
+ I IX0=0 D CKP^GMTSUP Q:$D(GMTSQIT)  W ?8,"Collected:",?19,$P(^TMP("LRCY",$J,IX,IX0),U),?31,"Acc:",?36,$P(^TMP("LRCY",$J,IX,IX0),U,2),! Q
+ I IX0=1 D CKP^GMTSUP Q:$D(GMTSQIT)  W ?9,"Specimen:" S GMS=0 F  S GMS=$O(^TMP("LRCY",$J,IX,IX0,GMS)) Q:GMS'>0  D CKP^GMTSUP Q:$D(GMTSQIT)  W ?19,^TMP("LRCY",$J,IX,IX0,GMS),!
+ I IX0=1,($P(^TMP("LRCY",$J,IX,IX0),U,2)'>0) D CKP^GMTSUP Q:$D(GMTSQIT)  W ?18,"** REPORT NOT YET RELEASED **",!
+ Q:IX0=1  D @$E(IX0,1,2)
+ Q
+AH ; Writes clinical history
+ N GMTSH,GMTSHL,GMTSHLI
+ D CKP^GMTSUP Q:$D(GMTSQIT)  W !,"Brief Clinical Hx:",!
+ S GMTSH=0
+ F  S GMTSH=$O(^TMP("LRCY",$J,IX,IX0,GMTSH)) Q:+GMTSH'>0  S GMTSHL=^(GMTSH) D
+ .I $L(GMTSHL)>78 S GMTSHL=$$WRAP^GMTSORC(GMTSHL,78)
+ .D CKP^GMTSUP Q:$D(GMTSQIT)  W $P(GMTSHL,"|"),! D
+ ..F GMTSHLI=2:1:$L(GMTSHL,"|") D CKP^GMTSUP Q:$D(GMTSQIT)  W:$P(GMTSHL,"|",GMTSHLI)]"" $P(GMTSHL,"|",GMTSHLI),!
+ Q
+G ; Writes Gross Description
+ N GMTSG,GMTSGL,GMTSGLI
+ D CKP^GMTSUP Q:$D(GMTSQIT)  W !,"Gross Description:",!
+ S GMTSG=0
+ F  S GMTSG=$O(^TMP("LRCY",$J,IX,IX0,GMTSG)) Q:GMTSG'>0  S GMTSGL=^(GMTSG) D
+ .I $L(GMTSGL)>78 S GMTSGL=$$WRAP^GMTSORC(GMTSGL,78)
+ .D CKP^GMTSUP Q:$D(GMTSQIT)  W $P(GMTSGL,"|"),! D
+ ..F GMTSGLI=2:1:$L(GMTSGL,"|") D CKP^GMTSUP Q:$D(GMTSQIT)  W:$P(GMTSGL,"|",GMTSGLI)]"" $P(GMTSGL,"|",GMTSGLI),!
+ Q
+MI ; Writes Microscopic exam/diagnosis field
+ N GMTSM,GMTSML,GMTSMLI
+ D CKP^GMTSUP Q:$D(GMTSQIT)  W !,"Microscopic exam:",!
+ S GMTSM=0
+ F  S GMTSM=$O(^TMP("LRCY",$J,IX,IX0,GMTSM)) Q:GMTSM'>0  S GMTSML=^(GMTSM) D
+ . I $L(GMTSML)>78 S GMTSML=$$WRAP^GMTSORC(GMTSML,78)
+ . D CKP^GMTSUP Q:$D(GMTSQIT)  W $P(GMTSML,"|"),! D
+ . . F GMTSMLI=2:1:$L(GMTSML,"|") D CKP^GMTSUP Q:$D(GMTSQIT)  W:$P(GMTSML,"|",GMTSMLI)]"" $P(GMTSML,"|",GMTSMLI),!
+ Q
+SR ; Writes Supplementary Reports
+ N GMTSLINE,GMTSL,GMTSR,SRDATE,X S IX1=0
+ F  S IX1=$O(^TMP("LRCY",$J,IX,IX0,IX1)) Q:IX1'>0  D  Q:$D(GMTSQIT)
+ . D CKP^GMTSUP Q:$D(GMTSQIT)  S SRDATE=^TMP("LRCY",$J,IX,IX0,IX1,0)
+ . S X=SRDATE D REGDTM4^GMTSU W !,"Supplementary Rpt: ",X,!
+ . S GMTSR=0
+ . F  S GMTSR=$O(^TMP("LRCY",$J,IX,IX0,IX1,GMTSR)) Q:GMTSR'>0  D  Q:$D(GMTSQIT)
+ . . S GMTSLINE=^TMP("LRCY",$J,IX,IX0,IX1,GMTSR) I $L(GMTSLINE)>78 S GMTSLINE=$$WRAP^GMTSORC(GMTSLINE,78)
+ . . D CKP^GMTSUP Q:$D(GMTSQIT)  W $P(GMTSLINE,"|"),! D
+ . . . F GMTSL=2:1:$L(GMTSLINE,"|") D  Q:$D(GMTSQIT)
+ . . . . D CKP^GMTSUP Q:$D(GMTSQIT)
+ . . . . W:$P(GMTSLINE,"|",GMTSL)]"" $P(GMTSLINE,"|",GMTSL),!
+ D CKP^GMTSUP Q:$D(GMTSQIT)  W !
+ Q
+ND ; Writes Diagnosis field
+ N GMTSD,GMTSDL,GMTSDLI
+ D CKP^GMTSUP Q:$D(GMTSQIT)  W !," Cytopathology Dx:",!
+ S GMTSD=0
+ F  S GMTSD=$O(^TMP("LRCY",$J,IX,IX0,GMTSD)) Q:GMTSD'>0  D  Q:$D(GMTSQIT)
+ . S GMTSDL=^(GMTSD)
+ . I $L(GMTSDL)>78 S GMTSDL=$$WRAP^GMTSORC(GMTSDL,78)
+ . D CKP^GMTSUP Q:$D(GMTSQIT)  W $P(GMTSDL,"|"),!
+ . F GMTSDLI=2:1:$L(GMTSDL,"|") D  Q:$D(GMTSQIT)
+ . . D CKP^GMTSUP Q:$D(GMTSQIT)
+ . . W:$P(GMTSDL,"|",GMTSDLI)]"" $P(GMTSDL,"|",GMTSDLI),!
+ Q
+OT ; Traverses/Interprets Organ/Tissue Subarray
+ N OT S OT=0 D CKP^GMTSUP Q:$D(GMTSQIT)
+ W ?7,"Topography:",?19,^TMP("LRCY",$J,IX,IX0,OT),!
+ F  S OT=$O(^TMP("LRCY",$J,IX,IX0,OT)) Q:OT=""  D @$E(OT,1)
+ Q
+D ; Writes Disease Field
+ D CKP^GMTSUP Q:$D(GMTSQIT)
+ W:OT="D1"!(GMTSNPG) ?9,"Diseases:"
+ W ?21,^TMP("LRCY",$J,IX,IX0,OT),!
+ Q
+M ; Writes Morphology Field
+ N GME
+ D CKP^GMTSUP Q:$D(GMTSQIT)
+ W ?7,"Morphology:",?21,$P(^TMP("LRCY",$J,IX,IX0,OT),U),!
+ D CKP^GMTSUP Q:$D(GMTSQIT)
+ S GME="" F  S GME=$O(^TMP("LRCY",$J,IX,IX0,OT,GME)) Q:GME=""  D  Q:$D(GMTSQIT)
+ . D CKP^GMTSUP Q:$D(GMTSQIT)
+ . W:GME[1!(GMTSNPG) ?9,"Etiology:"
+ . W ?23,^TMP("LRCY",$J,IX,IX0,OT,GME),!
+ Q
+P ; Writes Procedure Field
+ N GMTSJ,GMK S GMTSJ=$P(^TMP("LRCY",$J,IX,IX0,OT),U)
+ D CKP^GMTSUP Q:$D(GMTSQIT)
+ I $L(GMTSJ)>56 S GMTSJ=$$WRAP^GMTSORC(GMTSJ,56)
+ D CKP^GMTSUP Q:$D(GMTSQIT)  W:((OT="P1")!(GMTSNPG)) ?7,"Procedures:"
+ W ?21,$P(GMTSJ,"|"),!
+ F GMK=2:1:$L(GMTSJ,"|") D  Q:$D(GMTSQIT)
+ . D CKP^GMTSUP Q:$D(GMTSQIT)
+ . W:$P(GMTSJ,"|",GMK)]"" ?23,$P(GMTSJ,"|",GMK),!
+ K ^UTILITY($J,"W")
+ Q
+XI ; Writes ICD diagnoses
+ N GMTSDX D CKP^GMTSUP Q:$D(GMTSQIT)  W "  ICD-9 Diagnoses:" S GMTSDX=0
+ F  S GMTSDX=$O(^TMP("LRCY",$J,IX,IX0,GMTSDX)) Q:GMTSDX=""  D  Q:$D(GMTSQIT)
+ . D CKP^GMTSUP Q:$D(GMTSQIT)  W:GMTSNPG ?2,"ICD-9 Diagnoses:"
+ . W ?19,$P(^TMP("LRCY",$J,IX,IX0,GMTSDX),U)
+ . W ?28,$P(^TMP("LRCY",$J,IX,IX0,GMTSDX),U,2),!
+ Q

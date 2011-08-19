@@ -1,0 +1,34 @@
+ABSVMT ;VAMC ALTOONA/CTB - PRINT ONE MEAL TICKET   ;3/31/00  9:26 AM
+V ;;4.0;VOLUNTARY TIMEKEEPING;**3,6,10,18**;JULY 1994
+X(NAME,REPRINT) ;QUEUE ONE MEAL TICKET
+ I $D(ABSV("MEAL_PRINTER")) S (IOP,ZTIO)=ABSV("MEAL_PRINTER")
+ S %ZIS("A")="Select Meal Ticket Printer: ",%ZIS("B")="",%ZIS="Q"
+ D ^%ZIS I POP D HOME^%ZIS QUIT
+ I IO=IO(0),'$D(IO("Q")) D ONE,^%ZISC QUIT
+ S (IOP,ZTIO)=ION,%ZIS="Q"
+ S ZTRTN="ONE^ABSVMT",ZTDESC="PRINT VOLUNTEER MEAL TICKET"
+ S ZTDTH=$H,ZTSAVE("NAME")="",ZTSAVE("ABSVX*")="",ZTSAVE("ABSV*")="",ZTSAVE("REPRINT")="" D TIME^ABSVQ Q
+ONE ;PRINT ONE MEAL TICKET FOR ONE VOLUNTEER
+ ;GET PRINTER COLORS
+ N RED,LINE,BLACK,MESSAGE,BOLDON,BOLDOFF,DBLON,DBLOFF,FNAME
+ S X="IORVON;IORVOFF;IOINHI;IOINORM;IODWL;IOSWL"
+ D ENS^%ZISS
+ S RED=IORVON,BLACK=IORVOFF,BOLDON=IOINHI,BOLDOFF=IOINORM,DBLON=IODWL,DBLOFF=IOSWL D KILL^%ZISS
+ I $D(REPRINT) W !,BOLDON,DBLON,"* * REPRINT * *",DBLOFF,BOLDOFF,!!
+ W RED
+ W !," ****          ******"
+ W !,"  ****        ********   ",BLACK,"VOLUNTEER",RED
+ W !,"   ****      ****  ****     ",BLACK,"MEAL",RED
+ W !,"    ****    ****    ****   ",BLACK,"TICKET",RED
+ W !,"     ********** *********"
+ W !,"      ********   *********"
+ W !,BLACK
+ S FNAME=$P(NAME,",",2,99),NAME=$P(NAME,",")
+ W !!,RED,BOLDON,DBLON,NAME,BOLDOFF,DBLOFF,",",$E(FNAME,1,(40-($L(NAME)*2))),BLACK
+ W !!,"DATE: ",$$FULLDAT^ABSVU2(DT)
+ W !!,"NOT VALID FOR MORE THAN $",$J($P(ABSV("PARAM"),"^",5),0,2)
+ W !!?(IOM-2),"^",!?(IOM-3),"/|\",!,"_____________________________",?(IOM-2),"|",!,"Signature of Volunteer",?(IOM-2),"|"
+ W !,?(IOM-2),"I",!?(IOM-2),"M",!?(IOM-2),"P",!?(IOM-2),"R",!?(IOM-2),"I",!,"VA Form 10-3558, (ADP Test)",?(IOM-2),"N",!,"For use by Voluntary Service ONLY",?(IOM-2),"T"
+ I $D(REPRINT) W !,BOLDON,DBLON,"* * REPRINT * *",DBLOFF,BOLDOFF
+ W !!!!!!!
+ QUIT

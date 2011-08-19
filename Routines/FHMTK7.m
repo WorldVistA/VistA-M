@@ -1,0 +1,217 @@
+FHMTK7 ; HISC/NCA - Update Diet Restrictions ;12/6/00  15:14
+ ;;5.5;DIETETICS;**5**;Jan 28, 2005;Build 53
+ ; Update the Diet Restrictions For All Inpatients
+ ; 11/14/05 -P5- added standing order & SF for outpatients.
+ R !!,"Update All Diet Related Information for Patients? Y // ",X:DTIME Q:'$T!(X["^")
+ S:X="" X="Y" D TR^FH I $P("YES",X,1)'="",$P("NO",X,1)'="" W *7,!,"  Answer YES or NO" G FHMTK7
+ S ANS=X?1"Y".E Q:'ANS
+ F W1=0:0 S W1=$O(^FHPT("AW",W1)) Q:W1'>0  F FHDFN=0:0 S FHDFN=$O(^FHPT("AW",W1,FHDFN)) Q:FHDFN<1  S ADM=$G(^FHPT("AW",W1,FHDFN)) D:ADM PAT,STORD,SFMENU  ;P30
+ D SOO    ;update so for outpatient
+ D SFO    ;update sf for outpt.
+ Q
+STORD ;Update Standing orders for a patient, P30
+ D SO^FHMTK8
+ Q
+SFMENU ;Update SF Menu for a patient, P30
+ D SF^FHMTK8
+ Q
+PAT ; Update Restrictions for a patient
+ S FHORD=$P($G(^FHPT(FHDFN,"A",ADM,0)),"^",2) I FHORD<1 S DPAT="" G UPD
+ S Z=$G(^FHPT(FHDFN,"A",ADM,"DI",FHORD,0)),FHOR=$P(Z,"^",2,6) I "^^^^"[FHOR S DPAT="" G UPD
+ S DPAT=$O(^FH(111.1,"AB",FHOR,0)) G:DPAT="" UPD
+ Q:'$D(^TMP($J,+DPAT))
+ ;
+UPD ; Update Pattern
+ S (COM,PP)=""
+ F SP=0:0 S SP=$O(^FHPT(FHDFN,"P",SP)) Q:SP<1  S M2=$G(^(SP,0)) I $P(M2,"^",4)="Y" D
+ .S FP=+M2 I $D(^FH(111.1,+DPAT,"RES","B",FP)) Q
+ .D PURG Q
+ F R1=0:0 S R1=$O(^FH(111.1,+DPAT,"RES",R1)) Q:R1<1  S M2=$G(^(R1,0)),FP=+M2 I FP D
+ .S SP=$O(^FHPT(FHDFN,"P","B",FP,0)) I 'SP D ADD Q
+ .I $P($G(^FHPT(FHDFN,"P",SP,0)),"^",2)=$P(M2,"^",2) Q
+ .D CHG Q
+ G FIL
+CHG ; Change the Diet Restrictions
+ S MEAL=$P(M2,"^",2)
+ I $P($G(^FHPT(FHDFN,"P",SP,0)),"^",4)="Y" S M2=MEAL G CHG1 ;diet related
+ Q:MEAL=""
+ S M1=$P($G(^FHPT(FHDFN,"P",SP,0)),"^",2) Q:M1=""  S:M1="A" M1="BNE"
+ S M2="" F LP=1:1:$L(MEAL) I M1'[$E(MEAL,LP) S M2=M2_$E(MEAL,LP)
+ Q:M2=""
+ S M1=M1_M2,M2="" S:M1["B" M2="B" S:M1["N" M2=M2_"N" S:M1["E" M2=M2_"E"
+CHG1 S $P(^FHPT(FHDFN,"P",SP,0),"^",2)=M2
+ S PP=" Mod 1 "_$P(^FH(115.2,+FP,0),"^",1)_" ("_M2_")"_" (D)" D SET
+ Q
+ADD ; Add the Diet Restriction
+ S MEAL=$P($G(M2),"^",2) Q:MEAL=""
+ K DIC,DD,DO S DIC="^FHPT(FHDFN,""P"",",DIC(0)="L",DLAYGO=115,DA(1)=FHDFN,X=+FP
+A1 L +^FHPT(FHDFN,"P",0)
+ I '$D(^FHPT(FHDFN,"P",0)) S ^FHPT(FHDFN,"P",0)="^115.09PA^^"
+ S NUM=$P(^FHPT(FHDFN,"P",0),"^",3)+1
+ S $P(^FHPT(FHDFN,"P",0),"^",3)=NUM
+ L -^FHPT(FHDFN,"P",0) I $D(^FHPT(FHDFN,"P",NUM,0)) G A1
+ S DINUM=NUM D FILE^DICN S SP=+Y K DIC,DLAYGO,DINUM
+ S $P(^FHPT(FHDFN,"P",+SP,0),"^",2,4)=MEAL_"^^Y",PP=" Add 1 "_$P(^FH(115.2,+FP,0),"^",1)_" ("_$P(FP,"^",2)_")"_" (D)" D SET
+ Q
+PURG ; Purge the Old Restrictions
+ S M1=$P($G(^FHPT(FHDFN,"P",SP,0)),"^",2) Q:M1=""  S:M1="A" M1="BNE"
+ K DIK S DA(1)=FHDFN,DA=+SP,DIK="^FHPT("_DA(1)_",""P""," D ^DIK K DIK,DA S PP=" Del 1 "_$P(^FH(115.2,+FP,0),"^",1)_" ("_M1_")"_" (D)" D SET Q
+SET I $L(COM)+$L(PP)>120 S EVT="P^O^^"_$E(COM,2,999) D ^FHORX S COM=""
+ S COM=COM_PP
+ Q
+FIL ; File the Event
+ I COM'="" S EVT="P^O^^"_$E(COM,2,999) D ^FHORX
+ Q
+ ;
+SOO ;OUT SO
+ S FHCNT=0 K ^TMP("FH",$J)
+ F FHDFN=0:0 S FHDFN=$O(^FHPT("OP",FHDFN)) Q:FHDFN'>0  S FHSTADT="" F FHADAT=DT-1:0 S FHADAT=$O(^FHPT(FHDFN,"OP","B",FHADAT)) Q:FHADAT'>0  D
+ .I FHSTADT="" S DTP=FHADAT D DTP^FH S FHSTADT=DTP
+ .F FHADM=0:0 S FHADM=$O(^FHPT(FHDFN,"OP","B",FHADAT,FHADM)) Q:FHADM'>0  D
+ ..S FHSOP=$G(^FHPT(FHDFN,"OP",FHADM,0))
+ ..Q:$P(FHSOP,U,15)="C"
+ ..K FHDT,FHCSO
+ ..S FHDT=$$CURDT(FHDFN,FHADM)
+ ..Q:'$G(FHDT)
+ ..I FHDT'<0 Q:'$D(^TMP($J,+FHDT))
+ ..D CHKSO
+ADEV F FHDFN=0:0 S FHDFN=$O(^TMP("FH",$J,FHDFN)) Q:FHDFN'>0  F FHACT="C","O" F FHML="B","N","E" D
+ .S FHSO="" S FHSO=$O(^TMP("FH",$J,FHDFN,FHACT,FHML,FHSO)) Q:FHSO=""  D
+ ..S FHDATA=^TMP("FH",$J,FHDFN,FHACT,FHML,FHSO)
+ ..S FHTXT=$P(FHDATA,U,1)_$P(FHDATA,U,2)
+ ..I $P(FHDATA,U,2)'=$P(FHDATA,U,3) S FHTXT=FHTXT_" to "_$P(FHDATA,U,3)
+ ..D OPFILE^FHORX
+ K ^TMP("FH",$J)
+ Q
+ ;
+CHKSO ;compares SO
+ K FHML,FH,FHSO,FH1,FH2
+ S FHML=$P(FHSOP,U,4)
+ F FH1=0:0 S FH1=$O(^FH(111.1,FHDT,FHML_"S",FH1)) Q:FH1'>0  D
+ .S FHDIPAT=^FH(111.1,FHDT,FHML_"S",FH1,0)
+ .S FHCSO("N",$P(FHDIPAT,U,1))=FHML_"^"_^FH(111.1,FHDT,FHML_"S",FH1,0)
+ ;
+ F FHI=0:0 S FHI=$O(^FHPT(FHDFN,"OP",FHADM,"SP",FHI)) Q:FHI'>0  D
+ .S FHS1=$G(^FHPT(FHDFN,"OP",FHADM,"SP",FHI,0))
+ .Q:$P(FHS1,U,6)'=""
+ .I $P(FHS1,"^",9)="Y" S FHCNT=FHCNT+1,FHCSO("C",FHI)=FHS1
+ F FH2=0:0 S FH2=$O(FHCSO("C",FH2)) Q:FH2'>0  D
+ . Q:$P(FHCSO("C",FH2),"^",3)'=FHML  ;diff meal
+ . S FHSOIEN=$P(FHCSO("C",FH2),U,2)
+ . I $D(FHCSO("N",FHSOIEN)) D
+ .. I $P(FHCSO("C",FH2),"^",8)'=$P(FHCSO("N",FHSOIEN),"^",3) D
+ ... S FHCSO("U",FH2)=FHCSO("C",FH2),$P(FHCSO("U",FH2),"^",8)=$P(FHCSO("N",FHSOIEN),"^",3)
+ ... K FHCSO("N",FHSOIEN),FHCSO("C",FH2) Q
+ I $D(FHCSO) D UPDTSO(FHDFN,FHADM,.FHCSO) Q
+ Q
+ ;
+UPDTSO(FHDFN,FHADM,FHUCSO) ;update SO
+ N FHNOW,FH,FHNEW
+ I '$D(ADM) N ADM S ADM=FHADM
+ D NOW^%DTC S FHNOW=%
+ I '$D(DUZ) W !,"Unknown user" Q
+ F FH=0:0 S FH=$O(FHUCSO("C",FH)) Q:FH'>0  D
+ . D CANCSO
+ F FH=0:0 S FH=$O(FHUCSO("U",FH)) Q:FH'>0  D
+ . D CANCSO
+ . S FHNEW=$$ADDSO(FHDFN,FHADM,$P(FHUCSO("U",FH),"^",3),$P(FHUCSO("U",FH),"^",2),$P(FHUCSO("U",FH),"^",8))
+ F FH=0:0 S FH=$O(FHUCSO("N",FH)) Q:FH'>0  D
+ . S FHNEW=$$ADDSO(FHDFN,FHADM,$P(FHUCSO("N",FH),"^",1),$P(FHUCSO("N",FH),"^",2),$P(FHUCSO("N",FH),"^",3))
+ Q
+ ;
+CANCSO ;cancel SO
+ S FHLOCN="",FHLOC=$P($G(^FHPT(FHDFN,"OP",FHADM,0)),U,3) I $G(FHLOC) S FHLOCN=$P($G(^FH(119.6,FHLOC,0)),U,1)
+ S $P(^FHPT(FHDFN,"OP",FHADM,"SP",FH,0),"^",6,7)=FHNOW_"^"_DUZ
+ S FHSODAT=$G(^FHPT(FHDFN,"OP",FHADM,"SP",FH,0)),FHSO=$P(FHSODAT,U,2),FHML=$P(FHSODAT,U,3),FHN=$P(FHSODAT,U,8)
+ K ^FHPT("ASPO",FHDFN,FHADM,FH)
+ S DTP=$P($G(^FHPT(FHDFN,"OP",FHADM,0)),U,1) D DTP^FH
+ S FHACT="C",FHTXT="Outpatient Standing Order: "_FHN_" "_$P($G(^FH(118.3,FHSO,0)),U,1)_" ("_FHML_") , "_FHLOCN_", Cancelled "
+ S ^TMP("FH",$J,FHDFN,"C",FHML,$P($G(^FH(118.3,FHSO,0)),U,1))=FHTXT_U_FHSTADT_U_DTP
+ Q
+ ;
+ADDSO(FHDFN,FHADM,FHML,FHSO,FHN) ;
+ N FHX,FH
+ S FHLOCN="",FHLOC=$P($G(^FHPT(FHDFN,"OP",FHADM,0)),U,3) I $G(FHLOC) S FHLOCN=$P($G(^FH(119.6,FHLOC,0)),U,1)
+ S FH=0
+AGN L +^FHPT(FHDFN,"OP",FHADM,"SP",0)
+ I '$D(^FHPT(FHDFN,"OP",FHADM,"SP",0)) S ^FHPT(FHDFN,"OP",FHADM,"SP",0)="^115.1626^^"
+ S FHX=^FHPT(FHDFN,"OP",FHADM,"SP",0),FH=$P(FHX,"^",3)+1,^(0)=$P(FHX,"^",1,2)_"^"_FH_"^"_($P(FHX,"^",4)+1)
+ L -^FHPT(FHDFN,"OP",FHADM,"SP",0)
+ G:$D(^FHPT(FHDFN,"OP",FHADM,"SP",FH)) AGN
+ S ^FHPT(FHDFN,"OP",FHADM,"SP",FH,0)=FH_"^"_FHSO_"^"_FHML_"^"_FHNOW_"^"_DUZ_"^^^"_FHN_"^Y",^FHPT("ASPO",FHDFN,FHADM,FH)=""
+ S DTP=$P($G(^FHPT(FHDFN,"OP",FHADM,0)),U,1) D DTP^FH
+ S FHACT="O",FHTXT="Outpatient Standing Order: "_FHN_" "_$P($G(^FH(118.3,FHSO,0)),U,1)_" ("_FHML_") , "_FHLOCN_", "
+ S ^TMP("FH",$J,FHDFN,"O",FHML,$P($G(^FH(118.3,FHSO,0)),U,1))=FHTXT_U_FHSTADT_U_DTP
+ Q FH
+ ;
+SFO ;out SFs
+ S FHCNT=0 K ^TMP("FH",$J)
+ F FHDFN=0:0 S FHDFN=$O(^FHPT("OP",FHDFN)) Q:FHDFN'>0  S FHSTADT="" F FHADAT=DT-1:0 S FHADAT=$O(^FHPT(FHDFN,"OP","B",FHADAT)) Q:FHADAT'>0  D
+ .I FHSTADT="" S DTP=FHADAT D DTP^FH S FHSTADT=DTP
+ .F FHADM=0:0 S FHADM=$O(^FHPT(FHDFN,"OP","B",FHADAT,FHADM)) Q:FHADM'>0  D
+ ..S FHSOP=$G(^FHPT(FHDFN,"OP",FHADM,0))
+ ..Q:$P(FHSOP,U,15)="C"
+ ..K FHDT,FHCSO
+ ..S FHDT=$$CURDT(FHDFN,FHADM)
+ ..Q:'$G(FHDT)
+ ..I FHDT'<0 Q:'$D(^TMP($J,+FHDT))
+ ..D DOSF(FHDFN,FHADM)
+ D ADEV
+ Q
+DOSF(FHDFN,FHADM) ;check/update SF
+ N FHDSF,FH,FHPSF
+ S FH=$$CURDT(FHDFN,FHADM)
+ I FH'<0 Q:'$D(^TMP($J,+FH))
+ S FHDSF=$P($G(^FH(111.1,FH,0)),"^",8)
+ S FHPSF("N")=$P($G(^FHPT(FHDFN,"OP",FHADM,"SF",0)),U,3)
+ S FHPSF("E")=$S(FHPSF("N")="":1,1:0)
+ S:FHPSF("E")=1 FHPSF("N")=$P($G(^FHPT(FHDFN,"OP",FHADM,"SF",0)),"^",3)
+ S FHPSF=$G(^FHPT(FHDFN,"OP",FHADM,"SF",+FHPSF("N"),0))
+ S FHPSF("C")=$S($P(FHPSF,"^",32)="":0,1:1)
+ Q:+$P(FHPSF,"^",4)=1
+ I $P(FHPSF,"^",34)'="Y" Q:FHDSF=""
+ I FHPSF("E")=1 Q:FHDSF=""
+ D UPDSF(FHDFN,FHADM,FHDSF,.FHPSF)
+ Q
+ ;
+UPDSF(FHDFN,FHADM,FHSF,FHPSF) ;
+ N FHX,FHNO,FHPNO,FHPNN,FHNOW,FHN3
+ D NOW^%DTC S FHNOW=%
+ S DTP=$P($G(^FHPT(FHDFN,"OP",FHADM,0)),U,1) D DTP^FH
+ I '$D(ADM) N ADM S ADM=FHADM
+ I '$D(DUZ) W !,"Unknown user" Q
+ S FHSFDAT=$G(^FHPT(FHDFN,"OP",FHADM,0))
+ S FHML=$P(FHSFDAT,U,4),FHLOCN=""
+ S FHLOC=$P(FHSFDAT,U,3) S:FHLOC FHLOCN=$P($G(^FH(119.6,FHLOC,0)),U,1)
+ I FHSF="" S FHN3=+FHPSF("N") D:FHN3>0 CANCSF Q
+ S FHPNO=$G(^FH(118.1,+FHSF,1)) Q:FHPNO=""
+ G:+FHPSF("N")=0!(FHPSF("C")=1) CONT
+ G:+$P(FHPSF,"^",4)'=+FHSF CONT
+ Q:$P(FHPSF,"^",5,29)=FHPNO
+CONT S FHPNN="^"_FHNOW_"^"_DUZ_"^"_FHSF_"^"_FHPNO
+ ;
+TRYSF L +^FHPT(FHDFN,"OP",FHADM,"SF",0)
+ I '$D(^FHPT(FHDFN,"OP",FHADM,"SF",0)) S ^FHPT(FHDFN,"OP",FHADM,"SF",0)="^115.1627^^"
+ S FHX=^FHPT(FHDFN,"OP",FHADM,"SF",0),FHN3=+$P(FHX,"^",3),FHNO=FHN3+1,^(0)=$P(FHX,"^",1,2)_"^"_FHNO_"^"_($P(FHX,"^",4)+1)
+ L -^FHPT(FHDFN,"OP",FHADM,"SF",0) I $D(^FHPT(FHDFN,"OP",FHADM,"SF",FHNO)) G TRYSF
+ S ^FHPT(FHDFN,"OP",FHADM,"SF",FHNO,0)=FHNO_"^"_$P(FHPNN,"^",2,99)
+ I FHN3,$D(^FHPT(FHDFN,"OP",FHADM,"SF",FHN3,0)),'$P(^(0),U,32) D CANCSF
+ S:FHNO $P(^FHPT(FHDFN,"OP",FHADM,"SF",FHNO,0),"^",30,31)=FHNOW_"^"_DUZ
+ S:FHNO $P(^FHPT(FHDFN,"OP",FHADM,"SF",FHNO,0),"^",34)="Y"
+ S FHACT="O",FHTXT="Outpatient Supplemental Feeding: "_$P($G(^FH(118.1,+FHSF,0)),U,1)_" ("_FHML_") , "_FHLOCN_", "
+ S ^TMP("FH",$J,FHDFN,"O",FHML,$P($G(^FH(118.1,FHSF,0)),U,1))=FHTXT_U_FHSTADT_U_DTP
+ Q
+CANCSF I FHN3'=0&(FHPSF("C")=0) D
+ . S $P(^FHPT(FHDFN,"OP",FHADM,"SF",FHN3,0),"^",32,33)=FHNOW_"^"_DUZ
+ . S $P(^FHPT(FHDFN,"OP",FHADM,0),"^",7)=""
+ . S FHACT="C",FHTXT="Outpatient Supplemental Feeding: "_$P($G(^FH(118.1,+FHN3,0)),U,1)_" ("_FHML_") , "_FHLOCN_", Cancelled "
+ . S ^TMP("FH",$J,FHDFN,"C",FHML,$P($G(^FH(118.1,FHN3,0)),U,1))=FHTXT_U_FHSTADT_U_DTP
+ Q
+ ;
+CURDT(FHDFN,FHADM) ;get current patient's diet pattern ien of 111.1
+ N FHDT,FHOR
+ S FHOR="",FHDT=$P($G(^FHPT(FHDFN,"OP",FHADM,0)),"^",2)
+ I FHDT="" S FHOR=$P($G(^FHPT(FHDFN,"OP",FHADM,0)),U,7,11)
+ I FHOR'["^" S FHOR=FHDT_"^^^^"
+ S FHDT=$O(^FH(111.1,"AB",FHOR,0)) Q:FHDT="" -1  ;doesn't exist
+ Q FHDT

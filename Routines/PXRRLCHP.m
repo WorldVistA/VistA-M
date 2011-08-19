@@ -1,0 +1,139 @@
+PXRRLCHP ;ISL/PKR - encounter by hospital location print. ;5/27/97
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**3,10,12,18,72**;Aug 12, 1996
+ ;
+ N BMARG,C2S,C3S,C3E,C3HS,CMAX,HEAD,INDENT,MID,PAGE
+ N CLASSNAM,DATE,DONE,IC,GTOTAL,HLOC,HLOCMAX
+ N IC,FACILITY,FACPNAME,FTOTAL
+ N LOCLIST,LOCNAME,NLOCLIST,PNAME,SC,VIEN
+ N TEMP
+ ;
+ ;Allow the task to be cleaned up upon successful completion.
+ S ZTREQ="@"
+ ;
+ U IO
+ ;
+ ;Setup the formatting parameters.
+ S HLOCMAX=^XTMP(PXRRXTMP,"HLOCMAX")
+ S INDENT=3
+ S C2S=INDENT+HLOCMAX+1
+ S C3HS=INDENT+38
+ ;We assume that the counts will never be longer than six digits.
+ S MID=C3HS+6
+ S BMARG=2
+ ;
+ S DONE=0
+ S GTOTAL=0
+ ;
+ S PAGE=1
+ D HDR^PXRRGPRT(PAGE)
+ W !!,"Criteria for Hospital Location Encounter Count Report"
+ D OLRCRIT^PXRRGPRT(3)
+ ;
+SET ;Set up print fields
+ S FACILITY=0
+FAC S FACILITY=$O(^XTMP(PXRRXTMP,FACILITY))
+ I +FACILITY=0&(FACILITY'="*") G END
+ ;Mark the facility as being found.
+ F IC=1:1:NFAC I $P(PXRRFAC(IC),U,1)=FACILITY D  Q
+ . S $P(PXRRFAC(IC),U,4)="M"
+ K LOCLIST
+ K ^TMP(PXRRXTMP,$J,"PXRRLOC")
+ S HEAD=1
+ S FTOTAL=0
+ S FACPNAME=$P(PXRRFACN(FACILITY),U,1)_"  "_$P(PXRRFACN(FACILITY),U,2)
+ ;
+ S PNAME=""
+PRV S PNAME=$O(^XTMP(PXRRXTMP,FACILITY,PNAME))
+ I PNAME="" G TOTAL
+ ;
+ ;Check for a user request to stop the task.
+ I $$S^%ZTLOAD S ZTSTOP=1 D EXIT^PXRRGUT
+ ;
+ S CLASSNAM=""
+CLASS ;
+ S CLASSNAM=$O(^XTMP(PXRRXTMP,FACILITY,PNAME,CLASSNAM))
+ I CLASSNAM="" G PRV
+ ;
+ S DATE=""
+DATE S DATE=$O(^XTMP(PXRRXTMP,FACILITY,PNAME,CLASSNAM,DATE))
+ I DATE="" G CLASS
+ ;
+ S HLOC=""
+HLO S HLOC=$O(^XTMP(PXRRXTMP,FACILITY,PNAME,CLASSNAM,DATE,HLOC))
+ I HLOC="" G DATE
+ ;
+ S VIEN=""
+ F  S VIEN=$O(^XTMP(PXRRXTMP,FACILITY,PNAME,CLASSNAM,DATE,HLOC,VIEN)) Q:VIEN=""  D
+ . S ^TMP(PXRRXTMP,$J,"PXRRLOC",HLOC,VIEN)=""
+ ;
+ G HLO
+ ;
+TOTAL ;Total up the encounters.
+ S NLOCLIST=0
+ S CMAX=0
+ S HLOC=""
+NLOC S HLOC=$O(^TMP(PXRRXTMP,$J,"PXRRLOC",HLOC))
+ I HLOC="" G OUTPUT
+ S TEMP=$$LOCCNT^PXRRLCHP(HLOC)
+ S CMAX=$$MAX^XLFMTH(CMAX,TEMP)
+ S LOCLIST(HLOC)=TEMP
+ S NLOCLIST=NLOCLIST+1
+ G NLOC
+ ;
+OUTPUT ;Print the data.
+ S HEAD=1
+ S C3E=MID+($L(CMAX)/2)
+ S HLOC=""
+ S NLOCLIST=0
+NEXTP S HLOC=$O(LOCLIST(HLOC))
+ I HLOC="" S GTOTAL=GTOTAL+FTOTAL G FINAL
+ S TEMP=$$LOCCNT^PXRRLCHP(HLOC)
+ S NLOCLIST=NLOCLIST+1
+ S FTOTAL=FTOTAL+TEMP
+ S LOCNAME=$P(HLOC,U,1)
+ S SC=""
+ I $P(HLOC,U,3)'="" S SC="("_$P(HLOC,U,3)_")"
+ D HEAD
+ I DONE G EXIT
+ S C3S=C3E-$L(TEMP)
+ W !,?INDENT,LOCNAME,?C2S,SC,?C3S,TEMP
+ G NEXTP
+ ;
+FINAL ;Print facility total.
+ I $Y>(IOSL-BMARG-3) D PAGE^PXRRGPRT
+ I DONE G EXIT
+ D PTOTAL^PXRRGPRT("Total facility encounters ",FTOTAL,C3E,1)
+ G FAC
+END ;
+ I $Y>(IOSL-BMARG-3) D PAGE^PXRRGPRT
+ I DONE G EXIT
+ I GTOTAL>0 D PTOTAL^PXRRGPRT("Total encounters ",GTOTAL,C3E,0)
+ I $Y>(IOSL-BMARG-3) D PAGE^PXRRGPRT
+ I DONE G EXIT
+ D FACNE^PXRRGPRT(INDENT)
+EXIT ;
+ D EXIT^PXRRGUT
+ D EOR^PXRRGUT
+ Q
+ ;
+ ;=======================================================================
+HEAD ;If necesary, write the header.
+ I HEAD D
+ . I $Y>(IOSL-BMARG-6) D PAGE^PXRRGPRT
+ . I DONE Q
+ . W !!,"Facility: ",FACPNAME
+ . W !!,?INDENT,"Hospital Location (Stop Code)",?C3HS,"Encounters"
+ . W !,?INDENT,"-----------------------------------",?C3HS,"----------"
+ . S HEAD=0
+ Q
+ ;
+ ;=======================================================================
+LOCCNT(HLOC) ;Return the number of encounters at this location.
+ ;
+ N TOTAL,VIEN
+ S TOTAL=0
+ S VIEN=""
+ F  S VIEN=$O(^TMP(PXRRXTMP,$J,"PXRRLOC",HLOC,VIEN)) Q:VIEN=""  D
+ . I VIEN>0 S TOTAL=TOTAL+1
+ Q TOTAL
+ ;

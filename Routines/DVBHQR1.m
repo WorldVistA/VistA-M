@@ -1,0 +1,107 @@
+DVBHQR1 ;ISC-ALBANY/PKE/JLU - parse HINQ response;27 SEP 85  10:56 am
+ ;;4.0;HINQ;**5,32,53,49,65**;03/25/92;Build 19
+ ; PROCESSING THE C&P RECORD AND THEN THE BIRLS RECORD
+BASIC S DFN=+$E(X(1),8,21),DVBLEN=$E(X(1),22,25),X=$E(X(1),26,999),DVBCN=$E(X,1,9)
+ ;
+ ;DVB*4*49 - claim # no longer coming as last 2 chars first
+ S $P(DVBBAS(1),U,3)=$E(X,10),$P(DVBBAS(1),U,4)=$E(X,11,12)
+ S $P(DVBBAS(1),U,5)=$E(X,13,17),$P(DVBBAS(1),U,6)="A"
+ ;all records after DVB*4*49 will be sent as type "A"
+ ;beginning of basic seg A,B,C,E,F
+ S DVBNAME=$E(X,19,25)
+ S $P(DVBBAS(1),U,8)=$E(X,26,27)
+ S $P(DVBBAS(1),U,9)=$E(X,28),$P(DVBBAS(1),U,10)=$E(X,29,33)
+ S DVBFL=$E(X,34,35)
+ I +DVBFL S Y=$S($D(^DIC(4,"D",3_DVBFL)):$O(^(3_DVBFL,"")),$D(^DIC(4,"D",4_DVBFL)):$O(^(4_DVBFL,"")),1:"") I Y S Y=$S($D(^DIC(4,Y,0)):$P(^DIC(4,Y,99),U,1)_" - "_$P(^(0),U),1:""),DVBFL=Y
+ I DVBFL="" S DVBFL="UNABLE TO DETERMINE"
+ S $P(DVBBAS(1),U,12)=$E(X,36),$P(DVBBAS(1),U,13)=$E(X,37)
+ S $P(DVBBAS(1),U,14)=$E(X,38),$P(DVBBAS(1),U,15)=$E(X,39)
+ S $P(DVBBAS(1),U,16)=$E(X,40)
+ S DVBV1=$E(X,41)
+ ;I DVBV1?1A!(DVBV1["{") S DVBV2=1 D SIGN^DVBHUTIL
+ S $P(DVBBAS(1),U,17)=DVBV1
+ S $P(DVBBAS(1),U,18)=$E(X,42)
+ I $P(DVBBAS(1),U,6)="D" S $P(DVBBAS(1),U,19)=$E(X,43),$P(DVBBAS(1),U,20)=$E(X,44,45) S L=161 D RON G STAT^DVBHQR11 ;end of  BASIC D segment
+ S $P(DVBBAS(1),U,19)=$E(X,43,45)
+ S DVBV1=+$E(X,46,51)
+ I DVBV1?5N1A!(DVBV1["{") S DVBV2=6 D SIGN^DVBHUTIL Q:$G(DVBERCS)
+ S $P(DVBBAS(1),U,20)=+$E(DVBV1,1,$L(DVBV1)-2)_"."_$E(DVBV1,$L(DVBV1)-1,$L(DVBV1))
+ S L=52 D RON
+ S $P(DVBBAS(1),U,21)=$E(X,1,8)
+ S DVBV1=+$E(X,9,14)
+ I DVBV1?5N1A!(DVBV1["{") S DVBV2=6 D SIGN^DVBHUTIL Q:$G(DVBERCS)
+ S DVBCHECK=+$E(DVBV1,1,$L(DVBV1)-2)_"."_$E(DVBV1,$L(DVBV1)-1,$L(DVBV1))
+ S $P(DVBBAS(1),U,23)=$E(X,15)
+ S $P(DVBP(1),U,4)=$E(X,16,17)
+ S DVBV1=$E(X,18)
+ I DVBV1?1A!(DVBV1["{") S DVBV2=1 D SIGN^DVBHUTIL Q:$G(DVBERCS)
+ S DVBADRLN=DVBV1
+ S DVBV1=$E(X,19)
+ I DVBV1?1A!(DVBV1["{") S DVBV2=1 D SIGN^DVBHUTIL Q:$G(DVBERCS)
+ S $P(DVBBAS(1),U,26)=DVBV1
+ S $P(DVBBAS(1),U,27)=$E(X,20)
+ S DVBFIDUC=$E(X,21,22)
+ I +DVBFIDUC S Y=$S($D(^DIC(4,"D",3_DVBFIDUC)):$O(^(3_DVBFIDUC,"")),$D(^DIC(4,"D",4_DVBFIDUC)):$O(^(4_DVBFIDUC,"")),1:"") I Y S Y=$S($D(^DIC(4,Y,0)):$P(^DIC(4,Y,99),U,1)_" - "_$P(^(0),U),1:""),DVBFIDUC=Y
+ I DVBFIDUC=99 S DVBFIDUC=""
+ S $P(DVBBAS(1),U,29)=$E(X,23,24),$P(DVBBAS(1),U,30)=$E(X,25)
+ S $P(DVBBAS(1),U,31)=$E(X,26),$P(DVBBAS(1),U,32)=$E(X,27,28)
+ S $P(DVBBAS(1),U,33)=$E(X,29,30),$P(DVBBAS(1),U,34)=$E(X,31)
+ S $P(DVBBAS(1),U,35)=$E(X,32)
+ ;need to calculate power of attorney from C&P
+ S DVBPOA="0"_$E(X,33,34) D POA^DVBHQR2
+ S $P(DVBBAS(1),U,37)=$E(X,35)
+ S DVBV1=$E(X,36)
+ I DVBV1?1A!(DVBV1["{") S DVBV2=1 D SIGN^DVBHUTIL Q:$G(DVBERCS)
+ S $P(DVBBAS(1),U,38)=DVBV1
+ S $P(DVBBAS(1),U,39)=$E(X,37,41),$P(DVBBAS(1),U,40)=$E(X,42,43)
+ S $P(DVBP(1),U,5)=$E(X,44,45)
+ S $P(DVBBAS(1),U,42)=$E(X,46,47)
+ S DVBAAHB=$E(X,48)
+ S L=49 D RON
+ S $P(DVBBAS(2),U,1)=$E(X,1),$P(DVBBAS(2),U,2)=$E(X,2)
+ S $P(DVBP(1),U,8)=$E(X,3)
+ S $P(DVBBAS(2),U,4)=$E(X,4)
+ S $P(DVBBAS(2),U,5)=$E(X,5),$P(DVBBAS(2),U,6)=$E(X,6)
+ S $P(DVBBAS(2),U,7)=$E(X,7),$P(DVBBAS(2),U,8)=$E(X,8)
+ S $P(DVBBAS(2),U,9)=$E(X,9),$P(DVBBAS(2),U,10)=$E(X,10)
+ S $P(DVBP(1),U,2)=$E(X,11),$P(DVBP(1),U,1)=$E(X,12)
+ S $P(DVBP(1),U,7)=$E(X,13),$P(DVBP(1),U,6)=$E(X,14)
+ S DVBCSVC(1)=$E(X,15)
+ ;;;S DVBCSVC(1)=5
+ S $P(DVBP(1),U,3)=$E(X,16,23)
+ S $P(DVBBAS(2),U,17)=$E(X,24)
+ S $P(DVBBAS(2),U,18)=$E(X,25),$P(DVBBAS(2),U,19)=$E(X,26)
+ S DVBPOW=$E(X,27)
+ S $P(DVBBAS(2),U,21)=$E(X,28),$P(DVBBAS(2),U,22)=$E(X,29)
+ S $P(DVBBAS(2),U,23)=$E(X,30),$P(DVBBAS(2),U,24)=$E(X,31)
+ S $P(DVBBAS(2),U,25)=$E(X,32),$P(DVBBAS(2),U,26)=$E(X,33)
+ S $P(DVBBAS(2),U,27)=$E(X,34),$P(DVBBAS(2),U,28)=$E(X,35)
+ S $P(DVBBAS(2),U,29)=$E(X,36),$P(DVBBAS(2),U,30)=$E(X,37)
+ S $P(DVBBAS(2),U,31)=$E(X,38),$P(DVBBAS(2),U,32)=$E(X,39)
+ S $P(DVBBAS(2),U,33)=$E(X,40),$P(DVBBAS(2),U,34)=$E(X,41)
+ S $P(DVBBAS(2),U,35)=$E(X,42),$P(DVBBAS(2),U,36)=$E(X,43)
+ S $P(DVBBAS(2),U,37)=$E(X,44),$P(DVBBAS(2),U,38)=$E(X,45)
+ S $P(DVBBAS(2),U,39)=$E(X,46),$P(DVBBAS(2),U,40)=$E(X,47)
+ S $P(DVBBAS(2),U,41)=$E(X,48),$P(DVBBAS(2),U,42)=$E(X,49)
+ S $P(DVBBAS(2),U,43)=$E(X,50),$P(DVBBAS(2),U,44)=$E(X,51)
+ S $P(DVBBAS(2),U,45)=$E(X,52),$P(DVBBAS(2),U,46)=$E(X,53)
+ S $P(DVBBAS(2),U,47)=$E(X,54),$P(DVBBAS(2),U,48)=$E(X,55,57)
+ S $P(DVBBAS(2),U,49)=$E(X,58),$P(DVBBAS(2),U,50)=$E(X,59,61)
+ S L=62 D RON
+ ;
+ ;check pension dates DVB*4.0*65
+ D PENSION^DVBHQR11
+ ;
+ ;end of basic segment A,B,C,E,F
+ ;
+ G STAT^DVBHQR11
+ ;
+RON S X=$E(X,L,999),LX=$L(X),LY=254-LX I $D(X(2)),(LX+$L(X(2)))<256 S X=X_X(2) K X(2) D RON1 Q
+ I $D(X(2)) S X=X_$E(X(2),1,LY),X(2)=$E(X(2),LY+1,999) Q
+ Q
+ ;
+RON1 F Z1=3:1:99 I $D(X(Z1)),'$D(X(Z1-1)) S X(Z1-1)=X(Z1) K X(Z1) Q:'$O(X(Z1))
+ ;;;I $D(X(3)),'$D(X(2)) S X(2)=X(3) K X(3) I $D(X(4)),'$D(X(3)) S X(3)=X(4) K X(4) I $D(X(5)),'$D(X(4)) S X(4)=X(5) K X(5)
+ QUIT
+END K NAM,NUM Q
+ Q

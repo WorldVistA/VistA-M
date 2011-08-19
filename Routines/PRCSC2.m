@@ -1,0 +1,68 @@
+PRCSC2 ;WISC/LEM-ESIG MAINTENANCE ROUTINE ;3/3/95  3:22 PM
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;ROUTINE FOR MAINTAINING FIELD 29.5 (OBLIGATION E S CODE), FILE 410
+DECODE(LEVEL0) ;Extrinsic Function to return hashed electronic sig to readable form.
+ ;returns "" if unsuccessful
+ NEW RECORD,RECORD4,VERSION,PERSON,SIG,CHECKSUM
+ ;get record and check version
+ S RECORD=$G(^PRCS(410,LEVEL0,0)) I RECORD="" QUIT ""
+ S RECORD4=$G(^PRCS(410,LEVEL0,4))
+ S VERSION=$P(RECORD4,"^",11)
+ S PERSON=+$P(RECORD4,"^",9)
+ I VERSION'="",VERSION'=1 Q ""
+ S SIG=$P(RECORD4,"^",10)
+D1 ;decode e signature for version 1
+ S CHECKSUM=$$SUM^PRCUESIG(LEVEL0_"^"_$$STRING(RECORD,RECORD4))
+ QUIT $$DECODE^PRCUESIG(SIG,PERSON,CHECKSUM)
+ENCODE(LEVEL0,USERNUM,Y) ;Encode e signature for version 1 only
+ ;Parameter passing entry point
+ NEW RECORD,RECORD4,SIGBLOCK,CHECKSUM,OLDUSER
+ ;get record
+ S USERNUM=+USERNUM
+ I USERNUM=0 S Y=-3 QUIT  ;-3 no user num available
+ S SIGBLOCK=$P($G(^VA(200,USERNUM,20)),"^",2)
+ I SIGBLOCK="" S Y=-2 QUIT  ;-2 no sigblock in file 200
+ S RECORD=$G(^PRCS(410,LEVEL0,0))
+ S RECORD4=$G(^PRCS(410,LEVEL0,4))
+ I RECORD="" S Y=-1 QUIT  ;-1 no transaction record
+ I $P(RECORD4,"^",10)'="" S Y=-4 QUIT  ;-4 cannot re-sign record
+ S OLDUSER=+$P(RECORD4,"^",9)
+ I OLDUSER=0 S $P(RECORD4,"^",9)=USERNUM
+ I OLDUSER>0 S USERNUM=OLDUSER
+ S:$P(RECORD4,"^",13)="" $P(RECORD4,"^",13)=$$NOW^PRCUESIG
+ S CHECKSUM=$$SUM^PRCUESIG(LEVEL0_"^"_$$STRING(RECORD,RECORD4))
+ S $P(RECORD4,"^",10)=$$ENCODE^PRCUESIG(SIGBLOCK,USERNUM,CHECKSUM)
+ S $P(RECORD4,"^",11,12)="1^"_$$SUM^PRCUESIG(SIGBLOCK)
+ S ^PRCS(410,LEVEL0,4)=RECORD4
+ S Y=1 QUIT
+RECODE(LEVEL0,Y)  ;Recode esig for ver 1 only
+ N RECORD,RECORD4,SIGBLOCK,USERNUM
+ S RECORD=$G(^PRCS(410,LEVEL0,0))
+ S RECORD4=$G(^PRCS(410,LEVEL0,4))
+ I RECORD="" S Y=-1 Q  ;-1 no record
+ S USERNUM=+$P(RECORD4,"^",9)
+ I $P(RECORD4,U,10)=""!(USERNUM=0) S Y=-4 Q  ;can't recode
+ S SIGBLOCK=$P($G(^VA(200,USERNUM,20)),"^",2)
+ S CHECKSUM=$$SUM^PRCUESIG(LEVEL0_"^"_$$STRING(RECORD,RECORD4))
+ S $P(RECORD4,"^",10)=$$ENCODE^PRCUESIG(SIGBLOCK,USERNUM,CHECKSUM)
+ S $P(RECORD4,"^",11,12)="1^"_$$SUM^PRCUESIG(SIGBLOCK)
+ S ^PRCS(410,LEVEL0,4)=RECORD4
+ S Y=1 QUIT
+REMOVE(LEVEL0) ;Entry point to remove esig from record
+ ;NOT an extrinsic function
+ NEW RECORD4,I
+ S RECORD4=$G(^PRCS(410,LEVEL0,4))
+ F I=9,10,12,13 S $P(RECORD4,"^",I)=""
+ S ^PRCS(410,LEVEL0,4)=RECORD4
+ QUIT
+VERIFY(LEVEL0)      ;extrinsic function to verify version 1 signature.  Returns 1 if valid, 0 if not valid
+ NEW RECORD4,VERSION,SIGBLOCK
+ ;get record variables
+ S RECORD4=$G(^PRCS(410,LEVEL0,4))
+ S VERSION=$P(RECORD4,"^",11),SIGBLOCK=$P(RECORD4,"^",12)
+ I VERSION_SIGBLOCK="" QUIT 1
+ QUIT ($$SUM^PRCUESIG($$DECODE(LEVEL0))=SIGBLOCK)
+STRING(X,X4)          ;Build String of critical fields
+ NEW RECORD,RECORD4,SIGBLOCK,CHECKSUM,OLDUSER
+ Q $P(X,"^",1)_"^"_$P(X4,"^",3)_"^"_$P(X4,"^",4)_"^"_$P(X4,"^",5)_"^"_$P(X4,"^",13)

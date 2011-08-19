@@ -1,0 +1,17 @@
+SOWKCOR ;B'HAM ISC/SAB-ROUTINE TO MAKE CORRECTIONS TO CASE DATA ; 10 Mar 94 / 8:29 AM
+ ;;3.0; Social Work ;**13,16,21**;27 Apr 93
+ S TY="I $D(^SOWK(650,""W"",DUZ,+Y))",TY1="I $D(^SOWK(650,""W"",DUZ,+Y))!(12378[$E($P($G(^VA(200,DUZ,654)),""^"",5)))",PRI=$P(^SOWK(650.1,1,0),"^",19),DIC("S")=$S(PRI:TY1,1:TY)
+ W ! S SOWKCOR=1,DIC("A")="SELECT CASE: ",DIC="^SOWK(650,",DIC(0)="AQEM" D ^DIC G:$D(DUOUT)!(Y<0) Q S X=+Y,DIE("NO^")="OUTOK",SWPT=$P(^SOWK(650,X,0),"^",8),DA=+Y,DIE="^SOWK(650,",DR="[SOWKOPEN]" W ! K DIC D ^DIE S PN=DA I $D(Y) G Q
+ I $D(^SOWK(651,+$P(^SOWK(650,DA,0),"^",13),0)),$P(^(0),"^",6)["R" S DA=SWPT,DIE="^SOWK(655,",DR=".01;1" W ! D ^DIE I $D(Y) G Q
+ D RCH I $D(Y) G Q
+ I +$P(^SOWK(650,PN,0),"^",18) S DA=PN,DIE="^SOWK(650,",DR="[SOWKEDIT]" D ^DIE I $D(Y) G Q
+ I '$P(^SOWK(650,PN,0),"^",18)!($P(^SOWK(651,$P(^(0),"^",13),0),"^",6)'="R") G SOWKCOR
+DISP ;disposition from RCH
+ S DIE=650,DR="20",DA=PN D ^DIE K DIE I $D(Y) G Q
+ F A=0:0 S A=$O(^SOWK(655,SWPT,4,A)) Q:'A  I $P(^SOWK(655,SWPT,4,A,0),"^",5)=PN,'$P(^(0),"^",6) S DA=A,DA(1)=SWPT,DIE="^SOWK(655,"_DA(1)_",4,",DR="3;I 'X S Y=""@4"";4;@4" D ^DIE I $D(Y) G Q
+ D RH
+Q K PN,TY,TY1,PRI,A,SOWKCOR,DA,DIC,DIE,DR,SWPT,X,Y Q
+RCH F A=0:0 S A=$O(^SOWK(655,SWPT,4,A)) Q:'A  I $P(^SOWK(655,SWPT,4,A,0),"^",5)=PN,'$P(^(0),"^",6) S DA=A,DA(1)=SWPT,DIE="^SOWK(655,"_DA(1)_",4,",DR=".01;1;2;5///^S X=$S($D(PN):PN,1:"""")" D ^DIE
+ Q
+RH S DA=SWPT,DIE="^SOWK(655,",DR="3;I 'X S Y=""@4"";2;@4" D ^DIE
+ Q

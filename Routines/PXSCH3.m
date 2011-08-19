@@ -1,0 +1,46 @@
+PXSCH3 ;ISL/JVS - SCHEDULING REDESIGN PROCEDURES-PRV #3 ;6/11/96
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;;Aug 12, 1996
+ ;  Variable List
+ ;
+ ; PRVNOD0   Provider node data
+ ; PRVNOD12  Providr node dat
+ ; PXSCT     Counter provider to set Promary/Secondary
+ ; PXSINDX   Index for ^tmp("PXK" global
+ ; PXSPR     The main Provider
+ ; PXSPRV    The Provider being Processed
+ ;
+PRV ;Create nodes for Providers
+ Q:'$D(PXS("PROVIDER"))
+ S PXSCT=0
+ S PXSPRV=0 F  S PXSPRV=$O(PXS("PROVIDER",PXSPRV)) Q:PXSPRV=""  D
+ .S PXSINDX=PXSINDX+1
+ .S PXSCT=PXSCT+1
+ .D PRVNOD
+ Q
+PRVNOD ;
+ S PRVNOD0="",$P(PRVNOD0,"^")=+$G(PXS("PROVIDER",PXSPRV))
+ S $P(PRVNOD0,"^",2)=$G(PXS("PATIENT")) ;PROVIDER
+ S $P(PRVNOD0,"^",3)=$G(PXS("VISIT")) ;VISIT
+ S $P(PRVNOD0,"^",4)=$S(PXSCT=1:"P",PXSCT>1:"S",1:"") ;PRIMARY/SECONDARY
+ S PRVNOD12=""
+ ;S $P(PRVNOD12,"^")=$G(PXS("DATE")) ;DATE AND TIME
+ ;S $P(PRVNOD12,"^",3)=$G(PXS("STOP CODE ORIG")) ;CLINIC STOP
+ ;S $P(PRVNOD12,"^",4)=$G(PXSPR) ;PROVIDER
+ ;S $P(PRVNOD12,"^",5)=$G(PXS("CLINIC")) ;HOSPITAL LOCATION
+ ;S $P(PRVNOD12,"^",7)=$P(PRVNOD0,"^",3) ;SECONDARY VISIT
+ S ^TMP("PXK",$J,"PRV",PXSINDX+1,0,"AFTER")=$G(PRVNOD0)
+ S ^TMP("PXK",$J,"PRV",PXSINDX+1,0,"BEFORE")=""
+ S ^TMP("PXK",$J,"PRV",PXSINDX+1,12,"AFTER")=$G(PRVNOD12)
+ S ^TMP("PXK",$J,"PRV",PXSINDX+1,12,"BEFORE")=""
+ S ^TMP("PXK",$J,"PRV",PXSINDX+1,"IEN")=""
+ S ^TMP("PXK",$J,"SOR")=8
+ S ^TMP("PXK",$J,"VST",1,"IEN")=$G(PXS("VISIT"))
+PRVDUP ;Look for duplicates on the same visit
+ N XPFG,XP
+ S (XPFG,XP)=0 F  Q:XPFG  S XP=$O(^AUPNVPRV("AD",PXS("VISIT"),XP)) Q:XP=""  D
+ .I $P(^AUPNVPRV(XP,0),"^",1)=+$G(PXS("PROVIDER",PXSPRV)) D
+ ..S ^TMP("PXK",$J,"PRV",PXSINDX+1,0,"BEFORE")=$G(^AUPNVPRV(XP,0))
+ ..S ^TMP("PXK",$J,"PRV",PXSINDX+1,12,"BEFORE")=$G(^AUPNVPRV(XP,12))
+ ..S ^TMP("PXK",$J,"PRV",PXSINDX+1,"IEN")=XP
+ ..S XPFG=1
+ Q

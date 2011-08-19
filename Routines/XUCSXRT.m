@@ -1,0 +1,41 @@
+XUCSXRT ;SFISC/HVB - CROSS-SITE RTs for 486 SITES ;2/18/96  15:07
+ ;;7.3;TOOLKIT;**14**;Dec 15, 1995
+A Q:'$$CHKF^XUCSUTL  S U="^" S:'$D(DT) DT=$$HTFM^XLFDT($H,1)
+ S XUCSEND=0 D A3^XUCSUTL3 G XIT:XUCSEND
+ S %ZIS="Q" D ^%ZIS I POP S POP=0 G XIT
+ I $D(IO("Q")) D  G XIT
+ . S ZTSAVE("XUCS*")="",ZTRTN="DQ^XUCSXRT",ZTDESC="MPM X-SITE RT REPORT",ZTIO=ION
+ . S %DT="AEFRX",%DT("A")="Queue for what DATE/TIME? ",%DT("B")="NOW",%DT(0)="NOW" D ^%DT K %DT
+ . I +Y'<0 S ZTDTH=Y D ^%ZTLOAD,HOME^%ZIS
+ . K IO("Q")
+ U IO W:$E(IOST)="C" #
+DQ ; Dequeue entry point
+ K RT S X=0 F  S X=$O(^XUCS(8987.2,X)) Q:X]"@"!(X="")  S NODE=^(X,0) D:$E(NODE,4,5)="CS"&($D(^XUCS(8987.2,X))>1)
+ . S FMDT=XUCSBD F  S FMDT=$O(^XUCS(8987.2,"C",FMDT)) Q:FMDT=""  Q:$D(^(FMDT,X))
+ . Q:FMDT=""  S Y=$O(^XUCS(8987.2,"C",FMDT,X,0))-1
+ . F  S Y=$O(^XUCS(8987.2,X,1,Y)) Q:Y]"@"!(Y="")  S FMDT=^(Y,0) Q:FMDT>(XUCSED+.24)  D:FMDT>XUCSBD&($D(^(5))>1)
+ . . I $E($P(FMDT,".",2),1,2)<12,XUCSRT="P" Q
+ . . I $E($P(FMDT,".",2),1,2)>11,XUCSRT="A" Q
+ . . S $P(RT(NODE),"^",18)=$P($G(RT(NODE)),"^",18)+1
+ . . S $P(RT(NODE),"^",19)=$P(RT(NODE),"^",19)+$P(FMDT,"^",3)
+ . . F I=1:1:17 S $P(RT(NODE),"^",I)=$P(RT(NODE),"^",I)+$P(^XUCS(8987.2,X,1,Y,5,I,0),"^",3)
+P S Y=XUCSBD D DD^%DT S BD=Y,Y=XUCSED D DD^%DT S ED=Y D HDR
+ S (NODE,OSITE)="" F  S NODE=$O(RT(NODE)) Q:NODE=""  D
+ . S SITE=$E(NODE,1,3) I SITE'=OSITE S OSITE=SITE D:$Y>(IOSL-7) HFF W !?1,$P($G(^DIC(4,SITE,0)),"^"),!
+ . S SUM=0 F I=1:1:12 S SUM=SUM+$P(RT(NODE),"^",I)
+ . I SUM S (GT30,CUM)=0,CNT=$P(RT(NODE),"^",18),SET=$P(RT(NODE),"^",19) D
+ . . F I=13:1:17 S GT30=GT30+$P(RT(NODE),"^",I)
+ . . W $J(NODE,7),$J(CNT,4,0),$J(SUM+GT30/SET,5,1)
+ . . S (I,SEET)=0 F M=0.3,1.4,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,15,25 S I=I+1,SEET=SEET+($P(RT(NODE),"^",I)*M)
+ . . W $J(SEET/SUM,6,2),?23
+ . . F I=1:1:12 S CUM=CUM+$P(RT(NODE),"^",I) S PCT=CUM/SUM*100 I PCT<99.9,I'=8,I'=9 W $J(PCT,5,1)
+ . . S GT30PCT=GT30/(GT30+SUM)*100 W:GT30PCT>0.045 ?73,$J(GT30PCT,4,2) W !
+XIT I $E($G(IOST))'="C",'$D(ZTQUEUED) D ^%ZISC
+ K BD,CNT,CUM,ED,FMDT,GT30,GT30PCT,I,M,NODE,OSITE,PCT,RT,SEET,SET,SITE,SUM
+ K X,XUCSBD,XUCSED,XUCSEND,XUCSRT,Y
+ Q
+HFF W #
+HDR W ?4,"MPM X-Site Response Time Report for ",BD," to ",ED," (",$S(XUCSRT="A":"AM)",XUCSRT="P":"PM)",1:"AM&PM)")
+ W !?2,"Node",?9,"N",?13,"R/S",?19,"RT",?24,"<1S  <2S  <3S  <4S  <5S  <6S  <7S  <10  <20  <30 ",?74,">30"
+ W !?1 F I=1:1:76 W "="
+ W ! Q

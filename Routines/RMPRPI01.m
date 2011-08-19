@@ -1,0 +1,160 @@
+RMPRPI01 ;HINCIO/ODJ - PIP Report APIs ;9/18/02  15:13
+ ;;3.0;PROSTHETICS;**61**;Feb 09, 1996
+ ;
+ Q
+ ;
+ ;***** HBAL - returns a ^TMP array structured as follows:-
+ ;             ^TMP($J,N,H,I,D,S,L)=data (^ delimiter)
+ ;
+ ;        where N = ^TMP array name (eg. RMPRPI01)
+ ;              H = HCPCS code (eg. L5000)
+ ;              I = Item number (eg. 1)
+ ;              D = full FM date (eg. 3010309.135415)
+ ;              S = Source (C - comercial, V - VA)
+ ;              L = Location ien (ptr. ^RMPR(661.5,)
+ ;
+ ;      data pc 1 = Quantity on hand
+ ;              2 = Value
+ ;              3 = Unit Cost
+ ;              4 = Vendor Desc.
+ ;              5 = HCPCS Item description
+ ;              6 = Location Desc.
+ ;              7 = Re-Order Level
+ ;      
+ ; Inputs:
+ ;    RMPRNM   - Name for ^TMP array
+ ;    RMPRSTN  - Station number (ptr. ^DIC(4))
+ ;    RMPRHCPC - Array of HCPCS codes, or * for all HCPCS.
+ ;
+ ; Outputs:
+ ;    RMPRERR  - 0 if no errors, +ve int. if errors
+ ;    ^TMP     - (see above)
+ ;
+HBAL(RMPRNM,RMPRSTN,RMPRHCPC) ;
+ N RMPRERR,RMPRH,RMPR,RMPROLD,RMPREOF,RMPRE,RMPRT,RMPR6E,RMPR11E,RMPR6I
+ N RMPREI,RMPR4
+ S RMPRERR=0
+ I $G(RMPRNM)="" S RMPRNM="RMPRPI01"
+ I $G(RMPRSTN)="" S RMPRERR=1 G HBALX
+ I '$D(RMPRHCPC) S RMPRHCPC="*"
+ K ^TMP($J,RMPRNM)
+ S RMPR("STATION")=RMPRSTN
+ I $G(RMPRHCPC)="*" G HBAL2
+ S RMPRH=""
+HBAL1 S RMPRH=$O(RMPRHCPC(RMPRH))
+ I RMPRH="" G HBALX
+ K RMPR
+ S RMPR("STATION")=RMPRSTN
+ S RMPR("HCPCS")=RMPRH
+HBAL2 S RMPRERR=$$NEXT^RMPRPIXE(.RMPR,"XSHIDS","",1,.RMPROLD,.RMPREOF)
+ I RMPRERR G HBALX
+ I RMPREOF G HBALX
+ I $G(RMPRHCPC)'="*",RMPROLD("HCPCS")'=RMPR("HCPCS") G HBAL1
+ I RMPROLD("STATION")'=RMPR("STATION") G:$G(RMPRHCPC)="*" HBAL2 G HBAL1
+ K RMPRE M RMPRE=RMPR
+ S RMPRERR=$$GET^RMPRPIX7(.RMPRE)
+ I RMPRERR G HBALX
+ K RMPREI S RMPRERR=$$ETOI^RMPRPIX7(.RMPRE,.RMPREI)
+ I RMPRERR G HBALX
+ K RMPR6E
+ S RMPR6E("HCPCS")=RMPR("HCPCS")
+ S RMPR6E("ITEM")=RMPR("ITEM")
+ S RMPR6E("DATE&TIME")=RMPR("DATE&TIME")
+ S RMPRERR=$$GET^RMPRPIX6(.RMPR6E)
+ K RMPR11E
+ S RMPR11E("HCPCS")=RMPR("HCPCS")
+ S RMPR11E("ITEM")=RMPR("ITEM")
+ S RMPR11E("STATION")=RMPR("STATION")
+ S RMPRERR=$$GET^RMPRPIX1(.RMPR11E)
+ I RMPRERR G HBALX
+ K RMPR11I
+ S RMPRERR=$$ETOI^RMPRPIX1(.RMPR11E,.RMPR11I)
+ I RMPRERR G HBALX
+ S RMPRT=""
+ S $P(RMPRT,"^",1)=RMPRE("QUANTITY")
+ S $P(RMPRT,"^",2)=RMPRE("VALUE")
+ I +RMPRE("QUANTITY") D
+ . S $P(RMPRT,"^",3)=$J(RMPRE("VALUE")/RMPRE("QUANTITY"),0,2)
+ . Q
+ S $P(RMPRT,"^",4)=RMPR6E("VENDOR")
+ S $P(RMPRT,"^",5)=RMPR11E("DESCRIPTION")
+ S $P(RMPRT,"^",6)=RMPRE("LOCATION")
+ K RMPR4
+ S RMPR4("IEN")=$O(^RMPR(661.4,"ASLHI",RMPR11I("STATION"),RMPREI("LOCATION"),RMPR11I("HCPCS"),RMPR11I("ITEM"),""))
+ ;next line added
+ G:RMPR4("IEN")="" HBAL2
+ S RMPRERR=$$GET^RMPRPIX4(.RMPR4)
+ S $P(RMPRT,"^",7)=RMPR4("RE-ORDER QTY")
+ S ^TMP($J,RMPRNM,RMPR("HCPCS"),RMPR("ITEM"),RMPR("DATE&TIME"),RMPR11I("SOURCE"),RMPREI("LOCATION"))=RMPRT
+ G HBAL2
+HBALX Q RMPRERR
+ ;
+PROC(RMSUB,RS,RMPRI) ;
+ N RMDAT,RMPRH,RMPR,RMPROLD,RMPREOF,RMPRE,RMPRT,RMPR6E,RMPR11E,RMPR6I
+ N RMST2,RMTY,RM6,RM11,RMIT2,RMII,I,J,K,RMIDES,RMINS,RM11DA
+ I $G(RMPRI)="*" D ALL
+ D HCPC
+ ;
+NOINV ;
+ ;check for other items not currently in the inventory but previously in.
+ S I=""
+ F  S I=$O(^RMPR(661.11,"ASHI",RS,I)) Q:I=""  F J=0:0 S J=$O(^RMPR(661.11,"ASHI",RS,I,J)) Q:J'>0  D
+ .F K=0:0 S K=$O(^RMPR(661.11,"ASHI",RS,I,J,K)) Q:K'>0  D
+ ..S RM11=$G(^RMPR(661.11,K,0))
+ ..Q:RM11=""
+ ..Q:$D(^TMP($J,"RMTMP",I,J))
+ ..S RMIDES=$P(RM11,U,3)
+ ..Q:($P(RM11,U,9))=1
+ ..;check what location this HCCPS/ITEM belongs to previously. 
+ ..F RMII=0:0 S RMII=$O(^RMPR(661.6,"B",I,RMII)) Q:RMII'>0  D
+ ...Q:'$D(^RMPR(661.6,RMII,0))
+ ...S RM6=$G(^RMPR(661.6,RMII,0)),RMIT2=$P(RM6,U,11)
+ ...S RMTY=$P(RM6,U,4),RMST2=$P(RM6,U,13)
+ ...I $G(RMPRI)'="*",'$D(RMPRI(I)) Q
+ ...Q:(RMST2'=RS)!(RMIT2'=J)!(RMTY'=1)
+ ...S ^TMP($J,RMSUB,I,J,1,1)="^^^^"_RMIDES
+ ;EXIT
+ Q
+ ;
+ALL ;process all HCPCS in a station
+ S I=""
+ F  S I=$O(^RMPR(661.7,"B",I)) Q:I=""  F J=0:0 S J=$O(^RMPR(661.7,"B",I,J)) Q:J'>0  D CRE
+ Q
+HCPC ;process certain HCPCS
+ S I="" F  S I=$O(RMPRI(I)) Q:I=""  F J=0:0 S J=$O(^RMPR(661.7,"B",I,J)) Q:J'>0  D CRE
+ Q
+ ;
+CRE ;create the tmp global
+ S RMDAT=$G(^RMPR(661.7,J,0))
+ Q:RS'=$P(RMDAT,U,5)
+ S RMUNI=""
+ S RMHC=$P(RMDAT,U,1)
+ S RMDT=$P(RMDAT,U,2)
+ S RMSE=$P(RMDAT,U,3)
+ S RMHI=$P(RMDAT,U,4)
+ S RMST=$P(RMDAT,U,5)
+ S RMLO=$P(RMDAT,U,6)
+ S RMQU=$P(RMDAT,U,7)
+ S RMVA=$P(RMDAT,U,8)
+ S RMUN=$P(RMDAT,U,9)
+ S:$G(RMUN) RMUNI=$$GETUNI^RMPRPIU0(RMUN)
+ S RMUC=RMVA
+ I RMVA,RMQU S RMUC=RMVA/RMQU
+ S RMRO=0
+ S RMSO="**"
+ S (RMVEN,RMLOC,RMIDES)="         "
+ I $G(RMLO),$D(^RMPR(661.5,RMLO,0)) S RMLOC=$P(^RMPR(661.5,RMLO,0),U,1)
+ S RM11=$O(^RMPR(661.11,"ASHI",RS,RMHC,RMHI,0))
+ I $G(RM11),$D(^RMPR(661.11,RM11,0)) S RMSO=$P(^RMPR(661.11,RM11,0),U,5),RMIDES=$P(^RMPR(661.11,RM11,0),U,3)
+ S RM4=$O(^RMPR(661.4,"ASLHI",RS,RMLO,RMHC,RMHI,0))
+ I $G(RM4),$D(^RMPR(661.4,RM4,0)) S RMRO=$P(^RMPR(661.4,RM4,0),U,4)
+ S RMHCIEN=$O(^RMPR(661.1,"B",RMHC,0))
+ I RMHCIEN,$D(^RMPR(661.1,RMHCIEN,0)) S RMHDES=$P(^RMPR(661.1,RMHCIEN,0),U,2)
+ F K=0:0 S K=$O(^RMPR(661.6,"C",RMDT,K)) Q:K'>0  S RM6=$G(^RMPR(661.6,K,0)) D
+ .Q:RMHC'=$P(RM6,U,1)
+ .I (RMHC=$P(RM6,U,1)),(RMSE=$P(RM6,U,3)) S RMV=$P(RM6,U,12)
+ .S:$G(RMV) RMVEN=$$GETVEN^RMPRPIU0(RMV)
+ S RMPRT=RMQU_"^"_RMVA_"^"_RMUC_"^"_RMVEN_"^"_RMIDES_"^"_RMLOC_"^"_RMRO
+ S ^TMP($J,RMSUB,RMHC,RMHI,RMDT,RMLO)=RMPRT_"^"_RMUNI_"^"_RMSO
+ S ^TMP($J,"RMTMP",RMHC,RMHI)=""
+ Q

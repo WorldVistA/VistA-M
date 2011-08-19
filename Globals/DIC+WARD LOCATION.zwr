@@ -1,0 +1,17 @@
+WARD LOCATION
+ZWR
+^DIC(42,0)="WARD LOCATION^42I^"
+^DIC(42,0,"DD")="@"
+^DIC(42,0,"DEL")="@"
+^DIC(42,0,"GL")="^DIC(42,"
+^DIC(42,0,"LAYGO")="D"
+^DIC(42,0,"RD")="d"
+^DIC(42,0,"WR")="D"
+^DIC(42,"%",0)="^1.005^^0"
+^DIC(42,"%D",0)="^^3^3^2920406^^^^"
+^DIC(42,"%D",1,0)="This file contains all the facility ward locations and their"
+^DIC(42,"%D",2,0)="related data, i.e., Operating Beds,  Bedsection, etc.  The wards "
+^DIC(42,"%D",3,0)="are created/edited using the WARD DEFINITION option of the ADT module."
+^DIC(42,"%D",4,0)="WARD DEFINITION option of the ADT module."
+^DIC(42,"%D",5,0)="contains all statistical data, by date, necessary for the"
+^DIC(42,"%D",6,0)="computation of the daily Bed Status report."

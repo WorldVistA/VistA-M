@@ -1,0 +1,229 @@
+OCXDI02V ;SLC/RJS,CLA - OCX PACKAGE DIAGNOSTIC ROUTINES ;SEP 7,1999 at 10:30
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+S ;
+ ;
+ D DOT^OCXDIAG
+ ;
+ ;
+ K REMOTE,LOCAL,OPCODE,REF
+ F LINE=1:1:500 S TEXT=$P($T(DATA+LINE),";",2,999) Q:TEXT  I $L(TEXT) D  Q:QUIT
+ .S ^TMP("OCXDIAG",$J,$O(^TMP("OCXDIAG",$J,"A"),-1)+1)=TEXT
+ ;
+ G ^OCXDI02W
+ ;
+ Q
+ ;
+DATA ;
+ ;
+ ;;D^5
+ ;;R^"860.3:","860.31:5",1,"E"
+ ;;D^REQUEST STATUS (OBR)
+ ;;R^"860.3:","860.31:5",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:5",3,"E"
+ ;;D^F
+ ;;EOR^
+ ;;KEY^860.3:^HL7 NEW OERR ORDER
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 NEW OERR ORDER
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^CONTROL CODE
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQUALS ELEMENT IN SET
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^NW,SN,XR
+ ;;EOR^
+ ;;KEY^860.3:^HL7 OBR STAT ORDER
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 OBR STAT ORDER
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:2",.01,"E"
+ ;;D^2
+ ;;R^"860.3:","860.31:2",1,"E"
+ ;;D^ORDER PRIORITY (OBR)
+ ;;R^"860.3:","860.31:2",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:2",3,"E"
+ ;;D^S
+ ;;EOR^
+ ;;KEY^860.3:^HL7 LAB ORDER
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 LAB ORDER
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^FILLER
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^LR
+ ;;R^"860.3:","860.31:2",.01,"E"
+ ;;D^2
+ ;;R^"860.3:","860.31:2",1,"E"
+ ;;D^RESULT STATUS (OBX)
+ ;;R^"860.3:","860.31:2",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:2",3,"E"
+ ;;D^F
+ ;;R^"860.3:","860.31:3",.01,"E"
+ ;;D^3
+ ;;R^"860.3:","860.31:3",1,"E"
+ ;;D^ABNORMAL FLAG
+ ;;R^"860.3:","860.31:3",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:3",3,"E"
+ ;;D^L
+ ;;EOR^
+ ;;KEY^860.3:^HL7 RESULTS ABNORMAL HIGH
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 RESULTS ABNORMAL HIGH
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^ABNORMAL FLAG
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^H
+ ;;EOR^
+ ;;KEY^860.3:^HL7 RESULTS ABNORMAL LOW
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 RESULTS ABNORMAL LOW
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^ABNORMAL FLAG
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^L
+ ;;EOR^
+ ;;KEY^860.3:^HL7 RESULTS CRITICAL HIGH
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 RESULTS CRITICAL HIGH
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^ABNORMAL FLAG
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^HH
+ ;;EOR^
+ ;;KEY^860.3:^HL7 RESULTS CRITICAL LOW
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 RESULTS CRITICAL LOW
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^ABNORMAL FLAG
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^LL
+ ;;EOR^
+ ;;KEY^860.3:^HL7 CAPTURE REASON NULL
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 CAPTURE REASON NULL
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^COMMENT
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^LENGTH IS LESS THAN
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^1
+ ;;EOR^
+ ;;KEY^860.3:^HL7 EXAM ID NULL
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 EXAM ID NULL
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^EXAM/ORDER ID
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^LENGTH IS LESS THAN
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^1
+ ;;EOR^
+ ;;KEY^860.3:^HL7 ORDER WITHIN LAST 2 WEEKS
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 ORDER WITHIN LAST 2 WEEKS
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^ORDER ST D/T
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^AFTER
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^TODAY-14
+ ;;R^"860.3:","860.31:2",.01,"E"
+ ;;D^2
+ ;;R^"860.3:","860.31:2",1,"E"
+ ;;D^ORDER ST D/T
+ ;;R^"860.3:","860.31:2",2,"E"
+ ;;D^DATE BEFORE
+ ;;R^"860.3:","860.31:2",3,"E"
+ ;;D^YESTERDAY
+ ;;EOR^
+ ;;KEY^860.3:^HL7 OERR ORDER
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 OERR ORDER
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^FILLER
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^OR
+ ;;EOR^
+ ;;KEY^860.3:^HL7 LAB TEST NAME EQUALS GLUCOSE
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 LAB TEST NAME EQUALS GLUCOSE
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^LAB TEST NAME
+ ;;EOR^
+ ;;KEY^860.3:^HL7 RESULT STATUS
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 RESULT STATUS
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;EOR^
+ ;;KEY^860.3:^HL7 ORDER-CANCELLED
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 ORDER-CANCELLED
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;1;
+ ;

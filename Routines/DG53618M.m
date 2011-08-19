@@ -1,0 +1,134 @@
+DG53618M ;ALB/GN/PHH - DG*5.3*618 CLEANUP UTILITES ;03/22/2005 10:39 AM
+ ;;5.3;Registration;**618**;Aug 13, 1993
+ ;
+ ; Misc cleanup utilities
+ ;
+MAIL(TESTING) ; mail stats
+ N ACT,LACT,DFN,BTIME,HTEXT,TEXT,NAMSPC,LIN,MSGNO,DGDEL21,DGDEL12,DGTOT
+ N LSSN,R40831,STS,STSNAM,STAT,MTIEN,STIME
+ N TYPE,TYPNAM,DGDEL22,DGBADPAT,DGBADPER
+ N DGBAD03,X
+ S MSGNO=1
+ S NAMSPC=$$NAMSPC^DG53618,X=$G(^XTMP(NAMSPC,0,0))
+ S DGTOT=$P(X,U,2)
+ S DGDEL12=$P(X,U,3)
+ S BTIME=$P(X,U,4)
+ S STAT=$P(X,U,5)
+ S STIME=$P(X,U,6)
+ S DGDEL21=$P(X,U,7)
+ S DGDEL22=$P(X,U,8)
+ S DGBADPAT=$P(X,U,9)
+ S DGBADPER=$P(X,U,10)
+ S DGBAD03=$P(X,U,11)
+ ;
+ D HDNG(.HTEXT,.MSGNO,.LIN,"S",STAT,STIME,DGDEL12,TESTING)
+ D SUMRY(.LIN)
+ D MAILIT(HTEXT)
+ ;
+ D SNDDET
+ Q 1
+ ;
+ ;build heading lines for mail message
+HDNG(HTEXT,MSGNO,LIN,DOS,STAT,STIME,DGDEL12,TESTING) ;
+ K ^TMP(NAMSPC,$J,"MSG")
+ S LIN=0
+ S HTEXT="Cleanup Dangling 408.12 records process "_STAT_" on "
+ S HTEXT=HTEXT_$$FMTE^XLFDT(STIME)
+ D BLDLINE(HTEXT,.LIN)
+ S TEXT=$S(DOS="S":"Summary",1:"Detail")_" Information"
+ S TEXT=$J("",60-$L(TEXT)\2)_TEXT
+ D BLDLINE(TEXT,.LIN)
+ S TEXT="CLEANUP OF FILE #408.12 RECORDS "_STAT_" WITH "_DGDEL12_" RECORDS DELETED!!"
+ S TEXT=$J("",60-$L(TEXT)\2)_TEXT
+ D BLDLINE(TEXT,.LIN)
+ D BLDLINE("",.LIN)
+ I TESTING D
+ . S TEXT="** TESTING - NO CHANGES TO DATABASE WILL BE MADE**"
+ . D BLDLINE(TEXT,.LIN)
+ . Q
+ I MSGNO S TEXT="Message number: "_MSGNO D BLDLINE(TEXT,.LIN)
+ D BLDLINE("",.LIN)
+ S MSGNO=MSGNO+1
+ Q
+ ;
+SUMRY(LIN) ;build summary lines for mail message
+ S TEXT="Total 408.12 Records Processed: " D BLDLINE2(TEXT,.LIN,DGTOT)
+ S TEXT="  Purged file #408.12 records: "
+ D BLDLINE2(TEXT,.LIN,DGDEL12)
+ S TEXT="    Bad or missing file #2 pointer (field #.01 or #.03): "
+ D BLDLINE2(TEXT,.LIN,DGBADPAT)
+ S TEXT="    Bad or missing file #408.13 pointer (field #.03): "
+ D BLDLINE2(TEXT,.LIN,DGBADPER)
+ S TEXT="    Null or bad variable pointer (field #.03): "
+ D BLDLINE2(TEXT,.LIN,DGBAD03)
+ S TEXT="  Purged file #408.21 records: "
+ D BLDLINE2(TEXT,.LIN,DGDEL21)
+ S TEXT="  Purged file #408.22 records: "
+ D BLDLINE2(TEXT,.LIN,DGDEL22)
+ D BLDLINE("",.LIN)
+ D BLDLINE("",.LIN)
+ D BLDLINE("",.LIN)
+ ;
+ I DGDEL12 D
+ . D BLDLINE("Detail changes to follow in subsequent mail messages.",.LIN)
+ Q
+ ;
+BLDLINE2(TEXT,LIN,VAL) ;
+ N X
+ S X=TEXT_$J("",60-$L(TEXT))_$J($FN(VAL,","),11)
+ D BLDLINE(X,.LIN)
+ Q
+SNDDET ;build and send detail messages limit under 2000 lines each
+ N DATE,ERR,MAXLIN,MORE,R12,R21,R22
+ S MAXLIN=1995,MORE=0
+ D HDNG(.HTEXT,.MSGNO,.LIN,"D",STAT,STIME,DGDEL12,TESTING)
+ ;
+ S R12=""
+ F  S R12=$O(^XTMP(NAMSPC,"BADPR",R12)) Q:R12=""  D ERR
+ ;
+ ;print final message if any to print
+ D MAILIT(HTEXT):MORE
+ Q
+ ;
+ERR S ERR="",MORE=1
+ F  S ERR=$O(^XTMP(NAMSPC,"BADPR",R12,"ERR",ERR)) Q:ERR=""  D
+ . S TEXT=^XTMP(NAMSPC,"BADPR",R12,"ERR",ERR)
+ . I ERR=1 S TEXT="File 408.12, record "_R12_" had a bad pointer to "_TEXT
+ . I ERR=2 S TEXT="  "_TEXT
+ . D BLDLINE(TEXT,.LIN)
+ . ;max lines reached, print a msg
+ . I LIN>MAXLIN D  S MORE=0
+ . . D MAILIT(HTEXT)
+ . . D HDNG(.HTEXT,.MSGNO,.LIN,"D",STAT,STIME,DGDEL12,TESTING)
+ . . Q
+ . Q
+ S R21=""
+ F  S R21=$O(^XTMP(NAMSPC,"BADPR",R12,"REL",R21)) Q:R21=""  D R22
+ Q
+R22 S TEXT="    "_^XTMP(NAMSPC,"BADPR",R12,"REL",R21)
+ D BLDLINE(TEXT,.LIN)
+ I LIN>MAXLIN D  S MORE=0
+ . D MAILIT(HTEXT)
+ . D HDNG(.HTEXT,.MSGNO,.LIN,"D",STAT,STIME,DGDEL12,TESTING)
+ . Q
+ S R22=""
+ F  S R22=$O(^XTMP(NAMSPC,"BADPR",R12,"REL",R21,R22)) Q:R22=""  D
+ . S TEXT="      "_^XTMP(NAMSPC,"BADPR",R12,"REL",R21,R22)
+ . D BLDLINE(TEXT,.LIN)
+ . I LIN>MAXLIN D  S MORE=0
+ . . D MAILIT(HTEXT)
+ . . D HDNG(.HTEXT,.MSGNO,.LIN,"D",STAT,STIME,DGDEL12,TESTING)
+ . . Q
+ . Q
+ Q
+BLDLINE(TEXT,LIN) ;build a single line into TMP message global
+ S LIN=LIN+1
+ S ^TMP(NAMSPC,$J,"MSG",LIN)=TEXT
+ Q
+MAILIT(HTEXT) ; send the mail message
+ N XMY,XMDUZ,XMSUB,XMTEXT
+ S XMY(DUZ)="",XMDUZ=.5
+ S XMSUB=HTEXT
+ S XMTEXT="^TMP(NAMSPC,$J,""MSG"","
+ D ^XMD K ^TMP(NAMSPC,$J,"MSG")
+ Q

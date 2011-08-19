@@ -1,0 +1,224 @@
+PSUOP3 ;BIR/CFL,TJH,PDW-PSU PBM Outpatient Pharmacy shared variables ;08/25/2003
+ ;;4.0;PHARMACY BENEFITS MANAGEMENT;;MARCH, 2005
+ ;
+ ; Reference to file #7 supported by DBIA 2495
+ ; Reference to file #50 supported by DBIA 221
+ ; Reference to file #59 supported by DBIA 2510
+ ; Reference to file #200 supported by DBIA 10060
+ ; Reference to file #49  supported by DBIA 10093
+ ; Reference to file #52  supported by DBIA 2512
+ ;
+PROVDR ;Get provider data, site number and AMIS category
+ S PSUSITE=$S(PSUDIVP="":PSUSNDR,1:$$VALI^PSUTL(59,PSUDIVP,.06))
+ ;
+ ;Create storage global of division numbers and names for lab msgs.
+ S X=PSUSITE,DIC=59,DIC(0)="XM" D ^DIC
+ S X=+Y,PSUDIVNM=$$VAL^PSUTL(59,X,.01)
+ ;VMP OIFO BAY PINES;ELR;PSU*3.0*31
+ I '$L(PSUDIVNM) S X=PSUSITE D DIVNM^PSUOP6
+ S ^XTMP("PSU_"_PSUJOB,"DIV",PSUSITE)=PSUDIVNM
+ ;
+GETVAR ;Get shared variables
+ ;Get AMIS workload category
+ S PSUPST=$$VALI^PSUTL(53,PSURXP,6)
+ S PSUSC=$S(PSUPST=1:"SC",PSUPST=2:"AA",PSUPST=3:"OT",PSUPST=4:"IP",1:"")
+ S:$$GET1^DIQ(52,PSURXIEN,201)="YES" PSUSC="NVA"
+ K PSUPROV
+ D GETS^PSUTL(200,PSUPRID,"9;29;53.5;53.6","PSUPROV","I")
+ I '$D(PSUPROV) D NOPROV Q
+ D MOVEI^PSUTL("PSUPROV")
+ S PSUPRSSN=PSUPROV(9)
+ I PSUPRSSN="" S PSUPRSSN=999999999
+ S ^XTMP("PSU_"_PSUJOB,"PSUPDR",PSUPRSSN,PSUPRID)=""
+ S PSUDOC(9)=PSUPRSSN
+ S PSUPTYP=$S(PSUPROV(53.6)=4:"F",1:"S")
+ S:$$GET1^DIQ(52,PSURXIEN,201)="YES" PSUPTYP="NVA"
+ S PSUPCLS="" I PSUPROV(53.5)'="" D
+ .S PSUPCLS=$$VALI^PSUTL(7,PSUPROV(53.5),1)
+ .I PSUPCLS="" S PSUPCLS=$$VALI^PSUTL(7,PSUPROV(53.5),.01)
+ S PSUPSV=$S($L(PSUPROV(29)):$$VAL^PSUTL(49,PSUPROV(29),.01),1:"")
+ S PSUPSV=$$UPPER^PSUTL(PSUPSV),PSUPSERV=""
+ I $L(PSUPSV),$D(PSECT(PSUPSV)) S PSUPSERV=PSECT(PSUPSV)
+ S PSUSPTY=$$GET^XUA4A72(PSUPRID,PSUFDT)
+ S PSUSP1=$P(PSUSPTY,U,3),PSUSP2=$P(PSUSPTY,U,4)
+ ;
+ Q
+ ;
+NOPROV ; set up PSUPROV array when provider isn't found in ^VA(200
+ F I=9,29,53.5,53.6 S PSUPROV(I)=""
+ S (PSUPRSSN,PSUPTYP,PSUPCLS,PSUPSERV,PSUSP1,PSUSP2)=""
+ Q
+GETDRUG ;Get drug data
+ K PSUDRUG
+ D GETS^PSUTL(50,PSUDR,".01;2;3;14.5;20;21;22;25;27;31;51;52","PSUDRUG","I")
+ D MOVEI^PSUTL("PSUDRUG")
+ I '$D(PSUDRUG) F I=.01,2,3,14.5,20,21,22,25,31,51,52 S PSUDRUG(I)=""
+ S PSUGNM=PSUDRUG(.01)
+ I PSUGNM="" S PSUGNM="Unknown Generic Name"
+ S PSUVANM=PSUDRUG(21)
+ I PSUVANM="" S PSUVANM="Unknown VA Product Name"
+ S PSUDEA=PSUDRUG(3)
+ S PSUNFI=$S(PSUDRUG(51)=1:"N/F",1:"")
+ S PSUDUN=PSUDRUG(14.5)
+ S PSUVACLS=PSUDRUG(2)
+ S PSUNDCL=PSUDRUG(22)
+ S PSUNAF=$S(PSUDRUG(52):"N/F",1:"")
+ S PSUNADR=PSUDRUG(20)
+ S PSUCMID=PSUDRUG(27)
+ ;Get the National Formulary Indicator and Restriction
+ S (PSOPNFI,PSOPNFR)=""
+ I $$VERSION^XPDUTL("PSN")'<4 D
+ .S PSOPNFI=$$FORMI^PSNAPIS(PSUNADR,PSUNDCL)
+ .S PSOPNFR=$$FORMR^PSNAPIS(PSUNADR,PSUNDCL)
+GETDRUGQ Q
+ ;
+SETREC ;Set the record into the ^XTMP global
+ S:PSUDIVP="" PSUDIVP=PSUSNDR
+ S REC1="^",REC2="*",PSU2U="^",REC3="*",REC4="*",REC5="*",REC6="*"
+ S REC1=REC1_$TR(PSUSITE,"^","'")_PSU2U_$TR(PSUFD,"^","'")_PSU2U
+ S REC1=REC1_$TR(PSURELDT,"^","'")_PSU2U_$TR(PSURXN,"^","'")_PSU2U
+ S REC1=REC1_$TR(PSUSC,"^","'")_PSU2U_PSUSSN_PSU2U_$TR(PSUVANM,"^","'")_PSU2U
+ S REC1=REC1_$TR(PSUVACLS,"^","'")_PSU2U_$TR(PSUGNM,"^","'")_PSU2U
+ S REC1=REC1_$TR(PSUNDC,"^","'")_PSU2U_$TR(PSUNFI,"^","'")_PSU2U
+ S REC1=REC1_$TR(PSOPNFI,"^","'")_PSU2U_$TR(PSOPNFR,"^","'")_PSU2U
+ S REC1=REC1_$TR(PSUDEA,"^","'")_PSU2U_$TR(PSUTYP,"^","'")_PSU2U
+ S REC1=REC1_$TR(PSUCMOP,"^","'")_PSU2U_$TR(PSUMW,"^","'")_PSU2U
+ S REC1=REC1_$TR(PSUPRSSN,"^","'")_PSU2U_$TR(PSUPTYP,"^","'")_PSU2U
+ S REC1=REC1_PSU2U_$TR(PSUWPC,"^","'")_PSU2U
+ S REC1=REC1_$TR(PSUDUN,"^","'")_PSU2U_$TR(PSUDRCT,"^","'")_PSU2U
+ S REC1=REC1_$TR(PSUDS,"^","'")_PSU2U_$TR(PSUQTY,"^","'")_PSU2U_PSUNAF_U
+ D ICN^PSUV2 S PSUPICN=$G(^XTMP("PSU_"_PSUJOB,"PSUPICN"))
+ S REC1=REC1_$G(PSUPICN)_PSU2U_PSUPRID_PSU2U_$G(PSUCAN)_"^"
+ ;
+ ;
+ ;**Add AMIS data
+ ;
+ S REC2=REC2_$G(PSUCLN)_PSU2U             ;Clinic
+ ;
+ S REC2=REC2_$G(PSUCMID)_PSU2U            ;CMOP ID
+ ;
+ I $G(PSUFP) D
+ .S REC2=REC2_PSUSITE_$G(PSUFP)_PSU2U      ;Finishing person
+ I '$G(PSUFP) D
+ .S REC2=REC2_PSU2U
+ ;
+ ;Login dates for new orders, refills, and partials
+ I PSUTYP="N" S REC2=REC2_$G(PSUORDT)_PSU2U       ;New fills
+ I PSUTYP="R" S REC2=REC2_$G(PSUREDT)_PSU2U       ;Refills
+ I PSUTYP="P" S REC2=REC2_$G(PSUPDT)_PSU2U        ;Partials
+ ;
+ S REC2=REC2_$G(PSUCOPAY)_PSU2U           ;Copay status
+ S REC2=REC2_$E($G(PSUPI),1,80)_PSU2U     ;Expanded Instructions
+ S REC2=REC2_$G(PSUMDFLG)_PSU2U           ;Multidose Flag
+ ;
+ ;**Single dose date and first dose of multidose data
+ ;are in the following records**
+ ;
+ S REC2=REC2_$G(PSUDSG)_PSU2U             ;Dosage Ordered
+ S REC2=REC2_$G(PSUDISPU)_PSU2U           ;Dispense units
+ S REC2=REC2_$G(PSUNITS)_PSU2U            ;Units
+ S REC2=REC2_$G(PSUNOUN)_PSU2U            ;Noun
+ S REC2=REC2_$G(PSUDUR)_PSU2U             ;Duration
+ S REC2=REC2_$G(PSUCONJ)_PSU2U            ;Conjunction
+ S REC2=REC2_$G(PSUROUT)_PSU2U            ;Route
+ S REC2=REC2_$G(PSUSCHED)_PSU2U           ;Schedule
+ S REC2=REC2_$G(PSUVERB)_PSU2U            ;Verb
+ ;
+ ;**End of Single dose/First multidose data
+ ;
+ ;**The following are single dose globals for MailMan
+ ;
+ S PSURCT=1+$P($G(^XTMP(PSUOPSUB,"DATA",PSUSITE,PSURXIEN,0)),U,1)
+ S ^XTMP(PSUOPSUB,"DATA",PSUSITE,PSURXIEN,PSURCT,1)=REC1
+ S ^XTMP(PSUOPSUB,"DATA",PSUSITE,PSURXIEN,PSURCT,2)=REC2
+ S $P(^XTMP(PSUOPSUB,"DATA",PSUSITE,PSURXIEN,0),U,1)=PSURCT
+ I (($E(PSUOPVER)=6)&(PSUTYP="P"))!($E(PSUOPVER)>6) S ^XTMP(PSUOPSUB,"RXIEN",PSURXIEN)=""
+ ;**End of single dose globals for MailMan
+ ;
+ ;**Multidose records
+ ;
+ I $D(PSUMDFLG) D
+ .S PSUD1=1
+ .F  S PSUD1=$O(^TMP("PSOR",$J,PSURXIEN,"MI",PSUD1)) Q:PSUD1=""  D
+ ..S PSUAMMD=^TMP("PSOR",$J,PSURXIEN,"MI",PSUD1,0)
+ ..D MULTI^PSUOPAM                          ;Set multidose variables
+ ..I $L(REC3)>180 D REC4 Q
+ ..S REC3=REC3_$G(PSUDSGMD)_PSU2U           ;Dosage Ordered
+ ..S REC3=REC3_$G(PSUDSPMD)_PSU2U           ;Dispense units
+ ..S REC3=REC3_$G(PSUNITMD)_PSU2U           ;Units
+ ..S REC3=REC3_$G(PSUNMD)_PSU2U             ;Noun
+ ..S REC3=REC3_$G(PSUDURMD)_PSU2U           ;Duration
+ ..S REC3=REC3_$G(PSUCONMD)_PSU2U           ;Conjunction
+ ..S REC3=REC3_$G(PSURTMD)_PSU2U            ;Route
+ ..S REC3=REC3_$G(PSUSCHMD)_PSU2U           ;Schedule
+ ..S REC3=REC3_$G(PSUVRBMD)_PSU2U           ;Verb
+ ..;
+ ..;**End of Multidose data
+ ..;**End AMIS data
+ ..;
+ ..;
+ ..;global for multidose records for MailMan
+ I $D(PSUMDFLG) D
+ .S PSURCT=1+$P($G(^XTMP(PSUOPSUB,"DATAMD",PSUSITE,PSURXIEN,0)),U,1)
+ .S ^XTMP(PSUOPSUB,"DATAMD",PSUSITE,PSURXIEN,PSURCT,1)=REC1
+ .S ^XTMP(PSUOPSUB,"DATAMD",PSUSITE,PSURXIEN,PSURCT,2)=REC2
+ .S ^XTMP(PSUOPSUB,"DATAMD",PSUSITE,PSURXIEN,PSURCT,3)=REC3
+ .I $L(REC4)>1 S ^XTMP(PSUOPSUB,"DATAMD",PSUSITE,PSURXIEN,PSURCT,4)=REC4
+ .I $L(REC5)>1 S ^XTMP(PSUOPSUB,"DATAMD",PSUSITE,PSURXIEN,PSURCT,5)=REC5
+ .I $L(REC6)>1 S ^XTMP(PSUOPSUB,"DATAMD",PSUSITE,PSURXIEN,PSURCT,6)=REC6
+ .;
+ .S $P(^XTMP(PSUOPSUB,"DATAMD",PSUSITE,PSURXIEN,0),U,1)=PSURCT
+ ;
+ I '$D(^XTMP("PSU_"_PSUJOB,"PSUOPFLG")) D
+ .D LAB^PSULR0("OP",PSUSITE,PSURXIEN,DFN,PSUGNM,PSUVACLS)
+SUMDRUG ; total drug info for summary report
+ S PSUVARS="PSUTPART,PSUTFIL,PSUTRFIL,PSUTCST,PSUTQTY"
+ S PSUREC=$G(^XTMP(PSUOPSUB,"DRUG",PSUSITE,PSUGNM,PSUCMOP))
+ F I=1:1:5 S @$P(PSUVARS,",",I)=+$P(PSUREC,U,I)
+ I PSUTYP="P" S PSUTPART=PSUTPART+1
+ I PSUTYP="N" S PSUTFIL=PSUTFIL+1
+ I PSUTYP="R" S PSUTRFIL=PSUTRFIL+1
+ S PSUTQTY=PSUQTY+PSUTQTY
+ S PSUTCST=(PSUDRCT*PSUQTY)+PSUTCST
+ S REC=PSUTPART_U_PSUTFIL_U_PSUTRFIL_U_$J(PSUTCST,0,2)_U_$J(PSUTQTY,0,2)
+ S $P(REC,U,6)=$S(PSUNFI="N/F":"*",1:"")
+ S $P(REC,U,7)=$S(PSOPNFI="0":"#",1:"")
+ S ^XTMP(PSUOPSUB,"DRUG",PSUSITE,PSUGNM,PSUCMOP)=REC
+ Q
+ ;
+REC4 ;Multidose records greater than 200 characters in length
+ ;
+ I $L(REC4)>180 D REC5 Q
+ S REC4=REC4_$G(PSUDSGMD)_PSU2U           ;Dosage Ordered
+ S REC4=REC4_$G(PSUDSPMD)_PSU2U           ;Dispense units
+ S REC4=REC4_$G(PSUNITMD)_PSU2U           ;Units
+ S REC4=REC4_$G(PSUNMD)_PSU2U             ;Noun
+ S REC4=REC4_$G(PSUDURMD)_PSU2U           ;Duration
+ S REC4=REC4_$G(PSUCONMD)_PSU2U           ;Conjunction
+ S REC4=REC4_$G(PSURTMD)_PSU2U            ;Route
+ S REC4=REC4_$G(PSUSCHMD)_PSU2U           ;Schedule
+ S REC4=REC4_$G(PSUVRBMD)_PSU2U           ;Verb
+ Q
+REC5 ;
+ I $L(REC5)>180 D REC6 Q
+ S REC5=REC5_$G(PSUDSGMD)_PSU2U           ;Dosage Ordered
+ S REC5=REC5_$G(PSUDSPMD)_PSU2U           ;Dispense units
+ S REC5=REC5_$G(PSUNITMD)_PSU2U           ;Units
+ S REC5=REC5_$G(PSUNMD)_PSU2U             ;Noun
+ S REC5=REC5_$G(PSUDURMD)_PSU2U           ;Duration
+ S REC5=REC5_$G(PSUCONMD)_PSU2U           ;Conjunction
+ S REC5=REC5_$G(PSURTMD)_PSU2U            ;Route
+ S REC5=REC5_$G(PSUSCHMD)_PSU2U           ;Schedule
+ S REC5=REC5_$G(PSUVRBMD)_PSU2U           ;Verb
+ Q
+REC6 ;
+ S REC6=REC6_$G(PSUDSGMD)_PSU2U           ;Dosage Ordered
+ S REC6=REC6_$G(PSUDSPMD)_PSU2U           ;Dispense units
+ S REC6=REC6_$G(PSUNITMD)_PSU2U           ;Units
+ S REC6=REC6_$G(PSUNMD)_PSU2U             ;Noun
+ S REC6=REC6_$G(PSUDURMD)_PSU2U           ;Duration
+ S REC6=REC6_$G(PSUCONMD)_PSU2U           ;Conjunction
+ S REC6=REC6_$G(PSURTMD)_PSU2U            ;Route
+ S REC6=REC6_$G(PSUSCHMD)_PSU2U           ;Schedule
+ S REC6=REC6_$G(PSUVRBMD)_PSU2U           ;Verb
+ Q

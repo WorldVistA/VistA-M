@@ -1,0 +1,5 @@
+PXQ ;ISL/JVS - Debugging Routine ;12/18/96  15:27
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**4**;Aug 12, 1996
+ ;
+ D MENU^PXQUTL2
+ Q

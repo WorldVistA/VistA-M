@@ -1,0 +1,3 @@
+DGPTX42 ; ;12/12/07
+ S X=DE(25),DIC=DIE
+ K ^DGPT(DA(1),"S","AO",$E(X,1,30),DA)

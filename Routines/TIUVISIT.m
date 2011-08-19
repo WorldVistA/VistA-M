@@ -1,0 +1,100 @@
+TIUVISIT ; SLC/JER - Visit File look-up ;4/28/99@09:47:44 [1/27/05 12:36pm]
+ ;;1.0;TEXT INTEGRATION UTILITIES;**39,124,190**;Jun 20, 1997;Build 1
+MAIN(TIUY,DFN,TIUSSN,TIUVDT,TIULDT,TIUDFLT,TIUMODE,TIULOC,TIUOCC,LETNEW,FILTER,UNSONLY,TIUFUTUR) ;Control
+AGN K ^TMP("TIUVN",$J),^TMP("TIUVD",$J),^TMP("TIUVDA",$J)
+ N C,I,N,TIUI,TIUII,TIUVDA,TIUER,TIUOK,TIUX,X,TIUNVIS,TIUVDATE
+ S LETNEW=$G(LETNEW,1),UNSONLY=+$G(UNSONLY)
+ S:+$G(DFN)'>0 DFN=+$$PATIENT^TIULA($G(TIUSSN)) I +DFN'>0 S TIUOUT=1 Q
+ S TIUMODE=$G(TIUMODE,1),TIUOCC=$G(TIUOCC,20)
+ S TIULOC=$S(+$G(TIULOC):TIULOC,$G(TIULOC)]"":+$O(^SC("B",TIULOC,0)),1:"")
+ I +$G(TIUVDT) S TIUVDATE=(9999999-$P(TIUVDT,"."))_"."_$P(TIUVDT,".",2)
+ S TIULDT=$S(+$G(TIULDT)>0:(9999999-$P(TIULDT,"."))_$S($L(TIULDT,".")>1:"."_$P(TIULDT,".",2),1:""),+$G(TIUVDT):(9999999-$P(TIUVDT,"."))_"."_$P($$FMADD^XLFDT(TIUVDT,"","","",-1),".",2),1:0)
+ I '+$G(TIUVDT) S TIUVDT=$S(+$G(TIULDT):(9999999-$P(+$G(TIUVDT),"."))_"."_$P($$FMADD^XLFDT(+$G(TIUVDT),"",23,59,59),".",2),+$G(TIUVDT)>0:(9999999-$P(TIUVDT,"."))_"."_$P($$FMADD^XLFDT(TIUVDT,"","","",1),".",2),1:9999999) I 1
+ E  S TIUVDT=$G(TIUVDATE)
+ I '$D(^AUPNVSIT("AA",DFN)) W !,"No UNSCHEDULED VISITS on file",! Q
+ S I=TIULDT F  S I=$O(^AUPNVSIT("AA",DFN,I)) Q:+I'>0!(+I>TIUVDT)  D
+ . N N S N=0
+ . F  S N=$O(^AUPNVSIT("AA",DFN,I,N)) Q:+N'>0  D
+ . . N D
+ . . S:$G(FILTER)'["XD" FILTER=$G(FILTER)_"XD"
+ . . Q:'$D(^AUPNVSIT(+N,0))!(FILTER[$P($G(^AUPNVSIT(+N,0)),U,7))
+ . . ; If unscheduled visits only, then omit scheduled visits
+ . . I +UNSONLY,$$CHKAPPT^TIUPXAP2(N) Q
+ . . S D=^AUPNVSIT(+N,0)
+ . . I +$G(TIULOC)>0,($P(D,U,22)'=TIULOC) Q
+ . . S ^TMP("TIUVD",$J,(9999999-+D))=N_U_D
+ S (C,I)=0 F  S I=$O(^TMP("TIUVD",$J,I)) Q:+I'>0  D
+ . S C=C+1,^TMP("TIUVN",$J,C)=$G(^TMP("TIUVD",$J,I))
+ . S ^TMP("TIUVDA",$J,+$G(^TMP("TIUVD",$J,I)))=C
+ I '+TIUMODE,'$D(^TMP("TIUVN",$J)) Q
+ I '$D(^TMP("TIUVN",$J)) Q
+ I '+TIUMODE,$G(TIUDFLT)="LAST" D  Q:'+TIUX  G VADPT
+ . N TIUI S TIUI=+$O(^TMP("TIUVN",$J,0))
+ . S TIUX=$G(^TMP("TIUVN",$J,+TIUI))
+ S (TIUER,TIUOK,TIUI)=0
+ W !!,"The following",$S(FILTER["H":" UNSCHEDULED",1:"")," VISITS are available:",!
+ F  S TIUI=$O(^TMP("TIUVN",$J,TIUI)) Q:+TIUI'>0  D  Q:+TIUER!+TIUOK!+$G(TIUOUT)
+ . N TIUVR
+ . S TIUII=TIUI,TIUVR=$P(^TMP("TIUVN",$J,TIUI),"^",2,20),TIUVDA=+^(TIUI)
+ . D WRITE
+ . I '(TIUI#5) D BREAK I +$G(TIUX),($L($G(TIUX),";")=3) D VADPT^TIUVSIT S TIUOUT=1 Q
+ . I $G(X)["?" S X="",TIUI=TIUI-5
+ G:$D(TIUOUT) CLEAN
+ G AGN:TIUER
+ I +$G(TIUII)#5 D BREAK I +$G(TIUX),($L($G(TIUX),";")=3) D VADPT^TIUVSIT G CLEAN
+ I +$G(TIUOUT) G CLEAN
+ I +TIUER!($G(X)["?") G AGN
+ I +TIUOK,'+$G(TIUNVIS) D
+ . S TIUX=$G(^TMP("TIUVN",$J,+TIUOK)),^DISV(DUZ,"^AUPNVSIT(")=+TIUX
+ . W "  ",$$DATE^TIULS(+$P(TIUX,U,2),"AMTH DD CCYY@HR:MIN")
+VADPT ; Call PATVADPT^TIULV to fill TIUY array
+ N TIUVSTR
+ S TIUVSTR=$P(TIUX,U,23)_";"_$P(TIUX,U,2)_";"_$P(TIUX,U,8)
+ D PATVADPT^TIULV(.TIUY,DFN,"",TIUVSTR)
+CLEAN K ^TMP("TIUVN",$J),^TMP("TIUVD",$J),^TMP("TIUVDA",$J)
+ Q
+BREAK ; Handle prompting
+ N TIUARR,TIUAPT
+ I TIUII=1 S (TIUOK,X)=1
+ W !,"CHOOSE 1-",TIUII," or"
+ S TIUARR("FLDS")="1;",TIUARR(4)=DFN,TIUARR("MAX")=1
+ S TIUAPT=$$SDAPI^SDAMA301(.TIUARR)
+ I TIUAPT=-1 D  Q
+ . W !,"An error occurred while accessing the appointments database"
+ . W !,"    Please contact IRM!",!
+ . S (TIUER,TIUOUT)=1
+ . N X,X1,X2,TIUERR
+ . S X1=DT,X2=90 D C^%DTC
+ . S ^XTMP("TIUSDAMA",0)=X_"^"_DT_"^"
+ . S TIUERR=$O(^TMP($J,"SDAMA301",""))
+ . S:TIUERR ^XTMP("TIUSDAMA",$$NOW^XLFDT,TIUERR)=$G(^TMP($J,"SDAMA301",TIUERR))
+ . K ^TMP($J,"SDAMA301")
+ K ^TMP($J,"SDAMA301")
+ W:TIUAPT !,"<F>UTURE VISITS, or" W:+LETNEW " <N>EW VISIT"
+ W:$D(^TMP("TIUVN",$J,TIUII+1)) !,"<RETURN> TO CONTINUE",!,"OR '^' TO QUIT"
+ W ": " W:$D(TIUPICK) $P(^TMP("TIUVN",$J,TIUPICK),U),"// " R X:DTIME
+ S X=$$UP^XLFSTR(X)
+ I $S('$T:1,X["^":1,1:0) S (TIUER,TIUOUT)=1 Q
+ S:X=""&$D(TIUPICK) X=TIUPICK
+ I X["?" D HELP(X) Q
+ I $E(X)="F" S (TIUFUTUR,TIUOUT)=1 Q
+ I +LETNEW'>0,(X=""),'$D(^TMP("TIUVN",$J,TIUII+1)) S (TIUER,TIUOUT)=1 Q
+ I +LETNEW,$S(X="N":1,X="NEW":1,X=""&'$D(^TMP("TIUVN",$J,TIUII+1)):1,1:0) D ADD^TIUVSIT(DFN,.TIUX,$S(X="N":0,X="NEW":0,1:1),.TIUSDC) S TIUVTRY=1 I +$G(TIUX)'>0 S (TIUER,TIUOUT)=1 Q
+ I $S(X="":1,X="N":1,X="NEW":1,1:0) Q
+ I X'=+X!'$D(^TMP("TIUVN",$J,+X)) W !!,$C(7),"INVALID RESPONSE",! G BREAK
+ S TIUOK=X
+ Q
+HELP(X) ; Offer help
+ W !!?3,"Indicate the visit with which the document is associated by choosing"
+ W !?3,"the corresponding number.  To add a new visit (e.g., for unscheduled or"
+ W !?3,"telephone contacts), enter ""N"".",!!
+ Q
+WRITE ; Writes each list element
+ N DIC,DIQ,DA,DR,TIUVISIT,I,J,X,Y
+ S DIC="^AUPNVSIT(",DIQ="TIUVISIT(",DIQ(0)="IE",DA=+TIUVDA
+ S DR=".07;.08;.16;.21;.22" D EN^DIQ1
+ W !,$J(TIUI,4),">  ",$$DATE^TIULS(+TIUVR,"AMTH DD, CCYY@HR:MIN")
+ W ?27,$E($G(TIUVISIT(9000010,DA,.07,"E")),1,18)
+ W ?47,$E($S(TIUVISIT(9000010,DA,.22,"E")]"":TIUVISIT(9000010,DA,.22,"E"),1:TIUVISIT(9000010,DA,.08,"E")),1,18)
+ ;W ?67,$E($G(TIUVISIT(9000010,DA,.22,"E")),1,12) I $G(TIUVISIT(9000010,DA,.21,"E"))]"" W !?23,TIUVISIT(9000010,DA,.21,"E")
+ Q

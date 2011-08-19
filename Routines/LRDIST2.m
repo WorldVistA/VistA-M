@@ -1,0 +1,29 @@
+LRDIST2 ;SLC/DM - WRITE SUMMARY OF LEVY-JENNINGS LRQC CHART ;2/5/91  13:06 ;
+ ;;5.2;LAB SERVICE;**108,160,153**;Sep 27, 1994
+ ;  REGION 5 ISC/SLC ;  DCM
+EN W PNM,?35,"  ",SSN,?69,"  ",LRDT0,!!?18,"ACTUAL:",?39,"TARGET:",?65,"VALUE OUTSIDE:"
+ W !?10,"+--------------------+",?35,"+------------+"
+ W !?2,"TEST",?11,"MEAN",?19,"SD",?25,"CV",?30,"N",?36,"MEAN",?44,"SD",?50,"FL",?53,"ACCESSION",?69,"2SD",?75,"3SD"
+ W !,"---------",?10,"------",?17,"------",?24,"----",?29,"---",?35,"------",?42,"-------",?50,"--",?53,"-------------",?68,"----",?74,"----",!
+ Q
+ENTD ;from LRDIST1
+ K LRFOOT S LRFOOT=0 F LRII=1:1:LRCOUNT D WX
+ W $E(LRCHM,1,9) I LRSDNORM=0!LRCTRL&(LRNC>1) S LRCV=0 S:%X'=0 LRCV=LRSD/%X*100 W ?10,$J(%X,6,3),?17,$J(LRSD,6,3),?24,$J(LRCV,4,1)
+ I LRSDNORM=0!LRCTRL&(LRNC<2) W:LRNC>0 ?10,$J(LRVAL,6,3) W:LRNC<1 ?14,"**" W ?17,"    **  **"
+ I LRCTRL&LRSDNORM S LREM=$P(T,U,2),LRESD=$P(T,U,3),LRECV="" S:LREM LRECV=LRESD/LREM*100 W ?29,$J(LRNC,3) W:LREM'=""&(LRESD'="") ?35,$J(LREM,6,3),?42,$J(LRESD,6,3)
+ I LREM=""&(LRESD="") W ?35,"No reference range available" G LREND
+ I LRFOOT S I=0 F  S I=$O(LRFOOT(I)) Q:I<1  W ?50,$J(I,2,0),?53,$E(^TMP("LR",$J,"X",LRFOOT(I),4),1,15) S X=^(2) W ?$S(X>LRLM2!(X<LRLM1):74,1:68),X W:$O(LRFOOT(I))>0 !
+LREND ;from LRDIST1
+ I (LRTN=LRNM)&($O(LRTEST(LRTN))<1) W:$E(IOST,1,2)'="C-" !!!!,"Reviewed by:  ___________________________________  Date: ____________" W:$E(IOST,1,2)="C-" ! Q
+ W ! Q
+WX S LRSTEPS=(LRHIGH-LRLOW)/4,LRLM1=LRLOW-LRSTEPS,LRLM2=LRHIGH+LRSTEPS,LRLM1F=LRLM1+LRSTEPS,LRLM2F=LRLM2-LRSTEPS,N=LRCOUNT
+ S LRXF="X" I ^TMP("LR",$J,"X",LRII,2)<LRLM1F S LRFOOT=LRFOOT+1,LRFOOT(LRFOOT)=LRII,LRXF=LRFOOT
+ I ^TMP("LR",$J,"X",LRII,2)>LRLM2F S LRFOOT=LRFOOT+1,LRFOOT(LRFOOT)=LRII,LRXF=LRFOOT
+ Q
+LRSD ;from LRDIST1
+ S LRSD=-1,%X=-1 Q:N<2
+ S %X=N*LRSSX-(LRSX*LRSX)/(N*(N-1)) D SQRT S LRSD=%Y,%X=LRSX/N Q
+SQRT ;%Y=SQRT(%X)
+ S %Y=0 Q:%X'>0  S %Y=%X+1/2
+L S A9=%Y,%Y=%X/A9+A9/2 G L:%Y<A9
+ Q

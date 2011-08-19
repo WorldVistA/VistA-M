@@ -1,0 +1,31 @@
+PSXYMSG ;BIR/HTW-Dual Line Error Msg Utility ;[ 02/20/99  5:45 PM ]
+ ;;2.0;CMOP;**17**;11 Apr 97
+QRY1 K LOG S LOG(1)="QRY1 QRY message never received for query #"_PSXQRYID Q
+QRY2 K LOG S LOG(1)="QRY2 EOT received with no terminator while waiting for QRY message" Q
+QRY3 K LOG S LOG(1)="QRY3 EOT received while waiting for QRY message" Q
+QRY5 ;K LOG S LOG(1)="QRY5 Unexpected character received: "_$S(X>31:$C(X),1:"")_" ("_X_") while waiting for QRY message" Q
+ K LOG S LOG(1)="QRY5 Unexpected character received: "_X_"^"_$G(QF) Q
+QRY6 K LOG S LOG(1)="QRY6 Timeout Timer D reading QRY message" Q
+QRY7 K LOG S LOG(1)="QRY7 QRY message longer than 240 characters" Q
+QRY8 K LOG S LOG(1)="QRY8 QRY message did not end with ETX" Q
+QRY9 K LOG S LOG(1)="QRY9 QRY was null" Q
+QRY10 K LOG S LOG(1)="QRY10 Timeout reading QRY checksum" Q
+QRY11 K LOG S LOG(1)="QRY11 QRY checksum contained an invalid hex digit ("_X_")" Q
+QRY12 K LOG S LOG(1)="QRY12 QRY checksum does not match" Q
+QRY13 K LOG S LOG(1)="QRY13 Message #"_PSXQRYID_" was rejected by OMCS" Q
+QRY14 K LOG S LOG(1)="QRY14 ENQ received with no terminator" Q
+QRY15 K LOG S LOG(1)="QRY15 MSA message ID did not match PSXQRYID # expected" Q
+QRY16 K LOG S LOG(1)="QRY16 Block count greater than 7." Q
+QRY17 K LOG S LOG(1)="QRY17 Wrong Block count received." Q
+QRY18 K LOG S LOG(1)="QRY18 Maximum retries reached for receiving message." Q
+QRY19 K LOG S LOG(1)="QRY19 Maximum Rxs received, query terminated." Q
+QRY20 K LOG S LOG(1)="QRY20 No activity on line continuing to monitor." Q
+MST1 K LOG S LOG(1)="MST1 ENQ received with no terminator while Bidding for Master status." Q
+MST2 K LOG S LOG(1)="MST2 NAK received with no terminator while Bidding for Master status." Q
+MST3 K LOG S LOG(1)="MST3 ACK without 0 received while Bidding for Master status." Q
+MST4 K LOG S LOG(1)="MST4 Garbage received while Bidding for Master status." Q
+MST5 K LOG S LOG(1)="MST5 NAK received while Bidding for Master status." Q
+MST6 K LOG S LOG(1)="MST6 No response from CMOP while Bidding for Master status." Q
+MST7 K LOG S LOG(1)="MST7 Simultaneous bid for Master status by CMOP and DHCP." Q
+MST8 K LOG S LOG(1)="MST8 ACK received with no terminator while Bidding for Master status." Q
+MST9 K LOG S LOG(1)="MST9 CMOP won't respond, waiting 45 seconds to try again" Q

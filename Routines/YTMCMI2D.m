@@ -1,0 +1,42 @@
+YTMCMI2D ;ALB/ASF- MCMI2 REPORT CONTINUED; ;4/11/91  15:41
+ ;;5.01;MENTAL HEALTH;;Dec 30, 1994
+VAR ;
+ S V1="-------:--:---:---:----:---:---------:---------:----------:--------------------"
+ S V2="CATEGORY   RAW  BR     35  60        75        85         100",V3="",$P(V3,"*",41)=""
+ S V4="^M^O I^D N^I D^F I^I C^E E^R S^^  P^C E^L R P^I S A^N O T^I N T^C A E^A L R^L I N^  T^  Y^ ^^  P P^S E A^E R T^V S H^E N L^R L O^E T G^  Y Y^^C S^L Y^I N^N D^I R^C O^A M^L E^^  S^S Y^E N^V D^E R^R O^E M^  E^^"
+ S V5="^^1^^2^^3^^^^^4^5^6^7^8^9^10^11^12^13^^^^14^^15^^16^^^^^17^18^19^20^21^22^^^^23^^24^^25"
+GRAPH ;
+ W !?12,"SCORES",?29,"PROFILE OF BR SCORES",?59,"DIAGNOSTIC SCALES",!,V2
+ F V6=1:1:50 D GRAPH1 D:IOST?1"C-".E&($Y+3>IOSL) SCR Q:YSLFT=1
+ W:'YSLFT !,V2 Q
+GRAPH1 ;
+ I $P(V4,U,V6)="" W !,V1 Q
+ W !,$P(V4,U,V6),?7,":"
+ S X=$P(V5,U,V6) I 'X D CLN Q
+ S X1=$P(^YTT(601,YSTEST,"S",X,0),U,2),YSSP=$P(X1," "),YSPN=$P(X1," ",2,99) S:X>16&(X<23) YSPN=$P(YSPN," DIS")
+ S X1=$P(S,U,X),X2=0 S:X1<0 X1=0
+ W YSSP,?10,":",$J($P(R,U,X),3),":",$J(X1,3),":"
+BAR ;
+ I X1>99 S X2=40 G PLOT
+ I X1>85 S X2=X1-85*$J(11/15,0,2)+29 G PLOT
+ I X1>75 S X2=X1-75*$J(10/10,0,2)+19 G PLOT
+ I X1>60 S X2=X1-60*$J(10/15,0,2)+9 G PLOT
+ I X1>35 S X2=X1-35*$J(4/25,0,2)+5 G PLOT
+ S X2=X1*5/35
+PLOT ;
+ S X2=X2\1 S:X2<1&(X1>0) X2=1 I +R'>590,+R'<145,$P(R,U,26)<2 W $E(V3,1,X2)
+ D CLN W ?60,YSPN
+ K YSPN
+ Q
+CLN ;
+ F I=7,10,14,18,23,27,37,47,58 I I'<$X W ?I,":"
+ Q
+SCR ;
+ ;  Added 5/6/94 LJA
+ N A,B,B1,C,D,E,E1,F,F1,G,G1,H,I,J,J1,J2,J3,J4,K,L,L1,L2,M,N
+ N N1,N2,N3,N4,P,P0,P1,P3,R,R1,S,S1,T,T1,T2,TT,V,V1,V2,V3
+ N V4,V5,V6,W,X,X0,X1,X2,X3,X4,X7,X8,X9,Y,Y1,Y2,Z,Z1,Z3
+ ;
+ F I0=1:1:(IOSL-$Y-2) W !
+ S DIR(0)="E" D ^DIR K DIR S YSTOUT=$D(DTOUT),YSUOUT=$D(DUOUT),YSLFT=$D(DIRUT)
+ W @IOF Q

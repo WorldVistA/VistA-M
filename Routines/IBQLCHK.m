@@ -1,0 +1,54 @@
+IBQLCHK ;LEB/MRY - UM ROLLUP - CHECK INFO. IN IB(array) ; 4-JUN-95
+ ;;1.0;UTILIZATION MGMT ROLLUP LOCAL;;Oct 01, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+ ; Input:  IBTRN
+ ; Output: IB(array)
+ ;
+ I '$D(DT) D DT^DICRW
+ K IBDATA S IBQUIT=""
+CLAIMS ;
+ D CLAIMS^IBQL356 Q:IBQUIT
+ADM ;
+ S IBTRV=$O(^IBT(356.1,"C",IBTRN,""))
+ D ADMIT^IBQL356 Q:IBQUIT
+ S X="" F IBFLD=.01:.01:.13 S X=X_IBFLD_":"_IB(IBFLD)_"^"
+ S IBDATA(0)=$P(X,"^",1,$L(X,"^")-1)
+ S X="" F IBFLD=1.01:.01:1.07 S X=X_IBFLD_":"_IB(IBFLD)_"^"
+ S IBDATA(1)=$P(X,"^",1,$L(X,"^")-1)
+STAY ;
+ S IBPIS=IB(1.02)
+ F  S IBTRV=$O(^IBT(356.1,"C",IBTRN,IBTRV)) Q:'IBTRV  D  Q:IBQUIT
+ .D STAY^IBQL356 Q:IBQUIT
+ .S X="" F IBFLD=13.01,13.02,13.03,13.04,13.05,13.06,13.07,13.08 S X=X_(IBFLD-13)_":"_IB(IBFLD)_"^"
+ .S IBDATA(IB(13.01))=$P(X,"^",1,$L(X,"^")-1)
+ ;Q
+ ;
+PRINT ;
+ ;D HDR
+ W #,"CLAIMS TRACKING AND ADMISSION REVIEW DATA"
+ W ! F I=1:1:80 W "="
+ W !
+ W !!,"IB(.01) - ENTRY ID: ",?25,IB(.01)
+ W !,"IB(.02) - SITE: ",?25,IB(.02)
+ W !,"IB(.03) - SSN#: ",?25,IB(.03)
+ W !,"IB(.04) - ADM DIAGNOSIS: ",?25,IB(.04)
+ W !,"IB(.05) - ENROLL: ",?25,IB(.05)
+ W !,"IB(.06) - ADMITTING PHY: ",?25,IB(.06)
+ W !,"IB(.07) - ATTENDING PHY: ",?25,IB(.07)
+ W !,"IB(.08) - RESIDENT PHY: ",?25,IB(.08)
+ W !,"IB(.09) - ADMISSION: ",?25,IB(.09)
+ W !,"IB(.1) - DISCHARGE: ",?25,IB(.1)
+ W !,"IB(.11) - WARD: ",?25,IB(.11)
+ W !,"IB(.12) - TREATING SPECIALTY: ",?25,IB(.12)
+ W !,"IB(1.01) - SI FROM ADM: ",?25,IB(1.01)
+ W !,"IB(1.02) - IS FROM ADM: ",?25,IB(1.02)
+ W !,"IB(1.03) - REASONS FROM ADM: ",?25,IB(1.03)
+ W !,"IB(1.04) - PROVIDER INTERVIEWED?: ",?25,IB(1.04)
+ W !,"IB(1.05) - ADM INFLUENCED?: ",?25,IB(1.05)
+ W !,"IB(1.06) - ROLLUP TYPE: ",?25,IB(1.06)
+ W !,"IB(1.07) - SERVICE: ",?25,IB(1.07)
+ ;
+ W !,"<<< DATA STREAM FOR TRANSMISSION >>>",! S X="ZW IBDATA" X X
+ W !,"<<< VADPT CALL VARIABLES >>>",! S X="ZW VAIN" X X
+ Q

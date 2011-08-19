@@ -1,0 +1,43 @@
+PRCNCMR ;SSI/ALA-CMR Official ;[ 03/13/97  10:29 AM ]
+ ;;1.0;PRCN;**3,14**;Sep 13, 1996
+REV ;  Review equipment requests
+ S PRCNC=DUZ D CMR K PRCNC
+ S DIC="^PRCN(413,",DIC(0)="AEQZ"
+ S DIC("S")="S ST=$P(^(0),U,7),CMRZ=$P(^(0),U,16) I ((ST=3)!(ST=5)!(ST=45))&($D(PRCNCMR(CMRZ)))"
+ D ^DIC G EXIT:Y<0 K DIC("S")
+ S (IN,DA)=+Y,PRCNUSR=0,DIE=413 D SETUP^PRCNPRNT
+ S PRCNST=$P(^PRCN(413,IN,0),U,7)
+ I PRCNST'=45 S DR="[PRCNCMR]"
+ I PRCNST=45 S DR="75"
+ D ^DIE I PRCNST=45 D  G REV
+ . I $P(^PRCN(413,DA,2),U,17)="Y" S DR="6////^S X=39;7////^S X=DT"
+ . I $P(^PRCN(413,DA,2),U,17)="N" S DR="6////^S X=4;7////^S X=DT;77////^S X=45"
+ . D ^DIE,EXIT
+ I $P(^PRCN(413,IN,0),U,9)="R" D
+ . ; If replacment request copy CMR fields into turnin request
+ . S DA=$P(^PRCN(413,IN,0),U,11)
+ . S CPRV=$P($G(^PRCN(413,IN,2)),U,16),$P(^PRCN(413.1,DA,0),U,10)=CPRV
+ . F I=1:1:$P($G(^PRCN(413,IN,15,0)),U,4) S ^PRCN(413.1,DA,2,I,0)=$G(^PRCN(413,IN,15,I,0))
+ . S ^PRCN(413.1,DA,2,0)="^^"_I_U_I_DT_U
+ . I CPRV="Y" S DIE=413.1,DR="6////^S X=6;7////^S X=DT" D ^DIE
+ . I CPRV="N" S DIE=413.1,DR="6////^S X=4;7////^S X=DT" D ^DIE
+ D EXIT
+ G REV
+EXIT K DA,DIC,DIE,DR,I,IN,PRCNUSR,PRCNCMR,PRCN,CPRV,ST,PRCNST,PRCNTY,STA,D
+ K %,C,D0,J,GLO,FAIL,PRCNDEF,LPRI,OLDPRI,PRIMAX,SERV,CMRZ,JJ
+ Q
+MES ;  Send mail message when CMR Official has not approved request
+ S XMB(1)=$P(^PRCN(413,DA,0),U),XMB="PRCNCMR1",XMDUZ=DUZ,XMY(XMDUZ)=""
+ S XMY($P(^PRCN(413,DA,0),U,2))=""
+ S CMRDA=$P(^PRCN(413,DA,0),U,16)
+ I CMRDA'="",$D(^ENG(6914.1,CMRDA,0)),($P(^ENG(6914.1,CMRDA,0),U,2)'="") S XMY($P(^ENG(6914.1,CMRDA,0),U,2))=""
+ ;  Append the explanation text
+ S NL=$P($G(^PRCN(413,DA,15,0)),U,3),XMTEXT="MSG("
+ I NL'="" F I=1:1:NL S MSG(I)=$G(^PRCN(413,DA,15,I,0))
+ D ^XMB
+ K XMB,NL,MSG,XMTEXT,XMY,XMDUZ
+ Q
+CMR S (PRCNCMR,PRCN)=""
+ F  S PRCN=$O(^ENG(6914.1,"C",PRCNC,PRCN)) Q:PRCN=""  S PRCNCMR(PRCN)=""
+ F  S PRCN=$O(^ENG(6914.1,"D",PRCNC,PRCN)) Q:PRCN=""  S PRCNCMR(PRCN)=""
+ Q

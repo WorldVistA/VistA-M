@@ -1,0 +1,81 @@
+VAQDBIM2 ;ALB/JRP - MEANS TEST EXTRACTION (SCREEN 2);4-MAR-93
+ ;;1.5;PATIENT DATA EXCHANGE;;NOV 17, 1993
+ ; **********
+ ; * PARTS OF THIS ROUTINE HAVE BEEN COPIED AND ALTERED FROM THE
+ ; * DGMTSC* ROUTINES.  FOR MODULES THIS WAS DONE FOR, A REFERENCE
+ ; * TO THE DGMTSC* ROUTINE WILL BE INCLUDE.
+ ; **********
+ ;
+XTRCT2(DFN,ARRAY,OFFSET) ;EXTRACT SCREEN 2
+ ;PREVIOUS CALENDAR YEAR GROSS INCOME
+ ;This module is based on DIS^DGMTSC2
+ ;
+ ;INPUT  : See EXTRACT^VAQDBIM for explanation of parameters.  Input
+ ;         also includes all DG* variables required to build screen.
+ ;OUTPUT : n - Number of lines in display
+ ;         -1^Error_text - Error
+ ;
+ ;CHECK INPUT
+ Q:('$D(DFN)) "-1^Pointer to patient file not passed"
+ Q:('$D(ARRAY)) "-1^Reference to output array not passed"
+ Q:('$D(OFFSET)) "-1^Starting offset not passed"
+ ;DECLARE VARIABLES
+ N DGDC,DGDET,DGIN0,DGIN1,DGIN2,DGINT,DGINTF,DGNC,DGND,DGNWT,DGNWTF,DGSP,DGVIR0,LINES,TMP
+ S LINES=OFFSET
+ ;INITIALEZE MEANS TEST VARIABLES
+ D DEP^DGMTSCU2,INC^DGMTSCU3
+ ;EXTRACT HEADER
+ S TMP=$$HEADER^VAQDBIM0(2,ARRAY,OFFSET)
+ Q:(TMP<0) TMP
+ S OFFSET=OFFSET+TMP
+ ;EXTRACT INFORMATION
+ S TMP=$$INSERT^VAQUTL1("Veteran","",35)
+ S:(DGSP) TMP=$$INSERT^VAQUTL1("Spouse",TMP,47)
+ S:(DGDC) TMP=$$INSERT^VAQUTL1("Children",TMP,57)
+ S TMP=$$INSERT^VAQUTL1("Total",TMP,74)
+ S @ARRAY@("DISPLAY",OFFSET,0)=TMP
+ S OFFSET=OFFSET+1
+ S TMP=$$REPEAT^VAQUTL1("-",47)
+ S TMP=$$INSERT^VAQUTL1(TMP,"",32)
+ S @ARRAY@("DISPLAY",OFFSET,0)=TMP
+ S OFFSET=OFFSET+1
+ D FLD(8,"Social Security (Not SSI)")
+ D FLD(9,"U.S. Civil Service")
+ D FLD(10,"U.S. Railroad Retirement")
+ D FLD(11,"Military Retirement")
+ D FLD(12,"Unemployment Compensation")
+ D FLD(13,"Other Retirement")
+ D FLD(14,"Total Employment Income")
+ D FLD(15,"Interest,Dividend,Annuity")
+ D FLD(16,"Workers Comp or Black Lung")
+ D FLD(17,"All Other Income")
+ S TMP=$$INSERT^VAQUTL1("Total -->","",52)
+ S TMP=$$INSERT^VAQUTL1($J($$AMT^DGMTSCU1(DGINT),12),TMP,67)
+ S @ARRAY@("DISPLAY",OFFSET,0)=TMP
+ S OFFSET=OFFSET+1
+ Q (OFFSET-LINES)
+ ;
+FLD(PIECE,LABEL) ;EXTRACT INCOME
+ ;INPUT  : PIECE - Piece position in DGIN0 to extract
+ ;         LABEL - Label to use (income description)
+ ;         Input also includes:
+ ;           all DG* variables
+ ;           ARRAY
+ ;           OFFSET
+ ;
+ ;This module is based on FLD^DGMTSC2
+ ;
+ ;DECLARE VARIABLES
+ N TOTAL,I,INFO
+ ;PLACE LABEL IN STRING
+ S INFO=$$INSERT^VAQUTL1(LABEL,"",6)
+ ;EXTRACT INCOME INFORMATION
+ S INFO=$$INSERT^VAQUTL1($J($$AMT^DGMTSCU1($P(DGIN0("V"),"^",PIECE)),10),INFO,32)
+ S:$D(DGIN0("S")) INFO=$$INSERT^VAQUTL1($J($$AMT^DGMTSCU1($P(DGIN0("S"),"^",PIECE)),10),INFO,43)
+ S:$D(DGIN0("C")) INFO=$$INSERT^VAQUTL1($J($$AMT^DGMTSCU1($P(DGIN0("C"),"^",PIECE)),11),INFO,54)
+ ;CALCULATE INCOME TOTAL
+ S TOTAL=0,I="" F  S I=$O(DGIN0(I)) Q:I=""  S TOTAL=TOTAL+$P(DGIN0(I),"^",PIECE)
+ S INFO=$$INSERT^VAQUTL1($J($$AMT^DGMTSCU1(TOTAL),12),INFO,67)
+ S @ARRAY@("DISPLAY",OFFSET,0)=INFO
+ S OFFSET=OFFSET+1
+ Q

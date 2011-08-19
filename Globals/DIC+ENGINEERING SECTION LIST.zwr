@@ -1,0 +1,10 @@
+ENGINEERING SECTION LIST
+ZWR
+^DIC(6922,0)="ENGINEERING SECTION LIST^6922^^0"
+^DIC(6922,0,"DD")="#"
+^DIC(6922,0,"DEL")="e"
+^DIC(6922,0,"GL")="^DIC(6922,"
+^DIC(6922,0,"LAYGO")="e"
+^DIC(6922,0,"WR")="e"
+^DIC(6922,"%D",0)="^^1^1^2930430^^^"
+^DIC(6922,"%D",1,0)="A list of functional sections within Engineering Service."

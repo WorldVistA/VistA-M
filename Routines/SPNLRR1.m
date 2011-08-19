@@ -1,0 +1,48 @@
+SPNLRR1 ;ISC-SF/GB-SCD LAB TEST UTILIZATION (SPECIFIC) REPORT (PART 1 OF 1) ;9/1/95  08:23
+ ;;2.0;Spinal Cord Dysfunction;**20**;01/02/1997
+P1(TITLE,PAGELEN,QLIST,ABORT) ;
+ ; PID     Patient Name
+ ; PSSN      Patient SSN
+ N NPATS,TESTNR,RESULTS,LABTEST,TESTNAME,PID,PNAME,PSSN
+ S TITLE(4)=""
+ S TITLE(7)=""
+ ; TITLE(7)="         1         2         3         4         5         6         7         8"
+ S TITLE(8)="Patient Name                        SSN                  Tests"
+ S TESTNR="" ; create list in test name order
+ F  S TESTNR=$O(QLIST(TESTNR)) Q:TESTNR=""  D
+ . S LABTEST(QLIST(TESTNR))=TESTNR
+ S TESTNAME=""
+ F  S TESTNAME=$O(LABTEST(TESTNAME)) Q:TESTNAME=""  D  Q:ABORT
+ . S TITLE(5)=$$CENTER^SPNLRU(TESTNAME)
+ . S TESTNR=LABTEST(TESTNAME)
+ . S RESULTS=+$G(^TMP("SPN",$J,"CH","TEST",TESTNR))
+ . S NPATS=+$G(^TMP("SPN",$J,"CH","TEST",TESTNR,"PAT"))
+ . S TITLE(6)=$$PAD^SPNLRU("Total:  "_$FN(NPATS,",")_" patient"_$S(NPATS=1:"",1:"s"),50)_$J($FN(RESULTS,","),12)
+ . D HEADER^SPNLRU(.TITLE,.ABORT) Q:ABORT
+ . K TITLE(6)
+ . S PID=""
+ . F  S PID=$O(^TMP("SPN",$J,"CH","TEST",TESTNR,"PID",PID)) Q:(PID="")!(ABORT=1)  D
+ . . I $Y>PAGELEN D HEADER^SPNLRU(.TITLE,.ABORT) Q:ABORT
+ . . S PNAME=$P(PID,U,1),PSSN=$P(PID,U,2)
+ . . S RESULTS=+$G(^TMP("SPN",$J,"CH","TEST",TESTNR,"PID",PID))
+ . . W !,PNAME,?32,PSSN,?50,$J($FN(RESULTS,","),11)
+ K TITLE(4),TITLE(5),TITLE(7),TITLE(8)
+ Q
+P2(TITLE,PAGELEN,QLIST,ABORT) ;
+ N NPATS,TESTNR,RESULTS,LABTEST,TESTNAME
+ S TITLE(4)=""
+ ; TITLE(5)="         1         2         3         4         5         6         7         8"
+ S TITLE(5)="Lab Test                           Patients          Results"
+ S TESTNR="" ; create list in test name order
+ F  S TESTNR=$O(QLIST(TESTNR)) Q:TESTNR=""  D
+ . S LABTEST(QLIST(TESTNR))=TESTNR
+ D HEADER^SPNLRU(.TITLE,.ABORT) Q:ABORT
+ S TESTNAME=""
+ F  S TESTNAME=$O(LABTEST(TESTNAME)) Q:TESTNAME=""  D
+ . I $Y>PAGELEN D HEADER^SPNLRU(.TITLE,.ABORT) Q:ABORT
+ . S TESTNR=LABTEST(TESTNAME)
+ . S RESULTS=+$G(^TMP("SPN",$J,"CH","TEST",TESTNR))
+ . S NPATS=+$G(^TMP("SPN",$J,"CH","TEST",TESTNR,"PAT"))
+ . W !,TESTNAME,?31,$J($FN(NPATS,","),11),?48,$J($FN(RESULTS,","),11)
+ K TITLE(4),TITLE(5)
+ Q

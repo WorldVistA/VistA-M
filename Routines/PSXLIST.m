@@ -1,0 +1,57 @@
+PSXLIST ;BIR/WPB-Report Routine to List Orders/Rx's in a Batch ;04/08/97 2:06 PM
+ ;;2.0;CMOP;**38**;11 Apr 97
+EN1 ;prints order/rx data from 512 at host
+ S DIC="^PSX(552.1,",DIC("S")="I ($P($G(^PSX(552.1,+Y,0)),U,4)'=""""),($D(^PSX(552.1,""AQ"",$P($G(^PSX(552.1,+Y,0)),U,4),$P($G(^PSX(552.1,+Y,0)),U,1),+Y)))",DIC(0)="AEQMZ" D ^DIC K DIC Q:Y'>0!($D(DTOUT))  S BAT=$P(Y,"^",2)
+ K Y
+END S %ZIS="Q",%ZIS("B")="" D ^%ZIS S PSLION=ION I POP W !,"No Device Selected" G EXIT
+ I $D(IO("Q")) D QUE G EX1
+ D P512 G:$G(STOP) EX1 G EXIT
+ Q
+QUE S ZTRTN="P512^PSXLIST",ZTDESC="CMOP Data Transmission Report",ZTSAVE("BAT")="",ZTSAVE("PSLION")="",ZTIO=PSLION D ^%ZTLOAD
+ I $D(ZTSK)[0 W !!,"Job Canceled"
+ E  W !!,"Job Queued"
+ D HOME^%ZIS
+ Q
+ ;Called by Taskman to list Rx's/orders in a batch
+P512 S:$D(ZTQUEUED) ZTREQ="@"
+ U IO
+ S RECD=$O(^PSX(552.1,"B",BAT,"")),SITEN=$P(BAT,"-",1)
+ ;N X,Y S DIC=4,DIC(0)="MNZ",X=SITEN S:$D(^PSX(552,"D",X)) X=$E(X,2,99) D ^DIC S SITE=$S($G(Y)]"":$P(Y,"^",2),1:"UNKNOWN") ;****DOD L1
+ N X,Y S X=SITEN,AGNCY="VASTANUM" S:$D(^PSX(552,"D",X)) X=$E(X,2,99),AGNCY="DMIS" S SITE=$$IEN^XUMF(4,AGNCY,X),SITE=$S($G(SITE)]"":$$NAME^XUAF4(SITE),1:"UNKNOWN") ;****DOD L1
+ S PHAR=$P(^PSX(552.1,RECD,"P"),U,1),X=$P(^PSX(552.1,RECD,0),U,4),TDTM=$$FMTE^XLFDT(X,"1P")
+ S TOTRX=$P($G(^PSX(552.1,RECD,1)),U,4),TOTORD=$P($G(^PSX(552.1,RECD,1)),U,3)
+ D SUB
+ S OKAY=0,XX=0 F  S XX=$O(^PSX(552.2,"AQ",BAT,XX)) Q:XX'>0  Q:$G(STOP)  S ORDNUM=XX,ZZ=0 F  S ZZ=$O(^PSX(552.2,XX,"T",ZZ)) Q:ZZ'>0  S NODE=$G(^PSX(552.2,XX,"T",ZZ,0)) D
+ .Q:$G(STOP)
+ .Q:$E(NODE,1,4)["MSH|"!($E(NODE,1,4)["NTE|")
+ .I $E(NODE,1,4)["PID|" S NM=$P(NODE,"|",6),SS=$P($P(NODE,"|",4),"^",1),SSN=$E(SS,1,3)_"-"_$E(SS,4,5)_"-"_$E(SS,6,9),NAME=$P(NM,"^",1)_", "_$P(NM,"^",2)
+ .I $E(NODE,1,4)["ORC|" S ZX=ZZ F  S ZX=$O(^PSX(552.2,XX,"T",ZX)) Q:ZX'>0  S TNODE=$G(^PSX(552.2,XX,"T",ZX,0)) D
+ ..Q:$G(STOP)
+ ..Q:$E(TNODE,1,4)["NTE|"
+ ..I $E(TNODE,1,4)["ORC|" S ZZ=ZX Q
+ ..I $E(TNODE,1,4)["RX1|" S DRUGNUM=$P($P(TNODE,"|",15),"^",1),DRUGNM=$P($P(TNODE,"|",15),"^",2),ISSDATE=$P(TNODE,"|",21),EXDATE=$P(TNODE,"|",25),RXNUM=$P(TNODE,"|",27),IDATE=$E(ISSDATE,5,6)_"/"_$E(ISSDATE,7,8)_"/"_$E(ISSDATE,3,4) D  Q
+ ...S EDATE=$E(EXDATE,5,6)_"/"_$E(EXDATE,7,8)_"/"_$E(EXDATE,3,4)
+ ..I $E(TNODE,1,4)["ZX1|" S OKAY=1,BAR=$P(TNODE,"|",16) D LIST Q
+ Q
+EXIT I $G(IOST)["C-" S DIR(0)="E",DIR("A")="Press RETURN to continue " D ^DIR K DIR W @IOF
+EX1 K IDATE,EDATE,OKAY,BAR,BRUGNUM,EXDATE,ISSDATE,TNODE,DRUGNM,RXNUM,NODE,NM,SS,ZZ,XX,BAT,PHAR,SITE,ST,TDTM,LINE,CNT,TOTORD,TOTRX,RECD,SITEN,X,BEG,END,PSOION,PSLION,ZX
+ K ZTSAVE("BAT"),ZTSAVE("PSLION"),ZTDESC,ZTIO,ZTRTN,ZTSK,FILL,I,NAME,ORDNUM,PTR,REC,REC1,RELD,RXN,SSN,TMP,XXT,%ZIS,DIROUT,DIRUT,DTOUT,DUOUT,STOP
+ D ^%ZISC I $D(IO("Q")) K IO("Q")
+ Q
+SUB W @IOF S CNT=0
+ W !,?25,"Data Transmission # ",BAT,!
+ W !,"Facility : ",SITE,?40,"Division:  ",PHAR
+ W !,"Received on  ",$P(TDTM,":",1,2),?40,"Total Orders:  ",TOTORD,?60,"Total Rx's:  ",TOTRX,!
+SUB1 W !,"NAME",?22,"SSN",?28,"RX NUMBER",?39,"BAR CODE",?54,"DRUG NAME"
+ W ! S LINE="-" F I=0:1:79 W LINE
+ W ! S CNT=CNT+6
+ Q
+LIST W !,$E(NAME,1,20),?22,$P(SSN,"-",3),?28,RXNUM,?39,BAR,?54,$E(DRUGNM,1,25)
+ S CNT=CNT+1
+ I $G(IOST)["C-" D
+ .I CNT>20 S DIR(0)="E",DIR("A")="Press RETURN to continue " D ^DIR S:$G(Y)'>0 STOP=1 Q:$G(STOP)  D SUB
+ .K DIRUT,DIROUT,DTOUT,DUOUT
+ I $G(IOST)'["C-" D
+ .I CNT>56 D SUB
+ K DRUGNUM,DRUGNM,RXNUM,ISSDATE,EXDATE,BAR,OKAY,NEXT,NEXT2
+ Q

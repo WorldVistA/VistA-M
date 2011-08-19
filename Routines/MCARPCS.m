@@ -1,0 +1,18 @@
+MCARPCS ;WISC/TJK-AUTO TRANSMIT PACEMAKER REPORT-QUEUE ;4/10/96  14:14
+ ;;2.3;Medicine;;09/13/1996
+ W @IOF,!!!,"FORM TRANSFER TO NATIONAL CENTER"
+ K DIC S DIC="^MCAR(690,",DIC(0)="AEQ",DIC("S")="I $D(^MCAR(698,""C"",+Y))" D ^DIC G EXIT:Y<0
+ S DFN=+Y K MCR
+REASON K DIC S DIC="^MCAR(695.8,",DIC(0)="AEQ",DIC("S")="I $D(^MCAR(695.8,""AC"",""T"",+Y))",DIC("A")="Select Reason for Transmission of this Report: " D ^DIC G EXIT:X=U,OK:Y<0 S MCR($P(^MCAR(695.8,+Y,0),U))="" G REASON
+OK ;temporarily all transmissions will go to the Eastern Pacemaker Center
+ S MCT="E"
+ ;S MCT="" I $D(^MCAR(690,DFN,"P2")) S MCT=$P(^("P2"),U,2) S:MCT'="W" MCT="E"
+ ;S:MCT="" MCT="E" W !!,"Transfer Report to : "_$S(MCT="W":"WESTERN PACEMAKER CENTER",1:"EASTERN PACEMAKER CENTER")_"//" R X:DTIME G EXIT:'$T,EXIT:X=U S X=$E(X,1)
+ ;I "WEB"'[X W !,*7,"Answer with 'E' for Eastern Center,'W' for Western Center, or 'B' for Both" G OK
+ ;S:X'="" MCT=X W !,$S(MCT="E":"EASTERN PACEMAKER CENTER",MCT="W":"WESTERN PACEMAKER CENTER",1:"BOTH EASTERN AND WESTERN PACEMAKER CENTERS")
+ K DIC,DIR
+ S DIR("A")="TRANSMIT REPORT",DIR("B")="Y",DIR(0)="Y"
+ D ^DIR
+ I Y S ZTRTN="^MCARPCS1",ZTSAVE("DFN")="",ZTSAVE("MCR(")="",ZTSAVE("DUZ")="",ZTSAVE("MCT")="",ZTIO="",ZTDESC="PACEMAKER REPORT TRANSMISSION" D ^%ZTLOAD
+EXIT K MCR,X,Y,%,ZTSK,DFN,MCT,DIR Q
+ Q

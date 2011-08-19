@@ -1,0 +1,70 @@
+TIUSRVLI ; SLC/JER - Server fns - lists for CPRS ;13-NOV-2001 08:21:33
+ ;;1.0;TEXT INTEGRATION UTILITIES;**108,122**;Jun 20, 1997
+HASDAD(DA) ; Evaluate whether a document has a parent
+ Q $S(+$P($G(^TIU(8925,+DA,0)),U,6):1,+$G(^TIU(8925,+DA,21)):1,1:0)
+ ;
+SETDAD(TIUY,DA,TIUI) ; Set parent in return array
+ N DADA,TIUD0,TIUD21
+ ; Exclude components
+ Q:'+$$ISDOC(DA)
+ S TIUD0=$G(^TIU(8925,DA,0)),TIUD21=$G(^(21))
+ S DADA=$S(+$P(TIUD0,U,6):+$P(TIUD0,U,6),+TIUD21:+TIUD21,1:0)
+ Q:+DADA'>0
+ Q:+$D(@TIUY@("INDX",DADA))
+ Q:+$D(^TIU(8925,DADA,0))=0
+ S TIUI=$S(SEQUENCE="A":+$G(TIUI)-1,1:+$G(TIUI)+1)
+ S @TIUY@(TIUI)=DADA_U_$$RESOLVE^TIUSRVLO(DADA)
+ S @TIUY@("INDX",DADA,TIUI)=""
+ I +$G(SHOWADD) D SETKIDS(.TIUY,DADA,.TIUI)
+ I +$$HASDAD(DADA) D SETDAD(.TIUY,DADA,.TIUI)
+ Q
+ ;
+HASKIDS(DA) ; Evaluate whether a document has children
+ N TIUY,KIDA S (KIDA,TIUY)=0
+ ; Check for addenda
+ F  S KIDA=$O(^TIU(8925,"DAD",DA,KIDA)) Q:+TIUY!(+KIDA'>0)  D
+ . I '+$$ISCOMP^TIUSRVR1(KIDA) S TIUY=1
+ I +TIUY G HASKIDX
+ ; Next, look for ID Entries
+ S TIUY=$S(+$O(^TIU(8925,"GDAD",DA,0)):1,1:0)
+HASKIDX Q TIUY
+ ;
+SETKIDS(TIUY,DA,TIUI) ; Set children in return array
+ N KIDA S KIDA=0
+ ; Begin with addenda
+ F  S KIDA=$O(^TIU(8925,"DAD",DA,KIDA)) Q:+KIDA'>0  D
+ . Q:'+$$ISDOC(KIDA)
+ . Q:+$D(@TIUY@("INDX",KIDA))
+ . S TIUI=$S(SEQUENCE="A":+$G(TIUI)-1,1:+$G(TIUI)+1)
+ . S @TIUY@(TIUI)=KIDA_U_$$RESOLVE^TIUSRVLO(KIDA)
+ . S @TIUY@("INDX",KIDA,TIUI)=""
+ ; Next do ID entries
+ S KIDA=0
+ F  S KIDA=$O(^TIU(8925,"GDAD",DA,KIDA)) Q:+KIDA'>0  D
+ . Q:+$D(@TIUY@("INDX",KIDA))
+ . S TIUI=$S(SEQUENCE="A":+$G(TIUI)-1,1:+$G(TIUI)+1)
+ . S @TIUY@(TIUI)=KIDA_U_$$RESOLVE^TIUSRVLO(KIDA)
+ . S @TIUY@("INDX",KIDA,TIUI)=""
+ . I +$$HASKIDS(KIDA) D SETKIDS(.TIUY,KIDA,.TIUI)
+ Q
+ISDOC(DA) ; Evaluate whether a given record is a document
+ N TIUY,TIUTYP
+ S TIUTYP=+$G(^TIU(8925,DA,0))
+ S TIUY=$S($P($G(^TIU(8925.1,+TIUTYP,0)),U,4)="DOC":1,1:0)
+ Q TIUY
+GETUND(TIUY,CLASS,DFN,TIME1,TIME2,TIUJ,SEQUENCE) ; Get undictated docs
+ N TIUTYP,TIUI,DATTIM
+ D DOCTYPE^TIUSRVL(.TIUTYP,CLASS) Q:+$D(TIUTYP)'>9
+ S TIUI=0
+ F  S TIUI=$O(TIUTYP(TIUI)) Q:+TIUI'>0  D
+ . N STATUS
+ . F STATUS=1:1:2 D
+ . . S DATTIM=TIME1-.0000001
+ . . F  S DATTIM=$O(^TIU(8925,"APT",DFN,+TIUTYP(TIUI),STATUS,DATTIM)) Q:+DATTIM'>0  D
+ . . . N TIUDA S TIUDA=0
+ . . . F  S TIUDA=$O(^TIU(8925,"APT",DFN,+TIUTYP(TIUI),STATUS,DATTIM,TIUDA)) Q:+TIUDA'>0  D 
+ . . . . Q:+$D(@TIUY@("INDX",TIUDA))
+ . . . . S TIUJ=$S(SEQUENCE="A":+$G(TIUJ)-1,1:+$G(TIUJ)+1)
+ . . . . S @TIUY@(TIUJ)=TIUDA_U_$$RESOLVE^TIUSRVLO(TIUDA)
+ . . . . S @TIUY@("INDX",TIUDA,TIUJ)=""
+ Q

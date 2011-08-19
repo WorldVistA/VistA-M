@@ -1,0 +1,104 @@
+RMPR9P22 ;PHX/HNC/RVD/SPS-CONT GUI PC PRINTER/FAX PURCHASE CARD ;4/27/2005
+ ;;3.0;PROSTHETICS;**90,119**;Feb 09, 1996;Build 4
+ ;S RO=0 F I=1:1 S RO=$O(R664(1,RO)) Q:RO'>0  D  Q:$D(J1)
+ ;.;I I>4 S K="" F  S K=$O(^TMP($J,"RMPRPRT",K)) Q:K=""  S CNT=K
+ ;.;I I>4 S J1=1 S ^TMP($J,"RMPRPRT",CNT+1)=" ",S ^TMP($J,"RMPRPRT",CNT+2)="        ***SEE ATTACHED CONTINUATION SHEET FOR ITEM DESCRIPTION(S)***",S ^TMP($J,"RMPRPRT",CNT+3)=" ",S ^TMP($J,"RMPRPRT",CNT+4)=" " Q
+ ;.;I $D(R664(1,RO,1,0)) S RP=0 F J=1:1 S RP=$O(R664(1,RO,1,RP)) Q:RP=""  D  Q:$D(J1)
+ ;.;I I>4!((J+I)>4) S J1=1 S ^TMP($J,"RMPRPRT",CNT+5)=" ",^TMP($J,"RMPRPRT",CNT+6)=" ",^TMP($J,"RMPRPRT",CNT+7)="        ***SEE ATTACHED CONTINUATION SHEET FOR ITEM DESCRIPTION(S)***",^TMP($J,"RMPRPRT",CNT+8)=" ",^TMP($J,"RMPRPRT",CNT+9)=" " Q
+ S K="" F  S K=$O(^TMP($J,"RMPRPRT",K)) Q:K=""  S CNT=K
+ D ADD
+ S RO=0 F  S RO=$O(R664(1,RO)) Q:RO'>0  D:$D(RMPRMOR)&(CNT>58) CONT D:'$D(RMPRMOR) ADD D START
+ ;I '$D(RMPRMOR)&(CNT<37) F  S CNT=CNT+1,^TMP($J,"RMPRPRT",CNT)=" " Q:CNT>36
+ Q
+START S K="" F  S K=$O(^TMP($J,"RMPRPRT",K)) Q:K=""  S CNT=K
+ S ^TMP($J,"RMPRPRT",CNT+1)="#"_RO_"."
+ S RMPRI=$S($P(R664(1,RO,0),U,7)'="":$P(R664(1,RO,0),U,7),1:$P(R664(1,RO,0),U,3))
+ S SPACE="",RMPRBDL=$P(R664(1,RO,0),U,2),RMPRBDL=$L(RMPRBDL),$P(SPACE," ",47)=""
+ S ^TMP($J,"RMPRPRT",CNT+1)=^TMP($J,"RMPRPRT",CNT+1)_$P(R664(1,RO,0),U,2)
+ S ^TMP($J,"RMPRPRT",CNT+2)=SPACE_$J($P(R664(1,RO,0),U,4),6) S RMPRUT=$P(R664(1,RO,0),U,5)
+ I $D(^PRCD(420.5,+RMPRUT,0)) S ^TMP($J,"RMPRPRT",CNT+2)=^TMP($J,"RMPRPRT",CNT+2)_"      "_$P(^PRCD(420.5,+RMPRUT,0),U,1)_" "_$J($FN(RMPRI,"P",2),6)
+ZWE S RMPRTOT=RMPRI*$P(R664(1,RO,0),U,4),RMPRTOTJ=$J($FN(RMPRTOT,"P",2),8) S ^TMP($J,"RMPRPRT",CNT+2)=^TMP($J,"RMPRPRT",CNT+2)_" "_RMPRTOTJ
+ S ^TMP($J,"RMPRPRT",CNT+3)=""
+ D EXT
+ Q
+EXT ;CHECKING FOR EXTENDED DESCRIPTION
+ ;serial number
+ S K="" F  S K=$O(^TMP($J,"RMPRPRT",K)) Q:K=""  S CNT=K
+ N RMPRSSM
+ S RMPRSSM(1)=$P($G(R664(1,RO,0)),U,15)
+ S RMPRSSM(2)=$P($G(R664(1,RO,2)),U,1)
+ S RMPRSSM(3)=$P($G(R664(1,RO,2)),U,2)
+ S RMPRSSM(4)=$P($G(R664(1,RO,2)),U,3)
+ I RMPRSSM(1)'="" S ^TMP($J,"RMPRPRT",CNT+1)="    Serial Number: "_RMPRSSM(1)
+ I RMPRSSM(4)'=""&($D(^TMP($J,"RMPRPRT",CNT+1))) S ^TMP($J,"RMPRPRT",CNT+1)=^TMP($J,"RMPRPRT",CNT+1)_"    Lot #: "_RMPRSSM(4)
+ I RMPRSSM(4)'=""&('$D(^TMP($J,"RMPRPRT",CNT+1))) S ^TMP($J,"RMPRPRT",CNT+1)="    Lot #: "_RMPRSSM(4)
+ I RMPRSSM(3)'="" S ^TMP($J,"RMPRPRT",CNT+2)="    Model: "_RMPRSSM(3)
+ I RMPRSSM(2)'=""&($D(^TMP($J,"RMPRPRT",CNT+2))) S ^TMP($J,"RMPRPRT",CNT+2)=^TMP($J,"RMPRPRT",CNT+2)_"    Make: "_RMPRSSM(2)
+ I RMPRSSM(2)'=""&('$D(^TMP($J,"RMPRPRT",CNT+2))) S ^TMP($J,"RMPRPRT",CNT+2)="    Make: "_RMPRSSM(2)
+ K RMPRSSM
+ ;
+ S RMPRCH=$G(R664(1,RO,1,0))
+ I RMPRCH="" Q
+ S RMPR90=0
+ S K="" F  S K=$O(^TMP($J,"RMPRPRT",K)) Q:K=""  S CNT=K
+ F  S RMPR90=$O(R664(1,RO,1,RMPR90)) Q:RMPR90=""  D
+ .D:$D(RMPRMOR)&(CNT>60) CONT
+ .;D:'$D(RMPRMOR)&(CNT>38) CONT
+ .S CNT=CNT+1
+ .S ^TMP($J,"RMPRPRT",CNT)=R664(1,RO,1,RMPR90,0)
+ Q
+WRI ;CONTINUATION OF 10-2421
+ W !,@RMPR90
+ Q
+CONT ;
+ D:'$D(RMPRMOR) CON
+ S K="" F  S K=$O(^TMP($J,"RMPRPRT",K)) Q:K=""  S CNT=K
+ S ^TMP($J,"RMPRPRT",CNT+1)="CONTINUATION OF PURCHASE CARD ORDER NUMBER: "_$P($G(^RMPR(664,RMPRA,4)),U,5)_"                           PAGE "_RMPRPAGE S RMPRMOR=1,RMPRPAGE=RMPRPAGE+1 D HDR^RMPR9P21
+ Q
+ADD S (RMPRAMT2,RMPRAMT,RMPRAMT1,RMPRAMTN)=0
+ S RMSHI=$S($P(R664(0),U,11)'="":$P(R664(0),U,11),1:$P(R664(0),U,10))
+ S RC=0 F  S RC=$O(R664(1,RC)) Q:RC=""!(RC["B")  S RMPRI=$S($P(R664(1,RC,0),U,7)'="":$P(R664(1,RC,0),U,7),1:$P(R664(1,RC,0),U,3)) D ADD1
+ I $D(R664(2)) S RMPRDISC=$S($P(R664(2),U,6)'="":$P(R664(2),U,6),1:"") I $D(RMPRDISC) S RMPRAMT2=$J(RMPRDISC*RMPRAMT/100,0,2),RMPRAMTN=RMPRAMT-$J(RMPRAMT2,0,2),RMPRAMTN=$J(RMPRAMTN+RMSHI,0,2) Q
+ Q
+ADD1 S RMPRAMT1=$J($P(R664(1,RC,0),U,4)*RMPRI,0,2) S RMPRAMT=RMPRAMT+RMPRAMT1 Q
+CON ;CONTINUATION OF 2421
+ S K="" F  S K=$O(^TMP($J,"RMPRPRT",K)) Q:K=""  S CNT=K
+ S ^TMP($J,"RMPRPRT",CNT+1)=RMPRB
+ S ^TMP($J,"RMPRPRT",CNT+2)="16. Contract Number: "
+ S RO("C")=$O(R664(1,0)),ROCL=$P($G(R664(1,RO("C"),0)),U,14)
+ I RO("C") S ^TMP($J,"RMPRPRT",CNT+2)=^TMP($J,"RMPRPRT",CNT+2)_$P(R664(1,RO("C"),0),U,14)
+ S SPACE="",ROCL=$L(ROCL),$P(SPACE," ",39-ROCL)=""
+ S RMPRAMTJ=$J($FN(RMPRAMT,"P",2),9)
+ S ^TMP($J,"RMPRPRT",CNT+2)=^TMP($J,"RMPRPRT",CNT+2)_SPACE_"Subtotal: $"_RMPRAMTJ
+ S ^TMP($J,"RMPRPRT",CNT+3)="    ACCT.#: "_RMPRVACN K RMPRVACN
+ S ^TMP($J,"RMPRPRT",CNT+3)=^TMP($J,"RMPRPRT",CNT+3)_"     Discount: $"
+ I $D(RMPRAMT2) S RMAMT2J=$J($FN(RMPRAMT2,"P",2),7),^TMP($J,"RMPRPRT",CNT+3)=^TMP($J,"RMPRPRT",CNT+3)_RMAMT2J
+ S RMSHIJ=$J($FN(RMSHI,"P",2),5)
+ S ^TMP($J,"RMPRPRT",CNT+3)=^TMP($J,"RMPRPRT",CNT+3)_"  Shipping: $"_RMSHIJ
+ S RMAMTNJ=$J($FN(RMPRAMTN,"P",2),9)
+ S ^TMP($J,"RMPRPRT",CNT+3)=^TMP($J,"RMPRPRT",CNT+3)_"   Total: $"_RMAMTNJ
+ S ^TMP($J,"RMPRPRT",CNT+4)=RMPRB
+ S ^TMP($J,"RMPRPRT",CNT+5)="17. Signature of"
+ S ^TMP($J,"RMPRPRT",CNT+5)=^TMP($J,"RMPRPRT",CNT+5)_"         18. DATE   19. Signature and Title of        20. Date"
+ S ^TMP($J,"RMPRPRT",CNT+6)="    Requesting Official              Contracting/Accountable Officer"
+ S ^TMP($J,"RMPRPRT",CNT+7)="    "_RDUZ_"                            "_RMPR("SIG")
+ S ^TMP($J,"RMPRPRT",CNT+8)=RMPRB
+ S ^TMP($J,"RMPRPRT",CNT+9)="                        Order and Receipt Action"
+ S ^TMP($J,"RMPRPRT",CNT+10)=RMPRB
+ S ^TMP($J,"RMPRPRT",CNT+11)="21. Order Number 22. Exp Date      23. Date Item Received   24. Date Delivered"
+ I DUZ=$P(^RMPR(664,RMPRA,0),U,9)!($D(^XUSEC("RMPR FCP MANAGER",DUZ)))  D
+ .N RMPRPRCD
+ .S RMPRPRCD=$$DEC^RMPR4LI($P(^RMPR(664,RMPRA,4),U,1),$P(^RMPR(664,RMPRA,0),U,9),RMPRA)
+ .S ^TMP($J,"RMPRPRT",CNT+12)=RMPRPRCD
+ E  S ^TMP($J,"RMPRPRT",CNT+12)=" encrypted"
+ S ^TMP($J,"RMPRPRT",CNT+13)=RMPRB
+ S ^TMP($J,"RMPRPRT",CNT+14)="25. The articles or services listed herein have been received, or rendered"
+ S ^TMP($J,"RMPRPRT",CNT+15)="ordered in the quantity and quality specified originally or as shown by"
+ S ^TMP($J,"RMPRPRT",CNT+16)="authenticated changes, except as noted."
+ S ^TMP($J,"RMPRPRT",CNT+17)=""
+ S ^TMP($J,"RMPRPRT",CNT+18)="                                        Signature of Veteran or VA Official"
+ S ^TMP($J,"RMPRPRT",CNT+19)=RMPRB
+ S ^TMP($J,"RMPRPRT",CNT+20)="     Acct. Symbol "_$$STA^RMPRUTIL_"-"_$P($G(^RMPR(664,RMPRA,4)),U,5)
+ S ^TMP($J,"RMPRPRT",CNT+21)=RMPRB
+ S ^TMP($J,"RMPRPRT",CNT+22)="                                                    ADP Form 10-2421PC  APR 1991" S RMPRMOR1=1
+ Q

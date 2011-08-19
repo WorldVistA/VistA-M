@@ -1,0 +1,15 @@
+PLAN LIMITATION CATEGORY
+ZWR
+^IBE(355.31,0)="PLAN LIMITATION CATEGORY^355.31I^6^6"
+^IBE(355.31,1,0)="INPATIENT^Inpatient episode coverage^19"
+^IBE(355.31,2,0)="OUTPATIENT^Outpatient episode coverage^20"
+^IBE(355.31,3,0)="PHARMACY^Pharmacy refill coverage^7"
+^IBE(355.31,4,0)="DENTAL^Dental coverage^21"
+^IBE(355.31,5,0)="MENTAL HEALTH^Mental health coverage^6"
+^IBE(355.31,6,0)="LONG TERM CARE^Long Term Care coverage^22"
+^IBE(355.31,"B","DENTAL",4)=""
+^IBE(355.31,"B","INPATIENT",1)=""
+^IBE(355.31,"B","LONG TERM CARE",6)=""
+^IBE(355.31,"B","MENTAL HEALTH",5)=""
+^IBE(355.31,"B","OUTPATIENT",2)=""
+^IBE(355.31,"B","PHARMACY",3)=""

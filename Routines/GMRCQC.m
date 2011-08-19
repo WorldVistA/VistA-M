@@ -1,0 +1,38 @@
+GMRCQC ;SLC/DCM - GMRC List Manager routine to print Consults pending resolution for QC purposes ;5/20/98  14:20
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,22**;DEC 27, 1997
+EN ; -- main entry point for GMRC QC CON PENDING RESOLUTION
+ K GMRCQUT
+ S DIC="^GMR(123.5,",DIC(0)="AEMQ",DIC("A")="Select Service/Specialty: "
+ S DIC("S")="I $P(^(0),U,2)'=9",D="B^D"
+ D MIX^DIC1 K DIC
+ I $S(Y<1:1,$D(DUOUT):1,$D(DTOUT):1,1:0) D  Q
+ . S (GMRCQIT,GMRCQUT)=1 K DUOUT,DTOUT,DIROUT Q
+ S (GMRCSVCP,GMRCSVC)=$P(Y,"^",2),GMRCSVCN=+Y
+ D EN^VALM("GMRC QC CON PENDING RESOLUTION")
+ Q
+ ;
+HDR ; -- header code
+ S VALMHDR(1)="CONSULTS/REQUESTS PENDING RESOLUTION"
+ S VALMHDR(2)="Service: "_GMRCSVCP
+ Q
+ ;
+INIT ; -- init variables and list array
+ K ^TMP("GMRCR",$J,"QCLIST")
+ S DSPLINE=0,VALMAR="^TMP(""GMRCR"",$J,""QCLIST"")"
+ F LINE=1:1:GMRCCT S DSPLINE=$O(^TMP("GMRCR",$J,"CP",DSPLINE)) Q:DSPLINE=""!(DSPLINE?1A.E)  S DATA=^(DSPLINE,0) D SET^VALM10(LINE,DATA)
+ S VALMCNT=GMRCCT,VALMBCK="R"
+ K DATA,DSPLINE,LINE
+ Q
+ ;
+HELP ; -- help code
+ S X="?" D DISP^XQORM1 W !!
+ Q
+ ;
+EXIT ; -- exit code
+ K ^TMP("GMRCR",$J,"CP"),^TMP("GMRCR",$J,"QCLIST")
+ K GMRCCT,GMRCSVCP,GMRCQUT,GMRCSVTT
+ Q
+ ;
+EXPND ; -- expand code
+ Q
+ ;

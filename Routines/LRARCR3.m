@@ -1,0 +1,97 @@
+LRARCR3 ;DALISC/CKA - WKLD REP GENERATOR-PRINT 1 ;
+ ;;5.2;LAB SERVICE;**59**;August 31, 1995
+ ;same as LRCAPR3 except references archived files
+EN ;
+ D INIT1
+ D:('LREND)&(LRANS="D") DET
+ D:('LREND)&(LRANS="D") INIT2
+ D:'LREND COND^LRARCR3A
+ D:'LREND TOTAL
+ D CLEAN^LRARCR4
+ Q
+INIT1 ;
+ W:$E(IOST,1,2)="C-" @IOF
+ S (LREND,LRCONT)=0,(LRPG,LRFL)=1
+ K LRSTR,LRDSH D NOW^%DTC K %H,%I,X S Y=% D DD^%DT S LRDT=$P(Y,":",1,2)
+ S $P(LRSTR,"*",80)="*",$P(LRDSH,"-",80)="-"
+ D BLDHDR^LRARCR4 I 'LRHDRFIT D REPHDR^LRARCR4 Q:LREND
+ I '$D(^TMP("LRAR",$J,"TST/TOT")) D
+ . W !!,"*** NO DATA TO REPORT ***"
+ . D PAUSE^LRARCR4 Q:LREND
+ . S LREND=1
+ Q:LREND
+ S LRSUM=^TMP("LRAR",$J,"TST/TOT")
+ D NOW^%DTC K %H,%I,X S LRDT=$$DDDATE^LRAFUNC1(%,1)
+ Q
+INIT2 ;
+ S LRANS="C" ; condense rpt
+ I $E(IOST,1,2)="C-" D
+ . S DY=IOSL-3,DX=0
+ . X:$D(IOXY) IOXY
+ . W $C(7),!?60,"*** new heading ***"
+ . D PAUSE^LRARCR4 Q:LREND
+ W @IOF
+ Q
+DET ;
+ S LRTST="",K=0
+ F  S LRTST=$O(^TMP("LRAR",$J,"TST",LRTST)) Q:(LRTST="")!(LREND)  D
+ . S LRLC="",LRSUBH=1
+ . F  S LRLC=$O(^TMP("LRAR",$J,"TST",LRTST,LRLC)) Q:(LRLC="")!(LREND)  D
+ . . S LRSUBH=1
+ . . S LRCAP=""
+ . . F  S LRCAP=$O(^TMP("LRAR",$J,"TST",LRTST,LRLC,LRCAP)) Q:(LRCAP="")!(LREND)  S LRCPT=^(LRCAP) D
+ . . . S LRAA="",J=0,LRSUBH=1
+ . . . F  S LRAA=$O(^TMP("LRAR",$J,"TST",LRTST,LRLC,LRCAP,LRAA)) Q:(LRAA="")!(LREND)  D
+ . . . . S LRCNT=""
+ . . . . F  S LRCNT=$O(^TMP("LRAR",$J,"TST",LRTST,LRLC,LRCAP,LRAA,LRCNT)) Q:(LRCNT="")!(LREND)  D
+ . . . . . S J=J+1
+ . . . . . I LRFL D HDR^LRARCR4 S LRFL=0
+ . . . . . S X=^TMP("LRAR",$J,"TST",LRTST,LRLC,LRCAP,LRAA,LRCNT)
+ . . . . . S LRCODE=$P(X,U,2),LRURGNAM=$S($P(X,U,3)="":"",1:"**")
+ . . . . . S Y=$P(X,U,1) D DD^%DT S LRVD=Y
+ . . . . . I LRSUBH D SUBH^LRARCR4 S LRSUBH=0
+ . . . . . W !,LRURGNAM,?3,LRAA,?36,LRVD
+ . . . . . S K=K+1 Q:K=LRSUM
+ . . . . . I $Y+6>IOSL D
+ . . . . . . D UP^LRARCR4 Q:LREND
+ . . . . . . W @IOF D HDR^LRARCR4
+ . . . . . . I J<LRCPT D SUBH^LRARCR4
+ Q:LREND
+ I $E(IOST,1,2)="C-" D
+ . S DY=IOSL-2,DX=0
+ . X:$D(IOXY) IOXY
+ . W $C(7),!?56,"*** new sub-heading ***"
+ . D PAUSE^LRARCR4
+ Q:LREND
+ W @IOF D HDR1^LRARCR4
+ D DATE
+ Q
+DATE ;
+ S LRSUBH1="TOTAL TESTS by METHODOLOGY by DAY"_" ( "_LRSUM_" )"
+ W:$D(^TMP("LRAR",$J,"DAY")) !!?15,LRSUBH1,!?15,$E(LRDSH,1,$L(LRSUBH1))
+ S LRDAT=0
+ F  S LRDAT=$O(^TMP("LRAR",$J,"DAY",LRDAT)) Q:('LRDAT)!(LREND)  D
+ . S LRDATX=^TMP("LRAR",$J,"DAY",LRDAT)
+ . I $Y+6>IOSL D UP1^LRARCR4 Q:LREND
+ . S Y=LRDAT D DD^%DT S LRDATD=Y W !!,">>>",?15,LRDATD," = ",LRDATX
+ . W ?35,$J($FN($S(LRSUM:LRDATX/LRSUM,1:0)*100,"",2),5),"% of Grand Total"
+ . S LRMAC=""
+ . F  S LRMAC=$O(^TMP("LRAR",$J,"DAY",LRDAT,LRMAC)) Q:(LRMAC="")!(LREND)  S LRMCT=^(LRMAC) D
+ . . I $Y+6>IOSL D UP1^LRARCR4 Q:LREND
+ . . W !?1,"by ",LRMAC," = ",LRMCT,"      "
+ . . W $J($FN($S(LRDATX:LRMCT/LRDATX,1:0)*100,"",2),5)_"% of days workload"
+ . . S LRTEST=""
+ . . F I=0:1 S LRTEST=$O(^TMP("LRAR",$J,"DAY",LRDAT,LRMAC,LRTEST)) Q:(LRTEST="")!(LREND)  S LRTMTOT=^(LRTEST) D
+ . . . S X=I#2 W:'X ! W ?X*40+1,LRTEST," = "
+ . . . W $J(LRTMTOT,4)_"    "_$J($FN($S(LRMCT:LRTMTOT/LRMCT,1:0)*100,"",2),5)_"%"
+ . . . I X,$Y+6>IOSL D UP1^LRARCR4 Q:LREND
+ Q
+TOTAL ;
+ I $Y+6>IOSL D
+ . W $C(7)
+ . D PAUSE^LRARCR4 Q:LREND
+ . W @IOF D HDR1^LRARCR4
+ Q:LREND
+ W !!!?10,"GRAND TOTAL of TESTS DONE = "_LRSUM_" 100.00%"
+ W !!,?25," ***** end of report *****"
+ Q

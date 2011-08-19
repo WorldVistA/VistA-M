@@ -1,0 +1,4 @@
+OR ; slc/dcm - OE/RR
+V ;;3.0;ORDER ENTRY/RESULTS REPORTING;;Dec 17, 1997
+VERS S X="OE/RR V."_$P($T(V),";",3) Q
+EXIT Q

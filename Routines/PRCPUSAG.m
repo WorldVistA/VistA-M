@@ -1,0 +1,35 @@
+PRCPUSAG ;WISC/RFJ-usage and receipts history                       ;02 Oct 91
+ ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ Q
+ ;
+ ;
+ADDUSAG(INVPT,ITEMDA,QTY,COST) ;  add/update usage history
+ I '$D(^PRCP(445,INVPT,1,ITEMDA,0)) Q
+ N %,DATE
+ S DATE=$E(DT,1,5)
+ I '$D(^PRCP(445,INVPT,1,ITEMDA,2,DATE,0)) D
+ .   N DA,DIC,D0,DD,DLAYGO,DINUM,X,Y
+ .   S:'$D(^PRCP(445,INVPT,1,ITEMDA,2,0)) ^(0)="^445.05A^^"
+ .   S DIC="^PRCP(445,"_INVPT_",1,"_ITEMDA_",2,",(X,DINUM)=DATE,DA(1)=ITEMDA,DA(2)=INVPT,DIC(0)="L",DLAYGO=445
+ .   D FILE^DICN
+ I '$D(^PRCP(445,INVPT,1,ITEMDA,2,DATE,0)) Q
+ L +^PRCP(445,INVPT,1,ITEMDA,2,DATE)
+ S %=^PRCP(445,INVPT,1,ITEMDA,2,DATE,0),$P(%,"^",2)=$P(%,"^",2)+QTY,$P(%,"^",3)=$J($P(%,"^",3)+COST,0,3),^(0)=%
+ L -^PRCP(445,INVPT,1,ITEMDA,2,DATE)
+ Q
+ ;
+ ;
+RECEIPTS(INVPT,ITEMDA,QTY) ;  add/update receipts history
+ I '$D(^PRCP(445,INVPT,1,ITEMDA,0)) Q
+ N %
+ I '$D(^PRCP(445,INVPT,1,ITEMDA,3,DT,0)) D
+ .   S:'$D(^PRCP(445,INVPT,1,ITEMDA,3,0)) ^(0)="^445.06DA^^"
+ .   N DA,DIC,D0,DD,DLAYGO,DINUM,X,Y
+ .   S DIC="^PRCP(445,"_INVPT_",1,"_ITEMDA_",3,",(X,DINUM)=DT,DA(1)=ITEMDA,DA(2)=INVPT,DIC(0)="L",DLAYGO=445
+ .   D FILE^DICN
+ I '$D(^PRCP(445,INVPT,1,ITEMDA,3,DT,0)) Q
+ L +^PRCP(445,INVPT,1,ITEMDA,3,DT)
+ S $P(^PRCP(445,INVPT,1,ITEMDA,3,DT,0),"^",2)=$P(^PRCP(445,INVPT,1,ITEMDA,3,DT,0),"^",2)+QTY
+ L -^PRCP(445,INVPT,1,ITEMDA,3,DT)
+ Q

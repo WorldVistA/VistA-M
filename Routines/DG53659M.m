@@ -1,0 +1,59 @@
+DG53659M ;EG - DG*5.3*659 cleanup ;03/21/2006
+ ;;5.3;Registration;**659**;Aug 13,1993;Build 20
+ ;
+ ;
+MAIL(NAMSPC,TESTING,DUZ) ; mail stats
+ N U,MSGNO,TOTREC,TOTPAT
+ N STAT,STIME,ETIME
+ S U="^"
+ S X=$G(^XTMP(NAMSPC,0,0))
+ S TOTREC=$P(X,U,2)
+ S STAT=$P(X,U,6),STIME=$P(X,U,7)
+ S ETIME=$P(X,U,8)
+ S TOTPAT=$P(X,U,10)
+ ;
+ S X=$$HDNG(NAMSPC,.HTEXT,.LIN,STAT,STIME,ETIME,TESTING)
+ S X=$$SUMRY(.LIN,TOTREC,TOTPAT)
+ S X=$$MAILIT(HTEXT,DUZ,NAMSPC)
+ K ^TMP(NAMSPC,$J,"MSG")
+ Q 1
+ ;
+ ;build heading lines for mail message
+HDNG(NAMSPC,HTEXT,LIN,STAT,STIME,ETIME,TESTING) ;
+ N X,TEXT,U
+ S U="^"
+ K ^TMP(NAMSPC,$J,"MSG")
+ S LIN=0
+ S HTEXT="Convert Radiation Exposure Method "_STAT_" on "
+ S HTEXT=HTEXT_$$FMTE^XLFDT(ETIME)
+ S X=$$BLDLINE(NAMSPC,HTEXT,.LIN)
+ S X=$$BLDLINE(NAMSPC,"",.LIN)
+ I TESTING="Y" D
+ . S TEXT="** TESTING - NO CHANGES TO DATABASE EXECUTED **"
+ . S X=$$BLDLINE(NAMSPC,TEXT,.LIN)
+ . Q
+ S X=$$BLDLINE(NAMSPC,"",.LIN)
+ Q 1
+ ;
+ ;build summary lines for mail message
+SUMRY(LIN,TOTREC,TOTPAT)   ;
+ N TEXT,X,U,OLD,NEW
+ S U="^"
+ S TEXT="      Total Patient Records Read: "_$J($FN(TOTREC,","),11)
+ S X=$$BLDLINE(NAMSPC,TEXT,.LIN)
+ S TEXT="   Total Patient Records Changed: "_$J($FN(TOTPAT,","),11)
+ S X=$$BLDLINE(NAMSPC,TEXT,.LIN)
+ Q 1
+ ;
+ ;
+BLDLINE(NAMSPC,TEXT,LIN) ;build a single line into TMP message global
+ S LIN=LIN+1
+ S ^TMP(NAMSPC,$J,"MSG",LIN)=TEXT
+ Q 1
+MAILIT(HTEXT,DUZ,NAMSPC) ; send the mail message
+ N XMY,XMDUZ,XMSUB,XMTEXT
+ S XMY(DUZ)="",XMDUZ=.5
+ S XMSUB=HTEXT
+ S XMTEXT="^TMP(NAMSPC,$J,""MSG"","
+ D ^XMD
+ Q 1

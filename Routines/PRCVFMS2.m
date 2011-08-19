@@ -1,0 +1,32 @@
+PRCVFMS2 ;WOIFO/LKG-GENERATE SV FROM COTS INV TRANS ;4/12/05  14:11
+ ;;5.1;IFCAP;**81**;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ Q
+ ; Assuming handoff via ^TMP globals of structure
+ ; ^TMP(PRCNODE,$J,1)=Station#^BatchID^Trancode^DocAction^Transdate^Userid
+ ; ^TMP(PRCNODE,$J,2)=SellerFCP^BuyerFCP^BuyerCostCenter^BuyerSubCostCenter
+ ; ^TMP(PRCNODE,$J,3,0)=NumberOfItems
+ ; ^TMP(PRCNODE,$J,3,counter,0)=FMSLineID^AccntCode^BOC^InventoryValue^SalesValue^ReasonCode
+ ; PRCNODE = First subscript of ^TMP global containing the data
+ ; assumed Transdate is date stored in VA FileMan format
+ ;
+ENT(PRCNODE) ;Entrance point for generating SV from COTS inventory transaction
+ N ACCT,BFY,DATA,EFY,FUND,GECSFMS,INVCOST,INVPT,LINE,LINEDOC,PRCPFMS,PRCPSEC1,REASON,SIGN,STACKDA,TABLE,TOTAL,TRANDA,TRANID,TRANDATE,XPROG
+ N PRCPWBFY,PRCPWSTA,PRCPWFCP,PRCTMP1,PRCFY,PRC,GECSDATA,D,DIC
+ S PRCTMP1=$G(^TMP(PRCNODE,$J,1))
+ I $P(PRCTMP1,"^",3)'="SV" Q
+ S TRANDATE=$P(PRCTMP1,"^",5),PRCFY=$S($E(TRANDATE,4,5)<10:$E(TRANDATE,2,3),1:$E(101+$E(TRANDATE,2,3),2,3))
+ S PRCPWSTA=$P(PRCTMP1,"^"),PRCPWFCP=$P($G(^TMP(PRCNODE,$J,2)),"^")
+ S PRCPWBFY=$$BBFY^PRCSUT(PRCPWSTA,PRCFY,PRCPWFCP,1)
+ S TRANDA=0,INVPT=""
+ F  S TRANDA=$O(^PRCP(445,"AC","W",TRANDA)) Q:+TRANDA'=TRANDA  I $P($P($G(^PRCP(445,TRANDA,0)),"^"),"-")=PRCPWSTA S INVPT=TRANDA Q
+ Q:INVPT'>0
+ S TRANID="A"_$$ORDERNO^PRCPUTRX(INVPT)
+ S TRANDA=0,TOTAL=0
+ F  S TRANDA=$O(^TMP(PRCNODE,$J,3,TRANDA)) Q:+TRANDA'=TRANDA  D
+ . N X S X=$G(^TMP(PRCNODE,$J,3,TRANDA,0)) Q:X=""
+ . S INVCOST=$P(X,"^",4) Q:+INVCOST=0
+ . S ACCT=$P(X,"^",2),REASON=$P(X,"^",6) Q:ACCT=""  Q:REASON=""
+ . S TOTAL=TOTAL+INVCOST,PRCPFMS(ACCT,REASON)=INVCOST
+ D SVCOTS^PRCPSFSV
+ Q $S($G(GECSFMS("DA"))>0:1,1:0)

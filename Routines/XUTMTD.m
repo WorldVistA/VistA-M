@@ -1,0 +1,32 @@
+XUTMTD ;SEA/RDS - TaskMan: ToolKit, Delete ;12/30/94  11:17
+ ;;8.0;KERNEL;;Jul 10, 1995
+ ;Call with XUTMT as task number
+ L +^%ZTSK(XUTMT)
+ N ZTSK S ZTSK=XUTMT D UNSCH^%ZTLOAD6
+ D DELETE
+ L -^%ZTSK(XUTMT)
+ Q
+ ;
+DELETE ;Delete Task
+ K:'$D(^%ZTSCH("TASK",XUTMT)) ^%ZTSK(XUTMT)
+ Q
+ ;
+UNSCHED ;Replased by call to UNSCH^%ZTLOAD6
+ N ZT,ZT1,ZT2,ZT3
+ S ZT1=0 F  S ZT1=$O(^%ZTSCH(ZT1)) Q:'ZT1  I $D(^(ZT1,XUTMT))#2 D
+ . L +^%ZTSCH(ZT1,XUTMT) K ^(XUTMT) L -^%ZTSCH(ZT1,XUTMT)
+ L +^%ZTSCH("IO")
+ S ZT1="" F  S ZT1=$O(^%ZTSCH("IO",ZT1)),ZT2="" Q:ZT1=""  F  S ZT2=$O(^%ZTSCH("IO",ZT1,ZT2)) Q:ZT2=""  D DQIO:$D(^(ZT2,XUTMT))#2
+ L -^%ZTSCH("IO"),+^%ZTSCH("JOB")
+ S ZT1="" F  S ZT1=$O(^%ZTSCH("JOB",ZT1)) Q:ZT1=""  I $D(^(ZT1,XUTMT))#2 K ^(XUTMT)
+ L -^%ZTSCH("JOB"),+^%ZTSCH("LINK")
+ S ZT1="" F  S ZT1=$O(^%ZTSCH("LINK",ZT1)),ZT2="" Q:ZT1=""  F  S ZT2=$O(^%ZTSCH("LINK",ZT1,ZT2)) Q:ZT2=""  I $D(^(ZT2,XUTMT))#2 K ^(XUTMT)
+ L -^%ZTSCH("LINK"),+^%ZTSCH("C")
+ S ZT1="" F  S ZT1=$O(^%ZTSCH("C",ZT1)),ZT2="" Q:ZT1=""  F  S ZT2=$O(^%ZTSCH("C",ZT1,ZT2)) Q:ZT2=""  I $D(^(ZT2,XUTMT))#2 K ^(XUTMT)
+ L -^%ZTSCH("C")
+ Q
+ ;
+DQIO ;Remove A Device Waiting List Entry
+ N %ZTIO,ZTDTH,ZTSK S %ZTIO=ZT1,ZTDTH=ZT2,ZTSK=XUTMT
+ D DQ^%ZTM4 Q
+ ;

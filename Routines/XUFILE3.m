@@ -1,0 +1,22 @@
+XUFILE3 ;SF-ISC/STAFF - FILE ACCESS CONTROL FOR KERNEL V8 ;07/26/94  16:24
+ ;;8.0;KERNEL;;Jul 10, 1995
+ Q
+DISABLE ;Disable access
+ S U="^" K DIC,DIE,DR
+ Q:$D(^VA(200,"AFOF"))
+ S ^DD(200,32,9)="^"
+ S XU1="XUFI"
+ F  S XU1=$O(^DIC(19,"B",XU1)) Q:XU1'["XUFI"  F DA=0:0 S DA=$O(^DIC(19,"B",XU1,DA)) Q:DA'>0  S DR="2///ACCESS DISABLED",DIE="^DIC(19," D ^DIE
+ S XU1="XUFI" K DR
+ F  S XU1=$O(^DIE("B",XU1)) Q:XU1'["XUFI"  F DA=0:0 S DA=$O(^DIE("B",XU1,DA)) Q:DA'>0  I $P(^DIE(DA,0),U,4)=200 S DR=".01///*"_$P(^(0),U),DIE="^DIE(" D ^DIE
+ K DR,DIE
+ Q
+ ;
+ENABLE ;Enable access
+ S U="^",^DD(200,32,9)="#"
+ S XU1="XUFI" K DR
+ F  S XU1=$O(^DIC(19,"B",XU1)) Q:XU1'["XUFI"  F DA=0:0 S DA=$O(^DIC(19,"B",XU1,DA)) Q:DA'>0  S DR="2///@",DIE="^DIC(19," D ^DIE
+ S XU1="*XUFI" K DR
+ F  S XU1=$O(^DIE("B",XU1)) Q:XU1'["*XUFI"  F DA=0:0 S DA=$O(^DIE("B",XU1,DA)) Q:DA'>0  S DR=".01///"_$E($P(^DIE(DA,0),U),2,999),DIE="^DIE(" D ^DIE
+ K DR,DIE
+ Q

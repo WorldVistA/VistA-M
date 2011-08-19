@@ -1,0 +1,13 @@
+NOIS PRIORITY
+ZWR
+^FSC("PRI",0)="NOIS PRIORITY^7106.2^5^5"
+^FSC("PRI",1,0)="LOW"
+^FSC("PRI",2,0)="ROUTINE"
+^FSC("PRI",3,0)="URGENT^1"
+^FSC("PRI",4,0)="STAT^1"
+^FSC("PRI",5,0)="MISC^1"
+^FSC("PRI","B","LOW",1)=""
+^FSC("PRI","B","MISC",5)=""
+^FSC("PRI","B","ROUTINE",2)=""
+^FSC("PRI","B","STAT",4)=""
+^FSC("PRI","B","URGENT",3)=""

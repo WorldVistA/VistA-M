@@ -1,0 +1,14 @@
+LBRYRLE ;ISC2/DJM-NAME LIST ENTRIES ENTER\EDIT ;[ 05/23/97  12:13 PM ]
+ ;;2.5;Library;**2**;Mar 11, 1996
+ I $G(LBRYPTR)="" D  I $G(LBRYPTR)="" W !!,$C(7),"No Site has been selected" Q
+ . D ^LBRYASK
+LOOP W @IOF,"VA Library Name Entries Update" S Y=DT X ^DD("DD")
+ S YDT=Y W ?60,YDT,!! S DIC="^LBRY(680.4,",DIC(0)="AELMQ"
+ S DIC("A")="Select the name to update: ",DLAYGO=680.4
+ S DIC("S")="I $P(^(0),U,9)=LBRYPTR"
+ L ^LBRY(680.4,0):1 G:$T=0 EXIT D ^DIC K DIC("A"),DLAYGO,DIC("S")
+ L  G:Y<1 EXIT
+ S DA=+Y,DIE=DIC,DR="[LBRY CONTACTS ROUTING]" D LOCK^LBRYEDR
+ G:LBRYL=0 EXIT D ^DIE L
+ G LOOP
+EXIT K DIC,DIE,DR,Y,YDT,LBRYL Q

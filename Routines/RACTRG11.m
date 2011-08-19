@@ -1,0 +1,12 @@
+RACTRG11 ; ;05/26/08
+ ;;
+1 N X,X1,X2 S DIXR=475 D X1(U) K X2 M X2=X D X1("F") K X1 M X1=X
+ I $G(X(1))]"" D
+ . D KRAD^RAPXRM(.X,.DA)
+ K X M X=X2 I $G(X(1))]"" D
+ . D SRAD^RAPXRM(.X,.DA)
+ Q
+X1(DION) K X
+ S X(1)=$G(@DIEZTMP@("V",70.03,DIIENS,2,DION),$P($G(^RADPT(DA(2),"DT",DA(1),"P",DA,0)),U,2))
+ S X=$G(X(1))
+ Q

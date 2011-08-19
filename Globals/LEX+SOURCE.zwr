@@ -1,0 +1,11 @@
+SOURCE
+ZWR
+^LEX(757.14,0)="SOURCE^757.14^4^4"
+^LEX(757.14,1,0)="VA DRUG CLASS^50.605"
+^LEX(757.14,2,0)="BI-RADS^^Breast Imaging Reporting and Data System (BI-RADS) Atlas (ACR)"
+^LEX(757.14,3,0)="MQSA^^Mammography Quality Standards Act of 1992 (MQSA)"
+^LEX(757.14,4,0)="ASCD^^Automated Service Connected Designation"
+^LEX(757.14,"B","ASCD",4)=""
+^LEX(757.14,"B","BI-RADS",2)=""
+^LEX(757.14,"B","MQSA",3)=""
+^LEX(757.14,"B","VA DRUG CLASS",1)=""

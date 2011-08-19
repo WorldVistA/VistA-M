@@ -1,0 +1,44 @@
+XQORM3 ; SLC/KCM - Lookup (cont.) ;11/12/92  11:28
+ ;;8.0;KERNEL;**56,62**;Jul 10, 1995
+LOOK ;From: XQORM2
+ K ORUFD,ORUDA S ORUFD=0,ORUW=X
+ I $D(^XUTL("XQORM",XQORM,"B",X)) S ORUDA=0 F I=0:0 S ORUDA=$O(^XUTL("XQORM",XQORM,"B",X,ORUDA)) Q:ORUDA=""  I '$D(ORUDA(ORUDA)) D LOOK1 Q:ORUER
+ S:$E(X,$L(X),1)'=" " X=$E(X,1,$L(X)-1)_$C($A($E(X,$L(X)))-1)_"~"
+ F I=0:0 S X=$O(^XUTL("XQORM",XQORM,"B",X)) Q:X=""!($E(X,1,$L(ORUW))'=ORUW)!(XQORM(0)["X"&(X'=ORUW))  S ORUDA=0 F I=0:0 S ORUDA=$O(^XUTL("XQORM",XQORM,"B",X,ORUDA)) Q:ORUDA=""  I '$D(ORUDA(ORUDA)) D LOOK1
+ S ORUDA=0 Q:ORUER  I ORUFD=1 S ORUDA=ORUFD(1) Q
+ I 'ORUFD,$D(XQORM("#")),ORUW?1.12N D  Q:ORUDA
+ . N X S X=$P(XQORM("#"),"^",2)
+ . I X[":" Q:(ORUW<X)!(ORUW>$P(X,":",2))
+ . I $L(X),X'[":" Q:(","_X_",")'[(","_ORUW_",")
+ . S ORUDA=ORUW
+ I 'ORUFD,$L($P(ORUW," ")),(($D(XQORM("KEY",$P(ORUW," ")))&('$D(XQORM("NO^^"))))!(ORUW="ALL")) S ORUDA=ORUW,ORUDA("KEY")="" Q
+ I 'ORUFD,$D(XQORM("ALT")) S ORUER=1 Q
+ I 'ORUFD,XQORM(0)["A" S ORUER=1 D NF^XQORM4 I (ORUX[",")!(ORUX["-") S ORUER=0 D PICK
+ D:ORUFD>1 PICK ;S:'ORUFD ORUER=1
+ Q
+LOOK1 S ORUFD=ORUFD+1,ORUFD(ORUFD)=ORUDA,ORUDA(ORUDA)=""
+ Q
+PICK I (XQORM(0)'["A")&(XQORM(0)'["E") S ORUFD=0 Q
+ I ORUFD F J=1:1:ORUFD W:$D(^XUTL("XQORM",XQORM,ORUFD(J),0)) !,$J(J,6),?9,$P(^(0),"^",3)
+ F I=0:0 D PICK1 I $L(X)'>80,X?.ANP S:'$T X="^" Q:X'["?"  D HELP3^XQORM5
+ I X="" D
+ . N J,C S (J,C)=0 F  S J=$O(ORUX(J)) Q:'J  S C=C+1
+ . I C=1 S X="^" W ! ; reprompt if 1 selection
+ S:X="^" ORUER=1 S:X="^^" (ORUER,DIROUT)=1 S ORUFD=0 Q:ORUER
+ I $L(X),$D(ORUFD(X)) S ORUDA=ORUFD(X),ORUFD=1 Q
+ D:$L(X)&(X'["^") LOOK
+ Q
+PICK1 W !,$S(ORUX[","!(ORUX["-"):"For entry """_ORUW_""" ",1:""),$S(ORUFD:"CHOOSE 1-"_ORUFD_": ",1:"re-enter: ")
+ R X:$S($D(DTIME):DTIME,1:"") D:X'?.ANP CC^XQORM4 D:$L(X)>80 LL^XQORM4 D UP^XQORM1
+ Q
+UPD ;from XQORM2
+ S X="",ORUSQ=ORUSQ+1 S:$D(^XUTL("XQORM",XQORM,ORUDA,0)) X=^(0) I '$L(X) S ORUER=1 Q
+ I $D(ORUX(ORUT,"'")) S X=$O(Y("B",ORUDA,"")) K:$L(X) Y(X),Y("B",ORUDA,X) S:$L(X) Y=Y-1 Q
+ S Y=Y+1,Y(ORUSQ)=$P(X,"^",1,3),Y("B",ORUDA,ORUSQ)="",$P(Y(ORUSQ),"^",4)=ORUX(ORUT) S:$D(ORUX(ORUT,"=")) Y(ORUSQ)=Y(ORUSQ)_"="_ORUX(ORUT,"=")
+ Q
+RNG ;From: XQORM2
+ N K Q:X'?1.12N1"-"1.12N
+ I $P(X,"-",1)'<$P(X,"-",2) D:XQORM(0)["A" IR^XQORM4 S ORUER=1 Q
+ S ORUB="" F K=$P(X,"-",1):1:$P(X,"-",2) S ORUB=ORUB_K_"," I $L(ORUB)>225 D:XQORM(0)["A" LR^XQORM4 S ORUER=1 Q
+ S X=ORUB
+ Q

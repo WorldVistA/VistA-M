@@ -1,0 +1,58 @@
+PRPFPOST ;ALTOONA/CTB  TRANSFER TEMPORARY TRANSACTION TO MASTER FILE ;11/22/96  4:41 PM
+V ;;3.0;PATIENT FUNDS;**6**;JUNE 1, 1989
+ASK ;ASK PERMISSION TO POST DATA TO RECORD
+ S PRPFTYPE=$S($D(^%ZIS("TYPE-AHEAD",$I)):^($I),1:"") I PRPFTYPE="" X ^%ZOSF("NO-TYPE-AHEAD")
+ ;TYPE AHEAD DISALLOWED AT THIS POINT TO PREVENT INADVERTENT POSTING TO THE CARD.
+ D DEAD^PRPFED
+ S %A="Is it OK to Post this data to the Permanent Files",%B="Answering 'YES' will cause the data which you have entered to be",%B(1)="transferred into the Permanent Master File and the Patient Card.",%=1
+ D ^PRPFYN I PRPFTYPE="" X ^%ZOSF("TYPE-AHEAD") K PRPFTYPE
+ I %=-1 S X=" <Action Terminated - No posting has occurred.>*" D MSG^PRPFU1 G OUT1
+ I %=2,$D(PRPFMUL) S X=" <Nothing Posted>*" D MSG^PRPFU1 G OUT1
+ I %=2 S %A="Do you wish to edit the transaction",%B="" D ^PRPFYN G:%'=1 OUT S %=3 Q
+ D ESIG^PRPFSIG(DUZ,.%) I %'>0 S X="   <Action Terminated>*" D MSG^PRPFU1 G OUT1
+ D WAIT^PRPFYN
+NOASK I '$D(DT) D NOW^%DTC S DT=X K %,%H,%I,X
+ D:'$D(PRPF("NAME")) DUZ^PRPFSITE S TRDA(0)=^PRPFT(470.5,TRDA,0)
+ S %=1 F I=4,5,7,8,9,10,11 I $P(TRDA(0),"^",I)="" S X="Data is missing, Unable to post.  Please reenter transaction.*" D MSG^PRPFU1 S %=-1 G OUT
+ I $P(TRDA(0),"^",12)+$P(TRDA(0),"^",13)'=+$P(TRDA(0),"^",4) S X="Transaction out of balance.  Please reenter transaction.*" D MSG^PRPFU1 S %=-1 G OUT
+SOURCE ;COMPUTE PS AND GRAT AMTS
+ S DFN(1)=$S($D(^PRPF(470,DFN,1)):^(1),1:""),PB=$P(DFN(1),"^",5),GB=$P(DFN(1),"^",6),SB=$P(DFN(1),"^",4)
+ S SOURCE=$P(TRDA(0),"^",10),GAMT=$P(TRDA(0),"^",13),PAMT=$P(TRDA(0),"^",12),AMT=$P(TRDA(0),"^",4)
+ I PAMT'=0 S PB=PB+PAMT I PB<0,SB+AMT'<0 S GB=GB+PB,GAMT=GAMT+PB,PAMT=PAMT-PB,PB=0 G TOT
+ I GAMT'=0 S GB=GB+GAMT I GB<0,SB+AMT'<0 S PB=PB+GB,PAMT=PAMT+GB,GAMT=GAMT-GB,GB=0
+TOT I +AMT'=(PAMT+GAMT) W !,"Transaction out of balance.  Private Source and Gratuitous Amounts do not equal",!,"the Transaction amount.",*7 G OUT
+ S SB=SB+AMT I +PAMT'=0,+GAMT'=0 S $P(TRDA(0),"^",10)="B"
+ I +PAMT=0,+GAMT'=0 S $P(TRDA(0),"^",10)="G"
+ I +PAMT'=0,+GAMT=0 S $P(TRDA(0),"^",10)="P"
+ S $P(TRDA(0),"^",12)=PAMT,$P(TRDA(0),"^",13)=GAMT,$P(TRDA(0),"^",14)=PRPF("PER")
+ S MADA(0)=TRDA(0)
+ K DEFDATE I $P(MADA(0),"^",21)>0 S DEFDATE=$P(MADA(0),"^",21)
+ S $P(MADA(0),"^",2)=DFN,$P(MADA(0),"^",12,13)=PAMT_"^"_GAMT,$P(MADA(0),"^",6)=DT,$P(PATRDA(0),"^",2,6)=$P(MADA(0),"^",5)_"^"_AMT_"^"_PAMT_"^"_GAMT_"^"_SB
+MASTER ;CREATE ENTRY IN MASTER FILE
+ L +^PRPF(470.3,470.1) I '$D(^PRPF(470.3,470.1,0)) S ^(0)=470.1,$P(^PRPF(470.3,0),"^",3,4)="470.1^1",^PRPF(470.3,"B",470.1,470.1)=""
+ S X=$P(^PRPF(470.3,470.1,0),"^",2)+1,$P(^(0),"^",2)=X,(PRPFX,X)=X_"M" G:$D(^PRPF(470.1,"B",X)) MASTER L -^PRPF(470.3,470.1)
+ S DLAYGO=470.1,DIC="^PRPF(470.1,",DIC(0)="ML" D ^DIC G:Y<0 OUT G:$P(Y,"^",3)'=1 MASTER S MADA=+Y
+PAT ;CREATE NEW TRANSACTION IN PATIENT FILE
+ S X=PRPFX K PRPFX
+ S:'$D(^PRPF(470,DFN,3,0)) ^(0)="^470.01A^^"
+ S DA(1)=DFN
+ S DLAYGO=470,DIC="^PRPF(470,"_DFN_",3,",DIC(0)="ML" D ^DIC G:Y<1 OUT S PATRDA=+Y,PATRID=$P(Y,"^",2)
+ S $P(MADA(0),"^",2,3)=DFN_"^"_PATRDA
+ S $P(^PRPF(470,DFN,1),"^",4,6)=SB_"^"_PB_"^"_GB,$P(^(3,PATRDA,0),"^",2)=$P(PATRDA(0),"^",2,99),$P(^PRPF(470.1,MADA,0),"^",2)=$P(MADA(0),"^",2,21)
+ S $P(^PRPF(470,DFN,0),"^",2)="A",$P(^(0),"^",11)=$P(MADA(0),"^",5),^PRPF(470,DFN,3,"AC",$P(MADA(0),"^",5),PATRDA)="",^PRPF(470,"AC","A",DFN)="" K ^PRPF(470,"AC","I",DFN)
+ D ENCODE^PRPFSIG1(MADA,DUZ,.Y)
+DEF ;CREATE DEFERRAL ENTRY
+ I $D(DEFDATE),+DEFDATE>DT D EN1^PRPFDEF
+RES ;POST RESTRICTIONS
+ I $P(TRDA(0),"^",22)["Y" S PRPFDATE=$P(MADA(0),"^",5),DFN(0)=^PRPF(470,DFN,0),DFN(1)=^(1) D ^PRPFRES
+XREF ;CREATE CROSS REFERENCES FOR MASTER FILE
+ S X=$P(MADA(0),"^",6) I X]"" S ^PRPF(470.1,"AC",X,MADA)=""
+ S X=$P(MADA(0),"^",5) I X]"" S ^PRPF(470.1,"AD",X,MADA)=""
+ ;POST BULLETINS
+ I $D(PRPFBUL("OVERDRAW")) D OVERDRAW^PRPFBUL(DFN,$P(MADA(0),"^",1))
+ I $D(PRPFBUL("RESTRICTION")) D RESTRICT^PRPFBUL(DFN,$P(MADA(0),"^",1))
+ I $D(PRPFBUL("DEFERRAL")) D DEFER^PRPFBUL(DFN,$P(MADA(0),"^",1))
+ K AMT,C,C1,COUNT,D0,D1,DA,DFN(0),DFN(1),DIC,DIE,DLAYGO,DQ,DR,GAMT,GB,I,MADA,P,PAMT,PATRDA,PATRID,PB,PRBAL,RES,SB,TYPE,TYPEX,X,Y,ZX,PRPFBUL
+ S X="   ---DONE---",%=1 G MSG^PRPFU1
+OUT1 I $D(PRPFMUL) S %=0 Q
+OUT I $D(TRDA),TRDA>0 S DA=TRDA,DIK="^PRPFT(470.5," D ^DIK K DIK S %=-1 Q

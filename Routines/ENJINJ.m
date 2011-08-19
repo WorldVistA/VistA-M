@@ -1,0 +1,64 @@
+ENJINJ ;(WASH ISC)/JA/TJK-Screen Entry of Data ;1/8/2001
+ ;;7.0;ENGINEERING;**39,55,69**;Aug 17, 1993
+ K DJDN
+ I '$D(DJDN)&($P(DJJ,U,2)'="") G EN2^ENJINJ1
+ ;
+ S:'$D(DJDPL) DJDPL=""
+EN ;
+ I $D(DJDN)=0 S:$D(DJKEY) DJNX=DJKEY
+ S DJQ=0,DJP=0,DJMU=0 I DJDPL'=DJNM D ^ENJDPL G TK
+EN2 S V=DJF-.01 I '$D(DJDN),'$D(DJW) D FUNC^ENJINQ
+NXT S V=$O(DJJ($S($D(DJNX):DJNX-.001,1:V))) G LST:V="",TK:$P(DJJ(V),U,5)&($P(DJJ(V),U,3)=.01)&('$D(DJDN)),NXT:$P(DJJ(V),U,4)["C" I $P(DJJ(V),U,5),$P(DJJ(V),U,4)'["W" G NXT
+TK K DJNX S DJMU=0,@$P(DJJ(V),U,2),DJAT=$P(DJJ(V),U,3),DJ0=^DD(DJDD,DJAT,0),DJ4=$P(DJJ(V),U,4),DJ3=$P(DJJ(V),U,3) S:DJ4["M" DJMU=1 G LH:DJAT<0,NXT:DJAT=.001 X XY G EN2:'DJJ(V)
+ I DJ4["W" W @DJLIN I '($D(DJDIS)!($P(DJJ(V),U,5))) D PRACTW G:$D(DJNX) NXT X DJCP S DA=DJDN,DR=DJ3,(DJDIC,DIE)=DIC D ^DIE S DIC=DJDIC D PSACTW D N^ENJINJ3 D:$D(Y) EN3^ENJINJ1 S DJSV=V D:$Y>23 N^ENJDPL S V=DJSV G NXT
+ I DJ4["W" I $D(DJDIS)!($P(DJJ(V),U,5)=1) D WP^ENJINJ1 G NXT
+ G:$D(DJDIS)&($D(DJDN)) LST I $D(^ENG(6910.9,DJN,1,$O(^ENG(6910.9,DJN,1,"A",V,0)),2)),^(2)'="" X DJCP X ^(2) S @$P(DJJ(V),U,2) X XY G:$D(DJNX) NXT
+ I DJAT'=.01,$D(^ENG(6910.9,DJN,1,$O(^ENG(6910.9,DJN,1,"A",V,0)),3)),V(V)="" S V(V)=^(3),DIE=DIC,DA=DJDN,DR=DJAT_"///"_V(V) D ^DIE D EN3^ENJINJ1
+R D:'$D(DJNX) HL,Z^ENJINJ3 I X="",DJ4["R",DJAT'=.01,V(V)="" G Q1
+ S DJXX=$E(X) I DJXX=U,X'?1"^" G TK:"Dd"[$E(X,2)&($P(DJJ,U,4)=""),TK:"Uu"[$E(X,2)&($P(DJJ,U,2)=""),LS1:("Dd"[$E(X,2)!("Uu"[$E(X,2)))&($D(DJDN)),LS:"Nn"[$E(X,2)&($D(DJDN)) I "Cc"[$E(X,2) D FUNC^ENJINQ G TK
+ G T4:(DJSM!(DJXX="<")!(DJXX=">")!(X?1"^"))&($D(DJDN)),OUT:X=U&(DJAT=.01)&('$D(DJDN)),TK:X?1"^".A
+ S:$D(DJSW1) DJDIS=1 K DJSW1 G:DJMU ^ENJMUL
+EN3 G T4:DJSM,OUT:X=""&(DJAT=.01)&('$D(DJDN)),OUT:X="^"&(DJAT=.01)&('$D(DJDN)),T1^ENJINJ1:X="" X XY S $P(DJDB," ",DJJ(V))=" " W DJDB K DJDB
+ S DJXX=$E(X,1) G U:X?1"^"&(DJAT=.01),T4:DJXX="^"!(DJXX="<")!(DJXX=">"),K1^ENJINJ1:X?1"?".E&(DJAT[".01")&('$D(DJDN)),Q1:X?1"?".E
+ I X["^" W *7 G TK
+ I X="@" D:DJAT>0 ^ENJINK S:DJST>1&(DJAT=.01) ^TMP($J,"DJST",DJST-1,"KEY")="" G TK:X'="@",T3
+ G ^ENJINJ1
+T3 S V(V)=$S(X="@":"",1:X)
+ G:DJAT=.01&(V(V)="") Q G T4
+Q1 D ^ENJINQ S @$P(DJJ(V),U,2) X XY G R
+HL G H1:'$D(V(V)),H1:V(V)="",H2
+H1 X XY W @DJHIN X XY S $P(DJDB,".",DJJ(V))="." W DJDB,@DJLIN K DJDB X XY Q
+H2 X XY W @DJHIN X XY S V(V)=$S($D(Y(0,0)):Y(0,0),1:V(V)) W V(V) K Y(0,0) X XY Q
+LH I DJ4["R" X DJCL W @DJHIN X XY W "DATA REQUIRED",@DJLIN,*7 S @$P(DJJ(V),U,2) X XY G TK
+T4 G:'($D(DJDN)) TK S @$P(DJJ(V),U,2) X XY
+ I '$D(V(V)) S $P(DJDB,".",DJJ(V))="." W @DJLIN,DJDB K DJDB G T5
+ I V(V)="" S $P(DJDB,".",DJJ(V))="." W @DJLIN,DJDB K DJDB G T5
+U I V(V)'="" S @$P(DJJ(V),U,2) X XY W @DJHIN X XY S $P(DJDB," ",DJJ(V)-$L(V(V)))=" " W V(V) W:$D(DJDB) DJDB K DJDB
+T5 Q:X?1"^"&($P(DJJ,U,2)="")&('$D(DJDN))  G LS1:X?1"^",NX:X'?1"^".N
+ S DJY=$P(X,U,2) I X?1"^".N,$D(DJJ(DJY)),'$P(DJJ(DJY),U,5),$P(DJJ(DJY),U,4)'["C" S V=DJY-.01 G NXT
+ E  X DJCL W *7,"Number is out of range or field is read only or computed." S V=V-.01 H 5 G NXT
+NX G NXT:X=">" I X="<" S DJ0=V G EN2:V<2 F V=-1:0 S V=$O(DJJ(V)) I $O(DJJ(V))=DJ0 G NX:DJ4["C" S V=V-.001 G NXT
+ G Q1:X["^",NXT
+P G TK:$P(DJJ,U,2)="" S DJN=$P(DJJ,U,2) S:DJN'=+DJN DJN=$O(^ENG(6910.9,"B",DJN,0)) S DJFF=0 D REST D N^ENJDPL G EN2
+Q I $P(^ENG(6910.9,DJN,0),U,3)'="" F DJK=0:0 S (DJDPL,DJNM)=$P(^ENG(6910.9,DJN,0),U,3),DJN=$O(^ENG(6910.9,"B",DJNM,0)) Q:$P(^ENG(6910.9,DJN,0),U,3)=""
+ K V,DJ0,DJAT,DJDN,DJ3,DJ4,DJQ I '$D(DJW1) D ^ENJDPL G EN2
+OUT K DJSV,DJ0,DJAT,DJK,DJDN,DJ3,V,DJJ,DJQ,DIC,DJDD,DX,DY,DJSM,DJDIC,DJKEY S DJFF=0 Q
+LST G ^ENJINJ2:$D(DJDIS) S X="D"
+LS X DJCL G Q:(X["N"!(X["n"))&(DJP=0) Q:(X["N"!(X["n"))&(DJP=1)
+LS1 G:X?1"^" OUT I "Dd"[$E(X,2)&($P(DJJ,U,4)]"")&($D(DJDN)) D SAVE S DJN=$P(DJJ,U,4) S DJN=$O(^ENG(6910.9,"B",DJN,0)) S DJFF=0 D N^ENJDPL Q:$D(DJY)  S (DA,W(V))=DJDN D ^ENJC2 G EN2
+ I "Dd"[$E(X,2)&($P(DJJ,U,4)="") S:$P(DJJ,U,2)'="" DJFF=0 G Q
+ G:"Uu"[$E(X,2) P
+ G TK
+ E  W *7 G LS
+KILL K DB Q
+SAVE S %X="V(",%Y="^TMP($J,""DJ"",DJN," D %XY^%RCR K V Q
+REST K V S %X="^TMP($J,""DJ"",DJN,",%Y="V(" D %XY^%RCR Q
+B S $P(DJDB," ",DJJ(V)-$L(V(V)))=" " Q
+D S $P(DJDB,".",DJJ(V))="." Q
+PRACTW ;Pre Action Code for Word Processing Field
+ I $D(^ENG(6910.9,DJN,1,$O(^ENG(6910.9,DJN,1,"A",V,0)),2)),^(2)'="" X DJCP X ^(2)
+ Q
+PSACTW ;Post Action Code for Word Processing Field
+ I $D(^ENG(6910.9,DJN,1,$O(^ENG(6910.9,DJN,1,"A",V,0)),1)),^(1)'="" X DJCP X ^(1)
+ Q
+ ;ENJINJ

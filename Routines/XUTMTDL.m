@@ -1,0 +1,43 @@
+XUTMTDL ;SEA/RDS - TaskMan: ToolKit, Delete List ;7/21/95  08:38
+ ;;8.0;KERNEL;**1**;Jul 05, 1995
+ ;
+SCHED ;Lookup Tasks In Schedule File
+ N ZT,ZT1,ZT2,ZT3,ZT4,ZT5,ZT6,ZTF,ZTS S ZTSK=0 K ^TMP($J,"XUTMTDL")
+ S ZT1="" F ZT=0:0 S ZT1=$O(^%ZTSCH(ZT1)),ZT2="" Q:'ZT1  F ZT=0:0 S ZT2=$O(^%ZTSCH(ZT1,ZT2)) Q:ZT2=""  S ZTS=ZT2 D SCREEN I ZTF D DQSCHED,DELETE
+ S ZT1="" F ZT=0:0 S ZT1=$O(^%ZTSCH("IO",ZT1)),ZT2="" Q:ZT1=""  F ZT=0:0 S ZT2=$O(^%ZTSCH("IO",ZT1,ZT2)),ZT3="" Q:ZT2=""  F ZT=0:0 S ZT3=$O(^%ZTSCH("IO",ZT1,ZT2,ZT3)) Q:ZT3=""  S ZTS=ZT3 D SCREEN I ZTF D DQIO,DELETE
+ S ZT1="" F ZT=0:0 S ZT1=$O(^%ZTSCH("JOB",ZT1)),ZT2="" Q:ZT1=""  F ZT=0:0 S ZT2=$O(^%ZTSCH("JOB",ZT1,ZT2)) Q:ZT2=""  S ZTS=ZT2 D SCREEN I ZTF D DQJOB,DELETE
+ S ZT1="" F ZT=0:0 S ZT1=$O(^%ZTSCH("LINK",ZT1)),ZT2="" Q:ZT1=""  F ZT=0:0 S ZT2=$O(^%ZTSCH("LINK",ZT1,ZT2)),ZT3="" Q:ZT2=""  F ZT=0:0 S ZT3=$O(^%ZTSCH("LINK",ZT1,ZT2,ZT3)) Q:ZT3=""  S ZTS=ZT3 D SCREEN I ZTF D DQLINK,DELETE
+ ;
+TASK ;delete unscheduled tasks in Task file
+ S ZT1="" F ZT=0:0 S ZT1=$O(^TMP($J,"XUTMT",ZT1)) Q:ZT1=""  D RANGE:$D(^(ZT1))=10 I $D(^TMP($J,"XUTMT",ZT1))=1,$D(^%ZTSK(ZT1)) S ZTS=ZT1 D SCREEN I ZTF D DELETE
+ K ^TMP($J,"XUTMTDL") Q
+ ;
+RANGE ;TASK--process a range
+ S ZT3=ZT1,(ZT2,ZTS)=$O(^TMP($J,"XUTMT",ZT1,""))
+ I $D(^%ZTSK(ZTS)) D SCREEN I ZTF D DELETE
+ F ZT=0:0 S ZTS=$O(^%ZTSK(ZTS)) Q:ZTS>ZT3!'ZTS  D SCREEN I ZTF D DELETE
+ Q
+ ;
+SCREEN ;Screen Tasks For Selection & User Authority To Select
+ L +^%ZTSK(ZTS)
+ S ZTF=0 I '$D(^TMP($J,"XUTMT",ZTS)) S ZT5=$O(^TMP($J,"XUTMT",ZTS)) G SCRX:ZT5=""  S ZT6=$O(^(ZT5,"")) G SCRX:ZT6>ZTS!'ZT6
+ I 'ZTKEY I $S($D(^%ZTSK(ZTS,0))[0:1,$P(^%ZTSK(ZTS,0),U,11)_","_$P(^(0),U,12)=XUTMUCI:DUZ'=$P(^(0),U,3),1:ZTNAME'=$P(^(0),U,10)) G SCRX
+ S ZTF=1
+SCRX L -^%ZTSK(ZTS) Q
+ ;
+DQSCHED ;Dequeue A Schedule List Entry
+ L +^%ZTSCH(ZT1,ZT2) K ^%ZTSCH(ZT1,ZT2) L -^%ZTSCH(ZT1,ZT2) Q
+ ;
+DQIO ;Dequeue A Device Waiting List
+ N %ZTIO,ZTDTH,ZTSK S %ZTIO=ZT1,ZTDTH=ZT2,ZTSK=ZT3 L +^%ZTSK(ZTSK),+^%ZTSCH("IO") D DQ^%ZTM4 L -^%ZTSCH("IO"),-^%ZTSK(ZTSK) Q
+ ;
+DQJOB ;Dequeue A Submanager Waiting List Entry
+ L +^%ZTSK(ZT2),+^%ZTSCH("JOB",ZT1,ZT2) K ^%ZTSCH("JOB",ZT1,ZT2) L -^%ZTSCH("JOB"),-^%ZTSK(ZT2) Q
+ ;
+DQLINK ;Dequeue A Link Waiting List Entry
+ L +^%ZTSCH("LINK") K ^%ZTSCH("LINK",ZT1,ZT2,ZT3) L -^%ZTSCH("LINK") Q
+ ;
+DELETE ;Delete Unscreened Tasks That Are Not Currently Running
+ L +^%ZTSK(ZTS) I '$D(^%ZTSCH("TASK",ZTS)) K ^%ZTSK(ZTS) I '$D(^TMP($J,"XUTMTDL",ZTS)) S ^(ZTS)="",ZTSK=ZTSK+1
+ L -^%ZTSK(ZTS) Q
+ ;

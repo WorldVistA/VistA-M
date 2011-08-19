@@ -1,0 +1,39 @@
+RMPR9S8P ;HOIFO/SPS - GUI 2319 PRESCRIPTION INFO SCREEN 8 HOME OXYGEN
+ ;;3.0;PROSTHETICS;**59**;Feb 09, 1996
+ ;         (IEN)=ien of file 660
+ ;display detailed record
+A1(IEN) G A2
+EN(RESULTS,IEN) ;Broker
+A2 ;
+ I '$D(^RMPR(660,IEN)) S RESULTS(0)="NOTHING TO REPORT" G EXIT
+ S RMPRDFN=$P(^RMPR(660,IEN,0),U,2)
+ S RMPODFN=RMPRDFN
+ D BPI,DPI
+ K PTI,I,RX,Y,DT1,DT2,TRX,IENS,DFN
+ Q
+BPI ; Build pt info hdr
+ K PTI
+ ; Name,SSN
+ S DFN=RMPODFN D DEM^VADPT
+ ; Current Rx (IEN on ACT DATE)
+ S RX=$O(^RMPR(665,RMPODFN,"RMPOB"," "),-1)
+ I 'RX S RESULTS(0)="NOTHING TO REPORT" Q
+ S Y=$P(^RMPR(665,RMPODFN,"RMPOB",RX,0),U) X ^DD("DD") S DT1=Y
+ S Y=$P(^RMPR(665,RMPODFN,"RMPOB",RX,0),U,3) X ^DD("DD") S DT2=Y
+ S PTI(0)=RX
+ ; Activation date
+ S PTI(1)=DT1
+ ; Expiration Date:
+ S PTI(2)=DT2
+ ; Rx Remarks
+ K TRX
+ S IENS=RX_","_RMPODFN_","
+ D GETS^DIQ(665.193,IENS,3,,"TRX")
+ S I=0 F  S I=$O(TRX(665.193,IENS,3,I)) Q:I=""  D
+ . S PTI(2+I)=TRX(665.193,IENS,3,I)
+ Q
+DPI ; Display pt info hdr
+ S I="" F  S I=$O(PTI(I)) Q:I=""  S RESULTS(I)=PTI(I) ;W !,PTI(I)
+ Q
+EXIT ;
+ Q

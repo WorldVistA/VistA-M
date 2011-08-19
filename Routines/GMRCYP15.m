@@ -1,0 +1,168 @@
+GMRCYP15 ;SLC/JFR-- CONVERT PROCEDURES FROM 101 TO 123.3; 3/08/01 22:00
+ ;;3.0;CONSULT/REQUEST TRACKING;**15**;DEC 27, 1997
+ ;
+ ; This routine invokes IA #3169,#3170
+ ;
+EN ;called from post-install of GMRC*3*15
+ N GMRCPROG,XPDIDTOT
+ S GMRCPROG=$$GET^XPAR("PKG.CONSULT/REQUEST TRACKING","GMRC PROCEDURE CONVERSION",1)
+ I GMRCPROG=3 D BMES^XPDUTL("Procedure conversion complete") Q
+ I GMRCPROG<2 D
+ . D CVTOIS
+ . D EN^XPAR("PKG.CONSULT/REQUEST TRACKING","GMRC PROCEDURE CONVERSION",1,2)
+ D CVT123
+ D EN^XPAR("PKG.CONSULT/REQUEST TRACKING","GMRC PROCEDURE CONVERSION",1,3)
+ D MAIL
+ Q
+ ;
+CVTOIS ;loop through ORD ITEMS  in S.PROC x-ref
+ N ITMNM,ORDITM,PROC,PROTID,GMRCID
+ D EN^XPAR("PKG.CONSULT/REQUEST TRACKING","GMRC PROCEDURE CONVERSION",1,1)
+ D BMES^XPDUTL("Converting Orderable Items")
+ S ITMNM="",^XTMP("GMRCCVPR",0)=$$FMADD^XLFDT($$NOW^XLFDT,14)
+ S $P(^XTMP("GMRCCVPR",0),U,2)=$$NOW^XLFDT
+ S $P(^XTMP("GMRCCVPR",0),U,3)="Conversion of GMRC Procedure ord. items"
+ F  S ITMNM=$O(^ORD(101.43,"S.PROC",ITMNM)) Q:ITMNM=""  D
+ . S ORDITM=0
+ . F  S ORDITM=$O(^ORD(101.43,"S.PROC",ITMNM,ORDITM)) Q:'ORDITM  D
+ .. I '$$OKTOGO(ITMNM,ORDITM) Q
+ .. S PROC=$$CNVT(ORDITM) I '+PROC Q
+ .. S PROTID=$P(^ORD(101.43,ORDITM,0),U,2)
+ .. S GMRCID=$$ID^ORDD43(PROTID,PROC_";99PRC")
+ .. S ^XTMP("GMRCCVPR",ORDITM)=PROC_U_$S($G(GMRCID):$G(PROTID),1:"ERROR")
+ .. Q
+ . Q
+ Q
+OKTOGO(NAME,NUM) ;OK to move from 101.43 to 123.3?
+ I $D(^XTMP("GMRCCVPR",NUM)) Q 0 ;already converted
+ I +$G(^ORD(101.43,"S.PROC",NAME,NUM)),$P(^ORD(101.43,NUM,0),U)'=NAME Q 0 ;synonym only
+ I '+$P(^ORD(101.43,NUM,0),U,2) Q 0 ;no protocol
+ I $P(^ORD(101.43,NUM,0),U,2)[";99PRC" Q 0 ;new ID already
+ Q 1
+CNVT(IEN) ;move it from 101.43 to 123.3
+ N DIC,DIE,DR,DA,X,Y,DTOUT,DUOUT,DLAYGO,ORD0,GMRCPROC,NEW
+ S DIC="^GMR(123.3,",DIC(0)="XL",DLAYGO=123.3
+ S ORD0=^ORD(101.43,IEN,0)
+ S X=$$UP^XLFSTR($P(ORD0,U))
+ D ^DIC I Y'>0 Q 0
+ S DIE=DIC,DA=+Y,GMRCPROC=+Y,NEW=$P(Y,U,3)
+ I +NEW S DR=".06_////"_+$P(ORD0,U,2)
+ I +$G(^ORD(101.43,IEN,.1)) S DR=$S($D(DR):DR_";",1:"")_".02///1"
+ I $D(DR) D ^DIE
+ D SYN(IEN,GMRCPROC)
+ D SERVS(GMRCPROC,+$P(ORD0,U,2))
+ Q +GMRCPROC
+SYN(OITM,PROC) ;get any synonyms from 101.43 and update 123.3
+ N DR,DIC,X,Y,DTOUT,SYN,DA
+ S SYN=0
+ F  S SYN=$O(^ORD(101.43,OITM,2,SYN)) Q:'SYN  I $L($G(^(SYN,0))) D
+ . S DA(1)=PROC,DIC="^GMR(123.3,"_DA(1)_",1,"
+ . S DIC(0)="XL",DIC("P")=$P(^DD(123.3,1,0),U,2)
+ . S X=$P(^ORD(101.43,OITM,2,SYN,0),U)
+ . D ^DIC
+ Q
+SERVS(PROC,PROT) ;get related servisces from 123.5 and move to 123.3
+ N DR,DIC,X,Y,DTOUT,SERV,DA
+ S SERV=0
+ F  S SERV=$O(^GMR(123.5,"APR",PROT,SERV)) Q:'SERV  D
+ . S DA(1)=PROC,DIC="^GMR(123.3,"_DA(1)_",2,",X=$P(^GMR(123.5,SERV,0),U)
+ . S DIC(0)="XL",DIC("P")=$P(^DD(123.3,2,0),U,2)
+ . D ^DIC
+ Q
+CVTPRO(PROT) ;move protocol entry to 123.3
+ N DIC,DIE,DR,DA,X,Y,DLAYGO,NAME,PROC
+ I '$D(^ORD(101,PROT,0)) Q 1 ;no protocol there
+ S NAME=$P(^ORD(101,PROT,0),U,2) I '$L(NAME) Q 1 ;no name
+ I $G(^ORD(101,PROT,20))'["GMRCEN=""R""" Q "" ;consult type
+ S DIC="^GMR(123.3,",DIC(0)="LX",X=$$UP^XLFSTR(NAME)
+ D ^DIC I +Y<0 Q 1
+ I '$P(Y,U,3) Q +Y
+ S (PROC,DA)=+Y
+ S DIE=DIC,DR=".02///1;.06///^S X=PROT" D ^DIE
+ Q +PROC
+ ;
+ ;
+CVT123 ; loop through file 123 and convert field #4 and #13
+ N IEN,PROC,GMRCCSLT,GMRCPRC,GMR0
+ D EN^XPAR("PKG.CONSULT/REQUEST TRACKING","GMRC PROCEDURE CONVERSION",1,2)
+ D BMES^XPDUTL("Converting REQUEST/CONSULTATION data")
+ S XPDIDTOT=$P(^GMR(123,0),U,4) I XPDIDTOT<100 K XPDIDTOT
+ S GMRCCSLT=$$FIND1^DIC(101,,"QX","GMRCOR CONSULT")
+ S GMRCPRC=$$FIND1^DIC(101,,"QX","GMRCOR REQUEST")
+ S IEN=0 F  S IEN=$O(^GMR(123,IEN)) Q:'IEN  D
+ . I $D(XPDIDTOT) I '(IEN#(XPDIDTOT\20)) D UPDATE^XPDID(IEN)
+ . Q:'$D(^GMR(123,IEN,0))
+ . S GMR0=^GMR(123,IEN,0)
+ . I $P(GMR0,U,17)'="C"&($P(GMR0,U,17)'="P") D  ;not converted yet
+ .. I $P(GMR0,U,8)["ORD(101" D
+ ... N NWPROC
+ ... S NWPROC=$$CVT4(+$P(^GMR(123,IEN,0),U,8))
+ ... I +NWPROC=1 S ^XTMP("GMRCCVPR","UNK",IEN)=$P(GMR0,U,8)
+ ... S $P(^GMR(123,IEN,0),U,8)=NWPROC
+ .. S $P(^GMR(123,IEN,0),U,17)=$S(+$P(^GMR(123,IEN,0),U,8):"P",1:"C")
+ .. Q
+ . Q
+ Q
+CVT4(PCL) ;convert field 4 from 101 to 123.3
+ ; PCL = pointer to file 101
+ N PROC
+ S PROC=$O(^GMR(123.3,"AP",PCL,0))
+ I 'PROC S PROC=$$CVTPRO(PCL)
+ Q $S(+PROC:PROC_";GMR(123.3,",1:"")
+ ;
+ ;
+MAIL ; check conversion and send mail to installer
+ D CK10143
+ D CHK123
+ I '$D(^TMP("GMRCP15",$J)) D
+ . S ^TMP("GMRCP15",$J,1,0)="No problems found with the conversion."
+ S ^TMP("GMRCP15",$J,0)=""
+ N GMRCSB,GMRCTO,GMRCTXT,GMRCMSG
+ S GMRCSB="GMRC*3*15 Post-install conversion report"
+ S GMRCTXT=$NA(^TMP("GMRCP15",$J))
+ S GMRCTO(DUZ)=""
+ D SENDMSG^XMXAPI(DUZ,GMRCSB,GMRCTXT,.GMRCTO,,.GMRCMSG)
+ I $G(GMRCMSG) D 
+ . D BMES^XPDUTL("Mail message "_GMRCMSG_" sent to installer")
+ . N ZTDTH,ZTRTN,ZTSK,ZTDESC,ZTSAVE,ZTIO,GMRCDUZ
+ . S GMRCDUZ=DUZ
+ . S ZTSAVE("GMRCMSG")="",ZTSAVE("GMRCDUZ")=""
+ . S ZTDTH=$$FMADD^XLFDT($$NOW^XLFDT,,,5),ZTRTN="NWMAL^GMRCYP15"
+ . S ZTIO="",ZTDESC="New GMRC*3*15 post-install message"
+ . D ^%ZTLOAD
+ K ^TMP("GMRCP15",$J)
+ Q
+ ;
+NWMAL ;make post-install message new
+ S ZTREQ="@"
+ I $G(GMRCMSG),$G(GMRCDUZ) D
+ . D MAKENEW^XMXUTIL(DUZ,1,GMRCMSG,1)
+ Q
+ ;
+CHK123 ;loop 123 and check field 4 to make sure it's converted
+ N GMRCIEN,PROC,NEXT
+ S GMRCIEN=0
+ I $D(^TMP("GMRCP15",$J)) D
+ . S ^TMP("GMRCP15",$J,$O(^TMP("GMRCP15",$J," "),-1)+1,0)=""
+ F  S GMRCIEN=$O(^GMR(123,GMRCIEN)) Q:'GMRCIEN  D
+ . I $D(XPDIDTOT) D:'(GMRCIEN#(XPDIDTOT\20)) UPDATE^XPDID(GMRCIEN)
+ . I '$D(XPDNM) W:'(GMRCIEN#78000) !,"Working",!
+ . I '$D(XPDNM) W:'(GMRCIEN#1000) "."
+ . S PROC=$P($G(^GMR(123,GMRCIEN,0)),U,8) I '$L(PROC) Q
+ . I PROC["ORD(101"!(PROC="1;GMR(123.3,") D
+ .. S NEXT=$O(^TMP("GMRCP15",$J," "),-1)+1
+ .. S ^TMP("GMRCP15",$J,NEXT,0)="File 123 ien "_GMRCIEN_" points to "_PROC
+ . Q
+ Q
+CK10143 ;loop thru S.PROC x-ref in 101.43 and check for complete conv
+ N OINAME,OINUM,NEXT
+ D BMES^XPDUTL("Checking converted data")
+ S OINAME=""
+ F  S OINAME=$O(^ORD(101.43,"S.PROC",OINAME)) Q:OINAME=""  D
+ . S OINUM=$O(^ORD(101.43,"S.PROC",OINAME,0)) Q:'OINUM
+ . I +$G(^ORD(101.43,"S.PROC",OINAME,OINUM)) Q  ;syn only
+ . I $P($G(^ORD(101.43,OINUM,0)),U,2)'["99PRC" D
+ .. S NEXT=$O(^TMP("GMRCP15",$J," "),-1)+1
+ .. S ^TMP("GMRCP15",$J,NEXT,0)="File 101.43 ien "_OINUM_" has a bad ID"
+ . Q
+ Q

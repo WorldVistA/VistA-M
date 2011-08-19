@@ -1,0 +1,30 @@
+RMPRHISL ;PHX/RFM-HISTORICAL DATA ;8/29/1994
+ ;;3.0;PROSTHETICS;;Feb 09, 1996
+ ;QTY&COST
+NEX ;CONTINUATION OF HISTORICAL DATA ROUTING RMPRHIS
+ K DIR,DIRUT I $P(R1(0),U,14)="C" S DIR(0)="667.3,3",DIR("A")="UNIT COST" S:$P(R1(0),U,16) DIR("B")=$P(R1(0),U,16)/$P(R1(0),U,7) D ^DIR I $P(R1(0),U,16)'=""&$D(DUOUT) K DIR G LIST
+ X:$D(DIRUT) CK Q:'$D(R1(0))  S $P(R1(0),U,16)=Y,$P(R3("D"),U,16)=Y K DIR
+ I $P(R1(0),U,14)="V" S $P(R1(0),U,16)=0
+ S DIR(0)="660,5" S:$P(R1(0),U,7) DIR("B")=$P(R1(0),U,7) D ^DIR I $P(R1(0),U,7)'=""&$D(DUOUT) K DIR G LIST
+ X:$D(DIRUT) CK Q:'$D(R1(0))  S $P(R1(0),U,7)=Y,$P(R1(0),U,16)=Y*$P(R1(0),U,16) K DIR
+ ;
+DATE S:$P(R1(0),U,12) %DT("B")=$P(R3("D"),U,12) S %DT("A")="DELIVERY DATE: ",%DT="AEXP" D ^%DT G:X="" LI S:Y>0 $P(R1(0),U,12)=Y G:X["^"&($P(R3("D"),U,12)'="") LIST G:X["^" LI D DD^%DT S $P(R3("D"),U,12)=Y
+ ;
+LI S DIR(0)="660,9" S:$P(R1(0),U,11)'="" DIR("B")=$P(R1(0),U,11) D ^DIR G:$D(DTOUT) EXIT G:$D(DUOUT) LIST I X["^" W !,"Jumping not allowed!" G LI
+ S $P(R1(0),U,11)=X
+ I $P(R1(0),U,11)'=""&(X="@") S $P(R1(0),U,11)="" W !?5,"Deleted..." H 1
+LOT K DIR S DIR(0)="660,21" S:$P(R1(0),U,24)?.E&($P(R1(0),U,24)'="") DIR("B")=$P(R1(0),U,24) D ^DIR G:$D(DTOUT) EXIT G:$D(DUOUT) LIST I X["^" W !,"Jumping not allowed!" G LOT
+ S $P(R1(0),U,24)=X
+ I $P(R1(0),U,24)'=""&(X="@") S $P(R1(0),U,24)="" W !?5,"Deleted..." H 1
+SER K DIR S DIR(0)="660,16" S:$P(R1(0),U,18)?.E&($P(R1(0),U,18)'="") DIR("B")=$P(R1(0),U,18) D ^DIR G:$D(DTOUT) EXIT G:$D(DUOUT) LIST I X["^" W !,"Jumping not allowed!" G SER
+ S $P(R1(0),U,18)=X
+ I $P(R1(0),U,18)'=""&(X="@") S $P(R1(0),U,18)="" W !?5,"Deleted..." H 1
+LIST ;SCREEN DISPLAY OF COMPLETED ITEM TRANSACTION
+ K DIR D ^RMPRST2
+ S %=1 R !,"Do you wish to POST this entry" D YN^DICN G:%<0 EXIT G:%=1 POST
+ S %=2 R !,"Do you wish to Delete this entry" D YN^DICN G:$D(DTOUT) EXIT G:%=1 RES^RMPRHIS G:%=2 1^RMPRHIS
+POST K Y,DD,DO S DIC="^RMPR(660,",DIC(0)="L",DLAYGO=660,X=DT D FILE^DICN K DLAYGO S ^RMPR(660,+Y,0)=R1(0),^("AM")=R1("AM"),DIK="^RMPR(660,",DA=+Y D IX1^DIK K DIC G RES^RMPRHIS
+ ;
+EXIT ;KILL VARIABLES AND EXIT HISTORICAL DATA
+ K DIE,RMPRGIP,PRCP,J,%,X,DA,Y,CK,DIR,DIRUT,RMPRG,DIK,DIC,%DT,DUOUT,DTOUT,RMPRDFN,RMPRSSN,RMPRNAM,RMPRDOB,RMPRHISD,R1,R3,R4,RMPRF,HL,RMPRKILL
+ Q

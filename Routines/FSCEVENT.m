@@ -1,0 +1,48 @@
+FSCEVENT ;SLC/STAFF-NOIS Events ;1/13/98  11:30
+ ;;1.1;NOIS;;Sep 06, 1998
+ADD ; from FSCUEDS
+ D EVENT("ADD")
+ Q
+ ;
+DEL ; from FSCUEDS
+ D EVENT("DELETE")
+ Q
+ ;
+EVENT(MODE) ;
+ N D0,DIC,FROM,TO,X,Y K DIC,Y
+ S DIC=7103.2,DIC(0)="AEMOQ",DIC("A")="Select Event: "
+ D ^DIC K DIC Q:Y<1
+ S D0=+Y
+ D DATES(.FROM,.TO)
+ I 'FROM Q
+ I 'TO Q
+ D EVENT^FSCEVENP(MODE,D0,FROM,TO)
+ Q
+ ;
+ALL ; testing
+ N FROM,MODE,NUM,TO
+ S MODE="DELETE",FROM=2950401,TO=2951231,NUM=0 F  S NUM=$O(^FSC("REVENT",NUM)) Q:NUM<1  D EVENT^FSCEVENP(MODE,NUM,FROM,TO)
+ Q
+ ;
+DATES(FROM,TO) ;
+ N DIR,END,START,X,Y K DIR S (FROM,TO)=0
+ S START=$E(DT,1,3)-1_"0101",END=$E(DT,1,3)+1_"0101"
+ S DIR(0)="DAO^"_START_":"_END_":EX"
+ S DIR("A")="From: "
+ S DIR("?",1)="Enter the beginning date of a date range."
+ S DIR("?")="^D HELP^%DTC,HELP^FSCU(.DIR)"
+ S DIR("??")="FSC U1 NOIS"
+ D ^DIR K DIR
+ I $D(DIRUT) Q
+ S FROM=Y
+ ;
+ N DIR,X,Y K DIR
+ S DIR(0)="DAO^"_START_":"_END_":EX"
+ S DIR("A")="To: "
+ S DIR("?",1)="Enter the ending date of a date range."
+ S DIR("?")="^D HELP^%DTC,HELP^FSCU(.DIR)"
+ S DIR("??")="FSC U1 NOIS"
+ D ^DIR K DIR
+ I $D(DIRUT) S FROM=0 Q
+ S TO=Y I FROM>TO S X=FROM,FROM=TO,TO=X
+ Q

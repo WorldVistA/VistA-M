@@ -1,0 +1,71 @@
+IBCU6 ;ALB/AAS - UTILITY ROUTINE TO SET BEDSECTIONS/REVENUE CODES FROM PTF DATA ;25 MAY 90
+ ;;2.0;INTEGRATED BILLING;**14,52,138,245,155**;21-MAR-94
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+ ;MAP TO DGCRU6
+ ;
+% ;setup variables - needs IBifn
+ ;K IBRSARR D BILL^IBCRBC(IBIFN,.IBRSARR)
+ I $P($G(^DGCR(399,IBIFN,0)),U,13)'=1 Q  ; Do not calculate bill charges if bill not in Entered/Not Reviewed status
+ N X S X=$$PRCDIV^IBCU71(IBIFN) I '$D(ZTQUEUED),+X W !,$P(X,U,2) ; update bill default division
+ S X=$$DVTYP^IBCU71(IBIFN) I '$D(ZTQUEUED),$P(X,U,2)'="" W !,$P(X,U,2) ; update bill charge type
+ ;
+ D BILL^IBCRBC(IBIFN) ;   calculate bill charges
+ ;
+ D CPTMOD26^IBCU73(IBIFN) ; add cpt modifier 26 to professional bill
+ Q
+ ;
+ Q:'$D(^DGCR(399,IBIFN,0))  N IBQUIT S IBQUIT=0 K ^UTILITY($J) D GVAR^IBCU61 Q:IBQUIT
+ I '$D(DFN) S DFN=$P(^DGCR(399,IBIFN,0),"^",2)
+ I IBIDS(.05)<3 S PTF=$P(^DGCR(399,IBIFN,0),"^",8) Q:PTF']""  Q:'$D(^DGPT(PTF,0))  I '$P(^DGPT(PTF,0),"^",6),'$P(^(0),"^",4),'$D(DGPTUPDT) D UPDT^DGPTUTL S DGPTUPDT=""
+ S DGADM=IBIDS(.03),DGPMCA=$O(^DGPM("AMV1",DGADM,DFN,0)) ;find corresponding admission
+ D:$O(^DGCR(399,IBIFN,"RC",0)) ALL^IBCU61
+ ;
+OPT ;I IBIDS(.05)>2 S DGBILLBS="OUTPATIENT VISIT",DGVISCNT=$S($D(^DGCR(399,IBIFN,"OP",0)):$P(^(0),U,4),1:""),^UTILITY($J,"IB-BS",DGBILLBS)=DGVISCNT G END:DGVISCNT<1 D  G END:IBQUIT,3
+ ;.I $D(^DGCR(399,IBIFN,"CP","ASC",1)) D ^IBCU63
+ ;.;I $D(^UTILITY($J,"IB-ASC")) S IBQUIT=1
+ I IBIDS(.05)>2 D  G END:(DGVISCNT<1)!IBQUIT,3
+ . S DGBILLBS="OUTPATIENT VISIT",DGVISCNT=$S($D(^DGCR(399,IBIFN,"OP",0)):$P(^(0),U,4),1:""),^UTILITY($J,"IB-BS",DGBILLBS)=DGVISCNT ; visit
+ . I DGVISCNT>0,$D(^DGCR(399,IBIFN,"CP","ASC",1)) D ^IBCU63 ; basc
+ . D SET^IBCSC5A(IBIFN,.IBX) S IBCNT=+$P(IBX,U,2) K IBX I +IBCNT D RX^IBCU63 ; rx refills
+ ;
+1 ;build array of movement dates, billable bedsections
+ S DGMOVE=0 F DGII=0:0 S DGMOVE=$O(^DGPT(PTF,"M",DGMOVE)) Q:'DGMOVE  D SETU
+ ;
+2 ;build array of billable bedsections = los in bedsection
+ ;start with statement covers from date, end with statement covers to date
+ S (DGMVDT,DGMVDTP)=$S($D(IBIDS(151)):IBIDS(151),1:IBIDS(.03)),(DGBS,DGBS1)=""
+ ;
+ S DGMVDT=DGMVDT+.3,IBMVDTE=IBIDS(152)\1
+ I ",2,3,"'[IBIDS(.06) S IBMVDTE=IBMVDTE-.01 I IBIDS(151)=IBIDS(152) S DGMVDT=IBIDS(151)
+ I +DGPMCA S DGII=$$AD^IBCU64(DGPMCA) I ($P(DGII,U,1)\1)=($P(DGII,U,2)\1) S DGMVDT=IBIDS(151),IBMVDTE=IBIDS(152)
+ ;
+ S DGMVDT=DGMVDT-.01 F DGII=0:0 S DGMVDT=$O(^UTILITY($J,"IB-PTF",DGMVDT)) Q:'DGMVDT!(DGMVDTP\1>IBIDS(152))  D SETU1 S DGMVDTP=DGMVDT Q:(DGMVDTP\1)>IBMVDTE
+ ;
+3 ;find revenue codes and set up in file.
+ S DGBS=0 I '$D(^DGCR(399,IBIFN,"RC",0)) S ^DGCR(399,IBIFN,"RC",0)="^399.042PA"
+ F DGII=0:0 S DGBS=$O(^UTILITY($J,"IB-BS",DGBS)) Q:DGBS']""!(IBQUIT)  S DGBSLOS=^(DGBS),DGBSI=$O(^DGCR(399.1,"B",DGBS,0)) I DGBSI,$D(^DGCR(399.1,DGBSI,0)) D SETREV^IBCU62
+ G END
+ ;
+SETU ;utility array of all movements by date, billing bedsection
+ ;non-billable bs's must be added to array so their days will not be added to a billable bs
+ S X=^DGPT(PTF,"M",DGMOVE,0)
+ S DGBILLBS=$P($G(^DIC(42.4,+$P(X,U,2),0)),U,5) I DGBILLBS="" S DGBILLBS="UNKNOWN"
+ ;S DGBILLBS=$S('$P(X,U,2):"UNKNOWN",$D(^DIC(42.4,$P(X,U,2),0)):$P(^(0),U,5),1:"UNKNOWN") Q:DGBILLBS=""
+ S ^UTILITY($J,"IB-PTF",$S($P(X,U,10)]"":$P(X,U,10),1:DT),DGBILLBS)=($P(X,U,3)+$P(X,U,4))_"^"_$P(X,U,18)
+ Q
+ ;
+SETU1 ;determine los - set utility=los
+ S DGBS=$O(^UTILITY($J,"IB-PTF",DGMVDT,0)) Q:DGBS="UNKNOWN"  S:DGBS1="" DGBS1=DGBS
+ S DGEDT=$S(DGMVDT<IBIDS(152):DGMVDT,1:IBIDS(152)),DGBDT=$S(IBIDS(151)>DGMVDTP:IBIDS(151),1:DGMVDTP)
+ S IBTF=$S(IBIDS(152)<(DGMVDT\1):IBIDS(.06),1:1)
+ S X=$$LOS^IBCU64(DGBDT,DGEDT,IBTF,DGPMCA) Q:'X
+ I $D(DGINPAR),$P(DGINPAR,"^")=0,(DGBS1'=DGBS) Q  ;only one bedsection allowed by ins co
+ I IBIDS(.11)="c",(DGBS1'=DGBS) Q
+ I $P(^UTILITY($J,"IB-PTF",DGMVDT,DGBS),U,2)=1 Q  ;treatment for sc condition
+ S ^UTILITY($J,"IB-BS",DGBS)=+$G(^UTILITY($J,"IB-BS",DGBS))+X
+ Q
+END I IBIDS(.11)="c" S IBIDS(.11)="p"
+ K ^UTILITY($J),DGMOVE,DGMVDT,DGMVDTP,DGBS,DGBSLOS,DGBSI,DGBILLBS,DGBR,DGREC,DGII,DGJJ,DGKK,DGREVHDR,DGAMNT,DGREV,DGBS1,X,X1,X2,Y,Z,DGINPAR,DR,DIK,DGVISCNT,DGBRN,DGFUNC,DGACTDT,DGRVRCAL,DA,IBIDS,DGREV00
+ K DGLL,DGFND,IBND0,IBNDU,DGPMCA,DGADM,DGEDT,DGBDT,DGMVTP,DGMVT,DGDC,DGNEXT,DGX,DGIFN,IBTF,IBCNT,IBCHK,IBMVDTE
+ Q

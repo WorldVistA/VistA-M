@@ -1,0 +1,153 @@
+RMPRPIYB ;HINCIO/ODJ - PIP Prompts - Select Existing Location ;3/8/01
+ ;;3.0;PROSTHETICS;**61**;Feb 09, 1996
+ Q
+ ;
+ ;***** LOCNM - General Prompt for stock location.
+ ;              Location must exist in ^RMPR(661.5 and be active
+LOCNM(RMPRSTN,RMPR5,RMPREXC) ;
+ N RMPRERR,DIR,X,Y,DA,DUOUT,DTOUT,DIROUT,RMPRYN,RMPRTDT
+STA D NOW^%DTC S RMPRTDT=X ;today's date
+ S RMPREXC=""
+ S RMPRERR=0
+ S DIR(0)="FOA^1:30"
+ S DIR("A")="Enter Pros Location: "
+ S DIR("?")="^D QM^RMPRPIYB"
+ S DIR("??")="^D QM2^RMPRPIYB"
+ W STA
+LOCNM1 D ^DIR
+ I $D(DTOUT) S RMPREXC="T" G LOCNMX
+ I $D(DIROUT) S RMPREXC="P" G LOCNMX
+ I X=""!(X["^")!($D(DUOUT)) S RMPREXC="^" G LOCNMX
+ K RMPR5
+ S RMPR5("STATION")=RMPRSTN
+ S RMPR5("NAME")=X
+ D LIKE(RMPRSTN,X,.RMPREXC,.RMPR5)
+ I $G(RMPR5("IEN"))="" D  G LOCNM1
+ . W !,"Please enter a valid Location"
+ . Q
+ G LOCNMX
+ ;
+ ; exit
+LOCNMX Q RMPRERR
+ ;
+ ; Single ? Help
+QM D QM1 ;ask if want to list locns.
+ I RMPREXC'="" G QMX
+ I RMPRYN="N" G QMX
+ D QM2 ;list locns.
+ I $G(RMPR5("IEN"))'="" D QM1H
+QMX Q
+ ;
+ ; QM1 - ask if want to list locns
+ ;
+ ; require RMPRSTN - Station number
+ ;
+ ; returns RMPREXC - exit condition
+ ;         RMPRYN  - Y - list, N - don't bother
+ ;
+QM1 N DIR,X,Y,DA,DTOUT,DIROUT,DIRUT,DUOUT
+ S DIR("A",1)=" Answer with PROS ITEM LOCATION"
+ S DIR("A")=" Do you want the entire PROS ITEM LOCATION List"
+ S DIR("?")="^D QM1H^RMPRPIYB"
+ S DIR(0)="YO"
+ D ^DIR
+ I $D(DTOUT) S RMPREXC="T" G QM1X
+ I $D(DIROUT) S RMPREXC="P" G QM1X
+ I X=""!(X["^")!$D(DUOUT) S RMPREXC="^" G QM1X
+ S RMPRYN="N" S:Y RMPRYN="Y"
+ S RMPREXC=""
+QM1X Q
+QM1H S %A="V",X="^"
+ Q
+ ;
+ ; QM2 - List active Location names (only to called from DIR("?"))
+ ;
+ ; require RMPRSTN - Station number
+ ;
+QM2 D LIKE(RMPRSTN,"",.RMPREXC,.RMPR5)
+ I $G(RMPR5("IEN"))'="" D QM1H
+ Q
+ ;
+ ; LIKE - List active Locn. names with matching chars.
+LIKE(RMPRSTN,RMPRTXT,RMPREXC,RMPR5) ;
+ N RMPRMAX,RMPRLIN,RMPRGBL,DIR,X,Y,DA,DTOUT,DIROUT,DIRUT,DUOUT,RMPRA
+ N RMPRYN,RMPRI,RMPRJ,RMPRERR
+ S RMPREXC=""
+ S RMPRYN=""
+ S RMPRMAX=15
+ S RMPRJ=RMPRTXT
+ I RMPRJ="" G LIKEA0
+ I '$D(^RMPR(661.5,"ASSL","A",RMPRSTN,RMPRJ)) D
+ . S RMPRJ=$O(^RMPR(661.5,"ASSL","A",RMPRSTN,RMPRJ))
+ . Q
+ I RMPRJ=""!($E(RMPRJ,1,$L(RMPRTXT))'=RMPRTXT) S RMPR5("IEN")="" G LIKEX
+ S RMPRI=$O(^RMPR(661.5,"ASSL","A",RMPRSTN,RMPRJ))
+ I RMPRI=""!($E(RMPRI,1,$L(RMPRTXT))'=RMPRTXT) D
+ . S RMPR5("IEN")=$O(^RMPR(661.5,"ASSL","A",RMPRSTN,RMPRJ,""))
+ . W:RMPRJ'=RMPRTXT $E(RMPRJ,1+$L(RMPRTXT),$L(RMPRJ))
+ . S RMPRERR=$$GET^RMPRPIX5(.RMPR5)
+ . D OK^RMPRPIYB(.RMPRYN,)
+ . Q
+ I $G(RMPR5("IEN"))'="" S:RMPRYN'="Y" RMPR5("IEN")="",RMPREXC="^" G LIKEX
+LIKEA0 S RMPRGBL="^RMPR(661.5,"_"""ASSL"",""A"","_RMPRSTN_","""_RMPRTXT_""")"
+LIKEA1 K RMPRA S RMPRLIN=0
+LIKEA S RMPRGBL=$Q(@RMPRGBL)
+LIKEA2 I RMPRGBL="" G LIKEB
+ I $QS(RMPRGBL,1)'=661.5 G LIKEB
+ I $QS(RMPRGBL,2)'="ASSL" G LIKEB
+ I $QS(RMPRGBL,3)'="A" G LIKEB
+ I $QS(RMPRGBL,4)'=RMPRSTN G LIKEB
+ I $E($QS(RMPRGBL,5),1,$L(RMPRTXT))'=RMPRTXT G LIKEB
+ I RMPRLIN,'(RMPRLIN#RMPRMAX) D  G LIKEB
+ . S DIR("A",1)="Press <RETURN> to see more, '^' to exit this list, OR"
+ . Q
+LIKEA3 S RMPRLIN=RMPRLIN+1
+ W !,?4,$J(RMPRLIN,2),?9,$QS(RMPRGBL,5)
+ S RMPRA(RMPRLIN)=$QS(RMPRGBL,6)
+ G LIKEA
+LIKEB I RMPRLIN=0 G LIKEX
+LIKEC S DIR(0)="NAO^1:"_RMPRLIN_":0"
+ S DIR("A")="CHOOSE 1-"_RMPRLIN_": "
+ D ^DIR
+ I $D(DTOUT) S RMPREXC="T" G LIKEX
+ I $D(DIROUT) S RMPREXC="P" G LIKEX
+ I X="",$D(DIR("A",1)) K DIR("A",1) G LIKEA3
+ I X="" S RMPREXC="^" G LIKEX
+ I X["^"!$D(DUOUT) S RMPREXC="^" G LIKEX
+ K RMPR5
+ S RMPR5("IEN")=RMPRA(X)
+ S RMPRERR=$$GET^RMPRPIX5(.RMPR5)
+ W "  "_RMPR5("NAME")
+ S RMPREXC=""
+LIKEX Q
+ ;
+ ;***** OK - prompt for OK
+ ;
+ ; Outputs:
+ ;    RMPRYN  - Y - yes   N - No
+ ;    RMPREXC - Exit condition
+ ;
+OK(RMPRYN,RMPREXC) ;
+ N DIR,X,Y,DA,DUOUT,DTOUT,DIROUT,DIRUT
+ S RMPREXC="",RMPRYN="N"
+ S DIR("A")="         ...OK"
+ S DIR("B")="Yes"
+ S DIR(0)="Y"
+ D ^DIR
+ I $D(DTOUT) S RMPREXC="T" G OKX
+ I $D(DIROUT) S RMPREXC="P" G OKX
+ I X=""!(X["^")!$D(DUOUT) S RMPREXC="^" G OKX
+ S:Y RMPRYN="Y"
+OKX Q
+ ;
+ ; Function - returns location ien if 1 active location, else 0
+LOC1(RMPRSTN) ;
+ N RMPRL,RMPR1LOC
+ S RMPR1LOC=0
+ S RMPRL=$O(^RMPR(661.5,"ASSL","A",RMPRSTN,""))
+ I RMPRL'="" D
+ . S RMPR1LOC=$O(^RMPR(661.5,"ASSL","A",RMPRSTN,RMPRL,""))
+ . S RMPRL=$O(^RMPR(661.5,"ASSL","A",RMPRSTN,RMPRL))
+ . Q
+ S:RMPRL'="" RMPR1LOC=0
+ Q RMPR1LOC

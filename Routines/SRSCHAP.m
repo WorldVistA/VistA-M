@@ -1,0 +1,44 @@
+SRSCHAP ;B'HAM ISC/MAM - CHAPLAIN'S LIST OF SCHEDULED CASES ; [ 02/19/98  12:29 PM ]
+ ;;3.0; Surgery ;**77**;24 Jun 93
+DT S SRSOUT=0,%DT="AEFX",%DT("A")="List Scheduled Operations for which date ?  " D ^%DT G:Y<1 END S SRSDATE=Y
+ K IOP,%ZIS,POP,IO("Q") S %ZIS("A")="Print to device: ",%ZIS="Q" D ^%ZIS G:POP END I $D(IO("Q")) K IO("Q") S ZTSAVE("SRSDATE")=SRSDATE,ZTDESC="SCHEDULED OPERATIONS",ZTRTN="EN^SRSCHAP" D ^%ZTLOAD G END
+EN ; entry when queued
+ U IO S (SROR,SRSOUT)=0 F  S SROR=$O(^SRF("AOR",SROR)) Q:'SROR!(SRSOUT)  S SRTN=0 F  S SRTN=$O(^SRF("AOR",SROR,SRSDATE,SRTN)) Q:'SRTN!(SRSOUT)  S SRST=$P($G(^SRF(SRTN,31)),"^",4) I SRST D UTIL
+ D PRINT W:$E(IOST)="P" @IOF I $D(ZTQUEUED) K ^TMP("SR",$J) Q:$G(ZTSTOP)  S ZTREQ="@" Q
+END ;
+ S SRPRINT=0 I $E(IOST)="P" S SRPRINT=1
+ I 'SRSOUT,'SRPRINT W !!,"Press RETURN to continue  " R X:DTIME
+ K SRTN D ^%ZISC,^SRSKILL W @IOF
+ Q
+LOOP ; break procedure if greater than 65 characters
+ S SROP(M)="" F LOOP=1:1 S MM=$P(SROPER," "),MMM=$P(SROPER," ",2,200) Q:MMM=""  Q:$L(SROP(M))+$L(MM)'<65  S SROP(M)=SROP(M)_MM_" ",SROPER=MMM
+ Q
+PAGE I SRHDR,$E(IOST,1)'="P" W !!,"Press RETURN to continue or '^' to quit.  " R X:DTIME I '$T!(X="^") S SRSOUT=1 Q
+HDR ; print heading
+ I $D(ZTQUEUED) D ^SROSTOP I SRHALT S SRSOUT=1 Q
+ W:$Y @IOF W !,?20,"* Scheduled Operations for "_SREL_" *",!,?30,SRDATE,!!,"Start Time",?13,"Patient",?43,"Surgical Specialty",?67,"Ward Location",! F LINE=1:1:80 W "="
+ Q
+UTIL ; set ^TMP("SR")
+ S DFN=$P(^SRF(SRTN,0),"^") D DEM^VADPT S SREL=$P($G(VADM(9)),"^",2) S:SREL="" SREL="UNKNOWN/NO PREFERENCE"
+ S ^TMP("SR",$J,SREL,SRST,SRTN)=""
+ Q
+PRINT ; loop through ^TMP and print cases
+ S (SREL,SRHDR)=0,Y=SRSDATE X ^DD("DD") S SRDATE=Y
+ F  S SREL=$O(^TMP("SR",$J,SREL)) Q:SREL=""!(SRSOUT)  D:SRHDR PAGE Q:SRSOUT  S SRST=0 F  S SRST=$O(^TMP("SR",$J,SREL,SRST)) Q:'SRST!(SRSOUT)  S SRTN=0 F  S SRTN=$O(^TMP("SR",$J,SREL,SRST,SRTN)) Q:'SRTN!(SRSOUT)  D OUT
+ Q
+OUT ; output data
+ I 'SRHDR D HDR Q:SRSOUT  S SRHDR=1
+ I $Y+5>IOSL D PAGE I SRSOUT Q
+ S SRF(0)=^SRF(SRTN,0),DFN=$P(SRF(0),"^") D DEM^VADPT S SRNAME=VADM(1)
+ S SRSS=$P(SRF(0),"^",4) I SRSS S SRSS=$P(^SRO(137.45,SRSS,0),"^")
+ S:SRSS="" SRSS="NOT ENTERED" S SRSS=$P(SRSS,"(")
+ S SRWARD=$P($G(^DPT(DFN,.1)),"^") I SRWARD="" D WARD
+ S Y=SRST D D^DIQ S SRSST=$P(Y,"@",2)
+ S SROPER=$P(^SRF(SRTN,"OP"),"^") K SROP,MM,MMM S:$L(SROPER)<65 SROP(1)=SROPER I $L(SROPER)>64 S SROPER=SROPER_"  " F M=1:1 D LOOP Q:MMM=""
+ W !,SRSST,?12,SRNAME,?43,SRSS,?67,SRWARD,!,?12,SROP(1) I $D(SROP(2)) W !,?12,SROP(2) I $D(SROP(3)) W !,?12,SROP(3)
+ W ! F LINE=1:1:80 W "-"
+ Q
+WARD ; check for scheduled admission
+ S (X,PEND)=0 F  S PEND=$O(^DGS(41.1,"B",DFN,PEND)) Q:'PEND  S PDATE=$P(^DGS(41.1,PEND,0),"^",2) I PDATE>DT S SRWARD="ADM. PENDING",X=1
+ Q:X=1  S SRWARD="OUTPATIENT"
+ Q

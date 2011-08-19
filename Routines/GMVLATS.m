@@ -1,0 +1,26 @@
+GMVLATS ;HOIFO/YH,FT-QUEUES LATEST VITALS/MEASUREMENTS ;12/27/01  11:08
+ ;;5.0;GEN. MED. REC. - VITALS;;Oct 31, 2002
+ ;
+ ; This routine uses the following IAs:
+ ; #10104 - ^XLFSTR calls          (supported)
+ ;
+SETBP ;
+ S GDT=GMRDAT,GDATE=GMRDAT+.00000014
+ F  S GMRDAT=$O(^GMR(120.5,"AA",DFN,GMR(X),GMRDAT)) Q:GMRDAT'>0!(GMRDAT>GDATE)  S Y=0 F  S Y=$O(^GMR(120.5,"AA",DFN,GMR(X),GMRDAT,Y)) Q:Y'>0  I '$D(^GMR(120.5,+Y,2)) D:X="BP" SETNODE^GMVDS0 D:X="P" SETP
+ S GMRDAT=GDT K GDT,GDATE
+ Q
+SETP ;
+ S GMRL=$S($D(^GMR(120.5,Y,0)):^(0),1:"")
+ N GG S GG=$P(GMRL,"^",8),OK=0 D  Q:'OK
+ . I "REFUSEDPASSUNAVAILABLE"[$$UP^XLFSTR(GG) Q
+ . I '$D(^GMR(120.5,Y,5,"B")) S OK=1 Q
+ . I $D(^GMR(120.5,Y,5,"B",GAPICAL)) S OK=1 Q
+ . I $D(^GMR(120.5,Y,5,"B",GRADIAL)) S OK=1 Q
+ . I $D(^GMR(120.5,Y,5,"B",GBRACH)) S OK=1 Q
+ S GMRL1=$P(GMRL,"^") ;adding trailing zeros to time if necessary
+ S $P(GMRL1,".",2)=$P(GMRL1,".",2)_"0000"
+ S $P(GMRL1,".",2)=$E($P(GMRL1,".",2),1,4)
+ S $P(GMRL,"^")=GMRL1
+ K GMRL1
+ I GMRL'="" S GMRDATA(X,$P(GMRL,"^"),Y)=$P(GMRL,"^",8),GMRDATS=1 I $P($G(^GMR(120.5,Y,5,0)),"^",4)>0 D CHAR^GMVCHAR(Y,.GMRVARY,GMR(X))
+ Q

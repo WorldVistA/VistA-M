@@ -1,0 +1,21 @@
+MCPOS06 ;HIRMFO/DAD-FIX SUBDD NUMBER IN DATA NODES ;4/25/96  10:55
+ ;;2.3;Medicine;;09/13/1996
+ ;
+ ; Change subDD number to 699.501
+ N MCD0,MCDATA,MCSUBDD
+ S MCDATA(1)=""
+ S MCDATA(2)="Checking the sub-DD numbers in the Generalized"
+ S MCDATA(3)="Procedure/Consult file (#699.5)."
+ D MES^XPDUTL(.MCDATA)
+ ;
+ S MCD0=0
+ F  S MCD0=$O(^MCAR(699.5,MCD0)) Q:MCD0'>0  D
+ . S MCDATA=$G(^MCAR(699.5,MCD0,2,0))
+ . I MCDATA="",$O(^MCAR(699.5,MCD0,2,0))'>0 Q
+ . S MCSUBDD=$P(MCDATA,U,2)
+ . I +MCSUBDD'=699.501 D
+ .. S $P(MCDATA,U,2)="699.501"_$TR(MCSUBDD,"1234567890.")
+ .. S ^MCAR(699.5,MCD0,2,0)=MCDATA
+ .. Q
+ . Q
+ Q

@@ -1,0 +1,108 @@
+IBDF2A1 ;ALB/CJM - ENCOUNTER FORM (IBDF2A continued);NOV 16,1992
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+ ;
+DEVSETUP(IBFORM,IBDEVICE) ;set up the device for the form
+ ;pass IBFORM, IBDEVICE by reference
+ ;sets device to no wrap
+ ;sets "ROW_HT" and "COL_WIDTH" in IBDEVICE
+ ;
+ S X=0 X $G(^%ZOSF("RM")) K X ;sets device to no wrapping
+ ;
+ I $G(IBDEVICE("PCL")) D
+ .S IOSL=IBFORM("PAGE_HT")
+ .W $C(27),"E"
+ .I $G(IBDEVICE("RESET"))'="" W @IBDEVICE("RESET")
+ .S IOINHI=$C(27)_"(s3B",IOINORM=$C(27)_"(s0B"
+ .S IBDEVICE("DUPLEX_SHORT")=$C(27)_"&l2S",IBDEVICE("SIMPLEX")=$C(27)_"&l0S",IBDEVICE("DUPLEX_LONG")=$C(27)_"&l1S"
+ .S IORVON=$C(27)_"*v0n1o1T",IORVOFF=$C(27)_"*v0T"
+ .S IOXY="W $C(27)_""&a""_DX_""c""_DY_""R"""
+ .;set to paper to letter size, portrait mode
+ .W $C(27),"&l2a0O"
+ .D
+ ..I IBFORM("WIDTH")>96 W $C(27)_"(s0p16.67h8.5v0s0b0T" S IBDEVICE("COL_WIDTH")=720/16.67,(IOINHI,IOINORM)="" Q
+ ..I IBFORM("WIDTH")>80 W $C(27)_"(s0p12h10v0s0b0T" S IBDEVICE("COL_WIDTH")=720/12 Q
+ ..W $C(27)_"(s0p10h12v0s0b0T" S IBDEVICE("COL_WIDTH")=720/10
+ .D
+ ..;!!!!!!!!!!Make the VMI a bit bigger? Seems to look good at VMI=6, and getting too cramped
+ ..;!!!!!!I IBFORM("PAGE_HT")>72 W $C(27),"&l5.6667C" S IBDEVICE("ROW_HT")=85.0005 Q  ;sets the VMI=5.6667, to get 8 lines per inch Q
+ ..I IBFORM("PAGE_HT")>72 W $C(27),"&l6C" S IBDEVICE("ROW_HT")=90 Q  ;sets the VMI=5.6667, to get 8 lines per inch Q
+ ..I IBFORM("PAGE_HT")>60 W $C(27),"&l6.6667C" S IBDEVICE("ROW_HT")=100.0005 Q  ;sets the VMI=6.6667, to get 7.2 lines per inch
+ ..W $C(27),"&l8C" S IBDEVICE("ROW_HT")=120 ;sets the VMI=8, to get 6 lines per inch
+ ;
+ I '$G(IBDEVICE("PCL")) D
+ .S (DX,DY)=0 X $G(^%ZOSF("XY")) K DX,DY ;make sure $X,$Y=0
+ Q
+ ;
+DRWBLOCK(IBBLK,NOOFFSET) ;IBBLK should be passed by reference, is an array containing the block description
+ ;NOOFFSET=1  means don't offset the block on the form
+ ;
+ N IBFIELD,IBLIST,IBLINE,IBTEXT,IBWRTCNT,HDROS,BOX,OPTIONS,WIDTH,SUB,NODE,STRING,IBLINES,TYPE
+ ;
+ ;IBPRINT parameters may be altered durring this routine - make sure the original is restored after execution
+ D SAVE^IBDF2A2(.IBPRINT,.IBPRINT)
+ ;
+ Q:$$BLKDESCR^IBDFU1B(.IBBLK)
+ I $G(NOOFFSET) S (IBBLK("X"),IBBLK("Y"))=0
+ I (IBBLK("X")'=+IBBLK("X"))!(IBBLK("Y")'=+IBBLK("Y")) G EXIT  ;location not known
+ ;
+ I 'IBPRINT("COMPILING_BLOCKS"),('$D(^IBE(357.1,IBBLK,"S"))!'$D(^IBE(357.1,IBBLK,"V"))!'$D(^IBE(357.1,IBBLK,"B"))!'$D(^IBE(357.1,IBBLK,"H"))) S IBPRINT("COMPILING_BLOCKS")=1,IBPRINT("WRITE_IF_COMPILING")=1
+ I IBPRINT("COMPILING_BLOCKS") S (IBWRTCNT("S"),IBWRTCNT("V"),IBWRTCNT("B"),IBWRTCNT("H"))=0 D UNCMPBLK^IBDF19(IBBLK)
+ I 'IBPRINT("COMPILING_BLOCKS") D WCMP^IBDF2A2
+ I IBPRINT("COMPILING_BLOCKS") D  G:'IBPRINT("WRITE_IF_COMPILING") EXIT
+ .N TEMP S TEMP=IBPRINT("WITH_DATA"),IBPRINT("WITH_DATA")=0
+ .S IBLIST="" F  S IBLIST=$O(^IBE(357.2,"C",IBBLK,IBLIST)) Q:'IBLIST  D PRINTLST^IBDF2D(IBLIST)
+ .S IBFIELD="" F  S IBFIELD=$O(^IBE(357.93,"C",IBBLK,IBFIELD)) Q:'IBFIELD  D MFLD^IBDF2G(IBFIELD)
+ .S IBFIELD="" F  S IBFIELD=$O(^IBE(359.94,"C",IBBLK,IBFIELD)) Q:'IBFIELD  D HFLD^IBDF2H(IBFIELD)
+ .S ^IBE(357.1,IBBLK,"S",0)="^357.11A^"_IBWRTCNT("S")_"^"_IBWRTCNT("S")
+ .S ^IBE(357.1,IBBLK,"V",0)="^357.12A^"_IBWRTCNT("V")_"^"_IBWRTCNT("V")
+ .S ^IBE(357.1,IBBLK,"B",0)="^357.13A^"_IBWRTCNT("B")_"^"_IBWRTCNT("B")
+ .S ^IBE(357.1,IBBLK,"H",0)="^357.14A^"_IBWRTCNT("H")_"^"_IBWRTCNT("H")
+ .S IBPRINT("WITH_DATA")=TEMP
+ ;
+ ;now write the uncompiled part of the block
+ S IBPRINT("COMPILING_BLOCKS")=0
+ K IBWRTCNT
+ I IBDEVICE("LISTMAN") N IBWARN S IBWARN=0 ;flag set to 1 if a warning is already displayed - don't want to display multiple warnings, users find it aggravating
+ S BOX=$S(IBBLK("BOX")=1:1,1:0)
+ D:BOX DRWBOX^IBDFU(0,0,IBBLK("W"),IBBLK("H"))
+ I IBBLK("HDR")'="" D
+ .S HDROS=0
+ .S WIDTH=IBBLK("W")-(2*BOX)
+ .S OPTIONS=$TR(IBBLK("HDISP"),"C","")
+ .S OPTIONS=$TR(OPTIONS,"R","r")
+ .I IBBLK("HDISP")["C",$L(IBBLK("HDR"))<WIDTH S HDROS=(WIDTH-$L(IBBLK("HDR")))\2
+ .I BOX D DRWSTR^IBDFU(1,1,$J("",HDROS)_$E(IBBLK("HDR"),1,WIDTH),OPTIONS,WIDTH)
+ .I 'BOX D DRWSTR^IBDFU(0,0+HDROS,$E(IBBLK("HDR"),1,WIDTH),OPTIONS)
+ S IBLINE="" F  S IBLINE=$O(^IBE(357.7,"C",IBBLK,IBLINE)) Q:'IBLINE  D PRNTLINE^IBDF2E(IBLINE)
+ S IBTEXT="" F  S IBTEXT=$O(^IBE(357.8,"C",IBBLK,IBTEXT)) Q:'IBTEXT  D PRNTTEXT^IBDF2E(IBTEXT)
+ S IBFIELD="" F  S IBFIELD=$O(^IBE(357.5,"C",IBBLK,IBFIELD)) Q:'IBFIELD  D DATAFLD^IBDF2B(IBFIELD)
+ I IBPRINT("WITH_DATA") S IBPRINT("ENTIRE")=0,IBLIST="" F  S IBLIST=$O(^IBE(357.2,"AD",IBBLK,IBLIST)) Q:'IBLIST  D PRINTLST^IBDF2D(IBLIST)
+ ;
+ ;NOTE: bubbles & hand print fields have been written to file, but not to the array for list processor
+ ;
+ G:'IBDEVICE("LISTMAN") EXIT
+ S SUB=0 F  S SUB=$O(^IBE(357.1,IBBLK,"B",SUB)) Q:'SUB  S NODE=$G(^IBE(357.1,IBBLK,"B",SUB,0)) D DRWSTR^IBDFU(+$P(NODE,"^")\1,+$P(NODE,"^",2),"[ ]")
+ S SUB=0 F  S SUB=$O(^IBE(357.1,IBBLK,"H",SUB)) Q:'SUB  S NODE=$G(^IBE(357.1,IBBLK,"H",SUB,0)) S TYPE=$P(NODE,"^",14),WIDTH=+$P(NODE,"^",3) I TYPE,WIDTH D
+ .N UNIT,PRINT,REPLACE,A,I,TYPENODE
+ .S IBLINES=$P(NODE,"^",6) S:IBLINES'>0 IBLINES=1
+ .S STRING="",ROW=+NODE
+ .;
+ .;replace the hand print fields - overlay with print format and label for units
+ .;TYPE=2 means use ICR, may have a print format and datatype
+ .I TYPE=2 D
+ ..S TYPENODE=$P(NODE,"^",17) I TYPENODE S TYPENODE=$G(^IBE(359.1,TYPENODE,0))
+ ..S UNIT=$P(TYPENODE,"^",11),PRINT=$P(TYPENODE,"^",5)
+ ..F  Q:IBLINES'>0  D  S IBLINES=IBLINES-1,ROW=ROW+2
+ ...I IBFORM("WIDTH")>96 S $P(STRING,"___|",WIDTH+1)="",REPLACE("_")="    " F I=1:1:$L(PRINT) S A=$E(PRINT,I) S:A'="_" REPLACE(A)=" "_A_"  "
+ ...I IBFORM("WIDTH")'>96 S $P(STRING,"__|",WIDTH+1)="",REPLACE("_")="   " F I=1:1:$L(PRINT) S A=$E(PRINT,I) S:A'="_" REPLACE(A)=" "_A_" "
+ ...S:$L(UNIT) STRING=STRING_" "_UNIT
+ ...I $L(PRINT) S PRINT=$$REPLACE^XLFSTR(PRINT,.REPLACE)
+ ...D DRWSTR^IBDFU(ROW,+$P(NODE,"^",2),PRINT,"R",$L(STRING))
+ ...D DRWSTR^IBDFU(ROW+1,+$P(NODE,"^",2),STRING,"R",$L(STRING))
+ .;
+ .I TYPE=1 D CNVRTLEN^IBDF2D1(WIDTH,.WIDTH),CNVRTHT^IBDF2D1(IBLINES,.IBLINES) F  Q:IBLINES'>0  D  S IBLINES=IBLINES-1,ROW=ROW+1
+ ..D DRWSTR^IBDFU(ROW,+$P(NODE,"^",2),"","R",WIDTH)
+ ;
+EXIT ;
+ D RESTORE^IBDF2A2(.IBPRINT,.IBPRINT)
+ Q

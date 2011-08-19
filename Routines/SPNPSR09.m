@@ -1,0 +1,37 @@
+SPNPSR09 ;HIRMFO/DAD,WAA-HUNT: DIAGNOSIS ;5/22/2003
+ ;;2.0;Spinal Cord Dysfunction;**20**;01/02/1997
+ ;
+EN1(D0,SPNETO) ; *** Search entry point
+ ; Input:
+ ;  ACTION,SEQUENCE = Search ACTION,SEQUENCE number
+ ;  D0       = SCD (SPINAL CORD) REGISTRY file (#154) IEN
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"ETIOLOGY") = Internal ^ External
+ ;        SPNETO = Internal ETIOLOGY
+ ; Output:
+ ;  $S( D0_Meets_Search_Criteria : 1 , 1 : 0 )
+ ;
+ N D1,DFN,ETIOLOGY,MEETSRCH
+ S MEETSRCH=0
+ S MEETSRCH=$$EN2^SPNLUTL1(D0,$P($G(^SPNL(154.03,SPNETO,0)),U))
+ Q MEETSRCH
+ ;
+EN2(ACTION,SEQUENCE) ; *** Prompt entry point
+ ; Input:
+ ;  ACTION,SEQUENCE = Search ACTION,SEQUENCE number
+ ; Output:
+ ;  SPNLEXIT = $S( User_Abort/Timeout : 1 , 1 : 0 )
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"ETIOLOGY") = Internal ^ External
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,0) = $$EN1^SPNPSR(D0,SPNETO)
+ ;
+ N DIR,DIRUT,DTOUT,DUOUT,ETIOLOGY
+ K ^TMP($J,"SPNPRT",ACTION,SEQUENCE),DIR
+ S DIR(0)="POA^154.03:AEMNQZ"
+ S DIR("A")="SCD Etiology : "
+ S DIR("?")="Enter an etiology from the list shown"
+ D ^DIR S ETIOLOGY=Y,SPNETO=+ETIOLOGY
+ S SPNLEXIT=$S($D(DTOUT):1,$D(DUOUT):1,1:0)
+ I 'SPNLEXIT,Y'="" D
+ . S ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"ETIOLOGY")=ETIOLOGY
+ . S ^TMP($J,"SPNPRT",ACTION,SEQUENCE,0)="$$EN1^SPNPSR09(D0,"_SPNETO_")"
+ . Q
+ Q

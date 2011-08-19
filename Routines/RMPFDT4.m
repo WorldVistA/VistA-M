@@ -1,0 +1,60 @@
+RMPFDT4 ;DDC/KAW-DISPLAY ORDER MESSAGES [ 06/16/95   3:06 PM ]
+ ;;2.0;REMOTE ORDER/ENTRY SYSTEM;;JUN 16, 1995
+ ;;input : RMPFX
+ ;;output: None
+ Q:'$D(RMPFX)  I $D(DFN),DFN D PAT^RMPFUTL
+ S Y=$P(^RMPF(791810,RMPFX,0),U,1),%DT="T" D DD^%DT S TT=Y
+ S TP=$P(^RMPF(791810,RMPFX,0),U,2)
+ I TP,$D(^RMPF(791810.1,TP,0)) S TP=$P(^(0),U,1)
+ S (CM,CX)=0 D HEAD
+A1 S CM=$O(^RMPF(791810,RMPFX,201,CM)) G EXIT:'CM,A1:'$D(^(CM,0)) S S0=^(0),RMPFMD=""
+ S Y=$P(S0,U,5) I Y D DD^%DT S RMPFMD=Y
+ I RMPFMD="" S Y=$P(^RMPF(791810,RMPFX,201,CM,0),".",1) D DD^%DT S RMPFMD=Y
+ S CE=0
+A2 S CE=$O(^RMPF(791810,RMPFX,201,CM,101,CE)) G A1:'CE G A2:'$D(^(CE,0)) S S1=^(0),MG=$P(S1,U,1),PR=$P(S1,U,2),Y=$P(S1,U,10) D DD^%DT S SD=Y
+ S EX=$P(S1,U,3),ST=$P(S1,U,4),LR=$P(S1,U,7)
+ I IOST?1"C-".E,$Y>20 D CONT G END:$D(ZTSK) D HEAD
+ I IOST?1"P-".E,$Y>58 W @IOF D HEAD
+ I LR,$D(^VA(200,LR,0)) S LR=$E($P(^(0),U,2),1,4)
+ W !!,RMPFMD,?15,$E(PR,1,17),?35,EX
+ I ST W ?52,$S($D(^RMPF(791810.2,ST,0)):$P(^(0),U,4),1:"")
+ W ?61,SD,?76,LR
+ W !?3,"Message:  ",$E(MG,1,66) S CX=CX+1
+ G A2
+EXIT W:CX=0 !!,"*** NO MESSAGES TO DISPLAY ***"
+ I CX S XX=0 F I=1:1 S XX=$O(^RMPF(791810,RMPFX,201,XX)) Q:'XX  S YY=0 F J=1:1 S YY=$O(^RMPF(791810,RMPFX,201,XX,101,YY)) Q:'YY  D
+ .S DIE="^RMPF(791810,"_RMPFX_",201,"_XX_",101,"
+ .S DA(2)=RMPFX,DA(1)=XX,DA=YY
+ .S DR=".06////1;.07////"_DUZ D ^DIE
+ .K DR,DA,DIE,D,D0,DQ Q
+ I IOST?1"C-".E D CONT G END:$D(RMPFOUT),END:'$D(Y),END:Y="",RMPFDT4
+ I IOST?1"P-".E W @IOF
+ D:$D(IO("S")) ^%ZISC
+END K I,CM,CX,S0,Y,X,%,%DT,%Y,RMPFMD,CE,S1,MG,PR,EX,ST,SD,RMPFNAM,RMPFDOB
+ K RMPFSSN,TT,TP,LR,DI,DIC,XX,YY,J,ZTSK,%XX,%YY Q
+HEAD W:IOST?1"C-".E @IOF W !?32,"MESSAGE UPDATES"
+ W !,"Station:  ",RMPFSTAP,?68,RMPFDAT
+ I $D(RMPFNAM) W !,"Patient:  ",$E(RMPFNAM,1,25),?40,"SSN:  ",RMPFSSN,?62,"DOB:  ",RMPFDOB
+ W !?2,"Order:  ",TP,!?3,"Date:  ",TT
+ W ! F I=1:1:80 W "-"
+ W !?4,"DDC",?76,"Last"
+ W !,"Process Date",?20,"Sender",?37,"Telephone",?52,"Status",?62,"Ship Date",?76,"Read"
+ W !,"------------",?15,"-----------------",?35,"--------------",?52,"------",?61,"------------",?76,"----"
+ Q
+CONT F I=1:1 Q:$Y>20  W !
+ W !,"Type <P>rint or <RETURN> to continue: " D READ
+ Q:$D(RMPFOUT)
+CONT1 I $D(RMPFQUT) K RMPFQUT D MSG^RMPFDD G CONT1:$D(RMPFQUT) Q
+ Q:Y=""  S Y=$E(Y,1) I "Pp"'[Y S RMPFQUT="" G CONT1
+QUE W ! S %ZIS="QNP" D ^%ZIS G END:POP
+ I IO=IO(0),'$D(IO("S")) D QUEE S Y=1 Q
+ I $D(IO("S")) S %ZIS="",IOP=ION D ^%ZIS G ^RMPFDT4
+ S ZTRTN="^RMPFDT4",ZTSAVE("RMPF*")="",ZTSAVE("DFN")="",ZTIO=ION
+ D ^%ZTLOAD
+ D HOME^%ZIS W:$D(ZTSK) !!,"*** Request Queued ***" H 2
+QUEE K %T,%ZIS,POP,ZTRTN,ZTSAVE,ZTIO Q
+READ K RMPFOUT,RMPFQUT
+ R Y:DTIME I '$T W $C(7) R Y:5 G READ:Y="." S:'$T Y=U
+ I Y?1"^".E S (RMPFOUT,Y)="" Q
+ S:Y?1"?".E (RMPFQUT,Y)=""
+ Q

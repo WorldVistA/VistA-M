@@ -1,0 +1,24 @@
+RMPRRET2 ;PHX/RFM-RETURN ITEM FROM FILE 661 ;8/29/1994
+ ;;3.0;PROSTHETICS;;Feb 09, 1996
+EN K RMPRINV,DIC,IEN S DIC=661,DIC(0)="AEQMZ",DIC("A")="Select ITEM: " D ^DIC G:Y<0 EXIT S RMPRITEM=+Y,PRCP("ITEM")=$P(Y,U,2) I $P(^RMPR(669.9,RMPRSITE,0),U,3),$D(^PRCP(445,"AE",+PRCP("ITEM"))) G INV
+EN1 K DIR S DIR(0)="660.1,3",DIR("A")="QTY",DIR("B")=1 D ^DIR G:$$CK EXIT I X="" W !,"Enter `^` to exit" G EN1
+ S (RMPRQTY,PRCP("QTY"))=X
+ S RMPRCST=0 K DIR S DIR(0)="660.1,4",DIR("A")="UNIT COST",DIR("B")=0 D ^DIR G:$$CK EXIT S (RMPRCOST,RMPRCST)=X
+RETU K DIR S DIR(0)="660.1,13",DIR("A")="RETURNED STATUS",DIR("B")="RETURNED" D ^DIR G:$$CK EXIT I X="" W !,"Enter the Returned Status or `^` to exit" G RETU
+ S RMPRSTAT=+Y
+SER K DIR S DIR(0)="660.1,5",DIR("A")="SERIAL NO." D ^DIR G:$$CK EXIT S RMPRSER=X
+ K DIR S DIR(0)="660.1,10",DIR("B")="TODAY" D ^DIR G:$$CK!(Y<0) EXIT S RMPRDRET=+Y
+POS K DD,DO
+ S DIC="^RMPR(660.1,",DIC(0)="L",X=DT,DLAYGO="660.1" D FILE^DICN
+ K DLAYGO
+ G:Y<0 EXIT S IEN=+Y,^RMPR(660.1,IEN,0)=DT_U_DFN_U_RMPRITEM_U_RMPRQTY_U_RMPRCST_U_RMPRSER_"^^^"_2_"^^"_RMPRDRET_U_$G(RMPRINV)_U_U_RMPRSTAT_U_RMPR("STA"),DIK=DIC,DA=IEN D IX1^DIK
+ I $D(RMPRINV) S PRCP("TYP")="A" D ^PRCPUSA I $D(PRCP("ITEM")) W !,?5,$C(7),"Error encountered while trying to post this item to GIP.",!,?5,"<Entry Deleted>" S DA=IEN,DIK="^RMPR(660.1," D ^DIK
+ K RMPRINV W !! G EN^RMPRRET1
+CK() Q $D(DUOUT)!($D(DTOUT))
+INV S %=1 W !!,"Would you like to add this item back into inventory" D YN^DICN G:%<0 EXIT G:%=2 EN1
+ I %=0 W !!,"Enter `YES` to add item back into inventory, `NO` to not",! G INV
+ K DIC S DIC="^PRCP(445,",DIC(0)="AEQM",DIC("S")="I $D(^PRCP(445,""AE"",PRCP(""ITEM""),+Y))",DIC("A")="Select INVENTORY POINT: ",PRCPPRIV=1 D ^DIC
+ I +Y'>0 W !!,?5,$C(7),"Deleted...  Item not posted to G.I.P" G EXIT
+ S (RMPRINV,PRCP("I"))=+Y G EN1
+EXIT I '$D(IEN) W !!,?5,$C(7),"Deleted..."
+ N RMPR,RMPRSIT D KILL^XUSCLEAN Q

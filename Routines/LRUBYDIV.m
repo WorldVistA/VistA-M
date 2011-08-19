@@ -1,0 +1,20 @@
+LRUBYDIV ;TOGUS/CYM  --ACCESSION BY DIVISION UTILITY ;7/24/96  20:47 ;
+ ;;5.2;LAB SERVICE;**72**;Sep 27, 1994
+ ;gets accessions based on users DUZ(2)
+ D END,CK G:Y=-1 END D LRDICS G:Y B
+ S DIC=68,DIC(0)="AEOQMZ",DIC("S")="I LRDICS[$P(^(0),U,2),$P(^(0),U,2)]"""",$G(^(3,DUZ(2),0))" D ^DIC K DIC,LRDICS G:Y<1 END
+B S X=$P(Y,U,2) D ^LRUTL G:Y=-1 END Q
+CK S Y=1 S:'$D(DUZ(2)) DUZ(2)=0 S LRAA(4)=$P($G(^DIC(4,+DUZ(2),0)),U) I LRAA(4)="" W $C(7),!!,"Must have DIVISION VARIABLE 'DUZ(2)' defined." S Y=-1 Q
+ W !!?20,LRAA(4),! Q
+ ;
+LRDICS S Y=0,X=$G(LRDICS) I $L(X)=2,"SPCYEMAUBBCHMI"[X D C I Y K LRDICS Q
+ S LRDICS=$S($L($G(LRDICS)):LRDICS,1:"SPCYEMAUBBCHMI") Q
+C G:$D(LRDICS(2)) CC S (A,B)=0 F  S A=$O(^LRO(68,A)) Q:'A  I $P($G(^LRO(68,A,0)),"^",2)=LRDICS,$G(^(3,DUZ(2),0)) S B=B+1,B(B)=A
+ I B=1 S Y=B(1)_U_$P(^LRO(68,B(1),0),U) K A,B Q
+ I B>1,$D(LRDICS(1)) S Y=B(1)_U_$P(^LRO(68,B(1),0),U) K A,B
+ Q
+CC S (A,B)=0 F  S A=$O(^LRO(68,A)) Q:'A  I $P($G(^LRO(68,A,0)),"^",2)=LRDICS S B=B+1,B(B)=A Q
+ I B=1 S Y=B(1)_U_$P(^LRO(68,B(1),0),U) K A,B
+ Q
+ ;
+END D V^LRU Q

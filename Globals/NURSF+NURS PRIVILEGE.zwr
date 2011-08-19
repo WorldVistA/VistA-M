@@ -1,0 +1,11 @@
+NURS PRIVILEGE
+ZWR
+^NURSF(212.6,0)="NURS PRIVILEGE^212.6^4^4"
+^NURSF(212.6,1,0)="Requests consultation/referrals"
+^NURSF(212.6,2,0)="Orders EKG, non evasive x-rays"
+^NURSF(212.6,3,0)="Orders routine blood work"
+^NURSF(212.6,4,0)="Develop plan of care"
+^NURSF(212.6,"B","Develop plan of care",4)=""
+^NURSF(212.6,"B","Orders EKG, non evasive x-rays",2)=""
+^NURSF(212.6,"B","Orders routine blood work",3)=""
+^NURSF(212.6,"B","Requests consultation/referral",1)=""

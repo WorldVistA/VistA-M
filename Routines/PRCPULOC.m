@@ -1,0 +1,45 @@
+PRCPULOC ;WISC/RFJ-lock file management utilites                    ;20 Sep 91
+ ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ Q
+ ;
+ ;
+SHOWWHO(FILE,DA1,DA)       ;  show who has file locked
+ ;  da1=invpt,da=item
+ N DATA,ENTRY,LOCKDA,USER,Y
+ S ENTRY=FILE_"-"_DA1
+ I DA S ENTRY=ENTRY_"-"_DA
+ S FILE=$S(FILE=445:"INVENTORY POINT",FILE=445.3:"DISTRIBUTION ORDER",FILE=445.7:"CASE CART",FILE=445.8:"INSTRUMENT KIT",FILE=410:"ISSUE BOOK/2237",FILE=442:"PURCHASE ORDER",1:"FILE")
+ S FILE=$S(FILE=410.3:"REPETITIVE ITEM LIST",1:FILE)
+ W !,"ANOTHER USER IS WORKING WITH THIS ",FILE,"."
+ S LOCKDA=+$O(^PRCP(447,"B",ENTRY,0)),DATA=$G(^PRCP(447,LOCKDA,0))
+ I DATA="" W !?8,"USER AND PROCESS IS UNKNOWN." Q
+ S USER=$$USER^PRCPUREP(+$P(DATA,"^",2)),Y=$P(DATA,"^",3) D DD^%DT
+ I $P(DATA,"^",4)="" S $P(DATA,"^",4)="UNKNOWN"
+ W !?8,"USER   : ",USER,"    ON: ",Y,!?8,"PROCESS: ",$P(DATA,"^",4)
+ Q
+ ;
+ ;
+ADD(FILE,DA1,DA,PROCESS)         ;  add lock entry to lock management
+ N %,%H,%I,ENTRY,LOCKDA,PRCPPRIV,X
+ S ENTRY=FILE_"-"_DA1,PRCPPRIV=1
+ I DA S ENTRY=ENTRY_"-"_DA
+ S LOCKDA=+$O(^PRCP(447,"B",ENTRY,0))
+ I 'LOCKDA D
+ .   N D0,DA,DD,DIC,DIE,DLAYGO,X,Y
+ .   S DIC="^PRCP(447,",DIC(0)="L",DLAYGO=447,X=ENTRY
+ .   D FILE^DICN S LOCKDA=+Y
+ I '$D(^PRCP(447,LOCKDA,0)) Q
+ D NOW^%DTC
+ S $P(^PRCP(447,LOCKDA,0),"^",2,4)=DUZ_"^"_%_"^"_PROCESS
+ Q
+ ;
+ ;
+CLEAR(FILE,DA1,DA) ;  clear entry from file
+ N %,DIC,DIK,ENTRY,X,Y
+ S ENTRY=FILE_"-"_DA1
+ I DA S ENTRY=ENTRY_"-"_DA
+ S DA=+$O(^PRCP(447,"B",ENTRY,0)) I 'DA Q
+ S DIK="^PRCP(447,"
+ D ^DIK
+ Q

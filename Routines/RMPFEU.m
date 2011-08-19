@@ -1,0 +1,32 @@
+RMPFEU ;DDC/KAW-AUDIOLOGIST APPROVAL PRIVILEGES; [ 06/16/95   3:06 PM ]
+ ;;2.0;REMOTE ORDER/ENTRY SYSTEM;;JUN 16, 1995
+RMPFSET I '$D(RMPFMENU) D MENU^RMPFUTL I '$D(RMPFMENU) W !!,$C(7),"*** A MENU SELECTION MUST BE MADE ***" Q  ;;RMPFMENU must be defined
+ I '$D(RMPFSTAN)!'$D(RMPFDAT)!'$D(RMPFSYS) D ^RMPFUTL Q:'$D(RMPFSTAN)!'$D(RMPFDAT)!'$D(RMPFSYS)
+ W @IOF,!!,"AUDIOLOGIST APPROVAL PRIVILEGES"
+A1 W ! S DIC=200,DIC(0)="AEQM",DIC("A")="Select User: "
+ D ^DIC G END:Y=-1 S RMPFUR=+Y,RMPFURP=$P(Y,U,2)
+ G A2:'$D(^RMPF(791813,RMPFSTAN,101,RMPFUR,0)),A2:'$P(^(0),U,3)
+ W !!,RMPFURP," already has Audiologist approval privileges."
+SUP W !!,"Do you wish to delete the privileges? NO// "
+ D READ G END:$D(RMPFOUT)
+SUP1 I $D(RMPFQUT) W !!,"If a <Y>es is entered, Audiologist approval privileges will be deleted.",!,"If <N>o or <RETURN> is entered, privileges will be retained." G SUP
+ S:Y="" Y="N" I "YyNn"'[Y S RMPFQUT="" G SUP1
+ G A1:"Nn"[Y S DIE="^RMPF(791813,"_RMPFSTAN_",101,"
+ S DA=RMPFUR,DA(1)=RMPFSTAN,DR=".03////0;.04////" D ^DIE
+ W !!,"*** AUDIOLOGIST APPROVAL PRIVILEGES DELETED ***" G A1
+A2 W !!,"Add Audiologist approval privileges for ",RMPFURP,"? NO// "
+ D READ G END:$D(RMPFOUT)
+A21 I $D(RMPFQUT) W !!,"Enter <Y> to give this user Audiologist approval privileges",!?6,"<N> or <RETURN> to continue." G A2
+ S:Y="" Y="N" I "YyNn"'[Y S RMPFQUT="" G A21
+ G A1:"Nn"[Y
+ S:'$D(^RMPF(791813,RMPFSTAN,101,0)) ^RMPF(791813,RMPFSTAN,101,0)="^791813.0101P^^"
+ I '$D(^RMPF(791813,RMPFSTAN,101,RMPFUR,0)) S ^RMPF(791813,RMPFSTAN,101,RMPFUR,0)=RMPFUR,^RMPF(791813,RMPFSTAN,101,"B",RMPFUR,RMPFUR)=""
+ S $P(^RMPF(791813,RMPFSTAN,101,RMPFUR,0),U,3)=1
+ W !!,"*** AUDIOLOGIST APPROVAL PRIVILEGES ADDED ***" G A1
+END K RMPFAUD,RMPFUR,RMPFURP,RMPFOUT,RMPFQUT,DLAYGO,DIC
+ K DISYS,X,Y,DA,DR,DIE,DQ,D0,DI Q
+READ K RMPFOUT,RMPFQUT
+ R Y:DTIME I '$T W $C(7) R Y:5 G READ:Y="." S:'$T Y=U
+ I Y?1"^".E S (RMPFOUT,Y)="" Q
+ S:Y?1"?".E (RMPFQUT,Y)=""
+ Q

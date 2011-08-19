@@ -1,0 +1,151 @@
+RMPR5NU1 ;HIN/RVD-INVENTORY UPDATE UTILITY ;3/24/1998
+ ;;3.0;PROSTHETICS;**33,37,53**;Feb 09, 1996
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ADD ;add a new inventory stock record
+ K Y,DD,DO S DIC="^RMPR(661.2,",DIC(0)="L",X=DT,DLAYGO=661.2 D FILE^DICN K DLAYGO S (RM6612,DA)=+Y
+ Q:'$D(RMLOC)
+ D UPD Q:$D(RQUIT)
+ S ^RMPR(661.2,DA,0)=DT_"^"_RMPRDFN_"^"_RMSO_"^"_RMDAHC_"^^"_RMSER_"^"_DUZ_"^"_RMQTY_"^"_RMIT_"^^^"_RMTOBA_"^^"_$J(RMTOCO,0,2)_"^"_RMPR("STA")_"^"_RMLOC_"^"_$J(RMAVA,0,2)
+ S:$D(RMLAB) ^RMPR(661.2,DA,1)=RMTIME_"^"_$J(RMLACO,0,2)
+ S DIK="^RMPR(661.2," D IX1^DIK
+ Q
+ ;
+EDIT ;update the current balance.
+ S RMITEM=$O(^RMPR(661.1,"G",RMITEM,0))
+ Q:'$D(^RMPR(661.1,RMITEM,3))
+ D UPD
+ S DIC="^RMPR(661.2,",DIC(0)="L",X=DT,DLAYGO=661.2 D FILE^DICN G:Y'>0 EXIT S DA=+Y K DLAYGO,DIC,DIC(0),X
+ S RMMES="Issue from Stock was updated: ("
+ S ^RMPR(661.2,DA,0)=DT_"^^^^^^^"_RMQTY_"^"_RMITEM_"^^^"_RMBAL_"^"_RMMES_"^"_RMTOCO
+ S DIK="^RMPR(661.2," D IX1^DIK
+ Q
+ ;
+UPD ;update item current balance in 661.3
+ S RMAVCO=0
+ S RM3=$G(^RMPR(661.3,RMLOC,1,RMHCDA,1,RMITDA,0))
+ S RMBA=$P(RM3,U,2),RMCO=$P(RM3,U,3),RMAVCO=$P(RM3,U,10)
+ S RMBA=RMBA-RMQTY S RMCO=RMBA*RMAVCO
+ S $P(^RMPR(661.3,RMLOC,1,RMHCDA,1,RMITDA,0),U,2)=RMBA
+ S $P(^RMPR(661.3,RMLOC,1,RMHCDA,1,RMITDA,0),U,3)=RMCO
+ ;
+BAL ;get total cost of the same HCPCS and ITEM @ the same station.
+ S RS=RMPR("STA"),(RMTOBA,RMTOCO,RMAVA)=0
+ F RLO=0:0 S RLO=$O(^RMPR(661.3,"E",RS,RLO)) Q:RLO'>0  I $D(^RMPR(661.3,RLO,1,"B",RMDAHC)) S RHC=$O(^RMPR(661.3,RLO,1,"B",RMDAHC,0)) S RIT=$O(^RMPR(661.3,RLO,1,RHC,1,"B",RMIT,0)) D
+ .Q:'RIT
+ .S RENT=$G(^RMPR(661.3,RLO,1,RHC,1,RIT,0))
+ .S RMBAA=$P(RENT,U,2),RMCOA=$P(RENT,U,3),RMAVA=$P(RENT,U,10),RMSOA=$P(RENT,U,9)
+ .S RMTOBA=RMTOBA+RMBAA,RMTOCO=RMTOCO+RMCOA
+ S:RMTOBA RMAVA=RMTOCO/RMTOBA
+ Q
+ ;
+ ;RE = EDIT FLAG
+ ;RL =location
+ ;RH = hcpcs IEN (NEW)
+ ;RHO = hcpcs IEN (OLD)
+ ;RMLOC,RDESC,RMHCDA = variables created
+ ;
+ITEMLOC(RE,RL,RH,RHO) ;ASK for an Item Location.
+ ;
+ N X,Y,DIC,RMLOCC,RMHCC,RMHCC,RMHC,RMLO1,RMLLF,RMLCOUNT,DA
+ I '$D(^RMPR(661.3,"C",RH)) K RMLOC Q
+ S RMLLF=0,RMLOCC=0
+ S RMHCC=$P(^RMPR(661.1,RH,3,0),U,4) S:RMHCC=1 RMLLF=1
+ S RDESC=$P(^RMPR(661.1,RH,0),U,2)
+ S RMHC=$P(^RMPR(661.1,RH,0),U,1)
+ K Y,DIC("B")
+ ;
+LODIC S DIC("S")="I $D(^RMPR(661.3,+Y,1,""B"",RH)),$P(^RMPR(661.3,+Y,0),U,3)=RMPR(""STA"")"
+ S DIC("A")="Enter Inventory LOCATION: "
+ I $G(RE)&(RH=RHO) S DIC("B")=$P(^RMPR(661.3,RL,0),U,1)
+ S DIC="^RMPR(661.3,",DIC(0)="AENMQ"
+ D ^DIC K DIC
+ I $D(DUOUT)!$D(DTOUT)!$D(DIRUT) S RQUIT=1 Q
+ I +Y'>0 G LODIC
+ S RL=+Y
+ ;
+LOCPROC ;jump here if only one location
+ S RMLOC=RL
+ S RMHCDA=$O(^RMPR(661.3,RL,1,"B",RH,0))
+ Q
+ ;
+ ;RE = edit flag
+ ;RL = location NEW
+ ;RO = location old
+ ;RC = HCPCS entry in 661.3
+ ;RH = HCPCS NEW
+ ;RHO = HCPCS OLD
+ ;RI = PSAS-item#
+ ;RMDES,RMIT,RMITDA,RMITDES  variables created
+ITEM(RE,RL,RO,RH,RHO,RC,RI) ;ask for PSAS ITEM
+ N Y,X,DIC,RMIIF,RMDAHC,RMHCPC,RMHC,RMUBA,RMU3,DA
+ ;
+ITDIC ;
+ I $G(RE)&(RL=RO)&(RH=RHO) S DIC("B")=$G(RI)
+ ;S DIC("S")="I $D(^RMPR(661.3,RL,1,RC,1,""B"",Y))"
+ S DA(2)=RL,DA(1)=RC
+ S DIC="^RMPR(661.3,"_DA(2)_",1,"_DA(1)_",1,"
+ S DIC(0)="AEMNQ",DIC("A")="Enter PSAS Item: " D ^DIC K DIC
+ I $D(DUOUT)!$D(DTOUT) S RQUIT=1 Q
+ I +Y'>0 G ITDIC
+ S RMITDA=+Y,(RMITDES,RMIT)=$P(^RMPR(661.3,RL,1,RC,1,+Y,0),U,1)
+ S RMU3=$G(^RMPR(661.3,RL,1,RC,1,RMITDA,0))
+ S RMDES=RMIT K DIC("B"),DIC("S")
+ S RMUBA=$P(RMU3,U,2)
+ I RMUBA<1 W !,$C(7),"*** ITEM BALANCE is LOW @ this Pros Location......",!,"*** Please ORDER the Item or UPDATE the Inventory Balance."
+ Q
+ ;
+DSP ;display HCPCS @ a LOCATION
+ K ^TMP($J) S (RCNT,RMPRI,REND)=0
+ S RMPRI=0 F  S RMPRI=$O(^RMPR(661.3,RMLODA,1,RMPRI)) Q:RMPRI'>0  D
+ .S RMPRI1=$P(^RMPR(661.3,RMLODA,1,RMPRI,0),U,1),RMPRIT=$P(^RMPR(661.1,RMPRI1,0),U,1),^TMP($J,RMPRIT)=$P(^RMPR(661.1,RMPRI1,0),U,2)
+ I $D(^TMP($J)) W !,"List of HCPCS at location: ",RMLOC S RI="" F  S RI=$O(^TMP($J,RI)) Q:RI=""!(REND)  D
+ .S RCNT=RCNT+1
+ .I RCNT>16 R !,"Enter <RETURN> for more or ^ to STOP listing",RANS:DTIME S:$D(DTOUT)!$D(DUOUT)!(RANS="^") REND=1 S RCNT=0
+ .W !,RI,?12,^TMP($J,RI)
+LDIC I RFL S X="?",DIC=661.1,DIC(0)="EQM",DIC("W")="W "" "",$P(^RMPR(661.1,+Y,0),U,2) I $P(^RMPR(661.1,+Y,0),U,5)=0 W ""  **Inactive HCPCS**""" D ^DIC K RFL
+ K ^TMP($J),RANS,RCNT,REND,RI,RMPRI,RMPRI1,RMPRIT
+ Q
+ ;
+VEND() ;
+ N RMU3
+ S RMU3=$G(^RMPR(661.3,RMLOC,1,RMHCDA,1,RMITDA,0))
+ S Y=$P(RMU3,U,5)
+ Q Y
+ ;
+ ;
+BALA() ;
+ N RMU3
+ S RMU3=$G(^RMPR(661.3,RMLOC,1,RMHCDA,1,RMITDA,0))
+ S Y=$P(RMU3,U,3)
+ Q Y
+ ;
+COST() ;
+ N RMU3
+ S RMU3=$G(^RMPR(661.3,RMLOC,1,RMHCDA,1,RMITDA,0))
+ S Y=$P(RMU3,U,10)
+ Q Y
+ ;
+SOURCE() ;
+ N RMU3
+ S RMU3=$G(^RMPR(661.3,RMLOC,1,RMHCDA,1,RMITDA,0))
+ S Y=$P(RMU3,U,9)
+ Q Y
+ ;
+CONV ;convert utility for Inventory Location field. (in CAPS)
+ S RJ=0,RMDAT=X,X=""
+PROC S RJ=RJ+1 Q:RJ>$L(RMDAT)  S RA=$E(RMDAT,RJ,RJ),RB=$A(RA) D:(RB>96)&(RB<123) ST S:(RB<97)!(RB>123) RMC=RA S X=X_RMC G PROC
+ST S RC=RB-32,RMC=$C(RC)
+ Q
+ ;
+EXIT ;EXIT FOR INVENTORY UPDATE UTILITY
+ K DLAYGO,DUOUT,DTOUT,DIE,DIC,DA,DR,RMQTY,RMIEN,RMSO,RMLOC,RMBAL,RMPRIEN,RMITEM
+ Q
+NDX ;reindex the 'D1' cross-reference of file 661.3
+ S DIK(1)=".01^D1"
+ W !!,"Reindexing 'D1' cross reference of file #661.3...",!
+ F RI=0:0 S RI=$O(^RMPR(661.3,RI)) Q:RI'>0  F RJ=0:0 S RJ=$O(^RMPR(661.3,RI,1,RJ)) Q:RJ'>0  D
+ .F RK=0:0 S RK=$O(^RMPR(661.3,RI,1,RJ,1,RK)) Q:RK'>0  I $D(^(RK,0)) D
+ ..S DA(2)=RI,DA(1)=RJ,DA=RK,DIK="^RMPR(661.3,"_DA(2)_",1,"_DA(1)_",1,"
+ ..D EN1^DIK
+ K RI,RJ,RK,DIK,DA
+ Q

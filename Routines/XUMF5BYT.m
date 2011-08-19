@@ -1,0 +1,45 @@
+XUMF5BYT        ;ISS/DAVID Empey- XUMF5 MD5 Hash Utility ;06/17/05
+ ;;8.0;KERNEL;**383**;July 10, 1995
+ ;
+ ;Reverses bytes in each hash string 'word' from the MD5 routine
+ ;This is required because the MD5 routine
+ ;presents a hashcode with each word byte-reversed
+ ;
+MAIN(HASHIN)    ;
+ N WORD1,WORD2,WORD3,WORD4,HASHOUT
+ ;
+ S WORD1=$E(HASHIN,1,8)
+ S WORD2=$E(HASHIN,9,16)
+ S WORD3=$E(HASHIN,17,24)
+ S WORD4=$E(HASHIN,25,32)
+ ;
+ S HASHOUT=$$BYTSWTCH(WORD1)_$$BYTSWTCH(WORD2)_$$BYTSWTCH(WORD3)_$$BYTSWTCH(WORD4)
+ ;
+ Q HASHOUT
+ ;
+BYTSWTCH(WORD)  ;
+ N PIECE1,PIECE2,PIECE3,PIECE4,RESULT
+ ;
+ S PIECE1=$E(WORD,1,2)
+ S PIECE2=$E(WORD,3,4)
+ S PIECE3=$E(WORD,5,6)
+ S PIECE4=$E(WORD,7,8)
+ ;
+ S RESULT=PIECE4_PIECE3_PIECE2_PIECE1
+ ;
+ Q RESULT
+ ;
+TEST ;
+ N OK
+ S OK=1
+ S:$$MAIN("d98c1dd404b2008f980980e97e42f8ec")'="d41d8cd98f00b204e9800998ecf8427e" OK=0
+ S:$$MAIN("b975c10ca8b6f1c0e299c33161267769")'="0cc175b9c0f1b6a831c399e269772661" OK=0
+ S:$$MAIN("98500190b04fd23c7d3f96d6727fe128")'="900150983cd24fb0d6963f7d28e17f72" OK=0
+ S:$$MAIN("7d696bf98d93b77c312f5a52d061f1aa")'="f96b697d7cb7938d525a2f31aaf161d0" OK=0
+ S:$$MAIN("d7d3fcc300e492616c49fb7d3be167ca")'="c3fcd3d76192e4007dfb496cca67e13b" OK=0
+ S:$$MAIN("98ab74d1f5d977d22c1c61a59f9d419f")'="d174ab98d277d9f5a5611c2c9f419d9f" OK=0
+ S:$$MAIN("a2f4ed5755c9e32b2eda49ac7ab60721")'="57edf4a22be3c955ac49da2e2107b67a" OK=0
+ I OK=1 W !,"Tests passed." Q
+ W !,"Tests failed."
+ K HASHOUT
+ Q

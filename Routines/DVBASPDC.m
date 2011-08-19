@@ -1,0 +1,14 @@
+DVBASPDC ;ALB/GTS-557/THM-AMIE SPECIAL REPORT SELECTION ;21 JUL 89
+ ;;2.7;AMIE;;Apr 10, 1995
+ D HOME^%ZIS
+ D NOPARM^DVBAUTL2 G:$D(DVBAQUIT) KILL^DVBAUTIL
+EN W @IOF,!,"REGIONAL OFFICE SPECIAL REPORT",!,"FOR A&A AND PENSION",!!!,"This report prints only Veterans receiving A&A or Pension.",!!!
+EN2 W "Do you want (A)&A or (P)ension ?  " R REP:DTIME G:'$T!(REP="")!(REP=U) KILL^DVBAUTIL W !
+ S X=REP X ^%ZOSF("UPPERCASE") S REP=Y
+ I REP'="A"&(REP'="P") W *7,!,"Must be either A for A&A ",!,"or P for Pension or ""^"" or [RETURN] to escape.",!! G EN2
+ ;
+EN1 K DVBACEPT
+ D EN^VALM("DVBA DISCHARGE TYPES")
+ I '$D(DVBACEPT) D KILL^DVBAUTIL Q
+ I '$O(^TMP("DVBA",$J,"DUP",0)) D KILL^DVBAUTIL Q
+ G ^DVBASPD2

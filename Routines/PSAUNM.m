@@ -1,0 +1,21 @@
+PSAUNM ;BIR/LTL-Report of Unlinked DRUG/ITEM MASTER file Entries ;7/23/97
+ ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**15**; 10/24/97
+ ;
+ ;References to ^PSDRUG( are covered by IA #2095
+ ;
+ D DT^DICRW
+DEV ;asks device and queueing info
+ K IO("Q") N %ZIS,DTOUT,DUOUT,IOP,POP,PSAOUT S %ZIS="Q" D ^%ZIS I POP W !,"NO DEVICE SELECTED OR REPORT PRINTED!" S PSAOUT=1 G QUIT
+ I $D(IO("Q")) N ZTDESC,ZTIO,ZTRTN,ZTSAVE,ZTDTH,ZTSK S ZTRTN="START^PSAUNM",ZTDESC="Unlinked DRUG/ITEM FILE entries" D ^%ZTLOAD,HOME^%ZIS S PSAOUT=1 G QUIT
+START ;compiles and prints data for report
+ N DIR,DIRUT,POP,PSAB,PSAD,PSADD,PSAIT,PSALN,PSAPG,PSARPDT,X,Y S (PSAD,PSAPG,PSAOUT)=0,Y=DT D DD^%DT S PSARPDT=Y D HEADER
+LOOP F  S PSAD=$O(^PSDRUG(PSAD)) G:'PSAD QUIT D:$Y+4>IOSL HEADER G:PSAOUT QUIT I '$O(^PSDRUG(PSAD,441,0)),'$D(^PSDRUG(PSAD,"I")) W !!,$E($P(^PSDRUG(PSAD,0),U),1,35),?36,$P(^(0),U,6),?56,$P($G(^(2)),U,4),?75,$S($D(^("ND")):"YES",1:"NO")
+QUIT I $E(IOST)'="C" W @IOF
+ I $E(IOST,1,2)="C-",'PSAOUT W !! S DIR(0)="E",DIR("A")="END OF REPORT!  Press <RET> to return to the menu" D ^DIR
+ D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@" K IO("Q")
+ Q
+HEADER ;prints header info
+ I $E(IOST,1,2)'="P-",PSAPG S DIR(0)="E" D ^DIR K DIR I 'Y S PSAOUT=1 Q
+ I $$S^%ZTLOAD W !!,"Task #",$G(ZTSK),", ",$G(ZTDESC)," was stopped by ",$P($G(^VA(200,+$G(DUZ),0)),U),"." S PSAOUT=1 Q
+ W:$Y @IOF S $P(PSALN,"*",81)="",PSAPG=PSAPG+1 W !?2,"Unlinked DRUG/ITEM MASTER file entries",?55,PSARPDT,?70,"PAGE: "_PSAPG,!,PSALN,!,"DRUG",?36,"FSN",?56,"NDC",?75,"NDF?"
+ Q

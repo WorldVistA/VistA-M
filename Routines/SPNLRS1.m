@@ -1,0 +1,57 @@
+SPNLRS1 ;ISC-SF/GB-SCD PHARMACY UTILIZATION (SPECIFIC) REPORT (PART 1 OF 1) ;6/23/95  12:03
+ ;;2.0;Spinal Cord Dysfunction;;01/02/1997
+P1(TITLE,PAGELEN,QLIST,ABORT) ;
+ ; PID     Patient Name
+ ; PSSN      Patient SSN
+ N NPATS,ZDRUGNR,FILLS,ZDRUG,ZDRUGNAM,PID,PNAME,PSSN,QTY,COST,PRICE,PDATA
+ S TITLE(4)=""
+ S TITLE(7)=""
+ ; TITLE(7)="         1         2         3         4         5         6         7         8"
+ S TITLE(8)="Patient Name                        SSN            Fills       Qty         Value"
+ S ZDRUGNR="" ; create list in drug name order
+ F  S ZDRUGNR=$O(QLIST(ZDRUGNR)) Q:ZDRUGNR=""  D
+ . S ZDRUG(QLIST(ZDRUGNR))=ZDRUGNR
+ S ZDRUGNAM=""
+ F  S ZDRUGNAM=$O(ZDRUG(ZDRUGNAM)) Q:ZDRUGNAM=""  D
+ . S ZDRUGNR=ZDRUG(ZDRUGNAM)
+ . S PRICE=+$G(^TMP("SPN",$J,"RX","DRUG",ZDRUGNR,"PRICE"))
+ . S TITLE(5)=$$CENTER^SPNLRU(ZDRUGNAM_", currently $"_$FN(PRICE,",",4)_"/unit")
+ . S FILLS=+$G(^TMP("SPN",$J,"RX","DRUG",ZDRUGNR))
+ . S NPATS=+$G(^TMP("SPN",$J,"RX","DRUG",ZDRUGNR,"PAT"))
+ . S QTY=+$G(^TMP("SPN",$J,"RX","DRUG",ZDRUGNR,"QTY"))
+ . S COST=QTY*PRICE
+ . S TITLE(6)=$$PAD^SPNLRU("Total:  "_$FN(NPATS,",")_" patient"_$S(NPATS=1:"",1:"s"),45)_$J($FN(FILLS,","),11)_$J($FN(QTY,","),11)_$J("$"_$FN(COST,",",2),14)
+ . D HEADER^SPNLRU(.TITLE,.ABORT) Q:ABORT
+ . K TITLE(6)
+ . S PID=""
+ . F  S PID=$O(^TMP("SPN",$J,"RX","DRUG",ZDRUGNR,"PID",PID)) Q:PID=""  D  Q:ABORT
+ . . I $Y>PAGELEN D HEADER^SPNLRU(.TITLE,.ABORT) Q:ABORT
+ . . S PNAME=$P(PID,U,1),PSSN=$P(PID,U,2)
+ . . S PDATA=^TMP("SPN",$J,"RX","DRUG",ZDRUGNR,"PID",PID)
+ . . S FILLS=+$P(PDATA,U,1),QTY=+$P(PDATA,U,2)
+ . . S COST=QTY*PRICE
+ . . W !,PNAME,?32,PSSN,?44,$J($FN(FILLS,","),11),?54,$J($FN(QTY,","),11),?66,$J($FN(COST,",",2),14)
+ K TITLE(4),TITLE(5),TITLE(7),TITLE(8)
+ Q
+P2(TITLE,PAGELEN,QLIST,ABORT) ;
+ N NPATS,ZDRUGNR,FILLS,ZDRUG,ZDRUGNAM,PID,QTY,COST,PRICE
+ S TITLE(4)=""
+ ; TITLE(5)="         1         2         3         4         5         6         7         8"
+ S TITLE(5)="Drug                              Unit Cost    Pats   Fills   Units       Value"
+ ;          "12345678901234567890123456789012345 XX.XXXX  XX,XXX  XX,XXX XXX,XXX X,XXX,XXX.XX"
+ S ZDRUGNR="" ; create list in drug name order
+ F  S ZDRUGNR=$O(QLIST(ZDRUGNR)) Q:ZDRUGNR=""  D
+ . S ZDRUG(QLIST(ZDRUGNR))=ZDRUGNR
+ D HEADER^SPNLRU(.TITLE,.ABORT) Q:ABORT
+ S ZDRUGNAM=""
+ F  S ZDRUGNAM=$O(ZDRUG(ZDRUGNAM)) Q:ZDRUGNAM=""  D  Q:ABORT
+ . D:$Y>PAGELEN HEADER^SPNLRU(.TITLE,.ABORT) Q:ABORT
+ . S ZDRUGNR=ZDRUG(ZDRUGNAM)
+ . S PRICE=+$G(^TMP("SPN",$J,"RX","DRUG",ZDRUGNR,"PRICE"))
+ . S FILLS=+$G(^TMP("SPN",$J,"RX","DRUG",ZDRUGNR))
+ . S NPATS=+$G(^TMP("SPN",$J,"RX","DRUG",ZDRUGNR,"PAT"))
+ . S QTY=+$G(^TMP("SPN",$J,"RX","DRUG",ZDRUGNR,"QTY"))
+ . S COST=QTY*PRICE
+ . W !,$E(ZDRUGNAM,1,36),?36,$J($FN(PRICE,",",4),7),?44,$J($FN(NPATS,","),7),?52,$J($FN(FILLS,","),7),?60,$J($FN(QTY,","),7),?68,$J($FN(COST,",",2),12)
+ K TITLE(4),TITLE(5)
+ Q

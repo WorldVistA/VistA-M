@@ -1,0 +1,15 @@
+ADT TEMPLATE
+ZWR
+^DG(43.7,0)="ADT TEMPLATE^43.7Is^4^4"
+^DG(43.7,1,0)="Scheduled Admissions^1^41.1^P^^208^^DGSCHAD"
+^DG(43.7,2,0)="Seriously ill list^2^2^P^^190^^DG SI LIST"
+^DG(43.7,3,0)="Female Inpatient List^3^2^P^^191^^DG FEMALE INPATIENTS"
+^DG(43.7,4,0)="Historical Female Inpatient List^4^2^P^^193^^DG FEMALE HISTORICAL"
+^DG(43.7,"AI",1,1)=""
+^DG(43.7,"AI",2,2)=""
+^DG(43.7,"AI",3,3)=""
+^DG(43.7,"AI",4,4)=""
+^DG(43.7,"B","Female Inpatient List",3)=""
+^DG(43.7,"B","Historical Female Inpatient Li",4)=""
+^DG(43.7,"B","Scheduled Admissions",1)=""
+^DG(43.7,"B","Seriously ill list",2)=""

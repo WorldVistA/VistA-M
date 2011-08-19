@@ -1,0 +1,45 @@
+PSGWRAC ;BHAM ISC/CML-Print AOU Status for AMIS - Inpatient Site, Returns, and AMIS Count ; 19 Mar 93 / 8:35 AM
+ ;;2.3; Automatic Replenishment/Ward Stock ;;4 JAN 94
+ D NOW^%DTC S PSGWDT=$P(%,".")
+ W !!,"This option prints a list of active AOUs displaying the following data:",!!?5,"1. INPATIENT SITE",!?5,"2. RETURNS CREDITED TO",!?5,"3. COUNT ON AMIS"
+ W !!,"Right margin for this report is 80 columns.",!,"You may queue the report to print at a later time.",!!
+ I '$O(^PSI(58.1,0)) W !,"You MUST create AOUs before running this report!" K %,%I,%H,PSGWDT Q
+DEV K %ZIS,IOP S %ZIS="QM",%ZIS("B")="" D ^%ZIS I POP W !,"NO DEVICE SELECTED OR REPORT PRINTED!" G QUIT
+ I $D(IO("Q")) K IO("Q") S PSGWIO=ION,ZTIO="" K ZTSAVE,ZTDTH,ZTSK S ZTRTN="ENQ^PSGWRAC",ZTDESC="Compile Data for AOU AMIS Status Report",ZTSAVE("PSGWIO")="",ZTSAVE("PSGWDT")=""
+ I  D ^%ZTLOAD,HOME^%ZIS K ZTSK G QUIT
+ U IO
+ ;
+ENQ ;ENTRY POINT WHEN QUEUED
+AOU K ^TMP("PSGWRAC",$J) F AOU=0:0 S AOU=$O(^PSI(58.1,AOU)) G:('AOU)&($D(ZTQUEUED)) PRTQUE G:'AOU PRINT D BUILD
+ ;
+BUILD ;BUILD DATA ELEMENTS
+ I $D(^PSI(58.1,AOU,"I")),^("I"),^("I")'>DT Q
+ I $D(^PSI(58.1,AOU,0)) S LOC=^(0),AOUNM=$S($P(LOC,"^")]"":$P(LOC,"^"),1:"AOU NAME MISSING"),RET=$S($P(LOC,"^",2)="A":"AR",$P(LOC,"^",2)="W":"WS",1:"N/A"),ACNT=$S(+$P(LOC,"^",3):"NO",$P(LOC,"^",3)="":"N/A",1:"YES") D SETGL
+ Q
+SETGL ;
+ S SITE="" I $D(^PSI(58.1,AOU,"SITE")) S SITE=^("SITE") I SITE,$D(^PS(59.4,SITE,0)),$P(^(0),"^")]"" S SITE=$P(^(0),"^")
+ S SITE=$S(+SITE:"ZZSITE",SITE="":"ZZSITE",1:SITE),^TMP("PSGWRAC",$J,SITE,AOUNM)=RET_"^"_ACNT
+ Q
+ ;
+PRTQUE ;AFTER DATA IS COMPILED, QUEUE THE PRINT
+ K ZTSAVE,ZTIO S ZTIO=PSGWIO,ZTRTN="PRINT^PSGWRAC",ZTDESC="Print AOU Status for AMIS",ZTDTH=$H,ZTSAVE("^TMP(""PSGWRAC"",$J,")=""
+ D ^%ZTLOAD K ^TMP("PSGWRAC",$J) G QUIT
+PRINT ;
+ S $P(LN,"-",80)="",PG=0,%DT="",(SITE,AOUNM,QFLG)="",X="T" D ^%DT X ^DD("DD") S HDT=Y D HDR
+ I '$D(^TMP("PSGWRAC",$J)) W !?17,"***** NO DATA AVAILABLE FOR THIS REPORT *****" G QUIT
+ F LL=0:0 S SITE=$O(^TMP("PSGWRAC",$J,SITE)) Q:QFLG!(SITE="")  F LL=0:0 S AOUNM=$O(^TMP("PSGWRAC",$J,SITE,AOUNM)) Q:AOUNM=""  S RET=$P(^TMP("PSGWRAC",$J,SITE,AOUNM),"^"),ACNT=$P(^(AOUNM),"^",2) D WRTDATA Q:QFLG
+DONE I $E(IOST)'="C" W @IOF
+ I $E(IOST)="C" D:'QFLG SS^PSGWUTL1
+QUIT ;
+ K %,%H,%I,%DT,PSGWIO,ACNT,AOU,AOUNM,HDT,LL,LN,LOC,PG,PSGWDT,RET,SITE,X,Y,ZTSK,ZTIO,DA,IO("Q"),ANS,QFLG
+ K ^TMP("PSGWRAC",$J) D ^%ZISC
+ S:$D(ZTQUEUED) ZTREQ="@" Q
+WRTDATA ;DATA LINES
+ D:$Y+5>IOSL PRTCHK Q:QFLG  W !,AOUNM,?31,$S(SITE="ZZSITE":"NONE LISTED",1:SITE),?64,RET,?74,ACNT
+ Q
+HDR ;HEADER
+ W:$Y @IOF S PG=PG+1 W !?22,"AOU LISTING - RETURNS AND AMIS COUNT",?70,"PAGE: ",PG,!?31,"PRINTED: ",HDT,!!?74,"COUNT",!?62,"RETURNS",?74,"ON",!,"AREA OF USE (AOU)",?33,"INPATIENT SITE",?60,"CREDITED TO   AMIS?",!,LN
+ Q
+PRTCHK ;
+ I $E(IOST)="C" W !!,"Press <RETURN> to Continue or ""^"" to Exit: " R ANS:DTIME S:'$T ANS="^" D:ANS?1."?" HELP^PSGWUTL1 I ANS="^" S QFLG=1 Q
+ D HDR Q

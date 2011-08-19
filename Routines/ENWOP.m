@@ -1,0 +1,75 @@
+ENWOP ;(WASH ISC)/DLM/DH-Work Order Print ;4.7.97
+ ;;7.0;ENGINEERING;**21,35**;Aug 17, 1993
+ ;  Expects ENSHKEY,ENBY
+ ;          ENSRT if ENBY="LOC"
+EN N SPC
+ N IOINLOW,IOINHI D ZIS^ENUTL S ENPG=0
+ S %DT="T",X="N" D ^%DT S ENTOD=Y X ^DD("DD") S ENTOD("E")=Y W:$E(IOST,1,2)="C-" @IOF
+ONE I '$D(ENSHKEY("ALL")) D
+ . S ENDNX="",ENQUIT=0
+ . I $O(^ENG(6920,"AINC",ENSHKEY,ENDNX))'>0 D  Q
+ .. S ENQUIT=1
+ .. W !!,"There are no incomplete work orders for the ",$P(^DIC(6922,ENSHKEY,0),U)," shop."
+ .. I $E(IOST,1,2)="C-" W !!,"Press <RETURN> to continue..." R X:DTIME
+ . F  Q:ENQUIT!($O(^ENG(6920,"AINC",ENSHKEY,ENDNX))'>0)  D
+ .. D HDR
+ .. S ENDNX1=ENDNX ;I $D(XRTL) D T0^%ZOSV
+ .. D FDAT^ENWOP3 ;I $D(XRT0) S XRTN=$T(+0) D T1^%ZOSV
+ .. I ENWONX=0,ENPG=1 W !!,"There are no incomplete work orders that meet the search criteria",!,"in the ",$P(^DIC(6922,ENSHKEY,0),U)," Shop."
+ .. I $E(IOST,1,2)="C-" D
+ ... I ENWONX=0 W !!,"Press <RETURN> to continue..."
+ ... E  D
+ .... I 'ENQUIT W !,"'^' TO EXIT; 1 TO ",ENWONX," FOR EXPANDED DISPLAY: MORE// "
+ .... E  W !,"1 TO ",ENWONX," FOR EXPANDED DISPLAY: EXIT//"
+ ... R X:DTIME
+ ... I X?1.2N,$D(ENWONX(X)) S DA=ENWONX(X) D EXPAND
+ ... I $E($G(X))="^" S ENQUIT=1
+ALL I $D(ENSHKEY("ALL")) D
+ . N ENSHKEY S ENABORT=0
+ . F ENSHKEY=0:0 S ENSHKEY=$O(^DIC(6922,ENSHKEY)) Q:ENABORT!(ENSHKEY'>0)  D
+ .. S ENDNX="",ENQUIT=0 I IO'=IO(0) U IO(0) W "." U IO
+ .. F  Q:ENQUIT!($O(^ENG(6920,"AINC",ENSHKEY,ENDNX))'>0)  D
+ ... D HDR
+ ... S ENDNX1=ENDNX D FDAT^ENWOP3
+ ... I ENWONX=0,ENDNX1="" W !!,"There are no incomplete work orders that meet the search criteria",!,"in the ",$P(^DIC(6922,ENSHKEY,0),U)," Shop."
+ ... I $E(IOST,1,2)="C-",ENQUIT D  Q
+ .... I ENWONX=0 W !!,"'^' TO EXIT; <RETURN> FOR NEXT SHOP: NEXT SHOP//"
+ .... E  W !,"'^' TO EXIT; 1 TO ",ENWONX," FOR EXPANDED DISPLAY: NEXT SHOP//"
+ .... R X:DTIME
+ .... I X?1.2N,$D(ENWONX(X)) S DA=ENWONX(X) D EXPAND
+ .... I $E($G(X))="^" S ENABORT=1
+ ... I $E(IOST,1,2)="C-",'ENQUIT D
+ .... W !,"'^' FOR NEXT SHOP; '^^' TO EXIT; 1 TO ",ENWONX," FOR EXPANDED DISPLAY: MORE//"
+ .... R X:DTIME
+ .... I X?1.2N,$D(ENWONX(X)) S DA=ENWONX(X) D EXPAND
+ .... I $E($G(X))="^" S ENQUIT=1
+ .... I $E($G(X),1,2)="^^" S ENABORT=1
+ G EXIT
+ ;
+HDR W:$E(IOST,1,2)="C-" IOINHI W:ENPG @IOF S ENPG=ENPG+1
+ W "INCOMPLETE WORK ORDERS ("_$P(^DIC(6922,ENSHKEY,0),U)_")   "_ENTOD("E")_"  Page "_ENPG
+ W !,"WORK ORDER",?18,"REQ DATE",?27,"LOCATION",?43,"EQUIP ID#",?54,"CONTACT",?68,"PRI.",?73,"STAT"
+ W !," EMPL ASSIGNED",?22,"TASK DESCRIPTION"
+ W !?2,"ACC #",?20,"S/P",?27,"VENDOR",?51,"P.O. #",?59,"EST.DEL.",?69,"DEL.COMP."
+ K X S $P(X,"-",79)="-" W !,X,!
+ D CLEAN
+ S ENY=5
+ Q
+ ;
+EXPAND ;Screen display work order
+ S ENDNX=ENDNX1,ENPG=ENPG-1,ENQUIT=0
+ D EDIT1^ENWOD
+ W @IOF
+ Q
+ ;
+CLEAN K X,ENWONX S ENWONX=0 W:$E(IOST,1,2)="C-" IOINLOW
+ Q
+EXIT ;
+ K ENDNX,ENWONX,ENTOD,ENPG,ENQUIT,ENABORT,ENY,ENWO,ENDSTAT
+ W @IOF
+ S:$D(ZTQUEUED) ZTREQ="@"
+ K ENWOR,ENRDA,ENLOC,ENRBE,ENRQR,ENPRI,ENTEC,ENDPR,ENSTAT
+ K ENPMI,ENAC,DA,ENEQ,ENDNX1,ENSRT
+ K ENSHKEY("ALL")
+ Q
+ ;ENWOP

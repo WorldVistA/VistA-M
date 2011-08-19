@@ -1,0 +1,54 @@
+PSGWBOS ;BHAM ISC/CML-Print Backorder Report by AOU ; 27 Dec 93 / 12:59 PM
+ ;;2.3; Automatic Replenishment/Ward Stock ;;4 JAN 94
+START ;ENTRY
+ W !!,"This option will print a list of Current Backorders for selected AOU(s).",!!,"You will only be allowed to choose AOUs that have Backorder entries (current",!,"or non-current) in the Pharmacy Backorder file (#58.3).",!
+DIC K DIC,^TMP("PSGWQ",$J) S DIC="^PSI(58.1,",DIC(0)="QEAM",DIC("S")="I $O(^PSI(58.3,""C"",+Y,0))",DIC("A")="Select AOU: " F JJ=0:0 D ^DIC Q:Y<0  S ^TMP("PSGWQ",$J,+Y)=$P(Y,"^",2)
+ I X="^"!('$D(^TMP("PSGWQ",$J))) G QUIT
+ W !!,"Right margin for this report is 80 columns.",!,"You may queue the report to print at a later time.",!!
+DEV K %ZIS,IOP S %ZIS="QM",%ZIS("B")="" D ^%ZIS I POP W !,"NO DEVICE SELECTED OR REPORT PRINTED!" G QUIT
+ I $D(IO("Q")) K IO("Q") S PSGWIO=ION,ZTIO="" K ZTSAVE,ZTDTH,ZTSK S ZTRTN="ENQ^PSGWBOS",ZTDESC="Compile data for AOU Backorder report",ZTSAVE("PSGWIO")="",ZTSAVE("^TMP(""PSGWQ"",$J,")="" D ^%ZTLOAD,HOME^%ZIS K ZTSK G QUIT
+ U IO
+ ;
+ENQ ;ENTRY POINT WHEN QUEUED
+ K ^TMP("PSGWBOS",$J) F AOU=0:0 S AOU=$O(^TMP("PSGWQ",$J,AOU)) G:'AOU&($D(ZTQUEUED)) PRTQUE G:'AOU PRT1 F BODA=0:0 S BODA=$O(^PSI(58.3,"C",AOU,BODA)) Q:'BODA  D BUILD
+ ;
+BUILD ;BUILD DATA ELEMENTS
+ Q:'$D(^PSI(58.3,BODA,1,AOU,0))  S DRGDA=^PSI(58.3,BODA,0) Q:'$D(^PSDRUG(DRGDA,0))
+ S DNM=$S($P(^PSDRUG(DRGDA,0),"^")]"":$P(^(0),"^"),1:"UNKNOWN"),ANM=^TMP("PSGWQ",$J,AOU) I $D(^PSI(58.1,AOU,"I")),^("I"),^("I")'>DT S ANM=ANM_" ***"
+ I '$O(^PSI(58.3,BODA,1,AOU,1,0)) S ^TMP("PSGWBOS",$J,ANM,"ZZZ","ZZZ")="" Q
+ F BO=0:0 S BO=$O(^PSI(58.3,BODA,1,AOU,1,BO)) Q:'BO  I $D(^(BO,0)) S QQ=^(0) D SETGL
+ Q
+SETGL ;
+ S BODT=$P(QQ,"^"),CURBO=$S($P(QQ,"^",5)="":$P(QQ,"^",2),1:0)
+ S LOC="" I $O(^PSI(58.1,AOU,1,"B",DRGDA,0)) S ITMDA=$O(^(0)) I $D(^PSI(58.1,AOU,1,ITMDA,0)) S LOC=$P(^(0),"^",8)
+ S:LOC="" LOC="UNKNOWN" S ^TMP("PSGWBOS",$J,ANM,DNM,BODT)=LOC_"^"_CURBO Q
+ ;
+PRTQUE ;AFTER DATA IS COMPILED, QUEUE THE PRINT
+ K ZTSAVE,ZTIO S ZTIO=PSGWIO,ZTRTN="PRT1^PSGWBOS",ZTDESC="Print Data for Backorder AOU List",ZTDTH=$H,ZTSAVE("^TMP(""PSGWBOS"",$J,")=""
+ D ^%ZTLOAD G QUIT
+PRT1 ;
+ S $P(LN,"-",81)="",PG=0,%DT="",(ANM,DNM,QFLG)="" S HDT=$$PSGWDT^PSGWUTL1
+ I '$D(^TMP("PSGWBOS",$J)) W !?17,"***** NO DATA AVAILABLE FOR THIS REPORT *****" G QUIT
+ F LL=0:0 S TOT=0,ANM=$O(^TMP("PSGWBOS",$J,ANM)) Q:ANM=""  D:PG>0 PRTCHK Q:QFLG  D HDR W !!,"=> ",ANM W:ANM["***" " INACTIVE ***" D PRT2 Q:QFLG
+DONE ;
+ I $E(IOST)="C" D:'QFLG SS^PSGWUTL1
+ I $E(IOST)'="C" W @IOF
+QUIT ;
+ K %DT,%,%H,%I,BO,BODA,BODT,CURBO,DIC,SORT,DRGDA,ITMDA,JJ,LOC,TOT,AOU,HDT,LL,LN,LNS,QQ,PG,X,Y,ANS,QFLG
+ K ^TMP("PSGWQ",$J),^TMP("PSGWBOS",$J),PSGWIO,ZTSK,ZTIO,DA,ANM,DNM,HDRFLG,IO("Q") D ^%ZISC
+ S:$D(ZTQUEUED) ZTREQ="@" Q
+PRT2 F LL=0:0 S DNM=$O(^TMP("PSGWBOS",$J,ANM,DNM)) D DNMCHK Q:DNM=""  F BODT=0:0 S BODT=$O(^TMP("PSGWBOS",$J,ANM,DNM,BODT)) Q:'BODT  D DATA Q:QFLG
+ Q
+DATA ;DATA LINES
+ S LOC=$P(^TMP("PSGWBOS",$J,ANM,DNM,BODT),"^"),CURBO=$P(^(BODT),"^",2),TOT=TOT+CURBO Q:CURBO<1  I $Y+5>IOSL D PRTCHK Q:QFLG  D HDR
+ S Y=$E(BODT,1,12) X ^DD("DD") W !?5,DNM,?52,Y,?73,$J(CURBO,5),!?17,LOC Q
+DNMCHK ;
+ I DNM="ZZZ" W ?46,"<NO CURRENT BACKORDERS>" S DNM="" Q
+ I DNM="",TOT<1 W ?46,"<NO CURRENT BACKORDERS>" Q
+ Q
+HDR ;HEADER
+ W:$Y @IOF S PG=PG+1 W !?27,"PHARMACY AOU BACKORDER LIST",?71,"PAGE: ",PG,!?28,"PRINTED: ",HDT,!!,"=> ","AOU",!?12,"ITEM",?54,"DATE/TIME FOR",?72,"CURRENT",!?19,"LOCATION",?56,"BACKORDER",?71,"BACKORDER",!,LN
+ Q
+PRTCHK ;
+ I $E(IOST)="C" W !!,"Press <RETURN> to Continue or ""^"" to Exit: " R ANS:DTIME S:'$T ANS="^" D:ANS?1."?" HELP^PSGWUTL1 I ANS="^" S QFLG=1
+ Q

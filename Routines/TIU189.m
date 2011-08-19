@@ -1,0 +1,228 @@
+TIU189 ;BPFO/JML - UNCOSIGNED WITH NO COSIGNER ; 5/19/05 12:33pm
+ ;;1.0;Text Integration Utilities;**189**;JUN 20, 1997
+ ;
+ ; This report can be run from the menu option 
+ ; TIUMEC - Missing Expected Cosignor Report found under the 
+ ; TIU MAIN MENU MGR option. It can also be added to Taskman with 
+ ; the entry point NITE^TIU189. This option will look for problems 
+ ; in the previous 30 days and upon finding any will send an email to 
+ ; the mail group G.TIU MIS ALERTS.
+ ;
+MENU ; ENTRY POINT FOR RUNNING FROM MENU WITH PROMPTS
+ N TIUIEN,TIUDT,TIUDTS,TIUPDT,TIUJ,TIUPIEN,TIUPN,TIURES,TIU0,TIU12,TIUEDT,TIUCS,TIUAUTH,TIUTITLE
+ N TIUPAR,DFN,TIUPCO,TIURTYP,TIUSIEN,TIUSERV,TIUJIEN,TIUJTITL,NOCOL,DIR,TIUAUTHI,TIUQUIT,TIUPAGE,TIUOFF
+ N %ZIS,POP,NOW,Y,COSTAT,X1,X2
+ S TIUJ=$J,TIUCS=$$COSTAT()
+ D DTRANGE^TIUADCL(.TIUDTS)
+ Q:'$D(TIUDTS("BEGDT"))!('$D(TIUDTS("ENDDT")))
+ S X1=TIUDTS("BEGDT"),X2=-1 D C^%DTC
+ S TIUDT=X+.99999999,TIUEDT=TIUDTS("ENDDT")
+ D DEV
+ Q:$G(POP)>0
+ I $G(IO("Q"))=1 D  Q
+ .N ZTRTN,ZTDESC,ZTSAVE
+ .S ZTRTN="MENU1^TIU189",ZTDESC="Uncosigned Problem Report"
+ .S ZTSAVE("TIU*")=""
+ .D ^%ZTLOAD K IO("Q")
+MENU1 ; TASK POINT FOR MENU ENTRY
+ F  S TIUDT=$O(^TIU(8925,"F",TIUDT)) Q:TIUDT=""!(TIUDT>TIUEDT)  D
+ .S TIUIEN=""
+ .F  S TIUIEN=$O(^TIU(8925,"F",TIUDT,TIUIEN)) Q:TIUIEN=""  D
+ ..S TIUPDT=$$CHECK(TIUIEN)
+ ..I TIUPDT>0 D SET(TIUJ,TIUPDT,TIUIEN)
+ D REPORT
+ K ^TMP(TIUJ)
+ D ^%ZISC
+ Q
+ ;
+REPORT ; ENTRIES WRITTEN TO REPORT
+ U IO
+ I $G(IO("Q"))'=1,IOST["C-",TIURTYP'="NOCOL" W @IOF
+ I '$D(^TMP(TIUJ,"TIU189")) D  Q
+ .D TITLE
+ .W !!,"No Problem Notes Found."
+ .I $G(IO("Q"))='1,IOST["C-" D PAUSE^VALM1
+ S TIUQUIT=0
+ D HEAD
+ S TIUDT=""
+ F  S TIUDT=$O(^TMP(TIUJ,"TIU189","PROBLEM",TIUDT)) Q:TIUDT=""!(TIUQUIT)  D
+ .S TIUIEN=""
+ .F  S TIUIEN=$O(^TMP(TIUJ,"TIU189","PROBLEM",TIUDT,TIUIEN)) Q:TIUIEN=""!(TIUQUIT)  D
+ ..D PAGE
+ ..Q:TIUQUIT
+ ..S TIU0=$G(^TIU(8925,TIUIEN,0)),TIU12=$G(^TIU(8925,TIUIEN,12))
+ ..S Y=$P(TIU12,"^") D DD^%DT S TIUEDT=Y
+ ..S DFN=$P(TIU0,"^",2) D DEM^VADPT
+ ..S TIUSSN=$E($P(VADM(2),"^"),6,9)
+ ..S TIULNAME=$P(VADM(1),","),TIUFNAME=$P(VADM(1),",",2),TIUMNAME=$P(TIUFNAME," ",2)
+ ..S TIUPN=$E(TIUFNAME)_$E(TIUMNAME)_$E(TIULNAME)_TIUSSN
+ ..S TIUAUTH=$E($$GET1^DIQ(8925,TIUIEN_",",1202),1,15)
+ ..S TIUAUTHI=$P($G(^TIU(8925,TIUIEN,12)),"^",2)
+ ..S TIUTITLE=$E($$GET1^DIQ(8925,TIUIEN_",",.01),1,15)
+ ..S TIUSIEN=$$GET1^DIQ(200,TIUAUTHI_",",29,"I"),TIUSERV=$$GET1^DIQ(49,TIUSIEN_",",.01)
+ ..S TIUJIEN=$$GET1^DIQ(200,TIUAUTHI_",",8,"I"),TIUJTITL=$$GET1^DIQ(3.1,TIUJIEN_",",.01)
+ ..S TIUPAR=^TMP(TIUJ,"TIU189","PROBLEM",TIUDT,TIUIEN)
+ ..I TIURTYP="COL80" D
+ ...W !,TIUPN,?9,TIUEDT,?32,$E(TIUTITLE,1,20),?53,$E(TIUAUTH,1,15),?69,"~",TIUIEN
+ ...D TIUPAR(TIUPAR)
+ ..I TIURTYP="COL132" D
+ ...W !,TIUPN,?9,TIUEDT,?32,$E(TIUTITLE,1,24),?58,$E(TIUAUTH,1,23),?83,$E(TIUSERV,1,16)
+ ...W ?101,$E(TIUJTITL,1,16),?119,"~",TIUIEN
+ ...D TIUPAR(TIUPAR)
+ ..I TIURTYP="NOCOL" D
+ ...W !,TIUPN,"^",TIUEDT,"^",TIUTITLE,"^",TIUAUTH,"^",TIUSERV,"^",TIUJTITL,"^",TIUIEN
+ ...W "^",$P(TIUPAR,"^",1),"^",$P(TIUPAR,"^",2),"^",$P(TIUPAR,"^",3)
+ I $G(IO("Q"))'=1,IOST["C-",TIURTYP'="NOCOL" D PAUSE^VALM1 W @IOF
+ Q
+ ;
+TIUPAR(TIUPAR) ;
+ I TIUPAR'="" D
+ .W !,?12,"Parent Document Type: "_$E($P(TIUPAR,"^",1),1,44)
+ .W !,?12,"Parent Document Date: "_$P(TIUPAR,"^",2)
+ .W !,?12,"Parent Document Cosigner: "_$P(TIUPAR,"^",3)
+ Q
+ ;
+NITE ; ENTRY POINT FOR RUNNING IN TASKMAN
+ N TIUIEN,TIUDT,TIUDTS,TIUPDT,TIUJ,TIUPIEN,TIUPN,TIURES,TIU0,TIU12
+ N TIUEDT,TIUAUTH,TIUTITLE,TIUSSN
+ N %ZIS,POP,NOW,Y,COSTAT,X
+ S TIUJ=$J,TIUCS=$$COSTAT()
+ D NOW^%DTC S X1=X,X2=-31 D C^%DTC
+ S TIUDT=X+.99999999
+ F  S TIUDT=$O(^TIU(8925,"F",TIUDT)) Q:TIUDT=""  D
+ .S TIUIEN=""
+ .F  S TIUIEN=$O(^TIU(8925,"F",TIUDT,TIUIEN)) Q:TIUIEN=""  D
+ ..S TIUPDT=$$CHECK(TIUIEN)
+ ..I TIUPDT>0 D SET(TIUJ,TIUPDT,TIUIEN)
+ D MAIL
+ K ^TMP(TIUJ)
+ D ^%ZISC
+ Q
+ ;
+SET(TIUJ,TIUDT,TIUIEN) ; TEMP STORAGE OF DATA
+ N TIUTYP,TIUPIEN,TIUPIEN,TIUPDT,TIUPTYP,TIUPCO,TIUPAR,Y
+ S TIUPAR=""
+ S TIUTYP=$P(^TIU(8925,TIUIEN,0),"^"),TIUTYP=$P(^TIU(8925.1,TIUTYP,0),"^")
+ I TIUTYP="ADDENDUM" D
+ .S TIUPIEN=$P(^TIU(8925,TIUIEN,0),"^",6)
+ .Q:+TIUPIEN'>0
+ .Q:'$D(^TIU(8925,TIUPIEN))
+ .S Y=$P(^TIU(8925,TIUPIEN,12),"^") D DD^%DT S TIUPDT=Y
+ .S TIUPTYP=$P(^TIU(8925,TIUPIEN,0),"^"),TIUPTYP=$P(^TIU(8925.1,TIUPTYP,0),"^")
+ .S TIUPCO=$P($G(^TIU(8925,TIUPIEN,12)),"^",8)
+ .S TIUPCO=$$GET1^DIQ(200,TIUPCO_",",.01)
+ .S TIUPAR=TIUPTYP_"^"_TIUPDT_"^"_TIUPCO
+ S ^TMP(TIUJ,"TIU189","PROBLEM",TIUDT,TIUIEN)=TIUPAR
+ Q
+ ;
+CHECK(TIUIEN) ; CHECK IF THIS IS A PROBLEM NOTE
+ S TIURES=0
+ I $P($G(^TIU(8925,TIUIEN,0)),"^",5)=TIUCS D
+ .S TIU12=$G(^TIU(8925,TIUIEN,12))
+ .I $P(TIU12,"^",8)<1 S TIURES=$P(TIU12,"^")
+ Q TIURES
+ ;
+MAIL ; SEND MAIL TO MAIL GROUP
+ N XMDUZ,XMSUBJ,XMTO,DFN,VADM,TIUCNT,TIUAUTE,TIUAUTI,TIUATITL,TIUPIEN,TIUPTYPE,TIUPCO,TIUPAR
+ N TIULNAME,TIUFNAME,TIUMNAME,TIUSIEN,TIUJIEN,TIUASERV,TIUATITL,TIUAUTI
+ S XMDUZ="",XMSUBJ="MISSING EXPECTED COSIGNER"
+ K ^TMP(TIUJ,"MAIL")
+ S TIUDT="",TIUCNT=1
+ F  S TIUDT=$O(^TMP(TIUJ,"TIU189","PROBLEM",TIUDT)) Q:TIUDT=""  D
+ .S TIUIEN=""
+ .F  S TIUIEN=$O(^TMP(TIUJ,"TIU189","PROBLEM",TIUDT,TIUIEN)) Q:TIUIEN=""  D
+ ..S TIU0=$G(^TIU(8925,TIUIEN,0)),TIU12=$G(^TIU(8925,TIUIEN,12))
+ ..S Y=$P(TIU12,"^") D DD^%DT S TIUEDT=Y
+ ..S TIUTITLE=$$GET1^DIQ(8925,TIUIEN_",",.01)
+ ..S DFN=$P(TIU0,"^",2) D DEM^VADPT
+ ..S TIUSSN=$E($P(VADM(2),"^"),6,9)
+ ..S TIULNAME=$P(VADM(1),","),TIUFNAME=$P(VADM(1),",",2),TIUMNAME=$P(TIUFNAME," ",2)
+ ..S TIUPN=$E(TIUFNAME)_$E(TIUMNAME)_$E(TIULNAME)_TIUSSN
+ ..S TIUAUTE=$$GET1^DIQ(8925,TIUIEN_",",1202)
+ ..S TIUAUTI=$P($G(^TIU(8925,TIUIEN,12)),"^",2)
+ ..S TIUSIEN=$$GET1^DIQ(200,TIUAUTI_",",29,"I"),TIUASERV=$$GET1^DIQ(49,TIUSIEN_",",.01)
+ ..S TIUJIEN=$$GET1^DIQ(200,TIUAUTI_",",8,"I"),TIUATITL=$$GET1^DIQ(3.1,TIUJIEN_",",.01)
+ ..S TIUPAR=$G(^TMP(TIUJ,"TIU189","PROBLEM",TIUDT,TIUIEN))
+ ..S ^TMP(TIUJ,"TIU189","MAIL",TIUCNT,0)="PATIENT: "_TIUPN
+ ..S ^TMP(TIUJ,"TIU189","MAIL",TIUCNT+1,0)="ENTRY DATE/TIME: "_TIUEDT
+ ..S ^TMP(TIUJ,"TIU189","MAIL",TIUCNT+2,0)="NOTE TITLE: "_TIUTITLE
+ ..S ^TMP(TIUJ,"TIU189","MAIL",TIUCNT+3,0)="AUTHOR: "_TIUAUTE
+ ..S ^TMP(TIUJ,"TIU189","MAIL",TIUCNT+4,0)="AUTHOR'S SERVICE/SECTION: "_TIUASERV
+ ..S ^TMP(TIUJ,"TIU189","MAIL",TIUCNT+5,0)="AUTHOR'S TITLE: "_TIUATITL
+ ..S ^TMP(TIUJ,"TIU189","MAIL",TIUCNT+6,0)="NOTE IEN: `"_TIUIEN
+ ..S ^TMP(TIUJ,"TIU189","MAIL",TIUCNT+7,0)="PARENT DOCUMENT TYPE: "_$P(TIUPAR,"^",1)
+ ..S ^TMP(TIUJ,"TIU189","MAIL",TIUCNT+8,0)="PARENT DOCUMENT ENTRY DATE: "_$P(TIUPAR,"^",2)
+ ..S ^TMP(TIUJ,"TIU189","MAIL",TIUCNT+9,0)="PARENT DOCUMENT COSIGNER: "_$P(TIUPAR,"^",3)
+ ..S ^TMP(TIUJ,"TIU189","MAIL",TIUCNT+10,0)=""
+ ..S TIUCNT=TIUCNT+11
+ S XMTO("G.TIU MIS ALERTS")=""
+ D SENDMSG^XMXAPI(XMDUZ,XMSUBJ,"^TMP($J,""TIU189"",""MAIL"")",.XMTO)
+ Q
+ ;
+HEAD ; HEADER FOR REPORT
+ I TIURTYP'="NOCOL" W @IOF D TITLE
+ I TIURTYP="COL80" D  Q
+ .W !,"Patient",?9,"Entry Date/Time",?32,"Title",?53,"Author",?69,"Note IEN"
+ .W !,"-------",?9,"---------------",?32,"-----",?53,"------",?69,"--------"
+ .W !
+ I TIURTYP="COL132" D  Q
+ .W !,"Patient",?9,"Entry Date/Time",?32,"Title",?58,"Author",?83,"Service/Section",?101,"Job Title",?119,"Note IEN"
+ .W !,"-------",?9,"---------------",?32,"-----",?58,"------",?83,"---------------",?101,"---------",?119,"--------"
+ .W !
+ I TIURTYP="NOCOL" D
+ .I +$G(NOCOL)=0 D 
+ ..S NOCOL=1
+ ..W "Patient Name^Entry Date/Time^Title^Author^Service/Section^Job Title^Note IEN^Parent Document Type^"
+ ..W "Parent Document Date^Parent Document Cosigner"
+ Q
+ ;
+TITLE ;
+ W !,?TIUOFF,"NOTES WITH 'UNCOSIGNED' STATUS THAT DON'T HAVE AN EXPECTED COSIGNER",!!
+ Q
+ ;
+PAGE ; HANDLE PAGING FOR TERMINAL OR PRINTER
+ Q:TIURTYP="NOCOL"
+ I $Y>(IOSL-8) D
+ .I IOST["C-" D PAUSE^VALM1 I $G(DIRUT)=1 S TIUQUIT=1 Q
+ .D HEAD
+ Q
+ ;
+COSTAT() ; GET UNCOSIGNED STATUS 
+ Q $O(^TIU(8925.6,"B","UNCOSIGNED",""))
+ ;
+DEV ; PROMPT FOR OUTPUT DEVICE
+ N DIR,DIRUT
+ S DIR(0)="SO^1:80 column;2:132 column;3:Table Export"
+ S DIR("L",1)="Please select an output format from the following:"
+ S DIR("L",2)=""
+ S DIR("L",3)="1 -  80 column standard print [STANDARD]"
+ S DIR("L",4)="2 - 132 column standard print"
+ S DIR("L")="3 - Table without headers (export to another application)"
+ S DIR("B")=1
+ D ^DIR I $D(DIRUT)!(Y>3) S POP=1 Q
+ S TIURTYP=$S(Y=1:"COL80",Y=2:"COL132",Y=3:"NOCOL")
+ I TIURTYP="COL132" D MESS132
+ I TIURTYP="NOCOL" D MESSNCOL
+ S TIUOFF=$S(TIURTYP="COL80":5,TIURTYP="COL132":31,1:5)
+ S %ZIS="Q" D ^%ZIS
+ Q
+ ;
+MESS132 ; Instructional message if printing 132 column version
+ W !!,"You must configure your terminal so that it will support 132 character"
+ W !,"emulation and reply 132 to the right margin setting if using HOME"
+ W !,"as the device."
+ W !,""
+ Q
+ ;
+MESSNCOL ; Instructional message if printing "^" delimited version
+ W !!,"OK, you have selected a TABLE output format."
+ W !,"You must use your personal computer's terminal emulation"
+ W !,"to capture the output:"
+ W !,""
+ W !,"     1.  Enter at the DEVICE: HOME// prompt "";250;99999999"" "
+ W !,"         and do not hit the enter key."
+ W !,"     2.  Open a capture file within your terminal emulation program."
+ W !,"     3.  Hit enter to start the down load."
+ W !,"     4.  Close the capture file when the output stops."
+ W !,""
+ Q

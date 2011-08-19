@@ -1,0 +1,10 @@
+LRGVG2 ;SLC/RWF - VERIFY GENERAL DATA AS A GROUP,CONT. ; 2/22/87  2:00 PM ;
+ ;;5.2;LAB SERVICE;;Sep 27, 1994
+DC ;from LRGVG1
+ S V="",LROV="" S:$D(^LR(LRDFN,"CH",LRIDT,0)) @("V="_LRLL(LRII)) IF LRODT'=-1 S:$D(^LR(LRDFN,"CH",LRODT,0)) @("OV="_LRLL(LRII))
+ Q:V=""!(V["pending")
+ IF $P(^TMP($J,LRII),U,8)=1 S LRDV=$P(^(LRII),U,9) I V'=""&(LROV'="") S X3=V-LROV S:X3<0 X3=-X3 I X3>LRDV S LRDELTA=1 S:V'["#" $P(^LR(LRDFN,"CH",LRIDT,+$P(LRLL(LRII),"(^(",2)),U,+$P(LRLL(LRII),",U,",2))=V_"#" Q
+ S LRCL=$P(^TMP($J,LRII),U,2),LRCH=$P(^(LRII),U,3) IF $L(LRCL),LRCL]""&(V<LRCL) S:V'["L" $P(^LR(LRDFN,"CH",LRIDT,+$P(LRLL(LRII),"(^(",2)),U,+$P(LRLL(LRII),",U,",2))=V_"L"
+ IF $L(LRCH),LRCH]""&(V>LRCH) S:V'["H" $P(^LR(LRDFN,"CH",LRIDT,+$P(LRLL(LRII),"(^(",2)),U,+$P(LRLL(LRII),",U,",2))=V_"H"
+ S LRCL=$P(^TMP($J,LRII),U,4),LRCH=$P(^(LRII),U,5) IF $L(LRCL_LRCH),(LRCL]""&(V<LRCL))!(LRCH]""&(V>LRCH)) S LRCRIT=1 S:V'["*" $P(^LR(LRDFN,"CH",LRIDT,+$P(LRLL(LRII),"(^(",2)),U,+$P(LRLL(LRII),",U,",2))=V_"*" Q
+ Q

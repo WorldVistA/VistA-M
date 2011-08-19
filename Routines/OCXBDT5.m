@@ -1,0 +1,175 @@
+OCXBDT5 ;SLC/RJS,CLA - BUILD OCX PACKAGE DIAGNOSTIC ROUTINES (Build Runtime Library Routine OCXDI1) ;8/04/98  13:21
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+EN() ;
+ ;
+ N R,LINE,TEXT,NOW,RUCI,XCM
+ S NOW=$$NOW^OCXBDT3,RUCI=$$CUCI^OCXBDT
+ F LINE=1:1:999 S TEXT=$P($T(TEXT+LINE),";",2,999) Q:TEXT  S TEXT=$P(TEXT,";",2,999) S R(LINE,0)=$$CONV^OCXBDT3(TEXT)
+ ;
+ M ^TMP("OCXBDT",$J,"RTN")=R
+ ;
+ S DIE="^TMP(""OCXBDT"","_$J_",""RTN"",",XCN=0,X="OCXDI1"
+ W !,X X ^%ZOSF("SAVE") W "  ... ",XCM," Lines filed" K ^TMP("OCXBDT",$J,"RTN")
+ ;
+ Q XCM
+ ;
+TEXT ;
+ ;;OCXDI1 ;SLC/RJS,CLA - OCX PACKAGE DIAGNOSTIC UTILITY ROUTINE ;|NOW|
+ ;;|OCXLIN2|
+ ;;|OCXLIN3|
+ ;; ;
+ ;;S ;
+ ;; ;
+ ;; Q
+ ;; ;
+ ;; ;
+ ;;COMPARE(L,R) ;
+ ;; ;
+ ;; Q:'$L($O(L(""))) $$ADDREC^OCXDI2("R")
+ ;; ;
+ ;; N C,OCXDD M C=L,C=R S OCXDD=$O(C("")) Q $$MULT("C",OCXDD)
+ ;; ;
+ ;; Q 0
+ ;; ;
+ ;;MULT(CREF,OCXDD) ;
+ ;; ;
+ ;; N OCXSUB,LREF,RREF,QUIT,OCXFLD
+ ;; S LREF="L"_$E(CREF,2,$L(CREF)),RREF="R"_$E(CREF,2,$L(CREF))
+ ;; S QUIT=0,OCXFLD="" F  S OCXFLD=$O(@CREF@(OCXDD,OCXFLD)) Q:'$L(OCXFLD)  D  Q:QUIT
+ ;; .I (OCXFLD[":") D  Q:QUIT
+ ;; ..Q:$$EXFLD(+OCXFLD,0)
+ ;; ..I '$D(@LREF@(OCXDD,OCXFLD,.01,"E")) D  M @LREF@(OCXDD,OCXFLD)=@RREF@(OCXDD,OCXFLD)
+ ;; ...D WARN("Missing multiple:",CREF,OCXDD,OCXFLD)
+ ;; ...S QUIT=$$ADDMULT^OCXDI3(CREF,OCXDD,OCXFLD)
+ ;; ..I '$D(@RREF@(OCXDD,OCXFLD,.01,"E")) D  M @RREF@(OCXDD,OCXFLD)=@LREF@(OCXDD,OCXFLD)
+ ;; ...D WARN("Extra multiple:",CREF,OCXDD,OCXFLD)
+ ;; ...S QUIT=$$DELMULT^OCXDI3($$APPEND(CREF,OCXDD),OCXFLD)
+ ;; .;
+ ;; .I (OCXFLD=+OCXFLD),'$$EXFLD(+OCXDD,OCXFLD) D
+ ;; ..I ($O(@CREF@(OCXDD,OCXFLD,""))="E") D  Q
+ ;; ...I $L($G(@RREF@(OCXDD,OCXFLD,"E"))),'$L($G(@LREF@(OCXDD,OCXFLD,"E"))) D  Q
+ ;; ....D WARN("Data Value Missing in "_$$CUCI^OCXBDT,CREF,OCXDD,OCXFLD,"E")
+ ;; ....S QUIT=$$EDITFLD^OCXDI4(CREF,OCXDD,OCXFLD,"E")
+ ;; ...I $L($G(@LREF@(OCXDD,OCXFLD,"E"))),'$L($G(@RREF@(OCXDD,OCXFLD,"E"))) D  Q
+ ;; ....D WARN("Extra Data Value in "_$$CUCI^OCXBDT,CREF,OCXDD,OCXFLD,"E")
+ ;; ....S QUIT=$$DELFLD^OCXDI4(CREF,OCXDD,OCXFLD,"E")
+ ;; ...I '(@LREF@(OCXDD,OCXFLD,"E")=@RREF@(OCXDD,OCXFLD,"E")) D
+ ;; ....D WARN("Inconsistent Data",CREF,OCXDD,OCXFLD,"E")
+ ;; ....S QUIT=$$EDITFLD^OCXDI4(CREF,OCXDD,OCXFLD,"E")
+ ;; ..S OCXSUB=0 F  Q:QUIT  S OCXSUB=$O(@CREF@(OCXDD,OCXFLD,OCXSUB)) Q:'OCXSUB  I '($G(@RREF@(OCXDD,OCXFLD,OCXSUB))=$G(@LREF@(OCXDD,OCXFLD,OCXSUB))) D  Q
+ ;; ...D WARN("Inconsistent word Data",CREF,OCXDD,OCXFLD,OCXSUB)
+ ;; ...S QUIT=$$LOADWORD^OCXDI2(RREF,OCXDD,OCXFLD,OCXSUB)
+ ;; .;
+ ;; .I 'QUIT,(OCXFLD[":") S QUIT=$$MULT($$APPEND(CREF,OCXDD),OCXFLD)
+ ;; Q QUIT
+ ;; ;
+ ;;APPEND(ARRAY,OCXSUB) ;
+ ;; S:'(OCXSUB=+OCXSUB) OCXSUB=""""_OCXSUB_""""
+ ;; Q:'(ARRAY["(") ARRAY_"("_OCXSUB_")"
+ ;; Q $E(ARRAY,1,$L(ARRAY)-1)_","_OCXSUB_")"
+ ;; ;
+ ;;EXFLD(FILE,OCXFLD) ;
+ ;; N OCXFNAM
+ ;; S OCXFNAM=$$FIELD^OCXBDTD(FILE,OCXFLD,"LABEL")
+ ;; I (OCXFNAM["UNIQUE OBJECT IDENTIFIER") Q 1
+ ;; I (FILE=860.2),(OCXFLD=.02) Q 1
+ ;; I (FILE=860.22),(OCXFLD=4) Q 1
+ ;; I (FILE=860.3),(OCXFLD=3) Q 1
+ ;; I (FILE=860.9),(OCXFLD=1) Q 1
+ ;; I (FILE=860.91) Q 1
+ ;; I (FILE=19),(OCXFLD=.15) Q 1
+ ;; I (FILE=19),(OCXFLD=.16) Q 1
+ ;; I (FILE=19),(OCXFLD=.26) Q 1
+ ;; I (FILE=19),(OCXFLD=1.1) Q 1
+ ;; I (FILE=19),(OCXFLD=3.6) Q 1
+ ;; I (FILE=19),(OCXFLD=14) Q 1
+ ;; I (FILE=19),(OCXFLD=99) Q 1
+ ;; I (FILE=19),(OCXFLD=99.1) Q 1
+ ;; I (FILE=19),(OCXFLD=200) Q 1
+ ;; I (FILE=19),(OCXFLD=201) Q 1
+ ;; I (FILE=19),(OCXFLD=203) Q 1
+ ;; I ($E(OCXFNAM,1)="*") Q 1
+ ;; Q 0
+ ;; ;
+ ;;WARN(MSG,CREF,OCXDD,OCXFLD,OCXSUB) ;
+ ;; ;
+ ;; Q:$G(OCXAUTO)
+ ;; ;
+ ;; N D0,DASH,OCXDDPTH,OCXDPTR,FILE,FILEID,LREF,OCXPTR,RREF
+ ;; ;
+ ;; Q:'OCXFLGR
+ ;; ;
+ ;; S DASH="",$P(DASH,"-",(55-$L(MSG)))="-"
+ ;; W !!,"----WARNING-",MSG,DASH
+ ;; D DSPHDR(CREF,OCXDD,OCXFLD)
+ ;; I $D(OCXSUB) D DSPFLD(CREF,OCXDD,OCXFLD,OCXSUB)
+ ;; I '$D(OCXSUB) D DSPREC(CREF,OCXDD,OCXFLD)
+ ;; ;
+ ;; W ! Q
+ ;; ;
+ ;;DSPREC(CREF,OCXDD,OCXFLD) ;
+ ;; ;
+ ;; N OCXDPTR,OCXDDPTH,LEVL,OCXCREF,OCXSUB
+ ;; S OCXCREF=$$APPEND($$APPEND(CREF,OCXDD),OCXFLD)
+ ;; S OCXDDPTH=$P($P(OCXCREF,"(",2),")",1),LEVL=$L(OCXDDPTH,",")
+ ;; S OCXSUB="" F  S OCXSUB=$O(@OCXCREF@(OCXSUB)) Q:'$L(OCXSUB)  D
+ ;; .;
+ ;; .I '(OCXSUB[":"),'((OCXSUB=.01)&$O(@OCXCREF@(OCXSUB))) D
+ ;; ..N LINE
+ ;; ..Q:$$EXFLD(+OCXFLD,OCXSUB)
+ ;; ..I OCXFLD W !,?(5+((LEVL)*4)),$$FIELD^OCXBDTD(+OCXFLD,OCXSUB,"LABEL"),": ",$G(@OCXCREF@(OCXSUB,"E"))
+ ;; ..S LINE=0 F  S LINE=$O(@OCXCREF@(OCXSUB,LINE)) Q:'LINE  D
+ ;; ...W !,?(5+(LEVL*4)),$J(LINE,3),">",@OCXCREF@(OCXSUB,LINE)
+ ;; .;
+ ;; .I (OCXSUB[":") D
+ ;; ..N D0,OCXDD,FILENAME
+ ;; ..S D0=+$P(OCXSUB,":",2),OCXDD=+OCXSUB
+ ;; ..S FILENAME=$$FILENAME^OCXBDTD(OCXDD)
+ ;; ..I $L(FILENAME) W !,?(5+($L(LEVL)*4)),FILENAME
+ ;; ..E  W !!,?(5+(LEVL*4)),FILENAME
+ ;; ..W " ",D0,": ",$G(@OCXCREF@(OCXSUB,.01,"E"))
+ ;; ..D DSPREC($$APPEND(CREF,OCXDD),OCXFLD,OCXSUB)
+ ;; ;
+ ;; Q
+ ;; ;
+ ;;DSPHDR(CREF,OCXDD,OCXFLD) ;
+ ;; ;
+ ;; N D0,FILE,FILEID,OCXPTR,OCXDDPTH
+ ;; S OCXDDPTH=$P($P($$APPEND($$APPEND(CREF,OCXDD),OCXFLD),"(",2),")",1)
+ ;; S FILE="" F OCXPTR=1:1:$L(OCXDDPTH,",") D
+ ;; .N OCXDD,D0,FILEID
+ ;; .S FILEID=$P(OCXDDPTH,",",OCXPTR)
+ ;; .I (FILEID[":") D
+ ;; ..S D0=+$P(FILEID,":",2),OCXDD=+$E(FILEID,2,$L(FILEID))
+ ;; ..W !,?(5+(OCXPTR*4)),$$FILENAME^OCXBDTD(OCXDD)
+ ;; ..S:$L(FILE) FILE=FILE_"," S FILE=FILE_FILEID
+ ;; ..I $D(@("L("_FILE_",.01,""E"")")) W ": ",@("L("_FILE_",.01,""E"")") W:D0 " [",D0,"]"
+ ;; ..E  I $D(@("R("_FILE_",.01,""E"")")) W ": ",@("R("_FILE_",.01,""E"")") W:D0 " [",D0,"]"
+ ;; ;
+ ;; Q
+ ;; ;
+ ;;DSPFLD(CREF,OCXDD,OCXFLD,OCXSUB) ;
+ ;; ;
+ ;; N OCXDPTR,LREF,RREF,OCXDDPTH
+ ;; ;
+ ;; S OCXDDPTH=$P($P($$APPEND(CREF,OCXDD),"(",2),")",1)
+ ;; S LREF="L("_OCXDDPTH_")",RREF="R("_OCXDDPTH_")"
+ ;; W !,?(5+(($L(OCXDDPTH,",")+1)*4)),$$FIELD^OCXBDTD(OCXDD,OCXFLD,"LABEL")," field [",OCXFLD,"]"
+ ;; I OCXSUB W " Line #",OCXSUB
+ ;; ;
+ ;; W:($D(@RREF@(OCXFLD,OCXSUB))) !,?(5+(($L(OCXDDPTH,",")+2)*4)),"(R) |RUCI|: ",@RREF@(OCXFLD,OCXSUB)
+ ;; W:($D(@LREF@(OCXFLD,OCXSUB))) !,?(5+(($L(OCXDDPTH,",")+2)*4)),"(L) ",$$CUCI^OCXBDT,": ",@LREF@(OCXFLD,OCXSUB)
+ ;; ;
+ ;; Q
+ ;; ;
+ ;; W !,?10 Q 0 Q $$PAUSE
+ ;; ;
+ ;;PAUSE() Q:'OCXFLGC 0 W "  Press Enter " R X:DTIME W ! Q (X[U)
+ ;; ;
+ ;;NOW() N X,Y,%DT S X="N",%DT="T" D ^%DT S Y=$$DATE^OCXBDTD(Y) S:(Y["@") Y=$P(Y,"@",1)_" at "_$P(Y,"@",2) Q Y
+ ;; ;
+ ;;$
+ ;1;
+ ;

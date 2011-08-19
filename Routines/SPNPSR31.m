@@ -1,0 +1,39 @@
+SPNPSR31 ;SD/WDE/ DIVISION search ;04/14/2001
+ ;;2.0;Spinal Cord Dysfunction;**15**;01/02/1997
+ ;
+EN1(D0,SPNFIX) ; *** Search entry point
+ ; Input:
+ ;  ACTION,SEQUENCE = Search ACTION,SEQUENCE number
+ ;  D0       = SCD (SPINAL CORD) REGISTRY file (#154) IEN
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"DIVISION") = Internal ^ External
+ ;  SPNFORG = Internal DIVISIION
+ ; Output:
+ ;  $S( D0_Meets_Search_Criteria : 1 , 1 : 0 )
+ ;
+ N DFN,MEETSRCH,SPNTEST,VA,VADM,VAERR
+ S MEETSRCH=0
+ S SPNTEST=0
+ F  S SPNTEST=$O(^SPNL(154,+D0,4,SPNTEST)) Q:(SPNTEST="")!('+SPNTEST)  D
+ .S SPNSUF=0 S SPNSUF=$P($G(^SPNL(154,+D0,4,SPNTEST,0)),U,1)
+ .I SPNSUF=SPNFIX S MEETSRCH=1 Q
+ Q MEETSRCH
+ ;
+EN2(ACTION,SEQUENCE) ; *** Prompt entry point
+ ; Input:
+ ;  ACTION,SEQUENCE = Search ACTION,SEQUENCE number
+ ; Output:
+ ;  SPNLEXIT = $S( User_Abort/Timeout : 1 , 1 : 0 )
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"DIVISION") = Internal ^ External
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,0) = $$EN1^SPNPSR31(D0,SPNTEST)
+ ;
+ N DIR,DIRUT,DTOUT,DUOUT
+ K ^TMP($J,"SPNPRT",ACTION,SEQUENCE),DIR
+ S DIR(0)="POA^40.8:AEMNQZ"
+ S DIR("A")="Division: "
+ S DIR("?")="Enter a Division from the list shown"
+ D ^DIR S SPNFIX=Y I Y<1 S SPNLEXIT=1 Q:Y<1
+ S SPNLEXIT=$S($D(DTOUT):1,$D(DUOUT):1,1:0)
+ I 'SPNLEXIT,Y'="" D
+ . S ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"DIVISION")=SPNFIX
+ . S ^TMP($J,"SPNPRT",ACTION,SEQUENCE,0)="$$EN1^SPNPSR31(D0,"""_$P(SPNFIX,U)_""")"
+ Q

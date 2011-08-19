@@ -1,0 +1,58 @@
+NURAED5 ;HIRMFO/MD-PROCESS POSITION MODIFICATIONS 12/8/98
+ ;;4.0;NURSING SERVICE;**22,24,28**;Apr 25, 1997
+EDTFLD ; SETS THE NURSNPOS = LOC^SCAT^(9 PIECES OF ZEROTH NODE)
+ ; DEFAULT VALUES STORED IN NURSOPOS
+ K NURSNPOS
+EDPRI ; EDIT PRIMARY ASSIGNMENT FLAG
+ S NURSDFLT=$S($P(NURSOPOS,"^",11):1,1:2)
+ W !,"Is this a primary assignment" S %=NURSDFLT D YN^DICN I %=-1 S NUROUT=1 Q
+ I '% W !?5,$C(7),"ANSWER YES IF THIS POSITION IS A PRIMARY ASSIGNMENT FOR THIS EMPLOYEE,",!?5,"ELSE ANSWER NO." G EDPRI
+ S $P(NURSNPOS,"^",11)=$S(%=1:1,1:"")
+EDLO ; EDIT LOCATION
+ S NPWARD=$P(NURSOPOS,"^") D EN7^NURSAUTL S NURSDFLT=NPWARD W !,"LOCATION: "_$S(NURSDFLT'="":NURSDFLT_"// ",1:"") R X:DTIME S:'$T X="^^" I X="^^"!(X="^") S NUROUT=1 Q
+ I X=""!(X="@") S:NURSDFLT'=""&(X="") $P(NURSNPOS,"^")=$P(NURSOPOS,"^") W:NURSDFLT=""!(X="@") $C(7),"  Required??" G EDLO:NURSDFLT=""!(X="@"),EDEVAL
+ I X?1"?".E W !?5,$C(7),"Nursing location for this position.",!
+ S DIC="^NURSF(211.4,",DIC(0)="EQZ" D ^DIC K DIC I $D(DTOUT)!$D(DUOUT) S NUROUT=1 Q
+ G:+Y'>0 EDLO S $P(NURSNPOS,"^")=$P(Y,"^",2)
+EDEVAL ; EDIT NAME OF DATE OF PROFICIENCY/NAME OF EVALUATOR
+ I $P(NURSNPOS,U,11)=1 N DIE,DIC,DA,DR,NURX,Y,X D
+ .   S:'$D(^NURSF(210,+NURSDBA,14,0)) ^(0)="^210.18D^^" S NURX=+$P($G(^NURSF(210,+NURSDBA,14,0)),U,3) I +$G(^NURSF(210,+NURSDBA,14,NURX,0)) S Y=+^(0) D D^DIQ S DIC("B")=Y
+ .   S DA(1)=+NURSDBA,DIC="^NURSF(210,DA(1),14,",DIC("DR")=".01//;1//",DLAYGO=210.18,DIC(0)="AELQ" D ^DIC S:$G(DUOUT) NUROUT=1 Q:+Y'>0
+ .   I $P($G(Y),U,3)="" S DIE=DIC,DR=".01//;1//",DA=+Y D ^DIE K DIE,DIC
+ .   S:$O(Y(""))'="" NUROUT=1
+ .   Q
+EDSP ; EDIT SERVICE POSITION, WILL STUFF IN NEW SERVICE CATEGORY
+ Q:NUROUT
+ S NURSDFLT=$S($D(^NURSF(211.3,+$P(NURSOPOS,"^",5),0)):$P(^(0),"^"),1:"")
+ W !,"SERVICE POSITION: "_$S(NURSDFLT'="":NURSDFLT_"// ",1:"") R X:DTIME S:'$T X="^^" I X="^^"!(X="^") S NUROUT=1 Q
+ I X=""!(X="@") S:NURSDFLT'=""&(X="") $P(NURSNPOS,"^",5)=$P(NURSOPOS,"^",5),$P(NURSNPOS,"^",2)=$P(NURSOPOS,"^",2) W:NURSDFLT=""!(X="@") $C(7),"  Required??" G EDSP:NURSDFLT=""!(X="@"),EDST
+ I X?1"?".E W !?5,$C(7),"Service position for this position.",!
+ S DIC="^NURSF(211.3,",DIC(0)="EQZ" D ^DIC I $D(DTOUT)!$D(DUOUT) S NUROUT=1 Q
+ G:+Y'>0 EDSP S $P(NURSNPOS,"^",2)=$P(Y(0),"^",5),$P(NURSNPOS,"^",5)=+Y
+EDST ; EDIT START DATE
+ K NBAD S Y=$P(NURSOPOS,"^",3) D:Y D^DIQ S NURSDFLT=Y
+ W !,"STARTING DATE: "_$S(NURSDFLT'="":NURSDFLT_"// ",1:"") R X:DTIME S:'$T X="^^" I X="^^"!(X="^") S NUROUT=1 Q
+ I X=""!(X="@") D SDTCK G:$D(NBAD) EDST S:NURSDFLT'=""&(X="") $P(NURSNPOS,U,3)=$P(NURSOPOS,U,3) W:NURSDFLT=""!(X="@") $C(7),"  Required??" G EDST:NURSDFLT=""!(X="@"),EDTR
+ I X?1"?".E W !?5,$C(7),"Starting date for this position.",!
+ S %DT="E" D ^%DT G:+Y'>0 EDST I $P(NURSNPOS,"^",6),+Y>$P(NURSNPOS,"^",6) S NURSBAD="1^3" D EN4^NURSUT3 G EDST
+ S $P(NURSNPOS,"^",3)=+Y
+EDTR ;EDIT TOUR OF DUTY
+ S NURSDFLT=$S($D(^NURSF(211.6,+$P(NURSOPOS,"^",12),0)):$P(^(0),"^"),1:"")
+ W !,"ASSIGN TOUR OF DUTY: "_$S(NURSDFLT'="":NURSDFLT_"// ",1:"") R X:DTIME S:'$T X="^^" I X="^^"!(X="^") S NUROUT=1 Q
+ I X="" S:NURSDFLT'="" $P(NURSNPOS,"^",12)=$P(NURSOPOS,"^",12) G EDFT
+DTR I X="@",NURSDFLT'="" W !,?3,$C(7),"SURE YOU WANT TO DELETE" S %=0 D YN^DICN S:%=-1 NUROUT=1 Q:NUROUT  S:%=1 $P(NURSNPOS,"^",12)="" W:%=2 $C(7),"  ??" G EDFT:%=1,EDTR:%=2 W !?5,$C(7),"ANSWER YES OR NO" G DTR
+ I X?1"?".E W !?5,$C(7),"Tour of duty for this position.",!
+ S DIC="^NURSF(211.6,",DIC(0)="ELQM",DLAYGO=211.9 D ^DIC I $D(DTOUT)!$D(DUOUT) S NUROUT=1 Q
+ G:+Y'>0 EDTR S $P(NURSNPOS,"^",12)=+Y
+EDFT ; EDIT FTEE
+ S NURSDFLT=$P(NURSOPOS,"^",6)
+ W !,"FTEE: "_$S(NURSDFLT'="":NURSDFLT_"// ",1:"") R X:DTIME S:'$T X="^^" I X="^^"!(X="^") S NUROUT=1 Q
+ I X=""!(X="@") S:NURSDFLT'=""&(X="") $P(NURSNPOS,"^",6)=$P(NURSOPOS,"^",6) W:NURSDFLT=""!(X="@") $C(7),"  Required??" G EDFT:NURSDFLT=""!(X="@"),EDREST
+ I X'=+X!(X>1)!(X<0)!(X?.E1"."4N.N) W !?5,$C(7),"The amount of FTEE assigned to this employee for this position.",!!?5,"Type a number between 0 and 1, 3 decimal digits." G EDFT
+ S $P(NURSNPOS,"^",6)=X
+EDREST ; EDIT REST OF DATA
+ D EDVD^NURAED7
+ Q
+SDTCK ;
+ I $P(NURSOPOS,U,8),$P(NURSOPOS,U,3)>$P(NURSOPOS,U,8) S (NBAD,NURSBAD)="1^3" D EN4^NURSUT3
+ Q

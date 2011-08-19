@@ -1,0 +1,143 @@
+IBDECLN2 ;ALB/AAS - Clean up Data Qualifiers and Package interfaces ; 23-JUN-97
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**14,36**;APR 24, 1997
+ ;
+ ; -- This routine contains critical data for Package Interface File
+ ;    that is used in formatting the data for transmission to scanning
+ ;    
+ ;    Format
+ ;       Line 1, Package Interface Node:  File 357.6   (node,piece)
+ ;               p1: Package Interface Name            (0;1)
+ ;               p2: PCE Interface Node                (12;1)
+ ;               p3: Value Piece                       (12;2)
+ ;               p4: Narrative Piece                   (12;3)
+ ;               p5: Header Piece                      (12;4)
+ ;               p6: Qualifier Piece                   (12;5)
+ ;               p7: Quantity Piece                    (12;6)
+ ;       Subsequent Lines, for data qualifiers (357.631)
+ ;               p1: Allowable Qualifier Name          (0;1)
+ ;               p3: Independent Mapping               (0;3)
+ ;               p4: PCE Interface Node                (0;4)
+ ;               p5: Value Piece                       (0;5)
+ ;               p7: Header Piece                      (0;7)
+ ;               p8: Qualifier Piece                   (0;8)
+ ;               
+OUTPUT ;;
+PROC ;;INPUT PROCEDURE CODE (CPT4):PROCEDURE^1^6^7^3^2
+ ;;+PRIMARY:;IBD(357.98,^^0
+ ;;+SECONDARY:;IBD(357.98,^^0
+ ;;~~~
+PROV ;;INPUT PROVIDER:ENCOUNTER^4^^^15
+ ;;+PRIMARY:;IBD(357.98,^^0
+ ;;+SECONDARY:;IBD(357.98,^^0
+ ;;~~~
+PROB ;;GMP INPUT CLINIC COMMON PROBLEMS:DIAGNOSIS/PROBLEM^3^13^14^2
+ ;;+PRIMARY:;IBD(357.98,^^1^^^^^2
+ ;;+SECONDARY:;IBD(357.98,^^1^^^^^2
+ ;;+SERVICE CONNECTED:;IBD(357.98,^^1^^^^^9
+ ;;+AGENT ORANGE RELATED:;IBD(357.98,^^1^^^^^10
+ ;;+IONIZING RADIATION RELATED:;IBD(357.98,^^1^^^^^11
+ ;;+ENVIRONMENTAL CONTAMINANTS RELATED:;IBD(357.98,^^1^^^^^12
+ ;;+ADD TO PROBLEM LIST:;IBD(357.98,^^1^^^^^5
+ ;;+ACTIVE:;IBD(357.98,^^1^^^^^6
+ ;;+INACTIVE:;IBD(357.98,^^1^^^^^6
+ ;;+NON-SERVICE CONNECTED:;IBD(357.98,^^1^^^^^9
+ ;;~~~
+DIAG ;;INPUT DIAGNOSIS CODE (ICD9):DIAGNOSIS/PROBLEM^1^13^14^2
+ ;;+PRIMARY:;IBD(357.98,^^1^^^^^2
+ ;;+SECONDARY:;IBD(357.98,^^1^^^^^2
+ ;;+SERVICE CONNECTED:;IBD(357.98,^^1^^^^^9
+ ;;+ICD-9 DIAGNOSIS CODE:;IBD(359.1,^^0
+ ;;+AGENT ORANGE RELATED:;IBD(357.98,^^1^^^^^10
+ ;;+IONIZING RADIATION RELATED:;IBD(357.98,^^1^^^^^11
+ ;;+ENVIRONMENTAL CONTAMINANTS RELATED:;IBD(357.98,^^1^^^^^12
+ ;;+ADD TO PROBLEM LIST:;IBD(357.98,^^1^^^^^5
+ ;;+ACTIVE:;IBD(357.98,^^1^^^^^6
+ ;;+INACTIVE:;IBD(357.98,^^1^^^^^6
+ ;;~~~
+ ;;PX INPUT CHECKOUT TIME:ENCOUNTER^14
+ ;;+CHECKOUT DATE@TIME:;IBD(359.1,^^0
+ ;;+CHECKOUT TIME - DATE ASSUMED;IBD(359.1,^^0
+ ;;~~~
+ ;;PX INPUT EDUCATION TOPICS:PATIENT ED^1^^^2
+ ;;+POOR UNDERSTANDING:;IBD(357.98,^^0
+ ;;+FAIR UNDERSTANDING:;IBD(357.98,^^0
+ ;;+GOOD UNDERSTANDING:;IBD(357.98,^^0
+ ;;+UNDERSTANDING NOT ASSESSED:;IBD(357.98,^^0
+ ;;+PATIENT ED REFUSED:;IBD(357.98,^^0
+ ;;~~~
+ ;;PX INPUT EXAMS:EXAM^1^^^2
+ ;;+ABNORMAL RESULT:;IBD(357.98,^^0
+ ;;+NORMAL RESULT:;IBD(357.98,^^0
+ ;;~~~
+ ;;PX INPUT HEALTH FACTORS:HEALTH FACTORS^1^^^2
+ ;;+MINIMAL SEVERITY:;IBD(357.98,^^0
+ ;;+MODERATE SEVERITY:;IBD(357.98,^^0
+ ;;+HEAVY SEVERITY:;IBD(357.98,^^0
+ ;;~~~
+ ;;PX INPUT IMMUNIZATION:IMMUNIZATION^1^7
+ ;;+CONTRAINDICATED:;IBD(357.98,^^1^IMMUNIZATION^1^^^5
+ ;;+GIVEN:;IBD(357.98,^^1^IMMUNIZATION^1
+ ;;+REFUSED:;IBD(357.98,^^1^IMMUNIZATION^1^^^8
+ ;;~~~
+ ;;PX INPUT PATIENT ACTIVE PROBLEM:DIAGNOSIS/PROBLEM^4^13^14^2
+ ;;+PRIMARY:;IBD(357.98,^^1^^^^^2
+ ;;+SECONDARY:;IBD(357.98,^^1^^^^^2
+ ;;+SERVICE CONNECTED:;IBD(357.98,^^1^^^^^9
+ ;;+AGENT ORANGE RELATED:;IBD(357.98,^^1^^^^^10
+ ;;+IONIZING RADIATION RELATED:;IBD(357.98,^^1^^^^^11
+ ;;+ENVIRONMENTAL CONTAMINANTS RELATED:;IBD(357.98,^^1^^^^^12
+ ;;+ACTIVE:;IBD(357.98,^^1^^^^^6
+ ;;+INACTIVE:;IBD(357.98,^^1^^^^^6
+ ;;+NON-SERVICE CONNECTED:;IBD(357.98,^^1^^^^^9
+ ;;~~~
+ ;;PX INPUT SC TREATMENT QUESTIONS:ENCOUNTER
+ ;;+YES:;IBD(357.98,^^0
+ ;;+NO:;IBD(357.98,^^0
+ ;;~~~
+ ;;PX INPUT VISIT CLASSIFICATION:ENCOUNTER
+ ;;+ENVIRONMENTAL CONTAMINANTS RELATED:;IBD(357.98,^^0
+ ;;+SERVICE CONNECTED:;IBD(357.98,^^0
+ ;;+AGENT ORANGE RELATED:;IBD(357.98,^^0
+ ;;+IONIZING RADIATION RELATED:;IBD(357.98,^^0
+ ;;+MILITARY SEXUAL TRAUMA:;IBD(357.98,^^0
+ ;;~~~
+ ;;PX INPUT SC TREATMENT QUESTION:ENCOUNTER
+ ;;+YES:;IBD(357.98,^^0
+ ;;+NO:;IBD(357.98,^^0
+ ;;~~~
+ ;;PX INPUT NO CLASSIFICATIONS:IBD NOCLASSIFICATION
+ ;;+NO CLASSIFICATIONS:;IBD(357.98,^^0
+ ;;~~~
+ ;;PX INPUT SC TREATMENT QUESTION (MST):ENCOUNTER
+ ;;+YES:;IBD(357.98,^^0
+ ;;+NO:;IBD(357.98,^^0
+ ;;~~~
+ ;;DGMST INPUT MST CLASSIFICATION:ENCOUNTER
+ ;;+YES:;IBD(357.98,^^0
+ ;;+NO:;IBD(357.98,^^0
+ ;;~~~
+ ;;IBD INPUT CANCEL/NOSHOW^IBD-ABORT^1^2^3^4^5
+ ;;~~~
+ ;;INPUT VISIT TYPE:ENCOUNTER^5
+ ;;~~~
+ ;;INPUT SC RELATED?:ENCOUNTER^6^^^6
+ ;;~~~
+ ;;INPUT AO RELATED?:ENCOUNTER^7
+ ;;~~~
+ ;;INPUT IR RELATED?:ENCOUNTER^8^^^9
+ ;;~~~
+ ;;INPUT EC RELATED?:ENCOUNTER^^^^9
+ ;;~~~
+ ;;INPUT PROVIDER INDICATOR:ENCOUNTER^15
+ ;;~~~
+ ;;PX INPUT ATTENDING PHYSICIAN:ENCOUNTER^16
+ ;;~~~
+ ;;PX INPUT SKIN TESTS:SKIN TEST^1
+ ;;~~~
+ ;;PX INPUT VISIT TYPE:ENCOUNTER^5
+ ;;~~~
+ ;;
+ ;;GMP SELECT PATIENT ACTIVE PROBLEMS^PRIMARY^SECONDARY
+ ;;DG SELECT ICD-9 DIAGNOSIS CODES^PRIMARY^SECONDARY
+ ;;DPT SC HIDDEN TREATMENT QUESTIONS^YES^NO
+ ;;SD SELECT PROVIDER^PRIMARY^SECONDARY

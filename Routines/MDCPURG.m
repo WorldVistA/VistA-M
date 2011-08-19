@@ -1,0 +1,205 @@
+MDCPURG ;HINES OIFO/DP - CP Nightly Purge Options;27 Jan 2008
+ ;;1.0;CLINICAL PROCEDURES;**16**;Apr 01, 2004;Build 280
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; This routine uses the following IAs:
+ ;  #10063       - %ZTLOAD calls                Kernel                         (supported)
+ ;  # 2263       - XPAR calls                   Toolkit                        (supported)
+ ;
+ ;
+ ;
+EN ; Not called interactively
+ Q
+ ;
+CP ; CP Legacy Cleanup
+ N ZTREQ
+ S ZTREQ=$$ZTREQ("CP_CLEANUP")
+ S MDSTOP=+$$GET^XPAR("SYS","MD PARAMETERS","INSTRUMENT_DATA_RETENTION") Q:'MDSTOP
+ S MDSTOP=$$FMADD^XLFDT(DT\1,MDSTOP*-1)
+ S MDDT=""
+ F  S MDDT=$O(^MDD(703.1,"ADTP",MDDT)) Q:MDDT=""  D:+MDDT<MDSTOP
+ .F X1=0:0 S X1=$O(^MDD(703.1,"ADTP",MDDT,X1)) Q:'X1  D
+ ..S MDFDA(703.1,X1_",",.4)="@"
+ ..F X2=0:0 S X2=$O(^MDD(703.1,X1,.1,X2)) Q:'X2  D
+ ...S MDFDA(703.11,X2_","_X1_",",.01)="@"
+ ..D FILE^DIE("","MDFDA") K MDFDA
+ Q
+ ;
+CLIO ; CliO Background Cleanup
+ S ZTREQ=$$ZTREQ("CLIO_CLEANUP")
+ S MDSTOP=+$$GET^XPAR("SYS","MD PARAMETERS","UNVERIFIED_OBS_RETENTION") Q:'MDSTOP
+ S MDSTOP=$$FMADD^XLFDT(DT,MDSTOP*-1)
+ F MDDT=0:0 S MDDT=$O(^MDC(704.117,"AUV",0,MDDT)) Q:'MDDT!(MDDT>MDSTOP)  D
+ .F MDDA=0:0 S MDDA=$O(^MDC(704.117,"AUV",0,MDDT,MDDA)) Q:'MDDA  D
+ ..D PURGEOBS(MDDA)
+ ..; Checking for child observations as well
+ ..S MDGBL=$NA(^MDC(704.117,"AP",MDDA))
+ ..F  S MDGBL=$Q(@MDGBL) Q:MDGBL=""  Q:$QS(MDGBL,3)'=MDDA  D
+ ...D PURGEOBS($QS(MDGBL,5))
+ ..D FILE^DIE("K","MDFDA") ; Bang!
+ ..K MDFDA
+ Q
+ ;
+PURGEOBS(MDDA) ; Gathers the pointers for a single observation
+ N MDGBL
+ S MDFDA(704.117,MDDA_",",.01)="@"
+ ;
+ ; Get the SET pointers
+ S MDGBL=$NA(^MDC(704.1161,"AS",MDDA))
+ F  S MDGBL=$Q(@MDGBL) Q:MDGBL=""  Q:$QS(MDGBL,3)'=MDDA  D
+ .S MDFDA(704.1161,$QS(MDGBL,5)_",",.01)="@"
+ ;
+ ; Get the QUALIFIER pointers
+ S MDGBL=$NA(^MDC(704.118,"PK",MDDA))
+ F  S MDGBL=$Q(@MDGBL) Q:MDGBL=""  Q:$QS(MDGBL,3)'=MDDA  D
+ .S MDFDA(704.118,$QS(MDGBL,5)_",",.01)="@"
+ Q
+ ;
+HL7 ; Purges HL7 data from 704.002
+ S ZTREQ=$$ZTREQ("HL7_CLEANUP")
+ S MDCSTOP=+$$GET^XPAR("SYS","MD PARAMETERS","GATEWAY_DATA_RETENTION") Q:'MDCSTOP
+ D NOW^%DTC S MDCSTOP=$$FMADD^XLFDT(%,-MDCSTOP,0,0,0)
+ N MDCDTTM,MDCIEN S (MDCDTTM,MDCIEN)=0
+ F  S MDCDTTM=$O(^MDC(704.002,"PURGE","4",MDCDTTM)) Q:$G(MDCDTTM)=""  Q:(MDCDTTM>MDCSTOP)  D
+ .N MDCIEN S MDCIEN=0
+ .F  S MDCIEN=$O(^MDC(704.002,"PURGE","4",MDCDTTM,MDCIEN)) Q:$G(MDCIEN)=""  D
+ ..N MDCFDA,MDCSIEN S MDCSIEN=0
+ ..S MDCFDA(704.002,MDCIEN_",",.01)="@"
+ ..F  S MDCSIEN=$O(^MDC(704.004,"B",MDCIEN,MDCSIEN)) Q:$G(MDCSIEN)=""  D
+ ...S MDCFDA(704.004,MDCSIEN_",",.01)="@"
+ ..D FILE^DIE("K","MDCFDA")
+ K MDCSTOP
+ Q
+ ;
+QUERIES ; Clear the cached queries nightly
+ S ZTREQ=$$ZTREQ("CACHE_QUERIES")
+ N MDOPT,MDQ,MDCMD,MDERR,MDNAME
+ ; First, clear out all queries
+ D CLEARQ
+ ; Now re-build them :)
+ D GETLST^XPAR(.MDOPT,"SYS","MD COMMANDS","Q")
+ F MDQ=0:0 S MDQ=$O(MDOPT(MDQ)) Q:'MDQ  D
+ .S MDNAME=$P(MDOPT(MDQ),"^",1),MDNODE="MDCACHE_"_MDNAME
+ .D GETWP^XPAR(.MDCMD,"SYS","MD COMMANDS",MDNAME,.MDERR)
+ .I $P(MDCMD(1,0),";",7)'=1 Q
+ .L +(^XTMP(MDNODE)):60 E  Q
+ .K ^XTMP(MDNODE)
+ .D RPC^MDCLIO(.MDRET,"EXECUTE",MDNAME)
+ .S ^XTMP(MDNODE,0)=$$FMADD^XLFDT(DT,1)_U_DT
+ .M ^XTMP(MDNODE,1)=@MDRET
+ .L -(^XTMP(MDNODE))
+ Q
+ ;
+CLEARQ ; Clear Queries Cache - Ignores script settings
+ N MDQ
+ S MDQ="MDCACHE_"
+ F  S MDQ=$O(^XTMP(MDQ)) Q:MDQ'?1"MDCACHE_".E  D
+ .L +(^XTMP(MDQ)):60 E  Q  ; Will try again next time ...
+ .K ^XTMP(MDQ)
+ .L -(^XTMP(MDQ))
+ Q
+ ;
+GETPAR(TASKID) ; Get Task in Parameter File
+ Q $$GET^XPAR("SYS","MD PARAMETERS","TASK_"_TASKID)
+ ;
+SETPAR(TASKID,ZTSK,NAME,RTN,RECUR) ;
+ D EN^XPAR("SYS","MD PARAMETERS","TASK_"_TASKID,+$G(ZTSK)_";"_$G(NAME,"Task Has No Name")_";"_$TR($G(RTN),"^"," ")_";"_(+$G(RECUR)))
+ Q
+ ;
+ZTSK(TASKID) ; Taskman ID - According to MD PARAMETERS, creates one if missing
+ N ZTSK
+ Q:$$GETPAR(TASKID)="" -1 ; Error state, TASKID not in XPAR
+ S ZTSK=+$P($$GETPAR(TASKID),";")
+ D STAT^%ZTLOAD I ZTSK(0)=1 Q ZTSK
+ Q 0
+ ;
+DESC(TASKID) ; Task Description
+ Q $P($$GETPAR(TASKID),";",2)
+ ;
+RTN(TASKID) ; Task Routine
+ Q $TR($P($$GETPAR(TASKID),";",3)," ",U)
+ ;
+ZTREQ(TASKID) ; Taskman re-queue identifier
+ Q $P("@^1H^1D^7D^30D^365D",U,$$RECUR(TASKID)+1)
+ ;
+RECUR(TASKID) ; Task Recurrence
+ Q +$P($$GETPAR(TASKID),";",4)
+ ;
+START ; Queue the task to be ran @ P2(0)
+ ; P2(0)=TASK ID as stored in XPAR (i.e. the name of the background task)
+ N ZTSK,ZTRTN,ZTDESC,ZTDTH,ZTIO
+ S ZTSK=$$ZTSK(P2(0))
+ D:'ZTSK  ; Create unscheduled task
+ .S ZTRTN=$$RTN(P2(0))
+ .S ZTDESC=$$DESC(P2(0))
+ .S ZTDTH="@"
+ .S ZTIO=""
+ .D ^%ZTLOAD
+ D ISQED^%ZTLOAD D:ZTSK(0)=1 DQ^%ZTLOAD ; Just to be safe DQ the task first
+ S ZTDESC=$$DESC(P2(0)),ZTRTN=$$RTN(P2(0)),ZTIO=""
+ S ZTDTH=$$FMDT^MDCLIO(P2(1))
+ D REQ^%ZTLOAD
+ D SETPAR(P2(0),ZTSK,$$DESC(P2(0)),$$RTN(P2(0)),+$G(P2(2)))
+ S @RESULTS@(0)="1^RESCHEDULED"
+ Q
+ ;
+STOP ; Stop the task (i.e. dequeue)
+ N ZTSK
+ S ZTSK=$$ZTSK(P2(0))
+ D ISQED^%ZTLOAD D:ZTSK(0)=1 DQ^%ZTLOAD
+ D STAT
+ Q
+ ;
+STAT ; GET THE STATUS OF THE PURGE JOB
+ D NEWDOC^MDCLIO("RESULTS")
+ D XMLHDR^MDCLIO("RECORD")
+ D XMLDATA^MDCLIO("TASK_ID",P2(0))
+ S ZTSK=$$ZTSK(P2(0))
+ I ZTSK<0 D  Q
+ .D XMLDATA^MDCLIO("TASK",-1)
+ .D XMLDATA^MDCLIO("STATUS","-1")
+ .D XMLDATA^MDCLIO("MESSAGE","No task ID parameter settings.")
+ .D XMLFTR^MDCLIO("RECORD")
+ .D ENDDOC^MDCLIO("RESULTS")
+ ;
+ D XMLDATA^MDCLIO("TASK",ZTSK)
+ D XMLDATA^MDCLIO("TASK_NAME",$$DESC(P2(0)))
+ D XMLDATA^MDCLIO("TASK_ROUTINE",$$RTN(P2(0)))
+ D XMLDATA^MDCLIO("RECURRENCE",$$RECUR(P2(0)))
+ ;
+ D STAT^%ZTLOAD
+ I '$G(ZTSK(0)) D  Q
+ .D XMLDATA^MDCLIO("STATUS",0)
+ .D XMLDATA^MDCLIO("MESSAGE","Task ID not found in Taskman.")
+ .D XMLFTR^MDCLIO("RECORD")
+ .D ENDDOC^MDCLIO("RESULTS")
+ ;
+ D XMLDATA^MDCLIO("STATUS",ZTSK(1))
+ D XMLDATA^MDCLIO("MESSAGE",ZTSK(2))
+ I ZTSK(1)=1 D
+ .D ISQED^%ZTLOAD
+ .I $G(ZTSK("D"))]"" D XMLDT^MDCLIO("SCHEDULED",$$HTFM^XLFDT(ZTSK("D")))
+ D XMLFTR^MDCLIO("RECORD")
+ D ENDDOC^MDCLIO("RESULTS")
+ Q
+ ;
+GETTASKS ; Get list of the known tasks
+ N MDLIST,MDERR,MDTASK
+ D BLD
+ D GETLST^XPAR(.MDLIST,"SYS","MD PARAMETERS","Q",.MDERR)
+ D NEWDOC^MDCLIO("RESULTS")
+ F MDTASK=0:0 S MDTASK=$O(MDLIST(MDTASK)) Q:'MDTASK  D
+ .Q:MDLIST(MDTASK)'?1"TASK_".E
+ .D XMLHDR^MDCLIO("RECORD")
+ .D XMLDATA^MDCLIO("TASK_ID",$P($P(MDLIST(MDTASK),"^",1),"TASK_",2))
+ .D XMLDATA^MDCLIO("TASK_NAME",$P(MDLIST(MDTASK),";",2))
+ .D XMLDATA^MDCLIO("TASK",+$P(MDLIST(MDTASK),"^",2))
+ .D XMLFTR^MDCLIO("RECORD")
+ D ENDDOC^MDCLIO("RESULTS")
+ Q
+ ;
+BLD ; Build the known tasks
+ I $$GETPAR("CLIO_CLEANUP")="" D SETPAR("CLIO_CLEANUP",0,"CliO Cleanup","CLIO^MDCPURG")
+ I $$GETPAR("CP_CLEANUP")="" D SETPAR("CP_CLEANUP",0,"CP Legacy Cleanup","CP^MDCPURG")
+ I $$GETPAR("HL7_CLEANUP")="" D SETPAR("HL7_CLEANUP",0,"HL7 Log Cleanup","HL7^MDCPURG")
+ Q

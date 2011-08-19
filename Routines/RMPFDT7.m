@@ -1,0 +1,92 @@
+RMPFDT7 ;DDC/KAW-DISPLAY ADJUSTMENTS [ 03/12/98  7:46 AM ]
+ ;;2.0;REMOTE ORDER/ENTRY SYSTEM;**10**;JUN 16, 1995
+ ;; input: RMPFX,DFN
+ ;;output:
+ Q:'$D(DFN)  D PAT^RMPFUTL,HEAD S (F1,RMPFTOT)=0
+ S S0=^RMPF(791810,RMPFX,0),RMPFTYP=$P(^(0),U,2),RMPFHAT=""
+ I RMPFTYP,$D(^RMPF(791810.1,RMPFTYP,0)) S RMPFHAT=$P(^(0),U,2)
+A1 S F1=$O(^RMPF(791810,RMPFX,101,"AD",F1)) G EXIT:'F1 S (F2,MT)=0
+A2 S F2=$O(^RMPF(791810,RMPFX,101,"AD",F1,F2)) I 'F2 D WRITE G END:$D(RMPFOUT),A1
+ G A2:'$D(^RMPF(791810,RMPFX,101,F2,0)) S S0=^(0),(TT,CN)=0
+ S (RD,RE,US)="",S9=$G(^RMPF(791810,RMPFX,101,F2,90))
+ I "OC"[$P(S0,U,15) S RD=$P(^RMPF(791810,RMPFX,0),U,9),US=$P(^(0),U,8) G A3
+ G NO:S9="" S US=$P(S9,U,1),RD=$P(S9,U,2)
+A3 I US,$D(^VA(200,US,0)) S US=$E($P(^(0),U,1),1,14)
+ I RD S RD=$E(RD,4,5)_"-"_$E(RD,6,7)_"-"_($E(RD,1,3)+1700)
+ S RE=$P(S9,U,3)
+NO S RMPFIT=$P(S0,U,1),RMPFITP=""
+ I RMPFIT,$D(^RMPF(791811,RMPFIT,0)) S RMPFITP=$P(^(0),U,1)
+ S RMPFTOE=$P(S0,U,15),RMPFTOE=$S(RMPFTOE="D":"DELETED",RMPFTOE="DC":"CHNG-DL",RMPFTOE="OC":"CHNG-OR",1:"ORDER")
+ S RMPFCS=$P(S0,U,14),RMPFLR=$P(S0,U,4) S:RMPFHAT="X" RMPFCS=0
+ I $P(S0,U,15)="C" S RMPFCS=0,CN=1
+ S:$P(S0,U,15)["D" RMPFCS=-RMPFCS
+ S RMPFTOT=RMPFTOT+RMPFCS,MT=MT+RMPFCS,TT=TT+RMPFCS
+ D SUB S (X,CT)=0 F I=1:1 S X=$O(CM(X)) Q:'X  S CT=CT+1
+ I $Y+CT>$S(IOST?1"C-".E:20,1:58) D CONT:IOST?1"C-".E Q:$D(RMPFOUT)  D HEAD W !,"(cont.)"
+ W !,RD,?12,RMPFTOE
+ W:RMPFHAT'="X" ?21,$E(RMPFITP,1,11)
+ W ?33,CM,?52,$J(TT,7,2),?62,RMPFLR,?66,$E(US,1,14)
+ G A2:'$D(CM)
+ S X=0 F I=1:1 S X=$O(CM(X)) Q:'X  S T=$S(CN=0:$P(CM(X),U,4),1:0) W !,$P(CM(X),U,1),?12,$P(CM(X),U,2),?33,$E($P(CM(X),U,3),1,18),?52,$J(T,7,2),?66,$E($P(CM(X),U,5),1,14)
+ I CN=1 D
+ .S S3=$G(^RMPF(791810,RMPFX,101,F2,90))
+ .S X=$P(S3,U,13) I X,$D(^VA(200,X,0)) S X=$P(^(0),U,1)
+ .S Y=$P(S0,U,17) D DD^%DT S R=$P(S3,U,5)
+ .W !,"*** CANCELED *** by: ",X,?$X+3,"on   ",Y
+ .W !?13,"Reason: ",R
+ G A2
+SUB S F3=0 K CM S CM=""
+B1 S F3=$O(^RMPF(791810,RMPFX,101,F2,102,F3)) G BE:'F3
+ G B1:'$D(^RMPF(791810,RMPFX,101,F2,102,F3,0)) S S2=^(0)
+ S C=$P(S2,U,1),T=$P(S2,U,2),P=$P(S2,U,3),L=$P(S2,U,4)
+ I CN=1 S T=0
+ I C,$D(^RMPF(791811.2,C,0)) S C=$P(^(0),U,3)
+ S P=$S(P="A":"ADDED",P="D":"DELETED",1:"ORDER") S:P="DELETED" T=-T
+ S RMPFTOT=RMPFTOT+T,MT=MT+T
+ I P["ORDER"!(RMPFTOE="DELETED")!((RMPFTOE="CHNG-DL")&(P="DELETED")) S CM=$S(CM="":C,1:CM_","_C),TT=TT+T G B1
+ S S=$P(S2,U,5),R=$P(S2,U,6)
+ I S,$D(^VA(200,S,0)) S S=$P(^(0),U,1)
+ I R S R=$E(R,4,5)_"-"_$E(R,6,7)_"-"_($E(R,1,3)+1700)
+ S CM(F3)=R_U_P_U_C_U_T_U_S
+ G B1
+BE K R,P,C,T,S,L Q
+EXIT I $Y>$S(IOST?1"C-".E:20,1:58) D CONT:IOST?1"C-".E G END:$D(RMPFOUT) D HEAD W !,"(cont.)"
+ W ?53,"======",!,"Total Price:",?52,"$",$J(RMPFTOT,6,2)
+ D CONT1:IOST?1"C-".E W:IOST?1"P-".E @IOF
+ D:$D(IO("S")) ^%ZISC
+END K F2,F2,F3,RMPFTOT,MT,S0,S2,S9,RD,RE,US,RMPFIT,RMPFITP,RMPFTOE,RMPFCS
+ K RMPFLR,RMPFNAM,RMPFQUT,RMPFSSN,RMPFDOB,RMPFDOD,RMPFOUT,RMPFQUT,T
+ K S3,%XX,%YY,CT,F1,I,TT,CM,CN,X,Y,R Q
+WRITE I $Y>$S(IOST?1"C-".E:20,1:58) D CONT:IOST?1"C-".E Q:$D(RMPFOUT)  D HEAD W !,"cont.)"
+ W !?53,"------",!?52,"$",$J(MT,6,2),! Q
+HEAD W:IOST?1"C-".E @IOF W !?33,"ORDER HISTORY"
+ W !,"Station:  ",RMPFSTAP,?68,RMPFDAT
+ W !,"Patient:  ",$E(RMPFNAM,1,25),?40,"SSN:  ",RMPFSSN,?62,"DOB:  ",RMPFDOB
+ W ! F I=1:1:80 W "-"
+ W !,?3,"Order",?12,"Type of",?70,"Order"
+ W !?3,"Date",?13,"Entry",?24,"Model",?36,"Component(s)",?53,"Price",?61,"Ear",?68,"Entered By"
+ W !,"----------",?12,"-------",?21,"-----------",?33,"------------------",?53,"------",?61,"---",?66,"--------------"
+ Q
+READ K RMPFOUT,RMPFQUT
+ R Y:DTIME I '$T W *7 R Y:5 G READ:Y="." S:'$T Y=U
+ I Y?1"^".E S (RMPFOUT,Y)="" Q
+ S:Y?1"?".E (RMPFQUT,Y)=""
+ Q
+CONT D SPACE
+ W !,"Type <RETURN> to continue or <^> to exit: " D READ
+ G CONT:$D(RMPFQUT)
+ Q
+CONT1 D SPACE W !
+ W !,"Type <RETURN> to continue or <P>rint: " D READ
+ Q:$D(RMPFOUT)  G CONT1:$D(RMPFQUT) Q:Y=""  S Y=$E(Y,1)
+ D QUE:"Pp"[Y Q
+SPACE F  Q:$Y>21  W !
+ Q
+QUE W ! S %ZIS="QNP" D ^%ZIS G END:POP
+ I IO=IO(0),'$D(IO("S")) D ^RMPFDT7 G QUEE
+ I $D(IO("S")) S %ZIS="",IOP=ION D ^%ZIS G ^RMPFDT7
+ S ZTRTN="^RMPFDT7",ZTSAVE("RMPF*")="",ZTSAVE("DFN")=""
+ S ZTIO=ION D ^%ZTLOAD
+ D HOME^%ZIS S RMPFOUT=""
+ W:$D(ZTSK) !!,"*** Request Queued ***" H 2
+QUEE K %T,%ZIS,POP,ZTRTN,ZTSAVE,ZTIO,ZTSK Q

@@ -1,0 +1,7 @@
+DENTAL TYPE OF SERVICE
+ZWR
+^DIC(220.3,0)="DENTAL TYPE OF SERVICE^220.3^"
+^DIC(220.3,0,"GL")="^DIC(220.3,"
+^DIC(220.3,"%D",0)="^^2^2^2881028^^^"
+^DIC(220.3,"%D",1,0)="This file is a table of Dental procedures (services) performed on"
+^DIC(220.3,"%D",2,0)="(provided to) Dental patients."

@@ -1,0 +1,10 @@
+WORKLIST HEADINGS
+ZWR
+^DIC(68.4,0)="WORKLIST HEADINGS^68.4P^"
+^DIC(68.4,0,"GL")="^DIC(68.4,"
+^DIC(68.4,"%D",0)="^^5^5^2890914^^^"
+^DIC(68.4,"%D",1,0)="This file allows the lab to customize the short accession list.  It will"
+^DIC(68.4,"%D",2,0)="allow up to a 10-line heading of the accession.  This heading area may be"
+^DIC(68.4,"%D",3,0)="separated in a maximum of 4 columns.  Each column allows an entry that may"
+^DIC(68.4,"%D",4,0)="be used to define the supervisor of an accession area, or put in a space"
+^DIC(68.4,"%D",5,0)="to allow the technologist to designate which shift, etc."

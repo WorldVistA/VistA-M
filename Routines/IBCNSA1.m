@@ -1,0 +1,98 @@
+IBCNSA1 ;ALB/NLR - ANNUAL BENEFITS EDIT1 ; 27-MAY-1993
+ ;;Version 2.0 ; INTEGRATED BILLING ;; 21-MAR-94
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+% G ^IBCNSA
+ ;
+EN ; -- entry point from ibcnsa
+ D OUTP,INP,MEN,HOME,REHAB,IV
+ Q
+ ;
+MEN ;
+ S START=23,OFFSET=42
+ D SET^IBCNSP(START,OFFSET+1," Mental Health Outpatient ",IORVON,IORVOFF)
+ D SET^IBCNSP(START+1,OFFSET+2,"MH Opt. Max Days/Year: "_$J($P(IBCABD2,U,14),8))
+ D SET^IBCNSP(START+2,OFFSET+3,"MH Lifetime Opt. Max: $"_$J($P(IBCABD2,U,5),7))
+ D SET^IBCNSP(START+3,OFFSET+5,"MH Annual Opt. Max: $"_$J($P(IBCABD2,U,6),7))
+ D SET^IBCNSP(START+4,OFFSET+1,"Mental Health Opt. (%): "_$J($P(IBCABD2,U,11),8)_"%")
+ ;D SET^IBCNSP(START+5,OFFSET+1,"Adult Day Health Care?: "_$J($$YN^IBCNSM($P(IBCABD2,U,17)),8))
+ ;
+ S START=23,OFFSET=2
+ D SET^IBCNSP(START,OFFSET+2," Mental Health Inpatient ",IORVON,IORVOFF)
+ D SET^IBCNSP(START+1,OFFSET,"MH Inpt. Max Days/Year: "_$J($P(IBCABD5,U,14),8))
+ D SET^IBCNSP(START+2,OFFSET+1,"MH Lifetime Inpt. Max: $"_$J($P(IBCABD5,U,5),7))
+ D SET^IBCNSP(START+3,OFFSET+3,"MH Annual Inpt. Max: $"_$J($P(IBCABD5,U,6),7))
+ D SET^IBCNSP(START+4,OFFSET-1,"Mental Health Inpt. (%): "_$J($P(IBCABD5,U,11),8)_"%")
+ Q
+ ;
+OUTP ;
+ ;
+ N OFFSET,START
+ S IBCABD2=$G(^IBA(355.4,IBCAB,2))
+ S START=15,OFFSET=3
+ D SET^IBCNSP(START,OFFSET+31," Outpatient ",IORVON,IORVOFF)
+ D SET^IBCNSP(START+1,OFFSET+4,"Annual Deductible: $"_$J($P(IBCABD2,U,1),7))
+ D SET^IBCNSP(START+2,OFFSET+1,"Per Visit Deductible: $"_$J($P(IBCABD2,U,2),7))
+ D SET^IBCNSP(START+3,OFFSET+9,"Lifetime Max: $"_$J($P(IBCABD2,U,3),7))
+ D SET^IBCNSP(START+4,OFFSET+11,"Annual Max: $"_$J($P(IBCABD2,U,4),7))
+ D SET^IBCNSP(START+5,OFFSET+12,"Visit (%): "_$J($P(IBCABD2,U,9),8)_"%")
+ D SET^IBCNSP(START+6,OFFSET+2,"Max Visits Per Year: "_$J($P(IBCABD2,U,15),8))
+ S OFFSET=46
+ D SET^IBCNSP(START+1,OFFSET+7,"Surgery (%): "_$J($P(IBCABD2,U,13),8)_"%")
+ D SET^IBCNSP(START+2,OFFSET+5,"Emergency (%): "_$J($P(IBCABD2,U,10),8)_"%")
+ D SET^IBCNSP(START+3,OFFSET+2,"Prescription (%): "_$J($P(IBCABD2,U,12),8)_"%")
+ D SET^IBCNSP(START+4,OFFSET-4,"Adult Day Health Care?: "_$J($$YN^IBCNSM($P(IBCABD2,U,17)),8))
+ D SET^IBCNSP(START+5,OFFSET+2,"Dental Cov. Type: "_$J($$EXPAND^IBTRE(355.4,2.07,$P(IBCABD2,U,7)),6))
+ G:'$P(IBCABD2,U,7) OPTQ
+ N IBX
+ S IBX=$S($P($G(IBCABD2),U,7)=1:"           Dental Cov.: $",$P($G(IBCABD2),U,7)=2:"       Dental Cov. (%): ",1:"Dental Coverage $ or %: ")_$J($P(IBCABD2,U,8),$S($P($G(IBCABD2),U,7)=1:7,1:8))_$S($P($G(IBCABD2),U,7)=2:"%",1:"")
+ D SET^IBCNSP(START+6,OFFSET-4,IBX)
+OPTQ Q
+INP ;
+ S IBCABD5=$G(^IBA(355.4,IBCAB,5))
+ S START=8,OFFSET=3
+ D SET^IBCNSP(START,OFFSET+32," Inpatient ",IORVON,IORVOFF)
+ D SET^IBCNSP(START+1,OFFSET+4,"Annual Deductible: $"_$J($P(IBCABD5,U),7))
+ D SET^IBCNSP(START+2,OFFSET,"Per Admis. Deductible: $"_$J($P(IBCABD5,U,2),7))
+ D SET^IBCNSP(START+3,OFFSET+3,"Inpt. Lifetime Max: $"_$J($P(IBCABD5,U,3),7))
+ D SET^IBCNSP(START+4,OFFSET+5,"Inpt. Annual Max: $"_$J($P(IBCABD5,U,4),7))
+ D SET^IBCNSP(START+5,OFFSET+5,"Room & Board (%): "_$J($P(IBCABD5,U,9),8)_"%")
+ S OFFSET=41
+ D SET^IBCNSP(START+1,OFFSET,"Drug/Alcohol Lifet. Max: $"_$J($P(IBCABD5,U,7),7))
+ D SET^IBCNSP(START+2,OFFSET,"Drug/Alcohol Annual Max: $"_$J($P(IBCABD5,U,8),7))
+ D SET^IBCNSP(START+3,OFFSET+7,"Nursing Home (%): "_$J($P(IBCABD5,U,10),8)_"%")
+ D SET^IBCNSP(START+4,OFFSET,"Other Inpt. Charges (%): "_$J($P(IBCABD5,U,12),8)_"%")
+ Q
+ ;
+HOME ;
+ ;
+ S IBCABD3=$G(^IBA(355.4,IBCAB,3))
+ S START=29,OFFSET=3
+ D SET^IBCNSP(START,OFFSET+1," Home Health Care ",IORVON,IORVOFF)
+ D SET^IBCNSP(START+1,OFFSET+8,"Care Level: "_$J($$EXPAND^IBTRE(355.4,3.01,$P(IBCABD3,U)),6))
+ D SET^IBCNSP(START+2,OFFSET+3,"Visits Per Year: "_$J($P(IBCABD3,U,2),8))
+ D SET^IBCNSP(START+3,OFFSET,"Max. Days Per Year: "_$J($P(IBCABD3,U,3),8))
+ D SET^IBCNSP(START+4,OFFSET,"Med. Equipment (%): "_$J($P(IBCABD3,U,4),8)_"%")
+ D SET^IBCNSP(START+5,OFFSET+2,"Visit Definition: "_$P(IBCABD3,U,5))
+ Q
+ ;
+REHAB ;
+ ;
+ S START=37,OFFSET=1
+ D SET^IBCNSP(START,OFFSET+4,"      Rehabilitation ",IORVON,IORVOFF)
+ D SET^IBCNSP(START+1,OFFSET,"        OT Visits/Yr: "_$J($P(IBCABD3,U,6),8))
+ D SET^IBCNSP(START+2,OFFSET,"        PT Visits/Yr: "_$J($P(IBCABD3,U,7),8))
+ D SET^IBCNSP(START+3,OFFSET,"        ST Visits/Yr: "_$J($P(IBCABD3,U,8),8))
+ D SET^IBCNSP(START+4,OFFSET,"Med Cnslg. Visits/Yr: "_$J($P(IBCABD3,U,9),8))
+ Q
+ ;
+IV ;
+ ;
+ S START=37,OFFSET=43
+ D SET^IBCNSP(START,OFFSET+1," IV Management ",IORVON,IORVOFF)
+ D SET^IBCNSP(START+1,OFFSET-1,"    IV Infusion Opt?: "_$J($$YN^IBCNSM($P(IBCABD4,U,6)),8))
+ D SET^IBCNSP(START+2,OFFSET-1,"   IV Infusion Inpt?: "_$J($$YN^IBCNSM($P(IBCABD4,U,7)),8))
+ D SET^IBCNSP(START+3,OFFSET-1," IV Antibiotics Opt?: "_$J($$YN^IBCNSM($P(IBCABD4,U,8)),8))
+ D SET^IBCNSP(START+4,OFFSET-1,"IV Antibiotics Inpt?: "_$J($$YN^IBCNSM($P(IBCABD4,U,9)),8))
+ Q
+EXIT Q

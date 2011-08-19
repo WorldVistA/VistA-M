@@ -1,0 +1,74 @@
+PXRMIMM ; SLC/PKR - Handle immunization findings. ;12/23/2004
+ ;;2.0;CLINICAL REMINDERS;;Feb 04, 2005
+ ;
+ ;=======================================================
+EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;Evaluate immunization findings.
+ D EVALFI^PXRMINDX(DFN,.DEFARR,ENODE,.FIEVAL)
+ Q
+ ;
+ ;=======================================================
+EVALPL(FINDPA,ENODE,TERMARR,PLIST) ;Evaluate immunization term findings
+ ;for patient lists.
+ D EVALPL^PXRMINDL(.FINDPA,ENODE,.TERMARR,PLIST)
+ Q
+ ;
+ ;=======================================================
+EVALTERM(DFN,FINDPA,ENODE,TERMARR,TFIEVAL) ;Evaluate immunization terms.
+ D EVALTERM^PXRMINDX(DFN,.FINDPA,ENODE,.TERMARR,.TFIEVAL)
+ Q
+ ;
+ ;=======================================================
+GETDATA(DAS,FIEVT) ;Return data, for a specified V Immunization entry.
+ ;DBIA #4250
+ D VIMM^PXPXRM(DAS,.FIEVT)
+ Q
+ ;
+ ;=======================================================
+MHVOUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the clinical
+ ;maintenance output.
+ N EM,FIEN,IND,JND,NAME,NOUT,PNAME,REACTION,SERIES,TEMP,TEXTOUT,VDATE
+ S FIEN=$P(IFIEVAL("FINDING"),";",1)
+ S PNAME=$P(^AUTTIMM(FIEN,0),U,1)
+ S NAME="Immunization: "_PNAME_" = "
+ S IND=0
+ F  S IND=+$O(IFIEVAL(IND)) Q:IND=0  D
+ . S SERIES=$G(IFIEVAL(IND,"SERIES"))
+ . I SERIES'="" S SERIES=$$EXTERNAL^DILFD(9000010.11,.04,"",SERIES,.EM)
+ . I $G(IFIEVAL(IND,"CONTRAINDICATED")) S SERIES=SERIES_"; - CONTRAINDICATED"
+ . S VDATE=IFIEVAL(IND,"DATE")
+ . S TEMP=NAME_SERIES_" ("_$$EDATE^PXRMDATE(VDATE)_")"
+ . D FORMATS^PXRMTEXT(INDENT+2,PXRMRM,TEMP,.NOUT,.TEXTOUT)
+ . F JND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(JND)
+ S NLINES=NLINES+1,TEXT(NLINES)=""
+ Q
+ ;
+ ;=======================================================
+OUTPUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the clinical
+ ;maintenance output.
+ N EM,FIEN,IND,JND,NOUT,PNAME,REACTION,SERIES,TEMP,TEXTOUT,VDATE
+ S FIEN=$P(IFIEVAL("FINDING"),";",1)
+ S PNAME=$P(^AUTTIMM(FIEN,0),U,1)
+ S NLINES=NLINES+1
+ S TEXT(NLINES)=$$INSCHR^PXRMEXLC(INDENT," ")_"Immunization: "_PNAME
+ S IND=0
+ F  S IND=+$O(IFIEVAL(IND)) Q:IND=0  D
+ . S VDATE=IFIEVAL(IND,"DATE")
+ . S TEMP=$$EDATE^PXRMDATE(VDATE)
+ . S REACTION=$G(IFIEVAL(IND,"REACTION"))
+ . S SERIES=$G(IFIEVAL(IND,"SERIES"))
+ . I SERIES'="" D
+ .. S TEMP=TEMP_" series - "
+ .. S TEMP=TEMP_$$EXTERNAL^DILFD(9000010.11,.04,"",SERIES,.EM)
+ . I REACTION'="" D
+ .. S TEMP=TEMP_" reaction - "
+ .. S TEMP=TEMP_$$EXTERNAL^DILFD(9000010.11,.06,"",REACTION,.EM)
+ . I $G(IFIEVAL(IND,"CONTRAINDICATED")) S TEMP=TEMP_"; - CONTRAINDICATED"
+ . D FORMATS^PXRMTEXT(INDENT+2,PXRMRM,TEMP,.NOUT,.TEXTOUT)
+ . F JND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(JND)
+ . I IFIEVAL(IND,"COMMENTS")'="" D
+ .. S TEMP="Comments: "_IFIEVAL(IND,"COMMENTS")
+ .. D FORMATS^PXRMTEXT(INDENT+3,PXRMRM,TEMP,.NOUT,.TEXTOUT)
+ .. F JND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(JND)
+ S NLINES=NLINES+1,TEXT(NLINES)=""
+ Q
+ ;

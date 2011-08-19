@@ -1,0 +1,187 @@
+PXRMGECO ;SLC/JVS GEC-Prompts Cont'd ;6/19/03  20:56
+ ;;2.0;CLINICAL REMINDERS;;Feb 04, 2005
+ Q
+ ;^DISV(  = DBIA #510
+ N POP,DIROUT,DIRUT,DUOUT,LOCNP,MENU,PROV,Y
+ N DETAIL,FORMAT
+ ;
+SUM ;#8 Start of Summary (Scoring) report
+ ;
+SUMBDT D BDT^PXRMGECP Q:$D(DIROUT)!($D(DIRUT))
+SUMEDT D EDT^PXRMGECP Q:$D(DIROUT)  I $D(DIRUT) K DIRUT G SUMBDT
+SUMPAT D PAT^PXRMGECP Q:$D(DIROUT)  I $D(DIRUT) K DIRUT G SUMEDT
+SUMFOR D FOR^PXRMGECP Q:$D(DIROUT)  I $D(DIRUT) K DIRUT G SUMPAT
+SUMIOO D SUMIO Q:$D(DIROUT)
+ Q
+SUMIO ;=====Select IO device
+ N %ZIS
+ S %ZIS="QM" D ^%ZIS
+ I POP Q
+ I $D(IO("Q")) D
+ .S ZTRTN="SUM^PXRMGECM"
+ .S ZTDESC="GEC SUMMARY(SCORING) REPORT"
+ .S ZTSAVE("*")=""
+ .D ^%ZTLOAD
+ ;=====Call Report
+ E  D SUM^PXRMGECN
+ D HOME^%ZIS
+ D ^%ZISC
+ S:'$D(DIRUT)&('$D(DUOUT))&('$D(DIROUT)) DIR(0)="E" D ^DIR K DIR(0),Y
+ Q
+ ;
+RS ;#7 Start List and array of GEC Categories
+ ;
+ N CAT,CATNA,CNT,STAY,NUM,CATIEN,CATARY,BDT,EDT,CATDA
+ N SYN,IEN,RPT7
+ W @IOF
+ W "GEC Referral Service Categories"
+ S CNT=0
+ S SYN="GECFC" F  S SYN=$O(^AUTTHF("D",SYN)) Q:SYN'["GECFC"  D
+ .S IEN=0 F  S IEN=$O(^AUTTHF("D",SYN,IEN)) Q:IEN=""  D
+ ..Q:$P($G(^AUTTHF(IEN,0)),"^",11)=1
+ ..;
+ ..S CATNA=$P($P($G(^AUTTHF(IEN,0)),"^",1)," ",3,7)
+ ..S CATARY(CATNA,IEN)=""
+ S CATNA="" F  S CATNA=$O(CATARY(CATNA)) Q:CATNA=""  D
+ .S CAT=$O(CATARY(CATNA,0))
+ .S CNT=CNT+1
+ .S CATDA(CNT,CAT)=""
+ .W:CNT#2=1 !,CNT,?4,CATNA
+ .W:CNT#2=0 ?35,CNT,?39,CATNA
+ ;
+RSSC ;=====Select Referred Service Categories
+ W !
+ S DIR("A",1)="Select Categories from the list above using"
+ S DIR("A",2)="Commas and/or Dashes for ranges of numbers."
+ S DIR("A")="Select Categories or ^ to exit"
+ I $D(^DISV(DUZ,"PXRMGEC","RSSC")) S DIR("B")=$G(^DISV(DUZ,"PXRMGEC","RSSC"))
+ S DIR(0)="L^1:"_CNT
+ D ^DIR
+ K DIR("A"),DIR("B"),DIR(0)
+ Q:$D(DIROUT)
+ Q:$D(DIRUT)
+ S ^DISV(DUZ,"PXRMGEC","RSSC")=X
+ N LEN,IME,MEY
+ S LEN=$L(Y,",")
+ S MEY=0 F IME=1:1:LEN-1 S MEY=$P(Y,",",IME) D
+ .S CATMEY(MEY)=""
+ S STAY=0 F  S STAY=$O(CATDA(STAY)) Q:STAY=""  D
+ .I '$D(CATMEY(STAY)) K CATDA(STAY)
+ S NUM=0 F  S NUM=$O(CATDA(NUM)) Q:NUM=""  D
+ .S CATIEN($O(CATDA(NUM,0)))=""
+ K CATDA,CATMEY
+RSBDT D BDT^PXRMGECP Q:$D(DIROUT)!$D(DIRUT)
+RSEDT D EDT^PXRMGECP Q:$D(DIROUT)  I $D(DIRUT) K DIRUT G RSBDT
+RSPAT D PAT^PXRMGECP Q:$D(DIROUT)  I $D(DIRUT) K DIRUT G RSEDT
+RSFOR D FOR^PXRMGECP Q:$D(DIROUT)  I $D(DIRUT) K DIRUT G RSPAT
+RSIOO S RPT7=1 D CATIO^PXRMGECP Q:$D(DIROUT)
+ Q
+ ;
+ ;================================================================
+LOC ;By Location in the Hospital
+LOCDIC ;====Select Location
+ ;DBIA #10040 Supported
+ N Y,DIC
+ S DIC="^SC("
+ S DIC(0)="QAMEZ"
+ D ^DIC
+ I Y>0 S LOCNP=$P(Y(0),"^",1)
+ K DIC,DIC(0),Y
+ Q
+ ;
+LOCDIR ;  #5 Start of Location Report
+ ;--Returns LOCNP equal to Location Name
+ N BDT,EDT
+ W @IOF
+ K DIR
+ I $D(^DISV(DUZ,"PXRMGEC","LOCDIR")) S DIR("B")=$G(^DISV(DUZ,"PXRMGEC","LOCDIR"))
+ S DIR(0)="S^A:All Locations;S:Single Location"
+ D ^DIR
+ K DIR("A"),DIR("B"),DIR(0)
+ Q:$D(DIRUT)!($D(DUOUT))
+ Q:$D(DIROUT)
+ S ^DISV(DUZ,"PXRMGEC","LOCDIR")=X
+ I Y="A" S LOCNP=1
+ I Y="S" D LOCDIC
+ ;
+LOCBDT D BDT^PXRMGECP Q:$D(DIROUT)!($D(DIRUT))
+LOCEDT D EDT^PXRMGECP Q:$D(DIROUT)  I $D(DIRUT) K DIRUT G LOCBDT
+LOCFOR D FOR^PXRMGECP Q:$D(DIROUT)  I $D(DIRUT) K DIRUT G LOCEDT
+LOCIOO D LOCIO Q:$D(DIROUT)
+ Q
+LOCIO ;=====Select IO device
+ N %ZIS
+ S %ZIS="QM" D ^%ZIS
+ I POP Q
+ I $D(IO("Q")) D
+ .S ZTRTN="LOC^PXRMGECQ"
+ .S ZTDESC="GEC LOCATION REPORT"
+ .S ZTSAVE("*")=""
+ .D ^%ZTLOAD
+ ;=====Call Report
+ E  D LOC^PXRMGECR
+ D HOME^%ZIS
+ D ^%ZISC
+ S:'$D(DIRUT)&('$D(DUOUT))&('$D(DIROUT)) DIR(0)="E" D ^DIR K DIR(0),Y
+ Q
+ ;
+CT ; #6 Start Referral Count Totals
+ ; makes 4 different reports
+ ;
+ N SOR
+CTSOR D SOR Q:$D(DIROUT)!($D(DIRUT))
+CTBDT D BDT^PXRMGECP Q:$D(DIROUT)  I $D(DIRUT) K DIRUT G CTSOR
+CTEDT D EDT^PXRMGECP Q:$D(DIROUT)  I $D(DIRUT) K DIRUT G CTBDT
+CTFOR D FOR^PXRMGECP Q:$D(DIROUT)  I $D(DIRUT) K DIRUT G CTEDT
+CTIOO D CTIO Q:$D(DIROUT)
+ Q
+ ;
+SOR ;======Sort Type
+ ;--Return SOR as Type of report
+ S DIR("A")="Select Sort Type or ^ to exit"
+ I $D(^DISV(DUZ,"PXRMGEC","SOR")) S DIR("B")=$G(^DISV(DUZ,"PXRMGEC","SOR"))
+ S DIR(0)="S^PA:Patient;PR:Provider;L:Location;D:Date"
+ D ^DIR
+ K DIR("A"),DIR("B"),DIR(0)
+ Q:$D(DIRUT)!($D(DIROUT))
+ S ^DISV(DUZ,"PXRMGEC","SOR")=X
+ S SOR=Y
+ Q
+ ;
+CTIO ;=====Select IO device
+ N %ZIS
+ S %ZIS="QM" D ^%ZIS
+ I POP Q
+ ;=====Call Report
+ I SOR="PA" D
+ .I $D(IO("Q")) D
+ ..S ZTRTN="CTP^PXRMGECT"
+ ..S ZTDESC="GEC COUNT TOTALS REPORTS"
+ ..S ZTSAVE("*")=""
+ ..D ^%ZTLOAD
+ .E  D CTP^PXRMGECS
+ I SOR="PR" D
+ .I $D(IO("Q")) D
+ ..S ZTRTN="CTDR^PXRMGECT"
+ ..S ZTDESC="GEC COUNT TOTALS REPORTS"
+ ..S ZTSAVE("*")=""
+ ..D ^%ZTLOAD
+ .E  D CTDR^PXRMGECS
+ I SOR="L" D
+ .I $D(IO("Q")) D
+ ..S ZTRTN="CTL^PXRMGECT"
+ ..S ZTDESC="GEC COUNT TOTALS REPORTS"
+ ..S ZTSAVE("*")=""
+ ..D ^%ZTLOAD
+ .E  D CTL^PXRMGECS
+ I SOR="D" D
+ .I $D(IO("Q")) D
+ ..S ZTRTN="CTD^PXRMGECT"
+ ..S ZTDESC="GEC COUNT TOTALS REPORTS"
+ ..S ZTSAVE("*")=""
+ ..D ^%ZTLOAD
+ .E  D CTD^PXRMGECS
+ D ^%ZISC
+ S:'$D(DIRUT)&('$D(DUOUT))&('$D(DIROUT)) DIR(0)="E" D ^DIR K DIR(0),Y
+ Q
+ ;

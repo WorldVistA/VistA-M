@@ -1,0 +1,17 @@
+PRCFAC0J ;WISC/CLH-JUSTIFICATION DISPLAY ;2/20/92  2:04 PM
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ D HILO^PRCFQ
+ W IOINHI,"Justification(s): ",IOINORM,!!
+ S (PRCFA("NO"),PRCFA("JUST"))=0 F J=1:1 S PRCFA("JUST")=$O(^PRC(442,PRCFA("PODA"),13,PRCFA("JUST"))) Q:'PRCFA("JUST")  I $D(^PRCS(410,PRCFA("JUST"),8)) D DIS
+ I 'PRCFA("NO") W ?15,IOINHI,$C(7),"No Justification Information shown.",!!,IOINORM
+ Q
+DIS ;DISPLAY JUSTIFICATION OFF 2237
+ W ?5,"Transaction Number: ",IOINHI,$P(^PRCS(410,PRCFA("JUST"),0),"^"),!!,IOINORM
+ K ^UTILITY($J,"W") S DIWL=10,DIWR=60,DIWF="W" D HANG:$Y+5>IOSL I $D(PRCFAX) K PRCFAX Q
+ S PRCFA("J1")=0 F L=0:0 S PRCFA("J1")=$O(^PRCS(410,PRCFA("JUST"),8,PRCFA("J1"))) Q:'PRCFA("J1")  D:$Y+5>IOSL HANG Q:$D(PRCFAX)  S PRCFA("XX")=^(PRCFA("J1"),0) S X=PRCFA("XX") D DIWP^PRCUTL($G(DA))
+ D:$D(PRCFA("XX")) ^DIWW
+ W ! S PRCFA("NO")=1 Q
+HANG ;PAUSE ON SCREEN
+ K PRCFAX I $E(IOST,1,2)["C-" R !,"Enter '^' to quit, Press return to continue: ",XX:$S($D(DTIME):DTIME,1:60) S:XX="^" PRCFAX=1
+ W @IOF Q

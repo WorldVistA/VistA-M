@@ -1,0 +1,67 @@
+GMTSDGP ; SLC/TRS,KER/NDBI - PTF Surgeries/Procedures ; 03/24/2004 [4/1/04 2:55pm]
+ ;;2.7;Health Summary;**28,49,60,71**;Oct 20, 1995
+ ;                    
+ ; External References
+ ;   DBIA  3390  $$ICDOP^ICDCODE
+ ;   DBIA  1372  ^DGPT(
+ ;   DBIA  1372  ^DGPT("B"
+ ;   DBIA  2929  OPC^A7RHSM
+ ;   DBIA  2929  PRC^A7RHSM
+ ;                    
+ENS ; Module For History of PTF Surgery Episodes
+ I $D(GMTSNDM),GMTSNDM>0 S CNTR=GMTSNDM
+ E  S CNTR=100
+ S T1=GMTSEND,T2=GMTSBEG,GMCZ=0
+ S PTF=0
+ F  S PTF=$O(^DGPT("B",DFN,PTF)) Q:PTF=""  D ICDS
+ D:$$ROK^GMTSU("A7RHSM")&($$NDBI^GMTSU) OPC^A7RHSM
+ I $D(GMS) S O=0 F I=1:1 S O=$O(GMS(O)) Q:O=""  Q:'CNTR  S CNTR=CNTR-1 S O1=0,LN1=1 F I=1:1 S O1=$O(GMS(O,O1)) Q:O1=""  D CKP^GMTSUP Q:$D(GMTSQIT)  S:GMTSNPG LN1=1 W:LN1 GMS(O) W ?21,$P(GMS(O,O1),U),?68,$P(GMS(O,O1),U,2),! S LN1=0
+ D KILLADM Q
+ICDS ;   ICD Surgery
+ N GMCZ,GMA,D0,DA,DR,DIC,II,IX,SURG,ZI Q:'$D(^DGPT(PTF,"S"))
+ S II=0 F ZI=1:1 S II=$O(^DGPT(PTF,"S",II)) Q:'II  S SURG=^DGPT(PTF,"S",II,0),X=$P(SURG,U,1),IX=9999999-X I X>T2&(X<T1) D REGDT4^GMTSU D ICDS1
+ Q
+ICDS1 ;   Load Surgery entries into GMS array (inverted)
+ S GMCZ=2 S GMS(IX)="  Surgery  "_X F GMA=8:1:12 D SGY
+ Q
+SGY ;   Surgery Line
+ N ICDP,ICDI,ICDX
+ S ICDI=+$P(SURG,U,GMA) Q:ICDI'>0
+ S ICDX=$$ICDOP^ICDCODE(+ICDI)
+ S ICDS(80.1,ICDI,.01)=$P(ICDX,"^",2)
+ S ICDS(80.1,ICDI,4)=$P(ICDX,"^",5)
+ I $D(ICDS(80.1,ICDI)) D
+ . S GMS(IX,GMA)=$E($G(ICDS(80.1,ICDI,4)),1,45)_U_$G(ICDS(80.1,ICDI,.01))
+ Q
+ ;                    
+ENP ; Module For History of PTF Procedures
+ I $D(GMTSNDM),GMTSNDM>0 S CNTR=GMTSNDM
+ E  S CNTR=100
+ S T1=GMTSEND,T2=GMTSBEG,GMCZ=0
+ S PTF=0
+ F  S PTF=$O(^DGPT("B",DFN,PTF)) Q:PTF=""  D ICDP
+ D:$$ROK^GMTSU("A7RHSM")&($$NDBI^GMTSU) PRC^A7RHSM
+ I $D(GMP) S O=0 F I=1:1 S O=$O(GMP(O)) Q:O=""  Q:'CNTR  S CNTR=CNTR-1 S O1=0,LN1=1 F I=1:1 S O1=$O(GMP(O,O1)) Q:O1=""  D CKP^GMTSUP Q:$D(GMTSQIT)  S:GMTSNPG LN1=1 W:LN1 GMP(O) W ?21,$P(GMP(O,O1),U),?68,$P(GMP(O,O1),U,2),! S LN1=0
+ D KILLADM Q
+ Q
+ICDP ;   ICD Procedures
+ N D0,DA,DIC,DR,GMCZ,GTA,II,IX,PRX,ZI Q:'$D(^DGPT(PTF,"P"))
+ S II=0 F ZI=1:1 S II=$O(^DGPT(PTF,"P",II)) Q:'II  S PRX=^DGPT(PTF,"P",II,0),X=$P(PRX,U,1),IX=9999999-X I X>T2&(X<T1) D REGDT4^GMTSU D ICDP1
+ Q
+ICDP1 ;   Load Procedure entries into GMP array (inverted)
+ S GMCZ=2 S GMP(IX)="Procedure  "_X F GTA=5:1:9 D PXGY
+ Q
+PXGY ;   Procedure Line
+ N ICDP,ICDI,ICDX
+ S ICDI=+$P(PRX,U,GTA) Q:ICDI'>0
+ S ICDX=$$ICDOP^ICDCODE(+ICDI)
+ S ICDP(80.1,ICDI,.01)=$P(ICDX,"^",2)
+ S ICDP(80.1,ICDI,4)=$P(ICDX,"^",5)
+ I $D(ICDP(80.1,ICDI)) D
+ . S GMP(IX,GTA)=$E($G(ICDP(80.1,ICDI,4)),1,45)_U_$G(ICDP(80.1,ICDI,.01))
+ Q
+ ;                    
+KILLADM ; Kills Admission variables
+ K CNTR,GMCZ,LN1,IX,X,ZA,N,ICD,ICD0,PTF,GMC,O,O1,GMS,T1,T2,SURG,SURGY,PRX,PRXY,DATE,D1,I,IMT,GMA,GTA,II,ZI,GMP
+ K ICDP,ICDS
+ Q

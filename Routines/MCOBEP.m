@@ -1,0 +1,50 @@
+MCOBEP ; GENERATED FROM 'MCAREPBRPR' PRINT TEMPLATE (#1022) ; 10/04/96 ; (FILE 691.8, MARGIN=80)
+ G BEGIN
+N W !
+T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
+ S DISTP=DISTP+1,DILCT=DILCT+1 D:'(DISTP#100) CSTP^DIO2
+ Q
+DT I $G(DUZ("LANG"))>1,Y W $$OUT^DIALOGU(Y,"DD") Q
+ I Y W $P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC",U,$E(Y,4,5))_" " W:Y#100 $J(Y#100\1,2)_"," W Y\10000+1700 W:Y#1 "  "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12) Q
+ W Y Q
+M D @DIXX
+ Q
+BEGIN ;
+ S:'$D(DN) DN=1 S DISTP=$G(DISTP),DILCT=$G(DILCT)
+ W ?0 W "DATE/TIME: "
+ S X=$G(^MCAR(691.8,D0,0)) D N:$X>11 Q:'DN  W ?11 S Y=$P(X,U,1) D DT
+ D N:$X>34 Q:'DN  W ?34 W "MEDICAL PATIENT: "
+ S Y=$P(X,U,2) S Y=$S(Y="":Y,$D(^MCAR(690,Y,0))#2:$P(^(0),U,1),1:Y) S Y=$S(Y="":Y,$D(^DPT(Y,0))#2:$P(^(0),U,1),1:Y) W $E(Y,1,30)
+ D T Q:'DN  D N D N:$X>4 Q:'DN  W ?4 W "REASON FOR STUDY: "
+ S X=$G(^MCAR(691.8,D0,4)) D N:$X>24 Q:'DN  S DIWL=25,DIWR=79 S Y=$P(X,U,4) S X=Y D ^DIWP
+ D A^DIWW
+ D T Q:'DN  D N D N:$X>4 Q:'DN  W ?4 W "INTERPRETATION: "
+ S I(1)=12,J(1)=691.813 F D1=0:0 Q:$O(^MCAR(691.8,D0,12,D1))'>0  S D1=$O(^(D1)) D:$X>22 T Q:'DN  D A1
+ G A1R
+A1 ;
+ S X=$G(^MCAR(691.8,D0,12,D1,0)) S DIWL=25,DIWR=79 D ^DIWP
+ Q
+A1R ;
+ D A^DIWW
+ D T Q:'DN  D N D N:$X>4 Q:'DN  W ?4 W "COMMENTS: "
+ S I(1)=13,J(1)=691.814 F D1=0:0 Q:$O(^MCAR(691.8,D0,13,D1))'>0  S D1=$O(^(D1)) D:$X>16 T Q:'DN  D B1
+ G B1R
+B1 ;
+ S X=$G(^MCAR(691.8,D0,13,D1,0)) S DIWL=1,DIWR=60 D ^DIWP
+ Q
+B1R ;
+ D A^DIWW
+ D T Q:'DN  D N D N:$X>4 Q:'DN  W ?4 W "CARDIOLOGY STAFF: "
+ S X=$G(^MCAR(691.8,D0,15)) S Y=$P(X,U,1) S Y=$S(Y="":Y,$D(^VA(200,Y,0))#2:$P(^(0),U,1),1:Y) W $E(Y,1,35)
+ D T Q:'DN  D N D N:$X>4 Q:'DN  W ?4 W "CARDIOLOGY FELLOW: "
+ S Y=$P(X,U,2) S Y=$S(Y="":Y,$D(^VA(200,Y,0))#2:$P(^(0),U,1),1:Y) W $E(Y,1,35)
+ D T Q:'DN  D N D N:$X>4 Q:'DN  W ?4 W "PROCEDURE SUMMARY: "
+ S X=$G(^MCAR(691.8,D0,.2)) D N:$X>9 Q:'DN  S DIWL=10,DIWR=74 S Y=$P(X,U,2) S X=Y D ^DIWP
+ D A^DIWW
+ D T Q:'DN  W ?2 S MCFILE=691.8 K DIP K:DN Y
+ W ?13 D DISP^MCMAG K DIP K:DN Y
+ W ?24 K MCFILE K DIP K:DN Y
+ K Y K DIWF
+ Q
+HEAD ;
+ W !,"--------------------------------------------------------------------------------",!!

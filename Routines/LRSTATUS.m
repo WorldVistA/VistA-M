@@ -1,0 +1,30 @@
+LRSTATUS ;SLC/FHS - TO CHECK SYSTEM STATUS OF AUTO INSTRUMENT JOBS ;11/6/89  12:03
+ ;;5.2;LAB SERVICE;;Sep 27, 1994
+EN ;
+ D CLEAN W !! K DIC,LRPOSX,LRTOTX S (TOT,LAB)=0,DIC="^LAB(62.4,",DIC(0)="AZEQ",U="^",DIC("S")="I +Y<99" D ^DIC G:Y<1 CLEAN
+EN1 ;
+ I '$D(^LA(+Y,"I")) W !!?7,"No data for ",$P(^LAB(62.4,+Y,0),U) S LREND=1 Q
+ W !!?10,"Enter '^' to abort process ",$C(7),!
+ S LAROUT=$P(Y(0),U,3),LRINST=+Y,LRINSTN=$P(Y,U,2)
+ I LRINST#10=1 S LAB=1
+ I 'LAB W !!?10,LRINSTN," has ",^LA(LRINST,"I")," entries ",! S LRTOT=^("I") I $D(^("I",0)) W !?10,"And ",^(0)," have been processed ",! S LRPROS=^(0)
+LAB ;
+ W !!?10,"Checking process has started",!
+ G:LAB SYS R X:.01 G:X="^" CLEAN H 10 W !!,"CHECKING ",LRINSTN,! S TOT=TOT+1 I $D(^LA(LRINST,"I")),^("I")'=LRTOT S LRTOTX=^("I") W !,LRINSTN," is runing, now there are ",LRTOTX," entries in ^LA(",LRINST,! S LRTOT=LRTOTX
+ I '$D(^LA(LRINST,"I")) W !?10,LRINSTN," has been cleared " G CLEAN
+ I '$D(^LA(LRINST,"I",0)) W !?10,LRINSTN," NOT BEEN COMPLETELY SET UP YET " G CLEAN
+ I $D(^LA(LRINST,"I",0)),^LA(LRINST,"I",0)'=LRPROS S LRPROSX=^(0)
+ I $D(LRPROSX),LRPROSX'=LRPROS W !?7,LAROUT," routine is running -  Now on entry ",LRPROSX S LRPROS=LRPROSX
+ I TOT=10,'$D(LRTOTX) W $C(7),!!?10,"No data is being processed OUT of ^LA( for ",LRINSTN
+ I TOT=10,'$D(LRPROSX) W $C(7),!!?10,"NO DATA IS BEING PROCESSED INTO ^LA( for ",LRINSTN
+ I TOT=10 G CLEAN
+ G LAB
+ Q
+SYS I '$D(^LA(LRINST,"R")) W !?7,LRINSTN," IS NOT RUNNING ",! G CLEAN
+ S LRTOT=^LA(LRINST,"R")
+SYS1 R X:.01 G:X="^" CLEAN H 10 S TOT=TOT+1 I '$D(^LA(LRINST,"R")) W !," DATA HAS BEEN CLEARED " G CLEAN
+ I ^LA(LRINST,"R")'=LRTOT W !,LRINSTN," IS RUNNING " S LRTOTX=1,LRTOT=^LA(LRINST,"R")
+ W !,"CHECKING " I TOT<10 G SYS1
+ I '$D(LRTOTX) W $C(7),!!,LAROUT," IS NOT RUNNING "
+CLEAN ;
+ K I,DIC,LAB,LAROUT,LRINST,LRPROSX,LRPROS,LRTOT,TOT,LRINSTN,Y Q

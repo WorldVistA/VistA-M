@@ -1,0 +1,72 @@
+LRLNCPRT ;DALOI/FHS - PRINT WKLD/NLT CODE LOINC MAPPINGS ;1-OCT-1998
+ ;;5.2;LAB SERVICE;**215,278**;Sep 27,1994
+EN ;
+ W @IOF,!! S LREND=0
+ W $$CJ^XLFSTR("This option will print WORKLOAD CODES and their LOINC CODES.",IOM)
+ W !,$$CJ^XLFSTR("You may use the option 'MAP LOINC TEST TO NLT' to make necessary changes.",IOM)
+ASK ;
+ K DIR S DIR(0)="S^1:Ready to print WORKLOAD CODES MAPPED TO LOINC;2:Abort"
+ D ^DIR K DIR
+ G END:$S($G(DIRUT):1,$G(DUOUT):1,$G(DTOUT):1,Y=2:1,1:0)
+ S LRSEL=Y K %ZIS S %ZIS="Q" D ^%ZIS
+ G END:POP
+ I IO'=IO(0) S ZTRTN="DQ^LRLNCPRT",ZTIO=ION,ZTDESC="Print WKLD CODES MAPPED TO LOINC",ZTSAVE("LRSEL")="" D ^%ZTLOAD I $D(ZTSK)'[0 W !!?5," Tasked to Print on : ",ION G END
+ W @IOF D DQ G END
+ Q
+DQ ;
+ N DIR,LREND
+ S $P(LRLINE,"=",IOM)="",LRTOP=1
+ S:$D(ZTQUEUED) ZTREQ="@" S LRPDT=$$FMTE^XLFDT($$NOW^XLFDT,"1P")
+ S (LRPAGE,LRCNT,LREND)=0
+ D HDR
+ S LRNODE="^LAM(""B"",0)",LRCNT=0
+ F  S LRNODE=$Q(@LRNODE) Q:$QS(LRNODE,1)'="B"  Q:$G(LREND)  D
+ . Q:$G(@LRNODE)!($G(LREND))
+ . S LRIEN=+$QS(LRNODE,3)
+ . S LRX=$G(^LAM(LRIEN,0)) Q:$P(LRX,U,2)=""
+ . D SPEC(LRIEN,1)
+ D END
+ Q
+SPEC(LRIEN,LRTOP) ;
+ N LRCK
+ Q:'$D(^LAM(LRIEN,0))#2!($P($G(^LAM(LRIEN,0)),U,2)="")  S LRNAME=$P(^(0),U),LRCN=$P(^(0),U,2)
+ Q:'$O(^LAM(LRIEN,5,0))
+ D TOP Q:$G(LREND)
+ S LRSPEC=0 F  S LRSPEC=+$O(^LAM(LRIEN,5,LRSPEC)) Q:LRSPEC<1!($G(LREND))  D
+ . D TOP Q:$G(LREND)
+ . S (LRCK,LRASP)=0 F  S LRASP=+$O(^LAM(LRIEN,5,LRSPEC,1,LRASP)) Q:LRASP<1  D
+ . . D TOP Q:$G(LREND)  S LRCK=1
+ . . S LRX=+$G(^LAM(LRIEN,5,LRSPEC,1,LRASP,1))
+ . . I '$D(^LAB(95.3,LRX,0))!('$D(^LAB(95.3,LRX,80))) D  Q
+ . . . W !?5,"*** WKLD CODE ",LRCN," ***",!?10," [ ",LRNAME," ] IS CORRUPTED ",!
+ . . D TOP Q:$G(LREND)
+ . . W !?2,LRIEN,?12,LRCN_"  "_LRNAME
+ . . W !?5,"Specimen: ",$P($G(^LAB(61,LRSPEC,0)),U)
+ . . W !?10,"Collection Type: ",$P($G(^LAB(64.061,LRASP,0)),U)
+ . . W !,"LOINC= ",LRX," [",$G(^LAB(95.3,LRX,80)),"]"
+ . . S LRCNT=LRCNT+1
+ W:$G(LRCK) !,LRLINE
+ Q
+END ;
+ I $G(LRCNT) W !?15,"Total Number of Mapped WKLD CODES/Specimens: ",LRCNT,!
+ I $E(IOST)="P-" W @IOF
+ D ^%ZISC
+ K DIR,DIRUT,DUOUT,LRC,LRCNT,LREND,LRIEN,LRNAME,LRNODE,LRPAGE
+ K LRPDT,LRSEL,LRX,POP,ZTIO,ZTDESC,ZTRTN,ZTSAVE
+ ;
+ Q
+TOP ;
+ Q:$G(LREND)
+ Q:$Y<(IOSL-4)
+ I $E(IOST,1,2)="C-" D  Q:$G(LREND)
+ . S DIR(0)="E" D ^DIR
+ . S:$S($G(DIRUT):1,$G(DUOUT):1,1:0) LREND=1
+HDR ;
+ I $G(LRPAGE) W @IOF
+ S LRPAGE=$G(LRPAGE)+1
+ Q:'$G(LRTOP)
+ W !,$$CJ^XLFSTR("Alphabetical Listing of Workload (WKLD) CODES ",IOM)
+ W !,$$CJ^XLFSTR("that are Mapped to LOINC Codes.",IOM)
+ W !,?5,LRPDT,?60,"Page: ",LRPAGE
+ W !!,"NLT IEN #        WKLD CODE Name ",!
+ Q

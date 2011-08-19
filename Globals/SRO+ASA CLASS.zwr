@@ -1,0 +1,16 @@
+ASA CLASS
+ZWR
+^SRO(132.8,0)="ASA CLASS^132.8I^13^13"
+^SRO(132.8,1,0)="1^1-NO DISTURB.^This a normal healthy patient"
+^SRO(132.8,2,0)="2^2-MILD DISTURB.^This is a patient with mild systemic disease"
+^SRO(132.8,3,0)="3^3-SEVERE DISTURB.^This is a patient with severe systemic disease"
+^SRO(132.8,4,0)="4^4-LIFE THREAT^This is a patient with severe systemic disease that is a constant threat to life"
+^SRO(132.8,5,0)="5^5-MORIBUND^This is a moribund patient who is not expected to survive"
+^SRO(132.8,6,0)="6^6-BRAIN-DEAD^This is a declared brain-dead patient whose organs are being removed for donor purposes"
+^SRO(132.8,7,0)="1E^1E-NO DISTURB-EMERG^This is a normal healthy patient (emergency)"
+^SRO(132.8,8,0)="2E^2E-MILD DISTURB.-EMERG^This is a patient with mild systemic disease (emergency)"
+^SRO(132.8,9,0)="3E^3E-SEVERE DIST.-EMERG.^This is a patient with severe systemic disease (emergency)"
+^SRO(132.8,10,0)="4E^4E-LIFE THREAT-EMERG.^This is a patient with severe systemic disease that is a constant threat to life (emergency)"
+^SRO(132.8,11,0)="5E^5E-MORIBUND-EMERG.^This is a moribund patient who is not expected to survive (emergency)"
+^SRO(132.8,12,0)="6E^6E-BRAIN-DEAD-EMERG.^This is a declared brain-dead patient whose organs are being removed for donor purposes (emergency)"
+^SRO(132.8,13,0)="N^N-None Assigned^This is a patient with no ASA Class assigned."

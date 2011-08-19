@@ -1,0 +1,7 @@
+PSSPRETR ;BIR/WRT-Pre-transport routine ; 09/02/97 8:48
+ ;;1.0;PHARMACY DATA MANAGEMENT;;9/30/97
+ ; PRE-TRANSPORT ROUTINE
+ N ROOT,DA,I,X,LINE,TOT
+BUILDIT S ROOT=$NA(@XPDGREF@("DATA")),DA=0,I=1,LINE="",TOT=0
+ F  S DA=$O(^PS(51.2,DA)) Q:'DA  S X=^(DA,0) I $P(X,"^",2)]"" S @ROOT@(I)=$P(X,"^",1)_"^"_$P(X,"^",2),I=I+1
+ Q

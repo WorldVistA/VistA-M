@@ -1,0 +1,88 @@
+IBCNRP5P ;BHAM ISC/CMW - Group Plan Status Report ;01-NOV-2004
+ ;;2.0;INTEGRATED BILLING;**276**;21-MAR-94
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ; 
+PRINT ; Entry pt.
+ ;
+ ; Init vars
+ N CRT,MAXCNT,IBPGC,IBBDT,IBEDT,IBPY,IBPXT,IBSRT,IBDTL
+ N X,Y,DIR,DTOUT,DUOUT,LIN,TOTALS,ZTRTN,ZTDESC,ZTSAVE
+ D:'$D(IOF) HOME^%ZIS
+ S ZTRTN="PRT01^IBCNRP5P"
+ S ZTDESC="ePHARM GROUP PLAN STATUS REPORT"
+ S ZTSAVE("^TMP(""IBCNRP5"",$J,")="",ZTSAVE("IBCNTYP")=""
+ D EN^XUTMDEVQ(ZTRTN,ZTDESC,.ZTSAVE)
+ Q
+ ;
+PRT01 ;
+ S (IBPXT,IBPGC)=0
+ ;
+ ; Determine IO parameters
+ I IOST["C-" S MAXCNT=IOSL-3,CRT=1
+ E  S MAXCNT=IOSL-6,CRT=0
+ ;
+ D PRT02(MAXCNT,IBPGC)
+ I $G(ZTSTOP)!IBPXT G PRTEX
+ I CRT,IBPGC>0,'$D(ZTQUEUED) D
+ . I MAXCNT<51 F LIN=1:1:(MAXCNT-$Y) W !
+ . S DIR(0)="E" D ^DIR K DIR
+ ;
+PRTEX Q
+ ;
+PRT02(MAX,PGC) ; Print data
+ ;
+ ; Init vars
+ N EORMSG,NONEMSG,TOTDASHS,DISPDATA,SORT,CT,PRT1,PRT2
+ ;
+ S EORMSG="*** END OF REPORT ***"
+ S NONEMSG="* * * N O  D A T A  F O U N D * * *"
+ S $P(TOTDASHS,"=",89)=""
+ S CT=0
+ ;
+ ; Display lines of response
+ D LINE
+ Q
+ ;
+LINE ; Print line of data
+ ; Assumes vars from PRINT: PGC,IBPXT,MAX
+ ; Init vars
+ N CT,II,DSP,IBCNSP
+ ;
+ S CT=+$O(^TMP("IBCNRP5",$J,"DSPDATA",""),-1)
+ S IBCNSP=$P(^TMP("IBCNRP5",$J,"DSPDATA",1),U)
+ I $Y+1+CT>MAX D HEADER I $G(ZTSTOP)!IBPXT G LINEX
+ F II=1:1:CT D  Q:$G(ZTSTOP)!IBPXT
+ . S IBCNSP=$P(^TMP("IBCNRP5",$J,"DSPDATA",II),U)
+ . I $Y+1>MAX!('PGC) D HEADER I $G(ZTSTOP)!IBPXT Q
+ . S DSP=$P(^TMP("IBCNRP5",$J,"DSPDATA",II),U,2)
+ . W !,?1,DSP
+ . Q
+ ;
+LINEX ; LINE exit pt
+ Q
+QUITX ;
+ Q
+HEADER ; Print header info for each page
+ ; Assumes vars from PRINT: CRT,PGC,IBPXT,MAX,SRT,BDT,EDT,PYR,RDTL,MAR
+ ; Init vars
+ N DIR,X,Y,DTOUT,DUOUT,OFFSET,HDR,DASHES,DASHES2,LIN
+ ;
+ I CRT,PGC>0,'$D(ZTQUEUED) D  I IBPXT G HEADERX
+ . I MAX<51 F LIN=1:1:(MAX-$Y) W !
+ . S DIR(0)="E" D ^DIR K DIR
+ . I $D(DTOUT)!$D(DUOUT) S IBPXT=1 Q
+ I $D(ZTQUEUED),$$S^%ZTLOAD() S (ZTSTOP,IBPXT)=1 G HEADERX
+ S PGC=PGC+1
+ W @IOF,!,?1,"ePHARM GROUP PLAN STATUS REPORT"
+ S HDR=$$FMTE^XLFDT($$NOW^XLFDT,1)_"  Page: "_PGC
+ S OFFSET=80-$L(HDR)
+ W ?OFFSET,HDR
+ W !,?1,"Report for "_$S(IBCNTYP="A":"All",IBCNTYP="P":"Pharmacy Covered",1:"Matched")_" Group Plans for "
+ W $$GET1^DIQ(36,IBCNSP_",",.01)_" "_$$GET1^DIQ(36,IBCNSP_",",.111)
+ W !,?1,"Group Name",?20,"Group #",?38,"Plan Type",?52,"Plan ID"
+ W ?71,"Pln Stat"
+ S $P(DASHES,"=",80)=""
+ W !,?1,DASHES
+ ;
+HEADERX ; HEADER exit pt
+ Q

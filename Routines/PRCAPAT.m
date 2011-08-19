@@ -1,0 +1,62 @@
+PRCAPAT ;SF-ISC/YJK-ASSIGN PAT REF# ;2/9/94  8:45 AM
+V ;;4.5;Accounts Receivable;**153,198**;Mar 20, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ N P0,PRCACOM,PRCAMT1,PRCAPV,PRCFX,PRCHAUTO,LOOP,PRCABN
+ W ! S DIR("B")="YES",DIR("A")="Do you want to loop thru 'PENDING CALM CODE' Bills",DIR(0)="Y" D ^DIR K DIR G:$D(DIRUT) END S LOOP=+Y,PRCABN=0
+EN G:$D(PRCAUTO) END K PRCA("ACTIVE"),PRCFDEL,PRCAMIS I ('$D(PRC("SITE")))!('$D(PRC("FY"))) D ^PRCFSITE Q:'$D(PRC("SITE"))!'$D(PRC("FY"))  W !
+ I LOOP S Y=$O(^PRCA(430,"AC",21,PRCABN)) W:Y="" !!,"*** Loop Done ***",! G:Y="" END G AUTO
+ N DPTNOFZY,DPTNOFZK S (DPTNOFZY,DPTNOFZK)=1
+ S DIC="^PRCA(430,",DIC(0)="AEQM",DIC("S")="I $P(^(0),U,8)]"""",$P(^PRCA(430.3,$P(^(0),U,8),0),U,3)=107" D ^DIC G:Y<0 END
+AUTO S (PRCABN,DA)=+Y,PRCA("DEBTOR")=$P(^PRCA(430,PRCABN,0),U,9),DIC="^PRCA(430,"
+ S PRCA("LOCK")=0 D LOCKF^PRCAWO1 I PRCA("LOCK")=1 K DIC G END
+ D:",22,23,26,"[(","_$P(^PRCA(430,PRCABN,0),"^",2)_",") PH^PRCACLM
+ K DIC G:$D(PRCAUTO) OV S D0=PRCABN D DISPL^PRCAPAT1 K D0
+ I $P(^PRCA(430,PRCABN,0),U,2)=$O(^PRCA(430.2,"AC",33,0)) G OV
+ASK1 S %=1 W !!,"Do you want to edit the 'Control Point' and 'Appropriation symbol'" D YN^DICN G:%<0 END
+ I %=0 W !,"Answer 'Y' (YES) or 'N' (NO)",! G ASK1
+ D:%=1 EDGL^PRCAPAT1 K %
+OV I +$P($G(^PRCA(430,PRCABN,2,0)),U,3)'>0 W !,*7," NO FISCAL YEAR DATA !",! G EN
+ S PRCAKENT=$P(^PRCA(430,PRCABN,2,0),U,4),PRCAT=$P(^PRCA(430,PRCABN,0),U,2)
+ D @$S(+PRCAKENT>1:"EN2",1:"EN1")
+ I $P(^PRCA(430,PRCABN,0),U,8)=$O(^PRCA(430.3,"AC",102,"")) D PREPAY^RCBEPAYP(PRCABN)
+ D KILLV W !
+ I LOOP W ! S DIR("B")="YES",DIR("A")="Continue looping",DIR(0)="Y" D ^DIR K DIR G:$D(DIRUT) END I +Y'=1 S LOOP=0
+ G EN
+KILLV ;
+END ;
+ L -^PRCA(430,+$G(PRCABN))
+ K PRCAREF,PRCAT,PRCFA,PRCHPO,DR,DIE,PRCFDEL,PRCAKENT,DA,DIC,PRCALM,A1,PRCA2,PRCATY,PRCAGL,PRCAGL1,PRCAI,PRCA,PRCABN1,PRCAPAT,PRCHP,PRCATY Q
+EN1 S PRCA2=$P(^PRCA(430,PRCABN,2,0),U,3),PRCAGL=^PRCA(430,PRCABN,2,PRCA2,0)
+ I $P(PRCAGL,U,6)=2 S %=2 W !,"This bill has already been assigned a PAT REF #/CALM Code Sheet." D ASK2 Q:%'=1
+ D DIE
+ Q
+EN2 W !!,"This bill has multiple appropriations. You should assign a PAT REF # to each appropriation.",!
+ S PRCABN1=$O(^PRCA(430,PRCABN,2,"B","")) Q:PRCABN1=""  S PRCA2=$O(^(PRCABN1,"")) S PRCAGL=^PRCA(430,PRCABN,2,PRCA2,0) D W1
+ F PRCAI=0:0 S PRCABN1=$O(^PRCA(430,PRCABN,2,"B",PRCABN1)) Q:PRCABN1=""  S PRCA2=$O(^(PRCABN1,"")) S PRCAGL=^PRCA(430,PRCABN,2,PRCA2,0) D W1
+ Q
+W1 W !!,$P(PRCAGL,U,1),?15,$P(PRCAGL,U,4),!,"We'll assign a PAT REF # to this appropriation."
+ I $P(PRCAGL,U,6)=2 W !,*7," A CALM code sheet has already been assigned to this PAT REF # !",!! Q
+DIE K PRCHPO I $P(PRCAGL,U,3)]"" S %=2 W !,"A PAT REF # has already been assigned to this appropriation symbol." D ASK2 Q:%<0  G:%=2 CODE
+ S X=$P(^PRCA(430,PRCABN,0),"^"),DIC(0)="L",PRCAREF=1,PRCHP("A")="PAT REFERENCE NUMBER",PRCHP("T")=24,PRCHP("S")=5 W !,"Assigning PAT REF # '",X,"' ...",! D ENPO1^PRCHPAT Q:'$D(PRCHPO)
+ S PRCAPAT=$P(^PRC(442,PRCHPO,0),U,1) D UP442^PRCAPAT1
+ S DIE="^PRCA(430,"_PRCABN_",2,",DA(1)=PRCABN,DA=PRCA2,DR="2///"_PRCAPAT_$S($P(^PRCA(430,PRCABN,2,DA,0),"^",5):"",1:";4") D ^DIE Q:$D(Y)
+ I PRCAT=$O(^PRCA(430.2,"AC",22,"")) W !,"Since this is a contingent asset, a calm code sheet is not needed.",! S PRCA("STATUS")=16,DEB=$P(^PRCA(430,PRCABN,0),"^",9) D UPSTATS^PRCAUT2,L1^PRCALT2 K PRCA("STATUS"),DEB Q
+CODE S PRCALM=1 I $D(PRCAUTO) S $P(^PRCA(430,PRCABN,2,PRCA2,0),U,6)=2,PRCALM=2 G OV1
+ D CALM
+OV1 I PRCALM>1,$P(^PRCA(430,PRCABN,0),U,2)'=$O(^PRCA(430.2,"AC",33,0)) S PRCA("STATUS")=$O(^PRCA(430.3,"AC",102,"")),DEB=$P(^PRCA(430,PRCABN,0),"^",9) D UPSTATS^PRCAUT2,L1^PRCALT2 D:'$D(PRCAMIS) SETAMIS^PRCAPAT1 K PRCA("STATUS"),DEB Q
+ Q  ;end of DIE
+CALM W !!,"Now, we'll create a CALM code sheet for this PAT REF #.",!
+ S PRCAGL1=^PRCA(430,PRCABN,2,PRCA2,0) D:'$D(DT) DT^PRCAPAT1
+ S PRCFA("TTDATE")=$E(DT,4,7)_$E(DT,2,3),PRCFA("REF")=$P($P(^PRC(442,$P(PRCAGL1,U,3),0),"^",1),"-",2)
+ I PRC("SITE")'=$P($P(^PRC(442,$P(PRCAGL1,U,3),0),U,1),"-",1) S PRCKST=PRC("SITE"),PRC("SITE")=$P($P(^PRC(442,$P(PRCAGL1,U,3),0),U,1),"-",1)
+ S PRCAKFY=$S($D(PRC("FY")):PRC("FY"),1:""),PRC("FY")=$P(PRCAGL1,U,1)
+ S (A,X)=$S($P(PRCAGL1,U,5)>0:$P(^PRCD(420.3,$P(PRCAGL1,U,5),0),U,4),1:"")
+ I $E(A,2,4)'=718 D SE^PRCFALD,YALD^PRCALM S PRCFA("ALD")=$S($D(Y):Y,1:"")
+ I $E(A,2,4)=718 S Y=$S($E(PRCFA("TTDATE"),1,2)>9:$E(PRCFA("TTDATE"),6)+1,1:$E(PRCFA("TTDATE"),6)) S Y=$E(Y)_$E(A,2,4) D YALD^PRCALM S PRCFA("ALD")=$S($D(Y):Y,1:"")
+ S X=A K A S:PRCAKFY'="" PRC("FY")=PRCAKFY K PRCAKFY
+ S PRCFA("AMT")=$S($P(PRCAGL1,U,2)=0:"",PRCAT=$O(^PRCA(430.2,"AC",33,0)):$J($P(^PRCA(430,PRCABN,7),U,18)*100,0,0),1:$J($P(PRCAGL1,U,2)*100,0,0)) D EN1^PRCACLM Q:PRCALM'>1
+ S $P(^PRCA(430,PRCABN,2,PRCA2,0),U,6)=2 Q
+ Q
+ASK2 S %=2 W !,"Do you want to use a new PAT REF # " D YN^DICN Q:%<0
+ I %=0 W !,"Answer 'Y' or 'YES' if you want to use a new PAT Reference Number,",!,"answer 'N' or 'NO' if you don't want to.",! G ASK2
+ Q

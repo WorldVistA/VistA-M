@@ -1,0 +1,15 @@
+LBRYPRG ;SSI/ALA-PURGE COMPLETED TRANSACTIONS ;[ 05/23/97  12:13 PM ]
+ ;;2.5;Library;**2**;Mar 11, 1996
+ ;  This is to purge transactions after they have been processed
+ ;  and/or transmitted.
+ S X="T-1M" D ^%DT S LBRDDT=Y
+ S DIK="^LBRY(682.1,"
+ F LBRSTA="P","T" S LBRYN="" D NT
+ K LBRSTA,LBRYN,DIK,DA,LBRDDT,LBRTYP
+ Q
+NT S LBRYN=$O(^LBRY(682.1,"AC",LBRSTA,LBRYN)) Q:LBRYN=""
+ I $P(^LBRY(682.1,LBRYN,0),U,6)>LBRDDT G NT
+ S LBRTYP=$P(^LBRY(682.1,LBRYN,0),U,2)
+ I LBRTYP="NTL"!(LBRTYP="UTL"),^XMB("NETNAME")["FORUM.VA.GOV" G NT
+ S DA=LBRYN D ^DIK
+ G NT

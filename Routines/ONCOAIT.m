@@ -1,0 +1,11 @@
+ONCOAIT ;Hines OIFO/GWB - Topography function; 7/20/93
+ ;;2.11;ONCOLOGY;**15,19,36**;Mar 07, 1995
+TOP() ;Called by ONCO ABSTRACT-I input template
+ N ONCOFLD
+ N ONCOED S ONCOED=$$TNMED^ONCOU55(D0)
+ N TOP3 S TOP3=$E(TOP,3,5)
+ I ONCOED<5,(TOP3=700)!($E(TOP3,1,2)=71) S ONCOFLD=21.5 ;INFRA/SUPRA for 4th edition brain cases
+ E  I TOP3=694 S ONCOFLD=21.51 ;IRIS/CILIARY BODY for Malignant Melanoma of the Uvea
+ E  I ONCOED<5,TOP3=529 S ONCOFLD=21.52 ;UPPER/LOWER for vagina cases
+ E  S ONCOFLD=100 ;proceed to TEXT-PRIMARY SITE
+ Q ONCOFLD

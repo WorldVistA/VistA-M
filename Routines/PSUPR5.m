@@ -1,0 +1,134 @@
+PSUPR5 ;BIR/PDW - PROCUREMENT EXTRACT SUMMARY MESSAGE GENERATOR ;10 JUL 1999
+ ;;4.0;PHARMACY BENEFITS MANAGEMENT;;MARCH, 2005
+ ;DBIA(s)
+ ; Reference to file #40.8 supported by DBIA 2438
+ ;
+EN ;EP generate Total & Cost summary
+ ;
+EN1 N PSUITT,PSUREC,PSUTC
+ ;PSUITT - TOTAL ITEMS
+ ;PSUTC - TOTAL COST
+ S:'$D(PSUPRJOB) PSUPRJOB=PSUJOB
+ S:'$D(PSUPRSUB) PSUPRSUB="PSUPR_"_PSUPRJOB
+ ;
+ I '$D(^XTMP(PSUPRSUB,"RECORDS")) G NODATA
+DIV ;EP Loop by Division
+ S PSUDIV="" F  S PSUDIV=$O(^XTMP(PSUPRSUB,"RECORDS",PSUDIV)) Q:PSUDIV=""  D MESSAGE
+ Q
+ ;
+MESSAGE ;EP Generate Summary Messages for a Division
+ ;
+ S X=PSUDIV,DIC=40.8,DIC(0)="X",D="C" D IX^DIC ;**1
+ S X=+Y S PSUDIVNM=$$VAL^PSUTL(40.8,X,.01)
+MSG1 ;  Generate 1st summary message
+ ;
+ S PSUITT=0,PSUTC=0
+ ;
+ ;   loop to get totals from records stored
+ S PSUREC=0
+ K ^TMP($J,"PSUITNM") ;
+ F  S PSUREC=$O(^XTMP(PSUPRSUB,"RECORDS",PSUDIV,PSUREC)) Q:PSUREC'>0  S X=^(PSUREC),PSUTC=PSUTC+$P(X,U,19) S PSUIT=$P(X,U,8) S:PSUIT="" PSUIT=$P(X,U,7) S:PSUIT'="" ^TMP($J,"PSUITNM",PSUIT)=""
+ ;  get number of unique items stored in PSUITNM
+ S X="" F PSUITT=0:1 S X=$O(^TMP($J,"PSUITNM",X)) Q:X=""
+ K ^TMP($J,"PSUITNM")
+ S XMDUZ=DUZ
+ M XMY=PSUXMYS1
+ ;
+ S Y=PSUSDT X ^DD("DD") S PSUDTS=Y ;    start date
+ S Y=PSUEDT X ^DD("DD") S PSUDTE=Y ;    end date
+ N PSUMSG
+ S PSUMSG(1)="               Procurement Statistical Summary"
+ S PSUMSG(2)="               "_PSUDTS_" through "_PSUDTE_" for "_PSUDIVNM
+ S PSUMSG(3)="      "
+ S PSUMSG(4)="Total of Drug/Supply Items:   "_PSUITT
+ S PSUMSG(5)="Total Cost:                 $ "_PSUTC
+ S PSUMSG(6)="     "
+ S X=PSUDIV,DIC=40.8,DIC(0)="X",D="C" D IX^DIC ;**1
+ S X=+Y S PSUDIVNM=$$VAL^PSUTL(40.8,X,.01)
+ S XMSUB="V. 4.0 PBMPR "_$G(PSUMON)_"  "_PSUDIV_" "_PSUDIVNM
+ Q:PSUDIV=0   ;Eliminate empty CoreFLS messages
+ S XMTEXT="PSUMSG("
+ S XMCHAN=1
+ M ^XTMP(PSUPRSUB,"REPORT1",PSUDIV)=PSUMSG
+ D ^XMD
+ K PSUMSG
+ ;
+MSG2 ; SUMMARY BY DRUG
+ ;  loop records stored
+ ;  psunm - name, psudisp - disp unit, psutq - total quantity, psutc - total cost
+ S PSUREC=0,PSUDRNM=""
+ K ^XTMP(PSUPRSUB,"DRUG")
+ F  S PSUREC=$O(^XTMP(PSUPRSUB,"RECORDS",PSUDIV,PSUREC)) Q:PSUREC'>0  S X=^(PSUREC) D
+ . S PSUNM=$P(X,U,8),PSUTQ=$P(X,U,17),PSUTC=$P(X,U,19),PSUDISP=$P(X,U,12)
+ . S:PSUNM="" PSUNM=$P(X,U,7)
+ . S PSUNM=$E(PSUNM,1,30)
+ . I '$L(PSUNM) Q
+ . S ^XTMP(PSUPRSUB,"DRUG",PSUNM)=""
+ . S ^XTMP(PSUPRSUB,"DRUG",PSUNM,"TQ")=$G(^XTMP(PSUPRSUB,"DRUG",PSUNM,"TQ"))+PSUTQ
+ . S ^XTMP(PSUPRSUB,"DRUG",PSUNM,"TC")=$G(^XTMP(PSUPRSUB,"DRUG",PSUNM,"TC"))+PSUTC
+ . S ^XTMP(PSUPRSUB,"DRUG",PSUNM,"DISP")=PSUDISP
+ ;
+ ;
+ S PSUG="^XTMP(PSUPRSUB,""REPORT2"",PSUDIV)"
+ K @PSUG
+ S @PSUG@(1)="               Procurement Data Summary"
+ S @PSUG@(2)="               "_PSUDTS_" through "_PSUDTE_" for "_PSUDIVNM
+ S @PSUG@(3)=" "
+ S X="",X=$$SETSTR^VALM1("Dispense",X,53,8),X=$$SETSTR^VALM1("Total",X,63,5),X=$$SETSTR^VALM1("Total",X,73,5)
+ S @PSUG@(4)=X
+ S X="Drug/Supply Name",X=$$SETSTR^VALM1("Unit",X,53,4),X=$$SETSTR^VALM1("Qty",X,63,3),X=$$SETSTR^VALM1("Cost",X,73,4)
+ S @PSUG@(5)=X
+ S X="",$P(X,"-",79)=""
+ S @PSUG@(6)=X
+ S PSULC=6
+ N PSUNM,PSUDISP,PSUTQ,PSUTC,PSUTQT,PSUTCT
+ S (PSUTQT,PSUDISP,PSUTQ,PSUTC,PSUTCT)=0
+ ;    loop drug names
+ S PSUNM=""
+ F  S PSUNM=$O(^XTMP(PSUPRSUB,"DRUG",PSUNM)) Q:PSUNM=""  S PSUTQ=^XTMP(PSUPRSUB,"DRUG",PSUNM,"TQ"),PSUTC=^("TC"),PSUDISP=^("DISP") D
+ . S PSULC=PSULC+1
+ . S PSUTQT=$G(PSUTQT)+PSUTQ,PSUTCT=$G(PSUTCT)+PSUTC
+ . S X=$E(PSUNM,1,50)
+ . S X=$$SETSTR^VALM1(PSUDISP,X,53,$L(PSUDISP))
+ . S X=$$SETSTR^VALM1($J(PSUTQ,6,0),X,62,6)
+ . S X=$$SETSTR^VALM1($J(PSUTC,8,2),X,70,8)
+ . S @PSUG@(PSULC)=X
+ ;
+ S X="",$P(X,"-",79)=""
+ S PSULC=PSULC+1
+ S @PSUG@(PSULC)=X
+ S X="Total",X=$$SETSTR^VALM1($J(PSUTQT,6,0),X,62,6),X=$$SETSTR^VALM1($J(PSUTCT,8,2),X,70,8)
+ S PSULC=PSULC+1
+ S @PSUG@(PSULC)=X
+ S @PSUG@(PSULC+1)="    "
+ S XMSUB="V. 4.0 PBMPR "_$G(PSUMON)_"  "_PSUDIV_" "_PSUDIVNM
+ S XMTEXT="^XTMP(PSUPRSUB,""REPORT2"",PSUDIV,"
+ S XMCHAN=1
+ M XMY=PSUXMYS2
+ I '$G(PSUSMRY) D ^XMD
+ Q
+NODATA ;EP SEND NO DATA MESSAGE
+ S XMDUZ=DUZ
+ M XMY=PSUXMYS1
+ ;
+ S PSUDIV=PSUSNDR
+ S X=PSUDIV,DIC=40.8,DIC(0)="X",D="C" D IX^DIC ;**1
+ S X=+Y S PSUDIVNM=$$VAL^PSUTL(40.8,X,.01)
+ S Y=PSUSDT X ^DD("DD") S PSUDTS=Y ;    start date
+ S Y=PSUEDT X ^DD("DD") S PSUDTE=Y ;    end date
+ S XMSUB="V. 4.0 PBMPR "_$G(PSUMON)_"  "_PSUDIV_" "_PSUDIVNM
+ S XMTEXT="^XTMP(PSUPRSUB,""REPORT2"",PSUDIV,"
+ S XMCHAN=1
+ K X
+ S X(1)="            Procurement Statistical Summary"
+ S X(2)="            "_PSUDTS_" through "_PSUDTE_" for "_PSUDIVNM
+ S X(3)="   "
+ S X(4)="No data to report"
+ S X(5)="   "
+ M ^XTMP(PSUPRSUB,"REPORT1",PSUDIV)=X
+ S XMTEXT="X("
+ S:$G(PSUDUZ) XMY(PSUDUZ)=""
+ D ^XMD
+ S X(1)="            Procurement Data Summary"
+ M ^XTMP(PSUPRSUB,"REPORT2",PSUDIV)=X ;store for print cycle
+ Q

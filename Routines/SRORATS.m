@@ -1,0 +1,22 @@
+SRORATS ;B'HAM ISC/MAM - CANCEL RATES ; 12 DEC 1990 8:30 AM
+ ;;3.0; Surgery ;;24 Jun 93
+ D PAGE S SRSS=0 F  S SRSS=$O(^TMP("SRT",$J,SRSS)) Q:SRSS=""!(SRSOUT)  D SPEC
+ Q
+SPEC I $Y+4>IOSL D PAGE I SRSOUT Q
+ S SRSSNM=$S(SRSS="ZZ":"SURGICAL SPECIALTY NOT ENTERED",1:SRSS)
+ S X=^TMP("SRT",$J,SRSS),Y=$P(X,"^"),TOTAL=Y+$P(X,"^",3),X=$P(X,"^",2),CANRATE=$S(Y>0:X/Y*100,1:0),CANRATE=CANRATE+.5\1*1
+ S TOTRATE=$S(TOTAL>0:X/TOTAL*100,1:0),TOTRATE=TOTRATE+.5\1*1
+ W !,SRSSNM,?49,$J(TOTRATE,3)," %",?69,$J(CANRATE,3)," %"
+ Q
+PAGE S X="" I $E(IOST)'="P" W !!,"Press RETURN to continue, or '^' to quit:  " R X:DTIME I '$T!(X["^") S SRSOUT=1 Q
+ I X["?" W !!,"Enter RETURN to continue printing this report, or '^' to exit from this option." G PAGE
+HDR ; print heading
+ I $D(ZTQUEUED) D ^SROSTOP I SRHALT S SRSOUT=1 Q
+ S X=$E(SRSD,4,5)_"/"_$E(SRSD,6,7)_"/"_$E(SRSD,2,3),Y=$E(SRED,4,5)_"/"_$E(SRED,6,7)_"/"_$E(SRED,2,3),PAGE=PAGE+1 I $Y W @IOF
+ I $E(IOST)="P" W !,?(80-$L(SRINST)\2),SRINST,?70,"PAGE: "_PAGE,!,?32,"SURGICAL SERVICE",!,?20,"CANCELLATION RATE REPORT, SPECIALTY SUMMARY",!,?27,"FROM "_X_"  TO "_Y
+ I $E(IOST)="P" S X=$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3) W !,?29,"DATE PRINTED: "_X
+ I $E(IOST)="P" W !,?21,"REVIEWED BY:",?45,"DATE REVIEWED:",!
+ W !,?45,"PERCENT AVOIDABLE CANCELLATIONS",!,?43,"-----------------------------------"
+ W !,"SURGICAL SPECIALTY",?43,"SCHEDULED CASES     CANCELLED CASES"
+ W ! F LINE=1:1:80 W "="
+ W !!

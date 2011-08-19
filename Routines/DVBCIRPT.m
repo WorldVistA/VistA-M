@@ -1,0 +1,163 @@
+DVBCIRPT ;ALB/GTS-AMIE C&P INSUFF EXAM TRACKING RPT ; 11/9/94  2:00 PM
+ ;;2.7;AMIE;**13,19,27,149**;Apr 10, 1995;Build 16
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;** Version Changes
+ ;   2.7 - New routine (Enhc 15)
+ ;
+MAIN ;**Select Dte Rng & Rpt Type; call report routine
+ F  Q:$D(DVBAOUT)  DO
+ .D HOME^%ZIS
+ .S TVAR(1,0)="0,0,1,2:2,1^Insufficient 2507 Exam Report"
+ .D WR^DVBAUTL4("TVAR")
+ .K TVAR
+ .S DVBAPRTY=$$EXMPRTY^DVBCIUTL("Select Priority of Exam for the Insufficient Exam Report")  ;priority of exam selection
+ .S RPTTYPE=$S((DVBAPRTY?.A)&(DVBAPRTY]""):$$RPTTYPE^DVBCUTA1(),1:"")
+ .S:((RPTTYPE'="D")&(RPTTYPE'="S")) DVBAOUT=""
+ .W:'$D(DVBAOUT) !!
+ .D:'$D(DVBAOUT) DATE^DVBCUTL4(.BEGDT,.ENDDT)
+ .I $D(ENDDT),(+ENDDT>0) DO
+ ..S ENDDT=ENDDT_".2359"
+ ..I RPTTYPE="S" DO
+ ...D DEVSEL
+ ...I POP D SUMKILL
+ ...I 'POP DO
+ ....I $D(IO("Q")) DO
+ .....N DVBAI
+ .....S ZTRTN="SUM^DVBCIRPT",ZTIO=ION
+ .....S ZTDESC="Summary Insufficient Exam Report"
+ .....F DVBAI="BEGDT","ENDDT","DVBAPRTY" S ZTSAVE(DVBAI)=""
+ .....D ^%ZTLOAD
+ .....N TSK S TSK=$S($D(ZTSK)=0:"C",1:"Y")
+ .....I TSK="Y" W !!,"Summary Report Queued. Task number: ",ZTSK
+ .....K ZTSK D CONTMES^DVBCUTL4
+ .....D SUMKILL
+ ....I '$D(IO("Q")) D SUM
+ ...D ^%ZISC
+ ..I RPTTYPE="D" DO
+ ...D DETSEL^DVBCIRP1 ;**Select the Reasons and Exams to report
+ ...I '$D(DVBAQTSL) DO
+ ....D DEVSEL
+ ....I POP D KVARS^DVBCIRP1
+ ....I 'POP DO
+ .....I $D(IO("Q")) DO
+ ......N DVBAI
+ ......S ZTRTN="DETAIL^DVBCIRP1",ZTIO=ION
+ ......S ZTDESC="Detailed Insufficient Exam Report"
+ ......F DVBAI="BEGDT","ENDDT","DVBAPRTY","DVBAARY(""REASON"",","^TMP($J,""XMTYPE""," S ZTSAVE(DVBAI)=""
+ ......D ^%ZTLOAD
+ ......N TSK S TSK=$S($D(ZTSK)=0:"C",1:"Y")
+ ......I TSK="Y" W !!,"Detail Report Queued. Task number: ",ZTSK
+ ......K ZTSK D CONTMES^DVBCUTL4
+ ......D KVARS^DVBCIRP1
+ .....I '$D(IO("Q")) W:IOST?1"C-".E @IOF D DETAIL^DVBCIRP1
+ ....D ^%ZISC
+ ...K DVBAQTSL
+ ..D CLEANUP
+ D KVARS
+ Q
+ ;
+KVARS ;** Kill the variables used in report
+ K DVBAOUT,ENDDT,BEGDT,DTOUT,DUOUT,RPTTYPE,DVBACAN,DVBASTAT,DVBAPRTY
+ D CLEANUP
+ Q
+ ;
+CLEANUP ;** Kill the variables used by the device handler
+ K %ZIS,POP,%IS,IOP
+ K IOBS,IOHG,IOPAR,IOUPAR,IOXY,POP,%DT,%YY,%XX,ION,IOPAR
+ Q
+ ;
+DEVSEL ;** Select the device to report to
+ S %ZIS="AEQ"
+ S %ZIS("A")="Output device: "
+ D ^%ZIS
+ Q
+ ;
+SUM ;** Set up reason counter array, count all 2507's received
+ N DVBAEXMP,DVBAI,DVBAP,DVBATVAR,DVBAMCDES,DVBAPREXM
+ U IO
+ S (DVBARQCT,DVBAINRQ,DVBAXMCT,DVBAINXM)=0
+ S DVBACAN("REQ")=0,DVBACAN("EXM")=0
+ S DVBAENDL=ENDDT
+ S DVBAEXMP=$S(($G(DVBAPRTY)["BDD"):";BDD;QS;",($G(DVBAPRTY)["DES"):";DCS;DFD;",($G(DVBAPRTY)["AO"):";AO;",1:"")
+ S DVBAMCDES=((DVBAEXMP]"")&(DVBAPRTY'="AO"))
+ K ^TMP("DVBATOTALS",$J)  ;for multiple priority reporting
+ ;
+ ;** Initialize reason counter array(s)
+ F DVBARIFN=0:0 S DVBARIFN=$O(^DVB(396.94,DVBARIFN)) Q:+DVBARIFN'>0  DO
+ .D:(DVBAMCDES)
+ ..F DVBAP=$P(DVBAEXMP,";",2),$P(DVBAEXMP,";",3)  D
+ ...S ^TMP("DVBATOTALS",$J,DVBAP,"DVBAINXM",DVBARIFN)=0
+ .S DVBAINXM(DVBARIFN)=0
+ D:(DVBAMCDES)
+ .F DVBAP=$P(DVBAEXMP,";",2),$P(DVBAEXMP,";",3)  D
+ ..S ^TMP("DVBATOTALS",$J,DVBAP,"DVBAINXM","NO REASON")=0
+ S DVBAINXM("NO REASON")=0
+ ;
+ ;** Count the total and insufficient number of exams and 2507 requests
+ ;     For performance, if multiple reports, store totals in single pass of data
+ S DVBADTLP=BEGDT-.0001
+ F  S DVBADTLP=$O(^DVB(396.3,"ADP",DVBADTLP)) Q:(DVBADTLP=""!(DVBADTLP>ENDDT))  DO
+ .S DVBAPRIO=""
+ .F  S DVBAPRIO=$O(^DVB(396.3,"ADP",DVBADTLP,DVBAPRIO)) Q:DVBAPRIO=""  DO
+ ..S DVBADALP=""
+ ..F  S DVBADALP=$O(^DVB(396.3,"ADP",DVBADTLP,DVBAPRIO,DVBADALP)) Q:DVBADALP=""  DO
+ ...;check for Parent Request (retrieve current/parent Priority of Exam)
+ ...S DVBAPREXM=$$CHKREQ^DVBCIRP1(DVBADALP)
+ ...;original report run (Exclude new priorities)
+ ...Q:((DVBAEXMP']"")&((";BDD;QS;DCS;DFD;AO;")[(";"_DVBAPREXM_";")))
+ ...;report for specific Priority of Exam
+ ...Q:((DVBAEXMP]"")&(DVBAEXMP'[(";"_DVBAPREXM_";")))
+ ...S:(DVBAMCDES) ^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBARQCT")=$G(^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBARQCT"))+1
+ ...S DVBARQCT=DVBARQCT+1
+ ...K DVBAINSF
+ ...I DVBAPRIO="E" DO
+ ....S:(DVBAMCDES) ^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBAINRQ")=$G(^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBAINRQ"))+1
+ ....S DVBAINRQ=DVBAINRQ+1
+ ....I $P(^DVB(396.3,DVBADALP,0),U,18)="RX" D
+ .....S:(DVBAMCDES) ^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBACANREQ")=$G(^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBACANREQ"))+1
+ .....S DVBACAN("REQ")=DVBACAN("REQ")+1
+ ....S DVBAINSF=""
+ ...S DVBAXMDA=""
+ ...F  S DVBAXMDA=$O(^DVB(396.4,"C",DVBADALP,DVBAXMDA)) Q:DVBAXMDA=""  DO
+ ....S:(DVBAMCDES) ^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBAXMCT")=$G(^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBAXMCT"))+1
+ ....S DVBAXMCT=DVBAXMCT+1
+ ....I $D(DVBAINSF) DO
+ .....S:(DVBAMCDES) ^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBAINXM")=$G(^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBAINXM"))+1
+ .....S DVBAINXM=DVBAINXM+1
+ .....S DVBARIFN=$P(^DVB(396.4,DVBAXMDA,0),U,11),DVBASTAT=$P(^(0),U,4)
+ .....S:DVBARIFN="" DVBARIFN="NO REASON"
+ .....S:(DVBAMCDES) ^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBAINXM",DVBARIFN)=$G(^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBAINXM",DVBARIFN))+1
+ .....S DVBAINXM(DVBARIFN)=DVBAINXM(DVBARIFN)+1
+ .....I DVBASTAT="RX" D
+ ......S:(DVBAMCDES) ^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBACANEXM")=$G(^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBACANEXM"))+1
+ ......S DVBACAN("EXM")=DVBACAN("EXM")+1
+ ;
+ S DVBAEXMP=$S(($G(DVBAPRTY)["BDD"):"BDD,QS",($G(DVBAPRTY)["DES"):"DCS,DFD",($G(DVBAPRTY)["AO"):"AO",1:"")
+ F DVBAI=1:1:$L(DVBAEXMP,",")  D
+ .S DVBAPRTY=$P(DVBAEXMP,",",DVBAI)  ;priority to report on
+ .D:(DVBAI>1)  ;Form Feed between multiple Reports
+ ..S DVBATVAR(1,0)="0,0,0,0,1^"
+ ..D WR^DVBAUTL4("DVBATVAR")
+ .;
+ .D:(DVBAMCDES)  ;reset var cntrs for specific priority
+ ..S DVBARQCT=+$G(^TMP("DVBATOTALS",$J,DVBAPRTY,"DVBARQCT"))
+ ..S DVBAINRQ=+$G(^TMP("DVBATOTALS",$J,DVBAPRTY,"DVBAINRQ"))
+ ..S DVBACAN("REQ")=+$G(^TMP("DVBATOTALS",$J,DVBAPRTY,"DVBACANREQ"))
+ ..S DVBAXMCT=+$G(^TMP("DVBATOTALS",$J,DVBAPRTY,"DVBAXMCT"))
+ ..S DVBAINXM=+$G(^TMP("DVBATOTALS",$J,DVBAPRTY,"DVBAINXM"))
+ ..S DVBAP=0 F  S DVBAP=$O(^TMP("DVBATOTALS",$J,DVBAPRTY,"DVBAINXM",DVBAP)) Q:DVBAP=""  D
+ ...S DVBAINXM(DVBAP)=+$G(^TMP("DVBATOTALS",$J,DVBAPRTY,"DVBAINXM",DVBAP))
+ ..S DVBACAN("EXM")=+$G(^TMP("DVBATOTALS",$J,DVBAPRTY,"DVBACANEXM"))
+ .;
+ .D SUMRPT^DVBCIRP1  ;print SUMMARY report
+ S:$D(ZTQUEUED) ZTREQ="@"
+ D SUMKILL
+ D ^%ZISC
+ Q
+ ;
+SUMKILL ;** Kill the variables used in the summary report
+ K DVBADTLP,DVBAENDL,DVBARQCT,DVBAINRQ,DVBAXMCT,DVBAINXM
+ K DVBAPRIO,DVBADALP,DVBAXMDA,DVBAINSF,DVBARIFN
+ K ^TMP("DVBATOTALS",$J)
+ Q

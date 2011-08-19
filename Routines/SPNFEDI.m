@@ -1,0 +1,96 @@
+SPNFEDI ;WDE/SD LOOK-UP RECORDS IN 154.1 ;10/17/2001
+ ;;2.0;Spinal Cord Dysfunction;**12,13,16**;01/02/1997
+ ;   called from spnfedt0
+EN(SPNFTYPE,SPNFDFN) ;
+ K ^UTILITY($J,"FUN")
+ K ^UTILITY($J,"FUNSORT")
+ K ^TMP($J,"TEMP ADM")
+ ;---------------------------------------------------------------------
+ ;build scratch global so we can check admissions on file
+ ;to what is in 154.1
+ S SPNCH="" F  S SPNCH=$O(^DGPM("ATID1",SPNFDFN,SPNCH)) Q:(SPNCH="")!('+SPNCH)  D
+ .S SPNCHK=0,SPNCHK=$O(^DGPM("ATID1",SPNFDFN,SPNCH,SPNCHK))
+ .S ^TMP($J,"TEMP ADM",$P($G(^DGPM(SPNCHK,0)),U,1))=""
+ S SPNFD0=0 F  S SPNFD0=$O(^SPNL(154.1,"B",SPNFDFN,SPNFD0)) Q:(SPNFD0="")!('+SPNFD0)  D
+ .S SPNDATA=""
+ .S SPNDATA=$P($G(^SPNL(154.1,SPNFD0,2)),U,18)
+ .I $L(SPNDATA) I '$D(^TMP($J,"TEMP ADM",SPNDATA)) S DIE="^SPNL(154.1,",DA=SPNFD0,DR=".022////@;1000////@" D ^DIE  ;clean deleted admission
+ .S SPNDATA=""
+ .S SPNDATA=$G(^SPNL(154.1,SPNFD0,0)) Q:SPNDATA=""
+ .S SPNRTYP=$P(SPNDATA,U,2) Q:SPNRTYP=""  ;no record type
+ .I SPNRTYP'=SPNFTYPE S (SPNDATA,SPNRTYP)="" Q
+ .S SPNRDT=$P(SPNDATA,U,4) Q:SPNRDT=""  S SPNRDT=999999999-SPNRDT
+ .S ^UTILITY($J,"FUN",SPNRDT,SPNFD0)=SPNFD0
+ S SPNY=0,SPNCNT=0 F  S SPNY=$O(^UTILITY($J,"FUN",SPNY)) Q:SPNY=""  S SPNZ="" F  S SPNZ=$O(^UTILITY($J,"FUN",SPNY,SPNZ)) Q:(SPNZ="")!('+SPNZ)  D
+ .S SPNCNT=SPNCNT+1 S ^UTILITY($J,"FUNSORT",SPNCNT,SPNY,SPNZ)=$G(^UTILITY($J,"FUN",SPNY))
+ S ^UTILITY($J,"FUNSORT",0)=SPNCNT
+ K ^UTILITY($J,"FUN")
+SHOW ;
+ D HDR
+ S SPNSEL=""
+ S SPNVAL=0
+ S SPNCNT=0
+ S SPNROW=0
+ I $G(^UTILITY($J,"FUNSORT",0))=0 W !!?10,"No Outcomes on file.",!?10,"You can add one if you wish.",! S SPNSEL="A" Q
+ F  S SPNCNT=$O(^UTILITY($J,"FUNSORT",SPNCNT)) Q:SPNCNT=""   S SPNREV=0 F  S SPNREV=$O(^UTILITY($J,"FUNSORT",SPNCNT,SPNREV)) Q:SPNREV=""  S SPNZ="" F  S SPNZ=$O(^UTILITY($J,"FUNSORT",SPNCNT,SPNREV,SPNZ)) Q:SPNZ=""  D
+ .;I SPNCNT>28 D HDR
+ .S SPNFD0=SPNZ D BLD
+ .S Y=999999999-SPNREV X ^DD("DD") S SPNRDAT=Y
+ .W !,SPNCNT,") ",SPNRDAT,?16,SPNDISP S SPNLINE=SPNLINE+1,SPNVAL=SPNVAL+1
+ .S SPNROW=SPNROW+1
+ .I SPNROW>15 D SEL S:SPNSEL="" SPNROW=0 D:SPNSEL="" HDR I SPNSEL'="" S SPNCNT=99999999,SPNREV="Z" Q
+ .;I SPNLINE>15 D SEL D HDR:SPNSEL="" S SPNLINE=0 I SPNSEL'="" S SPNCNT=9999999,SPNREV="Z" Q
+ I SPNSEL="" D SEL
+ ;added spnrow to count the row displayed patch 16
+VALUE ;
+ ;evaluate the value in spnsel
+ I SPNSEL="a" S SPNSEL="A"
+ I SPNSEL="A" D ZAP
+ Q:SPNSEL="A"
+ I SPNSEL["^" D ZAP Q
+ I SPNSEL>SPNVAL W !?10,"Not on the list.." H 2 D ZAP S SPNSEL="^" Q
+ I SPNSEL="" D ZAP S SPNSEL="^" Q
+ I SPNSEL>$G(^UTILITY($J,"FUNSORT",0)) W !?10,"Not on the list" H 2 S SPNSEL="^" D ZAP Q
+ I $D(^UTILITY($J,"FUNSORT",SPNSEL))=0 W !?10,"Not on the list" H 2 S SPNSEL="^" D ZAP Q
+ I '+SPNSEL D ZAP Q
+ S SPNX="",SPNX=$O(^UTILITY($J,"FUNSORT",SPNSEL,SPNX)),SPNFD0="",SPNFD0=$O(^UTILITY($J,"FUNSORT",SPNSEL,SPNX,SPNFD0))
+ Q
+BLD ;
+ S SPNDISP=""
+ S SPDTA=$G(^SPNL(154.1,SPNFD0,2))
+ S SPNDISP="Admission: "
+ S SPNTMP=$P(SPDTA,U,18) I +SPNTMP S SPNTMP=$$FMTE^XLFDT(SPNTMP,"5ZDP") S SPNDISP=SPNDISP_SPNTMP
+ I SPNTMP="" S SPNDISP=SPNDISP_"          "
+ S SPNDISP=SPNDISP_" Score type: "
+ S SPNTMP=$P(SPDTA,U,17)
+ S SPNTMP=$S(SPNTMP=1:"Admission ",SPNTMP=2:"Goal      ",SPNTMP=3:"Interim   ",SPNTMP=4:"Discharge",SPNTMP=5:"OutPatient",1:"          ")
+ S SPNDISP=SPNDISP_SPNTMP
+ S SPNTMP=$P($G(^SPNL(154.1,SPNFD0,"MS")),U,9)
+ I SPNTMP="" K SPNTMP,SPDTA S:$P($G(^SPNL(154.1,SPNFD0,0)),U,2)=4 SPNDISP=SPNDISP_"  EDSS Score: " S Y=SPNFD0 Q  ;No edss score
+ S SPNDISP=SPNDISP_"  EDSS Score: "
+ S SPNTMP=$P($G(^SPNL(154.2,SPNTMP,0)),U,1)
+ I SPNTMP="" S SPNTMP="    "
+ S SPNDISP=SPNDISP_SPNTMP
+ K SPNTMP,SPDTA
+ K SPNFD0
+ Q
+ W:$D(IOF) @IOF W #
+ Q
+HDR ;
+ S SPNLINE=7  ;NEW
+ I $D(IOF) W @IOF
+ W !?20,$S(SPNFTYPE=1:"Self Reported Functional Measure",SPNFTYPE=2:"Clinician Reported FIM",SPNFTYPE=3:"CHART/FAM/DIENNER/DUSOI",SPNFTYPE=5:"ASIA Score",SPNFTYPE=4:"MS module (Kurtzke/EDSS)",1:"ERROR")
+ S SPNSSN=$P($G(^DPT(SPNFDFN,0)),U,9) S SPNSSN=$E(SPNSSN,1,3)_"-"_$E(SPNSSN,4,5)_"-"_$E(SPNSSN,6,9)
+ W !!,"Patient: ",$P(^DPT(SPNFDFN,0),U,1),?35,"SSN: ",SPNSSN
+ W !,"------------------------------------------------------------------------------"
+ Q
+SEL ;
+ W !,"-----------------------------------------------------------------------------"
+ W !,"Select 1 through "_$S('+SPNCNT:$G(^UTILITY($J,"FUNSORT",0)),1:SPNCNT)_" of "_$G(^UTILITY($J,"FUNSORT",0))_" or A to add a new record or ^ to quit."
+ I SPNVAL<$G(^UTILITY($J,"FUNSORT",0)) W !,"Or Return to see the next group."
+ R !?5,"Select: ",SPNSEL:DTIME
+ I SPNSEL="" I SPNLINE=$G(^UTILITY($J,"FUNSORT",0)) S SPNSEL="^"
+ Q
+ZAP ;clean up table and get out of here
+ K ^UTILITY($J,"FUNSORT"),SPNVAL,SPNCNT,SPNLINE,SPNREV,SPNY,SPNRDAT,SPNDISP,X,Y,SPNFD0,SPNDATA,SPNRTYP,SPNRDT,SPNROW
+ Q

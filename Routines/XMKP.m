@@ -1,0 +1,207 @@
+XMKP ;ISC-SF/GMB-Address and Post msg ;09/17/2002  12:52
+ ;;8.0;MailMan;**1**;Jun 28, 2002
+ ; Replaces ENT1^XMAD1,ENT^XMAD1,FINAL^XMAD1X (ISC-WASH/CAP)
+SEND(XMDUZ,XMZ,XMINSTR) ;
+ ; XMINSTR("SHARE DATE")  Delete date for mail addressed to SHARED,MAIL
+ ; XMINSTR("SHARE BSKT")  Basket for mail addressed to SHARED,MAIL
+ ; XMINSTR("SELF BSKT")   Basket to deliver to if recipient is the sender
+ N XMTOCNT,XMPRI,XMINST
+ S XMPRI=($G(XMINSTR("FLAGS"))["P")
+ D SADDRTO(XMDUZ,XMZ) ; Populate ADDRESSED TO multiple
+ D SRECIP(XMDUZ,XMZ,XMPRI,.XMTOCNT) ; Populate RECIPIENT multiple
+ I XMTOCNT!$$BRODCAST D SPOST(XMDUZ,XMZ,XMTOCNT,.XMINSTR)
+ S XMINST=""
+ F  S XMINST=$O(^XMB(3.9,XMZ,1,"AQUEUE",XMINST)) Q:'XMINST  D
+ . D REMOTE^XMKPR(XMZ,XMINST)
+ D:$D(^XMB(3.9,XMZ,1,"AFAX")) FAX^XMFAX(XMZ)
+ Q
+SPOST(XMDUZ,XMZ,XMTOCNT,XMINSTR) ;
+ N XMTSTAMP,XMPREC
+ S XMTSTAMP=$$TSTAMP^XMXUTIL1
+ S XMPREC=XMTOCNT
+ I $D(^TMP("XMY",$J,XMDUZ)) D
+ . S $P(XMPREC,U,2)=$G(XMINSTR("SELF BSKT"),1)
+ I $D(^TMP("XMY",$J,.6)) D
+ . S $P(XMPREC,U,3,4)=$G(XMINSTR("SHARE BSKT"),1)_U_$G(XMINSTR("SHARE DATE"),$$FMADD^XLFDT(DT,30))
+ I $$BRODCAST D
+ . S $P(XMPREC,U,1)=$P(^XMB(3.7,0),U,4)
+ . S $P(XMPREC,U,5)="*"
+ S ^XMBPOST("BOX",XMTSTAMP,"M",XMZ)=XMPREC
+ Q
+BRODCAST() ;
+ Q $D(^TMP("XMY",$J,$$EZBLD^DIALOG(39006))) ; * (Broadcast to all local users)
+SRECIP(XMDUZ,XMZ,XMPRI,XMTOCNT) ; "Send" to recipients
+ N XMTO,XMFDA,XMIEN,XMIENS,XMPREFIX,XMNOW
+ ; Put addressees into RECIPIENT multiple
+ S XMTO="",XMTOCNT=0
+ F  S XMTO=$O(^TMP("XMY",$J,XMTO)) Q:XMTO=""  D
+ . K XMPREFIX,XMIEN
+ . D NEW(XMZ,XMPRI,XMTO,$G(^TMP("XMY",$J,XMTO,1)),.XMFDA,.XMIENS)            ; New recipient
+ . I $D(^TMP("XMY",$J,XMTO,"F")) D
+ . . S:'$D(XMNOW) XMNOW=$$MMDT^XMXUTIL1($P(^XMB(3.9,XMZ,0),U,3))
+ . . D RCPTFWD^XMKP1("S",XMTO,.XMFDA,XMIENS,XMNOW)
+ . I +XMTO=XMTO S XMTOCNT=XMTOCNT+1
+ . E  D STATUS(XMTO,.XMFDA,XMIENS,.XMPREFIX)  ; Transmission Status
+ . D UPDATE^DIE("","XMFDA","XMIEN")
+ . S XMIENS=XMIEN(1)_","_XMZ_","
+ . I ".D.H.S."[("."_$G(XMPREFIX)_".") D OPOST(XMDUZ,XMZ,XMTO,XMIENS,XMPREFIX)
+ Q
+SADDRTO(XMDUZ,XMZ) ; Put addressees into ADDRESSED TO multiple
+ N XMTO
+ S XMTO=""
+ F  S XMTO=$O(^TMP("XMY0",$J,XMTO)) Q:XMTO=""  D ADDRTO(XMDUZ,XMZ,XMTO)
+ Q
+ADDRTO(XMDUZ,XMZ,XMTO) ;
+ N XMFDA,XMPREFIX,XMMULT
+ S XMPREFIX=$G(^TMP("XMY0",$J,XMTO,1))
+ I $D(^TMP("XMY0",$J,XMTO,"L")) D
+ . I XMTO=XMV("NAME") D  Q
+ . . D LTRADD^XMJMD(XMDUZ,XMZ,$G(^TMP("XMY0",$J,XMTO,"L")))
+ . . S XMMULT=3.911
+ . S XMMULT=3.914
+ . S XMFDA(3.914,"?+1,"_XMZ_",",2)=XMDUZ
+ . S XMFDA(3.914,"?+1,"_XMZ_",",3)=XMV("NAME")_$S(XMDUZ=DUZ:"",1:$$EZBLD^DIALOG(38008,XMV("DUZ NAME"))) ; " (Surrogate: _x_)"
+ . S XMFDA(3.914,"?+1,"_XMZ_",",4)=^TMP("XMY0",$J,XMTO,"L")
+ E  S XMMULT=3.911
+ S XMFDA(XMMULT,"?+1,"_XMZ_",",.01)=XMTO
+ S:XMPREFIX'="" XMFDA(XMMULT,"?+1,"_XMZ_",",1)=XMPREFIX
+ D UPDATE^DIE("","XMFDA")
+ Q
+NEW(XMZ,XMPRI,XMTO,XMTYPE,XMFDA,XMIENS) ;
+ S XMIENS="+1,"_XMZ_","
+ S XMFDA(3.91,XMIENS,.01)=XMTO
+ ; If addressee is also the creator of the msg, then I: or C: does not
+ ; apply.
+ I $G(XMTYPE)'="" S XMFDA(3.91,XMIENS,6.5)=XMTYPE
+ I XMPRI,XMTO=+XMTO,$P($G(^XMB(3.7,XMTO,0)),U,11) S XMFDA(3.91,XMIENS,10)=$P(^(0),U,11)   ; Priority response flag
+ Q
+STATUS(XMTO,XMFDA,XMIENS,XMPREFIX) ;
+ I $E(XMTO,1,2)="F.",$P(^XMB(1,1,0),U,19),$D(^AKF("FAXR")),$E(XMTO,3,99)=$P($G(^AKF("FAXR",^TMP("XMY",$J,XMTO),0)),U) D  Q
+ . S XMFDA(3.91,XMIENS,5)=$$EZBLD^DIALOG(39303.5) ; Awaiting Fax.
+ . S XMFDA(3.91,XMIENS,13)=^TMP("XMY",$J,XMTO)
+ I XMTO["@" D  Q
+ . S XMFDA(3.91,XMIENS,5)=$$EZBLD^DIALOG(39303.1) ; Awaiting transmission.
+ . S XMFDA(3.91,XMIENS,6)=^TMP("XMY",$J,XMTO) ; sets x-ref "AQUEUE"
+ I $E(XMTO,2,2)="." D
+ . S XMPREFIX=$E(XMTO,1,1) ; We know it is upper case
+ . Q:"SDH"'[XMPREFIX
+ . S XMFDA(3.91,XMIENS,5)=$$EZBLD^DIALOG($S(XMPREFIX="S":39303.2,XMPREFIX="D":39303.3,1:39303.4)) ; "Awaiting Server."/"Awaiting Device."/"Awaiting H.Device."
+ Q
+OPOST(XMDUZ,XMZ,XMTO,XMIENS,XMPREFIX) ;
+ I XMPREFIX="S" D SERVER^XMKPO(XMZ,XMTO,XMIENS) Q
+ I XMPREFIX="D" D DEVICE^XMKPO(XMDUZ,XMZ,XMTO,XMIENS,1) Q
+ I XMPREFIX="H" D DEVICE^XMKPO(XMDUZ,XMZ,XMTO,XMIENS,0) Q  ; Headerless
+ Q
+FWD(XMDUZ,XMZ,XMINSTR) ;
+ ; XMFWDTYP      fwding person recipient type:  I:, CC:
+ ; XMPRI         1=msg is priority msg; 0=not
+ ; XMINSTR("SHARE DATE")  Delete date for mail addressed to SHARED,MAIL
+ ; XMINSTR("SHARE BSKT")  Basket for mail addressed to SHARED,MAIL
+ ; XMINSTR("FWD BY")  String to replace standard 'Forwarded by'
+ ; XMTOLIST      Array of local recipients
+ ; XMTOCNT       Number of valid recipients
+ N XMTOLIST,XMPRI,XMFWDTYP,XMIEN,XMREMOTE,XMINST
+ S XMIEN=$O(^XMB(3.9,XMZ,1,"C",XMDUZ,0)) ; May have been fwd'd by a remote person
+ S XMFWDTYP=$S('XMIEN:"",1:$P($G(^XMB(3.9,XMZ,1,XMIEN,"T")),U))
+ S XMPRI=($P(^XMB(3.9,XMZ,0),U,7)["P")
+ D FADDRTO(XMDUZ,XMZ) ; Populate ADDRESSED TO multiple
+ D FRECIP(XMDUZ,XMZ,.XMINSTR,XMFWDTYP,XMPRI,.XMTOLIST,.XMREMOTE)
+ D:XMTOLIST(1)'=""!$$BRODCAST FPOST(XMDUZ,XMZ,.XMTOLIST,.XMINSTR)
+ S XMINST=""
+ F  S XMINST=$O(XMREMOTE(XMINST)) Q:'XMINST  D
+ . D REMOTE^XMKPR(XMZ,XMINST)
+ D:$D(^XMB(3.9,XMZ,1,"AFAX")) FAX^XMFAX(XMZ)
+ Q
+FADDRTO(XMDUZ,XMZ) ; Put addressees into ADDRESSED TO multiple
+ N XMTO
+ S XMTO=""
+ F  S XMTO=$O(^TMP("XMY0",$J,XMTO)) Q:XMTO=""  D
+ . I '$$FIND1^DIC(3.911,","_XMZ_",","QX",XMTO,"B") D  Q
+ . . D ADDRTO(XMDUZ,XMZ,XMTO)
+ . Q:'$D(^TMP("XMY0",$J,XMTO,"L"))
+ . I XMTO=XMV("NAME") D  Q
+ . . D LTRADD^XMJMD(XMDUZ,XMZ,$G(^TMP("XMY0",$J,XMTO,"L")))
+ . N XMFDA,XMIENS
+ . S XMIENS="?+1,"_XMZ_","
+ . S XMFDA(3.914,XMIENS,.01)=XMTO
+ . ; we ignore any 'prefix' because these addressees are already on the msg
+ . S XMFDA(3.914,XMIENS,2)=XMDUZ
+ . S XMFDA(3.914,XMIENS,3)=XMV("NAME")_$S(XMDUZ=DUZ:"",1:$$EZBLD^DIALOG(38008,XMV("DUZ NAME"))) ; " (Surrogate: _x_)"
+ . S XMFDA(3.914,XMIENS,4)=^TMP("XMY0",$J,XMTO,"L")
+ . D UPDATE^DIE("","XMFDA")
+ Q
+FPOST(XMDUZ,XMZ,XMTOLIST,XMINSTR) ; For local delivery
+ N XMTSTAMP,XMTOCNT,I,XMUID,XMPREC
+ S XMTSTAMP=$$TSTAMP^XMXUTIL1
+ I $D(^TMP("XMY",$J,XMDUZ)) D
+ . S $P(XMPREC,U,2)=$G(XMINSTR("SELF BSKT"),1)
+ I $D(^TMP("XMY",$J,.6)) D
+ . S $P(XMPREC,U,3,4)=$G(XMINSTR("SHARE BSKT"),1)_U_$G(XMINSTR("SHARE DATE"),$$FMADD^XLFDT(DT,30))
+ S XMUID=XMZ_U_$S(XMDUZ=.6:DUZ,1:XMDUZ)_U_$J
+ S (I,XMTOCNT)=0
+ I XMTOLIST(1)'="" F  S I=$O(XMTOLIST(I)) Q:I=""  D
+ . S XMTOCNT=XMTOCNT+$L(XMTOLIST(I),U)-1
+ . S ^XMBPOST("FWD",XMUID_U_XMTSTAMP,I)=$P(XMTOLIST(I),U,2,999)
+ I $$BRODCAST D
+ . S $P(XMPREC,U,1)=$P(^XMB(3.7,0),U,4)
+ . S $P(XMPREC,U,5)="*"
+ . I $P(^XMB(3.9,XMZ,0),U,12)'="y" S $P(^(0),U,12)="y" ; If not info only, make it so.
+ E  S $P(XMPREC,U,1)=XMTOCNT
+ S ^XMBPOST("BOX",XMTSTAMP,"M",XMUID)=XMPREC
+ Q
+FRECIP(XMDUZ,XMZ,XMINSTR,XMFWDTYP,XMPRI,XMTOLIST,XMREMOTE) ; "Forward" to recipients
+ ; XMFWDBY  Forwarded by:  name (surrogate)
+ N XMTO,XMX,XMIEN,XMFDA,XMIENS,XMPREFIX,XMFWDBY,XMNOW
+ S XMNOW=$$MMDT^XMXUTIL1($$NOW^XLFDT)
+ S XMFWDBY=$S($D(XMINSTR("FWD BY")):XMINSTR("FWD BY"),1:XMV("NAME")_$S(XMDUZ=DUZ:"",1:$$EZBLD^DIALOG(38008,XMV("DUZ NAME")))) ; " (Surrogate: _x_)"
+ ; Put addressees into RECIPIENT multiple
+ S XMTO="",XMX=1,XMTOLIST(XMX)=""
+ F  S XMTO=$O(^TMP("XMY",$J,XMTO)) Q:XMTO=""  D
+ . K XMPREFIX
+ . I +XMTO=XMTO D
+ . . S XMIEN=$O(^XMB(3.9,XMZ,1,"C",XMTO,0))
+ . E  S XMIEN=$$FIND1^DIC(3.91,","_XMZ_",",$S(XMTO["@":"O",1:"QX"),XMTO,"C")
+ . I +XMIEN=0 D  ; New recipient
+ . . N XMTYPE
+ . . ; If you are an info only recipient, then so is anyone you fwd to.
+ . . S XMTYPE=$S(XMFWDTYP'="":XMFWDTYP,1:$G(^TMP("XMY",$J,XMTO,1)))
+ . . D NEW(XMZ,XMPRI,XMTO,XMTYPE,.XMFDA,.XMIENS) ; New recipient
+ . E  D
+ . . S XMIENS=XMIEN_","_XMZ_","
+ . . S:$G(^XMB(3.9,XMZ,1,XMIEN,"D")) XMFDA(3.91,XMIENS,7)="@" ; Unterminate
+ . I +XMTO'=XMTO D
+ . . D STATUS(XMTO,.XMFDA,XMIENS,.XMPREFIX) ; Transmission Status
+ . . S:$D(XMFDA(3.91,XMIENS,6)) XMREMOTE(XMFDA(3.91,XMIENS,6))=""
+ . I $D(^TMP("XMY",$J,XMTO,"F")) D
+ . . D RCPTFWD^XMKP1("F",XMTO,.XMFDA,XMIENS,XMNOW,XMFWDBY)
+ . E  D
+ . . S XMFDA(3.91,XMIENS,8)=XMFWDBY_" "_XMNOW ; fwd by name date time
+ . . I '$D(XMINSTR("FWD BY"))!$D(XMINSTR("FWD BY XMDUZ")) S XMFDA(3.91,XMIENS,8.01)=XMDUZ  ; fwd by duz
+ . I '$D(XMFDA(3.91,XMIENS,8.02)) D  ; Filter-Forward or Regular-Forward
+ . . S XMFDA(3.91,XMIENS,8.02)=$S($G(XMINSTR("FWD BY XMDUZ"))="F":"F",1:"@")
+ . I XMIEN D
+ . . I '$D(XMFDA(3.91,XMIENS,8.03)) D
+ . . . S XMFDA(3.91,XMIENS,8.03)="@"
+ . . . S XMFDA(3.91,XMIENS,8.04)="@"
+ . . D FILE^DIE("","XMFDA")
+ . E  D
+ . . K XMIEN
+ . . D UPDATE^DIE("","XMFDA","XMIEN")
+ . . S XMIENS=XMIEN(1)_","_XMZ_","
+ . D:"^D^H^S^"[(U_$G(XMPREFIX)_U) OPOST(XMDUZ,XMZ,XMTO,XMIENS,XMPREFIX)
+ . Q:+XMTO'=XMTO  ; Quit if addressee not local
+ . I $L(XMTOLIST(XMX))+$L(XMTO)>244 S XMX=XMX+1,XMTOLIST(XMX)=""
+ . S XMTOLIST(XMX)=XMTOLIST(XMX)_U_XMTO
+ Q
+RPOST(XMDUZ,XMZ,XMZR) ;
+ N XMFDA
+RADD ; Add response to response multiple in original msg
+ S XMFDA(3.9001,"+1,"_XMZ_",",.01)=XMZR
+ D UPDATE^DIE("","XMFDA")
+ I $D(DIERR),$P(^XMB(3.9,XMZ,0),U,1)="" D  G RADD
+ . S $P(^XMB(3.9,XMZ,0),U,1)=$$EZBLD^DIALOG(34012) ; * No Subject *
+ . S ^XMB(3.9,"B",$$EZBLD^DIALOG(34012),XMZ)=""
+ ; Now put the message in the post box to be delivered.
+ ; (If this is not a locally generated reply, then XMDUZ is "NR".)
+ S ^XMBPOST("BOX",$$TSTAMP^XMXUTIL1,"R",XMZ_U_XMZR)=$P(^XMB(3.9,XMZ,1,0),U,4)_U_$S(XMDUZ=.6:DUZ,1:XMDUZ)
+ Q

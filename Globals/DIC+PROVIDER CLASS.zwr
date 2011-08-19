@@ -1,0 +1,10 @@
+PROVIDER CLASS
+ZWR
+^DIC(7,0)="PROVIDER CLASS^7^"
+^DIC(7,0,"GL")="^DIC(7,"
+^DIC(7,"%",0)="^1.005^1^1"
+^DIC(7,"%",1,0)="VA"
+^DIC(7,"%","B","VA",1)=""
+^DIC(7,"%D",0)="^^2^2^2950202^"
+^DIC(7,"%D",1,0)="This file is used to identify various classifications or"
+^DIC(7,"%D",2,0)="types of providers."

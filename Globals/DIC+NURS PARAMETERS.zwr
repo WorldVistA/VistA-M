@@ -1,0 +1,13 @@
+NURS PARAMETERS
+ZWR
+^DIC(213.9,0)="NURS PARAMETERS^213.9^"
+^DIC(213.9,0,"DD")="@"
+^DIC(213.9,0,"DEL")="@"
+^DIC(213.9,0,"GL")="^DIC(213.9,"
+^DIC(213.9,0,"LAYGO")="@"
+^DIC(213.9,0,"RD")=""
+^DIC(213.9,0,"WR")="@"
+^DIC(213.9,1,"INIT")="^^^"
+^DIC(213.9,1,"OFF")="0"
+^DIC(213.9,"%D",0)="^^1^1^2970207^^^^"
+^DIC(213.9,"%D",1,0)="This file contains various Nursing specific site parameters."

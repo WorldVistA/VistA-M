@@ -1,0 +1,41 @@
+ORX87 ; slc/CLA - Export Package Level Parameters for patch OR*3*87 ; Jun 05, 2000@14:48:45
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**87**;Dec 17, 1997
+EN ;
+ D RENAME
+ D MAIN
+ Q
+RENAME  ;initiate renaming DRUG-DRUG INTERACTION order check
+ D BMES^XPDUTL("Renaming DRUG-DRUG INTERACTION order check to CRITICAL DRUG INTERACTION...")
+ S $P(^ORD(100.8,18,0),U)="CRITICAL DRUG INTERACTION"
+ ;kill then rebuild "B" x-ref:
+ K ^ORD(100.8,"B")
+ S DIK="^ORD(100.8,",DIK(1)=".01^B" D ENALL^DIK
+ K DIK
+ Q
+MAIN ; main (initial) parameter transport routine
+ K ^TMP($J,"XPARRSTR")
+ N ENT,IDX,ROOT,REF,VAL,I
+ S ROOT=$NAME(^TMP($J,"XPARRSTR")),ROOT=$E(ROOT,1,$L(ROOT)-1)_","
+ D LOAD
+XX2 S IDX=0,ENT="PKG."_"ORDER ENTRY/RESULTS REPORTING"
+ F  S IDX=$O(^TMP($J,"XPARRSTR",IDX)) Q:'IDX  D
+ . N PAR,INST,VAL,ERR
+ . S PAR=$P(^TMP($J,"XPARRSTR",IDX,"KEY"),U),INST=$P(^("KEY"),U,2)
+ . M VAL=^TMP($J,"XPARRSTR",IDX,"VAL")
+ . D EN^XPAR(ENT,PAR,INST,.VAL,.ERR)
+ K ^TMP($J,"XPARRSTR")
+ Q
+LOAD ; load data into ^TMP (expects ROOT to be defined)
+ S I=1 F  S REF=$T(DATA+I) Q:REF=""  S VAL=$T(DATA+I+1) D
+ . S I=I+2,REF=$P(REF,";",3,999),VAL=$P(VAL,";",3,999)
+ . S @(ROOT_REF)=VAL
+ Q
+DATA ; parameter data
+ ;;4988,"KEY")
+ ;;ORK PROCESSING FLAG^SIGNIFICANT DRUG INTERACTION
+ ;;4988,"VAL")
+ ;;Enabled
+ ;;4989,"KEY")
+ ;;ORK CLINICAL DANGER LEVEL^SIGNIFICANT DRUG INTERACTION
+ ;;4989,"VAL")
+ ;;Moderate

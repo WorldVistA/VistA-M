@@ -1,0 +1,15 @@
+ENG INIT PARAMETERS
+ZWR
+^DIC(6910,0)="ENG INIT PARAMETERS^6910^1^1"
+^DIC(6910,0,"DD")="#"
+^DIC(6910,0,"DEL")="e"
+^DIC(6910,0,"GL")="^DIC(6910,"
+^DIC(6910,0,"LAYGO")="#"
+^DIC(6910,0,"WR")="e"
+^DIC(6910,1,0)="TECHNICAL INTEGRATION^999"
+^DIC(6910,1,9)="^4"
+^DIC(6910,"%D",0)="^^3^3^2930430^^^^"
+^DIC(6910,"%D",1,0)="Engineering site parameter file. There should only be ONE entry in this"
+^DIC(6910,"%D",2,0)="file. If there is more than one entry, the routines will not know which"
+^DIC(6910,"%D",3,0)="one to believe and are likely to produce unexpected results."
+^DIC(6910,"B","TECHNICAL INTEGRATION",1)=""

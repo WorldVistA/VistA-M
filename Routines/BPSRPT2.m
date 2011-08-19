@@ -1,0 +1,198 @@
+BPSRPT2 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5**;JUN 2004;Build 45
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ Q
+ ;
+ ;Save One Report Entry
+ ;
+ ; Input variables -> See BPSRPT0 for description
+ ; BPTMPGL,BPDFN,BPRX,BPREF,BP59,BPENDDT,BPPHARM,BPSUMDET,BPGRPLAN,BPRLDT,BPPAYBL,BPREJFL,BPRXDRG
+ ; 
+SETTMP(BPTMPGL,BPDFN,BPRX,BPREF,BP59,BPBEGDT,BPENDDT,BPPHARM,BPSUMDET,BPGRPLAN,BPRLDT,BPPAYBL,BPREJFL,BPRXDRG,BPSTATUS) ;
+ N BPCLSDT,BPDATA,BPDIV,BPFILDT,BPISSDT,BPSMSG,BPSREJ,BPREST,BPSRWR,BPTDTTM,BPTRDT
+ ;
+ ;Check for bad data
+ I BPREF,$$IFREFILL^BPSRPT6(BPRX,BPREF)=0 G EXIT
+ ;
+ ;Retrieve Close Date
+ S BPCLSDT=$P($$CLOSEDT(BP59),".")
+ ;
+ ;If NO refills 
+ I BPREF=0 D
+ . S BPFILDT=$$RXFILDT^BPSRPT6(BPRX)
+ . S BPISSDT=$$RXISSDT^BPSRPT6(BPRX)
+ ;
+ ;If Refills
+ I BPREF>0 D
+ . S BPFILDT=$$REFFILDT^BPSRPT6(BPRX,BPREF)
+ . S BPISSDT=$$REFISSDT^BPSRPT6(BPRX,BPREF)
+ ;
+ ;Get Transaction Date/Transaction Date and Time
+ S BPTRDT=$$TRANDT(BP59,0)
+ S BPTDTTM=$$TRANDT(BP59,1)
+ ;
+ ;Get Result, Message, Reject Information, and BPS Pharmacy
+ S BPREST=$$RESULT(BP59,.BPSRWR)
+ S BPSMSG=$$MSG(BPSRWR,.BPSMSG,BP59)
+ S BPSREJ=$S(BPREJFL=0:"",1:$$REJECT(BPREST,.BPSREJ,BP59))
+ S BPDIV=+$P($G(^BPST(BP59,1)),"^",7)
+ ;
+ ;Set up data node
+ S BPDATA=BPRLDT_U_BPTRDT_U_BP59_U_BPRX_U_BPREF_U_BPREST_U_BPSTATUS_U_BPFILDT_U_BPISSDT_U_U_U_BPPAYBL_U_BPREJFL_U_BPRXDRG_U_BPSRWR
+ ;
+ ;For Totals by Date - No Insurance Sort
+ I BPRTYPE=6 S BPGRPLAN="~"
+ ;
+ ;Sort by transaction date
+ I BPRTYPE'=7 D:$$CHKDT(+$G(BPTRDT),BPBEGDT,BPENDDT)
+ . ;
+ . ;For Recent Transactions tack on Txn date and Time to Ins
+ . I BPRTYPE=5 S BPGRPLAN=-BPTDTTM_"^"_BPGRPLAN
+ . S @BPTMPGL@(BPDIV,BPGRPLAN,BPDFN,BPTRDT,BPRX,BPREF)=BPDATA
+ ;
+ ;Sort by close date
+ I BPRTYPE=7 D:$$CHKDT(+$G(BPCLSDT),BPBEGDT,BPENDDT)
+ . S @BPTMPGL@(BPDIV,BPGRPLAN,BPDFN,BPCLSDT,BPRX,BPREF)=BPDATA
+ ;
+EXIT Q
+ ;
+ ;Get Transaction date and Time
+ ;
+ ; Input Variables -> BP59 - ptr to BPS TRANSACTION
+ ;                    TIME - 1 - Return DT.TM, 0 - DT
+ ; Returned Value -> Transaction or Transaction Date.Time
+ ; 
+TRANDT(BP59,TIME) N X
+ S X=$P($G(^BPST(BP59,0)),U,8)
+ Q $S(TIME=0:X\1,1:X)
+ ;
+ ;Determine the Claim Close Date
+ ;
+ ; Input Variable -> BP59 = ptr to BPS TRANSACTIONS
+ ; Returned Value -> CL = Claim Close Date and Time
+ ; 
+CLOSEDT(BP59) N CL,BP02
+ S BP02=+$P($G(^BPST(BP59,0)),U,4)
+ S CL=+$P($G(^BPSC(BP02,900)),U,2)
+ Q CL
+ ;
+ ;Get Result
+ ;
+RESULT(BP59,RWR) N X
+ I BP59 S RWR=$$CATEG^BPSOSUC(BP59)
+ E  S RWR=""
+ I RWR?1"E ".E D
+ . S X=RWR
+ . I X="E PAYABLE" S X=4
+ . E  I X="E CAPTURED" S X=3
+ . E  I X="E DUPLICATE" S X=2
+ . E  I X="E REJECTED" S X=1
+ . E  I X="E REVERSAL ACCEPTED" S X=11
+ . E  I X="E REVERSAL REJECTED" S X=12
+ . E  S X=0
+ E  I RWR="PAPER" S X=9
+ E  I RWR="PAPER REVERSAL" S X=19
+ E  S X=15
+ Q X
+ ;
+ ;Message
+ ;
+MSG(RWR,MSGTEXT,BP59) N BPRET
+ S BPRET=0
+ ; If the claim has any message text, store it
+ I RWR?1"E ".E D
+ . S X=$$MESSAG59(BP59,1)
+ . I X]"" S MSGTEXT(1)=X
+ . S X=$$MESSAG59(BP59,2)
+ . I X]"" S MSGTEXT(2)=X
+ . I $D(MSGTEXT) S MSGTEXT="MSGTEXT"
+ . S BPRET=1
+ Q BPRET
+ ;
+ ;Reject Text
+ ;
+ ; Output Variable -> BPSRTEXT,BPRET
+ ; 
+REJECT(RWR,BPSRTEXT,BP59) N BPRET,BPSRESP,BPSECME,BPSPOS
+ S BPRET=0
+ ; If it's a rejected claim, build the rejection text
+ I RWR="E REJECTED"!(RWR="E REVERSAL REJECTED") D
+ . D RESP59(BP59,.BPSRESP,.BPSECME) ; set BPSRESP,BPSECME pointers
+ . D REJTEXT^BPSOS03(BPSRESP,BPSPOS,.BPSRTEXT)
+ . ; word processing text goes into FDA(FILE,IENS,FIELD,n)=text
+ . S BPSRTEXT=$S($D(BPSRTEXT):"REJTEXT",1:"")
+ . S:$D(BPSRTEXT) BPRET=1
+ Q BPRET
+ ;
+ ;Messages 
+ ;
+MESSAG59(BP59,N) N MSG,BPSRESP,BPSPOS
+ I 'BP59 S MSG="" G XMSG59
+ D RESP59(59,.BPSRESP,.BPSPOS) I 'BPSRESP!'BPSPOS S MSG="" G XMSG59
+ I '$D(N) S N=0
+ I N=1 S MSG=$$MESSAGE^BPSOS03(BPSRESP,BPSPOS,1) I 1
+ I N=2 S MSG=$$MESSAGE^BPSOS03(BPSRESP,BPSPOS,2) I 1
+ E  S MSG=$$MESSAGE^BPSOS03(BPSRESP,BPSPOS)
+XMSG59 Q MSG
+ ;
+ ;Responds
+RESP59(BP59,BPSRESP,BPSPOS) ;EP - caller should N BPSRESP,BPSPOS
+ ;Input: BP59
+ ;Output:
+ ; BPSRESP,BPSPOS by reference
+ I $G(^BPST(BP59,4)) D  ; reversal
+ . S BPSRESP=$P($G(^BPST(BP59,4)),U,2)
+ . S BPSPOS=1
+ E  D
+ . S BPSRESP=$P($G(^BPST(BP59,0)),U,5)
+ . S BPSPOS=$P($G(^BPST(BP59,0)),U,9)
+ Q
+ ;
+ ;Check and compare dates
+CHKDT(BPTSTDT,BPBEGDT,BPENDDT) ;
+ I BPTSTDT=0 Q 0
+ I BPTSTDT'<BPBEGDT,BPTSTDT'>BPENDDT Q 1
+ Q 0
+ ;
+ ;Populate passed in Array
+ ;
+REJTEXT(BP59,ARR) N BBX,BPSRESP,BPSPOS,A,I,X,R
+ S BBX=$G(^BPST(BP59,0))
+ S BPSRESP=$P(BBX,U,5)
+ S BPSPOS=$P(BBX,U,9)
+ S (A,I)=0
+ I BPSRESP&BPSPOS D
+ . K ARR
+ . F  S A=$O(^BPSR(BPSRESP,1000,BPSPOS,511,A)) Q:'A  D
+ . . S R=$P(^BPSR(BPSRESP,1000,BPSPOS,511,A,0),U)
+ . . Q:R=""
+ . . N S S S=$O(^BPSF(9002313.93,"B",R,0))
+ . . I S S X=$TR($G(^BPSF(9002313.93,S,0)),U,":")
+ . . E  S X=R_" unrecognized reject code"
+ . . S I=I+1,ARR(I)=X
+ . . K S
+ Q I
+ ;
+ ;Get Claim ID
+CLAIMID(BP59) N BP02
+ S BP02=+$P($G(^BPST(BP59,0)),U,4)
+ Q $P($G(^BPSC(BP02,0)),U)
+ ;
+ ;Determine $Ins Paid
+ ;
+INSPAID(BP59) N X,RESP,POSITION
+ S X=$G(^BPST(BP59,0))
+ S RESP=$P(X,U,5)
+ S POSITION=$P(X,U,9)
+ Q $S(RESP&POSITION:$$INSPAID1^BPSOS03(RESP,POSITION),1:0)
+ ;
+ ;Get the Cardholder ID
+CRDHLDID(BP59) N BP02
+ S BP02=+$P($G(^BPST(BP59,0)),U,4)
+ Q $P($G(^BPSC(BP02,300)),U,2)
+ ;
+GRPID(BP59) ;sent by IB in RX^IBNCPDP
+ N BP02
+ S BP02=+$P($G(^BPST(BP59,0)),U,4)
+ Q $P($G(^BPSC(BP02,300)),U)

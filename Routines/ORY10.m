@@ -1,0 +1,28 @@
+ORY10 ; SLC/KCM - Patch 10 conversions ;03:16 PM  2 Sep 1998
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10**;Dec 17, 1997
+ ;
+AUTACK ; setup the initial auto-accept values for quick orders
+ N IEN,OLD,TYP,VER,X0
+ S ^XTMP("ORY10",0)=$$FMADD^XLFDT(DT,30)_U_DT_U_"ORY10 conversion"
+ S IEN=0 F  S IEN=$O(^ORD(101.41,IEN)) Q:'IEN  D
+ . S OLD=$P($G(^ORD(101.41,IEN,5)),U,8)
+ . I $L(OLD),(OLD'=1) S ^XTMP("ORY10",IEN)=OLD
+ . S X0=$G(^ORD(101.41,IEN,0))
+ . S TYP=$P(X0,U,4),VER=$P(X0,U,8)
+ . Q:TYP'="Q"  Q:VER=1
+ . I $$ALLRSP^ORWDXM(IEN) S $P(^ORD(101.41,IEN,5),U,8)=1
+ Q
+SENDPAR(ANAME) ; Return true if the current parameter should be sent
+ I ANAME="ORCH INITIAL TAB" Q 1
+ I ANAME="ORCH USE LAST TAB" Q 1
+ I ANAME="ORWCH BOUNDS" Q 1
+ I ANAME="ORWCH FONT SIZE" Q 1
+ I ANAME="ORWT TOOLS MENU" Q 1
+ I $E(ANAME,1,5)="ORWOR" Q 1
+ I $E(ANAME,1,5)="ORWDQ" Q 1
+ I $E(ANAME,1,6)="ORWDPS" Q 1
+ I $E(ANAME,1,5)="ORWDX" Q 1
+ I $E(ANAME,1,5)="ORWRP" Q 1
+ I $E(ANAME,1,6)="ORWDP " Q 1
+ I $E(ANAME,1,6)="ORWPCE" Q 1
+ Q 0

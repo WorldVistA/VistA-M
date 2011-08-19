@@ -1,0 +1,98 @@
+VAQDBIM4 ;ALB/JRP - MEANS TEST EXTRACTION (SCREEN 4);5-MAR-93
+ ;;1.5;PATIENT DATA EXCHANGE;**38**;NOV 17, 1993
+ ; **********
+ ; * PARTS OF THIS ROUTINE HAVE BEEN COPIED AND ALTERED FROM THE
+ ; * DGMTSC* ROUTINES.  FOR MODULES THIS WAS DONE FOR, A REFERENCE
+ ; * TO THE DGMTSC* ROUTINE WILL BE INCLUDE.
+ ; **********
+ ;
+XTRCT4(DFN,ARRAY,OFFSET) ;EXTRACT SCREEN 1
+ ;PREVIOUS CALENDAR YEAR NET WORTH
+ ;This module is based on DIS^DGMTSC4
+ ;
+ ;INPUT  : See EXTRACT^VAQDBIM for explanation of parameters.  Input
+ ;         also includes all DG* variables required to build screen.
+ ;OUTPUT : n - Number of lines in display
+ ;         -1^Error_text - Error
+ ;
+ ;CHECK INPUT
+ Q:('$D(DFN)) "-1^Pointer to patient file not passed"
+ Q:('$D(ARRAY)) "-1^Reference to output array not passed"
+ Q:('$D(OFFSET)) "-1^Starting offset not passed"
+ ;DECLARE VARIABLES
+ N DGCAT,DGDC,DGDET,DGIN0,DGIN1,DGIN2,DGINT,DGINTF,DGMTS,DGNC
+ N DGND,DGNWT,DGNWTF,DGSP,DGTYC,DGTHA,DGTHB,DGVIR0,TMP,LINES,Y
+ ;INITIALIZE MEANS TEST VARIABLES
+ D SET^DGMTSCU2
+ ;EXTRACT HEADER
+ S LINES=OFFSET
+ S TMP=$$HEADER^VAQDBIM0(4,ARRAY,OFFSET)
+ Q:(TMP<0) TMP
+ S OFFSET=LINES+TMP
+ ;SET COLUMN HEADINGS
+ S TMP="Income Thresholds:   "
+ I $D(DGTHA) D
+ .S Y="Category A: "_$$AMT^DGMTSCU1(DGTHA)
+ .S TMP=$$INSERT^VAQUTL1(Y,TMP)
+ I $D(DGTHB) D
+ .S Y="Category B: "_$$AMT^DGMTSCU1(DGTHB)
+ .S TMP=$$INSERT^VAQUTL1(Y,TMP,56)
+ S @ARRAY@("DISPLAY",OFFSET,0)=TMP
+ S OFFSET=OFFSET+1
+ S TMP=""
+ S:$D(DGMTPAR("PREV")) TMP="*Previous Years Thresholds*"
+ S TMP=$$INSERT^VAQUTL1("Veteran",TMP,35)
+ S:DGSP TMP=$$INSERT^VAQUTL1("Spouse",TMP,47)
+ S TMP=$$INSERT^VAQUTL1("Total",TMP,74)
+ S @ARRAY@("DISPLAY",OFFSET,0)=TMP
+ S OFFSET=OFFSET+1
+ S TMP=$$REPEAT^VAQUTL1("-",47)
+ S TMP=$$INSERT^VAQUTL1(TMP,"",32)
+ S @ARRAY@("DISPLAY",OFFSET,0)=TMP
+ S OFFSET=OFFSET+1
+ D FLD(1,"Cash, Amts in Bank Accts")
+ D FLD(2,"Stocks and Bonds")
+ D FLD(3,"Real Property")
+ D FLD(4,"Other Property or Assets")
+ D FLD(5,"Debts")
+ S TMP=$$INSERT^VAQUTL1("Total -->","",52)
+ S Y=$J($$AMT^DGMTSCU1(DGNWT),12)
+ S TMP=$$INSERT^VAQUTL1(Y,TMP,67)
+ S @ARRAY@("DISPLAY",OFFSET,0)=TMP
+ S OFFSET=OFFSET+1
+ F TMP=1:1:7 S @ARRAY@("DISPLAY",OFFSET,0)="" S OFFSET=OFFSET+1
+ I $P($G(^DGMT(408.31,DGMTI,0)),U,14) S TMP="Declines to give income information makes a Category C."
+ E  D
+ . S TMP="Income of  "_$J($$AMT^DGMTSCU1(DGINT-DGDET),12)_" Category "_DGCAT
+ . I DGTYC="M",(DGNWT+DGINT-DGDET)>$P(DGMTPAR,"^",8) S TMP=TMP_" property of "_$J($$AMT^DGMTSCU1(DGNWT),12)_" makes a Category C."
+ . I DGTYC="M",'DGNWTF S TMP=TMP_" requires property information."
+ S @ARRAY@("DISPLAY",OFFSET,0)=TMP
+ S OFFSET=OFFSET+1
+ Q (OFFSET-LINES)
+ ;
+FLD(PIECE,LABEL) ;EXTRACT NET WORTH FIELDS
+ ;INPUT  : PIECE - Piece position in DGIN2 to extract
+ ;         LABEL - Label to use (income description)
+ ;         Input also includes:
+ ;           all DG* variables
+ ;           ARRAY
+ ;           OFFSET
+ ;
+ ;This module is based on FLD^DGMTSC4
+ ;
+ ;DECLARE VARIABLES
+ N TOTAL,I,TMP,Y
+ ;EXTRACT INFO
+ S TMP=$$INSERT^VAQUTL1(LABEL,"",5)
+ S Y=$J($$AMT^DGMTSCU1($P(DGIN2("V"),"^",PIECE)),10)
+ S TMP=$$INSERT^VAQUTL1(Y,TMP,32)
+ I $D(DGIN2("S")) D
+ .S Y=$J($$AMT^DGMTSCU1($P(DGIN2("S"),"^",PIECE)),10)
+ .S TMP=$$INSERT^VAQUTL1(Y,TMP,43)
+ ;CALCULATE TOTAL FOR FIELD
+ S TOTAL=0,I="" F  S I=$O(DGIN2(I)) Q:I=""  S TOTAL=TOTAL+$P(DGIN2(I),"^",PIECE)
+ S Y=$J($$AMT^DGMTSCU1(TOTAL),12)
+ S TMP=$$INSERT^VAQUTL1(Y,TMP,67)
+ S @ARRAY@("DISPLAY",OFFSET,0)=TMP
+ S OFFSET=OFFSET+1
+ Q

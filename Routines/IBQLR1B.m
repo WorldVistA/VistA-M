@@ -1,0 +1,19 @@
+IBQLR1B ;LEB/MRY - ACUTE/NON-ACUTE REPORT ; 14-JUL-95
+ ;;1.0;UTILIZATION MGMT ROLLUP LOCAL;;Oct 01, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+SVCTAB ; -- set ibsvc(ibsvc) for SERVICE names
+ F I=3:1 S X=$T(SVCTAB+I) Q:X=""  S IBSVC($P(X,";",3))=$P(X,";",4)
+ Q
+ ;;M;MEDICINE;
+ ;;S;SURGERY;
+ ;;P;PSYCHIATRY;
+ ;;NH;NHCU;
+ ;;NE;NEUROLOGY;
+ ;;I;INTERMEDIATE MED;
+ ;;R;REHAB MEDICINE;
+ ;;SCI;SPINAL CORD INJURY;
+ ;;D;DOMICILIARY;
+ ;;B;BLIND REHAB
+ ;;RE;RESPITE CARE;
+ ;;UNK;UNKNOWN;

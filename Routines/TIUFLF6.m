@@ -1,0 +1,77 @@
+TIUFLF6 ; SLC/MAM - Library; File 8925.1 Related:  ASKSTAT(FILEDA,NODE0,PFILEDA,NEWFLAG,XFLG), AUTOSTAT(FILEDA,NODE0,STAT),DESCSTAT(FILEDA,NEWSTAT) ; 03/16/2007
+ ;;1.0;TEXT INTEGRATION UTILITIES;**13,211,225**;Jun 20, 1997;Build 13
+ ;
+ASKSTAT(FILEDA,NODE0,PFILEDA,NEWFLAG,XFLG) ; User edit FILEDA Status. Does AUTOSTAT.
+ ; Requires FILEDA,NODE0
+ ; Requires PFILEDA if FILEDA has an actual/prospective parent.
+ ; Returns NEWFLAG=0 if Status unchanged, = 1^ExternalNewStatus if changed, e.g. 1^ACTIVE
+ ; Returns XFLG=1 if user ^exited or timed out, else as received.
+ N XQORM,TIUJ,NEWSTAT,DIR,X,Y,TIUFSTAT,TIUFPFDA,CONTINUE
+ N STATUS,DEFLT
+ S NEWFLAG=0
+ S DEFLT=$$STATWORD^TIUFLF5($P(NODE0,U,7))
+READST K DUOUT S:(DEFLT'="NO/BAD") STATUS=$$SELSTAT^TIUFLF5(FILEDA,PFILEDA,DEFLT) S:(DEFLT="NO/BAD") STATUS=$$SELSTAT^TIUFLF5(FILEDA,PFILEDA)
+ I $D(DUOUT)!$D(DTOUT) G ASKSX
+ I STATUS="" W "  ?? Enter appropriate Status or '^' to exit",! H 2 G READST
+ S NEWSTAT=STATUS I +NEWSTAT'=$P(NODE0,U,7) S NEWFLAG="1^"_$P(NEWSTAT,U,2)
+ S NEWSTAT=$P(NEWSTAT,U,2) ;e.g. ACTIVE
+ I NEWFLAG,NEWSTAT="INACTIVE" D INACTIVE^TIUFHA3($P(NODE0,U,4),FILEDA,NODE0)
+ I 'NEWFLAG!(NEWSTAT'="INACTIVE") D AUTOSTAT(FILEDA,NODE0,NEWSTAT)
+ASKSX S:$D(DUOUT)!$D(DTOUT) XFLG=1
+ Q
+ ;
+AUTOSTAT(FILEDA,NODE0,STAT) ; Auto edit FILEDA to Status STAT; Auto edit FILEDA descendants
+ N DIE,DR,X,Y,DA
+ S DA=FILEDA
+ I STAT="INACTIVE" D
+ . S DIE=8925.1,DR=".07///^S X=STAT" D ^DIE
+ . Q:$P(NODE0,U,4)="O"
+ . ;Inactivate descendants, all the way down
+ . D DESCSTAT(FILEDA,"INACTIVE")
+ I STAT="TEST" D
+ . S DIE=8925.1,DR=".07///^S X=STAT" D ^DIE
+ . D DESCSTAT(FILEDA,"TEST")
+ I STAT="ACTIVE" D
+ . N TIUOUT
+ . I ($P(NODE0,U,4)="DOC"),(+$G(^TIU(8925.1,DA,15))'>0) D  Q:+$G(TIUOUT)
+ . . W !!,$C(7),"You MUST first map ",$P(NODE0,U),!
+ . . D DIRECT^TIUMAP2(DA)
+ . . I +$G(^TIU(8925.1,DA,15))'>0 W $C(7)," Status Unchanged...",! H 2
+ . . I  S TIUOUT=1,VALMBCK="R"
+ . W " Entry Activated.",! H 1
+ . S DIE=8925.1,DR=".07///^S X=STAT" D ^DIE
+ . ; I DOC, activate all descendants.
+ . I $P(NODE0,U,4)="DOC" D DESCSTAT(FILEDA,STAT)
+ . ; I CL or DC, let user activate desc by using separate option
+ . ; I O, done.
+ Q
+ ;
+DESCSTAT(FILEDA,NEWSTAT) ;  Edits Status of all descendants of FILEDA
+ ;except Shared Components.
+ ; Gives them Status NEWSTAT
+ ; Requires FILEDA.  Requires NEWSTAT = ACTIVE, TEST, or INACTIVE
+ ; Called with NEWSTAT="ACTIVE" for Components ONLY.
+ N TIUI,IFILEDA,INODE0,DIE,X,Y,STATUS,DA
+ S TIUI=0,DIE=8925.1
+ F  S TIUI=$O(^TIU(8925.1,FILEDA,10,TIUI)) Q:'TIUI  D
+ . S IFILEDA=+^TIU(8925.1,FILEDA,10,TIUI,0)
+ . S INODE0=$G(^TIU(8925.1,IFILEDA,0))
+ . I INODE0="" W !!," File Entry "_FILEDA_" has Nonexistent item "_IFILEDA_"; See IRM",! H 5 Q
+ . I $P(INODE0,U,10) Q
+ . S DA=IFILEDA,DR=".07///^S X=NEWSTAT" D ^DIE
+ . D DESCSTAT(IFILEDA,NEWSTAT)
+DESCX Q
+ ;
+CANEDIT(FILEDA) ; Function returns 1 if Shared Component can be edited, else 0
+ ; Can be edited if all parent Titles are Inactive.  Ignores parents which don't exist or have no Status.
+ N PFILEDA,PSTATUS,EDITANS,PNODE0,PTYPE
+ S EDITANS=1,PFILEDA=0
+ F  S PFILEDA=$O(^TIU(8925.1,"AD",FILEDA,PFILEDA)) G:'PFILEDA CANEX D  G:'EDITANS!$D(DTOUT) CANEX
+ . I '$D(^TIU(8925.1,PFILEDA,0)) W " File Entry "_PFILEDA_" from AD XREF is missing from the file: See IRM" D PAUSE^TIUFXHLX Q
+ . S PNODE0=^TIU(8925.1,PFILEDA,0),PTYPE=$P(PNODE0,U,4)
+ . I PTYPE="DOC" S PSTATUS=$P(PNODE0,U,7),PSTATUS=$$STATWORD^TIUFLF5(PSTATUS) I PSTATUS="NO/BAD" W " File Entry "_PFILEDA_" has No Status/Bad Status" D PAUSE^TIUFXHLX Q
+ . I PTYPE="DOC" S:(PSTATUS="ACTIVE"!(PSTATUS="TEST")) EDITANS=0 Q
+ . I PTYPE="CO" S EDITANS=$$CANEDIT(PFILEDA)
+CANEX S:$D(DTOUT) EDITANS=0
+ Q EDITANS
+ ;

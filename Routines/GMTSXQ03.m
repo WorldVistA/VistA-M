@@ -1,0 +1,24 @@
+GMTSXQ03 ; SLC/JER - XQOR2 for Export w/Health Summary ;1/10/92  14:56
+ ;;2.5;Health Summary;;Dec 16, 1992
+XQOR2 ; SLC/KCM - Process Extended Actions, Protocols ;12/5/89  09:55 ;
+ ;;6.52;Copyright 1990, DVA;
+ACT ;From: STAK^XQOR1
+ I ^UTILITY("XQORS",$J,0,"FILE")=";ORD(101,",$D(@(^UTILITY("XQORS",$J,XQORS,"REF")_"26)"))'[0 S X=^(26) X:$L(X) X
+ S ORNSV="" I ^UTILITY("XQORS",$J,0,"FILE")=";ORD(101,",$D(@(^UTILITY("XQORS",$J,XQORS,"REF")_"24)"))'[0 S ORNSV=^(24)
+ K Y S (J,^UTILITY("XQORS",$J,XQORS,"ITM"))=0
+ORD S J=$O(@(^UTILITY("XQORS",$J,XQORS,"REF")_"10,"_J_")")) G:J'>0 SET
+ I $D(@(^UTILITY("XQORS",$J,XQORS,"REF")_"10,"_J_",0)")) S X=^(0) I +X D:$L(ORNSV) ACT1 I $T S Y=$S(+$P(X,"^",3):+$P(X,"^",3),1:1000+J),Y(Y,J)=X
+ G ORD
+SET S (I,Y)=0
+SET1 S Y=$O(Y(Y)) G:Y="" EX S J=0
+SET2 S J=$O(Y(Y,J)) G:J="" SET1
+ S ^UTILITY("XQORS",$J,XQORS,"ITM")=^UTILITY("XQORS",$J,XQORS,"ITM")+1,^UTILITY("XQORS",$J,XQORS,"ITM",^UTILITY("XQORS",$J,XQORS,"ITM"))=+Y(Y,J)_";"_$P(^UTILITY("XQORS",$J,XQORS,"VPT"),";",2)
+ I ^UTILITY("XQORS",$J,0,"FILE")=";ORD(101,",+$P(Y(Y,J),"^",4) S ^UTILITY("XQORS",$J,XQORS,"ITM",^UTILITY("XQORS",$J,XQORS,"ITM"),"MA")=$P(Y(Y,J),"^",4)_^UTILITY("XQORS",$J,0,"FILE")
+ G SET2
+EX K ORNSV Q
+ACT1 S DA(1)=+^UTILITY("XQORS",$J,XQORS,"VPT"),DA=J N J,X,Y X ORNSV
+ Q
+NUL ;From: STAK^XQOR1
+ I ^UTILITY("XQORS",$J,0,"FILE")=";ORD(101,",$D(@(^UTILITY("XQORS",$J,XQORS,"REF")_"26)"))'[0 S X=^(26) X:$L(X) X
+ S ^UTILITY("XQORS",$J,XQORS,"ITM")=0
+ Q

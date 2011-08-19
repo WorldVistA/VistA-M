@@ -1,0 +1,13 @@
+YSXRAB1 ; COMPILED XREF FOR FILE #601 ; 10/15/04
+ ; 
+ S DIKZK=2
+ S DIKZ(0)=$G(^YTT(601,DA,0))
+ S X=$P(DIKZ(0),U,9)
+ I X'="" K ^YTT(601,"AI",$E(X,1,30),DA)
+ S X=$P(DIKZ(0),U,9)
+ I X'="" K ^YTT(601,"ATN",X,$P(^YTT(601,DA,0),U,1),DA)
+ S X=$P(DIKZ(0),U,10)
+ I X'="" K ^YTT(601,"AE",$E(X,1,30),DA)
+ S X=$P(DIKZ(0),U,1)
+ I X'="" K ^YTT(601,"B",$E(X,1,30),DA)
+END G ^YSXRAB2

@@ -1,0 +1,7 @@
+^LEX
+ZWR
+^LEX=""
+^LEX(757.01)=""
+^LEX(757.09,1,0)="Problem to ICD^R9999"
+^LEX(757.09,"B","Problem to ICD",1)=""
+^LEX(757.09,"D","R9999",1)=""

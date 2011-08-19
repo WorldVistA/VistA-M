@@ -1,0 +1,68 @@
+RORUTL04 ;HCIOFO/BH - Registry Stat Report ; 1/16/02 12:30pm
+ ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+ ;
+EN1 D COMP
+ D DISPLAY
+ Q 
+ ;
+COMP N K2,K4,PATIEN,DATE,TMP,CODE,RULE
+ ;
+ K ^TMP("ROR STAT REPORT")
+ S K2=0
+ F  S K2=$O(^RORDATA(798,K2)) Q:'K2  D
+ . S PATIEN=$P(^RORDATA(798,K2,0),"^",1)
+ . S K4=0,CNT=0 K TMP
+ . F  S K4=$O(^RORDATA(798,K2,1,K4)) Q:'K4  D
+ . . S CNT=CNT+1
+ . . S DATE=$P(^RORDATA(798,K2,1,K4,0),"^",2)
+ . . S CODE=$P(^RORDATA(798,K2,1,K4,0),"^",1)
+ . . S TMP(DATE)=CODE
+ . I CNT<1 Q   ;  No selection rules
+ . S K1=""
+ . S K1=$O(TMP(K1))
+ . S RULE=$$GETRULE(.TMP,CNT,K1)
+ . S ^TMP("ROR STAT REPORT",RULE,K1,PATIEN)=""
+ Q
+ ;
+GETRULE(TMP,CNT,K1) ;
+ N MARKER,KK1,RULE1,RESULT
+ I CNT=1 D  Q RESULT
+ . S RULE1=TMP(K1)
+ . I RULE1=8 S RESULT="Only_Lab"
+ . I RULE1'=8 S RESULT="Only_ICD9"
+ ;
+ S KK1="",MARKER=0
+ F  S KK1=$O(TMP(KK1)) Q:'KK1  D
+ . I TMP(KK1)=8 S MARKER=1
+ S SEL=TMP(K1)
+ I MARKER,SEL=8 Q "BOTHL"
+ I MARKER,SEL'=8 Q "BOTHI"
+ Q "All_ICD9"
+ ;
+DISPLAY ;
+ N STRING,I,RES
+ S STRING="Only_Lab^Only_ICD9^BOTHI^BOTHL^All_ICD9"
+ F I=1:1:5 D
+ . S RES=$P(STRING,"^",I)
+ . D LOOP(RES)
+ Q
+ ;
+LOOP(RES) ;
+ N NAME,SSN,LABEL,DATE,IEN
+ S LABEL=RES
+ I $E(LABEL,1,4)="BOTH" D
+ . I $E(LABEL,5,5)="I" S LABEL="Both_ICD9_&_Lab.  ICD9_was_Earliest."
+ . I $E(LABEL,5,5)="L" S LABEL="Both_ICD9_&_Lab.  Lab_was_Earliest."
+ W !,"Reason_Added. "_LABEL,!
+ ;
+ S DATE=""
+ I $O(^TMP("ROR STAT REPORT",RES,DATE))="" W "No_data_to_display.",!
+ F  S DATE=$O(^TMP("ROR STAT REPORT",RES,DATE)) Q:'DATE  D
+ . S IEN=""
+ . F  S IEN=$O(^TMP("ROR STAT REPORT",RES,DATE,IEN)) Q:'IEN  D
+ . . S NAME=$P(^DPT(IEN,0),"^",1)
+ . . S NAME=$TR(NAME," ","_")
+ . . S SSN=$P(^DPT(IEN,0),"^",9)
+ . . W NAME_"  "_SSN_"  "_$E(DATE,4,5)_"/"_$E(DATE,6,7)_"/"_$E(DATE,2,3),!
+ ;
+ ;

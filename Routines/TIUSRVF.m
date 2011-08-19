@@ -1,0 +1,272 @@
+TIUSRVF ; SLC/JM - Server calls for Template Fields ; 02/27/2002
+ ;;1.0;TEXT INTEGRATION UTILITIES;**105,127,132**;Jun 20, 1997
+LOAD(TIUY,FLD) ; Load Template Field by Name
+ N FLDIEN
+ D GETFLD(.TIUY,FLD,0,.FLDIEN)
+ I +FLDIEN S TIUY(.05)=FLDIEN
+ Q
+LOADIEN(TIUY,FLDIEN) ; Load Template Field by IEN
+ D GETFLD(.TIUY,"",0,.FLDIEN)
+ I +FLDIEN S TIUY(.05)=FLDIEN
+ Q
+GETCONV(DIR,L1,L2,COUNT,DOQ) ; Returns a list of XML conversions
+ S L1(1)="&",L2(1)="&amp;" ; Keep "&" first
+ S L1(2)=">",L2(2)="&gt;"
+ S L1(3)="<",L2(3)="&lt;"
+ S COUNT=3
+ I $G(DOQ) D
+ .S L1(4)="'",L2(4)="&apos;"
+ .S L1(5)="""",L2(5)="&quot;"
+ .S COUNT=5
+ I +DIR D  ; If Going from L2 to L1, make "&" last entry
+ .N TMP
+ .S TMP=L1(1),L1(1)=L1(COUNT),L1(COUNT)=TMP
+ .S TMP=L2(1),L2(1)=L2(COUNT),L2(COUNT)=TMP
+ Q
+XMLCONV(INPUT,DIR,DOQ) ; Returns Valid XML Text
+ N IFROM,ITO,COUNT,OUTPUT,CNT,IDX,LEN,TMP
+ I DIR D GETCONV(DIR,.ITO,.IFROM,.COUNT,$G(DOQ)) I 1
+ E  D GETCONV(DIR,.IFROM,.ITO,.COUNT,$G(DOQ))
+ S OUTPUT=INPUT
+ F CNT=1:1:COUNT D
+ .S LEN=$L(IFROM(CNT))+1
+ .S IDX=0
+ .F  S IDX=$F(OUTPUT,IFROM(CNT),IDX) Q:IDX=0  D
+ .. S OUTPUT=$E(OUTPUT,1,IDX-LEN)_ITO(CNT)_$E(OUTPUT,IDX,250)
+ .. S IDX=IDX-(LEN-2)
+ Q OUTPUT
+ ;
+XMLTXT(INPUT,FLDNAME,DOQ) ; Returns Valid XML Text
+ N OUTPUT
+ S OUTPUT=$$XMLCONV(INPUT,0,$G(DOQ))
+ I $G(FLDNAME)'="" S OUTPUT="<"_FLDNAME_">"_OUTPUT_"</"_FLDNAME_">"
+ Q OUTPUT
+ ;
+TRUETXT(INPUT,DOQ) ; Returns True text from XML
+ Q $$XMLCONV(INPUT,1,$G(DOQ))
+ ;
+GETFLD(TIUY,FLD,ASXML,FLDIEN) ; Load Template Field into TIUY
+ N I,J,FNUM,ID,NODE,FIRST,FLDN,FP,NODE3
+ I '+$G(FLDIEN) S FLDIEN=$O(^TIU(8927.1,"B",FLD,0))
+ S FLD=FLDIEN
+ I +FLD'>0 Q
+ S NODE=$G(^TIU(8927.1,FLD,0))
+ S NODE3=$G(^TIU(8927.1,FLD,3))
+ I 'ASXML D  I 1
+ . S I=1,TIUY(1)=NODE,ID="D"
+ . I NODE3'="" S I=2,TIUY(2)="U"_U_NODE3
+ E  D
+ . D ADD(.TIUY,"<FIELD NAME="""_$$XMLTXT($P(NODE,U,1),"",1)_""">",2)
+ . F FNUM=.02:.01:.16 D
+ . . S FLDN=$$FLDNAME(FNUM),FP=+$E(FNUM_"0",2,3)
+ . . I $P(NODE,U,FP)'="" D ADD(.TIUY,$$XMLTXT($P(NODE,U,FP),FLDN),4)
+ . I NODE3'="" D
+ . . S FLDN=$$FLDNAME(3)
+ . . D ADD(.TIUY,$$XMLTXT(NODE3,FLDN),4)
+ F FNUM=2,10 S:FNUM=10 ID="I" D
+ . S J=0,FIRST=1
+ . F  S J=$O(^TIU(8927.1,FLD,FNUM,J)) Q:J'>0  D
+ . . I 'ASXML D  I 1
+ . . . S I=I+1
+ . . . S TIUY(I)=ID_U_^TIU(8927.1,FLD,FNUM,J,0)
+ . . E  D
+ . . . I FIRST D
+ . . . . S FIRST=0
+ . . . . D ADD(.TIUY,"<"_$$FLDNAME(FNUM)_">",4)
+ . . . D ADD(.TIUY,$$XMLTXT(^TIU(8927.1,FLD,FNUM,J,0),"p"),6)
+ . I ASXML,'FIRST D ADD(.TIUY,"</"_$$FLDNAME(FNUM)_">",4)
+ I ASXML D ADD(.TIUY,"</FIELD>",2)
+ Q
+SAVE(SUCCESS,TIUDA,TIUX) ; Save Template Field
+ ; Input:
+ ;   TIUDA=IEN of TEMPLATE record
+ ;   TIUX(SEQ)=IEN of item
+ ; Output:
+ ;   SUCCESS=IEN of item if successful, or
+ ;           0^ Explanatory message if not
+ N FLD,TMP
+ S SUCCESS=""
+ I (+TIUDA'>0)!($G(TIUX(.01))'="") D  Q:$P(SUCCESS,U,1)="0"
+ . I $L($G(TIUX(.01)))<3 D  Q
+ . . S SUCCESS="0^Template Field name must be at least 3 characters"
+ . S TIUX(.01)=$$UPPER^TIULS(TIUX(.01))
+ . N FOUNDIEN
+ . S FOUNDIEN=$O(^TIU(8927.1,"B",TIUX(.01),0))
+ . I FOUNDIEN>0,FOUNDIEN'=TIUDA D  Q
+ . . S SUCCESS="0^"_TIUX(.01)_" is not a unique name"
+ . I +TIUDA'>0 D
+ . . S TIUDA=$$CREATE($G(TIUX(.01)))
+ S SUCCESS=TIUDA Q:'+SUCCESS
+ D LOCK^TIUSRVF1(.TMP,TIUDA)
+ I TMP=0 D  Q
+ . S SUCCESS="0^Template Field currently being edited by another user"
+ F FLD=2,10 D
+ . I +$O(TIUX(FLD,0)) D  Q:$D(TIUX)'>9
+ . . K ^TIU(8927.1,TIUDA,FLD)
+ . . I $G(TIUX(FLD,1))="@" K TIUX(FLD) Q
+ . . M ^TIU(8927.1,TIUDA,FLD)=TIUX(FLD) K TIUX(FLD)
+ . . D SETXT0(TIUDA,FLD)
+ I $D(TIUX)>9 D FILE(.SUCCESS,""""_TIUDA_",""",.TIUX)
+ D UNLOCK^TIUSRVF1(.TMP,TIUDA)
+ Q
+CREATE(NAME) ; Get or create Template Field record
+ N DIC,DLAYGO,DR,X,Y
+ S (DIC,DLAYGO)=8927.1,DIC(0)="FL"
+ S X=""""_NAME_"""" D ^DIC
+ I +Y'>0 Q "0^Error Creating New Template Field."
+ Q +Y
+SETXT0(TIUDA,FLD) ; Set the root node of the WP-field
+ N TIUC,TIUI S (TIUC,TIUI)=0
+ I '+$G(FLD) S FLD=2
+ F  S TIUI=$O(^TIU(8927.1,TIUDA,FLD,TIUI)) Q:+TIUI'>0  D
+ . S:$D(^TIU(8927.1,TIUDA,FLD,TIUI,0)) TIUC=TIUC+1
+ S ^TIU(8927.1,TIUDA,FLD,0)="^^"_TIUC_U_TIUC_U_DT_"^^"
+ Q
+FILE(SUCCESS,IENS,TIUX) ; Call FM Filer to commit updates to DB
+ N FDA,FDARR,FLAGS,TIUMSG
+ S FDARR="FDA(8927.1,"_IENS_")",FLAGS=""
+ M @FDARR=TIUX
+ D FILE^DIE(FLAGS,"FDA","TIUMSG") ; File record
+ I $D(TIUMSG)>9 S SUCCESS=0_U_$G(TIUMSG("DIERR",1,"TEXT",1))
+ Q
+EXPORT(TIUXML,FLDS) ; Exports Template Fields as XML
+ ; FLDS should be an array of Template Field names, not IENs
+ N I,IEN
+ K TIUXML
+ D ADD(.TIUXML,"<TEMPLATE_FIELDS>",0)
+ S I=0
+ F  S I=$O(FLDS(I)) Q:I'>0  D
+ . S IEN=$O(^TIU(8927.1,"B",FLDS(I),0))
+ . I +IEN D ADDXML(.TIUXML,IEN)
+ D ADD(.TIUXML,"</TEMPLATE_FIELDS>",0)
+ Q
+ADDXML(TIUXML,IEN) ; Add a single Template Field to the XML list
+ D GETFLD(.TIUXML,"",1,IEN)
+ Q
+FLDNAME(FLDNUM) ; Returns Field Name from it's number (DBIA 1412)
+ Q $TR($P(^DD(8927.1,FLDNUM,0),U,1)," ","_")
+FLDNUM(FLDNAME) ; Returns Field Number from it's name (DBIA 1412)
+ Q $O(^DD(8927.1,"B",$TR(FLDNAME,"_"," "),0))
+ADD(XML,TXT,INDENT) ; Add text to XML
+ N IND
+ S $P(IND," ",INDENT+1)=""
+ S XML($O(XML(999999),-1)+1)=IND_TXT
+ Q
+STRIP(INPUT) ;Strips leading and trailing spaces
+ N TIULEN,TIUI,TIUIDX
+ S TIULEN=$L(INPUT)
+ I TIULEN>0 D
+ . S TIUIDX=0
+ . F TIUI=1:1:TIULEN S:($E(INPUT,TIUI)=" ") TIUIDX=TIUI Q:(TIUIDX'=TIUI)
+ . S INPUT=$E(INPUT,TIUIDX+1,TIULEN)
+ . S TIULEN=$L(INPUT)
+ . I TIULEN>0 D
+ . . S TIUIDX=TIULEN+1
+ . . F TIUI=TIULEN:-1:1 S:($E(INPUT,TIUI)=" ") TIUIDX=TIUI Q:(TIUIDX'=TIUI)
+ . . S INPUT=$E(INPUT,1,TIUIDX-1)
+ Q
+STRIPLST(LIST) ; Strip spaces from all list entries
+ N TIUIDX,TIUTEMP
+ S TIUIDX=0
+ F  S TIUIDX=$O(@LIST@(TIUIDX)) Q:(TIUIDX'>0)  D
+ . S TIUTEMP=@LIST@(TIUIDX)
+ . D STRIP(.TIUTEMP)
+ . S @LIST@(TIUIDX)=TIUTEMP
+ Q
+UPDATE(REPORT,SIDX,STATUS,REQNAME,TRUENAME) ; Update Status
+ I STATUS'="0" D
+ .N END
+ .S SIDX=SIDX+1
+ .I +STATUS D  I 1
+ ..I REQNAME=TRUENAME S END=1
+ ..E  S END=0_U_TRUENAME
+ .E  S END=$P(STATUS,U,2)
+ .S REPORT(SIDX)=REQNAME_U_END
+ .S STATUS=0
+ Q
+IMPORT(REPORT,XMLTMP) ;Call layer for IMPORT2; created to maintain backward
+ ;compatibility and extend the IMPORT function to optionally 
+ ;specify saving the template field.
+ D IMPORT2(.REPORT,"XMLTMP",1)
+ Q
+IMPORT2(REPORT,XML,SAVEIT) ; Imports Template Fields from XML
+ ; REPORT returns a status for each Template Field
+ ;   Template Field Created Successfully  REQUESTED NAME^1 
+ ;   Template Field Renamed to New Field  REQUESTED NAME^0^NEW NAME
+ N PL,PG,PS,PE,I,SIDX,LINE,ITEM,ENDTAG,LEVEL,LEVELS,TAG,ERROR,SKIP
+ N OK2ADD,IEN,INITNAME,REQNAME,TRUENAME,SAVE,DATA,DIDX,DFLDNUM,STATUS
+ D STRIPLST(XML)
+ S (I,SIDX,LEVEL,ERROR,OK2ADD,DIDX,STATUS)=0
+ S (REQNAME,TRUENAME)=""
+ F  S I=$O(@XML@(I)) Q:(I'>0)!ERROR  D
+ .D UPDATE(.REPORT,.SIDX,.STATUS,REQNAME,TRUENAME)
+ .S LINE=@XML@(I)
+ .F  D  Q:(LINE="")!ERROR
+ ..S PL=$F(LINE,"<")
+ ..S PG=$F(LINE,">",PL)
+ ..I (PL=0)!(PG'>PL) S ERROR=1 Q
+ ..S ITEM=$E(LINE,PL,PG-2)
+ ..I ITEM="" S ERROR=1 Q
+ ..S LINE=$E(LINE,1,PL-2)_$E(LINE,PG,$L(LINE))
+ ..S PL=$F(LINE,"<")
+ ..I PL>2 D
+ ...S DATA=$$TRUETXT($E(LINE,1,PL-2))
+ ...S LINE=$E(LINE,PL-1,$L(LINE))
+ ..E  S DATA=""
+ ..S ENDTAG=($E(ITEM)="/")
+ ..I ENDTAG S ITEM=$E(ITEM,2,$L(ITEM))
+ ..S PS=$F(ITEM," ")
+ ..I ENDTAG,(PS>0)!(LEVEL<1)!($G(LEVELS(LEVEL))'=ITEM) S ERROR=1 Q
+ ..I PS S TAG=$E(ITEM,1,PS-2)
+ ..E  S TAG=ITEM
+ ..I TAG="" S ERROR=1 Q
+ ..I ENDTAG D  Q
+ ...K LEVELS(LEVEL)
+ ...S LEVEL=LEVEL-1
+ ...I TAG'="p" S DIDX=0
+ ...I TAG="FIELD" S OK2ADD=0 D
+ ....I $D(SAVE) D
+ .....N SUCCESS
+ .....I SAVEIT D SAVE(.SUCCESS,0,.SAVE) I 1
+ .....E  S SUCCESS=0_U_"0~"_TRUENAME
+ .....K SAVE
+ .....S STATUS=SUCCESS
+ ..S LEVEL=LEVEL+1
+ ..S LEVELS(LEVEL)=TAG
+ ..I PS,TAG'="FIELD" S ERROR=1 Q
+ ..I TAG="TEMPLATE_FIELDS" Q
+ ..S SKIP=0
+ ..I 'PS,OK2ADD,((DATA'="")!(TAG="p")) D
+ ...I TAG'="p" S SAVE($$FLDNUM(TAG))=DATA
+ ...E  D
+ ....I DIDX=0 S DFLDNUM=$$FLDNUM(LEVELS(LEVEL-1))
+ ....S DIDX=DIDX+1
+ ....S SAVE(DFLDNUM,DIDX,0)=DATA
+ ..I PS D  Q:(ERROR!SKIP)
+ ...N NAMEIDX
+ ...I ($E(ITEM,PS,PS+5)'="NAME=""")!($E(ITEM,$L(ITEM))'="""") S ERROR=1 Q
+ ...S REQNAME=$E(ITEM,PS+6,$L(ITEM)-1)
+ ...I REQNAME="" S ERROR=1 Q
+ ...S REQNAME=$$TRUETXT(REQNAME,1),INITNAME=REQNAME
+ ...S TRUENAME=REQNAME,NAMEIDX=0
+ ...I $E(INITNAME,1,8)="WORDFLD_" D
+ ....S INITNAME=$E(INITNAME,1,13),TRUENAME=INITNAME_"1",NAMEIDX=1
+ ...F  S IEN=+$O(^TIU(8927.1,"B",TRUENAME,0)) D:+IEN  Q:(SKIP!('IEN))
+ ....N TMPXML,IDX,J,NO,LASTJ
+ ....D ADDXML(.TMPXML,IEN)
+ ....D STRIPLST("TMPXML")
+ ....S (NO,IDX,LASTJ)=0,J=I,IDX=1
+ ....F  S IDX=$O(TMPXML(IDX)) Q:(IDX'>0)  S J=$O(@XML@(J)) Q:(J'>0)  D  Q:NO
+ .....S LASTJ=J
+ .....I TMPXML(IDX)'=@XML@(J) S NO=1
+ ....I 'NO S I=LASTJ-1,LINE="",SKIP=1,STATUS=1 Q
+ ....S NAMEIDX=NAMEIDX+1
+ ....S TRUENAME=$E(INITNAME,1,30-$L(NAMEIDX))_NAMEIDX
+ ...I 'IEN S OK2ADD=1
+ ...Q:SKIP
+ ...S SAVE(.01)=TRUENAME
+ D UPDATE(.REPORT,.SIDX,.STATUS,REQNAME,TRUENAME)
+ I ERROR!(LEVEL>0) D
+ .S SIDX=SIDX+1
+ .S REPORT(SIDX)=U_0_U_"XML FORMAT ERROR"
+ Q

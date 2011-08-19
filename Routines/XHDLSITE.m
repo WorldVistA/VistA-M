@@ -1,0 +1,8 @@
+XHDLSITE        ; TLH/SLOIFO - Site Library Calls; 07-JUL-2003 11:14 ; 25 Jul 2003  9:42 AM
+ ;;1.0;HEALTHEVET DESKTOP;;Jul 15, 2003
+SITE(XHDY)      ; Get Site Name
+ S XHDY=$$SITE^VASITE_U_$$NAME^VASITE(DT)
+ Q
+INTNAME(XHDY)   ; Get Integration Name
+ S XHDY=$$NAME^VASITE(DT)
+ Q

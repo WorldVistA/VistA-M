@@ -1,0 +1,75 @@
+OCXOED05 ;SLC/RJS,CLA - Rule Editor (Rule Element Relation Display) ;3/20/01  16:19
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,105**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+ ;
+S ;
+ ;
+EN(OCXR0,OCXR1) ;
+ ;
+ N OCXACT,OCXRD
+ F  K OCXRD,OCXACT S (OCXRD,OCXACT)="" D GETDATA(OCXR0,OCXR1,.OCXRD),DISP(OCXR0,OCXR1,.OCXRD,.OCXACT) Q:$$EN^OCXOED04(OCXR0,OCXR1,.OCXRD,.OCXACT)
+ ;
+ Q
+ ;
+DISP(OCXR0,OCXR1,OCXRD,OCXACT) ;
+ ;
+ N OCXTHLN,OCXTNLN,OCXTRLN,OCXTULN,OCXTNLN
+ ;
+ S OCXTNLN=$C(27,91,48,109),OCXTRLN=$C(27,91,55,109),OCXTULN=$C(27,91,52,109),OCXTHLN=$C(27,91,49,109)
+ ;
+ W @IOF,OCXTNLN
+ W !,$$CENTER($$FIELD("Rule Element Relation Edit Screen"),80),!!
+ W !,"  ",$$FIELD("Expression:")," ",$$DATA($G(OCXRD("REL",OCXR1,1,"E")),50)
+ W !,"  ",$$FIELD("          Order Check:")," ",$$DATA($G(OCXRD("REL",OCXR1,2,"E")),30)
+ W !,"  ",$$FIELD("         Notification:")," ",$$DATA($G(OCXRD("REL",OCXR1,3,"E")),40)
+ W !,"  ",$$FIELD("        Report Device:")," ",$$DATA($G(OCXRD("REL",OCXR1,4,"E")),30)
+ W !,"  ",$$FIELD(" Notification Message:")," ",$$DATA($G(OCXRD("REL",OCXR1,5,"E")),40)
+ W !,"  ",$$FIELD("  Order Check Message:")," ",$$DATA($G(OCXRD("REL",OCXR1,6,"E")),40)
+ W !,"  ",$$FIELD("      Schedule Action:")," ",$$DATA($G(OCXRD("REL",OCXR1,7,"E")),40)
+ W !,"  ",$$FIELD("   Schedule Frequency:")," ",$$DATA($G(OCXRD("REL",OCXR1,8,"E")),40)
+ W !,"  ",$$FIELD("         Execute Code:")," ",$$DATA($G(OCXRD("REL",OCXR1,9,"E")),40)
+ W !!,"  ",$$OPT^OCXOEDT("Edit","EDREL","06",.OCXACT,"OCXR0,OCXR1")
+ W !!!
+ ;
+ Q
+ ;
+CENTER(X,M) ;
+ N SP S SP="",$P(SP," ",80)=" " Q $E(SP,1,((M\2)-($L(X)\2)))_X
+ ;
+SEP(OCXHDR) ;
+ ;
+ N SPACES S SPACES="",$P(SPACES," ",80-$L(OCXHDR))=" " Q OCXTNLN_OCXTHLN_OCXTULN_$G(OCXHDR)_SPACES_OCXTNLN
+ ;
+FIELD(OCXHDR) ;
+ ;
+ Q OCXTHLN_$G(OCXHDR)_OCXTNLN
+ ;
+DATA(OCXVAL,OCXLEN) ;
+ ;
+ N SPACES S SPACES="",$P(SPACES," ",OCXLEN+5)=" ",OCXVAL=$G(OCXVAL)
+ I ($L(OCXVAL)>OCXLEN) Q $E(OCXVAL,1,OCXLEN-3)_"..."
+ Q $E((OCXVAL_SPACES),1,OCXLEN)
+ ;
+GETDATA(OCXD0,OCXD1,OCXD) ;
+ ;
+ N OCXDIQ,OCXX,DA
+ S OCXDIQ="",DA(1)=OCXD0 D DIQ("^OCXS(860.2,"_OCXD0_",""R"",",OCXD1,"IEN",.OCXDIQ)
+ M OCXD("REL")=OCXDIQ(860.22) K OCXDIQ S OCXDIQ=""
+ Q
+ ;
+DIC(OCXDIC,OCXDIC0,OCXDICA,OCXX,OCXDICS,OCXDR) ;
+ ;
+ N DIC,X,Y
+ S DIC=$G(OCXDIC) Q:'$L(DIC) -1
+ S DIC(0)=$G(OCXDIC0) S:$L($G(OCXX)) X=OCXX
+ S:$L($G(OCXDICS)) DIC("S")=OCXDICS
+ S:$L($G(OCXDICA)) DIC("A")=OCXDICA
+ S:$L($G(OCXDR)) DIC("DR")=OCXDR
+ D ^DIC Q:(Y<1) 0 Q Y
+ ;
+DIQ(DIC,DA,OCXDIQ0,OCXARY) ;
+ N DR,DIQ S DR=".01:99999",DIQ="OCXARY(",DIQ(0)=$G(OCXDIQ0) D EN^DIQ1
+ Q
+ ;
+ Q

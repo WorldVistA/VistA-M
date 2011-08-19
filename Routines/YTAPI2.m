@@ -1,0 +1,101 @@
+YTAPI2 ;ALB/ASF PSYCH TEST API CONT ;3/13/00  17:06
+ ;;5.01;MENTAL HEALTH;**53,62**;Dec 30, 1994
+SCOREIT(YSDATA,YS) ;
+ ;W !,"SCOREIT",$C(7)
+ N N,N2,N4,R,S,YSAA,I,II,DFN,YSCODE,YSADATE,YSSCALE,YSBED,YSEND
+ K YSDATA,YSSONE
+ D PARSE^YTAPI(.YS)
+ I '$D(^YTT(601,"B",YSCODE))&(YSCODE'="ASI") S YSDATA(1)="[ERROR]",YSDATA(2)="INCORRECT TEST CODE" Q
+ D:YSCODE="ASI" ASISCR
+ I YSCODE'="ASI" D
+ . D SCOR1
+ . Q:$G(YSDATA(1))?1"[ERROR".E
+ . D SCORSET
+ . D:YSPRIV SF
+ . S N1=0
+ . F  S N1=$O(YSSONE(N1)) Q:N1'>0  D SET(YSSONE(N1))
+ D CLEAN^YSMTI5 Q
+SET(X) ;
+ S N=N+1
+ S YSDATA(N)=X
+ Q
+ASISCR ;score ASI
+ K YSSONE
+ ;W $C(7)
+ I '$D(^YSTX(604,"C",DFN)) S YSDATA(1)="[ERROR]",YSDATA(2)="no asi on this pt" Q
+ S (N1,YSIFN,IFN)=0
+ F  S YSIFN=$O(^YSTX(604,"C",DFN,YSIFN)) Q:YSIFN'>0  D
+ . S X=$P($G(^YSTX(604,YSIFN,0)),U,5)
+ . I X=YSADATE S IFN=YSIFN,YSDATE=X Q
+ I IFN=0 S YSDATA(1)="[ERROR]",YSDATA(2)="no asi date match" Q
+ S N=0
+ D SET("[DATA]")
+ S X=$P(^DPT(DFN,0),U)_"^ASI^--- Addiction Severity Index ---^"_YSDATE_U_$$FMTE^XLFDT(YSADATE,"5ZD")_U_$$GET1^DIQ(604,IFN_",",.09,"E")
+ D SET(X)
+ S X="R1^"_$$GET1^DIQ(604,IFN_",",.04)_U_$$GET1^DIQ(604,IFN_",",.11)_U_$S($D(^YSTX(604,IFN,.5)):"Signed",1:"Unsigned")
+ D SET(X)
+ D SET("R2")
+ D SET("R3")
+ S X="S1^Medical^"_$$GET1^DIQ(604,IFN_",",8.12)_U_$$GET1^DIQ(604,IFN_",",.61)
+ D SET(X)
+ S X="S2^Employment^"_$$GET1^DIQ(604,IFN_",",9.34)_U_$$GET1^DIQ(604,IFN_",",.62)
+ D SET(X)
+ S X="S3^Alcohol^"_$$GET1^DIQ(604,IFN_",",11.18)_U_$$GET1^DIQ(604,IFN_",",.63)
+ D SET(X)
+ S X="S4^Drug^"_$$GET1^DIQ(604,IFN_",",11.185)_U_$$GET1^DIQ(604,IFN_",",.635)
+ D SET(X)
+ S X="S5^Legal^"_$$GET1^DIQ(604,IFN_",",14.34)_U_$$GET1^DIQ(604,IFN_",",.64)
+ D SET(X)
+ S X="S6^Family^"_$$GET1^DIQ(604,IFN_",",18.29)_U_$$GET1^DIQ(604,IFN_",",.65)
+ D SET(X)
+ S X="S7^Psychiatric^"_$$GET1^DIQ(604,IFN_",",19.33)_U_$$GET1^DIQ(604,IFN_",",.66)
+ D SET(X)
+ Q
+SCOR1 S (YSTEST,YSET)=$O(^YTT(601,"B",YSCODE,0))
+ S YSED=YSADATE
+ S YSDFN=DFN
+ S YSSX=$P(^DPT(DFN,0),U,2)
+ S YSTN=YSCODE
+ IF '$D(^YTD(601.2,YSDFN,1,YSET,1,YSED)) S YSDATA(1)="[ERROR SCORE1+5]",YSDATA(2)="no administration found" Q
+ D PRIV ;check it
+ Q:YSPRIV=0
+ S YSR(0)=$G(^YTT(601.6,YSET,0))
+ I $P(YSR(0),U,2)="Y" S X=^YTT(601.6,YSET,1) X X
+ Q
+SCORSET ;;heading data name^code^title^comp date^ordered by
+ S N=0 D SET("[DATA]")
+ S X=$P($G(^YTD(601.2,YSDFN,1,YSET,1,YSED,0)),U,3)
+ S X=$S(X?1N.N:$P($G(^VA(200,X,0)),U,1),1:"")
+ S X=$P(^DPT(DFN,0),U)_U_YSCODE_U_$P($G(^YTT(601,YSET,"P")),U)_U_YSED_U_$$FMTE^XLFDT(YSADATE,"5ZD")_U_X
+ D SET(X)
+ I YSPRIV=0 D SET("no privilege") Q
+ S X="R1"_U_$G(^YTD(601.2,DFN,1,YSET,1,YSED,1))
+ D SET(X)
+ S X="R2"_U_$G(^YTD(601.2,DFN,1,YSET,1,YSED,2))
+ D SET(X)
+ S X="R3"_U_$G(^YTD(601.2,DFN,1,YSET,1,YSED,3))
+ D SET(X)
+ Q
+SF ; default scale set
+ N SFN1,SFN2
+ Q:'$D(R)
+ S SFN1=0,SFN2=0
+ IF $L(R) F  S SFN1=$O(^YTT(601,YSET,"S",SFN1)) Q:SFN1'>0  D
+ . S G=^YTT(601,YSET,"S",SFN1,0)
+ . S SFN2=SFN2+1
+ . S X="S"_SFN2_U_$P(G,U,2)_U_$P($G(R),U,SFN2)_U_$P($G(S),U,SFN2)
+ . S YSSONE(SFN2)=X
+SF2 ;
+ Q:$D(R)<10  F  S SFN1=$O(R(SFN1)) Q:SFN1'>0  D
+ . F I=1:1 Q:$P(R(SFN1),U,I)=""  D
+ .. S SFN2=SFN2+1
+ .. S G=^YTT(601,YSET,"S",SFN2,0)
+ .. S X="S"_SFN2_U_$P(G,U,2)_U_$P($G(R(SFN1)),U,I)_U_$P($G(S(SFN1)),U,I)
+ .. S YSSONE(SFN2)=X
+ Q
+PRIV ;check privileges
+ S YSPRIV=0
+ I $D(^XUSEC("YSP",DUZ)) S YSPRIV=1 Q  ;has key
+ I $P(^YTT(601,YSET,0),U,10)="Y" S YSPRIV=1 Q  ;test exempt
+ I $P(^YTT(601,YSET,0),U,9)="I" S YSPRIV=1 Q  ;interview
+ Q

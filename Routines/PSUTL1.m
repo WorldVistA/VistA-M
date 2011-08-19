@@ -1,0 +1,61 @@
+PSUTL1 ;BIR/CFL - Subroutines for PBMS Modules ;25 AUG 1998
+ ;;4.0;PHARMACY BENEFITS MANAGEMENT;;MARCH, 2005
+ ;Reference to file #2 supported by DBIA #3301
+SECTN ;Service/Sections Array
+ S PSECT("AMBULATORY CARE")="AMB"
+ S PSECT("ANESTHESIOLOGY")="ANES"
+ S PSECT("CARDIOLOGY")="CV"
+ S PSECT("CLINICAL PHARMACY")="CPHAR"
+ S PSECT("DENTAL")="DDS"
+ S PSECT("INTERMEDIATE MEDICINE")="IM"
+ S PSECT("MEDICINE")="MED"
+ S PSECT("NEUROLOGY")="NEUR"
+ S PSECT("NUCLEAR MEDICINE")="NUM"
+ S PSECT("NURSING")="RN"
+ S PSECT("ORTHOPEDICS")="ORTHO"
+ S PSECT("PSYCHIATRY")="PSY"
+ S PSECT("RADIOLOGY")="RAD"
+ S PSECT("SURGERY")="SUR"
+ S PSECT("UROLOGY")="U"
+SECTNQ Q
+ ;
+PURGE ; remove outdated PSU namespace entries in ^XTMP
+ N PSUI,PSUPDT,PSUCDT
+ D NOW^%DTC
+ S PSUCDT=X
+ S PSUI="PSU"
+ F  S PSUI=$O(^XTMP(PSUI)) Q:$E(PSUI,1,3)'="PSU"  D
+ .S PSUPDT=$P($G(^XTMP(PSUI,0)),"^",1)
+ .I PSUPDT="" K ^XTMP(PSUI) Q
+ .I PSUPDT<PSUCDT K ^XTMP(PSUI) Q
+PURGEQ Q  ; purge complete
+ ;
+XMY ;EP Setup Mail Groups
+ ; PSUXMYH()  Mail Group for Hines Message and message to self/PBM group
+ ; PSUXMYS1() Mail Group for Summary 1 & No Data Messages
+ ; PSUXMYS2() Mail Group for Summary 2 Messages
+ ;S PSUPBMG=^XTMP("PSU_"_PSUJOB,"PSUPBMG")
+ ;
+ Q:$D(^XTMP("PSU_"_$G(PSUJOB),"PSUFLAG3"))
+ ;
+ ; Hines Group
+ I $G(PSUMASF) D
+ .S PSUXMYH("G.PSU PBM@CMOP-NAT.MED.VA.GOV")=""
+ I $G(PSUPBMG) S PSUXMYH("G.PSU PBM")=""   ;local PBM mail group
+ I $G(PSUDUZ) S PSUXMYH(PSUDUZ)=""         ;self
+ ;
+ ; Summary 1 Group and NO DATA message
+ S PSUXMYS1("G.PSU PBM")=""
+ I $G(PSUDUZ) S PSUXMYS1(PSUDUZ)=""
+ ;
+ ; Summary 2 Group
+ S PSUXMYS2("G.PSU PBM")=""
+ I $G(PSUDUZ) S PSUXMYS2(PSUDUZ)=""
+XMYQ Q
+ ;EXIT
+TESTPAT(DFN) ;EP SCREEN AGAINST TEST PATIENTS (RETURN=1 IF TEST)
+ Q:'DFN 0
+ D PID^VADPT
+ I VA("PID")["000-00" Q 1
+ Q $$VALI^PSUTL(2,DFN,.6)
+ ;

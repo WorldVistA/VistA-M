@@ -1,0 +1,15 @@
+RATIONALE
+ZWR
+^QA(743.91,0)="RATIONALE^743.91^4^4"
+^QA(743.91,1,0)="High Volume^0"
+^QA(743.91,2,0)="High Risk^0"
+^QA(743.91,3,0)="Problem Prone^0"
+^QA(743.91,4,0)="Other^1"
+^QA(743.91,"B","High Risk",2)=""
+^QA(743.91,"B","High Volume",1)=""
+^QA(743.91,"B","Other",4)=""
+^QA(743.91,"B","Problem Prone",3)=""
+^QA(743.91,"BU","HIGH RISK",2)=""
+^QA(743.91,"BU","HIGH VOLUME",1)=""
+^QA(743.91,"BU","OTHER",4)=""
+^QA(743.91,"BU","PROBLEM PRONE",3)=""

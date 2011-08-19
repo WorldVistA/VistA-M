@@ -1,0 +1,154 @@
+ONCBRP9 ;Hines OIFO/GWB - 1998 Breast Cancer Study ;05/30/00
+ ;;2.11;ONCOLOGY;**18,24,26**;Mar 07, 1995
+ ;Print
+ K IOP,%ZIS S %ZIS="MQ" W ! D ^%ZIS K %ZIS,IOP G:POP KILL
+ I $D(IO("Q")) S ONCOLST="ONCONUM^ONCOPA^PATNAM^SPACES^TOPNAM^SSN^TOPTAB^TOPCOD^DASHES^SITTAB^SITEGP" D TASK G KILL
+ U IO D PRT D ^%ZISC K %ZIS,IOP G KILL
+PRT S PG=0,EX="",LIN=$S(IOST?1"C".E:IOSL-2,1:IOSL-4),IE=ONCONUM
+ D NOW^%DTC S ONDATE=%,Y=ONDATE X ^DD("DD") S ONDATE=$P(Y,":",1,2)
+ K DIQ S DIC="^ONCO(160,",DR="9;10;15",DA=ONCOPA,DIQ="ONC" D EN^DIQ1
+ S DR=".04;.05;.06;.12;1;3;9;18;19;20;23;24;25.1;25.2;26;29;32;33;37.1;37.2;37.3;38;50;51;51.2;53;53.2;54;54.2;58.1;58.2;58.3;59;70;71;74;75;81;82;85;86;87;88;89;138:146;307;361;441;443;900:956"
+ S DIC="^ONCO(165.5,",DA=ONCONUM,DIQ="ONC" D EN^DIQ1
+ S HIST=$P($G(^ONCO(165.5,ONCONUM,2)),U,3)
+ K LINE S $P(LINE,"-",40)="-"
+I S TABLE="TABLE I - GENERAL INFORMATION"
+ D HEAD^ONCBRP0
+ W !," 1. INSTITUTION ID NUMBER............: H6",$$IIN^ONCFUNC D P Q:EX=U
+ K LINE S $P(LINE,"-",29)="-"
+ W !!?4,TABLE,!?4,LINE
+ S D0=ONCOPA D DOB1^ONCOES S Y=X D DATEOT^ONCOPCE S DOB=Y
+ W !," 2. ACCESSION NUMBER.................: ",ONC(165.5,IE,.05) D P Q:EX=U
+ W !," 3. SEQUENCE NUMBER..................: ",ONC(165.5,IE,.06) D P Q:EX=U
+ W !," 4. POSTAL CODE AT DIAGNOSIS.........: ",ONC(165.5,IE,9) D P Q:EX=U
+ W !," 5. DATE OF BIRTH....................: ",DOB D P Q:EX=U
+ W !," 6. RACE.............................: ",ONC(165.5,IE,.12) D P Q:EX=U
+ W !," 7. SPANISH ORIGIN...................: ",ONC(160,ONCOPA,9) D P Q:EX=U
+ W !," 8. SEX..............................: ",ONC(160,ONCOPA,10) D P Q:EX=U
+ W !," 9. PRIMARY PAYER AT DIAGNOSIS.......: ",ONC(165.5,IE,18) D P Q:EX=U
+ W !!,"10. FAMILY HISTORY OF BREAST CANCER:" D P Q:EX=U
+ W !,"     DAUGHTER........................: ",ONC(165.5,IE,900) D P Q:EX=U
+ W !,"     MATERNAL AUNT...................: ",ONC(165.5,IE,901) D P Q:EX=U
+ W !,"     MATERNAL GRANDMOTHER............: ",ONC(165.5,IE,902) D P Q:EX=U
+ W !,"     MOTHER..........................: ",ONC(165.5,IE,903) D P Q:EX=U
+ W !,"     ONE SISTER ONLY.................: ",ONC(165.5,IE,904) D P Q:EX=U
+ W !,"     MORE THAN ONE SISTER............: ",ONC(165.5,IE,905) D P Q:EX=U
+ W !,"     FATHER..........................: ",ONC(165.5,IE,906) D P Q:EX=U
+ W !,"     BROTHER.........................: ",ONC(165.5,IE,907) D P Q:EX=U
+ W !,"     POSTIVE FAMILY HISTORY, NOS.....: ",ONC(165.5,IE,908) D P Q:EX=U
+ W ! D P Q:EX=U
+ S FN=909 D FEMALE
+ W !,"11. (F) PERSONAL HISTORY OF BREAST"
+ W !,"    CANCER...........................: ",ONC(165.5,IE,909) D P Q:EX=U
+ W !,"12. SYNCHRONOUS BREAST CANCER........: ",ONC(165.5,IE,910) D P Q:EX=U
+ W !!,"13. PERSONAL HISTORY OF OTHER CANCER:" D P Q:EX=U
+ W !,"     COLON...........................: ",ONC(165.5,IE,911) D P Q:EX=U
+ S FN=912 D FEMALE
+ W !,"     OVARY (F).......................: ",ONC(165.5,IE,912) D P Q:EX=U
+ S FN=913 D FEMALE
+ W !,"     UTERUS (F)......................: ",ONC(165.5,IE,913) D P Q:EX=U
+ S FN=914 D MALE
+ W !,"     PROSTATE (M)....................: ",ONC(165.5,IE,914) D P Q:EX=U
+ W !,"     OTHER...........................: ",ONC(165.5,IE,915) D P Q:EX=U
+ W ! D P Q:EX=U
+ S FN=916 D FEMALE
+ W !,"14. (F) HORMONE REPLACEMENT THERAPY..: ",ONC(165.5,IE,916) D P Q:EX=U
+ S FN=917 D FEMALE
+ W !,"15. (F) HOW MANY YEARS OF HORMONE"
+ W !,"    REPLACEMENT THERAPY..............: ",ONC(165.5,IE,917) D P Q:EX=U
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HEAD^ONCBRP0 G II
+ D P Q:EX=U
+II S TABLE="TABLE II - INITIAL DIAGNOSIS"
+ I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HEAD^ONCBRP0
+ K LINE S $P(LINE,"-",28)="-"
+ W !?4,TABLE,!?4,LINE D P Q:EX=U
+ W !,"16. CLASS OF CASE....................: ",ONC(165.5,IE,.04) D P Q:EX=U
+ W !,"17. DIAGNOSTIC EVALUATION:" D P Q:EX=U
+ S FN=926 D MALE
+ W !,"     MAMMOGRAM (M)...................: ",ONC(165.5,IE,926) D P Q:EX=U
+ W !,"     ULTRASOUND (M)(F)...............: ",ONC(165.5,IE,927) D P Q:EX=U
+ W !!,"18. (F) TYPE OF MAMMOGRAM:" D P Q:EX=U
+ S FN=918 D FEMALE
+ W !,"     A. MAMMOGRAM GIVEN, TYPE UNKNOWN: ",ONC(165.5,IE,918) D P Q:EX=U
+ W !,"        DATE.........................: ",ONC(165.5,IE,919) D P Q:EX=U
+ S FN=920 D FEMALE
+ W !,"     B. SCREENING MAMMOGRAM..........: ",ONC(165.5,IE,920) D P Q:EX=U
+ W !,"        DATE.........................: ",ONC(165.5,IE,921) D P Q:EX=U
+ S FN=922 D FEMALE
+ W !,"     C. DIAGNOSTIC MAMMOGRAM.........: ",ONC(165.5,IE,922) D P Q:EX=U
+ W !,"        DATE.........................: ",ONC(165.5,IE,923) D P Q:EX=U
+ S FN=924 D FEMALE
+ W !,"     D. MAGNIFICAITON MAMMOGRAM......: ",ONC(165.5,IE,924) D P Q:EX=U
+ W !,"        DATE.........................: ",ONC(165.5,IE,925) D P Q:EX=U
+ I IOST'?1"C".E W ! D P Q:EX=U
+ S FN=928 D FEMALE
+ W !,"19. (F) PRESENTATION OF MOST"
+ W !,"    DEFINITIVE MAMMOGRAM.............: ",ONC(165.5,IE,928) D P Q:EX=U
+ W !,"20. DATE OF INITIAL DIAGNOSIS........: ",ONC(165.5,IE,3) D P Q:EX=U
+ W !,"21. DATE OF PATHOLOGIC DIAGNOSIS.....: ",ONC(165.5,IE,929) D P Q:EX=U
+ W !,"22. PRIMARY SITE (ICD-O-2)...........: ",TOPCOD," ",ONC(165.5,IE,20)
+ W !,"23. HISTOLOGY (ICD-O-2)..............: ",$E(HIST,1,4) D P Q:EX=U
+ W !,"24. BEHAVIOR CODE (ICD-O-2)..........: ",$E(HIST,5) D P Q:EX=U
+ W !,"25. IF INVASIVE DUCTUAL CARCINOMA"
+ W !,"    REPORTED, IS DCIS ALSO PRESENT...: ",ONC(165.5,IE,930) D P Q:EX=U
+ W !,"26. GRADE............................: ",ONC(165.5,IE,24) D P Q:EX=U
+ W !,"27. ARCHITECTURE PATTERN IF DCIS"
+ W !,"    IS PRESENT.......................: ",ONC(165.5,IE,931) D P Q:EX=U
+ W !,"28. NUCLEAR GRADE IF DCIS IS"
+ W !,"    PRESENT..........................: ",ONC(165.5,IE,932) D P Q:EX=U
+ W !,"29. DIAGNOSTIC CONFIRMATION..........: ",ONC(165.5,IE,26)
+ W !,"30. (M) LEVEL OF INVOLVEMENT:" D P Q:EX=U
+ S FN=933 D MALE
+ W !,"     SKIN............................: ",ONC(165.5,IE,933) D P Q:EX=U
+ S FN=934 D MALE
+ W !,"     CHEST WALL......................: ",ONC(165.5,IE,934) D P Q:EX=U
+ S FN=935 D MALE
+ W !,"     PECTORAL MUSCLES................: ",ONC(165.5,IE,935) D P Q:EX=U
+ S FN=936 D MALE
+ W !,"     DERMAL/LYMPHATIC................: ",ONC(165.5,IE,936) D P Q:EX=U
+ W !!,"    DIAGNOSTIC AND STAGING PROCEDURES" D P Q:EX=U
+ W ! D P Q:EX=U
+ W !,"31. BIOPSY PROCEDURE.................: ",ONC(165.5,IE,141) D P Q:EX=U
+ W !,"32. GUIDANCE.........................: ",ONC(165.5,IE,142) D P Q:EX=U
+ W !,"33. PALPABILITY OF PRIMARY...........: ",ONC(165.5,IE,143) D P Q:EX=U
+ W !,"34. FIRST DETECTED BY................: ",ONC(165.5,IE,144) D P Q:EX=U
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HEAD^ONCBRP0 G III
+ D P Q:EX=U
+III S TABLE="TABLE III - TUMOR MARKERS AND PROGNOSTIC TESTS"
+ I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HEAD^ONCBRP0
+ K LINE S $P(LINE,"-",46)="-"
+ W !?4,TABLE,!?4,LINE D P Q:EX=U
+ S FN=937 D MALE
+ W !,"35. (M) DNA INDEX/PLOIDY.............: ",ONC(165.5,IE,937) D P Q:EX=U
+ W !,"36. ESTROGEN RECEPTOR PROTEIN........: ",ONC(165.5,IE,25.1) D P Q:EX=U
+ W !,"37. PROGESTERONE RECEPTOR PROTEIN....: ",ONC(165.5,IE,25.2) D P Q:EX=U
+ S FN=940 D MALE
+ W !,"38. (M) ANDROGEN RECEPTOR PROTEIN....: ",ONC(165.5,IE,940) D P Q:EX=U
+ W !,"39. TYPE OF TEST.....................: ",ONC(165.5,IE,941) D P Q:EX=U
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HEAD^ONCBRP0 G IV
+ D P Q:EX=U
+IV D ^ONCBRP9A
+KILL ;
+ K CDS,CDSOT,CS,CSDAT,CSIEN,CSPNT,DLC,DOB,DOIT,FIL,LIN,LOS,NCDS
+ K NCDSIEN,NCDSOT,ONC,ONDATE,PG,SURG,SURG1,SURG2,SURGDT,TABLE
+ K %,DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y,OSP,IIN
+ Q
+P ;Print
+ I ($Y'<(LIN-1)) D  Q:EX=U  W !?4,TABLE_" (continued)",!?4,LINE_"------------"
+ .I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR I 'Y S EX=U Q
+ .D HEAD^ONCBRP0 Q
+ Q
+TASK ;Queue a task
+ K IO("Q"),ZTUCI,ZTDTH,ZTIO,ZTSAVE
+ S ZTRTN="PRT^ONCBRP9",ZTREQ="@",ZTSAVE("ZTREQ")=""
+ S ZTDESC="Print Breast Cancer PCE"
+ F V2=1:1 S V1=$P(ONCOLST,"^",V2) Q:V1=""  S ZTSAVE(V1)=""
+ D ^%ZTLOAD D ^%ZISC U IO W !,"Request Queued",!
+ K V1,V2,ONCOLST,ZTSK Q
+FEMALE ;Item for Females Only
+ I ONC(165.5,IE,FN)="",$$GET1^DIQ(160,ONCOPA,10,"I")=1 D
+ .S ONC(165.5,IE,FN)="(Data Item for Females Only)"
+ Q
+MALE ;Item for Males Only
+ I ONC(165.5,IE,FN)="",$$GET1^DIQ(160,ONCOPA,10,"I")=2 D
+ .S ONC(165.5,IE,FN)="(Data Item for Males Only)"
+ Q

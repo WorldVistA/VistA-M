@@ -1,0 +1,51 @@
+ORERR(ORTYP,ORMSG,ORVAR) ; RJS/SLC-ISC - Order Entry Error Logger ;11/12/97  08:09
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;;Dec 17, 1997
+ ;
+ D EN(ORTYP,.ORMSG,.ORVAR)
+ Q
+ ;
+EN(ORTYP,ORMSG,ORVAR) ;
+ ;
+ N ORARRY,ORD0,ORD1,ORD2,OREF,ORVNAM
+ ;
+ S ORARRY=$S($L($G(ORMSG)):ORMSG,1:"ORMSG")
+ ;
+ I '$O(@ORARRY@(0)) S ORARRY="ORARRY",ORARRY(1)="Null HL7 Data Array Found"
+ ;
+ S ORD0=$O(^ORYX("ORERR","@"),-1)+1,^ORYX("ORERR",ORD0,0)="",OREF="^ORYX(""ORERR"","_ORD0_")"
+ S @OREF@(0)=$$NOW_U_$G(ION)_U_$G(DUZ)_U_$G(ORTYP,$ZE)_U_$G(ZTSK)
+ S $P(^ORYX("ORERR",0),U,3)=ORD0,$P(^ORYX("ORERR",0),U,4)=$P(^ORYX("ORERR",0),U,4)+1
+ ;
+ D ADD(" "),ADD("HL7 Array: "),ADD(" ")
+ S ORD1="" F  S ORD1=$O(@ORARRY@(ORD1)) Q:'ORD1  D
+ .N ORPC,ORLEN
+ .S ORLEN=$L($G(@ORARRY@(ORD1)))
+ .F ORPC=0:1 Q:((ORPC*200)>ORLEN)  D
+ ..D ADD($S(ORPC:"     ",1:$J(ORD1,3)_": ")_$E(@ORARRY@(ORD1),(ORPC*200+1),(ORPC+1*200)))
+ .S ORD2="" F  S ORD2=$O(@ORARRY@(ORD1,ORD2)) Q:'ORD2  D
+ ..N ORPC,ORLEN
+ ..S ORLEN=$L($G(@ORARRY@(ORD1,ORD2)))
+ ..F ORPC=0:1 Q:((ORPC*200)>ORLEN)  D
+ ...D ADD($S(ORPC:"         ",1:$J(ORD1,3)_","_$J(ORD2,3)_": ")_$E(@ORARRY@(ORD1),(ORPC*200+1),(ORPC+1*200)))
+ ;
+ D ADD(" "),ADD("Local Variables: "),ADD(" ")
+ ;
+ I $D(ORVAR) S ORVNAM="" F  S ORVNAM=$O(ORVAR(ORVNAM)) Q:'$L(ORVNAM)  I $D(@ORVNAM) D
+ .I ($D(@ORVNAM)#2) F ORPC=0:1 Q:((ORPC*100)>$L(@ORVNAM))  D
+ ..N ORSP S ORSP="            "
+ ..D ADD($S(ORPC:ORSP,1:$E(ORSP,$L(ORVNAM),12)_ORVNAM_": ")_$E(@ORVNAM,(ORPC*100+1),(ORPC+1*100)))
+ .S ORVARY=ORVNAM F  S ORVARY=$Q(@ORVARY) Q:'$L(ORVARY)  Q:'($P(ORVARY,"(",1)=ORVNAM)  D
+ ..F ORPC=0:1 Q:((ORPC*100)>$L(@ORVARY))  D
+ ...N ORSP S ORSP="            "
+ ...D ADD($S(ORPC:ORSP,1:$E(ORSP,$L(ORVARY),12)_ORVARY_": ")_$E(@ORVARY,(ORPC*100+1),(ORPC+1*100)))
+ ;
+ S @OREF@(1,0)=U_U_$O(@OREF@(1,""),-1)_U_$O(@OREF@(1,""),-1)_U_$$TODAY_U
+ ;
+ Q
+ ;
+NOW() N X,Y,%DT S X="N",%DT="T" D ^%DT Q Y
+ ;
+TODAY() N X,Y,%DT S X="T",%DT="" D ^%DT Q Y
+ ;
+ADD(X) S @OREF@(1,($O(@OREF@(1,""),-1)+1),0)=X Q
+ ;

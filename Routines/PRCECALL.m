@@ -1,0 +1,39 @@
+PRCECALL ;WISC/LDB/CLH-RECALC FOR ALL OBLIGATIONS ;1/15/93  2:33 PM
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ N PRC,PODA,DIC,DA,TRNODE,PRCF,X,I,RQUIT,AMT,AUAMT,AUBAL,AUDA,BAL,BAL1,DRAMT,DRAUMT,FCPAMT,LQAMT,PO,Y
+ S PRCF("X")="AS" D ^PRCFSITE Q:'PRC("SITE")
+ S DA=0 F  D  Q:RQUIT
+  . F I=1:1:100 D
+   .. S DA=$O(^PRC(442,DA)) S:'DA RQUIT=1 Q:'DA  I $D(^PRC(442,DA,0)) D
+    ... S PODA=DA,PODA(1)=$P(Y,U,2),PODA(2)=$P(Y(0),U,3),PODA(0)=Y(0)
+    ... I (+PODA(1)'=PRC("SITE")) Q
+    ... Q:'$P(PODA(0),U,12)  S PO=$P(PODA(0),U,12) D NODE^PRCS58OB(PO,.TRNODE) Q:$P($G(TRNODE(0)),U,4)'=1  S PO=PODA(1)
+    ... Q:'$D(^PRC(424,"AF",PO))
+    ... D RECAL
+    ... Q
+   .. Q
+  . W "."
+  . Q
+ Q
+RECAL ;Recalculate totals in file 424
+ ;Update obligation estimated balance
+ S AUDA="",FCPAMT=0 F  S AUDA=$O(^PRC(424,"AF",PO,AUDA)) Q:'AUDA  I $D(^PRC(424,AUDA,0)) S (AUAMT,AUBAL)=0 D
+ .S FCPAMT=$P(^PRC(424,AUDA,0),U,6)+FCPAMT
+ D BALOB^PRCH58(PODA,FCPAMT)
+ ;Update obligation Fiscal liquidation balance
+ S AUDA="",LQAMT=0 F  S AUDA=$O(^PRC(424,"AG",PO,AUDA)) Q:'AUDA  I $D(^PRC(424,AUDA,0)) D
+ .S LQAMT=$P(^PRC(424,AUDA,0),U,4)+LQAMT
+ D BAL1^PRCH58OB(PODA,LQAMT)
+ ;Update authorizations balances
+ S (DRAMT,AUDA)=0 F  S AUDA=$O(^PRC(424,"AD",PO,AUDA)) Q:'AUDA  I $D(^PRC(424,AUDA,0)),$P(^(0),U,3)="AU" D
+ . S (DRPAMT,DRAUMT,DA)=0 F  S DA=$O(^PRC(424.1,"C",AUDA,DA)) Q:'DA  I $D(^PRC(424.1,DA,0)) D
+ ..S:$P(^PRC(424.1,DA,0),U,11)="P" DRPAMT=$P(^PRC(424.1,DA,0),U,3)+DRPAMT S:$P(^(0),U,11)["A" DRAUMT=DRAUMT+$P(^(0),U,3)
+ . S $P(^PRC(424,AUDA,0),U,12)=$S((+$G(DRAUMT)>0):DRAUMT,(+$G(DRAMT)>0):DRAMT,1:+$P($G(^PRC(424,AUDA,0)),U,13))
+ . S $P(^PRC(424,AUDA,0),U,5)=$S(+$G(DRPAMT)>0:$P(^PRC(424,AUDA,0),U,12)-DRPAMT,1:$P(^PRC(424,AUDA,0),U,12)),AUAMT(AUDA)=$P(^(0),U)_"^"_$P(^(0),U,12)_"^"_$P(^(0),U,5)_"^"_-DRAMT,AUAMT=AUAMT+DRAMT,AUBAL=AUBAL+$P(^(0),U,5)
+ ;Update obligation balance
+ S (AMT,AUDA)=0 F  S AUDA=$O(^PRC(424,"AD",PO,AUDA)) Q:'AUDA  I $D(^PRC(424,AUDA,0)) D
+ . S AMT=$P(^(0),U,12)+AMT
+ S BAL1=AMT D BALAU^PRCH58(PODA,BAL1)
+ S BAL=$$BAL^PRCH58(PODA)
+ Q

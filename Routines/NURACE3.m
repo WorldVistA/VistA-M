@@ -1,0 +1,66 @@
+NURACE3 ;HIRMFO/RM-PATIENT CLASSIFICATION FACTOR LISTS ;APRIL 1986
+ ;;4.0;NURSING SERVICE;;Apr 25, 1997
+EN1 ;PSYCHIATRIC FACTOR LIST
+ W !,"    A.  Routine Observation     |"
+ W !,"    B.  Observe 15-25 Min/Hr.   | MUST PICK ONE "
+ W !,"    C.  Observe 30-45 Min/Hr.   | OF THESE FOUR"
+ W !,"    D.  Observe Constantly      |"
+ W !,"    E.  May leave unit alone    >"
+ W !,"    F.  Out with staff/family   > MUST PICK ONE"
+ W !,"    G.  Restricted to unit      > OF THESE FOUR"
+ W !,"    H.  Restricted to room      >"
+ W !,"    I.  Restraint Needed"
+ W !,"    J.  Incontinent of Bowel/Bladder"
+ W !,"    K.  One to One Restriction Needed"
+ Q
+EN2 ;MEDICAL/SURGICAL FACTOR LIST
+ W !,?4,"1. Activity, independent"
+ W !,?4,"2. Bath, partial assist"
+ W !,?4,"3. Position, partial assist"
+ W !,?4,"4. Position, complete assist"
+ W !,?4,"5. Diet, partial assist"
+ W !,?4,"6. Diet, feed"
+ W !,?4,"7. IV, Add. q 6 h or more or TKO"
+ W !,?4,"8. Observe q 1-2 h"
+ W !,?4,"9. Observe almost constant"
+ Q
+EN3 ;CRITICAL CARE FACTOR LIST
+ W !,?4,"A. Position, partial assist   | CHOOSE ONE OF"
+ W !,?4,"B. Position, complete assist  | THESE TWO"
+ W !,?4,"C. Physiological monitoring, more than q 2 h  >"
+ W !,?4,"D. Physiological monitoring, q 1-2 h          > CHOOSE ONE OF"
+ W !,?4,"E. Physiological monitoring, q 1 h or less    > THESE THREE"
+ W !,?4,"F. Intravenous therapy, one IV"
+ W !,?4,"G. Intravenous therapy, 2 or more lines"
+ W !,?4,"H. Respiratory status, non-acute"
+ W !,?4,"I. Respiratory status, acute"
+ W !,?4,"J. Special procedures performed"
+ Q
+EN4 ;EXTENDED CARE FACTOR LIST
+ W !,"1.  Basic Hygiene/Bathing (Choose One)    | 2.  Nutrition/Feeding (Choose One)"
+ W !,?4,"A. Self                               |     D.  Self"
+ W !,?4,"B. Partial assist                     |     E.  Partial Assist"
+ W !,?4,"C. Complete assist                    |     F.  Complete Assist"
+ W !,"3.  Elimination (Choose One)              | 4.  Mobility (Choose One)"
+ W !,?4,"G. Self                               |     J.  Self"
+ W !,?4,"H. Partial assist                     |     K.  Partial Assist"
+ W !,?4,"I. Incontinent                        |     L.  Complete Assist"
+ W !,"5.  Behavior/Orientation (Choose One)"
+ W !,?4,"M. Alert/Oriented/Responsive"
+ W !,?4,"N. Occasionally Disoriented/Confused"
+ W !,?4,"O. Disoriented/Combative/Unresponsive"
+ Q
+EN5 ;SCI FACTOR LIST
+ W !,"    A. Activity, Independent"
+ W !,"    B. Bath/Shower, Set up, partial assist"
+ W !,"    C. Bath/Shower, Complete assist"
+ W !,"    D. Position/Transfer, Set up, standby or partial assist"
+ W !,"    E. Position/Transfer, Complete assist"
+ W !,"    F. Diet, Set-up, standby or partial assist"
+ W !,"    G. Diet, Complete assist"
+ W !,"    H. Bowel Care, Set up, standby or partial assist"
+ W !,"    I. Bowel Care, Complete assist"
+ W !,"    J. Monitor/Observe/Teach, 15-25 Min/Hr"
+ W !,"    K. Monitor/Observe/Teach, 30-45 Min/Hr"
+ W !,"    L. Constant Monitoring"
+ Q

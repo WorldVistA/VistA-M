@@ -1,0 +1,87 @@
+QAPDEM1 ;557/THM-INPUT OF PARTICIPANT DEMOGRAPHIC DATA [ 08/22/96  9:08 AM ]
+ ;;2.0;Survey Generator;**6**;Jun 20, 1995
+ ;called by QAPSCRN1
+ ;
+DEMO S PRESPON="",QAPHDR=TITLE_" - Demographics Entry"
+ D FILE S (QAPOUT,RESPCNT)=0,DEMERR="Entry of demographic information is mandatory   "
+ F DEMQUES=0:0 S DEMQUES=$O(^QA(748,SURVEY,1,DEMQUES)) Q:DEMQUES=""!(+DEMQUES=0)!($D(DSTOP))!($D(STOP))!(QAPOUT=1)!($D(FSTOP))  DO  Q:$D(STOP)!(QAPOUT=1)!($D(DSTOP))!($D(FSTOP))  S PRESPON=""
+ .S DEMDTA=^QA(748,SURVEY,1,DEMQUES,0),DEMTYPE=$P(DEMDTA,U,2),QAPFILE=$P(DEMDTA,U,3),QAPFILE=$P($G(^QA(748.2,+QAPFILE,0)),U,1)
+ .;if 'all demographics required' not YES, check each question
+ .I DMANMSTR="y" S DMAN=DMANMSTR
+ .I DMANMSTR=""!(DMANMSTR="n") S DMAN=$P(DEMDTA,U,4)
+BEGIN .W @IOF,! X QAPBAR K RESUME
+ .S RESPCNT=RESPCNT+1 W !!?5,RESPCNT,".  ",$P(DEMDTA,U),!! S QLINE=$Y
+ .I DEMTYPE="p",QAPFILE="" W !!,*7,"Pointed-to file information is missing for this question!",!! S FSTOP=1 H 3 Q
+ .I DEMTYPE="s",$O(^QA(748,SURVEY,1,DEMQUES,0))="" W !!,*7,"Codes are missing for this 'set of codes' question!",!! S FSTOP=1 H 3 Q
+ .I $D(EDIT) S RESPONDA=$O(^QA(748.3,FILEDA,2,"B",DEMQUES,0))
+ .I $D(EDIT),RESPONDA]"" S PRESPON=$P(^QA(748.3,FILEDA,2,RESPONDA,0),U,2) D:DEMTYPE="d"  W "Previous response: ",PRESPON,!
+ ..S Y=PRESPON X ^DD("DD") S PRESPON=Y
+ .I $D(RESPONDA),RESPONDA="" S PRESPON=""
+ .I DEMTYPE="p" D POINTER
+ .I DEMTYPE="p",$D(X),X["?" W:$D(DSTOP) @IOF,! Q:$D(DSTOP)  S RESPCNT=RESPCNT-1 G BEGIN Q:$D(DSTOP)
+ .I DEMTYPE="p",$D(Y),+Y<0,X'=U,X'="" W "   ",*7,"Invalid entry  " H 2 S RESPCNT=RESPCNT-1 G BEGIN
+ .I DEMTYPE="d" D DATE
+ .I DEMTYPE="f" D FREETXT
+ .I DEMTYPE="s" D SETCODE
+ K ANS,ANSW,INSERT,DIC,DIE,X,DX,DY,QLINE,QANS,QAPFILE,DEMTYPE,DEMQUES
+ Q
+ ;
+POINTER I QAPFILE=""!('$D(^DIC(+QAPFILE))) W !!,*7,"There is no file associated with the pointer in this answer.",! H 3 S FSTOP=1 Q  ;file error stop
+ ;
+POINTER1 ; use DIR reader to enforce 'pointed-to' field limits, transforms. 
+ S DIR(0)="P^"_QAPFILE_":EQMZ",DIR("A")="Please enter your answer"
+ S:PRESPON]"" DIR("B")=PRESPON
+ K DTOUT,DUOUT,DD D ^DIR
+ I $D(DTOUT),$D(EDIT) S STOP=1 Q
+ I $D(DTOUT),'$D(EDIT) S DSTOP=1 Q
+ I $D(EDIT),X[U S QAPOUT=1 Q
+ I $D(EDIT),X="" Q
+ I X=""!(X[U),DMAN'="y" S ANSW="<no answer>" X MSSG0 H 1 D D2 Q
+ I X=""!(X[U),DMAN="y" W !!,*7,DEMERR H 2 D ABORT0^QAPSCRN1 Q:QAPOUT=1!($D(STOP))  S DEMQUES=DEMQUES-.1,RESPCNT=RESPCNT-1 Q  ;QAPOUT=1=^ ; STOP=timeout
+ S ANSW=$P(Y(0,0),U,1) D D2 H 1 Q
+ Q
+ ;
+DATE I $D(PRESPON) I PRESPON]"",PRESPON'=" " S %DT("B")=PRESPON
+ K DTOUT
+ S %DT="AE",%DT("A")="Please enter a date: " D ^%DT S ANSW=Y
+ I $D(DTOUT),'$D(EDIT) S DSTOP=1 Q
+ I $D(X),$D(EDIT),X[U S QAPOUT=1 Q
+ I $D(X),$D(EDIT),X="" Q
+ I Y<0,DMAN'="y" S ANSW="<no answer>" X MSSG0 D D2 Q
+ I Y<0,DMAN="y" W !!,*7,DEMERR H 2 D ABORT0^QAPSCRN1 Q:QAPOUT=1!($D(STOP))  S DEMQUES=DEMQUES-.1,RESPCNT=RESPCNT-1 Q
+ I Y>0 S ANSW=Y D D2 Q
+ H 1 Q
+ ;
+FREETXT S:$D(EDIT) QLINE=QLINE+2
+ I $D(PRESPON) I PRESPON]"",PRESPON'=" " S DIR("B")=PRESPON
+ X CLEOP1
+ S DIR("?")="Enter a free text response from 1 to 40 characters"
+ S DIR("A")="Enter your response",DIR(0)="F^1:40" D ^DIR S ANSW=X K DIR
+ I $D(DTOUT),'$D(EDIT) S DSTOP=1 Q
+ I ANSW[U,$D(EDIT) S QAPOUT=1 Q
+ I ANSW="",$D(EDIT) Q
+ S ANSW=$TR(ANSW,"_{}|\~`","")
+ I ANSW[U!(ANSW=""),DMAN'="y" S ANSW="<no answer>" X MSSG0 H 1 D D2 Q
+ I ANSW[U!(ANSW=""),DMAN="y" W !!,*7,DEMERR H 2 D ABORT0^QAPSCRN1 Q:QAPOUT=1!($D(STOP))  S DEMQUES=DEMQUES-.1,RESPCNT=RESPCNT-1 Q
+ I ANSW]"" D D2 Q
+ Q
+ ;
+SETCODE K DIR S DIR(0)="S^"
+ I $D(PRESPON) I PRESPON]"" S DIR("B")=PRESPON
+ F DAX=0:0 S DAX=$O(^QA(748,SURVEY,1,DEMQUES,1,DAX)) Q:DAX=""!(+DAX=0)  S QDTA=^QA(748,SURVEY,1,DEMQUES,1,DAX,0),QCODE=$P(QDTA,U,1),DIR(0)=DIR(0)_QCODE_":"_$P(QDTA,U,2)_";"
+ K QDTA,QCODE D ^DIR I $D(DTOUT),'$D(EDIT) S DSTOP=1 Q
+ I $D(DUOUT),$D(EDIT) S QAPOUT=1 Q
+ I X="",$D(EDIT) S QAPOUT=1 Q
+ I $D(DUOUT)!(X=""),DMAN'="y" S QAPOUT=1 X MSSG0 Q
+ I $D(DUOUT)!(X=""),DMAN="y" W !!,*7,DEMERR H 2 D ABORT0^QAPSCRN1 Q:$D(STOP)  S DEMQUES=DEMQUES-.1,RESPCNT=RESPCNT-1 Q
+ S ANSW=Y(0),DA=Y H 1
+ ;
+D2 S (DIC,DIE)="^QA(748.3,DA(1),2,",X=DEMQUES,DIC(0)="LM"
+ I '$D(EDIT) S DIC("DR")="1////^S X=ANSW" K DO,DD D FILE^DICN Q
+ I $D(EDIT),RESPONDA="" S DIC("DR")="1////^S X=ANSW" K DO,DD D FILE^DICN Q
+ I $D(EDIT),RESPONDA]"" S DA=RESPONDA,DR="1////^S X=ANSW" D ^DIE
+ Q
+ ;
+FILE K DA,DIC,DIE,X,DO,DD S DA=FILEDA I '$D(^QA(748.3,DA,2,0)) S ^QA(748.3,DA,2,0)="^748.36A^^" ;node for FILE^DICN
+ S DA(1)=FILEDA
+ Q

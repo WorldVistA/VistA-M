@@ -1,0 +1,19 @@
+XTKERM3 ;SF/RWF - Kermit protocol Send/Receive packet ;8/19/92  11:19 ;
+ ;;7.3;TOOLKIT;;Apr 25, 1995
+ ;Packet <Mark><Len><Seq><type><data><Check><Eol>
+A ;Setup <Maxl><Timeout><Npad><Padc><Eol><Qctrl><Qbin>
+RPACK ;Receive a packet
+ S XTKERR=0,XTKR("PT")="A",XTKR("PN")=99,XTKRDAT="",XTKRPK="" F I=0:0 R A:XTKR("TO") G:'$T RTO X XTKR("TRMRD") Q:Y=XTKR("SOH")
+ R XTKRPK:XTKR("TO") G RTO:'$T X XTKR("TRMRD") I Y=XTKR("SOH") S XTKERR="1 SOH in record" Q
+ I $D(XTKDEBUG) S XTKDEBUG=XTKDEBUG+1,^TMP("XTKERM",$J,XTKDEBUG)="R:"_XTKRPK
+RCK S L=$A(XTKRPK)-32,XTKR("PN")=$A(XTKRPK,2)-32,XTKR("PT")=$E(XTKRPK,3),XTKRDAT=$E(XTKRPK,4,L) I $L(XTKRPK)-1-L S XTKERR="3 Size error" Q
+ S C=0 F I=1:1:L S C=C+$A(XTKRPK,I)
+ S C=C\64#4+C#64 I $A(XTKRPK,L+1)-32-C S XTKERR="4 Bad checksum"
+ Q
+RTO S XTKERR="2 Receiver timeout" Q
+SPACK S XTKSPK=$C($L(XTKSDAT)+35)_$C(XTKS("PN")+32)_XTKS("PT")_XTKSDAT,C=0 F I=1:1:$L(XTKSPK) S C=C+$A(XTKSPK,I)
+ S C=C\64#4+C#64,XTKSPK=$C(XTKS("SOH"))_XTKSPK_$C(C+32)
+ I $D(XTKDEBUG) S XTKDEBUG=XTKDEBUG+1,^TMP("XTKERM",$J,XTKDEBUG)="S:"_XTKSPK
+ I XTKS("NPAD")>0 W $TR($J("",XTKS("NPAD"))," ",XTKS("PADC")) ;Send pad char.
+ W XTKSPK,$C(XTKS("EOL"))
+ Q

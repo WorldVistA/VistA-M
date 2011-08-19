@@ -1,0 +1,35 @@
+DGPMTSI1 ;ALB/LM - TREATING SPECIALTY INPATIENT SET ; 3/10/93
+ ;;5.3;Registration;;Aug 13, 1993
+ ;
+ Q
+START S DIV=$S($P(^DIC(42,+DGW,0),"^",11)]"":$P(^DIC(42,+DGW,0),"^",11),1:0)
+ S DIV=$S($D(^DG(40.8,DIV,0)):DIV,1:0)
+ ;
+ S WARD=$S($D(^DIC(42,+DGW,0)):$P(^(0),"^"),1:+DGW)
+ ;
+ S TREAT=$S($D(^DIC(45.7,DGTS,0)):$P(^(0),"^"),1:"UNKNOWN")
+ I TREAT="UNKNOWN" S DGTS=9999999999
+ ;
+ S (PASS,AA,UA,ASIH)=0,MVT=""
+ ;
+MVT I $D(DGXFR0) S MVT=$P(DGXFR0,"^",18)
+ I MVT=1 S PASS=1,MVT="PASS"
+ I MVT=2!(MVT=26) S AA=1,MVT="AA"
+ I MVT=3!(MVT=25) S UA=1,MVT="UA"
+ I "^13^43^44^45^"[("^"_MVT_"^") S ASIH=1,MVT="ASIH"
+ I MVT'["A" S MVT="" ; if not one of the above absence reset to null
+ ;
+PT S PT=$P(^DPT(DFN,0),"^")
+ S Y=+$P(DGCA,"^") X ^DD("DD") S ADMDT=$P(Y,"@")
+ ;
+ I DGTS=9999999999 S SV=0 Q
+ ;
+SV S SV=$S($D(^DIC(42.4,$P(^DIC(45.7,DGTS,0),"^",2),0)):$P(^DIC(42.4,$P(^DIC(45.7,DGTS,0),"^",2),0),"^",3),1:0)
+ ;
+ I SV=0 Q
+ ;
+ S S=SV
+ ;
+ S SV=$S(S="M":"MEDICINE",S="S":"SURGERY",S="P":"PSYCHIATRY",S="NH":"NHCU",S="NE":"NEUROLOGY",S="I":"INTERMEDIATE MED",S="R":"REHAB MEDICINE",S="SCI":"SPINAL CORD INJURY",S="D":"DOMICILIARY",S="B":"BLIND REHAB",S="RE":"RESPITE CARE",1:"")
+ ;
+END K DG2,DGA1,DGDA,DGID,DGS,DGX,DGXFR0,TSXDT,S,Y Q

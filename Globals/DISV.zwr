@@ -1,0 +1,11 @@
+^DISV
+ZWR
+^DISV(17,"^DIC(")="9.7"
+^DISV(17,"^DOPT(""DII"",")="5"
+^DISV(17,"^XPD(9.7,")="8432"
+^DISV(19,"^DD(DI,")=".01"
+^DISV(19,"^DD(DK,")=".01"
+^DISV(19,"^DIC(")="200"
+^DISV(19,"^DOPT(""DDU"",")="3"
+^DISV(19,"^DOPT(""DII"",")="1"
+^DISV(19,"^VA(200,")="27"

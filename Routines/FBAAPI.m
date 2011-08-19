@@ -1,0 +1,14 @@
+FBAAPI ;AISC/GRR-PATIENT INQUIRY ;03JAN86
+ ;;3.5;FEE BASIS;;JAN 30, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RD K FBAANQ W !! S DIC="^DPT(",DIC(0)="AEQM" D ^DIC G Q:X="^"!(X=""),RD:Y<0 S DFN=+Y
+ S VAR="DFN",VAL=DFN,PGM="START^FBAAPI" D ZIS^FBAAUTL G:FBPOP Q S:IO=IO(0) FBAANQ=1
+START U IO
+ W ! D ^FBAADEM
+ I $E(IOST,1,2)="C-" D
+ . Q:'$O(^FBAA(161.5,"D",DFN,0))
+ .W !!,"Patient also has Inpatient Report(s) of Contact with the following date(s):",!
+ . S I=0 F  S I=$O(^FBAA(161.5,"D",DFN,I)) Q:'I  S Y=$P($G(^FBAA(162.2,I,0)),"^") D DD^%DT W !?10,Y
+ G:$D(FBAANQ) RD
+Q K DIC,X,Y,FBAAOUT,FBAUT,FBPROG,PTYPE,X1,FBAANQ,DFN,DAT,F,FBCOUNTY,FBDX,FBI,FBRR,FBXX,I,PGM,PI,T,VAL,VAR,Z,ZZ,M,Q
+ D CLOSE^FBAAUTL Q

@@ -1,0 +1,84 @@
+PRCHEB ;ID/RSD,SF-ISC/TKW-EDIT ROUTINES FOR SUPPLY SYSTEM ;11-20-92/12:01
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+EN ;CANCEL UNOBLIGATED REQUISITION
+ S PRCHNRQ=1 D EN7^PRCHEA K PRCHNRQ
+ Q
+ ;
+EN0 ;REMOVE 2237 FROM REQUISITION
+ S PRCHNRQ=1 D ^PRCHE2 K PRCHNRQ
+ Q
+ ;
+EN1 ;AMENDMENT TO REQUISITION
+ S PRCHNRQ=1 D EN6^PRCHEA K PRCHNRQ
+ Q
+ ;
+EN2 ;ADJUSTMENT VOUCHER TO RECV.REPORT FOR REQUISITION
+ S (PRCHREQ,PRCHNRQ)=1 D EN14^PRCHE K PRCHNRQ
+ Q
+ ;
+EN3 ; CREATE A NEW IMPREST FUND P.O.
+ D ST Q:'$D(PRC("SITE"))
+EN30 S PRCHP("A")="IMPREST FUND P.O.NO.: ",PRCHP("T")=7,PRCHP("S")=3 D EN^PRCHPAT Q:'$D(PRCHPO)  D LCK1 G:'$D(DA) EN30 S X=1 D ENS^PRCHSTAT,^PRCHNPO L
+ G EN30
+ ;
+EN4 ;EDIT AN IMPREST FUND P.O.
+ D ST Q:'$D(PRC("SITE"))
+ ;
+EN40 S PRCHP("A")="IMPREST FUND P.O.NO.: ",PRCHP("S")="$P(^(0),U,2)=7" D EN3^PRCHPAT Q:'$D(PRCHPO)  I X>9!'X W " ??",$C(7) G EN40
+ D LCK1 G:'$D(DA) EN40 D ^PRCHNPO L
+ G EN40
+ ;
+EN5 ;RECEIVING FOR IMPREST FUND P.O.
+ S PRCHPGM="EN5^PRCHEB",PRCHIMP=1 D ^PRCHREC K PRCHPGM,PRCHIMP
+ Q
+ ;
+EN6 ;CANCEL UNOBLIGATED IF P.O.
+ S PRCHIMP=1 D EN7^PRCHEA K PRCHIMP
+ Q
+ ;
+EN7 ;REMOVE 2237 FROM IF P.O.
+ S PRCHIMP=1 D ^PRCHE2 K PRCHIMP
+ Q
+ ;
+EN8 ;ENTER COMPLETED DEPOT/GSA PUSH P.O. IN REGISTER
+ D ST Q:'$D(PRC("SITE"))
+ W !!!,"NOTE: This option will just reserve the PAT (P.O.) numbers needed for",!,"a DEPOT or GSA PUSH transaction.  It will take 3 entries to complete the",!
+ W "order (Regular, Drugs & Subsistence).  The Control Point obligated balance for",!
+ W "the warehouse will NOT be updated.  Both the PUSH RELEASE (acquisitions",!,"and the RECEIPTS RELEASE (receiving) LOG code sheets must be generated",!,"using the 'CREATE A CODE SHEET' option."
+EN80 S PRCHNRQ=1,PRCHP("A")="REQUISITION NUMBER",PRCHP("T")=8,PRCHP("S")=1,PRCHP("S2")=",$P(^(0),U,1)[""G""" D EN^PRCHPAT I '$D(PRCHPO) K PRCHNRQ G Q^PRCHEA
+ D LCK1 G:'$D(DA) EN80 S PRCHPUSH=1,DIE=DIC,DR="[PRCHPUSH]" D ^DIE,EN3^PRCHNPO7 L
+ G EN80
+ ;
+EN9 ;EDIT COMPLETED DEPOT/GSA PUSH P.O. IN REGISTER
+ D ST Q:'$D(PRC("SITE"))
+EN90 S PRCHNRQ=1,PRCHP("A")="REQUISITION NUMBER: ",PRCHP("T")=8,PRCHP("S")="$P(^(0),U,1)[""G""" D EN3^PRCHPAT I '$D(PRCHPO) K PRCHNRQ G Q^PRCHEA
+ I X>9!'X W " ??",$C(7) G EN90
+ D LCK1 G:'$D(DA) EN90 S PRCHPUSH=1,DIE=DIC,DR="[PRCHPUSH]" D ^DIE,EN3^PRCHNPO7 L
+ G EN90
+ ;
+ENA ;CHANGE DELIVERY DATE ON REQUISITION
+ S PRCHNRQ=1 D EN12^PRCHE K PRCHNRQ
+ Q
+ ;
+ENB ;RETURN SUPPLY FUND P.O. FROM PPM TO P&C FOR RE-EDITING
+ D ST Q:'$D(PRC("SITE"))
+ENB1 S PRCHP("S")="""137""[$P(^(0),U,2),$P(^(0),U,19)=2,$D(^(7)),$P(^(7),U,2)=22,$D(^PRC(442,""AE"",""N"",+Y))"
+ D EN3^PRCHPAT G:Y'>0 Q
+ W !,$C(7) S %A="Are you sure that you want to return this to P&C for re-editing"
+ S %=1,%B="Answering 'YES' will remove the Purchasing Agent's signature so that they",%B(1)="can re-edit the P.O." D ^PRCFYN G:%=2 ENB1 I %<0 W !,"No Action Taken." R X:3 G ENB1
+ S DA=PRCHPO D LCK1 G:'$D(DA) ENB1
+ ;S $P(^PRC(442,DA,12),"^",2,3)="^",X=6 D ENS^PRCHSTAT W !,"Purchase Order has been returned, please notify P&C, IMMEDIATELY",$C(7),! L  G Q
+ D REMOVE^PRCHES5(DA) S X=6 D ENS^PRCHSTAT W !,"Purchase Order has been returned, please notify P&C, IMMEDIATELY",$C(7),! L
+ G Q
+ ;
+Q K DA,DIC,PRC,PRCF,PRCHP,PRCHPO
+ Q
+ ;
+LCK1 S DIC="^PRC(442,"
+ ;
+LCK L @(DIC_DA_"):0") E  W !,$C(7),"ANOTHER USER IS EDITING THIS ENTRY!" K DA
+ Q
+ ;
+ST S PRCF("X")="S" D ^PRCFSITE
+ Q

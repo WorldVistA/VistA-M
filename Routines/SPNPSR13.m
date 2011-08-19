@@ -1,0 +1,78 @@
+SPNPSR13 ;HIRMFO/DAD,WAA-HUNT: IN/OUT PATIENT VISIT ;8/8/95  10:04
+ ;;2.0;Spinal Cord Dysfunction;**6**;01/02/1997
+ ;
+EN1(D0,VISITYPE,CLINIC,BDATE,EDATE) ; *** Search entry point
+ ; Input:
+ ;  ACTION,SEQUENCE = Search ACTION,SEQUENCE number
+ ;  D0       = SCD (SPINAL CORD) REGISTRY file (#154) IEN
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"VISIT TYPE")= I ! O ! B ^ External
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"CLINIC") = Int ^ Ext (Visit type = O!B)
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"BEGINNING DATE") = Date ^ Date_(Ext)
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"ENDING DATE") = Date ^ Date_(Ext)
+ ;       VISITYPE = Patient Visit Type (int)
+ ;         CLINIC = Clinic (Int)
+ ;          BDATE = Beginning Date
+ ;          EDATE = Ending Date
+ ; Output:
+ ;  $S( D0_Meets_Search_Criteria : 1 , 1 : 0 )
+ ;
+ N ADM1,ADM2,DFN,DSC1,I,MEETSRCH,VASD
+ S MEETSRCH=0
+ S DFN=D0
+ I "^O^B^"[(U_VISITYPE_U) D
+ . S VASD("F")=BDATE
+ . S VASD("T")=EDATE
+ . S VASD("W")=1 I CLINIC]"" S VASD("C",CLINIC)=""
+ . K ^UTILITY("VASD",$J)
+ . D SDA^VADPT
+ . I $O(^UTILITY("VASD",$J,0)) S MEETSRCH=1
+ . K ^UTILITY("VASD",$J)
+ . Q
+ I "^I^B^"[(U_VISITYPE_U) D
+ . S ADM1=+$O(^DGPM("ATID1",DFN,9999999.999999-BDATE))
+ . S ADM1=$S(ADM1:9999999.999999-ADM1,1:0)
+ . S ADM2=+$O(^DGPM("ATID1",DFN,9999999.999999-EDATE))
+ . S ADM2=$S(ADM2:9999999.999999-ADM2,1:0)
+ . S DSC1=+$O(^DGPM("ATID3",DFN,9999999.999999-EDATE))
+ . S DSC1=$S(DSC1:9999999.999999-DSC1,1:0)
+ . I ADM2'<BDATE S MEETSRCH=1
+ . I ADM1,((DSC1'>0)!(DSC1'<BDATE)) S MEETSRCH=1
+ . Q
+ Q MEETSRCH
+ ;
+EN2(ACTION,SEQUENCE) ; *** Prompt entry point
+ ; Input:
+ ;  ACTION,SEQUENCE = Search ACTION,SEQUENCE number
+ ; Output:
+ ;  SPNLEXIT = $S( User_Abort/Timeout : 1 , 1 : 0 )
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"VISIT TYPE")= I ! O ! B ^ External
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"CLINIC") = Int ^ Ext (Visit type = O!B)
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"BEGINNING DATE") = Date ^ Date_(Ext)
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"ENDING DATE") = Date ^ Date_(Ext)
+ ; ^TMP($J,"SPNPRT",ACTION,SEQUENCE,0) = $$EN1^SPNPSR13(D0,VISITYPE,CLINIC,BDATE,EDATE)
+ ;
+ N CLINIC,DIR,DIRUT,DTOUT,DUOUT,I,VISITYPE
+ K ^TMP($J,"SPNPRT",ACTION,SEQUENCE),DIR
+ S DIR(0)="SOAM^I:INPATIENT;O:OUTPATIENT;B:BOTH INPATIENT & OUTPATIENT;"
+ S DIR("A")="Type of Visit: ",DIR("?")="Enter 'I', 'O', or 'B'"
+ D ^DIR
+ I Y'="" S Y=$$UP^XLFSTR(Y)
+ S VISITYPE=Y,VISITYPE(0)=$G(Y(0))
+ S SPNLEXIT=$S($D(DTOUT):1,$D(DUOUT):1,1:0)
+ I 'SPNLEXIT,Y'="" D
+ .I "^O^B^"[(U_VISITYPE_U) D  Q:SPNLEXIT
+ .. S DIR(0)="POA^44:AEMNQ^K:$P(^SC(+Y,0),U,3)'=""C"" X"
+ .. S DIR("A")="Clinic name: "
+ .. S DIR("?")="Enter the desired clinic or leave blank for ALL clinics"
+ .. D ^DIR S CLINIC=Y
+ .. S SPNLEXIT=$S($D(DTOUT):1,$D(DUOUT):1,$D(DIROUT):1,1:0)
+ .. Q
+ .S (BDATE,EDATE)=""
+ .D EN1^SPNPSR00(ACTION,SEQUENCE+.2,.BDATE,.EDATE)
+ .I 'SPNLEXIT D
+ .. I $G(CLINIC)]"" S ^TMP($J,"SPNPRT",ACTION,SEQUENCE+.1,"CLINIC")=CLINIC
+ .. S ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"VISIT TYPE")=VISITYPE_U_VISITYPE(0)
+ .. S ^TMP($J,"SPNPRT",ACTION,SEQUENCE,0)="$$EN1^SPNPSR13(D0,"""_VISITYPE_""","""_$P($G(CLINIC),U)_""","_BDATE_","_EDATE_")"
+ .. Q
+ .Q
+ Q

@@ -1,0 +1,96 @@
+PXAAVCPT ;ISA/Zoltan,KWP - APIs for V CPT (#9000010.18). ;Jun 21, 1999
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**77**;Aug 12, 1996
+ ;
+ ;+APIs for V CPT (#9000010.18)
+ ;+See PXAADOC for additional comments on the PXAA routines
+ ;
+GETIENS(VSITIEN,ARRAY) ;+Gets all iens associated with the visit.
+ K ARRAY N X ;+Wipe out any exisiting array contents.
+ Q:'$D(^AUPNVCPT("AD",VSITIEN)) 0  ;+Exit if no such record.
+ S X="" F  S X=$O(^AUPNVCPT("AD",VSITIEN,X)) Q:X=""  S ARRAY(X)=""
+ Q 1
+LOADFLDS(IEN,ARRAY) ;+Loads all fields for V CPT (#9000010.18).
+ K ARRAY ;+Wipe out any exisiting array contents.
+ N SIEN
+ Q:'$D(^AUPNVCPT(IEN)) 0 ;+Exit if no such record.
+ ;+ ARRAY(.01) = CPT field.
+ S ARRAY(.01)=$P($G(^AUPNVCPT(IEN,0)),"^",1)
+ ;+ ARRAY(.02) = PATIENT NAME field.
+ S ARRAY(.02)=$P($G(^AUPNVCPT(IEN,0)),"^",2)
+ ;+ ARRAY(.03) = VISIT field.
+ S ARRAY(.03)=$P($G(^AUPNVCPT(IEN,0)),"^",3)
+ ;+ ARRAY(.04) = PROVIDER NARRATIVE field.
+ S ARRAY(.04)=$P($G(^AUPNVCPT(IEN,0)),"^",4)
+ ;+ ARRAY(.05) = DIAGNOSIS field.
+ S ARRAY(.05)=$P($G(^AUPNVCPT(IEN,0)),"^",5)
+ ;+ ARRAY(.07) = PRINCIPAL PROCEDURE field.
+ S ARRAY(.07)=$P($G(^AUPNVCPT(IEN,0)),"^",7)
+ ;+ ARRAY(.16) = QUANTITY field.
+ S ARRAY(.16)=$P($G(^AUPNVCPT(IEN,0)),"^",16)
+ ;+ ARRAY(1) contains the CPT MODIFIER field (multiple):
+ S SIEN=0
+ F  S SIEN=$O(^AUPNVCPT(IEN,1,SIEN)) Q:'SIEN  D
+ . ;+ ARRAY(1,SIEN,.01) = CPT MODIFIER sub-field.
+ . S ARRAY(1,SIEN,.01)=$P($G(^AUPNVCPT(IEN,1,SIEN,0)),"^",1)
+ ;+ ARRAY(1201) = EVENT DATE AND TIME field.
+ S ARRAY(1201)=$P($G(^AUPNVCPT(IEN,12)),"^",1)
+ ;+ ARRAY(1202) = ORDERING PROVIDER field.
+ S ARRAY(1202)=$P($G(^AUPNVCPT(IEN,12)),"^",2)
+ ;+ ARRAY(1204) = ENCOUNTER PROVIDER field.
+ S ARRAY(1204)=$P($G(^AUPNVCPT(IEN,12)),"^",4)
+ ;+ ARRAY(80101) = EDITED FLAG field.
+ S ARRAY(80101)=$P($G(^AUPNVCPT(IEN,801)),"^",1)
+ ;+ ARRAY(80102) = AUDIT TRAIL field.
+ S ARRAY(80102)=$P($G(^AUPNVCPT(IEN,801)),"^",2)
+ ;+ ARRAY(80201) = PROVIDER NARRATIVE CATEGORY field.
+ S ARRAY(80201)=$P($G(^AUPNVCPT(IEN,802)),"^",1)
+ ;+ ARRAY(81101) = COMMENTS field.
+ S ARRAY(81101)=$P($G(^AUPNVCPT(IEN,811)),"^",1)
+ ;+ ARRAY(81201) = VERIFIED field.
+ S ARRAY(81201)=$P($G(^AUPNVCPT(IEN,812)),"^",1)
+ ;+ ARRAY(81202) = PACKAGE field.
+ S ARRAY(81202)=$P($G(^AUPNVCPT(IEN,812)),"^",2)
+ ;+ ARRAY(81203) = DATA SOURCE field.
+ S ARRAY(81203)=$P($G(^AUPNVCPT(IEN,812)),"^",3)
+ Q 1
+CPT(IEN) ;+ Returns #.01 CPT.
+ Q $P($G(^AUPNVCPT(IEN,0)),"^",1)
+PATINAME(IEN) ;+ Returns #.02 PATIENT NAME.
+ Q $P($G(^AUPNVCPT(IEN,0)),"^",2)
+VISIT(IEN) ;+ Returns #.03 VISIT.
+ Q $P($G(^AUPNVCPT(IEN,0)),"^",3)
+PROVNARR(IEN) ;+ Returns #.04 PROVIDER NARRATIVE.
+ Q $P($G(^AUPNVCPT(IEN,0)),"^",4)
+DIAGNOSI(IEN) ;+ Returns #.05 DIAGNOSIS.
+ Q $P($G(^AUPNVCPT(IEN,0)),"^",5)
+PRINPROC(IEN) ;+ Returns #.07 PRINCIPAL PROCEDURE.
+ Q $P($G(^AUPNVCPT(IEN,0)),"^",7)
+QUANTITY(IEN) ;+ Returns #.16 QUANTITY.
+ Q $P($G(^AUPNVCPT(IEN,0)),"^",16)
+CPTMODIF(IEN,ARRAY) ;+ Returns #1 CPT MODIFIER.
+ N SIEN
+ S SIEN=0
+ F  S SIEN=$O(^AUPNVCPT(IEN,1,SIEN)) Q:'SIEN  D
+ . ;+ ARRAY(1,SIEN,.01) = CPT MODIFIER field.
+ . S ARRAY(1,SIEN,.01)=$P($G(^AUPNVCPT(IEN,1,SIEN,0)),"^",1)
+ Q
+EVENTDT(IEN) ;+ Returns #1201 EVENT DATE AND TIME.
+ Q $P($G(^AUPNVCPT(IEN,12)),"^",1)
+ORDEPROV(IEN) ;+ Returns #1202 ORDERING PROVIDER.
+ Q $P($G(^AUPNVCPT(IEN,12)),"^",2)
+ENCOPROV(IEN) ;+ Returns #1204 ENCOUNTER PROVIDER.
+ Q $P($G(^AUPNVCPT(IEN,12)),"^",4)
+EDITFLAG(IEN) ;+ Returns #80101 EDITED FLAG.
+ Q $P($G(^AUPNVCPT(IEN,801)),"^",1)
+AUDITRAI(IEN) ;+ Returns #80102 AUDIT TRAIL.
+ Q $P($G(^AUPNVCPT(IEN,801)),"^",2)
+PRONARCA(IEN) ;+ Returns #80201 PROVIDER NARRATIVE CATEGORY.
+ Q $P($G(^AUPNVCPT(IEN,802)),"^",1)
+COMMENTS(IEN) ;+ Returns #81101 COMMENTS.
+ Q $P($G(^AUPNVCPT(IEN,811)),"^",1)
+VERIFIED(IEN) ;+ Returns #81201 VERIFIED.
+ Q $P($G(^AUPNVCPT(IEN,812)),"^",1)
+PACKAGE(IEN) ;+ Returns #81202 PACKAGE.
+ Q $P($G(^AUPNVCPT(IEN,812)),"^",2)
+DATASRC(IEN) ;+ Returns #81203 DATA SOURCE.
+ Q $P($G(^AUPNVCPT(IEN,812)),"^",3)

@@ -1,0 +1,133 @@
+VALM4 ;ALB/MJK - Screen Malipulation Utilities ;02/12/2001  13:45
+ ;;1.0;List Manager;**4,6**;Aug 13, 1993
+NEXT ; -- display next screen (NX)
+ D START
+ N VALMLSTO,I,LN
+ I VALMBG+VALM("LINES")>VALMCNT W $C(7) D FINISH Q
+ S VALMBG=VALMBG+VALM("LINES")
+ S VALMLSTO=VALMLST
+ I VALMCC D LST,SCROLL D
+ . S DY=VALM("BM")-1 D IOXY(0,.DY)
+ . S I=VALMLSTO+1 F LN=1:1:VALM("LINES") D WRITE(I,1,1,.DY) S I=I+1
+ . D PLUS,RESET
+ D PGUPD
+ D FINISH
+ Q
+PREV ; -- display previous screen (BU)
+ D START
+ N I,LN,X,Y,VALMBGO
+ I VALMBG=1 W $C(7) D FINISH Q
+ S Y=VALMBG-VALM("LINES")
+ S VALMBGO=VALMBG,VALMBG=$S(Y<1:1,1:Y)
+ I VALMCC D LST,SCROLL D
+ . S DY=VALM("TM")-1
+ . S I=VALMBGO-1 F LN=1:1:VALM("LINES") D IOIL(0,.DY),WRITE(I,0,1,.DY) Q:I=1  S I=I-1
+ . D PLUS,RESET
+ D PGUPD
+ D FINISH
+ Q
+FIRST ; -- display first screen (FS)
+ D START
+ I VALMBG=1 W $C(7) D FINISH Q
+ S VALMBG=1
+ I VALMCC D LST,PAINT
+ D PGUPD
+ D FINISH
+ Q
+LAST ; -- display last screen (LS)
+ D START
+ N Y,I
+ I VALMCNT'>VALM("LINES") W $C(7) D FINISH Q
+ ; first line of the last screen :=
+ ; (# of full screens less 1 if last screen is also full) x # lines per screen) + 1 line
+ S Y=(((VALMCNT\VALM("LINES"))-'(VALMCNT#VALM("LINES")))*VALM("LINES"))+1
+ I Y=VALMBG W $C(7) D FINISH Q
+ S VALMBG=Y
+ I VALMCC D LST,PAINT
+ D PGUPD
+ D FINISH
+ Q
+START ; -- start action tasks
+ S:VALMMENU VALMDY=""
+ W VALMCOFF
+ Q
+FINISH ; -- finish action tasks
+ S VALMBCK=$S(VALMCC:"",1:"R")
+ W VALMCON
+ Q
+PAINT ;
+ N I,LN,X D SCROLL
+ I $E(IOST,1,4)="C-VT" S DY=VALM("TM")-1 D IOXY(0,.DY) W *27,*91,VALM("LINES"),*77
+ S I=VALMBG F LN=1:1:VALM("LINES") S DY=VALM("TM")+LN-2 D IOIL(0,.DY),WRITE(I,0,1,.DY) S I=I+1
+ D PLUS,RESET
+ Q
+IOIL(DX,DY) ; -- position cursor ; insert line ; cr
+ W ! X IOXY W IOIL,$C(13)
+ Q
+IOXY(DX,DY) ; -- position cursor and tell os
+ X IOXY ;,VALMIOXY
+ Q
+RE ; -- re-display current screen (RE)
+ D REFRESH^VALM S VALMBCK=""
+ Q
+RESET ; -- reset scrolling region to bottom of screen
+ I '$D(VALMDY) D IOXY(0,VALM("BM")+1) W IOEDEOP
+ S IOTM=VALM("BM")+2,IOBM=IOSL W IOSC W @IOSTBM W IORC
+ D UND($$HTE^XLFDT($H,1),31+((VALMWD-80)/2),1,21,.IOUON,.IOUOFF,0)
+ I $D(VALMBCK) D IOXY(0,VALM("BM"))
+ Q
+SCROLL ; -- set scrolling region to list area
+ S IOTM=VALM("TM"),IOBM=VALM("BM") W IOSC W @IOSTBM W IORC
+ Q
+LST ; -- compute last line on screen
+ N I
+ S I=VALMBG+VALM("LINES")-1,VALMLST=$S($D(@VALMAR@(I,0)):I,1:VALMCNT)
+ Q
+WRITE(LINE,LF,CTRL,DY) ;
+ N TEXT
+ ;S LINE=+$$GET(LINE)
+ S TEXT=$$EXTRACT($G(@VALMAR@(LINE,0))),DX=VALMWD
+ I TEXT?.E1C.E S TEXT=$$CTRL^XMXUTIL1(TEXT)
+ W:LF !
+ ; -- write text if no formatting needed or allowed
+ I 'CTRL!('$O(^TMP("VALM VIDEO",$J,VALMEVL,LINE,0)))!('VALMCC) W TEXT Q
+ D:VALM("FIXED") FORMAT(.LINE,.TEXT,0,0,1,VALM("FIXED"),.DY)
+ D FORMAT(.LINE,.TEXT,VALM("FIXED"),VALM("FIXED"),VALMLFT,VALMWD,.DY)
+ Q
+FORMAT(LINE,TEXT,FIXED,PREVCOL,TXTLEFT,RMAR,DY) ;
+ N ATR,WIDTH,COL,LASTCOL,FIN,CRTLCOL
+ S COL=0,FIN=0
+ ; -- scan for attributes
+ F  Q:FIN  S COL=$O(^TMP("VALM VIDEO",$J,VALMEVL,LINE,COL)) Q:'COL  S WIDTH="" F  S WIDTH=$O(^TMP("VALM VIDEO",$J,VALMEVL,LINE,COL,WIDTH)) Q:WIDTH=""  S ATR=^(WIDTH) D  Q:FIN
+ . I TXTLEFT>(COL+WIDTH-1) Q
+ . S CTRLCOL=COL-TXTLEFT+FIXED
+ . S:CTRLCOL<(PREVCOL+1) CTRLCOL=PREVCOL
+ . S:CTRLCOL'<RMAR CTRLCOL=RMAR,FIN=1
+ . W $E(TEXT,PREVCOL+1,CTRLCOL) S PREVCOL=CTRLCOL
+ . W $C(13)_ATR_$C(13) D IOXY(.CTRLCOL,.DY)
+ I PREVCOL<RMAR W $E(TEXT,PREVCOL+1,RMAR)
+ W $C(13)_VALMSGR_$C(13) D IOXY(.RMAR,.DY)
+ Q
+EXTRACT(X) ; -- extract string
+ Q $S(X="":X,1:$E($E(X,1,+VALM("FIXED"))_$E(X,VALMLFT,VALMLFT+VALMWD-1-VALM("FIXED"))_$J("",VALMWD),1,VALMWD))
+GET(LNUM) ; -- get actual line number (may be different if indexed)
+ Q $S(VALM(0)["I":$G(@VALMIDX@(LNUM)),1:LNUM)
+PLUS ; -- add plus indicators to screen
+ N UP,DN
+ W $C(13) ; -- needed to prevent extra LF's after FORMAT loops
+ S UP=(VALMBG'=1),DN=$S('$D(VALMLST):0,VALM(0)["I":$O(@VALMIDX@(+VALMLST))>0,1:$O(@VALMAR@(+VALMLST))>0)
+ I UP'=VALMUP S VALMUP=UP D UND($S(UP:"+",1:" "),1,VALM("TM")-1,1,.IOUON,.IOUOFF,0)
+ I DN'=VALMDN S VALMDN=DN D UND($S(DN:"+",1:" "),1,VALM("BM")+1,1,.IORVON,.IORVOFF,0)
+ Q
+PGUPD ; -- update page var and screen
+ N P
+ S P=$$PAGE(VALMBG,VALM("LINES")) Q:P=VALMPGE
+ S VALMPGE=P
+ D:VALMCC UND($J(P,4),VALMWD-12,1,4,.IOUON,.IOUOFF,0)
+ Q
+PAGE(BEG,LINES) ; -- calc page #
+ S BEG=$S($D(@VALMAR@(BEG,0)):BEG,1:0)
+ Q (BEG\LINES)+((BEG#LINES)>0)
+UND(STR,X,Y,LEN,ON,OFF,ERASE) ;
+ W $C(13)_ON_$C(13) D INSTR^VALM1(STR,X,Y,LEN,+$G(ERASE)) W $C(13)_OFF_$C(13)
+ Q

@@ -1,0 +1,143 @@
+GMRCGUIU ;SLC/DCM,JFR - Utilities for CPRS GUI ;04/23/09  13:25
+ ;;3.0;CONSULT/REQUEST TRACKING;**4,12,15,17,22,66**;DEC 27, 1997;Build 30
+ ;
+ ; This routine invokes IA #2757(EN^MCARPS2), #3042 (SINGLE^MCAPI), #3171 (START^ORWRP)
+ ;                         #(GET1^DIQ), #3280 (MEDLKUP^MCARUTL3), #10103 (XLFDT)
+ ;
+GUIC ;Kill variables from GMRCGUIC
+ K GMRC(0),GMRCA,GMRCATN,GMRCD,GMRCDD,GMRCDIAG,GMRCDT,GMRCED,GMRCEDCM
+ K GMRCFL,GMRCFLD,GMRCION,GMRCLNO,GMRCNATO,GMRCNT,GMRCORTX,GMRCPL
+ K GMRCPROC,GMRCRQT,GMRCS38,GMRCSS,GMRCSVC,GMRCTRLC,GMRCTYPE,GMRCURG
+ K GMRCX,LN,GMRCADUZ,ORDG,RMBED,VISIT
+ K GMRCITM,GMRCMSG,GMRCND1,GMRCNOD,GMRCPROV,GMRCOUNT,GMRCGUIF,GMRCREQ
+ K GMRCSS,GMRCPROC,GMRCURG,GMRCURGY,GMRCPL,GMRCATN,GMRCINO,GMRCREQ
+ K GMRCDIAG,GMRCDXCD,GMRCPROV,ND,NDX
+ K XQAKILL,^TMP("GMRCFLD20",$J)
+ Q
+SETDA(GMRCSS,GMRCPROC,GMRCURG,GMRCPL,GMRCATN,GMRCRQT,GMRCION,GMRCERDT,GMRCDIAG,GMRCDXCD)  ;Set DA in ^GMR(123,GMRCO,40
+ ;WAT/66 added earliest date
+ N X
+ S X=""
+ I +GMRCSS S X="1////^S X=+GMRCSS;.1///@;"
+ I +GMRCPROC S X=X_"4////^S X=GMRCPROC;.1///@;"
+ I +GMRCURG S X=X_"5////^S X=GMRCURG;"
+ I +GMRCPL S X=X_"6////^S X=GMRCPL;"
+ I +GMRCATN S X=X_"7////^S X=GMRCATN;"
+ I $G(GMRCATN)="@" S X=X_"7///@;"
+ I $L(GMRCION) S X=X_"14///^S X=GMRCION;"
+ I +GMRCERDT S X=X_"17///^S X=GMRCERDT;"
+ I $L(GMRCDIAG) D
+ . I GMRCDIAG="@" S X=X_"30///@;30.1///@;" Q
+ . S X=X_"30////^S X=GMRCDIAG;"
+ I $L(GMRCDXCD) S X=X_"30.1////^S X=GMRCDXCD;"
+ I $L(X) S X=$E(X,1,$L(X)-1)
+ Q X
+ ;
+COMMENT(GMRCO,MSG,ND,GMRCDA)    ;File comments from GUI edits
+ N Y,GMRCND
+ S GMRCDA=$$ADDCM^GMRCEDT3(GMRCO),GMRCA=20
+ D AUDIT0^GMRCEDT3(GMRCDA,GMRCO)
+ S Y=$$FMTE^XLFDT(DT,"1D"),GMRCFLD(40)="COMMENT ADDED: "_Y_"^"_GMRCDA
+ S GMRCND="",GMRCNT=1 F  S GMRCND=$O(@MSG@(ND,GMRCND)) Q:GMRCND=""  S ^GMR(123,GMRCO,40,GMRCDA,1,GMRCNT,0)=@MSG@(ND,GMRCND),GMRCNT=GMRCNT+1
+ S ^GMR(123,GMRCO,40,GMRCDA,1,0)="^^"_(GMRCNT-1)_"^"_(GMRCNT-1)_"^"_GMRCDT_"^"
+ I $P($G(^GMR(123,GMRCO,12)),U,5)="P" D
+ . D TRIGR^GMRCIEVT(GMRCO,GMRCDA)
+ Q
+ ;
+SENDCOMT(GMRCO,ND1)     ;Get comments   ;wat/66 replaced ^VA(200 with $$GET1^DIQ
+ N NDX,NDY,CMTDT,SENDR,TYPE
+ S NDX=0,CMTDT="",SENDR=""
+ S NDX=0 F  S NDX=$O(^GMR(123,GMRCO,40,NDX)) Q:NDX?1A.E!(NDX="")  S TYPE=$P(^GMR(123,GMRCO,40,NDX,0),"^",2) I $S(TYPE=19:1,TYPE=20:1,1:0) S TYPE(TYPE,NDX)=""
+ I $O(TYPE(19,0)) S @GLOBAL@(ND1,0)="~DENY COMMENT",ND1=ND1+1 D
+ .S NDX=0 F  S NDX=$O(TYPE(19,NDX)) Q:NDX=""   D
+ ..S CMTDT=$$FMTE^XLFDT($P(^GMR(123,GMRCO,40,NDX,0),"^",1)),SENDR=$S($L($P(^GMR(123,GMRCO,40,NDX,0),"^",4)):$$GET1^DIQ(200,$P(^(0),"^",4),.01),1:"Missing Data")
+ ..S @GLOBAL@(ND1,0)="t"_"CANCELLED: "_CMTDT_" BY: "_SENDR,ND1=ND1+1,NDY=0
+ ..S NDY=0 F  S NDY=$O(^GMR(123,GMRCO,40,NDX,1,NDY)) Q:NDY=""  S @GLOBAL@(ND1,0)="t"_^GMR(123,GMRCO,40,NDX,1,NDY,0),ND1=ND1+1
+ ..S @GLOBAL@(ND1,0)="t",$P(@GLOBAL@(ND1,0),"-",81)="",ND1=ND1+1
+ ..Q
+ .Q
+ S NDX=0 F  S NDX=$O(TYPE(20,NDX)) Q:NDX=""  S @GLOBAL@(ND1,0)="~ADDED COMMENT",ND1=ND1+1 D
+ .S CMTDT=$$FMTE^XLFDT($P(^GMR(123,GMRCO,40,NDX,0),"^",1)),SENDR=$S($L($P(^GMR(123,GMRCO,40,NDX,0),"^",4)):$$GET1^DIQ(200,$P(^(0),"^",4),.01),1:"UNKNOWN")
+ .S @GLOBAL@(ND1,0)="t"_"COMMENT on "_CMTDT_" BY: "_SENDR,ND1=ND1+1
+ .S NDY=0 F  S NDY=$O(^GMR(123,GMRCO,40,NDX,1,NDY)) Q:NDY=""  S @GLOBAL@(ND,0)="t"_^GMR(123,GMRCO,40,NDX,1,NDY,0),ND1=ND1+1
+ .S @GLOBAL@(ND1,0)="t",$P(@GLOBAL@(ND1,0),"-",81)="",ND1=ND1+1
+ .Q
+ Q
+GETMED(GMRCIFN,GMRCRES) ;return available med results for proc request
+ ; input:
+ ;    GMRCIFN - ien from file 123
+ ;    GMRCRES - variable passed in by reference used for output
+ ; output:
+ ;     GMRCRES(x) = result_name^date^summary^result_ref
+ ;      example:
+ ;       GMRCRES(1)="19;MCAR(691.5,^EKG^JUN 30,1999@15:52^ABNORMAL"
+ N CNT,ROOT,PROC,S5,DFN,I
+ N MCARCODE,MCARDT,MCESKEY,MCKEYCAR,MCFILE
+ S PROC=+$P($G(^GMR(123,GMRCIFN,0)),U,8)
+ I 'PROC Q  ;no procedure there
+ S ROOT=$$GET1^DIQ(697.2,+$P(^GMR(123.3,PROC,0),U,5),1)
+ I '$L(ROOT) Q  ;proc not set up for med resulting
+ S S5=ROOT D EN^MCARPS2(+$P(^GMR(123,GMRCIFN,0),U,2))
+ I '$D(^TMP("OR",$J,"MCAR","OT")) Q  ;no results available
+ S CNT=0,I=0
+ F  S CNT=$O(^TMP("OR",$J,"MCAR","OT",CNT)) Q:'CNT  D
+ . N DATA S DATA=^TMP("OR",$J,"MCAR","OT",CNT)
+ . Q:$D(^GMR(123,"R",$P(DATA,U,2)_";"_ROOT_","))
+ . Q:$$SCRNDRFT^GMRCMED($P(DATA,U,2),$P(ROOT,"(",2))  ;screen draft rpts
+ . S I=I+1
+ . S GMRCRES(I)=$P(DATA,U,2)_";"_ROOT_","_U_$P(DATA,U)_U_$P(DATA,U,6,7)
+ . Q
+ K MCARCODE,MCARDT,MCESKEY,MCKEYCAR,MCFILE
+ K ^TMP("OR",$J,"MCAR")
+ Q
+GETRES(GMRCO,GMRCAR) ;return array of associated med rslts
+ ; DBIA #: ?
+ ; Input:
+ ;   GMRCO - ien from file 123
+ ;   GMRCAR - variable passed by ref to return array in
+ ; Output:
+ ;   GMRCAR(x)=result_ref^result_name^date^impression
+ ;    Example:
+ ;      GMRCAR(1)="19;MCAR(691.5,^EKG^JUN 30,1999@15:52^ABNORMAL"
+ N RES,CNT,DATA
+ S RES=0,CNT=1
+ F  S RES=$O(^GMR(123,GMRCO,50,RES)) Q:'RES  D
+ . N GMRCMCR,GMRCMCAR,RES0
+ . S RES0=$G(^GMR(123,GMRCO,50,RES,0))
+ . I RES0'["MCAR" Q
+ . S GMRCMCR=$$SINGLE^MCAPI(RES0)
+ . Q:'$L(GMRCMCR)
+ . D MEDLKUP^MCARUTL3(.GMRCMCAR,+$P(RES0,"MCAR(",2),+RES0)
+ . S GMRCAR(CNT)=^GMR(123,GMRCO,50,RES,0)_U
+ . S GMRCAR(CNT)=GMRCAR(CNT)_$P(GMRCMCR,U)_U_$P(GMRCMCR,U,6,7)
+ . I $P(GMRCMCAR,U,10) S GMRCAR(CNT)=GMRCAR(CNT)_"^1"
+ . S CNT=CNT+1
+ . Q
+ Q
+DISPMED(GMRCRES,GMRCAR) ; display a med result
+ ; Input:
+ ;  GMRCRES - med result var ptr  (e.g. "19;MCAR(691.5")
+ ;  GMRCAR  - array to return output from medicine API
+ ; Output:
+ ;  GMRCAR
+ ;    - var passed by ref or as global ref to return text of
+ ;      medicine pkg report
+ ;    Example:  GMRCAR(1)="      PROCEDURE DATE/TIME: 06/30/99 15:52"
+ ;              GMRCAR(2)="        CONFIDENTIAL ECG REPORT"
+ ;              GMRCAR(3...)=
+ D START^ORWRP(80,"EN^MCAPI(GMRCRES,1)")
+ I '$D(^TMP("ORDATA",$J,1)) D  Q
+ . I $D(GMRCAR) S @GMRCAR@(1)="Unable to locate result." Q
+ . I '$D(GMRCAR) S GMRCAR(1)="Unable to locate result."
+ I $D(GMRCAR) M @GMRCAR=^TMP("ORDATA",$J,1)
+ I '$D(GMRCAR) M GMRCAR=^TMP("ORDATA",$J,1)
+ K ^TMP("ORDATA",$J,1)
+ Q
+CANDOMED(GMRCIEN,USER) ;can person associate med results?
+ ; GMRCIEN - ien from file 123
+ N PROC
+ I '$D(^GMR(123,GMRCIEN,0)) Q 0  ;bad record
+ S PROC=+$P(^GMR(123,GMRCIEN,0),U,8) I 'PROC Q 0  ;no procedure
+ I +$G(^GMR(123,GMRCIEN,1)) Q 0  ;med rslts not allowed on CP
+ I '+$P(^GMR(123.3,PROC,0),U,5) Q 0  ;proc not set up
+ Q 1

@@ -1,0 +1,56 @@
+ABSVGGG2 ;EAP ALTOONA  ;8/19/97  3:29 PM
+V ;;4.0;VOLUNTARY TIMEKEEPING;**7**;JULY 1994;
+ N NUM
+ S DIC=503339.3,DIC(0)="MNZQEA",DIC("A")="SELECT a Program// " D ^DIC G:Y<0 END
+ S NUM=+Y K X,Y,Y(0),Y(0,0),%,C
+ S ZTSAVE("NUM")="" S ZTRTN="STARTER^ABSVGGG2" D ^ABSVQ
+ Q
+STARTER ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ N PAGE,LC,P,J,I,MS,C,F,VA,NM,VAMC,PROG,VAL,K,L,NAM
+ N HDR,%,Y,X
+ S PAGE=0 S NAM="" I $D(^ABS(503339.3,NUM,0)) S NAM=$P(^ABS(503339.3,NUM,0),"^",1) S PROG=$P(^ABS(503339.3,NUM,0),"^",2) D HEAD
+ S J=0 F I=1:1 S J=$O(^ABS(503339.2,J)) Q:'J!(J="")  I $D(^ABS(503339.2,J,4,0)) S K=0 F L=1:1 S K=$O(^ABS(503339.2,J,4,K)) Q:'K!(K="")  S VAL=+$P(^ABS(503339.2,J,4,K,0),"^",1) D SUB1 I C>20 W !,MS R X:300 G:X="^" END D HEAD
+END ;;;;;;;;;
+ K PAGE,LC,P,J,I,MS,C,F,VA,NM,VAMC,PROG,VAL,K,L,NAM,NUM,DIC,DIC(0),DIC("A")
+ K HDR,DISYS,V,%,Y,Y(0),Y(0,0),X
+ K ABSV("INST"),ABSV("SITE"),ABSV("SITENAME"),ABSV("PARAM"),ABSV("PER")
+ Q
+HEAD ;;;;;;;;;;;;;;;;;;;;;
+ I $D(IOF) W @IOF
+ I '$D(IOM) S IOM=79
+ S HDR="STATIONS PROVIDING "_PROG
+ S PAGE=PAGE+1
+ W !,?IOM-$L(HDR)\2,HDR
+ W !,"ST#    SITE",?36,"CHIEF",?60,"PHONE",?72,"PAGE: ",PAGE
+ W ! F I=1:1:IOM W "="
+ S C=4 S LC=4 S MS="Press Return to Continue..."
+ Q
+SUB1 ;;;;;;;;;;;;;;;;;;;;;;;;
+ I '$D(^ABS(503339.3,VAL,0)) Q
+ I $D(^ABS(503339.2,J,1)) S P=$P(^ABS(503339.2,J,1),"^",3)
+ S F=$P(^ABS(503339.3,VAL,0),"^",1) I F=NAM S VA=$P(^ABS(503339.2,J,0),"^",2) S V=$P(^ABS(503339.2,J,0),"^",1) S NM="" I $D(^ABS(503339.2,J,2,1,0)) S NM=$P(^ABS(503339.2,J,2,1,0),"^",2) D SET W !,V,?6,VA,?36,NM,?60,P D IO
+ Q
+SET S LC=LC+1 S NM=$E(NM,1,25) S VA=$E(VA,1,25) I IOST["P-" I LC>60 D HEAD
+ Q
+IO ;;;;;;;;;;;;;;;;;
+ I $D(IOST) I IOST["C-" S C=C+1
+ Q
+POS1 ;;;;THIS IS A SEPARATE PROGRAM FROM ABOVE
+ ;;;;PRINTOUT CHIEFS & GRADES
+ S ZTRTN="START^ABSVGGG2" D ^ABSVQ
+ Q
+START ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;NAME OF PERSON IN POSITION 1 OF MULTIPLE FIELD;
+ D HDR
+ S J=0 F I=1:1 S J=$O(^ABS(503339.2,J)) Q:'J!(J="")  I $D(^ABS(503339.2,J,0)) S SITE=$P(^ABS(503339.2,J,0),"^",2) D SUB I CNT>18 W !,"Press Return to Continue..." R X:300 G:X="^" END2 D HDR
+END2 K CNT,ZN,ZN1,ZN2,L,J,I,SITE
+ Q
+SUB I $D(^ABS(503339.2,J,2,1,0)) S ZN=^ABS(503339.2,J,2,1,0) S ZN1=$P(ZN,"^",2) S ZN2=$P(ZN,"^",3) W !,SITE,?40,ZN1,?68,ZN2 I $D(IOST) I IOST["C-" S CNT=CNT+1
+ Q
+HDR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ I $D(IOF) W @IOF
+ W !,"VOLUNTARY CHIEF LISTING"
+ W !,"SITE",?40,"CHIEF",?68,"GRADE"
+ I '$D(IOM) S IOM=79
+ S CNT=4 W ! F L=1:1:IOM W "="
+ Q

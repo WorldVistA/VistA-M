@@ -1,0 +1,126 @@
+ABSVMHV1 ;OAKLANDFO/DPC-VSS MIGRATION;7/26/2002
+ ;;4.0;VOLUNTARY TIMEKEEPING;**31,33,35**;Jul 1994
+ ;
+OHRSVAL(FLAG,VALRES,START,END) ;
+ ;Validate occasional hours data.
+ N OCCIEN,OCC0,OCCIDEN
+ N DATE,ORGPTR,SRVPTR
+ S VALRES("ERRCNT")=0
+ S VALRES("DA")=$$CRERRLOG^ABSVMUT1("O",$G(FLAG))
+ I VALRES("DA")=0 W !,"There was an error creating VALIDATION RESULTS entry for Occasional Hours." Q
+ S OCCIEN=$G(START,0)
+ F  S OCCIEN=$O(^ABS(503336,OCCIEN)) Q:'OCCIEN  D
+ . N ERRS S ERRS=0
+ . S OCC0=$G(^ABS(503336,OCCIEN,0))
+ . I $P(OCC0,U,3)]"" Q:$D(EXSITES($P(OCC0,U,3)))  ;check for excluded sites
+ . S OCCIDEN="Occasional Vol Time Sheet rec #"_OCCIEN_" at "_$P(OCC0,U,3)
+ . I OCC0="" D ADDERR^ABSVMVV1(OCCIDEN_" does not exist.",.ERRS) Q
+ . ;DATE
+ . S DATE=$P($P(OCC0,U,8),".")
+ . I DATE<2961001 Q  ;too early
+ . I $L(DATE)'=7!('+$E(DATE,4,5))!('+$E(DATE,6,7)) D ADDERR^ABSVMVV1(OCCIDEN_" has an improper Date field.",.ERRS) Q
+ . ;TRANSMISSION STATUS
+ . I $P(OCC0,U,9)=0 D ADDERR^ABSVMVV1(OCCIDEN_" has a transmission status of SUSPENDED.",.ERRS) Q
+ . I $P(OCC0,U,9)=2 D ADDERR^ABSVMVV1(OCCIDEN_" has a transmission status of ERROR - NOT TRANSMITTED.",.ERRS) Q
+ . ;FACILITY
+ . I $P(OCC0,U,3)="" D ADDERR^ABSVMVV1(OCCIDEN_" is missing a Facility.",.ERRS)
+ . I $L($P(OCC0,U,3))>7 D ADDERR^ABSVMVV1(OCCIDEN_" has a Facility Number longer than 7 characters.",.ERRS)
+ . ;NAME/ORG NAME
+ . I $L($P(OCC0,U,14))>40 D ADDERR^ABSVMVV1(OCCIDEN_" has a Name Or Organization Name longer than 40 characters.",.ERRS)
+ . ;SERVICE
+ . S SRVPTR=$P(OCC0,U,5)
+ . I SRVPTR="" D ADDERR^ABSVMVV1(OCCIDEN_" is missing a Service.",.ERRS)
+ . I SRVPTR'="",'$D(SCDS(SRVPTR)) D ADDERR^ABSVMVV1(OCCIDEN_" has an incorrect Service Code.",.ERRS)
+ . ;ORG
+ . S ORGPTR=$P(OCC0,U,4)
+ . I ORGPTR'="",'$D(OCDS(ORGPTR)) D ADDERR^ABSVMVV1(OCCIDEN_" has an incorrect Organization Code.",.ERRS)
+ . ;GROUP
+ . I $P(OCC0,U,6)="" D ADDERR^ABSVMVV1(OCCIDEN_" is missing the Number In Group.",.ERRS)
+ . I $P(OCC0,U,6)'?.N D ADDERR^ABSVMVV1(OCCIDEN_" has an invalid Number in Group.",ERRS)
+ . ;HOURS
+ . I $P(OCC0,U,7)="" D ADDERR^ABSVMVV1(OCCIDEN_" is missing Total Hours.",.ERRS)
+ . I $P(OCC0,U,7)'?.N D ADDERR^ABSVMVV1(OCCIDEN_" has an invalid Total Hours.",.ERRS)
+ . I ERRS>0 D RECERR^ABSVMUT1(.VALRES,.ERRS) Q
+ . I $G(FLAG)["S" S ^XTMP("ABSVMOHRS","IEN",OCCIEN)=""
+ . Q
+ D ERRCNT^ABSVMUT1(.VALRES)
+ Q
+ ;
+RHRSVAL(FLAG,VALRES,START,END) ;
+ ;Validate regular volunteer hours data.
+ N REGIEN,REG0,REGIDEN
+ N DATE,ORGPTR,SRVPTR,VOLPTR,SCHD
+ S VALRES("ERRCNT")=0
+ S VALRES("DA")=$$CRERRLOG^ABSVMUT1("R",$G(FLAG))
+ I VALRES("DA")=0 W !,"There was an error creating VALIDATION RESULTS entry for Regular Hours." Q
+ S REGIEN=$G(START,0)
+ F  S REGIEN=$O(^ABS(503331,REGIEN)) Q:'REGIEN  D
+ . N ERRS S ERRS=0
+ . S REG0=$G(^ABS(503331,REGIEN,0))
+ . I $P(REG0,U,7)]"" Q:$D(EXSITES($P(REG0,U,7)))  ;check for excluded sites
+ . S REGIDEN="Vol Daily Time rec #"_REGIEN_" at "_$P(REG0,U,7)
+ . I REG0="" D ADDERR^ABSVMVV1(REGIDEN_" does not exist.",.ERRS) Q
+ . ;DATE
+ . S DATE=$P($P(REG0,U,3),".")
+ . I DATE<2961001 Q  ;too early
+ . I $L(DATE)'=7!('+$E(DATE,4,5))!('+$E(DATE,6,7)) D ADDERR^ABSVMVV1(REGIDEN_" has an improper Date field.",.ERRS) Q
+ . ;FACILITY
+ . I $P(REG0,U,7)="" D ADDERR^ABSVMVV1(REGIDEN_" is missing a Facility.",.ERRS)
+ . I $L($P(REG0,U,7))>7 D ADDERR^ABSVMVV1(REGIDEN_" has a Facility Number longer than 7 characters.",.ERRS)
+ . ;VOLUNTEER
+ . S VOLPTR=$P(REG0,U)
+ . I VOLPTR="" D ADDERR^ABSVMVV1(REGIDEN_" is missing a Volunteer.",.ERRS)
+ . I VOLPTR'="",$G(FLAG)["S",'$D(^XTMP("ABSVMVOL","IEN",VOLPTR)) Q  ;D ADDERR^ABSVMVV1(REGIDEN_" has an incorrect Volunteer pointer.",.ERRS)
+ . I VOLPTR'="",$G(FLAG)'["S",$G(^ABS(503330,VOLPTR,0))="" D ADDERR^ABSVMVV1(REGIDEN_" has an incorrect Volunteer pointer.",.ERRS)
+ . ;SERVICE
+ . S SRVPTR=$P(REG0,U,8)
+ . I SRVPTR="" D ADDERR^ABSVMVV1(REGIDEN_" is missing a Service.",.ERRS)
+ . I SRVPTR'="",'$D(SCDS(SRVPTR)) D ADDERR^ABSVMVV1(REGIDEN_" has an incorrect Service Code.",.ERRS)
+ . ;ORG
+ . S ORGPTR=$P(REG0,U,4)
+ . I ORGPTR="" D ADDERR^ABSVMVV1(REGIDEN_" is missing an Organization Code.",.ERRS)
+ . I ORGPTR'="",'$D(OCDS(ORGPTR)) D ADDERR^ABSVMVV1(REGIDEN_" has an incorrect Organization Code.",.ERRS)
+ . ;SCHEDULE
+ . S SCHD=$E($P(REG0,U,6),4)
+ . I SCHD="" D ADDERR^ABSVMVV1(REGIDEN_" is missing a Work Schedule Code in its Combination Code.",.ERRS)
+ . I SCHD'="",'$D(WCDS("CD",SCHD)) D ADDERR^ABSVMVV1(REGIDEN_" has an incorrect Work Schedule Code.",.ERRS)
+ . ;HOURS
+ . I $P(REG0,U,5)="" D ADDERR^ABSVMVV1(REGIDEN_" is missing Total Hours.",.ERRS)
+ . I $P(REG0,U,5)'?.N D ADDERR^ABSVMVV1(REGIDEN_" has an invalid Total Hours.",.ERRS)
+ . I ERRS>0 D RECERR^ABSVMUT1(.VALRES,.ERRS) Q
+ . I $G(FLAG)["S" D
+ . . ;Putting data into FY Quarters arrays in prep for sending.
+ . . I DATE<2970101 S ^XTMP("ABSVMRHRS","IEN","97Q1",REGIEN)="" Q
+ . . I DATE<2970401 S ^XTMP("ABSVMRHRS","IEN","97Q2",REGIEN)="" Q
+ . . I DATE<2970701 S ^XTMP("ABSVMRHRS","IEN","97Q3",REGIEN)="" Q
+ . . I DATE<2971001 S ^XTMP("ABSVMRHRS","IEN","97Q4",REGIEN)="" Q
+ . . I DATE<2980101 S ^XTMP("ABSVMRHRS","IEN","98Q1",REGIEN)="" Q
+ . . I DATE<2980401 S ^XTMP("ABSVMRHRS","IEN","98Q2",REGIEN)="" Q
+ . . I DATE<2980701 S ^XTMP("ABSVMRHRS","IEN","98Q3",REGIEN)="" Q
+ . . I DATE<2981001 S ^XTMP("ABSVMRHRS","IEN","98Q4",REGIEN)="" Q
+ . . I DATE<2990101 S ^XTMP("ABSVMRHRS","IEN","99Q1",REGIEN)="" Q
+ . . I DATE<2990401 S ^XTMP("ABSVMRHRS","IEN","99Q2",REGIEN)="" Q
+ . . I DATE<2990701 S ^XTMP("ABSVMRHRS","IEN","99Q3",REGIEN)="" Q
+ . . I DATE<2991001 S ^XTMP("ABSVMRHRS","IEN","99Q4",REGIEN)="" Q
+ . . I DATE<3000101 S ^XTMP("ABSVMRHRS","IEN","00Q1",REGIEN)="" Q
+ . . I DATE<3000401 S ^XTMP("ABSVMRHRS","IEN","00Q2",REGIEN)="" Q
+ . . I DATE<3000701 S ^XTMP("ABSVMRHRS","IEN","00Q3",REGIEN)="" Q
+ . . I DATE<3001001 S ^XTMP("ABSVMRHRS","IEN","00Q4",REGIEN)="" Q
+ . . I DATE<3010101 S ^XTMP("ABSVMRHRS","IEN","01Q1",REGIEN)="" Q
+ . . I DATE<3010401 S ^XTMP("ABSVMRHRS","IEN","01Q2",REGIEN)="" Q
+ . . I DATE<3010701 S ^XTMP("ABSVMRHRS","IEN","01Q3",REGIEN)="" Q
+ . . I DATE<3011001 S ^XTMP("ABSVMRHRS","IEN","01Q4",REGIEN)="" Q
+ . . I DATE<3020101 S ^XTMP("ABSVMRHRS","IEN","02Q1",REGIEN)="" Q
+ . . I DATE<3020401 S ^XTMP("ABSVMRHRS","IEN","02Q2",REGIEN)="" Q
+ . . I DATE<3020701 S ^XTMP("ABSVMRHRS","IEN","02Q3",REGIEN)="" Q
+ . . I DATE<3021001 S ^XTMP("ABSVMRHRS","IEN","02Q4",REGIEN)="" Q
+ . . I DATE<3030101 S ^XTMP("ABSVMRHRS","IEN","03Q1",REGIEN)="" Q
+ . . I DATE<3030401 S ^XTMP("ABSVMRHRS","IEN","03Q2",REGIEN)="" Q
+ . . I DATE<3030701 S ^XTMP("ABSVMRHRS","IEN","03Q3",REGIEN)="" Q
+ . . I DATE<3031001 S ^XTMP("ABSVMRHRS","IEN","03Q4",REGIEN)="" Q
+ . . I DATE<3040101 S ^XTMP("ABSVMRHRS","IEN","04Q1",REGIEN)="" Q
+ . . Q
+ . Q
+ D ERRCNT^ABSVMUT1(.VALRES)
+ Q
+ ;

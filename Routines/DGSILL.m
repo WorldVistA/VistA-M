@@ -1,0 +1,11 @@
+DGSILL ;ALB/JDS - ENTER/EDIT PATIENTS FROM SERIOUSLY ILL LIST ; 19 JUL 84  12:42
+ ;;5.3;Registration;;Aug 13, 1993
+ ;
+GET W !! S DIC="^DPT(",DIC(0)="AEQMZ",DIC("S")="I $D(^(.1))" D ^DIC K DIC("S") G Q:Y'>0 S (DA,DFN)=+Y
+ W ! S DIE=DIC,DR="401.3;S:X="""" Y=0;401.4//TODAY;" D ^DIE G GET
+ ;
+LIST ;SERIOUSLY ILL LIST
+ S DIC="^DPT(",L=0,BY="@401.3,"
+ I $D(^DG(43,1,"GL")) S:$P(^("GL"),U,2) BY=BY_".19,"
+ S BY=BY_".01",FR="",TO="",X=2,DGNO=0 D ^DGTEMP G Q:DGNO S FLDS=X W !!?15,*7,"This output requires 132 columns",!! D EN1^DIP
+Q K A,DA,DFN,DIC,DIE,DIV,DGA1,DGNO,DGT,DGX,%DT,DR,X Q

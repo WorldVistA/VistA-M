@@ -1,0 +1,101 @@
+RGHLUT ;CAIRO/DKM-HL7 message processing utilities ;04-Sep-1998
+ ;;1.0; CLINICAL INFO RESOURCE NETWORK ;;30 Apr 99
+ ;=================================================================
+ ; Converts HL7 style date/time to FileMan format.
+DTHF(RGDT) ;
+ Q:RGDT="" ""
+ Q $$FMDATE^HLFNC(RGDT)
+ ; Converts Fileman style date/time to HL7 format.
+DTFH(RGDT,RGTZ) ;
+ Q:RGDT="" ""
+ S RGTZ=$S('(RGDT#1):"",$G(RGTZ):$$TZ(RGDT,1),1:"")
+ S:RGDT>1 RGDT=RGDT+17000000
+ S:RGDT#1 RGDT=RGDT*10000
+ S:RGDT#1 RGDT=RGDT*100\1
+ Q RGDT_RGTZ
+ ; Get time zone offset for this site
+TZ(RGDT,RGHL) ;
+ N RGTZ,RGSN
+ S RGTZ=$P($G(^RGSITE("COR",1,"TZ")),U,1+$$ISDST(.RGDT))
+ S:'RGTZ RGTZ=+$G(^RGSITE("COR",1,"TZ"))
+ S RGTZ=$P($G(^XMB(4.4,RGTZ,0)),U,3)
+ Q:RGTZ=""!'$G(RGHL) RGTZ
+ I RGTZ<0 S RGSN="-",RGTZ=-RGTZ
+ E  S RGSN="+"
+ Q RGSN_$E(RGTZ\1+100,2,3)_$E(RGTZ#1*60\1+100,2,3)
+ ; Determine if FM date is during DST
+ISDST(RGDAT) ;
+ N RGD1,RGD2,RGDY,RGYR
+ S:'$G(RGDAT) RGDAT=$$NOW^XLFDT
+ S RGYR=RGDAT\10000*10000
+ ; Find first Sunday in April of target year
+ S RGD1=+$$FMTH^XLFDT(RGYR+401),RGDY=RGD1#7
+ S RGD1=$$HTFM^XLFDT(RGD1+$S(RGDY>3:10-RGDY,1:3-RGDY))+.02
+ ; Find last Sunday in October of target year
+ S RGD2=+$$FMTH^XLFDT(RGYR+1031),RGDY=RGD2#7
+ S RGD2=$$HTFM^XLFDT(RGD2-$S(RGDY=3:0,RGDY>3:RGDY-3,1:4+RGDY))+.02
+ Q RGDAT'<RGD1&(RGDAT<RGD2)
+ ; Get ICN (convert if old format)
+GETICN(RGDFN) ;
+ S RGDFN=$$GETICN^MPIF001(RGDFN)
+ Q $S(RGDFN?1.N1"^"1.N:$TR(RGDFN,U,"V"),1:RGDFN)
+ ; Get DFN from ICN
+ICN2DFN(RGICN,RGCHK) ;
+ N RGDFN
+ S RGDFN=$$GETDFN^MPIF001(RGICN)
+ I RGDFN>0,$D(RGCHK) D
+ .S RGICN=$$GETICN(RGDFN)
+ .S RGDFN=$S(RGICN<0:RGICN,+$P(RGICN,"V",2)'=+RGCHK:"-1^INVALID ICN CHECKSUM",1:RGDFN)
+ Q RGDFN
+ ; Lookup institution, returning IEN
+INST(RGINST) ;
+ Q +$$FIND1^DIC(4,,"MX",RGINST)
+ ; Convert HL7 suffix code to attribute
+SFX2ATR(RGSFX) ;
+ Q:'$L(RGSFX) ""
+ S:RGSFX'=+RGSFX RGSFX=+$O(^RGHL7(991.7,"B",RGSFX,0))
+ Q $S(RGSFX:$P(^RGHL7(991.7,RGSFX,0),U,2),1:"")
+ ; HL7 <==> COR flag conversion
+FLG(RGFLG,RGDLM,RGHL) ;
+ N RGZ,RGC,RGR
+ S RGHL=''$G(RGHL),RGR=""
+ F RGZ=1:1:$S(RGHL:$L(RGFLG,RGDLM),1:$L(RGFLG)) D
+ .S RGC=$S(RGHL:$P(RGFLG,RGDLM,RGZ),1:$E(RGFLG,RGZ))
+ .Q:RGC=""
+ .S RGC=$O(^RGHL7(991.2,$S(RGHL:"B",1:"AC"),RGC,0))
+ .Q:'RGC
+ .S RGC=$P(^RGHL7(991.2,RGC,0),U,RGHL+1)
+ .S:RGC'="" RGR=RGR_$S(RGR="":"",RGHL:"",1:RGDLM)_RGC
+ Q RGR
+ ; Parse fields from RGREC into target array RGFLD using delimiter RGD.
+ ; RGREC and RGFLD must be passed by reference.
+FLD(RGREC,RGFLD,RGD) ;
+ N RGG,RGZ,RGI,RGJ,RGC
+ K RGFLD
+ S RGG="RGREC",RGC=0
+ F  D  Q:RGG=""
+ .S RGZ=$G(@RGG),RGJ=$L(RGZ,RGD)
+ .F RGI=1:1:RGJ S RGFLD(RGC)=$G(RGFLD(RGC))_$P(RGZ,RGD,RGI),RGC=RGC+(RGI'=RGJ)
+ .S RGG=$Q(@RGG)
+ Q
+ ; Parse MSH header
+MSH(RGMSH,RGARY) ;
+ N RGZ
+ Q:$E(RGMSH,1,3)'="MSH" 0
+ S RGARY("FS")=$E(RGMSH,4)
+ F RGZ=2:1:7,9:1:12 D
+ .S RGARY($P("^ECH^SAN^SAF^RAN^RAF^DTM^^MTN^MID^PID^VER",U,RGZ))=$P(RGMSH,RGARY("FS"),RGZ)
+ S RGZ=$E(RGARY("ECH")),RGARY("ETN")=$P(RGARY("MTN"),RGZ,2),RGARY("MTN")=$P(RGARY("MTN"),RGZ)
+ Q 1
+ ; Convert HL7 escape codes
+ESCAPE(RGTXT) ;
+ N RGZ,RGRTN
+ S RGRTN=""
+ F  Q:RGTXT'[RGD(4)  D
+ .S RGRTN=RGRTN_$P(RGTXT,RGD(4)),RGZ=$P(RGTXT,RGD(4),2),RGTXT=$P(RGTXT,RGD(4),3,999)
+ .I $L(RGZ)=1 D
+ ..S RGZ1=$F("FSRET",RGZ)-1
+ ..S:RGZ1>0 RGRTN=RGRTN_RGD(RGZ1)
+ .E  I $E(RGZ)="X" D
+ ..F RGZ1=2:2:$L(RGZ) S RGRTN=RGRTN_$C($$BASE^XLFUTL($E(RGZ,RGZ1,RGZ1+1),16,10))
+ Q RGRTN_RGTXT

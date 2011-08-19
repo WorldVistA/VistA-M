@@ -1,0 +1,88 @@
+IBDFU2C ;ALB/CJM - ENCOUNTER FORM - (COPYING FORMS) ;AUG12,1993
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+ ;
+COPYFORM(OLDFORM,FROMFILE,TOFILE,NEWNAME,TK) ;
+ ;copies OLDFORM from FROMFILE to TOFILE, changing the name to NEWNAME if defined (NEWNAME is optional), and the field TOOL KIT to TK if defined
+ ;
+ Q:'$D(OLDFORM)!'$D(FROMFILE)!'$D(TOFILE) ""
+ Q:(FROMFILE'=357)&(FROMFILE'=358) ""
+ Q:(TOFILE'=357)&(TOFILE'=358) ""
+ Q:'OLDFORM ""
+ N NEWFORM,NODE,OLDBLOCK,NEWBLOCK,BLOCK,IBDELETE,FROM,TO,PAGE
+ S NODE=$G(^IBE(FROMFILE,OLDFORM,0)) Q:NODE="" ""
+ S:($G(NEWNAME)'="") $P(NODE,"^")=NEWNAME
+ S:$G(NEWNAME)="" NEWNAME=$P(NODE,"^")
+ I $G(TK)=+$G(TK) S $P(NODE,"^",7)=TK
+ S $P(NODE,"^",5)=0,$P(NODE,"^",13)=""
+ K DIC,DD,DO,DINUM S DIC="^IBE("_TOFILE_",",X=NEWNAME,DIC(0)=""
+ D FILE^DICN K DIC,DIE
+ S NEWFORM=$S(+Y<0:"",1:+Y)
+ I (NEWFORM<0) W !,"Unable to create a new form!" D PAUSE^IBDFU5 Q ""
+ ;
+ ;the new form should be empty - make sure
+ S FROM=$S(FROMFILE[358:358.1,1:357.1)
+ S TO=$S(TOFILE[358:358.1,1:357.1)
+ S BLOCK="" F  S BLOCK=$O(^IBE(TOFILE,"C",NEWFORM,BLOCK)) Q:'BLOCK  D
+ .I $P($G(^IBE(TO,BLOCK,0)),"^",2)'=NEWFORM D
+ ..K ^IBE(TO,"C",NEWFORM,BLOCK),DA S DIK="^IBE("_TO_",",DA=BLOCK D IX1^DIK K DIK,DA
+ .E  D DLTBLK^IBDFU3(BLOCK,NEWFORM,TO)
+ ;
+ ;copy old 0 node into the new form
+ S ^IBE(TOFILE,NEWFORM,0)=NODE
+ ;
+ ;now the page multiple
+ S NODE=$G(^IBE(FROMFILE,OLDFORM,2,0))
+ I NODE'="" S $P(NODE,"^",2)=TOFILE_".02I",^IBE(TOFILE,NEWFORM,2,0)=NODE S PAGE=0 F  S PAGE=$O(^IBE(FROMFILE,OLDFORM,2,PAGE)) Q:'PAGE  S NODE=$G(^IBE(FROMFILE,OLDFORM,2,PAGE,0)) S:NODE'="" ^IBE(TOFILE,NEWFORM,2,PAGE,0)=NODE
+ ;
+ ;copy the rest of the form
+ S NODE=0 F  S NODE=$O(^IBE(FROMFILE,OLDFORM,NODE)) Q:'NODE  Q:$G(^IBE(FROMFILE,OLDFORM,NODE))=""  S ^IBE(TOFILE,NEWFORM,NODE)=$G(^IBE(FROMFILE,OLDFORM,NODE))
+ K DIK S DIK="^IBE("_TOFILE_",",DA=NEWFORM D IX^DIK K DIK
+ ;
+ ;now copy the blocks into the form
+ S OLDBLOCK="" F  S OLDBLOCK=$O(^IBE(FROM,"C",OLDFORM,OLDBLOCK)) Q:'OLDBLOCK  I $P($G(^IBE(FROM,OLDBLOCK,0)),"^",2)=OLDFORM S NEWBLOCK=$$COPYBLK^IBDFU2(OLDBLOCK,NEWFORM,FROM,TO) W "."
+ Q NEWFORM
+ ;
+ ;
+DELETE(FORM,FILE,ASK) ;deletes the FORM in FILE- if ASK then asks permission first
+ Q:'$G(FORM)
+ Q:(FILE'=357)&(FILE'=358)
+ I $G(ASK) Q:'$$RUSURE^IBDFU5($P($G(^IBE(FILE,FORM,0)),"^"))
+ N BLOCK,BLKFILE,CR
+ ;might have to delete the bubble translation table
+ I FILE=357 D
+ .Q:'$$FORMDSCR^IBDFU1C(.FORM)
+ .I FORM("TYPE") D KILLTBL^IBDF19(.FORM)
+ S BLKFILE=FILE+.1
+ S BLOCK="" F  S BLOCK=$O(^IBE(BLKFILE,"C",FORM,BLOCK)) Q:'BLOCK  D DLTBLK^IBDFU3(BLOCK,FORM,BLKFILE) W "."
+ I FILE=357 F CR="AT","AC","AU","AG" K ^IBE(357,CR,FORM)
+ K DA S DIK="^IBE("_FILE_",",DA=FORM D ^DIK K DIK,DA
+ K FORM
+ Q
+NEWNAME(OLDNAME) ;asks the user to select a unique form name
+ ;returns "" if unsuccessfull, else the form name
+ ;shows OLDNAME as the default if defined
+ ;
+ N NAME,QUIT S NAME="",QUIT=0
+ K DIR S DIR(0)="357,.01A",DIR("A")="New Form Name: ",DIR("?")="Enter a unique name up to 30 characters"
+ S DIR("B")="" I $G(OLDNAME)'="",'$O(IBE(357,"B",OLDNAME,0)) S DIR("B")=OLDNAME
+ F  D  Q:QUIT
+ .D ^DIR I $D(DIRUT) S QUIT=1 Q
+ .I $O(^IBE(357,"B",Y,"")) D
+ ..W !,"The form name must be unique, try using the clinic in the name!"
+ .E  S NAME=Y,QUIT=1
+ K DIR
+ Q NAME
+TKFORM() ;returns the form TOOL KIT that contains all of the tool kit blocs
+ N TKFORM,BLOCK,TKORDER,TK
+ S TKFORM=+$O(^IBE(357,"B","TOOL KIT",""))
+ I 'TKFORM D
+ .K DIC,DD,DO,DINUM S DIC="^IBE(357,",DIC(0)="",X="TOOL KIT"
+ .D FILE^DICN K DIC,DIE,DA
+ .S TKFORM=$S(+(Y>0):+Y,1:"")
+ .Q:'TKFORM
+ .S ^IBE(357,TKFORM,0)="TOOL KIT^^CONTAINS ALL OF THE TOOL KIT BLOCKS^^^^1"
+ .K DIK S DIK="^IBE(357,",DA=TKFORM D IX1^DIK K DIK
+ .S TKORDER=0 F  S TKORDER=$O(^IBE(357.1,"D",TKORDER)) Q:'TKORDER  S BLOCK=0 F  S BLOCK=$O(^IBE(357.1,"D",TKORDER,BLOCK)) Q:'BLOCK  D
+ ..S TK=$P($G(^IBE(357.1,BLOCK,0)),"^",14) I 'TK K ^IBE(357.1,"D",TKORDER,BLOCK) Q
+ ..S FORM=$P($G(^IBE(357.1,BLOCK,0)),"^",2) I FORM'=TKFORM K ^IBE(357.1,"C",FORM,BLOCK) S $P(^IBE(357.1,BLOCK,0),"^",2)=TKFORM K DIK S DIK="^IBE(357.1,",DA=BLOCK,DIK(1)=.02 D EN1^DIK K DIK
+ Q TKFORM

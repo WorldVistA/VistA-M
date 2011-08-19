@@ -1,0 +1,132 @@
+ONCBRP9A ;HINES CIOFO/GWB - 1998 Breast Cancer Study - print ;6/1/98
+ ;;2.11;ONCOLOGY;**18**;Mar 07, 1995
+IV K LINE S $P(LINE,"-",43)="-"
+ S TABLE="TABLE IV - EXTENT OF DISEASE AND AJCC STAGE"
+ I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HEAD^ONCBRP0
+ W !?4,TABLE,!?4,LINE D P Q:EX=U
+ W !,"40. SIZE OF TUMOR (mm)...............: ",ONC(165.5,IE,29) D P Q:EX=U
+ W !,"41. SIZE OF DCIS TUMOR (mm)..........: ",ONC(165.5,IE,942) D P Q:EX=U
+ W !,"42. REGIONAL NODES EXAMINED..........: ",ONC(165.5,IE,33) D P Q:EX=U
+ W !,"43. REGIONAL NODES POSITIVE..........: ",ONC(165.5,IE,32) D P Q:EX=U
+ W ! D P Q:EX=U
+ W !,"    SENTINEL NODES" D P Q:EX=U
+ W ! D P Q:EX=U
+ W !,"44. SENTINEL NODES BIOPSY............: ",ONC(165.5,IE,943) D P Q:EX=U
+ W !,"45. NUMBER OF SENTINEL NODES"
+ W !,"    EXAMINED.........................: ",ONC(165.5,IE,944) D P Q:EX=U
+ W !,"46. NUMBER OF SENTINEL NODES"
+ W !,"    POSITIVE.........................: ",ONC(165.5,IE,945) D P Q:EX=U
+ W !,"47. SENTINEL NODE DETECTED BY........: ",ONC(165.5,IE,946) D P Q:EX=U
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HEAD^ONCBRP0 W !?4,TABLE_" (continued)",!?4,LINE_"------------"
+ACS W !,"48. AJCC CLINICAL STAGE (cTNM):" D P Q:EX=U
+ W !,"     T-CODE..........................: ",ONC(165.5,IE,37.1) D P Q:EX=U
+ W !,"     N-CODE..........................: ",ONC(165.5,IE,37.2) D P Q:EX=U
+ W !,"     M-CODE..........................: ",ONC(165.5,IE,37.3) D P Q:EX=U
+ W !,"     AJCC STAGE......................: ",ONC(165.5,IE,38) D P Q:EX=U
+APS W !!,"49. AJCC PATHOLOGIC STAGE (pTNM):" D P Q:EX=U
+ W !,"     T-CODE..........................: ",ONC(165.5,IE,85) D P Q:EX=U
+ W !,"     N-CODE..........................: ",ONC(165.5,IE,86) D P Q:EX=U
+ W !,"     M-CODE..........................: ",ONC(165.5,IE,87)
+ W !,"     AJCC STAGE......................: ",ONC(165.5,IE,88)
+ W ! D P Q:EX=U
+ W !,"50. STAGED BY:" D P Q:EX=U
+ W !,"     CLINICAL STAGE..................: ",ONC(165.5,IE,19) ;D P Q:EX=U
+ W !,"     PATHOLOGIC STAGE................: ",ONC(165.5,IE,89) ;D P Q:EX=U
+ I IOST?1"C".E K DIR S DIR(0)="E" D ^DIR Q:'Y  D HEAD^ONCBRP0 G V
+ D P Q:EX=U
+V S TABLE="TABLE V - FIRST COURSE OF TREATMENT"
+ I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HEAD^ONCBRP0
+ K LINE S $P(LINE,"-",35)="-"
+ W !?4,TABLE,!?4,LINE D P Q:EX=U
+ S D0=ONCONUM D DFC^ONCOCOM S DOFCT=Y
+ W !,"51. DATE OF FIRST COURSE TREATMENT...: ",DOFCT D P Q:EX=U
+ W !!?4,"SURGERY",!?4,"-------" D P Q:EX=U
+ W !?4,"NON CANCER-DIRECTED SURGERY",!?4,"---------------------------" D P Q:EX=U
+S W !,"52. DATE OF NON CANCER-DIRECTED"
+ W !,"    SURGERY..........................: ",ONC(165.5,IE,58.3) D P Q:EX=U
+ S DESC=ONC(165.5,IE,58.1)
+ S (DESC1,DESC2)="",LOS=$L(DESC) I LOS<43 S DESC1=DESC G NCDS
+ S NOP=$L($E(DESC,1,41)," ")
+ S DESC1=$P(DESC," ",1,NOP-1),DESC2=$P(DESC," ",NOP,999)
+NCDS W !,"53. NON CANCER-DIRECTED SURGERY......: ",DESC1 W:DESC2'="" !,?39,DESC2 D P Q:EX=U
+ W !?4,"CANCER-DIRECTED SURGERY",!?4,"-----------------------" D P Q:EX=U
+ W !,"54. DATE OF (FIRST) CANCER-"
+ W !,"    DIRECTED SURGERY.................: ",ONC(165.5,IE,50) D P Q:EX=U
+ S DESC=ONC(165.5,IE,74)
+ S (DESC1,DESC2)="",LOS=$L(DESC) I LOS<43 S DESC1=DESC G SA
+ S NOP=$L($E(DESC,1,41)," "),DESC1=$P(DESC," ",1,NOP-1),DESC2=$P(DESC," ",NOP,999)
+SA W !,"55. SURGICAL APPROACH................: ",DESC1 W:DESC2'="" !,?39,DESC2 D P Q:EX=U
+CDS S DESC=ONC(165.5,IE,58.2)
+ S (DESC1,DESC2)="",LOS=$L(DESC) I LOS<43 S DESC1=DESC G SPS
+ S NOP=$L($E(DESC,1,41)," ")
+ S DESC1=$P(DESC," ",1,NOP-1),DESC2=$P(DESC," ",NOP,999)
+SPS W !,"56. SURGERY OF PRIMARY SITE..........: ",DESC1 W:DESC2'="" !,?39,DESC2
+ W !,"57. SPECIMEN RADIOGRAPH..............: ",ONC(165.5,IE,947) D P Q:EX=U
+ S DESC=ONC(165.5,IE,59)
+ S (DESC1,DESC2)="",LOS=$L(DESC) I LOS<43 S DESC1=DESC G SM
+ S NOP=$L($E(DESC,1,41)," "),DESC1=$P(DESC," ",1,NOP-1),DESC2=$P(DESC," ",NOP,999)
+SM W !,"58. SURGICAL MARGINS.................: ",DESC1 W:DESC2'="" !,?39,DESC2 D P Q:EX=U
+ W !,"59. WAS ENTIRE SPECIMEN SUBMITTED"
+ W !,"    TO PATHOLOGY.....................: ",ONC(165.5,IE,948) D P Q:EX=U
+ W !,"60. IF MARGINS ARE FREE, WHAT IS"
+ W !,"    THE DISTANCE.....................: ",ONC(165.5,IE,949) D P Q:EX=U
+ S DESC=ONC(165.5,IE,138)
+ S (DESC1,DESC2)="",LOS=$L(DESC) I LOS<43 S DESC1=DESC G SRLNS
+ S NOP=$L($E(DESC,1,41)," "),DESC1=$P(DESC," ",1,NOP-1),DESC2=$P(DESC," ",NOP,999)
+SRLNS W !,"61. SCOPE OF REGIONAL LYMPH NODE"
+ W !,"    SURGERY..........................: ",DESC1 W:DESC2'="" !,?39,DESC2 D P Q:EX=U
+ W !,"62. NUMBER OF REGIONAL LYMPH NODES"
+ W !,"    REMOVED..........................: ",ONC(165.5,IE,140) D P Q:EX=U
+ S DESC=ONC(165.5,ONCONUM,139)
+ S (DESC1,DESC2)="",LOS=$L(DESC) I LOS<43 S DESC1=DESC G SORS
+ S NOP=$L($E(DESC,1,41)," ")
+ S DESC1=$P(DESC," ",1,NOP-1),DESC2=$P(DESC," ",NOP,999)
+SORS W !,"63. SURGERY OF OTHER REGIONAL"
+ W !,"    SITE(S), DISTANT SITE(S),"
+ W !,"    OR DISTANT LYMPH NODE(S).........: ",DESC1 W:DESC2'="" !,?39,DESC2 D P Q:EX=U
+ S DESC=ONC(165.5,ONCONUM,23)
+ S (DESC1,DESC2)="",LOS=$L(DESC) I LOS<43 S DESC1=DESC G RR
+ S NOP=$L($E(DESC,1,41)," ")
+ S DESC1=$P(DESC," ",1,NOP-1),DESC2=$P(DESC," ",NOP,999)
+RR W !,"64. RECONSTRUCTION/RESTORATION.......: ",DESC1 W:DESC2'="" !,?39,DESC2 D P Q:EX=U
+ W !,"65. RE-EXCISION......................: ",ONC(165.5,IE,950) D P Q:EX=U
+ W !,"66. MICROSCOPIC STATUS OF FINAL"
+ W !,"    MARGIN AFTER RE-EXCISION.........: ",ONC(165.5,IE,951) D P Q:EX=U
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HEAD^ONCBRP0 W !?4,TABLE_" (continued)",!?4,LINE_"------------"
+R W !?4,"RADIATION THERAPY",!?4,"-----------------" D P Q:EX=U
+ W !,"67. RADIATION THERAPY................: ",ONC(165.5,IE,51.2) D P Q:EX=U
+ W !,"68. PRE-RADIATION THERAPY"
+ W !,"    MAMMOGRAM OF PATIENT.............: ",ONC(165.5,IE,952) D P Q:EX=U
+ W !,"69. DATE RADIATION STARTED...........: ",ONC(165.5,IE,51) D P Q:EX=U
+ W !,"70. DATE RADIATION ENDED.............: ",ONC(165.5,IE,361) D P Q:EX=U
+ W !,"71. SITES IRRADIATED.................: ",ONC(165.5,IE,953) D P Q:EX=U
+ S FN=954 D FEMALE^ONCBRP9
+ W !,"72. (F) cCy DOSE TO WHOLE BREAST"
+ W !,"    OR CHEST WALL....................: ",ONC(165.5,IE,954) D P Q:EX=U
+ W !,"73. BOOST RADIATION..................: ",ONC(165.5,IE,443) D P Q:EX=U
+ W !,"74. REASON FOR NOT RADIATION.........: ",ONC(165.5,IE,75) D P Q:EX=U
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HEAD^ONCBRP0 W !?4,TABLE_" (continued)",!?4,LINE_"------------" G H
+ W ! D P Q:EX=U
+H W !,"    HORMONE THERAPY"
+ W !,"    ---------------"
+ W !,"75. HORMONE THERAPY..................: ",ONC(165.5,IE,54.2) D P Q:EX=U
+ W !,"76. DATE HORMONE THERAPY STARTED.....: ",ONC(165.5,IE,54) D P Q:EX=U
+ S FN=955 D MALE^ONCBRP9
+ W !,"77. (M) SPECIFIC HORMONE THERAPY.....: ",ONC(165.5,IE,955) D P Q:EX=U
+ W ! D P Q:EX=U
+C W !?4,"CHEMOTHERAPY",!?4,"------------" D P Q:EX=U
+ W !,"78. CHEMOTHERAPY.....................: ",ONC(165.5,IE,53.2) D P Q:EX=U
+ W !,"79. DATE CHEMOTHERAPY STARTED........: ",ONC(165.5,IE,53) D P Q:EX=U
+ W !,"80. CHEMOTHERAPEUTIC REGIME"
+ W !,"    CONTAINING DOXORUBICIN...........: ",ONC(165.5,IE,956) D P Q:EX=U
+ I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR Q:'Y  D HEAD^ONCBRP0 G VI
+ D P Q:EX=U
+VI D ^ONCBRP9B
+KILL ;Kill Variables and Exit
+ K %,DIR,DIROUT,DIRUT,DTOUT,DUOUT,FILN,ONCOBL,EX,TXT,X,Y,DESC,DESC1,DESC2
+ Q
+P ;Display Data
+ I ($Y'<(LIN-1)) D  Q:EX=U  W !?4,TABLE_" (continued)",!?4,LINE_"------------"
+ .I IOST?1"C".E W ! K DIR S DIR(0)="E" D ^DIR I 'Y S EX=U Q
+ .D HEAD^ONCBRP0 Q
+ Q

@@ -1,0 +1,57 @@
+DGPTX55 ; ;04/23/09
+ ;;
+1 N X,X1,X2 S DIXR=447 D X1(U) K X2 M X2=X D X1("F") K X1 M X1=X
+ I $G(X(1))]"",$G(X(2))]"" D
+ . D KDGPT9M^DGPTDDCR(.X,.DA,"M ICD1")
+ K X M X=X2 I $G(X(1))]"",$G(X(2))]"" D
+ . D SDGPT9M^DGPTDDCR(.X,.DA,"M ICD1")
+ Q
+X1(DION) K X
+ S X(1)=$G(@DIEZTMP@("V",45.02,DIIENS,10,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,10))
+ S X(2)=$G(@DIEZTMP@("V",45.02,DIIENS,5,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,5))
+ S X=$G(X(1))
+ Q
+2 N X,X1,X2 S DIXR=448 D X2(U) K X2 M X2=X D X2("F") K X1 M X1=X
+ I $G(X(1))]"",$G(X(2))]"" D
+ . D KDGPT9M^DGPTDDCR(.X,.DA,"M ICD2")
+ K X M X=X2 I $G(X(1))]"",$G(X(2))]"" D
+ . D SDGPT9M^DGPTDDCR(.X,.DA,"M ICD2")
+ Q
+X2(DION) K X
+ S X(1)=$G(@DIEZTMP@("V",45.02,DIIENS,10,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,10))
+ S X(2)=$G(@DIEZTMP@("V",45.02,DIIENS,6,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,6))
+ S X=$G(X(1))
+ Q
+3 N X,X1,X2 S DIXR=449 D X3(U) K X2 M X2=X D X3("F") K X1 M X1=X
+ I $G(X(1))]"",$G(X(2))]"" D
+ . D KDGPT9M^DGPTDDCR(.X,.DA,"M ICD3")
+ K X M X=X2 I $G(X(1))]"",$G(X(2))]"" D
+ . D SDGPT9M^DGPTDDCR(.X,.DA,"M ICD3")
+ Q
+X3(DION) K X
+ S X(1)=$G(@DIEZTMP@("V",45.02,DIIENS,10,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,10))
+ S X(2)=$G(@DIEZTMP@("V",45.02,DIIENS,7,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,7))
+ S X=$G(X(1))
+ Q
+4 N X,X1,X2 S DIXR=450 D X4(U) K X2 M X2=X D X4("F") K X1 M X1=X
+ I $G(X(1))]"",$G(X(2))]"" D
+ . D KDGPT9M^DGPTDDCR(.X,.DA,"M ICD4")
+ K X M X=X2 I $G(X(1))]"",$G(X(2))]"" D
+ . D SDGPT9M^DGPTDDCR(.X,.DA,"M ICD4")
+ Q
+X4(DION) K X
+ S X(1)=$G(@DIEZTMP@("V",45.02,DIIENS,10,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,10))
+ S X(2)=$G(@DIEZTMP@("V",45.02,DIIENS,8,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,8))
+ S X=$G(X(1))
+ Q
+5 N X,X1,X2 S DIXR=451 D X5(U) K X2 M X2=X D X5("F") K X1 M X1=X
+ I $G(X(1))]"",$G(X(2))]"" D
+ . D KDGPT9M^DGPTDDCR(.X,.DA,"M ICD5")
+ K X M X=X2 I $G(X(1))]"",$G(X(2))]"" D
+ . D SDGPT9M^DGPTDDCR(.X,.DA,"M ICD5")
+ Q
+X5(DION) K X
+ S X(1)=$G(@DIEZTMP@("V",45.02,DIIENS,10,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,10))
+ S X(2)=$G(@DIEZTMP@("V",45.02,DIIENS,9,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,9))
+ S X=$G(X(1))
+ Q

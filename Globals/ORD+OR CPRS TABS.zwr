@@ -1,0 +1,9 @@
+OR CPRS TABS
+ZWR
+^ORD(101.13,0)="OR CPRS TABS^101.13I^2^2"
+^ORD(101.13,1,0)="COR^CPRS GUI ""core"" tabs."
+^ORD(101.13,2,0)="RPT^Reports tab."
+^ORD(101.13,"B","COR",1)=""
+^ORD(101.13,"B","RPT",2)=""
+^ORD(101.13,"C","CPRS GUI ""CORE"" TABS.",1)=""
+^ORD(101.13,"C","REPORTS TAB.",2)=""

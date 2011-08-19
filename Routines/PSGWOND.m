@@ -1,0 +1,24 @@
+PSGWOND ;BHAM ISC/MPH,CML-Delete an On-Demand Request ; 19 Mar 97 / 2:35 PM
+ ;;2.3; Automatic Replenishment/Ward Stock ;**11**;4 JAN 94
+ I '$D(PSGWSITE) D ^PSGWSET Q:'$D(PSGWSITE)  S PSGWFLG=1
+DATE S PSGWV="AMIS COMPILE FLAG" R !!,"SELECT DATE/TIME FOR ON-DEMAND REQUEST: ",PSGWODT:DTIME S:'$T PSGWODT="^" G:"^"[PSGWODT END
+ I "?"[$E(PSGWODT) S X="?",DIC(0)="M",D="OND",DIC="^PSI(58.1," D IX^DIC G DATE
+DT S %DT="ET",X=PSGWODT D ^%DT G:Y<0 DATE S (PSGWODT,PSGWADT)=Y,PSGWCAT="W" I '$D(^PSI(58.1,"OND",PSGWODT)) W !,"On-Demand Request Date/Time not found, please try again...",! K PSGWODT G DATE
+RD R !,"Do you wish to delete ALL items on this on-demand request? N// ",X:DTIME S:X="" X="N" S:'$T X="^" G:X="^" END
+ I "YyNn"'[$E(X) D HELP G RD
+ G NOLOOP:"Nn"[$E(X,1,1),LOOP:"Yy"[$E(X,1,1)
+END K X,Y,DA,DIE,DIC,DR,PSGWAOU,PSGWIT,PSGWDA,PSGWODT,PSGWITN,PSGWADT,PSGWCAT,PSGWDN,PSGWQD,KEY,PSGWV,%DT,D,%,%W,%Y,%Y1,D0,D1,D2,DI,DLAYGO K:$D(PSGWFLG) PSGWSITE,PSGWFLG Q
+HELP W !!,"Answer ""Y"" or ""N"".  If yes, the program will loop thru",!,"all items which were requested on the date/time selected",!,"and delete the request.  If no, the user will be asked",!,"for the AOU and the item will be removed.",! Q
+ ;
+LOOP F PSGWAOU=0:0 S PSGWAOU=$O(^PSI(58.1,"OND",PSGWODT,PSGWAOU)) Q:PSGWAOU'>0  F PSGWIT=0:0 S PSGWIT=$O(^PSI(58.1,"OND",PSGWODT,PSGWAOU,PSGWIT)) Q:PSGWIT'>0  D LOOP2
+ G END
+LOOP2 F PSGWDA=0:0 S PSGWDA=$O(^PSI(58.1,"OND",PSGWODT,PSGWAOU,PSGWIT,PSGWDA)) Q:PSGWDA'>0  D DEL
+ Q
+DEL S (PSGWITN,PSGWDN)=$P(^PSI(58.1,PSGWAOU,1,PSGWIT,0),"^"),PSGWQD=$P(^PSI(58.1,PSGWAOU,1,PSGWIT,5,PSGWDA,0),"^",2)*-1
+ I ($P(^PSI(58.1,PSGWAOU,0),"^",3)'=1)&($P(PSGWSITE,"^",25)=1)&(PSGWQD'=0) S ^PSI(58.5,"AMIS",$H,PSGWADT,PSGWCAT,PSGWAOU,PSGWDN,PSGWQD)=""
+ W !," ",$P(^PSI(58.1,PSGWAOU,0),"^"),"   ",$P(^PSDRUG(PSGWITN,0),"^")," On-demand request deleted" S PSGWITN=$P(^PSDRUG(PSGWITN,0),"^")
+ S DA=PSGWDA,DA(1)=PSGWIT,DA(2)=PSGWAOU,DIE="^PSI(58.1,"_DA(2)_",1,"_DA(1)_",5,",DR=".01///@" D ^DIE
+ Q
+NOLOOP S DIC="^PSI(58.1,",DIC(0)="QEA",DIC("S")="I $D(^PSI(58.1,""OND"",PSGWODT,+Y))" D ^DIC G:Y<0 END S PSGWAOU=+Y K DIC
+ITEM S DIC="^PSI(58.1,PSGWAOU,1,",DIC(0)="QEAO",DIC("S")="I $D(^PSI(58.1,""OND"",PSGWODT,PSGWAOU,+Y))" D ^DIC K DIC G:Y<0 NOLOOP S PSGWIT=+Y,PSGWDA=0,PSGWDA=$O(^PSI(58.1,"OND",PSGWODT,PSGWAOU,PSGWIT,PSGWDA))
+ D DEL G ITEM

@@ -1,0 +1,15 @@
+INSURANCE COMPANY
+ZWR
+^DIC(36,0)="INSURANCE COMPANY^36I^^0"
+^DIC(36,0,"DD")="#"
+^DIC(36,0,"DEL")="d"
+^DIC(36,0,"GL")="^DIC(36,"
+^DIC(36,0,"LAYGO")="d"
+^DIC(36,0,"WR")="D"
+^DIC(36,"%D",0)="^^6^6^2940307^^^^"
+^DIC(36,"%D",1,0)="This file contains the names and addresses of insurance companies as needed"
+^DIC(36,"%D",2,0)="by the local facility.  The data in this file is NOT EDITABLE USING VA"
+^DIC(36,"%D",3,0)="FILEMANAGER.  If a new entry needs to be made or an existing entry"
+^DIC(36,"%D",4,0)="changed the user must be assigned the appropriate MAS or IB module option."
+^DIC(36,"%D",5,0)=" "
+^DIC(36,"%D",6,0)="Per VHA Directive 10-93-142, this file definition should not be modified."

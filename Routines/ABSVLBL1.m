@@ -1,0 +1,43 @@
+ABSVLBL1 ;VAMC ALTOONA/CTB - PRINT VOLUNTEER LABEL ;3/1/00  10:58 AM
+V ;;4.0;VOLUNTARY TIMEKEEPING;**18**;JULY 6, 1994
+ONE(DA) ;print one label for volunteer DA
+ NEW NAME,NODE,ADD1,ADD2,CITY,STATE,ZIP,DR,X,DIC,LINE
+ W:IOSL-$Y<6 @IOF
+ Q:'$D(^ABS(503330,DA,0))
+ S NODE=$G(^ABS(503330,DA,0)) Q:NODE=""
+ S NAME=$P(NODE,"^",1),NAME=$P(NAME,",",2)_" "_$P(NAME,",")_$S($P(NAME,",",3,99)]"":", "_$P(NAME,",",3,99),1:"")
+ S ADD1=$P(NODE,"^",3),ADD2=$P(NODE,"^",10),CITY=$P(NODE,"^",4),STATE=$P(NODE,"^",5),ZIP=$P(NODE,"^",6)
+ I +STATE S X=$G(^DIC(5,STATE,0)),STATE=$S($P(X,"^",2)]"":$P(X,"^",2),$P(X,"^",1)]"":$P(X,"^",1),1:"") I 1
+ E  S STATE=""
+ S LINE=2
+ W !,$$UPPER^ABSVU2(NAME) S LINE=LINE+1
+ I $L(ADD1) W !,$$UPPER^ABSVU2(ADD1) S LINE=LINE+1
+ I $L(ADD2) W !,$$UPPER^ABSVU2(ADD2) S LINE=LINE+1
+ S X=CITY_$S($L(CITY):", ",1:"")_STATE,X=$S($L(X):X_"  ",1:"")_ZIP
+ W !,$$UPPER^ABSVU2(X) S LINE=LINE+1
+ F LINE=LINE:1:7 Q:IOSL-$Y<3  W !
+ QUIT
+ ;
+INPTR(X,DA) ;input transform for field 2 file 503339 (volunteer label)
+ I +X'=X!(X>8)!(X<1)!(X?.E1"."1N.N) K X QUIT
+ I $P($P(^ABS(503339,DA,0),"^",1)*X,".",2) K X
+ QUIT
+AFFIL(D0,INST,SITE) ;function to validate affiliation for:
+ ;D0 - IRN in 503334.1
+ ;INST - INSTITUTION IRN
+ ;SITE - SITE NUMBER
+ ;ORG - ORGANIZATION IRN
+ ;assumes affiliation for VACO
+ N ORG
+ I $D(^ABS(503334.1,"E","VACO",D0)) Q 1
+ S ORG=$P($G(^ABS(503334.1,D0,0)),"^",11) I ORG="" Q 0
+ I '$P($G(^ABS(503334.1,D0,0)),"^",10) Q 0
+ I $D(^ABS(503334.1,"E","USA",D0)),$D(^ABS(503338,"AB",ORG,INST)) Q 1
+ ;W !,D0,"  ",INST,"  ",SITE,"  ",ORG
+ I $D(^ABS(503334.1,"E",SITE,D0)),$D(^ABS(503338,"AB",ORG,INST)) Q 1
+ Q 0
+TEST D ^ABSVSITE
+ S DIC=503334.1,DIC(0)="AEMNZ" D ^DIC Q:'Y
+ S D0=+Y
+ S X=$$AFFIL(D0,ABSV("INST"),ABSV("SITE"))
+ W !,$S(X:"PASSED",1:"FAILED"),!! G TEST

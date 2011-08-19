@@ -1,0 +1,47 @@
+FSCRPCW3 ;SLC/STAFF-NOIS RPC Web Page Solution ;7/22/98  15:11
+ ;;1.1;NOIS;;Sep 06, 1998
+ ;
+SOL(ID,CNT) ; from FSCRPCWP
+ N ADDRESS,EDITBY,EDITON,ENTERBY,ENTERON,LINE,NUM,PACKNAME,ZERO
+ S ADDRESS=$P($G(^FSC("PARAM",1,1.8)),U,2)
+ S ZERO=$G(^FSCD("WEB",ID,0)) I '$L(ZERO) Q
+ S PACK=+$P(ZERO,U,2),PACKNAME=$P($G(^FSC("PACK",PACK,0)),U)
+ S EDITBY=+$P(ZERO,U,5),EDITON=+$P(ZERO,U,6),ENTERBY=+$P(ZERO,U,3),ENTERON=+$P(ZERO,U,4)
+ D SET("{SOLUTION}",.CNT)
+ D SET("p"_ID_".htm",.CNT)
+ D SET("<HTML>",.CNT)
+ D SET("<HEAD>",.CNT)
+ D SET("<TITLE> NOIS Solution </TITLE>",.CNT)
+ D SET("</HEAD>",.CNT)
+ D SET("<BODY TEXT=""#000000"" BGCOLOR=""#FFFFFF"">",.CNT)
+ D SET("<H1><CENTER>"_PACKNAME_" Solution</CENTER></H1>",.CNT)
+ S LINE="<a href="""_ADDRESS_"main.htm"">"_"Solution Index"_"</a>"
+ D SET(LINE_"<BR>",.CNT)
+ S LINE="<a href="""_ADDRESS_"pack"_PACK_".htm"">"_PACKNAME_" Solutions</a>"
+ D SET(LINE_"<BR>",.CNT)
+ D SET("<HR>",.CNT)
+ D SET("<P><B>Title: </B>"_$G(^FSCD("WEB",ID,1))_"</P>",.CNT)
+ D SET("<P><B>Problem</B></P>",.CNT)
+ D SET("<PRE>",.CNT)
+ S NUM=0 F  S NUM=$O(^FSCD("WEB",ID,2,NUM)) Q:NUM<1  S LINE=^(NUM,0) D
+ .D SET(LINE,.CNT)
+ D SET("</PRE>",.CNT)
+ D SET("<P><B>Solution</B></P>",.CNT)
+ D SET("<PRE>",.CNT)
+ S NUM=0 F  S NUM=$O(^FSCD("WEB",ID,3,NUM)) Q:NUM<1  S LINE=^(NUM,0) D
+ .D SET(LINE,.CNT)
+ D SET("</PRE>",.CNT)
+ D SET("<HR>",.CNT)
+ S LINE="Entered by: "_$$MIXCASE^FSCXPOST($P($G(^VA(200,ENTERBY,0)),U))_" on "_$$FMTE^XLFDT(ENTERON)
+ D SET(LINE_"<BR>",.CNT)
+ S LINE="Last Edited by: "_$$MIXCASE^FSCXPOST($P($G(^VA(200,EDITBY,0)),U))_" on "_$$FMTE^XLFDT(EDITON)
+ D SET(LINE,.CNT)
+ D SET("</BODY>",.CNT)
+ D SET("</HTML>",.CNT)
+ D SET("{{{}}}",.CNT)
+ Q
+ ;
+SET(LINE,CNT) ;
+ S CNT=CNT+1
+ S ^TMP("FSCRPC",$J,"OUTPUT",CNT)=LINE
+ Q

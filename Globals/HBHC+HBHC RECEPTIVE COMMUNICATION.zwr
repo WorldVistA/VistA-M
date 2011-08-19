@@ -1,0 +1,15 @@
+HBHC RECEPTIVE COMMUNICATION
+ZWR
+^HBHC(631.3,0)="HBHC RECEPTIVE COMMUNICATION^631.3^9^6"
+^HBHC(631.3,1,0)="Usually Understands Oral Communication  (1)"
+^HBHC(631.3,2,0)="Has Limited Comprehension of Oral Communication  (2)"
+^HBHC(631.3,3,0)="Understands by Depending on Lip Reading, Written Material, or Sign Language  (3)"
+^HBHC(631.3,4,0)="Understands Primitive Gestures, Facial Expres., Pictograms, and/or Env. Cues  (4)"
+^HBHC(631.3,5,0)="Does Not Understand  (5)"
+^HBHC(631.3,9,0)="Not Determined  (9)"
+^HBHC(631.3,"B","Does Not Understand  (5)",5)=""
+^HBHC(631.3,"B","Has Limited Comprehension of O",2)=""
+^HBHC(631.3,"B","Not Determined  (9)",9)=""
+^HBHC(631.3,"B","Understands Primitive Gestures",4)=""
+^HBHC(631.3,"B","Understands by Depending on Li",3)=""
+^HBHC(631.3,"B","Usually Understands Oral Commu",1)=""

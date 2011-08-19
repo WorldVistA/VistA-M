@@ -1,0 +1,8 @@
+XMRINETD ;(WASH ISC)/LH-Process MSM-NT TCP Request ;04/17/2002  11:21
+ ;;8.0;MailMan;;Jun 28, 2002
+GO O 56 U 56::"TCP" W /SOCKET("",25)
+ S X=^%ZOSF("VOL")
+CHK S CHECK=0 I $G(^%ZIS(14.5,"LOGON",X))=1 S CHECK=1 H 60
+ J GO^XMRINETD
+ I $G(CHECK) W "421 SMTP Service temporarily down.",$C(13,10),! C 56 Q
+ S %="MSM TCP "_$J G SOC25^XMRMSM

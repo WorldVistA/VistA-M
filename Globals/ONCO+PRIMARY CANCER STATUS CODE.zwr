@@ -1,0 +1,9 @@
+PRIMARY CANCER STATUS CODE
+ZWR
+^ONCO(164.42,0)="PRIMARY CANCER STATUS CODE^164.42^9^3"
+^ONCO(164.42,1,0)="No evidence of this tumor^1^No evid this tumor"
+^ONCO(164.42,2,0)="Evidence of this tumor^2^Evid this tumor"
+^ONCO(164.42,9,0)="Unknown/not stated if this tumor present^9^Unknown"
+^ONCO(164.42,"B","Evidence of this tumor",2)=""
+^ONCO(164.42,"B","No evidence of this tumor",1)=""
+^ONCO(164.42,"B","Unknown/not stated if this tum",9)=""

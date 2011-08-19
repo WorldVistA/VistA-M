@@ -1,0 +1,294 @@
+HLUCM050 ;CIOFO-O/LJA - HL7/Capacity Mgt API-II ;10/23/01 12:01
+ ;;1.6;HEALTH LEVEL SEVEN;**103,114**;Oct 13, 1995
+ ;
+LOADEM(IEN772,HLNMSP) ; Find all related entries, up to 20...
+ ; HLNMSP is passed by reference...
+ ;
+ ; Note!  If entry already loaded, it will not be reloaded.
+ ;        (Stored ^TMP($J) data will be used instead.)
+ ;
+ N ACKTO,CHARC,CHARP,CT,DATA,DATAC,DATAP,DEF,FAC,HL,HLZZI
+ N HOLDNMSP,I,I772,I773,IEN,IENPAR,LEN,MSGID,MTYPEC
+ N MTYPEP,NMSP,NMSPP,NUM,PIEN,PROT,PROTP,TIME,TIMEBEG
+ N TIMEEND,TMDIFF,TMP,TOT772,TOT773,TOTNUM,X,Y
+ ;
+ KILL HLNMSP
+ ;
+ ; Call already made here?
+ S IENPAR=+$G(^TMP($J,"HLCHILD",+IEN772)) ; Call already made here?
+ ;
+ ; If call already made, just return results...
+ I IENPAR D  QUIT $P(HLNMSP("HLPARENT",+IENPAR),U,2) ;->
+ .  S HLNMSP("HLPARENT",+IENPAR)=$G(^TMP($J,"HLPARENT",+IENPAR))
+ .  ; HL*1.6*114 added TOTNUM to next 3 lines to avoid ALLOC errors...
+ .  S IEN772=0,TOTNUM=0
+ .  F  S IEN772=$O(^TMP($J,"HLPARENT",IENPAR,IEN772)) Q:'IEN772!(TOTNUM>19)  D
+ .  .  S TOTNUM=TOTNUM+1
+ .  .  S HLNMSP("HLPARENT",+IENPAR,IEN772)=$G(^TMP($J,"HLPARENT",IENPAR,IEN772))
+ .  .  S HLNMSP("HLCHILD",+IEN772)=$G(^TMP($J,"HLCHILD",+IEN772))
+ ;
+ S HLNMSP(+IEN772)="" ; Seed for engine...
+ ;
+ S (NUM,TOTNUM)=1
+ F  D  QUIT:NUM'>NUM(1)!(TOTNUM>19)
+ .  S NUM(1)=NUM ; Set NUM(1) = # entries found "now"...
+ .  KILL HOLDNMSP
+ .  S I772=0
+ .  F  S I772=$O(HLNMSP(I772)) Q:I772'>0!(TOTNUM>19)  D
+ .  .  S DATA=$G(^HL(772,+$G(I772),0)) QUIT:DATA']""  ;->
+ .  .
+ .  .  ; IEN Search...
+ .  .  S HLZZI=0 F  S HLZZI=$O(^HL(772,"AF",I772,HLZZI)) Q:'HLZZI!(TOTNUM>19)  I HLZZI'=IEN772 D HOLDTOT(HLZZI)
+ .  .  ; MSG ID search...
+ .  .  S MSGID=$P(DATA,U,6)
+ .  .  I MSGID]"" D
+ .  .  .  S HLZZI=0 F  S HLZZI=$O(^HL(772,"C",MSGID,HLZZI)) Q:'HLZZI!(TOTNUM>19)  I HLZZI'=IEN772 D HOLDTOT(HLZZI)
+ .  .  .  D MSGID(MSGID)
+ .  .  ; 773 MSG ID search...
+ .  .  S I773=+$O(^HLMA("B",I772,0)) I I773 D
+ .  .  .  S MSGID=$P($G(^HLMA(+I773,0)),U,2) QUIT:MSGID']""  ;->
+ .  .  .  S I773(1)=0
+ .  .  .  F  S I773(1)=$O(^HLMA("AF",I773,I773(1))) Q:I773(1)'>0!(TOTNUM>19)  D
+ .  .  .  .  S X=+$G(^HLMA(+I773(1),0)) I X D HOLDTOT(+X)
+ .  .  .  S I773(1)=0
+ .  .  .  F  S I773(1)=$O(^HLMA("C",MSGID,I773(1))) Q:I773(1)'>0!(TOTNUM>19)  D
+ .  .  .  .  S X=+$G(^HLMA(+I773(1),0)) I X D HOLDTOT(+X)
+ .  .  .  KILL I773(1)
+ .  .  .  D MSGID(MSGID)
+ .  .
+ .  .  ;
+ .  .  ; ACK TO search...
+ .  .  I $P(DATA,U,7)>0,$P(DATA,U,7)'=IEN772 D
+ .  .  .  D HOLDTOT(+$P(DATA,U,7))
+ .  .  I I773 D
+ .  .  .  S ACKTO=$P($G(^HLMA(+I773,0)),U,10) QUIT:ACKTO'>0  ;->
+ .  .  .  S X=+$G(^HLMA(+ACKTO,0)) I X D HOLDTOT(+X)
+ .  .  ;
+ .  .  ; HLPARENT search...
+ .  .  I $P(DATA,U,8)>0,$P(DATA,U,8)'=IEN772 D
+ .  .  .  D HOLDTOT(+$P(DATA,U,8))
+ .  .  I I773 D
+ .  .  .  S PIEN=$P($G(^HLMA(+I773,0)),U,6) QUIT:PIEN'>0  ;->
+ .  .  .  S X=+$G(^HLMA(+PIEN,0)) I X D HOLDTOT(+X)
+ .  .
+ .  .  MERGE HLNMSP=HOLDNMSP
+ .  .  KILL HOLDNMSP
+ .
+ .  S I=0,NUM=0 F  S I=$O(HLNMSP(I)) Q:'I  S NUM=NUM+1
+ ;
+ I '$$OKALL(.HLNMSP) D  QUIT "" ;->
+ .  KILL HLNMSP
+ ;
+ S FAC=$$FACILITY^HLUCM090(.HLNMSP) I FAC']"" S FAC="UNKNOWN"
+ S IENPAR=$O(HLNMSP(0))
+ ;
+ ; Find total number characters...
+ KILL TIMEP
+ S IEN772=0,CHARC=0,CHARP=0,CT=0,MTYPEP="",NMSPP="",PROTP="",NUM=0
+ F  S IEN772=$O(HLNMSP(IEN772)) Q:'IEN772  D
+ .  S CT=CT+1,NUM=NUM+1
+ .
+ .  S TMP($J,"HLPARENT",+IENPAR,+IEN772)=$$VAL3(+IEN772,FAC)_U_IENPAR
+ .
+ .  S CHARC=$$CHAR(+IEN772)
+ .  S DATAC(IEN772)=CHARC
+ .  S CHARP=CHARP+CHARC
+ .
+ .  S $P(DATAC(IEN772),U,2)=1
+ .
+ .  S TIME=$$TIME(+IEN772)
+ .  F I=1:1:3 S $P(DATAC(IEN772),U,2+I)=$P(TIME,U,I)
+ .  F I=2,3 S X=$P(TIME,U,I) I X?7N.E S TIMEP(X)=""
+ .
+ .  S MTYPEC=$$MSGTYPE^HLUCM009(IEN772)
+ .  S $P(DATAC(IEN772),U,6)=MTYPEC
+ .  S MTYPEP=MTYPEP_$S(MTYPEP]"":"~",1:"")_MTYPEC
+ .
+ .  S PROT=$$PROT101^HLUCM002(+IEN772)
+ .  S $P(DATAC(IEN772),U,7)=PROT
+ .  S:PROT]"" PROTP=PROT
+ .
+ .  S NMSP=$$NMSPALL(+IEN772)
+ .  S $P(DATAC(IEN772),U,9)=NMSP
+ .  I NMSP]"" D
+ .  .  I NMSPP]"",NMSP="XWB",NMSPP'="XWB" QUIT  ;->
+ .  .  S NMSPP=NMSP
+ .
+ .  S $P(DATAC(IEN772),U,11)=FAC
+ ;
+ S TIMEBEG=$O(TIMEP(0)),TIMEEND=$O(TIMEP(":"),-1)
+ S TMDIFF=$$FMDIFF^XLFDT(TIMEEND,TIMEBEG,2)
+ ;
+ S DATAP=CHARP_U_CT_U_TMDIFF_U_TIMEBEG_U_TIMEEND_U_MTYPEP_U_PROTP_U_U_NMSPP_U_U_FAC
+ ;
+ ; Set PARENT node...
+ S IENPAR=$O(HLNMSP(0))
+ S TMP($J,"HLPARENT",+IENPAR)=DATAP
+ ;
+ ; Set CHILD nodes...
+ S IEN772=0
+ F  S IEN772=$O(HLNMSP(IEN772)) Q:IEN772'>0  D
+ .  S TMP($J,"HLCHILD",+IEN772)=IENPAR_"~"_$G(DATAC(+IEN772))
+ ;
+ KILL HLNMSP
+ MERGE HLNMSP=TMP($J)
+ MERGE ^TMP($J)=TMP($J)
+ ;
+ Q NUM
+ ;
+OKALL(HLNMSP) ; Does every 772 entry have a valid .01 node?
+ N FAIL,I772
+ S FAIL=0,I772=0
+ F  S I772=$O(HLNMSP(I772)) Q:'I772!(FAIL)  D
+ .  QUIT:$P($G(^HL(772,+I772,0)),U)?7N1"."1.N  ;->
+ .  S FAIL=1
+ Q 'FAIL
+ ;
+VAL3(IEN772,FAC) ; Return sort values...
+ N TYPEHR,TYPEIO,TYPELR
+ S TYPEHR=$$TYPETMO^HLUCM002(+IEN772)
+ S TYPEIO=$$TYPEIO^HLUCM002(+IEN772)
+ ;S TYPELR=$$TYPELR^HLUCM001(+IEN772,FAC)
+ S TYPELR=$S(FAC["~DNS":"R",1:"L")
+ Q TYPEHR_U_TYPEIO_U_TYPELR
+ ;
+TIME(IEN772) ; Times...
+ N CT,DATA,IEN773,TMBEG,TMEND,TMDIFF
+ D TOT772T^HLUCM(+IEN772)
+ S IEN773=0,CT=0
+ F  S IEN773=$O(^HLMA("B",+IEN772,IEN773)) Q:'IEN773!(CT>20)  D
+ .  S CT=CT+1
+ .  D TOT773T^HLUCM(+IEN773)
+ D TMDIFF^HLUCM
+ Q DATA("DIFF")_U_DATA("START")_U_DATA("END")
+ ;
+ ;
+CHAR(IEN772) ; Number characters...
+ N CT,DATA,IEN773
+ D TOT772C^HLUCM(+IEN772)
+ S IEN773=0,CT=0
+ F  S IEN773=$O(^HLMA("B",+IEN772,IEN773)) Q:'IEN773!(CT>20)  D
+ .  S CT=CT+1
+ .  D TOT773C^HLUCM(+IEN773)
+ Q $G(DATA("CHAR"))
+ ;
+GETNMSP(IEN772) ; The one and only place to ask for NAMESPACE...
+ N HL,NMSP,NUM,PAR,VAL
+ S NUM=$$LOADEM^HLUCM050(+IEN772,.HL) QUIT:NUM'>0 "" ;->
+ S PAR=+$G(HL("HLCHILD",+IEN772))
+ S VAL=$G(HL("HLPARENT",+PAR))
+ Q $P(VAL,U,9)
+ ;
+GETPROT(IEN772) ; One & only place to ask for PROTOCOL...
+ N HL,NMSP,NUM,PAR,VAL
+ S NUM=$$LOADEM^HLUCM050(+IEN772,.HL) QUIT:NUM'>0 "" ;->
+ S PAR=+$G(HL("HLCHILD",+IEN772))
+ S VAL=$G(HL("HLPARENT",+PAR))
+ Q $P(VAL,U,7)
+ ;
+HOLDTOT(X) D HOLDTOT^HLUCM009(X) QUIT
+MSGID(X) D MSGID^HLUCM009(X) QUIT
+ ;
+NMSPALL(IEN772) ;Perform all attempts to find NMSP...
+ N IEN101,IEN94,NMSP
+ ;
+ ; If SPR...
+ S NMSP=$$SPR(+IEN772) QUIT:NMSP]"" $$NMSPCHG(NMSP) ;->
+ ;
+ ; Check MSH segment...
+ S NMSP=$$MSH772^HLUCM003(+IEN772) QUIT:NMSP]"" $$NMSPCHG(NMSP) ;->
+ S NMSP=$$MSHMAIL^HLUCM003(+IEN772) QUIT:NMSP]"" $$NMSPCHG(NMSP) ;->
+ ;
+ ; Get Event Protocol
+ S IEN101=+$P($G(^HL(772,+IEN772,0)),U,10) QUIT:IEN101'>0 "" ;->
+ ;
+ ; Find XEC routines, and try NMSPXRFs...
+ S NMSP=$$NMSPXRF(+IEN101) QUIT:NMSP]"" $$NMSPCHG(NMSP) ;->
+ ;
+ ; Try 9.4 link...
+ S IEN94=$P($G(^ORD(101,+IEN101,0)),U,12)
+ I IEN94 S NMSP=$P($$NMSP94(IEN94),U,2) QUIT:NMSP]"" $$NMSPCHG(NMSP) ;->
+ ;
+ S NMSP=$$MSH773^HLUCM003(+IEN772) QUIT:NMSP]"" $$NMSPCHG(NMSP) ;->
+ ;
+ QUIT ""
+ ;
+NMSP94(IEN94) ; From 9.4 find it's namespace...
+ N D0,DA,DIC,DIQ,DR,NMSP,RET
+ S RET=$G(^TMP($J,"HLNMSP94",+IEN94)) I RET]"" QUIT RET ;->
+ S DIC=9.4,DR=".01;1",DA=IEN94,DIQ="NMSP(",DIQ(0)="E"
+ D EN^DIQ1
+ S RET=$G(NMSP(9.4,+IEN94,.01,"E"))_U_$G(NMSP(9.4,+IEN94,1,"E"))
+ S ^TMP($J,"HLNMSP94",+IEN94)=RET
+ QUIT RET
+ ;
+NMSPCHG(NMSP) ; Some miscellaneous special actions first...
+ N PCKG
+ ;
+ ; Check xref first...
+ D:'$D(^TMP($J,"HLNMSPXRF")) NMSPXRF^HLUCM009
+ S PCKG=$$NMSPFROM(NMSP) QUIT:PCKG]"" PCKG ;->
+ ;
+ S PCKG=NMSP
+ ;
+ ; Other conversions here...
+ I $E(PCKG,1,2)="DG",PCKG'="DG" S PCKG="DG"
+ I $E(PCKG,1,3)="VEI",PCKG'="VEIB" S PCKG="VEIB"
+ I $E(PCKG,1,2)="VA" D
+ .  I PCKG["PIMS" S PCKG="DG" QUIT  ;->
+ .  I $G(APPR)["HEC " S PCKG="HEC" QUIT  ;->
+ .  I $G(FACR)["HEC " S PCKG="HEC" QUIT  ;->
+ I $E(PCKG,1,2)="LA" S PCKG="LA"
+ I $E(PCKG,1,2)="VA",PCKG[" PIMS" S PCKG="DG"
+ I $E(PCKG,1,10)="VAFC ADMIT" S PCKG="DG"
+ I $E(PCKG,1,8)="VAFC ADT" S PCKG="DG"
+ I $E(PCKG,1,8)?1"VAFH A"2N S PCKG="DG"
+ I $E(PCKG,1,15)?1"VAFH CLIENT A"2N S PCKG="DG"
+ I $E(PCKG,1,2)="XM" S PCKG="XM"
+ I $E(PCKG,1,2)="XU" S PCKG="XU"
+ ;
+ QUIT PCKG
+ ;
+NMSPXRF(IEN101) ; Find NMSP from ^TMP($J,"NMSPXRF")
+ N LEN,NMSP,NODE,RTN
+ I '$D(^TMP($J,"HLNMSPXRF")) D NMSPXRF^HLUCM009 ; Build, if not there
+ S NMSP=""
+ F NODE=772,774,771 D  QUIT:NMSP]""
+ .  S RTN=$E($P($G(^ORD(101,+IEN101,NODE)),U,2),1,4) QUIT:RTN']""  ;->
+ .  S NMSP=$$NMSPFROM(RTN)
+ Q NMSP
+ ;
+NMSPFROM(TXT) ; From TXT try to find NMSP...
+ N NMSP
+ QUIT:$G(TXT)']"" "" ;->
+ S NMSP=""
+ F LEN=4:-1:2 D  QUIT:NMSP]""
+ .  S NMSP=$G(^TMP($J,"HLNMSPXRF",$E(TXT,1,LEN))) QUIT:NMSP]""  ;->
+ I NMSP']"" F LEN=4:-1:2 D  QUIT:NMSP]""
+ .  ; See Integration Agreement #10048
+ .  N D,DIC,X,Y
+ .  S DIC="^DIC(9.4,",DIC(0)="FO",D="C",X=$E(TXT,1,LEN)
+ .  D MIX^DIC1 QUIT:+Y'>0  ;->
+ .  ; Found!  So, set into ^TMP...
+ .  S NMSP=$E(TXT,1,LEN)
+ .  S ^TMP($J,"HLNMSPXRF",NMSP)=NMSP
+ Q NMSP
+ ;
+SPR(IEN772) ; Evaluate SPR segment for RPC for package, possible
+ ; resetting the PCKG variable...
+ ; PCKG -- req
+ N CHAR,DEL,IN,NMSP
+ S IN=$G(^HL(772,+IEN772,"IN",1,0))
+ QUIT:$E(IN,1,4)'="SPR^" "" ;->
+ QUIT:IN'["REMOTE RPC^" "" ;->
+ S DEL=$E(IN,4)
+ S IN=$P(IN,DEL,5) QUIT:IN']"" "" ;->
+ S IN=$P(IN,"003RPC",2) QUIT:IN']"" "" ;->
+ S CHAR=+IN,IN=$TR($E(IN,4,CHAR+4),"&","") QUIT:IN']"" "" ;->
+ I $E(IN,1,2)="IB" QUIT "IB" ;->
+ I $E(IN,1,2)="OR" QUIT "OR" ;->
+ I '$D(^TMP($J,"HLNMSPXRF")) D NMSPXRF^HLUCM009
+ S NMSP=$$NMSPFROM(IN)
+ QUIT NMSP
+ ;
+EOR ; HLUCM050 - HL7/Capacity Mgt API-II ;10/23/01 12:01

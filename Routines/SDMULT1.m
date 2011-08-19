@@ -1,0 +1,44 @@
+SDMULT1 ;ALB/TMP - MAKE MULTI-CLINIC APPOINTMENTS ; 18 APR 86
+ ;;5.3;Scheduling;**32,41,167**;AUG 13, 1993
+ ;
+FND I $D(SDNEXT) S SDPCM1=""
+ I $D(SDNEXT),$G(SDPCMM(SC))>2 K SDPCM1 G ACT
+ I $D(SDNEXT),+$G(SDPCMM(SC))<1 W @IOF
+ I '$D(SDNEXT) W @IOF
+ W !?25,"DATE: " S X=SDAPP D DOW^SDM0 W "(",$P($P($T(DAY),";",3),"^",Y+2),"DAY) " S Y=SDAPP D DT^DIQ W ! F G1=0:0 S G1=$O(SDC(G1)) Q:G1'>0  S SC=+SDC(G1) D S2 S X=SDAPP,SCPCMM(SC)=0 D PROC
+ACT I '$D(SDPCMM) W:'$D(SDNEXT) ! W !,"ENTER: ",!,?3,"'^' - EXIT  " W:'$D(SDNEXT) "'B' - BOOK  " W "'C' - CONTINUE SEARCH or  'R' - REDISPLAY: CONTINUE// " R X:DTIME G:X["^" END^SDMULT0 S X=$E(X) I X?1"?"!("BCR"'[X) D H1 G ACT
+ I '$D(SDPCMM),$D(SDNEXT) S SDNEXT=1
+ I $D(SDPCM1) S X="C"
+ I X["C"!(X']"") S FND=0 F I=1:1:SDCT S SDDT(I)=0
+ I  S X1=SDSTRTDT,X2=1 D C^%DTC S SDSTRTDT=X G LOOKA^SDMULT0
+ I X["R" G FND
+ I X["B",'$D(SDNEXT) G BOOK
+ I '$D(SDPCMM) K SDPCM1 D H1 G ACT
+PROC I $D(SDNEXT) S SDPCMM(SC)=$G(SDPCMM(SC))+1
+ I $D(SDNEXT),$G(SDPCMM(SC))>3 K SDPCM1 Q
+ S SDV="",$P(SDV," ",SI+SI-5)="" W !,"CLINIC: ",$P(SDC1(SC),"^",1),?50,"(",$P(SDC1(SC),"^",2)," MINUTES)",!,"-------" S LINE=" TIME"_SDV F Y=STARTDAY:1:65\(SI+SI)+STARTDAY S LINE=LINE_$E("|"_$S('Y:0,1:(Y-1#12+1))_"                 ",1,SI+SI)
+ W !,$E(LINE,1,80) S LINE(G1)=$E(LINE,1,80)
+ W !,$E(^SC(SC,"ST",SDAPP,1),1,80),! S LINE1(G1)=$E(^(1),1,80) Q
+H1 W !,"YOU MAY ENTER:",!,?10,"'^' TO EXIT" W:'$D(SDNEXT) !,?10,"'B' TO ENTER THE MAKE APPT ROUTINES AND BOOK THE APPOINTMENTS"
+ W !,?10,"'C' TO LOOK FOR THE NEXT DATE ALL CLINICS HAVE AN AVAILABLE TIME SLOT",!,?10,"'R' TO REDISPLAY THIS SAME SCREEN" Q
+ ;
+DAY ;;^SUN^MON^TUES^WEDNES^THURS^FRI^SATUR
+ ;
+BOOK D STARS
+ F G1=0:0 S G1=$O(SDC(G1)) Q:G1'>0  W !!,"Make appt in : ",$P(SDC(G1),"^",2),! S SC=+SDC(G1) D S2,S3,TM D:SDMADE MADE D:'SDMADE NOT
+ K COLLAT G END^SDMULT0
+MADE W !!,$P(^SC(+SDC(G1),"S",SD,1,SDY,0),"^",2)," minute appointment made in ",$P(SDC(G1),"^",2),! D STARS
+ Q
+NOT W !!,"No appt made in ",$P(SDC1(SC),"^"),! D STARS
+ Q
+STARS S SD0="",$P(SD0,"*",81)="" W !,SD0 K SD0 Q
+TM S SDMADE=0 R !!,"SCHEDULE TIME: ",X:DTIME Q:"^"[X!'($T)  I X?.E1"?"!(X'?1N.N) W !,"Enter the appointment time for this clinic" G TM
+ S X=$E(SDAPP,4,7)_$E(SDAPP,2,3)_"@"_X,%DT="TE" D ^%DT I Y<0 W *7,"   WHEN ??" G TM
+ K %DT S X=Y#1,Y=+Y I $D(^DPT(DFN,"S",Y,0)),$P(^(0),"^",2)'["C" S Y1=+^(0),Y1=$P(^SC(+Y1,0),"^") W !,*7,"Patient already has an appointment in ",Y1," at that time" K Y1 G TM
+ S:$P(SL,"^",2)]"" $P(SL,"^")=$P(SDC1(SC),"^",2) S SDMLT=1 K SDAPTYP D EN1^SDM1
+ G:'SDMADE!(SDMADE=2) TM Q
+S2 S SL=^SC(SC,"SL"),X=$P(SL,"^",3),STARTDAY=$S($L(X):X,1:8),X=$P(SL,"^",6),SI=$S(X="":4,X<3:4,X:X,1:4) Q
+S3 W !,LINE(G1),!,LINE1(G1)
+ S SB=STARTDAY-1/100,X=$P(SL,U,6),HSI=$S(X=1:X,X:X,1:4),STR="#@!$* XXWVUTSRQPONMLKJIHGFEDCBA0123456789jklmnopqrstuvwxyz",SDDIF=$S(HSI<3:8/HSI,1:2),SM=0
+ K MXOK S SD=SDAPP,(CCX,CCXN,DP)=""
+ Q

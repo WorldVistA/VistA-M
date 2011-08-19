@@ -1,0 +1,50 @@
+PSSOUTSC ;BIR/RTR-Outpatient Schedule processor ;08/21/00
+ ;;1.0;PHARMACY DATA MANAGEMENT;**38**;9/30/97
+ ;
+EN(PSSJSCHZ) ;
+ Q:$G(PSSJSCHZ)=""
+ I $G(PSSJSCHZ)[""""!($A(PSSJSCHZ)=45)!(PSSJSCHZ?.E1C.E)!($L(PSSJSCHZ," ")>3)!($L(PSSJSCHZ)>20)!($L(PSSJSCHZ)<1) K PSSJSCHZ
+ Q
+EN1 ;called from schedule field of Pharmacy Orderable Item File
+ N PSSTRI,PSSTRO,PSSTLP
+ S (PSSTRI,PSSTRO)=0
+ S PSSTLP="" F  S PSSTLP=$O(^PSDRUG("ASP",DA,PSSTLP)) Q:PSSTLP=""  D
+ .I $P($G(^PSDRUG(PSSTLP,"I")),"^"),$P($G(^("I")),"^")'>DT Q
+ .I $P($G(^PSDRUG(PSSTLP,2)),"^",3)["O" S PSSTRO=1
+ .I $P($G(^PSDRUG(PSSTLP,2)),"^",3)["I"!($P($G(^(2)),"^",3)["U") S PSSTRI=1
+ I $G(PSSTRI) G PASS
+ S PSSTLP="" F  S PSSTLP=$O(^PS(52.6,"AOI",DA,PSSTLP)) Q:PSSTLP=""  D
+ .I $P($G(^PS(52.6,PSSTLP,"I")),"^"),$P($G(^("I")),"^")'>DT Q
+ .S PSSTRI=1
+ I $G(PSSTRI) G PASS
+ S PSSTLP="" F  S PSSTLP=$O(^PS(52.7,"AOI",DA,PSSTLP)) Q:PSSTLP=""  D
+ .I $P($G(^PS(52.7,PSSTLP,"I")),"^"),$P($G(^("I")),"^")'>DT Q
+ .S PSSTRI=1
+PASS ;
+ I $G(PSSTRO),'$G(PSSTRI) D OUT Q
+ D SCH^PSSDDUT I $D(X)#2,'$G(PSGS0Y),$G(PSGS0XT) D EN^DDIOL("  Every "_$G(PSGS0XT)_" minutes","","?0")
+ I $G(X)'="",$G(PSSTRO) D OUT
+ K PSSTRO,PSSTRI
+ Q
+OUT ;Outpatient Input Transform and echo of Outpatient expansion
+ N SCH
+ S SCH=$G(X)
+ D OUTZ I $G(SCHEX)'="" D EN^DDIOL("Outpatient Expansion:","","!!") D EN^DDIOL($G(SCHEX)) D EN^DDIOL(" ","","!")
+ Q
+OUTZ ;
+ N SQFLAG,SCLOOP,SCLP,SCLPS,SCLHOLD,SCIN,SODL,SST
+ K SCHEX S SQFLAG=0
+ I $G(SCH)="" S SCHEX="" Q
+ F SCLOOP=0:0 S SCLOOP=$O(^PS(51.1,"B",SCH,SCLOOP)) Q:'SCLOOP!(SQFLAG)  I $P($G(^PS(51.1,SCLOOP,0)),"^",8)'="" S SCHEX=$P($G(^(0)),"^",8),SQFLAG=1
+ Q:SQFLAG
+ I $P($G(^PS(51,"A",SCH)),"^")'="" S SCHEX=$P(^(SCH),"^") Q
+ S SCLOOP=0 F SCLP=1:1:$L(SCH) S SCLPS=$E(SCH,SCLP) I SCLPS=" " S SCLOOP=SCLOOP+1
+ I SCLOOP=0 S SCHEX=SCH Q
+ S SCLOOP=SCLOOP+1
+ K SCLHOLD F SCIN=1:1:SCLOOP S (SODL,SCLHOLD(SCIN))=$P(SCH," ",SCIN) D
+ .Q:$G(SODL)=""
+ .S SQFLAG=0 F SST=0:0 S SST=$O(^PS(51.1,"B",SODL,SST)) Q:'SST!($G(SQFLAG))  I $P($G(^PS(51.1,SST,0)),"^",8)'="" S SCLHOLD(SCIN)=$P($G(^(0)),"^",8),SQFLAG=1
+ .Q:$G(SQFLAG)
+ .I $P($G(^PS(51,"A",SODL)),"^")'="" S SCLHOLD(SCIN)=$P(^(SODL),"^")
+ S SCHEX="",SQFLAG=0 F SST=1:1:SCLOOP S SCHEX=SCHEX_$S($G(SQFLAG):" ",1:"")_$G(SCLHOLD(SST)),SQFLAG=1
+ Q

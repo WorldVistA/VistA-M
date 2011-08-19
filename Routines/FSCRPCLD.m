@@ -1,0 +1,9 @@
+FSCRPCLD ;SLC/STAFF-NOIS RPC List Definition ;1/18/97  15:42
+ ;;1.1;NOIS;;Sep 06, 1998
+ ;
+LISTDEF(IN,OUT) ; from FSCRPX (RPCListObject)
+ N LIST
+ S LIST=+$G(^TMP("FSCRPC",$J,"INPUT",1))
+ I 'LIST Q
+ S ^TMP("FSCRPC",$J,"OUTPUT",1)=LIST_U_$G(^FSC("LIST",+LIST,0))
+ Q

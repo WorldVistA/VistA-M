@@ -1,0 +1,25 @@
+PSOLLU3 ;BIR/JLC - BUILD CONTROL CODES ;01/24/2003
+ ;;7.0;OUTPATIENT PHARMACY;**141,135**;DEC 1997
+ ;
+ ;Read-only reference to %ZIS(2 supported by DBIA 3435
+ ;Reference to %ZIS(2 supported by DBIA 3884
+ ;
+ N IO,IOST
+IO D ^%ZIS
+ I '$G(IOST(0)) W "No terminal type available." Q
+ I '$D(DUZ(0)) W "No DUZ defined." Q
+ I DUZ(0)'="@" W "FileMan access must be @." Q
+ I '$D(^%ZIS(2,IOST(0),55,"B","LL")) W "No CONTROL CODES defined." Q
+ W !!,"You will be copying the CONTROL CODES to device: ",IO," are you sure? " R ANS:60 W "  " I ANS'="Y" G IO
+ W "Copying..."
+ S AB="F6B",NAME="SIX POINT FONT, BOLDED",CODE="W *27,""(10U"",*27,""(s1p6v0s3b16602T""" D FILE
+ S AB="F8B",NAME="EIGHT POINT FONT, BOLDED",CODE="W *27,""(10U"",*27,""(s1p8v0s3b16602T""" D FILE
+ S AB="F9B",NAME="NINE POINT FONT, BOLDED",CODE="W *27,""(10U"",*27,""(s1p9v0s3b16602T""" D FILE
+ S AB="F10B",NAME="TEN POINT FONT, BOLDED",CODE="W *27,""(10U"",*27,""(s1p10v0s3b16602T""" D FILE
+ S AB="F12B",NAME="12 POINT FONT BOLDED",CODE="W *27,""(10U"",*27,""(s1p12v0s3b16602T""" D FILE
+ S AB="RMI",NAME="RETURN MAIL INITIALIZATION",CODE="S PSOHFONT=""F8"",PSOFONT=""F10"",PSOX=1700,PSOY=35,PSORYI=40,PSOHYI=40,PSOTFONT=""F8"",PSOTY=550" D FILE
+ Q
+FILE K DIC,DIE S DIC(0)="L",DA(1)=IOST(0),X=AB,DIC="^%ZIS(2,"_DA(1)_",55," D FILE^DICN
+ K DA,DR,DIE S DIE=DIC,DA=+Y,DA(1)=IOST(0)
+ S DR=".01////"_AB_";1////"_NAME_";2////"_CODE D ^DIE
+ Q

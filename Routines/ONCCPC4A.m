@@ -1,0 +1,103 @@
+ONCCPC4A ;HIRMFO/GWB - PCE Study of Colorectal Cancer - Table IV (continued);2/20/97
+ ;;2.11;ONCOLOGY;**11,16**;Mar 07, 1995
+R W !,"RADIATION THERAPY"
+ W !,"-----------------"
+ S RADDT=$P($G(^ONCO(165.5,ONCONUM,3)),U,4)
+ S Y=RADDT D DATEOT^ONCOPCE S RADDT=Y
+ W !,"  DATE RADIATION STARTED..........: ",RADDT
+ I (RAD=0)!(RAD=7) D  G C
+ .S $P(^ONCO(165.5,ONCONUM,"BLA2"),U,16)="0000000"
+ .W !,"  DATE RADIATION THERAPY ENDED....: 00/00/0000"
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,33)=0
+ .W !,"  ENDOCAVITARY RADIATION..........: None"
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,34)=0
+ .W !,"  INTRA-OPERATIVE RAD THERAPY.....: No"
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,35)=0
+ .W !,"  PRIMARY TUMOR RAD DOSE W BOOST..: No radiation therapy"
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,36)=0
+ .W !,"  NUMBER OF RADIATION TREATMENTS..: None"
+ .W ! K DIR S DIR(0)="E" D ^DIR Q:(Y=0)!(Y="")  D HEAD^ONCCPC0
+ I (RAD=8)!(RAD=9) D  G C
+ .S $P(^ONCO(165.5,ONCONUM,"BLA2"),U,16)=9999999
+ .W !,"  DATE RADIATION THERAPY ENDED....: 99/99/9999"
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,33)=9
+ .W !,"  ENDOCAVITARY RADIATION..........: Unknown"
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,34)=9
+ .W !,"  INTRA-OPERATIVE RAD THERAPY.....: Unknown"
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,35)=99999
+ .W !,"  PRIMARY TUMOR RAD DOSE W BOOST..: Unknown if received radiation therapy"
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,36)=99
+ .W !,"  NUMBER OF RADIATION TREATMENTS..: Unknown if radiation given"
+ .W ! K DIR S DIR(0)="E" D ^DIR Q:(Y=0)!(Y="")  D HEAD^ONCCPC0
+ S DR="361  DATE RADIATION THERAPY ENDED...." D ^DIE G:$D(Y) JUMP
+ S DR="784  ENDOCAVITARY RADIATION.........." D ^DIE G:$D(Y) JUMP
+ S DR="785  INTRA-OPERATIVE RAD THERAPY....." D ^DIE G:$D(Y) JUMP
+ S DR="786  PRIMARY TUMOR RAD DOSE W BOOST.." D ^DIE G:$D(Y) JUMP
+ S DR="787  NUMBER OF RADIATION TREATMENTS.." D ^DIE G:$D(Y) JUMP W !
+C W !,"CHEMOTHERAPY"
+ W !,"------------"
+ W !,"  CHEMOTHERAPY....................: ",CHEMOT
+ S CHEDT=$P($G(^ONCO(165.5,ONCONUM,3)),U,11)
+ S Y=CHEDT D DATEOT^ONCOPCE S CHEDT=Y
+ W !,"  DATE CHEMOTHERAPY STARTED.......: ",CHEDT
+ I (CHEMO=0)!(CHEMO=7) D  G EXIT
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,37)=0
+ .W !,"  ADJUVANT CHEMO W BEAM RADIATION.: No concomitant treatment"
+ .W !!,"  ADJUVANT THERAPY:",!
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,38)=0
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,39)=0
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,40)=0
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,41)=0
+ .S $P(^ONCO(165.5,ONCONUM,"BLA2"),U,32)=0
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,42)=0
+ .W !,"    5 FU (FLUOROCIL)...: No" W "    CPT 11.............: No"
+ .W !,"    LEUCOVORIN.........: No" W "    TAXOL..............: No"
+ .W !,"    LEVAMISOLE.........: No" W "    OTHER..............: No",!
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,43)=0
+ .W !,"  DURATION OF ADJUVANT THERAPY....: No adjuvant therapy"
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,44)=0
+ .W !,"  COMPLETED DURATION OF THERAPY...: No (0-1 cycle)"
+ .W ! K DIR S DIR(0)="E" D ^DIR Q:(Y=0)!(Y="")  D HEAD^ONCCPC0
+ I (CHEMO=8)!(CHEMO=9) D  G EXIT
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,37)=9
+ .W !,"  ADJUVANT CHEMO W BEAM RADIATION.: Unknown if therapy concomitant"
+ .W !!,"  ADJUVANT THERAPY:",!
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,38)=9
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,39)=9
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,40)=9
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,41)=9
+ .S $P(^ONCO(165.5,ONCONUM,"BLA2"),U,32)=9
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,42)=9
+ .W !,"    5 FU (FLUOROCIL)...: Unknown" W "    CPT 11.............: Unknown"
+ .W !,"    LEUCOVORIN.........: Unknown" W "    TAXOL..............: Unknown"
+ .W !,"    LEVAMISOLE.........: Unknown" W "    OTHER..............: Unknown",!
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,43)=9
+ .W !,"  DURATION OF ADJUVANT THERAPY....: Unknown if therapy given"
+ .S $P(^ONCO(165.5,ONCONUM,"COL2"),U,44)=9
+ .W !,"  COMPLETED DURATION OF THERAPY...: Unknown if therapy given"
+ .W ! K DIR S DIR(0)="E" D ^DIR Q:(Y=0)!(Y="")  D HEAD^ONCCPC0
+ S DR="788  ADJUVANT CHEMO W BEAM RADIATION." D ^DIE G:$D(Y) JUMP
+ W !!,"  ADJUVANT THERAPY:",!
+ S DR="789    5 FU (FLUOROURACIL)..........." D ^DIE G:$D(Y) JUMP
+ S DR="790    LEUCOVORIN...................." D ^DIE G:$D(Y) JUMP
+ S DR="791    LEVAMISOLE...................." D ^DIE G:$D(Y) JUMP
+ S DR="792    CPT 11........................" D ^DIE G:$D(Y) JUMP
+ S DR="377    TAXOL........................." D ^DIE G:$D(Y) JUMP
+ S DR="793    OTHER........................." D ^DIE G:$D(Y) JUMP
+ W !
+ S DR="794  DURATION OF ADJUVANT THERAPY...." D ^DIE G:$D(Y) JUMP
+ S DR="795  COMPLETED DURATION OF THERAPY..." D ^DIE G:$D(Y) JUMP
+ W ! K DIR S DIR(0)="E" D ^DIR Q:(Y=0)!(Y="")
+ G EXIT
+JUMP ;Jump to prompts
+ S XX="" R !!,"GO TO: ",X:DTIME I (X="")!(X[U) S OUT="Y" G EXIT
+ I X["?" D  G JUMP
+ .W !,"CHOOSE FROM:" F I=1:1:CHOICES W !,?5,HTABLE(I)
+ I '$D(TABLE(X)) S XX=X,X=$O(TABLE(X)) I ($P(X,XX,1)'="")!(X="") W *7,"??" D  G JUMP
+ .W !,"CHOOSE FROM:" F I=1:1:CHOICES W !,?5,HTABLE(I)
+ S X=TABLE(X)
+ G @X
+EXIT K CHOICES,HTABLE,TABLE
+ K CDS,CDS1,CDS2,CDSDT,CHEMO,DOFCT,LOS,NCDS,NCDS1,NCDS2,NCDSDT,NOP,RAD
+ K RADDT,DIQ
+ Q

@@ -1,0 +1,84 @@
+LEXA3 ; ISL Look-up (Loud) Functions             ; 01-13-97
+ ;;2.0;LEXICON UTILITY;**1,4**;Sep 23, 1996
+ ;
+DH ; Display Help                 LEX("HLP")
+ Q:'$D(LEX("HLP"))  N LEXI S LEXI=0
+ W ! F  S LEXI=$O(LEX("HLP",LEXI)) Q:+LEXI=0  D
+ . W !,"  ",LEX("HLP",LEXI)
+ Q
+DL ; Display List                 LEX("LIST")
+ I +($G(LEX))=1,$D(LEX("LIST",1)) D ONE Q
+ D MULTI Q
+DP ; Display Prompt      Select 1-LEX("MAX") or Ok?
+ N LEXPRMT
+ I +($G(LEX))>1 D
+ . S LEXPRMT="Type ""^"" to STOP or Select:  "
+ . S:+($G(LEX("MAX")))>0 LEXPRMT="Type ""^"" to STOP or Select 1-"_LEX("MAX")_":  "
+ I +($G(LEX))=1 S LEXPRMT="    Ok?  YES//  ",DIC("B")="YES" W:+($G(LEX))>1 !
+ W !!,LEXPRMT Q
+ ;
+MULTI ; Multiple entries       PCH 4 - LEXTP,LEXCT
+ N LEXI,LEXT,LEXTP,LEXCT,LEXL,LEXP
+ S (LEXCT,LEXI)=0,LEXL=70,LEXP=7 D MATCH
+ W ! F  S LEXI=$O(LEX("LIST",LEXI)) Q:+LEXI=0  D
+ . S LEXCT=LEXCT+1,LEXT=$P(LEX("LIST",LEXI),"^",2)
+ . S LEXTP=$P($G(LEX("LIST",(LEXI-1))),"^",2)
+ . ;W:LEXCT>1&($E(LEXT,1)=" ")&($E(LEXTP,1)'=" ")&($E(LEXTP,1)'="") !
+ . ;W:LEXCT>1&($E(LEXT,1)'=" ")&($E(LEXTP,1)=" ") !
+ . W !,$J(LEXI,4),?6
+ . N Y S Y=+($G(LEX("LIST",LEXI))),Y(0)=$G(^LEX(757.01,+Y,0)),Y(0,0)=$P($G(^LEX(757.01,+Y,0)),"^",1)
+ . I $D(DIC("W")),DIC("W")'="" X DIC("W") Q
+ . I $D(DIC("W")),DIC("W")="" W Y(0,0) Q
+ . W:$L(LEXT)<(LEXL+1) ?LEXP,LEXT D:$L(LEXT)>LEXL LONG
+ Q
+MATCH ; Matches found
+ I $D(LEX("MAT")) W !!,LEX("MAT") K LEX("MAT")
+ Q
+ONE ; One entry
+ N LEXI,LEXT,LEXL,LEXP
+ S LEXI=0,LEXL=75,LEXP=2,LEXT=$P(LEX("LIST",1),"^",2) W !!
+ N Y S Y=+($G(LEX("LIST",LEXI))),Y(0)=$G(^LEX(757.01,+Y,0)),Y(0,0)=$P($G(^LEX(757.01,+Y,0)),"^",1)
+ I $D(DIC("W")),DIC("W")'="" W ?LEXP X DIC("W") Q
+ I $D(DIC("W")),DIC("W")="" W ?LEXP,Y(0,0) Q
+ I '$D(DIC("W")) W:$L(LEXT)<(LEXL+1) ?LEXP,LEXT D:$L(LEXT)>LEXL LONG
+ Q
+LONG ; Handle a long string  PCH 4 -> LEXD1,LEXD1
+ N LEXOK,LEXCHR,LEXPSN,LEXSTO,LEXREM,LEXLNN,LEXOLD,LEXC
+ N LEXWW,LEXD1,LEXD2
+ S LEXLNN=0,LEXOLD=LEXT,LEXL=70,LEXP=+($G(LEXP))
+ S LEXD1="" F LEXPSN=1:1 Q:$E(LEXT,LEXPSN)'=" "!(LEXPSN>$L(LEXT))  S LEXD1=LEXD1_" "
+ S LEXD2=LEXD1 S:LEXT[":  "&($L(LEXD1)) LEXD2=LEXD2_"          "
+ D PARSE(LEXT,LEXL,LEXD1,LEXD2)
+ I $D(LEXWW),$O(LEXWW(0))>0 F LEXC=1:1 Q:'$D(LEXWW(LEXC))  D
+ . W:LEXC>1 ! W ?LEXP,LEXWW(LEXC)
+ Q
+PARSE(LEXT,LEXL,LEXD1,LEXD2) ; Parse string
+ S LEXT=$G(LEXT),LEXL=+($G(LEXL)),LEXD1=$G(LEXD1),LEXD2=$G(LEXD2)
+ Q:LEXT=""  S:LEXL=0 LEXL=70 S LEXL=LEXL-$L(LEXD1)
+ N LEXC S LEXC=0 F  Q:$L(LEXT)<(LEXL+1)  D
+ . S LEXOK=0,LEXCHR=""
+ . F LEXPSN=LEXL:-1:0 Q:+LEXOK=1  D  Q:+LEXOK=1
+ . . I $E(LEXT,LEXPSN)=" " S LEXCHR=" ",LEXOK=1 Q
+ . . I $E(LEXT,LEXPSN)="," S LEXCHR=",",LEXOK=1 Q
+ . . I $E(LEXT,LEXPSN)="/"!($E(LEXT,LEXPSN)="-")!($E(LEXT,LEXPSN)=")") S LEXCHR=$E(LEXT,LEXPSN),LEXOK=1 Q
+ . S LEXL=LEXL-($L(LEXD2)-$L(LEXD1)) D:LEXCHR=" " SPL1
+ . D:LEXCHR="/"!(LEXCHR=",")!(LEXCHR="-")!(LEXCHR=")") SPL2
+ . D:'LEXOK SPL4,SPC
+ . S LEXT=LEXREM I $L(LEXSTO) S LEXC=LEXC+1 S:LEXC=1 LEXWW(LEXC)=(LEXD1_LEXSTO) S:LEXC>1 LEXWW(LEXC)=(LEXD2_LEXSTO)
+ I $L(LEXT) S LEXC=LEXC+1 S:LEXC=1 LEXWW(LEXC)=(LEXD1_LEXT) S:LEXC>1 LEXWW(LEXC)=(LEXD2_LEXT)
+ Q
+SPL1 ; Split after character position
+ S LEXSTO=$E(LEXT,1,LEXPSN-1),LEXREM=$E(LEXT,LEXPSN+1,$L(LEXT)) D SPL3,SPC Q
+SPL2 ; Split at character position
+ S LEXSTO=$E(LEXT,1,LEXPSN),LEXREM=$E(LEXT,(LEXPSN+1),$L(LEXT)) D SPL3,SPC Q
+SPL3 ; Re-Split if STO<REM
+ D:$L(LEXSTO)<$L(LEXREM)&($L(LEXL)-$L(LEXSTO)>15) SPL4 Q
+SPL4 ; Split at string length LEXL
+ S LEXSTO=$E(LEXT,1,LEXL),LEXREM=$E(LEXT,(LEXL+1),$L(LEXT)) Q
+SPC ; Remove Spaces
+ S LEXSTO=$$TRIM(LEXSTO),LEXREM=$$TRIM(LEXREM) S LEXOK=1 Q
+TRIM(LEXX) ; Trim Spaces
+ S LEXX=$G(LEXX) Q:LEXX'[" " LEXX Q:LEXX="" LEXX
+ F  Q:$E(LEXX,1)'=" "  S LEXX=$E(LEXX,2,$L(LEXX))
+ I $L(LEXX) F  Q:$E(LEXX,$L(LEXX))'=" "  S LEXX=$E(LEXX,1,($L(LEXX)-1))
+ Q LEXX

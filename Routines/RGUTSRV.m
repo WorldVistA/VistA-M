@@ -1,0 +1,24 @@
+RGUTSRV ;CAIRO/DKM - Server for remote routine utilities;09-Sep-1998 08:31;DKM
+ ;;2.1;RUN TIME LIBRARY;;Mar 22, 1999
+ ;=================================================================
+ N RGUCI,RGX,RGRTN,RGZ,X
+ S RGUCI=$$UCI^RGUTRRT
+ L +^XTMP("RGUTSRV",RGUCI):0
+ E  Q
+ I $$NEWERR^%ZTER N $ET S $ET=""
+ S X=10
+ X ^%ZOSF("MAXSIZ")
+ F  D  I $G(^XTMP("RGUTSRV",RGUCI,0)) K ^(0) Q
+ .F RGX=0:0 S RGX=+$O(^XTMP("RGUTSRV",RGUCI,RGX)) Q:'RGX  D
+ ..S @$$TRAP^RGZOSF("ERR^RGUTSRV")
+ ..S RGRTN=$G(^XTMP("RGUTSRV",RGX))
+ ..I RGRTN'="" D
+ ...X "ZR  F RGZ=0:0 S RGZ=$O(^XTMP(""RGUTSRV"",RGX,RGZ)) ZI:RGZ ^(RGZ) I 'RGZ ZS "_RGRTN_" Q"
+ ...K ^XTMP("RGUTSRV",RGX,0,RGUCI)
+ ...K:'$D(^XTMP("RGUTSRV",RGX,0)) ^XTMP("RGUTSRV",RGX),^XTMP("RGUTSRV","B",RGRTN,RGX)
+ ..K ^XTMP("RGUTSRV",RGUCI,RGX)
+ .H 5
+ L -^XTMP("RGUTSRV",RGUCI)
+ Q
+ERR S ^XTMP("RGUTSRV",RGX,0,RGUCI)=$$EC^%ZOSV
+ Q

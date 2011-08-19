@@ -1,0 +1,79 @@
+LRCAPMR2 ;DALISC/J0 - WKLD STATS REPORT - COMMENTS PRINT ; 4/9/93
+ ;;5.2;LAB SERVICE;**201**;Sep 27, 1994
+ ;
+ASKCOM ;lrcm
+ R !!,"PRINT THE COMMENT PAGES?  NO//",LRCM:DTIME
+ I '$T!(LRCM=U) S LREND=1 Q
+ I LRCM["?" W !,"Do you want to print comments?  YES or NO.",! G ASKCOM
+ S LRCM=$S($E(LRCM,1)="Y"!($E(LRCM,1)="y"):1,1:0) W !
+ Q
+COMM ;Called from LRCAPMA2,LRCAPML2,LRRP8C
+ Q:'+$G(LRCM)
+ N LRDAT,LRCC,LRGCN,LRCCN,LRDCN,LRCONT
+ D GENCOM Q:LREND
+ D CAPCOM Q:LREND
+ D DATCOM
+ Q
+GENCOM ;
+ N LRHDR,LRHDR3
+ S LRGCN=0
+ S LRGCN=$O(^TMP("LR",$J,"GCOM",LRGCN))
+ Q:'LRGCN  ;no general comments
+ S LRHDR="GENERAL WORKLOAD COMMENTS"
+ S LRHDR3="[Includes all workload data in date range]"
+ D HDR^LRCAPU
+ S LRGCN=0
+ F  S LRGCN=$O(^TMP("LR",$J,"GCOM",LRGCN)) Q:('LRGCN)!(LREND)  D
+ . S LRCOMM=$G(^TMP("LR",$J,"GCOM",LRGCN))
+ . I $Y+6'<IOSL D NPG^LRCAPU Q:LREND
+ . W !,LRCOMM,!
+ D:$E(IOST,1,2)="C-" PAUSE^LRCAPU Q:LREND  W @IOF
+ Q
+CAPCOM ;
+ N LRHDR,LRHDR3
+ S LRCAPNAM=""
+ S LRCAPNAM=$O(^TMP("LR",$J,"CCOM",LRCAPNAM))
+ Q:LRCAPNAM=""  ;no wkld code comments
+ S LRHDR="WORKLOAD COMMENTS by WKLD CODE"
+ S LRHDR3="[Includes all workload data in date range]"
+ D HDR^LRCAPU
+ S LRCAPNAM=""
+ F  S LRCAPNAM=$O(^TMP("LR",$J,"CCOM",LRCAPNAM)) Q:(LRCAPNAM="")!(LREND)  D
+ . S LRCAPNUM=$G(^TMP("LR",$J,"CCOM",LRCAPNAM,0))
+ . W !!,LRCAPNUM,?15,LRCAPNAM,!
+ . S LRCCN=0
+ . F  S LRCCN=$O(^TMP("LR",$J,"CCOM",LRCAPNAM,LRCCN)) Q:('LRCCN)!(LREND)  D
+ . . S LRCOMM=$G(^TMP("LR",$J,"CCOM",LRCAPNAM,LRCCN))
+ . . I $Y+6'<IOSL D
+ . . . D NPG^LRCAPU
+ . . . Q:LREND
+ . . . W !!,LRCAPNUM,?15,LRCAPNAM,"  (cont.)",!
+ . . Q:LREND
+ . . W LRCOMM,!
+ . W $E(LRDSHS,1,80),!
+ D:$E(IOST,1,2)="C-" PAUSE^LRCAPU Q:LREND  W @IOF
+ Q
+DATCOM ;
+ N LRDATE,LRHDR,LRHDR3
+ S LRDAT=0
+ S LRDAT=$O(^TMP("LR",$J,"DCOM",LRDAT))
+ Q:'LRDAT  ;no date comments
+ S LRHDR="WORKLOAD COMMENTS by DATE"
+ S LRHDR3="[Includes all workload data in date range]"
+ D HDR^LRCAPU
+ S LRDAT=0
+ F  S LRDAT=$O(^TMP("LR",$J,"DCOM",LRDAT)) Q:('LRDAT)!(LREND)  D
+ . S LRDATE=$$FMTE^XLFDT(LRDAT,"1D")
+ . W !!,LRDATE,!
+ . S LRDCN=0
+ . F  S LRDCN=$O(^TMP("LR",$J,"DCOM",LRDAT,LRDCN)) Q:('LRDCN)!(LREND)  D
+ . . S LRCOMM=$G(^TMP("LR",$J,"DCOM",LRDAT,LRDCN))
+ . . I $Y+6'<IOSL D
+ . . . D NPG^LRCAPU
+ . . . Q:LREND
+ . . . W !!,LRDATE,"  (cont.)",!
+ . . Q:LREND
+ . . W LRCOMM,!
+ . W $E(LRDSHS,1,80),!
+ D:$E(IOST,1,2)="C-" PAUSE^LRCAPU Q:LREND  W @IOF
+ Q

@@ -1,0 +1,70 @@
+PSDEM1 ;BIR/LTL-Print NAOU Priority Order Report by Drug ;12/14/99  15:11
+ ;;3.0; CONTROLLED SUBSTANCES ;**20**;13 Feb 97
+ ;
+ ; Reference to DD("DD" supported by DBIA # 10017
+ ; Reference to $$FMTE^XLFDT( supported by DBIA # 10103
+ ; Reference to PSDRUG( supported by DBIA # 221
+ ; Reference to VA(200 supported by DBIA # 10060
+ ; Reference to PSD(58.8 supported by DBIA # 2711
+ ; Reference to PSD(58.81 supported by DBIA # 2808
+ ;
+START ;entry point for report
+ K ^TMP("PSDNU",$J),^TMP("PSDNUS",$J),^TMP("PSDNUT",$J),^TMP("PSDNUG",$J),^TMP("PSDNUQT",$J),^TMP("PSDNUQ",$J)
+ I $D(ALL) D ALL G PRINT
+ F PSDR=0:0 S PSDR=$O(LOC(PSDR)) Q:'PSDR  F JJ=PSDSD:0 S JJ=$O(^PSD(58.81,"AEM",JJ)) Q:'JJ!(JJ>PSDED)  F JJ1=0:0 S JJ1=$O(^PSD(58.81,"AEM",JJ,JJ1)) Q:'JJ1  D
+ .F KK=0:0 S KK=$O(^PSD(58.81,"AEM",JJ,JJ1,PSDR,KK)) Q:'KK  D SET
+PRINT ;prints data for stock drugs
+ I SUM D ^PSDEM3 G DONE
+ K LN S $P(LN,"-",80)="",(PG,PSDOUT)=0,%DT="",X="T" D ^%DT X ^DD("DD") S RPDT=Y
+ I '$D(^TMP("PSDNU",$J)) D HDR W !!,?10,"*****  NO DATA AVAILABLE FOR THIS REPORT  *****" G DONE
+ S PSDR="" F  S PSDR=$O(^TMP("PSDNU",$J,PSDR)) D:PSDR="" GTOT Q:PSDR=""!(PSDOUT)  D HDR S NAOU="" F  S NAOU=$O(^TMP("PSDNU",$J,PSDR,NAOU)) D:NAOU="" NTOT Q:NAOU=""!(PSDOUT)  W !,?2,"=> ",NAOU,!! D
+ .S NUM="" F  S NUM=$O(^TMP("PSDNU",$J,PSDR,NAOU,NUM)) D:NUM="" TOT Q:NUM=""!(PSDOUT)  F JJ=0:0 S JJ=$O(^TMP("PSDNU",$J,PSDR,NAOU,NUM,JJ)) Q:'JJ!(PSDOUT)  D
+ ..S NODE=^TMP("PSDNU",$J,PSDR,NAOU,NUM,JJ),DATE=$$FMTE^XLFDT(JJ,2)
+ ..I $Y+8>IOSL D HDR Q:PSDOUT  W !,?2,"=> ",NAOU,!!
+ ..W NUM,?16,DATE,?35,$J($P(NODE,"^"),6),?47,$P(NODE,"^",2),?70,$P(NODE,"^",3),!
+DONE I $E(IOST)'="C" W @IOF
+ I $E(IOST,1,2)="C-",'PSDOUT W ! K DIR,DIRUT S DIR(0)="EA",DIR("A")="END OF REPORT!  Press <RET> to return to the menu" D ^DIR K DIR
+END ;
+ K %,%DT,%H,%I,%ZIS,ALL,ANS,DA,DATE,DIR,DIROUT,DIRUT,DTOUT,DUOUT,IO("Q"),JJ,JJ1,JJ2,KK,LOC,LN
+ K NAOU,NAOUN,NODE,NUM,NURS,QTY,PG,POP,PSD,PSDATE,PSDED,PSDOK,PSDOUT,PSDPN,PSDR,PSDRN,PSDSD,PSDT,PSDTR,RPDT,SUM,X,Y
+ K ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,ZTSK
+ K ^TMP("PSDNU",$J),^TMP("PSDNUT",$J),^TMP("PSDNUG",$J),^TMP("PSDNUQ",$J),^TMP("PSDNUS",$J),^TMP("PSDNUQT",$J)
+ D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@"
+ Q
+ALL ;loops for all drugs
+ Q:'$D(ALL)
+ F JJ=PSDSD:0 S JJ=$O(^PSD(58.81,"AEM",JJ)) Q:'JJ!(JJ>PSDED)  F JJ1=0:0 S JJ1=$O(^PSD(58.81,"AEM",JJ,JJ1)) Q:'JJ1  F PSDR=0:0 S PSDR=$O(^PSD(58.81,"AEM",JJ,JJ1,PSDR)) Q:'PSDR  D
+ .F KK=0:0 S KK=$O(^PSD(58.81,"AEM",JJ,JJ1,PSDR,KK)) Q:'KK  D SET
+ Q
+HDR ;lists header information
+ I $E(IOST,1,2)="C-",PG K DA,DIR S DIR(0)="E" D ^DIR K DIR I 'Y S PSDOUT=1 Q
+ W:$Y @IOF S PG=PG+1 W !,"DRUG/NAOU PRIORITY ORDER REPORT  -  DATE: "_RPDT,?70,"PAGE: ",PG,!
+ I $D(PSDR),PSDR]"" W "DRUG: ",PSDR,!
+ W "From ",$P(PSDATE,"^")," to ",$P(PSDATE,"^",2),!!
+ W !,?2,"=> NAOU",!,?16,"DATE/TIME",!,"DISP #",?16,"FILLED",?35,"QUANTITY",?47,"ORDERED BY",!,LN,!
+ Q
+TOT Q:PSDOUT  W !,"---------",?25,"----------",!,?3,^TMP("PSDNUS",$J,PSDR,NAOU),?25,$J(^TMP("PSDNUQ",$J,PSDR,NAOU),6),?37,"Totals",!
+ Q
+NTOT Q:PSDOUT  W !,"DRUG Subtotal # of Orders: ",^TMP("PSDNUT",$J,PSDR),"   Total Quantity: ",^TMP("PSDNUQT",$J,PSDR),!
+ Q
+GTOT ;grand total
+ Q:PSDOUT
+ W !,"Grand Total # of Orders: ",^TMP("PSDNUG",$J),!
+ Q
+SET ;sets data
+ Q:'$D(^PSD(58.81,KK,0))  S NODE=^PSD(58.81,KK,0),PSD=+$P(NODE,"^",18)
+ Q:$P($G(^PSD(58.8,PSD,0)),"^",3)'=+PSDSITE  S PSDOK=0
+ S PSDRN=$S($P($G(^PSDRUG(PSDR,0)),"^")]"":$P(^(0),"^"),1:"DRUG NAME MISSING")
+ S NAOUN=$S($P($G(^PSD(58.8,PSD,0)),"^")]"":$P(^(0),"^"),1:"NAOU NAME MISSING")
+ S PSDPN=$S($P(NODE,"^",17)]"":$P(NODE,"^",17),1:"DISP W/O GS"),QTY=+$P(NODE,"^",6)
+ S:+$P($G(^PSD(58.81,KK,4)),"^",3) QTY=+$P($G(^(4)),"^",3)
+ S NURS=$S(+$P($G(^PSD(58.81,KK,1)),"^",7):+$P($G(^(1)),"^",7),1:+$P($G(^PSD(58.81,KK,1)),"^",3))
+ S NURS=$S($P($G(^VA(200,NURS,0)),"^")]"":$P(^(0),"^"),PSDPN="DISP W/O GS":"N/A",1:"UNKNOWN")
+ S ^TMP("PSDNU",$J,PSDRN,NAOUN,PSDPN,JJ)=QTY_"^"_NURS
+ S:'$D(^TMP("PSDNUT",$J,PSDRN)) ^TMP("PSDNUT",$J,PSDRN)=0 S:'PSDOK ^TMP("PSDNUT",$J,PSDRN)=+^TMP("PSDNUT",$J,PSDRN)+1
+ S:'$D(^TMP("PSDNUQT",$J,PSDRN)) ^TMP("PSDNUQT",$J,PSDRN)=0 S ^TMP("PSDNUQT",$J,PSDRN)=+^TMP("PSDNUQT",$J,PSDRN)+QTY
+ S:'$D(^TMP("PSDNUS",$J,PSDRN,NAOUN)) ^TMP("PSDNUS",$J,PSDRN,NAOUN)=0 S:'PSDOK ^TMP("PSDNUS",$J,PSDRN,NAOUN)=+^TMP("PSDNUS",$J,PSDRN,NAOUN)+1
+ S:'$D(^TMP("PSDNUQ",$J,PSDRN,NAOUN)) ^TMP("PSDNUQ",$J,PSDRN,NAOUN)=0 S ^TMP("PSDNUQ",$J,PSDRN,NAOUN)=+^TMP("PSDNUQ",$J,PSDRN,NAOUN)+QTY
+ S:'$D(^TMP("PSDNUG",$J)) ^TMP("PSDNUG",$J)=0 S:'PSDOK ^TMP("PSDNUG",$J)=+^TMP("PSDNUG",$J)+1
+ S PSDOK=0
+ Q

@@ -1,0 +1,27 @@
+PSDTRN1 ;BIR/JPW-Transfer Stock NAOU to NAOU (cont'd) ; 23 Jun 93
+ ;;3.0; CONTROLLED SUBSTANCES ;;13 Feb 97
+TO ;loops through local array to obtain NAOU transferring to
+ F LOOP=1:1:($L(NAOUT,",")-1) S NAOU=$P(NAOUT,",",LOOP) D FROM
+MSG ;sends message information
+ K XMY,^TMP("PSDNTR",$J)
+ S XMDUZ="CONTROLLED SUBSTANCES PHARMACY",XMY(PSDUZ)="",XMSUB="CS PHARM NAOU STOCK TRANSFER",^TMP("PSDNTR",$J,1,0)="Stock Drugs from "_$P(^PSD(58.8,NSF,0),"^")_" have been transferred into: "
+ F LOOP=1:1:($L(NAOUT,",")-1) S NAOU=$P(NAOUT,",",LOOP),^TMP("PSDNTR",$J,(LOOP+1),0)=$P(^PSD(58.8,NAOU,0),"^")
+ S:'$D(XMY) XMY(.5)="" S XMTEXT="^TMP(""PSDNTR"",$J," D ^XMD K XMY,^TMP("PSDNTR",$J)
+END K DA,DIC,DIE,DINUM,LOC,LOOP,MTR,NAOU,NAOUT,NSF,PSDR,PSDUZ,STK,TYP,X,XMDUZ,XMSUB,XMTEXT,Y
+ S:$D(ZTQUEUED) ZTREQ="@"
+ Q
+FROM ;finds drugs and sets data transfer
+ F PSDR=0:0 S PSDR=$O(^PSD(58.8,NSF,1,PSDR)) Q:'PSDR  D
+ .Q:'$D(^PSD(58.8,NSF,1,PSDR,0))
+ .Q:$P($G(^PSDRUG(PSDR,2)),"^",3)'["N"
+ .I $P(^PSD(58.8,NSF,1,PSDR,0),"^",14)]"",$P(^(0),"^",14)'>DT Q
+ .I '$D(^PSD(58.8,NAOU,1,0)) S ^(0)="^58.8001IP^^"
+ .Q:$D(^PSD(58.8,NAOU,1,PSDR,0))
+ .K DA,DIC,DIE,DR S DA(1)=NAOU,DIC(0)="L"
+ .S (DIC,DIE)="^PSD(58.8,"_NAOU_",1,",(X,DINUM)=PSDR K DD,DO
+ .D FILE^DICN K DIC
+ .I MTR'=1 S LOC=$P(^PSD(58.8,NSF,1,PSDR,0),"^",2),STK=$P(^(0),"^",3),DA=PSDR,DA(1)=NAOU,DR="1///"_LOC_";2///"_STK D ^DIE K DIE
+ .I MTR=3,'$D(^PSD(58.8,NSF,1,PSDR,2,0)) Q
+ .I MTR=3,'$D(^PSD(58.8,NAOU,1,PSDR,2,0)) S ^(0)="^58.800116PA^^"
+ .I MTR=3 F TYP=0:0 S TYP=$O(^PSD(58.8,NSF,1,PSDR,2,TYP)) Q:'TYP  S DA(1)=PSDR,DA(2)=NAOU,DIC="^PSD(58.8,"_NAOU_",1,"_PSDR_",2,",DIC(0)="L",(X,DINUM)=TYP K DD,DO D FILE^DICN K DIC
+ Q

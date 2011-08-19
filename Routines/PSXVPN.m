@@ -1,0 +1,40 @@
+PSXVPN ;BIR/WRT-Report of Local drugs with the same VA Print Name ;[ 10/19/98  8:55 AM ]
+ ;;2.0;CMOP;**18,19,23**;11 Apr 97
+ ;Reference to ^PSDRUG( supported by DBIA #1983
+TEXT W !!,"This option will produce a report to help you review your NDF matches.",!
+ W "The report will group drugs together that are matched to the same VA Print",!,"Name along with the VA Dispense Unit. These will be used for CMOP purposes.",!,"You may queue the report to print, if you wish.",!!
+DVC K IO("Q"),%ZIS,POP,IOP S %ZIS="QM",%ZIS("B")="",%ZIS("A")="DEVICE: " D ^%ZIS G:POP DONE W:$E(IOST)'="P" !!,"This report must be run on a printer.",!! G:$E(IOST)'="P" DVC I POP K IOP,POP,IO("Q") Q
+QUEUE I $D(IO("Q")) K IO("Q") S ZTRTN="ENQ^PSXVPN" K ZTSAVE,ZTDTH,ZTSK S PSXDEV=ION_";"_IOST_";"_IOM_";"_IOSL,ZTSAVE("PSXDEV")="",ZTSAVE("PSXANS")="",ZTDESC="CMOP Local Drugs with same VA Print Name Report",ZTIO=""
+ I  D ^%ZTLOAD K MJT,%ZIS,POP,IOP,ZTSK D ^%ZISC Q
+ENQ ;Called by Taskman to run report of Local drugs with same name report
+ D LOOP
+ I $D(ZTQUEUED) D QUEUE1
+ U IO
+ENQ1 S PSXPGCT=0,PSXPGLNG=IOSL-6
+ D TITLE,LOOP1 W @IOF G DONE
+TITLE I $D(IOF),IOF]"" W @IOF S PSXPGCT=PSXPGCT+1
+ W !,?10,"LOCAL DRUGS MATCHED TO THE SAME VA PRINT NAME",!
+ S X="T" D ^%DT X ^DD("DD") W ?55,"Date printed: ",Y,!?55,"Page: ",PSXPGCT,!
+ W !,"VA PRINT NAME",?55,"VA DISPENSE UNIT",!,?5,"Local GENERIC NAME",?60,"Local DISPENSE UNIT",!
+ F MJT=1:1:80 W "-"
+ Q
+DONE S:$D(ZTQUEUED) ZTREQ="@" K ^TMP($J),PSXB,PSXFLG,PSXAME,PSXCMOP,PSXDN,PSXDP,PSXLDP,PSXGN,PSXLLDP,PSXNDP,PSXNVP,PSXPGCT,PSXPGLNG,ZTRTN,Y,PSXDEV,MJT,PSXLOC,PSXVAP,PSXVP,X,IOP,POP,IO("Q") W:$Y @IOF D ^%ZISC
+ Q
+QUEUE1 S IOP=PSXDEV F  D ^%ZIS Q:'POP  H 20
+ Q
+LOOP F PSXB=0:0 S PSXB=$O(^PSDRUG(PSXB)) Q:'PSXB  I '$D(^PSDRUG(PSXB,"I")),$D(^PSDRUG(PSXB,2)),$P(^PSDRUG(PSXB,2),"^",3)["O",$D(^PSDRUG(PSXB,"ND")),$P(^PSDRUG(PSXB,"ND"),"^",2)]"" D GETVPN
+ Q
+GETVPN K PSXCS S PSXCS=$P($G(^PSDRUG(PSXB,0)),"^",3) I $G(PSXCS)[1!$G(PSXCS)[2 K PSXCS Q
+ S PSXDN=^PSDRUG(PSXB,"ND"),PSXGN=$P(PSXDN,"^",1),PSXVP=$P(PSXDN,"^",3)
+ S ZX=$$PROD2^PSNAPIS(PSXGN,PSXVP),PSXVAP=$P($G(ZX),"^"),PSXDP=$P($G(ZX),"^",4) K ZX D NOTNUL
+ Q
+NOTNUL I PSXVAP]"" S:$D(^PSDRUG(PSXB,660)) PSXLDP=$P(^PSDRUG(PSXB,660),"^",8) D TMP
+ Q
+TMP S ^TMP($J,"PSXVP",PSXVAP,PSXB)=PSXDP_"^"_PSXLDP
+ Q
+LOOP1 S PSXNVP="" F  S PSXNVP=$O(^TMP($J,"PSXVP",PSXNVP)) Q:PSXNVP=""  S PSXFLG=1 D LOOP2
+ Q
+LOOP2 F PSXLOC=0:0 S PSXLOC=$O(^TMP($J,"PSXVP",PSXNVP,PSXLOC)) Q:'PSXLOC  S PSXNDP=$P(^TMP($J,"PSXVP",PSXNVP,PSXLOC),"^",1),PSXLLDP=$P(^TMP($J,"PSXVP",PSXNVP,PSXLOC),"^",2),PSXAME=$P(^PSDRUG(PSXLOC,0),"^",1) D WRITE
+ Q
+WRITE D:$Y>PSXPGLNG TITLE W:PSXFLG !,PSXNVP,?55,PSXNDP S PSXFLG=0 W !,?5,PSXAME,?60,PSXLLDP,!
+ Q

@@ -1,0 +1,105 @@
+IBCOPV ;ALB/LDB,TMP - ROUTINE TO LIST PATIENT VISITS ;30 APR 90
+ ;;2.0;INTEGRATED BILLING;**27,91,106,124,174,260**;21-MAR-94
+ ;
+ ;MAP TO DGCROPV ... input IBIFN
+ ;
+ N DGNO,DGNO1,IBCBK,IBVAL,IBZ,IBPB,IBOE,IBOE0
+ S IBCOPV=^DGCR(399,IBIFN,"U"),IBCOPV1=$P(IBCOPV,"^"),IBCOPV2=$P(IBCOPV,"^",2) Q:'(IBCOPV1+IBCOPV2)
+ S (DGCNT,DGU)=0 K DGCPT,^UTILITY($J),DGNOD
+ ;
+ S IBVAL("DFN")=DFN,IBVAL("BDT")=IBCOPV1,IBVAL("EDT")=IBCOPV2+.9999
+ S IBCBK="I '$P(Y0,U,6) S ^TMP(""IBOE"",$J,+$P(Y0,U,8),Y)=Y0"
+ K ^TMP("IBOE",$J)
+ S DGNO1=1
+ D SCAN^IBSDU("PATIENT/DATE",.IBVAL,"",IBCBK,1) K ^TMP("DIERR",$J)
+ F IBZ=9,13 S IBCK(IBZ)=""
+ K ^TMP("IBVIS",$J)
+ S IBZ=0 F  S IBZ=$O(^TMP("IBOE",$J,IBZ)) Q:'IBZ  S IBOE=0 F  S IBOE=$O(^TMP("IBOE",$J,IBZ,IBOE)) Q:'IBOE  S IBOE0=$G(^(IBOE)) D
+ . K IBPB
+ . S IBEP=$$BILLCK^IBAMTEDU(IBOE,IBOE0,.IBCK,.IBPB)
+ . I IBEP D CHK(IBOE,IBOE0,.DGNO1)
+ . S ^TMP("IBVIS",$J,+$P(IBOE0,U,5))=""
+ K ^TMP("IBOE",$J),^TMP("IBVIS",$J)
+ D CNT,CNT399 K DIR
+ I 'DGCNT D NOVT^IBCOPV1 Q
+ D PRT^IBCOPV1
+ Q
+ ;
+CHK(IBOE,IBOE0,DGNO1) ;
+ N IBZ,DGFIL,DFN,I,DGNOD
+ S DGFIL=$P("2^409.5^2.101^",U,+$P(IBOE0,U,8)),DFN=$P(IBOE0,U,2),I=+IBOE0
+ ;
+ Q:'DGFIL
+ I '$$BDSRC^IBEFUNC3($P(IBOE0,U,5)) Q  ; non-billable visit data source
+ ;
+ I '$D(^TMP("IBVIS",$J,+$P(IBOE0,U,5))) D  ;Process visit CPT's only once
+ .N I,I2,I7,IBCPT,IBCPTS,IBZERR
+ .D GETCPT^SDOE(IBOE,"IBCPTS","IBZERR")
+ .Q:'$O(IBCPTS(0))  ;No procedures for this encounter
+ .S I7=IBOE0\1
+ .S I2=0 F  S I2=$O(IBCPTS(I2)) Q:'I2  D
+ .. N Z
+ .. S IBCPT=$P(IBCPTS(I2),U)
+ .. F Z=1:1:$P(IBCPTS(I2),U,16) D
+ ... I $L($G(^UTILITY($J,"CPT",I7,DGNO1)))+$L(IBCPT)+1>140 S DGNO1=DGNO1+1
+ ... S ^UTILITY($J,"CPT",I7,DGNO1)=$G(^UTILITY($J,"CPT",I7,DGNO1))_U_IBCPT
+ .S ^UTILITY($J,"CPT",0)="Y"
+ .;
+ .I $O(^UTILITY($J,"CPT",0)) S DGNO=0 F  S DGNO=$O(^UTILITY($J,"CPT",I7,DGNO)) Q:DGNO=""  S ^UTILITY($J,"CPT1",I7,DGNO)=^UTILITY($J,"CPT",I7,DGNO) D PROD^IBCOPV2
+ ;
+ N IBPRVS,IBPRV,IBI S IBPRV="" D GETPRV^SDOE(IBOE,"IBPRVS")
+ S IBI=0 F  S IBI=$O(IBPRVS(IBI)) Q:'IBI  I $P(IBPRVS(IBI),U,4)="P" S IBPRV=+IBPRVS(IBI) Q
+ ;
+ S DGNOD=IBOE0
+ D SET K DGNOD
+ Q
+ ;
+TYP ;Q:'$D(DGNOD)
+ ;K DGNO,DGTYP
+ ;I "479"'[$P(DGNOD,U,10) S DGNO=1 Q
+ ;I DGFIL=2,$P(DGNOD,U,10)=9 D  Q:$G(DGNO)
+ ;. I $P(DGNOD,U,10)=9 S DGTYP=$P(DGNOD,U,13)
+ ;. I $G(DGTYP),"^6^7^9^"[(U_$P($G(^DIC(8,DGTYP,0)),U,9)_U) S DGNO=1
+ ;I $G(DGTYP) S DGTYP=$E($P($G(^DIC(8,DGTYP,0)),"^"),1,3)
+ ;S:$G(DGTYP)="" DGTYP=$P(DGNOD,U,10)
+ ;S:DGTYP&(DGTYP<9) DGTYP=$E($P($G(^SD(409.1,+DGTYP,0)),U),1,3)
+ ;S DGTYP=$E(DGTYP,1,3)
+ ;;- If the code gets here, DGTYP will either be the first 3 charaters of the
+ ;;  appointment type name, the first 3 characters of the eligibility name or a 9
+ ;
+ ; appointment type must be:  4 - Employee, 7 - Collateral of Vet, 8 - Sharing Agreement, or 9 - Regular
+ ; appointment MAS eligibilty must not be:  6 - Other Federal Agency, or 7 - Allied Veteran
+ ;
+ ; if 9-regular or 8-sharing agreement then return appointment eligibilty, otherwise return appointment type
+ ;
+ Q:'$D(DGNOD)  K DGNO,DGTYP N IBZT,IBZE,IBZ
+ S DGTYP=""
+ S IBZT=$P(DGNOD,U,10) I "4789"'[IBZT S DGNO=1 Q
+ S IBZE=$P(DGNOD,U,13),IBZ=+$P($G(^DIC(8,+IBZE,0)),U,9) I +IBZ,"6^7"[IBZ S DGNO=1 Q
+ ;
+ I +IBZT,IBZT<8 S DGTYP=$E($P($G(^SD(409.1,+IBZT,0)),U,1),1,3)
+ I +IBZE,DGTYP="" S DGTYP=$E($P($G(^DIC(8,+IBZE,0)),U,1),1,3)
+ Q
+ ;
+SET S DGDT=$P(I,"."),DGDT1=$P(I,".",2)
+ D TYP,ELIG^IBCOPV2 Q:$D(DGNO)!('$D(DGNOD))
+ S:'$D(DGNO) ^UTILITY($J,"OPV",DGDT,DGDT1,DGFIL)=DGTYP_"^"_DGMT_"^"_$S($D(^UTILITY($J,"CPT",0))&(DGFIL=409.5):^UTILITY($J,"CPT",0),1:"")
+ S $P(^UTILITY($J,"OPV",DGDT,DGDT1,DGFIL),"^",6)=$S(DGCOD]"":DGCOD,1:"")
+ S $P(^UTILITY($J,"OPV",DGDT,DGDT1,DGFIL),"^",7)=$G(IBCODCL)
+ S $P(^UTILITY($J,"OPV",DGDT,DGDT1,DGFIL),"^",8)=$G(IBPRV)
+ S $P(^UTILITY($J,"OPV",DGDT,DGDT1,DGFIL),"^",9)=$G(IBOE)
+ Q:'$D(^DGCR(399,"AOPV",DFN,DGDT))
+BIL S DGBIL=0 N IBZ
+ F DGBIL1=1:1 S DGBIL=$O(^DGCR(399,"AOPV",DFN,I,DGBIL)) Q:'DGBIL  I $D(^DGCR(399,DGBIL,0)) D
+ . F B=1,7 S DGBIL(B)=$P(^DGCR(399,DGBIL,0),"^",B) I DGBIL(B)]"" D
+ .. I B=7 S IBZ=$P(^DGCR(399,DGBIL,0),"^",27),IBZ=$S(+IBZ=1:"-I",+IBZ=2:"-P",1:"")
+ .. I B=7,$D(^DGCR(399.3,DGBIL(B),0)) S DGBIL(B)=$P(^(0),"^",4) I IBZ'="" S DGBIL(B)=$E(DGBIL(B),1,6)_IBZ
+ .. S $P(^UTILITY($J,"OPV","AP",DGCNT),"^",$S((DGBIL1+B)=2:4,(DGBIL1+B)=8:5,(DGBIL1+B)<8:(DGBIL1+DGBIL1+2),1:(DGBIL1+DGBIL1+3)))=DGBIL(B)
+ Q
+ ;
+CNT F I=0:0 S I=$O(^UTILITY($J,"OPV",I)) Q:'I  S DGCNT=DGCNT+1,^UTILITY($J,"OPV","AP",DGCNT)=I D CHG^IBCOPV2,BIL
+ Q
+ ;
+CNT399 S DGCNT1=0 F I=0:0 S I=$O(^DGCR(399,IBIFN,"OP",I)) Q:'I  S DGCNT1=DGCNT1+1
+ Q
+ ;

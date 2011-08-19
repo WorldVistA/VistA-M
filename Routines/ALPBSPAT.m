@@ -1,0 +1,87 @@
+ALPBSPAT ;OIFO-DALLAS MW,SED,KC-SELECT AND SHOW PATIENT ORDER(S) ;01/01/03
+ ;;3.0;BAR CODE MED ADMIN;**8**;Mar 2004
+ ;
+EN ; -- main entry point for ALPB SELECT PATIENT
+ D EN^VALM("PSB SELECT PATIENT")
+ Q
+ ;
+HDR ; -- header code
+ S VALMHDR(1)="BCMA Backup System :: Patient Listing"
+ Q
+ ;
+INIT ; -- init variables and list array
+ K ^TMP("ALPBPLIST",$J)
+ I $G(ALPBLTYP)="" S ALPBLTYP="ALL"
+ D PTLIST^ALPBUTL1(ALPBLTYP,.ALPBLIST)
+ S (ALPBLINE,ALPBX)=0
+ F  S ALPBX=$O(ALPBLIST(ALPBX)) Q:'ALPBX  D
+ .S ALPBDATA=" "_$P(ALPBLIST(ALPBX),"^")
+ .S ALPBDATA=$$PAD^ALPBUTL(ALPBDATA,31)_$P(ALPBLIST(ALPBX),"^",2)
+ .S ALPBDATA=$$PAD^ALPBUTL(ALPBDATA,41)_$P(ALPBLIST(ALPBX),"^",3)
+ .I $P(ALPBLIST(ALPBX),"^",4)']"" S $P(ALPBLIST(ALPBX),"^",4)="Unknown"
+ .S ALPBDATA=$$PAD^ALPBUTL(ALPBDATA,60)_$P(ALPBLIST(ALPBX),"^",4)
+ .I $P(ALPBLIST(ALPBX),"^",5)']"" S $P(ALPBLIST(ALPBX),"^",5)="?"
+ .S ALPBDATA=$$PAD^ALPBUTL(ALPBDATA,70)_$P(ALPBLIST(ALPBX),"^",5)
+ .S ALPBLINE=ALPBLINE+1
+ .S ^TMP("ALPBPLIST",$J,ALPBLINE,0)=ALPBDATA
+ .K ALPBDATA
+ S VALMCNT=ALPBLINE
+ K ALPBLINE,ALPBLIST,ALPBLTYP
+ Q
+ ;
+HELP ; -- help code
+ S X="?" D DISP^XQORM1 W !!
+ Q
+ ;
+EXIT ; -- exit code
+ K ^TMP("ALPBPLIST",$J)
+ Q
+ ;
+EXPND ; -- expand code
+ Q
+ ;
+SELALL ; reset and list all patients...
+ S ALPBLTYP="ALL"
+ S VALM("TITLE")="BCMAbu Patient List (All)"
+ D INIT
+ Q
+ ;
+SELWARD ; select list type...
+ N ALPBSEL,DIR,DIRUT,DTOUT,X,Y
+ I $G(ALPBLTYP)="" S ALPBLTYP=""
+ D FULL^VALM1
+ D WARDLIST^ALPBUTL("C")
+ F  D  Q:$D(DIRUT)!($G(ALPBLTYP)'="")
+ .S DIR(0)="FAO^1:45"
+ .S DIR("A")="Select WARD: "
+ .S DIR("?")="^D WARDLIST^ALPBUTL(""C"")"
+ .W !
+ .D ^DIR K DIR
+ .I $D(DIRUT) Q
+ .D WARDSEL^ALPBUTL(Y,.ALPBSEL)
+ .I +$G(ALPBSEL(0))=0 D  Q
+ ..W $C(7)
+ ..W "  ?? -- not a valid ward selection"
+ .I +$G(ALPBSEL(0))=1 S ALPBLTYP=ALPBSEL(1) Q
+ .F I=1:1:ALPBSEL(0) W !?2,I," ",ALPBSEL(I)
+ .S DIR(0)="NA^1:"_ALPBSEL(0)
+ .S DIR("A")="Which one? (1-"_ALPBSEL(0)_")"
+ .D ^DIR K DIR
+ .I $D(DIRUT) Q
+ .S ALPBLTYP=ALPBSEL(+Y)
+ I $D(DIRUT) K DIRUT,DTOUT,X,Y Q
+ S VALM("TITLE")="BCMAbu Patient List (Ward)"
+ D INIT
+ I $G(VALMBG)'=1 D FIRST^VALM4
+ Q
+ ;
+SELPAT ; select patient...
+ N DIR,DIRUT,DTOUT,X,Y
+ S DIR(0)="PAO^53.7:QEMZ"
+ S DIR("A")="Select PATIENT: "
+ D ^DIR K DIR
+ I $D(DIRUT) K DIRUT,DTOUT,X,Y Q
+ S ALPBIEN=+Y
+ D ^ALPBSP1
+ K ALPBIEN
+ Q

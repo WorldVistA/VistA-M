@@ -1,0 +1,31 @@
+YTTLS ;SLC/DKG,SLC/TGA-LIST CODES & TITLES OF TESTS/INTERVIEWS ;3/14/91  13:27 ;
+ ;;5.01;MENTAL HEALTH;**17**;Dec 30, 1994
+ ;
+ S (YSLFT,T)=0 K Y D ENDTM^YSUTL S A=10,YSN="",B="TESTS" W @IOF D HD
+F ;
+ S (F,F1)=0,YSN=$O(^YTT(601,"ATN","T",YSN)) G:YSN="" H S T=$O(^(YSN,0))
+ S X=^YTT(601,T,0) G:$P(X,U,13)="N" F S T1=$P(X,U) S:$P(X,U,14)="N" F=1 S:$P(X,U,3)["Y" F1=1 D TITLE
+ I $Y+$S(IOST["P-":8,1:3)>IOSL D CK G:YSLFT FIN
+ W !?5,T1 W ?12 W:F "*" W:F1 "+"
+ I T1="NEOPI"!(T1="PAI") W ?16,N G F
+ E  W ?15,N G F
+H ;
+ S T=0,A=5,YSN="",B="INTERVIEWS" I $Y+8>IOSL D CK G:YSLFT FIN G G
+ W !! D HD
+G ;
+ S YSN=$O(^YTT(601,"ATN","I",YSN)) G:YSN="" FIN S T=$O(^(YSN,0)),X=^YTT(601,T,0) G:$P(X,U,13)="N" G S T1=$P(X,U) D TITLE
+ I $Y+$S(IOST["P-":8,1:3)>IOSL D CK G:YSLFT FIN
+ W !?5,T1,?15,N G G
+FIN ;
+ K A,B,F,J,I0,N,P,T,T1,X,YSN Q
+CK ;
+ D:IOST?1"C-".E WAIT^YSUTL Q:YSLFT  W @IOF
+HD ;
+ W !!?A,"LIST OF CURRENT ",B,",  ",YSDT(1),!!
+ Q
+ ;
+TITLE ;
+ S N=$P($G(^YTT(601,T,"P")),U)
+ I N["*" S N=$TR(N,"*","-")
+ S N=$S(N["---":$P(N,"---",2),$D(N):N,1:" TITLE MISSING")
+ Q

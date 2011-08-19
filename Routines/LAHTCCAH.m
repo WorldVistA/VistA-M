@@ -1,0 +1,18 @@
+LAHTCCAH ;SLC/DLG - HITACHI 717 THRU CCA SYSTEM PROTOCALL CONTROLLER  ;7/20/90  09:18 ;
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;;Sep 27, 1994
+ ;;
+ ;Call with T set to Instrument data is to/from
+ ; P1= RESET POINT FOR INCOMING RECORDS, P3=Reset point FOR RECORDS SENT
+ S:'$D(^LA(T,"P2")) ^("P2")=0,^("P")="IN"
+RCHK K LATYPE S LATYPE=$P(IN,"~",2),LATYPE=$S("BCDEFU"[LATYPE:LATYPE,1:"Z") D @LATYPE S T=T-BASE Q
+B S ^LA(T,"P2")=0 Q  ;RECIEVED STX
+C F I=1:1:$L(IN)-2 S LASUM=LASUM+$A(IN,I)
+ S ^LA(T,"P2")=LASUM#256 I $E(IN,1)="D" S ^LA(T,"P")="D"
+ Q
+D S ^LA(T,"P")="QUIT" Q  ;REC EOT
+E S ^LA(T,"P")="IN",OUT=$C(6),^LA(T,"P2")=0 Q  ;REC ENQ
+F S Q=^LA(T,"O",0)+1 I $D(^(Q)) S ^(0)=Q,OUT=^(Q) ;GOT ACK SEND NEXT
+ Q
+U S OUT=^LA(T,"O",0) Q  ;RECIEVED NAK RESEND
+Z S OUT=$S(($L(IN)=3&+IN=^LA(T,"P2")):$C(6),1:$C(21))
+ S ^LA(T,"P2")=0 I ^LA(T,"P")="D" S ^("P")="OUT",Q=^LA(T,"O",0)+1 I $D(^(Q)) S ^(0)=Q L ^LA("Q") S Q=^LA("Q")+1,^("Q")=Q,^("Q",Q)=T L

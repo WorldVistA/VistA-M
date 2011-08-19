@@ -1,0 +1,80 @@
+PSSCPRS1 ;BIR/ASJ-API for CPRS ;09/07/00
+ ;;1.0;PHARMACY DATA MANAGEMENT;**38**;9/30/97
+ ;Reference to $$CPRS^PSNAPIS supported by DBIA 2531
+ ;
+ ;PSDD -Dispense Drug, PSOI-Orderable Item, PSPK-Package
+ ;PSDOS-Dosage,        PSDUD-Dispense Units per Dosage
+ ;RESULT(1)=Dispense Drug^Dosage^Orderable Item^Dispense Units per Dosage
+ ;RESULT(2)=ERROR DESCRIPTION
+ ;
+ G:+PSDUD>0 ND
+ I 'PSSND1!('PSSND3) S RESULT(0)=-1,RESULT(2)="Problem in ND node!" Q
+ S X=$$DFSU^PSNAPIS(PSSND1,PSSND3) I $P(X,U,4)="" D NNSI Q
+ I $P(X,U)'="" D NNMI
+ Q
+ND ; I/P to O/P Transfer Rules - Numeric Dosages
+ ; 
+FR541 I '$P($G(^PSDRUG(+PSDD,"I")),"^")!($P($G(^("I")),"^")'<DT),(PSUSE["O") S RESULT(0)=1,RESULT(1)=PSDD_"^"_PSDOS,RESULT(2)="FR541" Q
+ ;
+ ;
+FR542 S PSCORR=$P(PSNODE8,U,5) I PSCORR I '$P($G(^PSDRUG(PSCORR,"I")),"^")!($P($G(^("I")),"^")'<DT) S PSNODE2=$G(^PSDRUG(PSCORR,2)) D CP D
+ .F PDS=0:0 S PDS=$O(^PSDRUG(PSCORR,"DOS1",PDS)) Q:'PDS  D
+ ..S PSDOS1=^PSDRUG(PSCORR,"DOS1",PDS,0),PDOS=$G(^PSDRUG(PSCORR,"DOS")),PSSTR=$P(PDOS,U),PSUNT=$P(PDOS,U,2)
+ ..I PSDOS'="",($P(PSDOS1,U,2)=PSDOS),($P(PSNODE2,U,3)["O")&($P(PSDOS1,U,3)["O") D
+ ...I $P(X,U,4)=$P(PSDOSN,U,2),$P(X,"^")=$P(X1,"^") S RESULT(0)=1,RESULT(1)=PSCORR_"^"_PSDOS,RESULT(2)="FR542" Q
+ Q:RESULT(0)=1
+ ;
+ ;
+FR543 S AA=0 F  S AA=$O(^PSDRUG("ASP",+PSOI,AA)) Q:'AA  D
+ .I $D(^PSDRUG(AA,"DOS1",0)) F PDS=0:0 S PDS=$O(^PSDRUG(AA,"DOS1",PDS)) Q:'PDS  D
+ ..S BB=^PSDRUG(AA,"DOS1",PDS,0),PSNODE2=$G(^PSDRUG(AA,2))
+ ..I PSDOS'="",($P(BB,U,2)=PSDOS)&($P(PSNODE2,U,3)["O")&($P(BB,U,3)["O") S FLAG=1,PSLI(AA)=""
+ ;
+ I FLAG S AA=0 F  S AA=$O(PSLI(AA)) Q:'AA  F PDS=0:0 S PDS=$O(^PSDRUG(AA,"DOS1",PDS)) Q:'PDS  D
+ .S POSDOS=^PSDRUG(AA,"DOS1",PDS,0) S PSDPD=+$P(POSDOS,U)
+ .I '$D(PSDUPD)!(PSDPD<PSDUPD) S PSDUPD=PSDPD
+ I FLAG S RESULT(0)=1,RESULT(1)=AA_"^"_$P(POSDOS,U,2),RESULT(2)="FR543",FLAG=0 Q
+ ;
+ ;
+FR544 S PSCORR=$P(PSNODE8,U,5) I PSCORR I '$P($G(^PSDRUG(PSCORR,"I")),"^")!($P($G(^("I")),"^")'<DT) D CP D
+ .I $P(X,U,4)=$P(PSDOSN,U,2),$P(X,"^")=$P(X1,"^") S RESULT(0)=1,RESULT(1)=PSDD
+ Q:RESULT(0)=1
+ ;
+ ;
+FR545 S RESULT(0)=-1,RESULT(2)="All Numeric Dosage Rules failed!"
+ Q
+ ;
+ ;
+NNSI ; I/P to O/P Transfer Rules- NON-NUMERIC Single Ingredient 
+ ;
+FR551 I '$P($G(^PSDRUG(+PSDD,"I")),"^")!($P($G(^("I")),"^")'<DT),(PSUSE["U")&(PSUSE["O") S RESULT(0)=1,RESULT(1)=PSDD_"^"_PSDOS_"^"_PSOI_"^"_PSDUD Q
+ ;
+ ;
+FR552 I PSUSE'["U",(PSUSE'["O") S PSCORR=$P(PSNODE8,U,5) I PSCORR I '$P($G(^PSDRUG(PSCORR,"I")),"^")!($P($G(^("I")),"^")'<DT) D CP D  Q:RESULT(0)=1
+ .S PDOS=$G(^PSDRUG(PSCORR,"DOS")),PSSTR=$P(PDOS,U),PSUNT=$P(PDOS,U,2)
+ .I (PSSTR'="")&(PSUNT'=""),(PSSTR=PSNDSTR)&(PSUNT=PSNDUN) D
+ ..I $P(X,U,4)=$P(PSDOSN,U,2),$P(X,"^")=$P(X1,"^") S RESULT(0)=1,RESULT(1)=PSCORR_"^"_PSDOS_"^"_PSOI_"^"_PSDUD
+ ;
+ ;
+FR553 S AA=0 F  S AA=$O(^PSDRUG("ASP",+PSOI,AA)) Q:'AA  D
+ .S PSSTR=$P($G(^PSDRUG(AA,"DOS")),U),PSUNT=$P($G(^("DOS")),U,2)
+ .S X=$$CPRS^PSNAPIS(PSSND1,PSSND3)
+ .S PSNDSTR=$P(X,U,3),PSNDUN=$P(X,U,4)
+ .I (PSSTR'="")&(PSUNT'=""),(PSSTR=PSNDSTR)&(PSUNT=PSNDUN) S RESULT(0)=1,RESULT(1)=AA_"^"_PSDOS_"^"_PSOI_"^"_PSDUD
+ Q:RESULT(0)=1
+ ;
+FR554 S RESULT(0)=-1
+ Q
+ ;
+NNMI ; I/P to O/P Transfer Rules- Multi-Ingredient
+ ;
+FR561 I '$P($G(^PSDRUG(+PSDD,"I")),"^")!($P($G(^("I")),"^")'<DT),(PSUSE["U")&(PSUSE["O") S RESULT(0)=1,RESULT(1)=PSDD_"^"_PSDOS_"^"_PSOI_"^"_PSDUD Q
+ ;
+ ;
+FR562 I PSUSE'["U",(PSUSE'["O") S PSCORR=$P(PSNODE8,U,5) I PSCORR I '$P($G(^PSDRUG(PSCORR,"I")),"^")!($P($G(^("I")),"^")'<DT) D CP D
+ .I $P(X,U,4)=$P(PSDOSN,U,2),$P(X,"^")=$P(X1,"^") S RESULT(0)=1,RESULT(1)=PSCORR_"^"_PSOD_"^"_PSSOP_"^"_PSDUD
+ Q
+CP ;
+ S PSND=$G(^PSDRUG(PSCORR,"ND")) S X=$$CPRS^PSNAPIS($P(PSND,"^"),$P(PSND,"^",3)),PSNDSTR=$P(X,U,3),PSNDUN=$P(X,U,4)
+ S PSDOSN=$G(^PSDRUG(PSDD,"DOS")),X1=$$CPRS^PSNAPIS(PSSND1,PSSND3)
+ Q

@@ -1,0 +1,56 @@
+VAQ1 ;ALB/JRP - INIT/ONIT DRIVER FOR PATCH 7;08-AUG-94
+ ;;1.5;PATIENT DATA EXCHANGE;**7**;NOV 17, 1993
+PATCH7 ;ENTRY POINT FOR PATCH NUMBER 7
+ ;  REFER TO VAQ*1.5*7 IN NATIONAL PATCH MODULE FOR FURTHER DETAILS
+ ;
+ ;DECLARE VARIABLES
+ N LINE2,PATCHES,PATCHED,TMP,ROUTINE,STOP,DASHES,DATE,TIME
+ S DASHES=$$REPEAT^VAQUTL1("-",79)
+ ;PRINT HEADER
+ S TMP=$$NOW^VAQUTL99()
+ S DATE=$TR($P(TMP,"@",1),"-","/")
+ S TIME=$P(TMP,"@",2)
+ S TMP="  "_DATE_" @ "_TIME
+ S TMP=$$INSERT^VAQUTL1(TMP,DASHES,(79-$L(TMP)+1))
+ W !!,$$INSERT^VAQUTL1("VAQ*1.5*7  ",TMP,1)
+ S TMP="Details of this installation may be obtained from the National Patch Module"
+ W !!,$$INSERT^VAQUTL1(TMP,"",(40-($L(TMP)\2)))
+ S TMP="under the entry VAQ*1.5*7 (patch # 7 for version 1.5 of PDX)."
+ W !,$$INSERT^VAQUTL1(TMP,"",(40-($L(TMP)\2)))
+ W !!,DASHES,!!
+ S STOP=0
+ ;CHECK MAIN INIT & ONIT ROUTINES
+ F ROUTINE="VAQ1INIT","VAQONIT" D
+ .;GET SECOND LINE OF ROUTINE
+ .S LINE2=$$SECOND^VAQPST31(ROUTINE,1)
+ .I (LINE2="") D  Q
+ ..W $C(7),!,"*** Routine ",ROUTINE," does not exist ***"
+ ..S STOP=1
+ .;MAKE SURE PATCH SEVEN HAS BEEN APPLIED
+ .S PATCHES=$P(LINE2,";",3)
+ .S PATCHES=$TR(PATCHES,"*","")
+ .S PATCHES=$TR(PATCHES," ","")
+ .S PATCHED=0
+ .F TMP=1:1:$L(PATCHES,",") I ($P(PATCHES,",",TMP)=7) S PATCHED=1 Q
+ .I ('PATCHED) D  Q
+ ..W $C(7),!,"*** Patch 7 has not been applied to routine ",ROUTINE," ***"
+ ..S STOP=1
+ ;INSTALLATION HALTED
+ I (STOP) D  Q
+ .W $C(7),!!,"*** Installation of VAQ*1.5*7 halted ***",!!
+ ;INSTALL MODIFIED MENU OPTIONS
+ D ^VAQ1INIT
+ ;RE-INSTALL PROTOCOLS
+ W !!!
+ D ^VAQONIT
+ ;PRINT FOOTER
+ W !!,DASHES
+ S TMP="Installation of patch number 7 completed"
+ W !!,$$INSERT^VAQUTL1(TMP,"",(40-($L(TMP)\2)))
+ S TMP=$$NOW^VAQUTL99()
+ S DATE=$TR($P(TMP,"@",1),"-","/")
+ S TIME=$P(TMP,"@",2)
+ S TMP="  "_DATE_" @ "_TIME
+ S TMP=$$INSERT^VAQUTL1(TMP,DASHES,(79-$L(TMP)+1))
+ W !!,$$INSERT^VAQUTL1("VAQ*1.5*7  ",TMP,1)
+ Q

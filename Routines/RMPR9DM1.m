@@ -1,0 +1,28 @@
+RMPR9DM1 ;HOIFO/HNC - GUI 2319 MAS DISABILITY AND PERCENT ;9/18/02  17:01
+ ;;3.0;PROSTHETICS;**59**;Feb 09, 1996
+A1(IEN) G A2
+ENR(DFN) ;entry point for roll and scroll
+ G ENC
+EN(RESULTS,IEN) ;broker entry point
+A2 ;
+ S DFN=$P($G(^RMPR(668,IEN,0)),U,2)
+ I DFN="" S RESULTS(0)="NOTHING FOUND" G EXIT
+ ;new code
+ENC ;roll and scroll starts here
+ K RA
+ D GETS^DIQ(2,DFN,".3721*","E","RA")
+ I '$D(RA) G EXIT
+ ;RA(2.04,"1,110,",.01,"E")=GOUT
+ ;RA(2.04,"1,110,",2,"E")=10
+ ;RA(2.04,"1,110,",3,"E")=YES
+ S CNT=1,REC=0
+ F  S REC=$O(RA(2.04,REC)) Q:REC=""  D
+ .S RESULTS(CNT)=RA(2.04,REC,.01,"E")_U
+ .S RESULTS(CNT)=RESULTS(CNT)_$G(RA(2.04,REC,2,"E"))_U
+ .S RESULTS(CNT)=RESULTS(CNT)_$G(RA(2.04,REC,3,"E"))
+ .S CNT=CNT+1
+ ;
+EXIT ;common exit point
+ I '$D(RESULTS) S RESULTS(0)="NOTHING FOUND"
+ K RA,IEN,REC,DFN
+ ;END

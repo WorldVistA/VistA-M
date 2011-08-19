@@ -1,0 +1,15 @@
+PRCTMAN ;WISC@ALTOONA/RGY-MANUAL SCHEDULE DATA TO BE PROCESSED ;9-6-90/10:44
+ ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ S DIC="^PRCT(446.4,",DIC(0)="QEAM" D ^DIC G:+Y<0 Q5 S:'$D(^PRCT(446.4,+Y,2,0)) ^(0)="^446.42DI^^" S (DA(1),PRCTID)=+Y,DIC=DIC_PRCTID_",2," D ^DIC G:+Y<0 Q5 S PRCTTI=+Y
+ W !!,"Current Status is: ",$P(^PRCT(446.4,PRCTID,2,PRCTTI,0),"^",3)
+ S X="Are you sure you want to reschedule this data to process ?^Y" D ENYN^PRCTQUES I X="^"!'X W !,"OK, nothing scheduled !",! G Q5
+ S ZTDTH=-1 D TASK^PRCTREAD
+Q5 K DIC,DA,%DT,%DT("A"),%DT("B"),%T,ZTSK Q
+DEQUE ;
+ S PRCT=$S('$D(PRCTID):0,$D(^PRCT(446.4,PRCTID,0))#2:^(0),1:0) G:PRCT=0 Q4 G:$S('$D(PRCTTI):1,1:'$D(^PRCT(446.4,PRCTID,2,PRCTTI,0))#2) Q4
+ I $P(PRCT,"^",4)="" D TIME S $P(^PRCT(446.4,PRCTID,2,PRCTTI,0),"^",3)="RTN FLD IS MISSING"_Y G Q4
+ S X=$P(PRCT,"^",4) D RTN^PRCTUTL I '$D(X) D TIME S $P(^PRCT(446.4,PRCTID,2,PRCTTI,0),"^",3)="RTN IS MISSING"_Y G Q4
+ D TIME S X=$P(PRCT,"^",4),$P(^PRCT(446.4,PRCTID,2,PRCTTI,0),"^",3)="STARTED ON"_Y D @($P(X,"-")_"^"_$P(X,"-",2)),TIME S:$E($P(^PRCT(446.4,PRCTID,2,PRCTTI,0),"^",3),1,11)="STARTED ON-" $P(^(0),"^",3)="FINISHED ON"_Y
+Q4 K PRCT,PRCTID,PRCTTI Q
+TIME D NOW^%DTC S Y=% D DD^%DT S Y="-"_Y Q

@@ -1,0 +1,27 @@
+XTLKTICD ; IHS/OHPRD/ACC,ALB/JLU,SFISC/JC- DRIVER ROUTINE FOR ICD LOOKUP UTILITY ;04/06/95  14:19
+ ;;7.3;TOOLKIT;;Apr 25, 1995
+ ;
+KL K XTLKX,XTLKY,XTLKPF,XTLKUT,DIC,XTLKWD2 Q
+ ;
+A D QU^XTLKEFOP()
+ I '$D(XTLKY) D KL Q
+ W !,"NARRATIVE: " R XTLKX:DTIME I $D(XTLKX) D LKUP^XTLKMGR(+XTLKY,XTLKX)
+ D KL
+ Q
+ ;K XTLKUT S DIC("A")="NARRATIVE: ",DIC=+XTLKY,DIC(0)="AEMQ" D ^DIC,KL Q
+ ;
+COMMON W ! F Q=0:0 R "NARRATIVE: ",X:$S($D(DTIME):DTIME,1:300) S:'$T X="^" Q:"^"[X  W:X?.E1C.E $C(7)," -- NO CONTROL CHARACTERS ALLOWED!",! D:X'?.E1C.E LOOKUP
+ W !
+ K XTLKTTYP,Q
+ Q
+ ;
+ ;;;Everything from LOOKUP and under is from old logic. Kept in only
+ ;;;because it might be needed or wanted again.
+LOOKUP ;
+ ;;;I X="^SYN" S DIE="^XTLKKWLC(",DR=".011:999",DA=$O(^XTLKKWLC("B",XTLKTTYP,"")) D ^DIE W ! Q
+ K DIC I +XTLKTTYP=80!(+XTLKTTYP=80.1) S DIC("S")="I $P(^(0),""^"",9)=""""" ; SCREEN OUT INACTIVE CODES
+ S:+XTLKTTYP=80 DIC("S")=DIC("S")_",'(+^(0)>300&+^(0)<400&($L($P($P(^(0),""^"",1),""."",2))=3))"
+ S:+XTLKTTYP=80.1 DIC("S")=DIC("S")_",'($L($P($P(^(0),""^"",1),""."",2))=3)"
+ I X'?1N.E,X'?1"E"1N.E,X'?1"V"1N.E,X'?1"."1N.N G NARR
+CODE ;;;S DIC=$S($E(XTLKTTYP)="D":80,1:80.1),DIC(0)="EQMZ" D ^DIC W ! Q
+NARR ;;;W ! G ICDDX^XTLKKWLD:$E(XTLKTTYP)="D",ICDOP^XTLKKWLD

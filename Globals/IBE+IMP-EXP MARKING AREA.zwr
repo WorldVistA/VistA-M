@@ -1,0 +1,7 @@
+IMP/EXP MARKING AREA
+ZWR
+^IBE(358.91,0)="IMP/EXP MARKING AREA^358.91^2^2"
+^IBE(358.91,1,0)="BUBBLE (use for scanning)^[ ]^1^1"
+^IBE(358.91,2,0)="TWO SPACES^  ^1"
+^IBE(358.91,"B","BUBBLE (use for scanning)",1)=""
+^IBE(358.91,"B","TWO SPACES",2)=""

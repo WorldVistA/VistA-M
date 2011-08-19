@@ -1,0 +1,101 @@
+RMPR4P22 ;PHX/HNC/RVD-CONT PURCHASE CARD ;3/1/1996
+ ;;3.0;PROSTHETICS;**3,20,26,90,115,132**;Feb 09, 1996;Build 13
+ S RO=0,J2=0 F I=1:1 S RO=$O(R664(1,RO)) Q:RO'>0  D  Q:$D(J1)
+ .I I>2 S J1=1 W !!,?9,"***SEE ATTACHED CONTINUATION SHEET FOR ITEM DESCRIPTION(S)***",! Q
+ .I $D(R664(1,RO,1,0)) S RP=0 F J=1:1 S RP=$O(R664(1,RO,1,RP)) Q:RP=""  S J2=J2+1 D  Q:$D(J1)
+ ..I J2+I>2 S J1=1 W !!,?9,"***SEE ATTACHED CONTINUATION SHEET FOR ITEM DESCRIPTION(S)***",! Q
+ .Q:$D(J1)
+ .S RMPRCNT=0
+ .S RMPRSSM(1)=$P($G(R664(1,RO,0)),U,15)
+ .S RMPRSSM(2)=$P($G(R664(1,RO,2)),U,1)
+ .S RMPRSSM(3)=$P($G(R664(1,RO,2)),U,2)
+ .S RMPRSSM(4)=$P($G(R664(1,RO,2)),U,3)
+ .F II=1:1:4 S:RMPRSSM(II)'="" RMPRCNT=RMPRCNT+1
+ .K II I J2+I+(RMPRCNT+1\2)>2 S J1=1 W !!,?9,"***SEE ATTACHED CONTINUATION SHEET FOR ITEM DESCRIPTION(S)***",!
+ D ADD
+ S RO=0 F  S RO=$O(R664(1,RO)) Q:RO'>0  D:'$D(RMPRMOR)&($Y>36) CONT D:$D(RMPRMOR)&($Y>56) CONT D:'$D(RMPRMOR) ADD D START
+ I '$D(RMPRMOR)&($Y<37) F  W ! Q:$Y>36
+ Q
+START W !,"#"_RO_"."
+ S RMPRI=$S($P(R664(1,RO,0),U,7)'="":$P(R664(1,RO,0),U,7),1:$P(R664(1,RO,0),U,3))
+ W ?4,$P(R664(1,RO,0),U,2)
+ W ?50,$J($P(R664(1,RO,0),U,4),6) S RMPRUT=$P(R664(1,RO,0),U,5) W:$D(^PRCD(420.5,+RMPRUT,0)) ?61,$P(^PRCD(420.5,+RMPRUT,0),U,1),?65,$J($FN(RMPRI,"P",2),6)
+ZWE S RMPRTOT=RMPRI*$P(R664(1,RO,0),U,4) W ?72,$J($FN(RMPRTOT,"P",2),8) D EXT
+ Q
+EXT ;CHECKING FOR EXTENDED DESCRIPTION
+ ;serial number
+ N RMPRCNT,RMPRSSM,LNCT
+ S RMPRCNT=0,LNCT=0
+ S RMPRSSM(1)=$P($G(R664(1,RO,0)),U,15)
+ S RMPRSSM(2)=$P($G(R664(1,RO,2)),U,1)
+ S RMPRSSM(3)=$P($G(R664(1,RO,2)),U,2)
+ S RMPRSSM(4)=$P($G(R664(1,RO,2)),U,3)
+ I RMPRSSM(1)'="" D
+ .I LNCT#2=0 D:$D(RMPRMOR)&($Y>56) CONT W !
+ .W "    Serial Number: "_RMPRSSM(1) S LNCT=LNCT+1
+ I RMPRSSM(4)'="" D
+ .I LNCT#2=0 D:$D(RMPRMOR)&($Y>56) CONT W !
+ .W "    Lot #: "_RMPRSSM(4) S LNCT=LNCT+1
+ I RMPRSSM(3)'="" D
+ .I LNCT#2=0 D:$D(RMPRMOR)&($Y>56) CONT W !
+ .W "    Model: "_RMPRSSM(3) S LNCT=LNCT+1
+ I RMPRSSM(2)'="" D
+ .I LNCT#2=0 D:$D(RMPRMOR)&($Y>56) CONT W !
+ .W "    Make: "_RMPRSSM(2)
+ K RMPRSSM,RMPRCNT,LNCT
+ ;
+ S RMPRCH=$G(R664(1,RO,1,0))
+ I RMPRCH="" Q
+ ;S (RMPR90,RMPRX)=$Q(R664(1,RO,0,0))
+ ;S RMPRX=$E(RMPRX,1,10)
+ ;Q:RMPR90=""
+ S RMPR90=0
+ F  S RMPR90=$O(R664(1,RO,1,RMPR90)) Q:RMPR90=""  D
+ .D:$D(RMPRMOR)&($Y>56) CONT
+ .D:'$D(RMPRMOR)&($Y>36) CONT
+ .W !,R664(1,RO,1,RMPR90,0)
+ ;F  S RMPR90=$Q(@RMPR90) Q:RMPRX'=$E(RMPR90,1,10)  D:$D(RMPRMOR)&($Y>57) CONT D:'$D(RMPRMOR)&($Y>36) CONT
+ ;D WRI
+ Q
+WRI ;CONTINUATION OF 10-2421
+ W !,@RMPR90
+ Q
+CONT D:'$D(RMPRMOR) CON
+ I $G(RMPRMOR)=1 W !!,?9,"***CONTINUATION OF PURCHASE CARD ITEMS ON NEXT PAGE***"
+ W @IOF,!,"CONTINUATION OF PURCHASE CARD ",?27,"ORDER NUMBER: ",$P($G(^RMPR(664,RMPRA,4)),U,5),?71,"PAGE ",RMPRPAGE S RMPRMOR=1,RMPRPAGE=RMPRPAGE+1 D HDR^RMPR4P21
+ Q
+ADD S (RMPRAMT2,RMPRAMT,RMPRAMT1,RMPRAMTN)=0
+ S RMSHI=$S($P(R664(0),U,11)'="":$P(R664(0),U,11),1:$P(R664(0),U,10))
+ S RC=0 F  S RC=$O(R664(1,RC)) Q:RC=""!(RC["B")  S RMPRI=$S($P(R664(1,RC,0),U,7)'="":$P(R664(1,RC,0),U,7),1:$P(R664(1,RC,0),U,3)) D ADD1
+ I $D(R664(2)) S RMPRDISC=$S($P(R664(2),U,6)'="":$P(R664(2),U,6),1:"") I $D(RMPRDISC) S RMPRAMT2=$J(RMPRDISC*RMPRAMT/100,0,2),RMPRAMTN=RMPRAMT-$J(RMPRAMT2,0,2),RMPRAMTN=$J(RMPRAMTN+RMSHI,0,2) Q
+ Q
+ADD1 S RMPRAMT1=$J($P(R664(1,RC,0),U,4)*RMPRI,0,2) S RMPRAMT=RMPRAMT+RMPRAMT1 Q
+CON ;CONTINUATION OF 2421
+ W !,RMPRB,!,"16. Contract Number: " S RO("C")=$O(R664(1,0)) W:RO("C") $P(R664(1,RO("C"),0),U,14) W ?61,"Subtotal: ",$J($FN(RMPRAMT,"P",2),8)
+ W !,"    ACCT.#: ",RMPRVACN K RMPRVACN
+ W ?28,"Discount $" I $D(RMPRAMT2) W $J($FN(RMPRAMT2,"P",2),7)
+ W ?45,"Shipping: ",$J($FN(RMSHI,"P",2),5)
+ W ?62,"Total",?69,"$",$J($FN(RMPRAMTN,"P",2),9)
+ W !,RMPRB,!,"17. Signature of"
+ W ?28,"18. DATE",?39,"19. Signature and Title of",?70,"20. Date"
+ W !,?5,"Requesting Official",?39,"Contracting/Accountable Officer"
+ W !!,?5,RDUZ,?39,RMPR("SIG")
+ W !,RMPRB,!?25,"Order and Receipt Action",!,RMPRB
+ W !,"21. Order Number",?18,"22. Exp Date",?37,"23. Date Item Received",?62,"24. Date Delivered"
+ I DUZ=$P(^RMPR(664,RMPRA,0),U,9)!($D(^XUSEC("RMPR FCP MANAGER",DUZ)))  D
+ .;W !,"************"
+ .N RMPRPRCD
+ .S RMPRPRCD=$$DEC^RMPR4LI($P(^RMPR(664,RMPRA,4),U,1),$P(^RMPR(664,RMPRA,0),U,9),RMPRA)
+ .;W $E(RMPRPRCD,13,16)
+ .W !,RMPRPRCD
+ E  W !,?3,"encrypted"
+ ;W !,?3,$$DEC^RMPR4LI($P(^RMPR(664,RMPRA,4),U,1),DUZ,RMPRA)
+ ;DATE REMOVED
+ W !,RMPRB
+ W !,"25. The articles or services listed herein have been received, or rendered",!,"ordered in the quantity and quality specified originally or as shown by"
+ W !,"authenticated changes, except as noted.",!!?40,"Signature of Veteran or VA Official",!,RMPRB
+ ;W !?30,"VOUCHER AUDIT BLOCK (For use by VA Facility only)",!,RMPRB
+ ;W !,"Bank Authorization Number: ",$P(^RMPR(664,RMPRA,4),U,2)
+ W !,?$X+6,"Acct. Symbol ",$$STA^RMPRUTIL,"-"_$P($G(^RMPR(664,RMPRA,4)),U,5)
+ W !,RMPRB,!,?52,"ADP Form 10-2421PC  APR 1991" S RMPRMOR1=1
+ Q

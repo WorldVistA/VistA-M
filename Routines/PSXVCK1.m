@@ -1,0 +1,100 @@
+PSXVCK1 ;BIR/WPB-Routine to check for Release Data Ack MSG ;16 Jul 1999  9:56 AM
+ ;;2.0;CMOP;**19,38,45**;11 Apr 97
+EN K ^TMP("PSXVMSG",$J)
+ I '$D(^PSX(554,"AF")) W !,"All release data has been acknowledged." Q
+ S DIC="^PSX(552,",DIC(0)="AEQMZ",DIC("A")="Select Facility:  "
+ D ^DIC K DIC G:$D(DUOUT)!($D(DTOUT))!(X["^")!($G(Y)'>0) EX S SITE1=$P($G(Y),"^",2) D KDIR
+ S:$G(SITE1)'>0 SITE=0
+EN1 ;
+ ;I $G(SITE1)>0 S X=SITE1,DIC="4",DIC(0)="XZMO" S:$D(^PSX(552,"D",X)) X=$E(X,2,99) D ^DIC S SITENAME=$P(Y,"^",2),SITE=+Y K X,Y,DIC S SP=(40-$L(SITENAME))/2 ;****DOD L1
+ I $G(SITE1)>0 S X=SITE1,AGNCY="VASTANUM" S:$D(^PSX(552,"D",X)) X=$E(X,2,99),AGNCY="DMIS" S SITE=$$IEN^XUMF(4,AGNCY,X),SITENAME=$$GET1^DIQ(4,SITE,.01) K X,Y,DIC,AGNCY S SP=(40-$L(SITENAME))/2 ;****DOD L1
+ I $G(SITE)>0&('$D(^PSX(554,"AF",$G(SITE)))) W !,"All release data has been acknowledged for ",$G(SITENAME) Q
+ D WORK,RPT
+ I '$D(^TMP("PSXVMSG",$J)) W !,"No Data for the Report!" D PG G EX
+ D RESET
+ G EX
+QUE S ZTIO="PSX",ZTDTH=TSKTM,ZTRTN="RST^PSXVCK1",ZTDESC="CMOP Release Data Msg Rebuilder",ZTSAVE("REPLY")="" D ^%ZTLOAD
+ I $G(ZTSK)>0 W !,"Job Started."
+ G EX
+ Q
+RESET1 W !,"Enter message number or numbers separated by commas" K X
+RESET D KDIR K REPLY
+ W ! S DIR(0)="L^1:"_CNT,DIR("A")="Resend messages",DIR("?")="Enter message number or numbers separated by commas." D ^DIR G:$G(X)["-" RESET1 K DIR Q:$D(DTOUT)!($D(DUOUT))!($D(DIRUT))!($D(DIROUT))!($G(Y)'>0)  S RPLY=$G(Y)
+ D KDIR
+ I $G(RPLY)>0 F R=1:1 S NUM=$P(RPLY,",",R) Q:$G(NUM)'>0  S:$G(REPLY)'="" REPLY=$G(REPLY)_","_$P(^TMP("PSXVMSG",$J,SITE,NUM),"^",3) S:$G(REPLY)="" REPLY=$P(^TMP("PSXVMSG",$J,SITE,NUM),"^",3)
+ K RPLY,R
+ S %DT="RASAET",%DT("A")="Enter time:  ",%DT(0)="NOW",%DT("B")="NOW" D ^%DT S TSKTM=Y K %DT G:Y<0!($D(DTOUT)) EX D QUE
+ K REPLY,%,%DT,%DT(0),%DT("A"),%DT("B"),Y,X,RESP,DTOUT
+ Q
+ ;Called by Taskman to resend release data
+RST S RC=$O(^PSX(554,"AB","")) G:$G(RC)'>0 RST1
+ I $G(RC)>0&($P(^PSX(554,1,1,RC,0),"^",4)="R") S ZTDTH="300S",ZTDESC="CMOP Release Data Msg Rebuilder",ZTRTN="RST^PSXVCK1",ZTIO="PSX",ZTSAVE("REPLY")="" D REQ^%ZTLOAD,EX Q
+ S ZTREQ="@",$P(^PSX(554,1,1,RC,0),"^",4)="R"
+RST1 F I=1:1 S TXMZ=$P(REPLY,",",I) Q:$G(TXMZ)'>0  D SEND
+ I $G(ZTSK)'>0 W !!,"Messages Resent!!"
+ G EX
+ Q
+SEND Q:'$D(^PSX(552.4,"AB",TXMZ))
+ S XX=0 F  S XX=$O(^PSX(552.4,"AB",TXMZ,XX)) Q:XX'>0  S ZZ=0 D
+ .F  S ZZ=$O(^PSX(552.4,"AB",TXMZ,XX,ZZ)) Q:ZZ'>0  D
+ ..L +^PSX(552.4,XX,1,ZZ):600
+ ..S DA(1)=XX,DA=ZZ,DIE="^PSX(552.4,"_DA(1)_",1,"
+ ..S DR="9////1;15////@" D ^DIE L -^PSX(552.4,XX,1,ZZ) K DIE,DA,DR
+ K XX,ZZ
+ D NOW^%DTC
+ S OLD=$O(^PSX(554,"AC",TXMZ,"")) Q:$G(OLD)'>0
+ L +^PSX(554,1,1,OLD):600 S DA=OLD,DA(1)=1,DIE="^PSX(554,"_DA(1)_",3,"
+ S DR="1////@;6////"_% D ^DIE L -^PSX(554,1,1,OLD)
+ K DA,DR,DIE,^PSX(554,"AF",$P(^PSX(554,1,3,OLD,0),"^",3),OLD),OLD,TXMZ,%
+ ;S:(RC'="") $P(^PSX(554,1,1,RC,0),"^",4)="S"
+ Q
+HDR Q:$G(STOP)>0
+ D SITE
+ W @IOF,!
+ W ?8,"RELEASE DATA NOT ACKNOWLEDGED"
+ W !,?SP,$G(SITENAME)
+ W !,?SP1,$G(DAY),!
+ W !,"MESSAGE",?10,"DATE/TIME DATA RETURNED",?37,"TOTAL Rx's",! F I=0:1:46 W "="
+ W ! S LN=10
+ K I
+ Q
+WORK ;S CNT=$G(CNT)+1 K STOP
+ K STOP
+ S REC=0 F  S REC=$O(^PSX(554,"AF",SITE,REC)) Q:REC'>0  D GET
+ Q
+SITE S X=FAC,AGNCY="VASTANUM" S:$D(^PSX(552,"D",X)) X=$E(X,2,99),AGNCY="DMIS" S SITENAME=$$IEN^XUMF(4,AGNCY,X),SITENAME=$$NAME^XUAF4(SITENAME) K X,Y,AGNCY S SP=(47-$L(SITENAME))/2 Q  ;****DOD L1
+GET D NOW^%DTC S TIMECHK=$$FMDIFF^XLFDT(%,$P(^PSX(554,1,3,REC,0),"^"),2)
+ Q:TIMECHK<86400
+ Q:$P(^PSX(554,1,3,REC,0),"^",7)'=""
+ S TIME=$$FMTE^XLFDT($P(^PSX(554,1,3,REC,0),"^",1),"1P"),TRX=$P(^PSX(554,1,3,REC,0),"^",6),MSGN=$P(^PSX(554,1,3,REC,0),"^",2),ACK=$S($P(^PSX(554,1,3,REC,0),"^",4)>0:"1",1:0)
+ Q:$G(MSGN)'>0
+ ;S:$G(ACK)'>0 ^TMP("PSXVMSG",$J,SITE,CNT)=TIME_"^"_TRX_"^"_$G(MSGN)_"^"_$G(ACK),CNT=CNT+1
+ S:$G(ACK)'>0 CNT=$G(CNT)+1,^TMP("PSXVMSG",$J,SITE,CNT)=TIME_"^"_TRX_"^"_$G(MSGN)_"^"_$G(ACK)
+ K TIME,TRX,ACK
+ Q
+RPT Q:'$D(^TMP("PSXVMSG",$J))
+ D NOW^%DTC S DAY=$$FMTE^XLFDT(%,"D"),SP1=(47-$L(DAY))/2,CHK=0 K %
+ S FAC=0 F  S FAC=$O(^TMP("PSXVMSG",$J,FAC)) Q:FAC'>0  S MSG=0 F  S MSG=$O(^TMP("PSXVMSG",$J,FAC,MSG)) Q:MSG'>0  D  Q:$G(STOP)>0
+ .Q:$G(STOP)>0
+ .D:FAC'=CHK HDR
+ .D:LN>23 PG,HDR
+ .Q:$G(STOP)>0
+ .S NODE=$G(^TMP("PSXVMSG",$J,FAC,MSG))
+ .S TIME=$P(NODE,"^",1),RXS=$P(NODE,"^",2),ACKD=$P(NODE,"^",4),MSGN=$P(NODE,"^",3)
+ .I $G(ACKD)'>0 W !,$J(MSG,7),?10,TIME,?37,$J(RXS,10)
+ .S LN=LN+1
+ .K NODE,TIME,RXS,ACKD
+ .S CHK=FAC
+ Q
+PG D KDIR
+ W ! S DIR(0)="E" D ^DIR K DIR,DIR(0) S:$D(DIRUT) STOP=1 K DIROUT,DTOUT,DUOUT,DIRUT Q
+NO D KDIR W ! S DIR(0)="Y",DIR("B")="YES",DIR("A")="Are you sure",DIR("A",1)="Data will not be resent." D ^DIR K DIR G:$D(DIRUT)!($D(DIROUT))!($D(DTOUT))!($D(DUOUT)) NO1 D:$G(Y)'>0 RESET
+NO1 W !,"No data was resent." G EX1
+ Q
+EX I '$D(ZTSK) W @IOF
+ I '$G(RC)>0 S RC=$O(^PSX(554,"AB","")) S:$G(RC)>0 $P(^PSX(554,1,1,RC,0),"^",4)="S"
+EX1 K XX,SITE,SITENAME,CHK,SP,SP1,LN,I,DAY,TIME,TRX,STOP,MSG,MSGN,FAC,NODE,RXS,REPLY,CNT,REC
+ K ^TMP("PSXVMSG",$J),TIMECHK,CKR,CKR1,NUM,OLD,NODE
+ K ZTIO,ZTDTH,ZTRTN,ZTDESC,ZTSAVE("REPLY"),ZTSAVE("TSKTM"),RX,TSKTM,RC,RESP
+KDIR K DIRUT,DIROUT,DIR,DIR(0),DIR("A"),DIR("B"),X,Y,DTOUT,DUOUT,DIC,DIC("A"),DIC(0),DUOUT,DTOUT
+ Q

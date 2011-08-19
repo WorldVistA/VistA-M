@@ -1,0 +1,82 @@
+RMPFET84 ;DDC/KAW-CERTIFY A CUSTOM HEARING AID RECEIPT [ 06/16/95   3:06 PM ]
+ ;;2.0;REMOTE ORDER/ENTRY SYSTEM;;JUN 16, 1995
+ S RMPFHAT="I",RMPFTP="P",RMPFTYP=5
+ D MSG G END:$D(RMPFOUT) S NB=11 D AUTH^RMPFET71 G END:$D(RMPFOUT)
+PAT W @IOF,!,"CERTIFY CUSTOM HEARING AIDS"
+ W ! S DIC=2,DIC(0)="AEQM" D ^DIC G END:Y=-1 S DFN=+Y K RMPFX
+ S (C,X)=0 F  S X=$O(^RMPF(791810,"C",DFN,X)) Q:'X  D
+ .S Y=0 F  S Y=$O(^RMPF(791810,X,101,Y)) Q:'Y  S S0=^(Y,0),X1=$P(S0,U,18) S:X1 X1=$P($G(^RMPF(791810.2,X1,0)),U,2) I "EDSF"[X1!($P(S0,U,19)["R"&$P(S0,U,20)) S RMPFX=X,C=C+1 Q
+ I '$D(RMPFX) W !!,"*** THERE ARE NO ORDERS TO BE CERTIFIED FOR THIS PATIENT ***" D CONT^RMPFEI G PAT
+ G PAT:'$D(RMPFX)
+ S X=$P(^RMPF(791810,RMPFX,0),U,3)
+MG1 I X="" W !!,"*** ERROR IN ORDER ***" G END
+ S X=$P($G(^RMPF(791810.2,X,0)),U,2) G MG1:X=""
+ I "DESPF"'[X W !!,"*** THE STATUS OF THIS ORDER DOES NOT PERMIT CERTIFICATION ***" D CONT^RMPFET G END:$D(RMPFOUT),PAT
+ D DISP0 G END:$D(RMPFOUT) D APPROV1^RMPFEA2 G END:$D(RMPFOUT),PAT
+DISP S NB=11 D AUTH^RMPFET71 Q:$D(RMPFOUT)
+DISP0 ;; input: RMPFX,DFN,RMPFHAT,RMPFTYP
+ ;;output: None
+DISP1 W @IOF,!?20,"CERTIFY RECEIPT OF A CUSTOM HEARING AID"
+ D PAT^RMPFUTL,HEADP1^RMPFDT1
+ W !! D ^RMPFDT2 K RMPFY D SEL G END:$D(RMPFOUT)
+ I RMPFSEL="" D ^RMPFET3 G END
+ I "Aa"[RMPFSEL D EN1^RMPFET8 G DISP1
+ S (A,BX)=0 F  S A=$O(RMPFMD(A)) Q:'A  I $D(^RMPF(791810,RMPFX,101,RMPFMD(A),0)) S S0=^(0),X=$P(S0,U,18) I X,$D(^RMPF(791810.2,X,0)),"DESPF"[$P(^(0),U,2)!($P(S0,U,19)["R"&$P(S0,U,20)) S BX=BX+1,MD=A
+ I 'BX W !!,"*** THERE ARE NO LINE ITEMS TO CERTIFY ***" H 2 G DISP1
+ I BX=1 S (FY,RMPFY)=RMPFMD(MD),PT=MD D ^RMPFET85 Q:$D(RMPFOUT)  G DISP1:RMPFHAT="X" D ISSUE Q:$D(RMPFOUT)!('$D(Y))  S CK=BX D:"Yy"[Y ^RMPFET71 G DISP1
+ASK W !!,"Certify ",BX," orders? YES// " D READ G DISP1:$D(RMPFOUT)
+ASK1 I $D(RMPFQUT) W !!,"Enter a <Y> or <RETURN> to certify all orders in the status 'ISSUE DATE PENDING'",!?5,"an <N> to select a line item to certify." G ASK
+ S:Y="" Y="Y" S Y=$E(Y,1) I "NnYy"'[Y S RMPFQUT="" G ASK1
+ G CHOOSE:"Nn"[Y S MD=0
+LOOP S MD=$O(RMPFMD(MD)) G LOOP1:'MD S RMPFY=RMPFMD(MD)
+ G LOOP:'$D(^RMPF(791810,RMPFX,101,RMPFY,0)) S X=$P(^(0),U,18) G LOOP:'X,LOOP:'$D(^RMPF(791810.2,X,0)),LOOP:"DESPF"'[$P(^(0),U,2)
+ D ^RMPFET85 G LOOPE:$D(RMPFOUT),LOOP
+LOOP1 G LOOPE:RMPFHAT="X" D ISSUE G LOOPE:'$D(Y),LOOPE:"Yy"'[Y S MD=0
+LOOP2 S MD=$O(RMPFMD(MD)) G LOOPE:'MD S (FY,RMPFY)=RMPFMD(MD),PT=MD,CK=BX D ^RMPFET71 G LOOP2
+LOOPE K MD G DISP1
+CHOOSE W !!,"Select the number of the line item to certify: " D READ
+ Q:$D(RMPFOUT)
+CH1 I $D(RMPFQUT) W !!,"Enter the number to the left of the line item you wish to certify or <RETURN> to exit." G CHOOSE
+ Q:Y=""  I '$D(RMPFMD(Y)) S RMPFQUT="" G CH1
+ S RMPFY=RMPFMD(Y),MD=Y D ^RMPFET85 G END:$D(RMPFOUT)
+ D ISSUE G END:$D(RMPFOUT),DISP1:'$D(Y),DISP1:"Yy"'[Y
+ S FY=RMPFY,PT=MD,CK=BX D ^RMPFET71 G END:$D(RMPFOUT),DISP1
+END K SX,X1,FL,SG,RMPFY1,Y,CX,BX,RMPFDOB,RMPFSSN,RMPFDOD,RMPFNAM,RMPFMD
+ K RMPFO,RMPFSEL,RMPFST,RMPFOUT,RMPFQUT,FX,NB,PT Q
+ISSUE S X=$G(^RMPF(791810,RMPFX,101,RMPFY,90)) Q:'$P(X,U,8)!('$P(X,U,9))
+ Q:$P(^RMPF(791810,RMPFX,101,RMPFY,0),U,5)=""
+ W !!,"Do you wish to enter the issue information? NO// " D READ
+ Q:$D(RMPFOUT)
+I1 I $D(RMPFQUT) W !!,"Enter a <Y> to edit the issue information",!?5,"an <N> to exit." G ISSUE
+ S:Y="" Y="N" S Y=$E(Y,1) I "YyNn"'[Y S RMPFQUT="" G I1
+ Q
+READ K RMPFOUT,RMPFQUT
+ R Y:DTIME I '$T W $C(7) R Y:5 G READ:Y="." S:'$T Y=U
+ I Y?1"^".E S (RMPFOUT,Y)="" Q
+ S:Y?1"?".E (RMPFQUT,Y)=""
+ Q
+SEL ;; input: RMPFO,RMPFMD,RMPFX
+ ;;output: RMPFSEL
+ S (X,FL)=0,FX="" F  S X=$O(RMPFO(X)) Q:'X  D  Q:FL
+ .I '$P($G(^RMPF(791810,RMPFX,101,X,90)),U,9) S FL=1 Q
+ .S X1=$P(^RMPF(791810,RMPFX,101,X,0),U,18) I X1,$D(^RMPF(791810.2,X1,0)) S X1=$P(^(0),U,2) I "DEF"[X1 S FL=1 Q
+ .I $P(^RMPF(791810,RMPFX,101,X,0),U,19)["R"&$P(^(0),U,20) S FL=1
+ W !!,"Enter "
+ I FL W "<A>djust, <C>ertify or " S FX="CcAa"
+ W "<RETURN> to exit: " D READ Q:$D(RMPFOUT)
+SEL1 I $D(RMPFQUT) D MSG1 G SEL
+ S RMPFSEL=Y Q:RMPFSEL=""  S RMPFSEL=$E(RMPFSEL,1)
+ I FX'="",FX'[RMPFSEL S RMPFQUT="" G SEL1
+ S X=$E(Y,2) I X,$D(RMPFMD(X)) S RMPFY=RMPFMD(X)
+ K X,Y,FL,FX Q
+MSG W @IOF,!!?21,"CUSTOM HEARING AID ORDER CERTIFICATION"
+ W !!!,"When you certify a custom hearing aid order please be absolutely sure that the"
+ W !,"ROES order exactly matches the aid and components that you received from"
+ W !,"the vendor.  You are authorizing the DDC to pay for the order as it appears on"
+ W !,"your screen."
+ W !!,"If necessary you may use the adjustment procedure to adjust the order prior to",!,"certification."
+ D CONT^RMPFET
+ Q
+MSG1 W !!,"Enter an <A> to adjust the order (MUST BE DONE PRIOR TO CERTIFICATION)"
+ W !?7,"a <C> to certify the order"
+ Q

@@ -1,0 +1,40 @@
+LROPTLST ;SLC/FHS - LIST OPTIONS FOR VERIFICATION ;2/19/91  11:10 ;
+ ;;5.2;LAB SERVICE;;Sep 27, 1994
+EN ;
+ S OK=1
+ S OPTN=$S($D(OPTN):OPTN,1:"LRMENU")
+ K IO("Q") S:$D(ZTQUEUED) ZTREQ="@" S OPT=$O(^DIC(19,"B",OPTN,0)) Q:OPT<1  K ^TMP($J),MENU,^TMP("OPT") S $P(LINE,"-",IOM)="",CNT=0,U="^"
+ F I=0:0 S I=$O(^DIC(19,OPT,10,"B",I)) Q:I=""  S ^TMP($J,I)=""
+SUB ;
+ F I=0:0 S I=$O(^TMP($J,I)) Q:I<1  D:'$D(^DIC(19,I,10)) SORTI I $D(^DIC(19,I,10,"B")) W !!,LINE,!,$P(^DIC(19,I,0),U),!! F II=0:0 S II=$O(^DIC(19,I,10,"B",II)) D:II="" MSUB Q:II=""  D SORT I 'OK G END
+SUB1 ;
+ K MENU F I=0:0 S I=$O(^TMP($J,I)) Q:I<1  S MENU($P(^DIC(19,I,0),U,2))=I
+ S O="" F A=0:0 S O=$O(MENU(O)) Q:O=""  S I=MENU(O),PG=0 D HEAD S MTX="" F A=0:0 S MTX=$O(^TMP($J,"OPT",I,MTX)) Q:MTX=""  S OPT=^(MTX) D PRT1
+ W !!,LINE,!!?20,"TOTAL OPTIONS = ",CNT,!! W:$E(IOST,1,2)'="C-" @IOF
+END K CNT,OPTN,PG,O,I,II,A,OPT,MENU,LINE,IX,IO("Q"),DIC,%ZIS,DIS,MTX,X,^TMP($J) D ^%ZISC W !!?20," ********   END OF LISTING    ********",!
+ Q
+MSUB ;
+ S II="",II=$O(MENU(I,II)) Q:II=""  D SORT K MENU(I,II) G MSUB
+ Q
+SORTI S II=I
+SORT ;
+ I '$D(^DIC(19,II,0)) W !,"ERROR  OPTION "_II_" IS MISSING " S OK=0 Q
+ I $P(^DIC(19,II,0),U,4)="M" S IX="" F A=0:0 S IX=$O(^DIC(19,II,10,"B",IX)) Q:IX=""  S MENU(I,IX)=""
+PRT ;
+ I $P(^DIC(19,II,0),U,4)="M" Q
+ S X=^DIC(19,II,0),OPT=$P(X,U),MTX=$P(X,U,2) I $D(^DIC(19,II,25)),$L(^(25)) S OPT=OPT_" ( "_^(25)_" ) "
+ S ^TMP($J,"OPT",I,MTX)=OPT F DIS=0:0 S DIS=$O(^DIC(19,II,1,DIS)) Q:DIS=""  S ^TMP($J,"OPT",I,MTX,1,DIS,0)=^(DIS,0)
+ Q
+PRT1 ;
+ I $Y>60 D HEAD
+ S CNT=CNT+1 W !,MTX,?45,OPT F DIS=0:0 S DIS=$O(^TMP($J,"OPT",I,MTX,1,DIS)) Q:DIS=""  W !,?5,^(DIS,0) I $Y>60 D HEAD W !,MTX,?40,OPT,!!?30,"<<< CONTINUED >>>",!
+ W !!?20,$E(LINE,1,40),!
+ Q
+QUE ;
+ K DIC S DIC=19,DIC(0)="AEQM",DIC("S")="I $P(^(0),U,4)=""M""&($E(^(0),1,2)[""LR"")!($E(^(0),1,2)[""LA"")" D ^DIC G END:Y<1
+ I '$O(^DIC(19,+Y,10,"B",0)) W !!?10,"THERE ARE NO ITEMS ON THE MENU ",$C(7) G END
+ S OPTN=$P(Y,U,2) K IO("Q"),%ZIS S %ZIS="QN",%ZIS("A")="PRINTER DEVICE:  " D ^%ZIS Q:POP  I IO=IO(0) G EN
+ S ZTSAVE("OPTN")="",ZTRTN="LROPTLST",ZTDESC="LIST OF MENU OPTIONS ",ZTIO=ION D ^%ZTLOAD
+ W !,"QUEUED TO DEVICE ",ION D ^%ZISC K IO("Q") Q
+HEAD ;
+ S PG=PG+1 W @IOF,!!!?10,"***************  ",$P(^DIC(19,I,0),U,2),"  ******************  PG ",PG,!! Q

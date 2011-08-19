@@ -1,0 +1,24 @@
+ECTS334 ;B'ham ISC/PTD-AMIS 334-341 Hospital Inpatient Data ;01/29/91 08:00
+V ;;1.05;INTERIM MANAGEMENT SUPPORT;**7**;
+ ;IF MAS V5> RUNNING, GO TO ENTRY POINT, ELSE USE DIQ
+ G:$D(^DGPM) EN^DGAINP3
+ I '$D(^DGAM(334)) W *7,!!?29,"OPTION IS UNAVAILABLE!",!,"The 'AMIS 334-341' File - #42.6 is not loaded on your system.",!! S XQUIT="" Q
+ I '$O(^DGAM(334,0)) W *7,!!,"'AMIS 334-341' File - #42.6 has not been populated on your system.",!! S XQUIT="" Q
+DIC S DIC="^DGAM(334,",DIC(0)="QEAM",DIC("A")="Select REPORT month/year: " D ^DIC K DIC G:Y<0 EXIT S YRDA=+Y
+ I '$O(^DGAM(334,YRDA,"SE",0)) W *7,!!,"No data available for selected month/year." G EXIT
+ K %ZIS S IOP="HOME" D ^%ZIS K %ZIS,IOP S $P(LN,"-",81)=""
+ S SEG=0,QFLG="" F SL=0:0 S SEG=$O(^DGAM(334,YRDA,"SE",SEG)) Q:'SEG  Q:QFLG  S VS=0 K TMP F VL=0:0 S VS=$O(^DGAM(334,YRDA,"SE",SEG,"D",VS)) Q:'VS  Q:QFLG  D DIQ
+EXIT K %,%Y,D1,D2,DA,DIC,DIQ,DIR,DR,LN,PC,POP,QFLG,SEG,SL,TMP,VL,VS,X,Y,YRDA
+ Q
+ ;
+DIQ S DIC="^DGAM(334,",DR=".01;10",DR(42.6001)=".01;10",DR(42.61)="2:21",DIQ="TMP(",DIQ(0)="E",DA=YRDA,DA(42.6001)=SEG,DA(42.61)=VS
+ D EN^DIQ1
+ Q:'$O(TMP(42.6,YRDA,0))  Q:'$O(TMP(42.6001,0))
+ ;
+PRTSEG ;DISPLAY 1 SEGMENT
+ W @IOF,!?10,"AMIS "_SEG_" REPORT FOR ",TMP(42.6001,SEG,.01,"E")," FOR ",TMP(42.6,YRDA,.01,"E"),!?40,"DIVISION: ",$P(^DG(40.8,VS,0),"^"),!,LN
+ F PC=2:1:21 W !?10,$P(^DD(42.61,PC,0),"^"),?50,$J(+(TMP(42.61,VS,PC,"E")),4)
+ ;
+PRTCHK I $E(IOST)="C" S DIR(0)="E" D ^DIR I Y=0 S QFLG=1 Q
+ Q
+ ;

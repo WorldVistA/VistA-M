@@ -1,0 +1,41 @@
+SPNPSR16 ;HIRMFO/DAD,WAA-HUNT: TYPE OF CAUSE ;8/9/95  13:12
+ ;;2.0;Spinal Cord Dysfunction;;01/02/1997
+ ;
+EN1(D0,TYPCAUSE) ; *** Search entry point
+ ; Input:
+ ;  ACTION,SEQUENCE = Search ACTION,SEQUENCE number
+ ;  D0       = SCD (SPINAL CORD) REGISTRY file (#154) IEN
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"TYPE OF CAUSE") = TC ! NTC ^ External
+ ;     TYPCAUSE = Type of Cause TO ! NTC
+ ; Output:
+ ;  $S( D0_Meets_Search_Criteria : 1 , 1 : 0 )
+ ;
+ N ETIOLOGY,MEETSRCH,SPNLD1
+ S (MEETSRCH,SPNLD1)=0
+ F  S SPNLD1=$O(^SPNL(154,D0,"E",SPNLD1)) Q:SPNLD1'>0!MEETSRCH  D
+ . S ETIOLOGY=+$P($G(^SPNL(154,D0,"E",SPNLD1,0)),U,2)
+ . I TYPCAUSE=$P($G(^SPNL(154.03,ETIOLOGY,0)),U,2) S MEETSRCH=1
+ . Q
+ S ETIOLOGY=+$P($G(^SPNL(154,D0,5)),U)
+ I TYPCAUSE=$P($G(^SPNL(154.03,ETIOLOGY,0)),U,2) S MEETSRCH=1
+ Q MEETSRCH
+ ;
+EN2(ACTION,SEQUENCE) ; *** Prompt entry point
+ ; Input:
+ ;  ACTION,SEQUENCE = Search ACTION,SEQUENCE number
+ ; Output:
+ ;  SPNLEXIT = $S( User_Abort/Timeout : 1 , 1 : 0 )
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"TYPE OF CAUSE") = TC ! NTC ^ External
+ ;
+ N DIR,DIRUT,DTOUT,DUOUT,TYPCAUSE
+ K ^TMP($J,"SPNPRT",ACTION,SEQUENCE),DIR
+ S DIR(0)="SOAM^TC:TRAUMATIC CAUSE;NTC:NON-TRAUMATIC CAUSE;U:UNKNOWN;"
+ S DIR("A")="Type of cause: "
+ S DIR("?")="Enter the type of cause of the patient's condition"
+ D ^DIR S TYPCAUSE=Y_U_$G(Y(0))
+ S SPNLEXIT=$S($D(DIRUT):1,1:0)
+ I 'SPNLEXIT D
+ . S ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"TYPE OF CAUSE")=TYPCAUSE
+ . S ^TMP($J,"SPNPRT",ACTION,SEQUENCE,0)="$$EN1^SPNPSR16(D0,"""_$P(TYPCAUSE,U)_""")"
+ . Q
+ Q

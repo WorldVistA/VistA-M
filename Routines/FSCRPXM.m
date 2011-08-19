@@ -1,0 +1,107 @@
+FSCRPXM ;SLC/STAFF-NOIS RPC Menus ;1/13/98  16:51
+ ;;1.1;NOIS;;Sep 06, 1998
+ ;
+MENUS(USER,OUTLINE,INLINE) ; from FSCRPX
+ N CALL,CNT,INDEX,INLINE0,LINE,LIST,MAXMRE,MAXMRA,MAXMRU,NUM,TIME
+ S MAXMRE=10,MAXMRA=10,MAXMRU=12
+ S INLINE0=$G(^TMP("FSCRPC",$J,"INPUT",0))
+ I $P(INLINE,U,6)=0 S $P(OUTLINE,U,6)=$$ALERT(DUZ)
+ E  S $P(OUTLINE,U,6)=1
+ S $P(OUTLINE,U,7)=$$MRE(DUZ)
+ S $P(OUTLINE,U,8)=$$MRA(DUZ)
+ S $P(OUTLINE,U,9)=$$MRU(DUZ)
+ K ^TMP("FSCRPC",$J,"MENUS")
+ ;
+ I $P(OUTLINE,U,7)'=$P(INLINE0,U,7) D
+ .S CNT=0,TIME="" F  S TIME=$O(^FSCD("MRE","AUTC",USER,TIME)) Q:TIME=""  D  Q:CNT=MAXMRE
+ ..S CALL=0 F  S CALL=$O(^FSCD("MRE","AUTC",USER,TIME,CALL)) Q:CALL=""  D  Q:CNT=MAXMRE
+ ...S CNT=CNT+1
+ ...S ^TMP("FSCRPC",$J,"MENUS","MRE",CNT)=CALL_U_$$CALLID(CALL)
+ ;
+ I $P(OUTLINE,U,8)'=$P(INLINE0,U,8) D
+ .S CNT=0,TIME="" F  S TIME=$O(^FSCD("MRA","AUTC",USER,TIME)) Q:TIME=""  D  Q:CNT=MAXMRA
+ ..S CALL=0 F  S CALL=$O(^FSCD("MRA","AUTC",USER,TIME,CALL)) Q:CALL=""  D  Q:CNT=MAXMRA
+ ...S CNT=CNT+1
+ ...S ^TMP("FSCRPC",$J,"MENUS","MRA",CNT)=CALL_U_$$CALLID(CALL)
+ ;
+ I $P(OUTLINE,U,9)'=$P(INLINE0,U,9) D
+ .S CNT=0,TIME="" F  S TIME=$O(^FSCD("MRU","AUTL",USER,TIME)) Q:TIME=""  D  Q:CNT=MAXMRU
+ ..S LIST=0 F  S LIST=$O(^FSCD("MRU","AUTL",USER,TIME,LIST)) Q:LIST=""  D  Q:CNT=MAXMRU
+ ...S INDEX="" F  S INDEX=$O(^FSCD("MRU","AUTL",USER,TIME,LIST,INDEX)) Q:INDEX=""  D  Q:CNT=MAXMRU
+ ....S CNT=CNT+1
+ ....S ^TMP("FSCRPC",$J,"MENUS","MRU",CNT)=LIST_U_INDEX_U_$P($G(^FSC("LIST",+LIST,0)),U)_$S(INDEX:" "_$$INDXVAL(LIST,INDEX),1:"")_U_$P($G(^FSC("LIST",+LIST,0)),U,8,9)
+ ....I 'INDEX Q
+ ....; append index external value
+ ;
+ I '$L($O(^TMP("FSCRPC",$J,"MENUS",""))) Q
+ K ^TMP("FSCRPC",$J,"MENUS","TEMP")
+ M ^TMP("FSCRPC",$J,"MENUS","TEMP")=^TMP("FSCRPC",$J,"OUTPUT")
+ K ^TMP("FSCRPC",$J,"OUTPUT")
+ S CNT=0
+ ;
+ I $O(^TMP("FSCRPC",$J,"MENUS","MRE",0)) D
+ .S CNT=CNT+1
+ .S ^TMP("FSCRPC",$J,"OUTPUT",CNT)="{MRE}"
+ .S NUM=0 F  S NUM=$O(^TMP("FSCRPC",$J,"MENUS","MRE",NUM)) Q:NUM<1  S LINE=^(NUM) D
+ ..S CNT=CNT+1
+ ..S ^TMP("FSCRPC",$J,"OUTPUT",CNT)=LINE
+ .S CNT=CNT+1
+ .S ^TMP("FSCRPC",$J,"OUTPUT",CNT)="^^^"
+ ;
+ I $O(^TMP("FSCRPC",$J,"MENUS","MRA",0)) D
+ .S CNT=CNT+1
+ .S ^TMP("FSCRPC",$J,"OUTPUT",CNT)="{MRA}"
+ .S NUM=0 F  S NUM=$O(^TMP("FSCRPC",$J,"MENUS","MRA",NUM)) Q:NUM<1  S LINE=^(NUM) D
+ ..S CNT=CNT+1
+ ..S ^TMP("FSCRPC",$J,"OUTPUT",CNT)=LINE
+ .S CNT=CNT+1
+ .S ^TMP("FSCRPC",$J,"OUTPUT",CNT)="^^^"
+ ;
+ I $O(^TMP("FSCRPC",$J,"MENUS","MRU",0)) D
+ .S CNT=CNT+1
+ .S ^TMP("FSCRPC",$J,"OUTPUT",CNT)="{MRU}"
+ .S NUM=0 F  S NUM=$O(^TMP("FSCRPC",$J,"MENUS","MRU",NUM)) Q:NUM<1  S LINE=^(NUM) D
+ ..S CNT=CNT+1
+ ..S ^TMP("FSCRPC",$J,"OUTPUT",CNT)=LINE
+ .S CNT=CNT+1
+ .S ^TMP("FSCRPC",$J,"OUTPUT",CNT)="^^^"
+ ;
+ S NUM=0 F  S NUM=$O(^TMP("FSCRPC",$J,"MENUS","TEMP",NUM)) Q:NUM<1  S LINE=^(NUM) D
+ .S CNT=CNT+1
+ .S ^TMP("FSCRPC",$J,"OUTPUT",CNT)=LINE
+ S ^TMP("FSCRPC",$J,"OUTPUT")=CNT
+ K ^TMP("FSCRPC",$J,"MENUS")
+ Q
+ ;
+CALLID(CALL) ; $$(call) -> call text for menu
+ N CALLID
+ S CALLID=$P($G(^FSCD("CALL",+CALL,0)),U)_" "_$$MODINI^FSCUF($P(^(0),U,8))_U_$$REPLACE^FSCRU($$SHORT^FSCRPXUS(CALL,DUZ),U,"   ")
+ Q CALLID
+ ;
+ALERT(USER) ; $$(user) -> 1 or 0 if alerts available
+ I $D(^FSCD("ALERT","ALERT",USER)) Q 1
+ Q $$XQA(USER,"FSC-")
+ ;
+XQA(USER,TEXT) ; $$(user,text) -> 1 or 0 if alerts contains text in ID ** non documented access
+ N OK,TIME
+ I '$O(^XTV(8992,USER,"XQA",0)) Q 0
+ S (OK,TIME)=0 F  S TIME=$O(^XTV(8992,USER,"XQA",TIME)) Q:TIME<1  I $P($G(^(TIME,0)),U,2)[TEXT S OK=1 Q
+ Q OK
+ ;
+MRE(USER) ; $$(user) -> timestamp of user's MRE list
+ Q +$P($G(^FSCD("MRE","AUT",+USER)),".",2)
+ ;
+MRA(USER) ; $$(user) -> timestamp of user's MRA list
+ Q +$P($G(^FSCD("MRA","AUT",+USER)),".",2)
+ ;
+MRU(USER) ; $$(user) -> timestamp of user's MRU lists
+ Q +$P($G(^FSCD("MRU","AUT",+USER)),".",2)
+ ;
+INDXVAL(LIST,INDEX) ; $$(list, index) -> external value of index
+ N FIELD,OFFSET,TYPE
+ S FIELD=+$P($G(^FSC("LIST",+LIST,0)),U,5)
+ I 'FIELD Q ""
+ S TYPE=+$P($P($G(^FSC("FLD",FIELD,0)),U,3),"P",2),OFFSET=$P($G(^(0)),U,6)
+ I TYPE=7105.2 S TYPE=200
+ I TYPE Q $$POINTER^FSCDD(INDEX,TYPE,OFFSET)
+ Q ""

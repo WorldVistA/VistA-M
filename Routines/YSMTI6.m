@@ -1,0 +1,54 @@
+YSMTI6 ;ALB/ASF-MULTIPLE PSYCH TESTS NEW ;4/18/01  17:27
+ ;;5.01;MENTAL HEALTH;**62,71**;Dec 30, 1994
+ Q
+AUDIT ;
+ N I,X,N,X1
+ S X=^YTD(601.2,YSDFN,1,YSET,1,YSED,1)
+ S R=0 F I=1:1:8 S R=R+$E(X,I)
+ S X1=$S($E(X,9)=1:2,$E(X,9)=2:4,1:0) S R=R+X1
+ S X1=$S($E(X,10)=1:2,$E(X,10)=2:4,1:0) S R=R+X1
+ Q
+DOMG ;
+ N I,X,YSMISS,YSDEP
+ S X=^YTD(601.2,YSDFN,1,YSET,1,YSED,1)
+ S (YSMISS,YSDEP)=0 F I=1:1:5 S YSDEP=YSDEP+$E(X,I) S:$E(X,I)="X" YSMISS=YSMISS+1
+ I YSMISS=1 S YSDEP=YSDEP+(YSDEP/4)
+ I YSMISS>1 S S="invalid"
+ S R=YSDEP
+ Q
+PAI ;   ASF 4/18/01
+ N A,B,J,YSICN,YSKK,YSMX,YSNUMX,YSTL
+ S (R,S)="^",YSMX=4
+ D RD
+ Q:$L(X,"X")>18
+ D SCOR,STND
+ Q  ;--> OUT
+RD S X=^YTD(601.2,YSDFN,1,YSET,1,YSED,1)_^YTD(601.2,YSDFN,1,YSET,1,YSED,2) Q
+SCOR ;
+ F YSKK=2:1:53 I $D(^YTT(601,YSTEST,"S",YSKK,"K")) S Y=^YTT(601,YSTEST,"S",YSKK,"K",1,0),YSTL=0 D KK S $P(R,U,YSKK)=YSTL
+FS ;full scales
+ F I=5,9,13,17,21,25,29,33,38,44 S $P(R,U,I)=$P(R,U,I+1)+$P(R,U,I+2)+$P(R,U,I+3) S:I=33 $P(R,U,I)=$P(R,U,I)+$P(R,U,I+4)
+ICNR ;score ICN
+ S YSICN=0
+ S Y=(5-$E(X,75))-(5-$E(X,115)) D A
+ S Y=$E(X,4)-$E(X,44) D A
+ S Y=$E(X,60)-$E(X,100) D A
+ S Y=$E(X,145)-(5-$E(X,185)) D A
+ S Y=$E(X,65)-(5-$E(X,246)) D A
+ S Y=$E(X,102)-(5-$E(X,103)) D A
+ S Y=$E(X,22)-(5-$E(X,142)) D A
+ S Y=(5-$E(X,301))-$E(X,140) D A
+ S Y=5-(5-$E(X,270))-$E(X,53) D A
+ S Y=5-(5-$E(X,190))-$E(X,13) D A
+ S $P(R,U,1)=YSICN
+ S X=^YTT(601,YSTEST,"S",1,"M"),$P(S,U,1)=$J((YSICN-$P(X,U)/$P(X,U,2)*10+50),0,0)
+ Q
+A ;icn absolutes
+ S:Y<0 Y=-Y S YSICN=YSICN+Y Q
+KK S YSNUMX=0
+ F I=1:2 Q:$P(Y,U,I)=""  S YSIT=$P(Y,U,I),A=$P(Y,U,I+1),B=$E(X,YSIT),YSTL=YSTL+$S(B="X":0,A="D":B-1,1:YSMX-B) S:B="X" YSNUMX=YSNUMX+1
+ I (YSNUMX/(I-1))>.2 S YSTL="X"
+ Q
+STND ;stanard T scores
+ F J=2:1:53 S A=$P(R,U,J) S:A?.N X=^YTT(601,YSTEST,"S",J,"M"),S(J)=$J((A-$P(X,U)/$P(X,U,2)*10+50),0,0) S:A="X" S(J)="X" S S=S_S(J)_U
+ Q

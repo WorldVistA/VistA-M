@@ -1,0 +1,246 @@
+XMR3 ;ISC-SF/GMB-SMTP Receiver (RFC 822) ;07/01/2002  14:11
+ ;;8.0;MailMan;;Jun 28, 2002
+DATA ; TEXT / ASSUMES VALID RECIPIENT
+ ; Incoming Variables:
+ ; XMINSTR("FWD BY")=""
+ ; XMZ        message number of new message
+ ; XMZFDA     FM FDA for new message
+ ; XMZIENS    IENS for new message
+ ; $D(XMC("DX"))  means Test mode: Messages will not be delivered
+ ; If the msg is from a VA site, the following may be set:
+ ; XMREMID    always set if the msg is from a VA site
+ ; $G(XMRXMZ) message number of message we already have.
+ ;            Set if new message is a duplicate of one we already have.
+ N XMLIN,XMINCR,XMHDR,XMREJECT,XMSUBJ,XMFROM,XMDATE,XMENCR,XMZO,XMSENDER,XMREPLTO
+ D GETDATA Q:ER
+ I '$G(XMRXMZ),'$D(XMC("DX")) D HDRPROC Q:ER
+ I '$G(XMREJECT),'$D(XMC("DX")) D SET
+ S XMSTATE="^HELO^MAIL^"
+ K ^TMP("XMY",$J),^TMP("XMY0",$J)
+ D ZAPIT^XMXMSGS2(.5,.95,XMZ)
+ I '$G(XMREJECT) D
+ . S XMSG="250 'data' accepted" X XMSEN
+ . D XMTHIST^XMTDR(XMINST,"R",$P($G(^XMB(3.9,XMZ,2,0)),U,4))
+ K XMNVFROM,XMINSTR,XMREMID,XMRXMZ,XMZ,XMZIENS,XMZFDA
+ Q
+GETDATA ;
+ N XMH
+ S XMSG="354 Enter data" X XMSEN Q:ER
+ S XMLIN=.001,XMINCR=.001,XMH=""
+ F  X XMREC Q:ER  Q:XMRG="."  D
+ . I $E(XMRG)="." S XMRG=$E(XMRG,2,999)
+ . S XMLIN=XMLIN+XMINCR
+ . S ^XMB(3.9,XMZ,2,XMLIN,0)=XMRG
+ . Q:XMINCR=1
+ . I XMRG="" S XMINCR=1,XMLIN=0 Q
+ . I XMLIN=.99 S XMINCR=.000001
+ . I $E(XMRG,1)=" "!($E(XMRG,1)=$C(9)) Q:XMH=""  D NEXT(XMH,.XMHDR,XMRG) Q
+ . ;I $E(XMRG,1)=" " Q:XMH=""  D NEXT(XMH,.XMHDR,XMRG)
+ . S XMH=$$UP^XLFSTR($P(XMRG,":"))
+ . I "^DATE^FROM^IMPORTANCE^IN-REPLY-TO^MESSAGE-ID^SUBJECT^"[(U_XMH_U) S XMH=$E($TR(XMH,"-"),1,4),XMHDR(XMH)=$$SCRUB($P(XMRG,":",2,99)) Q
+ . I "^ENCRYPTED^EXPIRY-DATE^REFERENCES^REPLY-TO^RETURN-RECEIPT-TO^SENDER^SENSITIVITY^"[(U_XMH_U) S XMH=$E($TR(XMH,"-"),1,4),XMHDR(XMH)=$$SCRUB($P(XMRG,":",2,99)) Q
+ . I "^X-PRIORITY^"[(U_XMH_U) S XMH=$E($P(XMH,"-",2),1,4),XMHDR(XMH)=$$SCRUB($P(XMRG,":",2,99)) Q
+ . I "^X-MM-BASKET^X-MM-CLOSED^X-MM-INFO-ONLY^X-MM-TYPE^"[(U_XMH_U) S XMH=$E($P(XMH,"-",3),1,4),XMHDR(XMH)=$$SCRUB($P(XMRG,":",2,99)) Q
+ . S XMH=""
+ Q:ER
+ Q
+NEXT(XMH,XMHDR,XMDATA) ;
+ N I
+ S XMDATA=$$SCRUB(XMDATA) Q:XMDATA=""
+ I XMHDR(XMH)="" S XMHDR(XMH)=XMDATA Q
+ I $L(XMHDR(XMH))+$L(XMDATA)<255 S XMHDR(XMH)=XMHDR(XMH)_" "_XMDATA Q
+ S I=$O(^XMHDR(XMH,":"),-1)+1
+ I $G(XMHDR(XMH,I))'="",$L(XMHDR(XMH,I))+$L(XMDATA)<255 S XMHDR(XMH,I)=$G(XMHDR(XMH,I))_" "_XMDATA Q
+ S XMHDR(XMH,I+1)=XMDATA
+ Q
+HDRPROC ; Process header commands
+ N XMH,XMP,XMRINFO
+ I XMLIN,$O(^XMB(3.9,XMZ,2,XMLIN)) D  Q
+ . S XMREJECT=1
+ . S XMSG="500 Synchronization Lost.  Msg rejected." X XMSEN
+ . D KILLIT^XMR3A
+ ;I '$D(XMHDR("FROM")) D  Q
+ ;. S XMREJECT=1
+ ;. S XMSG="501 Missing FROM Header.  Msg rejected." X XMSEN
+ ;. D KILLIT^XMR3A
+ I $$TOOLONG D  Q
+ . S XMREJECT=1
+ . S XMSG="551 Too many lines.  Msg rejected." X XMSEN
+ . D KILLIT^XMR3A
+ I '$D(XMREMID) S XMREMID=""
+ S (XMH,XMZO,XMFROM,XMENCR,XMSENDER,XMDATE,XMSUBJ)=""
+ F  S XMH=$O(XMHDR(XMH)) Q:XMH=""  D
+ . S XMP=XMHDR(XMH)
+ . D @XMH
+ I '$O(^XMB(3.9,XMZ,2,.999999)),'$D(XMZFDA(3.9,XMZIENS,.01)) D  Q
+ . S XMSG="552 No subject or text.  Msg rejected." X XMSEN
+ . D KILLIT^XMR3A
+ . S XMREJECT=1
+ I $G(XMRINFO) D  Q
+ . S XMSG="555 Reply to 'Info Only'.  Msg rejected." X XMSEN
+ . D KILLIT^XMR3A
+ . S XMREJECT=1
+ ;I $G(XMZFDA(3.9,XMZIENS,9))="" D  Q
+ ;. S XMSG="501 No MESSAGE-ID.  Msg rejected." X XMSEN
+ ;. D KILLIT^XMR3A
+ ;. S XMREJECT=1
+ ;I '$O(^XMB(3.9,XMZ,2,.999999)) S ^XMB(3.9,XMZ,2,1,0)=" "
+ S ^XMB(3.9,XMZ,2,0)="^^"_XMLIN_U_XMLIN
+ Q
+TOOLONG() ;
+ N XMLIMIT
+ S XMLIMIT=$P($G(^XMB(1,1,"NETWORK-LIMIT")),U,2)
+ Q:'XMLIMIT 0
+ Q:$G(XM2LONG) 1
+ Q:XMLIN'>XMLIMIT 0
+ I $G(XMHDR("TYPE"))["X"!($G(XMHDR("TYPE"))["K") Q 0
+ Q 1
+SCRUB(X) ; Strip ctrl chars and leading/trailing blanks
+ S:X?.E1C.E X=$$CTRL^XMXUTIL1(X)
+ S:$E(X,1)=" "!($E(X,$L(X))=" ") X=$$STRIP^XMXUTIL1(X)
+ Q X
+BASK ; "X-MM-BASKET:" (Delivery Basket)
+ S:$D(XMZIENS) XMZFDA(3.9,XMZIENS,21)=XMP
+ Q
+CLOS ; "X-MM-CLOSED:YES"
+ S:$D(XMZIENS) XMZFDA(3.9,XMZIENS,1.95)="y"
+ Q
+DATE ; "DATE:"
+ S XMDATE=XMP
+ S:$D(XMZIENS) XMZFDA(3.9,XMZIENS,1.4)=XMDATE
+ Q
+ENCR ; "ENCRYPT:"
+ S XMENCR=XMP
+ Q:'$D(XMZIENS)
+ S XMZFDA(3.9,XMZIENS,1.8)=$P(XMENCR,U,1)        ; scramble hint
+ S XMZFDA(3.9,XMZIENS,1.85)=$P(XMENCR,U,2,999)   ; scramble key
+ Q
+EXPI ; "EXPIRY-DATE:" (vaporize date)
+ N XMVAPOR
+ S XMVAPOR=$$CONVERT^XMXUTIL1(XMP,1) Q:XMVAPOR=-1
+ S:$D(XMZIENS) XMZFDA(3.9,XMZIENS,1.6)=XMVAPOR
+ Q
+FROM ; "FROM:"
+ S XMFROM=XMP
+ Q:'$D(XMZIENS)
+ ;I $D(XMHDR("FROM",1)) D CONTINU(.XMFROM,"FROM",.XMHDR)
+ S XMZFDA(3.9,XMZIENS,1)=XMFROM
+ Q
+CONTINU(XMVBL,XMH,XMHDR) ;
+ N I
+ S I=0
+ F  S I=$O(XMHDR(XMH,I)) Q:'I  S XMVBL=XMVBL_" "_XMHDR(XMH,I)
+ Q
+IMPO ; "IMPORTANCE:HIGH" (Priority)
+ I $$UP^XLFSTR(XMP)'="HIGH"!'$D(XMZIENS) Q
+ S:$G(XMZFDA(3.9,XMZIENS,1.7))'["P" XMZFDA(3.9,XMZIENS,1.7)=$G(XMZFDA(3.9,XMZIENS,1.7))_"P"
+ Q
+INFO ; "X-MM-INFO-ONLY:YES"
+ S:$D(XMZIENS) XMZFDA(3.9,XMZIENS,1.97)="y"
+ Q
+REFE ; "REFERENCES:" (used by some systems, instead of 'in-reply-to')
+ Q
+INRE ; "IN-REPLY-TO:" message at this site
+ N I,XMLOCID,XMREC
+ S XMLOCID=$$REMID(XMP)
+ S XMZO=$$LOCALXMZ^XMR3A(XMLOCID)
+ Q:'XMZO
+ I $P(XMZO,U,3)'="E" S XMZO="" Q
+ S XMZO=+XMZO
+ S XMREC=$G(^XMB(3.9,XMZO,0))
+ I $P(XMREC,U,8) D  ; If reply to a reply, get original msg #
+ . S XMZO=$P(XMREC,U,8)
+ . S XMREC=$G(^XMB(3.9,XMZO,0))
+ I XMREC="" S XMZO="" Q  ; Original message not found, so make this reply a message.
+ I "^y^Y^"[(U_$P(XMREC,U,12)_U) S XMRINFO=1 Q  ; Reply to 'info only' msg
+ S:$D(XMZIENS) XMZFDA(3.9,XMZIENS,1.35)=XMZO  ; Point from response to original msg
+ Q
+REMID(X) ;
+ Q:X["<" $TR($P(X,">",1),"<")
+ ; I've seen some like this: "<<...>>"
+ ; I've seen some like this: "<...>; comment here"
+ Q X
+MESS ; "MESSAGE-ID:" at site where message originated
+ S XMREMID=$$REMID(XMP)
+ S:$D(XMZIENS) XMZFDA(3.9,XMZIENS,9)=XMREMID
+ Q
+PRIO ; "X-PRIORITY:1" (Priority)
+ I $$UP^XLFSTR(XMP)'=1!'$D(XMZIENS) Q
+ S:$G(XMZFDA(3.9,XMZIENS,1.7))'["P" XMZFDA(3.9,XMZIENS,1.7)=$G(XMZFDA(3.9,XMZIENS,1.7))_"P"
+ Q
+REPL ; "REPLY-TO:"
+ S XMREPLTO=XMP
+ ;I $D(XMHDR("REPL",1)) D CONTINU(.XMREPLTO,"REPL",.XMHDR)
+ Q
+RETU ; "RETURN-RECEIPT-TO:"
+ S:$D(XMZIENS) XMZFDA(3.9,XMZIENS,1.3)="y"
+ Q
+SEND ; "SENDER:" (Surrogate)
+ S XMSENDER=XMP
+ ;I $D(XMHDR("SEND",1)) D CONTINU(.XMSENDER,"SEND",.XMHDR)
+ Q:XMSENDER=$G(XMFROM)
+ S:$D(XMZIENS) XMZFDA(3.9,XMZIENS,1.1)=XMSENDER
+ Q
+SENS ; "SENSITIVITY:PERSONAL" (Confidential)
+ Q:"^PERSONAL^PRIVATE^COMPANY-CONFIDENTIAL^"'[(U_$$UP^XLFSTR(XMP)_U)
+ S:$D(XMZIENS) XMZFDA(3.9,XMZIENS,1.96)="y"
+ Q
+SUBJ ; "SUBJECT:"
+ S XMSUBJ=XMP
+ I XMSUBJ["   " S XMSUBJ=$$MAXBLANK^XMXUTIL1(XMSUBJ)
+ I XMSUBJ["^" S XMSUBJ=$$ENCODEUP^XMXUTIL1(XMSUBJ)
+ S XMSUBJ=$E(XMSUBJ,1,65)
+ Q:XMSUBJ=""!'$D(XMZIENS)
+ I $L(XMSUBJ)<3 S XMSUBJ="..."
+ S XMZFDA(3.9,XMZIENS,.01)=XMSUBJ
+ Q
+TYPE ; "X-MM-TYPE:"
+ S:$D(XMZIENS) XMZFDA(3.9,XMZIENS,1.7)=XMP
+ Q
+SET ; Set data into message file
+ I $G(XMREMID)'="" D CHEKDUP^XMR3A Q:$G(XMREJECT)
+ I $D(XMZFDA) D
+ . I $D(XMZFDA(3.9,XMZIENS,1.1)),$L(XMZFDA(3.9,XMZIENS,1))+$L(XMZFDA(3.9,XMZIENS,1.1))>130 S XMZFDA(3.9,XMZIENS,1.1)=$E($$REMADDR^XMXADDR3(XMZFDA(3.9,XMZIENS,1.1)),1,64)
+ . I $L(XMZFDA(3.9,XMZIENS,1))>100 S XMZFDA(3.9,XMZIENS,1)="<"_$$REMADDR^XMXADDR3(XMZFDA(3.9,XMZIENS,1))_">"
+ . D FILE^DIE("","XMZFDA")
+ ;SENDER only RCPT / REMOTE sender drops thru (local>0=pointer)
+ I $G(XMZO) D  Q:$O(^TMP("XMY",$J,""))  ; I don't understand this.
+ . D DOTRAN^XMC1(42315,XMZ,XMZO) ;> Putting response |1| into message |2|
+ . D DOTRAN^XMC1(42316,XMZO)     ;> Delivering message |1|
+ . D RPOST^XMKP("NR",XMZO,XMZ)
+ D FWD^XMKP(.5,XMZ,.XMINSTR)
+ D CHECK^XMKPL
+ Q
+PARSE(XMZ,XMREMID,XMSUBJ,XMFROM,XMDATE,XMSENDER,XMENCR,XMZO) ; Get data for remotely originated message
+ ; This is used by ^XMRENT & ^XMS3
+ ; XMSUBJ   subject
+ ; XMFROM   from
+ ; XMDATE   date
+ ; XMENCR   scramble hint "^" scramble key
+ ; XMREMID  message id at site where msg originated (not necessarily at the sending site)
+ ; XMZO     original message xmz (to which this msg is a response)
+ N XMP,XMH,XMHDR,XMRINFO,XMZFDA,XMZIENS,XMFIND
+ ; Don't add anything to this list:
+ S XMFIND="^DATE^ENCRYPTED^FROM^IN-REPLY-TO^MESSAGE-ID^SENDER^SUBJECT^"
+ D HDRFIND(XMZ,XMFIND,.XMHDR)
+ S XMH=""
+ F  S XMH=$O(XMHDR(XMH)) Q:XMH=""  D
+ . S XMP=XMHDR(XMH)
+ . D @XMH
+ Q
+HDRFIND(XMZ,XMFIND,XMHDR) ;
+ N XMH,XMI,XMREC
+ I XMFIND'?1"^".E1"^" D
+ . I $E(XMFIND,1)'=U S XMFIND=U_XMFIND
+ . I $E(XMFIND,$L(XMFIND))'=U S XMFIND=XMFIND_U
+ S XMI=0
+ F  S XMI=$O(^XMB(3.9,XMZ,2,XMI)) Q:XMI'<1!'XMI  S XMREC=^(XMI,0) Q:XMREC=""  D
+ . I $E(XMREC,1)=" "!($E(XMREC,1)=$C(9)) Q:XMH=""  D NEXT(XMH,.XMHDR,XMREC) Q
+ . S XMH=$$UP^XLFSTR($P(XMREC,":"))
+ . I XMFIND'[(U_XMH_U) S XMH="" Q
+ . I "^DATE^FROM^IMPORTANCE^IN-REPLY-TO^MESSAGE-ID^SUBJECT^"[(U_XMH_U) S XMH=$E($TR(XMH,"-"),1,4),XMHDR(XMH)=$$SCRUB($P(XMREC,":",2,99)) Q
+ . I "^ENCRYPTED^EXPIRY-DATE^REFERENCES^REPLY-TO^RETURN-RECEIPT-TO^SENDER^SENSITIVITY^"[(U_XMH_U) S XMH=$E($TR(XMH,"-"),1,4),XMHDR(XMH)=$$SCRUB($P(XMREC,":",2,99)) Q
+ . I "^X-PRIORITY^"[(U_XMH_U) S XMH=$E($P(XMH,"-",2),1,4),XMHDR(XMH)=$$SCRUB($P(XMREC,":",2,99)) Q
+ . I "^X-MM-BASKET^X-MM-CLOSED^X-MM-INFO-ONLY^X-MM-TYPE^"[(U_XMH_U) S XMH=$E($P(XMH,"-",3),1,4),XMHDR(XMH)=$$SCRUB($P(XMREC,":",2,99)) Q
+ . S XMH=""
+ Q

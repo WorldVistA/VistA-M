@@ -1,0 +1,89 @@
+PRCB1A ;WISC/PLT-CONTROL POINT ENTER/EDIT ; 12/10/97  1600
+V ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ QUIT  ;invalid entry
+ ;
+EN N PRC,PRCDD,PRCDR,PRCDI,PRCRI,PRCPR,PRCAED,PRCQT,PRCU S PRCU="^"
+ N PRCK,PRCLOCK,PRCNO,PRCST,PRCUNQ
+ N DA,A,B,X,Y
+ N PRCUQ,PRCK1,PRCK26,PRCK28,PRCK29,PRCK25,PRCK25D5,PRCK27
+ N PRCF,PRCFA,PRCFUND,PRCBBFY,PRCRQ
+ S PRCF("X")="AS" D ^PRCFSITE G:$G(PRC("SITE"))="" EXIT
+ I '$D(^PRC(420,PRC("SITE"))) K X S X=PRC("SITE"),Y=""="" D ADD^PRC0B1(.X,.Y,"420;^PRC(420,",X) G:Y<0 EXIT
+ S PRCDD=420,PRCRI(420)=PRC("SITE"),PRCFA("ALL")=""
+ S PRCLOCK=$$DICGL^PRC0B1(PRCDD)_PRCRI(PRCDD)_",",Y=3 D ICLOCK^PRC0B(PRCLOCK,.Y)
+ I 'Y D EN^DDIOL("The station/fund control point data is in use, edit station data is not allowed.") G FCP
+ S PRCDR="2;3;10;11;3.1"
+ D EDIT^PRC0B(.X,PRCDD_";;"_PRCRI(PRCDD),PRCDR)
+ D DCLOCK^PRC0B(PRCLOCK)
+FCP F  D EN^DDIOL($TR($J("",78)," ","-")) D  Q:PRCQT=1
+ . N PRCDD,PRCAED,PRCDI,PRCLOCK1
+ . S PRCDD=420.01,PRCQT=""
+ . S X("S")="I ^(0)-9999"
+ . D LKUP Q:PRCQT
+ . S PRCLOCK1=PRCLOCK_"1,"_PRCRI(PRCDD)_",",Y=3 D ICLOCK^PRC0B(PRCLOCK1,.Y)
+ . I 'Y D EN^DDIOL("The station/selected fund control point data is in use, please try later!") QUIT
+ . S Y=$$NODE^PRC0B("^PRC(420,PRCRI(420),1,PRCRI(420.01),",0)
+ . S PRCST=$P(Y,PRCU,19),PRCNM=$P(Y,PRCU),PRCNO=$P(PRCNM," "),PRCNM=$P(PRCNM," ",2,999)
+ . D KEY1
+ . D REQ1^PRCB1A1
+ . D EDIT
+ . D TUSER^PRCSEB1(PRCRI(PRCDD))
+ . D DCLOCK^PRC0B(PRCLOCK1)
+ . QUIT
+EXIT QUIT
+ ;
+LKUP ;lookup prcdd=420.01
+ S PRCDI="420;^PRC(420,;"_PRCRI(420)_";1~420.01;^PRC(420,"_PRCRI(420)_",1,"
+ D LOOKUP^PRC0B(.X,.Y,PRCDI,"AEOQLS","Select Fund Control Point: ")
+ I Y<0!(X="") S PRCQT=1 K X QUIT
+ K X S PRCRI(PRCDD)=+Y,PRCAED=$P(Y,"^",3)
+ S PRCDI="420;^PRC(420,;"_PRCRI(420)_"~420.01;^PRC(420,"_PRCRI(420)_",1,;"_PRCRI(420.01)
+ QUIT
+ ;
+EDIT ;edit prcdd=420.01
+ I PRCST=1 D  Q:PRCQT
+ . D EDIT^PRC0B(.X,PRCDI,"20Active/Inactive Control Point","") I X=0 S PRCQT=2
+ . K A D PIECE^PRC0B(PRCDI,"1~20","I","A")
+ . S X=$G(A(PRCDD,PRCRI(PRCDD),20,"I")) K A
+ . S X=$S(X=1:"23////^S X=DUZ;24///NOW",1:"23///^S X=""@"";24///^S X=""@""")
+ . D EDIT^PRC0B(.X,PRCDI,X)
+ D FT^PRC0A(.X,.Y,"Control Point Name","^1:25^K:X'?1AN.ANP X",PRCNM)
+ I X?1"^".E S:PRCAED'=1 PRCQT=99 D:PRCAED=1 DELQ^PRCB1A1 Q:PRCQT  G EDIT
+ I X]"",X'=PRCNM S PRCNM=X,X=".01///"_PRCNO_" "_PRCNM D EDIT^PRC0B(.X,PRCDI,X)
+ S C=""
+ G ED0^PRCB1A1
+ ;
+KEY ;initial key values/func code/bbfy
+ S:$D(DA(1)) PRCRI(420)=DA(1) S:$D(DA) PRCRI(420.01)=DA
+KEY1 F I=1,26,27,28,29 S @("PRCK"_I_"=""""")
+ S PRCK25D5=""
+ QUIT:'PRCRI(420)!'PRCRI(420.01)
+ S A=$G(^PRC(420,PRCRI(420),1,PRCRI(420.01),0)),PRCK1=$P(A,"^",2)
+ S A=$G(^PRC(420,PRCRI(420),1,PRCRI(420.01),5))
+ S PRCK25D5=$P(A,"^",5),PRCK26=$P(A,"^",2),PRCK27=$P(A,"^",3)
+ S PRCK28=$P(A,"^",4),PRCK29=$P(A,"^",6)
+ F I=26,27,28,29 I @("PRCK"_I_"=""""") S @("PRCK"_I_"="" """)
+ S:PRCK25D5="" PRCK25D5=" "
+ QUIT
+ ;
+UNQCHK(PRCK1,PRCK25D5,PRCK26,PRCK27,PRCK28,PRCK29) ;check uniqeness
+ S PRCUNQ=""
+ S PRCK=","_$G(PRCK1)_","""_$G(PRCK25D5)_""","""_$G(PRCK26)_""","""_$G(PRCK27)_""","""_$G(PRCK28)_""","""_$G(PRCK29)_""","
+ I PRCK'[",," S @("PRCUQ=$O(^PRC(420,PRCRI(420),1,""UNQ"""_PRCK_"0))") I PRCUQ,PRCUQ-PRCRI(420.01) D UNQMES^PRCB1A1
+ QUIT
+ ;
+UNQCRS ;set unique cross reference
+ S PRCK=","_$G(PRCK1)_","""_$G(PRCK25D5)_""","""_$G(PRCK26)_""","""_$G(PRCK27)_""","""_$G(PRCK28)_""","""_$G(PRCK29)_""","
+ I PRCK'[",," S @("^PRC(420,PRCRI(420),1,""UNQ"""_PRCK_"DA)=""""")
+ QUIT
+ ;
+UNQCRK ;kill unique cross reference
+ S PRCK=","_$G(PRCK1)_","""_$G(PRCK25D5)_""","""_$G(PRCK26)_""","""_$G(PRCK27)_""","""_$G(PRCK28)_""","""_$G(PRCK29)_""","
+ I PRCK'[",," K @("^PRC(420,PRCRI(420),1,""UNQ"""_PRCK_"DA)")
+ QUIT
+ ;
+DINU ;call from ^dd(420.01,.01)
+ S DINUM=+X
+ QUIT
+ ;

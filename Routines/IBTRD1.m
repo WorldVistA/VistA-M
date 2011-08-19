@@ -1,0 +1,118 @@
+IBTRD1 ;ALB/AAS - CLAIMS TRACKING - APPEAL/DENIAL ACTIONS ; 10-AUG-93
+ ;;Version 2.0 ; INTEGRATED BILLING ;; 21-MAR-94
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+% G EN^IBTRD
+ ;
+AA ; -- Add Appeal entry
+ N X,Y,I,J,DA,DR,DIC,DIE,DR,DD,DO,IBQUIT,IBTRCDT,IBXX,VALMY,IBTRN,IBTRC
+ D EN^VALM2($G(XQORNOD(0)))
+ I $D(VALMY) D FULL^VALM1 S IBXX=0 F  S IBXX=$O(VALMY(IBXX)) Q:'IBXX!$D(DIRUT)  D
+ .S IBTRC=$P($G(^TMP("IBTRDDX",$J,+$O(^TMP("IBTRD",$J,"IDX",IBXX,0)))),"^",2)
+ .; -- must be a denial or a penalty
+ .S IBDENIAL=$O(^IBE(356.7,"ACODE",20,0))
+ .S IBPENAL=$O(^IBE(356.7,"ACODE",30,0))
+ .I '$D(^IBT(356.2,"ACT",IBDENIAL,IBTRC))&('$D(^IBT(356.2,"ACT",IBPENAL,IBTRC))) W !!,"You can only appeal a denial or an penalty." D PAUSE^VALM1 Q
+ .D AA1
+ D BLD^IBTRD
+ S VALMBCK="R"
+ Q
+ ;
+AA1 ; -- select date
+ N DIR,IBTRCDT
+ S DIR(0)="356.2,.01",DIR("A")="Select Appeal Date",DIR("B")="NOW"
+ D ^DIR K DIR
+ I $D(DIRUT)!($E(+Y,1,7)'?7N) G AA1Q
+ S IBTRCDT=+Y
+ ;
+ ; -- if not tracking id allow selecting
+ S IBTRDD=$G(^IBT(356.2,+IBTRC,0))
+ S IBTRN=$P(IBTRDD,"^",2)
+ S DFN=$P(IBTRDD,"^",5)
+ S IBPARNT=IBTRC
+ S IBCDFN=$P($G(^IBT(356.2,IBTRC,1)),"^",5)
+ ;
+ ; -- add entry
+ S IBTCOD=$S('$D(^IBT(356.2,"AP",IBTRC)):60,1:65)
+ D COM^IBTUTL3(IBTRCDT,$G(IBTRN),IBTCOD,$G(IBTRV))
+ ; -- ibtrc now entry of new appeal
+ ;
+ ; -- edit based on
+ S DIE="^IBT(356.2,",DA=IBTRC
+ L +^IBT(356.2,+IBTRC):5 I '$T D LOCKED^IBTRCD1 G AA1Q
+ S DR="[IBT ADD APPEAL]"
+ ;S DR=".18////"_IBPARNT_";1.05////"_IBCDFN_";.04;.23;.1;.25;11;.24;.19"
+ D ^DIE K DIE
+ L -^IBT(356.2,+IBTRC)
+AA1Q Q
+ ;
+DT ; -- Delete Insurance Action entry
+ I '$D(^XUSEC("IB CLAIMS SUPERVISOR",DUZ)) D SORRY^IBTRE1 G DTQ
+ D EN^VALM2($G(XQORNOD(0)))
+ N I,J,IBXX,DIR,DIRUT,IBTRN
+ I $D(VALMY) D FULL^VALM1 S IBXX=0 F  S IBXX=$O(VALMY(IBXX)) Q:'IBXX!$D(DIRUT)  D
+ .S IBTRC=$P($G(^TMP("IBTRDDX",$J,+$O(^TMP("IBTRD",$J,"IDX",IBXX,0)))),"^",2),IBTRN=$P($G(^IBT(356.2,+IBTRC,0)),"^",2)
+ .I $O(^IBT(356.2,"AP",IBTRC,0)) W !,"Must first delete appeals associate* d with Denials" D PAUSE^VALM1 Q
+ .;
+ .W ! S DIR(0)="Y",DIR("B")="NO",DIR("A")="Are You Sure you want to delete entry #"_IBXX
+ .D ^DIR I Y'=1 W !,"Entry #",IBXX," not Deleted!" Q
+ .D DP1^IBTRC1
+ .Q
+DTQ D BLD^IBTRD
+ S VALMBCK="R" Q
+ ;
+QE ; -- Quick edit Review entry
+ D EN^VALM2($G(XQORNOD(0)))
+ N I,J,IBXX,IBTRN,IBTRC
+ I $D(VALMY) S IBXX=0 F  S IBXX=$O(VALMY(IBXX)) Q:'IBXX  D
+ .S IBTRC=$P($G(^TMP("IBTRDDX",$J,+$O(^TMP("IBTRD",$J,"IDX",IBXX,0)))),"^",2),IBTRN=$P($G(^IBT(356.2,+IBTRC,0)),"^",2)
+ .D QE1
+QEQ S VALMBCK="R"
+ D BLD^IBTRD
+ Q
+ ;
+QE1 N X,Y,DA,DR,DIC,DIE
+ D EDIT^IBTRCD1("[IBT QUICK EDIT]",1)
+ Q
+ ;
+NX(IBTMPNM) ; -- Go to next template
+ ; -- Input template name
+ N I,J,IBXXC,VALMY,IBTRN
+ D EN^VALM2($G(XQORNOD(0)))
+ I $D(VALMY) S IBXXC=0 F  S IBXXC=$O(VALMY(IBXXC)) Q:'IBXXC  D
+ .S IBTRC=$P($G(^TMP("IBTRDDX",$J,+$O(^TMP("IBTRD",$J,"IDX",IBXXC,0)))),"^",2),IBTRN=$P($G(^IBT(356.2,+IBTRC,0)),"^",2)
+ .S:'$D(DFN) DFN=$P($G(^IBT(356.2,+IBTRC,0)),"^",5)
+ .S:'$D(IBCNS) IBCNS=$P($G(^IBT(356.2,+IBTRC,0)),"^",8)
+ .D EN^VALM(IBTMPNM)
+ .K IBAMT,IBAPR,IBADG,IBDA,IBDGCR,IBDGCRU1,IBDV,IBETYP,IBETYPD,IBI,IBICD,IBLCNT,IBSEL,IBT,IBTEXT,IBTNOD,IBTSAV,VAUTD
+ .K IBAPEAL,IBCDFN,IBCNT,IBDEN,IBDENIAL,IBDENIAL,IBPARNT,IBPEN,IBPENAL,IBTCOD,IBTRDD,IBTRSV,IBTYPE,VAINDT,VA
+ .D KVAR^VADPT
+ .Q
+ I '$D(IBFASTXT) D BLD^IBTRD
+ S VALMBCK="R"
+ Q
+ ;
+EDIT(IBTEMP) ; -- Edit entries
+ N VALMY
+ D EN^VALM2($G(XQORNOD(0)))
+ N I,J,IBXX
+ I $D(VALMY) D FULL^VALM1 S IBXX=0 F  S IBXX=$O(VALMY(IBXX)) Q:'IBXX  D
+ .S IBTRC=$P($G(^TMP("IBTRDDX",$J,+$O(^TMP("IBTRD",$J,"IDX",IBXX,0)))),"^",2)
+ .W !!,"Editing Entry #",IBXX,!
+ .D EDIT^IBTRCD1(IBTEMP,1)
+ S VALMBCK="R"
+ D BLD^IBTRD
+ Q
+SHOWSC ; -- show sc conditions
+ N VALMY
+ D FULL^VALM1
+ I IBTRD["DPT",$D(DFN) D SHOWSC^IBTRC1 G SHOWQ
+ ;
+ D EN^VALM2($G(XQORNOD(0)))
+ N I,J,IBXX,DFN,IBTRC
+ I $D(VALMY) D FULL^VALM1 S IBXX=0 F  S IBXX=$O(VALMY(IBXX)) Q:'IBXX  D
+ .S IBTRC=$P($G(^TMP("IBTRDDX",$J,+$O(^TMP("IBTRD",$J,"IDX",IBXX,0)))),"^",2)
+ .S DFN=$P($G(^IBT(356.2,+IBTRC,0)),"^",5)
+ .D SHOWSC^IBTRC1
+SHOWQ S VALMBCK="R"
+ Q

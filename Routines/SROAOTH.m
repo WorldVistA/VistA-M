@@ -1,0 +1,27 @@
+SROAOTH ;BIR/MAM - PRINT OTHER PROCEDURES ;04/11/06
+ ;;3.0; Surgery ;**34,88,97,142,153**;24 Jun 93;Build 11
+ N CPTT
+ W ! S (CNT,OTH)=0,CPTT="" F  S OTH=$O(^SRF(SRTN,13,OTH)) Q:'OTH  S CNT=CNT+1,OPER=$P(^SRF(SRTN,13,OTH,0),"^"),CPT=$P($G(^SRF(SRTN,13,OTH,2)),"^") D LIST
+ S X=$P($G(^SRO(136,SRTN,0)),"^",2) I X S Y=$S(X:$P($$CPT^ICPTCOD(X),"^",2),1:"") D SSPRIN^SROCPT0 S CPTT=Y I $L(Y),$O(^SRO(136,SRTN,3,0)) D
+ .S OTH=0 F  S OTH=$O(^SRO(136,SRTN,3,OTH)) Q:'OTH  S OPER=$P($G(^SRO(136,SRTN,3,OTH,0)),"^"),CPT=$P($G(^SRO(136,SRTN,3,OTH,0)),"^") D
+ ..I CPT S Y=$P($$CPT^ICPTCOD(CPT),"^",2),SRDA=OTH D SSOTH^SROCPT0 S CPT=Y I $L(CPT) S CPTT=CPTT_", "_CPT
+ W !!,$J("Procedure CPT Codes: ",39)_CPTT
+ K OTH,CPT,CNT,OPER,SROPS S SROPS(1)=""
+ S CPT="",CON=$P($G(^SRF(SRTN,"CON")),"^") I CON,($P($G(^SRF(CON,30)),"^")!($P($G(^SRF(CON,31)),"^",8))) S CON=""
+ I CON S SROPER=$P(^SRF(CON,"OP"),"^"),CPT=$P($G(^SRO(136,CON,0)),"^",2) D
+ .K SROPS,MM,MMM S:$L(SROPER)<49 SROPS(1)=SROPER I $L(SROPER)>48 S SROPER=SROPER_"  " F M=1:1 D LOOP Q:MMM=""
+ .I CPT S Y=$P($$CPT^ICPTCOD(CPT),"^",2) D CON
+ .S:CPT="" CPT="MISSING"
+ W !!,$J("Concurrent Procedure: ",39)_$S(SROPS(1)="":"N/A",1:SROPS(1)) I $D(SROPS(2)) W !,?39,SROPS(2) I $D(SROPS(3)) W !,?39,SROPS(3)
+ W !,$J("CPT Code: ",39)_$S(CPT="":"N/A",1:CPT)
+ Q
+CON ; get CPT modifiers for concurrent procedure
+ N SRTN S SRTN=CON D SSPRIN^SROCPT0 S CPT=Y
+ Q
+LIST I CPT S Y=$P($$CPT^ICPTCOD(CPT),"^",2),SRDA=OTH D SSOTH^SROCPT S CPT=Y
+ S:CPT="" CPT="MISSING"
+ W !,$J("Other Procedure ("_CNT_"): ",39)_OPER
+ Q
+LOOP ; break procedures
+ S SROPS(M)="" F LOOP=1:1 S MM=$P(SROPER," "),MMM=$P(SROPER," ",2,200) Q:MMM=""  Q:$L(SROPS(M))+$L(MM)'<49  S SROPS(M)=SROPS(M)_MM_" ",SROPER=MMM
+ Q

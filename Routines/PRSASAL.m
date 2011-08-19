@@ -1,0 +1,35 @@
+PRSASAL ; HISC/REL-Supervisor Alert Utilities ;5/31/95  14:01
+ ;;4.0;PAID;;Sep 21, 1995
+AL ; Check for Alerts
+ G:'$D(^PRST(455.5,"AS",DUZ)) A1
+ N X1,X2 F X1=0:0 S X1=$O(^PRST(455.5,"AS",DUZ,X1)) Q:X1<1  D
+ .S X2=$G(^PRST(455.5,X1,0)) Q:'$P(X2,"^",10)
+ .S MSG="!T&L "_$P(X2,"^",1)_" has "_$P(X2,"^",10)_" actions to certify." D SET^XUS1A(MSG) Q
+A1 Q:'$D(^PRST(455.5,"AA",DUZ))
+ N X1,X2 S X2=0 F X1=0:0 S X1=$O(^PRST(455.5,"AA",DUZ,X1)) Q:X1<1  D
+ .S X2=X2+$P($G(^PRST(455.5,X1,0)),"^",11) Q
+ I X2 S MSG="!PAID has "_X2_" OT/CT/Prior Pay Period actions to approve." D SET^XUS1A(MSG)
+ Q
+UPD ; Update T&L Pending count
+ N DA,NN,NUM,DFN,PPI,SSN S NUM=0
+ S NN="",CKS=1 F  S NN=$O(^PRSPC("ATL"_TLE,NN)) Q:NN=""  F DFN=0:0 S DFN=$O(^PRSPC("ATL"_TLE,NN,DFN)) Q:DFN<1  D CHK
+ S CKS=0 F VA2=0:0 S VA2=$O(^PRST(455.5,"ASX",TLE,VA2)) Q:VA2<1  S SSN=$P($G(^VA(200,VA2,1)),"^",9) I SSN'="" S DFN=$O(^PRSPC("SSN",SSN,0)) I DFN,$P($G(^PRSPC(+DFN,0)),"^",8)'=TLE D CHK
+ S $P(^PRST(455.5,TLI,0),"^",10)=NUM Q
+CHK ; Check for needed approvals
+ I CKS S SSN=$P($G(^PRSPC(DFN,0)),"^",9) I SSN S EDUZ=+$O(^VA(200,"SSN",SSN,0)) I $D(^PRST(455.5,"AS",EDUZ,TLI)) Q:$P($G(^PRST(455.5,TLI,"S",EDUZ,0)),"^",2)'=TLE
+ F DA=0:0 S DA=$O(^PRST(458.1,"AR",DFN,DA)) Q:DA<1  S NUM=NUM+1
+ F DA=0:0 S DA=$O(^PRST(458.2,"AR",DFN,DA)) Q:DA<1  S NUM=NUM+1
+ F DA=0:0 S DA=$O(^PRST(458.3,"AR",DFN,DA)) Q:DA<1  S NUM=NUM+1
+ I $D(^PRST(458,"ATC",DFN)) F PPI=0:0 S PPI=$O(^PRST(458,"ATC",DFN,PPI)) Q:PPI<1  S NUM=NUM+1
+ I $D(^PRST(458,"AXR",DFN)) F PPI=0:0 S PPI=$O(^PRST(458,"AXR",DFN,PPI)) Q:PPI<1  F AUN=0:0 S AUN=$O(^PRST(458,"AXR",DFN,PPI,AUN)) Q:AUN<1  S NUM=NUM+1
+ Q
+APP ; Update T&L Approval Count
+ N DA,NN,NUM,DFN,PPI,AUN S NUM=0
+ S NN="" F  S NN=$O(^PRSPC("ATL"_TLE,NN)) Q:NN=""  F DFN=0:0 S DFN=$O(^PRSPC("ATL"_TLE,NN,DFN)) Q:DFN<1  I $D(^PRST(458.2,"AS",DFN)) D
+ .F DA=0:0 S DA=$O(^PRST(458.2,"AS",DFN,DA)) Q:DA<1  S NUM=NUM+1
+ .Q
+ F DFN=0:0 S DFN=$O(^PRST(458,"AXS",DFN)) Q:DFN<1  F PPI=0:0 S PPI=$O(^PRST(458,"AXS",DFN,PPI)) Q:PPI<1  D
+ .I $E($G(^PRST(458,PPI,"E",DFN,5)),22,24)'=TLE Q
+ .F AUN=0:0 S AUN=$O(^PRST(458,"AXS",DFN,PPI,AUN)) Q:AUN<1  S NUM=NUM+1
+ .Q
+ S $P(^PRST(455.5,TLI,0),"^",11)=NUM Q

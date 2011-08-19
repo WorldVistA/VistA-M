@@ -1,0 +1,119 @@
+RCRCAT ;ALB/CMS - AR/RC AR TRANSACTION TRANSMISSION ;16-JUN-00
+V ;;4.5;Accounts Receivable;**63,127,159**;Mar 20, 1995
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+ Q
+EN ;Entry from Protocol to Transmit AR Transaction(s) to RC
+ N LN,PRCABN,RCA,RCCAT,RCCNT,RCCOM,RCDATA,RCDOM,RCMSG,RCOUT,RCSITE,RCXCNT,RCY,X,Y S RCCNT=0,LN=4
+ D FULL^VALM1
+ I '$O(^TMP("RCRCAL",$J,"SEL",0)) W !!,"NOTHING TO REFER!",!,"No selected items from list." G ENQ
+ ;D RCCAT^RCRCUTL(.RCCAT)
+ W !! S DIR("A",1)="Referring transactions for bill(s) on highlighted Selection List "
+ S DIR("A")="Okay to Continue ",DIR("?")="Enter Yes to Continue"
+ D ASK^RCRCACP I $G(Y)'=1 G ENQ
+ K ^TMP("RCRCAT",$J,"XM") S RCXCNT=0
+ S RCY=0 F  S RCY=$O(^TMP("RCRCAL",$J,"SEL",RCY)) Q:('RCY)!($G(RCOUT))  D
+ .S PRCABN=$P($G(^TMP("RCRCALX",$J,RCY)),U,2)
+ .S PRCABN0=$G(^PRCA(430,+PRCABN,0)) Q:'PRCABN0
+ .;I $P($G(RCCAT(+$P(PRCABN0,U,2))),U,1)'=1 Q
+ .D EN^RCRCAT1
+ .Q
+ I $G(RCOUT) G ENQ
+ ; - If nothing to send go write message on screen
+ I '$O(^TMP("RCRCAT",$J,"XM",0)) W !,"Nothing to transmit!" G ENQ
+ ;
+ ; - create E-Mail and send off
+ D SEND
+ ;
+ENQ K DIR D PAUSE^VALM1 S VALMBCK="R"
+ Q
+ ;
+SEND ;Send bills in mail message
+ N II,LN,LNCNT,PRCABN,RCDATA,RCI,RCSUB,RCWHO,RETRY,TRCNT
+ N XNDUZ,XMSUB,XMTEXT,XMY,XMZ,X,Y
+ S RETRY=0,RCCOM=""
+ S RCSITE=$$SITE^RCMSITE
+ I '$D(RCDOM)&($O(RCDIV(0))) S RCDOM=$P($G(RCDIV(+$P($G(RCDIV(0)),U,3))),U,6)
+ I $G(RCDOM)="" S RCDOM=$$RCDOM^RCRCUTL
+ N PRCABN
+SNDA ;Come back here if didn't go to mail man
+ S (XMDUN,XMDUZ)=$S(+$G(DUZ):DUZ,1:.5)
+ S (RCSUB,XMSUB)="AR/RC - "_$G(RCSITE,"UNK")_" AR "_$S($G(RCTYP)="CL":"COMMENT LOG",$G(RCTYP)="TR":"TRANSACTION HISTORY",1:"REQUEST FOR ACTION")
+ D XMZ^XMA2 I $G(XMZ)<1 S RETRY=RETRY+1 I RETRY<100 G SNDA
+ I $G(XMZ)<1 G SENDQ
+ S RCWHO=RCDOM
+ S XMY(RCWHO)="",TRCNT=0
+ S ^XMB(3.9,XMZ,2,0)="^3.92^1^1^"_DT
+ S ^XMB(3.9,XMZ,2,1,0)="$$RC$"_$G(RCTYP,"TR")_"$$"_RCSITE_"$S.RC RC SERV"
+ S PRCABN=0,LN=1 F  S PRCABN=$O(^TMP("RCRCAT",$J,"XM",PRCABN)) Q:'PRCABN  D
+ .S II=0 F  S II=$O(^TMP("RCRCAT",$J,"XM",PRCABN,II)) Q:'II  D
+ ..S RCI=0,TRCNT=TRCNT+1 F  S RCI=$O(^TMP("RCRCAT",$J,"XM",PRCABN,II,RCI)) Q:'RCI  D
+ ...S RCDATA=$G(^TMP("RCRCAT",$J,"XM",PRCABN,II,RCI))
+ ...I RCDATA="" Q
+ ...S LN=LN+1,^XMB(3.9,XMZ,2,LN,0)=RCDATA
+ ;
+ S LNCNT=LN-1
+ S LN=LN+1,^XMB(3.9,XMZ,2,LN,0)="$END$"_TRCNT_"$"_LNCNT
+ S $P(^XMB(3.9,XMZ,2,0),U,3,4)=LN_U_LN
+ ;
+ D ENT1^XMD
+ I $E($G(IOST),1,2)="C-" W !!,"Message #",XMZ," Transmitted ",$G(TRCNT,0)," Transaction(s)."
+ S RCCOM="Message contains AR Transactions."
+ D ENT^RCRCXMS(XMZ,RCSUB,RCWHO,.RCCOM)
+SENDQ Q
+ ;
+DISP ;Display Bill and Transactions Select Items
+ ;Input: PRCABN
+ N DIR,CNT,RCY,PRCA,PRCAEN,X,Y S RCOUT=0
+ I '$D(^PRCA(430,PRCABN,0)) G DISPQ
+ D BNVAR^RCRCUTL(PRCABN)
+ D DEBT^RCRCUTL(PRCABN)
+ D HD
+ S (PRCAEN,CNT)=0 F  S PRCAEN=$O(^PRCA(433,"C",PRCABN,PRCAEN)) Q:'PRCAEN  D
+ .S CNT=CNT+1
+ .S RCEN1=$G(^PRCA(433,PRCAEN,1)),RCTY=+$P(RCEN1,U,2)
+ .S RCTY=$P($G(^PRCA(430.3,RCTY,0)),U,1)
+ .I RCTY="COMMENT" S RCTY=$P($G(^PRCA(433,PRCAEN,5)),U,2)
+ .S Y=+RCEN1 D D^DIQ S RCDT=Y
+ .S DIR("L",CNT)=CNT_"  "_PRCAEN_"  "_RCTY_"  "_RCDT_"  "_+$P(RCEN1,U,5)
+ .S ^TMP("RCRCAL",$J,"XM",PRCA("DEBTNM"),0)=PRCA("DEBTNM")
+ .S ^TMP("RCRCAL",$J,"XM",PRCA("DEBTNM"),PRCA("BNAME"),PRCAEN,0)=PRCA("BNAME")_"   Transaction # "_PRCAEN_" Transaction Date "_DT
+DISPQ Q
+ ;
+HD ;Write Heading
+ W @IOF,!,PRCA("DEBTNM"),!,PRCA("DEBTAD1")
+ W:$G(PRCA("DEBTAD2"))]"" !,PRCA("DEBTAD2")
+ W !,PRCA("DEBTCT"),", ",PRCA("DEBTST"),"  ",PRCA("DEBTZIP")
+ W !,"PHONE #: ",$P(PRCA("DEBTADD"),U,7)
+ W !!," BILL #: ",PRCA("BNAME")
+ W !!,"Item",?8,"TR #",?20,"Tran. Type",?45,"Date",?55,"Amount"
+ W ! F I=1:1:(IOM-1) W "="
+HDQ Q
+ ;
+PF(RCT) ;Input: PRCAEN, PRCABN Called from PRCAPAY1 and INC^RCRCRT
+ ;Send RC a mail message about Payment in Full or Increase
+ N PRCA,RCWHO,RCXMB,X,XNDUZ,XMCHAN,XMDUZ,XMSUB,XMTEXT,XMY,XMZ,Y
+ N RCBDIV,RCCAT,RCCOM,RCD,RCDOM,RCDIV,RCSITE,RCSUB,RC1 S XMCHAN=""
+ D RCCAT^RCRCUTL(.RCCAT)
+ I $P($G(RCCAT(+$P(^PRCA(430,+PRCABN,0),U,2))),U,1)'=1 G PFQ
+ I '$$REFST^RCRCUTL(PRCABN),(RCT="I") G PFQ
+ I RCT="P" S X=$P($G(^PRCA(430,PRCABN,6)),U,4,6) I 'X G PFQ
+ D BNVAR^RCRCUTL(+PRCABN)
+ D RCDIV^RCRCDIV(.RCDIV)
+ I $O(RCDIV(0)) S RCBDIV=$$DIV^IBJDF2(PRCABN) S X=0 F  S X=$O(RCDIV(X)) Q:'X  D
+ .;I $P(RCDIV(X),U,3)=+RCBDIV S RCDOM=$P(RCDIV(X),U,2)
+ .I X=+RCBDIV S RCDOM=$P(RCDIV(X),U,6)
+ S RCSITE=$$SITE^RCMSITE
+ I $G(RCDOM)="" S RCDOM=$$RCDOM^RCRCUTL
+ S XMDUZ=DUZ,(RCSUB,XMSUB)="AR/RC - "_$G(RCSITE,"UNK")_$S(RCT="I":" INCREASE TO CURRENT BALANCE",1:" FULL PAYMENT FOR BILL")
+ S RCWHO=RCDOM,XMY(RCWHO)=""
+ S RCXMB(1,0)="$$RC$"_$S(RCT="I":"IN",1:"FP")_"$$"_RCSITE_"$S.RC RC SERV"
+ S RC1=$G(^PRCA(433,+PRCAEN,1))
+ S RCXMB(2,0)=$G(PRCA("BNAME"),"UNK")_U_PRCAEN_U_+$P(RC1,U,1)_U_+$P(RC1,U,5)
+ S RCXMB(3,0)="$END$1$"
+ S XMTEXT="RCXMB(" D ^XMD
+ S RCCOM="Sent "_$S(RCT="I":"Increase Adjustment",1:"Payment in Full")_" information to RC in MM# "_$G(XMZ)
+ I RCT="I" W !!,RCCOM
+ I $G(XMZ) D ENT^RCRCXMS(XMZ,RCSUB,RCWHO,RCCOM)
+PFQ Q
+ ;RCRCAT

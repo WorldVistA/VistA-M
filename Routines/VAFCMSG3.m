@@ -1,0 +1,184 @@
+VAFCMSG3 ;ALB/JRP,PKE-Message Builder Utilities ; 4/26/03 12:05pm
+ ;;5.3;Registration;**91,209,149,261,307,494,484,477**;Aug 13, 1993
+ ;
+ ;-- Line tags for building HL7 segments
+ ;
+ ; Standardized variable names:
+ ;   All HL7 variables created by calling INIT^HLFNC2() must exist
+ ;   DFN - Pointer to entry in PATIENT file (#2)
+ ;   EVNTHL7 - HL7 ADT event being transmitted
+ ;   EVNTDATE - Date/time event occurred (FileMan format)
+ ;   EVNTINFO() - Array containing extra info needed to build segments
+ ;                (full global reference)
+ ;   VAFSTR - String of fields to put into segment separated by commas
+ ;
+BLDEVN S VAFEVN=$$EN^VAFHLEVN(EVNTHL7,EVNTDATE,VAFSTR,HL("Q"),HL("FS"))
+ ;Manually add event type code (seq #1)
+ S $P(VAFEVN,HL("FS"),2)=EVNTHL7
+ ;Manually add event reason code (seq #4)
+ S $P(VAFEVN,HL("FS"),5)=$G(@EVNTINFO@("REASON",1))
+ ;If applicable, manually add operator (seq #5)
+ S:($D(@EVNTINFO@("USER"))) $P(VAFEVN,HL("FS"),6)=@EVNTINFO@("USER")
+ Q
+BLDPID ;
+ S VAFPID=$$EN^VAFCPID(DFN,VAFSTR)
+ ;CHECK IF PATIENT HAS AN ICN IF NOT A28
+ I $P(VAFPID,HL("FS"),3)=HLQ&(EVNTHL7'="A28") D
+ . I $T(GETICN^MPIF001)']"" Q
+ . ; returns National ICN -- don't create local ICN
+ . N ICN S ICN=$$GETICN^MPIF001(DFN)
+ . I +ICN>0 S $P(VAFPID,HL("FS"),3)=ICN
+ Q
+ ;
+BLDPD1 ;
+ I EVNTHL7="A28" D
+ . N CHANGE,CMOR
+ . N X S X="MPIF001" X ^%ZOSF("TEST") Q:'$T
+ . I +$$GETVCCI^MPIF001(DFN)'>0 D
+ . . ;S CMOR=$P($$SITE^VASITE(),"^")
+ . . ;S CHANGE=$$CHANGE^MPIF001(DFN,CMOR)
+ . . ;I +CHANGE<0 D START^RGHLLOG(),EXC^RGHLLOG(211,"Trouble updating CMOR while building A28 msg in VAFCMSG3 for DFN = "_DFN),STOP^RGHLLOG()
+ S VAFPD1=$$EN^VAFHLPD1(DFN)
+ ;
+BLDPV1 I EVNTHL7="A28" S VAFPV1="PV1"_HL("FS")_1
+ E  S VAFPV1=$$EN^VAFCPV1(DFN) Q
+ ;
+BLDROL ;
+ I $G(@EVNTINFO@("SERVER PROTOCOL"))'="VAFC ADT-A08-SDAM SERVER"
+ IF  I $G(^DPT(DFN,.1))]"" DO
+ . D BLDROL^VAFCROL("VAFROL",DFN,EVNTDATE,VAFSTR,$G(@EVNTINFO@("PIVOT")))
+ Q
+ ;
+BLDOBX ;
+ N VAFARRY S SECINFO=$$EN^VAFHLZSN(DFN) I $P(SECINFO,"^",2)'="",$P(SECINFO,"^",2)'?.2"""" D  ;**477
+ . S VAFARRY(2)="CE"
+ . S $P(VAFARRY(3),$E(HL("ECH"),1),2)="SECURITY LEVEL"
+ . S VAFARRY(5)=$P(SECINFO,"^",2)
+ . S VAFARRY(11)="F"
+ . S VAFARRY(14)=$$FMDATE^HLFNC($P(SECINFO,"^",4))
+ . S VAFARRY(16)=$P(SECINFO,"^",3)
+ ;
+ S VAFOBX=$$EN^VAFHLOBX(.VAFARRY) K SECINFO
+ Q
+ ;
+BLDZPD S VAFZPD=$$EN^VAFHLZPD(DFN,VAFSTR) Q
+ ;
+BLDZSP S VAFZSP=$$EN^VAFHLZSP(DFN) Q
+ ;
+BLDZEL S VAFZEL=$$EN^VAFHLZEL(DFN,VAFSTR,1) Q
+ ;
+BLDZCT S VAFZCT=$$EN^VAFHLZCT(DFN,VAFSTR) Q
+ ;
+BLDZEM S VAFZEM=$$EN^VAFHLZEM(DFN,VAFSTR) Q
+ ;
+BLDZFF S VAFZFF="ZFF"_HL("FS")_2_HL("FS")
+ S VAFZFF=VAFZFF_$P($G(^VAT(391.71,+$G(@EVNTINFO@("PIVOT")),2)),U)
+ Q
+ ;
+BLDZIR K DGREL,DGINC,DGINR,DGDEP
+ D ALL^DGMTU21(DFN,"V",EVNTDATE,"R")
+ S VAFZIR=$$EN^VAFHLZIR(+$G(DGINR("V")),VAFSTR,1)
+ K DGREL,DGINC,DGINR,DGDEP
+ Q
+ ;
+BLDZEN S VAFZEN=$$EN^VAFHLZEN(DFN,VAFSTR,1,HL("Q"),HL("FS")) Q
+ ;
+ ;
+ ;-- Line tags for copying HL7 segments into HL7 message
+ ;
+ ; Standardized variable names:
+ ;   Variables set by BLDxxx tags
+ ;   XMITARRY - Array to build HL7 message into (full global reference)
+ ;   LASTLINE - Last line number used in HL7 message
+ ;            - This value will be incremented appropriately
+ ;   LINESADD - Total number of lines added to HL7 message
+ ;            - This value will be incremented appropriately
+ ;
+CPYEVN N I
+ S LASTLINE=1+$G(LASTLINE)
+ S @XMITARRY@(LASTLINE)=VAFEVN
+ S LINESADD=1+$G(LINESADD)
+ S I=""
+ F  S I=+$O(VAFEVN(I)) Q:('I)  D
+ .S @XMITARRY@(LASTLINE,I)=VAFEVN(I)
+ .S LINESADD=LINESADD+1
+ Q
+ ;                                 rev $o is # lines from array 
+CPYPID S LASTLINE=1+$G(LASTLINE),LINESADD=1+$G(LINESADD)+$O(VAFPID(""),-1)
+ MERGE @XMITARRY@(LASTLINE)=VAFPID Q
+ ;
+CPYPD1 S LASTLINE=1+$G(LASTLINE),LINESADD=1+$G(LINESADD)+$O(VAFPD1(""),-1)
+ MERGE @XMITARRY@(LASTLINE)=VAFPD1 Q
+ ;
+CPYPV1 S LASTLINE=1+$G(LASTLINE),LINESADD=1+$G(LINESADD)+$O(VAFPV1(""),-1)
+ MERGE @XMITARRY@(LASTLINE)=VAFPV1 Q
+ ;
+CPYROL N I,J,K
+ S I=""
+ F K=1:1 S I=+$O(VAFROL(I)) Q:('I)  D
+ . S J=""
+ . F  S J=$O(VAFROL(I,J)) Q:(J="")  D
+ . . S:('J) @XMITARRY@(LASTLINE+K)=VAFROL(I,J)
+ . . S:(J) @XMITARRY@(LASTLINE+K,J)=VAFROL(I,J)
+ . . S LINESADD=1+$G(LINESADD)
+ S LASTLINE=LASTLINE+K-1
+ Q
+ ;
+CPYOBX S LASTLINE=1+$G(LASTLINE),LINESADD=1+$G(LINESADD)+$O(VAFOBX(""),-1)
+ MERGE @XMITARRY@(LASTLINE)=VAFOBX Q
+ ;
+CPYZPD S LASTLINE=1+$G(LASTLINE),LINESADD=1+$G(LINESADD)+$O(VAFZPD(""),-1)
+ MERGE @XMITARRY@(LASTLINE)=VAFZPD Q
+ ;
+CPYZSP S LASTLINE=1+$G(LASTLINE),LINESADD=1+$G(LINESADD)+$O(VAFZSP(""),-1)
+ MERGE @XMITARRY@(LASTLINE)=VAFZSP Q
+ ;
+CPYZEL S LASTLINE=1+$G(LASTLINE),LINESADD=1+$G(LINESADD)+$O(VAFZEL(""),-1)
+ MERGE @XMITARRY@(LASTLINE)=VAFZEL Q
+ ;
+CPYZCT S LASTLINE=1+$G(LASTLINE),LINESADD=1+$G(LINESADD)+$O(VAFZCT(""),-1)
+ MERGE @XMITARRY@(LASTLINE)=VAFZCT Q
+ ;
+CPYZEM S LASTLINE=1+$G(LASTLINE),LINESADD=1+$G(LINESADD)+$O(VAFZEM(""),-1)
+ MERGE @XMITARRY@(LASTLINE)=VAFZEM Q
+ ;
+CPYZFF S LASTLINE=1+$G(LASTLINE),LINESADD=1+$G(LINESADD)+$O(VAFZFF(""),-1)
+ MERGE @XMITARRY@(LASTLINE)=VAFZFF Q
+ ;
+CPYZIR S LASTLINE=1+$G(LASTLINE),LINESADD=1+$G(LINESADD)+$O(VAFZIR(""),-1)
+ MERGE @XMITARRY@(LASTLINE)=VAFZIR Q
+ ;
+CPYZEN S LASTLINE=1+$G(LASTLINE),LINESADD=1+$G(LINESADD)+$O(VAFZEN(""),-1)
+ MERGE @XMITARRY@(LASTLINE)=VAFZEN Q
+ ;
+ ;
+ ;-- Line tags for deleting variables used to build HL7 segments
+ ;
+DELEVN K VAFEVN Q
+ ;
+DELPID K VAFPID Q
+ ;
+DELPD1 K VAFPD1 Q
+ ;
+DELPV1 K VAFPV1 Q
+ ;
+DELROL K VAFROL Q
+ ;
+DELOBX K VAFOBX Q
+ ;
+DELZPD K VAFZPD Q
+ ;
+DELZSP K VAFZSP Q 
+ ;
+DELZEL K VAFZEL Q
+ ;
+DELZCT K VAFZCT Q
+ ;
+DELZEM K VAFZEM Q
+ ;
+DELZFF K VAFZFF Q
+ ;
+DELZIR K VAFZIR Q
+ ;
+DELZEN K VAFZEN Q
+ ;

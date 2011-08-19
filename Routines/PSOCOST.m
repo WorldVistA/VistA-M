@@ -1,0 +1,66 @@
+PSOCOST ;BHAM ISC/SAB - ROUTINE TO GENERATE MONTHLY DRUG COST REPORT ; 08/19/92 8:19
+ ;;7.0;OUTPATIENT PHARMACY;;DEC 1997
+ K ^TMP($J) S (ALL,TF,TQ,TC,PG)=0
+MN S %DT("A")="Enter Month/Year: ",%DT="AQEP" D ^%DT G:"^"[X END G:Y'>0 MN S (MONTH,MON)=$E(Y,1,5)_"00",MN=MON+32
+MN1 R !,"Select a Drug   or  ^ALL for all drugs: ",X:DTIME G:"^"[X END I "^AL"'[$E(X,1,3) G DRG
+MN2 S DIR("A")="Select Minimum Total number of Refills: ",DIR("B")=0,DIR(0)="N^0:50:0",DIR("?")="ENTER A NUMBER FOR MINIMUM REFILLS or PRESS RETURN FOR A MINIMUM OF ZERO (0)."
+ D ^DIR G:$D(DTOUT)!($D(DUOUT))!($D(DIRUT))!($D(DIROUT)) END S RF=Y
+MN3 S DIR("A")="Select Minimum Total Cost: ",DIR("B")=0,DIR(0)="N^0:9999:2",DIR("?")="ENTER MINIMUM COST OF DRUG or PRESS RETURN FOR A MINIMUM COST OF ZERO (0)."
+ D ^DIR G:$D(DTOUT)!($D(DUOUT))!($D(DIRUT))!($D(DIROUT)) END S MC=Y
+ S ALL=1 D DEV I $G(PSQ)!$D(ZTSK) K ZTSK G END
+ G LK
+DRG ;DRUG CHOICE
+ S DIC(0)="QME",DIC="^PSDRUG(" D ^DIC G:"^"[X END G:Y<0 MN1 S DRG=+Y,DRUG=$P(^PSDRUG(DRG,0),"^") D DEV I $G(PSQ)!$D(ZTSK) K ZTSK G END
+ G:'$D(^PSCST(MON)) DAY
+DRG1 F DIV=0:0 S DIV=$O(^PSCST(MON,"V",DIV)) Q:'DIV  I $D(^PSCST(MON,"V",DIV,"D",DRG,0)) D NF,STO
+ Q:$G(DAY)  D HDR,PRI,GR
+END W ! W:$E(IOST)'["C" @IOF D ^%ZISC K PSQ,DAY,^TMP($J),DIR,DUOUT,DTOUT,DIRUT,DIROUT,DIV,SUB,DIV,ZDIV,MONTH,TF,PG,TQ,TC,MC,RF,X,MN,Y,DRG,DIC,%DT,DRUG,MON,ALL,G,D,I S:$D(ZTQUEUED) ZTREQ="@"
+ Q
+NF S DRUG=$S($D(^PSDRUG(DRG,0)):$P(^PSDRUG(DRG,0),"^"),1:"UNKNOWN")
+ S:'$D(^TMP($J,DIV,DRUG)) ^TMP($J,DIV,DRUG)="0^0^0"
+ S $P(^TMP($J,DIV,DRUG),"^")=($P(^PSCST(MON,"V",DIV,"D",DRG,0),"^",2)+$P(^(0),"^",3))+$P(^TMP($J,DIV,DRUG),"^")
+ S $P(^TMP($J,DIV,DRUG),"^",2)=$P(^PSCST(MON,"V",DIV,"D",DRG,0),"^",4)+$P(^TMP($J,DIV,DRUG),"^",2)
+ S $P(^TMP($J,DIV,DRUG),"^",3)=$P(^PSCST(MON,"V",DIV,"D",DRG,0),"^",5)+$P(^TMP($J,DIV,DRUG),"^",3)_"^"_$S($P(^PSDRUG(DRG,0),"^",9):"*** N/F ***",1:"")
+ Q
+HDR ;REPORT HEADER
+ S Y=MONTH X ^DD("DD")
+ S PG=PG+1 U IO W @IOF,!?50,"MONTHLY DRUG COST REPORT FOR "_Y,?115,"PAGE: "_PG,!?50,$S(ALL:"MINIMUM REFILLS OF "_RF_" AT A MINIMUM COST OF $"_MC,1:"FOR "_DRUG)
+ W !!,"DIVISION",?53,"TOTAL",?82,"TOTAL",?97,"TOTAL",!?5,"DRUG",?53,"FILLED",?81,"QUANITY",?98,"COST",?125,"N/F",! F I=1:1:132 W "-"
+ Q
+PRI ;OUTPUT DATA
+ I '$D(^TMP($J)) U IO W !!?50,">>>>> NO DRUG COST INFORMATION FOUND <<<<<" Q
+ S ZDIV=99 F I=0:0 S DIV=$O(^TMP($J,DIV)) Q:'DIV  S DV=$P(^PS(59,DIV,0),"^") D DG
+ Q
+DG S DRG="" F T=0:0 S DRG=$O(^TMP($J,DIV,DRG)) Q:DRG=""  D:$Y+4>IOSL HDR W:DIV'=ZDIV !,DV W !?5,DRG,?50,$J($P(^TMP($J,DIV,DRG),"^"),7),?80,$J($P(^(DRG),"^",3),7),?95,$J($P(^(DRG),"^",2),7),?120,$P(^(DRG),"^",4) S ZDIV=DIV D:'ALL GT
+ D:ALL SUB
+ Q
+DEV K %ZIS,IOP,ZTSK,POP S PSOION=ION,%ZIS="QM" D ^%ZIS K %ZIS I POP S PSQ=1,IOP=PSOION D ^%ZIS K IOP,PSOION Q
+ I $G(IOM)<132 W $C(7),!!,"PRINTOUT MUST BE 132 COLUMNS !!",!! G DEV
+ K PSOION I $D(IO("Q")) S ZTDESC="Option to print Outpatient Pharmacy's monthly drug cost report",ZTRTN=$S('ALL:"DRG1^PSOCOST",1:"LK^PSOCOST") F G="ALL","MON","MN","DRG","DRUG","RF","MC","TF","TQ","TC","PG","MONTH" S:$D(@G) ZTSAVE(G)=""
+ I  K IO("Q") D ^%ZTLOAD W:$D(ZTSK) !,"REPORT IS QUEUED TO PRINT !",! Q
+ Q
+LK ;PRINT ALL DRUGS
+ G:'$D(^PSCST(MON)) DAY
+LK1 F DIV=0:0 S DIV=$O(^PSCST(MON,"V",DIV)) Q:'DIV  F DRG=0:0 S DRG=$O(^PSCST(MON,"V",DIV,"D",DRG)) Q:'DRG  I $P(^PSCST(MON,"V",DIV,"D",DRG,0),"^",3)'<RF,$P(^(0),"^",4)'<MC D NF,STO
+ Q:$G(DAY)  D HDR,PRI F I=0:0 S I=$O(SUB(I)) Q:'I  S TF=$P(SUB(I),"^")+TF,TQ=$P(SUB(I),"^",3)+TQ,TC=$P(SUB(I),"^",2)+TC
+ D GR G END
+ Q
+SUB ;DIVISIONAL SUB-TOTALS
+ Q:'$D(^TMP($J))
+ D:$Y+4>IOSL HDR W !?47,"----------",?77,"----------",?92,"----------",!?20,"SUB-TOTALS",?50,$J($P(SUB(ZDIV),"^"),7),?80,$J($P(SUB(ZDIV),"^",3),7),?95,$J($P(SUB(ZDIV),"^",2),7),!
+ Q
+GR Q:'$D(^TMP($J))  D:$Y+4>IOSL HDR W !?47,"==========",?77,"==========",?92,"==========",!?20,"GRAND TOTALS",?50,$J(TF,7),?80,$J(TQ,7),?95,$J(TC,7)
+ Q
+STO S:'$D(SUB(DIV)) SUB(DIV)="0^0^0"
+ S $P(SUB(DIV),"^")=$P(^PSCST(MON,"V",DIV,"D",DRG,0),"^",2)+$P(^(0),"^",3)+$P(SUB(DIV),"^"),$P(SUB(DIV),"^",2)=$P(^(0),"^",4)+$P(SUB(DIV),"^",2),$P(SUB(DIV),"^",3)=$P(^(0),"^",5)+$P(SUB(DIV),"^",3)
+ Q
+GT S TF=$P(SUB(DIV),"^")+TF,TQ=$P(SUB(DIV),"^",3)+TQ,TC=$P(SUB(DIV),"^",2)+TC
+ Q
+DAY ;Computes daily totals
+ S DAY=1 F  S MON=$O(^PSCST(MON)) Q:'MON!(MON>MN)  D @$S(ALL:"LK1",1:"DRG1")
+ D:'ALL HDR,PRI,GR
+ D:ALL
+ .D HDR,PRI F I=0:0 S I=$O(SUB(I)) Q:'I  S TF=$P(SUB(I),"^")+TF,TQ=$P(SUB(I),"^",3)+TQ,TC=$P(SUB(I),"^",2)+TC
+ .D GR
+ G END
+ Q

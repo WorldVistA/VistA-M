@@ -1,0 +1,56 @@
+LAMIAUT4 ;SLC/FHS - EDIT OR VERIFY MICRO AUTO INSTRUMENTS; ;7/20/90  09:33
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**153**;Sep 27, 1994
+EN ;
+ Q:LREND  R !!," ('E'dit data, 'C'omments, 'O'rganism 'W'orklist) // ",LREDIT:DTIME Q:'$T
+ I $E(LREDIT)="?" D HLP,^LAMIAUT3 G EN
+ I $E(LREDIT)="^"!($E(LREDIT="@")) D DEL^LAMIAUT5 K LRBDUP,LRMOVE Q
+ K DIC,DR,DIE,DA S DA=LRIDT,DA(1)=LRDFN,LRY(0)=^LR(LRDFN,"MI",LRIDT,0),DIE="^LR("_DA(1)_",""MI"",",DIC=DIE I $E(LREDIT)="E" S ZX9=X9 D EDIT,^LAMIAUT3 S X9=ZX9 K ZX9 G EN
+ I $E(LREDIT)="O" S ZX9=X9 D ^LRMIBUG,^LAMIAUT3 S X9=ZX9 K ZX9 G EN
+ I $E(LREDIT)="C" K DR S DR=".99;1;13" D ^DIE D ^LAMIAUT3 G EN
+ I $E(LREDIT)="W" D EN^LRCAPV D ^LAMIAUT3 G EN
+ R !,"Approve for release by entering your initials: ",X:DTIME I '$T!($E(X)="^") D DEL^LAMIAUT5 Q
+ I X'=LRINI W !!,$C(7)," NOT APPROVED " Q
+ D VER Q
+EXP ;Get the list of tests for this ACC.
+ W !!,PNM,"   ",SSN,!,LRACCN D INF^LRX W !!?5,$P(^LAB(61,LRSPEC,0),U),"  ",$P(^LAB(62,LRSAMP,0),U),!
+ K ^TMP("LR",$J),LRTEST,LRNAME,LRTS S N=0 F I=0:0 S I=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,I)) Q:I<1  S N=N+1,LRTEST(N)=+^(I,0),LRTEST(N,"P")=$P(^(0),U,9)
+ S LRNTN=N F I=1:1:N S:$D(^LAB(60,+LRTEST(I),0)) LRTEST(I)=LRTEST(I)_U_^(0),LRNAME(I)=$P(LRTEST(I),U,2),LRNAME(I,+LRTEST(I))="",LRTS(I)=LRNAME(I),LRTS(I,+LRTEST(I))=""
+ S LRALL="" F I=1:1:LRNTN I $D(LRNAME(I)) S LRALL=LRALL_","_I W !,I,"  ",LRNAME(I) I $D(^LRO(68,LRAA,1,LRAD,1,LRAN,4,+$O(LRNAME(I,0)),0)),$P(^(0),U,5) W ?25," verified"
+V9 S LRALL=$P(LRALL,",",2,99) R !!,"TEST #(s) (or ""ALL""): ",X:DTIME S:'$T X=U S:X="" X=LRALL S:X["A" X=LRALL S:$E(X)="^" LREND=1 Q:LREND
+ I X["?" W !,"Enter for example 1,2,5-9." G V9
+ Q:$E(X)="^"  D RANGE^LRWU2 Q:X9=""  X (X9_"S:'$D(LRNAME(T1)) X=0") I X=0 W !!?7,"Incorrect test number ",$C(7) G EXP
+L10 S LRNX=0 X (X9_"D EX1^LRVER1")
+ Q
+EDIT S LRALL="" W !?7,"Edit ? ",! F I=0:0 S I=$O(LRNAME(I)) Q:I=""  W !?3,"(",I,")  ",LRNAME(I) S LRALL=LRALL_","_I I $D(^LRO(68,LRAA,1,LRAD,1,LRAN,4,$O(LRNAME(I,0)),0)),$P(^(0),U,5) W ?25,"Verified "
+ S LRALL=$P(LRALL,",",2,99) R !!,"TEST #(s) (or ""ALL""): ",X:DTIME Q:'$T!($E(X)="^")  S:X["A" X=LRALL S:X="" X=LRALL
+ I X["?" W !?7,"Enter for example 1,2,5-9 ",! G EDIT
+ D RANGE^LRWU2 Q:X9=""  X (X9_"S:'$D(LRNAME(T1)) X=0") I X=0 W !!?7,"Incorrect number ",$C(7),! G EDIT
+ X (X9_"S LRTS=+$O(LRTS(T1,0)) I LRTS D EDIT1^LAMIAUT4")
+ Q
+EDIT1 S LRSB=1,LRCODE=$P(^LAB(60,+$O(LRNAME(T1,0)),0),U,14) D EDIT2
+ Q
+EDIT2 I 'LRCODE W $C(7),!?7,"NO EDIT CODE FOR ",LRNAME(T1) Q
+ I '$D(^LAB(62.07,LRCODE,.1)) W $C(7),!?7,"EDIT CODE IS MISSING FOR ",LRNAME(T1) Q
+ N LRBG0
+ W !!?7,"Editing ",LRNAME(T1),!! K DR S LRTS=+$O(LRTS(T1,0)),(LRBG0,Y(0))=LRY(0) X:LRTS ^LAB(62.07,LRCODE,.1)
+ I 'LRTS W !,"NO TEST DEFINED ",!!,$C(7)
+ Q
+VER ;
+ N LRBG0
+ Q:X9=""  S (LRBG0,Y(0))=^LR(LRDFN,"MI",LRIDT,0),LRCAPOK=1,LRUNDO=0 I '$P(Y(0),U,3) S:$P(Y(0),U,9) LRUNDO=1 G VER1
+ I $P(^LR(LRDFN,"MI",LRIDT,0),U,3) W !,"Final report has been verified by micro  supervisor,",$C(7),!,"If you proceed in editing, the report will be reprinted"
+ F I=0:0 W !?10,"OK" S %=1 D YN^DICN Q:%  W !," Enter  'Y' or 'N' : "
+ I %=2!(%<0) Q
+VER1 ;
+ D:'$P(^LAB(69.9,1,"NITE"),U) ANN^LRCAPV
+ ;N LRADD,GLB,LRBUG,LRBUGY
+ S LRSB=1 W ! X (X9_"S LRPTP=$O(LRNAME(T1,0))") S LRCAPOK=1,Y(0)=^LR(LRDFN,"MI",LRIDT,0) D
+ . K DR S DR=11,LRSAME=0 D:LRUNDO UNDO^LRMIEDZ D ^DIE,TIME^LRMIEDZ3 S LRTS=LRPTP I $G(LRTS) D:LRCAPOK&($P(LRPARAM,U,14)) LOOK^LRCAPV1
+ N LRWRDVEW
+ S LRWRDVEW=1
+ D VT^LRMIUT1 I $L($G(LRVT)) D STF^LRMIUT
+ S ^LRO(68,"AVS",LRAA,LRAD,LRAN)=LRDFN_U_LRIDT
+ K ^LAH(LRLL,1,LRIFN),^LAH(LRLL,1,"C",LRAN),^LAH(LRLL,1,"B",LRTCUP,LRIFN)
+ Q
+HLP W !!?10,"ENTER",?20,"'E' TO EDIT ENTIRE ACCESSION. ",!?20,"'C' TO EDIT COMMENT",!?20,"'O' TO EDIT ORGANISM "
+ W !?20,"'^' OR '@' WILL DELETE TRANSFERD DATA ",! H 2 Q

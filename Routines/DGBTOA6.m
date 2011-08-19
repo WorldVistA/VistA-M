@@ -1,0 +1,102 @@
+DGBTOA6 ;ALB/SCK - DGBT BENE TRAVEL PAYABLE CLAIMS REPORT ; 6/29/93 7/16/93
+ ;;1.0;Beneficiary Travel;;September 25, 2001
+ACCTS ;
+ U IO
+ N Y
+ K ^TMP("BT",$J)
+ F ACTCDE=4,5 D
+ .  S Y=$$GETACT(ACTCDE)
+ D KVAR^VADPT
+ D REPORT
+ K DGBTBEG,DGBTBG,DGBTEND,CDATE,CURACT,ACTCDE,DIV,ERR,^TMP("BT",$J)
+ACCTSQ Q
+ ;
+GETACT(ACTNUM) ;
+ N Y S Y=1
+ S CDATE=DGBTBG F  S CDATE=$O(^DGBT(392,"ACTP",ACTNUM,CDATE)) Q:'CDATE!(CDATE>DGBTEND)  D
+ . N BTCLAIM
+ . Q:'$D(^DGBT(392,CDATE,0))
+ . S BTCLAIM=^DGBT(392,CDATE,0)
+ . S BTCLAIM("M")=$G(^DGBT(392,CDATE,"M")) ; reference node "M" of bene travel claim file (#392)
+ . S BTCLAIM("R")=$G(^DGBT(392,CDATE,"R")) ; reference node "R" of bene travel claim file ( #392)
+ . S DIV=$P($G(BTCLAIM),U,11)
+ . S DFN=$P($G(BTCLAIM),U,2)
+ . D PID^VADPT6 Q:VAERR
+ . S ^TMP("BT",$J,ACTNUM,DIV,$P($G(^DPT(DFN,0)),U),VA("PID"),CDATE)=$P(BTCLAIM("M"),U,3)_"^"_$P(BTCLAIM,U,9)_"^"_$P(BTCLAIM,U,10)_"^"_$P(BTCLAIM("R"),U)
+ Q (Y)
+ ;
+REPORT ;
+ N BTFIN,PDIV,NDIV
+ I '$D(^TMP("BT",$J)) D NOREP Q
+ S ERR=$$SETVAR()
+ S CURACT="",CURACT=$O(^TMP("BT",$J,CURACT)),PRVACT=CURACT
+ Q:$$HEADR()
+ S CURACT="" F  S CURACT=$O(^TMP("BT",$J,CURACT)) Q:CURACT=""  D  Q:BTFIN
+ . I CURACT'=PRVACT D SUBS S BTFIN=$$HEADR,PRVACT=CURACT I PDIV]"" S ERR=$$DIVSN(NDIV)
+ . S NDIV="" F  S NDIV=$O(^TMP("BT",$J,CURACT,NDIV)) Q:NDIV']""  S:PDIV'=NDIV PDIV=$$DIVSN(NDIV) D  Q:BTFIN
+ .. S CURNAME="" F  S CURNAME=$O(^TMP("BT",$J,CURACT,NDIV,CURNAME)) Q:CURNAME=""  D  Q:BTFIN
+ ... S CURID="" F  S CURID=$O(^TMP("BT",$J,CURACT,NDIV,CURNAME,CURID)) Q:CURID=""  D  Q:BTFIN
+ .... S CDATE="" F  S CDATE=$O(^TMP("BT",$J,CURACT,NDIV,CURNAME,CURID,CDATE)) Q:CDATE=""  S BTFIN=$$PRTOUT() Q:BTFIN
+ D TOTL
+ Q
+ ;
+PRTOUT() ;
+ N Y
+ S BTCLAIM=^TMP("BT",$J,CURACT,NDIV,CURNAME,CURID,CDATE)
+ I $Y+5>IOSL S Y=$$HEADR() G:Y PRTOUTQ
+ W !,$E(CURNAME,1,21),?23,CURID,?37,$$EXDATE(CDATE),?61,$FN($P(BTCLAIM,U,1),"",2),?70,$FN($P(BTCLAIM,U,2),"",2),?78,$FN($P(BTCLAIM,U,3),"",2),?86,$E($P(BTCLAIM,U,4),1,50)
+ S COUNT=COUNT+1,MILES=MILES+$P(BTCLAIM,U,1),DEDCT=DEDCT+$P(BTCLAIM,U,2),PAY=PAY+$P(BTCLAIM,U,3)
+PRTOUTQ Q (Y)
+ ;
+EXDATE(CDOUT) ;
+ S Y=CDOUT D DD^%DT
+ Q (Y)
+ ;
+DIVSN(NDIV) ;
+ I $G(NDIV)]"" D
+ . W !!,"Division: ",$P($G(^DG(40.8,NDIV,0)),"^")
+ . W !,"========="
+ Q (NDIV)
+ ;
+NOREP ;
+ S CURACT=4,PAGE=0
+ I $$HEADR() G NOREPQ
+ W !!,"No data found for accounts 'ALL OTHER' or 'C&P'"
+NOREPQ Q
+ ;
+HEADR() ;
+ N QFLAG S QFLAG=0
+ I $E(IOST,1,2)="C-" K DIR S DIR(0)="E" D ^DIR S QFLAG='Y G:QFLAG HEADRQ W @IOF
+ S PAGE=PAGE+1
+ I $E(IOST,1,2)'="C-" W @IOF
+ W !,"Payable Claims Report"
+ W ?(IOM-40),"Report Date: ",$P($$NOW^VALM1,"@"),?(IOM-10),"Page: ",PAGE
+ W !,"Inclusion Dates: ",$P($$FMTE^XLFDT(DGBTBEG,1),"@")," to ",$P($$FMTE^XLFDT(DGBTEND,1),"@")
+ W !,"For ACCOUNT TYPE: ",$S(CURACT=4:"ALL OTHER",CURACT=5:"C&P EXAMINATIONS")
+ W !!?61,"Mileage",?70,"Amount",?78,"Amount"
+ W !,"Patient Name",?23,"Patient ID",?37,"Claim DATE/TME",?61,"Amount",?70,"Deduct",?78,"Payable",?86,"Remarks"
+ W !,"----------------",?23,"------------",?37,"------------------",?61,"------",?70,"------",?78,"-------",?86,"-----------------"
+HEADRQ Q (QFLAG)
+ ;
+TOTL ;
+ D SUBS
+ W !!?61,"------",?70,"------",?78,"-------"
+ W !,"TOTALS",?61,$FN(TMILES,"",2),?70,$FN(TDEDCT,"",2),?78,$FN(TPAY,"",2)
+ W !,"TOTAL CLAIMS: ",TCOUNT
+ Q
+ ;
+SUBS ;
+ N Y
+ W !!?61,"------",?70,"------",?78,"-------"
+ W !,"Subtotals",?61,$FN(MILES,"",2),?70,$FN(DEDCT,"",2),?78,$FN(PAY,"",2)
+ W !,"Subtotal Count of Claims: ",COUNT
+ S TCOUNT=TCOUNT+COUNT,TMILES=TMILES+MILES,TDEDCT=TDEDCT+DEDCT,TPAY=TPAY+PAY
+ S (MILES,DEDCT,PAY,COUNT)=0
+ Q
+ ;
+SETVAR() ;
+ N Y S Y=0
+ S (PAGE,COUNT,MILES,DEDCT,PAY,TCOUNT,TPAY,TDEDCT,TMILES,BTFIN)=0
+ S PDIV=""
+ ;
+ Q (Y)

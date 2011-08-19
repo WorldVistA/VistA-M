@@ -1,0 +1,194 @@
+SDQNAV ;ALB/MJK - Query Object Navigation Methods ;8/12/96
+ ;;5.3;Scheduling;**131**;Aug 13, 1993
+ ;
+SCAN(SDQ,SDIR,SDERR) ; -- scan all records
+ ;   API ID: 99
+ ; API NAME: SDQ SCAN
+ ;
+SCANG ; -- goto entry point
+ ; -- do validation checks
+ IF '$$QRY^SDQVAL(.SDQ,$G(SDERR)) G SCANQ
+ IF '$$QRYACT^SDQVAL(.SDQ,$G(SDERR)) G SCANQ
+ IF '$$SCAN^SDQVAL(.SDQ,$G(SDERR)) G SCANQ
+ ;
+ N SDSCAN
+ S SDSCAN=$G(@SDQUERY@(SDQ,"SCAN"))
+ IF SDSCAN]"" X SDSCAN
+SCANQ Q
+ ;
+ ;
+SCANCB(SDQ,SDCB,SDACT,SDERR) ; -- set/get scan callback method
+ ;   API ID: 100
+ ; API NAME: SDQ SCAN CALLBACK
+ ;
+SCANCBG ; -- goto entry point
+ ; -- do validation checks
+ IF '$$QRY^SDQVAL(.SDQ,$G(SDERR)) G SCANCBQ
+ IF '$$ACTION^SDQVAL(.SDACT,$G(SDERR)) G SCANCBQ
+ ;
+ IF SDACT="SET" D
+ . IF '$$QRYINACT^SDQVAL(.SDQ,$G(SDERR)) Q
+ . IF '$$SCANCB^SDQVAL(.SDCB,$G(SDERR)) Q
+ . S @SDQUERY@(SDQ,"SCAN APP CALLBACK")=SDCB
+ ;
+ IF SDACT="GET" S SDCB=$G(@SDQUERY@(SDQ,"SCAN APP CALLBACK"),"QUIT")
+SCANCBQ Q
+ ;
+ ;
+NEXT(SDQ,SDERR) ; -- get next global ref
+ ;   API ID: 92
+ ; API NAME: SDQ NEXT
+ ;
+NEXTG ; -- goto entry point
+ ; -- do validation checks
+ IF '$$QRY^SDQVAL(.SDQ,$G(SDERR)) G NEXTQ
+ IF '$$QRYACT^SDQVAL(.SDQ,$G(SDERR)) G NEXTQ
+ IF $G(@SDQUERY@(SDQ,"EOF")) D BLD^SDQVAL(4096800.111,"","",$G(SDERR)) G NEXTQ
+ ;
+ N SDNEXT
+ S SDNEXT=$O(^TMP("SDQUERY LIST",$J,SDQ,+$G(@SDQUERY@(SDQ,"CURSOR"))),1)
+ ;
+ IF SDNEXT D  G NEXTQ
+ . S @SDQUERY@(SDQ,"CURSOR")=SDNEXT
+ . S @SDQUERY@(SDQ,"BOF")=0
+ . S @SDQUERY@(SDQ,"EOF")=0
+ ;
+ ; -- get initial ref value and also save for compares
+ N SDGREF,SDSAVE
+ S (SDGREF,SDSAVE)=$G(@SDQUERY@(SDQ,"GLOBAL REF"))
+ D CHECK(.SDQ,.SDGREF,.SDSAVE)
+ ;
+ IF SDGREF'="" D  G NEXTQ
+ . S @SDQUERY@(SDQ,"GLOBAL REF")=SDGREF
+ . S SDCNT=+$G(@SDQUERY@(SDQ,"COUNT"))
+ . S SDCNT=SDCNT+1
+ . S @SDQUERY@(SDQ,"COUNT")=SDCNT
+ . S @SDQUERY@(SDQ,"CURSOR")=SDCNT
+ . S ^TMP("SDQUERY LIST",$J,SDQ,SDCNT)=SDGREF
+ . S @SDQUERY@(SDQ,"MORE")=1
+ . S @SDQUERY@(SDQ,"BOF")=0
+ . S @SDQUERY@(SDQ,"EOF")=0
+ ELSE  D
+ . S @SDQUERY@(SDQ,"MORE")=0
+ . S @SDQUERY@(SDQ,"EOF")=1
+NEXTQ Q
+ ;
+ ;
+CHECK(SDQ,SDGREF,SDSAVE) ; -- check if ok
+ N SDFIL,SDVAL
+ S SDFIL=$G(@SDQUERY@(SDQ,"FILTER"))
+ S SDVAL=$G(@SDQUERY@(SDQ,"VALIDATOR"))
+ ;
+ F  S SDGREF=$Q(@SDSAVE) Q:SDGREF=""  X SDVAL Q:SDGREF=""  D  Q:SDGREF'=""
+ . S SDSAVE=SDGREF
+ . IF SDFIL="" Q
+ . IF '$$FILTER(.SDQ,.SDGREF,.SDFIL) S SDGREF=""
+ Q
+ ;
+FILTER(SDQ,SDGREF,SDFIL) ; -- perform filter logic
+ N Y,Y0,SDNODE,SDSUB,SDZERO
+ S SDSUB=+$G(@SDQUERY@(SDQ,"IEN SUBSCRIPT"))
+ S SDZERO=$G(^TMP("SDQUERY CLASS",$J,SDQ,"ZERO"))
+ S Y=$QS(SDGREF,SDSUB)
+ IF SDZERO]"" D
+ . X SDZERO
+ ELSE  D
+ . S SDNODE=$G(^TMP("SDQUERY CLASS",$J,SDQ,"GL"))_Y_",0)"
+ . S Y0=$G(@SDNODE)
+ X SDFIL
+ Q $T
+ ;
+ ;
+PRIOR(SDQ,SDERR) ; -- get prior global ref
+ ;   API ID: 93
+ ; API NAME: SDQ PRIOR
+ ;
+PRIORG ; -- goto entry point
+ ; -- do validation checks
+ IF '$$QRY^SDQVAL(.SDQ,$G(SDERR)) G PRIORQ
+ IF '$$QRYACT^SDQVAL(.SDQ,$G(SDERR)) G PRIORQ
+ IF $G(@SDQUERY@(SDQ,"BOF")) D BLD^SDQVAL(4096800.11,"","",$G(SDERR)) G PRIORQ
+ ;
+ N SDCUR,SDPRIOR
+ S SDCUR=+$G(@SDQUERY@(SDQ,"CURSOR"))
+ S SDPRIOR=$O(^TMP("SDQUERY LIST",$J,SDQ,SDCUR),-1)
+ ;
+ IF SDPRIOR D  G PRIORQ
+ . S @SDQUERY@(SDQ,"CURSOR")=SDPRIOR
+ . S @SDQUERY@(SDQ,"BOF")=0
+ . S @SDQUERY@(SDQ,"EOF")=0
+ ELSE  D
+ . S @SDQUERY@(SDQ,"BOF")=1
+PRIORQ Q
+ ;
+ ;
+FIRST(SDQ,SDERR) ; -- get first entry
+ ;   API ID: 90
+ ; API NAME: SDQ FIRST
+ ;
+FIRSTG ; -- goto entry point
+ ; -- do validation checks
+ IF '$$QRY^SDQVAL(.SDQ,$G(SDERR)) G FIRSTQ
+ IF '$$QRYACT^SDQVAL(.SDQ,$G(SDERR)) G FIRSTQ
+ ;
+ S @SDQUERY@(SDQ,"CURSOR")=+$O(^TMP("SDQUERY LIST",$J,SDQ,0),1)
+ S @SDQUERY@(SDQ,"BOF")=1
+ S @SDQUERY@(SDQ,"EOF")=(@SDQUERY@(SDQ,"CURSOR")=0)
+FIRSTQ Q
+ ;
+ ;
+LAST(SDQ,SDERR) ; -- get last entry
+ ;   API ID: 91
+ ; API NAME: SDQ LAST
+ ;
+LASTG ; -- goto entry point
+ ; -- do validation checks
+ IF '$$QRY^SDQVAL(.SDQ,$G(SDERR)) G LASTQ
+ IF '$$QRYACT^SDQVAL(.SDQ,$G(SDERR)) G LASTQ
+ ;
+ IF $G(@SDQUERY@(SDQ,"MORE")) D GETREST(.SDQ,$G(SDERR))
+ S @SDQUERY@(SDQ,"CURSOR")=+$O(^TMP("SDQUERY LIST",$J,SDQ,""),-1)
+ S @SDQUERY@(SDQ,"BOF")=(@SDQUERY@(SDQ,"CURSOR")=0)
+ S @SDQUERY@(SDQ,"EOF")=1
+LASTQ Q
+ ;
+ ;
+EOF(SDQ,SDERR) ; -- at end of file
+ ;   API ID: 86
+ ; API NAME: SDQ EOF
+ ;
+ ; -- do validation checks
+ IF '$$QRY^SDQVAL(.SDQ,$G(SDERR)) Q 0
+ IF '$$QRYACT^SDQVAL(.SDQ,$G(SDERR)) Q 0
+ ;
+EOFQ Q $G(@SDQUERY@(SDQ,"EOF"))
+ ;
+ ;
+BOF(SDQ,SDERR) ; -- at beginning of file
+ ;   API ID: 87
+ ; API NAME: SDQ BOF
+ ;
+ ; -- do validation checks
+ IF '$$QRY^SDQVAL(.SDQ,$G(SDERR)) Q 0
+ IF '$$QRYACT^SDQVAL(.SDQ,$G(SDERR)) Q 0
+ ;
+BOFQ Q $G(@SDQUERY@(SDQ,"BOF"))
+ ;
+ ;
+COUNT(SDQ,SDERR) ; -- get entries count
+ ;   API ID: 89
+ ; API NAME: SDQ COUNT
+ ;
+ ; -- do validation checks
+ IF '$$QRY^SDQVAL(.SDQ,$G(SDERR)) Q ""
+ IF '$$QRYACT^SDQVAL(.SDQ,$G(SDERR)) Q ""
+ ;
+ IF $G(@SDQUERY@(SDQ,"MORE")) D GETREST(.SDQ,$G(SDERR))
+ Q +$G(@SDQUERY@(SDQ,"COUNT"))
+ ;
+ ;
+GETREST(SDQ,SDERR) ; -- get rest of entries
+ ;
+ F  Q:'$G(@SDQUERY@(SDQ,"MORE"))  D NEXT(.SDQ,$G(SDERR))
+ Q
+ ;

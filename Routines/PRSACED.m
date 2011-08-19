@@ -1,0 +1,51 @@
+PRSACED ; HISC/REL/FPT-T&A Edits ;12/02/98
+ ;;4.0;PAID;**46,45**;Sep 21, 1995
+PCK R !!,"Select T&L Unit (or ALL): ",X:DTIME G:'$T!("^"[X) KIL S X=$TR(X,"al","AL") I X="ALL" S TLIEN="" G L0
+ K DIC S DIC="^PRST(455.5,",DIC(0)="EMQ" D ^DIC K DIC G:Y<1 PCK S TLIEN=+Y
+L0 W ! K DIC S DIC="^PRST(458,",DIC(0)="AEMQZ" S PPI=$P($G(^PRST(458,0)),U,3) I PPI<1 G KIL
+ S DIC("B")=$P(^PRST(458,PPI,0),U,1) D ^DIC K DIC I +Y<1 G KIL
+ S PPI=+Y
+ W ! K %ZIS S %ZIS="MQ" D ^%ZIS K %ZIS G:POP KIL
+ I $D(IO("Q")) S ZTDESC="T&A EDITS",ZTRTN="Q1^PRSACED" S ZTSAVE("PPI")="",ZTSAVE("TLIEN")="" D ^%ZTLOAD,HOME^%ZIS G KIL
+ U IO D Q1 D ^%ZISC G KIL
+Q1 ;
+ ; Patch 46 12/2/98 TL changed to TLU to correct bug resulting 
+ ; from use of TL in code in PRSACED* routines
+ N TLU
+ I $D(ZTQUEUED) S ZTREQ="@"
+ D CODES^PRSACED6 W:$E(IOST,1)="C" @IOF S COUNT=0,HDR=1,YN=""
+ I TLIEN'="" S TLU=$P(^PRST(455.5,TLIEN,0),"^") G EMP
+ S ATL="ATL00"
+TLOOP I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ W !,?10,"*** Output stopped at user's request ***" G KIL
+ S ATL=$O(^PRSPC(ATL)) Q:ATL'?1"ATL".E  S TLU=$E(ATL,4,6)
+ S TLIEN="",TLIEN=$O(^PRST(455.5,"B",TLU,TLIEN))
+ D EMP G:YN["^" KIL
+ G TLOOP
+EMP S NAM=""
+EMP1 S NAM=$O(^PRSPC("ATL"_TLU,NAM)) Q:NAM=""
+ S DFN="",YN=""
+EMP2 S DFN=$O(^PRSPC("ATL"_TLU,NAM,DFN)) G:DFN<1 EMP1
+ I '$D(^PRST(458,PPI,"E",DFN,5)) G EMP2
+ I $P(^PRST(458,PPI,"E",DFN,0),"^",2)'="P" G EMP2
+ S COUNT=COUNT+1 D ^PRSACED1 I COUNT#10=1 W "."
+ Q:YN["^"  G EMP2
+ERR ;Edit Check Error print out
+ Q:YN["^"  G:'HDR!CNT E1 S Y0=$G(^PRSPC(DFN,0)) K ER
+ S SSN=$P(Y0,"^",9) W !!,$E(SSN,1,3),"-",$E(SSN,4,5),"-",$E(SSN,6,9),"  ",$P(Y0,"^",1),?50,$P(Y0,"^",8),!
+ S CSTR="" F A=13:1:N1 S CCODE=$P(C0,"^",A) I CCODE'="" S CSTR=CSTR_$P(T0," ",A-12)_CCODE_"  "
+ F A=1:1:N2 S CCODE=$P(C1,"^",A) I CCODE'="" S CSTR=CSTR_$P(T1," ",A)_CCODE_"  "
+ G:CSTR="" E1 S CSTR=$E(CSTR,1,$L(CSTR)-2)
+ I $L(CSTR)<72 W !?5,CSTR,!
+ E  S Y=$L(CSTR,"  ")\2 W !?5,$P(CSTR,"  ",1,Y),!?5,$P(CSTR,"  ",Y+1,999),!
+E1 Q:$D(ER(ERR))  S CNT=CNT+1,ER(ERR)="" F LL=0:0 S LL=$O(^PRST(455.1,ERR,"E",LL)) Q:LL<1  W !?5,^(LL,0)
+ I HDR,$Y>(IOSL-5) R:IOST?1"C".E !!,"Press RETURN to Continue. ",YN:DTIME S:'$T YN="^" Q:YN["^"  W @IOF
+ Q
+HELP ;
+ K DIC S DIC="^PRST(455.5,",DIC(0)="EMQ",D="B",DZ="??" D DQ^DICQ K DIC,D,DZ
+ Q
+KIL ; P 45--For screen output, hold last screen so menu doesn't 
+ ;       push info out off screen.
+ N OUT S OUT=$$ASK^PRSLIB00(1)
+ K OUT,%ZIS,A,ATL,C0,C1,CCODE,CNT,COUNT,CSTR,CWK,DAYNO,DFN,DIC,DIR,DIROUT,DIRUT,DTOUT,DUOUT,DUT,E,ER,ERR,FLSA,HDR,HMX,I,II,K,LAB,LL,LVG,MX
+ K N1,N2,NAM,NCODE,NN,NOR,PAY,PB,POP,PMP,PPI,SSN,STA,T0,T1,TL,TLIEN,X,X1,Y,YEAR,Y0,YN,YR,Z,ZTDESC,ZTQUEUED,ZTREQ,ZTRTN,ZTSAVE,ZTSTOP
+ Q

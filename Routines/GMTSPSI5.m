@@ -1,0 +1,47 @@
+GMTSPSI5 ; SLC/JER,KER - IV Rx Summary Component (V5) ; 02/11/2003
+ ;;2.7;Health Summary;**15,28,56,62**;Oct 20, 1995
+ ;
+ ; External References
+ ;   DBIA    68  ENHS^PSJEEU0
+ ;                      
+MAIN ; Controls Branching
+ N GMI,GMTSIDT,MAX,ON,PS,PSIVREA,PSJEDT,PSJNKF,PSJPFWD,TN
+ S PSJEDT=$S(GMTS2'=9999999:(9999999-GMTS2),1:""),PSJNKF=1
+ K ^UTILITY("PSIV",$J) I '$L($T(ENHS^PSJEEU0)) D NOPSJ Q
+ D ENHS^PSJEEU0 I '$D(^UTILITY("PSIV",$J)) Q
+ S GMI=0
+ S GMTSIDT=-9999999 F  S GMTSIDT=$O(^UTILITY("PSIV",$J,GMTSIDT)) Q:'GMTSIDT  D WRT  Q:$D(GMTSQIT)
+ K ^UTILITY("PSIV",$J),^UTILITY("PSG",$J)
+ Q
+NOPSJ ; Handles case where ^PSJEEU0 not present
+ D CKP^GMTSUP Q:$D(GMTSQIT)  W "Inpatient Pharmacy version 3.2 or greater is required.",!
+ Q
+WRT ; Prints IV Pharmacy order
+ N GMV,GMW,GMTSAD,GMTSDRUG,SOL,SD,SLN,FD,STAT,IR,SCH
+ S SD=$P(^UTILITY("PSIV",$J,GMTSIDT,0),U),FD=$P(^(0),U,2),STAT=$P($P(^(0),U,4),";"),IR=$P(^(0),U,5),SCH=$P(^(0),U,6)
+ ;   Don't display data when start date is after To Date
+ Q:+$G(GMRANGE)&(SD>(9999999-GMTS1))
+ F GMV="SD","FD" S X=@GMV D REGDT4^GMTSU S @GMV=X K X
+ I GMI'>0 D HEAD
+ D CKP^GMTSUP Q:$D(GMTSQIT)  W:GMI>0&('GMTSNPG) !
+ S GMI=1
+ I $D(^UTILITY("PSIV",$J,GMTSIDT,"A",1)) D  Q:$D(GMTSQIT)
+ . D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG HEAD
+ . W $E($P($P(^UTILITY("PSIV",$J,GMTSIDT,"A",1),";",2),U),1,36),?38,$P(^(1),U,2)
+ D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG HEAD W ?50,STAT,?57,SD,?69,FD,!
+ Q:$D(GMTSQIT)
+ S GMTSAD=1
+ F  S GMTSAD=$O(^UTILITY("PSIV",$J,GMTSIDT,"A",GMTSAD)) Q:GMTSAD'>0  D  Q:$D(GMTSQIT)
+ . S GMTSDRUG=^(GMTSAD) D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG HEAD
+ . W $E($P($P(GMTSDRUG,";",2),U),1,36),?38,$P(GMTSDRUG,U,2),!
+ Q:$D(GMTSQIT)
+LSTSOL ; Write Solutions
+ S SOL=0 F  S SOL=$O(^UTILITY("PSIV",$J,GMTSIDT,"S",SOL)) Q:SOL'>0  D  Q:$D(GMTSQIT)
+ . S SLN=^(SOL) D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG HEAD
+ . W ?3,$S(SOL=1!GMTSNPG:"In: ",1:"    ")
+ . W $P($P(SLN,";",2),U)," ",$P(SLN,U,2)," ",IR," ",SCH,!
+ Q
+HEAD ; Prints Header
+ I 'GMTSNPG D CKP^GMTSUP Q:$D(GMTSQIT)
+ W "Drug",?38,"Dose",?50,"Status",?58,"Start",?68,"Stop",! W:$Y'>(IOSL-GMTSLO) !
+ Q

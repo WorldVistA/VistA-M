@@ -1,0 +1,76 @@
+LRRP6A2 ;DALISC/J0/DRH - LAB TEST SUMMARY REPORT-CONDENSED ;11/27/92
+ ;;5.2;LAB SERVICE;**201**;Sep 27, 1994
+EN ;
+COND ;
+ N LRLINE
+ S $P(LRLINE,"-",IOM)="-"
+ D TEST Q:LREND
+ D WKLD
+ Q
+TEST ;
+ S LRSUBH="Lab Test/WKLD Code Summary"
+ D HDR
+ W !!,LRSUBH,!,$E(LRDASH,1,IOM)
+ S LRTNAM=""
+ F  S LRTNAM=$O(^TMP("LR",$J,"TST",LRTNAM)) Q:(LREND)!(LRTNAM="")  D
+ . I $Y+7>IOSL D
+ . . D:$E(IOST,1,2)="C-" PAUSE Q:LREND
+ . . W @IOF D HDR W !!,LRSUBH_"   **  cont.  **",!,$E(LRDASH,1,IOM)
+ . Q:LREND
+ . W !,$E(LRTNAM,1,12)
+ . S LRFIRST=1 D CAP
+ I '$D(^TMP("LR",$J,"TST")) S LRTIC=" Test " D NODATA S LREND=1 QUIT
+ Q:LREND
+ W LRDASH
+ W !!,"TOTAL",?74,$J(^TMP("LR",$J,"TST"),6)
+ D:$E(IOST,1,2)="C-" PAUSE Q:LREND  W @IOF
+ Q
+CAP ;
+ S LRCAPNAM=""
+ F  S LRCAPNAM=$O(^TMP("LR",$J,"TST",LRTNAM,LRCAPNAM)) Q:(LREND)!(LRCAPNAM="")  D
+ . I $Y+6>IOSL D
+ . . D:$E(IOST,1,2)="C-" PAUSE Q:LREND
+ . . W @IOF D HDR W !!,LRSUBH_"   **  cont.  **",!,$E(LRDASH,1,IOM)
+ . . W !,LRTNAM
+ . . S LRFIRST=1
+ . Q:LREND
+ . W:'LRFIRST !
+ . S:LRFIRST LRFIRST=0
+ . W ?9,$E(LRCAPNAM,1,50),?62,$J(LRCC(LRCAPNAM),12,4)
+ . W ?74,$J(^TMP("LR",$J,"TST",LRTNAM,LRCAPNAM),6)
+ Q:LREND
+ W !,LRLINE
+ W !,"SUBTOTAL",?74,$J(^TMP("LR",$J,"TST",LRTNAM),6),!
+ Q
+WKLD ;
+ S LRSUBH="WKLD Code Summary"
+ D HDR
+ W !!,LRSUBH,!,$E(LRDASH,1,IOM)
+ S LRCAPNAM=""
+ F  S LRCAPNAM=$O(^TMP("LR",$J,"WKLD",LRCAPNAM)) Q:(LREND)!(LRCAPNAM="")  D
+ . I $Y+6>IOSL D
+ . . D:$E(IOST,1,2)="C-" PAUSE Q:LREND
+ . . W @IOF D HDR W !!,LRSUBH_"   **  cont.  **",!,$E(LRDASH,1,IOM)
+ . Q:LREND
+ . W !,LRCAPNAM,?55,$J(LRCC(LRCAPNAM),12,4)
+ . W ?70,$J(^TMP("LR",$J,"WKLD",LRCAPNAM),6)
+ Q:LREND
+ I '$D(^TMP("LR",$J,"WKLD")) S LRTIC=" Workload " D NODATA QUIT
+ W !,$E(LRDASH,1,IOM)
+ W !!,"TOTAL",?70,$J(^TMP("LR",$J),6)
+ Q
+HDR ;
+ S LRPAG=LRPAG+1
+ W !!,"Detailed AUDIT REPORT (by Test) for ",LRDATRNG
+ W ?(62),LRDAT,?(72)," PAGE ",LRPAG
+ W !,"Accession Area:  ",LRX
+ W !!,$E(LRSTAR,1,34),"  CONDENSED  ",$E(LRSTAR,1,33)
+ Q
+NODATA ;
+ W !!,"No",LRTIC,"data for this date range.",!!!
+ D PAUSE
+ Q
+PAUSE ;
+ K DIR S DIR(0)="E" D ^DIR
+ S:($D(DTOUT)#2)!($D(DUOUT)#2)!($D(DIRUT)#2) LREND=1
+ Q

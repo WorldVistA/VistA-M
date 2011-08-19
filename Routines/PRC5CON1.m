@@ -1,0 +1,111 @@
+PRC5CON1 ;WISC/PLT-PRC5CON CONTINUE ; 08/22/95  3:18 PM
+V ;;5.0;IFCAP;**27**;4/21/95
+ ;QUIT  ; invalid entry
+ ;
+EN ;start station merge/convert CALM code sheet to FMS
+ N PRCRI,PRCSITE,PRCYEAR,PRCYE,PRCQTR,PRCFCP,PRCDATE
+ N PRCA,PRCB,PRCC
+ S PRCYEAR=1996,PRCYE=96,PRCDATE=2950930
+ S PRCRI(420)=0 F  S PRCRI(420)=$O(^PRC(420,PRCRI(420))) QUIT:'PRCRI(420)  S PRCC="" D  QUIT:PRCC=-1
+ . D EN^DDIOL("STATION # "_PRCRI(420)_" starts:")
+ . S PRCSITE=PRCRI(420)
+ . D @("AUTO"_PRCDD)
+ . QUIT
+ I PRCC=-1 W !! F I=1:1:4 W "ABORTED BY '^'!    "
+ E  W !! F I=1:1:5 W "ALL DONE!   "
+ QUIT
+ ;
+ ;
+AUTO410 ;auto select file 410 for 1996
+ S PRCA=PRCSITE_"-"_PRCYE
+ S PRCB=PRCA F  S PRCB=$O(^PRCS(410,"B",PRCB)) QUIT:PRCA-PRCB  S PRCRI(410)=$O(^(PRCB,"")) D:PRCRI(410) 410  QUIT:PRCC=-1
+ QUIT
+ ;
+AUTO442 ;auto select file 442 for 1996
+ S PRCA=PRCDATE
+ S PRCB=PRCA F  S PRCB=$O(^PRC(442,"AB",PRCB)) QUIT:'PRCB  D  QUIT:PRCC=-1
+ . S PRCRI(442)=0 F  S PRCRI(442)=$O(^PRC(442,"AB",PRCB,PRCRI(442))) QUIT:'PRCRI(442)  D:^PRC(442,PRCRI(442),0)-PRCSITE=0 442 QUIT:PRCC=-1
+ . QUIT
+ QUIT
+ ;
+410 ;display/edit substation
+ W ! D  ;display
+ . N DIC,DA,DR,WIQ
+ . S DIC="^PRCS(410,",DA=PRCRI(410),DR="0;4;RM" D EN^DIQ
+ . QUIT
+ S PRC("SITE")=+^PRCS(410,PRCRI(410),0)
+ D EDIT^PRC0B(.X,"410;;"_PRCRI(410),"448","")
+ S PRCC=X
+ D EN^DDIOL(" "),EN^DDIOL($TR($J("",78)," ","-"))
+ QUIT
+ ;
+442 ;display/edit substation
+ W ! D  ;display
+ . N DIC,DA,DR,WIQ
+ . S DIC="^PRC(442,",DA=PRCRI(442),DR="0;12;4" D EN^DIQ
+ . W "    PURCHASE ORDER DATE: ",$E(PRCB,4,5),"/",$E(PRCB,6,7),"/",$E(PRCB,2,3)
+ . QUIT
+ S PRC("SITE")=+^PRC(442,PRCRI(442),0)
+ D EDIT^PRC0B(.X,"442;;"_PRCRI(442),"31","")
+ S PRCC=X
+ D EN^DDIOL(" "),EN^DDIOL($TR($J("",78)," ","-"))
+ QUIT
+ ;
+EN1 D @("MAN"_PRCDD)
+ QUIT
+ ;
+ACCRUE ;enter accrue for 1996 txn if method of processing is certified invoice
+ N PRCRI,PRCSITE,PRCYEAR,PRCYE,PRCQTR,PRCFCP,PRCDATE
+ N PRCA,PRCB,PRCC
+ S PRCYEAR=1996,PRCYE=96,PRCDATE=2950930
+ S PRCRI(420)=0 F  S PRCRI(420)=$O(^PRC(420,PRCRI(420))) QUIT:'PRCRI(420)  S PRCC="" D  QUIT:PRCC=-1
+ . D EN^DDIOL("STATION # "_PRCRI(420)_" starts:")
+ . S PRCSITE=PRCRI(420)
+ . D ACC58 QUIT:PRCC=-1  D ACCPO
+ . QUIT
+ I PRCC=-1 W !! F I=1:1:4 W "ABORTED BY '^'!    "
+ E  W !! F I=1:1:5 W "ALL DONE!   "
+ QUIT
+ ;
+ACC58 ;ACCURE FOR 1358
+ S PRCA=PRCSITE_"-"_PRCYE,PRCB=PRCA
+ F  S PRCB=$O(^PRCS(410,"B",PRCB)) QUIT:PRCA-PRCB  S PRCRI(410)=$O(^(PRCB,"")) I PRCRI(410) D  QUIT:PRCC=-1
+ . N PRCB
+ . I $P(^PRCS(410,PRCRI(410),0),"^",4)=1,$P($G(^(4)),"^",10)]"" S PRCRI(442)=$P($G(^(10)),"^",3) I PRCRI(442) I $O(^PRC(442,PRCRI(442),10,0)) S PRCB=$P($G(^PRC(442,PRCRI(442),1)),"^",15) D ACC442
+ . QUIT
+ QUIT
+ ;
+ ;
+ACCPO S PRCA=PRCDATE
+ S PRCB=PRCA F  S PRCB=$O(^PRC(442,"AB",PRCB)) QUIT:'PRCB  D  QUIT:PRCC=-1
+ . S PRCRI(442)=0 F  S PRCRI(442)=$O(^PRC(442,"AB",PRCB,PRCRI(442))) QUIT:'PRCRI(442)  D:^PRC(442,PRCRI(442),0)-PRCSITE=0&($P(^(0),"^",2)=2)&($P($G(^(12)),"^",2)]"") ACC442 QUIT:PRCC=-1
+ . QUIT
+ QUIT
+ ;
+ACC442 ;enter accrue flag and ending contract date if certified
+ W ! D  ;display
+ . N DIC,DA,DR,WIQ
+ . S DIC="^PRC(442,",DA=PRCRI(442),DR="0;12;4" D EN^DIQ
+ . W "    PURCHASE ORDER DATE: " W:PRCB]"" $E(PRCB,4,5),"/",$E(PRCB,6,7),"/",$E(PRCB,2,3)
+ . QUIT
+ S PRC("SITE")=+^PRC(442,PRCRI(442),0)
+ D EDIT^PRC0B(.X,"442;;"_PRCRI(442),"30;29","")
+ S PRCC=X
+ D EN^DDIOL(" "),EN^DDIOL($TR($J("",78)," ","-"))
+ QUIT
+ ;
+MAN410 ;manual select 410 for 1996
+ S X("S")="I $P($G(^(0)),""-"",2)>95"
+ D LOOKUP^PRC0B(.X,.Y,"410","AEMOQS","Select 2237/1358 Request: ")
+ I X=""!(X["^") QUIT
+ I Y>0 S PRCRI(410)=+Y D 410
+ G MAN410
+ QUIT
+ ;
+MAN442 ;MANUAL SELECT 442 for 1996
+ S X("S")="I $P($G(^(1)),""^"",15)>2950930"
+ D LOOKUP^PRC0B(.X,.Y,"442","AEMOQS","Select Purchase Order: ")
+ I X=""!(X["^") QUIT
+ I Y>0 S PRCRI(442)=+Y,PRCB=$P($G(^PRC(442,PRCRI(442),1)),"^",15) D 442
+ G MAN442
+ ;

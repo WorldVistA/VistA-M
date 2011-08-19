@@ -1,0 +1,5 @@
+LRUP ;AVAMC/REG/CYM - GET PARENT FILE DATA ;3/12/98  13:32 ;
+ ;;5.2;LAB SERVICE;**1,50,201**;Sep 27, 1994
+ ; X is set by the ^LR(LRDFN,0) global node
+ S DFN=$P(X,U,3),(LRDPF,P("F"))=$P(X,U,2) D DEM^LRX S DOB=$$FMTE^XLFDT(DOB)
+ S LRP="" Q:LREND  S LRP=PNM Q

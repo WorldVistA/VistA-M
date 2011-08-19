@@ -1,0 +1,25 @@
+PSOLMDA ;BHAM ISC/LC - DETAILED ALLERGY LIST ; 13-MAR-1995
+ ;;7.0;OUTPATIENT PHARMACY;;DEC 1997
+EN ; -- main entry point for PSO LM DETAILED ALLERGY
+ D EN^VALM("PSO LM DETAILED ALLERGY")
+ Q
+ ;
+HDR ; -- header code
+ D HDR^PSOLMUTL
+ Q
+ ;
+INIT ; -- init variables and list array
+ S:'$G(DFN) DFN=PSODFN D BEG^PSOORDA(DFN)
+ S VALMCNT=PSODA
+ Q
+HELP ; -- help code
+ S X="?" D DISP^XQORM1 W !!
+ Q
+ ;
+EXIT ; -- exit code
+ K AGN,PSOAL,PSOALL,PSODA,VALMSG
+ S PSOQFLG=1 Q
+ ;
+EXPND ; -- expand code
+ Q
+ ;

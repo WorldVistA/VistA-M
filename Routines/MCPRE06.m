@@ -1,0 +1,21 @@
+MCPRE06 ;HIRMFO/DAD-ICD CODE MULT CLEANUP IN MEDICAL DIAGNOSIS/ICD CODES FILE (#697.5 ;8/2/96  10:29
+ ;;2.3;Medicine;;09/13/1996
+ ;
+ N D0,D1,DIK,MCD0,MCD1,MCDATA
+ S MCDATA(1)=""
+ S MCDATA(2)="Cleaning up the data in the ICD Code multiple in"
+ S MCDATA(3)="the Medical Diagnosis/ICD Codes file (#697.5)."
+ D MES^XPDUTL(.MCDATA)
+ ;
+ S MCD0=0
+ F  S MCD0=$O(^MCAR(697.5,MCD0)) Q:MCD0'>0  D
+ . S MCD1=0
+ . F  S MCD1=$O(^MCAR(697.5,MCD0,2,MCD1)) Q:MCD1'>0  D
+ .. S MCDATA=$P($G(^MCAR(697.5,MCD0,2,MCD1,0)),U)
+ .. I $S(MCDATA="":1,'$D(^ICD9(MCDATA,0)):1,1:0) D
+ ... S DIK="^MCAR(697.5,"_MCD0_",2,",(D0,DA(1))=MCD0,(D1,DA)=MCD1
+ ... D ^DIK
+ ... Q
+ .. Q
+ . Q
+ Q

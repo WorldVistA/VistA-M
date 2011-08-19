@@ -1,0 +1,58 @@
+ANRVPR1 ;AUG/JLTP - FORMAT WP FIELDS FOR VIST PRINTOUT ; 22 Jan 91 / 9:20 AM
+ ;;4.0; Visual Impairment Service Team ;;12 Jun 98
+WP ;EXPECTS ANRF = GLOBAL NODE^HEADING
+ W !!,$P(ANRF,U,2) S ANRF=+ANRF
+ K ANRV S ANLT=0
+ F ANLF=0:0 S ANLF=$O(^ANRV(2040,ANRVFN,ANRF,ANLF)) Q:'ANLF  D
+ .S ANTXT=^ANRV(2040,ANRVFN,ANRF,ANLF,0) D CTRL D:ANLT=0!($E(ANTXT)=" ") NEXT D PROCESS
+ F ANRV=0:0 S ANRV=$O(ANRV(ANRV)) Q:'ANRV  D  Q:$D(DIRUT)
+ .D:$Y>(IOSL-6) PAGE^ANRVPR Q:$D(DIRUT)  W !?30,ANRV(ANRV)
+ Q
+PROCESS ;
+ F I=1:1:$L(ANTXT," ") S ANWRD=$P(ANTXT," ",I)_" " D
+ .D:$L(ANRV(ANLT)_ANWRD)>(IOM-35) NEXT S ANRV(ANLT)=ANRV(ANLT)_ANWRD
+ Q
+NEXT ;
+ S ANLT=ANLT+1,ANRV(ANLT)=""
+ Q
+FINISH ; display VIST Coordinator
+ W !!?30,ANRVC(1),!?30,ANRVC(2) D PAGE^ANRVPR ;S  ANRVPG=1
+LASTPG ; Print last page of individual record
+ I $D(DIRUT) Q
+ K ANRV S ANRV(1)=$P($G(^ANRV(2040,ANRVFN,13)),U,2),X=$G(^(7))
+ S ANRV(2)=$P(X,U,3),ANRV(3)=$P(X,U,4),ANRV(5)=$G(^ANRV(2040,ANRVFN,5))
+ S ANRV(6)=AGE_" ("_$S(AGE<25:"026",AGE<35:"027",AGE<45:"028",AGE<55:"029",AGE<65:"030",AGE<75:"031",AGE<85:"032",1:"033")_")"
+ S ANRV(4)="" F I=1:1 S ANRV=$P($T(AMISPOS+I),";;",2) Q:ANRV=""  D
+ .I ANRVPS=$P(ANRV,U) S ANRV(4)=ANRVPS_" ("_$P(ANRV,U,2)_")" Q
+ F ANRV="7^1","4.5^2","9^3","3.5^5" D EXPAND
+ W !!,"Name: ",?30,PNM,!,"Social Security Number: ",?30,SSN,!!!!?20,"AMIS",!!
+ F I=1:1:6 W !,$P($T(FIELDS+I),";;",2),?30,ANRV(I)
+ W ! D FTR^ANRVPR G EXIT^ANRVPR
+ Q
+EXPAND ;------ Expand Set of Codes ------
+ S Y=ANRV($P(ANRV,"^",2)),C=$P(^DD(2040,+ANRV,0),"^",2) D Y^DIQ S ANRV($P(ANRV,"^",2))=Y
+ Q
+CTRL ;Process control codes.  (Only |TAB|s for now...)
+ F  Q:ANTXT'["|TAB|"  D
+ .S ANTXT=$P(ANTXT,"|TAB|")_"     "_$P(ANTXT,"|TAB|",2,255)
+ Q
+FIELDS ;;
+ ;;VIST Eligible:
+ ;;Visual Activity:
+ ;;Major Activity:
+ ;;Period of Service:
+ ;;VA Entitlement:
+ ;;Age Category:
+ ;;
+AMISPOS ;;
+ ;;WORLD WAR I^016
+ ;;SPANISH AMERICAN^016
+ ;;WORLD WAR II^017
+ ;;KOREAN^018
+ ;;VIETNAM ERA^019
+ ;;PERSIAN GULF WAR^020
+ ;;POST-KOREAN^020
+ ;;POST-VIETNAM^020
+ ;;PRE-KOREAN^020
+ ;;OTHER OR NONE^020
+ ;;

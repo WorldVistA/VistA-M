@@ -1,0 +1,23 @@
+DDU ;SFISC/DCM-DD UTILITES ;3/24/91  12:22 PM
+ ;;22.0;VA FileMan;;Mar 30, 1999
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+0 S DIC="^DOPT(""DDU"","
+ G OPT:$D(^DOPT("DDU",3)) S ^(0)="DATA DICTIONARY UTILITY OPTION^1.01" K ^("B")
+ F X=1:1:3 S ^DOPT("DDU",X,0)=$P($T(@X),";;",2)
+ S DIK=DIC D IXALL^DIK
+OPT ;
+ S DIC(0)="AEQIZ" D ^DIC G Q:Y<0 S DI=+Y D EN G 0
+ ;
+EN ;
+ D @DI W !!
+Q K %,DIC,DIK,DI,DA,I,J,X,Y Q
+ ;
+1 ;;LIST FILE ATTRIBUTES
+ G ^DID
+ ;
+2 ;;MAP POINTER RELATIONS
+ G ^DDMAP
+ ;
+3 ;;CHECK/FIX DD STRUCTURE
+ G ^DDUCHK
+ ;

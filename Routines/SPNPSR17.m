@@ -1,0 +1,49 @@
+SPNPSR17 ;HIRMFO/JWR,WAA-HUNT: PROSTHETICS CLASS ;3/1/96
+ ;;2.0;Spinal Cord Dysfunction;**24**;01/02/1997
+ ;
+EN1(D0,ACTION,SEQUENCE) ; *** Search entry point
+ ; Input:
+ ;  ACTION,SEQUENCE = Search ACTION,SEQUENCE number
+ ;  D0       = SCD (SPINAL CORD) REGISTRY file (#154) IEN
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"PROSTH",CN) = IEN ^ NAME
+ ; Output:
+ ;  $S( D0_Meets_Search_Criteria : 1 , 1 : 0 )
+ ;
+ ;N AGE,DFN,I,MEETSRCH,VA,VADM,VAERR
+ S MEETSRCH=0
+ S DFN=+$P($G(^SPNL(154,+D0,0)),U)
+ G:'$D(^RMPR(665,DFN,5,0)) EXIT
+ S CN=""
+ S SPN2=0 F  S SPN2=$O(^RMPR(665,DFN,5,SPN2)) Q:SPN2<1  D  Q:MEETSRCH=1
+ . S SPN3=$G(^RMPR(665,DFN,5,SPN2,0)),SPN4=$P(SPN3,U,4),SPN3=+SPN3
+ . Q:SPN4=""  Q:'$D(^RMPR(661,SPN4,0))
+ . S SPN5=$P($G(^RMPR(661,SPN4,0)),U,3) Q:SPN5=""
+ . S SPN6=$P($G(^RMPR(663,SPN5,0)),U) Q:SPN6=""
+ .; old code was looking at the whole value based on temp and was wrong
+ .; now it only looks at the 1st piece of the tmp($j 
+ .; F  S CN=$O(^TMP($J,"SPNPRT",ACTION,SEQUENCE,"PROSTH",CN)) Q:CN<1  I SPN6=^(CN) S MEETSRCH=1 Q:MEETSRCH=1
+ . F  S CN=$O(^TMP($J,"SPNPRT",ACTION,SEQUENCE,"PROSTH",CN)) Q:CN<1  I SPN6=$P($G(^TMP($J,"SPNPRT",ACTION,SEQUENCE,"PROSTH",CN)),U,1) S MEETSRCH=1 Q:MEETSRCH=1
+ . Q
+EXIT Q MEETSRCH
+ ;
+EN2(ACTION,SEQUENCE) ; *** Prompt entry point
+ ; Input:
+ ;  ACTION,SEQUENCE = Search ACTION,SEQUENCE number
+ ; Output:
+ ; ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"PROSTH",IEN) = RATIO ^ NAME
+ ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,0) = $$EN1^SPNPSR17(D0,ACTION,SEQUENCE)
+ ;  SPNLEXIT = $S( User_Abort/Timeout : 1 , 1 : 0 )
+ ;
+ N DIC,AGE,DIR,DIRUT,DTOUT,DUOUT,I,SPNLFLG
+DIR K ^TMP($J,"SPNPRT",ACTION,SEQUENCE),DIR,DIC
+ F  S DIC=663,DIC(0)="AEMNQZ" D  Q:Y<1!(SPNLEXIT)
+ . D ^DIC
+ . I $D(DUOUT)!($D(DTOUT)) S SPNLEXIT=1 Q
+ . I Y<1 Q
+ . I $D(^TMP($J,"SPNPRT",ACTION,SEQUENCE,"PROSTH",Y)) W !!,"     ***You have already chosen that one***",! Q
+ . W "   ",$P($G(^RMPR(663,+Y,0)),U,3) S DIC("A")="Another: "
+ . S ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"PROSTH",Y)=$P(Y,U,2)_U_$P($G(^RMPR(663,+Y,0)),U,3)
+ . Q
+ I Y<1,('SPNLEXIT) S ^TMP($J,"SPNPRT",ACTION,SEQUENCE,0)="$$EN1^SPNPSR17(D0,"""_ACTION_""","_SEQUENCE_")"
+ I SPNLEXIT K ^TMP($J,"SPNPRT",ACTION,SEQUENCE)
+ Q

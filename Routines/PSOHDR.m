@@ -1,0 +1,59 @@
+PSOHDR ;BIR/RTR-Send order update message to HDR ;06/27/03
+ ;;7.0;OUTPATIENT PHARMACY;**181,205**;DEC 1997
+ ;External reference to PSDRUG supported by DBIA 221
+ ;External reference to VDEFQM supported by DBIA 4253
+ ;
+ ;PSOHDRTP = Type of message, PRES=fill, PPAR=partial, PREF=refill
+ ;PSOHDRNM = Internal entry number of order
+ ;
+EN(PSOHDRTP,PSOHDRNM) ; Entry point for VDEF calls
+ Q:'$G(PSOHDRNM)
+ Q:$G(PSOHDRTP)=""
+ I $T(QUEUE^VDEFQM)']"" Q
+ I '$D(^PSRX(PSOHDRNM,0)) Q
+ ;Check for test patient
+ I $T(TESTPAT^VADPT)]"" Q:$$TESTPAT^VADPT(+$P($G(^PSRX(PSOHDRNM,0)),"^",2))
+ N PSOHDRX,PSOHDRA,PSOHDRB
+ S PSOHDRA=$S(PSOHDRTP="PRES":"RDE^O11",PSOHDRTP="PPAR":"RDS^O13",PSOHDRTP="PREF":"RDS^O13",1:"")
+ Q:PSOHDRA=""
+ S PSOHDRB="SUBTYPE="_PSOHDRTP_"^IEN="_PSOHDRNM
+ S PSOHDRX=$$QUEUE^VDEFQM(PSOHDRA,PSOHDRB)
+ Q
+ ;
+ ;Return NDC number
+NDC(PSOVIEN,PSOVFILL,PSOVTYPE) ;
+ ;PSOVIEN = Internal prescription number
+ ;PSOVFILL = Fill Number
+ ;PSOVTYPE = "R" for refill, "P" for Partial
+ N PSOVNDC,PSOVNX,PSOVY,PSOVDRG
+ S (PSOVNDC,PSOVNX)=""
+ I $G(PSOVIEN)'>0 Q PSOVNDC
+ I '$D(^PSRX(PSOVIEN,0)) Q PSOVNDC
+ I $G(PSOVFILL)="" Q PSOVNDC
+ I PSOVFILL=0 D  D:PSOVNX'="" FORMAT Q PSOVNDC
+ .D CMOP I PSOVNX'="" Q
+ .;I $P($G(^PSRX(PSOVIEN,"NDC")),"^")'="" S PSOVNX=$P(^("NDC"),"^") Q
+ .I $P($G(^PSRX(PSOVIEN,2)),"^",7)'="" S PSOVNX=$P(^(2),"^",7) Q
+ .D DRUG
+ I $G(PSOVFILL)'>0 Q PSOVNDC
+ I $G(PSOVTYPE)'="R",$G(PSOVTYPE)'="P" Q PSOVNDC
+ I PSOVTYPE="R" D  D:PSOVNX'="" FORMAT Q PSOVNDC
+ .D CMOP I PSOVNX'="" Q
+ .;I $P($G(^PSRX(PSOVIEN,1,PSOVFILL,"NDC")),"^")'="" S PSOVNX=$P(^("NDC"),"^") Q
+ .I $P($G(^PSRX(PSOVIEN,1,PSOVFILL,1)),"^",3)'="" S PSOVNX=$P(^(1),"^",3) Q
+ .D DRUG
+ I PSOVTYPE="P" D  D:PSOVNX'="" FORMAT Q PSOVNDC
+ .I $P($G(^PSRX(PSOVIEN,"P",PSOVFILL,0)),"^",12)'="" S PSOVNX=$P(^(0),"^",12) Q
+ .D DRUG
+ Q PSOVNDC
+ ;
+FORMAT ;format NDC
+ S PSOVNDC=$G(PSOVNX)
+ Q
+CMOP ;Find NDC for CMOP fill
+ F PSOVY=0:0 S PSOVY=$O(^PSRX(PSOVIEN,4,PSOVY)) Q:'PSOVY  D
+ .I $P($G(^PSRX(PSOVIEN,4,PSOVY,0)),"^",3)=PSOVFILL,$P($G(^(0)),"^",8)'="" S PSOVNX=$P($G(^(0)),"^",8)
+ Q
+DRUG ;Get NDC from Drug file
+ S PSOVDRG=$P($G(^PSRX(PSOVIEN,0)),"^",6) I PSOVDRG,$P($G(^PSDRUG(+$G(PSOVDRG),2)),"^",4)'="" S PSOVNX=$P(^(2),"^",4)
+ Q

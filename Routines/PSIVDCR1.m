@@ -1,0 +1,44 @@
+PSIVDCR1 ;BIR/PR,MLM-PRINT DRUG COST REPORT ;29 SEP 94 / 10:09 AM
+ ;;5.0; INPATIENT MEDICATIONS ;;16 DEC 97
+W ;Entry to print report.
+ I $D(LCO),$D(^UTILITY($J)) S V="" F V=0:0 S V=$O(^UTILITY($J,V)) Q:'V  S DRUG="" F J=0:0 S DRUG=$O(^UTILITY($J,V,"H",DRUG)) Q:DRUG=""  S:$D(^UTILITY($J,V,"H",DRUG,0)) DC=$P(^(0),U,5) I DC'>UCO,(DC'<LCO) D RESORT
+ I $D(LCO) F V=0:0 S V=$O(^UTILITY($J,V)) Q:'V  K ^UTILITY($J,V,"H")
+ S (B1,B2,B4,B3,G5,E,G1,G2,G4,G3)=0,OK=1,L1="==============",L2="--------------"
+ U IO S S=$S($D(PQ):"Y",1:"NO"),Y=I7 X ^DD("DD") S H=Y,Y=I8 X ^DD("DD") S H=H_" THROUGH "_Y,%H=$H D YX^%DTC S US="PRINTED BY: "_($P(^VA(200,DUZ,0),U))_" ON "_Y D H I '$D(^UTILITY($J)) W !,"NO DATA." W:$E(IOST)'="C"&($Y) @IOF D ^%ZISC G K
+ D P,K Q
+H ;Header
+ S E=E+1 W:$Y @IOF W !?60,"IV DRUG COST REPORT ("_$S($D(BRIEF)&($D(SMO)):"SUMMARY ONLY",$D(BRIEF)&('$D(SMO)):"CONDENSED",1:"REGULAR"),") FOR:",?120,"PAGE:",E
+ W !?60,H,!?60,I15,!?60,I10,!?60,US,!! I '$D(LP) W:'$D(SMO) ?122,"UNITS",!,"IV ROOM/DRUG" W $S('$D(BRIEF):"/WARD",1:"")_$S($D(PQ):"/PATIENT",1:""),?35,"DISPENSED",?56,"(DESTROYED)",?77,"RECYCLED",?96,"CANCELLED",?124,"COST",!
+ F Q=1:1:132 W "=" W:Q=132 !
+ Q
+P ;Print IV room, grand total cost
+ F V=0:0 D F S V=$O(^UTILITY($J,V)) W:'V ! Q:'V  W:'$D(SMO) !,"IV ROOM: ",$S($D(^PS(59.5,V,0)):$P(^(0),U),1:"NF") S (N,N1,P)="" S DC="" F J=0:0 S DC=$O(^UTILITY($J,V,DC)) Q:DC=""  D P1^PSIVDCR2
+ I $D(LCO),'$D(^UTILITY("PSIV",$J)) W !,"NO DATA." W:$E(IOST)'="C"&($Y) @IOF D ^%ZISC G K
+ F L=1:1:2 D F W:'$D(SMO) !?30,L1,?53,L1,?71,L1,?90,L1,?117,L1 I L=2 W !!?11,"GRAND TOTAL COST: ",?28,"$",$J(G1,14,2),?52,"$",$J(G2,14,2),?70,"$",$J(G3,14,2),?89,"$",$J(G4,14,2),?113,"$",$J(G5,17,2)
+ ;
+S ;Print high/low cost in descending sort
+ K LP I I2="HIGH",'$D(SMO) S LP=1 D H W !,"DESCENDING SORT:"
+ I $D(LP) S V="" F I=0:0 S V=$O(^UTILITY("PSIV",$J,V)) Q:V=""  D F W !!,"IV ROOM: ",V,! S C="" F  S C=$O(^UTILITY("PSIV",$J,V,C)) Q:'C  S SD="" F Q=0:0 S SD=$O(^UTILITY("PSIV",$J,V,C,SD)) Q:SD=""  D F W ?30,SD,?90,"$",$J(^(SD),15,2),!
+SP ;Print out summary page
+ I B1!(G1) S LP=1 I '$D(SMO) D H
+ I B1 W !!!!?16,"BAG SUMMARY:"
+ I  W !,?17,"DESTROYED",?40,"=",?40,$J(B2/B1*100,6,2)_" %",?80,"OF DISPENSED BAGS",!?17,"RECYCLED",?40,"=",?40,$J(B3/B1*100,6,2)_" %",?80,"OF DISPENSED BAGS",!?17,"CANCELLED",?40,"=",?40,$J(B4/B1*100,6,2)_" %",?80,"OF DISPENSED BAGS"
+ I G1 W !!?16,"COST SUMMARY:"
+ I  W !,?17,"DESTROYED",?40,"=",?40,$J(G2/G1*100,6,2)_" %",?80,"OF DISPENSED COST",!?17,"RECYCLED",?40,"=",?40,$J(G3/G1*100,6,2)_" %",?80,"OF DISPENSED COST",!?17,"CANCELLED",?40,"=",?40,$J(G4/G1*100,6,2)_" %",?80,"OF DISPENSED COST"
+ ;
+TM ;
+ W !!!?17,"FINISHED PRINTING ON: " D NOW^%DTC S Y=% X ^DD("DD") W Y,@IOF K ZTSK D ^%ZISC
+K ;
+ S:$D(ZTQUEUED) ZTREQ="@"
+ K %,A,B,B1,B2,B3,B4,C,CC,C1,C3,C2,C3,C4,C5,DATA,DC,DD,E,G1,G2,G3,G4,G5,GG,H,I,II,I2,I6,I7,I8,I10,L,L1,L2,LP,N,N1,OK,P,P1,P2,P3,P4,P5,PQ,Q,SD,SUS,U1,U2,U3,U4,UCO,V1,V2,V3,V4,WT,^UTILITY("PSIV",$J)
+ Q
+ ;
+F ;Form feed
+ I $Y+5>IOSL D H
+ Q
+RESORT ;
+ S ^UTILITY($J,V,-DC,DRUG,0)=^UTILITY($J,V,"H",DRUG,0),WD="" F J=0:0 S WD=$O(^UTILITY($J,V,"H",DRUG,WD)) Q:WD=""  S PN="" F J=0:0 S PN=$O(^UTILITY($J,V,"H",DRUG,WD,PN)) Q:PN=""  D RESORT1
+ Q
+RESORT1 ;
+ S:$D(^UTILITY($J,V,"H",DRUG,WD,PN,0)) ^UTILITY($J,V,-DC,DRUG,WD,PN,0)=^UTILITY($J,V,"H",DRUG,WD,PN,0)
+ Q

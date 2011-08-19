@@ -1,0 +1,41 @@
+SOWKAI ;B'HAM ISC/SAB,DLR-Routine to print RCH Patient Registry for all cases for a supervisor ; 08 Apr 93 / 9:05 AM [ 07/22/94  2:24 PM ]
+ ;;3.0; Social Work ;**34,53**;27 Apr 93
+ K ^TMP($J)
+BEG S %DT="AEXP",%DT("A")="ALL CASES STARTING FROM: " D ^%DT G:"^"[X CLOS G:Y'>0 BEG S SOWKFB=Y
+EN S %DT("A")="ALL CASES ENDING: " D ^%DT G:"^"[X CLOS G:Y'>0 EN S SOWKFE=Y W !
+LK S DIC="^VA(200,",DIC(0)="AEQ",DIC("A")="Enter Supervisor's last name: ",D="B",DIC("S")="I $D(^VA(200,""ASWC"",+Y))" D IX^DIC G:"^"[X CLOS G:Y'>0 LK S DA=+Y K DIC
+ K %ZIS,IOP,ZTSK S SOWKION=ION,%ZIS="QM" D ^%ZIS K %ZIS I POP S IOP=SOWKION D ^%ZIS K IOP,SOWKION G CLOS
+ K SOWKION I $D(IO("Q")) S ZTDESC="RCH REGISTRY REPORT",ZTRTN=$S($G(COM):"ENQ^SOWKAI",1:"SUM^SOWKAI") F G="SOWKFB","SOWKFE","DA","COM" S:$D(@G) ZTSAVE(G)=""
+ I  K IO("Q") D ^%ZTLOAD W:$D(ZTSK) !!,"Task Queued to Print",! K G,Q,%DT,CS,D,DA,DIC,DP,I,IOP,POP,%ZIS,LP,MS,P,S,SC,T,W,X,Y,SOWKFB,SOWKFE,J,ZTSK G CLOS Q
+ I 'COM G SUM
+ENQ ;COMPLETE REPORT
+ U IO W:$Y @IOF W "RCH PATIENT REGISTRY",!,"SUPERVISOR: "_$P(^VA(200,DA,0),"^"),!,"COMPLETE: ALL CASES",!
+ W !,$E(SOWKFB,4,5)_"/"_$E(SOWKFB,6,7)_"/"_$E(SOWKFB,2,3)_" TO "_$E(SOWKFE,4,5)_"/"_$E(SOWKFE,6,7)_"/"_$E(SOWKFE,2,3),!
+SEA S SWD=SOWKFB-1 F S=0:0 S SWD=$O(^SOWK(650,"O",SWD)) Q:'SWD!(SWD>SOWKFE)  F B=0:0 S B=$O(^SOWK(650,"O",SWD,B)) Q:'B  S A=^SOWK(650,B,0),W=$P(A,"^",3) I $P(^SOWK(651,$P(A,"^",13),0),"^",6)="R",$P(^VA(200,W,654),"^",2)=DA D SETUP
+ D PRI
+CLOS W ! W:$E(IOST)'["C" @IOF D ^%ZISC K SWX,SWXX,SWD,B,^TMP($J),A,Q,%DT,CS,D,DA,DIC,DP,I,IOP,POP,%ZIS,LP,LP1,MS,P,S,SC,T,W,X,Y,SOWKFB,SOWKFE,J,HM,COM,E,PL,R,Z D KVAR^VADPT,KVA^VADPT D:$D(ZTSK) KILL^%ZTLOAD Q
+SETUP I $D(^DPT($P(A,"^",8),0)) S ^TMP($J,$P(^DPT($P(A,"^",8),0),"^"),$P(A,"^"))=$P(A,"^")
+ Q
+PRI S I="" F J=0:0 S I=$O(^TMP($J,I)) Q:I=""  D PR1 Q:$G(SWXX)
+ Q
+PR1 F E=0:0 S E=$O(^TMP($J,I,E)) Q:'E  S A=^SOWK(650,E,0),P=$P(A,"^",8),W=$P(A,"^",3) S DFN=P D PID^VADPT6 D @$S(COM:"OUT",1:"OUT1") I $G(SWXX) Q
+ Q
+OUT U IO F Z=0:0 S Z=$O(^SOWK(655,P,4,Z)) Q:'Z  I $D(^SOWK(655,P,4)),$P(^SOWK(655,P,4,Z,0),"^",5)=E S HM=$P(^SOWK(655,P,4,Z,0),"^"),PL=$P(^(0),"^",2),R=Z
+ E  Q
+ I $E(IOST)["C",$Y+6>IOSL R !!,"PRESS RETURN TO CONTINUE or '^' TO EXIT: ",SWX:DTIME I SWX["^"!'$T S SWXX=1 Q
+ W:$Y+6>IOSL @IOF W !,$P(^DPT(P,0),"^"),?$X+5,VA("BID"),?$X+5,"HOME: "_$E($P(^SOWK(652,HM,0),"^"),1,18) S Y=PL X ^DD("DD") W "  PLACED: "_Y,!,"DOB: " S Y=$P(^DPT(P,0),"^",3) X ^DD("DD") W Y,?$X+5
+ W "SOCIAL WORKER: "_$P(^VA(200,W,0),"^") S X=$P(A,"^",7),MS=$S(X=1:"MEDICAL/SURGICAL",X=2:"PSYCHOSIS",X=3:"ORGANIC & SENILE",X=4:"SUBSTANCE ABUSE",X=5:"ALL OTHER",1:"")
+ W !,MS,?$X+5,"PRIOR LIVING: " S LP1=$P(^DD(650,10,0),"^",3),LP=$P(A,"^",11),LP=$P(LP1,";",LP) W $P(LP,":",2)
+ I $P(A,"^",18) S Y=$P(A,"^",18) X ^DD("DD") W !,"CLOSED: "_Y S X=$P(A,"^",21),DP=$S(X=1:"INDIVIDUAL",X=2:"HOSPITAL",X=3:"OTHER INSTITUTIONAL",X=4:"DEATH",X=5:"TRANSFER",1:"UNKNOWN") W ?$X+5,"DISP: "_DP
+ W !,"LEVEL OF CARE: "_$S($P(A,"^",23)=1:"LIGHT",$P(A,"^",23)=2:"MODERATE",1:"HEAVY")
+ W !,"RATE: " F Q=0:0 S Q=$O(^SOWK(655,P,4,R,1,Q)) Q:'Q  S Y=$P(^SOWK(655,P,4,R,1,Q,0),"^",2) X ^DD("DD") W $P(^SOWK(655,P,4,R,1,Q,0),"^"),?$X+5,"DATE: "_Y,!,?$X+6
+ Q
+SUM U IO W:$Y @IOF W "RCH PATIENT REGISTRY",!,"SUPERVISOR: "_$P(^VA(200,DA,0),"^"),!,"SUMMARY: ALL CASES",!
+ W !,$E(SOWKFB,4,5)_"/"_$E(SOWKFB,6,7)_"/"_$E(SOWKFB,2,3)_" TO "_$E(SOWKFE,4,5)_"/"_$E(SOWKFE,6,7)_"/"_$E(SOWKFE,2,3),!!!,"PATIENT NAME",?17,"ID#",?34,"HOME NAME",?55,"SOCIAL WORKER",?75,"OPEN",!
+ D SEA
+ Q
+OUT1 U IO F Z=0:0 S Z=$O(^SOWK(655,P,4,Z)) Q:'Z  I $D(^SOWK(655,P,4)),$P(^SOWK(655,P,4,Z,0),"^",5)=E S HM=$P(^(0),"^")
+ E  Q
+ I $E(IOST)["C",$Y+5>IOSL R !!,"PRESS RETURN TO CONTINUE or '^' TO EXIT: ",SWX:DTIME I SWX["^"!'$T S SWXX=1 Q
+ W:$Y+2>IOSL @IOF W !,$E($P(^DPT(P,0),"^"),1,15),?17,VA("PID"),?34,$E($P(^SOWK(652,HM,0),"^"),1,20),?55,$E($P(^VA(200,W,0),"^"),1,20) I '$P(A,"^",18) W ?76,"Y"
+ Q

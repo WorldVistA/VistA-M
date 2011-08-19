@@ -1,0 +1,50 @@
+PRCPRPDH ;WISC/RFJ-distribution cost report (to or from primary)    ;12 Feb 92
+ ;;5.1;IFCAP;;Oct 20, 2000
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ D ^PRCPUSEL Q:'$G(PRCP("I"))
+ N %,COSTCNTR,CUMTOT,D,DA,DATA,DATE,END,ENDDT,INVPT,MAXDT,MISCOST,MISDA,MISINVPT,NEW,NOW,NOWDT,PAGE,PRCPFLAG,SCREEN,START,STARTDT,FROM,TOTAL,TYPE,X,Y
+ S DIR(0)="S^1:TO;2:FROM;",DIR("A")="Print distributions TO or FROM inventory point",DIR("B")="FROM" D ^DIR K DIR S TYPE=$S($G(Y)=1:"TO",$G(Y)=2:"FROM",1:"") I TYPE'="FROM",TYPE'="TO" Q
+ D NOW^%DTC S NOWDT=X,Y=% D DD^%DT S NOW=Y,X1=$E(NOWDT,1,5)_"15",X2=-30 D C^%DTC S (Y,MAXDT)=$E(X,1,5)_"00" D DD^%DT S START=Y,MAXDT=($E(MAXDT,1,3)-1)_$E(MAXDT,4,5)_"00"
+START S %DT="AEP",%DT("A")="Start Printing Distributions from Date (Month Year): ",%DT("B")=START,%DT(0)=MAXDT W ! D ^%DT K %DT Q:Y<0  S (Y,STARTDT)=$E(Y,1,5) D DD^%DT S END=Y
+ S %DT="AEP",%DT("A")="  End Printing Distributions with Date (Month Year): ",%DT("B")=END,%DT(0)=-NOWDT D ^%DT K %DT Q:Y<0  S ENDDT=$E(Y,1,5)
+ I ENDDT<STARTDT W !,"END DATE MUST BE GREATER THAN OR EQUAL TO THE START DATE." G START
+ S Y=STARTDT D DD^%DT S START=Y W !!,"I will print the distribution history from ",Y," to " S Y=ENDDT D DD^%DT W Y,!! S END=Y
+ S XP="Do you want to breakout the cost by the MIS costing section",XH="Enter 'YES' to break the costs down to the MIS costing section, '^' to exit."
+ S %=$$YN^PRCPUYN(1) I '% Q
+ K MISCOST I %=1 S MISCOST=1
+ S %ZIS="Q" D ^%ZIS Q:POP  I $D(IO("Q")) D  D ^%ZTLOAD K IO("Q"),ZTSK Q
+ .   S ZTDESC="Distribution History Report (to primary)",ZTRTN="DQ^PRCPRPDH"
+ .   S ZTSAVE("PRCP*")="",ZTSAVE("START*")="",ZTSAVE("END*")="",ZTSAVE("NOW*")="",ZTSAVE("TYPE")="",ZTSAVE("MISCOST")="",ZTSAVE("ZTREQ")="@"
+ W !!,"<*> please wait <*>"
+DQ ;queue comes here
+ N XREF S XREF=$S(TYPE="FROM":"AD",1:"B")
+ K ^TMP($J,"DISTR"),^TMP($J,"MIS") S DA=0 F  S DA=$O(^PRCP(446,XREF,PRCP("I"),DA)) Q:'DA  S DATA=$G(^PRCP(446,DA,0)) I DATA'="" S DATE=$P(DATA,"^",2) I DATE'<STARTDT,DATE'>ENDDT D
+ .   S FROM=+$P(DATA,"^",3) I TYPE="FROM" S FROM=+$P(DATA,"^")
+ .   S COSTCNTR=$P(DATA,"^",4) S:'COSTCNTR COSTCNTR="<<UNKNOWN>>" S ^TMP($J,"DISTR",FROM,COSTCNTR)=$G(^TMP($J,"DISTR",FROM,COSTCNTR))+$P(DATA,"^",7)
+ S PAGE=1,SCREEN=$$SCRPAUSE^PRCPUREP U IO D H
+ S (CUMTOT,FROM)=0 F  S FROM=$O(^TMP($J,"DISTR",FROM)) Q:FROM=""!($D(PRCPFLAG))  S NEW=0,INVPT=$P($$INVNAME^PRCPUX1(FROM),"-",2,99) S:INVPT="" INVPT="<<UNKNOWN>>" W !,$E(INVPT,1,17) D
+ .   S TOTAL=0,COSTCNTR="" F  S COSTCNTR=$O(^TMP($J,"DISTR",FROM,COSTCNTR)) Q:COSTCNTR=""!($D(PRCPFLAG))  S D=^(COSTCNTR) D
+ .   .   W:NEW ! W ?19,$E(COSTCNTR,1,40),?61,$J(D,19,2) S CUMTOT=CUMTOT+D,TOTAL=TOTAL+D,NEW=1
+ .   .   I $Y>(IOSL-4) D:SCREEN P^PRCPUREP Q:$D(PRCPFLAG)  D H
+ .   S MISINVPT=PRCP("I") I TYPE="FROM" S MISINVPT=FROM
+ .   I $G(MISCOST),$O(^PRCP(445,MISINVPT,3,0)) W !?4,"MIS COSTING SECTION",?41,"% DISTRIBUTED",?61,"$ AMOUNT" S MISDA=0 F  S MISDA=$O(^PRCP(445,MISINVPT,3,MISDA)) Q:'MISDA!($D(PRCPFLAG))  D
+ .   .   S DATA=$G(^PRCP(445,MISINVPT,3,MISDA,0)) Q:DATA=""
+ .   .   S X=$P($G(^DIC(49,+$P(DATA,"^"),2)),"^"),X=X_$E("     ",$L(X)+1,5),%=$P($G(^DIC(49,+$P(DATA,"^"),0)),"^") S:%="" %="<<UNKNOWN>>" S %=X_" "_%,X=$J(TOTAL*($P(DATA,"^",2)/100),0,2)
+ .   .   S ^TMP($J,"MIS",$E(%,1,40))=$G(^TMP($J,"MIS",$E(%,1,40)))+X
+ .   .   W !?4,$E(%,1,40),?44,$J($P(DATA,"^",2),10,2),$J(X,15,2)
+ .   .   I $Y>(IOSL-4) D:SCREEN P^PRCPUREP Q:$D(PRCPFLAG)  D H
+ .   W !?19,"TOTAL $ AMOUNT DISTRIBUTED ",$S(TYPE="FROM":"TO",1:"FROM")," ",$E(INVPT,1,15),?65,$J(TOTAL,15,2),!
+ .   I $Y>(IOSL-4) D:SCREEN P^PRCPUREP Q:$D(PRCPFLAG)  D H
+ .   I $G(ZTQUEUED),$$S^%ZTLOAD S PRCPFLAG=1 W !?10,"<<< TASKMANAGER JOB TERMINATED BY USER >>>"
+ I '$D(PRCPFLAG),$G(MISCOST) D
+ .   I $Y>(IOSL-4) D:SCREEN P^PRCPUREP Q:$D(PRCPFLAG)  D H
+ .   I $O(^TMP($J,"MIS",""))'="" W !?4,"MIS COSTING SECTION",?41,"% DISTRIBUTED",?61,"$ AMOUNT" S MISDA=0 F  S MISDA=$O(^TMP($J,"MIS",MISDA)) Q:MISDA=""!($D(PRCPFLAG))  S TOTAL=^(MISDA) D
+ .   .   W !?4,$E(MISDA,1,40),?44,$J($S(CUMTOT:TOTAL/CUMTOT*100,1:0),10,2),$J(TOTAL,15,2)
+ .   .   I $Y>(IOSL-4) D:SCREEN P^PRCPUREP Q:$D(PRCPFLAG)  D H
+ .   W !?19,"TOTAL DOLLAR AMOUNT DISTRIBUTED ",TYPE," ",PRCP("IN"),?65,$J(CUMTOT,15,2)
+ I '$D(PRCPFLAG) D END^PRCPUREP
+ D ^%ZISC K ^TMP($J,"DISTR"),^TMP($J,"MIS") Q
+ ;
+H S %=NOW_"  PAGE: "_PAGE,PAGE=PAGE+1 I PAGE'=2!(SCREEN) W @IOF
+ W $C(13),"DISTRIBUTION COSTING REPORT ",TYPE," ",PRCP("IN"),?(80-$L(%)),%,!?10,"FROM DATE ",START," TO DATE ",END
+ S %="",$P(%,"-",81)="" W !,"DISTRIBUTED ",$S(TYPE="FROM":"TO",1:"FROM"),?19,"COST CENTER",?70,"TOTAL COST",!,% Q

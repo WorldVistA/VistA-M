@@ -1,0 +1,51 @@
+RGUTIN16 ;CAIRO/DKM - Inits for VMS;04-Sep-1998 11:26;DKM
+ ;;2.1;RUN TIME LIBRARY;;Mar 22, 1999
+OPEN(X1,X2) ;
+ N Z
+ S Z="X1"_$S("Rr"[$G(X2):":READONLY:0","Ww"[X2:":(NEWVERSION,RECORDSIZE=65535)","Bb"[X2:":(READONLY,BLOCKSIZE=0)",1:"")
+ O @Z
+ U X1
+ S ^TMP("HFS",$J,X1)=""
+ Q
+CLOSE(X) C X
+ K ^TMP("HFS",$J,X)
+ Q
+CLOSEALL N Z
+ S Z=""
+ F  S Z=$O(^TMP("HFS",$J,Z)) Q:Z=""  C Z
+ K ^TMP("HFS",$J)
+ Q
+EOF U $I:TRAP
+ Q
+EOFERR() Q $ZE["ENDOFILE"
+READ(X,Y) ;
+ U $G(Y,$I):NOTRAP
+ R X
+ Q $ZA=-1
+DELETE(X) ;
+ O X::0
+ C X:DELETE
+ Q
+RENAME(X1,X2) ;
+ O X1:READONLY:0
+ C X1:RENAME=X2
+ Q
+DIR(X1,X2,X3) ;
+ N Z,Z1
+ S $ZT="DIRX^RGUTOS",X3=$G(X3,"^UTILITY(""DIR"",$J)")
+ K @X3
+ S:'$G(X2) X2=9999999999
+ F Z=1:1:X2 S Z1=$ZSEARCH(X1),X1="" Q:Z1=""  S @X3@($P(Z1,"]",2))=""
+DIRX Q
+DEFDIR(X) Q $G(X,$P($G(^XTV(8989.3,1,"DEV")),U))
+DIRDLM() Q "[.]"
+ERR(X1,X2,X3) ;
+ S X1=$P($P($ZE,", ",2),"-",3),X2=$P($P($ZE,", "),":"),X3=$P($ZE,", ",$S(X1="ZTRAP":4,1:3))
+ Q
+FTP(X1,X2,X3,X4,X5,X6,X7) ;
+ D VMS^RGUTFTP(.X1,.X2,.X3,.X4,.X5,.X6,.X7)
+ Q
+RAISE(X) ZT $G(X)
+TRAP(X) Q $S($D(X):"$ZT="""_X_"""",1:"$ZT")
+SIZE(X) Q $ZC(%GETFILE,X,"BLS")*$ZC(%GETFILE,X,"EOF")
+FREE(X) Q $ZC(%GETDVI,X,"FREEBLOCKS")/2048

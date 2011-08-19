@@ -1,0 +1,51 @@
+FHXOR ; HISC/REL - OE/RR Post-Init ;12/10/92  15:03
+ ;;5.5;DIETETICS;;Jan 28, 2005
+ Q:'$D(^ORD(101,0))
+ ; Clean up options and routines
+ S DA(1)=$O(^ORD(101,"B","ORADD",0))
+ S DA=$O(^ORD(101,"B","FHWM",0))
+ I DA S DA=$O(^ORD(101,DA(1),10,"B",DA,0)) I DA S DIK="^ORD(101,DA(1),10," D ^DIK
+ F FHX="FHWM","FHW1","FHW2","FHW3","FHW4","FHW5","FHW6","FHW7","FHW8","FHWMAS","FHWPRO1" S DA=$O(^DIC(19,"B",FHX,"")) I DA S DIK="^DIC(19," D ^DIK
+ F FHX="FHWM","FHW5" S DA=$O(^ORD(101,"B",FHX,"")) I DA S DIK="^ORD(101," D ^DIK
+ W !!,"Add Dietetic protocols to MAS OE/RR options ..."
+ S X=" ;;DGPM MOVEMENT EVENTS;FHWMAS" D A2
+ W !!,"Add Dietetic protocols to OE/RR protocols ..."
+ F KK=1:1:2 S X=$T(ADD+KK) D A2
+ Q:'$D(^ORD(100.98,0))  Q:$P(^(0),"^",1)'="DISPLAY GROUP"
+ W !!,"Adding Dietetic Display Groups for OE/RR ..." K DIC,DIE,DA,DR
+ F KK=1:1:4 S X=$T(DIS+KK) D A3
+ F KK=1:1:4 S X=$T(SUB+KK) D A4
+ K D0,DA,DIC,DIE,DLAYGO,DR,KK,ORBUF,X,Y Q
+A2 S DA(1)=$O(^ORD(101,"B",$P(X,";",3),0)) I 'DA(1) K DA Q
+ K DIC S:'$D(^ORD(101,DA(1),10,0)) ^(0)="^101.01PA^^"
+ S DIC("DR")=$P(X,";",5,6)
+ S DIC="^ORD(101,"_DA(1)_",10,",DIC(0)="L",DLAYGO=101,X=$P(X,";",4) D ^DIC
+ I $P(Y,"^",3) W !?2,X," added as item to ",$P(^ORD(101,DA(1),0),"^",1),"."
+ K DIC,DA Q
+A3 S DIC="^ORD(100.98,",DIC(0)="L",DLAYGO=100.98,ORBUF="3///"_$P(X,";",5),X=$P(X,";",3) D ^DIC K DA,DR,DIE
+ I $P(Y,"^",3) W !,X," added as new Display Group"
+ I Y S DIE=DIC,DA=+Y,DR=ORBUF D ^DIE K DA,DIE,DIC,DR W "."
+ Q
+A4 Q:'$O(^ORD(100.98,"B",$P(X,";",4),0))
+ S DA(1)=$O(^ORD(100.98,"B",$P(X,";",3),0)) I 'DA(1) K DA Q
+ S:'$D(^ORD(100.98,DA(1),1,0)) ^(0)="^100.981P^^"
+ S DIC="^ORD(100.98,"_DA(1)_",1,",DIC(0)="L",DLAYGO=100.98,X=$P(X,";",4) D ^DIC
+ I $P(Y,"^",3) W !?2,X," added as subgroup to ",$P(^ORD(100.98,DA(1),0),"^",1),"."
+ K DIC,DA Q
+ADD ;;
+ ;;ORADD;FHWMENU;2///DI;3///1
+ ;;OROPRO;FHWPRO1;2///DI;3///1
+DIS ;;NAME;PACKAGE;SHORT NAME
+ ;;DIET ORDERS;DIETETICS;DO
+ ;;TUBEFEEDINGS;DIETETICS;TF
+ ;;DIETETIC CONSULTS;DIETETICS;D CON
+ ;;DIET ADDITIONAL ORDERS;DIETETICS;D AO
+ ;;EARLY/LATE TRAYS;DIETETICS;E/L T
+ ;;DIETETICS;DIETETICS;DIET
+SUB ;;PARENT;MEMBER ;10/7/89  20:52
+ ;;DIETETICS;DIET ORDERS
+ ;;DIETETICS;TUBEFEEDINGS
+ ;;DIETETICS;DIETETIC CONSULTS
+ ;;DIETETICS;DIET ADDITIONAL ORDERS
+ ;;DIETETICS;EARLY/LATE TRAYS
+ ;;ALL SERVICES;DIETETICS

@@ -1,0 +1,11 @@
+AFJXPATS ;FO-OAKLAND/GMB-NETWORK HEALTH CROSS REF PATIENT ;1/17/96  13:11
+ ;;5.1;Network Health Exchange;**23,31**;Jan 23, 1996
+ ; Totally rewritten 11/2001.  (Previously FJ/CWS.)
+ENTER ; Send data from patient file 0 node
+ N ZTSAVE,ZTIO,ZTRTN,ZTDESC
+ S ZTIO="",ZTRTN="PROCESS^AFJXPATS",ZTDESC="NETWORK PATIENT LIST"
+ D ^%ZTLOAD
+ Q
+PROCESS ;
+ D PROCESS^AFJXPNHA("Summary Network Patients",0,1)
+ Q

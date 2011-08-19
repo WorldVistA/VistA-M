@@ -1,0 +1,93 @@
+RGMTHFS ;BIR/DLR-BUILD HFS FILE FOR CAPTURING REPORT DATA ;08/20/01
+ ;;1.0;CLINCAL INFO RESOURCE NETWORK;**25**;30 Apr 99
+ ;
+ ;Reference to XPAR based on supported IA #2263
+ ;Reference to %ZISH based on supported IA #2320
+ ;Reference to "VAFC HFS SCRATCH" supported by IA #3549
+ ;
+ Q
+ ;
+HFS(LINETAG) ;
+ D HFSOPEN("RPC") I POP D  Q
+ .S ^TMP("RGMTHFS",$J,1)="ERROR: UNABLE TO ACCESS HFS DIRECTORY "_$$GET^XPAR("SYS","VAFC HFS SCRATCH")
+ .S ^TMP("RGMTHFS",$J,2)="PLEASE CHECK DIRECTORY WRITE PRIVILEDGES."
+ U IO
+ D @LINETAG
+ D HFSCLOSE("RPC")
+ Q
+ ;
+HFSOPEN(HANDLE) ; 
+ N RGMTDIR,RGMTFILE
+ S RGMTDIR=$$GET^XPAR("SYS","VAFC HFS SCRATCH")
+ S RGMTFILE="RGMT"_DUZ_".DAT"
+ D OPEN^%ZISH(HANDLE,RGMTDIR,RGMTFILE,"W") Q:POP
+ S IOM=132,IOSL=99999,IOST="P-DUMMY",IOF=""""""
+ Q
+ ;
+HFSCLOSE(HANDLE) ; 
+ N RGMTDIR,RGMTFILE,RGMTDEL
+ D CLOSE^%ZISH(HANDLE)
+ K ^TMP("RGMTHFS",$J)
+ S RGMTDIR=$$GET^XPAR("SYS","VAFC HFS SCRATCH")
+ S RGMTFILE="RGMT"_DUZ_".DAT",RGMTDEL(RGMTFILE)=""
+ S X=$$FTG^%ZISH(RGMTDIR,RGMTFILE,$NAME(^TMP("RGMTHFS",$J,1)),3)
+ S X=$$DEL^%ZISH(RGMTDIR,$NA(RGMTDEL))
+ Q
+ ; ------------------
+HFSGET(RM,GOTO) ;
+ ;RM=Right margin
+ S:'$G(RM) RM=80
+ N ZTQUEUED,RGMTHFS,RGMTSUB,RGMTIO
+ S RGMTHFS="RGMT_"_$J_".DAT",RGMTSUB="RGMTDATA"
+ D OPEN(.RM,.RGMTHFS,"W",.RGMTIO)
+ D @GOTO
+ D CLOSE(.RGMTRM,.RGMTHFS,.RGMTSUB,.RGMTIO)
+ Q
+ ;
+OPEN(RGMTRM,RGMTHFS,RGMTMODE,RGMTIO) ; -- open WORKSTATION device
+ ;   RGMTRM: right margin
+ ;  RGMTHFS: host file name
+ ; RGMTMODE: open file in 'R'ead or 'W'rite mode
+ S ZTQUEUED="" K IOPAR
+ S IOP="OR WORKSTATION;"_$G(RGMTRM,80)
+ S %ZIS("HFSMODE")=RGMTMODE,%ZIS("HFSNAME")=RGMTHFS
+ D ^%ZIS K IOP,%ZIS
+ U IO S RGMTIO=IO
+ Q
+ ;
+CLOSE(RGMTRM,RGMTHFS,RGMTSUB,RGMTIO) ; -- close WORKSTATION device
+ ; RGMTSUB: unique subscript name for output 
+ I IO=RGMTIO D ^%ZISC
+ U IO
+ D USEHFS
+ U IO
+ Q
+USEHFS ; -- use host file to build global array
+ N IO,RGMTK,SECTION
+ S SECTION=0
+ S RGMTK=$$FTG^%ZISH(,RGMTHFS,$NA(^TMP($J,1)),2) I 'RGMTK Q
+ N RGMTRR S RGMTRR(RGMTHFS)=""
+ S RGMTK=$$DEL^%ZISH("",$NA(RGMTRR))
+ Q
+DSPPDAT(RGMT) ;
+ ; Output
+ ;   RGMT - array passed back with the display formatted PDAT call
+ N CNT,X,TXT
+ S CNT=0,X=0 F  S X=$O(^TMP("RGMTHFS",$J,X)) Q:'X  S TXT=^TMP("RGMTHFS",$J,X) D
+ . I $E(TXT,1,20)="Treating Facilities:" S RGMT(CNT)="" S CNT=CNT+1
+ . I $E(TXT,1,12)="Subscribers:" S RGMT(CNT)="" S CNT=CNT+1
+ . I $E(TXT,1,12)="ICN History:" S RGMT(CNT)="" S CNT=CNT+1
+ . I $E(TXT,1,13)="CMOR History:" S RGMT(CNT)="" S CNT=CNT+1
+ . I $E(TXT,1,28)="CMOR Change Request History:" S RGMT(CNT)="" S CNT=CNT+1
+ . I TXT'="" I $E(TXT,1,12)'="Enter RETURN" S RGMT(CNT)=^TMP("RGMTHFS",$J,X),CNT=CNT+1
+ Q
+ETOT ;
+ ;remove specific lines from ETOT global
+ M ^TMP("RGMTHFS1",$J)=^TMP("RGMTHFS",$J) K ^TMP("RGMTHFS",$J)
+ S CNT=1,X=0 F  S X=$O(^TMP("RGMTHFS1",$J,X)) Q:'X  S TXT=^TMP("RGMTHFS1",$J,X) D
+ . I $E(TXT,1,10)="...purging" Q
+ . I $E(TXT,1,11)="and deleted" Q
+ . I $E(TXT,1,12)="Data string:" Q
+ . I $E(TXT,1,10)="Site;Sta#;" Q
+ .S ^TMP("RGMTHFS",$J,CNT)=^TMP("RGMTHFS1",$J,X)
+ Q
