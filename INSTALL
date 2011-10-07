@@ -1,0 +1,45 @@
+Use the following steps to import VistA from this source tree into a fresh M
+environment to start a new VistA instance.  Assumptions:
+
+- This source tree is checked out in a Git work tree
+
+- A Python interpreter is available (tested with version 2.7)
+  Visit http://www.python.org to obtain Python.
+
+- An empty M database has been initialized and configured
+
+  - InterSystems Cache: Configure a VISTA namespace to point at the empty
+    database.  Add VistA's usual Routine and Global namespace mappings.
+
+  - GT.M: Configure the database with maximum key size at least 512.
+    Point the routine search path (gtmroutines) at an empty directory
+    to hold the VistA routines.
+
+Steps:
+
+(1) Use Scripts/PackRO.py to pack all routines into routine transfer format:
+
+ $ git ls-files -- "*.m" | python Scripts/PackRO.py > routines.ro
+
+(2) Construct a file listing all global .zwr files:
+
+ $ git ls-files -- "*.zwr" > globals.lst
+
+(3) Use the M standard ^%RI routine to import routines:
+
+ > D ^%RI
+ Device: c:\path\to\VistA-FOIA\routines.ro
+
+(4) Use the OSEHRA ^ZGI routine to import globals.  The $$LIST^ZGI function
+    will read the list of files constructed above and append their names to
+    the path specified in the second argument (note the trailing slash):
+
+ > W $$LIST^ZGI("c:\path\to\VistA-FOIA\globals.lst","c:\path\to\VistA-FOIA\")
+
+(5) Initialize VistA for this environment:
+
+ > K ^%ZOSF("UCI")
+ > D ^ZTMGRSET
+
+After the above steps the M database will contain VistA FOIA.
+Proceed with normal VistA setup and configuration steps.
