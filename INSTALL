@@ -38,7 +38,6 @@ Steps:
 
 (5) Initialize VistA for this environment:
 
- > K ^%ZOSF("UCI")
  > D ^ZTMGRSET
 
 After the above steps the M database will contain VistA FOIA.
