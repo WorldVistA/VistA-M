@@ -2,3 +2,4 @@
 .hooks*          export-ignore
 
 *                text=auto
+*.zwr            hooks.MaxObjectKiB=0
