@@ -1,0 +1,131 @@
+Instructions to Import VistA-FOIA from a CACHE.DAT
+
+Download VistA-FOIA
+-------------------
+
+Download FOIA release .ZIP from va.gov:
+
+ https://downloads.va.gov/files/FOIA/Software/DBA_VistA_FOIA_System_Files/
+
+Extract the .ZIP to obtain the "CACHE.DAT".
+
+
+Configure InterSystems Caché
+----------------------------
+
+Configure a VISTA namespace in InterSystems Caché and point it at the
+above "CACHE.DAT".  Map globals TEMP, TMP, UTILITY, and XTMP into the
+CACHETEMP namespace.  Also map globals %Z* and %z* and routines
+
+  %DT*, %XB*, %XU*, %ZG*, %ZI*, %ZO*, %ZT*, %ZU*, %ZV*,
+  %RCR, %ZDEBUG, %HOSTCMD, %INET, %Serenj*
+
+into the VISTA namespace.
+
+
+Extract Routines and Globals
+----------------------------
+
+Start the Caché Terminal.  Dump all VistA routines using %RO:
+
+ VISTA>D ^%RO
+ Routine output (please use %ROMF for object code output)
+ Routine(s): *
+ Routine(s): <ENTER>
+ Description: VistA Routines
+ Output routines to
+ Device: /tmp/VistA/Routines.ro
+
+Pack the "ZGO" routine into routine transfer format:
+
+ $ python Scripts/PackRO.py Scripts/ZGO.m > /tmp/ZGO.ro
+
+Start the Caché Terminal.  Load the ZGO routine:
+
+ VISTA>D ^%RI
+ Input routines from Sequential
+ Device: /tmp/ZGO.ro
+ Parameters? "R" =>
+ Override and use this File with %RI? No => Yes
+
+Dump all VistA globals using the ZGO routine:
+
+ VISTA>D SAVEALL^ZGO("/tmp/VistA/Globals/")
+
+VistA has now been extracted to the host disk as
+
+ $ ls /tmp/VistA/Routines.ro /tmp/VistA/Globals/*.zwr
+
+TODO: Extract the Web Services Client xobw.* Caché classes separately.
+
+
+Unpack Routines and Globals
+---------------------------
+
+Remove old VistA-FOIA files but not Packages/.gitattributes:
+
+ $ rm -rf -- Packages/*
+
+Unpack routines from the routine transfer format to .m files:
+
+ $ cd Packages
+ $ python ../Scripts/UnpackRO.py < /tmp/VistA/Routines.ro
+ $ cd ..
+
+Remove Caché-specific routines from the Web Services Client
+(TODO: Handle these routines correctly):
+
+ $ rm Packages/xobw.*.m
+
+Copy (or move) the global .zwr files:
+
+ $ cp /tmp/VistA/Globals/*.zwr Packages/
+
+Split large global .zwr files into pieces no larger than 64 MiB:
+
+ $ ls Packages/*.zwr | python Scripts/SplitZWR.py --size 64 --stdin
+
+
+Populate Package Directories
+----------------------------
+
+Run the PopulatePackages python script to process Packages.csv and
+populate the Packages directory structure:
+
+ $ cd Packages
+ $ python ../Scripts/PopulatePackages.py < ../Packages.csv
+
+Check for new Uncategorized routines and globals:
+
+ $ git status -- Uncategorized
+
+Any untracked files this reports are new.  Iteratively update
+Packages.csv to account for new packages, namespaces, and FileMan
+files and test it by re-processing the Uncategorized files:
+
+ $ edit ../Packages.csv
+ $ mv Uncategorized/Routines/*.m .
+ $ mv Uncategorized/Globals/*.zwr .
+ $ python ../Scripts/PopulatePackages.py < ../Packages.csv
+ $ git status -- Uncategorized
+
+Once the content of Uncategorized is satisfactory, the package
+directories have been populated.
+
+ $ cd ..
+
+
+Commit Changes
+--------------
+
+If any changes were made above to Packages.csv commit it first:
+
+ $ git add -- Packages.csv
+ $ git commit
+
+Now commit the Packages directory.
+
+ $ git add --all -- Packages
+ $ git commit
+
+Write descriptive commit messages!
