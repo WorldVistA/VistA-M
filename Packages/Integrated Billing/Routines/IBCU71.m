@@ -1,5 +1,5 @@
-IBCU71 ;ALB/AAS - INTERCEPT SCREEN INPUT OF PROCEDURE CODES ; 29-OCT-91
- ;;2.0;INTEGRATED BILLING;**41,60,91,106,125,138,210,245,349**;21-MAR-94;Build 46
+IBCU71 ;ALB/AAS - INTERCEPT SCREEN INPUT OF PROCEDURE CODES ;29-OCT-91
+ ;;2.0;INTEGRATED BILLING;**41,60,91,106,125,138,210,245,349,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRU71
@@ -88,10 +88,17 @@ PRCDIV(IBIFN) ; change Bills Default Division (399,.22) to reflect care provided
  ; - or else if bill is an inpatient bill then get the Division of the Ward the patient was Admitted to
  ; return null if no change or 'new division ifn^message'
  ;
- N IB0,IBCPT,IBPDIV,IBWRD,IBX,DIC,DIE,DA,DR,X,Y S IBX="",IBPDIV=0
+ N IB0,IBCPT,IBPDIV,IBWRD,IBX,DIC,DIE,DA,DR,X,Y,IBCPT0 S IBX="",IBPDIV=0
  S IB0=$G(^DGCR(399,+$G(IBIFN),0))
+ ; if OP, Institutional claim and any CP entry has the Main Division, set default = to main
+ I +$G(IBIFN),'$$INPAT^IBCEF(IBIFN),$$INSPRF^IBCEF(IBIFN) S IBCPT="" F  S IBCPT=$O(^DGCR(399,IBIFN,"CP",IBCPT)) Q:'IBCPT!(IBPDIV>0)  D
+ .S IBCPT0=$G(^DGCR(399,IBIFN,"CP",IBCPT,0))
+ .;check to see if Procedure division was Main division on procedure date
+ .I $P(IBCPT0,U,6)=$$PRIM^VASITE($P(IBCPT0,U,2)) S IBPDIV=$P(IBCPT0,U,6)
  ;
- I +$G(IBIFN) S IBCPT=$O(^DGCR(399,IBIFN,"CP",0)) I +IBCPT D  ; if CPT division defined, use it
+ ;I +$G(IBIFN) S IBCPT=$O(^DGCR(399,IBIFN,"CP",0)) I +IBCPT D  ; if CPT division defined, use it
+ ; if CPT division defined and Proc Div not already set from above, use it
+ I +$G(IBIFN),'IBPDIV S IBCPT=$O(^DGCR(399,IBIFN,"CP",0)) I +IBCPT D
  . S IBCPT=$G(^DGCR(399,IBIFN,"CP",IBCPT,0)) S IBPDIV=+$P(IBCPT,U,6)
  ;
  I 'IBPDIV,+$P(IB0,U,8) D  ; for inpatient, get Ward Division

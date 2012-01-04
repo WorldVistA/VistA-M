@@ -1,5 +1,5 @@
 SCMCTSK1 ;ALB/JDS - PCMM Inactivations; 18 Apr 2003  9:36 AM ; 10/24/07 12:24pm  ; Compiled January 25, 2008 12:11:43  ; Compiled March 26, 2008 22:27:26
- ;;5.3;Scheduling;**297,498,527,499,532**;AUG 13, 1993;Build 21
+ ;;5.3;Scheduling;**297,498,527,499,532,504**;AUG 13, 1993;Build 21
  Q
 INACTIVE ;
  ;Flag patients
@@ -138,6 +138,16 @@ SUM(PR,POSI) ;get pos for prov
  .S FTEE=FTEE+$P(ZERO,U,9)
  Q FTEE
 FTEECHK(DATA,PAIEN) ;check Ftee>1
+ ;SD*5.3*504 change begin - ensure passed FTEE is numeric
+ N X,X1,X2,FTEE
+ S DATA=0
+ D:$P(PAIEN,U,2)'=""  Q:DATA=99.1
+ .S X=$$TRIM^XLFSTR($P(PAIEN,U,2),"R"," ")
+ .S X1=$P(X,"."),X1=$S(X1'="":X1,1:0)
+ .S X2=$P(X,".",2,3),X2=$$TRIM^XLFSTR(X2,"L","0"),X2=$S(X2'="":X2,1:0)
+ .S:X1<0!(+X1'=X1)!(+X2'=X2)!(X2'=$TR(X2,".","")) DATA=99.1
+ .Q
+ ;SD*5.3*504 change end
  N A S A=$G(^SCTM(404.52,+PAIEN,0)),FTEE=$$SUM(+$P(PAIEN,U,3),+A)
  S DATA=0
  S DATA=FTEE+$P(PAIEN,U,2)

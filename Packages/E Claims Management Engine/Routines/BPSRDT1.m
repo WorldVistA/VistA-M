@@ -1,5 +1,5 @@
 BPSRDT1 ;BHAM ISC/FCS/DRS/FLS/DLF - Turn Around Time Statistics Report ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5**;JUN 2004;Build 45
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  N TRANDT,FR,TO,BPSSIZ,BPSTTAT,IEN57,IEN59,IEN,UPDT,SEQ,ENDLOOP,BPSTATIM
@@ -22,6 +22,8 @@ BPSRDT1 ;BHAM ISC/FCS/DRS/FLS/DLF - Turn Around Time Statistics Report ;06/01/20
  . F  S IEN57=$O(^BPSTL("AH",TRANDT,IEN57)) Q:IEN57=""  D
  .. S IEN59=$P($G(^BPSTL(IEN57,0)),U,1)
  .. I 'IEN59 Q
+ .. ; Sieve out eligibility verification transactions
+ .. I $P($G(^BPSTL(IEN57,0)),U,15)="E" Q
  .. S IEN=$$EXISTS^BPSOSL1(IEN59)
  .. I IEN S ^TMP("BPSRDT1",$J,1,IEN59)=IEN
  ;

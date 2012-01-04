@@ -1,5 +1,5 @@
 IBCNEUT2 ;DAOU/DAC - eIV MISC. UTILITIES ;06-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,416,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Can't be called from the top
@@ -41,6 +41,7 @@ BUFF(BUFF,BNG) ;  Set error symbol into Buffer File
  ;    BUFF = Buffer internal entry number
  ;    BNG = Buffer Symbol IEN
  I 'BUFF!'BNG Q
+ I +$P($G(^IBA(355.33,BUFF,0)),U,17) Q    ; .12 field not for ePharmacy IB*2*435
  NEW DIE,DA,DR,D,D0,DI,DIC,DQ,X,DISYS
  S DIE="^IBA(355.33,",DA=BUFF,DR=".12////^S X=BNG"
  D ^DIE

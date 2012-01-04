@@ -1,5 +1,5 @@
 BPSSCRU2 ;BHAM ISC/SS - ECME SCREEN UTILITIES ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5**;JUN 2004;Build 45
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;USER SCREEN
  Q
@@ -90,7 +90,7 @@ RXST(BP59) ;
  S BPRXREF=$$RXREF^BPSSCRU2(BP59)
  ;display status ONLY if the refill is the most recent 
  ;otherwise display blanks (three spaces for sorting purposes)
- I +$P(BPRXREF,U,2)'=(+$$LSTRFL^PSOBPSU1(+$P(BPRXREF,U,1))) Q "***"
+ I +$P(BPRXREF,U,2)'=(+$$LSTRFL^PSOBPSU1(+$P(BPRXREF,U,1))) Q "**"
  Q $$RXSTANAM($$RXSTATUS(+$P(BPRXREF,U,1)))
  ;/**
  ;RX status
@@ -117,17 +117,17 @@ RXACTIVE(BPRXSTAT) ;*/
  ;/**
  ;RX status text
 RXSTANAM(BPRXSTAT) ;*/
- Q:BPRXSTAT=0 "ACT"  ; ACTIVE; 
- Q:BPRXSTAT=1 "NVER"  ; NON-VERIFIED; 
- Q:BPRXSTAT=3 "HLD"  ; HOLD; 
- Q:BPRXSTAT=5 "SUS"  ; SUSPENDED; 
- Q:BPRXSTAT=11 "EXP"  ; EXPIRED; 
- Q:BPRXSTAT=12 "DIS"  ; DISCONTINUED; 
- Q:BPRXSTAT=13 "DEL"  ; DELETED; 
- Q:BPRXSTAT=14 "DIS"  ; DISCONTINUED BY PROVIDER; 
- Q:BPRXSTAT=15 "DIS"  ; DISCONTINUED (EDIT); 
- Q:BPRXSTAT=16 "HLD"  ; PROVIDER HOLD; 
- Q:BPRXSTAT=-1 "???"
+ Q:BPRXSTAT=0 "AC"  ; ACTIVE; 
+ Q:BPRXSTAT=1 "NV"  ; NON-VERIFIED; 
+ Q:BPRXSTAT=3 "HL"  ; HOLD; 
+ Q:BPRXSTAT=5 "SU"  ; SUSPENDED; 
+ Q:BPRXSTAT=11 "EX"  ; EXPIRED; 
+ Q:BPRXSTAT=12 "DS"  ; DISCONTINUED; 
+ Q:BPRXSTAT=13 "DL"  ; DELETED; 
+ Q:BPRXSTAT=14 "DS"  ; DISCONTINUED BY PROVIDER; 
+ Q:BPRXSTAT=15 "DS"  ; DISCONTINUED (EDIT); 
+ Q:BPRXSTAT=16 "HL"  ; PROVIDER HOLD; 
+ Q:BPRXSTAT=-1 "??"
  Q ""
  ;/**
  ;Input:
@@ -145,7 +145,7 @@ ISRXREL(BP59) ;
  ;
  ;release status
 RL(BP59) ;
- Q $S($$ISRXREL(BP59)>0:"RL",1:"NR")
+ Q $S($$ISRXREL(BP59)>0:"R",1:"N")
  ;/**
  ;get refill (including original refill) info by BP59
  ;Input:
@@ -250,17 +250,6 @@ FINISHST(BPARR59) ;
  I BPFIN=1 Q "**FINISHED**"
  Q ""
  ;
- ;/**
- ;BP59 - ptr to 9002313.59
- ;output :
- ;ECME number 
- ; 7 digits of the prescription IEN file 52
- ;or 7 spaces
-ECMENUM(BP59) ;*/
- N X
- S X=$P($G(^BPST(BP59,0)),"^")
- I X="" Q $$FORMAT(X,7," ",1)
- Q $$FORMAT(X\1,7,"0",1)
  ;
  ;BPRX - ptr to #52
 RXNUM(BPRX) ;
@@ -272,7 +261,9 @@ RXNUM(BPRX) ;
  ;BPRX - ptr to #52
  ;BPREF - refill # (0,1,2,3...)
 NDC(BPRX,BPREF) ;*/
- Q $$GETNDC^PSONDCUT(BPRX,BPREF)
+ N X
+ S X=$TR($$GETNDC^PSONDCUT(BPRX,BPREF),"-","") ;remove dashes
+ Q X
  ;
 DRGNAME(BP59) ;drug name BP59 -ptr to .59 file
  N BPRX
@@ -298,3 +289,18 @@ FORMAT(BPSTR,BPSMLEN,BPSCHR,BPSLFT) ;
  Q:BPSLFT ZZ_BPSTR
  Q BPSTR_ZZ
  ;
+ ;/**
+ ;BP59 - ptr to 9002313.59
+ ;output :
+ ;ECME number from 9002313.02
+ ; 7 or 12 digits of the prescription IEN file 52
+ ; or 12 spaces
+ECMENUM(BP59) ;*/
+ N BPST0,BPST4,PC,PF,PR,X
+ S BPST0=$G(^BPST(BP59,0)),PC=$P(BPST0,U,4),PF=$P(BPST0,U,9)
+ S BPST4=$G(^BPST(BP59,4)),PR=$P(BPST4,U,1)
+ I PR]"" S PC=PR ;This is a reversal
+ I PC=""!(PF="") Q $$FORMAT("",12," ",1)
+ S X=$P($G(^BPSC(PC,400,PF,400)),U,2)
+ I X="" Q $$FORMAT(X,12," ",1)
+ Q $E(X,3,14)

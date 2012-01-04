@@ -1,5 +1,5 @@
 RAMAG03C ;HCIOFO/SG - ORDERS/EXAMS API (REGISTR. UTILS) ; 2/6/09 11:02am
- ;;5.0;Radiology/Nuclear Medicine;**90**;Mar 16, 1998;Build 20
+ ;;5.0;Radiology/Nuclear Medicine;**90,47**;Mar 16, 1998;Build 21
  ;
  Q
  ;
@@ -81,6 +81,9 @@ EXAM() ;
  . ;--- Procedure modifiers
  . S $P(IENS,",")=RAIENS(1)
  . S RARC=$$PROCMOD(IENS,RAPROC)  Q:RARC<0
+ . ;---Study Instance UID (70.03; 81)
+ . D SIUID($P(IENS,",")) ;where IENS is RACNI,RADTI,RADFN,
+ . I $G(DIERR)  S RARC=$$DBS^RAERR("RAMSG",-9,70.03,IENS)  Q
  . ;--- Exam status
  . S RARC=$$UPDEXMST^RAMAGU05(RACASE,"^^1")  Q:RARC<0
  . ;--- Activity log
@@ -161,3 +164,10 @@ PROCMOD(IENS7003,RAPROC) ;
  . S:$G(DIERR) RARC=$$DBS^RAERR("RAMSG",-9,70.1)
  ;---
  Q RARC
+ ;
+SIUID(RACNI) ;
+ ;sets field 81 IN 70.03
+ ;IENS, RADFN & RADTI are global
+ N RAFDA S RAFDA(70.03,IENS,81)=$$SIUID^RAAPI
+ D FILE^DIE("","RAFDA")
+ Q

@@ -1,5 +1,5 @@
-MAGDHW0 ;WOIFO/PMK - Capture Consult/Request data ; 02/07/2007 06:37
- ;;3.0;IMAGING;**10,86**;20-February-2007;;Build 1024
+MAGDHW0 ;WOIFO/PMK - Capture Consult/Request data ; 28 Mar 2006  9:07 AM
+ ;;3.0;IMAGING;**10,86,49**;Mar 19, 2002;Build 2033;Apr 07, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,6 +15,8 @@ MAGDHW0 ;WOIFO/PMK - Capture Consult/Request data ; 02/07/2007 06:37
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;
+ ;
  Q
  ;
 INIT ;
@@ -55,20 +57,14 @@ SAVESEG(I,X) ; save updated segment
  S $P(HL7(I),DEL,2,999)=X
  Q
  ;
-ADDSEG(X) ; add a new segment to the end of the message
+ADDSEG(X) ; add a new segment to the end if the message
  S HL7($O(HL7(""),-1)+1)=X
  Q
  ;
 OUTPUT ; output the message to ^MAGDHL7
  N DIC,DIE,D0,DA,DR,I,J,K,X,Y,Z
- S D0=$$NEWMSG^MAGDHL7(FMDATE)
- ; Capture time
- S X=$P($G(^MAGDHL7(2006.5,D0,0)),"^",3)
- K:X ^MAGDHL7(2006.5,"C",X,D0)
- S:'$G(FMDATETM) FMDATETM=$$NOW^XLFDT()
- S $P(^MAGDHL7(2006.5,D0,0),"^",3)=FMDATETM
- S ^MAGDHL7(2006.5,"C",FMDATETM,D0)=""
- ;
+ S X=FMDATE,DIC="^MAGDHL7(2006.5,",DIC(0)="LZ" D FILE^DICN S D0=+Y
+ S DIE=DIC,DR=".03///^S X=FMDATETM",DA=D0 D ^DIE ; capture time
  S $P(^MAGDHL7(2006.5,D0,0),"^",2)="ORM" ; all are ORM
  S I="HL7",J=0 F  S I=$Q(@I) Q:I=""  D
  . S X=@I,Y=$P(X,DEL)
@@ -84,6 +80,5 @@ OUTPUT ; output the message to ^MAGDHL7
  . Q
  ; The next line must be last, since WAIT^MAGDHRS1
  ; uses this node to determine that the entry is complete.
- S ^MAGDHL7(2006.5,D0,1,0)="^2006.502^"_J_"^"_J_"^"_FMDATETM
+ S ^MAGDHL7(2006.5,D0,1,0)="^^"_J_"^"_J_"^"_FMDATETM
  Q
- ;

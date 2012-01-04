@@ -1,5 +1,5 @@
-MAGGA02 ;WOIFO/SG - REMOTE PROCEDURES FOR IMAGE PROPERTIES ; 5/1/09 2:54pm
- ;;3.0;IMAGING;**93**;Dec 02, 2009;Build 163
+MAGGA02 ;WOIFO/SG/NST - REMOTE PROCEDURES FOR IMAGE PROPERTIES ; 23 Sep 2010 9:22 AM
+ ;;3.0;IMAGING;**93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -8,7 +8,6 @@ MAGGA02 ;WOIFO/SG - REMOTE PROCEDURES FOR IMAGE PROPERTIES ; 5/1/09 2:54pm
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -235,6 +234,11 @@ SETPROPS(RESULTS,IMGIEN,FLAGS,PROPVALS) ;RPC [MAGG IMAGE SET PROPERTIES]
  . ;
  . ;=== Check for the group of one and replicate the changes
  . S IMGIEN1=$$REPLIC^MAGGA02A(IMGIEN,.MAGFDA)
+ . I IMGIEN1<0  S MAGRC=IMGIEN1  Q
+ . ;
+ . ;=== Patch 117 Check for the STATUS field in the group and set just 
+ . ;===           the first child instead - over protection
+ . D STATUS1^MAGGA02A(IMGIEN,.MAGFDA)
  . I IMGIEN1<0  S MAGRC=IMGIEN1  Q
  . ;
  . ;=== Lock the image record(s)

@@ -1,5 +1,5 @@
 IBCNBU1 ;ALB/ARH-Ins Buffer: Utilities ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,184,263**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**82,184,263,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 BUFFER(DFN) ; returns IFN of first buffer entry found for the patient, 0 otherwise
@@ -52,9 +52,27 @@ LOCK(IBBUFDA,DISP,TO) ; return true if able to lock the buffer entry, if not an 
  S TO=$G(TO,4)
  I +$G(IBBUFDA) L +^IBA(355.33,+IBBUFDA):TO I +$T S IBX=1
  I 'IBX,+$G(DISP) W !!,"Another user is currently editing/processing this entry, please try again later.",! H TO
+ I IBX D
+ .; eIV real time inquiries temp. global
+ .K ^TMP("IBCNERTQ",$J,+IBBUFDA)
+ .S ^TMP("IBCNERTQ",$J,+IBBUFDA,"LOCK")=1
+ .Q
  Q IBX
  ;
 UNLOCK(IBBUFDA) ; unlock a Buffer entry
+ K ^TMP("IBCNERTQ",$J,+IBBUFDA,"LOCK")
+ I $G(^TMP("IBCNERTQ",$J,+IBBUFDA,"TRIGGER"))=1 D
+ .; eIV real time inquiry
+ .N TQIEN,RESPONSE,DIE,DA,DR,X,Y
+ .S RESPONSE=0
+ .; create an entry in eIV transmision queue
+ .S TQIEN=$$IBE^IBCNERTQ(+IBBUFDA)
+ .; Load and Send HL7 Message
+ .I TQIEN S RESPONSE=$$PROCSEND^IBCNERTQ(TQIEN)
+ .; set field 355.33/.16 (real time verification)
+ .S DIE="^IBA(355.33,",DA=+IBBUFDA,DR=".16////^S X=RESPONSE" D ^DIE
+ .K ^TMP("IBCNERTQ",$J,+IBBUFDA,"TRIGGER")
+ .Q
  L -^IBA(355.33,+IBBUFDA)
  Q
  ;

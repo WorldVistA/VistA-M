@@ -1,5 +1,5 @@
 SRSCAN0 ;B'HAM ISC/MAM - CANCEL SCHEDULED OPERATIONS (CONT) ;03/21/02  10:24 PM
- ;;3.0; Surgery ;**34,42,67,103,107,114,100,144**;24 Jun 93
+ ;;3.0;Surgery;**34,42,67,103,107,114,100,144,175**;24 Jun 93;Build 6
  ;
  ; Reference to ^TMP("CSLSUR1" supported by DBIA #3498
  ;
@@ -28,7 +28,8 @@ NOCC ; no longer concurrent cases
  Q
 SWAP ; move data into a new entry and set up the cancel date in the old
  W ! K DIR S DIR(0)="130,18",DIR("A")="Cancellation Reason" D ^DIR S SRSCAN=$P(Y,"^") I $D(DIRUT) W !!,"Case NOT cancelled." D PRESS G END
- K DR S SRCON=0,DA=SRTN,DR=".02///@;102///@;235///@;284///@;323///@;18////"_SRSCAN_";67T;70////"_DUZ,DIE=130 D ^DIE S:$D(DTOUT)!$D(DUOUT) SRSOUT=1
+ N SRSCOM S SRSCOM="" I $P(Y,"^",2)="OTHER" W ! K DIR S DIR(0)="130,19",DIR("A")="Cancellation Comments" D ^DIR S SRSCOM=$P(Y,"^")
+ K DR S SRCON=0,DA=SRTN,DR=".02///@;102///@;235///@;284///@;323///@;18////"_SRSCAN_";19////"_SRSCOM_";67T;70////"_DUZ,DIE=130 D ^DIE S:$D(DTOUT)!$D(DUOUT) SRSOUT=1
  S SRSCHST=$P($G(^SRF(SRTN,31)),"^",4),AVOID=$P(^(30),"^",2)
  I '$P($G(^SRF(SRTN,"CON")),"^") D ^SRSCG
  S SRSDPT=$P(^SRF(SRTN,0),"^"),SRSOP=$P(^SRF(SRTN,"OP"),"^")

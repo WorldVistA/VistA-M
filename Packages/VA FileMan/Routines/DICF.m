@@ -1,6 +1,6 @@
-DICF ;SEA/TOAD,SF/TKW-VA FileMan: Finder, Part 1 (Main) ;3/13/00  10:10
- ;;22.0;VA FileMan;**20,31**;Mar 30, 1999
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICF ;SEA/TOAD,SF/TKW-VA FileMan: Finder, Part 1 (Main) ;20APR2010
+ ;;22.0;VA FileMan;**20,31,165**;Mar 30, 1999;Build 32
+ ;Per VHA Directive 2004-038, this routine should not be modified.
 FIND(DIFILE,DIFIEN,DIFIELDS,DIFLAGS,DIVALUE,DINUMBER,DIFORCE,DISCREEN,DIWRITE,DILIST,DIMSGA,DINDEX,DIC,DIY,DIYX) ;
  ; ENTRY POINT--silent selecter
  ;
@@ -83,17 +83,17 @@ HOOK75 ;
  N DIHOOK75
  S DIHOOK75=$G(^DD(DIFILE,.01,7.5))
  I DIHOOK75'="",DIVALUE(1)]"",DIVALUE(1)'?."?",'$O(DIVALUE(1)),DIFLAGS'["l" D  I DIOUT D CLOSE Q
- . I DIFLAGS["p" N DIC D
+ .N DIC D  ;I DIFLAGS["p" N DIC D
  . . S DIC=DIFILE,DIC(0)=$TR(DIFLAGS,"2^fglpqtv4") Q
  . N %,D,X,Y,Y1
  . S X=DIVALUE(1),D=DINDEX
  . M Y=DIEN S Y="",Y1=DIFIEN
  . X DIHOOK75 I '$D(X)!$G(DIERR) S DIOUT=1 D:$G(DIERR)  Q
- . . S %=$$EZBLD^DIALOG(8090)
+ . . S %=$$EZBLD^DIALOG(8090) ;Pre-lookup transform (7.5 node)
  . . D ERR^DICF4(120,DIFILE,"",.01,%)
  . S DIVALUE(1)=X,DIOUT=$$BADVAL(DIVALUE(1)) Q:DIOUT
- . I $G(DIC("S"))'="" S DISCREEN("S")=DIC("S")
- . I $G(DIC("V"))'="" S (DISCREEN("V"),DISCREEN("V",1))=DIC("V")
+ . I $G(DIC("S"))'="" S DISCREEN("S")=DIC("S") ;DIHOOK MAY HAVE SET THIS
+ . I $G(DIC("V"))'="" S (DISCREEN("V"),DISCREEN("V",1))=DIC("V") ;...OR THIS
  ;
 LOOKUP ;
  I DIFLAGS'["l" D  I DIOUT!($G(DIERR)) D CLOSE Q

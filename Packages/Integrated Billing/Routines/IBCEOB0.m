@@ -1,6 +1,16 @@
-IBCEOB0 ;ALB/TMP - 835 EDI EOB MSG PROCESSING ;18-FEB-99
- ;;2.0;INTEGRATED BILLING;**135,280,155**;21-MAR-94
+IBCEOB0 ;ALB/TMP/PJH - 835 EDI EOB MSG PROCESSING ; 8/24/10 7:23pm
+ ;;2.0;INTEGRATED BILLING;**135,280,155,431**;21-MAR-94;Build 106
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
+ ;
+LINE() ;Extract Provider Line Reference from 42 record
+ N SUB,NODE,VAL
+ S VAL="",SUB=IBA1 ; from loop in UPD3611^IBCEOB
+ F  S SUB=$O(@IBFILE@(SUB)) Q:SUB=""  D  Q:+NODE>42
+ .S NODE=$G(@IBFILE@(SUB,0))
+ .S:NODE["RAW DATA" NODE=$P(NODE," ",3,99)
+ .Q:+NODE'=42  S VAL=$P(NODE,U,5)
+ Q VAL
  ;
 30(IB0,IBEOB,IBOK) ; Process record type 30 for EOB
  ; IB0 = the record being processed
@@ -21,7 +31,7 @@ Q30 Q
  ;
  ; IBZDATA is also assumed to exist or if not, it is created in FINDLN
  ;
- N A,LEVEL,IBSEQ,IBDA,IBPC,IBLREF,IBIFN,Q,X,Y,DA,DD,DO,DIC,DLAYGO
+ N A,LEVEL,IBSEQ,IBDA,IBPC,IBLREF,IBIFN,Q,X,Y,DA,DD,DO,DIC,DLAYGO,PLREF
  K ^TMP($J,40) ; the entry # for corresponding 41, 42, and 45 records
  ;
  S IBIFN=+$G(^IBM(361.1,IBEOB,0))
@@ -34,7 +44,8 @@ Q30 Q
  I $P(IB0,U,4)?1.N S $P(IB0,U,4)=+$P(IB0,U,4)
  ;
  ; Find the line item from original bill for this adjustment
- S IBLREF=+$$FINDLN^IBCEOB1(IB0,IBEOB,.IBZDATA)
+ S PLREF=$S('HIPAA:$P(IB0,U,22),1:$$LINE()) ; old format from 40 record, new format from 42
+ S IBLREF=+$$FINDLN^IBCEOB1(IB0,IBEOB,.IBZDATA,+PLREF)
  I 'IBLREF D  G Q40
  . N Z,Z0,CT
  . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line detail could not be matched to a billed item"
@@ -116,7 +127,7 @@ Q41 Q
  S DA(1)=+^TMP($J,40),DA(2)=IBEOB
  S X=+$O(^IBM(361.1,DA(2),15,DA(1),4," "),-1)+1,DIC="^IBM(361.1,"_DA(2)_",15,"_DA(1)_",4,",DIC(0)="L",DLAYGO=361.1154
  S DIC("DR")=$S($P(IB0,U,3)'="":".02////"_$P(IB0,U,3),1:"")
- S DIC("DR")=DIC("DR")_$S($P(IB0,U,4)'="":$S($L(DIC("DR")):";",1:"")_".03////"_$TR($P(IB0,U,4),";"," "))
+ I $P(IB0,U,4)'="" S:$L(DIC("DR")) DIC("DR")=DIC("DR")_";" S DIC("DR")=DIC("DR")_".03////"_$TR($P(IB0,U,4),";"," ")
  D FILE^DICN K DO,DD,DLAYGO
  I Y'>0 S IBOK=0
  I '$G(IBOK) S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Bad data for service line adjustment-3"
@@ -179,4 +190,34 @@ Q42 Q
  . I 'IBOK S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Bad data for reason code ("_$P(IB0,U,4)_"), adjustment group code ("_$P(IB0,U,3)_") at line adjustment "_+^TMP($J,40) Q
  ;
 Q45 Q
+ ;
+46(IB0,IBEOB,IBOK) ; Process record type 46 for EOB 
+ ; IB0 = the record being processed
+ ; IBEOB = the ien of the EOB entry in file 361.1
+ ; IBOK = Returned as 1 if record filed OK, 0 if error occurred
+ ;
+ S IBOK=0
+ N AGC,IBDA,LEVEL,A,Z0,CT,Z
+ I '$G(^TMP($J,40)) D  G Q46
+ . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line adjustment has no corresponding service line"
+ . D DET4X^IBCEOB00(46,IB0,.Z0)
+ . ;S CT=+$O(^TMP(IBEGBL,$J,""),-1),Z=0 F  S Z=$O(Z0(Z)) Q:'Z  S CT=CT+1,^TMP(IBEGBL,$J,CT)=Z0(Z)
+ ;
+ S AGC=$P(^TMP($J,40),U,2)
+ I AGC="" S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line adjustment is missing its group code" G Q46
+ ;
+ S IBDA(2)=+^TMP($J,40)
+ S IBDA(1)=+$O(^IBM(361.1,IBEOB,15,IBDA(2),1,"B",AGC,0))
+ ;
+ ;
+ ;Add a new entry at the Payer Policy level
+ I $G(IBDA(1)) D
+ . S DIC="^IBM(361.1,"_IBEOB_",15,"_IBDA(2)_",1,"_IBDA(1)_",2,",DIC(0)="L",DLAYGO=361.11511,DA(1)=IBDA(1),DA(2)=IBDA(2),DA(3)=IBEOB
+ . S DIC("P")=$$GETSPEC^IBEFUNC(361.1151,1)
+ . S X=$P(IB0,U,3)
+ . D FILE^DICN K DIC,DO,DD,DLAYGO
+ . I Y<0 K IBDA S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Could not add payer policy ("_$P(IB0,U,4)_") for adjustment group code ("_$P(IB0,U,3)_") at line adjustment "_+^TMP($J,40) Q
+ . S IBDA=+Y,IBOK=1
+ ;
+Q46 Q
  ;

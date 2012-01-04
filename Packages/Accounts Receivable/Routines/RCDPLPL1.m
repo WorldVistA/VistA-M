@@ -1,5 +1,5 @@
-RCDPLPL1 ;WISC/RFJ-link payments listmanager options ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,148,153,208**;Mar 20, 1995
+RCDPLPL1 ;WISC/RFJ/PJH - link payments listmanager options ; 5/25/11 2:53pm
+ ;;4.5;Accounts Receivable;**114,148,153,208,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -126,9 +126,9 @@ SELPAY() ;  select a payment from the form list
  ;
 ASKCHEK() ;  ask the check number
  N DIR,X,Y
- S DIR(0)="FAO^1:15"
+ S DIR(0)="FAO^1:50"
  S DIR("A")="Enter the Check Number to Search for: "
- S DIR("?")="Enter the check number from 1 to 15 characters free text."
+ S DIR("?")="Enter the check number from 1 to 50 characters free text."
  D ^DIR
  I $G(DTOUT)!($G(DUOUT)) S Y=-1
  Q $S(Y'="":Y,1:-1)
@@ -136,9 +136,9 @@ ASKCHEK() ;  ask the check number
  ;
 ASKTRACE() ;  ask the e-payments trace number
  N DIR,X,Y
- S DIR(0)="FAO^1:30"
+ S DIR(0)="FAO^1:50"
  S DIR("A")="Enter the e-Payments Trace Number to Search for: "
- S DIR("?")="Enter the trace number from 1 to 30 characters free text."
+ S DIR("?")="Enter the trace number from 1 to 50 characters free text."
  D ^DIR
  I $G(DTOUT)!($G(DUOUT)) S Y=-1
  Q $S(Y'="":Y,1:-1)

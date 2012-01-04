@@ -1,5 +1,6 @@
-RCDPEREC ;ALB/TMK - RECONCILIATION REPORT FOR EDI LOCKBOX FMS DOCS  ;19-APR-2004
- ;;4.5;Accounts Receivable;**208,244**;Mar 20, 1995
+RCDPEREC ;ALB/TMK/KML/PJH - RECONCILIATION REPORT FOR EDI LOCKBOX FMS DOCS  ; 8/2/10 4:17pm
+ ;;4.5;Accounts Receivable;**208,244,269**;Mar 20, 1995;Build 113
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; Entrypoint for producing the report
  N RCDDT,RCSEL,ZTRTN,ZTDESC,ZTSAVE,ZTSK,%ZIS,POP,DIR,DTOUT,DUOUT
@@ -72,7 +73,9 @@ ENQUE ; Queued entrypoint for the report
  .. ;
  .. S Z=$G(^RCY(344.31,+RC00,0))
  .. W !,?3,$E(+RC00_$J("",6),1,6)_"  "_$E($P(RC00,U,3)_$J("",10),1,10)_"  "_$E($P(Z,U,2)_$J("",30),1,30)_"  "_$E($P(Z,U,3)_$J("",20),1,20)
- .. W !,?13,$E($P(Z,U,4)_$J("",30),1,30)_"  "_$E($P(RC00,U,5)_$J("",10),1,10),!,?15,$E($P(RC00,U,2)_$J("",10),1,10)_"  "_$E($P(RC00,U,4)_$J("",15),1,15)
+ ..; HIPAA 5010 - to accommodate the extended length of the Trace # field from 30 to 50 characters the Trace # will be printed on its own line.  
+ .. W !,?13,$E($P(Z,U,4)_$J("",50),1,50)
+ .. W !,?43,$E($P(RC00,U,5)_$J("",10),1,10),!,?15,$E($P(RC00,U,2)_$J("",10),1,10)_"  "_$E($P(RC00,U,4)_$J("",15),1,15)
  ;
  I 'RCSTOP,RCPG D ASK(.RCSTOP)
  ;
@@ -123,7 +126,9 @@ HDR1(RCPG) ;Print report hdr
  S RCPG=$G(RCPG)+1_U_1
  W !,"EDI LOCKBOX FUND 5287.4/8NZZ RECONCILIATION REPORT",?55,$$FMTE^XLFDT(DT,2),?70,"Page: ",+RCPG
  W !!,"DEP DATE  ENTRY#  DEP #   TOTAL DEP AMT  POST DT   RECEIPT #",!,?5,"CR DOCUMENT           CR DOC STATUS"
- W !,?3,"EFT #   MATCHED TO  PAYER NAME                      PAYER ID            ",!,?13,"TRACE #                         RECEIPT #"
+ W !,?3,"EFT #   MATCHED TO  PAYER NAME                      PAYER ID            ",!,?13,"TRACE #"
+ ; HIPAA 5010 - put receipt # on a separate line to accomodate the increased length of the TRACE # 
+ W !,?20,"RECEIPT #"
  W !,?15,"TR DOCUMENT           TR DOC STATUS"
  W !,$TR($J("",IOM)," ","=")
  Q

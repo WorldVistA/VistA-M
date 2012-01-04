@@ -1,5 +1,5 @@
-PSJORRE1 ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (EXPANDED) ;29 Jan 99 / 8:49 AM
- ;;5.0; INPATIENT MEDICATIONS ;**22,51,50,58,81,91,110,111,134**;16 DEC 97;Build 124
+PSJORRE1 ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (EXPANDED) ; 2/28/11 3:11pm
+ ;;5.0; INPATIENT MEDICATIONS ;**22,51,50,58,81,91,110,111,134,225**;16 DEC 97;Build 16
  ;
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
  ; Reference to ^PS(52.6 is supported by DBIA 1231.
@@ -31,7 +31,8 @@ UDTMP ;*** Set ^TMP for Unit dose orders.
  S STAT=$$CODES^PSIVUTL($P(ND0,U,9),$S(ON["P":53.1,1:55.06),28)
  S NDOI=$G(@(F_+ON_",.2)")),DO=$P(NDOI,U,2)
  S DN(1)=$$OIDF^PSJLMUT1(NDOI) I DN(1)=""  K DN D DRGDISP^PSJLMUT1(DFN,ON,40,0,.DN,1)
- S UNITS="" I '$O(@(F_+ON_",1,1)")) S UNITS=$P($G(@(F_+ON_",1,1,0)")),U,2) S:(ON["U")&(UNITS="") UNITS=1
+ ;*225 Don't allow 0 units
+ S UNITS="" I '$O(@(F_+ON_",1,1)")) S UNITS=$P($G(@(F_+ON_",1,1,0)")),U,2) S:(ON["U")&(+UNITS=0) UNITS=1
  S MR=$$MR(+$P(ND0,U,3)),INST=$G(@(F_+ON_",.3)"))
  S NOTGIVEN=$S(ON["U":$P($G(^PS(55,DFN,5,+ON,0)),"^",22),1:"")
  S ^TMP("PS",$J,0)=DN(1)_"^^"_$P(ND2,U,4)_"^^"_$P(ND2,U,2)_U_STAT_"^^^"_DO_U_UNITS_U_$P(ND0,U,21)_U_U_NOTGIVEN_U_($P(ND0,U,9)="P"&($P(ND0,U,24)="R"))_U_U_$G(RNWDT)

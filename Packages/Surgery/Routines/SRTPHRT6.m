@@ -1,5 +1,5 @@
 SRTPHRT6 ;BIR/SJA - HEART DONOR INFORMATION ;03/04/08
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+ ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
  I '$D(SRTPP) W !!,"A Transplant Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
  N SRX,SRY,SRZ
 START Q:SRSOUT  D DISP
@@ -40,14 +40,14 @@ DISP ; display fields
  D RACE
  W !,"1.  Donor Race:" S SRAO(1)="" I $G(SRZ(139.544)) F D=1:1:SRNUM1-1 W:D=1 ?18,SROL(D) W:D'=1 !,?18,SROL(D)
  W !,"2.  Donor Gender:",?27,$P(SRAO(2),"^")
- W !,"3.  Donor Height:",?27,$P(SRAO(3),"^"),?45,"HLA Typing (#,#,#)"
- W !,"4.  Donor Weight:",?27,$P(SRAO(4),"^"),?45,"=================="
- W !,"5.  Donor DOB:",?27,$P(SRAO(5),"^"),?45,"12. Donor HLA-A:  ",$P(SRAO(12),"^")
- W !,"6.  Donor Age:",?27,$P(SRAO(6),"^"),?45,"13. Donor HLA-B:  ",$P(SRAO(13),"^")
- W !,"7.  Donor ABO Blood Type:",?27,$P(SRAO(7),"^"),?45,"14. Donor HLA-C:  ",$P(SRAO(14),"^")
- W !,"8.  Donor CMV:",?27,$P(SRAO(8),"^"),?45,"15. Donor HLA-DR: ",$P(SRAO(15),"^")
- W !,"9.  Donor Substance Abuse:",?27,$P(SRAO(9),"^"),?45,"16. Donor HLA-BW: ",$P(SRAO(16),"^")
- W !,"10. Deceased Donor:",?27,$P($P(SRAO(10),"^"),"("),?45,"17. Donor HLA-DQ: ",$P(SRAO(17),"^")
+ W !,"3.  Donor Height:",?27,$P(SRAO(3),"^"),?43,"HLA Typing (#,#,#,#)"
+ W !,"4.  Donor Weight:",?27,$P(SRAO(4),"^"),?43,"===================="
+ W !,"5.  Donor DOB:",?27,$P(SRAO(5),"^"),?43,"12. Donor HLA-A:  ",$P(SRAO(12),"^")
+ W !,"6.  Donor Age:",?27,$P(SRAO(6),"^"),?43,"13. Donor HLA-B:  ",$P(SRAO(13),"^")
+ W !,"7.  Donor ABO Blood Type:",?27,$P(SRAO(7),"^"),?43,"14. Donor HLA-C:  ",$P(SRAO(14),"^")
+ W !,"8.  Donor CMV:",?27,$P(SRAO(8),"^"),?43,"15. Donor HLA-DR: ",$P(SRAO(15),"^")
+ W !,"9.  Donor Substance Abuse:",?27,$P(SRAO(9),"^"),?43,"16. Donor HLA-BW: ",$P(SRAO(16),"^")
+ W !,"10. Deceased Donor:",?27,$P($P(SRAO(10),"^"),"("),?43,"17. Donor HLA-DQ: ",$P(SRAO(17),"^")
  W !,"11. Donor with Malignancy:",?27,$P(SRAO(11),"^")
  W !!,SRLINE
  Q

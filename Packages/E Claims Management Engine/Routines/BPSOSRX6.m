@@ -1,5 +1,5 @@
 BPSOSRX6 ;ALB/SS - ECME REQUESTS ;02-JAN-08
- ;;1.0;E CLAIMS MGMT ENGINE;**7,8**;JUN 2004;Build 29
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;to change the PROCESS FLAG status of the request
@@ -10,12 +10,6 @@ BPSOSRX6 ;ALB/SS - ECME REQUESTS ;02-JAN-08
  ; or 
  ; 0^error message
 CHNGPRFL(BPIEN77,BPSTAT) ;
- N BPNODES,RXI,RXR
- S BPNODES(0)=$G(^BPS(9002313.77,BPIEN77,0))
- S RXI=+$P(BPNODES(0),U)
- S RXR=+$P(BPNODES(0),U,2)
- I '$G(RXI) Q "0^RX null error"
- I '$G(RXR) S RXR=0
  I $$FILLFLDS^BPSUTIL2(9002313.77,".04",BPIEN77,BPSTAT)<1 Q "0^Cannot update field #.04 (PROCESS FLAG) in BPS REQUEST"
  ;update user and time
  Q $$UPUSRTIM(BPIEN77,+$G(MOREDATA("USER")))
@@ -28,28 +22,22 @@ CHNGPRFL(BPIEN77,BPSTAT) ;
  ; or 
  ; 0^error message
 NXTREQST(BPIEN77,BPNXTREQ) ;
- N BPNODES,RXI,RXR
- S BPNODES(0)=$G(^BPS(9002313.77,BPIEN77,0))
- S RXI=+$P(BPNODES(0),U)
- S RXR=+$P(BPNODES(0),U,2)
- I '$G(RXI) Q "0^RX null error"
- I '$G(RXR) S RXR=0
  I BPIEN77=BPNXTREQ Q "0^Next and current requests cannot be the same"
  I $$FILLFLDS^BPSUTIL2(9002313.77,".05",BPIEN77,BPNXTREQ)<1 Q "0^Cannot update field #.05 (NEXT REQUEST) in BPS REQUEST"
  ;update user and time and quit (return 1^ien77 if success)
  Q $$UPUSRTIM(BPIEN77,+$G(MOREDATA("USER")))
  ;
- ;any active requests for the RX/refill? = scheduled,activated,in process,comleted but not activated yet
- ;BPSRX - ien #52
- ;BPSRF - refill no
+ ;any active requests for the keys? = scheduled,activated,in process,comleted but not activated yet
+ ;KEY1 - First key of the BPS Request file
+ ;KEY2 - Second Key of the BPS Request file
  ;BPCOB - COB (payer sequence)
  ;returns
  ;1 - yes
  ;0 -no
-ACTREQS(BPSRX,BPSRF,BPCOB) ;
+ACTREQS(KEY1,KEY2,BPCOB) ;
  N BPZZ,BPACTRQ
  S BPACTRQ=0
- F BPZZ=0,1,2,3 I $G(^BPS(9002313.77,"AC",BPZZ,BPSRX,BPSRF))=BPCOB S BPACTRQ=1 Q:BPACTRQ=1
+ F BPZZ=0,1,2,3 I $G(^BPS(9002313.77,"AC",BPZZ,KEY1,KEY2))=BPCOB S BPACTRQ=1 Q:BPACTRQ=1
  Q BPACTRQ
  ;update time and user id
  ;BPIEN77 - BPS REQUEST ien
@@ -60,12 +48,13 @@ UPUSRTIM(BPIEN77,BPUSER) ;
  I $$FILLFLDS^BPSUTIL2(9002313.77,"6.05",BPIEN77,+$$NOW^BPSOSRX())<1 Q "0^Cannot update the field #6.05 in BPS REQUEST"  ;S SUBMITDT=$$NOW
  I $$FILLFLDS^BPSUTIL2(9002313.77,"6.06",BPIEN77,+BPUSER)<1 Q "0^Cannot update the field #6.06 in BPS REQUEST"  ;USER
  Q "1^"_BPIEN77
- ;remove all active requests for the RX/refill
-DELACTRQ(BPSRX,BPSRF) ;
+ ;remove all active requests for the keys
+DELACTRQ(KEY1,KEY2,IEN59) ;
  N BP77
+ D LOG^BPSOSL(IEN59,$T(+0)_"-Deleting all active requests for keys "_KEY1_", "_KEY2)
  F BPZZ=0,1,2,3 D
- . S BP77=0 F  S BP77=$O(^BPS(9002313.77,"AC",BPZZ,BPSRX,BPSRF,BP77)) Q:+BP77=0  D
- . . D DELREQST^BPSOSRX4(BP77)
+ . S BP77=0 F  S BP77=$O(^BPS(9002313.77,"AC",BPZZ,KEY1,KEY2,BP77)) Q:+BP77=0  D
+ .. D DELREQST^BPSOSRX4(BP77,IEN59)
  Q
  ;Old status logic - to process claims that were submitted before Processing queue mods
 OLDSTAT(RXI,RXR,QUE) ;
@@ -118,11 +107,14 @@ OLDSTAT(RXI,RXR,QUE) ;
  ;(Note - if BPDEL=1 then BPUPDNXT will be set to 1 to avoid "hanging" requests
  ;BP59 - (optional) the ien of BPS TRANSACTION file
  ;Returns the next request or NULL (if there is no next request)
+ ;
+ ; For eligibility, return the next record (if there is one)
+ ; Do not compare types or delete duplicates.
 GETNXREQ(BP77,BPDEL,BPUPDNXT,BP59) ;
  N BPCUR,BPCURTYP,BPARRDEL
  N BPNXT77,BPTYPNXT,BP77DEL
  S BPCUR=BP77,BPCURTYP=$P($G(^BPS(9002313.77,BP77,1)),U,4)
- F  D  Q:BPNXT77=0  Q:BPCURTYP'=BPTYPNXT  S BPCUR=BPNXT77,BPCURTYP=BPTYPNXT,BPARRDEL(BPNXT77)=""
+ F  D  Q:BPNXT77=0  Q:BPCURTYP'=BPTYPNXT!(BPCURTYP="E")  S BPCUR=BPNXT77,BPCURTYP=BPTYPNXT,BPARRDEL(BPNXT77)=""
  . S BPNXT77=+$P($G(^BPS(9002313.77,BPCUR,0)),U,5)
  . Q:BPNXT77=0
  . S BPTYPNXT=$P($G(^BPS(9002313.77,BPNXT77,1)),U,4)
@@ -131,7 +123,7 @@ GETNXREQ(BP77,BPDEL,BPUPDNXT,BP59) ;
  ; delete duplicates
  I $G(BPDEL)=1 S BP77DEL=0 F  S BP77DEL=$O(BPARRDEL(BP77DEL)) Q:+BP77DEL=0  D
  . I $G(BP59)>0 D LOG^BPSOSL(BP59,$T(+0)_"-Delete the duplicate request "_BP77DEL)
- . D DELREQST^BPSOSRX4(BP77DEL)
+ . D DELREQST^BPSOSRX4(BP77DEL,$G(BP59))
  I $G(BPDEL)=1 S BPUPDNXT=1
  I $G(BPUPDNXT)=1 D
  . I $$FILLFLDS^BPSUTIL2(9002313.77,".05",BP77,BPNXT77)<1 D

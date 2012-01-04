@@ -1,5 +1,5 @@
 RARTE2 ;HISC/SWM-Edit/Delete a Report ;7/16/01  14:05
- ;;5.0;Radiology/Nuclear Medicine;**10,31**;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**10,31,47**;Mar 16, 1998;Build 21
  ; known vars-->RADFN,RACNI,RADTI,RARPT,RARPTN
 PTR ; if current ^RADPT() rec is a PRINT SET,
  ; then for other ^RADPT() recs of the same PRINT SET,
@@ -27,7 +27,9 @@ UPD S $P(^RADPT(RADFN,"DT",RADTI,"P",RA2,0),U,17)=RARPT
  D INSERT
  Q:RAXIT  G PTR2
 INSERT ; add subrec to file #74's subfile #74.05
- S RAFDA(74.05,"?+2,"_RARPT_",",.01)=$P(RARPTN,"-")_"-"_RA1
+ ; P47 - if SSAN in use set OTHER CASES in Printset to SSAN format
+ I $L(RARPTN,"-")>2 S RAFDA(74.05,"?+2,"_RARPT_",",.01)=$P(RARPTN,"-",1,2)_"-"_RA1
+ I $L(RARPTN,"-")<3 S RAFDA(74.05,"?+2,"_RARPT_",",.01)=$P(RARPTN,"-")_"-"_RA1
  D UPDATE^DIE("","RAFDA","RAIEN","RAMSG")
  I $D(RAMSG) D  Q
  . S RAXIT=1 Q:$G(RARIC)

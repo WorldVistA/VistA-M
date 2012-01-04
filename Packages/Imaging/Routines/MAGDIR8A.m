@@ -1,5 +1,6 @@
-MAGDIR8A ;WOIFO/PMK - Read a DICOM image file ; 03/08/2005  07:02
- ;;3.0;IMAGING;**11,51**;26-August-2005
+MAGDIR8A ;WOIFO/PMK - Read a DICOM image file ; 15 May 2007  10:42 AM
+ ;;3.0;IMAGING;**11,51,49**;Mar 19, 2002;Build 2033;Apr 07, 2011
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -7,7 +8,6 @@ MAGDIR8A ;WOIFO/PMK - Read a DICOM image file ; 03/08/2005  07:02
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -47,13 +47,11 @@ RADLKUP ; Radiology patient/study lookup -- called by ^MAGDIR81
  Q
  ;
 RADLKUP1 ; not an entry point
+ N LIST
  Q:CASENUMB=""    ;LB 12/16/98
- S RAIX=$S($D(^RADPT("C")):"C",1:"AE") ; for Radiology Patch RA*5*7
- S RAIX=$S(CASENUMB["-":"ADC",1:RAIX) ; select the cross-reference
- S RADPT1=$O(^RADPT(RAIX,CASENUMB,"")) I 'RADPT1 Q
- S RADPT2=$O(^RADPT(RAIX,CASENUMB,RADPT1,"")) I 'RADPT2 Q
- S RADPT3=$O(^RADPT(RAIX,CASENUMB,RADPT1,RADPT2,"")) I 'RADPT3 Q
- S X=$O(^RADPT(RAIX,CASENUMB,RADPT1,RADPT2,RADPT3))
+ S X=$$ACCFIND^RAAPI(CASENUMB,.LIST)
+ Q:X'=1  S X=LIST(1) ; two conditions, no accession number & duplicate
+ S RADPT1=$P(X,"^",1),RADPT2=$P(X,"^",2),RADPT3=$P(X,"^",3)
  I '$D(^RADPT(RADPT1,0)) Q  ; no patient demographics file pointer
  ; get patient demographics file pointer
  S X=^RADPT(RADPT1,0),DFN=$P(X,"^")

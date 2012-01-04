@@ -1,7 +1,5 @@
 GMRCSLM4 ;SLC/DCM - List Manager routine - Activity Log Detailed Display ;1/28/99 10:30
- ;;3.0;CONSULT/REQUEST TRACKING;**4,12,15,22,50,64**;DEC 27,1997;Build 20
- ;
- ; This routine invokes IA #3138
+ ;;3.0;CONSULT/REQUEST TRACKING;**4,12,15,22,50,64,72**;DEC 27,1997;Build 10
  ;
 ACTLOG(GMRCO) ;Print activity log
  S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="",GMRCCT=GMRCCT+1
@@ -74,7 +72,7 @@ BLDLN2 ;SECOND line for activity
  . S GMRCSLN=$E(GMRCSLN_TAB,1,15)_"(entered) "_X_$E(TAB,1,4)
  . Q
  ;
- I $G(GMRCSLN) D  S GMRCSLN=""
+ I $L($G(GMRCSLN)) D  S GMRCSLN=""
  . S ^TMP("GMRCR",$J,"DT",GMRCCT,0)=GMRCSLN
  . S GMRCCT=GMRCCT+1
  . Q
@@ -110,7 +108,8 @@ BLDLN2 ;SECOND line for activity
  . S GMRCX=GMRCX_$S(+$P(GMRCDA(0),"^",6):$P($G(^GMR(123.5,+$P(GMRCDA(0),"^",6),0)),"^"),$P(GMRCDA(3),"^")]"":$P(GMRCDA(3),"^"),1:" ??")
  . S GMRCSLN=$E(TAB,1,5)_GMRCX
  . I $P(GMRCDA(0),"^",7)'="" S GMRC3LN="Previous Attention:  "_$P($G(^VA(200,$P(GMRCDA(0),"^",7),0)),"^")
- I $G(GMRCSLN) D
+ ;
+ I $L($G(GMRCSLN)) D  S GMRCSLN=""
  . S ^TMP("GMRCR",$J,"DT",GMRCCT,0)=GMRCSLN
  . S GMRCCT=GMRCCT+1
  . Q

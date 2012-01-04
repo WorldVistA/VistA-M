@@ -1,5 +1,5 @@
 IBNCPUT3 ;ALB/SS - ePharmacy secondary billing ;12-DEC-08
- ;;2.0;INTEGRATED BILLING;**411**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**411,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -109,11 +109,13 @@ RXBILL(IBRXIEN,IBRXREF,IBRXCOB,IBDOS,IBARR) ;
  . S IBCNT=IBCNT+1
  Q IBCNT_U_IB399ACT
  ;
- ;IBRATYP - rate type (ien of file #399.3)
- ;IBDT - date
-COSTTYP(IBRATYP,IBDT) ;
- N IBRS,IBRET
- S IBRET=$P($$EVNTITM^IBCRU3(IBRATYP,3,"PRESCRIPTION FILL",IBDT,.IBRS),";",1)
- Q $S(IBRET="VA COST":"C^T",IBRET="1":"T^V",1:"")
+COSTTYP(IBRATYP,IBDT) ; calculate the basis of cost determination for manual claims processing
+ ; IBRATYP - rate type (ien of file #399.3)
+ ; IBDT - date of service
+ ; This is to update only piece [2] of the IBRT rate type string
+ ;
+ N IBRET
+ S IBRET=$P($$EVNTITM^IBCRU3(IBRATYP,3,"PRESCRIPTION FILL",IBDT),";",1)
+ Q $S(IBRET="VA COST":"C",1:"T")
  ;
  ;IBNCPUT3

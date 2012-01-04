@@ -1,6 +1,7 @@
 PSOREJU3 ;BIRM/LJE - BPS (ECME) - Clinical Rejects Utilities (3) ;04/25/08
- ;;7.0;OUTPATIENT PHARMACY;**287,290,358**;DEC 1997;Build 35
+ ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359**;DEC 1997;Build 27
  ;References to 9002313.99 supported by IA 4305
+ ;Reference to $$CLAIM^BPSBUTL supported by IA 4719
  ;
  Q
  ;
@@ -92,7 +93,7 @@ DISPLAY(RX,REJ,KEY) ; - Displays REJECT information
  W !?3,$$DVINFO^PSOREJU2(RX,RFL)
  W !?3,$$PTINFO^PSOREJU2(RX)
  W !?3,"Rx/Drug  : ",$$GET1^DIQ(52,RX,.01),"/",RFL," - ",$E($$GET1^DIQ(52,RX,6),1,20),?54
- W:'$G(PSONBILL)&('$G(PSONPROG)) "ECME#: ",$E(RX+10000000,2,8)
+ W:'$G(PSONBILL)&('$G(PSONPROG)) "ECME#: ",$P($$CLAIM^BPSBUTL(RX,RFL),U,6)
  D TYPE G DISP2:$G(PSONBILL)!($G(PSONPROG))
  I $G(DATA(REJ,"PAYER MESSAGE"))'="" W !?3,"Payer Message: " D PRT^PSOREJU2("PAYER MESSAGE",18,58)
  I $G(DATA(REJ,"DUR TEXT"))'="" W !?3,"DUR Text     : ",DATA(REJ,"DUR TEXT")
@@ -112,7 +113,7 @@ TYPE ;
  . W !?3,"Date/Time: "_$$FMTE^XLFDT(Y)
  . W !?3,"Reason   : ",$S($G(PSONBILL):"Drug not billable.",$G(PSONPROG):"ECME Status is in an 'IN PROGRESS' state and cannot be filled",1:"")
  ;
- I $G(DATA(REJ,"REASON"))'="" W !?3,"Reason       : " D PRT^PSOREJU2("REASON",18,58)
+ I $G(DATA(REJ,"REASON"))'="" W !?3,"Reason   : " D PRT^PSOREJU2("REASON",14,62)
  N RTXT,OCODE,OTXT,I
  S (OTXT,RTXT,OCODE)="",RTXT=$S(DATA(REJ,"CODE")=79:"REFILL TOO SOON",CODE=88:"DUR REJECT",1:$$EXP^PSOREJP1(CODE))_" ("_DATA(REJ,"CODE")_")"
  F I=1:1 S OCODE=$P(DATA(REJ,"OTHER REJECTS"),",",I) Q:OCODE=""   D

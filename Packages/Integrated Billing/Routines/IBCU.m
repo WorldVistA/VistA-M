@@ -1,5 +1,5 @@
 IBCU ;ALB/MRL - BILLING UTILITY ROUTINE ;01 JUN 88 12:00
- ;;2.0;INTEGRATED BILLING;**52,106,51,191,232,323,320,384**;21-MAR-94;Build 74
+ ;;2.0;INTEGRATED BILLING;**52,106,51,191,232,323,320,384,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRU
@@ -135,7 +135,8 @@ PRVNUM(IBIFN,IBINS,COB) ; Trigger code (399:122,123,124)
  ; claim and the billing provider # already exists, then leave it
  I $G(IBPRCOB),IBX'="" G PRVNQ
  ;
- I +$G(IBIFN),COB N DA S DA=IBIFN I $$MCRACK^IBCBB3(+IBIFN,$P($G(^DGCR(399,+IBIFN,"TX")),U,5),+COB) S IBX=$$MCRANUM^IBCBB3(+IBIFN) G PRVNQ
+ ;patch 432 enh5:  The IB system shall no longer add the following default Billing Provider Secondary ID to all Medicare Part A (Institutional) general/psychiatric claims:  674499 Psychiatric, 670899 General
+ ;I +$G(IBIFN),COB N DA S DA=IBIFN I $$MCRACK^IBCBB3(+IBIFN,$P($G(^DGCR(399,+IBIFN,"TX")),U,5),+COB) S IBX=$$MCRANUM^IBCBB3(+IBIFN) G PRVNQ
  ;
  ; WCJ - 1/17/06 - Some Insurances require certain electronic plan types to have no secondary ID
  ; Check if this plan type requires a blank sec id to go out for this insurance
@@ -154,7 +155,8 @@ PRVNUM(IBIFN,IBINS,COB) ; Trigger code (399:122,123,124)
  ;
  S IBX=$$FACNUM^IBCEP2B(IBIFN,COB)
  ;
- I IBX="" S IBX=$$GET1^DIQ(350.9,1,1.05)
+ ; PATCH 432 ENH5:  The IB system shall no longer add a default Billing Provider Secondary ID to a claim.
+ ;I IBX="" S IBX=$$GET1^DIQ(350.9,1,1.05)
  ;
 PRVNQ Q IBX
  ;
@@ -192,7 +194,8 @@ PRVQUAL(IBIFN,IBINS,COB) ; Trigger code for Bill P/S/T Prov QUAL (399:128,129,13
  ; billing provider qualifier already exists, then leave it alone
  I $G(IBPRCOB),IBX'="" G PRVQUALQ
  ;
- I +$G(IBIFN),COB N DA S DA=IBIFN I $$MCRACK^IBCBB3(+IBIFN,$P($G(^DGCR(399,+IBIFN,"TX")),U,5),+COB) S IBX=$$FIND1^DIC(355.97,,"MX","MEDICARE PART A") G PRVQUALQ
+ ; PATCH 432 ENH5:  The IB system shall no longer add a default Billing Provider Secondary ID to a claim.
+ ;I +$G(IBIFN),COB N DA S DA=IBIFN I $$MCRACK^IBCBB3(+IBIFN,$P($G(^DGCR(399,+IBIFN,"TX")),U,5),+COB) S IBX=$$FIND1^DIC(355.97,,"MX","MEDICARE PART A") G PRVQUALQ
  ;
  ; Some Insurances require certain electronic plan types to have no secondary ID
  ; If this is the case, there is no qualifier

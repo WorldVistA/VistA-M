@@ -1,16 +1,17 @@
-XQCHK ; SEA/MJM - Check security on option # XQCY ;5/20/08
- ;;8.0;KERNEL;**47,110,149,303,427,503**;Jul 10, 1995;Build 2
+XQCHK ; SEA/MJM - Check security on option # XQCY ;4/28/11
+ ;;8.0;KERNEL;**47,110,149,303,427,503,570**;Jul 10, 1995;Build 3
  ;;"Per VHA Directive 2004-038, this routine should not be modified".
  ;
  Q:'$D(XQCY)!(XQCY<1)  S:'$D(XQJMP) XQJMP=0
  I '$D(XQY0) S XQY0=^DIC(19,+XQCY,0)
  I '$D(XQCY0) S XQSAV=XQY0,XQY=XQCY D SET Q:XQCY<0  S XQCY0=XQY0,XQY0=XQSAV
 CHK I XQCY0="" S XQCY=-1 G OUT
- I $P(XQCY0,U,3)'="" S XQCY=-1 G OUT
+ ;I $P(XQCY0,U,3)'="" S XQCY=-1 G OUT ;remove 570
+ N XQRT S XQRT=$$CHKOOO^XQCHK2(XQCY0) I +XQRT=1 S XQCY=-1 G OUT ;add this line to check if the option is set Out Of Order - BT/570
  N XQRT S XQRT=$$CHCKL^XQCHK2(XQCY0,DUZ) I +XQRT S XQCY=-2 G OUT  ; add this line to check all Locks
- I $L($P(XQCY0,U,6)) S %="" F %XQI=1:1 S %=$P($P(XQCY0,U,6),",",%XQI) Q:%=""  I '$D(^XUSEC(%,DUZ)) S XQCY=-2 G OUT  ; remove
+ ;I $L($P(XQCY0,U,6)) S %="" F %XQI=1:1 S %=$P($P(XQCY0,U,6),",",%XQI) Q:%=""  I '$D(^XUSEC(%,DUZ)) S XQCY=-2 G OUT  ; remove 570
  N XQRT S XQRT=$$CHCKRL^XQCHK2(XQCY0,DUZ) I +XQRT S XQCY=-3 G OUT  ; add this line to check all Reversed Locks
- I $L($P(XQCY0,U,16)) S %="" F %XQI=1:1 S %=$P($P(XQCY0,U,16),",",%XQI) Q:%=""  I $D(^XUSEC(%,DUZ)) S XQCY=-3 G OUT  ; remove
+ ;I $L($P(XQCY0,U,16)) S %="" F %XQI=1:1 S %=$P($P(XQCY0,U,16),",",%XQI) Q:%=""  I $D(^XUSEC(%,DUZ)) S XQCY=-3 G OUT  ; remove 570
  I $L($P(XQCY0,U,9)) S XQZ=$P(XQCY0,U,9) D ^XQDATE S X=% D XQO^XQ92 I X="" S XQCY=-4 G OUT
  G:$P(XQCY0,U,10)'["y" OUT
  S %=0 F %XQI=1:1 S %=$O(^DIC(19,XQCY,3.96,%,0)) Q:%=""  I IOS=% G OUT

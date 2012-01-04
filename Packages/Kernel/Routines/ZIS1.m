@@ -1,5 +1,5 @@
-%ZIS1 ;SFISC/AC,RWF -- DEVICE HANDLER (DEVICE INPUT) ;08/17/10  11:50
- ;;8.0;KERNEL;**18,49,69,104,112,199,391,440,499,518,546**;JUL 10, 1995;Build 9
+%ZIS1 ;SFISC/AC,RWF -- DEVICE HANDLER (DEVICE INPUT) ;08/30/2011
+ ;;8.0;KERNEL;**18,49,69,104,112,199,391,440,499,518,546,572**;JUL 10, 1995;Build 7
  ;Per VHA Directive 2004-038, this routine should not be modified
 MAIN ;Called from %ZIS with a GOTO
  ;Check for "ASK DEVICE"
@@ -60,7 +60,13 @@ LKUP ;Lookup device name
  I 0[%X!(%X="HOME")!(%X=$I) S %A=%H Q
  I $E(%ZISVT)="`",$D(IOP) S %A=+$E(%ZISVT,2,999) I $D(^%ZIS(1,%A,0))#2 Q
  S %A=0 I "P"[%X Q:$D(IOP)&('$D(^%ZIS(1,%E,99)))  I $D(^%ZIS(1,%E,99)) S %A=+^(99) Q  ;Closest Printer
+ ;
+ ;**P572 START CJM
+ ;I %X=" ",$D(DUZ)#2,$D(^DISV(+DUZ,"^%ZIS(1,")) S %A=^("^%ZIS(1,") Q
+ I %X=" ",$D(DUZ)#2,$D(^DISV(+DUZ,"ZIS","^%ZIS(1,")) S %A=^("^%ZIS(1,") Q
  I %X=" ",$D(DUZ)#2,$D(^DISV(+DUZ,"^%ZIS(1,")) S %A=^("^%ZIS(1,") Q
+ ;**P572 END CJM
+ ;
  S %A=+$O(^%ZIS(1,"B",%ZISVT,0)) Q:%A>0  ;mixed case lookup
  I %X'=%ZISVT S %A=+$O(^%ZIS(1,"B",%X,0)) Q:%A>0  ;uppercase lookup
  D VTLKUP^%ZIS S %A=%E Q:%A>0  ;mixed case lookup
@@ -90,7 +96,10 @@ MSG2 I '$D(IOP) W ?20,$C(7),"  [DEVICE FILE ERROR]"
 SETVAR ;Come here to setup the variables for the selected device
  S:$D(IO)[0 IO="" G KILVAR:%ZIS["T"&(IO="")
  I $G(%Z)="" S ION="Unknown device",POP=1 G KILVAR
- S:IO'=IO(0)&($D(DUZ)#2) ^DISV(+DUZ,"^%ZIS(1,")=%E
+ ;**P572 START CJM
+ ;S:IO'=IO(0)&($D(DUZ)#2) ^DISV(+DUZ,"^%ZIS(1,")=%E
+ I IO'=IO(0)&($D(DUZ)#2),'$D(IOP) S ^DISV(+DUZ,"ZIS","^%ZIS(1,")=%E
+ ;**P572 END CJM
  S ION=$P(%Z,"^",1),IOM=+%Z91,IOF=$P(%Z91,"^",2),IOSL=$P(%Z91,"^",3),IOBS=$P(%Z91,"^",4),IOXY=$P(%Z91,"^",5)
  I IOSL>65534 S IOSL=65534 ;Cache rolls $Y at 65535
  S IOT=%ZTYPE,IOST(0)=%ZISIOST(0),IOST=%ZISIOST,IOPAR=%ZISOPAR,IOUPAR=%ZISUPAR,IOHG="" ;p546 %ZISHG

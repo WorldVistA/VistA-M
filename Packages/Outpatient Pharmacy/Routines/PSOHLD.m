@@ -1,5 +1,5 @@
 PSOHLD ;BIR/SAB - hold unhold functionality ; 7/23/09 1:16pm
- ;;7.0;OUTPATIENT PHARMACY;**1,16,21,24,27,32,55,82,114,130,166,148,268,281,298,358**;DEC 1997;Build 35
+ ;;7.0;OUTPATIENT PHARMACY;**1,16,21,24,27,32,55,82,114,130,166,148,268,281,298,358,353**;DEC 1997;Build 19
  ;External reference to ^DD(52-DBIA 999,  VA(200-DBIA 224, NA^ORX1-DBIA 2186,
  ; L, UL, PSOL, and PSOUL^PSSLOCK-DBIA 2789, ^%DTC-DBIA 10000, ^DIE-DBIA 10018, ^DIR-DBIA 10026,
  ; ^DIK-DBIA 10013, ^VALM1-DBIA 10016, ^XUSEC(-DBIA 10076
@@ -16,14 +16,27 @@ UHLD I '$D(PSOPAR) D ^PSOLSET G:'$D(PSOPAR) EX
  I DT>$P(^PSRX(DA,2),"^",6) D  D ULP G EX
  .S VALMSG="Medication Expired on "_$E($P(^PSRX(DA,2),"^",6),4,5)_"-"_$E($P(^(2),"^",6),6,7)_"-"_$E($P(^(2),"^",6),2,3) I $P(^PSRX(DA,"STA"),"^")<11 S $P(^PSRX(DA,"STA"),"^")=11
  .S ^PSRX(DA,"H")="",COMM="Medication Expired on "_$E($P(^(2),"^",6),4,5)_"-"_$E($P(^(2),"^",6),6,7)_"-"_$E($P(^(2),"^",6),2,3) D EN^PSOHLSN1(DA,"SC","ZE",COMM,"") K COMM
-EN S RXF=0 F I=0:0 S I=$O(^PSRX(DA,1,I)) Q:'I  S RXF=I,RSDT=$P(^(0),"^")
+EN S RXF=0 F I=0:0 S I=$O(^PSRX(DA,1,I)) Q:'I  S RXF=I,RSDT=$P(^(I,0),"^")
  I RXF D  I $D(Y) D ULP G EX
- .S (PSDA,DA(1))=DA,DA=RXF,DIE="^PSRX("_DA(1)_",1,"
+ .S (PSDA,DA(1))=DA,DA=RXF,DIE="^PSRX("_DA(1)_",1,",PSOUNHLD=1
  .S RLDT=$P(^PSRX(DA(1),1,DA,0),"^",18)
- .S DR=$S('RLDT:".01R;2;",1:"")_"3COMMENTS"
- .S PSOUNHLD=1 D ^DIE K PSOUNHLD
+ .I 'RLDT D
+ ..I RSDT<DT D  ;353 Do not display a past date for refill date
+ ...N Y,TD S Y=DT X ^DD("DD") S TD=Y
+ ...S DR=".01R///^S X=TD"
+ ...D ^DIE
+ ..S DR=".01R;2;3COMMENTS"
+ ..D ^DIE
+ ..I $D(Y) D  ;User quit the UNHOLD process
+ ...I RSDT<DT D  ;reset refill date
+ ....N Y,TD S Y=RSDT X ^DD("DD") S TD=Y
+ ....S DR=".01R///^S X=TD"
+ ....D ^DIE
+ .I RLDT D
+ ..S DR="3COMMENTS"
+ ..D ^DIE
  .S ZD(PSDA)=$P(^PSRX(DA(1),1,DA,0),"^")
- .Q:$D(Y)  S PSORX("FILL DATE")=$P(^PSRX(DA(1),1,DA,0),"^"),DA=PSDA K DA(1)
+ .K PSOUNHLD Q:$D(Y)  S PSORX("FILL DATE")=$P(^PSRX(DA(1),1,DA,0),"^"),DA=PSDA K DA(1)
  ;
  ;PSO*7*298 Require an entry into fill date
  S ACT=1,DIE="^PSRX(",FDT=$S($P(^PSRX(DA,2),"^",2):$P(^PSRX(DA,2),"^",2),1:DT)

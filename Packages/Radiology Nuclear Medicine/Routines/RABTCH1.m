@@ -1,5 +1,5 @@
 RABTCH1 ;HISC/CAH,FPT AISC/MJK,RMO-Batch Report Menu ;9/28/94  10:49
- ;;5.0;Radiology/Nuclear Medicine;**8**;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**8,47**;Mar 16, 1998;Build 21
 VERIFY ;Verify Batch
  D SET^RAPSET1 I $D(XQUIT) K XQUIT Q
  W ! S DIC("S")="I $P(^(0),U,4)",DIC("A")="Select Batch: ",DIC="^RABTCH(74.2,",DIC(0)="AEZMQ" D ^DIC K DIC G Q:Y<0 S RAPGM="NXT^RABTCH1",RABTCH=+Y,LINE="",$P(LINE,"-",80)=""
@@ -22,8 +22,12 @@ Q K %,%X,D,D0,D1,DA,DIC,DIK,DIE,DR,RA,RACT,RADATE,RAUP,RABTCH,LINE,RADFN,RADTE,R
  K RAVER,RAONLINE,RASIG
  Q
  ;
-CHK I $P(^RARPT(RARPT,0),"^",5)="V" W !?3,"...report for case no. ",RACN," is already verified" S RACT="" W !,LINE Q
- W !,"Report for case no. ",RACN," for ",$S($D(^DPT(RADFN,0)):$P(^(0),"^"),1:"UNKNOWN") G 31^RART
+CHK N RASSAN,RACNDSP S RASSAN=$$SSANVAL^RAHLRU1(RADFN,RADTI,RACNI)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:RACN)
+ I $$USESSAN^RAHLRU1() I $P(^RARPT(RARPT,0),"^",5)="V" W !?3,"...report for case no. ",RACNDSP," is already verified" S RACT="" W !,LINE Q
+ I $$USESSAN^RAHLRU1() W !,"Report for case no. ",RACNDSP," for ",$S($D(^DPT(RADFN,0)):$P(^(0),"^"),1:"UNKNOWN") G 31^RART
+ I '$$USESSAN^RAHLRU1() I $P(^RARPT(RARPT,0),"^",5)="V" W !?3,"...report for case no. ",RACN," is already verified" S RACT="" W !,LINE Q
+ I '$$USESSAN^RAHLRU1() W !,"Report for case no. ",RACN," for ",$S($D(^DPT(RADFN,0)):$P(^(0),"^"),1:"UNKNOWN") G 31^RART
 NXT I '$D(RACT) K RAAB Q
  W !,LINE I RACT="V" S ^TMP($J,"RA","DT",RADTE,RARPT)=$S($D(RAAB):1,1:"")
  K RAAB Q

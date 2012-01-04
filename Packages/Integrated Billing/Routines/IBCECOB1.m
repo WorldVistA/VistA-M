@@ -1,17 +1,22 @@
 IBCECOB1 ;ALB/CXW - IB COB MANAGEMENT SCREEN/REPORT ;14-JUN-99
- ;;2.0;INTEGRATED BILLING;**137,155,288,348,377,417**;21-MAR-94;Build 6
+ ;;2.0;INTEGRATED BILLING;**137,155,288,348,377,417,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; IBMRANOT = 1 when dealing with the COB Management Worklist.   
+ ;            It is set by the entry action in the option file. 
  ;
 BLD ; Build list entrypoint
  N I,IBFND,IBB,IBIFN,IB364,IBDA1,IBDTN,IBDA,IBDAY,IBHIS,IBNDS,IBEUT,IBAPY,IBOAM,IBDT,IBMUT,IBBPY,IBINS,IBNDM,IBQ,IBNDI1,IBNDI2,IBNDI3,Z,Z0,IBSEQ,IB3611,IBINS1,IBINS2,IBEXPY,IBNBAL,IBPTRSP,IBAMT,IBMRACNT,IBPTNM,IBSRVC,IBPY,IBB364
- N IBEOBREV,IBDENDUP
+ N IBEOBREV,IBDENDUP,EOBTYPE
  K ^TMP("IBCECOB",$J),^TMP("IBCECOB1",$J),^TMP("IBCOBST",$J),^TMP("IBCOBSTX",$J)
  D CLEAN^VALM10      ; kill data and video control arrays
  S VALMCNT=0,IBHIS=""
+ ; IB*2.0*432 IF not MRA, use new CAP index on 399 file
+ D:$G(IBMRANOT)=1 CAP^IBCAPP2
  ; since 0 is a valid Review Status, init w/null
  S IBEOBREV=""
  ; get EOB's w/Review Status of 0, 1, 1.5 or 2; If 3 or higher, not needed
- F  S IBEOBREV=$O(^IBM(361.1,"AMRA",1,IBEOBREV)) Q:IBEOBREV=""  Q:IBEOBREV>2  D  ;
+ I $G(IBMRANOT)'=1 F  S IBEOBREV=$O(^IBM(361.1,"AMRA",1,IBEOBREV)) Q:IBEOBREV=""  Q:IBEOBREV>2  D
  . S IBDA="A" F  S IBDA=$O(^IBM(361.1,"AMRA",1,IBEOBREV,IBDA),-1) Q:'IBDA  D BLD1
  ; no data accumulated
  I $O(^TMP("IBCOBST",$J,""))="" D NMAT Q
@@ -20,8 +25,8 @@ BLD ; Build list entrypoint
  Q
 BLD1 ;
  I '$$ELIG(IBDA) Q
- S IBDENDUP=$$DENDUP^IBCEMU4(IBDA)
- I '$G(IBMRADUP),IBDENDUP Q     ; don't include denied MRAs for Duplicate Claim/Service
+ S IBDENDUP=$$DENDUP^IBCEMU4(IBDA,$G(IBMRANOT))
+ I '$G(IBMRADUP),IBDENDUP Q     ; don't include denied MRAs/EOBs for Duplicate Claim/Service
  S IB3611=$G(^IBM(361.1,IBDA,0))
  S IBIFN=+IB3611,IB364=$P(IB3611,U,19),IBDT=+$P(IB3611,U,6)
  I $D(^TMP("IBCOBSTX",$J,IBIFN)) Q  ;show each bill once on the worklist
@@ -37,7 +42,7 @@ BLD1 ;
  ; Get the payer/insurance company that comes after Medicare WNR
  ; If WNR is Primary, get the secondary ins. co.
  ; If WNR is secondary, get the tertiary ins. co.
- D  I $P(IBINS2,U,2)="" S $P(IBINS2,U,2)="UNKNOWN"
+ D  I $P($G(IBINS2),U,2)="" S $P(IBINS2,U,2)="UNKNOWN"
  . I $$WNRBILL^IBEFUNC(IBIFN,1) S IBINS2=+IBNDI2_U_$P($G(^DIC(36,+IBNDI2,0)),U) Q
  . S IBINS2=+IBNDI3_U_$P($G(^DIC(36,+IBNDI3,0)),U)
  S IBFND=0
@@ -73,14 +78,15 @@ BLD1 ;
  I IBNBAL'>0 S IBQ=2
  S IBPTNM=$P($G(^DPT(+$P($G(^DGCR(399,IBIFN,0)),U,2),0)),U) I IBPTNM="" S IBPTNM="UNKNOWN"
  S IBSRVC=$P($G(^DGCR(399,IBIFN,"U")),U)
- S Z0=$S(IBSRT="B":IBMUT,IBSRT="D":-IBDAY,IBSRT="I":$P(IBINS2,U,2)_"~"_$P(IBINS2,U),IBSRT="M":$$EXTERNAL^DILFD(361.1,.13,"",$P(IB3611,"^",13)),IBSRT="R":-IBPTRSP,IBSRT="P":IBPTNM,IBSRT="S":IBSRVC,1:IBDT)
+ S Z0=$S(IBSRT="B":IBMUT,IBSRT="D":-IBDAY,IBSRT="I":$P(IBINS2,U,2)_"~"_$P(IBINS2,U),IBSRT="M":$$EXTERNAL^DILFD(361.1,.13,"",$P(IB3611,"^",13)),IBSRT="R":-IBPTRSP,IBSRT="P":IBPTNM,IBSRT="S":+IBSRVC,1:+IBDT)
+ S:((IBSRT="M")&(Z0="")) Z0="UNKNOWN"   ;USE UNKNOWN IF NOT SET - BI;IB*2.0*432
  S ^TMP("IBCOBST",$J,Z0,IBIFN)=IBSRVC_U_IBOAM_U_IBAPY_U_$S(IBNBAL>0:IBNBAL,1:0)_U_$P(IBB,U,5)_U_$P(IBB,U,19)_U_IBBPY_U_$P(IBMUT,"~")_U_IBINS_U_IBDA_U_$$HIS(IBIFN)_U_IBDAY_U_IBDT_U_IBQ_U_IB364_U_IBSEQ_U_IBEXPY_U_IBPTRSP
  S ^TMP("IBCOBST",$J,Z0,IBIFN,1)=$$EXTERNAL^DILFD(361.1,.13,"",$P(IB3611,"^",13))_", "_$$FMTE^XLFDT($P($P(IB3611,"^",6),"."))_"^"_$P(IB3611,"^",16)
  S ^TMP("IBCOBSTX",$J,IBIFN)=IBDA  ;keep track of compiled IBIFN's
  ;
  ; Save some data when there are multiple MRA's on file for this bill
- S IBMRACNT=$$MRACNT^IBCEMU1(IBIFN)
- I IBMRACNT>1 S $P(^TMP("IBCOBST",$J,Z0,IBIFN,1),U,1)="Multiple MRA's on file"
+ S IBMRACNT=$$MRACNT^IBCEMU1(IBIFN,$G(IBMRANOT))   ;WCJ IB*2.0*432
+ I IBMRACNT>1 S $P(^TMP("IBCOBST",$J,Z0,IBIFN,1),U,1)="Multiple "_$S($G(IBMRANOT):"EOBs",1:"MRA's")_" on file"  ;WCJ IB*2.0*432
  S $P(^TMP("IBCOBST",$J,Z0,IBIFN,1),U,3)=IBMRACNT
  S $P(^TMP("IBCOBST",$J,Z0,IBIFN,1),U,4)=IBDENDUP
  Q
@@ -88,7 +94,7 @@ BLD1 ;
 HIS(IBIFN) ; COB history
  N A,B,IBST,IBBIL,IBHIS
  S IBHIS="",A=0 F  S A=$O(^IBM(361.1,"ABS",IBIFN,A)) Q:'A  S B=0 F  S B=$O(^IBM(361.1,"ABS",IBIFN,A,B)) Q:'B  D
- . S IBST=$P($G(^IBM(361.1,B,0)),U,4),IBBIL=$P(^DGCR(399,IBIFN,"M1"),U,4+A)
+ . S IBST=$P($G(^IBM(361.1,B,0)),U,4),IBBIL=$P($G(^DGCR(399,IBIFN,"M1")),U,4+A)   ;WCJ IB*2.0*432 added $G
  . Q:IBBIL=""
  . S IBHIS=IBHIS_$S(IBHIS="":"",1:";")_$S(A=1:"PRIMARY",A=2:"SECONDARY",1:"TERTIARY")_" "_$S(IBST:"MRA",1:"EOB")_" RECEIVED - "_IBBIL
  Q IBHIS
@@ -96,13 +102,13 @@ HIS(IBIFN) ; COB history
 NMAT ;No COB list
  S VALMCNT=2,IBCNT=2
  S ^TMP("IBCECOB",$J,1,0)=" "
- S ^TMP("IBCECOB",$J,2,0)="    No MRA's Matching Selection Criteria Were Found"
+ S ^TMP("IBCECOB",$J,2,0)="    No "_$S($G(IBMRANOT)=1:"EOB's",1:"MRA's")_" Matching Selection Criteria Were Found"
  Q
  ;
 SCRN ;
  N IBX,IBCNT,IBIFN,IBDA,IB,X,IBS1,IBPAT,Z,IBK,IBFORM
  S IBCNT=0
- S IBS1=$S(IBSRT="B":"BILLER",IBSRT="D":"Days Since Last Transmission",IBSRT="L":"Date Last MRA Received",IBSRT="I":"SECONDARY INSURANCE COMPANY",IBSRT="M":"MRA Status",1:"")
+ S IBS1=$S(IBSRT="B":"BILLER",IBSRT="D":"Days Since Last Transmission",IBSRT="L":"Date Last "_$S($G(IBMRANOT):"EOB",1:"MRA")_" Received",IBSRT="I":"SECONDARY INSURANCE COMPANY",IBSRT="M":$S($G(IBMRANOT):"EOB",1:"MRA")_" Status",1:"")
  S IBX="" F  S IBX=$O(^TMP("IBCOBST",$J,IBX)) Q:IBX=""  D
  . I IBSRT="B"!(IBSRT="I")!(IBSRT="M") D
  .. D:IBCNT SET("",IBCNT+1)
@@ -135,7 +141,7 @@ SCRN ;
  .. D SET(X,IBCNT,IBIFN,IBDA,IBQ,IB364,IBX,IB)
  .. ;
  .. ; line 3 of display:  MRA status/date/split claim indicator
- .. S X=$$SETSTR^VALM1("MRA Status:  ","",5,13)
+ .. S X=$$SETSTR^VALM1($S($G(IBMRANOT):"EOB",1:"MRA")_" Status:  ","",5,13)
  .. S IBK=$G(^TMP("IBCOBST",$J,IBX,IBIFN,1))
  .. S X=$$SETSTR^VALM1($P(IBK,U,1),X,18,63)
  .. I $P(IBK,U,2)=2 S X=$$SETSTR^VALM1("** SPLIT CLAIM **",X,63,18)
@@ -185,7 +191,7 @@ PTRESPI(IBEOB) ; Function - Computes the Patient's Responsibility based on IBEOB
  Q IBPTRES
  ;
 ELIG(IBEOB) ; Function to determine if an EOB entry is eligible for
- ; inclusion on the MRA management worklist or not.
+ ; inclusion on the MRA or COB management worklist or not.
  ; IBEOB - ien into file 361.1 (required)
  ; Returns 1 if EOB should appear on the worklist
  ; Returns 0 if EOB should not appear on the worklist
@@ -193,7 +199,7 @@ ELIG(IBEOB) ; Function to determine if an EOB entry is eligible for
  NEW ELIG,IB3611,IBIFN
  S ELIG=0,IBEOB=+$G(IBEOB)
  S IB3611=$G(^IBM(361.1,IBEOB,0))
- I $P(IB3611,U,4)'=1 G ELIGX    ; eob type must be Medicare MRA
+ I $P(IB3611,U,4)'=1 G ELIGX    ; eob type must be correct for this worklist
  I $P(IB3611,U,16)>2 G ELIGX    ; review status must be <= 2
  S IBIFN=+IB3611
  I $P($G(^DGCR(399,IBIFN,0)),U,13)'=2 G ELIGX  ; Request MRA bill status
@@ -204,3 +210,49 @@ ELIG(IBEOB) ; Function to determine if an EOB entry is eligible for
 ELIGX ;
  Q ELIG
  ;
+WLRMV ; REMOVE FROM EOB WORK LIST
+ ; IBDA(IBDA)=IBIFN^IB364^ien of 361.1^user selection seq^user name~duz#
+ N IBIFN,IBDA,DIR,DTOUT,DUOUT,DA,DIE,DR,X
+ D SEL^IBCECOB2(.IBDA,1)
+ S VALMBCK="R"
+ S IBDA=$O(IBDA(0)) I 'IBDA Q
+ S IBIFN=$P(IBDA(IBDA),U,1) I 'IBIFN Q
+ S DIR("A",1)=""
+ S DIR("A",2)="    Bill #: "_$$GET1^DIQ(399,IBIFN_", ",.01,"E")
+ S DIR("A",3)="   Patient: "_$$GET1^DIQ(399,IBIFN_", ",.02,"E")
+ S DIR("A",4)=" Bill Type: "_$$GET1^DIQ(399,IBIFN_", ",.05,"E")
+ S DIR("A",5)="Bill Dates: "_$$GET1^DIQ(399,IBIFN_", ",151,"E")_" - "_$$GET1^DIQ(399,IBIFN_", ",152,"E")
+ S DIR("A",6)=" "
+ S DIR("A")="Are you sure remove this claim from the worklist? "
+ S DIR("B")="NO"
+ S DIR(0)="YA" D ^DIR K DIR
+ I $D(DTOUT)!$D(DUOUT)!'Y Q
+ ;FLAG IF USER ANSWERS YES
+ S X=$$WLRMVF^IBCECOB1(IBIFN,"RM")
+ D BLD^IBCECOB1
+ Q
+ ;
+WLRMVF(IBIFN,METHOD,BKFL) ;
+ ; BFKL = 1 means background process, remove NOT initiated by a user
+ N SOC,SOCCNT,SOCLIST,STATUS,IBDUZ
+ S STATUS=0
+ Q:'$G(DUZ) STATUS_"^MISSING DUZ"
+ Q:'$G(IBIFN) STATUS_"^MISSING IBIFN"
+ Q:'$D(^DGCR(399,IBIFN)) STATUS_"^INVALID IBIFN"
+ ; if this is a background process, set user who removed to AUTHORIZER,IB REG
+ S IBDUZ=$S($G(BKFL)=1:$$IBREG^IBCAPP(),1:$G(DUZ))
+ ; GET DICTIONARY SET OF CODES.
+ ; SOC("POINTER")="RM:REMOVE ACTION;PC:PROCESS COB ACTION;CL:CLONE ACTION;"
+ D FIELD^DID(399,38,"","POINTER","SOC")
+ S SOC=$G(SOC("POINTER"))
+ F SOCCNT=1:1:$L(SOC,";")-1 S SOCLIST($P($P(SOC,";",SOCCNT),":",1))=""
+ Q:$D(SOCLIST(METHOD))=0 STATUS_"^INVALID METHOD"
+ S DA=IBIFN
+ S DIE="^DGCR(399,"
+ S DR="35////4"                ; AUTO PROCESS, NO LONGER ON WORKLIST
+ S:IBDUZ'=-1 DR=DR_";"_"37////"_IBDUZ    ; WHO REMOVED FROM WORKLIST
+ S DR=DR_";"_"38////"_METHOD   ; METHOD USED TO REMOVE FROM WORKLIST
+ S DR=DR_";"_"39///NOW"        ; DATE STAMP WHEN REMOVED FOR WORKLIST
+ D ^DIE
+ S STATUS=1
+ Q STATUS

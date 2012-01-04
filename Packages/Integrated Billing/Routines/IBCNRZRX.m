@@ -1,6 +1,6 @@
 IBCNRZRX ;DAOU/DMK - Receive HL7 e-Pharmacy ZRX Segment ;23-OCT-2003
- ;;2.0;INTEGRATED BILLING;**251**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**251,435**;21-MAR-94;Build 27
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Description
  ;
@@ -14,7 +14,6 @@ IBCNRZRX ;DAOU/DMK - Receive HL7 e-Pharmacy ZRX Segment ;23-OCT-2003
 1000 ; Control ZRX Segment processing
  D INIT
  I $D(ERROR) Q
- D INITBPS
  Q
  ;
 INIT ; Initialize ZRX Segment variables
@@ -89,6 +88,14 @@ INIT ; Initialize ZRX Segment variables
  ; 10.1  = MAXIMUM NCPDP TRANSACTIONS
  S DATA(10.1)=$G(IBSEG(13))
  ;
+ ; 10.15 = ELIGIBILITY VERIFICATION PAYER SHEET NAME (pointer - 9002313.92)
+ S DATA(10.15)=$G(IBSEG(16))
+ I DATA(10.15)]"" S DATA(10.15)=$$LOOKUP1^IBCNRFM1(9002313.92,DATA(10.15))
+ ;
+ ; Error?
+ ; V545 = Eligibility Verification Payer Sheet Name Undefined
+ I DATA(10.15)=-1 S ERROR="V545" Q
+ ;
  ; Initialize RX primary contact name variables
  S NAME=$G(IBSEG(14))
  D NAME
@@ -114,23 +121,6 @@ INIT ; Initialize ZRX Segment variables
  ;
  ; 11.06 = RX ALTERNATE CONTACT DEGREE
  S DATA(11.06)=NAME("DEGREE")
- Q
- ;
-INITBPS ; Initialize variables from ZRX Segment variables
- ; 90002313.92 BPS NCPDP FORMATS File
- ;
- ; 1.03 = Maximum RX's Per Claim
- S DATABPS(1.03)=DATA(10.1)
- I DATABPS(1.03)'?1.N S DATABPS(1.03)=1
- ;
- ; 1.07 = Is A Reversal Format
- S DATABPS(1.07)=0
- ;
- ; 1.13 = SOFTWARE VENDOR/CERT ID
- S DATABPS(1.13)=DATA(10.06)
- ;
- ; 1001 = Reversal Format
- S DATABPS(1001)=DATA(10.08)
  Q
  ;
 NAME ; Initialize name variables from NAME string

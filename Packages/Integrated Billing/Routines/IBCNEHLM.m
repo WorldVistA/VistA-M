@@ -1,5 +1,5 @@
 IBCNEHLM ;DAOU/ALA - HL7 Registration MFN Message ;10-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,251,300,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,251,300,416,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
@@ -43,7 +43,7 @@ REG ;  Registration message for when a site installs
  S INACT=$E($$GET1^DIQ(350.9,"1,",51.08,"E"))
  S IHLP=$P(IBCNE,U,13),IHLT=$P(IBCNE,U,14),CNTC=$P(IBCNE,U,16)
  S IHLS=$P(IBCNE,U,19)
- S IVER="4"
+ S IVER="5"
  ;
  I IHLP="I" S (IHLT,IHLS)=""
  ;

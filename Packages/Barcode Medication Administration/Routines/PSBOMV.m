@@ -1,5 +1,6 @@
 PSBOMV ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;;Mar 2004
+ ;;3.0;BAR CODE MED ADMIN;**60**;Mar 2004;Build 12
+ ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
  ; ^DPT/10035
@@ -16,13 +17,16 @@ EN ;
  I PSBPRINT="W" S PSBSORT=$P($G(PSBRPT(.1)),U,5),PSBWRD=$P(PSBRPT(.1),U,3) Q:'PSBWRD  D WARD^NURSUT5("L^"_PSBWRD,.PSBWRDA)
  ;
 RANGE ;Locate data between date range.
+ N PSBTMDF
  S PSBX=PSBSTRT F  S PSBX=$O(^PSB(53.78,"ADT",PSBX)) Q:'PSBX!(PSBX>PSBSTOP)  D
  .F PSBY=0:0 S PSBY=$O(^PSB(53.78,"ADT",PSBX,PSBY)) Q:'PSBY  D
  ..S DFN=+^PSB(53.78,PSBY,0),PSBWLF=$P($G(^(0)),U,9),PSBTIME=$P($G(^(0)),U,4),PSBLOG=$P($G(^(0)),U,8)
 CHECK ..;Ward IEN must exist in Ward Field # 9.
  ..Q:'$G(PSBWLF)
  ..Q:'$G(PSBLOG)
- ..I $G(PSBTIME)=$P($G(^PSB(53.79,PSBLOG,0)),U,6),$P($G(^PSB(53.79,PSBLOG,0)),U,9)="RM" Q
+ ..;PSB*3*60 adds code to allow a variance equal to system variable DILOCKTM when checking for removal of a patch
+ ..S PSBTMDF=$$FMDIFF^XLFDT($P($G(^PSB(53.79,PSBLOG,0)),U,6),$G(PSBTIME),2) ;PSB*3*60
+ ..I PSBTMDF>=-($S($G(DILOCKTM)>0:DILOCKTM,1:3)),PSBTMDF<=$S($G(DILOCKTM)>0:DILOCKTM,1:3),$P($G(^PSB(53.79,PSBLOG,0)),U,9)="RM" Q  ;PSB*3*60
  ..;Quit if Ward IEN is not in Nurse Location file.
  ..I PSBPRINT="W",'$O(^NURSF(211.4,"C",PSBWLF,PSBWRD,0)) Q
  ..;Compare date/time and Quit if order status set to Remove.
@@ -116,11 +120,16 @@ VCOM ;Print Ward and Comments from Med Log on Variance Report.
  I $P(PSBRPT(.1),U)="P" W !,?23,"Ward:      ",?34 D
  .I $P($G(^PSB(53.79,PSBML,0)),U,2)=""  W "<No Ward>" Q
  .W $P($G(^PSB(53.79,PSBML,0)),U,2)
- W !,?23,"Comments:  ",?34 I '$O(^PSB(53.79,PSBML,.3,0))  W "<No Comments>" Q
+ W !,?23,"Comments:  ",?34 I '$O(^PSB(53.79,PSBML,.3,0))  W "<No Comments>" I $Y>(IOSL-10) D  Q  ;correct page breaks, PSB*3*60
+ .I $G(PSBPRINT)="P" W $$PTFTR^PSBOHDR(),!,$$PTHDR()  ;correct page breaks, PSB*3*60
+ .I $G(PSBPRINT)="W" W !,$$WRDHDR()  ;correct page breaks, PSB*3*60
  F PSBCOM=0:0 S PSBCOM=$O(^PSB(53.79,PSBML,.3,PSBCOM)) Q:'PSBCOM  D
  .W:$X>34 !?34
  .S Y=$P(^PSB(53.79,PSBML,.3,PSBCOM,0),U,3)+.0000001
  .W $E(Y,4,5),"/",$E(Y,6,7),"/",$E(Y,2,3)," ",$E(Y,9,10),":",$E(Y,11,12),?50,"By: ",$$GET1^DIQ(53.793,PSBCOM_","_PSBML_",","ENTERED BY:INITIAL"),$$WRAP^PSBO(60,75,$P(^PSB(53.79,PSBML,.3,PSBCOM,0),U,1))
+ .I $Y>(IOSL-10) D  ;correct page breaks, PSB*3*60
+ ..I $G(PSBPRINT)="P" W $$PTFTR^PSBOHDR(),!,$$PTHDR()  ;correct page breaks, PSB*3*60
+ ..I $G(PSBPRINT)="W" W !,$$WRDHDR()  ;correct page breaks, PSB*3*60
  Q
  ;
 EVENTS ;Record total number of events.

@@ -1,5 +1,5 @@
-RCDPESR2 ;ALB/TMK - Server auto-upd - EDI Lockbox ;06/03/02
- ;;4.5;Accounts Receivable;**173,216,208,230,252,264**;Mar 20, 1995;Build 1
+RCDPESR2 ;ALB/TMK/DWA - Server auto-upd - EDI Lockbox ; 06/03/02
+ ;;4.5;Accounts Receivable;**173,216,208,230,252,264,269,271**;Mar 20, 1995;Build 29
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; IA 4042 (IBCEOB)
  ;
@@ -89,11 +89,11 @@ UPDEOB(RCTDA,RCFILE,DUP) ;Upd 361.1 from ERA msg in 344.5 or .4
  ;
  ;srv dates
  S RCSD=$NA(^TMP($J,"RCSRVDT")) K @RCSD
- N CP5 S CP5="",RC=1,C5=0
+ N CP5 S CP5="",RC=1,C5=0 ;retrofit 264 into 269
  F  S RC=$O(@RCGBL@(RC)) Q:'RC  S RC0=$G(^(RC,0)) D
  .I RC0<5 Q
- .I +RC0=5 S C5=RC,CP5=$P(RC0,U,2) Q
- .I +RC0=40,CP5?1.7N,C5,'$D(@RCSD@(C5)) S @RCSD@(C5)=$P(RC0,U,19) ;serv date
+ .I +RC0=5 S C5=RC,CP5=$P(RC0,U,2) Q  ;retrofit 264 into 269
+ .I +RC0=40,CP5?1.12N,C5,'$D(@RCSD@(C5)) S @RCSD@(C5)=$P(RC0,U,19) ;serv date for possible ECME# matching
  ;
  S RC=1,(RCCT,RCCT1,RCX,REFORM)=0,RCBILL=""
  S RCERR1=$NA(^TMP("RCERR1",$J)) K @RCERR1
@@ -103,10 +103,12 @@ UPDEOB(RCTDA,RCFILE,DUP) ;Upd 361.1 from ERA msg in 344.5 or .4
  .;
  .I RCFILE=5,+RC0=2 D  Q
  ..S RCX=RCX+1,^TMP($J,"RCDPEOB","ADJ",RCX)=RC0
+ .I RCFILE=5,+RC0=3 D  Q  ; Adding logic for line type 03,Patch 269,DWA
+ ..S $P(^TMP($J,"RCDPEOB","ADJ",RCX),U,5)=$P(RC0,U,2)
  .;
  .I +RC0=5 S RCCT=RCCT+1,RCCT1=0 D
  ..S REFORM=0
- ..S Z=$$BILL^RCDPESR1($P(RC0,U,2),$G(@RCSD@(RC)),.RCIB)
+ ..S Z=$$BILL^RCDPESR1($P(RC0,U,2),$G(@RCSD@(RC)),.RCIB)   ; look up claim ien by claim# or by ECME#
  ..I Z S RCBILL=$P($G(^PRCA(430,Z,0)),U) I RCBILL'="",RCBILL'=$P(RC0,U,2) S REFORM=1,$P(RC0,U,2)=RCBILL
  ..S RCBILL=$P(RC0,U,2)
  ..S Z=$S(Z>0:$S($G(RCIB):Z,1:-1),1:-1)
@@ -119,6 +121,9 @@ UPDEOB(RCTDA,RCFILE,DUP) ;Upd 361.1 from ERA msg in 344.5 or .4
  ..S $P(^TMP($J,"RCDPEOB",RCCT,"EOB"),U,2)=$S(+$P(RC0,U,11):$J($P(RC0,U,11)/100,"",2),1:0),$P(^TMP($J,"RCDPEOB",RCCT,"EOB"),U,6)=$J($P(RC0,U,11),"",2)
  ..I $P(RC0,U,6)="Y"!($P(RC0,U,7)=22) S $P(^TMP($J,"RCDPEOB",RCCT,"EOB"),U,4)=1
  ..S $P(^TMP($J,"RCDPEOB",RCCT,"EOB"),U,10,14)=RCDPBNPI_U_$P(RC0,U,16,19)
+ .I +RC0=11 D  ; Save Rendering Provider information from new style message
+ ..S $P(^TMP($J,"RCDPEOB",RCCT,"EOB"),U,10,14)=RCDPBNPI_U_$P(RC0,U,3,6)
+ ..; End save of Rendering Provider
  .I RCBILL=$P(RC0,U,2) S RCCT1=RCCT1+1,^TMP($J,"RCDP-EOB",RCCT,RCCT1,0)=RC0
  ;
  S RCSTAR=$TR($J("",15)," ","*"),RCET=RCSTAR_"ERROR/WARNING EEOB DETAIL SEQ #"

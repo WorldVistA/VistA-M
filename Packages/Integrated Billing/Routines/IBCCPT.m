@@ -1,5 +1,5 @@
 IBCCPT ;ALB/LDB - MCCR OUTPATIENT VISITS LISTING CONT. ;29 MAY 90
- ;;2.0;INTEGRATED BILLING;**55,62,52,91,106,125,51,148,174,182,245,266,260,339**;21-MAR-94;Build 2
+ ;;2.0;INTEGRATED BILLING;**55,62,52,91,106,125,51,148,174,182,245,266,260,339,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRCPT
@@ -25,6 +25,7 @@ FILE S DGCPT1=Y,(DGCNT,DGCNT2)=0
  D Q1^IBCOPV1 Q
  ;
 FILE1 ;  file procedures, if BASC, only for 1 visit date
+ N IBDICSAV  ; IB*2.0*432 BI
  K DGNOADD S (X,DINUM)=$P(DGNOD,"^",2) D VFILE1^IBCOPV1 K DINUM,X
  N IBCPTNM S IBCPTNM=$$CPT^ICPTCOD(+DGNOD,+$P(DGNOD,U,2))
  I $D(DGNOADD) W !?10,"Can't add Amb. Surg. ",$P(IBCPTNM,U,2)," without visit date!" Q  ;don't add cpt for date that can't go on bill
@@ -32,8 +33,9 @@ FILE1 ;  file procedures, if BASC, only for 1 visit date
  D DSPPRC(IBCPTNM,DGNOD,$G(DGNOD("DX")))
  ;
  S:'$D(^DGCR(399,IBIFN,"CP",0)) DIC("P")=$$GETSPEC^IBEFUNC(399,304)
- S DLAYGO=399,DA(1)=IBIFN,DIC="^DGCR(399,"_DA(1)_",""CP"",",DIC(0)="L",X=+DGNOD_";ICPT(" K DD,DO D FILE^DICN S (DA,IBPROCP)=+Y K DO,DD,DLAYGO,DIC("P")
- ;
+ ; IB*2.0*432 BI
+ ;S DLAYGO=399,DA(1)=IBIFN,DIC="^DGCR(399,"_DA(1)_",""CP"",",DIC(0)="L",X=+DGNOD_";ICPT(" K DD,DO D FILE^DICN S (DA,IBPROCP)=+Y K DO,DD,DLAYGO,DIC("P")
+ S DLAYGO=399,DA(1)=IBIFN,(DIC,IBDICSAV)="^DGCR(399,"_DA(1)_",""CP"",",DIC(0)="L",X=+DGNOD_";ICPT(" K DD,DO D FILE^DICN S (DA,IBPROCP)=+Y K DO,DD,DLAYGO,DIC("P")
  S DR="1///"_$P(DGNOD,"^",2)
  I +$P(DGNOD,"^",8) S DR=DR_";18///`"_+$P(DGNOD,"^",8)
  I +$P(DGNOD,"^",9) S DR=DR_";6///`"_+$P(DGNOD,"^",9)
@@ -43,16 +45,44 @@ FILE1 ;  file procedures, if BASC, only for 1 visit date
  ; file assoc dx if exists from pce
  D:$G(DGNOD("DX")) ADDDX^IBCCPT1(IBIFN,IBPROCP,DGNOD("DX"),.DR)
  ;
+ S DIC=IBDICSAV  ; IB*2.0*432 BI
  S DIE=DIC D ^DIE
  D:$P(DGNOD,U,10)'="" ADDMOD(IBIFN,IBPROCP,$P(DGNOD,U,10))
  ;
+ K DR
  S DR="16"
- I '$P(DGNOD,"^",8) S DR=DR_";18"
- I '$P(DGNOD,"^",9) S DR=DR_";6"
- I '$P(DGNOD,"^",5) S DR=DR_";5"
- S:IBFT=2 DR=DR_";8;9;17//NO"
- S DIE=DIC D ^DIE
  ;
+ ; DEM;432 - $P(DGNOD,"^",8) is the provider pointer for
+ ;           this outpatient procedure, and if present will
+ ;           be the default RENDERING PROVIDER for this
+ ;           procedure if the RENDERING PROVIDER doesn't
+ ;           already exist for this procedure in file 399.0404.
+ ;
+ ; D:$P(DGNOD,"^",8)  ; DEM;432 - Outpatient procedure has provider.
+ S DIC=IBDICSAV  ; IB*2.0*432 BI
+ S DIE=DIC D ^DIE  ; DEM;432 - DR=16 (CPT MODIFIER SEQUENCE).
+ K DR
+ S DR=""
+ Q:$D(^DGCR(399,DA(1),"CP",DA,"LNPRV","B","RENDERING"))  ; DEM;432 - Quit if RENDERING PROVIDER already exist in 399.0404 for this procedure.
+ S IBLNPRV("IBCCPT")=$P($G(^VA(200,+$P(DGNOD,U,8),0)),U,1)  ; DEM;432 - Flag for call to routine EN^IBCU7B.
+ D EN^IBCU7B ; DEM;432 - Call to line level provider user input.
+ K IBLNPRV("IBCCPT")  ; DEM;432 - Kill flag after return from EN^IBCU7B.
+ S DA=IBPROCP  ; DEM;432 - DA=IBPROCP before call to EN^IBCU7B.
+ K DR
+ ;
+ I IBFT=3,'$$INPAT^IBCEF(IBIFN) D
+ . S DR=""
+ . D ATTACH^IBCU7
+ . K DR
+ ;
+ S DR=""
+ ;
+ I '$P(DGNOD,"^",8) S DR=$S(DR'="":DR_";18",1:18)  ; DEM;432 - Added $SELECT since DR can equal field or NULL.
+ I '$P(DGNOD,"^",9) S DR=$S(DR'="":DR_";6",1:6)  ; DEM;432 - Added $SELECT since DR can equal field or NULL.
+ I '$P(DGNOD,"^",5) S DR=$S(DR'="":DR_";5",1:5)  ; DEM;432 - Added $SELECT since DR can equal field or NULL.
+ S:IBFT=2 DR=$S(DR'="":DR_";8;9;17//NO",1:"8;9;17//NO")  ; DEM;432 - Added $SELECT since DR can equal field or NULL.
+ S DIC=IBDICSAV  ; IB*2.0*432 BI
+ I DR'="" S DIE=DIC D ^DIE  ; DEM;432 - Added contion of DR'="".
  S DR=$$SPCUNIT^IBCU7(IBIFN,IBPROCP) I DR'="" D ^DIE ; miles/minutes/hours
  ;
  ; DSS QuadraMed Interface: CPT Sequence and Diagnosis Linkage for Single CPT

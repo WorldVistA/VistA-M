@@ -1,6 +1,6 @@
-MAGGI13 ;WOIFO/SG - IMAGE FILE API (QUERY) ; 2/23/09 11:14am
- ;;3.0;IMAGING;**93**;Dec 02, 2009;Build 163
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+MAGGI13 ;WOIFO/SG/BNT/NST - IMAGE FILE API (QUERY) ; 21 Jul 2010 11:05 AM
+ ;;3.0;IMAGING;**93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -8,7 +8,6 @@ MAGGI13 ;WOIFO/SG - IMAGE FILE API (QUERY) ; 2/23/09 11:14am
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -127,6 +126,15 @@ PTCHK(IMGIEN,DFN) ;
  ;                    field (15) and cross-references "APDTPX" and
  ;                    "APDT").
  ;
+ ;                 G  Include Group Images in the list of images returned. 
+ ;                    If any image in a group has an image that matches the 
+ ;                    status provided in the search criteria then 
+ ;                    the group will be returned.
+ ;                    
+ ;                    If the G flag is not set then only the status of the 
+ ;                    Group entry will be checked and the group will be 
+ ;                    returned if it passes.
+ ;                    
  ;                 D  Include only deleted images (file #2005.1)
  ;
  ;                 E  Include only existing images (file #2005)
@@ -175,7 +183,7 @@ QUERY(CALLBACK,FLAGS,MAG8DATA,MAG8FROM,MAG8TO,DFN) ;
  ;--- If a patient IEN is provided, it must be valid
  I $G(DFN)>0,'$$VALDFN^MAGUTL05(DFN,.TMP)  D STORE^MAGUERR(TMP)  Q TMP
  ;--- Unknown/Unsupported flag(s)
- Q:$TR(FLAGS,"CDE")'="" $$IPVE^MAGUERR("FLAGS")
+ Q:$TR(FLAGS,"CDEG")'="" $$IPVE^MAGUERR("FLAGS")
  ;--- Missing required flag
  Q:$TR(FLAGS,"DE")=FLAGS $$ERROR^MAGUERR(-6,,"D,E")
  ;
@@ -197,8 +205,9 @@ QUERY(CALLBACK,FLAGS,MAG8DATA,MAG8FROM,MAG8TO,DFN) ;
  . S MAG8DT=MAG8TO
  . F  S MAG8DT=$$MAGORD($NA(@MAG8XREF@(MAG8DT)),-1,MAG8BOTH)  Q:(MAG8DT="")!(MAG8DT<MAG8FROM)  D  Q:MAG8RC
  . . S MAG8IEN=""
- . . F  D  Q:MAG8IEN=""  X MAG8CALL  Q:MAG8RC
+ . . F  D  Q:(MAG8IEN="")!MAG8RC  X MAG8CALL  Q:MAG8RC
  . . . S MAG8IEN=$$MAGORD($NA(@MAG8XREF@(MAG8DT,MAG8IEN)),-1,MAG8BOTH)
+ . . . I $D(ZTQUEUED),$$S^%ZTLOAD S MAG8RC="1^Task asked to stop",ZTSTOP=1
  . . . Q
  . . Q
  . Q
@@ -214,6 +223,7 @@ QUERY(CALLBACK,FLAGS,MAG8DATA,MAG8FROM,MAG8TO,DFN) ;
  . S MAG8DT=MAG8DT1
  . F  S MAG8DT=$$MAGORD($NA(@MAG8XREF@(MAG8DT)),1,MAG8BOTH)  Q:(MAG8DT="")!(MAG8DT>MAG8DT2)  D  Q:MAG8RC
  . . K @MAG8TMP
+ . . I $D(ZTQUEUED),$$S^%ZTLOAD S MAG8RC="1^Task asked to stop",ZTSTOP=1 Q
  . . ;--- Merge IEN lists from both files
  . . S MAG8PRX=""
  . . F  S MAG8PRX=$$MAGORD($NA(@MAG8XREF@(MAG8DT,MAG8PRX)),1,MAG8BOTH)  Q:MAG8PRX=""  D
@@ -223,8 +233,9 @@ QUERY(CALLBACK,FLAGS,MAG8DATA,MAG8FROM,MAG8TO,DFN) ;
  . . . . Q
  . . ;--- Browse the list and select the images
  . . S MAG8IEN=""
- . . F  D  Q:MAG8IEN'>0  X MAG8CALL  Q:MAG8RC
+ . . F  D  Q:(MAG8IEN'>0)!MAG8RC  X MAG8CALL  Q:MAG8RC
  . . . S MAG8IEN=$O(@MAG8TMP@(MAG8IEN),-1)
+ . . . I $D(ZTQUEUED),$$S^%ZTLOAD S MAG8RC="1^Task asked to stop",ZTSTOP=1
  . . . Q
  . . Q
  . ;---
@@ -236,8 +247,9 @@ QUERY(CALLBACK,FLAGS,MAG8DATA,MAG8FROM,MAG8TO,DFN) ;
  S MAG8DT=MAG8TO
  F  S MAG8DT=$$MAGORD($NA(@MAG8XREF@(MAG8DT)),-1,MAG8BOTH)  Q:(MAG8DT="")!(MAG8DT<MAG8FROM)  D  Q:MAG8RC
  . S MAG8IEN=""
- . F  D  Q:MAG8IEN=""  X MAG8CALL  Q:MAG8RC
+ . F  D  Q:(MAG8IEN="")!MAG8RC  X MAG8CALL  Q:MAG8RC
  . . S MAG8IEN=$$MAGORD($NA(@MAG8XREF@(MAG8DT,MAG8IEN)),-1,MAG8BOTH)
+ . . I $D(ZTQUEUED),$$S^%ZTLOAD S MAG8RC="1^Task asked to stop",ZTSTOP=1
  . . Q
  . Q
  ;---

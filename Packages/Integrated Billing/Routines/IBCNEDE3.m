@@ -1,6 +1,9 @@
 IBCNEDE3 ;DAOU/DJW - NONVERINS DATA EXTRACT ;18-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,271,416,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; IB*2*438 removed the ability to perform non-verified extract.
+ ; However, this code is being left as is for future changes.
  ;
  ;**Program Description**
  ;  This program finds veterans who have been seen within a
@@ -170,9 +173,6 @@ PROCESS ;  Get insurance for each patient
  .. ;
  .. ; Update service dates for inquiries to be transmitted
  .. D TQUPDSV^IBCNEUT5(DFN,PAYER,SRVICEDT)
- .. ;
- .. ; Check for outstanding/current entries in File 365.1
- .. I '$$ADDTQ^IBCNEUT5(DFN,PAYER,SRVICEDT,YDAYS) Q
  .. K SIDARRAY
  .. S SIDDATA=$$SIDCHK^IBCNEDE5(PAYER,DFN,,.SIDARRAY,FRESHDT)
  .. S SIDACT=$P(SIDDATA,U),SIDCNT=$P(SIDDATA,U,2)

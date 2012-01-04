@@ -1,5 +1,5 @@
 IBCSC6 ;ALB/MJB - MCCR SCREEN 6 (INPT. BILLING INFO) ;27 MAY 88 10:19
- ;;2.0;INTEGRATED BILLING;**52,80,109,106,51,137,343,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**52,80,109,106,51,137,343,400,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRSC6
@@ -14,14 +14,15 @@ EN I $P(^DGCR(399,IBIFN,0),"^",5)>2 G EN^IBCSC7
  ;
 1 S Z=1,IBW=1 X IBWW W " Bill Type   : ",$S('$D(IBBT1):IBU,IBBT1="":IBU,1:IBBT1)
  W $J("",14),"Loc. of Care: ",$E($G(IBBTP1),1,30) K IBBTP1
- W !?4,"Covered Days: ",$S(IB("U2")="":IBU,$P(IB("U2"),U,2)'="":$P(IB("U2"),U,2),1:IBU)
- W ?35,"Bill Classif: ",$E($G(IBBTP2),1,30) K IBBTP2
- W !?4,"Non-Cov Days: ",$S(IB("U2")="":IBU,$P(IB("U2"),U,3)'="":$P(IB("U2"),U,3),1:IBU)
- W ?38,"Timeframe: ",$S($D(IBBTP3):$E(IBBTP3,1,30),1:"") K IBBTP3
+ ;W !?4,"Covered Days: ",$S(IB("U2")="":IBU,$P(IB("U2"),U,2)'="":$P(IB("U2"),U,2),1:IBU)
  W !?4,"Charge Type : ",$S($P(IB(0),U,27)=1:"INSTITUTIONAL",$P(IB(0),U,27)=2:"PROFESSIONAL",1:IBU)
- W ?39,"Division: ",$E($P($G(^DG(40.8,+$P(IB(0),U,22),0)),U,1),1,30)
+ ; IB*2.0*432 - remove Covered, Non-covered and co-insurance days
+ ;W !?4,"Non-Cov Days: ",$S(IB("U2")="":IBU,$P(IB("U2"),U,3)'="":$P(IB("U2"),U,3),1:IBU)
+ W ?38,"Timeframe: ",$S($D(IBBTP3):$E(IBBTP3,1,30),1:"") K IBBTP3
  W !?4,"Form Type   : ",$P($G(^IBE(353,+$P(IB(0),U,19),0)),U,1)
- W ?34,"Co-Insur Days: ",$S($P(IB("U2"),U,7)="":$S($$MCRONBIL^IBEFUNC(IBIFN):IBU,1:IBUN),1:$P(IB("U2"),U,7))
+ W ?39,"Division: ",$E($P($G(^DG(40.8,+$P(IB(0),U,22),0)),U,1),1,30)
+ W !,?4,"Bill Classif: ",$E($G(IBBTP2),1,30) K IBBTP2
+ ;W ?34,"Co-Insur Days: ",$S($P(IB("U2"),U,7)="":$S($$MCRONBIL^IBEFUNC(IBIFN):IBU,1:IBUN),1:$P(IB("U2"),U,7))
  ;
 ROI S Z=2,IBW=1 X IBWW
  W " Sensitive?  : ",$S(IB("U")="":IBU,$P(IB("U"),U,5)="":IBU,$P(IB("U"),U,5)=1:"YES",1:"NO")

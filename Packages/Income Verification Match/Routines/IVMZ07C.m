@@ -1,5 +1,5 @@
-IVMZ07C ;BAJ/PHH - HL7 Z07 CONSISTENCY CHECKER -- DRIVER ROUTINE ; 1/17/2008
- ;;2.0;INCOME VERIFICATION MATCH;**105,128,134**;JUL 8,1996;Build 1
+IVMZ07C ;BAJ/PHH/LBD - HL7 Z07 CONSISTENCY CHECKER -- DRIVER ROUTINE ; 7/14/10 11:54am
+ ;;2.0;INCOME VERIFICATION MATCH;**105,128,134,147**;JUL 8,1996;Build 4
  ;
  ; 
  ; This routine calls various checking subroutines and manages arrays and data filing
@@ -34,6 +34,9 @@ EN(DFN) ; entry point.  Patient DFN is sent from calling routine.
  ; Set flag
  S PASS=0
  I '$D(^DPT(DFN)) Q PASS
+ ; If DFN is for a merged patient, quit (IVM*2*147)
+ I $D(^DPT(DFN,-9)) Q PASS
+ ;
  S PASS=1
  ;
  ; Load Patient and Spouse/dependent data

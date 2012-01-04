@@ -1,5 +1,5 @@
-MAGJUTL5 ;WOIFO/JHC - VistARad RPCs ; 15-DEC-2010 6:11 PM
- ;;3.0;IMAGING;**65,76,101,90,115**;Mar 19, 2002;Build 1912;Dec 17, 2010
+MAGJUTL5 ;WOIFO/JHC - VistARad RPCs ; 21 Apr 2011  5:35 PM
+ ;;3.0;IMAGING;**65,76,101,90,115,104**;Mar 19, 2002;Build 2225;Jul 12, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -17,7 +17,7 @@ MAGJUTL5 ;WOIFO/JHC - VistARad RPCs ; 15-DEC-2010 6:11 PM
  ;;
  Q
  ; adapted from MAGGTU4
-GETVER(SVRVER,SVRTVER,ALLOWCL) ;
+GETVER(SVRVER,SVRTVER,ALLOWCL,VIXVER) ;
  ; The Server Version SVRVER is hardcoded to match the Client
  ; so this Routine must be edited/distributed with a new Client
  ; released Client will have the T version that the server expects
@@ -26,12 +26,24 @@ GETVER(SVRVER,SVRTVER,ALLOWCL) ;
  ;
  S SVRVER="3.0.115",SVRTVER=4  ; <*> Edit this line for each patch/T-version
  ;
- S ALLOWCL="|3.0.101|3.0.90|"  ; back-compatible with P101 & P90 client
+ S ALLOWCL="|3.0.90|"  ; back-compatible with P90 client
+ ;
+ S VIXVER=""
+ ; VIX may present versions different from vrad Client/Server versions; this would
+ ; happen if M-only changes are made to vrad Server code as part of a VIX patch
+ ; to support updated VIX-related functionality. VIXVERS contains the verson numbers
+ ; that are to be supported in this fashion; related M changes need to be back-compatible
+ ; with prior vrad versions' behavior in the interface
+ N T,VIXVERS
+ S VIXVERS="|3.0.104|" ; keep compatible with P115 & P90  <*> edit as needed for patches
+ S T=$G(MAGJOB("VIX"))
+ I T,VIXVERS[("|"_T_"|") S ALLOWCL=ALLOWCL_T_"|",VIXVER=T
  Q
  ;
 CHKVER(MAGRY,CLVER,PLC,SVERSION) ;
  ; Input CLVER is the version of the Client
- ;    format: Major.Minor.Patch.Build# (Build #=T-ver) eg 3.0.18.132
+ ;    format: Major.Minor.Patch.Build# [|VIX] -- eg 3.0.115.4|VIX
+ ;       Build # = T-version; VIX string only appears if a VIX session
  ; 3 possible return codes in MAGRY:
  ;   2^n~msg : Client displays a message and continues
  ;   1^1~msg : Client continues without displaying a message
@@ -39,7 +51,7 @@ CHKVER(MAGRY,CLVER,PLC,SVERSION) ;
  ; PLC returns 2006.1 pointer
  ;
  S CLVER=$G(CLVER),PLC="",MAGRY=""
- N SV,ST,CV,CT,CP,ALLOWV,TESTFLAG,SVSTAT
+ N SV,ST,CV,CT,CP,ALLOWV,TESTFLAG,SVSTAT,VIXVER
  ; SVERSION = Full Server Version -> (3.0.18.132 or 3.0.18); test has 4, release has 3 parts
  ; SV = Server Version -> (3.0.18); only 1st 3 parts
  ; ST = Server T Version -> defined to always match client part-4
@@ -48,17 +60,14 @@ CHKVER(MAGRY,CLVER,PLC,SVERSION) ;
  ; CP = Client Patch alone
  ; ALLOWV = Hard coded string of allowed clients for this KIDS.
  ; TESTFLAG = 1/0  -- 1=Test vs of server code; 0=Release vs
- ;Below is placeholder for future enhancement:
- ;I $P(CLVER,"|",2)="RIV" D  Q
- ;. S MAGJOB("RIV")=1
- ;. ; Allowing |RIV clients always
- ;. S MAGRY="1^1~Allowing Remote Image Connection"
+ ;   get VIX version if a VIX session
+ I $P(CLVER,"|",2)["VIX" S MAGJOB("VIX")=$P(CLVER,"|")  ; VIX facade version
  ;
  I $G(DUZ(2)) S PLC=$$PLACE^MAGBAPI(DUZ(2))
  ;  Quit if we don't have a valid DUZ(2) or valid PLACE: ^MAG(2006.1,PLC)
  I 'PLC S MAGRY="0^4~Error verifying Imaging Site (Place) -- Contact Imaging support." Q
  ;
- D GETVER(.SV,.ST,.ALLOWV)
+ D GETVER(.SV,.ST,.ALLOWV,.VIXVER)
  S CLVER=$P(CLVER,"|")
  S CV=$P(CLVER,".",1,3),CT=+$P(CLVER,".",4),CP=+$P(CLVER,".",3)
  ;
@@ -71,8 +80,9 @@ CHKVER(MAGRY,CLVER,PLC,SVERSION) ;
  I (CV'=SV) D  Q
  . I '(ALLOWV[("|"_CV_"|")) D  Q
  . . S MAGRY="0^4~VistARad Workstation software version "_CLVER_" is not compatible with the VistA server version "_SVERSION_".  Contact Imaging support. (CNA)"
- . ; Warn the Client, allow to continue
+ . ; Warn the Client (unless VIX), allow to continue
  . I TESTFLAG S MAGRY="2^3~VistARad Workstation software version "_CLVER_" is running with VistA server TEST Version "_SVERSION_" --  VistARad will Continue, but contact Imaging Support if problems occur. (Pdif)"
+ . E  I VIXVER]"" S MAGRY="1^1~VIX software vs. "_CLVER_" is running with VistA server vs. "_SVERSION_". (VIXdif)"
  . E  S MAGRY="2^3~VistARad Workstation software version "_CLVER_" is running with VistA server Version "_SVERSION_" --  VistARad will Continue, but contact Imaging Support to install Released Version. (RPdif)"
  . Q
  ; Versions are the Same: If T versions are not, warn the Client if needed.

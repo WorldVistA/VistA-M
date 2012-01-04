@@ -1,5 +1,5 @@
-RCDPEWL5 ;ALB/TMK - ELECTRONIC EOB WORKLIST ACTIONS ;24-FEB-03
- ;;4.5;Accounts Receivable;**173,208**;Mar 20, 1995
+RCDPEWL5 ;ALB/TMK/PJH - ELECTRONIC EOB WORKLIST ACTIONS ; 7/30/10 6:52pm
+ ;;4.5;Accounts Receivable;**173,208,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -70,8 +70,8 @@ SUSP(RCERA,LM) ; Function to send receipt to suspense for ERA
  ; RCERA = ien of entry in file 344.4
  ; LM = flag to indicate it was called from list manager protocol
  ;    =  1 if true, 0 if false
- N DIR,X,Y,RC0,RCCOM,RCER,RCPAYTY,RECTDA,RCTRANDA,DIE,DA,DR,Z,DTOUT,DUOUT
- S RC0=$G(^RCY(344.4,RCERA,0))
+ N DIR,X,Y,RC0,RCCOM,RCER,RCPAYTY,RECTDA,RCTRANDA,DIE,DA,DR,Z,DTOUT,DUOUT,RC5
+ S RC0=$G(^RCY(344.4,RCERA,0)),RC5=$G(^RCY(344.4,RCERA,5))
  I $G(LM) D FULL^VALM1
  I $$HACERA^RCDPEU(RCERA) D  G SUSPQ
  . S DIR(0)="EA",DIR("A")="THIS IS NOT A VALID ACTION FOR AN ERA FROM HAC" W ! D ^DIR K DIR
@@ -87,13 +87,13 @@ SUSP(RCERA,LM) ; Function to send receipt to suspense for ERA
  S DIR("A",1)="ENTER A 1-60 CHARACTER COMMENT TO BE PLACED ON THE RECEIPT: ",DIR("A")=">: ",DIR(0)="FA^1:60",DIR("B")="REF ERA #:"_RCERA_"  FROM "_$E($P(RC0,U,6),1,20) W ! D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT) D NOACT G SUSPQ
  S RCCOM=Y
- S RCPAYTY=$S($P(RC0,U,13)="":14,1:4)
+ S RCPAYTY=$S($P(RC5,U,2)="":14,1:4)
  S RECTDA=$$BLDRCPT^RCDPUREC(DT,"",+$O(^RC(341.1,"AC",+RCPAYTY,0)))
  I 'RECTDA D  G SUSPQ
  . S DIR(0)="EA",DIR("A",1)="A PROBLEM WAS ENCOUNTERED ADDING THE RECEIPT",DIR("A")="NO ACTION TAKEN - RETURN TO CONTINUE: " W ! D ^DIR K DIR
  ;
  S RCTRANDA=$$ADDTRAN^RCDPURET(RECTDA)
- S DR=".04////"_(+$P(RC0,U,5))_$S($P(RC0,U,13)'="":";.13////"_$P(RC0,U,13),1:"")_$S(RCCOM'="":";1.02////"_RCCOM,1:"")
+ S DR=".04////"_(+$P(RC0,U,5))_$S($P(RC5,U,2)'="":";.13////"_$P(RC5,U,2),1:"")_$S(RCCOM'="":";1.02////"_RCCOM,1:"")
  S DA(1)=RECTDA,DA=RCTRANDA,DIE="^RCY(344,"_DA(1)_",1,"
  D ^DIE
  ;

@@ -1,5 +1,5 @@
 SROACR1 ;BIR/MAM - OPERATIVE DATA, PAGE 1 ;06/28/06
- ;;3.0; Surgery ;**38,71,93,95,99,125,153,174**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,71,93,95,99,125,153,174,175**;24 Jun 93;Build 6
  ;
  S SRA(206)=$G(^SRF(SRTN,206)),SRA(209)=$G(^SRF(SRTN,209))
  S SRA(207)=$G(^SRF(SRTN,207)),SRA(207.1)=$G(^SRF(SRTN,207.1)) I $P(SRA(207),"^",27)="" K DA,DIE,DR S DA=SRTN,DIE=130,DR="469////5" D ^DIE K DA,DIE,DR S SRA(207)=$G(^SRF(SRTN,207))
@@ -7,7 +7,7 @@ SROACR1 ;BIR/MAM - OPERATIVE DATA, PAGE 1 ;06/28/06
  S SRAO(3)=$P(SRA(207),"^",24)_"^464"
  S SRAO(4)=$P(SRA(207),"^",25)_"^465",SRAO(5)=$P(SRA(207),"^",20)_"^416"
  S NYUK=$P(SRA(207),"^",7) D YN S SRAO(6)=SHEMP_"^371"
- S NYUK=$P(SRA(209),"^",9) D YN S SRAO(7)=SHEMP_"^481"
+ S NYUK=$P(SRA(209),"^",9) S SHEMP=$S(NYUK="N":"NONE",NYUK="B":"BRIDGE TO TRANSPLANT",NYUK="D":"DESTINATION THERAPY",1:"") S SRAO(7)=SHEMP_"^481"
  S NYUK=$P(SRA(209),"^",11) D YN S SRAO(8)=SHEMP_"^483"
  S NYUK=$P(SRA(207),"^",3) D VL S SRAO(9)=SHEMP_"^367"
  S NYUK=$P(SRA(207),"^",4) D VL S SRAO(10)=SHEMP_"^368"
@@ -30,12 +30,12 @@ DISP S SRPAGE="PAGE: 1 OF 2" D HDR^SROAUTL
  W !,"CABG distal anastomoses:",?40,"13. Maze procedure:",?61,$J($P(SRAO(13),"^"),17)
  W !," 1. Number with vein:",?33,$P(SRAO(1),"^"),?40,"14. ASD repair:",?70,$P(SRAO(14),"^")
  W !," 2. Number with IMA:",?33,$P(SRAO(2),"^"),?40,"15. VSD repair:",?70,$P(SRAO(15),"^")
- W !," 3. Number with Radial Artery:",?33,$P(SRAO(3),"^"),?40,"16. Myectomy for IHSS:",?70,$P(SRAO(16),"^")
+ W !," 3. Number with Radial Artery:",?33,$P(SRAO(3),"^"),?40,"16. Myectomy:",?70,$P(SRAO(16),"^")
  W !," 4. Number with Other Artery:",?33,$P(SRAO(4),"^"),?40,"17. Myxoma resection:",?70,$P(SRAO(17),"^")
  W !," 5. Number with Other Conduit:",?33,$P(SRAO(5),"^"),?40,"18. Other tumor resection:",?70,$P(SRAO(18),"^")
  W !,?40,"19. Cardiac transplant:",?70,$P(SRAO(19),"^")
  W !," 6. LV Aneurysmectomy:",?33,$P(SRAO(6),"^"),?40,"20. Great Vessel Repair:",?70,$P(SRAO(20),"^")
- W !," 7. Bridge to transplant/Device:",?33,$P(SRAO(7),"^"),?40,"21. Endovascular Repair:",?70,$P(SRAO(21),"^")
+ W !," 7. Bridge to transplant/Device:",?33,$E($P(SRAO(7),"^"),1,5),?40,"21. Endovascular Repair:",?70,$P(SRAO(21),"^")
  W !," 8. TMR:",?33,$P(SRAO(8),"^"),?40,"22. Other cardiac procedures:" S X=$P(SRAO(22),"^") W ?70,$S(X="N":"NO",X="Y":"YES",1:"")
  W !!," 9. Aortic Valve Procedure:",?33,$P(SRAO(9),"^")
  W !,"10. Mitral Valve Procedure:",?33,$P(SRAO(10),"^")

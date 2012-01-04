@@ -1,5 +1,5 @@
-RCDPESR0 ;ALB/TMK - Server auto-update utilities - EDI Lockbox ;06/03/02
- ;;4.5;Accounts Receivable;**173,208**;Mar 20, 1995
+RCDPESR0 ;ALB/TMK/DWA - Server auto-update utilities - EDI Lockbox ; 9/30/10 6:05pm
+ ;;4.5;Accounts Receivable;**173,208,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ; IA for read access to ^IBM(361.1 = 4051
  ;
@@ -32,16 +32,21 @@ DISP(RCMIN,RCMOUT,RCFMT,RCFULL,RCW,RC3444) ; Format the 835 return msg
  N Z,Z0,Z1,RC,RCCT,RCREF,RCDATA,RCQ,R
  S RCCT=0,RCREF="" K @RCMOUT
  S Z=0 F  S Z=$O(@RCMIN@(Z)) Q:'Z  S Z0=$S($G(@RCMIN@(Z))'="":@RCMIN@(Z),1:$G(@RCMIN@(Z,0))) I Z0'="" S RCQ=0 D
+ . I '$G(RCV5),+$P(Z0,U)=835,+$P(Z0,U,16)>0 S RCV5=1
  . F Z1=1:1:$L(Z0,U) I $P(Z0,U,Z1)'="" D  Q:RCQ
  .. S RCDATA=$P(Z0,U,Z1)
  .. I Z1=1 D  Q:RCQ
  ... S RC=""
- ... I RCDATA'="",RCDATA?.N.A D
+ ... I RCDATA'="",RCDATA?.N.A,$G(RCV5) D
+ .... S RCREF=$S($E(RCDATA,1,3)'="835":$E(RCDATA,1,8),1:"835"),R=RCREF_"^RCDPES10",RC=$P($T(@R),";;",2)
+ ... I RCDATA'="",RCDATA?.N.A,'$G(RCV5) D
  .... S RCREF=$S($E(RCDATA,1,3)'="835":$E(RCDATA,1,8),1:"835"),R=RCREF_"^RCDPESR9",RC=$P($T(@R),";;",2)
  ... I RC="" S RCCT=RCCT+1,@RCMOUT@(RCCT)="<<<INVALID LINE TYPE - RAW DATA IS:",RCCT=RCCT+1,@RCMOUT@(RCCT)=Z0,RCDATA=""
  .. Q:RCDATA=""!(RCREF="")!$S(RCREF="835":$G(RC3444),1:0)
  .. S RC=""
- .. I RCREF?.A.N D
+ .. I RCREF?.A.N,$G(RCV5) D
+ ... S R=RCREF_"+"_Z1_"^RCDPES10",RC=$P($T(@R),";;",2)
+ .. I RCREF?.A.N,'$G(RCV5) D
  ... S R=RCREF_"+"_Z1_"^RCDPESR9",RC=$P($T(@R),";;",2)
  .. I RC=""!($P(RC,U)'=RCREF) S:$S(RCDATA'="":1,1:'$P(RC,U,2)) RCCT=RCCT+1,@RCMOUT@(RCCT)="NO DATA DEFINITION PC "_Z1_": "_RCDATA Q
  .. I RC'="" D
@@ -89,7 +94,7 @@ FMTDSP(RCMUN,RCMFO,RCW,RCNOH05) ; Format the display data in array named in
  .. I $L(RCLINE)>RCMID S RCCT=RCCT+1,@RCMFO@(RCCT)=RCLINE,RCLINE=""
  . ;
  . I (RCMID+$L(RCD)+1)>RCW D  Q  ; data too long for right side of line
- .. S RCCT=RCCT+1,@RCMFO@(RCCT)=RCLINE,RCLINE=""
+ .. S RCCT=RCCT+1,@RCMFO@(RCCT)=RCLINE,RCCT=RCCT+1,@RCMFO@(RCCT)=RCD,RCLINE=""
  . S RCLINE=$E(RCLINE_$J("",RCMID),1,RCMID)_"  "_RCD,RCCT=RCCT+1,@RCMFO@(RCCT)=RCLINE,RCLINE=""
  I $L(RCLINE) S RCCT=RCCT+1,@RCMFO@(RCCT)=RCLINE
  Q

@@ -1,5 +1,5 @@
-RCDPEWL8 ;ALB/TMK - EDI LOCKBOX WORKLIST ERA LEVEL ;12-FEB-04
- ;;4.5;Accounts Receivable;**208**;Mar 20, 1995
+RCDPEWL8 ;ALB/TMK/PJH - EDI LOCKBOX WORKLIST ERA LEVEL ; 8/24/10 11:40am
+ ;;4.5;Accounts Receivable;**208,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -152,7 +152,8 @@ HASADJ(RCSCR,RCOK) ; Function=1 if WL entry has any adj not yet distributed
  N Z,Z0,RCSTOP
  S RCSTOP=0,RCOK=0
  S Z=0 F  S Z=$O(^RCY(344.49,RCSCR,1,Z)) Q:'Z  S Z0=$G(^(Z,0)) D  Q:RCSTOP
- . I $P(Z0,U,6)>0!$O(^RCY(344.49,RCSCR,1,Z,1,0)) S RCOK=1 Q
+ . ;HIPAA 5010 - negative value now takes precedence over adjustment
+ . I $P(Z0,U,6)>0!$O(^RCY(344.49,RCSCR,1,Z,1,0)) S RCOK=1
  . I $P(Z0,U,6)<0 S RCSTOP=1
  Q RCSTOP
  ;

@@ -1,5 +1,5 @@
 IBCCC1 ;ALB/AAS - CANCEL AND CLONE A BILL - CONTINUED ;25-JAN-90
- ;;2.0;INTEGRATED BILLING;**80,109,106,51,320,358,433**;21-MAR-94;Build 36
+ ;;2.0;INTEGRATED BILLING;**80,109,106,51,320,358,433,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRCC1
@@ -18,10 +18,10 @@ STEP4 S X=$P($T(WHERE),";;",2) F I=0:0 S I=$O(IBIDS(I)) Q:'I  S X1=$P($E(X,$F(X,
  D  ; Protect variables;index entry;replace FT if copy/clone and it chngs
  . N IBHOLD,DIE,DR,DA,X,Y
  . S IBHOLD("FT")=$P($G(^DGCR(399,IBIFN,0)),U,19)
- . S $P(^DGCR(399,0),"^",3)=IBIFN,$P(^(0),"^",4)=$P(^(0),"^",4)+1 W !,"Cross-referencing new billing entry..." D INDEX^IBCCC2
+ . S $P(^DGCR(399,0),"^",3)=IBIFN,$P(^(0),"^",4)=$P(^(0),"^",4)+1 W:$G(IBSILENT)="" !,"Cross-referencing new billing entry..." D INDEX^IBCCC2
  .; I $G(IBCNCOPY),IBHOLD("FT"),IBHOLD("FT")'=$P($G(^DGCR(399,IBIFN,0)),U,19) S DA=IBIFN,DIE="^DGCR(399,",DR=".19////"_IBHOLD("FT") D ^DIE
  . I $G(IBCNCOPY)!$G(IBCNCRD),IBHOLD("FT"),IBHOLD("FT")'=$P($G(^DGCR(399,IBIFN,0)),U,19) S DA=IBIFN,DIE="^DGCR(399,",DR=".19////"_IBHOLD("FT") D ^DIE
- S IBYN=1 W !!,*7,"Billing Record #",$P(^DGCR(399,+IBIFN,0),"^",1)," established for '",VADM(1),"'..."
+ S IBYN=1 W:$G(IBSILENT)="" !!,*7,"Billing Record #",$P(^DGCR(399,+IBIFN,0),"^",1)," established for '",VADM(1),"'..."
  S:$G(IBCE("EDI")) IBCE("EDI","NEW")=IBIFN
  I $G(IBCE("EDI"))!($G(IBCTCOPY)=1) S IBHV("IBIFN1")=IBIFN ; New bill #
  S IBBCT=IBIFN   ;bill the old claim was cloned TO.
@@ -47,6 +47,6 @@ STEP45X G ^IBCCC2 ;go to step 5
  ;
 XREF F IBI1=0:0 S IBI1=$O(^DD(399,IBI,1,IBI1)) Q:'IBI1  I $D(^DD(399,IBI,1,IBI1,1)) S DA=IBIFN,X=IBIDS(IBI) I X]"" X ^DD(399,IBI,1,IBI1,1)
  Q
- ;
+ ; NOTE:  any new or changed data nodes MAY need to be updated in IBNCPDP5
 WHERE ;;.01^0^1;.02^0^2;.03^0^3;.04^0^4;.05^0^5;.06^0^6;.07^0^7;.08^0^8;.09^0^9;.11^0^11;.12^0^12;.17^0^17;.18^0^18;.19^0^19;.15^0^15;.16^0^16;.21^0^21;.22^0^22;.23^0^23;.24^0^24;.25^0^25;.26^0^26;.27^0^27;151^U^1;152^U^2;155^U^5;159.5^U^20;
  ;

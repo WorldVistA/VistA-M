@@ -1,5 +1,5 @@
-SROATM2 ;BIR/MAM - NON CARDIAC TRANSMISSION (CONT) ;05/11/10
- ;;3.0; Surgery ;**38,39,45,47,57,60,62,68,81,88,97,129,125,142,153,160,174**;24 Jun 93;Build 8
+SROATM2 ;BIR/MAM - NON CARDIAC TRANSMISSION (CONT) ;01/31/11
+ ;;3.0;Surgery;**38,39,45,47,57,60,62,68,81,88,97,129,125,142,153,160,174,175**;24 Jun 93;Build 6
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -11,7 +11,7 @@ SROATM2 ;BIR/MAM - NON CARDIAC TRANSMISSION (CONT) ;05/11/10
  S SRICD=$P($G(^SRO(136,SRTN,0)),"^",3) S:SRICD SRICD=$P(^ICD9(SRICD,0),"^") S SHEMP=SHEMP_$J(SRICD,6)_$J($P(SRA(205),"^"),4)_"        "
  S NYUK="N",SRET=0 F  S SRET=$O(^SRF(SRTN,29,SRET)) Q:'SRET  S CASE=$P(^SRF(SRTN,29,SRET,0),"^") I $P($G(^SRF(CASE,.2)),"^",10) S NYUK="Y" Q
  S SHEMP=SHEMP_NYUK_$J($P($G(^SRF(SRTN,.4)),"^",7),1)_$J($E($P($G(^SRF(SRTN,0)),"^",12)),1)_$J($P($G(^SRF(SRTN,0)),"^",3),1)
- S (SRADMIT,SRADMT)=0 I $P($G(^SRF(SRTN,0)),"^",12)="O" D ADM^SROQ0A S SRADMIT=$S(SRADMT=0:"0",1:"1")
+ S (SRADMIT,SRADMT)=0 I '$P(SRA(208),"^",14) D ADM^SROQ0A S SRADMIT=$S(SRADMT=0:"0",1:"1")
  S SHEMP=SHEMP_" "_SRADMIT D OCC^SROATMNO S SHEMP=SHEMP_SRTMP_$J(SROCTYPE,1)_$J(SROC(35),2)_$J(SROC(36),2)
  S NYUK=$E($P(VADM(3),"^"),1,7),SHEMP=SHEMP_$J(NYUK,7) ; date of birth
  S SHEMP=SHEMP_$J(SROC(38),2)_$J(SROC(39),2) K SROC,SROCTYPE,SRTMP

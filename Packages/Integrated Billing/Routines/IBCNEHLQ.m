@@ -1,5 +1,5 @@
 IBCNEHLQ ;DAOU/ALA - HL7 RQI Message ;17-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,300,361,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,271,300,361,416,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
@@ -19,9 +19,13 @@ EN ;  Entry Point
  ;    FRDT = Freshness Date
  ;
 PID ; Patient Identification Segment
- N VAFSTR,ICN,NM,I
+ N VAFSTR,ICN,NM,I,PID11,EDQ
  S VAFSTR=",1,7,8,11,",DFN=+$G(DFN)
  S PID=$$EN^VAFHLPID(DFN,VAFSTR,1)
+ S PID11=$P(PID,HLFS,12)
+ I $P(PID11,HLECH,2)="""""" D
+ . S $P(PID11,HLECH,2)=""
+ . S $P(PID,HLFS,12)=PID11
  ; Encode special characters into Name and address pieces
  ; **NOTE: If $$EN^VAFHLPID should, in the future, return more than 11 pieces than the lines below may
  ;         need to be modified as they currently expect 11 pieces to be returned.
@@ -87,8 +91,8 @@ GT1 ;  Guarantor Segment
  Q
  ;
 IN1 ;  Insurance Segment
- NEW EFFDT,EXPDT,PREL,ADMN,ADMDT,IENS
- S IN1="",SRVDT=$$HLDATE^HLFNC(SRVDT)
+ N EFFDT,EXPDT,PREL,ADMN,ADMDT,IENS
+ S IN1=""
  ;
  ;  If the data was extracted from Buffer get specifics from Buffer file
  I EXT=1 D
@@ -127,16 +131,36 @@ IN1 ;  Insurance Segment
  ;
  I $G(QUERY)="I",$P(IN1,HLFS,17)'=18 S $P(IN1,HLFS,17)=18
  I $P(IN1,HLFS,17)="" S $P(IN1,HLFS,17)=18
- ;
- ;  Set the admission date if patient currently admitted
- S ADMN=$P($G(^DPT(DFN,.105)),U,1) I ADMN'="" D
- . S ADMDT=$P(^DGPM(ADMN,0),U,1),ADMDT=$$HLDATE^HLFNC(ADMDT)
- . S $P(IN1,HLFS,24)=ADMDT
- ;
- ;  Set the service date
- S $P(IN1,HLFS,26)=SRVDT
  S $P(IN1,HLFS,1)=1
  S IN1="IN1"_HLFS_IN1
+ Q
+ ;
+NTE ;  NTE Segment
+ ; New Variables
+ N IBRES,K
+ ; Initialize NTE segment string
+ S NTE="*"
+ ; Repeating Element Separator is tilde (~)
+ S IBRES=$E(HL("ECH"),2)
+ ; If data extracted from Buffer 
+ I EXT=1 F K=1:1:20 D STC(K,$G(^IBA(355.33,BUFF,80)),IBRES,.NTE)
+ ; If data not extracted from Buffer
+ I EXT'=1 D
+ .F K=1:1:11 D STC(K,$G(^IBE(350.9,1,60)),IBRES,.NTE)
+ .F K=12:1:20 D STC(K,$G(^IBE(350.9,1,61)),IBRES,.NTE)
+ .Q
+ S NTE="NTE"_HLFS_HLFS_HLFS_NTE
+ Q
+ ;
+STC(K,NTEREC,IBRES,NTE) ; add service type code to the string
+ ; K - STC number
+ ; NTEREC - string of NTC IENs
+ ; IBRES - repeat separator (normally "~")
+ ; NTE - result string, passed by reference
+ ;
+ N STCIEN
+ S STCIEN=$P(NTEREC,U,K) I STCIEN="" Q
+ S $P(NTE,IBRES,K)=$P($G(^IBE(365.013,STCIEN,0)),U,1)
  Q
  ;
 CHK ;  Check for spouse or other information in the Patient Relation File

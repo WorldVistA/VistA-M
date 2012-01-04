@@ -1,6 +1,6 @@
-PRCE58P3 ;WISC/SAW,LDB/BGJ-CONTROL POINT ACTIVITY 1358 PRINOUT CON'T ; 03/16/94  10:44 AM
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCE58P3 ;WISC/SAW,LDB/BGJ-CONTROL POINT ACTIVITY 1358 PRINOUT CON'T ;6/17/11  17:53
+V ;;5.1;IFCAP;**158**;Oct 20, 2000;Build 1
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  S Z=$S($D(PRCSPO):PRC("SITE")_"-"_PRCSPO,1:0) G OB:$D(PRCSOB)
  I 'Z!('$D(^PRC(424,"AD",Z))) W !,"Daily Record entries have not yet been entered for this request.",!,"The total committed cost of this request is $" W:$D(TRNODE(4)) $J($P(TRNODE(4),U),0,2) D UL^PRCE58P2 G P
 PO D HDR1 S PRCSX=0 D OB S (CET,ET,AT,UT)="" D PO1
@@ -30,7 +30,7 @@ PO2 W !,Y,?7,PRCSXX,?12,$P(Z1,U,10),?29,"$"
  . W $J(E,9,2),?40,"$",$J(A,9,2),?51,"$",$J(CET,9,2),?62,"$",$J($P(Z1,U,4),9,2) I $D(PRCSA),$G(^PRC(424,PRCSX,1))'="" W !,?12,^(1)
  I $D(^PRC(424.1,"C",PRCSX)),$D(PRCSA1),PRCSA1=1 S I=0 F  S I=$O(^PRC(424.1,"C",PRCSX,I)) Q:'I  I $D(^PRC(424.1,I,0)),$P(^(0),U,11)="P" D
  . I IOSL-$Y<6 D NEWP^PRCE58P2,HDR
- . W ! S Y=$P(^(0),U,4) D T W Y,?7,$P($P(^(0),U),"-",3,4) W !,?12,$P(^(0),U,8),?29,"$",$J(($P(^(0),U,3)/-1),9,2)
+ . W ! S Y=$P(^PRC(424.1,I,0),U,4) D T W Y,?7,$P($P(^(0),U),"-",3,4) W !,?12,$P(^(0),U,8),?29,"$",$J(($P(^(0),U,3)/-1),9,2)
  . I IOSL-$Y<6 D NEWP^PRCE58P2,HDR
  . I $D(PRCSA2),PRCSA2=1,$D(^PRC(424.1,I,1)) W !,?12,^(1)
  W ! Q

@@ -1,0 +1,17 @@
+ROUTINE ;
+ ;
+S ;
+ Q
+ ;
+DECRYP(A) ;
+ENCRYP(A) ;
+SENDKEYS(A) ;
+BLDDRUM ;
+HASH ;
+EN ;
+DE ;
+EN1 ;
+EN2 ;
+EN3 ;
+ Q
+ ;

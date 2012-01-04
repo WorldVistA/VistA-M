@@ -1,5 +1,5 @@
 IBCRBG2 ;ALB/ARH - RATES: BILL SOURCE EVENTS (INPT CONT) ; 01-OCT-03
- ;;2.0;INTEGRATED BILLING;**245,175,332,364,399,422**;21-MAR-94;Build 2
+ ;;2.0;INTEGRATED BILLING;**245,175,332,364,399,422,418**;21-MAR-94;Build 16
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 INPTRSET(IBIFN,CS) ; reset Inpatient data due to bedsection Tort 03 and Other Type of Care RC v2.0
@@ -55,12 +55,16 @@ BSUPD(SPCLTY,DATE,RC) ; return updated bedsection name for specialty passed in (
  ; beginning with RC v2.0 some specialties were moved to a new ICU bedsection, only applies to RC charges
  N IBX,IBY,IBZ S (IBZ,IBX)="",SPCLTY=","_+$G(SPCLTY)_",",DATE=$S(+$G(DATE):(DATE\1),1:DT)
  I DATE'<$$TORT03,",25,26,27,28,29,38,39,"[SPCLTY S IBX="PRRTP"
+ I DATE'<$$TORT11,",112,"[SPCLTY S IBX="POLYTRAUMA INPATIENT"
  I +$G(RC),DATE'<$$RC20,",12,13,16,17,63,"[SPCLTY S IBX="ICU"
  I IBX'="" S IBY=$O(^DGCR(399.1,"B",IBX,0)) I +IBY S IBZ=IBY_U_IBX
  Q IBZ
  ;
 TORT03() ; return effective date of TORT 2003, date when PRRTP bedsection specialties changed
  Q 3040107
+ ;
+TORT11() ; return effective date when POLYTRAUMA bedsection specialty changed 
+ Q 3110711
  ;
 RC20() ; return effective date of RC v2.0, date when ICU bedsection specialties changed
  Q 3031219

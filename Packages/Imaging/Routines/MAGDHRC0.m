@@ -1,5 +1,5 @@
-MAGDHRC0 ;WOIFO/PMK - Read HL7 and generate DICOM ; 04/23/2007 14:45
- ;;3.0;IMAGING;**46,54**;03-July-2009;;Build 1424
+MAGDHRC0 ;WOIFO/PMK - Read HL7 and generate DICOM ; 28 Mar 2011 10:30 AM
+ ;;3.0;IMAGING;**46,54,49**;Mar 19, 2002;Build 2033;Apr 07, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -43,12 +43,12 @@ GETSEG(SEGMENT) ; check if the named segment exists
 GETCOUNT() ; get highest index number from HL7PARSE
  Q $O(@HL7PARSE@(" "),-1)
  ;
-GETNAME(J) ; get a person's name - return in DICOM format
+GETNAME(J,K) ; get a person's name - return in DICOM format
  ; also used for provider's name - first piece is code - others shifted
  N I,LAST,NAME,X
- S NAME="",LAST=0 F I=1:1:6 D
+ S NAME="",LAST=0,K=$G(K,1) F I=1:1:6 D
  . N X ; name component: last ^ first ^ mi ^ prefix ^ suffix
- . S X=$$GETDATA^MAGDHRC0(J,1,I) I $L(X) S LAST=I
+ . S X=$$GETDATA^MAGDHRC0(J,K,I) I $L(X) S LAST=I
  . S NAME=NAME_$S(I>1:"^",1:"")_$TR(X,"^\","") ; no ^ or \ chars in name
  . Q
  Q $P(NAME,"^",1,LAST)

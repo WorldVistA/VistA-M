@@ -1,5 +1,5 @@
 IBCEF79 ;ALB/ESG - Billing Provider functions ;13-Aug-2008
- ;;2.0;INTEGRATED BILLING;**400,419**;21-MAR-94;Build 1
+ ;;2.0;INTEGRATED BILLING;**400,419,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -248,7 +248,10 @@ GETBP(IBIFN,COB,INST,SUB,IBXSAVE) ; Get billing provider data for claim output
  ; main div pay-to exists, then use the pay-to provider data for the main division in the database.
  ; This is the "normal" switchback data.
  I SWBFLG,'$P(INSFLGS,U,3),MAINPTP D  G GETBPX    ; switchback + billing provider address flag + main ptp exists
- . S IBXSAVE(SUB,"NAME")=$P(BPTP,U,1)
+ . ; IB*2.0*432 - Retrieve the BP name from "gold standard" name field of file #4 and if not populated, retrieve from .01 field - IA#2171
+ . ;S IBXSAVE(SUB,"NAME")=$P(BPTP,U,1)
+ . S IBXSAVE(SUB,"NAME")=$$BNIEN^XUAF4(INST)
+ . S:IBXSAVE(SUB,"NAME")="" IBXSAVE(SUB,"NAME")=$P(BPTP,U,1)
  . S IBXSAVE(SUB,"ADDR1")=$P(BPTP,U,5)
  . S IBXSAVE(SUB,"ADDR2")=$P(BPTP,U,6)
  . S IBXSAVE(SUB,"CITY")=$P(BPTP,U,7)
@@ -261,7 +264,10 @@ GETBP(IBIFN,COB,INST,SUB,IBXSAVE) ; Get billing provider data for claim output
  ; is not on, but the main division is NOT defined as a Pay-To provider.
  ; Get the name from the Institution File, but everything else from the claim's Pay-to provider
  I SWBFLG,'$P(INSFLGS,U,3),'MAINPTP D  G GETBPX
- . S IBXSAVE(SUB,"NAME")=$$GETFAC^IBCEP8(INST,0,0)   ; Inst name
+ . ; IB*2.0*432 - Retrieve the BP name from "gold standard" name field of file #4 and if not populated, retrieve from .01 field - IA#2171
+ . ;S IBXSAVE(SUB,"NAME")=$$GETFAC^IBCEP8(INST,0,0)
+ . S IBXSAVE(SUB,"NAME")=$$BNIEN^XUAF4(INST)
+ . S:IBXSAVE(SUB,"NAME")="" IBXSAVE(SUB,"NAME")=$$GETFAC^IBCEP8(INST,0,0)   ; Inst name
  . S IBZ=$$PRVDATA^IBJPS3(IBIFN)
  . S IBXSAVE(SUB,"ADDR1")=$P(IBZ,U,5)
  . S IBXSAVE(SUB,"ADDR2")=$P(IBZ,U,6)
@@ -272,7 +278,10 @@ GETBP(IBIFN,COB,INST,SUB,IBXSAVE) ; Get billing provider data for claim output
  . Q
  ;
  ; At this point, we want to get the billing provider data from the Institution file
- S IBXSAVE(SUB,"NAME")=$$GETFAC^IBCEP8(INST,0,0)
+ ; IB*2.0*432 - Retrieve the BP name from "gold standard" name field of file #4 and if not populated, retrieve from .01 field - IA#2171
+ ;S IBXSAVE(SUB,"NAME")=$$GETFAC^IBCEP8(INST,0,0)
+ S IBXSAVE(SUB,"NAME")=$$BNIEN^XUAF4(INST)
+ S:IBXSAVE(SUB,"NAME")="" IBXSAVE(SUB,"NAME")=$$GETFAC^IBCEP8(INST,0,0)
  S IBXSAVE(SUB,"ADDR1")=$$GETFAC^IBCEP8(INST,0,1)
  S IBXSAVE(SUB,"ADDR2")=$$GETFAC^IBCEP8(INST,0,2)
  S IBXSAVE(SUB,"CITY")=$$GETFAC^IBCEP8(INST,0,"3C")
@@ -320,3 +329,47 @@ SENDSF(IBIFN,COB) ; Send service facility information for the EDI claim?
 SENDSFX ;
  Q SEND
  ;
+SLPROV(IBXIEN,TYPE) ; return array of service line provider data
+ ; IBXIEN - ien in file 399
+ ; TYPE: O1 = operating physician, O2 = other operating physician, RE = rendering provider,
+ ;       P = purchase service provider, S = supervising provider, RF = referring provider
+ ;
+ ; returns IBXSAVE("SLPRV", counter) = last name ^ first name ^ middle name ^ suffix
+ ; ^ taxonomy code ^ primary id ^ secondary id (1) ^ secondary id qualifier (1) ^ ...
+ ; ^ secondary id (n) ^ secondary id qualifier (n)
+ ; IBXSAVE("SLPRV", counter,"SLC") = service line conter
+ ;
+ N DATA,IBN,IBX,IENS,MODE,NAME,PRNUM,PRTYPE,OUT,SLC,TMP,IBCNT
+ I '+IBXIEN Q
+ D ALLIDS^IBCEFP(IBXIEN,.IBX,1)
+ S IBCNT=0
+ ;
+ S SLC="" F  S SLC=$O(IBX("L-PROV",IBXIEN,SLC)) Q:'SLC  D
+ . I '$D(IBX("L-PROV",IBXIEN,SLC,"C",1,TYPE)) Q
+ .I TYPE="O1",PRTYPE'=2 Q                ; not operating
+ .I TYPE="O2",PRTYPE'=9 Q                ; not other operating
+ .I TYPE="RE",PRTYPE'=3 Q                ; not rendering
+ .I TYPE="S",PRTYPE'=5 Q                 ; not supervising
+ .I TYPE="RF",PRTYPE'=1 Q                ; not referring
+ .;
+ .S DATA=$G(IBX("L-PROV",IBXIEN,SLC,"C",1,PRTYPE))
+ .; name components
+ .S IENS=$P($P(DATA,U),";")_","
+ .I $P(DATA,U)["VA(200" S NAME=$$GET1^DIQ(200,IENS,.01)
+ .I $P(DATA,U)["IBA(355.93" S NAME=$$GET1^DIQ(355.93,IENS,.01)
+ .S TMP=$P(NAME,",",2),OUT=$P(NAME,",")_U_$P(TMP," ")_U_$P(TMP," ",2)_U_$P(TMP," ",3)
+ .; taxonomy code
+ .S $P(OUT,U,5)=$P($$GETTAX^IBCEF73A($P(DATA,U)),U)
+ .S IBN="" F  S IBN=$O(IBX("L-PROV",IBXIEN,SLC,"C",1,PRTYPE,IBN)) Q:IBN=""  D
+ ..S DATA=$G(IBX("L-PROV",IBXIEN,SLC,"C",1,PRTYPE,IBN))
+ ..; primary id
+ ..I IBN=0 S $P(OUT,U,6)=$P(DATA,U,4) Q
+ ..;
+ ..; secondary ids
+ ..S OUT=OUT_U_$P(DATA,U,4)_U_$P(DATA,U,3)
+ ..Q
+ .Q
+ S IBCNT=IBCNT+1
+ S IBXSAVE("SLPRV",IBCNT)=OUT
+ S IBXSAVE("SLPRV",IBCNT,"SLC")=SLC
+ Q

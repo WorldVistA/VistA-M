@@ -1,5 +1,5 @@
 ONCCSRS ;Hines OIFO/GWB - Re-stage using current version ;06/23/10
- ;;2.11;ONCOLOGY;**43,46,48,51**; Mar 07, 1995;Build 65
+ ;;2.11;ONCOLOGY;**43,46,48,51,53**;Mar 07, 1995;Build 31
  ;
  ;Re-stage 2004+ cases using current CS Version
  K DIRUT
@@ -16,6 +16,7 @@ RS ;Re-stage
  S VER=$P($$VERSION^ONCSAPIV,U,2)
  S VERDSP=$E(VER,1,2)_"."_$E(VER,3,4)_"."_$E(VER,5,6)
  S DIVISION=$P(^DIC(4,DUZ(2),0),U,1)
+ D USE^%ZISUTL("ONCCSRS")
  W !?3,"Restaging using CS Version ",VERDSP," for ",DIVISION
  S CTR=0,SUCCTR=0,ERRCTR=0
  S XDT=3040000 F  S XDT=$O(^ONCO(165.5,"ADX",XDT)) Q:XDT=""  S IEN=0 F  S IEN=$O(^ONCO(165.5,"ADX",XDT,IEN)) Q:IEN=""  I $$DIV^ONCFUNC(IEN)=DUZ(2) D  G:$G(DIRUT)=1 EXIT
@@ -82,7 +83,6 @@ RS ;Re-stage
  .S INPUT("SSF25")=$$GET1^DIQ(165.5,IEN,44.25,"I")
  .S:INPUT("SSF25")="" INPUT("SSF25")="   "
  .S RC=$$CALC^ONCSAPI3(.ONCSAPI,.INPUT,.STORE,.DISPLAY,.STATUS)
- .;I RC D PRTERRS^ONCSAPIE()
  .D USE^%ZISUTL("ONCCSRS")
  .I $P(RC,U,1)<0 W !!?3,PID,"  ",PSCODE,"  ",AN,"/",SEQ," encountered a CS error" S ERRCTR=ERRCTR+1
  .I $P(RC,U,1)>0 W !!?3,PID,"  ",PSCODE,"  ",AN,"/",SEQ," encountered a CS warning" S ERRCTR=ERRCTR+1
@@ -105,11 +105,6 @@ RS ;Re-stage
  ..S $P(^ONCO(165.5,IEN,"CS1"),U,18)=STORE("AJCC7-MDESCR")
  ..S $P(^ONCO(165.5,IEN,"CS1"),U,19)=STORE("AJCC7-STAGE")
  .S CTR=CTR+1 W "."
- ;..I $P($G(^ONCO(165.5,IEN,7)),U,2)=3 D
- ;...S EDITS="NO" S D0=IEN D NAACCR^ONCGENED K EDITS
- ;...S CHECKSUM=$$CRC32^ONCSNACR(.ONCDST)
- ;...I CHECKSUM'=$P($G(^ONCO(165.5,IEN,"EDITS")),U,1) D
- ;....S $P(^ONCO(165.5,IEN,"EDITS"),U,1)=CHECKSUM
  D RMDEV^%ZISUTL("ONCCSRS")
  ;
 EXIT W !
@@ -125,7 +120,7 @@ EXIT W !
  W:ERRCTR=1 !?ERRTAB,ERRCTR," primary encountered an error or warning"
  W:ERRCTR'=1 !?ERRTAB,ERRCTR," primaries encountered errors or warnings"
  D ^%ZISC
- W ! D PAUSE^ONCOPA2A
+ I $E(IOST,1,2)="C-" W ! K DIR S DIR(0)="E" D ^DIR
  Q
  ;
 TASK ;Queue a task

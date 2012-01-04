@@ -1,5 +1,5 @@
 RARTE5 ;HISC/SWM AISC/MJK,RMO-Enter/Edit Outside Reports ;1/26/09  11:36
- ;;5.0;Radiology/Nuclear Medicine;**56,95,97**;Mar 16, 1998;Build 6
+ ;;5.0;Radiology/Nuclear Medicine;**56,95,97,47**;Mar 16, 1998;Build 21
  ;Private IA #4793 CREATE^WVRALINK
  ;Controlled IA #3544 ^VA(200
  ;Supported IA #2056 GET1^DIQ
@@ -21,6 +21,8 @@ START S RAFIRST=0 ;=1 for 1st time rpt given "EF" rpt status
  K RAVER S RAVW="",RAREPORT=1 D ^RACNLU G Q1:"^"[X
  ; RACNLU defines RADFN, RADTI, RACNI, RARPT
  S RASUBY0=Y(0) ; save value of y(0)
+ N RASSAN,RACNDSP S RASSAN=$P(RASUBY0,U,31)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:$P(RASUBY0,U,1))
  G:$P(^RA(72,+RAST,0),"^",3)>0 CONTIN
  I $D(^XUSEC("RA MGR",DUZ)) G CONTIN
  G:$P(RAMDV,"^",22)=1 CONTIN
@@ -56,7 +58,9 @@ NEW G:'RAPRTSET NEW1
  W !?10,"** a report for this printset, so you may not enter a",?68,"**",!?10,"** new report.",?68,"**"
  H 2 D UNLOCK^RAUTL12(RAPNODE,RACNI) D INCRPT G START
  ;
-NEW1 S RARPTN=$E(RADTE,4,7)_$E(RADTE,2,3)_"-"_RACN
+NEW1 ;
+ I $L(RACNDSP,"-")>1 S RARPTN=RACNDSP
+ I $L(RACNDSP,"-")<2 S RARPTN=$E(RADTE,4,7)_$E(RADTE,2,3)_"-"_RACN
  W !?3,"...report not entered for this exam...",!?10,"...will now initialize report entry..."
  S I=+$P(^RARPT(0),"^",3)
  ;

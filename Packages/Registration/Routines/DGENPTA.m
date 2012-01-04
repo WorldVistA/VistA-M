@@ -1,5 +1,5 @@
-DGENPTA ;ALB/CJM,ERC,CKN,TDM - Patient API - Retrieve Data ; 12/22/08 4:17pm
- ;;5.3;Registration;**121,122,147,688,754**;Aug 13,1993;Build 46
+DGENPTA ;ALB/CJM,ERC,CKN,TDM,PWC - Patient API - Retrieve Data ; 2/3/11 6:40pm
+ ;;5.3;Registration;**121,122,147,688,754,838**;Aug 13,1993;Build 5
  ;
 VET(DFN) ;returns 1 if the patient is an eligible veteran
  ;returns 0 if not a veteran or not eligible
@@ -65,7 +65,7 @@ DEATH(DFN) ;
  Q +DATE
  ;
 GET(DFN,DGPAT) ;
- ;Description: Returns DGPAT() array with identifing infor for patient
+ ;Description: Returns DGPAT() array with identifying info for patient
  ;  Input:
  ;    DFN - ien, PATIENT file
  ;  Output:
@@ -80,7 +80,8 @@ GET(DFN,DGPAT) ;
  ;      "NAME" - patient name
  ;      "PATYPE" - patient type
  ;      "PID" - Primary Long ID
- ;      "PREFAC" - prefered facility
+ ;      "PREFAC" - preferred facility
+ ;      "PFSRC" - preferred facility source designation
  ;      "SSN" - Social Security Number
  ;      "SEX" - M=male, F=female
  ;      "VETERAN" - VETERAN (Y/N)? - "Y"=YES,"N"=NO
@@ -102,6 +103,7 @@ GET(DFN,DGPAT) ;
  S DGPAT("PATYPE")=$P($G(^DPT(DFN,"TYPE")),"^")
  S DGPAT("VETERAN")=$P($G(^DPT(DFN,"VET")),"^")
  S DGPAT("PREFAC")=$P($G(^DPT(DFN,"ENR")),"^",2)
+ S DGPAT("PFSRC")=$P($G(^DPT(DFN,"ENR")),"^",3)
  S DGPAT("INELDATE")=$P($G(^DPT(DFN,.15)),"^",2)
  S DGPAT("INELREA")=$P($G(^DPT(DFN,.3)),"^",7)
  S DGPAT("INELDEC")=$P($G(^DPT(DFN,"INE")),"^",6)

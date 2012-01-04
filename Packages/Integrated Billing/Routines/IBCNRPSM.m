@@ -1,7 +1,7 @@
 IBCNRPSM ;DAOU/CMW - Match Test Payer Sheet to a Pharmacy Plan ;10-DEC-2003
- ;;2.0;INTEGRATED BILLING;**251**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
- ;; ;
+ ;;2.0;INTEGRATED BILLING;**251,435**;21-MAR-94;Build 27
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
 EN(IBCNSP)      ; Main entry point for IBCNR PAYERSHEET MATCH (LIST TEMPLATE)
  D EN^VALM("IBCNR PAYERSHEET MATCH")
  Q
@@ -41,8 +41,9 @@ INIT ; Init variables and list array
  S TCODE(1)="BILLING (B1)"
  S TCODE(2)="REVERSAL (B2)"
  S TCODE(3)="REBILL (B3)"
+ S TCODE(4)="ELIGIBILITY (E1)"
  S IBCNS10=$G(^IBCNR(366.03,IBCNSP,10))
- F I=1:1:3 S TPS=$P(IBCNS10,"^",10+I) D
+ F I=1:1:4 S TPS=$P(IBCNS10,"^",10+I) D
  . ; Set up Index Number
  . S VALMCNT=I
  . S X=$$SETFLD^VALM1(VALMCNT,"","NUMBER")
@@ -80,6 +81,7 @@ SEL ; Add Payer Sheet to Plan
  N DIC,Y,X,DTOUT,DUOUT
  N DA,DIE,DR
  S DIC="^BPSF(9002313.92,",DIC(0)="AEMZ",DIC("S")="I $P(^(1),U,6)=2"
+ S DIC("B")=$$GET1^DIQ(366.03,IBSEL,IBDR)
  D ^DIC
  I +Y<1 W !!,"No Payer Sheet Selected!" D PAUSE^VALM1 Q
  ; Do the insert
@@ -113,5 +115,5 @@ S1 ; Prompt for transaction code
  I 'IBX W !!,"No Transaction Code Selected!" D PAUSE^VALM1 Q
  ; Build variables needed for insert or deletion
  S IBSEL=+$G(^TMP("IBCNR",$J,"IDX",IBX,IBX))
- S IBDR=$S(IBX=1:10.11,IBX=2:10.12,1:10.13)
+ S IBDR=$S(IBX=1:10.11,IBX=2:10.12,IBX=3:10.13,1:10.14)
  Q

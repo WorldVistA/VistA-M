@@ -1,5 +1,5 @@
 IBCNEDE2 ;DAOU/DAC - eIV PRE REG EXTRACT (APPTS) ;18-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,249,345,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
@@ -15,7 +15,7 @@ EN ; Loop through designated cross-references for updates
  N TODAYSDT,FRESHDAY,SLCCRIT1,MAXCNT,CNT,ENDDT,CLNC,FRESHDT,GIEN
  N APTDT,INREC,INSIEN,PAYER,PIEN,PAYERSTR,SYMBOL,SUPPBUFF,PATID
  N DFN,OK,VAIN,INS,DATA1,DATA2,ELG,PAYERID,SETSTR,SRVICEDT,ACTINS
- N TQIEN,IBINDT,IBOUTP,QURYFLAG,INSNAME,FOUND1,FOUND2,IBCNETOT
+ N TQIEN,IBINDT,IBOUTP,QURYFLAG,INSNAME,FOUND1,FOUND2,IBCNETOT,VDATE
  N SID,SIDACT,SIDDATA,SIDARRAY,SIDCNT,IBDDI,IBINS,DISYS,NUM,MCAREFLG
  ;
  S SETSTR=$$SETTINGS^IBCNEDE7(2)     ;  Get setting for pre reg. extract 
@@ -84,6 +84,9 @@ EN ; Loop through designated cross-references for updates
  ... F  S INREC=$O(ACTINS(INREC)) Q:('INREC)!(CNT'<MAXCNT)  D
  ... . S INSIEN=$P($G(ACTINS(INREC,0)),U,1) ; Insurance ien
  ... . S INSNAME=$P($G(^DIC(36,INSIEN,0)),U)
+ ... . ; exclude policies that have been verified within "freshness days"
+ ... . S VDATE=$P($G(ACTINS(INREC,1)),U,3)
+ ... . I VDATE'="",SRVICEDT'>$$FMADD^XLFDT(VDATE,FRESHDAY) Q
  ... . ; allow only one MEDICARE transmission per patient
  ... . I INSNAME["MEDICARE",MCAREFLG Q
  ... . ; exclude pharmacy policies

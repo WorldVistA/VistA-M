@@ -1,5 +1,5 @@
-RCDPRPL4 ;WISC/RFJ-receipt profile listmanager options ;1 Apr 01
- ;;4.5;Accounts Receivable;**169,172,173**;Mar 20, 1995
+RCDPRPL4 ;WISC/RFJ/PJH - receipt profile listmanager options ; 5/6/11 12:30pm
+ ;;4.5;Accounts Receivable;**169,172,173,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -95,7 +95,7 @@ ERAWL(RCSCR) ; Generate automatic dec adj from ERA Worklist in RCSCR
  . I $P(Z00,U,8)=1 D  Q  ; previously done
  .. I $P(Z00,U,5)=1 W !,"  Automatic decrease adj from ERA Worklist for bill #"_$P($G(^PRCA(430,+$P(V00,U,7),0)),U),!,"    for amount of "_$J(+$P(Z00,U,3),"",2)_" was previously completed" S RCADJ=1
  . I $P(Z00,U,5)=1 D  Q  ; Decrease adj
- .. I '$$INCDEC^RCBEUTR1($P(V00,U,7),$P(Z00,U,3),.RCCOM) D
+ .. I '$$INCDEC^RCBEUTR1($P(V00,U,7),$P(Z00,U,3),.RCCOM,,,1) D
  ... W !,"  Could not perform automatic decrease adj from ERA Worklist for ",!,"    bill # "_$P($G(^PRCA(430,+$P(V00,U,7),0)),U)_" for amount of "_$J(+$P(Z00,U,3),"",2)
  ... S RCADJ=-1
  .. E  D  ; success

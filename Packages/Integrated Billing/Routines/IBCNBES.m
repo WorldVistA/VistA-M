@@ -1,5 +1,5 @@
 IBCNBES ;ALB/ARH-Ins Buffer: stuff new entries/data into buffer ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,184,345**;21-MAR-94;Build 28
+ ;;2.0;INTEGRATED BILLING;**82,184,345,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -43,9 +43,17 @@ EDITSTF(IBBUFDA,IBDATA) ;  loop though data array and stuff each buffer field, n
  N IBFIELD,IBVALUE,IBARR,IBERR Q:'$G(^IBA(355.33,$G(IBBUFDA),0))
  ;
  S IBFIELD=0 F  S IBFIELD=$O(IBDATA(IBFIELD)) Q:'IBFIELD  D
+ . ; have to file subscriber id last in order for real-time verification inquiry triggers to work properly
+ . I IBFIELD=60.04 Q
  . S IBVALUE=$$FLDCHK(355.33,IBFIELD,IBDATA(IBFIELD)) Q:'IBVALUE
  . S IBARR(355.33,IBBUFDA_",",IBFIELD)=$P(IBVALUE,U,2)
  I $D(IBARR)>9 D FILE^DIE("E","IBARR","IBERR")
+ ; file subscriber id
+ I $G(IBDATA(60.04))'="" D
+ .S IBVALUE=$$FLDCHK(355.33,60.04,IBDATA(60.04)) Q:'IBVALUE
+ .K IBARR S IBARR(355.33,IBBUFDA_",",60.04)=$P(IBVALUE,U,2)
+ .D FILE^DIE("E","IBARR","IBERR")
+ .Q
  Q
  ;
 FLDCHK(FILE,FIELD,VALUE) ; minor checks on data: truncate if length too long, if pointer add ' so can be processed as external format

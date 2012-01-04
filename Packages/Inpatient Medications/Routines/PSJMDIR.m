@@ -1,12 +1,13 @@
-PSJMDIR ;BIR/MV-MED DUE WORKSHEET DIR CALLS ;25 AUG 94 / 11:08 AM
- ;;5.0; INPATIENT MEDICATIONS ;;16 DEC 97
+PSJMDIR ;BIR/MV-MED DUE WORKSHEET DIR CALLS ; 5/14/09 8:13am
+ ;;5.0; INPATIENT MEDICATIONS ;**225**;16 DEC 97;Build 16
  ;
 MEDTYPE(PSGMARWD) ;*** Ask for Med choices
  ;PSGMARWD will be defined if the user was selected by ward.
  ;If PSJMPRN is defined, that mean this module is calling from the MDWS.
  ;
  K DIR S DIR(0)="LAO^1:6^I X[1&($L(X)>1) K X" S DIR("A")="Enter medication type(s): "
- S DIR("?",1)="1.  All medications",DIR("?",2)="2.  Non-IV medications only",DIR("?",3)="3.  IVPB (Includes IV syringe orders with a med route of IV or IVPB."
+ ;PSJ*5*225 Update menu to include IVP
+ S DIR("?",1)="1.  All medications",DIR("?",2)="2.  Non-IV medications only",DIR("?",3)="3.  IVPB (Includes IV syringe orders with a med route of IVP, IV, or IVPB."
  S DIR("?",4)="          All other IV syringe orders are included with non-IV medications).",DIR("?",5)="4.  LVPs",DIR("?",6)="5.  TPNs",DIR("?",7)="6.  Chemotherapy medications (IV)",DIR("?",8)=""
  N XTYPE S:$G(PSGMARWD) XTYPE=$P($G(^PS(59.6,+$O(^PS(59.6,"B",+PSGMARWD,0)),0)),"^",2) S DIR("B")=$S($G(XTYPE):XTYPE,1:2)
  S DIR("?")="e.g.  Enter 1 or 2-4,5 or 2."

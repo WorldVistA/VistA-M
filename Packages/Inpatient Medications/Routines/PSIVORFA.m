@@ -1,5 +1,5 @@
-PSIVORFA ;BIR/MLM-FILE/RETRIEVE ORDERS IN 53.1 ;26 Jun 98 / 9:16 AM
- ;;5.0; INPATIENT MEDICATIONS ;**4,7,18,28,50,71,58,91,80,110,111,134**;16 DEC 97;Build 124
+PSIVORFA ;BIR/MLM-FILE/RETRIEVE ORDERS IN 53.1 ; 8/17/09 9:23am
+ ;;5.0; INPATIENT MEDICATIONS ;**4,7,18,28,50,71,58,91,80,110,111,134,225**;16 DEC 97;Build 16
  ;
  ; Reference to ^PS(51.1 supported by DBIA 2177.
  ; Reference to ^PS(51.2 supported by DBIA 2178.
@@ -24,7 +24,8 @@ GT531(DFN,ON) ; Retrieve order data from 53.1 and place into local array
  S Y=$G(^PS(53.1,+ON,4)),P("CLRK")=$P(Y,U,7)_U_$P($G(^VA(200,+$P(Y,U,7),0)),U),P("REN")=$P(Y,U,9),X=P(9)
  I $P($G(^PS(53.1,+ON,0)),U,7)="P",(P(9)'["PRN") S P(9)=P(9)_" PRN"
  K PSGST,XT
- I P(9)]"",(P(11)="") D  S P(15)=$S($G(XT)]""&'+$G(XT):XT,+$G(XT)>0:XT,$G(PSGS0XT):PSGS0XT,1:1440),P(11)=Y
+ ;PSJ*5*225 remove 1440 default
+ I P(9)]"",P(9)'["PRN",(P(11)="") D  S P(15)=$S($G(XT)]""&'+$G(XT):XT,+$G(XT)>0:XT,$G(PSGS0XT):PSGS0XT,1:1440),P(11)=Y
  . I $O(^PS(51.1,"APPSJ",P(9),0)) D DIC^PSGORS0 Q
  . I '$O(^PS(51.1,"APPSJ",P(9),0)) N NOECH,PSGSCH S NOECH=1 D EN^PSIVSP
  S Y=$G(^PS(53.1,+ON,8)),P(4)=$P(Y,U),P(23)=$P(Y,U,2),P("SYRS")=$P(Y,U,3),P(5)=$P(Y,U,4),P(8)=$P(Y,U,5),P(7)=$P(Y,U,7),P("IVRM")=$P(Y,U,8)

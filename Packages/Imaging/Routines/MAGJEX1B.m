@@ -1,6 +1,6 @@
-MAGJEX1B ;WIRMFO/JHC Rad. Workstation RPC calls ; 29 Jul 2003  9:58 AM
- ;;3.0;IMAGING;**16,22,18,65,76**;Jun 22, 2007;Build 19
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+MAGJEX1B ;WIRMFO/JHC Rad. Workstation RPC calls ; 21 Apr 2011  5:32 PM
+ ;;3.0;IMAGING;**16,22,18,65,76,104**;Mar 19, 2002;Build 2225;Jul 12, 2011
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -8,7 +8,6 @@ MAGJEX1B ;WIRMFO/JHC Rad. Workstation RPC calls ; 29 Jul 2003  9:58 AM
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -31,28 +30,22 @@ IMGLOOP ; get data for all the images
  . E  S:'DFN DFN=0 S MIXEDUP=MIXEDUP+2,MIXEDUP(DFN)="" ; database corruption
  . S MDL=$P(MAGS(IMAG),U,3)
  . I MDL="DR" S MDL="CR"  ; for now, hard code cx of non-standard code
- . I $G(SERBRK),(SERLBL]"") D    ; mark Begin of series
- . . S CT=CT+1,@MAGGRY@(CT+STARTNOD)=SERLBL,SERLBL=""
  . S MAGXX=MAGIEN D
  . . I 'USETGA,($P(MAGS(IMAG),U,2)["BIG") D BIG^MAGFILEB Q
  . . E  D VST^MAGFILEB
  . I MAGJOB("ALTPATH") S X=$P(MAGS(IMAG),U,6),P18ALTP="" I X]"" D
- . . F I=1:1:$L(X,",") S T=$P(X,",",I) I T S CURPATHS(T)="" I 'MAGJOB("P32"),$D(MAGJOB("LOC",T)) S P18ALTP=P18ALTP_$S(P18ALTP="":"",1:",")_T
+ . . F I=1:1:$L(X,",") S T=$P(X,",",I) I T S CURPATHS(T)="" I $D(MAGJOB("LOC",T)) S P18ALTP=P18ALTP_$S(P18ALTP="":"",1:",")_T
  . S IMGREC="B2^"_MAGIEN_U_MAGFILE2
- . I 'MAGJOB("P32") D
- . . S T="",X=$P(MAGS(IMAG),U,11) I X]"" F I="K","I","U" I X[I,$D(PSIND(I)) S T=T_$S(T="":"",1:",")_I ; PS_Indicators
- . . S IMGREC=IMGREC_U_T_U_$S(MAGJOB("ALTPATH"):P18ALTP,1:"") ; AltPaths for this img
- . . I '(PROCDT]"") D  ; Img Process Date
- . . . S X=$P(MAGS(IMAG),U,12) I X]"" S T=$S($E(X)=3:20,$E(X)=2:19,1:"") I T S PROCDT=T_$E(X,2,7)
- . . I '(ACQSITE]"") D  ; Acq Site
- . . . S X=$P(MAGS(IMAG),U,13) I X]"" S ACQSITE=X
+ . S T="",X=$P(MAGS(IMAG),U,11) I X]"" F I="K","I","U" I X[I,$D(PSIND(I)) S T=T_$S(T="":"",1:",")_I ; PS_Indicators
+ . S IMGREC=IMGREC_U_T_U_$S(MAGJOB("ALTPATH"):P18ALTP,1:"") ; AltPaths for this img
+ . I '(PROCDT]"") D  ; Img Process Date
+ . . S X=$P(MAGS(IMAG),U,12) I X]"" S T=$S($E(X)=3:20,$E(X)=2:19,1:"") I T S PROCDT=T_$E(X,2,7)
+ . I '(ACQSITE]"") D  ; Acq Site
+ . . S X=$P(MAGS(IMAG),U,13) I X]"" S ACQSITE=X
+ . I '(STANUM]"") D  ; Station Number
+ . . S X=$P(MAGS(IMAG),U,5) I X]"" S STANUM=X
  . S CT=CT+1,@MAGGRY@(CT+STARTNOD)=IMGREC
- . I MODALITY="" D
- . . I 'MAGJOB("P32") S MODALITY=MDL Q
- . . N T S T=$P("1dummy1^CT^CR^MR^US^AS^CD^CS^DG^EC^FA^LP^MA^PT^ST^XA^NM^OT^BI^CP^DD^DM^ES^FS^LS^MS^RG^TG^RF^RTIMAGE^RTSTRUCT^HC^RTDOSE^RTPLAN^RTRECORD^DX^MG^IO^PX",U_MDL_U,1)
- . . S MODALITY=$L(T,U)
- . . I MODALITY>38 S MODALITY=9999  ; 38=TOTAL # modalities defined; else 9999
- . . I STKLAY S OPENCNT=0 ; no limit on WS for # of exams open in StackVwr
+ . I MODALITY="" S MODALITY=MDL
  ;
  I 'MAGJOB("ALTPATH") S ALTPATH=-1
  E  D

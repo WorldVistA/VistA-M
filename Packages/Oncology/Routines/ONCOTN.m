@@ -1,5 +1,5 @@
-ONCOTN ;Hines OIFO/GWB - TNM Staging ;12/08/10
- ;;2.11;ONCOLOGY;**1,3,6,7,11,15,19,22,25,28,29,35,36,37,41,42,43,44,46,47,49,50,51,52**;Mar 07, 1995;Build 13
+ONCOTN ;Hines OIFO/GWB - TNM Staging ;02/28/11
+ ;;2.11;ONCOLOGY;**1,3,6,7,11,15,19,22,25,28,29,35,36,37,41,42,43,44,46,47,49,50,51,52,53**;Mar 07, 1995;Build 31
  ;
  N DATEDX,H,ONCED,S,YR
  S DATEDX=$P(^ONCO(165.5,D0,0),U,16)
@@ -12,7 +12,7 @@ ONCOTN ;Hines OIFO/GWB - TNM Staging ;12/08/10
  S HT14=$E(H,1,4)
  S SD=$P($G(^ONCO(165.5,D0,"CS3")),U,1)
  I H="" W !!?5,"HISTOLOGY not defined.",! S Y=$S(DATEDX>3001231:22.3,1:22) Q
- S Y=69
+ S Y="@69"
  ;
  ;Dermatofibrosarcomas of the skin 
  I (HT14=8832)!(HT14=8833),($E(T,3,4)=44) D  S Y="@313" Q
@@ -57,7 +57,7 @@ ONCOTN ;Hines OIFO/GWB - TNM Staging ;12/08/10
  .W !!?3,"AJCC does not define staging for this site.",!
  .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
  ;
- I ONCED>5,$$MELANOMA^ONCOU55(D0),($E(T,3,4)=44)!($E(T,3,4)=51)!($E(T,3,4)=60)!(T=67632),(H=87233)!(H=87283)!(H=87303)!(H=87403)!(H=87412)!(H=87413)!(H=87463)!(H=87703)!(H=87733)!(H=87743)!(H=87422) D  S Y="@313" Q
+ I ONCED=6,$$MELANOMA^ONCOU55(D0),($E(T,3,4)=44)!($E(T,3,4)=51)!($E(T,3,4)=60)!(T=67632),(H=87233)!(H=87283)!(H=87303)!(H=87403)!(H=87412)!(H=87413)!(H=87463)!(H=87703)!(H=87733)!(H=87743)!(H=87422) D  S Y="@313" Q
  .W !!?1,"Histology ",$E(H,1,4)_"/"_$E(H,5)," is not appropriate for or relevant to the staging of melanoma.",!
  .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
  ;
@@ -69,8 +69,9 @@ ONCOTN ;Hines OIFO/GWB - TNM Staging ;12/08/10
  .W !!," No TNM coding/staging available for GASTROINTESTINAL STROMA of ",$S($E(T,1,4)=6715:"ESOPHAGUS",$E(T,1,4)=6716:"STOMACH",$E(T,1,4)=6717:"SMALL INTESTINE",$E(T,1,4)=6718:"COLON",T=67250:"PANCREAS, HEAD",1:""),".",!
  .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
  ;
- I (T=67199)!(T=67209)!($E(T,3,4)=18)!($E(T,3,4)=21)!($E(T,3,4)=16)!($E(T,3,4)=17)!(T=67239)!($E(T,3,4)=24)!($E(T,3,4)=25),($E(H,1,4)=8240)!($E(H,1,4)=8241)!($E(H,1,4)=8242)!($E(H,1,4)=8243)!($E(H,1,4)=8249)!($E(H,1,4)=9091) D  Q
- .I ONCED>6,(T=67241)!(T=67199)!(T=67181)!(T=67209)!($E(T,3,4)=16)!($E(T,3,4)=17) Q
+ ;Carcinoid Tumors
+ I ($E(T,3,4)=16)!($E(T,3,4)=17)!($E(T,3,4)=18)!(T=67199)!(T=67209)!($E(T,3,4)=21)!(T=67239)!($E(T,3,4)=24)!($E(T,3,4)=25),($E(H,1,4)=8240)!($E(H,1,4)=8241)!($E(H,1,4)=8242)!($E(H,1,4)=8243)!($E(H,1,4)=8249)!($E(H,1,4)=9091) D  Q
+ .I ONCED>6,($E(T,3,4)=16)!($E(T,3,4)=17)!(T=67180)!(T=67182)!(T=67183)!(T=67184)!(T=67185)!(T=67186)!(T=67187)!(T=67188)!(T=67189)!(T=67199)!(T=67209)!(T=67241) Q
  .W !!?3,"No TNM coding/staging is available for carcinoid tumors" D
  ..I ($E(T,3,4)=16)!($E(T,3,4)=17)!($E(T,3,4)=18)!($E(T,3,4)=21)!(T=67239)!($E(T,3,4)=24)!(T=67241)!($E(T,3,4)=25) W !?3,"of the ",$P($G(^ONCO(164,T,0)),U,1),"."
  ..W !
@@ -214,7 +215,7 @@ ES ;Automatic Staging
  I ($E(HT,1,4)=8935)!($E(HT,1,4)=8936),(($E(TX,3,4)=15)!($E(TX,3,4)=16)!($E(TX,3,4)=17)!($E(TX,3,4)=18)!($E(TX,3,4)=21)!($E(TX,3,4)=48)!(TX=67199)!(TX=67209)),ONCED>6 S AG="121" G AG
  ;
  ;Neuroendocrine Tumor 8153, 8240-8242, 8246, 8249
- I (($E(HT,1,4)=8153)!($E(HT,1,4)=8240)!($E(HT,1,4)=8241)!($E(HT,1,4)=8242)!($E(HT,1,4)=8246)!($E(HT,1,4)=8249)),(($E(TX,3,4)=16)!($E(TX,3,4)=17)!($E(TX,3,4)=18)!(TX=67241)!(TX=67199)!(TX=67209)),ONCED>6 S AG=122 G AG
+ I ONCED>6,(($E(HT,1,4)=8153)!($E(HT,1,4)=8240)!($E(HT,1,4)=8241)!($E(HT,1,4)=8242)!($E(HT,1,4)=8246)!($E(HT,1,4)=8249)),(($E(TX,3,4)=16)!($E(TX,3,4)=17)!($E(TX,3,4)=18)!(TX=67241)!(TX=67199)!(TX=67209)) S AG=122 G AG
  ;
  ;Gallbladder
  ;Distal Bile Duct
@@ -228,7 +229,7 @@ ES ;Automatic Staging
  I $$MELANOMA^ONCOU55(D0),$P($G(^ONCO(164,+TX,0)),U,15) S AG=22 G AG
  ;
  ;Merkel Cell Carcinoma
- I $E(HT,1,4)=8247,ONCED=7 S AG=21 G AG
+ I $E(HT,1,4)=8247,ONCED>6 S AG=21 G AG
  ;
  ;Ovary and Primary Peritoneal Carcinoma - 7th edition
  S HT14=$E(HT,1,4)
@@ -261,6 +262,7 @@ ES ;Automatic Staging
 AG ;DO staging subroutine
  S SG=99
  I T=88,N=88,M=88 S SG=88 G SG
+ S ONCOED=ONCED
  D @(AG_"^ONCOTN0")
  W:SG=99 !!,?12,"TNM combination not in staging table."
  ;
@@ -328,4 +330,4 @@ CN3 ;No longer used. Called by PCEs.
  Q
  ;
 CLEANUP ;Cleanup
- K AG,D0,D1,DA,SG,ST,STGIND,X,Y
+ K AG,D0,D1,DA,ONCOED,SG,ST,STGIND,X,Y

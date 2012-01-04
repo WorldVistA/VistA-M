@@ -1,5 +1,5 @@
 IBRFN ;ALB/AAS - Supported functions for AR ;5-MAY-1992
- ;;2.0;INTEGRATED BILLING;**52,130,183,223,309,276,347,411**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**52,130,183,223,309,276,347,411,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 ERR(Y) ; Input Y = -1^error code[;error code...]^literal message
@@ -33,11 +33,12 @@ SVDT(BN,VDT) ;returns service dates for a specific bill
  Q X
  ;
  ;
-REC(IBSTR,IBTYPE) ; Find the AR for an Authorization or Rx number
+REC(IBSTR,IBTYPE,IBDISP) ; Find the AR for an Authorization or Rx number
  ;   Input: IBSTR - FI Authorization Number or Rx Number
  ;  Output: IBAR  >0 => ptr to claim/AR in files 399/430
  ;                -1 => No receivable found
  ;          IBTYPE (by ref) - how the IBSTR was recognized: 1-Auth,2-ECME,3-Rx#,0-Unknown
+ ;          IBDISP (by ref) - external display of number (for example to include the leading zeros on the ECME#)
  ;
  N IBAR,IBARR,IBRX,IBKEY,IBKEYS,IBREF,IBPREF
  S IBTYPE=0
@@ -92,7 +93,7 @@ RXREC(IBRXN) ; Search the Rx
  ;
  S IBY=$O(IBARR("")) I IBY'>0 Q -1  ;not found
  I '$O(IBARR(IBY)) D DTL(+IBY,"Rx#",IBRXN) Q +IBY  ;one only
- W !!,"More than one fill for Rx# ",IBSTR," has been billed."
+ W !!,"More than one claim for Rx# ",IBSTR," exists."
  S IBY=$$SEL(.IBARR)
  D DTL(IBY,"Rx#",IBRXN)
  Q IBY
@@ -116,24 +117,41 @@ EREC(AUTH) ; Find the Receivable for an ECME FI Number
  ;  Output: IBIFN  >0 => ptr to claim/AR in files 399/430
  ;                 -1 => No receivable found
  ;
- N IBIFN,IBC,IBX,IBA,IBE,IBES
+ ; the ECME# may be either 7 digits or 12 digits in length
+ ; users are not forced to enter the leading zeros, but the "AG" xref stores the ECME#
+ ; with the leading zeros.  esg - 11/30/10 - IB*2*435
+ ;
+ N IBIFN,IBC,IBX,IBA,IBE,IBES,ECMELEN,ECMENUM,ZLEN
  S IBIFN=-1,IBC=0
- I $G(AUTH)="" G ARECQ
- S (IBE,IBES)=$$BCID^IBNCPDP4(+AUTH,"")
- F  S IBE=$O(^DGCR(399,"AG",IBE)) Q:IBE'[IBES  D
- . S IBX=0 F  S IBX=$O(^DGCR(399,"AG",IBE,IBX)) Q:'IBX  D
- .. I $P($G(^DGCR(399,IBX,0)),U,13)=7 Q  ;exclude cancld
- .. S IBA(IBX)="",IBC=IBC+1
- I IBC'>1 S IBIFN=$O(IBA(0)) G ERECQ  ; only one found
- W !!,"More than one fill for ECME# ",AUTH," has been billed."
+ I $G(AUTH)="" G ERECQ
+ ;
+ F ECMELEN=12,7 D
+ . I $L(+AUTH)>ECMELEN Q     ; if the passed in number is already too large just quit
+ . S ECMENUM=$$RJ^XLFSTR(+AUTH,ECMELEN,0)   ; build the actual ECME# with leading zeros if necessary
+ . S (IBE,IBES)=ECMENUM_";"                 ; getting ready to hit the "AG" xref
+ . F  S IBE=$O(^DGCR(399,"AG",IBE)) Q:IBE'[IBES  D
+ .. S IBX=0 F  S IBX=$O(^DGCR(399,"AG",IBE,IBX)) Q:'IBX  D
+ ... I $P($G(^DGCR(399,IBX,0)),U,13)=7 Q    ; exclude cancelled claims
+ ... S IBA(IBX)="",IBC=IBC+1
+ ... S ZLEN=ECMELEN     ; save the correct ECME# length for later display
+ ... Q
+ .. Q
+ . Q
+ ;
+ I $G(ZLEN) S (AUTH,IBDISP)=$$RJ^XLFSTR(+AUTH,ZLEN,0)   ; reset AUTH for display
+ ;
+ I IBC'>1 S IBIFN=$O(IBA(0)) G ERECQ  ; only one or none found
+ ;
+ W !!,"More than one claim for ECME# ",AUTH," exists."
  S IBIFN=$$SEL(.IBA)
-ERECQ S:'IBIFN IBIFN=-1
+ERECQ ;
+ S:'IBIFN IBIFN=-1
  D DTL(IBIFN,"ECME#",AUTH) ;details
  Q IBIFN
  ;
 DTL(IBIFN,TYPE,AUTH) ;Details
  Q:IBIFN'>0  Q:AUTH=""
- N IBZ,IBBIL,IBPAT,IBPATN,IBRX,IB3624,IBDRUG,IBQTY,IBDAT,DIR
+ N IBZ,IBBIL,IBPAT,IBPATN,IBRX,IB3624,IBDRUG,IBQTY,IBDAT,DIR,IBFIL
  S IBZ=$G(^DGCR(399,IBIFN,0))
  S IBBIL=$P(IBZ,U),IBPAT=$P(IBZ,U,2),IBDAT=$P(IBZ,U,3)
  S IBPATN=$P($G(^DPT(+IBPAT,0)),U)
@@ -143,8 +161,9 @@ DTL(IBIFN,TYPE,AUTH) ;Details
  K ^TMP($J,"IBDRUG")
  S IBRX=$$FILE^IBRXUTL(+$P(IB3624,U,5),.01)
  S IBQTY=+$P(IB3624,U,7)
+ S IBFIL=+$P(IB3624,U,10)
  W !!,"Found IB Bill ",IBBIL," matching to "_TYPE_" '",AUTH,"':"
- W !,"Rx#",IBRX," ",$$DAT3^IBOUTL(IBDAT),", ",IBPATN,", ",IBDRUG I IBQTY W " (",IBQTY,")"
+ W !,"Rx#",IBRX,"-",IBFIL," ",$$DAT3^IBOUTL(IBDAT),", ",IBPATN,", ",IBDRUG I IBQTY W " (",IBQTY,")"
  Q
  ;
 AUD(IBIFN) ; Does the Accounts Receivable need to be audited?
@@ -218,14 +237,14 @@ SEL(IBARR) ; Select an rx bill
  ;  Input: IBARR - Array of IBIFN
  ; Output: IBNUM - One of the bill iens, or -1
  ;
- N DIR,IBIFN,IBRXN,IBDT,IBZ,IBY,IBC,IBBIL,IBLNK,DFN,IBPT,I,IBINS,IBCOB
+ N DIR,IBIFN,IBRXN,IBDT,IBZ,IBY,IBC,IBBIL,IBLNK,DFN,IBPT,I,IBINS,IBCOB,IBFIL
  ;
  S IBIFN=$O(IBARR(""))
  I 'IBIFN Q -1
  I '$O(IBARR(IBIFN)) Q IBIFN  ; no choice
  ;
  W !!?4,"Select one of the following:",!
- W !?8,"BILL",?19,"RX",?31,"DATE",?42,"INSURANCE",?60,"COB",?65,"PATIENT"
+ W !?8,"BILL",?17,"RX",?31,"DATE",?42,"INSURANCE",?60,"COB",?65,"PATIENT"
  W !?4 F I=1:1:75 W "-"
  ;
  S (IBIFN,IBC)=0
@@ -235,12 +254,13 @@ SEL(IBARR) ; Select an rx bill
  . S IBBIL=$P(IBZ,U)
  . S IBDT=$P(IBZ,U,3)
  . S IBY=$G(^IBA(362.4,+$O(^IBA(362.4,"C",IBIFN,0)),0))
- . S IBRXN=$P(IBY,U)
+ . S IBRXN=$P(IBY,U,1)    ; rx#
+ . S IBFIL=+$P(IBY,U,10)  ; fill#
  . S IBC=IBC+1
  . S IBLNK(IBC)=IBIFN
  . S IBCOB=$P(IBZ,U,21)
  . S IBINS=$P($G(^DIC(36,+$P($G(^DGCR(399,IBIFN,"MP")),U),0)),U)
- . W !?4,IBC,?8,IBBIL," ",?19,IBRXN," ",?31,$$DAT1^IBOUTL(IBDT)," ",?42,$E(IBINS,1,18),?61,IBCOB,?65,$E(IBPT,1,14)
+ . W !?4,IBC,?8,IBBIL," ",?17,IBRXN,"-",IBFIL," ",?31,$$DAT1^IBOUTL(IBDT)," ",?42,$E(IBINS,1,18),?61,IBCOB,?65,$E(IBPT,1,14)
  ;
  ;
  F  R !!?4,"Select one of the bills by number: ",IBY:DTIME  Q:'$T  Q:"^"[IBY  Q:$D(IBLNK(+IBY))  W:(IBY'="")&(IBY'["?") "  ??"  D

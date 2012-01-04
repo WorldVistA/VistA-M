@@ -1,5 +1,5 @@
-MAGGA02A ;WOIFO/SG - REMOTE PROCEDURES FOR IMAGE PROPERTIES ; 3/9/09 12:50pm
- ;;3.0;IMAGING;**93**;Dec 02, 2009;Build 163
+MAGGA02A ;WOIFO/SG/NST - REMOTE PROCEDURES FOR IMAGE PROPERTIES ; 24 Sep 2010 8:23 AM
+ ;;3.0;IMAGING;**93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -8,7 +8,6 @@ MAGGA02A ;WOIFO/SG - REMOTE PROCEDURES FOR IMAGE PROPERTIES ; 3/9/09 12:50pm
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -183,4 +182,35 @@ REPLIC(IMGIEN,MAGFDA) ;
  . S MAGFDA(2005,IENS1,FIELD)=MAGFDA(2005,IENS,FIELD)
  . Q
  ;---
+ Q IMGIEN1
+ ;
+ ;+++++ Change the STATUS of the first image in the Group
+ ;
+ ; IMGIEN        IEN of the image record in the IMAGE file (#2005)
+ ;
+ ; .MAGFDA       FDA array with new data
+ ;
+ ; Return Values
+ ; =============
+ ;           <0  Error descriptor (see the $$ERROR^MAGUERR)
+ ;            0  Modification is not needed
+ ;           >0  IEN of the first child
+ ;
+STATUS1(IMGIEN,MAGFDA) ;
+ N IMGIEN1,IENS,IENS1,FOUND,FIELD
+ S IENS=IMGIEN_","
+ S FOUND=0
+ ; 113 STATUS, 113.3 STATUS REASON
+ F FIELD=113,113.3 I $D(MAGFDA(2005,IENS,FIELD)) S FOUND=1 Q
+ Q:'FOUND 0  ; A field is not in the array
+ S IMGIEN1=$$GRPCH1^MAGGI14(IMGIEN,"E")  ; First child in the group
+ I IMGIEN1'>0 Q IMGIEN1
+ ;
+ ;=== Set STATUS on first child and delete the group from FDA array
+ S IENS1=IMGIEN1_","
+ F FIELD=113,113.3 D
+ . Q:'$D(MAGFDA(2005,IENS,FIELD))
+ . S MAGFDA(2005,IENS1,FIELD)=MAGFDA(2005,IENS,FIELD)
+ . K MAGFDA(2005,IENS,FIELD)
+ . Q
  Q IMGIEN1

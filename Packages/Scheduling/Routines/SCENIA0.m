@@ -1,5 +1,5 @@
 SCENIA0 ;ALB/SCK - DISPLAY INCOMPLETE ENCOUNTER ERRORS ; 09-MAY-1997
- ;;5.3;Scheduling;**66**;AUG 13, 1993
+ ;;5.3;Scheduling;**66,577**;AUG 13, 1993;Build 2
  ;
 EN ; -- main entry point for SCENI INCOMPLETE ENC DISPLAY
  ;   Variables
@@ -15,6 +15,7 @@ EN ; -- main entry point for SCENI INCOMPLETE ENC DISPLAY
  ;
  Q:'+SDXPTR
  S SDFLG=$$OPENC^SCUTIE1(SDXPTR,"SCINF")
+ I SDFLG=-1,$D(SCINF("ERROR")) W !!,$G(SCINF("ERROR")) H 3 K SCINF Q   ;SD*577
  ;
  S DFN=SCINF("DFN")
  S ^TMP("SCENI DFN",$J,0)=DFN

@@ -1,5 +1,5 @@
-MAGGTIA ;WOIFO/GEK/RMP/NST - Imaging RPC Broker calls. Add/Modify Image entry ; 20 Dec 2010 4:07 PM
- ;;3.0;IMAGING;**8,48,106**;Mar 19, 2002;Build 2002;Feb 28, 2011
+MAGGTIA ;WOIFO/GEK/RMP/NST - Imaging RPC Broker calls. Add/Modify Image entry ; 20 Dec 2010 3:16 PM
+ ;;3.0;IMAGING;**8,48,106,117,99**;Mar 19, 2002;Build 2057;Apr 19, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -126,6 +126,7 @@ ADD(MAGRY,MAGGZ) ; RPC [MAGGADDIMAGE]
  . S MAGGFDA(2005,"+1,",8.1)="C"
  . Q
  ;
+ S:$G(MAGGFDA(2005,"+1,",113))="" MAGGFDA(2005,"+1,",113)=1  ; Patch 117: Set STATUS field (#113) to Viewable (1)
  ;  We're making Object Type and either Patient, or short Desc Required.
  I '$D(MAGGFDA(2005,"+1,",3)) S MAGRY="0^Need an Object Type " Q
  ; Change to require patient. not patient or short desc.

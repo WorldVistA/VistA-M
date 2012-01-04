@@ -1,5 +1,5 @@
 ECXLABN ;ALB/JAP,BIR/CML-Lab Extract for DSS (New Format - With LMIP Codes) ;10/4/10  16:56
- ;;3.0;DSS EXTRACTS;**1,11,8,13,28,24,30,31,32,33,39,42,46,70,71,80,92,107,105,112,127**;Dec 22, 1997;Build 36
+ ;;3.0;DSS EXTRACTS;**1,11,8,13,28,24,30,31,32,33,39,42,46,70,71,80,92,107,105,112,127,132**;Dec 22, 1997;Build 18
 BEG ;entry point
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -80,20 +80,19 @@ GET ;get data
  S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
  ;
  ;- get  lab billable procedure, dss feeder key, data name, and data location
+ N ECXLEX
  S ECXLEX="" I $D(^LRO(64.03,ECLRN,2)) S ECXLEX=^(2)
  S ECLRBILL=$P(ECXLEX,U),ECDSSFK=$P(ECXLEX,U,2)
  S ECLRTNM=$P(ECXLEX,U,3),ECLRDTNM=$P(ECXLEX,U,4)
  ;- If no encounter number don't file record
  S ECXENC=$$ENCNUM^ECXUTL4(ECA,ECSN,ECXADMDT,ECD,ECTREAT,ECXOBS,ECHEAD,,) Q:ECXENC=""
  ;create extract record only if patient name and accession area exist
- S ECXLNC=""
  I ECNA]"" S ECT=$P(EC1,U,8),ECURG=$P(EC1,U,9),EC=+$P(EC1,U,7) I EC D
  .S:ECF=2 ECACA=EC_U_$P($G(^LRO(68,EC,0)),U,11)
  .S:ECF=67 ECACA=ECXAGC_U_$P($G(^LRO(68,EC,0)),U,11)
  .;--getting LOINC Code
- .S ECXLNC=""
- .S ECWKLD=$P($G(EC1),U,11)
- .S ECSP=$P($G(EC1),U,17),ECLRID=0
+ .N ECXLNC,ECLRID,LRIFN,LRIDT,ECRSLT,ECRSP8
+ .S ECXLNC="",ECLRID=0
  .;--getting lab patient id
  .S LRIFN=+$P(EC1,U,3)
  .I ECF=2 S:$D(^DPT(LRIFN,"LR")) ECLRID=^DPT(LRIFN,"LR")
@@ -105,9 +104,10 @@ GET ;get data
  ..N ECTST S ECTST=$P(EC1,U,8)
  ..S ECPT=$S($D(^LAB(60,ECTST,0)):$P(^LAB(60,ECTST,0),U,12),1:""),ECPT=$P(ECPT,",",2)
  ..Q:$G(ECPT)']""  Q:'$D(^LR(ECLRID,"CH",LRIDT,ECPT))
- ..S ECRSLT=^LR(ECLRID,"CH",LRIDT,ECPT),ECXLNC=$P($G(ECRSLT),"!",3)
+ ..S ECRSLT=$$TSTRES^LRRPU(ECLRID,"CH",LRIDT,ECPT,"",1) ;DBIA #4658
+ ..S ECRSP8=$P(ECRSLT,U,8)
+ ..S ECXLNC=$P($P(ECRSP8,"!",3),";")
  ..Q:$G(ECXLNC)']""
- ..S ECXLNC=$$GET1^DIQ(95.3,ECXLNC,.01)
  .D FILE
  Q
  ;

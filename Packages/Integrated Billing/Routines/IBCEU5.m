@@ -1,8 +1,10 @@
 IBCEU5 ;ALB/TMP - EDI UTILITIES (continued) FOR CMS-1500 ;13-DEC-99
- ;;2.0;INTEGRATED BILLING;**51,137,232,348,349**;21-MAR-94;Build 46
+ ;;2.0;INTEGRATED BILLING;**51,137,232,348,349,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ Q
  ;
 EXTCR(IBPRV) ; Called by trigger on field .02 of file 399.0222
+ ; Also called by trigger on field .02 of file 399.0404 (DEM;432).
  ; Function returns the first 3 digits of the provider's degree if
  ; a VA provider or the credentials in file 355.9 if non-VA provider
  ; IBPRV = vp to file 200 or 355.93
@@ -20,16 +22,18 @@ FTPRV(IBIFN,NOASK) ; If form type changes from UB-04 to CMS-1500 or vice
  I $S(FT=2:'REN&ATT,FT=3:'ATT&REN,1:0) D
  . I '$G(NOASK) D TXFERPRV(IBIFN,FT) Q
  . D PRVCHG(IBIFN,FT)
+ D CLEANUP(IBIFN,FT)
  Q
  ;
 TXFERPRV(IBIFN,FT) ; Ask to change the function of the main provider on
  ;  bill IBIFN to the function appropriate to the form type FT
  ;  
  N DIR,X,Y,Z,DIE,DA,DR,HAVE,NEED,IBZ
- W ! S DIR("A")="  WANT TO CHANGE THE "_$S(FT=3:"RENDERING",1:"ATTENDING")_" PROVIDER'S FUNCTION TO "_$S(FT=3:"ATTENDING",1:"RENDERING")_"?: "
- S DIR(0)="YA",DIR("B")="YES",DIR("?",1)="IF YOU ANSWER YES HERE, YOU WILL MAKE THE PROVIDER FUNCTIONS CONSISTENT",DIR("?")="  WITH THE FORM TYPE OF THE BILL"
+ ; DEM;432 - Changed the prompt from uppercase to mixed case.
+ W ! S DIR("A")="  Change the Claim Level "_$S(FT=3:"Rendering",1:"Attending")_" provider's function to "_$S(FT=3:"Attending",1:"Rendering")_"?: "
+ S DIR(0)="YA",DIR("B")="NO",DIR("?",1)="If you answer YES here, you will make the claim level provider functions",DIR("?")="  consistent with the form type of the bill"
  D ^DIR K DIR
- Q:Y'=1
+ I Y'=1 Q
  D PRVCHG(IBIFN,FT)
  Q
  ;
@@ -46,19 +50,34 @@ PRVCHG(IBIFN,IBFT) ; Change provider type to type consistent with current
  ;I Z S DA(1)=IBIFN,DIE="^DGCR(399,"_DA(1)_",""PRV"",",DA=+Z,DR=".01////"_NEED D FILE^DIE(,DIE
  Q
  ;
+CLEANUP(IBIFN,FT)  ; If form type changes remove any extra provider FUNCTIONS.
+ N X,PRV,CLEAN,DA,DIE
+ ;
+ ; (3) If form type changes from CMS-1500 to UB-04, remove any extra provider FUNCTIONS. 
+ I FT=3 F X=5 D  ; 5-SUPERVISING
+ .I $D(^DGCR(399,IBIFN,"PRV","B",X)) D
+ .. S PRV=0 F  S PRV=$O(^DGCR(399,IBIFN,"PRV","B",X,PRV)) Q:+PRV=0  D
+ ... S DA(1)=IBIFN,DA=PRV D FDA^DILF(399.0222,.DA,.01,,"@","CLEAN")
+ ;
+ ; (2) If form type changes from UB-04 to CMS-1500, remove any extra provider FUNCTIONS. 
+ I FT=2 F X=2,4,9 D  ; 2-OPERATING, 4-ATTENDING, 9-OTHER
+ .I $D(^DGCR(399,IBIFN,"PRV","B",X)) D
+ .. S PRV=0 F  S PRV=$O(^DGCR(399,IBIFN,"PRV","B",X,PRV)) Q:+PRV=0  D
+ ... S DA(1)=IBIFN,DA=PRV D FDA^DILF(399.0222,.DA,.01,,"@","CLEAN")
+ ;
+ I $D(CLEAN) D FILE^DIE(,"CLEAN")
+ Q
+ ;
 PRVHELP ; Text for the provider function help
  Q:$G(X)'="??"
- N IBZ,IBQUIT,IB,IB1,DIR
+ N IBZ,IBQUIT,IB,IB1,DIR,Z
  S IBQUIT=0
+ S Z=""
  I '$D(IOSL)!'$D(IOST) D HOME^%ZIS
  Q:IOST'["C-"
- W @IOF
- I $G(D0) D
- . N Z
- . D SPECIFIC(D0)
- . S Z=$$FT^IBCEF(D0)
- . I $S(Z=2:$D(^DGCR(399,D0,"PRV","B",4)),Z=3:$D(^DGCR(399,D0,"PRV","B",3)),1:0) D
- .. W !,"**** ",$S(Z=2:"ATTENDING",1:"RENDERING")," FUNCTION DOES NOT BELONG ON THIS BILL TYPE & MUST BE DELETED"
+ D:$G(D0) SPECIFIC(D0)
+ N DIR,X,Y S DIR(0)="E" D ^DIR K DIR W @IOF
+ S:$G(D0) Z=$$FT^IBCEF(D0)
  S IB=IOSL,IB1=1
  F IBZ=1:1 S:$P($T(HLPTXT+IBZ),";;",2)="" IBQUIT=1 Q:IBQUIT  S IB1=1 D
  . I $Y>(IB-3) N DIR,X,Y S IB1=0,DIR(0)="E" D ^DIR K DIR S IB=IB+IOSL I Y'=1 S IBQUIT=1 Q
@@ -76,8 +95,10 @@ SPECIFIC(IBIFN) ; Display specific provider requirements for the bill IBIFN
  W !!,"The valid provider functions for this bill are:"
  F IBZ=1:1:5,9 I $$PRVOK^IBCEU(IBZ,IBIFN) D
  . S ONBILL=$$CKPROV^IBCEU(IBIFN,IBZ)
- . S IBR=$S($G(IBPRV(IBZ,"NOTOPT")):1,1:0)
- . W !,IBZ,"  ",$$EXPAND^IBTRE(399.0222,.01,IBZ),?13,$S(IBR&'ONBILL:"**",1:""),?15,$S(IBR:"REQUIRED",1:"OPTIONAL"),$S(ONBILL:" - ALREADY ON BILL",1:" - NOT ON BILL")
+ . S IBR=$S($G(IBPRV(IBZ,"NOTOPT")):1,$G(IBPRV(IBZ,"SITUATIONAL")):2,1:0)  ; DEM;432 added "SITUATIONAL" check.
+ . ; ib2.0*432
+ . ; W !,IBZ,"  ",$$EXPAND^IBTRE(399.0222,.01,IBZ),?18,$S(IBR&'ONBILL:"**",1:""),?20,$S(IBR:"REQUIRED",1:"OPTIONAL"),$S(ONBILL:" - ALREADY ON BILL",1:" - NOT ON BILL")
+ . W !,IBZ,"  ",$$EXPAND^IBTRE(399.0222,.01,IBZ),?18,$S(IBR&'ONBILL:"**",1:""),?20,$S(IBR=1:"REQUIRED",IBR=2:"SITUATIONAL",1:"OPTIONAL")
  W !
  Q
  ;
@@ -85,70 +106,45 @@ HLPTXT ; Helptext for provider function
  ;; 
  ;;PROVIDER FUNCTION requirements:
  ;; 
- ;;RENDERING: CMS-1500 (both inpatient and outpatient): REQUIRED
- ;;           This is the provider who performed the services.
- ;;           Data will appear in Form Locator 24 of the CMS-1500.
+ ;;RENDERING: UB-04 Situational or CMS-1500 REQUIRED (CMS-1500)
+ ;;            This is the provider who performed a service.
  ;; 
- ;;    NOTE: There can be only one rendering provider per CMS-1500
- ;;          claim form, so there may be multiple CMS-1500's for a
- ;;          single episode of care if services were performed by more
- ;;          than one provider.  For example, there will be 2 CMS-1500's
- ;;          created for an episode of care that involved a surgical
- ;;          procedure and a radiology exam.  The operating physician
- ;;          would be the rendering provider on the CMS-1500 that
- ;;          included the surgical procedure(s) and the radiologist
- ;;          would be the rendering provider on the CMS-1500 that
- ;;          included the radiology procedure(s).
+ ;;ATTENDING: UB-04 REQUIRED
+ ;;           The physician who has primary responsibility
+ ;;           for the patient's medical care and treatment. 
  ;; 
- ;; 
- ;;ATTENDING: UB-04 (inpatient and outpatient): REQUIRED
- ;;           The physician who normally would be expected to
- ;;           certify and recertify the medical necessity of the
- ;;           services rendered and/or who has primary responsibility
- ;;           for the patient's medical care and treatment.  Data is
- ;;           printed in Form Locator 76 on the UB-04.
- ;; 
- ;;    NOTE: If there are multiple attending providers for the bill,
- ;;          report the attending provider for the procedure having the
- ;;          highest charge.  For outpatient, if the patient is
- ;;          self-referred (e.g.: an ER or clinic visit), you may use
- ;;          SLF000 as the attending provider id, with no provider
- ;;          name.  SLF000 may NOT be used for services which require a
- ;;          physician referral/order.
- ;; 
- ;; 
- ;;OPERATING: UB-04 (inpatient and outpatient): SOMETIMES REQUIRED
+ ;;OPERATING: UB-04 SITUATIONAL 
  ;;           The provider who performed the principal procedure(s)
- ;;           being billed.  Data will be printed in Form Locator 77
- ;;           on the UB-04.
+ ;;           being billed.
+ ;; UB-04 (inpatient): Situational IF type of bill has first 2
+ ;;                    digits of 11, and there is a principal
+ ;;                    procedure that will print in Form
+ ;;                    Locator 74 of the claim, there must be
+ ;;                    an Operating or Rendering Provider.
+ ;; UB-04 (outpatient):REQUIRED IF type of bill has first 2
+ ;;                    digits of 83, and there is a principal
+ ;;                    procedure that will print in Form
+ ;;                    Locator 74 of the claim.
  ;; 
- ;;    NOTE: Not applicable for CMS-1500 form type as this would be
- ;;                             reported as the rendering provider on
- ;;                             the CMS-1500.
- ;;          UB-04 (inpatient): REQUIRED IF type of bill has first 2
- ;;                             digits of 11, and there is a principal
- ;;                             procedure that will print in Form
- ;;                             Locator 74 of the claim.
- ;;          UB-04 (outpatient): REQUIRED IF type of bill has first 2
- ;;                             digits of 83, and there is a principal
- ;;                             procedure that will print in Form
- ;;                             Locator 74 of the claim.
+ ;;REFERRING: UB-04 or CMS-1500 SITUATIONAL
+ ;;           The provider who referred the patient for the services being billed. 
  ;; 
+ ;;SUPERVISING: CMS-1500 OPTIONAL
+ ;;           Required when the rendering provider is supervised
+ ;;           by another provider. Data will not be printed.
  ;; 
- ;;REFERRING: CMS-1500 (both inpatient and outpatient): OPTIONAL
- ;;           The provider who requested that the services being billed
- ;;           be performed.  Data will be printed in boxes 17 and 17a of
- ;;           the CMS-1500.
+ ;;OTHER OPERATING: UB-04 SITUATIONAL
+ ;;           Used to report another Operating Physician.  There must
+ ;;           also be an Operating Physician on the claim.
  ;; 
+ ;;           There are providers who performed specific functions for
+ ;;           the services on this bill.  These providers are needed to
+ ;;           enable the V.A. to collect reimbursement when more than
+ ;;           one provider function is involved in the billable episode
+ ;;           (like an operating physician or referring provider). 
  ;; 
- ;;SUPERVISING: CMS-1500 (both inpatient and outpatient): OPTIONAL
- ;;           Required only when the rendering provider is supervised
- ;;           by a physician.  Data will not be printed.
- ;; 
- ;; 
- ;;OTHER: UB-04 (both inpatient and outpatient): OPTIONAL
- ;;           Used to report providers with functions not specifically
- ;;           designated here.
+ ;;           This data identifies the type of function that was performed
+ ;;           by a provider.
  ;;
  ;
 LINKRX(IBIFN,IBREV) ; Ask for revenue code's RX if not already there
@@ -203,4 +199,3 @@ UPDPTR(IBIFN,IBREV,Y) ;
  ;
 INSFT(IBIFN) ; Returns 1 if form type is UB-04, 0 if CMS-1500
  Q ($$FT^IBCEF(IBIFN)=3)
- ;

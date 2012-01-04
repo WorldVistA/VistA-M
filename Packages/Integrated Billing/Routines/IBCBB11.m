@@ -1,5 +1,5 @@
 IBCBB11 ;ALB/AAS/OIFO-BP/PIJ - CONTINUATION OF EDIT CHECK ROUTINE ;12 Jun 2006  3:45 PM
- ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384,400,436**;21-MAR-94;Build 31
+ ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384,400,436,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 WARN(IBDISP) ; Set warning in global
@@ -27,7 +27,7 @@ MULTDIV(IBIFN,IBND0) ; Check for multiple divisions on a bill ien IBIFN
  ;; FLU SHOTS PROCEDURE CODES: 90724, G0008, 90732, G0009
  ;
 NPICHK ; Check for required NPIs
- N IBNPIS,IBNONPI,IBNPIREQ,Z,IBNFI,IBTF,IIBWC
+ N IBNPIS,IBNONPI,IBNPIREQ,Z,IBNFI,IBTF,IBWC,IBXSAVE,IBPRV,IBLINE
  ;*** pij start IB*20*436 ***
  N IBRATYPE,IBLEGAL
  S (IBRATYPE,IBLEGAL)=""
@@ -46,13 +46,23 @@ NPICHK ; Check for required NPIs
  ;*** pij end ***
  S IBNPIREQ=$$NPIREQ^IBCEP81(DT)  ; Check if NPI is required
  ; Check providers
- S IBNPIS=$$PROVNPI^IBCEF73A(IBIFN,.IBNONPI)
- I $L(IBNONPI) F Z=1:1:$L(IBNONPI,U) D
+ ; IB*2.0*432 changed the NPI check to the new Provider Array
+ ;S IBNPIS=$$PROVNPI^IBCEF73A(IBIFN,.IBNONPI)
+ D ALLIDS^IBCEFP(IBIFN,.IBXSAVE,1)
+ S IBPRV=""
+ F  S IBPRV=$O(IBXSAVE("PROVINF",IBIFN,"C",1,IBPRV)) Q:'IBPRV  D
+ . I $P($G(IBXSAVE("PROVINF",IBIFN,"C",1,IBPRV,0)),U,4)="" S IBNONPI(IBPRV)=""
+ S IBLINE=""
+ F  S IBLINE=$O(IBXSAVE("L-PROV",IBIFN,IBLINE)) Q:'IBLINE  D
+ . S IBPRV=""
+ . F  S IBPRV=$O(IBXSAVE("L-PROV",IBIFN,IBLINE,"C",1,IBPRV)) Q:IBPRV=""  D
+ .. I $P($G(IBXSAVE("L-PROV",IBIFN,IBLINE,"C",1,IBPRV,0)),U,4)="" S IBNONPI(IBPRV)=""
+ I $D(IBNONPI) S IBPRV="" F  S IBPRV=$O(IBNONPI(IBPRV)) Q:'IBPRV  D
  . ;*** pij start IB*20*436 ***
  . ;I IBNPIREQ S IBER=IBER_"IB"_(140+$P(IBNONPI,U,Z))_";" Q  ; If required, set error
- . I IBNPIREQ,IBLEGAL="" S IBER=IBER_"IB"_(140+$P(IBNONPI,U,Z))_";" Q  ; If required, set error
+ . I IBNPIREQ,IBLEGAL="" S IBER=IBER_"IB"_(140+IBPRV)_";" Q  ; If required, set error
  . ; ;*** pij end ***
- . D WARN("NPI for the "_$P("referring^operating^rendering^attending^supervising^^^^other",U,$P(IBNONPI,U,Z))_" provider has no value")  ; Else, set warning
+ . D WARN("NPI for the "_$P("referring^operating^rendering^attending^supervising^^^^other",U,IBPRV)_" provider has no value")  ; Else, set warning
  ; Check organizations
  S IBNONPI=""
  S IBNPIS=$$ORGNPI^IBCEF73A(IBIFN,.IBNONPI)
@@ -64,17 +74,31 @@ NPICHK ; Check for required NPIs
  . ;*** pij end ***
  . ; PRXM/KJH - Changed descriptions.
  . D WARN("NPI for the "_$P("Service Facility^Non-VA Service Facility^Billing Provider",U,$P(IBNONPI,U,Z))_" has no value")  ; Else, set warning
+ . ;S IBER=IBER_$P("IB339;^IB340;^IB341;",U,$P(IBNONPI,U,Z))  ; DEM;432 Added NPI errors.
+ . ;IB*2.0*432/TAZ - Removed fatal error for Non-VA Service Facility NPI.
+ . S IBER=IBER_$P("IB339;^^IB341;",U,$P(IBNONPI,U,Z))
+ . Q
  Q
  ;
 TAXCHK ; Check for required taxonomies
- N IBTAXS,IBNOTAX,IBTAXREQ,Z
+ N IBTAXS,IBNOTAX,IBTAXREQ,Z,IBXSAVE,IBLINE,IBPRV
  S IBTAXREQ=$$TAXREQ^IBCEP81(DT)  ; Check if taxonomy is required
  ; Check providers
- S IBTAXS=$$PROVTAX^IBCEF73A(IBIFN,.IBNOTAX)
- I $L(IBNOTAX) F Z=1:1:$L(IBNOTAX,U) D
+ ; IB*2.0*432 changed the Taxonomy check to the new Provider Array
+ ;S IBTAXS=$$PROVTAX^IBCEF73A(IBIFN,.IBNOTAX)
+ D ALLIDS^IBCEFP(IBIFN,.IBXSAVE,1)
+ S IBPRV=""
+ F  S IBPRV=$O(IBXSAVE("PROVINF",IBIFN,"C",1,IBPRV)) Q:'IBPRV  D
+ . I $G(IBXSAVE("PROVINF",IBIFN,"C",1,IBPRV,"TAXONOMY"))="" S IBNOTAX(IBPRV)=""
+ S IBLINE=""
+ F  S IBLINE=$O(IBXSAVE("L-PROV",IBIFN,IBLINE)) Q:'IBLINE  D
+ . S IBPRV=""
+ . F  S IBPRV=$O(IBXSAVE("L-PROV",IBIFN,IBLINE,"C",1,IBPRV)) Q:IBPRV=""  D
+ .. I $G(IBXSAVE("L-PROV",IBIFN,IBLINE,"C",1,IBPRV,"TAXONOMY"))="" S IBNOTAX(IBPRV)=""
+ I $D(IBNOTAX) S IBPRV="" F  S IBPRV=$O(IBNOTAX(IBPRV)) Q:'IBPRV  D
  . ; Only Referring, Rendering and Attending are currently sent to the payer
- . I IBTAXREQ,"134"[$P(IBNOTAX,U,Z) S IBER=IBER_"IB"_(250+$P(IBNOTAX,U,Z))_";" Q  ; If required, set error
- . D WARN("Taxonomy for the "_$P("referring^operating^rendering^attending^supervising^^^^other",U,$P(IBNOTAX,U,Z))_" provider has no value")  ; Else, set warning
+ . I IBTAXREQ,"134"[IBPRV S IBER=IBER_"IB"_(250+IBPRV)_";" Q  ; If required, set error
+ . D WARN("Taxonomy for the "_$P("referring^operating^rendering^attending^supervising^^^^other",U,IBPRV)_" provider has no value")  ; Else, set warning
  ; Check organizations
  S IBNOTAX=""
  S IBTAXS=$$ORGTAX^IBCEF73A(IBIFN,.IBNOTAX)
@@ -138,3 +162,130 @@ ROICHKQ ;
  K ^TMP($J,"IBDRUG")
  Q ROIQ
  ;
+AMBCK(IBIFN)    ; IB*2.0*432 - if ambulance location defined, address must be defined
+ ; if there is anything entered in any of the address fields (either p/up or drop/off fields), than there needs to be: 
+ ; Address 1, State and ZIP unless the State is not a US state or possession, then zip code is not needed (CMS1500 only)
+ ; input - IBIFN = IEN of the Bill/Claims file (#399)
+ ; OUTPUT - 0 = no error        
+ ;          1 = Error
+ ;
+ N IBPAMB,IBDAMB,IBAMBR,IBCK
+ S IBAMBR=0
+ Q:$$INSPRF^IBCEF(IBIFN)'=0 IBAMBR
+ S IBPAMB=$G(^DGCR(399,IBIFN,"U5")),IBDAMB=$G(^DGCR(399,IBIFN,"U6"))
+ S IBCK(5)=$$NOPUNCT^IBCEF($P(IBPAMB,U,2,6),1),IBCK(6)=$$NOPUNCT^IBCEF($P(IBDAMB,U,1,6),1)
+ I IBCK(5)="",IBCK(6)="" Q IBAMBR
+ ; at this point we know that at least one ambulance field has data, so check to see if all have data
+ I IBCK(5)'="" F I=2,4,5 I $P(IBPAMB,U,I)="" S IBAMBR=1
+ I IBCK(6)'="" F I=1,2,4,5 I $P(IBDAMB,U,I)="" S IBAMBR=1
+ Q:IBAMBR=1 IBAMBR
+ ; now check zip code.  OK to be null if state is not a US Posession
+ F I="IBPAMB","IBDAMB" I $P(I,U,5)'="",$P($G(^DIC(5,$P(I,U,5),0)),U,6)=1,$P(I,U,6)="" S IBAMBR=1
+ Q IBAMBR
+ ;
+COBAMT(IBIFN)   ; IB*2.0*432 - IF there is a COB amt. it must equal the Total Claim Charge Amount
+ ; input - IBIFN = IEN of the Bill/Claims file (#399)
+ ; OUTPUT - 0 = no error        
+ ;          1 = Error
+ ;
+ Q:IBIFN="" 0
+ Q:$P($G(^DGCR(399,IBIFN,"U4")),U)="" 0
+ Q:+$P($G(^DGCR(399,IBIFN,"U1")),U)'=+$P($G(^DGCR(399,IBIFN,"U4")),U) 1
+ Q 0
+ ;
+COBMRA(IBIFN)   ; IB*2.0*432 - If there is a 'COB total non-covered amount' (File#399, Field#260), 
+ ; Primary Insurance must be Medicare that never went to Medicare, and this must be a 2ndary or tertiary claim
+ ; input - IBIFN = IEN of the Bill/Claims file (#399)
+ ; OUTPUT - 0 = no error        
+ ;          1 = Error
+ ;
+ N IBP
+ Q:IBIFN="" 0
+ Q:$P($G(^DGCR(399,IBIFN,"U4")),U)="" 0
+ S IBP=$P($G(^DGCR(399,IBIFN,"M1")),U,5) S:IBP="" IBP=IBIFN
+ I $$WNRBILL^IBEFUNC(IBIFN,1),$P($G(^DGCR(399,IBP,"S")),U,7)="",$$COBN^IBCEF(IBIFN)>1 Q 0
+ Q 1
+ ;
+COBSEC(IBIFN)   ; IB*2.0*432 - If there is NOT a 'COB total non-covered amount' (File#399, Field#260), 
+ ; and Primary Insurance is Medicare that never went to Medicare, 2ndary or tertiary claim cannot be set to transmit
+ ; input - IBIFN = IEN of the Bill/Claims file (#399)
+ ; OUTPUT - 0 = no error        
+ ;          1 = Error
+ ;
+ N IBP
+ Q:IBIFN="" 0
+ Q:$P($G(^DGCR(399,IBIFN,"U4")),U)'="" 0
+ Q:$$COBN^IBCEF(IBIFN)<2 0
+ S IBP=$P($G(^DGCR(399,IBIFN,"M1")),U,5) S:IBP="" IBP=IBIFN
+ I $$WNRBILL^IBEFUNC(IBIFN,1),$P($G(^DGCR(399,IBP,"S")),U,7)="",$P($G(^DGCR(399,IBIFN,"TX")),U,8)'=1 Q 1
+ Q 0
+ ;
+TMCK(IBIFN) ;  IB*2.0*432 - Attachment Control Number - REQUIRED when Transmission Method = BM, EL, EM, or FT
+ ; input - IBIFN = IEN of the Bill/Claims file (#399)
+ ; OUTPUT - 0 = no error        
+ ;          1 = Error
+ ;
+ N IBAC
+ Q:IBIFN="" 0
+ F I=1,3 S IBAC(I)=$P($G(^DGCR(399,IBIFN,"U8")),U,I)
+ Q:IBAC(3)="" 0
+ Q:IBAC(1)'="" 0
+ Q:IBAC(3)="AA" 0
+ Q 1
+ ;
+ACCK(IBIFN) ; IB*2.0*432 If any of the loop info is present, then Report Type & Transmission Method req'd
+ ; input - IBIFN = IEN of the Bill/Claims file (#399)
+ ; OUTPUT - 0 = no error        
+ ;          1 = Error
+ ;
+ N IBAC
+ Q:IBIFN="" 0
+ F I=1:1:3 S IBAC(I)=$P($G(^DGCR(399,IBIFN,"U8")),U,I)
+ ; All fields null, no error
+ I IBAC(1)="",IBAC(2)="",IBAC(3)="" Q 0
+ ; Both required fields complete, no error
+ I IBAC(2)'="",IBAC(3)'="" Q 0
+ ; At this point, one of the 2 required fields has data and one does not, so error
+ Q 1
+ ;
+LNTMCK(IBIFN) ;  DEM;IB*2.0*432 - (Line Level) Attachment Control Number - REQUIRED when Transmission Method = BM, EL, EM, or FT
+ ; input - IBIFN = IEN of the Bill/Claims file (#399)
+ ; OUTPUT - IBLNERR = 0 = no error        
+ ;          IBLNERR = 1 = Error
+ ;
+ N IBAC,IBPROCP,I,IBLNERR
+ S IBLNERR=0  ; DEM;432 - Initialize error flag IBLNERR to '0' for no errors.
+ Q:IBIFN="" IBLNERR
+ S IBPROCP=0 F  S IBPROCP=$O(^DGCR(399,IBIFN,"CP",IBPROCP)) Q:'IBPROCP  D  Q:IBLNERR
+ . Q:'($D(^DGCR(399,IBIFN,"CP",IBPROCP,0))#10)  ; DEM;432 - Node '0' is procedure node.
+ . Q:'($D(^DGCR(399,IBIFN,"CP",IBPROCP,1))#10)  ; DEM;432 - Node '1' is line level Attachment Control fields.
+ . F I=1,3 S IBAC(I)=$P(^DGCR(399,IBIFN,"CP",IBPROCP,1),U,I)
+ . I IBAC(3)="" S IBLNERR=0 Q
+ . I IBAC(1)'="" S IBLNERR=0 Q
+ . I (IBAC(3)="AA") S IBLNERR=0 Q
+ . S IBLNERR=1
+ . Q
+ ;
+ Q IBLNERR
+ ;
+LNACCK(IBIFN) ; DEM;IB*2.0*432 (Line Level) If any of the loop info is present, then Report Type & Transmission Method req'd
+ ; input - IBIFN = IEN of the Bill/Claims file (#399)
+ ; OUTPUT - IBLNERR = 0 = no error        
+ ;          IBLNERR = 1 = Error
+ ;
+ N IBAC,IBPROCP,I,IBLNERR
+ S IBLNERR=0  ; DEM;432 - Initialize error flag IBLNERR to '0' for no errors.
+ Q:IBIFN="" IBLNERR
+ S IBPROCP=0 F  S IBPROCP=$O(^DGCR(399,IBIFN,"CP",IBPROCP)) Q:'IBPROCP  D  Q:IBLNERR
+ . Q:'($D(^DGCR(399,IBIFN,"CP",IBPROCP,0))#10)  ; DEM;432 - Node '0' is procedure node.
+ . Q:'($D(^DGCR(399,IBIFN,"CP",IBPROCP,1))#10)  ; DEM;432 - Node '1' is line level Attachment Control fields.
+ . F I=1:1:3 S IBAC(I)=$P(^DGCR(399,IBIFN,"CP",IBPROCP,1),U,I)
+ . ; All fields null, no error
+ . I IBAC(1)="",IBAC(2)="",IBAC(3)="" S IBLNERR=0 Q
+ . ; Both required fields complete, no error
+ . I IBAC(2)'="",IBAC(3)'="" S IBLNERR=0 Q
+ . ; At this point, one of the 2 required fields has data and one does not, so error
+ . S IBLNERR=1
+ . Q
+ ;
+ Q IBLNERR

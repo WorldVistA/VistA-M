@@ -1,6 +1,24 @@
-XQSET ;MJM/SEA - Rebuild display/user XUTL("XQO") ;01/09/2001  13:30
- ;;8.0;KERNEL;**28,82,155**;Jul 10, 1995
+XQSET ;MJM/SEA - Rebuild display/user XUTL("XQO") ;05/09/2011
+ ;;8.0;KERNEL;**28,82,155,569**;Jul 10, 1995;Build 1
 SET ;Rebuild the +XQDIC and "U"_DUZ nodes
+ ;
+ ;** P569 START CJM
+ I XQDIC["U",$P(XQDIC,"U",2)'=DUZ D  Q
+ .D
+ ..N DUZ
+ ..S DUZ=$P(XQDIC,"U",2)
+ ..D NEWSET
+ .D
+ ..N XQDIC
+ ..S XQDIC="U"_DUZ
+ ..D NEWSET
+ D NEWSET
+ Q
+ ;
+NEWSET ;
+ ;
+ ; ** P569 END CJM
+ ;
  K ^XUTL("XQO",XQDIC)
  I XQDIC=+XQDIC,'$D(^DIC(19,XQDIC,0)) Q
  F XQSI=0:0 S XQSI=$S(+XQDIC:$O(^DIC(19,XQDIC,10,XQSI)),1:$O(^VA(200,DUZ,203,XQSI))) Q:XQSI'>0  I $D(^(XQSI,0)) S XQSY=^(0) D SET1

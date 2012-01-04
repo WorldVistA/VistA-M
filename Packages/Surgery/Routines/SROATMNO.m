@@ -1,18 +1,18 @@
-SROATMNO ;BIR/MAM - TRANSMIT NO ASSESSMENT ;05/11/10
- ;;3.0; Surgery ;**27,38,47,62,68,79,83,81,88,93,95,97,129,125,142,153,160,166,174**;24 Jun 93;Build 8
+SROATMNO ;BIR/MAM - TRANSMIT NO ASSESSMENT ;03/10/11
+ ;;3.0;Surgery;**27,38,47,62,68,79,83,81,88,93,95,97,129,125,142,153,160,166,174,175**;24 Jun 93;Build 6
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
  ;
  ; Reference to ^DIC(45.3 supported by DBIA #218
  ;
- N SR10SP,SRINTUB,SR95PO,SRLO,SRPID,TDATE K ^TMP("SRA",$J) S SRATOT=0,SRASITE=+$P($$SITE^SROVAR,"^",3),(SRAMNUM,SRACNT)=1
+ N SR1L,SR10SP,SRINTUB,SR95PO,SRLO,SRPID,TDATE K ^TMP("SRA",$J) S SRATOT=0,SRASITE=+$P($$SITE^SROVAR,"^",3),(SRAMNUM,SRACNT)=1
  S Z=$E(DT,1,3)-2,SRLO=Z_"1215"
  S TDATE=0 F  S TDATE=$O(^SRF("AQ",TDATE)) Q:TDATE=""  I DT'<TDATE S SRTN=0 F  S SRTN=$O(^SRF("AQ",TDATE,SRTN)) Q:'SRTN  D SET
- S SRATOTM=SRAMNUM D ^SROATM4
+ S SRATOTM=SRAMNUM,SR1L=1 D ^SROATM4
  Q
 SET I $P($G(^SRF(SRTN,.4)),"^",2)="T"!(TDATE<SRLO) K ^SRF("AQ",TDATE,SRTN) Q
- I $P($G(^SRF(SRTN,30)),"^")!$P($G(^SRF(SRTN,31)),"^",8)!'$P($G(^SRF(SRTN,.2)),"^",12)!($P($G(^SRF(SRTN,"NON")),"^")="Y") K ^SRF("AQ",TDATE,SRTN) S $P(^SRF(SRTN,.4),"^",2)="" Q
+ I $P($G(^SRF(SRTN,"NON")),"^")="Y" K ^SRF("AQ",TDATE,SRTN) S $P(^SRF(SRTN,.4),"^",2)="" Q
  I $P($G(^SRF(SRTN,"RA")),"^",6)="Y",$P($G(^SRF(SRTN,"RA")),"^",2)="N" K ^SRF("AQ",TDATE,SRTN) Q
  I $P($G(^SRF(SRTN,0)),"^",9)="" K ^SRF("AQ",TDATE,SRTN) Q
  S SR10SP="          " K DA,DIE,DR S DA=SRTN,DIE=130,DR="905///R" D ^DIE K DR,DA,DIE
@@ -30,7 +30,8 @@ SET I $P($G(^SRF(SRTN,.4)),"^",2)="T"!(TDATE<SRLO) K ^SRF("AQ",TDATE,SRTN) Q
  D RS^SROATM2
  S SRMAJMIN=$E($P($G(^SRF(SRTN,0)),U,3),1)
  S SRDTHUR=$E($P($G(^SRF(SRTN,.4)),U,7),1)
- S SRSTATUS=$E($P($G(^SRF(SRTN,0)),U,12),1) I SRSTATUS'="I"&(SRSTATUS'="O") S VAIP("D")=$P(SRA(0),"^",9) D IN5^VADPT S SRSTATUS=$S(VAIP(13):"I",1:"O") K VAIP
+ S SRSTATUS=$S($P($G(^SRF(SRTN,208)),"^",14):"I",1:$E($P($G(^SRF(SRTN,0)),U,12),1))
+ I SRSTATUS'="I"&(SRSTATUS'="O") S VAIP("D")=$P(SRA(0),"^",9) D IN5^VADPT S SRSTATUS=$S(VAIP(13):"I",1:"O") K VAIP
  S SRAGE="" I $P(VADM(3),"^") S SRAGE=$E(DATE,1,3)-$E($P(VADM(3),"^"),1,3)-($E(DATE,4,7)<$E($P(VADM(3),"^"),4,7))
  S SRASA="",Y=$P($G(^SRF(SRTN,1.1)),"^",3) S:Y X=$P($G(^SRO(132.8,Y,0)),"^"),SRASA=$E(X,1,2)
  ; Admission wi 14 days following outpatient surgery due to an Occurrence 
@@ -51,6 +52,11 @@ SET I $P($G(^SRF(SRTN,.4)),"^",2)="T"!(TDATE<SRLO) K ^SRF("AQ",TDATE,SRTN) Q
  S SRTEMP="/"_$J(SRASITE,3)_$J(SRTN,7)_"  B"_$J($E($P(SRA(.2),"^"),1,12),12)_$J($E($P(SRA(.2),"^",4),1,12),12)_$E(SRPMOD_SR10SP,1,10)
  F I=1:1:10 S SRTEMP=SRTEMP_$E(SRMOD(I)_SR10SP,1,10)
  S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SRTEMP_$J(SRINTUB,1)_SR95PO_$J(SRATT,2)_$J(SRDOB,7)_$J(SRICD,6)_$J(SROC(38),2)_$J(SROC(39),2),SRACNT=SRACNT+1
+ S SRA(.9)=$G(^SRF(SRTN,.9)),SRA("VER")=$G(^SRF(SRTN,"VER"))
+ S SRTEMP="/"_$J(SRASITE,3)_$J(SRTN,7)_"  D"_$J($P(SRA(.9),"^"),12)_$J($P(SRA(.9),"^",2),12)_$J($P(SRA(.9),"^",3),12)_$J($P(SRA(.9),"^",4),12)_$J($P(SRA(.9),"^",5),12)_$J($P(SRA(.9),"^",6),12)
+ S SRTEMP=SRTEMP_$J($P($G(^SRF(SRTN,30)),"^"),12)_$J($P($G(^SRF(SRTN,31)),"^",8),4)_$J($P($G(^SRF(SRTN,30)),"^",4),50)
+ F I=7:1:18 S SRTEMP=SRTEMP_$J($P(SRA("VER"),"^",I),2)
+ S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SRTEMP,SRACNT=SRACNT+1
  I SRACNT>100 S SRACNT=1,SRAMNUM=SRAMNUM+1
  S SRATOT=SRATOT+1
  S X=$E($P(^SRF(SRTN,0),"^",9),1,5)_"00",^TMP("SRWL",$J,X)=""

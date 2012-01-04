@@ -1,5 +1,5 @@
 IBJPM ;ALB/MAF,ARH - IBSP MCCR PARAMETERS SCREEN ;14-DEC-1995
- ;;2.0;INTEGRATED BILLING;**39,137,184,271,316,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**39,137,184,271,316,416,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; -- main entry point for JOINT INQUIRY PARAMETERS option
@@ -65,6 +65,7 @@ BLD ; -- build screen array, no variables required for input
  S IBLN=$$SETN("Insurance Verification",IBLN,IBLR,1)
  S IBLN=$$SET("","General Parameters",IBLN,IBLR)
  S IBLN=$$SET("","Batch Extracts Parameters",IBLN,IBLR)
+ S IBLN=$$SET("","Service Type Codes",IBLN,IBLR)
  ;
  S (IBLN,VALMCNT)=$S(IBLN>IBGRPE:IBLN,1:IBGRPE)-1
  Q

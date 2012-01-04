@@ -1,5 +1,5 @@
-IBOSCDC ;ALB/BNT - SERVICE CONNECTED DETERMINATION CHANGE REPORT;10/04/07
- ;;2.0;INTEGRATED BILLING;**384**;21-MAR-94;Build 74
+IBOSCDC ;ALB/BNT - SERVICE CONNECTED DETERMINATION CHANGE REPORT ;10/04/07
+ ;;2.0;INTEGRATED BILLING;**384,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 SCR ; -- Main Entry for report.
@@ -185,7 +185,7 @@ HDR(IBX) ;
  F X=1:1:IOM W "="
  W !,"Patient",?24,"Effective",?35,"Service",?46,"Eligibility",?65,"SC",?69,"Enrollment",!
  W ?24,"Date",?35,"connected",?46,"code",?65,"%%",?69,"priority",!!
- W ?2,"RX#",?10,"Fill#",?16,"DOS",?25,"Bill#/Status",?39,"ECME#",?47,"Copay/Insurance",?66,"Total Charge",!
+ W ?2,"RX#",?10,"Fill#",?16,"DOS",?25,"Bill#/Status",?39,"ECME#",?52,"Copay/Insurance",?71,"Total Charge",!
  F X=1:1:IOM W "-"
  Q
  ;
@@ -198,7 +198,7 @@ WPTLINE(PT,EFDT,SC,ELIGCODE,SCPERCNT,ENRLPRIO) ;
  ;Write Prescription Line
 WRXLINE(RX,FILL,DOS,BILL,ECME,COPAYINS,AMNT) ;
  I $Y>(IOSL-4) D HDR(IBN) Q:IBQUIT
- W !,?2,RX,?10,FILL,?16,$$FMTE^XLFDT(DOS,"2D"),?25,BILL,?39,ECME,?47,COPAYINS,?66,AMNT
+ W !,?2,RX,?10,FILL,?16,$$FMTE^XLFDT(DOS,"2D"),?25,BILL,?39,ECME,?52,COPAYINS,?71,AMNT
  Q
  ;
  ;Device Selection

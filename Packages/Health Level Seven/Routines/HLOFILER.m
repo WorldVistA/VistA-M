@@ -1,5 +1,5 @@
-HLOFILER ;ALB/CJM- Passes messages on the incoming queue to the applications - 10/4/94 1pm ;07/10/2007
- ;;1.6;HEALTH LEVEL SEVEN;**126,131,134,137**;Oct 13, 1995;Build 21
+HLOFILER ;ALB/CJM- Passes messages on the incoming queue to the applications - 10/4/94 1pm ;05/26/2011
+ ;;1.6;HEALTH LEVEL SEVEN;**126,131,134,137,152**;Oct 13, 1995;Build 3
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;GET WORK function for the process running under the Process Manager
@@ -32,16 +32,16 @@ GETWORK(QUE) ;
  Q:(QUEUE]"") 1
  Q 0
  ;
-DOWORK(QUEUE) ;sends the messages on the queue
+DOWORK(QUEUE) ;passes the messages on the queue to the application
  N $ETRAP,$ESTACK S $ETRAP="G ERROR^HLOFILER"
  ;
- N MSGIEN,DEQUE,QUE
+ N MSGIEN,DEQUE,QUE,COUNT
  M QUE=QUEUE
- S DEQUE=0
+ S (DEQUE,COUNT)=0
  S MSGIEN=0
  ;
- F  S MSGIEN=$O(^HLB("QUEUE","IN",QUEUE("FROM"),QUEUE("QUEUE"),MSGIEN)) Q:'MSGIEN  D  M QUEUE=QUE
- .N MCODE,ACTION,QUE,PURGE,ACKTOIEN,NODE
+ F  S MSGIEN=$O(^HLB("QUEUE","IN",QUEUE("FROM"),QUEUE("QUEUE"),MSGIEN)) Q:'MSGIEN  S COUNT=COUNT+1 Q:COUNT>1000  D  M QUEUE=QUE
+ .N MCODE,ACTION,QUE,PURGE,ACKTOIEN,NODE,COUNT
  .N $ETRAP,$ESTACK S $ETRAP="G ERROR2^HLOFILER"
  .S NODE=$G(^HLB("QUEUE","IN",QUEUE("FROM"),QUEUE("QUEUE"),MSGIEN))
  .S ACTION=$P(NODE,"^",1,2)

@@ -1,6 +1,6 @@
 IBCNRE4 ;DAOU/DMK - Edit PLAN APPLICATION Sub-file ;23-DEC-2003
- ;;2.0;INTEGRATED BILLING;**251**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**251,435**;21-MAR-94;Build 27
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Specific to E-PHARM APPLICATION Entry
  ; Edit LOCAL ACTIVE? Field
@@ -160,6 +160,9 @@ PRINT1 ; Print file entry data
  ; 10.09 REBILL PAYER SHEET NAME
  W $J("Rebill Payer Sheet Name: ",40),$G(A(FILENO,IENS,10.09)),!
  ;
+ ; 10.15 ELIGIBILITY PAYER SHEET NAME
+ W $J("Eligibility Verification Payer Sheet Name: ",40),$G(A(FILENO,IENS,10.15)),!
+ ;
  ; 10.1 MAXIMUM NCPDP TRANSACTIONS
  W $J("Maximum NCPDP Transactions: ",40),$G(A(FILENO,IENS,10.1)),!
  ;
@@ -171,6 +174,9 @@ PRINT1 ; Print file entry data
  ;
  ; 10.13 TEST REBILL PAYER SHEET NAME
  W $J("Test Rebill Payer Sheet Name: ",40),$G(A(FILENO,IENS,10.13)),!
+ ;
+ ; 10.14 TEST ELIGIBILITY PAYER SHEET NAME
+ W $J("Test Eligibility Verification Payer Sheet Name: ",40),$G(A(FILENO,IENS,10.14)),!
  Q
  ;
 PRINT2 ; Print subfile entry data

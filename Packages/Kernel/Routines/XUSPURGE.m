@@ -1,17 +1,19 @@
-XUSPURGE ;SFISC/STAFF - PURGE ROUTINE FOR XUSEC ;08/27/2003  15:26
- ;;8.0;KERNEL;**180,312**;Jul 10, 1995
+XUSPURGE ;SFISC/STAFF - PURGE ROUTINE FOR XUSEC ;03/18/10  07:10
+ ;;8.0;KERNEL;**180,312,543**;Jul 10, 1995;Build 15
+ ;Per VHA Directive 2004-038, this routine should not be modified.
 SCPURG ;Purge sign-on log to 30 days
- N XU1,XU2,XUDT,DIK,DA
- S XUDT=$$FMADD^XLFDT(DT,-30) ;Set the limit
- I $O(^XUSEC(0,0))'>0 G SCEXIT
- S DIK="^XUSEC(0,"
+ N XU1,XU2,XUDT,DIK,DA,DIE,DR,XUNOW
+ S XUDT=$$FMADD^XLFDT(DT,-30),XUNOW=$$NOW^XLFDT() ;Set the limit
+ I $O(^XUSEC(0,0))'>0 Q
  F DA=0:0 S DA=$O(^XUSEC(0,DA)) Q:(DA'>0)!(DA>XUDT)  D
- . S XU1=+$G(^XUSEC(0,DA,0))
- . D ^DIK
+ . S XU1=$G(^XUSEC(0,DA,0)),XU2=+XU1
+ . ;Enter a SIGN OFF time to clear the X-ref's p543
+ . I $P(XU1,U,4)="" S DR="3////"_XUNOW,DIE="^XUSEC(0," D ^DIE
+ . ;Now kill the record.
+ . S DIK="^XUSEC(0," D ^DIK
  . ;Make sure the CUR X-ref is cleared.
- . I XU1 K ^XUSEC(0,"CUR",XU1,DA)
+ . I XU1 K ^XUSEC(0,"CUR",XU2,DA)
  . Q
-SCEXIT K DIK,DA,XUDT,X1,X2
  Q
  ;
 AOLD ;

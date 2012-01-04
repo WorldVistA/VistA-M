@@ -1,5 +1,5 @@
 RAESO ;HISC/CAH,GJC AISC/SAW-Override Exam Status to Complete ;4/28/97  08:00
- ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**47**;Mar 16, 1998;Build 21
  ;Mass override exam status to complete
  D SET^RAPSET1 I $D(XQUIT) K XQUIT,POP Q
  N RAXIT,RASAVDR S RAXIT=0 D CZECH Q:RAXIT
@@ -36,7 +36,10 @@ SINGLE ;Override Single Exam Status to 'COMPLETE'
  D SET^RAPSET1 I $D(XQUIT) K XQUIT Q
  N RAXIT,RASAVDR S RAXIT=0 D CZECH Q:RAXIT
  S RAVW="" D ^RACNLU G EXIT1:"^"[X W ! S I="",$P(I,"-",80)="" W I
- W !?1,"Name     : ",$E(RANME,1,25),?40,"Pt ID       : ",RASSN,!?1,"Case No. : ",RACN,?40,"Procedure   : ",$E(RAPRC,1,25)
+ N RASSAN,RACNDSP S RASSAN=$$SSANVAL^RAHLRU1(RADFN,RADTI,RACNI)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:RACN)
+ I $$USESSAN^RAHLRU1() W !?1,"Name     : ",$E(RANME,1,25),?40,"Pt ID       : ",RASSN,!?1,"Case No. : ",RACNDSP,?40,"Procedure   : ",$E(RAPRC,1,25)
+ I '$$USESSAN^RAHLRU1() W !?1,"Name     : ",$E(RANME,1,25),?40,"Pt ID       : ",RASSN,!?1,"Case No. : ",RACN,?40,"Procedure   : ",$E(RAPRC,1,25)
  W !?1,"Exam Date: ",RADATE,?40,"Technologist: " I $O(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"TC",0))>0,$D(^VA(200,+^($O(^(0)),0),0)) W $E($P(^(0),"^"),1,25)
  W !?40,"Req Phys    : ",$E($S($D(^VA(200,+$P(Y(0),"^",14),0)):$P(^(0),"^"),1:""),1,25),! S I="",$P(I,"-",80)="" W I
  I $P($G(^RADPT(RADFN,"DT",RADTI,0)),U,2)'=$O(^RA(79.2,"B",RAIMGTY,0)) W !,"Sorry, your sign-on imaging type, ",RAIMGTY,!,"doesn't match the imaging type of this exam.",! G SINGLE

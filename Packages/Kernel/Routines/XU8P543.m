@@ -1,0 +1,7 @@
+XU8P543 ;ISF/RD - Patch XU*8*543 ;
+ ;;8.0;KERNEL;**543**;Jul 10, 1995;Build 15
+ Q
+ ;
+POST ;POST-INIT
+ D PATCH^ZTMGRSET(543)
+ Q

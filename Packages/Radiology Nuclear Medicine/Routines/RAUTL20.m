@@ -1,5 +1,5 @@
 RAUTL20 ;HISC/SWM-Utility Routine ;6/16/97  14:27
- ;;5.0;Radiology/Nuclear Medicine;**5,34**;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**5,34,47**;Mar 16, 1998;Build 21
  ;
 EN1 ; for displaying  +  and  .   during case lookup
  S RAPRTSET=0
@@ -18,7 +18,7 @@ EN1 ; for displaying  +  and  .   during case lookup
  S RA1="" F  S RA1=$O(^RADPT(RADFN,"DT",RADTI,"P","B",RA1)) Q:RA1=""  D LOOP1
  I RA5 S RAPRTSET=0,RAMEMLOW=0 ;don't display if ptrs to #74 differ within set
  Q
-LOOP1 ; RA1=  : for-loop var
+LOOP1 ; RA1=  : for-loop var which happens to be the CASE NUMBER (70.03; .01)
  ; RA2=  : (1) ien for 70.03  (2) also, pointer value to file #74
  ; RA3=  : holds earliest case with pointer value to file #74
  ; RA4=  : (ienof #70.03)=case number^procedure pointers^ptr #74
@@ -30,7 +30,11 @@ LOOP1 ; RA1=  : for-loop var
  S RA2=$O(^RADPT(RADFN,"DT",RADTI,"P","B",RA1,0))
  ; skip rec if it's not part of combined report
  Q:$P(^RADPT(RADFN,"DT",RADTI,"P",RA2,0),"^",25)'=2
- S:$G(RA7) RA4=RA2,RA4(RA4)=RA1
+ N RASSAN,RACNDSP S RASSAN=$$SSANVAL^RAHLRU1(RADFN,RADTI,RA2)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:RA1)
+ ;
+ I $$USESSAN^RAHLRU1() S:$G(RA7) RA4=RA2,RA4(RA4)=RACNDSP
+ I '$$USESSAN^RAHLRU1() S:$G(RA7) RA4=RA2,RA4(RA4)=RA1
  S RA2=$P(^RADPT(RADFN,"DT",RADTI,"P",RA2,0),"^",17),RA6=$P(^(0),"^",3) S:$G(RA7) RA4(RA4)=RA4(RA4)_"^"_$P(^(0),"^",2)_"^"_$P(^(0),"^",17)_"^"_$P(^(0),"^",3)
  ; skip if exm canc'd & exm's pc 17 is null
  I $P($G(^RA(72,+RA6,0)),"^",3)=0,RA2="" Q
@@ -58,14 +62,16 @@ EN3(RA4) ; for print set, AFTER record is created in rarpt()
  N RA1,RA2,RA3,RA5 S RA1="",RA3="A"
  F  S RA1=$O(RA4(RA1)) Q:RA1=""  K RA4(RA1) ;clean up array
  S RA5=$S($G(RARPT):RARPT,$G(RAIEN):RAIEN,1:0) Q:RA5=0
- F  S RA1=$O(^RARPT(RA5,1,"B",RA1)) Q:RA1=""  S RA2=$P(RA1,"-",2),RA3=$O(^RADPT(RADFN,"DT",RADTI,"P","B",RA2,0)),RA4(RA3)=RA2
+ ;Careful; Here RA1 is the accession #. Format: 081809-12345 -or- 578-081809-12345
+ F  S RA1=$O(^RARPT(RA5,1,"B",RA1)) Q:RA1=""  S RA2=$P(RA1,"-",$L(RA1,"-")),RA3=$O(^RADPT(RADFN,"DT",RADTI,"P","B",RA2,0)),RA4(RA3)=RA2
  Q
 XPRI ;loop thru sub-file #74.05 to set/kill prim. xref for other prt members
  Q:'$D(RADFNZ)!('$D(RADTIZ))!('$D(RARAD))!('$D(RAXREF))!('$D(DA))
  Q:$O(^RARPT(DA,1,"B",0))=""
  N RA1,RA200 S RA1=""
 XPRI1 S RA1=$O(^RARPT(DA,1,"B",RA1)) Q:RA1=""
- S RACNIZ=$O(^RADPT(RADFNZ,"DT",RADTIZ,"P","B",$P(RA1,"-",2),0))
+ ;S RACNIZ=$O(^RADPT(RADFNZ,"DT",RADTIZ,"P","B",$P(RA1,"-",2),0))
+ S RACNIZ=$O(^RADPT(RADFNZ,"DT",RADTIZ,"P","B",$P(RA1,"-",$L(RA1,"-")),0))  ;Set RACNIZ=last piece of RA1, not 2nd piece after P47 SSAN changes
  G:'$D(^RADPT(RADFNZ,"DT",RADTIZ,"P",RACNIZ,0)) XPRI1 S RA200=+$P(^(0),"^",RARADOLD) ; use raradold to get piece number in "p" node
  G XPRI1:'RA200
  S:$D(RASET) ^RARPT(RAXREF,RA200,DA)=""
@@ -76,7 +82,8 @@ XSEC ;loop thru sub-file #74.05 to set/kill sec. xref for other print members
  Q:$O(^RARPT(DA,1,"B",0))=""
  N RA1,RA2,RA200 S RA1=""
 XSEC1 S RA1=$O(^RARPT(DA,1,"B",RA1)) Q:RA1=""
- S RACNIZ=$O(^RADPT(RADFNZ,"DT",RADTIZ,"P","B",$P(RA1,"-",2),0))
+ ;S RACNIZ=$O(^RADPT(RADFNZ,"DT",RADTIZ,"P","B",$P(RA1,"-",2),0))
+ S RACNIZ=$O(^RADPT(RADFNZ,"DT",RADTIZ,"P","B",$P(RA1,"-",$L(RA1,"-")),0))
  G:'$D(^RADPT(RADFNZ,"DT",RADTIZ,"P",RACNIZ,0)) XSEC1 G:'$D(^(RASECOND,0)) XSEC1
  S RA2=0
 XSEC2 S RA2=$O(^RADPT(RADFNZ,"DT",RADTIZ,"P",RACNIZ,RASECOND,RA2)) G:'+RA2 XSEC1 S RA200=+$G(^(RA2,0))

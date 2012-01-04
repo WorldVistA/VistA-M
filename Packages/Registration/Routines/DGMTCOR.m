@@ -1,5 +1,5 @@
-DGMTCOR ;ALB/CAW,SCG,LBD,TMK - Check Copay Test Requirements ; 07/28/08
- ;;5.3;Registration;**21,45,182,290,305,330,344,495,564,773**;Aug 13, 1993;Build 7
+DGMTCOR ;ALB/CAW,SCG,LBD,TMK - Check Copay Test Requirements;07/28/08
+ ;;5.3;Registration;**21,45,182,290,305,330,344,495,564,773,840**;Aug 13, 1993;Build 20
  ;
  ;A patient may apply for a copay test under the following conditions:
  ;  - Applicant is a veteran
@@ -8,6 +8,7 @@ DGMTCOR ;ALB/CAW,SCG,LBD,TMK - Check Copay Test Requirements ; 07/28/08
  ;    - Aid and Attendance or
  ;    - Housebound or
  ;    - VA Pension
+ ;    - Catastrophically Disabled
  ;  - Primary Eligibility is NSC
  ;    - who has NOT been means tested
  ;    - who claims exposure to agent orange or ionizing radiation
@@ -66,11 +67,12 @@ CHK N STATUS,DGELIG,DGE,DGI,DGNODE,DGMDOD,DGMTDT,DGMTI,DGMTL
  S DGI=$P($G(^DPT(DFN,.36)),"^"),DGELIG=U_$P($G(^DIC(8,+DGI,0)),U,9)_U
  S DGI=0 F  S DGI=$O(^DPT(DFN,"E",DGI)) Q:'DGI  S DGE=$P($G(^DPT(DFN,"E",DGI,0)),U),DGELIG=DGELIG_$P($G(^DIC(8,+DGE,0)),U,9)_U
  I (DGELIG["^1^") S DGMTCOR=0,DGWRT=3 G CHKQ  ;SC 50-100%
- F DGI=.3,.362,.52 S DGNODE(DGI)=$G(^DPT(DFN,DGI))
+ F DGI=.3,.362,.39,.52 S DGNODE(DGI)=$G(^DPT(DFN,DGI)) ;DG*5.3*840
  I $P(DGNODE(.362),U,12)["Y"!(DGELIG["^2^") S DGMTCOR=0,DGWRT=5 G CHKQ ;A&A
  I $P(DGNODE(.362),U,13)["Y"!(DGELIG["^15^") S DGMTCOR=0,DGWRT=6 G CHKQ ;HB
  I $P(DGNODE(.362),U,14)["Y"!(DGELIG["^4^") S DGMTCOR=0,DGWRT=7 G CHKQ ;PENSION
  I $P(DGNODE(.52),U,5)["Y"!(DGELIG["^18^") S DGMTCOR=0,DGWRT=10 G CHKQ ;POW (DG*5.3*564)
+ I $P(DGNODE(.39),U,6)["Y"!(DGELIG["^21^") S DGMTCOR=0,DGWRT=12 G CHKQ ;CD (DG*5.3*840
  I $P(DGNODE(.3),U,5)["Y"&($P(DGNODE(.3),U,2)>0)&($P(DGNODE(.362),U,20)>0) S DGMTCOR=0,DGWRT=11 G CHKQ ;UNEMPLOYABLE (DG*5.3*564)
  ;brm added next 3 lines for DG*5.3*290
  N DGDOM,DGDOM1,VAHOW,VAROOT,VAINDT,VAIP,VAERR,NOW

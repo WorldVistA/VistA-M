@@ -1,5 +1,5 @@
 RAFLH ;HISC/FPT AISC/MJK-Print Radiology Flash Cards ;12/4/97  12:25
- ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**47**;Mar 16, 1998;Build 21
 1 Q:'$D(^RADPT(RADFN,0))  S RAY1=^(0) Q:'$D(^DPT(RADFN,0))  S RAY0=^(0)
  Q:'$D(^RADPT(RADFN,"DT",RADTI,0))  S RAY2=^(0)
  ;
@@ -26,11 +26,27 @@ PRT I '$D(^RA(78.2,RAFMT,0)) W @$S($G(RAFFLF)]"":RAFFLF,1:IOF) Q
  N RAMEMLOW,RAPRTSET,RAEXSPEC,RAVAL
  D EN1^RAUTL20
  ; RAEXSPEC = array to store print fld that's exam specific
- I '$D(RATEST) F RAI=0:0 S RAI=$O(^RA(78.2,RAFMT,1,RAI)) Q:RAI'>0  I $D(^(RAI,0)),$D(^RA(78.7,+^(0),"E")) X ^("E") I $P(^RA(78.7,+^RA(78.2,RAFMT,1,RAI,0),0),"^",6)="Y",$P(^(0),"^",5)]"" S RAEXSPEC($P(^(0),"^",5))=1
+ I '$D(RATEST) D
+ .;RAY=data dict: 78.21; fld: .01 (ptr to a file 78.7 record)
+ .;RAX=zero node of the file 78.7 record
+ .N RAY S RAI=0
+ .F  S RAI=$O(^RA(78.2,RAFMT,1,RAI)) Q:RAI'>0  D
+ ..S RAY=+$P($G(^RA(78.2,RAFMT,1,RAI,0)),U) Q:'($D(^RA(78.7,RAY,"E"))#2)
+ ..X ^RA(78.7,RAY,"E") ;w/P47
+ ..I $P(^RA(78.7,RAY,0),U,6)="Y",$P(^(0),U,5)]"" S RAEXSPEC($P(^(0),U,5))=1
+ ..Q
+ .Q
+ ;RANUM = # of jacket labels to print (user defined) RA LABELS - Jacket Labels (RAJAC)
  F RAII=1:1:RANUM D
- . F RAI=0:0 S RAI=$O(^RA(78.2,RAFMT,"E",RAI)) Q:RAI'>0  D
+ . S RAI=0 F  S RAI=$O(^RA(78.2,RAFMT,"E",RAI)) Q:RAI'>0  D
  .. I $G(^RA(78.2,RAFMT,"E",RAI,0))'["@" D
+ ... ; P47 add new SSAN vars: RACNDSP
+ ... N RASSAN,RACSESAV,RACNDSP S RASSAN=""
+ ... I $D(RADFN),$D(RADTI),$D(RACNI) S RASSAN=$$SSANVAL^RAHLRU1(RADFN,RADTI,RACNI)
+ ... S RACNDSP=$S((RASSAN'=""):RASSAN,1:$G(RACSE))
+ ... I $$USESSAN^RAHLRU1() S RACSESAV=$G(RACSE),RACSE=RACNDSP
  ... X ^RA(78.2,RAFMT,"E",RAI,0)
+ ... I $$USESSAN^RAHLRU1() S RACSE=RACSESAV
  ... S RAVAL=$P(^RA(78.2,RAFMT,"E",RAI,0),",RA",2) S:RAVAL]"" RAVAL="RA"_RAVAL
  ... I RAVAL]"",@RAVAL]"",$G(RAEXSPEC(RAVAL)),RAPRTSET W "+"
  ... Q
@@ -84,8 +100,12 @@ FLH ; Flash card entry point.
  I '$D(RAFLHCNT),$D(RASELDEV),RAEXLBLS>0 S RASELDEV="Select the EXAM LABEL Printer"
  I $D(RAFLHCNT),$D(RASELDEV),RANUM=0,RAEXLBLS>0 S RASELDEV="Select the EXAM LABEL Printer"
  ;
-Q S ZTDTH=$H,ZTRTN="DQ^RAFLH" F RASV="RADFN","RADTI","RAFLHFL","RAFLH","RANUM","RAEXLBLS","RAEXFM" S ZTSAVE(RASV)=""
+Q ;save off variables for TaskMan RACNI, RAMDIV, RASAV2, & RASAV3 added w/RA*5.0*47 
+ S ZTDTH=$H,ZTRTN="DQ^RAFLH"
+ F RASV="RADFN","RADTI","RAFLHFL","RAFLH","RANUM","RAEXLBLS","RAEXFM","RAMDIV","RACNI" S ZTSAVE(RASV)=""
  S:$D(RAVISIT1) ZTSAVE("RAVISIT1")=""
+ S:$D(RASAV2) ZTSAVE("RASAV2")=""
+ S:$D(RASAV3) ZTSAVE("RASAV3")=""
  W ! D ZIS^RAUTL Q:RAPOP
 DQ U IO S U="^" S X="T",%DT="" D ^%DT S DT=Y G RAFLH
  ;

@@ -1,5 +1,5 @@
 IBCNBCD ;ALB/ARH-Ins Buffer: display/compare buffer and existing ins ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,251,361,371,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**82,251,361,371,416,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 INS(IBBUFDA,IBINSDA) ; display a buffer entry's insurance company fields and
@@ -83,6 +83,8 @@ POLICY(IBBUFDA,IBPOLDA) ; display a buffer entry's patient policy fields and an 
  D DISPLAY(62.04,2.312,3.08,"Subscr City:")
  D DISPLAY(62.05,2.312,3.09,"Subscr State:")
  D DISPLAY(62.06,2.312,3.1,"Subscr Zip:")
+ D DISPLAY(62.07,2.312,3.13,"Subscr Country:")
+ D DISPLAY(62.08,2.312,3.14,"Subscr Subdiv:")
  ;
  I +$G(^IBA(355.33,IBBUFDA,61))!($$GET1^DIQ(2.312,IBEXTDA,2.1)="YES") D ESGHP
  ;

@@ -1,5 +1,5 @@
 IBCSCE ;ALB/MRL,MJB - MCCR SCREEN EDITS ;07 JUN 88 14:35
- ;;2.0;INTEGRATED BILLING;**52,80,91,106,51,137,236,245,287,349,371,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**52,80,91,106,51,137,236,245,287,349,371,400,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRSCE
@@ -16,10 +16,10 @@ EDIT N IBQUERY
  I (IBDR20["55") D ^IBCSC5A G ENQ
  I (IBDR20["45")!(IBDR20["56") D ^IBCSC5B G ENQ
  I (IBDR20["66")!(IBDR20["76") D EDIT^IBCRBE(IBIFN) D ASKCMB^IBCU65(IBIFN) G ENQ
- I IBDR20["82",$$FT^IBCEF(IBIFN)=3 D EN^IBCSC8B G ENQ   ; UB-04 patient reason for visit (screen 8, section 2)
- I IBDR20["85",$$FT^IBCEF(IBIFN)=2 D ^IBCSC8A G ENQ     ; cms-1500 chiropractic data (screen 8, section 5)
- I IBDR20["87",$$FT^IBCEF(IBIFN)=3 D EN1^IBCEP6 G ENQ   ; UB-04 provider ID maintenance (screen 8, section 7)
- I IBDR20["89",$$FT^IBCEF(IBIFN)=2 D EN1^IBCEP6 G ENQ   ; cms-1500 provider ID maintenance (screen 8, section 9)
+ I IBDR20["102",$$FT^IBCEF(IBIFN)=3 D EN^IBCSC10B G ENQ   ; UB-04 patient reason for visit (screen 10, section 2)
+ I IBDR20["105",$$FT^IBCEF(IBIFN)=2 D ^IBCSC10A G ENQ     ; cms-1500 chiropractic data (screen 10, section 5)
+ I IBDR20["107",$$FT^IBCEF(IBIFN)=3 D EN1^IBCEP6 G ENQ   ; UB-04 provider ID maintenance (screen 10, section 7)
+ I IBDR20["109",$$FT^IBCEF(IBIFN)=2 D EN1^IBCEP6 G ENQ   ; cms-1500 provider ID maintenance (screen 10, section 9)
  ;
  F Q=1:1:9 I IBDR20[("9"_Q) D EDIT^IBCSC9 G ENQ
 TMPL N IBFLIAE S IBFLIAE=1 ;to invoke EN^DGREGAED from [IB SCREEN1]

@@ -1,5 +1,5 @@
 IBCBB21 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE FOR UB-04 ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**51,137,210,232,155,291,348,349,403,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**51,137,210,232,155,291,348,349,403,400,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN(IBZPRC92) ;
@@ -16,9 +16,12 @@ EN(IBZPRC92) ;
  I IBTXMT,(+IBZPRC92>50!(+$P(IBZPRC92,U,2)>50)) D  Q:IBQUIT
  . I 'IBREQMRA S IBQUIT=$$IBER^IBCBB3(.IBER,308) Q
  . I '$P(IBNDTX,U,9) S IBQUIT=$$IBER^IBCBB3(.IBER,325)
+ ; removed 11x check ;WCJ IB*2.0*432
  ; If ICD9 procedures with dates and charges, bill 11x or 83x needs operating physician
- I IBTOB12="11",$P(IBZPRC92,U,2),'$$CKPROV^IBCEU(IBIFN,2) S IBER=IBER_"IB304;"
- I IBTOB12="83",$P(IBZPRC92,U,2),'$$CKPROV^IBCEU(IBIFN,2) S IBER=IBER_"IB312;"
+ ;I IBTOB12="11",$P(IBZPRC92,U,2),'$$CKPROV^IBCEU(IBIFN,2) S IBER=IBER_"IB304;"
+ ;modify 83x check for line level providers and also chacnged the erro check slightly
+ ;I IBTOB12="83",$P(IBZPRC92,U,2),'$$CKPROV^IBCEU(IBIFN,2) S IBER=IBER_"IB312;"
+ I IBTOB12="83",'$$UBPRVCK^IBCBB12(IBIFN) S IBER=IBER_"IB312;"  ; DEM;432
  ;
  ; If any CPT procedures have more than 2 modifiers, warn
  S Z=0 F  S Z=$O(IBZPRC92(Z)) Q:'Z  I $P(IBZPRC92(Z),U)["ICPT(",$L($P(IBZPRC92(Z),U,15),",")>2 S Z0="Proc "_$$PRCD^IBCEF1($P(IBZPRC92(Z),U))_" has > 2 modifiers - only first 2 will be used" D WARN^IBCBB11(Z0)
@@ -48,12 +51,14 @@ EN(IBZPRC92) ;
  .Q
  I '$$OCC10^IBCBB2(IBIFN,.IBXDATA,3) S IBER=IBER_"IB093;"
  ; At least one PRV diagnosis is required for outpatient UB-04 claim
- I '$$INPAT^IBCEF(IBIFN),$$CHKPRV^IBCSC8B=3 D WARN^IBCBB11("Outpatient Institutional claims should contain a Patient Reason for Visit.")
+ I '$$INPAT^IBCEF(IBIFN),$$CHKPRV^IBCSC10B=3 D WARN^IBCBB11("Outpatient Institutional claims should contain a Patient Reason for Visit.")
  ;
  K ^TMP($J,"IBC-RC")
  D F^IBCEF("N-UB-04 SERVICE LINE (PRINT)",,,IBIFN)
  S (Z0,IBI)=0 F  S IBI=$O(^TMP($J,"IBC-RC",IBI)) Q:'IBI  S Z=$G(^(IBI))  Q:+$P(Z,U,2)=1  I $P(Z,U,2),$P(Z,U,1)=1 D
- . I IBER'["IB090;",$P(Z,U,2)>1,($P(Z,U,7)>99999.99!($P(Z,U,8)>99999.99)) S IBER=IBER_"IB090;"
+ . ; IB*2.0*432 - The IB system shall provide the ability for users to enter maximum line item dollar amounts of 9999999.99.
+ . ;I IBER'["IB090;",$P(Z,U,2)>1,($P(Z,U,7)>99999.99!($P(Z,U,8)>99999.99)) S IBER=IBER_"IB090;"
+ . I IBER'["IB090;",$P(Z,U,2)>1,($P(Z,U,7)>9999999.99!($P(Z,U,8)>9999999.99)) S IBER=IBER_"IB090;"
  . Q:$P(Z,U,2)'<180&($P(Z,U,2)'>189)  ;Pass days (LOA) don't matter
  . I '$P(Z,U,7),'$P(Z,U,8),'Z0,$$COBN^IBCEF(IBIFN)'>1  S Z0="Rev Code(s) having a 0-charge will not be transmitted for the bill" D WARN^IBCBB11(Z0) S Z0=1
  K ^TMP($J,"IBC-RC")

@@ -1,6 +1,6 @@
-MAGSIXG3 ;WOIFO/SG - LIST OF IMAGES RPCS (CALLBACK) ; 2/23/09 11:20am
- ;;3.0;IMAGING;**93**;Dec 02, 2009;Build 163
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+MAGSIXG3 ;WOIFO/SG/NST - LIST OF IMAGES RPCS (CALLBACK) ; 15 Nov 2010 8:18 AM
+ ;;3.0;IMAGING;**93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -8,7 +8,6 @@ MAGSIXG3 ;WOIFO/SG - LIST OF IMAGES RPCS (CALLBACK) ; 2/23/09 11:20am
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -21,6 +20,8 @@ MAGSIXG3 ;WOIFO/SG - LIST OF IMAGES RPCS (CALLBACK) ; 2/23/09 11:20am
  ;
  ; #3268         Read file #8925 (controlled)
  ; #10060        Read file #200 (supported)
+ ; #2321         Read file #8925.1 (controlled)
+ ; #2937         Read file #8925 (controlled)
  ;
  ; LOCAL VARIABLE ------ DESCRIPTION
  ;
@@ -110,6 +111,7 @@ QRYCBK(IMGIEN,FLAGS,MAGDATA) ;
  N CAPTAPP,CLASS,EVT,FLTX,GROUP,GRPCNTS,IIFLAGS,IMGNODE
  N ORIG,PKG,PTIEN,RC,SENSIMG,SKIP,SPEC,STATUS,TYPE
  N X,X0,X01,X100,X2,X40
+ N MAGFOUND  ; temp loop flag
  S IMGNODE=$$NODE^MAGGI11(IMGIEN)  Q:IMGNODE="" 0
  ;=== Terminate the query when maximum number of records is reached
  I MAGDATA("MAXNUM"),MAGDATA("RESCNT")'<MAGDATA("MAXNUM")  Q 1
@@ -137,7 +139,7 @@ QRYCBK(IMGIEN,FLAGS,MAGDATA) ;
  . I GROUP  S SKIP=1  Q
  . ;--- If existing images are not requested, then
  . ;--- skip existing standalone image entries
- . I FLAGS'["E",'$$ISDEL^MAGGI11(IMGIEN)  S SKIP=1  Q
+ . I FLAGS'["E",'$$ISDEL^MAGGI11(IMGIEN) S SKIP=1 Q
  . Q
  ;
  ;=== Load other data associated with the image
@@ -160,7 +162,31 @@ QRYCBK(IMGIEN,FLAGS,MAGDATA) ;
  I $D(MAGDATA("ORIG")),ORIG'=""  Q:'$D(MAGDATA("ORIG",ORIG)) 0
  I $D(MAGDATA("CLS")),CLASS'=""  Q:'$D(MAGDATA("CLS",CLASS)) 0
  I $D(MAGDATA("TYPE")),TYPE      Q:'$D(MAGDATA("TYPE",TYPE)) 0
- I $D(MAGDATA("ISTAT"))          Q:'$D(MAGDATA("ISTAT",+STATUS)) 0
+ ;
+ I '(FLAGS["G") D  Q:'MAGFOUND 0  ; doesn't meet the criteria. One strike and you have to quit
+ . S MAGFOUND=1
+ . I $D(MAGDATA("ISTAT")),'$D(MAGDATA("ISTAT",+STATUS)) S MAGFOUND=0 Q
+ . Q
+ ;
+ I FLAGS["G" D  Q:'MAGFOUND 0  ; Quit. It doesn't meet the criteria
+ . S MAGFOUND=0
+ . I '$D(MAGDATA("ISTAT")) S MAGFOUND=1 Q  ;nothing to check. It means it is found
+ . ; Check for single images first
+ . I 'GROUP D  Q
+ . . I $D(MAGDATA("ISTAT",+STATUS)) S MAGFOUND=1  ; need this image
+ . . Q
+ . ;-- check all children in the group
+ . N CHI,CHIEN,CHNODE,CH100,CHSTATUS
+ . S CHI=0
+ . F  S CHI=$O(@IMGNODE@(1,CHI)) Q:CHI'>0  D  Q:MAGFOUND
+ . . S CHIEN=+$G(@IMGNODE@(1,CHI,0))
+ . . Q:CHIEN'>0
+ . . S CHNODE=$$NODE^MAGGI11(CHIEN) Q:CHNODE=""
+ . . S CH100=$G(@CHNODE@(100))
+ . . S CHSTATUS=$P(CH100,U,8)    ; STATUS(113)
+ . . I $D(MAGDATA("ISTAT",+CHSTATUS)) S MAGFOUND=1
+ . . Q
+ . Q
  ;
  ;=== Skip list entries with no event if event is in
  ;=== the selection criteria (MAG*3*8)
@@ -171,7 +197,7 @@ QRYCBK(IMGIEN,FLAGS,MAGDATA) ;
  I $D(MAGDATA("SPEC"))  Q:SPEC="" 0  Q:'$D(MAGDATA("SPEC",SPEC)) 0
  ;
  ;=== Skip list entries with no capture application if
- ;=== applciation is in the selection criteria
+ ;=== application is in the selection criteria
  I $D(MAGDATA("CAPTAPP"))  Q:CAPTAPP="" 0  Q:'$D(MAGDATA("CAPTAPP",CAPTAPP)) 0
  ;
  ;=== Check the short description
@@ -234,7 +260,7 @@ QRYCBK(IMGIEN,FLAGS,MAGDATA) ;
  ;+++++ RETURNS THE NOTE TITLE
 RPTITLE(FILE,IEN) ;
  N TITLE,TMP
- I FILE=8925,IEN>0  D  S TITLE=$P($G(^TIU(8925.1,TMP,0)),U)
- . S TMP=+$P($G(^TIU(8925,+IEN,0)),U)
+ I FILE=8925,IEN>0  D  S TITLE=$P($G(^TIU(8925.1,TMP,0)),U)  ; IA #2321
+ . S TMP=+$P($G(^TIU(8925,+IEN,0)),U)   ; IA #2937
  . Q
  Q $S($G(TITLE)'="":TITLE,1:"   ")

@@ -1,5 +1,5 @@
-HLOPING ;alb/cjm HLO PING UTILITY - 10/4/94 1pm ;01/27/2010
- ;;1.6;HEALTH LEVEL SEVEN;**147**;Oct 13, 1995;Build 15
+HLOPING ;alb/cjm HLO PING UTILITY - 10/4/94 1pm ;02/18/2011
+ ;;1.6;HEALTH LEVEL SEVEN;**147*,155*;Oct 13, 1995;Build 4
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -81,7 +81,9 @@ BREAKS ;
  ;set break in $$IFSHUT^HLOTLNK to circumvent shutdown of the link
  ZB ZB0^HLOTLNK:"N":1:"S RET=0"
  ;set break at ZB1 in client ($$CONNECT)
+ ;
  ZB ZB1^HLOCLNT1:"N":1:"D WRITE^HLOPING(""Trying to connect..."")"
+ ;
  ;set break at ZB2 in client (end of $$CONNECT)
  ZB ZB2^HLOCLNT1:"N":1:"D ZB2^HLOPING"
  ;
@@ -92,6 +94,7 @@ BREAKS ;
  ;set break at ZB8 in client (start of $$READACK^HLOCLNT1)
  ZB ZB8^HLOCLNT1:"N":1:"D WRITE^HLOPING(""Reading acknowledgment...."")"
  ;set break at ZB9 in client (end of $$READACK^HLOCLNT1)
+ ;
  ZB ZB9^HLOCLNT1:"N":1:"D ZB9^HLOPING"
  ;
  ;set break at ZB4 in client (FOR loop on the outgoing queue)
@@ -101,6 +104,8 @@ BREAKS ;
  ZB ZB22^HLOCLNT:"N":1:"S $P(UPDATE,""^"",3)=""SU"",$P(UPDATE,""^"",4)=1"
  ;
  ZB ZB24^HLOCLNT1:"N":1:"D ZB24^HLOPING"
+ ZB ZB27^HLOT:"N":1:"D ZB27^HLOPING"
+ ;
  ;set break at ZB3 in client (ERROR TRAP)
  ZB ZB3^HLOCLNT:"N":1:"D ZB3^HLOPING"
  Q
@@ -141,4 +146,9 @@ ZB24 ;
  Q
 ZB25 ;
  I '$L(PARMS("RECEIVING FACILITY",2)),'PARMS("RECEIVING FACILITY",1) S PARMS("RECEIVING FACILITY",2)="REMOTE FACILITY TO PING"
+ Q
+ ;
+ZB27 ;
+ Q:'$G(HLCSTATE("LOCK FAILED"))
+ D WRITE("Remote server is single threaded and is locked by another process!")
  Q

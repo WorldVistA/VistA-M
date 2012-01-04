@@ -1,5 +1,8 @@
-RORX019A ;BPOIFO/ACS - LIVER SCORE BY RANGE (CONT.) ;11/1/09
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14**;Feb 17, 2006;Build 24
+RORX019A ;BPOIFO/ACS - LIVER SCORE BY RANGE (CONT.) ; 8/23/11 8:38am
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,16**;Feb 17, 2006;Build 3
+ ;
+ ;08/23/2011 BP/KAM ROR*1.5*16 Remedy Call 512757 Correct the Liver
+ ;                             Score Calculation
  ;
  ; This routine uses the following IAs:
  ;
@@ -362,8 +365,13 @@ CALCFIB(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  . I $G(ALT),RORDATA("IDLST")[4 D  ;calculate FIB4 score: (AGE*AST)/[(PLAT*ALT) to 1/2 power]
  .. N AGE S AGE=$$AGE(DFN,RORDATA("DATE")) ;get patient age
  .. I '$G(AGE) S RC=-1 Q  ;quit if age can't be calculated
- .. S TMP2=(AGE*AST)/$$PWR^XLFMTH((PLAT*ALT),.5)
- .. S RORDATA("SCORE",4)=$J($G(TMP2),0,0) ;round to whole number
+ .. ;
+ .. ; ROR*1.5*16 remedy ticket 512757 changed next two lines
+ .. ;S TMP2=(AGE*AST)/$$PWR^XLFMTH((PLAT*ALT),.5)
+ .. ;S RORDATA("SCORE",4)=$J($G(TMP2),0,0) ;round to whole number
+ .. S TMP2=(AGE*AST)/(PLAT*($$PWR^XLFMTH((ALT),.5)))
+ .. S RORDATA("SCORE",4)=$J($G(TMP2),0,2) ;round to 2 decimal places
+ .. ;
  Q RC
  ;
  ;************************************************************************

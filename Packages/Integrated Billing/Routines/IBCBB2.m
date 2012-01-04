@@ -1,5 +1,5 @@
 IBCBB2 ;ALB/ARH - CONTINUATION OF EDIT CHECKS ROUTINE (CMS-1500) ;04/14/92
- ;;2.0;INTEGRATED BILLING;**51,137,210,245,232,296,320,349,371,403**;21-MAR-94;Build 24
+ ;;2.0;INTEGRATED BILLING;**51,137,210,245,232,296,320,349,371,403,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRBB2
@@ -79,13 +79,17 @@ EN ;
  .. I $P(IBXDATA(IBI),U,4)'=7 S IBER=IBER_"IB088;" Q
  .. I $P(IBXDATA(IBI),U,9)'<1000 S IBER=IBER_"IB088;"
  . ; Line item total charge must be less than $10,000.00, greater than 0
- . I IBER'["IB090",$P(IBXDATA(IBI),U,9)'<10000 S IBER=IBER_"IB090;"
+ . ; IB*2.0*432 - The IB system shall provide the ability for users to enter maximum line item dollar amounts of 9999999.99.
+ . ; I IBER'["IB090",$P(IBXDATA(IBI),U,9)'<10000 S IBER=IBER_"IB090;"
+ . I IBER'["IB090",$P(IBXDATA(IBI),U,9)'<10000000 S IBER=IBER_"IB090;"
  . I '($P(IBXDATA(IBI),U,9)*$P(IBXDATA(IBI),U,8)),$$COBN^IBCEF(IBIFN)'>1 S Z="Procedure "_$P(IBXDATA(IBI),U,5)_" has a 0-charge and will not be transmitted" D WARN^IBCBB11(Z)
  I IBTX,IBLCT>50 D
  . I '$$REQMRA^IBEFUNC(IBIFN) S IBER=IBER_"IB308;" Q
  . I '$P(IBNDTX,U,9) S IBER=IBER_"IB325;"
  S IBU3=$P($G(^DGCR(399,IBIFN,"U3")),U,4,7) I $TR(IBU3,U)'="" D
- .I +IBSP'=35 D WARN^IBCBB11("Chiropractic service details only valid if provider specialty is '35'")
+ .; ib*2.0*432 add line-level check
+ .;I +IBSP'=35 D WARN^IBCBB11("Chiropractic service details only valid if provider specialty is '35'")
+ .I $$LINSPEC^IBCEU3(IBIFN)'[35 D WARN^IBCBB11("Chiropractic service details only valid if provider specialty is '35'")
  .I $P(IBU3,U,2)="" S IBER=IBER_"IB137;"
  .I $P(IBU3,U,4)="" S IBER=IBER_"IB138;" Q
  .I $P(IBU3,U,3)="","AM"[$P(IBU3,U,4) S IBER=IBER_"IB139;"

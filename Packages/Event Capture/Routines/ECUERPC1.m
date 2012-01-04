@@ -1,5 +1,5 @@
 ECUERPC1 ;ALB/JAM;Event Capture Data Entry Broker Util ; 5/21/01 7:30pm
- ;;2.0; EVENT CAPTURE ;**25,33,42,46,47,54,72,76**;8 May 96;Build 6
+ ;;2.0; EVENT CAPTURE ;**25,33,42,46,47,54,72,76,110**;8 May 96;Build 4
 PATINF(RESULTS,ECARY) ;
  ;Broker entry point to get various types of data from EVENT CAPTURE 
  ;PATIENT FILE #721
@@ -112,8 +112,12 @@ PATCLAST(RESULTS,ECARY) ;
  S ECDFN=$P(ECARY,U),ECD=$P(ECARY,U,2),ECDT=$P(ECARY,U,3) Q:ECDFN=""
  I ECDT="" D NOW^%DTC S ECDT=%
  S PATSTAT=$$INOUTPT^ECUTL0(ECDFN,ECDT),RESULTS="^^^^^^",SCDAT=";;;"
- I PATSTAT="I" D  Q  ;added to be consistent w roll-n-scroll 11/25/03 JAM
- .S RESULTS=PATSTAT_"^"_RESULTS_$S(SCDAT'="":"~"_SCDAT,1:"")
+ ;
+ ; Removed in EC*110 so inpatient data can be answered for transmission to Austin
+ ; This was to be consistant with VHA Directive 2009-002
+ ;
+ ; I PATSTAT="I" D  Q
+ ; .S RESULTS=PATSTAT_"^"_RESULTS_$S(SCDAT'="":"~"_SCDAT,1:"") 
  I '$$CHKDSS^ECUTL0(+$G(ECD),PATSTAT) D  Q
  .S RESULTS=PATSTAT_"^"_RESULTS_$S(SCDAT'="":"~"_SCDAT,1:"")
  D CL^SDCO21(ECDFN,ECDT,"",.ECCLARY) F ECX=3,1,2,4,5,6,7,8 D

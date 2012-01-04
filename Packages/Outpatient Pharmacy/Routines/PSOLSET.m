@@ -1,5 +1,5 @@
 PSOLSET ;BHAM ISC/SAB - site parameter set up ;12/03/92
-VERS ;;7.0;OUTPATIENT PHARMACY;**10,22,32,40,120,247**;DEC 1997;Build 18
+VERS ;;7.0;OUTPATIENT PHARMACY;**10,22,32,40,120,247,359**;DEC 1997;Build 27
  ;Reference to ^PS(59.7 supported by DBIA 694
  ;Reference to ^PSX(550 supported by DBIA 2230
  ;Reference to ^%ZIS(2 supported by DBIA 3435
@@ -40,7 +40,8 @@ LASK I $G(PSOPIOST),$D(^%ZIS(2,PSOPIOST,55,"B","LL")) G EXIT
  K DIR S DIR("A")="OK to assume label alignment is correct",DIR("B")="YES",DIR(0)="Y",DIR("?")="Enter Y if labels are aligned, N if they need to be aligned." D ^DIR S:$D(DIRUT) PSOQUIT=1 G:Y!($D(DIRUT)) EXIT
 P2 S IOP=$G(PSOLAP) D ^%ZIS K IOP I POP W $C(7),!?5,"Printer is busy.",! G LASK
  U IO(0) W !,"Align labels so that a perforation is at the top of the",!,"print head and the left side is at column zero."
- W ! K DIR,DIRUT,DUOUT,DTOUT S DIR(0)="E" D ^DIR K DIR,DTOUT,DUOUT Q:$D(DIRUT)  D ^PSOLBLT D ^%ZISC
+ W ! K DIR,DIRUT,DUOUT,DTOUT S DIR(0)="E" D ^DIR K DIR,DTOUT,DUOUT I $D(DIRUT) D ^%ZISC G EXIT
+ D ^PSOLBLT D ^%ZISC
  K DIRUT,DIR S DIR("A")="Is this correct",DIR("B")="YES",DIR(0)="Y",DIR("?")="Enter Y if labels are aligned correctly, N if they need to be aligned." D ^DIR S:$D(DIRUT) PSOQUIT=1 G:Y!($D(DIRUT)) EXIT
  G P2
 LEAVE S XQUIT="" G FINAL

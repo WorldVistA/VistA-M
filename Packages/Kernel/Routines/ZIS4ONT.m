@@ -1,5 +1,5 @@
 %ZIS4 ;SFISC/RWF,AC - DEVICE HANDLER SPOOL SPECIFIC CODE (Cache) ;08/02/10  14:50
- ;;8.0;KERNEL;**34,59,69,191,278,293,440,499,524,546**;Jul 10, 1995;Build 9
+ ;;8.0;KERNEL;**34,59,69,191,278,293,440,499,524,546,543**;Jul 10, 1995;Build 15
  ;Per VHA Directive 2004-038, this routine should not be modified
  ;
 OPEN ;Called for TRM devices
@@ -46,6 +46,7 @@ ZIO I $D(IO("IP")),$D(IO("ZIO")) Q  ;p499,p524
  ;Get IP name or number
  S:$P(%,%1)["." IO("IP")=$P(%,%1)
  I $$OS^%ZOSV="VMS",$G(IO("IP"))="" S IO("IP")=$P($ZF("TRNLNM","SYS$REM_NODE"),":") ;For SSH, p499
+ I $$OS^%ZOSV="UNIX",$G(IO("IP"))="" S IO("IP")=$P($SYSTEM.Util.GetEnviron("SSH_CLIENT")," ") ;For SSH, p543
  S:'$L(IO("ZIO")) IO("ZIO")=$G(IO("IP"))
  ;If have FQDN keep it in IO("CLNM") and get IP.
  I $L($G(IO("IP"))),IO("IP")'?1.3N1P1.3N1P1.3N1P1.3N S:'$D(IO("CLNM")) IO("CLNM")=IO("IP") S IO("IP")=$P($ZU(54,13,IO("IP")),",") ;p499,p546

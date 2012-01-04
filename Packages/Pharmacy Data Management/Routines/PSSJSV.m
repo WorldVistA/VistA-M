@@ -1,5 +1,5 @@
 PSSJSV ;BIR/CML3/WRT-SCHEDULE VALIDATION ;06/24/96
- ;;1.0;PHARMACY DATA MANAGEMENT;**20,38,56,59,110,121,143**;9/30/97;Build 24
+ ;;1.0;PHARMACY DATA MANAGEMENT;**20,38,56,59,110,121,143,149**;9/30/97;Build 7
  ;
  ; Reference to ^PS(51.15 is supported by DBIA #2132
  ; Reference to $$UP^XLFSTR(P1) is supported by DBIA #10104
@@ -100,17 +100,31 @@ DNVX S Z2=1,Z4="-" I X'["-",X?.E1P.E F Z1=1:1:$L(X) I $E(X,Z1)?1P S Z4=$E(X,Z1) 
  K:'Z2 X S:Z2 X="D" Q
  ;
 ENPSJ ;validate schedule names for PSJ package
- N A,B,I
+ N A,B,I,PSSCNT
  S X=$$UP^XLFSTR(X)
  I $G(PSJPP)'="PSJ" Q
  S A=$TR(X,".","") I A="OTHER" K X Q
- F I=1:1:$L(A," ") S B=$P(A," ",I) I B="QD"!(B="QOD")!(B="HS")!(B="TIW") K X
- S DOW=0,ZX=X S X=$P(X,"@") D DNVX I $G(X)="" S X=ZX K ZX Q 
- I X="D" S X=ZX,DOW=1 D CHKORD I '$D(X) D  S:$D(X) X=ZX K Z1,Z2,Z3,Z4,ZX
- . N MSG
- . S MSG(1)="The day of the week schedule must be in the correct day of week order."
- . S MSG(2)="The correct order is: SU-MO-TU-WE-TH-FR-SA"
- . D EN^DDIOL(.MSG,"","!")
+ F I=1:1:$L(A," ") S B=$P(A," ",I) I B="QD"!(B="QOD")!(B="HS")!(B="TIW") K X ;;>> *149 RJS
+ Q:'$D(X)
+ S DOW=0,ZX=X S X=$P(X,"@") D DNVX I $G(X)="" S X=ZX K ZX
+ I X="D" S X=ZX,DOW=1 D:X["@" CHKORD I $D(X),$G(PSSCNT)>1 D  S:'$D(X) X=ZX K Z1,Z2,Z3,Z4,ZX
+ .N MSG
+ .S MSG(1)="",MSG(2)="The day of the week schedule must be in the correct day of week order."
+ .S MSG(3)="The correct order is: SU-MO-TU-WE-TH-FR-SA"
+ .D EN^DDIOL(.MSG,"","!")
+ .Q
+SCRN ;LOGIC TO SCREEN OUT @ IF NOT DAILY
+ S (PSSFLG,PSSDFLG,PSSTFLG,PSSAFLG)=0
+ Q:X'["@"
+ I $G(PSSCNT) K PSSCNT,X Q
+ D DAYS,TIMECHK
+ I $L(X)<2!($L(X)>20) D MSG1
+ I $G(PSSAFLG) D MSG4
+ I $G(PSSTFLG) D MSG3
+ I $G(PSSDFLG) D MSG2
+ I $G(PSSFLG) S MSG(4)="",MSG(5)="  "_X D EN^DDIOL(.MSG,"","!") K MSG
+ K:$G(PSSFLG) X
+ K PSSFLG,PSSDFLG,PSSTFLG,PSSAFLG
  Q
  ;
 ENPSJT ; Validate schedule type (one-time PRN conflict)
@@ -128,11 +142,68 @@ ENPSJT ; Validate schedule type (one-time PRN conflict)
  ;
 CHKORD ;Check order of days in DOW schedule name
  N I,J,L,N,P,W
- S N=$P(X,"@"),L=0,P=$L(N,"-"),W="SUNDAYS,MONDAYS,TUESDAYS,WEDNESDAYS,THURSDAYS,FRIDAYS,SATURDAYS"
- F I=1:1:P F J=1:1:7 I $P($P(W,",",J),$P(N,"-",I))="" K:J'>L X Q:'$D(X)  S:J>L L=J
+ S N=$P(X,"@"),L=0,P=$L(N,"-"),W="SUNDAYS,MONDAYS,TUESDAYS,WEDNESDAYS,THURSDAYS,FRIDAYS,SATURDAYS",PSSCNT=0
+ F I=1:1:P F J=1:1:7 I $P(W,",",J)=$P(N,"-",I) K:J'>L X Q:'$D(X)  S:J>L L=J,PSSCNT=PSSCNT+1
  Q
  ;
 RMTIME ;Remove ward times when schedule becomes odd
  N R
  S R=0 F  S R=$O(^PS(51.1,D0,1,R)) Q:R=""  K ^PS(51.1,D0,1,R)
+ Q
+DAYS ; check days of week for correct order sequence
+ N PSSD2,PSSD3,PSSD4,PSSD1,PSSD5,PSSD6,PSSFND
+ S PSSD1=$P(X,"@"),PSSD4=0,PSSD5=$L(PSSD1,"-"),PSSD6="SU,MO,TU,WE,TH,FR,SA",PSSFND=0
+ F PSSD2=1:1:PSSD5 Q:'$D(PSSD1)  D
+ .F PSSD3=1:1:7 D  Q:'$D(PSSD1)
+ ..I $P(PSSD6,",",PSSD3)=$P(PSSD1,"-",PSSD2) K:PSSD3'>PSSD4 PSSD1 Q:'$D(PSSD1)  S PSSFND=PSSFND+1 S:PSSD3>PSSD4 PSSD4=PSSD3
+ ..I $L($P(PSSD1,"-",PSSD2))>2 K PSSD1
+ .K:PSSFND'=PSSD2 PSSD1
+ I ('$D(PSSD1)!('$D(PSSFND))) S PSSDFLG=1
+ Q
+MSG1 ; max length exceeded message
+ S MSG(1)="",MSG(2)="The Administration Schedule you entered has "_$L(X)_" characters."
+ S MSG(3)="Answer must be 2-20 characters in length."
+ D EN^DDIOL(.MSG,"","!")
+ S PSSFLG=1
+ K MSG
+ Q
+MSG2 ; day of week order squence message
+ S MSG(1)="",MSG(2)="The day of the week schedule must be in the correct day of week order."
+ S MSG(3)="The correct order is: SU-MO-TU-WE-TH-FR-SA"
+ D EN^DDIOL(.MSG,"","!")
+ S PSSFLG=1
+ K MSG
+ Q
+MSG3 ; time input message
+ S MSG(1)="",MSG(2)="The time must be between 0001 - 2400."
+ S MSG(3)="A correct time entry would be: 0800-1200-1600 etc."
+ D EN^DDIOL(.MSG,"","!")
+ S PSSFLG=1
+ K MSG
+ Q
+MSG4 ; time sequence message
+ S MSG(1)="",MSG(2)="The time must be entered in ascending order."
+ S MSG(3)="A correct time entry would be: 0800-1200-1600 etc."
+ D EN^DDIOL(.MSG,"","!")
+ S PSSFLG=1
+ K MSG
+ Q
+TIMECHK ; time validation
+ N PSSXTIME,PSSTLN,PSSLOOP,PSSTCHR,PSSDASH,PSSLEN,PSSTCHK,PSSTIMCT,PSSTIME
+ I $L(X,"@")>2 S (PSSDFLG,PSSTFLG)=1 Q
+ S PSSXTIME=$P(X,"@",2),PSSTLN=$L(PSSXTIME),PSSTFLG=0,PSSDASH=$L(PSSXTIME,"-")
+ I PSSXTIME=0 S PSSTFLG=1 Q
+ F PSSTIMCT=1:1:PSSDASH S PSSTIME=$P(PSSXTIME,"-",PSSTIMCT) D
+ .S PSSTCHK(PSSTIMCT)=PSSTIME,PSSLEN=$L(PSSTIME)
+ .I $L(PSSTCHK(PSSTIMCT))=2 S PSSTCHK(PSSTIMCT)=PSSTCHK(PSSTIMCT)_"00"
+ .F PSSLOOP=1:1:PSSLEN D
+ ..S PSSTCHR=$E(PSSTIME,PSSLOOP)
+ ..I $A(PSSTCHR)<48!($A(PSSTCHR)>57) S PSSTFLG=1
+ .I ((PSSTIME<1)!(PSSLEN=1)!(PSSLEN=3)!(PSSLEN>4)) S PSSTFLG=1
+ F PSSTIMCT=1:1:PSSDASH D
+ .I $G(PSSTCHK(PSSTIMCT+1)),PSSTCHK(PSSTIMCT)>PSSTCHK(PSSTIMCT+1) S PSSAFLG=1
+ .I $L(PSSTCHK(PSSTIMCT))=4 D
+ ..I $E(PSSTCHK(PSSTIMCT),1,4)>2400 S PSSTFLG=1
+ ..I $E(PSSTCHK(PSSTIMCT),1,2)<24 D
+ ...I $E(PSSTCHK(PSSTIMCT),3,4)>59 S PSSTFLG=1
  Q

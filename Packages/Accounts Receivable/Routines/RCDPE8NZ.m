@@ -1,5 +1,5 @@
-RCDPE8NZ ;ALB/TMK-report of unlinked payments in 5287/8NZZ ;19 MAR 2003
- ;;4.5;Accounts Receivable;**173,212,208**;Mar 20, 1995
+RCDPE8NZ ;ALB/TMK/PJH-report of unlinked payments in 5287/8NZZ ; 8/2/10 9:17pm
+ ;;4.5;Accounts Receivable;**173,212,208,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 EN N RCDPPADT,%ZIS,ZTRTN,ZTSAVE,ZTDESC,POP,ZTSK,DIR,X,Y
@@ -61,7 +61,7 @@ PR ; Entrypoint for queued job
  .. ;
  .. S RCEFT=0 F  S RCEFT=$O(^TMP("RCDPE8NZZ_EFT",$J,RCDT,RCEFT1,RCEFT)) Q:'RCEFT  S RCDATA=$G(^(RCEFT)),RCEFTD=$G(^RCY(344.31,RCEFT,0)) D
  ... I ($Y+5)>IOSL D HDR(RCRDT,.RCPG,.RCSTOP) Q:RCSTOP
- ... W !,$J("",6)_$E($E($P(RCEFTD,U,2),1,18)_"/"_$E($P(RCEFTD,U,3),1,10)_$J("",30),1,30)_$E($P(RCEFTD,U,4)_$J("",20),1,20)_" "
+ ... W !,$J("",5)_$P(RCEFTD,U,2)_"/"_$P(RCEFTD,U,3),!,$J("",6)_$E($P(RCEFTD,U,4)_$J("",50),1,50)_" "
  ... W $E($J(+$P(RCEFTD,U,7),"",2)_$J("",12),1,12)_" "_$S($P(RCEFTD,U,9)'="":$P($G(^RCY(344,+$P(RCEFTD,U,9),0)),U),1:"NO RECEIPT")
  ... S Z=$P(RCEFTD,U,8)
  ... W !,$J("",8)_$E($S('Z:"UNMATCHED",Z=2:"PAPER EOB",1:"MATCHED TO ERA #: "_$P(RCEFTD,U,10)_$S(Z=-1:" (TOTALS MISMATCH)",1:""))_$J("",40),1,40)_"  "
@@ -81,7 +81,7 @@ HDR(RCRDT,RCPG,RCSTOP) ; Print header data
  S RCPG=RCPG+1
  W !,$S(RCDPPADT'>0:"ALL ",1:"")_"UNAPPLIED EFT PAYMENT DEPOSITS"_$S(RCDPPADT>0:" AFTER "_$$FMTE^XLFDT(RCDPPADT,2),1:""),?50,RCRDT,?70,"PAGE: ",RCPG
  W !!,"    DEPOSIT #   DEPOSIT DATE      TOT AMT OF DEPOSIT    TOT AMT UNPOSTED"
- W !,$E("      PAYER/ID"_$J("",36),1,36)_"TRACE #              PAYMENT AMT  RECEIPT #",!,$J("",8)_$E("ERA MATCHED"_$J("",40),1,40)_"  FMS DOC #/STATUS"
+ W !,"     PAYER/ID",!,$J("",6)_"TRACE #"_$J("",44)_"PAYMENT AMT  RECEIPT #",!,$J("",8)_$E("ERA MATCHED"_$J("",40),1,40)_"  FMS DOC #/STATUS"
  W !,$TR($J("",IOM)," ","=")
  Q
  ;

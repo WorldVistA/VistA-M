@@ -1,5 +1,5 @@
 IBCB1 ;ALB/AAS - Process bill after enter/edited ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**70,106,51,137,161,182,155,327**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**70,106,51,137,161,182,155,327,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;MAP TO DGCRB1
@@ -93,7 +93,9 @@ GENTX I %'=1 D:+$G(IBAC)=1 END,CTCOPY^IBCCCB(IBIFN) G END
  . I $D(IBTXPRT) D TXPRTS
  . D EN1^IBCF
  . I $D(IBTXPRT) D TXPRT
- . D MRA^IBCEMU1(IBIFN)       ; Printing the MRA
+ . ;D MRA^IBCEMU1(IBIFN)       ; Printing the MRA ;WCJ;IB*2.0*432;MRA may have a diffierent claim number if this is tertiary
+ . D MRA^IBCEMU1($$GETMRACL^IBCAPR(IBIFN))  ;WCJ;IB*2.0*432;see above
+ . I $G(IBMRANOT) D EOBALL^IBCAPR2(IBIFN)  ;WCJ;IB*2.0*432 print all the EOBs (ask device once)
  . I +$G(IBAC)=1 D END,CTCOPY^IBCCCB(IBIFN)
  . Q
  ;

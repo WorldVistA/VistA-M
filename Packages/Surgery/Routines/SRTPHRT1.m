@@ -1,5 +1,5 @@
 SRTPHRT1 ;BIR/SJA - HEART-RECIPIENT INFORMATION ;03/04/08
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+ ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
  I '$D(SRTPP) W !!,"A Transplant Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME S SRSOUT=1 G END
  S SRSOUT=0,$P(SRLINE,"-",80)="" D SRHDR^SRTPUTL
 START Q:SRSOUT  D DISP
@@ -28,7 +28,7 @@ ONE ; edit one item
 DISP ; display fields
  S SRHPG="RECIPIENT INFORMATION",SRPAGE="PAGE: 1 OF "_$S(SRNOVA:6,1:4) D HDR^SRTPUTL
  K SRAO,DR S SRQ=0
- S SRDR=$S(SRNOVA:"3;1;11;58;57;4;5;10;12;167;168;163;164;19;165;89;166;68",1:"3;11;58;57;163;164;165;89;166;68;10;12;19")
+ S SRDR=$S(SRNOVA:"3;1;11;58;57;4;5;10;12;167;168;163;164;19;165;87;85;89;166;68",1:"3;11;58;57;163;164;165;87;85;89;166;68;10;12;19")
  K DA,DIC,DIQ,SRX,SRY S DIC="^SRT(",DA=SRTPP,DIQ="SRY",DIQ(0)="E",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
  S (SRX,SRZ)=0 F I=1:1 S SRZ=$P(SRDR,";",I) Q:'SRZ  S SRX=I,SRAO(I)=SRY(139.5,SRTPP,SRZ,"E")_"^"_SRZ
   ; heart Transplant Assessments (VA)
@@ -40,25 +40,27 @@ VA I 'SRNOVA D
  .W !,"5.  PVR Before Vasodilation:",?29,$P(SRAO(5),"^")
  .W !,"6.  PVR After Vasodilation:",?29,$P(SRAO(6),"^")
  .W !,"7.  LVEF %:",?29,$P(SRAO(7),"^")
- .W !,"8.  Total Isch. time:",?29,$P(SRAO(8),"^")
- .W !,"9.  PRA %:",?29,$P(SRAO(9),"^")
- .W !,"10. Crossmatch D/R:",?29,$P(SRAO(10),"^")
- .W !,"11. ABO Blood Type:",?29,$P(SRAO(11),"^")
- .W !,"12. Recipient CMV:",?29,$P(SRAO(12),"^")
- .W !!,"13. Transplant Comments: " S SREXT=$P(SRAO(13),"^") D COMM^SRTPLIV1
+ .W !,"8.  Cold Isch. Time:",?29,$P(SRAO(8),"^")
+ .W !,"9.  Warm Isch. Time:",?29,$P(SRAO(9),"^")
+ .W !,"10. Total Isch. time:",?29,$P(SRAO(10),"^")
+ .W !,"11. PRA %:",?29,$P(SRAO(11),"^")
+ .W !,"12. Crossmatch D/R:",?29,$P(SRAO(12),"^")
+ .W !,"13. ABO Blood Type:",?29,$P(SRAO(13),"^")
+ .W !,"14. Recipient CMV:",?29,$P(SRAO(14),"^")
+ .W !!,"15. Transplant Comments: " S SREXT=$P(SRAO(15),"^") D COMM^SRTPLIV1
  ; heart Transplant Assessments (non-VA)
 NONVA I SRNOVA D
  .W !,"1.  VACO ID:",?29,$P(SRAO(1),"^")
  .S Y=$P(SRAO(2),"^") X ^DD("DD") W !,"2.  Date of Transplant:",?29,Y
  .W !,"3.  Date Listed with UNOS:",?29,$P(SRAO(3),"^"),?45,"15. LVEF %:",?67,$P(SRAO(15),"^")
- .W !,"4.  UNOS at Time of Listing:",?29,$P(SRAO(4),"^"),?45,"16. Total Isch. Time:",?67,$P(SRAO(16),"^")
- .W !,"5.  UNOS at Time of TX:",?29,$P(SRAO(5),"^"),?45,"17. PRA %:",?67,$P(SRAO(17),"^")
+ .W !,"4.  UNOS at Time of Listing:",?29,$P(SRAO(4),"^"),?45,"16. Cold Isch. Time:",?67,$P(SRAO(16),"^")
+ .W !,"5.  UNOS at Time of TX:",?29,$P(SRAO(5),"^"),?45,"17. Warm Isch. Time:",?67,$P(SRAO(17),"^")
  .D HW^SRTPUTL
  .S SRAO(6)=$$OUT^SRTPLUN1(4,$P(^SRT(SRTPP,0),"^",4))_"^4"
- .W !,"6.  Recipient Height:",?29,$P(SRAO(6),"^"),?45,"18. Crossmatch D/R:",?67,$P(SRAO(18),"^")
+ .W !,"6.  Recipient Height:",?29,$P(SRAO(6),"^"),?45,"18. Total Isch. Time:",?67,$P(SRAO(18),"^")
  .S SRAO(7)=$$OUT^SRTPLUN1(5,$P(^SRT(SRTPP,0),"^",5))_"^5"
- .W !,"7.  Recipient Weight:",?29,$P(SRAO(7),"^")
- .W !,"8.  ABO Blood Type:",?29,$P(SRAO(8),"^")
+ .W !,"7.  Recipient Weight:",?29,$P(SRAO(7),"^"),?45,"19. PRA %:",?67,$P(SRAO(19),"^")
+ .W !,"8.  ABO Blood Type:",?29,$P(SRAO(8),"^"),?45,"20. Crossmatch D/R:",?67,$P(SRAO(20),"^")
  .W !,"9.  Recipient CMV:",?29,$P(SRAO(9),"^")
  .W !,"10. PA Systolic Pressure:",?29,$P(SRAO(10),"^")
  .W !,"11. PAW Mean Pressure:",?29,$P(SRAO(11),"^")

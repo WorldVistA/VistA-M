@@ -1,5 +1,5 @@
 BPSUTIL2 ;BHAM ISC/SS - General Utility functions ;08/01/2006
- ;;1.0;E CLAIMS MGMT ENGINE;**7,8**;JUN 2004;Build 29
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -97,6 +97,7 @@ GETPLN59(BPIEN59) ;
  ;
 GETPLN77(BPIEN77) ;
  N BPINSIEN,BPSINSUR,BPINSDAT
+ I '$G(BPIEN77) Q 0
  S BPINSIEN=0
  ;get the USED FOR THE REQUEST=1 (active) entry in the multiple
  S BPINSIEN=$O(^BPS(9002313.77,BPIEN77,5,"C",1,BPINSIEN))
@@ -108,6 +109,15 @@ GETPLN77(BPIEN77) ;
  S BPINSDAT=$G(^BPS(9002313.78,BPSINSUR,0))
  I BPINSDAT="" Q 0
  Q $P(BPINSDAT,U,8)_"^"_$P(BPINSDAT,U,7)
+ ;
+GETRQST(IEN59) ; Return the BPS Request IEN for a BPS Transaction record
+ N BPTYPE,IEN77
+ I '$G(IEN59) Q ""
+ S BPTYPE=$$GET1^DIQ(9002313.59,IEN59,19,"I")
+ ; If reversal, return the Reversal Request field
+ I BPTYPE="U" Q $$GET1^DIQ(9002313.59,IEN59,405,"I")
+ ; Otherwise, return the Submission Request field
+ Q $$GET1^DIQ(9002313.59,IEN59,16,"I")
  ;
  ;Return the COB (payer sequence) by IEN of the BPS TRANSACTION file
 COB59(BPSIEN59) ;

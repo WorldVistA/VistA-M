@@ -1,6 +1,6 @@
-RCDPESR4 ;ALB/TMK - Server interface 835ERA processing ;06/03/02
- ;;4.5;Accounts Receivable;**173,216,208,230**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPESR4 ;ALB/TMK/PJH - Server interface 835ERA processing ; 06/03/02
+ ;;4.5;Accounts Receivable;**173,216,208,230,269,271**;Mar 20, 1995;Build 29
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 ERAEOBIN(RCTXN,RCD,RCGBL,RCEFLG) ; Store/process 835ERA or 835XFR
  ;  transaction coming into the site
@@ -12,7 +12,8 @@ ERAEOBIN(RCTXN,RCD,RCGBL,RCEFLG) ; Store/process 835ERA or 835XFR
  N RCLAST,RCBILL,RCTDA,RCMSG,RCERR
  S (RCTDA,RCEFLG)=0
  ;
- L +^RCY(344.5,"AMSEQ",+$P(RCTXN,U,13))
+ ;
+ F  L +^RCY(344.5,"AMSEQ",+$P(RCTXN,U,13)):30 Q:$T
  S RCMSG=$$EXTERA(RCTXN,.RCLAST,.RCBILL) ; Extract from mail msg
  ;
  ; If full msg received (99^$ record exists), file it
@@ -54,14 +55,16 @@ EXTERA(RCTXN,RCLAST,RCBILL) ;Extract 835ERA or 835XFR transaction
  N CT,CT1,LINE,HCT,RCH,RCMSG,RCREFORM,RCINS,RCSTAT,B,RCSD,C5
  S (HCT,RCH)=0
  ;
+ ;
  ; Check if sequence control # already exists or if a new record needed
  S RCMSG=+$O(^RCY(344.5,"AMSEQ",+$P(RCTXN,U,13),0))
  S CT=0
  I 'RCMSG D  ; Build display data for the first sequence only
- . S HCT=HCT+1 S LINE(HCT)="Payer Name: "_$P(RCTXN,U,6)_"    Payer ID: "_$P(RCTXN,U,7)
+ . S HCT=HCT+1 S LINE(HCT)="Payer Name: "_$P(RCTXN,U,6)
+ . S HCT=HCT+1 S LINE(HCT)="Payer ID: "_$P(RCTXN,U,7)
  . S HCT=HCT+1,LINE(HCT)="Trace #: "_$P(RCTXN,U,8)
  . S HCT=HCT+1,LINE(HCT)="Date Paid: "_$$FDT^RCDPESR9($P(RCTXN,U,9))_"    Total Amt Paid: "_$J($P(RCTXN,U,10)/100,0,2)
- . I $P(RCTXN,U)["XFR",$P(RCTXN,U,16)'="" S HCT=HCT+1,LINE(HCT)="Contact Info: "_$P(RCTXN,U,16)
+ . I $P(RCTXN,U)["XFR",$P(RCTXN,U,19)'="" S HCT=HCT+1,LINE(HCT)="Contact Info: "_$P(RCTXN,U,19)
  . M ^TMP("RCMSG",$J,1,"D")=LINE
  . S CT=CT+1,^TMP("RCMSG",$J,2,"D",CT)=RCTXN
  ;
@@ -76,7 +79,7 @@ EXTERA(RCTXN,RCLAST,RCBILL) ;Extract 835ERA or 835XFR transaction
  . I +XMRG=99,$P(XMRG,U,2)="$" S RCLAST=1 Q
  . S CT=CT+1
  . I +XMRG=5,$P(XMRG,U,2)'="" S C5=CT
- . I +XMRG=40,$P(XMRG,U,2)?1.7N,C5,$P(XMRG,U,19),'$D(@RCSD@(C5)) S ^(C5)=+$P(XMRG,U,19)
+ . I +XMRG=40,$P(XMRG,U,2)?1.12N,C5,$P(XMRG,U,19),'$D(@RCSD@(C5)) S ^(C5)=+$P(XMRG,U,19)  ; save the service date for possible ECME# look up
  . S ^TMP("RCMSG",$J,2,"D",CT)=XMRG
  ;
  ; reformat bill# if needed
@@ -87,7 +90,7 @@ EXTERA(RCTXN,RCLAST,RCBILL) ;Extract 835ERA or 835XFR transaction
  . I +XMRG=5,$P(XMRG,U,2)'="" D
  .. S RCREFORM="",RCSTAT=1
  .. ; Check if bill is in AR & is a 3rd party bill
- .. S RCBILL=$$BILL^RCDPESR1($P(XMRG,U,2),$G(@RCSD@(CT)),.RCINS)
+ .. S RCBILL=$$BILL^RCDPESR1($P(XMRG,U,2),$G(@RCSD@(CT)),.RCINS)    ; look up claim ien by claim# or ECME#
  .. I '$G(RCINS)!(RCBILL<0) S (RCBILL,RCSTAT)=0
  .. I RCBILL S B=$P($G(^PRCA(430,RCBILL,0)),U) I B'=$P(XMRG,U,2) S $P(XMRG,U,2)=B,RCREFORM=B
  .. I RCBILL,$P(^PRCA(430.3,+$P($G(^PRCA(430,+RCBILL,0)),U,8),0),U,3)'=102 S RCSTAT=2
@@ -108,6 +111,7 @@ ADD(RCGBL,RCDMSG,RCMSG,RCBILL,RCERR,RCD) ; Add msg(s) in @RCGBL to
  ; Errors returned in RCERR and RCERR(n)
  ; Function returns entry # of msg added or "" if none added
  ;
+ ;
  N RCHDR,RCTYP,RCIEN
  S RCHDR=$G(^TMP("RCMSGH",$J,0))
  S RCTYP=$P(RCHDR,U)
@@ -125,6 +129,7 @@ ADDTXN(RCDATA,RCDMSG) ; Add a trxn for msg in RCDATA to file 344.5
  ;
  N A,RCY,DLAYGO,DIC,DD,DO,DA,X,Y,Z
  ;
+ ;
  S (X,A)=RCDMSG ;Use msg ID as basis for the .01 field
  F Z=1:1 Q:'$D(^RCY(344.5,"B",A))  S A=X_"."_Z
  S X=A
@@ -133,6 +138,8 @@ ADDTXN(RCDATA,RCDMSG) ; Add a trxn for msg in RCDATA to file 344.5
  I $P(RCDATA,U,6)'="" S DIC("DR")=DIC("DR")_";3.01////"_$P(RCDATA,U,6)
  D FILE^DICN K DO,DD,DLAYGO,DA,DIC
  S RCY=+Y
+ ;
+ ;
  Q $S(RCY>0:+RCY,1:"")
  ;
 LOADDET(RCTDA,RCGBL,RCHDR,RCBILL,RCD,RCERR) ; Load the rest of the text
@@ -144,6 +151,7 @@ LOADDET(RCTDA,RCGBL,RCHDR,RCBILL,RCD,RCERR) ; Load the rest of the text
  ; RCD = array with formatted hdr data
  ;
  ; OUTPUT: RCERR if any errors found, pass by REF
+ ;
  ;
  N RCE,RCDATA,RCMSG,RCFROM,Z,Z0
  K ^TMP("RCTEXT",$J),^TMP("RCRAW",$J)
@@ -200,6 +208,7 @@ LOADDET(RCTDA,RCGBL,RCHDR,RCBILL,RCD,RCERR) ; Load the rest of the text
  .... S RCE(3)="Please contact the Implementation Manager group to report this situation",RCE(4)=" "
  .... D BULLERA^RCDPESR0("D"_$S($O(^RCY(344.5,RCTDA,2,0)):"F",1:""),RCTDA,$G(RCD("MSG#")),"EDI LBOX - NO VALID BILLS ON ERA "_$E($G(RCD("PAYFROM")),1,20),.RCE,0)
  .... S DA=RCTDA,DR=".08////1;.1////6",DIE="^RCY(344.5," D ^DIE
+ ;
  ;
  K ^TMP("RCTEXT",$J),^TMP("RCRAW",$J)
  Q

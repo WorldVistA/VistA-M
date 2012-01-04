@@ -1,5 +1,5 @@
-SROATM3 ;BIR/MAM - NON CARDIAC TRANSMISSION (CONT) ;06/21/10
- ;;3.0; Surgery ;**27,38,62,88,97,111,142,153,174**;24 Jun 93;Build 8
+SROATM3 ;BIR/MAM - NON CARDIAC TRANSMISSION (CONT) ;05/03/11
+ ;;3.0;Surgery;**27,38,62,88,97,111,142,153,174,175**;24 Jun 93;Build 6
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -47,7 +47,10 @@ SROATM3 ;BIR/MAM - NON CARDIAC TRANSMISSION (CONT) ;06/21/10
  ;get name of person who completed assessment
  N SRP S SRP=$P($G(^SRF(SRTN,"RA")),"^",9) I SRP S Y=SRP,C=$P(^DD(130,272.1,0),"^",2) D Y^DIQ S SRP=Y
  S X=$L(SRP)+1 F I=X:1:35 S SRP=SRP_" "
- S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP_SRP   ;Line 13
+ S SRA(.9)=$G(^SRF(SRTN,.9)),SRA("VER")=$G(^SRF(SRTN,"VER"))
+ S SHEMP=SHEMP_SRP_$J($P(SRA(.9),"^"),12)_$J($P(SRA(.9),"^",2),12)_$J($P(SRA(.9),"^",3),12)_$J($P(SRA(.9),"^",4),12)_$J($P(SRA(.9),"^",5),12)_$J($P(SRA(.9),"^",6),12)   ;Line 13
+ F I=7:1:18 S SHEMP=SHEMP_$J($P(SRA("VER"),"^",I),2)
+ S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP
  S SRACNT=SRACNT+1
  ;
  S SHEMP=$E(SHEMP,1,11)_" A1"

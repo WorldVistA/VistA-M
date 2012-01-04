@@ -1,5 +1,5 @@
-PSJMIV ;BIR/MV-IV ORDER FOR MED DUE WORKSHEET.  ;20 DEC 96 / 3:12 PM
- ;;5.0; INPATIENT MEDICATIONS ;**58,116**;16 DEC 97
+PSJMIV ;BIR/MV-IV ORDER FOR MED DUE WORKSHEET.  ; 5/14/09 8:12am
+ ;;5.0; INPATIENT MEDICATIONS ;**58,116,225**;16 DEC 97;Build 16
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ;
@@ -11,7 +11,8 @@ IV ;*** Process IV order based on schedule and interval
  K ADM N X,ON55,PSJLABEL S DFN=PSGP,PSJLABEL=1 D GT55^PSIVORFB
  Q:"DE"[P(17)
  Q:P(2)>PSGPLF
- S X=$P(P("MR"),U,2) Q:XTYPE=2&(X["IV")  Q:XTYPE=3&(PST="S")&'($S(X="IV":1,X="IVPB":1,1:0))
+ ;PSJ*5*225 include IVP
+ S X=$P(P("MR"),U,2) Q:XTYPE=2&(X["IV")  Q:XTYPE=3&(PST="S")&'($S(X="IVP":1,X="IV":1,X="IVPB":1,1:0))
  S QST=$$ONE^PSJBCMA(PSGP,ON,P(9),P(2),P(3))
  S QST=$S(P(9)["PRN":"OVP",QST="O":"OVO",1:"CV")_XTYPE
  I P(9)]"" D SCHEDULE Q

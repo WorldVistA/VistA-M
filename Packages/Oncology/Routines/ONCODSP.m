@@ -1,5 +1,6 @@
 ONCODSP ;Hines OIFO/GWB - MISCELLANEOUS OPTIONS ;05/05/10
- ;;2.11;ONCOLOGY;**1,5,6,13,18,22,23,25,26,39,40,44,48,51**;Mar 07, 1995;Build 65
+ ;;2.11;ONCOLOGY;**1,5,6,13,18,22,23,25,26,39,40,44,48,51,53**;Mar 07, 1995;Build 31
+ ;
 TR ;[TR Define Tumor Registry Parameters]
  W ! S DIC="^ONCO(160.1,",DIC(0)="AEMLQ",DLAYGO=160.1 D ^DIC
  I Y=-1 G EX
@@ -22,6 +23,7 @@ TR ;[TR Define Tumor Registry Parameters]
  S DR(1,160.1,10)="7  VISN.............."
  S DR(1,160.1,10.1)="19  CS/EDITS URL......"
  S DR(1,160.1,11)="6  DIVISION.........."
+ S DR(1,160.1,11.1)="68  COC ACCREDITATION."
  S DR(1,160.1,12)="W !"
  S DR(1,160.1,13)="8  AFFILIATED DIVISION."
  S DR(1,160.1,14)="W !"

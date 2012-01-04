@@ -1,5 +1,5 @@
 RAPM2 ;HOIFO/TH-Radiology Performance Monitors/Indicator; ;3/20/04  12:41
- ;;5.0;Radiology/Nuclear Medicine;**37,44,48,63,67,99**;Mar 16, 1998;Build 5
+ ;;5.0;Radiology/Nuclear Medicine;**37,44,48,63,67,99,47**;Mar 16, 1998;Build 21
  ; IA 10090 allows Read w/Fileman for entire file 4
  ; Supported IA #10103 reference to ^XLFDT
  ; Supported IA #2056 reference to ^DIQ
@@ -26,10 +26,10 @@ DHDR ; Header
  I ($Y+5)>IOSL D
  . S RAPG=RAPG+1,RAHD(0)="Detail Verification Timeliness Report"
  . W @IOF,!?(RAIOM-$L(RAHD(0))\2),RAHD(0),?(RAIOM-10),"Page: ",$G(RAPG)
- W !!,?32,"Date/Time",?48,"Date/Time",?68,"Date/Time",?102,"Cat"
+ W !!,?34,"Date/Time",?49,"Date/Time",?69,"Date/Time",?102,"Cat"
  W ?106,"Rpt",?110,"Img",?116,"Procedure"
- W !,"Patient Name",?18,"Case #",?32,"Registered",?48,"Transcribed",?62,"Hrs"
- W ?68,"Verified",?82,"Hrs",?87,"Radiologist",?102,"Exm",?106,"Sts"
+ W !,"Patient Name",?17,"Case #",?34,"Registered",?49,"Transcribed",?63,"Hrs"
+ W ?69,"Verified",?83,"Hrs",?88,"Radiologist",?102,"Exm",?106,"Sts"
  W ?110,"Typ",?119,"Name",!
  Q
  ;
@@ -61,12 +61,12 @@ DET ; Print detail records
  . Q:RAXIT
  . D DHDR
  Q:RAXIT
- W !,$E($P(RAREC,U,2),1,15)
- W ?17,$P(RAREC,U,1)
- W ?31,$P($$FMTE^XLFDT($P(RAREC,U,3),"2FS"),":",1,2)
- W ?46,$P($$FMTE^XLFDT($P(RAREC,U,4),"2FS"),":",1,2),?61,$J($P(RAREC,U,12),4)
- W ?66,$P($$FMTE^XLFDT($P(RAREC,U,5),"2FS"),":",1,2),?81,$J($P(RAREC,U,13),4)
- I $P(RAREC,U,6)'="" W ?86,$E($P(RAREC,U,6),1,16)
+ W !,$E($P(RAREC,U,2),1,14)
+ W ?16,$P(RAREC,U,1)
+ W ?33,$P($$FMTE^XLFDT($P(RAREC,U,3),"2FS"),":",1,2)
+ W ?48,$P($$FMTE^XLFDT($P(RAREC,U,4),"2FS"),":",1,2),?63,$J($P(RAREC,U,12),4)
+ W ?68,$P($$FMTE^XLFDT($P(RAREC,U,5),"2FS"),":",1,2),?82,$J($P(RAREC,U,13),4)
+ I $P(RAREC,U,6)'="" W ?88,$E($P(RAREC,U,6),1,14)
  W ?104,$P(RAREC,U,7),?107,$P(RAREC,U,8)
  W ?110,$E($P(RAREC,U,9),1,3),?114,$E($P(RAREC,U,14),1,15)
  W:$P(RAREC,U,11)="" ?130,"*D"
@@ -97,7 +97,8 @@ STORE ; Store detail information
  S RATDFHR=$S(RATDFHR="":"",RATDFHR<1:"<1",RATDFHR>999:">999",1:RATDFHR)
  S RAVDFHR=$S(RAVDFHR="":"",RAVDFHR<1:"<1",RAVDFHR>999:">999",1:RAVDFHR)
  ;
- S RAREC1=RACN_U_RAPATNM_U_RADTE_U_RARPTDT_U
+ I $$USESSAN^RAHLRU1() S RAREC1=RACNDSP_U_RAPATNM_U_RADTE_U_RARPTDT_U
+ I '$$USESSAN^RAHLRU1() S RAREC1=RACN_U_RAPATNM_U_RADTE_U_RARPTDT_U
  S RAREC1=RAREC1_RAVERDT_U_RAPRIMNM_U_RACAT_U_RARPTST_U_RAIMGTYP_U
  S RAREC1=RAREC1_RADFN_U_RACHKDIV_U_RATDFHR_U_RAVDFHR_U_RAPRCN
  ;

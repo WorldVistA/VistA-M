@@ -1,5 +1,5 @@
-RCDPEWL7 ;ALB/TMK - EDI LOCKBOX WORKLIST ERA DISPLAY SCREEN ;16-JAN-04
- ;;4.5;Accounts Receivable;**208,222**;Mar 20, 1995
+RCDPEWL7 ;ALB/TMK/KML - EDI LOCKBOX WORKLIST ERA DISPLAY SCREEN ; 7/7/10 6:43pm
+ ;;4.5;Accounts Receivable;**208,222,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -40,7 +40,10 @@ EXTRACT(RCSRT1,RCSRT2,RCT) ; Extract the data
  . S RCEFT=+$O(^RCY(344.31,"AERA",RCZ,0))
  . S RCSTAT=$S('RCEFT:U_$S($P(RC0,U,15)="CHK":"(CHECK PAYMENT EXPECTED)",$P(RC0,U,15)="NON":"(NO PAYMENT EXPECTED)",$P(RC0,U,9)=2:"(CHECK PAYMENT CHOSEN)",1:"N/A"),1:$$FMSSTAT^RCDPUREC(+$P($G(^RCY(344.31,RCEFT,0)),U,9)))
  . S RCPOST=$S(RCEFT:"EFT RECEIPT STATUS: ",1:"")_$P(RCSTAT,U,2)
- . S X=$E(RCT_$J("",4),1,4)_$S($D(^RCY(344.49,RCZ)):" ",1:"-")_$E($P(RC0,U)_$J("",5),1,5)_"  "_$E($P(RC0,U,2)_$J("",30),1,30)_"  "_$J($$FMTE^XLFDT($P(RC0,U,7),"2D"),8)_$J("",5)_$J(+$P(RC0,U,5),12,2)
+ . ; kl - epayments patch - display of ERA # needs to account for 10 digits;  TRACE # has been updated from 30 to 50 characters
+ . S X=$E(RCT_$J("",4),1,4)_$S($D(^RCY(344.49,RCZ)):" ",1:"-")_$E($P(RC0,U)_$J("",10),1,10)_"  "_$E($P(RC0,U,2)_$J("",50),1,50)
+ . D SET(X,RCT,RCZ)
+ . S X=$J("",40)_$J($$FMTE^XLFDT($P(RC0,U,7),"2D"),8)_$J("",5)_$J(+$P(RC0,U,5),12,2)
  . S $E(X,73,80)=$$FMTE^XLFDT($P(RC0,U,7),"2D")
  . D SET(X,RCT,RCZ)
  . S X=$J("",12)_$E($P(RC0,U,6)_$J("",30),1,30)_"  APPROX # EEOBs: "_+$$CTEEOB^RCDPEWLB(RCZ)
@@ -124,6 +127,8 @@ HDR ; Header for ERA list
  S VALMHDR(2)=$J("",11)_"DATE RANGE  : "_$S($P(X,U):$$FMTE^XLFDT($P(X,U),2)_$S($P(X,U,2):"-"_$$FMTE^XLFDT($P(X,U,2),2),1:""),1:"NONE SELECTED")
  S X=$G(^TMP("RCERA_PARAMS",$J,"RCPAYR"))
  S VALMHDR(3)=$J("",11)_$S($P(X,U)="A"!(X=""):"ALL PAYERS",1:"PAYERS: "_$P(X,U,2)_"-"_$P(X,U,3))
+ S X=$G(^TMP("RCERA_PARAMS",$J,"RCERA_TRACE#"))
+ S VALMHDR(4)="#   ERA #         TRACE#"
  Q
  ;
 FNL ; -- Clean up list

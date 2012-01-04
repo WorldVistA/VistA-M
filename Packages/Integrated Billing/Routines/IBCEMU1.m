@@ -1,5 +1,6 @@
 IBCEMU1 ;ALB/DSM - IB MRA Utility ;26-MAR-2003
- ;;2.0;INTEGRATED BILLING;**135,155**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**135,155,432**;21-MAR-94;Build 192
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 MRAUSR() ;; Function
  ; Returns IEN (Internal Entry Number) from file #200 for
@@ -99,12 +100,12 @@ PRMRAX ;
  Q
  ;
  ;
-MRACNT(IBIFN) ; This function counts up the number of MRA EOB's in file
+MRACNT(IBIFN,IBMRANOT) ; This function counts up the number of MRA EOB's in file  ;WCJ IB*2.0*432
  ; 361.1 for this bill#
  NEW CNT,IEN
  S (CNT,IEN)=0
  F  S IEN=$O(^IBM(361.1,"B",+$G(IBIFN),IEN)) Q:'IEN  D
- . I $P($G(^IBM(361.1,IEN,0)),U,4)'=1 Q
+ . I $P($G(^IBM(361.1,IEN,0)),U,4)'=$S($G(IBMRANOT):0,1:1) Q  ;WCJ IB*2.0*432
  . S CNT=CNT+1
  . Q
 MRACNTX ;
@@ -173,7 +174,8 @@ SEL(IBIFN,MRAONLY,IBDA) ; Function to display and allow user selection
  . S IEN=0
  . F  S IEN=$O(^IBM(361.1,"ABD",IBIFN,EOBDATE,IEN)) Q:'IEN  D
  .. S IBM=$G(^IBM(361.1,IEN,0))
- .. I $G(MRAONLY),'$P(IBM,U,4) Q     ; mra only check
+ .. I '$G(IBMRANOT),$G(MRAONLY),'$P(IBM,U,4) Q     ; mra only check
+ .. I $G(IBMRANOT),$G(MRAONLY),$P(IBM,U,4) Q     ; EOB only check
  .. S INSCO=$$EXTERNAL^DILFD(361.1,.02,,$P(IBM,U,2))
  .. S SEQ=$E($$EXTERNAL^DILFD(361.1,.15,,$P(IBM,U,15)),1)
  .. S EOBDT=$$FMTE^XLFDT($P($P(IBM,U,6),".",1),"2Z")
@@ -188,7 +190,8 @@ SEL(IBIFN,MRAONLY,IBDA) ; Function to display and allow user selection
  ;
  ; Display mra/eob data
  S J="EOB's/MRA's"
- I $G(MRAONLY) S J="MRA's"
+ ;I $G(MRAONLY) S J="MRA's"
+ S:$G(IBMRANOT)'=1 J="MRA's"
  I COUNT>1 W !!,"The selected bill has multiple ",J," on file.  Please choose one."
  W !!?7,"#",?11,"Seq",?17,"Insurance Company",?40,"EOB Date"
  W ?51,"Type",?57,"Claim Status"
@@ -199,7 +202,8 @@ SEL(IBIFN,MRAONLY,IBDA) ; Function to display and allow user selection
  ;
  ; User Selection
  W ! S DIR(0)="NO^1:"_COUNT,DIR("A")="Select an EOB/MRA"
- I $G(MRAONLY) S DIR("A")="Select an MRA"
+ ;I $G(MRAONLY) S DIR("A")="Select an MRA"
+ S:$G(IBMRANOT)'=1 DIR("A")="Select an MRA"
  D ^DIR K DIR
  I 'Y G SELX    ; no selection made
  S IBEOB=+$G(LIST(Y))

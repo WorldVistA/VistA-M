@@ -1,5 +1,5 @@
-IVMPTRN ;ALB/MLI,SEK,RTK,BRM,BAJ,LBD - IVM BACKGROUND JOB/TRANSMISSIONS TO IVM CENTER; 10/28/2005 ; 1/20/10 12:00pm
- ;;2.0;INCOME VERIFICATION MATCH;**1,9,11,12,17,28,34,74,79,89,105,143**;JUL 8,1996;Build 1
+IVMPTRN ;ALB/MLI,SEK,RTK,BRM,BAJ,LBD - IVM BACKGROUND JOB/TRANSMISSIONS TO IVM CENTER; 10/28/2005 ; 7/13/10 4:11pm
+ ;;2.0;INCOME VERIFICATION MATCH;**1,9,11,12,17,28,34,74,79,89,105,143,147**;JUL 8,1996;Build 4
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ; This routine is run nightly to send HL7 messages to the IVM Center for
@@ -73,6 +73,10 @@ REG ; Creates FULL query transmission for patient's
  ..I 'DFN!'IVMDT Q
  ..;
  ..Q:($$STATUS^IVMPLOG(IVMDA,.EVENTS)=1)
+ ..;
+ ..; - if merged patient record, then update Transmission Status to
+ ..;   remove from "ATR" x-ref and do not create Z07 (IVM*2*147)
+ ..I $D(^DPT(DFN,-9)) S X=$$CLEAR^IVMPLOG(IVMDA) K X Q
  ..;
  ..S IVMMTDT=$$GETMTDT(DFN,IVMDT)  ;IVM*2*143
  ..;

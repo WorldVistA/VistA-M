@@ -1,5 +1,5 @@
-ONCOTNM ;Hines OIFO/GWB - TNM coding ;10/28/10
- ;;2.11;ONCOLOGY;**1,6,15,22,25,28,30,33,35,36,41,42,43,51,52**;Mar 07, 1995;Build 13
+ONCOTNM ;Hines OIFO/GWB - TNM coding ;02/22/11
+ ;;2.11;ONCOLOGY;**1,6,15,22,25,28,30,33,35,36,41,42,43,51,52,53**;Mar 07, 1995;Build 31
  ;
  ;INPUT TRANSFORM, OUTPUT TRANSFORM and HELP for:
  ;CLINICAL T   (165.5,37.1)
@@ -70,8 +70,13 @@ OTEX S YSTRING=$E(Y,2,99)
 TC I $E(ONCOX)="T" D
  .S TT=$S(Y="X":"Primary tumor cannot be assessed",Y=0:"No evidence of primary tumor",1:$P(TC,U))
  .S TT=$S(TT="TIAS":"Tumor invades adjacent structures",1:TT)
- .N MM S MM=$P($G(^ONCO(165.5,D0,2)),U,31) ;69;MULTIPLE TUMORS
- .I MM'="" S MM=$S(MM>1:"m"_MM,1:"m")
+ .N MC,MM,MT,XXDTDX
+ .S MT=$P($G(^ONCO(165.5,D0,2)),U,31) ;MULTIPLE TUMORS (165.5,69)
+ .S MC=$P($G(^ONCO(165.5,D0,24)),U,16) ;MULTIPLICITY COUNTER (165.5,196)
+ .S XXDTDX=$P($G(^ONCO(165.5,D0,0)),U,16)
+ .I XXDTDX<3070000 S MM=MT
+ .I XXDTDX>3069999 S MM=MC I (+MM=0)!(+MM=1)!(MM>87) S MM=""
+ .I MM'="" S MM=$S(+MM>1:"m"_+MM,1:"m")
  E  I $E(ONCOX)="N" S TT=$S($P(TC,U,1)="NCA":"Regional lymph nodes cannot be assessed",$P(TC,U,1)="NRN":"No regional lymph node metastasis",ST=58:"NA",1:$P(TC,U)),TT=$S(TT="MET":"Metastasis in regional lymph node(s)",1:TT)
  E  I $E(ONCOX)="M" S TT=$P(TC,U) Q
  Q
@@ -200,7 +205,7 @@ FILSC ;Get file (FIL) and IEN (SC) for appropriate TNM list
  ;
  ;PART VI: SKIN
  ;Merkel Cell Carcinoma
- I $E(HT,1,4)=8247,(($E(TX,3,4)=44)!($E(TX,3,4)=51)!($E(TX,3,4)=60)!(TX=67632)) S FIL=164.33,SC=60 Q
+ I ONCOED>6,$E(HT,1,4)=8247,((TX=67440)!(TX=67442)!(TX=67443)!(TX=67444)!(TX=67445)!(TX=67446)!(TX=67447)!(TX=67448)!(TX=67449)!($E(TX,3,4)=51)!($E(TX,3,4)=60)!(TX=67632)) S FIL=164.33,SC=60 Q
  ;
  ;Melanoma of the Skin
  I $$MELANOMA^ONCOU55(D0),(($E(TX,3,4)=44)!($E(TX,3,4)=51)!($E(TX,3,4)=60)!(TX=67632)) S FIL=164.33,SC=22 Q

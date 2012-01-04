@@ -1,5 +1,5 @@
 BPSOSHF ;BHAM ISC/SD/lwj/DLF - Get/Format/Set value for repeating segments ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8**;JUN 2004;Build 29
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; This routine is an addendum to BPSOSCF.  Its purpose is to handle
@@ -31,7 +31,6 @@ DURPPS(FORMAT,NODE,MEDN) ;EP called from BPSOSCF
  ;
  N FIELD,RECCNT,DUR,FLD,OVERRIDE,FLAG,ORD,FLDIEN,FLDNUM,FLDNUMB,FOUND
  S FLAG="FS"
- I ^BPS(9002313.99,1,"CERTIFIER")=DUZ S FLAG="GFS"
  ;
  Q:'$D(BPS("RX",MEDN,"DUR"))
  ;
@@ -71,7 +70,6 @@ COB(FORMAT,NODE,MEDN) ; COB fields processing, NODE=160
  ;
  N FIELD,FLD,OVERRIDE,FLAG,ORD,NCPFLD,BPD,BPD1,BPD2,PCE,BPSOPIEN,BPSOAIEN,BPSORIEN
  S FLAG="FS"
- I ^BPS(9002313.99,1,"CERTIFIER")=DUZ S FLAG="GFS"
  ;
  ; Quit if there is no data in the array
  Q:'$D(BPS("RX",MEDN,"OTHER PAYER"))
@@ -96,15 +94,17 @@ COB(FORMAT,NODE,MEDN) ; COB fields processing, NODE=160
  ; now lets get, format and set the rest of the COB fields
  S BPSOPIEN=0 F  S BPSOPIEN=$O(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN)) Q:'BPSOPIEN  D
  . S BPD=$G(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN,0))
- . F PCE=1:1:7 D
- .. S FLD=$S(PCE=1:337,PCE=2:338,PCE=3:339,PCE=4:340,PCE=5:443,PCE=6:341,PCE=7:471,1:0) Q:'FLD
+ . ; Note that pieces 8 (Payer-Patient Responsibility Count) and 9 (Benefit Stage Count) are only set
+ . ;   by Certification Code
+ . F PCE=1:1:9 D
+ .. S FLD=$S(PCE=1:337,PCE=2:338,PCE=3:339,PCE=4:340,PCE=5:443,PCE=6:341,PCE=7:471,PCE=8:353,PCE=9:392,1:0) Q:'FLD
  .. I '$D(NCPFLD(FLD)) Q                          ; field not needed
  .. I $P(BPD,U,PCE)="" Q                          ; data is nil
  .. S BPS("X")=$P(BPD,U,PCE)                      ; get
  .. D XFLDCODE^BPSOSCF(NODE,NCPFLD(FLD),FLAG)     ; format/set
  .. Q
  . ;
- . ; now look at the other payer amount paid fields
+ . ; Now look at the other payer amount paid fields
  . S BPSOAIEN=0 F  S BPSOAIEN=$O(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN,"P",BPSOAIEN)) Q:'BPSOAIEN  D
  .. S BPD1=$G(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN,"P",BPSOAIEN,0))
  .. F PCE=1,2 D
@@ -115,7 +115,7 @@ COB(FORMAT,NODE,MEDN) ; COB fields processing, NODE=160
  ... D XFLDCODE^BPSOSCF(NODE,NCPFLD(FLD),FLAG)     ; format/set
  .. Q
  . ;
- . ; now look at the other payer reject code fields
+ . ; Now look at the other payer reject code fields
  . S BPSORIEN=0 F  S BPSORIEN=$O(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN,"R",BPSORIEN)) Q:'BPSORIEN  D
  .. S BPD2=$G(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN,"R",BPSORIEN,0))
  .. S FLD=472
@@ -123,6 +123,30 @@ COB(FORMAT,NODE,MEDN) ; COB fields processing, NODE=160
  .. I BPD2="" Q                                   ; data is nil
  .. S BPS("X")=BPD2                               ; get
  .. D XFLDCODE^BPSOSCF(NODE,NCPFLD(FLD),FLAG)     ; format/set
+ .. Q
+ . ;
+ . ; Now look at the other payer-patient amount paid fields
+ . ; Currently, this multiple is only set by certification code
+ . S BPSOAIEN=0 F  S BPSOAIEN=$O(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN,"PP",BPSOAIEN)) Q:'BPSOAIEN  D
+ .. S BPD1=$G(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN,"PP",BPSOAIEN,0))
+ .. F PCE=1,2 D
+ ... S FLD=$S(PCE=1:352,PCE=2:351,1:0) Q:'FLD
+ ... I '$D(NCPFLD(FLD)) Q                          ; field not needed
+ ... I $P(BPD1,U,PCE)="" Q                         ; data is nil
+ ... S BPS("X")=$P(BPD1,U,PCE)                     ; get
+ ... D XFLDCODE^BPSOSCF(NODE,NCPFLD(FLD),FLAG)     ; format/set
+ .. Q
+ . ;
+ . ; Now look at the Benefit Stages fields
+ . ; Currently, this multiple is only set by certification code
+ . S BPSOAIEN=0 F  S BPSOAIEN=$O(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN,"BS",BPSOAIEN)) Q:'BPSOAIEN  D
+ .. S BPD1=$G(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN,"BS",BPSOAIEN,0))
+ .. F PCE=1,2 D
+ ... S FLD=$S(PCE=1:394,PCE=2:393,1:0) Q:'FLD
+ ... I '$D(NCPFLD(FLD)) Q                          ; field not needed
+ ... I $P(BPD1,U,PCE)="" Q                         ; data is nil
+ ... S BPS("X")=$P(BPD1,U,PCE)                     ; get
+ ... D XFLDCODE^BPSOSCF(NODE,NCPFLD(FLD),FLAG)     ; format/set
  .. Q
  . Q
  ;

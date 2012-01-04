@@ -1,5 +1,5 @@
-DICUIX ;SEA/TOAD,SF/TKW-FileMan: Lookup Tools, Indexes ;23JUN2009
- ;;22.0;VA FileMan;**20,28,67,164**;Mar 30, 1999;Build 20
+DICUIX ;SEA/TOAD,SF/TKW-FileMan: Lookup Tools, Indexes ;19APR2011
+ ;;22.0;VA FileMan;**20,28,67,164,165**;Mar 30, 1999;Build 32
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 INDEX(DIFILE,DIFLAGS,DINDEX,DIFROM,DIPART,DINUMBER,DISCREEN,DILIST,DIOUT) ;
@@ -39,7 +39,7 @@ I2 ; in Index file, build list of subscript data
  . . . S DINDEX(DISUB,"TRANOUT")=^DD("IX",DIXIEN,11.1,S,3),DIGET=3 Q
  . . I "KSMU"[DINDEX("IXTYPE") S DIGET=2
  . . Q
- . S DILENGTH=$P(DINODE,U,5) I 'DILENGTH!(DILENGTH>100) S DILENGTH=30
+ . S DILENGTH=$P(DINODE,U,5) I 'DILENGTH S DILENGTH=30 ;GFT
  . S DIWAY=$S($P(DINODE,U,7)="B":-1,1:1)
  . D COMMON1^DICUIX2
  . Q

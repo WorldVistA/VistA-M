@@ -1,5 +1,5 @@
 RAUTL1 ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Utility Routine ;10/22/97  13:54
- ;;5.0;Radiology/Nuclear Medicine;**5,9,18,71,82,84,94**;Mar 16, 1998;Build 9
+ ;;5.0;Radiology/Nuclear Medicine;**5,9,18,71,82,84,94,47**;Mar 16, 1998;Build 21
  ;last modification by SS for P18 June 19,00
  ;07/28/2008 BAY/KAM RA*5*94 Remove patch 81 from 2nd line of routine
  ;02/10/2006 BAY/KAM RA*5*71 Add ability to update exam data to V/R
@@ -91,7 +91,11 @@ UP2 ;Remedy Call 124379 Patch *71 BAY/KAM Added next line
  N RAAFTER,RABEFORE
  D STUFF^RASTREQ1 I RAOR<0,$D(RASN) W:'$D(RAONLINE)&('$D(ZTQUEUED)) !?5,"...exam status remains '",RASN,"'." K DIE,RACS,RAPRIT D  Q
  .D:$G(RAEXEDT) EXM^RAHLRPC ; DO statement added by RA*5*82
- W:'$D(RAONLINE)&('$D(ZTQUEUED)) !?3,"...will now designate exam status as '",RASN,"'... for case no. ",$P($G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)),U)
+ ;W:'$D(RAONLINE)&('$D(ZTQUEUED)) !?3,"...will now designate exam status as '",RASN,"'... for case no. ",$P($G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)),U)
+ N RASSAN,RACNDSP S RASSAN=$$SSANVAL^RAHLRU1(RADFN,RADTI,RACNI)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:$P($G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)),U))
+ I $$USESSAN^RAHLRU1() W:'$D(RAONLINE)&('$D(ZTQUEUED)) !?3,"...will now designate exam status as '",RASN,"'",!?25,"...for case no. ",RACNDSP
+ I '$$USESSAN^RAHLRU1() W:'$D(RAONLINE)&('$D(ZTQUEUED)) !?3,"...will now designate exam status as '",RASN,"'... for case no. ",$P($G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)),U)
  ; S DR="3////"_RASTI_$S($P(RAMDV,"^",10):";75///^S X=$$MIDNGHT^RAUTL5($$NOW^XLFDT())",1:"")
  ; user duz could be in RADUZ, if session is from the Voice recognition
  ;S DR(2,70.05)=$S($P(RAMDV,"^",11)&('$D(ZTQUEUED)):".01;",1:"")_"2////"_RASTI_";3////"_$S($G(RADUZ):RADUZ,1:DUZ)

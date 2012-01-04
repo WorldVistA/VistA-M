@@ -1,5 +1,5 @@
-DIK1 ;SFISC/GFT-ACTUAL INDEXER ;29MAR2009
- ;;22.0;VA FileMan;**1,10,41,146,160**;Mar 30, 1999;Build 21
+DIK1 ;SFISC/GFT-ACTUAL INDEXER ;9NOV2010
+ ;;22.0;VA FileMan;**1,10,41,146,160,165**;Mar 30, 1999;Build 32
  ;Per VHA Directive 2004-038, this routine should not be modified.
 EN N DIC D DI
  D
@@ -51,7 +51,7 @@ RR X Y Q
 AUDIT N %,%F,%T,%D,DIKF,DIKDA Q:DIIX=3&($D(DIKNM)!$D(DIKKS))  S %=DV N DV S DV=%
  S %F=DH F %=1:1 Q:'$D(^DD(%F,0,"UP"))  S %D=%F,%F=^("UP"),DV(%)=$O(^DD(%F,"SB",%D,0)) S:DV(%)="" DV(%)=-1
  S DIKDA="",DIKF="" F %=%-1:-1:1 S DIKDA=DIKDA_DA(%)_",",DIKF=DIKF_DV(%)_","
- I $D(^DD(DH,DV,"AX")) D NXEC(^("AX")) I '$T Q
+ I $G(^DD(DH,DV,"AX"))]"" D NXEC(^("AX")) I '$T Q
  D ADD^DIET S DIAU(DH,DV,DIKDA_DA)="^DIA("_%F_","_+Y_",",^DIA(%F,%D,0)=DIKDA_DA_U_%T_U_DIKF_DV_U_DUZ,^DIA(%F,"B",DIKDA_DA,%D)=""
 SET N C S (%F,C)=$P(^DD(DH,DV,0),U,2),Y=X D:Y]"" S^DIQ S @(DIAU(DH,DV,DIKDA_DA)_"DIIX)")=Y S:DIIX=2&($D(DIKNM)!$D(DIKKS)) ^(3)=Y
  K DIAU I %F["P"!(%F["V")!(%F["S") S ^(DIIX+.1)=X_U_%F

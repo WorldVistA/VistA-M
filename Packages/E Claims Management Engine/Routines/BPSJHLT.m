@@ -1,6 +1,6 @@
 BPSJHLT ;BHAM ISC/LJF - HL7 Process Incoming MFN Messages ;05-NOV-2003
- ;;1.0;E CLAIMS MGMT ENGINE;**1**;JUN 2004
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,10**;JUN 2004;Build 27
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This program will process incoming MFN messages and
@@ -33,7 +33,7 @@ EN(HL) ;  Entry Point
  ;
  D INITZPRS^BPSJZPR(.ZPRS)
  S BPSFILE=9002313.92,BPSJROOT=$$ROOT^DILFD(BPSFILE)
- S RBSTART=100,RBEND=230,NCPDPCK="51"
+ S RBSTART=100,RBEND=260,NCPDPCK=",51,D0,"
  S (ZPSNNAME,BPSJPROD,NCPDPVER,BPSJACT,BPSJADT,BPSJPKY)=""
  ;
  ; Initialize some Application Acknowledgement data
@@ -130,9 +130,11 @@ EN(HL) ;  Entry Point
  .. ;-New sheet name, production status and Payer Sheet and NCPDP versions
  .. S ZPSNNAME=$$DECODE^BPSJZPR($G(BPSJSEG(4)),.TCH) K TCH
  .. I ZPSNNAME="" S ZPSNNAME=$G(BPSJPKY)
+ .. ;Cannot rename an existing worksheet to a different but already existing name BPS*1*10
+ .. I ZPSNNAME]"",ZPSNNAME'=$G(BPSJPKY),$$PKY(ZPSNNAME,BPSJROOT)]"" S ^TMP($J,"BPSJ-ERROR","ZPS",3)=""
  .. S BPSJPROD=$G(BPSJSEG(8)) I BPSJPROD'="P" S BPSJPROD="T"
  .. S PSHTVER=$G(BPSJSEG(5)) I PSHTVER'=(PSHTVER\1) S ^TMP($J,"BPSJ-ERROR","ZPS",4)=""
- .. S NCPDPVER=$G(BPSJSEG(6)) I NCPDPVER'=NCPDPCK S ^TMP($J,"BPSJ-ERROR","ZPS",5)=""
+ .. S NCPDPVER=$G(BPSJSEG(6)) I NCPDPVER=""!(NCPDPCK'[NCPDPVER) S ^TMP($J,"BPSJ-ERROR","ZPS",5)=""
  ;
  I '$D(^TMP($J,"BPSJ-ERROR")) D
  . S APPACK("MFA",4,1)="S"  ; flag success
@@ -148,9 +150,6 @@ EN(HL) ;  Entry Point
  . S DR="1.02////"_NCPDPVER,DA=PSIEN,DIE=BPSJROOT D ^DIE
  . ; Payer Sheet Version
  . S DR="1.14////"_PSHTVER,DA=PSIEN,DIE=BPSJROOT D ^DIE
- . ;
- . I BPSJACT=2 D SETTEST(ZPSNNAME,PSIEN)
- . ;
  E  I $G(PSIEN) D   ;-Roll back
  . ;-Remove if no prior existence
  . I $G(^TMP($J,"BPSJ-RBACK",PSIEN,0))="" D  Q
@@ -209,32 +208,4 @@ ERRMSG(SPECIAL,SEG,REQFLDS,BPSJSEG) ;
  . S ^TMP($J,"BPSJ-ERROR",SEG,+REQFLDS)=REQFLDS
  ;
  I SPECIAL>90 S ERRFLAG=1
- Q
- ;
-SETTEST(TESTNAME,TESTIX) ; Test payer sheet handler
- ; Massage to look like production version
- ;
- N PRODNM,PCNT,PRODIX,PRODDATA,TESTDATA,REVERSE
- ;
- I '$G(TESTIX) Q
- ; Derive production version name
- ;  if test version name = ABCDE-001 then Prod version name = ABCDE
- S PCNT=$L($G(TESTNAME),"-")-1 I PCNT<1 Q
- S PRODNM=$P(TESTNAME,"-",1,PCNT)
- ; Find Production version & get data if exists
- S PRODIX=$O(^BPSF(9002313.92,"B",PRODNM,"")) I 'PRODIX Q
- S PRODDATA=$G(^BPSF(9002313.92,PRODIX,1)) I PRODDATA="" Q
- ; Get this test version's data
- S TESTDATA=$G(^BPSF(9002313.92,TESTIX,1))
- ; load test fields from production
- S $P(TESTDATA,U,3)=$P(PRODDATA,U,3)    ;Maximum RX's Per Claim
- S $P(TESTDATA,U,7)=$P(PRODDATA,U,7)    ;Is A Reversal Format
- S $P(TESTDATA,U,13)=$P(PRODDATA,U,13)  ;SOFTWARE VENDOR/CERT ID
- S ^BPSF(9002313.92,TESTIX,1)=TESTDATA
- ; Get Reversal Format pointer
- S REVERSE=$G(^BPSF(9002313.92,PRODIX,"REVERSAL"))
- ; Set test sheet to itself if production sheet points to itself.
- I REVERSE=PRODIX S REVERSE=TESTIX
- S ^BPSF(9002313.92,TESTIX,"REVERSAL")=REVERSE
- ;
  Q

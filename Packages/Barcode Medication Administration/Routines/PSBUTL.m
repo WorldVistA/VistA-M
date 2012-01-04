@@ -1,5 +1,5 @@
 PSBUTL ;BIRMINGHAM/EFC-BCMA UTILITIES ; 6/24/08 9:54am
- ;;3.0;BAR CODE MED ADMIN;**3,9,13,38,45,46**;Mar 2004;Build 3
+ ;;3.0;BAR CODE MED ADMIN;**3,9,13,38,45,46,63**;Mar 2004;Build 9
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -40,9 +40,12 @@ CLOCK(RESULTS,X) ; Verify Client/Server Date/Times are close enough
  ; Description:
  ; Returns variance from server to client in minutes
  ;
- N PSBCLNT,PSBSRVR,PSBDIFF
+ N PSBCLNT,PSBSRVR,PSBDIFF,PSBMDNT
+ S PSBMDNT=0
+ I $P(X,"@",2)="0000" S $P(X,"@",2)="2400",PSBMDNT=1 ;Change Delphi time for midnight from 0000 to 2400 in PSB*3.0*63
  S %DT="RS" D ^%DT S PSBCLNT=Y
  D NOW^%DTC S PSBSRVR=%
+ S:$G(PSBMDNT) PSBCLNT=$$FMADD^XLFDT(PSBCLNT,-1,0,0,0) ;Change Delphi date for midnight from day following midnight to day previous to midnight in PSB*3.0*63
  S PSBDIFF=$$DIFF(PSBSRVR,PSBCLNT)
  S X=$$GET^XPAR("DIV","PSB SERVER CLOCK VARIANCE")
  I PSBDIFF>X!(PSBDIFF<(X*-1)) S RESULTS(0)="-1^"_PSBDIFF

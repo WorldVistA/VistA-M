@@ -1,5 +1,5 @@
-ONCCS3 ;Hines OIFO/GWB - Collaborative Staging v2 Stuffing ;06/23/10
- ;;2.11;ONCOLOGY;**51**;Mar 07, 1995;Build 65
+ONCCS3 ;Hines OIFO/GWB - Collaborative Staging v2 Stuffing ;06/16/11
+ ;;2.11;ONCOLOGY;**51,53**;Mar 07, 1995;Build 31
  ;
  I $G(SCHEMA)="MelanomaIris" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,5)="" 1
@@ -109,6 +109,13 @@ ONCCS3 ;Hines OIFO/GWB - Collaborative Staging v2 Stuffing ;06/23/10
  ;
  I $G(SCHEMA)="MycosisFungoides" D  Q
  .D 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ ;
+ I $G(SCHEMA)="MyelomaPlasmaCellDisorder" D  Q
+ .D 4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .D TS
+ .D EVAL
+ .S $P(^ONCO(165.5,D0,2),U,12)=99
+ .S $P(^ONCO(165.5,D0,2),U,13)=99
  ;
  I $G(SCHEMA)="NasalCavity" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2

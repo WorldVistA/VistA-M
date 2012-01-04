@@ -1,5 +1,5 @@
 BPSOS03 ;BHAM ISC/FCS/DRS - 9002313.03 utilities ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5**;JUN 2004;Build 45
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -41,9 +41,15 @@ REJTEXT(RESP,POS,ARR) ; EP - fills array (passed by ref)
  . S I=I+1,ARR(I)=X
  Q
 MESSAGE(RESP,POS,N) ; EP - get additional message from response
- I $G(N)=1 Q $P($G(^BPSR(RESP,1000,POS,504)),U)
- I $G(N)=2 Q $P($G(^BPSR(RESP,1000,POS,526)),U)
+ I '$G(RESP) Q ""
+ I '$G(POS) S POS=1
+ I $G(N)=1 Q $P($G(^BPSR(RESP,504)),U)
+ I $G(N)=2 N MSG S MSG="" D  Q MSG
+ . N ADDMESS,N
+ . D ADDMESS^BPSSCRLG(RESP,POS,.ADDMESS)
+ . S N="" F  S N=$O(ADDMESS(N)) Q:'N  S MSG=MSG_$S(N=1:"",1:"~")_ADDMESS(N)
  Q $$MESSAGE(RESP,POS,1)_$$MESSAGE(RESP,POS,2)
+ ;
 DFF2EXT(X) Q $$DFF2EXT^BPSECFM(X)
 505(M,N) Q $$500(M,N,5) ; Patient Pay Amount
 506(M,N) Q $$500(M,N,6) ; Ingredient Cost Paid

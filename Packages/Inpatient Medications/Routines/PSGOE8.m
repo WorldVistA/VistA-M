@@ -1,5 +1,5 @@
-PSGOE8 ;BIR/CML3-EDIT ORDERS IN 53.1 ;25 SEP 97 / 10:58 AM
- ;;5.0; INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113**;16 DEC 97;Build 63
+PSGOE8 ;BIR/CML3-EDIT ORDERS IN 53.1 ; 7/6/11 9:44am
+ ;;5.0;INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113,223**;16 DEC 97;Build 8
  ;
  ; Reference to ^PS(50.7 is supported by DBIA# 2180
  ; Reference to ^PS(51.1 is supported by DBIA 2177
@@ -95,6 +95,8 @@ A7 W !,"SCHEDULE TYPE: "_$S(PSGSTN]"":PSGSTN_"// ",1:"") R X:DTIME S X=$TR(X,"co
  I $$PRNOK^PSGS0($G(PSGSCH)),X="C" W "  ??" G A7
  I X="@"!(X?1."?") W:X="@" $C(7),"  (Required)" S:X="@" X="?" D ENHLP^PSGOEM(53.1,7) G A7
  I $E(X)="^" D ENFF^PSGOE82 G:Y>0 @Y G A7
+ ;*223 Don't allow O sched type on C orders
+ I X="O",$$SCHTP(PSGSCH)'="O" W !,"  SCHEDULE ("_PSGSCH_") is not a ONE TIME Schedule." G A7
  S PSGOST=PSGST
  S PSGST=X,PSGSTN=$$ENSTN^PSGMI(X) W:PSGSTN]"" "  ",PSGSTN
  I X="P",$G(PSGAT)]"" S PSGOAT=PSGAT S PSGAT="" D
@@ -130,3 +132,10 @@ PNDREN(PNDON) ;
  I PNDON'["P" Q 0
  S RNWL="^PS(53.1,"_+PNDON_",0)" S RNWL=$G(@(RNWL)) S RNWL=$S($P(RNWL,"^",24)="R":1,1:0)
  Q RNWL
+ ;
+SCHTP(SCH) ; *223 Return SCHedule type
+ N X I SCH="" Q ""
+ S X=$O(^PS(51.1,"APPSJ",SCH,0))
+ Q:'$G(X) ""
+ Q $P(^PS(51.1,X,0),"^",5)
+ ;

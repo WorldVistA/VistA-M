@@ -1,5 +1,5 @@
 PSOPMP1 ;BIRM/MFR - Patient Medication Profile - Listmanager ;04/28/05
- ;;7.0;OUTPATIENT PHARMACY;**260,285,281,303,289,276**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**260,285,281,303,289,276,382**;DEC 1997;Build 9
  ;Reference to ^PSDRUG("AQ" supported by IA 3165
  ;Reference to EN1^GMRADPT supported by IA 10099
  ;Reference to ^PSXOPUTL supported by IA 2200
@@ -125,8 +125,8 @@ LSTFD(RX) ; Returns the Rx LAST FILL DATE formatted MM-DD-YY[R], where [R] = Ret
  ;
 REFREM(RX) ; - Returns the number of refills remaining
  N REFREM,RFL
- S REFREM=+$$GET1^DIQ(52,RX,9)
- F RFL=0:1 S RFL=$O(^PSRX(RX,1,RFL)) Q:'RFL  S REFREM=REFREM-1
+ S REFREM=+$$GET1^DIQ(52,RX,9),RFL=0
+ F  S RFL=$O(^PSRX(RX,1,RFL)) Q:'RFL  S REFREM=REFREM-1
  Q $S(REFREM<0:0,1:REFREM)
  ;
  ;

@@ -1,6 +1,6 @@
 IBCEF74 ;WOIFO/SS - FORMATTER/EXTRACT BILL FUNCTIONS ;31-JUL-03
- ;;2.0;INTEGRATED BILLING;**232,280,155,290,291,320,358,343,374**;21-MAR-94;Build 16
- ;; Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**232,280,155,290,291,320,358,343,374,432**;21-MAR-94;Build 192
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 SORT(IBPRNUM,IBPRTYP,IB399,IBSRC,IBDST,IBN,IBEXC,IBSEQ,IBLIMIT) ;
  D SORT^IBCEF77($G(IBPRNUM),$G(IBPRTYP),$G(IB399),.IBSRC,.IBDST,$G(IBN),$G(IBEXC),$G(IBSEQ),$G(IBLIMIT))
@@ -25,10 +25,8 @@ SORT(IBPRNUM,IBPRTYP,IB399,IBSRC,IBDST,IBN,IBEXC,IBSEQ,IBLIMIT) ;
 PROVINF(IB399,IBPRNUM,IBRES,IBSORT,IBINSTP) ;
  I $G(IB399)="" Q
  I +$G(IBSORT)=0 S IBSORT=$G(IBPRNUM)
- N IBPRTYP,IBINSCO,IBPROV,IBFRMTYP,IBCARE,IB35591,IBN,IBCURR,IBEXC,IBALLSSN,IBSSNIEN,IBLIMIT
+ N IBPRTYP,IBINSCO,IBPROV,IBFRMTYP,IBCARE,IB35591,IBN,IBCURR,IBEXC,IBLIMIT
  S IBN=0
- D F^IBCEF("N-ALL ATT/RENDERING PROV SSN","IBALLSSN",,IB399)
- S Q=0 F  S Q=$O(^IBE(355.97,Q)) Q:'Q  I $P($G(^(Q,0)),U,3)="SY" S IBSSNIEN=Q Q
  S IBINSCO=+$P($G(^DGCR(399,IB399,"M")),"^",IBPRNUM)
  S IBFRMTYP=$$FT^IBCEF(IB399),IBFRMTYP=$S(IBFRMTYP=2:2,IBFRMTYP=3:1,1:0)
  S IBCARE=$S($$ISRX^IBCEF1(IB399):3,1:0) ;if an Rx refill bill
@@ -94,10 +92,9 @@ DEFID(IBIFN,IBPRV) ;
 DISPID(IBXIEN) ; Display list of all prov and fac ids that will
  ; extract for this bill if transmitted electronically
  I $G(IBXIEN)="" Q
- N IBID,IBID1,IBZ,IBCT,IBFRM,IBCOBN,IBATT,IBQUIT,IBTYP,DIR,IBIFN,X,Y,Z,Z0,Z1
- N IBNPI,IBNONPI
+ N IBID,IBID1,IBZ,IBCT,IBFRM,IBCOBN,IBQUIT,IBTYP,DIR,IBIFN,X,Y,Z,Z0,Z1,CO,IBN,IBCODE
  S IBIFN=IBXIEN
- S IBFRM=$$FT^IBCEF(IBIFN),IBCOBN=$$COBN^IBCEF(IBIFN),IBATT=$S(IBFRM=2:3,1:4)
+ S IBFRM=$$FT^IBCEF(IBIFN),IBCOBN=$$COBN^IBCEF(IBIFN)
  W @IOF
  W !,"If this bill is transmitted electronically, the following IDs will be sent:"
  ; Returns all prov sec ids to be transmitted in indicated segments
@@ -105,47 +102,31 @@ DISPID(IBXIEN) ; Display list of all prov and fac ids that will
  S Z=+$G(^DGCR(399,IBIFN,"I2")) I Z W !,"Secondary Ins Co: ",$$EXTERNAL^DILFD(399,101,"",Z) I IBCOBN=2 W ?54,"<<<Current Ins"
  S Z=+$G(^DGCR(399,IBIFN,"I3")) I Z W !," Tertiary Ins Co: ",$$EXTERNAL^DILFD(399,101,"",Z) I IBCOBN=3 W ?54,"<<<Current Ins"
  W !!,"Provider IDs: (VistA Records OP1,OP2,OP4,OP8,OP9,OPR2,OPR3,OPR4,OPR5,OPR8):"
- F Z=1:1:3 I $G(^DGCR(399,IBIFN,"I"_Z)) D PROVINF(IBIFN,Z,.IBID,"",$S(IBCOBN=Z:"C",1:"O"))
- S Z=0 F  S Z=$O(IBID(Z)) Q:'Z  S Z0=0 F  S Z0=$O(IBID(Z,Z0)) Q:'Z0  S IBID1(Z0,Z)="",Z1=0 F  S Z1=$O(IBID(Z,Z0,Z1)) Q:'Z1  I $P(IBID(Z,Z0,Z1),U,9) S IBID1(Z0,Z,Z1)=IBID(Z,Z0,Z1)
- ; PRXM/KJH - Add NPI to display for patch 343.
- S IBNPI=$$PROVNPI^IBCEF73A(IBIFN,.IBNONPI)
- S Z=+$O(^DGCR(399,IBIFN,"PRV","B",IBATT,0))
- I Z S Z=$P($G(^DGCR(399,IBIFN,"PRV",Z,0)),U,2)
- W !,?5,"ATTENDING/RENDERING: ",$$EXTERNAL^DILFD(399.0222,.02,"",Z)
- D F^IBCEF("N-ALL ATT/REND PROV SSN/EI","IBZ","",IBIFN)
- W !,?8,"NPI: ",?40,$S($P(IBNPI,U,IBATT)'="":$P(IBNPI,U,IBATT),1:"***MISSING***")
- W !,?8,"SSN: ",?40,$S($P(IBZ,U,IBATT)'="":$P(IBZ,U,IBATT),1:"***MISSING***")
- I $O(IBID1(IBATT,0)) W !,?8,"Secondary IDs"
+ ;F Z=1:1:3 I $G(^DGCR(399,IBIFN,"I"_Z)) D PROVINF(IBIFN,Z,.IBID,"",$S(IBCOBN=Z:"C",1:"O"))
+ ;*432/TAZ - Added call to gather line providers and apply business rules
+ D ALLIDS^IBCEFP(IBIFN,.IBID)
+ ;*432/TAZ - Rewrote following code to take info from the IBID array instead of File 399.  This allows changes from the application of the business rules.
  S IBQUIT=0
  ;
- ; Attending/Rendering (4/3) secondary IDs
- S Z0=0 F  S Z0=$O(IBID1(IBATT,Z0)) Q:'Z0!IBQUIT  K IBTYP S Z1=0 F  S Z1=$O(IBID1(IBATT,Z0,Z1)) Q:'Z1  D  Q:IBQUIT
- . Q:$D(IBTYP(+$P(IBID1(IBATT,Z0,Z1),U,9)))  ;1st of each type transmits
+ F IBPRV=4,3,1,2,5,9 D  ; Process providers in order: Attending, Rendering, Referring, Operating, Supervising, and Other Operating if they exist
+ . I '$D(IBID("PROVINF",IBIFN,"C",1,IBPRV)) Q
  . I ($Y+5)>IOSL S IBQUIT=$$NOMORE() Q:IBQUIT
- . S IBTYP(+$P(IBID1(IBATT,Z0,Z1),U,9))=""
- . W !,?8,"(",$E("PST",Z0),") ",$$EXTERNAL^DILFD(36,4.01,"",$P(IBID1(IBATT,Z0,Z1),U,9)),?40,$P(IBID1(IBATT,Z0,Z1),U,4)
- . Q
- I IBQUIT G DISPIDX
+ . W !!?5,$$EXTERNAL^DILFD(399.0222,.01,"",IBPRV),": "_$$EXTERNAL^DILFD(399.0222,.02,"",$P(IBID("PROVINF",IBIFN,"C",1,IBPRV),U))
+ . W !?8,"NPI: ",?40,$S($P($G(IBID("PROVINF",IBIFN,"C",1,IBPRV,0)),U,4)]"":$P(IBID("PROVINF",IBIFN,"C",1,IBPRV,0),U,4),1:"***MISSING***")
+ . K IBTYP
+ . F CO="C","O" D
+ .. F IBN=1,2 I $D(IBID("PROVINF",IBIFN,CO,IBN,IBPRV)) D
+ ... F Z0=1:1 Q:'$D(IBID("PROVINF",IBIFN,CO,IBN,IBPRV,Z0))!IBQUIT  D
+ .... S IBCODE=+$P(IBID("PROVINF",IBIFN,CO,IBN,IBPRV,Z0),U,9)
+ .... Q:$D(IBTYP(IBCODE))  ;1st of each type transmits
+ .... I ($Y+5)>IOSL S IBQUIT=$$NOMORE() Q:IBQUIT
+ .... S IBTYP(IBCODE)=""
+ .... W !,?8,"(",IBID("PROVINF",IBIFN,CO,IBN),") ",$$EXTERNAL^DILFD(36,4.01,"",IBCODE),?40,$P(IBID("PROVINF",IBIFN,CO,IBN,IBPRV,Z0),U,4)
  ;
- ; Referring(1), Operating(2), Supervising(5), Other(9) secondary IDs
- ; PRXM/KJH - Patch 343. Modified first loop so it will always display provider and NPI and conditionally display other data.
- ; S Z=0 F  S Z=$O(IBID1(Z)) Q:'Z  I Z<3!(Z>4) D  Q:IBQUIT
- S Z=0 F  S Z=$O(^DGCR(399,IBIFN,"PRV","B",Z)) Q:'Z  I Z<3!(Z>4) D  Q:IBQUIT
- . N Q
- . S Q=+$O(^DGCR(399,IBIFN,"PRV","B",Z,0))
- . W !!,?5,$$EXTERNAL^DILFD(399.0222,.01,"",Z),": "_$$EXTERNAL^DILFD(399.0222,.02,"",$P($G(^DGCR(399,IBIFN,"PRV",Q,0)),U,2))
- . W !,?8,"NPI: ",?40,$S($P(IBNPI,U,Z)'="":$P(IBNPI,U,Z),1:"***MISSING***")
- . S Z0=0 F  S Z0=$O(IBID1(Z,Z0)) Q:'Z0!IBQUIT  K IBTYP S Z1=0 F  S Z1=$O(IBID1(Z,Z0,Z1)) Q:'Z1!IBQUIT  D
- .. Q:$D(IBTYP(+$P(IBID1(Z,Z0,Z1),U,9)))  ; 1st of each type transmits
- .. I ($Y+5)>IOSL S IBQUIT=$$NOMORE() Q:IBQUIT
- .. S IBTYP(+$P(IBID1(Z,Z0,Z1),U,9))=""
- .. W !,?8,"(",$E("PST",Z0),") ",$$EXTERNAL^DILFD(36,4.01,"",$P(IBID1(Z,Z0,Z1),U,9)),?40,$P(IBID1(Z,Z0,Z1),U,4)
- .. Q
- . Q
  I IBQUIT G DISPIDX
  ;
  ; IB*2*320 - display additional IDs for ?ID
- D EN^IBCEF74A(IBIFN,.IBQUIT)
+ D EN^IBCEF74A(IBIFN,.IBQUIT,.IBID)
  ;
 DISPIDX ;
  I '$G(IBQUIT) S DIR(0)="EA",DIR("A")="Press RETURN to continue " W ! D ^DIR K DIR

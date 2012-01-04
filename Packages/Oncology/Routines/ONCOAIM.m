@@ -1,5 +1,5 @@
-ONCOAIM ;Hines OIFO/GWB - Create additional primaries for a patient ;06/23/10
- ;;2.11;ONCOLOGY;**1,5,6,25,27,36,37,44,45,46,51**;Mar 07, 1995;Build 65
+ONCOAIM ;Hines OIFO/GWB - Create additional primaries for a patient ;03/08/11
+ ;;2.11;ONCOLOGY;**1,5,6,25,27,36,37,44,45,46,51,53**;Mar 07, 1995;Build 31
  ;
 EN ;Add additional primaries for patient
  D KILL
@@ -72,7 +72,7 @@ CR ;Create Primary
  K DIC,DO,DTOUT
  W !,?5,"Creating another primary record for ",ONCONM_" "_ACN_"..."
  S DIC="^ONCO(165.5,",X=ONCOSIT,DIC(0)="Z"
- S DIC("DR")="2000////^S X=DUZ(2);236////^S X=DT"
+ S DIC("DR")="2000////^S X=DUZ(2);236////^S X=DT;244////^S X=DUZ"
  D FILE^DICN K DIC,X G EX:Y<0
  S ONCOD0P=+Y
  S $P(^ONCO(165.5,+Y,0),U,2)=ONCOD0,$P(^(7),U,2)=0

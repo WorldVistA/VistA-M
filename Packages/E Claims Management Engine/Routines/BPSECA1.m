@@ -1,5 +1,5 @@
 BPSECA1 ;BHAM ISC/FCS/DRS/VA/DLF - Assemble formatted claim ;05/14/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8**;JUN 2004;Build 29
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;----------------------------------------------------------------------
  ; Assemble ASCII formatted claim submission record
@@ -22,6 +22,10 @@ BPSECA1 ;BHAM ISC/FCS/DRS/VA/DLF - Assemble formatted claim ;05/14/2004
  ;        transaction (prescription)
  ;
  ;   Adjustments were also made to the reversal logic as well.
+ ;
+ ; NCPDP D.0 changes
+ ;    D.0 added 3 new request segments (additional documentation,
+ ;                                      facility, narrative)
  ;
 ASCII(CLAIMIEN,MSG) ;EP - from BPSOSQG
  N IEN,RECORD,BPS,UERETVAL,DET51,WP
@@ -52,23 +56,24 @@ ASCII(CLAIMIEN,MSG) ;EP - from BPSOSQG
  D XLOOP^BPSOSH2("100^110^120",.IEN,.BPS,.RECORD)
  ;
  ; Set list of repeating claim segments
- S DET51="130^140^150^160^170^180^190^200^210^220^230"
+ S DET51="130^140^150^160^170^180^190^200^210^220^230^240^250^260"
  ;
  ; Loop through prescription multiple and get create repeation segments
- S IEN(9002313.01)=0
- F  S IEN(9002313.01)=$O(^BPSC(IEN(9002313.02),400,IEN(9002313.01))) Q:'IEN(9002313.01)  D
+ S IEN(9002313.0201)=0
+ F  S IEN(9002313.0201)=$O(^BPSC(IEN(9002313.02),400,IEN(9002313.0201))) Q:'IEN(9002313.0201)  D
  . ;
  . ;Retrieve prescription information (used when executing format code)
  . K BPS(9002313.0201)
- . D GETBPS3^BPSECX0(IEN(9002313.02),IEN(9002313.01),.BPS)
+ . D GETBPS3^BPSECX0(IEN(9002313.02),IEN(9002313.0201),.BPS)
  . ;
  . ; Handle the DUR repeating flds
  . D DURVALUE
  . ;
  . ; Handle the COB flds
  . D COBFLDS
- . ; Append group separator character
- . S RECORD=RECORD_$C(29)
+ . ;
+ . ; If not eligibility verification transmission, append group separator character
+ . I $G(BPS(9002313.02,+$G(IEN(9002313.02)),103,"I"))'="E1" S RECORD=RECORD_$C(29)
  . ;
  . ; Assemble claim information required and optional sections
  . D XLOOP^BPSOSH2(DET51,.IEN,.BPS,.RECORD)
@@ -106,11 +111,11 @@ DURVALUE ;
  K BPS(9002313.1001)
  ;
  ; Get the number of DUR records
- S DURCNT=$P($G(^BPSC(IEN(9002313.02),400,IEN(9002313.01),473.01,0)),U,4)
+ S DURCNT=$P($G(^BPSC(IEN(9002313.02),400,IEN(9002313.0201),473.01,0)),U,4)
  ;
  ; Loop through DURS and get the data
  F DUR=1:1:DURCNT  D
- . D GETBPS4^BPSECX0(IEN(9002313.02),IEN(9002313.01),DUR,.BPS)
+ . D GETBPS4^BPSECX0(IEN(9002313.02),IEN(9002313.0201),DUR,.BPS)
  Q
  ; COBFLDS - This subroutine will loop through the COB OTHER PAYMENTS repeating
  ; fields and load their values into the BPS array for the claim
@@ -121,9 +126,9 @@ COBFLDS ;
  K BPS(9002313.0401)
  ;
  ; Get the number of COB records
- S BPCOBCNT=$P($G(^BPSC(IEN(9002313.02),400,IEN(9002313.01),337,0)),U,4)
+ S BPCOBCNT=$P($G(^BPSC(IEN(9002313.02),400,IEN(9002313.0201),337,0)),U,4)
  ;
  ; Loop through COB and get the data
  F BPSCOB=1:1:BPCOBCNT  D
- . D GETBPS5^BPSECX0(IEN(9002313.02),IEN(9002313.01),BPSCOB,.BPS)
+ . D GETBPS5^BPSECX0(IEN(9002313.02),IEN(9002313.0201),BPSCOB,.BPS)
  Q

@@ -1,5 +1,5 @@
-RCDPEWL4 ;ALB/TMK - ELECTRONIC EOB WORKLIST ACTIONS ;24-FEB-03
- ;;4.5;Accounts Receivable;**173,208**;Mar 20, 1995
+RCDPEWL4 ;ALB/TMK/PJH - ELECTRONIC EOB WORKLIST ACTIONS ; 7/30/10 6:55pm
+ ;;4.5;Accounts Receivable;**173,208,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ; RCSCR variable must be defined for this routine
  Q
@@ -66,7 +66,7 @@ NEWREC ; Create a new receipt from scratch pad entry
  I 'RCOK S DIR(0)="EA",DIR("A")="NO RECEIPT CAN BE CREATED - NO POSTABLE LINE ITEMS WERE FOUND" W ! D ^DIR K DIR G NEWRECQ
  ;
  S RCHAC=$$HACERA^RCDPEU(RCSCR)
- S RCPAYTY=$S(RCHAC:8,$P($G(^RCY(344.4,+RCSCR,0)),U,13)="":14,1:4)
+ S RCPAYTY=$S(RCHAC:8,$P($G(^RCY(344.4,+RCSCR,5)),U,2)="":14,1:4)
  S RCDEP=""
  I RCPAYTY=4 D
  . N RCOK1

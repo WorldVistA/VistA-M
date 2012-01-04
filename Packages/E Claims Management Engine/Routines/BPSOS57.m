@@ -1,18 +1,11 @@
 BPSOS57 ;BHAM ISC/FCS/DRS/FLS - BPS Log of Transactions Utils ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5**;JUN 2004;Build 45
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ; Numerous BPS Log of Transaction functions are here
  ; Each assumes that IEN57 is defined
  ; Originally copied from BPSOSQ
  ;
-PREVIOUS(N57) ;
- I '$D(N57) S N57=IEN57
- N RXI,RXR S RXI=$P(^BPSTL(N57,1),U,11)
- S RXR=$P(^BPSTL(N57,1),U)
- I RXI=""!(RXR="") Q ""
- Q $O(^BPSTL("NON-FILEMAN","RXIRXR",RXI,RXR,N57),-1)
-LAST57(RXI,RXR) Q $O(^BPSTL("NON-FILEMAN","RXIRXR",RXI,RXR,""),-1)
 DRGDFN() ; EP - BPS Log of Transaction field
  N RXI
  S RXI=$$RXI

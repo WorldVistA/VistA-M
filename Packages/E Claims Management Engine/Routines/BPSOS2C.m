@@ -1,5 +1,5 @@
 BPSOS2C ;BHAM ISC/FCS/DRS/DLF - BPSOS2 continuation ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5**;JUN 2004;Build 45
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 LABELS ;EP - from BPSOS2 ; set up the labels display
@@ -12,7 +12,7 @@ LABELS ;EP - from BPSOS2 ; set up the labels display
  ;
  ; Display Headers for Completed claims
  S R=1,C=40,X="* CLAIM RESULTS *" D L1
- F I=1:1:8 S R=R+1,X=$P($T(HDR+I),";",3) D L1
+ F I=1:1:10 S R=R+1,X=$P($T(HDR+I),";",3) D L1
  ;
  ; Update Line Counter to side with highest number of rows
  S VALMCNT=$S(R>R1:R,1:R1)
@@ -30,4 +30,6 @@ HDR ;;
  ;;Captured claims
  ;;Accepted Reversals
  ;;Rejected Reversals
+ ;;Accepted Eligibility
+ ;;Rejected Eligibility
  ;;Errors

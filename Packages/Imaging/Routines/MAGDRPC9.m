@@ -1,5 +1,5 @@
-MAGDRPC9 ;WOIFO/EdM - Imaging RPCs ; 05 Sep 2008 12:55 PM
- ;;3.0;IMAGING;**50,54,53**;Mar 19, 2002;Build 1719;Apr 28, 2010
+MAGDRPC9 ;WOIFO/EdM - Imaging RPCs ; 11 Feb 2008 12:36 PM
+ ;;3.0;IMAGING;**50,54,53,49**;Mar 19, 2002;Build 2033;Apr 07, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -160,13 +160,10 @@ IENLOOK ; Overflow from MAGDRPC4
  I 'P!'D0 S OUT(1)="-6,Warning - Parent file entry is not present - no Accession Number."
  E  I P=74 D
  . N DATETIME,I,INFO,PROC,RADPT0,RADPT1,RADPT2,RADPT3,RARPT0
+ . S X=$$ACCRPT^RAAPI(D0,.INFO)
+ . I X<0 S OUT(1)="-11,Radiology Problem: "_X Q
+ . S ACNUMB=INFO(1)
  . S RARPT0=$G(^RARPT(D0,0)) ; IA # 1171
- . I $T(ACCRPT^RAAPI)'="" D  ; requires RA*5.0*47
- . . S X=$$ACCRPT^RAAPI(D0,.INFO)
- . . I X<0 S OUT(1)="-11,Radiology Problem: "_X Q
- . . S ACNUMB=INFO(1)
- . . Q
- . E  S ACNUMB=$P(RARPT0,"^",1)
  . S RADPT1=$P(RARPT0,"^",2),DATETIME=$P(RARPT0,"^",3)
  . S RADPT2=9999999.9999-DATETIME,RADPT3=1
  . S RADPT0=$G(^RADPT(RADPT1,"DT",RADPT2,"P",RADPT3,0))

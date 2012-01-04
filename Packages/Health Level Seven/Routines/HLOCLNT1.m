@@ -1,5 +1,5 @@
-HLOCLNT1 ;IRMFO-ALB/CJM/RBN - Writing messages, reading acks;03/24/2004  14:43 ;04/28/2009
- ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,139,146**;Oct 13, 1995;Build 16
+HLOCLNT1 ;IRMFO-ALB/CJM/RBN - Writing messages, reading acks;03/24/2004  14:43 ;02/18/2011
+ ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,139,146,155**;Oct 13, 1995;Build 4
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -11,6 +11,7 @@ WRITEMSG(HLCSTATE,HLMSTATE) ;
  ;  HLMSTATE (pass by reference, required) The message
  ;Output:
  ;  Function returns 1 on success, 0 on failure
+ ;
 ZB6 ;
  N SEG,QUIT,HDR
  S QUIT=0
@@ -119,7 +120,8 @@ ZB24 ;
  D OPEN^HLOT(.HLCSTATE)
  ;
  ;mark the failure time for the link so other processes know not to try for a while
- I 'HLCSTATE("CONNECTED") D LINKDOWN^HLOCLNT(.HLCSTATE)
+ I 'HLCSTATE("CONNECTED"),'HLCSTATE("LINK","SINGLE THREADED") D LINKDOWN^HLOCLNT(.HLCSTATE)
+ I 'HLCSTATE("CONNECTED"),HLCSTATE("LINK","SINGLE THREADED"),'HLCSTATE("LOCK FAILED") D LINKDOWN^HLOCLNT(.HLCSTATE)
 ZB2 ;
  Q HLCSTATE("CONNECTED")
  ;

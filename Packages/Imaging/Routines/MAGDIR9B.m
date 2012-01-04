@@ -1,5 +1,5 @@
-MAGDIR9B ;WOIFO/PMK - Read a DICOM image file ; 19 Nov 2007 07:10 AM
- ;;3.0;IMAGING;**11,51,50,54,53**;Mar 19, 2002;Build 1719;Apr 28, 2010
+MAGDIR9B ;WOIFO/PMK/RRB - Read a DICOM image file ; 04 May 2010 8:25 AM
+ ;;3.0;IMAGING;**11,51,50,54,53,99**;Mar 19, 2002;Build 2057;Apr 19, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -58,7 +58,12 @@ IMAGE() ; entry point from ^MAGDIR81 to create an image entry in ^MAG(2005)
  S:$D(FILEDATA("PARENT FILE PTR")) I=I+1,IMAGE(I)="18^"_FILEDATA("PARENT FILE PTR")
  S:$D(FILEDATA("RAD REPORT")) I=I+1,IMAGE(I)="61^"_FILEDATA("RAD REPORT")
  S:$D(FILEDATA("RAD PROC PTR")) I=I+1,IMAGE(I)="62^"_FILEDATA("RAD PROC PTR")
- S:MODPARMS["/" I=I+1,IMAGE(I)="BIG^1" ; big file will be output
+ I MODPARMS["/" D
+ . N EXTENSION
+ . S I=I+1
+ . S EXTENSION=$S($P(MODPARMS,"/",2)="<DICOM>":"DCM",1:"BIG")
+ . S IMAGE(I)="BIG^1^"_EXTENSION ; big file will be output
+ . Q
  S I=I+1,IMAGE(I)="DICOMSN^"_SERINUMB ; series number
  S I=I+1,IMAGE(I)="DICOMIN^"_IMAGNUMB ; image number
  S I=I+1,IMAGE(I)=".05^"_INSTLOC

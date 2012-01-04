@@ -1,6 +1,6 @@
-DDBR ;SFISC/DCL-VA FILEMAN BROWSER ;NOV 04, 1996@13:46
- ;;22.0;VA FileMan;;Mar 30, 1999
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDBR ;SFISC/DCL-VA FILEMAN BROWSER ;4MAY2011
+ ;;22.0;VA FileMan;**165**;Mar 30, 1999;Build 32
+ ;Per VHA Directive 2004-038, this routine should not be modified.
 EN N DDBC,DDBFLG,DDBL,DDBPMSG,DDBSA,DDBX,IOTM,IOBM
  I '$$TEST^DDBRT W $C(7),!!,"This terminal does not support scroll region or reverse index",!! Q
  D LIST^DDBR3(.DDBX)
@@ -115,7 +115,7 @@ OR2(%) Q:%=")"!(%=",") "" Q:$L(%)=1 %  S:"),"[$E(%,$L(%)) %=$E(%,1,$L(%)-1) Q %
 INIT I '$D(DIFM) N DIFM S DIFM=1 D INIZE^DIEFU
  D INIT^DDGLIB0()
  I $G(DIERR) Q
- I '$D(IOSTBM)!('$D(IOIL)) S X="IOSTBM;IORI" D ENDR^%ZISS
+ I '$D(IOSTBM)!('$D(IORI)) S X="IOSTBM;IORI" D ENDR^%ZISS
  D:$G(IOSTBM)="" TRMERR^DDGLIB0("Set top and bottom margins")
  D:$G(IORI)="" TRMERR^DDGLIB0("Reverse index")
  Q

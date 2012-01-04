@@ -1,5 +1,6 @@
-XTKERM1 ;SF/RWF - Kermit Send a file. ;8/30/94  10:52
- ;;7.3;TOOLKIT;;Apr 25, 1995
+XTKERM1 ;SF/RWF - Kermit Send a file ;10/21/09  16:44
+ ;;7.3;TOOLKIT;**122**;Apr 25, 1995;Build 4
+ ;Per VHA Directive 2004-038, this routine should not be modified.
 S D BSPAR^XTKERM4,STO S XTKS("PT")="S",F1=0
  I '$D(ZTQUEUED) U IO(0) D
  . I IO=IO(0) W !,"Now start a KERMIT receive on your system.",!,"Starting [REMOTE] KERMIT send.",! H 5
@@ -10,7 +11,7 @@ S D BSPAR^XTKERM4,STO S XTKS("PT")="S",F1=0
  S %=$H,XTKET=%-XTKET*86400+$P(%,",",2)-$P(XTKET,",",2)
  I '$D(ZTQUEUED) U IO(0) D
  . W !,"Done with ",$S(IO=IO(0):"[REMOTE]",1:"[LOCAL]")," send, File transfer ",$S('XTKERR:"was successful.",1:"failed. ("_XTKERR_")")
- . W:'XTKERR !,?10,"Bytes: ",XTKS("CCNT")," Sec: ",XTKET," cps: ",$J(XTKS("CCNT")/XTKET,3,1)
+ . W:'XTKERR !,?10,"Bytes: ",XTKS("CCNT")," Sec: ",XTKET W:XTKET>0 " cps: ",$J($S(XTKET>0:XTKS("CCNT")/XTKET,1:""),3,1)
  Q
 SS S XTKS("PN")=0 D SEND,RTO S XTKSDAT=XTKRDAT D SPAR^XTKERM4 S XTKS("PT")="F" Q
 SF S XTKSDAT=XTKFILE D SEND,RACK:(XTKR("PN")'=XTKS("PN")) S XTKS("PT")="D" Q

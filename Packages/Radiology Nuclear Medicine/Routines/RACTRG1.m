@@ -1,4 +1,4 @@
-RACTRG1 ; ;02/23/10
+RACTRG1 ; ;08/23/11
  D DE G BEGIN
 DE S DIE="^RADPT(D0,""DT"",",DIC=DIE,DP=70.02,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^RADPT(D0,"DT",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,2) S:%]"" DE(2)=% S %=$P(%Z,U,3) S:%]"" DE(3)=% S %=$P(%Z,U,4) S:%]"" DE(4)=%
@@ -75,7 +75,7 @@ X3 Q
 X4 Q
 5 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=5 G A
 6 S D=0 K DE(1) ;50
- S DIFLD=50,DGO="^RACTRG2",DC="49^70.03IA^P^",DV="70.03NJ5,0X",DW="0;1",DOW="CASE NUMBER",DLB=$P($$EZBLD^DIALOG(8042,DOW),": ") S:D DC=DC_D
+ S DIFLD=50,DGO="^RACTRG2",DC="51^70.03IA^P^",DV="70.03NJ5,0X",DW="0;1",DOW="CASE NUMBER",DLB=$P($$EZBLD^DIALOG(8042,DOW),": ") S:D DC=DC_D
  I $D(DSC(70.03))#2,$P(DSC(70.03),"I $D(^UTILITY(",1)="" X DSC(70.03) S D=$O(^(0)) S:D="" D=-1 G M6
  S D=$S($D(^RADPT(D0,"DT",DA,"P",0)):$P(^(0),U,3,4),$O(^(0))'="":$O(^(0)),1:-1)
 M6 I D>0 S DC=DC_D I $D(^RADPT(D0,"DT",DA,"P",+D,0)) S DE(6)=$P(^(0),U,1)

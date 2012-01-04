@@ -1,5 +1,5 @@
-ECXCPRO1 ;ALB/JAP - PRO Extract YTD Report (cont) ; 5/9/05 3:08pm
- ;;3.0;DSS EXTRACTS;**21,84**;Dec 22, 1997
+ECXCPRO1 ;ALB/JAP - PRO Extract YTD Report (cont) ; 18 Apr 2011  3:11 PM
+ ;;3.0;DSS EXTRACTS;**21,84,132**;Dec 22, 1997;Build 18
  ;
 PRINT ;print report
  N PG,LN,QFLG,NODE,DESC,AVE,JJ,SS,TOTAL,TOT,TQTY
@@ -13,13 +13,13 @@ PRINT ;print report
  ;but it's possible that no extract data was found
  S ECXSTAT="",ECXSTAT=$O(^TMP($J,"ECXP",ECXSTAT)) I ECXSTAT="" D  Q
  .I ECXALL=0 S ECXSTAT=$O(DIVISION(""))
- .F ECXTYPE="N","X" D  Q:QFLG
+ .F ECXTYPE="N","X","R" D  Q:QFLG
  ..S PG=0 D HEADER
  ..W !!,?36,"No extract data available."
  ..I $E(IOST)="C" D  Q:QFLG
  ...S SS=22-$Y F JJ=1:1:SS W !
  ...S DIR(0)="E" D ^DIR K DIR S:'Y QFLG=1
- F ECXTYPE="N","X" D  Q:QFLG
+ F ECXTYPE="N","X","R" D  Q:QFLG
  .S PG=0 D HEADER
  .S ECXHCPC=""
  .I '$D(^TMP($J,"ECXP",ECXSTAT,ECXTYPE)) D  Q
@@ -56,6 +56,7 @@ HEADER ;header & page control
  I ECXALL=1 W !,"Facility:      "_$P(ECXPRIME,U,3)_" ("_$P(ECXPRIME,U,2)_")"
  W !,"Run Date/Time: "_ECXRUN
  W:ECXTYPE="N" !!,"REPORT OF NEW PROSTHETICS ACTIVITIES (Initial, Replacement, or Spare)"
+ W:ECXTYPE="R" !!,"REPORT OF RENTAL PROSTHETICS ACTIVITIES"
  W:ECXTYPE="X" !!,"REPORT OF REPAIR PROSTHETICS ACTIVITIES"
  W !,?36,"Qty.",?44,"Total $",?55,"Ave. $",?67,"Qty.",?74,"Total $",?85,"Ave. $",?97,"Qty.",?104,"Total $",?114,"Ave. $",?125,"Ave. $"
  W !,"PSAS HCPCS",?35,"-Comm-",?44,"-Comm-",?55,"-Comm-",?67,"-VA-",?75,"-VA-",?85,"-VA-",?96,"-Lab-",?105,"-Lab-",?114,"-Lab-",?125,"-All-"

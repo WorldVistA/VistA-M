@@ -1,5 +1,5 @@
 RADEM1 ;HISC/GJC-Display Patient Demographics ;4/19/96  08:17
- ;;5.0;Radiology/Nuclear Medicine;**45**;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**45,47**;Mar 16, 1998;Build 21
 EXAM D HDR S RAXIT=0
  S X1=DT,X2=-7 D C^%DTC S RACHKDT=X,X1=DT,X2=-3 D C^%DTC S RACHKDT1=X
  S (RADTE,RASEQ)=0 F RADTI=0:0 Q:(RASEQ>4)&(RADTE<RACHKDT)!RAXIT  S RADTI=$O(^RADPT(RADFN,"DT",RADTI)) Q:RADTI'>0!RAXIT  I $D(^(RADTI,0)) S Y=^(0),RALOC=+$P(Y,"^",4),(RADTE,Y)=+Y Q:(RASEQ>4)&(RADTE<RACHKDT)  D D^RAUTL S RADATE=Y D RACN
@@ -40,7 +40,10 @@ PRT N RAESITY,RAITYPE
  ; flag if print set and if lowest case of set
  N RAPRTSET,RAMEMLOW,RADISP D EN1^RAUTL20
  S RADISP=$S(RAMEMLOW&(RAPRTSET):"+",RAPRTSET:".",1:" ")
- S RASEQ=RASEQ+1 W:RASEQ<6!(RABAR) !,RACN,?6,RADISP,?7,$S(RABAR:RACODE,1:""),?10,$E(RAPR1,1,28),?39,$E(RADATE,1,11),?51,$E(RAST,1,12),?67,$E(RALOC,1,12)
+ N RASSAN,RACNDSP S RASSAN=$$SSANVAL^RAHLRU1(RADFN,RADTI,RACNI)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:RACN)
+ I $$USESSAN^RAHLRU1() S RASEQ=RASEQ+1 W:RASEQ<6!(RABAR) !,RACNDSP," ",RADISP,$S(RABAR:RACODE,1:""),?18,$E(RAPR1,1,28),?47,$$DATEPRT^RAHLRU1(RADTE),?56,$E(RAST,1,12),?68,$E(RALOC,1,12)
+ I '$$USESSAN^RAHLRU1() S RASEQ=RASEQ+1 W:RASEQ<6!(RABAR) !,RACN,?6,RADISP,?7,$S(RABAR:RACODE,1:""),?10,$E(RAPR1,1,28),?39,$E(RADATE,1,11),?51,$E(RAST,1,12),?67,$E(RALOC,1,12)
  I $E(IOST,1,2)="C-",($Y>(IOSL-4)) D
  . N DIR S DIR(0)="E" D ^DIR S RAXIT=$S(Y'>0:1,1:0)
  . I 'RAXIT W @IOF D HDR
@@ -57,9 +60,12 @@ ORDER ; Check for pat rad orders before registering a patient in rad
  . S RA751(5)=+$P(RA751(0),U,5) Q:RA751(5)=1  ;GJC@4/4/94 Cancelled xam
  . S Y=RA751(2),C=$P($G(^DD(75.1,2,0)),U,2) D:Y]"" Y^DIQ S RA751(2)=Y
  . S Y=RA751(20),C=$P($G(^DD(75.1,20,0)),U,2) D:Y]"" Y^DIQ S RA751(20)=Y
- . W !?10,$E(RA751(2),1,28),?51,"Ord "
+ . I $$USESSAN^RAHLRU1() W !?18,$E(RA751(2),1,28),?56,"Ord "
+ . I '$$USESSAN^RAHLRU1() W !?10,$E(RA751(2),1,28),?51,"Ord "
  . W $S(RA751(16)]"":$$FMTE^XLFDT(RA751(16),"2D"),1:"")
- . W ?67,$E(RA751(20),1,12) ; prints 'SUBMIT REQUEST TO' data
+ . ; prints 'SUBMIT REQUEST TO' data
+ . I $$USESSAN^RAHLRU1() W ?68,$E(RA751(20),1,12)
+ . I '$$USESSAN^RAHLRU1() W ?67,$E(RA751(20),1,12)
  . I $E(IOST,1,2)="C-",($Y>(IOSL-4)) D
  .. K DIR S DIR(0)="E" D ^DIR K DIR S:'+Y RAXIT=1
  .. I 'RAXIT W @IOF D HDR
@@ -67,13 +73,15 @@ ORDER ; Check for pat rad orders before registering a patient in rad
  . Q
  Q
 HDR ; Header
- ; Created by GJC@1/3/94
+ ; Created by GJC@1/3/94 ; modified for SSAN by RTK 3/19/09
  ; The variable: RAOPT("ORDEREXAM") is defined in the entry action of
  ; the option RA ORDEREXAM.  It is subsequently kill in the exit action
  ; of the option.
  D HOME^%ZIS W:$D(RAOPT("ORDEREXAM"))#2 @IOF
- W !!,"Case #",?10,"Last 5 Procedures/New Orders",?39,"Exam Date",?51,"Status of Exam",?67,"Imaging Loc."
- W !,"------",?10,"----------------------------",?39,"---------",?51,"--------------",?67,"------------"
+ I $$USESSAN^RAHLRU1() W !!,"Case #",?18,"Last 5 Procedures/New Orders",?47,"Exam Dt",?56,"Exam Status",?68,"Imaging Loc."
+ I $$USESSAN^RAHLRU1() W !,"----------------",?18,"----------------------------",?47,"--------",?56,"-----------",?68,"------------"
+ I '$$USESSAN^RAHLRU1() W !!,"Case #",?10,"Last 5 Procedures/New Orders",?39,"Exam Date",?51,"Status of Exam",?67,"Imaging Loc."
+ I '$$USESSAN^RAHLRU1() W !,"------",?10,"----------------------------",?39,"---------",?51,"--------------",?67,"------------"
  Q
  ;
 CM(RADFN,RADTI,RACNI) ;Return the contrast media used while performing an

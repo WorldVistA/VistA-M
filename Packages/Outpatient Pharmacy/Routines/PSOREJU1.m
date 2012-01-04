@@ -1,8 +1,9 @@
 PSOREJU1 ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358**;DEC 1997;Build 35
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,359**;DEC 1997;Build 27
  ;Reference to File 9002313.21 - BPS NCPDP PROFESSIONAL SERVICE CODE supported by IA 4712
  ;Reference to File 9002313.22 - BPS NCPDP RESULT OF SERVICE CODE supported by IA 4713
  ;Reference to File 9002313.23 - BPS NCPDP REASON FOR SERVICE CODE supported by IA 4714
+ ;Reference to File 9002313.25 - BPS NCPDP SUBMISSION CLARIFICATION CODE supported by IA 5064
  ;Reference to File 200 - NEW PERSON supported by IA 10060
  ;Reference to SIG^XUSESIG supported by IA 10050
  ;
@@ -106,11 +107,16 @@ OVRDSP(LST) ; - Display the Override Codes
  . W $E($$OVRX(I,$P(LST,"^",I)),1,48)
  Q
  ;
-CLA() ; - Ask for Clarification Code
- N DIR,Y,DIRUT,DIROUT
- S DIR(0)="52.25,24",DIR("A")="Clarification Code" D ^DIR
- I $D(DIRUT)!$D(DIROUT) Q "^"
- Q Y
+CLA() ; - Ask for up to 3 Clarification Codes
+ N DIC,X,Y,PSOSCC,DTOUT,DUOUT,PSOQ,PSOI,I
+ S DIC(0)="QEAM",DIC=9002313.25,PSOQ=0,PSOSCC=""
+ F PSOI=1:1:3 Q:PSOQ  S DIC("A")="Submission Clarification Code "_PSOI_": " D CLADIC
+ Q $S(PSOSCC="":"^",1:PSOSCC)
+ ;
+CLADIC D ^DIC I ($D(DUOUT))!($D(DTOUT))!(Y=-1) S PSOQ=1 Q
+ F I=1:1:PSOI I $P(PSOSCC,"~",I)=$P(Y,U,2) W "  Duplicates not allowed",! G CLADIC
+ S $P(PSOSCC,"~",PSOI)=$P(Y,U,2)
+ Q
  ;
 HDLG(RX,RFL,CODES,FROM,OPTS,DEF) ; - REJECT Handling
  ;Input: (r) RX   - Rx IEN (#52)

@@ -1,5 +1,5 @@
 BPSOS2B ;BHAM ISC/FCS/DRS/DLF - BPSOS2 continuation ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5**;JUN 2004;Build 45
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 VALUES ;EP - from BPSOS2
@@ -13,7 +13,7 @@ VALUES ;EP - from BPSOS2
  ;
  ; Display Completed Stats
  S R=1,C=65
- F I=203,202,208,204,205,206,207,201 D
+ F I=203,202,208,204,205,206,207,209,210,201 D
  . S R=R+1,X=+$G(CHG("COMM",I)),X2=0,X3=7 D COM
  Q
  ;

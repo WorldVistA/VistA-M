@@ -1,5 +1,5 @@
 SRTPCOM ;BIR/SJA - COMPLETE/TRANSMIT/PRINT ASSESSMENT ;09/12/08
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+ ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
  S SRSOUT=0 I '$D(SRTPP) Q
  S (SRSFLG,SRSOUT,SROVER)=0,SRA=$G(^SRT(SRTPP,"RA")),Y=$P(SRA,"^"),SRTYPE=$P(SRA,"^",2),SRNOVA=$S($P(SRA,"^",5)="N":1,1:0)
  I Y'="I" W !!,"This assessment has a "_$S(Y="C":"'COMPLETE'",1:"'TRANSMITTED'")_" status.",!!,"No action taken." G END
@@ -22,7 +22,8 @@ COMPLT K DR,DIE S DA=SRTPP,DIE=139.5,DR="181///C" D ^DIE K STATUS
  I $D(IO("Q")) K IO("Q") S ZTDESC="Completed Surgery Transplant Assessment",(ZTSAVE("SRSITE*"),ZTSAVE("SRTPP"))="",ZTRTN="EN^SRTPCOM" D ^%ZTLOAD S SRSOUT=1 G END
  D EN,END
  Q
-PRINT S SRPRINT=1 D ^SRTPSS I '$D(SRTPP) S SRSOUT=1 G END
+PRINT ; called by the Print Transplant Assessment option
+ S SRPRINT=1 D ^SRTPSS I '$D(SRTPP) S SRSOUT=1 G END
  W ! K %ZIS,IO("Q"),POP S %ZIS("A")="Print the Transplant Assessment on which Device: ",%ZIS="Q" D ^%ZIS I POP S SRSOUT=1 G ED
  I $D(IO("Q")) K IO("Q") S ZTDESC="Completed Surgery Risk Assessment",ZTSAVE("SRSITE*")="",ZTSAVE("SRTPP")="",ZTRTN="EN^SRTPCOM" D ^%ZTLOAD S SRSOUT=1 G ED
  D EN
@@ -41,7 +42,7 @@ PRT S SRSOUT=0,(SRMD,SRMDD,SRODD)="",SRCNT=0 F  S SRMDD=$O(SRX(SRMDD)) Q:SRMDD="
  .K DR,DIE S DA=SRTPP,DIE=139.5,DR=SRMD_"T" D ^DIE K DR I $D(Y) S SRSFLG=1
  S:'$G(SRSOUT) SRSOUT=0
  Q
-EN U IO S SRABATCH=1 D ^SRTPPAS Q
+EN U IO S SRABATCH=1 D ^SRTPPAS S SRSOUT=1 Q
 END I 'SRSOUT,$E(IOST)'="P" D RET
  W @IOF I $E(IOST)="P" D ^%ZISC W @IOF
  D ^%ZISC W @IOF K SRTPP D ^SRSKILL

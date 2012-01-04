@@ -1,5 +1,5 @@
 SROACOP ;BIR/MAM - CARDIAC OPERATIVE RISK SUMMARY ;05/05/10
- ;;3.0; Surgery ;**38,47,71,88,95,107,100,125,142,153,160,166,174**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,47,71,88,95,107,100,125,142,153,160,166,174,175**;24 Jun 93;Build 6
  I '$D(SRTN) W !!,"A Surgery Risk Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
  N SRCSTAT S SRACLR=0,SRSOUT=0,SRSUPCPT=1 D ^SROAUTL
 START D:SRACLR RET G:SRSOUT END S SRACLR=0 K SRA,SRAO
@@ -25,13 +25,15 @@ START D:SRACLR RET G:SRSOUT END S SRACLR=0 K SRA,SRAO
  ..S J=SRL-I,Y=$E(X,J),I=I+1 I Y=" " W $E(X,1,J-1),!,?4 S X=$E(X,J+1,Z),Z=$L(X),I=0,LINE=LINE+1 I Z<SRL W X,! S SRQ=1 Q
  N SRPROC,SRL S SRL=49 D CPTS^SROAUTL0 W !," 5. CPT Codes (view only):"
  F I=1:1 Q:'$D(SRPROC(I))  W:I=1 ?31,SRPROC(I) W:I'=1 !,?31,SRPROC(I)
+ S Y=$P($G(^SRF(SRTN,"1.0")),"^",8),C=$P(^DD(130,1.09,0),"^",2) D:Y'="" Y^DIQ S SRAO(6)=Y_"^1.09"
+ W !," 6. Wound Classification: ",?31,$P(SRAO(6),"^")
  W ! D CHCK
  W !! F MOE=1:1:80 W "-"
 ASK W !,"Select Operative Risk Summary Information to Edit: " R X:DTIME I '$T!("^"[X) G END
  S:X="a" X="A" I '$D(SRAO(X)),(X'?.N1":".N),(X'="A") D HELP G:SRSOUT END G START
- I X="A" S X="1:5"
- I X?.N1":".N S Y=$E(X),Z=$P(X,":",2) I Y<1!(Z>5)!(Y>Z) D HELP G:SRSOUT END G START
- I X'=5 D HDR^SROAUTL
+ I X="A" S X="1:6"
+ I X?.N1":".N S Y=$E(X),Z=$P(X,":",2) I Y<1!(Z>6)!(Y>Z) D HELP G:SRSOUT END G START
+ I X'=6 D HDR^SROAUTL
  I X?.N1":".N D RANGE S SROERR=SRTN D ^SROERR0 G START
  I $D(SRAO(X))!(X=4) S EMILY=X D  S SROERR=SRTN D ^SROERR0 G START
  .I $$LOCK^SROUTL(SRTN) W !! D ONE,UNLOCK^SROUTL(SRTN)

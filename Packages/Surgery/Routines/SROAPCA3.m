@@ -1,5 +1,5 @@
 SROAPCA3 ;BIR/MAM - CARDIAC OCCURRENCE DATA ;02/05/08
- ;;3.0; Surgery ;**38,71,95,101,125,160,164,166,174**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,71,95,101,125,160,164,166,174,175**;24 Jun 93;Build 6
  D EN^SROCCAT K SRA S SRA(205)=$G(^SRF(SRTN,205)),SRA(208)=$G(^SRF(SRTN,208)),SRA(206)=$G(^SRF(SRTN,206)),SRA(209)=$G(^SRF(SRTN,209))
  S NYUK=$P(SRA(208),"^") D YN S SRAO(1)=SHEMP_"^384"
  S Y=$P($G(^DPT(DFN,.35)),"^") D DT^SROAPCA1 S SRAO(2)=X
@@ -9,7 +9,7 @@ SROAPCA3 ;BIR/MAM - CARDIAC OCCURRENCE DATA ;02/05/08
  S NYUK=$P(SRA(205),"^",21) D YN S SRAO(12)=SHEMP_"^256",NYUK=$P(SRA(205),"^",26) D YN S SRAO(13)=SHEMP_"^411"
  S NYUK=$P(SRA(206),"^",39) D YN S SRAO(14)=SHEMP_"^466"
  S NYUK=$P(SRA(206),"^",40) D YN S SRAO(15)=SHEMP_"^467"
- S NYUK=$P(SRA(205),"^",40) D YN S SRAO(16)=SHEMP_"^448"
+ S NYUK=$P(SRA(205),"^",40) D YN S SRAO(16)=SHEMP_"^448",NYUK=$P(SRA(205),"^",8) D YN S SRAO(17)=SHEMP_"^404"
   I $Y+5>IOSL D PAGE^SROAPCA I SRSOUT Q
  W !!,"VII. OUTCOMES"
  W !,"Operative Death:",?18,$P(SRAO(1),"^"),?43,"Date of Death:",?58,$P(SRAO(2),"^")
@@ -22,6 +22,7 @@ SROAPCA3 ;BIR/MAM - CARDIAC OCCURRENCE DATA ;02/05/08
  W !,?2,"Cardiac Arrest Requiring CPR:",?36,$P(SRAO(13),"^"),?42,"Coma > or = 24 Hours:",?74,$P(SRAO(11),"^")
  W !,?2,"Reoperation for Bleeding:",?36,$P(SRAO(8),"^"),?42,"New Mech Circulatory Support:",?74,$P(SRAO(15),"^")
  W !,?2,"On ventilator > or = 48 hr:",?36,$P(SRAO(9),"^"),?42,"Postop Atrial Fibrillation:",?74,$P(SRAO(16),"^")
+ W !,?42,"Wound Disruption:",?74,$P(SRAO(17),"^")
  D RES
  Q
 YN ; store answer

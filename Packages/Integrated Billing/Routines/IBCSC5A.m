@@ -1,5 +1,5 @@
-IBCSC5A ;ALB/ARH - ADD/ENTER PRESCRIPTION FILLS ; 12/27/93
- ;;2.0;INTEGRATED BILLING;**27,52,106,51,160,137,245,309,347,405**;21-MAR-94;Build 4
+IBCSC5A ;ALB/ARH - ADD/ENTER PRESCRIPTION FILLS ;12/27/93
+ ;;2.0;INTEGRATED BILLING;**27,52,106,51,160,137,245,309,347,405,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ;add/edit prescription fills for a bill, IBIFN required
@@ -41,12 +41,17 @@ ADD(RX,IFN,IBDT,DRUG,PIFN,OTHER,IBRF) ;
  S IBX=0 S DRUG=$$DRUG($G(DRUG)) G:'DRUG ADDE
  S DIC="^IBA(362.4,",DIC(0)="AQL",X=RX,DLAYGO=362.4 D FILE^DICN
  I Y>0 D
+ . ; IB *2.0*432 Stuff ISSUE DATE from file 52 when adding new RX to 362.4
+ . D ORDT($P(OTHER,U,4),+Y)
  . S DIE=DIC,(IBX,DA)=+Y,DR=".02////"_IFN_";.03////"_IBDT_";.04////"_DRUG_";.05////"_+PIFN_";.06////"_$P(OTHER,U,1)_";.07////"_$P(OTHER,U,2)_";.08////"_$P(OTHER,U,3) S:$L($G(IBRF)) DR=DR_";.1////"_IBRF D ^DIE K DIE,DIC,DA,DR
  . S DGRVRCAL=1
 ADDE Q IBX
  ;
 EDIT(PIFN,REVIEN) ;
- N IBCHG,DIE,DR,DA,DIC,DIDEL
+ N IBCHG,DIE,DR,DA,DIC,DIDEL,IBORDT
+ ; IB*2.0*432 - display RX Order date to user, if available
+ S IBORDT=$P($G(^IBA(362.4,PIFN,0)),U,11)
+ W:IBORDT'="" !,"Date RX Ordered:  ",$$FMTE^XLFDT(IBORDT)
  S DIDEL=362.4,DIE="^IBA(362.4,"
  S DR=".01;.03;.04;.06;.07;.08;.09;.1"
  S DA=PIFN D ^DIE
@@ -57,7 +62,7 @@ EDIT(PIFN,REVIEN) ;
  Q
  ;
 SET(IFN,RXARR,RXARRP) ;setup array of all rx fills for bill, array name should be passed by reference
- ;returns: RXARR(RX #, FILL DT)=RX IFN (362.4) ^ DRUG ^ DAYS SUPPLY ^ QTY ^ NDC # ^ Charge if known ^ ien of associated rev code multiple, if known ^ NDC FORMAT INDICATOR (1-4)
+ ;returns: RXARR(RX #, FILL DT)=RX IFN (362.4) ^ DRUG ^ DAYS SUPPLY ^ QTY ^ NDC # ^ Charge if known ^ ien of associated rev code multiple, if known ^ NDC FORMAT INDICATOR (1-4)^ORDER DATE
  ;         RXARR=BILL IFN ^ RX count
  N CNT,IBX,IBY,IBZ,PIFN,IBC,IBCNT,IBRC S IBCNT=+$G(RXARRP),IBC="AIFN"_$G(IFN) K RXARR,RXARRP
  ;
@@ -66,6 +71,8 @@ SET(IFN,RXARR,RXARRP) ;setup array of all rx fills for bill, array name should b
  .S IBY=$G(^IBA(362.4,PIFN,0)) Q:IBY=""  S CNT=CNT+1,RXARR($P(IBY,U,1),+$P(IBY,U,3))=PIFN_U_$P(IBY,U,4)_U_$P(IBY,U,6,8),$P(RXARR($P(IBY,U),+$P(IBY,U,3)),U,6)=$$CHG^IBCF4(PIFN,3,.IBRC)
  . I $G(IFN) S $P(RXARR($P(IBY,U),+$P(IBY,U,3)),U,7)=$$FINDREV(IFN,3,PIFN)
  . S $P(RXARR($P(IBY,U),+$P(IBY,U,3)),U,8)=$P(IBY,U,9)
+ . ; IB *2.0*432 include ORDER DATE from file 362.4 in output formatter
+ . S $P(RXARR($P(IBY,U),+$P(IBY,U,3)),U,9)=$P(IBY,U,11)
  ;
  S RXARR=$G(IFN)_"^"_CNT
  S IBX=0 F  S IBX=$O(RXARR(IBX)) Q:IBX=""  S IBY=0 F  S IBY=$O(RXARR(IBX,IBY)) Q:'IBY  S IBCNT=IBCNT+1,RXARRP(IBCNT)=IBX_"^"_IBY_"^"_$P(RXARR(IBX,IBY),U,7)
@@ -131,3 +138,8 @@ PRVNM(PIFN) ; return provider name for an rx, if one defined or null
  N IBX,IBPRV,IBRXIFN S IBPRV=""
  S IBRXIFN=$P($G(^IBA(362.4,+$G(PIFN),0)),U,5) I +IBRXIFN S IBX=$$FILE^IBRXUTL(IBRXIFN,4) I +IBX S IBPRV=$P($G(^VA(200,+IBX,0)),U,1)
  Q IBPRV
+ORDT(IBORDT,Y) ;get ISSUE DATE from file 52 and stuff into ORDER DATE of file 362.4
+ Q:IBORDT=""
+ N DIE,DA,DR
+ S DIE=362.4,DA=+Y,DR=".11///"_IBORDT D ^DIE
+ Q

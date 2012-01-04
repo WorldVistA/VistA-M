@@ -1,5 +1,5 @@
 RARTUVR3 ;HISC/GJC-Unverified Reports ;8/19/97  11:28
- ;;5.0;Radiology/Nuclear Medicine;**56**;Mar 16, 1998;Build 3
+ ;;5.0;Radiology/Nuclear Medicine;**56,47**;Mar 16, 1998;Build 21
  ;Supported IA #2056 GET1^DIQ
 EN1 ; Entry point for unverified reports option when sort is on
  ; Exam Date or Pri. Inter. Staff
@@ -78,7 +78,8 @@ HDR ; header code
  S RAPAGE=RAPAGE+1 W !?(IOM-$L(RAHD)\2),RAHD
  W !,$S(RABD="S":"Primary Interpreting Staff: ",1:"Division: "),RA1
  W ?94,$$FMTE^XLFDT(DT,"1P")_"   Page: "_RAPAGE
- W !,?87,"Exam",?96,"Report",!,"Patient",?21,"Patient ID",?38,"Exam Date",?48,"Case",?55,"Procedure",?87,"Status",?96,"Entered",?106,"Pri. Int'g Staff"
+ I $$USESSAN^RAHLRU1() W !,?93,"Exam",?102,"Report",!,"Patient",?21,"Patient ID",?34,"Exam Date",?44,"Case",?61,"Procedure",?93,"Status",?102,"Entered",?112,"Pri. Int'g Staff"
+ I '$$USESSAN^RAHLRU1() W !,?87,"Exam",?96,"Report",!,"Patient",?21,"Patient ID",?38,"Exam Date",?48,"Case",?55,"Procedure",?87,"Status",?96,"Entered",?106,"Pri. Int'g Staff"
  W !,RADASH
  Q
 GETDATA ; get to the data
@@ -112,7 +113,10 @@ PRTDATA ; print the data
  S:RABD="S" RAPIS=RA1
  S:RABD="E" RAPIS=$$GET1^DIQ(200,+$P(RANODE,"^",17)_",",.01)
  S:RAPIS="" RAPIS="Unknown"
- W !,$E(RAPAT,1,20),?21,$P(RANODE,"^",2),?38,$$FMTE^XLFDT(RAEXDT,"2P"),?48,RACSE,?55,RAPRC,?87,RAXSTAT,?96,RARPTENT,?106,$E(RAPIS,1,25)
+ N RASSAN,RACNDSP S RASSAN=$P(RANODE,"^",33)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:RACSE)
+ I $$USESSAN^RAHLRU1() W !,$E(RAPAT,1,20),?21,$P(RANODE,"^",2),?34,$$FMTE^XLFDT(RAEXDT,"2P"),?44,RACNDSP,?61,RAPRC,?93,RAXSTAT,?102,RARPTENT,?112,$E(RAPIS,1,19)
+ I '$$USESSAN^RAHLRU1() W !,$E(RAPAT,1,20),?21,$P(RANODE,"^",2),?38,$$FMTE^XLFDT(RAEXDT,"2P"),?48,RACSE,?55,RAPRC,?87,RAXSTAT,?96,RARPTENT,?106,$E(RAPIS,1,25)
  I $Y>(IOSL-4) S RAOUT=$$EOS^RAUTL5() D:'RAOUT HDR
  Q
 ZERO ; set division totals to zero

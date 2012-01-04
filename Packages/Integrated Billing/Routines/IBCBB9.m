@@ -1,5 +1,5 @@
 IBCBB9 ;ALB/BGA MEDICARE PART B EDIT CHECKS ;10/15/98
- ;;2.0;INTEGRATED BILLING;**51,137,155,349,371**;21-MAR-94;Build 57
+ ;;2.0;INTEGRATED BILLING;**51,137,155,349,371,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 PARTB ; MEDICARE specific edit checks for PART B claims (CMS-1500)
@@ -17,7 +17,7 @@ PARTB ; MEDICARE specific edit checks for PART B claims (CMS-1500)
  . I $$REQMRA^IBEFUNC(IBIFN),$E(IBFDT,1,3)'=$E(IBTDT,1,3) D WARN^IBCBB11("This claim will be split into multiple EOB'S due to the service dates"),WARN^IBCBB11("spanning different calendar years.")
  . D NONMCR^IBCBB3(.IBPR,.IBLABS) ; Oxygen, labs, influenza shots
  . S Z="80000" F  S Z=$O(IBPR(Z)) Q:Z'?1"8"4N  S IBLABS=1
- . I $G(IBLABS) D WARN^IBCBB11("The only possible billable procedures on this bill are labs -"),WARN^IBCBB11(" Please verify that MEDICARE does not reimburse these labs at 100%") Q
+ . I $G(IBLABS) D WARN^IBCBB11("There are Lab procedures on this claim."),WARN^IBCBB11("Please verify that Medicare does not reimburse these labs at 100%.") Q
  . I $O(IBPR(""))="" S IBQUIT=$$IBER^IBCBB3(.IBER,"098")
  ;
  ; First char of the pat's first and last name must be present and
@@ -30,7 +30,9 @@ PARTB ; MEDICARE specific edit checks for PART B claims (CMS-1500)
  I '$$VALID^IBCBB8(IBIFN) S IBQUIT=$$IBER^IBCBB3(.IBER,215) Q:IBQUIT
  ;
  ; Specialty code 99 is not valid for Medicare MRA request claims
- I $$REQMRA^IBEFUNC(IBIFN),$$BILLSPEC^IBCEU3(IBIFN)=99 S IBQUIT=$$IBER^IBCBB3(.IBER,122) Q:IBQUIT
+ ;I $$REQMRA^IBEFUNC(IBIFN),$$BILLSPEC^IBCEU3(IBIFN)=99 S IBQUIT=$$IBER^IBCBB3(.IBER,122) Q:IBQUIT
+ ; IB*2.0*432 add line-level check
+ I $$REQMRA^IBEFUNC(IBIFN),$$LINSPEC^IBCEU3(IBIFN)[99 S IBQUIT=$$IBER^IBCBB3(.IBER,122) Q:IBQUIT
  ;
  Q
  ;

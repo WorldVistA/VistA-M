@@ -1,5 +1,5 @@
 RMPR4P24 ;PHX/HPL-Print patient PC notification letter ;10/31/1994
- ;;3.0;PROSTHETICS;**3,20,55**;Feb 09, 1996
+ ;;3.0;PROSTHETICS;**3,20,55,161**;Feb 09, 1996;Build 2
  ;
  ; ODJ - patch 55 - 1/29/01 - replace hard coded mail route code 121
  ;                            with call to extrinsic for site param.
@@ -31,7 +31,7 @@ EN(RDA) ;SETUP VARIABLES AND PRINT PATIENT NOTIFICATION LETTER
  W:VAPA(3)'="" ?RMPRTAB,VAPA(3)
  W:VAPA(4)'="" ?RMPRTAB,VAPA(4)_", "_$P(VAPA(5),"^",2)_"  "_VAPA(6)
  W ?44,"Veteran: ",VADM(1),!
- W ?44,"SSN: ",$P(VADM(2),U,2)
+ ; *161 removed old line which printed SSN
  W !!,?RMPRTAB,"Dear ",$S($P(VADM(5),"^",1)["M":"Mr. ",$P(VADM(5),"^",1)["F":"Ms. ",1:"")_FIXDNAME_","
  W !!,?RMPRTAB+0
  W "This is to notify you that the items listed below were ordered"

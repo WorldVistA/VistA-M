@@ -1,5 +1,5 @@
-ONCSG3 ;Hines OIFO/GWB - Automatic Staging Tables ;06/23/10
- ;;2.11;ONCOLOGY;**35,51**;Mar 07, 1995;Build 65
+ONCSG3 ;Hines OIFO/GWB - Automatic Staging Tables ;02/23/11
+ ;;2.11;ONCOLOGY;**35,51,53**;Mar 07, 1995;Build 31
  ;
  ;SKIN
  ;
@@ -20,7 +20,7 @@ SKNRP ;Carcinoma of the Skin
  ;
 CSC ;Cutaneous Squamous Cell/Other Cutaneous Carcinoma - 7th edition
  I $E(HT,1,4)=8247,ONCOED=7 G MCC
- S TNM=T_N_M
+ S TNM=T_$E(N,1)_M
  D  K TNM Q
  .I TNM="IS00" S SG=0 Q     ;0    Tis   N0    M0
  .I TNM=100 S SG=1 Q        ;I    T1    N0    M0
@@ -49,22 +49,27 @@ MCCC ;Merkel Cell Carcinoma - 7th edition (Clinical Stage Grouping)
  .I TNM=200 S SG="2B" Q        ;IIB  T2    N0    M0
  .I TNM=300 S SG="2B" Q        ;     T3    N0    M0
  .I TNM=400 S SG="2C" Q        ;IIC  T4    N0    M0
- .I $E(N,1)=1,M=0 S SG="3B" Q  ;IIIB Any T N1    M0
+ .I N=1,M=0 S SG="3B" Q        ;IIIB Any T N1    M0
  .I N="1B",M=0 S SG="3B" Q     ;     Any T N1b   M0
  .I N=2,M=0 S SG="3B" Q        ;     Any T N2    M0
  .I $E(M,1)=1 S SG=4 Q         ;IV   Any T Any N M1
  ;
 MCCP ;Merkel Cell Carcinoma - 7th edition (Pathologic Stage Grouping)
+ N CLINN
+ S CLINN=$P($G(^ONCO(165.5,D0,2)),U,26)
  S TNM=T_N_$E(M,1)
  D  K TNM Q
- .I TNM="IS00" S SG=0 Q      ;0    Tis   N0    M0
- .I TNM=100 S SG="1A" Q      ;IA   T1    pN0   M0
- .I TNM=200 S SG="2A" Q      ;IIA  T2    pN0   M0
- .I TNM=300 S SG="2A" Q      ;     T3    pN0   M0
- .I TNM=400 S SG="2C" Q      ;IIC  T4    N0    M0
- .I N="1A",M=0 S SG="3A" Q   ;IIIA Any T N1a   M0
- .I N="1B",M=0 S SG="3B" Q   ;IIIB Any T N1b   M0
- .I M=1 S SG=4 Q             ;IV   Any T Any N M1
+ .I TNM="IS00" S SG=0 Q                    ;0    Tis   N0    M0
+ .I TNM=100 S SG="1A" Q                    ;IA   T1    pN0   M0
+ .I T=1,N="X",CLINN=0,M=0 S SG="1B" Q      ;IB   T1    cN0   M0
+ .I TNM=200 S SG="2A" Q                    ;IIA  T2    pN0   M0
+ .I TNM=300 S SG="2A" Q                    ;     T3    pN0   M0
+ .I T=2,N="X",CLINN=0,M=0 S SG="2B" Q      ;IIB  T2    cN0   M0
+ .I T=3,N="X",CLINN=0,M=0 S SG="2B" Q      ;     T3    cN0   M0
+ .I TNM=400 S SG="2C" Q                    ;IIC  T4    N0    M0
+ .I N="1A",M=0 S SG="3A" Q                 ;IIIA Any T N1a   M0
+ .I N="1B",M=0 S SG="3B" Q                 ;IIIB Any T N1b   M0
+ .I M=1 S SG=4 Q                           ;IV   Any T Any N M1
  ;
 MMS3 ;Melanoma of the Skin - 3rd edition
  I M[1 S SG=4
@@ -234,4 +239,4 @@ BRST7 ;Breast - 7th edition
  .I M=1 S SG=4 Q                 ;IV   Any T Any N M1
  ;
 CLEANUP ;Cleanup
- K HT,M,N,ONCOED,STGIND,T
+ K D0,HT,M,N,ONCOED,STGIND,T

@@ -49,7 +49,7 @@ LIST(TO,LIST) N DEST,N,ORI,PRI,X
  S DEST="" F  S DEST=$O(DEST(DEST)) Q:DEST=""  D
  . N PW
  . S PW=$P($G(^MAG(2005.2,DEST,2)),"^",1,2)
- . S $P(PW,"^",2)=$$DECRYP^ROUTINE($P(PW,"^",2))
+ . S $P(PW,"^",2)=$$DECRYP^XUSRB1($P(PW,"^",2))
  . S X=$G(^MAG(2005.2,DEST,0))
  . Q:$$UPNOPU($P(X,"^",1))'[TO
  . S N=N+1,LIST(N)=$P(X,"^",2)_"^"_$P($G(^MAG(2005.2,DEST,4)),"^",2)_"^"_$P(X,"^",8)_"^"_PW_"^"_$P($G(^MAG(2005.2,DEST,3)),"^",5)_"^"_DEST

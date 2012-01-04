@@ -1,5 +1,5 @@
 BPSOSQG ;BHAM ISC/FCS/DRS/FLS - form transmission packets ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5**;JUN 2004;Build 45
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -9,15 +9,15 @@ BPSOSQG ;BHAM ISC/FCS/DRS/FLS - form transmission packets ;06/01/2004
  ;   Calls CHOP^BPSECMC2 to send packet to HL7 application
  ;
 PACKET() ;EP - BPSOSQ2
- ; packetize one prescription (and possibly more prescriptions
+ ; packetize one transaction (and possibly more transactions
  ; for the same patient, if they're ready now.)
  ; Called from BPSOSQ2,
- ;  which gave us RXILIST(IEN59) array of claims to packetize.
+ ;  which gave us TRANLIST(IEN59) array of claims to packetize.
  ;
  N CLAIMIEN,ERROR,FIRST59
  ;
  ; Get first transaction from list
- S FIRST59=$O(RXILIST(0))
+ S FIRST59=$O(TRANLIST(0))
  ;
  ; If it's a reversal, we already have an ^BPSC(, which was
  ;   created by the call to BPSECA8, way back at the beginning.
@@ -29,19 +29,19 @@ PACKET() ;EP - BPSOSQ2
  . S CLAIMIEN(CLAIMIEN)=""
  ;
  ; DMB - This code will only be executed if there is more than one
- ;  transaction in RXILIST.  This will not happen for the VA but leave
+ ;  transaction in TRANLIST.  This will not happen for the VA but leave
  ;  functionality in case we bundle claims later
- I $O(RXILIST($O(RXILIST("")))) D
+ I $O(TRANLIST($O(TRANLIST("")))) D
  . D LOG2LIST^BPSOSL($T(+0)_"-Packetizing - we have more than one claim:")
  . N I,X,Y S (X,Y)=""
- . F I=1:1 S X=$O(RXILIST(X)) Q:'X  D
+ . F I=1:1 S X=$O(TRANLIST(X)) Q:'X  D
  . . S $P(Y,", ",I-1#4+1)=X
  . . I I#4=0 D LOG2LIST^BPSOSL(Y) S Y=""
  . I Y]"" D LOG2LIST^BPSOSL(Y)
  ;
  ; BPSOSCA calls BPSOSCB,BPSOSCC,BPSOSCD to set up BPS(*) and
  ;    then calls BPSOSCE to create claims in 9002313.02
- ; BPSOSCA expects RXILIST(*) to be defined and will return
+ ; BPSOSCA expects TRANLIST(*) to be defined and will return
  ;   ERROR - any error encountered
  ;   CLAIMIEN - last claim created
  ;   CLAIMIEN(CLAIMIEN) - the list of all claims created
@@ -54,7 +54,7 @@ POINTM ; Reversals are joining again here
  N VAMSG,IEN59,ERROR
  ;
  ; CLAIMIEN(*) = a list of CLAIMIENs that were generated from
- ;   all the prescriptions that might have been bundled together.
+ ;   all the transactions that might have been bundled together.
  ;   So we must loop through that list.
  ; Currently, VA does not bundle claims.  If it does so,
  ;   we may want to change error handling.

@@ -1,6 +1,6 @@
 X12 271 QUANTITY QUALIFIER
 ZWR
-^IBE(365.016,0)="X12 271 QUANTITY QUALIFIER^365.016I^16^16"
+^IBE(365.016,0)="X12 271 QUANTITY QUALIFIER^365.016I^18^18"
 ^IBE(365.016,1,0)="99^Quantity Used"
 ^IBE(365.016,2,0)="CA^Covered/Actual"
 ^IBE(365.016,3,0)="CE^Covered/Estimated"
@@ -17,9 +17,13 @@ ZWR
 ^IBE(365.016,14,0)="VS^Visits"
 ^IBE(365.016,15,0)="YY^Years"
 ^IBE(365.016,16,0)="FL^Units"
+^IBE(365.016,17,0)="D3^Number Of Co-insurance Days"
+^IBE(365.016,18,0)="8H^Minimum"
 ^IBE(365.016,"B",99,1)=""
+^IBE(365.016,"B","8H",18)=""
 ^IBE(365.016,"B","CA",2)=""
 ^IBE(365.016,"B","CE",3)=""
+^IBE(365.016,"B","D3",17)=""
 ^IBE(365.016,"B","DB",4)=""
 ^IBE(365.016,"B","DY",5)=""
 ^IBE(365.016,"B","FL",16)=""

@@ -1,7 +1,7 @@
 SRSUPC ;B'HAM ISC/MAM - UPDATE CANCEL REASON & DATE; [ 01/31/01  8:59 AM ]
- ;;3.0; Surgery ;**100**;24 Jun 93
+ ;;3.0;Surgery;**100,175**;24 Jun 93;Build 6
 PAT ;
- W @IOF S DIC=2,DIC(0)="QEAMZ",DIC("A")="Update Cancellation Information for which Patient: " D ^DIC K DIC G:Y'>0 END S DFN=+Y
+ N SRY W @IOF S DIC=2,DIC(0)="QEAMZ",DIC("A")="Update Cancellation Information for which Patient: " D ^DIC K DIC G:Y'>0 END S DFN=+Y
  D DEM^VADPT S SRNAME=VADM(1)
  W ! S (SROP,CNT)=0 F  S SROP=$O(^SRF("B",DFN,SROP)) Q:'SROP  S SRSDATE=$P(^SRF(SROP,0),"^",9) D LIST
  I '$D(SRCASE(1)) W !!,"There are no cancelled cases for "_SRNAME_"." G END
@@ -9,7 +9,9 @@ OPT R !!!,"Select Operation:  ",OPT:DTIME I '$T!("^"[OPT) K SRTN G END
  I OPT["?"!('$D(SRCASE(OPT))) W !!,"Enter the number of the desired operation" G OPT
  S SROP=SRCASE(OPT),SRSDATE=$P(^SRF(SROP,0),"^",9),SRSDATE=$E(SRSDATE,4,5)_"-"_$E(SRSDATE,6,7)_"-"_$E(SRSDATE,2,3)
  W @IOF,!,VADM(1),?32,VA("PID"),?50,"Case # ",SROP,!!,SRSDATE D CASE W !!
- I $$LOCK^SROUTL(SROP) S DIE=130,DA=SRCASE(OPT),DR="17T;18T;67T" D ^DIE,UNLOCK^SROUTL(SROP)
+ I $$LOCK^SROUTL(SROP) S DIE=130,DA=SRCASE(OPT),DR="17T;18T" D ^DIE K DR D
+ .K DIC,DIQ S DIC="^SRF(",DA=SRCASE(OPT),DIQ="SRY",DIQ(0)="E",DR=18 D EN^DIQ1 K DIC,DIQ,DR S SRY=SRY(130,DA,18,"E")
+ .S DR="67T;"_$S(SRY="OTHER":"19T",SRY]"":"19///@",1:"") D ^DIE,UNLOCK^SROUTL(SROP)
 END W !!,"Press RETURN to continue  " R X:DTIME
  W @IOF K SROP D ^SRSKILL
  Q

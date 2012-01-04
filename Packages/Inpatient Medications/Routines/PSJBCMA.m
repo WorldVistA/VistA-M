@@ -1,5 +1,5 @@
-PSJBCMA ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ;16 Mar 99 / 10:13 AM
- ;;5.0; INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,69,58,81,91,104,111,112,186,159,173,190,113**;16 DEC 97;Build 63
+PSJBCMA ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ; 2/28/11 3:10pm
+ ;;5.0; INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,69,58,81,91,104,111,112,186,159,173,190,113,225**;16 DEC 97;Build 16
  ;
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
  ; Reference to ^PS(51 is supported by DBIA 2176.
@@ -58,6 +58,8 @@ UDVAR ;Set ^TMP for Unit dose & Pending orders
  S CNT=0 D NOW^%DTC
  F X=0:0 S X=$O(@(F_ON_",1,"_X_")")) Q:'X  D
  . S PSJDD=@(F_ON_",1,"_X_",0)") I $P(PSJDD,"^",3)]"",$P(PSJDD,"^",3)'>% Q
+ .;*225 Don't allow 0
+ . I +$P(PSJDD,"^",2)=0 S $P(PSJDD,"^",2)=1
  . S CNT=CNT+1
  . S ^TMP("PSJ",$J,PSJINX,700,CNT,0)=+PSJDD_U_$P($G(^PSDRUG(+PSJDD,0)),U)_U_$S((FON["U")&($P(PSJDD,U,2)=""):1,(FON["U")&($E($P(PSJDD,U,2))="."):"0"_$P(PSJDD,U,2),1:$P(PSJDD,U,2))_U_$P(PSJDD,U,3)
  S:CNT ^TMP("PSJ",$J,PSJINX,700,0)=CNT

@@ -1,6 +1,7 @@
 IBCEF73A ;ALB/KJH - FORMATTER AND EXTRACTOR SPECIFIC (NPI) BILL FUNCTIONS ;30 Aug 2006  10:38 AM
- ;;2.0;INTEGRATED BILLING;**343,374,395,391,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**343,374,395,391,400,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ Q
  ;
 PROVNPI(IBIEN399,IBNONPI) ;
  ;Retrieves NPIs from #200 or 355.93
@@ -68,13 +69,15 @@ PROVTAX(IBIEN399,IBNOTAX) ;
  . S $P(IBRETVAL,"^",IBFT)=TAX
  . I TAX="",$D(IBNOTAX) S IBNOTAX=$S(IBNOTAX="":IBFT,1:IBNOTAX_U_IBFT)
  Q IBRETVAL
-GETTAX(IBPTR) ;look for Taxonomy in #200 or #355.93
- ;Input: IBPTR from 399.0222, field .02
+GETTAX(IBPTR,IBDTEV) ;look for Taxonomy in #200 or #355.93
+ ;Input: IBPTR from 399.0222, field .02, IBDTEV from 399, field .03
+ ;       IBPTR can be from 399.0404, field .02, as well (DEM;432)
  ;Output: Taxonomy X12 code_"^"_IEN
- N TAX
- S TAX="^"
+ N TAX,IBX12
+ S TAX="^",IBX12=""
+ S:'$G(IBDTEV) IBDTEV=DT
  ;if in 200 then get it from 200
- I $P(IBPTR,";",2)="VA(200," S TAX=$$TAXIND^XUSTAX($P(IBPTR,";"))
+ I $P(IBPTR,";",2)="VA(200," S IBX12=$P($$GET^XUA4A72($P(IBPTR,";"),IBDTEV),U,1),TAX=$S(IBX12'>0:TAX,1:$$GET1^DIQ(8932.1,IBX12,6)_U_IBX12)
  ;if in 355.93 then use 355.93
  I $P(IBPTR,";",2)="IBA(355.93," S TAX=$$TAXGET^IBCEP81($P(IBPTR,";"))
  Q TAX

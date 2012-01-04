@@ -1,5 +1,5 @@
 GMTSPL ; SLC/JER,KER - Print/Queue HS for Patient Lists ; 02/27/2002 [1/27/05 8:27am]
- ;;2.7;Health Summary;**7,27,28,30,47,49,70**;Oct 20, 1995;Build 5
+ ;;2.7;Health Summary;**7,27,28,30,47,49,70,88**;Oct 20, 1995;Build 23
  ;
  ; External References
  ;    DBIA 10090  ^DIC(4
@@ -54,7 +54,9 @@ CTRL ; Controls Branching
  I GMTSBYE Q
  I $L($P(GMTSSC,U,2)),($E(IOST,1)'="C") S GMTSLTR=$E($P(GMTSSC,U,2),1,10) D ^GMTSLTR
  I $O(^TMP("GMTSPL",$J,0))="",$D(GMTSSC("ALL")) W !,"ALL" Q
- I $O(^TMP("GMTSPL",$J,0))="" D NOPAT($P(GMTSSC,U,2)) Q
+ I $O(^TMP("GMTSPL",$J,0))="" D NOPAT($P(GMTSSC,U,2))
+ ; RJT/VM GMTS*2.7*88
+ I ($E(IOST,1)'="C"),$$GET1^DIQ(142.99,1,.07,"^TMP(""GMTS"",$J,""SHORT HS BY LOC"")")="Yes" W @IOF
  S GMPNM="" F  S GMPNM=$O(^TMP("GMTSPL",$J,GMPNM)) Q:(GMPNM="")!($D(DIROUT))  D
  . S GMTDFN=0 F  S GMTDFN=$O(^TMP("GMTSPL",$J,GMPNM,GMTDFN)) Q:(GMTDFN'>0)!($D(DIROUT))  D
  . . N GMDUOUT
@@ -79,7 +81,10 @@ NOPAT(LOC) ; Handles unpopulated Hospital location
  D NOW^%DTC S X=% D REGDTM4^GMTSU S GMTSDTM=X,GMTSTN=$P($G(^GMT(142,+($G(GMTSTYP)),0)),"^",1)
  S DIC=142,DIC(0)="NXF",X=GMTSTN S Y=$$TYPE^GMTSULT K DIC
  S GMTSTITL=$S($D(^GMT(142,+Y,"T")):^("T"),1:$P(Y,U,2)),GMTSLFG=1
- W @IOF D HEADER^GMTSUP W !!,"No Patients found at ",LOC," location.",!
+ ; RJT/VM GMTS*2.7*88
+ D
+ . I $$GET1^DIQ(142.99,1,.07,"^TMP(""GMTS"",$J,""SHORT HS BY LOC"")")="Yes" W !!!! D HEADER^GMTSUP W !!,"No Patients found at ",LOC," location.",! Q
+ . W @IOF D HEADER^GMTSUP W !!,"No Patients found at ",LOC," location.",!
  Q
 CLINIC(LOC) ; Gets list of next-day appointments for clinic
  N %,%H,%I,%T,%Y,GMI,X,X1,X2,VDT,Y,GMPNM,GMDT,GMBDT,GMEDT,GMTSRES,GMTSCDT,GMDFN,GMNAME,GMDATE,GMTSLAST

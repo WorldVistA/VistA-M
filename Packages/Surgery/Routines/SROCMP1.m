@@ -1,5 +1,5 @@
 SROCMP1 ;BIR/MAM - PERIOPERATIVE OCCURRENCES ;02/02/06
- ;;3.0; Surgery ;**38,50,153**;24 Jun 93;Build 11
+ ;;3.0;Surgery;**38,50,153,175**;24 Jun 93;Build 6
 EN ; entry point
  N SRSEL S (SRATT,SRSOUT,SRSP)=0,SRSEL=1 G:SRBOTH DEV
 BY W @IOF K DIR S DIR(0)="N^1:3",DIR("A",1)="Print report by",DIR("A",2)=" 1. Surgical Specialty"
@@ -15,7 +15,7 @@ SPEC W @IOF K DIR S DIR("A")="Do you want to print this report for all Surgical 
  I 'Y D SP I SRSOUT D END Q
 DEV S SRGRAMM=$S(SRBOTH:"These reports are ",1:"This report is ")
  K IOP,%ZIS,POP,IO("Q") S %ZIS("A")="Print the Report on which Device: ",%ZIS="QM" W !!,SRGRAMM_"designed to use a 132 column format.",! D ^%ZIS I POP S SRSOUT=1 G END
- I $D(IO("Q")) K IO("Q") S ZTDESC="PERIOPERATIVE OCCURRENCES",ZTRTN="BEG^SROCMP",(ZTSAVE("SRBOTH"),ZTSAVE("SRED"),ZTSAVE("SRSD"),ZTSAVE("SRINST"),ZTSAVE("SRINSTP"),ZTSAVE("SRSP*"),ZTSAVE("SRSEL"))="" D ^%ZTLOAD G END
+ I $D(IO("Q")) K IO("Q") S ZTDESC="PERIOPERATIVE OCCURRENCES",ZTRTN="BEG^SROCMP",(ZTSAVE("SRBOTH*"),ZTSAVE("SRED"),ZTSAVE("SRSD"),ZTSAVE("SRINST"),ZTSAVE("SRINSTP"),ZTSAVE("SRSP*"),ZTSAVE("SRSEL"))="" D ^%ZTLOAD G END
  D BEG^SROCMP
 END ;
  Q:'$D(SRSOUT)  I 'SRSOUT W !!,"Press RETURN to continue  " R X:DTIME
@@ -38,7 +38,7 @@ MOAT ; ask for more attending surgeons
  Q
 OCC W @IOF K DIR S DIR("A")="Do you want to print this report for all Occurrence Categories",DIR("B")="YES",DIR(0)="Y"
  S DIR("?",1)="  Press ENTER to print this report for all occurrence categoies, or"
- S DIR("?")="  enter NO to select an ocurrence category."
+ S DIR("?")="  enter NO to select an occurrence category."
  D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) S SRSOUT=1 D END Q
  I 'Y D CAT I SRSOUT D END Q
  D DEV

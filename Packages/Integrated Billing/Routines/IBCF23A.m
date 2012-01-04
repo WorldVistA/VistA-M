@@ -1,6 +1,6 @@
 IBCF23A ;ALB/ARH - HCFA 1500 19-90 DATA - Split from IBCF23 ;12-JUN-93
- ;;2.0;INTEGRATED BILLING;**51**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,432**;21-MAR-94;Build 192
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 B24 ; set individual entries in print array, external format
  ; IBAUX = additional data for EDI output
@@ -18,6 +18,7 @@ B24 ; set individual entries in print array, external format
  S:$TR($G(IBAUX),U)'="" IBFLD(24,IBI,"AUX")=$G(IBAUX)
  S:$D(IBRXF) IBFLD(24,IBI,"RX")=IBRXF
  K IBPROC,IBSS("L")
+ S IBFLD(24,IBI)=IBFLD(24,IBI)_U_$P(IBSS,U,$L(IBSS,U))
  Q
  ;
 AUXOK(IBSS,IBSS1) ; Check all other flds are the same to combine procs
@@ -46,6 +47,7 @@ PRC ; Extract procedure data for HCFA 1500
  . S IBSS=$$IBSS(IBI,.IBDXI,IBLN)
  . S IBPO=$S($P(IBLN,U,4):+$P(IBLN,U,4),1:IBI+1000) ;Set print order
  . S IBCP(IBPO)=IBPDT_"^"_IBSS,IBCP(IBPO,"AUX")=IBAUXLN
+ . S IBCP(IBPO,"LNK")=IBI
  . ; Rx
  . N IBZ,IBITEM
  . S IBZ=$S($P(IBSS,U):$P(IBSS,U),1:"")

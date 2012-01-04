@@ -1,5 +1,5 @@
-RCDPRSEA ;WISC/RFJ-extended search ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,148,208**;Mar 20, 1995
+RCDPRSEA ;WISC/RFJ/PJH - extended search ; 5/25/11 3:07pm
+ ;;4.5;Accounts Receivable;**114,148,208,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  N DATEEND,DATESTRT,RCTRACE,RCCHECK,RCCREDIT,RCSEARCH,RCTYPE,%ZIS,ZTSAVE,ZTDESC,ZTQUEUED,ZTRTN,POP
@@ -90,7 +90,8 @@ DISPLAY ;  display the payment
  ;  amount
  W ?54,$J($P(DATA,"^",4),8,2)
  ;  check/trace/credit card number
- W $J($S(RCSEARCH=1:$P(DATA,"^",7),RCSEARCH=2:$P(DATA,"^",11),1:$$TRACE(RCRECTDA)),18)
+ W !,"   "
+ W $S(RCSEARCH=1:$P(DATA,"^",7),RCSEARCH=2:$P(DATA,"^",11),1:$$TRACE(RCRECTDA))
  Q
  ;
  ;
@@ -102,7 +103,9 @@ H ;  header
  W $S(RCSEARCH=1:"CHECK ",RCSEARCH=2:"CREDIT CARD ",1:"TRACE # ")
  W $S(RCTYPE="E":"EQUALS ",1:"CONTAINS ")
  W $G(RCCHECK),$G(RCTRACE),$G(RCCREDIT)
- W !,"RECEIPT",?13,"OPENDATE",?24,"TRANS",?30,"ACCOUNT",?54,$J("AMOUNT",8),$J($S(RCSEARCH=1:"CHECK#",RCSEARCH=2:"CREDITCARD#",1:"TRACE#"),18)
+ W !,"RECEIPT",?13,"OPENDATE",?24,"TRANS",?30,"ACCOUNT",?54,$J("AMOUNT",8)
+ W !,"   "
+ W $S(RCSEARCH=1:"CHECK#",RCSEARCH=2:"CREDITCARD#",1:"TRACE#")
  W !,RCRJLINE
  I SCREEN W !!?10,"********** PRESS ^ at anytime to STOP search **********"
  Q

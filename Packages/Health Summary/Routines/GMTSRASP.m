@@ -1,9 +1,10 @@
 GMTSRASP ; SLC/JER,KER - Selected Radiology ; 01/06/2003
- ;;2.7;Health Summary;**28,37,58**;Oct 20, 1995
+ ;;2.7;Health Summary;**28,37,58,88**;Oct 20, 1995;Build 23
  ;
 MAIN ; Controls branching
  Q:+($G(DFN))=0  Q:+($G(DFN))'=+($$RP(+($G(DFN))))
- N GMTSI,GMW,MAX,GMTSTEST,GMDATA
+ ; VM/RJT - PATCH TIU*1*227 - newed variable GMTSPC
+ N GMTSI,GMW,MAX,GMTSTEST,GMDATA,GMTSPC
  S MAX=$S(+$G(GMTSNDM)>0:GMTSNDM,1:999)
  I '$O(GMTSEG(GMTSEGN,71,0)) Q
  S GMTSI=0 F  S GMTSI=$O(GMTSEG(GMTSEGN,71,GMTSI)) Q:GMTSI'>0  D

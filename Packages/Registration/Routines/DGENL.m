@@ -1,5 +1,5 @@
-DGENL ;ALB/RMO - Patient Enrollment - List Manager Screen;12 JUN 1997 10:00 am
- ;;5.3;Registration;**121,147**;08/13/93
+DGENL ;ALB/RMO,LBD - Patient Enrollment - List Manager Screen;12 JUN 1997 10:00 am ; 1/27/11 2:51pm
+ ;;5.3;Registration;**121,147,838**;08/13/93;Build 5
  ;
 EN(DFN) ;Main entry point to invoke the DGEN PATIENT ENROLLMENT protocol
  ; Input  -- DFN      Patient IEN
@@ -17,6 +17,7 @@ HDR ;Header code
  I $$PREF^DGENPTA(DFN,.DGPREFNM)
  S VALMHDR(2)="Preferred Facility: "_$G(DGPREFNM)
  S VALMHDR(2)=$$SETSTR^VALM1("Current Enrollment",VALMHDR(2),60,80)
+ S VALMHDR(3)="Preferred Facility Source: "_$$GET1^DIQ(2,DFN_",",27.03)  ;DG*5.3*838
  Q
  ;
 INIT ;Init variables and list array

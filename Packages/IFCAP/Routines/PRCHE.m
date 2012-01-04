@@ -1,5 +1,5 @@
 PRCHE ;WOIFO/LKG/DST-EDIT ROUTINES FOR SUPPLY SYSTEM ; 6/22/05 8:40am
-V ;;5.1;IFCAP;**1,28,39,81,63**;Oct 20, 2000
+V ;;5.1;IFCAP;**1,28,39,81,63,144,163**;Oct 20, 2000;Build 2
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 EN1 ;ITEM FILE EDIT
  N PRCVDA
@@ -58,6 +58,7 @@ EN3 ;EDIT VENDOR FILE
  ;
 EN5 ;ENTER A NEW P.O.
  D ST Q:'$D(PRC("SITE"))
+ K PRCH("AM")
 EN50 D ENPO^PRCHUTL Q:'$D(PRCHPO)  D LCK1 G:'$D(DA) EN50 D ^PRCHNPO L  G EN50
  ;
 EN6 ;EDIT AN INCOMPLETE P.O.
@@ -106,8 +107,16 @@ EN13 ; Delete 2237 option has been de-activated.
 EN14 ;CREATE ADJUSTMENT VOUCHER
  D ST Q:'$D(PRC("SITE"))
 EN140 D PORQ Q:'$D(PRCHPO)
+ N PRCOK,PRCARDIEN,PCARDID,PCARDNM
  I X=28!(X=33) W $C(7),!,"Adjustment Vouchers not allowed until after order has been Obligated!!" G EN140
  I '$O(^PRC(442,PRCHPO,11,0)) W !?3,"Order has no Receiving Reports !",$C(7) G EN140
+ S PRCOK=$$PCAUTH(DUZ,PRCHPO) I 'PRCOK D  G EN140 ; check authorization level, must be holder, surrogate or approver
+ . S PCARDIEN=$P(PRCOK,U,2),PCARDID=$P(^PRC(440.5,PCARDIEN,0),U,1) D
+ .. ;PRC*5.1*163 alters unauthorized user display to card name and card holder
+ .. S PCARDNM=$P(^PRC(440.5,PCARDIEN,0),U,8),PCARDNM=$P($G(^VA(200,PCARDNM,0)),U)
+ .. W $C(7),!,"You are not authorized to make adjustments on P-Card:"
+ .. W !,?6,$P(^PRC(440.5,PCARDIEN,0),U,11),", belonging to ",PCARDNM
+ . D WRNGMSG ; send e-mail to card holder
  D ^PRCHAM4 G EN140
  ;
 EN15 ;ENTER LOG DEPARTMENTS TO FCP FILE (420)
@@ -130,7 +139,7 @@ Q K DA,DIC,DIE,DIK,DR,DLAYGO,D0,E,I,J,L,PRCHEX,PRCHPUSH,%,ROUTINE,CHECK L
  ;
 LCK1 S DIC="^PRC(442,"
  ;
-LCK L @(DIC_DA_"):0") E  W !,$C(7),"ANOTHER USER IS EDITING THIS ENTRY!" K DA
+LCK L +@(DIC_DA_")"):DILOCKTM E  W !,$C(7),"ANOTHER USER IS EDITING THIS ENTRY!" K DA
  Q
  ;
 ST S PRCF("X")="S" D ^PRCFSITE
@@ -150,4 +159,36 @@ PORQ S:$D(PRCHNRQ) PRCHP("A")="REQUISITION NO.: "
  I $G(PRCHAUTH)=1 S PRCHP("S")="$P($G(^(23)),U,11)=""P"""
  I $G(PRCHAUTH)=2 S PRCHP("S")="$P($G(^(23)),U,11)=""D"""
  D EN3^PRCHPAT
+ Q
+ ;
+PCAUTH(PRCUSER,PRCORDIEN) ; Determine if authorized to adjust PCard Tx
+ ; parameter 1 = DUZ of current user
+ ; parameter 2 = IEN of order in file #442
+ ; returns 1 if this is not a Purchase Card transaction
+ ; returns 2 if this is a PCard order and the user is Holder, Surrogate, Approving Official, or Alternate Approving Official
+ ; returns 0 if this is a PCard order but the user is not one of the above
+ ; for values 0 and 2, returns the purchase card IEN (#440.5) in the second up-arrow piece
+ N PCARD,PCAUTH,PCXRF
+ S PCAUTH=0
+ S PCARD=$P($G(^PRC(442,PRCORDIEN,23)),U,8)
+ I PCARD="" Q 1  ; no purchase card involved
+ F PCXRF="C","E","F" I $D(^PRC(440.5,PCXRF,PRCUSER,PCARD)) S PCAUTH=2 ; pcard is ok for this user
+ Q PCAUTH_U_PCARD
+ ;
+WRNGMSG ;Send message to PCard holder when non-authorized user attempts to modify Tx
+ N PRCHOLDER,XMDUZ,XMY,XMSUB,XMTEXT
+ S PRCHOLDER=$P(^PRC(440.5,PCARDIEN,0),U,8) Q:PRCHOLDER=""
+ K ^TMP("PRCHE",$J)
+ S ^TMP("PRCHE",$J,1,0)="An attempt has been made to enter an Adjustment Voucher"
+ S ^TMP("PRCHE",$J,2,0)="for the following Purchase Card Order:"
+ S ^TMP("PRCHE",$J,3,0)="P-Card number: "_PCARDID_"    Card Holder: "_$P(^VA(200,PRCHOLDER,0),U,1)
+ S ^TMP("PRCHE",$J,4,0)="Transaction number: "_$P(Y(0,0),U,1)
+ S ^TMP("PRCHE",$J,5,0)="User attempting access: "_$P(PRC("PER"),U,2)
+ S ^TMP("PRCHE",$J,6,0)="This user is not on the card's authorized access list."
+ S XMDUZ="IFCAP Purchase Card Monitor"
+ S XMSUB="Unauthorized P-Card transaction report"
+ S XMTEXT="^TMP(""PRCHE"","_$J_","
+ S XMY(PRCHOLDER)=""
+ D ^XMD
+ K ^TMP("PRCHE",$J)
  Q

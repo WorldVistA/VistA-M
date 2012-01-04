@@ -1,7 +1,9 @@
 IBNCPBB ;DALOI/AAT - ECME BACKBILLING ;24-JUN-2003
- ;;2.0;INTEGRATED BILLING;**276,347,384**;21-MAR-94;Build 74
+ ;;2.0;INTEGRATED BILLING;**276,347,384,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
+ ; Reference to file #9002313.29 supported by IA# 4222
+ ; Reference to DIC^PSODI supported by IA# 4858
  ;
  Q
 EN ;[IB GENERATE ECME RX BILLS] entry
@@ -21,7 +23,7 @@ EN ;[IB GENERATE ECME RX BILLS] entry
  Q
  ;
 CT(IBTRN) ;CT ENTRY
- N IBZ,IBRX,IBRXN,IBFIL,IBEXIT,IBPAT,IBRDT,IBFDT,IBRES,IBBIL,IBBN,IBQ,IBSCRES,IBERR
+ N IBDELAY,IBZ,IBRX,IBRXN,IBFIL,IBEXIT,IBPAT,IBRDT,IBFDT,IBRES,IBBIL,IBBN,IBQ,IBSCRES,IBERR
  S IBQ=0
  D FULL^VALM1
  W !!,"This option sends electronic Pharmacy Claims to the Payer"
@@ -77,10 +79,12 @@ CT(IBTRN) ;CT ENTRY
  . D PAUSE("Cannot submit to ECME")
  I IBBIL W !,"The bill# ",$P($G(^DGCR(399,IBBIL,0)),U)," has been cancelled.",!
  ;
+ S IBDELAY=$$DLYRC() ; get delay reason code with optional parameter, IB*2.0*435
+ ;
  D CONFRX(IBRXN) Q:$G(IBEXIT)
  ;
  W !!,"Submitting Rx# ",IBRXN W:IBFIL ", Refill# ",IBFIL W " ..."
- S IBRES=$$SUBMIT^IBNCPDPU(IBRX,IBFIL) W !,"  ",$S(+IBRES=0:"S",1:"Not s")_"ent through ECME."
+ S IBRES=$$SUBMIT^IBNCPDPU(IBRX,IBFIL,IBDELAY) W !,"  ",$S(+IBRES=0:"S",1:"Not s")_"ent through ECME."
  I +IBRES'=0 W !,"  *** ECME returned status: ",$$STAT(IBRES),!
  I +IBRES=0 W !!,"The Rx have been submitted to ECME for electronic billing",!
  D PAUSE()
@@ -276,5 +280,17 @@ SC(IEN) ;Service connected
  I IBT="NEEDS SC DETERMINATION" Q 1
  I IBT="OTHER" Q 1
  Q 0
+ ;
+ ;
+DLYRC(DFLT) ; function, ask for NCPDP field 357-NV Delay Reason Code
+ ; DFLT = optional default value (integer from 1-14)
+ ; returns code or "^" on time-out, etc.
+ N IBDELAY,C,DIC,DIR,DIRUT,DIROUT,DUOUT,DTOUT,X,Y
+ S IBDELAY=""
+ I $G(DFLT)?1.2N,DFLT>0,DFLT<15 S DIR("B")=DFLT
+ S DIR(0)="PO^9002313.29:EMZ" D ^DIR K DIR ; IA# TBD
+ S IBDELAY=$S($D(DTOUT)!$D(DUOUT)!$D(DIROUT)!$D(DIRUT):"^",1:Y)
+ S IBDELAY=+$P((IBDELAY),"^",1)
+ Q IBDELAY
  ;
  ;IBNCPBB

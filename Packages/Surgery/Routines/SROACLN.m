@@ -1,12 +1,16 @@
 SROACLN ;BIR/MAM - CLINICAL DATA ;07/25/04  1:32 PM
- ;;3.0; Surgery ;**38,47,71,95,100,125,142,174**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,47,71,95,100,125,142,174,175**;24 Jun 93;Build 6
  I '$D(SRTN) W !!,"A Surgery Risk Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
  S SRACLR=0,SRSOUT=0,SRSUPCPT=1 D ^SROAUTL
 START D:SRACLR RET G:SRSOUT END S SRACLR=0 K SRA,SRAO D ^SROACL1
 ASK W !!,"Select Clinical Information to Edit: " R X:DTIME I '$T!("^"[X) G END
- S:X="a" X="A" I '$D(SRAO(X)),(X'?.N1":".N),(X'="A") D HELP G:SRSOUT END G START
+ S X=$S(X="a":"A",X="n":"N",1:X) I '$D(SRAO(X)),(X'?.N1":".N),(X'="A"),(X'="N") D HELP G:SRSOUT END G START
  I X="A" S X="1:25"
  I X?.N1":".N S Y=$E(X),Z=$P(X,":",2) I Y<1!(Z>25)!(Y>Z) D HELP G:SRSOUT END G START
+ I X="N" D  G:SRSOUT END G START
+ .W ! K DIR S DIR(0)="Y",DIR("B")="NO",DIR("A")="Are you sure you want to set all fields on this page to NO"
+ .D ^DIR I $D(DTOUT)!$D(DUOUT) S SRSOUT=1 Q
+ .I Y D NO2ALL
  D HDR^SROAUTL
  I X?.N1":".N D RANGE G START
  I $D(SRAO(X)) S EMILY=X D  G START
@@ -14,8 +18,9 @@ ASK W !!,"Select Clinical Information to Edit: " R X:DTIME I '$T!("^"[X) G END
 END I '$D(SREQST) W @IOF D ^SRSKILL
  Q
 HELP W @IOF,!!!!,"Enter the number or range of numbers you want to edit.  Examples of proper",!,"responses are listed below."
- W !!,"1. Enter 'A' to update all information.",!!,"2. Enter a specific number to update the information in that field.  (For",!,"   example, enter '8' to update Current Smoker)"
- W !!,"3. Enter a range of numbers separated by a ':' to enter a range of",!,"   information.  (For example, enter '7:9' to enter Pulmonary Rales,",!,"   Current Smoker, and Active Endocarditis.)"
+ W !!,"1. Enter 'A' to update all information.",!!,"2. Enter 'N' to set all fields on this page to NO."
+ W !!,"3. Enter a specific number to update the information in that field.  (For",!,"   example, enter '8' to update Current Smoker)"
+ W !!,"4. Enter a range of numbers separated by a ':' to enter a range of",!,"   information.  (For example, enter '7:9' to enter Pulmonary Rales,",!,"   Current Smoker, and Active Endocarditis.)"
  W !!,"Press <RET> to continue, or '^' to quit  " R X:DTIME I '$T!(X["^") S SRSOUT=1
  Q
 RANGE ; range of numbers
@@ -34,4 +39,11 @@ FUNCT K DA,DIR S DA=SRTN,DIR(0)="130,240",DIR("A")="Functional Status" D ^DIR K 
  .I $D(DTOUT)!$D(DUOUT) Q
  .I X="@" K DIE,DR S DIE=130,DR="240///@" D ^DIE K DA,DIE,DR Q
  .K DIE,DR S DIE=130,DR="240////"_Y D ^DIE K DA,DIE,DR
+ Q
+NO2ALL ; set all fields to NO
+ N II K DR,DIE S DA=SRTN,DIE=130
+ F II=475,203,209,348,349,350,351,265,264,353,354,355,474,463,509 S DR=$S($D(DR):DR_";",1:"")_II_"////N"
+ F II=351,205,352,485 S DR=DR_";"_II_"////0"
+ S DR=DR_";"_510_"////1"
+ D ^DIE K DR
  Q

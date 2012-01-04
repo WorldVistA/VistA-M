@@ -1,5 +1,5 @@
 GMTSLRS ; SLC/JER,KER - Sel Lab Component w/Selection Items ; 01/06/2003
- ;;2.7;Health Summary;**16,28,47,58**;Oct 20, 1995
+ ;;2.7;Health Summary;**16,28,47,58,88**;Oct 20, 1995;Build 23
  ;
  ; External References
  ;    DBIA    67  ^LAB(60
@@ -31,17 +31,25 @@ PANEL ; Visits "PANEL" multiple to get pointers to atomic tests
  Q
 WRTHDR ; Prints columnar header
  D CKP^GMTSUP Q:$D(GMTSQIT)  W "Collection DT",?18,"Specimen"
- W ?29,"Test Name",?48,"Result",?58,"Units",?68,"Ref Range",!
+ W ?29,"Test Name",?48,"Result",?58,"Units",?70,"Ref Range",!
  W:'$D(GMTSOBJ) !
  Q
 WRT ; Writes the Lab Record
- D CKP^GMTSUP Q:$D(GMTSQIT)  D
+ ; VMP/RJT - Lab Ref Range update
+ N ISNEG,REF,TAB D CKP^GMTSUP Q:$D(GMTSQIT)  D
  . D:GMTSNPG WRTHDR N GMTSI
  . W $P(GMX,U),?18,$P($P(GMX,U,2),";",2)
  . I $D(^TMP("LRS",$J,"C",IX))>9,'+$G(GMCMNT) W ?24,"!! " S GMCFLAG=1
- . S GMTSI=$P(GMX,U,8) S:GMTSI="NEGATIVE" GMTSI="NEG"
+ . S GMTSI=$P(GMX,U,8),ISNEG=0 S:GMTSI="NEGATIVE" GMTSI="NEG",ISNEG=1
  . W ?29,$E($P($P(GMX,U,3),";",2),1,17),?46,$P(GMX,U,4)," ",$P(GMX,U,5)
- . W ?58,$P(GMX,U,6),?68,$J($P(GMX,U,7),4),?73,"-",?74,$J(GMTSI,4),!
+ . ; VM/RJT - Lab Ref Range update
+ . ;W ?58,$P(GMX,U,6),?68,$J($P(GMX,U,7),4),?73,"-",?74,$J(GMTSI,4),!
+ . I ((ISNEG=1)!($P(GMX,U,7)="NEGATIVE")) W ?58,$P(GMX,U,6),?67,$J("NEG",12),! Q
+ . S REF=$$EN^LRLRRVF($P(GMX,U,7),$G(GMTSI))
+ . S TAB=67+($S(REF?1A.E:2,1:(8-$F(REF,"-")))) S:TAB<67 TAB=67
+ . I (TAB>72)&($L(REF)>5) S TAB=67+((13-($L(REF))/2))
+ . I ($L(REF)>12),($L(REF)<15) S TAB=80-($L(REF))
+ . W ?58,$P(GMX,U,6),?TAB,REF,!
  I +$G(GMCMNT),$D(^TMP("LRS",$J,"C",IX))>9,'$D(^TMP("LRS",$J,+$O(^TMP("LRS",$J,IT)),IX)) D  Q
  . S GMLINE=0
  . F  S GMLINE=$O(^TMP("LRS",$J,"C",IX,GMLINE)) Q:GMLINE'>0  D

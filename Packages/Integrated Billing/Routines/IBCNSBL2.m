@@ -1,6 +1,6 @@
-IBCNSBL2 ;ALB/CPM - 'BILL NEXT PAYOR' BULLETIN ; 08-AUG-96
- ;;2.0;INTEGRATED BILLING;**52,80,153,240**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+IBCNSBL2 ;ALB/CPM - 'BILL NEXT PAYOR' BULLETIN ;08-AUG-96
+ ;;2.0;INTEGRATED BILLING;**52,80,153,240,432**;21-MAR-94;Build 192
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EOB(IBIFN,IBORIG,IBPYMT,IBTXT) ; determine if there may be another payer for this claim that should be billed
  ; in general the EOB of the current bill is required to be sent with the next TP bill in the series
@@ -82,9 +82,19 @@ BULL(IBIFN,IBORIG,IBPYMT) ; Generate bulletin detailing next payer for a claim, 
  ;                        If a secondary payor for the claim can be found, a bulletin will be sent
  ;                        to the billing unit to alert them to forward the claim to that payor.
  ;
- N X,IB,IBX,IBTXT,IBP,IBGRP
+ N X,IB,IBX,IBTXT,IBP,IBGRP,IBWLF  ;WCJ;IB*2.0*432
  ;
- S IBX=$$EOB($G(IBIFN),$G(IBORIG),$G(IBPYMT),.IBTXT) I '$D(IBTXT) G BULLQ
+ S IBX=$$EOB($G(IBIFN),$G(IBORIG),$G(IBPYMT),.IBTXT) I '$D(IBTXT) D WLCK(IBIFN) G BULLQ
+ ;
+ ; WCJ;IB*2.0*432;Trigger commercial auto processing.  
+ ; This will replace the bulletin when activated.  
+ ; (not using a master switch just yet so it's automatically activated)
+ ;I $$GET1^DIQ(350.9,1,8.18) D  G BULLQ
+ ; check if these should go directly to the worklist
+ S IBWLF=$S('IBX:1,".CHAMPVA Center.TRICARE Fiscal Intermediary.TRICARE Supplemental policy."[("."_$P(IBX,U,2)_"."):1,1:0)
+ D EN^IBCAPP(IBIFN,IBORIG,IBPYMT,IBWLF)
+ G BULLQ
+ ; WCJ;IB*2.0*432;end changes
  ;
  S IB=$G(^DGCR(399,IBIFN,0)) I IB="" G BULLQ
  S IBP=$$PT^IBEFUNC(+$P(IB,"^",2))
@@ -134,3 +144,12 @@ CHPSUP(DFN) ; Does the patient have a TRICARE Supplemental policy?
  S (IBCS,X)=0 F  S X=$O(IBINS(X)) Q:'X  D  Q:IBCS
  .I $D(^IBE(355.1,"D","CS",+$P($G(IBINS(X,355.3)),"^",9))) S IBCS=1
  Q IBCS
+ ;
+WLCK(IBIFN) ; does this claim need to be removed from the worklist?
+ ; IBIFN = claim ien, if collected/closed and NO subsequent payer, remove from worklist if there
+ ; 
+ N X
+ Q:$P($$BILL^RCJIBFN2(IBIFN),U,2)'=22  ;  AR status DBIA 1452
+ Q:'$D(^DGCR(399,"CAP",1,IBIFN))  ; not on worklist
+ S X=$$WLRMVF^IBCECOB1(IBIFN,"RM",1)
+ Q 

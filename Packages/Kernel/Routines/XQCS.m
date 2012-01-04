@@ -1,5 +1,5 @@
-XQCS ;SEA/Luke - Client/Server Utilities ;01/07/2003  13:53
- ;;8.0;KERNEL;**15,28,82,116,115,177,188,157,253**;Jul 10, 1995
+XQCS ;SEA/Luke - Client/Server Utilities ;05/09/2011
+ ;;8.0;KERNEL;**15,28,82,116,115,177,188,157,253,569**;Jul 10, 1995;Build 1
  ;
 CHK(XQUSR,XQOPT,XQRPC) ;Check to see if this user can run this RPC from
  ;this option.  Called by XWBSEC and XUSRB.
@@ -111,6 +111,9 @@ TOP ;See if XQOPT is on top level of a tree: primary, secondary, or common
  ;
  ;
  I $D(^VA(200,XQUSR,203,0)),$P(^(0),U,4)>0 S XQSMY=1 D
+ .;** P569 START CJM
+ .N DUZ S DUZ=XQUSR
+ .;** P569 END CJM
  . S XQDIC="U"_XQUSR I $S('$D(^XUTL("XQO",XQDIC,0)):1,'$D(^VA(200,XQUSR,203.1)):1,1:^VA(200,XQUSR,203.1)'=$P(^XUTL("XQO",XQDIC,0),U,2)) D ^XQSET
  . S (XQSM,%)=0
  . F  Q:%  S XQSM=$O(^XUTL("XQO",XQDIC,"^",XQSM)) Q:XQSM=""  I XQSM=XQOPT S XQYES=1 Q

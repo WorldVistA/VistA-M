@@ -1,8 +1,8 @@
 ECXFEKEY ;BIR/DMA,CML-Print Feeder Keys; [ 05/15/96  9:44 AM ] ; 8/15/06 9:10am
- ;;3.0;DSS EXTRACTS;**10,11,8,40,84,92,123**;Dec 22, 1997;Build 8
+ ;;3.0;DSS EXTRACTS;**10,11,8,40,84,92,123,132**;Dec 22, 1997;Build 18
 EN ;entry point from option
  W !!,"Print list of Feeder Keys:",!
- W !,"Select : 1. CLI",!,?9,"2. ECS",!,?9,"3. LAB",!,?9,"4. NUR",!,?9,"5. NUT",!,?9,"6. PHA",!,?9,"7. RAD",!,?9,"8. SUR",! S DIR(0)="L^1:8" D ^DIR Q:$D(DIRUT)
+ W !,"Select : 1. CLI",!,?9,"2. ECS",!,?9,"3. LAB",!,?9,"4. NUT",!,?9,"5. PHA",!,?9,"6. RAD",!,?9,"7. SUR",! S DIR(0)="L^1:7" D ^DIR Q:$D(DIRUT)
  S ECY=Y
  I ECY["2" D
  .W !!,"The Feeder Key List for the Feeder System ECS can be printed by:",!?5,"(O)ld Feeder Key sort by Category-Procedure",!?5,"(N)ew Feeder Key sort by Procedure-CPT Code"
@@ -21,7 +21,7 @@ EN ;entry point from option
 START ;queued entry point
  I '$D(DT) S DT=$$HTFM^XLFDT(+$H)
  K ^TMP($J)
- F ECLIST=1:1 S EC=$P(ECY,",",ECLIST) Q:EC=""  D:EC=1 CLI D:EC=2 ECS D:EC=3 LAB D:EC=4 NUR D:EC=5 NUT D:EC=6 PHA D:EC=7 RAD D:EC=8 SUR^ECXFEKE1
+ F ECLIST=1:1 S EC=$P(ECY,",",ECLIST) Q:EC=""  D:EC=1 CLI D:EC=2 ECS D:EC=3 LAB D:EC=4 NUT D:EC=5 PHA D:EC=6 RAD D:EC=7 SUR^ECXFEKE1
  U IO D PRINT^ECXFEKE1
  Q
 LAB S EC=0
@@ -116,19 +116,6 @@ CLI S SC=0 F  S SC=$O(^SC(SC)) Q:'SC  I $D(^(SC,0)) S EC=^(0),ECD=$P(EC,U) I $P(
  K ECLEN Q
 RAD S EC=0 F  S EC=$O(^RAMIS(71,EC)) Q:'EC  I $D(^(EC,0)) S EC1=^(0),ECD=$P(EC1,U),EC2=$P($G(^ICPT(+$P(EC1,U,9),0)),U) S:EC2="" EC2="Unknown" S ^TMP($J,"RAD",EC2,EC)=ECD
  S ^TMP($J,"RAD",88888,88888)="Portable procedure",^TMP($J,"RAD",99999,99999)="OR procedure"
- Q
-NUR F EC=1:1:11 S EC1=$P($T(@EC),";",3) F EC2=0:1:5 S ^TMP($J,"NUR",$P(EC1,U)_"-"_EC2,EC2)=$P(EC1,U,2)_" LEVEL "_EC2
-1 ;;PSI^PSYCHIATRIC
-2 ;;SUR^SURGICAL
-3 ;;MED^MEDICAL (EXCLUDE SCI)
-4 ;;SCI^MEDICAL (SCI)
-5 ;;NUR^NURSING HOME CARE UNIT
-6 ;;REC^RECOVERY ROOM
-7 ;;ITN^INTENSIVE CARE
-8 ;;HEM^HEMODIALYSIS
-9 ;;INT^INTERMEDIATE CARE
-10 ;;DOM^DOMICILIARY
-11 ;;ALC^ALCOHOL AND DRUG TREATMENT
  Q
 NUT ;Feeder keys for Nutrition and Food Service extract
  N TYP,TIEN,DIET,IN,PRODUCT,KEY,NUMBER,IENS

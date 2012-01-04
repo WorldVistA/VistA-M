@@ -1,11 +1,11 @@
 BPSOSL ;BHAM ISC/FCS/DRS/DLF - Logging ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5**;JUN 2004;Build 45
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ; Entry Points:
  ;   LOG  - Log a message
  ;   LOG2CLM - Log a message to all transactions associated with a claim
- ;   LOG2LIST - Log a message to all transactions in RXILIST
+ ;   LOG2LIST - Log a message for all transactions in TRANLIST
  ;   LOGARRAY - Log array data into the transaction
  ;   LOGARAY2 - Log array data into all transactions associated with a claim
  ;
@@ -64,12 +64,12 @@ LOG2CLM(IEN02,MSG) ;
  F  S IEN59=$O(^BPST("AE",IEN02,IEN59)) Q:'IEN59  D LOG(IEN59,MSG)
  Q
  ;
- ; LOG2LIST - Write MSG to the log files of all in RXILIST(*)
- ; Assumes RXILIST exists
+ ; LOG2LIST - Write MSG to the log files of all in TRANLIST(*)
+ ; Assumes TRANLIST exists
 LOG2LIST(MSG) ;
  N IEN59
  S IEN59=0
- F  S IEN59=$O(RXILIST(IEN59)) Q:'IEN59  D LOG(IEN59,MSG)
+ F  S IEN59=$O(TRANLIST(IEN59)) Q:'IEN59  D LOG(IEN59,MSG)
  Q
  ;
  ; LOGARRAY - Log an array

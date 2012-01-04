@@ -1,5 +1,5 @@
-PSORESK ;BIR/SAB-return to stock ;10/24/06 4:22pm
- ;;7.0;OUTPATIENT PHARMACY;**15,9,27,40,47,55,85,130,185,184,196,148,201,259,261**;DEC 1997;Build 9
+PSORESK ;BIR/SAB-return to stock ; 9/16/10 11:52am
+ ;;7.0;OUTPATIENT PHARMACY;**15,9,27,40,47,55,85,130,185,184,196,148,201,259,261,368**;DEC 1997;Build 4
  ;
  ;REF/IA
  ;^PSDRUG/221
@@ -7,6 +7,8 @@ PSORESK ;BIR/SAB-return to stock ;10/24/06 4:22pm
  ;L, UL, PSOL, and PSOUL^PSSLOCK/2789
  ;^PS(55/2228
  ;PSDRTS^PSDOPT0/3064
+ ;
+ ;External reference ^XTMP("PSA" supported by DBIA 1036
  ;
  ;*259 - if refill was Not deleted, then stop RTS from continuing
  ;
@@ -60,7 +62,10 @@ BC1 ;
  .D NOW^%DTC S DA=RXP,DA=RXP,DIE="^PSRX(",DR="31///@;32.1///"_% D ^DIE K DIE,DR,DA Q:$D(Y)
  .D ACT^PSORESK1 S DA=$O(^PS(52.5,"B",RXP,0)) I DA S DIK="^PS(52.5," D ^DIK
  .D REVERSE^PSOBPSU1(RXP,0,"RS",4,,1)
- .D EN^PSOHLSN1(RXP,"ZD") W !,"Rx # "_$P(^PSRX(RXP,0),"^")_" Returned to Stock.",!
+ .D EN^PSOHLSN1(RXP,"ZD")
+ .S:'$P($G(^XTMP("PSA",0)),U,2) $P(^(0),U,2)=DT  ;PSO*7*368
+ .S ^XTMP("PSA",PSOSITE,+QDRUG,+DT)=$G(^XTMP("PSA",PSOSITE,+QDRUG,+DT))-QTY  ;PSO*7*368
+ .W !,"Rx # "_$P(^PSRX(RXP,0),"^")_" Returned to Stock.",!
  .Q
  ;
 REF I $O(^PSRX(RXP,1,0)),$O(^PSRX(RXP,"P",0)) D  I $D(DTOUT)!($D(DUOUT)) D UL G BC
@@ -115,6 +120,8 @@ PAR S:$G(XTYPE)']"" XTYPE=1 S TYPE=0 F YY=0:0 S YY=$O(^PSRX(RXP,XTYPE,YY)) Q:'YY
  ;
  ;fall thru and perform RTS for refills/partials
  D:XTYPE'="P" NPF D ACT^PSORESK1
+ S:'$P($G(^XTMP("PSA",0)),U,2) $P(^(0),U,2)=DT  ;PSO*7*368
+ S ^XTMP("PSA",PSOSITE,+QDRUG,+DT)=$G(^XTMP("PSA",PSOSITE,+QDRUG,+DT))-QTY  ;PSO*7*368
  W !!,"Rx # "_$P(^PSRX(RXP,0),"^")_$S(XTYPE:" REFILL",1:" PARTIAL")_" #"_TYPE_" Returned to Stock" S DA=$O(^PS(52.5,"B",RXP,0)) I DA S DIK="^PS(52.5," D ^DIK
  K PSODISPP S:'XTYPE PSODISPP=1 D:XTYPE EN^PSOHDR("PRES",RXP) D EN^PSOHLSN1(RXP,"ZD") K PSODISPP
  D UL G BC

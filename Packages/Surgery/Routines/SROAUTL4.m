@@ -1,5 +1,5 @@
 SROAUTL4 ;BIR/ADM - RISK ASSESSMENT UTILITY ;01/10/08
- ;;3.0; Surgery ;**38,71,95,125,153,160,164,166,174**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,71,95,125,153,160,164,166,174,175**;24 Jun 93;Build 6
  N SRZZ,SRXX,SRX1
  S SRZ=0 F  S SRZ=$O(SRY(130,SRTN,SRZ)) Q:'SRZ  D
  .I SRY(130,SRTN,SRZ,"I")="" D TR S (SRX1,X)=$T(@SRP),SRFLD=$P(X,";;",2) D
@@ -82,6 +82,7 @@ CFDPA ;;364.1^Date/Time of Estimate of Operative Mortality^Date/Time of Estimate
 APAC ;;1.13^ASA Class^ASA Classification^;;4-03
 DAD ;;414^Cardiac Surgical Priority^Surgical Priority^;;4-04
 DADPA ;;414.1^Date/Time of Cardiac Surgical Priority^Date/Time of Cardiac Surgical Priority^;;4-05
+APJI ;;1.09^Wound Classification^Wound Classification^;;4-06
 CFE ;;365^CABG Distal Anastomoses with Vein^^;;5-01
 CFF ;;366^CABG Distal Anastomoses with IMA^^;;5-02
 DFD ;;464^Number with Radial Artery^;;5-03
@@ -97,7 +98,7 @@ DHC ;;483^Transmyocardial Laser Revascularization;;5-08
 EAB ;;512^Maze Procedure;;5-13
 CGF ;;376^ASD Repair (Y/N)^ASD Repair^;;5-14
 CHJ ;;380^VSD Repair (Y/N)^VSD Repair^;;5-15
-CGH ;;378^Myectomy for IHSS (Y/N)^Myectomy for IHSS^;;5-16
+CGH ;;378^Myectomy (Y/N)^Myectomy^;;5-16
 CGG ;;377^Myxoma Resection (Y/N)^Myxoma Resection^;;5-17
 CGI ;;379^Other Tumor Resection (Y/N)^Other Tumor Resection^;;5-18
 CGC ;;373^Cardiac Transplant (Y/N)^Cardiac Transplant^;;5-19

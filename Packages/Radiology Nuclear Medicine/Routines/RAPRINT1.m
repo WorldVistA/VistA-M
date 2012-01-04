@@ -1,5 +1,5 @@
 RAPRINT1 ;HISC/FPT-Abnormal Exam Report (cont.) ;4/5/96  10:49
- ;;5.0;Radiology/Nuclear Medicine;**34,97**;Mar 16, 1998;Build 6
+ ;;5.0;Radiology/Nuclear Medicine;**34,97,47**;Mar 16, 1998;Build 21
 DIV ; walk through tmp global, start with 'division'
  Q:'$D(^TMP($J))
  N RAFIRST,RAPRTSET,RASAME,RACURR,RAPREV,L1
@@ -65,6 +65,8 @@ PRINT ; print entries
  S RAPAT=$S($P(RAPAT,U)]"":$P(RAPAT,U),1:"Not Found")
  S Y=9999999.9999-K X ^DD("DD") S RAEXDT=Y
  S RACASE=$P(RAEXAM(0),U)
+ N RASSAN,RACNDSP S RASSAN=$$SSANVAL^RAHLRU1(RADFN,K,L)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:RACASE)
  S RAWARD=$S($P(RAEXAM(0),U,6):$P(RAEXAM(0),U,6),1:"")
  I RAWARD]"" S RAWARD=$S($D(^DIC(42,RAWARD,0)):$P(^(0),U),1:"")
  I RAWARD']"" S RAWARD=$S($P(RAEXAM(0),U,8):$P(RAEXAM(0),U,8),1:"") I RAWARD]"" S RAWARD=$S($D(^SC(RAWARD,0)):$P(^(0),U),1:"Unknown")
@@ -83,8 +85,9 @@ PRINT ; print entries
  ; Once for PrintSets.
  ; Once for different DX though same pat. case#
  I (RAPREV'=RACURR)!(I1("DX")'=I)!RAPRTSET D
- .W !?2 W:RAFIRST=1 "(+)" I (RAFIRST=2)!RAPRTSET W "(.)"
- .W ?6,"Case #",RACASE,?20,$E(RAPROC,1,39),?60,RAEXDT
+ .W !?1 W:RAFIRST=1 "(+)" I (RAFIRST=2)!RAPRTSET W "(.)"
+ .I $$USESSAN^RAHLRU1() W ?4,"Case #",RACNDSP,?27,$E(RAPROC,1,34),?62,RAEXDT
+ .I '$$USESSAN^RAHLRU1() W ?6,"Case #",RACASE,?20,$E(RAPROC,1,39),?60,RAEXDT
  I RADXCODE="(P)",'$P(^RADPT(J,"DT",K,"P",L,0),U,20) S $P(^(0),U,20)=DT
  I RADXCODE="(S)",'$P(^RADPT(J,"DT",K,"P",L,"DX",RASDXIEN,0),U,2) S $P(^(0),U,2)=DT
  S ^TMP($J,"RADLY",RADIVNME,RAITNAME)=+^TMP($J,"RADLY",RADIVNME,RAITNAME)+1,CNT=CNT+1
@@ -102,7 +105,8 @@ HDR ; header
  W !?13,"(P=Primary Dx, S=Secondary Dx / '*' represents reprint)"
  W !?(80-$L($G(RATRPTG))\2),$G(RATRPTG)
  W !,"Patient Name",?42,"Ward/Clinic",?58,"Requesting Physician"
- W !?20,"Procedure",?60,"Exam Date",!,QQ
+ I $$USESSAN^RAHLRU1() W !?27,"Procedure",?60,"Exam Date",!,QQ
+ I '$$USESSAN^RAHLRU1() W !?20,"Procedure",?60,"Exam Date",!,QQ
  S I1("DIV")="",I1("IT")=""
  I $D(ZTQUEUED) D STOPCHK^RAUTL9 S:$G(ZTSTOP)=1 RAOUT=1
  Q

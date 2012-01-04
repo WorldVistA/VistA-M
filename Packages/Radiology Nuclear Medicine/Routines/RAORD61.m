@@ -1,5 +1,5 @@
 RAORD61 ;HISC/GJC-Print A Request Cont. ;2/2/98  15:28
- ;;5.0;Radiology/Nuclear Medicine;**45,68**;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**45,68,47**;Mar 16, 1998;Build 21
  ;11/18/05 KAM Remedy Call 100930 Remove extra dash lines
  ;
 TC ;technologist information & comment (called from RAORD6)
@@ -10,7 +10,8 @@ TC ;technologist information & comment (called from RAORD6)
  . S RA18PRC=""
  . F  S RA18PRC=$O(^TMP($J,"RAE2",RADFN,RA18CNI,RA18PRC)) Q:RA18PRC=""  D  Q:RAX["^"
  .. ;case info
- .. W !,"Case No: "_$P($G(^RADPT(RADFN,"DT",RA18DTI,"P",RA18CNI,0)),"^")
+ .. I $$USESSAN^RAHLRU1() W !,"Case No: "_$P($G(^RADPT(RADFN,"DT",RA18DTI,"P",RA18CNI,0)),"^",31),!
+ .. I '$$USESSAN^RAHLRU1() W !,"Case No: "_$P($G(^RADPT(RADFN,"DT",RA18DTI,"P",RA18CNI,0)),"^")
  .. S RA18FL=0,RA18ARR("FT")=""
  .. S RA18TC=0 F  S RA18TC=$O(^RADPT(RADFN,"DT",RA18DTI,"P",RA18CNI,"F",RA18TC)) Q:RA18TC=""  S RA18ARR("F")=$G(^RADPT(RADFN,"DT",RA18DTI,"P",RA18CNI,"F",RA18TC,0),0) D  Q:$L(RA18ARR("FT"))>32
  ... I RA18ARR("F")'=0 S RA18ARR("FT")=RA18ARR("FT")_$P($G(RA18ARR("F")),"^",2)_"-"_$P($G(^RA(78.4,$P($G(RA18ARR("F")),"^",1),0)),"^",1)_";"

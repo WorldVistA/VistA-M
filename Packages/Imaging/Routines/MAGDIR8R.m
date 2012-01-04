@@ -1,5 +1,5 @@
-MAGDIR8R ;WOIFO/PMK - Automatic Import Reconciliation Workflow ; 04 Feb 2009 10:18 AM
- ;;3.0;IMAGING;**53**;Mar 19, 2002;Build 1719;Apr 28, 2010
+MAGDIR8R ;WOIFO/PMK - Automatic Import Reconciliation Workflow ; 27 Sep 2010 1:00 PM
+ ;;3.0;IMAGING;**53,49**;Mar 19, 2002;Build 2033;Apr 07, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -169,13 +169,23 @@ STORE ;  store an entry
  Q
  ;
 DELETE(IMAGEUID,MACHID,OLDPATH) ; remove an entry
- N RETURN
+ N DUPIEN,RETURN
  L +^MAGD(2006.5752,0):1E9 ; serialize name generation code
  S RETURN=$$DELETE1(IMAGEUID,MACHID,OLDPATH)
+ ;
+ ; check for duplicate SOP Instances and delete them
+ F  S DUPIEN=$O(^MAGD(2006.5752,"C",IMAGEUID,"")) Q:'DUPIEN  D
+ . N MACHID,OLDPATH,RETURN,X
+ . M X=^MAGD(2006.5752,DUPIEN)
+ . S MACHID=$P(X(0),"^",3),OLDPATH=$P(X(3),"^",1)
+ . S RETURN=$$DELETE1(IMAGEUID,MACHID,OLDPATH)
+ . Q
+ ;
  L -^MAGD(2006.5752,0)
  Q RETURN
  ;
 DELETE1(IMAGEUID,MACHID,OLDPATH) ; remove the single entry
+ ; Note: ^MAGD(2006.5752,0) must be locked prior to invocation
  N EXIST,IEN,X
  S IEN=$O(^MAGD(2006.5752,"D",MACHID,OLDPATH,"")) Q:'IEN 0
  M X=^MAGD(2006.5752,IEN)
@@ -201,8 +211,6 @@ DELETE1(IMAGEUID,MACHID,OLDPATH) ; remove the single entry
  K ^MAGD(2006.5752,IEN)
  K ^MAGD(2006.5752,"C",IMAGEUID,IEN) ; index by SOP Instance UID
  K ^MAGD(2006.5752,"D",MACHID,OLDPATH,IEN) ; index by file path
- L +^MAGD(2006.5752,0):1E9 ; serialize name generation code
  ; Only subtract 1 from #entries, if we're actually deleting one
  I EXIST S $P(^(0),"^",4)=$P(^MAGD(2006.5752,0),"^",4)-1
- L -^MAGD(2006.5752,0)
  Q 0

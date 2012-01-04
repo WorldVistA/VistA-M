@@ -1,11 +1,14 @@
 RAEDPT ;HISC/FPT,GJC,SS AISC/MJK,RMO-Edit Exams by Patient ;4/21/97  10:47
- ;;5.0;Radiology/Nuclear Medicine;**10,18,28,45**;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**10,18,28,45,47**;Mar 16, 1998;Build 21
  ;last modification by SS JUNE 19,2000
 CASE D SET^RAPSET1 I $D(XQUIT) K XQUIT,POP Q
  S RAXIT=0,DIC(0)="AEMQ" D ^RADPA G Q:Y<0
  S RADFN=+Y,RAHEAD="**** Edit Exams By Patient ****"
  D ^RAPTLU G CASE:"^"[X
- W !!,"Case No.:",RACN,?15,"Procedure:",$E(RAPRC,1,30),?57,"Date:",RADATE
+ N RASSAN,RACNDSP S RASSAN=$$SSANVAL^RAHLRU1(RADFN,RADTI,RACNI)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:RACN)
+ I $$USESSAN^RAHLRU1() W !!?5,"Case No.: ",RACNDSP,!?4,"Procedure: ",$E(RAPRC,1,30),?56,"Date: ",RADATE
+ I '$$USESSAN^RAHLRU1() W !!,"Case No.:",RACN,?15,"Procedure:",$E(RAPRC,1,30),?57,"Date:",RADATE
  N RADISPLY
  S RADISPLY=$G(^RAMIS(71,+$P($G(^RADPT(+RADFN,"DT",+RADTI,"P",+RACNI,0)),U,2),0)) ; set $ZR to 71 for prccpt^radd1, not call raprod since diff col
  S RADISPLY=$$PRCCPT^RADD1()

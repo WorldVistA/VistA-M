@@ -1,5 +1,5 @@
 IBCEF22 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS ;06-FEB-96
- ;;2.0;INTEGRATED BILLING;**51,137,135,155,309,349,389**;21-MAR-94;Build 6
+ ;;2.0;INTEGRATED BILLING;**51,137,135,155,309,349,389,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;  OVERFLOW FROM ROUTINE IBCEF2
@@ -22,6 +22,9 @@ HOS(IBIFN) ; Extract rev codes for episode billed on a UB-04 into IBXDATA
  ;           the '0' node for each subordinate entry of file
  ;           361.11511 (REASONS) (Only first 3 pieces for 837)
  ;       z = group code, sometimes preceeded by a space   p = seq #
+ ;
+ ;         -- AND --
+ ;    IBXDATA(n,"CPLNK") = soft link to corresponding entry in PROCEDURES multiple of file 399
  ;
  N IBDA,IBCOMB,IBINPAT,IBLN,IBX,IBY,IBZ,IBS,IBSS,IBXTRA,IBX1,IBXS,IBP,IBPO,IBP1,IBDEF,Z,Z0,Z1,ZX,QQ,IBMOD
  S IBINPAT=$$INPAT^IBCEF(IBIFN,1)
@@ -95,6 +98,7 @@ HOS(IBIFN) ; Extract rev codes for episode billed on a UB-04 into IBXDATA
  . S IBX=$G(IBX1(IBS,IBPO,IBSS,1)),IBZ=$G(IBX1(IBS,IBPO,IBSS,2))
  . S IBLN=$G(IBLN)+1,IBXDATA(IBLN)=$P(IBX,U)_U_$P(IBZ,U,6)_U_$P(IBZ,U,2)_U_+IBX1(IBS,IBPO,IBSS)_U_+$P(IBX1(IBS,IBPO,IBSS),U,2),$P(IBXDATA(IBLN),U,10)=$G(IBX1(IBS,IBPO,IBSS,"DT"))
  . S $P(IBXDATA(IBLN),U,6)=$P(IBZ,U,9),$P(IBXDATA(IBLN),U,7)=$P(IBZ,U,13),$P(IBXDATA(IBLN),U,8)=$G(IBX1(IBS,IBPO,IBSS,"IEN")),$P(IBXDATA(IBLN),U,9)=$P($P(IBSS,U,3),",",1,2)
+ . S IBXDATA(IBLN,"CPLNK")=$$RC2CP(IBIFN,$P($P(IBXDATA(IBLN),U,8),";"))
  . ; Extract line lev COB data for sec or tert bill
  . I $$COBN^IBCEF(IBIFN)>1 D COBLINE^IBCEU6(IBIFN,IBLN,.IBXDATA,,.IBXTRA) I $D(IBXTRA) D COMBO^IBCEU2(.IBXDATA,.IBXTRA,1) ;Handle bundled/unbundled
  I $D(^IBA(362.4,"AIFN"_IBIFN))!$D(^IBA(362.5,"AIFN"_IBIFN)) D
@@ -127,3 +131,27 @@ HOS(IBIFN) ; Extract rev codes for episode billed on a UB-04 into IBXDATA
 ACCRV(X) ; Returns 1 if X is an accomodation RC, 0 if not
  Q ((X'<100&(X'>219))!(X=224))
  ;
+RC2CP(IBIFN,IBRCIEN) ; returns "CP" multiple pointer that corresponds to a given "RC" multiple pointer in file 399
+ ; IBIFN - ien in file 399, top level
+ ; IBRCIEN, ien in sub-file 399.042 (REVENUE CODE)
+ ;
+ ; returns pointer to sub-file 399.0304 (PROCEDURES) or 0 if no valid pointer can be found.
+ ;
+ N IBRC0,IBCPIEN
+ I +IBIFN'>0 Q 0
+ I +IBRCIEN'>0 Q 0
+ S IBRC0=$G(^DGCR(399,IBIFN,"RC",IBRCIEN,0)),IBCPIEN=0
+ I $P(IBRC0,U,10)=4 S IBCPIEN=+$P(IBRC0,U,11) ; type = CPT
+ I $P(IBRC0,U,10)=3 S IBCPIEN=+$P(IBRC0,U,15) ; type = RX
+ I 'IBCPIEN D
+ . S IBRC=$P(IBRC0,U,6)
+ . N IBCPTIEN S IBCPTIEN=IBRC
+ . F  S IBCPTIEN=$O(^DGCR(399,IBIFN,"CP","B",IBCPTIEN)) Q:(+IBCPTIEN'=IBRC)!IBCPIEN  D
+ .. N OK,Z S OK="",Z=""
+ .. S Z=$O(^DGCR(399,IBIFN,"CP","B",IBCPTIEN,Z)) Q:'Z!OK  D
+ ... N CNTR S CNTR=0
+ ... F  S CNTR=$O(IBXDATA(CNTR)) Q:'CNTR!'OK  D
+ .... I $G(IBXDATA(CNTR,"CPLNK"))=Z S OK=0 Q
+ ... I OK="" S OK=1,IBCPIEN=Z
+ I IBCPIEN,'$D(^DGCR(399,IBIFN,"CP",IBCPIEN)) S IBCPIEN=0
+ Q IBCPIEN

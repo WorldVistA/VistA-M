@@ -1,5 +1,5 @@
 SRTPLUN2 ;BIR/SJA - LUNG-TRANSPLANT INFORMATION ;03/04/08
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+ ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
  I '$D(SRTPP) W !!,"A Transplant Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
 START Q:SRSOUT  D DISP
  W !!,"Select Transplant Information to Edit: " R X:DTIME I '$T!(X["^") S SRSOUT=1 G END
@@ -35,7 +35,7 @@ DISP ; display fields
  W !,"4.  Cold Ischemia time:",?29,$P(SRAO(4),"^")
  W !,"5.  Total Ischemia time:",?29,$P(SRAO(5),"^")
  W !,"6.  Crossmatch D/R:",?29,$P(SRAO(6),"^")
- W !!,"HLA Typing (#,#,#)",!,"=================="
+ W !!,"HLA Typing (#,#,#,#)",!,"===================="
  W !,"7.  Recipient HLA-A:",?29,$P(SRAO(7),"^")
  W !,"8.  Recipient HLA-B:",?29,$P(SRAO(8),"^")
  W !,"9.  Recipient HLA-C:",?29,$P(SRAO(9),"^")

@@ -1,5 +1,5 @@
 RADLQ2 ;HISC/GJC-Delq Status/Incomplete Rpt's ;3/6/97  08:50
- ;;5.0;Radiology/Nuclear Medicine;**15**;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**15,47**;Mar 16, 1998;Build 21
 DATE ; Sort by date
  S RADIV="" F  S RADIV=$O(^TMP($J,"RADLQ",RADIV)) Q:RADIV']""  D  Q:RAXIT
  . S RA1=$P($G(^DIC(4,RADIV,0)),"^"),RAITYPE=""
@@ -30,7 +30,8 @@ HDR ; Header for reports
  W !,"Imaging Type: ",$S($D(RAFLAG):"",1:RA2),?RATAB("HEAD"),"Date: "
  W $$FMTE^XLFDT($$DT^XLFDT,1)
  W !,RALN2
- W !,"Patient Name",?RATAB(1),"Case #",?RATAB(2),"Pt ID"
+ I $$USESSAN^RAHLRU1() W !,"Patient Name",?RATAB(1),"Case #",?RATAB(2)+6,"Pt ID"
+ I '$$USESSAN^RAHLRU1() W !,"Patient Name",?RATAB(1),"Case #",?RATAB(2),"Pt ID"
  W ?RATAB(3),"Date",?RATAB(4),"Ward/Clinic"
  W ?RATAB(5),"Rpt Stat",!?RATAB(6),"Procedure"
  W ?RATAB(7),"Exam Status",?RATAB(8),"Rpt Text"

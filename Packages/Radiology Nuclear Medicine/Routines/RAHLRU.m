@@ -1,9 +1,17 @@
-RAHLRU ;HISC/SWM - utilities for HL7 messaging ;03/16/98  11:03
- ;;5.0;Radiology/Nuclear Medicine;**10,25,81,103**;Mar 16, 1998;Build 2
+RAHLRU ;HISC/GJC - utilities for HL7 messaging ;03/16/98  11:03
+ ;;5.0;Radiology/Nuclear Medicine;**10,25,81,103,47**;Mar 16, 1998;Build 21
  ;
  ; 08/13/2010 BP/KAM RA*5*103 Outside Report Status Code needs 'F'
- ;IA 2701 used to store ICN in PID-3 ($$GETICN^MPIF001)
- ;IA 3630 used to build the PID segment for our ORM & ORU HL7 messages
+ ;Integration Agreements
+ ;----------------------
+ ;$$GET1^DIQ(2056); $$HLDATE^HLFNC(10106); INIT^HLFNC2(2161)
+ ;GENERATE^HLMA(2164); $$NOW^XLFDT(10103); $$PATCH^XPDUTL(10141)
+ ;$$VERSION^XPDUTL(10141)
+ ;
+ ;IA:  global read .01 field, file ^HL(771,
+ ;IA:  global read .01 field, file ^HL(771.2,
+ ;IA:  global read .01 field, file ^HL(771.5,
+ ;IA:  global read .01 field, file ^HL(779.001,
  ;
 OBX11 ; set OBX-11, = 12th piece of string where piece 1 is "OBX"
  N RARPTIEN,Y
@@ -40,40 +48,6 @@ ESCAPE(XDTA) ;apply the appropriate escape sequence to a string of data
  F  Q:XDTA'[$C(4)  S XDTA=$P(XDTA,$C(4))_UEC_"E"_UEC_$P(XDTA,$C(4),2,999)
  F  Q:XDTA'[$C(5)  S XDTA=$P(XDTA,$C(5))_UEC_"T"_UEC_$P(XDTA,$C(5),2,999)
  Q XDTA
- ;
- ;
- ;ESCAPE(STR)    ;'Escape out' the formatting codes in data strings...
- ; Input: Where STR is the data string to 'escape out'.
- ;    ex: "this is a test case^"
- ;Output: "this is a test case\S\"
- ;
- ;assuming the following as our encoding characters (HLECH): "^~\&" 
- ;encoding character position, character representations, & escape seq
- ;1) component separator    "^"  \S\
- ;2) repetition separator   "~"  \R\
- ;3) escape character       "\"  \E\
- ;4) subcomponent separator "&"  \T\
- ;
- ;assuming the following as our field separator (HLFS): "|" the escape
- ;sequence is: \F\. All of the following can be embedded in data, so
- ;field separator and encoding characters have to be converted to the
- ;correct formatting codes (escape sequences). We'll accomplish this by
- ;concatenating the field separator string to the encoding character
- ;string (ENCDE).
- ;
- ;Q:STR="" STR ;no string to escape...
- ;N BUF,ESC,CH,I1,I2,ENCDE S ENCDE=HLFS_HLECH
- ;--- Find all occurences of field separator & encoding
- ;--- characters; save their positions to a local array
- ;F I1=1:1:5  D
- ;. S CH=$E(ENCDE,I1),I2=1
- ;. F  S I2=$F(STR,CH,I2)  Q:'I2  S BUF(I2-1)=I1
- ;Q:$D(BUF)<10 STR
- ;--- Replace HL7 field separator & encoding chars with formatting codes
- ;S (BUF,I2)="",ESC=$E(HLECH,3)  S:ESC="" ESC="\"
- ;F  S I1=I2,I2=$O(BUF(I2))  Q:I2=""  D
- ;. S BUF=BUF_$E(STR,I1+1,I2-1)_ESC_$E("FSRET",BUF(I2))_ESC
- ;Q BUF_$E(STR,I1+1,$L(STR))
  ;
 OBXPRC ;Compile 'OBX' Segment for Procedure
  S HLA("HLS",RAN)="OBX"_HLFS_HLFS_"CE"_HLFS_"P"_$E(HLECH)_"PROCEDURE"_$E(HLECH)_"L"_HLFS_HLFS_$P(RACN0,"^",2)
@@ -132,6 +106,9 @@ INIT ; initialize HL7 variables; called from RAHLR & RAHLRPT
  D INIT^HLFNC2(EID,.HL,INT)
  Q:'$D(HL("Q"))  ;improperly defined server application
  S HLQ=HL("Q"),HLFS=HL("FS"),HLECH=HL("ECH") K EID,INT
+ S HLCS=$E(HL("ECH"))
+ S HLSCS=$E(HL("ECH"),4)
+ S HLREP=$E(HL("ECH"),2)
  Q
  ;
 DOB(X) ;strip off trailing "0"'s from the date of birth
@@ -140,17 +117,70 @@ DOB(X) ;strip off trailing "0"'s from the date of birth
  Q X
  ;
 CPTMOD(RAIEN,HLECH,DT) ;return OBX-5 as it pertains to CPT Modifiers
- ;called from: RAHLRPT1 & RAHLR2
+ ;called from: RAHLRPT2 & RAHLR1A
  ;input: RAIEN=IEN of the record in file 81.3
  ;       HLECH=HL7 encoding characters
  ;          DT=today's date
  N X S X=$$BASICMOD^RACPTMSC(RAIEN,DT)
  ;1st piece=IEN #81.3; 3rd piece=versioned name; 5th piece=coding sys
- Q RAIEN_$E(HLECH,1)_$$ESCAPE^RAHLRU($P(X,U,3))_$E(HLECH,1)_$P(X,U,5)
-GETSFLAG(SAN,MTN,ETN,VER) ;Return HL nessage flag (79.721,1)
+ ;Q RAIEN_$E(HLECH,1)_$$ESCAPE^RAHLRU($P(X,U,3))_$E(HLECH,1)_$P(X,U,5)
+ ;9/5/08 the above line changed to below per IMAGING
+ Q $P(X,U,2)_$E(HLECH,1)_$$ESCAPE^RAHLRU($P(X,U,3))_$E(HLECH,1)_"C4"
+ ;
+GETSFLAG(SAN,MTN,ETN,VER) ;Return HL message flag (79.721,1)
  Q:'$L(SAN)!'$L(MTN)!'$L(ETN)!'$L(VER) 0
  S SAN=$O(^HL(771,"B",SAN,0)) Q:'SAN 0
  S MTN=$O(^HL(771.2,"B",MTN,0)) Q:'MTN 0
  S ETN=$O(^HL(779.001,"B",ETN,0)) Q:'ETN 0
  S VER=$O(^HL(771.5,"B",VER,0)) Q:'VER 0
  Q +$P($G(^RA(79.7,SAN,1,MTN,1,ETN,1,VER,0)),U,2)
+ ;
+OBR21(HLECH,RA7002) ;builds the OBR-21 field; called from RAHLR1A
+ ;Input
+ ;  HLECH=encoding characters (required for $$ESCAPE^RAHLRU)
+ ; RA7002=zero node of the REGISTERED EXAMS sub-file of the RAD/NUC MED
+ ;        PATIENT (#70) file.
+ ;Return:
+ ; Component one (derived from file #79.2)
+ ;   ABBREVIATION(#3)_NAME(#.01)
+ ; Component two (derived from file #79.1)
+ ;   File 79.1 IEN_NAME(#.01) of the HOSPITAL LOCATION(#44) record.
+ ; Component three (derived from file #79)
+ ;   DIVISION(#.01)_NAME(#.01) of the INSTITUTION(#4) record.
+ ;
+ ;Components as separated by the accent grave "`" (RAPCS); subcomponents by the
+ ;underscore "_" (RAPSS)
+ ;
+ ; Ex: RAD_GENERAL RADIOLOGY`1_TD-RAD`660_SALT LAKE CITY
+ ;
+ N RAX S RAPCS="`",RAPSS="_",RAX=""
+ S RA792Q=+$P(RA7002,U,2) ;imaging type pointer
+ S RA792Q(0)=$G(^RA(79.2,RA792Q,0)) ;imaging type zero node
+ ;create the i-type abbreviation, component separator, and full name string
+ S RAX=$P(RA792Q(0),U,3)_RAPSS_$P(RA792Q(0),U)
+ ;get hospital location and institution file data...
+ S RA791Q=+$P(RA7002,U,4) ;imaging location pointer
+ S RA44Q=+$P($G(^RA(79.1,RA791Q,0)),U) ;hospital location pointer
+ S RA44Q(0)=$$GET1^DIQ(44,RA44Q,.01) ;hospital location name
+ S RA4Q=+$P(RA7002,U,3) ;rad/nuc med division pointer dinum'd to INSTITUTION (#4) file
+ S RA4Q(0)=$$GET1^DIQ(4,RA4Q,.01) ;institution name
+ S RAX=RAX_RAPCS_RA791Q_RAPSS_RA44Q(0)_RAPCS_RA4Q_RAPSS_RA4Q(0)
+ K RA4Q,RA44Q,RA791Q,RA792Q,RAPCS,RAPSS
+ Q $$ESCAPE^RAHLRU(RAX)
+ ;
+GENERATE ;Broadcast the HL7 message (courtesy of the VistA HL7 application)
+ N HLEID,HLARYTYP,HLFORMAT,HLMTIEN,HLP
+ S HLEID=RAEID,HLARYTYP="LM",HLFORMAT=1,HLMTIEN="",HLP("PRIORITY")="I"
+ ;D:$D(RASSSX(HLEID)) GETHLP^RAHLRS1(HLEID,.HLP,"RASSSX")
+ D GENERATE^HLMA(RAEID,HLARYTYP,HLFORMAT,.HLRESLT,HLMTIEN,.HLP)
+ D GSTATUS^RAHLACK(.HLRESLT,RAEID) K HLRESLT
+ ;
+EXIT ;kill the variables; exit the process...
+ K HL771RF,HL771SF,HL7STRG,HLA,HLARYTYP,HLCS,HLDOM,HLECH,HLEID,HLES,HLES2,HLFORMAT
+ K HLFS,HLINSTN,HLMTIEN,HLN,HLP,HLPARAM,HLPID,HLQ,HLREC,HLREP,HLRFREQ,HLSAN,HLSCS
+ K HLSFREQ,HLTYPE,HLX,OCXSEG,OCXTSPI,RAOBR,RAORC,RAPID,RAPURGE,RAPV1,RAREFDOC,RAZCPT
+ K RAZDAYCS,RAZDTE,RAZMODE,RAZNME,RAZORD,RAZORD1,RAZPHONE,RAZPMOD,RAZPREG,RAZPROC
+ K RAZRPT,RAZRXAM,RAZTRANS,RAZXAM,HLRESLT
+ K ^UTILITY($J,"W") ;note HLCS, HLREP, & HLSCS are set in INIT^RAHLRU
+ Q
+ ;

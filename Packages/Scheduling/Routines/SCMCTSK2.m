@@ -1,5 +1,5 @@
-SCMCTSK2 ;ALB/JDS - PCMM Inactivation Nightly Job; 18 Apr 2003  9:36 AM ; 10/24/07 12:23pm  ; Compiled November 21, 2007 13:32:47  ; Compiled March 17, 2008 15:27:15
- ;;5.3;Scheduling;**297,498,527,499,532**;AUG 13, 1993;Build 21
+SCMCTSK2 ;ALB/JDS - PCMM Inactivation Nightly Job; 18 Apr 2003  9:36 AM ; 10/24/07 12:23pm  ; Compiled November 21, 2007 13:32:47  ; 9/22/09 8:43am
+ ;;5.3;Scheduling;**297,498,527,499,532,504**;AUG 13, 1993;Build 21
  Q
 NIGHT ;
  N ENDDT,NOINAC,SIXM,FLGDT,L,PATDT,SEEN,SDDT,LDOM
@@ -95,13 +95,17 @@ PRINAC ;inact. flagged providers
  S $P(^SCTM(404.44,1,1),U,11)=SDDT
  Q
 FUTAPP(DFN) ;print future appts
- N TAB,SCDT0 S TAB=$X
+ N TAB,SCDT0,SCARRAY,SCDTMP S TAB=$X
  I $G(SDDT)="" S SDDT=DT
  S SCDT=SDDT+.24
- F  S SCDT=$O(^DPT(DFN,"S",SCDT)) Q:'SCDT  D
- . S SCDT0=$G(^DPT(DFN,"S",SCDT,0)) Q:$L($P(SCDT0,U,2))
- . S CLIEN=$P(SCDT0,"^") Q:'CLIEN
- . S Y=SCDT X ^DD("DD") W $E(Y_" ",1,17)_" "_$E($P($G(^SC(+CLIEN,0)),U),1,10)
+ S SCARRAY(1)=SCDT  ;date/time filter
+ S SCARRAY(4)=DFN  ;patient filter
+ S SCARRAY("SORT")="P"  ;sort filter
+ S SCARRAY("FLDS")="1;2;3"
+ I ($$SDAPI^SDAMA301(.SCARRAY)>0) D
+ .S SCDTMP=0 F  S SCDTMP=$O(^TMP($J,"SDAMA301",DFN,SCDTMP)) Q:'SCDTMP  D
+ ..S SCDT0=$G(^TMP($J,"SDAMA301",DFN,SCDTMP)) Q:($P($P(SCDT0,U,3),U)="R")
+ ..S Y=SCDTMP X ^DD("DD") W $E(Y_" ",1,17)_" "_$E($P($P(SCDT0,U,2),";",2),1,10)
  Q
 GETASC(DATA,ENTRY) ;get assoc. clinics
  N I,CNT S CNT=0
@@ -185,18 +189,24 @@ TST ;
 LINES(TYPE) ;Lines of Bulletin
  D LINES^SCMCTSK5(TYPE) Q
 ROLE(DATA,INFO) ;SCMC ROLE
- N ROLE,TP,I
+ N ROLE,TP,I,SCRSLT,SCTF,SCLS,SCPOR
+ S (SCPOR,SCRSLT)=0
  S ROLE=+$G(INFO),TP=+$P($G(INFO),U,2)
- S DATA(0)="0^0^0"
  I 'ROLE Q
  I 'TP Q
- S DATA(0)=+$P($G(^SD(403.46,ROLE,0)),U,3) ;I DATA(0)=3!(DATA(0)=0) S DATA(0)=DATA(0)_"^0^0" Q
- I $$DATES^SCAPMCU1(404.53,+TP) S DATA(0)=DATA(0)_"^1^0" Q
+ ;get values
+ S DATA(0)=+$P($G(^SD(403.46,ROLE,0)),U,3)
+ I $$DATES^SCAPMCU1(404.53,+TP) S SCPOR=1
  N PREC S PREC=0
  F I=0:0 S I=$O(^SCTM(404.53,"AD",TP,I)) Q:'I  D   Q:PREC
  .I $D(^SCTM(404.53,"AD",TP,I,1)) I '$D(^(0)) S PREC=1
- I PREC S DATA(0)=DATA(0)_"^0^1" Q
- S DATA(0)=DATA(0)_"^0^0"
+ I +DATA(0)'=0 D
+ . S SCTF=$$GETPRTP^SCAPMCU2(TP) Q:+SCTF=0
+ . S SCLS=$$GET^XUA4A72(+SCTF)
+ . I SCLS S SCRSLT=$S('$D(^SD(403.46,ROLE,2,"B",+SCLS)):1,1:0)
+ ;end of get
+ ;type of role^preceptor^preceptee^person class check
+ S DATA(0)=DATA(0)_U_SCPOR_U_PREC_U_SCRSLT
  Q
 INRPT ; REPORT
  N DIOEND,SCDHD

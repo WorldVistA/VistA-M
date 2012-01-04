@@ -1,5 +1,5 @@
 IBCSC7 ;ALB/MJB - MCCR SCREEN 7 (INPT. BILLING INFO)  ;27 MAY 88 10:19
- ;;2.0;INTEGRATED BILLING;**52,80,109,106,343,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**52,80,109,106,343,400,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRSC7
@@ -12,13 +12,14 @@ EN D ^IBCSCU S IBSR=7,IBSR1="",IBV1="0000000" S:IBV IBV1="1111111" F I="U","U1",
  S IBBT=$P(IB(0),U,24)_$P($G(^DGCR(399.1,+$P(IB(0),U,25),0)),U,2)_$P(IB(0),U,26)
  S Z=1,IBW=1 X IBWW W " Bill Type   : ",$S('$D(IBBT):IBU,IBBT="":IBU,1:IBBT)
  W $J("",14),"Loc. of Care: ",$E($G(IBBTP1),1,30) K IBBTP1
- W !?4,"Covered Days: ",$S(IB("U2")="":IBU,$P(IB("U2"),U,2)'="":$P(IB("U2"),U,2),1:IBU)
- W ?35,"Bill Classif: ",$E($G(IBBTP2),1,30) K IBBTP2
- W !?4,"Non-Cov Days: ",$S(IB("U2")="":IBU,$P(IB("U2"),U,3)'="":$P(IB("U2"),U,3),1:IBU)
- W ?38,"Timeframe: ",$S($D(IBBTP3):$E(IBBTP3,1,30),1:"") K IBBTP3
+ ; IB*2.0*432 - remove Covered, Non-covered and co-insurance days
+ ;W !?4,"Covered Days: ",$S(IB("U2")="":IBU,$P(IB("U2"),U,2)'="":$P(IB("U2"),U,2),1:IBU)
  W !?4,"Charge Type : ",$S($P(IB(0),U,27)=1:"INSTITUTIONAL",$P(IB(0),U,27)=2:"PROFESSIONAL",1:IBU)
  W ?37,"Disch Stat: ",$E($$EXTERNAL^DILFD(399,162,"",$P(IB("U"),U,12)),1,30)
  W !?4,"Form Type   : ",$P($G(^IBE(353,+$P(IB(0),U,19),0)),U,1)
+ W ?38,"Timeframe: ",$S($D(IBBTP3):$E(IBBTP3,1,30),1:"") K IBBTP3
+ W !,?4,"Bill Classif: ",$E($G(IBBTP2),1,30) K IBBTP2
+ ;W !?4,"Non-Cov Days: ",$S(IB("U2")="":IBU,$P(IB("U2"),U,3)'="":$P(IB("U2"),U,3),1:IBU)
  W ?39,"Division: ",$E($P($G(^DG(40.8,+$P(IB(0),U,22),0)),U,1),1,30)
  ;
 ROI S Z=2,IBW=1 X IBWW

@@ -1,5 +1,5 @@
 PSOLLLH ;BIR/EJW - HIPAA/NCPDP LASER LABELS ;7/20/06 10:21am
- ;;7.0;OUTPATIENT PHARMACY;**161,148,244,200,326,321**;DEC 1997;Build 7
+ ;;7.0;OUTPATIENT PHARMACY;**161,148,244,200,326,321,350**;DEC 1997;Build 4
  ;
  ;Reference to DUR1^BPSNCPD3 supported by DBIA 4560
  ;
@@ -96,7 +96,7 @@ Q1 W ! K POP,ZTSK S %ZIS("B")="",%ZIS="MNQ",%ZIS("A")="Select LABEL DEVICE: " D 
  I $G(IOST(0)),'$D(^%ZIS(2,IOST(0),55,"B","LL")) W !,"Must specify a laser labels printer for Signature Log Reprint" G Q1
  I '$G(IOST(0)) W !,"Nothing queued to print." H 1 Q
  D NOW^%DTC S Y=$P(%,"."),PSOFNOW=% X ^DD("DD") S PSONOW=Y
- F G="PPL","REPRINT","PNM","STATE","PS2","PSOHZIP","PSOPAR","PSOSITE","PS","PSONOW","PSOSYS","SSNP" S:$D(@G) ZTSAVE(G)=""
+ F G="PPL","REPRINT","PNM","STATE","PS2","PSOHZIP","PSOPAR","PSOSITE","PS","PSONOW","PSOSYS","SSNP","DFN" S:$D(@G) ZTSAVE(G)=""
  S ZTRTN="DQ^PSOLLLH",ZTIO=PSLION,ZTDESC="Outpatient Pharmacy Signature Log Reprint",ZTDTH=$H,PDUZ=DUZ
  D ^%ZISC,^%ZTLOAD W:$D(ZTSK) !!,"Signature Log Reprint queued",!! H 1 K G
  G QUEUE

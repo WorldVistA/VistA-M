@@ -1,5 +1,5 @@
 IBJPI2 ;DAOU/BHS - eIV SITE PARAMETERS SCREEN ACTIONS ;26-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,316,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,271,316,416,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; eIV - electronic Insurance Verification Interface
@@ -19,33 +19,6 @@ MP ; Most Popular Payer processing
  L -^IBCNE("MP")  ; Unlock
  ;
 MPX ; MP exit pt
- D INIT^IBJPI S VALMBCK="R"
- Q
- ;
-BE ; Batch Extract processing
- ; Init vars
- N DIR,X,Y,DIRUT,TYPE,IEN,DR,DA,DIE,DIC
- ;
- D FULL^VALM1
- W @IOF,!,"Batch Extract Parameters"
- W !!,"The Buffer and Appointment Parameters can not be changed."
- S DIR(0)="Y"
- S DIR("A")="Edit Non-verified Parameters"
- S DIR("B")="YES"
- W ! D ^DIR K DIR I $D(DIRUT) G BEX
- I 'Y G BEX
- ;
- S TYPE=3
- ;
- S IEN=0 F  S IEN=$O(^IBE(350.9,1,51.17,IEN)) Q:'IEN  I $P($G(^IBE(350.9,1,51.17,IEN,0)),U,1)=TYPE Q
- ;
- I IEN=""!(IEN=0) W !,"Extract Not Defined - ERROR!" G BEX
- ;
- ; Display Active, Sel Crit #1, Sel Crit #2 for Non-verified
- I TYPE=3 S DR=".02;.03;.04;.05"
- S DIE="^IBE(350.9,1,51.17,",DA=IEN,DA(1)=1 D ^DIE K DA,DR,DIE,DIC,X,Y
- ;
-BEX ;
  D INIT^IBJPI S VALMBCK="R"
  Q
  ;

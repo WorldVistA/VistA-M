@@ -1,5 +1,5 @@
 SRTPRLI2 ;BIR/SJA - PRINT LIVER-RISK ASSESSMENT/OUTCOME INFORMATION ;04/21/08
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+ ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
  I 'SRNOVA G DONOR
 RISK K DR,SRAO,SRX,Y
  S (DR,SRDR)="81;82;88;83;109;110;145;132;146;131"
@@ -49,8 +49,8 @@ DONOR K DR,SRAO,SRX,Y
  D RACE^SRTPLIV7
  W !,"Donor Race:" S SRAO(1)="" I $G(SRZ(139.544)) F D=1:1:SRNUM1-1 W:D=1 ?17,SROL(D) W:D'=1 !,?17,SROL(D)
  W !,"Donor Gender:",?17,$P(SRAO(2),"^")
- W !,"Donor Height:",?17,$P(SRAO(3),"^"),?40,"Donor HLA Typing (#,#,#)"
- W !,"Donor Weight:",?17,$P(SRAO(4),"^"),?40,"========================"
+ W !,"Donor Height:",?17,$P(SRAO(3),"^"),?40,"Donor HLA Typing (#,#,#,#)"
+ W !,"Donor Weight:",?17,$P(SRAO(4),"^"),?40,"=========================="
  W !,"Donor DOB:",?17,$P(SRAO(5),"^"),?40,"Donor HLA-A:  ",$P(SRAO(13),"^")
  W !,"Donor Age:",?17,$P(SRAO(6),"^"),?40,"Donor HLA-B:  ",$P(SRAO(14),"^")
  W !,"ABO Blood Type:",?17,$P(SRAO(7),"^"),?40,"Donor HLA-C:  ",$P(SRAO(15),"^")

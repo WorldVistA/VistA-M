@@ -1,5 +1,5 @@
-DIC3 ;SFISC/XAK,TKW,SEA/TOAD-VA FileMan: Lookup, Part 1 (called from DIC) ;3MAR2010
- ;;22.0;VA FileMan;**1,16,4,17,20,28,40,86,70,159,164**;Mar 30, 1999;Build 20
+DIC3 ;SFISC/XAK,TKW,SEA/TOAD-VA FileMan: Lookup, Part 1 (called from DIC) ;28SEP2010
+ ;;22.0;VA FileMan;**1,16,4,17,20,28,40,86,70,159,164,165**;Mar 30, 1999;Build 32
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 SEARCH ; Begin search through x-refs.
@@ -12,7 +12,7 @@ SEARCH ; Begin search through x-refs.
 EXACT ; Find all exact matches to the lookup values
  S DISAVDS=DS,DIEXACTN=0
  I $G(DILONGX) D  ;G:$L(DICR(DICR,"ORG"))'>DINDEX(1,"LENGTH") M D  ;JUMPED AWAY FROM USING THIS INDEX, EVEN THOUGH IT MIGHT NEVER HAVE BEEN TRIED BEFORE
- . S (X,X(1),DIVAL,DIVAL(1))=$E(DICR(DICR,"ORG"),1,DINDEX(1,"LENGTH")) ;TRIM LOOKUP VALUE DOWN TO SIZE!
+ . S (X,X(1),DIVAL,DIVAL(1))=$E(DICR(DILONGX,"ORG"),1,DINDEX(1,"LENGTH")) ;TRIM LOOKUP VALUE DOWN TO SIZE!
  I DINDEX("#")>1,($G(DIALLVAL)!($G(DICR))),(DIC(0)["X"!(DIC(0)["O")) D EXACT^DIC4,SET^DIC4
  I DINDEX("#")'>1 S Y=0,DIX=X F  D MOREX Q:Y=-1!(DS(0))
  I DS(0) Q:DIC(0)'["T"  Q:$P(DS(0),U,2)'="U"!($G(DIROUT))  S DS(0)=0
@@ -67,7 +67,7 @@ M ; Find the next index.  At end, display the rest
  D:DIC(0)["M" D^DIC0
  I DS=1 S DS("DD")=1 D G^DIC2 Q
  I DS D Y^DIC1 Q:DS(0)  I DINDEX("#")'>1 D:DO(2)["O"&(DO(2)'["A") L^DICM Q
- I $G(DILONGX) S X=$E(DICR(DICR,"ORG"),1,30)
+ I $G(DILONGX) S X=$E(DICR(DILONGX,"ORG"),1,30)
  I DIC(0)["T",'$G(DICR),DIC(0)["O",DIC(0)["X" G SEARCH
  I DINDEX("#")>1,'$G(DICR) D:DIC(0)["L"  D:Y=-1 BAD^DIC1 Q
  . S Y=-1 I $G(DICR)="" N DICR S DICR=0
@@ -92,7 +92,7 @@ MN N DZ S DZ=$S((DIC(0)["D"&(DINDEX="B")):1,$G(DINDEX("#"))>1:0,$G(@(DIC_"D,DIX,
  I D="B",'DZ,'$D(DO("SCR")),$L(DIX)<30,'$D(DIC("S")),'$D(@(DIC_"Y,-9)")),'$G(DINDEX("OLDSUB")) D ADDKEY I 1 Q
  D S I  D
  . I DINDEX("FLISTD")["^.01^",DINDEX("#")=1,'DZ,$P(DIY,DIX)="",'$G(DINDEX("OLDSUB")) D  Q
- . . N I S I=$S($G(DILONGX):DICR(DICR,"ORG"),1:DIX)
+ . . N I S I=$S($G(DILONGX):DICR(DILONGX,"ORG"),1:DIX)
  . . S DIY=$P(DIY,I,2,9),DIYX=1 D ADDKEY Q
  . Q:DIC(0)["Y"
  . I ($G(DINDEX("#"))>1)!($G(DINDEX("OLDSUB"))) D  Q

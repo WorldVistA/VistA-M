@@ -1,5 +1,5 @@
 IBCSCH ;ALB/MJB - MCCR HELP ROUTINE ;03 JUN 88 15:25
- ;;2.0;INTEGRATED BILLING;**52,80,106,124,138,51,148,137,161,245,232,287,348,349,374,371,395,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**52,80,106,124,138,51,148,137,161,245,232,287,348,349,374,371,395,400,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRSCH
@@ -56,7 +56,7 @@ PAR S X="Fed Tax #, BC/BS #, MAS Svc Pointer^Bill Signer, Billing Supervisor^Sec
  ;
 S ; display the available screen data
  N C,I,Z,J W ! S Z="AVAILABLE SCREENS" X IBWW
- S X="Demographic^Employment^Payer^Inpatient Event^Outpatient Event^Inpatient Billing - General^Outpatient Billing - General^Billing - Specific^Locally Defined"
+ S X="Demographic^Employment^Payer^Inpatient Event^Outpatient Event^Inpatient Billing - General^Outpatient Billing - General^Billing - Claim Information^Locally Defined^Billing - Specific"
  S C=0 F I=1:1 S J=$P(X,"^",I) Q:J=""  I '$E(IBVV,I) S C=C+1,Z="^"_I,IBW=(C#2) W:'(C#2) ?41 X IBWW S Z=$S(I?1N:" ",1:" ")_J_" Data" W Z
  Q
  ;

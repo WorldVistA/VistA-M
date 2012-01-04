@@ -1,5 +1,5 @@
 RAUTL15 ;HISC/GJC-Skeleton rpt del if no data entered. ;11/5/99  12:33
- ;;5.0;Radiology/Nuclear Medicine;**5,10**;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**5,10,47**;Mar 16, 1998;Build 21
 EN3(IEN74) ;Delete the skeleton report and pointer from Rad Pt file to
  ; report if user has not entered any report data (i.e. user ^'d out
  ; of report entry/edit after the system created a skeleton record).
@@ -99,13 +99,17 @@ DPROC(RADFN,RADTI,RACNI,RAOIFN) ; Determine if the ordered procedure is
  I '$D(RAOPT("ORDERPRINTS")),'$D(RAOPT("ORDERPRINTPAT")) Q:$P(RA7003,"^",2)=$P(RA751,"^",2) "" ; except for 2 print options, quit if req.prc=regis.prc
  N RA71,RACPT,RACSE,RAITY,RAPRC,RATY,X,Y
  S RACSE=$$RJ^XLFSTR($P(RA7003,"^"),5)
+ N RASSAN,RACNDSP S RASSAN=$$SSANVAL^RAHLRU1(RADFN,RADTI,RACNI)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:RACSE)
  S RA71=$G(^RAMIS(71,$P(RA7003,"^",2),0))
  S RACPT=$P($$NAMCODE^RACPTMSC(+$P(RA71,"^",9),DT),"^")
  S RAPRC=$E($$GET1^DIQ(71,+$P(RA7003,"^",2)_",",.01),1,36)
  S RAITY=$$GET1^DIQ(79.2,+$P(RA71,"^",12)_",",3)
  S RATY=$$GET1^DIQ(71,$P(RA7003,"^",2)_",",6)
  S RATY=$E(RATY,1)_$$LOW^XLFSTR($E(RATY,2,9999))
- S X="",Y=RACSE_" "_RAPRC,Y(0)="("_RAITY_" "_RATY_" "_RACPT_")"
+ ;
+ I $$USESSAN^RAHLRU1() S X="",Y=RACNDSP_" "_RAPRC,Y(0)="("_RAITY_" "_RATY_" "_RACPT_")"
+ I '$$USESSAN^RAHLRU1() S X="",Y=RACSE_" "_RAPRC,Y(0)="("_RAITY_" "_RATY_" "_RACPT_")"
  S Y(0)=Y(0)_" "_$E($P($G(^RA(72,+$P(RA7003,"^",3),0)),"^"),1,4)
  S $E(X,1,42)=Y,$E(X,44,70)=Y(0)
  Q X

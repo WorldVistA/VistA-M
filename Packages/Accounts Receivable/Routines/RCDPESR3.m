@@ -1,5 +1,6 @@
-RCDPESR3 ;ALB/TMK - Server auto-update utilities - EDI Lockbox ;06/06/02
- ;;4.5;Accounts Receivable;**173,214,208,255**;Mar 20, 1995;Build 1
+RCDPESR3 ;ALB/TMK/PJH - Server auto-update utilities - EDI Lockbox ; 10/14/10 5:01pm
+ ;;4.5;Accounts Receivable;**173,214,208,255,269**;Mar 20, 1995;Build 113
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
 EFTIN(RCTXN,RCD,XMZ,RCGBL,RCEFLG) ; Adds a new EFT record to AR file 344.3
@@ -82,8 +83,12 @@ ADDEFT(RCTXN,RCXMZ,RCGBL,RCERR) ; File EFT TOTAL record in file 344.3
  ; or if a deposit exists, that the deposit does not yet have a receipt
  S RCDUP=0,RCHAC=$E($P(RCTXN,U,6),1,3)="HAC" ; This is a HAC deposit
  I $P(RCTXN,U,6)'="" D
+ . ;Format Deposit Date as FM date
+ . N RCDDAT
+ . S X=$$FDT^RCDPESR9($P(RCTXN,U,7))
+ . S RCDDAT=0,%DT="X" D ^%DT S:Y>0 RCDDAT=Y
  . S Z=0 ; Lookup deposit by deposit #
- . F  S Z=$O(^RCY(344.3,"C",$P(RCTXN,U,6),Z)) Q:'Z  S Z0=$G(^RCY(344.3,Z,0)) S:'$P(Z0,U,3) RCTDA=Z Q:RCTDA  D  Q
+ . F  S Z=$O(^RCY(344.3,"ADEP",RCDDAT,$P(RCTXN,U,6),Z)) Q:'Z  S Z0=$G(^RCY(344.3,Z,0)) S:'$P(Z0,U,3) RCTDA=Z Q:RCTDA  D  Q
  .. ; Deposit found - find receipt
  .. I $O(^RCY(344,"AD",$P(Z0,U,3),0)) S RCDUP=Z Q
  .. S RCTDA=Z

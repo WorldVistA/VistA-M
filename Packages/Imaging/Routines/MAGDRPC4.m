@@ -1,5 +1,5 @@
-MAGDRPC4 ;WOIFO/EdM - Imaging RPCs ; 07/10/2007 13:30
- ;;3.0;IMAGING;**11,30,51,50,54**;03-July-2009;;Build 1424
+MAGDRPC4 ;WOIFO/EdM - Imaging RPCs ; 02 Apr 2008 1:44 PM
+ ;;3.0;IMAGING;**11,30,51,50,54,49**;Mar 19, 2002;Build 2033;Apr 07, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -28,12 +28,13 @@ LOOKUP(OUT,NUMBER) ; RPC = MAG DICOM LOOKUP STUDY
  N GMRCIEN ;-- Pointer for GMRC
  N PROCDESC ;- Procedure description
  N PROCIEN ;-- Radiology procedure IEN in ^RAMIS(71)
+ N RAA ;------ Radiology array (for $$ACCFIND)
  N RAIX ;----- cross reference subscript for case number lookup
  N RADFN ;---- first level subscript in ^RADPT
  N RADTI ;---- second level subscript in ^RADPT (after "DT")
  N RACNI ;---- third level subscript in ^RADPT (after "P")
  N RARPT ;---- Radiology Report pointer
- N I,LIST,NOUT,X,Z
+ N I,LIST,NOUT,X,Y,Z
  ;
  K OUT S NOUT=1
  I $G(NUMBER)="" S OUT(1)="-1,No Case or Consult Number Specified" Q
@@ -48,47 +49,17 @@ LOOKUP(OUT,NUMBER) ; RPC = MAG DICOM LOOKUP STUDY
  K DFN
  D  ; First try Radiology candidates
  . I EXAMTYP'="",EXAMTYP'="R" Q
- . D  ; Look for the patient/study in ^RADPT using the Radiology Case Number
- . . N RAIX ;----- cross reference subscript for case number lookup
- . . S RAIX=$S($D(^RADPT("C")):"C",1:"AE") ; for Radiology Patch RA*5*7
- . . S RAIX=$S(NUMBER["-":"ADC",1:RAIX) ; select the cross-reference
- . . S RADFN=$O(^RADPT(RAIX,NUMBER,"")) I 'RADFN D  Q:'RADFN
- . . . I NUMBER'["-" S OUT(1)="-2,No Study Date Specified" Q
- . . . S X=$P(NUMBER,"-",1)
- . . . I $L(X)'=6 S OUT(1)="-3,Invalid study date """_X_"""." Q
- . . . S SDATE=$S($E(X,5,6)<30:3,1:2)_$E(X,5,6)_$E(X,1,4)
- . . . D:SDATE
- . . . . ; Search 1-3 days prior the study date OR a day in advance but only
- . . . . ; if the study date is not equal to today or greater than today.
- . . . . ; Has to be long case number or must have an image study date
- . . . . N II,RCASE,TODAY,X,Y
- . . . . S RCASE=$S(NUMBER["-":$P(NUMBER,"-",2),1:NUMBER) Q:'RCASE
- . . . . S TODAY=$$NOW^XLFDT()\1
- . . . . ;
- . . . . ;  1-3 days prior study date
- . . . . F II=1:1:3 S RADFN=$$FIND(SDATE,RCASE,-II) Q:RADFN
- . . . . Q:RADFN
- . . . . ;
- . . . . ; Wild goose chase but check for today's case
- . . . . S RADFN=$O(^RADPT("ADC",$$MMDDYY(TODAY)_"-"_RCASE,"")) Q:RADFN
- . . . . ;
- . . . . Q:SDATE'<TODAY
- . . . . S RADFN=$$FIND(SDATE,RCASE,1) Q:RADFN  ; Advance a day
- . . . . ;
- . . . . ; Finally just check the "C" or "AE" x-reference for the case number
- . . . . ; based on RA*5*7 patch
- . . . . S RADFN=$O(^RADPT($S($O(^RADPT("C","")):"C",1:"AE"),RCASE,""))
- . . . . Q
- . . . Q
- . . S RADTI=$O(^RADPT(RAIX,NUMBER,RADFN,"")) Q:'RADTI
- . . S RACNI=$O(^RADPT(RAIX,NUMBER,RADFN,RADTI,"")) Q:'RACNI
- . . Q:'$D(^RADPT(RADFN,0))  ; No patient demographics file pointer
- . . S DFN=$P(^RADPT(RADFN,0),"^",1)
- . . Q
+ . ; Look for the patient/study in ^RADPT using the Radiology Case Number
+ . S X=$$ACCFIND^RAAPI(NUMBER,.RAA)
+ . I X<0 Q
+ . S Y=RAA(1)
+ . S RADFN=$P(Y,"^",1),RADTI=$P(Y,"^",2),RACNI=$P(Y,"^",3)
+ . Q:'$D(^RADPT(RADFN,0))  ; No patient demographics file pointer
+ . S DFN=$P(^RADPT(RADFN,0),"^",1)
  . Q:'$G(DFN)
  . Q:'$D(^RADPT(DFN,"DT",RADTI,0))
+ . S ACCNUM=$$ACCNUM^RAAPI(RADFN,RADTI,RACNI)
  . S RARPT=$P($G(^RADPT(DFN,"DT",RADTI,"P",RACNI,0)),"^",17) Q:'RARPT
- . S ACCNUM=$P($G(^RARPT(RARPT,0)),"^",1)
  . S I=0 F  S I=$O(^RARPT(RARPT,2005,I)) Q:'I  D
  . . S X="74^"_RARPT_"^"_$P($G(^RARPT(RARPT,2005,I,0)),"^",1)_"^"_ACCNUM
  . . S NOUT=NOUT+1,OUT(NOUT)=X

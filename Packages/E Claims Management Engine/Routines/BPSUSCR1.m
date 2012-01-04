@@ -1,33 +1,19 @@
-BPSUSCR1 ;BHAM ISC/FLS - STRANDED CLAIMS SCREEN ;10-MAR-2005
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7**;JUN 2004;Build 46
+BPSUSCR1 ;BHAM ISC/FLS - STRANDED SUBMISSIONS SCREEN (cont) ;10-MAR-2005
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; IA# 10060 - Fileman read of New Person file (VA(200))
+ ;
  Q
  ;
-INIT ; -- init variables and list array
- N BPLN,BPLM,BP59,BPSORT,BPDUZ7,BPRET,CONT
- ;get date/time range
- K ^TMP("BPSUSCR-1",$J),^TMP("BPSUSCR-2",$J),^TMP("BPSUSCR",$J)
- S BPTMPGL="^TMP(""BPSUSCR"",$J)"
- S CONT=1,VALMCNT=0
- D COLLECT^BPSUSCR4(.BPARR)
- Q
- ;
-HELP ; -- help code
- S X="?" D DISP^XQORM1 W !!
- K X
- Q
- ;
-EXIT ; -- exit code
- Q
- ;
- ; Warning message for 'Transmitting' claims
+ ; Warning message for 'Transmitting' submissions
 MESSAGE() ;
- W !!!,"Please be aware that if there are claims appearing on the ECME User Screen"
+ W !!!,"Please be aware that if there are submissions appearing on the ECME User Screen"
  W !,"with a status of 'In progress - Transmitting', then there may be a problem"
  W !,"with HL7 or with system connectivity with the Austin Automation Center (AAC)."
  W !,"Please contact your IRM to verify that connectivity to the AAC is working"
  W !,"and the HL7 link BPS NCPDP is processing messages before using this option"
- W !,"to unstrand claims with a status of 'In progress - Transmitting'.",!
+ W !,"to unstrand submissions with a status of 'In progress - Transmitting'.",!
  N DIR,X,Y,BPQ
  S BPQ=0
  S DIR(0)="YA",DIR("A")="Do you want to continue? "
@@ -60,15 +46,24 @@ EDATE(DATE) ;
  D NOW^%DTC
  I $P(%,".")=DATE S $P(%H,",",2)=$P(%H,",",2)-1800 D YX^%DTC S RTN=DATE_%
  Q RTN
-ALL ; Unstrand all claims currently selected.
+ ;
+ALL ; Unstrand all submissions currently selected.
  D FULL^VALM1
- N D0,DIR,SEQ,LAST
+ N D0,DIR,SEQ,LAST,TMP,TMP2
  S LAST=+$O(^TMP("BPSUSCR-2",$J,""),-1)
  I LAST=0 D  Q
- . W !,"There are no stranded claims in this date range to unstrand"
+ . W !,"There are no stranded submissions in this date range to unstrand"
  . D PRESSANY^BPSOSU5()
- S DIR(0)="Y",DIR("A")="ARE YOU SURE? (YES/NO) ",DIR("B")="YES" D ^DIR Q:'Y
- W !,"PLEASE WAIT"
+ ; Display message if there are multiple types on the queue
+ S TMP=$O(^TMP("BPSUSCR-1",$J,""))
+ I TMP S TMP2=$O(^TMP("BPSUSCR-1",$J,TMP))
+ I TMP2 D
+ . W !,"Please be aware there are multiple types of requests currently stranded."
+ . W !,"Are you sure you want to unstrand ALL submissions?  If not, exit this"
+ . W !,"action and select which submissions you want to unstrand."
+ . W !!,"Answer NO to following prompt if you wish to SELECT the submissions to unstrand.",!
+ S DIR(0)="Y",DIR("A")="Do you want to continue",DIR("B")="NO" D ^DIR Q:'Y
+ W !,"Please wait..."
  S SEQ=0
  F  S SEQ=$O(^TMP("BPSUSCR-2",$J,SEQ)) Q:'SEQ  D
  .  S D0=""
@@ -80,17 +75,18 @@ ALL ; Unstrand all claims currently selected.
  D CLEAN^VALM10
  D COLLECT^BPSUSCR4(.BPARR)
  Q
+ ;
 SELECT ; Select entries from the list and run each through the unstrand function
  N D0,DIR,I,J,VAR,BPTMPGL,PT,POP,LAST
  S LAST=+$O(^TMP("BPSUSCR-2",$J,""),-1)
  I LAST=0 D  Q
- . W !,"There are no stranded claims to select"
+ . W !,"There are no stranded submissions to select"
  . D PRESSANY^BPSOSU5()
  K DTOUT,DUOUT
  S BPTMPGL="^TMP(""BPSUSCR"",$J)"
  S VAR=""
  S DIR(0)="LO^1:"_LAST
- S DIR("A")="Enter a Selection of Stranded Claims",DIR("B")=""
+ S DIR("A")="Enter a Selection of Stranded Submissions",DIR("B")=""
  D ^DIR
  I $D(DTOUT)!$D(DUOUT) Q
  S VAR=Y
@@ -102,62 +98,144 @@ SELECT ; Select entries from the list and run each through the unstrand function
  D CLEAN^VALM10
  D COLLECT^BPSUSCR4(.BPARR)
  Q
+ ;
 PRINT ;
- N %ZIS
- S %ZIS="M"
- S %ZIS("A")="Select Printer: ",%ZIS("B")="" D ^%ZIS
- Q:IOPAR=""
- D PHDR
- D PLINE
+ ; Full Screen Mode
+ D FULL^VALM1
+ ; Prompt for pinter
+ N %ZIS,POP
+ S %ZIS="M",%ZIS("A")="Select Printer: ",%ZIS("B")="" D ^%ZIS
+ I POP Q
+ ; Use device
+ U IO
+ ; Create Report
+ D REPORT
+ Q
+ ;
+REPORT ;
+ N SEQ,LINE,BPQ,LCNT,DATA,BPSCR
+ ;
+ ; Set flag for interactive device
+ S BPSCR=$S($E($G(IOST),1,2)="C-":1,1:0)
+ ;
+ ; Print first header
+ D HDR
+ ;
+ ; Loop through data and display
+ S SEQ=0,BPQ=0,DATA=0
+ F  S SEQ=$O(^TMP("BPSUSCR",$J,SEQ)) Q:'SEQ  D  I BPQ Q
+ . S LINE=$G(^TMP("BPSUSCR",$J,SEQ,0))
+ . ; Check if we filled a page
+ . S BPQ=$$CHKP(BPSCR) I BPQ Q
+ . W !,$E(LINE,1,79)
+ . S LCNT=LCNT+1
+ . S DATA=1
+ ;
+ ; If no data, display message
+ I DATA=0 W !?4,"No data to display"
+ ;
+ ; Write FF for print devices
+ ; Else final Press Return...
+ I 'BPSCR W !,@IOF
+ E  I 'BPQ D PAUSE2
+ ;
+ ; Close the device and quit
  D ^%ZISC
  Q
-PHDR ;
+ ;
+HDR ;
+ ; Display Header.
+ ; LCNT is returned
+ N HDR,TAB
+ S HDR="Submissions Stranded from "_BPBDT_" through "_BPEDT
+ S TAB=80-$L(HDR)\2
+ W !!,?TAB,HDR
+ W !!?4,"TRANS DT",?15,"PATIENT NAME",?36,"ID",?41,"EXTERN RX#",?54,"RF",?57,"DOS",?68,"INS CO"
+ W !,?4,"--------",?15,"------------",?36,"--",?41,"----------",?54,"--",?57,"---",?68,"------"
+ S LCNT=5
+ Q
+ ;
+CHKP(BPSCR) ;
+ ; Check for End of Page
+ ; LCNT is returned
+ N BPLINES
+ I $G(BPSCR) S BPLINES=3
+ E  S BPLINES=1
+ I '$G(IOSL) Q 0
+ I IOSL'<(LCNT+BPLINES) Q 0
+ I $G(BPSCR) S BPQ=$$PAUSE I BPQ Q 1
+ D HDR
+ Q 0
+ ;
+PAUSE() ;
+ N X
+ U IO(0)
+ R !!,"Press RETURN to continue, '^' to exit: ",X:DTIME
+ I '$T!(X="^") Q 1
  U IO
- W !,"Claims Stranded from ",BPBDT," through ",BPEDT
+ Q 0
  ;
- W !!,?4,"TRANS DT",?15,"PATIENT NAME",?36,"ID",?41,"EXTERN RX#",?54,"RF",?57,"FILL DT",?68,"INS CO"
- W !,?4,"--------",?15,"------------",?36,"--",?41,"----------",?54,"--",?57,"-------",?68,"------"
- Q
-PLINE ;
- N SEQ,LINE
- S SEQ=0
- F  S SEQ=$O(^TMP("BPSUSCR",$J,SEQ)) Q:'SEQ  D
- .  S LINE=$G(^TMP("BPSUSCR",$J,SEQ,0))
- .  U IO
- .  W !,$E(LINE,1,79)
- .  Q
+PAUSE2 ;
+ N X
+ U IO(0)
+ R !,"Press RETURN to continue: ",X:DTIME
+ U IO
  Q
  ;
- ; Unstrand the claim
- ; Fileman read of New Person file (VA(200)) is covered by IA# 10600
- ; set PROCESS FLAG to COMPLETE in the file BPS REQUEST
- ; IEN59 - ien of BPS TRANSACTION
- ; BPREQ77 - ien of BPS REQUEST , if defined this means - there is 
- ; no BPS TRANSACTION record - only request(s)
-UNSTRAND(IEN59,BPREQ77) ;
- N MES,BP77IEN,BPRXRF,BPRXRF
- I $G(BPREQ77)>0 D  D UNQUEUE(IEN59,+BPREQ77) Q
- . W !,"Warning! The stranded request for the prescription #"_$$GET1^DIQ(9002313.77,BPREQ77,.01,"E")_"/"_$$GET1^DIQ(9002313.77,BPREQ77,.02,"E")
- . W !,"is deleted. It might need to be submited manually in IB Claims"
- . W !,"Tracking Edit option."
- . D PRESSANY^BPSOSU5()
+ ; Unstrand the submission
+ ;
+ ; Input variables
+ ;   IEN59 - IEN of BPS TRANSACTION
+ ;   BP77IEN - IEN of BPS REQUEST - If this is defined, it means that there
+ ;     was only a request record but no BPS TRANSACTION record
+UNSTRAND(IEN59,BP77IEN) ;
+ N MES,BPTYPE
+ ; If BP77IEN is passed in, that means that there was no transaction data (no 0 node)
+ ;  so we need to just remove the request.  This will be done by UNQUEUE.
+ I $G(BP77IEN)>0 D UNQUEUE(IEN59,+BP77IEN) Q
+ ;
+ ; Set the result (error 99) and message
+ S BPTYPE=$P($G(^BPST(IEN59,0)),U,15)
  S MES="E UNSTRANDED"
  I $P($G(^BPST(IEN59,4)),"^",1)!($P($G(^BPST(IEN59,4)),"^",4)]"") S MES="E REVERSAL UNSTRANDED"
+ I BPTYPE="E" S MES="E ELIGIBILITY UNSTRANDED"
  D SETRESU^BPSOSU(IEN59,99,MES)
- D SETSTAT^BPSOSU(IEN59,99) ;calls REQST99^BPSOSRX5
- S BP77IEN=+$P($G(^BPST(IEN59,0)),"^",12)
- ;complete the request and delete all associated requests (normally they are deleted by REQST99^BPSOSRX5)
- I BP77IEN>0 S BPRXRF=$$RXREF^BPSSCRU2(IEN59) D COMPLETD^BPSOSRX4(BP77IEN),DELALLRQ^BPSOSRX7(BP77IEN,IEN59),DELACTRQ^BPSOSRX6(+BPRXRF,+$P(BPRXRF,U,2))
+ ;
+ ; Setting the status to 99% will call REQST99^BPSOSRX5, which will delete
+ ;   the current request and subsequent requests
+ D SETSTAT^BPSOSU(IEN59,99)
+ ; 
+ ; Update the log
  S MES=$T(+0)_"-Unstranded"
- I $G(DUZ) S MES=MES_" by "_$$GET1^DIQ(200,DUZ,.01,"E")
+ I $G(DUZ) S MES=MES_" by "_$$GET1^DIQ(200,DUZ,.01,"E") ; IA# 10060
  D LOG^BPSOSL(IEN59,MES)
  Q
- ;remove all requests for this RX/refill
+ ;
+ ;Remove all requests for this set of keys
 UNQUEUE(IEN59,BP77IEN) ;
- N MES,BPRXRF
- S BPRXRF=$$RXREF^BPSSCRU2(IEN59)
- I BP77IEN>0 D COMPLETD^BPSOSRX4(BP77IEN),DELALLRQ^BPSOSRX7(BP77IEN,IEN59),DELACTRQ^BPSOSRX6(+BPRXRF,$P(BPRXRF,U,2))
+ N MES,KEY1,KEY2,BPTYPE,BPRETV
+ I 'BP77IEN Q
+ S KEY1=$$GET1^DIQ(9002313.77,BP77IEN,.01,"I")
+ S KEY2=$$GET1^DIQ(9002313.77,BP77IEN,.02,"I")
+ S BPTYPE=$$GET1^DIQ(9002313.77,BP77IEN,1.04,"I")
+ I BPTYPE'="E" D
+ . W !,"Warning! The stranded request for the prescription #"_$$GET1^DIQ(9002313.77,BP77IEN,1.13,"E")_" and fill "_$$GET1^DIQ(9002313.77,BP77IEN,1.14,"E")
+ . W !,"is being deleted. It might need to be submitted manually in the IB Claims"
+ . W !,"Tracking Edit option."
+ . D PRESSANY^BPSOSU5()
+ ;
+ ; Lock the request
+ D LOG^BPSOSL(IEN59,$T(+0)_"-Attempting to lock request with keys "_KEY1_", "_KEY2)
+ S BPRETV=$$LOCKRF^BPSOSRX(KEY1,KEY2,10,IEN59,$T(+0))
+ I 'BPRETV D LOG^BPSOSL(IEN59,$T(+0)_"-Cannot lock keys") Q
+ ;
+ ; Set request to completed and delete any other subsequent or active requests
+ ; Then unlock the record
+ D COMPLETD^BPSOSRX4(BP77IEN),DELALLRQ^BPSOSRX7(BP77IEN,IEN59),DELACTRQ^BPSOSRX6(KEY1,KEY2,IEN59)
+ D UNLCKRF^BPSOSRX(KEY1,KEY2,IEN59,$T(+0))
+ ;
+ ; Put message in log indicating that we have unstranded the request
  S MES=$T(+0)_"-Unqueued (unstranded)"
- I $G(DUZ) S MES=MES_" by "_$$GET1^DIQ(200,DUZ,.01,"E")
+ I $G(DUZ) S MES=MES_" by "_$$GET1^DIQ(200,DUZ,.01,"E") ; IA# 10060
  D LOG^BPSOSL(IEN59,MES)
  Q

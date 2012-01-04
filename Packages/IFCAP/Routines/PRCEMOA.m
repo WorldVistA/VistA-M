@@ -1,13 +1,13 @@
-PRCEMOA ;WOIFO/SAB - MISCELLANEOUS OBLIGATION APIS ;12/14/2010
-V ;;5.1;IFCAP;**152**;Oct 20, 2000;Build 3
+PRCEMOA ;WOIFO/SAB - 1358 OBLIGATION APIS ;6/30/11  15:34
+V ;;5.1;IFCAP;**152,158**;Oct 20, 2000;Build 1
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
 UOKCERT(PRCOUT,PRC1358,PRCPER) ; User OK as Certifier for a 1358
  ; This API verifies that the person would not violate segregation of
- ; duty when certifying an invoice associated with a 1358 miscellaneous
- ; obligation by ensuring that they have not previously acted as a
- ; requestor, approver, or obligator on that 1358.
+ ; duty when certifying an invoice associated with a 1358 obligation
+ ; by ensuring that they have not previously acted as a requestor,
+ ; approver, or obligator on that 1358.
  ;
  ; inputs
  ;   PRCOUT  - output variable, passed by reference
@@ -44,7 +44,7 @@ UOKCERT(PRCOUT,PRC1358,PRCPER) ; User OK as Certifier for a 1358
  . ;
  . S PRCY0=$G(^PRC(442,PRC442,0))
  . ;
- . ; Verify METHOD OF PROCESSING = 21 MISC. OBLIGATION (1358)
+ . ; Verify METHOD OF PROCESSING = IEN 21 1358 OBLIGATION
  . I $P(PRCY0,U,2)'=21 S PRCOUT="E^The document is not a 1358." Q
  . ;
  . ; get PRIMARY 2237
@@ -134,7 +134,7 @@ EV1358(PRC1358,PRCARR) ; Events (and Actors) for a 1358
  . ;
  . S PRCY0=$G(^PRC(442,PRC442,0))
  . ;
- . ; Verify METHOD OF PROCESSING = 21 MISC. OBLIGATION (1358)
+ . ; Verify METHOD OF PROCESSING = IEN 21 1358 OBLIGATION
  . I $P(PRCY0,U,2)'=21 S PRCRET="E^The document is not a 1358." Q
  . ;
  . ; get PRIMARY 2237
@@ -178,3 +178,10 @@ EV1358(PRC1358,PRCARR) ; Events (and Actors) for a 1358
  . K ^TMP("PRC1358",$J)
  ;
  Q PRCRET
+ ;
+ ;
+AUTHR(PRCSTR) ;Returns string AuthorityDesc^Sub-AuthorityDesc for 1358 request
+ ; given string of AuthorityIEN^Sub-AuthorityIEN
+ N PRCX S PRCX=""
+ I PRCSTR]"" S PRCX=$P($G(^PRCS(410.9,+PRCSTR,0)),U,2)_"^"_$P($G(^PRCS(410.9,+$P(PRCSTR,U,2),0)),U,2)
+ Q PRCX

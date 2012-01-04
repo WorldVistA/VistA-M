@@ -1,5 +1,5 @@
 IBCEU1 ;ALB/TMP - EDI UTILITIES FOR EOB PROCESSING ;10-FEB-99
- ;;2.0;INTEGRATED BILLING;**137,155,296,349,371**;21-MAR-94;Build 57
+ ;;2.0;INTEGRATED BILLING;**137,155,296,349,371,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 CCOB1(IBIFN,NODE,SEQ) ; Extract Claim level COB data
@@ -11,16 +11,19 @@ CCOB1(IBIFN,NODE,SEQ) ; Extract Claim level COB data
  ;  n is the entry number in file 361.1 and node is the node requested
  ;   = the requested node's data
  ;
- N IB,IBN,IBBILL,IBS,A,B,C
+ N IB,IBN,IBBILL,IBS,A,B,C,IBCURR,IBMRAF
  ;
  K IBXDATA
  ;
  S:$G(NODE)="" NODE=1
  S IB=$P($G(^DGCR(399,IBIFN,"M1")),U,5,7)
+ S IBCURR=$$COB^IBCEF(IBIFN)
+ S IBMRAF=$$MCRONBIL^IBEFUNC(IBIFN)
+ ;
  S:"123"'[$G(SEQ) SEQ=""
  ;
  F B=1:1:3 S IBBILL=$P(IB,U,B) I IBBILL S C=0 F  S C=$O(^IBM(361.1,"B",IBBILL,C)) Q:'C  D
- . I '$$EOBELIG(C) Q      ; eob not eligible for secondary claim
+ . I '$$EOBELIG(C,IBMRAF,IBCURR) Q      ; eob not eligible for secondary claim
  . S IBS=$P($G(^IBM(361.1,C,0)),U,15)   ; insurance sequence
  . I $S('$G(SEQ):1,1:SEQ=IBS) D
  .. F Z=1:1:$L(NODE,",") D
@@ -93,6 +96,8 @@ LCOBOUT(IBXSAVE,IBXDATA,COL) ; Output the line adjustment reasons COB
  . S COBSEQ=0
  . F  S COBSEQ=$O(IBXSAVE("LCOB",LINE,"COB",COBSEQ)) Q:'COBSEQ  S SEQLINE=0 F  S SEQLINE=$O(IBXSAVE("LCOB",LINE,"COB",COBSEQ,SEQLINE)) Q:'SEQLINE  S GRPCD="" F  S GRPCD=$O(IBXSAVE("LCOB",LINE,"COB",COBSEQ,SEQLINE,GRPCD)) Q:GRPCD=""  D
  .. S RECCT=RECCT+1
+ .. ;IB*2.0*432/TAZ Added payer sequence in piece 22 of LCAS record (parameter Z)
+ .. I COL="Z" S IBXDATA(RECCT)=$E("PST",COBSEQ) I RECCT>1 D ID^IBCEF2(RECCT,"LCAS")
  .. I COL=2 S IBXDATA(RECCT)=LINE,DATA=LINE D:RECCT>1 ID^IBCEF2(RECCT,"LCAS")
  .. I COL=3 S IBXDATA(RECCT)=$TR(GRPCD," ")
  .. S (SEQ,RCCT)=0
@@ -132,28 +137,57 @@ COBOUT(IBXSAVE,IBXDATA,CL) ; build LCOB segment data
  ; This is basically the 361.115, but all the piece numbers here in this
  ; local array are one higher than the pieces in subfile 361.115.
  N Z,M,N,P,PCCL
+ S (N,Z)=0
+ F  S Z=$O(IBXSAVE("LCOB",Z)) Q:'Z  D
+ . S M=0 F  S M=$O(IBXSAVE("LCOB",Z,"COB",M)) Q:'M  D
+ .. S P=0 F  S P=$O(IBXSAVE("LCOB",Z,"COB",M,P)) Q:'P  D
+ ... S N=N+1
+ ... I CL="Z" S IBXDATA(N)=$E("PST",M) Q
+ ... S PCCL=$P($G(IBXSAVE("LCOB",Z,"COB",M,P)),U,CL)
+ ... ;IB*2.0*432/TAZ - If the revenue code is blank for the EOB get it from the Primary Level
+ ... I PCCL="",CL=11 S PCCL=$P($G(IBXSAVE("LCOB",Z)),U)
+ ... S:PCCL'="" IBXDATA(N)=PCCL
+ Q
+ ;
+ ;IB*2.0*432/TAZ - XCOBOUT is the original code which did not capture all the LCOB records.
+XCOBOUT(IBXSAVE,IBXDATA,CL) ; build LCOB segment data
+ ; The IBXSAVE array used here is built by INS-2, then LCOB-1.9
+ ; This is basically the 361.115, but all the piece numbers here in this
+ ; local array are one higher than the pieces in subfile 361.115.
+ N Z,M,N,P,PCCL
  S (N,Z,P)=0 F  S Z=$O(IBXSAVE("LCOB",Z)) Q:'Z  D
  . S N=N+1
  . S M=$O(IBXSAVE("LCOB",Z,"COB",""),-1) Q:'M
  . S P=$O(IBXSAVE("LCOB",Z,"COB",M,""),-1) Q:'P
+ . ;IB*2.0*432/TAZ Added Payer Sequence to piece 18 of the LCOB record
+ . I CL="Z" S IBXDATA(N)=$E("PST",M) Q
  . S PCCL=$P($G(IBXSAVE("LCOB",Z,"COB",M,P)),U,CL)
  . S:PCCL'="" IBXDATA(N)=PCCL
  . Q
  Q
  ;
 COBPYRID(IBXIEN,IBXSAVE,IBXDATA) ; cob insurance company payer id
- N CT,N,NUM
+ N CT,N,NUM,Z
  K IBXDATA
  I '$D(IBXSAVE("LCOB")) G COBPYRX
- D ALLPAYID^IBCEF2(IBXIEN,.NUM,1)
- S NUM=$G(NUM(1))
- S NUM=$E(NUM_$J("",5),1,5)
+ ;
+ ;IB*2.0*432/TAZ - Replaced following code with loop to insure that all LCOB records have the Payer ID
+ ;D ALLPAYID^IBCEF2(IBXIEN,.NUM,1)
+ ;S NUM=$G(NUM(1))
+ ;S NUM=$E(NUM_$J("",5),1,5)
+ ;S (CT,N)=0
+ ;F  S N=$O(IBXSAVE("LCOB",N)) Q:'N  S CT=CT+1,IBXDATA(CT)=NUM
+ ;
+ D ALLPAYID^IBCEF2(IBXIEN,.NUM)
  S (CT,N)=0
- F  S N=$O(IBXSAVE("LCOB",N)) Q:'N  S CT=CT+1,IBXDATA(CT)=NUM
+ F  S N=$O(IBXSAVE("LCOB",N)) Q:'N  D
+ . S Z=0
+ . F  S Z=$O(IBXSAVE("LCOB",N,"COB",Z)) Q:'Z  D
+ .. S CT=CT+1,IBXDATA(CT)=$G(NUM(Z))
 COBPYRX ;
  Q
  ;
-EOBELIG(IBEOB) ; EOB eligibility for secondary claim
+EOBELIG(IBEOB,IBMRAF,IBCURR) ; EOB eligibility for secondary claim
  ; Function to decide if EOB entry in file 361.1 (ien=IBEOB) is
  ; eligible to be included for secondary claim creation process
  ; The EOB is not eligible if the review status is not 3, or if there
@@ -161,14 +195,21 @@ EOBELIG(IBEOB) ; EOB eligibility for secondary claim
  ; and the patient responsibility for that EOB is $0 and that EOB is
  ; not a split EOB.  Split EOB's need to be included (IB*2*371).
  ;
+ ; 432 - added new flag IBMRAF to indicate if we need to check only MRA's or all EOB's
+ ; IBMRAF = 1 if only need MRA EOB's
+ ;
  NEW ELIG,IBDATA,PTRESP
  S ELIG=0
+ ; IB*2.0*432/TAZ Get current Payer sequence if not passed in.
+ I '$G(IBCURR) S IBCURR=$$COB^IBCEF(IBIFN)
  I '$G(IBEOB) G EOBELIGX
  S IBDATA=$G(^IBM(361.1,IBEOB,0))
- I $P(IBDATA,U,4)'=1 G EOBELIGX      ; Only MRA EOB's for now
+ I $G(IBMRAF)=1,$P(IBDATA,U,4)'=1 G EOBELIGX      ; Only MRA EOB's for now if flag = 1
  I $D(^IBM(361.1,IBEOB,"ERR")) G EOBELIGX     ; filing error
  I $P(IBDATA,U,16)'=3 G EOBELIGX     ; review status - accepted-complete
  I '$P(IBDATA,U,15) G EOBELIGX       ; insurance sequence must exist
+ ; IB*2.0*432/TAZ Don't send EOB data for current payer
+ I $P(IBDATA,U,15)=IBCURR G EOBELIGX ; Don't send EOB data for current payer (this is for retransmits)
  S PTRESP=$P($G(^IBM(361.1,IBEOB,1)),U,2)     ; Pt Resp Amount for 1500s
  I $$FT^IBCEF(+IBDATA)=3 S PTRESP=$$PTRESPI^IBCECOB1(IBEOB)  ; for UBs
  I PTRESP'>0,$P(IBDATA,U,13)=2,'$$SPLIT^IBCEMU1(IBEOB) G EOBELIGX     ; Denied & No Pt. Resp. & not a split MRA

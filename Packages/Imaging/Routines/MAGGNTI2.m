@@ -104,7 +104,7 @@ ADMNCLOS(MAGRY,MAGDFN,MAGTIUDA,MAGMODE) ; calls TIU API to set as Admin Closed.
  Q
 VALES(X) ; Validate the esig
  N MAGY S MAGY=0
- D HASH^ROUTINE
+ D HASH^XUSHSHP
  I X]"",(X=$P($G(^VA(200,+DUZ,20)),U,4)) S MAGY=1
  Q MAGY
 VALDATA(RY,MAGDFN,MAGTIUDA) ; Validate the TIUDA and the DFN

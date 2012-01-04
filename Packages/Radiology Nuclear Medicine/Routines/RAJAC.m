@@ -1,10 +1,19 @@
-RAJAC ;HISC/FPT AISC/MJK,RMO-Print Film Jacket Labels ;9/5/95  15:26
- ;;5.0;Radiology/Nuclear Medicine;**1,8**;Mar 16, 1998
+RAJAC ;HISC/FPT,GJC AISC/MJK,RMO-Print Film Jacket Labels ;9/5/95  15:26
+ ;;5.0;Radiology/Nuclear Medicine;**1,8,47**;Mar 16, 1998;Build 21
 START I '$D(RATEST) Q:'$D(^RADPT(RADFN,0))  S RAY1=^(0) Q:'$D(^DPT(RADFN,0))  S RAY0=^(0)
  S RAY2=$G(RASAV2),RAY3=$G(RASAV3) ;from RAREG3
  S (RADTI,RACNI)=0
  I $D(RAMDIV) S $P(RAY2,"^",3)=RAMDIV
- I $D(RATEST) F RAK=0:0 S RAK=$O(^RA(78.7,RAK)) Q:RAK'>0  I $D(^(RAK,0)) S @$P(^(0),"^",5)=$P(^(0),"^",4)
+ I $D(RATEST) D  K RAK(0) ;p47
+ .;w/P47 the LONG CASE NUMBER record in file 78.7 may be required to print
+ .;a legacy LONG CASE NUMBER: 081194-234 or a LONG CASE NUMBER with a site
+ .;prefix: 578-081194-234. RAI is the flag that determines the format to use.
+ .;
+ .F RAK=0:0 S RAK=$O(^RA(78.7,RAK)) Q:RAK'>0  I $D(^(RAK,0)) S RAK(0)=$G(^RA(78.7,RAK,0)) D
+ ..I $P(RAK(0),U)="LONG CASE NUMBER" D LONGCASE^RAFLH2(RAK(0)) Q
+ ..S @$P(RAK(0),U,5)=$P(RAK(0),U,4)
+ ..Q
+ .Q
  D PRT^RAFLH,CLOSE^RAUTL
  K RAY0,RAY1,RAY2,RAY3,RADFN,RADTI,RACNI,RATYPE,RAFMT,RANUM,RASAV2,RASAV3 F RAK=0:0 S RAK=$O(^RA(78.7,RAK)) Q:RAK'>0  I $D(^(RAK,0)) K @$P(^(0),"^",5)
  K RAK Q

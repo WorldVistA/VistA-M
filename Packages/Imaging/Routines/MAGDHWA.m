@@ -1,5 +1,6 @@
-MAGDHWA ;WOIFO/PMK - Capture Consult/Request data ; 12 Jul 2005  2:32 PM
- ;;3.0;IMAGING;**10,51,50**;26-May-2006
+MAGDHWA ;WOIFO/PMK - Capture Consult/Request data ; 19 Mar 2009 6:36 AM
+ ;;3.0;IMAGING;**10,51,50,49**;Mar 19, 2002;Build 2033;Apr 07, 2011
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -7,7 +8,6 @@ MAGDHWA ;WOIFO/PMK - Capture Consult/Request data ; 12 Jul 2005  2:32 PM
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -25,52 +25,28 @@ MSH ; update MSH segment
  Q
  ;
 PID ; update PID & PV1 segments
- N ADDRESS,FIRSTNAM,GEOLOC,I,J,LASTNAME,MIDNAME,PNAME
- N VA,VADM,VAIN,VAPA,VAERR,X,WARD,Z
+ N DFN,HL7SEG,I,X
  ; update PID segment
  S I=0 I $$FINDSEG^MAGDHW0(.HL7,"PID",.I,.X) D
- . S DFN=$P(X,DEL,3) D  ; protect I and X
- . . N %,DIQUIET,I,IO,X
- . . S DIQUIET=1 D DEM^VADPT,ADD^VADPT,INP^VADPT
- . . Q
- . S ADDRESS=VAPA(1) ; construct the patient's address string
- . F J=2:1:3 I VAPA(J)'="" S ADDRESS=ADDRESS_"^"_VAPA(J)
- . S GEOLOC=VAPA(4)_"^"_$P(VAPA(5),"^")_"^"_VAPA(6) ; city, state & zip
- . ; stuff the data into the segment
- . S $P(X,DEL,2)=VA("PID") ; patient id - ssn
- . S $P(X,DEL,4)=$E(VADM(1))_VA("BID") ; alt. patient id - quick pid
- . ; format patient name: last~first~middle
- . S LASTNAME=$P(VADM(1),","),Z=$P(VADM(1),",",2,999)
- . S FIRSTNAM=$P(Z," ",1),MIDNAME=$TR($P(Z," ",2,999),".")
- . S $P(X,DEL,5)=LASTNAME_DEL2_FIRSTNAM_DEL2_MIDNAME ; patient name
- . S $P(X,DEL,7)=17000000+VADM(3) ; dob
- . S $P(X,DEL,8)=$P(VADM(5),"^") ; sex
- . S $P(X,DEL,10)=DEL2_$P($G(VADM(12,1)),"^",2) ; race
- . S $P(X,DEL,11)=$$HLADDR^HLFNC(ADDRESS,GEOLOC,DEL2)
- . S $P(X,DEL,13)=VAPA(8)_DEL2_"PRN" ; primary phone number
- . S $P(X,DEL,19)=$P(VADM(2),"^") ; ssn (without dashes)
- . D SAVESEG^MAGDHW0(I,X)
+ . N HL,HL7ARRAY,HLECH,HLFS,HLQ,NUL
+ . S DFN=$P(X,DEL,3)
+ . D INIT^MAGDHW0
+ . S HLECH=HL("ECH")
+ . S HLFS=HL("FS")
+ . S HLQ=HL("Q")
+ . S HL7ARRAY(1,9,1,1,1)=""
+ . S HL7ARRAY(1,0)="MSH"
+ . S HL7ARRAY(1,1,1,1,1)=HLFS
+ . S HL7ARRAY(1,2,1,1,1)=HLECH
+ . D PID^MAGDHLS(DFN,"HL7ARRAY")
+ . D PV1^MAGDHLS(DFN,"",DT,"HL7ARRAY")
+ . ;
+ . S NUL=$$MAKE^MAG7UM("HL7ARRAY","HL7SEG")
+ . S HL7(I)=HL7SEG(2)
  . Q
- ;
- ; update PV1 segment for inpatients only
+ ; update PV1 segment
  S I=0 I $$FINDSEG^MAGDHW0(.HL7,"PV1",.I,.X) D
- . ; get assigned patient location
- . I VAIN(1) D  ; inpatient code
- . . S $P(X,DEL,2)="I" ; inpatient flag
- . . ; assigned patient location
- . . S Z=$TR(VAIN(4),"^",DEL5)_DEL5_"VISTA42"
- . . S $P(X,DEL,3)=Z_DEL2_$TR(VAIN(5),"-",DEL2)
- . . ; attending physician
- . . S $P(X,DEL,7)=$TR(VAIN(2),"^, ",DEL2_DEL2_DEL2)
- . . ; referring (primary care) physician
- . . S $P(X,DEL,8)=$TR(VAIN(11),"^, ",DEL2_DEL2_DEL2)
- . . ; hospital service
- . . S $P(X,DEL,10)=$TR(VAIN(3),"^",DEL2)
- . . ; visit number
- . . S $P(X,DEL,19)=VAIN(1)
- . . Q
- . E  S $P(X,DEL,2)="O" ; outpatient flag
- . D SAVESEG^MAGDHW0(I,X)
+ . S HL7(I)=HL7SEG(3)
  . Q
  Q
  ;
@@ -105,7 +81,7 @@ OBR ; update OBR segment
  . S $P(X,DEL,19)=Z ; consult/procedure flag - placer field #2
  . ;
  . ; store the current CPRS GMRC or Appointment Scheduling status
- . ; FILLER1 is also set in ^MAGDHRS
+ . ; FILLER1 is also set in ^MAGDHWS
  . I '$D(FILLER1) S FILLER1="GMRC-"_$$GET1^DIQ(123,GMRCIEN,8)
  . ; make linkage between the image group and the TIU note, if necessary
  . I MSGTYPE["RESULT",$$NEWTIU(GMRCIEN) S $P(FILLER1,DEL2,2)="LINKED"
@@ -185,7 +161,7 @@ NEWTIU(GMRCIEN) ; check if this is a TIU note to be linked to an image group
  . . Q
  . ; remove entries from ^MAG(2006.5839) & decrement the counter
  . K ^MAG(2006.5839,D0),^MAG(2006.5839,"C",123,GMRCIEN,D0)
- . L +^MAG(2006.5839)
+ . L +^MAG(2006.5839):1E9 ; Background process MUST wait
  . S $P(^MAG(2006.5839,0),"^",4)=$P(^MAG(2006.5839,0),"^",4)-1
  . L -^MAG(2006.5839)
  . S HIT=1

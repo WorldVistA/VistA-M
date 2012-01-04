@@ -1,5 +1,5 @@
 BPSNCPD2 ;BHAM ISC/LJE - Continuation of BPSNCPDP (IB Billing Determination) ;11/7/07  16:01
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8**;JUN 2004;Build 29
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;External reference $$RX^IBNCPDP supported by DBIA 4299
  ;External reference to $$NCPDPQTY^PSSBPSUT supported by IA4992
@@ -7,14 +7,19 @@ BPSNCPD2 ;BHAM ISC/LJE - Continuation of BPSNCPDP (IB Billing Determination) ;11
  ;
  ; EN - Call IB Billing Determination.  If good to go, update MOREDATA array
  ; Notes about variables
- ;input:
+ ;Input:
  ;   DFN - PATIENT file #2 ien
- ;   BWHERE - shows where the code is called from and what needs to be done
- ;   the following should be passed by reference:
- ;   MOREDATA - Initialized by BPSNCPDP and more data is added here
+ ;   BWHERE - Where the code is called from and what needs to be done
+ ;   MOREDATA - Initialized by BPSNCPDP and more data is added here.
+ ;              Should be passed by reference.
  ;   BPSARRY  - Created by STARRAY^BPSNCPD1 and used for IB Determination
- ;   IB    - Returned to BPSNCPDP
+ ;   IB - Returned to calling routine. Should be passed by reference.
+ ;        1 = Billable
+ ;        0 or 2 - Not Billable
+ ;
+ ; Variable used/needed but not passed in as a parameter
  ;   CERTIEN - BPS Certification IEN - Not passed but newed/set in BPSNCPDP
+ ;   BPJOBFLG - Not passed in but newed/set in BPSNCPCP
  ;
 EN(DFN,BWHERE,MOREDATA,BPSARRY,IB) ;
  I '$G(CERTIEN) D  I IB=2 Q
@@ -51,29 +56,50 @@ EN(DFN,BWHERE,MOREDATA,BPSARRY,IB) ;
  . ;
  . S IB=1
  . M MOREDATA("IBDATA")=BPSARRY("INS")
- . S $P(MOREDATA("BPSDATA",1),U,1)=BPSARRY("QTY")
- . S $P(MOREDATA("BPSDATA",1),U,2)=BPSARRY("COST")
- . S $P(MOREDATA("BPSDATA",1),U,3)=BPSARRY("NDC")
- . S $P(MOREDATA("BPSDATA",1),U,4)=BFILL
+ . S MOREDATA("PATIENT")=$G(DFN)
+ . S MOREDATA("RX")=$G(BPSARRY("IEN"))
+ . S $P(MOREDATA("BPSDATA",1),U,1)=$G(BPSARRY("QTY"))
+ . S $P(MOREDATA("BPSDATA",1),U,2)=$G(BPSARRY("COST"))
+ . S $P(MOREDATA("BPSDATA",1),U,3)=$G(BPSARRY("NDC"))
+ . S $P(MOREDATA("BPSDATA",1),U,4)=$G(BPSARRY("FILL NUMBER"))
  . S $P(MOREDATA("BPSDATA",1),U,5)=""  ; Certify Mode
  . S $P(MOREDATA("BPSDATA",1),U,6)=""  ; Cert IEN
- . S $P(MOREDATA("BPSDATA",1),U,7)=BPSARRY("UNITS")
+ . S $P(MOREDATA("BPSDATA",1),U,7)=$G(BPSARRY("UNITS"))
  ;
  ; If certification mode on and no IB result (somewhat redundant since IB is not called
  ;   for certification), get data from BPS Certification table
  I $G(CERTIEN),'$G(IB) D
  . N NODE,FLD,NFLD,CERTARY
- . S MOREDATA("BILL")=1
- . S MOREDATA("IBDATA",1,1)="",MOREDATA("IBDATA",1,2)="",MOREDATA("BPSDATA",1)=""
+ . S MOREDATA("IBDATA",1,1)="",MOREDATA("IBDATA",1,2)=""
+ . S MOREDATA("IBDATA",1,3)="",MOREDATA("BPSDATA",1)=""
+ . S MOREDATA("BILL")="1^^V",IB=1
+ . S MOREDATA("PATIENT")=$$GET1^DIQ(9002313.31,CERTIEN,903,"I")  ;Patient from certification record
+ . I 'MOREDATA("PATIENT") S MOREDATA("PATIENT")=$G(DFN) ; Patient
+ . S MOREDATA("RX")=$G(BPSARRY("IEN")) ; RX
+ . S MOREDATA("ELIG")="V"    ; Eligibility
  . S $P(MOREDATA("BPSDATA",1),U,5)=1  ;Certify Mode
  . S $P(MOREDATA("BPSDATA",1),U,6)=CERTIEN  ;Cert IEN
  . S $P(MOREDATA("IBDATA",1,1),U,1)=1  ;Plan IEN
- . S $P(MOREDATA("IBDATA",1,1),U,4)=$$GET1^DIQ(9002313.31,CERTIEN,.04,"E")  ;Payer Sheet
+ . S $P(MOREDATA("IBDATA",1,1),U,4)=$$GET1^DIQ(9002313.31,CERTIEN,.04,"E")  ;Billing Payer Sheet Name
  . S $P(MOREDATA("IBDATA",1,1),U,10)="01"  ;Home State Plan
- . S $P(MOREDATA("IBDATA",1,1),U,11)=""  ;B2 Payer Sheet (reversal)
- . S $P(MOREDATA("IBDATA",1,1),U,12)=""  ;B3 Payer Sheet (rebill)
+ . S $P(MOREDATA("IBDATA",1,1),U,11)=$$GET1^DIQ(9002313.31,CERTIEN,.05,"E")  ;Reversal Payer Sheet Name
+ . S $P(MOREDATA("IBDATA",1,1),U,12)=""  ;Rebill Payer Sheet Name
  . S $P(MOREDATA("IBDATA",1,1),U,14)=""  ;Plan Name
+ . S $P(MOREDATA("IBDATA",1,1),U,15)=$$GET1^DIQ(9002313.31,CERTIEN,.08,"E")  ;Eligibility Payer Sheet Name
+ . S $P(MOREDATA("IBDATA",1,1),U,16)=$$GET1^DIQ(9002313.31,CERTIEN,.04,"I") ;Billing Payer Sheet IEN
+ . S $P(MOREDATA("IBDATA",1,1),U,17)=$$GET1^DIQ(9002313.31,CERTIEN,.05,"I") ;Reversal Payer Sheet IEN
+ . S $P(MOREDATA("IBDATA",1,1),U,18)=""  ; Rebill Payer Sheet IEN
+ . S $P(MOREDATA("IBDATA",1,1),U,19)=$$GET1^DIQ(9002313.31,CERTIEN,.08,"I")  ; Eligibility Payer Sheet IEN
  . S $P(MOREDATA("IBDATA",1,2),U,5)=0    ;Admin Fee
+ . S $P(MOREDATA("IBDATA",1,3),U,1)=""   ;Group Name
+ . S $P(MOREDATA("IBDATA",1,3),U,2)=""   ;Insurance Company Phone Number
+ . S $P(MOREDATA("IBDATA",1,3),U,3)="T00010"   ;Plan ID
+ . S $P(MOREDATA("IBDATA",1,3),U,4)="V"   ;Plan Type
+ . S $P(MOREDATA("IBDATA",1,3),U,5)=""   ;Insurance Company IEN
+ . S $P(MOREDATA("IBDATA",1,3),U,6)=$$GET1^DIQ(9002313.31,CERTIEN,.07,"I") ;COB Indicator
+ . I $P(MOREDATA("IBDATA",1,3),U,6)="" S $P(MOREDATA("IBDATA",1,3),U,6)=1
+ . S $P(MOREDATA("IBDATA",1,3),U,7)=1    ;Policy Number (needed for eligibility transmissions)
+ . S $P(MOREDATA("IBDATA",1,3),U,8)=1    ;Maximum Transactions
  . ;
  . ;Get data from non-multiple fields and add to MOREDATA
  . K CERTARY D GETS^DIQ(9002313.31,CERTIEN_",","1*","","CERTARY")
@@ -101,24 +127,24 @@ EN(DFN,BWHERE,MOREDATA,BPSARRY,IB) ;
  .... I NFLD=442 S $P(MOREDATA("BPSDATA",1),U,1)=CERTARY(9002313.3121,NODE,.02)  ;Qty
  .... I NFLD=409 S $P(MOREDATA("BPSDATA",1),U,2)=CERTARY(9002313.3121,NODE,.02)  ;Unit Cost
  .... I NFLD=407 S $P(MOREDATA("BPSDATA",1),U,3)=CERTARY(9002313.3121,NODE,.02)  ;NDC
- .... I NFLD=403 S $P(MOREDATA("BPSDATA",1),U,4)=CERTARY(9002313.3121,NODE,.02)  ;Fill #
+ .... I NFLD=403 S $P(MOREDATA("BPSDATA",1),U,4)=+CERTARY(9002313.3121,NODE,.02)  ;Fill #
  .... I NFLD=600 S $P(MOREDATA("BPSDATA",1),U,7)=CERTARY(9002313.3121,NODE,.02)  ;Unit of Measure
  . ;
  . ; If Gross Amt Due is missing, use Usual and Customary
  . I $P(MOREDATA("IBDATA",1,2),U,4)="" S $P(MOREDATA("IBDATA",1,2),U,4)=$P(MOREDATA("IBDATA",1,2),U,3)
  ;
  ; The code below checks if Sequence one is missing and move the next number down if needed.
- ; DMB - This is existing code so I am not sure if it is needed or not.
- ; SS - This code is important for secondary claims processing
+ ; This can happen when the COB indicator in IB has multiple insurances assigned as secondary but none are
+ ;   assigned as primary
  I '$D(MOREDATA("IBDATA",1)) D
  . N WW
  . S WW=$O(MOREDATA("IBDATA",""))
  . I WW'="" M MOREDATA("IBDATA",1)=MOREDATA("IBDATA",WW) K MOREDATA("IBDATA",WW)
  ;
  ; Uppercase the IBDATA
- ; DMB - Assume this was adding in case any of the BPS Certification data was entered as lowercase
- S MOREDATA("IBDATA",1,1)=$TR(MOREDATA("IBDATA",1,1),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
- S MOREDATA("IBDATA",1,2)=$TR(MOREDATA("IBDATA",1,2),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
- S MOREDATA("BPSDATA",1)=$TR(MOREDATA("BPSDATA",1),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ ; DMB - Existing Code.  Not sure if it is needed.
+ S MOREDATA("IBDATA",1,1)=$TR($G(MOREDATA("IBDATA",1,1)),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ S MOREDATA("IBDATA",1,2)=$TR($G(MOREDATA("IBDATA",1,2)),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ S MOREDATA("BPSDATA",1)=$TR($G(MOREDATA("BPSDATA",1)),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
  ;
  Q

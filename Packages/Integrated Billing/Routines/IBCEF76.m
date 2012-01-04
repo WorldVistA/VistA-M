@@ -1,5 +1,5 @@
 IBCEF76 ;ALB/WCJ - Provider ID functions ;13 Feb 2006
- ;;2.0;INTEGRATED BILLING;**320,349,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**320,349,400,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  G AWAY
@@ -45,7 +45,8 @@ LFIDS(IBIFN,IDS,IBSTRIP,SEG) ;
  .. ; if ins co flag says to not send svc fac data and we're sending an EDI claim, then get out
  .. I '$$SENDSF^IBCEF79(IBIFN,COB),$G(^TMP("IBTX",$J,IBIFN)) Q
  .. ;
- .. S IDS("LAB/FAC",IBIFN,IBSORT1,IBSORT2,0)=$$STRIP($$TAXID^IBCEF75(),1,U,IBSTRIP)
+ .. ;IB*2.0*432/TAZ Moved Taxid setup inside VALF look to send as secondary ID for Medicare claims.
+ .. ;S IDS("LAB/FAC",IBIFN,IBSORT1,IBSORT2,0)=$$STRIP($$TAXID^IBCEF75(),1,U,IBSTRIP)
  .. D VALF(IBIFN,IBINS,IBFRMTYP,IBDIV,.IDS,IBSORT1,IBSORT2,COB,IBLIMIT,IBSTRIP,SEG)
  Q
  ;
@@ -54,7 +55,7 @@ VALF(IBIFN,INS,FT,DIV,IDS,SORT1,SORT2,COB,IBLIMIT,IBSTRIP,SEG) ; Get VA Lab/Fac 
  ; FT - 1 = UB 2 = 1500
  ; DIV - PTR to 40.8
  ;
- N Z,Z0,ID,QUAL,MAIN,IDTBL,CNT,Z
+ N Z,Z0,ID,QUAL,MAIN,IDTBL,CNT,Z,IBMCR
  S MAIN=$$MAIN^IBCEP2B()  ; get the IEN for main Division
  S Z=0 F  S Z=$O(^IBA(355.92,"B",INS,Z)) Q:'Z  D
  . S Z0=$G(^IBA(355.92,Z,0))
@@ -70,10 +71,20 @@ VALF(IBIFN,INS,FT,DIV,IDS,SORT1,SORT2,COB,IBLIMIT,IBSTRIP,SEG) ; Get VA Lab/Fac 
  . I $P(Z0,U,5)=DIV S IDTBL("DIV",QUAL)=ID  ; set up default for division
  S CNT=0
  S IDS("LAB/FAC",IBIFN,SORT1,SORT2)=$E("PST",COB)
+ ;IB*2.0*432/TAZ If Medicare send Tax ID as 1st Secondary ID ; only if it's not a printed form
+ S IBMCR=""
+ I '(($G(IBXFORM)=2)!($G(IBXFORM)=3)) S IBMCR=$$MCRONBIL^IBEFUNC(IBIFN)
+ I IBMCR S CNT=CNT+1,IDS("LAB/FAC",IBIFN,SORT1,SORT2,CNT)="LU"_U_$$STRIP($P($$TAXID^IBCEF75(),U,2),1,U,IBSTRIP)
  I $D(IDTBL("DIV")) D  Q
- . S Z="" F  S Z=$O(IDTBL("DIV",Z)) Q:Z=""  S CNT=CNT+1,IDS("LAB/FAC",IBIFN,SORT1,SORT2,CNT)=Z_U_IDTBL("DIV",Z) Q:CNT=IBLIMIT
+ . S Z="" F  S Z=$O(IDTBL("DIV",Z)) Q:Z=""  D
+ .. ;IB*2.0*432/TAZ If Medicare, screen out Tax ID
+ .. I IBMCR,(Z=24) Q
+ .. S CNT=CNT+1,IDS("LAB/FAC",IBIFN,SORT1,SORT2,CNT)=Z_U_IDTBL("DIV",Z) Q:CNT=IBLIMIT
  I $D(IDTBL("DEF")) D  Q
- . S Z="" F  S Z=$O(IDTBL("DEF",Z)) Q:Z=""  S CNT=CNT+1,IDS("LAB/FAC",IBIFN,SORT1,SORT2,CNT)=Z_U_IDTBL("DEF",Z) Q:CNT=IBLIMIT
+ . S Z="" F  S Z=$O(IDTBL("DEF",Z)) Q:Z=""  D
+ .. ;IB*2.0*432/TAZ If Medicare, screen out Tax ID
+ .. I IBMCR,(Z=24) Q
+ .. S CNT=CNT+1,IDS("LAB/FAC",IBIFN,SORT1,SORT2,CNT)=Z_U_IDTBL("DEF",Z) Q:CNT=IBLIMIT
  Q
  ;
 NONVALF(IBIFN,PRV,INS,FT,PT,IDS,SORT1,SORT2,COB,IBLIMIT,IBSTRIP,SEG) ; Get Non VA Lab/Fac Secondary IDs
@@ -84,7 +95,7 @@ NONVALF(IBIFN,PRV,INS,FT,PT,IDS,SORT1,SORT2,COB,IBLIMIT,IBSTRIP,SEG) ; Get Non V
  ; IDS array being returned
  ; SORT1 - "C"urrent or "O"ther
  ; SORT2 - 1 if current or (1 or 2 if other)
- N Z,Z0,ID,QUAL,IDTBL,CNT
+ N Z,Z0,ID,QUAL,IDTBL,CNT,IBMCR
  S Z=0 F  S Z=$O(^IBA(355.9,"B",PRV,Z)) Q:'Z  D
  . S Z0=$G(^IBA(355.9,Z,0))
  . I +$P(Z0,U,4) Q:$P(Z0,U,4)'=FT   ; Form type must match that passed in or be a 0 which allows both UB and 1500
@@ -104,14 +115,25 @@ NONVALF(IBIFN,PRV,INS,FT,PT,IDS,SORT1,SORT2,COB,IBLIMIT,IBSTRIP,SEG) ; Get Non V
  ;
  S CNT=0
  S IDS("LAB/FAC",IBIFN,SORT1,SORT2)=$E("PST",COB)_U_PRV
+ S IDS("LAB/FAC",IBIFN,SORT1,SORT2,"CONTACT")=$G(^IBA(355.93,+PRV,1))
  ; get primary
  S Z0=$G(^IBA(355.93,+PRV,0))
- I $P(Z0,U,9)]"",$P(Z0,U,13)]"" S IDS("LAB/FAC",IBIFN,SORT1,SORT2,CNT)=$$STRIP($P($G(^IBE(355.97,$P(Z0,U,13),0)),U,3)_U_$P(Z0,U,9),1,U,IBSTRIP)
+ ;IB*2.0*432/TAZ If Medicare send Tax ID as 1st Secondary ID
+ S IBMCR=""
+ I '(($G(IBXFORM)=2)!($G(IBXFORM)=3)) S IBMCR=$$MCRONBIL^IBEFUNC(IBIFN)
+ ;I $P(Z0,U,9)]"",$P(Z0,U,13)]"",IBMCR S CNT=CNT+1,IDS("LAB/FAC",IBIFN,SORT1,SORT2,CNT)="LU"_U_$$STRIP($P($G(^IBE(355.97,$P(Z0,U,13),0)),U,3)_U_$P(Z0,U,9),1,U,IBSTRIP)
+ I $P(Z0,U,9)]"",$P(Z0,U,13)]"",IBMCR S CNT=CNT+1,IDS("LAB/FAC",IBIFN,SORT1,SORT2,CNT)="LU"_U_$$STRIP($P(Z0,U,9),1,U,IBSTRIP)
  ; get secondarys in order
  I $D(IDTBL("INS")) D
- . N Z S Z="" F  S Z=$O(IDTBL("INS",Z)) Q:Z=""  S CNT=CNT+1,IDS("LAB/FAC",IBIFN,SORT1,SORT2,CNT)=Z_U_IDTBL("INS",Z) Q:CNT=IBLIMIT
+ . N Z S Z="" F  S Z=$O(IDTBL("INS",Z)) Q:Z=""  D
+ .. ;IB*2.0*432/TAZ If Medicare, screen out Tax ID
+ .. I IBMCR,(Z=24) Q
+ .. S CNT=CNT+1,IDS("LAB/FAC",IBIFN,SORT1,SORT2,CNT)=Z_U_IDTBL("INS",Z) Q:CNT=IBLIMIT
  I $D(IDTBL("OWN")),CNT'=IBLIMIT D
- . N Z S Z="" F  S Z=$O(IDTBL("OWN",Z)) Q:Z=""  I '$D(IDTBL("INS",Z)) S CNT=CNT+1,IDS("LAB/FAC",IBIFN,SORT1,SORT2,CNT)=Z_U_IDTBL("OWN",Z) Q:CNT=IBLIMIT
+ . N Z S Z="" F  S Z=$O(IDTBL("OWN",Z)) Q:Z=""  D
+ .. ;IB*2.0*432/TAZ If Medicare, screen out Tax ID
+ .. I IBMCR,(Z=24) Q
+ .. I '$D(IDTBL("INS",Z)) S CNT=CNT+1,IDS("LAB/FAC",IBIFN,SORT1,SORT2,CNT)=Z_U_IDTBL("OWN",Z) Q:CNT=IBLIMIT
  Q
  ;
 STRIP(X,SPACE,EXC,IBSTRIP) ;
@@ -129,8 +151,11 @@ OTH(IBIFN,IBXSAVE,IBXDATA,COND,SEG) ; Procedure used in piece 2 of some output
  ;  SEG = name of segment for use in calling ID^IBCEF2 (4 characters)
  ;
  N Z
- D CLEANUP^IBCEF75(.IBXSAVE)
- I COND D ALLIDS^IBCEF75(IBIFN,.IBXSAVE,1)
+ ;*432/TAZ - Changed Clean up and Setup routines to IBCEFP*
+ ;D CLEANUP^IBCEF75(.IBXSAVE)
+ ;I COND D ALLIDS^IBCEF75(IBIFN,.IBXSAVE,1)
+ D CLEANUP^IBCEFP1(.IBXSAVE)
+ I COND D ALLIDS^IBCEFP(IBIFN,.IBXSAVE,1)
  ;
  ; Special Check:  if Other Insurance #2 has secondary ID's while Other
  ; Insurance #1 does not, then move up #2 to be #1 here.  This is to

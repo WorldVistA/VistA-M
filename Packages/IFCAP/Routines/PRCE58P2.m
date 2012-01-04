@@ -1,5 +1,5 @@
-PRCE58P2 ;WISC/SAW,LDB-CONTROL POINT ACTIVITY 1358 PRINTOUT ;07/07/93
-V ;;5.1;IFCAP;**148**;Oct 20, 2000;Build 5
+PRCE58P2 ;WISC/SAW,LDB-CONTROL POINT ACTIVITY 1358 PRINTOUT ;6/7/11  18:56
+V ;;5.1;IFCAP;**148,158**;Oct 20, 2000;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  G P
 QUE I $D(ZTQUEUED) S DA=D0
@@ -17,7 +17,7 @@ P U IO W:$Y>0 @IOF S U="^",PRCSP=1,L="",$P(L,"-",80)="-" D NOW^%DTC S Y=% D DD^%
  W ! I $D(TRNODE(2)),TRNODE(2)]"" W $P(TRNODE(2),U,2),?41,"|",!,$P(TRNODE(2),U,6)_", " W $S($D(^DIC(5,+$P(TRNODE(2),U,7),0)):$P(^(0),U,2),1:"  ")_"  "_$P(TRNODE(2),U,8)
  W ?41,"|" D UL W !,"Name and Title Approving Official:",?41,"|Signature/Date Signed:"
  K P W ! I $D(P1) S P=$P(P1,U,3) I P S X=$S($D(^VA(200,P,20)):$P(^(20),U,2),1:"") W $E(X,1,30)
- K P W ! I $D(P1) S P=$P(P1,U,3) I P S X=$S($G(^VA(200,P,20)):$P(^(20),U,2),1:"") W $E(X,1,30)
+ ;K P W ! I $D(P1) S P=$P(P1,U,3) I P S X=$S($G(^VA(200,P,20)):$P(^(20),U,2),1:"") W $E(X,1,30)
  W ?41,"|" I $D(P),P,$P(P1,U,6)'="" S X=$$DECODE^PRCSC1(DA) W "/ES/"_$E(X,1,28)
  W ?62,"/" I $D(P1) S Y=$S($P(P1,U,7):$P(P1,U,7),1:$P(P1,U,5)) I Y D DD^%DT W Y K Y
  W ! I $D(P1) W $P(P1,U,4)
@@ -32,9 +32,10 @@ P U IO W:$Y>0 @IOF S U="^",PRCSP=1,L="",$P(L,"-",80)="-" D NOW^%DTC S Y=% D DD^%
  W !,P,?41,"|" K PRCSG I $D(TRNODE(4)) S PRCSG=TRNODE(4) I $P(PRCSG,U,9),$P(PRCSG,U,10)'="" S X=$$DECODE^PRCSC2(DA) W "/ES/"_$E(X,1,28)
  W ?62,"|" I $D(PRCSG) S Y=$P(PRCSG,U,4) I Y D DD^%DT W Y
  D UL
- W !,"AUTHORITY: " I $P($G(TRNODE(11)),U,4) W $P($G(^PRCS(410.9,$P(TRNODE(11),U,4),0)),U)," ",$P($G(^(0)),U,2)
- W:$P($G(TRNODE(11)),U,5) !,"SUB: ",$P($G(^PRCS(410.9,$P(TRNODE(11),U,5),0)),U)," ",$P($G(^(0)),U,2)
- D UL W !,"Purpose:       SERVICE START DATE: ",$$FMTE^XLFDT($P($G(TRNODE(1)),U,6),"2DZ"),"     SERVICE END DATE: ",$$FMTE^XLFDT($P($G(TRNODE(1)),U,7),"2DZ")
+ W !,"AUTHORITY: " I $P($G(TRNODE(11)),U,4) W $P($G(^PRCS(410.9,$P(TRNODE(11),U,4),0)),U)
+ W:$P($G(TRNODE(11)),U,5) ?40,"SUB: ",$P($G(^PRCS(410.9,$P(TRNODE(11),U,5),0)),U)
+ W !,"SERVICE START DATE: ",$$FMTE^XLFDT($P($G(TRNODE(1)),U,6),"2DZ"),?40,"SERVICE END DATE: ",$$FMTE^XLFDT($P($G(TRNODE(1)),U,7),"2DZ")
+ D UL W !,"Purpose: "
  I $D(^UTILITY($J,"W",DIWL)) S Z=^UTILITY($J,"W",DIWL) F I=1:1:Z W !,^UTILITY($J,"W",DIWL,I,0) I IOSL-$Y<3 D UL,NEWP
  I IOSL-$Y<10 D NEWP
  D ^PRCE58P3
@@ -44,6 +45,13 @@ UL W ! N I F I=1:1:80 W @IOBS
 NEWP ;PRINT HEADER FOR NEW PAGE
  W !!,"VA FORM 4-1358a-ADP (NOV 1987)" W:$Y>0 @IOF
  S PRCSP=PRCSP+1 W !,$P(TRNODE(0),U) W:$D(PRCSPO) ?40,PRC("SITE")_"-"_PRCSPO W ?72,"PAGE ",PRCSP D UL
-NEWP1 I '$D(PRCSOB) W !,?14,"ESTIMATED MISCELLANEOUS OBLIGATION OR CHANGE IN OBLIGATION" D UL
- E  W !,?26,"REQUEST FOR 1358 OBLIGATION/ADJUSTMENT" D UL
+NEWP1 N PRCX S PRCX=$$AUTHR^PRCEMOA($P($G(TRNODE(11)),U,4,5))
+ I '$D(PRCSOB) D
+ . W !,"1358 OBLIGATION OR CHANGE" W:$P(PRCX,U)]"" ":",$P(PRCX,U)
+ . W:$P(PRCX,U,2)]"" !,?5,$P(PRCX,U,2)
+ . D UL
+ E  D
+ . W !,"REQUEST 1358 OBLIG/ADJUST" W:$P(PRCX,U)]"" ":",$P(PRCX,U)
+ . W:$P(PRCX,U,2)]"" !,?5,$P(PRCX,U,2)
+ . D UL
  Q

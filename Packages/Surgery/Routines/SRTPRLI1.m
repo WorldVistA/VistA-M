@@ -1,5 +1,5 @@
 SRTPRLI1 ;BIR/SJA - PRINT LIVER-DIAGNOSIS/RISK INFORMATION ;04/21/08
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+ ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
  K DR,SRAO,SRX,Y
 DIAG W:$E(IOST)="P" ! W !,?28,"TRANSPLANT INFORMATION",!
  S (DR,SRDR)="85;87;89;68;13;14;15;17;16;18"
@@ -9,7 +9,7 @@ DIAG W:$E(IOST)="P" ! W !,?28,"TRANSPLANT INFORMATION",!
  W !,"Cold Ischemia time:",?21,$P(SRAO(2),"^")
  W !,"Total Ischemia time:",?21,$P(SRAO(3),"^")
  W !,"Crossmatch D/R:",?21,$P(SRAO(4),"^")
- W !!,"HLA Typing (#,#,#)",!,"==================="
+ W !!,"HLA Typing (#,#,#,#)",!,"===================="
  W !,"Recipient HLA-A:",?21,$P(SRAO(5),"^")
  W !,"Recipient HLA-B:",?21,$P(SRAO(6),"^")
  W !,"Recipient HLA-C:",?21,$P(SRAO(7),"^")

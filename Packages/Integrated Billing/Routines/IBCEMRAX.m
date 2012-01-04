@@ -1,16 +1,16 @@
 IBCEMRAX ;ALB/DSM - MEDICARE REMITTANCE ADVICE DETAIL-PART A Cont'd ;25-APR-2003
- ;;2.0;INTEGRATED BILLING;**155**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**155,432**;21-MAR-94;Build 192
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
  ;
-DEV(IBIFN) ; Prompt the user for a device
+DEV(IBIFN,IBMRANOT) ; Prompt the user for a device  ; WCJ IB*2.0*432
  ; Input: IBIFN= ien# of Claim file
- ;
+ ;    IBMRANOT = 1 if NOT an MRA    ; WCJ IB*2.0*432
  N %ZIS,ZTRTN,ZTSAVE,ZTDESC,POP,MRACNT
  I '$G(IBIFN) Q  ;DEV
  W !!,"This report displays Medicare-equivalent Remittance Advice Detail."
- S MRACNT=$$MRACNT^IBCEMU1(IBIFN)
+ S MRACNT=$$MRACNT^IBCEMU1(IBIFN,$G(IBMRANOT))
  I MRACNT>1 W !,"*** Multiple MRAs on File for this claim.  ",MRACNT," MRAs will be printed. ***"
  W !,"You will need a 132 column printer for this report",!
  ;

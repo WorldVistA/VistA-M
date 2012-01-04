@@ -1,5 +1,5 @@
 RARTR3 ;HIRMFO/SWM-Queue/print Radiology Reports (utility) ;8/31/99  13:57
- ;;5.0;Radiology/Nuclear Medicine;**8,10,19,27,35,45,75**;Mar 16, 1998;Build 4
+ ;;5.0;Radiology/Nuclear Medicine;**8,10,19,27,35,45,75,47**;Mar 16, 1998;Build 21
 MEMS1 ;--- modifiers --- handle cases within print set
  N RACNISAV,RAY3SAV,RAMEMARR,RACDIS,RALDIS
  D EN2^RAUTL20(.RAMEMARR) Q:'$O(RAMEMARR(0))
@@ -86,16 +86,21 @@ XAM() ; Return exam data information.  Case number, exam status & procedure
  ; name build into one string.  Assumes RAY3 is the 0 node for exam data
  Q:$G(RAY3)="" "" ; no exam information present.
  N RAPROC,RAXAMSTR S RAXAMSTR=""
+ N RASSAN,RACNDSP S RASSAN=$$SSANVAL^RAHLRU1(RADFN,RADTI,RACNI)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:+RAY3)
+ I $G(RAMDIV)="" S RAMDIV=$P($G(^RADPT(RADFN,"DT",RADTI,0)),"^",3)
  I $G(RALDIS)!('$O(RAMEMARR(0)))!($O(RAMEMARR(0))&($G(RACDIS(RACNI))=1)) D
- . S $E(RAXAMSTR,1,5)="(Case"
- . S $E(RAXAMSTR,7,(7+$L(+RAY3)))=+RAY3
+ . I $$USESSAN^RAHLRU1() S $E(RAXAMSTR,1,5)="(Case" S $E(RAXAMSTR,7,(7+$L(RACNDSP)))=RACNDSP
+ . I '$$USESSAN^RAHLRU1() S $E(RAXAMSTR,1,5)="(Case" S $E(RAXAMSTR,7,(7+$L(+RAY3)))=+RAY3
  . S $E(RAXAMSTR,$L(RAXAMSTR)+2,79)=$S($D(^RA(72,+$P(RAY3,"^",3),0)):$E($P(^(0),"^"),1,8)_")",1:"Unknown)")
  . Q
  E  S:$G(RACDIS(RACNI)) $E(RAXAMSTR,1)="(",$E(RAXAMSTR,9,14)=RACDIS(RACNI)_"x",$E(RAXAMSTR,20)=")"
  S RAPROC=$G(^RAMIS(71,+$P(RAY3,"^",2),0))
- S $E(RAXAMSTR,22,54)=$S($P(RAPROC,"^")]"":$E($P(RAPROC,"^"),1,33),1:"Unknown")
+ I $$USESSAN^RAHLRU1() S $E(RAXAMSTR,32,65)=$S($P(RAPROC,"^")]"":$E($P(RAPROC,"^"),1,33),1:"Unknown")
+ I '$$USESSAN^RAHLRU1() S $E(RAXAMSTR,22,54)=$S($P(RAPROC,"^")]"":$E($P(RAPROC,"^"),1,33),1:"Unknown")
  N RADISPLY
  S RADISPLY=$G(^RAMIS(71,+$P($G(^RADPT(+RADFN,"DT",+RADTI,"P",+RACNI,0)),U,2),0)) ; set $ZR to 71 for prccpt^radd1, not call raprod since store result
  S RADISPLY=$$PRCCPT^RADD1()
- S $E(RAXAMSTR,55,79)=RADISPLY
+ I $$USESSAN^RAHLRU1() S $E(RAXAMSTR,65,79)=RADISPLY
+ I '$$USESSAN^RAHLRU1() S $E(RAXAMSTR,55,79)=RADISPLY
  Q RAXAMSTR

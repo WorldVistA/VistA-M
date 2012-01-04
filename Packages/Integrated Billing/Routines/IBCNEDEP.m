@@ -1,5 +1,5 @@
 IBCNEDEP ;DAOU/ALA - Process Transaction Records ;17-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,300,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;  This program finds records needing HL7 msg creation
@@ -164,6 +164,7 @@ FIN ; Prioritize requests for statuses 'Retry' and 'Ready to Transmit'
  ;
 LP ;  Loop through priorities, process as either verifications
  ;  or identifications
+ N IHCNT
  S VNUM="",IHCNT=0
  F  S VNUM=$O(^TMP("IBQUERY",$J,VNUM)) Q:VNUM=""  D  Q:$G(ZTSTOP)!$G(QFL)=1
  . I VNUM=1!(VNUM=3) D VER Q
@@ -173,7 +174,7 @@ EXIT ;  Finish
  K BUFF,CNT,D,D0,DA,DFN,DI,DIC,DIE,DISYS,DQ,DR,DTCRT,EXT,FAIL,FLDT,FUTDT
  K FRDT,FMSG,GT1,HCT,HIEN,HL,HLCDOM,HLCINS,HLCS,HLCSTCP,HLDOM,HLECH,%I,%H
  K HLEID,HLFS,HLHDR,HLINST,HLIP,HLN,HLPARAM,HLPROD,HLQ,HLRESLT,XMSUB
- K HLSAN,HLTYPE,HLX,IBCNEP,IBCNHLP,IEN,IN1,IRIEN,MDTM,MGRP,MSGID,TOT
+ K HLSAN,HLTYPE,HLX,IBCNEP,IBCNHLP,IEN,IHCNT,IN1,IRIEN,MDTM,MGRP,MSGID,TOT
  K NRETR,NTRAN,OVRIDE,PAYR,PID,QFL,QUERY,RETR,RSIEN,SRVDT,STA,TRANSR,X
  K ZMID,^TMP("IBQUERY",$J),Y,DOD,DGREL,TMSG,RSTYPE,OMSGID,QFL
  K IBCNETOT,HLP,SUBID,VNUM,BNDL,IBDATA,PATID
@@ -270,7 +271,13 @@ PROC ;  Process TQ record
  . S HCT=HCT+1
  . I VNUM=1 S ^TMP("HLS",$J,HCT)=$TR(IN1,"*","") Q
  . I VNUM=2,'BNDL S ^TMP("HLS",$J,HCT)=$TR(IN1,"*","") Q
- . S CNT=CNT+1
+ . S CNT=CNT+1 I TOT=0 S TOT=1
  . S $P(IN1,HLFS,22)=TOT,$P(IN1,HLFS,21)=CNT
  . S ^TMP("HLS",$J,HCT)=$TR(IN1,"*","")
+ ;
+ ;  Build multi-field NTE segment
+ D NTE^IBCNEHLQ
+ ;  If build successful
+ I NTE'="",$E(NTE,1)'="*" S HCT=HCT+1,^TMP("HLS",$J,HCT)=$TR(NTE,"*","")
+ K NTE
  Q

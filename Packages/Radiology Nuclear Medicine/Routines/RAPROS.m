@@ -1,5 +1,5 @@
 RAPROS ;HISC/GJC AISC/MJK,RMO-Exam Profile (sort) ;6/19/97  09:12
- ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**47**;Mar 16, 1998;Build 21
 PAT S DIC(0)="AQEM" D ^RADPA K DIC G Q:Y<0 S RADFN=+Y G Q:'$D(^DPT(RADFN,0)) S RANME=^(0),RASSN=$$SSN^RAUTL,RANME=$P(RANME,"^")
 SORT R !!,"Sort by one of the following:",!?10,"P ==> Procedure",!?10,"D ==> Date of Exam",!?30,"Procedure// ",RAXX:DTIME
  G Q:'$T!(RAXX["^") S RAXX=$E(RAXX) S:RAXX="" RAXX="P" G SORT:RAXX="?" S RAXX=$$UP^XLFSTR(RAXX) I "PD"'[RAXX W *7," ??" G SORT
@@ -56,16 +56,26 @@ PRT3 S RASEQ=RASEQ+1,^TMP($J,"RASEQ",RASEQ)=RAY
  N RADFN,RADTI,RACNI
  S RADFN=$P(RAY,"^",5),RADTI=$P(RAY,"^",6),RACNI=$P(RAY,"^",7)
  N RAPRTSET,RAMEMLOW D EN1^RAUTL20
- W !,RASEQ W:RASORT="RADTI" ?5,$S(RAMEMLOW:"+",RAPRTSET:".",1:" ")
- W ?6,$P(RAY,"^"),?11,$$IMGDISP^RAPTLU(+$P(RAY,"^",11))
- W ?13,$E($P(RAY,"^",2),1,26),?41,$P(RAY,U,12)
- W ?52,$S($D(^RA(72,$P(RAY,"^",4),0)):$E($P(^(0),"^"),1,16),1:"Unknown")
- W ?69,$E($P(RAY,U,13),1,11)
+ N RASSAN,RACNDSP S RASSAN=$$SSANVAL^RAHLRU1(RADFN,RADTI,RACNI)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:$P(RAY,"^"))
+ I $$USESSAN^RAHLRU1() D
+ .W !,RASEQ W:RASORT="RADTI" ?4,$S(RAMEMLOW:"+",RAPRTSET:".",1:" ")
+ .W ?5,RACNDSP,?10,$$IMGDISP^RAPTLU(+$P(RAY,"^",11))
+ .W ?22,$E($P(RAY,"^",2),1,26),?49,$P(RAY,U,12)
+ .W ?58,$S($D(^RA(72,$P(RAY,"^",4),0)):$E($P(^(0),"^"),1,11),1:"Unknown")
+ .W ?70,$E($P(RAY,U,13),1,10)
+ I '$$USESSAN^RAHLRU1() D
+ .W !,RASEQ W:RASORT="RADTI" ?5,$S(RAMEMLOW:"+",RAPRTSET:".",1:" ")
+ .W ?6,$P(RAY,"^"),?11,$$IMGDISP^RAPTLU(+$P(RAY,"^",11))
+ .W ?13,$E($P(RAY,"^",2),1,26),?41,$P(RAY,U,12)
+ .W ?52,$S($D(^RA(72,$P(RAY,"^",4),0)):$E($P(^(0),"^"),1,16),1:"Unknown")
+ .W ?69,$E($P(RAY,U,13),1,11)
  Q
 HD ; Generic header output
  W:$E(IOST,1,2)="C-"!(RAPAG) @IOF
  W "Profile for ",RANME,"  ",RASSN,?55,"Run Date: " S Y=DT D DT^DIO2 W !!,?20,"***** Registered Exams Profile *****"
- W !?3,"Case No.",?13,"Procedure",?41,"Exam Date",?52,"Status of Exam",?69,"Imaging Loc",!?3,"--------",?13,"-------------",?41,"---------",?52,"------------",?69,"-----------" Q
+ I $$USESSAN^RAHLRU1() W !?4,"Case No.",?22,"Procedure",?49,"Exam Dt",?58,"Exam Status",?70,"Img Loc",!?4,"-----------------",?22,"-------------",?49,"--------",?58,"-----------",?70,"----------" Q
+ I '$$USESSAN^RAHLRU1() W !?3,"Case No.",?13,"Procedure",?41,"Exam Date",?52,"Status of Exam",?69,"Imaging Loc",!?3,"--------",?13,"-------------",?41,"---------",?52,"------------",?69,"-----------" Q
 HLP ; Generic help
  W !!?3,"Enter the number corresponding to the exam you wish to select.",!
  Q

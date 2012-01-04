@@ -1,5 +1,5 @@
 IBCNEHLT ;DAOU/ALA - HL7 Process Incoming MFN Messages ; 09 Dec 2005  3:30 PM
- ;;2.0;INTEGRATED BILLING;**184,251,271,300,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,251,271,300,416,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
@@ -17,7 +17,8 @@ EN ;  Entry Point
  ; BADFMT is true if a site with patch 300 receives an eIV message in the previous HL7 interface structure (pre-300)
  ;
  ; Build local table of file numbers to determine if response is eIV or ePHARM
- F D=11:1:18,21 S X12TABLE("365.0"_D)=""
+ F D=11:1:18 S X12TABLE("365.0"_D)=""
+ F D=21:1:28 S X12TABLE("365.0"_D)=""
  ;
  ; Decide if message belongs to "E-Pharm" or "eIV"
  S APP=""

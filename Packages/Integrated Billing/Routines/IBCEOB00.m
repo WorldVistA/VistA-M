@@ -1,5 +1,5 @@
-IBCEOB00 ;ALB/ESG - 835 EDI EOB MSG PROCESSING CONT ;30-JUN-2003
- ;;2.0;INTEGRATED BILLING;**155,349,377**;21-MAR-94;Build 23
+IBCEOB00 ;ALB/ESG/PJH - 835 EDI EOB MSG PROCESSING CONT ;30-JUN-2003
+ ;;2.0;INTEGRATED BILLING;**155,349,377,431**;21-MAR-94;Build 106
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -201,8 +201,8 @@ DET40(IB0,ARRAY) ; Format important details of record 40 for error
  I $P(IB0,U,5)'="" S ARRAY(5)=ARRAY(5)_"  Mods: " F Q=5:1:8 I $P(IB0,U,Q)'="" S ARRAY(5)=ARRAY(5)_$P(IB0,U,Q)_$S(Q=8:"",$P(IB0,U,Q+1)'="":",",1:"")
  Q
  ;
-DET4X(RECID,IB0,ARRAY) ; Format important details of record 41-45 for error
- ; RECID = 41,42,45
+DET4X(RECID,IB0,ARRAY) ; Format important details of record 41-46 for error
+ ; RECID = 41,42,45,46
  ; IB0 = data on RECID record
  ;  ARRAY(n)=formatted line is returned if passed by ref
  N CT,Q
@@ -216,6 +216,9 @@ DET4X(RECID,IB0,ARRAY) ; Format important details of record 41-45 for error
  I RECID=45 D
  . S ARRAY(1)="Adj Group Cd: "_$P(IB0,U,3)_"  Reason Cd: "_$P(IB0,U,4)_"  Amt: "_$J($P(IB0,U,5)/100,"",2)_"  Quantity: "_+$P(IB0,U,6)
  . I $P(IB0,U,7)'="" S CT=1 F Q=0:80:190 I $E($P(IB0,U,7),Q+1,Q+80)'="" S CT=CT+1,ARRAY(CT)=$E($P(IB0,U,7),Q+1,Q+80)
+ ;
+ I RECID=46 D
+ . S ARRAY(1)="Payer Policy Reference: "_$P(IB0,U,3)
  Q
  ; 
 FDT(X) ; Format date in X (YYYYMMDD) to MM/DD/YYYY

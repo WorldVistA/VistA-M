@@ -1,9 +1,10 @@
 PSOBPSU1 ;BIRM/MFR - BPS (ECME) Utilities 1 ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290,358**;DEC 1997;Build 35
+ ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290,358,359**;DEC 1997;Build 27
  ;Reference to $$EN^BPSNCPDP supported by IA 4415 & 4304
  ;References to $$NDCFMT^PSSNDCUT,$$GETNDC^PSSNDCUT supported by IA 4707
  ;References to $$ECMEON^BPSUTIL,$$CMOPON^BPSUTIL supported by IA 4410
  ;References to $$STORESP^IBNCPDP supported by IA 4299
+ ;Reference to $$CLAIM^BPSBUTL supported by IA 4719
  ;
 ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; - Sends Rx Release 
  ;information to ECME/IB and updates NDC in the files 50 & 52; DBIA4304
@@ -21,7 +22,7 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  ;       (o) CNDC - Changed NDC? 1 - Yes / 0 - No (Default: NO)
  ;       (o) IGSW - Ignore Switches (Master and CMOP)? 1 - Yes / 0 - No (Default: NO)
  ;       (o) ALTX - Alternative Text to be placed in the Rx ECME Activity Log
- ;       (o) CLA  - NCPDP Clarification Code for overriding DUR/RTS REJECTS
+ ;       (o) CLA  - NCPDP Clarification Code(s) for overriding DUR/RTS REJECTS
  ;       (o) PA   - NCPDP Prior Authorization Type and Number (separated by "^")
  ;       (o) RXCOB- Payer Sequence
  ;Output:    RESP - Response from $$EN^BPSNCPDP api
@@ -47,13 +48,12 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  N CLSCOM,COD1,COD2,COD3
  S COD2=$P($G(OVRC),"^"),COD1=$P($G(OVRC),"^",2),COD3=$P($G(OVRC),"^",3)
  I $G(COD3)'="" S CLSCOM="DUR Override Codes "_COD1_"/"_COD2_"/"_COD3_" submitted."
- I $G(CLA)'="" S CLSCOM="Clarification Code "_$P(CLA,"^",2)_" submitted."
+ I $G(CLA)'="" S CLSCOM="Clarification Code(s) "_CLA_" submitted."
  I $G(PA)'="" S CLSCOM="Prior Authorization Code ("_$P(PA,"^")_"/"_$P(PA,"^",2)_") submitted."
- D CLSALL^PSOREJUT(RX,RFL,DUZ,1,$G(CLSCOM),$G(COD1),$G(COD2),$G(COD3),$S($G(CLA):$P(CLA,"^",2),1:""),$G(PA))
+ D CLSALL^PSOREJUT(RX,RFL,DUZ,1,$G(CLSCOM),$G(COD1),$G(COD2),$G(COD3),$G(CLA),$G(PA))
  ; - Call to ECME (NEWing STAT because ECME was overwriting it - Important variable for CMOP release PSXVND)
  N STAT
  I $G(RVTX)="",FROM="ED" S RVTX="RX EDITED"
- I $G(CLA) S CLA=$P(CLA,"^")
  S RESP=$$EN^BPSNCPDP(RX,RFL,$$DOS(RX,RFL,.DATE),FROM,NDC,$G(RVTX),$G(OVRC),,$G(CLA),$G(PA),$G(RXCOB))
  I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" D SAVNDC^PSONDCUT(RX,RFL,NDC,+$G(CMOP),1,FROM)
  ;
@@ -151,7 +151,8 @@ RELEASE(RX,RFL,USR) ; - Notifies IB that the Rx was RELEASED
  D GETS^DIQ(52,RX_",",".01;2;6;7;8;22","I","RXAR")
  S DFN=+$G(RXAR(52,RX_",",2,"I"))
  S IBAR("PRESCRIPTION")=RX,IBAR("RX NO")=$G(RXAR(52,RX_",",.01,"I"))
- S IBAR("CLAIMID")=$E((RX#10000000)+10000000,2,8),IBAR("USER")=USR
+ S IBAR("CLAIMID")=$P($$CLAIM^BPSBUTL(RX,RFL),U,6)
+ S IBAR("USER")=USR
  S IBAR("DRUG")=RXAR(52,RX_",",6,"I"),IBAR("NDC")=$$GETNDC^PSONDCUT(RX,RFL)
  S FLDT=$$RXFLDT^PSOBPSUT(RX,RFL) I FLDT>DT S FLDT=DT
  S IBAR("FILL NUMBER")=RFL,IBAR("FILL DATE")=FLDT

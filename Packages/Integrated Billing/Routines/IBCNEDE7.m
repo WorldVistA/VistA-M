@@ -1,5 +1,5 @@
 IBCNEDE7 ;DAOU/DAC - eIV DATA EXTRACTS ;04-JUN-2002
- ;;2.0;INTEGRATED BILLING;**271,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**271,416,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q    ; no direct calls allowed
@@ -96,9 +96,8 @@ SETTQ(DATA1,DATA2,ORIG,OVERRIDE) ;Set extract data in TQ file 365.1
  ;
  D UPDATE^DIE("","FDA","IENARRAY","ERROR")
  ;
- I $D(ERROR) D  ; MailMan msg
- . NEW MGRP,XMSUB,MSG
- . KILL MSG
+ I $G(ERROR("DIERR",1,"TEXT",1))'="" D  ; MailMan msg
+ . N MGRP,XMSUB,MSG
  . ;
  . ; Set to IB site parameter MAILGROUP
  . S MGRP=$$MGRP^IBCNEUT5()
@@ -113,8 +112,9 @@ SETTQ(DATA1,DATA2,ORIG,OVERRIDE) ;Set extract data in TQ file 365.1
  . S MSG(7)=""
  . S MSG(8)="Transaction #: "_TRANSNO
  . S MSG(9)="Patient: "_$P($G(^DPT(DFN,0)),U)_$$SSN^IBCNEDEQ(DFN)
- . S MSG(10)="Extract: "_$G(FDA(365.1,"+1,",.1))
- . S MSG(11)="Payer: "_$P($G(^IBE(365.12,FDA(365.1,"+1,",.03),0)),U,1)
+ . S MSG(10)="Extract: "_$P($G(DATA2),U,1)
+ . S MSG(11)="Payer: "
+ . S:$P(DATA1,U,2)'="" MSG(11)=MSG(11)_$P($G(^IBE(365.12,$P(DATA1,U,2),0)),U,1)
  . S MSG(12)="Please call the Help Desk about this problem."
  . D MSG^IBCNEUT5(MGRP,XMSUB,"MSG(")
  ;

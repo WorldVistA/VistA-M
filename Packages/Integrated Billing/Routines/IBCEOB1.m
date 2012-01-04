@@ -1,5 +1,5 @@
-IBCEOB1 ;ALB/TMP - 835 EDI EOB MSG PROCESSING ;18-FEB-99
- ;;2.0;INTEGRATED BILLING;**137,135,155,296,356,349**;21-MAR-94;Build 46
+IBCEOB1 ;ALB/TMP/PJH - 835 EDI EOB MSG PROCESSING ; 7/13/10 5:32pm
+ ;;2.0;INTEGRATED BILLING;**137,135,155,296,356,349,431**;21-MAR-94;Build 106
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -43,13 +43,14 @@ STORE(A,IB0,IBEOB,LEVEL) ;
  I DR'="" D ^DIE
  Q ($D(Y)=0) ;Successfully stored all the data it was sent if $D(Y)=0
  ;
-HDR(IB0,IBEGBL,IBEOB) ; Store header data for EOB
+HDR(IB0,IBEGBL,IBEOB,HIPAA) ; Store header data for EOB
  ; IB0 = the record being processed from the msg
  ; IBEOB = the ien of the EOB entry in file 361.1
  ;
  N IBDT,IBDTP,DA,DR,DIE,X,Y
  K IBXSAVE("XTRA"),IBZSAVE
  ;
+ S HIPAA=+$P(IB0,U,16) ;HIPAA Version code
  S IBDT=$P(IB0,U,3),IBDT=$E(IBDT,1,4)-1700_$E(IBDT,5,8)_"."_$P(IB0,U,4)
  S IBDTP=$P(IB0,U,9)
  I IBDTP S IBDTP=$E(IBDTP,1,4)-1700_$E(IBDTP,5,8)
@@ -60,7 +61,7 @@ HDR(IB0,IBEGBL,IBEOB) ; Store header data for EOB
  . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Bad header data"
  Q ($D(Y)=0)
  ;
-FINDLN(IB0,IBEOB,IBZDATA) ; Find the corresponding billed line for the adj
+FINDLN(IB0,IBEOB,IBZDATA,PLREF) ; Find corresponding billed line for the adj
  ; IB0 = the record being processed
  ;       NOTE: pieces 3,4,16 are already reformatted
  ; IBEOB = the ien of the EOB entry in file 361.1
@@ -68,6 +69,7 @@ FINDLN(IB0,IBEOB,IBZDATA) ; Find the corresponding billed line for the adj
  ;           items for the bill.  This is passed in so this data only has
  ;           to be extracted once for each bill (the first time in, it
  ;           will be undefined)
+ ; PLREF = Provider Line Reference
  ; OUTPUT = Line # in the original bill that this adjustment relates to
  ;          ^ paid procedure code if different from original procedure OR
  ;            paid rev code if different from original and no proc code
@@ -95,7 +97,7 @@ FINDLN(IB0,IBEOB,IBZDATA) ; Find the corresponding billed line for the adj
  ;
  I $P($G(^DGCR(399,IBIFN,0)),U,19)=3 D  G FINDLNX     ; UB-04 format
  . I '$D(IBZDATA) D F^IBCEF("N-UB-04 SERVICE LINE (EDI)","IBZDATA",,IBIFN)
- . I $P(IB0,U,22),$D(IBZDATA(+$P(IB0,U,22))) S IBLN=+$P(IB0,U,22)_U_$P(IB0,U,10) Q
+ . I +PLREF,$D(IBZDATA(+PLREF)) S IBLN=+PLREF_U_$P(IB0,U,10) Q
  . ;
  . S Z=0 F  S Z=$O(IBZDATA(Z)) Q:'Z  D  Q:IBLN
  .. ; Quit if processing an MRA and this VistA line# has already been filed
@@ -139,7 +141,7 @@ FINDLN(IB0,IBEOB,IBZDATA) ; Find the corresponding billed line for the adj
  ;
  ; At this point, we can assume the claim is CMS-1500 format
  I '$D(IBZDATA) D F^IBCEF("N-HCFA 1500 SERVICE LINE (EDI)","IBZDATA",,IBIFN)
- I $P(IB0,U,22),$D(IBZDATA(+$P(IB0,U,22))) S IBLN=+$P(IB0,U,22)_U_$P(IB0,U,10) G FINDLNX
+ I PLREF,$D(IBZDATA(PLREF)) S IBLN=PLREF_U_$P(IB0,U,10) G FINDLNX
  S Z=0 F  S Z=$O(IBZDATA(Z)) Q:'Z  D  Q:IBLN
  . ; Quit if processing an MRA and this VistA line# has already been filed
  . I $P($G(^IBM(361.1,IBEOB,0)),U,4)=1,$D(^IBM(361.1,IBEOB,15,"AC",Z)) Q

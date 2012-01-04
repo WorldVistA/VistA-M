@@ -33,7 +33,7 @@ ZWR
 ^DD("OS",17,"SDPEND")="W !,""#$#"",! C IO"
 ^DD("OS",17,"XY")="S $X=IOX,$Y=IOY"
 ^DD("OS",17,"ZS")="N %I,%F,%S S %I=$I,%F=$P($ZRO,"","")_X_"".m"" O %F:(NEWVERSION) U %F X ""S %S=0 F  S %S=$O(^UTILITY($J,0,%S)) Q:%S=""""""""  Q:'$D(^(%S))  S %=^UTILITY($J,0,%S) I $E(%)'="""";"""" W %,!"" C %F U %I"
-^DD("OS",18,0)="CACHE/OpenM^^120^8000^^1^63"
+^DD("OS",18,0)="CACHE/OpenM^^250^15000^^1^250"
 ^DD("OS",18,1)="B X"
 ^DD("OS",18,8)="X ^DD(""$O"")"
 ^DD("OS",18,18)="I $T(^@X)]"""""

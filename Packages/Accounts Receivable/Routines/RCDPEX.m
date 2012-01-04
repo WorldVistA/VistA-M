@@ -1,5 +1,5 @@
-RCDPEX ;ALB/TMK - ELECTRONIC EOB EXCEPTION PROCESSING - FILE 344.5 ;10-OCT-02
- ;;4.5;Accounts Receivable;**173,208**;Mar 20, 1995
+RCDPEX ;ALB/TMK,DWA - ELECTRONIC EOB EXCEPTION PROCESSING - FILE 344.5 ; 9/29/10 6:01pm
+ ;;4.5;Accounts Receivable;**173,208,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -55,9 +55,9 @@ VP ; View/Print ERA Messages - File 344.5
  U IO
  ;
 VPOUT ; Entrypoint for queued job
- N Z,Z0,RCSTOP,RCPG,RCXM,RCXM1,RC,RCZ,RCTDAC
+ N Z,Z0,RCSTOP,RCPG,RCXM,RCXM1,RC,RCZ,RCTDAC,RCV5
  K ^TMP($J,"RCRAW"),^TMP($J,"RCOUT")
- S RCTDAC=RCTDA_","
+ S RCTDAC=RCTDA_",",RCV5=0
  ;
  D GETS^DIQ(344.5,RCTDAC,"*","IEN","RCZ")
  D TXTDE(RCTDA,.RCZ,1,.RCXM,.RC)
@@ -68,6 +68,7 @@ VPOUT ; Entrypoint for queued job
  ;
  K ^TMP("RCSAVE",$J)
  M ^TMP("RCSAVE",$J)=^RCY(344.5,RCTDA,2)
+ I +$P($G(^TMP("RCSAVE",$J,1,0)),U,16)>0 S RCV5=1
  S Z=0 F  S Z=$O(^TMP("RCSAVE",$J,Z)) Q:'Z  I $P($G(^(Z,0)),U)["835" K ^(0) Q  ; Get rid of header node
  D DISP^RCDPESR0("^TMP(""RCSAVE"",$J)","^TMP($J,""RCRAW"")",1,"^TMP($J,""RCOUT"")",75) ; Get formatted 'raw' data
  K ^TMP("RCSAVE",$J)
@@ -154,6 +155,7 @@ DEL ; Delete messages from messages list - file 344.5
  S Z=0 F  S Z=$O(RCX(Z)) Q:'Z  S RCE=RCE+1,RCT(RCE)=RCX(Z)
  S RCE=RCE+1,RCT(RCE)=" "
  S XMSUBJ="EDI LBOX MESSAGE DELETED",XMBODY="RCT",XMDUZ="",XMTO("G.RCDPE PAYMENTS")=""
+ N DUZ S DUZ=.5,DUZ(0)="@"
  D SENDMSG^XMXAPI(.5,XMSUBJ,XMBODY,.XMTO,,.XMZ)
  ;
  W !,"A bulletin has been sent to report this deletion",!

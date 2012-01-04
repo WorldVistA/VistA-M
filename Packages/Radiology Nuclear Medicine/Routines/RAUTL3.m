@@ -1,5 +1,5 @@
 RAUTL3 ;HISC/CAH,FPT,GJC AISC/SAW-Utility for Callable Entry Points ;4/1/97  10:04
- ;;5.0;Radiology/Nuclear Medicine;**26**;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**26,47**;Mar 16, 1998;Build 21
 EN1 ;ENTRY POINT FOR AMIE CALL
  ;Requires four input variables
  ;    DFN = Patient internal entry number
@@ -18,7 +18,7 @@ EN1 ;ENTRY POINT FOR AMIE CALL
  K RACNI,RAEX,RAII,RAK,RAMDIV,RAMDV,RAMLC,RAMIE,RANUM,RAPT1,RAPTR,RAPTR1,RAPTR2,RASSN,RAST Q
 CHK I $P(RAEX,U,17),RAHLOC[(U_$P(RAEX,U,22)_U) S RAST=$S($D(^RARPT($P(RAEX,"^",17),0)):^(0),1:"") I "VR"[$P(RAST,"^",5) S RARPT=$P(RAEX,"^",17),RAPT1=1 D ^RARTR F RAK=0:0 S RAK=$O(^RA(78.7,RAK)) Q:RAK'>0  I $D(^(RAK,0)) K @$P(^(0),"^",5)
  Q
-SIGNON  ;Check the # of reports to either pre-verify of verify.
+SIGNON ;Check the # of reports to either pre-verify of verify.
  Q:'$D(DUZ)#2  N RA74,X0,X1,Y1 S (X0,X1,Y1)=0
  ; first, tabulate # (Y1) of reports to pre-verify (if any)
  F  S X0=$O(^RARPT("ARES",DUZ,X0)) Q:X0'>0  D
@@ -59,3 +59,34 @@ UPDT(RANODE) ; Delete blank lines for Rad/Nuc Med Word Processing fields.
  . S @(RANODE_"0)")="^^"_RATCNT_"^"_RATCNT_"^"_$S($D(DT)#2:DT,1:$$DT^XLFDT())
  . Q
  Q
+ ;
+GETLCN() ;Build & return a long case number (accession) for a live case.
+ ;Called from File: 78.7; field: 100; Record: LONG CASE NUMBER (p47)
+ ;
+ ;input: RADFN -DFN of the patient
+ ;       RADTI -inverse date/time of the exam
+ ;       RACNI -the IEN of the case record (70.03)
+ ;       RAMDIV-Division (File: 79); derived from sign-on location
+ ; Note: all have a global scope; all are expected to exist
+ ; 
+ ;       RAY2  -zero node of the REGISTERED EXAMS subfile (70.02)
+ ;       RAY3  -zero node of the EXAMINATIONS subfile (70.03)
+ ;       
+ ; RAY2 & RAY3 may exist depending on the option executed. If RAY2 & RAY3 do not exist
+ ; use RASAV2 & RASAV3 defined when RA REG is executed.
+ ;
+ ; Site Specific Accession Number (SSAN)
+ ;
+ N RAX S RAX=""
+ I '$D(RAY2)#2 N RAY2 S RAY2=$G(RASAV2)
+ I '$D(RAY3)#2 N RAY3 S RAY3=$G(RASAV3)
+ I $$USESSAN^RAHLRU1() D  ;if true get SSAN
+ .;format: 578-081194-12345
+ .S RAX=$$ACCNUM^RAAPI(RADFN,RADTI,RACNI) Q
+ ;
+ E  D  ;else get original accession
+ .;format: 081194-12345
+ .S RAX=$TR($$FMTE^XLFDT(($P(RAY2,"^")\1),"2F")," /","0")_"-"_+RAY3 Q
+ ;
+ Q RAX
+ ;

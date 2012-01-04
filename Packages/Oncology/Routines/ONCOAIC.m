@@ -1,5 +1,5 @@
-ONCOAIC ;Hines OIFO/GWB - Create first primary for a patient ;06/23/10
- ;;2.11;ONCOLOGY;**1,24,25,27,32,42,44,45,51**;Mar 07, 1995;Build 65
+ONCOAIC ;Hines OIFO/GWB - Create first primary for a patient ;03/08/11
+ ;;2.11;ONCOLOGY;**1,24,25,27,32,42,44,45,51,53**;Mar 07, 1995;Build 31
  ;
 EN ;Create first ONCOLOGY PRINMARY (165.5) record
  D KILL
@@ -28,7 +28,7 @@ A K DO
  W !,?5,"Creating a new Primary record for ",ONCONM
  S DIC="^ONCO(165.5,",DIC(0)="Z"
  S X=ONCOSIT
- S DIC("DR")="2000////^S X=DUZ(2);236////^S X=DT"
+ S DIC("DR")="2000////^S X=DUZ(2);236////^S X=DT;244////^S X=DUZ"
  D FILE^DICN
  K DIC,X G EX:Y<0
  S ONCOD0P=+Y

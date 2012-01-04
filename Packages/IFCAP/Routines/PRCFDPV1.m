@@ -1,6 +1,6 @@
-PRCFDPV1 ;WISC/LEM-PAYMENT ERROR PROCESSING CON'T ;6/13/94  11:00 AM
- ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCFDPV1 ;WISC/LEM-PAYMENT ERROR PROCESSING CON'T ;6/21/11  17:52
+ ;;5.1;IFCAP;**158**;Oct 20, 2000;Build 1
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  QUIT
  ; No top level entry
 STATT ; Transmitted
@@ -39,7 +39,7 @@ STATR ; Rejected by FMS
  S PRCFA("ERROR")=1
  Q
 STATR1 S:$G(MOP)="" MOP=2
- S LABEL=$S(MOP=1:"Purchase Order",MOP=21:"1358 Miscellaneous Obligation",MOP=8:"Requistion",MOP=2:"Certified Invoice",0:"Obligation")
+ S LABEL=$S(MOP=1:"Purchase Order",MOP=21:"1358 Obligation",MOP=8:"Requistion",MOP=2:"Certified Invoice",0:"Obligation")
  W !,"The "_LABEL_" will now be displayed for your review.",!!
  W "Please review the source document very carefully and take",!,"the appropriate corrective action.",!
  D PAUSE^PRCFDPVU

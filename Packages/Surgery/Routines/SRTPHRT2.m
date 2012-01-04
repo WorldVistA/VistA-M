@@ -1,5 +1,5 @@
 SRTPHRT2 ;BIR/SJA - HEART-DIAGNOSIS INFORMATION ;03/04/08
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+ ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
  I '$D(SRTPP) W !!,"A Transplant Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
 START Q:SRSOUT  D DISP
  W !!,"Select Transplant Information to Edit: " R X:DTIME I '$T!(X["^") S SRSOUT=1 G END
@@ -29,14 +29,14 @@ DISP ; display fields
  S SRDR="155;156;157;158;159;43;160;161;162;94;112;13;14;15;16;17;18"
  K DA,DIC,DIQ,SRX,SRY S DIC="^SRT(",DA=SRTPP,DIQ="SRY",DIQ(0)="E",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
  S (SRX,SRZ)=0 F I=1:1 S SRZ=$P(SRDR,";",I) Q:'SRZ  S SRX=I,SRAO(I)=SRY(139.5,SRTPP,SRZ,"E")_"^"_SRZ
- W !,"Recipient Diagnosis",?40,"HLA Typing (#,#,#)"
- W !,"==================================",?40,"=================="
- W !,"1.  Dilated Cardiomyopathy:",?31,$P(SRAO(1),"^"),?40,"12. Recipient HLA-A:  ",$P(SRAO(12),"^")
- W !,"2.  Coronary Artery Disease:",?31,$P(SRAO(2),"^"),?40,"13. Recipient HLA-B:  ",$P(SRAO(13),"^")
- W !,"3.  Ischemic Cardiomyopathy:",?31,$P(SRAO(3),"^"),?40,"14. Recipient HLA-C:  ",$P(SRAO(14),"^")
- W !,"4.  Alcoholic Cardiomyopathy:",?31,$P(SRAO(4),"^"),?40,"15. Recipient HLA-BW: ",$P(SRAO(15),"^")
- W !,"5.  Valvular Cardiomyopathy:",?31,$P(SRAO(5),"^"),?40,"16. Recipient HLA-DR: ",$P(SRAO(16),"^")
- W !,"6.  Sarcoidosis:",?31,$P(SRAO(6),"^"),?40,"17. Recipient HLA-DQ: ",$P(SRAO(17),"^")
+ W !,"Recipient Diagnosis",?39,"HLA Typing (#,#,#,#)"
+ W !,"==================================",?39,"===================="
+ W !,"1.  Dilated Cardiomyopathy:",?31,$P(SRAO(1),"^"),?39,"12. Recipient HLA-A:  ",$P(SRAO(12),"^")
+ W !,"2.  Coronary Artery Disease:",?31,$P(SRAO(2),"^"),?39,"13. Recipient HLA-B:  ",$P(SRAO(13),"^")
+ W !,"3.  Ischemic Cardiomyopathy:",?31,$P(SRAO(3),"^"),?39,"14. Recipient HLA-C:  ",$P(SRAO(14),"^")
+ W !,"4.  Alcoholic Cardiomyopathy:",?31,$P(SRAO(4),"^"),?39,"15. Recipient HLA-BW: ",$P(SRAO(15),"^")
+ W !,"5.  Valvular Cardiomyopathy:",?31,$P(SRAO(5),"^"),?39,"16. Recipient HLA-DR: ",$P(SRAO(16),"^")
+ W !,"6.  Sarcoidosis:",?31,$P(SRAO(6),"^"),?39,"17. Recipient HLA-DQ: ",$P(SRAO(17),"^")
  W !,"7.  Idiopathic Cardiomyopathy:",?31,$P(SRAO(7),"^")
  W !,"8.  Viral Cardiomyopathy:",?31,$P(SRAO(8),"^")
  W !,"9.  Peripartum Cardiomyopathy:",?31,$P(SRAO(9),"^")

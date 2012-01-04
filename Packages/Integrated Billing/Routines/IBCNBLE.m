@@ -1,5 +1,5 @@
-IBCNBLE ;ALB/ARH-Ins Buffer: LM buffer entry screen ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,231,184,251,371,416**;21-MAR-94;Build 58
+IBCNBLE ;ALB/ARH - Ins Buffer: LM buffer entry screen ;1-Jun-97
+ ;;2.0;INTEGRATED BILLING;**82,231,184,251,371,416,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; - main entry point for list manager display
@@ -58,6 +58,8 @@ BLD ; display buffer entry
  ...Q
  ..Q
  .Q
+ ;
+ I +$P(IB0,U,17) D EN^IBCNBLE2    ; IB*2*435 - Display e-Pharmacy ELIG response data
  ;
  D SET(" ") S IBY=$J("",26)_"Insurance Company Information" D SET(IBY,"B") S IBLINE=""
  S IBL="Name: ",IBY=$P(IB20,U,1) S IBLINE=$$SETL("",IBY,IBL,10,30)

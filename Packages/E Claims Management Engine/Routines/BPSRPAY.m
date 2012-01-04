@@ -1,5 +1,5 @@
 BPSRPAY ;BHAM ISC/BEE - ECME REPORTS ;11/15/07  14:13
- ;;1.0;E CLAIMS MGMT ENGINE;**1,7**;JUN 2004;Build 46
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,7,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -67,7 +67,7 @@ PSPRNT(BPFILE,EN) N BPSHDR,BPIEN,BPPAGE,BPQ,CD,L,N,N1,N2,NAME,NM,NUM,SEG,SP
  ;
  ; Get header information
  S BPIEN=EN_","
- D GETS^DIQ(BPFILE,EN,".01;1.02;1.03;1.06;1.07;1.13;1.14;1001","","BPSHDR")
+ D GETS^DIQ(BPFILE,EN,".01;1.02;1.06;1.14","","BPSHDR")
  ;
  ; Display Header Information
  S BPQ=0,BPPAGE=0,SEGNM=""
@@ -75,7 +75,7 @@ PSPRNT(BPFILE,EN) N BPSHDR,BPIEN,BPPAGE,BPQ,CD,L,N,N1,N2,NAME,NM,NUM,SEG,SP
  ;
  ; Field Detail Information
  ; Loop through Segments
- S SEG=99 F  S SEG=$O(^BPSF(BPFILE,EN,SEG)) Q:SEG=""!(SEG>230)!(SEG="REVERSAL")  D  I BPQ Q
+ S SEG=99 F  S SEG=$O(^BPSF(BPFILE,EN,SEG)) Q:+SEG=0!(SEG>260)  D  I BPQ Q
  . ;
  . ;Make sure there are entries for the segment
  . I $P($G(^BPSF(BPFILE,EN,SEG,0)),U,4)<1 Q
@@ -130,10 +130,6 @@ HDR S BPPAGE=$G(BPPAGE)+1
  I BPPAGE=1 D
  . W !,$J("Status: ",20),$G(BPSHDR(BPFILE,BPIEN,1.06))
  . W ?40,$J("NCPDP Version: ",20),$G(BPSHDR(BPFILE,BPIEN,1.02))
- . W !,$J("Reversal Format: ",20),$G(BPSHDR(BPFILE,BPIEN,1.07))
- . W ?40,$J("Reversal Sheet: ",20),$G(BPSHDR(BPFILE,BPIEN,1001))
- . W !,$J("Transaction Count: ",20),$G(BPSHDR(BPFILE,BPIEN,1.03))
- . W ?40,$J("Certification ID: ",20),$G(BPSHDR(BPFILE,BPIEN,1.13))
  ;
  ; Display subheader
  W !!,"Seq",?5,"Field",?17,"Field Name",?71,"Proc Mode"
@@ -175,4 +171,6 @@ INIT ; Create local array of segment header names
  S NAME(180)="DUR/PPS Segment",NAME(190)="Pricing Segment"
  S NAME(200)="Coupon Segment",NAME(210)="Compound Segment"
  S NAME(220)="Prior Authorization Segment",NAME(230)="Clinical Segment"
+ S NAME(240)="Additional Documentation Segment",NAME(250)="Facility Segment"
+ S NAME(260)="Narrative Segment"
  Q

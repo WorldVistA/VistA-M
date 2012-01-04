@@ -1,7 +1,10 @@
 SRSCHUN ;BIR/ADM - MAKE UNREQUESTED OPERATION ;06/20/06
- ;;3.0; Surgery ;**3,67,68,88,103,100,144,158**;24 Jun 93;Build 2
+ ;;3.0;Surgery;**3,67,68,88,103,100,144,158,175**;24 Jun 93;Build 6
 MUST S SRLINE="" F I=1:1:80 S SRLINE=SRLINE_"="
  W @IOF W:$D(SRCC) !,?29,$S(SRSCON=1:"FIRST",1:"SECOND")_" CONCURRENT CASE" W !,?14,"SCHEDULE UNREQUESTED OPERATION: REQUIRED INFORMATION",!!,SRNM_" ("_$G(SRSSN)_")",?65,SREQDT,!,SRLINE,!
+ODP N SRSODP K DIR S DIR(0)="130,616",DIR("A")="Desired Procedure Date" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G END
+ I Y=""!(X["^")!(Y<SRSDATE) W !!,"The Desired Procedure Date MUST be entered and should be greater than or equal  to date of operation.  Enter '^' to exit.",! G ODP
+ S SRSODP=+Y
 SURG ; surgeon
  K DIR S DIR(0)="130,.14",DIR("A")="Surgeon" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G END
  I Y=""!(X["^") W !!,"To create a surgical case, a surgeon MUST be selected.  Enter '^' to exit.",! G SURG
@@ -10,7 +13,8 @@ CASE ; create case in SURGERY file
  K DA,DIC,DD,DO,DINUM,SRTN S X=SRSDPT,DIC="^SRF(",DIC(0)="L",DLAYGO=130 D FILE^DICN K DD,DO,DIC,DLAYGO S SRTN=+Y,SRLCK=$$LOCK^SROUTL(SRTN)
  S ^SRF(SRTN,8)=SRSITE("DIV"),^SRF(SRTN,"OP")=""
  D NOW^%DTC S SREQDAY=+$E(%,1,12),SRNOCON=1 K DR,DIE
- S DA=SRTN,DIE=130,DR=".09////"_SRSDATE_";.14////"_SRSDOC_";1.098////"_+SREQDAY_";1.099////"_DUZ_";Q;.02////"_SRSOR_";10////"_SRSDT1_";11////"_SRSDT2 D ^DIE K DR
+ S DA=SRTN,DIE=130,DR=".09////"_SRSDATE_";.14////"_SRSDOC_";1.098////"_+SREQDAY_";1.099////"_DUZ_";Q;.02////"_SRSOR_";10////"_SRSDT1_";11////"_SRSDT2_";616////"_SRSODP_";612////"_SRSODP_";613////"_SREQDAY_";615////"_SREQDAY
+ D ^DIE K DR
 ASURG ; attending surgeon
  K DA,DIC,DIQ,DR,SRY S DIC="^SRF(",DA=SRTN,DIQ="SRY",DIQ(0)="E",DR=.164 D EN^DIQ1 K DA,DIC,DIQ,DR
  I $G(SRY(130,SRTN,.164,"E"))'="" S SRATTND=SRY(130,SRTN,.164,"E") W !,"Attending Surgeon: "_SRATTND,! G SPEC

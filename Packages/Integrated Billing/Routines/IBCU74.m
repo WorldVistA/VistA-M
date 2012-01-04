@@ -1,10 +1,11 @@
 IBCU74 ;OAK/ELZ - INTERCEPT SCREEN INPUT OF PROCEDURE CODES (CONT) ;6-JAN-04
- ;;2.0;INTEGRATED BILLING;**228,260,339**;21-MAR-94;Build 2
+ ;;2.0;INTEGRATED BILLING;**228,260,339,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
-DATA(IBP) ; this is used to add data when new procedures are added for
+DATA(IBP,IBLNPRV) ; this is used to add data when new procedures are added for
  ; inpatient cases
+ ; Return IBRPROV - renderring providers ;ib*2.0*432
  N IBX,IBY,IB1,IB2,IBC,DO,X,DIC,DIE,DA,DR,IB9,Y,IBQ,IBDR,IBZ,IBS
  S DR="" I '$P(IBP,"^",2)!('DGPROCDT) Q
  S IB1=0 F  S IB1=$O(^UTILITY($J,"IB",IB1)) Q:IB1<1!(DR)  I $P($G(^UTILITY($J,"IB",IB1,1)),"^",2)=DGPROCDT D
@@ -20,7 +21,7 @@ DATA(IBP) ; this is used to add data when new procedures are added for
  ... ;need to find what field is not occupied starting with 10
  ... S IBZ=10 F IBS=1:1 Q:$P(DR,";",IBS)=""  I $P(DR,";",IBS)[IBZ_"////" S IBZ=IBZ+1
  ... S DR=DR_IBZ_"////"_(+Y)_";"
- .. I $P(IBY,"^",13) W !!?10,"Associating Provider: ",$P($G(^VA(200,$P(IBY,"^",13),0)),"^") D  S DR=DR_"18////"_$P(IBY,"^",13)_";"
+ .. I $P(IBY,"^",13) W !!?10,"Associating Provider: ",$P($G(^VA(200,$P(IBY,"^",13),0)),"^") D  S DR=DR_"18////"_$P(IBY,"^",13)_";",IBLNPRV("IBCCPT")="`"_$P(IBY,U,13)  ;WCJ;IB*2.0*432;Save off renderring to return
  ... ;
  ... ; as requested by users, need to update the last look up value for
  ... ; the provider

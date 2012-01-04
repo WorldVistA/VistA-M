@@ -1,5 +1,5 @@
 SRTPRLU ;BIR/SJA - PRINT LUNG-RECIPIENT/TRANSPLANT INFORMATION ;04/21/08
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+ ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
  K DR,SRAO,SRX,Y
  S:SRNOVA SRDR="1;11;4;5;10;12;40;41;24;25;32;43;22;128;129;19;94"
  S:'SRNOVA SRDR="11;10;12;40;41;24;25;32;43;22;128;129;19;94"
@@ -36,12 +36,12 @@ TRANS ;
  K DA,DIC,DIQ,SRX,SRY,SRZ S DIC="^SRT(",DA=SRTPP,DIQ="SRY",DIQ(0)="E",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
  S (SRX,SRZ)=0 F I=1:1 S SRZ=$P(SRDR,";",I) Q:'SRZ  S SRX=I,SRAO(I)=SRY(139.5,SRTPP,SRZ,"E")_"^"_SRZ
  W !,"LAS Score at Listing: ",?25,$P(SRAO(1),"^")
- W !,"LAS Score at Transplant: ",?25,$P(SRAO(2),"^"),?44,"Recipient HLA-A:  ",$P(SRAO(7),"^")
- W !,"Ischemia Time for Organ (minutes)",?44,"Recipient HLA-B:  ",$P(SRAO(8),"^")
- W !," - Warm Ischemia time:",?25,$P(SRAO(3),"^"),?44,"Recipient HLA-C:  ",$P(SRAO(9),"^")
- W !," - Cold Ischemia time:",?25,$P(SRAO(4),"^"),?44,"Recipient HLA-DR: ",$P(SRAO(10),"^")
- W !," - Total Ischemia time:",?25,$P(SRAO(5),"^"),?44,"Recipient HLA-BW: ",$P(SRAO(11),"^")
- W !,"Crossmatch D/R:",?25,$P(SRAO(6),"^"),?44,"Recipient HLA-DQ: ",$P(SRAO(12),"^")
+ W !,"LAS Score at Transplant: ",?25,$P(SRAO(2),"^"),?43,"Recipient HLA-A:  ",$P(SRAO(7),"^")
+ W !,"Ischemia Time for Organ (minutes)",?43,"Recipient HLA-B:  ",$P(SRAO(8),"^")
+ W !," - Warm Ischemia time:",?25,$P(SRAO(3),"^"),?43,"Recipient HLA-C:  ",$P(SRAO(9),"^")
+ W !," - Cold Ischemia time:",?25,$P(SRAO(4),"^"),?43,"Recipient HLA-DR: ",$P(SRAO(10),"^")
+ W !," - Total Ischemia time:",?25,$P(SRAO(5),"^"),?43,"Recipient HLA-BW: ",$P(SRAO(11),"^")
+ W !,"Crossmatch D/R:",?25,$P(SRAO(6),"^"),?43,"Recipient HLA-DQ: ",$P(SRAO(12),"^")
  I $E(IOST)'="P" D PAGE^SRTPPAS I SRSOUT G END^SRTPPAS
  I $E(IOST)="P" G:SRSOUT END^SRTPPAS I $Y+20>IOSL D PAGE^SRTPPAS I SRSOUT G END^SRTPPAS
  G ^SRTPRLU1

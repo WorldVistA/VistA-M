@@ -1,5 +1,5 @@
 IBCNSC01 ;ALB/NLR - INSURANCE COMPANY EDIT ;6/1/05 10:06am
- ;;2.0;INTEGRATED BILLING;**52,137,191,184,232,320,349,371,399,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**52,137,191,184,232,320,349,371,399,416,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 PARAM ; -- Insurance company parameters region
@@ -44,6 +44,9 @@ PARAM ; -- Insurance company parameters region
  D SET^IBCNSP(START+4,OFFSET+5," Prof Payer Sec ID: "_$$GET1^DIQ(36,+IBCNS,6.06))
  D SET^IBCNSP(START+5,OFFSET," Prof Payer Sec ID Qual: "_$$GET1^DIQ(36,+IBCNS,6.07))
  D SET^IBCNSP(START+6,OFFSET+5," Prof Payer Sec ID: "_$$GET1^DIQ(36,+IBCNS,6.08))
+ ;IB*2.0*432/TAZ Added fields 6.09 and 6.1
+ D SET^IBCNSP(START+7,OFFSET-3," Prnt Sec/Tert Auto Claims: "_$$GET1^DIQ(36,+IBCNS,6.09))
+ D SET^IBCNSP(START+8,OFFSET-5," Prnt Med Sec Claims w/o MRA: "_$$GET1^DIQ(36,+IBCNS,6.1))
  Q
  ;
 PHONE(IBCNS13) ; -- Compute precert company phone

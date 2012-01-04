@@ -1,5 +1,6 @@
-XTVRC1 ; ISCSF/JLI ** SAVE AND COMPARE ROUTINES ;12/7/93  13:56 ;4/27/88  1:34 PM
- ;;7.3;TOOLKIT;;Apr 25, 1995
+XTVRC1 ;ISCSF/JLI - SAVE AND COMPARE ROUTINES ;8/11/10
+ ;;7.3;TOOLKIT;**127**; Apr 25, 1995;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  K ^TMP($J)
  K ^TMP($J) X ^%ZOSF("RSEL") G:$O(^UTILITY($J,""))="" KILL S %X="^UTILITY($J,",%Y="^TMP($J," D %XY^%RCR K ^UTILITY($J)
 ASK R !!?5,"Do you want to QUEUE this job? YES// ",X:DTIME W ! G:'$T!(X[U) KILL S:X="" X="Y" S X=$E(X) I "YyNn"'[X W $C(7),"  ??",!,"ANSWER 'YES' OR 'NO'",! G ASK
@@ -10,8 +11,7 @@ DQ ;
 KILL K XTVTIM,XTROU,XTIROU,XCNP,DIF,%,%DT,%Y,%GO,%H,%N,%UCN,DA,DLAYGO,I,J,L,X,Y,DIC,^TMP($J)
  Q
  ;
-LCHEK ;S L=$L(XTROU),L=$S(L<6:1,$E(XTROU,L-3,L)="INIT":0,$E(XTROU,L-4,L)?1"INIT"1N:0,$E(XTROU,L-3,L)?1"INI"1N:0,L<8:1,$E(XTROU,L-2,L)'?3N:1,$E(XTROU,5,8)?1"I"3N:0,$E(XTROU,4,8)?1"IN"3N:0,$E(XTROU,3,8)?1"INI"3N:0,1:1)
- ;S L=$L(XTROU),L=$S(L<6:1,$E(XTROU,L-3,L)?1"INI"1(1"T",1"S",1N):0,$E(XTROU,L-3,L)?1"I"1(1"N",1N)2NU:0,$E(XTROU,L-4,L)?1"IN"1(1"I",1N)2NU:0,$E(XTROU,L-4,L)?1"INI"1(1"T",1"N")2NU:0,1:1)
+LCHEK ;
  S L=$L(XTROU) I L<6 S L=1 Q
  S XX=$E(XTROU,L-3,L) I XX?1"INIT"!(XX?1"INIS")!(XX?1"INI"1N) S L=0 K XX Q
  I XX?1"IN"2NU!(XX?1"I"1N2NU) S L=0 K XX Q
@@ -20,7 +20,9 @@ LCHEK ;S L=$L(XTROU),L=$S(L<6:1,$E(XTROU,L-3,L)="INIT":0,$E(XTROU,L-4,L)?1"INIT"
  Q
  ;
 LOOP ;
- K ^TMP($J,0) S X=XTROU,XCNP=0,DIF="^TMP($J,0," X ^%ZOSF("LOAD") ;XTL1="ZL @XTROU F I=0:1 S X=$T(+I) Q:X=""""  S ^TMP($J,0,I)=X" X XTL1
+ N X S X=$G(XTROU) X ^%ZOSF("TEST") Q:'$T  ;p127 check routine if it isn't existed
+ I XTROU'?1(1A,1"%").7AN Q  ;p127 check routine name
+ K ^TMP($J,0) S X=XTROU,XCNP=0,DIF="^TMP($J,0," X ^%ZOSF("LOAD")
  I '$D(^XTV(8991,"B",XTROU)) S X=""""_XTROU_"""",DIC(0)="XL",DIC=8991,DLAYGO=8991 D ^DIC Q:Y'>0
  S DA=$O(^XTV(8991,"B",XTROU,0)) Q:DA'>0
  S I=0 F J=0:0 S J=$O(^XTV(8991,DA,1,J)) Q:J'>0  S I=J

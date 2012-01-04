@@ -1,16 +1,17 @@
-XTVRC1A ;ISC-SF/JLI - SHOW SUMMARY OF ROUTINES MOST RECENTLY UPDATED ;12/8/93  14:52 ;
- ;;7.3;TOOLKIT;;Apr 25, 1995
- ;;
+XTVRC1A ;ISC-SF/JLI - SHOW SUMMARY OF ROUTINES MOST RECENTLY UPDATED ;10/27/10
+ ;;7.3;TOOLKIT;**127**; Apr 25, 1995;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 ENTRY W ! K ^TMP($J) X ^%ZOSF("RSEL") Q:$O(^UTILITY($J,""))=""  S %X="^UTILITY($J,",%Y="^TMP($J," D %XY^%RCR K ^UTILITY($J)
  S DIR(0)="D",DIR("A")="List CHANGES since DATE" D ^DIR K DIR S XTVRDAT=+Y G:Y'>0 ENTRY
  S %ZIS="QM" D ^%ZIS Q:POP  I IO'=IO(0) S ZTRTN="DQENT^XTVRC1A",ZTIO=ION,ZTSAVE("^TMP($J,")="",ZTSAVE("XTVRDAT")="",ZTDESC="XTVRC1A-IDENTIFY ROUTINES RECENTLY LOGGED AS CHANGED" D ^%ZTLOAD G EXIT
  ;
 DQENT ;
  S X="N",%DT="T" D ^%DT S XTVTIM=Y
+ W:'$D(ZTQUEUED) "Please wait..."
  S XTROU="" F DA=0:0 S XTROU=$O(^TMP($J,XTROU)) Q:XTROU=""  D
  . S DA=$O(^XTV(8991,"B",XTROU,0)) I DA'>0 D LCHEK^XTVRC1 Q:'L  D LOOP^XTVRC1 S DA=$O(^XTV(8991,"B",XTROU,0)) Q:DA'>0
  . S XTVDA=DA D LOOP^XTVRC1 S DA=XTVDA
- . D DOIT W:'$D(ZTQUEUED) "."
+ . D DOIT
 FINISH U IO D OUTPUT D ^%ZISC
 EXIT K %DT,%X,%Y,%ZIS,A,D,D1,DA,I,J,K,L,POP,X,X1,X11,X12,XS,XTROU,XTVDA,XTVRDAT,XTVRDATE,XTVTIM,XTVUT,Y,ZTDESC,ZTIO,ZTRTN,NAME,XTVR,Z,ZTSAVE
  Q
@@ -31,10 +32,13 @@ DOIT ;
 OUTPUT ;
  S XTVUT=0,D1=0,XTVRDATE=$E(XTVRDAT,4,5)_"/"_$E(XTVRDAT,6,7)_"/"_$E(XTVRDAT,2,3) W !!,"The following routines have been logged as NEW ROUTINES since ",XTVRDATE,!!
  S XTVR=0 F I=0:0 Q:XTVUT  S I=$O(^TMP($J," N",I)) Q:I'>0  S A="" F J=0:0 S A=$O(^TMP($J," N",I,A)) Q:A=""  S D=^(A),X11=^(A,1),X12=^(2) W:(D\1'=D1) ! S D1=D\1 D:A'=$P(X11," ") NAME D PRNT S XTVR=XTVR+1 Q:XTVUT
+ Q:XTVUT
  W !!,$S(XTVR>0:XTVR,1:"No"),"  NEW routines were logged",!!,"The following routines have logged CHANGES since ",XTVRDATE,!!
  S XTVR=0 F I=0:0 Q:XTVUT  S I=$O(^TMP($J," ",I)) Q:I'>0  S A="" F J=0:0 S A=$O(^TMP($J," ",I,A)) Q:A=""  S D=^(A),X11=^(A,1),X12=^(2) Q:D<XTVRDAT  W:(D\1'=D1) ! S D1=D\1 D:A'=$P(X11," ") NAME D PRNT S XTVR=XTVR+1 Q:XTVUT
+ Q:XTVUT
  W !!,$S(XTVR>0:XTVR,1:"No")," old routines were CHANGED",!!,"The following routines have NOT LOGGED CHANGES since ",XTVRDATE,!!
  S XTVR=0 F I=9999999-XTVRDAT:0 Q:XTVUT  S I=$O(^TMP($J," ",I)) Q:I'>0  S A="" F J=0:0 S A=$O(^TMP($J," ",I,A)) Q:A=""  S D=^(A),X11=^(A,1),X12=^(2) W:(D\1'=D1) ! S D1=D\1 D:A'=$P(X11," ") NAME D PRNT S XTVR=XTVR+1 Q:XTVUT
+ Q:XTVUT
  W !!,$S(XTVR>0:XTVR,1:"No"),"  UNCHANGED routines were included",!!,"The following routines were previously LOGGED BUT NOT IN THE ACCOUNT",!,"Routines were searched for using 2 letter namespaces from routines",!,"originally specified.",!
  S NAME="" F  S NAME=$O(^TMP($J,NAME)) Q:NAME=""  S ^TMP($J," X",$E(NAME,1,2))=""
  S XTVR=0,NAME="" F  S NAME=$O(^TMP($J," X",NAME)) Q:NAME=""  D

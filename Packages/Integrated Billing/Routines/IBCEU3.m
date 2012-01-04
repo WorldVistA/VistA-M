@@ -1,5 +1,5 @@
 IBCEU3 ;ALB/TMP - EDI UTILITIES FOR 1500 CLAIM FORM ;12/29/05 9:58am
- ;;2.0;INTEGRATED BILLING;**51,137,155,323,348,371,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**51,137,155,323,348,371,400,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 BOX19(IBIFN) ; Returns the text that should print in box 19 of the CMS-1500
@@ -21,7 +21,7 @@ BOX19(IBIFN) ; Returns the text that should print in box 19 of the CMS-1500
  ;   REMARKS FOUND IN BILL COMMENT FOR THE CLAIM, INCLUDING PROSTHETICS
  ;     DETAIL
  ;
- N IBGO,IBHOSP,IBID,IBLSDT,IBXDATA,IB19,IBHAID,IBXRAY,IBSPEC,Z,Z0,IBSUB,IBPRT,IBREM
+ N IBGO,IBHOSP,IBID,IBLSDT,IBXDATA,IB19,IBHAID,IBXRAY,IBSPEC,Z,Z0,IBSUB,IBPRT,IBREM,IBSPI
  S IB19="",IBGO=1
  S IBSUB=$S('$G(^TMP("IBTX",$J,IBIFN)):"BOX24",1:"OUTPT")
  I $D(IBXSAVE(IBSUB)) N IBXSAVE
@@ -62,6 +62,10 @@ BOX19(IBIFN) ; Returns the text that should print in box 19 of the CMS-1500
  G:'IBGO BOX19Q
  K IBXDATA D F^IBCEF("N-SPECIAL PROGRAM",,,IBIFN)
  I IBXDATA=30 G:'$$LENOK("Medicare demonstration project for lung volume reduction surgery study",.IB19) BOX19Q
+ ;
+ ; SPECIAL PROGRAM INDICATOR field code.
+ S IBSPI=$$GET1^DIQ(399,IBIFN_",",238,"E")
+ I IBSPI'="" S IBGO=$$LENOK(IBSPI,.IB19)
  ;
  G:'IBGO BOX19Q
 NPRT K IBXDATA D F^IBCEF("N-HCFA 1500 BOX 19 RAW DATA",,,IBIFN)
@@ -151,7 +155,8 @@ TEXT24(FLD,IBXSAVE,IBXDATA,IBSUB) ; Format the text line of box 24 by fld
  . I FLD="E" S IBVAL=$TR($P(IBDAT,U,7),","),IBS=45,IBE=48  ; diagnosis pointer
  . I FLD="F" S IBVAL=$P(IBDAT,U,8)*$P(IBDAT,U,9),IBS=49,IBE=57 D
  .. ; total charges
- .. S IBVAL=$$DOL^IBCEF77(IBVAL,9)
+ .. S IBVAL=$$DOL^IBCEF77(IBVAL,8)
+ .. I $L(IBVAL)>8 S IBVAL=$E(IBVAL,$L(IBVAL)-7,$L(IBVAL))
  .. Q
  . ;
  . I FLD="G" S IBVAL=$S($P(IBDAT,U,12):$P(IBDAT,U,12),1:$P(IBDAT,U,9)),IBS=58,IBE=61 D
@@ -181,6 +186,29 @@ TEXT24(FLD,IBXSAVE,IBXDATA,IBSUB) ; Format the text line of box 24 by fld
  . Q
  ;
  Q
+ ;
+LINSPEC(IBIFN) ; Checks the specialities of line and claim level providers
+ ; called from IBCBB2 to check for Chiro codes & IBCBB9 to check for 99's on Medicare
+ ; Default = 99 if no valid SPEC code found for line and claim level provider
+ ; Get rendering for professional, attending for institutional
+ ; If multiple lines w/ rendering or attending, returns a string of spec codes
+ N Z,IBSPEC,IBINS,IBDT,IBCP,IBSPC
+ S IBSPC=""
+ S IBDT=$P($G(^DGCR(399,+IBIFN,"U")),U,1)  ; use statement from date
+ S IBINS=($$FT^IBCEF(IBIFN)=3)
+ D GETPRV^IBCEU(IBIFN,"ALL",.IBPRV)
+ S Z=$S('IBINS:3,1:4)
+ ; check claim level
+ I $G(IBPRV(Z,1))'="" D
+ . I $P(IBPRV(Z,1),U,3) S IBSPEC=$$SPEC^IBCEU($P($G(IBPRV(Z,1)),U,3),IBDT) I IBSPEC'="" S IBSPC=IBSPC_U_IBSPEC Q
+ . S Z0=+$O(^DGCR(399,IBIFN,"PRV","B",Z,0))
+ . I Z0 S IBSPEC=$P($G(^DGCR(399,IBIFN,"PRV",Z0,0)),U,8) S:IBSPEC="" IBSPEC=99 S IBSPC=IBSPC_U_IBSPEC
+ ; Check line level
+ S IBCP=0 F  S IBCP=$O(^DGCR(399,IBIFN,"CP",IBCP)) Q:'IBCP  D
+ .S Z0=+$O(^DGCR(399,IBIFN,"CP",IBCP,"LNPRV","B",Z,0))
+ .I Z0 S IBSPEC=$P($G(^DGCR(399,IBIFN,"CP",IBCP,"LNPRV",Z0,0)),U,8) S:IBSPEC="" IBSPEC="99" S IBSPC=IBSPC_U_IBSPEC
+ S:IBSPC="" IBSPC=99
+ Q IBSPC
  ;
 BILLSPEC(IBIFN,IBPRV) ;  Returns the specialty of the provider on bill IBIFN
  ; If IBPRV is supplied, returns the data for that provider, otherwise,
@@ -212,5 +240,6 @@ CHAMPVA(IBIFN) ; Returns 1 if the bill IBIFN has a CHAMPVA rate type
 FAC(IBIFN) ; Obsolete function.  Used by old output formatter field and data element N-RENDERING INSTITUTION
  Q ""
  ;
-MCR24K(IBIFN) ;Function returns MEDICARE id# for professional (CMS-1500) box 24k for bill IBIFN if appropriate
- Q $S($$FT^IBCEF(IBIFN)=2&$$MCRONBIL^IBEFUNC(IBIFN):"V"_$$MCRSPEC^IBCEU4(IBIFN,1)_$P($$SITE^VASITE,U,3),1:"")
+MCR24K(IBIFN,IBPRV) ;Function returns MEDICARE id# for professional (CMS-1500) box 24k for bill IBIFN if appropriate
+ ;*432/TAZ - Added IBPRV to allow circumvent the call to F^IBCEF("N-SPECIALTY CODE","IBZ",,IBIFN) in MCRSPEC^IBCEU4
+ Q $S($$FT^IBCEF(IBIFN)=2&$$MCRONBIL^IBEFUNC(IBIFN):"V"_$$MCRSPEC^IBCEU4(IBIFN,1,$G(IBPRV))_$P($$SITE^VASITE,U,3),1:"")

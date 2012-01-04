@@ -1,5 +1,5 @@
 SRTPKID2 ;BIR/SJA - KIDNEY-KIDNEY TRANSPLANT INFO ;03/04/08
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+ ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
  I '$D(SRTPP) W !!,"A Transplant Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
 START Q:SRSOUT  D DISP
  W !,"Select Transplant Information to Edit: " R X:DTIME I '$T!(X["^") S SRSOUT=1 G END
@@ -36,7 +36,7 @@ DISP ; display fields
  W !,"6.  PRA at Transplant:",?25,$P(SRAO(6),"^")
  W !,"7.  IVIG Recipient:",?25,$P(SRAO(7),"^")
  W !,"8.  Plasmapheresis:",?25,$P(SRAO(8),"^")
- W !!,"HLA Typing (#,#,#)",!,"=================="
+ W !!,"HLA Typing (#,#,#,#)",!,"===================="
  W !,"9.  Recipient HLA-A:",?25,$P(SRAO(9),"^")
  W !,"10. Recipient HLA-B:",?25,$P(SRAO(10),"^")
  W !,"11. Recipient HLA-C:",?25,$P(SRAO(11),"^")

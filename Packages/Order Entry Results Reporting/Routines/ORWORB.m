@@ -1,5 +1,5 @@
 ORWORB ; slc/dee/REV/CLA,WAT - RPC functions which return user alert ;10:12 am JAN 31, 2001
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243,296**;Dec 17, 1997;Build 19
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243,296,329**;Dec 17, 1997;Build 8
  ;
  ;This routine invokes to following ICR(s):
  ;ICR 4156     ;REGISTRATION, COMBAT VETERAN STATUS
@@ -92,15 +92,19 @@ UNFLORD(ORY,DFN,XQAID) ; -- auto-unflag orders?/delete alert
  Q:'$L(DFN)!('$L(XQAID))
  N ORI,ORIFN,ORA,XQAKILL,ORN,ORBY,ORAUTO,ORUNF
  S ORN=+$O(^ORD(100.9,"B","FLAGGED ORDERS",0))
- S XQAKILL=$$XQAKILL^ORB3F1(ORN)
+ ;S XQAKILL=$$XQAKILL^ORB3F1(ORN)
  D LIST^ORQOR1(.ORBY,DFN,"ALL",12,"","")
  S ORAUTO=+$$GET^XPAR("ALL","ORPF AUTO UNFLAG")
  S ORI=0 F  S ORI=$O(ORBY(ORI)) Q:ORI'>0  D
  . I ORAUTO D  ; unflag
- . . S ORUNF=+$E($$NOW^XLFDT,1,12)_U_DUZ_"^Auto-Unflagged"
- . . S ORIFN=$P(ORBY(ORI),U),ORA=+$P(ORIFN,";",2)
- . . I ORIFN,$D(^OR(100,+ORIFN,0)) S $P(^(8,ORA,3),U)=0,$P(^(3),U,6,8)=ORUNF D MSG^ORCFLAG(ORIFN) ; unflag
- I ORAUTO!(+$G(ORBY(1))=0) D DELETE^XQALERT
+ . . ;DJE-VM *329 - use GUI RPC call to make it run the proper code, only run it if the user sees it.
+ . . ;S ORUNF=+$E($$NOW^XLFDT,1,12)_U_DUZ_"^Auto-Unflagged"
+ . . ;S ORIFN=$P(ORBY(ORI),U),ORA=+$P(ORIFN,";",2)
+ . . ;I ORIFN,$D(^OR(100,+ORIFN,0)) S $P(^(8,ORA,3),U)=0,$P(^(3),U,6,8)=ORUNF D MSG^ORCFLAG(ORIFN) ; unflag
+ . . S ORIFN=+ORBY(ORI)
+ . . I $D(^OR(100,ORIFN,0)),'$$FLAGRULE^ORWORR1(ORIFN) D UNFLAG^ORWDXA(.ORUNF,$P(ORBY(ORI),U),"Auto-Unflagged")
+ ;DJE-VM *329 - ORWDXA is smarter and deletes the appropriate alert(s)
+ ;I (ORAUTO)!(+$G(ORBY(1))=0) D DELETE^XQALERT
  Q
 KILEXMED(Y,ORDFN)  ; -- Delete expiring meds notification if no expiring meds remaining
  N ORDG,ORLST S ORDG=$$DG^ORQOR1("RX")

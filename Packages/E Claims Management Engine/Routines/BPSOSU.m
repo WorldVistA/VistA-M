@@ -1,5 +1,5 @@
 BPSOSU ;BHAM ISC/FCS/DRS/FLS - Common utilities ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,7**;JUN 2004;Build 46
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,7,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ; Common utilities called a lot.
@@ -29,27 +29,29 @@ SETSTAT(IEN59,STATUS) ; EP - from many places
  ; Input:
  ;   IEN59 - BPS Transaction IEN
 STATUS99(IEN59) ;
- N CLMSTAT,BPS57,BPNXTREQ,BPRQUSED
- N BPSCLNOD,BPTYPE
+ N IEN77,BPS57,CLMSTAT,BPNXTREQ,BPSCLNOD,BPTYPE
  ;
- ; Get status of the claim
- S CLMSTAT=$$CATEG^BPSOSUC(IEN59)
+ ; Get the current request
+ S IEN77=+$$GETRQST^BPSUTIL2(IEN59)
+ D LOG^BPSOSL(IEN59,$T(+0)_"-Claim of the request "_IEN77_" has reached 99%")
  ;
+ ; Create a copy in the BPS Log of Transaction
  S BPS57=$$NEW57(IEN59)
  D LOG^BPSOSL(IEN59,$T(+0)_"-Created BPS Log of Transaction record "_BPS57)
  ;
+ ; This data is needed when closing the claim later but needs to be 
+ ;   read now since $$REQST99^BPSOSRX5 will delete the request as part
+ ;   of its processing
+ S BPSCLNOD=$G(^BPS(9002313.77,IEN77,7))
+ S BPTYPE=$P($G(^BPS(9002313.77,IEN77,1)),U,4)
  ;
- ; check if BPS REQUEST is used then see if the next request needs to be activated
- S BPRQUSED=+$P($G(^BPST(IEN59,0)),U,12)
- S BPSCLNOD=$G(^BPS(9002313.77,BPRQUSED,7))
- S BPTYPE=$P($G(^BPS(9002313.77,BPRQUSED,1)),U,4)
- D LOG^BPSOSL(IEN59,$T(+0)_"-Claim of the request "_BPRQUSED_" has reached 99%")
- ;
+ ; Get status of the claim
+ S CLMSTAT=$$CATEG^BPSOSUC(IEN59)
  S BPNXTREQ=$$REQST99^BPSOSRX5(IEN59,CLMSTAT)
  ;
+ ; Check if the BPS Claim should be closed
  I +BPSCLNOD=1,$P(BPSCLNOD,U,2)>0 D
  . N BPSCLA,BPLCK,BPDROP,ERROR,DA,DR,DIE
- . ;if reversal was not accepted
  . I $$SUCCESS^BPSOSRX7(BPTYPE,CLMSTAT)=0 Q
  . I BPNXTREQ>0 D LOG^BPSOSL(IEN59,$T(+0)_"-Cannot close after reversal due to sequential requests in the queue") Q
  . D LOG^BPSOSL(IEN59,$T(+0)_"-Closing the claim after accepted reversal")
@@ -91,15 +93,9 @@ NEW57A N N,C
  ; Merge BPS Transaction into Log of Transactions
  M ^BPSTL(N)=^BPST(IEN59)
  ;
- ; Indexing - First, fileman indexing
+ ; Build fileman indices
  D
  . N DIK,DA S DIK="^BPSTL(",DA=N N N D IX1^DIK
- ;
- ; Setup the NON-FILEMAN index on RX and Fill
- N A,B
- S A=$P(^BPSTL(N,1),U,11)
- S B=$P(^BPSTL(N,1),U)
- S ^BPSTL("NON-FILEMAN","RXIRXR",A,B,N)=""
  ;
  ; Quit with the new record number
  Q N

@@ -1,5 +1,5 @@
 IBCCC2 ;ALB/AAS - CANCEL AND CLONE A BILL - CONTINUED ;6/6/03 9:56am
- ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371,400,433**;21-MAR-94;Build 36
+ ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371,400,433,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRCC2
@@ -8,28 +8,34 @@ IBCCC2 ;ALB/AAS - CANCEL AND CLONE A BILL - CONTINUED ;6/6/03 9:56am
  ;STEP 6 - go to screens, come out to IBB1 or something like that
  ;
 STEP5 S IBIFN1=$P(^DGCR(399,IBIFN,0),"^",15) G END:$S(IBIFN1="":1,'$D(^DGCR(399,IBIFN1,0)):1,1:0)
- ;
+ ; NOTE:  any new or changed data nodes may also need to be updated in IBNCPDP5
  ;move pure data nodes
  F I="I1","I2","I3","M1" I $D(^DGCR(399,IBIFN1,I)) S ^DGCR(399,IBIFN,I)=^DGCR(399,IBIFN1,I)
  ;
- ;move top level data node. ;Do not move 'TX' node
- F I="U","U1","U2","U3","UF2","UF3","UF31","C","M" I $D(^DGCR(399,IBIFN1,I)) S IBND(I)=^(I) D @I
+ ;move top level data node. ;Do not move 'TX' node except piece 8 (added with IB*2.0*432)
+ ;F I="U","U1","U2","U3","UF2","UF3","UF31","C","M" I $D(^DGCR(399,IBIFN1,I)) S IBND(I)=^(I) D @I
+ ; add new data nodes introduced with IB*2.0*432
+ F I="TX","U","U1","U2","U3","U4","U5","U6","U8","UF2","UF3","UF31","UF32","C","M" I $D(^DGCR(399,IBIFN1,I)) S IBND(I)=^(I) D @I
  ;
  ;move multiple level data
  F I="CC","OC","OP","OT","RC","CP","CV","PRV" I $D(^DGCR(399,IBIFN1,I,0)) D @I
  ;
- D FTPRV^IBCEU5(IBIFN) ; Ask change prov type if form type not the same
+ ; IB*2.0*432  ADDED IBSILENT flag so that this can be processed in background
+ D FTPRV^IBCEU5(IBIFN,$G(IBSILENT)) ; Ask change prov type if form type not the same
  D COBCHG(IBIFN,,.IBCOB)
  ;
  D ^IBCCC3 ; copy table files (362.3)
  ;
  S I=$G(^DGCR(399,IBIFN1,0)) I $P(I,U,13)=7,$P(I,U,20)=1 D COPYB^IBCDC(IBIFN1,IBIFN) ; update auto bill files
  D PRIOR(IBIFN) ; add new bill to previous bills in series, primary/secondary
+ ;
  I +$G(IBCTCOPY) N IBAUTO S IBAUTO=1 D PROC^IBCU7A(IBIFN),BILL^IBCRBC(IBIFN),CPTMOD26^IBCU73(IBIFN) D RECALL^DILFD(399,IBIFN_",",DUZ) G END
  ;
 STEP6 N IBGOEND
- ; need to kill CRD flag prior to going back into billing screen in case claim is copied for corresponding claim
+ ; need to kill CRD flag prior to entering billing screens in case a copy for corresponding claim is needed
  K IBCNCRD
+ ; don't call IB bill edit screens if this is non-MRA background processing
+ I $G(IBSTSM)=1 G END
  I '$G(IBCE("EDI"))!$G(IBCE("EDI","NEW")),'$G(IBCEAUTO) D IBSCEDT G END:$G(IBGOEND)
  ;
  ;
@@ -41,6 +47,11 @@ END K DFN,IB,IBA,IBA2,IBAD,IBADD1,IBBNO,IBCAN,IBCCC,IBDA,IBDPT,IBDR,IBDT,IBI,IBI
  ;
 IBSCEDT ; call the IB bill edit screens and validate the data
  N IBV,IBPAR,IBAC,IBHV,IBH,IBCIREDT
+ ; if the user came from CBW->PC and this is a non-MRA claim w/a paper EOB, set force print flag IB*2.0*432
+ ; also, if the user came from CBW->PC and this is a non-MRA claim and the only EEOB we have has filing errors, set force print flag
+ I $G(IBMRANOT)=1,$$COBN^IBCEF(IBIFN)>1,$G(IBFROM)=2 D 
+ .I $G(IBDA)="" D FORCEPRT^IBCAPP($G(IBIFN)) Q
+ .I $D(^IBM(361.1,IBDA,"ERR")) D FORCEPRT^IBCAPP($G(IBIFN)) Q
  D RECALL^DILFD(399,IBIFN_",",DUZ)
 ST1 S IBV=0 D ^IBCSCU,^IBCSC1 I $G(IBPOPOUT) S IBGOEND=1 G IBSCX
  S IBAC=1
@@ -50,6 +61,8 @@ IBSCX ;
  Q
  ;
  ;
+TX F J=8 I $P(IBND("TX"),"^",J)]"" S $P(^DGCR(399,IBIFN,"TX"),"^",J)=$P(IBND("TX"),"^",J)
+ Q
 U F J=3,4,6:1:17,20 I $P(IBND("U"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U"),"^",J)=$P(IBND("U"),"^",J)
  Q
 U1 F J=1:1:3,15 I $P(IBND("U1"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U1"),"^",J)=$P(IBND("U1"),"^",J)
@@ -62,7 +75,17 @@ UF2 F J=1,3 I $P(IBND("UF2"),"^",J)]"" S $P(^DGCR(399,IBIFN,"UF2"),"^",J)=$P(IBN
  Q
 UF3 F J=4:1:6 I $P(IBND("UF3"),"^",J)]"" S $P(^DGCR(399,IBIFN,"UF3"),"^",J)=$P(IBND("UF3"),"^",J)
  Q
+U4 F J=1:1:14 I $P(IBND("U4"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U4"),"^",J)=$P(IBND("U4"),"^",J)
+ Q
+U5 F J=1:1:6 I $P(IBND("U5"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U5"),"^",J)=$P(IBND("U5"),"^",J)
+ Q
+U6 F J=1:1:6 I $P(IBND("U6"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U6"),"^",J)=$P(IBND("U6"),"^",J)
+ Q
+U8 F J=1:1:3 I $P(IBND("U8"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U8"),"^",J)=$P(IBND("U8"),"^",J)
+ Q
 UF31 F J=3 I $P(IBND("UF31"),"^",J)]"" S $P(^DGCR(399,IBIFN,"UF31"),"^",J)=$P(IBND("UF31"),"^",J)
+ Q
+UF32 F J=1:1:3 I $P(IBND("UF32"),"^",J)]"" S $P(^DGCR(399,IBIFN,"UF32"),"^",J)=$P(IBND("UF32"),"^",J)
  Q
 C F J=10 I $P(IBND("C"),"^",J)]"" S $P(^DGCR(399,IBIFN,"C"),"^",J)=$P(IBND("C"),"^",J)
  I '$D(^DGCR(399,IBIFN1,"CP")) D CP1
@@ -90,10 +113,16 @@ RC S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
  Q
 CP S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
  I +$G(IBNOCPT) Q
- S IBDD=399.0304 F J=0:0 S J=$O(^DGCR(399,IBIFN1,I,J)) Q:'J  I $D(^(J,0)) S IBND("CP")=^(0),IBND("CP-AUX")=$G(^("AUX")) D
+ S IBDD=399.0304 F J=0:0 S J=$O(^DGCR(399,IBIFN1,I,J)) Q:'J  I $D(^(J,0)) S IBND("CP")=^(0),IBND("CP1")=$G(^(1)),IBND("CP-AUX")=$G(^("AUX")) D
  . F K=1:1:7,9:1:14,16:1:22 S $P(^DGCR(399,IBIFN,I,J,0),"^",K)=$P(IBND("CP"),"^",K)
+ . ; IB*2.0*432 add new 1 node
+ . F K=1:1:5 S $P(^DGCR(399,IBIFN,I,J,1),"^",K)=$P(IBND("CP1"),"^",K)
  . ; esg - 11/2/06 - IB*2*348 - 50.09 field was added - AUX piece [9]
  . I IBND("CP-AUX")'="" F K=1:1:9 S $P(^DGCR(399,IBIFN,I,J,"AUX"),"^",K)=$P(IBND("CP-AUX"),"^",K)
+ . ; IB*2.0*432 add new LNPRV multiple
+ . I $D(^DGCR(399,IBIFN1,I,J,"LNPRV",0)) S ^DGCR(399,IBIFN,I,J,"LNPRV",0)=^DGCR(399,IBIFN1,I,J,"LNPRV",0) D
+ .. S K=0 F  S K=$O(^DGCR(399,IBIFN1,I,J,"LNPRV",K)) Q:'K  D
+ ... S ^DGCR(399,IBIFN,I,J,"LNPRV",K,0)=^DGCR(399,IBIFN1,I,J,"LNPRV",K,0)
  . I $D(^DGCR(399,IBIFN1,I,J,"MOD",0)) S ^DGCR(399,IBIFN,I,J,"MOD",0)=^DGCR(399,IBIFN1,I,J,"MOD",0) D
  .. S K=0 F  S K=$O(^DGCR(399,IBIFN1,I,J,"MOD",K)) Q:'K  D
  ... I $G(IBNOTC),$P($$MOD^ICPTMOD(+$P($G(^DGCR(399,IBIFN1,I,J,"MOD",K,0)),U,2),"I"),U,2)="TC" Q  ; Don't copy TC modifier from inst to prof bill

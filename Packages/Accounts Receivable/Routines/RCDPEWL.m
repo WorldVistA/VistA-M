@@ -1,5 +1,5 @@
-RCDPEWL ;ALB/TMK - ELECTRONIC EOB MESSAGE WORKLIST ;06-FEB-2003
- ;;4.5;Accounts Receivable;**173,208**;Mar 20, 1995
+RCDPEWL ;ALB/TMK/KML - ELECTRONIC EOB MESSAGE WORKLIST ; 5/24/11 4:46pm
+ ;;4.5;Accounts Receivable;**173,208,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ; IA for read access to ^IBM(361.1 = 4051
  ;
@@ -24,10 +24,10 @@ DISP(RCERA,RCNOED) ; Entry to worklist from receipt processing
  ; RCNOED = 1 if receipt exists/no editing allowed
  ;        = 2 if no edit and called from receipt processing
  ;
- N DUOUT,DTOUT,DIC,DIK,X,Y,DIR,RCQUIT,DA,DIE,DR,RCSCR,RC0,RCDAT,RCUNM
+ N DUOUT,DTOUT,DIC,DIK,X,Y,DIR,RCQUIT,DA,DIE,DR,RCSCR,RC0,RC5,RCDAT,RCUNM
  ;
  S RCSCR("NOEDIT")=+$G(RCNOED)
- S RCQUIT=0,RC0=$G(^RCY(344.4,RCERA,0))
+ S RCQUIT=0,RC0=$G(^RCY(344.4,RCERA,0)),RC5=$G(^RCY(344.4,RCERA,5))
  ;I $$HACERA^RCDPEU(RCERA) S DIR(0)="YA",DIR("A")="THIS ERA IS FROM CHAMPVA (HAC) - ARE YOU SURE YOU WANT TO CONTINUE?: ",DIR("B")="YES" D ^DIR K DIR G:Y'=1 DISPQ
  I 'RCSCR("NOEDIT"),'$O(^RCY(344.49,"B",RCERA,0)) D  G:RCQUIT DISPQ
  . S DIR(0)="YA",DIR("B")="NO",DIR("A",1)="NO WORKLIST SCRATCH PAD ENTRY EXISTS FOR THIS ERA",DIR("A")="DO YOU WANT TO CREATE ONE NOW?: "
@@ -37,7 +37,7 @@ DISP(RCERA,RCNOED) ; Entry to worklist from receipt processing
  . I $P(RC0,U,15)'="" W !!,"PAYMENT METHOD CODE REPORTED: "_$P(RC0,U,15),!
  . I $P(RC0,U,15)="" W !!,"NO PAYMENT METHOD CODE REPORTED",!
  . ;I $P(RC0,U,9)=0,$P(RC0,U,13)="",'$$HACERA^RCDPEU(RCERA) D  Q:RCQUIT
- . I $P(RC0,U,9)=0,$P(RC0,U,13)="" D  Q:RCQUIT
+ . I $P(RC0,U,9)=0,$P(RC5,U,2)="" D  Q:RCQUIT
  .. S RCQUIT=0,RCUNM=0
  .. I +$P(RC0,U,5)=0,"ACH"'[(U_$P(RC0,U,15)_U) D  Q:RCQUIT!RCUNM
  ... S DIR("A",1)="THIS ERA HAS NO PAYMENT ASSOCIATED WITH IT AND CAN BE MARKED AS",DIR("A",2)="'MATCH-0 PAYMENT' TO REMOVE IT FROM THE ERA AGING REPORT IF NO PAPER CHECK OR",DIR("A",3)="EFT IS EXPECTED TO BE RECEIVED FOR THIS ERA"
@@ -50,7 +50,7 @@ DISP(RCERA,RCNOED) ; Entry to worklist from receipt processing
  ... S DIE="^RCY(344.4,",DR=".09////3;.14////3",DA=RCERA D ^DIE S RCUNM=1
  .. I 'RCUNM D
  ... S DIR("A",1)="THIS ERA DOES NOT HAVE A MATCHING EFT",DIR("A")="ENTER THE NUMBER OF THE PAPER CHECK YOU RECEIVED FOR THIS ERA: ",DIR(0)="344.01,.07A"
- ... I $P(RC0,U,13)'="" S DIR("B")=$P(RC0,U,13)
+ ... I $P(RC5,U,2)'="" S DIR("B")=$P(RC5,U,2)
  ... I $G(DIR("B"))="",$P(RC0,U,2)'="" S DIR("B")=$P(RC0,U,2)
  ... W ! D ^DIR K DIR
  ... I $D(DTOUT)!$D(DUOUT)!(Y="") D  S RCQUIT=1 Q
@@ -118,14 +118,17 @@ ADDREC(RCERA,RCDAT) ; Add a record to file 344.49
  Q RCY
  ;
 HDR ; Creates header lines for the selected ERA display
- N X,Z,RC,RCT
+ N X,Z,RC,RC5,RCT
  I '$G(RCSCR) S VALMQUIT=1 Q
- S RC=$G(^RCY(344.4,+RCSCR,0))
- S VALMHDR(1)=$E("ERA Entry #: "_$P(RC,U)_$J("",31),1,31)_"Payer Name/ID: "_$P(RC,U,6)_"/"_$P(RC,U,3)
- S VALMHDR(2)=$E("Total Amt Pd: "_$J(+$P(RC,U,5),"",2)_$J("",31),1,31)
+ S RC=$G(^RCY(344.4,+RCSCR,0)),RC5=$G(^RCY(344.4,+RCSCR,5))
+ ; HIPAA 5010 - Payer Name extended from 35 to 60
+ ; needs to go on separate line
+ S VALMHDR(1)=$E("ERA Entry #: "_$P(RC,U)_$J("",31),1,31)_"Total Amt Pd: "_$J(+$P(RC,U,5),"",2)
+ S VALMHDR(2)="Payer Name/ID: "_$P(RC,U,6)_"/"_$P(RC,U,3)
  S Z=+$O(^RCY(344.31,"AERA",+RCSCR,0))
- I Z S VALMHDR(2)=VALMHDR(2)_"EFT #/TRACE #: "_$P($G(^RCY(344.3,+$G(^RCY(344.31,Z,0)),0)),U)_"/"_$P(RC,U,2)
- I 'Z,$P(RC,U,13)'="" S VALMHDR(2)=VALMHDR(2)_"PAPER CHECK #: "_$P(RC,U,13)
+ ; HIPAA 5010 - Trace # - increased in length from 30 to 50; needs to be on a separate line
+ I Z S VALMHDR(3)="EFT #/TRACE #: "_$P($G(^RCY(344.3,+$G(^RCY(344.31,Z,0)),0)),U)_"/"_$P(RC,U,2)
+ I 'Z,$P(RC5,U,2)'="" S VALMHDR(3)="PAPER CHECK #: "_$P(RC5,U,2)
  S RCT=2
  I $G(^TMP("RCBATCH_SELECTED",$J)) D
  . N Z,Z0

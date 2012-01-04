@@ -1,5 +1,5 @@
 GMTSLTR ; SLC/JER,KER - Print Big Letters ; 08/27/2002
- ;;2.7;Health Summary;**28,56**;Oct 20, 1995
+ ;;2.7;Health Summary;**28,56,88**;Oct 20, 1995;Build 23
  ;                   
  ; External Reference
  ;   DBIA 10060  ^VA(200
@@ -7,7 +7,7 @@ GMTSLTR ; SLC/JER,KER - Print Big Letters ; 08/27/2002
  ;                   
  Q:'$L($G(GMTSLTR))  I '$D(^UTILITY("GMTSLTR",$J,"A")) D ^GMTSLTR2
 B1 ; Setup for banner print
- N GMTSDIV,GMTSLEN,GMTSXXX,GMTSBLNK,X
+ N GMTSDIV,GMTSLEN,GMTSXXX,GMTSBLNK,GMTSLOCL,X S GMTSLOCL=6
  S GMTSLEN=$L(GMTSLTR),GMTSDIV=60\GMTSLEN,$P(GMTSXXX,"X",(GMTSDIV\5+1))=""
  S $P(GMTSBLNK," ",(GMTSDIV\5+1))=""
  S GMTSLTY=$E(GMTSLTR,1,$S(GMTSLEN'>2:GMTSLEN,1:(IOM\GMTSDIV-1))),GMTSLTX=""
@@ -21,8 +21,9 @@ B1 ; Setup for banner print
  I $D(GMTSPNM) W ?10,"Patient: ",GMTSPNM,!
  I $D(GMTSWDN) W "Hospital Location: ",GMTSWDN,!
  I $D(DUZ) W ?33,"User: ",$$GET1^DIQ(200,(+($G(DUZ))_","),.01),!
- W ! F GMTSLT=1:1:6 D B2
- W @IOF
+ ; RJT/VM GMTS*2.7*88
+ I $$GET1^DIQ(142.99,1,.07,"^TMP(""GMTS"",$J,""SHORT HS BY LOC"")")="Yes" S GMTSLOCL=1
+ W ! F GMTSLT=1:1:GMTSLOCL D B2
  K GMTSLT1,GMTSLT2,GMTSLT3,GMTSLTX,GMTSLTY,GMTSLT,^UTILITY("GMTSLTR",$J)
  Q
 B2 ; Write Banner

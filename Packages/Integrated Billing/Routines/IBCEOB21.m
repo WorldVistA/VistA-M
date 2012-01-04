@@ -1,5 +1,6 @@
 IBCEOB21 ;ALB/TMP - EOB MAINTENANCE ACTIONS ;18-FEB-99
- ;;2.0;INTEGRATED BILLING;**137,155**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**137,155,432**;21-MAR-94;Build 192
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
 EDIT ; Edit a previously entered manual EOB
@@ -94,10 +95,16 @@ VIEW ; View an MRA
  D SEL(.IBDA,1)     ; select a bill from the main list
  S IBSEL=+$O(IBDA(0)) I 'IBSEL G VIEWQ                    ; list#
  S IBIFN=$P($G(IBDA(IBSEL)),U,1) I 'IBIFN G VIEWQ         ; bill#
- S IBEOBIFN=$P($G(IBDA(IBSEL)),U,3) I 'IBEOBIFN G VIEWQ   ; eob ien
+ ; IB*2.0*432 if nothing in EOB file for non-MRA claim, warn user and quit.
+ ;S IBEOBIFN=$P($G(IBDA(IBSEL)),U,3) I 'IBEOBIFN G VIEWQ   ; eob ien
+ S IBEOBIFN=$P($G(IBDA(IBSEL)),U,3) I 'IBEOBIFN,$G(IBMRANOT)=1 D  G VIEWQ
+ . D FULL^VALM1
+ . W !!?5,"There is no electronic EOB for this claim."
+ . D PAUSE^VALM1
+ . Q
  ;
  ; If only one MRA on file, then call the Listman and quit
- I $$MRACNT^IBCEMU1(IBIFN)=1 D EN^VALM("IBCEM VIEW EOB") G VIEWQ
+ I $$MRACNT^IBCEMU1(IBIFN,$G(IBMRANOT))=1 D EN^VALM("IBCEM VIEW EOB") G VIEWQ
  ;
 VLOOP ; Multiple MRA's on file.  Allow user to select the MRA to view
  D FULL^VALM1

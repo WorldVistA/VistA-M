@@ -1,5 +1,5 @@
 GMPLUTL ; SLC/MKB/KER -- PL Utilities                      ; 4/15/2002
- ;;2.0;Problem List;**3,6,8,10,16,26,35**;Aug 25, 1994;Build 26
+ ;;2.0;Problem List;**3,6,8,10,16,26,35,39**;Aug 25, 1994;Build 7
  ;
  ; External References
  ;   DBIA    348  ^DPT(
@@ -90,7 +90,7 @@ CREATE(PL,PLY) ; Creates a new problem
  I '$L($G(PL("NARRATIVE"))) S PLY(0)="Missing problem narrative" Q
  I '$D(^DPT(+$G(PL("PATIENT")),0)) S PLY(0)="Invalid patient" Q
  I '$D(^VA(200,+$G(PL("PROVIDER")),0)) S PLY(0)="Invalid provider" Q
- S GMPDFN=+PL("PATIENT"),(GMPSC,GMPAGTOR,GMPION,GMPGULF,GMPHNC,GMPMST)=0
+ S GMPDFN=+PL("PATIENT"),(GMPSC,GMPAGTOR,GMPION,GMPGULF,GMPHNC,GMPMST,GMPCV,GMPSHD)=0
  D:GMPVA VADPT^GMPLX1(GMPDFN)
  F GMPI="DIAGNOSI","LEXICON","DUPLICAT","LOCATION","STATUS" D @(GMPI_"^GMPLUTL1") Q:$D(GMPQUIT)
  Q:$D(GMPQUIT)

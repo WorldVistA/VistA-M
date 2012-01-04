@@ -1,5 +1,5 @@
-IBCE835 ;ALB/TMP - 835 EDI EXPLANATION OF BENEFITS MSG PROCESSING ;19-JAN-99
- ;;2.0;INTEGRATED BILLING;**137,135,155,377**;21-MAR-94;Build 23
+IBCE835 ;ALB/TMP/PJH - 835 EDI EXPLANATION OF BENEFITS MSG PROCESSING ; 7/15/10 4:40pm
+ ;;2.0;INTEGRATED BILLING;**137,135,155,377,431**;21-MAR-94;Build 106
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -123,7 +123,7 @@ HDR(IBCLNO,IBD) ;Process header data
  . S CT=CT+1,LINE(CT)="CLAIM STATUS: "_$P(IBD,U,7)_" (OTHER)"
  ;
  I $P(IBD,U,8)'="" D  ;Crossed over info
- . S LINE(CT)=LINE(CT)_"  Crossed over to: "_$P(IBD,U,9)_"  "_$P(IBD,U,8)
+ . S CT=CT+1,LINE(CT)="Crossed over to: "_$P(IBD,U,9)_"  "_$P(IBD,U,8)
  ;
  I CT D
  . S L=$G(IBD("LINE")),Z=0
@@ -191,6 +191,18 @@ HDR(IBCLNO,IBD) ;Process header data
  D 45^IBCE835A(.IBD)
  Q
  ;
+11(IBD) ; Process claim status rendering provider data segment
+ D XX(.IBD,11)
+ Q
+ ;
+12(IBD) ; Process claim status corrected priority payer data segment
+ D XX(.IBD,12)
+ Q
+ ;
+13(IBD) ; Process claim status other subscriber data segment
+ D XX(.IBD,13)
+ Q
+ ;
 17(IBD) ; Process claim contact data segment
  D XX(.IBD,17)
  Q
@@ -209,6 +221,10 @@ HDR(IBCLNO,IBD) ;Process header data
  ;
 42(IBD) ; Process service line data (part 3)
  D XX(.IBD,42)
+ Q
+ ;
+46(IBD) ; Process Adjustment Policy Reference segment
+ D 46^IBCE835A(.IBD)
  Q
  ;
 99(IBD) ; Process trailer record for non-MRA EOB

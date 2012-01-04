@@ -1,5 +1,5 @@
-RCDPEM1 ;ALB/TMK - ERA MATCH TO EFT (cont) ;05-NOV-02
- ;;4.5;Accounts Receivable;**173**;Mar 20, 1995
+RCDPEM1 ;ALB/TMK,DWA,PJH - ERA MATCH TO EFT (cont) ; 5/5/11 1:25pm
+ ;;4.5;Accounts Receivable;**173,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -41,8 +41,9 @@ BLD(RCARRAY,RCT,RCFILE,RC0) ; Build the array for entry 344.31 detail
  N Z,RC00
  I RCFILE=344.31 D
  . S RC00=$G(^RCY(344.3,+RC0,0))
- . S Z=$$SETSTR^VALM1("  TRACE #: "_$P(RC0,U,4),"",1,31)
- . S Z=$$SETSTR^VALM1("  INS CO: "_$E($P(RC0,U,2),1,22)_"/"_$P(RC0,U,3),Z,32,43)
+ . S Z=$$SETSTR^VALM1("  TRACE #: "_$P(RC0,U,4),"",1,61) ; Expand Trace # to 50 characters
+ . S RCT=RCT+1,@RCARRAY@(RCT)=Z ; for Ins. Co. below
+ . S Z=$$SETSTR^VALM1("  INS CO: "_$E($P(RC0,U,2),1,22)_"/"_$P(RC0,U,3),"",1,76)
  . S RCT=RCT+1,@RCARRAY@(RCT)=Z
  . S Z=$$SETSTR^VALM1("  DEPOSIT DATE: "_$$FMTE^XLFDT($P(RC00,U,7),2),"",1,24)
  . S Z=$$SETSTR^VALM1("  DATE REC'D: "_$S($P(RC00,U,13):$$FMTE^XLFDT($P(RC00,U,13)\1,2),1:""),Z,25,22)
@@ -114,7 +115,9 @@ EN2 ; Entrypoint from nightly job to put Nightly and Daily Activity Report
  . I $P(DATA,U,4) S CT=CT+1,^TMP($J,"RCXM",CT)="    ERROR # REFERENCED ABOVE : "_$P(DATA,U,4)
  . S T=0 F  S T=$O(^TMP($J,"RC1",Z,T)) Q:'T  S T0=$G(^(T)) D
  .. S CT=CT+1
- .. S ^TMP($J,"RCXM",CT)=$J("",5)_$E($P(T0,U,4)_$J("",20),1,20)_"  "_$P(T0,U,2)_"/"_$P(T0,U,3)
+ .. S ^TMP($J,"RCXM",CT)=$J("",5)_$P(T0,U,4)
+ .. S CT=CT+1 ; separate TRACE # above from PAYER NAME/ID below
+ .. S ^TMP($J,"RCXM",CT)=$J("",5)_$P(T0,U,2)_"/"_$P(T0,U,3)
  .. S CT=CT+1,^TMP($J,"RCXM",CT)=$J("",10)_"PAYMENT AMOUNT: "_$J(+$P(T0,U,7),"",2)_"  MATCH STATUS: "_$$EXTERNAL^DILFD(344.31,.08,,$P(T0,U,8))
  .. S:$O(^TMP($J,"RCDPETOT",344.3,Z)) CT=CT+1,^TMP($J,"RCXM",CT)=" "
  . I $P(DATA,U,3) S ^TMP("RCDAILYACT",$J,DT,Z)=Z0
@@ -144,7 +147,8 @@ HDR(CT,HD) ; Header array set
  S CT=CT+1,^TMP($J,"RCXM",CT)=$J("",20)_"********** EFT DEPOSIT RECORDS **********"
  S CT=CT+1,^TMP($J,"RCXM",CT)="  EFT DEPOSIT      EFT RECEIPT      POSTED AMOUNT"
  S CT=CT+1,^TMP($J,"RCXM",CT)=" "
- S CT=CT+1,^TMP($J,"RCXM",CT)="     TRACE #               PAYER NAME/ID"
+ S CT=CT+1,^TMP($J,"RCXM",CT)="     TRACE #"
+ S CT=CT+1,^TMP($J,"RCXM",CT)="     PAYER NAME/ID"
  S CT=CT+1,Q="",$P(Q,"=",79)="",^TMP($J,"RCXM",CT)=Q
  S HD=1
  Q

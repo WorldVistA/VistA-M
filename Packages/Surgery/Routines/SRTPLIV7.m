@@ -1,5 +1,5 @@
 SRTPLIV7 ;BIR/SJA - LIVER-DONOR INFORMATION ;03/04/08
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+ ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
  I '$D(SRTPP) W !!,"A Transplant Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
  N SRX,SRY,SRZ
 START Q:SRSOUT  D DISP
@@ -41,8 +41,8 @@ DISP ; display fields
  D RACE
  W !,"1.  Donor Race:" S SRAO(1)="" I $G(SRZ(139.544)) F D=1:1:SRNUM1-1 W:D=1 ?21,SROL(D) W:D'=1 !,?21,SROL(D)
  W !,"2.  Donor Gender:",?21,$P(SRAO(2),"^")
- W !,"3.  Donor Height:",?21,$P(SRAO(3),"^"),?42,"HLA Typing (#,#,#)"
- W !,"4.  Donor Weight:",?21,$P(SRAO(4),"^"),?42,"=================="
+ W !,"3.  Donor Height:",?21,$P(SRAO(3),"^"),?42,"HLA Typing (#,#,#,#)"
+ W !,"4.  Donor Weight:",?21,$P(SRAO(4),"^"),?42,"===================="
  W !,"5.  Donor DOB:",?21,$P(SRAO(5),"^"),?42,"13. Donor HLA-A:  ",$P(SRAO(13),"^")
  W !,"6.  Donor Age:",?21,$P(SRAO(6),"^"),?42,"14. Donor HLA-B:  ",$P(SRAO(14),"^")
  W !,"7.  ABO Blood Type:",?21,$P(SRAO(7),"^"),?42,"15. Donor HLA-C:  ",$P(SRAO(15),"^")

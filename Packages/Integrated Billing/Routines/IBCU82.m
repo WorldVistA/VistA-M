@@ -1,5 +1,5 @@
 IBCU82 ;ALB/ARH - THIRD PARTY BILLING UTILITIES (AUTOMATED BILLER) ;02 JUL 93
- ;;2.0;INTEGRATED BILLING;**43,55,91,124,160,304,347**;21-MAR-94;Build 24
+ ;;2.0;INTEGRATED BILLING;**43,55,91,124,160,304,347,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -17,6 +17,8 @@ EVNTCHK(IBTRN) ;special checks to determine if event should be auto billed
  I +$P(IBTRND,U,18)=4,$P(IBTRND,U,10)="" S X="1^Claims Tracking event does not have an associated prescription refill in Pharmacy." G EVNTCQ
  ;
  S DFN=+$P(IBTRND,U,2),IBEVDT=$P(IBTRND,U,6) I '$$INSURED^IBCNS1(DFN,IBEVDT) S X="1^Patient not insured for event date." G EVNTCQ
+ ; Check filing timeframe
+ I '$$PTFTF^IBCNSU31(DFN,IBEVDT) S X="1^Filing timeframe not met" G EVNTCQ
  S IBCAT=$S($P(IBTRND,U,18)=1!($P(IBTRND,U,18)=5):"INPATIENT",$P(IBTRND,U,18)=2:"OUTPATIENT",$P(IBTRND,U,18)=4:"PHARMACY",1:"")
  I IBCAT'="",'$$PTCOV^IBCNSU3(DFN,IBEVDT,IBCAT) S X="1^Patient insurance does not cover "_IBCAT_"." G EVNTCQ
  D ELIG^VADPT S X=0 I 'VAEL(4) S X="1^Patient is not a veteran." G EVNTCQ

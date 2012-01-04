@@ -1,5 +1,5 @@
 BPSSCRRS ;BHAM ISC/SS - ECME SCREEN RESUBMIT ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8**;JUN 2004;Build 29
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;IA 4702
@@ -33,7 +33,7 @@ RESUBMIT(RXI) ;*/
  N WHERE,DOSDATE,BILLNUM,RXIEN,RXR,BPDFN
  N BP59
  N UPDATFLG,BPCLTOT,BPCLTOTR
- N BPQ,BPBILL
+ N BPQ
  N BPSTATUS
  N REVCOUNT S REVCOUNT=0
  N BPIFANY S BPIFANY=0
@@ -62,17 +62,11 @@ RESUBMIT(RXI) ;*/
  . S BPSTATUS=$P($$CLAIMST^BPSSCRU3(BP59),U)
  . I $P($G(^BPST(BP59,0)),U,14)<2,$$PAYABLE^BPSOSRX5(BPSTATUS),BPINPROG=0,$$PAYBLSEC^BPSUTIL2(BP59) D  S BPQ=$$PAUSE^BPSSCRRV() Q
  . . W !,"The claim: ",!,$G(@VALMAR@(+$G(RXI(BP59)),0)),!,"cannot be Resubmitted if the secondary claim is payable.",!,"Please reverse the secondary claim first."
- . S BPBILL=0
- . ;I $P($G(^BPST(BP59,0)),U,14)=2 S BPBILL=$$PAYBLPRI^BPSUTIL2(BP59) I BPBILL=0 D  S BPQ=$$PAUSE^BPSSCRRV() Q
- . ;. W !,"The claim: ",!,$G(@VALMAR@(+$G(RXI(BP59)),0)),!,"cannot be Resubmitted if the primary is NOT payable.",!,"Please resubmit the primary claim first."
  . I (BPSTATUS="IN PROGRESS")!(BPSTATUS="SCHEDULED") S BPINPROG=1
  . I BPINPROG=1 D  I $$YESNO^BPSSCRRS("Do you want to proceed?(Y/N)")=0 S BPQ="^" Q
  . . W !,"The claim is in progress. The request will be scheduled and processed after"
  . . W !,"the previous request(s) are completed. Please be aware that the result of "
  . . W !,"the resubmit depends on the payer's response to the prior incomplete requests."
- . ;delete this I BPSTATUS["IN PROGRESS" W !!,">> Cannot Resubmit ",!,@VALMAR@(+$G(RXI(BP59)),0),!," because there is no response from the payer yet.",! Q
- . I $P($G(^BPST(BP59,9)),U,4)'="T" I BPINPROG=0,BPSTATUS["E REVERSAL REJECTED" W !!,">> Cannot Resubmit ",!,@VALMAR@(+$G(RXI(BP59)),0),!," because the REVERSAL was rejected.",! Q
- . I $P($G(^BPST(BP59,9)),U,4)'="T" I BPINPROG=0,BPSTATUS["E REVERSAL UNSTRANDED" W !!,">> Cannot Resubmit ",!,@VALMAR@(+$G(RXI(BP59)),0),!," because there is no response for reversal yet.",! Q
  . S DOSDATE=$$DOSDATE(RXIEN,RXR)
  . S BILLNUM=$$EN^BPSNCPDP(RXIEN,RXR,DOSDATE,"ERES","","ECME RESUBMIT",,,,,$$COB59^BPSUTIL2(BP59))
  . ;print return value message

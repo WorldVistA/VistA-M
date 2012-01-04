@@ -1,5 +1,5 @@
 IBCNEHLU ;DAOU/ALA - HL7 Utilities ;10-JUN-2002  ; Compiled December 16, 2004 15:36:12
- ;;2.0;INTEGRATED BILLING;**184,300,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,300,416,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 HLP(PROTOCOL) ;  Find the Protocol IEN
@@ -184,3 +184,51 @@ ISMCR(RIEN) ; check if response is for Medicare part A/B
  .I $P(RES,U,2)="B" S DONE=1
  .Q
  Q RES
+ ;
+ERRACT(RIEN) ; pick error action code to use for re-transmission
+ ; RIEN - ien in file 365
+ ;
+ ; returns "error action ^ error condition" string
+ ;
+ ; If any of C,N,S,Y action codes are found, the  first one encountered is returned.
+ ; Otherwise, if W action code is found, it is returned.
+ ; Otherwise, if X action code is found, it is returned.
+ ; Otherwise, one of the P,R action codes is returned.
+ ;
+ N ACODE,AIEN,ECCODE,ECIEN,DONE,IEN,RES,Z
+ S RES="" I '+$G(RIEN) G ERRACTX
+ S DONE=0
+ S Z="" F  S IEN=$O(^IBCN(365,RIEN,6,"B",Z)) Q:Z=""!DONE  D
+ .S IEN=+$O(^IBCN(365,RIEN,6,"B",Z,"")) I 'IEN Q
+ .S ECIEN=+$P(^IBCN(365,RIEN,6,IEN,0),U,3) I 'ECIEN Q
+ .S AIEN=+$P(^IBCN(365,RIEN,6,IEN,0),U,4) I 'AIEN Q
+ .S ACODE=$P(^IBE(365.018,AIEN,0),U),ECCODE=$P(^IBE(365.017,ECIEN,0),U)
+ .I ".C.N.S.Y"[("."_ACODE_".") S RES=ACODE_U_ECCODE,DONE=1 Q  ; one of "do not retransmit" codes
+ .I ACODE="W" S RES=ACODE_U_ECCODE Q  ; "retransmit after 30 days" code
+ .I ACODE="X" S:RES'="W" RES=ACODE_U_ECCODE Q  ; "retransmit after 10 days" code
+ .I RES'="W",RES'="X" S RES=ACODE_U_ECCODE  ; "retransmit whenever" codes
+ .Q
+ERRACTX  ;
+ Q RES
+ ;
+NAMECMP(NAME1,NAME2) ; check if 2 names have the same first name and last name components
+ ; NAME1, NAME2 - names to compare, should be in "last,first [middle]" format
+ ;
+ ; returns 1 if both first name and last name are the same between two names, returns 0 otherwise
+ N NM1,NM2,RES
+ S RES=0
+ S NM1=$$HLNAME^HLFNC(NAME1),NM2=$$HLNAME^HLFNC(NAME2)
+ I $P(NM1,U)=$P(NM2,U),$P(NM1,U,2)=$P(NM2,U,2) S RES=1
+ Q RES
+ ;
+TRNCWARN(GNUM,TRACE) ; send group number truncation warning message
+ N MSG
+ S MSG(1)="WARNING: Group number in the Response Message from the EC has been truncated"
+ S MSG(2)="----------------------------------------------------------------------------"
+ S MSG(3)="Original group number (in the eIV response received): "_$G(GNUM)
+ S MSG(4)="Truncated group number (filed into response file): "_$E($G(GNUM),1,17)
+ S MSG(5)=" "
+ S MSG(6)="The associated Trace # is "_$S($G(TRACE)="":"Unknown",1:TRACE)
+ S MSG(7)=" "
+ D MSG^IBCNEUT5($G(MGRP),MSG(1),"MSG(")
+ Q

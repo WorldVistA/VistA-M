@@ -1,5 +1,5 @@
 IBCNES1 ;ALB/ESG - eIV elig/benefit utilities ;14-Sept-2009
- ;;2.0;INTEGRATED BILLING;**416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**416,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -12,7 +12,7 @@ EB(IBVF,IBVIENS,IBVV,IBVSUB) ; Main Eligibility/Benefit Information
  ;  IBVSUB = display scratch global subscript
  ;
  N EB,EBERR,DSP,LN,COL1,COL2,ZF,ZIEN
- D GETS^DIQ(IBVF,IBVIENS,".02:.13;8*","IEN","EB","EBERR")
+ D GETS^DIQ(IBVF,IBVIENS,".02:.13;8*;11*","IEN","EB","EBERR")
  S DSP=$NA(^TMP(IBVSUB,$J,"DISP"))       ; scratch global display array
  S LN=+$O(@DSP@(""),-1)                  ; last line# used in scratch global
  ;
@@ -38,10 +38,14 @@ EB(IBVF,IBVIENS,IBVV,IBVSUB) ; Main Eligibility/Benefit Information
  . S EXDT=$S(DTYP="D8":$$DATE(HLDT),DTYP="RD8":($$DATE($P(HLDT,"-",1))_"-"_$$DATE($P(HLDT,"-",2))),1:HLDT)
  . D SET(.LN,COL2,"D/T Period",EXDT)
  . Q
+ ; loop through service type codes
+ S ZF=2.32292
+ I IBVF=365.02 S ZF=365.292  ; service types subfile#
+ I '$D(EB(ZF)) S EB(ZF,1)=""   ; so the fields display once
+ S ZIEN="" F  S ZIEN=$O(EB(ZF,ZIEN)) Q:ZIEN=""  S LN=LN+1 D SET(LN,COL1,"Service Type",$P($G(^IBE(365.013,+$G(EB(ZF,ZIEN,.01,"I")),0)),U,2))
  ;
  S LN=LN+1
- D SET(LN,COL1,"Service Type",$P($G(^IBE(365.013,+$G(EB(IBVF,IBVIENS,.04,"I")),0)),U,2))
- D SET(.LN,COL2,"Time Period",$P($G(^IBE(365.015,+$G(EB(IBVF,IBVIENS,.07,"I")),0)),U,2))
+ D SET(LN,COL1,"Time Period",$P($G(^IBE(365.015,+$G(EB(IBVF,IBVIENS,.07,"I")),0)),U,2))
  ;
  S LN=LN+1
  D SET(LN,COL1,"Insurance Type",$P($G(^IBE(365.014,+$G(EB(IBVF,IBVIENS,.05,"I")),0)),U,2))
@@ -210,6 +214,27 @@ HCSD(IBVF,IBVIENS,IBVV,IBVSUB) ; Healthcare Services Delivery multiple display
 HCSDX ;
  Q
  ;
+NTE(IBVF,IBVIENS,IBVV,IBVSUB) ; Notes display
+ ;
+ ;    IBVF = file# 2.322 or 365.02
+ ; IBVIENS = std IENS list of internal entry numbers
+ ;    IBVV = video attributes flag
+ ;  IBVSUB = display scratch global subscript
+ ;
+ N COL,DSP,LN,NTED,NTEDERR,ZIEN
+ D GETS^DIQ(IBVF,IBVIENS,2,"IEN","NTED","NTEDERR")
+ S DSP=$NA(^TMP(IBVSUB,$J,"DISP"))       ; scratch global display array
+ S LN=+$O(@DSP@(""),-1)                  ; last line# used in scratch global
+ I '$D(NTED) G NTEX
+ S COL=2
+ S LN=LN+1 D SET(LN,1,"Notes and Comments",,IBVV)
+ S ZIEN="" F  S ZIEN=$O(NTED(IBVF,IBVIENS,2,ZIEN)) Q:ZIEN=""  S LN=LN+1 D SET(LN,COL,$G(NTED(IBVF,IBVIENS,2,ZIEN)))
+ S LN=LN+1
+ D SET(LN)
+ ;
+NTEX ;
+ Q
+ ;
 BRE(IBVF,IBVIENS,IBVV,IBVSUB) ; Benefit Related Entity data extract/display
  ;
  ;    IBVF = file# 2.322 or 365.02
@@ -255,6 +280,7 @@ BRE(IBVF,IBVIENS,IBVV,IBVSUB) ; Benefit Related Entity data extract/display
  ;
  S LN=LN+1
  D SET(LN,COL1,"Country Code",$G(BRE(IBVF,IBVIENS,4.06,"E")))
+ D SET(.LN,COL2,"Country Subdivision",$G(BRE(IBVF,IBVIENS,4.09,"E")))
  ;
  S LN=LN+1
  D SET(LN,COL1,"Location Qual",$G(BRE(IBVF,IBVIENS,4.08,"E")))

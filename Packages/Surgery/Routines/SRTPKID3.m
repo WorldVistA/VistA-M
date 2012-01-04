@@ -1,5 +1,5 @@
 SRTPKID3 ;BIR/SJA - KIDNEY-PREOPERATIVE RISK ASSESSMENT ;03/04/08
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+ ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
  I '$D(SRTPP) W !!,"A Transplant Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
 START Q:SRSOUT  D DISP
  W !!,"Select Transplant Information to Edit: " R X:DTIME I '$T!(X["^") S SRSOUT=1 G END
@@ -55,9 +55,9 @@ NONVA I SRNOVA D
  .W !,"8.  Pre-Transplant Malignancy:",?32,$P(SRAO(8),"^")
  .W !,"9.  Recipient Substance Abuse:",?32,$P(SRAO(9),"^")
  .W !,"10. Preop Functional Status:",?32,$P(SRAO(10),"^")
- .W !,"11. Active Infection Immediately Pre-Transplant Req. Antibiotics:",?72,$P(SRAO(11),"^")
- .W !,"12. Post-Transplant Prophylaxis for CMV/Antiviral Treatment:",?72,$P(SRAO(12),"^")
- .W !,"13. Post-Transplant Prophylaxis for PCP/Antibiotic Treatment:",?72,$P(SRAO(13),"^")
- .W !,"14. Post-Transplant Prophylaxis for TB/Antimycobacterial Treatment:",?72,$P(SRAO(14),"^")
+ .W !,"11. Active Infection Immediately Pre-Transplant Req. Antibiotics:",?66,$P(SRAO(11),"^")
+ .W !,"12. Post-TX Prophylaxis for CMV/Antiviral Treatment:",?66,$P(SRAO(12),"^")
+ .W !,"13. Post-TX Prophylaxis for PCP/Antibiotic Treatment:",?66,$P(SRAO(13),"^")
+ .W !,"14. Post-TX Prophylaxis for TB/Antimycobacterial Treatment:",?65,$P(SRAO(14),"^")
  W !!,SRLINE
  Q

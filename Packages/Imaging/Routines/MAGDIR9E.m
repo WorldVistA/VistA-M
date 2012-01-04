@@ -1,5 +1,5 @@
-MAGDIR9E ;WOIFO/PMK - Read a DICOM image file ; 10/30/2008 09:20
- ;;3.0;IMAGING;**11,51,46,54**;03-July-2009;;Build 1424
+MAGDIR9E ;WOIFO/PMK - Read a DICOM image file ; 23 Apr 2009 9:07 AM
+ ;;3.0;IMAGING;**11,51,46,54,99**;Mar 19, 2002;Build 2057;Apr 19, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -91,6 +91,8 @@ GROUP() ; entry point from ^MAGDIR8 for consult/procedure groups
  . . I $P($G(^MAG(2005,MAGGP,0)),"^",6)'=11 D  Q  ; 11=XRAY GROUP
  . . . S MAGGP="" ; wrong object type - skip this image group
  . . . Q
+ . . ; create a new group if this is for a different Study Instance UID
+ . . I STUDYUID'=$P($G(^MAG(2005,MAGGP,"PACS")),"^",1) S MAGGP="" Q
  . . S P=$P($G(^MAG(2005,MAGGP,"SOP")),"^",1)
  . . ; skip this image group if wrong SOP Class
  . . I '$$EQUIVGRP^MAGDFCNV(P,SOPCLASP) S MAGGP="" Q

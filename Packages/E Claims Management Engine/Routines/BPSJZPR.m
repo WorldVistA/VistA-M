@@ -1,6 +1,6 @@
 BPSJZPR ;BHAM ISC/CMW/LJF - Process Incoming HL7 ZPR Message ;01-DEC-2003
- ;;1.0;E CLAIMS MGMT ENGINE;**1**;JUN 2004
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,10**;JUN 2004;Build 27
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Description:
  ; Process incoming HL7 ZPR Messages
@@ -68,6 +68,7 @@ ZPR() ; Validate Fields and Initialize ZPR variables
  N RCODE,WDATA
  ;
  ; Reject reasons: 1=Missing ,2=Invalid
+ ; ^TMP($J,"BPSJ-ERROR" is killed before and after it is used in BPSJHLT
  ;
  S BPSETID=$G(BPSJSEG(2))
  ;
@@ -83,7 +84,7 @@ ZPR() ; Validate Fields and Initialize ZPR variables
  . S FLNPN=$P(BPSEGID,U,4)
  . S BPSEGID=+BPSEGID
  ;
- S RCODE=$$GETPTR($G(BPSJSEG(4)))
+ S RCODE=$$GETPTR($$TRIM^XLFSTR($G(BPSJSEG(4))))
  I 'RCODE S ^TMP($J,"BPSJ-ERROR","ZPR",BPSETID,3)="V633-2,"_BPSETID
  I $G(BPSJSEG(4))="" S ^TMP($J,"BPSJ-ERROR","ZPR",BPSETID,3)="V633-1,"_BPSETID
  ;
@@ -224,4 +225,7 @@ INITZPRS(ZPRS) ;BPSEGID^FLN^FLNSC^FLNPN
  S ZPRS(11)="190^9002313.9216^9002313.92161^9002313.92162"
  S ZPRS(12)="220^9002313.9219^9002313.92191^9002313.92192"
  S ZPRS(13)="230^9002313.922^9002313.9221^9002313.9222"
+ S ZPRS(14)="240^9002313.9223^9002313.92231^9002313.92232"
+ S ZPRS(15)="250^9002313.9224^9002313.92241^9002313.92242"
+ S ZPRS(16)="260^9002313.9225^9002313.92251^9002313.92252"
  Q

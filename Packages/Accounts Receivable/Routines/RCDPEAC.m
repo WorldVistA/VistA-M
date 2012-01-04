@@ -1,5 +1,6 @@
-RCDPEAC ;ALB/TMK - ACTIVE BILLS WITH EEOB ON FILE ;27-JAN-2004
- ;;4.5;Accounts Receivable;**208**;Mar 20, 1995
+RCDPEAC ;ALB/TMK/PJH - ACTIVE BILLS WITH EEOB ON FILE ; 8/2/10 4:31pm
+ ;;4.5;Accounts Receivable;**208,269**;Mar 20, 1995;Build 113
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; Entrypoint for producing the report
  N RCSORT,RCINS,ZTRTN,ZTDESC,ZTSAVE,ZTSK,%ZIS,POP
@@ -66,7 +67,7 @@ OUTPUT(RCZ,RCZ0,RCSORT,RCSTOP,RCINS,RCPG,RCNEW) ; Output the data
  .. Q:RCSTOP
  .. S RC0=$G(^IBM(361.1,RCEOB,0))
  .. S RCSTOP=$$NEWPG(.RCPG,.RCINS,RCNEW) Q:RCSTOP
- .. W !,?10,$E($P(RC0,U,7)_$J("",27),1,27)_"  "_$E($$FMTE^XLFDT($P(RC0,U,5),"2D")_$J("",8),1,8)_" "_$E($$FMTE^XLFDT($P(RC0,U,6),"2D")_$J("",8),1,8)_" "_$E($S(RCZ1:$$FMTE^XLFDT(RCZ1,"2D"),1:"")_$J("",8),1,8)
+ .. W !,?10,$P(RC0,U,7),!,$J("",39)_$E($$FMTE^XLFDT($P(RC0,U,5),"2D")_$J("",8),1,8)_" "_$E($$FMTE^XLFDT($P(RC0,U,6),"2D")_$J("",8),1,8)_" "_$E($S(RCZ1:$$FMTE^XLFDT(RCZ1,"2D"),1:"")_$J("",8),1,8)
  .. W " "_$J(+$G(^IBM(361.1,RCEOB,1)),"",2)
  ;
  Q
@@ -193,7 +194,7 @@ HDR(RCPG,RCINS) ;Print report hdr
  I Z0'="" W Z0
  W !!,"BILL #    PATIENT NAME              SSN         INS CO NAME"
  W !,"        AMOUNT BILLED  AMOUNT PAID    BALANCE       DT REFERRED REG COUNSEL"
- W !!,?10,"TRACE #"_$J("",22)_"DT REC'D DT PAID  DT POST  AMOUNT PAID"
+ W !,?10,"TRACE #",!,$J("",39)_"DT REC'D DT PAID  DT POST  AMOUNT PAID"
  W !,$TR($J("",IOM)," ","=")
  Q
  ;

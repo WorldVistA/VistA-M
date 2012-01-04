@@ -1,5 +1,5 @@
-DGENU ;ALB/CJM,ISA/KWP,Zoltan,LBD,EG,CKN,ERC,TMK - Enrollment Utilities; 04/24/2006 9:20 AM
- ;;5.3;Registration;**121,122,147,232,314,564,624,672,659,653,688,536**;Aug 13,1993;Build 3
+DGENU ;ALB/CJM,ISA/KWP,Zoltan,LBD,EG,CKN,ERC,TMK,PWC - Enrollment Utilities; 04/24/2006 9:20 AM ; 2/16/11 9:35am
+ ;;5.3;Registration;**121,122,147,232,314,564,624,672,659,653,688,536,838**;Aug 13,1993;Build 5
  ;
 DISPLAY(DFN) ;
  ;Description: Display status message, current enrollment and
@@ -22,9 +22,10 @@ DISPLAY(DFN) ;
  Q
  ;
 CUR(DFN) ;
- ;Description - displays current enrollment, category, enrollment group threshold, and preferred facility
+ ;Description - displays current enrollment, category, enrollment
+ ;  group threshold, preferred facility and source designation
  ;
- N FACNAME,PREFAC,DGEGT,DGEGTIEN,DGENCAT,DGENR,IORVON,IORVOFF
+ N FACNAME,PREFAC,PFSRC,DGEGT,DGEGTIEN,DGENCAT,DGENR,IORVON,IORVOFF
  I $$GET^DGENA($$FINDCUR^DGENA(DFN),.DGENR)
  ;Get enrollment category
  S DGENCAT=$$CATEGORY^DGENA4(DFN)
@@ -35,12 +36,15 @@ CUR(DFN) ;
  S DGEGT=$$GET^DGENEGT(DGEGTIEN,.DGEGT)
  ;Preferred facility
  S PREFAC=$$PREF^DGENPTA(DFN,.FACNAME)
+ ;Source Designation
+ S PFSRC=$$GET1^DIQ(2,DFN_",",27.03)
  W !?3,"Enrollment Date",?35,": ",$S('$G(DGENR("DATE")):"-none-",1:$$EXT^DGENU("DATE",DGENR("DATE")))
  W !?3,"Enrollment Application Date",?35,": ",$S('$G(DGENR("APP")):"-none-",1:$$EXT^DGENU("DATE",DGENR("APP")))
  W !?3,IORVON,"Enrollment Category             : ",$S($G(DGENCAT)="":"-none-",1:$$EXTERNAL^DILFD(27.15,.02,"",DGENCAT)),IORVOFF
  W !?3,"Enrollment Status",?35,": ",$S($G(DGENR("STATUS"))="":"-none-",1:$$EXT^DGENU("STATUS",DGENR("STATUS")))
  W !?3,"Enrollment Priority",?35,": ",$S($G(DGENR("PRIORITY"))="":"-none-",1:DGENR("PRIORITY")),$S($G(DGENR("SUBGRP"))="":"",1:$$EXT("SUBGRP",DGENR("SUBGRP")))
  W !?3,"Preferred Facility",?35,": ",$S($G(FACNAME)'="":FACNAME,1:"-none-")
+ W !?3,"Preferred Facility Source",?35,": ",$S($G(PFSRC)'="":PFSRC,1:"-none-")
  W !?3,"Enrollment Group Threshold",?35,": ",$S($G(DGEGT("PRIORITY"))="":"-none-",1:$$EXTERNAL^DILFD(27.16,.02,"",$G(DGEGT("PRIORITY")))),$S($G(DGEGT("SUBGRP"))="":"",1:$$EXTERNAL^DILFD(27.16,.03,"",$G(DGEGT("SUBGRP"))))
  W !
  Q

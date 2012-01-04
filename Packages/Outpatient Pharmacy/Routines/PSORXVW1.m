@@ -1,5 +1,5 @@
-PSORXVW1 ;BIR/SAB-view prescription con't ; 12/4/07 12:28pm
- ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281**;DEC 1997;Build 41
+PSORXVW1 ;BIR/SAB - view prescription con't ;12/4/07 12:28pm
+ ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281,359**;DEC 1997;Build 27
  ;External reference to ^DD(52 supported by DBIA 999
  ;External reference to ^VA(200 supported by DBIA 10060
  ;PSO*210 add call to WORDWRAP api
@@ -119,10 +119,11 @@ DOSE ;displays dosing instruction for both simple and complex Rxs.
  D DOSE^PSORXVW2
  Q
  ;
-HLP ; Help Text for the VIEW PRESCRIPTION prompt 
- W !," A prescription number or ECME # may be entered.  The ECME"
- W !," number must be entered in E.NNNNNNN format, where NNNNNNN"
- W !," is the prescription ECME # (example: E.0289332).  Or just"
+HLP ; Help Text for the VIEW PRESCRIPTION prompt
+ W !," A prescription number or ECME number may be entered.  To look-up a"
+ W !," prescription by the ECME number, please enter ""E."" followed by the ECME"
+ W !," number with or without any leading zeros."
+ W !!,"  Or just",!
  D LKP("?")
  Q 
 LKP(INPUT) ; - Peforms Lookup on the PRESCRIPTION file

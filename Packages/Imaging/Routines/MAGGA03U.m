@@ -1,5 +1,5 @@
-MAGGA03U ;WOIFO/GEK - USERS CAPTURED IMAGES IN DATE RANGE ; 
- ;;3.0;IMAGING;**93**;Dec 02, 2009;Build 163
+MAGGA03U ;WOIFO/GEK,MLH - USERS CAPTURED IMAGES IN DATE RANGE ; 6/6/2011 5:23 PM
+ ;;3.0;IMAGING;**93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -8,7 +8,6 @@ MAGGA03U ;WOIFO/GEK - USERS CAPTURED IMAGES IN DATE RANGE ;
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -60,7 +59,7 @@ MAGGA03U ;WOIFO/GEK - USERS CAPTURED IMAGES IN DATE RANGE ;
  ;   and ^TMP($J,"MAGDUZ"  are used by this procedure.
  ;
 USERS(MAGRY,FROMDATE,TODATE,FLAGS) ;  [RPC MAGG CAPTURE USERS]
- N I,EDT,N0,N2,CT,TMP,MERR,IDUZ,INM,MSG,X,Y
+ N I,EDT,N0,N2,CT,TMP,MERR,CAPAPP,IDUZ,INM,MSG,X,Y
  S MAGRY=$NA(^TMP("MAGGA03U",$J))
  K @MAGRY,^TMP($J,"MAGUSERS"),^TMP($J,"MAGDUZ")
  ;
@@ -78,18 +77,14 @@ USERS(MAGRY,FROMDATE,TODATE,FLAGS) ;  [RPC MAGG CAPTURE USERS]
  ; Swap the dates if necessary
  K TMP I FROMDATE>TODATE S TMP=FROMDATE,FROMDATE=TODATE,TODATE=TMP
  ;
- ;  Loop through AD Cross ref and find users that have captured images.
- ;  We don't count children of Groups, just the Group.
- S EDT=$$FMADD^XLFDT(TODATE,1)
- F  S EDT=$O(^MAG(2005,"AD",EDT),-1) Q:EDT<FROMDATE  D
- . S I="" F  S I=$O(^MAG(2005,"AD",EDT,I)) Q:'I  D
- . . S N0=^MAG(2005,I,0)
- . . Q:$P(N0,"^",10)  ; Quit if we have a Pointer to Group Parent.
- . . S N2=^MAG(2005,I,2)
- . . Q:FLAGS'[$P(N2,"^",12)  ; Quit if not captured by App in flags
- . . ; for speed, get all DUZ first, then convert to names.
- . . S IDUZ=$P(N2,"^",2) Q:'IDUZ  Q:$D(^TMP($J,"MAGDUZ",IDUZ))
- . . S ^TMP($J,"MAGDUZ",IDUZ)=""
+ ;  Loop through ADTDUZ Cross ref and find users that have captured images.
+ ;  
+ F I=1:1 S CAPAPP=$E(FLAGS,I) Q:CAPAPP=""  D
+ . S EDT=$$FMADD^XLFDT(TODATE,1)
+ . F  S EDT=$O(^MAG(2005,"ADTDUZ",CAPAPP,EDT),-1) Q:EDT<FROMDATE  D
+ . . S IDUZ="" F  S IDUZ=$O(^MAG(2005,"ADTDUZ",CAPAPP,EDT,IDUZ)) Q:IDUZ=""  D
+ . . . S ^TMP($J,"MAGDUZ",IDUZ)=""
+ . . . Q
  . . Q
  . Q
  ;  convert DUZ to Names using Kernel API

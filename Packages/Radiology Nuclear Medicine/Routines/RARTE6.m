@@ -1,5 +1,5 @@
-RARTE6 ;HISC/SM Restore deleted report ;06/23/09 14:08
- ;;5.0;Radiology/Nuclear Medicine;**56,95,99**;Mar 16, 1998;Build 5
+RARTE6 ;HISC/SM Restore deleted report ;03/01/10 13:44
+ ;;5.0;Radiology/Nuclear Medicine;**56,95,99,47**;Mar 16, 1998;Build 21
  ;Supported IA #10060 ^VA(200
  ;Supported IA #2053 FILE^DIE, UPDATE^DIE
  ;Supported IA #2052 GET1^DID
@@ -28,7 +28,7 @@ RSTR ;restore deleted report
  Q
 CHECK ; check if associated case(s) has rpt and DX codes
  S RA74=^RARPT(RARPT,0)
- S RADFN=+$P(RA74,U,2),RADTI=9999999.9999-$P(RA74,U,3),RACN=+$P($P(RA74,U,1),"-",2)
+ S RADFN=+$P(RA74,U,2),RADTI=9999999.9999-$P(RA74,U,3),RACN=+$P($P(RA74,U,1),"-",$L($P(RA74,U,1),"-"))
  S RACNI=$O(^RADPT(RADFN,"DT",RADTI,"P","B",RACN,0))
  S RA70=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0))
  I 'RADFN!('RADTI)!('RACNI)!(RA70="") D ERR0 Q
@@ -41,10 +41,10 @@ CHECK ; check if associated case(s) has rpt and DX codes
  I RAPRTSET D
  .S RA1=0
  .F  S RA1=$O(RAMEMARR(RA1)) Q:RA1=""  D
- ..I $P(^RADPT(RADFN,"DT",RADTI,"P",RA1,0),U,17)'="" D ERR3(+RAMEMARR(RA1))
+ ..I $P(^RADPT(RADFN,"DT",RADTI,"P",RA1,0),U,17)'="" D ERR3($P(RAMEMARR(RA1),"^"))
  ..Q
  .Q
- E  I $P(RA70,U,17) D ERR3(RACN) Q
+ E  I $P(RA70,U,17) D ERR3($P(RA74,U,1)) Q
  ; check if case(s) already have DX codes, staff, resident
  ; don't use IF ELSE here due to outside calls
  ;
@@ -53,16 +53,16 @@ CHECK ; check if associated case(s) has rpt and DX codes
  .S RA1=0
  .F  S RA1=$O(RAMEMARR(RA1)) Q:RA1=""  D
  ..; check primary
- ..F RA2=13,15,12 I $P(^RADPT(RADFN,"DT",RADTI,"P",RA1,0),U,RA2)'="" D ERR2(+RAMEMARR(RA1),70.03,RA2)
+ ..F RA2=13,15,12 I $P(^RADPT(RADFN,"DT",RADTI,"P",RA1,0),U,RA2)'="" D ERR2($P(RAMEMARR(RA1),"^"),70.03,RA2)
  ..; check secondary
  ..S RAIENS=1_","_RA1_","_RADTI_","_RADFN_","
- ..F RA2=70.14,70.11,70.09 S RAROOT=$$ROOT^DILFD(RA2,RAIENS) I $O(@(RAROOT_"0)")) D ERR2(+RAMEMARR(RA1),RA2,.01)
+ ..F RA2=70.14,70.11,70.09 S RAROOT=$$ROOT^DILFD(RA2,RAIENS) I $O(@(RAROOT_"0)")) D ERR2($P(RAMEMARR(RA1),"^"),RA2,.01)
  ..Q
  .Q
  ; single case
- F RA2=13,15,12 I $P(RA70,U,RA2) D ERR2(RACN,70.03,RA2)
+ F RA2=13,15,12 I $P(RA70,U,RA2) D ERR2($P(RA74,U,1),70.03,RA2)
  S RAIENS=1_","_RACNI_","_RADTI_","_RADFN_","
- F RA2=70.14,70.11,70.09 S RAROOT=$$ROOT^DILFD(RA2,RAIENS) I $O(@(RAROOT_"0)")) D ERR2(RACN,RA2,.01)
+ F RA2=70.14,70.11,70.09 S RAROOT=$$ROOT^DILFD(RA2,RAIENS) I $O(@(RAROOT_"0)")) D ERR2($P(RA74,U,1),RA2,.01)
  Q
 ASK1 ; ask if want to restore report
  ; RAPRVIEN  last Activity Log rec in subfile 74.01
@@ -105,12 +105,13 @@ RESTORE ; set Report Status to "before delete" value, link to case(s)
  ;
  ; link report to single case or all cases of a printset
  I RAPRTSET D
- . S RA1=""
- . F  S RA1=$O(RAMEMARR(RA1)) Q:RA1=""  S $P(^RADPT(RADFN,"DT",RADTI,"P",RA1,0),U,17)=RARPT D MSG1(+RAMEMARR(RA1))
+ .S RA1=""
+ .F  S RA1=$O(RAMEMARR(RA1)) Q:RA1=""  S $P(^RADPT(RADFN,"DT",RADTI,"P",RA1,0),U,17)=RARPT D MSG1($P(RAMEMARR(RA1),"^"))
  .Q
- E  S $P(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0),U,17)=RARPT D MSG1(RACN)
+ E  S $P(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0),U,17)=RARPT D MSG1($P(RA74,U,1))
  ;
  ;Restore Primary and Secondary DX codes, Staff and Residents
+ ;
  F RAFLD=5,7,9 S RAPREV=$P(RALAST,U,RAFLD) D:RAPREV SET70(RAFLD)
  W !!!?3,"** You need to edit the case"_$S(RAPRTSET:"s",1:"")_" to update the exam status. **"
  Q
@@ -147,8 +148,8 @@ SET70(X) ; put back previous DX codes, Staff, Residents into case record
  ; copy Primary into single case
  S RAFDA(70.03,RACNI_","_RADTI_","_RADFN_",",RAPIECE)=RAPREV
  D FILE^DIE("","RAFDA","RAMSG")
- I $D(RAMSG("DIERR")) D ERR4(RACN,$$GET1^DID(70.03,RAPIECE,"","LABEL"),$$GET1^DIQ(RAF3,RAPREV,.01))
- E  D MSG2(RACN,$$GET1^DID(70.03,RAPIECE,"","LABEL"),$$GET1^DIQ(RAF3,RAPREV,.01))
+ I $D(RAMSG("DIERR")) D ERR4($P(RA74,U,1),$$GET1^DID(70.03,RAPIECE,"","LABEL"),$$GET1^DIQ(RAF3,RAPREV,.01))
+ E  D MSG2($P(RA74,U,1),$$GET1^DID(70.03,RAPIECE,"","LABEL"),$$GET1^DIQ(RAF3,RAPREV,.01))
  K RAFDA,RAMSG
  ;
  Q:$O(RAA(0))'>0  ; no secondaries
@@ -158,8 +159,8 @@ SET70(X) ; put back previous DX codes, Staff, Residents into case record
  F  S RA1=$O(RAA(RA1)) Q:'RA1  S RAX=$G(RAA(RA1,0)) D:RAX
  .S RAFDA(RAF2,"+2,"_RACNI_","_RADTI_","_RADFN_",",.01)=RAX
  .D UPDATE^DIE(,"RAFDA",,"RAMSG")
- .I $D(RAMSG("DIERR")) D ERR4(RACN,$$GET1^DID(RAF2,.01,"","LABEL"),$$GET1^DIQ(RAF3,RAX,.01))
- .E  D MSG2(RACN,$$GET1^DID(RAF2,.01,"","LABEL"),$$GET1^DIQ(RAF3,RAX,.01))
+ .I $D(RAMSG("DIERR")) D ERR4($P(RA74,U,1),$$GET1^DID(RAF2,.01,"","LABEL"),$$GET1^DIQ(RAF3,RAX,.01))
+ .E  D MSG2($P(RA74,U,1),$$GET1^DID(RAF2,.01,"","LABEL"),$$GET1^DIQ(RAF3,RAX,.01))
  .K RAFDA,RAMSG
  .Q
  Q
@@ -171,8 +172,9 @@ PSET ; copy Primary into cases of a printset
  F  S RA1=$O(RAMEMARR(RA1)) Q:RA1=""  D
  .S RAFDA(70.03,RA1_","_RADTI_","_RADFN_",",RAPIECE)=RAPREV
  .D FILE^DIE("","RAFDA","RAMSG")
- .I $D(RAMSG("DIERR")) D ERR4(+RAMEMARR(RA1),$$GET1^DID(70.03,RAPIECE,"","LABEL"),$$GET1^DIQ(RAF3,RAPREV,.01))
- .E  D MSG2(+RAMEMARR(RA1),$$GET1^DID(70.03,RAPIECE,"","LABEL"),$$GET1^DIQ(RAF3,RAPREV,.01))
+ .I $D(RAMSG("DIERR")) D ERR4($P(RAMEMARR(RA1),"^"),$$GET1^DID(70.03,RAPIECE,"","LABEL"),$$GET1^DIQ(RAF3,RAPREV,.01))
+ .;E  D MSG2(+RAMEMARR(RA1),$$GET1^DID(70.03,RAPIECE,"","LABEL"),$$GET1^DIQ(RAF3,RAPREV,.01))
+ .E  D MSG2($P(RAMEMARR(RA1),"^"),$$GET1^DID(70.03,RAPIECE,"","LABEL"),$$GET1^DIQ(RAF3,RAPREV,.01))
  .K RAFDA,RAMSG
  .Q:$O(RAA(0))'>0  ; no secondary DXs
  .; copy secondaries into cases of a printset
@@ -180,8 +182,9 @@ PSET ; copy Primary into cases of a printset
  .F  S RA2=$O(RAA(RA2)) Q:'RA2  S RAX=$G(RAA(RA2,0)) D:RAX
  ..S RAFDA(RAF2,"+2,"_RA1_","_RADTI_","_RADFN_",",.01)=RAX
  ..D UPDATE^DIE(,"RAFDA",,"RAMSG")
- ..I $D(RAMSG("DIERR")) D ERR4(+RAMEMARR(RA1),$$GET1^DID(RAF2,.01,"","LABEL"),$$GET1^DIQ(RAF3,RAX,.01))
- ..E  D MSG2(+RAMEMARR(RA1),$$GET1^DID(RAF2,.01,"","LABEL"),$$GET1^DIQ(RAF3,RAX,.01))
+ ..I $D(RAMSG("DIERR")) D ERR4($P(RAMEMARR(RA1),"^"),$$GET1^DID(RAF2,.01,"","LABEL"),$$GET1^DIQ(RAF3,RAX,.01))
+ ..;E  D MSG2(+RAMEMARR(RA1),$$GET1^DID(RAF2,.01,"","LABEL"),$$GET1^DIQ(RAF3,RAX,.01))
+ ..E  D MSG2($P(RAMEMARR(RA1),"^"),$$GET1^DID(RAF2,.01,"","LABEL"),$$GET1^DIQ(RAF3,RAX,.01))
  ..K RAFDA,RAMSG
  ..Q
  .Q
@@ -247,16 +250,20 @@ FINISH ; clean up and exit
  Q
 DISPLAY ; Display exam specific info, edit/enter the report
  ; adapted from routine RARTE
+ N RASSAN,RACNDSP S RASSAN=$$SSANVAL^RAHLRU1(RADFN,RADTI,RACNI)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:RACN)
  S RA18EX=0 ;P18 for quit if uparrow inside PUTTCOM
  I '($D(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0))#2) D  D Q1^RARTE5 QUIT
- . W !!?2,"Case #: ",RACN," for ",RANME S RAXIT=1
+ . I $$USESSAN^RAHLRU1() W !!?2,"Case #: ",RACNDSP," for ",RANME S RAXIT=1
+ . I '$$USESSAN^RAHLRU1() W !!?2,"Case #: ",RACN," for ",RANME S RAXIT=1
  . W !?2,"Procedure: '",$E(RAPRC,1,45),"' has been deleted"
  . W !?2,"by another user!",$C(7)
  . Q
  ;
  S RAI="",$P(RAI,"-",80)="" W !,RAI
  W !?1,"Name     : ",$E(RANME,1,25),?40,"Pt ID       : ",RASSN
- W !?1,"Case No. : ",RACN,?18,"Exm. St: ",$E($P($G(^RA(72,+RAST,0)),"^"),1,12),?40,"Procedure   : ",$E(RAPRC,1,25)
+ I $$USESSAN^RAHLRU1() W !?1,"Case No. : ",RACNDSP,?40,"Exm. St     : ",$E($P($G(^RA(72,+RAST,0)),"^"),1,22),!?1,"Procedure: ",$E(RAPRC,1,45)
+ I '$$USESSAN^RAHLRU1() W !?1,"Case No. : ",RACN,?18,"Exm. St: ",$E($P($G(^RA(72,+RAST,0)),"^"),1,12),?40,"Procedure   : ",$E(RAPRC,1,25)
  ;check for contrast media; display if CM data exists (patch 45)
  S RACMDATA=$$CMEDIA^RAUTL8(RADFN,RADTI,RACNI)
  D:$L(RACMDATA) CMEDIA^RARTE(RACMDATA)
@@ -269,14 +276,16 @@ DISPLAY ; Display exam specific info, edit/enter the report
  I RAPRTSET D
  . S RA1=""
  . F  S RA1=$O(RAMEMARR(RA1)) Q:RA1=""!(RA18EX=-1)  I RA1'=RACNI D
- .. W !,?1,"Case No. : ",+RAMEMARR(RA1)
- .. W:$P(RAMEMARR(RA1),"^",4)]"" ?18,"Exm. St: ",$E($P($G(^RA(72,$P(RAMEMARR(RA1),"^",4),0)),"^"),1,12)
- .. W ?40,"Procedure   : ",$E($P($G(^RAMIS(71,+$P(RAMEMARR(RA1),"^",2),0)),"^"),1,26)
- ..;check printset for contrast media; display if CM data exists
- ..S RACMDATA=$$CMEDIA^RAUTL8(RADFN,RADTI,RA1)
- ..D:$L(RACMDATA) CMEDIA^RARTE(RACMDATA)
- ..K RACMDATA
- .. S RA18EX=$$PUTTCOM2^RAUTL11(RADFN,RADTI,+RAMEMARR(RA1)," Tech.Comment: ",15,70,-1,0) Q:RA18EX=-1  ;P18
+ .. I $$USESSAN^RAHLRU1() W !,?1,"Case No. : ",$P(RAMEMARR(RA1),U)
+ .. I '$$USESSAN^RAHLRU1() W !,?1,"Case No. : ",+RAMEMARR(RA1)
+ .. I $$USESSAN^RAHLRU1() W:$P(RAMEMARR(RA1),"^",4)]"" ?40,"Exm. St     : ",$E($P($G(^RA(72,$P(RAMEMARR(RA1),"^",4),0)),"^"),1,22) W !?1,"Procedure: ",$E($P($G(^RAMIS(71,+$P(RAMEMARR(RA1),"^",2),0)),"^"),1,45)
+ .. I '$$USESSAN^RAHLRU1() W:$P(RAMEMARR(RA1),"^",4)]"" ?18,"Exm. St: ",$E($P($G(^RA(72,$P(RAMEMARR(RA1),"^",4),0)),"^"),1,12) W ?40,"Procedure   : ",$E($P($G(^RAMIS(71,+$P(RAMEMARR(RA1),"^",2),0)),"^"),1,26)
+ .. ;check printset for contrast media; display if CM data exists
+ .. S RACMDATA=$$CMEDIA^RAUTL8(RADFN,RADTI,RA1)
+ .. D:$L(RACMDATA) CMEDIA^RARTE(RACMDATA)
+ .. K RACMDATA
+ .. I $P(RAMEMARR(RA1),"^")["-" S RA18EX=$$PUTTCOM2^RAUTL11(RADFN,RADTI,$P($P(RAMEMARR(RA1),"^"),"-",3)," Tech.Comment: ",15,70,-1,0) Q:RA18EX=-1
+ .. I $P(RAMEMARR(RA1),"^")'["-" S RA18EX=$$PUTTCOM2^RAUTL11(RADFN,RADTI,+RAMEMARR(RA1)," Tech.Comment: ",15,70,-1,0) Q:RA18EX=-1  ;P18
  .. Q
  . Q
  ;continue display

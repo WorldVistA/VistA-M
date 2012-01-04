@@ -1,5 +1,5 @@
 IBCNEHL4 ;DAOU/ALA - HL7 Process Incoming RPI Msgs (cont.) ;26-JUN-2002  ; Compiled December 16, 2004 15:35:46
- ;;2.0;INTEGRATED BILLING;**300,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**300,416,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
@@ -104,7 +104,11 @@ PID ;  Process the PID seg
  S DOD=$$FMDATE^HLFNC(DOD),DOB=$$FMDATE^HLFNC(DOB),LUPDT=$$FMDATE^HLFNC(LUPDT)
  ;
  ; Use ICN to find the patients DFN at this site
- I ICN'="" S XDFN=$$GETDFN^MPIF001(ICN)
+ I ICN'="" D
+ .S XDFN=$$GETDFN^MPIF001(ICN)
+ .; if unsuccessful, wait 5 sec and try one more time
+ .I +$G(XDFN)'>0 H 5 S XDFN=$$GETDFN^MPIF001(ICN)
+ .Q
  I +$G(XDFN)'>0,+$G(ICN)>0 D  Q
  . S ERFLG=1,IERN=$$ERRN^IBCNEUT7("ERROR(""DIERR"")")
  . S ERROR("DIERR",IERN,"TEXT",1)="Unable to determine the patient's DFN value for this site."
@@ -123,12 +127,14 @@ PID ;  Process the PID seg
  S RSUPDT(365,IENSTR,1.01)=NAME,RSUPDT(365,IENSTR,1.08)="v"
  S RSUPDT(365,IENSTR,1.09)="01"
  ; Subscriber address
- S FLD=$G(IBSEG(11))
+ S FLD=$G(IBSEG(12))
  S RSUPDT(365,IENSTR,5.01)=$P($P(FLD,HLCMP),HLSCMP) ; line 1
  S RSUPDT(365,IENSTR,5.02)=$P(FLD,HLCMP,2) ; line 2
  S RSUPDT(365,IENSTR,5.03)=$P(FLD,HLCMP,3) ; city
  S STATE=+$$FIND1^DIC(5,,"X",$P(FLD,HLCMP,4),"C") I STATE>0 S RSUPDT(365,IENSTR,5.04)=STATE ; state
  S RSUPDT(365,IENSTR,5.05)=$P(FLD,HLCMP,5) ; zip
+ S RSUPDT(365,IENSTR,5.06)=$P(FLD,HLCMP,6) ; country
+ S RSUPDT(365,IENSTR,5.07)=$P(FLD,HLCMP,8) ; country subdivision
  D FILE^DIE("I","RSUPDT","ERROR")
 PIDX ;
  Q
@@ -141,7 +147,7 @@ GT1 ;  Process the GT1 Guarantor seg
  ; Output:
  ; ERROR,SUBID
  ;
- N DOB,NAME,RSUPDT,SEX,SSN,SUBIDC
+ N DOB,IENSTR,NAME,RSUPDT,SEX,SSN,SUBIDC
  S NAME=$G(IBSEG(4)),DOB=$G(IBSEG(9)),SEX=$G(IBSEG(10))
  S SSN=$G(IBSEG(13))
  ; 
@@ -151,10 +157,21 @@ GT1 ;  Process the GT1 Guarantor seg
  ;
  S DOB=$$FMDATE^HLFNC(DOB),NAME=$$DECHL7^IBCNEHL2($$FMNAME^HLFNC(NAME,HLECH))
  ;
- S RSUPDT(365,RIEN_",",1.01)=NAME,RSUPDT(365,RIEN_",",1.08)=""
- S RSUPDT(365,RIEN_",",1.02)=DOB,RSUPDT(365,RIEN_",",1.04)=SEX
- S RSUPDT(365,RIEN_",",1.03)=SSN
- S RSUPDT(365,RIEN_",",1.18)=SUBID
+ S IENSTR=RIEN_","
+ S RSUPDT(365,IENSTR,1.01)=NAME,RSUPDT(365,RIEN_",",1.08)=""
+ S:DOB'="" RSUPDT(365,IENSTR,1.02)=DOB
+ S RSUPDT(365,RIEN_",",1.04)=SEX
+ S RSUPDT(365,IENSTR,1.03)=SSN
+ S RSUPDT(365,IENSTR,1.18)=SUBID
+ ; Subscriber address
+ S FLD=$G(IBSEG(6))
+ S RSUPDT(365,IENSTR,5.01)=$P($P(FLD,HLCMP),HLSCMP) ; line 1
+ S RSUPDT(365,IENSTR,5.02)=$P(FLD,HLCMP,2) ; line 2
+ S RSUPDT(365,IENSTR,5.03)=$P(FLD,HLCMP,3) ; city
+ S STATE=+$$FIND1^DIC(5,,"X",$P(FLD,HLCMP,4),"C") I STATE>0 S RSUPDT(365,IENSTR,5.04)=STATE ; state
+ S RSUPDT(365,IENSTR,5.05)=$P(FLD,HLCMP,5) ; zip
+ S RSUPDT(365,IENSTR,5.06)=$P(FLD,HLCMP,6) ; country
+ S RSUPDT(365,IENSTR,5.07)=$P(FLD,HLCMP,8) ; country subdivision
  D FILE^DIE("I","RSUPDT","ERROR")
 GT1X ;
  Q
@@ -166,13 +183,13 @@ ZHS(EBDA,ERROR,IBSEG,RIEN) ; Process ZHS Healthcare services delivery segment
  S RSUPDT(365.27,IENSTR,.01)=+$O(^IBCN(365,RIEN,2,EBDA,7,"B",""),-1)+1 ; ZHS sequence
  ; Benefit quantity & qualifier
  S QUAL=$P($G(IBSEG(3)),HLCMP),VALUE=$G(IBSEG(4))
- I VALUE'="",QUAL'="" S RSUPDT(365.27,IENSTR,.02)=VALUE,RSUPDT(365.27,IENSTR,.03)=QUAL
+ I VALUE'="",QUAL'="" S RSUPDT(365.27,IENSTR,.02)=$$NUMCHK^IBCNEHL2(VALUE),RSUPDT(365.27,IENSTR,.03)=QUAL
  ; Sampling frequency & qualifier
  S QUAL=$P($G(IBSEG(5)),HLCMP),VALUE=$G(IBSEG(6))
  I VALUE'="",QUAL'="" S RSUPDT(365.27,IENSTR,.04)=VALUE,RSUPDT(365.27,IENSTR,.05)=QUAL
  ; Time period & qualifier
  S QUAL=$P($G(IBSEG(7)),HLCMP),VALUE=$G(IBSEG(8))
- I VALUE'="",QUAL'="" S RSUPDT(365.27,IENSTR,.06)=VALUE,RSUPDT(365.27,IENSTR,.07)=QUAL
+ I VALUE'="",QUAL'="" S RSUPDT(365.27,IENSTR,.06)=$$NUMCHK^IBCNEHL2(VALUE),RSUPDT(365.27,IENSTR,.07)=QUAL
  S RSUPDT(365.27,IENSTR,.08)=$P($G(IBSEG(9)),HLCMP) ; Delivery frequency
  S RSUPDT(365.27,IENSTR,.09)=$P($G(IBSEG(10)),HLCMP) ; Delivery pattern
  D UPDATE^DIE("E","RSUPDT",,"ERROR")
@@ -209,6 +226,10 @@ ZII(EBDA,ERROR,IBSEG,RIEN) ; Process ZII Subscriber additional info segment
  S RSUPDT(365.29,IENSTR,.01)=+$O(^IBCN(365,RIEN,2,EBDA,9,"B",""),-1)+1 ; ZII sequence
  ; place of service or diagnosis (if qualifier is "BF" or "BK") & qualifier
  S QUAL=$P($G(IBSEG(3)),HLCMP) Q:QUAL=""
+ ; we can't file "nature of injury" and "occupational injury" values at the moment (as of patch IB*2.0*438),
+ ; so we have to skip qualifiers "GR" and "NI" 
+ I ".GR.NI."[("."_QUAL_".") Q
+ ;
  S RSUPDT(365.29,IENSTR,$S(".BF.BK."[("."_QUAL_"."):.03,1:.02))=$P($G(IBSEG(4)),HLCMP)
  S RSUPDT(365.29,IENSTR,.04)=QUAL
  D UPDATE^DIE("E","RSUPDT",,"ERROR")
@@ -237,6 +258,7 @@ ZTY(EBDA,ERROR,IBSEG,RIEN) ; Process ZTY Benefit related entity segment
  S VALUE=+$$FIND1^DIC(5,,"X",$P(FLD,HLCMP,4),"C") I VALUE>0 S RSUPDT(365.02,IENSTR,4.04)=VALUE ; state
  S RSUPDT(365.02,IENSTR,4.05)=$P(FLD,HLCMP,5) ; zip / postal code
  S RSUPDT(365.02,IENSTR,4.06)=$P(FLD,HLCMP,6) ; country code
+ S RSUPDT(365.02,IENSTR,4.09)=$P(FLD,HLCMP,8) ; country subdivision code
  ; Entity location & qualifier
  S QUAL=$G(IBSEG(9)),VALUE=$G(IBSEG(10))
  I VALUE'="",QUAL'="" S RSUPDT(365.02,IENSTR,4.07)=VALUE,RSUPDT(365.02,IENSTR,4.08)=QUAL
@@ -261,5 +283,30 @@ G2OCTD(EBDA,ERROR,IBSEG,RIEN) ; Process G2O.CTD Benefit related entity contact d
  ; Contact number & qualifier
  S FLD=$G(IBSEG(6)),QUAL=$P(FLD,HLCMP,9),VALUE=$P(FLD,HLCMP)
  I VALUE'="",QUAL'="" S RSUPDT(365.26,IENSTR,.03)=VALUE,RSUPDT(365.26,IENSTR,.04)=QUAL
+ D UPDATE^DIE("E","RSUPDT",,"ERROR")
+ Q
+ERR(ERROR,IBSEG,RIEN) ; Process ERR Reject reasons segment
+ N I,IENSTR,FLD,LOC,RSUPDT,VAL
+ S IENSTR="+1,"_RIEN_","
+ S RSUPDT(365.06,IENSTR,.01)=+$O(^IBCN(365,RIEN,6,"B",""),-1)+1 ; ERR sequence
+ S FLD=$G(IBSEG(3)),LOC=$P(FLD,HLCMP)
+ F I=2:1:6 S VAL=$P(FLD,HLCMP,2) I VAL'="" S LOC=LOC_$S(I=2!(I=4):"("_VAL_")",1:"."_VAL_".")
+ S RSUPDT(365.06,IENSTR,.02)=LOC ; Error location (HL7)
+ S RSUPDT(365.06,IENSTR,.03)=$P($G(IBSEG(6)),HLCMP) ; Reject reason
+ S RSUPDT(365.06,IENSTR,.04)=$G(IBSEG(9)) ; Action code
+ S RSUPDT(365.06,IENSTR,.05)=$G(IBSEG(8)) ; Loop id
+ S RSUPDT(365.06,IENSTR,.06)=$P($G(IBSEG(6)),HLCMP,3) ; Source
+ D UPDATE^DIE("E","RSUPDT",,"ERROR")
+ Q
+ ;
+ZTP(ERROR,IBSEG,RIEN) ; Process ZTP Subscriber date (subscriber level) segment
+ N IENSTR,QUAL,RSUPDT,VALUE,Z
+ S IENSTR="+1,"_RIEN_","
+ S RSUPDT(365.07,IENSTR,.01)=+$O(^IBCN(365,RIEN,7,"B",""),-1)+1 ; ZTP sequence
+ ; Date & qualifier
+ S QUAL=$P($G(IBSEG(3)),HLCMP),VALUE=$P($P($G(IBSEG(4)),HLCMP),HLSCMP)
+ S Z=$P($P($G(IBSEG(4)),HLCMP,2),HLSCMP) I Z'="" S VALUE=VALUE_" - "_Z
+ I VALUE'="",QUAL'="" S RSUPDT(365.07,IENSTR,.02)=VALUE,RSUPDT(365.07,IENSTR,.03)=QUAL
+ S RSUPDT(365.07,IENSTR,.04)=$G(IBSEG(5)) ; Loop id
  D UPDATE^DIE("E","RSUPDT",,"ERROR")
  Q

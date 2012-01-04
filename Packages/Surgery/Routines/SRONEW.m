@@ -1,5 +1,5 @@
 SRONEW ;B'HAM ISC/MAM - ENTER A NEW CASE ;01/29/01  1:09 PM
- ;;3.0; Surgery ;**3,23,26,30,47,58,48,67,107,100,144**;24 Jun 93
+ ;;3.0;Surgery;**3,23,26,30,47,58,48,67,107,100,144,175**;24 Jun 93;Build 6
  ;
  ; Reference to ^TMP("CSLSUR1" supported by DBIA #3498
  ;
@@ -12,6 +12,10 @@ DEAD S SRSOUT=0,X=$P($G(VADM(6)),"^") I X D  I SRSOUT D ^SRSKILL G ^SROP
 DATE K %DT W ! S %DT("A")="Select the Date of Operation: ",%DT="AEX" D ^%DT I Y<0 W !!,"When entering a new surgery case, a date MUST be entered.  If you do not",!,"know the date of operation, enter this patient on the Waiting List."
  I Y<0 D CONT G:"Yy"'[SRYN END G DATE
  G:Y'>0 END S SRSDATE=Y
+ODP N SRSODP
+ K DIR S DIR(0)="130,616",DIR("A")="Desired Procedure Date" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G END
+ I Y=""!(X["^")!(Y<SRSDATE) W !!,"The Desired Procedure Date MUST be entered and should be greater than or equal  to date of operation.  Enter '^' to exit.",! G ODP
+ S SRSODP=+Y
  S SRSC1=1 K SRCTN S SRSDPT=DFN,SRSCC="" D CON G:SRSCC="^" END
 OP D ^SROPROC I SRSOUT G END
  S SRPRIN=SRSOP
@@ -28,7 +32,7 @@ DOC W ! S DIC("A")="Select Surgeon: ",DIC=200,DIC(0)="QEAM",SRSDOC="" D ^DIC K D
 CASE ; create case in SURGERY file
  K DA,DIC,DD,DO,DINUM,SRTN S X=DFN,DIC="^SRF(",DIC(0)="L" D FILE^DICN K DIC S SRTN=+Y G:'$$LOCK^SROUTL(SRTN) DEL
  S ^SRF(SRTN,8)=SRSITE("DIV"),^SRF(SRTN,"OP")=""
- K DIE,DR S DA=SRTN,DIE=130,DR=".09////"_SRSDATE_";26////"_SRPRIN_";68////"_SRPRIN_";.14////"_SRSDOC D ^DIE K DR
+ K DIE,DR S DA=SRTN,DIE=130,DR=".09////"_SRSDATE_";26////"_SRPRIN_";68////"_SRPRIN_";.14////"_SRSDOC_";616////"_SRSODP_";612////"_SRSODP_";613////"_$$DSMP^SRSDT D ^DIE K DR
 ASURG ; attending surgeon
  K DIR S DIR(0)="130,.164",DIR("A")="Attending Surgeon" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G DEL
  I Y=""!(X["^") W !!,"An Attending Surgeon must be entered when creating a case. Enter '^' to exit.",! G ASURG
@@ -50,7 +54,7 @@ DIE D ^SROBLOD K DR,DIE,DA S DR="38////"_BLOOD_";40////"_CROSSM,DA=SRTN,DIE=130 
  I SPD'=$$CHKS^SRSCOR(SRTN) S ^TMP("CSLSUR1",$J)=""
  I $D(SRCTN) D
  .S SRCTN(.02)=$P(^SRF(SRCTN,0),"^",2),SRCTN(10)=$P($G(^SRF(SRCTN,31)),"^",4),SRCTN(11)=$P($G(^SRF(SRCTN,31)),"^",5)
- .S DIE=130,DR=".02////"_SRCTN(.02)_";10////"_SRCTN(10)_";11////"_SRCTN(11)_";35////"_SRCTN,DA=SRTN D ^DIE
+ .S DIE=130,DR=".02////"_SRCTN(.02)_";10////"_SRCTN(10)_";11////"_SRCTN(11)_";35////"_SRCTN_";614////"_$P(SRCTN(10),"."),DA=SRTN D ^DIE
  .S DR="35////"_SRTN,DA=SRCTN,DIE=130 D ^DIE
  D UNLOCK^SROUTL(SRTN),^SROERR
  Q

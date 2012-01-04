@@ -1,19 +1,21 @@
 PXUTLSTP ;ISL/dee,ESW - Utility routine used by PCE to add/edit/delete stop code visits ; 7/25/03 4:12pm
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,96,166**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,96,166,197**;Aug 12, 1996;Build 6
  Q
  ;
 STOPCODE(PXUTSOR,PXUTSTOP,PXUTVST,PXUTSVST) ;Makes or edits visit to create the secondary visit for the credit stops
  ; Parameters
  ;   PXUTSOR   IEN of the Data source
- ;   PXUTSTOP  Pointer to Stop Code if "@" the delete the secondary visit
+ ;   PXUTSTOP  Pointer to Stop Code OR "@" if delete the secondary visit
  ;   PXUTVST   Main visit
  ;   PXUTSVST  Secondary visit
  ;               if there is not one then create one
  ;               if there is one then this is an edit or delete
  ;
- ; Returns the pointer to the secondary visit 
- ;   or 0 if the secondary visit was deleted,
- ;   or null if visit tracking did not create the visit.
+ ; Returns the pointer to the secondary visit
+ ;   or 0 if the secondary visit was deleted
+ ;   or -1 if the secondary visit could not be deleted
+ ;   or null if visit tracking did not create the visit 
+ ; 
  ;
  D EVENT^PXKMAIN
  N PXUAFTER,PXUTNODE,PXUTRET,PXKERROR,PXUTEXIT
@@ -21,7 +23,7 @@ STOPCODE(PXUTSOR,PXUTSTOP,PXUTVST,PXUTSVST) ;Makes or edits visit to create the 
  S PXUTEXIT=0
  ;
  I $G(PXUTSVST)>0 D  Q:PXUTEXIT -1
- . L +^AUPNVSIT(PXUTSVST):5 E  W !!,$C(7),"Cannot edit at this time, try again later." D PAUSE^PXCEHELP S PXUTEXIT=1 Q
+ . L +^AUPNVSIT(PXUTSVST):$G(DILOCKTM,5) E  S PXUTEXIT=1 Q
  . I PXUTSTOP="@" D
  ..;--ENTERED TO TRY TO KILL STOP CODES
 DELETE ..;If stop code has to be killed on credit stop code visit then 
@@ -33,13 +35,15 @@ DELETE ..;If stop code has to be killed on credit stop code visit then
  .. S ^TMP("PXK",$J,"VST",1,"IEN")=PXUTSVST
  ..; Verify if this is really credit stop visit with only 1 dependent
  ..; entry that is outpatient encounter.
- .. I $$DEC^VSITKIL(PXUTSVST,0)<2,$P($G(^AUPNVSIT(PXUTSVST,150)),U,3)="C" D   ;PX/96
- ... S ^TMP("PXK",$J,"VST",1,0,"AFTER")="@"
- ...; Find Outpatient Encounter to take care of
- ... N SDOEP
- ... D LISTVST^SDOERPC(.SDOEP,PXUTVST)
- ... S SDOEP=$P(SDOEP,")")_","_""""""_")"
- ... S SDOEP=$O(@SDOEP) D CHLD^SDCODEL(SDOEP,0)
+ .. I $$DEC^VSITKIL(PXUTVST)>2 Q  ; do not kill the secondary, visit will stay PX/197
+ .. ;I $$DEC^VSITKIL(PXUTSVST,0)<2,$P($G(^AUPNVSIT(PXUTSVST,150)),U,3)="C" D   ;PX/96;commented PX/197
+ .. I '$D(^SCE("AVSIT",PXUTVST)) Q  ; do not kill
+ .. S ^TMP("PXK",$J,"VST",1,0,"AFTER")="@"
+ ..; Find Outpatient Encounter to take care of
+ .. N SDOEP
+ .. D LISTVST^SDOERPC(.SDOEP,PXUTVST)
+ .. S SDOEP=$P(SDOEP,")")_","_""""""_")"
+ .. S SDOEP=$O(@SDOEP) D CHLD^SDCODEL(SDOEP,0)
  . E  D
 EDIT .. F PXUTNODE=0,21,150,800,811,812 D
  ... S (^TMP("PXK",$J,"VST",1,PXUTNODE,"AFTER"),^TMP("PXK",$J,"VST",1,PXUTNODE,"BEFORE"))=$G(^AUPNVSIT(PXUTSVST,PXUTNODE))
@@ -70,8 +74,8 @@ CREATE . F PXUTNODE=150,800,811 D
  I PXUTRET>0,$G(PXUTSVST)>0,PXUTSTOP="@" D
  . N PXUTKILL
  . S PXUTKILL=$$KILL^VSITKIL(PXUTSVST)
- . S:'PXUTKILL PXUTRET=0
- I $G(PXUTSVST)>0 L -^AUPNVSIT(PXUTSVST):5
+ . S:'PXUTKILL PXUTRET=0  ; visit was killed
+ I $G(PXUTSVST)>0 L -^AUPNVSIT(PXUTSVST)
  D MODIFIED^VSIT(PXUTVST)
  Q PXUTRET
  ;

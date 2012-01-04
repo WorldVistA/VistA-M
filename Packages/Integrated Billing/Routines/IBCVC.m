@@ -1,5 +1,5 @@
 IBCVC ;ALB/WCJ - VALUE CODE FUNCTIONALITY ;25-JUN-07
- ;;2.0;INTEGRATED BILLING;**371,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**371,400,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  G AWAY
 AWAY Q
@@ -117,3 +117,25 @@ COND(DA,OLDVC,NEWVC) ; Check if the VALUE is in a valid format for the new VALUE
  S OLDVALUE=$P($G(^DGCR(399,DA(1),"CV",DA,0)),U,2)
  Q:OLDVALUE="" 0
  Q '$$CHK(NEWVC,OLDVALUE)
+ ;
+ ;IB*2.0*432 - TAZ - VC1 added
+VC1(IBXIEN,IBFL) ;Code for the VC1 record of the IB 837 Transmission
+ ;INPUT:
+ ;IBXIEN - IEN of bill/claim file
+ ;IBFL - output array passed by reference
+ ;
+ ;OUTPUT:
+ ;IBFL - array contains the list of value codes to be included in the transmission
+ ;
+ N IBI,IBX,Z,Z0,INST
+ S INST=$$FT^IBCEF(IBXIEN)=3
+ S (IBI,IBX)=0 F  S IBX=$O(^DGCR(399,IBXIEN,"CV",IBX)) Q:'IBX  D
+ . S Z=$G(^(IBX,0)),Z0=$G(^DGCR(399.1,+Z,0))
+ . I Z0="" Q
+ . I ",A3,B3,C3,"[(","_$P(Z0,U,2)_","),INST Q
+ . S IBI=IBI+1,IBFL(39,IBI)=$P(Z0,U,2)_U_$P(Z,U,2)_U_$P(Z0,U,12)_U_+Z
+ I INST D
+ . S CODE=$P("A3^B3^C3",U,$$COBN^IBCEF(IBXIEN))
+ . S Z=$G(^DGCR(399,IBXIEN,"U1")),Z0=Z-$P(Z,U,2)
+ . S IBI=IBI+1,IBFL(39,IBI)=CODE_U_Z0_U_1
+ Q

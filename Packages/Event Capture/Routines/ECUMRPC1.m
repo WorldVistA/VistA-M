@@ -1,5 +1,5 @@
 ECUMRPC1 ;ALB/JAM-Event Capture Management Broker Utilities ; 7/21/09 2:05pm
- ;;2.0; EVENT CAPTURE ;**25,30,33,72,94,95,105,100,107**;8 May 96;Build 14
+ ;;2.0; EVENT CAPTURE ;**25,30,33,72,94,95,105,100,107,110**;8 May 96;Build 4
  ;
 DSSUNT(RESULTS,ECARY) ;
  ;
@@ -180,7 +180,7 @@ ASCLN ;Search for active associated clinics (file #44)
  ...I INACT D  I ERR Q
  ....I REACT="" S:ECDT'<INACT ERR=1 Q
  ....I ECDT'<INACT,ECDT<REACT S ERR=1 Q
- ...I REACT,ECDT<REACT S ERR=1
+ ...;I REACT,ECDT<REACT S ERR=1  removed in EC*110 - BGP
  ..S CNT=CNT+1,^TMP($J,"ECFIND",CNT)=CLN_U_$P(NOD,U)
  Q
 CSTCTR ;Search for cost centers (File #420.1)

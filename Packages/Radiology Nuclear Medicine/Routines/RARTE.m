@@ -1,5 +1,5 @@
 RARTE ;HISC/FPT,GJC AISC/MJK,RMO-Edit/Delete Reports ;05/22/09  10:20
- ;;5.0;Radiology/Nuclear Medicine;**18,34,45,56,99**;Mar 16, 1998;Build 5
+ ;;5.0;Radiology/Nuclear Medicine;**18,34,45,56,99,47**;Mar 16, 1998;Build 21
  ;Supported IA #3544 ^VA(200,"ARC"
  ;Supported IA #10076 ^XUSEC(
  ;Supported IA #2056 ^GET1^DIQ
@@ -30,8 +30,11 @@ START K RAVER S RAVW="",RAREPORT=1 D ^RACNLU G Q^RARTE4:"^"[X
  ;
 DISPLAY ; Display exam specific info, edit/enter the report
  N RA18EX S RA18EX=0 ;P18 for quit if uparrow inside PUTTCOM
+ N RASSAN,RACNDSP S RASSAN=$$SSANVAL^RAHLRU1(RADFN,RADTI,RACNI)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:RACN)
  I '($D(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0))#2) D  D Q^RARTE4 QUIT
- . W !!?2,"Case #: ",RACN," for ",RANME S RAXIT=1
+ . I $$USESSAN^RAHLRU1() W !!?2,"Case #: ",RACNDSP," for ",RANME S RAXIT=1
+ . I '$$USESSAN^RAHLRU1() W !!?2,"Case #: ",RACN," for ",RANME S RAXIT=1
  . W !?2,"Procedure: '",$E(RAPRC,1,45),"' has been deleted"
  . W !?2,"by another user!",$C(7)
  . Q
@@ -40,8 +43,9 @@ DISPLAY ; Display exam specific info, edit/enter the report
  S RAXIT=$$LOCK^RAUTL12(RAPNODE,RACNI) I RAXIT D INCRPT^RARTE4 G START
  S RAI="",$P(RAI,"-",80)="" W !,RAI
  W !?1,"Name     : ",$E(RANME,1,25),?40,"Pt ID       : ",RASSN
- W !?1,"Case No. : ",RACN,?18,"Exm. St: ",$E($P($G(^RA(72,+RAST,0)),"^"),1,12),?40,"Procedure   : ",$E(RAPRC,1,25)
-        ;check for contrast media; display if CM data exists (patch 45)
+ I $$USESSAN^RAHLRU1() W !?1,"Case No. : ",RACNDSP,?40,"Exm. St     : ",$E($P($G(^RA(72,+RAST,0)),"^"),1,22),!?1,"Procedure: ",$E(RAPRC,1,45)
+ I '$$USESSAN^RAHLRU1() W !?1,"Case No. : ",RACN,?18,"Exm. St: ",$E($P($G(^RA(72,+RAST,0)),"^"),1,12),?40,"Procedure   : ",$E(RAPRC,1,25)
+ ;check for contrast media; display if CM data exists (patch 45)
  S RACMDATA=$$CMEDIA^RAUTL8(RADFN,RADTI,RACNI)
  D:$L(RACMDATA) CMEDIA(RACMDATA)
  K RACMDATA
@@ -52,14 +56,16 @@ DISPLAY ; Display exam specific info, edit/enter the report
  I RAPRTSET D
  . S RA1=""
  . F  S RA1=$O(RAMEMARR(RA1)) Q:RA1=""!(RA18EX=-1)  I RA1'=RACNI D
- .. W !,?1,"Case No. : ",+RAMEMARR(RA1)
- .. W:$P(RAMEMARR(RA1),"^",4)]"" ?18,"Exm. St: ",$E($P($G(^RA(72,$P(RAMEMARR(RA1),"^",4),0)),"^"),1,12)
- .. W ?40,"Procedure   : ",$E($P($G(^RAMIS(71,+$P(RAMEMARR(RA1),"^",2),0)),"^"),1,26)
+ .. I $$USESSAN^RAHLRU1() W !,?1,"Case No. : ",$P(RAMEMARR(RA1),U)
+ .. I '$$USESSAN^RAHLRU1() W !,?1,"Case No. : ",+RAMEMARR(RA1)
+ .. I $$USESSAN^RAHLRU1() W:$P(RAMEMARR(RA1),"^",4)]"" ?40,"Exm. St     : ",$E($P($G(^RA(72,$P(RAMEMARR(RA1),"^",4),0)),"^"),1,22) W !?1,"Procedure: ",$E($P($G(^RAMIS(71,+$P(RAMEMARR(RA1),"^",2),0)),"^"),1,45)
+ .. I '$$USESSAN^RAHLRU1() W:$P(RAMEMARR(RA1),"^",4)]"" ?18,"Exm. St: ",$E($P($G(^RA(72,$P(RAMEMARR(RA1),"^",4),0)),"^"),1,12) W ?40,"Procedure   : ",$E($P($G(^RAMIS(71,+$P(RAMEMARR(RA1),"^",2),0)),"^"),1,26)
  ..;check printset for contrast media; display if CM data exists
  ..S RACMDATA=$$CMEDIA^RAUTL8(RADFN,RADTI,RA1)
  ..D:$L(RACMDATA) CMEDIA(RACMDATA)
  ..K RACMDATA
- .. S RA18EX=$$PUTTCOM2^RAUTL11(RADFN,RADTI,+RAMEMARR(RA1)," Tech.Comment: ",15,70,-1,0) Q:RA18EX=-1  ;P18
+ ..I $P(RAMEMARR(RA1),"^")["-" S RA18EX=$$PUTTCOM2^RAUTL11(RADFN,RADTI,$P($P(RAMEMARR(RA1),"^"),"-",3)," Tech.Comment: ",15,70,-1,0) Q:RA18EX=-1
+ ..I $P(RAMEMARR(RA1),"^")'["-" S RA18EX=$$PUTTCOM2^RAUTL11(RADFN,RADTI,+RAMEMARR(RA1)," Tech.Comment: ",15,70,-1,0) Q:RA18EX=-1  ;P18
  .. Q
  . Q
 SS1 I RA18EX=-1 Q  ;P18
@@ -82,7 +88,7 @@ SS1 I RA18EX=-1 Q  ;P18
  N RA2 S (RA1,RA2)=""
  F  S RA1=$O(RAMEMARR(RA1)) Q:RA1=""  S:$P(RAMEMARR(RA1),"^",3)]"" RA2=$P(RAMEMARR(RA1),"^",3)
  G:RA2="" NEW
- W !!,$C(7),"Other cases of this cancelled case ",RACN,"'s print set are entered in a report already",!!,"You may NOT create a new report for this cancelled case,",!,"but you may include this cancelled case in the existing report."
+ W !!,$C(7),"Other cases of this cancelled case ",RACNDSP,"'s print set are entered in a report already",!!,"You may NOT create a new report for this cancelled case,",!,"but you may include this cancelled case in the existing report."
  W !!,"Do you want to include this cancelled case in the same report",!,"as the others in the print set ?"
  S %=2 D YN^DICN
  W:%>0 "...",$S(%=1:"Include",1:"Skip")," this case"
@@ -93,7 +99,9 @@ NEW G:'RAPRTSET NEW1
  W !!?10,$C(7),"** This case belongs to a printset,",?68,"**",!?10,"** and someone else is currently doing REPORT ENTRY/EDIT",?68,"**"
  W !?10,"** on another case for this same printset,",?68,"**",!?10,"** so you may not enter a new report.",?68,"**"
  H 2 D UNLOCK^RAUTL12(RAPNODE,RACNI) D INCRPT^RARTE4 G START
-NEW1 S RARPTN=$E(RADTE,4,7)_$E(RADTE,2,3)_"-"_RACN
+NEW1 ;
+ I $L(RACNDSP,"-")>1 S RARPTN=RACNDSP
+ I $L(RACNDSP,"-")<2 S RARPTN=$E(RADTE,4,7)_$E(RADTE,2,3)_"-"_RACN
  W !?3,"...report not entered for this exam...",!?10,"...will now initialize report entry..."
  S I=+$P(^RARPT(0),"^",3)
  G LOCK^RARTE4

@@ -1,5 +1,5 @@
 RARTE4 ;HISC/GJC - Edit/Delete Reports (cont) ;11/4/97  08:02
- ;;5.0;Radiology/Nuclear Medicine;**15,27,41,82,56**;Mar 16, 1998;Build 3
+ ;;5.0;Radiology/Nuclear Medicine;**15,27,41,82,56,47**;Mar 16, 1998;Build 21
  ;Supported IA #10060 ^VA(200
  ;Supported IA #10007 DO^DIC1
 LOCK ;Try to lock next avail IEN, if locked - fail, if used - increment again
@@ -48,8 +48,6 @@ IN1 ;skip to here if div param disallows rpt copying
  I '$D(RACOPY),$P(RAMDV,"^",12) D STD^RARTE1 I X="^" G PRT
  W !,RAI D EDTRPT^RARTE1
 PRT D UNLOCK^RAUTL12(RAPNODE,RACNI)
- ; --- copy diags to other cases of print set
- I RAPRTSET S RADRS=1,RAXIT=0 D COPY^RARTE2 L -^RADPT(RADFN,"DT",RADTI) ;unlock dt level only after copying is done
  ; wait til report has been checked for completeness before unlocking it
  S RAXIT=$$EN3^RAUTL15(RARPT) D UNLOCK^RAUTL12("^RARPT(",RARPT)
  I RAXIT S RAXIT=0 D UNLOCK2 D INCRPT G START^RARTE

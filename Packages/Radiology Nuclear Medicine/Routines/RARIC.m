@@ -1,5 +1,5 @@
 RARIC ;HISC/FPT,GJC AISC/SAW-Radiologic Image Capture and Display Routine ;08/05/08  14:35
- ;;5.0;Radiology/Nuclear Medicine;**23,27,101**;Mar 16, 1998;Build 4
+ ;;5.0;Radiology/Nuclear Medicine;**23,27,101,47**;Mar 16, 1998;Build 21
  ;
  ;In response to: Remedy #330689 (Tucson); PSPO 1460
  ;
@@ -9,20 +9,29 @@ RARIC ;HISC/FPT,GJC AISC/SAW-Radiologic Image Capture and Display Routine ;08/05
  ;
 CREATE ; >>create new stub entry in file 74<<
  ; --------------------------------------------------------------------
- ; called from ^MAGDIR9A (the value of RARPT is currently null)
- ; If no report entry is created, RARPT will remain null
+ ; IA: 1178 (the value of RARPT is currently null) If no report entry is
+ ; created, RARPT is set to null or negative (negative w/report)
  ;
  ;input variables
  ; RADTE - ext. date/time of exam, RADFN - patient DFN,
  ; RADTI - int. date/time of exam), RACN - case number &
  ; RACNI - IEN of case record
+ ; RATIMEOUT - An integer representing the number of seconds
+ ; in which the process attempts to gain access
+ ; to the node in question. RATIMEOUT is set ONLY
+ ; on the Imaging Gateway side. All other applications
+ ; calling the CREATE entry point will not have
+ ; RATIMEOUT set and will use a default timeout
+ ; value set at 1E9.
+ ;
+ ; Note: Imaging (Gateway) sets and kills RATIMEOUT.
  ;
  ;output variables
  ; RARPT - IEN of the report: null if error; or positive
  ;
  ; lock the exam node; quit if the lock fails
  S RARPT="" S U=$G(U,"^")
- L +^RADPT(RADFN,"DT",RADTI,"P",RACNI,0):1E9
+ L +^RADPT(RADFN,"DT",RADTI,"P",RACNI,0):$G(RATIMEOUT,1E9) E  S RARPT="-1^radiology exam locked" Q
  ;
  ; Set RAY2 to the REGISTERED EXAMS node.
  ; Set RAY3 to the EXAMINATIONS node.
@@ -150,12 +159,12 @@ PTR ; associate images with a radiology report record
  ;          MAGGP - IEN of record in file 2005 pointed to by a report
  ;
  ; returns: Y=0  - variable MAGGP does not exist
- ;          Y=-1 - FileMan could not create an entry
+ ;          Y=-1 - FileMan could not create an entry (may be -1 w/report)
  ;          Y>0  - FileMan created an entry
  ;
  S Y=0 Q:$G(MAGGP)'>0
  L +^RARPT(RARPT):$G(DILOCKTM,5)
- I '$T S Y=-1 Q  ;lock failed...
+ I '$T S Y="-1^radiology report locked" Q  ;lock failed...
  N RAFDA,RAIEN,RARSLT
  S RAFDA(74.02005,"+1,"_RARPT_",",.01)=MAGGP
  D UPDATE^DIE(,"RAFDA","RAIEN","RARSLT")

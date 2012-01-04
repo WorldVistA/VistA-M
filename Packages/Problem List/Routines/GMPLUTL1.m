@@ -1,5 +1,5 @@
 GMPLUTL1 ; SLC/MKB/KER -- PL Utilities (cont)               ; 04/15/2002
- ;;2.0;Problem List;**3,8,7,9,26,35**;Aug 25, 1994;Build 26
+ ;;2.0;Problem List;**3,8,7,9,26,35,39**;Aug 25, 1994;Build 7
  ;
  ; External References
  ;   DBIA   446  ^AUTNPOV(
@@ -50,7 +50,7 @@ DUPLICAT ; Problem Already on the List
  ;
 LOCATION ; Hospital Location (Clinic) Pointer
  S:'$D(PL("LOCATION")) PL("LOCATION")="" Q:'$L(PL("LOCATION"))
- I $D(^SC(+PL("LOCATION"),0)),$P(^(0),U,3)="C" Q
+ I $D(^SC(+PL("LOCATION"),0)) S:$P(^(0),U,3)'="C" PL("LOCAATION")="" Q
  S GMPQUIT=1,PLY(0)="Invalid hospital location"
  Q
  ;
@@ -129,7 +129,7 @@ MST ; MST exposure flag (Requires GMPMST)
 CV ; CV exposure flag (Requires GMPCV)
  S:'$D(PL("CV")) PL("CV")=""
  I "^^1^0^"'[(U_PL("CV")_U) S GMPQUIT=1,PLY(0)="Invalid CV flag" Q
- I 'GMPSHD,+PL("CV") S GMPQUIT=1,PLY(0)="Invalid CV flag"
+ I 'GMPCV,+PL("CV") S GMPQUIT=1,PLY(0)="Invalid CV flag"
  Q
 SHD ; SHD exposure flag (Requires GMPSHD)
  S:'$D(PL("SHD")) PL("SHD")=""

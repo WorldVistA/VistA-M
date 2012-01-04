@@ -1,5 +1,5 @@
-ECXPRO2 ;ALB/GTS - Prosthetics Extract for DSS (Continued) ;10/4/10  16:58
- ;;3.0;DSS EXTRACTS;**9,15,21,24,33,127**;Dec 22, 1997;Build 36
+ECXPRO2 ;ALB/GTS - Prosthetics Extract for DSS (Continued) ; 15 Apr 2011  1:49 PM
+ ;;3.0;DSS EXTRACTS;**9,15,21,24,33,127,132**;Dec 22, 1997;Build 18
  ;
 ECXBUL(ECXLNE,ECXEBDT,ECXEEDT,ECNUM) ;* Set up the header for the exception msg
  ;
@@ -61,7 +61,7 @@ ECXFLD ;* Missing Required fields
  ;;RECEIVING STATION
  Q
  ;
-FEEDINFO(ECXSRCE,ECXHCPCS,ECXTYPE,ECXSTAT2,ECXRQST,ECXRCST,ECXLAB) ;Get Feeder Key and Feeder Location
+FEEDINFO(ECXSRCE,ECXHCPCS,ECXTYPE,ECXSTAT2,ECXRQST,ECXRCST,ECXLAB,ECXNPPDC) ;Get Feeder Key and Feeder Location
  ;   Input
  ;    ECXSTAT2   - Station Number for extract
  ;    ECXTYPE   - Type of Transaction work performed
@@ -69,7 +69,8 @@ FEEDINFO(ECXSRCE,ECXHCPCS,ECXTYPE,ECXSTAT2,ECXRQST,ECXRCST,ECXLAB) ;Get Feeder K
  ;    ECXHCPCS  - HCPCS code for prosthesis
  ;    ECXRQST   - Requesting Station
  ;    ECXRCST   - Receiving Station
- ;    ECXLAB    - Lab or non-Lab 
+ ;    ECXLAB    - Lab or non-Lab
+ ;    ECXNPPDC  - NPPD Code
  ;   Output (to be KILLed by calling routine)
  ;    ECXFELOC  - Feeder Location
  ;    ECXFEKEY  - Feeder Key
@@ -83,8 +84,7 @@ FEEDINFO(ECXSRCE,ECXHCPCS,ECXTYPE,ECXSTAT2,ECXRQST,ECXRCST,ECXLAB) ;Get Feeder K
  S ECXFEKEY=ECXHCPCS_$S(ECXTYPE="X":"X",ECXTYPE=5:"R",1:"N")_ECXSRCE
  ;
  ;* If processing a Non-Lab Transaction
- I ECXLAB="NONL" D  Q
- .S ECXFELOC=ECXSTAT2_"NONL"
+ I ECXLAB="NONL" S ECXFELOC=ECXSTAT2_$S(ECXNPPDC[800:"HO2",1:"NONL")
  ;
  ;* If processing a Lab Transaction
  I ECXLAB="LAB" D  Q

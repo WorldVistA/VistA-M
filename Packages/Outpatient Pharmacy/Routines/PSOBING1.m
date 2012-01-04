@@ -1,11 +1,11 @@
-PSOBING1 ;BHAM ISC/LC - bingo board utility routine ;6/29/06 11:46am
- ;;7.0;OUTPATIENT PHARMACY;**5,28,56,135,244,268**;DEC 1997;Build 9
+PSOBING1 ;BHAM ISC/LC - bingo board utility routine ; 6/2/10 4:05pm
+ ;;7.0;OUTPATIENT PHARMACY;**5,28,56,135,244,268,357**;DEC 1997;Build 12
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to DD(52.11 and DD(59.2 supported by DBIA 999
  ;
  ;*244 don't store to file 52.11 if Rx Status > 11
  ;
-BEG D:'$D(PSOPAR) ^PSOLSET G:'$D(PSOPAR) END
+BEG Q:'$G(PSODFN)  D:'$D(PSOPAR) ^PSOLSET G:'$D(PSOPAR) END
 NEW K DD,DO S (DIC,DIE)="^PS(52.11,",(NDA,X,DA)=PSODFN,DIC(0)="LMNQZ" D FILE^DICN K DIC G:Y'>0 NEW S (ODA,DA)=+Y,BNGSUS=0 S:$D(SUSROUTE) BNGSUS=1
 NEW1 S GRTP=$P($G(^PS(59.3,DISGROUP,0)),"^",2),NAM=$P($G(^DPT(PSODFN,0)),"^"),SSN=$P($G(^DPT(PSODFN,0)),"^",9) I GRTP="T" D  G:'$D(DA) END
  .K TFLAG S DR="1;2////"_DISGROUP_";3////"_PSOSITE_";4////"_TM_";5////"_$E(TM1_"0000",1,4)_";8////"_NAM_";9////"_SSN_";13////"_BNGSUS_"" D STO  Q:'$D(DA)

@@ -1,5 +1,5 @@
 RARTST2A ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Reports Distribution ;11/24/97  12:12
- ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**47**;Mar 16, 1998;Build 21
  ;
 DIV ; Division selection
  ; save all Med Center Divisions (40.8) by pntr to file 4
@@ -76,7 +76,7 @@ RPTST(RARPT) ; Report's Print Status, called from 8^RARTST1.
  N I,RA74,RAEXFLD,RAY3,X,Y W !,$$REPEAT^XLFSTR("-",IOM),!!
  S RA74(0)=$G(^RARPT(RARPT,0)) W "Report   : ",$P(RA74(0),"^")
  S (X,Y)=+$P(RA74(0),"^",2),Y=$S($D(^DPT(Y,0))#2:$P(^(0),"^"),1:"")
- W ?25,"Patient: ",$E(Y,1,30) W:X ?65,$$SSN^RAUTL(X)
+ W ?30,"Patient: ",$E(Y,1,25) W:X ?65,$$SSN^RAUTL(X)
  S Y=+$O(^RADPT(X,"DT",(9999999.9999-$P(RA74(0),"^",3)),"P","B",$P(RA74(0),"^",4),0))
  S RAY3=$G(^RADPT(X,"DT",(9999999.9999-$P(RA74(0),"^",3)),"P",Y,0))
  S RAEXFLD="PROC" D ^RARTFLDS W !,"Procedure: ",$E(X,1,30)

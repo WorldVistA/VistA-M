@@ -1,5 +1,5 @@
-TIULX ; SLC/JER - Cross-reference library functions ;6/21/06
- ;;1.0;TEXT INTEGRATION UTILITIES;**1,28,79,100,136,219**;Jun 20, 1997;Build 11
+TIULX ; SLC/JER - Cross-reference library functions ; 10/1/10 2:31pm
+ ;;1.0;TEXT INTEGRATION UTILITIES;**1,28,79,100,136,219,255**;Jun 20, 1997;Build 2
  ; File 200 - IA 10060
  ; ^ORD(101 - IA 872
  ; ^DISV    - IA 510
@@ -106,11 +106,15 @@ IDSIGNRS(TIUY,TIUDA,TIULIST) ; Add list of Add'l Signers for a TIU Document
  N TIUI S TIUI=0
  F  S TIUI=$O(TIULIST(TIUI)) Q:+TIUI'>0  D
  . N DA,DIC,DLAYGO,DIE,DR,X,Y
+ . N TIUSIG,TIUSN ;TIU*1.0*255
  . ; if current user is already an additional signer, and current user
  . ; is NOT being removed as an additional signer, then QUIT
  . I +$O(^TIU(8925.7,"AE",TIUDA,+TIULIST(TIUI),0)),($P(TIULIST(TIUI),U,3)'="REMOVE") Q
  . ; if current user is being removed as a cosigner, then remove him
- . I $P(TIULIST(TIUI),U,3)="REMOVE" D REMSIGNR(TIUDA,+TIULIST(TIUI)) Q
+ . ; TIU*255 Quit if attempting to remove someone who already signed
+ . ;I $P(TIULIST(TIUI),U,3)="REMOVE" D REMSIGNR(TIUDA,+TIULIST(TIUI)) Q
+ . S TIUSIG=$O(^TIU(8925.7,"AE",TIUDA,+TIULIST(TIUI),0)) S:$G(TIUSIG) TIUSN=$P($G(^TIU(8925.7,TIUSIG,0)),"^",4)
+ . Q:$G(TIUSN)  I $P(TIULIST(TIUI),U,3)="REMOVE" D REMSIGNR(TIUDA,+TIULIST(TIUI)) Q
  . ; otherwise, add the current user as an additional signer
  . S X=""""_"`"_TIUDA_"""",(DIC,DLAYGO)=8925.7,DIC(0)="LX" D ^DIC Q:+Y'>0
  . S DIE=DIC,TIUY=$G(TIUY)_$S($G(TIUY)]"":U,1:"")_+TIULIST(TIUI)

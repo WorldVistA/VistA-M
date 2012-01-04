@@ -1,5 +1,5 @@
 RAPROD ;HISC/FPT,GJC AISC/MJK-Detailed Exam View ;05/13/09  06:45
- ;;5.0;Radiology/Nuclear Medicine;**10,35,45,56,99**;Mar 16, 1998;Build 5
+ ;;5.0;Radiology/Nuclear Medicine;**10,35,45,56,99,47**;Mar 16, 1998;Build 21
  ;Supported IA #2056 GET1^DIQ
  ;Supported IA #2053 UPDATE^DIE
  ;Supported IA #10040 ^SC(
@@ -20,7 +20,10 @@ VIEW W @IOF S X="",$P(X,"=",80)="" W X K X
  W !?2,"Division    : ",$E(RA("DIV"),1,20),?40,"Category     : ",RA("CAT")
  W !?2,"Location    : ",$S($D(^SC(+RA("LOC"),0)):$P(^(0),"^"),1:"Unknown"),?40,"Ward         : ",$E(RA("WRD"),1,24)
  W !?2,"Exam Date   : ",RADATE,?40,"Service      : ",$E(RA("SERV"),1,24)
- W !?2,"Case No.    : ",RACN W ?40,"Bedsection   : ",$E(RA("BED"),1,24)
+ N RASSAN,RACNDSP S RASSAN=$$SSANVAL^RAHLRU1(RADFN,RADTI,RACNI)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:RACN)
+ I $$USESSAN^RAHLRU1() W !?2,"Case No.    : ",RACNDSP W ?40,"Bedsection   : ",$E(RA("BED"),1,24)
+ I '$$USESSAN^RAHLRU1() W !?2,"Case No.    : ",RACN W ?40,"Bedsection   : ",$E(RA("BED"),1,24)
  W !?40,"Clinic       : ",$E(RA("CL"),1,24)
  S Y=$E(RA("CAT")) I "CSR"[Y W !?40,$E($S("C"=Y:"Contract     : "_RA("CONT"),"S"=Y:"Sharing      : "_RA("CONT"),"R"=Y:"Research     : "_RA("REA"),1:""),1,38)
  W:$X>1 ! S X="",$P(X,"-",80)="" W X K X

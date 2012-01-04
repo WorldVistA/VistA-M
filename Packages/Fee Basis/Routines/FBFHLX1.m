@@ -1,5 +1,5 @@
 FBFHLX1 ;WOIFO/SAB-TRANSMIT HL7 MESSAGES TO FPPS (CON'T) ;9/9/2003
- ;;3.5;FEE BASIS;**61**;JULY 18, 2003
+ ;;3.5;FEE BASIS;**61,121**;JULY 18, 2003;Build 4
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -93,6 +93,7 @@ SUMMSG ; Summary Message (build and send)
  S ^TMP($J,"FBX",9)="                       "_FBCNT("PENDE")_" not transmitted due to exception."
  S ^TMP($J,"FBX",10)=$$FMTE^XLFDT(FBXMIT("END"))_"  Process Complete."
  I $D(ZTSTOP) S ^TMP($J,"FBX",11)="  Process (task) stopped due to user request."
+ I $D(FBCNT("10K")) S ^TMP($J,"FBX",12)="  Process (task) stopped due reaching 10K message limit."  ;FB*3.5*121
  ;
  ; List Exceptions
  I FBCNT("PENDE")>0 D

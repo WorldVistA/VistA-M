@@ -1,14 +1,14 @@
 BPSOSCA ;BHAM ISC/FCS/DRS - Create BPS Claims entries ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5**;JUN 2004;Build 45
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
- ; Create BPS Claims entries for RXILIST(*) claims.
+ ; Create BPS Claims entries for TRANLIST(*) claims.
  ; Called from PACKET^BPSOSQG
  ;
  ; Input:
- ;      RXILIST(IEN59) - Array of pointers to 9002313.59
- ;         A list of prescriptions for the same visit/patient/etc.
+ ;      TRANLIST(IEN59) - Array of pointers to 9002313.59
+ ;         A list of transactions for the same visit/patient/etc.
  ;         to be bundled into one or more 9002313.02 claims
  ;
  ; Outputs:
@@ -22,9 +22,9 @@ BPSOSCA ;BHAM ISC/FCS/DRS - Create BPS Claims entries ;06/01/2004
  ;   BPSOSCE to build the ^BPSC( entry
  ;
 EN(CLAIMIEN) ;EP - from BPSOSQG
- I $D(RXILIST)<10  D  Q "306^No RXILIST defined"
- . N RETVAL S RETVAL=$$IMPOSS^BPSOSUE("P","TI","Bad RXILIST",,,$T(+0))
- . D LOG2LIST^BPSOSL($T(+0)_"-No RXILIST passed into BPSOSCA")
+ I $D(TRANLIST)<10  D  Q "306^No TRANLIST defined"
+ . N RETVAL S RETVAL=$$IMPOSS^BPSOSUE("P","TI","Bad TRANLIST",,,$T(+0))
+ . D LOG2LIST^BPSOSL($T(+0)_"-No TRANLIST passed into BPSOSCA")
  ;
  ; Manage local variables
  N BPS,START,END,TOTAL,NCLAIMS,CLAIMN,ERROR

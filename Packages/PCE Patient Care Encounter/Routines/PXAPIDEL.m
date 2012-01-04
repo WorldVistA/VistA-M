@@ -1,13 +1,13 @@
-PXAPIDEL ;ISL/dee - PCE's code for the DELVFILE api ;6/22/05
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,9,22,130,168**;Aug 12, 1996;Build 14
+PXAPIDEL ;ISL/dee - PCE's code for the DELVFILE api ; 7/21/10 2:46pm  ; 7/28/10 10:16am
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,9,22,130,168,197**;Aug 12, 1996;Build 6
  Q
  ;
-DELVFILE(PXAWHICH,PXAVISIT,PXAPKG,PXASOURC,PXAASK,PXAECHO,PXAUSER) ;Deletes the requesed data related to the visit.
+DELVFILE(PXAWHICH,PXAVISIT,PXAPKG,PXASOURC,PXAASK,PXAECHO,PXAUSER) ;Deletes the requested data related to the visit.
  ;  PXAWHICH is a ^ delimited string with the last two or three letters
  ;           of the v-files to delete entries from and VISIT for the
- ;           administative data on the visit and STOP for the stop codes.
+ ;           administrative data on the visit and STOP for the stop codes.
  ;           (e.g. for immunization the v-file is AUPNVIMM so IMM is
- ;           passed.)  Or "ALL" to delete all of the data form the 
+ ;           passed.)  Or "ALL" to delete all of the data from the 
  ;           V-Files, the Stop Code and Visit.
  ;  PXAVISIT is pointer to a visit for which the related data is be
  ;           deleted.
@@ -73,14 +73,17 @@ DELVFILE(PXAWHICH,PXAVISIT,PXAPKG,PXASOURC,PXAASK,PXAECHO,PXAUSER) ;Deletes the 
  . D ^DIR
  . I Y'=1 S PXARET=-1 Q
  S PXAMYSOR=$$SOURCE^PXAPIUTL("PCE DELETE V-FILES API")
- ;Do Stop Codes first
- S PXAWFLAG=PXAECHO&'$D(ZTQUEUED)
- I "^"_PXAWHICH_"^"["^STOP^" D
+STOP  ;Do Stop Codes first
+  S PXAWFLAG=PXAECHO&'$D(ZTQUEUED)
+  I "^"_PXAWHICH_"^"["^STOP^" D
  . S PXAIEN=0
  . F PXACOUNT=0:1 S PXAIEN=$O(^AUPNVSIT("AD",PXAVISIT,PXAIEN)) Q:'PXAIEN  D
  .. I PXAUSER>0,PXAUSER'=$P(^AUPNVSIT(PXAIEN,0),"^",23) Q
- .. I PXAWFLAG S PXAWFLAG=0 W !,"   ...deleting Stop Codes"
- .. I $$STOPCODE^PXUTLSTP(PXAMYSOR,"@",PXAVISIT,PXAIEN)
+ .. I $P($G(^AUPNVSIT(PXAIEN,150)),U,3)="C" Q  ; do not delete credit stop code this time
+ .. I $P($G(^AUPNVSIT(PXAIEN,150)),U,3)'="S" Q  ; delete only stop codes
+ .. I PXAWFLAG W !,"   ...deleting Stop Codes"
+ .. N PXST S PXST=$$STOPCODE^PXUTLSTP(PXAMYSOR,"@",PXAVISIT,PXAIEN) I PXST=-1 D
+ ... I PXAWFLAG W !!,$C(7),"Cannot edit at this time, try again later." D PAUSE^PXCEHELP
  ;Set up the visit
  S ^TMP("PXK",$J,"PKG")=PXAPKG
  S ^TMP("PXK",$J,"SOR")=PXAMYSOR
@@ -112,14 +115,63 @@ DELVFILE(PXAWHICH,PXAVISIT,PXAPKG,PXASOURC,PXAASK,PXAECHO,PXAUSER) ;Deletes the 
  .... W $S("CPT"=PXAVFILE:"Procedure","IMM"=PXAVFILE:"Immunizations","PED"=PXAVFILE:"Patient Education",1:"")
  .... W $S("POV"=PXAVFILE:"Diagnoses","PRV"=PXAVFILE:"Providers","SK"=PXAVFILE:"Skin Test","TRT"=PXAVFILE:"Treatments","HF"=PXAVFILE:"Health Factors","XAM"=PXAVFILE:"Exams",1:"")
  ;now process all the data except the stop codes which have already been done
+ ;
+ ;
  N PXKERROR
  I $D(^TMP("PXK",$J)) D
  . I PXAECHO,'$D(ZTQUEUED) D WAIT^DICD
  . D EN1^PXKMAIN
  . D EVENT^PXKMAIN
  . K ^TMP("PXK",$J)
+ ;
+DELCR ;Do CREDIT Stop Code if it is the only entry except OE entry, not assoc. with apt
+ N SDD S SDD=$$VERAPT(PXAVISIT,.SDD) ; CHECK IF APPOINTMENT IS ASSOCIATED
+ I 'SDD D  ; perform IF no appointment is associated with
+ .S PXAWFLAG=PXAECHO&'$D(ZTQUEUED)
+ .I "^"_PXAWHICH_"^"["^STOP^" D
+ ..;VERIFY IF TO DELETE CREDIT STOP CODE AND IF SO THEN BE SURE PRIMARY VISIT WILL BE DELETED
+ ..;
+ ..S PXAIEN=0
+ ..F PXACOUNT=0:1 S PXAIEN=$O(^AUPNVSIT("AD",PXAVISIT,PXAIEN)) Q:'PXAIEN  D
+ ...I PXAUSER>0,PXAUSER'=$P(^AUPNVSIT(PXAIEN,0),"^",23) Q
+ ...I $P($G(^AUPNVSIT(PXAIEN,150)),U,3)'="C" Q
+ ...; check how many entries point to the primary visit
+ ...N PXPCNT S PXPCNT=$$DEC^VSITKIL(PXAVISIT) ; CHECK COUNT OF PRIMARY VISIT
+ ...; CONTINUE ONLY if there are less than three entries;
+ ...; if there are 2 entries one of them would have to be OE
+ ...; because if not OE then the second entry would be not PCE one
+ ...; and the primary visit cannot be deleted
+ ...I PXPCNT>2 Q  ; 
+ ...I '$D(^SCE("AVSIT",PXAVISIT)) Q
+ ...I PXAWFLAG W !,"   ...deleting Credit Stop Codes"
+ ...N PXST S PXST=$$STOPCODE^PXUTLSTP(PXAMYSOR,"@",PXAVISIT,PXAIEN) I PXST=-1 D
+ ....I PXAWFLAG W !!,$C(7),"Cannot edit/delete at this time, try again later." D PAUSE^PXCEHELP
+ ;
  N PXAKILL
  I "^"_PXAWHICH_"^"["^VISIT^" D
  . S PXAKILL=$$KILL^VSITKIL(PXAVISIT)
  Q $S(PXARET=0!$D(PXKERROR):0,$G(PXAKILL):-4,1:1)
+ ;
+VERAPT(PXAVISIT,SCDXPOV) ;FUNCTION CALLED TO VERIFY IF VISIT IS ASSOCIATED WITH APPOINTMENT
+ N SDARRAY,SDCL,SDATE,SVSTSTR,SDFN,SCDXPOV,SDAPP
+ K ^TMP($J,"SDAMA301")
+ I '$D(^AUPNVSIT(PXAVISIT,0)) Q $G(SCDXPOV)
+ S SVSTSTR=^AUPNVSIT(PXAVISIT,0)
+ S SDCL=$P(SVSTSTR,U,22),SDATE=$P(SVSTSTR,U)
+ S SDARRAY(1)=SDATE_";"_SDATE,SDFN=$P(SVSTSTR,U,5)
+ S SDARRAY(4)=SDFN
+ S SDARRAY(2)=SDCL
+ S SDARRAY("FLDS")="2;12;16"
+ N SDCOUNT S SDCOUNT=$$SDAPI^SDAMA301(.SDARRAY)
+ I '$D(^TMP($J,"SDAMA301",SDFN,SDCL,SDATE)) Q $G(SCDXPOV)
+ S SDAPP=^TMP($J,"SDAMA301",SDFN,SDCL,SDATE)
+ N SDENC S SDENC=$P(SDAPP,U,12) ; OE
+ ; get OE from VISIT
+ N SDOEP
+ K ^TMP($J,"SDAMA301")
+ D LISTVST^SDOERPC(.SDOEP,PXAVISIT)
+ S SDOEP=$P(SDOEP,")")_","_""""""_")"
+ S SDOEP=$O(@SDOEP)
+ I SDOEP>0 I SDENC=SDOEP S SCDXPOV=1 Q SCDXPOV  ; active appointment is associated with this visit
+ Q $G(SCDXPOV)
  ;

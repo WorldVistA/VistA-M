@@ -1,5 +1,5 @@
-MAGDHLE ;WOIFO/SRR - PACS INTERFACE PID TRIGGERS ; 05/18/2007 11:23
- ;;3.0;IMAGING;**54**;03-July-2009;;Build 1424
+MAGDHLE ;WOIFO/SRR - PACS INTERFACE PID TRIGGERS ; 04 Jan 2011 8:38 AM
+ ;;3.0;IMAGING;**54,49**;Mar 19, 2002;Build 2033;Apr 07, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -19,21 +19,13 @@ SET ;Set Logic from MUMPS x-ref on fields .01,.03,.09 of ^DD(2 (^DPT)
  ;Kill logic: S MAGKPID=X for all 3 fields
  ;IN - MAGKPID = old value
  ;   - MAGKTYP = Message type (from field)
- N MAGDPTCL
- Q:'$G(^MAG(2006.1,"APACS"))
  Q
- G EX:'$D(MAGKPID),EX:MAGKPID=X
- S DFN=DA,MAGKTYP=8,MAGDPTCL="Pt. Demo."
- G TSK
  ;
 KIL ;Kill logic "AKn" cross references
- Q:'$G(^MAG(2006.1,"APACS"))
- Q
- S MAGKPID=X
  Q
  ;
 ADT ;ADT EVENTS ;From EVENT driver
- ;Protocol = MAGK DHCP-PACS ADT EVENTS
+ ;Protocol = MAGD DHCP-PACS ADT EVENTS
  ;IN ;DFN
  ;DGPMDA = IFN Primary Movement
  ;DGPMA = 0th node Primary Movement AFTER movement
@@ -44,11 +36,15 @@ ADT ;ADT EVENTS ;From EVENT driver
  Q:'$D(MAGKTYP)  I MAGKTYP=2,$P(^UTILITY("DGPM",$J,2,DGPMDA,"A"),U,6)=$P(^("P"),U,6) G EX
 TSK ;CREATE TASK to make HL7 messages
  S ZTSAVE("MAGKTYP")="",ZTSAVE("MAGDPTCL")=""
- S ZTSAVE("DFN")="",ZTDTH=$H,ZTIO=""
+ S ZTSAVE("DGPMDA")="",ZTSAVE("DGNOW")="",ZTSAVE("DGPMA")=""
+ S ZTSAVE("DFN")="",ZTSAVE("DGPMT")="",ZTDTH=$H,ZTIO=""
  S ZTRTN="HL7^MAGDHLE",ZTDESC=$S(MAGKTYP=8:"PID",1:"ADT")_" HL7 PACS MESSAGE"
- W !?5,"*** HL7 TASK FOR PACS ***" D ^%ZTLOAD G EX
+ W !?5,"*** HL7 TASK FOR PACS ***"
+ D @$S($$PROD^XUPROD:"^%ZTLOAD",1:"HL7^"_$T(+0)) ; enable debugging in development
+ G EX
  ;
 HL7 ;Create HL7 message
+ I $P($G(^MAG(2006.1,1,"IHE")),"^",1)="Y" G ADT^MAGDHLI
  Q:'$D(^DPT(DFN,0))
  S N0=^DPT(DFN,0),HLNDAP="PACS GATEWAY",HLMTN="ADT"
  D INIT^HLTRANS

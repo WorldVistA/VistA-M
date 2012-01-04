@@ -1,5 +1,5 @@
 BPSSCRU3 ;BHAM ISC/SS - ECME SCREEN UTILITIES ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,9**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,9,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;USER SCREEN
  Q
@@ -59,29 +59,25 @@ GRESPPOS(BP59,BPRESP,BPPOS) ;*/
  Q 1
  ;
  ;/**
- ;reject message from RESPONSE file
+ ;Messages from the BPS RESPONSE file
  ;BP59 - ptr to 9002313.59
- ;BPTOP - top level index (for exmpl "504" for ^BPSR(D0,504)= (#504) Message [1F]
- ;BPDEEP - lower level (for exmpl BPTOP=1000 and BPDEEP=525 for  
- ;  ^BPSR(D0,1000,D1,525)= (#525) DUR Response Data [1F]
+ ;FIELD - what field to get
  ;
-GETMESS(BPTOP,BPDEEP,BP59) ;
- N BP59DAT,BPRESP,BPPOS
- N BP1
- ;S (BPRESP,BPPOS)=0
- ;get response and position in the BPS RESPONSE file
+GETMESS(FIELD,BP59) ;
+ I '$G(FIELD) Q ""
+ I '$G(BP59) Q ""
+ N BPRESP,BPPOS
+ ; Get response and position in the BPS RESPONSE file
  I $$GRESPPOS(BP59,.BPRESP,.BPPOS)=0 Q ""
- ; -------- transmission specific message ----------
- I BPTOP=504 Q $P($G(^BPSR(BPRESP,504)),U)
- ;
- ; -------claim specific message-----------
- ;assuming there is only one claim/response per transmission
- S BP1=$O(^BPSR(BPRESP,BPTOP,0))
- I BP1=0 Q ""
- ;---525: DUR
- ;---526: Additional Message Information
- ;---504: Message for the claim
- I (BPDEEP=525)!(BPDEEP=526)!(BPDEEP=504) Q $P($G(^BPSR(BPRESP,1000,BPPOS,BPDEEP)),U)
+ ; 504-F4 (Message)
+ I FIELD=504 Q $P($G(^BPSR(BPRESP,504)),U)
+ ; 526-FQ (Additional Message Information) - Get first entry of the multiple)
+ I FIELD=526 N MESSAGE,N D  Q MESSAGE
+ . N ADDMESS
+ . D ADDMESS^BPSSCRLG(BPRESP,BPPOS,.ADDMESS)
+ . S MESSAGE=""
+ . S N=$O(ADDMESS(""))
+ . I N S MESSAGE=$E(ADDMESS(N),1,200)
  Q ""
  ;
  ;reject message from RESPONSE file
@@ -91,8 +87,7 @@ GETMESS(BPTOP,BPDEEP,BP59) ;
  ;  be incremented if more than one node added)
  ;BPMLEN - max length for each string
  ;PBPREF - for prefix string
- ;. D GETMESS^BPSSCRU3(1000,504,BP59,.BPARR,.BPN,50)
- ;compare GETRJCOD from BPSSCRu2
+ ;compare GETRJCOD from BPSSCRU2
 GETRJCOD(BP59,BPARR1,BPN1,BPMLEN,PBPREF) ;
  N BP59DAT S BP59DAT=$G(^BPST(BP59,0))
  N BPRESP,BPPOS

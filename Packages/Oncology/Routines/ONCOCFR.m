@@ -1,11 +1,11 @@
-ONCOCFR ;Hines OIFO/GWB - RADIOLOGY CASEFINDING; 7/21/93
- ;;2.11;ONCOLOGY;**13,24,25,26,27,34,37,39,46,50**;Mar 07, 1995;Build 29
+ONCOCFR ;Hines OIFO/GWB - RADIOLOGY CASEFINDING ;06/16/11
+ ;;2.11;ONCOLOGY;**13,24,25,26,27,34,37,39,46,50,53**;Mar 07, 1995;Build 31
  ;
 ST ;Start RAD/NUC MED PATIENT (70) file search
  W @IOF
- W !!!?10,"******** RADIOLOGY: SUSPICIOUS MALIGNANCY SEARCH ********",!!
- W ?10,"This option searches the RAD/NUC MED PATIENT file and will",!
- W ?10,"add to your 'suspense list' in the ONCOLOGY PATIENT file.",!
+ W !!!?10,"******** RADIOLOGY: SUSPICIOUS MALIGNANCY SEARCH ********",!
+ W !?10,"This option will search the RAD/NUC MED PATIENT file"
+ W !?10,"for cases to add to the Suspense List."
 MG S MG=0,D0=0 F  S D0=$O(^RA(78.3,"B",D0)) Q:D0=""  S XX=$TR(D0,"malig","MALIG") I XX["MALIG" S MG=$O(^(D0,0)) Q
  G T:MG W !!?15,"MALIGNACY diagnostic code is not defined in the"
  W !?15,"Radiology Diagnostic Codes File (#78.3). Please"
@@ -14,10 +14,15 @@ MG S MG=0,D0=0 F  S D0=$O(^RA(78.3,"B",D0)) Q:D0=""  S XX=$TR(D0,"malig","MALIG"
  ;
 T ;Start Date/End Date
  S OSP=$O(^ONCO(160.1,"C",DUZ(2),0))
- K DIR
+ I OSP="" D  Q
+ .W !!?10,"Casefinding requires an ONCOLOGY SITE PARAMETER"
+ .W !?10,"entry which matches the user's login DIVISION."
+ .W !?10,"There is no ONCOLOGY SITE PARAMETER for DIVISION:"
+ .W !?10,$P($G(^DIC(4,DUZ(2),0)),U,1)
  S Y=$P(^ONCO(160.1,OSP,0),U,6)
  I Y="" S Y=DT
  S Y=$E(Y,4,5)_"-"_$E(Y,6,7)_"-"_($E(Y,1,3)+1700)
+ K DIR
  S DIR("B")=Y
  W !
  S DIR("A")="          Start Date",DIR(0)="D" D ^DIR

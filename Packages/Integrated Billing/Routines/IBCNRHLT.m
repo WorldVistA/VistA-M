@@ -1,6 +1,6 @@
 IBCNRHLT ;DAOU/DMK - Receive HL7 e-Pharmacy MFN Message ;23-OCT-2003
- ;;2.0;INTEGRATED BILLING;**251**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**251,435**;21-MAR-94;Build 27
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Description
  ;
@@ -59,18 +59,6 @@ IBCNRHLT ;DAOU/DMK - Receive HL7 e-Pharmacy MFN Message ;23-OCT-2003
  .. ; Convert HL7 special characters if necessary
  .. I DATA(FIELDNO)[$E(HLECH,3) S DATA(FIELDNO)=$$TRAN1^IBCNRHLU(DATA(FIELDNO))
  . D FILE
- ;
- ; Update File?
- I $D(DATABPS) D
- . S FIELDNO="" F  S FIELDNO=$O(DATABPS(FIELDNO)) Q:FIELDNO=""  D
- .. ;
- .. ; Convert "" to "@" to delete field value if necessary
- .. I IEN'=-1,DATABPS(FIELDNO)="" S DATABPS(FIELDNO)="@"
- .. ;
- .. ; Convert HL7 special characters if necessary
- .. I DATABPS(FIELDNO)[$E(HLECH,3) S DATABPS(FIELDNO)=$$TRAN1^IBCNRHLU(DATABPS(FIELDNO))
- . ;
- . D FILEBPS
  ;
  ; Update APPLICATION Subfile?
  I $D(DATAAP) D
@@ -158,32 +146,6 @@ FILEAP ; File APPLICATION Subfile data
  ;
  ; Update
  D FILE2^IBCNRFM1(FILENO,IEN,FIELDNO,APIEN,.DATAAP)
- Q
- ;
-FILEBPS ; File data
- ; 90002312.92 BPS NCPDP FORMATS File
- ;
- N FILENO1
- S FILENO1=9002313.92
- ;
- ; Update Billing Payer Sheet Entry?
- S BPSIEN=DATA(10.07) I BPSIEN'="@" D
- . D FILE1^IBCNRFM1(FILENO1,BPSIEN,.DATABPS)
- ;
- ; Update Rebill Payer Sheet Entry?
- S BPSIEN=DATA(10.09) I BPSIEN'="@" D
- . D FILE1^IBCNRFM1(FILENO1,BPSIEN,.DATABPS)
- ;
- ; Update Reversal Payer Sheet Entry?
- S BPSIEN=DATA(10.08) I BPSIEN'="@" D
- . ;
- . ; 1.03 = Maximum RX's Per Claim
- . S DATABPS(1.03)=1
- . ;
- . ; 1.07 = Is A Reversal Format
- . S DATABPS(1.07)=1
- . ;
- . D FILE1^IBCNRFM1(FILENO1,BPSIEN,.DATABPS)
  Q
  ;
 FILECM ; File CONTACT MEANS Subfile data

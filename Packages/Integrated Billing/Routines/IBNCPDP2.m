@@ -1,6 +1,13 @@
 IBNCPDP2 ;OAK/ELZ - PROCESSING FOR ECME RESP ;11/15/07  09:43
- ;;2.0;INTEGRATED BILLING;**223,276,342,347,363,383,405,384,411**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**223,276,342,347,363,383,405,384,411,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; Reference to DEC^PRCASER1 supported by IA# 593
+ ; Reference to REL^PRCASVC supported by IA# 385
+ ; Reference to STATUS^PRCASVC1 supported by IA# 387
+ ; Reference to ^PRCASVC6 supported by IA# 384
+ ; Reference to $$RXSITE^PSOBPSUT supported by IA# 4701
+ ; Reference to $$GETPHARM^BPSUTIL supported by IA# 4146
  ;
 ECME(DFN,IBD) ; function called by STORESP^IBNCPDP
  ; input - DFN - patient IEN for the prescription
@@ -15,16 +22,25 @@ ECME(DFN,IBD) ; function called by STORESP^IBNCPDP
  I IBD("STATUS")="RELEASED" Q $$RELEASE^IBNCPDP4(DFN,.IBD)
  I IBD("STATUS")="SUBMITTED" Q $$SUBMIT^IBNCPDP4(DFN,.IBD)
  I IBD("STATUS")="REOPEN" Q $$REOPEN^IBNCPDP4(DFN,.IBD)
+ I IBD("STATUS")="ELIG" Q $$ELIG^IBNCPDP3(DFN,.IBD)
  D LOG("UNKNOWN")
  Q "0^Cannot determine ECME event status"
  ;
 MATCH(BCID,IBS) ;  right bill, right COB payer
- N IBX,IBHAVE,IBPS
+ N IBX,IBPS,IBFOUND,ECMELEN,BCID1
  S IBPS=$S(IBS=1:"P",IBS=2:"S",IBS=3:"T",1:"P")
- S IBX=0,IBHAVE=0
- F  S IBX=$O(^DGCR(399,"AG",BCID,IBX)) Q:'IBX  S IBHAVE=1 I '$P($G(^DGCR(399,IBX,"S")),U,16),(IBPS=$P($G(^DGCR(399,IBX,0)),U,21)) Q
- I 'IBX,IBHAVE Q ""
- Q +IBX
+ S IBFOUND=0
+ ;
+ ; need to check for ECME# lengths of both 7 digits and 12 digits to be sure
+ F ECMELEN=12,7 D  Q:IBFOUND
+ . I $L(+BCID)>ECMELEN Q     ; quit if too large
+ . S BCID1=BCID
+ . S $P(BCID1,";",1)=$$RJ^XLFSTR(+BCID,ECMELEN,0)
+ . S IBX=0     ; quit when we have found a non-cancelled claim with a payer sequence match
+ . F  S IBX=$O(^DGCR(399,"AG",BCID1,IBX)) Q:'IBX!IBFOUND  I '$P($G(^DGCR(399,IBX,"S")),U,16),(IBPS=$P($G(^DGCR(399,IBX,0)),U,21)) S IBFOUND=IBX Q
+ . Q
+ ;
+ Q IBFOUND
  ;
 BILL(DFN,IBD) ; create bills
  N IBDIV,IBAMT,IBY,IBSERV,IBFAC,IBSITE,IBDRX,IB,IBCDFN,IBINS,IBIDS,IBIFN,IBDFN,PRCASV,IBTRIC,IBLGL,IBLDT2
@@ -58,7 +74,7 @@ BILL(DFN,IBD) ; create bills
  I IBLDT2,$$FMDIFF^XLFDT(IBNOW,IBLDT2,2)<45 S IBY="0^Duplicate billing call" G BILLQ
  ;
  I $$MATCH(IBD("BCID"),IBD("RXCOB")) D   ;cancel the previous bill
- . N IBARR M IBARR=IBD I $$REVERSE^IBNCPDP3(DFN,.IBARR,2)
+ . N IBARR M IBARR=IBD I $$REVERSE^IBNCPDP3(DFN,.IBARR)
  ;
  ; derive minimal variables
  I '$$CHECK^IBECEAU(0) S IBY="-1^IB SITE" G BILLQ
@@ -173,6 +189,7 @@ BILLQ S IBRES=$S(IBY<0:"0^"_$S($L($P(IBY,"^",2)):$P(IBY,"^",2),1:$P(IBY,"^",3)),
  Q IBRES
  ;
 SETCT ; update claims tracking saying bill has been billed
+ N X,Y,D0,DA,DI,DICR,DIE,DIG,DIH,DIU,DIV,DIW,DQ,DR
  S IBTRKRN=+$O(^IBT(356,"ARXFL",IBRXN,IBFIL,0))
  I IBTRKRN S DIE="^IBT(356,",DA=IBTRKRN,DR=".11////^S X=IBIFN;.17///@" D ^DIE
  I IBTRKRN,(+$G(IBD("FILL DATE"))'=$P(^IBT(356,IBTRKRN,0),U,6)) S DIE="^IBT(356,",DA=IBTRKRN,DR=".06////"_IBD("FILL DATE") D ^DIE ; Check Fill Date

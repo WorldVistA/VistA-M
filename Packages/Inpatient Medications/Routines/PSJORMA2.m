@@ -1,5 +1,5 @@
-PSJORMA2 ;BIR/MV-COLLECT DATA FOR ACTIVE IV AND FLUID PENDINGS ;19 Mar 99 / 10:20 AM
- ;;5.0; INPATIENT MEDICATIONS ;**2,15,21,26,58**;16 DEC 97
+PSJORMA2 ;BIR/MV-COLLECT DATA FOR ACTIVE IV AND FLUID PENDINGS ; 3/23/10 2:42pm
+ ;;5.0;INPATIENT MEDICATIONS ;**2,15,21,26,58,237**;16 DEC 97;Build 13
  ;
  ; References to ^PS(52.7 supported by DBIA #2173
  ; References to ^PS(55 supported by DBIA #2191
@@ -53,7 +53,7 @@ PRTIV ; Set up order info on IV label.
  I P(4)="C",'(L#4),P("OPI")="" D L(1) S MARLB(L)=$G(MARLB(L))_"*CAUTION-CHEMOTHERAPY*" D L(1)
  I P(4)'="C",(P("OPI")="") S L=L+1
  I P("OPI")'="" D L(1) D
- . F Y=1:1:$L($P(P("OPI"),"^")," ") D:$L($G(MARLB(L)))>42 L(1) S MARLB(L)=$G(MARLB(L))_$P($P(P("OPI"),"^")," ",Y)_" "
+ . F Y=1:1:$L($P(P("OPI"),"^")," ") D:$L($P($P(P("OPI"),"^")," ",Y)_"  ")+$L($G(MARLB(L)))>42 L(1) S MARLB(L)=$G(MARLB(L))_$P($P(P("OPI"),"^")," ",Y)_" " ;**PSJ*5.0*237-Prevent sentence cutoff
  . S L=L+1
  I (L#5)>0 S X=0 F  Q:X  D
  . D L(0) S MARLB(L)="",L=L+1

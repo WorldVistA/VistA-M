@@ -1,5 +1,5 @@
 IBCEF72 ;WOIFO/SS - FORMATTER AND EXTRACTOR SPECIFIC BILL FUNCTIONS ;8/6/03 10:56am
- ;;2.0;INTEGRATED BILLING;**232,320,349**;21-MAR-94;Build 46
+ ;;2.0;INTEGRATED BILLING;**232,320,349,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -81,13 +81,15 @@ NONVAQ I IBTYPE,IBX="",$P(IBU2,U,12)'="" S IBX=$P(IBU2,U,12) ; pull from 399
  ;Output:
  ; IBDATA with formatted output
 PROVSEQ(IBXIEN,IBSAVE,IBDATA,IBFUNC,IBSEGM) ;
- N IB1,IB2,IBINS,IBFL
- S IBFL=$S(IBFUNC=3!(IBFUNC=4):1,1:0)
+ N IB1,IBINS,IBFL
+ ;S IBFL=$S(IBFUNC=3!(IBFUNC=4):1,1:0)
  F IB1=1,2 D
- . Q:'$$ISINSUR^IBCEF71($G(IBSAVE("PROVINF",IBXIEN,"O",IB1)),IBXIEN)  ;don't create anything if there is no such insurance
- . I IBFL S IBFUNC=$S($O(IBSAVE("PROVINF",IBXIEN,"O",IB1,3,0)):3,1:4)
- . S:$O(IBSAVE("PROVINF",IBXIEN,"O",IB1,IBFUNC,0)) IBDATA(IB1)=$G(IBSAVE("PROVINF",IBXIEN,"O",IB1))
- . I $G(IBSEGM)'="" D:$O(IBSAVE("PROVINF",IBXIEN,"O",IB1,IBFUNC,0)) ID^IBCEF2(IB1,IBSEGM)
+ . I '$$ISINSUR^IBCEF71($G(IBSAVE("PROVINF",IBXIEN,"O",IB1)),IBXIEN) Q  ;don't create anything if there is no such insurance
+ . ;*432/TAZ - Removed. Attending and Rendering can be on same bill now.
+ . ;I IBFL S IBFUNC=$S($O(IBSAVE("PROVINF",IBXIEN,"O",IB1,3,0)):3,1:4)
+ . I '$O(IBSAVE("PROVINF",IBXIEN,"O",IB1,IBFUNC,0)) Q
+ . S IBDATA(IB1)=$G(IBSAVE("PROVINF",IBXIEN,"O",IB1))
+ . I $G(IBSEGM)'="" D ID^IBCEF2(IB1,IBSEGM)
  Q
  ;
 OUTPRVID(IBXIEN,IBXSAVE) ; Extract the outside provider or facility ids

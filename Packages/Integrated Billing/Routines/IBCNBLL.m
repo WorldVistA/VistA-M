@@ -1,10 +1,14 @@
 IBCNBLL ;ALB/ARH - Ins Buffer: LM main screen, list buffer entries ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; DBIA# 642 for call to $$LST^DGMTU
+ ; DBIA# 4433 for call to $$SDAPI^SDAMA301
  ;
 EN ; - main entry point for screen
  N VIEW,AVIEW,DFLG
  S VIEW=1,AVIEW=0 ; default to positive view
+ K ^TMP("IBCNERTQ",$J) ; clear temp. global for eIV real time inquiries
  D EN^VALM("IBCNB INSURANCE BUFFER LIST")
  Q
  ;
@@ -21,6 +25,7 @@ HDR ;  header code for list manager display
  I VIEW=2 S VALM("TITLE")="Negative Insurance Buffer",VALMSG="*Verified    -N/Active  #Unclear  !Unable/Send"
  I VIEW=3 S VALM("TITLE")="Medicare(WNR) Insurance Buffer",VALMSG="*Verified +Act -N/Act ?Await/R #Unclr !Unable/Send"
  I VIEW=4 S VALM("TITLE")="Future Appointments Buffer",VALMSG="!Unable/Send"
+ I VIEW=5 S VALM("TITLE")="e-Pharmacy Buffer",VALMSG="*Verified"     ; IB*2*435
  Q
  ;
 INIT ;  initialization for list manager list
@@ -51,9 +56,14 @@ HELP ;  list manager help
  W !,"   V - IVM"
  W !,"   H - HMS"
  W !,"   C - Contract Services"
+ W !,"   X - e-Pharmacy"           ; IB*2*435
  D PAUSE^VALM1 I 'Y Q
- W !,"eIV Electronic Insurance Verification Status"
- W !!,"The following eIV Status indicators may appear to the left of the patient name:",!
+ ;
+ I VIEW'=5 D     ; IB*2*435
+ . W !,"eIV Electronic Insurance Verification Status"
+ . W !!,"The following eIV Status indicators may appear to the left of the patient name:",!
+ . Q
+ ;
  I VIEW=1 D
  .W !,"      + - eIV payer response indicates this is an active policy."
  .W !,"      ? - Awaiting electronic reply from eIV Payer."
@@ -80,6 +90,11 @@ HELP ;  list manager help
  .W !,"! - eIV was unable to send an inquiry for this entry."
  .W !,"    Corrections required or payer not Active."
  .Q
+ ;
+ I VIEW=5 D      ; IB*2*435
+ . W !,"e-Pharmacy buffer entries are not applicable for e-IV processing."
+ . Q
+ ;
  D PAUSE^VALM1 I 'Y Q
  W !,"When an entry is Processed it is either:"
  W !,"   Accepted - the Buffer entry's data is stored in the main Insurance files."
@@ -192,6 +207,8 @@ SORT ;  set up sort for list screen
  ..I VIEW=2 Q:MWNRFLG=1  Q:SYM'="*"&(SYM'="-")&(SYM'="#")&(SYM'="!")
  ..I VIEW=3 Q:MWNRFLG=0
  ..I VIEW=4 Q:SYM'="!"  Q:APPTNUM<1  M ^TMP($J,"IBCNAPPTS")=^TMP($J,"SDAMA301")
+ ..I VIEW=5 Q:'$P(IB0,U,17)     ; IB*2*435 e-Pharmacy view only
+ ..I VIEW'=5 Q:$P(IB0,U,17)     ; IB*2*435
  ..S ^TMP($J,"IBCNBLLS",IBCSORT1,IBCSORT2,IBBUFDA)=DFLG
  ..K VAIN,IBCSORT1,IBCSORT2
  ..Q
@@ -236,9 +253,9 @@ UPDLN(IBBUFDA,ACTION) ; *** called by any action that modifies a buffer entry, s
  Q
  ;
 SRCCNV(SRC) ; convert Source of Info acronym from field 355.12/.03 into 1 char code
- N CODSTR,I,SRCSTR
- S SRCSTR="INTVW^DMTCH^IVM^PreRg^eIV^HMS^MCR^ICB^CS"
- S CODSTR="I^D^V^P^E^H^M^R^C"
+ N CODSTR,I,SRCSTR,CODE
+ S SRCSTR="INTVW^DMTCH^IVM^PreRg^eIV^HMS^MCR^ICB^CS^eRxEL"
+ S CODSTR="I^D^V^P^E^H^M^R^C^X"
  S CODE=""
- I $G(SRC)'="" F I=1:1:9 S:SRC=$P(SRCSTR,U,I) CODE=$P(CODSTR,U,I) Q:CODE'=""
+ I $G(SRC)'="" F I=1:1:10 S:SRC=$P(SRCSTR,U,I) CODE=$P(CODSTR,U,I) Q:CODE'=""
  Q CODE

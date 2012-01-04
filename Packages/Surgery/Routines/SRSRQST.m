@@ -1,5 +1,5 @@
 SRSRQST ;BIR/MAM,ADM - MAKE OPERATION REQUESTS ;11/01/01  9:40 AM
- ;;3.0; Surgery ;**3,58,67,88,103,105,100,144**;24 Jun 93
+ ;;3.0;Surgery;**3,58,67,88,103,105,100,144,175**;24 Jun 93;Build 6
 MUST S SRLINE="" F I=1:1:80 S SRLINE=SRLINE_"="
  W @IOF W:$D(SRCC) !,?29,$S(SRSCON=1:"FIRST",1:"SECOND")_" CONCURRENT CASE" W !,?20,"OPERATION REQUEST: REQUIRED INFORMATION",!!,SRNM_" ("_SRSSN_")",?65,SREQDT,!,SRLINE,!
 SURG ; surgeon
@@ -10,7 +10,7 @@ CASE K DA,DIC,DD,DO,DINUM,SRTN S X=SRSDPT,DIC="^SRF(",DIC(0)="L",DLAYGO=130 D FI
  N SRLCK S SRLCK=$$LOCK^SROUTL(SRTN)
  S ^SRF(SRTN,8)=SRSITE("DIV"),^SRF(SRTN,"OP")=""
  D NOW^%DTC S SREQDAY=+$E(%,1,12),SRNOCON=1 K DR,DIE
- S DA=SRTN,DIE=130,DR="36////1;Q;.09////"_SRSDATE_";.14////"_SRSDOC_";1.098////"_+SREQDAY_";1.099////"_DUZ_";Q" D ^DIE K DR
+ S DA=SRTN,DIE=130,DR="36////1;Q;.09////"_SRSDATE_";.14////"_SRSDOC_";1.098////"_+SREQDAY_";1.099////"_DUZ_";Q"_";612////"_SRSDATE_";616////"_SRSDATE_";613////"_SREQDAY D ^DIE K DR
 ASURG ; attending surgeon
  K DIR S DIR(0)="130,.164",DIR("A")="Attending Surgeon" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G DEL
  I Y=""!(X["^") W !!,"To make an operation request, Attending Surgeon MUST be selected.  Enter '^' to exit.",! G ASURG

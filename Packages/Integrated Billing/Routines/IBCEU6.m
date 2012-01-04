@@ -1,5 +1,5 @@
 IBCEU6 ;ALB/ESG - EDI UTILITIES FOR EOB PROCESSING ;29-JUL-2003
- ;;2.0;INTEGRATED BILLING;**155,371**;21-MAR-94;Build 57
+ ;;2.0;INTEGRATED BILLING;**155,371,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -36,6 +36,18 @@ COBLINE(IBIFN,IBI,IBXDATA,SORT,IBXTRA) ; Extract all COB data for line item
  ;                        to subscript n in IBXDATA(,"COB",COB,n
  ;                (x = line #-original proc-service dt)
  ;
+ ;IB*2.0*432/TAZ - Added loop to extract data from all associated EOBs.
+ ;
+ N IB,IBBILL,IBCURR
+ S IBCURR=$$COB^IBCEF(IBIFN)
+ S IBMRAF=$$MCRONBIL^IBEFUNC(IBIFN)
+ S IB=$P($G(^DGCR(399,IBIFN,"M1")),U,5,7)
+ ;
+ F B=1:1:3 S IBBILL=$P(IB,U,B) I IBBILL D COB1(IBBILL,.IBXDATA,IBMRAF,IBCURR)
+ Q
+ ;
+COB1(IBIFN,IBXDATA,IBMRAF,IBCURR) ; Process the EOB
+ ;
  N A,B,B1,C,D,IBDATA,IB0,IB00,IBA,IBB,IBDED,IBCOI,IBS,IBN,IBDT
  ;
  ; If multiple EOB's reference this line for the same COB sequence,
@@ -43,7 +55,8 @@ COBLINE(IBIFN,IBI,IBXDATA,SORT,IBXTRA) ; Extract all COB data for line item
  ;
  S A=0
  F  S A=$O(^IBM(361.1,"B",IBIFN,A)) Q:'A  D
- . I '$$EOBELIG^IBCEU1(A) Q   ; eob not eligible for secondary claim
+ . 
+ . I '$$EOBELIG^IBCEU1(A,IBMRAF,IBCURR) Q   ; eob not eligible for secondary claim
  . I '$D(^IBM(361.1,A,15,"AC",IBI)) Q   ; this EOB does not reference VistA line# IBI
  . S IBA=0
  . S IBDATA=$G(^IBM(361.1,A,0))

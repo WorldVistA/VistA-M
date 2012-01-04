@@ -1,5 +1,5 @@
-ONCACD0 ;Hines OIFO/GWB - NAACCR extract driver ;11/04/10
- ;;2.11;Oncology;**9,12,20,24,25,28,29,30,36,37,38,40,41,44,45,47,48,49,50,51,52**;Mar 07, 1995;Build 13
+ONCACD0 ;Hines OIFO/GWB - NAACCR extract driver ;03/14/11
+ ;;2.11;Oncology;**9,12,20,24,25,28,29,30,36,37,38,40,41,44,45,47,48,49,50,51,52,53**;Mar 07, 1995;Build 31
  ;
 EN1(DEVICE,STEXT) ;Entry point
 EN2 N ACO,BDT,DATE,DIAGYR,EDT,EXTRACT,NCDB,ONCSPIEN,QUEUE,SDT,STAT,STAT1,STAT2,YESNO
@@ -7,7 +7,7 @@ EN2 N ACO,BDT,DATE,DIAGYR,EDT,EXTRACT,NCDB,ONCSPIEN,QUEUE,SDT,STAT,STAT1,STAT2,Y
  S DEVICE=$G(DEVICE,0),STEXT=$G(STEXT,0),EXT=""
  S (EDT,EXTRACT,DATE,OUT,QUEUE,SDT,STAT)=0
  ;D DISPLAY
- I (STEXT=0)!(STEXT=2)!(STEXT=3) S EXTRACT=$O(^ONCO(160.16,"B","NCDB EXTRACT V12",0))
+ I (STEXT=0)!(STEXT=2)!(STEXT=3) S EXTRACT=$O(^ONCO(160.16,"B","NCDB EXTRACT V12.1",0))
  I STEXT=1 D GETREC(.EXTRACT,.OUT)
  I 'OUT S STAT=$$GETHOSP
  I 'STAT S OUT=1
@@ -44,18 +44,18 @@ DISPLAY ;Display on-line instructions
  ;
 GETREC(EXTRACT,OUT) ;Select VACCR or STATE record layout
  W !!," Available record layouts:",!
- W !,"  1) VACCR Record Layout v12 (VA Registry)"
- W !,"  2) NAACCR State Record Layout v12"
+ W !,"  1) VACCR Record Layout v12.1 (VA Registry)"
+ W !,"  2) NAACCR State Record Layout v12.1"
  W !
  N DIR,X,Y
- S DIR(0)="SAO^1:VACCR Record Layout v12;2:NAACCR State Record Layout v12"
+ S DIR(0)="SAO^1:VACCR Record Layout v12.1;2:NAACCR State Record Layout v12.1"
  S DIR("A")=" Select record layout: "
  S DIR("?")="Select the record layout to use"
  D ^DIR
  I $D(DIRUT) S OUT=1 K DIRUT Q
  I +Y<1 S OUT=1 Q
- I Y=1 S EXT="VACCR",EXTRACT=$O(^ONCO(160.16,"B","VACCR EXTRACT V12",0))
- I Y=2 S EXT="STATE",EXTRACT=$O(^ONCO(160.16,"B","STATE EXTRACT V12",0))
+ I Y=1 S EXT="VACCR",EXTRACT=$O(^ONCO(160.16,"B","VACCR EXTRACT V12.1",0))
+ I Y=2 S EXT="STATE",EXTRACT=$O(^ONCO(160.16,"B","STATE EXTRACT V12.1",0))
  Q
  ;
 GETHOSP() ;Facility Identification Number (FIN)
@@ -266,6 +266,7 @@ GETDATE(DATE,OUT) ;Select Diagnosis Year
  S (DATE,DIAGYR)=Y
  S DATE=DATE-1700
  S DATE=DATE_"0000"
+ S DATE=DATE-1
  K DIR
  W !
  W !,?6,"Select one of the following:"

@@ -1,5 +1,5 @@
 IBCNEDE1 ;DAOU/DAC - eIV INSURANCE BUFFER EXTRACT ;04-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,271,416,438,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
@@ -43,6 +43,9 @@ EN ; Loop through designated cross-references for updates
  .. S ISYMBOL=$$SYMBOL^IBCNBLL(IEN) ; Insurance buffer symbol
  .. I (ISYMBOL'=" ")&(ISYMBOL'="!") Q
  .. ;
+ .. ; Don't extract ePharmacy buffer entries - IB*2*435
+ .. I +$P($G(^IBA(355.33,IEN,0)),U,17) Q
+ .. ;
  .. ; Get the eIV STATUS IEN and quit for response related errors
  .. S STATIEN=+$P($G(^IBA(355.33,IEN,0)),U,12)
  .. I ",11,12,15,"[(","_STATIEN_",") Q  ; Prevent update for response errors
@@ -79,14 +82,16 @@ EN ; Loop through designated cross-references for updates
  .. S INSNAME=$P($G(^IBA(355.33,IEN,20)),U)
  .. I INSNAME["MEDICARE",$G(MCAREFLG(DFN)) Q
  .. ;
- .. ; If freshness overide flag is set, file to TQ and quit
+ .. ; make sure that entries have pat. relationship set to "self"
+ .. D SETREL(IEN)
+ .. ; make sure that service type codes are set
+ .. I '+$G(^IBA(355.33,IEN,80)) D SETSTC^IBCNERTQ(IEN)
+ .. ;
+ .. ; If freshness override flag is set, file to TQ and quit
  .. I OVRFRESH=1 D  Q
  ... NEW DIE,X,Y,DISYS
  ... S FDA(355.33,IEN_",",.13)="" D FILE^DIE("","FDA") K FDA
  ... S:INSNAME["MEDICARE" MCAREFLG(DFN)=1 D TQ
- .. ;
- .. ; If ADDTQ^IBCNEUT5 is 1 set TQ, otherwise stop processing that entry
- .. I '$$ADDTQ^IBCNEUT5(DFN,PIEN,SRVICEDT,FRESHDAY) Q
  .. ; Check the existing TQ entries to confirm that this buffer IEN is
  .. ; not included
  .. S (TQDT,TQIENS)="",TQOK=1
@@ -137,4 +142,9 @@ SET(BUFFIEN,OVRFRESH,PASSBUF,SID1) ; Set data and check if set already
  S TQIEN=$$SETTQ^IBCNEDE7(DATA1,DATA2,ORIG,$G(OVRFRESH)) ; File TQ entry
  I TQIEN'="" S CNT=CNT+1 ; If filed increment count
  ;
+ Q
+ ;
+SETREL(IEN) ; set pat. relationship to "self"
+ N DA,DIE,DR,X,Y
+ I $P($G(^IBA(355.33,IEN,60)),U,14)="" S DIE="^IBA(355.33,",DA=IEN,DR="60.14///SELF" D ^DIE
  Q

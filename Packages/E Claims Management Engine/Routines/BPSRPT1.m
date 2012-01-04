@@ -1,5 +1,5 @@
 BPSRPT1 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8**;JUN 2004;Build 29
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -91,6 +91,9 @@ PROCESS(BP59) ;
  ;
  ;Get PATIENT - ptr to #2
  S BPDFN=+$P($G(^BPST(BP59,0)),U,6)
+ ; 
+ ; Skip eligibility verification transactions
+ I $P($G(^BPST(BP59,0)),U,15)="E" G XPROC
  ;
  ;Check for correct BPS Pharmacy (DIVISION)
  I $G(BPPHARM)=1,$$CHKPHRM(BP59)=0 G XPROC
@@ -126,6 +129,9 @@ PROCESS(BP59) ;
  ;if CLOSED
  I BPRTYPE=7,'$$CLSCLM(BP59) G XPROC  ;exclude open claims
  ;I BPRTYPE=7,BPSTATUS'["REJECTED" G XPROC  ;exclude non-rejected closed claims
+ ;
+ ;if Spending Account Report, check Pricing Segment for data
+ I BPRTYPE=8,'$$PRICING^BPSRPT5(BP59) G XPROC
  ;
  ;if Recent Transactions, exclude closed claims
  I BPRTYPE=5,$$CLSCLM(BP59) G XPROC
@@ -254,12 +260,13 @@ PAUSE2 N X
  ;
  ;Get ECME#
  ;
- ; Input Variable: BP59 - Lookup to BPS TRANSACTION (#59)
- ; Returned value -> Last 7 digits of ECME#
- ; 
-ECMENUM(BP59) N BPY1,BPY2
- S BPY1=(BP59\1),BPY2=$E(BPY1,$L(BPY1)-6,99) ;last 7 digits
- Q BPY2
+ ;BP59 - ptr to 9002313.59
+ ;output :
+ ;ECME number from 9002313.02
+ ; 7 or 12 digits of the prescription IEN file 52
+ ; or 12 spaces
+ECMENUM(BP59) ;*/
+ Q $$ECMENUM^BPSSCRU2(BP59)
  ;
  ;Convert FM date or date.time to displayable (mm/dd/yy HH:MM) format
  ;

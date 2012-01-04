@@ -1,6 +1,9 @@
 IBNCPDPE ;DALOI/AAT - NCPDP BILLING EVENTS REPORT ;3/6/08  16:18
- ;;2.0;INTEGRATED BILLING;**276,342,347,363,384**;21-MAR-94;Build 74
+ ;;2.0;INTEGRATED BILLING;**276,342,347,363,384,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; Reference to $$MULTPHRM^BPSUTIL supported by IA# 4146
+ ; Reference to DIC^PSODI supported by IA# 4858
  ;
 DATE ;
  S (IBBDT,IBEDT)=DT
@@ -27,7 +30,7 @@ MODE ;
  I IBM1="P" S DIC="^DPT(",DIC(0)="AEQMN" D ^DIC Q:$D(DUOUT)  S IBPAT=$S(Y>0:+Y,1:0) I 'IBPAT W "   ALL" S IBM1="A"
  I IBM1="R" S PSOFILE=52,DIC="^PSRX(",DIC(0)="AEQMN" D DIC^PSODI(PSOFILE,.DIC) Q:$D(DUOUT)  S IBRX=$S(Y>0:+Y,1:0) I 'IBRX W "   ALL" S IBM1="A"
  K PSODIY
- I IBM1="E" S DIR(0)="FO^7:7^I X'?1.7N W !!,""Cannot contain alpha characters"" K X",DIR("A")="Enter ECME #" D ^DIR Q:$D(DUOUT)  S IBECME=$S(+Y>0:Y,1:0) I 'IBECME W "   ALL" S IBM1="A"
+ I IBM1="E" S DIR(0)="FO^1:12^I X'?1.12N W !!,""Cannot contain alpha characters"" K X",DIR("A")="Enter ECME #" D ^DIR Q:$D(DUOUT)  S IBECME=$S(+Y>0:Y,1:0) I 'IBECME W "   ALL" S IBM1="A"
  S IBM2="B"
  ; if "All"
  I IBM1="A" D  Q:$G(IBQ)

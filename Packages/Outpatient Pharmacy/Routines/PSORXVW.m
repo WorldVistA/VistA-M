@@ -1,5 +1,5 @@
 PSORXVW ;BHAM ISC/SAB - listman view of a prescription ;5/25/05 2:10pm
- ;;7.0;OUTPATIENT PHARMACY;**14,35,46,96,103,88,117,131,146,156,185,210,148,233,260,264,281**;DEC 1997;Build 41
+ ;;7.0;OUTPATIENT PHARMACY;**14,35,46,96,103,88,117,131,146,156,185,210,148,233,260,264,281,359**;DEC 1997;Build 27
  ;External reference to File ^PS(55 supported by DBIA 2228
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference ^PSDRUG( supported by DBIA 221
@@ -8,16 +8,16 @@ PSORXVW ;BHAM ISC/SAB - listman view of a prescription ;5/25/05 2:10pm
  ;External reference to ^DPT supported by DBIA 10035
  ;External reference to ^PS(50.606 supported by DBIA 2174
  ;External reference to GMRADPT supported by DBIA 10099
+ ;External reference to $$BADADR^DGUTL3 supported by DBIA 4080
  ;
  S PS="VIEW"
 A1 ; - Prescription prompt
  S DIR(0)="FAO^1:30",DIR("A")=PS_" PRESCRIPTION: ",(DIR("?"),DIR("??"))="^D HLP^PSORXVW1"
- W ! D ^DIR I X=""!$D(DIRUT) G KILL
+ W ! D ^DIR I X=""!$D(DIRUT) K:$G(PS)="VIEW" DA K PS G KILL
  S X=$$UP^XLFSTR(X),QUIT=0
  I $E(X,1,2)'="E." S (DA,PSOVDA)=+$$LKP^PSORXVW1(X) I DA<0 G A1
- I $E(X,1,2)="E." D  I QUIT G A1
- . I $L(X)'=9 W !?5,"The ECME# must be 7 digits long!",$C(7) S QUIT=1 Q
- . S (DA,PSOVDA)=+$$RXNUM^PSOBPSU2($E(X,3,9)) I DA<0 W " ??" S QUIT=1
+ I $E(X,1,2)="E." D  I QUIT G A1   ; esg 12/7/10 - ECME# lookup - PSO*7*359
+ .S (DA,PSOVDA)=+$$RXNUM^PSOBPSU2($E(X,3,$L(X))) I DA<0 W " ??",$C(7) S QUIT=1
  ;
 DP S (PSODFN,DFN)=+$P(^PSRX(DA,0),"^",2) S PSOLOUD=1 D:$P($G(^PS(55,PSODFN,0)),"^",6)'=2 EN^PSOHLUP(PSODFN) K PSOLOUD
  D ICN^PSODPT(PSODFN)
@@ -107,6 +107,7 @@ PTST S $P(RN," ",25)=" ",PTST=$S($G(^PS(53,+$P(RX0,"^",3),0))]"":$P($G(^PS(53,+$
  S VALM("TITLE")="Rx View "_"("_$P("Error^Active^Non-Verified^Refill^Hold^Non-Verified^Suspended^^^^^Done^Expired^Discontinued^Deleted^Discontinued^Discontinued (Edit)^Provider Hold^","^",ST+2)_")"
  S:$P($G(^PSRX(DA,"PKI")),"^") VALMSG="Digitally Signed Order"
  D EN^PSOORAL,KILL I $G(PS)="VIEW" G PSORXVW
+ K:$G(PS)="VIEW" DA K PS
  Q
  ;
 KILL K ^TMP("PSOAL",$J),PSOAL,IEN,^TMP("PSOHDR",$J) I $G(PS)="VIEW" K DA

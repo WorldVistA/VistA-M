@@ -1,5 +1,6 @@
-IBCE835A ;ALB/ESG - 835 EDI EOB PROCESSING CONTINUED ;30-APR-03
- ;;2.0;INTEGRATED BILLING;**135**;21-MAR-94
+IBCE835A ;ALB/ESG/PJH - 835 EDI EOB PROCESSING CONTINUED ; 7/15/10 7:02pm
+ ;;2.0;INTEGRATED BILLING;**135,431**;21-MAR-94;Build 106
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ; Continue processing of IBCE835 since that routine grew too large
  ;
@@ -73,3 +74,26 @@ IBCE835A ;ALB/ESG - 835 EDI EOB PROCESSING CONTINUED ;30-APR-03
  ;
  Q
  ;
+46(IBD) ; Process service line adjustment data
+ ;
+ ; INPUT:
+ ;   IBD must be passed by reference = entire message line
+ ;
+ ; OUTPUT:
+ ;   ^TMP("IBMSG",$J,"CLAIM",claim #,"D",46,msg seq #)=
+ ;   ^TMP("IBMSG",$J,"CLAIM",claim #,"D1",msg seq #,46)=
+ ;                                       claim status raw data
+ ;    IBD("LINE") = The last line # populated in the message
+ ;
+ N IBCLM
+ S IBCLM=$$GETCLM^IBCE277($P(IBD,U,2))
+ S IBD("LINE")=$G(IBD("LINE"))+1
+ ;
+ I '$D(^TMP("IBMSG",$J,"CLAIM",IBCLM,"D",46)) D
+ . S ^TMP("IBMSG",$J,"CLAIM",IBCLM,IBD("LINE"))="Line level adjustments exist for this claim"
+ . S IBD("LINE")=IBD("LINE")+1
+ ;
+ S ^TMP("IBMSG",$J,"CLAIM",IBCLM,"D",46,IBD("LINE"))="##RAW DATA: "_IBD
+ S ^TMP("IBMSG",$J,"CLAIM",IBCLM,"D1",IBD("LINE"),46)="##RAW DATA: "_IBD
+ ;
+ Q

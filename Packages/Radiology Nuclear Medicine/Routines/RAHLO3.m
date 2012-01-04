@@ -1,5 +1,5 @@
 RAHLO3 ;HIRMFO/GJC-Process data set from the bridge program ;11/18/97  12:13
- ;;5.0;Radiology/Nuclear Medicine;**4,81,84**;Mar 16, 1998;Build 13
+ ;;5.0;Radiology/Nuclear Medicine;**4,81,84,47**;Mar 16, 1998;Build 21
  ;
  ;Integration Agreements
  ;-----------------------
@@ -9,7 +9,7 @@ RPTSTAT ; Determine the status to set this report to.
  K RARPTSTS S:$D(RAESIG) RARPTSTS="V" Q:$D(RARPTSTS)
  ; $D(RAESIG)=0 now figure out report status
  N RASTAT S RASTAT=$E($G(^TMP("RARPT-REC",$J,RASUB,"RASTAT")))
- I RASTAT="A" S RARPTSTS="V" Q
+ I RASTAT="A"!(RASTAT="C") S RARPTSTS="V" Q  ;v2.4 "C" (correction)
  I RASTAT]"",("FR"[RASTAT) D
  . S:RASTAT="F" RARPTSTS="V" Q:$D(RARPTSTS)
  . I $G(RATELE) S RARPTSTS="R" Q  ;Always allow 'Released/Unverified' reports for teleradiology
@@ -100,7 +100,7 @@ VFIER ; Check if the RAVERF string is a partial match to an entry in file
  Q
 ESIG ; Added for COTS E-Sig capability
  ;
- Q:"FA"'[^TMP(RARRR,$J,RASUB,"RASTAT")!('$D(^("RAVERF")))!($D(^("RAESIG")))
+ Q:"FAC"'[^TMP(RARRR,$J,RASUB,"RASTAT")!('$D(^("RAVERF")))!($D(^("RAESIG")))
  S RADFN=+$G(^TMP(RARRR,$J,RASUB,"RADFN"))
  S RADTI=+$G(^TMP(RARRR,$J,RASUB,"RADTI"))
  S RADIV=$P($G(^RADPT(RADFN,"DT",RADTI,0)),"^",3)

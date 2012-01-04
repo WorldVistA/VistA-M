@@ -1,5 +1,5 @@
-ONCOAIP ;Hines OIFO/GWB - [EE Abstract Edit Primary] ;11/08/10
- ;;2.11;ONCOLOGY;**1,5,6,7,11,13,15,16,18,19,22,24,27,28,32,33,34,35,36,37,38,39,40,42,43,44,45,46,47,48,49,50,51,52**;Mar 07, 1995;Build 13
+ONCOAIP ;Hines OIFO/GWB - [EE Abstract Edit Primary] ;03/08/11
+ ;;2.11;ONCOLOGY;**1,5,6,7,11,13,15,16,18,19,22,24,27,28,32,33,34,35,36,37,38,39,40,42,43,44,45,46,47,48,49,50,51,52,53**;Mar 07, 1995;Build 31
  ;
 ED ;[EE Abstract Edit Primary]
  W @IOF,!
@@ -221,12 +221,13 @@ AB ;Abstract Status
  S SECTION="Case Administration" D SECTION
  N DI,DIC,DR,DA,DIQ,ONC
  S DIC="^ONCO(165.5,"
- S DR="90:92;198;199;155;157.1;236"
+ S DR="90:92;198;199;155;157.1;236;244"
  S DA=D0,DIQ="ONC" D EN^DIQ1
  S X=ONC(165.5,D0,91) D UCASE^ONCPCI S ONC(165.5,D0,91)=X
  S X=ONC(165.5,D0,157.1) D UCASE^ONCPCI S ONC(165.5,D0,157.1)=X
  W !," Abstract Status.............: ",ONC(165.5,D0,91)
  W:ONC(165.5,D0,236)'="" !," Date Case Initiated.........: ",ONC(165.5,D0,236)
+ W:ONC(165.5,D0,244)'="" !," Initiated By................: ",ONC(165.5,D0,244)
  W !," Date of First Contact.......: ",ONC(165.5,D0,155)
  W !," Date Case Completed.........: ",ONC(165.5,D0,90)
  W !," Elapsed Months to Completion: ",ONC(165.5,D0,157.1)

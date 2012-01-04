@@ -1,7 +1,8 @@
 RCDPBTLM ;WISC/RFJ - bill transactions List Manager top routine ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,148,153,168,169,198,247**;Mar 20, 1995;Build 5
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**114,148,153,168,169,198,247,271**;Mar 20, 1995;Build 29
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
+ ; Reference to $$REC^IBRFN supported by DBIA 2031
  ;
  ;  called from menu option (19)
  ;
@@ -192,11 +193,11 @@ SELECME() ;
  ; until a valid ECME# is entered or until the user enters a "^" or null value
  ; output - returns the IEN of the record entry in the ACCOUNT RECEIVABLE file (#430) or "??"
  N RCECME,RCBILL,DIR,DIRUT,Y
- S DIR(0)="FO^7:7^I X'?1.7N W !!,""Cannot contain alpha characters"" K X"
+ S DIR(0)="FO^1:12^I X'?1.12N W !!,""Cannot contain alpha characters"" K X"
  S DIR("A")="Select ECME#"
 RET D ^DIR I $D(DIRUT) Q 0
  S RCECME=$S(+Y>0:Y,1:0)
- S RCBILL=$$REC^IBRFN(RCECME)
+ S RCBILL=$$REC^IBRFN(RCECME)    ; IA 2031
  I RCBILL<0 W !!,"??" G RET
  E  W !!,$P($G(^PRCA(430,+RCBILL,0)),"^")," "
  Q RCBILL

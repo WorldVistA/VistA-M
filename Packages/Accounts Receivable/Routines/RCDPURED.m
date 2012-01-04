@@ -1,6 +1,9 @@
-RCDPURED ;WISC/RFJ-file 344 receipt/payment dd calls ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,169,174,196,202,244,268**;Mar 20, 1995;Build 2
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPURED ;WISC/RFJ - file 344 receipt/payment dd calls ;1 Jun 99
+ ;;4.5;Accounts Receivable;**114,169,174,196,202,244,268,271**;Mar 20, 1995;Build 29
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; Reference to $$REC^IBRFN supported by DBIA 2031
+ ;
  Q
  ;
  ;
@@ -83,7 +86,7 @@ PNORBILL ;  called by the input transform in receipt file 344, transaction
  ;  multiple (field 1), patient name or bill number (sub field .09)
  I $L(X)>20!($L(X)<1) K X Q
  ;
- N DFN,RCBILL,RCINPUT,RCOUTPUT,Y,RCTYP,DIC
+ N DFN,RCBILL,RCINPUT,RCOUTPUT,Y,RCTYP,DIC,RCDISP
  ;
  S RCINPUT=$TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
  ;  try and lookup on bill number
@@ -95,12 +98,12 @@ PNORBILL ;  called by the input transform in receipt file 344, transaction
  ;
  ;  patient not found, type of payment = check/mo
  I +$G(Y)<0,($P($G(^RCY(344,DA(1),0)),"^",4)=4) D
- .   S (X,Y)=$$REC^IBRFN(RCINPUT,.RCTYP),(RCBILL,X)=X_";PRCA(430,"
+ .   S (X,Y)=$$REC^IBRFN(RCINPUT,.RCTYP,.RCDISP),(RCBILL,X)=X_";PRCA(430,"    ; DBIA 2031
  .   I Y>0 D
  .   .   N DIR,DIQ2,DIRUT,DTOUT,DUOUT,RCPRM
  .   .   S RCTYP=$G(RCTYP,1)
  .   .   S RCPRM=$S(RCTYP=1:"TRICARE reference number",RCTYP=2:"ECME Rx reference number",RCTYP=3:"prescription number",1:"reference number")
- .   .   S DIR("A")="Is this "_RCPRM_" - "_RCINPUT
+ .   .   S DIR("A")="Is this "_RCPRM_" - "_$S($G(RCDISP)'="":RCDISP,1:RCINPUT)
  .   .   S DIR("B")="No",DIR("A",1)=" "
  .   .   S DIR(0)="Y^O" D ^DIR S:'Y Y=-1
  .   .   I Y'>0 Q

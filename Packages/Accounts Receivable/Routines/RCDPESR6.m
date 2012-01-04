@@ -1,5 +1,5 @@
-RCDPESR6 ;ALB/TMK - Server auto-update file 344.4 - EDI Lockbox ;10/29/02
- ;;4.5;Accounts Receivable;**173,214,208,230,252**;Mar 20, 1995;Build 63
+RCDPESR6 ;ALB/TMK/DWA - Server auto-update file 344.4 - EDI Lockbox ; 10/29/02
+ ;;4.5;Accounts Receivable;**173,214,208,230,252,269,271**;Mar 20, 1995;Build 29
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 UPD3444(RCRTOT) ; Add EOB detail to list in 344.41 for file 344.4 entry RCRTOT
@@ -11,7 +11,7 @@ UPD3444(RCRTOT) ; Add EOB detail to list in 344.41 for file 344.4 entry RCRTOT
  . I RCEOB>0 Q:$D(^RCY(344.4,RCRTOT,1,"AC",RCEOB,RC))
  . I RCEOB'>0,$S($P(RC1,U,2)'="":$D(^RCY(344.4,RCRTOT,1,"AD",$P(RC1,U,2),RC)),1:0) Q
  . ; Disregard ECME reject related EEOBs
- . I RCEOB'>0,'$P(RC2,U,2),$P(RC1,U,2)?1.7N,$$REJECT^IBNCPDPU($P(RC1,U,2),$P(RC1,U,3)) Q
+ . I RCEOB'>0,'$P(RC2,U,2),$P(RC1,U,2)?1.12N,$$REJECT^IBNCPDPU($P(RC1,U,2),$P(RC1,U,3)) Q    ; esg 9/7/10 ECME# 12 digits
  . S DA(1)=RCRTOT,X=RC,DIC="^RCY(344.4,"_DA(1)_",1,",DIC(0)="L",DLAYGO=344.41
  . S DIC("DR")=$S($G(RCEOB)>0:".02////"_RCEOB,1:".05////"_$P(RC1,U,2)_";.07////1")
  . I $P(RC2,U,2)'="" S DIC("DR")=DIC("DR")_$S($L(DIC("DR")):";",1:"")_".03///"_$P(RC2,U,2) ; amt
@@ -80,11 +80,29 @@ ERATOT(RCTDA,RCERR) ; File ERA TOTAL rec in 344.4 from entry RCTDA in 344.5
 ERATOTQ Q RCDA
  ;
 UPDCON(RCRTOT) ; Add contact information to file 344.4 for an ERA
- N DIE,DA,DR,Z,Q,X,Y
+ N DIE,DA,DR,Z,Q,X,Y,A,TYPE
  S Z=$G(^TMP($J,"RCDPEOB","CONTACT"))
  Q:$TR($P(Z,U,3,9),U)=""
  S DA=RCRTOT,DIE="^RCY(344.4,",DR=""
- F Q=3:1:9 S DR=DR_$S(DR'="":";3.0",1:"3.0")_(Q-2)_"///"_$S($P(Z,U,Q)="":"@",1:"/"_$P(Z,U,Q))
+ ;
+ ; If old format do
+ I +$P($G(^TMP($J,"RCDPEOB","HDR")),U,16)'>0 D
+ . F Q=2:1:8 S DR=DR_$S(DR'="":";3.0",1:"3.0")_(Q-1)_"///"_$S($P(Z,U,Q)="":"@",1:"/"_$P(Z,U,Q))
+ ;
+ ; If new format (5010) do
+ I +$P($G(^TMP($J,"RCDPEOB","HDR")),U,16)>0 D
+ . N CNT S CNT=0
+ . I $P(Z,U,2)'="" S DR="3.01////"_$P(Z,U,2)
+ .I $P(Z,U,3)'="" S DR=DR_$S(DR'="":";3.02",1:"3.02")_"////"_$P(Z,U,3)_";3.03////TE",CNT=CNT+1
+ .I $P(Z,U,4)'="" D
+ ..S:CNT=1 DR=DR_$S(DR'="":";3.04",1:"3.04")_"////"_$P(Z,U,4)_";3.05////FX"
+ ..S:CNT=0 DR=DR_$S(DR'="":";3.02",1:"3.02")_"////"_$P(Z,U,4)_";3.03////FX"
+ ..S CNT=CNT+1
+ .I $P(Z,U,5)'="" D
+ ..S:CNT=2 DR=DR_$S(DR'="":";3.06",1:"3.06")_"////"_$P(Z,U,5)_";3.07////EM"
+ ..S:CNT=1 DR=DR_$S(DR'="":";3.04",1:"3.04")_"////"_$P(Z,U,5)_";3.05////EM"
+ ..S:CNT=0 DR=DR_$S(DR'="":";3.02",1:"3.02")_"////"_$P(Z,U,5)_";3.03////EM"
+ . I $P(Z,U,6)'="" S DR=DR_$S(DR'="":";5.01",1:"5.01")_"////"_$P(Z,U,6)
  D ^DIE
  Q
  ;

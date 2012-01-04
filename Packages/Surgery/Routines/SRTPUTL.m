@@ -1,5 +1,5 @@
 SRTPUTL ;BIR/SJA - UTILITY ROUTINE ;02/27/2008
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+ ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
  ;
  ; Reference to EN1^GMRVUT0 supported by DBIA #1446
  ;
@@ -30,7 +30,7 @@ Y Q:'$D(X)  I X'?.N1"Y"&(X'?.N1"y"),(+X'=X) K X Q
  S:X["y" X=+X_"Y"
  Q
 HLA ; called by input transform of the HLA TYPING fields
- N SRX S SRX=X K:'(X?.4N.2(1",".4N))!'($TR(X,",")) X S:SRX="NS"!(SRX="ns") X="NS"
+ N SRX S SRX=X K:'(X?.4N.3(1","1.4N)) X S:SRX="NS"!(SRX="ns") X="NS"
  Q
 PVR ; called by input transform of the PVR VASODILATION fields
  N SRX,SRY S SRX=X K:+X'=X!(X>9.9)!(X<0)!(X?.E1"."2.N) X S:SRX="NS"!(SRX="ns") X="NS"

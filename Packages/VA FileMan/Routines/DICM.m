@@ -1,5 +1,5 @@
-DICM ;SFISC/GFT,XAK,TKW-MULTIPLE LOOKUP FOR FLDS WHICH MUST BE TRANSFORMED ;4AUG2007
- ;;22.0;VA FileMan;**4,20,31,40,149,159**;Mar 30, 1999;Build 8
+DICM ;SFISC/GFT,XAK,TKW-MULTIPLE LOOKUP FOR FLDS WHICH MUST BE TRANSFORMED ;28SEP2010
+ ;;22.0;VA FileMan;**4,20,31,40,149,159,165**;Mar 30, 1999;Build 32
  ;Per VHA Directive 2004-038, this routine should not be modified.
  I '$D(DICR(1)),DIC(0)'["T" N DICR S DICR=0
  I $A(X)=34,X?.E1"""" G N
@@ -10,7 +10,7 @@ R N DIFLAGS S DIFLAGS="4l"_$P("M^",U,DIC(0)["M")
  N DIFORCE D
  . S DIFORCE=0 I DIC(0)'["M"!($D(DID)) S DIFORCE=1
  . S DIFORCE(0)=$S(DIC(0)'["M":DINDEX,$D(DID):DID,1:"*"),DIFORCE(1)=1
- F  D 1 I DINDEX=""!(Y>0)!($G(DTOUT))!($G(DIROUT)) Q
+ F  D 1 I DINDEX=""!(Y>0)!($G(DTOUT))!($G(DIROUT)) Q  ;LOOP THRU ALL THE INDEXES!
  G 2
  ;
 1 N DS,%Y,DIV
@@ -18,15 +18,15 @@ R N DIFLAGS S DIFLAGS="4l"_$P("M^",U,DIC(0)["M")
  E  S Y=$O(^DD(+DO(2),0,"IX",DINDEX,0)) S:Y="" Y=-1 S %Y=+$O(^(Y,0))
  I Y=-1,DINDEX="B" S Y=+DO(2),%Y=.01
  S:Y="" Y=-1 S:%Y="" %Y=-1
- I $D(DICR(U,Y,%Y,DINDEX)) S Y=-1
- E  I %Y=.01,DINDEX'="B",Y=+DO(2),$D(DICR(U,Y,%Y,"B")),$G(DINDEX(1,"TRANCODE"))="" S Y=-1
+ I $D(DICR(U,Y,%Y,DINDEX)) S Y=-1 ;HAVE WE ALREADY TRIED THIS INDEX?
+ E  I %Y=.01,DINDEX'="B",Y=+DO(2),$D(DICR(U,Y,%Y,"B")),$G(DINDEX(1,"TRANCODE"))="" S Y=-1 ;!
  I Y'<0 D
  . S DS=$G(^DD(Y,%Y,0)) I DS="" S Y=-1 Q
  . S %=DINDEX,DICR(U,Y,%Y,DINDEX)=0
  . I $D(^DD(Y,%Y,7)) D RS K DS X ^(7) Q
  . I $G(DINDEX("IXTYPE"))="S" D A,SOU^DICM1,D Q:Y>0  S Y=-1 Q
  . S DIX=Y,Y=$P(DS,U,2)
- . S Y=$S(Y["P":"P",Y["D":"D",Y["S":"S",Y["V":"V",1:"")
+ . S Y=$S(Y["P":"P",Y["D":"D",Y["S":"S",Y["V":"V",1:"") ;TRANSFORMATION WILL BE NECESSARY IF X-REF'D FIELD IS DATE, POINTER, SET OR VARIABLE-POINTER
  . I Y]"" D A D:'Y ^DICM1,D Q:Y>0  S Y=-1 Q
  . I $G(DINDEX(1,"TRANCODE"))]"" S Y="T" D A,^DICM1 N DITRANX S DITRANX=1 D D
  . Q:Y>0  S Y=-1 Q
@@ -35,11 +35,11 @@ R N DIFLAGS S DIFLAGS="4l"_$P("M^",U,DIC(0)["M")
  . D NXTINDX^DICF2(.DINDEX,.DIFORCE,.DIFILEI,DIFLAGS,.DIV,"*") Q
  Q
  ;
-2 D D^DIC0 S %=D
+2 D D^DIC0 S %=D ;HERE'S WHERE WE TRY ALTERNATE LOOKUPS: UPPER CASE, COMMA-PIECING, TRUNCATE LONG INPUT
  G K:Y>0!($G(DIROUT))
- I X?.E1L.E,DIC(0)'["X" D  G K:$G(DIROUT)
+ I X?.E1L.E,DIC(0)'["X" D  G K:$G(DIROUT) ;CONVERT TO UPPER-CASE
  . D % N DIFILEI,DINDEX
- . S DIC(0)=$TR(DIC(0),"L"),X=$$UP^DILIBF(X) S:$G(DILONGX) DICR(DICR,"ORG")=X
+ . S DIC(0)=$TR(DIC(0),"L"),X=$$UP^DILIBF(X) S:$G(DILONGX) DICR(DILONGX,"ORG")=X
  . D DIC Q
  I Y'>0,X["," S DS="",DIX=$P(X,",") I DIC(0)'["X",$L(DIX)<31 D  G K:$G(DIROUT) ;COMMA-PIECING
  . F %=2:1 S DD=$P(X,",",%) I DD'["""" D  Q:DD=""
@@ -50,23 +50,23 @@ R N DIFLAGS S DIFLAGS="4l"_$P("M^",U,DIC(0)["M")
  . Q:DS=""  S %=D
  . D % S X=DIX N DILONGX
  . S DS="S %=$P(^(0),U)"_DS,DIC(0)=DIC(0)_"D" D 7 Q
- I Y'>0,$L(X)>30 D
- . N DILONGX S DILONGX=1
- . S %=D D % S Y="DICR("_DICR_")",DICR(DICR,"ORG")=X
+ I Y'>0,$L(X)>30 D  ;LONG DATA
+ . N DILONGX
+ . S %=D D % S DILONGX=DICR,Y="DICR("_DICR_")",DICR(DICR,"ORG")=X
  . S DS=$S(DIC(0)["X":"I DIVAL="_Y,1:"I '$L($P(DIVAL,"_Y_"))")
  . S:DIC(0)["O"&(DIC(0)'["E") DS=DS_",'$L($P(DIVAL,"_Y_",2))"
- . D 7 I Y>0!(X'?.E1L.E)!(DIC(0)["X") K DILONGX Q
+ . D 7 I Y>0!(X'?.E1L.E)!(DIC(0)["X") Q
  . S %=D D % S (X,DICR(DICR,"ORG"))=$$UP^DILIBF(X)
  . S Y="DICR("_DICR_",""ORG"")"
  . S DS="I '$L($P(DIVAL,"_Y_"))" S:DIC(0)["O"&(DIC(0)'["E") DS=DS_",'$L($P(DIVAL,"_Y_",2))"
- . D 7 K DILONGX Q
+ . D 7
  ;
 K S DICR=+$G(DICR),DD=$D(DICR(DICR,6)) K:'DICR DICR
  I Y>0 K DIC("W") D R^DIC2 Q
  I $G(DTOUT)!($G(DIROUT)) Q
 W I @("$O("_DIC_"""A[""))]""""") G NL:DIC(0)["N",DD
  I DO(2)'["Z" S Y=0 D  Q:Y>0!($G(DIROUT))
-DINUM .I $G(DINDEX("1","FIELD"))=.01,X?1.15NP,$P($G(^DD(+DO(2),.01,0)),U,5,99)["DINUM=X",$D(@(DIC_"X,0)")) D  Q:Y>0
+DINUM .I $G(DINDEX("1","FIELD"))=.01,X?1.15NP,$P($G(^DD(+DO(2),.01,0)),U,5,99)["DINUM=X",$P($G(@(DIC_"X,0)")),U)=X D  Q:Y>0
  ..S Y=X I 1 X:$D(DIC("S")) DIC("S") I  S DIY="",DS=1 N DZ,DD D ADDKEY^DIC3,GOT^DIC2 Q
  ..S Y=0
  .N DIOUT S DIOUT=0 F DS=1:1 S @("Y=$O("_DIC_"Y))") D  Q:DIOUT
@@ -117,10 +117,10 @@ D S:$G(DICR(DICR,10))]"" DINUM=DICR(DICR,10)
 RCR S:'$D(DIDA) DICRS=1
 DIC ;
  I $D(DICR(DICR,8)) S DIC(0)=$TR(DIC(0),"L")
- S Y=-1 I $D(X) D  ;*159  WAS: I $D(X),$L(X)<31 D
+ S Y=-1 I $D(X) D  ;**22*159  WAS: I $D(X),$L(X)<31 D
  . N DIVAL S (DIVAL,DIVAL(1))=X N X S (X,X(1))=DIVAL
  . D RENUM^DIC1 K DIDA Q
- S:DIC(0)["L" DICR(DICR-1,6)=1 K:$D(DICR(DICR,4)) DF
+ I $G(DICR) S:DIC(0)["L" DICR(DICR-1,6)=1 K:$D(DICR(DICR,4)) DF
 E S D="B" Q:'$G(DICR)  ;**GFT
  S %=DICR,X=DICR(%),DIC(0)=DICR(%,0),DICR=%-1
  S:$G(DICR(%,10))]"" DINUM=DICR(%,10)
@@ -133,7 +133,7 @@ NQ I $L(X)<14,X?.NP,+X=X,@("$D("_DIC_"X,0))") S Y=X D S^DIC3
 SOUNDEX I DIC(0)["E",'$D(DICRS) W "  " D RS,SOU S DIC(0)=$TR(DIC(0),"L") D RCR Q:Y>0
  G R
  ;
-7 S Y=-1 N % S %=$S($D(DIC("S")):DIC("S"),1:1)
+7 S Y=-1 N % S %=$S($D(DIC("S")):DIC("S"),1:1) ;RECURSIVE CALL TO ^DIC!
  I $D(DS),'$D(DIC("S1")) D
  . S DIC("S")=DS I '% S DIC("S")=DIC("S")_" X DIC(""S1"")",DIC("S1")=%
  . I X]"" D

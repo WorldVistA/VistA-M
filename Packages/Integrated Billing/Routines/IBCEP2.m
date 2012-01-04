@@ -1,5 +1,5 @@
 IBCEP2 ;ALB/TMP - EDI UTILITIES for provider ID ;13-DEC-99
- ;;2.0;INTEGRATED BILLING;**137,181,232,280,320,349**;21-MAR-94;Build 46
+ ;;2.0;INTEGRATED BILLING;**137,181,232,280,320,349,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; DBIA for access to fields 53.2,54.1,54.2 in file 200: 224
  ;
@@ -143,9 +143,14 @@ SRC5(IBIFN,IBINS,IBPTYP,IBSEQ,IBT,IBFUNC) ; Ins co/all providers/care unit
  ; See SRC1 for missing parameter definitions
  ; IBSEQ = the numeric COB sequence of the insurance on the bill
  ;
+ Q ""  ;DEM;432 - Pieces 9, 10, and 11 were deleted in 2006. So, code doesn't do anything other than return NULL.
  N IBP,IBUNIT,IBID,IB,Z,IBIDSV,IBRX
  S IBID="",Z=0,IBRX=$$ISRX^IBCEF1(IBIFN),IBIDSV=""
- S IBP=+$O(^DGCR(399,IBIFN,"PRV","B",$S($G(IBFUNC)=1:1,$$FT^IBCEF(IBIFN)=3:4,1:3),0)),IBUNIT=$P($G(^DGCR(399,IBIFN,"PRV",IBP,0)),U,8+IBSEQ)
+ ; DEM;432 - IBLNPRV variable is a flag to indicate if user input
+ ;           is claim level provider or line level provider user input.
+ ; DEM;432 - Line provider interested in fuction 1 and 3, referring and rendering respectively.
+ I '$G(IBLNPRV) S IBP=+$O(^DGCR(399,IBIFN,"PRV","B",$S($G(IBFUNC)=1:1,$$FT^IBCEF(IBIFN)=3:4,1:3),0)),IBUNIT=$P($G(^DGCR(399,IBIFN,"PRV",IBP,0)),U,8+IBSEQ)
+ I $G(IBLNPRV) S IBP=+$O(^DGCR(399,IBIFN,"CP",IBLNPRV("PROCIEN"),"LNPRV","B",$S($G(IBFUNC)=1:1,1:3),0)),IBUNIT=$P($G(^DGCR(399,IBIFN,"CP",IBLNPRV("PROCIEN"),"LNPRV",IBP,0)),U,8+IBSEQ)
  I IBUNIT'="" F  S Z=$O(^IBA(355.96,"AC",IBINS,IBPTYP,Z)) Q:'Z  D  Q:IBID'=""
  . S IB=0 F  S IB=$O(^IBA(355.91,"ACARE",Z,IB)) Q:'IB  D  Q:IBID'=""
  .. S IBID=$$UNIQ2(IBIFN,IBINS,IBPTYP,IBUNIT,IB,.IBT)
@@ -157,9 +162,11 @@ SRC6(IBIFN,IBINS,IBPTYP,IBPROV,IBSEQ,IBT) ; Ins co/ind provider/care unit
  ; See SRC1 for missing parameter definitions
  ; IBSEQ = the numeric COB sequence of the insurance on the bill
  ;
+ Q ""  ;DEM;432 - Pieces 9, 10, and 11 were deleted in 2006. So, code doesn't do anything other than return NULL.
  N IBUNIT,IBP,IBID,IB
  S IBID="",IB=0
- S IBP=+$O(^DGCR(399,"PRV","B",$S($$FT^IBCEF(IBIFN)=3:3,1:4),0)),IBUNIT=$P($G(^DGCR(399,IBIFN,"PRV",IBP,0)),U,8+IBSEQ)
+ I '$G(IBLNPRV) S IBP=+$O(^DGCR(399,"PRV","B",$S($$FT^IBCEF(IBIFN)=3:3,1:4),0)),IBUNIT=$P($G(^DGCR(399,IBIFN,"PRV",IBP,0)),U,8+IBSEQ)
+ I $G(IBLNPRV) S IBP=+$O(^DGCR(399,IBIFN,"CP",IBLNPRV("PROCIEN"),"LNPRV","B",$S($$FT^IBCEF(IBIFN)=3:3,1:4),0)),IBUNIT=$P($G(^DGCR(399,IBIFN,"CP",IBLNPRV("PROCIEN"),"LNPRV",IBP,0)),U,8+IBSEQ)
  I $G(IBPROV),IBUNIT'="" F  S IB=$O(^IBA(355.9,"AD",IBPTYP,IBPROV,IBINS,IB)) Q:'IB  D  Q:IBID'=""
  . S IBID=$$UNIQ1(IBIFN,IBINS,IBPTYP,IBPROV,IBUNIT,IB,.IBT)
  Q IBID

@@ -1,6 +1,6 @@
-MAGGTU3 ;WOIFO/GEK/SG - Silent calls for Imaging ; 1/22/09 1:50pm
- ;;3.0;IMAGING;**7,8,48,45,20,46,59,93**;Dec 02, 2009;Build 163
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+MAGGTU3 ;WOIFO/GEK/SG/NST - Silent calls for Imaging ; 21 Sep 2010 8:56 AM
+ ;;3.0;IMAGING;**7,8,48,45,20,46,59,93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -32,8 +32,7 @@ IMAGEINF(MAGRY,IEN,NOCHK) ;RPC [MAGG IMAGE INFO] Call to return information for 
  I ERR<0,+ERR'=-43  S MAGRY(0)="0^INVALID Image number "_IEN  Q
  ;--- MAGGTII queries the variable MAGNOCHK to run QA check or not.
  S MAGNOCHK=+$G(NOCHK)
- ;S MAGXX=IEN D INFO^MAGGTII ; this'll give us the  MAGFILE variable
- S MAGXX=IEN,MAGFILE=$$INFO^MAGGAII(MAGXX,"E")
+ S MAGFILE=$$INFO^MAGGAII(IEN,"E")
  S Z=$P(^MAG(2005,IEN,0),U,7)
  I '$D(^DPT(Z)) S Z="1^Invalid patient pointer"
  E  S Z=Z_U_$P(^DPT(Z,0),U)
@@ -161,9 +160,4 @@ RSLVABS(MAGIEN,FILENAME) ;Resolve Abstract into the Default Bitmap
  Q:'FTIEN  ; No extension in IMAGE FILE TYPES file.
  ; stop dependency on "c:\program files"
  I '+$P(^MAG(2005.021,FTIEN,0),"^",5) S FILENAME=".\BMP\"_$P(^MAG(2005.021,FTIEN,0),"^",4)
- Q
-GETINFO(MAGRY,IEN) ; RPC [MAG4 GET IMAGE INFO]
- ; Call (3.0p8) to get information on 1 image 
- ; and Display in the Image Information Window
- D GETINFO^MAGGTU31(.MAGRY,IEN)
  Q

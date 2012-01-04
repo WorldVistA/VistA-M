@@ -1,5 +1,5 @@
 IBCNEDE ;DAOU/DAC - eIV DATA EXTRACTS ;04-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,300,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
@@ -43,9 +43,6 @@ EN ; Entry Point
  ; Check to see if background process has been stopped, if so quit.
  I $G(ZTSTOP) G ENX
  D EN^IBCNEDE2 ; Pre Reg Extract
- ; Check to see if background process has been stopped, if so quit.
- I $G(ZTSTOP) G ENX
- D EN^IBCNEDE3 ; Non Verified Extract
  ; Check to see if background process has been stopped, if so quit.
 EN1 I $G(ZTSTOP) G ENX
  ; Send enrollment message

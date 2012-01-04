@@ -1,5 +1,5 @@
 BPSBUTL ;BHAM ISC/MFR/VA/DLF - IB Communication Utilities ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,9**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,9,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;Reference to STORESP^IBNCPDP supported by DBIA 4299
  Q
@@ -107,16 +107,20 @@ CLOSE2(RXIEN,BFILL,BWHERE) ;
  ; Parameters:
  ;    RXI: Prescription IEN
  ;    RXR: Fill Number
+ ;    COB: COB Indicator
  ; Returns:
- ;    IEN59^Claim IEN^Response IEN^Reversal Claim IEN^Reversal Response IEN
-CLAIM(RXI,RXR) ;
- N IEN59,CLAIMIEN,RESPIEN,REVCLAIM,REVRESP
- I '$G(RXI) Q
- S IEN59=$$IEN59^BPSOSRX(RXI,RXR)
+ ;    IEN59^Claim IEN^Response IEN^Reversal Claim IEN^Reversal Response IEN^Prescription/Service Ref Number from BPS CLAIMS file
+CLAIM(RXI,RXR,COB) ;
+ N IEN59,CLAIMIEN,RESPIEN,REVCLAIM,REVRESP,ECMENUM
+ I '$G(RXI) Q ""
+ ; Note that IEN59 will treat RXR="" as the original fill (0)
+ ;   and COB="" as primary (1)
+ S IEN59=$$IEN59^BPSOSRX(RXI,$G(RXR),$G(COB))
  I '$D(^BPST(IEN59,0)) Q ""
  S CLAIMIEN=$P(^BPST(IEN59,0),"^",4),RESPIEN=$P(^BPST(IEN59,0),"^",5)
  S REVCLAIM=$P($G(^BPST(IEN59,4)),"^",1),REVRESP=$P($G(^BPST(IEN59,4)),"^",2)
- Q IEN59_U_CLAIMIEN_U_RESPIEN_U_REVCLAIM_U_REVRESP
+ S ECMENUM=$$ECMENUM^BPSSCRU2(IEN59)
+ Q IEN59_U_CLAIMIEN_U_RESPIEN_U_REVCLAIM_U_REVRESP_U_ECMENUM
  ;
  ; NABP - Return the value in the Service Provider ID (201-B1) field
  ;   of the claim.  Note that as of the NPI release (BPS*1*2), this
@@ -161,29 +165,32 @@ DIVNCPDP(BPSDIV) ;
  ;Input:
  ; BPRX - ien in file #52 
  ; BPREF - refill number (0,1,2,...)
- ; BPRCMNT - comment text 
+ ; BPRCMNT - comment text
  ;Output:
  ;  1 - okay
  ; -1 - failed
 ADDCOMM(BPRX,BPREF,BPRCMNT) ;
- N BP59,BPNOW,BPLCK,BPREC,BPDA,BPERR
- N %,%H,%I,X
- I $L(BPRX)<1 Q -1
+ N IEN59,BPNOW,BPREC,BPDA,BPERR
+ ; Check parameters
+ I '$G(BPRX) Q -1
  I $G(BPRCMNT)="" Q -1
- S BP59=BPRX_$S($L(+BPREF)=1:".000",1:".00")_+BPREF_"1" ;borrowed from CLOSE2 above
- I '$D(^BPST(BP59)) Q -1
- D NOW^%DTC
- S BPNOW=%
- L +^BPST(9002313.59111,+BP59):10
- S BPLCK=$T
- I 'BPLCK Q -1  ;quit
- D INSITEM^BPSCMT01(9002313.59111,+BP59,BPNOW)
- S BPREC=$O(^BPST(BP59,11,"B",BPNOW,99999999),-1)
+ ; Get BPS Transaction number, if needed, and check for existance
+ S IEN59=$$IEN59^BPSOSRX(BPRX,$G(BPREF),1)
+ I IEN59="" Q -1
+ I '$D(^BPST(IEN59)) Q -1
+ ; Lock record and quit if you cannot get the lock
+ L +^BPST(9002313.59111,+IEN59):10
+ I '$T Q -1
+ ; Create record and file data
+ S BPNOW=$$NOW^XLFDT
+ D INSITEM^BPSCMT01(9002313.59111,+IEN59,BPNOW)
+ S BPREC=$O(^BPST(IEN59,11,"B",BPNOW,99999999),-1)
  I BPREC>0 D
- . S BPDA(9002313.59111,BPREC_","_BP59_",",.02)=+$G(DUZ)
- . S BPDA(9002313.59111,BPREC_","_BP59_",",.03)=$E($G(BPRCMNT),1,63)
+ . S BPDA(9002313.59111,BPREC_","_IEN59_",",.02)=+$G(DUZ)
+ . S BPDA(9002313.59111,BPREC_","_IEN59_",",.03)=$E($G(BPRCMNT),1,63)
  . D FILE^DIE("","BPDA","BPERR")
- I BPLCK L -^BPST(9002313.59111,+BP59)
+ L -^BPST(9002313.59111,+IEN59)
+ ; Quit with result
  I BPREC>0,'$D(BPERR) Q 1
  Q -1
  ;

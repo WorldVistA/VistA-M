@@ -1,6 +1,6 @@
 MAGGTRA ;WOIFO/GEK - RPC Call to list Patient's Rad/Nuc Exams, Reports ; [ 06/20/2001 08:57 ]
- ;;3.0;IMAGING;**59**;Nov 27, 2007;Build 20
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.0;IMAGING;**59,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -62,7 +62,9 @@ MAGPTR(MAGRY,XDUZ,MAGIEN,DATA) ;RPC Call to file Image pointer into Radiology
  ; Does the Imaging entry patient, match the Rad Exam entry patient
  I $P(^MAG(2005,MAGIEN,0),U,7)'=RADFN S MAGRY="0^OPERATION CANCELED: Imaging Patient doesn't match Radiology Patient" Q
  I RARPT,'$D(^RARPT(RARPT,0)) S MAGRY="0^OPERATION CANCELED: INVALID Radiology Report Number" Q
- I '$G(RARPT) D CREATE^RARIC I '$G(RARPT) S MAGRY="0^OPERATION FAILED creating new Radiology Report entry" Q
+ ; pre 117 only accounted for RARPT="" ...CREATE^RARIC I '$G(RARPT) S MAGRY=...
+ ; patch 117 account for a possible negative RARPT after call to CREATE.  Radiology routine changed 
+ I '$G(RARPT) D CREATE^RARIC I +$G(RARPT)<1 S MAGRY="0^OPERATION FAILED creating new Radiology Report entry" Q
  ;    Now lets file the Image pointer in the ^RARPT(  file.
  S MAGGP=MAGIEN
  D PTR^RARIC

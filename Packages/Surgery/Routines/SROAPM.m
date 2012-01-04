@@ -1,5 +1,5 @@
 SROAPM ;BIR/ADM - PATIENT DEMOGRAPHIC INFO ;05/28/10
- ;;3.0; Surgery ;**47,81,111,107,100,125,142,160,166,174**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**47,81,111,107,100,125,142,160,166,174,175**;24 Jun 93;Build 6
  I '$D(SRTN) W !!,"A Surgery Risk Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
  S SRSOUT=0,SRSUPCPT=1 D ^SROAUTL
 START G:SRSOUT END D HDR^SROAUTL
@@ -39,7 +39,7 @@ EDIT S SRR=0 D HDR^SROAUTL K DR S SRQ=0,(DR,SRDR)="413;452;453;454;418;419;420;4
  ;
  I '$G(VADM(12)) W ?40,"UNANSWERED"
  ;
- K DA,DIC,DIQ,DR,SRY S (DR,SRDR)=342,DIC="^SRF(",DA=SRTN,DIQ="SRY",DIQ(0)="E",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
+ K DA,DIC,DIQ,DR,SRY S (DR,SRDR)="342;342.1",DIC="^SRF(",DA=SRTN,DIQ="SRY",DIQ(0)="E",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
  S SRZ=12 F M=1:1 S I=$P(SRDR,";",M)  Q:'I  D
  .D TR,GET
  .S SRZ=SRZ+1,Y=$P(X,";;",2),SRFLD=$P(Y,"^"),(Z,SRZ(SRZ))=$P(Y,"^",2)_"^"_SRFLD,SREXT=SRY(130,SRTN,SRFLD,"E")
@@ -126,3 +126,4 @@ DBA ;;421^Discharge/Transfer to Chronic Care
 DEB ;;452^Observation Admission Date/Time
 DEC ;;453^Observation Discharge Date/Time
 DED ;;454^Observation Treating Specialty
+CDBPA ;;342.1^30-Day Death

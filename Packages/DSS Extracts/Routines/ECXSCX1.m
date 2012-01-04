@@ -1,5 +1,5 @@
 ECXSCX1 ;ALB/JAP,BIR/DMA-Clinic Extract Message ;9/29/10  17:26
- ;;3.0;DSS EXTRACTS;**8,28,24,27,29,30,31,33,84,92,105,127**;Dec 22, 1997;Build 36
+ ;;3.0;DSS EXTRACTS;**8,28,24,27,29,30,31,33,84,92,105,127,132**;Dec 22, 1997;Build 18
 EN ;entry point from ecxscx
  N ECX
  ;send missing clinic message
@@ -170,6 +170,18 @@ VISIT(ECXDFN,ECXVISIT,ECXVIST,ECXERR) ;get visit specific data
  .S:PROV]"" PROV="2"_PROV
  S ECXVIST("PROV")=PROV,ECXVIST("PROV CLASS")=PROVPC
  S ECXVIST("PROV NPI")=""
+ ;get 1-5 secondary physicians
+ F I=1:1:5 S ECXVIST("PROVS"_I)=""
+ I $O(^TMP("PXKENC",$J,VISIT,"PRV",0)) D
+ .S (REC,VAL,COUNTS)=0 D
+ ..F  S REC=$O(^TMP("PXKENC",$J,VISIT,"PRV",REC)) Q:('REC)  D
+ ...Q:$P(^(REC,0),U,4)'="S"
+ ...S VAL=+^(0) I $E(PROV,2,99)=VAL Q  ;don't process, primary
+ ...S COUNTS=COUNTS+1 Q:(COUNTS>5)
+ ...S PROVS=VAL,PROVSPC=$$PRVCLASS^ECXUTL(PROVS,DATE)
+ ...S PROVSNPI=$$NPI^XUSNPI("Individual_ID",PROVS,DATE)
+ ...S:+PROVSNPI'>0 PROVSNPI="" S PROVSNPI=$P(PROVSNPI,U)
+ ...S ECXVIST("PROVS"_COUNTS)="2"_PROVS_U_PROVSPC_U_PROVSNPI
  ;get cpt codes upto 8 & modifiers upto 5
  S CNT=1,PROV=$E(PROV,2,99)
  D:$O(^TMP("PXKENC",$J,VISIT,"CPT",0))

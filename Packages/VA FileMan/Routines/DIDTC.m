@@ -1,5 +1,5 @@
-DIDTC ;SFISC/XAK-DATE/TIME OPERATIONS ;20AUG2009
- ;;22.0;VA FileMan;**14,36,71,117,164**;Mar 30, 1999;Build 20
+DIDTC ;SFISC/XAK-DATE/TIME OPERATIONS ;4MAY2011
+ ;;22.0;VA FileMan;**14,36,71,117,164,165**;Mar 30, 1999;Build 32
  ;Per VHA Directive 2004-038, this routine should not be modified.
 D N %T
  I 'X1!'X2 S X="",%Y=0 Q
@@ -7,7 +7,7 @@ D N %T
  K %H,X1,X2 Q
  ;
 C N %,%T,%Y
- S X=X1,X2=+$G(X2) I 'X S (X,%H)="" Q
+ S X=X1,X2=$J($G(X2),0,0) I 'X S (X,%H)="" Q
  D H S %H=%H+X2 D YMD S:$P(X1,".",2) X=X_"."_$P(X1,".",2) K X1,X2 Q
 S S %=%#60/100+(%#3600\60)/100+(%\3600)/100 Q
  ;

@@ -1,5 +1,5 @@
 IBNCPDP ;OAK/ELZ - APIS FOR NCPCP/ECME ;1/9/08  17:27
- ;;2.0;INTEGRATED BILLING;**223,276,363,383,384,411**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**223,276,363,383,384,411,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -31,7 +31,8 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  ;                  cardholder id^patient relationship code^
  ;                  cardholder first name^cardholder last name^
  ;                  home plan state ^Payer Sheet B2 ^Payer Sheet B3
- ;                  Software/Vendor Cert ID ^ Ins Name
+ ;                  Software/Vendor Cert ID ^ Ins Name^Payer Sheet E1
+ ;
  ;    ("INS",n,2) = dispensing fee^basis of cost determination^
  ;                  awp or tort rate or cost^gross amount due^
  ;                  administrative fee
@@ -43,7 +44,9 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  ;
  ;    ("INS",n,3) = group name^ins co ph 3^plan ID^
  ;                  insurance type (V=vet, T=tricare)^
- ;                  insurance company (#36) ien
+ ;                  insurance company (#36) ien^COB field (.2) in 2.312 subfile^
+ ;                  2.312 subfile ien (pt. insurance policy ien)^
+ ;                  maximum NCPDP transactions (366.03,10.1)
  ;
  N IBRES,IBNB
  S IBRES=$$RX^IBNCPDP1(DFN,.IBD)

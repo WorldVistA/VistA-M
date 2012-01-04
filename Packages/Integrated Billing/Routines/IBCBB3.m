@@ -1,5 +1,5 @@
 IBCBB3 ;ALB/TMP - CONTINUATION OF EDIT CHECKS ROUTINE (MEDICARE) ;06/23/98
- ;;2.0;INTEGRATED BILLING;**51,137,155,349,371,377**;21-MAR-94;Build 23
+ ;;2.0;INTEGRATED BILLING;**51,137,155,349,371,377,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EDITMRA(IBQUIT,IBER,IBIFN,IBFT) ;
@@ -26,8 +26,9 @@ EDITMRA(IBQUIT,IBER,IBIFN,IBFT) ;
  D GETPRV^IBCEU(IBIFN,"2,3,4",.Z)
  S IBOK=1,Z=0,IBZP=U F  S Z=$O(Z(Z)) Q:'Z  S:$S($P($G(Z(Z,1)),U,3)["VA(200":1,1:0) IBZP=IBZP_+$P(Z(Z,1),U,3)_U
  D ALLPROC^IBCVA1(IBIFN,.IBZP1)
- S Z=0 F  S Z=$O(IBZP1(Z)) Q:'Z  I $P(IBZP1(Z),U,18),IBZP'[(U_$P(IBZP1(Z),U,18)_U) S IBOK=0 Q
- I 'IBOK D WARN^IBCBB11("At least one provider on a procedure does not match your "_$S(IBFT=2:"render",1:"attend")_"ing or operating provider")
+ ;patch 432, enh5:  The IB system shall no longer provide users with a warning message when authorizing a claim when line level and claim level providers are not the same.
+ ;S Z=0 F  S Z=$O(IBZP1(Z)) Q:'Z  I $P(IBZP1(Z),U,18),IBZP'[(U_$P(IBZP1(Z),U,18)_U) S IBOK=0 Q
+ ;I 'IBOK D WARN^IBCBB11("At least one provider on a procedure does not match your "_$S(IBFT=2:"render",1:"attend")_"ing or operating provider")
  I IBFT=2 D EN^IBCBB2
  ; edit checks for UB-04 (institutional) forms
  I IBFT=3 D EN^IBCBB21(.IBZPRC92)
@@ -52,10 +53,12 @@ PARTA ; MEDICARE specific edit checks for PART A claims (UB-04 formats)
  S IBCOV=$P(IBNDU2,U,2),IBNCOV=$P(IBNDU2,U,3)
  ;
  ; If interim bill, covered days must not be greater than 60
- I "23"[$E(IBTOB,3),IBCOV>60 S IBQUIT=$$IBER(.IBER,"096") Q:IBQUIT
+ ; remove for IB*2.0*432
+ ; I "23"[$E(IBTOB,3),IBCOV>60 S IBQUIT=$$IBER(.IBER,"096") Q:IBQUIT
  ;
  ; I bill type is 11x or 18x or 21x then we need covered days
- I "^11^18^21^"[(U_IBTOB12_U) S IBCTYP=1 I IBCOV="" S IBQUIT=$$IBER(.IBER,106) Q:IBQUIT
+ ; remove for IB*2.0*432
+ ; I "^11^18^21^"[(U_IBTOB12_U) S IBCTYP=1 I IBCOV="" S IBQUIT=$$IBER(.IBER,106) Q:IBQUIT
  ;
  S (IBI,IBJ)=0
  K IBXDATA D F^IBCEF("N-CONDITION CODES",,,IBIFN)
@@ -63,16 +66,19 @@ PARTA ; MEDICARE specific edit checks for PART A claims (UB-04 formats)
  S IBI=0 F  S IBI=$O(IBXDATA(IBI)) Q:'IBI  S IBCCARY1($P(IBXDATA(IBI),U))=""
  ;
  ; for condition code 40, covered days must be 0
- I $D(IBCCARY1(40)),IBCOV'=0 S IBQUIT=$$IBER(.IBER,107) Q:IBQUIT
+ ; remove for IB*2.0*432
+ ; I $D(IBCCARY1(40)),IBCOV'=0 S IBQUIT=$$IBER(.IBER,107) Q:IBQUIT
  ;
  ; cov days+non=to date -from date unless the patient status = 30 (still
  ;  pt) or outpatient or if the to date and from date are same then add 1
  S IBPATST="",IBX=$P(IBNDU,U,12),IBPATST=$P($G(^DGCR(399.1,+IBX,0)),U,2)
  S IBINC=$S(IBPATST=30!(IBFDT=IBTDT):1,1:0)
- I $$INPAT^IBCEF(IBIFN,1),(IBCOV+IBNCOV)'=($$FMDIFF^XLFDT(IBTDT,IBFDT)+IBINC) S IBQUIT=$$IBER(.IBER,108) Q:IBQUIT
+ ; remove for IB*2.0*432
+ ;I $$INPAT^IBCEF(IBIFN,1),(IBCOV+IBNCOV)'=($$FMDIFF^XLFDT(IBTDT,IBFDT)+IBINC) S IBQUIT=$$IBER(.IBER,108) Q:IBQUIT
  ;
  ; if covered days >100 and type of bill is 21x or 18x error
- I IBCOV>100,(IBTOB12=18!(IBTOB12=21)) S IBQUIT=$$IBER(.IBER,109) Q:IBQUIT
+ ; remove for IB*2.0*432
+ ; I IBCOV>100,(IBTOB12=18!(IBTOB12=21)) S IBQUIT=$$IBER(.IBER,109) Q:IBQUIT
  ;
  S (IBJ,IBTUNIT,IBS,IBREVTOT("AC"),IBREVTOT("AI"),IBREVTOT("AO"),IBREVTOT)=0
  ;
@@ -118,20 +124,23 @@ PARTA ; MEDICARE specific edit checks for PART A claims (UB-04 formats)
  . ;  OR a bill with prosthetics on it
  . ;    to be sent to MEDICARE for an MRA
  . D NONMCR(.IBPR,.IBLABS) ; Remove Oxygen, labs, influenza shots
- . I $G(IBLABS) D WARN^IBCBB11("The only possible billable procedures on this bill are labs -"),WARN^IBCBB11(" Please verify that MEDICARE does not reimburse these labs at 100%") Q
+ . I $G(IBLABS) D WARN^IBCBB11("There are Lab procedures on this claim."),WARN^IBCBB11("Please verify that MEDICARE does not reimburse these labs at 100%") Q
  . I $O(IBPR(""))="" D
  .. S IBQUIT=$$IBER(.IBER,"098")
  ;
  ; covered days+non covered = units of accom rev codes
  ; Check room and board
- I IBTUNIT,IBTUNIT'=(IBCOV+IBNCOV) S IBQUIT=$$IBER(.IBER,114) Q:IBQUIT
+ ; remove for IB*2.0*432
+ ;I IBTUNIT,IBTUNIT'=(IBCOV+IBNCOV) S IBQUIT=$$IBER(.IBER,114) Q:IBQUIT
  ;
  ; Non Covered Days
  ;   required when the type of bill is 11x,18x,21x or covered days=0
- I IBNCOV="",(IBCTYP!(IBCOV=0)) S IBQUIT=$$IBER(.IBER,115) Q:IBQUIT
+ ; remove for IB*2.0*432
+ ; I IBNCOV="",(IBCTYP!(IBCOV=0)) S IBQUIT=$$IBER(.IBER,115) Q:IBQUIT
  ;
  ; if cc code=40 then non-covered days must be 1
- I $D(IBCCARY1(40)),IBNCOV'=1 S IBQUIT=$$IBER(.IBER,116) Q:IBQUIT
+ ; remove for IB*2.0*432
+ ; I $D(IBCCARY1(40)),IBNCOV'=1 S IBQUIT=$$IBER(.IBER,116) Q:IBQUIT
  ;
  ; Patient Sex
  ; must be "M" or "F"

@@ -1,5 +1,5 @@
 IBNCPLOG ;BHAM ISC/SS - IB ECME EVNT REPORT ;3/5/08  14:02
- ;;2.0;INTEGRATED BILLING;**342,339,363,383,411**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**342,339,363,383,411,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;store data related to the IB calls made by ECME package in the file #366.14
@@ -58,7 +58,7 @@ IBD(IBDTIEN,IBRECNO,IBIBDTYP,IBVAL,IBIBD) ;
  I IBIBDTYP="AUTH #" S IBFLDNO=".11",IBVAL=$E(IBVAL,1,30) G EDITIBD
  ;free text like "0504597;3051229"
  I IBIBDTYP="BCID" S IBFLDNO=".12" G EDITIBD
- ;7 digits ECME number - identifier (stored as a text - might have leading zeroes)
+ ;7 or 12 digit ECME number - identifier (stored as a text - might have leading zeroes)
  I IBIBDTYP="CLAIMID" S IBFLDNO=".13" G EDITIBD
  ;pointer to file #2
  I IBIBDTYP="DFN" S IBFLDNO=".14" G EDITIBD

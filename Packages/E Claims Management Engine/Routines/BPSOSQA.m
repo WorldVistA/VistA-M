@@ -1,5 +1,5 @@
 BPSOSQA ;BHAM ISC/FCS/DRS/DLF - ECME background, Part 1 ;06/02/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8**;JUN 2004;Build 29
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -11,21 +11,24 @@ ONE59(IEN59) ;EP - from BPSOSIZ
  ; Process this one IEN59
  ;
  ; Initialize variables
- N X1,RX,RXI,RTN
- S X1=$G(^BPST(IEN59,1))
- S RXI=$P(X1,U),RX=$P(X1,U,11),RTN=$T(+0)
+ N RTN,X1,REQTYPE,ERRNO,ERRMSG
+ S RTN=$T(+0),X1=$G(^BPST(IEN59,1)),REQTYPE=$P($G(^BPST(IEN59,0)),U,15)
  ;
- I RX="" D ERROR^BPSOSU(RTN,IEN59,106,"Prescription Number not found in Transaction") G END
- I RXI="" D ERROR^BPSOSU(RTN,IEN59,107,"Fill Number not found in Transaction") G END
  ; Create log entry
  ; Needed for Turn-Around Stats - Do NOT delete/alter!!
  D LOG^BPSOSL(IEN59,$T(+0)_"-Validating the BPS Transaction")
  ;
- ; Check for existence of the prescription
- I $$RXAPI1^BPSUTIL1(RX,.01,"I")="" D ERROR^BPSOSU(RTN,IEN59,101,"Missing RX # field .01") G END
+ ; Validate that there is a request type
+ I REQTYPE="" D ERROR^BPSOSU(RTN,IEN59,109,"Request Type not found in Transaction ") G END
  ;
- ; If there is a refill, check for the existence of the refill
- I RXI,$$RXSUBF1^BPSUTIL1(RX,52,52.1,RXI,.01,"I")="" D ERROR^BPSOSU(RTN,IEN59,102,"Missing RX Refill field .01") G END
+ S (ERRNO,ERRMSG)=""
+ I REQTYPE="C" D  I ERRNO D ERROR^BPSOSU(RTN,IEN59,ERRNO,ERRMSG) G END
+ . N RX,RXR
+ . S RX=$P(X1,U,11),RXR=$P(X1,U)
+ . I RX="" S ERRNO=108,ERRMSG="Prescription Number not found in Transaction" Q
+ . I RXR="" S ERRNO=107,ERRMSG="Fill Number not found in Transaction" Q
+ . I $$RXAPI1^BPSUTIL1(RX,.01,"I")="" S ERRNO=101,ERRMSG="Missing RX # field .01" Q
+ . I RXR,$$RXSUBF1^BPSUTIL1(RX,52,52.1,RXR,.01,"I")="" S ERRNO=102,ERRMSG="Missing RX Refill field .01" Q
  ;
  ; Check for missing patient
  I '$P(^BPST(IEN59,0),U,6) D ERROR^BPSOSU(RTN,IEN59,103,"Patient missing from BPS Transaction") G END
@@ -38,14 +41,6 @@ ONE59(IEN59) ;EP - from BPSOSIZ
  ;
  ; Check for missing insurance node
  I '$D(^BPST(IEN59,10,1,0)) D ERROR^BPSOSU(RTN,IEN59,106,"Missing Insurance in BPST("_IEN59_",10,1,0)") G END
- ;
- ; Check if insurer is asleep and this is not the prober transaction,
- ; and if so set status to 31.
- N GRPLAN S GRPLAN=$$GETPLN59^BPSUTIL2(IEN59)
- N BPSIEN77 S BPSIEN77=$P(^BPST(IEN59,0),U,12)
- I $$ISASLEEP^BPSOSQF(+GRPLAN),BPSIEN77'=$$PROBER^BPSOSQF(+GRPLAN) D  G END
- . D LOG^BPSOSL(IEN59,$T(+0)_"-Insurer "_$P(GRPLAN,U,2)_" is asleep. Will retry later.")
- . D SETSTAT^BPSOSU(IEN59,31)
  ;
  ; If we got this far, we did not get an error
  ; Change status to 30 (Waiting for packet build)

@@ -1,5 +1,5 @@
-ONCSG4 ;Hines OIFO/GWB - Automatic Staging Tables ;11/04/10
- ;;2.11;ONCOLOGY;**35,51,52**;Mar 07, 1995;Build 13
+ONCSG4 ;Hines OIFO/GWB - Automatic Staging Tables ;02/28/11
+ ;;2.11;ONCOLOGY;**35,51,52,53**;Mar 07, 1995;Build 31
  ;
  ;GYNECOLOGICAL SITES
  ;
@@ -28,6 +28,7 @@ VU4 ;Vulva - 4th edition
 VU56 ;Vulva - 5th and 6th edition
  S TNM=T_N_M D  K TNM Q
  .I TNM="IS00" S SG=0 Q     ;0    Tis   N0    M0
+ .I TNM=100 S SG=1 Q        ;I    T1    N0    M0
  .I TNM="1A00" S SG="1A" Q  ;IA   T1a   N0    M0
  .I TNM="1B00" S SG="1B" Q  ;IB   T1b   N0    M0
  .I TNM=200 S SG=2 Q        ;II   T2    N0    M0
@@ -44,7 +45,7 @@ VU56 ;Vulva - 5th and 6th edition
 VU7 ;Vulva - 7th edition
  S TNM=T_N_M D  K TNM Q
  .I TNM="IS00" S SG=0 Q               ;0    Tis   N0    M0
- .I $E(T,1)=1,N=0,M=0 S SG=1 Q        ;I    T1    N0    M0
+ .I TNM=100 S SG=1 Q                  ;I    T1    N0    M0
  .I TNM="1A00" S SG="1A" Q            ;IA   T1a   N0    M0
  .I TNM="1B00" S SG="1B" Q            ;IB   T1b   N0    M0
  .I TNM=200 S SG=2 Q                  ;II   T2    N0    M0

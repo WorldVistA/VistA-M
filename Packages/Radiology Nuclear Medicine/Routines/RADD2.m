@@ -1,5 +1,5 @@
 RADD2 ;HISC/GJC/CAH-Radiology Data Dictionary Utility Routine ;5/14/97  10:31
- ;;5.0;Radiology/Nuclear Medicine;**84**;Mar 16, 1998;Build 13
+ ;;5.0;Radiology/Nuclear Medicine;**84,47**;Mar 16, 1998;Build 21
  ;
  ;Integration Agreements
  ;----------------------
@@ -59,7 +59,8 @@ EN2() ; called from ^DD(74,0,"ID","WRITE")
  ; display long case #'s in the same print set as current record
  N RA1,RA2
  S RA1=0,RA2=""
- F  S RA1=$O(^RARPT(Y,1,"B",RA1)) Q:'RA1  S RA2=RA2_$S(RA2="":"-",1:",-")_$P(RA1,"-",2)
+ ; F  S RA1=$O(^RARPT(Y,1,"B",RA1)) Q:'RA1  S RA2=RA2_$S(RA2="":"-",1:",-")_$P(RA1,"-",2)
+ F  S RA1=$O(^RARPT(Y,1,"B",RA1)) Q:'RA1  S RA2=RA2_$S(RA2="":"-",1:",-")_$P(RA1,"-",$L(RA1,"-"))  ;P47 to accommodate possible SSAN format
  Q RA2
 USUAL(RADA,RAX) ; To insure that the USUAL DOSE value falls between the
  ; HIGH ADULT DOSE and the LOW ADULT DOSE.

@@ -1,5 +1,5 @@
 BPSPRRX5 ;ALB/SS - ePharmacy secondary billing ;12-DEC-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8**;JUN 2004;Build 29
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -52,8 +52,8 @@ FINDECLM(BPSRXIEN,BPSREF,BPCOBIND) ;
  ;Display e-claim details
  ;BPSIEN59-ien of the #9002313.59 BPS TRANSACTION file
 DISPECLM(BP59) ;
- W !,"Drug name     NDC           Date  RX#           REF#    TYPE        STATUS"
- W !,"==========================================================================="
+ W !,"Drug name     NDC           Date  RX#         FILL/ECME#     TYPE      STATUS"
+ W !,"==============================================================================="
  W !,$$CLMINFO(BP59)
  Q
  ;
@@ -64,7 +64,7 @@ CLMINFO(BP59) ;
  S BPX=$$LJ^BPSSCR02($$DRGNAME^BPSSCRU2(BP59),12)_"  "_$$LJ^BPSSCR02($$NDC^BPSSCRU2(+BPX1,+$P(BPX1,U,2)),13)_" "
  S BPX=BPX_$$LJ^BPSSCR02($$FILLDATE^BPSSCRRS(+BPX1,+$P(BPX1,U,2)),5)_" "
  S BPX=BPX_$$LJ^BPSSCR02($$RXNUM^BPSSCRU2(+BPX1),11)_" "_+$P(BPX1,U,2)_"/"
- S BPX=BPX_$$LJ^BPSSCR02($$ECMENUM^BPSSCRU2(BP59),7)_" "_$$MWCNAME^BPSSCRU2($$GETMWC^BPSSCRU2(BP59))_" "
+ S BPX=BPX_$$LJ^BPSSCR02($$ECMENUM^BPSSCRU2(BP59),12)_" "_$$MWCNAME^BPSSCRU2($$GETMWC^BPSSCRU2(BP59))_" "
  S BPX=BPX_$$RTBB^BPSSCRU2(BP59)_" "_$$RXST^BPSSCRU2(BP59)_"/"_$$RL^BPSSCRU2(BP59)
  S BPSSTAT=$P($$STATUS^BPSOSRX(+BPX1,+$P(BPX1,U,2),,,BPCOB),U)
  S BPPAYBLE=$$PAYABLE^BPSOSRX5(BPSSTAT)

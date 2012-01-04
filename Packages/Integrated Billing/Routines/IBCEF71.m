@@ -1,5 +1,5 @@
 IBCEF71 ;WOIFO/SS - FORMATTER AND EXTRACTOR SPECIFIC BILL FUNCTIONS ;31-JUL-03
- ;;2.0;INTEGRATED BILLING;**232,155,288,320,349**;21-MAR-94;Build 46
+ ;;2.0;INTEGRATED BILLING;**232,155,288,320,349,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;---------
@@ -16,9 +16,10 @@ OTHPAYC(IBXIEN,IBSAVE,IBDATA,IBFUNC,IBVAL) ;
  N IB1,IB2,IBINS,IBFL
  S IBFL=$S(IBFUNC=3!(IBFUNC=4):1,1:0)
  F IB1=1,2 D
- . Q:'$$ISINSUR($G(IBSAVE("PROVINF",IBXIEN,"O",IB1)),IBXIEN)  ;don't create anything if no such insurance
- . I IBFL S IBFUNC=$S($O(IBSAVE("PROVINF",IBXIEN,"O",IB1,3,0)):3,1:4)
- . S:$O(IBSAVE("PROVINF",IBXIEN,"O",IB1,IBFUNC,0)) IBDATA(IB1)=IBVAL
+ . I $$ISINSUR($G(IBSAVE("PROVINF",IBXIEN,"O",IB1)),IBXIEN) D  Q  ;don't create anything if no such insurance
+ .. ;*432/TAZ Attending/Rendering is no longer either/or so there can be both
+ .. ;I IBFL S IBFUNC=$S($O(IBSAVE("PROVINF",IBXIEN,"O",IB1,3,0)):3,1:4)
+ .. S:$O(IBSAVE("PROVINF",IBXIEN,"O",IB1,IBFUNC,0)) IBDATA(IB1)=IBVAL
  Q
  ;----
  ;OTHPAYV - called from FORMAT code for OP1,OP2 ...
@@ -37,9 +38,10 @@ OTHPAYV(IBXIEN,IBSAVE,IBDATA,IBFUNC,IBFLDTYP,IBSEQN) ;
  S IBFL=$S(IBFUNC=3!(IBFUNC=4):1,1:0)
  S IBPIECE=$S(IBFLDTYP="I":4,IBFLDTYP="Q":3,1:3)
  F IB1=1,2 D
- . Q:'$$ISINSUR($G(IBSAVE("PROVINF",IBXIEN,"O",IB1)),IBXIEN)  ;don't create anything if there is no such insurance
- . I IBFL S IBFUNC=$S($O(IBSAVE("PROVINF",IBXIEN,"O",IB1,3,0)):3,1:4),IBFL=0
- . S IBDATA(IB1)=$P($G(IBSAVE("PROVINF",IBXIEN,"O",IB1,IBFUNC,IBSEQN)),"^",IBPIECE)
+ . I $$ISINSUR($G(IBSAVE("PROVINF",IBXIEN,"O",IB1)),IBXIEN) D  Q  ;don't create anything if there is no such insurance
+ .. ;*432/TAZ Attending/Rendering is no longer either/or so there can be both
+ .. ;I IBFL S IBFUNC=$S($O(IBSAVE("PROVINF",IBXIEN,"O",IB1,3,0)):3,1:4),IBFL=0
+ .. S IBDATA(IB1)=$P($G(IBSAVE("PROVINF",IBXIEN,"O",IB1,IBFUNC,IBSEQN)),U,IBPIECE)
  Q
  ;
  ;chk for ins

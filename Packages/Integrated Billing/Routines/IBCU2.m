@@ -1,6 +1,6 @@
 IBCU2 ;ALB/MRL - BILLING UTILITY ROUTINE (CONTINUED) ;01 JUN 88 12:00
- ;;2.0;INTEGRATED BILLING;**137,287**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,287,432**;21-MAR-94;Build 192
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRU2
  ;
@@ -26,19 +26,23 @@ FY ;S DGTCX1=$S($D(^DGCR(399,DA,"U1")):^("U1"),1:0) I +X>+DGTCX1 W !?4,*7,"Excee
  ;
 21 ;set logic for CHARGES subfield x-ref (399.042;.02)
  I $P(^DGCR(399,DA(1),"RC",DA,0),"^",3)="" S $P(^DGCR(399,DA(1),"RC",DA,0),"^",3)=$S($P(^DGCR(399,DA(1),0),"^",5)<3:$P(^("U"),"^",15),$D(^DGCR(399,DA(1),"OP",0)):$P(^(0),"^",4),1:1)
- S Z=X,Z1=$P(^DGCR(399,DA(1),"RC",DA,0),"^",3) S DGTCX11=Z*Z1,$P(^(0),"^",4)=DGTCX11,DGXRF1=1 D TC1
+ ; DEM;432 - Changed Z*Z1 to $FN(Z*Z1,"",2) for inclusion of decimal point.
+ S Z=X,Z1=$P(^DGCR(399,DA(1),"RC",DA,0),"^",3) S DGTCX11=$FN(Z*Z1,"",2),$P(^(0),"^",4)=DGTCX11,DGXRF1=1 D TC1
  Q
  ;
 22 ;kill logic for CHARGES subfield x-ref (399.042;.02)
- S Z=X,Z1=$P(^DGCR(399,DA(1),"RC",DA,0),"^",3) S DGTCX11=Z*Z1,$P(^(0),"^",4)=DGTCX11,DGXRF1=2 D TC1
+ ; DEM;432 - Changed Z*Z1 to $FN(Z*Z1,"",2) for inclusion of decimal point.
+ S Z=X,Z1=$P(^DGCR(399,DA(1),"RC",DA,0),"^",3) S DGTCX11=$FN(Z*Z1,"",2),$P(^(0),"^",4)=DGTCX11,DGXRF1=2 D TC1
  Q
  ;
 31 ;set logic for UNITS OF SERVICE subfield x-ref (399.042;.03)
- S Z=X,Z1=$P(^DGCR(399,DA(1),"RC",DA,0),"^",2) S DGTCX11=Z*Z1,$P(^(0),"^",4)=DGTCX11,DGXRF1=1 D TC1
+ ; DEM;432 - Changed Z*Z1 to $FN(Z*Z1,"",2) for inclusion of decimal point.
+ S Z=X,Z1=$P(^DGCR(399,DA(1),"RC",DA,0),"^",2) S DGTCX11=$FN(Z*Z1,"",2),$P(^(0),"^",4)=DGTCX11,DGXRF1=1 D TC1
  Q
  ;
 32 ;kill logic for UNITS OF SERVICE subfield x-ref (399.042;.03)
- S Z=X,Z1=$P(^DGCR(399,DA(1),"RC",DA,0),"^",2) S DGTCX11=Z*Z1,$P(^(0),"^",4)=DGTCX11,DGXRF1=2 D TC1
+ ; DEM;432 - Changed Z*Z1 to $FN(Z*Z1,"",2) for inclusion of decimal point.
+ S Z=X,Z1=$P(^DGCR(399,DA(1),"RC",DA,0),"^",2) S DGTCX11=$FN(Z*Z1,"",2),$P(^(0),"^",4)=DGTCX11,DGXRF1=2 D TC1
  Q
  ;
 FMDATES(PROMPT) ; ask for date range

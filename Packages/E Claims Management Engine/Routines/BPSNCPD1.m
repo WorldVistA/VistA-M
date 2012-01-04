@@ -1,5 +1,5 @@
 BPSNCPD1 ;BHAM ISC/LJE - Pharmacy API part 2 ;06/16/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8,9**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8,9,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Procedure STARRAY - Retrieve information for API call to IB and store in BPSARRY
@@ -157,5 +157,5 @@ BULL1 ;
  ;
  I $G(DUZ)'<1 S XMY(DUZ)=""
  D ^XMD
- I $G(BPST) D PRIORITY^XMXEDIT(XMZ)
+ I $G(BPST),$G(XMZ) D PRIORITY^XMXEDIT(XMZ)
  Q 

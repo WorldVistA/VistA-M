@@ -1,5 +1,5 @@
 RADLY1 ;HISC/GJC-Rad Daily Log Report ;5/7/97  13:50
- ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**47**;Mar 16, 1998;Build 21
 PRINT ; Output subroutine part one
  S RA1=""
 P1 S RA1=$O(^TMP($J,"RADLY",RA1)) Q:RA1']""  S RA2=""
@@ -30,14 +30,24 @@ HD ; Header
  S:IOM<132 RA12=$E(RA12,1,30)
  W:'$D(RAFLG) RA12,")"
  I IOM=132 D  ; If 132 column
- . W !,"Name",?RATAB(2),"Pt ID",?RATAB(3),"Time",?RATAB(4),"Ward/Clinic"
- . W ?RATAB(5),"Procedure",?RATAB(6),"Exam Status",?RATAB(7),"Case#"
- . W ?RATAB(8),"Reported",!,RALN
+ . I $$USESSAN^RAHLRU1() D
+ .. W !,"Name",?RATAB(2),"Pt ID",?RATAB(3)-2,"Time",?RATAB(4)-2
+ .. W "Ward/Clinic",?RATAB(5)-1,"Procedure",?RATAB(6)-2,"Exam Status"
+ .. W ?RATAB(7)-4,"Case#",?RATAB(8)+6,"Rptd",!,RALN
+ . I '$$USESSAN^RAHLRU1() D
+ .. W !,"Name",?RATAB(2),"Pt ID",?RATAB(3),"Time",?RATAB(4),"Ward/Clinic"
+ .. W ?RATAB(5),"Procedure",?RATAB(6),"Exam Status",?RATAB(7),"Case#"
+ .. W ?RATAB(8),"Reported",!,RALN
  . Q
  E  D  ; default to 80 column format
- . W !,"Name",?RATAB(3),"Pt ID",?RATAB(5),"Ward/Clinic"
- . W ?RATAB(7),"Procedure",!,?RATAB(2),"Exam Status",?RATAB(4),"Case #"
- . W ?RATAB(6),"Time",?RATAB(8),"Reported",!,RALN
+ . I $$USESSAN^RAHLRU1() D
+ .. W !,"Name",?RATAB(3),"Pt ID",?RATAB(5),"Ward/Clinic"
+ .. W ?RATAB(7),"Procedure",!,?RATAB(2),"Exam Status",?RATAB(4),"Case #"
+ .. W ?RATAB(6)+9,"Time",?RATAB(8)+8,"Reported",!,RALN
+ . I '$$USESSAN^RAHLRU1() D
+ .. W !,"Name",?RATAB(3),"Pt ID",?RATAB(5),"Ward/Clinic"
+ .. W ?RATAB(7),"Procedure",!,?RATAB(2),"Exam Status",?RATAB(4),"Case #"
+ .. W ?RATAB(6),"Time",?RATAB(8),"Reported",!,RALN
  . Q
  I $D(ZTQUEUED) D STOPCHK^RAUTL9 S:$G(ZTSTOP)=1 RAXIT=1
  Q
@@ -49,12 +59,21 @@ PRT1 ; Output subroutine two
  . S:$E(IOST,1,2)="C-" RAXIT=$$EOS^RAUTL5() D:'RAXIT HD
  . Q
  I IOM=132 D  ; default to 132 column format
- . W !,RA4,?RATAB(2),RASSN,?RATAB(3),RATME,?RATAB(4),RAWHE
- . W ?RATAB(5),RAPRC,?RATAB(6),RAST,?RATAB(7),RACN,?RATAB(8),RARPT
+ . I $$USESSAN^RAHLRU1() D
+ .. W !,RA4,?RATAB(2),RASSN,?RATAB(3)-2,RATME,?RATAB(4)-2,RAWHE
+ .. W ?RATAB(5)-1,RAPRC,?RATAB(6)-2,$E(RAST,1,14),?RATAB(7)-4,RACN
+ .. W ?RATAB(8)+6,RARPT
+ . I '$$USESSAN^RAHLRU1() D
+ .. W !,RA4,?RATAB(2),RASSN,?RATAB(3),RATME,?RATAB(4),RAWHE
+ .. W ?RATAB(5),RAPRC,?RATAB(6),RAST,?RATAB(7),RACN,?RATAB(8),RARPT
  . Q
  E  D  ; If 80 column
- . W !,RA4,?RATAB(3),RASSN,?RATAB(5),RAWHE,?RATAB(7),RAPRC
- . W !?RATAB(2),RAST,?RATAB(4),RACN,?RATAB(6),RATME,?RATAB(8),RARPT
+ . I $$USESSAN^RAHLRU1() D
+ .. W !,RA4,?RATAB(3),RASSN,?RATAB(5),RAWHE,?RATAB(7),RAPRC,!?RATAB(2)
+ .. W RAST,?RATAB(4),RACN,?RATAB(6)+9,RATME,?RATAB(8)+8,RARPT
+ . I '$$USESSAN^RAHLRU1() D
+ .. W !,RA4,?RATAB(3),RASSN,?RATAB(5),RAWHE,?RATAB(7),RAPRC
+ .. W !?RATAB(2),RAST,?RATAB(4),RACN,?RATAB(6),RATME,?RATAB(8),RARPT
  . Q
  Q
 KILL ; Kill variables

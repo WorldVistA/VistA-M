@@ -1,5 +1,5 @@
-RCDPUT ;WASH-ISC@ALTOONA,PA/RGY-UTILITIES ;3/3/95  10:13 AM
-V ;;4.5;Accounts Receivable;**69,90,106,114,169**;Mar 20, 1995
+RCDPUT ;WASH-ISC@ALTOONA,PA/RGY/KML - UTILITIES ; 5/6/11 12:29pm
+V ;;4.5;Accounts Receivable;**69,90,106,114,169,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -91,11 +91,12 @@ PURGE ;  purge receipts and deposits
  N %,D0,D1,DA,DG,DIC,DICR,DIG,DIH,DIK,DIU,DIV,DIW,RCDATE,RCDEPDA,RCRECTDA,X,Y
  ;
  ;  purge receipts
- S RCDATE=$$FPS^RCAMFN01(DT,-12)
+ ; HIPAA 5010 - retain receipts for 7 year (84 months)
+ S RCDATE=$$FPS^RCAMFN01(DT,-84)
  S RCRECTDA=0 F  S RCRECTDA=$O(^RCY(344,RCRECTDA)) Q:'RCRECTDA  D
  .   ;  receipt not processed, do not purge
  .   I '$P(^RCY(344,RCRECTDA,0),"^",8) Q
- .   ;  receipt processed less than 12 months ago, do not purge
+ .   ;  receipt processed less than 84 months ago, do not purge
  .   I $P(^RCY(344,RCRECTDA,0),"^",8)>RCDATE Q
  .   ;  purge receipt
  .   L +^RCY(344,RCRECTDA,0)
@@ -103,13 +104,14 @@ PURGE ;  purge receipts and deposits
  .   L -^RCY(344,RCRECTDA,0)
  ;
  ;  purge deposits
- S RCDATE=$$FPS^RCAMFN01(DT,-12)
+ ; ; HIPAA 5010 - retain deposits for 7 year (84 months)
+ S RCDATE=$$FPS^RCAMFN01(DT,-84)
  S RCDEPDA=0 F  S RCDEPDA=$O(^RCY(344.1,RCDEPDA)) Q:'RCDEPDA  D
  .   ;  if receipts are on deposit, do not purge
  .   I $O(^RCY(344,"AD",RCDEPDA,0)) Q
  .   ;  deposit not confirmed, do not purge
  .   I '$P(^RCY(344.1,RCDEPDA,0),"^",11) Q
- .   ;  deposit confirmed less than 12 months ago, do not purge
+ .   ;  deposit confirmed less than 84 months ago, do not purge
  .   I $P(^RCY(344.1,RCDEPDA,0),"^",11)>RCDATE Q
  .   ;  purge deposit
  .   L +^RCY(344.1,RCDEPDA,0)

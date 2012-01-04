@@ -1,5 +1,5 @@
 IBCEP8 ;ALB/TMP/OIFO-BP/RBN - Functions for NON-VA PROVIDER ;11-07-00
- ;;2.0;INTEGRATED BILLING;**51,137,232,288,320,343,374,377,391,400,436**;21-MAR-94;Build 31
+ ;;2.0;INTEGRATED BILLING;**51,137,232,288,320,343,374,377,391,400,436,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; -- main entry point
@@ -41,6 +41,7 @@ INIT1 ;
  S DLAYGO=355.93,DIC(0)="AELMQ",DIC("A")="Select a NON"_$S(IBIF="I":"-",1:"/OTHER ")_"VA PROVIDER: "
  D ^DIC K DIC,DLAYGO
  I Y'>0 S VALMQUIT=1 G INITQ
+ S IBNPRV=+Y
  ;
  ; *** Begin IB*2.0*436 - RBN
  ;
@@ -95,8 +96,11 @@ EDIT1(IBNPRV,IBNOLM) ; Edit non-VA provider/facility demographics
  . ; PRXM/KJH - Added NPI and Taxonomy to the list of fields to be edited. Put a "NO^" around the Taxonomy multiple (#42) since some of the sub-field entries are 'required'.
  . ; Begin IB*2.0*436 - RBN
  . ;S DR=".01;"_$S(IBP:".03;.04",1:".05;.1;.06;.07;.08;.13///24;W !,""ID Qualifier: 24 - EMPLOYER'S IDENTIFICATION #"";.09Lab or Facility Primary ID;.11;.15")_";D PRENPI^IBCEP81(IBNPRV);D EN^IBCEP82(IBNPRV);S DIE(""NO^"")="""";42;K DIE(""NO^"")"
- . S DR=$S(IBP:".03;.04",1:".05;.1;.06;.07;.08;.13///24;W !,""ID Qualifier: 24 - EMPLOYER'S IDENTIFICATION #"";.09Lab or Facility Primary ID;.11;.15")_";D PRENPI^IBCEP81(IBNPRV);D EN^IBCEP82(IBNPRV);S DIE(""NO^"")="""";42;K DIE(""NO^"")"
+ . ;S DR=$S(IBP:".03;.04",1:".05;.1;.06;.07;.08;.13///24;W !,""ID Qualifier: 24 - EMPLOYER'S IDENTIFICATION #"";.09Lab or Facility Primary ID;.11;.15")_";D PRENPI^IBCEP81(IBNPRV);D EN^IBCEP82(IBNPRV);S DIE(""NO^"")="""";42;K DIE(""NO^"")"
  . ; End IB*2.0*436 - RBN
+ . ;IB*2.0*432 - add contact phone and name
+ . S DR=$S(IBP:".03;.04",1:".05;.1;.06;.07;.08;1.01;I X="""" S Y=""@2"";1.02R;S Y=""@3"";@2;1.02;@3;1.03;.13///24;W !,""ID Qualifier: 24 - EMPLOYER'S IDENTIFICATION #"";.09Lab or Facility Primary ID;.11;.15")
+ . S DR=DR_";D PRENPI^IBCEP81(IBNPRV);D EN^IBCEP82(IBNPRV);S DIE(""NO^"")="""";42;K DIE(""NO^"")"
  . D ^DIE
  . Q:$G(IBNOLM)
  . D BLD^IBCEP8B(IBNPRV)

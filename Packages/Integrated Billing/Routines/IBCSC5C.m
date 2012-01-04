@@ -1,5 +1,5 @@
 IBCSC5C ;ALB/ARH - ADD/EDIT PRESCRIPTION FILLS (CONTINUED) ;3/4/94
- ;;2.0;INTEGRATED BILLING;**27,52,130,51,160,260,309,315,339,347,363,381,405**;21-MAR-94;Build 4
+ ;;2.0;INTEGRATED BILLING;**27,52,130,51,160,260,309,315,339,347,363,381,405,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -51,7 +51,7 @@ DEFAULT(IFN,IBRX) ; add default DX and CPT to a prescription bill
  ;
 RXDISP(DFN,DT1,DT2,ARRAY,POARR,RXARR,IBRXALL,NODISP) ; display all rx fills for a patient and date range
  ;RXARR (as defined by SET^IBCSC5A) passed by ref. only to check if rx-fill is on the bill, not necessary not changed
- ;returns: ARRAY(RX #, FILL DT) = RX IFN (52) ^ FILL IFN ^ DRUG ^ DAYS SUPPLY ^ QTY ^ NDC, pass by reference if desired
+ ;returns: ARRAY(RX #, FILL DT) = RX IFN (52) ^ FILL IFN ^ DRUG ^ DAYS SUPPLY ^ QTY ^ NDC ^ ORDER DATE, pass by reference if desired
  ;         POARR(CNT)=RX # ^ FILL DT
  N PIFN,RIFN,IBX,IBY,DTE,DTR,RX,IBCNT,IBRX0,IBRX2,IBS,LIST,LIST2 K ARRAY,POARR S POARR=0,NODISP=+$G(NODISP)
  S IBCNT=0,DT1=$G(DT1)-.0001,DT2=$G(DT2) S:'DT2 DT2=9999999 Q:'$G(DFN)
@@ -65,7 +65,9 @@ RXDISP(DFN,DT1,DT2,ARRAY,POARR,RXARR,IBRXALL,NODISP) ; display all rx fills for 
  .. ; original fill
  .. I +$G(IBRXALL) S DTR=$P(IBRX2,U,2) I DTR'<DT1,DTR'>DT2 D
  ... D DATA^IBRXUTL(+$P(IBRX0,U,6))
- ... S ARRAY($P(IBRX0,U,1),+DTR)=PIFN_U_0_U_$P(IBRX0,U,6)_U_$P(IBRX0,U,8)_U_$P(IBRX0,U,7)_U_$$GETNDC^PSONDCUT(PIFN,0)
+ ... ; add issue date to array so order date can be displayed
+ ... ;S ARRAY($P(IBRX0,U,1),+DTR)=PIFN_U_0_U_$P(IBRX0,U,6)_U_$P(IBRX0,U,8)_U_$P(IBRX0,U,7)_U_$$GETNDC^PSONDCUT(PIFN,0)
+ ... S ARRAY($P(IBRX0,U,1),+DTR)=PIFN_U_0_U_$P(IBRX0,U,6)_U_$P(IBRX0,U,8)_U_$P(IBRX0,U,7)_U_$$GETNDC^PSONDCUT(PIFN,0)_U_$P(IBRX0,U,13)
  ... K ^TMP($J,"IBDRUG")
  ... Q
  .. ; refills
@@ -76,7 +78,9 @@ RXDISP(DFN,DT1,DT2,ARRAY,POARR,RXARR,IBRXALL,NODISP) ; display all rx fills for 
  ... S IBY=$$ZEROSUB^IBRXUTL(DFN,PIFN,RIFN) Q:IBY=""
  ... Q:+IBY<DT1!(+IBY>DT2)
  ... D DATA^IBRXUTL(+$P(IBRX0,U,6))
- ... S ARRAY($P(IBRX0,U,1),+IBY)=PIFN_U_RIFN_U_$P(IBRX0,U,6)_U_$P(IBRX0,U,8)_U_$P(IBY,U,4)_U_$$GETNDC^PSONDCUT(PIFN,RIFN)
+ ... ; add issue date to array so order date can be displayed
+ ... ;S ARRAY($P(IBRX0,U,1),+IBY)=PIFN_U_RIFN_U_$P(IBRX0,U,6)_U_$P(IBRX0,U,8)_U_$P(IBY,U,4)_U_$$GETNDC^PSONDCUT(PIFN,RIFN)
+ ... S ARRAY($P(IBRX0,U,1),+IBY)=PIFN_U_RIFN_U_$P(IBRX0,U,6)_U_$P(IBRX0,U,8)_U_$P(IBY,U,4)_U_$$GETNDC^PSONDCUT(PIFN,RIFN)_U_$P(IBRX0,U,13)
  ... K ^TMP($J,"IBDRUG")
  ... Q
  .. K ^TMP($J,LIST2)
@@ -116,7 +120,9 @@ ADDNEW(IBIFN,LIST,IBPR,IBPRO) ;
  . S IBRX=$P(IBPRO(IBX),U,1),IBDT=$P(IBPRO(IBX),U,2) Q:IBRX=""
  . S IBQ=0,IBY=$G(IBPR(IBRX,+IBDT)) Q:'IBY
  . S IBPIFN=0 F  S IBPIFN=$O(^IBA(362.4,"AIFN"_IBIFN,IBRX,IBPIFN)) Q:'IBPIFN  I $P($G(^IBA(362.4,IBPIFN,0)),U,3)=IBDT S IBQ=1 Q
- . I 'IBQ S IBZ=$G(IBPR(IBRX,IBDT)) I $$ADD^IBCSC5A(IBRX,IBIFN,IBDT,$P(IBZ,U,3),$P(IBZ,U,1),$P(IBZ,U,4,6),$P(IBZ,U,2)) W "."
+ . ;I 'IBQ S IBZ=$G(IBPR(IBRX,IBDT)) I $$ADD^IBCSC5A(IBRX,IBIFN,IBDT,$P(IBZ,U,3),$P(IBZ,U,1),$P(IBZ,U,4,6),$P(IBZ,U,2)) W "."
+ . ; IB*2.0*432 - include issue date from file 52 to display to user when adding 
+ . I 'IBQ S IBZ=$G(IBPR(IBRX,IBDT)) I $$ADD^IBCSC5A(IBRX,IBIFN,IBDT,$P(IBZ,U,3),$P(IBZ,U,1),$P(IBZ,U,4,7),$P(IBZ,U,2)) W "."
  Q
  ;
 HTEXT() ;

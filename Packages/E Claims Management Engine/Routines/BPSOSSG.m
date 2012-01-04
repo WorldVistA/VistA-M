@@ -1,66 +1,107 @@
 BPSOSSG ;BHAM ISC/SD/lwj/FLS - Special gets for formats ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5**;JUN 2004;Build 45
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ Q
+ ;
+FLD420 ; Submission Clarification Code
+ ; place fields 354 and 420 into BPS CLAIMS
+ ; called by SET CODE in BPS NCPDPD FIELD DEFS for field 420
+ ;
+ Q:'$G(BPS(9002313.0201))  ; must have entry IEN
+ ;
+ N BPSCNTR,CNT,FDA,MSG,FLDIEN,SCC,I
+ K BPS(9002313.0354)  ; results from UPDATE^DIE
+ S FLDIEN=$O(^BPSF(9002313.91,"B",420,""))  ;Get IEN for field 420 from NCPDP BPS FIELD DEFS
+ ; Are there overrides?
+ I $G(FLDIEN),$D(BPS("OVERRIDE","RX",BPS(9002313.0201),FLDIEN)) D
+ . K BPS("RX",BPS(9002313.0201),"Submission Clarif Code")
+ . S SCC=BPS("OVERRIDE","RX",BPS(9002313.0201),FLDIEN)
+ . F I=1:1:$S($G(BPS("NCPDP","Version"))="51":1,1:3) S BPS("RX",BPS(9002313.0201),"Submission Clarif Code",I)=$P(SCC,"~",I)
+ Q:'$O(BPS("RX",BPS(9002313.0201),"Submission Clarif Code",0))  ; no values found
+ S (CNT,BPSCNTR)=0
+ F  S CNT=$O(BPS("RX",BPS(9002313.0201),"Submission Clarif Code",CNT)) Q:'CNT  D
+ .I BPS("RX",BPS(9002313.0201),"Submission Clarif Code",CNT)="" Q
+ .S BPSCNTR=BPSCNTR+1  ; ien for (#354.01) SUBMISSION CLARIFICATION MLTPL
+ .S FDA(9002313.02354,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",.01)=BPSCNTR
+ .; 420-DK Submission Clarification Code
+ .S FDA(9002313.02354,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",420)="DK"_$$NFF^BPSECFM(BPS("RX",BPS(9002313.0201),"Submission Clarif Code",CNT),2)
+ ;
+ I BPSCNTR D UPDATE^DIE("","FDA","BPS(9002313.0354)","MSG")
+ I $D(MSG) D  Q  ; if error, log it and quit
+ .D LOG2CLM^BPSOSL(BPS(9002313.02),$T(+0)_"-Failed to update NCPDP field 420")
+ .D LOGARAY2^BPSOSL(BPS(9002313.02),"MSG")
+ ;
+ ; 354-NX Submission Clarification Code Count
+ I BPSCNTR S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),350),U,4)="NX"_$$NFF^BPSECFM(BPSCNTR,1)
  ;
  Q
  ;
 FLD439 ;Reason for service code
  ;Called by SET logic in BPS NCPDP Field DEFS for field 439
- ;DUR is newed in BPSOSHF
- I ^BPS(9002313.99,1,"CERTIFIER")=DUZ S DUR=1
+ ;DUR is newed/set in BPSOSHF
  S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,DUR,0),U,2)=BPS("X")
  Q
  ;
 FLD440 ;Professional Service Code
  ;Called by set logic in BPS NCPDP Field DEFS for field 440
- ;DUR is newed in BPSOSHF
- I ^BPS(9002313.99,1,"CERTIFIER")=DUZ S DUR=1
+ ;DUR is newed/set in BPSOSHF
  S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,DUR,0),U,3)=BPS("X")
  Q
  ;
 FLD441 ;Result of Service Code
  ;Called by SET logic in BPS NCPDP Field DEFS for field 441
- ;DUR is newed in BPSOSHF
- I ^BPS(9002313.99,1,"CERTIFIER")=DUZ S DUR=1
+ ;DUR is newed/set in BPSOSHF
  S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,DUR,0),U,4)=BPS("X")
  Q
  ;
 FLD473 ;DUR/PPS code counter - called from SET logic in BPS NCPDP Field Defs
- ;DUR is newed in BPSOSHF
- I ^BPS(9002313.99,1,"CERTIFIER")=DUZ S DUR=1
+ ;DUR is newed/set in BPSOSHF
  S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,DUR,0),U,1)=BPS("X")
  S ^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,"B",BPS("X"),DUR)=""
  Q
+ ;
 FLD474 ;DUR/PPS level of effort - called from set logic in BPS NCPDP Field
- ;DUR is newed in BPSOSHF
- I ^BPS(9002313.99,1,"CERTIFIER")=DUZ S DUR=1
+ ;DUR is newed/set in BPSOSHF
  S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,DUR,0),U,5)=BPS("X")
  Q
  ;
 FLD475 ;DUR Co-agent ID Qualifier - called from set logic in BPS NCPDP Field
- ;DUR is newed in BPSOSHF
- I ^BPS(9002313.99,1,"CERTIFIER")=DUZ S DUR=1
- S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,DUR,0),U,6)=BPS("X")
+ ;DUR is newed/set in BPSOSHF
+ S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,DUR,0),U,6)=$S($G(BPS("NCPDP","Version"))=51:BPS("X"),1:"")
  Q
  ;
 FLD476 ;DUR Co-agent ID - called from set logic in BPS NCPDP Field
- ;DUR is newed in BPSOSHF
- I ^BPS(9002313.99,1,"CERTIFIER")=DUZ S DUR=1
- S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,DUR,0),U,7)=BPS("X")
+ ;DUR is newed/set in BPSOSHF
+ S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,DUR,0),U,7)=$S($G(BPS("NCPDP","Version"))=51:BPS("X"),1:"")
  Q
  ;
-FLD480 ;Other Amount Claimed Submitted field
- ;Called by set logic in BPS NCPDP Field DEFS for field 480
- ;Sets fields 478, 479, and 480 in BPS Claims
- Q:BPS("X")=""!(BPS("X")=0)!($TR(BPS("X"),"{}0.H7H8H9")="")
- N FDA,MSG
- S FDA(9002313.0601,"+1,"_BPS(9002313.0201)_","_BPS(9002313.02)_",",.01)="H7"_1
- S FDA(9002313.0601,"+1,"_BPS(9002313.0201)_","_BPS(9002313.02)_",",480)=BPS("X")
- S FDA(9002313.0601,"+1,"_BPS(9002313.0201)_","_BPS(9002313.02)_",",479)="H8"_$G(BPS("Insurer","Other Amt Claim Sub Qual"))
- D UPDATE^DIE("","FDA","BPS(9002313.0601)","MSG")
- I $D(MSG) D
+FLD480 ; Other Amount Claimed Submitted field
+ ; Called by set logic in BPS NCPDP Field DEFS for field 480
+ ; Sets fields 478, 479, and 480 into BPS Claims
+ ;   479-H8 Other Amount Claimed Submitted Qualifier
+ ;   480-H9 Other Amount Claimed Submitted
+ ;
+ Q:'$G(BPS(9002313.0201))  ; must have entry IEN
+ Q:'$O(BPS("Insurer","Other Amt Value",0))  ; nothing to do
+ ;
+ N BPSCNTR,CNT,FDA,MSG
+ K BPS(9002313.0601)  ; results from UPDATE^DIE
+ S (CNT,BPSCNTR)=0
+ F  S CNT=$O(BPS("Insurer","Other Amt Value",CNT)) Q:'CNT  D
+ . I +BPS("Insurer","Other Amt Value",CNT)=0 Q
+ . S BPSCNTR=BPSCNTR+1  ; ien for "PRICING REPEATING FIELDS SUB-FIELD^^480^3"
+ . S FDA(9002313.0601,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",.01)=BPSCNTR
+ . S FDA(9002313.0601,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",479)="H8"_$$ANFF^BPSECFM($G(BPS("Insurer","Other Amt Qual",CNT)),2)
+ . S FDA(9002313.0601,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",480)="H9"_$$DFF^BPSECFM($G(BPS("Insurer","Other Amt Value",CNT)),8)
+ ;
+ I BPSCNTR D UPDATE^DIE("","FDA","BPS(9002313.0601)","MSG")
+ I $D(MSG) D  Q
  . D LOG2CLM^BPSOSL(BPS(9002313.02),$T(+0)_"-Failed to update NCPDP field 480 and/or 479")
  . D LOGARAY2^BPSOSL(BPS(9002313.02),"MSG")
+ ; 478-H7 Other Amount Claimed Submitted Count
+ I BPSCNTR S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),470),U,8)="H7"_$$NFF^BPSECFM(BPSCNTR,1)
+ ;
  Q
  ;
 EMPL ;Get employer info
@@ -86,50 +127,3 @@ EMPL ;Get employer info
  K EMPL,STATEIEN
  Q
  ;
-STLIC(STATE) ; Retrieve the state license number.
- ;  This can be called by the special code in the payer sheet
- ;  References to State file (DIC(5)) covered by IA 10056
- ;  References to New Person file (VA(200)) covered by IA 10060
- ;  
- ;
- ; Validate the STATE parameter
- I $G(STATE)="" Q ""
- ;
- ; Get state IEN and make sure it exists
- N STIEN
- S STIEN=$O(^DIC(5,"C",STATE,0))
- I STIEN="" Q ""
- ;
- ; Get Provider IEN and make sure it exist
- N PROVIEN
- S PROVIEN=$G(BPS("RX",BPS(9002313.02),"Prescriber IEN"))
- I PROVIEN="" Q ""
- ;
- ; Get the expiration date and compare to the date of service
- N EXPDT
- S EXPDT=$$GET1^DIQ(200.541,STIEN_","_PROVIEN_",",2)
- I EXPDT,EXPDT+17000000<$G(BPS("RX",BPS(9002313.02),"Date Filled")) Q ""
- ;
- ; Get the license number
- Q $$GET1^DIQ(200.541,STIEN_","_PROVIEN_",",1)
- ;
-STDEA(STATE) ; Retrieve the state DEA number.
- ;  This can be called by the special code in the payer sheet
- ;  References to State file (DIC(5)) covered by IA 10056
- ;  References to New Person file (VA(200)) covered by IA 10060
- ;
- ; Validate the STATE parameter
- I $G(STATE)="" Q ""
- ;
- ; Get state IEN and make sure it exists
- N STIEN
- S STIEN=$O(^DIC(5,"C",STATE,0))
- I STIEN="" Q ""
- ;
- ; Get Provider IEN and make sure it exist
- N PROVIEN
- S PROVIEN=$G(BPS("RX",BPS(9002313.02),"Prescriber IEN"))
- I PROVIEN="" Q ""
- ;
- ; Get the license number
- Q $$GET1^DIQ(200.55,STIEN_","_PROVIEN_",",1)

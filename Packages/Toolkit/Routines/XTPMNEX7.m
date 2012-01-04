@@ -1,14 +1,15 @@
-XTPMNEX7 ;OAK/BP - PATCHES DUE IN NEXT 7 DAYS ; 2/7/06
- ;;7.3;TOOLKIT;**98,100**; Apr 25, 1995;Build 4
+XTPMNEX7 ;OAK/BP - PATCHES DUE IN NEXT 7 DAYS ; 10/27/10
+ ;;7.3;TOOLKIT;**98,100,127**; Apr 25, 1995;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 RPT S XTBHDR="Patches Due Within Seven Days for "_^DD("SITE")
  S XTBBDT=3010101,X="T+7",%DT="" D ^%DT S XTBEDT=Y
- W @IOF,!,XTBHDR,!!! S %ZIS="AEQ" D ^%ZIS G:POP EXIT
+ W @IOF,!,XTBHDR,!!! S %ZIS="MQ" D ^%ZIS G:POP EXIT
  I $D(IO("Q")) S ZTIO=ION,ZTRTN="RPT1^XTPMNEX7",ZTDESC=XTBHDR,ZTSAVE("XTB*")="" D ^%ZTLOAD D HOME^%ZIS
  I $D(ZTSK) W !,"Queued as task# ",ZTSK,!! H 2 G EXIT
  ;
 RPT1 U IO K ^TMP($J) S XTBX="",(XTBCNT,XTBLN)=0
- S XTBUP="I $Y>(IOSL-5) S PG=PG+1 D PAUSE W @IOF,!,XTBHDR,?(IOM-12),""Page: "",PG,!!"
+ D PGBK ;page break for devices
  S Y=DT X ^DD("DD") S XTBRUNDT=Y
  F XTBX=XTBBDT:0 S XTBX=$O(^XPD(9.9,"D",XTBX)) Q:XTBX=""!(XTBX>XTBEDT)  DO
  .F XTBDA=0:0 S XTBDA=$O(^XPD(9.9,"D",XTBX,XTBDA)) Q:XTBDA=""  DO
@@ -32,7 +33,7 @@ RPT1 U IO K ^TMP($J) S XTBX="",(XTBCNT,XTBLN)=0
  X XTBUP
  ;
 PREXIT W !!,"Number of patches: ",XTBCNT,!
- I IOST?1"C-".E W !,"Press RETURN to end  " R ANS:DTIME
+ I $E(IOST,1,2)="C-" W !,"Press RETURN to end  " R ANS:DTIME I '$T Q
  ;
 EXIT D ^%ZISC
  K ^TMP($J),%ZIS,ANS,XTBANS,XTBCNT,XTBCPLDT,XTBDA,XTBINST,XTBLN,XTBPKG,XTBPRIO,XTBPTNM
@@ -47,19 +48,19 @@ SET S XTBPTNM=$P(XTBDTA,U,1),XTBSUBJ=$E($P(XTBDTA,U,7),1,26)
  S XTBLN=XTBLN+1,^TMP($J,XTBCPLDT,XTBPTNM,XTBLN)=XTBSUBJ_U_XTBPRIO_U_XTBRECPT
  Q
  ;
-HDR I PG<1,IOST?1"C-".E W @IOF
+HDR ;
  S PG=PG+1
- W:PG>1 @IOF W !,XTBHDR,?(IOM-12),"Page: ",PG,!,"Run date: "_XTBRUNDT,!!!
+ W !,XTBHDR," Page: ",PG,!,"Run date: ",XTBRUNDT,!!
  W "Compliance",!,"Date",?13,"Patch #",?27,"Subject",?55,"Priority",?67,"Recpt Date",!
  W "----------",?13,"-------",?27,"-------",?55,"--------",?67,"----- ----",!
  Q
  ;
 PAUSE W !,"Press RETURN to continue or '^' to exit: " R XTBANS:DTIME
+ I '$T S (XTBLN,XTBCPLDT,XTBPTNM)="ZZZZZ"
  I XTBANS[U S (XTBLN,XTBCPLDT,XTBPTNM)="ZZZZZ"
  Q
  ;
-SITETSK ;compile a list from sites
- S XTBPSITE=1,IOP="P-MESSAGE;80;60",XMY("TRAN.BA@NXT.KERNEL.FO-OAKLAND.MED.VA.GO")=""
- S XTBHDR="Patches Due Within Eight Days for "_^DD("SITE")
- S XTBBDT=3010101,X="T+8",%DT="" D ^%DT S XTBEDT=Y
- G RPT1
+PGBK ;page break
+ S XTBUP="I $Y>(IOSL-3) W @IOF D HDR"
+ I $E(IOST,1,2)="C-" S XTBUP="I $Y>(IOSL-3) D PAUSE W @IOF D HDR"
+ Q

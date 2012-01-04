@@ -1,5 +1,5 @@
 RAHLO1 ;HIRMFO/GJC/BNT-File rpt (data from bridge program) ;6/25/04  11:49
- ;;5.0;Radiology/Nuclear Medicine;**4,5,12,17,21,27,48,55,66,87,84,94,104**;Mar 16, 1998;Build 2
+ ;;5.0;Radiology/Nuclear Medicine;**4,5,12,17,21,27,48,55,66,87,84,94,104,47**;Mar 16, 1998;Build 21
  ; 12/15/2009 BAY/KAM RA*5*104 Rem Call 359702 On-line Verification issue
  ; 11/15/2007 BAY/KAM RA*5*87 Rem Call 216332 Correct UNDEF on null dx code
  ; 09/07/2005 108405 - KAM/BAY Allow Radiology to accept dx codes from Talk Technology
@@ -45,7 +45,8 @@ NEW1 N RARPT S RARPT=$$NEWIEN^RAHLTCPU()
  ;
  ;we have a new IEN and the record in locked. Now update that record using UPDATE^DIE
  S RAIENS(1)=RARPT,RAFDA(74,"+1,",.01)=RALONGCN,RAFDA(74,"+1,",2)=RADFN
- S RAFDA(74,"+1,",3)=(9999999.9999-RADTI),RAFDA(74,"+1,",4)=$P(RALONGCN,"-",2)
+ ;S RAFDA(74,"+1,",3)=(9999999.9999-RADTI),RAFDA(74,"+1,",4)=$P(RALONGCN,"-",2)
+ S RAFDA(74,"+1,",3)=(9999999.9999-RADTI),RAFDA(74,"+1,",4)=$P(RALONGCN,"-",$L(RALONGCN,"-"))  ;format of RALONGCN after P47 could be SSS-DDDDDD-CASE# so get LAST "-" piece instead of 2nd piece
  D UPDATE^DIE("","RAFDA","RAIENS","RAERR") K RAFDA,RAIENS
  I $D(RAERR("DIERR"))#2 S RAERR="Error filing a new record in the RAD/NUC MED REPORTS file."  L -^RARPT(RARPT) Q
  ;
@@ -67,7 +68,7 @@ LOCK1 I $D(RAESIG) S X=RAESIG,X1=$G(RAVERF),X2=RARPT D EN^XUSHSHP S RAESIG=X
  I $G(RAVERF),(RARPTSTS="V") S RAFDA(74,RAIENS,17)=$G(^TMP("RARPT-REC",$J,RASUB,"RAWHOCHANGE"))
  D FILE^DIE("","RAFDA","RAERR")
  I $D(RAERR("DIERR"))#2 D  L -^RARPT(RARPT) Q  ;if error, unlock f74 and quit.
- .S RAERR="Error filing a report record data in the RAD/NUC MED REPORTS file."
+ .S RAERR="Error filing report record data in the RAD/NUC MED REPORTS file."
  .;KILL THE WHOLE RECORD???
  .Q
  ;--------------------------------------

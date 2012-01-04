@@ -1,8 +1,10 @@
 IBNCPDPU ;OAK/ELZ - UTILITIES FOR NCPCP ;5/22/08  15:24
- ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384,437**;21-MAR-94;Build 11
+ ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384,437,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
- ;IA 4702
+ ;Reference to ECMEACT^PSOBPSU1 supported by IA# 4702
+ ;Reference to $$EN^BPSNCPDP supported by IA# 4415
+ ;Reference to $$NABP^BPSBUTL supported by IA# 4719
  ;
  ;
 CT(DFN,IBRXN,IBFIL,IBADT,IBRMARK) ; files in claims tracking
@@ -63,16 +65,52 @@ PLANN(DFN,IBX,IBADT) ; returns the ien in the insurance multiple for the given p
  S IBY=0 F  S IBY=$O(IBPOL(IBY)) Q:IBY<1!(IBR)  I $P(IBPOL(IBY,0),"^",18)=IBX S IBR=$P(IBPOL(IBY,0),"^")_"^"_IBY
  Q IBR
  ;
-RT(DFN,IBDT,IBINS,IBN) ; returns rate type to use for bill
- ; pass in insurance by ref and which insurance entry to use
- ; if '$d(ibn) then it loops through to find the first one
- ; format is RT (ien) ^ Rate Type (Tort or Awp or Cost) ^ Eligibility Basis (V=vet, T=tricare)
+PLANEPS(IBPL) ; returns the ePharmacy payer sheets for a group plan 
+ ; IBPL = IEN to GROUP INSURANCE PLAN file #355.3
+ ; Returns: Payer Sheets. (B1,B2,B3,E1) (comma separated string)
+ ;   Successful:   1^B1,B2,B3,E1
+ ;   Unsuccessful: 0
+ N PIEN,IBR,PLN10,B1,B2,B3,E1
+ S IBR=0
+ ; Get ePharmacy plan IEN
+ S PIEN=+$P($G(^IBA(355.3,$G(IBPL),6)),U,1)
+ I 'PIEN Q IBR
+ S PLN10=$G(^IBCNR(366.03,PIEN,10))
+ ; check for test/production sheets
+ ; get the test payer sheet first.  If nil, then get the regular payer sheet
+ S (B1,B2,B3,E1)=""
+ S B1=$P(PLN10,U,11),B2=$P(PLN10,U,12),B3=$P(PLN10,U,13),E1=$P(PLN10,U,14)
+ I 'B1 S B1=$P(PLN10,U,7)         ; billing
+ I 'B2 S B2=$P(PLN10,U,8)         ; reversal
+ I 'B3 S B3=$P(PLN10,U,9)         ; rebill (not currently validated)
+ I 'E1 S E1=$P(PLN10,U,15)        ; eligibility
+ S IBR="1^"_B1_","_B2_","_B3_","_E1
+ Q IBR
+ ;
+RT(DFN,IBDT,IBINS,IBPTYP) ; returns rate type to use for bill
+ ; Input:
+ ;    DFN - patient ien
+ ;   IBDT - date of service
+ ;  IBINS - insurance array (pass by reference)
+ ;
+ ; Output:
+ ;  3 piece string in the following format
+ ;     [1] rate type ien
+ ;     [2] Rate Type (Tort or Awp or Cost)
+ ;     [3] Eligibility Basis (V=VETERAN, T=TRICARE)
+ ;
+ ; IBPTYP - patient type - optional output parameter (pass by reference)
+ ;        - this is only used by the PRO option (see IBNCPDP1)
+ ;        - (V=VETERAN, T=TRICARE)
+ ;        - NOT the same thing as [3] of this function
+ ;
  N VAEL,VAERR,IBPT,IBRT,IBX,IBE,IBI,IBRET,IBRS
+ S IBPTYP=""
  D ELIG^VADPT
  ;
  ; if primary elig is vet type, use reimbursable
  S IBPT=$P($G(^DIC(8,+VAEL(1),0)),"^",5) ; = N:NON-VETERAN;Y:VETERAN
- I IBPT="Y" D  Q IBRT_U_$S($G(IBRET)="VA COST":"C^V",1:"T^V")
+ I IBPT="Y" D  Q IBRT_U_$S($G(IBRET)="VA COST":"C^V",1:"T^V")    ; IB*2*437 modifications
  .   S IBRT=$O(^DGCR(399.3,"B","REIMBURSABLE INS.",0))
  .   S IBRT=$S(IBRT:IBRT,1:8)
  .   I $G(IBDT) S IBRET=$P($$EVNTITM^IBCRU3(IBRT,3,"PRESCRIPTION FILL",IBDT,.IBRS),";",1)
@@ -82,6 +120,11 @@ RT(DFN,IBDT,IBINS,IBN) ; returns rate type to use for bill
  ;  -  determine eligibilities
  S IBE=$P($G(^DIC(8.1,+$P($G(^DIC(8,+VAEL(1),0)),"^",9),0)),"^"),IBE($S(IBE="TRICARE"!(IBE="SHARING AGREEMENT"):"T",IBE="CHAMPVA":"C",1:"O"))=""
  S IBX=0 F  S IBX=$O(VAEL(1,IBX)) Q:'IBX  S IBE=$P($G(^DIC(8.1,+$P($G(^DIC(8,+VAEL(1,IBX),0)),"^",9),0)),"^") S IBE($S(IBE="TRICARE"!(IBE="SHARING AGREEMENT"):"T",IBE="CHAMPVA":"C",1:"O"))=""
+ ;
+ ; set patient type parameter
+ I $G(VAEL(4)) S IBPTYP="V"   ; veteran without any pt. eligibilities defined
+ I $D(IBE("T")) S IBPTYP="T"  ; TRICARE
+ ;
  ;  -  determine insurance policies
  S IBX=0 F  S IBX=$O(IBINS(IBX)) Q:'IBX  S IBI=$P($G(^IBE(355.1,+$P($G(IBINS(IBX,355.3)),"^",9),0)),"^") S IBI($S(IBI="TRICARE":"T",IBI="CHAMPVA":"C",1:"O"))=""
  ;  -  tricare?
@@ -90,78 +133,83 @@ RT(DFN,IBDT,IBINS,IBN) ; returns rate type to use for bill
  Q $S($D(IBRT):IBRT,1:"0^unable to determine rate type")
  ;
  ;
- ; ********* temp code for tricare/champus ************** not currently used
- ; if primary elig is TRICARE/CHAMPUS use one of the champus', depending
- ; on insurance coverage
- I $P($G(^DIC(8.1,+$P($G(^DIC(8,+VAEL(3),0)),"^",9),0)),"^")="TRICARE/CHAMPUS" S IBRT=$$UINS("CHAMPUS",.IBINS,.IBN)
- ;
- ; if primary elig is CHAMPVA use one of the champva's, depending
- ; on insurance coverage
- I $P($G(^DIC(8.1,+$P($G(^DIC(8,+VAEL(3),0)),"^",9),0)),"^")="CHAMPVA" S IBRT=$$UINS("CHAMPVA",.IBINS,.IBN)
- ;
- Q $S($D(IBRT):IBRT,1:"0^unable to determine rate type")
- ;
- ;
-UINS(IBT,IBINS,IBN) ; in the case of tricare or champva you may have to use
- ; insurance different rate types insted of the actual tricare or champva
- N IBRT
- S IBN=+$G(IBN,$O(IBINS("S",+$O(IBINS("S",0)),0)))
- I $P($G(^IBE(355.1,+$P($G(IBINS(IBN,355.3)),"^",9),0)),"^")=IBT S IBRT=$O(^DGCR(399.3,"B",IBT,0)),IBRT=$S(IBRT:IBRT_"^"_$S(IBT="CHAMPUS":"A",1:"C"),1:"0^"_IBT_" Rate type not found")
- I '$D(IBRT) S IBRT=$O(^DGCR(399.3,"B",IBT_" REIMB. INS.",0)),IBRT=$S(IBRT:IBRT_"^"_$S(IBT="CHAMPUS":"A",1:"C"),1:"0^"_IBT_" REIMB. INS. Rate type not found")
- Q IBRT
- ;
 BS() ; returns the mccr utility to use
  N IBX
  S IBX=0 F  S IBX=$O(^DGCR(399.1,"B","PRESCRIPTION",IBX)) Q:IBX<1  I $P($G(^DGCR(399.1,+$G(IBX),0)),U,5) Q
  Q IBX
  ;
- ; Match IB Bill by the 7-digit ECME number
 RXBIL(IBINP,IBERR) ; Matching NCPDP payments
+ ; Find IB Bill by the 7 or 12 digit ECME number and the Rx fill date
+ ; This function is called by AR routine $$BILL^RCDPESR1 (DBIA 4435).
  ;Input:
- ;   IBINP("ECME") - the 7-digit ECME number (Reference Number)
+ ;   IBINP("ECME") - the 7 or 12 digit ECME number (Reference Number)
  ;   IBINP("FILLDT")  - the Rx fill date, YYYYMMDD or FileMan format
  ;   IBINP("PNM") (optional) - the patient's last name
  ;Returns:
  ;   IBERR (by ref) - the error code, or null string if found
  ;   $$RXBIL - IB Bill IEN, or 0 if not matched
- N IBKEY,IBECME,BILLDA,IBFOUND,IBMATCH,IBDAT,IBPNAME
+ N IBKEY,IBECME,BILLDA,IBFOUND,IBMATCH,IBDAT,IBPNAME,ECMELEN,ECMENUM
  S IBERR=""
  S IBECME=$G(IBINP("ECME"))
- I IBECME'?1.7N S IBERR="Invalid ECME number" Q 0
+ I IBECME'?1.12N S IBERR="Invalid ECME number" Q 0
  S IBDAT=$G(IBINP("FILLDT")) ; Rx fill date
  I IBDAT?8N S IBDAT=($E(IBDAT,1,4)-1700)_$E(IBDAT,5,8) ; conv date to FM format
  I IBDAT'?7N Q $$RXBILND(IBECME)  ; date is not correct or null
  S IBPNAME=$G(IBINP("PNM")) ; patient's name (optional)
- S IBKEY=+IBECME_";"_IBDAT ; The ECME Number (BC ID)
- S BILLDA="",IBFOUND=0,IBMATCH=0
- ; Search backward
- F  S BILLDA=$O(^DGCR(399,"AG",IBKEY,BILLDA),-1) Q:BILLDA=""  D  Q:IBFOUND
- . I 'BILLDA Q  ; IEN must be numeric
- . I '$D(^DGCR(399,BILLDA,0)) Q  ; Corrupted index
- . S IBMATCH=1
- . I IBPNAME'="" I '$$TXMATCH($P(IBPNAME,","),$P($G(^DPT(+$P(^DGCR(399,BILLDA,0),U,2),0)),","),8) Q  ; Patient name doesn't match
- . S IBFOUND=1
+ ;
+ ; Attempt ECME# look up with either 7 digit or 12 digit number  (IB*2*435)
+ S IBFOUND=0,IBMATCH=0
+ F ECMELEN=12,7 D  Q:IBFOUND
+ . I $L(+IBECME)>ECMELEN Q   ; Quit if too large
+ . S ECMENUM=$$RJ^XLFSTR(+IBECME,ECMELEN,0)  ; build ECME#
+ . S IBKEY=ECMENUM_";"_IBDAT ; The ECME Number (BC ID) for the "AG" xref
+ . S BILLDA=""
+ . ; Search Backward
+ . F  S BILLDA=$O(^DGCR(399,"AG",IBKEY,BILLDA),-1) Q:BILLDA=""  D  Q:IBFOUND
+ .. I 'BILLDA Q  ; IEN must be numeric
+ .. I '$D(^DGCR(399,BILLDA,0)) Q  ; Corrupted index
+ .. S IBMATCH=1
+ .. I IBPNAME'="" I '$$TXMATCH($P(IBPNAME,","),$P($G(^DPT(+$P(^DGCR(399,BILLDA,0),U,2),0)),","),8) Q  ; Patient name doesn't match
+ .. S IBFOUND=1
+ .. Q
+ . Q
+ ;
  I 'BILLDA S IBERR=$S(IBMATCH:"Patient's name does not match",1:"Matching bill not found") ; not matched
  Q +BILLDA
  ;
 RXBILND(IBECME) ;Match the bill with no date
- N IBKEY,IBBC,BILLDA,IBY,IBCUT
- S IBKEY=+IBECME_";"
- S IBCUT=$$FMADD^XLFDT(DT,-180) ; only 180 days in the past
+ N IBKEY,IBBC,BILLDA,IBY,IBCUT,ECMELEN,ECMENUM
+ S IBCUT=$$FMADD^XLFDT(DT,-180) ; only 180 days in the past for cut-off date
+ ;
+ ; Search ECME# 7/12 digits forward looking for PRNT/TX claims   (IB*2*435)
  S BILLDA=0
- ; Search PRNT/TX forward
- S IBBC=IBKEY_IBCUT
- F  S IBBC=$O(^DGCR(399,"AG",IBBC)) Q:IBBC'[IBKEY  D  Q:BILLDA
- . S IBY="" F  S IBY=$O(^DGCR(399,"AG",IBBC,IBY)) Q:'IBY  D  Q:BILLDA
- .. I $P($G(^DGCR(399,+IBY,0)),U,13)'=4 Q  ; not PRNT/TX
- .. S BILLDA=+IBY
+ F ECMELEN=12,7 D  Q:BILLDA
+ . I $L(+IBECME)>ECMELEN Q   ; Quit if too large
+ . S ECMENUM=$$RJ^XLFSTR(+IBECME,ECMELEN,0)   ; build ECME#
+ . S IBKEY=ECMENUM_";"
+ . S IBBC=IBKEY_IBCUT
+ . F  S IBBC=$O(^DGCR(399,"AG",IBBC)) Q:IBBC'[IBKEY  D  Q:BILLDA
+ .. S IBY="" F  S IBY=$O(^DGCR(399,"AG",IBBC,IBY)) Q:'IBY  D  Q:BILLDA
+ ... I $P($G(^DGCR(399,+IBY,0)),U,13)'=4 Q  ; not PRNT/TX
+ ... S BILLDA=+IBY
+ ... Q
+ .. Q
+ . Q
  I BILLDA Q BILLDA
- ; Search ANY backward
- S IBBC=IBKEY_"8000000"
- F  S IBBC=$O(^DGCR(399,"AG",IBBC),-1) Q:IBBC'[IBKEY  Q:$P(IBBC,";",2)<IBCUT  D  Q:BILLDA
- . S IBY="" F  S IBY=$O(^DGCR(399,"AG",IBBC,IBY),-1) Q:IBY=""  D  Q:BILLDA
- .. ;I $P($G(^DGCR(399,+IBY,0)),U,13)'=7 Q  ; not CANCELLED
- .. S BILLDA=+IBY
+ ;
+ ; Search ECME# 7/12 digits backwards looking for ANY claims within cut-off date  (IB*2*435)
+ S BILLDA=0
+ F ECMELEN=12,7 D  Q:BILLDA
+ . I $L(+IBECME)>ECMELEN Q   ; Quit if too large
+ . S ECMENUM=$$RJ^XLFSTR(+IBECME,ECMELEN,0)   ; build ECME#
+ . S IBKEY=ECMENUM_";"
+ . S IBBC=IBKEY_"8000000"
+ . F  S IBBC=$O(^DGCR(399,"AG",IBBC),-1) Q:IBBC'[IBKEY  Q:$P(IBBC,";",2)<IBCUT  D  Q:BILLDA
+ .. S IBY="" F  S IBY=$O(^DGCR(399,"AG",IBBC,IBY),-1) Q:IBY=""  D  Q:BILLDA
+ ... S BILLDA=+IBY
+ ... Q
+ .. Q
+ . Q
  Q BILLDA
  ;
  ;Check matching of two strings - case insensitive, no spaces etc.
@@ -204,13 +252,14 @@ ECMEBIL(DFN,IBADT) ; Is the pat ECME Billable (pharmacy coverage only)
  ;
  Q IBRES
  ;
-SUBMIT(IBRX,IBFIL) ; Submit the Rx claim through ECME
+SUBMIT(IBRX,IBFIL,IBDELAY) ; Submit the Rx claim through ECME
+ ; IBDELAY - Delay Reason Code, passed as the 18th parameter - IB*2.0*435
  ; IBRX - RX ien in file #52
  ; IBFIL - Fill No (0 for orig fill)
  N IBDT,IBNDC,IBX
  I '$G(IBRX)!('$D(IBFIL)) Q "0^Invalid parameters."
  S IBDT=$S('IBFIL:$$FILE^IBRXUTL(IBRX,22),1:$$SUBFILE^IBRXUTL(IBRX,IBFIL,52,.01))
- S IBX=$$EN^BPSNCPDP(+IBRX,+IBFIL,IBDT,"BB")
+ S IBX=$$EN^BPSNCPDP(+IBRX,+IBFIL,IBDT,"BB",,,,,,,,,,,,,,+$G(IBDELAY))
  I +IBX=0 D ECMEACT^PSOBPSU1(+IBRX,+IBFIL,"Claim submitted to 3rd party payer: IB BACK BILLING")
  Q IBX
  ;
@@ -235,12 +284,15 @@ BILL(IBRX,IBFIL) ;
  Q $P($G(^DGCR(399,IBIFN,0)),U)
  ;
 REJECT(IBECME,IBDATE) ; Is the e-claim rejected?
- N IBINP,IBTRKRN,IBY
- I IBECME'?1.7N Q 0
- ;S IBINP("ECME")=IBECME
- ;S IBINP("FILLDT")=IBDATE
- ;I $$RXBIL(.IBINP) Q 0  ; bill exists
- S IBTRKRN=+$O(^IBT(356,"AE",IBECME,0)) I 'IBTRKRN Q 0
+ N IBTRKRN,IBY,ECMELEN
+ I IBECME'?1.12N Q 0
+ S IBTRKRN=0
+ F ECMELEN=12,7 D  Q:IBTRKRN
+ . I $L(+IBECME)>ECMELEN Q
+ . S IBECME=$$RJ^XLFSTR(+IBECME,ECMELEN,0)    ; build ECME# with leading zeros
+ . S IBTRKRN=+$O(^IBT(356,"AE",IBECME,0))
+ . Q
+ I 'IBTRKRN Q 0
  S IBY=$G(^IBT(356,IBTRKRN,1))
  I $P(IBY,U,11)>0 Q 1  ; Rejected or closed
  Q 0

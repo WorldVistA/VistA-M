@@ -1,5 +1,5 @@
 PSOPMP0 ;BIRM/MFR - Patient Medication Profile - Listmanager ;10/28/06
- ;;7.0;OUTPATIENT PHARMACY;**260,281,303,289**;DEC 1997;Build 107
+ ;;7.0;OUTPATIENT PHARMACY;**260,281,303,289,382**;DEC 1997;Build 9
  ;Reference to EN1^GMRADPT supported by IA #10099
  ;Reference to EN6^GMRVUTL supported by IA #1120
  ;Reference to ^PS(55 supported by DBIA 2228
@@ -207,29 +207,31 @@ CV ;Change View
  Q
  ;
 SEL ;Process selection of one entry
- N PSOSEL,TYPE,XQORM,ORD,TITLE
- S PSOSEL=+$P($P(Y(1),"^",4),"=",2) I 'PSOSEL S VALMSG="Invalid selection!",VALMBCK="R" Q
- S TYPE=$O(^TMP("PSOPMP0",$J,PSOSEL,0)) I TYPE="" S VALMSG="Invalid selection!",VALMBCK="R" Q
- S ORD=$G(^TMP("PSOPMP0",$J,PSOSEL,TYPE))
- I 'ORD S VALMSG="Invalid selection!",VALMBCK="R" Q
- S TITLE=VALM("TITLE")
- ;
- ;Regular prescription
- I TYPE="RX" D  S VALMBCK="R" D REF
- . N PSOVDA,PSOSAVE,DA,PS
- . S (PSOVDA,DA)=ORD,PS="REJECTMP"
- . N LINE,TITLE,PSODFN D DP^PSORXVW
- ;
- ;Pending Order
- I TYPE="PEN" D  S VALMBCK="R" D REF
- . N PSOACTOV,OR0
- . S OR0=^PS(52.41,ORD,0),PSOACTOV=""
- . N LINE,TITLE D PENHDR^PSOPMP1(PSODFN),DSPL^PSOORFI1
- ;
- ;Pending Order
- I TYPE="NVA" D
- . N LINE,TITLE D EN^PSONVAVW(PSODFN,ORD)
- ;
+ N PSOSEL,TYPE,XQORM,ORD,TITLE,PSOLIS,XX
+ S PSOLIS=$P(XQORNOD(0),"=",2) I 'PSOLIS S VALMSG="Invalid selection!",VALMBCK="R" Q
+ F XX=1:1:$L(PSOLIS,",") Q:$P(PSOLIS,",",XX)']""  D
+ .S PSOSEL=+$P(PSOLIS,",",XX) I 'PSOSEL S VALMSG="Invalid selection!",VALMBCK="R" Q
+ .S TYPE=$O(^TMP("PSOPMP0",$J,PSOSEL,0)) I TYPE="" S VALMSG="Invalid selection!",VALMBCK="R" Q
+ .S ORD=$G(^TMP("PSOPMP0",$J,PSOSEL,TYPE))
+ .I 'ORD S VALMSG="Invalid selection!",VALMBCK="R" Q
+ .S TITLE=VALM("TITLE")
+ .;
+ .;Regular prescription
+ .I TYPE="RX" D  S VALMBCK="R" D REF
+ .. N PSOVDA,PSOSAVE,DA,PS
+ .. S (PSOVDA,DA)=ORD,PS="REJECTMP"
+ .. N LINE,TITLE,PSODFN D DP^PSORXVW
+ .;
+ .;Pending Order
+ .I TYPE="PEN" D  S VALMBCK="R" D REF
+ .. N PSOACTOV,OR0
+ .. S OR0=^PS(52.41,ORD,0),PSOACTOV=""
+ .. N LINE,TITLE D PENHDR^PSOPMP1(PSODFN),DSPL^PSOORFI1
+ .;
+ .;Pending Order
+ .I TYPE="NVA" D
+ .. N LINE,TITLE D EN^PSONVAVW(PSODFN,ORD)
+ .;
  S VALMBCK="R",VALM("TITLE")=TITLE
  Q
  ;

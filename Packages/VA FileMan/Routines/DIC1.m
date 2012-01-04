@@ -1,6 +1,6 @@
-DIC1 ;SFISC/GFT/TKW-READ X, SHOW CHOICES ;8:39 AM  22 Jan 2003
- ;;22.0;VA FileMan;**1,4,17,20,31,48,78,86,70,122**;Mar 30, 1999
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIC1 ;SFISC/GFT/TKW-READ X, SHOW CHOICES ;29SEP2010
+ ;;22.0;VA FileMan;**1,4,17,20,31,48,78,86,70,122,165**;Mar 30, 1999;Build 32
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  K DUOUT,DTOUT N DD,DIY,DISUB,DIPRMT
  D GETFA(.DIC,.DO)
  N DIPRMT D GETPRMT^DIC11(.DIC,.DO,.DINDEX,.DIPRMT)
@@ -34,7 +34,7 @@ GETFA(DIC,DO) ; Get file attributes
  D DO Q
  ;
 DO ; GET FILE ATTR
- Q:$D(DO)  I $D(@(DIC_"0)")) S DO=^(0)
+ Q:$D(DO(2))  I $D(@(DIC_"0)")) S DO=^(0)
  E  S DO="0^-1" I $D(DIC("P")) S DO=U_DIC("P"),^(0)=DO
 DO2 S DO(2)=$P(DO,U,2) I DO?1"^".E S DO=$O(^DD(+DO(2),0,"NM",0))_DO
  I DO(2)["s",$D(^DD(+DO(2),0,"SCR")) S DO("SCR")=^("SCR")
@@ -75,7 +75,7 @@ Y ; Display a list of entries
  . . N Y S Y=+DS(DD)
  . . D E Q
  . I DIC(0)["Y" Q:DD<DS  D
- . . F Y=DS:-1 Q:'DS(Y)  S Y(+DS(Y))=""
+ . . F Y=DS:-1 Q:'$G(DS(Y))  S Y(+DS(Y))=""
  . . Q
  . I DIC(0)'["E"!(DIC(0)["Y") S DS(0)="1^",DIOUT=1,DIY="" Q
  . I DS>DD Q:DD#5
@@ -104,7 +104,7 @@ Y ; Display a list of entries
 E S DST="" D
  . Q:DIC(0)["U"
  . I $O(DS(DD,0)) S DST=$$BLDDSP(.DS,DD) Q
- . S %=$S($G(DILONGX):DICR(DICR,"ORG"),$G(DINDEX("IXTYPE"))'="S":$P(X,U),1:"")
+ . S %=$S($G(DILONGX):DICR(DILONGX,"ORG"),$G(DINDEX("IXTYPE"))'="S":$P(X,U),1:"")
  . S %=%_$P(DS(DD),U,2,9)_$S($G(DIYX(DD)):DIY(DD),1:"")
  . I ($G(DITRANX)!($G(DICRS))),$G(DINDEX(1,"TRANOUT"))]"",%]"" D  Q
  . . N X S X=% X DINDEX(1,"TRANOUT") S DST=$G(X) Q
@@ -142,7 +142,7 @@ GOT ; Set data for single entry selected by user.
  ;
 OK ;
  S %=1 I $G(DS)=1 S DST="         ...OK" D Y^DICN W:'$D(DDS) !
- I %>0 Q:%=1  D  S X=$G(DIX),Y=-1 Q  ;%=1=Yes, %=2=No ;22*70
+ I %>0 Q:%=1  D  S X=$G(DIX),Y=-1 Q  ;%=1=Yes, %=2=No
  . I $G(DICR) S DICR(DICR,31.2)=+Y ;Preserve IEN for future reference
  . I +$G(DS) K DS S (DS,DS(0),DS("DD"))=0 ;ReInit Display array
  . Q

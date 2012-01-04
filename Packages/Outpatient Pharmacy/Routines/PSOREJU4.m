@@ -1,5 +1,5 @@
 PSOREJU4 ;BIRM/LE - Pharmacy Reject Overrides ;06/26/08
- ;;7.0;OUTPATIENT PHARMACY;**289,290,358**;DEC 1997;Build 35
+ ;;7.0;OUTPATIENT PHARMACY;**289,290,358,359**;DEC 1997;Build 27
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;
 AUTOREJ(CODES,PSODIV) ;API to evaluate an array of reject codes to see if they are allowed to be passed to OP reject Worklist 
@@ -54,6 +54,7 @@ WRKLST(RX,RFL,COMMTXT,USERID,DTTIME,OPECC,RXCOB,RESP) ;External API to store rej
  . S TXT=REJ(IDX,"REJ CODE LST")
  . F I=1:1:$L(TXT,",") D
  . . S CODE=$P(TXT,",",I)
+ . . I CODE="" Q   ;BNT-2/15/11 Rare, but could happen that a code is null.
  . . I CODE'="79"&(CODE'="88")&('$G(PSOTRIC)) S AUTO=$$EVAL(PSODIV,CODE,OPECC,.AUTO) Q:'+AUTO
  . . I PSOTRIC S AUTO=1  ;cnf, send all billable and non-billable rejects to worklist if TRICARE, PSO*7*358
  . . I $$DUP^PSOREJU1(RX,+$$CLEAN^PSOREJU1($G(REJ(IDX,"RESPONSE IEN"))),CLOSECHK) S AUTO="0^Rx is already on Pharmacy Reject Worklist."

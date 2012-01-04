@@ -1,8 +1,9 @@
 PSOBPSU2 ;BIRM/MFR - BPS (ECME) Utilities 2 ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358**;DEC 1997;Build 35
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359**;DEC 1997;Build 27
  ;Reference to File 200 - NEW PERSON supported by IA 10060
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;Reference to $$NCPDPQTY^PSSBPSUT supported by IA 4992
+ ;Reference to $$CLAIM^BPSBUTL supported by IA 4719
  ; 
 MWC(RX,RFL) ; Returns whether a prescription is (M)ail, (W)indow or (C)MOP
  ;Input: (r) RX   - Rx IEN (#52)
@@ -53,33 +54,50 @@ RXACT(RX,RFL,COMM,TYPE,USR) ; - Add an Activity to the ECME Activity Log (PRESCR
  S X=$$NOW^XLFDT() D FILE^DICN
  Q
  ;
-ECMENUM(RX) ; Returns the ECME number for a specific prescription
- N ECMENUM,STS,RF
- S ECMENUM=$E(10000000+RX,2,8)
- S STS=$$STATUS^PSOBPSUT(RX,0)
- I STS="" D
- . S RF=0 F  S RF=$O(^PSRX(RX,RF)) Q:'RF  D  I STS'="" Q
- . . S STS=$$STATUS^PSOBPSUT(RX,RF)
- I STS="" Q ""
+ECMENUM(RX,RFL) ; Returns the ECME number for a specific prescription and fill
+ N ECMENUM
+ I $G(RX)="" Q ""
+ ; Check ECME # for Refill passed in
+ I $G(RFL)'="" S ECMENUM=$$GETECME(RX,RFL) Q ECMENUM
+ ; If Refill is null, check last refill
+ S RFL=$$LSTRFL^PSOBPSU1(RX),ECMENUM=$$GETECME(RX,RFL) I ECMENUM'="" Q ECMENUM
+ ; If no ECME # for last refill, step back through refills in reverse order
+ F  S RFL=RFL-1 Q:(RFL<0)!(ECMENUM'="")  S ECMENUM=$$GETECME(RX,RFL)
+ Q ECMENUM
+ ;
+GETECME(RX,RFL) ;
+ ;Internal function used by ECMENUM to get the ECME # from BPS
+ N ECMENUM
+ I $G(RX)="" Q ""
+ I $G(RFL)="" Q ""
+ S ECMENUM=$P($$CLAIM^BPSBUTL(RX,RFL),U,6)
  Q ECMENUM
  ;
 RXNUM(ECME) ; Returns the Rx number for a specific ECME number
  ;
- N RXNUM,FOUND,MAX,LFT,RAD,I,DIR,RX
- S MAX=$O(^PSRX(999999999999),-1),LFT=0 I $L(MAX)>7 S LFT=$E(MAX,1,$L(MAX)-7)
- S FOUND=0
- F RAD=LFT:-1:0 D
- . S RX=RAD*10000000+ECME I $D(^PSRX(RX,0)),$$ECMENUM(RX)=ECME S FOUND=FOUND+1,FOUND(FOUND)=RX
+ N FOUND,MAX,LFT,RAD,I,DIR,RX,X,Y,DIRUT
+ S ECME=+ECME,LFT=0,FOUND=0
+ S MAX=$O(^PSRX(9999999999999),-1)  ; MAX = largest Rx ien on file
  ;
- I FOUND<2 D
- . I FOUND=0 S FOUND=-1 Q
- . S FOUND=FOUND(1)
- E  D
- . W ! F I=1:1:FOUND W !?5,I,". ",$$GET1^DIQ(52,FOUND(I),.01),?25,$$GET1^DIQ(52,FOUND(I),6)
- . W ! S DIR(0)="NA^1:"_FOUND,DIR("A")="Select one: ",DIR("B")=1
- . D ^DIR I $D(DIRUT) S FOUND=-1 Q
- . S FOUND=FOUND(Y)
+ ; Attempt left digit matching logic in this case only
+ I $L(MAX)>7,$L(ECME)'>7 D
+ . S LFT=$E(MAX,1,$L(MAX)-7)  ; LFT = left most digits
+ . F RAD=LFT:-1:0 S RX=RAD*10000000+ECME I $D(^PSRX(RX,0)),$$ECMENUM(RX)'="" S FOUND=FOUND+1,FOUND(FOUND)=RX
+ . Q
  ;
+ ; Otherwise attempt a normal lookup
+ E  S RX=ECME I $D(^PSRX(RX,0)),$$ECMENUM(RX)'="" S FOUND=FOUND+1,FOUND(FOUND)=RX
+ ;
+ I 'FOUND S FOUND=-1 G RXNUMX            ; Rx not found
+ I FOUND=1 S FOUND=FOUND(1) G RXNUMX     ; exactly 1 found
+ ;
+ ; More than 1 found so build a list and ask
+ W ! F I=1:1:FOUND W !?5,I,". ",$$GET1^DIQ(52,FOUND(I),.01),?25,$$GET1^DIQ(52,FOUND(I),6)
+ W ! S DIR(0)="NA^1:"_FOUND,DIR("A")="Select one: ",DIR("B")=1
+ D ^DIR I $D(DIRUT) S FOUND=-1 G RXNUMX
+ S FOUND=FOUND(Y)
+ ;
+RXNUMX ;
  Q FOUND
  ;
 ELIG(RX,RFL,PSOELIG) ;Stores eligibility flag
@@ -152,7 +170,7 @@ ECMEST2(RX,RFL) ;
  ; 0 = no host rejects exists based on ONE parameter
  ; 1 = host reject exists based on ONE parameter
 HOSTREJ(RX,RFL,ONE) ; called from PSXRPPL2 and this routine
- N IDX,TXT,CODE,HRCODE,HRQUIT,RETV,REJ
+ N IDX,TXT,CODE,HRCODE,HRQUIT,RETV,REJ,I
  S IDX="",(RETV,HRQUIT)=0
  I '$D(ONE) S ONE=1
  ;for print from suspense there will only be primary insurance or an index of 1 in REJ array

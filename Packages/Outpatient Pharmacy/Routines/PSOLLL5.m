@@ -1,5 +1,5 @@
 PSOLLL5 ;BIR/RJS - LASER LABEL CONTINUED ;11/14/05 10:09am
- ;;7.0;OUTPATIENT PHARMACY;**120,161,230,200,326**;DEC 1997;Build 11
+ ;;7.0;OUTPATIENT PHARMACY;**120,161,230,200,326,350**;DEC 1997;Build 4
  ;
 START ;
  N TEXT,BLNKLIN
@@ -77,6 +77,7 @@ SUSP1 I $G(PSOIO("SPI"))]"" X PSOIO("SPI")
  S TEXT="mailed to you on or after the date indicated." D PRINT(TEXT,0)
  S PSOY=PSOY+PSOYI,TEXT="Rx#                                          Date                                        "
  D PRINT(TEXT,0,1)
+ N RX
  F XX=XXS:1 Q:$P(SPPL,",",XX)=""  S RX=$P(SPPL,",",XX) D  Q:TOF
  . S SPNUM=$O(^PS(52.5,"B",RX,0)) I SPNUM S SPDATE=$P($G(^PS(52.5,SPNUM,0)),"^",2) S Y=SPDATE X ^DD("DD") S SPDATE=Y
  . S T=$P(^PSRX(RX,0),"^") D PRINT(T,0)

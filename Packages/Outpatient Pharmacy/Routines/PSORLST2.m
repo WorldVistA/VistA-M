@@ -1,5 +1,5 @@
 PSORLST2 ;BIRM/MFR - List of Patients/Prescriptions for Recall Notice ;12/30/09
- ;;7.0;OUTPATIENT PHARMACY;**348**;DEC 1997;Build 50
+ ;;7.0;OUTPATIENT PHARMACY;**348,371**;DEC 1997;Build 12
  ;
  ; Report Output fields ("^" separated):
  ; ------------------------------------
@@ -22,7 +22,8 @@ PSORLST2 ;BIRM/MFR - List of Patients/Prescriptions for Recall Notice ;12/30/09
  ;   33. TRANSMISSION NUMBER            34. SEQUENCE #
  ;   35. CMOP NDC                       36. DATE SHIPPED
  ;   37. CARRIER                        38. PACKAGE ID
- ;
+ ;   39. /*EOR*/   Added with PSO*7*371
+ ;   
 PROCESS ; Use input search criteria to find matching orders, store in TMP global.
  N PSOFRMDT,PSOTODT,PSORX,PSOFILL,PSORDT,RXND0,RXND2,PSOPAT,REFILLS
  N PSORXDRG,NDC,LOT,PSODEAD,PTSTAT,OUTPUT,ISSDT,EXPDT,RX,FILL,PAT
@@ -64,13 +65,12 @@ PROCESS ; Use input search criteria to find matching orders, store in TMP global
  . . . I PSOMED=2 S LOT=$$LOT(PSORX,PSOFILL_"P") Q:LOT=""  Q:'$D(PSODDRG(+PSORXDRG,LOT))
  . . . S ^TMP($J,"PSORLST",$$GET1^DIQ(2,PSOPAT,.01),PSORX,PSOFILL_"P")=""
  ;
- M ^TMP("ANW")=^TMP($J,"PSORLST")
  I $D(^TMP($J,"PSORLST")) D
  . W !,"\\FILL TYPE\^RX #^DRUG NAME^PATIENT NAME^SSN^ADDRESS 1^ADDRESS 2^ADDRESS 3^"
  . W "CITY^STATE^ZIP^PHONE (HOME)^PHONE (WORK)^PHONE (CELL)^DECEASED?^FILL #^ISSUE DATE^"
  . W "FILL DATE^RELEASED DATE/TIME^EXPIRATION DATE^LOT #^NDC^DIVISION^PHARMACIST^PROVIDER^"
  . W "PATIENT STATUS^QTY^DAYS SUPPLY^# OF REFILLS^MAIL/WINDOW^CMOP?^PARTIAL REMARKS^"
- . W "TRANSMISSION NUMBER^SEQUENCE #^CMOP NDC^DATE SHIPPED^CARRIER^PACKAGE ID"
+ . W "TRANSMISSION NUMBER^SEQUENCE #^CMOP NDC^DATE SHIPPED^CARRIER^PACKAGE ID^/*EOR*/" ;371 Add End of Row indicator
  . S (PAT,RX,FILL,OUTPUT)=""
  . F  S PAT=$O(^TMP($J,"PSORLST",PAT)) Q:PAT=""  D
  . . F  S RX=$O(^TMP($J,"PSORLST",PAT,RX)) Q:RX=""  D
@@ -85,7 +85,7 @@ PROCESS ; Use input search criteria to find matching orders, store in TMP global
  . . . . E  I FILL'["P" D
  . . . . . S OUTPUT="\\REFILL\^"_$$PATIENT(RXND0,RXND2)_"^"_$$REFILL(RX,FILL,RXND0,RXND2)_"^"_$$CMOP(RX,FILL)
  . . . . E  D
- . . . . . S OUTPUT="\\PARTIAL\^"_$$PATIENT(RXND0,RXND2)_"^"_$$PARTIAL(RX,+FILL,RXND0,RXND2)_"^^^^^^"
+ . . . . . S OUTPUT="\\PARTIAL\^"_$$PATIENT(RXND0,RXND2)_"^"_$$PARTIAL(RX,+FILL,RXND0,RXND2)_"^^^^^^^"_"/*EOR*/"  ;371
  . . . . S $P(OUTPUT,"^",17)=ISSDT
  . . . . S $P(OUTPUT,"^",20)=EXPDT
  . . . . S $P(OUTPUT,"^",26)=PTSTAT
@@ -195,7 +195,7 @@ CMOP(RX,FILL) ; Build output for CMOP fields
  ;
  N CMOP,CMOPSEQ,Z0,Z1
  ;
- S CMOP="^^^^^"
+ S CMOP="^^^^^^/*EOR*/" ;371 Add End of Row indicator.
  I '$D(^PSRX(RX,4)) Q CMOP
  ;
  S CMOPSEQ=0 F  S CMOPSEQ=$O(^PSRX(RX,4,CMOPSEQ)) Q:'CMOPSEQ  D
@@ -203,7 +203,7 @@ CMOP(RX,FILL) ; Build output for CMOP fields
  . I $P(Z0,"^",3)'=FILL!($P(Z0,"^",4)'=1) Q
  . S CMOP=$P(Z0,"^",1)_"^"_$P(Z0,"^",2)_"^"_$P(Z0,"^",8)
  . S Z1=$G(^PSRX(RX,4,CMOPSEQ,1))
- . S CMOP=CMOP_"^"_$TR($$FMTE^XLFDT($P(Z1,"^",2),2),"@"," ")_"^"_$P(Z1,"^",3)_"^"_$P(Z1,"^",4)
+ . S CMOP=CMOP_"^"_$TR($$FMTE^XLFDT($P(Z1,"^",2),2),"@"," ")_"^"_$P(Z1,"^",3)_"^"_$P(Z1,"^",4)_"^"_"/*EOR*/"  ;371
  ;
  Q CMOP
  ;

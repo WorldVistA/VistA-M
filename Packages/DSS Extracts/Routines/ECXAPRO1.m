@@ -1,12 +1,12 @@
-ECXAPRO1 ;ALB/JAP - PRO Extract Audit Report (cont) ; Nov 16, 1998
- ;;3.0;DSS EXTRACTS;**9,21**;Dec 22, 1997
+ECXAPRO1 ;ALB/JAP - PRO Extract Audit Report (cont) ;9/20/11  11:19
+ ;;3.0;DSS EXTRACTS;**9,21,132**;Dec 22, 1997;Build 18
  ;
 DISP ;entry point
  N DIC,DA,DR,DIRUT,DTOUT,DUOUT,JJ,SS,LN,PG,QFLG,STN,TYPE
  N A1,A2,A3,CA,CB,CC,GCA,GCB,GCC,GRP,GRPHEAD,LINE,LINEP
  U IO
  S (QFLG,PG)=0,$P(LN,"-",80)=""
- F TYPE="N","R" S STN="",STN=$O(^TMP($J,TYPE,STN)) D  Q:QFLG
+ F TYPE="N","R","RT" S STN="",STN=$O(^TMP($J,TYPE,STN)) D  Q:QFLG
  .D HEADER
  .D CDATA Q:QFLG
  I $E(IOST)'="C" D
@@ -62,6 +62,7 @@ SUM ;print summary for type
  D:($Y+7>IOSL) HEADER Q:QFLG 
  W:TYPE="N" !!!,"STATION SUMMARY (NEW)"
  W:TYPE="R" !!!,"STATION SUMMARY (REPAIR)"
+ W:TYPE="RT" !!!,"STATION SUMMARY (RENTAL)"
  W !,?28,"VA",?36,"Com",?44,"Total",?54,"Cost ($)"
  W !,LN
  W !,?26,$J(GCA,5,0),?34,$J(GCB,5,0),?42,$J((GCA+GCB),5,0),?51,$J(GCC,7,0)
@@ -80,6 +81,7 @@ HEADER ;header and page control
  W !,"Station (#):             "_$P(ECXDIV,U,2)_" ("_$P(ECXDIV,U,3)_")"
  W !,"Report Run Date/Time:    "_ECXRUN
  W:TYPE="N" !!,"REPORT OF NEW PROSTHETICS ACTIVITIES"
+ W:TYPE="RT" !!,"REPORT OF RENTAL PROSTHETICS ACTIVITIES"
  W:TYPE="R" !!,"REPORT OF REPAIR PROSTHETICS ACTIVITIES"
  W !,"Line",?6,"Item",?28,"VA",?36,"Com",?44,"Total",?54,"Cost ($)",?64,"Ave Com ($)"
  W !,LN,!

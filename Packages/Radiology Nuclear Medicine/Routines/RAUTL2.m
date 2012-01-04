@@ -1,5 +1,5 @@
 RAUTL2 ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Utility Routine ;11/10/97  11:18
- ;;5.0;Radiology/Nuclear Medicine;**10,26,45**;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**10,26,45,47**;Mar 16, 1998;Build 21
  ;
  ;Called from many points within Rad/Nuc Med package ;ch
  ;INPUT VARIABLES:  Y=IEN of Rad Report file #74
@@ -9,7 +9,16 @@ RAUTL2 ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Utility Routine ;11/10/97  11:18
  ;  RACN=long case number, RADTI=reverse exam date/time,
  ;  RACNI=short case number, RADATE=Exam date/time (external format)
  ;  Y=If active case, zeroeth node of case record in file #70
-RASET D:$D(XRTL) T0^%ZOSV S Y=$S($D(^RARPT(+Y,0)):^(0),1:"") Q:'Y  S RADFN=+$P(Y,"^",2),RADTE=+$P(Y,"^",3),RACN=+$P(Y,"^",4),RADTI=9999999.9999-RADTE,RACNI=$O(^RADPT("ADC",$P(Y,"^"),RADFN,RADTI,0)) S Y=RADTE D D^RAUTL S RADATE=Y
+RASET ;P47 Check SSAN and use ADC or ADC1 accordingly:
+ ;If .01 of RARPT>12 (SSAN) use "ADC1" x-ref to look up exam
+ ;If .01 of RARPT'>12 (old CASE NO.) use "ADC" x-ref to look up exam
+ D:$D(XRTL) T0^%ZOSV
+ S Y=$S($D(^RARPT(+Y,0)):^(0),1:"") Q:'Y  S RADFN=+$P(Y,"^",2)
+ S RADTE=+$P(Y,"^",3),RACN=+$P(Y,"^",4),RADTI=9999999.9999-RADTE
+ I $L($P(Y,"^"),"-")>2 S RACNI=$O(^RADPT("ADC1",$P(Y,"^"),RADFN,RADTI,0))
+ I $L($P(Y,"^"),"-")<3 S RACNI=$O(^RADPT("ADC",$P(Y,"^"),RADFN,RADTI,0))
+ S Y=RADTE D D^RAUTL S RADATE=Y
+ ;D:$D(XRTL) T0^%ZOSV S Y=$S($D(^RARPT(+Y,0)):^(0),1:"") Q:'Y  S RADFN=+$P(Y,"^",2),RADTE=+$P(Y,"^",3),RACN=+$P(Y,"^",4),RADTI=9999999.9999-RADTE,RACNI=$O(^RADPT("ADC",$P(Y,"^"),RADFN,RADTI,0)) S Y=RADTE D D^RAUTL S RADATE=Y
  S Y="" I RACNI,$D(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)) S Y=^(0)
  I $D(XRT0) S XRTN=$T(+0) D T1^%ZOSV
  Q

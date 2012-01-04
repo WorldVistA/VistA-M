@@ -1,5 +1,5 @@
 BPSOSIZ ;BHAM ISC/FCS/DRS/DLF - Filing BPS Transaction ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8**;JUN 2004;Build 29
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -11,37 +11,30 @@ BPSOSIZ ;BHAM ISC/FCS/DRS/DLF - Filing BPS Transaction ;06/01/2004
  ;   BP77 - BPS REQUEST file ien
 EN(IEN59,MOREDATA,BP77) ;EP - BPSOSRB
  ; Initialize variables
- N RX,RXR,EXISTS,ERROR,X
- S ERROR=0,RX=$P(IEN59,"."),RXR=+$E($P(IEN59,".",2),1,4)
- ;
+ N EXISTS,ERROR,X
+ S ERROR=0
  ;
  D LOG^BPSOSL(IEN59,$T(+0)_"-Building Transaction")
  ;
  ; Lock the transaction
- I '$$LOCK59(IEN59) D ERROR(IEN59,"Could not lock the BPS Transaction") Q
- ;
- ; Check for claims that should not be resubmitted
- ; 
- ; Remove call to RXPAID^BPSOSIY since this needs to be done in BPSOSRB.
- I $$COB59^BPSUTIL2(IEN59)=1 S X=$$RXPAID^BPSOSIY(IEN59) I X D ERROR(IEN59,"RXPAID^BPSOSIY returned "_X) Q
- ; 
+ I '$$LOCK59(IEN59) D ERROR(BP77,IEN59,"Could not lock the BPS Transaction") Q
  ;
  ; Make sure that the record is not already IN PROGRESS
  S X=+$$STATUS59^BPSOSRX(IEN59)
- I X'=0,X'=31,X'=99 D ERROR(IEN59,"STATUS is "_X) Q
+ I X'=0,X'=31,X'=99 D ERROR(BP77,IEN59,"STATUS is "_X) Q
  ;
  ; Check if the BPS Transaction exists
  S EXISTS=$$EXIST59(IEN59)
  ;
  ; If the record exists, delete all but the essential fields
- I EXISTS D CLEAR59(IEN59) I $G(BP77)>0 D UPD7759^BPSOSRX4(BP77,IEN59)
+ I EXISTS D CLEAR59(IEN59)
  ;
  ; If the record does not exist, create new record and validate the IEN
- I 'EXISTS S X=$$NEW59(IEN59,$G(BP77)) I X'=IEN59 D ERROR(IEN59,"NEW59 returned "_X) Q
+ I 'EXISTS S X=$$NEW59(IEN59) I X'=IEN59 D ERROR(BP77,IEN59,"NEW59 returned "_X) Q
  ;
  ; Update the fields.  If error is returned, log to the BPS Transaction, which
  ;   we know exists at this point
- S ERROR=$$INIT^BPSOSIY(IEN59,$G(BP77)) ;MOREDATA is passed in background
+ S ERROR=$$INIT^BPSOSIY(IEN59,BP77) ;MOREDATA is passed in background
  I ERROR D ERROR^BPSOSU($T(+0),IEN59,ERROR,"BPS Transaction not updated"),UNLOCK59(IEN59) Q
  ;
  ; Validate the transaction
@@ -71,8 +64,7 @@ EXIST59(IEN59) ;
  ;
  ; NEW59 - Create a new BPS Transaction record
  ; IEN59 - BPS TRANSACTION ien
- ; BP77 - BPS REQUEST file ien
-NEW59(IEN59,BP77) ;
+NEW59(IEN59) ;
  ; Initialize variables
  N FDA,IEN,MSG,FN,BPSTIME,BPCOB
  ;
@@ -83,9 +75,6 @@ NEW59(IEN59,BP77) ;
  ; Create the new BPS Transaction record
  D UPDATE^DIE("","FDA","IEN","MSG")
  I $D(MSG) Q 0
- ; check if fields (#16),(#17),(#18) of BPS TRANSACTION are not populated - populate them
- I $G(BP77)>0 D UPD7759^BPSOSRX4(BP77,IEN59)
- ; 
  Q IEN(1)
  ;
  ; CLEAR59 - If it exists, clear out the old values
@@ -148,10 +137,8 @@ PREVISLY(IEN59) ;EP - BPSOSRB, BPSOSU
  Q
  ;
  ; ERROR - Log an error to the log
-ERROR(IEN59,MSG) ;
- N RX,RXR
- S RX=$P(IEN59,"."),RXR=+$E($P(IEN59,".",2),1,4)
- D LOG^BPSOSL(IEN59,$T(+0)_"-Skipping: "_$G(MSG))
- K ^XTMP("BPSOSRX",RX,RXR)
+ERROR(BP77,IEN59,ERROR) ;
+ D LOG^BPSOSL(IEN59,$T(+0)_"-Calling BPSOSRB to handle error")
+ D ERROR^BPSOSRB(BP77,IEN59,ERROR)
  D UNLOCK59(IEN59)
  Q

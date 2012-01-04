@@ -1,5 +1,5 @@
-MAGGTU6 ;WOIFO/GEK - Silent Utilities ; 4/7/09 2:30pm
- ;;3.0;IMAGING;**24,8,48,45,20,46,59,72,93**;Dec 02, 2009;Build 163
+MAGGTU6 ;WOIFO/GEK,MLH - Silent Utilities ; 6/3/11 3:20 PM
+ ;;3.0;IMAGING;**24,8,48,45,20,46,59,72,93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -100,7 +100,6 @@ SHARE(MAGRY,TYPE) ;RPC [MAG GET NETLOC]
  . ;
  . I TYPE'="ALL" Q:STYP'[TYPE
  . Q:$P(DATA0,"^",6)=0  ; Share is offline (don't return offline shares)
- . I STYP'="URL" Q:(PHYREF[".")  ; pre 45
  . I STYP'="URL" Q:($E(PHYREF,1,2)'="\\")  ; pre 45
  . ;
  . S INFO=$S($E(PHYREF,$L(PHYREF))="\":$E(PHYREF,1,$L(PHYREF)-1),1:PHYREF)

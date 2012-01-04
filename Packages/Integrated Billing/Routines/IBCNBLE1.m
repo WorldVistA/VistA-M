@@ -1,5 +1,5 @@
 IBCNBLE1 ;DAOU/ESG - Ins Buffer, Expand Entry, con't ;25-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,271,416,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Can't be called from the top
@@ -22,6 +22,10 @@ BLD ; Continuation of Expand Entry list build procedure
  ;
  ; Do not update the IIV status if manually verified
  I ORIGSYMS="*" S EEUPDATE=0
+ ;
+ ; Don't let Expand Entry update the eIV status for ePharmacy buffer entries
+ ; esg - 10/12/10 - IB*2*435
+ I +$P($G(^IBA(355.33,IBBUFDA,0)),U,17) S EEUPDATE=0
  ;
  ; If the current IIV Status allows updates by Expand Entry, then
  ; invoke the function that trys to find a valid payer
@@ -48,6 +52,10 @@ BLD ; Continuation of Expand Entry list build procedure
  S IBY=$$GET1^DIQ(355.33,IBBUFDA,.12,"E")
  I IBY="",$$SYMBOL^IBCNBLL(IBBUFDA)'="*" S IBY="No problems identified, Awaiting electronic processing"
  I $$SYMBOL^IBCNBLL(IBBUFDA)="*" S IBY="Manually verified, No eIV activity at this time"
+ ;
+ ; esg - 10/12/10 - check for epharmacy entries
+ I +$P($G(^IBA(355.33,IBBUFDA,0)),U,17) S IBY="N/A for e-Pharmacy buffer entries"
+ ;
  S IBLINE=$$SETL^IBCNBLE("",IBY,IBL,18,80)
  D SET^IBCNBLE(IBLINE) S IBLINE=""
  ;

@@ -1,5 +1,5 @@
 BPSRPT4 ;BHAM ISC/BEE - ECME REPORTS (CONT) ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8**;JUN 2004;Build 29
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -182,8 +182,8 @@ GETREJ(REJ) ;
  ; Input variable: BPRTYPE -> Report Type (1-7)
  ;
 HEADLN1(BPRTYPE) ;
- I (",1,2,3,4,5,7,")[BPRTYPE W !,"PATIENT NAME",?27,"Pt.ID",?35,"RX#",?47,"REF/ECME#"
- I (BPRTYPE=1)!(BPRTYPE=4) D  Q
+ I (",1,2,3,4,5,7,8,")[BPRTYPE W !,"PATIENT NAME",?27,"Pt.ID",?35,"RX#",?47,"REF/ECME#"
+ I (BPRTYPE=1)!(BPRTYPE=4)!(BPRTYPE=8) D  Q
  . W ?68,"DATE"
  . W ?78,$J("$BILLED",10)
  . W ?97,$J("$INS RESPONSE",13)
@@ -203,10 +203,10 @@ HEADLN1(BPRTYPE) ;
  . W ?119,$J("$INS RESPONSE",13)
  ;
  I BPRTYPE=5 D  Q
- . W ?60,"COMPLETED"
- . W ?78,"TRANS TYPE"
- . W ?95,"PAYER RESPONSE"
- . W ?120,"RX COB"
+ . W ?65,"COMPLETED"
+ . W ?83,"TRANS TYPE"
+ . W ?100,"PAYER RESPONSE"
+ . W ?125,"RX COB"
  ;
  I BPRTYPE=6 D  Q
  . W !,?33,$J("AMOUNT",17)
@@ -270,6 +270,13 @@ HEADLN2(BPRTYPE) ;
  . W ?59,"CLOSED BY"
  . W ?87,"CLOSE REASON"
  . W ?121,"RX COB"
+ ;
+ I BPRTYPE=8 D  Q
+ . W !,?2,"DRUG"
+ . W ?38,"RX INFO"
+ . W ?54,"INS GROUP#"
+ . W ?79,"INS GROUP NAME"
+ . W ?121,"BILL#"
  Q
  ;
  ;Print Header 2 Line 3
@@ -277,9 +284,18 @@ HEADLN2(BPRTYPE) ;
  ; Input variable: BPRTYPE -> Report Type (1-7)
  ; 
 HEADLN3(BPTYP) ;
- D:BPTYP=4
+ I BPTYP=4 D  Q
  . W !,?6,"RELEASED ON"
  . W ?22,"REVERSAL METHOD/RETURN STATUS/REASON"
+ ;
+ I BPTYP=8 D  Q
+ . W !,?4,"$PROVIDER NETWORK"
+ . W ?23,"$BRAND DRUG"
+ . W ?38,"$NON-PREF FORM"
+ . W ?56,"$BRAND NON-PREF FORM"
+ . W ?81,"$COVERAGE GAP"
+ . W ?96,"$HEALTH ASST"
+ . W ?111,"$SPEND ACCT REMAINING"
  Q
  ;
 SELEXCEL() ; - Returns whether to capture data for Excel report.

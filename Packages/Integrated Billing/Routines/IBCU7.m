@@ -1,5 +1,5 @@
 IBCU7 ;ALB/AAS - INTERCEPT SCREEN INPUT OF PROCEDURE CODES ;29-OCT-91
- ;;2.0;INTEGRATED BILLING;**62,52,106,125,51,137,210,245,228,260,348,371**;21-MAR-94;Build 57
+ ;;2.0;INTEGRATED BILLING;**62,52,106,125,51,137,210,245,228,260,348,371,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRU7
@@ -14,7 +14,7 @@ CHKX ;  -interception of input x from Additional Procedure input
  I $D(DGPROCDT),DGPROCDT'=$P($G(^UTILITY($J,"IB",M,1)),"^",2) S DGPROCDT=$P(^(1),"^",2) W !!,"Procedure Date: " S Y=DGPROCDT X ^DD("DD") W Y,!
 CHKXQ Q
  ;
-CODMUL ;Date oriented entry of procedure 
+CODMUL ;Date oriented entry of procedure
 DELASK I $D(IBZ20),IBZ20,IBZ20'=$P(^DGCR(399,IBIFN,0),U,9) S %=2 W !,"SINCE THE PROCEDURE CODING METHOD HAS BEEN CHANGED, DO YOU WANT TO DELETE ALL",!,"PROCEDURE CODES IN THIS BILL"
  I  D YN^DICN Q:%=-1  D:%=1 DELADD I %Y?1."?" W !!,"If you answer 'Yes', all procedure codes will be DELETED from this bill.",! G DELASK
  K %,%Y,DA,IBZ20,DIK ;W !,"Procedure Entry:"
@@ -34,7 +34,7 @@ CODDT I $D(IBIFN),$D(^DGCR(399,IBIFN,0)),$P(^(0),U,9) S DIC("V")=$S($P(^(0),U,9)
  K IBEX
  G CODDT
  ;
-ASKCOD N Z,Z0,DA,IBACT,IBQUIT
+ASKCOD N Z,Z0,DA,IBACT,IBQUIT,IBLNPRV  ;WCJ;2.0*432
  K DGCPT
  S DGCPT=0,DGCPTUP=$P($G(^IBE(350.9,1,1)),"^",19),DGADDVST=0,IBFT=$P($G(^DGCR(399,IBIFN,0)),"^",19)
  I '$D(^DGCR(399,IBIFN,"CP",0)) S ^DGCR(399,IBIFN,"CP",0)=U_$$GETSPEC^IBEFUNC(399,304)
@@ -47,6 +47,7 @@ ASKCOD N Z,Z0,DA,IBACT,IBQUIT
  . S DIC("DR")="1///^S X=DGPROCDT"
  . S DA(1)=IBIFN,DLAYGO=399
  . W ! D ^DIC I Y<1 S IBQUIT=1 Q
+ . S IBPROCP=+Y
  . ; If we just added inactive code - it must be deleted.
  . S IBACT=0 ; Active flag
  . I Y["ICD0" S IBACT=$$ICD0ACT^IBACSV(+$P(Y,U,2),DGPROCDT)
@@ -54,16 +55,44 @@ ASKCOD N Z,Z0,DA,IBACT,IBQUIT
  . S DGCPTNEW=$P(Y,"^",3) ;Was the procedure just added?
  . I DGCPTNEW,'IBACT D DELPROC Q
  . I 'IBACT W !,*7,"Warning:  Procedure code is inactive on this date",!
- . I DGCPTNEW,$D(^UTILITY($J,"IB")),$$INPAT^IBCEF(IBIFN),Y["ICPT(" D DATA^IBCU74(Y)
+ . I DGCPTNEW,$D(^UTILITY($J,"IB")),$$INPAT^IBCEF(IBIFN),Y["ICPT(" D DATA^IBCU74(Y,.IBLNPRV)
  . S DGADDVST=$S(DGCPTNEW:1,$D(DGADDVST):DGADDVST,1:0)
  . N IBPRV,IBPRVO,IBPRVN
- . S IBPRVO=$$MAINPRV^IBCEU(IBIFN),IBPRV=$P(IBPRVO,U,3),IBPRVN=(IBPRVO["IBA(355.93,"),IBPRV=$S(IBPRV="":"",'IBPRVN:$P(IBPRVO,U),1:"")
- . I IBPRV="",'IBPRVN D
- .. S IBPRV=0 F  S IBPRV=$O(^DGCR(399,IBIFN,"CP",IBPRV)) S:'IBPRV IBPRV="" Q:'IBPRV  S Z=$P($G(^(IBPRV,0)),U,18) I Z S IBPRV=$P($G(^VA(200,Z,0)),U) Q
- . S DR="" I Y["ICPT" S DR="16"_$S(IBPRVN:";18///@",1:";18//"_IBPRV)_";6;5//"_$$DEFDIV(IBIFN)_";"
- . S DR=".01;"_DR_$S(IBFT=2:"8;9;17//NO;",1:"")_3,DIE=DIC,(IBPROCP,DA)=+Y D ^DIE Q:'$D(DA)!($E($G(Y))=U)
  . ;
- . S DR=$$SPCUNIT(IBIFN,IBPROCP) I DR'="" D ^DIE ; miles/minutes/hours
+ . ; Line level provider function by form type.
+ . ;     CMS-1500 (FORM TYPE=2)
+ . ;              RENDERING PROVIDER, REFERRING PROVIDER,
+ . ;              and SUPERVISING PROVIDER.
+ . ;     UB-04 (FORM TYPE=3)
+ . ;              RENDERING PROVIDER, REFERRING PROVIDER,
+ . ;              OPERATING PROVIDER, and OTHER OPERATING
+ . ;              PROVIDER.
+ . ;
+ . ; Removed: Call to $$MAINPRV^IBCEU(IBIFN) is for claim
+ . ;          level provider defaults.
+ . ;     1. For new line level providers we don't need
+ . ;        or want default claim level provider
+ . ;        (requirement).
+ . ;     2. We don't want to default claim level to
+ . ;        line level provider (requirement).
+ . ;
+ . K DIC("V")  ; DEM;432 - KILL DIC("V") because this was for previous variable pointer use.
+ . ;
+ . N IBPROCSV  ; DEM;432 - Variable IBPROCSV is variable to preserve value of 'Y', which is procedure code info returned by call to ^DIC.
+ . S IBPROCSV=Y  ; DEM;432 - Preserve value of Y for after calls to FileMan (Y = procedure code info returned by call to ^DIC).
+ . K DR   ;WCJ;IB*2.0*432
+ . I Y["ICPT" S DR=".01;16",DIE=DIC,(IBPROCP,DA)=+Y D ^DIE Q:'$D(DA)!($E($G(Y))=U)  K DR ;
+ . S DR=""
+ . D EN^IBCU7B ; DEM;432 - Call to line level provider user input.
+ . S Y=IBPROCSV  ; DEM;432 - Restore value of Y after calls to FileMan
+ . K IBPROCSV
+ . K DR   ;WCJ;IB*2.0*432
+ . S DR="" I Y["ICPT" S DR="6;5//"_$$DEFDIV(IBIFN)_";"
+ . S DR=DR_$S(IBFT=2:"8;9;17//NO;",1:"")_3,DIE=DIC,(IBPROCP,DA)=+Y D ^DIE Q:'$D(DA)!($E($G(Y))=U)
+ . K DR   ;WCJ;IB*2.0*432
+ . I IBFT=3 D:'$$INPAT^IBCEF(IBIFN) ATTACH  ; DEM;432 - Prompt for Attachment Control Number.
+ . ; DEM;432 - Add Additional OB Minutes to DR string for call to DIE.
+ . S DR=$$SPCUNIT(IBIFN,IBPROCP) S:DR["15;" DR=DR_"74Additional OB Minutes" D ^DIE ; miles/minutes/hours
  . ;
  . I IBFT=2 D
  .. D DX^IBCU72(IBIFN,IBPROCP)
@@ -129,6 +158,8 @@ ADDTNL(IBIFN,DA) ;
  N DR,IBOK,X,Y,DIR
  S IBOK=1
  S DR="19;50.09;50.08" D ^DIE
+ ;I '($$FT^IBCEF(IBIFN)'=3&($$INPAT^IBCEF(IBIFN))) D ATTACH  ; DEM;432 - Prompt for Attachment Control Number.
+ I '($$FT^IBCEF(IBIFN)=3&($$INPAT^IBCEF(IBIFN))) D ATTACH  ; DEM;432 - Prompt for Attachment Control Number.
  I $D(Y) S IBOK=0 G ADDTNLQ
  S DIR("B")="NO",DIR("A")="EDIT CMS-1500 SPECIAL PROGRAM FIELDS and BOX 19?: ",DIR("A",1)=" ",DIR(0)="YA"
  S DIR("?",1)="Respond YES only if you need to add/edit data for chiropractic visits,"
@@ -153,3 +184,18 @@ SPCUNIT(IBIFN,DA) ; return fields for special units if applicable, in DR form
  I +$$ITMUNIT^IBCRU4(+IBCPT,6,IBCT) S IBDR="22//"_$$OBSHOUR^IBCU74(DFN,$P(IBCPT,U,2))_";" G SPCUNTQ ; hours
  I +IBFT=2,$P($G(^IBE(353.2,+$P(IBCPT,U,10),0)),U,2)="ANESTHESIA" S IBDR="15;" ; minutes
 SPCUNTQ Q IBDR
+ ;
+ATTACH ; DEM;432 - Attachment control number.
+ ; Ask if user wants to enter Attachment Control Number.
+ N DIR,X,Y,DA,DIE,DR
+ S DIR("A")="Enter Attachment Control Number"
+ S DIR(0)="Y",DIR("B")="NO"
+ D ^DIR
+ Q:'Y
+ ; User chose to enter Attachment Control Number.
+ ; User enters Attachment Control fields.
+ S DA(1)=IBIFN,DA=IBPROCP
+ S DIE="^DGCR(399,"_DA(1)_",""CP"","
+ S DR="71Report Type;72Report Transmission Method;70Attachment Control Number"
+ D ^DIE
+ Q

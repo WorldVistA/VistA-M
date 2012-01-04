@@ -1,5 +1,5 @@
-XQCHK2 ; OAK-BP/BDT - Internal APIs to check Keys for options; 5/20/08
- ;;8.0;KERNEL;**427,503**;Jul 10, 1995;Build 2
+XQCHK2 ; OAK-BP/BDT - Internal APIs to check Keys for options; 4/28/11
+ ;;8.0;KERNEL;**427,503,570**;Jul 10, 1995;Build 3
  ;;"Per VHA Directive 2004-038, this routine should not be modified".
  Q
  ;; These Internal Kernel APIs are using in the routine XQCHK
@@ -65,3 +65,19 @@ CHKTOPRL(XQIEN,XQDUZ) ;Check Reversed Lock the top level of the secondary option
  S XQK=$$GET1^DIQ(19,XQIEN,3.01)
  I $G(XQK)'="",$D(^XUSEC(XQK,XQDUZ)) S XQRT=1_"^"_XQK
  Q XQRT
+ ;
+CHKOOO(XQCY0) ; Check OOO option
+ ;; XQCY0 is $P(^XUTL("XQO",XQDIC,"^",%XQOP),"^",2,99)
+ ;; Return XQRT: Zero or 1^Out Of Order message
+ S XQCY0=$G(XQCY0)
+ N XQI,XQY,XQX,XQRT,XQK S (XQRT,XQX)=0
+ ;check Out Of Order
+ S XQY=$P(XQCY0,"^"),XQX=$$GETIEN(XQY)
+ I +XQX S XQK=$$GET1^DIQ(19,XQX,2)
+ I $G(XQK)'="" Q "1^"_$G(XQK)
+ ;loop through higher menu options.
+ S XQY=$P(XQCY0,"^",5)
+ F XQI=1:1  S XQX=$P(XQY,",",XQI) Q:'XQX  D
+ . I +XQX S XQK=$$GET1^DIQ(19,XQX,2) I XQK'="" S XQRT="1^"_XQK Q
+ Q XQRT
+ ;

@@ -1,5 +1,5 @@
 RANMUSE3 ;HISC/SWM-Nuclear Medicine Usage reports ;10/20/97  11:09
- ;;5.0;Radiology/Nuclear Medicine;**65**;Mar 16, 1998;Build 8
+ ;;5.0;Radiology/Nuclear Medicine;**65,47**;Mar 16, 1998;Build 21
 PGHD ; Page Header
  I RAPG!($E(IOST,1,2)="C-") W:$Y>0 @IOF
  S RAPG=RAPG+1
@@ -10,7 +10,8 @@ PGHD ; Page Header
  W !,"Division: ",RANUMD(RASEQD) W:$G(RAHDTYP)'="D" ?45,"Imaging Type: ",RANUMI(RASEQI)
  Q
 COLHD ; Column Header for detailed report
- W !!,"Long-Case@Time",?16,"Patient Name",?35,"SSN",?44,"Radiopharm",?59,"Act.Drawn",?69,"Dose Adm'd",?83,"Low",?93,"High",?100,"Procedure",?116,"Who Adm'd"
+ I $$USESSAN^RAHLRU1() W !!,"Long-Case@Time",?22,"Patient Name",?38,"SSN",?50,"Radiopharm",?65,"Act.Drawn",?75,"Dose Adm'd",?88,"Low",?98,"High",?105,"Procedure",?121,"Who Adm'd"
+ I '$$USESSAN^RAHLRU1() W !!,"Long-Case@Time",?16,"Patient Name",?35,"SSN",?44,"Radiopharm",?59,"Act.Drawn",?69,"Dose Adm'd",?83,"Low",?93,"High",?100,"Procedure",?116,"Who Adm'd"
  W !,RALN
  Q
 COLHDS ; Column Header for summary report

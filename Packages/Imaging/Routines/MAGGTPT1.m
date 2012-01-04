@@ -1,5 +1,5 @@
-MAGGTPT1 ;WOIFO/GEK/SG - Delphi-Broker calls for patient lookup and information ; 1/20/09 11:59am
- ;;3.0;IMAGING;**16,8,92,46,59,93**;Dec 02, 2009;Build 163
+MAGGTPT1 ;WOIFO/GEK/SG/NST - Delphi-Broker calls for patient lookup and information ; 05 Oct 2010 9:15 AM
+ ;;3.0;IMAGING;**16,8,92,46,59,93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -8,7 +8,6 @@ MAGGTPT1 ;WOIFO/GEK/SG - Delphi-Broker calls for patient lookup and information 
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -106,6 +105,7 @@ INFO(MAGRY,DATA) ;RPC [MAGG PAT INFO]  Call to  Return patient info.
  ;       MAGDFN -- Patient DFN
  ;       NOLOG  -- 0/1; if 1, then do NOT update the Session log
  ;       ISICN  -- 0/1  if 1, then this is an ICN, if 0 (default) this is a DFN ; Patch 41
+ ;       FLAGS  -- "D" Include Deleted images
  ;  MAGRY is a string, we return the following :
  ; //$P     1        2      3     4     5     6     7     8        9                     10
  ; //    status ^   DFN ^ name ^ sex ^ DOB ^ SSN ^ S/C ^ TYPE ^ Veteran(y/n)  ^ Patient Image Count
@@ -119,8 +119,8 @@ INFO(MAGRY,DATA) ;RPC [MAGG PAT INFO]  Call to  Return patient info.
  ; VAEL(4)=Patient's Veteran Y/N (#1901) (1=yes)
  ; VAEL(6)=Patient's Type (#391) (internal^external)
  ;
- N MAGDFN,DFN,X,NOLOG,VADM,VAEL,VAERR,ISICN
- S MAGDFN=$P(DATA,U),NOLOG=+$P(DATA,U,2),ISICN=+$P(DATA,U,3)
+ N MAGDFN,DFN,X,NOLOG,VADM,VAEL,VAERR,ISICN,FLAGS
+ S MAGDFN=$P(DATA,U),NOLOG=+$P(DATA,U,2),ISICN=+$P(DATA,U,3),FLAGS=$P(DATA,U,4)
  I ISICN D GETDFN^VAFCTFU1(.DFN,MAGDFN)
  E  S DFN=+MAGDFN
  D DEM^VADPT,ELIG^VADPT
@@ -133,7 +133,7 @@ INFO(MAGRY,DATA) ;RPC [MAGG PAT INFO]  Call to  Return patient info.
  ;          Fields:  Service Connected?,       Type,                   Veteran Y/N?     
  S $P(MAGRY,"^",7,9)=$S(+VAEL(3):"YES",1:"")_"^"_$P(VAEL(6),"^",2)_"^"_$S(+VAEL(4):"YES",1:"")
  ;          Fields:  Patient Image Count   
- S $P(MAGRY,"^",10)=$$IMGCT(DFN)_"^"
+ S $P(MAGRY,"^",10)=$$IMGCT(DFN,FLAGS)_"^"
  ;  Additions. for Patch 41
  ;          Fields :   Patient ICN
  S $P(MAGRY,"^",11)=$$GETICN^MPIF001(DFN)
@@ -151,14 +151,29 @@ INFO(MAGRY,DATA) ;RPC [MAGG PAT INFO]  Call to  Return patient info.
  ;  We'll track DFN:ICN
  E  D ACTION^MAGGTAU("PAT^"_DFN_$S(ISICN:"-"_MAGDFN,1:""))
  Q
-IMGCT(DFN) ; RETURN TOTAL NUMBER OF IMAGES FOR A PATIENT;
+IMGCT(DFN,FLAGS) ; RETURN TOTAL NUMBER OF IMAGES FOR A PATIENT;
+ ; FLAGS   D  Include deleted images (file #2005.1)
  ;
- N I,CT,RDT,PRX,IEN
- S CT=0
- S RDT="" F  S RDT=$O(^MAG(2005,"APDTPX",DFN,RDT)) Q:RDT=""  D
- . S PRX="" F  S PRX=$O(^MAG(2005,"APDTPX",DFN,RDT,PRX)) Q:PRX=""  D
- . . S IEN="" F  S IEN=$O(^MAG(2005,"APDTPX",DFN,RDT,PRX,IEN)) Q:IEN=""  S:'$$ISDEL^MAGGI11(IEN) CT=CT+1
- Q CT
+ N MAG8BOTH,MAG8ROOT,MAG8XREF,CNT
+ N MAG8DT,MAG8PRX,MAG8IEN
+ ; 
+ S CNT=0
+ S MAG8BOTH=(FLAGS["D")
+ S MAG8ROOT=$NA(^MAG(2005))
+ I DFN>0  D
+ . S MAG8XREF=$NA(@MAG8ROOT@("APDTPX",+DFN))
+ . ;---
+ . S (MAG8DT,MAG8PRX,MAG8IEN)=""
+ . F  S MAG8DT=$$MAGORD^MAGGI13($NA(@MAG8XREF@(MAG8DT)),1,MAG8BOTH)  Q:MAG8DT=""  D
+ . . F  S MAG8PRX=$$MAGORD^MAGGI13($NA(@MAG8XREF@(MAG8DT,MAG8PRX)),1,MAG8BOTH)  Q:MAG8PRX=""  D
+ . . . F  S MAG8IEN=$$MAGORD^MAGGI13($NA(@MAG8XREF@(MAG8DT,MAG8PRX,MAG8IEN)),1,MAG8BOTH)  Q:MAG8IEN=""  D
+ . . . . I $$ISDEL^MAGGI11(MAG8IEN) S:MAG8BOTH CNT=CNT+1 Q  ; Include deleted images
+ . . . . S CNT=CNT+1
+ . . . . Q
+ . . . Q
+ . . Q
+ . Q
+ Q CNT
 BS5CHK(MAGRY,MAGDFN) ;RPC [MAGG PAT BS5 CHECK]
  ; Call to check the BS5 cross ref 
  ; and see if any similar patients exist.

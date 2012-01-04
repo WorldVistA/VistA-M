@@ -1,5 +1,5 @@
 ECXSURG1 ;ALB/JA,BIR/DMA,PTD-Surgery Extract for DSS ;10/14/10  18:10
- ;;3.0;DSS EXTRACTS;**105,112,120,127**;Dec 22, 1997;Build 36
+ ;;3.0;DSS EXTRACTS;**105,112,120,127,132**;Dec 22, 1997;Build 18
  ;
 FILE ;file record
  ;node0
@@ -41,7 +41,11 @@ FILE ;file record
  ;mst encounter indicator ECENMST^encounter sc ECENSC^
  ;agent orange status ECXAST^
  ;environmental contaminants ECXEST^radiation status ECXRST^
- ;mst status ECXMST^shad indicator ECXSHADI^encounter shad ECXSHAD
+ ;mst status ECXMST^shad indicator ECXSHADI^encounter shad ECXSHAD^
+ ;1st assist EC1A^1st assist pc EC1APC^1st assist npi EC1ANPI^
+ ;2nd assist EC2A^2nd assist pc EC2APC^2nd assist npi EC2ANPI^
+ ;perfusionist ECPQ^perfusionist pc ECPQPC^perfusionist npi ECQANPI^
+ ;anesthesia severity ECASA^patcat PATCAT^date of birth ECXDOB
  ;
  ;convert specialty to PTF Code for transmission
  N ECXDATA,ECXTSC
@@ -68,6 +72,7 @@ FILE ;file record
  I ECXLOGIC>2008 S ECODE2=ECODE2_U_$G(ECENEC)_U_$G(ECENRI)_U_$G(ECENMST)_U_$G(ECENSC)_U_$G(ECXAST)_U_$G(ECXEST)_U_$G(ECXRST)_U_$G(ECXMST)
  I ECXLOGIC>2010 S ECODE2=ECODE2_U_$G(ECXSHADI)_U_$G(ECXSHAD)_U,ECODE3=$G(EC1A)_U_$G(EC1APC)_U_$G(EC1ANPI)
  I ECXLOGIC>2010 S ECODE3=ECODE3_U_$G(EC2A)_U_$G(EC2APC)_U_(EC2ANPI)_U_$G(ECPQ)_U_$G(ECPQPC)_U_$G(ECPQNPI)_U_$G(ECQA)_U_$G(ECQAPC)_U_$G(ECQANPI)_U_$G(ECASA)_U_ECXPATCAT
+ I ECXLOGIC>2011 S ECODE3=ECODE3_U_$G(ECXDOB)
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=ECODE2,^ECX(ECFILE,EC7,3)=ECODE3,ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1

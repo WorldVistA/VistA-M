@@ -1,14 +1,15 @@
 IBCEMU4 ;ALB/ESG - MRA UTILITIES ;25-OCT-2004
- ;;2.0;INTEGRATED BILLING;**288**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**288,432**;21-MAR-94;Build 192
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
  ;
-DENDUP(IBEOB) ; Denied for Duplicate Function
+DENDUP(IBEOB,IBMRANOT) ; Denied for Duplicate Function ;WCJ IB*2.0*432
  ; Function returns true if MRA is Denied AND Reason code 18 is present (Duplicate claim/service)
  NEW IBX,IBM,LINE,DUP,ADJ
  S IBX=0,IBM=$G(^IBM(361.1,+$G(IBEOB),0))
- I $P(IBM,U,4)'=1 G DENDUPX    ; not an MRA
+ I '$G(IBMRANOT),$P(IBM,U,4)'=1 G DENDUPX    ; not an MRA  ;WCJ IB*2.0*432
+ I $G(IBMRANOT),$P(IBM,U,4)'=0 G DENDUPX    ; not an EOB ;WCJ IB*2.0*432
  I $P(IBM,U,13)'=2 G DENDUPX   ; not Denied
  ;
  ; check line item adjustments for reason code 18

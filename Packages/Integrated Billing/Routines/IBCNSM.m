@@ -1,6 +1,6 @@
 IBCNSM ;ALB/AAS - INSURANCE MANAGEMENT, LIST MANAGER INIT ROUTINE ;21-OCT-92
- ;;2.0;INTEGRATED BILLING;**28,46,56,52,82,103,199,276**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,46,56,52,82,103,199,276,435**;21-MAR-94;Build 27
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;also used for IA #4694
  ;
@@ -35,20 +35,27 @@ PAT ; -- select patient you are working with
  ;
 BLD ; -- build list of bills
  K ^TMP("IBNSM",$J),^TMP("IBNSMDX",$J)
- N I,J,K,IBHOLD,IBGRP,IBINS,IBCNT,IBCDFND,IBCPOLD
+ N I,J,K,IBHOLD,IBGRP,IBINS,IBCNT,IBCDFND,IBCDFND1,IBCPOLD,IBPL
  S (IBN,IBCNT,VALMCNT)=0,IBFILE=2
  ;
  ; -- find all ins. co data
  K IBINS S IBINS=0
  D POL^IBCNSU41(DFN)
- D ALL^IBCNS1(DFN,"IBINS")
+ I '$G(IBNCPIVD) D ALL^IBCNS1(DFN,"IBINS")                ; all insurances
+ I $G(IBNCPIVD) D ALL^IBCNS1(DFN,"IBINS",1,IBNCPIVD)      ; IB*2*435 - Rx policies active as of this date
+ ;
  I $G(IBINS(0)) S K=0 F  S K=$O(IBINS(K)) Q:'K  D
  .; -- add to list
  .W "."
- .S IBCNT=IBCNT+1
  .S IBCDFND=$G(IBINS(K,0))
  .S IBCDFND1=$G(IBINS(K,1))
- .S IBCPOLD=$G(^IBA(355.3,+$P($G(IBINS(K,0)),"^",18),0))
+ .S IBPL=+$P(IBCDFND,U,18)
+ .S IBCPOLD=$G(^IBA(355.3,IBPL,0))
+ .;
+ .; IB*2*435 - esg - 9/27/10 - active Rx policies only if this variable is set
+ .I $G(IBNCPIVD),'$$PLCOV^IBCNSU3(IBPL,IBNCPIVD,3) Q
+ .;
+ .S IBCNT=IBCNT+1
  .S X=""
  .S X=$$SETFLD^VALM1(IBCNT,X,"NUMBER")
  .I $D(^DIC(36,+IBCDFND,0)) S X=$$SETFLD^VALM1($P(^(0),"^"),X,"NAME")
@@ -66,12 +73,19 @@ BLD ; -- build list of bills
  .S X=$$SETFLD^VALM1($$YN($P(IBCDFND,"^",20)),X,"COB")
  .K IBHOLD,IBGRP
  .D SET(X)
+ .Q
+ ;
  I '$D(^TMP("IBNSM",$J)) D
  .S VALMCNT=2,IBCNT=2,^TMP("IBNSM",$J,1,0)=" "
  .S ^TMP("IBNSM",$J,2,0)="    No Insurance Policies on file for this patient."
+ .I $G(IBNCPIVD) S ^TMP("IBNSM",$J,2,0)="    No Active Rx Policies found as of Effective Date "_$$FMTE^XLFDT(IBNCPIVD,"2Z")_"."
+ .Q
+ ;
  S X=$G(^IBA(354,DFN,60)) I X D
  .S IBCNT=IBCNT+1
  .S ^TMP("IBNSM",$J,IBCNT,0)="       Verification of No Coverage "_$$FMTE^XLFDT(X)
+ .Q
+ ;
 BLDQ ;
  Q
  ;

@@ -1,5 +1,5 @@
-RCDPEDS ;ALB/TMK - Display EEOB detail from receipt ;15 Oct 02
- ;;4.5;Accounts Receivable;**173**;Mar 20, 1995
+RCDPEDS ;ALB/TMK/DWA - Display EEOB detail from receipt ;07/30/10
+ ;;4.5;Accounts Receivable;**173,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ; IA for call to GETEOB^IBCECSA6 = 4044
  ;
@@ -68,10 +68,11 @@ GETERR(RCIEN,Z) ; Extract error messages from entry RCIEN in file 361.1
  ; Function returns error lines from file #361.1 in the
  ;   ^TMP("PRCA_EOB",$J,RCIEN,n array in subscripts at the end of the
  ;    array
- N Z0,DATA,RCRAW,RCFORM,RCLINE,X
+ N Z0,DATA,RCRAW,RCFORM,RCLINE,X,RCV5
  S Z=Z+1,^TMP("PRCA_EOB",$J,RCIEN,Z)="EEOB FILING ERRORS:"
  S Z0=0 F  S Z0=$O(^IBM(361.1,RCIEN,"ERR",Z0)) Q:'Z0  S X=$G(^(Z0,0)) D
- . I +X S RCLINE=+X_"^RCDPESR9" I $T(@RCLINE)'="" D  Q
+ . I +X,+X=835,+$P(X,U,16)>0 S RCV5=1
+ . I +X S RCLINE=+X_$S($G(RCV5)=1:"^RCDPES10",1:"^RCDPESR9") I $T(@RCLINE)'="" D  Q
  .. S RCRAW(1,0)=X
  .. D DISP^RCDPESR0("RCRAW","RCFORM",1,"RCDATA",80,0)
  .. S X=0 F  S X=$O(RCFORM(X)) Q:'X  S Z=Z+1,^TMP("PRCA_EOB",$J,RCIEN,Z)="  "_RCFORM(X)

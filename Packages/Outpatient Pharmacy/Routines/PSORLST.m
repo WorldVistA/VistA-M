@@ -1,5 +1,5 @@
 PSORLST ;BIRM/MFR - List of Patients/Prescriptions for Recall Notice ;12/30/09
- ;;7.0;OUTPATIENT PHARMACY;**348**;DEC 1997;Build 50
+ ;;7.0;OUTPATIENT PHARMACY;**348,371**;DEC 1997;Build 12
  ;
  ; External reference to ^PSS50 supported by DBIA 4533
  ; External reference to ^PSS50P7 supported by DBIA 4662
@@ -187,7 +187,9 @@ MARGIN   ; Display message about margin and page length
  . K PSODFWL
  W !!
  W !?8,"**  To avoid undesired wrapping of the output data,    **"
- W !?8,"**  please enter '0;256;999' at the 'DEVICE:' prompt.  **"
+ W !?8,"**  please enter '0;512;999' at the 'DEVICE:' prompt.  **" ;371 change from 256 to 512.
+ W !?8,"**  You may need to set your Terminal Session Display  **" ;371 Add the next two lines.
+ W !?8,"**            Settings to 512 columns.                 **"
  W !
  Q
  ;

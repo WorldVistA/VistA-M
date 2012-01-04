@@ -1,6 +1,6 @@
-PRCFFERU ;WISC/SJG/DL-OBLIGATION ERROR PROCESSING CON'T ;2/2/98  1330
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCFFERU ;WISC/SJG/DL-OBLIGATION ERROR PROCESSING CON'T ;6/17/11  17:56
+V ;;5.1;IFCAP;**158**;Oct 20, 2000;Build 1
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  QUIT
  ; No top level entry
 NUM S PONUM=$G(GECSDATA(2100.1,GECSDATA,.01,"E"))
@@ -57,7 +57,7 @@ RETRANS(X) ; Prompt user to rebuild FMS doc from source doc and retransmit
  ;
  ; OPT = 1 if inquiry, 2 if rebuild/retransmit
 STATR1(OPT) ;
- S LABEL=$S(MOP=1:"Purchase Order",MOP=21:"1358 Miscellaneous Obligation",MOP=7:"Imprest Fund",MOP=8:"Requistion",MOP=2:"Certified Invoice",MOP=3:"Payment in Advance",MOP=4:"Guaranteed Delivery",1:"Obligation")
+ S LABEL=$S(MOP=1:"Purchase Order",MOP=21:"1358 Obligation",MOP=7:"Imprest Fund",MOP=8:"Requistion",MOP=2:"Certified Invoice",MOP=3:"Payment in Advance",MOP=4:"Guaranteed Delivery",1:"Obligation")
  W !,"The "_LABEL_$S(OPT=1:" will",1:" can")
  W " now be displayed for your review.",!!
  W "Please review the source document very carefully and take",!,"the appropriate corrective action.",!

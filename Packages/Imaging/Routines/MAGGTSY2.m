@@ -1,6 +1,6 @@
-MAGGTSY2 ;WOIFO/GEK - Calls from Imaging windows for System Manager ; [ 06/20/2001 08:57 ]
- ;;3.0;IMAGING;**59**;Nov 27, 2007;Build 20
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+MAGGTSY2 ;WOIFO/GEK/NST - Calls from Imaging windows for System Manager ; 22 Dec 2010 10:50 AM
+ ;;3.0;IMAGING;**59,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -18,22 +18,23 @@ MAGGTSY2 ;WOIFO/GEK - Calls from Imaging windows for System Manager ; [ 06/20/20
  Q
 MAG(MAGRY,NODE) ;RPC Call to show node of Image File
  ;  NODE is the IEN of Image File :  ^MAG(2005,NODE
- N Y,I,CT,X,TNODE
+ N I,CT,X,TNODE,MAGFILE
  S MAGRY=$NA(^TMP("MAGNODE",$J))
  S NODE=$G(NODE)
- N I,CT,X
  K @MAGRY
  S @MAGRY@(0)="Display NODE: "_$S($L(NODE):NODE,1:"LAST")
  S I=0,CT=0
  I $E(NODE)="^" G OTH
  I 'NODE S NODE=$P(^MAG(2005,0),U,3)
- S I="^MAG(2005,"_NODE_","""")"
+ S MAGFILE=$$FILE^MAGGI11(NODE)
+ I MAGFILE'>0 Q  ; problem getting file number
+ S I="^MAG(MAGFILE,"_NODE_","""")"
  F  S X=$Q(@I) S I=X Q:$P(X,",",2)'=NODE  D
  . S CT=CT+1,@MAGRY@(CT)=X_" "_@X
  . Q
- I $P($G(^MAG(2005,NODE,2)),"^",6)="8925" D
+ I $P($G(^MAG(MAGFILE,NODE,2)),"^",6)="8925" D
  . S CT=CT+1,@MAGRY@(CT)="   *******   TIU    ******* "
- . S TNODE=$P(^MAG(2005,NODE,2),"^",7)
+ . S TNODE=$P(^MAG(MAGFILE,NODE,2),"^",7)
  . S I="^TIU(8925,"_TNODE_","""")"
  . F  S X=$Q(@I) S I=X Q:$P(X,",",2)'=TNODE  D
  . . S CT=CT+1,@MAGRY@(CT)=X_" "_@X

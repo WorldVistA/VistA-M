@@ -1,5 +1,5 @@
 RARTE1 ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Edit/Delete a Report ;6/10/98  16:08
- ;;5.0;Radiology/Nuclear Medicine;**2,15,17,23,31,68,56**;Mar 16, 1998;Build 3
+ ;;5.0;Radiology/Nuclear Medicine;**2,15,17,23,31,68,56,47**;Mar 16, 1998;Build 21
  ;Private IA #4793 DELETE^WVRALINK, CREATE^WVRALINK 
  ;Supported IA #10035
  ;Supported IA #10007
@@ -111,7 +111,7 @@ ASKADD R !!,"Do you want to add another standard to this report? No// ",X:DTIME 
  S (^RARPT(RARPT,"R",RALR,0),^RARPT(RARPT,"I",RALI,0))="",RALR=RALR+1,RALI=RALI+1 W ! G STD1
  ;
 EDTRPT ; Called from 'RARTE4' and 'RARTVER'.
- S RACT=$S('+$G(^RARPT(RARPT,"T")):"I",1:"E")
+ N RAXIT S RACT=$S('+$G(^RARPT(RARPT,"T")):"I",1:"E")
  S:'$D(^RARPT(RARPT,"T")) ^("T")=""
  S DA=RARPT,DR="[RA REPORT EDIT]",DIE="^RARPT(" D ^DIE K DE,DQ ;,RAFLAGK
  I $D(Y),RACT="V",'$P(^RARPT(RARPT,0),"^",9) W !,$C(7),"You must enter a verifying Interpreting Physician to 'VERIFY' a report.",!?3,"...report status will now be changed to 'DRAFT'." S DA=RARPT,DR="5///D" D ^DIE K DE,DQ ;Q
@@ -124,17 +124,26 @@ EDTRPT ; Called from 'RARTE4' and 'RARTVER'.
  S RAIMGTYI=$P($G(^RADPT(RADFN,"DT",RADTI,0)),U,2),RAIMGTYJ=$P($G(^RA(79.2,+RAIMGTYI,0)),U)
  S X=+$O(^RA(72,"AA",RAIMGTYJ,9,0)),DA(2)=RADFN,DA(1)=RADTI,DA=RACNI,DIE="^RADPT("_DA(2)_",""DT"","_DA(1)_",""P""," K RAIMGTYI,RAIMGTYJ
  S DR=13_$S(RACT'="V":"",'$D(^RA(72,X,.1)):"",$P(^(.1),"^",5)'="Y":"",1:"R")_";I $D(^RA(78.3,+X,0)),$P(^(0),""^"",4)=""y"" S RAAB=1"
- S RAXIT=$$LOCK^RAUTL12(DIE,.DA)
+ ;
+ ;lock the correct sub-file (pset?)
+ D DXLOC
+ ;
  I RACT="V",$P($G(^RA(72,X,.1)),"^",5)="Y" S DIE("NO^")="BACK"
- I 'RAXIT D ^DIE D UNLOCK^RAUTL12(DIE,.DA) K DA,DE,DQ,DIE,DR
- I RAXIT!($P(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0),U,13)="")!($D(Y)) K RAXIT G PACS
+ I 'RAXIT D ^DIE K DA,DE,DQ,DIE,DR
+ I RAXIT!($P(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0),U,13)="")!($D(Y)) D DXULOC G PACS
  S DR="50///"_RACN
  S DR(2,70.03)=13.1
  S DR(3,70.14)=.01_";I $D(^RA(78.3,+X,0)),$P(^(0),""^"",4)=""y"" S RAAB=1"
  S DA(1)=RADFN,DA=RADTI,DIE="^RADPT("_DA(1)_",""DT"","
- S RAXIT=$$LOCK^RAUTL12("^RADPT("_RADFN_",""DT"","_RADTI_",""P"",",.RACNI) ;lock at P level
- I 'RAXIT D ^DIE D UNLOCK^RAUTL12("^RADPT("_RADFN_",""DT"","_RADTI_",""P"",",.RACNI) K DA,DE,DQ,DIE,DR ;unlock at P level
- K RAXIT
+ ;
+ I 'RAXIT D ^DIE K DA,DE,DQ,DIE,DR
+ ;
+COPYDX ;if we have a printset copy over the Dx code data (both primary & secondary)
+ ;to all our descendents before building our HL7 ORU messsages.
+ I RAPRTSET S RADRS=1,RAXIT=0 D COPY^RARTE2 ;P47
+ ;unlock the correct sub-file (pset?)
+ D DXULOC
+ ;
 PACS I ($P(^RARPT(RARPT,0),U,5)="V")!($P(^(0),U,5)="R") D RPT^RAHLRPC
  I "^V^EF"[("^"_$P(^RARPT(RARPT,0),U,5)_"^"),$T(CREATE^WVRALINK)]"" D CREATE^WVRALINK(RADFN,RADTI,RACNI) ; women's health
  Q
@@ -154,3 +163,14 @@ IMPRPT(Y) ; Does the report we are currently editing have either Report
  ; Output: '1' - either impression or report text exists, '0' - neither
  ;               report or impression text exists.
  Q $S(+$O(^RARPT(Y,"I",0)):1,+$O(^RARPT(Y,"R",0)):1,1:0)
+ ;
+DXLOC ;lock the correct RAD/NUC MED PATIENT sub-file
+ S:'RAPRTSET RAXIT=$$LOCK^RAUTL12("^RADPT("_RADFN_",""DT"","_RADTI_",""P"",",RACNI)
+ S:RAPRTSET RAXIT=$$LOCK^RAUTL12("^RADPT("_RADFN_",""DT"",",RADTI)
+ Q
+ ;
+DXULOC ;unlock the correct RAD/NUC MED PATIENT sub-file
+ D:'RAPRTSET UNLOCK^RAUTL12("^RADPT("_RADFN_",""DT"","_RADTI_",""P"",",RACNI)
+ D:RAPRTSET UNLOCK^RAUTL12("^RADPT("_RADFN_",""DT"",",RADTI)
+ Q
+ ;

@@ -1,5 +1,5 @@
 ONCPCI ;Hines OIFO/GWB - Patient Identification/Cancer Identification screen display ;06/23/10
- ;;2.11;ONCOLOGY;**15,19,24,26,27,28,33,35,36,42,43,44,45,46,47,49,51**;Mar 07, 1995;Build 65
+ ;;2.11;ONCOLOGY;**15,19,24,26,27,28,33,35,36,42,43,44,45,46,47,49,51,53**;Mar 07, 1995;Build 31
  ;
 PI ;Patient Identification
  K DASH S $P(DASH,"-",80)="-"
@@ -79,7 +79,7 @@ CI ;Cancer Identification
  .W !," Mult Tum Rpt as One Prim.....: ",ONC(165.5,D0,194)
  .W !," Date of Multiple Tumors......: ",ONC(165.5,D0,195)
  .W !," Multiplicity Counter.........: ",ONC(165.5,D0,196)
- W !," AFIP submission..............: ",ONC(165.5,D0,83)
+ W !," AFIP/JPC submission..........: ",ONC(165.5,D0,83)
  W !," Diagnostic Confirmation......: ",ONC(165.5,D0,26)
  W:($$GET1^DIQ(165.5,D0,.01,"E")="LIVER")!($G(TOP)=67220) !," Hepatitis C..................: ",ONC(165.5,D0,1010)
  ;I DATEDX<3030000 D

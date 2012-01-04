@@ -1,5 +1,5 @@
 GMTSLRC ; SLC/JER,KER - Chemistry & Hematology Comp Dvr ; 01/06/2003
- ;;2.7;Health Summary;**28,47,58**;Oct 20, 1995
+ ;;2.7;Health Summary;**28,47,58,88**;Oct 20, 1995;Build 23
  ;
  ; External References
  ;    DBIA   525  ^LR( all fields
@@ -23,12 +23,12 @@ MAIN ; Chemisty and Hematology
  Q
 WRTHDR ; Prints columnar header
  D CKP^GMTSUP Q:$D(GMTSQIT)  W "Collection DT",?18,"Specimen",?29
- W "Test Name",?48,"Result",?58,"Units",?68,"Ref Range",!
+ W "Test Name",?48,"Result",?58,"Units",?70,"Ref Range",!
  W:'$D(GMTSOBJ) !
  S GMTSNPG=1
  Q
 WRT ; Writes Chemistry & Hematology Component
- N GMI,GMX,GMTSI
+ N GMI,GMX,GMTSI,ISNEG,REF,TAB
  I PTR="C",'+$G(GMCMNT) Q
  I PTR="C",($D(^TMP("LRC",$J,IX,"C"))>9),+$G(GMCMNT) D  Q
  . S GMI=0 F  S GMI=$O(^TMP("LRC",$J,IX,"C",GMI)) Q:GMI'>0  D
@@ -40,6 +40,15 @@ WRT ; Writes Chemistry & Hematology Component
  I $D(^TMP("LRC",$J,IX,"C"))>9,'+$G(GMCMNT) W ?24,"!! " S GMCFLAG=1
  W ?29,$E($P(GMX,U,3),1,17),?46,$P(GMX,U,4)," ",$P(GMX,U,5)
  W ?58,$P(GMX,U,6)
- S GMTSI=$P(GMX,U,8) S:GMTSI="NEGATIVE" GMTSI="NEG"
- W ?68,$J($P(GMX,U,7),4),?73,"-",?74,$J(GMTSI,4),!
+ ; VM/RJT - Ref Range reformat
+ ; W ?68,$J($P(GMX,U,7),4),?73,"-",?74,$J(GMTSI,4),!
+ S GMTSI=$P(GMX,U,8),ISNEG=0 S:GMTSI="NEGATIVE" GMTSI="NEG",ISNEG=1
+ D
+ . I ((ISNEG=1)!($P(GMX,U,7)="NEGATIVE")) W ?69,$J("NEG",12),! Q
+ . S REF=$$EN^LRLRRVF($P(GMX,U,7),$G(GMTSI))
+ . S TAB=67+($S(REF?1A.E:2,1:(8-$F(REF,"-")))) S:TAB<67 TAB=67
+ . I (TAB>72)&($L(REF)>5) S TAB=67+((13-($L(REF))/2))
+ . I ($L(REF)>12),($L(REF)<15) S TAB=80-($L(REF))
+ . W ?TAB,REF,!
  Q
+  

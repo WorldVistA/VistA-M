@@ -1,11 +1,11 @@
-PRCFFU13 ;WISC/SJG-ROUTINE TO PROCESS OBLIGATIONS CONT ;6/13/94  14:34
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCFFU13 ;WISC/SJG-ROUTINE TO PROCESS OBLIGATIONS CONT ;6/17/11  17:58
+V ;;5.1;IFCAP;**158**;Oct 20, 2000;Build 1
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ; Allows FIscal to edit Cost Center and BOCs prior to 1358 obligation
 1358 ; 1358 Correction
  N CCEDIT,BOCEDIT D PROMPT
  Q:'Y!($D(DIRUT))
- S ESIGCHK=$$VERIFY^PRCSC1(OB) I 'ESIGCHK W !!,"This 1358 Miscellaneous Obligation has been tampered with.  Please notify IFCAP APPLICATION COORDINATOR." Q
+ S ESIGCHK=$$VERIFY^PRCSC1(OB) I 'ESIGCHK W !!,"This 1358 Obligation has been tampered with.  Please notify IFCAP APPLICATION COORDINATOR." Q
  S (BOCEDIT,CCEDIT)=0
  S OLDCC=$P(TRNODE(3),U,3),OLDBOC=+$P(TRNODE(3),U,6)
  W !! K MSG S MSG="...now editing Cost Center and BOC information..." D EN^DDIOL(MSG) K MSG W !

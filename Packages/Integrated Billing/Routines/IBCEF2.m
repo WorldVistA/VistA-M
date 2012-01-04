@@ -1,5 +1,5 @@
 IBCEF2 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS ;8/6/03 10:54am
- ;;2.0;INTEGRATED BILLING;**52,85,51,137,232,155,296,349,403,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**52,85,51,137,232,155,296,349,403,400,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 HOS(IBIFN) ; Extract rev codes for inst. episode into IBXDATA
@@ -68,9 +68,10 @@ ALLPAYID(IBIFN,IBXDATA,SEQ) ; Returns clearinghouse id for all (SEQ="")
  . ;    print - claims must print at clearinghouse
  . ;
  . ; Rx bills on CMS-1500
- . I 'IBINST,$$ISRX^IBCEF1(IBIFN) S A="RPRNT" Q
+ . ;IB*2.0*432/TAZ Claims no longer print at clearinghouse
+ . ;I 'IBINST,$$ISRX^IBCEF1(IBIFN) S A="RPRNT" Q
  . ;
- . ; Claim forced to print at clearinghouse
+ . ; Claim forced to print at clearinghouse (Field #27)
  . I $P(Z1,U,8)=2 S A=$S(IBINST:"H",1:"S")_"PRNT" Q
  . ;
  . ; EJK *296* Send IBEBI for MRA secondary claims if it exists
@@ -87,7 +88,8 @@ ALLPAYID(IBIFN,IBXDATA,SEQ) ; Returns clearinghouse id for all (SEQ="")
  . I A=84147 Q
  . ;
  . ; If not a primary bill force to print
- . I Z>1,Z=$$COBN^IBCEF(IBIFN) S A=$S(IBINST:"H",1:"S")_"PRNT" Q
+ . ;IB*2.0*432/TAZ secondary bills will now be processed
+ . ;I Z>1,Z=$$COBN^IBCEF(IBIFN) S A=$S(IBINST:"H",1:"S")_"PRNT" Q
  . Q
  ;
  Q

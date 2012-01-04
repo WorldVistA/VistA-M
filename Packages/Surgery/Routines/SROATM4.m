@@ -1,5 +1,5 @@
-SROATM4 ;BIR/MAM - CREATE MESSAGES ;03/22/06
- ;;3.0; Surgery ;**27,38,62,125,153**;24 Jun 93;Build 11
+SROATM4 ;BIR/MAM - CREATE MESSAGES ;03/10/11
+ ;;3.0;Surgery;**27,38,62,125,153,175**;24 Jun 93;Build 6
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -24,7 +24,7 @@ MSG ; send message to G.SURGERY RISK at Hines
  I 'ISC S XMY("G.RISK ASSESSMENT@FO-HINES.MED.VA.GOV")=""
  S SRATDATE=$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3)
  S X=$$ACTIVE^XUSER(DUZ) I '+X S XMDUZ=.5
- S XMSUB=$P($$SITE^SROVAR,"^",2)_": NSQIP ("_SRAMNUM_" OF "_SRATOTM_")  "_SRATDATE,XMTEXT="^TMP(""SRA"",$J,"_SRAMNUM_"," N I D ^XMD
+ S XMSUB=$P($$SITE^SROVAR,"^",2)_": SURG-"_$S($G(SR1L):"1L",1:"NC")_" ("_SRAMNUM_" OF "_SRATOTM_") "_SRATDATE,XMTEXT="^TMP(""SRA"",$J,"_SRAMNUM_"," N I D ^XMD
  Q
 UPDATE ; Updating is done by the server SROASITE after acknowledgement message is received at the site from the National Database
  ; Notification message of assessments transmitted is built below

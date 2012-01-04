@@ -1,5 +1,5 @@
-MAGDRA2 ;WOIFO/LB -Routine for DICOM fix  [ 06/20/2001 08:56 ] ; 05/18/2007 11:23
- ;;3.0;IMAGING;**10,11,51,54**;03-July-2009;;Build 1424
+MAGDRA2 ;WOIFO/LB - Routine for DICOM fix ; 08 Feb 2011 10:22 AM
+ ;;3.0;IMAGING;**10,11,51,54,49**;Mar 19, 2002;Build 2033;Apr 07, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -55,8 +55,18 @@ PTINFO() ;
  . Q
  Q ""
  ;
-LCASE(MAGDT,MAGCASE) ;
- Q $TR($TR($$FMTE^XLFDT(MAGDT,"2FD")," ","0"),"/","")_"-"_MAGCASE
+LCASE(MAGDT,MAGCASE) ; return the accession number
+ N ACNUMB,ARESULT
+ S ACNUMB=$TR($TR($$FMTE^XLFDT(MAGDT,"2FD")," ","0"),"/","")_"-"_MAGCASE
+ I $$USESSAN^RAHLRU1(),$$ACCFIND^RAAPI(ACNUMB,.ARESULT)>0 D  ; ICR 5600
+ . ; lookup site-specific accession number
+ . N ACNUMB1,RADFN,RADTI,RACNI
+ . S RADFN=$P(ARESULT(1),"^",1),RADTI=$P(ARESULT(1),"^",2)
+ . S RACNI=$P(ARESULT(1),"^",3)
+ . S ACNUMB1=$$GET1^DIQ(70.03,(RACNI_","_RADTI_","_RADFN),31)
+ . I ACNUMB1'="" S ACNUMB=ACNUMB1
+ . Q
+ Q ACNUMB
  ;
 IMG(MAGRPT) ;
  N INFO,MAGOUT,MAGERR
@@ -95,7 +105,7 @@ ONE ;
  S (MAGDTI,RADTI)=$P(RAENTRY,"-")
  S (MAGCNI,RACNI)=$P(RAENTRY,"-",2),RADFN=MAGDFN
  S MAGCASE=$$LCASE(CDATE,CASE),MAGPIEN=$$PROC(MAGPRC)
- ; RADTI, RADFN, RACNI variables needed for EN1^RAULT20
+ ; RADTI, RADFN, RACNI variables needed for EN1^RAUTL20
  D EN1^RAUTL20
  S (PSET,MAGPSET)=""
  S PSET=$S(RAMEMLOW:"+",RAPRTSET:".",1:"")

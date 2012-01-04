@@ -1,5 +1,5 @@
-MAGGSIA1 ;WOIFO/GEK/SG/NST - RPC Call to Add Image File entry ; 29 Oct 2010 1:15 PM
- ;;3.0;IMAGING;**7,8,85,59,93,106**;Mar 19, 2002;Build 2002;Feb 28, 2011
+MAGGSIA1 ;WOIFO/GEK/SG/NST - RPC Call to Add Image File entry ; 01 Nov 2010 2:08 PM
+ ;;3.0;IMAGING;**7,8,85,59,93,106,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -25,6 +25,7 @@ PRE(MAGERR,MAGGFDA,MAGGRP,MAGGDRV,MAGREF) ;
  ; For VI Capture and DICOM Gateway the value of #8.1 is set
  ; in ADD^MAGGTIA 
  I '$D(MAGGFDA(2005,"+1,",8.1)) S MAGGFDA(2005,"+1,",8.1)="I"
+ S:$G(MAGGFDA(2005,"+1,",113))="" MAGGFDA(2005,"+1,",113)=1  ; Patch 117 Set STATUS (#113) to Viewable (1)
  I '$D(MAGGFDA(2005,"+1,",3)) D OBJTYPE
  I '$D(MAGGFDA(2005,"+1,",3)) S MAGERR="0^Need an Object Type " Q
  I '$D(MAGGFDA(2005,"+1,",5)),'$D(MAGGFDA(2005,"+1,",10)) D  Q

@@ -1,5 +1,5 @@
-RCDPEX3 ;ALB/TMK - ELECTRONIC EOB EXCEPTION PROCESSING - FILE 344.4 ;10-OCT-02
- ;;4.5;Accounts Receivable;**173,208,258**;Mar 20, 1995;Build 1
+RCDPEX3 ;ALB/TMK/PJH - ELECTRONIC EOB EXCEPTION PROCESSING - FILE 344.4 ; 3/30/11 7:19pm
+ ;;4.5;Accounts Receivable;**173,208,258,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; IA# 5286 for call to $$PRVPHONE^IBJPS3()
  Q
@@ -161,7 +161,8 @@ XFR ; Transfer EOB(s) to other site
  . I $P(RCX,U)'["835ERA"!'$O(RCBODY(1)) D  Q
  .. S RCECT=RCECT+1,RCER(RCECT)="**Selection #"_RC_" format is not valid for transfer - "_RCBILL_" NOT transferred"
  . ;
- . S $P(RCX,U)="835XFR",$P(RCX,U,10,16)=(RCAMT_"^^^^^^"_RCCONT)
+ . S $P(RCX,U)="835XFR",$P(RCX,U,10,15)=(RCAMT_"^^^^^")
+ . S $P(RCX,U,19)=RCCONT
  . S RCBODY(1,0)=RCX
  . S RCBODY(+$O(RCBODY(""),-1)+1,0)="99^$"
  . S RCBODY(+$O(RCBODY(""),-1)+1,0)="NNNN"

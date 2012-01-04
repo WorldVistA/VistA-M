@@ -1,5 +1,5 @@
-RCDPESR5 ;ALB/TMK - Server interface 835XFR processing ;10/01/02
- ;;4.5;Accounts Receivable;**173,208**;Mar 20, 1995
+RCDPESR5 ;ALB/TMK,DWA - Server interface 835XFR processing ;10/01/02
+ ;;4.5;Accounts Receivable;**173,208,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 XFR(RCTDA,RCFROM,RCMSG,RCD) ; Send bulletin, update 344.5 for transfer EOB into site
@@ -100,7 +100,8 @@ DISP1(RCCT,RCNOH) ; Extract formatted EOB detail for bill
  ;
  ; Error array returned in ^TMP("RCERR1",$J)
  ;
- N RC1,RC2,RCCT1,Z
+ N RC1,RC2,RCCT1,Z,RCV5
+ I +$P($G(^RCY(344.5,RCTDA,2,1,0)),U,16)>0 S RCV5=1
  D DISP^RCDPESR0("^TMP($J,""RCDP-EOB"","_RCCT_")","RC1",1)
  D FMTDSP^RCDPESR0("RC1","RC2",75,RCNOH)
  S Z=0,RCCT1=$O(^TMP("RCERR1",$J,RCCT," "),-1)

@@ -1,5 +1,5 @@
 FBFHLX ;WOIFO/SAB-TRANSMIT HL7 MESSAGES TO FPPS ;10/8/2003
- ;;3.5;FEE BASIS;**61**;JULY 18, 2003
+ ;;3.5;FEE BASIS;**61,121**;JULY 18, 2003;Build 4
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -78,6 +78,7 @@ ALL ; Transmit All Pending Invoices (interactive and non-interactive)
  . ; update counters based on result
  . I FBERR S FBCNT("PENDE")=FBCNT("PENDE")+1
  . E  S FBCNT("PENDT")=FBCNT("PENDT")+1
+ . I FBCNT("PENDE")+FBCNT("PENDT")>9999 S (FBCNT("10K"),FBQUIT)=1  ;FB*3.5*121
  ;
  ; save time that process ended
  S FBXMIT("END")=$$NOW^XLFDT()

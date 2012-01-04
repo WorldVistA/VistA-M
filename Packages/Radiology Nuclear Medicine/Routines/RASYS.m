@@ -1,5 +1,5 @@
 RASYS ;HISC/CAH AISC/TMP-System Definition Menu ;11/13/96  14:17
- ;;5.0;Radiology/Nuclear Medicine;**42**;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**42,47**;Mar 16, 1998;Build 21
 1 ;;Division Parameter Set-up
  S DIC="^RA(79,",DIC(0)="AELMQ",DIC("A")="Select Division: ",DLAYGO=79
  D ^DIC K DIC,DLAYGO I Y<0 K X,Y G Q1
@@ -126,3 +126,29 @@ RDEVHLP ; Display the Description Text for the Resource Device (#100) field
  . Q
  W !
  Q
+ ;
+SACNPAR ; Site (long) Accession Number Parameter Entry/Edit
+ ;W !!?3,"Warning: Editing the 'USE SITE ACCESSION NUMBER?' field on a record"
+ ;W !?3,"in the RAD/NUC MED DIVISION file may lead to the instability of the"
+ ;W !?3,"VistA RADIOLOGY/NUCLEAR MEDICINE application.",!
+ W !!?3,"Warning: Turning on the Site Specific Accession Number should only"
+ W !?3,"be done in conjunction with using the RA v2.4 messaging protocols."
+ W !!?3,"NOTE: Changing the Site Specific Accession Number parameter at a"
+ W !?3,"multidivisional site will change the parameter for ALL divisions."
+ ;K DIC S DIC(0)="AEMQZ",DIC("A")="Select Facility to Edit: "
+ ;S DIC="^RA(79," D ^DIC
+ ;I $D(DTOUT)!($D(DUOUT))!(Y=-1) D END Q
+ N RAVAL S RAVAL=$O(^RA(79,0)),RAVAL=$P($G(^RA(79,RAVAL,.1)),"^",31)
+ W !!,"Current value of Site Specific Accession Number parameter: ",$S(RAVAL="Y":"YES",1:"NO")
+ S DIR(0)="YA",DIR("A")="Use Site Specific Accession Number? " D ^DIR
+ S DIR("?")="Answer 'YES' to turn on use of the Site Specific Accession Number or 'NO' to turn it off."
+ Q:$D(DIRUT)
+ N RAZVAL S RAZVAL="N" I Y=1 S RAZVAL="Y"
+ F RAZZDIV=0:0 S RAZZDIV=$O(^RA(79,RAZZDIV)) Q:RAZZDIV'>0  D
+ .S (DA,RADA)=+RAZZDIV,DR=".131////^S X=RAZVAL",DIE="^RA(79,"
+ .D ^DIE
+ Q
+END ;
+ K DA,DIC,DIE,DR,DTOUT,DUOUT,RADA,X,Y
+ Q
+ ; 

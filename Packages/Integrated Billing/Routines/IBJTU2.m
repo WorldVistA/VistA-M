@@ -1,6 +1,6 @@
 IBJTU2 ;ALB/ARH - TPI UTILITIES ;6/6/03 1:05pm
- ;;2.0;INTEGRATED BILLING;**39,106,199,211,276**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**39,106,199,211,276,435**;21-MAR-94;Build 27
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 PAT() ; select patient, only allows patient's that have bills - returns DFN^NAME if patient selected, 0 otherwise
  N X,Y,DFN,DTOUT,DUOUT,DA
@@ -33,7 +33,7 @@ PB1 R !!,"Enter BILL NUMBER or PATIENT NAME: ",IBX:DTIME I IBX["^"!(IBX="") G PB
  . S DIC="^DPT(",DIC(0)="EQM",DIC("S")="I $D(^DGCR(399,""C"",Y))",X=IBX D ^DIC K DIC I Y'<1 S IBY="1^"_+Y
  ;
  ; search for bill number
- I (IBX?1A1.7AN)!(IBX?3N1"-"1A1.7AN)!(IBX?1"`"1.15N)!(IBX=" ") D  I IBY G PBQ
+ I (IBX?1A1.12AN)!(IBX?3N1"-"1A1.7AN)!(IBX?1"`"1.15N)!(IBX=" ") D  I IBY G PBQ
  . S DPTNOFZY=1  ;Suppress PATIENT file fuzzy lookups
  . S IBSTR=IBX
  . I $L(IBSTR,"-")=2,$P(IBSTR,"-")?3N S IBSTR=$P(IBX,"-",2,255)
@@ -41,8 +41,8 @@ PB1 R !!,"Enter BILL NUMBER or PATIENT NAME: ",IBX:DTIME I IBX["^"!(IBX="") G PB
  ;
  ; search for ECME number REC^IBRFN()
  S IBSTR=IBX
- I IBSTR?1.7N S IBSTR="E."_IBSTR
- I IBSTR?1"E."1.7N S Y=$$REC^IBRFN(IBSTR) I Y>0 S IBY="2^"_+Y G PBQ
+ I IBSTR?1.12N S IBSTR="E."_IBSTR
+ I IBSTR?1"E."1.12N S Y=$$REC^IBRFN(IBSTR) I Y>0 S IBY="2^"_+Y G PBQ
  ;
  ; search for RX number REC^IBRFN()
  S IBSTR=IBX

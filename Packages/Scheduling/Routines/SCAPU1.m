@@ -1,5 +1,5 @@
-SCAPU1 ;ALB/REW - TEAM API UTILITIES ; 30 Jun 95
- ;;5.3;Scheduling;**41**;AUG 13, 1993
+SCAPU1 ;ALB/REW - TEAM API UTILITIES ; 9/17/09 4:30pm
+ ;;5.3;Scheduling;**41,504**;AUG 13, 1993;Build 21
  ;;1.0
 DTCHK2(SCDATES,ACTDT,INACTDT) ;given scdates array was it active?
  N SCBEGIN,SCEND,SCINCL
@@ -22,7 +22,7 @@ DTCHK(BEGINDT,ENDDT,INCL,ACTDT,INACTDT) ; -- given activation/inactivation dates
  G DTCHKQ:'$G(BEGINDT)!('$G(ENDDT))!('$G(ACTDT))
  S OK=0
  ; begin is after inactivation
- IF $G(INACTDT),BEGINDT>INACTDT G DTCHKQ
+ IF $G(INACTDT),BEGINDT'<INACTDT G DTCHKQ
  ; end is before effective date
  IF ENDDT<ACTDT G DTCHKQ
  ; just need 1 day in range

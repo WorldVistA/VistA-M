@@ -1,5 +1,5 @@
 RART1 ;HISC/GJC,SWM-Reporting Menu (Part 2) ;05/13/09  08:05
- ;;5.0;Radiology/Nuclear Medicine;**8,16,15,21,23,27,34,99**;Mar 16, 1998;Build 5
+ ;;5.0;Radiology/Nuclear Medicine;**8,16,15,21,23,27,34,99,47**;Mar 16, 1998;Build 21
  ;Print Report By Patient has been moved to 4^RART2!
  ;these sections are moved to ^RART3 : QRPT, PHYS, MODSET, OUT1
  ;RVD P99, add pregnancy screen and commment if populated for female pt.
@@ -53,11 +53,11 @@ DISP I RARPT,($D(RAPBRPT)),($P($G(^RARPT(+RARPT,0)),"^",5)="V") D  Q
  . R X:3 ; D:$$IMAGE^RARIC1 DISPF^MAGRIC ;don't call MAG 111300
  . Q
 DISP1 I $S('$D(ORACTION):1,ORACTION'=8:1,'$D(X):0,X="T":1,1:0) W @IOF
- W !,RANME," (",$$SSN^RAUTL,")",?41,"Case No. ",?57,": ",$P($G(^RARPT(RARPT,0)),"^")," @",$E(RADATE,$L(RADATE)-4,$L(RADATE))
- W !,$E(RAPRC,1,40) I +$G(^RARPT(RARPT,"T")) W ?41,"Transcriptionist",?57,": ",$E($P($G(^VA(200,+^RARPT(RARPT,"T"),0)),"^"),1,20)
+ W !,RANME," (",$$SSN^RAUTL,")",?39,"Case No. ",?55,": ",$P($G(^RARPT(RARPT,0)),"^")," @",$E(RADATE,$L(RADATE)-4,$L(RADATE))
+ W !,$E(RAPRC,1,40) I +$G(^RARPT(RARPT,"T")) W ?39,"Transcriptionist",?55,": ",$E($P($G(^VA(200,+^RARPT(RARPT,"T"),0)),"^"),1,20)
  N R3 S R3=$G(^RADPT(+$G(RADFN),"DT",+$G(RADTI),"P",+$G(RACNI),0))
  W !,"Req. Phys : ",$E($P($G(^VA(200,+$P(R3,"^",14),0)),"^"),1,25)
- S RAPREVER=+$P($G(^RARPT(RARPT,0)),"^",13) W ?41,"Pre-verified",?57,": ",$S($D(^VA(200,RAPREVER,0)):$E($P($G(^VA(200,RAPREVER,0)),"^"),1,24),1:"NO") K RAPREVER
+ S RAPREVER=+$P($G(^RARPT(RARPT,0)),"^",13) W ?39,"Pre-verified",?55,": ",$S($D(^VA(200,RAPREVER,0)):$E($P($G(^VA(200,RAPREVER,0)),"^"),1,24),1:"NO") K RAPREVER
  D PHYS^RART3
  ;Display Pregnancy Screen and Comments if respective field is filled and pt is female, patch #99
  I $$PTSEX^RAUTL8(RADFN)="F" D

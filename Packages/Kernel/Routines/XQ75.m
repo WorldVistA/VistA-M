@@ -1,5 +1,5 @@
-XQ75 ;SEA/AMF,LUKE,JLI,BT - Lookup response for jumps ;11/18/2010
- ;;8.0;KERNEL;**47,46,157,253,553**;Jul 10, 1995;Build 8
+XQ75 ;SEA/AMF,LUKE,JLI,BT - Lookup response for jumps ;6/14/2011
+ ;;8.0;KERNEL;**47,46,157,253,553,570**;Jul 10, 1995;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;Enter at S with XQUR. Exit with XQY set to the chosen option #,
  ;with array of possibilities in XQ(XQ):XQY^menu txt [name]^XQPSM
@@ -180,5 +180,5 @@ P ;Entry point for '"' jump to XUCOMMAND options
 CHCKTM(XQIEN) ;check Restriction time/date
  N X,Y
  S Y=+$G(XQIEN) I Y'>0 Q 0
- D NEXT^XQ92 I X'<$$NOW^XLFDT Q 0
+ D NEXT^XQ92 I X'<$$NOW^XLFDT,$G(%XQOP)=3.91 Q 0
  Q 1

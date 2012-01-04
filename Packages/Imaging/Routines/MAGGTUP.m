@@ -1,5 +1,5 @@
-MAGGTUP ;WOIFO/GEK/SG/NST - Imaging System User preferences ; 12 Apr 2010 9:20 AM
- ;;3.0;IMAGING;**7,8,48,45,59,93,94**;Mar 19, 2002;Build 1744;May 26, 2010
+MAGGTUP ;WOIFO/GEK/SG/NST - Imaging System User preferences ; 07 Mar 2011 2:14 PM
+ ;;3.0;IMAGING;**7,8,48,45,59,93,94,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -117,9 +117,9 @@ DFLTARR(ARR) ; Return an Array of All Default settings
  S ARR($J,"CAPCONFIG")="1^1^1^0^0^0^0^1^0^1^0^0^1^1^0^0^1^1^1^1^1^1^200^400^300^100^500^0^0^1^0^1"
  ;                    1   2   3   4   5  6  7  8 9 0 1  2   3  456 7 8
  S ARR($J,"CAPTIU")="261^414^455^654^66^67^280^1^1^~^1^100^-12^^^1^1^^"
- S ARR($J,"RIVER")="1^0^0^0^"
+ S ARR($J,"RIVER")="1^0^0^0^0"
  S ARR($J,"APPMSG")="0^0^"
- S ARR($J,"APPPREFS")="1^7^7^10"
+ S ARR($J,"APPPREFS")="1^7^7^10^^0^0^0^1^0"   ; SET $P 9 =1 for Deleted Image Placeholder default
  S ARR($J,"LISTWIN1")="0^0^^1^0"
  ;--- MAG*3*93
  S ARR($J,"IEDIT")="2^445^295^710^433"

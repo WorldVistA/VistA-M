@@ -1,6 +1,6 @@
-SROATCM1 ;BIR/MAM - STUFF TRANMISSION IN ^TMP ;05/10/07
- ;;3.0; Surgery ;**38,71,79,90,88,93,95,111,125,135,134,142,153,160,174**;24 Jun 93;Build 8
- K SRA F I=0,.2,200,201,202,205:1:208,207.1,209,202.1,200.1 S SRA(I)=$G(^SRF(SRTN,I))
+SROATCM1 ;BIR/MAM - STUFF TRANMISSION IN ^TMP ;03/09/11
+ ;;3.0;Surgery;**38,71,79,90,88,93,95,111,125,135,134,142,153,160,174,175**;24 Jun 93;Build 6
+ K SRA F I=0,.2,200,201,202,205:1:208,207.1,209,202.1,200.1,"1.0" S SRA(I)=$G(^SRF(SRTN,I))
  S DFN=$P(SRA(0),"^") N I D DEM^VADPT S SRANAME=VADM(1),SEX=$P(VADM(5),"^"),Z=$P(VADM(3),"^"),SRSDATE=$P(SRA(0),"^",9),Y=$E(SRSDATE,1,7),AGE=$E(Y,1,3)-$E(Z,1,3)-($E(Y,4,7)<$E(Z,4,7))
  N SRPID S SRPID=VA("PID"),SRPID=$TR(SRPID,"-","") ; remove hyphens from PID
  S SHEMP="~"_$J(SRASITE,3)_$J(SRTN,7)_" 1 "_DT_$J(AGE,3)_$J(SEX,1)_$J(SRSDATE,12,4)_SRPID
@@ -15,7 +15,7 @@ SROATCM1 ;BIR/MAM - STUFF TRANMISSION IN ^TMP ;05/10/07
  S SRCT=$P($G(^SRF(SRTN,201)),"^",4) S:SRCT["NS" SRCT=""
  S SHEMP=SHEMP_$J($P(SRA(200.1),"^",5),2)_$J(SRCT,4)_$J($P(SRA(206),"^",10),2)_$J($P(SRA(206),"^",11),2)_$J($P(SRA(200),"^",8),2)_$J(" ",2)_$J($P(SRA(206),"^",14),2)_$J(" ",2)
  S SHEMP=SHEMP_$J($P(SRA(206),"^",16),2)_$J($P(SRA(206),"^",17),2)_$J($P(SRA(206),"^",18),3)_$J($P(SRA(206),"^",19),3)_$J($P(SRA(206),"^",20),2)_$J($P(SRA(206),"^",21),2)_$J($P(SRA(206),"^",22),2)_$J($P(SRA(206),"^",23),2)
- S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP_$J($P(SRA(208),"^",19),2)
+ S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP_$J($P(SRA(208),"^",19),2)_$J($P(SRA(205),"^",8),2)
  S SHEMP=$E(SHEMP,1,11)_" 3 ",SRACNT=SRACNT+1
  S SHEMP=SHEMP_$J($P(SRA(206),"^",24),2)_$J($P(SRA(206),"^",25),3)_$J($P(SRA(206),"^",26),3)_$J($P(SRA(206),"^",27),3)
  ; Left Main (node 3 pos 26-28), LAD (node 3 pos 29-31), Right Coronary (node 3 pos 32-34) & Circumflex Stenosis (node 3 pos 35-37)
@@ -34,7 +34,7 @@ SROATCM1 ;BIR/MAM - STUFF TRANMISSION IN ^TMP ;05/10/07
  ; Cardiac Est. of Surg. Priority(node 3 pos 59) & date(node 3 pos 60-71)
  S SHEMP=SHEMP_$J($P($G(SRA(208)),"^",12),1)
  N SREMSPDT S SREMSPDT=$P($G(SRA(208)),"^",13)
- S SHEMP=SHEMP_$S(SREMSPDT="":$J(SREMSPDT,12),1:$J(SREMSPDT,12,4))
+ S SHEMP=SHEMP_$S(SREMSPDT="":$J(SREMSPDT,12),1:$J(SREMSPDT,12,4))_$J($P(SRA("1.0"),"^",8),2)
  S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP,SHEMP=$E(SHEMP,1,11)_" 4 ",SRACNT=SRACNT+1
  S SHEMP=SHEMP_$J($P(SRA(207),"^"),2)_$J($P(SRA(207),"^",2),2)_$J($P(SRA(207),"^",3),2)_$J($P(SRA(207),"^",4),2)_$J($P(SRA(207),"^",5),2)_$J(" ",2)_$J($P(SRA(207),"^",7),2)
  S SHEMP=SHEMP_$J($P(SRA(207),"^",8),2)_$J($P(SRA(207),"^",9),2)_$J($P(SRA(207),"^",10),2)_$J($P(SRA(207),"^",12),2)_$J($P(SRA(207),"^",13),2)_$J($P(SRA(207),"^",14),2)_$J($P(SRA(207),"^",15),2)

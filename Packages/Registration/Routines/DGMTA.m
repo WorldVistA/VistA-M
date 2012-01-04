@@ -1,5 +1,5 @@
-DGMTA ;ALB/RMO/CAW/LD/SCG/AEG/PHH - Add a New Means Test ; 2/24/10 2:58pm
- ;;5.3;Registration;**33,45,137,166,177,182,290,344,332,433,458,535,612,564,688,661**;Aug 13, 1993;Build 5
+DGMTA ;ALB/RMO/CAW/LD/SCG/AEG/PHH - Add a New Means Test;2/24/10 2:58pm
+ ;;5.3;Registration;**33,45,137,166,177,182,290,344,332,433,458,535,612,564,688,661,840**;Aug 13, 1993;Build 20
  ;
 EN ;Entry point to add a new means test
  N DGMDOD S DGMDOD=""
@@ -149,3 +149,4 @@ WHY ;Why Copay Test cannot be added
  ;;Patient is an inpatient, automatically exempted.
  ;;Patient was a POW, automatically exempted.
  ;;Patient is Unemployable, automatically exempted.
+ ;;Patient is Catastrophically Disabled, automatically exempted.

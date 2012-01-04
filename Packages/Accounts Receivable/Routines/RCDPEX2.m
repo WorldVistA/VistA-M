@@ -1,5 +1,5 @@
-RCDPEX2 ;ALB/TMK - ELECTRONIC EOB DETAIL EXCEPTION MAIN LIST TEMPLATE ;24-OCT-02
- ;;4.5;Accounts Receivable;**173**;Mar 20, 1995
+RCDPEX2 ;ALB/TMK/KML/PJH - ELECTRONIC EOB DETAIL EXCEPTION MAIN LIST TEMPLATE ; 4/8/11 1:50pm
+ ;;4.5;Accounts Receivable;**173,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 INIT ; -- set up inital variables
@@ -10,7 +10,7 @@ INIT ; -- set up inital variables
 REBLD ; Set up formatted global
  ;
 BLD ; -- build list of messages from file 344.4
- N RCBILL,RCSUB,RCSEQ,RCMSG,RCEXC,RCS,RCER,RCDPDATA,RCX,RC0,DA,X,DR,Y
+ N RCBILL,RCSUB,RCSEQ,RCMSG1,RCEXC,RCS,RCER,RCDPDATA,RCX,RCX1,RC0,DA,X,DR,Y
  K ^TMP("RCDPEX_SUM-EOB",$J),^TMP("RCDPEX_SUM-EOBDX",$J)
  S (RCMSG,RCSEQ,VALMCNT)=0
  ;
@@ -19,14 +19,15 @@ BLD ; -- build list of messages from file 344.4
  F  S RCER=$O(^RCY(344.4,"AEXC",RCER)) Q:'RCER  F  S RCMSG=$O(^RCY(344.4,"AEXC",RCER,RCMSG)) Q:'RCMSG  D
  . ;Extract trace #, ins co name/id, ERA Date
  . S RCSUB=RCMSG_",",DR=".02:.06",DA=RCMSG K DA(1) D DIQ3444(DA,DR)
+ . ; HIPPA 5010 - display of the Trace # on a separate line due to the increased length from 30 to 50 characters   
  . S RCX("TRACE")=$G(RCDPDATA(344.4,RCSUB,.02,"E"))
- . S RCX=$$SETSTR^VALM1("  "_$E($G(RCDPDATA(344.4,RCSUB,.06,"E")),1,25)_"/"_$E($G(RCDPDATA(344.4,RCSUB,.03,"E")),1,20),"",22,48)
- . S RCX=$$SETSTR^VALM1("  "_$$FMTE^XLFDT($G(RCDPDATA(344.4,RCSUB,.04,"I")),2),RCX,70,10)
- . ;
+ . S RCX1=$$SETSTR^VALM1($E($G(RCDPDATA(344.4,RCSUB,.06,"E")),1,25)_"/"_$E($G(RCDPDATA(344.4,RCSUB,.03,"E")),1,20),"",9,78)
  . S RCS=0 F  S RCS=$O(^RCY(344.4,"AEXC",RCER,RCMSG,RCS)) Q:'RCS  S RC0=$G(^RCY(344.4,RCMSG,1,RCS,0)) D
  .. S RCSEQ=RCSEQ+1
- .. S RCX=$$SETSTR^VALM1($E(RCSEQ_$J("",4),1,4)_"  "_$G(RCX("TRACE")),RCX,1,21)
+ .. S RCX=$$SETSTR^VALM1($E(RCSEQ_$J("",4),1,4)_"  "_$G(RCX("TRACE")),"",1,80)
+ .. S RCX=$$SETSTR^VALM1("  "_$$FMTE^XLFDT($G(RCDPDATA(344.4,RCSUB,.04,"I")),2),RCX,70,10)
  .. D SET(RCX,RCSEQ,RCMSG,RCS)
+ .. D SET(RCX1,RCSEQ,RCMSG,RCS)
  .. S DA(1)=RCMSG,DA=RCS,RCSUB=DA_","_DA(1)_","
  .. S DR=".01;.02;.03;.05;.07;.08;.1;.11;.12;.15",DA=RCS D DIQ3444(.DA,DR)
  .. S X=$$SETSTR^VALM1($J("",6)_"Seq #: "_$G(RCDPDATA(344.41,RCSUB,.01,"E")),"",1,17)
@@ -61,7 +62,8 @@ SET(X,RCSEQ,RCMSG,RCS) ; -- set arrays for EOB exception records
  ;
 HDR ;
  S VALMHDR(1)=$J("",19)_"EEOB DETAIL DATA WITH EXCEPTION CONDITIONS"
- S VALMHDR(2)=" "
+ ;HIPPA 5010 - display of the following headers on a separate line due to the increased length of Trace # from 30 to 50 characters
+ S VALMHDR(2)="  #   Trace #"_$J("",58)_"EOB Date"
  Q
  ;
 DIQ3444(DA,DR) ; DIQ call to retrieve data for DR fields in file 344.4/344.41

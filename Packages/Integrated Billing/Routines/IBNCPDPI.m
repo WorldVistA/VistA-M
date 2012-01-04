@@ -1,5 +1,5 @@
 IBNCPDPI ;DALOI/SS - ECME SCREEN INSURANCE VIEW AND UTILITIES ;3/6/08  16:21
- ;;2.0;INTEGRATED BILLING;**276,383,384,411**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**276,383,384,411,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -126,8 +126,8 @@ TPJI(DFN) ; entry point for TPJI option of the ECME User Screen
 INSNM(IBINSIEN) ; api to return insurance company name
  Q $P($G(^DIC(36,+$G(IBINSIEN),0)),"^")
  ;
-ACPHONE() ; API to return the agent cashier's phone number
- Q $P($G(^IBE(350.9,1,2)),"^",6)
+ACPHONE() ; API to return the default Pay-to provider phone#
+ Q $$PRVPHONE^IBJPS3()
  ;
 INSPL(IBPL) ; api to return the insurance company IEN from the plan
  ; passed in.
@@ -141,7 +141,7 @@ MXTRNS(IBPLID) ; api to return MAXIMUM NCPDP TRANSACTIONS for a plan
  Q:$O(^IBCNR(366.03,"B",$G(IBPLID),0))']"" 1
  Q $P($G(^IBCNR(366.03,$O(^IBCNR(366.03,"B",$G(IBPLID),0)),10)),"^",10)
  ;
-EPHON() ; API to return if ePhamracy is on within IB
+EPHON() ; API to return if ePharmacy is on within IB
  ;   1 FOR Active
  ;   0 FOR Not Active
  ;

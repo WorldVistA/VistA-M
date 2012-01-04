@@ -1,5 +1,5 @@
 IBNCPEV1 ;DALOI/SS - NCPDP BILLING EVENTS REPORT ;21-MAR-2006
- ;;2.0;INTEGRATED BILLING;**342,339,363,411**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**342,339,363,411,435**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;IA# 10155 is used to read ^DD(file,field,0) node
@@ -19,23 +19,29 @@ SETVARS ;
  Q
  ;
  ;/**
+GETRX(IBECMENO,IBST,IBEND,IBECME) ; get ien of file 52 from #366.14
  ; input - 
- ;   IBECMENO = ECME #
+ ;   IBECMENO = ECME # input from the user (with or without leading zeros)
  ;   IBST = start date (FM format)
  ;   IBEND = end date (FM format)
- ; output - returns internal entry number of file #52 for the earliest date within the date range
-GETRX(IBECMENO,IBST,IBEND) ; get ien of file 52 from #366.14
- ; array from where the ECME BILLING EVENTS report gets its data
- ;  This subroutine is called when the user enters an ECME# as
- ;  part of the search criteria
- N IBDATE,IBNO,IBIEN
- S IBDATE=+$O(^IBCNR(366.14,"E",IBECMENO,IBST-1))
- I IBDATE=0 Q 0
- I IBDATE>IBEND Q 0
- S IBNO=+$O(^IBCNR(366.14,"E",IBECMENO,IBDATE,0))
- I IBNO=0 Q 0
- S IBIEN=$O(^IBCNR(366.14,"B",IBDATE,0))
- Q +$P($G(^IBCNR(366.14,IBIEN,1,IBNO,2)),U)
+ ; output - function value: returns internal entry number of file #52 for the earliest date within the date range
+ ;   IBECME - output variable pass by reference. Returns the external version of the ECME# with leading zeros
+ ;
+ ;  This subroutine is called when the user enters an ECME# as part of the search criteria
+ ;
+ N IBDATE,IBNO,IBIEN,IBFOUND,IBRXIEN,ECMELEN,IBRXIEN
+ S (IBFOUND,IBRXIEN)=0
+ F ECMELEN=12,7 D  Q:IBFOUND
+ . I $L(+IBECMENO)>ECMELEN Q
+ . S IBECMENO=$$RJ^XLFSTR(+IBECMENO,ECMELEN,0)   ; build ECME# with leading zeros to proper length
+ . S IBDATE=+$O(^IBCNR(366.14,"E",IBECMENO,IBST-1)) Q:'IBDATE
+ . I IBDATE>IBEND Q
+ . S IBNO=+$O(^IBCNR(366.14,"E",IBECMENO,IBDATE,0)) Q:'IBNO
+ . S IBIEN=+$O(^IBCNR(366.14,"B",IBDATE,0)) Q:'IBIEN
+ . S IBRXIEN=+$P($G(^IBCNR(366.14,IBIEN,1,IBNO,2)),U,1)
+ . I IBRXIEN S IBFOUND=1,IBECME=IBECMENO Q
+ . Q
+ Q IBRXIEN
  ;
  ;/**
  ;finish
@@ -74,15 +80,14 @@ DSTAT(IBD2,IBD3,IBD4,IBINS,IBD7) ;
  .S Y=IBINS(IBX,1)
  .I $P(Y,U,4)]"" W "PAYER SHEET B2:",$P(Y,U,4) S IB1ST=0
  .I $P(Y,U,5)]"" W:'IB1ST ", " W "PAYER SHEET B3:",$P(Y,U,5)
- .;S Y=$G(Z1("INS",IBX,2)) Q:Y=""
- .S Y=IBINS(IBX,2) Q:Y=""
- .D CHKP^IBNCPEV Q:IBQ  W !?10 S IB1ST=1
- .I $P(Y,U)]"" W "DISPENSING FEE:",$P(Y,U) S IB1ST=0
- .I $P(Y,U,2)]"" W:'IB1ST ", " W "BASIS OF COST DETERM:",$$BOCD^IBNCPEV($P(Y,U,2)) S IB1ST=0
- .D CHKP^IBNCPEV Q:IBQ  W !?10 S IB1ST=1
- .I $P(Y,U,3)]"" W "COST:",$J($P(Y,U,3),0,2) S IB1ST=0
- .I $P(Y,U,4)]"" W:'IB1ST ", " W "GROSS AMT DUE:",$J($P(Y,U,4),0,2) S IB1ST=0
- .I $P(Y,U,5)]"" W:'IB1ST ", " W "ADMIN FEE:",$J($P(Y,U,5),0,2)
+ .S Y=IBINS(IBX,2)
+ .D CHKP^IBNCPEV Q:IBQ
+ .W !?10,"DISPENSING FEE:",$S($L($P(Y,U,1)):$J($P(Y,U,1),0,2),1:"N/A")
+ .W ", BASIS OF COST DETERM:",$S($L($P(Y,U,2)):$$BOCD^IBNCPEV($P(Y,U,2)),1:"N/A")
+ .D CHKP^IBNCPEV Q:IBQ
+ .W !?10,"COST:",$S($L($P(Y,U,3)):$J($P(Y,U,3),0,2),1:"N/A")
+ .W ", GROSS AMT DUE:",$S($L($P(Y,U,4)):$J($P(Y,U,4),0,2),1:"N/A")
+ .W ", ADMIN FEE:",$S($L($P(Y,U,5)):$J($P(Y,U,5),0,2),1:"N/A")
  Q:IBQ
  ;
  D CHKP^IBNCPEV Q:IBQ

@@ -1,8 +1,9 @@
 PSOREJP1 ;BIRM/MFR - Third Party Reject Display Screen ;04/29/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,290,358**;DEC 1997;Build 35
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,290,358,359**;DEC 1997;Build 27
  ;Reference to File 9002313.93 - BPS NCPDP REJECT CODES supported by IA 4720
  ;Reference to ^PS(59.7 supported by IA 694
  ;Reference to ^PSDRUG("AQ" supported by IA 3165
+ ;Reference to File 9002313.25 supported by IA 5064
  ;
 EN(RX,REJ,CHANGE) ; Entry point
  ;
@@ -46,27 +47,19 @@ INIT ; Builds the Body section
 REJ ; - DUR Information
  N TYPE,PFLDT,TREJ,TDATA,PSOTRIC,PSOET S TDATA=""
  S PSOTRIC="",PSOTRIC=$$TRIC(RX,FILL,PSOTRIC)
- I $G(PSOTRIC) D
- . D SETLN("REJECT Information"_$S($G(PSOTRIC):" (TRICARE)",1:""),1,1)
- . S TDATA=$$EXP(DATA(REJ,"CODE"))_" ("_$G(DATA(REJ,"CODE"))_") "
- . D SETLN("Date/Time     : "_$$FMTE^XLFDT($G(DATA(REJ,"DATE/TIME"))),,,18)
- . D SETLN("Reject(s)     : "_TDATA,,,18)
- . F I=1:1 Q:'$D(TDATA(I))  D SETLN("              : "_TDATA(I),,,18)
- . ;cnf, PSO*7*358, if TRICARE non-billable then reset Status line
- . S PSOET=$$PSOET^PSOREJP3(RX,FILL)
- . I PSOET D SETLN("Status        : NO CLAIM SUBMITTED")
- . I 'PSOET D SETLN("Status        : "_$G(DATA(REJ,"STATUS"))_" - "_$$STATUS^PSOBPSUT(RX,FILL),,,18)
- I '$G(PSOTRIC) D
- .D SETLN("REJECT Information",1,1)
- .S TYPE=$S($G(DATA(REJ,"CODE"))=79:"79 - REFILL TOO SOON",1:"")
- .I TYPE="" S TYPE=DATA(REJ,"CODE")_" - "_$E($$EXP(DATA(REJ,"CODE")),1,23)_"-"
- .D SETLN("Reject Type    : "_TYPE_" received on "_$$FMTE^XLFDT($G(DATA(REJ,"DATE/TIME"))),,,18)
- .D SETLN("Reject Status  : "_$G(DATA(REJ,"STATUS")),,,18)
- .D SET("PAYER MESSAGE",63)
- .D SET("REASON",63)
- .S PFLDT=$$FMTE^XLFDT($G(DATA(REJ,"PLAN PREVIOUS FILL DATE")))
- .D SET("DUR TEXT",63,$S(PFLDT="":1,1:0))
- .I PFLDT'="" D SETLN("Last Fill Date : "_PFLDT_" (from payer)",,1,18)
+ D SETLN("REJECT Information"_$S($G(PSOTRIC):" (TRICARE)",1:""),1,1)
+ S TYPE=$S($G(DATA(REJ,"CODE"))=79:"79 - REFILL TOO SOON",1:"")
+ I TYPE="" S TYPE=DATA(REJ,"CODE")_" - "_$E($$EXP(DATA(REJ,"CODE")),1,23)_"-"
+ D SETLN("Reject Type    : "_TYPE_" received on "_$$FMTE^XLFDT($G(DATA(REJ,"DATE/TIME"))),,,18)
+ ;cnf, PSO*7*358, if TRICARE non-billable then reset Status line
+ S PSOET=$$PSOET^PSOREJP3(RX,FILL)
+ I PSOET D SETLN("Status         : NO CLAIM SUBMITTED")
+ I 'PSOET D SETLN("Reject Status  : "_$G(DATA(REJ,"STATUS"))_" - "_$$STATUS^PSOBPSUT(RX,FILL),,,18)
+ D SET("PAYER MESSAGE",63)
+ D SET("REASON",63)
+ S PFLDT=$$FMTE^XLFDT($G(DATA(REJ,"PLAN PREVIOUS FILL DATE")))
+ D SET("DUR TEXT",63,$S(PFLDT="":1,1:0))
+ I PFLDT'="" D SETLN("Last Fill Date : "_PFLDT_" (from payer)",,1,18)
  Q
  ;
 OTH ; - Other Rejects Information
@@ -125,9 +118,9 @@ SET(FIELD,L,UND) ; Sets the lines for fields that require text wrapping
  Q
  ;
 LABEL(FIELD) ; Sets the label for the field
- I FIELD="REASON" Q "Reason         : "
- I FIELD="PAYER MESSAGE" Q "Payer Message  : "
- I FIELD="DUR TEXT" Q "DUR Text       : "
+ I FIELD="REASON" Q "Reason Code    : "
+ I FIELD="PAYER MESSAGE" Q "Payer Addl Msg : "
+ I FIELD="DUR TEXT" Q $S(+$$ISDUR^PSOREJP5(RX,REJ):"+DUR Text      : ",1:"DUR Text       : ")
  I FIELD="CLOSE COMMENTS" Q "Comments       : "
  Q ""
  ;

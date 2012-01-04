@@ -1,5 +1,5 @@
-DGPTTS3 ;ALB/MJK - Physical Mvt ; 11/30/06 8:46am
- ;;5.3;Registration;**26,61,549,729**;Aug 13, 1993;Build 59
+DGPTTS3 ;ALB/MJK - Physical Mvt ; 2/10/11 6:19pm
+ ;;5.3;Registration;**26,61,549,729,787**;Aug 13, 1993;Build 1
  ;
 EN ; -- entry used to update PTF rec
  ;  input: PTF := PTF#
@@ -41,7 +41,8 @@ TABLE ; -- setup 535 node data
 TABLEQ Q
  ;
 CREATE ; -- create MPCR mvt
- L +^DGPT(DGPTIFN,535) S Y=^DGPT(DGPTIFN,535,0),I=$P(Y,U,3)
+ F  L +^DGPT(DGPTIFN,535):$G(DILOCKTM,3) Q:$T  W !,"Another user is editing this record, trying again...",!
+ S Y=^DGPT(DGPTIFN,535,0),I=$P(Y,U,3)
 L S I=I+1 G L:$D(^DGPT(DGPTIFN,535,I))
  S $P(^DGPT(DGPTIFN,535,0),U,3,4)=I_U_($P(Y,U,4)+1)
  S X=DGDATA,^DGPT(DGPTIFN,535,I,0)=I_U_$P(X,U,2)_U_$P(X,U,3)_U_$P(X,U,4)_"^^"_$P(X,U,6)_"^"_$P(X,U,7)_"^^^"_DGXDT L -^DGPT(DGPTIFN,535)

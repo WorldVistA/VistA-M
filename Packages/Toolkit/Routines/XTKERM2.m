@@ -1,5 +1,6 @@
 XTKERM2 ;SF/RWF - Kermit Receive a file. ;11/8/93  11:50 ;
- ;;7.3;TOOLKIT;;Apr 25, 1995
+ ;;7.3;TOOLKIT;**122**;Apr 25, 1995;Build 4
+ ;Per VHA Directive 2004-038, this routine should not be modified.
 R I '$D(ZTQUEUED) U IO(0) D
  . I IO=IO(0) W !,"Now start a KERMIT send from your system.",!,"Starting [REMOTE] KERMIT receive.",!
  . E  W !,"Starting a [LOCAL] KERMIT receive.",!
@@ -10,7 +11,7 @@ R I '$D(ZTQUEUED) U IO(0) D
  S %=$H,XTKET=$H-XTKET*86400+$P(%,",",2)-$P(XTKET,",",2)
  I '$D(ZTQUEUED) U IO(0) D
  . W !,"Done with ",$S(IO=IO(0):"[REMOTE]",1:"[LOCAL]")," receive, File transfer ",$S('XTKERR:"was successful.  ("_XTKR("CCNT")_" bytes)",1:"failed. ("_XTKERR_")")
- W:'XTKERR !,?10,"Bytes: ",XTKR("CCNT")," Sec: ",XTKET," cps: ",$J(XTKR("CCNT")/XTKET,3,1)
+ W:'XTKERR !,?10,"Bytes: ",XTKR("CCNT")," Sec: ",XTKET," cps: ",$J($S(XTKET>0:XTKR("CCNT")/XTKET,1:""),3,1)
  Q
 RS S XTKS("PN")=XTKR("PN") D RPAR^XTKERM4,BSPAR^XTKERM4 S XTKS("PT")="Y" D SPACK,BUMP Q
 RF D SEQ Q:X  S X=XTKRDAT D FILE,ACK,BUMP Q
@@ -24,7 +25,7 @@ SEQ S X=(XTKR("PN")'=XTKS("PN")) Q:'X  D NAK S X=1 Q
  Q
 GET S XTKR("TRY")=XTKR("TRY")+1 I XTKR("TRY")>XTKR("MAXTRY") G ABORT
  D RPACK^XTKERM3
- I XTKERR D NAK G GET
+ I XTKERR D DEBUG("E:"_XTKERR):$D(XTKDEBUG),NAK G GET
  I "SFEDNZYB"'[XTKR("PT") S XTKERR="6 Unknown packet type" Q
  Q
 ABORT S:'XTKERR XTKERR="5 Aborting receive operation" Q
@@ -34,10 +35,12 @@ NAK S XTKS("PT")="N",XTKSDAT="" D SPACK Q
 ACK S XTKS("PT")="Y",XTKSDAT="" D SPACK S XTKR("TRY")=0 Q
 SPACK G SPACK^XTKERM3
 RPACK G RPACK^XTKERM3
+DEBUG(MSG) ;
+ S XTKDEBUG=XTKDEBUG+1,^TMP("XTKERM",$J,XTKDEBUG)=MSG
+ Q
 FILE ;See if need to change file name.
  I XTKDIC["DIZ(8980,",XTKR("RFN")="y" S XTKFILE(0)=XTKFILE,XTKFILE=X
  ;Other wise toss file name we don't need it.
- ;I XTKDIC'["^DIZ(8980," S X="KERMIT File Name: "_X D PDATA ;Old, just store the file name.
  Q
 STORE ;Store the data (XTKRDAT) in file.
  I 'XTKMODE S X=XTKRDAT D PDATA Q

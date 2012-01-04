@@ -1,6 +1,6 @@
 ECXBCM ;ALB/JAP-Bar Code Medical Administration Extract ;11/19/10  17:00
- ;;3.0;DSS EXTRACTS;**107,127**;Dec 22, 1997 ;Build 36
- ;;3.0;DSS EXTRACTS;**Unreleased**
+ ;;3.0;DSS EXTRACTS;**107,127,132**;Dec 22, 1997 ;Build 18
+ ;
 BEG ;entry point from option
  ;ECFILE=^ECX(727.833,
  D SETUP I ECFILE="" Q
@@ -37,6 +37,7 @@ GET ;get extract data
  .I ECXORN["V" S ECXOSC=$$DOIVPO^ECXUTL5(ECXDFN,+ECXORN)
  S ECPRO=$$ORDPROV^ECXUTL(ECXDFN,ECXORN,"")
  S ACTDT=$$GET1^DIQ(53.79,RIEN,.06,"I")
+ I ACTDT'=IDAT Q
  S ECXADT=$$ECXDATE^ECXUTL(ACTDT,ECXYM)
  S ECXATM=$$ECXTIME^ECXUTL(ACTDT)
  S ECXORT=$P($G(^TMP("PSJ",$J,1)),U,3) K ^TMP("PSJ",$J)
@@ -45,6 +46,7 @@ GET ;get extract data
  S ECXUSRTN=$$NPI^XUSNPI("Individual_ID",ECPRO,$P(ACTDT,"."))
  S:+ECXUSRTN'>0 ECXUSRTN="" S ECPRONPI=$P(ECXUSRTN,U)
  S ECXASTA=$$GET1^DIQ(53.79,RIEN,.09,"I")
+ I "^G^S^C^"'[("^"_ECXASTA_"^") Q  ;process 'G'iven,'S'topped,'C'ompleted
  S ECXAMED=$$GET1^DIQ(53.79,RIEN,.08,"I")
  ;Component code data
  D CCODE(RIEN)
@@ -65,8 +67,8 @@ CMPT ; during component/sequence processing, retrieve rest of data record the fi
  S ECXIR=$$GET1^DIQ(53.79,RIEN,.35)
  S ECXDIV=$$RADDIV^ECXDEPT($$GET1^DIQ(53.79,RIEN,.03,"I"))
  S ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS)
- S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ACTDT,,ECXTS,ECXOBS,ECHEAD,,)
- D FILE
+ S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADM,ACTDT,ECXTS,ECXOBS,ECHEAD,,)
+ D:ECXENC'="" FILE
  Q
  ;
 PAT(ECXDFN,ECXDATE,ECXERR)  ;get patient demographics, primary care, and inpatient data

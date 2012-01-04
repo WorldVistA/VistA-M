@@ -1,5 +1,5 @@
 IBJPI ;DAOU/BHS - IBJP eIV SITE PARAMETERS SCREEN ;14-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,316,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,271,316,416,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; eIV - Electronic Insurance Verification Interface parameters
@@ -30,6 +30,9 @@ HELP ; help
  W !,"VistA and the EC located in Austin."
  W !!,"The Batch Extracts section concerns extract-specific parameters"
  W !,"including active/inactive status and selection criteria."
+ W !!,"The Service Type Codes section concerns specifying up to nine"
+ W !,"Site Selected Service Type Codes which will be sent with"
+ W !,"insurance inquiries."
  D PAUSE^VALM1
  W @IOF
  S VALMBCK="R"
@@ -74,7 +77,7 @@ BLD ; build screen array
  S IEN=0 F  S IEN=$O(^IBE(350.9,1,51.17,IEN)) Q:'IEN  D
  . S IBIIVB=$G(^IBE(350.9,1,51.17,IEN,0))
  . S IBEX=+$P(IBIIVB,U,1)  ; Type
- . I '$F(".1.2.3.","."_IBEX_".") Q
+ . I '$F(".1.2.","."_IBEX_".") Q
  . S IBST=$$FO^IBCNEUT1($S($P(IBIIVB,U,1)'="":$$GET1^DIQ(350.9002,$P(IBIIVB,U,1)_",1,",.01,"E"),1:""),14)
  . S IBST=IBST_$$FO^IBCNEUT1($S(+$P(IBIIVB,U,2):"ON",1:"OFF"),8)
  . S IBEX1=$S(+$P(IBIIVB,U,3)'=0:+$P(IBIIVB,U,3),1:$P(IBIIVB,U,3))

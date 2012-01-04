@@ -1,5 +1,5 @@
-SROXR4 ;BIR/MAM - CROSS REFERENCES ;05/05/10
- ;;3.0; Surgery ;**62,83,100,153,166,174**;24 Jun 93;Build 8
+SROXR4 ;BIR/MAM - CROSS REFERENCES ;01/24/11
+ ;;3.0;Surgery;**62,83,100,153,166,174,175**;24 Jun 93;Build 6
  Q
 PRO ; stuff default prosthesis info
  I '$D(SRTN) Q
@@ -10,11 +10,13 @@ CAN ; 'SET' logic of the 'ACAN' x-ref on the 'CANCEL REASON'
  ; field in the SURGERY file (130)
  S $P(^SRF(DA,30),"^",2)=$P(^SRO(135,X,0),"^",3) I $P(^SRO(135,X,0),"^",3)="" S $P(^SRF(DA,30),"^",2)="Y"
  I $P(^SRF(DA,30),"^",3)="" S $P(^SRF(DA,30),"^",3)=DUZ
+ D AQ
  S SHEMP=$P($G(^SRF(DA,.2)),"^",10) I SHEMP,$D(^SRF(DA,"RA")) S ZTDESC="Clean up Risk Assessment Information, Canceled Case",ZTRTN="RISK^SROXR4",ZTDTH=$H,ZTSAVE("DA")="" D ^%ZTLOAD
  Q
 KCAN ; 'KILL' logic of the 'ACAN' x-ref on the 'CANCEL REASON'
  ; field in the SURGERY file (130)
  S $P(^SRF(DA,30),"^",2)="" I '$P($G(^SRF(DA,30)),"^") S $P(^SRF(DA,30),"^",3)=""
+ D KAQ
  Q
 AS ; 'SET' logic of the 'AS' x-ref on the SCHEDULED START TIME
  ; field in the SURGERY file (130)

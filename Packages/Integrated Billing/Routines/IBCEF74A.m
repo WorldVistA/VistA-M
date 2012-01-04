@@ -1,15 +1,15 @@
 IBCEF74A ;ALB/ESG - Provider ID maint ?ID continuation ;7 Mar 2006
- ;;2.0;INTEGRATED BILLING;**320,343,349,395,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**320,343,349,395,400,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
  ;
-EN(IBIFN,IBQUIT) ; Display billing provider and service provider IDs as part
+EN(IBIFN,IBQUIT,IBID) ; Display billing provider and service provider IDs as part
  ; of the ?ID display/help in the billing screens.
  ; Called from DISPID^IBCEF74.
- NEW IBID,IBX,Z,ZI,ZN,SEQ,PSIN,DATA,QUALNM,IDNUM,FACNAME,IBZ,ORGNPI,BPZ,BPNAME,BPNPI,BPTAX,SFNPI,SFTAX
+ NEW IBX,Z,ZI,ZN,SEQ,PSIN,DATA,QUALNM,IDNUM,FACNAME,IBZ,ORGNPI,BPZ,BPNAME,BPNPI,BPTAX,SFNPI,SFTAX
  ;
- D ALLIDS^IBCEF75(IBIFN,.IBID)
+ ;D ALLIDS^IBCEF75(IBIFN,.IBID)
  ;
  ; Re-sort array by insurance sequence (P/S/T)
  K IBX
@@ -50,7 +50,7 @@ EN(IBIFN,IBQUIT) ; Display billing provider and service provider IDs as part
  ; This is the service facility information
  ; IB*2*400 - check to make sure there is a service facility
  ;
- I $P(BPZ,U,3)="" G EX     ; no service facility information to display
+ I $P(BPZ,U,3)="" G LPRV     ; no service facility information to display
  ;
  ; Service facility name, similar code as found in SUB-2
  I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT G EX
@@ -85,6 +85,28 @@ EN(IBIFN,IBQUIT) ; Display billing provider and service provider IDs as part
  D SECID(Z,.IBQUIT)
  I IBQUIT G EX
  ;
+LPRV ;Service Line Providers
+ I '$D(IBID("L-PROV")) G EX  ; No Line Level Providers
+ N IBSLC,IBN,CO,IBCODE,IBTYP,IBPRTYP,Z0
+ S IBSLC=0
+ W !!,"Service Line Providers"
+ F  S IBSLC=$O(IBID("L-PROV",IBIFN,IBSLC)) Q:'IBSLC  D  I IBQUIT Q
+ . I ($Y+6)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT Q
+ . W !!?5,"Service Line: ",IBSLC
+ . F IBPRTYP=4,3,1,2,5,9 I $D(IBID("L-PROV",IBIFN,IBSLC,"C",1,IBPRTYP)) D  ; Process providers in order: Attending, Rendering, Referring, Operating, Supervising, and Other Operating if they exist
+ .. I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT Q
+ .. W !?5,$$EXTERNAL^DILFD(399.0404,.01,"",IBPRTYP),": ",$$EXTERNAL^DILFD(399.0404,.02,"",$P(IBID("L-PROV",IBIFN,IBSLC,"C",1,IBPRTYP),U,1))
+ .. W !?8,"NPI:",?40,$S($P(IBID("L-PROV",IBIFN,IBSLC,"C",1,IBPRTYP,0),U,4)]"":$P(IBID("L-PROV",IBIFN,IBSLC,"C",1,IBPRTYP,0),U,4),1:"***MISSING***")
+ .. K IBTYP
+ .. F CO="C","O" D
+ ... F IBN=1,2 D
+ .... F Z0=1:1 Q:'$D(IBID("L-PROV",IBIFN,IBSLC,CO,IBN,IBPRTYP,Z0))!IBQUIT  D
+ ..... S IBCODE=$P(IBID("L-PROV",IBIFN,IBSLC,CO,IBN,IBPRTYP,Z0),U,9)
+ ..... Q:$D(IBTYP(IBCODE))  ; 1st of each type transmits
+ ..... I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() Q:IBQUIT
+ ..... S IBTYP(IBCODE)=""
+ ..... W !,?8,"(",IBID("L-PROV",IBIFN,IBSLC,CO,IBN),") ",$$EXTERNAL^DILFD(36,4.01,"",IBCODE),?40,$P(IBID("L-PROV",IBIFN,IBSLC,CO,IBN,IBPRTYP,Z0),U,4)
+ ;
 EX ;
  Q
  ;
@@ -116,7 +138,8 @@ SECID(Z,IBQUIT) ; Display secondary ID and qualifier information
  .. S ZN=0
  .. F  S ZN=$O(IBX(Z,SEQ,ZI,ZN)) Q:'ZN  D  Q:IBQUIT
  ... S PSIN=0   ; start at 0 to skip primary IDs
- ... F  S PSIN=$O(IBID(Z,IBIFN,ZI,ZN,PSIN)) Q:PSIN=""  D  Q:IBQUIT
+ ... ;*432/TAZ - Changed Q:PSIN="" to Q:'PSIN to prevent "CONTACTS" node from printing as secondary ID
+ ... F  S PSIN=$O(IBID(Z,IBIFN,ZI,ZN,PSIN)) Q:'PSIN  D  Q:IBQUIT
  .... S DATA=$G(IBID(Z,IBIFN,ZI,ZN,PSIN))
  .... S QUALNM=$$QUAL($P(DATA,U,1),$$FT^IBCEF(IBIFN))
  .... S IDNUM=$P(DATA,U,2)

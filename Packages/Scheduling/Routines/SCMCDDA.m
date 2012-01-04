@@ -1,5 +1,5 @@
-SCMCDDA ;bp/cmf - extension of SCMCDD ; 21 December 1999
- ;;5.3;Scheduling;**204,297**;AUG 13, 1993
+SCMCDDA ;bp/cmf - extension of SCMCDD ; 9/17/09 4:33pm
+ ;;5.3;Scheduling;**204,297,504**;AUG 13, 1993;Build 21
  ;1
 BADNEWDT() ; not a stand alone function!!  called from NEWHIST^SCMCDD
  ;       ; ensure team/team position is active on DATE
@@ -11,6 +11,11 @@ BADNEWDT() ; not a stand alone function!!  called from NEWHIST^SCMCDD
  . D OKTMTP(IEN,DATE)
  . D OKTP(IEN,DATE)
  . ;;bp/cmf if not active, delete newhist entry here?!? [SCHIEN]
+ . Q
+ ; added **504**
+ I FILE=404.53 D  I +SCOK=0 Q 1
+ . D OKTMTP(IEN,DATE)
+ . D OKTP(IEN,DATE)
  . Q
  ;
  Q 0

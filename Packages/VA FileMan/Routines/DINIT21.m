@@ -1,5 +1,5 @@
-DINIT21 ;SFISC/GFT-INITIALIZE VA FILEMAN ;4SEP2009
- ;;22.0;VA FileMan;**110,160**;Mar 30, 1999;Build 21
+DINIT21 ;SFISC/GFT-INITIALIZE VA FILEMAN ;1SEP2010
+ ;;22.0;VA FileMan;**110,160,165**;Mar 30, 1999;Build 32
  ;Per VHA Directive 2004-038, this routine should not be modified.
 DINITOSX G DD:'$O(^DD("OS",0)) W !!,"Do you want to change the MUMPS OPERATING SYSTEM File? NO//" R Y:60 Q:Y["^"!("Nn"[$E(Y))!('$T)
 DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) Q:X?.P  S D="^DD(""OS"","_$E($P(X," ",2),3,99)_")" S @D=Y
@@ -36,7 +36,7 @@ DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) Q:X?.P  S D="^DD(""OS"","_$E($P(X," ",2
  ;;17,"SDPEND" W !,"#$#",! C IO
  ;;17,"XY" S $X=IOX,$Y=IOY
  ;;17,"ZS" N %,%I,%F,%S S %I=$I,%F=$P($ZRO,",")_X_".m" O %F:(NEWVERSION) U %F X "S %S=0 F  S %S=$O(^UTILITY($J,0,%S)) Q:%S=""""  Q:'$D(^(%S))  S %=^UTILITY($J,0,%S) I $E(%)'="";"" W %,!" C %F U %I
- ;;18,0 CACHE/OpenM^^120^15000^^1^63
+ ;;18,0 CACHE/OpenM^^250^15000^^1^250
  ;;18,1 B X
  ;;18,8 X ^DD("$O")
  ;;18,18 I $T(^@X)]""

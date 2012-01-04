@@ -1,5 +1,5 @@
-MAGDRPC1 ;WOIFO/EdM - Imaging RPCs ; 11/09/2007 07:19
- ;;3.0;IMAGING;**11,30,51,50,54**;03-July-2009;;Build 1424
+MAGDRPC1 ;WOIFO/EdM - Imaging RPCs ; 27 Jul 2010 6:50 AM
+ ;;3.0;IMAGING;**11,30,51,50,54,49**;Mar 19, 2002;Build 2033;Apr 07, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -187,6 +187,7 @@ PAT(OUT,DFN) ; RPC = MAG DICOM GET PATIENT
  D INP^VADPT,VA("INP","VAIN","")
  D SDA^VADPT,VA("SDA","VASD","")
  S X=$$GETICN^MPIF001(DFN) S:X'<0 N=N+1,OUT(N)="ICN^1^"_X
+ S N=N+1,OUT(N)="Site-DFN^1^"_$E($P($$NS^XUAF4($$KSP^XUPARAM("INST")),U,2),1,3)_"-"_DFN
  S OUT(1)=N-1
  Q
  ;

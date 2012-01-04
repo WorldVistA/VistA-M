@@ -1,5 +1,5 @@
-ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;06/23/10
- ;;2.11;ONCOLOGY;**13,15,19,22,27,34,36,37,42,44,45,46,49,50,51**;Mar 07, 1995;Build 65
+ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;01/25/11
+ ;;2.11;ONCOLOGY;**13,15,19,22,27,34,36,37,42,44,45,46,49,50,51,53**;Mar 07, 1995;Build 31
  ;
  N TX
  S NAME="FIRST COURSE OF TREATMENT" D FORMAT^ONCOPA1
@@ -18,7 +18,7 @@ ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;06/23/10
  W !,"   Most Definitive Surg Date:      ",ONCAB(165.5,IEN,50) D P Q:EX=U
  W !,"   Surgery of Primary @Fac (F):    ",ONCAB(165.5,IEN,58.7) D P Q:EX=U
  W !,"   Most Definitive Surg @Fac Date: ",ONCAB(165.5,IEN,50.3) D P Q:EX=U
- W:DATEDX>3091231 !,"   Surg App 2010:                  ",ONCAB(165.5,IEN,234,"E") D P Q:EX=U
+ W:DATEDX>3091231 !,"   Approach:                       ",ONCAB(165.5,IEN,234,"E") D P Q:EX=U
  W !,"   Surgical Margins:               ",ONCAB(165.5,IEN,59) D P Q:EX=U
  W !,"   Scope of LN Surgery (F):        ",ONCAB(165.5,IEN,138.4) D P Q:EX=U
  W !,"   Scope of LN Surgery Date:       ",ONCAB(165.5,IEN,138.2) D P Q:EX=U
@@ -41,6 +41,7 @@ ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;06/23/10
  W !,"   Treatment Guideline #3:         ",ONCAB(165.5,IEN,230,"E") D P Q:EX=U
  W !,"   Treatment Guideline Location:   ",ONCAB(165.5,IEN,231,"E") D P Q:EX=U
  W !,"   Treatment Guideline Doc Date:   ",ONCAB(165.5,IEN,232,"E") D P Q:EX=U
+ W !,"   Neoadjuvant therapy:            ",ONCAB(165.5,IEN,245,"E") D P Q:EX=U
  W ! D P Q:EX=U
  W !,"   Radiation:                      ",ONCAB(165.5,IEN,51.2) D P Q:EX=U
  W !,"   Date Radiation Started:         ",ONCAB(165.5,IEN,51) D P Q:EX=U

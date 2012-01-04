@@ -1,5 +1,5 @@
-RCDPETR ;ALB/TMK - EOB TRANSFER IN/TRANSFER OUT REPORTS ;04-NOV-02
- ;;4.5;Accounts Receivable;**173**;Mar 20, 1995
+RCDPETR ;ALB/TMK,PJH - EOB TRANSFER IN/TRANSFER OUT REPORTS ; 9/17/10 6:31pm
+ ;;4.5;Accounts Receivable;**173,269**;Mar 20, 1995;Build 113
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ; IA for read access to ^IBM(361.1 = 4051
  Q
@@ -87,7 +87,7 @@ EN(RCRPT,RCDT1,RCDT2) ; Entry point for queued job
  ;
  G:RCSTOP ENQ
  ;
- I RCPG D ASK()
+ I RCPG D ASK(.RCSTOP) G:RCSTOP ENQ
  S (RCACC,RCNOT,RCPG)=0
  S Z=0 F  S Z=$O(^TMP($J,"RCDPE_TRIN",Z)) Q:'Z  S Z0=0 F  S Z0=$O(^TMP($J,"RCDPE_TRIN",Z,Z0)) Q:'Z0  S Z1="" F  S Z1=$O(^TMP($J,"RCDPE_TRIN",Z,Z0,Z1)) Q:Z1=""  S Z2=0 F  S Z2=$O(^TMP($J,"RCDPE_TRIN",Z,Z0,Z1,Z2)) Q:'Z2  D
  . S RCDAT=$G(^TMP($J,"RCDPE_TRIN",Z,Z0,Z1,Z2))
@@ -124,7 +124,7 @@ EN(RCRPT,RCDT1,RCDT2) ; Entry point for queued job
  . D SETLINE(" TOTAL # EEOBs YOU ACCEPTED: "_RCACC,.RCCT)
  . D SETLINE(" TOTAL # EEOBs STILL PENDING: "_RCNOT,.RCCT)
  ;
-ENQ I '$D(ZTQUEUED) D ^%ZISC I 'RCSTOP,RCPG D ASK()
+ENQ I '$D(ZTQUEUED) D ^%ZISC I 'RCSTOP,RCPG D ASK(.RCSTOP)
  I $D(ZTQUEUED) S ZTREQ="@"
  K ^TMP($J,"RCDPE_TROUT"),^("RCDPE_TRIN")
  Q
@@ -134,7 +134,7 @@ HDR(RCCT,RCPG,RCSTOP,RCINOUT,RCDT1,RCDT2) ;Prints report heading
  ;   and RCSTOP = 1 if user aborted print
  ; Parameters must be passed by reference
  N Z,Z0
- I RCPG!($E(IOST,1,2)="C-") D
+ I RCPG!($E(IOST,1,2)="C-") D  Q:RCSTOP
  . I RCPG&($E(IOST,1,2)="C-") D ASK(.RCSTOP) Q:RCSTOP
  . W @IOF,*13 ; Write form feed
  S RCPG=RCPG+1

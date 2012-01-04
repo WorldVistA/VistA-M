@@ -1,5 +1,5 @@
 IBJPS3 ;BP/YMG - IB Site Parameters, Pay-To Provider ;20-Oct-2008
- ;;2.0;INTEGRATED BILLING;**400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**400,432**;21-MAR-94;Build 192
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; -- main entry point for IBJP IB PAY-TO PROVIDERS
@@ -189,7 +189,8 @@ PTG(PIEN) ; gather pay-to provider info
  ; check for missing data
  I '$L($P(N0,U,2)) S IBER=IBER_"IB178;"     ; missing name
  I NPI'>0 S IBER=IBER_"IB179;"              ; missing npi
- I '$L($P(N0,U,3)) S IBER=IBER_"IB180;"     ; missing tax ID
+ ; Patch 432 enh5:  The IB system shall no longer prevent users from authorizing (fatal error message) a claim because the system can not find the human providers SSN or EIN
+ ;I '$L($P(N0,U,3)) S IBER=IBER_"IB180;"     ; missing tax ID
  I '$L($P(N1,U,1))!'$L($P(N1,U,3))!'$L(STATE)!'$L($P(N1,U,5)) S IBER=IBER_"IB181;"     ; missing address part(s)
  ;
  S Z=$P(N0,U,2)_U_NPI_U_$P(N0,U,3)_U_$P(N0,U,4)_U_$P(N1,U,1)_U_$P(N1,U,2)_U_$P(N1,U,3)_U_STATE_U_$P(N1,U,5)_U_IBER_U_IBORG

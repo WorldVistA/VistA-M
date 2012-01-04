@@ -1,20 +1,20 @@
-SROQN ;BIR/ADM - REPORT OF MISSING DATA FOR QUARTERLY REPORT ;07/20/04  9:11 AM
- ;;3.0; Surgery ;**62,77,92,129,142**;24 Jun 93
+SROQN ;BIR/ADM - KEY MISSING SURGICAL PACKAGE DATA ;12/07/2010
+ ;;3.0;Surgery;**62,77,92,129,142,175**;24 Jun 93;Build 6
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
  ;
- S SRSOUT=0,SRSPEC="" W @IOF,!,?18,"Report of Missing Quarterly Report Data",!!
- W !,"For surgical cases with an entry in the TIME PAT IN OR field and that are not",!,"aborted, this option generates a report of cases missing any of the following",!,"pieces of information used by the Quarterly Report:"
+ S SRSOUT=0,SRSPEC="" W @IOF,!,?18,"Report of Key Missing Surgical Package Data",!!
+ W !,"For surgical cases with an entry in the TIME PAT IN OR field and that are not",!,"aborted, this option generates a report of cases missing any of the following",!,"pieces of information:"
  W !!,?10,"In/Out-Patient Status",!,?10,"Major/Minor",!,?10,"Case Schedule Type",!,?10,"Attending Code",!,?10,"Time Pat Out OR",!,?10,"Wound Classification",!,?10,"ASA Class",!,?10,"CPT Code (Principal)",!
 SEL ; select date range and specialty
  D DATE^SROUTL(.SDATE,.EDATE,.SRSOUT) G:SRSOUT END D SPEC^SROUTL G:SRSOUT END
  N SRINSTP S SRINST=$$INST^SROUTL0() G:SRINST="^" END S SRINSTP=$P(SRINST,"^"),SRINST=$S(SRINST["ALL DIVISIONS":SRINST,1:$P(SRINST,"^",2))
 IO W !!,"This report is designed to use a 132 column format.",!
  K %ZIS,IOP,IO("Q"),POP S %ZIS("A")="Print the report to which Printer ? ",%ZIS("B")="",%ZIS="Q" D ^%ZIS I POP S SRSOUT=1 G END
- I $D(IO("Q")) K IO("Q") S ZTDESC="Report of Missing Data for Quarterly Report",(ZTSAVE("EDATE"),ZTSAVE("SDATE"),ZTSAVE("SRINSTP"),ZTSAVE("SRSPEC*"))="",ZTRTN="EN^SROQN" D ^%ZTLOAD S SRSOUT=1 G END
+ I $D(IO("Q")) K IO("Q") S ZTDESC="Report of Key Missing Surgical Package Data",(ZTSAVE("EDATE"),ZTSAVE("SDATE"),ZTSAVE("SRINSTP"),ZTSAVE("SRSPEC*"))="",ZTRTN="EN^SROQN" D ^%ZTLOAD S SRSOUT=1 G END
 EN U IO S (SRTOT,SRSOUT)=0,(SRHDR,SRPAGE)=1,SRSD=SDATE-.0001,SRED=EDATE+.9999,Y=SDATE X ^DD("DD") S STARTDT=Y,Y=EDATE X ^DD("DD") S ENDATE=Y K ^TMP("SR",$J)
- S SRRPT="Report of Missing Data for Quarterly Report",SRFRTO="From: "_STARTDT_"  To: "_ENDATE
+ S SRRPT="Report of Key Missing Surgical Package Data",SRFRTO="From: "_STARTDT_"  To: "_ENDATE
  S SRINST=$S(SRINSTP["ALL DIV":$P($$SITE^SROVAR,"^",2)_" - ALL DIVISIONS",1:$$GET1^DIQ(4,SRINSTP,.01))
  D NOW^%DTC S Y=$E(%,1,12) X ^DD("DD") S SRPRINT="Report Printed: "_Y
  D HDR,AC

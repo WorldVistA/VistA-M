@@ -1,5 +1,5 @@
 ECXADM ;ALB/JAP,BIR/DMA,CML,PTD-Admissions Extract ; 10/15/07 12:14pm
- ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120,127**;Dec 22, 1997;Build 36
+ ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120,127,132**;Dec 22, 1997;Build 18
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -25,7 +25,7 @@ GET ;gather extract data
  ;admission data
  S ELGA=$P($G(^DIC(8,+$P(EC,U,20),0)),U,9)
  I ELGA S ELGA=$$ELIG^ECXUTL3(ELGA,ECXSVC)
- S (ECDRG,ECDIA,ECXSADM,ECXAOT)="",ECPTF=+$P(EC,U,16) I ECPTF,$D(^DGPT(ECPTF,"M")) D PTF
+ S (ECDRG,ECDIA,ECXSADM,ECXADMS,ECXAOT)="",ECPTF=+$P(EC,U,16) I ECPTF,$D(^DGPT(ECPTF,"M")) D PTF
  ;get encounter classification
  S (ECXAO,ECXECE,ECXIR,ECXMIL,ECXHNC,ECXSHAD)="",ECXVISIT=$P(EC,U,27)
  I ECXVISIT'="" D
@@ -136,6 +136,7 @@ PTF ; get admitting DRG, diagnosis, source of admission from PTF
  S ECDRG=$P($G(^DGPT(ECPTF,"M",EC,"P")),U)
  S ECDIA=$P($G(^ICD9(EC1,0)),U)
  S ECX=+$P($G(^DGPT(ECPTF,101)),U),ECXSADM=$P($G(^DIC(45.1,ECX,0)),U,11)
+ S ECXADMS=$$GET1^DIQ(45.1,ECX,.01)
  ;if source of admission = admit outpatient treatment ('1P')
  S ECXAOT=$S(($$GET1^DIQ(45.1,ECX,.01)="1P"):"Y",1:"")
  Q
@@ -146,7 +147,7 @@ FILE ;file the extract record
  ;religion^employment status^health ins^state^county^zip^
  ;eligibility^vet^vietnam^agent orange^radiation^pow^
  ;period of service^means test^marital status^
- ;ward^treating specialty^attending physician^mov #^DRG^diagnosis^
+ ;ward^treating specialty^attending physician^mov #^DRG^princ diagnosis^
  ;time^primary care provider^race^primary ward provider
  ;node1
  ;mpi^dss dept^attending npi^pc provider npi^ward provider npi^
@@ -165,7 +166,8 @@ FILE ;file the extract record
  ;encoun ECXIR^ OEF/OIF ECXOEF^ OEF/OIF return date ECXOEFDT
  ;^associate pc provider npi ECASNPI^attending physician npi ECATNPI^
  ;primary care provider npi ECPTNPI^primary ward provider npi ECPWNPI^
- ;admit outpatient treatment ECXAOT^country ECXCNTRY 
+ ;admit outpatient treatment ECXAOT^country ECXCNTRY^pat cat ECXPATCAT^
+ ;admit source ECXADMS 
  ;
  ;Convert specialty to PTF Code
  ;
@@ -195,6 +197,7 @@ FILE ;file the extract record
  I ECXLOGIC>2009 S ECODE2=ECODE2_U_ECXAOT_U_ECXCNTRY
  ; ***** ADDING PATCAT TO 9TH PIECE OF ECODE  *******
  I ECXLOGIC>2010 S ECODE2=ECODE2_U_ECXPATCAT
+ I ECXLOGIC>2011 S ECODE2=ECODE2_U_ECXADMS
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2)
  S ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA

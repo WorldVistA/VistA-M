@@ -1,5 +1,5 @@
-IBCEMRAB ;ALB/DSM - MEDICARE REMITTANCE ADVICE DETAIL-PART B ; 12/29/05 9:58am
- ;;2.0;INTEGRATED BILLING;**155,323,349,400**;21-MAR-94;Build 52
+IBCEMRAB ;ALB/DSM - MEDICARE REMITTANCE ADVICE DETAIL-PART B ; 3/10/11 10:14am
+ ;;2.0;INTEGRATED BILLING;**155,323,349,400,431**;21-MAR-94;Build 106
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q  ; this routine must be called at an entry point
@@ -67,7 +67,11 @@ HDR ; Print Header
  ; Row 17
  ; Patient Name, HIC, ACNT, ICN, ASG
  W !!,"NAME",?7,PTNM,?31,"HIC",?35,HIC
- W ?49,"ACNT",?54,$P($$SITE^VASITE,U,3),"-",$P(IBILL,U),?76,"ICN",?80,$P(IBEOB(0),U,14)
+ W ?49,"ACNT",?54,$P($$SITE^VASITE,U,3),"-",$P(IBILL,U)
+ ; HIPAA 5010 Changes
+ N ICN
+ S ICN=$P(IBEOB(0),U,14)
+ W ?76,"ICN",?80,ICN W:$L(ICN)>17 !
  W ?97,"ASG",?101,$S($P(IBILLU,U,6):"Y",1:"N")
  ;
  ; MOA: Medicare Outpatient Remarks Code

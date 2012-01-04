@@ -1,5 +1,5 @@
 SROAPCA2 ;BIR/MAM - PRINT OPERATIVE DATA ;06/28/06
- ;;3.0; Surgery ;**38,71,95,125,153,174**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,71,95,125,153,174,175**;24 Jun 93;Build 6
  S SRA(206)=$G(^SRF(SRTN,206)),SRA(207)=$G(^SRF(SRTN,207)),SRA(209)=$G(^SRF(SRTN,209)),SRA(207.1)=$G(^SRF(SRTN,207.1))
  S SRAO(1)=$P(SRA(207),"^")_"^365"
  S SRAO(2)=$P(SRA(207),"^",2)_"^366"
@@ -11,7 +11,7 @@ SROAPCA2 ;BIR/MAM - PRINT OPERATIVE DATA ;06/28/06
  S NYUK=$P(SRA(207),"^",5) D VL^SROACR1 S SRAO(8)=SHEMP_"^369"
  S NYUK=$P(SRA(207),"^",28) D VL^SROACR1 S SRAO(9)=SHEMP_"^493"
  S NYUK=$P(SRA(207),"^",7) D YN S SRAO(10)=SHEMP_"^371"
- S NYUK=$P(SRA(209),"^",9) D YN S SRAO(11)=SHEMP_"^481"
+ S NYUK=$P(SRA(209),"^",9) S SHEMP=$S(NYUK="N":"NONE",NYUK="B":"BRIDGE TO TRANSPLANT",NYUK="D":"DESTINATION THERAPY",1:"") S SRAO(11)=SHEMP_"^481"
  S NYUK=$P(SRA(209),"^",11) D YN S SRAO(12)=SHEMP_"^483"
  S NYUK=$P(SRA(209),"^",14) S SHEMP=$S(NYUK="F":"FULL MAZE",NYUK="N":"NO MAZE PERFORMED",NYUK="M":"MINI MAZE",1:"") S SRAO(13)=SHEMP_"^512"
  S NYUK=$P(SRA(207),"^",12) D YN S SRAO(14)=SHEMP_"^376"
@@ -34,11 +34,11 @@ SROAPCA2 ;BIR/MAM - PRINT OPERATIVE DATA ;06/28/06
  W !,"Cardiac surgical procedures with or without cardiopulmonary bypass",!,"CABG distal anastomoses:",?40,"Maze procedure:",?61,$J($P(SRAO(13),"^"),17)
  W !,?2,"Number with Vein:",?33,$P(SRAO(1),"^"),?40,"ASD repair:",?75,$P(SRAO(14),"^")
  W !,?2,"Number with IMA:",?33,$P(SRAO(2),"^"),?40,"VSD repair:",?75,$P(SRAO(15),"^")
- W !,?2,"Number with Radial Artery:",?33,$P(SRAO(3),"^"),?40,"Myectomy for IHSS:",?75,$P(SRAO(16),"^")
+ W !,?2,"Number with Radial Artery:",?33,$P(SRAO(3),"^"),?40,"Myectomy:",?75,$P(SRAO(16),"^")
  W !,?2,"Number with Other Artery:",?33,$P(SRAO(4),"^"),?40,"Myxoma resection:",?75,$P(SRAO(17),"^")
  W !,?2,"Number with Other Conduit:",?33,$P(SRAO(5),"^"),?40,"Other tumor resection:",?75,$P(SRAO(18),"^")
  W !,"LV Aneurysmectomy:",?33,$P(SRAO(10),"^"),?40,"Cardiac transplant:",?75,$P(SRAO(19),"^")
- W !,"Bridge to transplant/Device:",?33,$P(SRAO(11),"^"),?40,"Great Vessel Repair:",?75,$P(SRAO(21),"^")
+ W !,"Bridge to transplant/Device:",?33,$E($P(SRAO(11),"^"),1,5),?40,"Great Vessel Repair:",?75,$P(SRAO(21),"^")
  W !,"TMR:",?33,$P(SRAO(12),"^"),?40,"Endovascular Repair:",?75,$P(SRAO("21H"),"^")
  W !,?40,"Other Cardiac procedure(s):",?75,$P(SRAO(29),"^")
  W !,"Aortic Valve Procedure:",?33,$P(SRAO(6),"^")

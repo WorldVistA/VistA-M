@@ -1,5 +1,5 @@
 SRTPRK1 ;BIR/SJA - PRINT KIDNEY-TRANSPLANT INFO/PREOP RISK ASSESSMENT INFO ;04/21/08
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+ ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
 TRANS ; print page 2
  W:$E(IOST)="P" ! W !,?28,"KIDNEY TRANSPLANT INFORMATION",!
  K DR,SRAO,SRX,Y
@@ -7,12 +7,12 @@ TRANS ; print page 2
  K DA,DIC,DIQ,SRX,SRY S DIC="^SRT(",DA=SRTPP,DIQ="SRY",DIQ(0)="E",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
  S (SRX,SRZ)=0 F I=1:1 S SRZ=$P(SRDR,";",I) Q:'SRZ  S SRX=I,SRAO(I)=SRY(139.5,SRTPP,SRZ,"E")_"^"_SRZ
  W !,"Ischemia Time for Organ (minutes)"
- W !," - Warm Ischemia:",?19,$P(SRAO(1),"^"),?49,"Recipient HLA-A:  ",$P(SRAO(9),"^")
- W !," - Cold Ischemia:",?19,$P(SRAO(2),"^"),?49,"Recipient HLA-B:  ",$P(SRAO(10),"^")
- W !," - Total Ischemia:",?19,$P(SRAO(3),"^"),?49,"Recipient HLA-C:  ",$P(SRAO(11),"^")
- W !,"Crossmatch D/R:",?19,$P(SRAO(4),"^"),?49,"Recipient HLA-DR: ",$P(SRAO(12),"^")
- W !,"PRA at Listing:",?19,$P(SRAO(5),"^"),?49,"Recipient HLA-BW: ",$P(SRAO(13),"^")
- W !,"PRA at Transplant:",?19,$P(SRAO(6),"^"),?49,"Recipient HLA-DQ: ",$P(SRAO(14),"^")
+ W !," - Warm Ischemia:",?19,$P(SRAO(1),"^"),?43,"Recipient HLA-A:  ",$P(SRAO(9),"^")
+ W !," - Cold Ischemia:",?19,$P(SRAO(2),"^"),?43,"Recipient HLA-B:  ",$P(SRAO(10),"^")
+ W !," - Total Ischemia:",?19,$P(SRAO(3),"^"),?43,"Recipient HLA-C:  ",$P(SRAO(11),"^")
+ W !,"Crossmatch D/R:",?19,$P(SRAO(4),"^"),?43,"Recipient HLA-DR: ",$P(SRAO(12),"^")
+ W !,"PRA at Listing:",?19,$P(SRAO(5),"^"),?43,"Recipient HLA-BW: ",$P(SRAO(13),"^")
+ W !,"PRA at Transplant:",?19,$P(SRAO(6),"^"),?43,"Recipient HLA-DQ: ",$P(SRAO(14),"^")
  W !,"IVIG Recipient:",?19,$P(SRAO(7),"^")
  W !,"Plasmapheresis:",?19,$P(SRAO(8),"^"),!
  I $E(IOST)'="P" D PAGE^SRTPPAS I SRSOUT G END^SRTPPAS
@@ -45,10 +45,10 @@ NONVA I SRNOVA D
  .W !,"Pre-Transplant Malignancy:",?29,$P(SRAO(8),"^")
  .W !,"Recipient Substance Abuse:",?29,$P(SRAO(9),"^")
  .W !,"Preop Functional Status:",?29,$P(SRAO(10),"^")
- .W !,"Active Infection Immediately Pre-Transplant Req. Antibiotics:",?69,$P(SRAO(11),"^")
- .W !,"Post Transplant Prophylaxis for CMV/Antiviral Treatment:",?69,$P(SRAO(12),"^")
- .W !,"Post Transplant Prophylaxis for PCP/Antibiotic Treatment:",?69,$P(SRAO(13),"^")
- .W !,"Post Transplant Prophylaxis for TB/Antimycobacterial Treatment:",?69,$P(SRAO(14),"^")
+ .W !,"Active Infection Immediately Pre-Transplant Req. Antibiotics:",?64,$P(SRAO(11),"^")
+ .W !,"Post Transplant Prophylaxis for CMV/Antiviral Treatment:",?64,$P(SRAO(12),"^")
+ .W !,"Post Transplant Prophylaxis for PCP/Antibiotic Treatment:",?64,$P(SRAO(13),"^")
+ .W !,"Post Transplant Prophylaxis for TB/Antimycobacterial Treatment:",?64,$P(SRAO(14),"^")
  I $E(IOST)'="P" D PAGE^SRTPPAS I SRSOUT G END^SRTPPAS
  I $E(IOST)="P" G:SRSOUT END^SRTPPAS I $Y+20>IOSL D PAGE^SRTPPAS I SRSOUT G END^SRTPPAS
  G ^SRTPRK2

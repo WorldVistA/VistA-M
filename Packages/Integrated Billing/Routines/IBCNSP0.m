@@ -1,5 +1,5 @@
 IBCNSP0 ;ALB/AAS - INSURANCE MANAGEMENT - EXPANDED POLICY ;05-MAR-1993
- ;;2.0;INTEGRATED BILLING;**28,43,52,85,93,103,137,229,251,363,371,399**;21-MAR-94;Build 8
+ ;;2.0;INTEGRATED BILLING;**28,43,52,85,93,103,137,229,251,363,371,399,438**;21-MAR-94;Build 52
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -97,7 +97,9 @@ SPON ; -- Sponsor (Insured Person) Region
  D SET(START+2,OFFSET," Str 2: "_$P(IBC3,"^",7))
  D SET(START+3,OFFSET,"  City: "_$P(IBC3,"^",8))
  D SET(START+4,OFFSET,"St/Zip: "_$P($G(^DIC(5,+$P(IBC3,"^",9),0)),"^",2)_"  "_IBZIP)
- D SET(START+5,OFFSET," Phone: "_$P(IBC3,"^",11))
+ D SET(START+5,OFFSET,"SubDiv: "_$P(IBC3,"^",14))
+ D SET(START+6,OFFSET," Cntry: "_$P(IBC3,"^",13))
+ D SET(START+7,OFFSET," Phone: "_$P(IBC3,"^",11))
  ;
  ; blank lines at end of section
  D SET(START+6,2," ")

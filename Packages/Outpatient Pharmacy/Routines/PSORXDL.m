@@ -1,5 +1,5 @@
-PSORXDL ;BIR/SAB - Deletes one prescription ;06/10/96
- ;;7.0;OUTPATIENT PHARMACY;**4,17,9,27,117,131,148,201,291**;DEC 1997;Build 2
+PSORXDL ;BIR/SAB - Deletes one prescription ; 11/15/10 4:24pm
+ ;;7.0;OUTPATIENT PHARMACY;**4,17,9,27,117,131,148,201,291,368**;DEC 1997;Build 4
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External references L, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to ^PS(59.7 supported by DBIA 694
@@ -84,6 +84,8 @@ RESK ;
  D ACT^PSORESK1
  S DA=$O(^PS(52.5,"B",RXP,0)) I DA K DIK S DIK="^PS(52.5," D ^DIK K DIK
  D EN^PSOHLSN1(RXP,"ZD")
+ S:'$P($G(^XTMP("PSA",0)),U,2) $P(^(0),U,2)=DT  ;PSO*7*368
+ S ^XTMP("PSA",PSOSITE,+QDRUG,+DT)=$G(^XTMP("PSA",PSOSITE,+QDRUG,+DT))-QTY  ;PSO*7*368
  W !,"Rx # "_$P($G(^PSRX(RXP,0)),"^")_" Returned to Stock.",!
  ; - Sending Rx to ECME for claim REVERSAL (Return to Stock)
  D REVERSE^PSOBPSU1(RXP,0,"RS",4,,1)
@@ -107,6 +109,8 @@ REF ;
  ;D EN^PSOHLSN1(RXP,"ZD")
  D ACT^PSORESK1
  S DA=$O(^PS(52.5,"B",RXP,0)) I DA K DIK S DIK="^PS(52.5," D ^DIK K DIK
+ S:'$P($G(^XTMP("PSA",0)),U,2) $P(^(0),U,2)=DT  ;PSO*7*368
+ S ^XTMP("PSA",PSOSITE,+QDRUG,+DT)=$G(^XTMP("PSA",PSOSITE,+QDRUG,+DT))-QTY  ;PSO*7*368
  D EN^PSOHLSN1(RXP,"ZD") W !,"Rx # "_$P($G(^PSRX(RXP,0)),"^")_" Refill Returned to Stock.",!
  ; - Sending Rx refill to ECME for claim REVERSAL (Return to Stock)
  D REVERSE^PSOBPSU1(RXP,TYPE,"RS",4,,1)

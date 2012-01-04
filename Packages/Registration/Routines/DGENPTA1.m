@@ -1,5 +1,5 @@
-DGENPTA1 ;ALB/CJM,EG,CKN,ERC,TDM - Patient API - File Data ; 9/26/09 2:54pm
- ;;5.3;Registration;**121,147,314,677,659,653,688,810,754**;Aug 13,1993;Build 46
+DGENPTA1 ;ALB/CJM,EG,CKN,ERC,TDM,PWC - Patient API - File Data ; 2/3/11 6:45pm
+ ;;5.3;Registration;**121,147,314,677,659,653,688,810,754,838**;Aug 13,1993;Build 5
  ;
 LOCK(DFN) ;
  ;Description: Given an internal entry number of a PATIENT  record, this
@@ -28,7 +28,7 @@ STOREPRE(DFN,DGPREFAC) ;
  ;   patient record.
  ;Input:
  ;  DFN - Patient IEN
- ;  DGPREFAC - pointer to the a record in the INSTITUTION file. 
+ ;  DGPREFAC - pointer to the record in the INSTITUTION file.
  ;Output:
  ;  Function Value - Returns 1 on success, 0 on failure.
  ;
@@ -40,7 +40,8 @@ STOREPRE(DFN,DGPREFAC) ;
  . I ($G(DGPREFAC)'=""),'$G(DGPREFAC) S SUCCESS=0 Q
  . I $G(DGPREFAC),'$D(^DIC(4,DGPREFAC,0)) S SUCCESS=0 Q
  . S DATA(27.02)=DGPREFAC
- . S SUCESS=$$UPD^DGENDBS(2,DFN,.DATA)
+ . S DATA(27.03)="V"     ; DG*5.3*838
+ . S SUCCESS=$$UPD^DGENDBS(2,DFN,.DATA)
  Q SUCCESS
  ;
 CHECK(DGPAT,ERROR) ;
@@ -126,5 +127,5 @@ FIELD(SUB) ;
  N FNUM
  S FNUM=$S(SUB="DEATH":.351,SUB="PATYPE":391,SUB="VETERAN":1901,SUB="NAME":.01,SUB="DOB":.03,SUB="SEX":.02,SUB="SSN":.09,SUB="PREFAC":27.02,SUB="AG/ALLY":.309,1:"")
  S:'FNUM FNUM=$S(SUB="INELDATE":.152,SUB="INELREA":.307,SUB="INELDEC":.1656,SUB="PID":.363,SUB="EMGRES":.181,1:"")
- I FNUM="" S FNUM=$S(SUB="IR":.32103,SUB="RADEXPM":.3212,SUB="APPREQ":1010.159,SUB="APPREQDT":1010.1511,SUB="SPININJ":57.4,1:"")
+ I FNUM="" S FNUM=$S(SUB="IR":.32103,SUB="RADEXPM":.3212,SUB="APPREQ":1010.159,SUB="APPREQDT":1010.1511,SUB="SPININJ":57.4,SUB="PFSRC":27.03,1:"")
  Q FNUM

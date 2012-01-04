@@ -1,5 +1,5 @@
 RACNLU ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Case Number Lookup ;11/13/00  09:13
- ;;5.0;Radiology/Nuclear Medicine;**7,15,23**;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**7,15,23,47**;Mar 16, 1998;Build 21
 CASE N RADIV,RAIMAGE,RANODE
  R !!,"Enter Case Number: ",X:DTIME S:'$T!(X="") X="^" G Q:X="^"
  I X?1A W !?3,*7,"You must enter more than one character of the name!" G CASE
@@ -10,15 +10,19 @@ CASE N RADIV,RAIMAGE,RANODE
  I $D(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)) S ^DISV($S($D(DUZ)#2:DUZ,1:0),"RA","CASE #")=RADFN_"^"_RADTI_"^"_RACNI,Y(0)=^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)
 Q K I,RACNT,RADTCN,RAEND,RAFL,RAFST,RAIX,^TMP("MAG",$J,"COL"),^TMP("MAG",$J,"ROW") Q
  ;
-SEL K ^TMP($J,"RAEX") S RACNT=0 G ADC:X["-" S RAFST=$S(X:X-.01,1:0),RAEND=$S(X:X,1:99999),X="",RAIX="AE"
+SEL ;
+ K ^TMP($J,"RAEX") S RACNT=0 G ADC:X["-" S RAFST=$S(X:X-.01,1:0),RAEND=$S(X:X,1:99999),X="",RAIX="AE"
  ;S RAXHOLD=X ;don't need MAG calls anymore 111300
  ;I $$IMAGE^RARIC1 D MED^MAGSET3,ERASE^MAGSET3
  ;S X=RAXHOLD K RAXHOLD
  F RACN=RAFST:0 Q:X="^"!(X>0)  S RACN=$O(^RADPT(RAIX,RACN)) Q:RACN'>0!(RACN>RAEND)  F RADFN=0:0 S RADFN=$O(^RADPT(RAIX,RACN,RADFN)) Q:RADFN'>0  S RADTI=$O(^(RADFN,0)),RACNI=$O(^(RADTI,0)) S X="" D PRT Q:X="^"!(X>0)
  G CHK
-ADC S RAIX="ADC",RACN=$P(X,"-",2),RADTCN=X,X=""
+ADC ;S RAIX="ADC",RACN=$P(X,"-",2),RADTCN=X,X=""
+ S RAIX="ADC",RACN=$P(X,"-",$L(X,"-")),RADTCN=$S($L(X,"-")=3:$P(X,"-",2,3),1:X),X=""
  F RADFN=0:0 S RADFN=$O(^RADPT(RAIX,RADTCN,RADFN)) Q:RADFN'>0  S RADTI=$O(^(RADFN,0)),RACNI=$O(^(RADTI,0)) S X="" D PRT Q:X="^"!(X>0)
+ I 'RACNT D ADC1
 CHK Q:X="^"!(X>0)  I 'RACNT W !?3,*7,"No matches found!" Q
+ ;Q:X="^"!(X>0)  I 'RACNT W !?3,*7,"No matches found!" Q
  I RACNT=1 S X=1,Y=^TMP($J,"RAEX",1) D:$D(RAOPT("EDITCN")) CHECK Q
 CHK1 Q:'(RACNT#15)  W !,"CHOOSE FROM 1-",RACNT,": " R X:DTIME S:'$T!(X="") X="^" Q:X="^"  I X["?" D HLP G CHK1
  I '$D(^TMP($J,"RAEX",+X)) S X="^" W *7," ??" Q
@@ -27,7 +31,7 @@ PRT S RAFL=0 Q:'$D(^RADPT(RADFN,0))!('$D(^DPT(RADFN,0)))  S RANME=^(0),RASSN=$$S
  K RADIV ;this var must be cleared so can detect bad ^RADPT("AE" ;111500
  I $D(^RADPT(RADFN,"DT",RADTI,0)) D  Q:'RAFL
  . S RANODE=$G(^RADPT(RADFN,"DT",RADTI,0))
- . S RADIV=+$P(RANODE,"^",3),RAIMAGE=+$P(RANODE,"^",2)
+ . S RADIV=+$P(RANODE,"^",3),RAIMAGE=+$P(RANODE,"^",2),RADIVIEN=RADIV
  . S RADIV=+$G(^RA(79,RADIV,0)),RADIV=$P($G(^DIC(4,RADIV,0)),"^")
  . S:RADIV']"" RADIV="Unknown"
  . S RAIMAGE=$P($G(^RA(79.2,RAIMAGE,0)),"^")
@@ -50,12 +54,15 @@ PRT S RAFL=0 Q:'$D(^RADPT(RADFN,0))!('$D(^DPT(RADFN,0)))  S RANME=^(0),RASSN=$$S
  S ^TMP($J,"RAEX",RACNT)=RADFN_"^"_RADTI_"^"_RACNI_"^"_RANME_"^"_RASSN_"^"_RADATE_"^"_RADTE_"^"_RACN_"^"_RAPRC_"^"_RARPT_"^"_RAST
  ;I $$IMAGE^RARIC1 D DISPA^MAGRIC ; don't need MAG calls anymore 111300
  I RACNT=1,$S('$D(RAEND):1,RAEND<99999:1,1:0),$D(RAVW),$O(^RADPT(RAIX,$S(RAIX="ADC":RADTCN,1:RACN),RADFN))'>0 S X=1,Y=^TMP($J,"RAEX",1) Q
- D HD:RACNT=1 W !?1,RACNT,?9,$$LCASE(RADTE,RACN) W:$O(^RARPT(RARPT,2005,0)) ?22,"i" W ?24,$E(RAPRC,1,25),?50,$E(RANME,1,22),?74,$$SSN^RAUTL(RADFN,1) Q:RACNT#15
+ N RASSAN,RACNDSP S RASSAN=$$SSANVAL^RAHLRU1(RADFN,RADTI,RACNI)
+ S RACNDSP=$S((RASSAN'=""):RASSAN,1:$$LCASE(RADTE,RACN))
+ I $$USESSAN^RAHLRU1() D HD:RACNT=1 W !?1,RACNT,?7,RACNDSP W:$O(^RARPT(RARPT,2005,0)) ?22,"i" W ?24,$E(RAPRC,1,25),?50,$E(RANME,1,22),?74,$$SSN^RAUTL(RADFN,1) Q:RACNT#15
+ I '$$USESSAN^RAHLRU1() D HD:RACNT=1 W !?1,RACNT,?7,$$LCASE(RADTE,RACN) W:$O(^RARPT(RARPT,2005,0)) ?22,"i" W ?24,$E(RAPRC,1,25),?50,$E(RANME,1,22),?74,$$SSN^RAUTL(RADFN,1) Q:RACNT#15
 PRT1 W !,"Type '^' to STOP, or",!,"CHOOSE FROM 1-",RACNT,": " R X:DTIME S:'$T X="^" Q:X="^"!(X="")  I X["?" D HLP G PRT1
  I '$D(^TMP($J,"RAEX",+X)) W *7," ??" S X="^" Q
  S X=+X,Y=^TMP($J,"RAEX",X) Q
  ;
-HD W !!,"Choice",?9,"Case No.",?24,"Procedure",?50,"Name",?74,"Pt ID",!,"------",?9,"--------",?24,"---------",?50,"-----------------",?74,"------" Q
+HD W !!,"Choice",?7,"Case No.",?24,"Procedure",?50,"Name",?74,"Pt ID",!,"------",?7,"---------------",?24,"---------",?50,"-----------------",?74,"------" Q
  ;
 SPACE I $D(^DISV($S($D(DUZ)#2:DUZ,1:0),"RA","CASE #")) S X=^("CASE #") I $D(^RADPT(+$P(X,"^"),"DT",+$P(X,"^",2),"P",+$P(X,"^",3),0)) S RADTX=$P($P(X,"^",2),"."),X=+^(0) S X=$$LCASE(9999999-RADTX,X) W "  ",X K RADTX Q
  S X="^" Q
@@ -72,6 +79,7 @@ LCASE(RADT,RACN) ; Pass back the long case number.
  ; Input : RADT -> FM date (internal format)
  ;         RACN -> Case #
  ; Output: long case number i.e, '010197-100'
+ ; RTK 3/16/2009 ADDED NEXT 2 LINES FOR USE WITH SSAN P47
  Q $TR($TR($$FMTE^XLFDT(RADT,"2FD")," ","0"),"/","")_"-"_RACN
 CHECK ; Check if the exam selected is of the same imaging type as the sign-on
  ; location.  Must be in the 'Case No. Exam Edit' option.
@@ -83,3 +91,6 @@ CHECK ; Check if the exam selected is of the same imaging type as the sign-on
  S Y=RAMASK
  I +$G(RARTRN) S X="^" K RADFN,RADTI,RACNI,RANME,RASSN,RADATE,RADTE,RACN,RAPRC,RARPT,RAST,RAEND,RAFST,RAIX
  Q
+ADC1 ;
+ S RAIX="ADC1"
+ F RADFN=0:0 S RADFN=$O(^RADPT(RAIX,RADTCN,RADFN)) Q:RADFN'>0  S RADTI=$O(^(RADFN,0)),RACNI=$O(^(RADTI,0)) S X="" D PRT Q:X="^"!(X>0)

@@ -1,5 +1,5 @@
 IVMUFNC5 ;ALB/AEG - IVM UTILITIES CONTINUED ; 8/10/05 1:39pm
- ;;2.0;INCOME VERIFICATION MATCH;**55,109**;5-10-2002
+ ;;2.0;INCOME VERIFICATION MATCH;**55,109,149**;5-10-2002;Build 5
  ;
 AGE(DT) ;
  N Y
@@ -67,6 +67,8 @@ ELIG(DFN) ; Eligibility Check for Cat C uploads older than previous
  I +$$GET1^DIQ(2,DFN_",",.381,"I") S IVMELI=0
  ; Check PH status.
  I $P($G(^DPT(DFN,.53)),U)="Y" S IVMELI=0
+ ; Catastrophically disabled
+ I $P($G(^DPT(DFN,.39)),U,6)="Y" S IVMELI=0 ;IVM*2.0*149
  Q IVMELI
  ;
 SC(DFN) ; Check to see if patient is SC 0% non-compensable.

@@ -1,5 +1,5 @@
-ONCOCFL1 ;Hines OIFO/GWB - [CF Automatic Casefinding-Lab Search] ;06/23/10
- ;;2.11;ONCOLOGY;**25,26,27,28,29,32,33,43,44,46,49,51**;Mar 07, 1995;Build 65
+ONCOCFL1 ;Hines OIFO/GWB - [CF Automatic Casefinding-Lab Search] ;03/04/11
+ ;;2.11;ONCOLOGY;**25,26,27,28,29,32,33,43,44,46,49,51,53**;Mar 07, 1995;Build 31
  ;
 EN ;Start Date default
  S SDDEF=$P(^ONCO(160.1,OSP,0),U,5)
@@ -50,8 +50,8 @@ ED ;End Date
  W !?10,"and Esophagus cases.",!
  W !?10,"Exceptions to the above search criteria:",!
  W !?10,"Behavior Code /0 (Benign) codes will be excluded."
- W !?10,"Squamous cell neoplasms (805-808) of the skin will be excluded."
- W !?10,"Basal cell neoplasms (809) will be excluded."
+ ;W !?10,"Squamous cell neoplasms (805-808) of the skin will be excluded."
+ ;W !?10,"Basal cell neoplasms (809) will be excluded."
  W !?10,"Benign tumors of the central nervous system will be included."
  W !
  S %ZIS="Q" D ^%ZIS I POP G EX
@@ -132,11 +132,11 @@ AUM S M=0 F  S M=$O(^LR(LRDFN,"AY",T,2,M)) Q:'M  S X=^(M,0),LRD=+X,LRM=$P(X,U,2)
  ;
 Y ;Check for eligible cases
  ;Basal cell carcinomas
- I $E(X,1,3)=809 S I=0 Q
+ ;I $E(X,1,3)=809 S I=0 Q
  ;Benign brain tumors
  I SNOMED'="",($E(SNOMED,1,2)?1"X"1N)!($D(BBT(SNOMED))),$E(X,1)>7 S I=1 Q
  ;Squamous cell neoplasms of the skin
- I ($E(X,1,3)=805)!($E(X,1,3)=806)!($E(X,1,3)=807)!($E(X,1,3)=808),($E(SNOMED,1,2)="01")!($E(SNOMED,1,2)="02") S I=0 Q
+ ;I ($E(X,1,3)=805)!($E(X,1,3)=806)!($E(X,1,3)=807)!($E(X,1,3)=808),($E(SNOMED,1,2)="01")!($E(SNOMED,1,2)="02") S I=0 Q
  I $E(X,1,5)=Y(2) D  Q 
  .S I=1
  .I (X=74000)!(X=74006)!(X=74007)!(X=74008),($E(SNOMED,1,2)'=62)&($E(SNOMED,1,2)'=63)&($E(SNOMED,1,2)'=67) S I=0

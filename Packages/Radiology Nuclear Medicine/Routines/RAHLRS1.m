@@ -1,5 +1,5 @@
-RAHLRS1 ;HIRMFO/ROB/PAVEL - Resend HL7 messages for selected Timeframe ; 10/27/08 11:01
- ;;5.0;Radiology/Nuclear Medicine;**80,84,95**;Mar 16, 1998;Build 7
+RAHLRS1 ;HIRMFO/ROB/PAVEL/GJC - Resend HL7 messages for selected Timeframe ; 10/27/08 11:01
+ ;;5.0;Radiology/Nuclear Medicine;**80,84,95,47**;Mar 16, 1998;Build 21
  ; Utility to RESEND HL7 messages for selected Timeframe
  ;
  ;Integration Agreements
@@ -43,6 +43,7 @@ CHECK ;
  S RAPICK=$O(XX(+X,"")) ;appl. recipient name, RA*5*95
  S RASSS(XX(X,$O(XX(+X,""))))="" D GETSUB(.RASSS,.RASSSX,.RASSSL)
  K ZTSAVE
+ S ZTSAVE("RAOPT(")="" ;RAOPT("RESEND DT") set/killed in entry/exit action fields on option p47
  S ZTSAVE("RAPICK")="" ;include appl. recipient name in task, RA*5*95
  S ZTSAVE("RASSSX(")="",ZTSAVE("RASSSL(")="",ZTSAVE("RABD")="",ZTSAVE("RAED")="",ZTSAVE("RADFN")=""
  S ZTSAVE("RADTI")="",ZTSAVE("RACNI")="",ZTSAVE("RASHBD")="",ZTSAVE("RASHED")="",ZTIO=""

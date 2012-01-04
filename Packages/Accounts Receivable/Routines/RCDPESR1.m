@@ -1,6 +1,9 @@
 RCDPESR1 ;ALB/TMP - Server interface to AR from Austin ;06/03/02
- ;;4.5;Accounts Receivable;**173,214,208,202**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**173,214,208,202,271**;Mar 20, 1995;Build 29
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; Reference to $$RXBIL^IBNCPDPU supported by DBIA 4435
+ ;
  Q
  ;
 PERROR(RCERR,RCEMG,RCXMZ) ; Process Errors - Send bulletin to mail group
@@ -161,12 +164,12 @@ BILL(X,RCDT,RCIB) ; Returns ien of bill in X or -1 if not valid
  N DIC,Y
  S RCIB=0
  S X=$TR(X," "),X=$TR(X,"O","0") ; Remove spaces, change ohs to zeroes
- I X'["-",$E(X,1,3)?3N,$L(X)>7 S X=$E(X,1,3)_"-"_$E(X,4,$L(X))
+ I X'["-",$E(X,1,3)?3N,+$E(X,1,3),$L(X)>7,$L(X)<12 S X=$E(X,1,3)_"-"_$E(X,4,$L(X))
  S DIC="^PRCA(430,",DIC(0)="MZ" D ^DIC
- I Y<0,X?1.7N D  ; Rx lookup
+ I Y<0,X?1.12N D  ; Rx lookup    esg 9/7/10 *271 - ECME# up to 12 digits
  . N ARRAY
  . S ARRAY("ECME")=X,ARRAY("FILLDT")=$G(RCDT)
- . S Y=$$RXBIL^IBNCPDPU(.ARRAY)
+ . S Y=$$RXBIL^IBNCPDPU(.ARRAY)     ; DBIA 4435
  . I Y>0 S Y(0)=$G(^PRCA(430,+Y,0))
  I Y>0 S RCIB=($P($G(^RCD(340,+$P(Y(0),U,9),0)),U)["DIC(36,")
  Q +Y
