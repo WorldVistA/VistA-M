@@ -1,6 +1,6 @@
-XQALERT1 ;ISC-SF.SEA/JLI - ALERT HANDLER ;4/9/07  14:54
- ;;8.0;KERNEL;**20,65,114,123,125,164,173,285,366,443**;Jul 10, 1995;Build 4
- ;;
+XQALERT1 ;ISC-SF.SEA/JLI - ALERT HANDLER ;07/24/11  15:11
+ ;;8.0;KERNEL;**20,65,114,123,125,164,173,285,366,443,513**;Jul 10, 1995;Build 13
+ ;Per VHA Directive 2004-038, this routine should not be modified
  Q
  ;
 DOIT I $D(XQX1),XQX1'>0 K XQX1
@@ -67,7 +67,8 @@ CHKSURO ; If user selects process alerts with no alerts present, give him/her th
  ;
 DOIT1 ;
  I XQK=0 S XQALINFO=0 I '$D(XQALFWD) W @IOF
- S XQON="$C(0)",XQOFF="$C(0)" S XQOUT=$P(XQX,U,3) I ($$UP^XLFSTR(XQOUT)["CRITICAL")!($$UP^XLFSTR(XQOUT)["ABNORMAL IMA") D:'$D(XQ1ON) SETREV^XQALERT S XQON=XQ1ON,XQOFF=XQ1OFF ; P285
+ ;S XQON="$C(0)",XQOFF="$C(0)" S XQOUT=$P(XQX,U,3) I ($$UP^XLFSTR(XQOUT)["CRITICAL")!($$UP^XLFSTR(XQOUT)["ABNORMAL IMA") D:'$D(XQ1ON) SETREV^XQALERT S XQON=XQ1ON,XQOFF=XQ1OFF ; P285
+ S XQON="$C(0)",XQOFF="$C(0)" I $$CHKCRIT^XQALSUR2(XQX) D:'$D(XQ1ON) SETREV^XQALERT S XQON=XQ1ON,XQOFF=XQ1OFF ; P513 modified to add use data from file 8992.3 for identifying critical alerts
  S XQK=XQK+1 W !,$J(XQK,2),".",$S(XQZ4:"L",$P(XQX,U,8)=" ":"I",1:" "),"  ",@XQON,$E($P(XQX,U,3),1,70),@XQOFF S:$P(XQX,U,8)=" " XQALINFO=XQALINFO+1 D:XQZ1'=""  ; P285
  . W !?8,"Forwarded by: ",$P(^VA(200,+XQZ1,0),U),"  Generated: ",$$DAT8^XQALERT(+$P($P(XQX,U,2),";",3),1)
  . I $P(XQZ1,U,3)'="" W !?8,$P(XQZ1,U,3)

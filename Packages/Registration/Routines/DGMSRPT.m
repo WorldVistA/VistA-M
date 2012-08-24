@@ -139,7 +139,7 @@ MSG(DGXTMP) ; Send message with counts of inconsistencies when extract completes
  S XMDUZ="STATION #"_SITE
  I $$GET1^DIQ(869.3,"1,",.03,"I")'="P" S XMDUZ=XMDUZ_" [TEST]"
  S XMSUB="MILITARY SERVICE DATA INCONSISTENCIES VOLUME REPORT"
- S (XMY(DUZ),XMY("G.DGEN ELIGIBILITY ALERT"),XMY("HECDQSUPPORT@MED.VA.GOV"))="",XMTEXT="DGMSG("
+ S (XMY(DUZ),XMY("G.DGEN ELIGIBILITY ALERT"),XMY("HECDQSUPPORT@DOMAIN.EXT"))="",XMTEXT="DGMSG("
  S DGMSG(1)="The extract of Military Service data inconsistencies has completed"
  S DGMSG(2)="successfully."
  S DGMSG(3)=""

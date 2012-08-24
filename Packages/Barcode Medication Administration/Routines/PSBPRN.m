@@ -1,5 +1,6 @@
 PSBPRN ;BIRMINGHAM/EFC-BCMA PRN FUNCTIONS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**5,3,13**;Mar 2004
+ ;;3.0;BAR CODE MED ADMIN;**5,3,13,61**;Mar 2004;Build 11
+ ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ;Reference/IA
  ;DEM^VADPT/10061
@@ -49,7 +50,7 @@ EDIT1 ;
  K PSBCNT,PSBDT,PSBIEN,PSBSRCH,PSBTMP,DA,DR,DDSFILE
  Q
  ;
-GETPRNS(RESULTS,DFN,PSBORD) ; Get the PRN's for a pt needing effectness
+GETPRNS(RESULTS,DFN,PSBORD) ; Get the PRN's for a pt needing effectiveness
  ;
  ; RPC PSB GETPRNS
  ;
@@ -93,6 +94,7 @@ GETPRNS(RESULTS,DFN,PSBORD) ; Get the PRN's for a pt needing effectness
  ...Q:'$D(^PSB(53.79,PSBIEN,PSBZ,PSBY))
  ...S PSBUNIT=$$GET1^DIQ(PSBDD,PSBY_","_PSBIEN_",",.03)
  ...S PSBUNFR=$$GET1^DIQ(PSBDD,PSBY_","_PSBIEN_",",.04)
+ ...I PSBUNIT>0&(PSBUNIT<1) S PSBUNIT="0"_+PSBUNIT ;add leading 0 for a decimal value less than 1 - PSB*3*61
  ...S Y=Y+1
  ...S ^TMP("PSB",$J,Y)=PSBSOL_U_$$GET1^DIQ(PSBDD,PSBY_","_PSBIEN_",",.01)_U_PSBUNIT_U_PSBUNFR
  ..S Y=Y+1,^TMP("PSB",$J,Y)="END"

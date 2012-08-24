@@ -1,7 +1,7 @@
 DGRP7 ;ALB/MRL,CKN,ERC - REGISTRATION SCREEN 7/ELIGIBILITY INFORMATION ; 7/25/06 12:06pm
- ;;5.3;Registration;**528,653,688**;Aug 13, 1993;Build 29
+ ;;5.3;Registration;**528,653,688,842**;Aug 13, 1993;Build 33
  N DGCASH,DGMBCK
- S DGRPS=7 D H^DGRPU F I=0,.29,.3,.31,.32,.321,.36,.362,"TYPE","VET" S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
+ S DGRPS=7 D H^DGRPU F I=0,.29,.3,.31,.32,.321,.36,.362,.385,"TYPE","VET" S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
  S (DGRPW,Z)=1 D WW^DGRPV W "       Patient Type: " S DGRPX=DGRP("TYPE"),Z=$S($D(^DG(391,+DGRPX,0)):$P(^(0),"^",1),1:DGRPU),Z1=34 D WW1^DGRPV W "Veteran: " S DGRPX=DGRP("VET"),(X,Z1)=1 D YN
  W !?9,"Svc Connected: " S DGRPX=DGRP(.3),X=1,Z1=31,DGNA=$S($P(DGRP("VET"),"^",1)="Y":0,1:1) D YN2 W "SC Percent: " W:$E(Z)'="Y" "N/A" I $E(Z)="Y" D
  .S X=$P(DGRPX,"^",2) W $S(X="":"UNANSWERED",1:+X_"%")
@@ -15,8 +15,12 @@ DGRP7 ;ALB/MRL,CKN,ERC - REGISTRATION SCREEN 7/ELIGIBILITY INFORMATION ; 7/25/06
  S Z=2 D WW^DGRPV ;monetary benefits section
  W "   Aid & Attendance: " S Z=$$YN2^DG1010P0(DGRP(.362),12) D MBCK S Z1=31 D WW1^DGRPV
  W "Housebound: ",$$YN2^DG1010P0(DGRP(.362),13) D MBCK
- W !?12,"VA Pension: " S Z=$$YN2^DG1010P0(DGRP(.362),14) D MBCK S Z1=28 D WW1^DGRPV
- W "VA Disability: ",$$YN2^DG1010P0(DGRP(.3),11) D MBCK
+ W !?12,"VA Pension: " S Z=$$YN2^DG1010P0(DGRP(.362),14) D MBCK S Z1=25 D WW1^DGRPV
+ I $P(DGRP(.362),"^",14)]"" D  ;DG*5.3*842
+ .I DGRPV=1 D DISPPEN^DGRP7CP Q
+ .I ($P(DGRP(.362),"^",14)="N")&($P(DGRP(.385),"^",3)]"") W "Pension A/T Date: "_$$DATENP^DG1010P0(DGRP(.385),3) Q
+ .I ($P(DGRP(.362),"^",14)="Y")&($P(DGRP(.385),"^",1)]"") W "Pension A/T Date: "_$$DATENP^DG1010P0(DGRP(.385),1) Q
+ W !?9,"VA Disability: ",$$YN2^DG1010P0(DGRP(.3),11) D MBCK
  W !?4,"Total Check Amount: " S X=$$DISP^DG1010P0(DGRP(.362),20,'DGMBCK) W $S(X:"$"_X,1:X)
  W !?10,"GI Insurance: " S Z=$$YN2^DG1010P0(DGRP(.362),17) S Z1=35 D WW1^DGRPV
  W "Amount: " S X=$$DISP^DG1010P0(DGRP(.362),6) W $S(X:"$"_X,1:X)

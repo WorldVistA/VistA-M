@@ -1,5 +1,5 @@
 IBCBB21 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE FOR UB-04 ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**51,137,210,232,155,291,348,349,403,400,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**51,137,210,232,155,291,348,349,403,400,432,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN(IBZPRC92) ;
@@ -51,7 +51,8 @@ EN(IBZPRC92) ;
  .Q
  I '$$OCC10^IBCBB2(IBIFN,.IBXDATA,3) S IBER=IBER_"IB093;"
  ; At least one PRV diagnosis is required for outpatient UB-04 claim
- I '$$INPAT^IBCEF(IBIFN),$$CHKPRV^IBCSC10B=3 D WARN^IBCBB11("Outpatient Institutional claims should contain a Patient Reason for Visit.")
+ ; IB*2.0*447 BI This warning was removed and replaced with an Error Message in routine IBCBB1.
+ ;I '$$INPAT^IBCEF(IBIFN),$$CHKPRV^IBCSC10B=3 D WARN^IBCBB11("Outpatient Institutional claims should contain a Patient Reason for Visit.")
  ;
  K ^TMP($J,"IBC-RC")
  D F^IBCEF("N-UB-04 SERVICE LINE (PRINT)",,,IBIFN)
@@ -60,7 +61,8 @@ EN(IBZPRC92) ;
  . ;I IBER'["IB090;",$P(Z,U,2)>1,($P(Z,U,7)>99999.99!($P(Z,U,8)>99999.99)) S IBER=IBER_"IB090;"
  . I IBER'["IB090;",$P(Z,U,2)>1,($P(Z,U,7)>9999999.99!($P(Z,U,8)>9999999.99)) S IBER=IBER_"IB090;"
  . Q:$P(Z,U,2)'<180&($P(Z,U,2)'>189)  ;Pass days (LOA) don't matter
- . I '$P(Z,U,7),'$P(Z,U,8),'Z0,$$COBN^IBCEF(IBIFN)'>1  S Z0="Rev Code(s) having a 0-charge will not be transmitted for the bill" D WARN^IBCBB11(Z0) S Z0=1
+ . ; Removed the following warning IB*2.0*447 BI Replaced in IBCBB1.
+ . ;I '$P(Z,U,7),'$P(Z,U,8),'Z0,$$COBN^IBCEF(IBIFN)'>1  S Z0="Rev Code(s) having a 0-charge will not be transmitted for the bill" D WARN^IBCBB11(Z0) S Z0=1
  K ^TMP($J,"IBC-RC")
  Q
  ;

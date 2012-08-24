@@ -1,5 +1,5 @@
 PSGOE91 ;BIR/CML3-ACTIVE ORDER EDIT (CONT.) ; 8/4/10 7:07am
- ;;5.0; INPATIENT MEDICATIONS ;**50,64,58,110,111,136,113,179**;16 DEC 97;Build 45
+ ;;5.0;INPATIENT MEDICATIONS;**50,64,58,110,111,136,113,179,265**;16 DEC 97;Build 4
  ;
  ;Reference to ^PS(55 is supported by DBIA #2191.
  ;
@@ -63,7 +63,7 @@ A34 ;
  K PSGFDX
  I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD) S PSGOEE=0 D  G DONE
  . W !!?5,"Stop Date/Time may not be edited for active complex orders." D PAUSE^VALM1
- W !,"STOP DATE/TIME: "_$S($P(PSGFDN,"^")]"":$P(PSGFDN,"^")_"// ",1:"") R X:DTIME I '$T W $C(7) S PSGOEE=0 G DONE
+ W !,"STOP DATE/TIME: "_$S($P(PSGFDN,"^")]"":$P(PSGFDN,"^")_"// ",1:"") R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOEE=0 G DONE
  I X="",PSGFD W "   "_$P(PSGFDN,"^") G W34
  I $E(X)="^" D ENFF^PSGOE92 G:Y>0 @Y G A34
  I X="@"!(X?1."?") W:X="@" $C(7),"  (Required)" S:X="@" X="?" D ENHLP^PSGOEM(55.06,34)

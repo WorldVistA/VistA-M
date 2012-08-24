@@ -164,8 +164,8 @@ TRANSMIT ;-- format ^TMP($J) data, put into e-mail and send to cm.
  ; send packman message.
  S XMTEXT="^TMP(""KMPRBD04-3"","_$J_","
  S XMSUB="RUM DATA~"_$P(SITE,U,2)_" ("_$P(SITE,U,3)_")~"_$$FMTE^XLFDT(START)_"~"_$P($$VERSION^KMPRUTL,U)
- S XMY("S.KMP2-RUM-SERVER@FO-ALBANY.MED.VA.GOV")=""
- S XMY("CAPACITY,MANAGEMENT@FO-ALBANY.MED.VA.GOV")=""
+ S XMY("S.KMP2-RUM-SERVER@FO-ALBANY.DOMAIN.EXT")=""
+ S XMY("CAPACITY,MANAGEMENT@FO-ALBANY.DOMAIN.EXT")=""
  D ^XMD
  W:'$D(ZTQUEUED) !,"Message #",$G(XMZ)," sent..."
  K ^TMP("KMPRBD04-3",$J)

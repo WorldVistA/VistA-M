@@ -16,7 +16,7 @@ S ;
  .W !,"   Rule Transport Version: ORDER CHECK EXPERT version 1.01 released OCT 29,1998"
  I '$D(DTIME) W !!,"DTIME not defined !!",!! Q
  W !!,"Order Check Expert System Rule Transporter"
- W !," Created: MAR 3,2010 at 07:20  at  CPRS28.FO-SLC.MED.VA.GOV"
+ W !," Created: MAR 3,2010 at 07:20  at  CPRS28.FO-SLC.DOMAIN.EXT"
  W !," Current Date: ",$$NOW^ORY2800,"  at  ",$$NETNAME^OCXSEND,!!
  S LASTFILE=0 K ^TMP("OCXRULE",$J)
  S ^TMP("OCXRULE",$J)=($P($H,",",2)+($H*86400)+(1*60*60))_" <- ^TMP ENTRY EXPIRATION DATE FOR ^OCXOPURG"

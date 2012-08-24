@@ -1,13 +1,14 @@
-XQALSET1 ;ISC-SF.SEA/JLI - SETUP ALERTS (OVERFLOW) ;4/9/07  10:26
- ;;8.0;KERNEL;**285,443**;Jul 10, 1995;Build 4
- ;;
+XQALSET1 ;ISC-SF.SEA/JLI - SETUP ALERTS (OVERFLOW) ;07/24/11  15:13
+ ;;8.0;KERNEL;**285,443,513**;Jul 10, 1995;Build 13
+ ;Per VHA Directive 2004-038, this routine should not be modified
  Q
 GROUP ;
  N XQI,XQL,XQL1,XQL2,XQLIST
+ ; ZEXCEPT: XQA,XQJ - defined in calling routine
  S XQL=$E(XQJ,3,$L(XQJ)) ; P443 - changed from code that forced upper case
  I $D(^TMP("XQAGROUP",$J,XQL)) Q  ; P443 group has already been processed - prevent cycling
  S ^TMP("XQAGROUP",$J,XQL)="" ; P443 mark that the group has been seen
- S XQI=$$FIND1^DIC(3.8,,"X",XQL) Q:XQI'>0
+ S XQI=$$FIND1^DIC(3.8,,"X",XQL) I XQI'>0 K XQA(XQJ) Q  ; P513 remove entry if not available
  N XQLIST D LIST^DIC(3.81,","_XQI_",",".01","I",,,,,,,.XQLIST) I XQLIST("ORDER")>0 D
  . N XQI F XQI=0:0 S XQI=$O(@XQLIST@("ID",XQI)) Q:XQI'>0  S XQA(^(XQI,.01))=""
  . Q

@@ -1,5 +1,5 @@
-DGCV ;ALB/DW,ERC,BRM,TMK - COMBAT VET ELIGIBILTY; 10/15/05 ; 3/24/08 7:28am
- ;;5.3;Registration;**528,576,564,673,778,792**; Aug 13, 1993;Build 4
+DGCV ;ALB/DW,ERC,BRM,TMK,LBD - COMBAT VET ELIGIBILTY; 10/15/05 ; 6/16/09 10:40am
+ ;;5.3;Registration;**528,576,564,673,778,792,797**; Aug 13, 1993;Build 24
  ;
 CVELIG(DFN) ;
  ;API will determine whether or not this veteran needs to have CV End
@@ -174,7 +174,10 @@ CVEDT(DFN,DGDT) ;Provide Combat Vet Eligibility End Date, if eligible
  Q RESULT
  ;
 PARSE ;GETS^DIQ called in CVELIG - in this subroutine stuff results into array
- S DGSRV=$G(DGARR(2,DFN_",",.327,"I"))
+ ;If there's MSE data in new MSE sub-file #2.3216 get last
+ ;Service Separation Date (DG*5.3*797)
+ I $D(^DPT(DFN,.3216)) S DGSRV=$P($$LAST^DGMSEUTL(DFN),U,2)
+ E  S DGSRV=$G(DGARR(2,DFN_",",.327,"I"))
  S DGCOM=$G(DGARR(2,DFN_",",.5294,"I")) ;Combat To Date
  S DGGULF=$G(DGARR(2,DFN_",",.322012,"I")) ;Persian Gulf To Date
  S DGSOM=$G(DGARR(2,DFN_",",.322018,"I")) ;Somalia To Date

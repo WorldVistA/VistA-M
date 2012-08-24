@@ -1,0 +1,215 @@
+TIUP171P ; SLC/JMH - Post install for TIU*1.0*171 [12/7/04 8:19am]
+ ;;1.0;TEXT INTEGRATION UTILITIES;**171**;Jun 20,1997
+ D ENV
+ Q
+POST ;
+ N TIUFPRIV S TIUFPRIV=1
+ D ENV
+ I $G(XPDQUIT)=2
+ W !
+ N TIUQ,X,X1,X2
+ S TIUQ=0
+ K ^TMP("TIUP171",$J)
+ S X1=DT,X2=90 D C^%DTC
+ S ^XTMP("TIUP171",0)=X_"^"_DT
+ F NUM=1:1:21 D  Q:+TIUQ
+ . N TIUDA
+ . ;set data array
+ . I '$$SETDATA(NUM) S TIUQ="1^SETDATA^"_NUM Q
+ . ;check if patch already installed this one
+ . I $$ALREADY(NUM) W NUM,":" D UPDATE(NUM) Q
+ . ;get new ddef ien
+ . I '$$CREATE(NUM) S TIUQ="1^CREATE^"_NUM Q
+ . ;file data
+ . I '$$FILE(NUM) S TIUQ="1^FILE^"_NUM Q
+ . ;add item to parent class
+ . I '$$ADDITEM(NUM) S TIUQ="1^ADDITEM^"_NUM Q
+POSTX ;
+ I +TIUQ D MESSAGE(TIUQ)
+ K ^TMP("TIUP171",$J)
+ W "...DONE"
+ Q
+ALREADY(NUM) ;
+ N NAME,IEN
+ S NAME=^TMP("TIUP171",$J,NUM,"DATA",.01)
+ S IEN=$O(^TIU(8925.1,"B",NAME,0))
+ I 'IEN Q 0
+ I $D(^XTMP("TIUP171",IEN)) Q 1
+ Q 0
+MESSAGE(TIUQ) ;
+ N CNT,NUM,LINE
+ S CNT="",NUM=$P(TIUQ,U,3)
+ S LINE=$P($T(DATA+NUM),";;",2,99)
+ W !!,"Error while creating Document Definition"
+ W !,"    ",$P(LINE,U)
+ W !!,$G(^TMP("TIUP171",$J,"ERROR"))
+ W !!,"The Document Definitions that were already created by this "
+ W !,"  patch will remain on your system.  You will need to"
+ W !,"  resolve the above error(s) and reinstall the patch to"
+ W !,"  get the remaining Document Definitions."
+ Q
+SETDATA(NUM) ;
+ N LINE,PIEN
+ S LINE=$P($T(DATA+NUM),";;",2,99)
+ I '$D(LINE) Q 0
+ S ^TMP("TIUP171",$J,NUM,"DATA",.01)=$P(LINE,U,1)
+ S ^TMP("TIUP171",$J,NUM,"DATA",.02)=$P(LINE,U,2)
+ S ^TMP("TIUP171",$J,NUM,"DATA",.03)=$P(LINE,U,4)
+ S ^TMP("TIUP171",$J,NUM,"DATA",.04)=$P(LINE,U,5)
+ S ^TMP("TIUP171",$J,NUM,"DATA",.06)="CLINICAL COORDINATOR"
+ S ^TMP("TIUP171",$J,NUM,"DATA",.07)="ACTIVE"
+ S ^TMP("TIUP171",$J,NUM,"DATA",.13)="YES"
+ I $P(LINE,U,5)="O" D
+ . N CODE S CODE=$P(LINE,U,6)
+ . S ^TMP("TIUP171",$J,NUM,"DATA",9)=$TR(CODE,"#","^")
+ I $P(LINE,U,5)'="O" D
+ . S ^TMP("TIUP171",$J,NUM,"ITEM",4)=$P(LINE,U,7)
+ I +$$PARENT(NUM)=0 D  Q 0
+ . N PARENT,TYPE
+ . S TYPE="DOCUMENT CLASS"
+ . I NUM=1 S TYPE="CLASS"
+ . S PARENT=$P(LINE,U,3)
+ . S ^TMP("TIUP171",$J,"ERROR")="Could not locate "_PARENT_" "_TYPE_" while attempting to create Document Definition."
+ Q 1
+CREATE(NUM) ;
+ N DIC,DLAYGO,DA,X,Y
+ S DIC="^TIU(8925.1,",DLAYGO=8925.1
+ S DIC(0)="LX",X=^TMP("TIUP171",$J,NUM,"DATA",.01)
+ S DIC("S")="I $P(^(0),U,4)="_""""_^TMP("TIUP171",$J,NUM,"DATA",.04)_""""
+ D ^DIC
+ I $P($G(Y),U,3)'=1 D  Q 0
+ . S ^TMP("TIUP171",$J,"ERROR")="Could not create the Document Definition.  There could be another entry with the same name that already exists."
+ S ^TMP("TIUP171",$J,NUM,"TIUDA")=+Y
+ S ^XTMP("TIUP171",+Y)=""
+ Q 1
+FILE(NUM) ;
+ N TIUFPRIV,FDA,TIUDA,ERROR
+ K ^TMP("DIERR",$J)
+ S TIUDA=$G(^TMP("TIUP171",$J,NUM,"TIUDA"))
+ S TIUFPRIV=1
+ M FDA(8925.1,TIUDA_",")=^TMP("TIUP171",$J,NUM,"DATA")
+ D FILE^DIE("TE","FDA","ERROR")
+ I $D(ERROR) D  Q 0
+ . S ^TMP("TIUP171",$J,"ERROR")="Could not file the Document Definition. Fileman error message: "_$G(ERROR("DIERR",1))
+ Q 1
+ADDITEM(NUM) ;
+ N DA,DIC,DLAYGO,X,TIUDA,TIUFISC,Y,TIUFPRIV,DIE,DR
+ I '$D(^TMP("TIUP171",$J,NUM,"PARENT")) Q 1
+ S TIUFPRIV=1
+ S DA(1)=^TMP("TIUP171",$J,NUM,"PARENT")
+ S DIC="^TIU(8925.1,"_DA(1)_",10,",DIC(0)="LX"
+ S DLAYGO=8925.14
+ S X=^TMP("TIUP171",$J,NUM,"DATA",.01)
+ S TIUDA=^TMP("TIUP171",$J,NUM,"TIUDA")
+ S TIUFISC=TIUDA
+ D ^DIC
+ I Y'>0!($P(Y,U,3)'=1) D  Q 0
+ . S ^TMP("TIUP171",$J,"ERROR")="Could not add the item parent."
+ I $D(^TMP("TIUP171",$J,NUM,"ITEM",4)) D
+ . N SUB,ROOT,IENS,FDA
+ . S SUB=$O(^TIU(8925.1,DA(1),10,"B",TIUDA,""))
+ . S IENS=SUB_","_DA(1)
+ . S ROOT(8925.14,IENS,4)=^TMP("TIUP171",$J,NUM,"ITEM",4)
+ . S FDA="ROOT"
+ . D FILE^DIE("ET",FDA)
+ Q 1
+PARENT(NUM) ;
+ N NAME,PIEN
+ S LINE=$P($T(DATA+NUM),";;",2,99)
+ S NAME=$P(LINE,U,3)
+ I NAME="" Q -1
+ S PIEN=$O(^TIU(8925.1,"B",NAME,""))
+ S ^TMP("TIUP171",$J,NUM,"PARENT")=PIEN
+ Q PIEN
+ROLLBACK ;
+ N TIUIEN
+ S TIUIEN=""
+ F  S TIUIEN=$O(^XTMP("TIUP171",TIUIEN),-1) Q:'TIUIEN  D
+ . D ITEMRB(TIUIEN)
+ . S DIK="^TIU(8925.1,",DA=TIUIEN
+ . D ^DIK
+ . K ^XTMP("TIUP171",TIUIEN)
+ Q
+ITEMRB(TIUDA) ;
+ N DA,DIK
+ S DA(1)=$O(^TIU(8925.1,"AD",TIUDA,""))
+ Q:'DA(1)
+ S DA=$O(^TIU(8925.1,DA(1),10,"B",TIUDA,""))
+ Q:'DA
+ S DIK="^TIU(8925.1,"_DA(1)_",10,"
+ D ^DIK
+ Q
+ENV ;
+ N CNT,NUM,X,X1,X2
+ K ^TMP("TIUP171",$J)
+ S X1=DT,X2=90 D C^%DTC
+ S ^XTMP("TIUP171",0)=X_"^"_DT
+ S CNT=0
+ ;check for the ASU Class "CLINICAL COORDINATOR"
+ I $O(^USR(8930,"B","CLINICAL COORDINATOR",""))="" D
+ . S CNT=CNT+1
+ . S ^TMP("TIUP171",$J,"ENV",CNT)="Cannot Find the CLINICAL COORDINATOR User Class"
+ ;check for the Class "PROGRESS NOTES"
+ I $O(^TIU(8925.1,"B","PROGRESS NOTES",""))="" D
+ . S CNT=CNT+1
+ . S ^TMP("TIUP171",$J,"ENV",CNT)="Cannot Find the PROGRESS NOTES Document Definition CLASS"
+ ;look for duplicates of entries this patch will add
+ F NUM=1:1:21 D
+ . N LINE,NAME,DA
+ . S DA=""
+ . S LINE=$P($T(DATA+NUM),";;",2,99)
+ . S NAME=$P(LINE,U,1)
+ . F  S DA=$O(^TIU(8925.1,"B",NAME,DA)) Q:'DA  D
+ . . I $D(^XTMP("TIUP171",DA)) Q
+ . . I $P(LINE,U,5)=$P($G(^TIU(8925.1,DA,0)),U,4) D
+ . . . I $P($G(^TIU(8925.1,DA,0)),U,13) S ^XTMP("TIUP171",DA)="" Q
+ . . . S CNT=CNT+1
+ . . . S ^TMP("TIUP171",$J,"ENV",CNT)="A Doc. Definition of type "_$P(LINE,U,5)_" named "_NAME_" already exists."
+ I $D(^TMP("TIUP171",$J,"ENV")) D
+ . S XPDQUIT=2
+ . W !!,"ENVIRONMENTAL CHECK - PROBLEMS REPORT FOR TIU*1*171"
+ . W !,"========================================================"
+ . W !!,"Patch TIU*1*171 cannot complete installation due to the following issue(s):",!
+ . N DA
+ . S DA=""
+ . F  S DA=$O(^TMP("TIUP171",$J,"ENV",DA)) Q:'DA  D
+ . . W !,^TMP("TIUP171",$J,"ENV",DA)
+ . W !!,"These issues must be addressed before the patch can be installed."
+ . W !!,"Please share this report with the Clinical Applications Coordinator"
+ . W !,"responsible for the TIU application so that he/she can make the"
+ . W !,"necessary corrections."
+ I '$D(^TMP("TIUP171",$J,"ENV")) W !!,"Environmental Check Results:  No Problems"
+ K ^TMP("TIUP171",$J)
+ Q
+UPDATE(NUM) ;
+ N DA,NAME
+ S NAME=^TMP("TIUP171",$J,NUM,"DATA",.01)
+ S DA=$O(^TIU(8925.1,"B",NAME,0))
+ I 'DA Q
+ N DIE,DR
+ S DIE=8925.1,DR=".03///"_$G(^TMP("TIUP171",$J,NUM,"DATA",.03)) D ^DIE
+ W " ",DA," UPDATED "_$G(^TMP("TIUP171",$J,NUM,"DATA",.03)),!
+ Q
+DATA ;
+ ;;SCI OUTCOMES^SCIO^PROGRESS NOTES^SCI OUTCOMES^DC^^SCI-OUTCOMES
+ ;;SCI FUNCTIONAL INDEPENDENCE MEASURE^SCIF^SCI OUTCOMES^SCI FUNCTIONAL INDEPENDENCE MEASURE^DOC^^SCI FIM
+ ;;SCI GENERAL NOTE^SCIG^SCI OUTCOMES^SCI GENERAL NOTE^DOC^^SCI General Note
+ ;;SCI CRAIG HANDICAP ASSESSMENT&REPORTING TECHNIQUE-SHORT FORM^SCIC^SCI OUTCOMES^SCI CRAIG HANDICAP ASSESSMENT&REPORTING TECHNIQUE-SHORT FORM^DOC^^SCI CHARTSF
+ ;;SCI DIENER SATISFACTION WITH LIFE SCALE^SCIS^SCI OUTCOMES^SCI DIENER SATISFACTION WITH LIFE SCALE^DOC^^SCI Diener SWLS
+ ;;SCI BOWEL CARE DATE CERTIFIED^BCDC^^SCI BOWEL CARE DATE CERTIFIED^O^S X=$$BCDC#SPNOBJ(DFN)
+ ;;SCI BOWEL CARE PROVIDER^BCP^^SCI BOWEL CARE PROVIDER^O^S X=$$BCPROV#SPNOBJ(DFN)
+ ;;SCI BOWEL CARE REIMBURSEMENT^BCR^^SCI BOWEL CARE REIMBURSEMENT^O^S X=$$BCREIMB#SPNOBJ(DFN)
+ ;;SCI ENROLLMENT PRIORITY^ENPR^^SCI ENROLLMENT PRIORITY^O^S X=$$EP#SPNOBJ(DFN)
+ ;;SCI ETIOLOGY^ETIO^^SCI ETIOLOGY^O^S X=$$EN#SPNETOBJ(DFN)
+ ;;SCI EXTENT OF SCI^ESCI^^SCI EXTENT OF SCI^O^S X=$$EXTNT#SPNOBJ(DFN)
+ ;;SCI LAST ANNUAL EVAL OFFERED^LAEO^^SCI LAST ANNUAL EVAL OFFERED^O^S X=$$LOFF#SPNOBJ(DFN)
+ ;;SCI LAST ANNUAL EVAL RECEIVED^LAER^^SCI LAST ANNUAL EVAL RECEIVED^O^S X=$$LREC#SPNOBJ(DFN)
+ ;;SCI MARITAL STATUS^MARS^^SCI MARITAL STATUS^O^S X=$$MAR#SPNOBJ(DFN)
+ ;;SCI MULTIPLE SCLEROSIS SUB TYPE^MSST^^SCI MULTIPLE SCLEROSIS SUB TYPE^O^S X=$$MSSUBT#SPNOBJ(DFN)
+ ;;SCI PRIMARY CARE PROVIDER^PCP^^SCI PRIMARY CARE PROVIDER^O^S X=$$PCPROV#SPNOBJ(DFN)
+ ;;SCI REGISTRATION STATUS^REGS^^SCI REGISTRATION STATUS^O^S X=$$RSTAT#SPNOBJ(DFN)
+ ;;SCI REMARKS^RMKS^^SCI REMARKS^O^S X=$$REMARKS#SPNOBJ(DFN)
+ ;;SCI SCD COORDINATOR^SCRD^^SCI SCD COORDINATOR^O^S X=$$SCDCOOR#SPNOBJ(DFN)
+ ;;SCI LEVEL^SLEV^^SCI LEVEL^O^S X=$$SCILEV#SPNOBJ(DFN)
+ ;;SCI VA SCI STATUS^VAST^^SCI VA SCI STATUS^O^S X=$$VASCI#SPNOBJ(DFN)
+ Q

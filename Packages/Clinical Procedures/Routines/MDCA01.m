@@ -1,13 +1,13 @@
-MDCA01 ;HINES OIFO/DP/BJ - HL7 Build Admit/Visit Message (A01);15-AUG-2007
- ;;1.0;CLINICAL PROCEDURES;**16**;Apr 01, 2004;Build 280
+MDCA01 ;HINES OIFO/DP/BJ/TJ - HL7 Build Admit/Visit Message (A01);15-AUG-2007
+ ;;1.0;CLINICAL PROCEDURES;**16,12**;Apr 01, 2004;Build 318
  ; Per VHA Directive 2004-038, this routine should not be modified.
  ;
 VALID ;;VDEF HL7 MESSAGE BUILDER
  Q
  ;
-EN(EVIEN,KEY,VFLAG,OUT,MSHP) ;
+EN(KEY,VFLAG,OUT,MSHP) ;
  ;
- ; Inputs: EVIEN = IEN of message in file 577
+ ; Inputs:
  ;         KEY - IEN of file to create message from
  ;         VFLAG - "V" for VistA HL7 destination
  ;         OUT - target array, passed by reference
@@ -18,5 +18,6 @@ EN(EVIEN,KEY,VFLAG,OUT,MSHP) ;
  ;                 "GM" - output in ^TMP("HLS",$J)
  ;         Part 2: No longer used        ;
  ;
- Q $$BLDMSG^MDCADT(EVIEN,KEY,VFLAG,.OUT,MSHP,"A01")
+ ;
+ Q $$BLDMSG^MDCADT(KEY,VFLAG,.OUT,MSHP,"A01")
  ;

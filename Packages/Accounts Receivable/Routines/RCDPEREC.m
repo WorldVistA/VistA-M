@@ -1,5 +1,5 @@
 RCDPEREC ;ALB/TMK/KML/PJH - RECONCILIATION REPORT FOR EDI LOCKBOX FMS DOCS  ; 8/2/10 4:17pm
- ;;4.5;Accounts Receivable;**208,244,269**;Mar 20, 1995;Build 113
+ ;;4.5;Accounts Receivable;**208,244,269,283**;Mar 20, 1995;Build 8
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; Entrypoint for producing the report
@@ -94,7 +94,8 @@ EFTDEP(RCD,RCSTOP,RCPG) ;
  S RCSTOP=$$NEWPG(.RCPG) Q:RCSTOP
  I $Y+7>IOSL W !! S RCSTOP=$$NEWPG(.RCPG) Q:RCSTOP
  W:'$P(RCPG,U,2) !!
- W !,$E($$FMTE^XLFDT($P(Z,U,2),"2D")_$J("",8),1,8),"  ",$E(+$G(^TMP($J,"RCDEP",RCD,"EFT"))_$J("",6),1,6),"  ",$E($P(Z,U)_$J("",6),1,6),"  ",$J($P(Z,U,3),13,2),"  ",$E($S($P(Z,U,6):$$FMTE^XLFDT($P(Z,U,6),"2D"),1:"UNPOSTED")_$J("",8),1,8)
+ ; PRCA*4.5*283 - Change $E 'TO' position from 6 to 9 to allow for 9 digit DEP #'s
+ W !,$E($$FMTE^XLFDT($P(Z,U,2),"2D")_$J("",8),1,8),"  ",$E(+$G(^TMP($J,"RCDEP",RCD,"EFT"))_$J("",6),1,6),"  ",$E($P(Z,U)_$J("",9),1,9),"  ",$J($P(Z,U,3),13,2),"  ",$E($S($P(Z,U,6):$$FMTE^XLFDT($P(Z,U,6),"2D"),1:"UNPOSTED")_$J("",8),1,8)
  W !,?5,$E($P(Z0,U)_$J("",20),1,20),"  ",$P(Z0,U,2)
  Q
  ;
@@ -125,7 +126,8 @@ HDR1(RCPG) ;Print report hdr
  I RCPG!($E(IOST,1,2)="C-") W @IOF,*13
  S RCPG=$G(RCPG)+1_U_1
  W !,"EDI LOCKBOX FUND 5287.4/8NZZ RECONCILIATION REPORT",?55,$$FMTE^XLFDT(DT,2),?70,"Page: ",+RCPG
- W !!,"DEP DATE  ENTRY#  DEP #   TOTAL DEP AMT  POST DT   RECEIPT #",!,?5,"CR DOCUMENT           CR DOC STATUS"
+ ; PRCA*4.5*283 - Move TOTAL DEP AMT to right 3 space (27 to 30) to allow for 9 digit DEP #'s
+ W !!,"DEP DATE  ENTRY#  DEP #      TOTAL DEP AMT  POST DT   RECEIPT #",!,?5,"CR DOCUMENT           CR DOC STATUS"
  W !,?3,"EFT #   MATCHED TO  PAYER NAME                      PAYER ID            ",!,?13,"TRACE #"
  ; HIPAA 5010 - put receipt # on a separate line to accomodate the increased length of the TRACE # 
  W !,?20,"RECEIPT #"

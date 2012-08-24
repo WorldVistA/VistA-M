@@ -1,5 +1,5 @@
 IBCCC ;ALB/AAS - CANCEL AND CLONE A BILL ;25-JAN-90
- ;;2.0;INTEGRATED BILLING;**80,109,106,51,320,433,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**80,109,106,51,320,433,432,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRCC
@@ -50,7 +50,7 @@ STEP3 ;
  S PRCASV("SER")=$P($G(^IBE(350.9,1,1)),"^",14)
  S PRCASV("SITE")=$P($$SITE^VASITE,"^",3),IBNWBL="",PRCASV("ARCRD")=$G(IBCNCRD)
  ; IA#386 & 1992  If user came from CRD option, need to pass old bill # and claim ien, as well as new iteration number
- I $G(IBCNCRD)=1 S PRCASV("ARREC")=IBBCF,PRCASV("ARBIL")=PRCASV("SITE")_"-"_$P(IBITN,"-"),PRCASV("ARITN")=PRCASV("SITE")_"-"_IBITN
+ I $G(IBCNCRD)=1 D CRD^IBCC(IBBCF) S PRCASV("ARREC")=IBBCF,PRCASV("ARBIL")=PRCASV("SITE")_"-"_$P(IBITN,"-"),PRCASV("ARITN")=PRCASV("SITE")_"-"_IBITN
  W:$G(IBSILENT)="" !,"Passing bill to Accounts Receivable Module..." D SETUP^PRCASVC3 I $S($P(PRCASV("ARREC"),"^")=-1:1,$P(PRCASV("ARBIL"),"^")=-1:1,1:0) W:$G(IBSILENT)="" *7,"  ",$P(PRCASV("ARREC"),"^",2),$P(PRCASV("ARBIL"),"^",2) G END
  S IBIDS(.01)=$P(PRCASV("ARBIL"),"-",2),IBIDS(.17)=$S($D(IBIDS(.17)):IBIDS(.17),1:PRCASV("ARREC"))
  I '$G(IBCE("EDI")) W !,"Billing Record #",IBIDS(.01)," being established for '",VADM(1),"'..." S IBIDS(.02)=DFN,IBHV("IBIFN")=$S($G(IBIFN):IBIFN,1:$G(IBIDS(.15)))

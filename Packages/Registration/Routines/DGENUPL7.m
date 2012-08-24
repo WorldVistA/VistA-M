@@ -1,5 +1,5 @@
-DGENUPL7 ;ISA/KWP/CKN/TMK,TDM - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ; 6/18/08 12:41pm
- ;;5.3;REGISTRATION;**232,367,397,417,379,431,513,628,673,653,742,688**;Aug 13,1993;Build 29
+DGENUPL7 ;ISA/KWP/CKN/TMK,TDM,LBD - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ; 8/1/11 5:07pm
+ ;;5.3;REGISTRATION;**232,367,397,417,379,431,513,628,673,653,742,688,797**;Aug 13,1993;Build 24
  ;Phase II split from DGENUPL
 Z11(MSGIEN,MSGID,CURLINE,DFN,ERRCOUNT) ;
  ;Description:  This is used to process a single ORU~Z11 or ORF~Z11 msg. 
@@ -15,7 +15,7 @@ Z11(MSGIEN,MSGID,CURLINE,DFN,ERRCOUNT) ;
  ;  CURLINE - upon leaving the procedure this parameter should be set to the end of the current message. (pass by reference)
  ;  ERRCOUNT - set to count of messages that were not processed due to errors encountered  (pass by reference)
  ;
- N DGELG,DGENR,DGPAT,DGCDIS,DGOEIF,ERROR,ERRMSG,MSGS,DGELGSUB,DGENUPLD,DGCON
+ N DGELG,DGENR,DGPAT,DGCDIS,DGOEIF,ERROR,ERRMSG,MSGS,DGELGSUB,DGENUPLD,DGCON,DGNMSE
  N DGNEWVAL,DIV,SUB,OLDELG,OLDPAT,OLDDCDIS,OLDEIF,DGSEC,OLDSEC,DGNTR,DGMST,DGPHINC
  ;
  ;some process is killing these HL7 variables, so need to protect them
@@ -29,7 +29,7 @@ Z11(MSGIEN,MSGID,CURLINE,DFN,ERRCOUNT) ;
  ;
  ;drops out of block on error
  D
- .Q:'$$PARSE^DGENUPL1(MSGIEN,MSGID,.CURLINE,.ERRCOUNT,.DGPAT,.DGELG,.DGENR,.DGCDIS,.DGOEIF,.DGSEC,.DGNTR,.DGMST)
+ .Q:'$$PARSE^DGENUPL1(MSGIEN,MSGID,.CURLINE,.ERRCOUNT,.DGPAT,.DGELG,.DGENR,.DGCDIS,.DGOEIF,.DGSEC,.DGNTR,.DGMST,.DGNMSE)
  .D GETLOCKS^DGENUPL5(DFN)
  .;
  .;Used by cross-references to determine if an upload is in progress.
@@ -105,6 +105,9 @@ Z11(MSGIEN,MSGID,CURLINE,DFN,ERRCOUNT) ;
  .I '$D(DGOEIF) S DGOEIF("COUNT")=0
  .;Call PIMS api to file OEF/OIF data.
  .I $D(DGOEIF) D OEIFUPD^DGCLAPI1(DFN,.DGOEIF)
+ .;
+ .;File the Military Service Episode (MSE) data (DG*5.3*797)
+ .I $D(DGNMSE) D UPDMSE^DGMSEUTL(DFN,.DGNMSE)
  .;
  .;if the current enrollment is a local then log patient for transmission
  .I $$SOURCE^DGENA(DFN)=1!$G(DGPHINC) K DGENUPLD,DGPHINC D EVENT^IVMPLOG(DFN)

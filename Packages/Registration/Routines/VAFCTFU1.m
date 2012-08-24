@@ -1,5 +1,5 @@
-VAFCTFU1 ;BHM/RGY-Utilities for the Treating Facility file 391.91, CONTINUED ; 7/27/09 6:16pm
- ;;5.3;Registration;**261,392,448,449,800**;Aug 13, 1993;Build 4
+VAFCTFU1 ;BHM/RGY-Utilities for the Treating Facility file 391.91, CONTINUED ; 5/23/12 12:51pm
+ ;;5.3;Registration;**261,392,448,449,800,856**;Aug 13, 1993;Build 5
 TFL(LIST,DFN) ;for dfn get list of treating facilities
  NEW X,ICN,DA,DR,VAFCTFU1,DIC,DIQ,VAFC
  S X="MPIF001" X ^%ZOSF("TEST") I '$T S LIST(1)="-1^MPI Not Installed" Q
@@ -59,14 +59,25 @@ QUERYTF(PAT,ARY,INDX) ;a query for Treating Facility.
  ;  *** If no data is found the array will not be populated and
  ;  a 1^error description will be returned.
  ;
- N PDFN,VAFCER,LP,CTR
+ N PDFN,VAFCER,LP,CTR,ZTFIEN,ZDLT,ZTDLT
  I '$G(PAT)!('$D(ARY)) S VAFCER="1^Parameter missing." G QUERYTFQ
  S VAFCER=0,CTR=0,INDX=$G(INDX)
  S X="MPIF001" X ^%ZOSF("TEST") I '$T G QUERYTFQ
  S PDFN=$$GETDFN^MPIF001(PAT)
  I PDFN<0 S VAFCER="1^No patient DFN." G QUERYTFQ
  ; determine the index to $O through, based on the value of INDX
- I 'INDX F LP=0:0 S LP=$O(^DGCN(391.91,"APAT",PDFN,LP)) Q:'LP  S TFIEN=$O(^(LP,"")) D SET(TFIEN,ARY,.CTR)
+ ;I 'INDX F LP=0:0 S LP=$O(^DGCN(391.91,"APAT",PDFN,LP)) Q:'LP  S TFIEN=$O(^(LP,"")) D SET(TFIEN,ARY,.CTR)
+ ;**856 - MVI 1371 (ckn)
+ ;Now that Treating Facility file can have multiple entries for
+ ;one site, enhanced the code to loop through all TFIENs for each SITE
+ ;and return the record which have latest Date Last Treated. If none
+ ;of the entries have DLT populated, return the first record for site.
+ I 'INDX F LP=0:0 S LP=$O(^DGCN(391.91,"APAT",PDFN,LP)) Q:'LP  D
+ .S ZTDLT=0,ZTFIEN=$O(^DGCN(391.91,"APAT",PDFN,LP,"")) Q:'ZTFIEN
+ .S TFIEN=0 F  S TFIEN=$O(^DGCN(391.91,"APAT",PDFN,LP,TFIEN)) Q:'TFIEN  D
+ ..S ZDLT=$P(^DGCN(391.91,TFIEN,0),"^",3) ;Date last treated
+ ..I ZDLT>ZTDLT S ZTDLT=ZDLT,ZTFIEN=TFIEN
+ .D SET(ZTFIEN,ARY,.CTR)
  I INDX S LP=0 F  S LP=$O(^DGCN(391.91,"AEVN",PDFN,LP)) Q:'LP  D
  .; please note the following: the AEVN xref is subscripted by pat. dfn
  .; event reason ptr, and the ien of the TFL file.  It is possible

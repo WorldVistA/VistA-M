@@ -1,5 +1,5 @@
-VPRD ;SLC/MKB - Serve VistA data as XML via RPC ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;;Sep 01, 2011;Build 12
+VPRD ;SLC/MKB -- Serve VistA data as XML via RPC ;8/2/11  15:29
+ ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -31,7 +31,7 @@ GET(VPR,DFN,TYPE,START,STOP,MAX,ID,FILTER) ; -- Return search results as XML in 
  ;
  ; extract data
  N VPRTYPE,VPRP,VPRHDR,VPRTAG,VPRTN
- S VPRTYPE=TYPE D ADD("<results version='1.0' timeZone='"_$$TZ^XLFDT_"' >")
+ S VPRTYPE=TYPE D ADD("<results version='1.1' timeZone='"_$$TZ^XLFDT_"' >")
  F VPRP=1:1:$L(VPRTYPE,";") S VPRTAG=$P(VPRTYPE,";",VPRP) I $L(VPRTAG) D
  . S VPRTN="EN^"_$$RTN(.VPRTAG) Q:'$L($T(@VPRTN))  ;D ERR(2) Q
  . D ADD("<"_VPRTAG) S VPRHDR=VPRI,VPRTOTL=0
@@ -48,16 +48,23 @@ RTN(X) ; -- Return name of VPRDxxxx routine for clinical domain X
  I X["accession"    S Y="VPRDLRA",X="accessions"
  I X["allerg"       S Y="VPRDGMRA",X="reactions"
  I X["appointment"  S Y="VPRDSDAM",X="appointments"
+ I X["clinicalProc" S Y="VPRDMC",X="clinicalProcedures"
  I X["consult"      S Y="VPRDGMRC",X="consults"
  I X["demograph"    S Y="VPRDPT",X="demographics"
  I X["document"     S Y="VPRDTIU",X="documents"
  I X["factor"       S Y="VPRDPXHF",X="healthFactors"
  I X["flag"         S Y="VPRDGPF",X="flags"
  I X["immunization" S Y="VPRDPXIM",X="immunizations"
+ I X["skin"         S Y="VPRDPXSK",X="skinTests"
+ I X?1"exam".E      S Y="VPRDPXAM",X="exams"
+ I X["educat"       S Y="VPRDPXED",X="educationTopics"
+ I X["insur"        S Y="VPRDIB",X="insurancePolicies"
+ I X["polic"        S Y="VPRDIB",X="insurancePolicies"
  I X["lab"          S Y="VPRDLR",X="labs"
  I X["panel"        S Y="VPRDLRO",X="panels"
  I X["med"          S Y="VPRDPS",X="meds"
- I X["rx"           S Y="VPRDPSO",X="meds"
+ I X["pharm"        S Y="VPRDPSOR",X="meds"
+ I X["observ"       S Y="VPRDMDC",X="observations"
  I X["order"        S Y="VPRDOR",X="orders"
  I X["patient"      S Y="VPRDPT",X="demographics"
  I X["problem"      S Y="VPRDGMPL",X="problems"
@@ -79,7 +86,7 @@ TAG(X) ; -- return plural name for group tags
  Q Y
  ;
 ALL() ; -- return string for all types of data
- Q "demographics;reactions;problems;vitals;labs;meds;immunizations;visits;appointments;documents;procedures;consults;flags;factors"
+ Q "demographics;reactions;problems;vitals;labs;meds;immunizations;observation;visits;appointments;documents;procedures;consults;flags;factors;skinTests;exams;education;insurance"
  ;
 ERR(X,VAL) ; -- return error message
  N MSG  S MSG="Error"
@@ -132,5 +139,5 @@ VUID(IEN,FILE) ; -- Return VUID for item
  Q $$GET1^DIQ(FILE,IEN_",",99.99)
  ;
 VERSION(RET) ; -- Return current version of data extracts
- S RET="1.0"
+ S RET="1.01"
  Q

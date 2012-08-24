@@ -1,5 +1,5 @@
-PSBCSUTL ;BIRMINGHAM/TEJ- BCMA-HSC COVER SHEET UTILITIES ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**16,13,38,32,50,60**;Mar 2004;Build 12
+PSBCSUTL ;BIRMINGHAM/TEJ- BCMA-HSC COVER SHEET UTILITIES ;7/20/11 11:09am
+ ;;3.0;BAR CODE MED ADMIN;**16,13,38,32,50,60,58**;Mar 2004;Build 37
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -10,6 +10,11 @@ PSBCSUTL ;BIRMINGHAM/TEJ- BCMA-HSC COVER SHEET UTILITIES ;Mar 2004
  ; $$FMADD^XLFDT/10103
  ; $$GET1^DIQ/2056
  ; EN1^GMVDCEXT/4251
+ ; GETPROVL^PSGSICH1/5653
+ ; INTRDIC^PSGSICH1/5654
+ ;
+ ;*58 - add 30th piece to Results for Override/Intervention flag 1/0
+ ;
 RPC(RESULTS,DFN,EXPWIN) ;
  K RESULTS,^TMP("PSB",$J),^TMP("PSJ",$J)
  S PSBXWIN=$G(EXPWIN,24)
@@ -87,6 +92,10 @@ RPC(RESULTS,DFN,EXPWIN) ;
  .S $P(PSBREC,U,26)=PSBOSP  ;OrdStpDt/Tm
  .S $P(PSBREC,U,27)=$$LASTG($P(PSBREC,U,1),$P(PSBREC,U,15))
  .S $P(PSBREC,U,28)=$S((PSBONX["U")&('PSBPB):1,PSBPB:2,(PSBONX["V")&'PSBPB:3,1:"")
+ .;*58 determine if override exists, send 1/0 (true/false)
+ .N PSBARR D GETPROVL^PSGSICH1(DFN,PSBONX,.PSBARR)
+ .I $O(PSBARR(""))="" D INTRDIC^PSGSICH1(DFN,PSBONX,.PSBARR,2)
+ .S $P(PSBREC,U,29)=$S($O(PSBARR(""))]"":1,1:0)
  .;get all Admn(s) - DD info.
  .S (PSBDDS,PSBSOLS,PSBADDS,PSBFLAG)="0"
  .;PSB*3*60 adds additional checks to ensure an expired order is within the coversheet time parameter and an "END" is only added to the temp global after an order is added

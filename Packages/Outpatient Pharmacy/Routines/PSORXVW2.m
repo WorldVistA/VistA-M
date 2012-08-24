@@ -1,5 +1,5 @@
-PSORXVW2 ;ISC-BIRM/PDW - view cmop activity logs ;08 Dec 1999 12:48 PM
- ;;7.0;OUTPATIENT PHARMACY;**33,71,117,152,148**;DEC 1997
+PSORXVW2 ;ISC-BIRM/PDW - view cmop activity logs ; 4/13/12 2:54pm
+ ;;7.0;OUTPATIENT PHARMACY;**33,71,117,152,148,367,361**;DEC 1997;Build 8
  ; External Referrence to file # 550.2 granted by DBIA 2231
  ;External reference to ^PS(50.607 supported by DBIA 2221
  ;External reference to ^PS(51.2 supported by DBIA 2226
@@ -8,15 +8,23 @@ PSORXVW2 ;ISC-BIRM/PDW - view cmop activity logs ;08 Dec 1999 12:48 PM
  ;get data from event multiple
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" "
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="CMOP Event Log:",IEN=IEN+1
- S ^TMP("PSOAL",$J,IEN,0)="Date/Time             Rx Ref  TRN-Order       Stat             Comments",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
+ S ^TMP("PSOAL",$J,IEN,0)="Date/Time     Rx Ref  TRN-Order     Stat       Comments",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
  F PSXA=0:0 S PSXA=$O(^PSRX(DA,4,PSXA)) Q:'PSXA  S PSX4=^(PSXA,0) D FIX D
- .S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$$DATE(DA,$P(PSX4,"^",3))_"         "_$S('PSXFIL:"Orig",1:"Ref "_$G(PSXFIL))_"    "_$G(PSXBREF)
- .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_"            "_$G(PSXT)_"    "_$S($G(PSXTST)=3:$E($P($G(PSXCAN),"^"),1,35),$G(PSXNDC)'="":"NDC: "_PSXNDC,1:"")
- . I PSXCAR="",PSXID="" Q
- . N X S X="Carrier: "_$E(PSXCAR,1,21)
- . S X=$$SETSTR^VALM1("Pkg ID: ",X,32,8)
- . S X=X_PSXID
- . S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=X
+ . S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$$DATE(DA,$P(PSX4,"^",3))_" "_$S('PSXFIL:"Orig",1:"Ref "_$G(PSXFIL))_"  "_$G(PSXBREF)
+ . S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_"      "_$G(PSXT)_"  "_$S($G(PSXTST)=3:$E($P($G(PSXCAN),"^"),1,35),$G(PSXNDC)'="":"NDC: "_PSXNDC,1:"")
+ . I PSXCAR'=""!(PSXID'="") D
+ . . N X S X="Carrier: "_$E(PSXCAR,1,21)
+ . . S X=$$SETSTR^VALM1("Pkg ID: ",X,32,8)
+ . . S X=X_PSXID
+ . . S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=X
+ . ; FDA Medication Guide
+ . N FDAMGDOC S FDAMGDOC=$G(^PSRX(DA,4,PSXA,"FDA"))
+ . I FDAMGDOC'="" D
+ . . S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="FDA Med Guide: "_$E(FDAMGDOC,1,61)
+ . . I $L(FDAMGDOC)>61 D
+ . . . F  Q:$E(FDAMGDOC,62,999)=""  D
+ . . . . S FDAMGDOC=$E(FDAMGDOC,62,999),IEN=IEN+1
+ . . . . S ^TMP("PSOAL",$J,IEN,0)=$E(FDAMGDOC,1,61)
  D:$O(^PSRX(DA,5,0))
  .S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" "
  .S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="CMOP Lot#/Expiration Date Log:",IEN=IEN+1
@@ -100,7 +108,7 @@ DOSE1 ;
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="              *Route: "_$S($P(DOSE,"^",7):$P(^PS(51.2,$P(DOSE,"^",7),0),"^"),1:"")
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="           *Schedule: "_$P(DOSE,"^",8)
  I $P(DOSE,"^",5)]"" S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="           *Duration: "_$P(DOSE,"^",5)_" ("_$S($P(DOSE,"^",5)["M":"MINUTES",$P(DOSE,"^",5)["H":"HOURS",$P(DOSE,"^",5)["L":"MONTHS",$P(DOSE,"^",5)["W":"WEEKS",1:"DAYS")_")"
- I $P(DOSE,"^",6)]"" S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="        *Conjunction: "_$S($P(DOSE,"^",6)="A":"AND",$P(DOSE,"^",6)="T":"THEN",$P(DOSE,"^",6)="E":"EXCEPT",1:"")
+ I $P(DOSE,"^",6)]"" S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="        *Conjunction: "_$S($P(DOSE,"^",6)="A":"AND",$P(DOSE,"^",6)="T":"THEN",$P(DOSE,"^",6)="X":"EXCEPT",1:"")
  Q
  ;
 DATE(RX,RFL) ;

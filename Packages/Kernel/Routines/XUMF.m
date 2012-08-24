@@ -1,9 +1,11 @@
 XUMF ;OIFO-OAK/RAM - XUMF API's;04/15/02
- ;;8.0;KERNEL;**218,335,416**;Jul 10, 1995;Build 5
+ ;;8.0;KERNEL;**218,335,416,555**;Jul 10, 1995;Build 3
  ;
  Q
  ;
 IEN(IFN,CDSYS,ID) ; -- Internal Entry Number
+ ;
+ I IFN=4 N X S X=$O(^DIC(4,"D",ID,0)) Q $S(X:X,1:"0^not found")
  ;
  N IEN,ROOT
  ;

@@ -1,5 +1,5 @@
-DGCVRPT ;ALB/PJR - Unsupported CV End Dates Report;  ; 6/10/04 12:15pm
- ;;5.3;Registration;**564,731,792**; Aug 13,1993;Build 4
+DGCVRPT ;ALB/PJR,LBD - Unsupported CV End Dates Report;  ; 6/16/09 10:53am
+ ;;5.3;Registration;**564,731,792,797**; Aug 13,1993;Build 24
  ;
 EN ; Called from DG UNSUPPORTED CV END DATES RPT option
  N DGSRT
@@ -64,7 +64,7 @@ CHK ; Calculate CV End Date, check MSE data is supporting it
  S CALC=$$CVDATE(DFN,.DGARRY)
  ; If OEF/OIF date's "to date" is used for the CV End date, (not the
  ;   last SSD), include it as an inconsistency on this report
- I $G(DGARRY("OEF/OIF")),DGARRY("OEF/OIF")>$G(DGARRY(2,DFN_",",.327,"I")) S CALC=""
+ I $G(DGARRY("OEF/OIF")),DGARRY("OEF/OIF")>$G(DGARRY("SSD")) S CALC=""
  Q
  ;
 SCH S CALC=$$CALCCV^DGCV(DFN,SSD) Q
@@ -143,18 +143,21 @@ CVDATE(DFN,DGARR,DGERR) ; Returns all values for calculating the CV End date
  ;   AND
  ; the calculated CV End Date as the result of the function call
  ;
- N N,DATE,SSD,X,Y
+ N N,DATE,X,Y
  S DATE=""
  D GETS^DIQ(2,DFN_",",".327;.322012;.322018;.322021;.5294","I","DGARR","DGERR")
  S DGARR("OEF/OIF")=$P($$LAST^DGENOEIF(DFN),U)
- S SSD=$G(DGARR(2,DFN_",",.327,"I"))
+ ; If there's MSE data in new MSE sub-file #2.3216 get last
+ ; Service Separation Date (DG*5.3*797)
+ I $D(^DPT(DFN,.3216)) S DGARR("SSD")=$P($$LAST^DGMSEUTL(DFN),U,2)
+ E  S DGARR("SSD")=$G(DGARR(2,DFN_",",.327,"I"))
  ; If OEF/OIF date later than last serv sep dt, use to date of OEF/OIF
- I $G(DGARR("OEF/OIF")),DGARR("OEF/OIF")>SSD S DATE=DGARR("OEF/OIF") G CVDATEQ
- I SSD D
- . Q:$E(SSD,6,7)="00"!(SSD'>2981111)
- . I $G(DGARR("OEF/OIF")) S DATE=SSD Q
+ I $G(DGARR("OEF/OIF")),DGARR("OEF/OIF")>DGARR("SSD") S DATE=DGARR("OEF/OIF") G CVDATEQ
+ I DGARR("SSD") D
+ . Q:$E(DGARR("SSD"),6,7)="00"!(DGARR("SSD")'>2981111)
+ . I $G(DGARR("OEF/OIF")) S DATE=DGARR("SSD") Q
  . ; If conflict dates exist for any of the above listed fields, use SSD 
- . S N=0 F  S N=$O(DGARR(2,DFN_",",N)) Q:'N  I N'=.327,$G(DGARR(2,DFN_",",N,"I"))>2981111 S DATE=SSD Q
+ . S N=0 F  S N=$O(DGARR(2,DFN_",",N)) Q:'N  I N'=.327,$G(DGARR(2,DFN_",",N,"I"))>2981111 S DATE=DGARR("SSD") Q
  ;
 CVDATEQ Q $S(DATE:$$CALCCV^DGCV(DFN,DATE),1:"")
  ;

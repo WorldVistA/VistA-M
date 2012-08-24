@@ -1,5 +1,5 @@
-PSODRG ;IHS/DSD/JCM - ORDER ENTRY DRUG SELECTION ;03/30/93
- ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324,251,375,387**;DEC 1997;Build 13
+PSODRG ;IHS/DSD/JCM - ORDER ENTRY DRUG SELECTION ; 2/16/12 12:50pm
+ ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324,251,375,387,398**;DEC 1997;Build 10
  ;Reference ^PSDRUG supported by DBIA 221
  ;Reference ^PS(50.7 supported by DBIA 2223
  ;Reference to PSSDIN supported by DBIA 3166
@@ -182,10 +182,18 @@ NOALRGY ;
  .D DUPINV^PSORXI
  W $C(7),!,"There is no allergy assessment on file for this patient."
  W !,"You will be prompted to intervene if you continue with this prescription"
+ N DUOUT,DTOUT,RXIEN,RXSTA               ;*398
  S DIR("A")="Do you want to Continue?: ",DIR("B")="N" D ^DIR
- I 'Y D  Q
+ I 'Y!($D(DUOUT))!($D(DTOUT)) D  Q       ;*398 - Exit/Timeout
  .I $D(PSONV) S PSZZQUIT=1 Q
  .S PSORX("DFLG")=1
+ .I '$O(PSCAN(0)) Q                      ;*398 - Array has Rx IEN
+ .I $G(REA)'="R" Q                       ;*398 - Reinstate only
+ .S RXIEN=+$G(PSCAN(RX)) I 'RXIEN Q      ;*398 - Get Rx IEN
+ .S RXSTA=$$GET1^DIQ(52,RXIEN,100,"I")   ;*398 - Get status
+ .I RXSTA=12 Q                           ;*398 - Correct status
+ .S DIE="^PSRX(",DA=RXIEN,DR="100///12"  ;*398 - Discontinued
+ .D ^DIE                                 ;*398 - Update Rx file
  I $D(PSONV) S PSORX("INTERVENE")=0 D EN1^PSORXI(PSONV) Q
  D ^PSORXI
  Q

@@ -1,5 +1,5 @@
 FBCHEP ;AISC/DMK-ENTER PAYMENT FOR CONTRACT HOSPITAL ;8/18/2004
- ;;3.5;FEE BASIS;**4,61,77,82**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**4,61,77,82,122,108**;JAN 30, 1995;Build 115
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  S FBAAPTC="V",FBAAOUT=0
 RD K FBAAID,FBAAVID S FBRESUB="" D GETVET^FBAAUTL1 G:DFN']"" Q
@@ -16,12 +16,13 @@ EN583 ;Entry from 583 enter payment
  S DA=FBVEN D EN1^FBAAVD
  I $P($G(^FBAAV(FBVEN,"ADEL")),U)="Y" W !!,*7,"Vendor is flagged for Austin deletion!" G Q
  D SITEP^FBAAUTL G Q:FBPOP
+ S FBAAMPI=$P(FBSITE("FBNUM"),U,4)
  ;
-RDV S FBVE="" S:$D(^FBAAV(DA,"AMS")) FBVE=$P(^("AMS"),"^",2) S:$G(FBVE)'="Y" FBVE="N"
+RDV S FBVE="" S:$D(^FBAAV(FBVEN,"AMS")) FBVE=$P(^("AMS"),"^",2) S:$G(FBVE)'="Y" FBVE="N"
  I FBVE="Y" W *7,!!,"Vendor is listed as 'exempt from the pricer'." S DIR(0)="Y",DIR("A")="Do you wish to keep this invoice exempt from the pricer",DIR("B")="Yes" D ^DIR K DIR G Q:$D(DIRUT) S FBVE=$S(Y=1:"Y",1:"N")
  I $G(FBVE)'="Y",($P($G(^FBAAV(FBVEN,0)),"^",17)']"") W !!,*7,"Medicare ID Number is needed for this Vendor!" S DIE="^FBAAV(",DR=22 D ^DIE K DIE G Q:$D(DTOUT)!('$L(X))
  ;
-BAT S DIC="^FBAA(161.7,",DIC(0)="AEQMZ",DIC("S")="I $P(^(0),U,3)=""B9""&($P(^(0),U,5)=DUZ)&($P(^(0),U,15)=""Y"")&($G(^(""ST""))=""O"")" W ! D ^DIC K DIC
+BAT S DIC="^FBAA(161.7,",DIC(0)="AEQMZ",DIC("S")="I $P(^(0),U,3)=""B9""&($P(^(0),U,5)=DUZ)&($P(^(0),U,15)=""Y"")&($G(^(""ST""))=""O"")&(FBAAMPI>$P(^(0),U,10))" W ! D ^DIC K DIC
  G Q:X="^"!(X=""),BAT:Y<0 S FBAABE=+Y,FBY(0)=Y(0),Z1=$P(FBY(0),"^",11),BO=$P(FBY(0),"^",2),Z2=$P(FBY(0),"^",10),FBSTN=$P(FBY(0),"^",8),FBCHOB=FBSTN_"-"_$P(FBY(0),"^",2),FBEXMPT=$P(FBY(0),"^",18) S FBAAOUT=0 D CHK I FBAAOUT K Y,Y(0),FBAABE G BAT
  I FBI7078["FB7078(",BO'=$P($P(FBZ(0),U),".") W !,*7,"Obligation number on batch does not match 1358.",!,"Obligation number on batch must be ",$P($P(FBZ(0),U),"."),".",! G BAT
  S FBINC=$S($P(FBY(0),"^",10)="":0,1:$P(FBY(0),"^",10)),FBLN=$S($P(FBY(0),"^",11)="":0,1:$P(FBY(0),"^",11))
@@ -38,7 +39,7 @@ RIN D GETINDT^FBAACO1 G Q:$G(FBAAOUT)
  ; compute default Covered Days
  S FBCDAYS=$$FMDIFF^XLFDT(FBAAEDT,FBAABDT)
  I FBCDAYS=0 S FBCDAYS=1
- S FBAAMM=$S(FBAAPTC="R":"",1:1) D PPT^FBAACO1()
+ S FBAAMM=$S(FBAAPTC="R":"",$D(FB583):"",1:1) D PPT^FBAACO1()
 DIC S DIC="^FBAAI(",DIC(0)="LQ",DLAYGO=162.5,X=FBAAIN D ^DIC G Q:Y<0
  S DA=+Y,DIE=DIC,DR="[FBCH ENTER PAYMENT]",DIE("NO^")=""
  D
@@ -47,15 +48,24 @@ DIC S DIC="^FBAAI(",DIC(0)="LQ",DLAYGO=162.5,X=FBAAIN D ^DIC G Q:Y<0
  D FILEADJ^FBCHFA(DA_",",.FBADJ)
  ; file remittance remarks
  D FILERR^FBCHFR(DA_",",.FBRRMK)
+ ; file Line Item Rendering providers
+ D FILERP^FBUTL8(DA_",",.FBPROV) ;FB*3.5*122
  K DIE,DIC,D,DA,DR
- S $P(FBY(0),"^",10)=FBINC+1,$P(FBY(0),"^",11)=FBLN+1,$P(FBY(0),"^",18)=FBEXMPT,^FBAA(161.7,FBAABE,0)=FBY(0) D:'$D(FBNOPTF) PTF G Q:$D(FB583),RD
+ S $P(FBY(0),"^",10)=FBINC+1,$P(FBY(0),"^",11)=FBLN+1,$P(FBY(0),"^",18)=FBEXMPT,^FBAA(161.7,FBAABE,0)=FBY(0) ;D:'$D(FBNOPTF) PTF G Q:$D(FB583),RD
+ D
+ . N FBX
+ . S FBX=FBAAMPI-(FBINC+1)
+ . I FBX<6 W !,$C(7),"Warning, you can only enter ",FBX," more invoices in this batch!",!
+ D:'$D(FBNOPTF) PTF
+ G Q:$D(FB583),RD
 OUT W !!,*7,?3,"Invoice number ",FBAAIN," has already been entered for this authorization.",!,?3,"Use the Contract Hospital 'Invoice Edit' option if needed.",!
  ;check if user wants to add a second invoice for this 7078
  W ! S DIR("A")="Want to add another invoice for this episode of care",DIR("B")="No",DIR(0)="Y" D ^DIR K DIR I Y S (FBNOPTF,FBRESUB)=1 G SETINV
 Q K BO,CNT,D,DA,DAT,DIC,DIE,DLAYGO,DR,FB7078,FBAABDT,FBAABE,FBAAEDT,FBAAID,FBAAIN,FBAAOUT,FBAAPTC,FBDX,FBTT,FBTYPE,FBVEN,FBVET,FBXX,FTP,I,J,FBK,PI,FBPOP,PTYPE,S,FBZ,Z1,FBI,FBPROG,FBRR,FBSW,FBPOV,FBPT,FBY,T,Y,Z1,Z2,ZZ,FBPSA,A,FBI7078
  K FBCHOB,FBAUT,FBSEQ,X,FBSITE,F,FBSTN,FBASSOC,FBLOC,DUOUT,PSA,FBCOUNTY,DFN,FBNOPTF,DIRUT,FBVE,FBAAOUT,FBEXMPT,FBAAPN,FBAMTC,FBDEL,FBINC,FBLN,FBRESUB
  K FBD1,FBFDC,FBMST,FBTTYPE,FB583
- K FBCSID,FBFPPSC,FBFPPSL,FBCDAYS,FBAMTP,FBADJ,FBRRMK
+ K FBCSID,FBFPPSC,FBFPPSL,FBCDAYS,FBAMTP,FBADJ,FBRRMK,FBAAMPI,FBV
+ D GETAUTHK^FBAAUTL1
  Q
 PTF I $G(FBVET),$G(FBI7078)["FB583" S:'$G(DFN) DFN=FBVET D PTFC^FBUTL6(DFN,$P(FBZ(0),"^",4))
  Q
@@ -74,3 +84,4 @@ OPEN W *7,!!,"This Invoice may not be added to Batch # ",+FBY(0),".",!,"***You m
  S DIR(0)="Y",DIR("A")="Do you want to open a new batch at this time",DIR("B")="Y" D ^DIR K DIR S:$D(DIRUT)!('Y) FBAAOUT=1 Q:FBAAOUT  D RCHOP^FBAAOB S FBEXMPT=FBVE D
  .S FBY(0)=$G(^FBAA(161.7,FBAABE,0)),Z1=$P(FBY(0),"^",11),BO=$P(FBY(0),"^",2),Z2=$P(FBY(0),"^",10),FBSTN=$P(FBY(0),"^",8),FBCHOB=FBSTN_"-"_$P(FBY(0),"^",2)
  Q
+IPAC ;

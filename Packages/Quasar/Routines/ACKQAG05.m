@@ -29,8 +29,8 @@ NEWMSG()  ;return entry in ^XMB(3.9
  ; requires DUZ, sets up XMDUZ, XMSUB
  ;outputs XMZ
  S XMSUB="AUDIOGRAM DATA TRANSMISSION",XMDUZ=DUZ
- S XMY("S.RMROES3@DDC.VA.GOV")=""
- ;S XMY("S.RMROES3@DDCTRN.VA.GOV")="" ;for testing
+ S XMY("S.RMROES3@DDC.DOMAIN.EXT")=""
+ ;S XMY("S.RMROES3@DDCTRN.DOMAIN.EXT")="" ;for testing
  D XMZ^XMA2 ;returns XMZ
  Q XMZ
  ;
@@ -60,8 +60,8 @@ STARTD(RESULT,DFN,IEN,ACKQSTNU,ACKQUSNM,ACKQUSSR) ;
  I $G(IEN),$D(^ACK(509850.9,IEN,0)) D  G ENDS ;local IEN not deleted
  .S ACKQER=$$ERRTEXT(10)
  S ACKQRMI=IEN ;10/5/05
- ;create stub and address to S.RMROES3@DDC.VA.GOV
- S (ACKQMSG,XMZ)=$$NEWMSG() ;returns XMZ addressed to S.RMROES3@DDC.VA.GOV
+ ;create stub and address to S.RMROES3@DDC.DOMAIN.EXT
+ S (ACKQMSG,XMZ)=$$NEWMSG() ;returns XMZ addressed to S.RMROES3@DDC.DOMAIN.EXT
  ;get data into array ACKQARR
  ;ACKQARR(1)=BGN^IEN^DFNNAME^DFNssn^err^bd^tester^Signdt^ex dt^vet^type^age^tt^cl#^retran dt^"D"
  S DFNNAME=$P($G(^DPT(DFN,0)),U,1)

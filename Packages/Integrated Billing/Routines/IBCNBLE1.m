@@ -1,5 +1,5 @@
 IBCNBLE1 ;DAOU/ESG - Ins Buffer, Expand Entry, con't ;25-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,435**;21-MAR-94;Build 27
+ ;;2.0;INTEGRATED BILLING;**184,271,416,435,467**;21-MAR-94;Build 11
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Can't be called from the top
@@ -33,6 +33,7 @@ BLD ; Continuation of Expand Entry list build procedure
  . S ERR=$$INSERROR^IBCNEUT3("B",IBBUFDA,1,.MSG)
  . ; If no errors, then remove the IIV Status
  . I 'ERR S ERR=$$SIDERR(IBBUFDA,$P(ERR,U,2))
+ . I 'ERR S ERR=$$PIDERR(IBBUFDA)
  . I 'ERR D CLEAR^IBCNEUT4(IBBUFDA,.EDITED)
  . ; If errors found, then update with the new IIV Status
  . I ERR D BUFF^IBCNEUT2(IBBUFDA,$P(ERR,U,1)) S EDITED=1
@@ -159,11 +160,20 @@ SIDERR(BUF,PIEN) ;
  N ERR,SID,APPIEN,SIDSTR,SIDREQ,SIDSSN
  S ERR=""
  S SID=$P($G(^IBA(355.33,BUF,60)),U,4)
- I SID]"" G SIDX ; Subscriber id is populated, further checking is moot
+ I SID]"" G SIDX  ; Subscriber id is populated, further checking is moot
  S APPIEN=$$PYRAPP^IBCNEUT5("IIV",PIEN)
  S SIDSTR=$G(^IBE(365.12,PIEN,1,APPIEN,0))
- S SIDREQ=$P(SIDSTR,U,8) I 'SIDREQ G SIDX ; if sub id is not req'd - ok
+ S SIDREQ=$P(SIDSTR,U,8) I 'SIDREQ G SIDX  ; if sub id is not req'd - ok
  S SIDSSN=$P(SIDSTR,U,9)
  I 'SIDSSN S ERR=18 ; if ssn cannot be used -> B15 status (IEN = 18)
 SIDX Q ERR
  ;
+PIDERR(BUF) ;
+ ; If patient is a dependent and patient id is missing return error
+ ; BUF - buffer ien
+ ;
+ N ERR,PREL
+ S ERR=""
+ S PREL=$P($G(^IBA(355.33,BUF,60)),U,14)
+ I PREL'=18,PREL'="",$P($G(^IBA(355.33,BUF,62)),U)="" S ERR=23
+ Q ERR

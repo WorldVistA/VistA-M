@@ -1,5 +1,5 @@
 PSSJSV ;BIR/CML3/WRT-SCHEDULE VALIDATION ;06/24/96
- ;;1.0;PHARMACY DATA MANAGEMENT;**20,38,56,59,110,121,143,149**;9/30/97;Build 7
+ ;;1.0;PHARMACY DATA MANAGEMENT;**20,38,56,59,110,121,143,149,146**;9/30/97;Build 34
  ;
  ; Reference to ^PS(51.15 is supported by DBIA #2132
  ; Reference to $$UP^XLFSTR(P1) is supported by DBIA #10104
@@ -24,12 +24,15 @@ DONE ;
  K:$D(X)[0 PSJX K D,DIC,Q,QX,SDW,SWD,X,X0,X1,X2,XT,Y,Z Q
  ;
 ENCHK ; admin times
+ N SCHED
  I $S($L($P(X,"-"))>4:1,$L(X)>119:1,$L(X)<2:1,X'>0:1,1:X'?.ANP) K X Q
  S X(1)=$P(X,"-") I X(1)'?2N,X(1)'?4N K X Q
  S X(1)=$L(X(1)) F X(2)=2:1:$L(X,"-") S X(3)=$P(X,"-",X(2)) I $S($L(X(3))'=X(1):1,X(3)>$S(X(1)=2:24,1:2400):1,1:X(3)'>$P(X,"-",X(2)-1)) K X Q
  Q:'$D(X)
  S X(1)=$L(X,"-")
- S IENS=$S($G(DA(1))]"":DA(1),1:DA)
+ S SCHED=$S($G(DA(1)):$$GET1^DIQ(52.61,+$G(DA)_","_DA(1),4),$G(DA):$$GET1^DIQ(52.6,+DA,4),1:"")
+ Q:(SCHED="")
+ S IENS=$O(^PS(51.1,"B",SCHED,0))
  S X(4)=$S($G(PSSJSE)&($G(PSSSCT)]""):PSSSCT,1:$$GET1^DIQ(51.1,IENS,5,"I"))
  I X(4)="D" D  Q  ;DOW schedules require at least one admin time
  . I X(1)>0 K:$D(X) X(1),X(2),X(3) Q

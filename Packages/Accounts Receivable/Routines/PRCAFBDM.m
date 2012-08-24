@@ -1,5 +1,5 @@
 PRCAFBDM ;WASH-ISC@ALTOONA,PA/CLH-Build MODIFIED FMS Billing Document ;9/16/94  12:11 PM
- ;;4.5;Accounts Receivable;**60,90,204,203,220,270**;Mar 20, 1995;Build 25
+ ;;4.5;Accounts Receivable;**60,90,204,203,220,270,275**;Mar 20, 1995;Build 72
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; PRCA*4.5*270 add CRD flag to send X record to FMS
@@ -30,7 +30,7 @@ EN(BILL,AMT,ADJTYP,PRCADJD,TN,ERR,CRD) ;Process NEW BILL to FMS
  .D DEL^RCFMFN02("B"_BILL)
  W !!,"Creating FMS Modified Billing Document..."
  N FMSDT S FMSDT=$$FMSDATE^RCBEUTRA(DT)
- ; PRCA*4.5*270 X record (corrected claim) does not need LIN and BDA section or amount, M still does
+ ; PRCA*4.5*275 X record (corrected claim) does not need LIN and BDA section or amount, M still does
  I $G(CRD)="" D
  .S ^TMP("PRCABD",$J,1)="BD2^"_$E(FMSDT,4,5)_U_$E(FMSDT,6,7)_U_$E(FMSDT,2,3)_"^^^^^^M^^^"_$J(AMT,0,2)_"^~"
  .S ^TMP("PRCABD",$J,2)="LIN^~"

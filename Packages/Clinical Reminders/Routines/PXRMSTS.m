@@ -1,5 +1,5 @@
-PXRMSTS ; SLC/PKR,AGP - Master File Server event handling routines. ;11/02/2009
- ;;2.0;CLINICAL REMINDERS;**12,17**;Feb 04, 2005;Build 102
+PXRMSTS ;SLC/PKR,AGP - Master File Server event handling routines. ;07/29/2010
+ ;;2.0;CLINICAL REMINDERS;**12,17,18**;Feb 04, 2005;Build 152
  ;==============================
 AERRMSG(EMSG,NL) ;Add the UPDATE^DIE error message.
  N ERRMSG,IND
@@ -245,7 +245,7 @@ EVDRVR ;Event driver for STS events.
  ... D DIALOG(FILENUM,GBL,FIEN,REPA,REPB,MAPACT,"DLG FIND",DLGUNMP,STATUS,.NL)
  ;
  ;Deliver the MailMan message.
-SEND D SEND^PXRMMSG("PXRMXMZ",SUBJECT)
+SEND D SEND^PXRMMSG("PXRMXMZ",SUBJECT,"",DUZ)
  K ^TMP($J,"DLG FIND"),^TMP($J,"FDATA"),^TMP($J,"PXRM DIALOGS"),^TMP("PXRMXMZ",$J),^XTMP(EVENT)
  Q
  ;

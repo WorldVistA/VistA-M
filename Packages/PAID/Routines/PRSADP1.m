@@ -1,5 +1,5 @@
 PRSADP1 ; HISC/REL,WIRMFO/JAH - Display Employee T&A Data ;AUG 07, 1997
- ;;4.0;PAID;**22,114**;Sep 21, 1995;Build 6
+ ;;4.0;PAID;**22,114,126**;Sep 21, 1995;Build 59
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  W:$E(IOST,1,2)="C-" @IOF W !?26,"VA TIME & ATTENDANCE SYSTEM"
  W !?23,"EMPLOYEE TIME AND ATTENDANCE DATA" D HDR
@@ -20,7 +20,7 @@ F1 ; Display Pay period for Certification
  I Y1="" S Y1=$S(TC=1:"Day Off",TC=2:"Day Tour",TC=3!(TC=4):"Intermittent",1:"")
  I " 1 3 4 "'[TC,$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,10)),"^",1)="" S Y2(1)="Unposted"
  I TC=3,$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,10)),"^",4)=1 S Y2(1)="Day Worked"
- W !?3,DTE S (L3,L4)=0 I Y1="",Y2="" S Y31="" G EX
+ W:'$D(PRSNTD) !?3,DTE S (L3,L4)=0 I Y1="",Y2="" S Y31="" G EX
  D S1
  Q
 S1 ; Set Schedule Array

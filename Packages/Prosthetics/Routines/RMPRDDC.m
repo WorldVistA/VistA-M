@@ -102,7 +102,7 @@ MAIN ;main entry point
  ;Send email to ddc with number of records processed
  S XMDUZ=.5
  S XMY("G.RMPR SERVER")=""
- S XMY("S.RMPRACKDALC@DDC.VA.GOV")=""
+ S XMY("S.RMPRACKDALC@DDC.DOMAIN.EXT")=""
  S XMSUB="Prosthetics - DALC Interface Summary NPNM #"_RMPRNPMN
  S RMPRMSGC=RMPRMSGC+1
  S RMPRMSG(RMPRMSGC)="Total Records Received: "_RMPRCNT

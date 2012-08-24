@@ -109,7 +109,7 @@ SMAIL ;
  .S ^TMP(ZZ,$J,3)="*** bad 'P' or 'P','A' x-refs or prescriptions ***"
  .S ^TMP(ZZ,$J,4)="*** associated with the wrong patient.         ***"
  .;S ^TMP(ZZ,$J,5)="**************************************************"
- S XMY(DUZ)="",XMY("G.PL2 PATCH TRACKING@FORUM.VA.GOV")=""
+ S XMY(DUZ)="",XMY("G.PL2 PATCH TRACKING@FORUM.DOMAIN.EXT")=""
  S XMSUB="PSO*7*69  - "_$P($$SITE^VASITE(),"^",2)
  S XMDUZ="Outpatient Pharmacy Patch 69"
  S XMTEXT="^TMP(ZZ,$J," D ^XMD K XMY,^TMP(ZZ,$J)

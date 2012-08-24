@@ -1,5 +1,5 @@
 PSOBINGO ;BHAM ISC/LC - BINGO BOARD OPTION DRIVER ;8/1/07 1:45pm
- ;;7.0;OUTPATIENT PHARMACY;**12,28,56,125,152,232,268,275,326**;DEC 1997;Build 11
+ ;;7.0;OUTPATIENT PHARMACY;**12,28,56,125,152,232,268,275,326,385**;DEC 1997;Build 27
  ;External Ref. to ^PS(55 is supp. by DBIA# 2228
  ;External Ref. to ^PSDRUG(, is supp. by DBIA# 221
  ;
@@ -125,7 +125,10 @@ ATICKIL ;Kill ATIC xref                                               PSO*232
  I $P(^PS(59.3,$P(^PS(52.11,DA,0),"^",3),0),"^",2)["T" D
  .K ^PS(52.11,"ATIC",+$P(^PS(52.11,DA,0),"^",3),+$P(^(0),"^",2),DA)
  Q
- ;
+SIGMSG ;Display signature message
+ W !,"*** This ePharmacy Rx requires a patient signature! ***",*7
+ K DIR S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR
+ Q
 END K %,ADA,ADFN,ADV,CNT,DA,DATE,DFN,DINUM,DLAYGO,DR,DTOUT,DUOUT,F1,FLAG,FLAG1,FLGG,JOES,LAST,NAM,NDFN,NIEN,NFLAG,NODE,NOPE,NM
  K PSODRF,ODA,P,PSOAP,RX0,TM,TM1,SDA,SSN,SSN1,RX0,TIC,TICK,TFLAG,VADM,X,Y,Z,Z1,Z2,Z3,Z4,ZDA,ZZZ,PL,PD,PA
  Q

@@ -1,5 +1,5 @@
-PSOHLDS4 ;BIR/PWC-Build HL7 Segments for Automated Interface ; 2/13/08 3:21pm
- ;;7.0;OUTPATIENT PHARMACY;**156,255,279**;DEC 1997;Build 9
+PSOHLDS4 ;BIR/PWC - Build HL7 Segments for Automated Interface ; 2/13/08 3:21pm
+ ;;7.0;OUTPATIENT PHARMACY;**156,255,279,385**;DEC 1997;Build 27
  ;HLFNC       supp. by DBIA 10106
  ;DIC(5       supp. by DBIA 10056
  ;EN^PSNPPIO  supp. by DBIA 3794
@@ -52,6 +52,7 @@ ORC(PSI) ;common order segment
  S $P(ORC,"|",16)=$S($G(RXPR(IRXN)):"PARTIAL",$G(RXFL(IRXN)):"REFILL",$G(RXRP(IRXN)):"REPRINT",1:"NEW")
  S $P(ORC,"|",17)=CLN_CS_CLN1_CS_"99PSC"
  S $P(ORC,"|",19)=$S(CSINER'="":CSINER_CS_CSINER1,1:"")
+ S $P(ORC,"|",20)=$S($$STATUS^PSOBPSUT(IRXN,$G(RXFL(IRXN)))]"":"VA5",1:"") ; Added ePharmacy indicator (VA5) BNT; PSO*7*385
  S $P(ORC,"|",21)=$P(SITE,"^",1)_CS_CS_$P(SITE,"^",6)
  S PSZIP=$P(SITE,"^",5),PSOHZIP=$S(PSZIP["-":PSZIP,1:$E(PSZIP,1,5)_$S($E(PSZIP,6,9)]"":"-"_$E(PSZIP,6,9),1:""))
  S $P(ORC,"|",22)=$P(SITE,"^",2)_CS_CS_$P(SITE,"^",7)_CS_$S($D(^DIC(5,+$P(SITE,"^",8),0)):$P(^(0),"^",2),1:"UKN")_CS_PSOHZIP

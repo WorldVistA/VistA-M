@@ -1,10 +1,12 @@
-VPRDPT ;SLC/MKB -- Patient demographics extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;;Sep 01, 2011;Build 12
+VPRDPT ;SLC/MKB -- Patient demographics extract ;8/11/11  15:29
+ ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
+ ; ^AUPNVSIT                     2028
  ; ^DGSL(38.1                     767
+ ; ^DIC(4                       10090
  ; ^DIC(31                        733
  ; ^DIC(42                  723,10039
  ; ^DPT               3581,5597,10035
@@ -119,17 +121,20 @@ FORMAT(X) ; -- enforce (xxx)xxx-xxxx phone format
  Q Y
 FAC ;-treating facilities [see FACLIST^ORWCIRN]
  N IFN S DFN=+$G(DFN) Q:DFN<1
- N VPRY,HOME,I,X,IEN
+ N VPRY,HOME,LAST,I,X,IEN
  I $L($T(TFL^VAFCTFU1)) D TFL^VAFCTFU1(.VPRY,DFN)
- I $P($G(VPRY(1)),U)<0 D  Q  ;not setup
- . S X=$$SITE^VASITE,PAT("facility",+X)=$P(X,U,3)_U_$P(X,U,2)
  S HOME=+$P($G(^DPT(DFN,"MPI")),U,3) ;home facility
+ I $P($G(VPRY(1)),U)<0 D  Q  ;not setup
+ . S X=$O(^AUPNVSIT("AA",DFN,0)),LAST=$S(X:9999999-$P(X,"."),1:"")
+ . S X=$$SITE^VASITE
+ . S PAT("facility",+X)=$P(X,U,3)_U_$P(X,U,2)_U_LAST_U_$$GET1^DIQ(4,+X_",",60)
  S I=0 F  S I=$O(VPRY(I)) Q:I<1  D
  . S X=VPRY(I) Q:$P(X,U)=""  ;unknown
  . S IEN=+$$IEN^XUAF4($P(X,U))
  . I +X=776!(+X=200) S $P(X,U,2)="DEPT. OF DEFENSE"
- . S PAT("facility",IEN)=$P(X,U,1,3) ;stn# ^ name ^ last date
- . I IEN=HOME S $P(PAT("facility",IEN),U,4)=1
+ . S PAT("facility",IEN)=$P(X,U,1,3) ;stn# ^ name ^ last date ^ VistA domain
+ . S $P(PAT("facility",IEN),U,4)=$$GET1^DIQ(4,IEN_",",60)
+ . I IEN=HOME S $P(PAT("facility",IEN),U,5)=1
  Q
  ;
 INPT ;-current inpt status data
@@ -172,7 +177,7 @@ XML(ITEM) ; -- Return patient data as XML in @VPR@(n)
  .... D ADD("</support>")
  ... I ATT="alias" S Y=Y_"fullName='"_$$ESC^VPRD(X)_$S(X[",":"' familyName='"_$$ESC^VPRD($P(X,","))_"' givenNames='"_$$ESC^VPRD($P(X,",",2,99)),1:"")_"' />" Q
  ... I ATT="flag" S Y=Y_"name='"_$$ESC^VPRD($P(X,U))_"' text='"_$$ESC^VPRD($P(X,U,2))_"' />" Q
- ... I ATT="facility" S Y=Y_"code='"_$P(X,U)_"' name='"_$$ESC^VPRD($P(X,U,2))_$S($P(X,U,3):"' latestDate='"_$P($P(X,U,3),"."),1:"")_$S($P(X,U,4):"' homeSite='1",1:"")_"' />" Q
+ ... I ATT="facility" S Y=Y_"code='"_$P(X,U)_"' name='"_$$ESC^VPRD($P(X,U,2))_"'"_$S($P(X,U,3):" latestDate='"_$P($P(X,U,3),".")_"'",1:"")_$S($L($P(X,U,4))>0:" domain='"_$P(X,U,4)_"'",1:"")_$S($P(X,U,5):" homeSite='1'",1:"")_" />" Q
  ... I ATT="disability" S Y=Y_"vaCode='"_I_"' printName='"_$$ESC^VPRD($P(X,U))_$S($P(X,U,3):"' sc='"_$P(X,U,3)_"' scPercent='"_$P(X,U,2),1:"")_"' />" Q
  ... S Y=Y_"value='"_$$ESC^VPRD(ITEM(ATT,I))_"' />"
  .. D ADD("</"_ID_">") S Y=""

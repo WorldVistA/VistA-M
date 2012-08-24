@@ -1,5 +1,5 @@
-PXRMCLST ; SLC/PJH - List Reminder Categories ;03/09/2000
- ;;2.0;CLINICAL REMINDERS;;Feb 04, 2005
+PXRMCLST ;SLC/PJH - List Reminder Categories ;08/25/2011
+ ;;2.0;CLINICAL REMINDERS;**18**;Feb 04, 2005;Build 152
  ;
  ;List all categories (for protocol PXRM SELECTION LIST)
  ;-------------------
@@ -167,7 +167,7 @@ UNIQUE(X,DA1,DA,RECORD) ;
  .Q:SUB=DA
  .S SEQ=$P($G(^PXRMD(811.7,DA1,RECORD,SUB,0)),U,2)
  .I SEQ'="" S TEMP(SEQ)=""
- I $D(TEMP(X)) W "  Sequence number already used " Q 0
+ I $D(TEMP(X)) D EN^DDIOL("Sequence number "_X_" already used") Q 0
  Q 1
  ;
 SET ;Setup all the variables

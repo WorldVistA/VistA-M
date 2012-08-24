@@ -137,7 +137,7 @@ CONFIRM(EASWEBID,EASAPP,EASXMZ) ;confirm receipt of web submission message to Fo
  ;send msg # from holding file record just in case current msg is a duplicate
  S ^TMP("1010EZRC",$J,3)="Site msg #: "_$G(ARRAY(712,EASAPP,.2,"I"))
  S XMSUB="1010EZ CONFIRMATION for SID "_EASWEBID,XMDUZ=.5
- S XMY("1010EZ.1010EZ@FORUM.VA.GOV")=""
+ S XMY("1010EZ.1010EZ@FORUM.DOMAIN.EXT")=""
  S XMTEXT="^TMP(""1010EZRC"",$J,"
  D ^XMD
  K ^TMP("1010EZRC",$J)

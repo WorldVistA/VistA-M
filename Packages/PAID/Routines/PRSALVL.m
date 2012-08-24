@@ -1,5 +1,5 @@
 PRSALVL ; HISC/REL-Display Leave Requests ;1/24/96  13:56
- ;;4.0;PAID;**9,114**;Sep 21, 1995;Build 6
+ ;;4.0;PAID;**9,114,127**;Sep 21, 1995;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 TK ; TimeKeeper Entry
  S PRSTLV=2 G TL
@@ -8,7 +8,7 @@ SUP ; Supervisor Entry
 PAY ; Payroll Entry
  S PRSTLV=7 G TL
 TL D ^PRSAUTL G:TLI<1 EX
- K DIC S DIC("A")="Select EMPLOYEE (or RETURN for all): ",DIC("S")="I $P(^(0),""^"",8)=TLE",DIC(0)="AEQM",DIC="^PRSPC(",D="ATL"_TLE W ! D IX^DIC S DFN=+Y K DIC
+ K DIC S DIC("A")="Select EMPLOYEE (or RETURN for all): ",DIC("S")="I $P(^(0),""^"",8)=TLE",DIC("W")="",DIC(0)="AEQM",DIC="^PRSPC(",D="ATL"_TLE W ! D IX^DIC S DFN=+Y K DIC  ;PRS*4*127
  G:$D(DTOUT) EX I DFN<1,X'="" G EX
 D1 K %DT S %DT="AEX",%DT("A")="Begin with Date: " W ! D ^%DT K %DT S:$D(DTOUT) Y=0 G:Y<1 EX S SDT=Y
  K %DT S %DT="AEX",%DT("A")="End with Date: " W ! D ^%DT K %DT S:$D(DTOUT) Y=0 G:Y<1 EX S EDT=Y

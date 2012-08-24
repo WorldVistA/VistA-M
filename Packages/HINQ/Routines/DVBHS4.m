@@ -1,5 +1,5 @@
-DVBHS4 ; ALB/JLU;Routine for HINQ screen 4 ;10/04/91
- ;;4.0;HINQ;**4,49**;03/25/92 
+DVBHS4 ; ALB/JLU/PJH;Routine for HINQ screen 4 ; 9/26/11 4:33pm
+ ;;4.0;HINQ;**4,49,62**;03/25/92;Build 17
  ;
  N Y
  K DVBX(1)
@@ -45,27 +45,74 @@ DVBHS4 ; ALB/JLU;Routine for HINQ screen 4 ;10/04/91
  I $D(DVBSN(4)) W ?69,DVBSN(4)
  I $D(DVBSCR) K DVBSCR D LINE W ! Q
  W !,?34,DVBON,"Patient File",DVBOFF
- D LINE
- W !,DVBON,"(1)",DVBOFF," Last episode"
- W !,DVBDIQ(2,DFN,.326,"E")
- W ?15,DVBDIQ(2,DFN,.327,"E")
- W ?34,$E(DVBDIQ(2,DFN,.325,"E"),1,30)
- W ?51,$E(DVBDIQ(2,DFN,.324,"E"),1,14)
- W ?67,$E(DVBDIQ(2,DFN,.328,"E"),1,10)
- W !,DVBON,"(2)",DVBOFF," NTL episode"
- W !,DVBDIQ(2,DFN,.3292,"E")
- W ?15,DVBDIQ(2,DFN,.3293,"E")
- W ?34,$E(DVBDIQ(2,DFN,.3291,"E"),1,30)
- W ?51,$E(DVBDIQ(2,DFN,.329,"E"),1,14)
- W ?67,$E(DVBDIQ(2,DFN,.3294,"E"),1,10)
- W !,DVBON,"(3)",DVBOFF," NNTL episode"
- W !,DVBDIQ(2,DFN,.3297,"E")
- W ?15,DVBDIQ(2,DFN,.3298,"E")
- W ?34,$E(DVBDIQ(2,DFN,.3296,"E"),1,30)
- W ?51,$E(DVBDIQ(2,DFN,.3295,"E"),1,14)
- W ?67,$E(DVBDIQ(2,DFN,.3299,"E"),1,10)
+ D LINE,MSE(DFN)
  W !,DVBON,"(4)",DVBOFF X DVBLIT1
  W ?4,"Per. of Ser.:",?18,$E(DVBDIQ(2,DFN,.323,"E"),1,25)
  Q
 LINE W !,"-------------------------------------------------------------------------------"
+ Q
+ ;
+ ;APIs added for MSDS (DVB*4*62)
+ ;------------------------------
+ ;
+MSE(DFN) ;Display episodes for [DVBHINQ PAT-HINQ COMP] template
+ ;
+ N ARRAY,MORE,SOURCE
+ ;If no data exists in .3216 nodes display old data
+ S MORE=0,SOURCE=.32 I $O(^DPT(DFN,.3216,"B",0)) S SOURCE=.3216
+ ;
+ ;Collect old data from .32
+ I SOURCE=.32 D OLD(DFN,.ARRAY)
+ ;Collect last three episodes from .3216 multiple
+ I SOURCE=.3216 D NEW(DFN,.ARRAY)
+ ;
+ ;Display MSE data
+ N BOS,COMP,DATA,DISCH,EODATE,IEN,RADATE,SERVN
+ S CNT=0
+ F  S CNT=$O(ARRAY(CNT)) Q:'CNT  D
+ .S DATA=$G(ARRAY(CNT)) Q:DATA=""
+ .S DISCH=$P(DATA,U,6) ;Discharge
+ .S:DISCH]"" DISCH=$P($G(^DIC(25,DISCH,0)),U)
+ .S BOS=$P(DATA,U,3) ;Branch
+ .S:BOS]"" BOS=$P($G(^DIC(23,BOS,0)),U)
+ .S RADATE=$P(DATA,U) ;Entry Date
+ .S RADATE=$$FMTE^XLFDT(RADATE)
+ .S EODATE=$P(DATA,U,2) ;Separation Date
+ .S EODATE=$$FMTE^XLFDT(EODATE)
+ .S SERVN=$P(DATA,U,5) ;Service Number
+ .I SOURCE=.32 W !,DVBON,"("_CNT_")",DVBOFF
+ .I SOURCE=.3216 W !,"<"_CNT_">"
+ .W $S(CNT=1:" Last",CNT=2:" NTL",1:" NNTL")_" episode"
+ .;Note that Service Component is not displayed
+ .W !,?1,RADATE,?15,EODATE,?34,BOS,?48,DISCH,?62,SERVN
+ .I CNT=3,MORE W !,?1,"<more episodes>"
+ Q
+ ;
+NEW(DFN,ARRAY) ;Check for new MSE format data
+ N CNT,SDAT
+ S CNT=0,SDAT="A"
+ F  S SDAT=$O(^DPT(DFN,.3216,"B",SDAT),-1) Q:'SDAT  D  Q:CNT>2
+ .S IEN=$O(^DPT(DFN,.3216,"B",SDAT,0)) Q:'IEN
+ .S DATA=$G(^DPT(DFN,.3216,IEN,0)) Q:DATA=""
+ .S CNT=CNT+1,ARRAY(CNT)=DATA
+ .I CNT=3,$O(^DPT(DFN,.3216,"B",SDAT),-1) S MORE=1
+ Q
+ ;
+OLD(DFN,ARRAY) ;Get old format VistA data
+ N DGRP,DGRPX,DGRPED,DGRPSD,DGRPBR,DGRPCO,DGRPSN,DGRPDI
+ S DGRP(.32)=$G(^DPT(DFN,.32)),DGRP(.3291)=$G(^DPT(DFN,.3291))
+ ;Last service episode (SL)
+ D EPISODE(1,4,8)
+ ;Next to last service episode (SNL)
+ Q:$P(DGRP(.32),"^",19)'="Y"  D EPISODE(2,9,13)
+ ;Prior episode (SNNL)
+ I $P(DGRP(.32),"^",20)="Y" D EPISODE(3,14,18)
+ Q
+ ;
+EPISODE(SUB,P1,P2) ;Get old VistA data and save
+ S DGRPX=$P(DGRP(.32),U,P1,P2),DGRPCO=$P(DGRP(.3291),U,SUB)
+ S DGRPDI=$P(DGRPX,U),DGRPBR=$P(DGRPX,U,2),DGRPED=$P(DGRPX,U,3)
+ S DGRPSD=$P(DGRPX,U,4),DGRPSN=$P(DGRPX,U,5)
+ ;Save in format of new .3216 multiple (no lock flag)
+ S ARRAY(SUB)=DGRPED_U_DGRPSD_U_DGRPBR_U_DGRPCO_U_DGRPSN_U_DGRPDI_U
  Q

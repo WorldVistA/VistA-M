@@ -1,5 +1,6 @@
 ALPBPPAT ;OIFO-DALLAS MW,SED,KC-PRINT 3-DAY MAR BCBU BACKUP REPORT FOR A SELECTED PATIENT ;01/01/03
- ;;3.0;BAR CODE MED ADMIN;**8**;Mar 2004
+ ;;3.0;BAR CODE MED ADMIN;**8,48,59**;Mar 2004;Build 15
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; 
  ; NOTE: this routine is designed for hard-copy output. 
  ;  Output is formatted for 132-column printing.
@@ -22,10 +23,10 @@ ALPBPPAT ;OIFO-DALLAS MW,SED,KC-PRINT 3-DAY MAR BCBU BACKUP REPORT FOR A SELECTE
  .S ALPBOTYP=Y
  .;
  .; print how many days MAR?...
- .S DIR(0)="NA^3:7"
+ .S DIR(0)="NA^1:7"
  .S DIR("A")="Print how many days MAR? "
  .S DIR("B")=$$DEFDAYS^ALPBUTL()
- .S DIR("?")="The default is shown; you may select 3 or 7."
+ .S DIR("?")="The default is shown; please select a number 1 to 7."
  .W ! D ^DIR K DIR
  .I $D(DIRUT) K ALPBOTYP,DIRUT,DTOUT,X,Y Q
  .S ALPBDAYS=+Y
@@ -86,50 +87,64 @@ DQ ; output entry point...
  K ALPBHDR
  ;
  ; loop through orders and sort by order status...
- S ALPBOIEN=0
+ N ALPBNOMEDS1,ALPBDRGNAME
+ S ALPBOIEN=0,ALPBNOMEDS1=1
  F  S ALPBOIEN=$O(^ALPB(53.7,ALPBIEN,2,ALPBOIEN)) Q:'ALPBOIEN  D
  .M ALPBDATA=^ALPB(53.7,ALPBIEN,2,ALPBOIEN)
- .; if report type is "C"urrent and stop date is less than
- .; report date, quit...
+ .; if report type is "C"urrent and stop date is less than report date then quit and if status contains 'on hold' do not print and quit...
  .I ALPBOTYP="C" D  Q:'$D(ALPBDATA)
+ ..I $$STAT^ALPBUTL1($E($P(ALPBDATA(0),U,3),1,2))["on hold" K ALPBDATA Q
  ..I $G(ALPBDATA(1))="" K ALPBDATA Q
  ..I $P(ALPBDATA(1),U,2)<ALPBRDAT K ALPBDATA
+ .S ALPBNOMEDS1=0
  .S ALPBORDN=$P(ALPBDATA(0),U)
  .S ALPBOCT=$P($G(ALPBDATA(3)),U,1)
  .S:$P($G(ALPBDATA(4)),U,3)["PRN" ALPBOCT=ALPBOCT_"P"
- .S ALPBOST=$$STAT2^ALPBUTL1($P($G(ALPBDATA(1),"XX"),U,3))
- .S ^TMP($J,ALPBOCT,ALPBOST,ALPBORDN)=ALPBOIEN
- .K ALPBDATA,ALPBOST,ALPBOCT
+ .;drug name being used for alpha-sorting medications within order types (unit dose, unit dose-PRN, intravenous, intravenous-PRN)
+ .S ALPBDRGNAME=$P($G(ALPBDATA(7,1,0)),U,2)
+ .; gets the medications order status based on the order status code
+ .S ALPBOST=$$STAT2^ALPBUTL1($P($P($G(ALPBDATA(0),"XX"),U,3),"~",1))
+ .S ^TMP($J,ALPBOCT,ALPBDRGNAME,ALPBOST,ALPBORDN)=ALPBOIEN
+ .K ALPBDATA,ALPBOST,ALPBOCT,ALPBDRGNAME
  ;
  ; loop through the sorted orders...
  S ALPBOCT=""
  F  S ALPBOCT=$O(^TMP($J,ALPBOCT)) Q:ALPBOCT=""  D
- .S ALPBOST=""
- .F  S ALPBOST=$O(^TMP($J,ALPBOCT,ALPBOST)) Q:ALPBOST=""  D
- ..S ALPBORDN=""
- ..F  S ALPBORDN=$O(^TMP($J,ALPBOCT,ALPBOST,ALPBORDN)) Q:ALPBORDN=""  D
- ...S ALPBOIEN=^TMP($J,ALPBOCT,ALPBOST,ALPBORDN)
- ...M ALPBDATA=^ALPB(53.7,ALPBIEN,2,ALPBOIEN)
- ...W !
- ...D F132^ALPBFRM1(.ALPBDATA,ALPBDAYS,ALPBMLOG,.ALPBFORM,ALPBIEN)
- ...; paginate?...
- ...I $Y+ALPBFORM(0)=IOSL!($Y+ALPBFORM(0)>IOSL) D
- ....W @IOF
- ....S ALPBPG=ALPBPG+1
- ....D HDR^ALPBFRMU(.ALPBPT,ALPBPG,.ALPBHDR)
- ....F I=1:1:ALPBHDR(0) W !,ALPBHDR(I)
+ .S ALPBDRGNAME=""
+ .F  S ALPBDRGNAME=$O(^TMP($J,ALPBOCT,ALPBDRGNAME)) Q:ALPBDRGNAME=""  D
+ ..S ALPBOST=""
+ ..F  S ALPBOST=$O(^TMP($J,ALPBOCT,ALPBDRGNAME,ALPBOST)) Q:ALPBOST=""  D
+ ...S ALPBORDN=""
+ ...F  S ALPBORDN=$O(^TMP($J,ALPBOCT,ALPBDRGNAME,ALPBOST,ALPBORDN)) Q:ALPBORDN=""  D
+ ....S ALPBOIEN=^TMP($J,ALPBOCT,ALPBDRGNAME,ALPBOST,ALPBORDN)
+ ....M ALPBDATA=^ALPB(53.7,ALPBIEN,2,ALPBOIEN)
  ....W !
- ....K ALPBHDR
- ...F I=1:1:ALPBFORM(0) W !,ALPBFORM(I)
- ...K ALPBDATA,ALPBFORM
- ..K ALPBORDN
- .K ALPBOST
+ ....D F132^ALPBFRM1(.ALPBDATA,ALPBDAYS,ALPBMLOG,.ALPBFORM,ALPBIEN)
+ ....; paginate?...
+ ....I $Y+ALPBFORM(0)=IOSL!($Y+ALPBFORM(0)>IOSL) D
+ .....W @IOF
+ .....S ALPBPG=ALPBPG+1
+ .....D HDR^ALPBFRMU(.ALPBPT,ALPBPG,.ALPBHDR)
+ .....F I=1:1:ALPBHDR(0) W !,ALPBHDR(I)
+ .....W !
+ .....K ALPBHDR
+ ....F I=1:1:ALPBFORM(0) W !,ALPBFORM(I)
+ ....K ALPBDATA,ALPBFORM
+ ...K ALPBORDN
+ ..K ALPBOST
+ .K ALPBDRGNAME
  K ALPBOCT
+ ; 
+ ;notification message displays one line below header info if patient has no med orders when the report is generated
+ I ALPBNOMEDS1 D
+ .W !!,"No Active Medication Orders were reported to the Contingency at the time the MAR was printed "
+ .;additional blank lines added to seperate footer from header and allow room for notes
+ .F  Q:$Y>=(IOSL-6)  W !
  ;
  ; print footer at end of this patient's record...
  D FOOT^ALPBFRMU
  ;
- K ALPBDAYS,ALPBMLOG,ALPBOIEN,ALPBORDN,ALPBOST,ALPBOTYP,ALPBPG,ALPBPT,ALPBRDAT,^TMP($J)
+ K ALPBDAYS,ALPBMLOG,ALPBOIEN,ALPBORDN,ALPBOST,ALPBOTYP,ALPBPG,ALPBPT,ALPBRDAT,^TMP($J),ALPBNOMEDS1
  I $D(ZTQUEUED) S ZTREQ="@"
  ;
  ; write form feed at end if output device is a printer...

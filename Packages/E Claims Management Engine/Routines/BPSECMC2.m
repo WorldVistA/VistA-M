@@ -1,5 +1,5 @@
 BPSECMC2 ;BHAM ISC/SAB - ENTER/EDIT OUTPATIENT SITE PARAMETERS ;09/18/92 9:11
- ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5**;JUN 2004;Build 45
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; CHOP - Final processing prio to submitting a claim to HL7;
@@ -9,18 +9,11 @@ BPSECMC2 ;BHAM ISC/SAB - ENTER/EDIT OUTPATIENT SITE PARAMETERS ;09/18/92 9:11
  ;   IEN59    - BPS Transactions
 CHOP(HLA,CLAIMIEN,IEN59) ;
  ;
- N TCNT,CNT,RNLNGTH,TRANID,V2DTG,RTN,MSG
- N BPSRESLT,HL
+ N TCNT,CNT,RNLNGTH,TRANID,V2DTG,RTN,MSG,BPSRESLT
  S CNT=0,RTN=$T(+0)
  ;
  ; Crash proofing - Need to put better error handling in
  I '$D(HLA)!'$L($G(CLAIMIEN)) D ERROR^BPSOSU(RTN,IEN59,511,"Invalid Claim Data") Q
- ;
- ; Initialize HL7 environment
- D INIT^HLFNC2("BPS ECMECL1 NTE",.HL)
- ;
- ; Handle failure if variables were not initialized
- I $G(HL) D ERROR^BPSOSU(RTN,IEN59,512,"Call to INIT^HLFNC2 failed") Q
  ;
  ; Determine run length of the transmission & pad with zeroes
  S RNLNGTH=0
@@ -53,10 +46,13 @@ CHOP(HLA,CLAIMIEN,IEN59) ;
  ; Change status to 60 and call HL7 to transmit a single message
  D SETSTAT^BPSOSU(IEN59,60)
  D GENERATE^HLMA("BPS ECMESV1 NTE","LM",1,.BPSRESLT,"")
+ S BPSRESLT=$G(BPSRESLT)
+ D LOG^BPSOSL(IEN59,RTN_"-HL7 Return Value.  BPSRESLT: "_BPSRESLT)
+ S $P(^BPST(IEN59,0),U,3)=$P(BPSRESLT,U)
  ;
  ; If error, log error and quit
- I +BPSRESLT'>0 D  Q
- . S MSG="HL7 error for "_$P($G(^BPSC(CLAIMIEN,0)),U)_".  Error message-"_$P(BPSRESLT,U,3)_"-Error code: "_+$P(BPSRESLT,U,2)
+ I +$P(BPSRESLT,U,2)>0 D  Q
+ . S MSG="HL7 returned an error for "_$P($G(^BPSC(CLAIMIEN,0)),U)_". Error code: "_+$P(BPSRESLT,U,2)_". Error message: "_$P(BPSRESLT,U,3)
  . D ERROR^BPSOSU(RTN,IEN59,601,MSG)
  ;
  ; If successful, log message
@@ -112,13 +108,12 @@ STORESP ;
  D LOG^BPSOSL(IEN59,$T(+0)_"-Parsing Response "_$P($G(^BPSC(CLAIMIEN,0)),U))
  ;
  ; Parse the response and store it into BPS Responses
- ; If the testing tool is on, BPSECMPS will need variable TRANTYPE as well
- D PARSE^BPSECMPS(TMSG,CLAIMIEN,.RESPIEN)
+ S RESPIEN=$$PARSE^BPSECMPS(TMSG,CLAIMIEN,IEN59,TRANTYPE)
  ;
  ; Log that parsing is done
  ; Needed for Turn-Around Stats - Do NOT delete/alter!!
  D LOG^BPSOSL(IEN59,$T(+0)_"-Response stored "_$P($G(^BPSC(CLAIMIEN,0)),U))
  ;
  ; Call BPSOSQL for final processing
- D ONE^BPSOSQL(CLAIMIEN,$G(RESPIEN))
+ D ONE^BPSOSQL(CLAIMIEN,RESPIEN)
  Q

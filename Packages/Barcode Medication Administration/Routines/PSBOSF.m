@@ -1,5 +1,5 @@
 PSBOSF ;BIRMINGHAM/EFC-UNABLE TO SCAN DETAIL REPORT ; 29 Aug 2008  11:33 PM
- ;;3.0;BAR CODE MED ADMIN;**28**;Mar 2004;Build 9
+ ;;3.0;BAR CODE MED ADMIN;**28,52**;Mar 2004;Build 28
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -20,7 +20,7 @@ EN ; UTS Report Entry Point - Report OPTION used by PSB UNABLE TO SCAN (UTS) key
  S PSBSRTBY=$G(PSBRPT(.52)) S:$G(PSBSRTBY)="" PSBSRTBY="2,,"
  D NOW^%DTC S Y=% D DD^%DT S PSBDTTM=Y
  ; Kill the scratch sort file.
- K ^XTMP("PSBO",$J,"PSBLIST"),PSBLIST
+ K ^XTMP("PSBO",$J,"PSBLIST"),^TMP("PSBSF",$J),PSBLIST ;PSB*3*52 will now store report data in ^TMP("PSBSF",$J) instead of PSBOUTP array
  S (PSBLNTOT,PSBTOT,PSBX1)="",PSBPGNUM=0
  S PSBX1=$$FMADD^XLFDT(PSBDTST,,,,-.1)
  ; Get the records from the MSF UTS log by date (PSBX1) and IEN (PSBX2).
@@ -47,7 +47,7 @@ EN ; UTS Report Entry Point - Report OPTION used by PSB UNABLE TO SCAN (UTS) key
  S PSBHDR=$E(PSBHDR,1,($L(PSBHDR)-2))
  ; Add the record to the scratch sort file.
  D BLDRPT
- I PSBTOT=0 S PSBOUTP(0,14)="W !!,""<<<< NO DOCUMENTED BCMA UNABLE TO SCAN EVENTS FOR THIS DATE RANGE >>>>"",!!"
+ I PSBTOT=0 S ^TMP("PSBSF",$J,0,14)="W !!,""<<<< NO DOCUMENTED BCMA UNABLE TO SCAN EVENTS FOR THIS DATE RANGE >>>>"",!!"
  ;
  ; Send the report.
  D WRTRPT
@@ -59,14 +59,14 @@ EN ; UTS Report Entry Point - Report OPTION used by PSB UNABLE TO SCAN (UTS) key
  Q
  ;
 BLDRPT ; Compile the report.
- K PSBOUTP S PSBPGNUM="",PSBX3="" D CREATHDR
+ S PSBPGNUM="",PSBX3="" D CREATHDR
  S PSBPGNUM=1,PSBTOT1=0
  I '$D(^XUSEC("PSB UNABLE TO SCAN",DUZ)) D  Q
- .S PSBOUTP(0,14)="W !!,""<<<< BCMA UNABLE TO SCAN REPORTS HAVE RESTRICTED ACCESS >>>>"",!!"
+ .S ^TMP("PSBSF",$J,0,14)="W !!,""<<<< BCMA UNABLE TO SCAN REPORTS HAVE RESTRICTED ACCESS >>>>"",!!"
  I '$D(PSBSFHD1) D  Q
- .S PSBOUTP(0,14)="W !!,""<<<< Print format NOT SUPPORTED.  80&132 col formats ARE supported. >>>>"",!!"
+ .S ^TMP("PSBSF",$J,0,14)="W !!,""<<<< Print format NOT SUPPORTED.  80&132 col formats ARE supported. >>>>"",!!"
  I '$D(PSBLIST) D  Q
- .S PSBOUTP(0,14)="W !!,""<<<< NO DOCUMENTED BCMA UNABLE TO SCAN EVENTS FOR THIS DATE RANGE >>>>"",!!"
+ .S ^TMP("PSBSF",$J,0,14)="W !!,""<<<< NO DOCUMENTED BCMA UNABLE TO SCAN EVENTS FOR THIS DATE RANGE >>>>"",!!"
  ;
  ; Extract the data for the list of records.
  F  S PSBX3=$O(PSBLIST(PSBX3))  Q:+PSBX3=0  K PSBDATA D
@@ -190,18 +190,18 @@ CONSTR   .; Construct output from UTS event record.
  .I PSBXORX]"" S PSBXORX="ORD#: "_PSBXORX,$E(PSBTOTX,PSBTAB4+2,PSBTAB4+2+($L(PSBXORX)-1))=PSBXORX
  .K PSBDATA M PSBDATA=@($P(PSBMRG,",",1,PSBSRTNM+4)_")")
  .D BUILDLN
- .S PSBOUTP($$PGTOT,PSBLNTOT)="W """_PSBTOTX_""""
+ .S ^TMP("PSBSF",$J,$$PGTOT,PSBLNTOT)="W """_PSBTOTX_""""
  .F I=1:1:10 Q:'$D(PSBRPLN(I))  D
  ..F J=1:1:7 S $E(PSBRPLN(I),@("PSBTAB"_J))="|"
- ..S PSBOUTP($$PGTOT,PSBLNTOT)="W !,"""_PSBRPLN(I)_""""
+ ..S ^TMP("PSBSF",$J,$$PGTOT,PSBLNTOT)="W !,"""_PSBRPLN(I)_""""
  .S $E(PSBCMNT1,PSBTAB7)="|"
  .I $D(PSBCMNT2) S $E(PSBCMNT2,PSBTAB7)="|"
  .I $D(PSBCMNT3) S $E(PSBCMNT3,PSBTAB7)="|"
- .S PSBOUTP($$PGTOT,PSBLNTOT)="W !,"""_PSBCMNT0_""""
- .S PSBOUTP($$PGTOT,PSBLNTOT)="W !,"""_PSBCMNT1_""""
- .I $D(PSBCMNT2) S PSBOUTP($$PGTOT,PSBLNTOT)="W !,"""_PSBCMNT2_""""
- .I $D(PSBCMNT3) S PSBOUTP($$PGTOT,PSBLNTOT)="W !,"""_PSBCMNT3_""""
- .S PSBOUTP($$PGTOT(2),PSBLNTOT)="W !,$TR($J("""",PSBTAB7),"" "",""-""),!"
+ .S ^TMP("PSBSF",$J,$$PGTOT,PSBLNTOT)="W !,"""_PSBCMNT0_""""
+ .S ^TMP("PSBSF",$J,$$PGTOT,PSBLNTOT)="W !,"""_PSBCMNT1_""""
+ .I $D(PSBCMNT2) S ^TMP("PSBSF",$J,$$PGTOT,PSBLNTOT)="W !,"""_PSBCMNT2_""""
+ .I $D(PSBCMNT3) S ^TMP("PSBSF",$J,$$PGTOT,PSBLNTOT)="W !,"""_PSBCMNT3_""""
+ .S ^TMP("PSBSF",$J,$$PGTOT(2),PSBLNTOT)="W !,$TR($J("""",PSBTAB7),"" "",""-""),!"
  .;
  .; Force a skip to the next record's zero node.
  .S $P(PSBMRG,",",PSBSRTNM+5)="999999)"
@@ -242,25 +242,25 @@ FORMDAT(FLD) ; Format the data.
  Q
  ;
 WRTRPT   ; Write the report.
- I $O(PSBOUTP(""),-1)<1 D  Q
- .S PSBOUTP(0,14)="W !!,""<<<< NO DOCUMENTED BCMA UNABLE TO SCAN EVENTS FOR THIS DATE RANGE >>>>"",!!"
+ I $O(^TMP("PSBSF",$J,""),-1)<1 D  Q
+ .S ^TMP("PSBSF",$J,0,14)="W !!,""<<<< NO DOCUMENTED BCMA UNABLE TO SCAN EVENTS FOR THIS DATE RANGE >>>>"",!!"
  .D HDR
- .X PSBOUTP($O(PSBOUTP(""),-1),14)
+ .X ^TMP("PSBSF",$J,$O(^TMP("PSBSF",$J,""),-1),14)
  .D FTR
  S PSBPGNUM=1
  D HDR
- S PSBX1="" F  S PSBX1=$O(PSBOUTP(PSBX1)) Q:PSBX1=""  D
+ S PSBX1="" F  S PSBX1=$O(^TMP("PSBSF",$J,PSBX1)) Q:PSBX1=""  D
  .I PSBPGNUM'=PSBX1 D FTR S PSBPGNUM=PSBX1 D HDR
- .S PSBX2="" F  S PSBX2=$O(PSBOUTP(PSBX1,PSBX2)) Q:PSBX2=""  D
- ..X PSBOUTP(PSBX1,PSBX2)
+ .S PSBX2="" F  S PSBX2=$O(^TMP("PSBSF",$J,PSBX1,PSBX2)) Q:PSBX2=""  D
+ ..X ^TMP("PSBSF",$J,PSBX1,PSBX2)
  D FTR
- K ^XTMP("PSBO",$J,"PSBLIST"),PSBOUTP
+ K ^XTMP("PSBO",$J,"PSBLIST"),^TMP("PSBSF",$J)
  Q
  ;
 HDR      ; Write the report header.
  I '$D(PSBHDR) S PSBHDR=""
  W:$Y>1 @IOF W:$X>1 !
- S PSBPG="Page: "_PSBPGNUM_" of "_$S($O(PSBOUTP(""),-1)=0:1,1:$O(PSBOUTP(""),-1))
+ S PSBPG="Page: "_PSBPGNUM_" of "_$S($O(^TMP("PSBSF",$J,""),-1)=0:1,1:$O(^TMP("PSBSF",$J,""),-1))
  S PSBPGRM=PSBTAB7-($L(PSBPG))
  I $P(PSBRPT(0),U,4)="" S $P(PSBRPT(0),U,4)=DUZ(2)
  D CREATHDR

@@ -1,6 +1,6 @@
 IBCU72 ;ALB/CPM - ADD/EDIT/DELETE PROCEDURE DIAGNOSES ;18-JUN-96
- ;;2.0;INTEGRATED BILLING;**62,210**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**62,210,473**;21-MAR-94;Build 29
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 DX(IBIFN,IBPROC) ; Add/edit/delete procedure diagnoses.
  ; Input:  IBIFN  --  Pointer to the claim in file #399
@@ -12,6 +12,7 @@ DX(IBIFN,IBPROC) ; Add/edit/delete procedure diagnoses.
  N DIE,DA ; need to preserve these variables for IBCU7.
  ;
  N IBPROCD,IBDX,IBDXSCR,IBLINE,IBI,IBDEF,IBQUIT,IBPROMPT
+ N J,IBREPACK S IBREPACK=0  ; Added with IB*2.0*473 BI
  S IBPROCD=$G(^DGCR(399,IBIFN,"CP",IBPROC,0))
  I 'IBPROCD G DXQ
  ;
@@ -31,6 +32,7 @@ DX(IBIFN,IBPROC) ; Add/edit/delete procedure diagnoses.
  ;
  ; - prompt for the four associated dx prompts
  W ! S IBQUIT=0 F IBPROMPT=1:1:4 D ASKEM Q:IBQUIT
+ I IBREPACK D REPACK(IBPROC,IBIFN)  ; Added with IB*2.0*473 BI
  ;
 DXQ Q
  ;
@@ -51,7 +53,9 @@ ASKEM ; Allow entry of the procedure diagnoses.
  W !,"Associated Diagnosis (",IBPROMPT,"): ",$S(IBP]"":+IBP_" - "_$P(IBP,":",2)_" // ",1:"")
  R X:DTIME
  I $E(X)="^" S IBQUIT=1 G ASKEMQ
- I $E(X)="@" D:IBP]"" UPD("@",IBPROMPT+9) W:IBP]"" "   deleted." G ASKEMQ
+ ; Changed with IB*2.0*473 BI
+ ;I $E(X)="@" D:IBP]"" UPD("@",IBPROMPT+9) W:IBP]"" "   deleted." G ASKEMQ
+ I $E(X)="@" D:IBP]"" UPD("@",IBPROMPT+9) W:IBP]"" "   deleted." S IBREPACK=1 G ASKEMQ
  I $E(X)="?" D HELP1 G ASKEM
  I X="" S:'$$NEXT() IBQUIT=1 G ASKEMQ
  I '$D(IBDX(X)) D HELP1 G ASKEM
@@ -62,6 +66,19 @@ ASKEMQ Q
 UPD(IBVALUE,IBFIELD) ; Update an associated diagnosis.
  S DIE="^DGCR(399,"_IBIFN_",""CP"",",DA=IBPROC,DA(1)=IBIFN
  S DR=IBFIELD_"///"_IBVALUE D ^DIE K DA,DIE,DR
+ Q
+ ;
+REPACK(IBPROC,IBIFN)  ; Move associated codes up to avoid gaps
+ ;  Added with IB*2.0*473 BI
+ N IBADIAG,DA,DIE,DR,IBFIELD,IBX
+ N IBWIEN S IBWIEN=IBPROC_","_IBIFN_","
+ S IBADIAG(1)=$$GET1^DIQ(399.0304,IBWIEN,10,"I")
+ S IBADIAG(2)=$$GET1^DIQ(399.0304,IBWIEN,11,"I")
+ S IBADIAG(3)=$$GET1^DIQ(399.0304,IBWIEN,12,"I")
+ S IBADIAG(4)=$$GET1^DIQ(399.0304,IBWIEN,13,"I")
+ S DIE="^DGCR(399,"_IBIFN_",""CP"",",DA=IBPROC,DA(1)=IBIFN
+ S DR="10///@;11///@;12///@;13///@" D ^DIE
+ S IBFIELD=9 F IBX=1:1:4 I IBADIAG(IBX)'="" S IBFIELD=IBFIELD+1,DR=IBFIELD_"///"_IBADIAG(IBX) D ^DIE
  Q
  ;
 HELP1 ; Help for entering associated diagnoses.

@@ -1,0 +1,9 @@
+VPRPI ;SLC/AGP -- VPR package post install
+ ;;1.0;VIRTUAL PATIENT RECORD;;Sep 01, 2011;Build 12
+ ;
+POST ;
+ ; Create proxy user
+ Q:$O(^VA(200,"B","VPR,APPLICATION PROXY",0))
+ N X
+ S X=$$CREATE^XUSAP("VPR,APPLICATION PROXY","","VPR APPLICATION PROXY")
+ Q

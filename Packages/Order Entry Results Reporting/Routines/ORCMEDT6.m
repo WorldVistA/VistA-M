@@ -1,5 +1,5 @@
 ORCMEDT6 ;SLC/MKB-QO editor utilities ;12/18/02  13:33
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**164**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**164,297**;Dec 17, 1997;Build 14
  ;
 QO ; -- Enter/edit QO restriction on orderable items
  N X,Y,DA,DR,DIE,ORIT,OLDVAL,OREBLD
@@ -15,7 +15,7 @@ QO ; -- Enter/edit QO restriction on orderable items
  ;
 SET(OI) ; -- Returns Set Membership for OI
  N X,Y,I,DOMAIN,NAME,HELP,DONE
- S X="",I=0 F  S X=$O(^ORD(101.43,+OI,9,"B",X)) Q:X=""  S NAME=$$NAME(X),I=I+1,DOMAIN(I)=X_U_NAME,DOMAIN("B",NAME)=I
+ S X="",I=0 F  S X=$O(^ORD(101.43,+OI,9,"B",X)) Q:X=""  S NAME=$$NAME(X) I NAME'="PHARMACY" S I=I+1,DOMAIN(I)=X_U_NAME,DOMAIN("B",NAME)=I
  S DOMAIN(0)=I,HELP="Select the type of usage for which you wish to restrict ordering of this item."
  S DONE=0,Y="" F  D  Q:DONE
  . W !,"Usage: "

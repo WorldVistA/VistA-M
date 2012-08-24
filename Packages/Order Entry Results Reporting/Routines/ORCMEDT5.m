@@ -1,12 +1,12 @@
 ORCMEDT5 ;SLC/MKB-Misc menu utilities ;03:29 PM  12 Feb 1999
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,296**;Dec 17, 1997;Build 19
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,296,314**;Dec 17, 1997;Build 3
 SEARCH ; -- Search/replace menu items
  N ORDLG
  F  S ORDLG=$$DIC Q:ORDLG'>0  D SR1(ORDLG) W !!
  Q
  ;
 SR1(ORX) ; -- list parents, get replacement
- N DA,DR,DIE,DIK,I,J,ORDAD,ORY,ORNMBR,NUM,ORI,ORDAD,ORNM
+ N CNT,DA,DR,DIE,DIK,I,J,ORDAD,ORY,ORNMBR,NUM,ORI,ORDAD,ORNM
  I '$O(^ORD(101.41,"AD",+ORX,0)) W !,$P(ORX,U,2)_" has no menu items." Q
  W @IOF,"Menu items of "_$P(ORX,U,2),!?4,"Name",?69,"Type",!,$$REPEAT^XLFSTR("-",79)
  S (I,ORDAD)=0 F  S I=$O(^ORD(101.41,"AD",+ORX,I)) Q:I'>0  D
@@ -17,6 +17,10 @@ SR1(ORX) ; -- list parents, get replacement
  S ORY=$$REPLWITH(ORX) Q:ORY="^"
  D SELECT(ORY,ORDAD,.ORNMBR) Q:ORNMBR="^"
  Q:'$$OK  W !!,$S(ORY="@":"Removing",1:"Replacing "_$P(ORX,U,2)_" with "_$P(ORY,U,2))_" in:"
+ S CNT="" F  S CNT=$O(ORNMBR(CNT)) Q:CNT=""  D
+ . D LOOP($G(ORNMBR(CNT)))
+ Q
+LOOP(ORNMBR)    ;
  F ORI=1:1:$L(ORNMBR,",") S NUM=$P(ORNMBR,",",ORI) I NUM D
  . S DA(1)=+ORDAD(NUM),DA=$P(ORDAD(NUM),U,2),DIE="^ORD(101.41,"_DA(1)_",10,"
  . S ORDAD=DA(1),ORNM=$P(^ORD(101.41,ORDAD,0),U) W !?3,ORNM_" ..."
@@ -85,7 +89,7 @@ CHKPAR(MENU) ; follow tree to check parents
  . . F I=STACK:-1:1 S CNT=CNT+1,MSG(CNT)=$P(^ORD(101.41,STACK(I),0),U)
  . I $D(STACK("B",PMENU)) Q
  . D CHKPAR(PMENU)
- K STACK(STACK),STACK("B",MENU) S STACK=STACK-1
+ K STACK(STACK) S STACK=STACK-1
  Q
  ;
 INUSE(MENU) ; -- Returns 1 or 0, if MENU is in use by parameter

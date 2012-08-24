@@ -1,5 +1,5 @@
-PXRMDLLA ;SLC/PJH - REMINDER DIALOG LOADER ;04/13/2008
- ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
+PXRMDLLA ;SLC/PJH - REMINDER DIALOG LOADER ;05/13/2011
+ ;;2.0;CLINICAL REMINDERS;**6,12,18**;Feb 04, 2005;Build 152
  ;
 FREC(DFIEN,DFTYP) ;Build type 3 record
  N CSARRAY,CSCNT
@@ -91,6 +91,11 @@ LOAD(DITEM,DCUR,DTTYP) ;Load dialog questions into array
  I DPCE="T" D
  .;Quit if finding type not passed
  .Q:DTTYP=""
+ .;
+ .I $P($G(^PXRMD(801.41,DITEM,2)),U,5)="Y" Q
+ .;if prompts are defined in the dialog use the prompts
+ .I $D(^PXRMD(801.41,DITEM,10,"B"))>0 D PROTH(DITEM) Q
+ .;
  .N RSUB,FNODE
  .;Get parameter file node for this finding type
  .S FNODE=$O(^PXRMD(801.45,"B",DTTYP,"")) Q:FNODE=""
@@ -148,7 +153,7 @@ PROTH(IEN) ; Additional prompts defined in 801.41
  .;Ignore disabled components, and those that are not prompts
  .;Q:($P($G(^PXRMD(801.41,DIEN,0)),U,3)]"")!("PF"'[$P($G(^(0)),U,4))
  .I $$ISDISAB^PXRMDLL(DIEN)=1 Q
- .Q:"PF"'[$P($G(^(0)),U,4)
+ .Q:"PF"'[$P($G(^PXRMD(801.41,DIEN,0)),U,4)
  .;Set defaults to null
  .S DDEF="",DEXC="",DREQ="",DSNL=""
  .;Prompt name and GUI process (quit if null)

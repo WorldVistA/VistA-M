@@ -1,12 +1,12 @@
-FBPRICE ;AISC/DMK-GENERIC PRICER INTERFACE ;25JUN92
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBPRICE ;AISC/DMK - GENERIC PRICER INTERFACE ;6/25/1992
+ ;;3.5;FEE BASIS;**108**;JAN 30, 1995;Build 115
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;build a transaction to send to the Austin Pricer system
  ;this data will NOT be stored anywhere. It serves only
  ;as a tool to determine reimbursement rates.
  S PAD="                              "
  S FB("ERROR")="" D STATION^FBAAUTL G END:FB("ERROR") K FB("ERROR")
- S FBSTAN=FBAASN_$E(PAD,$L(FBAASN)+1,6)
+ S FBAASN=FBAASN_$E(PAD,$L(FBAASN)+1,6)
 PAT ;ask patient name [this is not a look-up on file 2]
  W ! S DIR("A")="Want to select patient from DHCP Patient File",DIR(0)="Y",DIR("B")="Yes" D ^DIR K DIR Q:$D(DIRUT)  I Y D  G END:'$D(FBSSN),VEND
  .W ! S DIC="^DPT(",DIC(0)="AEQMZ" D ^DIC K DIC Q:X="^"!(X="")!(Y<0)
@@ -34,10 +34,16 @@ VEND ;ask vendor
  S DIR("A")="Enter Medicare ID Number",DIR(0)="161.2,22" D ^DIR K DIR G END:$D(DIRUT) S FBVID=Y
  S DIR("A")="State of Vendor",DIR(0)="P^5:EQMZ" D ^DIR K DIR G END:$D(DIRUT) S FBSTABR=$S($L($P(Y(0),"^",2)):$P(Y(0),"^",2),1:"  ")
  ;
-CONT ;ask admission and treatment type information
+CONT ;
+ I $L(FBSTABR)>2 D  G VEND
+ . W !,"Error: Vendor state abbreviation (",FBSTABR,") exceeds 2 characters.",!
+ ;ask admission and treatment type information
  W ! S DIR("A")="Admission Date: ",DIR(0)="DA^::EX",DIR("?")="^D HELP^%DTC" D ^DIR K DIR G END:$D(DIRUT) S FBFDT=Y
  S DIR("A")="Discharge Date: ",DIR(0)="DA^"_FBFDT_"::EX",DIR("?")="^D HELP^%DTC" D ^DIR K DIR G END:$D(DIRUT) S FBTDT=Y
  S X1=FBTDT,X2=FBFDT D ^%DTC S FBLOS=$S(X<1:1,1:X),FBLOS=$E("000",$L(FBLOS)+1,3)_FBLOS
+ I $L(FBLOS)>3 D  G CONT
+ . W !,"Error: Length of Stay (",FBLOS,") exceeds 999.",!
+ S FBCSVDT=FBTDT ; code set version date
  F I="FBFDT","FBTDT" S @I=$E(@I,4,7)_($E(@I,1,3)+1700)
  ;
  S DIR(0)="P^43.4:EQM",DIR("A")="Admitting Authority" D ^DIR K DIR G END:$D(DIRUT) S Z=+Y
@@ -53,4 +59,5 @@ CONT ;ask admission and treatment type information
  ;
 END K FBSTAN,FBAUTH,FBBILL,FBCLAIM,FBDISP,FBDOB,FBDX,FBFDT,FBFI,FBFLNAM,FBLNAM,FBLOS,FBMED,FBMI,FBNAME,FBOBL,FBPAYT,FBPRC,FBSEX,FBSITE,FB,FBAASN,FBFEE,FBI,FBJ,FBLN,FBNVP,FBOKTX,FBSN,FBXMZ
  K FBSSN,FBSTR,FBSTABR,FBTDT,FBVID,PAD,POP,PRC,DUOUT,DTOUT,DIRUT,DIR,FBPART1,FBVEN,FBSDI,VAT,VATERR,VATNAME,Y,FBPOP,FBVAR,FBXMFEE,FBXMNVP,FBPOP
+ K FBADMTDX,FBCSVDT,FBOUT,FBPOA,FBRESUB,X,X1,X2
  Q

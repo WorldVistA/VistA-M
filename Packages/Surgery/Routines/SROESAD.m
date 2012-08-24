@@ -1,5 +1,5 @@
 SROESAD ;BIR/ADM - SURGERY E-SIG UTILITY ; [ 09/04/03  1:03 PM ]
- ;;3.0; Surgery ;**100**;24 Jun 93
+ ;;3.0; Surgery ;**100,173**;24 Jun 93;Build 8
  ;
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure.  Local modifications to this routine
@@ -22,8 +22,8 @@ SIG ; enter e-sig
  N SRNOW,SRSBN,SRSIG
  D SIG^XUSESIG I X1="" D NOAD Q
  S SRSBN=X1,SRNOW=$$NOW^XLFDT
- I $D(SRNDOC(SRTN)) D POSTN(SRTN,SRSBN,SRNOW)
- I $D(SRADOC(SRTN)) D POSTA(SRTN,SRSBN,SRNOW)
+ I $D(SRNDOC(SRTN)) D POSTN(SRTN,SRSBN,SRNOW) I SRESNOT=1 Q
+ I $D(SRADOC(SRTN)) D POSTA(SRTN,SRSBN,SRNOW) I SRESNOT=1 Q
  W ! K DIR S DIR(0)="FOA",DIR("A")="Press RETURN to continue... " D ^DIR K DIR
  Q
 NOAD ; no addendum created
@@ -76,20 +76,28 @@ HDR ; header for addendum display
  F I=1:1:80 W "-"
  Q
 POSTA(SRTN,SRSBN,SRNOW) ;post signed addendum to anesthesia report
- N SRADD,SRAY,SRTIU
+ N SRADD,SRAY,SRTIU,SRMSGS
  S SRAY(1405)=SRTN_";SRF(",SRAY(1701)="Case #: "_SRTN
  F I=1:1 Q:'$D(^TMP("SRAR",$J,SRTN,I))  S SRAY("TEXT",I,0)=^TMP("SRAR",$J,SRTN,I)
  S SRTIU=$P($G(^SRF(SRTN,"TIU")),"^",4) Q:'SRTIU
- D MAKEADD^TIUSRVP(.SRADD,SRTIU,.SRAY,1) Q:'+SRADD
+ D MAKEADD^TIUSRVP(.SRADD,SRTIU,.SRAY,1) I +SRADD'>0 D  Q
+ .S SRMSGS=$P($G(SRADD),U,2)
+ .W !!!!,SRMSGS
+ .D NOAD
+ .Q
  S SRTIU=+SRADD K SRAY
  D ES^TIUSROI(SRTIU,DUZ)
  Q
 POSTN(SRTN,SRSBN,SRNOW) ; post signed addendum
- N SRADD,SRAY,SRTIU
+ N SRADD,SRAY,SRTIU,SRMSGS
  S SRAY(1405)=SRTN_";SRF(",SRAY(1701)="Case #: "_SRTN
  F I=1:1 Q:'$D(^TMP("SRNR",$J,SRTN,I))  S SRAY("TEXT",I,0)=^TMP("SRNR",$J,SRTN,I)
  S SRTIU=$P($G(^SRF(SRTN,"TIU")),"^",2) Q:'SRTIU
- D MAKEADD^TIUSRVP(.SRADD,SRTIU,.SRAY,1) Q:'+SRADD
+ D MAKEADD^TIUSRVP(.SRADD,SRTIU,.SRAY,1) I +SRADD'>0 D  Q
+ .S SRMSGS=$P($G(SRADD),U,2)
+ .W !!!!,SRMSGS
+ .D NOAD
+ .Q
  S SRTIU=+SRADD K SRAY
  D ES^TIUSROI(SRTIU,DUZ)
  Q

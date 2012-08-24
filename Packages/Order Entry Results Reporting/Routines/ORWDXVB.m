@@ -1,19 +1,19 @@
 ORWDXVB ;slc/dcm - Order dialog utilities for Blood Bank ;12/7/05  17:11
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243,212,309**;Dec 17 1997;Build 26
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243,212,309,332**;Dec 17 1997;Build 44
  ;
  ; DBIA 2503   RR^LR7OR1   ^TMP("LRRR",$J)
  ; 
-GETPAT(ORX,DFN,ORL)     ;Get Patient data from VBECS
+GETPAT(ORX,DFN,ORL) ;Get Patient data from VBECS
  ;Needs patient DFN and Location (ORL)
  N ORSTN,DIV
  S DIV=+$P($G(^SC(+$G(ORL),0)),U,15),ORSTN=$P($$SITE^VASITE(DT,DIV),U,3)
  D OEAPI^VBECA3(.ORX,DFN,ORSTN)
  Q
-PTINFO(OROOT,ORX)       ;Format patient BB info
+PTINFO(OROOT,ORX) ;Format patient BB info
  Q:'$D(ORX)
  D PTINFO^ORWDXVB1
  Q
-RESULTS(OROOT,DFN,ORX)  ;Get test results
+RESULTS(OROOT,DFN,ORX) ;Get test results
  Q:'$O(ORX(0))  ;ORX contains a list of tests to retrieve results for
  N ORCOM,ORT,ORTST,ORTDT,ORTMP,GCNT,CCNT,GIOSL,GIOM,I,ORZ
  S GCNT=0,CCNT=1,GIOSL=999999,GIOM=80
@@ -27,8 +27,6 @@ RESULTS(OROOT,DFN,ORX)  ;Get test results
  S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(1,CCNT,"----    ------    -----      -----     ---------       ---------     ---",.CCNT)
  S ORT=0 F  S ORT=$O(ORX(ORT)) Q:'ORT  S ORTST=$P(ORX(ORT),"^",1) D
  . K ^TMP("LRRR",$J) D RR^LR7OR1(DFN,,,,,ORTST,,1)  ;DBIA 2503
- . ;S ORTMP="^TMP(""LRRR"",$J,DFN)",ORTMP=$Q(@ORTMP)
- . ;Q:$P(ORTMP,",",1,3)'=("^TMP(""LRRR"","_$J_","_DFN)
  . S ORTMP=$$FIRST^ORCDVBEC(DFN,ORTST) Q:'$L(ORTMP)
  . S ORTDT=9999999-+$P(ORTMP,",",5),ORZ=@ORTMP
  . D LN
@@ -41,7 +39,7 @@ RESULTS(OROOT,DFN,ORX)  ;Get test results
  I GCNT<4 K ^TMP("ORVBEC",$J)
  K ^TMP("LRRR",$J)
  Q
-RAW(OROOT,DFN,ORX)  ;Get RAW test results
+RAW(OROOT,DFN,ORX) ;Get RAW test results
  Q:'$O(ORX(0))  ;ORX contains a list of tests to retrieve results for
  N ORCOM,ORT,ORTST,ORTDT,ORTMP,GCNT,CCNT,GIOSL,GIOM,I
  S GCNT=0,CCNT=1,GIOSL=999999,GIOM=80
@@ -65,7 +63,7 @@ SURG(OROOT,ORX) ;Get list of surgeries
 LN ;Increment counts
  S GCNT=GCNT+1,CCNT=1
  Q
-PATINFO(OROOT,DFN,LOC)   ;Test ^TMP global output
+PATINFO(OROOT,DFN,LOC) ;Test ^TMP global output
  N ORX
  D GETPAT(.ORX,DFN,LOC)
  I $L($G(ORX("SPECIMEN"))) S:$P(ORX("SPECIMEN"),"^") $P(ORX("SPECIMEN"),"^")=$$HL7TFM^XLFDT($P(ORX("SPECIMEN"),"^"))
@@ -74,7 +72,7 @@ PATINFO(OROOT,DFN,LOC)   ;Test ^TMP global output
  ;K @OROOT
  Q
 GETALL(OROOT,DFN,LOC) ;Get all data in one call and let the GUI divide it up
- N ORX,INFO,CNT,I,J,K
+ N ORX,INFO,CNT,I,J,K,OREAS,OREASON
  S OROOT=$NA(^TMP("ORVBECINFO",$J)),CNT=1
  D GETPAT(.ORX,DFN,LOC)
  ;S ^TMP("ORVBECINFO",$J,CNT)="~RAWDATA",I=0
@@ -96,10 +94,14 @@ GETALL(OROOT,DFN,LOC) ;Get all data in one call and let the GUI divide it up
  S CNT=CNT+1,^TMP("ORVBECINFO",$J,CNT)="~MODIFIERS",I=""
  N ORMODS D GETLST^XPAR(.ORMODS,"ALL","OR VBECS MODIFIERS","I")
  F  S I=$O(ORMODS(I)) Q:'I  S CNT=CNT+1,^TMP("ORVBECINFO",$J,CNT)="i"_ORMODS(I)
- ;F I="W^Washed","I^Irradiated","L^Leuko Reduced","V^Volume Reduced","D^Divided","E^Leuko Reduced/Irradiated" S CNT=CNT+1,^TMP("ORVBECINFO",$J,CNT)="i"_I
  S CNT=CNT+1,^TMP("ORVBECINFO",$J,CNT)="~REASONS",I=""
  N ORMODS D GETLST^XPAR(.ORMODS,"ALL","OR VBECS REASON FOR REQUEST","I")
- F  S I=$O(ORMODS(I)) Q:'I  S CNT=CNT+1,^TMP("ORVBECINFO",$J,CNT)="i"_ORMODS(I)
+ S OREASON=$$GET^XPAR("DIV^SYS^PKG","OR VBECS REASON SORT ALPHA",1,"Q")
+ I OREASON D
+ . F  S I=$O(ORMODS(I)) Q:'I  S OREAS(" "_$$UP^XLFSTR(ORMODS(I)))=ORMODS(I)
+ . S I="" F  S I=$O(OREAS(I)) Q:I=""  S CNT=CNT+1,^TMP("ORVBECINFO",$J,CNT)="i"_OREAS(I)
+ I 'OREASON D
+ . F  S I=$O(ORMODS(I)) Q:'I  S CNT=CNT+1,^TMP("ORVBECINFO",$J,CNT)="i"_ORMODS(I)
  S CNT=CNT+1,^TMP("ORVBECINFO",$J,CNT)="~INFO"
  D PTINFO(.INFO,.ORX)
  S I=0 F  S I=$O(^TMP("ORVBEC",$J,I)) Q:'I  S CNT=CNT+1,^TMP("ORVBECINFO",$J,CNT)="i"_^TMP("ORVBEC",$J,I,0)

@@ -1,5 +1,5 @@
-VADPT4 ;ALB/MRL/MJK,ERC - PATIENT VARIABLES; 12 DEC 1988
- ;;5.3;Registration;**343,342,528,689,688,790**;Aug 13, 1993;Build 6
+VADPT4 ;ALB/MRL/MJK,ERC - PATIENT VARIABLES; 12 DEC 1988 ; 10/13/10 4:43pm
+ ;;5.3;Registration;**343,342,528,689,688,790,797**;Aug 13, 1993;Build 24
 7 ;Eligibility [ELIG]
  F I=.15,.3,.31,.32,.36,.361,"INE","TYPE","VET" S VAX(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
  S VAZ=$P(VAX(.36),"^",1) S:$D(^DIC(8,+VAZ,0)) VAZ=VAZ_"^"_$P(^(0),"^",1) S @VAV@($P(VAS,"^",1))=VAZ
@@ -30,6 +30,7 @@ VADPT4 ;ALB/MRL/MJK,ERC - PATIENT VARIABLES; 12 DEC 1988
  ;
 9 ;Service information
  F I=.32,.321,.3291,.52,.53 S VAX(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
+ D:$D(^DPT(DFN,.3216)) MSDS
  S VAX("N")=.321 F I=1,2,3 S VAX(3)=I,VAZ=$S($P(VAX(.321),"^",I)="Y":1,1:0),@VAV@($P(VAS,"^",VAX(3)))=VAZ I VAZ S VAX(1)=$S(I=1:"4^5",I=2:"7^9^8",1:11),VAX(4)=0 D 91
  S VAX("N")=.52 F I=5,11 S VAX(3)=$S(I=5:4,1:5),VAX(1)=$S(I=5:"7^8",1:"13^14"),VAZ=$S($P(VAX(.52),"^",I)="Y":1,1:0),@VAV@($P(VAS,"^",VAX(3)))=VAZ I VAZ S VAX(4)=0 D 91
  ;Combat Vet
@@ -89,3 +90,28 @@ VADPT4 ;ALB/MRL/MJK,ERC - PATIENT VARIABLES; 12 DEC 1988
  I VAX(3)=2!(VAX(3)=3) S Y=Z X ^DD("DD") S:Y'="" $P(@VAV@(VAX(2),VAX,VAX(3)),U,2)=Y
  Q
  ;
+MSDS ;Returns latest service episodes from ESR sourced data
+ N BRANCH,COUNT,COMP,DA,DONE,DTYP,EDATA,EDATE,I,SDATE,SERVNO,SUB
+ S COUNT=0,EDATE=""
+ ;Clear military service discharge, branch, start, end and number info
+ F I=4:1:20 S $P(VAX(.32),U,I)=""
+ ;Clear military service component info
+ F I=1:1:3 S $P(VAX(.3291),U,I)=""
+ ;Scan back for three most recent service episodes
+ F  S EDATE=$O(^DPT(DFN,.3216,"B",EDATE),-1) Q:'EDATE  D  Q:COUNT'<3
+ .S DA=$O(^DPT(DFN,.3216,"B",EDATE,0)) Q:'DA
+ .S EDATA=$G(^DPT(DFN,.3216,DA,0)) Q:EDATA=""
+ .S COUNT=COUNT+1,SDATE=$P(EDATA,U,2)
+ .S BRANCH=$P(EDATA,U,3),COMP=$P(EDATA,U,4)
+ .S SERVNO=$P(EDATA,U,5),DTYP=$P(EDATA,U,6)
+ .;SL = 4, SNL = 9 or SNNL = 14
+ .S SUB=(COUNT*5)-1
+ .S $P(VAX(.32),U,SUB)=DTYP
+ .S $P(VAX(.32),U,SUB+1)=BRANCH
+ .S $P(VAX(.32),U,SUB+2)=EDATE
+ .S $P(VAX(.32),U,SUB+3)=SDATE
+ .S $P(VAX(.32),U,SUB+4)=SERVNO
+ .S $P(VAX(.3291),U,COUNT)=COMP
+ .S:SUB=9 $P(VAX(.32),U,19)="Y"
+ .S:SUB=14 $P(VAX(.32),U,20)="Y"
+ Q

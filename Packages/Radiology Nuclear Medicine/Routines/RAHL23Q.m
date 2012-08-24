@@ -1,5 +1,5 @@
 RAHL23Q ;HINES OIFO/GJC process query message/event type (QRY/R02) ; 15 Aug 2008  2:27 PM
- ;;5.0;Radiology/Nuclear Medicine;**78**;Mar 16, 1998;Build 5
+ ;;5.0;Radiology/Nuclear Medicine;**78,107**;Mar 16, 1998;Build 2
  ;
  ;Integration Agreements
  ;----------------------
@@ -12,7 +12,7 @@ RCVQRY ;receive & process the inbound query
  N HL,HLA,HLSTART,RAQFC,RAQPRI,RAQID,RAQDRT,RAQDRDT,RAQWHO,RAQWHAT,RAQDEPT
  N RAQWHERE,RAQSTRT,RAQEND,RAQUANT,RAQUNIT
  N RACNTRL,RACS,RADFN,RAECH,RAEDT,RAEND,RAERR,RAESC,RAFS,RAI,RAJ,RAK,RAMSH,RAPRIO,RARPT
- N RARS,RASCS,RASDT,RASEG,RATXT,RAX
+ N RARS,RASCS,RASDT,RASEG,RATXT,RAX,RAZDNS
  ;Please be aware that when using HLO the database where the message headers and
  ;message bodies are filed have changed.
  ;legacy VistA HL7                  optimized VistA HL7 (HLO)
@@ -44,6 +44,7 @@ MSH ;Parse the header and return individual values
  ;RAMSH("RECEIVING FACILITY",3) 3rd component
  ;
  S RACNTRL=RAMSH("MESSAGE CONTROL ID")
+ S RAZDNS=RAMSH("SENDING FACILITY",2)
  ;
  ;perform some sanity checks...
  ;
@@ -254,6 +255,7 @@ ERR(RATXT) ;inform the radiology users via an email message
  ;
 XIT ;exit the process. Fire off a negative acknowledgement if necessary.
  S:$D(ZTQUEUED)#2 ZTREQ="@"
+ D KILL^XUSCLEAN
  Q
  ;
 NAK ;negatively acknowledge the QRY/R02 client side query
@@ -313,7 +315,12 @@ SENDMSG ;broadcast the HL7 message. The message/event type is: ORF/R04
  S RAPARAM("ACCEPT ACK RESPONSE")="ACCEPT^RAHL23QU"
  ;
  ;name the outbound queue that is responsible for our query replies
- S RAWHO("RECEIVING APPLICATION")="RA-NTP-RSP",RAWHO("FACILITY LINK NAME")="RA-SCIMAGE"
+ S RAWHO("RECEIVING APPLICATION")="RA-NTP-RSP"
+ ;
+ ;*** determine the logical link to use P107 ***
+ S RAWHO("FACILITY LINK IEN")=$$FIND1^DIC(870,"","M",RAZDNS)
+ I RAWHO("FACILITY LINK IEN")'>0 S RATXT(1)="DNS Address lookup failed." D ERR(.RATXT) QUIT
+ ;
  ;Send the message
  S RAX=$$SENDONE^HLOAPI1(.HLMSTATE,.RAPARAM,.RAWHO,.RAERROR)
  I $D(RAERROR)#2 D

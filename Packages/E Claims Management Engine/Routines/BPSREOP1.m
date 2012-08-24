@@ -1,5 +1,5 @@
 BPSREOP1 ;BHAM ISC/SS - REOPEN CLOSED CLAIMS ;03/07/08  14:54
- ;;1.0;E CLAIMS MGMT ENGINE;**3,7,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**3,7,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;Reopen closed claims
  ;
@@ -15,7 +15,7 @@ COLLECT(BPDFN,BPSTRT,BPEND) ;
  . I $P($G(^BPST(BPIEN59,12)),U,2)<BPSTRT Q
  . I $P($G(^BPST(BPIEN59,12)),U,2)>BPEND Q
  . ; Don't display deleted prescriptions
- . I $$RXAPI1^BPSUTIL1($P(^BPST(BPIEN59,1),U,11),100,"I")=13 Q
+ . I $$RXDEL^BPSOS($P(^BPST(BPIEN59,1),U,11),$P(^BPST(BPIEN59,1),U,1)) Q
  . S BPIEN02=+$P($G(^BPST(BPIEN59,0)),U,4)
  . ;if the is no BPS CLAIMS - error
  . Q:BPIEN02=0
@@ -27,10 +27,14 @@ COLLECT(BPDFN,BPSTRT,BPEND) ;
  Q
  ;claim info for list manager screen
 CLAIMINF(BP59) ;*/
- N BPX,BPX1
+ N BPX,BPX1,DOSDT
  S BPX1=$$RXREF^BPSSCRU2(BP59)
  S BPX=$$LJ^BPSSCR02($$DRGNAME^BPSSCRU2(BP59),17)_" "_$$LJ^BPSSCR02($$NDC^BPSSCRU2(+BPX1,+$P(BPX1,U,2)),11)_" "
- S BPX=BPX_$$LJ^BPSSCR02($$FILLDATE^BPSSCRRS(+BPX1,+$P(BPX1,U,2)),5)_" "
+ ;
+ ;SLT - BPS*1.0*11
+ S DOSDT=$$LASTDOS^BPSUTIL2(BP59,0)
+ ;
+ S BPX=BPX_$$LJ^BPSSCR02(DOSDT,5)_" "
  S BPX=BPX_$$LJ^BPSSCR02($$RXNUM^BPSSCRU2(+BPX1),11)_" "_+$P(BPX1,U,2)_"/"
  S BPX=BPX_$$LJ^BPSSCR02($$ECMENUM^BPSSCRU2(BP59),12)_" "_$$MWCNAME^BPSSCRU2($$GETMWC^BPSSCRU2(BP59))_" "
  S BPX=BPX_$$RTBB^BPSSCRU2(BP59)_" "_$$RXST^BPSSCRU2(BP59)_"/"_$$RL^BPSSCRU2(BP59)
@@ -74,7 +78,7 @@ EUSCREOP ;
  . . . S BPDISP(BPDFN,BPCNT)="Claim NOT closed and cannot be reopened."
  . . . K BPREOP(BP59)
  . . ; Make sure the Prescription isn't deleted
- . . I $$RXAPI1^BPSUTIL1($P(^BPST(BP59,1),U,11),100,"I")=13 D
+ . . I $$RXDEL^BPSOS($P(^BPST(BP59,1),U,11),$P(^BPST(BP59,1),U,1)) D
  . . . S BPCNT=BPCNT+1
  . . . S BPDISP(BPDFN,BPCNT)="The prescription has been marked DELETED and cannot be reopened."
  . . . K BPREOP(BP59)
@@ -88,12 +92,12 @@ EUSCREOP ;
  ; If there are any closed claims selected, verify if the users still wants to reopen
  I $D(BPREOP) D
  . W !!,"All Selected Rxs will be reopened using the same information gathered in the",!,"following prompts.",!!
- . I $$YESNO^BPSSCRRS("Are you sure?(Y/N)") D
+ . I $$YESNO^BPSSCRRS("Are you sure?(Y/N)")=1 D
  . . ; Get the Reopen Comments to be stored in the BPS CLAIMS file
  . . S BPCOMM=$$PROMPT("REOPEN COMMENTS","","F",1,40)
  . . Q:BPCOMM["^"
  . . ; Do we REALLY want to reopen the claims?
- . . I $$YESNO^BPSSCRRS("ARE YOU SURE YOU WANT TO RE-OPEN THIS CLAIM? (Y/N)","No") D
+ . . I $$YESNO^BPSSCRRS("ARE YOU SURE YOU WANT TO RE-OPEN THIS CLAIM? (Y/N)","No")=1 D
  . . . S (BPCNT,BP59)=0
  . . . ; Loop through all selected claims and reopen them one at a time
  . . . ; using the same comments
@@ -151,7 +155,7 @@ SELCLAIM(BP59) ;
  S BPCLDATA=$G(^BPSC(BPIEN02,900))
  ;if the is no BPS CLAIMS - error
  W !,?3,"CLOSED  ",$$FORMDATE^BPSSCRU6(+$P($G(^BPSC(BPIEN02,900)),U,2),2)
- W !,?4,"ECME#: "_$$ECMENUM^BPSSCRU2(BP59)_", FILL DATE: "_$$FORMDATE^BPSSCRU6($$DOSDATE^BPSSCRRS(+BPX1,+$P(BPX1,U,2)),2)
+ W !,?4,"ECME#: "_$$ECMENUM^BPSSCRU2(BP59)_", DOS: "_$$LASTDOS^BPSUTIL2(BP59,1)
  W ", RELEASE DATE: "_$$FORMDATE^BPSSCRU6($$RELDATE^BPSSCRU6(+BPX1,+$P(BPX1,U,2)),2)
  W !,?4,"PLAN: ",$$PLANNAME^BPSSCRU6(BP59)," INSURANCE: ",$$INSNAME^BPSSCRU6(BP59)
  W !,?4,"CLOSE REASON: ",$$CLREASON^BPSSCRU6(+$P(BPCLDATA,U,4))

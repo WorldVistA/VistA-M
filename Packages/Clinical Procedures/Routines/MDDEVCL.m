@@ -14,7 +14,7 @@ COL ; Collect Device data for Transmission
  Q:'MDCT
  S XMSUBJ="Medical Device Name Report"
  S XMINSTR("FROM")=.5,XMBODY="^TMP(""MDMTXT"",$J)"
- S XMTO="G.MDDEVICE@DEV.DEV.FO-HINES.MED.VA.GOV"
+ S XMTO="G.MDDEVICE@DEV.DEV.FO-HINES.DOMAIN.EXT"
  D SENDMSG^XMXAPI(DUZ,XMSUBJ,XMBODY,XMTO,.XMINSTR) K ^TMP("MDMTXT",$J)
  I $G(XQY0)'=""&($P($G(XQY0),"^")["TRANSMISSION") W !!,"Message Transmitted."
  Q

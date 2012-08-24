@@ -1,5 +1,5 @@
 XUAF4 ;ISC-SF/RWF/RAM - Institution file access. ;04/01/99  08:07
- ;;8.0;KERNEL;**43,112,206,209,232,217,261,394,549**;Jul 10, 1995;Build 9
+ ;;8.0;KERNEL;**43,112,206,209,232,217,261,394,549,555**;Jul 10, 1995;Build 3
  Q  ;No access from the top.
  ;
 PARENT(ROOT,CHILD,ASSO) ;sr. Return array of IEN's of parents
@@ -195,7 +195,7 @@ IDT(IEN) ; inactive date
 SCRN() ;sreen IEN
  N X S X=$E(N99,1,3)
  I FLAG["A",$P(N99,U,4) Q "0^inactive facility"
- I FLAG["M",$S(X=358:0,X<400:1,X>759:1,X<700:0,X<750:1,1:0),$G(DUZ("AG"))="V" Q "0^not a treating facility"
+ I FLAG["M",$S(X=358:0,X=740:0,X<400:1,X>759:1,X<700:0,X<750:1,1:0),$G(DUZ("AG"))="V" Q "0^not a treating facility"
  Q IEN
  ;
 LOOKUP ; -- lookup an enty by coding system / ID pair

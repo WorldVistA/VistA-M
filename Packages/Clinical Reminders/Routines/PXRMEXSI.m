@@ -1,5 +1,5 @@
-PXRMEXSI ; SLC/PKR/PJH - Silent Exchange entry install. ;11/02/2009
- ;;2.0;CLINICAL REMINDERS;**6,12,17**;Feb 04, 2005;Build 102
+PXRMEXSI ;SLC/PKR/PJH - Silent Exchange entry install. ;07/29/2010
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,18**;Feb 04, 2005;Build 152
  ;
  ;=======================================
 DELEXE(ENTRY,ROUTINE) ;If the Exchange File entry already exists delete it.
@@ -157,7 +157,7 @@ INSTALL(PXRMRIEN,ACTION,NOR) ;Install all components in a repository entry.
  . K ^TMP("PXRMXMZ",$J)
  . M ^TMP("PXRMXMZ",$J)=^TMP("PXRMEXNI",$J)
  . S XMSUB="COMPONENTS SKIPPED DURING SILENT MODE INSTALL"
- . D SEND^PXRMMSG("PXRMXMZ",XMSUB)
+ . D SEND^PXRMMSG("PXRMXMZ",XMSUB,"",DUZ)
  ;Cleanup TMP globals.
  D INITMPG^PXRMEXLM
  Q

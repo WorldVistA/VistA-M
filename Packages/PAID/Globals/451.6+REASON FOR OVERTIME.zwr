@@ -1,0 +1,17 @@
+REASON FOR OVERTIME
+ZWR
+^PRSN(451.6,0)="REASON FOR OVERTIME^451.6I^7^7"
+^PRSN(451.6,1,0)="HC^High Census/Acuity"
+^PRSN(451.6,2,0)="EW^Extreme Weather"
+^PRSN(451.6,3,0)="UL^Unplanned Leave"
+^PRSN(451.6,4,0)="OP^Open Positions"
+^PRSN(451.6,5,0)="SN^Sitter Needed"
+^PRSN(451.6,6,0)="UP^Unpredicted Pt Care"
+^PRSN(451.6,7,0)="AO^All Other"
+^PRSN(451.6,"B","AO",7)=""
+^PRSN(451.6,"B","EW",2)=""
+^PRSN(451.6,"B","HC",1)=""
+^PRSN(451.6,"B","OP",4)=""
+^PRSN(451.6,"B","SN",5)=""
+^PRSN(451.6,"B","UL",3)=""
+^PRSN(451.6,"B","UP",6)=""

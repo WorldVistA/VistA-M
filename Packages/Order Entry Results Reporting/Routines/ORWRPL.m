@@ -1,5 +1,5 @@
 ORWRPL ; slc/dcm - Background GUI Lab Print Driver;10:36 AM  14 Jan 2000 ; 08 Feb 2001  09:02AM [7/2/01 7:27am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,332**;Dec 17, 1997;Build 44
 RPTLIST ; -- list of Lab reports
  ; <ID> ^ <report name> ^ <qualifier type> ^
  ; <qualifier type> = 0:none,2:DateTime
@@ -88,6 +88,8 @@ CHKQ Q OROK
  ;
 DEQUE ; -- logic to print queued report
  ; -- call build report logic
+ N ORPRTING ;Printing Flag, used when creating report
+ S ORPRTING=1
  I '$O(ORHANDS(0)) D LOOP Q
  N ORI,ORX
  S ORI=0

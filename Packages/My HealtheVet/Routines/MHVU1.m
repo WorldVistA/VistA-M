@@ -36,7 +36,7 @@ NOTIFY(ADM) ; Notify MHV server of patch installation, and configuration data
  ;
  ; code to use Email transmitter
  ;S XMT("SAF")=ADM("SITE NUMBER")
- ;S XMT("EMAIL")="VHAMHVSITECOMMCONFIG@MED.VA.GOV"
+ ;S XMT("EMAIL")="VHAMHVSITECOMMCONFIG@DOMAIN.EXT"
  ;D EMAIL^MHV7T(.ADM,.XMT,"","","")
  ;
  D LOG^MHVUL2("MFN-Z01 UPDATE","END","S","TRACE")

@@ -1,5 +1,5 @@
 ORMVBEC ; SLC/MKB - Process VBECS order msgs ;2/11/08  11:05
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212,309**;Dec 17, 1997;Build 26
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212,309,332**;Dec 17, 1997;Build 44
  ;
 EN ; -- entry point for VBEC messages from ORMHLREC
  ;M ^MKB(+ORIFN)=@ORMSG ;for testing
@@ -39,7 +39,7 @@ ERR ; -- Log an error
  Q
  ;
 STATUS(X) ; -- Returns Order Status for HL7 code X
- N Y S Y=$S(X="OC":1,X="CM":2,X="IP":5,X="SC":6,X="ZE":7,1:"")
+ N Y S Y=$S(X="DC":1,X="OC":1,X="CM":2,X="IP":5,X="SC":6,X="ZE":7,X="CA":7,1:"") ;phase out ZE,OC
  Q Y
  ;
 OK ; -- Order accepted, VBECS order # assigned [reply]

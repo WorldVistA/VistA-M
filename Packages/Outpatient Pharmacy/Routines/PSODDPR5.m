@@ -1,8 +1,10 @@
 PSODDPR5 ;BIR/SAB - displays OP/rdi/pending/nva orders ;09/320/06 11:33am
- ;;7.0;OUTPATIENT PHARMACY;**251,375**;DEC 1997;Build 17
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,379**;DEC 1997;Build 28
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.606 supported by DBIA 2174
  ;External reference to ^PS(50.7 supported by DBIA 2223
+ ;External reference to ^PS(55 supported by DBIA 2228
+ ;External reference to $$DRG^PSSDSAPM supported by DBIA 5570
  ;
 EXC ;displays order check exceptions
  N Q,CT,ONT,OT,ON,TD,ERRTY,OP,OPP,ZEXC,ZREA,X,DIWL,DIWR,DIWF,PSOWROTE
@@ -101,9 +103,10 @@ NSRT ;sort of drug interactions ; called by psoddpr2
  .F  S DRG=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG)) Q:DRG=""!$G(PSODLQT)  F  S ON=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON)) Q:ON=""!$G(PSODLQT)  F  S CT=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT)) Q:'CT!$G(PSODLQT)  D
  ..I $P(ON,";")="O",$P(^PSRX($P(ON,";",2),"STA"),"^")>5,$P(^PSRX($P(ON,";",2),"STA"),"^")'=16 Q
  ..I $P(ON,";")="R" D RVAGEN Q
- ..I $P(ON,";")="P",'$P($G(^PS(52.41,$P(ON,";",2),0)),"^",9) S PSORDIT=$P($G(^PS(52.41,$P(ON,";",2),0)),"^",9) D:$G(PSORDIT) DVAGEN Q
+ ..I $P(ON,";")="P",'$P($G(^PS(52.41,$P(ON,";",2),0)),"^",9) S PSORDIT=$P($G(^PS(52.41,$P(ON,";",2),0)),"^",8) D:$G(PSORDIT) DVAGEN Q
  ..I $P(ON,";")="N",'$P($G(^PS(55,PSODFN,"NVA",$P(ON,";",2),0)),"^",2) S PSORDIT=$P($G(^PS(55,PSODFN,"NVA",$P(ON,";",2),0)),"^") D:$G(PSORDIT) DVAGEN Q
- ..S PSODD=$O(^PSDRUG("B",DRG,0)) D VAGEN^PSODDPR3(PSODD)
+ ..S PSODD=$O(^PSDRUG("B",DRG,0)) D:PSODD'="" VAGEN^PSODDPR3(PSODD)
+ ..S:PSOVAG="" PSOVAG=DRG
  ..S ZOT=$S($P(ON,";")="O":1,$P(ON,";")="R":2,$P(ON,";")="P":3,1:4)
  ..S ZDGDG(SV,ZOT,PSOVAG,DRG)=ON_"^"_CT
  ;
@@ -132,17 +135,14 @@ S2(SEV,TYP,PSOVAG,CNT) ;
  .S ZZDGDG(SEV,CNT,TYP,PSOVAG,PSONAM)=ZDGDG(SEV,TYP,PSOVAG,PSONAM)
  Q
  ;
-NSRT1 ;sort out dc'd drug therapies local and remote rxs
+NSRT1 ;sort out dc'd drug therapies for remote rxs
  S (SUB,CT)=0 K PSODCTH N RXN
  F  S CT=$O(^TMP($J,LIST,"OUT","THERAPY",CT)) Q:'CT  F  S SUB=$O(^TMP($J,LIST,"OUT","THERAPY",CT,"DRUGS",SUB)) Q:'SUB  D
  .S ON=$P(^TMP($J,LIST,"OUT","THERAPY",CT,"DRUGS",SUB),"^")
- .I $P(ON,";")="O",$P($G(^PSRX($P(ON,";",2),3)),"^",5) D  Q
- ..S RXN=$P(ON,";",2),X1=$P($G(^PSRX($P(ON,";",2),3)),"^",5),X2=(+$P(^PSRX($P(ON,";",2),0),"^",8)+7)
- ..D C^%DTC I X<DT S PSODCTH(ON)=1 K X,Y,X1,X2
  .I $P(ON,";")="R",$P($G(^TMP($J,LIST,"OUT","REMOTE",$P(ON,";",2))),"^",4)["DISC" D
  ..S RXN=$P(ON,";",2) K X,Y,X1,X2
  ..S X=$P(^TMP($J,LIST,"OUT","REMOTE",RXN),"^",6) D ^%DT S X1=Y,X2=(+$P(^TMP($J,LIST,"OUT","REMOTE",RXN),"^",7)+7)
- ..D C^%DTC I X<DT S PSODCTH(ON)=1 K X,Y,X1,X2
+ ..D C^%DTC I X<DT S PSODCTH(ON)=1  K X,Y,X1,X2
  Q
  ;
 RVAGEN ;va generic for remote drugs
@@ -155,10 +155,12 @@ RVAGEN ;va generic for remote drugs
  Q
  ;
 DVAGEN ;va generic for non-va/pending meds
- S PSI=0 N PSID,PSODD,PSOVAG
- F  S PSI=$O(^PSDRUG("ASP",PSORDIT,PSI)) Q:'PSI  I $S('$D(^PSDRUG(PSI,"I")):1,'^("I"):1,DT'>^("I"):1,1:0),$S($P($G(^PSDRUG(PSI,2)),"^",3)'["O":0,1:1) S PSID=$P($G(^PSDRUG(PSI,0)),"^") Q
- Q:$G(PSID)']""
- S PSODD=$O(^PSDRUG("B",PSID,0)) D VAGEN^PSODDPR3(PSODD)
+ S PSI=0 N PSID,PSODD,PSOVAG,PSOSRTPK,PSOSRTDG,PSOSRTDF
+ S PSOSRTPK=$S($P(ON,";")="N":"X",1:"O"),PSOVAG=""
+ S PSOSRTDG=$P($$DRG^PSSDSAPM(PSORDIT,PSOSRTPK),";")
+ D:PSOSRTDG VAGEN^PSODDPR3(PSOSRTDG)
+ I PSOVAG="",PSOSRTDG S PSOVAG=$P($G(^PSDRUG(PSOSRTDG,0)),"^")
+ I PSOVAG="" S PSOSRTDF=$P($G(^PS(50.7,PSORDIT,0)),"^",2) S PSOVAG=$P($G(^PS(50.7,PSORDIT,0)),"^")_"  "_$S($G(PSOSRTDF):$P($G(^PS(50.606,+PSOSRTDF,0)),"^"),1:"")
  Q:$G(PSOVAG)']""
  S ZOT=$S($P(ON,";")="O":1,$P(ON,";")="R":2,$P(ON,";")="P":3,1:4),ZDGDG(SV,ZOT,PSOVAG,DRG)=ON_"^"_CT,COUNT=COUNT+1
  K PSI,PSID,PSORDIT,PSODD,PSOVAG
@@ -169,7 +171,7 @@ INT ;
  .K DIR,DTOUT,DIRUT,DIROUT,DUOUT
  .W ! S DIR(0)="SA^1:YES;0:NO",DIR("A")="Do you want to Continue? ",DIR("B")="Y" D ^DIR S:($D(DTOUT))!($D(DUOUT))!($G(DIRUT)) PSODLQT=1,PSORX("DFLG")=1 Q:$G(PSODLQT)
  .K DIR,DTOUT,DIRUT,DIROUT,DUOUT
- .I 'Y S PSORX("DFLG")=1 Q
+ .I 'Y S PSODLQT=1,PSORX("DFLG")=1 Q
  .S DA=PSONV,RXREC=DA,RX=$G(^PSRX(RXREC,0)),PSORX("INTERVENE")=1
  .D CRI^PSODGDG1
  .I $G(OLDDA) S DA=OLDDA K OLDDA

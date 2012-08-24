@@ -1,5 +1,5 @@
 PRSPLVU ;WOIFO/SAB - LEAVE UTILITIES ;3/31/2005
- ;;4.0;PAID;**93**;Sep 21, 1995;Build 7
+ ;;4.0;PAID;**93,126**;Sep 21, 1995;Build 59
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -132,11 +132,11 @@ LOADTC(PPI,PRSIEN,DAY,TC) ; Load Time Card into TC() Array
  ;
  ; loop thru seven tour segments
  F TSI=1:1:7 D
- . S TSS=$P(TCY,U,(TSI-1)*3+1) ; time segment start
+ . S TSS=$P(TCY,U,(TSI-1)*4+1) ; time segment start
  . Q:TSS=""
- . S TSE=$P(TCY,U,(TSI-1)*3+2) ; time segment end
+ . S TSE=$P(TCY,U,(TSI-1)*4+2) ; time segment end
  . Q:TSE=""
- . S TST=$P(TCY,U,(TSI-1)*3+3) ; time segment type of time
+ . S TST=$P(TCY,U,(TSI-1)*4+3) ; time segment type of time
  . Q:TST=""
  . ; convert times to FileMan date/time format
  . S PRSX=$$CNVTS(PRSDT,TSS,TSE)

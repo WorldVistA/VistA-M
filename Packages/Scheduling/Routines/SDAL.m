@@ -1,5 +1,5 @@
 SDAL ;ALB/GRR,MJK - APPOINTMENT LIST ; 29 Jun 99  04:11PM  ; Compiled August 20, 2007 14:24:59
- ;;5.3;Scheduling;**37,46,106,171,177,80,266,491**;Aug 13, 1993;Build 53
+ ;;5.3;Scheduling;**37,46,106,171,177,80,266,491,572**;Aug 13, 1993;Build 13
 EN W ! S SDEND=1 D ASK2^SDDIV G:Y<0 END
  W ! S VAUTNI=1 D NCOUNT^SDAL0 I SDCONC=U G END
  W ! D NCLINIC^SDAL0 G:Y<0 END
@@ -40,7 +40,6 @@ START U IO N CNT,SDCLAR,SDCOUNT S (SDCOUNT,CNT)=0
  . S SD="" F  S SD=$O(VAUTC(SD)) Q:SD']""  S SC=$G(VAUTC(SD)) I $G(SC)]"" S SDARRAY(2)=$G(SDARRAY(2))_SC_";"
  ;call SDAPI to retrieve appointment data
  S SDRESULT=$$SDAPI^SDAMA301(.SDARRAY)
- ;I SDRESULT<0 S SDERR=$$SDAPIERR^SDAMUTDT() I $L(SDERR) S SC=0 D HED W !!,SDERR,! I $E(IOST,1,2)="C-" D OUT^SDUTL
  ;if error returned from SDAPI, display on report and quit
  I SDRESULT<0 S SDERR=$$SDAPIERR^SDAMUTDT() I $L(SDERR) S SC=0 S SDPAGE=1 D HED W !!,SDERR,! D:$E(IOST,1,2)="C-" OUT^SDUTL D EXIT Q
  ;if appts returned from SDAPI, sort output by clinic, appt d/t, patient
@@ -50,24 +49,21 @@ START U IO N CNT,SDCLAR,SDCOUNT S (SDCOUNT,CNT)=0
  ... S SDDT=0 F  S SDDT=$O(^TMP($J,"SDAMA301",SDCL,SDDFN,SDDT)) Q:'SDDT  D
  .... M ^TMP($J,"SDAMA301","S",SDCL,SDDT,SDDFN)=^TMP($J,"SDAMA301",SDCL,SDDFN,SDDT)
  ;---------------------------------------------------------------------------
-LOOPA ;S SD=0 F  S SD=$S(VAUTC:$O(^SC("B",SD)),1:$O(VAUTC(SD))) Q:SD']""!SDEND  D CLIN
- ;if no error returned from SDAPI, start looping through clinics in VAUTC (sorted by name)
+LOOPA ;if no error returned from SDAPI, start looping through clinics in VAUTC (sorted by name)
  I SDRESULT'<0 S SD=0 F  S SD=$O(VAUTC(SD)) Q:SD']""!SDEND  D CLIN
  G:SDEND END
 OVER ;S PCNT=PCNT+1 I PCNT<SDCOPY,SDCOUNT S VAUTC=0 G LOOPA
  S PCNT=PCNT+1 I PCNT<SDCOPY,SDCOUNT G LOOPA
 END I $G(SDCOUNT)="" G EXIT
- ;I SDCOUNT=0 S SDPCT="No activity found for this date!" D HED W !!?$L(SDPCT)\2,SDPCT,!
  I SDCOUNT=0 S SDPCT="No activity found for this date!" S SDPAGE=1,SC=0 D HED W !!?$L(SDPCT)\2,SDPCT,!
  I $E(IOST,1,2)="C-" D:'$G(SDEND)&$G(SDCOUNT) OUT^SDUTL W @IOF
-EXIT K %,%H,%H,A,ALL,DFN,DIC,I,INC,K,M,PCNT,POP,PT,SC,SD,SD1,SDCC,SDCONC,SDCP,SDD,SDEM1,SDDIF,SDDIF1,SDEA,SDEC,SDEDT,SDEM,SDEND,SDFL,SDFS,SDIN,SDNT
+EXIT K %,%H,%H,A,ALL,DFN,DIC,I,INC,K,M,PCNT,POP,PT,SC,SD,SD1,SDCC,SDCONC,SDCP,SDD,SDEM1,SDDIF,SDDIF1,SDEA,SDEC,SDEDT,SDEM,SDEND,SDFLG,SDFS,SDIN,SDNT
  K DIRUT,SDCOPY,SDPAGE,SDPCT,SDPNOW,SDPT0,SDOI,SDPD,SDREV,SDT,SDX,SDXX,SDZ,VADAT,VADATE,VAUTC,VAUTNI,VAUTSTR,VAUTVB,VAUTD,VAQK,X,Y,Y1,Y2,Z
  K SDBC,SDBCON,SDBCOFF,SDASH,SDPCMM,^TMP($J,"SDAMA301")
  D CLOSE^DGUTQ Q
  ;
-CLIN ;S (SDFL,SC)=0 F  S SC=$O(^SC("B",SD,SC)) Q:SC'>0!SDEND  I $D(^SC(SC,0)),$P(^(0),"^",3)="C" I $S(VAUTC:1,'$D(VAUTC(SD)):0,VAUTC(SD)=SC:1,1:0) D LOOP^SDAL0
- ;process each clinic IEN from VAUTC array
- S (SDFL,SC)=0 S SC=$G(VAUTC(SD)) I $G(SC)>0,$D(^SC(SC,0)) D LOOP^SDAL0
+CLIN ;process each clinic IEN from VAUTC array
+ S (SDFLG,SC)=0 S SC=$G(VAUTC(SD)) I $G(SC)>0,$D(^SC(SC,0)) D LOOP^SDAL0
  Q
  ;
 BARQ(TTYPE,MARGIN) ;
@@ -95,10 +91,16 @@ HED ;Print report header
  S SDCOUNT=SDCOUNT+1,SD1=1
  W:SDCOUNT>1!($E(IOST)="C") $$XY^SCRPW50(IOF,1,0) W:$X $$XY^SCRPW50("",0,0)
  W:SC "Appointments for ",$P(^SC(SC,0),"^",1)," clinic on ",SDPD
- W:'SC "Appointments for ",SDPD
+ ;SD*572 added following naked reference logic
+ I 'SC D
+ .I VAUTC W "Appointments for ALL clinics for ",SDPD Q
+ .S CT=0,SNAM=""
+ .F  S SNAM=$O(VAUTC(SNAM)) Q:SNAM=""  S CT=CT+1,SC=$G(VAUTC(SNAM))
+ .I CT=1 W "Appointments for ",$P(^SC(SC,0),U,1)," clinic on ",SDPD D INACT
+ .I CT>1!(CT<1) W "Appointments for Selected clinics for ",SDPD
+ .K CT,SNAM,SC
  W !,"Date printed: ",SDPNOW,?(IOM-6-$L(SDPAGE)),"Page: ",SDPAGE,!
  W !," Appt.",?11,"Patient Name",?44,"SSN",?53,"Lab",?62,"X-Ray",?73,"EKG"
- ;W !," Time",?53,"Time",?62,"Time",?73,"Time",!,?15,"Other Information",?40,"Ward Location",!,?41,"Room-Bed"
  W !," Time",?53,"Time",?62,"Time",?73,"Time",!,?15,"Other Information",?40,"Ward Location",!,?41,"Room-Bed"
  W !,SDASH S SDPAGE=SDPAGE+1
  D:SDBC PAINT(SC,SDD)
@@ -120,5 +122,11 @@ BARC(TAB,X) ; --print barcode
  ;          X := string to print
  ;
  W *13,?TAB W @SDBCON,X,@SDBCOFF
+ Q
+ ;
+INACT ;SD*572 if single clinic selected check if inactive on selected date
+ I $D(^SC(SC,"I")) I SDD=$P($G(^("I")),U,1)!(SDD>$P($G(^("I")),U,1)),'$P($G(^("I")),U,2) S SDPCT="Clinic Inactive on this date!" Q
+ I $D(^SC(SC,"I")) I SDD=$P($G(^("I")),U,1)!(SDD>$P($G(^("I")),U,1))&(SDD<$P($G(^("I")),U,2)) S SDPCT="Clinic Inactive on this date!" Q
+ S SDPCT="No Clinic Availability on this date!"
  Q
  ;

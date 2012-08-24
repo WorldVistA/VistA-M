@@ -1,5 +1,5 @@
-PXRMPTL ; SLC/DLT,PKR,PJH - Print Clinical Reminders logic; 01/07/2008
- ;;2.0;CLINICAL REMINDERS;**4,12**;Feb 04, 2005;Build 73
+PXRMPTL ;SLC/DLT,PKR,PJH - Print Clinical Reminders logic ;02/04/2011
+ ;;2.0;CLINICAL REMINDERS;**4,12,18**;Feb 04, 2005;Build 152
  ;
  ;====================================================
 BLDFLST(RITEM,FL) ;Build the list of findings defined for this reminder.
@@ -15,22 +15,13 @@ BLDFLST(RITEM,FL) ;Build the list of findings defined for this reminder.
  ;
  ;====================================================
 CDUE(CDUE,FL,NL,ARRAY) ;Expand the custom date due string into ARRAY.
- N ARGL,FI,FREQ,IND,OPER,NARGS,PFSTACK,TEMP
- K ARRAY
- S OPER=","
- D POSTFIX^PXRMSTAC(CDUE,OPER,.PFSTACK)
- S ARRAY(1)=PFSTACK(1)_"(",NL=1
- S NARGS=0
- F IND=2:1:PFSTACK(0) D
- . I PFSTACK(IND)=OPER Q
- . S NARGS=NARGS+1,ARGL(NARGS)=PFSTACK(IND)
+ N FILIST,FREQLIST,FUNCTION,IND,OPLIST,NARGS
+ D PARSE^PXRMCDUE(CDUE,.FUNCTION,.NARGS,.FILIST,.FREQLIST,.OPLIST)
+ S ARRAY(1)=FUNCTION_"(",NL=1
  F IND=1:1:NARGS D
- . S TEMP=ARGL(IND)
- . S FI=$P(TEMP,"+",1)
- . S FREQ=$P(TEMP,"+",2)
- . S TEMP=FL(FI)_" + "_FREQ
  . S NL=NL+1
- . S ARRAY(NL)=$S(IND<NARGS:TEMP_", ",1:TEMP)
+ . S ARRAY(NL)=FL(FILIST(IND))_OPLIST(IND)_FREQLIST(IND)
+ . I IND<NARGS S ARRAY(NL)=ARRAY(NL)_", "
  S NL=NL+1,ARRAY(NL)=")"
  Q
  ;

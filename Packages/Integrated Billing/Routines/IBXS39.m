@@ -1,4 +1,4 @@
-IBXS39 ; ;10/26/11
+IBXS39 ; ;02/21/12
  D DE G BEGIN
 DE S DIE="^DGCR(399,",DIC=DIE,DP=399,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DGCR(399,DA,""))=""
  I $D(^("M")) S %Z=^("M") S %=$P(%Z,U,4) S:%]"" DE(19)=% S %=$P(%Z,U,5) S:%]"" DE(20)=% S %=$P(%Z,U,6) S:%]"" DE(21)=% S %=$P(%Z,U,7) S:%]"" DE(24)=% S %=$P(%Z,U,8) S:%]"" DE(25)=% S %=$P(%Z,U,9) S:%]"" DE(26)=%

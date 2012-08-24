@@ -1,5 +1,16 @@
-YTQHL7 ;ALB/ASF HL7 ; 10/7/08 3:31pm
- ;;5.01;MENTAL HEALTH;**85,93,97**;Dec 30, 1994;Build 42
+YTQHL7 ;ALB/ASF - HL7 ; 3/9/12 1:06pm
+ ;;5.01;MENTAL HEALTH;**85,93,97,106**;Dec 30, 1994;Build 10
+ ;Reference to VADPT supported by IA #10061
+ ;Reference to %ZTLOAD supported by IA #10063
+ ;Reference to XMD supported by IA #10070
+ ;Reference to HLCS2 supported by IA #2887
+ ;Reference to HLFNC supported by IA #10106
+ ;Reference to HLFNC2 supported by IA #2161
+ ;Reference to HLMA supported by IA #2164
+ ;Reference to VAFHLPID supported by IA #263
+ ;Reference to XLFNAME supported by IA #3065
+ ;Reference to FILE 4 fields supported by DBIA #10090
+ ;Reference to FILE 44 fields supported by DBIA #10040
  Q
 ACKMHA ;
  N YSLOCAT,YSERT,YSDIV,YSACK,YSMID,YSFS,YSAD,YSMTXT,YSX,YS772,YSMSG
@@ -41,7 +52,7 @@ ERRMAIL(X,YSAD) ;mail error reports
  S ^TMP("YSMHAHL7",$J,1,0)="An attempt to send MHA3 Administration ien #"_YSAD
  S ^TMP("YSMHAHL7",$J,2,0)="generated an error."
  S ^TMP("YSMHAHL7",$J,3,0)="Error: "_X
- S ^TMP("YSMHAHL7",$J,4,0)="Please report this error mailto:hl7err@mentalhealth.va.gov"
+ S ^TMP("YSMHAHL7",$J,4,0)="Please report this error mailto:hl7err@mentalhealth.DOMAIN.EXT"
  S XMSUB="Mental Health Assistant 3 HL7 Error"
  S XMY("G."_$P(YSMAILG,U))=""
  S XMTEXT="^TMP(""YSMHAHL7"",$J,"
@@ -54,6 +65,7 @@ HL7(YSDATA,YS) ;RPC entry
  ;output: [DATA]
  N G,G1,N,YSAD,YSQ,CNT,MC,HLFS,HLCS,DA,DFN,DIE,DR,HLECH,HLNEXT,HLNODE,HLQUIT,MYOPTNS,MYRESULT,J1,J2
  N VADMVT,VAINDT,X1,Y,YSANSID,YSAVED,YSCC,YSCONID,YSEQ,YSIN,YSIO,YSLINE,YSORBY,YSOUT,YSQN,YSTEST,YSTESTN,YSTS,YSTST,YSRTYP,YSRTYPN
+ S YSDATA(1)="[DATA]" Q  ;ASF 10/13/11 Stop all HL7 messages 
  S YSAD=$G(YS("AD"))
  I YSAD'?1N.N S YSDATA(1)="[ERROR]",YSDATA(2)="bad ad num" Q  ;-->out
  I '$D(^YTT(601.84,YSAD)) S YSDATA(1)="[ERROR]",YSDATA(2)="no such reference" Q  ;-->out

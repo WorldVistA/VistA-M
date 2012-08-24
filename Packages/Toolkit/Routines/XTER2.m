@@ -1,9 +1,9 @@
-XTER2 ;ISC-SF.SEA/JLI - MODIFICATION OF %XTER FOR USE WITH VAX DSM ;04/01/98  12:06
- ;;8.0;KERNEL;**71,77**;Jul 10, 1995
+XTER2 ;ISC-SF.SEA/JLI - MODIFICATION OF %XTER FOR USE WITH VAX DSM ;03/08/2012
+ ;;8.0;KERNEL;**71,77,582**;Jul 10, 1995;Build 6
+ ;Per VHA Directive 2004-038, this routine should not be modified
 RESTOR ;
  X ^%ZOSF("PROGMODE") I 'Y W !,$C(7),"^R to restore environment is restricted to users in programmer mode",$C(7),! G ^XTER1
- S %XTZUCI=$P(%XTJOB,U,4) X ^%ZOSF("UCI") I Y'=%XTZUCI K %XTZUCI
- K (%XTZDAT,%XTZNUM,%XTZUCI)
+ S %XTZUCI=$P(%XTJOB,U,4) X ^%ZOSF("UCI") I $P(Y,",")'=$P(%XTZUCI,":"),$P(Y,",",2)'=$P(%XTZUCI,":") K %XTZUCI
  F %XTZZZ=0:0 S %XTZZZ=$O(^%ZTER(1,%XTZDAT,1,%XTZNUM,"ZV",%XTZZZ)) Q:%XTZZZ'>0  I $D(^(%XTZZZ,"D"))#2,$D(^(0))#2,$E(^(0))'="$" I $E(^(0),1,6)'="%ZT(""^",$E(^(0),1)'="^" S @(^(0))=^("D")
  I '$D(%XTZUCI) W !,$C(7),"MUST BE IN SAME UCI TO RESTORE PROGRAM --- VARIABLES RESTORED",! K %XTZDAT,%XTZNUM,%XTZZZ Q
  S X=$P($P($P(^%ZTER(1,%XTZDAT,1,%XTZNUM,"ZE"),",",1),"^",2),":",1) I X'="" X ^%ZOSF("TEST") I $T S XCNP=0,DIF="^TMP($J," X ^%ZOSF("LOAD") K XCNP,DIF,^TMP($J)

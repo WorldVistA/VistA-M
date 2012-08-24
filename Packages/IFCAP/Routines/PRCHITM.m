@@ -72,7 +72,7 @@ EXIT I $D(PRCHNODE) D
  . . N XMDUZ,XMMG,XMSUB,XMTEXT,XMY,XMZ
  . . S XMSUB="Item Filing Errors for Interchange Control: "_PRCTXN
  . . S XMDUZ=.5,XMTEXT="^XTMP(PRCHNODE,""ERR"","
- . . S XMY("VHANIFMO@va.gov")="",XMY("G.ISM")=""
+ . . S XMY("VHANIFMO@DOMAIN.EXT")="",XMY("G.ISM")=""
  . . D ^XMD
  . ; if no errors delete ^XTMP nodes when done
  . I '$D(^XTMP(PRCHNODE,"ERR")) K ^XTMP(PRCHNODE)

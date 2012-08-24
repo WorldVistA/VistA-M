@@ -1,5 +1,5 @@
 FHOMDPA ;Hines OIFO/RTK OUTPATIENT LOOK-UP ;12/3/02  09:46
- ;;5.5;DIETETICS;**5,17**;Jan 28, 2005;Build 9
+ ;;5.5;DIETETICS;**5,17,24**;Jan 28, 2005;Build 3
 F1 ;
  ; FHALL=1 - Lookup INPATIENTS or OUTPATIENTS
  ; FHALL=0 - Lookup OUTPATIENTS only (to lookup INPATS only, use FHDPA)
@@ -14,6 +14,7 @@ F1 ;
  S FHYIEN=+Y,DFN=FHYIEN
 FX1 I FHALL=1,$D(^DPT(DFN,.1)) D ENOM^FHDPA K FHALL Q
  I $D(^DPT(DFN,.1)) D MSG K FHALL Q
+ I $D(^DPT(DFN,.35)) D DEAD K FHALL Q
  I DFN>0 D VER I Y="^" D NOP Q
  I Y=0,XRESP=" " D F1 Q
  I Y=1 S FHZ115="P"_DFN D ADD K FHALL Q
@@ -52,4 +53,24 @@ MSG ;
  Q
 NOP ;
  S FHDFN=0,DFN=0,Y=-1 K FHALL Q
+ Q
+DEAD ;PATIENT IS DEAD
+ ;Display patient is dead message, added patch FH*5.5*24
+ K Y
+ S Y=$P($P($G(^DPT(DFN,.35)),U),".")
+ I Y="" Q
+ X ^DD("DD")
+ S FHDFN=DFN
+ D PATNAME^FHOMUTL
+ W !!?5,"This patient, ",FHPTNM,", died on ",Y,"."
+ ;For outpatient only
+ I FHALL=0 D
+ . ;Set quit condition for outpatients only
+ . S FHDFN=""
+ . ;Display message that outpatient meals can not be ordered
+ . I $G(FHMSG1)'="" D
+ . . D TYPE^FHOMUTL
+ . . W !?5,FHMSGML," cannot be ordered for this patient.",!
+ W !
+ H 2
  Q

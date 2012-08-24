@@ -1,5 +1,5 @@
 BPSRPT4 ;BHAM ISC/BEE - ECME REPORTS (CONT) ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -182,27 +182,36 @@ GETREJ(REJ) ;
  ; Input variable: BPRTYPE -> Report Type (1-7)
  ;
 HEADLN1(BPRTYPE) ;
- I (",1,2,3,4,5,7,8,")[BPRTYPE W !,"PATIENT NAME",?27,"Pt.ID",?35,"RX#",?47,"REF/ECME#"
- I (BPRTYPE=1)!(BPRTYPE=4)!(BPRTYPE=8) D  Q
- . W ?68,"DATE"
- . W ?78,$J("$BILLED",10)
- . W ?97,$J("$INS RESPONSE",13)
+ I (",1,2,3,4,5,7,8,")[BPRTYPE W !,"PATIENT NAME",?27,"Pt.ID"
+ I (BPRTYPE=1)!(BPRTYPE=4) D  Q
+ . W ?35,"ELIG"
+ . W ?40,"RX#"
+ . W ?52,"REF/ECME#"
+ . W ?73,"DATE"
+ . W ?83,$J("$BILLED",10)
+ . W ?102,$J("$INS RESPONSE",13)
  . W ?122,$J("$COLLECT",10)
  ;
  I BPRTYPE=2 D  Q
- . W ?68,"DATE"
- . W ?78,"RELEASED ON"
- . W ?91,"RX INFO"
- . W ?109,"RX COB"
- . W ?116,"OPEN/CLOSED"
- . W ?128,"ELIG"
+ . W ?35,"ELIG"
+ . W ?40,"RX#"
+ . W ?52,"REF/ECME#"
+ . W ?73,"DATE"
+ . W ?83,"RELEASED ON"
+ . W ?96,"RX INFO"
+ . W ?114,"RX COB"
+ . W ?121,"OPEN/CLOSED"
  ;
  I BPRTYPE=3 D  Q
+ . W ?35,"RX#"
+ . W ?47,"REF/ECME#"
  . W ?68,"DATE"
  . W ?100,$J("$BILLED",10)
  . W ?119,$J("$INS RESPONSE",13)
  ;
  I BPRTYPE=5 D  Q
+ . W ?35,"RX#"
+ . W ?47,"REF/ECME#"
  . W ?65,"COMPLETED"
  . W ?83,"TRANS TYPE"
  . W ?100,"PAYER RESPONSE"
@@ -215,9 +224,20 @@ HEADLN1(BPRTYPE) ;
  . W ?87,$J("AMOUNT",17)
  ;
  I BPRTYPE=7 D  Q
- . W ?65,"RX INFO"
- . W ?87,"DRUG"
- . W ?121,"NDC"
+ . W ?35,"ELIG"
+ . W ?40,"RX#"
+ . W ?52,"REF/ECME#"
+ . W ?70,"RX INFO"
+ . W ?92,"DRUG"
+ . W ?126,"NDC"
+ ;
+ I (BPRTYPE=8) D  Q
+ . W ?35,"RX#"
+ . W ?47,"REF/ECME#"
+ . W ?68,"DATE"
+ . W ?78,$J("$BILLED",10)
+ . W ?97,$J("$INS RESPONSE",13)
+ . W ?122,$J("$COLLECT",10)
  Q
  ;
  ;Print Header 2 Line 2
@@ -302,7 +322,11 @@ SELEXCEL() ; - Returns whether to capture data for Excel report.
  ; Output: EXCEL = 1 - YES (capture data) / 0 - NO (DO NOT capture data)
  ;
  N EXCEL,DIR,DIRUT,DTOUT,DUOUT,DIROUT
- ;
+ I ",1,2,3,4,"[(","_BPRTYPE_",") D
+ . W !!,"Data fields VA Ingredient Cost, VA Dispensing Fee, Ingredient Cost Paid,",!
+ . W "Dispensing Fee Paid and Patient Responsibility (INS) will only be included",!
+ . W "when the report is captured for an Excel document.  All additional data fields",!
+ . W "may not be present for all reports."
  S DIR(0)="Y",DIR("B")="NO",DIR("T")=DTIME W !
  S DIR("A")="Do you want to capture report data for an Excel document"
  S DIR("?")="^D HEXC^BPSRPT4"

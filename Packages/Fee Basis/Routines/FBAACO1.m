@@ -1,6 +1,6 @@
-FBAACO1 ;AISC/GRR-ENTER PAYMENT CONTINUED ;7/17/2003
- ;;3.5;FEE BASIS;**4,61,77**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAACO1 ;AISC/GRR - ENTER PAYMENT CONTINUED ;6/25/2009
+ ;;3.5;FEE BASIS;**4,61,77,108**;JAN 30, 1995;Build 115
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 SVCPR ;set up service provided multiple
  I '$D(^FBAAC(DFN,1,FBV,1,FBSDI,1,0)) S ^FBAAC(DFN,1,FBV,1,FBSDI,1,0)="^162.03A^0^0"
  W ! S DLAYGO=162,DIC="^FBAAC("_DFN_",1,"_FBV_",1,"_FBSDI_",1,",DIC(0)=$S($G(FBCNP):"QL",1:"EQL"),X=""""_FBX_"""",DA(3)=DFN,DA(2)=FBV,DA(1)=FBSDI
@@ -20,18 +20,54 @@ SVCPR ;set up service provided multiple
  ;
  Q
  ;
-PPT(FBDEF) ;establishes prompt pay type for entry
- ;fbaamm=ppt if 1 ask for each line item; if 0 don't ask
- ;fbaamm1=the ppt for each line item
- ;FBDEF=(optional) default for DIR prompt: =1 for yes, otherwise no
- N Y I FBAAMM="" S FBAAMM1="" Q
- I FBAAMM=1 F  D  Q:Y]""
- . S DIR(0)="Y",DIR("A")="Is this line item for a contracted service"
- . S DIR("B")=$S($G(FBDEF)=1:"Yes",1:"No")
- . S DIR("?")="Answering no indicates that interest will not be paid for this line item."
- . D ^DIR K DIR I $D(DIRUT) W !,$C(7),"Required Response!" S Y=""
- S FBAAMM1=$S(Y=1:1,1:"")
+PPT(FBDEF,FBDEFC,FB162) ;establishes prompt pay type and contract for entry
+ ; input
+ ;   FBDEF  = (optional) default for DIR prompt: =1 for yes, else no
+ ;   FBDEFC = (optional) default for the contract prompt
+ ;   FBAAMM = ppt if 1 ask for each line item; if 0 don't ask
+ ;   FBV    = vendor (ien) being paid
+ ;   FBVEN  = vendor (ien) from authorization
+ ;   FBCNTRA= contract (ien) from authorization
+ ;   FB583  = (optional) $D(FB583) true if unauthorized claim
+ ;   FB162  = (optional) = 1 if payment line item in sub-file 162.03 is being edited.  FBDEF and FBDEFC must be current values.
+ ; output
+ ;   FBAAMM1 = the ppt for the line item
+ ;   FBCNTRP = contract ien for the line item
+ N Y
+ S (FBAAMM1,FBCNTRP)=""
+ I FBAAMM="" Q
+ S:'$D(FBV) FBV=$G(FBVEN)  ;SOMETIMES FBV DOES NOT EXIST BUT FBVEN IS SET EQUAL TO THE VENDOR IN FBCH ENTER PAYMENT
+ I FBAAMM=1,'$D(FB583),$$UCFA^FBUTL7($G(FBV),$G(FBVEN),$G(FBCNTRA)) D  Q
+ . W !,"Contract is ",$P($G(^FBAA(161.43,FBCNTRA,0)),U)," from the authorization."
+ . S FBAAMM1=1
+ . S FBCNTRP=FBCNTRA
+ I FBAAMM=1 D
+ . ;if editing line in file 162 contracted services can't be changed
+ . I $G(FB162)=1 D
+ .. W !,"Invoice ",$S(FBDEF=1:"is",1:"is not")," for contracted services."
+ .. S Y=$S(FBDEF=1:1,1:0)
+ . ;if not editing line in file 162 contracted services can be changed
+ . I $G(FB162)'=1 F  D  Q:Y]""
+ . . S DIR(0)="Y",DIR("A")="Is this line item for a contracted service"
+ . . S DIR("B")=$S($G(FBDEF)=1:"Yes",1:"No")
+ . . S DIR("?")="Answering no indicates that interest will not be paid for this line item."
+ . . D ^DIR K DIR I $D(DIRUT) W !,$C(7),"Required Response!" S Y=""
+ . S FBAAMM1=$S(Y=1:1,1:"")
+ . Q:FBAAMM1=""
+ . ;
+ . S DIR(0)="PO^161.43:AQEM"
+ . S DIR("A")="CONTRACT"
+ . S DIR("?",1)="If the line item is under a contract then select it."
+ . S DIR("?")="Contract must be active and applicable for the vendor."
+ . S DIR("S")="I $P($G(^(0)),""^"",2)'=""I"",$$VCNTR^FBUTL7($G(FBV),+Y)"
+ . S:$G(FBDEFC) DIR("B")=$P($G(^FBAA(161.43,FBDEFC,0)),U)
+ . D ^DIR K DIR
+ . ; if time-out or '^' and has default value (i.e. edit payment)
+ . ;   return default so existing payment is not altered
+ . I $D(DTOUT)!$D(DUOUT),$G(FBDEFC)>0 S FBCNTRP=FBDEFC Q
+ . I Y>0 S FBCNTRP=+Y
  Q
+ ;
 Q K FBAADT,FBX,FBAACP W:FBINTOT>0 !!,"Invoice: "_FBAAIN_"  Totals $ "_$J(FBINTOT,1,2) G Q^FBAACO:$D(FB583),1^FBAACO:'$D(FBCHCO) Q
  ;
 POS ; prompt for place of service

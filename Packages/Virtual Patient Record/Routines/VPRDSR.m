@@ -1,5 +1,5 @@
 VPRDSR ;SLC/MKB -- Surgical Procedures ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;;Sep 01, 2011;Build 12
+ ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -10,7 +10,6 @@ VPRDSR ;SLC/MKB -- Surgical Procedures ;8/2/11  15:29
  ; ICPTCOD                       1995
  ; ICPTMOD                       1996
  ; SROESTV                       3533
- ; TIUSRVR1                      2944
  ;
  ; ------------ Get surgery(ies) from VistA ------------
  ;
@@ -20,7 +19,7 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's surgeries
  S BEG=$G(BEG,1410101),END=$G(END,4141015),MAX=$G(MAX,9999)
  ;
  ; get one surgery
- I $G(ID) D EN1(ID,.VPRITM),XML(.VPRITM) Q
+ I $G(ID) D EN1(ID,.VPRITM),XML(.VPRITM) G ENQ
  ;
  ; get all surgeries
  Q:'$L($T(LIST^SROESTV))
@@ -30,13 +29,15 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's surgeries
  . K VPRITM D ONE(VPRN,.VPRITM)
  . I $D(VPRITM) D XML(.VPRITM)
  K @VPRY
+ENQ ; end
+ K ^TMP("VPRTEXT",$J)
  Q
  ;
 ONE(NUM,SURG) ; -- return a surgery in SURG("attribute")=value
  ;  Expects DFN, @VPRY@(NUM) from LIST^SROESTV
  N IEN,VPRX,X,Y,I,VPRMOD,VPROTH
- S VPRX=$G(@VPRY@(NUM))
- S IEN=+$P(VPRX,U) Q:IEN<1  K SURG
+ K SURG,^TMP("VPRTEXT",$J)
+ S VPRX=$G(@VPRY@(NUM)),IEN=+$P(VPRX,U) Q:IEN<1
  S SURG("id")=IEN,X=$P(VPRX,U,2),SURG("status")="COMPLETED"
  I X?1"* Aborted * ".E S X=$E(X,13,999),SURG("status")="ABORTED"
  S SURG("name")=X,SURG("dateTime")=$P(VPRX,U,3)
@@ -64,6 +65,7 @@ ONE(NUM,SURG) ; -- return a surgery in SURG("attribute")=value
  ;
 EN1(IEN,SURG) ; -- return a surgery in SURG("attribute")=value
  N VPRX,VPRY,X,Y,I,VPRMOD,VPROTH,SHOWADD
+ K SURG,^TMP("VPRTEXT",$J)
  S SHOWADD=1 ;to omit leading '+' with note titles
  D ONE^SROESTV("VPRY",IEN) S VPRX=$G(VPRY(IEN)) Q:VPRX=""
  S SURG("id")=IEN,X=$P(VPRX,U,2),SURG("status")="COMPLETED"
@@ -105,7 +107,7 @@ CPT(IEN) ; -- return code^description for CPT code, or "^" if error
  ; ------------ Return data to middle tier ------------
  ;
 XML(SURG) ; -- Return surgery as XML
- N ATT,X,Y,NAMES
+ N ATT,X,Y,NAMES,I,J
  D ADD("<surgery>") S VPRTOTL=$G(VPRTOTL)+1
  S ATT="" F  S ATT=$O(SURG(ATT)) Q:ATT=""  D  D:$L(Y) ADD(Y)
  . I $O(SURG(ATT,0)) D  S Y="" Q  ;multiples
@@ -116,8 +118,9 @@ XML(SURG) ; -- Return surgery as XML
  ... S Y="<"_ATT_" "_$$LOOP ;_"/>" D ADD(Y)
  ... S X=$G(SURG(ATT,I,"content")) I '$L(X) S Y=Y_"/>" D ADD(Y) Q
  ... S Y=Y_">" D ADD(Y)
- ... S Y="<content xml:space='preserve'>"_$$ESC^VPRD(X)_"</content>"
- ... D ADD(Y),ADD("</"_ATT_">")
+ ... S Y="<content xml:space='preserve'>" D ADD(Y)
+ ... S J=0 F  S J=$O(@X@(J)) Q:J<1  S Y=$$ESC^VPRD(@X@(J)) D ADD(Y)
+ ... D ADD("</content>"),ADD("</"_ATT_">")
  .. D ADD("</"_ATT_"s>")
  . S X=$G(SURG(ATT)),Y="" Q:'$L(X)
  . I X'["^" S Y="<"_ATT_" value='"_$$ESC^VPRD(X)_"' />" Q
@@ -134,9 +137,4 @@ LOOP() ; -- build sub-items string from NAMES and X
 ADD(X) ; -- Add a line @VPR@(n)=X
  S VPRI=$G(VPRI)+1
  S @VPR@(VPRI)=X
- Q
- ;
-RPT(VPRY,ID) ; -- Return report in VPRY(n)
- S ID=+$G(ID) Q:ID<1
- D TGET^TIUSRVR1(.VPRY,ID)
  Q

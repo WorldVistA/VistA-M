@@ -1,6 +1,6 @@
 FBAAMP ;AISC/CMR-MULTIPLE PAYMENT ENTRY ;9/29/2003
- ;;3.5;FEE BASIS;**4,21,38,55,61,67,116**;JAN 30, 1995;Build 30
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;3.5;FEE BASIS;**4,21,38,55,61,67,116,108**;JAN 30, 1995;Build 115
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  S FBMP=1 ;multiple payment flag
  G ^FBAACO
 1 ;return from FBAACO
@@ -17,8 +17,7 @@ FBAAMP ;AISC/CMR-MULTIPLE PAYMENT ENTRY ;9/29/2003
  D HCFA^FBAAMP1 G Q1:$G(FBAAOUT)
 AMTCL S DIR(0)="162.03,1",DIR("A")="Amount Claimed:  $",DIR("?")="Enter the amount being claimed by the vendor" D ^DIR K DIR G Q:$D(DIRUT) S FBJ=+Y
  W ! S DIR("A")="Is $"_FBJ_" correct for Amount Claimed",DIR("B")="Yes",DIR(0)="Y" D ^DIR K DIR G Q:$D(DIRUT),AMTCL:'Y
-RDAP D FEE G Q:$G(FBAAOUT) S FBK=FBAMTPD
- W ! S DIR("A")="Is $"_FBK_" correct for Amount Paid",DIR("B")="Yes",DIR(0)="Y" D ^DIR K DIR G Q:$D(DIRUT),RDAP:'Y
+RDAP D FEE G Q:$G(FBAAOUT) S FBK=FBAMTPD W ! S DIR("A")="Is $"_FBK_" correct for Amount Paid",DIR("B")="Yes",DIR(0)="Y" D ^DIR K DIR G Q:$D(DIRUT),RDAP:'Y
  S FBAAAS=0 K FBADJ I FBJ-FBK D SUSP^FBAAMP1 I $G(FBAAOUT) G Q:$D(DUOUT),Q1
  S FBJ=+FBJ,FBK=+FBK,FBAAAS=+FBAAAS
  ; prompt for remittance remarks
@@ -43,7 +42,7 @@ FILE S TP="",DR="1///^S X=FBJ;Q;2///^S X=FBK;47///^S X=FBUNITS"
  I FBAARC]"" S DR=DR_";48////^S X=FBAARC"
  ;S DR=DR_$S(FBJ-FBK:";3///^S X=FBAAAS;3.5////^S X=DT;4////^S X=FBAASC;D DESC^FBAAMP1",1:"")
  S DR(1,162.03,1)="6////^S X=DUZ;7////^S X=FBAABE;8////^S X=BO;13///^S X=FBAAID;14///^S X=FBAAIN;15///^S X=FBPT;16////^S X=FBPOV;17///^S X=FBTT;18///^S X=FBAAPTC;23////^S X=2;26////^S X=FBPSA"
- S DR(1,162.03,2)="34///^S X=$G(FBAAMM1);28////^S X=FBHCFA(28);30////^S X=FBHCFA(30);31////^S X=FBHCFA(31);32////^S X=FBHCFA(32);33///^S X=FBAAVID;44///^S X=FBFSAMT;45////^S X=FBFSUSD"
+ S DR(1,162.03,2)="34///^S X=$G(FBAAMM1);54////^S X=$G(FBCNTRP);28////^S X=FBHCFA(28);30////^S X=FBHCFA(30);31////^S X=FBHCFA(31);32////^S X=FBHCFA(32);33///^S X=FBAAVID;44///^S X=FBFSAMT;45////^S X=FBFSUSD"
  S DIE="^FBAAC("_DFN_",1,"_FBV_",1,"_FBSDI_",1,"
  S DA=FBAACPI,DA(1)=FBSDI,DA(2)=FBV,DA(3)=DFN
  D LOCK^FBUCUTL(DIE,FBAACPI,1)

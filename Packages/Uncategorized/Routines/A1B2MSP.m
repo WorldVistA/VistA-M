@@ -1,0 +1,38 @@
+A1B2MSP ;ALB/AAS - UTILITY  TO SET BEDSECTIONSAND LOS FROM PTF ; 16-JAN-91
+ ;;Version 1.55 (local for MAS v5 sites);;
+ ;
+% ;setup variables -
+ K ^UTILITY($J)
+ ;
+1 ;build array of movement dates, billable specialties
+ S A1B2MVMT=0 F A1B2I=0:0 S A1B2MVMT=$O(^DGPT(A1B2PTF,"M",A1B2MVMT)) Q:'A1B2MVMT  D SETU
+ ;
+2 ;build array of billable specialties = los in specialties
+ ;  -- ptf record is closed, use all movements
+ S (A1B2MVDT,A1B2MVDP)=$P(^DGPT(A1B2PTF,0),"^",2)
+ S A1B2MVDT="" F I=0:0 S A1B2MVDT=$O(^UTILITY($J,"A1B2-PTF",A1B2MVDT)) Q:'A1B2MVDT  D SETU1 S A1B2MVDP=A1B2MVDT
+ ;
+3 ;find specialties and set up in file.
+ S A1B2BS=""
+ F A1B2I=0:0 S A1B2BS=$O(^UTILITY($J,"A1B2-BS",A1B2BS)) Q:A1B2BS']""  S A1B2LOS=^(A1B2BS),A1B2BSI=$O(^DGCR(399.1,"B",A1B2BS,0)) I A1B2BSI,$D(^DGCR(399.1,A1B2BSI,0)) D STORE
+ G END
+SETU ;utility array of all movements by date, billing specialty
+ S X=^DGPT(A1B2PTF,"M",A1B2MVMT,0)
+ S A1B2SPC=$S('$P(X,U,2):"UNKNOWN",$D(^DIC(42.4,$P(X,U,2),0)):$P(^(0),U,5),1:"UNKNOWN") Q:A1B2SPC=""
+ S ^UTILITY($J,"A1B2-PTF",$S($P(X,U,10)]"":$P(X,U,10),1:DT),A1B2SPC)=$P(X,U,3)+$P(X,U,4)
+ Q
+SETU1 ;determine los - set utility=los
+ S X1=A1B2MVDT,X2=A1B2MVDP D ^%DTC S A1B2BS=$O(^UTILITY($J,"A1B2-PTF",A1B2MVDT,0)),A1B2PASS=^(A1B2BS)
+ S:((A1B2MVDP\1)=(A1B2MVDT\1)) X=1
+ Q:((X-A1B2PASS)<1)
+ I '$D(^UTILITY($J,"A1B2-BS",A1B2BS)) S ^UTILITY($J,"A1B2-BS",A1B2BS)=X-A1B2PASS Q
+ S ^(A1B2BS)=^UTILITY($J,"A1B2-BS",A1B2BS)+(X-A1B2PASS)
+ Q
+STORE ;store bedsection and los in 11500.61
+ S A1B2FL=11500.61,A1B2DT=A1B2BSI
+ D ADD^A1B2UTL
+ S DA=+Y,DR="[A1B2 SPECIALTY STUFF]",DIE="^A1B2(11500.61," D ^DIE
+ Q
+ ;
+END ;K ^UTILITY($J)
+ ;K A1B2EDT,A1B2MVMT,A1B2BS,A1B2BSI,A1B2LOS,A1B2MVDT,A1B2MVDP,A1B2SPC,A1B2PASS,A1B2I,X

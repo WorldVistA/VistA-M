@@ -1,22 +1,20 @@
-MDCUTL ;HINES OIFO/DP/BJ - HL7 Message Utilities;07 June 2007
- ;;1.0;CLINICAL PROCEDURES;**16**;Apr 01, 2004;Build 280
+MDCUTL ;HINES OIFO/DP/BJ/TJ - HL7 Message Utilities;07 June 2007
+ ;;1.0;CLINICAL PROCEDURES;**16,12,23**;Apr 01, 2004;Build 281
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;1.0;Create HL7 A04 Message;;Mar 10, 2005 ; Patch IB*2.0*286
  ;
  ; This routine uses the following Integration Agreements (IAs):
  ;  # 2050       - $$EZBLD^DIALOG()             FILEMAN                        (supported)
- ;  # 4248       - SETDLMS^VDEFEL calls         VDEF               (controlled subscribed)
- ;  # 4253       - $$QUEUE^VDEFQM calls         VDEF               (controlled subscribed)
  ;
  Q
  ;
-MOREDLMS ; set HL7 delimiters based on VDEFHL()
+MOREDLMS ;; maintain HL7 delimiters based on prev. HL7 INIT for the protocol
  S HLMAXLEN=245
- S HLCM=$E(VDEFHL("ECH")),HLRP=$E(VDEFHL("ECH"),2),HLSC=$E(VDEFHL("ECH"),4)
- S HLES=$E(VDEFHL("ECH"),3),HLFS=VDEFHL("FS"),HLQ=VDEFHL("Q")
- S HL7RC=HLES_HLFS_HLCM_HLRP_HLSC,HLECH=VDEFHL("ECH")
- D SETDLMS^VDEFEL
+ S HLFS=$G(HL("FS")) I HLFS="" S HLFS="^"
+ S HLCM=$E(HL("ECH"),1),HLRP=$E(HL("ECH"),2)
+ S HLES=$E(HL("ECH"),3),HLSC=$E(HL("ECH"),4)
+ S HL7RC=HLES_HLFS_HLCM_HLRP_HLSC,HLECH=HL("ECH"),HLQ=HL("Q")
  Q
  ;
 EMPTY(SEG,ERR,HLQFLAG,STFIELD,ENDFIELD) ;
@@ -71,17 +69,17 @@ EMPTY(SEG,ERR,HLQFLAG,STFIELD,ENDFIELD) ;
  ;
 EMPTYERR(NAME) ;Error message module
  ;
- N IBBVPARM
+ N MDCPARM
  ;
  ;Setup error message parameter for call to Dialog File
  ;for dialog 3750007.
  ;Dialog 3750007 => Message could not be built.  Error occurred in |1|.
  ;
- S IBBVPARM(1)="$$EMPTY^IBBVUTL - unacceptable "_NAME_" parameter value of "_@NAME
+ S MDCPARM(1)="$$EMPTY^IBBVUTL - unacceptable "_NAME_" parameter value of "_@NAME
  ;
  ;Return error message text in variable ERR.
  ;
- S ERR=$$EZBLD^DIALOG(3750007,.IBBVPARM)
+ S ERR=$$EZBLD^DIALOG(3750007,.MDCPARM)
  Q
 ESC(FIELD) ;
  ;
@@ -188,7 +186,7 @@ RETRANS ; Retransmit ADT from file 704.005
  K MDCFDA
  F X="MDCPMSG","MDCPEVNT","MDCPPAIR" D
  .W !,X,"=",$G(@X,"<NIL>")
- S MDCFDA(704.005,MDIENS,.09)=$$QUEUE^VDEFQM(MDCPMSG_U_MDCPEVNT,MDCPPAIR,.RETRN)
+ S MDCFDA(704.005,MDIENS,.09)=$$QUE^MDCPMESQ(MDIENS,MDCPEVNT,.RETRN)
  S:MDCFDA(704.005,MDIENS,.09)=0 MDCFDA(704.005,MDIENS,.1)=$G(RETRN,"No return message.")
  D UPDATE^DIE("","MDCFDA")
  Q

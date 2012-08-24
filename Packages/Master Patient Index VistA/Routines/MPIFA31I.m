@@ -1,5 +1,5 @@
-MPIFA31I ;ALB/JRP-PROCESS ADT-A31 MESSAGE FROM MPI ;03-JAN-97
- ;;1.0; MASTER PATIENT INDEX VISTA ;**1,21**;30 Apr 99
+MPIFA31I ;ALB/JRP-PROCESS ADT-A31 MESSAGE FROM MPI ; 1/4/12 12:56pm
+ ;;1.0;MASTER PATIENT INDEX VISTA;**1,21,54**;30 Apr 99;Build 2
  ;
  ; Integration Agreements Utilized:
  ;  ^DGCN(391.91 - #2751
@@ -128,11 +128,12 @@ PROCESS(MSGARR) ;Process ADT-A31 message received from MPI when a new
  S TFSITE=$$LKUP^XUAF4(HERE)
  Q:+TFSITE'>0 ICN
  Q:$D(^DGCN(391.91,"APAT",DFN,TFSITE)) ICN
- K DD,DO N DIC,X,Y
- S DIC="^DGCN(391.91,",DIC("DR")=".02///`"_TFSITE,X=DFN,DIC(0)="LQZ"
- D FILE^DICN
- I +Y=-1 S ^XTMP($J,"MPIF","MSHERR")="Treating Facility Add Failed" D
- .D EXC^RGHLLOG(212,"DFN= "_DFN_"  Treating Facility= "_TFSITE,DFN)
- K DD,DO,DIC,X,Y
+ ;**54 MVI_1009 (ckn) - Commented following un necessary code
+ ;K DD,DO N DIC,X,Y
+ ;S DIC="^DGCN(391.91,",DIC("DR")=".02///`"_TFSITE,X=DFN,DIC(0)="LQZ"
+ ;D FILE^DICN
+ ;I +Y=-1 S ^XTMP($J,"MPIF","MSHERR")="Treating Facility Add Failed" D
+ ;.D EXC^RGHLLOG(212,"DFN= "_DFN_"  Treating Facility= "_TFSITE,DFN)
+ ;K DD,DO,DIC,X,Y
  ;Done
  Q ICN

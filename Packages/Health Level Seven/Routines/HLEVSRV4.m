@@ -28,11 +28,11 @@ LICUSER ; Enter new users now...
  W !,?POSX,"the remote requester is named 'John Doe' and will be sending"
  W !,?POSX,"requests from the Buffalo VAMC, you still might not know"
  W !,?POSX,"the exact email address to enter.  (E.g., Should you enter"
- W !,?POSX,"'JOHN.DOE@MED.VA.GOV' or 'DOE.JOHN@BUFFALO.VA.GOV'?)  And, this"
+ W !,?POSX,"'JOHN.DOE@DOMAIN.EXT' or 'DOE.JOHN@BUFFALO.DOMAIN.EXT'?)  And, this"
  W !,?POSX,"is why it is often advantageous to enter something like"
- W !,?POSX,"'DOE@BUFFALO' and also 'DOE@MED.VA.GOV'.  When a remote "
+ W !,?POSX,"'DOE@BUFFALO' and also 'DOE@DOMAIN.EXT'.  When a remote "
  W !,?POSX,"request is received, as long as 'DOE' is in the sender's"
- W !,?POSX,"name, and either 'BUFFALO' or 'MED.VA.GOV' is in the"
+ W !,?POSX,"name, and either 'BUFFALO' or 'DOMAIN.EXT' is in the"
  W !,?POSX,"address, it will be honored."
  W !
  ;
@@ -154,7 +154,7 @@ REFUSE(REA) ; Send refusal email back to remote requester...
  D MAILADD("               Message#: "_$G(OXMZ))
  D MAILADD("                 Reason: "_REA)
  ;
- S XMY("HL7SystemMonitoring@med.va.gov")=""
+ S XMY("HL7SystemMonitoring@DOMAIN.EXT")=""
  I $G(XMFROM)]"" S XMY(XMFROM)=""
  ;
  D ^XMD

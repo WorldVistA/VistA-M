@@ -1,6 +1,6 @@
-MAGJEX2 ;;WIRMFO/JHC Rad. Workstation RPC calls;[ 02/25/2000  4:40 PM ] ; 09 Jun 2003  2:58 PM
- ;;3.0;IMAGING;**51,18,76**;Jun 22, 2007;Build 19
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+MAGJEX2 ;WIRMFO/JHC - Rad. Workstation RPC calls; 9 Sep 2011  4:05 PM
+ ;;3.0;IMAGING;**51,18,76,120**;Mar 19, 2002;Build 27;May 23, 2012
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -8,7 +8,6 @@ MAGJEX2 ;;WIRMFO/JHC Rad. Workstation RPC calls;[ 02/25/2000  4:40 PM ] ; 09 Jun
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -17,11 +16,11 @@ MAGJEX2 ;;WIRMFO/JHC Rad. Workstation RPC calls;[ 02/25/2000  4:40 PM ] ; 09 Jun
  ;; +---------------------------------------------------------------+
  ;;
  Q
- ; Subroutines for pre-fetch/ auto-display prior exams' images
+ ; Subroutines for pre-fetch/ auto-route prior exams' images
  ; Entry Points:
- ;   PRIOR1  -- Pre-Fetch/Auto-Display images for other related cases;
+ ;   PRIOR1  -- Pre-Fetch/Auto-route images for other related cases;
  ;    RPC Call: MAGJ PRIOREXAMS
- ;   PREFETCH -- Pre-Fetch initiated from 
+ ;   PREFETCH -- Subroutine call via Protocol trigger
  ;
  Q
 ERR N ERR S ERR=$$EC^%ZOSV S MAGGRY(0)="0^Server Program Error: "_ERR
@@ -35,12 +34,12 @@ PREFETCH ; Entry point from HL7 processing, to initiate prefetch at
  I '$P($G(^MAG(2006.69,1,0)),U,5) G PREFQ          ; Prefetch disabled
  I '($G(RADFN)&$G(RADTI)&$G(RACNI)&'$G(RACANC)) G PREFQ ; Required vars
  D PRIOR1(.RET,"P"_U_RADFN_U_RADTI_U_RACNI)
-PREFQ ; W !,"End PRE-FETCH RET=" N JHC R JHC ZW RET
+PREFQ ;
  Q
  ;
 PRIOR1(MAGGRY,DATA) ; review all exams for a patient to find "related" exams
  ; This ep also called as subroutine from routing software (P51)
- ; MAGGRY - return array of exams to PreFetch, or Auto-send to RAD W/S
+ ; MAGGRY - return array of exams to PreFetch or Auto-route
  ; DATA:  - input params for the Current Exam
  ;   1) ACTION = P -- Pre-fetch Exams (from Jukebox to Magnetic Disk)
  ;             = A -- Auto-route priors
@@ -61,7 +60,7 @@ PRIOR1(MAGGRY,DATA) ; review all exams for a patient to find "related" exams
  E  S MAGGRY(0)="0^Request Contains Invalid Case Pointer ("_DATA_")" G PRIOR1Z
  S DIQUIET=1 D DT^DICRW
  N MAGJOB D MAGJOBNC^MAGJUTL3
- S HDR=$S(ACTION="P":"Pre-fetch",ACTION="A":"Auto-Display",1:"???")_" Prior Exams for CASE: "
+ S HDR=$S(ACTION="P":"Pre-fetch",ACTION="A":"Auto-route",1:"???")_" Prior Exams for CASE: "
  I '$D(^DPT(MAGDFN,0)) S MAGGRY(0)="0^Request Contains Invalid Patient Pointer ("_MAGDFN_")" G PRIOR1Z
  I $D(^RADPT(MAGDFN,"DT",MAGDTI,"P",MAGCNI))
  E  S MAGGRY(0)="0^Request Contains Invalid Case Pointer ("_MAGCNI_")" G PRIOR1Z
@@ -83,24 +82,22 @@ PRIOR1Z ;
  ;
 SRCH(RADFN) ; Traverse all exams for a patient, up to limits of age & total
  ; numbers of exams to consider
- N BEGDT,LIMYRS,LIMEXAMS,X
- S X=$G(^MAG(2006.69,1,0))
- S LIMYRS=+$P(X,U,14),LIMEXAMS=+$P(X,U,15)
- S:'LIMYRS LIMYRS=7 S:'LIMEXAMS LIMEXAMS=50 ; default limit # Exams
+ N BEGDT,LIMYRS,LIMEXAMS
+ S LIMYRS=30,LIMEXAMS=100 ; default limit # Exams
  S BEGDT=($E(DT,1,3)-LIMYRS)_$E(DT,4,7)
  I BEGDT<2950101 S BEGDT=2950101 ; 2 yrs prior to earliest VistaPACS
  S MAGRACNT=1 D GETEXAM3^MAGJUTL1(RADFN,BEGDT,"",.MAGRACNT,.MAGRET,"",LIMEXAMS)
  I MAGRET N IDAT S IDAT=1 D
  . F  S IDAT=$O(^TMP($J,"MAGRAEX",IDAT)) Q:'IDAT  S RADATA=^(IDAT,1) D
- .. S RADTI=$P(RADATA,U,2),RACNI=$P(RADATA,U,3)
- .. I RADTI=MAGDTI&(RACNI=MAGCNI) Q  ; skip current case
- .. D SVMAG2A
+ . . S RADTI=$P(RADATA,U,2),RACNI=$P(RADATA,U,3)
+ . . I RADTI=MAGDTI&(RACNI=MAGCNI) Q  ; skip current case
+ . . D SVMAG2A
  Q
  ;
 SVMAG2A ; 2A and 2B used by subroutine at tag PRIOR1
  ; Find all the patient's exams whose CPT codes are related to the
  ; Current exam's CPT code, according to dictionary 2006.65
- N RAIMGTYP
+ N RAIMGTYP,X
  N CPT,CPT3,CPT4,CPT5,CURCPTX,CURCPTS,HIT,MAGMATCH,MAGDTH
  S RARPT=+$P(RADATA,U,10)
  I MAGGRY(0) Q:'$P(MAGGRY(1),U)           ;  Cur Case CPT not in map file
@@ -114,18 +111,18 @@ SVMAG2A ; 2A and 2B used by subroutine at tag PRIOR1
  S MAGMATCH="^^"
  I 'MAGGRY(0) D  Q:'MAGMATCH  ; No rules defined for Cur. Case's CPT
  . S Y=""
- .  ;  Order of CPT5/4/3 is important for the algorithm, which
- .  ;  uses the 1st rule found at the LOWEST level of detail defined
+ . ;  Order of CPT5/4/3 is important for the algorithm, which
+ . ;  uses the 1st rule found at the LOWEST level of detail defined
  . F X=CPT5,CPT4,CPT3 I $D(^MAG(2006.65,"B",X)) S Y=Y_$S(Y:",",1:"")_X S $P(MAGMATCH,U)=Y
  I CPT,MAGGRY(0) D
- .  ; curcpts has the cpt5/4/3 list generated above for Cur. Case CPT's
+ . ; curcpts has the cpt5/4/3 list generated above for Cur. Case CPT's
  . S HIT=0,CURCPTS=$P(MAGGRY(1),U)
  . F  Q:CURCPTS=""  S CURCPTX=$O(^MAG(2006.65,"B",$P(CURCPTS,","),"")) S CURCPTS=$P(CURCPTS,",",2,9) I CURCPTX]"" D  Q:HIT  ; 1st hit only
- .. ;  This algorithm checks from lowest detail to most general, and acts
- .. ;  on the information found at the FIRST Hit only
- .. F CPT="CPT5","CPT4","CPT3" S CPT=@CPT I CPT]"",$D(^MAG(2006.65,CURCPTX,1,"B",CPT)) S X=$O(^(CPT,"")) D  S HIT=1 Q  ;1st hit only
- ... S X=^MAG(2006.65,CURCPTX,1,X,0) S Y=$S(ACTION="A":2,1:5),X=$P(X,U,Y,Y+2)
- ... I +X S MAGMATCH=CPT F I=2,3 S $P(MAGMATCH,U,I)=$P(X,U,I)
+ . . ;  This algorithm checks from lowest detail to most general, and acts
+ . . ;  on the information found at the FIRST Hit only
+ . . F CPT="CPT5","CPT4","CPT3" S CPT=@CPT I CPT]"",$D(^MAG(2006.65,CURCPTX,1,"B",CPT)) S X=$O(^(CPT,"")) D  S HIT=1 Q  ;1st hit only
+ . . . S X=^MAG(2006.65,CURCPTX,1,X,0) S Y=$S(ACTION="A":2,1:5),X=$P(X,U,Y,Y+2)
+ . . . I +X S MAGMATCH=CPT F I=2,3 S $P(MAGMATCH,U,I)=$P(X,U,I)
  ;         sample of logic file:
  ; ^MAG(2006.65,1,0) = 730
  ; ^MAG(2006.65,1,1,0) = ^12000011.01^2^2
@@ -159,9 +156,9 @@ SVMAG2B ; For exams whose CPTs match, select a subset that are within defined
  K MAGGRY
  I $D(GO) S CT=0,CPT="" D
  . F  S CPT=$O(GO(CPT)) Q:CPT=""  F ICPT=1:1:GO(CPT) D
- .. S CT=CT+1,X=GO(CPT,ICPT),RARPT=$P(X,U,11)
- .. S MAGGRY(CT)="M08^"_CPT_"|"_$P(X,U,8,11)
- .. I ACTION="P"!(ACTION="A") S Y=$$JBFETCH^MAGJUTL2(RARPT)  ; fetch from jukebox
+ . . S CT=CT+1,X=GO(CPT,ICPT),RARPT=$P(X,U,11)
+ . . S MAGGRY(CT)="M08^"_CPT_"|"_$P(X,U,8,11)
+ . . I ACTION="P"!(ACTION="A") S Y=$$JBFETCH^MAGJUTL2(RARPT)  ; fetch from jukebox
  . S MAGGRY(0)=CT_"^"_HDR
  E  S MAGGRY(0)="0^No Exams Found for "_HDR
  Q

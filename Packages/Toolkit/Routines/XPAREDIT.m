@@ -1,5 +1,6 @@
-XPAREDIT ;SLC/KCM - Simple Parameter Editor ;11:39 PM  12 May 1998
- ;;7.3;TOOLKIT;**26**;Apr 25, 1995
+XPAREDIT ; SLC/KCM - Simple Parameter Editor ;11:15 PM  4 Feb 1998
+ ;;7.3;TOOLKIT;**26,118**;Apr 25, 1995;Build 5
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; Enter here to select parameter, then entity
  ; ENT: variable pointer to the entity selected
@@ -17,6 +18,7 @@ TEDH(TLT,SHWFLG,ALLENT) ; Edit parameters using a template, show dash headers
  G TEDH^XPAREDT3
  ;
 TEDIT(ENT,PAR,INST,USRX) ; Edit an instance of a parameter
+ K Y
  I $G(INST)="" D EDITA S USRX=$G(Y("X")) I 1
  E  D EDIT1^XPAREDT2 S USRX=$G(Y("X"))
  I $E(USRX)=U,$E(USRX,2)'=U,$L(USRX)>1 K DTOUT,DUOUT,DIRUT
@@ -63,7 +65,7 @@ EDITA ; come here from TEDIT
  I +$P(^XTV(8989.51,+PAR,0),U,3) F  D  Q:'$L(INST)!$D(DIRUT)  ; multiple
  . I $D(NOHDR) W !!,"For "_$P(PAR,U,2)_" -"
  . ; D SHWINST^XPAREDT2(ENT,+PAR,$S($D(IOSL):IOSL-4,1:20),0,.INSTLST)
- . D SELINST^XPAREDT2(.INST,ENT,+PAR) Q:'$L(INST)
+ . D SELINST^XPAREDT2(.INST,ENT,+PAR) M Y=INST Q:'$L(INST)
  . W ! S Y="" D EDITVAL^XPAREDT2(.Y,+PAR,"I",INST) Q:(Y="")!($E(Y)=U)
  . I Y="@" D DEL^XPAR(ENT,+PAR,$P(INST,U),.ERR) D  Q
  . . I ERR W $$ERR^XPAREDT2 Q
@@ -86,7 +88,7 @@ LOOKUP(X,FN) ; Lookup entry in a file and return selection as varptr
  S DIC=FN
  S:$L(X) DIC(0)="M" S:'$L(X) DIC(0)="AEMQ"
  D ^DIC I $D(DTOUT)!$D(DUOUT)!(Y<1) S X="" Q
- S X=+Y_";"_$P($$ROOT^DILFD(FN),U,2)
+ S X=+Y_";"_$E(^DIC(FN,0,"GL"),2,999)
  Q
 ENTDISP(ENT) ; function - returns text descriptor of an entity
  Q:'ENT ""
@@ -99,6 +101,6 @@ CENTER(X) ; function - writes a centered title with dashes on either side
  S MAR=(($S($D(IOM):IOM,1:80)-$L(X))\2)-2
  Q $$DASH(MAR)_" "_X_" "_$$DASH(MAR)
 DASH(N) ; function - returns N dashes
- N X
- S X="",$P(X,"-",N+1)=""
+ N I,X
+ S X="" F I=1:1:N S X=X_"-"
  Q X

@@ -1,5 +1,5 @@
 LRUMD ;AVAMC/REG/CYM - MD SELECTED LAB RESULTS ;2/19/98  09:13 ;
- ;;5.2;LAB SERVICE;**201,341**;Sep 27, 1994
+ ;;5.2;LAB SERVICE;**201,341,411**;Sep 27, 1994;Build 2
  D L G:Y=-1 END K LRDPAF D LR^LRUMD2 S LRDFN(1)=0,(LRA,LRE,LRG,LRV)=""
  W !!,"Print/display tests for a single patient or group " S %=2 D YN^LRU I %=1 D ^LRUMDS G END:'$D(X),MI
  D ^LRUMD1 G END:LRV=1,D^LRUMD2:LRV=2 I '$O(^LRO(69.2,LRAA,7,DUZ,1,0)) G END
@@ -37,8 +37,8 @@ END D V^LRU Q
 EN2 D L Q:Y=-1  W !?10,"Delete users' lab test/patient lists" R !?10,"if they haven't used the lists since: T-6 MONTHS// ",X:DTIME Q:X[U!'$T  S:X="" X="T-6M"
  S %DT="E",%DT(0)="-N" D ^%DT K %DT I Y<1 W !?10,"Enter a date in the past",! G EN2
  W !!?10,"OK to delete " S %=1 D YN^LRU Q:%'=1
- S Y=Y+.99,A(1)=0 F A=0:0 S A=$O(^LRO(69.2,LRAA,7,A)) Q:'A  S X=^(A,0) I $P(X,"^",2)<Y K ^LRO(69.2,LRAA,7,A) W "." S A(1)=A(1)+1
- S X(1)=$O(^LRO(69.2,LRAA,7,0)) S:'X(1) X(1)=0 L +^LRO(69.2,LRAA,7) S X=^LRO(69.2,LRAA,7,0),^(0)=$P(X,"^",1,2)_"^"_X(1)_"^"_$S(X(1)=0:X(1),1:($P(X,"^",4)-1)) L -^LRO(69.2,LRAA,7) W !!,"DONE" Q
+ S Y=Y+.99,A(1)=0 F A=0:0 S A=$O(^LRO(69.2,LRAA,7,A)) Q:'A  S X=$G(^(A,0)) I $P(X,"^",2)'="",$P(X,"^",2)<Y K ^LRO(69.2,LRAA,7,A) W "." S A(1)=A(1)+1
+ S X(1)=$O(^LRO(69.2,LRAA,7,0)) S:'X(1) X(1)=0 L +^LRO(69.2,LRAA,7):999 S X=^LRO(69.2,LRAA,7,0),^(0)=$P(X,"^",1,2)_"^"_X(1)_"^"_$S(X(1)=0:X(1),1:($P(X,"^",4)-1)) L -^LRO(69.2,LRAA,7) W !!,"DONE" Q
  W !!?10,$C(7),"DONE" D V^LRU Q
 GRP() ; function to determine if patient is in selected patient group list when printing by test list
  ; returns 1 if patient is ok to print, 0 if patient is not in selected patient group list

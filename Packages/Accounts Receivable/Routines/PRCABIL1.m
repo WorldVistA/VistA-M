@@ -1,6 +1,6 @@
-PRCABIL1 ;SF-ISC/RSD-ENTER BILL INFO ;10/16/96  7:04 PM
-V ;;4.5;Accounts Receivable;**57,64,109,147,220**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCABIL1 ;SF-ISC/RSD - ENTER BILL INFO ;10/16/96  7:04 PM
+V ;;4.5;Accounts Receivable;**57,64,109,147,220,276**;Mar 20, 1995;Build 87
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 EN1 ;ENTER NEW BILL
  D ST Q:'%  N CP
 EN10 D EN^PRCABIL2 G Q:'$D(PRCABN) S $P(^PRCA(430,PRCABN,0),"^",8)=$O(^PRCA(430.3,"AC",201,0)) D EN G EN10
@@ -73,7 +73,8 @@ ST D CKSITE^PRCAUDT S %=$D(PRCA("CKSITE")) Q
 ST1 D SVC^PRCABIL S %=$S($D(PRCAP("S")):1,1:0) Q:%
  K PRCAP Q
 DIP D SVC^PRCABIL Q:'$D(PRCAP("S"))
- S FR=PRCAP("S")_",?,@",TO=PRCAP("S")_",?",L=0,DIC="^PRCA(430,",FLDS="[PRCA BILL LIST]",BY="@INTERNAL(SERVICE),BILL NO.,FORM TYPE" D EN1^DIP K BY,DHD,DIC,FLDS,FR,L,PRCAP,TO Q
+ ; PRCA*4.5*276 - add '@' to BILL NO. in the 'BY' paramter so that printout does not show it as a sorting field.
+ S FR=PRCAP("S")_",?,@",TO=PRCAP("S")_",?",L=0,DIC="^PRCA(430,",FLDS="[PRCA BILL LIST]",BY="@INTERNAL(SERVICE),@BILL NO.,FORM TYPE" D EN1^DIP K BY,DHD,DIC,FLDS,FR,L,PRCAP,TO Q
 MESG I $P(^PRCA(430,PRCABN,0),U,9)="" W !,?3,"Debtor (or Payer) data is missing."
  I '$D(^PRCA(430,PRCABN,100)) W !,?3,"Service (or Section) , Form type or Voucher number data is missing."
  I '$D(^PRCA(430,PRCABN,101)) W !,?3,"Date of Charge data does not exist."

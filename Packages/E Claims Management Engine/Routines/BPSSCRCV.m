@@ -1,5 +1,5 @@
 BPSSCRCV ;BHAM ISC/SS - ECME SCREEN CHANGE VIEW ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7**;JUN 2004;Build 46
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;USER SCREEN
  Q
@@ -14,15 +14,15 @@ BPSSCRCV ;BHAM ISC/SS - ECME SCREEN CHANGE VIEW ;05-APR-05
  ;1.04 HOURS/DAYS -- 'D' FOR DAYS; 'H' FOR HOURS; Use HOURS or DAYS to specify timeframe 
  ;1.05 TIMEFRAME -- NUMBER Depends on the value of the field "USR SCR HOURS/DAYS" this field will
  ;store the default number of HOURS from NOW or DAYS from TODAY to select claims to display 
- ;1.06 REJECTED/PAYABLE --'R' FOR REJECTS; 'P' FOR PAYABLES 'A' FOR ALL; Display Rejects or Payables or ALL claims 
+ ;1.06 REJECTED/PAYABLE --'R' FOR REJECTS; 'P' FOR PAYABLES; 'U' FOR UNSTRANDED; 'A' FOR ALL; Display Rejects or Payables or Unstranded or ALL claims 
  ;1.07 RELEASED/NOT RELEASED --'R' FOR RELEASED; 'N' FOR NON-RELEASED; 'A' FOR ALL; Display Released Rxs or Non-Released Rxs or ALL 
  ;1.08 CMOP/MAIL/WINDOW --'C' FOR CMOP; 'M' FOR MAIL;'W' FOR WINDOW;'A' FOR ALL; Display CMOP or Mail or Window or ALL Rxs 
- ;1.09 REALTIME/BACKBILL --'R' FOR REALTIME; 'B' FOR BACKBILLS; 'A' FOR ALL; Display RealTime Fills or Backbills or ALL 
+ ;1.09 REALTIME/BACKBILL --'R' FOR REALTIME; 'B' FOR BACKBILLS; 'P' FOR PRO Option; 'A' FOR ALL; Display RealTime Fills or Backbills or PRO Option or ALL 
  ;1.1 REJECT CODE/ALL --'R' FOR REJECT CODE; 'A' FOR ALL; Display Specific Reject Code or ALL Reject
  ;Codes 0 means ALL Reject Codes otherwise - Reject Code value 
  ;1.11 SPECIFIC/ALL INSURANCES --'I' FOR SPECIFIC INSURANCE(S);'A' FOR ALL; Display Specific Insurance Company(s) or All null - ALL otherwise - pointer to INSURANCE COMPANY file #36 
  ;1.12 SORT LIST --'T' FOR TRANSACTION DATE;'D' FOR DIVISION; 'I' FOR INSURANCE; 'C' FOR REJECT CODE; 
- ;'P' FOR PATIENT NAME -- 'N' FOR DRUG NAME; 'B' FOR BILL TYPE (BB/RT); 'L' FOR FILL LOCATION;
+ ;'P' FOR PATIENT NAME -- 'N' FOR DRUG NAME; 'B' FOR BILL TYPE (BB/P2/RT); 'L' FOR FILL LOCATION;
  ;'R' FOR RELEASED/NON-RELEASED -- 'A' FOR ACTIVE/DISCONTINUED; the field used to sort claims in the list 
  ;1.13 ALL ECME PHARMACY DIVISIONS --'D' FOR DIVISION; 'A' FOR ALL; 
  ;1.14 SELECTED INSURANCE -- Single, or multiple, insurance(s) to select claims for the User Screen, to store INSURANCE COMPANY pointer (#36) 
@@ -32,7 +32,7 @@ BPSSCRCV ;BHAM ISC/SS - ECME SCREEN CHANGE VIEW ;05-APR-05
  ;1.18 SELECTED RX -- POINTER TO PRESCRIPTION FILE (#52) Selected RX 
  ;2    ECME PHARMACY DIVISION -- the list of POINTERs TO BPS PHARMACIES FILE (#9002313.56) separated by ";"
  ;should start and end with ";", example: ";4;5;"
- ;2.01 ELIGIBILITY TYPE --'V' FOR VETERAN;'T' FOR TRICARE;'A' FOR ALL; Display claims for specific Eligibility Type or ALL (BNT BPS*1.0*7)
+ ;2.01 ELIGIBILITY TYPE --'V' FOR VETERAN;'T' FOR TRICARE;'C' FOR CHAMPVA;'A' FOR ALL; Display claims for specific Eligibility Type or ALL (BNT BPS*1.0*7)
  ;2.02 OPEN/CLOSED/ALL --'O' OPEN CLAIMS;'C' CLOSED CLAIMS;'A' FOR ALL; Display Open, Closed, or ALL claims (BNT BPS*1.0*7)
  ;2.03 SUBMISSION TYPE --'B' BILLING REQUESTS;'R' REVERSALS;'A' FOR ALL; Display specific submission type claims or ALL (BNT BPS*1.0*7)
  ;2.04 INSURANCES -- List of POINTERs to the INSURANCE COMPANY FILE (#36) separated by ";"
@@ -73,7 +73,7 @@ EDITPROF(BPARR,BPDUZ7) ;
  ;EDITFLD(FILENO,FLDNO,RECIEN,CODESET,PRMTMSG,DFLTCODE)  ;
  S BPRET=$$DS^BPSSCRDS(.BPARR,+BPDUZ7) ;get divisions
  Q:BPRET=-2  ;quit due to timeout or ^
- Q:$$EDITFLD(2.01,+BPDUZ7,"S^V:VETERAN;T:TRICARE;A:ALL","Select Certain Eligibility Type or (A)ll","V",.BPARR)=-1
+ Q:$$EDITFLD(2.01,+BPDUZ7,"S^V:VETERAN;T:TRICARE;C:CHAMPVA;A:ALL","Select Certain Eligibility Type or (A)ll","V",.BPARR)=-1
  S BPQ=0 F  D  Q:BPQ'=0
  . S BPINP=$$EDITFLD(1.01,+BPDUZ7,"S^U:ONE USER;A:ALL","Display One ECME (U)ser or (A)LL","ALL",.BPARR)
  . S:BPINP=-1 BPQ=-1 S:$P(BPINP,U,2)="A" BPQ=1 I BPQ'=0 Q
@@ -98,10 +98,10 @@ EDITPROF(BPARR,BPDUZ7) ;
  Q:$$EDITFLD(1.05,+BPDUZ7,"N^1:999:0","Activity Timeframe Value",$S(BPTF="H":24,1:7),.BPARR)=-1
  Q:$$EDITFLD(2.02,+BPDUZ7,"S^O:OPEN CLAIMS;C:CLOSED CLAIMS;A:ALL","Select Open/Closed or All Claims","O",.BPARR)=-1
  Q:$$EDITFLD(2.03,+BPDUZ7,"S^B:BILLING REQUESTS;R:REVERSALS;A:ALL","Select Submission Type","A",.BPARR)=-1
- Q:$$EDITFLD(1.06,+BPDUZ7,"S^R:REJECTS;P:PAYABLES;A:ALL","Display (R)ejects or (P)ayables or (A)LL","REJECTS",.BPARR)=-1
+ Q:$$EDITFLD(1.06,+BPDUZ7,"S^R:REJECTS;P:PAYABLES;U:UNSTRANDED;A:ALL","Display (R)ejects or (P)ayables or (U)nstranded or (A)LL","REJECTS",.BPARR)=-1
  Q:$$EDITFLD(1.07,+BPDUZ7,"S^R:RELEASED;N:NON-RELEASED;A:ALL","Display (R)eleased Rxs or (N)on-Released Rxs or (A)LL","RELEASED",.BPARR)=-1
  Q:$$EDITFLD(1.08,+BPDUZ7,"S^C:CMOP;M:MAIL;W:WINDOW;A:ALL","Display (C)MOP or (M)ail or (W)indow or (A)LL","ALL",.BPARR)=-1
- Q:$$EDITFLD(1.09,+BPDUZ7,"S^R:REALTIME;B:BACKBILLS;A:ALL","Display (R)ealTime Fills or (B)ackbills or (A)LL","ALL",.BPARR)=-1
+ Q:$$EDITFLD(1.09,+BPDUZ7,"S^R:REALTIME;B:BACKBILLS;P:PRO OPTION;A:ALL","Display (R)ealTime Fills or (B)ackbills or (P)RO Option or (A)LL","ALL",.BPARR)=-1
  S BPQ=0 F  D  Q:BPQ'=0
  . S BPINP=$$EDITFLD(1.1,+BPDUZ7,"S^R:REJECT CODE;A:ALL","Display Specific (R)eject Code or (A)LL","ALL",.BPARR)
  . S:BPINP=-1 BPQ=-1 S:$P(BPINP,U,2)="A" BPQ=1 I BPQ'=0 Q

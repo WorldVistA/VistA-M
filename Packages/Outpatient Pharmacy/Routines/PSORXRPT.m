@@ -1,9 +1,9 @@
 PSORXRPT ;BIR/SAB-reprint of a prescription label ;9/20/07 9:40am
- ;;7.0;OUTPATIENT PHARMACY;**3,21,27,34,120,138,156,148,280**;DEC 1997;Build 5
+ ;;7.0;OUTPATIENT PHARMACY;**3,21,27,34,120,138,156,148,280,367**;DEC 1997;Build 62
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
 BCK I $G(PSOBEDT) W $C(7),$C(7) S VALMSG="Invalid Action at this time !",VALMBCK="" Q
- N PSODISP S PSORPLRX=$P(PSOLST(ORN),"^",2)
+ N PSODISP,PSOMGREP S PSORPLRX=$P(PSOLST(ORN),"^",2)
  I $$LMREJ^PSOREJU1(PSORPLRX,,.VALMSG,.VALMBCK) Q
  D PSOL^PSSLOCK(PSORPLRX) I '$G(PSOMSG) S VALMSG=$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing this order."),VALMBCK="" K PSOMSG Q
  I $G(POERR) K QFLG D  I $G(QFLG) D ULR G KILL
@@ -36,15 +36,23 @@ BCK I $G(PSOBEDT) W $C(7),$C(7) S VALMSG="Invalid Action at this time !",VALMBCK
  K DIR S DIR("A")="Number of Copies? ",DIR("B")=COPIES,DIR(0)="N^1:99:0",DIR("?")="Enter the number of copies you want (1 to 99)"
  D ^DIR K DIR I $D(DIRUT) D ULR G KILL
  S COPIES=Y
- K DIR S DIR("A")="Print adhesive portion of label only? ",DIR(0)="Y",DIR("B")="No",DIR("?",1)="If entire label, including trailers are to print press RETURN for default."
+ K DIR S DIR("A")="Print adhesive portion of label only",DIR(0)="Y",DIR("B")="No",DIR("?",1)="If entire label, including trailers are to print press RETURN for default."
  S DIR("?")="Else if only bottle and mailing labels are to print enter Y or YES." D ^DIR K DIR I $D(DUOUT) D ULR,KILL G PAUSE
  I $D(DIRUT) D ULR G KILL
  S SIDE=Y
+ ;
+ ; Dispensing System Device Resend
  I $P(PSOPAR,"^",30),$$GET1^DIQ(59,PSOSITE_",",105,"I")=2.4 D
  .I $S($P(PSOPAR,"^",30)=3:1,$P(PSOPAR,"^",30)=4:1,1:0),'$$GET1^DIQ(50,$P(PDA,"^",6),28,"I") Q
  .K DIR,DIRUT S DIR("A")="Do you want to resend to Dispensing System Device",DIR(0)="Y",DIR("B")="No"
  .D ^DIR K DIR Q:$D(DIRUT)  S PSODISP=$S(Y:0,1:1)
  I $D(DIRUT) D ULR G KILL
+ ;
+ ; FDA Medication Guide Reprint
+ I $$GET1^DIQ(59,PSOSITE,134)'="",$$MGONFILE^PSOFDAUT($P(PSOLST(ORN),"^",2)) D  I $D(DIRUT) D ULR,KILL G PAUSE
+ . K DIR,DIRUT S DIR("A")="Reprint the FDA Medication Guide",DIR(0)="Y",DIR("B")="No"
+ . D ^DIR K DIR Q:$D(DIRUT)  S PSOMGREP=Y
+ ;
  D ACT I $D(DIRUT) D ULR,KILL G PAUSE
  Q:$G(POERR)&($D(PCOM))  G PAUSE:$D(PCOM)
  F I=1,2,4,6,7,9,13,16 S P(I)=$P(PDA,"^",I)
@@ -62,6 +70,7 @@ BCK I $G(PSOBEDT) W $C(7),$C(7) S VALMSG="Invalid Action at this time !",VALMBCK
  I '$G(PSOELSE) D
  .S RXRP($P(PSOLST(ORN),"^",2))=1_"^"_COPIES_"^"_SIDE
  .I $G(PSODISP)=1 S RXRP($P(PSOLST(ORN),"^",2),"RP")=1
+ .I $G(PSOMGREP)=1 S RXRP($P(PSOLST(ORN),"^",2),"MG")=1
  .I $G(PSORX("PSOL",1))']"" S PSORX("PSOL",1)=DA_"," Q
  .F PSOX1=0:0 S PSOX1=$O(PSORX("PSOL",PSOX1)) Q:'PSOX1  S PSOX2=PSOX1
  .I $L(PSORX("PSOL",PSOX2))+$L(DA)<220 S PSORX("PSOL",PSOX2)=PSORX("PSOL",PSOX2)_DA_","

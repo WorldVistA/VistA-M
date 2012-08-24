@@ -1,10 +1,10 @@
 PSORXRP2 ;BIR/SAB-main menu entry reprint of a Rx label ;10/5/07 7:45am
- ;;7.0;OUTPATIENT PHARMACY;**11,27,120,138,135,156,185,280,251**;DEC 1997;Build 202
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,120,138,135,156,185,280,251,367**;DEC 1997;Build 62
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference ^PS(55 supported by DBIA 2228
  ;External reference to ^PSDRUG supported by DBIA 221
  I '$D(PSOPAR) D ^PSOLSET I '$D(PSOPAR) G KILL
-LRP N PSODISP
+LRP N PSODISP,PSOMGREP
  K REPRINT W !! S DIC("S")="I $P($G(^(0)),""^"",2),$D(^(""STA"")),$P($G(^(""STA"")),""^"")<10",DIC="^PSRX(",DIC("A")="Reprint Prescription Label: ",DIC(0)="QEAZ" D ^DIC K P,DIC("A") I Y<0!("^"[X) K PCOM,PCOMX G KILL
  S (PPL,DA,RX,PSORPRX)=+Y,PDA=Y(0),RXF=0,ZD(DA)=DT,REPRINT=1,STA=+$G(^PSRX(+Y,"STA"))
  D PSOL^PSSLOCK(PSORPRX) I '$G(PSOMSG) W !!,$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing this order."),! K PSOMSG G LRP
@@ -44,6 +44,12 @@ GOOD K X
  .I $S($P(PSOPAR,"^",30)=3:1,$P(PSOPAR,"^",30)=4:1,1:0),'$$GET1^DIQ(50,$P(PDA,"^",6),28,"I") Q
  .K DIR,DIRUT S DIR("A")="Do you want to resend to Dispensing System Device",DIR(0)="Y",DIR("B")="No" D ^DIR K DIR Q:$D(DIRUT)  S PSODISP=$S(Y:0,1:1)
  I $D(DIRUT) D ULR,KILL G LRP
+ ;
+ ; FDA Medication Guide Reprint
+ I $$GET1^DIQ(59,PSOSITE,134)'="",$$MGONFILE^PSOFDAUT(DA) D  I $D(DIRUT) D ULR,KILL G LRP
+ . K DIR,DIRUT S DIR("A")="Reprint the FDA Medication Guide",DIR(0)="Y",DIR("B")="No"
+ . D ^DIR K DIR Q:$D(DIRUT)  S PSOMGREP=Y
+ ; 
  D ACT I $D(DIRUT) D ULR,KILL G LRP
  I $D(PCOM) D ULR,KILL G LRP
  F I=1,2,4,6,7,9,13,16 S P(I)=$P(PDA,"^",I)
@@ -58,6 +64,7 @@ GOOD K X
  W ?25,$S($D(^VA(200,+P(16),0)):$P(^(0),"^"),1:"Unknown"),!,"# of Refills: "_$G(P(9))
  I $G(RX) D
  .S RXRP(RX)=1_"^"_COPIES_"^"_SIDE
+ .I $G(PSOMGREP)=1 S RXRP(RX,"MG")=1
  .I $G(PSODISP)=1 S RXRP(RX,"RP")=1
  .S RXFL(RX)=0 F ZZZ=0:0 S ZZZ=$O(^PSRX(RX,1,ZZZ)) Q:'ZZZ  S RXFL(RX)=ZZZ
  D @$S($P($G(PSOPAR),"^",26):"^PSORXL",1:"Q^PSORXL") K PSPOP,PPL,COPIES,SIDE,REPRINT,PCOM,IOP,PSL,PSNP,ZZZ,RXFL(+$G(RX)) D ULR,KILL G LRP

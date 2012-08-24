@@ -1,5 +1,5 @@
-PSORXED ;IHS/DSD/JCM-edit rx utility ; 8/18/10 3:16pm
- ;;7.0;OUTPATIENT PHARMACY;**2,16,21,26,56,71,125,201,246,289,298,366**;DEC 1997;Build 2
+PSORXED ;IHS/DSD/JCM - edit rx utility ;8/18/10 3:16pm
+ ;;7.0;OUTPATIENT PHARMACY;**2,16,21,26,56,71,125,201,246,289,298,366,385,403**;DEC 1997;Build 9
  ;External reference to ^PSXEDIT supported by DBIA 2209
  ;External reference to ^DD(52 supported by DBIA 999
  ;External reference to ^PSDRUG supported by DBIA 221
@@ -35,7 +35,9 @@ CHECKX K PSPOP,DIR,DTOUT,DUOUT,Y,X Q
 LOG K PSFROM S DA=PSORXED("IRXN"),(PSRX0,RX0)=PSORXED("RX0"),QTY=$P(RX0,"^",7),QTY=QTY-$P(^PSRX(DA,0),"^",7) K ZD(DA) S:'$O(^PSRX(DA,1,0)) ZD(DA)=$P(^PSRX(DA,2),"^",2)
  N PSOTRIC S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(PSORXED("IRXN"),0,.PSOTRIC)
  S COM="" F I=3,4,5:1:13,17 I $P(PSRX0,"^",I)'=$P(^PSRX(DA,0),"^",I) S PSI=$S(I=13:1,1:I),COM=COM_$P(^DD(52,PSI,0),"^")_" ("_$P(PSRX0,"^",I)_"),"
- I $P(PSORXED("RX2"),"^",2)'=$P(^PSRX(DA,2),"^",2) S COM=COM_$P(^DD(52,22,0),"^")_" ("_$P(PSORXED("RX2"),"^",2)_"),"
+ ;
+ N PSOFILDAT S PSOFILDAT=0   ; fill date edit flag
+ I $P(PSORXED("RX2"),"^",2)'=$P(^PSRX(DA,2),"^",2) S COM=COM_$P(^DD(52,22,0),"^")_" ("_$P(PSORXED("RX2"),"^",2)_"),",PSOFILDAT=1     ; set flag indicating the original fill date was edited
  I $P(PSORXED("RX3"),"^",7)'=$P(^PSRX(DA,3),"^",7) S COM=COM_$P(^DD(52,12,0),"^")_" ("_$P(PSORXED("RX3"),"^",7)_"),"
  I PSOSIG'=$P($G(^PSRX(DA,"SIG")),"^") S COM=COM_$P(^DD(52,10,0),"^")_" ("_PSOSIG_"),"
  ;*298 Track PI and Oth Lang PI
@@ -43,7 +45,7 @@ LOG K PSFROM S DA=PSORXED("IRXN"),(PSRX0,RX0)=PSORXED("RX0"),QTY=$P(RX0,"^",7),Q
  I PSOOINS'=$G(^PSRX(DA,"INSS")) S COM=COM_$P(^DD(52,114.1,0),"^")_" ("_PSOOINS_"),"
  I PSOTRN'=$G(^PSRX(DA,"TN")) S COM=COM_$P(^DD(52,6.5,0),"^")_" ("_PSOTRN_"),"
  D FILL
- I PSOTRIC&('$$RXRLDT^PSOBPSUT(PSORXED("IRXN"),PSOEDITF)),COM="" D LBLCHK G LOGX ; labels for unrelease Tricare resolved claims; when COM'="" label always printed
+ I PSOTRIC&('$$RXRLDT^PSOBPSUT(PSORXED("IRXN"),PSOEDITF)),COM="" D LBLCHK G LOGX ; labels for unreleased TRICARE/CHAMPVA resolved claims; when COM'="" label always printed
  I PSOTRIC&(COM="") D LBL D ASKL:PSOEDITL G:'PSOEDITL LOGX G LOG1
  G:COM="" LOGX K PSRX0 S X=$S($D(PSOCLC):PSOCLC,1:DUZ)
  D LBL D:$G(PSOEDITL)=2&($P($G(^PSRX(DA,"STA")),"^")'=5)&('$G(RXRP(DA)))&('$G(PSOSIGFL)) ASKL
@@ -59,8 +61,17 @@ LOG1 ;
  .K ^PSRX("AG",OEXDT,DA) S ^PSRX("AG",NEXDT,DA)=""
  .S D=+$P(RX0,"^",2) K ^PS(55,D,"P","A",OEXDT,DA) S ^PS(55,D,"P","A",NEXDT,DA)=""
  K D,OEXDT,NEXDT
+ ; 
+ ; Do not add RX to the label list when there are:
+ ;   1) Unresolved DUR/Refill Too Soon rejects
+ ;   2) Unresolved TRICARE/CHAMPVA rejects
+ ;   3) TRICARE/CHAMPVA claims that are IN PROGRESS
+ ; But if the Fill Date was modified then bypass these checks and allow to update the label list  - PSO*7*403
+ I 'PSOFILDAT,$$ECMECHK^PSOREJU3(DA,$G(PSOEDITF)) G LOGX
+ ;
  G:+$P(^PSRX(J,"STA"),"^")!($G(PSOEDITL)=1&('$G(PSOTRIC))) LOGX S RXFL(PSORXED("IRXN"))=$S($G(PSOEDITF):$G(PSOEDITF),1:0) I $G(PSORX("PSOL",1))']"" S PSORX("PSOL",1)=PSORXED("IRXN")_"," D SETRP G LOGX
  G:$G(PSOEDITL)=1&('$G(PSOTRIC)) LOGX
+ ;
  F PSOX1=0:0 S PSOX1=$O(PSORX("PSOL",PSOX1)) Q:'PSOX1  S PSOX2=PSOX1
  I $L(PSORX("PSOL",PSOX2))+$L(PSORXED("IRXN"))<220 D  G LOGX
  .I PSORX("PSOL",PSOX2)'[PSORXED("IRXN")_"," S PSORX("PSOL",PSOX2)=PSORX("PSOL",PSOX2)_PSORXED("IRXN")_"," D SETRP
@@ -136,7 +147,7 @@ LBLCHK ;
  I '$$RXRLDT^PSOBPSUT(PSORXED("IRXN"),PSOEDITF) D
  .I $$PTLBL^PSOREJP2(PSORXED("IRXN"),PSOEDITF) D PRINT^PSOREJP3(PSORXED("IRXN"),PSOEDITF)
  Q
-ASKL     ;
+ASKL ;
  W ! K DIR S DIR("?",1)="You have edited a fill that has already been released. Do you want to",DIR("?",2)="include this prescription as one of the prescriptions to be acted upon",DIR("?",3)="at the label prompt."
  S DIR("?")="Enter 'Yes' to generate a reprint label request."
  S DIR(0)="Y",DIR("A")="The last fill has been released, do you want a reprint label",DIR("B")="Y" D ^DIR K DIR I Y=1 S PSOEDITL=$S($G(PSOTRIC)&(Y'=1):1,1:0) Q

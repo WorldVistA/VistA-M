@@ -1,5 +1,5 @@
-SROP ;B'HAM ISC/MAM - SELECT CASE ; [ 03/10/97  3:22 PM ]
- ;;3.0; Surgery ;**7,44,58,64,104**;24 Jun 93
+SROP ;BIR/MAM - SELECT CASE ;08/02/11
+ ;;3.0;Surgery;**7,44,58,64,104,176**;24 Jun 93;Build 8
  I '$D(^XUSEC("SROEDIT",DUZ))!$D(DUZ("SAV")) K SRNEWOP G ^SROPS
  S SRSOUT=0 K DIC S DIC("A")="Select Patient: ",DIC=2,DIC(0)="QEAM" D ^DIC K DIC I Y<0 S SRSOUT=1 G END
  S DFN=+Y D DEM^VADPT D HDR
@@ -16,6 +16,7 @@ ENTER ; edit or delete
  S:X="" X=1 I X<1!(X>3)!(X'?.N) D HELP G ENTER
  I X=3 D ^SROPDEL G END
  I X=2 D RT K DR S ST="REVIEW" D EN2^SROVAR S Q3("VIEW")="",DR="[SROMEN-OPER]",DA=SRTN,DIE=130 D ^SRCUSS K Q3("VIEW") G END
+ I '$D(^SRF(SRTN,52)),$P($G(^SRF(SRTN,.2)),"^",12)="" S ^SRF(SRTN,52)="0^0^0^0^0^0"  ; default flash sterilization fields to zero
  D ^SROPCE1
  Q
 LIST ; list cases

@@ -1,10 +1,11 @@
 IBJTCA1 ;ALB/ARH - TPI CLAIMS INFO BUILD ;10/31/07  14:17
- ;;2.0;INTEGRATED BILLING;**39,80,106,137,223,276,363,384,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**39,80,106,137,223,276,363,384,432,452,473**;21-MAR-94;Build 29
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 BLD ; build array for Third Party Joint Inquiry Claims Info screen, IBIFN must be defined
  ;
  N X,IBY,IBZ,IBZ0,IBI,IBT,IBD,IBLN,IBLR,IBD0,IBDI1,IBDM,IBDM1,IBDU,IBDS,IBDU2,IBID0,IBID13,IBNC,IBTC,IBTW,IBSW,IBGRPB,IBGRPE,IBWNR,IBDTX,IBBX19,IBPRVO,IBNABP,IBLVL,IBCNT,IBPRVTYP
+ N IBXSAVE  ; IB*2.0*473 bi
  S VALMCNT=0,X="",IBD0=$G(^DGCR(399,+$G(IBIFN),0)) I IBD0="" S VALMQUIT="" G BLDQ
  F IBI="M","M1","U","S","U2","TX" S @("IBD"_IBI)=$G(^DGCR(399,+IBIFN,IBI))
  S IBDI1=$P(IBD0,U,21),IBDI1=$S(IBDI1="S":"I2",IBDI1="T":"I3",1:"I1") S IBDI1=$G(^DGCR(399,+IBIFN,IBDI1))
@@ -112,7 +113,8 @@ BLD ; build array for Third Party Joint Inquiry Claims Info screen, IBIFN must b
  D CONT^IBJTCA2
  ;
 COPAY I $O(^IBA(362.4,"C",IBIFN,0)) D
- . S IBT="Related Prescription Copay Information" S IBLN=IBLN+1,IBLN=$$SETN(IBT,IBLN,1,1)
+ . S (IBT,IBD)="" S IBLN=$$SET(IBT,IBD,IBLN,IBLR)   ; blank line
+ . S IBT="Related Prescription Copay Information" S IBLN=$$SETN(IBT,IBLN,1,1)
  . N IBZ,IBX,IBC,IBCAP
  . S IBZ=0 F  S IBZ=$O(^IBA(362.4,"C",IBIFN,IBZ)) Q:'IBZ  D
  .. K ^TMP("IBTPJI",$J)

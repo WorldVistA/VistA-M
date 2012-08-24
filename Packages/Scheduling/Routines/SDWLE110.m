@@ -1,5 +1,5 @@
 SDWLE110 ;;IOFO BAY PINES/TEH - WAITING LIST-ENTER/EDIT;06/12/2002 ; 29 Aug 2002  2:54 PM
- ;;5.3;scheduling;**263,273,424,454**;AUG 13 1993
+ ;;5.3;scheduling;**263,273,424,454,554**;AUG 13 1993;Build 11
  ;
  ;
  ;******************************************************************
@@ -65,7 +65,7 @@ SA1 I SDWLRBE=1 D
  ;
 FA S SDWLERR=0 K DIR,DUOUT,DR,DIE I $D(SDWLDAPE) S Y=SDWLDAPE D DD^%DT S DIR("B")=Y
  I $D(^SDWL(409.3,SDWLDA,0)),$P(^(0),U,16) S %DT("B")=$$EXTERNAL^DILFD(409.3,22,,$P(^(0),U,16))  ;SD*5.3*424
- S %DT="AE",%DT("A")="Desired Date of Appointment: " D ^%DT
+ S %DT="AEF",%DT("A")="Desired Date of Appointment: " D ^%DT ; Added "F" to set to a future date - PATCH SD*5.3*554
  I $D(DTOUT)!(X="^") G EN
  I X="" W *7,!!,"This is a required response. Enter '^' to exit.",! G EN  ;SD*5.3*454
  S SDWLDAPE=Y,DR="22////^S X=SDWLDAPE",DIE="^SDWL(409.3,",DA=SDWLDA D ^DIE

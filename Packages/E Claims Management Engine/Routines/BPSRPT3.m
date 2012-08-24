@@ -1,5 +1,5 @@
 BPSRPT3 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7**;JUN 2004;Build 46
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -74,11 +74,29 @@ SELPHARM() N DIC,DIR,DIRUT,DTOUT,DUOUT,X,Y
  K BPPHARM("B")
  Q Y
  ;
- ; Display (S)ummary or (D)etail Format
+ ; Select to Include Eligibility of (V)ETERAN, (T)RICARE, (C)HAMPVA or (A)ll
  ; 
+ ; Input Variable -> DFLT = 0 = All
+ ;                          1 = VETERAN
+ ;                          2 = TRICARE
+ ;                          3 = CHAMPVA
+ ; 
+ ; Return Value ->  V, T, C or 0 for All
+ ;
+SELELIG(DFLT) N DIC,DIR,DIRUT,DUOUT,DTOUT,DIROUT,X,Y
+ S DFLT=$S($G(DFLT)=1:"V",$G(DFLT)=2:"T",$G(DFLT)=3:"C",1:"A")
+ S DIR(0)="S^V:VETERAN;T:TRICARE;C:CHAMPVA;A:ALL"
+ S DIR("A")="Include Certain Eligibility Type or (A)ll",DIR("B")=DFLT
+ D ^DIR
+ I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^"
+ S Y=$S(Y="A":0,1:Y)
+ Q Y
+ ;
+ ; Display (S)ummary or (D)etail Format
+ ;
  ; Input Variable -> DFLT = 1 Summary
  ;                          2 Detail
- ;                          
+ ;
  ; Return Value ->   1 = Summary
  ;                   0 = Detail
  ;                   ^ = Exit
@@ -114,22 +132,24 @@ SELMWC(DFLT) N DIR,DIRUT,DTOUT,DUOUT,X,Y
  ;
  ; Display (R)ealTime Fills or (B)ackbills or (A)LL
  ;
- ;    Input Variable -> DFLT = 3 Backbill
+ ;    Input Variable -> DFLT = 4 PRO Option
+ ;                             3 Backbill
  ;                             2 Real Time Fills
  ;                             1 ALL
  ;                          
- ;    Return Value ->   3 = Backbill (manually)
+ ;    Return Value ->   4 = PRO Option
+ ;                      3 = Backbill (manually)
  ;                      2 = Real Time Fills (automatically during FINISH)
  ;                      1 = ALL
  ;                      ^ = Exit
  ;
-SELRTBCK(DFLT) N DIR,DIRUT,DTOUT,DUOUT,X,Y
- S DFLT=$S($G(DFLT)=2:"Real Time",$G(DFLT)=3:"Backbill",1:"ALL")
- S DIR(0)="S^R:Real Time Fills;B:Backbill;A:ALL"
- S DIR("A")="Display (R)ealTime Fills or (B)ackbills or (A)LL",DIR("B")=DFLT
+SELRTBCK(DFLT) N DIR,DIRUT,DTOUT,DUOUT,DIROUT,X,Y
+ S DFLT=$S($G(DFLT)=2:"Real Time",$G(DFLT)=3:"Backbill",$G(DFLT)=4:"PRO Option",1:"ALL")
+ S DIR(0)="S^R:Real Time Fills;B:Backbill;P:PRO Option;A:ALL"
+ S DIR("A")="Display (R)ealTime Fills or (B)ackbills or (P)RO Option or (A)LL",DIR("B")=DFLT
  D ^DIR
  I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^"
- S Y=$S(Y="A":1,Y="R":2,Y="B":3,1:Y)
+ S Y=$S(Y="A":1,Y="R":2,Y="B":3,Y="P":4,1:Y)
  Q Y
  ;
  ; Display Specific (D)rug or Drug (C)lass
@@ -221,25 +241,6 @@ SELDATE1 S VAL="",DIR(0)="DA^:DT:EX",DIR("A")="START WITH "_TYPE_" DATE: ",DIR("
  .S $P(VAL,U,2)=Y
  ;
  Q VAL
- ;
- ; Select to Include Eligibility of (V)eteran, (T)ricare, or (A)ll
- ; 
- ; Input Variable -> DFLT = 0 = All
- ;                          1 = Veteran
- ;                          2 = Tricare
- ;                          3 = ChampVA (Reserved for future use)
- ; 
- ; Return Value ->  V, T, or 0 for All
-SELELIG(DFLT) N DIC,DIR,DIRUT,DUOUT,X,Y
- ;
- S DFLT=$S($G(DFLT)=1:"V",$G(DFLT)=2:"T",$G(DFLT)=3:"C",1:"A")
- S DIR(0)="S^V:VETERAN;T:TRICARE;A:ALL"
- S DIR("A")="Include Certain Eligibility Type or (A)ll",DIR("B")=DFLT
- D ^DIR
- I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^"
- ;
- S Y=$S(Y="A":0,1:Y)
- Q Y
  ;
  ; Select to Include Open or Closed or All claims
  ; 

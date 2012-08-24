@@ -1,0 +1,11 @@
+PSSCHPRE ;BIR/WRT-CMOP-Host pre-install routine to kill off old DDs for files sent with the package- clean up 50 ; 09/29/97 9:32
+ ;;1.0;PHARMACY DATA MANAGEMENT;;9/30/97
+ ; PRE-INSTALL ROUTINE-CMOP HOST
+ D KILLIT I '$D(^PS(59.7,1,80)) D CLEAN50,CLEANDD K IEN
+ Q
+KILLIT W !!,"I Am Deleting Your Data Dictionary for ""MEDICATION ROUTES"" File." S DIU=51.2,DIU(0)="" D EN^DIU2 K DIU
+ Q
+CLEAN50 F IEN=0:0 S IEN=$O(^PSDRUG(IEN)) Q:'IEN  I $D(^PSDRUG(IEN,2)) S $P(^PSDRUG(IEN,2),"^")=""
+ Q
+CLEANDD K ^DD(50,12,1,535000),^DD(50,203),^DD(50,13,1,535000),^DD(50,15,1,535000),^DD(50,16,1,1),^DD(50,"TRB",50,16),^DD(50,23,2),^DD(50,23,2.1),^DD(50,24,2),^DD(50,24,2.1)
+ Q

@@ -11,7 +11,7 @@ SDHPIB ;PKE/ALB - Health Services R&D Caregiver Study Main Routine;
  W !?3,">>> VA HSR&D Caregivers Survey <<< ",!
  W !,"    Please queue to run at a none peak time."
  W !,"    This extract will generate 2 mail messages to you"
- W !,"    and to G.SD HPI EXTRACT@ISC-ALBANY.VA.GOV",!
+ W !,"    and to G.SD HPI EXTRACT@ISC-ALBANY.DOMAIN.EXT",!
  ;
  S ZTIO="",ZTRTN="START^SDHPIB"
  S ZTDESC="SD*5.3*141 - VA HSR&D Caregivers Survey"
@@ -174,8 +174,8 @@ INITMAIL(FLAG) ;-- This function will initialize mail variables
  S XMSUB="SD*5.3*141 "_(+$$SITE^VASITE())_"VA HSR&D CAREGIVERS SURVEY"
  S XMDUZ=.5,XMY(DUZ)="",XMY(XMDUZ)=""
  I $G(FLAG) DO
- . S XMY("G.SD HPI EXTRACT@ISC-ALBANY.VA.GOV")=""
- . S XMY("S.SD HPI EXTRACT@ISC-ALBANY.VA.GOV")=""
+ . S XMY("G.SD HPI EXTRACT@ISC-ALBANY.DOMAIN.EXT")=""
+ . S XMY("S.SD HPI EXTRACT@ISC-ALBANY.DOMAIN.EXT")=""
  D GET^XMA2
  Q
 SMAIL(SDLINE) ;-- Send Mail Message containing records so far
@@ -191,8 +191,8 @@ FMAIL(DATA) ;- This function will generate a summary mail message.
  ;
  S XMSUB="SD*5.3*141 "_(+$$SITE^VASITE())_"VA HSR&D Error Summary"
  S XMDUZ=.5,XMY(DUZ)="",XMY(XMDUZ)=""
- S XMY("G.SD HPI EXTRACT@ISC-ALBANY.VA.GOV")=""
- S XMY("S.SD HPI EXTRACT@ISC-ALBANY.VA.GOV")=""
+ S XMY("G.SD HPI EXTRACT@ISC-ALBANY.DOMAIN.EXT")=""
+ S XMY("S.SD HPI EXTRACT@ISC-ALBANY.DOMAIN.EXT")=""
  ;
  D GET^XMA2
  S ^XMB(3.9,XMZ,2,1,0)="VA Health Services R&D Caregivers Survey completed."

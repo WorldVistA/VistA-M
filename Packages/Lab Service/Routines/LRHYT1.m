@@ -1,0 +1,129 @@
+LRHYT1 ;DALOI/HOAK - LAB PHLEB AND COLLECTION TIME UPDATER ;4/13/1999
+ ;;5.2;LAB SERVICE;**405**;Sep 27, 1994;Build 93
+ ;
+ ; Reference to ^DIC supported by DBIA #916.
+ ;
+ ; This routine will be used to capture the phlebotomist and the
+ ; specimen collection time.
+ ;
+ ; The barcoded specimen tubes will be waunded.
+ ; The phlebotomist ID will then be waunded.
+ ;
+ ; MODIFIED BY HOAK 6/30/2000 FOR RCEV OPTION
+CONTROL ;
+ K LRAA,LRAD,LRAN,LRBLOOD,LRARIVE,LRBLOOD,LRCE,LRDAT,LRDFN,LRIDT
+ K LRDLA,LRDLC,LRDPF,LRDRAW,LRDT0,LRDTO,LRHYDUZ,LRHYNISH,LRPRAC
+ K LRSN,LRTEST,LRURG,PNM,SSN,VAIN,VADM
+ W @IOF
+ W !,$$CJ^XLFSTR("Barcode Specimen Processor",IOM)
+ ;
+ ;
+ K DIR,DIC,DIE,LRARIVE,LRDRAW
+ S LREND=0
+ D TECH
+ I U[X D END QUIT
+ Q:X=""  D SINGLE
+ G CONTROL
+ QUIT
+FINDER ;
+ S DIC="^VA(200,"
+ S DIC(0)="AEMQZ"
+ S DIC("A")="Please enter employee number: "
+ D ^DIC
+ QUIT
+TECH ;
+ W !!,"Please swipe your ID badge: " D NINE^LRHYU
+ I U[X QUIT
+ I $L(X)'=9 G TECH
+ ;
+ ;
+ ;
+ K DIC,LRHYTECH
+ K Y
+ S DIC=200
+ S DIC(0)="MQZ"
+ D ^DIC
+ W Y
+ ;
+ I U[X QUIT
+ I Y<0 G CONTROL
+ S (LRHYDUZ,LRHYTECH)=+Y
+ S LRHYDUZ=$P($G(^VA(200,LRHYDUZ,0)),U)
+ QUIT
+ ;
+TIME ;
+ ;
+ ;
+ ;
+ S LREND=0
+ S DIC="^DPT("
+ S DIC(0)="AEMQZ"
+ D ^DIC
+ S DFN=+Y
+ S LRDFN=$G(^DPT(DFN,"LR"))
+ D ^VADPT,INP^VADPT
+ ;
+ QUIT
+ ;
+SINGLE ;
+ ; This block calls up the testing demographics.
+ ;
+ W !!
+ S LRACC=""
+ ;
+ ;
+ D ^LRHYU4 ; ask for accession ir uid
+ I LRAN<1 QUIT
+ D NOW^%DTC
+ S LRUID=$P(^LRO(68,LRAA,1,LRAD,1,LRAN,.3),U)
+ S LRCE=+^LRO(68,LRAA,1,LRAD,1,LRAN,.1)
+ S LRORDT1=$P(^LRO(68,LRAA,1,LRAD,1,LRAN,0),U,4)
+ S ^TMP("LRHYHOW1",$J,LRORDT1,LRUID)=U_LRHYTECH_U_%
+ S $P(^TMP("LRHYHOW1",$J,LRORDT1,LRUID),U,9)="RCEV"
+ I LRAN<1 QUIT
+ I $G(LRCE) D BUILD^LRHYT2
+ E  K LRCENO S LRCENO=1 S LRCE=+^LRO(68,LRAA,1,LRAD,1,LRAN,.1) D BUILD^LRHYT2
+ I $G(LRCENO)=1 K LRCE
+ ;
+ I '$D(^LRO(68,LRAA,1,LRAD,1,LRAN,0)) W !,"Doesn't exist." G SINGLE
+ ; construct orders file entry
+ K LRKUNKE
+ S LR3ODT=$P(^LRO(68,LRAA,1,LRAD,1,LRAN,0),U,4)
+ S LR3SN=$P(^LRO(68,LRAA,1,LRAD,1,LRAN,0),U,5)
+ ;
+ S LRTEST=0
+ K DIR S DIR(0)="E" D ^DIR K DIR
+ ;
+ S LRUNC=1
+ S LRDAT=+$P(^LRO(68,LRAA,1,LRAD,1,LRAN,0),U,4),LRSN=+$P(^(0),U,5)
+ W @IOF
+ ;
+ ;  Adding urgency to the display
+ S LRTEST=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,0))
+ S LRURG=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRTEST,0)),U,2)
+ ;
+ ; Blink urgency if MED-EMERGE
+ W !,$S($D(^LAB(62.05,+LRURG,0)):$P(^(0),U),1:"")," "
+ ;
+ D EDIT
+ ;
+ ;
+ I $G(LREND) W !,"Please start over..." K LREND,LRIDTNEW
+ D END
+ ;
+ QUIT
+ ;
+LEFTOVER ;
+ QUIT
+ ;
+END ;
+ K LRAA,LRAD,LRAN,LRBLOOD,LRARIVE,LRBLOOD,LRCE,LRDAT,LRDFN,LRIDT
+ K LRDLA,LRDLC,LRDPF,LRDRAW,LRDT0,LRDTO,LRHYDUZ,LRHYNISH,LRPRAC
+ K LRSN,LRTEST,LRURG,PNM,SSN,VAIN,VADM
+ QUIT
+ ;
+EDIT ;
+ S LRDFN=$P(^LRO(68,LRAA,1,LRAD,1,LRAN,0),U)
+ S LRIDT=$P(^LRO(68,LRAA,1,LRAD,1,LRAN,3),U,5) ; old LRIDT
+CHECK ;
+ QUIT

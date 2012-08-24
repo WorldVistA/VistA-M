@@ -1,5 +1,5 @@
 IBCU7 ;ALB/AAS - INTERCEPT SCREEN INPUT OF PROCEDURE CODES ;29-OCT-91
- ;;2.0;INTEGRATED BILLING;**62,52,106,125,51,137,210,245,228,260,348,371,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**62,52,106,125,51,137,210,245,228,260,348,371,432,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRU7
@@ -35,11 +35,13 @@ CODDT I $D(IBIFN),$D(^DGCR(399,IBIFN,0)),$P(^(0),U,9) S DIC("V")=$S($P(^(0),U,9)
  G CODDT
  ;
 ASKCOD N Z,Z0,DA,IBACT,IBQUIT,IBLNPRV  ;WCJ;2.0*432
+ N IBPOPOUT  S IBPOPOUT=0  ; IB*2.0*447 BI
  K DGCPT
  S DGCPT=0,DGCPTUP=$P($G(^IBE(350.9,1,1)),"^",19),DGADDVST=0,IBFT=$P($G(^DGCR(399,IBIFN,0)),"^",19)
  I '$D(^DGCR(399,IBIFN,"CP",0)) S ^DGCR(399,IBIFN,"CP",0)=U_$$GETSPEC^IBEFUNC(399,304)
  ;
  F  S IBQUIT=0 D  Q:IBQUIT
+ . S IBPOPOUT=0
  . S DIC("A")="   Select PROCEDURE: "
  . S DIC="^DGCR(399,"_IBIFN_",""CP"","
  . S DIC(0)="AEQMNL"
@@ -81,12 +83,16 @@ ASKCOD N Z,Z0,DA,IBACT,IBQUIT,IBLNPRV  ;WCJ;2.0*432
  . N IBPROCSV  ; DEM;432 - Variable IBPROCSV is variable to preserve value of 'Y', which is procedure code info returned by call to ^DIC.
  . S IBPROCSV=Y  ; DEM;432 - Preserve value of Y for after calls to FileMan (Y = procedure code info returned by call to ^DIC).
  . K DR   ;WCJ;IB*2.0*432
- . I Y["ICPT" S DR=".01;16",DIE=DIC,(IBPROCP,DA)=+Y D ^DIE Q:'$D(DA)!($E($G(Y))=U)  K DR ;
+ . ; START IB*2.0*447 BI
+ . ;I Y["ICPT" S DR=".01;16",DIE=DIC,(IBPROCP,DA)=+Y D ^DIE Q:'$D(DA)!($E($G(Y))=U)  K DR ;
+ . I Y["ICPT" S DR=".01;16",DIE=DIC,(IBPROCP,DA)=+Y D ^DIE Q:'$D(DA)!($D(Y))  K DR ;
+ . ; END IB*2.0*447 BI
  . S DR=""
  . D EN^IBCU7B ; DEM;432 - Call to line level provider user input.
  . S Y=IBPROCSV  ; DEM;432 - Restore value of Y after calls to FileMan
  . K IBPROCSV
  . K DR   ;WCJ;IB*2.0*432
+ . I IBPOPOUT Q   ; IB*2.0*447 BI
  . S DR="" I Y["ICPT" S DR="6;5//"_$$DEFDIV(IBIFN)_";"
  . S DR=DR_$S(IBFT=2:"8;9;17//NO;",1:"")_3,DIE=DIC,(IBPROCP,DA)=+Y D ^DIE Q:'$D(DA)!($E($G(Y))=U)
  . K DR   ;WCJ;IB*2.0*432

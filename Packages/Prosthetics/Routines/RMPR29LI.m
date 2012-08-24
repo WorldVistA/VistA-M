@@ -157,7 +157,7 @@ PRINT D SG^RMPR29LS
  ;end
  ;
 HELP W !,"** You can only select HCPCS that have a LAB pre-determined time.",!,"** If the HCPCS you are selecting are not in the list, please send an E-mail"
- W !,"** message to G.PROS-CODE@FORUM.VA.GOV to be added in the list..."
+ W !,"** message to G.PROS-CODE@FORUM.DOMAIN.EXT to be added in the list..."
  Q
  ;
 SBACK ;set global back to its original data.

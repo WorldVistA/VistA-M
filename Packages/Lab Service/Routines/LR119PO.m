@@ -1,0 +1,7 @@
+LR119PO ;DALISC/FHS - LR*5.2*119 POST INSTALL ROUTINE KIDS INSTALL"
+ ;;5.2;LAB SERVICE;**119**;Sep 27, 1994
+EN ;
+STOP ;
+ L +^LAM(0):2 I $T S:$D(^LAM(0))#2 $P(^(0),U,3)=99999
+ L -^LAM(0) W !!,$$CJ^XLFSTR("Post install completed",80),!!
+ Q

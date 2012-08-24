@@ -1,5 +1,5 @@
-RORX019 ;BPOIFO/ACS - LIVER SCORE BY RANGE ;11/1/09
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14**;Feb 17, 2006;Build 24
+RORX019 ;BPOIFO/ACS - LIVER SCORE BY RANGE ; 5/18/11 12:39pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15**;Feb 17, 2006;Build 27
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -12,6 +12,7 @@ RORX019 ;BPOIFO/ACS - LIVER SCORE BY RANGE ;11/1/09
  ;                                      clinics, or divisions for the report.
  ;                                      Modified XML tags for sort.
  ;ROR*1.5*14   APR  2011   A SAUNDERS   Added APRI and FIB4 scores.
+ ;ROR*1.5*15   MAY  2011   C RAY        Modified to exclude null tests
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -219,6 +220,7 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  I ((RORDATA("IDLST")[1)!(RORDATA("IDLST")[2)) I $$CALCMLD^RORX019A(DFN,PTAG,.RORDATA,RORPTIEN,.RORLC)<0 Q 1
  I ((RORDATA("IDLST")[3)!(RORDATA("IDLST")[4)) I $$CALCFIB^RORX019A(DFN,PTAG,.RORDATA,RORPTIEN,.RORLC)<0 Q 1
  I '$$INRANGE(.RORDATA) Q 1  ;exclude patient from report if ANY score is out of range
+ I '$$SKIP(.RORDATA) Q 1  ;exclude patient from report with null scores
  ;--- Get patient data and put into the report
  N VADM,VA,RORDOD,MTAG,TTAG
  D VADEM^RORUTL05(DFN,1)
@@ -236,24 +238,13 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  S MTAG=$$ADDVAL^RORTSK11(RORTSK,"MELDDATA",,PTAG)
  I MTAG<0 Q MTAG
  ;--- Test Result Values
- N TNAME,TNAMEMIX F TNAME="BILI","CR","INR","NA","AST","PLAT","ALT" D
- . ;--- TEST tag
- . S TTAG=$$ADDVAL^RORTSK11(RORTSK,"TEST",,MTAG)
- . I TTAG<0 Q
- . ;--- Mixed case test name for GUI application
- . I TNAME="BILI" S TNAMEMIX="Bili"
- . I TNAME="CR" S TNAMEMIX="Cr"
- . I TNAME="INR" S TNAMEMIX="INR"
- . I TNAME="NA" S TNAMEMIX="Na"
- . I TNAME="AST" S TNAMEMIX="AST"
- . I TNAME="PLAT" S TNAMEMIX="Platelet"
- . I TNAME="ALT" S TNAMEMIX="ALT"
- . ;---  Test Name
- . D ADDVAL^RORTSK11(RORTSK,"TNAME",TNAMEMIX,TTAG)
- . ;---  Test Date
- . D ADDVAL^RORTSK11(RORTSK,"DATE",$P($G(RORDATA(TNAME)),U,2),TTAG)
- . ;---  Test Result Value
- . D ADDVAL^RORTSK11(RORTSK,"RESULT",$P($G(RORDATA(TNAME)),U,1),TTAG)
+ N TNAME
+ I ((RORDATA("IDLST")[1)!(RORDATA("IDLST")[2)) D
+ .F TNAME="BILI","CR","INR" D TSTRSLT(TNAME,MTAG)
+ .I RORDATA("IDLST")[2 D TSTRSLT("NA",MTAG)
+ I ((RORDATA("IDLST")[3)!(RORDATA("IDLST")[4)) D
+ .F TNAME="AST","PLAT" D TSTRSLT(TNAME,MTAG)
+ .I RORDATA("IDLST")[4 D TSTRSLT("ALT",MTAG)
  ;---  MELD score
  I RORDATA("IDLST")[1 D ADDVAL^RORTSK11(RORTSK,"MELD",$G(RORDATA("SCORE",1)),PTAG,3)
  ;---  MELD-Na Score
@@ -264,6 +255,54 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  I RORDATA("IDLST")[4 D ADDVAL^RORTSK11(RORTSK,"FIB4",$G(RORDATA("SCORE",4)),PTAG,3)
  Q ($S($G(TTAG)<0:TTAG,1:1))
  ;
+ ;*****************************************************
+ ;Procedure to add test name, date and results to report
+ ;INPUT
+ ;   TNAME       Name of test 
+ ;   MTAG        IEN of parent record
+ ;OUTPUT         n/a
+ ;******************************************************
+TSTRSLT(TNAME,MTAG) ;
+ ;--- Test Result Values
+ ;--- TEST tag
+ N TNAMEMIX
+ S TTAG=$$ADDVAL^RORTSK11(RORTSK,"TEST",,MTAG)
+ I TTAG<0 Q
+ ;--- Mixed case test name for GUI application
+ I TNAME="BILI" S TNAMEMIX="Bili"
+ I TNAME="CR" S TNAMEMIX="Cr"
+ I TNAME="INR" S TNAMEMIX="INR"
+ I TNAME="NA" S TNAMEMIX="Na"
+ I TNAME="AST" S TNAMEMIX="AST"
+ I TNAME="PLAT" S TNAMEMIX="Platelet"
+ I TNAME="ALT" S TNAMEMIX="ALT"
+ ;---  Test Name
+ D ADDVAL^RORTSK11(RORTSK,"TNAME",TNAMEMIX,TTAG)
+ ;---  Test Date
+ D ADDVAL^RORTSK11(RORTSK,"DATE",$P($G(RORDATA(TNAME)),U,2),TTAG)
+ ;---  Test Result Value
+ D ADDVAL^RORTSK11(RORTSK,"RESULT",$P($G(RORDATA(TNAME)),U,1),TTAG)
+ Q
+ ;****************************************************************
+ ;Function to check whether patient should be included on report
+ ;To be included patient must have a score for at least one of
+ ;the scores requested by the user
+ ;
+ ;INPUT
+ ;   RORDATA   Array with ROR Data
+ ;OUTPUT
+ ;   1         Include
+ ;   0         Exclude
+ ;***************************************************************
+SKIP(RORDATA) ;
+ ;
+ N RETURN
+ S RETURN=0
+ I RORDATA("IDLST")[1,+$G(RORDATA("SCORE",1)) S RETURN=1
+ I RORDATA("IDLST")[2,+$G(RORDATA("SCORE",2)) S RETURN=1
+ I RORDATA("IDLST")[3,+$G(RORDATA("SCORE",3)) S RETURN=1
+ I RORDATA("IDLST")[4,+$G(RORDATA("SCORE",4)) S RETURN=1
+ Q RETURN
  ;************************************************************************
  ;DETERMINE IF THE SCORES ARE WITHIN THE REQUESTED RANGES
  ;-- If both tests contain ranges: scores for BOTH tests must fall in the

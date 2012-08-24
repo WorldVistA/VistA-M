@@ -1,5 +1,5 @@
-DGRPMS ;ALB/BRM,LBD - MILITARY SERVICE APIS ; 8/15/08 11:36am
- ;;5.3;Registration;**451,626,646,673,689,688**;Aug 13, 1993;Build 29
+DGRPMS ;ALB/BRM,LBD - MILITARY SERVICE APIS ; 1/31/12 11:14am
+ ;;5.3;Registration;**451,626,646,673,689,688,797**;Aug 13, 1993;Build 24
  ;
 VALCON1(DFN,IEN,CDATE,FRTO) ; Valid conflict input for OIF/OEF/UNKNOWN OEF/OIF?
  ; Need to send the ien of the multiple as well as the DFN and
@@ -53,8 +53,9 @@ VALMSE(DFN,MDATE,FRTO,FLD) ;is this a valid Military Service Episode date?
  ;INPUT:
  ;      FRTO - 0=FRDT 1=TODT  (defaults to FRDT if FRTO="")
  ;       FLD - MSE field being edited/added (MSL,MSNTL,MSNNTL)
+ ;             "MSE-"_IEN of MSE in sub-file #2.3216 (DG*5.3*797)
  ;
- N RTN,X,Y,FRDT,TODT,IGNORE,DTCHK
+ N RTN,X,Y,FRDT,TODT,IGNORE,DTCHK,DUPCHK
  Q:'$D(DFN) "0^INVALID PATIENT"
  Q:'$D(^DPT(DFN)) "0^INVALID PATIENT"
  Q:'$$VALID^DGRPDT(.MDATE) "0^INVALID DATE"
@@ -63,9 +64,11 @@ VALMSE(DFN,MDATE,FRTO,FLD) ;is this a valid Military Service Episode date?
  E  S FRDT=$$GETDT(DFN,.FLD,FRTO) S:$G(DGFRDT) FRDT=$G(DGFRDT) S TODT=MDATE K DGFRDT
  S DTCHK=$$DTUTIL^DGRPDT(MDATE,$$GETDT(DFN,.FLD,'FRTO),1)
  I 'DTCHK D MSG($P(DTCHK,"^",2),2,2) K DGCOMBR Q DTCHK
+ ;Check for duplicate Service Entry Date
+ I 'FRTO,FRDT S DUPCHK=$$DUPCHK(DFN,.FRDT,.FLD) I 'DUPCHK D MSG($P(DUPCHK,"^",2),2,2) Q DUPCHK
  I FRTO,FRDT,TODT,'$$B4^DGRPDT(.FRDT,.TODT,0) D MSG("Service Entry Date is not before Service Separation Date",2,1) K DGCOMBR Q "0^Service Entry Date is not before Service Separation Date"
- S IGNORE=$P($P($T(@(FLD)),";;",2),"^",FRTO+1)
- S RTN=$$OVRLPCHK^DGRPDT(.DFN,.FRDT,.TODT,1,.IGNORE)
+ S IGNORE=$P($P($T(@($P(FLD,"-"))),";;",2),"^",FRTO+1)
+ S RTN=$$OVRLPCHK^DGRPDT(.DFN,.FRDT,.TODT,1,.IGNORE,,$P(FLD,"MSE-",2))
  I $G(DGCOMBR)']"" S DGCOMBR=$$GETDT(DFN,.FLD,4)
  I RTN,FRTO,$$BRANCH(.DGCOMBR),('$$WWII(DFN,TODT,.FLD)) D MSG("Branch of Service Requires WWII Dates of Service",2,1) K DGCOMBR Q "0^BOS Requires WWII Dates"
  K DGCOMBR
@@ -96,7 +99,9 @@ VALCOMP(DFN,CODE,DGEPI) ; Verify component is consistent with the corresponding
  ; OUTPUT: 1 if valid component
  ;         0 if invalid component or branch of serv missing
  N Z
- S Z=+$P($G(^DPT(DFN,.32)),U,DGEPI*5)
+ ;Get BOS from MSE multiple .3216 if DGEPI contains "MSE" (DG*5.3*797)
+ I $G(DGEPI)["MSE" S Z=+$P($G(^DPT(DFN,.3216,+DGEPI,0)),U,3)
+ E  S Z=+$P($G(^DPT(DFN,.32)),U,DGEPI*5)
  I 'Z Q 0  ; Require bos
  I CODE="R" Q 1  ; Regular is valid for all
  Q:Z=1!(Z=2) 1  ; Army (1)/air force (2) valid for guard and reserves
@@ -117,11 +122,15 @@ GETDT(DFN,CNFLCT,FRTO) ; get from date, to date, or location from patient file
  ;   multiple cannot be retrieved  OEF-1 indicates an OEF location
  ;   stored at the '1' subscript of the .3215 multiple
  I "^OEF^OIF^UNK^"[(U_CNF1_U),'CNF2 Q ""
+ ; MSE data retrieved from .3216 multiple (DG*5.3*797)
+ I CNF1="MSE",'CNF2 Q ""
  S CFLDS=$P($T(@(CNF1)),";;",2) Q:CFLDS']"" ""
  S CFLD=$S('FRTO:$P(CFLDS,"^",2),FRTO=1:$P(CFLDS,"^"),1:$P(CFLDS,"^",3))
  Q:'CFLD ""
  S IENS=DFN_",",FILE=2
- S:CNF2 IENS=CNF2_","_IENS,FILE=2.3215 ; For OIF/OEF, must set ref to multiple
+ ; For MSE set ref to sub-file 2.3216 (DG*5.3*797)
+ ; For OIF/OEF set ref to sub-file 2.3215
+ S:CNF2 IENS=CNF2_","_IENS,FILE=$S(CNF1="MSE":2.3216,1:2.3215)
  S RTN1=$$GET1^DIQ(FILE,IENS,CFLD,"I")
  I FRTO=4 S RTN1=RTN1_"^"_$$EXTERNAL^DILFD(FILE,CFLD,"",RTN1)
  Q RTN1
@@ -131,7 +140,9 @@ WWII(DFN,TODT,FLD) ; was this patient in WWII?
  ;
  N OK,NODE,DATA,WWIIS,WWIIE,PATDT,PATE,PATS
  Q:'$G(DFN) "-1^UNKNOWN"
- S NODE(.32)=".326,.327,.3285,.3292,.3293,.32945,.3297,.3298"
+ ; Use MSE data from sub-file #2.3216 (DG*5.3*797)
+ I $G(FLD)["MSE" S NODE(2.3216)=".01,.02"
+ E  S NODE(.32)=".326,.327,.3285,.3292,.3293,.32945,.3297,.3298"
  S WWIIS=2411207,WWIIE=2461231
  D GETDAT^DGRPDT(DFN,.NODE,.DATA)
  S PATDT=$G(FLD) Q:PATDT']"" 0
@@ -199,6 +210,42 @@ FVP ;MUMPS cross-reference "AFV1" on Service Branch [Last] (#.325), "AFV2"
  D FILE^DIE("","FDA")
  Q
  ;
+FVP1 ;MUMPS cross-reference "AFV3216" on the Service Branch field (#.03)
+ ;in the Military Service Episode sub-file (#2.3216) of the Patient
+ ;file (#2).  If none of the Service Branch fields in the multiple
+ ;contain a Filipino Veteran branch of service, the Filipino Vet Proof
+ ;field (#.3214) will be deleted.
+ ;Added for DG*5.3*797
+ Q:'$G(DA(1))
+ N BOS,MS,FV,IENS,FDA
+ S (FV,MS)=0
+ F  S MS=$O(^DPT(DA(1),.3216,MS)) Q:'MS!(FV=1)  D
+ .I $G(DA)=MS Q
+ .S BOS=$P($G(^DPT(DA(1),.3216,MS,0)),U,3)
+ .S FV=$$FV(BOS)
+ I FV=1 Q  ;Filipino Vet BOS found, quit
+ ;Delete Filipino Vet Proof
+ S IENS=DA(1)_",",FDA(2,IENS,.3214)="@"
+ D FILE^DIE("","FDA")
+ Q
+ ;
+DUPCHK(DFN,FRDT,FLD) ; Check for duplicate Service Entry Date
+ ;INPUT:   DFN = Patient file IEN
+ ;        FRDT = Service Entry Date being checked
+ ;         FLD = "MSE-"_IEN of 2.3216 sub-file record
+ ;OUTPUT:  DUP = Error message if duplicate found
+ ;           1 = No duplicate found
+ N MSEIEN,IEN,MSE,DUP
+ I '$G(DFN) Q 1
+ I '$G(FRDT) Q 1
+ S MSEIEN=$P($G(FLD),"MSE-",2) I 'MSEIEN Q 1
+ ; Get MSE data
+ D GETMSE^DGMSEUTL(DFN,.MSE) I '$D(MSE) Q 1
+ S IEN=0 F  S IEN=$O(MSE(IEN)) Q:'IEN  D
+ .I FRDT=$P(MSE(IEN),"^"),'$D(MSE(IEN,MSEIEN)) S DUP="0^Duplicate Service Entry Date not allowed"
+ I $D(DUP) Q DUP
+ Q 1
+ ;
 MSG(MSGTXT,LF1,LF2) ; This api will format the output text in order to utilize
  ; the EN^DDIOL utility.
  ;INPUT:  MSGTXT = Message text to display
@@ -231,7 +278,8 @@ OIF ;;.02^.03
 UNK ;;.02^.03
  ;;
  ;;  **BELOW VALUES ARE USED FOR MSE CHECKS - DO NOT REMOVE ***
- ;; ENTRY DATE^SEPERATION DATE
+ ;; ENTRY DATE^SEPARATION DATE
+MSE ;;.01^.02^.03
 MSL ;;.326^.327^.325
 MSNTL ;;.3292^.3293^.3291
 MSNNTL ;;.3297^.3298^.3296

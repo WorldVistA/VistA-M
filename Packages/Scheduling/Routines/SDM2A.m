@@ -1,5 +1,5 @@
-SDM2A ; OG - MAKE APPOINTMENT - overflow routine due to SACC 10K limit.  ; Compiled August 28, 2007 16:08:18  ; Compiled June 13, 2008 16:32:51  ; Compiled June 24, 2008 11:57:22
- ;;5.3;Scheduling;**446,528**;Aug 13 1993;Build 4
+SDM2A ;ALB/OG - MAKE APPOINTMENT - overflow routine  ;24 Jun 2008 11:57 AM
+ ;;5.3;Scheduling;**446,528,567**;Aug 13 1993;Build 7
 WL(SC) ;Wait List Hook/teh patch 263 ;SD/327 passed 'SC'
  N DA,DIE,DR,SBEG,SCSR,SDDIV,SDINST,SDPAR,SDWLDA,SDWLDFN,SDWLSCL
  Q:$G(SC)'>0
@@ -56,14 +56,25 @@ WL(SC) ;Wait List Hook/teh patch 263 ;SD/327 passed 'SC'
 WLCL120(SC,DESDT) ; Is there clinic availability within 120 days of desired date ; sd/446
  N SBEG,SD120
  Q:$$GET1^DIQ(44,SC,2502,"I")="Y" 1  ; Non-count clinic. Allow > 120 days.
- S SD120=0,SBEG=DESDT-1
- F  S SBEG=$O(^SC(SC,"ST",SBEG)) Q:SBEG=""  I $$HASAVSL(^SC(SC,"ST",SBEG,1)) D  Q
+ S SD120=0,SBEG=DESDT-1   ;SD*567 added Go next line
+ F  S SBEG=$O(^SC(SC,"ST",SBEG)) Q:SBEG=""  G:'$D(^(1)) WL1 I $$HASAVSL(^SC(SC,"ST",SBEG,1)) D  Q
  .N X,DESDTH
  .S X=SBEG D H^%DTC S SBEG=%H
  .S X=DESDT D H^%DTC S DESDTH=%H
  .S SD120=(SBEG-DESDTH>120)
  .Q
  Q 'SD120
+ ;
+WL1 ; SD*567 check for bad record and delete if applicable
+ I '$D(^SC(SC,"ST",SBEG,1)) I $D(^(9)) D DELETE
+ Q 'SD120
+ ;
+DELETE ; SD*567 delete bad record
+ S DA=SBEG,DA(1)=SC
+ S DIK="^SC("_DA(1)_",""ST"","
+ D ^DIK
+ K DA,DIK
+ Q
  ;
 WLCL120A(SDWLAPDT,SDDATE1,SC) ;
  N %DT,DIR,X,X1,X2,Y

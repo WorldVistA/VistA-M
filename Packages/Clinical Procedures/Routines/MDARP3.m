@@ -1,5 +1,5 @@
 MDARP3 ; HOIFO/NCA - Get Procedures for Medicine ;1/13/04  14:35
- ;;1.0;CLINICAL PROCEDURES;**10,13**;Apr 01, 2004;Build 19
+ ;;1.0;CLINICAL PROCEDURES;**10,13,24**;Apr 01, 2004;Build 8
  ; Please Reference DBIA # 3397
 EN(MCDFN,CODE) ;Get procedures for a patient
  Q:$$GET^XPAR("SYS","MD MEDICINE CONVERTED",1)

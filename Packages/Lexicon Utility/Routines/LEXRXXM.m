@@ -1,0 +1,195 @@
+LEXRXXM ;ISL/KER - Re-Index Miscellaneous ;08/17/2011
+ ;;2.0;LEXICON UTILITY;**81**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(               SACC 1.3
+ ;    ^LEXT(              SACC 1.3
+ ;    ^LEX(757,           SACC 1.3 
+ ;    ^LEX(757.001,       SACC 1.3 
+ ;    ^LEX(757.01,        SACC 1.3 
+ ;    ^LEX(757.011,       SACC 1.3 
+ ;    ^LEX(757.02,        SACC 1.3 
+ ;    ^LEX(757.03,        SACC 1.3 
+ ;    ^LEX(757.1,         SACC 1.3 
+ ;    ^TMP("LEXRX")       SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    %XY^%RCR            ICR  10022
+ ;    HOME^%ZIS           ICR  10086
+ ;    ENDR^%ZISS          ICR  10088
+ ;    KILL^%ZISS          ICR  10088
+ ;    ^DIC                ICR  10006
+ ;    $$GET1^DIQ          ICR   2056
+ ;    $$DT^XLFDT          ICR  10103
+ ;    $$FMDIFF^XLFDT      ICR  10103
+ ;    $$FMTE^XLFDT        ICR  10103
+ ;    $$NOW^XLFDT         ICR  10103
+ ;    $$TITLE^XLFSTR      ICR  10104
+ ;               
+ ; Local Variables NEWed or KILLed Elsewhere
+ ;     LEXQ       Quiet flag      NEWed/KILLed by LEXRXXT2
+ ;               
+ Q
+ ; Miscellaneous
+FREQ(X) ;   Get frequency based on codes and semantics
+ N LEXMC,LEXMCE,LEXND,LEXOF,LEXNF,LEXSA,LEXSAB,LEXACT,LEXSMC,LEXNUR
+ N LEXBEH,LEXI10,LEXPRO,LEXDIA S LEXMC=+($G(X)),X=0
+ Q:'$D(^LEX(757,LEXMC,0)) X  S LEXMCE=$P($G(^LEX(757,+LEXMC,0)),"^",1)
+ S LEXOF=$P($G(^LEX(757.001,LEXMC,0)),"^",2)
+ S (LEXSA,LEXNUR,LEXBEH,LEXPRO,LEXDIA,LEXI10,LEXSMC)=0
+ D SO,SM S X=0 S LEXNF="",X=0
+ S:+LEXI10=1&(+LEXDIA=1) (LEXNF,X)=6
+ Q:$L(LEXNF)&(LEXNF'=LEXOF)&(X>0) X
+ S:+LEXI10=1&(+LEXDIA'=1) (LEXNF,X)=5
+ Q:$L(LEXNF)&(LEXNF'=LEXOF)&(X>0) X
+ S:LEXI10=0&(+LEXDIA=1)&(X=0) (LEXNF,X)=4
+ Q:$L(LEXNF)&(LEXNF'=LEXOF)&(X>0) X
+ S:'$L(LEXNF)&(+($G(LEXBEH))=1)&($G(LEXSMC)>0) (LEXNF,X)=3
+ Q:$L(LEXNF)&(LEXNF'=LEXOF)&(X>0) X
+ S:'$L(LEXNF)&(+($G(LEXPRO))=1) (LEXNF,X)=2
+ Q:$L(LEXNF)&(LEXNF'=LEXOF)&(X>0) X
+ S:'$L(LEXNF)&(+($G(LEXNUR))=1) (LEXNF,X)=1
+ Q:$L(LEXNF)&(LEXNF'=LEXOF)&(X>0) X
+ S:'$L(LEXNF)&(+($G(LEXSMC))>1) (LEXNF,X)=3
+ Q:$L(LEXNF)&(LEXNF'=LEXOF)&(X>0) X
+ S:'$L(LEXNF) (LEXNF,X)=0
+ Q X
+SO ;     Codes
+ N LEXSA S LEXSA=0
+ F  S LEXSA=$O(^LEX(757.02,"AMC",LEXMC,LEXSA)) Q:+LEXSA=0  D SOC
+ Q
+SOC ;     Code Type
+ N LEXCOD,LEXEFF,LEXHIS,LEXND,LEXSAB
+ S LEXEFF=$O(^LEX(757.02,LEXSA,4,"B"," "),-1) Q:LEXEFF'?7N
+ S LEXHIS=$O(^LEX(757.02,LEXSA,4,"B",LEXEFF," "),-1) Q:+LEXHIS'>0
+ S LEXND=$G(^LEX(757.02,LEXSA,4,+LEXHIS,0)) Q:+($P(LEXND,"^",2))'>0
+ S LEXND=$G(^LEX(757.02,LEXSA,0)),LEXSAB=+($P(LEXND,U,3))
+ S LEXCOD=$P(LEXND,U,2) Q:LEXSAB=0
+ S:LEXSAB=30!(LEXSAB=31) LEXI10=1_"^"_LEXCOD
+ S:LEXSAB=1!(LEXSAB=30) LEXDIA=1_"^"_LEXCOD
+ S:LEXSAB=2!(LEXSAB=31)!(LEXSAB=3)!(LEXSAB=4) LEXPRO=1_"^"_LEXCOD
+ S:LEXSAB=5!(LEXSAB=6) LEXBEH=1_"^"_LEXCOD
+ S:LEXSAB>10&(LEXSAB<16) LEXNUR=1_"^"_LEXCOD
+ Q
+SM ;     Semantics - BEH Behavior and DIS Disorders
+ N LEXBD,LEXCLA,LEXSM S LEXSMC=0,LEXMC=+($G(LEXMC))
+ Q:'$D(^LEX(757,LEXMC,0))  S (LEXBD,LEXSM)=0
+ F  S LEXSM=$O(^LEX(757.1,"B",LEXMC,LEXSM)) Q:+LEXSM=0  D SMC
+ S LEXSMC=LEXBD
+ Q
+SMC ;     Semantic Class
+ S LEXCLA=+($P($G(^LEX(757.1,LEXSM,0)),U,2))
+ S:LEXCLA=3&(LEXBD'>0) LEXBD=1
+ S:LEXCLA=6 LEXBD=2
+ Q
+SABS(X) ;   AVA Source Abbreviations
+ N LEXOUT,LEXSABS,%Y,%X K LEXOUT,LEXSABS
+ S %Y="LEXOUT(" S %X="^DD(757.02,2,1,2," D %XY^%RCR
+ S LEXSABS=LEXOUT(1),LEXSABS=$P(LEXSABS," S:""",2)
+ S LEXSABS=$P(LEXSABS,"""[SAB ^LEX",1),X=LEXSABS
+ S:'$L(X) X="^ICD^10D^ICP^10P^CPT^CPC^BIR^DS4^NAN^HHC^NIC^SNM^OMA^SCC^SCT^"
+ Q X
+XREF(X) ;   Set Expression Indexes
+ N LEXEX,LEXT S LEXEX=+($G(X)) Q:+LEXEX'>0 0  Q:'$D(^LEX(757.01,LEXEX,0)) 0
+ S LEXT=+($P($G(^LEX(757.01,LEXEX,1)),U,2)) Q:LEXT'>0 0
+ S LEXT=+($P($G(^LEX(757.011,LEXT,0)),"^",2)) Q:+LEXT=0 0  S X=LEXT
+ Q X
+MCE(X) ;   Major Concept Expression
+ S X=+($G(^LEX(757,+($G(^LEX(757.01,+($G(X)),1))),0)))
+ Q X
+TIME(X) ;   Time
+ N LEXDIF,LEXD,LEXH,LEXM,LEXS,LEXT S LEXDIF=$G(X) S LEXD=LEXDIF\86400 S:+LEXD'>0 LEXD="" S LEXDIF=LEXDIF-(86400*LEXD)
+ S LEXH=LEXDIF\3600 S:+LEXH'>0 LEXH="00" S LEXDIF=LEXDIF-(3600*LEXH) S:$L(LEXH)=1 LEXH="0"_LEXH
+ S LEXM=LEXDIF\60 S:+LEXM'>0 LEXM="00" S LEXDIF=LEXDIF-(60*LEXM) S:$L(LEXM)=1 LEXM="0"_LEXM
+ S LEXS=LEXDIF S:+LEXS'>0 LEXS="00" S:$L(LEXS)=1 LEXS="0"_LEXS
+ S LEXT=LEXH_":"_LEXM_":"_LEXS S X=LEXT
+ Q X
+AND(X) ;   Substitute 'and'
+ S X=$G(X) Q:$L(X,", ")'>1 X
+ S X=$P(X,", ",1,($L(X,", ")-1))_" and "_$P(X,", ",$L(X,", "))
+ Q X
+CS(X) ;   Trim Comma/Space
+ S X=$$TM($G(X),","),X=$$TM($G(X)," "),X=$$TM($G(X),","),X=$$TM($G(X)," ")
+ Q X
+TM(X,Y) ;   Trim Character Y - Default " "
+ S X=$G(X) Q:X="" X  S Y=$G(Y) S:'$L(Y) Y=" "
+ F  Q:$E(X,1)'=Y  S X=$E(X,2,$L(X))
+ F  Q:$E(X,$L(X))'=Y  S X=$E(X,1,($L(X)-1))
+ Q X
+ML(X) ;   Maximum Length of Counter
+ N LEX,LEXM,LEXL S (LEX,LEXM)=0 F  S LEX=$O(^LEX(LEX)) Q:+LEX'>0  D
+ . S LEXL=$O(^LEX(LEX," "),-1) S:$L(LEXL)>LEXM LEXM=$L(LEXL)
+ S X=LEXM
+ Q X
+ADDT(X,Y) ;   Add Time X to Time Y
+ N LEXT,LEXT1,LEXT2,LEXH,LEXM,LEXS S LEXT1=$G(X),LEXT2=$G(Y),LEXH=+($P(LEXT1,":",1)),LEXM=+($P(LEXT1,":",2)),LEXS=+($P(LEXT1,":",3))
+ S LEXH=LEXH+($P(LEXT2,":",1)),LEXM=LEXM+($P(LEXT2,":",2)),LEXS=LEXS+($P(LEXT2,":",3)) S LEXT=LEXS\60 S:LEXT>0 LEXM=LEXM+LEXT,LEXS=LEXS-(LEXT*60)
+ S LEXT=LEXM\60 S:LEXT>0 LEXH=LEXH+LEXT,LEXM=LEXM-(LEXT*60) S:+LEXS'>0 LEXS="00" S:$L(LEXS)=1 LEXS="0"_LEXS S:+LEXM'>0 LEXM="00" S:$L(LEXM)=1 LEXM="0"_LEXM
+ S:+LEXH'>0 LEXH="00" S:$L(LEXH)=1 LEXH="0"_LEXH S X=LEXH_":"_LEXM_":"_LEXS
+ Q X
+ADD(X,Y) ;   Increment Time X by Y
+ N LEX,LEXA,LEXE,LEXH,LEXM,LEXS S LEX=$G(X),LEXA=+($G(Y)),LEXE="" S:+LEXA'>0 LEXA=1 I $L(LEX),$L(LEX,":")=3 D
+ . S LEXH=+($P(LEX,":",1)),LEXM=+($P(LEX,":",2)),LEXS=+($P(LEX,":",3))+LEXA S:LEXS>60 LEXM=LEXM+1,LEXS=LEXS-60 S:LEXM>60 LEXH=LEXH+1,LEXM=LEXM-60
+ . S:$L(LEXH)=1 LEXH="0"_LEXH S:$L(LEXH)=1 LEXH="0"_LEXH S:$L(LEXM)=1 LEXM="0"_LEXM S:$L(LEXM)=1 LEXM="0"_LEXM S:$L(LEXS)=1 LEXS="0"_LEXS S:$L(LEXS)=1 LEXS="0"_LEXS
+ . S LEXE=LEXH_":"_LEXM_":"_LEXS
+ S:$L(LEXE) LEX=LEXE Q:'$L(LEX)!($L(LEX,":")'=3) "00:00:00"
+ S X=LEX
+ Q X
+TOT(X) ;   Total Time
+ N LEXE1,LEXE2,LEXE,LEXP S LEXE1=$G(^TMP("LEXRX",$J,"T",2,"ELAP")),LEXE2=$G(^TMP("LEXRX",$J,"T",1,"ELAP"))
+ I $L(LEXE1),$L(LEXE1,":")=3,LEXE1'="00:00:00" S LEXE1=$$ADD(LEXE1,1)
+ I $L(LEXE2),$L(LEXE2,":")=3,LEXE2'="00:00:00" S LEXE2=$$ADD(LEXE2,1)
+ S:'$L(LEXE1)&('$L(LEXE2)) LEXE="00:00:00"
+ S:$L(LEXE1)&('$L(LEXE2)) LEXE=LEXE1 S:'$L(LEXE1)&($L(LEXE2)) LEXE=LEXE2
+ S:$L(LEXE1)&($L(LEXE2)) LEXE=$$ADD($$ADDT^LEXRXXM(LEXE1,LEXE2),2)
+ S X=LEXE
+ Q X
+ADR(LEX) ;   Mailing Address
+ N DIC,DTOUT,DUOUT,X,Y
+ S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
+ S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
+ S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="ISC-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
+ Q "ISC-SLC.DOMAIN.EXT"
+BEG ;   Begin
+ Q:$D(LEXQ)  K ^TMP("LEXRX",$J,"P")
+ S ^TMP("LEXRX",$J,"P",1)=$$NOW^XLFDT
+ Q
+END ;   End
+ Q:$D(LEXQ)  N LEXB,LEXE,LEXL S LEXB=$G(^TMP("LEXRX",$J,"P",1)) Q:+LEXB'>0
+ S LEXE=$$NOW^XLFDT Q:+LEXE'>0  S ^TMP("LEXRX",$J,"P",2)=LEXE
+ S LEXL=$$FMDIFF^XLFDT(LEXE,LEXB,3) Q:LEXL'[":"
+ S:$E(LEXL,1)=" "&($E(LEXL,3)=":") LEXL=$TR(LEXL," ","0")
+ S ^TMP("LEXRX",$J,"P",3)=LEXL
+ Q
+FV(X) ;   File Number is Valid
+ N LEXFI S LEXFI=+($G(X)) Q:+LEXFI'>0 0  Q:$E(LEXFI,1,3)'="757" 0
+ Q:'$D(^LEX(+LEXFI))&('$D(^LEXT(+LEXFI))) 0
+ Q 1
+FN(X) ;   Filename
+ S X=+($G(X)) Q:$D(^LEX(X,0)) $$TITLE^XLFSTR($P($G(^LEX(X,0)),"^",1))
+ Q:$D(^LEXT(X,0)) $$TITLE^XLFSTR($P($G(^LEXT(X,0)),"^",1))
+ Q ""
+ED(X) ;   External Date
+ N LEXI,LEXO S LEXI=$G(X),LEXO="" Q:$E(X,1,7)'?7N ""
+ S:$L($P(LEXI,".",2)) LEXO=$TR($$FMTE^XLFDT(LEXI,"5Z"),"@"," ")
+ S:'$L($P(LEXI,".",2)) LEXO=$TR($$FMTE^XLFDT(LEXI,"5DZ"),"@"," ")
+ S X=LEXO
+ Q X
+ENV(X) ;   Check environment
+ N LEXNM S DT=$$DT^XLFDT D HOME^%ZIS S U="^"
+ I +($G(DUZ))=0 W !!,?5,"DUZ not defined" Q 0
+ S LEXNM=$$GET1^DIQ(200,(DUZ_","),.01)
+ I '$L(LEXNM) W !!,?5,"DUZ not valid" Q 0
+ S:$G(DUZ(0))'["@" DUZ(0)=$G(DUZ(0))_"@"
+ Q 1
+BOLD(X) ;   Bold
+ N LEXNRM,LEXBLD D ATTR S X="" S:$L($G(LEXBLD)) X=LEXBLD D KATTR Q X
+NORM(X) ;   Norm
+ N LEXNRM,LEXBLD D ATTR S X="" S:$L($G(LEXNRM)) X=LEXNRM D KATTR Q X
+ATTR ;   Screen Attributes
+ K LEXNRM,LEXBLD,IOINHI,IOINORM N X S X="IOINHI;IOINORM" D ENDR^%ZISS S LEXNRM=$G(IOINORM),LEXBLD=$G(IOINHI) Q
+KATTR ;   Kill Screen Attributes
+ D KILL^%ZISS K LEXNRM,LEXBLD,IOINHI,IOINORM Q
+CLR ;   Clear
+ K LEXQ
+ Q

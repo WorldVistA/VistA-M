@@ -25,7 +25,7 @@ QUE U IO D @X2 U IO(0) G CLOSE:$D(ZTSK)!(IO'=IO(0))!($D(DENTF))!($E(IOST)'="C")
 A W !!,"Okay to release this report for transmission to Austin" S %=2 D YN^DICN D:%=0 Q4^DENTQ G A:%=0 I %'=1 W !,"Nothing released",*7 G CLOSE
 EN1 S DENT=DENT_"           ",DENT=$E(DENT,1,80),DENT=DENT_"$"
  S DENTA=$S($E(DENTSTA,4,5)="  ":+DENTSTA,1:DENTSTA),DENTA=$O(^DENT(225,"B",DENTA,0))
- I DENTA,$D(^DENT(225,DENTA,0)),$P(^(0),"^",3)="Y" S XMDUZ=DUZ,XMY(DUZ)="",XMY("XXX@Q-DAS.VA.GOV")="",XMSUB=Z1_", "_Z3,X(1,0)=DENT,XMTEXT="X(" D ^XMD G M
+ I DENTA,$D(^DENT(225,DENTA,0)),$P(^(0),"^",3)="Y" S XMDUZ=DUZ,XMY(DUZ)="",XMY("XXX@Q-DAS.DOMAIN.EXT")="",XMSUB=Z1_", "_Z3,X(1,0)=DENT,XMTEXT="X(" D ^XMD G M
  S Z=$S($D(^UTILITY("DENTV")):^("DENTV")+1,1:1),^UTILITY("DENTV",Z,0)=DENT,^UTILITY("DENTV")=Z
 M S ^DENT(X3,DENT1,.1)=DUZ_"^"_DT I X3=224 S X="" F I=0:0 S X=$O(^UTILITY($J,"DENTP",X)) Q:X=""  S X1=$P(^(X),".",1),^DENT(226,X,.1)=DUZ_"^"_DT K ^DENT(226,"A",Z2,X1,X)
  R !!,"Report released for transmission to Austin",R1:5

@@ -1,8 +1,9 @@
 PRCAFBD ;WASH-ISC@ALTOONA,PA/CLH-Build FMS Billing Document ;8/2/95  3:14 PM
-V ;;4.5;Accounts Receivable;**16,48,86,90,119,165,204,203,173,220,184,270**;Mar 20, 1995;Build 25
+V ;;4.5;Accounts Receivable;**16,48,86,90,119,165,204,203,173,220,184,270,275**;Mar 20, 1995;Build 72
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 EN(BILL,ERR) ;Process NEW BILL to FMS
- S ERR=-1
+ N PRCMD
+ S ERR=-1,PRCMD=""
  Q:$D(RCONVERT)
  I '$D(^PRCA(430,BILL,11)) S ERR="1^ACCOUNTING INFORMATION MISSING.  CANNOT PROCESS BILL" Q
  ;
@@ -29,8 +30,13 @@ EN(BILL,ERR) ;Process NEW BILL to FMS
   . I ADDR(6)["-" S ADDR(7)=$P(ADDR(6),"-",2),ADDR(6)=$P(ADDR(6),"-")
   . Q
  ; PRCA*4.5*270 Doc# not unique for corrected claims, remove from file 347 before creating new one to send
- I '$G(REFMS),$$GSTAT^RCFMFN02("BD-"_FMSNUM_" ")>-1 D DEL^RCFMFN02("BD-"_FMSNUM_" ")
+ ; PRCA*4.5*275 Don't delete, causes matching issues for FMS between original and new E records.
+ ; Assign batch header id instead for unique ID (pass PRCMD=1 for modify flag).
+ ;I '$G(REFMS),$$GSTAT^RCFMFN02("BD-"_FMSNUM_" ")>-1 D DEL^RCFMFN02("BD-"_FMSNUM_" ") S PRCMD=1
  N FMSDT S FMSDT=$$FMSDATE^RCBEUTRA(DT)
+ ; PRCA*4.5*275 If this is a corrected claim wait 24 hours before sending new E record
+ ; to avoid possible collision at FMS if original E record was rejected.
+ I '$G(REFMS),$$GSTAT^RCFMFN02("BD-"_FMSNUM_" ")>-1 S FMSDT=$$FMADD^XLFDT(FMSDT,1),PRCMD=1
  S ^TMP("PRCABD",$J,1)="BD2^"_$E(FMSDT,4,5)_U_$E(FMSDT,6,7)_U_$E(FMSDT,2,3)_"^^^^^^E^"_$E(VENCODE,1,9)_U_$E(VENCODE,10,11)_U_$J($P(REC,U,3),0,2)_"^^^^"_$E($G(ADDR(1)),1,30)_U_$E($G(ADDR(2)),1,30)_U_$E($G(ADDR(3)),1,30)
  S ^TMP("PRCABD",$J,1)=^TMP("PRCABD",$J,1)_U_$E($G(ADDR(4)),1,19)_U_$G(ADDR(5))_U_$G(ADDR(6))_U_$G(ADDR(7))_"^N^^^^^^W^~"
  S ^TMP("PRCABD",$J,2)="LIN^~"
@@ -39,9 +45,12 @@ EN(BILL,ERR) ;Process NEW BILL to FMS
  S ^TMP("PRCABD",$J,3)=^TMP("PRCABD",$J,3)_U_$P(REC11,U,12)_U_$P(REC11,U,14)_"^^"_$J($P(REC,U,3),0,2)_"^I^AR_INTERFACE^^^^"
  S ^TMP("PRCABD",$J,3)=^TMP("PRCABD",$J,3)_$P(REC11,U,10)_"^^^^^^^^"_$P(REC11,U,2)_U_$P(REC11,U,3)_"^~"
  I $E($P(REC11,U,17),1,4)=5287 S $P(^TMP("PRCABD",$J,3),U,3)="05"
- ;build control segment
- D CONTROL^GECSUFMS("A",PRCA("SITE"),FMSNUM,"BD",10,"","","Billing Document")
+ ;build control segment  prca*4.5*275 If corrected claim, send modified flag (PRCMD=1) so that batch # is appended to record
+ ;D CONTROL^GECSUFMS("A",PRCA("SITE"),FMSNUM,"BD",10,"","","Billing Document")
+ D CONTROL^GECSUFMS("A",PRCA("SITE"),FMSNUM,"BD",10,$G(PRCMD),"","Billing Document")
  S FMSNUM1=$P($G(GECSFMS("DOC")),U,3)_"-"_$P($G(GECSFMS("DOC")),U,4)
+ ; if corrected record, add batch# PRCA*4.5*275
+ S:$G(PRCMD)=1 FMSNUM1=$P($G(GECSFMS("DOC")),U,3)_"-"_$P($G(GECSFMS("DOC")),U,4)_"-"_$P($G(GECSFMS("BAT")),U,3)
  ;build and send document to FTH
  S DA=0 F  S DA=$O(^TMP("PRCABD",$J,DA)) Q:'DA  D SETCS^GECSSTAA(GECSFMS("DA"),^(DA))
  D OPEN^RCFMDRV1(FMSNUM1,6,"B"_BILL,.ENT,.ERR,BILL) I ERR]"" D

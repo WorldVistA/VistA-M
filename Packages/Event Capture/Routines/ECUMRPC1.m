@@ -1,5 +1,5 @@
-ECUMRPC1 ;ALB/JAM-Event Capture Management Broker Utilities ; 7/21/09 2:05pm
- ;;2.0; EVENT CAPTURE ;**25,30,33,72,94,95,105,100,107,110**;8 May 96;Build 4
+ECUMRPC1 ;ALB/JAM-Event Capture Management Broker Utilities ;11/18/11  13:31
+ ;;2.0;EVENT CAPTURE;**25,30,33,72,94,95,105,100,107,110,112**;8 May 96;Build 18
  ;
 DSSUNT(RESULTS,ECARY) ;
  ;
@@ -131,20 +131,22 @@ SRCLST(RESULTS,ECARY) ;
  ;search string.
  ;        RPC: EC GETLIST
  ;
- ;INPUTS   ECARY   - Contains the following subscripted elements
- ;           ECSTR  - Search string
- ;           ECFIL  - File to search
- ;           ECDIR  - Search order
- ;           ECNUM  - (Optional) # records to return [default=44]
- ;OUTPUTS     RESULTS - Array of values based on the search criteria.
+ ;INPUTS    ECARY   - Contains the following subscripted elements
+ ;          ECSTR   - Search string
+ ;          ECFIL   - File to search
+ ;          ECDIR   - Search order
+ ;          ECNUM   - (Optional) # records to return [default=44]
+ ;          ECADT   - (Optional) date to determine clinic inactivity
+ ;OUTPUTS   RESULTS - Array of values based on the search criteria.
  ;
- N ECNT,DIC,ECSTR,ECFIL,ECORD,ECER,ECDI,ECNUM,ECDIR
+ N ECNT,DIC,ECSTR,ECFIL,ECORD,ECER,ECDI,ECNUM,ECDIR,ECADT ;112
  D SETENV^ECUMRPC
  S ECNT=0,ECFIL=$P(ECARY,U),ECSTR=$P(ECARY,U,2),ECDIR=$P(ECARY,U,3)
  S ECORD=$S(ECDIR=-1:"B",1:"I")
  K ^TMP($J,"ECFIND"),^TMP("ECSRCH",$J)
  I ECFIL="" Q
  S ECNUM=$S(+$P(ECARY,U,4)>0:$P(ECARY,U,4),1:44)
+ S ECADT=$S(+$P(ECARY,U,5):$P(ECARY,U,5),1:DT) ;112
  I ECFIL=420.1 D CSTCTR            ;Cost Center search
  I ECFIL=49 D SERVC                ;Service search
  I ECFIL=723 D MEDSPC              ;Medical specialty
@@ -162,7 +164,7 @@ EXIT K ^TMP("ECSRCH",$J)
  Q
 ASCLN ;Search for active associated clinics (file #44)
  N CLN,CNT,NOD,ECDT,INACT,REACT,ERR
- S CNT=0,ECDT=DT
+ S CNT=0,ECDT=ECADT ;112
  I (ECDIR'=1)&(ECDIR'=-1) S ECDIR=1
  ;the next 2 lines of code compensate for the M collating sequence & how the
  ;clinic code is passed in from a CPRS RPC, in a unique situation. If the

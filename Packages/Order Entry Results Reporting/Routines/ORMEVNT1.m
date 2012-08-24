@@ -1,5 +1,5 @@
-ORMEVNT1 ;SLC/MKB-Trigger HL7 msg off OR events,ORMTIME ;9/9/03  13:00
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,165,177,186,215**;Dec 17, 1997
+ORMEVNT1 ;SLC/MKB-Trigger HL7 msg off OR events,ORMTIME ; 6/8/10 9:55am
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,165,177,186,215,324**;Dec 17, 1997;Build 2
  ;
  ;DBIA Section
  ; 3559 - Direct read of ^SRF
@@ -35,7 +35,8 @@ OR1Q ; -- Set logic, from Surgery package [DBIA #3558]
  D IN5^VADPT Q:'$G(VAIP(13))  ;not admitted
  S ^XTMP("ORSURG",ORSRDA)=$$FMADD^XLFDT(DT,5)_U_DT ;186 Set flag
  S ORL=$P($G(^SRS(+$P(ORSR0,U,2),0)),U)_";SC(",ORDIV=$$DIV(+ORL) ;DBIA #3362
- I '$G(LOC) S ORL=+$G(^DIC(42,+$G(VAIP(5)),44))_";SC(" ;186 If no O.R. loc then use current loc
+ ;*324 Add set ORDIV to grab the institution
+ I '$G(LOC) S ORL=+$G(^DIC(42,+$G(VAIP(5)),44))_";SC(",ORDIV=$$DIV(+ORL) ;186 If no O.R. loc then use current loc
  S ORTS=+$G(VAIP(8)) ; need surg spec too?  DBIA #991
  S ORVP=DFN_";DPT(",OREVENT=$$PATEVT,ORDCRULE=$$DCEVT
  D:ORDCRULE AUTODC(ORDCRULE,ORSRX) I OREVENT D
@@ -93,6 +94,8 @@ DC1 F  S ORI=$O(^TMP("ORR",$J,ORLIST,ORI)) Q:ORI'>0  S ORIFN=^(ORI) D
  . D EN^ORCSEND(ORDER,"DC",ORSIG,1,ORNATR,$G(OREASON),.ORERR) Q:$G(ORERR)
  . S $P(^OR(100,+ORIFN,6),U,8)=OREVENT D SAVE(ORIFN,OREVENT,3)
  . S:ORPRNT ORPRINT=$G(ORPRINT)+1,ORPRINT(ORPRINT)=ORDER_"^1"
+ ;*324 Create an event if package orders auto-dcd but no orders released or dc'd by CPRS.
+ I '$G(OREVENT),$G(DGPMDA),$D(^XTMP("ORDC-"_DGPMDA)) S OREVENT=$$NEW^OREVNT(+ORVP)
 DC2 I $G(OREVENT) D
  . S $P(^ORE(100.2,OREVENT,1),U,3)=ORDC,^ORE(100.2,"DC",ORDC,OREVENT)=""
  . I $G(DGPMDA),$D(^XTMP("ORDC-"_DGPMDA)) D XTMP ;save order#'s

@@ -1,5 +1,5 @@
 PSJDIN ;BIR/MV - National Formulary Indicator Utility ;4 MAR 2000/ 4:27 PM
- ;;5.0; INPATIENT MEDICATIONS ;**50,56,76**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**50,56,76,227**;16 DEC 97;Build 1
  ;
  ; Reference to ^PSSDIN is supported by DBIA# 3166.
  ; Reference to ^PS(52.6 is supported by DBIA# 1231.
@@ -100,7 +100,7 @@ DINHIDE(PSJDFN,PSJORD) ;
  D:PSJORD["V" IV
  D:PSJORD["U" UD
  I PSJORD["P" D
- . D @($S($O(DRG("AD",0)):"IV",$O(DRG("SOL",0)):"IV",1:"UD"))
+ . D @($S($P(^PS(53.1,+PSJORD,0),U,4)="U":"UD",1:"IV"))  ;PSJ*5*227 - Unit Dose DIN fix
  I PSJORD="" D NEWUD
  K ^TMP("PSSDIN",$J)
  Q

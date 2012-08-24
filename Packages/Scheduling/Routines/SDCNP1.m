@@ -1,5 +1,5 @@
 SDCNP1 ;ALB/LDB - CANCEL APPOINTMENT (cont.) ; 14 MAR 88@13:00
- ;;5.3;Scheduling;**398,467,478**;Aug 13, 1993
+ ;;5.3;Scheduling;**398,467,478,554**;Aug 13, 1993;Build 11
  ;
  ;SD/467 - EWL Open Matched Entry with rebook
 NOPE W !,*7,$S(CNT:CNT_" Appointment"_$S(CNT>1:"s",1:"")_" cancelled",1:"NOTHING CANCELLED")
@@ -34,7 +34,8 @@ DEL1 S SDERR=0 F J=1:1 S SDDH=$P(A8,",",J) Q:SDDH']""  S SDDI=$P(SDDH,"-"),SDDM=
  D:MAX QUE
  D NOPE1
  Q 
-LET S %=2 W !!,"DO YOU WISH TO PRINT LETTERS FOR THE CANCELLED APPOINTMENT(S)" D YN^DICN S ANS="Y" D:'% REASK G:'% LET Q:(%-1)
+LET ;
+ S %=2 W !!,"DO YOU WISH TO PRINT LETTERS FOR THE CANCELLED APPOINTMENT(S)" D YN^DICN D CANQ^SDAMC(DFN,SC) S ANS="Y" D:'% REASK G:'% LET Q:(%-1)  ; Calls subroutine CANQ to display wait list message if applicable. - PATCH SD*5.3*554
  I $$BADADR^DGUTL3(+DFN) D  Q  ;display, don't print BAI list
  . W *7,!,"** THIS PATIENT HAS BEEN FLAGGED WITH A BAD ADDRESS INDICATOR, NO LETTER"
  . W !,"WILL BE PRINTED."

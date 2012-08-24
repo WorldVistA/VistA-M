@@ -1,5 +1,5 @@
 PSBML ;BIRMINGHAM/EFC-BCMA MED LOG FUNCTIONS ; 1/7/09 9:57am
- ;;3.0;BAR CODE MED ADMIN;**6,3,4,9,11,13,25,45,33**;Mar 2004;Build 14
+ ;;3.0;BAR CODE MED ADMIN;**6,3,4,9,11,13,25,45,33,52**;Mar 2004;Build 28
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference/IA
  ; ^DPT/10035
@@ -12,7 +12,7 @@ PSBML ;BIRMINGHAM/EFC-BCMA MED LOG FUNCTIONS ; 1/7/09 9:57am
  ;
 RPC(RESULTS,PSBHDR,PSBREC) ;BCMA MedLog Filing
  S PSBEDTFL=0
- N PSBORD,PSBTRAN,PSBFDA
+ N PSBORD,PSBTRAN,PSBFDA,PSBMES ;Add PSBMES variable for PSB*3*52
  K PSBIEN,PSBHL7
  S PSBIEN=$P(PSBHDR,U,1)
  S PSBTRAN=$P(PSBHDR,U,2),PSBHL7=PSBTRAN
@@ -129,7 +129,15 @@ RPC(RESULTS,PSBHDR,PSBREC) ;BCMA MedLog Filing
  ...D VAL(PSBDD,PSBIENS,.02,$P(PSBREC(PSBCNT),U,3))
  ...D VAL(PSBDD,PSBIENS,.03,$P(PSBREC(PSBCNT),U,4))
  ...D:(PSBTAB="UDTAB")!(PSBTAB="PBTAB") VAL(PSBDD,PSBIENS,.04,$E($P(PSBREC(PSBCNT),U,5),1,40))
- .I $O(RESULTS("")) S RESULTS(0)=1,RESULTS(1)="-1^Error(s) Filing Transaction MEDPASS"  Q
+ .;Modify Filing Transaction Medpass error message too inclde details - PSB*3*52
+ .I $O(RESULTS("")) D  Q
+ ..N PSBERR
+ ..I $D(PSBMES) D
+ ...S RESULTS(1)="-2^***Your documentation is NOT being recorded in the patient record.***",RESULTS(2)=""
+ ...S RESULTS(3)="Please write down the information (below) AND contact your BCMA Coordinator or IT Support for assistance:",RESULTS(4)=""
+ ...S RESULTS(5)="Error(s) Filing Transaction MEDPASS"
+ ..S PSBERR=0 F  S PSBERR=$O(PSBMES(PSBERR)) Q:PSBERR=""  D
+ ...S RESULTS($O(RESULTS(""),-1)+1)=PSBMES(PSBERR),RESULTS(0)=$O(RESULTS(""),-1)
  .D FILEIT
  .;PSB*3*33
  .D:((PSBREC(2)="O")!($$ONE^PSJBCMA(PSBREC(0),PSBREC(1))="O"))&(PSBREC(3)="G") EXPIRE^PSBML1  ;1x exp?
@@ -171,6 +179,7 @@ FILEIT ;Updt
 ERR(X,Y) ;
  S X=$P("Business Logic Error^Data Validation Error",U,X)
  S RESULTS($O(RESULTS(""),-1)+1)=X_": "_Y
+ S PSBMES($O(PSBMES(""),-1)+1)=X_": "_Y
  Q
 COMMENT(DA,PSBCMT) ;
  N PSBFDA,PSBIEN,PSBNOW

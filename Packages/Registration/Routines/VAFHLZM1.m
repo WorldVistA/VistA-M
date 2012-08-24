@@ -1,5 +1,5 @@
-VAFHLZM1 ;BAY/JAT - Create HL7 Military History segment (ZMH) Cont ; 9/20/00 11:51am
- ;;5.3;Registration;**314,673**;Aug 13, 1993
+VAFHLZM1 ;BAY/JAT,PJH - Create HL7 Military History segment (ZMH) Cont ; 2/3/09 3:49pm
+ ;;5.3;Registration;**314,673,797**;Aug 13, 1993;Build 24
  ;
  ; This routine creates HL7 VA-specific Military History ("ZMH") segments
  ; It is a continuation of VAFHLZMH and uses those variables.
@@ -15,7 +15,7 @@ ENTER ;
  .S VAFINDX=(VAFINDX\1)+1
  .S VAFSETID=VAFSETID+1
  .S $P(VAFY,VAFHLS,1)=VAFSETID
- .S VAFTAG=$S(VAFZ=1:"SL",VAFZ=2:"SNL",VAFZ=3:"SNNL",VAFZ=4:"POW",VAFZ=5:"COMB",VAFZ=6:"VIET",VAFZ=7:"LEBA",VAFZ=8:"GREN",VAFZ=9:"PANA",VAFZ=10:"GULF",VAFZ=11:"SOMA",VAFZ=12:"YUGO",VAFZ=13:"PH",VAFZ=14:"OEIF",1:"NOSEG")
+ .S VAFTAG=$S(VAFZ="*":"MSDS",VAFZ=1:"SL",VAFZ=2:"SNL",VAFZ=3:"SNNL",VAFZ=4:"POW",VAFZ=5:"COMB",VAFZ=6:"VIET",VAFZ=7:"LEBA",VAFZ=8:"GREN",VAFZ=9:"PANA",VAFZ=10:"GULF",VAFZ=11:"SOMA",VAFZ=12:"YUGO",VAFZ=13:"PH",VAFZ=14:"OEIF",1:"NOSEG")
  .D @VAFTAG
  .;if mult episodes, add decimal to output array subscript (Ex: 14.001)
  .I $D(VAFY(2)) D
@@ -211,4 +211,8 @@ OEIF ;build Operation Enduring/Iraqi Freedom segments
  Q
 NOSEG ;
  D NOSEG^VAFHLZM2
+ Q
+ ;
+MSDS ;build new ZMH format for MSDS records
+ D MSDS^VAFHLZM2
  Q

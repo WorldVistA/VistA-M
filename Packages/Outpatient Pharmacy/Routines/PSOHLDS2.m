@@ -182,11 +182,11 @@ NTE9(PSI) ;Privacy Notification
  S NTE9="NTE"_FS_9_FS_FS,^TMP("PSO",$J,PSI)=NTE9
  S PSOLAN=$P($G(^PS(55,DFN,"LAN")),"^",2)
  I PSOLAN'=2 D
- . S ^TMP("PSO",$J,PSI,1)="The VA Notice of Privacy Practices, IB 10-163, which outlines your privacy rights, is available online at http://www1.va.gov/Health/ or you may obtain a copy by writing the VHA Privacy Office (19F2),"
+ . S ^TMP("PSO",$J,PSI,1)="The VA Notice of Privacy Practices, IB 10-163, which outlines your privacy rights, is available online at http://www1.DOMAIN.EXT/Health/ or you may obtain a copy by writing the VHA Privacy Office (19F2),"
  . S ^TMP("PSO",$J,PSI,2)="810 Vermont Avenue NW, Washington, DC 20420."_FS_"Privacy Notification"
  I PSOLAN=2 D
  . S ^TMP("PSO",$J,PSI,1)="La Notificacion relacionada con las Politicas de Privacidad del Departamento de Asuntos del Veterano, IB 10-163, contiene los detalles acerca de sus derechos de privacidad y esta disponsible electronicamente"
- . S ^TMP("PSO",$J,PSI,2)=" en la siguiente direccion: http://www1.va.gov/Health/.  Usted tambien puede conseguir una copia escribiendo a la Oficina de Privacidad del Departamento de Asuntos de Salud del Veterano, (19F2),"
+ . S ^TMP("PSO",$J,PSI,2)=" en la siguiente direccion: http://www1.DOMAIN.EXT/Health/.  Usted tambien puede conseguir una copia escribiendo a la Oficina de Privacidad del Departamento de Asuntos de Salud del Veterano, (19F2),"
  . S ^TMP("PSO",$J,PSI,3)="810 Vermont Avenue NW, Washington, DC 20420."_FS_"Privacy Notification"
  S PSI=PSI+1
  Q

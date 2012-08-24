@@ -1,0 +1,35 @@
+WV19PST ;HIOFO/FT-WV*1*19 POST INSTALLATION ROUTINE  ;06/26/06
+ ;;1.0;WOMEN'S HEALTH;**19**;Sep 30, 1998
+ ;
+EN ; This routine will loop through the word processing text in FILEs 790.6
+ ; and 790.404 and replace the "|SSN#|" placeholder with "|$E(SSN#),6,9|".
+ ;
+ N WVIEN,WVLINE,WVNEW,WVNODE
+ S WVIEN=0
+ W !,"Checking FILE 790.6...",!
+ F  S WVIEN=$O(^WV(790.6,WVIEN)) Q:'WVIEN  D
+ .S WVLINE=0
+ .F  S WVLINE=$O(^WV(790.6,WVIEN,1,WVLINE)) Q:'WVLINE  D
+ ..S WVNODE=$G(^WV(790.6,WVIEN,1,WVLINE,0))
+ ..Q:WVNODE=""
+ ..I WVNODE["|SSN#|" D
+ ...S WVNEW=$P(WVNODE,"|SSN#|",1)_"|$E(SSN#,6,9)|"_$P(WVNODE,"|SSN#|",2)
+ ...W !,WVIEN,!,WVNODE,!,WVNEW
+ ...S ^WV(790.6,WVIEN,1,WVLINE,0)=WVNEW
+ ...Q
+ ..Q
+ .Q
+ S WVIEN=0
+ W !,"Checking FILE 790.404...",!
+ F  S WVIEN=$O(^WV(790.404,WVIEN)) Q:'WVIEN  D
+ .S WVLINE=0
+ .F  S WVLINE=$O(^WV(790.404,WVIEN,1,WVLINE)) Q:'WVLINE  D
+ ..S WVNODE=$G(^WV(790.404,WVIEN,1,WVLINE,0))
+ ..Q:WVNODE=""
+ ..I WVNODE["|SSN#|" D
+ ...S WVNEW=$P(WVNODE,"|SSN#|",1)_"|$E(SSN#,6,9)|"_$P(WVNODE,"|SSN#|",2)
+ ...W !,WVIEN,!,WVNODE,!,WVNEW
+ ...S ^WV(790.404,WVIEN,1,WVLINE,0)=WVNEW
+ ...Q
+ ..Q
+ .Q

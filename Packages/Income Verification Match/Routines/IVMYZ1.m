@@ -38,7 +38,7 @@ TYPE ; Ask user if this installation is for a test account or live account.
  W !!,"Sending a 'completed installation' notice to the IVM Center... "
  S XMSUB="IVM*2*1 PATCH INSTALLATION"
  S XMDUZ="IVM PACKAGE"
- S XMY("WEATHERLY@IVM.VA.GOV")="",XMY(DUZ)="",XMY(.5)=""
+ S XMY("WEATHERLY@IVM.DOMAIN.EXT")="",XMY(DUZ)="",XMY(.5)=""
  S XMTEXT="IVMTEXT("
  S IVMX=$$SITE^VASITE
  S IVMTEXT(1)="  Facility:                   "_$P(IVMX,"^",2)

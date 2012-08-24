@@ -1,7 +1,7 @@
 PSORXRP1 ;BIR/SAB-rx speed reprint listman ;03/06/95
- ;;7.0;OUTPATIENT PHARMACY;**11,27,120,156,148**;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,120,156,148,367**;DEC 1997;Build 62
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
-SEL N PSODISP,VALMCNT I '$G(PSOCNT) S VALMSG="This patient has no Prescriptions!" S VALMBCK="" Q
+SEL N PSODISP,PSOMGREP,VALMCNT I '$G(PSOCNT) S VALMSG="This patient has no Prescriptions!" S VALMBCK="" Q
  S RXCNT=0 K PSOFDR,DIR,DUOUT,DIRUT S DIR("A")="Select Orders by number",DIR(0)="LO^1:"_PSOCNT D ^DIR S LST=Y I $D(DTOUT)!($D(DUOUT)) K DIR,DIRUT,DTOUT,DUOUT S VALMBCK="" Q
  K DIR,DIRUT,DTOUT,PSOOELSE,PSOREPX I +LST S PSOOELSE=1 D
  .D FULL^VALM1 K DIR S DIR("A")="Number of Copies? ",DIR(0)="N^1:99:0",DIR("?")="Enter the number of copies you want (1 TO 99)",DIR("B")=1
@@ -11,6 +11,9 @@ SEL N PSODISP,VALMCNT I '$G(PSOCNT) S VALMSG="This patient has no Prescriptions!
  .I $P(PSOPAR,"^",30),$$GET1^DIQ(59,PSOSITE_",",105,"I")=2.4 D  Q:$G(PSOREPX)
  ..K DIR,DIRUT S DIR("A")="Do you want to resend to Dispensing System Device",DIR(0)="Y",DIR("B")="No"
  ..D ^DIR K DIR S:$D(DIRUT) PSOREPX=1 Q:$D(DIRUT)  S PSODISP=$S(Y:0,1:1)
+ .I $$GET1^DIQ(59,PSOSITE,134)'="" D  Q:$D(DIRUT) 
+ ..K DIR,DIRUT S DIR("A")="Reprint the FDA Medication Guide",DIR(0)="Y",DIR("B")="No"
+ ..D ^DIR K DIR S:$D(DIRUT) PSOREPX=1 Q:$D(DIRUT)  S PSOMGREP=Y
  .K DIRUT,DIR S DIR("A")="Comments: ",DIR(0)="FA^5:60",DIR("?")="5-60 characters input required for activity log." S:$G(PCOMX)]"" DIR("B")=$G(PCOMX)
  .D ^DIR K DIR S:$D(DIRUT) PSOREPX=1 Q:$D(DIRUT)  S (PCOM,PCOMX)=Y
  .S PSOCLC=DUZ
@@ -31,6 +34,7 @@ RX ;process reprint request
  S RXF=0,ZD(RX)=DT,REPRINT=1
  S RXRP($P(PSOLST(ORN),"^",2))=1_"^"_COPIES_"^"_SIDE
  I $G(PSODISP)=1 S RXRP($P(PSOLST(ORN),"^",2),"RP")=1
+ I $G(PSOMGREP)=1 S RXRP($P(PSOLST(ORN),"^",2),"MG")=1
  S RXFL($P(PSOLST(ORN),"^",2))=0 F ZZZ=0:0 S ZZZ=$O(^PSRX($P(PSOLST(ORN),"^",2),1,ZZZ)) Q:'ZZZ  S RXFL($P(PSOLST(ORN),"^",2))=ZZZ
  K ZZZ
  I $G(PSORX("PSOL",1))']"" S PSORX("PSOL",1)=RX_"," S ST="" D ACT1,ULR Q

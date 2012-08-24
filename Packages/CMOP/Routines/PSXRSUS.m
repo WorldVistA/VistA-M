@@ -1,5 +1,5 @@
 PSXRSUS ;BIR/WPB,BAB,HTW-CMOP Transmission Handler ;15 Dec 2001
- ;;2.0;CMOP;**2,3,24,23,26,28,41,57,48**;11 Apr 97
+ ;;2.0;CMOP;**2,3,24,23,26,28,41,57,48,70**;11 Apr 97;Build 9
  ;Reference to ^PS(52.5 supported by DBIA #1978
  ;Reference to ^PS(59   supported by DBIA #1976
  ;Reference to routine DEV1^PSOSULB1 supported by DBIA #2478
@@ -70,7 +70,7 @@ QUE ; QUEUE the group/individual PSOSITE jobs for trans or the single job for pr
  S PSXDUZ=DUZ,(PSOINST,PSXSITE)=+$P($G(PSXSYS),U,2)
  S ZTDTH=$H
  F X="PSXDIVML","PSOSITE","PSOLAP","PSOSYS","PSOPAR","PSXSYS","DUZ","PSXTRANS","PSXFLAG","PRTDT","PSOINST","PSXDUZ","PSXSITE","PSXVER" S ZTSAVE(X)=""
- F X="PSXCS","PSXDAYS","PSXDTRG","PSOBARS","PSOBAR1","PSOBAR0","PSOPROP","PSXVENDR","PSLION","TPRTDT" S ZTSAVE(X)=""
+ F X="PSXCS","PSXDAYS","PSXDTRG","PSOBARS","PSOBAR1","PSOBAR0","PSOPROP","PSXVENDR","PSLION","TPRTDT","PSOFDAPT" S ZTSAVE(X)=""
  ;
  K ZTSK
  D ^%ZTLOAD ;****TESTING switch to tasking vs foreground

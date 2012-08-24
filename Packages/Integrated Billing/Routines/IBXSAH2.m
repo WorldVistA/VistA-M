@@ -1,4 +1,4 @@
-IBXSAH2 ; ;10/26/11
+IBXSAH2 ; ;02/21/12
  D DE G BEGIN
 DE S DIE="^IBA(355.93,",DIC=DIE,DP=355.93,DL=2,DIEL=0,DU="" K DG,DE,DB Q:$O(^IBA(355.93,DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,5) S:%]"" DE(2)=% S %=$P(%Z,U,6) S:%]"" DE(4)=% S %=$P(%Z,U,7) S:%]"" DE(5)=% S %=$P(%Z,U,8) S:%]"" DE(6)=% S %=$P(%Z,U,9) S:%]"" DE(9)=% S %=$P(%Z,U,10) S:%]"" DE(3)=% S %=$P(%Z,U,11) S:%]"" DE(12)=%

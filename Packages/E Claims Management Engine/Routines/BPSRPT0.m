@@ -1,5 +1,5 @@
 BPSRPT0 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -48,8 +48,8 @@ EN(BPRTYPE) N %,BPACREJ,BPAUTREV,BPBEGDT,BPCCRSN,BPDRGCL,BPDRUG,BPENDDT,BPEXCEL,
  ;Returns (A-ALL,M-Mail,W-Window,C-CMOP)
  S BPMWC=$$SELMWC^BPSRPT3("A") I BPMWC="^" G EXIT
  ;
- ;Prompt to Display (R)ealTime Fills or (B)ackbills or (A)LL (Default to ALL)
- ;Returns (1-ALL,2-RealTime Fills,3-Backbills)
+ ;Prompt to Display (R)ealTime Fills or (B)ackbills or (P)RO Option or (A)LL (Default to ALL)
+ ;Returns (1-ALL,2-RealTime Fills,3-Backbills,4-PRO Option)
  S BPRTBCK=$$SELRTBCK^BPSRPT3(1) I BPRTBCK="^" G EXIT
  ;
  ;Prompt to Display Specific (D)rug or Drug (C)lass or (A)ll (Default to ALL)
@@ -91,9 +91,9 @@ EN(BPRTYPE) N %,BPACREJ,BPAUTREV,BPBEGDT,BPCCRSN,BPDRGCL,BPDRUG,BPENDDT,BPEXCEL,
  ;Returns (0-All,ptr-Pointer to #356.8)
  S BPCCRSN=0 I (",7,")[BPRTYPE S BPCCRSN=$$SELCCRSN^BPSRPT4(0) I BPCCRSN="^" G EXIT
  ;
- ;Prompt for Eligibility Indicator for rejected claims report
- ;Returns (V=Veteran,T=TRICARE,0=All)
- S BPELIG=0 I (",2,")[BPRTYPE S BPELIG=$$SELELIG^BPSRPT3(1) I BPELIG="^" G EXIT
+ ;Prompt for Eligibility Indicator for payable, rejected, reversed and closed claims report
+ ;Returns (V=VETERAN,T=TRICARE,C=CHAMPVA,0=All)
+ S BPELIG=0 I (",1,2,4,7,")[BPRTYPE S BPELIG=$$SELELIG^BPSRPT3(1) I BPELIG="^" G EXIT
  ;
  ;Prompt for Open/Closed/All claims
  ;Returns (1=Closed,2=Open,0=All)

@@ -1,5 +1,5 @@
-DGRPC ;ALB/MRL/PJR/PHH/EG/BAJ,TDM - CHECK CONSISTENCY OF PATIENT DATA ; 5/23/07 2:50pm
- ;;5.3;Registration;**108,121,314,301,470,489,505,451,568,585,641,653,688,754**;Aug 13, 1993;Build 46
+DGRPC ;ALB/MRL/PJR/PHH/EG/BAJ,TDM,LBD - CHECK CONSISTENCY OF PATIENT DATA ; 6/29/11 3:50pm
+ ;;5.3;Registration;**108,121,314,301,470,489,505,451,568,585,641,653,688,754,797**;Aug 13, 1993;Build 24
  ;
  ;linetags in routines correspond to IEN of file 38.6
  ;
@@ -12,12 +12,15 @@ DGRPC ;ALB/MRL/PJR/PHH/EG/BAJ,TDM - CHECK CONSISTENCY OF PATIENT DATA ; 5/23/07 
  ;            DGER = inconsistencies found (separated by ,s)
  ;           DGNCK = 1 if missing key elig data...can't process further
  ;
- N ANYMSE,CONARR,CONCHK,CONERR,CONSPEC,LOC,I5,I6
+ N ANYMSE,CONARR,CONCHK,CONERR,CONSPEC,LOC,I5,I6,DGPMSE
  N MSECHK,MSESET,MSERR,MSDATERR,RANGE,RANSET,OVER99
  D ON I $S(('$D(DFN)#2):1,'$D(^DPT(DFN,0)):1,DGER:1,1:0) G KVAR^DGRPCE:DGER
 EN S:'$D(DGEDCN)#2 DGEDCN=0 I DGEDCN W !!,"Checking data for consistency..."
  D START:DGEDCN
  F I=0,.13,.141,.121,.122,.22,.24,.3,.31,.311,.32,.321,.322,.33,.35,.36,.362,.38,.39,.52,.53,"TYPE","VET" S DGP(I)=$G(^DPT(DFN,I))
+ ;Get MSEs from MSE sub-file #2.3216 (DG*5.3*797)
+ I '$D(^DPT(DFN,.3216)) D MOVMSE^DGMSEUTL(DFN)
+ D GETMSE^DGMSEUTL(DFN,.DGPMSE)
  ;get old inconsistencies
  S DGRPCOLD="," I $D(^DGIN(38.5,DFN)) F I=0:0 S I=$O(^DGIN(38.5,DFN,"I",I)) Q:'I  S DGRPCOLD=DGRPCOLD_I_","
  ;find consistencies to check/not check

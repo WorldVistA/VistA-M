@@ -1,5 +1,5 @@
-SRTPRH2 ;BIR/SJA - PRINT HEART - OUTCOME/DONOR INFORMATION ;04/21/08
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+SRTPRH2 ;BIR/SJA - PRINT HEART - OUTCOME/DONOR INFORMATION ;07/11/2011
+ ;;3.0;Surgery;**167,176**;24 Jun 93;Build 8
  I 'SRNOVA G DONOR
  W !,?28,"OUTCOME INFORMATION",!
  K DR,SRAO,SRX,Y
@@ -7,7 +7,7 @@ SRTPRH2 ;BIR/SJA - PRINT HEART - OUTCOME/DONOR INFORMATION ;04/21/08
  K DA,DIC,DIQ,SRX,SRY,SRZ S DIC="^SRT(",DA=SRTPP,DIQ="SRY",DIQ(0)="E",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
  S (SRX,SRZ)=0 F I=1:1 S SRZ=$P(SRDR,";",I) Q:'SRZ  S SRX=I,SRAO(I)=SRY(139.5,SRTPP,SRZ,"E")_"^"_SRZ
  W !,"Operative Death:",?29,$P(SRAO(1),"^"),?48,"On ventilator >= 48 hr:",?75,$P(SRAO(9),"^")
- W !,"Date/Time of Death:",?29,$P(SRAO(2),"^"),?48,"Stroke:",?75,$P(SRAO(10),"^")
+ W !,"Date/Time of Death:",?29,$P(SRAO(2),"^"),?48,"Stroke:",?68,$J($P(SRAO(10),"^"),11)
  W !,"Perioperative MI:",?29,$P(SRAO(3),"^"),?48,"Coma >= 24 hr:",?75,$P(SRAO(11),"^")
  W !,"Renal Failure Req. dialysis:",?29,$P(SRAO(4),"^"),?48,"New Mech Circ Support: ",$E($P(SRAO(12),"^"),1,9)
  W !,"Mediastinitis:",?29,$P(SRAO(5),"^"),?48,"Post-Transplant Prophylaxis for"

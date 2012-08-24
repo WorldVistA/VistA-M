@@ -1,5 +1,5 @@
-DGENELA ;ALB/CJM,KCL,Zoltan/PJR,RGL,LBD,EG,TMK,CKN,ERC - Patient Eligibility API ; 9/19/06 9:27am
- ;;5.3;Registration;**121,147,232,314,451,564,631,672,659,583,653,688**;Aug 13,1993;Build 29
+DGENELA ;ALB/CJM,KCL,Zoltan/PJR,RGL,LBD,EG,TMK,CKN,ERC,TDM - Patient Eligibility API ; 3/3/11 3:40pm
+ ;;5.3;Registration;**121,147,232,314,451,564,631,672,659,583,653,688,841**;Aug 13,1993;Build 7
  ;
 GET(DFN,DGELG) ;
  ;Description: Used to obtain the patient eligibility data.
@@ -57,6 +57,7 @@ GET(DFN,DGELG) ;
  ;"AOEXPLOC"          AGENT ORANGE EXPOSURE LOCATION
  ;"CVELEDT"           COMBAT VETERAN END DATE
  ;"SHAD"              SHAD EXPOSURE
+ ;"MOH"               MEDAL OF HONOR
  ;
  K DGELG
  S DGELG=""
@@ -126,6 +127,10 @@ GET(DFN,DGELG) ;
  ; Purple Heart Indicator
  S NODE=$G(^DPT(DFN,.53))
  S DGELG("PH")=$P(NODE,"^")
+ ;
+ ; Medal of Honor Indicator
+ S NODE=$G(^DPT(DFN,.54))
+ S DGELG("MOH")=$P(NODE,"^")
  ;
  ;means test category
  S DGELG("MTSTA")=""

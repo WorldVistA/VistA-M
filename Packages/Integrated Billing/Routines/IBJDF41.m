@@ -1,9 +1,10 @@
 IBJDF41 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT (COMPILE) ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,159,204,356**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**123,159,204,356,451,473**;21-MAR-94;Build 29
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 ST ; - Tasked entry point.
- K IB,IBCAT,^TMP("IBJDF4",$J) S IBQ=0
+ K IB,IBCAT,^TMP("IBJDF4",$J)
+ S IBQ=0
  ;
  ; - Set selected categories for report.
  I IBSEL[1 S IBCAT(2)=1
@@ -39,7 +40,7 @@ ENQ1 K IB,IB0,IBA,IBA1,IBADM,IBAGE,IBAR,IBAR1,IBBA,IBBN,IBBU,IBC,IBCAT,IBCAT1
  ;
 PROC ; - Process data for report(s).
  I IBA#100=0 D  Q:IBQ
- .S IBQ=$$STOP^IBOUTL("First Party Follow-Up Report")
+ . S IBQ=$$STOP^IBOUTL("First Party Follow-Up Report")
  S IBAR=$G(^PRCA(430,IBA,0)) I 'IBAR Q
  S IBCAT=+$P(IBAR,U,2) I '$D(IBCAT(IBCAT)) Q   ;Get valid AR category.
  I '$$CLMACT^IBJD(IBA,IBCAT) Q  ;               Invalid IB claim/action.
@@ -93,6 +94,9 @@ PROC ; - Process data for report(s).
  ;
  I IBAI'="" S ^TMP("IBJDF4",$J,IBPAT,0,"A")=IBAI
  ;
+ ; IB*2.0*451 - Check for EEOB on associated 3rd party bills and attach EOB indicator '%' if applicable
+ S IBBN=$$IBEEOBCK(IBBN,DFN)_IBBN  ; Pass AR BILL#, Pat ID
+ ;
  ; - Set up indexes for detail report.
  I $G(IBEXCEL) D  Q
  . S IBEXCEL1=$P($G(^PRCA(430.2,IBCAT,0)),U,2)_U_$P(IBPT,U,3)_U_$P(IBVA,U)_U_$P(IBPT,U,4)_U_$$DT^IBJD($P(IBPT,U,6),1)_U_$$ELIG^IBJDF42(+$P(IBPT,U,5))_U
@@ -106,7 +110,6 @@ PROC ; - Process data for report(s).
  S ^TMP("IBJDF4",$J,IBPAT,IB0,IBCAT,IBBN)=IBPD_U_IBBA_U_IBPA_U_IBINT_U_IBADM_U_IBIDX
  ;
  I IBSH D COM
- ;
  Q
  ;
 ACCBAL(DFN) ; Calculates the Account Balance for the Bill
@@ -238,3 +241,56 @@ COM ; - Get bill comments.
  I '$G(IBEXCEL),IBFLG D
  . S $P(^TMP("IBJDF4",$J,IBPAT,IB0,IBCAT,IBBN),"^",6)=IBIDX
  Q
+ ; IB*2.0*451 -  Use Event Date to find an associated 3rd Party bill with an associated EEOB
+IBEEOBCK(IBBN,DFN) ; Passed AR Bill, Patient ID
+ ; Function will quit as soon as a 3rd party bill is located that has an associated EEOB
+ ;
+ ; Find 3rd Party Bills with an Event Date
+ N IBREF,IBEEOB,IBDT
+ S IBEEOB=""
+ ; Loop through Xref of ARbill (#430) to Action file (#350)
+ I +$G(IBBN) S IBREF=0 F  S IBREF=$O(^IB("ABIL",IBBN,IBREF)) Q:'IBREF  D  Q:IBEEOB="%"
+ . S IBDT=$P($G(^IB(IBREF,0)),"^",17) ;Get event Date
+ . I IBDT S IBEEOB=$$TPEVDT(DFN,IBDT)
+ . I IBDT S IBEEOB=$$TPOPV(DFN,IBDT)
+ ;
+ Q IBEEOB
+ ;
+ ; IB*2.0*451 - Traverse all THIRD PARTY bills for a patient with a specific Event Date (399,.03)
+TPEVDT(DFN,EVDT) ;
+ ; Function will quit as soon as a 3rd party bill is located that has an associated EEOB
+ ; IB*2.0*473 - Use the 399,"APDT" (by patient) index instead of the 399,"D" index for efficiency
+ I '$G(DFN)!'$G(EVDT) Q ""
+ N IBIFN,IBEEOB
+ S IBEEOB="",IBIFN=""
+ F  S IBIFN=$O(^DGCR(399,"APDT",DFN,IBIFN),-1) Q:'IBIFN  D  Q:IBEEOB="%"
+ . I $D(^DGCR(399,"APDT",DFN,IBIFN,9999999-EVDT)) S IBEEOB=$$EEOBCK(IBIFN)
+ Q IBEEOB
+ ; 
+ ; IB*2.0*451 - Traverse all THIRD PARTY bills for a patient with any Opt Visit Dates same as Event Date (399,43)
+TPOPV(DFN,EVDT) ;
+ ; Function will quit as soon as a 3rd party bill is located that has an associated EEOB
+ N IBIFN,IBEEOB
+ S IBEEOB=""
+ I +$G(DFN),+$G(EVDT) S IBIFN=0 F  S IBIFN=$O(^DGCR(399,"AOPV",DFN,EVDT,IBIFN)) Q:'IBIFN  D  Q:IBEEOB="%"
+ . ; attach EOB indicator '%' to bill # when applicable
+ . S IBEEOB=$$EEOBCK(IBIFN)
+ Q IBEEOB
+ ;
+ ; IB*2.0*451 - Check for EEOB indicator
+EEOBCK(IBBILL)  ;
+ ; Check for 1st and 3rd party payment activity on bill
+ ; IBBILL is the IEN for the bill # in files #399/#430 and must be valid,
+ ; check the EOB type and exclude it if it is an MRA. Otherwise,
+ ; returns the EEOB indicator '%' if payment activity was found.
+ ; Access to file #361.1 covered by IA #4051.
+ ; Access to file #399 covered by IA #3820.
+ N IBOUT,IBVAL,Z
+ I $G(IBBILL)=0 Q ""
+ I '$O(^IBM(361.1,"B",IBBILL,0)) Q ""  ; no entry here
+ I $P($G(^DGCR(399,IBBILL,0)),"^",13)=1 Q ""  ;avoid 'ENTERED/NOT REVIEWED' status
+ ; handle both single and multiple bill entries in file #361.1
+ S Z=0 F  S Z=$O(^IBM(361.1,"B",IBBILL,Z)) Q:'Z  D  Q:$G(IBOUT)="%"
+ . S IBVAL=$G(^IBM(361.1,Z,0))
+ . S IBOUT=$S($P(IBVAL,"^",4)=1:"",$P(IBVAL,"^",4)=0:"%",1:"")
+ Q IBOUT  ; EOB indicator for either 1st or 3rd party payment on bill

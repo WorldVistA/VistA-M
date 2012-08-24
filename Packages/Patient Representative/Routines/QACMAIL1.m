@@ -6,7 +6,7 @@ QACMAIL1 ;ERC/WASHCIOFO-Send data to reposititory ;11/29/99
 ENV ;environment check - to ensure that the Mailman patch creating
  ;domain has beem installed.
  N QACQ,QACE,ZPDQUIT
- S QACQ="Q-PSS.MED.VA.GOV"
+ S QACQ="Q-PSS.DOMAIN.EXT"
  Q:$$FIND1^DIC(4.2,,"QX",QACQ,"B",,"QACE")
  W !!?5,$C(7),"**** Installation of this patch requires that domain "
  W !?10,QACQ," be defined."

@@ -1,5 +1,5 @@
 PSOR52 ;IHS/DSD/JCM - Files refill entries in prescription file ;03/10/93
- ;;7.0;OUTPATIENT PHARMACY;**10,22,27,181,148,201,260,281,358**;DEC 1997;Build 35
+ ;;7.0;OUTPATIENT PHARMACY;**10,22,27,181,148,201,260,281,358,385**;DEC 1997;Build 27
  ;Reference to ^PSDRUG supported by DBIA 221
  ;Reference to PSOUL^PSSLOCK supported by DBIA 2789
  ;Reference SWSTAT^IBBAPI supported by DBIA 4663
@@ -81,8 +81,8 @@ FINISH ;
  N ACTION,PSOERX,PSOERF
  S PSOERX=PSOX("IRXN"),PSOERF=PSOX("NUMBER")
  I $$SUBMIT^PSOBPSUT(PSOERX,PSOERF) D  I ACTION="Q"!(ACTION="^") Q
- . S ACTION="" D ECMESND^PSOBPSU1(PSOERX,PSOERF,PSOX("FILL DATE"),"RF")
- . ; Quit if there is an unresolved Tricare non-billable reject code, PSO*7*358
+ . S ACTION="" D ECMESND^PSOBPSU1(PSOERX,PSOERF,"","RF")
+ . ; Quit if there is an unresolved TRICARE/CHAMPVA non-billable reject code, PSO*7*358
  . I $$PSOET^PSOREJP3(PSOERX,PSOERF) S ACTION="Q" Q
  . I $$FIND^PSOREJUT(PSOERX,PSOERF) D
  . . S ACTION=$$HDLG^PSOREJU1(PSOERX,PSOERF,"79,88","OF","IOQ","Q")

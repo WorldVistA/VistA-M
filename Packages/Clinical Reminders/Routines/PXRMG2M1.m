@@ -142,9 +142,9 @@ CALCMON ;Calculate the quarter number for current quarter
  ;
 POST ;Post installation routine
  ;add remote members to mail group
- D ADDMBRS^XMXAPIG(DUZ,"GEC2 NATIONAL ROLLUP","VAUGHN.SMITH@MED.VA.GOV")
- D ADDMBRS^XMXAPIG(DUZ,"GEC2 NATIONAL ROLLUP","patrick.brady@e2k.hq.med.va.gov")
- D ADDMBRS^XMXAPIG(DUZ,"GEC2 NATIONAL ROLLUP","daniel.schoeps@e2k.hq.med.va.gov")
+ D ADDMBRS^XMXAPIG(DUZ,"GEC2 NATIONAL ROLLUP","VAUGHN.SMITH@DOMAIN.EXT")
+ D ADDMBRS^XMXAPIG(DUZ,"GEC2 NATIONAL ROLLUP","patrick.brady@e2k.hq.DOMAIN.EXT")
+ D ADDMBRS^XMXAPIG(DUZ,"GEC2 NATIONAL ROLLUP","daniel.schoeps@e2k.hq.DOMAIN.EXT")
  ;
 TASKRPT ;This will task a monthy report for 4 month.
  ;May 8th 2005,June 8th 2005,AUG 8th 2005,Sept 8th 2005

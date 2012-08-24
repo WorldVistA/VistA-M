@@ -1,5 +1,5 @@
-PXRMBMI ; SLC/PKR - National BMI and BSA computed finding. ;09/01/2009
- ;;2.0;CLINICAL REMINDERS;**12**;Feb 04, 2005;Build 73
+PXRMBMI ;SLC/PKR - National BMI and BSA computed finding. ;12/06/2010
+ ;;2.0;CLINICAL REMINDERS;**12,18**;Feb 04, 2005;Build 152
  ;================================
 BMI(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;Multi-occurrence computed
  ;finding for BMI.
@@ -46,8 +46,8 @@ BSA(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;Multi-occurrence computed
  ;
  ;================================
 GHEIGHT(DFN,WDATE,HT,HDATE) ;Return the height measurement taken on the
- ;date closest to WDATE (WDATE is the date of the weight measurement). If no height is
- ;found return -1.
+ ;date closest to WDATE (WDATE is the date of the weight measurement).
+ ;If no height is found return -1.
  N BCKDATE,DAS,DIFFL,DIFFS,DONE,FWDDATE,TEMP
  S (DONE,HDATE)=0,HT=-1
  ;Check for height measured on same date and time.
@@ -68,7 +68,7 @@ GHEIGHT(DFN,WDATE,HT,HDATE) ;Return the height measurement taken on the
  . I HDATE=0 Q
  . S DAS=$O(^PXRMINDX(120.5,"PI",DFN,8,HDATE,""))
  . D GETDATA^PXRMVITL(DAS,.TEMP)
- . I TEMP("RATE")'=+TEMP("RATE") K DIFFL(DIFFS,HDATE) Q
+ . I (TEMP("RATE")'=+TEMP("RATE"))!(TEMP("RATE")=0) K DIFFL(DIFFS,HDATE) Q
  . S HT=+(TEMP("RATE")*0.0254)
  . S DONE=1
  Q

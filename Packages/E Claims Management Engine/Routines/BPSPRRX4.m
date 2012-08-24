@@ -1,58 +1,19 @@
 BPSPRRX4 ;ALB/SS - ePharmacy secondary billing ;16-DEC-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,9**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,9,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
- ;Gather necessary data from primary e-claim 
- ;BPSIEN59-ien of the PRIMARY transaction in the file BPS TRANSACTION #9002313.59
- ;BPSDAT-to return data, by reference)
- ;BPCOBIND - payer sequence
- ;BPSRESUB - 
- ; 0 - original (1st) submission via the option "Process Secondary/Tricare Rx to ECME"
- ; 1 - resubmit via this option
- ;ret value:
- ; 1 - success
- ; 0 - the primary claim was not found OR not enough data in the primary claim
- ; -1 - the primary claim doesn't have payable status
-PRIMDATA(BPSIEN59,BPSDAT,BPCOBIND,BPSRESUB) ;
- N BPSRESP,BPSSTAT,BPSPRDT,BPSCLM,Y
- ;populate certain nodes if it is an original (1st) submission
- I BPSRESUB=0 D
- . S BPSDAT("FILL NUMBER")=$P($G(^BPST(BPSIEN59,1)),U,1) ;#9
- . S BPSDAT("PRESCRIPTION")=$P($G(^BPST(BPSIEN59,1)),U,11) ;#11
- I $G(BPSDAT("FILL NUMBER"))=""!($G(BPSDAT("PRESCRIPTION"))="") Q 0
- I BPSRESUB=0 D
- . S BPSDAT("FILL DATE")=$P($G(^BPST(BPSIEN59,12)),U,2) ;#1202
- . S BPSDAT("RX ACTION")=$P($G(^BPST(BPSIEN59,12)),U,1) ;#1201
- . S BPSDAT("BILLNDC")=$P($G(^BPST(BPSIEN59,1)),U,2) ;#10 $$GETNDC^PSONDCUT(BPSDAT("PRESCRIPTION"),BPSDAT("FILL DATE"))
- ; check if data is there
- I $G(BPSDAT("FILL DATE"))=""!($G(BPSDAT("RX ACTION"))="")!($G(BPSDAT("BILLNDC"))="") Q 0
- ;
- S BPSCLM=$P($G(^BPST(BPSIEN59,0)),U,4) ;#3 CLAIM
- I BPSCLM S BPSDAT("BIN NUMBER")=$P($G(^BPSC(BPSCLM,100)),U)
- ;
- S BPSRESP=$P($G(^BPST(BPSIEN59,0)),U,5) ;#4 RESPONSE
- I BPSRESP S Y=($P($G(^BPSR(BPSRESP,0)),U,2))\1 X ^DD("DD") S BPSDAT("OTHER PAYER DATE")=Y
- ;
- S BPSSTAT=$P($$STATUS^BPSOSRX(+BPSDAT("PRESCRIPTION"),+BPSDAT("FILL NUMBER"),,,BPCOBIND),U)
- I '$$PAYABLE^BPSOSRX5(BPSSTAT) Q -1
- I BPSRESUB=0,BPSRESP S BPSDAT("PRIOR PAYMENT")=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,500)),U,9))
- Q 1
- ;
-GETFR52(BPSRX,BPSFILL,BPSDAT) ;
- S BPSDAT("PRESCRIPTION")=BPSRX
- S BPSDAT("FILL NUMBER")=BPSFILL
- S BPSDAT("FILL DATE")=$$DOSDATE^BPSSCRRS(BPSRX,BPSFILL)
- S BPSDAT("BILLNDC")=$$GETNDC^PSONDCUT(BPSRX,BPSFILL)
- Q
- ;
- ;primary claim processing
- ;BPSRX - ien #52
- ;BPSRF - refill #
- ;BPSDFN - ien #2
- ;BPSDOS - date of service
- ;BPSECLM - result of $$FINDECLM^BPSPRRX5
- ;BPRESUB - 1 = the user is resubmitting a new PRIMARY claim
 PRIMARY(BPSRX,BPSRF,BPSDFN,BPSDOS,BPSECLM,BPRESUB) ;
+ ;Primary claim processing
+ ;Input:
+ ;  BPSRX - Prescription IEN
+ ;  BPSRF - Fill Number
+ ;  BPSDFN - Patient IEN
+ ;  BPSDOS - Date of service
+ ;  BPSECLM - Rresult of $$FINDECLM^BPSPRRX5
+ ;  BPRESUB - 1 = the user is resubmitting a new PRIMARY claim
+ ;Return value
+ ;  Either the response from $$SUBMCLM^BPSPRRX2 or an error condition, such as
+ ;    "-100^Action cancelled"
  N BPRATTYP,BPSPLNSL,BPSPLAN,BPSDAT,BPSQ,BPSWHERE,BPY,BP59,BPSPL59,BPSRT59,BPYDEF
  S (BP59,BPSPL59,BPSRT59)=""
  I BPRESUB=1 D
@@ -88,10 +49,10 @@ PRIMARY(BPSRX,BPSRF,BPSDFN,BPSDOS,BPSECLM,BPRESUB) ;
  . S BPSQ=1
  Q:BPSQ=-100 "-100^Action cancelled"
  Q:BPSQ=-105 "-105^The same group plan selected"
- I $$YESNO^BPSSCRRS("SUBMIT CLAIM TO "_$P(BPSPLNSL(1),U,2)_" ?(Y/N)","Y")=0 Q "-100^Action cancelled"
- S BPSWHERE=$S(BPSRF>0:"RF",1:"OF")
- I BPRESUB=1 S BPSWHERE="ERES"
- Q $$SUBMCLM^BPSPRRX2(BPSRX,BPSRF,BPSDOS,BPSWHERE,$$GETNDC^PSONDCUT(BPSRX,BPSRF),1,BPSPLAN,.BPSDAT,BPRATTYP)
+ I $$YESNO^BPSSCRRS("SUBMIT CLAIM TO "_$P(BPSPLNSL(1),U,2)_" ?(Y/N)","Y")'=1 Q "-100^Action cancelled"
+ S BPSWHERE="P2"
+ I BPRESUB=1 S BPSWHERE="P2S"
+ Q $$SUBMCLM^BPSPRRX2(BPSRX,BPSRF,BPSDOS,BPSWHERE,1,BPSPLAN,.BPSDAT,BPRATTYP)
  ;
 PRIINSCK(DFN,DOS) ; primary insurance check
  ; check to see if patient has primary ePharmacy insurance policy

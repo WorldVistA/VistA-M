@@ -1,5 +1,5 @@
-PSOORRNW ;BIR/SAB-finish OP renew orders from OE/RR ;4/25/07 8:46am
- ;;7.0;OUTPATIENT PHARMACY;**11,27,51,46,71,94,130,131,146,206,225**;DEC 1997;Build 29
+PSOORRNW ;BIR/SAB-finish OP renew orders from OE/RR ; 4/26/11 2:20pm
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,51,46,71,94,130,131,146,206,225,384**;DEC 1997;Build 7
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.607 supported by DBIA 2221
  ;External reference to ^PS(51.2 supported by DBIA 2226
@@ -34,7 +34,7 @@ PSOORRNW ;BIR/SAB-finish OP renew orders from OE/RR ;4/25/07 8:46am
  .S PSORENW("DOSE",II)=$P(DOSE1,"^"),PSORENW("DOSE ORDERED",II)=$P(DOSE1,"^",2),PSORENW("UNITS",II)=$P(DOSE,"^",9),PSORENW("NOUN",II)=$P(DOSE,"^",5)
  .S:$P(DOSE,"^",9) UNITS=$P(^PS(50.607,$P(DOSE,"^",9),0),"^")
  .S PSORENW("VERB",II)=$P(DOSE,"^",10),PSORENW("ROUTE",II)=$P(DOSE,"^",8)
- .S:$P(DOSE,"^",8) ROUTE=$P(^PS(51.2,$P(DOSE,"^",8),0),"^")
+ .S ROUTE=$S($P(DOSE,"^",8):$$GET1^DIQ(^PS(51.2,$P(DOSE,"^",8),0),"^"),1:"") ;PSO*7*384
  .S PSORENW("SCHEDULE",II)=$P(DOSE,"^"),PSORENW("DURATION",II)=$P(DOSE,"^",2)
  .I $P(DOSE,"^",6)]"" S PSORENW("CONJUNCTION",II)=$S($P(DOSE,"^",6)="S":"T",$P(DOSE,"^",6)="X":"X",1:"A")
  S PSORENW("ENT")=+$G(II) K II,I

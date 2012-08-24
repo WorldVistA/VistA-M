@@ -1,5 +1,5 @@
-PXRMPDEM ; SLC/PKR - Computed findings for patient demographics. ;01/06/2010
- ;;2.0;CLINICAL REMINDERS;**5,4,11,12,17**;Feb 04, 2005;Build 102
+PXRMPDEM ;SLC/PKR - Computed findings for patient demographics. ;06/22/2011
+ ;;2.0;CLINICAL REMINDERS;**5,4,11,12,17,18**;Feb 04, 2005;Build 152
  ;
  ;======================================================
 AGE(DFN,TEST,DATE,VALUE,TEXT) ;Computed finding for returning a patient's
@@ -26,11 +26,14 @@ DFA(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,VALUE,TEXT) ;This computed finding
  ;DBIA #10035 DATE OF BIRTH is a required field.
  I TEST="" S NFOUND=0,DATE(1)=$$NOW^PXRMDATE,TEST(1)=0 Q
  S TEST=$P(TEST,".",1)
- N DOB,YOB
+ N BDAY,DOB,YEAR,YOB
  S NFOUND=1
  S DOB=$S($D(PXRMDOB):PXRMDOB,1:$P(^DPT(DFN,0),U,3))
  S YOB=$E(DOB,1,3)
- S (DATE(1),VALUE(1,"VALUE"))=YOB+TEST_$E(DOB,4,7)
+ S BDAY=$E(DOB,4,7)
+ S YEAR=YOB+TEST
+ I BDAY="0229",'$$ISLEAP^PXRMDATE(YEAR) S BDAY="0228"
+ S (DATE(1),VALUE(1,"VALUE"))=YEAR_BDAY
  S TEST(1)=1
  S TEXT(1)="Patient "_$S(DATE(1)>$$NOW^PXRMDATE:"will be ",1:"was ")_+TEST_" years old on "_$$FMTE^XLFDT(DATE(1),"5Z")
  Q
@@ -146,16 +149,15 @@ INP(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,VALUE,TEXT) ;Computed finding for
  ;======================================================
 NEWRACE(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,VALUE,TEXT) ;Computed finding
  ;for returning a patient's multi-valued race.
- N CNT,CNT1,IND,VADM
+ N IND,VADM
  D DEM^VADPT
- I $D(VADM(12))'=11 S NFOUND=0 D KVA^VADPT Q
+ S NFOUND=VADM(12)
+ I NFOUND=0 D KVA^VADPT Q
  S NGET=$S(NGET<0:-NGET,1:NGET)
- S (CNT,CNT1)=0
- F  S CNT=$O(VADM(12,CNT)) Q:(CNT="")!(CNT1=NGET)  D
- . S CNT1=CNT1+1,TEST(CNT1)=1,DATE(CNT1)=$$NOW^PXRMDATE
- . S TEXT(CNT1)="",VALUE(CNT1,"VALUE")=$P($G(VADM(12,CNT)),U,2)
- F CNT=1:1:CNT1 F IND=1:1:CNT1 S VALUE(CNT,"RACE",IND)=VALUE(IND,"VALUE")
- S NFOUND=CNT1
+ I NFOUND>NGET S NFOUND=NGET
+ F IND=1:1:NFOUND D
+ . S TEST(IND)=1,DATE(IND)=$$NOW^PXRMDATE,TEXT(IND)=""
+ . S (VALUE(IND,"VALUE"),VALUE(IND,"RACE"))=$P(VADM(12,IND),U,2)
  D KVA^VADPT
  Q
  ;
@@ -170,6 +172,7 @@ PATTYPE(DFN,TEST,DATE,VALUE,TEXT) ;Computed finding to return the patient
  S VALUE=$P(VAEL(6),U,2)
  D KVA^VADPT
  Q
+ ;
  ;======================================================
 RACE(DFN,TEST,DATE,VALUE,TEXT) ;Computed finding for checking a patient's race.
  N RACE
@@ -193,7 +196,7 @@ WASINP(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,VALUE,TEXT) ;Computed finding for
  ;determining if a patient was an inpatient in the period defined
  ;by BDT and EDT.
  ;Access to DGPM covered by DBIA #1378
- N ADATE,ADM,ADML,DDATE,IEN,INDT,FDATE,LOS,NOCC,SDIR,TEMP
+ N ADATE,ADM,ADML,AWARD,DDATE,DWARD,IEN,INDT,FDATE,LOS,NOCC,SDIR,TEMP
  S FDATE=$S(TEST="DISCH":"DISCH",1:"ADM")
  S SDIR=$S(NGET<0:1,1:-1)
  S NOCC=$S(NGET<0:-NGET,1:NGET)
@@ -208,33 +211,39 @@ WASINP(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,VALUE,TEXT) ;Computed finding for
  . S ADM=$P(TEMP,U,14)
  . S ADATE=$P(^DGPM(ADM,0),U,1)
  . I $$OVERLAP^PXRMINDX(ADATE,DDATE,BDT,EDT)'="O" Q
- . S ADML(ADATE)=DDATE
+ . S AWARD=$$GET1^DIQ(405,ADM,.06),DWARD=$$GET1^DIQ(405,IEN,200)
+ . S ADML(ADATE)=DDATE_U_AWARD_U_DWARD
  ;Check for the last admission and add it if it is not on the list.
  S INDT=$O(^DGPM("ATID1",DFN,""))
  I INDT'="" D
  . S IEN=$O(^DGPM("ATID1",DFN,INDT,""))
  . S TEMP=^DGPM(IEN,0)
- . S ADATE=$P(TEMP,U,1)
+ . S ADATE=$P(TEMP,U,1),AWARD=$$GET1^DIQ(405,IEN,.06)
  . I $D(ADML(ADATE)) Q
  . S IEN=$P(TEMP,U,17)
  .;Since this is the last admission there may not be a discharge.
  . S DDATE=$S(IEN="":$$NOW^PXRMDATE,1:$P(^DGPM(IEN,0),U,1))
- . I $$OVERLAP^PXRMINDX(ADATE,DDATE,BDT,EDT)="O" S ADML(ADATE)=DDATE
+ . I $$OVERLAP^PXRMINDX(ADATE,DDATE,BDT,EDT)="O" D
+ .. S DWARD=$S(IEN="":"",1:$$GET1^DIQ(405,IEN,200))
+ .. S ADML(ADATE)=DDATE_U_AWARD_U_DWARD
  ;Sort the list.
  S ADATE=""
  F  S ADATE=$O(ADML(ADATE),SDIR) Q:(NFOUND=NOCC)!(ADATE="")  D
- . S NFOUND=NFOUND+1
- . S TEST(NFOUND)=1
- . S DDATE=ADML(ADATE)
+ . S NFOUND=NFOUND+1,TEST(NFOUND)=1
+ . S DDATE=$P(ADML(ADATE),U,1),AWARD=$P(ADML(ADATE),U,2),DWARD=$P(ADML(ADATE),U,3)
  . I DDATE="" S DDATE=PXRMDATE
  . S DATE(NFOUND)=$S(FDATE="DISCH":DDATE,1:ADATE)
  . S LOS=$$FMDIFF^XLFDT(DDATE,ADATE)
  . S TEMP="Inpatient from: "_$$FMTE^XLFDT(ADATE,"5Z")_" to "
  . S TEMP=TEMP_$S(DDATE=PXRMDATE:"now",1:$$FMTE^XLFDT(DDATE,"5Z"))
- . S TEMP=TEMP_"; Length of stay "_LOS_" days."
+ . S TEMP=TEMP_"; Length of stay "_LOS_" days"
+ . S TEMP=TEMP_"; Admission ward: "_AWARD
+ . I DWARD'="" S TEMP=TEMP_"; Discharge ward: "_DWARD
  . S TEXT(NFOUND)=TEMP
  . S VALUE(NFOUND,"ADMISSION DATE")=ADATE
+ . S VALUE(NFOUND,"ADMISSION WARD")=AWARD
  . S VALUE(NFOUND,"DISCHARGE DATE")=DDATE
+ . S VALUE(NFOUND,"DISCHARGE WARD")=DWARD
  . S VALUE(NFOUND,"LENGTH OF STAY")=LOS
  Q
  ;

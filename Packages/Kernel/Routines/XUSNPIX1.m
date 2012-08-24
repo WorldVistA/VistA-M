@@ -103,19 +103,19 @@ MAILTO(XMY) ;sets the MailMan recipients based on need (XU*8.0*548)
  ;
  ;When you don't want data to go out to Austin's FSC but you need it to 
  ;stay within the VistA's MailMan for internal testing, comment out setting
- ;the XMY("XXX@Q-NPS.VA.GOV) array and add your own MailMan address that
+ ;the XMY("XXX@Q-NPS.DOMAIN.EXT) array and add your own MailMan address that
  ;is present in the VistA account your are on.  An example of an email address
  ;for testing purposes is below.
  ;
- ;S XMY("TJERNAGEL.STEVE@MNTVBB.FO-ALBANY.MED.VA.GOV")="" ; for testing only
- ;S XMY("TJERNAGEL.STEVE@CHEY65.FO-BAYPINES.MED.VA.GOV")="" ;for CHEY65 testing only
- ;S XMY("NULL.RODGER_B@MNTVBB.FO-ALBANY.MED.VA.GOV")="" ; for testing only
- ;S XMY("NULL.RODGER@CHEY65.FO-BAYPINES.MED.VA.GOV")="" ; for CHEY65 testing only
- ;S XMY("WHITE.DARLENE@MNTVBB.FO-ALBANY.MED.VA.GOV")="" ; for testing only
- ;S XMY("WHITE.DARLENE@CHEY65.FO-BAYPINES.MED.VA.GOV")="" ; for CHEY65 testing only
+ ;S XMY("TJERNAGEL.STEVE@MNTVBB.FO-ALBANY.DOMAIN.EXT")="" ; for testing only
+ ;S XMY("TJERNAGEL.STEVE@CHEY65.FO-BAYPINES.DOMAIN.EXT")="" ;for CHEY65 testing only
+ ;S XMY("NULL.RODGER_B@MNTVBB.FO-ALBANY.DOMAIN.EXT")="" ; for testing only
+ ;S XMY("NULL.RODGER@CHEY65.FO-BAYPINES.DOMAIN.EXT")="" ; for CHEY65 testing only
+ ;S XMY("WHITE.DARLENE@MNTVBB.FO-ALBANY.DOMAIN.EXT")="" ; for testing only
+ ;S XMY("WHITE.DARLENE@CHEY65.FO-BAYPINES.DOMAIN.EXT")="" ; for CHEY65 testing only
  ;
  ;When you want data to go out to Austin's FSC group, uncomment this line.
- S XMY("XXX@Q-NPS.VA.GOV")=""                         ;uncomment to run for live ***
+ S XMY("XXX@Q-NPS.DOMAIN.EXT")=""                         ;uncomment to run for live ***
  Q
  ;
 INST(XUSRTN,XUSVER,INSMAIL) ;Pull station and Institution info

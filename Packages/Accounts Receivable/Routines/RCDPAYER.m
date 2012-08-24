@@ -1,6 +1,6 @@
-RCDPAYER ;ALB/PJH - TPJI Utility ; 3/29/11 12:43pm
- ;;4.5;Accounts Receivable;**269**;Mar 20, 1995;Build 113
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPAYER ;ALB/PJH - TPJI Utility ;9/5/11 11:40pm
+ ;;4.5;Accounts Receivable;**269,276**;Mar 20, 1995;Build 87
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;Integration Agreement 5549
  ;
@@ -49,13 +49,13 @@ EN(IB3611) ;Called from IBJTTC
  Q FOUND_U_NAME_U_WEB_U_CONTACTS
  ;
 ADD(PRCABN) ;Update AR Transaction file #433 with comment type transaction
- ;PRCABN = Bill/Claim IEN for file #399
- ; called only if 'ERA Contact Information' type comment is not found
- ; serves as a notice to the user that the contact data came from the 835 ERA
- ;called from IBJTTC
+ ;PRCABN = Bill/Claim IEN for file #399.
+ ;called only if 'ERA Contact Information' type comment is not found
+ ;serves as a notice to the user that the contact data came from the 835 ERA. Called from IBJTTC
+ ;
  ;Note; PJH 8/11/2010 - see ADJUST^RCJIBFN3 (called by ARCA^IBJTA1)
  ;
- N AUTHDT,MRADT,STATUS,IBIFN
+ N AUTHDT,IBIFN,MRADT,STATUS
  S IBIFN=PRCABN
  S STATUS=$P($G(^DGCR(399,IBIFN,0)),U,13)
  S AUTHDT=$P($G(^DGCR(399,IBIFN,"S")),U,10)
@@ -107,4 +107,54 @@ ADD(PRCABN) ;Update AR Transaction file #433 with comment type transaction
  I $P($G(^RCD(340,+$P(^PRCA(430,PRCABN,0),"^",9),0)),"^")[";DPT(" D
  .;Ensure comment does not appear on patient statement
  .S $P(^PRCA(433,PRCAEN,0),"^",10)=1
+ Q
+ ;
+ ;Audit Comment from EOB Move/Copy
+AUDIT(ORIG,TEXT,MODE) ;
+ ; ORIG = ien of entry in 361.1
+ ; TEXT = move/copy reason
+ ; MODE = is this a move or a copy event
+ ;
+ ;Translate EOB ien  to claim number IA 4051
+ N PRCABN
+ S PRCABN=$P($G(^IBM(361.1,ORIG,0)),U) Q:'PRCABN
+ ;Build AR Transaction
+ ;
+ N PRCAEN,PRCAA1,DR,DIE,DA,D0,PRCAD,RCASK,PRCAA2,PRCA,PRCATY
+ ;
+ ;Create stub record in 433
+ D SETTR^PRCAUTL,PATTR^PRCAUTL Q:'$D(PRCAEN)
+ ;
+ S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
+ Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
+ ;
+ N MTEXT,INIT
+ S INIT=$$GET1^DIQ(200,DUZ,1)
+ S:INIT="" INIT="USER UNK."
+ S MTEXT="EEOB MOVED BY "_INIT
+ I MODE="C" S MTEXT="EEOB COPIED BY "_INIT
+ I MODE="W" S MTEXT="EEOB MOVE/COPY IN SPLIT/EDIT"
+ ;Direct update of [PRCA COMMENT] edit template fields 
+ ;(excluding Date of Contact, Extended Comments and Follow-up Date)
+ S DIE="^PRCA(433,",DA=PRCAEN
+ S DR=".03////"_PRCABN ;Bill Number
+ S DR=DR_";3////0" ;Calm Code Done
+ S DR=DR_";12////"_$O(^PRCA(430.3,"AC",17,0)) ;Transaction Type
+ S DR=DR_";15////0" ;Transaction Amount
+ S DR=DR_";42////"_DUZ ;Processed by  ; kl - 8/23/11 move/copy needs to have the actual user not postmaster
+ S DR=DR_";11////"_DT ;Transaction date
+ S DR=DR_";4////2" ;Transaction status (complete)
+ S DR=DR_";5.02////"_MTEXT ;Brief comment
+ D ^DIE
+ ;Store justification text in comment field
+ N DA,DIC,DLAYGO,DR,X
+ S DA(1)=PRCAEN
+ S DIC="^PRCA(433,"_DA(1)_",7,",DIC(0)="L",X=$P(TEXT,U)
+ D FILE^DICN
+ ;Store auto generated text from stand alone option in comment field
+ I $P(TEXT,U,2)]"" D
+ .N DA,DIC,DLAYGO,DR,X
+ .S DA(1)=PRCAEN
+ .S DIC="^PRCA(433,"_DA(1)_",7,",DIC(0)="L",X="- "_$P(TEXT,U,2)
+ .D FILE^DICN
  Q

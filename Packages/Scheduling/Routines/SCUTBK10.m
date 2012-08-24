@@ -71,7 +71,7 @@ MAILC(SCOK,SC) ;   call to invoke broker to send a mailman message from the
  S XMTEXT="SCTEXT("
  ;
  I $P(SCADR,U,2)="TEST" D
- . S XMY("G.PCM MESSAGING@DEVFEX.ISC-ALBANY.VA.GOV")=""
+ . S XMY("G.PCM MESSAGING@DEVFEX.ISC-ALBANY.DOMAIN.EXT")=""
  ;
  I $P(SCADR,U,2)="S" D
  . S XMY($P(SCADR,U,1))=""

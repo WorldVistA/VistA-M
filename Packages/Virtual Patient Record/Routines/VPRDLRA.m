@@ -1,5 +1,5 @@
 VPRDLRA ;SLC/MKB -- Laboratory extract by accession ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;;Sep 01, 2011;Build 12
+ ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -15,7 +15,9 @@ VPRDLRA ;SLC/MKB -- Laboratory extract by accession ;8/2/11  15:29
  ; DIC                           2051
  ; DIQ                           2056
  ; LR7OR1,^TMP("LRRR",$J)        2503
- ; LR7OSUM,^TMP("LRC",$J)        2766
+ ; LR7OSUM,^TMP("LRC",$J),       2766
+ ;  ^TMP("LRH",$J),^TMP("LRT",$J)
+ ; ORX8                          2467
  ; PXAPI                         1894
  ; XUAF4                         2171
  ;
@@ -25,7 +27,7 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's lab results
  N VPRSUB,VPRIDT,VPRN,VPRITM,LRDFN,LR0,ORD,X
  S DFN=+$G(DFN) Q:$G(DFN)<1
  S BEG=$G(BEG,1410101),END=$G(END,4141015),MAX=$G(MAX,9999)
- S LRDFN=$G(^DPT(DFN,"LR")),VPRSUB=""
+ S LRDFN=$G(^DPT(DFN,"LR")),VPRSUB=$G(FILTER("type"))
  K ^TMP("LRRR",$J,DFN)
  ;
  ; get result(s)
@@ -36,7 +38,8 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's lab results
  D RR^LR7OR1(DFN,,BEG,END,VPRSUB,,,MAX)
  S VPRSUB="" F  S VPRSUB=$O(^TMP("LRRR",$J,DFN,VPRSUB)) Q:VPRSUB=""  D
  . S VPRIDT=0 F  S VPRIDT=$O(^TMP("LRRR",$J,DFN,VPRSUB,VPRIDT)) Q:VPRIDT<1  I $O(^(VPRIDT,0)) D
- .. K VPRITM,CMMT I "CH^MI"'[VPRSUB D AP(.VPRITM),XML(.VPRITM) Q
+ .. K VPRITM,ORD,CMMT,^TMP("VPRTEXT",$J)
+ .. I "CH^MI"'[VPRSUB D AP(.VPRITM),XML(.VPRITM) Q
  .. S VPRITM("type")=VPRSUB,VPRITM("id")=VPRSUB_";"_VPRIDT
  .. S VPRITM("collected")=9999999-VPRIDT,VPRITM("status")="completed"
  .. S LR0=$G(^LR(LRDFN,VPRSUB,VPRIDT,0))
@@ -57,20 +60,21 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's lab results
  ... S:$G(ORD) VPRITM("labOrderID")=ORD
  .. I $D(^TMP("LRRR",$J,DFN,VPRSUB,VPRIDT,"N")) M CMMT=^("N") S VPRITM("comment")=$$STRING^VPRD(.CMMT)
  .. D XML(.VPRITM)
- K ^TMP("LRRR",$J,DFN)
+ K ^TMP("LRRR",$J,DFN),^TMP("VPRTEXT",$J)
  Q
  ;
 CH() ; -- return a Chemistry result as:
- ;   id^test^result^interpretation^units^low^high^loinc^vuid^order
+ ;   id^test^result^interpretation^units^low^high^localName^loinc^vuid^order
  ;   Expects ^TMP("LRRR",$J,DFN,"CH",VPRIDT,VPRN),LRDFN
  N X,Y,X0,NODE,CMMT,LOINC
  S X0=$G(^TMP("LRRR",$J,DFN,"CH",VPRIDT,VPRN)),NODE=$G(^LR(LRDFN,"CH",VPRIDT,VPRN))
  S X=$P($G(^LAB(60,+X0,0)),U)
  S Y="CH;"_VPRIDT_";"_VPRN_U_X_U_$P(X0,U,2,4)
  S X=$P(X0,U,5) I $L(X),X["-" S X=$TR(X,"- ","^"),$P(Y,U,6,7)=X
+ S $P(Y,U,8)=$P(X0,U,15) ;test short name
  S X=$P($P(NODE,U,3),"!",3) S:X LOINC=$$GET1^DIQ(95.3,X_",",.01)
- S:$G(LOINC) $P(Y,U,8,9)=LOINC_U_$$VUID^VPRD(+LOINC,95.3)
- S ORD=+$P(X0,U,17),X=$$ORDER(ORD,+X0) S:X $P(Y,U,10)=X
+ S:$G(LOINC) $P(Y,U,9,10)=LOINC_U_$$VUID^VPRD(+LOINC,95.3)
+ S ORD=+$P(X0,U,17),X=$$ORDER(ORD,+X0) S:X $P(Y,U,11)=X
  Q Y
  ;
 MI() ; -- return a Microbiology result as:
@@ -79,6 +83,7 @@ MI() ; -- return a Microbiology result as:
  N Y,X0
  S X0=$G(^TMP("LRRR",$J,DFN,"MI",VPRIDT,VPRN)),Y=""
  S:$L($P(X0,U))>1 Y="MI;"_VPRIDT_";"_VPRN_U_$P(X0,U,1,4)
+ S ORD=+$P(X0,U,17)
  Q Y
  ;
 AP(LAB) ; -- return a Pathology result in LAB("attribute")=value
@@ -92,7 +97,7 @@ AP(LAB) ; -- return a Pathology result in LAB("attribute")=value
  S LAB("facility")=$$FAC^VPRD
  S NODE=$S(VPRSUB="AU":$NA(^LR(LRDFN,101)),1:$NA(^LR(LRDFN,VPRSUB,VPRIDT,.05)))
  S I=0 F  S I=$O(@NODE@(I)) Q:I<1  S X=+$P($G(@NODE@(I,0)),U,2) I X D
- . N LT,NT
+ . N LT,NT,VPRY
  . S LT=$$GET1^DIQ(8925,+X_",",.01) Q:$P(LT," ")="Addendum"
  . S NT=$$GET1^DIQ(8925,+X_",",".01:1501") S:NT="" NT="LABORATORY NOTE"
  . S LAB("document",I)=+X_U_LT_U_NT
@@ -102,11 +107,12 @@ AP(LAB) ; -- return a Pathology result in LAB("attribute")=value
  . S:$G(VPRTEXT) LAB("document",1,"content")=$$TEXT(DFN,VPRSUB,VPRIDT)
  Q
  ;
-ORDER(LABORD,TEST) ; -- return #100 order for Lab order# & Test
- N Y,D,S,T S Y=""
- S D=$O(^LRO(69,"C",LABORD,0)) I D D
- . S S=0 F  S S=$O(^LRO(69,"C",LABORD,D,S)) Q:S<1  D
- .. S T=0 F  S T=$O(^LRO(69,D,1,S,2,T)) Q:T<1  I +$G(^(T,0))=TEST S Y=+$P(^(0),U,7)
+ORDER(LABORD,TEST) ; -- return #100 order^name for Lab order# & Test
+ N Y,D,S,T
+ S D=$P(9999999-VPRIDT,"."),Y=""
+ S S=0 F  S S=$O(^LRO(69,"C",LABORD,D,S)) Q:S<1  D  Q:Y
+ . S T=0 F  S T=$O(^LRO(69,D,1,S,2,T)) Q:T<1  I 'TEST!(+$G(^(T,0))=TEST) S Y=+$P(^(0),U,7)
+ ;I Y S Y=Y_U_$P($$OI^ORX8(Y),U,2)
  Q Y
  ;
 NAME(X) ; -- Return name of subscript X
@@ -142,11 +148,13 @@ RPTS(DFN,BEG,END,MAX) ; -- find patient's lab reports
  .. S VPRN=0 F  S VPRN=$O(@VPRTIU@(VPRN)) Q:VPRN<1  D
  ... S DA=+$P($G(@VPRTIU@(VPRN,0)),U,2) Q:DA<1  K VPRITM
  ... D EN1^VPRDTIU(DA,.VPRITM),XML^VPRDTIU(.VPRITM):$D(VPRITM)
+ K ^TMP("LRRR",$J,DFN),^TMP("VPRTEXT",$J)
  Q
  ;
 RPT1(DFN,ID,RPT) ; -- return report as a TIU document
  S DFN=+$G(DFN),ID=$G(ID) Q:DFN<1  Q:'$L(ID)
  N SUB,IDT,LRDFN,LR0,X,LOC
+ K RPT,^TMP("VPRTEXT",$J)
  S SUB=$P(ID,";"),IDT=+$P(ID,";",2),LRDFN=$G(^DPT(DFN,"LR"))
  S LR0=$S(SUB="AU":$G(^LR(LRDFN,"AU")),1:$G(^LR(LRDFN,SUB,IDT,0)))
  S RPT("id")=ID,RPT("referenceDateTime")=9999999-IDT
@@ -171,32 +179,37 @@ RPT1(DFN,ID,RPT) ; -- return report as a TIU document
  S:$G(VPRTEXT) RPT("content")=$$TEXT(DFN,SUB,IDT)
  Q
  ;
-TEXT(DFN,SUB,IDT) ; -- return report text as a string
+TEXT(DFN,SUB,IDT) ; -- Get report text, return temp array name
  N LRDFN,DATE,NAME,VPRS,VPRY,I,X,Y
  K ^TMP("LRC",$J),^TMP("LRH",$J),^TMP("LRT",$J)
  S DATE=9999999-+$G(IDT),NAME=$$NAME(SUB),VPRS(NAME)=""
  D EN^LR7OSUM(.VPRY,DFN,DATE,DATE,,,.VPRS)
- S I=+$G(^TMP("LRH",$J,NAME))+1,Y=$G(^TMP("LRC",$J,I,0)) ;LRH=header: Y=1st line
- F  S I=$O(^TMP("LRC",$J,I)) Q:I<1  S X=$G(^(I,0)) Q:X?1."="  S Y=Y_$C(13,10)_X
+ S Y=$NA(^TMP("VPRTEXT",$J,SUB_";"_IDT)) K @Y
+ S I=+$G(^TMP("LRH",$J,NAME)) ;LRH=header
+ F  S I=$O(^TMP("LRC",$J,I)) Q:I<1  S X=$G(^(I,0)) Q:X?1."="  S @Y@(I)=X
  K ^TMP("LRC",$J),^TMP("LRH",$J),^TMP("LRT",$J)
  Q Y
  ;
  ; ------------ Return data to middle tier ------------
  ;
 XML(LAB) ; -- Return result as XML in @VPR@(#)
- N ATT,X,Y,NAMES
+ N ATT,X,Y,NAMES,I,J
  D ADD("<accession>") S VPRTOTL=$G(VPRTOTL)+1
  S ATT="" F  S ATT=$O(LAB(ATT)) Q:ATT=""  D  D:$L(Y) ADD(Y)
  . I $O(LAB(ATT,0)) D  S Y="" Q
  .. D ADD("<"_ATT_"s>")
- .. S NAMES=$S(ATT="document":"id^localTitle^nationalTitle^Z",ATT="value":"id^test^result^interpretation^units^low^high^loinc^vuid^order^Z",1:"code^name^Z")
+ .. S NAMES=$S(ATT="document":"id^localTitle^nationalTitle^Z",ATT="value":"id^test^result^interpretation^units^low^high^localName^loinc^vuid^order^Z",1:"code^name^Z")
  .. S I=0 F  S I=$O(LAB(ATT,I)) Q:I<1  D
  ... S X=$G(LAB(ATT,I))
- ... S Y="<"_ATT_" "_$$LOOP_"/>" D ADD(Y)
+ ... S Y="<"_ATT_" "_$$LOOP ;_"/>" D ADD(Y)
+ ... S X=$G(LAB(ATT,I,"content")) I '$L(X) S Y=Y_"/>" D ADD(Y) Q
+ ... S Y=Y_">" D ADD(Y)
+ ... S Y="<content xml:space='preserve'>" D ADD(Y)
+ ... S J=0 F  S J=$O(@X@(J)) Q:J<1  S Y=$$ESC^VPRD(@X@(J)) D ADD(Y)
+ ... D ADD("</content>"),ADD("</"_ATT_">")
  .. D ADD("</"_ATT_"s>")
  . S X=$G(LAB(ATT)),Y="" Q:'$L(X)
  . I ATT="comment" S Y="<"_ATT_" xml:space='preserve'>"_$$ESC^VPRD(X)_"</"_ATT_">" Q
- . I ATT="content" S Y="<"_ATT_" xml:space='preserve'>"_$$ESC^VPRD(X)_"</"_ATT_">" Q
  . I X'["^" S Y="<"_ATT_" value='"_$$ESC^VPRD(X)_"' />" Q
  . I $L(X)>1 D  S Y=""
  .. S NAMES="code^name^Z"

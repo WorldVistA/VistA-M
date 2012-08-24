@@ -37,7 +37,7 @@ MSG ;COMPILES MAIL MESSAGES
     .Q
  S ^TMP("RCCPW1",$J,"DATA2",1)="Pharmacy Co-Pay Waiver Data for Site "_SITE_"     "_$E(END,4,5)_"/"_$E(END,2,3)
 SEND S XMDUZ="AR Package",XMTEXT="^TMP(""RCCPW1"","_$J_",""DATA1"","
- S XMY("G.PCWMCCR@FORUM.VA.GOV")="",XMDUZ="AR PACKAGE"
+ S XMY("G.PCWMCCR@FORUM.DOMAIN.EXT")="",XMDUZ="AR PACKAGE"
  S XMSUB="Rx Copay Waivers-Site #"_SITE_":"_$$DATE(END)
  D ^XMD K XMY
  S XMDUZ="AR Package",XMTEXT="^TMP(""RCCPW1"","_$J_",""DATA2"","

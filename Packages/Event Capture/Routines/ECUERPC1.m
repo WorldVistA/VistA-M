@@ -1,5 +1,5 @@
-ECUERPC1 ;ALB/JAM;Event Capture Data Entry Broker Util ; 5/21/01 7:30pm
- ;;2.0; EVENT CAPTURE ;**25,33,42,46,47,54,72,76,110**;8 May 96;Build 4
+ECUERPC1 ;ALB/JAM;Event Capture Data Entry Broker Util ;1/24/12  16:19
+ ;;2.0;EVENT CAPTURE;**25,33,42,46,47,54,72,76,110,112**;8 May 96;Build 18
 PATINF(RESULTS,ECARY) ;
  ;Broker entry point to get various types of data from EVENT CAPTURE 
  ;PATIENT FILE #721
@@ -87,8 +87,8 @@ PATOTH(ECIEN) ;
  N REAS,ECX
  K ^TMP($J,"ECOTH")
  S ECX=^ECH(ECIEN,0)
- S REAS=$$GET1^DIQ(721,ECIEN,34,"E")
- S ^TMP($J,"ECOTH",1)=REAS
+ D GETS^DIQ(721,ECIEN_",","34;43;44","E","REAS") ;112
+ S ^TMP($J,"ECOTH",1)=$G(REAS(721,ECIEN_",",34,"E"))_"^"_$G(REAS(721,ECIEN_",",43,"E"))_"^"_$G(REAS(721,ECIEN_",",44,"E")) ;112
  S RESULTS=$NA(^TMP($J,"ECOTH"))
  Q
 PATCLAST(RESULTS,ECARY) ;
@@ -107,14 +107,14 @@ PATCLAST(RESULTS,ECARY) ;
  ;         Data after the '~' refers to those class. that must be asked 
  ;         by Delphi appl. when the answer to SC=No.
  ;         Data after "~"  1- Agent Orange  2- Ionizing Radi. 3- Env Cont/SWAC
- N ECDFN,ECDT,ECX,I,ECCLARY,SCDAT,PATSTAT
+ N ECDFN,ECDT,ECX,I,ECCLARY,SCDAT,PATSTAT,% ;112
  D SETENV^ECUMRPC
  S ECDFN=$P(ECARY,U),ECD=$P(ECARY,U,2),ECDT=$P(ECARY,U,3) Q:ECDFN=""
  I ECDT="" D NOW^%DTC S ECDT=%
  S PATSTAT=$$INOUTPT^ECUTL0(ECDFN,ECDT),RESULTS="^^^^^^",SCDAT=";;;"
  ;
  ; Removed in EC*110 so inpatient data can be answered for transmission to Austin
- ; This was to be consistant with VHA Directive 2009-002
+ ; This was to be consistent with VHA Directive 2009-002
  ;
  ; I PATSTAT="I" D  Q
  ; .S RESULTS=PATSTAT_"^"_RESULTS_$S(SCDAT'="":"~"_SCDAT,1:"") 
@@ -142,7 +142,7 @@ ENCDXS(RESULTS,ECARY) ;
  ;OUTPUTS  RESULTS - array of patient encounter diagnosis
  ;         primary/secondary flag^DX ien^DX code  DX description.
  ;
- N ECDFN,ECDT,ECL,EC4,ECPDX,ECDX,ECDXN,ECDXS,CNT,STR,ECPDX,SDXCNT
+ N ECDFN,ECDT,ECL,EC4,ECPDX,ECDX,ECDXN,ECDXS,CNT,STR,ECPDX,SDXCNT,% ;112
  D SETENV^ECUMRPC
  K ^TMP($J,"ECENCDXS")
  S ECDFN=$P(ECARY,U),ECDT=+$P(ECARY,U,2),ECL=$P(ECARY,U,3)

@@ -1,5 +1,5 @@
 PSNFDAMG ;BIR/DMA - On-Demand FDA Med Guide Display ; 12 Feb 2010  8:26 AM
- ;;4.0; NATIONAL DRUG FILE;**108,263**; 30 Oct 98;Build 15
+ ;;4.0;NATIONAL DRUG FILE;**108,263,264**; 30 Oct 98;Build 6
  ;Reference to ^PS(59.7 supported by DBIA #2613
  ;
 EN(VAPRDIEN) ; Entry point for FDA Med Guide On-Demand Printing
@@ -19,7 +19,7 @@ EN(VAPRDIEN) ; Entry point for FDA Med Guide On-Demand Printing
  ;
  D PRTURL(FDAMGURL)
  ;
- S PCURL="http://"_IO("IP")_":8091/viewmg="
+ S PCURL="http://"_$S($G(IO("IP"))'="":IO("IP"),1:"127.0.0.1")_":8091/viewmg="
  ;
  W !!,"Please wait...",!
  ;

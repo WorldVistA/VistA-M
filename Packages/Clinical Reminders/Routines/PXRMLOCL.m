@@ -1,5 +1,5 @@
-PXRMLOCL ; SLC/PKR - Handle location findings. ;08/27/2008
- ;;2.0;CLINICAL REMINDERS;**4,6,11**;Feb 04, 2005;Build 39
+PXRMLOCL ;SLC/PKR - Handle location findings. ;09/13/2010
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,18**;Feb 04, 2005;Build 152
  ;This routine is for location list patient lists.
  ;=============================================
 ALLLOCS(SUB) ;Build a list of all hospital locations associated
@@ -76,7 +76,7 @@ FPLIST(FILENUM,HLOCL,NOCC,BDT,EDT,PLIST) ;Find patient list data for
  ;=============================================
 GPLIST(FILENUM,SNODE,ITEM,PFINDPA,PLIST) ;Add to the patient list.
  ; Return the list in ^TMP($J,PLIST).
- ;^TMP($J,PLIST,T/F,DFN,IND,FILENUM)=DAS^DATE^HLOC^VALUE
+ ;^TMP($J,PLIST,T/F,DFN,ITEM,COUNT,FILENUM)=DAS^DATE^HLOC^VALUE
  N BDT,CASESEN,COND,CONVAL,DAS,DATE,EDT,DFN,FIEVD,FLIST
  N ICOND,IEN,IND,IPLIST,LNAME,NOCC,NFOUND,NGET,NP,SAVE,STATUSA
  N TEMP,TGLIST,TPLIST,UCIFS,VALUE,VSLIST
@@ -110,7 +110,8 @@ GPLIST(FILENUM,SNODE,ITEM,PFINDPA,PLIST) ;Add to the patient list.
  .. S SAVE=$S('UCIFS:1,(UCIFS&CONVAL):1,1:0)
  .. I SAVE D
  ... S NFOUND=NFOUND+1
- ... S IPLIST(CONVAL,DFN,NFOUND,FILENUM)=TEMP_U_VALUE
+ ... ;S IPLIST(CONVAL,DFN,NFOUND,FILENUM)=TEMP_U_VALUE
+ ... S IPLIST(CONVAL,DFN,ITEM,NFOUND,FILENUM)=TEMP_U_VALUE
  . M ^TMP($J,PLIST)=IPLIST
  K ^TMP($J,"HLOCL"),^TMP($J,TGLIST)
  Q

@@ -1,5 +1,5 @@
-SROAPCA4 ;BIR/SJA - CARDIAC COMPLIANCE DATA ;07/05/06
- ;;3.0; Surgery ;**95,125,153,174**;24 Jun 93;Build 8
+SROAPCA4 ;BIR/SJA - CARDIAC COMPLIANCE DATA ;09/01/2011
+ ;;3.0;Surgery;**95,125,153,174,176**;24 Jun 93;Build 8
  ;
  ; Reference to ^DGPM("APTT1" supported by DBIA #565
  ; Reference to File #405 supported by DBIA #3029
@@ -35,7 +35,7 @@ DD ;Detailed Discharge Information
  S VAINDT=X D INP^VADPT S SRPTF=VAIN(10)
  S SRRES="" D RPC^DGPTFAPI(.SRRES,SRPTF)
  I $Y+9>IOSL D PAGE^SROAPCA I SRSOUT Q
- W !!,"X. DETAILED DISCHARGE INFORMATION",!,"   Discharge ICD-9 Codes: " I $G(SRRES(0))>0 S SRRES="" D
+ W !!,"X. DETAILED DISCHARGE INFORMATION",!,"   Discharge ICD Codes: " I $G(SRRES(0))>0 S SRRES="" D
  .S SRRES=$P(SRRES(1),U,3)_"  " I $D(SRRES(2)) F I=1:1:9 S:$P(SRRES(2),"^",I)'="" SRRES=SRRES_$P(SRRES(2),"^",I)_"  " I $L(SRRES)>45 W SRRES S SRRES=""
  .W:$D(SRRES) !,?26,SRRES
  W !!,"Type of Disposition: ",$P($G(SRRES(1)),U,1)

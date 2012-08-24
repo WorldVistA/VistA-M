@@ -1,5 +1,5 @@
 IBNCPDP2 ;OAK/ELZ - PROCESSING FOR ECME RESP ;11/15/07  09:43
- ;;2.0;INTEGRATED BILLING;**223,276,342,347,363,383,405,384,411,435**;21-MAR-94;Build 27
+ ;;2.0;INTEGRATED BILLING;**223,276,342,347,363,383,405,384,411,435,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference to DEC^PRCASER1 supported by IA# 593
@@ -43,29 +43,31 @@ MATCH(BCID,IBS) ;  right bill, right COB payer
  Q IBFOUND
  ;
 BILL(DFN,IBD) ; create bills
- N IBDIV,IBAMT,IBY,IBSERV,IBFAC,IBSITE,IBDRX,IB,IBCDFN,IBINS,IBIDS,IBIFN,IBDFN,PRCASV,IBTRIC,IBLGL,IBLDT2
+ N IBDIV,IBAMT,IBY,IBSERV,IBFAC,IBSITE,IBDRX,IB,IBCDFN,IBINS,IBIDS,IBIFN,IBDFN,PRCASV,IBTRIC,IBLGL,IBLDT2,IBDUP,CHKBL
  N PRCAERR,IBADT,IBRXN,IBFIL,IBTRKRN,DIE,DA,DR,IBRES,IBLOCK,IBLDT,IBNOW,IBDUZ,RCDUZ,IBPREV,IBQUERY,IBPAID,IBACT,%,DGRVRCAL
  ;
  S IBDUZ=.5 ;POSTMASTER
- ;I $G(IBD("FILLED BY")),$D(^VA(200,+IBD("FILLED BY"))) S IBDUZ=+IBD("FILLED BY")
  S RCDUZ=IBDUZ
  ;
  S IBY=1,IBLOCK=0
  I 'DFN S IBY="0^Missing DFN" G BILLQ
  S IBAMT=+$G(IBD("BILLED")) ;FI portion of charge
  I 'IBAMT S IBY="-1^Zero amount billed" G BILLQ
- S IBADT=+$G(IBD("FILL DATE"),DT)
+ S IBADT=+$G(IBD("DOS"),DT)
  S IBRXN=+$G(IBD("PRESCRIPTION")) I 'IBRXN S IBY="0^Missing Rx IEN" G BILLQ
  S IBFIL=+$G(IBD("FILL NUMBER"),-1) I IBFIL<0 S IBY="0^No fill number" G BILLQ
+ ;
+ ; IB*2*452 - esg - check for duplicate response
+ S IBDUP=$$DUP(.IBD) I IBDUP S IBY="0^Bill# "_$P(IBDUP,U,2)_" exists (Duplicate)" G BILLQ
+ ;
  S IBDIV=+$G(IBD("DIVISION"))
  I '$L($G(IBD("CLAIMID"))) S IBY="-1^Missing ECME Number" G BILLQ
  S IBD("BCID")=$$BCID^IBNCPDP4(IBD("CLAIMID"),IBADT)
  L +^DGCR(399,"AG",IBD("BCID")):15 E  S IBY="0^Cannot lock ECME number." G BILLQ
  ;
  S IBTRIC=$$TRICARE^IBNCPDP6(IBRXN_";"_IBFIL)
- ; do patient copay first (only applicable if Tricare)
- I $G(IBD("COPAY")),IBTRIC D BILL^IBNCPDP6(IBRXN_";"_IBFIL,IBD("COPAY"),$G(IBD("RTYPE")))
- I IBTRIC,'$G(IBD("PAID")) S IBY="1^Nothing paid in Tricare claim." G BILLQ
+ ; do patient copay first (only applicable if TRICARE)
+ I $G(IBD("COPAY")),IBTRIC D BILL^IBNCPDP6(IBRXN_";"_IBFIL,IBD("COPAY"),$G(IBD("RTYPE")))  ; create TRICARE Rx copay charge
  ;
  S IBLOCK=1,IBLDT2=""
  S IBLDT=$$FMADD^XLFDT(DT,1) F  S IBLGL=$O(^XTMP("IBNCPLDT"_IBLDT),-1),IBLDT=$E(IBLGL,9,15) Q:IBLDT<$$FMADD^XLFDT(DT,-3)!(IBLGL'["IBNCPLDT")  I $D(^XTMP(IBLGL,IBD("BCID"))) S IBLDT2=^(IBD("BCID")) Q  ;Last time called
@@ -73,8 +75,15 @@ BILL(DFN,IBD) ; create bills
  ; 2 calls in 45 sec
  I IBLDT2,$$FMDIFF^XLFDT(IBNOW,IBLDT2,2)<45 S IBY="0^Duplicate billing call" G BILLQ
  ;
- I $$MATCH(IBD("BCID"),IBD("RXCOB")) D   ;cancel the previous bill
- . N IBARR M IBARR=IBD I $$REVERSE^IBNCPDP3(DFN,.IBARR)
+ ; check to see if a non-cancelled bill (same ECME#, same DOS, same payer sequence) already exists
+ ; if it does, then cancel this previous bill using the REVERSE action
+ S CHKBL=$$MATCH(IBD("BCID"),IBD("RXCOB"))
+ I CHKBL D
+ . N IBARR
+ . M IBARR=IBD
+ . S IBARR("REVERSAL REASON")="Cancel the existing bill ("_$P($G(^DGCR(399,CHKBL,0)),U,1)_")"
+ . I $$REVERSE^IBNCPDP3(DFN,.IBARR)
+ . Q
  ;
  ; derive minimal variables
  I '$$CHECK^IBECEAU(0) S IBY="-1^IB SITE" G BILLQ
@@ -98,7 +107,7 @@ BILL(DFN,IBD) ; create bills
  ; .04 LOCATION
  ; .22 DIVISION
  ; .05 BILL CLASSIF  (3)
- ; .03 EVT DATE (FILL DATE)
+ ; .03 EVT DATE (DATE OF SERVICE)
  ; 151 BILL FROM
  ; 152 BILL TO
  ; 155 SENSITIVE DX
@@ -122,8 +131,8 @@ BILL(DFN,IBD) ; create bills
  S (IB(.03),IB(151),IB(152))=IBADT
  S IBINS=$P($G(^IBA(355.3,+$G(IBD("PLAN")),0)),"^") I IBINS S IB(101)=IBINS
  ;
- ; set 362.4 node to rx#^p50^days sup^fill date^qty^ndc
- S IB(362.4,IBRXN,IBFIL)=IBD("RX NO")_"^"_IBD("DRUG")_"^"_IBD("DAYS SUPPLY")_"^"_IBD("FILL DATE")_"^"_IBD("QTY")_"^"_IBD("NDC")
+ ; set 362.4 node to rx#^p50^days sup^date of service^qty^ndc
+ S IB(362.4,IBRXN,IBFIL)=IBD("RX NO")_"^"_IBD("DRUG")_"^"_IBD("DAYS SUPPLY")_"^"_IBD("DOS")_"^"_IBD("QTY")_"^"_IBD("NDC")
  ;
  ; drug DEA ROI check.
  N IBDEA
@@ -152,8 +161,9 @@ BILL(DFN,IBD) ; create bills
  S DIE="^DGCR(399,",DA=IBIFN,DR="112////"_IBCDFN
  D ^DIE K DA,DR,DIE,DGRVRCAL
  ;
- ; need to make sure we have computed charges.
- Q:'$$CHARGES(IBIFN,IBINS,+IB(.07),$G(IBD("PAID")),IBDIV,IBTRIC,.IBY)
+ ; need to make sure we have computed charges
+ D CHARGES(IBIFN)
+ I $P($G(^DGCR(399,IBIFN,"U1")),U,1)'>0 S IBY="-1^Total Charges must be greater than $0." G BILLQ
  ;
  ; update the authorize/print fields
  S DIE="^DGCR(399,",DA=IBIFN
@@ -161,7 +171,7 @@ BILL(DFN,IBD) ; create bills
  ;
  ; pass the claim to AR
  D GVAR^IBCBB,ARRAY^IBCBB1 S PRCASV("APR")=IBDUZ D ^PRCASVC6
- I 'PRCASV("OKAY") S IBY="-1^Cannot establish receivable in AR." G BILLQ
+ I 'PRCASV("OKAY") S IBY="-1^"_$$ARERR($G(PRCAERR),1) G BILLQ
  D REL^PRCASVC
  ;
  ; update the AR status to Active
@@ -173,8 +183,11 @@ BILL(DFN,IBD) ; create bills
  ; Auto decrease from service Bill#,Tran amt,person,reason,Tran date
  S IBAMT=$G(^DGCR(399,IBIFN,"U1"))
  S IBPAID=$G(IBD("PAID"))
- I IBAMT-IBPAID>.01,'IBTRIC D
- . D DEC^PRCASER1(PRCASV("ARREC"),IBAMT-IBPAID,IBDUZ,"Adjust based on ECME amount paid.",IBADT)
+ I IBAMT-IBPAID>.01 D
+ . N IBREAS
+ . S IBREAS="Adjust based on ECME amount paid."
+ . I IBTRIC S IBREAS="Due to TRICARE Patient Responsibility."
+ . D DEC^PRCASER1(PRCASV("ARREC"),IBAMT-IBPAID,IBDUZ,IBREAS,IBADT)
  . I 'IBPAID S PRCASV("STATUS")=22 D STATUS^PRCASVC1 ; collected/closed
  ;
  D  ; set the user in 399
@@ -192,7 +205,7 @@ SETCT ; update claims tracking saying bill has been billed
  N X,Y,D0,DA,DI,DICR,DIE,DIG,DIH,DIU,DIV,DIW,DQ,DR
  S IBTRKRN=+$O(^IBT(356,"ARXFL",IBRXN,IBFIL,0))
  I IBTRKRN S DIE="^IBT(356,",DA=IBTRKRN,DR=".11////^S X=IBIFN;.17///@" D ^DIE
- I IBTRKRN,(+$G(IBD("FILL DATE"))'=$P(^IBT(356,IBTRKRN,0),U,6)) S DIE="^IBT(356,",DA=IBTRKRN,DR=".06////"_IBD("FILL DATE") D ^DIE ; Check Fill Date
+ I IBTRKRN,(+$G(IBD("DOS"))'=$P(^IBT(356,IBTRKRN,0),U,6)) S DIE="^IBT(356,",DA=IBTRKRN,DR=".06////"_IBD("DOS") D ^DIE ; Check Date of Service
  I IBTRKRN,IBIFN D CTB^IBCDC(IBTRKRN,IBIFN)
  Q
  ;
@@ -223,33 +236,72 @@ EPHARM(IBRX,IBREFILL) ;
  I IBDIV59>0 Q $$GETPHARM^BPSUTIL(IBDIV59)
  Q ""
  ;
-CHARGES(IBIFN,IBINS,IBRT,IBAMT,IBDIV,IBTRIC,IBY) ;
- ; will add charges onto bill based on rate type
+CHARGES(IBIFN) ; set up charges on the bill
  ;
  ; Input:  IBIFN = Bill (399) ien
- ;         IBINS = Insurance Co (36) ien
- ;         IBRT = Rate Type (399.3) ien
- ; Output: 1 = Ok all done
- ;         0 = not ok, bill doesn't have charges
+ N DGPTUPDT
+ D BILL^IBCRBC(IBIFN)     ; generic bill charge calculator
+ Q
  ;
- N IBCSZ,IBRVCD,IBBS,IBUNITS,IBCPT,IBAA,IBTYPE,IBITEM,X
+DUP(IBD) ; Function to determine if processing a duplicate response
+ ; and if a bill should be created
+ ; Input
+ ;    IBD array values
+ ; Output
+ ;    Function value:  [1] "1" if a duplicate response received and a non-cancelled bill already exists
+ ;                     [2] non-cancelled external bill# if piece [1] =1
+ ;          or
+ ;                     [1] "0" if not a duplicate response OR no bill exists
+ ;                     [2] ""
  ;
- I 'IBTRIC D BILL^IBCRBC(IBIFN) Q 1
+ N RET,RXIEN,RXFIL,COB,IBZ,IBARR,IBIFN,ARSTAT
+ S RET=0
+ I $G(IBD("RESPONSE"))'="DUPLICATE" G DUPX
  ;
- ; - manually add charge to the claim (based on cost for Tricare)
- S IBRVCD=$P($G(^DIC(36,IBINS,0)),"^",15) ;                   rx refill rev code
- S IBCSZ=$G(^IBE(363.1,+$O(^IBE(363.1,"B","RX COST",0)),0)) ; using cost CS
- I IBRVCD="" S IBRVCD=$P(IBCSZ,U,5) ;                         CS def rev code
- I IBRVCD="" S X=250 ;                                        gen'l rx rev code
+ ; set up variables from array data and try to find bills
+ S RXIEN=+$G(IBD("PRESCRIPTION"))
+ S RXFIL=+$G(IBD("FILL NUMBER"))
+ S COB=+$G(IBD("RXCOB")),COB=$S(COB=2:"S",COB=3:"T",1:"P")
+ S IBZ=$$RXBILL^IBNCPUT3(RXIEN,RXFIL,COB,,.IBARR)
  ;
- S IBBS=$P(IBCSZ,U,6) ;                                       CS def bedsection
- S IBUNITS=1 ;                                                one unit
- S IBCPT=$P($G(^IBE(350.9,1,1)),"^",30) ;                     def rx refill cpt
- S IBAA=0 ;                                                   not auto calc charges
- S IBTYPE=3 ;                                                 rx type
- S IBITEM="" ;                                                charge item link
+ ; if the function returned an active bill, then use it and get out
+ I +$P(IBZ,U,2) S IBIFN=+$P(IBZ,U,2),RET=1_U_$P($G(^DGCR(399,IBIFN,0)),U,1) G DUPX
  ;
- S X=$$ADDRC^IBCRBF(IBIFN,IBRVCD,IBBS,IBAMT,IBUNITS,IBCPT,IBDIV,IBAA,IBTYPE,IBITEM)
- I X<0 S IBY="-1^^Unable to add Revenue Code charge to claim." Q 0
- Q 1
+ ; if no bills found at all then get out
+ I '$P(IBZ,U,1) G DUPX
+ I '$D(IBARR) G DUPX
+ ;
+ ; loop thru the array looking for any non-cancelled bills
+ S IBIFN="" F  S IBIFN=$O(IBARR(IBIFN),-1) Q:'IBIFN  D  Q:+RET
+ . S ARSTAT=$P($G(IBARR(IBIFN)),U,2)
+ . I ARSTAT'="CB",ARSTAT'="CN" S RET=1_U_$P($G(^DGCR(399,IBIFN,0)),U,1) Q
+ . Q
+DUPX ;
+ Q RET
+ ;
+ARERR(CODE,COB) ; retrieve AR error text
+ ; This function is called after calling AR routine PRCASVC6 and that routine indicates
+ ; some AR error has been detected.  Variable PRCAERR is passed into this function as
+ ; the CODE parameter.  The COB parameter indicates the COB payer sequence.
+ ;
+ ; Format of CODE:  -1^PRCA error code in file 350.8
+ ;             or   -1^AR text error message
+ ;             or   undefined
+ ;
+ N ERR,IBZ
+ S ERR=""
+ S CODE=$P($G(CODE),U,2)
+ S COB=$G(COB,1)
+ I CODE="" S ERR="Cannot establish receivable in AR" G ARERRX    ; generic error message
+ ;
+ S IBZ=+$O(^IBE(350.8,"C",CODE,0))
+ I IBZ S ERR=$P($G(^IBE(350.8,IBZ,0)),U,2) G ARERRX   ; error message from IB file
+ ;
+ S ERR=CODE    ; error message text from routine PRCASVC6
+ ;
+ARERRX ;
+ S ERR=$$TRIM^XLFSTR(ERR,"R",".")    ; remove ending period
+ I COB>1 S ERR=ERR_" ("_$S(COB=2:"Sec",1:"Tert")_" Ins)"
+ S ERR="AR Error: "_ERR
+ Q ERR
  ;

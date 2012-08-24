@@ -1,5 +1,5 @@
-PXRMREV ; SLC/PJH,PKR - Review Date routines. ;02/01/2010
- ;;2.0;CLINICAL REMINDERS;**4,16**;Feb 04, 2005;Build 119
+PXRMREV ; SLC/PJH,PKR - Review Date routines. ;01/27/2012
+ ;;2.0;CLINICAL REMINDERS;**4,16,22**;Feb 04, 2005;Build 160
  ;
  ;Select the review date
  ;----------------------
@@ -23,6 +23,7 @@ FILE() N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
  S DIR(0)=DIR(0)_"D:Reminder Dialog;"
  S DIR(0)=DIR(0)_"L:Reminder Location List;"
  S DIR(0)=DIR(0)_"O:Reminder Orderable Item Groups;"
+ S DIR(0)=DIR(0)_"U:Reminder Order Check Rules;"
  S DIR(0)=DIR(0)_"R:Reminder Definition;"
  S DIR(0)=DIR(0)_"S:Reminder Sponsor;"
  S DIR(0)=DIR(0)_"T:Reminder Term;"
@@ -85,6 +86,7 @@ START N DATE,DIROUT,DONE,DTOUT,DUOUT,FTYPE
  . I FTYPE="S" S DIC="^PXRMD(811.6,",DHD="SPONSORS TO REVIEW"
  . I FTYPE="X" S DIC="^PXD(811.2,",DHD="TAXONOMIES TO REVIEW"
  . I FTYPE="O" S DIC="^PXD(801,",DHD="ORDERABLE ITEM GROUPS TO REVIEW"
+ . I FTYPE="U" S DIC="^PXD(801.1,",DHD="ORDER CHECK RULES TO REVIEW"
  . I FTYPE="T" S DIC="^PXRMD(811.5,",DHD="TERMS TO REVIEW"
  .;
  . S DHD=DHD_" (up to "_$$FMTE^XLFDT(DATE)_")"

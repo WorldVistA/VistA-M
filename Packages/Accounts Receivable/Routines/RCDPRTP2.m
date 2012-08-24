@@ -1,14 +1,18 @@
 RCDPRTP2 ;ALB/LDB - CLAIMS MATCHING REPORT ;1/26/01  3:16 PM
- ;;4.5;Accounts Receivable;**151**;Mar 20, 1995
+ ;;4.5;Accounts Receivable;**151,276**;Mar 20, 1995;Build 87
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 PRINT1 ;
  I $Y>(IOSL-2) D PAUSE Q:$G(RCQ)  D HDR^RCDPRTP1,HDR1
- W !,$S(RCTP=RCBILL:"*",$D(RCTP(RCTP)):"*",1:" "),$P(RCIBDAT,"^",4),?14,$P(RCIBDAT,"^",5),?20
- W $$STAT(RCTP),?26,$$DATE(+RCIBDAT),?35,$$DATE($P(RCIBDAT,"^",2))
- S Y=$S($G(RCTP(RCTP)):RCTP(RCTP),$G(^TMP("RCDPRTPB",$J,RCNAM,RCBILL)):^(RCBILL),1:"") I RCTP=RCBILL!($D(RCTP(RCTP))) W ?46,$$DATE(Y)
- S RCAMT=$P($G(^PRCA(430,+RCTP,0)),"^",3),RCAMT1=$P($G(^PRCA(430,+RCTP,7)),"^",7) W ?57,$J(RCAMT,9,2)
- W ?68,$J(RCAMT1,9,2) S RCAMT(0)=RCAMT(0)+RCAMT,RCAMT(1)=RCAMT(1)+RCAMT1
- W ?83,$E($P(RCIBDAT,"^",7),1,25)
+ ; PRCA*4.5*276 - get EEOB indicator '%'and attach it to the bill number when applicable. Adjust report tabs to make room for EEOB indicator '%'.
+ N RC430 S RC430=+$O(^PRCA(430,"B",""_$P(RCIBDAT,"^",4)_"",0))
+ S RCEEOB=$$EEOB(RC430)
+ W !,$S(RCTP=RCBILL:"*",$D(RCTP(RCTP)):"*",1:" "),$G(RCEEOB)_$P(RCIBDAT,"^",4),?17,$P(RCIBDAT,"^",5),?24
+ W $$STAT(RCTP),?31,$$DATE(+RCIBDAT),?42,$$DATE($P(RCIBDAT,"^",2))
+ S Y=$S($G(RCTP(RCTP)):RCTP(RCTP),$G(^TMP("RCDPRTPB",$J,RCNAM,RCBILL)):^(RCBILL),1:"") I RCTP=RCBILL!($D(RCTP(RCTP))) W ?53,$$DATE(Y)
+ S RCAMT=$P($G(^PRCA(430,+RCTP,0)),"^",3),RCAMT1=$P($G(^PRCA(430,+RCTP,7)),"^",7) W ?64,$J(RCAMT,9,2)
+ W ?76,$J(RCAMT1,9,2) S RCAMT(0)=RCAMT(0)+RCAMT,RCAMT(1)=RCAMT(1)+RCAMT1
+ W ?88,$E($P(RCIBDAT,"^",7),1,25)
  K RCTP(RCTP)
  Q
  ;
@@ -16,9 +20,10 @@ PRINT2  ; Print the detail line for a first party bill.
  I $Y>(IOSL-2) D PAUSE Q:$G(RCQ)  D HDR^RCDPRTP1,HDR2
  W !," ",$P(RCIBDAT,"^",4),?14,$P(RCIBDAT,"^",6)
  S RCIBFN=$P(RCIBDAT,"^",4) I RCIBFN S RCIBFN=$O(^PRCA(430,"B",RCIBFN,0))
- W ?30,$$STAT(RCIBFN),?35,$$DATE(+RCIBDAT),?47,$$DATE($P(RCIBDAT,"^",2))
- W ?56,$J($P(RCIBDAT,"^",5),9,2),?69,$P(RCIBDAT,"^",7)
- W ?77,$J($S($G(^PRCA(430,+RCIBFN,7)):+($P(^(7),"^")+$P(^(7),"^",2)+$P(^(7),"^",3)+$P(^(7),"^",4)+$P(^(7),"^",4)),1:0),9,2)
+ ; PRCA*4.5*276 - adjust report tabs to make room for EEOB indicator '%'.
+ W ?36,$$STAT(RCIBFN),?42,$$DATE(+RCIBDAT),?54,$$DATE($P(RCIBDAT,"^",2))
+ W ?66,$J($P(RCIBDAT,"^",5),9,2),?78,$P(RCIBDAT,"^",7)
+ W ?87,$J($S($G(^PRCA(430,+RCIBFN,7)):+($P(^(7),"^")+$P(^(7),"^",2)+$P(^(7),"^",3)+$P(^(7),"^",4)+$P(^(7),"^",4)),1:0),9,2)
  Q
  ;
  ;
@@ -36,15 +41,17 @@ PRINT3 ; Print patient detail information.
 HDR1    ;
  W !!,"Third Party Bills: * -> bill for which payment was posted"
  W !,"============================="
- W !!," Bill #",?12,"P/S/T",?19,"Status",?26,"Bill From",?36,"Bill To",?46,"Posted",?57,"Amt Billed",?69,"Amt Paid",?83,"Payor"
- W !,"-------",?12,"-----",?19,"------",?26,"---------",?36,"-------",?46,"------",?57,"---------",?69,"--------",?83,"-----"
+ ; PRCA*4.5*276 - adjust report tabs to make room for EEOB indicator '%'.
+ W !!,"Bill #",?15,"P/S/T",?22,"Status",?30,"Bill From",?42,"Bill To",?53,"Posted",?63,"Amt Billed",?76,"Amt Paid",?88,"Payor"
+ W !,"-------------",?15,"-----",?22,"------",?30,"---------",?42,"--------",?53,"--------",?63,"----------",?75,"----------",?88,"-----"
  Q
  ;
 HDR2 ;
  W !!,"Associated First Party Charges:"
  W !,"==============================="
- W !," Bill #",?14,"Charge Type",?28,"Status",?35,"From/Fill",?47,"To/Rel",?56,"Amt Billed",?69,"On Hold",?77," Balance"
- W !,"------",?14,"-----------",?28,"------",?35,"---------",?47,"-------",?56,"----------",?69,"-------",?77,"-----------"
+ ; PRCA*4.5*276 - adjust report tabs to make room for EEOB indicator '%'.
+ W !," Bill #",?14,"Charge Type",?34,"Status",?42,"From/Fill",?54,"To/Rel",?65,"Amt Billed",?78,"On Hold",?87,"  Balance"
+ W !,"-----------",?14,"----------------",?34,"------",?42,"---------",?54,"---------",?65,"----------",?78,"-------",?87," ----------"
  Q
  ;
 STAT(RCIBFN) ;AR Status
@@ -63,3 +70,19 @@ PAUSE ; Page break.
  I IOSL<100 F RCX=$Y:1:(IOSL-3) W !
  S DIR(0)="E" D ^DIR I $D(DIRUT)!($D(DUOUT)) S RCQ=1
  Q
+ ;
+EEOB(RCBILL) ; PRCA*4.5*276 - get EEOB indicator for a bill
+ ; Interaction with IB file #361.1 covered by IA #4051.
+ ; RCBILL is the IEN of the bill in files #399/#430 and must be valid,
+ ; Exclude an EOB type of MRA when getting payment information. Return
+ ; the EEOB indicator '%' if payment activity was found.
+ ;
+ N RCEEOB,RCVAL,Z
+ I $G(RCBILL)=0 Q ""
+ I '$O(^IBM(361.1,"B",RCBILL,0)) Q ""  ; no matching entry for bill
+ I $P($G(^DGCR(399,RCBILL,0)),"^",13)=1 Q ""  ;avoid 'ENTERED/NOT REVIEWED' status
+ ; handle both single and multiple bill entries in file #361.1
+ S Z=0 F  S Z=$O(^IBM(361.1,"B",RCBILL,Z)) Q:'Z  D  Q:$G(RCEEOB)="%"
+ . S RCVAL=$G(^IBM(361.1,Z,0))
+ . S RCEEOB=$S($P(RCVAL,"^",4)=1:"",$P(RCVAL,"^",4)=0:"%",1:"")
+ Q RCEEOB  ; EEOB indicator for 1st/3rd party payment on bill

@@ -1,5 +1,5 @@
 PSGVBW ;BIR/CML3,MV - VERIFY ORDERS BY WARD, WARD GROUP, PATIENT, OR PRIORITY ;10/22/98 3:14 PM
- ;;5.0;INPATIENT MEDICATIONS;**5,16,39,59,62,67,58,81,80,110,111,133,139,155,241,243**;DEC 16, 1997;Build 45
+ ;;5.0;INPATIENT MEDICATIONS;**5,16,39,59,62,67,58,81,80,110,111,133,139,155,241,243,265**;DEC 16, 1997;Build 4
  ;
  ; Reference to ^PS(55 is supported by DBIA #2191
  ; Reference to ^PS(51.1 is supported by DBIA #2177
@@ -119,7 +119,8 @@ PRI ; Find orders with selected Priority
  K ^TMP("PSGVBW3",$J)
  Q
 IF ;BHW;PSJ*5*155;Added PSGCLF and PS(53.1,"AD" Check below.  If called from CL subroutine and the order Doesn't exist for that Clinic, then QUIT.;PSJ*5*241:Changed quit conditions
- W "." I PSJTOO'=1 S ON=0 F  S ON=$O(^PS(53.1,"AS","P",PSGP,ON)) Q:'ON!(($G(PSGCLF))&('$D(^PS(53.1,"AD",+$G(CL),PSGP,+$G(ON)))))!(($G(WDN)="ZZ")&(+$P($G(^PS(53.1,+$G(ON),"DSS")),U,1)'=0))  D
+ W "." I PSJTOO'=1 S ON=0 F  S ON=$O(^PS(53.1,"AS","P",PSGP,ON)) Q:'ON!(($G(WDN)="ZZ")&(+$P($G(^PS(53.1,+$G(ON),"DSS")),U,1)'=0))  D
+ .Q:(($G(PSGCLF))&('$D(^PS(53.1,"AD",+$G(CL),PSGP,+$G(ON)))))  ;PSJ*5*265 - move quit condition inside loop
  .S X=$P($G(^PS(53.1,ON,0)),U,4),IFPRI=0,Y=0 I "FIU"[X D  D:Y SET
  ..I $G(PSGPRIF) D  Q:'IFPRI
  ...N PRIO S PRIO=$P($G(^PS(53.1,+ON,.2)),"^",4),PRIO=$S(PRIO="S":1,PRIO="A":2,1:3) S IFPRI=$S(PRD=PRIO:1,1:"")

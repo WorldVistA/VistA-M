@@ -1,5 +1,5 @@
-LEXDM ; ISL Default Misc - Mod/Del Sel/Create    ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
+LEXDM ;ISL Default Misc - Mod/Del Sel/Create ;08/17/2011
+ ;;2.0;LEXICON UTILITY;**81**;Sep 23, 1996;Build 1
  ;
  ; Entry:  S X=$$MOD^LEXDM(X)
  ; Input   X  1=Filter, 2=Display, 3=Vocabulary or 4=Context
@@ -46,7 +46,7 @@ METH(LEXX) ; Select method
  . S DIR("A",4)="  2  Create your own filter"
  . S DIR("??")="^D HF^LEXDM"
  I +LEXF=2 D
- . S DIR("A",1)="Display format to used during look-up"
+ . S DIR("A",1)="Display format to be used during look-up"
  . S DIR("A",3)="  1  Select from predefined display formats"
  . S DIR("A",4)="  2  Create your own display format"
  . S DIR("??")="^D HD^LEXDM"

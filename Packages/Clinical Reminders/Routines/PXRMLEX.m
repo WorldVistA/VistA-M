@@ -1,5 +1,5 @@
-PXRMLEX ; SLC/PKR - Routines for working with Lexicon. ;12/14/2009
- ;;2.0;CLINICAL REMINDERS;**17**;Feb 04, 2005;Build 102
+PXRMLEX ;SLC/PKR - Routines for working with Lexicon. ;09/20/2010
+ ;;2.0;CLINICAL REMINDERS;**17,18**;Feb 04, 2005;Build 152
  ;
  ;=====================================================
 LEXTEXT ;Get the codes from the Lexicon update text file.
@@ -51,13 +51,15 @@ LEXTEXT ;Get the codes from the Lexicon update text file.
  .. S NDES=1,DES(1)="Long description: "_$P(TEMP,HT,FIELD("LONG_DESCRIPTION"))
  ..;Get the rest of the long description.
  .. S DONE=0,JND=IND
- .. F  S JND=$O(^TMP($J,"HF",JND)) Q:DONE  D
+ .. F  S JND=+$O(^TMP($J,"HF",JND)) Q:(DONE)!(JND=0)  D
  ... S TEMP=^TMP($J,"HF",JND,0)
  ... I $P(TEMP,HT,FIELD("CODE"))'=CODE S DONE=1 Q
  ... S NDES=NDES+1,DES(NDES)=$P(TEMP,HT,FIELD("LONG_DESCRIPTION"))
  .. D FORMAT^PXRMTEXT(2,78,NDES,.DES,.NOUT,.TEXTOUT)
  .. F NL=1:1:NOUT W !,TEXTOUT(NL)
- .. S IND=JND-2
+ ..;JND now is at the next code so back IND up by 2 so $O of IND
+ ..;is at the next code. If JND=0 then there were no additional lines.
+ .. I JND>IND S IND=JND-2
  . I ACTION'="" D
  .. S RETVAL=$$CODE^PXRMVAL(CODE,FILENUM)
  .. I +RETVAL=0 Q

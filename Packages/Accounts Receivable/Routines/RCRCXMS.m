@@ -37,16 +37,16 @@ SITE ;RC Site Parameter Edit
  S RCSITE=$P($$SITE^RCMSITE,U,2)
  I 'DA G SITEQ
  ;S DR=".04;W !!,""Primary Division: "",$P($G(^DIC(4,$$SITE^RCMSITE,0)),U,1);32R~PRIMARY RC REMOTE DOMAIN"_";I $E($G(^DIC(4.2,X,0)),1,3)'=""RC-"" W !,""   <<RC DOMAIN MUST START WITH 'RC-'>>"" S Y=32" D ^DIE
- S DR=".04;W !!,""Primary Division: "",$P($G(^DIC(4,$$SITE^RCMSITE,0)),U,1);34R~RC MAIL ADDRESS"_";I $E($G(X),1,3)'=""OGC""!($E($G(X),7,20)'=""RI@MAIL.VA.GOV"") D MAILADD^RCRCXMS S Y=34"
+ S DR=".04;W !!,""Primary Division: "",$P($G(^DIC(4,$$SITE^RCMSITE,0)),U,1);34R~RC MAIL ADDRESS"_";I $E($G(X),1,3)'=""OGC""!($E($G(X),7,20)'=""RI@MAIL.DOMAIN.EXT"") D MAILADD^RCRCXMS S Y=34"
  S DR=DR_";35R~RC DEATH NOTIFICATION ADDRESS"_";I $E($G(X),1,9)'=""OGCRegion"" D DEATHADD^RCRCXMS S Y=35" D ^DIE
  I ($D(DTOUT))!($D(Y)) G SITEQ
  ;
 DR61 W !!,"Enter Division(s) of care if domain is different then primary RC Mail Address.",!
  S DR=61
  ;S DR(2,349.161)=".01;.02R~RC MAIL ADDRESS"_";I $E($G(^DIC(4.2,X,0)),1,3)'=""RC-"" W !,"" <<RC DOMAIN MUST START WITH 'RC-'>>"" S Y=.02" D ^DIE
- S DR(2,349.161)=".01;.03R~RC MAIL ADDRESS"_";I $E($G(X),1,3)'=""OGC""!($E($G(X),7,20)'=""RI@MAIL.VA.GOV"") D MAILADD^RCRCXMS S Y=.03"_";N RCFLAG D DIK^RCRCXMS I $G(RCFLAG) S Y=.01"
+ S DR(2,349.161)=".01;.03R~RC MAIL ADDRESS"_";I $E($G(X),1,3)'=""OGC""!($E($G(X),7,20)'=""RI@MAIL.DOMAIN.EXT"") D MAILADD^RCRCXMS S Y=.03"_";N RCFLAG D DIK^RCRCXMS I $G(RCFLAG) S Y=.01"
  S DR(2,349.161)=DR(2,349.161)_";.04R~RC DEATH NOTIFICATION ADDRESS"_";I $E($G(X),1,9)'=""OGCRegion"" D DEATHADD^RCRCXMS S Y=.04" D ^DIE
- ;S DR(2,349.161)=".04R~RC DEATH NOTIFICATION ADDRESS"_";I $E($G(X),1,3)'=""OGC""!($E($G(X),7,20)'=""RI@MAIL.VA.GOV"") D DEATHADD^RCRCXMS S Y=.04" D ^DIE
+ ;S DR(2,349.161)=".04R~RC DEATH NOTIFICATION ADDRESS"_";I $E($G(X),1,3)'=""OGC""!($E($G(X),7,20)'=""RI@MAIL.DOMAIN.EXT"") D DEATHADD^RCRCXMS S Y=.04" D ^DIE
  ;
 SITEQ Q
  ;
@@ -60,7 +60,7 @@ MAILADD ;MAIL ADDRESS FOR REGIONAL COUNSEL
  W !!,"Please enter an Regional Counsel mail address that adheres to the"
  W !,"following format:"
  W !!," The first three characters must be 'OGC'"
- W !," Characters 7 through 20 should be 'RI@MAIL.VA.GOV'"
+ W !," Characters 7 through 20 should be 'RI@MAIL.DOMAIN.EXT'"
  W !!,"Choose one of the following RC addresses:",!
  N RCCT,RCMAIL,RCUP
  F RCCT=1:1 S RCMAIL=$P($T(ADDR+RCCT),";;",2) Q:RCMAIL="END"!(+$G(RCUP))  D
@@ -73,7 +73,7 @@ DEATHADD ;DEATH ADDRESSES FOR REGIONAL COUNSEL
  W !,"the following format:"
  W !!," The first nine characters must be 'OGCRegion'"
  W !," followed by a number from 1-23"
- W !," followed by 'DeathNotification@mail.va.gov'"
+ W !," followed by 'DeathNotification@mail.DOMAIN.EXT'"
  W !!," Choose from one of the following:",!
  N RCCT,RCMAIL,RCUP
  F RCCT=1:1 S RCMAIL=$P($T(ADDR+RCCT),";;",2) Q:RCMAIL="END"!(+$G(RCUP))  D
@@ -82,29 +82,29 @@ DEATHADD ;DEATH ADDRESSES FOR REGIONAL COUNSEL
  .Q
  Q
 ADDR ;
- ;;OGCBOSRI@MAIL.VA.GOV^OGCRegion1DeathNotification@mail.va.gov
- ;;OGCNYNRI@MAIL.VA.GOV^OGCRegion2DeathNotification@mail.va.gov
- ;;OGCBALRI@MAIL.VA.GOV^OGCRegion3DeathNotification@mail.va.gov
- ;;OGCPHIRI@MAIL.VA.GOV^OGCRegion4DeathNotification@mail.va.gov
- ;;OGCATLRI@MAIL.VA.GOV^OGCRegion5DeathNotification@mail.va.gov
- ;;OGCBAYRI@MAIL.VA.GOV^OGCRegion6DeathNotification@mail.va.gov
- ;;OGCCLERI@MAIL.VA.GOV^OGCRegion7DeathNotification@mail.va.gov
- ;;OGCNASRI@MAIL.VA.GOV^OGCRegion8DeathNotification@mail.va.gov
- ;;OGCJACRI@MAIL.VA.GOV^OGCRegion9DeathNotification@mail.va.gov
- ;;OGCCHIRI@MAIL.VA.GOV^OGCRegion10DeathNotification@mail.va.gov
- ;;OGCDETRI@MAIL.VA.GOV^OGCRegion11DeathNotification@mail.va.gov
- ;;OGCSTLRI@MAIL.VA.GOV^OGCRegion12DeathNotification@mail.va.gov
- ;;OGCWACRI@MAIL.VA.GOV^OGCRegion13DeathNotification@mail.va.gov
- ;;OGCHOURI@MAIL.VA.GOV^OGCRegion14DeathNotification@mail.va.gov
- ;;OGCMINRI@MAIL.VA.GOV^OGCRegion15DeathNotification@mail.va.gov
- ;;OGCDENRI@MAIL.VA.GOV^OGCRegion16DeathNotification@mail.va.gov
- ;;OGCLOSRI@MAIL.VA.GOV^OGCRegion17DeathNotification@mail.va.gov
- ;;OGCSFCRI@MAIL.VA.GOV^OGCRegion18DeathNotification@mail.va.gov
- ;;OGCPHORI@MAIL.VA.GOV^OGCRegion19DeathNotification@mail.va.gov
- ;;OGCPORRI@MAIL.VA.GOV^OGCRegion20DeathNotification@mail.va.gov
- ;;OGCBUFRI@MAIL.VA.GOV^OGCRegion21DeathNotification@mail.va.gov
- ;;OGCINDRI@MAIL.VA.GOV^OGCRegion22DeathNotification@mail.va.gov
- ;;OGCWINRI@MAIL.VA.GOV^OGCRegion23DeathNotification@mail.va.gov
+ ;;OGCBOSRI@MAIL.DOMAIN.EXT^OGCRegion1DeathNotification@mail.DOMAIN.EXT
+ ;;OGCNYNRI@MAIL.DOMAIN.EXT^OGCRegion2DeathNotification@mail.DOMAIN.EXT
+ ;;OGCBALRI@MAIL.DOMAIN.EXT^OGCRegion3DeathNotification@mail.DOMAIN.EXT
+ ;;OGCPHIRI@MAIL.DOMAIN.EXT^OGCRegion4DeathNotification@mail.DOMAIN.EXT
+ ;;OGCATLRI@MAIL.DOMAIN.EXT^OGCRegion5DeathNotification@mail.DOMAIN.EXT
+ ;;OGCBAYRI@MAIL.DOMAIN.EXT^OGCRegion6DeathNotification@mail.DOMAIN.EXT
+ ;;OGCCLERI@MAIL.DOMAIN.EXT^OGCRegion7DeathNotification@mail.DOMAIN.EXT
+ ;;OGCNASRI@MAIL.DOMAIN.EXT^OGCRegion8DeathNotification@mail.DOMAIN.EXT
+ ;;OGCJACRI@MAIL.DOMAIN.EXT^OGCRegion9DeathNotification@mail.DOMAIN.EXT
+ ;;OGCCHIRI@MAIL.DOMAIN.EXT^OGCRegion10DeathNotification@mail.DOMAIN.EXT
+ ;;OGCDETRI@MAIL.DOMAIN.EXT^OGCRegion11DeathNotification@mail.DOMAIN.EXT
+ ;;OGCSTLRI@MAIL.DOMAIN.EXT^OGCRegion12DeathNotification@mail.DOMAIN.EXT
+ ;;OGCWACRI@MAIL.DOMAIN.EXT^OGCRegion13DeathNotification@mail.DOMAIN.EXT
+ ;;OGCHOURI@MAIL.DOMAIN.EXT^OGCRegion14DeathNotification@mail.DOMAIN.EXT
+ ;;OGCMINRI@MAIL.DOMAIN.EXT^OGCRegion15DeathNotification@mail.DOMAIN.EXT
+ ;;OGCDENRI@MAIL.DOMAIN.EXT^OGCRegion16DeathNotification@mail.DOMAIN.EXT
+ ;;OGCLOSRI@MAIL.DOMAIN.EXT^OGCRegion17DeathNotification@mail.DOMAIN.EXT
+ ;;OGCSFCRI@MAIL.DOMAIN.EXT^OGCRegion18DeathNotification@mail.DOMAIN.EXT
+ ;;OGCPHORI@MAIL.DOMAIN.EXT^OGCRegion19DeathNotification@mail.DOMAIN.EXT
+ ;;OGCPORRI@MAIL.DOMAIN.EXT^OGCRegion20DeathNotification@mail.DOMAIN.EXT
+ ;;OGCBUFRI@MAIL.DOMAIN.EXT^OGCRegion21DeathNotification@mail.DOMAIN.EXT
+ ;;OGCINDRI@MAIL.DOMAIN.EXT^OGCRegion22DeathNotification@mail.DOMAIN.EXT
+ ;;OGCWINRI@MAIL.DOMAIN.EXT^OGCRegion23DeathNotification@mail.DOMAIN.EXT
  ;;END
 EN(RCTAG) ;
  ;ENTRY POINT FROM RC TRANSMISSIONS LIST TEMPLATE

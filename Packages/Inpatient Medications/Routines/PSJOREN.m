@@ -1,5 +1,5 @@
 PSJOREN ;BIR/CML3-INTERFACE FOR INPATIENT PHARMACY AND OE/RR ;07 AUG 97 / 3:21 PM
- ;;5.0; INPATIENT MEDICATIONS ;**109,127,134**;16 DEC 97;Build 124
+ ;;5.0;INPATIENT MEDICATIONS;**109,127,134,254**;16 DEC 97;Build 84
  ;
  ;Reference to ^ORD(100.98 supported by DBIA 873
  ;Reference to ^PS(51.2 supported by DBIA 2178
@@ -43,10 +43,13 @@ ENBKOUT(DFN,ON) ; Undo Renew.
  Q
  ;
 ENUDTX(DFN,ON,RES) ; Set up ORTX( Array for UD orders.
+ D STOREINT^PSGSICH1
  K ORTX N DO,MRN,ND0,NDP1,ND2,PD,ST,SCH
  S Y=2 I ON["A"!(ON["O") S ND0=$G(^PS(55,DFN,5,+ON,0)),NDP1=$G(^(.1)),ND2=$G(^(2)),Y=2 F X=0:0 S X=$O(^PS(55,DFN,5,+ON,12,X)) Q:'X  S Y=Y+1,ORTX(Y)=$G(^(X,0))
  E  S ND0=$G(^PS(53.1,+ON,0)),NDP1=$G(^(.1)),ND2=$G(^(2)),Y=2 F X=0:0 S X=$O(^PS(53.1,+ON,12,X)) Q:'X  S Y=Y+1,ORTX(Y)=$G(^(X,0))
  S ORTX(1)=$S($G(RES)="NR":"RENEWAL -",$G(RES)="OR":"RENEWED -",1:"")_$P($G(^PS(50.3,+NDP1,0)),U)
  S ORTX(2)=" Give: "_$S($P(NDP1,U,2)]"":$P(NDP1,U,2)_" ",1:"")_$P($G(^PS(51.2,+$P(ND0,U,3),0)),U,3)_" "_$P(ND2,U)_$S($P(ND2,U)["PRN":"",$P(ND0,U,7)="P":" PRN",1:"")
  I $G(DFN),$G(ON) S:ON["U" ^PS(55,"AUE",DFN,+ON)=""
+ ;
+ K ^TMP("PSJINTER",$J),^TMP($J,"PSJ")
  Q

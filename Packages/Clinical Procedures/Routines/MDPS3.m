@@ -1,5 +1,5 @@
 MDPS3 ; HOIFO/NCA - Remote Data View Data Retriever for CP ;8/26/05  14:37
- ;;1.0;CLINICAL PROCEDURES;**2,5,13**;Apr 01, 2004;Build 19
+ ;;1.0;CLINICAL PROCEDURES;**2,5,13,24**;Apr 01, 2004;Build 8
  ; Integration Agreements:
  ; Reference IA# 2693 [Subscription] TIU Extractions.
  ;               3067 [Private] Read fields in Consult file (#123) w/FM
@@ -7,9 +7,9 @@ MDPS3 ; HOIFO/NCA - Remote Data View Data Retriever for CP ;8/26/05  14:37
  ;                 875 [Subscription] Access Order Status file (#100.01)
  ;
 GET702(MDGLO,MDDFN,MDC,MDSDT,MDEDT,MDMAX) ; Gather the new 702 entries
- N MDARR,MDCON,MDDTE,MDLP,MDCODE,MDPROC,MDSTAT,MDX
- D GP^MDPS5(MDDFN,MDSDT,MDEDT)
- S MDLP="" F  S MDLP=$O(^MDD(702,"B",MDDFN,MDLP)) Q:MDLP<1  D
+ N MDARR,MDCON,MDDTE,MDLP,MDCODE,MDCTRR,MDPROC,MDSTAT,MDX
+ D GP^MDPS5(MDDFN,MDSDT,MDEDT) S MDCTRR=0
+ S MDLP="" F  S MDLP=$O(^MDD(702,"B",MDDFN,MDLP),-1) Q:MDLP<1  D
  .S MDX=$G(^MDD(702,MDLP,0)) Q:$P(MDX,"^",9)'=3
  .S MDPROC=$$GET1^DIQ(702,MDLP_",",.04,"E") Q:MDPROC=""
  .Q:'$P(MDX,U,6)
@@ -23,6 +23,7 @@ GET702(MDGLO,MDDFN,MDC,MDSDT,MDEDT,MDMAX) ; Gather the new 702 entries
  .S:'MDDTE MDDTE=$$GET1^DIQ(702,MDLP_",",.02,"I")
  .K ^TMP("MDTIUST",$J)
  .S MDCON=$P(MDX,U,5)
+ .I +$G(MDMAX) Q:MDCTRR=MDMAX
  .I +$G(MDSDT) Q:MDDTE<+$G(MDSDT)
  .I +$G(MDEDT) Q:MDDTE>+$G(MDEDT)
  .I MDCON D  Q:MDSTAT'="COMPLETE"&(MDSTAT'="PARTIAL RESULTS")
@@ -31,7 +32,8 @@ GET702(MDGLO,MDDFN,MDC,MDSDT,MDEDT,MDMAX) ; Gather the new 702 entries
  ..Q
  .S Y=MDDTE X ^DD("DD") N MDREV S MDREV=(9999999.9999-MDDTE)
  .I MDCON Q:$G(MDARR(MDCON))'=""  S MDARR(MDCON)=MDCON
- .S:$G(^TMP("MDPLST",$J,MDPROC,MDREV_"^"_MDLP))="" ^(MDREV_"^"_MDLP)=MDPROC_"^"_MDLP_"^"_"PR702"_"^"_"MDPS1"_"^^"_Y_"^"_MDCODE_"^^^^"_MDPROC_"^^"_MDCON_"^"_+$P(MDX,U,6)
+ .S:$G(^TMP("MDPLST",$J,MDPROC,MDREV_"~"_MDLP))="" ^(MDREV_"~"_MDLP)=MDPROC_"^"_MDLP_"^"_"PR702"_"^"_"MDPS1"_"^^"_Y_"^"_MDCODE_"^^^^"_MDPROC_"^^"_MDCON_"^"_+$P(MDX,U,6)
+ .S MDCTRR=MDCTRR+1
  .Q
  K MDARR
  Q
@@ -52,6 +54,11 @@ CHKMED(MDCON) ; Check for Medicine results
  S MDY=0 D GETS^DIQ(123,MDCON_",","50*","I","MDCX")
  S MDCK="" F  S MDCK=$O(MDCX(123.03,MDCK)) Q:MDCK<1  S MDX4=$G(MDCX(123.03,MDCK,.01,"I")) D
  .I MDX4["MCAR" S MDY=1
+ Q MDY
+GETAMDT(MDCON) ; Check For Amendment
+ N MDAMT,MDMS,MDX5,MDY S MDY=0
+ S MDAMT="" F  S MDAMT=$O(^MDD(702,"ACON",+MDCON,MDAMT),-1) Q:MDAMT<1!(+MDY)  D
+ .S MDMS=0 F  S MDMS=$O(^MDD(702,MDAMT,.091,MDMS)) Q:MDMS<1!(+MDY)  S MDX5=$G(^(MDMS,0)) I $P(MDX5,"^",9)["AMENDMENT" S MDY=+$P($G(^MDD(702,+MDAMT,0)),"^",6) Q
  Q MDY
 HDR ; Print Header for Report Form Feed
  N FFL,MDNM,MDNAME,MDTITL,MDTM S $P(FFL,"-",80)=""

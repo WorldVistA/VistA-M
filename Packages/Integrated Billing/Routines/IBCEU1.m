@@ -1,5 +1,5 @@
 IBCEU1 ;ALB/TMP - EDI UTILITIES FOR EOB PROCESSING ;10-FEB-99
- ;;2.0;INTEGRATED BILLING;**137,155,296,349,371,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**137,155,296,349,371,432,473**;21-MAR-94;Build 29
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 CCOB1(IBIFN,NODE,SEQ) ; Extract Claim level COB data
@@ -11,7 +11,7 @@ CCOB1(IBIFN,NODE,SEQ) ; Extract Claim level COB data
  ;  n is the entry number in file 361.1 and node is the node requested
  ;   = the requested node's data
  ;
- N IB,IBN,IBBILL,IBS,A,B,C,IBCURR,IBMRAF
+ N IB,IBN,IBBILL,IBS,A,B,C,IBCURR,IBMRAF,Z
  ;
  K IBXDATA
  ;
@@ -30,6 +30,11 @@ CCOB1(IBIFN,NODE,SEQ) ; Extract Claim level COB data
  ... S A=$P(NODE,",",Z)
  ... Q:A=""
  ... S IBN=$G(^IBM(361.1,C,A))
+ ... ; Start IB*2.0*473 BI Added to null patient responsibility in OI1
+ ... ; if the data is contained at the line level to be sent in LCOB.
+ ... ; Perform the following for only OI1.19 using the dictionary 364.6 IEN.
+ ... S:+$G(IBX0)=2204&($$LPREXIST(C))&(A=1) $P(IBN,U,2)=""
+ ... ; End IB*2.0*473
  ... I $TR(IBN,U)'="" S IBXDATA(IBS,C,A)=IBN
  ;
  Q
@@ -228,3 +233,46 @@ EOBCNT(IBIFN) ; This function counts up the number of EOBs that are eligible
 EOBCNTX ;
  Q CNT
  ;
+LPTRESP(IBIFN,IBXSAVE,IBXDATA,CL)  ; Line level patient responsibility.
+ ; Added with IB*2.0*473 BI
+ N IBPTZ,IBPTM,IBPTP,IBPTPR,IBPRDATA,IBPTCNT
+ S:'$D(CL) CL=17
+ S IBPTCNT=0
+ S IBPTZ=0 F  S IBPTZ=$O(IBXSAVE("LCOB",IBPTZ)) Q:'IBPTZ  D
+ . S IBPTM=0 F  S IBPTM=$O(IBXSAVE("LCOB",IBPTZ,"COB",IBPTM)) Q:'IBPTM  D
+ .. S IBPTP=0 F  S IBPTP=$O(IBXSAVE("LCOB",IBPTZ,"COB",IBPTM,IBPTP)) Q:'IBPTP  D
+ ... S IBPTCNT=IBPTCNT+1
+ ... I $$CHKCCOB1(IBIFN,IBPTM) S IBXDATA(IBPTCNT)="" Q
+ ... I CL=16 S IBXDATA(IBPTCNT)="EAF" Q
+ ... S IBXDATA(IBPTCNT)=0
+ ... S IBPTPR=0 F  S IBPTPR=$O(IBXSAVE("LCOB",IBPTZ,"COB",IBPTM,IBPTP,"PR",IBPTPR)) Q:'IBPTPR  D
+ .... S IBPRDATA=$G(IBXSAVE("LCOB",IBPTZ,"COB",IBPTM,IBPTP,"PR",IBPTPR))
+ .... I +IBPRDATA S IBXDATA(IBPTCNT)=IBXDATA(IBPTCNT)+$P(IBPRDATA,U,2)
+ ... S IBXDATA(IBPTCNT)=$$DOLLAR^IBCEFG1(IBXDATA(IBPTCNT))
+ Q
+ ;
+LPREXIST(EOBIEN)  ; Tests to see if Line Level Patient Responsibility Segments exists.
+ ; Added with IB*2.0*473 BI
+ N CL,CAS,PR,PRSEQ,PRZ,RESULT
+ S RESULT=0
+ Q:'$G(EOBIEN) RESULT
+ S CL=0 F  S CL=$O(^IBM(361.1,EOBIEN,15,CL)) Q:+CL=0  D
+ . S CAS=0 F  S CAS=$O(^IBM(361.1,EOBIEN,15,CL,CAS)) Q:+CAS=0  D
+ .. S PR=$O(^IBM(361.1,EOBIEN,15,CL,CAS,"B","PR",0)) Q:+PR=0
+ .. S PRSEQ=0 F  S PRSEQ=$O(^IBM(361.1,EOBIEN,15,CL,CAS,PR,1,PRSEQ)) Q:+PRSEQ=0  D
+ ... S PRZ=$G(^IBM(361.1,EOBIEN,15,CL,CAS,PR,1,PRSEQ,0)) Q:'+PRZ
+ ... S RESULT=1
+ Q RESULT
+ ;
+CHKCCOB1(IBIFN,IBS)  ; Test to see if Patient Responsibility pieces should be included
+ ; Added with IB*2.0*473 BI
+ N RESULTS,IBXDATA,EOBIEN
+ S RESULTS=1
+ ; INPUTS:  IBIFN - BILL/CLAIM INTERNAL NUMBER
+ ;          IBS   - INSURANCE SEQUENCE NUMBER
+ ; RETURNS: 0     - IF LCOB RECORDS ARE TO BE INCLUDED
+ ;          1     - IF LCOB RECORDS SHOULD NOT BE INCLUDED
+ D CCOB1(IBIFN,0,IBS)
+ S EOBIEN=$O(IBXDATA(IBS,0))
+ S RESULT='$$LPREXIST(EOBIEN)
+ Q RESULT

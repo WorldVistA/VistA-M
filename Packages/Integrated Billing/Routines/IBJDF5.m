@@ -1,5 +1,6 @@
 IBJDF5 ;ALB/RB - CHAMPVA/TRICARE FOLLOW-UP REPORT;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,185,240**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**123,185,240,452**;21-MAR-94;Build 26
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; - Option entry point.
  ;
@@ -22,7 +23,7 @@ EN ; - Option entry point.
  ;
  ; - Issue prompt for division.
  I IBSD,IBSEL[1 D
- . W !!,"NOTE: Tricare Patient receivables will NOT be sorted"
+ . W !!,"NOTE: TRICARE Patient receivables will NOT be sorted"
  . W !?6,"by division!",!,*7
  ;
 TYP ; - Select type of receivables to print.
@@ -122,7 +123,7 @@ DEV ; - Select a device.
  U IO
  ;
  ; If called by the Extraction Module, change extract status for the 6
- ; reports: Tricare Patient, Sharing Agreements, TRICARE, TRICARE 3rd 
+ ; reports: TRICARE Patient, Sharing Agreements, TRICARE, TRICARE 3rd 
  ;          Party, CHAMPVA and CHAMPVA 3rd Party
 DQ I $G(IBXTRACT) F I=17:1:21 D E^IBJDE(I,1)
  ;

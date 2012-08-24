@@ -1,5 +1,5 @@
-PSBVDLPA ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**5,16,13,38,32**;Mar 2004;Build 32
+PSBVDLPA ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ; 11/30/11 10:49am
+ ;;3.0;BAR CODE MED ADMIN;**5,16,13,38,32,58**;Mar 2004;Build 37
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; called by PSBVDLUD to find patches not removed
@@ -7,6 +7,10 @@ PSBVDLPA ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;Mar 2004
  ; Reference/IA
  ; $$GET^XPAR/2263
  ; $$FMADD^XLFDT/10103
+ ; GETPROVL^PSGSICH1/5653
+ ; INTRDIC^PSGSICH1/5654
+ ;
+ ;*58 - add 29th piece to Results for Override/Intervention flag 1/0
  ;
 EN ;
  S PSBGNODE="^PSB(53.79,"_"""APATCH"""_","_DFN_")"
@@ -51,6 +55,10 @@ EN ;
  ..S $P(PSBREC,U,28)=0
  ..I ($G(PSBTAB)="CVRSHT") S $P(PSBREC,U,28)=1
  ..I ($G(PSBTAB)="UDTAB") I PSBSCHT'="O" S:(PSBOSTS="E")!(PSBOSTS["D") $P(PSBREC,U,28)=1
+ ..;*58 determine if override or intervn exists, send 1/0 (true/false)
+ ..N PSBARR D GETPROVL^PSGSICH1(DFN,PSBONX,.PSBARR)
+ ..I $O(PSBARR(""))="" D INTRDIC^PSGSICH1(DFN,PSBONX,.PSBARR,2)
+ ..S $P(PSBREC,U,29)=$S($O(PSBARR(""))]"":1,1:0)
  ..; Place into Coversheet activity ARRAY
  ..S PSBDIDX="" I $D(^PSB(53.79,"AORD",DFN,PSBONX)) D
  ...S PSBXDTI="",PSBXDTI=$O(^PSB(53.79,"AORD",DFN,PSBONX,PSBXDTI),-1)

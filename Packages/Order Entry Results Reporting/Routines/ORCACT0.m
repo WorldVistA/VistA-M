@@ -1,5 +1,5 @@
 ORCACT0 ;SLC/MKB-Validate order action ;5/19/08
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,86,92,94,141,165,177,173,190,215,243,289**;Dec 17, 1997;Build 3
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,86,92,94,141,165,177,173,190,215,243,289,204**;Dec 17, 1997;Build 1
  ;
  ;Reference to REFILL^PSOREF supported by IA #2399
  ;
@@ -40,6 +40,7 @@ XFR I ACTION="XFR" D  G VQ
  . N A
  . S A=""
  . F  S A=$O(^OR(100,+IFN,4.5,"ID","CONJ",A)) Q:'A  I ^OR(100,+IFN,4.5,A,1)="X" S ERROR="Orders with a conjunction of 'EXCEPT' may not be transferred." Q
+ . F  S A=$O(^OR(100,+IFN,4.5,"ID","CONJ",A)) Q:'A  I ^OR(100,+IFN,4.5,A,1)="T" S ERROR="Orders with a conjunction of 'THEN' may not be transferred." Q
  . I $G(ERROR)]"" Q
  . D XFR^ORCACT01 ; transfer to in/outpt
 RN I ACTION="RN" D RN^ORCACT01 G VQ ; renew

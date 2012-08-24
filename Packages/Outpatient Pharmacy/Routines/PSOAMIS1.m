@@ -1,11 +1,11 @@
 PSOAMIS1 ;BHAM ISC/SAB,BHW - daily amis total report ; 11/04/92 17:45
- ;;7.0;OUTPATIENT PHARMACY;**158**;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**158,377**;DEC 1997;Build 1
  ;
  W !!,"Daily AMIS Report. Prints Daily, Monthly and Quarterly AMIS Data",!!,"PLEASE PRINT ON WIDE PAPER, I.E., 132 COLUMNS."
 DA W !! S %DT(0)=-DT,%DT("A")="Compute AMIS for what day: " S %DT="EXPA" D ^%DT G:"^"[X END G:Y<0 DA S PSDATE=Y,MON=$E(Y,1,5)_"00",EDT=MON+32 K %DT(0)
  S MONTH=$E(Y,4,5),MONTH=MONTH-1\3*3+1,BQTR=$E(Y,1,3)_$S($L(MONTH)<2:"0"_MONTH,1:MONTH)_"00",EQTR=$E(Y,1,3)_MONTH+2_32 I $L(EQTR)<7 S EQTR=$E(EQTR,1,3)_"0"_$E(EQTR,4,6)
 DEV K %ZIS,IOP,ZTSK S %ZIS("B")="",PSOION=ION,%ZIS="QM" D ^%ZIS I POP S IOP=PSOION D ^%ZIS K IOP,PSOION G END
- I $D(IO("Q")) K PSOION S ZTDTH=$H,ZTDESC="Compile and print daily, monthly and quarterly amis totals",ZTIO=IO,ZTRTN="ENQ^PSOAMIS1" F G="PSDATE","BQTR","EQTR","MON","EDT" S:$D(@G) ZTSAVE(G)=""
+ I $D(IO("Q")) K PSOION S ZTDTH=$H,ZTDESC="Compile and print daily, monthly and quarterly amis totals",ZTIO=ION,ZTRTN="ENQ^PSOAMIS1" F G="PSDATE","BQTR","EQTR","MON","EDT" S:$D(@G) ZTSAVE(G)=""
  I  D ^%ZTLOAD W:$D(ZTSK) !,"Report queued to print!" K G,ZTSAVE,ZTSK,ZTIO,PSDATE,BQTR,EQTR,MON,EDT Q
 ENQ ;start computations
  K ^TMP("PSOAMIS",$J) S PG=0 F DIV=0:0 S DIV=$O(^PS(59,DIV)) Q:'DIV  D

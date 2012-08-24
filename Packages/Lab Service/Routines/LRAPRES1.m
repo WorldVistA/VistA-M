@@ -1,5 +1,5 @@
 LRAPRES1 ;DALOI/WTY/KLL/CKA - AP ESIG RELEASE REPORT/ALERT;11/13/01
- ;;5.2;LAB SERVICE;**259,336,369,365,397**;Sep 27, 1994;Build 1
+ ;;5.2;LAB SERVICE;**259,336,369,365,397,413**;Sep 27, 1994;Build 2
  ;
  ;Reference to FILE^TIUSRVP supported by IA #3540
  ;Reference to ^TIULQ supported by IA #2693 
@@ -167,7 +167,7 @@ CLSSCHK(DUZ,LREND) ;Determine if user has the proper class settings and
  .K LRMSG
  .S LREND=1
  S LRPCEXP=+$P(LRPCSTR,"^",6)
- I LRPCEXP D  Q
+ I LRPCEXP,LRPCEXP<DT D  Q
  .K LRMSG
  .S LRMSG="PERSON CLASS has expired.  Electronic signature"
  .S LRMSG=LRMSG_" is not authorized."

@@ -3,7 +3,7 @@ VAQREQ09 ;ALB/JFP - PDX, REQUEST PATIENT DATA, HELP MESSAGES;01MAR93
 EP ; -- Main entry point for the list processor
 HLPDOM1 ; -- Displays options for call to domain
  W !!,"The network address of the site you are requesting/sending PDX"
- W !,"data (ie: BOSTON.VA.GOV).  The following prompt will repeat until"
+ W !,"data (ie: BOSTON.DOMAIN.EXT).  The following prompt will repeat until"
  W !,"a <RET> is entered.  This will allow for multiple selection."
  W !!,"Options for Domain Prompt:",!
  W !," Enter Domain: domain name            ; selects domain"

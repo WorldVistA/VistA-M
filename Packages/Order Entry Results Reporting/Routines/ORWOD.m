@@ -1,5 +1,5 @@
 ORWOD ; SLC/GSS - Utility for Order Dialogs ; 7/24/09 9:55am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,296,280**;DEC 17, 1997;Build 85
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,296,280,322**;DEC 17, 1997;Build 15
  ;
  ; DBIA 5133: reading ^PXRMD file #801.41
  ; 
@@ -19,7 +19,7 @@ ATWILL ;Entry point for ORDER MENU MANAGEMENT menu - ORCM MGMT opt MR
  W !,"will be sent to you via Mailman.",!
  S DIR(0)="FAO",DIR("A")="Do you wish to continue? " D ^DIR Q:X=""!(X="^")
  S ORCDD=$TR(X,"yn","YN") I ORCDD'="Y",ORCDD'="N" W "  Enter Y or N",! G ATWILL
- I X="N" W "...report not compiled" Q
+ I ORCDD="N" W "...report not compiled" Q  ;DJE/VM *322 X changed to ORCDD
  W !,"Compiling Med Quick Order check report..."
  D MAIN
  W !,"...QO check report compiled and mailed to ",$P(^VA(200,DUZ,0),U)

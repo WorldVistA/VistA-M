@@ -1,5 +1,5 @@
 RCBEUTR1 ;WISC/RFJ-add int,admin chg or increase,decrease principal  ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,169,192,226,270**;Mar 20, 1995;Build 25
+ ;;4.5;Accounts Receivable;**153,169,192,226,270,276**;Mar 20, 1995;Build 87
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -71,7 +71,7 @@ INCDEC(RCBILLDA,RCVALUE,RCCOMMNT,RCDATE,RCPREPAY,RCONTADJ,RCCRD) ;
  ;
  ;  returns transaction number added to 433 if successful.
  ;
- N ADJNUMB,RCDRSTRG,RCTRANDA,X,Y
+ N ADJNUMB,RCDRSTRG,RCTRANDA,X,Y,RCNEG
  ;
  ;  add the transaction (if added to 433, transaction is locked)
  S RCTRANDA=$$ADD433^RCBEUTRA(RCBILLDA,$S(RCVALUE>0:1,1:35)) I 'RCTRANDA Q 0
@@ -118,7 +118,8 @@ INCDEC(RCBILLDA,RCVALUE,RCCOMMNT,RCDATE,RCPREPAY,RCONTADJ,RCCRD) ;
  D FYMULT^RCBEUTRA(RCTRANDA)
  ;
  ;  update the bill file with the balance of the transaction
- D SETBAL^RCBEUBIL(RCTRANDA)
+ ; PRCA276 - add exception condition - needs to quit receipt processing when negative claim balance could result
+ S RCNEG=0 D SETBAL^RCBEUBIL(RCTRANDA,.RCNEG) I RCNEG D DEL433^RCBEUTRA(RCTRANDA,"CANCELLED WORKLIST DEC ADJ TO PREVENT NEG PRIN BAL",1) L -^PRCA(433,RCTRANDA) Q "0^1"
  ;
  ;  if the bill has no balance, close or cancel it
  D CLOSEIT(RCBILLDA)

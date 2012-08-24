@@ -51,7 +51,7 @@ EN ;Entry Point
  I $D(ERROR("DIERR")) S RMPRMSG(1.1)="******* ERROR ENCOUNTERED*******"
  S XMDUZ=.5
  S XMY("G.RMPR SERVER")=""
- S XMY("VHACOPSASPIPReport@med.va.gov")=""
+ S XMY("VHACOPSASPIPReport@DOMAIN.EXT")=""
  S XMSUB="PSAS HCPCS Item Server Update "_$P($$SITE^VASITE,U,2)
  S RMPRMSG(1)="The National PSAS Item Server has been activated today by Prosthetics HQ."
  S RMPRMSG(2)="Please print your HCPCS Mapping File."
@@ -65,7 +65,7 @@ EN ;Entry Point
 NOGO ;message not valid
  S XMDUZ=.5
  S XMY("G.RMPR SERVER")=""
- S XMY("VHACOPSASPIPReport@med.va.gov")=""
+ S XMY("VHACOPSASPIPReport@DOMAIN.EXT")=""
  S XMSUB="**ERROR** Not Authorized HCPCS Item Server Update From "_$P($$SITE^VASITE,U,2)
  S RMPRMSG(1)="The National PSAS Item Server was unsuccessful today."
  S RMPRMSG(2)="****ERROR**** Not Authorized!"

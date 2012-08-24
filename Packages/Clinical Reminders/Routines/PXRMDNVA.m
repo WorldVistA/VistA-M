@@ -1,5 +1,5 @@
-PXRMDNVA ; SLC/PKR - Handle non-VA med findings. ;02/10/2010
- ;;2.0;CLINICAL REMINDERS;**4,6,17**;Feb 04, 2005;Build 102
+PXRMDNVA ;SLC/PKR - Handle non-VA med findings. ;07/08/2010
+ ;;2.0;CLINICAL REMINDERS;**4,6,17,18**;Feb 04, 2005;Build 152
  ;
  ;===============================================
 GETDATA(DAS,FIEVT) ;Return data for an non-VA med finding.
@@ -35,7 +35,7 @@ OUTPUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the clinical
  S TEXT(NLINES)=$$INSCHR^PXRMEXLC(INDENT," ")_"Non-VA med: "_IFIEVAL("ORDERABLE ITEM")
  S DATE=IFIEVAL("DATE")
  S TEMP=$$EDATE^PXRMDATE(DATE)_" Status: "_IFIEVAL("STATUS")_"\\"
- S TEMP=TEMP_"Start Date: "_$$EDATE^PXRMDATE(DATE)
+ S TEMP=TEMP_"Start Date: "_$$EDATE^PXRMDATE(IFIEVAL("START DATE"))
  S DATE=IFIEVAL("DISCONTINUED DATE")
  S DATE=$S(DATE="":"NONE",1:$$EDATE^PXRMDATE(DATE))
  S TEMP=TEMP_" Discontinued Date: "_DATE

@@ -1,5 +1,5 @@
-ORWDX1 ; SLC/KCM/REV - Utilities for Order Dialogs ;09/09/2008
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,187,195,215,243,296**;Dec 17, 1997;Build 19
+ORWDX1 ; SLC/KCM/REV - Utilities for Order Dialogs ; 11/15/10 12:56pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,187,195,215,243,296,341**;Dec 17, 1997;Build 3
  ;
 WRLST(LST,LOC) ; Return list of dialogs for writing orders
  ; .Y(n): DlgName^ListBox Text
@@ -136,8 +136,9 @@ ORDMATCH(ORY,DFN,ORYARR) ;
  S CNT=0,MATCH=1
  F  S CNT=$O(ORYARR(CNT)) Q:CNT'>0!(MATCH=0)  D
  . S ORDERID=$P(ORYARR(CNT),U),STATUS=$P(ORYARR(CNT),U,2)
- . I ORDERID=0,$G(ACTION)="" Q
+ . ;*341 Set up Action before validation.
  . S IEN=$P(ORDERID,";"),ACTION=$P(ORDERID,";",2)
+ . I ORDERID=0,$G(ACTION)="" Q 
  . I STATUS=$P($G(^OR(100,IEN,3)),U,3) Q
  . I $P($G(^ORD(100.01,STATUS,0)),U)="DISCONTINUED/EDIT" Q
  . ;S MATCH=0

@@ -1,5 +1,5 @@
 PSOORFI4 ;BIR/SAB-CPRS order checks and display con't ;6/17/09 1:11pm
- ;;7.0;OUTPATIENT PHARMACY;**46,74,78,99,117,131,207,258,274,300,308,251**;DEC 1997;Build 202
+ ;;7.0;OUTPATIENT PHARMACY;**46,74,78,99,117,131,207,258,274,300,308,251,384**;DEC 1997;Build 7
  ;External reference to ^PS(51.2 supported by DBIA 2226
  ;External reference to ^PS(50.607 supported by DBIA 2221
  ;External reference ^PS(55 supported by DBIA 2228
@@ -71,7 +71,7 @@ DOSE ;displays dosing info for pending orders.  called from psoorfi1
  .S PSONEW("DOSE",II)=$P(DOSE1,"^"),PSONEW("DOSE ORDERED",II)=$P(DOSE1,"^",2),PSONEW("UNITS",II)=$P(DOSE,"^",9),PSONEW("NOUN",II)=$P(DOSE,"^",5)
  .S:$P(DOSE,"^",9) UNITS=$P(^PS(50.607,$P(DOSE,"^",9),0),"^")
  .S PSONEW("VERB",II)=$P(DOSE,"^",10),PSONEW("ROUTE",II)=$P(DOSE,"^",8)
- .S:$P(DOSE,"^",8) ROUTE=$P(^PS(51.2,$P(DOSE,"^",8),0),"^")
+ .S ROUTE="" S:$P(DOSE,"^",8) ROUTE=$P(^PS(51.2,$P(DOSE,"^",8),0),"^")
  .S PSONEW("SCHEDULE",II)=$P(DOSE,"^"),PSONEW("DURATION",II)=$P(DOSE,"^",2)
  .S DOENT=$G(DOENT)+1 I $P(DOSE,"^",6)]"" S PSONEW("CONJUNCTION",II)=$S($P(DOSE,"^",6)="S":"T",$P(DOSE,"^",6)="X":"X",1:"A")
  .I 'PSONEW("DOSE ORDERED",II),$G(PSONEW("VERB",II))]"" S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="               Verb: "_$G(PSONEW("VERB",II))

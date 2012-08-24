@@ -1,5 +1,5 @@
-PSORXL1 ;BIR/SAB-action to be taken on prescriptions ;10/5/07 2:40pm
- ;;7.0;OUTPATIENT PHARMACY;**36,46,148,260,274,287,289,358,251**;DEC 1997;Build 202
+PSORXL1 ;BIR/SAB - action to be taken on prescriptions ;10/5/07 2:40pm
+ ;;7.0;OUTPATIENT PHARMACY;**36,46,148,260,274,287,289,358,251,385,403**;DEC 1997;Build 9
  ;External reference to $$DS^PSSDSAPI supported by DBIA 5424
 S S SPPL="",PPL1=1 S:'$G(PPL) PPL=$G(PSORX("PSOL",PPL1)) G:$G(PPL)']"" D1
 S1 F PI=1:1 Q:$P(PPL,",",PI)=""  S DA=$P(PPL,",",PI) D
@@ -22,6 +22,8 @@ SUS S ACT=1,RXN=DA,RX0=^PSRX(DA,0),SD=$S($G(ZD(DA)):$E(ZD(DA),1,7),1:$P(^(3),"^"
  G:$G(RXRP(DA))!($G(RXPR(DA))) LOCK
  I $G(PSXSYS) D SUS1^PSOCMOP I $G(XFLAG)=1 K XFLAG Q
 LOCK I $P($G(^PSRX(RXN,"STA")),"^")=3 G SUSQ
+ ; The PSOSITE variable will not be set by the code that processes the CMOP release message - PSO*7*403
+ I '$G(PSOSITE) N PSOSITE S PSOSITE=$$RXSITE^PSOBPSUT(RXN,$G(RXFL(RXN)))
  S RXP=+$G(RXPR(DA)),DIC="^PS(52.5,",DIC(0)="L",X=RXN,DIC("DR")=".02///"_SD_";.03////"_$P(^PSRX(DA,0),"^",2)_";.04///M;.05///"_RXP_";.06////"_PSOSITE_";2///0" K DD,DO D FILE^DICN D  I +Y,'$G(RXP),$G(RXRP(RXN)) S $P(^PS(52.5,+Y,0),"^",12)=1
  .K DD,DO I +Y,$G(PSOEXREP) S $P(^PS(52.5,+Y,0),"^",12)=1
  .I +Y S $P(^PS(52.5,+Y,0),"^",13)=$G(RXFL(RXN))
@@ -34,7 +36,7 @@ LOCK I $P($G(^PSRX(RXN,"STA")),"^")=3 G SUSQ
  ;
  ; - If not a PARTIAL, reverse ECME Claim, if necessary
  I '$G(RXFL(RXN)) S RXFL(RXN)=$$LSTRFL^PSOBPSU1(RXN)
- I '$G(RXP),'$G(PSONPROG) D REVERSE^PSOBPSU1(RXN,,"DC",3)  ;PSONPROG - Tricare in progress, don't reverse
+ I '$G(RXP),'$G(PSONPROG) D REVERSE^PSOBPSU1(RXN,,"DC",3)  ;PSONPROG - TRICARE or CHAMPVA in progress, don't reverse
  K COMM
 SUSQ Q
  ;PSO*7*274 always recalculate RXF
@@ -95,7 +97,7 @@ ECME ; - Looks for DUR/79 REJECTS and send Mail Rx's to ECME that have not been 
  S PPLTMP=$G(PPL)
  F PSOI=1:1 S PSORX=+$P($G(PPLTMP),",",PSOI) Q:'PSORX  D
  . D TRIC(PSORX) S ESTAT=$P($$STATUS^PSOBPSUT(PSORX,PSORF),"^")
- . I PSOTRIC S EACTION=$S(ESTAT["PAYABLE":1,ESTAT["Inactive ECME Tricare":1,ESTAT="":1,1:0)
+ . I PSOTRIC S EACTION=$S(ESTAT["PAYABLE":1,ESTAT="":1,1:0)
  . I $G(PSOCKDC) D  Q  ;PSOCKDC variable is set in PSORXL and is used to eliminate label print for DC'ed Rx's
  . . S PSOSTA=$$GET1^DIQ(52,PSORX,100,"I") I PSOSTA=12!(PSOSTA=11),'$G(RXPR(PSORX)),$G(PPL) D RMV(PSORX,.PPL)
  . I $G(RXPR(PSORX)) Q

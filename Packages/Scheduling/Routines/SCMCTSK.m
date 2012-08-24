@@ -1,5 +1,5 @@
 SCMCTSK ;ALB/JDS - PCMM ; 03 Jun 2004  3:30 PM
- ;;5.3;Scheduling;**264,278,272,297**;AUG 13, 1993
+ ;;5.3;Scheduling;**264,278,272,297,581**;AUG 13, 1993;Build 16
  Q
 RPT1 ;REPORT
  N DHD,DIOBEG
@@ -112,14 +112,14 @@ POST278 ;postinit for 278
  .S DIC("DR")=".02////"_(+ENTRY)_";.03////"_DT_";.04////1",DIC(0)="LM"
  .K DO S X="SD*5.3*278",DIC="^SCTM(404.45," D FILE^DICN
  Q
-FTEE(DATA,SCTEAM) ;return list of posistions for the team
+FTEE(DATA,SCTEAM) ;return list of positions for the team
  ;IEN^POSITION^PROVIDER^FTEE
  N CNT,I,J,K,A S CNT=1 S SCTEAM=+$G(SCTEAM),DATA(1)="<DATA>"
  S A=""
  F  S A=$O(^SCTM(404.57,"ATMPOS",SCTEAM,A)) Q:A=""  D
  .F I=0:0 S I=$O(^SCTM(404.57,"ATMPOS",SCTEAM,A,I)) Q:'I  D
  ..I '$$DATES^SCAPMCU1(404.59,I) Q   ;Not an active position
- ..I '$P($G(^SCTM(404.57,I,0)),U,4) Q  ;Not PC
+ ..;I '$P($G(^SCTM(404.57,I,0)),U,4) Q  ;Not PC; include sd/581
  ..S J=-(DT+1) S J=$O(^SCTM(404.52,"AIDT",I,1,J)) Q:J=""
  ..I $O(^SCTM(404.52,"AIDT",I,0,-(DT+1)))<J Q
  ..S K=0 S K=$O(^SCTM(404.52,"AIDT",I,1,J,K)) Q:'K

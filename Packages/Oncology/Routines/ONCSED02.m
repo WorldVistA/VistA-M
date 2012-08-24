@@ -8,7 +8,7 @@ ONCSED02 ;Hines OIFO/SG - EDITS 'RUN BATCH' (PARSER)  ; 8/16/06 1:07pm
  ;   xmlns:soap="http://www.w3.org/2001/12/soap-envelope"
  ;   soap:encodingStyle="http://www.w3.org/2001/12/soap-encoding">
  ;   <soap:Body>
- ;     <ED-RESPONSE xmlns="http://vista.med.va.gov/oncology">
+ ;     <ED-RESPONSE xmlns="http://vista.DOMAIN.EXT/oncology">
  ;       <EDIT-SET NAME="..." ECNT="...">
  ;         <EDIT INDEX="..." NAME="..." ECNT="..." WCNT="...">
  ;           <FLD NAME="..." POS="..."> ... </FLD>

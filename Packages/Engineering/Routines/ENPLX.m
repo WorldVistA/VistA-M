@@ -9,7 +9,7 @@ EN(ENTY) ; entry point
  S MSG(1)="     This option is now Out of Order.  Construction project "
  S MSG(1)=MSG(1)_"data is now "
  S MSG(2)="     entered and reported in a web database at "
- S MSG(2)=MSG(2)_"http://vaww.va.gov/capassets."
+ S MSG(2)=MSG(2)_"http://vaww.DOMAIN.EXT/capassets."
  S MSG(3,"F")="!!"
  S MSG(3)="     Please, contact your Network Capital Assets Coordinator,"
  S MSG(3)=MSG(3)_" or VSSC"

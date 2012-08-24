@@ -1,0 +1,62 @@
+EAS120P ;ALB/AEG - EAS*1*20 POST-INSTALL ;10-1-2002
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**20**;MAR 15,2001
+ ;
+EN ; MAIN ENTRY POINT.
+ N NSPACE,CVER
+ S NSPACE="IVMC"
+ ; check for existence of 'IVMC' namespace in package file (#9.4)
+ S CVER=$$VERSION^XPDUTL("IVMC")
+ I CVER']"" D  Q
+ .D BMES^XPDUTL("SITE "_$$GETSITE^DGMTU4(.DUZ)_" IS NOT A DCD PILOT SITE")
+ .D MES^XPDUTL("POST-INSTALLATION COMPLETE")
+ .Q
+ I CVER]"" D  Q
+ .I $G(DT)<3021015 D
+ ..D QUEUE
+ ..Q
+ .I $G(DT)>3021014 D
+ ..N IEN
+ ..S IEN=$$GETIEN()
+ ..D:$G(IEN)>0 CLEANIT(IEN)
+ ..D QUIT
+ ..Q
+ .Q
+ Q
+ ;
+QUEUE ; Queue this process to run at 1 minute past midnight on 10/15/02
+ N ZTRTN,ZTSK,ZTKIL,ZTSAVE,ZTDESC,ZTDTH,ZTIO
+ S ZTRTN="EN1^EAS120P",ZTSAVE("*")="",ZTIO=""
+ S ZTDESC="EAS*1*20 POST-INSTALL",ZTDTH=3021015.0001
+ D ^%ZTLOAD
+ I $G(ZTSK)>0 D
+ .D BMES^XPDUTL("EAS*1*20 POST INSTALL TASK #"_ZTSK_" QUEUED TO RUN "_$$FMTE^XLFDT(3021015.0001))
+ D HOME^%ZIS
+ Q
+ ;
+EN1 ; Main Entry Point to queue current version cleanup of "IVMC"
+ ; package file entry.
+ ;
+ N IEN
+ S IEN=$$GETIEN()
+ D:$G(IEN)>0 CLEANIT(IEN)
+ D QUIT
+ Q
+ ;
+GETIEN() ; Get IEN
+ N IEN,NSPACE
+ S NSPACE="IVMC"
+ S IEN=$O(^DIC(9.4,"C",NSPACE,0)) S:IEN'>0 IEN=$O(^DIC(9.4,"B",NSPACE,0))
+ Q IEN
+ ;
+CLEANIT(IEN) ;
+ ; Input : IEN = internal entry number of package file entry (#9.4)
+ ; Output: none.
+ ;
+ N FIELD,FILE
+ S FIELD=13,FILE=9.4
+ S DATA(FIELD)="@"
+ I $$UPD^DGENDBS(FILE,IEN,.DATA)
+ Q
+ ;
+QUIT ;
+ Q

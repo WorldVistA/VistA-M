@@ -1,12 +1,12 @@
 XUMFQR ;ISS/RAM - Master File Query Response ;06/28/00
- ;;8.0;KERNEL;**407**;Jul 10, 1995;Build 8
+ ;;8.0;KERNEL;**407,502**;Jul 10, 1995;Build 17
  ;
  Q
  ;
 MAIN ; -- main
  ;
  N FIELD1,IDX,IDX1,NAME1,SUBFILE1,DATA1,IEN1,TYP1,MKEY,MKEY1,TYP,VUID,VUID1
- N MFI,SEQ,NAME,QRD,SEQ,SUBFILE,IEN,CNT,DATA,ERROR
+ N MFI,SEQ,NAME,QRD,SEQ,SUBFILE,IEN,CNT,DATA,ERROR,SORTBY,FILTERBY,FILTER,ERRCNT
  ;
  D INIT,PROCESS,MFR,SEND,EXIT
  ;
@@ -16,7 +16,7 @@ INIT ; -- initialize
  ;
  K ^TMP("HLA",$J)
  ;
- S ERROR=0,CNT=1
+ S ERROR=0,CNT=1,ERRCNT=0
  ;
  S HLFS=HL("FS"),HLCS=$E(HL("ECH")),HLSCS=$E(HL("ECH"),4)
  ;
@@ -37,11 +37,14 @@ MSH ; -- MSH segment
  ;
 QRD ; -- QRD segment
  ;
- S MFI=$P(HLNODE,HLFS,10)
+ Q:ERROR
+ ;
+ S MFI=$P(HLNODE,HLFS,10),FILTER=$P(MFI,HLCS,2),MFI=$P(MFI,HLCS)
  I MFI="" S ERROR="1^MFI not resolved HLNODE: "_$TR(HLNODE,HLFS,"#") Q
  S IFN=$O(^DIC(4.001,"MFID",MFI,0))
  I 'IFN S ERROR="1^IFN not resolved HLNODE: "_$TR(HLNODE,HLFS,"#") Q
  I '$$VFILE^DILFD(IFN) S ERROR="1^invalid file number" Q
+ S DATA=$G(^DIC(4.001,+IFN,0)),SORTBY=$P(DATA,U,8),FILTERBY=$P(DATA,U,9)
  ;
  ; -- get root of file
  S ROOT=$$ROOT^DILFD(IFN,,1)
@@ -67,12 +70,16 @@ MSA ; -- Acknowledgement
  ;
 QRD1 ; -- query definition segment
  ;
- S ^TMP("HLA",$J,CNT)=QRD
+ Q:ERROR
+ ;
+ S ^TMP("HLA",$J,CNT)=$G(QRD)
  S CNT=CNT+1
  ;
  Q
  ;
 MFI ; master file identifier segment
+ ;
+ Q:ERROR
  ;
  S ^TMP("HLA",$J,CNT)=$$MFI^XUMFMFI(MFI,"Standard Terminology","MUP",$$NOW^XLFDT,$$NOW^XLFDT,"NE")
  S CNT=CNT+1
@@ -81,8 +88,21 @@ MFI ; master file identifier segment
  ;
 MFE ; master file entry segment
  ;
- S VUID=0 F  S VUID=$O(@ROOT@("AMASTERVUID",VUID)) Q:'VUID  D
- .S IEN=$O(@ROOT@("AMASTERVUID",VUID,1,0)) Q:'IEN
+ Q:ERROR
+ ;
+ S VUID=0 F  S VUID=$O(@ROOT@($S(SORTBY'="":SORTBY,1:"AMASTERVUID"),VUID)) Q:'VUID  D  Q:ERROR
+ .I SORTBY="" S IEN=$O(@ROOT@("AMASTERVUID",VUID,1,0)) Q:'IEN
+ .I SORTBY'="" S IEN=$O(@ROOT@(SORTBY,VUID,0)) Q:'IEN
+ .;
+ .I FILTER'="" D  Q:VALUE'=FILTER
+ ..S DATA=$G(^DIC(4.001,+IFN,0)),FILTERBY=$P(DATA,U,9)
+ ..I FILTERBY="" S VALUE="ERROR" Q  ;add error processing
+ ..S IDX=$O(^DIC(4.001,+IFN,1,"B",FILTERBY,0))
+ ..S DATA=$G(^DIC(4.001,+IFN,1,+IDX,0)),FIELD=$P(DATA,U,2)
+ ..S TYP=$P(DATA,U,3),TYP=$$GET1^DIQ(771.4,(+TYP_","),.01)
+ ..S VUID1=$P(DATA,U,13)
+ ..S VALUE=$$VVAL(IFN,IEN_",",FIELD,$G(VUID1),TYP)
+ .;
  .S ^TMP("HLA",$J,CNT)=$$MFE^XUMFMFE("MUP","",$$NOW^XLFDT,MFI_"@"_VUID)
  .S CNT=CNT+1
  .D ZRT
@@ -90,6 +110,8 @@ MFE ; master file entry segment
  Q
  ;
 ZRT ; data segments
+ ;
+ Q:ERROR
  ;
  S SEQ=0
  F  S SEQ=$O(^DIC(4.001,IFN,1,"ASEQ",SEQ)) Q:'SEQ  D
@@ -100,7 +122,8 @@ ZRT ; data segments
  .S VUID1=$P(DATA,U,13),WP=$P(DATA,U,16)
  .;
  .I NAME="Status" D  Q
- ..S ^TMP("HLA",$J,CNT)="ZRT"_HLFS_NAME_HLFS_(+$P($$GETSTAT^XTID(IFN,,IEN_","),U))
+ ..S:IFN'=757.33 ^TMP("HLA",$J,CNT)="ZRT"_HLFS_NAME_HLFS_(+$P($$GETSTAT^XTID(IFN,,IEN_","),U))
+ ..S:IFN=757.33 ^TMP("HLA",$J,CNT)="ZRT"_HLFS_NAME_HLFS_$$STAT^XUMF502
  ..S CNT=CNT+1
  .;
  .I WP D WP Q
@@ -116,8 +139,11 @@ ZRT ; data segments
  ;
 SUBFILE ;
  ;
+ Q:ERROR
+ ;
  I NAME="Status" D  Q
- .S ^TMP("HLA",$J,CNT)="ZRT"_HLFS_NAME_HLFS_+$$GETSTAT^XTID(IFN,,IEN_",")
+ .S:IFN'=757.33 ^TMP("HLA",$J,CNT)="ZRT"_HLFS_NAME_HLFS_+$$GETSTAT^XTID(IFN,,IEN_",")
+ .S:IFN=757.33 ^TMP("HLA",$J,CNT)="ZRT"_HLFS_NAME_HLFS_$$STAT^XUMF502
  .S CNT=CNT+1
  ;
  N ROOT
@@ -139,6 +165,8 @@ SUBFILE ;
  Q
  ;
 SUBREC ; -- sub-records
+ ;
+ Q:ERROR
  ;
  N SEQ1,FIELD1,NAME1,VUID2,TYP2
  ;
@@ -210,17 +238,43 @@ ESC(VALUE) ;
  ;
  Q VALUE
  ;
+VVAL(IFN,IENS,FIELD,VUID,TYP) ;
+ ;
+ Q:IFN="" "" Q:FIELD="" "" Q:IENS="" ""
+ ;
+ S:$G(TYP)="" TYP="ST"
+ S VUID=$S($G(VUID)'="":":99.99",1:"")
+ I IFN=757.33,$G(VUID)'="" S VUID=":5"
+ ;
+ S VALUE=$$GET1^DIQ(IFN,IENS,FIELD_VUID) Q:VALUE="" ""
+ ;S VALUE=$$GET1^DIQ(IFN,IENS,FIELD) Q:VALUE="" ""
+ S VALUE=$$DTYP^XUMFP(VALUE,TYP,HLCS,1)
+ S VALUE=$$ESC(VALUE)
+ ;
+ ;I IFN=757.32,FIELD=.02 Q $$MAPDEF
+ ;
+ ;Q $$VAL^XUMF0(IFN,FIELD,VUID,VALUE,IENS)
+ ;
+ Q VALUE
+ ;
 VALUE(IFN,IENS,FIELD,VUID,TYP) ;
  ;
  Q:IFN="" "" Q:FIELD="" "" Q:IENS="" ""
  ;
  S:$G(TYP)="" TYP="ST"
- ;S VUID=$S($G(VUID)'="":":99.99",1:"")
  ;
- ;S VALUE=$$GET1^DIQ(IFN,IENS,FIELD_VUID) Q:VALUE="" ""
  S VALUE=$$GET1^DIQ(IFN,IENS,FIELD) Q:VALUE="" ""
  S VALUE=$$DTYP^XUMFP(VALUE,TYP,HLCS,1)
  S VALUE=$$ESC(VALUE)
  ;
+ I IFN=757.33,FIELD=.02 Q $$MAPDEF
+ ;
  Q VALUE
+ ;
+MAPDEF() ;
+ ;
+ N X,Y
+ S X=$O(^LEX(757.32,"B",VALUE,0)) Q:'X 0
+ S Y=$G(^LEX(757.32,X,2))
+ Q $P(Y,U,3)
  ;

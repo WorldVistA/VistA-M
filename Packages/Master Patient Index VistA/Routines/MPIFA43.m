@@ -1,5 +1,5 @@
-MPIFA43 ;BIR/DLR-Utility for processing an ADT-A43 Un-link ID ;MAR 18, 2002
- ;;1.0; MASTER PATIENT INDEX VISTA ;**22,41,46**;30 Apr 99;Build 5
+MPIFA43 ;BIR/DLR-Utility for processing an ADT-A43 Un-link ID ; 1/4/12 12:55pm
+ ;;1.0;MASTER PATIENT INDEX VISTA;**22,41,46,54**;30 Apr 99;Build 2
 DBIA ; Supported IA's
  ;
  ;IA: 2796  - EXC, START, and STOP^RGHLLOG
@@ -87,7 +87,8 @@ MOVE(ARRAY,ERROR) ;
  .;if assigning authority '= site station# then remove assigning authority from TF list for the given ICN
  .N MPISITE S MPISITE=$$IEN^XUAF4(ARRAY("DFNLOC"))
  . I ARRAY("DFNLOC")'>0 S ERROR="-1^Unable to remove station#"_ARRAY("DFNLOC")_" from TF list" Q
- . I +ARRAY("DFNLOC")>0 S ERROR=$$DELETETF^VAFCTFU(+ARRAY("ICNMISMATCH"),MPISITE)
+ .;**54 - MVI_1009 (ckn) - Do not call DELETETF
+ .; I +ARRAY("DFNLOC")>0 S ERROR=$$DELETETF^VAFCTFU(+ARRAY("ICNMISMATCH"),MPISITE)
  ;delete all TF's for this mismatched record
  S ERROR=$$DELALLTF^VAFCTFU(ARRAY("ICNMISMATCH"))
  ;if ARRAY("DFN")="" assume this is old message format and use ARRAY("ICNMISMATCHED") to get the DFN that was mismatched

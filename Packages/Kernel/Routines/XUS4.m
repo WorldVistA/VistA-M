@@ -1,5 +1,6 @@
-XUS4 ;SEA/FDS - ACCESS CODE GENERATOR ;03/23/2001  08:45
- ;;8.0;KERNEL;**180**;Jul 10, 1995
+XUS4 ;SEA/FDS - ACCESS CODE GENERATOR ;2/1/2012  08:45
+ ;;8.0;KERNEL;**180,574**;Jul 10, 1995;Build 5
+ ;Per VHA Directive 2004-038, this routine should not be modified
 S G 2 ;Change to select auto generate style.
  ;
 1 S XUG=$R(4)+5,XUL=0,XUA="" F XUW=0:0 S XUD=XUG-XUL Q:XUD=0  S:XUD=5 XUD=$R(2)+2 S:XUD>5 XUD=$R(3)+2 D A
@@ -18,11 +19,13 @@ AC() ;Do 2
  D @$S(%>6:"A2(1),N2(0)",1:"N2(1),A2(0)") K %
  Q
 VC() ;Generate a 8 char alpha, numeric, punctuation
+ ; INPUT VAR XUSVCMIN: if defined and =12, generated code will be length 12
  N XUU,%,%1
- S XUU="",%1=$P($H,",",2)#10
- D @$S(%1<4:"A2(1),P2,N2(0)",%1<7:"A2(0),P2,N2(1)",1:"N2(1),A2(0),P2")
+ S XUU="",%1=$P($H,",",2)#12
+ D @$S(%1<3:"P2,A2(1),N2(0)",%1<6:"A2(1),P2,N2(0)",%1<9:"A2(0),P2,N2(1)",1:"N2(1),A2(0),P2")
+ D:($G(XUSVCMIN)=12) A2(1) ;make length 12 for svc accts
  Q XUU
  ;
 A2(F) S %=$R(100000000)+100000000,XUU=XUU_$C($E(%,2,3)#26+65)_$C($E(%,4,5)#26+65)_$C($E(%,6,7)#26+65)_$S(F:$C($E(%,8,9)#26+65),1:"") Q
 N2(F) S XUU=XUU_$E($R(100000)+100000,3,$S(F:6,1:5)) Q
-P2 S XUU=XUU_$E("~`!@#$%&*()_-+=|\{}[]'<>,.?/",$R(28)+1) Q
+P2 S XUU=XUU_$S($G(XUSVCACCT)="1^CONNECTOR PROXY":$E("~`!@#$%*()_-+=|\{}[],.?/",$R(24)+1),1:$E("~`!@#$%&*()_-+=|\{}[]'<>,.?/",$R(28)+1)) Q  ;no XML sp. chars for VL

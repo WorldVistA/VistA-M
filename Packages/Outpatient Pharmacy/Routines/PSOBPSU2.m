@@ -1,5 +1,5 @@
 PSOBPSU2 ;BIRM/MFR - BPS (ECME) Utilities 2 ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359,385**;DEC 1997;Build 27
  ;Reference to File 200 - NEW PERSON supported by IA 10060
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;Reference to $$NCPDPQTY^PSSBPSUT supported by IA 4992
@@ -47,7 +47,8 @@ RXACT(RX,RFL,COMM,TYPE,USR) ; - Add an Activity to the ECME Activity Log (PRESCR
  I '$D(^PSRX(RX)) Q
  ;
  N PSOTRIC S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC)
- I $E(COMM,1,7)'="TRICARE",PSOTRIC S COMM=$E("TRICARE-"_COMM,1,75)
+ I PSOTRIC=1,$E(COMM,1,7)'="TRICARE" S COMM=$E("TRICARE-"_COMM,1,75)
+ I PSOTRIC=2,$E(COMM,1,7)'="CHAMPVA" S COMM=$E("CHAMPVA-"_COMM,1,75)
  N X,DIC,DA,DD,DO,DR,DINUM,Y,DLAYGO
  S DA(1)=RX,DIC="^PSRX("_RX_",""A"",",DLAYGO=52.3,DIC(0)="L"
  S DIC("DR")=".02///"_TYPE_";.03////"_USR_";.04///"_$S(TYPE'="M"&(RFL>5):RFL+1,1:RFL)_";.05///"_COMM
@@ -121,8 +122,8 @@ ECMESTAT(RX,RFL) ;called from local mail
  I STATUS["IN PROGRESS" H 5 S STATUS=$$STATUS^PSOBPSUT(RX,RFL) I STATUS["IN PROGRESS" Q 0
  ;no ECME status, allow to print.  This will eliminate 90% of the cases
  I STATUS="" Q 1
- ;check for Tricare rejects, not allowed to go to print until resolved.
- ;it does not matter much for this API but usually Tricare processing is done first.
+ ;check for TRICARE/CHAMPVA rejects, not allowed to go to print until resolved.
+ ;it does not matter much for this API but usually TRICARE/CHAMPVA processing is done first.
  S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,.PSOTRIC)
  ;Add TRIAUD - if RX/RFL is in audit, allow to print even if not payable; PSO*7*358, cnf
  I PSOTRIC,STATUS'["PAYABLE",'$$TRIAUD^PSOREJU3(RX,RFL) Q 0

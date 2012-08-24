@@ -1,8 +1,9 @@
 XINDX11 ;ISC/GRK - Create phantom routines for functions, options, etc. ;07/08/98  15:06
- ;;7.3;TOOLKIT;**20,27,121**;Apr 25, 1995;Build 7
+ ;;7.3;TOOLKIT;**20,27,121,132**;Apr 25, 1995;Build 13
  ; Per VHA Directive 2004-038, this routine should not be modified.
+ G:INP(10)=9.7 RTN
  W !,"The option and function files are being processed.",!
- I INP(10)=9.4 G PKG
+ G:INP(10)=9.4 PKG
  N KRN,TYPE ;Build file
  S INDFN="^DD(""FUNC"",",INDRN="|func",INDD="Function",INDSB="FUNC",INDXN="Build file" D HDR
  F KRN=0:0 S KRN=$O(^XPD(9.6,INDDA,"KRN",.5,"NM",KRN)) Q:KRN'>0  S INDXN=$P(^(KRN,0),U) D ENTRY
@@ -10,9 +11,9 @@ XINDX11 ;ISC/GRK - Create phantom routines for functions, options, etc. ;07/08/9
  S INDFN="^DIC(19,",INDRN="|opt",INDD="Option",INDSB="OPT",INDXN="Build file" D HDR
  F KRN=0:0 S KRN=$O(^XPD(9.6,INDDA,"KRN",19,"NM",KRN)) Q:KRN'>0  S INDXN=$P(^(KRN,0),U) D ENTRY
  I INDLC=2 K ^UTILITY($J,INDRN),^UTILITY($J,1,INDRN)
- ;Routines
+RTN ;Routines
  ;F KRN=0:0 S KRN=$O(^XPD(9.6,INDDA,"KRN",9.8,"NM",KRN)) Q:KRN'>0  S X=^(KRN,0) I '$P(X,U,3) S ^UTILITY($J,$P(X,U))=""
- I $T(RTN^XTRUTL1)]"" D RTN^XTRUTL1(INDDA)
+ I $T(RTN^XTRUTL1)]"" D RTN^XTRUTL1(INDDA,INP(10))
  Q
 PKG D NAMSP ;Package file
  S INDFN="^DD(""FUNC"",",INDRN="|func",INDD="Function",INDSB="FUNC" D NAME

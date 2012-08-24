@@ -1,6 +1,6 @@
-DITR ;SFISC/GFT-FIND FLDS TO XRF ;1:35 PM  30 Jul 2001
- ;;22.0;VA FileMan;**41**;Mar 30, 1999
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DITR ;SFISC/GFT-FIND FLDS TO XRF ;8SEP2011
+ ;;22.0;VA FileMan;**41,168**;Mar 30, 1999;Build 25
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  N DITRCNT
 LOOP S (DFL,DTL)=DFL-1 Q:'$D(DFN(DFL))
 N S @("DFN(DFL)=$O("_DFR(DFL)_"DFN(DFL)))")
@@ -55,9 +55,9 @@ GO ;
  Q
  ;
 KILLIDX ; Kill the old index for single entry (overwrite mode only).
- N DIK,DA,% S DA=Y,DIK=DTO(DTL),DIK(0)="ABs"
- N Y S %=DFL\2 I % S Y=0 D DA^DITR1
- N %,A,B,D0,DDF,DDT,DFL,DFR,DINUM,DTL,DTN,DTO,I,W,X,Z
+ N DIK,DA,%,A,B S DA=Y,DIK=DTO(DTL),DIK(0)="ABs"
+ S A=$$CREF^DILF(DIK),A=$NA(@A),B=$QL(A)-1 F %=1:1:DFL\2 S DA(%)=$QS(A,B),B=B-2 ;GET SUBSCRIPTED VALUES OF DA  --GFT
+ N D0,DDF,DDT,DFL,DFR,DINUM,DTL,DTN,DTO,I,W,X,Y,Z
  D IX2^DIK Q
  ;
 ERR N DIPAR S DIPAR(.01)=X,DIPAR("IEN")=Y,DIPAR("FILE")=DDT(DFL)

@@ -1,5 +1,5 @@
 VPRDGMV ;SLC/MKB -- Vitals extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;;Sep 01, 2011;Build 12
+ ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -7,7 +7,6 @@ VPRDGMV ;SLC/MKB -- Vitals extract ;8/2/11  15:29
  ; ^SC                          10040
  ; ^VA(200                      10060
  ; DILFD                         2055
- ; DIQ                           2056
  ; GMRVUT0,^UTILITY($J,"GMRVD")  1446
  ; GMVGETQL                      5048
  ; GMVGETVT                      5047
@@ -21,6 +20,7 @@ EN(DFN,BEG,END,MAX,IFN) ; -- find patient's vitals
  S DFN=+$G(DFN) Q:DFN<1
  ;
  ; get one measurement
+ I $G(IFN),IFN?7N1"."1.6N S (BEG,END)=IFN K IFN
  I $G(IFN) D EN1(IFN,.VPRITM),XML(.VPRITM) Q
  ;
  ; get all measurements
@@ -33,8 +33,7 @@ EN(DFN,BEG,END,MAX,IFN) ; -- find patient's vitals
  .. N NAME,VUID,RESULT,UNIT,MRES,MUNT,HIGH,LOW,QUAL
  .. S IFN=+$O(^UTILITY($J,"GMRVD",IDT,TYPE,0)),X0=$G(^(IFN))
  .. S X=+$P(X0,U,3),NAME=$$FIELD^GMVGETVT(X,1)
- .. S VUID=$$FIELD^GMVGETVT(X,4),RESULT=$P(X0,U,8)
- .. S UNIT=$S(TYPE="T":"F",TYPE="HT":"in",TYPE="WT":"lb",TYPE="CVP":"cmH2O",TYPE="CG":"in",1:"")
+ .. S VUID=$$FIELD^GMVGETVT(X,4),RESULT=$P(X0,U,8),UNIT=$$UNIT(TYPE)
  .. S (MRES,MUNT)="" I $L($P(X0,U,13)) D
  ... S X=$S(TYPE="T":"C",TYPE="HT":"cm",TYPE="WT":"kg",TYPE="CG":"cm",1:"")
  ... S MRES=$P(X0,U,13) S:$L(X) MUNT=X
@@ -59,12 +58,11 @@ EN1(ID,VIT) ; -- return a vital/measurement in VIT("attribute")
  S X=+$P(X0,U,5),VIT("location")=$$LOC(X)
  S VIT("facility")=$$FAC^VPRD(X)
  S NAME=$$FIELD^GMVGETVT($P(X0,U,3),1),VUID=$$FIELD^GMVGETVT($P(X0,U,3),4)
- S X=$P(X0,U,8),RESULT=X,(UNIT,MRES,MUNT)=""
- I TYPE="T" S UNIT="F",MUNT="C" S MRES=$J(X-32*5/9,0,1)  ; EN1^GMRVUTL
- I TYPE="HT" S UNIT="in",MUNT="cm" S MRES=$J(2.54*X,0,2) ; EN2^GMRVUTL
- I TYPE="WT" S UNIT="lb",MUNT="kg" S MRES=$J(X/2.2,0,2)  ; EN3^GMRVUTL
- I TYPE="CG" S UNIT="in",MUNT="cm" S MRES=$J(2.54*X,0,2)
- I TYPE="CVP" S UNIT="cmH2O"
+ S X=$P(X0,U,8),RESULT=X,UNIT=$$UNIT(TYPE),(MRES,MUNT)=""
+ I TYPE="T"  S MUNT="C",MRES=$J(X-32*5/9,0,1) ;EN1^GMRVUTL
+ I TYPE="HT" S MUNT="cm",MRES=$J(2.54*X,0,2)  ;EN2^GMRVUTL
+ I TYPE="WT" S MUNT="kg",MRES=$J(X/2.2,0,2)   ;EN3^GMRVUTL
+ I TYPE="CG" S MUNT="cm",MRES=$J(2.54*X,0,2)
  S VIT("taken")=+X0,VIT("entered")=+$P(X0,U,4),(HIGH,LOW)=""
  S X=$$RANGE(TYPE) I $L(X) S HIGH=$P(X,U),LOW=$P(X,U,2)
  S VIT("measurement",1)=ID_U_VUID_U_NAME_U_RESULT_U_UNIT_U_MRES_U_MUNT_U_HIGH_U_LOW
@@ -73,6 +71,19 @@ EN1(ID,VIT) ; -- return a vital/measurement in VIT("attribute")
  . S X=$P(VPRY(2),U,3)
  . F I=1:1:$L(X,"~") S VIT("removed",I)=$$EXTERNAL^DILFD(120.506,.01,,$P(X,"~",I))
  Q
+ ;
+UNIT(X) ; -- Return unit for vital type X
+ N Y S Y=""
+ I TYPE="BP"  S Y="mm[Hg]"
+ I TYPE="T"   S Y="F"
+ I TYPE="R"   S Y="/min"
+ I TYPE="P"   S Y="/min"
+ I TYPE="HT"  S Y="in"
+ I TYPE="WT"  S Y="lb"
+ I TYPE="CVP" S Y="cmH2O"
+ I TYPE="CG"  S Y="in"
+ I TYPE="PO2" S Y="%"
+ Q Y
  ;
 USER(X) ; -- Return ien^name for person# X
  N Y S X=+$G(X)

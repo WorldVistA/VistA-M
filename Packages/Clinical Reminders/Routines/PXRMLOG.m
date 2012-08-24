@@ -1,5 +1,5 @@
-PXRMLOG ; SLC/PKR - Clinical Reminders logic routines. ;02/26/2010
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17**;Feb 04, 2005;Build 102
+PXRMLOG ;SLC/PKR - Clinical Reminders logic routines. ;11/09/2011
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18**;Feb 04, 2005;Build 152
  ;==========================================================
 EVALPCL(DEFARR,PXRMPDEM,FREQ,PCLOGIC,FIEVAL) ;Evaluate the Patient Cohort
  ;Logic.
@@ -44,7 +44,8 @@ EVALPCL(DEFARR,PXRMPDEM,FREQ,PCLOGIC,FIEVAL) ;Evaluate the Patient Cohort
 ACHK ;
  I FREQ="" D
  . S AGEFI=0
- . S ^TMP(PXRMPID,$J,PXRMITEM,"INFO","NOFREQ")="There is no reminder frequency!"
+ .;If there is no resolution logic then frequency is not required.
+ . I DEFARR(35)'="" S ^TMP(PXRMPID,$J,PXRMITEM,"INFO","NOFREQ")="There is no reminder frequency!"
  E  D
  .;Save the final frequency and age range for display.
  .;Use the z so this will be the last of the info text.
@@ -117,15 +118,15 @@ EVALRESL(DEFARR,RESDATE,RESLOGIC,FIEVAL) ;Evaluate the
  ;
  ;==========================================================
 LOGOP(DT1,DT2,LOP) ;Given two dates return the most recent if the logical
- ;operator is ! and the oldest if it is &. True FFs which don't have
- ;a date are flagged with date of -1.
+ ;operator is ! and the oldest if it is &. 'FIs and FFs which don't
+ ;have a date are flagged with date of -1.
  I DT1=0,DT2=0 Q 0
  I DT1=-1,DT2=-1 Q -1
  N VALUE
  I LOP="&" D  Q VALUE
  . I (DT1=0)!(DT2=0) S VALUE=0 Q
- . I DT1=-1 S VALUE=DT2 Q
- . I DT2=-1 S VALUE=DT1 Q
+ . I (DT1=-1) S VALUE=DT2 Q
+ . I (DT2=-1) S VALUE=DT1 Q
  . S VALUE=$S(DT1>DT2:DT2,1:DT1)
  I LOP'="!" Q 0
  I DT1=-1 Q $S(DT2>0:DT2,1:-1)
@@ -135,45 +136,40 @@ LOGOP(DT1,DT2,LOP) ;Given two dates return the most recent if the logical
  ;==========================================================
 RESDATE(RESLSTR,FIEVAL) ;Return the resolution date based on the following
  ;rules:
- ; Dates that are ORed use the most recent.
- ; Dates that are ANDed use the oldest.
- ;Note: This is routine is call only if the resolution logic is true.
- N DATE,DSTRING,DT1,DT2,DT3,IND,INDEX,JND
- N OPER,PFSTACK,STACK,TEMP
+ ;Dates that are ORed use the most recent.
+ ;Dates that are ANDed use the oldest.
+ ;This is routine is called only if the resolution logic is true.
+ N DATE,DT1,DT2,DT3,FINUM,IND,JND,OPER,PFSTACK,STACK,T1,T2
  ;Remove leading (n) entries.
  I ($E(RESLSTR,1,4)="(0)!")!($E(RESLSTR,1,4)="(1)&") S $E(RESLSTR,1,4)=""
- ;If a finding is NOTTED and the resolution logic evaluates to true
- ;then the finding must be false so it will not have a date,
- ;therefore change 'FI into FF since FFs don't have dates.
- S DSTRING=$$STRREP^PXRMUTIL(RESLSTR,"'FI","FF")
- ;Replace true findings with their dates.
- S OPER="!&"
- D POSTFIX^PXRMSTAC(DSTRING,OPER,.PFSTACK)
- S JND=0
- F IND=1:1:PFSTACK(0) D
- . S TEMP=PFSTACK(IND)
- . I TEMP="FI" D  Q
- .. S IND=IND+1,INDEX=PFSTACK(IND)
- .. S DATE=$S(FIEVAL(INDEX)=1:FIEVAL(INDEX,"DATE"),1:0)
+ S OPER="!&'U"
+ D POSTFIX^PXRMSTAC(RESLSTR,OPER,.PFSTACK)
+ S (IND,JND)=0
+ F  D  Q:(IND'<PFSTACK(0))
+ . S IND=IND+1,T1=PFSTACK(IND)
+ . I T1="FI" D  Q
+ .. S IND=IND+1,FINUM=PFSTACK(IND)
+ ..;Replace true findings with their dates.
+ .. S DATE=$S(FIEVAL(FINUM)=1:FIEVAL(FINUM,"DATE"),1:0)
  .. S JND=JND+1,STACK(JND)=DATE
- . I TEMP["FF" D  Q
- .. S IND=IND+1,INDEX=PFSTACK(IND)
- ..;FFs do not have dates, flag with -1.
- .. S DATE=-1,JND=JND+1,STACK(JND)=DATE
- . I OPER[TEMP S JND=JND+1,STACK(JND)=TEMP
+ . I T1="FF" D  Q
+ ..;FFs do not have dates, flag them all with -1.
+ .. S IND=IND+1,JND=JND+1,STACK(JND)=-1
+ . I OPER[T1 S JND=JND+1,STACK(JND)=T1
  S STACK(0)=JND
  K PFSTACK
  S PFSTACK(0)=0
  F IND=1:1:STACK(0) D
- . S TEMP=STACK(IND)
- . I OPER[TEMP D
- ..;Pop the top two elements on the stack and do the operation.
- .. S DT1=$$POP^PXRMSTAC(.PFSTACK)
- .. S DT2=$$POP^PXRMSTAC(.PFSTACK)
- .. S DT3=$$LOGOP(DT1,DT2,TEMP)
- ..;Save the result back on the stack
- .. D PUSH^PXRMSTAC(.PFSTACK,DT3)
- . E  D PUSH^PXRMSTAC(.PFSTACK,TEMP)
+ . S T1=STACK(IND)
+ . I OPER'[T1 D PUSH^PXRMSTAC(.PFSTACK,T1) Q
+ .;For unary NOT replace the top of the stack with -1.
+ . I T1="'U" S DT1=$$POP^PXRMSTAC(.PFSTACK) D PUSH^PXRMSTAC(.PFSTACK,-1) Q
+ .;Pop the top two elements on the stack and do the operation.
+ . S DT1=$$POP^PXRMSTAC(.PFSTACK)
+ . S DT2=$$POP^PXRMSTAC(.PFSTACK)
+ . S DT3=$$LOGOP(DT1,DT2,T1)
+ .;Save the result back on the stack
+ . D PUSH^PXRMSTAC(.PFSTACK,DT3)
  ;The result is the only thing left on the stack.
  Q $$POP^PXRMSTAC(.PFSTACK)
  ;

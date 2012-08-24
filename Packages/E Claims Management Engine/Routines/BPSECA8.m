@@ -1,25 +1,24 @@
 BPSECA8 ;BHAM ISC/FCS/DRS/VA/DLF - construct a claim reversal ;05/17/04
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10,12,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;External reference to $$PLANEPS^IBNCPDPU supported by IA 5572
+ ;
  Q
- ; REVERSE - The way we build the claim reversal is to take the
- ; source data from the original claim (CLAIMIEN) and position therein (POS).
  ;
- ; Remember, you have two 401 fields - one in header, one in prescription.
+REVERSE(IEN59) ;
+ ; Function to build a Reversal claim by copying selected data from the Billing
+ ;   Request into the new Reversal Claim record
  ;
- ; 5.1 Updates
- ; There are new fields to consider in the 5.1 reversal process, in
- ; addition to a new value for the transaction code (B2)
+ ; Input Parameter
+ ;   IEN59 - Transaction number
+ ; Returns
+ ;   REVIEN (0 if unsuccessful or IEN of the Reversal Claim)
  ;
- ; Input
- ;   IEN59  - Transaction number
- ; Returns REVIEN of the reversal claim created
- ;
-REVERSE(IEN59) ; function, return reversal IEN or zero on failure, from BPSOSRB
  Q:$G(IEN59)="" 0  ; required
  ;
  N BPS,BPSFORM,C,CLAIM,CLAIMIEN,DA,DIC,DIE,DIQ,DLAYGO,DR,I,L,POS,REVIEN,RXMULT,TMP,UERETVAL
- N VERSION,FLD402,X,Y,COB,REC,FN,FDA,MSG,IENS
+ N VERSION,FLD402,X,Y,COB,REC,FN,FDA,MSG,IENS,PLAN,PLANSHT,TRANSHT,SHEETSRC,IEN5902
  ;
  S CLAIM=9002313.02,RXMULT=9002313.0201
  ;
@@ -32,9 +31,30 @@ REVERSE(IEN59) ; function, return reversal IEN or zero on failure, from BPSOSRB
  S POS=$O(^BPSC(CLAIMIEN,400,0))
  I POS="" Q 0
  ;
- ; Get reversal payer sheet.  If missing, quit
- S BPSFORM=$$GET1^DIQ(9002313.59902,"1,"_IEN59_",","902.19","I")
- I BPSFORM="" Q 0
+ ; Get the reversal payer sheets from the Pharmacy Plan and the BPS Transaction
+ S (BPSFORM,PLANSHT,SHEETSRC)=""
+ S IEN5902=$$GET1^DIQ(9002313.59,IEN59,901,"I")
+ I 'IEN5902 S IEN5902=1
+ S PLAN=$$GET1^DIQ(9002313.59902,IEN5902_","_IEN59_",",".01","I")
+ I PLAN S PLANSHT=$P($P($$PLANEPS^IBNCPDPU(PLAN),U,2),",",2),BPSFORM=PLANSHT,SHEETSRC="plan" ; IA5572
+ S TRANSHT=$$GET1^DIQ(9002313.59902,IEN5902_","_IEN59_",","902.19","I")
+ ;
+ ; If the reversal payer sheet is missing from the pharmacy plan or is disabled, use the
+ ;   reversal payer sheet from the transaction record
+ I 'PLANSHT!($$GET1^DIQ(9002313.92,+PLANSHT_",",1.06,"I")=0) S BPSFORM=TRANSHT,SHEETSRC="transaction"
+ ;
+ ; If still no reversal payer sheet, log an error and quit.
+ I 'BPSFORM D LOG^BPSOSL(IEN59,$T(+0)_"-No Reversal Payer Sheet found") Q 0
+ ;
+ ; Log the payer sheet and the source
+ D LOG^BPSOSL(IEN59,$T(+0)_"-Reversal payer sheet "_$$GET1^DIQ(9002313.92,BPSFORM_",",.01,"E")_" ("_BPSFORM_") came from the "_SHEETSRC)
+ ;
+ ; If the payer sheet is different than what is currently stored in the BPS Transaction, update the BPS Transaction
+ I BPSFORM'=TRANSHT D
+ . N DIE,DA,DR,DTOUT
+ . S DIE="^BPST("_IEN59_",10,",DA(1)=IEN59,DA=IEN5902,DR="902.19////^S X=BPSFORM"
+ . D ^DIE
+ . D LOG^BPSOSL(IEN59,$T(+0)_"-Transaction updated with reversal payer sheet "_BPSFORM)
  ;
  ; Get payer sheet version
  S VERSION=$P(^BPSF(9002313.92,BPSFORM,1),"^",2)
@@ -86,7 +106,7 @@ R4 S DIC="^BPSC("_REVIEN_",400,",DIC(0)="LX"
  ;
  ; Update transaction multiple with values
  S DIE="^BPSC("_REVIEN_",400,",DA(1)=REVIEN,DA=1,DR="",C=0
- F I=.03,.04,.05,147,308,337,401,402,403,407,418,430,436,438,455 D
+ F I=.04,.05,147,308,337,402,403,407,418,430,436,438,455 D
  .S C=C+1,$P(DR,";",C)=I_"////"_$G(TMP(RXMULT,POS_","_CLAIMIEN,I,"I"))
  D ^DIE
  ;

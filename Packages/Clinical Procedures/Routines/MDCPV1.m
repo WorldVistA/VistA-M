@@ -1,5 +1,5 @@
 MDCPV1 ;HINES OIFO/DP/BJ - PV1 Segment Routine;08 Aug 2007
- ;;1.0;CLINICAL PROCEDURES;**16**;Apr 01, 2004;Build 280
+ ;;1.0;CLINICAL PROCEDURES;**16,23**;Apr 01, 2004;Build 281
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; - This routine uses the following Integration Agreements (IAs):
@@ -31,8 +31,13 @@ EN(PATMVMT,PV1SEG,PV1RONG) ;
  N APL,APLOC
  S APL=3+1
  S APLOC=$P(PV1SEG,HLFS,APL)
- I $P(APLOC,HLRP,1)="" S PV1RONG=$$PVERMSG^MDCPV1("PV1.3.1",MDCIEN,704.005) Q
- I $P(APLOC,HLRP,2)="" S PV1RONG=$$PVERMSG^MDCPV1("PV1.3.2",MDCIEN,704.005) Q
+ ; Change the delimiters from HLRP to HLCM.  Otherwise a message never gets built.
+ ;I $P(APLOC,HLRP,1)="" S PV1RONG=$$PVERMSG^MDCPV1("PV1.3.1",MDCIEN,704.005) Q
+ ;I $P(APLOC,HLRP,2)="" S PV1RONG=$$PVERMSG^MDCPV1("PV1.3.2",MDCIEN,704.005) Q
+ ;Note: if this is an A08, then we're not gonna have an inpatient location and such like.
+ I $P(PATMVMT("0"),U,7)'="A08" D
+ .I $P(APLOC,HLCM,1)="" S PV1RONG=$$PVERMSG^MDCPV1("PV1.3.1",MDCIEN,704.005) Q
+ .I $P(APLOC,HLCM,2)="" S PV1RONG=$$PVERMSG^MDCPV1("PV1.3.2",MDCIEN,704.005) Q
  ;
  Q
  ;

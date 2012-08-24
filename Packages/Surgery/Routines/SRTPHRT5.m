@@ -1,5 +1,5 @@
-SRTPHRT5 ;BIR/SJA - HEART-OUTCOME INFORMATION ;03/04/08
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+SRTPHRT5 ;BIR/SJA - HEART-OUTCOME INFORMATION ;10/04/2011
+ ;;3.0;Surgery;**167,176**;24 Jun 93;Build 8
  I '$D(SRTPP) W !!,"A Transplant Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
  N SRX,SRY,SRZ
 START Q:SRSOUT  D DISP
@@ -50,7 +50,7 @@ DISP ; display fields
  Q
 OUTNO ; defualt empty outcome fields to "NO"
  K DA,DIE,DR S DR=""
- S II=0 F  S II=$O(SRAO(II)) Q:'II  S:$P(SRAO(II),"^")="" DR=$S(DR]"":(DR_";"_$P(SRDR,";",II)),1:$P(SRDR,";",II))_"////"_$S($P(SRDR,";",II)=170:"NA",1:"N")
+ S II=0 F  S II=$O(SRAO(II)) Q:'II  S:$P(SRAO(II),"^")="" DR=$S(DR]"":(DR_";"_$P(SRDR,";",II)),1:$P(SRDR,";",II))_"////"_$S($P(SRDR,";",II)=170:"NA",$P(SRDR,";",II)=121:"1",1:"N")
  S DIE=139.5,DA=SRTPP D ^DIE K DA,DIE,DR
  K DA,DIC,DIQ,SRX,SRY,SRZ S DIC="^SRT(",DA=SRTPP,DIQ="SRY",DIQ(0)="E",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
  S (SRX,SRZ)=0 F I=1:1 S SRZ=$P(SRDR,";",I) Q:'SRZ  S SRX=I,SRAO(I)=SRY(139.5,SRTPP,SRZ,"E")_"^"_SRZ

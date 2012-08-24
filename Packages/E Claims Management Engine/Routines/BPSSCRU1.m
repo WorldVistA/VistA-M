@@ -1,6 +1,6 @@
 BPSSCRU1 ;BHAM ISC/SS - ECME SCREEN UTILITIES ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1**;JUN 2004
- ;; Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,11**;JUN 2004;Build 27
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;USER SCREEN
  Q
  ;
@@ -45,8 +45,9 @@ GETUSRNM(BPDUZ) ;
  ;BP59 - 9002313.59
 CLOSED(BP59) ;*/
  N BPCLAIM
+ I $G(BP59)="" Q 0
  ;get claim ptr to #9002313.02
- S BPCLAIM=+$P($G(^BPST(BP59,0)),U,3)  ;$$GET1^DIQ(9002313.59,BP59,3,"I") I 'CLAIM Q 0
+ S BPCLAIM=+$P($G(^BPST(BP59,0)),U,4)
+ I 'BPCLAIM Q 0
  ; get closed status
- Q +$P($G(^BPSC(BPCLAIM,900)),U)=1  ;Q $$GET1^DIQ(9002313.02,CLAIM,901,"I")
- ;
+ Q +$P($G(^BPSC(BPCLAIM,900)),U)=1

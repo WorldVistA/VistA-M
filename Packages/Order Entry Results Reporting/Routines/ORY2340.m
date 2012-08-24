@@ -15,7 +15,7 @@ WARN(RTN,MSG,LINES) ;
  S DASH="",$P(DASH,"-",(55-$L(MSG)-2))="-"
  W !!,"--------------",MSG,DASH
  ;
- W !,RTN,?10,"[DEVCUR.FO-SLC.MED.VA.GOV] -> [",$$NETNAME^OCXSEND,"] Line"
+ W !,RTN,?10,"[DEVCUR.FO-SLC.DOMAIN.EXT] -> [",$$NETNAME^OCXSEND,"] Line"
  ;
  I $O(LINES($O(LINES(0)))) W "s: "
  E  W ": "
@@ -34,7 +34,7 @@ TEXT(RTN,LINE) ;
  ;
 HEADER ;
  ;
- W !," Created: MAY 13,2005 at 09:31  at  DEVCUR.FO-SLC.MED.VA.GOV"
+ W !," Created: MAY 13,2005 at 09:31  at  DEVCUR.FO-SLC.DOMAIN.EXT"
  W !," Current Date: ",$$NOW,"  at  ",$$NETNAME^OCXSEND,!!
  S LASTFILE=0 K ^TMP("OCXRULE",$J)
  S ^TMP("OCXRULE",$J)=($P($H,",",2)+($H*86400)+(1*60*60))_" <- ^TMP ENTRY EXPIRATION DATE FOR ^OCXOPURG"

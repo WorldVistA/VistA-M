@@ -1,5 +1,5 @@
-DGLOCK ;ALB/MRL,ERC,BAJ,LBD - PATIENT FILE DATA EDIT CHECKS ; 2/1/11 3:31pm
- ;;5.3;Registration;**108,161,247,485,672,673,688,754**;Aug 13, 1993;Build 46
+DGLOCK ;ALB/MRL,ERC,BAJ,LBD - PATIENT FILE DATA EDIT CHECKS ; 2/14/11 4:36pm
+ ;;5.3;Registration;**108,161,247,485,672,673,688,754,797**;Aug 13, 1993;Build 24
 FFP ; DGFFP Access key required
  I '$D(^XUSEC("DGFFP ACCESS",DUZ)) D EN^DDIOL("Fugitive Felon Key required to edit this field.","","!!?4") K X
  Q
@@ -189,4 +189,10 @@ BIRTH ;checks for DOB added with DG*5.3*754
  . I X>$P(^DGEN(27.11,DGENR,0),U) D
  . . D EN^DDIOL(DGFLD_" cannot be after the Enrollment Application Date","","!?4")
  . . K X
+ Q
+MSE ;Military Service Episode data cannot be edited once it has been
+ ;verified by the HEC
+ ;DG*5.3*797
+ I "NU"'[$E(X) D VET Q:'$D(X)
+ I $P($G(^DPT(DFN,.3216,DA,0)),U,7)=1 D EN^DDIOL("MSE data verified at the HEC...NO EDITING!!","","!?4") K X
  Q

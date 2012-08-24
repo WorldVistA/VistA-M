@@ -1,5 +1,5 @@
 BPSOSIY ;BHAM ISC/FCS/DRS/DLF - Updating BPS Transaction record ;11/7/07  17:29
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -61,12 +61,14 @@ INIT(IEN59,BP77) ;EP - from BPSOSIZ
  S FDA(FN,REC,17)=$G(MOREDATA("REQ DTTM"))       ;Request Date/Time
  S FDA(FN,REC,18)=$G(MOREDATA("PAYER SEQUENCE")) ;COB Indicator
  S FDA(FN,REC,19)=$G(MOREDATA("REQ TYPE"))       ;Transaction Type
- S FDA(FN,REC,501)=$P(B1,U,1) ;Drug Quantify
- S FDA(FN,REC,502)=$P(B1,U,2) ;Ingredient Cost
+ S FDA(FN,REC,501)=$P(B1,U,1) ;Drug/Billing Quantity
+ S FDA(FN,REC,502)=$P(B1,U,2) ;Unit Price
  S FDA(FN,REC,504)=$P(X2,U,1) ;Dispense Fee
- S FDA(FN,REC,505)=$P(X2,U,3) ;Total Price
+ S FDA(FN,REC,505)=$P(X2,U,4) ;Total Price
  S FDA(FN,REC,507)=$P(X2,U,5) ;Administrative Fee
  S FDA(FN,REC,508)=$E($P(B1,U,7),1,2) ;Dispense Unit
+ S FDA(FN,REC,509)=$P(B1,U,8) ;Billing Quantity
+ S FDA(FN,REC,510)=$P(B1,U,9) ;Billing Unit
  S FDA(FN,REC,901)=1          ;Current VA Insurer
  S FDA(FN,REC,1201)=$G(MOREDATA("RX ACTION")) ;RX Action
  S FDA(FN,REC,1202)=$G(MOREDATA("DATE OF SERVICE")) ;Date of Service
@@ -98,18 +100,20 @@ INIT(IEN59,BP77) ;EP - from BPSOSIZ
  . S FDA(FN,IENS,902.04)=$P(X1,U,3) ;PCN
  . S FDA(FN,IENS,902.05)=$P(X1,U,5) ;Group ID
  . S FDA(FN,IENS,902.06)=$P(X1,U,6) ;Cardholder ID
- . S FDA(FN,IENS,902.07)=$S(+$P(X1,U,7)>4:4,1:+$P(X1,U,7)) ;Patient Relationship Code
+ . S FDA(FN,IENS,902.07)=$P(X1,U,7) ;Patient Relationship Code
  . S FDA(FN,IENS,902.08)=$P($P(X1,U,8)," ") ;Cardholder First Name
  . S FDA(FN,IENS,902.09)=$P(X1,U,9)  ;Cardholder Last Name
+ . S FDA(FN,IENS,902.1)=$P(X1,U,20)  ;Person Code
  . S FDA(FN,IENS,902.11)=$P(X1,U,10) ;Home Plan State
  . S FDA(FN,IENS,902.12)=$P(X2,U,1)  ;Dispense Fee
  . S FDA(FN,IENS,902.13)=$P(X2,U,2)  ;Basis of Cost Determination
- . S FDA(FN,IENS,902.14)=$P(X2,U,3)  ;Usual & Customary Charge
+ . S FDA(FN,IENS,902.14)=$P(X2,U,7)  ;Usual & Customary Charge
  . S FDA(FN,IENS,902.15)=$P(X2,U,4)  ;Gross Amt Due
  . S FDA(FN,IENS,902.16)=$P(X2,U,5)  ;Administrative Fee
  . S FDA(FN,IENS,902.17)=$P(B1,U,4)  ;Fill Number
  . S FDA(FN,IENS,902.18)=$P(X1,U,13) ;Software/Vendor Cert ID
  . S FDA(FN,IENS,902.19)=$P(X1,U,17) ;B2 Payer Sheet (Reversal)
+ . S FDA(FN,IENS,902.2)=$P(X2,U,6)   ;Ingredient Cost
  . S FDA(FN,IENS,902.21)=$P(X1,U,18) ;B3 Payer Sheet (Rebill)
  . S FDA(FN,IENS,902.22)=$P(B1,U,5)  ;Certify Mode
  . S FDA(FN,IENS,902.23)=$P(B1,U,6)  ;Certification IEN
@@ -154,8 +158,8 @@ INIT(IEN59,BP77) ;EP - from BPSOSIZ
  . S DURREC=$G(MOREDATA("DUR",DUR,0))
  . S IENS="+1,"_REC,IENS(1)=DUR
  . S FDA(FN,IENS,.01)=DUR  ; DUR Counter
- . S FDA(FN,IENS,1)=$P(DURREC,U,1)    ; DUR Professional Service Code
- . S FDA(FN,IENS,2)=$P(DURREC,U,2)    ; DUR Reason for Service Code
+ . S FDA(FN,IENS,1)=$P(DURREC,U,2)    ; DUR Professional Service Code
+ . S FDA(FN,IENS,2)=$P(DURREC,U,1)    ; DUR Reason for Service Code
  . S FDA(FN,IENS,3)=$P(DURREC,U,3)    ; DUR Result of Service Code
  . D UPDATE^DIE("","FDA","IENS","MSG")
  . I $D(MSG) D

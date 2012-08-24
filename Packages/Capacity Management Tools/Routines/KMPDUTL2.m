@@ -60,17 +60,17 @@ EMAIL(KMPDSUBJ,KMPDTEXT,KMPDTO) ; check and process errors.
  ;             accepted by XMTEXT - TEXT(
  ;                                  ^TMP($J,"TEXT",
  ; KMPDTO..... Address for email recipient:
- ;              G.KMP2-RUM@FO-ALBANY.MED.VA.GOV
- ;              G.KMP4-CMTOOLS@FO-ALBANY.MED.VA.GOV
- ;              G.CAPACITY,MANAGEMENT@FO-ALBANY.MED.GOV
+ ;              G.KMP2-RUM@FO-ALBANY.DOMAIN.EXT
+ ;              G.KMP4-CMTOOLS@FO-ALBANY.DOMAIN.EXT
+ ;              G.CAPACITY,MANAGEMENT@FO-ALBANY.DOMAIN.EXT
  ;             If no value is passed the default will be 
- ;              G.KMP4-CMTOOLS@FO-ALBANY.MED.VA.GOV
+ ;              G.KMP4-CMTOOLS@FO-ALBANY.DOMAIN.EXT
  ;              
  ;-----------------------------------------------------------------------
  ;
  Q:$G(KMPDTEXT)=""
  S KMPDSUBJ=$S($G(KMPDSUBJ)="":"CM Error",1:KMPDSUBJ)
- S KMPDTO=$S($G(KMPDTO)="":"G.KMP4-CMTOOLS@FO-ALBANY.MED.VA.GOV",1:KMPDTO)
+ S KMPDTO=$S($G(KMPDTO)="":"G.KMP4-CMTOOLS@FO-ALBANY.DOMAIN.EXT",1:KMPDTO)
  ;
  N H,I,LN,N,O,SITE,TEXT,TL,XMSUB,X,XMTEXT,XMY,XMZ,Y,Z
  ;

@@ -1,5 +1,5 @@
 PSOORUT1 ;BIR/SAB - Utility routine for oerr interface ;02/22/95
- ;;7.0;OUTPATIENT PHARMACY;**1,14,30,46,132,148,233,274,225,305,289,251,387**;DEC 1997;Build 13
+ ;;7.0;OUTPATIENT PHARMACY;**1,14,30,46,132,148,233,274,225,305,289,251,387,385**;DEC 1997;Build 27
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PSXOPUTL supported by DBIA 2203
  ;called from HD^PSOORUTL
@@ -26,7 +26,7 @@ REL ;removed order from hold
  .E  S $P(^PSRX(DA,"STA"),"^")=0
  .S RXF=0 F I=0:0 S I=$O(^PSRX(DA,1,I)) Q:'I  S RXF=I S:I>5 RXF=I+1
  .D ACT^PSOORUTL
- .I $$SUBMIT^PSOBPSUT(DA) D ECMESND^PSOBPSU1(DA,,$$RXFLDT^PSOBPSUT(DA),$S('$O(^PSRX(DA,1,0)):"OF",1:"RF"))
+ .I $$SUBMIT^PSOBPSUT(DA) D ECMESND^PSOBPSU1(DA,"","",$S('$O(^PSRX(DA,1,0)):"OF",1:"RF"))
  G EXIT^PSOORUTL
 ACT1 I '$D(RXF) S RXF=0 F I=0:0 S I=$O(^PSRX(DA,1,I)) Q:'I  S RXF=I S:I>5 RXF=I+1
  S IR=0 F FDA=0:0 S FDA=$O(^PSRX(DA,"A",FDA)) Q:'FDA  S IR=FDA

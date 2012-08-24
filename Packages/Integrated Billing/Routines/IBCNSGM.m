@@ -104,7 +104,7 @@ EMAIL ; Construct the subject and text of the message and send it
  . Q
  ;
  ; Address the message
- I $G(IBSNDRSQ)="" S XMTO("vhacoebilpm@va.gov")=""
+ I $G(IBSNDRSQ)="" S XMTO("vhacoebilpm@DOMAIN.EXT")=""
  I $G(IBSNDRSQ)'="" S XMTO(IBSNDRSQ)=""
  ;
  S XMINSTR("FROM")="VistA-eBilling"

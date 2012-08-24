@@ -1,16 +1,16 @@
-PXRMEXIC ; SLC/PKR/PJH - Routines to install repository entry components. ;04/16/2010
- ;;2.0;CLINICAL REMINDERS;**6,12,17,16**;Feb 04, 2005;Build 119
+PXRMEXIC ;SLC/PKR/PJH - Routines to install repository entry components. ;2/17/2012
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,16,18,22**;Feb 04, 2005;Build 160
  ;=================================================
-FILE(PXRMRIEN,EXISTS,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
+FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  ;file entry in repository entry PXRMRIEN. IND120 and JND120 are the
  ;indexes for the component list. ACTION is one of the possible actions.
  I ACTION="S" Q
- N DATA,DUZ0S,FDA,FDAEND,FDASTART,FIELD,FILENUM
- N IEN,IENS,IENREND,IENROOT,IENRSTR,IND,INDICES
- N LINE,MSG,NEW01,PXNAT,PXRMEDOK,PXRMEXCH
- N SITEIEN,SRCIEN,TEMP,TEXT,TFDA,TIUFPRIV,TNAME,TOPFNUM,VERSN,XUMF
+ N DATA,DUZ0S,EDULIST,FDA,FDAEND,FDASTART,FIELD,FILENUM
+ N IEN,IENS,IENREND,IENROOT,IENRSTR,IENUSED,IND,INDICES
+ N LINE,MSG,NAME,NEW01,PXNAT,PXRMEDOK,PXRMEXCH
+ N SRCIEN,START,TEMP,TEXT,TFDA,TIENROOT,TIUFPRIV,TNAME,TOPFNUM,VERSN,XUMF
  N WPLCNT,WPTMP
- I $G(PXRMIGDS) S DUZ0S=DUZ(0),DUZ(0)="^",XUMF=1
+ ;I $G(PXRMIGDS) S DUZ0S=DUZ(0),DUZ(0)="^",XUMF=1
  ;Set PXRMEDOK so files pointing to sponsors can be installed.
  ;Set PXRMEXCH so national entries can be installed and prevent
  ;execution of the input transform for custom logic fields.
@@ -28,34 +28,46 @@ FILE(PXRMRIEN,EXISTS,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  . S DATA=$P(LINE,"~",2)
  . S FILENUM=$P(INDICES,";",1)
  . S IENS=$P(INDICES,";",2)
- . I IND=START S SRCIEN=+IENS
+ . I IND=FDASTART S SRCIEN=+IENS
  . S FIELD=$P(INDICES,";",3)
  . I LINE["WP-start" D
  .. S DATA="WPTMP("_IND_","_+FIELD_")"
  .. S WPLCNT=$P(LINE,"~",3)
  .. D WORDPROC(PXRMRIEN,.WPTMP,IND,+FIELD,.IND,WPLCNT)
- . I (IND=START)&((FIELD=.01)!(FIELD=.001)) D
+ . I (IND=FDASTART)&((FIELD=.01)!(FIELD=.001)) D
  ..;Save the top level file number.
  .. S TOPFNUM=FILENUM
- ..;If the action is copy put it in the first open spot.
- .. I ACTION="C" S IENROOT(SRCIEN)=$$LOIEN^PXRMEXU5(FILENUM)
+ ..;If the action is copy put it in the first open spot. PCE files go
+ ..;in the site number space.
+ .. I ACTION="C" D
+ ... S START=$S($$ISPCEFIL^PXRMEXU0(TOPFNUM):$P($$SITE^VASITE,U,3)_"000",1:0)
+ ... S IENROOT(SRCIEN)=$$LOIEN^PXRMEXU5(TOPFNUM,START)
+ ..;
+ ..;If the entry does not exist and the action is not copy set the
+ ..;action to install.
+ .. I SITEIEN=0 S ACTION="I"
  ..;
  ..;If the action is install try to install at the source ien. If
  ..;an entry already exists at the source ien put it in the first
- ..;open spot.
+ ..;open spot. For PCE entries install at source ien unless they
+ ..;are national.
  .. I ACTION="I" D
- ... S SITEIEN=+$$FIND1^DIC(FILENUM,"","Q","`"_SRCIEN)
- ... I SITEIEN>0 S IENROOT(SRCIEN)=""
- ... E  S IENROOT(SRCIEN)=$$LOIEN^PXRMEXU5(FILENUM)
+ ... S IENUSED=+$$FIND1^DIC(FILENUM,"","Q","`"_SRCIEN)
+ ... S IENROOT(SRCIEN)=$S(IENUSED=0:SRCIEN,1:$$LOIEN^PXRMEXU5(FILENUM))
+ ... I $$ISPCEFIL^PXRMEXU0(TOPFNUM) D
+ .... I IENUSED=0 S IENROOT(SRCIEN)=SRCIEN
+ .... I IENUSED>0 D
+ ..... S START=$S(IENUSED>100000:$E(IENUSED,1,3)_"000",1:0)
+ ..... S IENROOT(SRCIEN)=$$LOIEN^PXRMEXU5(TOPFNUM,START)
+ .... I $G(PXRMMNAT) S IENROOT(SRCIEN)=$$LOIEN^PXRMEXU5(TOPFNUM)
  ..;
- ..;If the action is merge or overwrite get the existing ien.
- .. I (ACTION="M")!(ACTION="O") D
- ... S SITEIEN=$$EXISTS^PXRMEXIU(FILENUM,DATA)
- ... S IENROOT(SRCIEN)=""
+ ..;If the action is merge, overwrite,or update install at the site's
+ ..;ien.
+ .. I (ACTION="M")!(ACTION="O")!(ACTION="U") S IENROOT(SRCIEN)=SITEIEN
  .;
  .;This line is use to convert pre-patch 12 disable text to the new
  .;value of 1 for disable
- . I FILENUM=801.41,FIELD=3,DATA'="" S DATA=1
+ . I FILENUM=801.41,FIELD=3,DATA'="",$L(DATA)>1 S DATA=1
  . S FDA(FILENUM,IENS,FIELD)=DATA
  ;
  ;Initialize the edit history.
@@ -74,11 +86,17 @@ FILE(PXRMRIEN,EXISTS,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  ;
  ;Special handling for file 801
  I TOPFNUM=801 D  Q:PXRMDONE
+ . D SFMVPI^PXRMEXIU(.FDA,.NAMECHG,801.015)
  . D ROC^PXRMEXU5(.FDA)
+ ;
+ ;Special handling for file 801.1
+ I TOPFNUM=801.1 D  Q:PXRMDONE
+ . D ROCR^PXRMEXU5(.FDA)
  ;
  ;Special handling for file 801.41
  I TOPFNUM=801.41 D  Q:PXRMDONE
- . I ACTION="M" D MERGE^PXRMEXU5(801.41,EXISTS,"15;18*",.FDA,.IENROOT)
+ . I ACTION="M" D MOU^PXRMEXU5(801.41,SITEIEN,"**",.FDA,.IENROOT,ACTION,.WPTMP)
+ . I ACTION="U" D MOU^PXRMEXU5(801.41,SITEIEN,"18*",.FDA,.IENROOT,ACTION,.WPTMP)
  . D DLG^PXRMEXU4(.FDA,.NAMECHG)
  ;
  ;Special handling for file 810.9
@@ -92,7 +110,7 @@ FILE(PXRMRIEN,EXISTS,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  ;Special handling for file 811.5.
  I TOPFNUM=811.5 D  Q:'$D(FDA)
  .;If the site has any findings already mapped merge them in.
- . I ACTION="M" D MERGE^PXRMEXU5(811.5,EXISTS,"20*",.FDA,.IENROOT)
+ . I (ACTION="M")!(ACTION="U") D MOU^PXRMEXU5(811.5,SITEIEN,"20*",.FDA,.IENROOT,ACTION,.WPTMP)
  . D SFMVPI^PXRMEXIU(.FDA,.NAMECHG,811.52)
  ;
  ;Special handling for file 811.9.
@@ -101,9 +119,10 @@ FILE(PXRMRIEN,EXISTS,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  . S PXRMEXCH=1
  . D DEF^PXRMEXIU(.FDA,.NAMECHG)
  ;
- ;If FDA is not defined at this point the user has opted to abort
- ;the install.
- I '$D(FDA) Q
+ ;Special handling for file 9999999.09, EDUCATION TOPICS.
+ I TOPFNUM=9999999.09 D
+ . S IENS=$O(FDA(TOPFNUM,""))
+ . S EDULIST(FDA(TOPFNUM,IENS,.01))=""
  ;
  ;Special handling for file 8925.1
  I TOPFNUM=8925.1 D
@@ -114,9 +133,13 @@ FILE(PXRMRIEN,EXISTS,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  I TOPFNUM=9999999.64 D
  . D HF^PXRMEXIU(.FDA,.NAMECHG)
  ;
- ;If the action is merge or overwrite do a test install before deleting
- ;the original entry.
- I (ACTION="M")!(ACTION="O") D
+ ;If FDA is not defined at this point the user has opted to abort
+ ;the install.
+ I '$D(FDA) Q
+ ;
+ ;If the action is merge, overwrite, or update do a test install
+ ;before deleting the original entry.
+ I (ACTION="M")!(ACTION="O")!(ACTION="U") D
  .;Make the .01 unique for the test install.
  . S IENS=$O(FDA(TOPFNUM,""))
  .;Get the length of the .01 field
@@ -124,44 +147,35 @@ FILE(PXRMRIEN,EXISTS,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  . S TNAME="tmp"_$E(FDA(TOPFNUM,IENS,.01),1,ATTR("FIELD LENGTH")-3)
  .;Make sure the test entry does not already exist.
  . D DELALL^PXRMEXFI(TOPFNUM,TNAME)
- . K ^TMP($J,"TFDA") M ^TMP($J,"TFDA")=FDA K FDA
- . K TFDA M TFDA=^TMP($J,"TFDA")
+ . M TFDA=FDA
  . S TFDA(TOPFNUM,IENS,.01)=TNAME
- . D UPDATE^DIE("E","TFDA","IENROOT","MSG")
- . I $D(MSG) D
+ . K TIENROOT M TIENROOT=IENROOT
+ . S TIENROOT(SRCIEN)=$$LOIEN^PXRMEXU5(TOPFNUM)
+ . D UPDATE^DIE("E","TFDA","TIENROOT","MSG")
+ . I $D(MSG) D  Q
  .. S TEXT(1)=ATTR("FILE NAME")_" entry "_$G(ATTR("PT01"))_" did not get installed!"
  .. S TEXT(2)="Examine the following error message for the reason."
  .. S TEXT(3)=""
- .. S TEXT(4)="The update failed, UPDATE^DIE returned the following error message:"
+ .. S TEXT(4)="The test update failed, UPDATE^DIE returned the following error message:"
  .. D MES^XPDUTL(.TEXT)
  .. D AWRITE^PXRMUTIL("MSG")
  .. H 2
- . I '$D(MSG) K TFDA M FDA=^TMP($J,"TFDA")
- . K ^TMP($J,"TFDA")
  .;Delete the test entry.
  . D DELALL^PXRMEXFI(TOPFNUM,TNAME)
  .;If the original update worked put the entry at its original ien.
- ;Install the FDA.
- I '$D(MSG) D
  .;Delete the existing entry.
- . I (ACTION="M")!(ACTION="O") D
- .. D DELETE^PXRMEXFI(TOPFNUM,SITEIEN)
- .. S IENROOT(SRCIEN)=SITEIEN
- . D UPDATE^DIE("E","FDA","IENROOT","MSG")
- . I $D(MSG) D
- .. S TEXT(1)=ATTR("FILE NAME")_" entry "_$G(ATTR("PT01"))_" did not get installed!"
- .. S TEXT(2)="Examine the following error message for the reason."
- .. S TEXT(3)=""
- .. S TEXT(4)="The update failed, UPDATE^DIE returned the following error message:"
- .. D MES^XPDUTL(.TEXT)
- .. D AWRITE^PXRMUTIL("MSG")
- .. W !
- .. H 2
+ . D DELETE^PXRMEXFI(TOPFNUM,SITEIEN)
+ D UPDATE^DIE("E","FDA","IENROOT","MSG")
+ I $D(MSG) D
+ . S TEXT(1)=ATTR("FILE NAME")_" entry "_$G(ATTR("PT01"))_" did not get installed!"
+ . S TEXT(2)="Examine the following error message for the reason."
+ . S TEXT(3)=""
+ . S TEXT(4)="The update failed, UPDATE^DIE returned the following error message:"
+ . D MES^XPDUTL(.TEXT)
+ . D AWRITE^PXRMUTIL("MSG")
+ . W !
+ . H 2
  S VERSN=$$GETTAGV^PXRMEXU3(^PXD(811.8,PXRMRIEN,100,3,0),"<PACKAGE_VERSION>")
- I TOPFNUM=801 D
- .;mapp OI associate with a Drug Class
- .N PXRMEXCH
- .D EXCHINST^PXRMORXR(ATTR("PT01"))
  I TOPFNUM=811.2 D
  .;Rebuild taxonomy expansions.
  . N IEN,PXRMEXCH
@@ -179,14 +193,23 @@ FILE(PXRMRIEN,EXISTS,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  . S X=$G(^PXD(811.9,IEN,34))
  . I X'="" D CPRESLS^PXRMLOGX(IEN,X)
  . D BLDALL^PXRMLOGX(IEN,"","")
- I $G(PXRMIGDS) S DUZ(0)=DUZ0S
+ ;If there are national education topics rename them so they start
+ ;with VA-
+ I $D(EDULIST),$G(PXRMMNAT) D
+ .;Get the length of the .01 field
+ . D FIELD^DID(TOPFNUM,.01,"","FIELD LENGTH","ATTR")
+ . S NAME=""
+ . F  S NAME=$O(EDULIST(NAME)) Q:NAME=""  D
+ .. I $E(NAME,1,3)="VA-" Q
+ .. S TNAME="VA-"_$E(ATTR("FIELD LENGTH")-3)
+ .. D RENAME^PXRMUTIL(TOPFNUM,NAME,TNAME)
+ ;I $G(PXRMIGDS) S DUZ(0)=DUZ0S
  Q
  ;
  ;=================================================
 INIEH(FILENUM,IENS,FDA,WPTMP) ;If the file is a clinical reminder file and
  ;it has an edit history initialize the history.
  I (FILENUM<800)!(FILENUM>811.9) Q
- ;
  N IENS,SFN,TARGET,WP
  D FIELD^DID(FILENUM,"EDIT HISTORY","","SPECIFIER","TARGET")
  S SFN=+$G(TARGET("SPECIFIER"))
@@ -194,7 +217,7 @@ INIEH(FILENUM,IENS,FDA,WPTMP) ;If the file is a clinical reminder file and
  S IENS=$O(FDA(SFN,""))
  I IENS="" Q
  S FDA(SFN,IENS,.01)=$$FMTE^XLFDT($$NOW^XLFDT,"5Z")
- S FDA(SFN,IENS,1)=$$GET1^DIQ(200,DUZ,.01)
+ S FDA(SFN,IENS,1)="`"_DUZ
  ;The word-processing field is set when the packing is done.
  S WP=FDA(SFN,IENS,2)
  K @WP

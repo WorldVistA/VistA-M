@@ -1,5 +1,5 @@
-PSOATRFC ;BIR/MHA - Automate CPRS Refill request ;12/15/08 1:39pm
- ;;7.0;OUTPATIENT PHARMACY;**305**;DEC 1997;Build 8
+PSOATRFC ;BIR/MHA - Automate CPRS Refill request ; 5/25/11 4:48pm
+ ;;7.0;OUTPATIENT PHARMACY;**305,388**;DEC 1997;Build 6
  ;Reference to ^PSSLOCK supported by DBIA 2789
  ;Reference ^PSDRUG supported by DBIA 221
  ;Reference ^PS(55 supported by DBIA 2228
@@ -46,11 +46,12 @@ REF(PSORXN,PSOITMG) ;process refill request
  S (PSOITF,PSOX("NUMBER"))=PSOY
  S PSOX("RX0")=PSORXN0,PSOX("RX2")=PSORXN2,PSOX("RX3")=PSORXN3,PSOX("STA")=PSORXNS
  S DRG=$P(PSORXN0,U,6)
- N PSODEA,PSODAY
+ N PSODEA,PSODAY,PSOCHECK
  S PSODEA=$P($G(^PSDRUG(DRG,0)),U,3)
  S PSODAY=$P(PSORXN0,U,8)
- I $$DEACHK^PSOUTLA1(PSORXN,PSODEA,PSODAY) D  Q
- . D ERR("This drug has been changed, No refills allowed")
+ S PSOCHECK=$$DEACHK^PSOUTLA1(PSORXN,PSODEA,PSODAY)
+ I PSOCHECK=1 D ERR("Requested refill exceeds maximum allowable days supply for Rx.") Q  ;*388
+ I PSOCHECK=2 D ERR("Current drug DEA/SPECIAL HANDLING code does not allow refills.") Q  ;*388
  D CHKDT Q:PSOITNF           ;Quit if not refillable
  ;
  ;ok to process refill

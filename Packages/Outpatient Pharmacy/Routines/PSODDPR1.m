@@ -1,5 +1,5 @@
 PSODDPR1 ;BIR/SAB - enhanced dup drug checker for pending/nva orders ;09/30/06 11:33am
- ;;7.0;OUTPATIENT PHARMACY;**251,375**;DEC 1997;Build 17
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,379**;DEC 1997;Build 28
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.606 supported by DBIA 2174
  ;External reference to ^PS(51.2 supported by DBIA 2226
@@ -37,7 +37,7 @@ PSODDPR1 ;BIR/SAB - enhanced dup drug checker for pending/nva orders ;09/30/06 1
  .I '$P(PSOPAR,"^",2),'$P(PSOPAR,"^",16) D DUP Q:$G(PSORX("DFLG"))
  D:PSODRUG("NAME")=$P(DNM,"^")&($D(^XUSEC("PSORPH",DUZ))) DUP Q:$G(PSORX("DFLG"))
  K FSIG Q
-DUP D HD^PSODDPR2():(($Y+5)>IOSL) Q:$G(PSODLQT)  S DUP=1 W !,PSONULN,!,$C(7),"DUPLICATE DRUG in a Pending Order for",!
+DUP S DUP=1 W !,PSONULN,!,$C(7),"DUPLICATE DRUG in a Pending Order for",!
  S MSG="Discontinued During "_$S('$G(PSONV):"New Prescription Entry",1:"Verification")_" - Duplicate Drug."
 DATA S DUPRX0=^PS(52.41,RXREC,0),RFLS=$P(DUPRX0,"^",11),ISSD=$P(DUPRX0,"^",6)
  S RXRECLOD=RXREC N DNM,ACT
@@ -45,7 +45,6 @@ DATA S DUPRX0=^PS(52.41,RXREC,0),RFLS=$P(DUPRX0,"^",11),ISSD=$P(DUPRX0,"^",6)
  E  W !,$J("Drug: ",20)_$S($P(DUPRX0,"^",9):$P(^PSDRUG($P(DUPRX0,"^",9),0),"^"),1:"No Dispense Drug Selected")
  S DNM=$S($P(DUPRX0,"^",9):$P(^PSDRUG($P(DUPRX0,"^",9),0),"^"),1:$P(^PS(50.7,$P(DUPRX0,"^",8),0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^"))
  D FSIG^PSOUTLA("P",RXREC,50)
- D HD^PSODDPR2():(($Y+5)>IOSL) Q:$G(PSODLQT)
  W !,$J("SIG: ",20) F I=0:0 S I=$O(FSIG(I)) Q:'I  W $J(FSIG(I),20) I $O(FSIG(I)) W !?8
  W !,$J("Quantity: ",20)_$P(DUPRX0,"^",10),?35,$J("# of Refills: ",20)_$P(DUPRX0,"^",11)
  W !,$J("Provider: ",20)_$P(^VA(200,$P(DUPRX0,"^",5),0),"^")
@@ -53,14 +52,13 @@ DATA S DUPRX0=^PS(52.41,RXREC,0),RFLS=$P(DUPRX0,"^",11),ISSD=$P(DUPRX0,"^",6)
  S TY=3 D INST
  W !,PSONULN,! I $P($G(^PS(53,+$P($G(PSORX("PATIENT STATUS")),"^"),0)),"^")["AUTH ABS"!($G(PSORX("PATIENT STATUS"))["AUTH ABS")&'$P(PSOPAR,"^",5) W !,"PATIENT ON AUTHORIZED ABSENCE!" K RXRECLOD Q
 ASKCAN  ;
- S:'$D(PSODLQT) PSODLQT=1
+ S:'$D(PSODLQT) PSODLQT=0
  I '$P(PSOPAR,"^",16),'$D(^XUSEC("PSORPH",DUZ)) D  Q
  .S PSORX("DFLG")=1 K RXRECLOC,DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue" D ^DIR K DIR
  D PSOL^PSSLOCK(RXRECLOD_"S") I '$G(PSOMSG) D  K PSOMSG,DIR,DUP,RXRECLOD S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue" D ^DIR K DIR S PSORX("DFLG")=1 Q
  .I $P($G(PSOMSG),"^",2)'="" W !!,$P(PSOMSG,"^",2),! Q
  .W !!,"Another person is editing this pending order.",!
  K PSOMSG S DIR("A")="Discontinue Pending Order for "_DNM_" Y/N",DIR(0)="Y",DIR("?")="Enter Y to Discontinue this pending order."
- ;D HD^PSODDPR2():(($Y+5)>IOSL) Q:$G(PSODLQT)
  D ^DIR K DIR S:($D(DTOUT))!($D(DUOUT))!($G(DIRUT)) PSODLQT=1,PSORX("DFLG")=1 Q:$G(PSODLQT)
  I 'Y W !,$C(7)," Pending Order was not discontinued..." S:$G(DUP) PSORX("DFLG")=1 K DUP,CLS D ULPN Q
  S ACT="Discontinued while "_$S('$G(PSONV):"entering",1:"verifying")_" new RX"

@@ -1,34 +1,26 @@
 ORWDXVB2 ;slc/dcm - Order dialog utilities for Blood Bank Cont.;3/2/04  09:31
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243,212,309**;Dec 17 1997;Build 26
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243,212,309,332**;Dec 17 1997;Build 44
  ;
-ERROR ;Process error
- N ORERR,ORI,X
+ERROR(OROOT) ;Process error
+ N ORERR,ORI,X,Y,I
  S VBERROR=$P(ORX("ERROR"),"^",2) D LN
  D GETWP^XPAR(.ORERR,"ALL","OR VBECS ERROR MESSAGE")
- S ORI=0,X="" F  S ORI=$O(ORERR(ORI)) Q:ORI<1  D
- . S X=$G(ORERR(ORI,0))
- . S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,X,.CCNT) D LN
- I X'?1."*" S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"******************************************************************",.CCNT) D LN
- S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*                                                                *",.CCNT) D LN
- S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*                         Error Message                          *",.CCNT) D LN
- S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*                                                                *",.CCNT) D LN
- S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*",.CCNT)
- I $L(VBERROR)<68 D
- . S ^TMP("ORVBEC",$J,GCNT,0)=^TMP("ORVBEC",$J,GCNT,0)_$$S^ORU4(70-$L(VBERROR)/2,CCNT,VBERROR,.CCNT)
- . S ^TMP("ORVBEC",$J,GCNT,0)=^TMP("ORVBEC",$J,GCNT,0)_$$S^ORU4(67,CCNT,"*",.CCNT) D LN
- I $L(VBERROR)>68 D
- . I $L(VBERROR)>136 S VBERROR=$E(VBERROR,1,136)_"..."
- . N L1 S L1=$E(VBERROR,1,$L(VBERROR)/2)
- . I $E(L1,$L(L1))'=" " D
- . . S LINE1=$E(L1,1,($L(L1)-($L($P(L1," ",$L(L1," ")))))),LINE2=$E(VBERROR,$L(LINE1)+1,$L(VBERROR))
- . E  S LINE1=$E(L1),LINE2=$E(VBERROR,$L(LINE1)+1,$L(VBERROR))
- . S ^TMP("ORVBEC",$J,GCNT,0)=^TMP("ORVBEC",$J,GCNT,0)_$$S^ORU4(70-$L(LINE1)/2,CCNT,LINE1,.CCNT)
- . S ^TMP("ORVBEC",$J,GCNT,0)=^TMP("ORVBEC",$J,GCNT,0)_$$S^ORU4(67,CCNT,"*",.CCNT) D LN
- . S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*",.CCNT)
- . S ^TMP("ORVBEC",$J,GCNT,0)=^TMP("ORVBEC",$J,GCNT,0)_$$S^ORU4(70-$L(LINE2)/2,CCNT,LINE2,.CCNT)
- . S ^TMP("ORVBEC",$J,GCNT,0)=^TMP("ORVBEC",$J,GCNT,0)_$$S^ORU4(67,CCNT,"*",.CCNT) D LN
- S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*                                                                *",.CCNT) D LN
- S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"******************************************************************",.CCNT) D LN
+ S ORI=0,Y="" F  S ORI=$O(ORERR(ORI)) Q:ORI<1  D
+ . S Y=$G(ORERR(ORI,0))
+ . D WRAP^ORU2(.Y,79)
+ . F I=1:1 S X=$P(Y,"|",I) Q:'$L(X)  D
+ .. S @OROOT@(GCNT,0)=$$S^ORU4($S(I=1:2,1:1),CCNT,X,.CCNT) D LN
+ D WRAP^ORU2(.VBERROR,77)
+ I X'?1."*" S @OROOT@(GCNT,0)=$$S^ORU4(1,CCNT,"********************************************************************************",.CCNT) D LN
+ S @OROOT@(GCNT,0)=$$S^ORU4(1,CCNT,"*                                                                              *",.CCNT) D LN
+ S @OROOT@(GCNT,0)=$$S^ORU4(1,CCNT,"*                                Error Message                                 *",.CCNT) D LN
+ S @OROOT@(GCNT,0)=$$S^ORU4(1,CCNT,"*                                                                              *",.CCNT) D LN
+ F I=1:1 S X=$P(VBERROR,"|",I) Q:'$L(X)  D
+ . S @OROOT@(GCNT,0)=$$S^ORU4(1,CCNT,"*",.CCNT)
+ . S @OROOT@(GCNT,0)=@OROOT@(GCNT,0)_$$S^ORU4(80-$L(X)/2,CCNT,X,.CCNT)
+ . S @OROOT@(GCNT,0)=@OROOT@(GCNT,0)_$$S^ORU4(80,CCNT,"*",.CCNT) D LN
+ S @OROOT@(GCNT,0)=$$S^ORU4(1,CCNT,"*                                                                              *",.CCNT) D LN
+ S @OROOT@(GCNT,0)=$$S^ORU4(1,CCNT,"********************************************************************************",.CCNT) D LN
  D LINE^ORU4("^TMP(""ORVBEC"",$J)",GIOM),LN
  Q
 PULL(OROOT,ORVP,ITEMID,SDATE,EDATE) ;Get list of orders matching ITEM

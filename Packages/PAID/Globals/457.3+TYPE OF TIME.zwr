@@ -1,6 +1,6 @@
 TYPE OF TIME
 ZWR
-^PRST(457.3,0)="TYPE OF TIME^457.3I^30^24"
+^PRST(457.3,0)="TYPE OF TIME^457.3I^31^25"
 ^PRST(457.3,2,0)="AL^ANNUAL LV^Annual Leave"
 ^PRST(457.3,3,0)="AA^AUTH ABS^Authorized Absence"
 ^PRST(457.3,4,0)="CP^COP^Continuation of Pay"
@@ -25,6 +25,7 @@ ZWR
 ^PRST(457.3,28,0)="AD^ADOPT^Adoption"
 ^PRST(457.3,29,0)="DL^DONOR LV^Donor Leave"
 ^PRST(457.3,30,0)="RS^RECESS^Recess"
+^PRST(457.3,31,0)="WI^TOUR WORK^Work Inside Tour"
 ^PRST(457.3,"B","AA",3)=""
 ^PRST(457.3,"B","AD",28)=""
 ^PRST(457.3,"B","AL",2)=""
@@ -48,4 +49,5 @@ ZWR
 ^PRST(457.3,"B","TR",20)=""
 ^PRST(457.3,"B","TV",21)=""
 ^PRST(457.3,"B","UN",25)=""
+^PRST(457.3,"B","WI",31)=""
 ^PRST(457.3,"B","WP",15)=""

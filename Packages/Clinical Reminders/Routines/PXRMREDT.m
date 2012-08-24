@@ -1,10 +1,10 @@
-PXRMREDT ; SLC/PKR,PJH - Edit PXRM reminder definition. ;03/20/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMREDT ;SLC/PKR,PJH - Edit PXRM reminder definition. ;03/08/2011
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18**;Feb 04, 2005;Build 152
  ;
  ;=======================================================
 EEDIT ;Entry point for PXRM DEFINITION EDIT option.
  ;Build list of finding file definitions.
- N DEF,DEF1,DEF2
+ N DEF,DEF1,DEF2,NEW
  D DEF^PXRMRUTL("811.902",.DEF,.DEF1,.DEF2)
  ;
  N DA,DIC,DLAYGO,DTOUT,DUOUT,Y
@@ -21,7 +21,8 @@ GETNAME ;Get the name of the reminder definition to edit.
  I ($D(DTOUT))!($D(DUOUT)) Q
  I Y=-1 G END
  S DA=$P(Y,U,1)
- D ALL(DIC,DA,.DEF1)
+ S NEW=$P(Y,U,3)
+ D ALL(DIC,DA,.DEF1,NEW)
  G GETNAME
 END ;
  Q
@@ -29,17 +30,17 @@ END ;
  ;=======================================================
  ;Select section of reminder to edit, also called at ALL by PXRMEDIT.
  ;----------------------------------
-ALL(DIC,DA,DEF1) ;
+ALL(DIC,DA,DEF1,NEW) ;
  ;Get list of findings/terms for reminder
- N BLDLOGIC,CS1,CS2,LIST,NODE,OPTION,TYPE
- S BLDLOGIC=0
+ N BLDLOGIC,CS1,CS2,DTOUT,DUOUT,LIST,NODE,OPTION,TYPE
  ;Save the original checksum.
  S CS1=$$FILE^PXRMEXCS(811.9,DA)
+STRTEDIT S BLDLOGIC=0
  ;Build finding list
  S NODE="^PXD(811.9)"
  D LIST(NODE,DA,.DEF1,.LIST)
  ;If this is a new reminder enter all fields
- I $P(Y,U,3)=1 D EDIT(DIC,DA) Q 
+ I $G(NEW) D EDIT(DIC,DA) Q 
  ;National reminder allows editing of term findings only 
  I '$$VEDIT^PXRMUTIL(DIC,DA) D  Q:$D(DUOUT)!$D(DTOUT)
  .S TYPE=""
@@ -51,8 +52,8 @@ ALL(DIC,DA,DEF1) ;
  .D TFIND(DA,.LIST)
  .I $D(Y) S DUOUT=1
  ;Otherwise choose fields to edit
- I $$VEDIT^PXRMUTIL(DIC,DA) F  D  Q:$D(DUOUT)!$D(DTOUT)
- .D OPTION Q:$D(DUOUT)!$D(DTOUT)
+ I $$VEDIT^PXRMUTIL(DIC,DA) F  D  Q:($G(OPTION)="^")!$D(DUOUT)!$D(DTOUT)
+ .S OPTION=$$OPTION^PXRMREDT Q:(OPTION="^")!$D(DUOUT)!$D(DTOUT)
  .;All details
  .I OPTION="A" D
  .. S BLDLOGIC=1
@@ -93,8 +94,13 @@ ALL(DIC,DA,DEF1) ;
  ;See if any changes have been made.
  S CS2=$$FILE^PXRMEXCS(811.9,DA)
  I CS2=0 Q
- ;If the file has been edited, do the edit history.
- I CS2'=CS1 D SEHIST^PXRMUTIL(811.9,DIC,DA)
+ ;If the file has been edited, do an integrity check.
+ I CS2'=CS1 D
+ . I OPTION="^" Q
+ . W !,"Checking integrity of the definition ...",#
+ . I OPTION'="^",'$$DEF^PXRMICHK(DA) G STRTEDIT
+ .;If it passes the integrity check save the edit history.
+ . D SEHIST^PXRMUTIL(811.9,DIC,DA)
  Q
  ;
  ;Reminder Edit
@@ -120,6 +126,10 @@ EDIT(ROOT,DA) ;
  D LOGIC Q:$D(Y)
  D DIALOG Q:$D(Y)
  D WEB Q:$D(Y)
+ W #
+ I '$$DEF^PXRMICHK(DA) G STRTEDIT
+ ;If it passes the integrity check save the edit history.
+ D SEHIST^PXRMUTIL(811.9,DIC,DA)
  Q
  ;
 GEN ;Print name
@@ -262,9 +272,10 @@ LIST(GBL,DA,DEF1,ARRAY) ;
  ;
  ;Choose which part of Reminder to edit
  ;-------------------------------------
-OPTION N DIR,X,Y
+OPTION() ;
+ N DIR,X,Y
  ;Display warning message if un-mapped terms exist
- K DIROUT,DIRUT,DTOUT,DUOUT
+ K DIROUT,DIRUT
  S DIR(0)="SO"_U
  S DIR(0)=DIR(0)_"A:All reminder details;"
  S DIR(0)=DIR(0)_"G:General;"
@@ -275,15 +286,13 @@ OPTION N DIR,X,Y
  S DIR(0)=DIR(0)_"C:Custom date due;"
  S DIR(0)=DIR(0)_"D:Reminder Dialog;"
  S DIR(0)=DIR(0)_"W:Web Addresses;"
- S DIR("A")="Select section to edit"
+ S DIR("A",1)="Select a section to edit; press ENTER when you are done editing."
+ S DIR("A")="To quit and exit type '^'"
  S DIR("?")="Select which section of the reminder you wish to edit."
  S DIR("??")="^D HELP^PXRMREDF(2)"
  D ^DIR K DIR
- I Y="" S DUOUT=1 Q
- I $D(DIROUT) S DTOUT=1
- I $D(DTOUT)!$D(DUOUT) Q
- S OPTION=Y
- Q
+ I (Y="")!(Y="^") S DUOUT=1
+ Q Y
  ;
  ;-------------------------------------
 LUDISP(IEN) ;Use for DIC("W") to augment look-up display.

@@ -1,5 +1,5 @@
 BPSECFM ;BHAM ISC/FCS/DRS/VA/DLF - NCPDP Field Format Functions ;3/12/08  13:01
- ;;1.0;E CLAIMS MGMT ENGINE;**1,7,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,7,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;----------------------------------------------------------------------
@@ -12,17 +12,18 @@ BPSECFM ;BHAM ISC/FCS/DRS/VA/DLF - NCPDP Field Format Functions ;3/12/08  13:01
 NFF(X,L) ;EP -
  Q $E($TR($J("",L-$L(X))," ","0")_X,1,L)
  ;----------------------------------------------------------------------
- ;Signed Numeric Field Format
-DFF(X,L) ;
- N FNUMBER,DOLLAR,CENTS,SVALUE
+ ;Signed Numeric Field Format with variable length decimal places
+DFF(X,L,P) ;
+ N INTEGER,DECIMAL,SVALUE
  I $G(X)="" S X=0
- S DOLLAR=+$TR($P(X,".",1),"-","")
- S CENTS=$E($P(X,".",2),1,2)
- S:$L(CENTS)=0 CENTS="00"
- S:$L(CENTS)=1 CENTS=CENTS_"0"
+ I $G(P)="" S P=2 ;default value
+ S INTEGER=+$TR($P(X,".",1),"-","")
+ S DECIMAL=$E($P(X,".",2),1,P)
+ I $L(DECIMAL)<P D
+ . F  S DECIMAL=DECIMAL_"0" Q:$L(DECIMAL)=P
  S SVALUE=$S(X<0:"}JKLMNOPQR",1:"{ABCDEFGHI")
- S $E(CENTS,2)=$E(SVALUE,$E(CENTS,2)+1)
- Q $E($TR($J("",L-$L(DOLLAR_CENTS))," ","0")_DOLLAR_CENTS,1,L)
+ S $E(DECIMAL,P)=$E(SVALUE,$E(DECIMAL,P)+1)
+ Q $E($TR($J("",L-$L(INTEGER_DECIMAL))," ","0")_INTEGER_DECIMAL,1,L)
  ;----------------------------------------------------------------------
  ;Converts Signed Numeric Field to Decimal Value
 DFF2EXT(X) ;EP -
@@ -36,6 +37,7 @@ DFF2EXT(X) ;EP -
  ;----------------------------------------------------------------------
  ;Alpha-Numeric Field Format
 ANFF(X,L) ;EP
+ S X=$$UP^XLFSTR(X) ;SLT, Phase 6-T12, D4
  Q $E(X_$J("",L-$L(X)),1,L)
  ;----------------------------------------------------------------------
  ;Convert FileManager date into CCYYMMDD format
@@ -81,7 +83,9 @@ STRIPN(TEXT) ;
  Q NUM
  ;----------------------------------------------------------------------
  ; Format reject codes
- ; This is called by Output Transform in the BPS RESPONSE file
+ ; This is called by Output Transform in the BPS RESPONSE file and by
+ ;   BPSPRRX3
+ ;
  ; REJCD is the incoming rejection code
 TRANREJ(REJCD) ;EP - REJCD will be the incoming rejection code
  ;

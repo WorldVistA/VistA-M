@@ -1,28 +1,14 @@
-PSSJXR16 ; COMPILED XREF FOR FILE #55 ; 08/12/11
+PSSJXR16 ; COMPILED XREF FOR FILE #55.6114 ; 01/30/12
  ; 
- S DIKZK=1
- S DIKZ(0)=$G(^PS(55,DA,0))
+ S DA(1)=0 S DA=0
+A1 ;
+ I $D(DIKILL) K DIKLM S:DIKM1=2 DIKLM=1 S:DIKM1'=2&'$G(DIKPUSH(2)) DIKPUSH(2)=1,DA(2)=DA(1),DA(1)=DA,DA=0 G @DIKM1
+A S DA(1)=$O(^PS(55,DA(2),5,DA(1))) I DA(1)'>0 S DA(1)=0 G END
+1 ;
+B S DA=$O(^PS(55,DA(2),5,DA(1),14,DA)) I DA'>0 S DA=0 Q:DIKM1=1  G A
+2 ;
+ S DIKZ(0)=$G(^PS(55,DA(2),5,DA(1),14,DA,0))
  S X=$P($G(DIKZ(0)),U,1)
- I X'="" S ^PS(55,"B",$E(X,1,30),DA)=""
- S X=$P($G(DIKZ(0)),U,1)
- I X'="" I '$D(PSGINITF) S ^PS(55,"ALCNVRT")=$S($D(^PS(59.7,1,20)):$P(^(20),"^"),1:"")
- S X=$P($G(DIKZ(0)),U,1)
- I X'="" I '$D(PSGINITF) S ^PS(55,"AUDDD")=$S($D(^PS(59.7,1,20)):$P(^(20),"^"),1:"")
- S X=$P($G(DIKZ(0)),U,1)
- I X'="" I '$D(PSGINITF) S ^PS(55,"AUDAPM")=$S($D(^PS(59.7,1,20)):$P(^(20),"^"),1:"")
- S X=$P($G(DIKZ(0)),U,4)
- I X'="" S ^PS(55,"ADIA",$E(X,1,30),DA)=""
- S DIKZ("SAND")=$G(^PS(55,DA,"SAND"))
- S X=$P($G(DIKZ("SAND")),U,1)
- I X'="" S ^PS(55,"ASAND",DA)=""
- S X=$P($G(DIKZ("SAND")),U,1)
- I X'="" S ^PS(55,"ASAND1",$E(X,1,30),DA)=""
-CR1 S DIXR=816
- K X
- S X(1)=$P(DIKZ(0),U,7)
- S X=$G(X(1))
- I $G(X(1))]"" D
- . K X1,X2 M X1=X,X2=X
- . D LOGDFN^PSUHL(DA)
-CR2 K X
+ I X'="" K ^PS(55,DA(2),5,DA(1),14,"B",$E(X,1,30),DA)
+ G:'$D(DIKLM) B Q:$D(DIKILL)
 END G ^PSSJXR17

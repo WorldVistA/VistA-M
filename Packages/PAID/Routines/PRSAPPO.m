@@ -51,7 +51,7 @@ A3 S ^PRST(458,PPI,"E",0)="^458.01P^^" D NOW^%DTC S NOW=% D ^PRSAPPH
  .I $G(CT36),CM36<MAX S FDA(456,IND_",",4)=CM36+1
  .Q:'$D(FDA)  D FILE^DIE("","FDA"),MSG^DIALOG()
  .S S=$$GET1^DIQ(4,+S,99)_" "_$$GET1^DIQ(4,+S,100),XMTEXT="TMP("
- .S TMP(3)="At "_S,XMDUZ=.5,XMY("VHAOIPAIDETANAWSBULLETIN@VA.GOV")=""
+ .S TMP(3)="At "_S,XMDUZ=.5,XMY("VHAOIPAIDETANAWSBULLETIN@DOMAIN.EXT")=""
  .S XMSUB=+S_" 36/40, 9 month AWS nurse(s) deployed PRS*4.0*112"
  .D ^XMD K TMP
  S $P(^PRST(458,PPI,"E",0),"^",3,4)=N_"^"_N W !!,N," Employee Records created.",!

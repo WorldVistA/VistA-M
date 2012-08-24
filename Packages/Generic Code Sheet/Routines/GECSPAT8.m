@@ -1,8 +1,8 @@
 GECSPAT8 ;WIRMFO/SAB-ADD DATA FOR FIXED ASSETS CODE SHEETS ;25 Apr 96
  ;;2.0;GEC;**8**;MAR 14, 1995
  N GECDOM,GECFDA,GECIEN,GECWP
- S GECDOM="Q-FAM.VA.GOV"
- ;S GECDOM="Q-FMD.VA.GOV" ; for test sites of patch EN*7*29
+ S GECDOM="Q-FAM.DOMAIN.EXT"
+ ;S GECDOM="Q-FMD.DOMAIN.EXT" ; for test sites of patch EN*7*29
  I '$$FIND1^DIC(4.2,"","X",GECDOM,"B") D  Q
  . W $C(7),!,"Domain ",GECDOM," not found. No action taken."
  . W !,"   MailMan patch XM*DBA*92 must be installed prior to running"

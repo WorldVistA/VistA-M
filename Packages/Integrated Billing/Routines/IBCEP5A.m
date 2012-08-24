@@ -1,5 +1,5 @@
 IBCEP5A ;ALB/TMP - EDI UTILITIES for provider ID ;29-SEP-00
- ;;2.0;INTEGRATED BILLING;**137,232,320,348**;21-MAR-94;Build 5
+ ;;2.0;INTEGRATED BILLING;**137,232,320,348,447**;21-MAR-94;Build 80
  ;
 NEW(IBPRV,IBINS) ; Add new prov id
  D FULL^VALM1
@@ -31,7 +31,11 @@ NEW(IBPRV,IBINS) ; Add new prov id
  I $P($G(^IBE(355.97,+Y,1)),U,3),IBPRV["355.93" D  G NEWQ
  . K DIE,DR
  . S DIE="^IBA(355.93,",DA=+IBPRV
- . S DR="S Y=""@5"";@1;.07;@5;I $P($G(^IBA(355.93,DA,0)),U,7)'="""" S Y=""@2"";W !!,""YOU MUST HAVE A STATE TO USE LICENSE # AS AN ID!!"",! S Y=""@1"";@2;W !!,""LICENSING STATE: "",$P($G(^DIC(5,+$P($G(^IBA(355.93,DA,0)),U,7),0)),U,2);.12"
+ . ;S DR="S Y=""@5"";@1;.07;@5;I $P($G(^IBA(355.93,DA,0)),U,7)'="""" S Y=""@2"";W !!,""YOU MUST HAVE A STATE TO USE LICENSE # AS AN ID!!"",! S Y=""@1"";@2;W !!,""LICENSING STATE: "",$P($G(^DIC(5,+$P($G(^IBA(355.93,DA,0)),U,7),0)),U,2);.12"
+ . ; Changed with IB*2.0*447 BI
+ . S DR="S Y=""@5"";@1;.16;@5;I $P($G(^IBA(355.93,DA,0)),U,16)'="""" S Y=""@2"";"
+ . S DR=DR_"W !!,""YOU MUST HAVE A LICENSE STATE TO USE LICENSE # AS AN ID!!"",! S Y=""@1"";"
+ . S DR=DR_"@2;W !!,""LICENSING STATE: "",$P($G(^DIC(5,+$P($G(^IBA(355.93,DA,0)),U,16),0)),U,2);.12"
  . D ^DIE
  . I '$D(Y) D BLD^IBCEP5
  K IB3559(.06)
@@ -77,7 +81,7 @@ DEL1 ; Delete Provider specific ID's
  E  D  ; check for state license
  . Q:$E($P(IBDA,U),1,3)'="LIC"
  . I $P(IBDA,U,2)["IBA(355.93" D
- .. S DA=+$P(IBDA,U,2),DR=".12///@",DIE="^IBA(355.93," D ^DIE
+ .. S DA=+$P(IBDA,U,2),DR=".12///@;.16///@",DIE="^IBA(355.93," D ^DIE
  . E  D
  .. D PRVED(+$P(IBDA,U,2))
  . D BLD^IBCEP5
@@ -97,7 +101,11 @@ CHG1 ; Edit Provider ID's
  . Q:$E($P(IBDA,U),1,3)'="LIC"
  . I $P(IBDA,U,2)["IBA(355.93" D
  .. S DA=+$P(IBDA,U,2),DIE="^IBA(355.93,"
- .. S DR="S Y=""@5"";@1;.07;@5;I $P($G(^IBA(355.93,DA,0)),U,7)'="""" S Y=""@2"";W !,""YOU MUST HAVE A STATE TO USE LICENSE # AS AN ID!!"" S Y=""@1"";@2;W !!,""LICENSING STATE: "",$P($G(^DIC(5,+$P($G(^IBA(355.93,DA,0)),U,7),0)),U,2);.12"
+ .. ;S DR="S Y=""@5"";@1;.07;@5;I $P($G(^IBA(355.93,DA,0)),U,7)'="""" S Y=""@2"";W !,""YOU MUST HAVE A STATE TO USE LICENSE # AS AN ID!!"" S Y=""@1"";@2;W !!,""LICENSING STATE: "",$P($G(^DIC(5,+$P($G(^IBA(355.93,DA,0)),U,7),0)),U,2);.12"
+ .. ; Changed with IB*2.0*447 BI
+ .. S DR=".16;S Y=""@5"";@1;.16;@5;I $P($G(^IBA(355.93,DA,0)),U,16)'="""" S Y=""@2"";"
+ .. S DR=DR_"W !,""YOU MUST HAVE A LICENSE STATE TO USE LICENSE # AS AN ID!!"" S Y=""@1"";@2;"
+ .. S DR=DR_"W !!,""LICENSING STATE: "",$P($G(^DIC(5,+$P($G(^IBA(355.93,DA,0)),U,16),0)),U,2);.12"
  .. D ^DIE
  . E  D
  .. D PRVED(+$P(IBDA,U,2))

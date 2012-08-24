@@ -1,10 +1,11 @@
-PRCAAPR ;WASH-ISC@ALTOONA,PA/RGY-PATIENT ACCOUNT PROFILE (CONT) ;3/9/94  8:41 AM
-V ;;4.5;Accounts Receivable;**198,221**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCAAPR ;WASH-ISC@ALTOONA,PA/RGY - PATIENT ACCOUNT PROFILE (CONT) ;3/9/94  8:41 AM
+V ;;4.5;Accounts Receivable;**198,221,276**;Mar 20, 1995;Build 87
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 EN(PRCATY) ;
  NEW DIC,X,Y,DEBT,PRCADB,DA,PRCA,COUNT,OUT,SEL,BILL,BAT,TRAN,DR,DXS,DTOUT,DIROUT,DIRUT,DUOUT
 ASK N DPTNOFZY,DPTNOFZK S (DPTNOFZY,DPTNOFZK)=1
- K OUT S COUNT=0 R !,"Select DEBTOR NAME or BILL NUMBER: ",X:DTIME I "^"[$E(X) S $P(DEBT,"^",2)="" G Q
+ ; PRCA*4.5*276, add blank line before prompt for easier use
+ K OUT S COUNT=0 R !!,"Select DEBTOR NAME or BILL NUMBER: ",X:DTIME I "^"[$E(X) S $P(DEBT,"^",2)="" G Q
  S X=$$UPPER^VALM1(X)
  S Y=$S($O(^PRCA(430,"B",X,0)):$O(^(0)),$O(^PRCA(430,"D",X,0)):$O(^(0)),1:-1)
  I Y>0 S DEBT=$P($G(^PRCA(430,Y,0)),"^",9) I DEBT S PRCADB=$P($G(^RCD(340,DEBT,0)),"^"),^DISV(DUZ,"^PRCA(430,")=Y,$P(DEBT,"^",2)=$$NAM^RCFN01(DEBT) D COMP,EN1^PRCAATR(Y) G:$D(DTOUT) Q G ASK
@@ -32,3 +33,20 @@ COMP2 ;Compile payments
  S ^TMP("PRCAAPR",$J,"C")=$G(^TMP("PRCAAPR",$J,"C"))-Y
  S ^TMP("PRCAAPR",$J,"C",99)=$G(^TMP("PRCAAPR",$J,"C",99))-Y_"^99",^TMP("PRCAAPR",$J,"C",99,$P(^RCY(344,BAT,0),"^")_"-"_TRAN)=$P(^RCY(344,BAT,1,TRAN,0),"^",4)
  Q
+ ;
+COMP3(RCBILL) ; PRCA*4.5*276
+ ; Check for 1st and 3rd party payment activity on bill
+ ; RCBILL is the IEN for the bill # in files #399/#430 and must be valid,
+ ; check the EOB type and exclude it if it is an MRA. Otherwise,
+ ; returns the EEOB indicator '%' if payment activity was found.
+ ; Access to file #361.1 covered by IA #4051.
+ ; Access to file #399 covered by IA #3820.
+ N PRCOUT,PRCVAL,Z
+ I $G(RCBILL)=0 Q ""
+ I '$O(^IBM(361.1,"B",RCBILL,0)) Q ""  ; no entry here
+ I $P($G(^DGCR(399,RCBILL,0)),"^",13)=1 Q ""  ;avoid 'ENTERED/NOT REVIEWED' status
+ ; handle both single and multiple bill entries in file #361.1
+ S Z=0 F  S Z=$O(^IBM(361.1,"B",RCBILL,Z)) Q:'Z  D  Q:$G(PRCOUT)="%"
+ . S PRCVAL=$G(^IBM(361.1,Z,0))
+ . S PRCOUT=$S($P(PRCVAL,"^",4)=1:"",$P(PRCVAL,"^",4)=0:"%",1:"")
+ Q PRCOUT  ; EOB indicator for either 1st or 3rd party payment on bill

@@ -1,5 +1,5 @@
-MDCEVN ;HINES OIFO/DP/BJ - Wrapper to create HL7 EVN segment;30 May 2006
- ;;1.0;CLINICAL PROCEDURES;**16**;Apr 01, 2004;Build 280
+MDCEVN ;HINES OIFO/DP/BJ/TJ - Wrapper to create HL7 EVN segment;30 May 2006
+ ;;1.0;CLINICAL PROCEDURES;**16,12,23**;Apr 01, 2004;Build 281
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; This routine uses the following IAs:
@@ -9,7 +9,7 @@ MDCEVN ;HINES OIFO/DP/BJ - Wrapper to create HL7 EVN segment;30 May 2006
  ;  #10112       - $$SITE^VASITE() call          Registration    (supported)
  ;  # 2171       - $$STA^XUAF4() call            Kernel          (supported)
  ;
-VALID ;;VDEF HL7 MESSAGE BUILDER
+VALID ;;HL7 MESSAGE BUILDER
  ;
  Q
  ;
@@ -18,19 +18,19 @@ EN(IBEVENT,REC,EVNSEG,ERR) ;
  ;               EVNSEG = Output EVN segment
  ;               ERR    = Error message
  ;
- N FS,PATLOC,FIL408D0,FIL4D0,FIL44D0,ERRAY,STATNO
+ N FS,PATLOC,FIL408D0,FIL4D0,FIL44D0,MDCERRAY,STATNO
  S FS=HL("FS")
  K ERR
  S EVNSEG=$$EVN^VAFHLEVN(IBEVENT,"","")            ; using OTS
  ;
  Q:'$D(EVNSEG)
  I $P(EVNSEG,FS,2)'=IBEVENT D  Q
- .S ERRAY(1)="Event Type Code EVN.1",ERRAY(2)="EVN",ERRAY(3)=REC
- .S ERR=$$EZBLD^DIALOG(7040020.004,.ERRAY)
+ .S MDCERRAY(1)="Event Type Code EVN.1",MDCERRAY(2)="EVN",MDCERRAY(3)=REC
+ .S ERR=$$EZBLD^DIALOG(7040020.004,.MDCERRAY)
  .Q
  I +$P(EVNSEG,FS,3)'>0 D  Q
- .S ERRAY(1)="Recorded Date/Time EVN.2.1",ERRAY(2)="EVN",ERRAY(3)=REC
- .S ERR=$$EZBLD^DIALOG(7040020.004,.ERRAY)
+ .S MDCERRAY(1)="Recorded Date/Time EVN.2.1",MDCERRAY(2)="EVN",MDCERRAY(3)=REC
+ .S ERR=$$EZBLD^DIALOG(7040020.004,.MDCERRAY)
  .Q
  ; Event Facility EVN.7.1  -  START WITH 375,13
  S FIL408D0=+$P($G(REC(13)),U,1)
@@ -52,7 +52,7 @@ EN(IBEVENT,REC,EVNSEG,ERR) ;
  I IBBVSITE>0 S $P(EVNSEG,FS,8)=IBBVSITE Q
  ;
  ; still no hit, error
- S ERRAY(1)="Event Facility EVN.7.1",ERRAY(2)="EVN",ERRAY(3)=REC
- S ERR=$$EZBLD^DIALOG(7040020.004,.ERRAY)
+ S MDCERRAY(1)="Event Facility EVN.7.1",MDCERRAY(2)="EVN",MDCERRAY(3)=REC
+ S ERR=$$EZBLD^DIALOG(7040020.004,.MDCERRAY)
  Q
  ;

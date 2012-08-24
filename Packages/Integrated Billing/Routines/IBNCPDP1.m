@@ -1,9 +1,10 @@
-IBNCPDP1 ;OAK/ELZ - PROCESSING FOR NEW RX REQUESTS ;5/22/08  15:24
- ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435**;21-MAR-94;Build 27
+IBNCPDP1 ;OAK/ELZ - IB BILLING DETERMINATION PROCESSING FOR NEW RX REQUESTS ;5/22/08
+ ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435,455,452,473**;21-MAR-94;Build 29
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference to CL^SDCO21 supported by IA# 406
  ; Reference to IN5^VADPT supported by IA# 10061
+ ; Reference to $$MWC^PSOBPSU2 supported by IA# 4970
  ;
 RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  ; this is called by PSO for all prescriptions issued, return is
@@ -19,7 +20,7 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  ;clean up the list of non-answered SC/Env.indicators questions and INS
  K IBD("SC/EI NO ANSW"),IBD("INS")
  ;
- N IBTRKR,IBARR,IBADT,IBRXN,IBFIL,IBTRKRN,IBRMARK,IBANY,IBX,IBT,IBINS,IBSAVE
+ N IBTRKR,IBARR,IBADT,IBRXN,IBFIL,IBTRKRN,IBRMARK,IBANY,IBX,IBT,IBINS,IBSAVE,IBPRDATA,IBDISPFEE,IBADMINFEE
  N IBFEE,IBBI,IBIT,IBPRICE,IBRS,IBRT,IBTRN,IBCHG,IBRES,IBNEEDS,IBELIG,IBDEA,IBPTYP
  ;
  ; eligibility verification request flag - esg 9/9/10 IB*2*435
@@ -28,10 +29,10 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  I '$G(DFN) S IBRES="0^No DFN" G RXQ
  ;
  S IBRES="0^Error"
- S IBADT=+$G(IBD("FILL DATE"),DT)
+ S IBADT=+$G(IBD("DOS"),DT)      ; date of service (default to today)
  ;
- ; -- look up insurance for patient
- D ALL^IBCNS1(DFN,"IBINS",1,IBADT,1)
+ ; -- gather all active pharmacy insurance policies for patient on date of service
+ D RXINS^IBNCPDPU(DFN,IBADT,.IBINS)
  ;
  ; -- determine rate type
  S IBRT=$$RT^IBNCPDPU(DFN,IBADT,.IBINS,.IBPTYP)
@@ -68,13 +69,20 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  . S IBRES=0_U_IBRMARK                                ; not ECME billable
  . Q
  ;
+ ; -- Check for CHAMPVA Inpatient - esg 4/28/11 IB*2*452
+ I $P(IBRT,U,3)="C",$$INP(DFN,IBRXN,IBFIL) D  G RXQ
+ . S IBRMARK="CHAMPVA INPATIENT/DISCHARGE"            ; reason not billable
+ . D CT                                               ; update/add claims tracking entry
+ . S IBRES=0_U_IBRMARK                                ; not ECME billable
+ . Q
+ ;
  ;for secondary billing - skip claim tracking functionality
  G:$G(IBD("RXCOB"))>1 GETINS
  ;
  ; -- claims tracking info
  I IBTRKRN,$$PAPERBIL^IBNCPNB(IBTRKRN) S IBRES="0^Existing IB Bill in CT",IBD("NO ECME INSURANCE")=1 G RXQ
- ; already billed as Tricare
- I $D(^IBA(351.5,"B",IBRXN_";"_IBFIL)) S IBRES="0^Already billed under prior Tricare process",IBD("NO ECME INSURANCE")=1 G RXQ
+ ; already billed as TRICARE
+ I $D(^IBA(351.5,"B",IBRXN_";"_IBFIL)) S IBRES="0^Already billed under prior TRICARE process",IBD("NO ECME INSURANCE")=1 G RXQ
  ;
  ; -- no pharmacy coverage, update ct if applicable, quit
  I '$$PTCOV^IBCNSU3(DFN,IBADT,"PHARMACY",.IBANY) S IBRMARK=$S($G(IBANY):"SERVICE NOT COVERED",1:"NOT INSURED") D:$P(IBTRKR,U,4)=2 CT S IBRES="0^"_IBRMARK,IBD("NO ECME INSURANCE")=1 G RXQ
@@ -128,7 +136,7 @@ GETINS ; -- setup insurance data for patient
  ;
  ; -- check drug for sensitive dx special handling code and ROI on file
  I IBD("DEA")["U",$D(IBD("INS",1,3)) D  G:$D(IBRMARK) RXQ
- . I '$$ROI^IBNCPDR4(DFN,$G(IBD("DRUG")),+$P($G(IBD("INS",1,3)),U,5),$G(IBD("FILL DATE"))) D  Q
+ . I '$$ROI^IBNCPDR4(DFN,$G(IBD("DRUG")),+$P($G(IBD("INS",1,3)),U,5),IBADT) D  Q
  .. S IBRMARK="REFUSES TO SIGN RELEASE (ROI)"
  .. D CT
  .. S IBRES="0^NOT BILLABLE, NO ROI - NO ACTIVE ROI ON FILE"
@@ -139,6 +147,10 @@ RATEPRIC ;
  I 'IBRT D CT S IBRES="0^Cannot determine Rate type" G RXQ
  S IBBI=$$EVNTITM^IBCRU3(+IBRT,3,"PRESCRIPTION FILL",IBADT,.IBRS)
  I 'IBBI,$P(IBBI,";")'="VA COST" D CT S IBRES="0^Cannot find Billable Item" G RXQ
+ ;
+ ; Check for missing NDC
+ I $G(IBD("NDC"))="" D CT S IBRES="0^Missing NDC" G RXQ
+ ;
  ;1;BEDSECTION;1^
  ;IBRS(1,18,5)=
  S IBRS=+$O(IBRS($P(IBBI,";"),0))
@@ -148,14 +160,30 @@ RATEPRIC ;
  S IBPRICE=+$$BICOST^IBCRCI(+IBRT,3,IBADT,"PRESCRIPTION FILL",+IBIT,,,$S($P(IBRT,U,2)="A":IBD("QTY"),1:1))
  ;36^2991001
  ;
+ ; return the true value of drug cost for 3rd party bill if it is zero
+ I IBD("COST")=0,$P($G(^DGCR(399.3,+$P(IBRT,U,1),0)),U,5) S IBD("COST")=$$RXPCT(.IBD,.BWHERE)
+ ;
  ; get fees if any, ignore return, don't care about price, just need fees
  S IBCHG=$$RATECHG^IBCRCC(+IBRS,$S($P(IBRT,U,2)'="C":1,1:IBD("QTY")*IBD("COST")),IBADT,.IBFEE)
  I $P(IBRT,U,2)="C" S IBPRICE=+IBCHG
  ;
+ S IBDISPFEE=+$P($G(IBFEE),U,1)     ; dispensing fee
+ S IBADMINFEE=+$P($G(IBFEE),U,2)    ; administrative fee
+ ;
  I 'IBPRICE D CT S IBRES="0^Cannot find price for Item" G RXQ
  ;
- S IBPRICE=(+$G(IBFEE))_U_$S($P(IBRT,U,2)="A":"01",$P(IBRT,U,2)="C":"05",1:"07")_U_$S($P(IBRT,U,2)="C":IBD("QTY")*IBD("COST")+$G(IBFEE),$P(IBRT,U,2)="A":IBPRICE-$G(IBFEE)-$P($G(IBFEE),U,2),1:IBPRICE)_U_IBPRICE_U_(+$P($G(IBFEE),U,2))
- S IBX=0 F  S IBX=$O(IBD("INS",IBX)) Q:IBX<1  S IBD("INS",IBX,2)=IBPRICE
+ ; build pricing data string
+ S IBPRDATA=""
+ S $P(IBPRDATA,U,1)=IBDISPFEE                     ; dispensing fee
+ S $P(IBPRDATA,U,2)=$S($P(IBRT,U,2)="A":"01",$P(IBRT,U,2)="C":"05",1:"07")   ; basis of cost determination
+ S $P(IBPRDATA,U,3)=$S($P(IBRT,U,2)="C":IBD("QTY")*IBD("COST")+IBDISPFEE,$P(IBRT,U,2)="A":IBPRICE-IBDISPFEE-IBADMINFEE,1:IBPRICE)   ; basis of cost amount
+ S $P(IBPRDATA,U,4)=IBPRICE                       ; gross amount due
+ S $P(IBPRDATA,U,5)=IBADMINFEE                    ; administrative fee
+ S $P(IBPRDATA,U,6)=IBD("QTY")*IBD("COST")        ; ingredient cost
+ S $P(IBPRDATA,U,7)=IBPRICE-IBADMINFEE            ; usual & customary charge (U&C)
+ ;
+ ; store the pricing data string on each node 2 that may exist
+ S IBX=0 F  S IBX=$O(IBD("INS",IBX)) Q:'IBX  S IBD("INS",IBX,2)=IBPRDATA
  ;
  ;Check for non-covered drugs
  S IBRES=$$CHCK^IBNCDNC(.IBD) I IBRES]"" S IBRMARK=$P(IBRES,U,2) D CT G RXQ
@@ -186,10 +214,10 @@ CT ; files in claims tracking
  ;
 SETINSUR(IBADT,IBRT,IBELIG,IBINS,IBD,IBRES) ; build insurance data array
  ; Input variables:
- ;    IBADT - fill date/identify insurance as of this date
- ;     IBRT - rate type variable - [1] rate type ien, [2] type (A/C/T), [3] eligibility (V/T)
+ ;    IBADT - date of service/identify insurance as of this date
+ ;     IBRT - rate type variable - [1] rate type ien, [2] type (A/C/T), [3] eligibility (V/T/C)
  ;   IBELIG - eligibility request flag (1/0)
- ;    IBINS - insurance array as returned by ALL^IBCNS1
+ ;    IBINS - insurance array as returned by RXINS^IBNCPDPU
  ;      IBD - input/output - array entries passed in and certain array entries returned
  ; Output variable:
  ;    IBRES - only returned if insurance errors
@@ -207,35 +235,41 @@ SETINSUR(IBADT,IBRT,IBELIG,IBINS,IBD,IBRES) ; build insurance data array
  ;
  S IBX=0 F  S IBX=$O(IBINS("S",IBX)) Q:'IBX  D
  . S IBT=0 F  S IBT=$O(IBINS("S",IBX,IBT)) Q:'IBT  D
- .. N IBDAT,IBPL,IBINSN,IBPIEN,IBY,IBZ,IBCHNM
+ .. N IBDAT,IBPL,IBINSN,IBPIEN,IBY,IBZ,IBCHNM,IBREL,IBPLNTYP
  .. S IBZ=$G(IBINS(IBT,0)) Q:IBZ=""
  .. S IBPL=$P(IBZ,U,18) ; plan
  .. Q:'IBPL
- .. Q:'$$PLCOV^IBCNSU3(IBPL,IBADT,3)  ; not a pharmacy plan
- .. ;
- .. I $G(IBD("PLAN")) Q:IBPL'=$G(IBD("PLAN"))  ;skip other plans if we call RX API for a specific plan (IBD("PLAN"))
- .. ;
- .. I '$G(IBD("PLAN")) I '$D(IBD("INS")),$P(IBRT,U,3)="V",($P($G(^IBE(355.1,+$P($G(^IBA(355.3,+IBPL,0)),U,9),0)),U)["TRICARE"!($P($G(^(0)),U)="CHAMPVA")) K IBINS Q  ;Tricare/ChampVa coverage for a Vet
+ .. Q:'$$PLCOV^IBCNSU3(IBPL,IBADT,3)           ; not a pharmacy plan
+ .. I $G(IBD("PLAN")) Q:IBPL'=$G(IBD("PLAN"))  ; skip other plans if we call RX API for a specific plan (IBD("PLAN"))
  .. ;
  .. ; at this point we have found an Rx policy.  We'll count these up later by IBX.
  .. S IBRXPOL(IBX,IBT)=""
  .. ;
- .. S IBINSN=$P($G(^DIC(36,+$G(^IBA(355.3,+IBPL,0)),0)),U) ; ins name
+ .. S IBPLNTYP=$P($G(^IBE(355.1,+$P($G(IBINS(IBT,355.3)),U,9),0)),U,1)   ; type of plan name, insurance plan type
+ .. I '$G(IBD("PLAN")) I '$D(IBD("INS",IBX)),$P(IBRT,U,3)="V",(IBPLNTYP["TRICARE"!(IBPLNTYP="CHAMPVA")) S IBERMSG(IBX)=IBPLNTYP_" coverage for a Veteran" Q
+ .. ;
  .. S IBPIEN=+$G(^IBA(355.3,+IBPL,6))
  .. I 'IBPIEN S IBERMSG(IBX)="Plan not linked to the Payer" Q  ; Not linked
+ .. ;
  .. K IBY D STCHK^IBCNRU1(IBPIEN,.IBY,IBELIG)
  .. I $E($G(IBY(1)))'="A" S IBERMSG(IBX)=$$ERMSG^IBNCPNB($G(IBY(6))) Q  ; not active
  .. ;
  .. ; at this point we have a valid policy for this IBX
  .. S IBERMSG(IBX)=""          ; no error message
- .. S IBDAT=IBPL ; Plan IEN
+ .. S IBINSN=$P($G(^DIC(36,+$G(^IBA(355.3,+IBPL,0)),0)),U) ; ins name
  .. S IBCHNM=$$NAME^IBCEFG1($P(IBZ,U,17))   ; standardize subscriber/cardholder name
+ .. S IBREL=+$P($G(IBINS(IBT,4)),U,5)       ; pointer to pharmacy relationship code file
+ .. ; use the #4.05 field if it exists, otherwise use the old pt relationship field #16
+ .. S IBREL=$S(IBREL:$$EXTERNAL^DILFD(2.312,4.05,,IBREL),1:$P(IBZ,U,16))
+ .. ;
+ .. S IBDAT=""
+ .. S $P(IBDAT,U,1)=IBPL       ; Plan IEN
  .. S $P(IBDAT,U,2)=$G(IBY(2)) ; BIN
  .. S $P(IBDAT,U,3)=$G(IBY(3)) ; PCN
  .. S $P(IBDAT,U,4)=$P($G(^BPSF(9002313.92,+$P($G(IBY(5)),",",1),0)),U) ; Payer Sheet B1 name
  .. S $P(IBDAT,U,5)=$P($G(IBINS(IBT,355.3)),U,4) ; Group ID
  .. S $P(IBDAT,U,6)=$P(IBZ,U,2)     ; Cardholder ID
- .. S $P(IBDAT,U,7)=$P(IBZ,U,16)    ; Patient Relationship Code
+ .. S $P(IBDAT,U,7)=IBREL           ; Patient Relationship Code
  .. S $P(IBDAT,U,8)=$P(IBCHNM,U,2)  ; Cardholder First Name
  .. S $P(IBDAT,U,9)=$P(IBCHNM,U,1)  ; Cardholder Last Name
  .. S $P(IBDAT,U,10)=$P($G(^DIC(36,+IBZ,.11)),U,5) ; State
@@ -248,12 +282,14 @@ SETINSUR(IBADT,IBRT,IBELIG,IBINS,IBD,IBRES) ; build insurance data array
  .. S $P(IBDAT,U,17)=+$P($G(IBY(5)),",",2)     ; Payer Sheet B2 ien
  .. S $P(IBDAT,U,18)=+$P($G(IBY(5)),",",3)     ; Payer Sheet B3 ien
  .. S $P(IBDAT,U,19)=+$P($G(IBY(5)),",",4)     ; Payer Sheet E1 ien
+ .. S $P(IBDAT,U,20)=$P($G(IBINS(IBT,4)),U,6)  ; Pharmacy Person Code
  .. S IBD("INS",IBX,1)=IBDAT
  .. ;
- .. S IBDAT=$P($G(IBINS(IBT,355.3)),U,3) ;group name
+ .. S IBDAT=""
+ .. S $P(IBDAT,U,1)=$P($G(IBINS(IBT,355.3)),U,3) ;group name
  .. S $P(IBDAT,U,2)=$$PHONE^IBNCPDP6(+IBZ) ;ins co ph 3
  .. S $P(IBDAT,U,3)=$$GET1^DIQ(366.03,IBPIEN_",",.01) ;plan ID
- .. S $P(IBDAT,U,4)=$S($P($G(^IBE(355.1,+$P($G(IBINS(IBT,355.3)),U,9),0)),U)="TRICARE":"T",1:"V") ; plan type
+ .. S $P(IBDAT,U,4)=$S(IBPLNTYP="TRICARE":"T",IBPLNTYP="CHAMPVA":"C",1:"V") ; plan type
  .. S $P(IBDAT,U,5)=+$G(^IBA(355.3,+IBPL,0)) ; insurance co ien
  .. S $P(IBDAT,U,6)=$P(IBZ,U,20) ;(#.2) COB field of the (#.3121) insurance Type multiple of the Patient file (#2)
  .. S $P(IBDAT,U,7)=IBT  ; 2.312 subfile ien
@@ -308,6 +344,39 @@ INP(DFN,IBRXN,IBFIL) ; Is this an inpatient, NON-BILLABLE Rx as of the Issue Dat
  S INP=1
 INPX ;
  Q INP
+ ;
+RXPCT(IBD,BWHERE) ; Penny drug cost calculation
+ ; Input-IBD array, BWHERE
+ ; Output-return quotient of drug true value with 4 decimal places, or 0
+ N IBDIEN,IBDRX,IBNDC,IBFRM,IBDRFL,IBUNIT,IBSYN,IBQUO,IBDQUO,IBPSUF,IBPORD,IBPDISP,IBDRUG
+ S IBDIEN=IBD("IEN"),IBNDC=IBD("NDC"),IBDRX=IBD("DRUG"),IBDRFL=IBD("FILL NUMBER")
+ S IBFRM=$G(BWHERE),IBQUO=0
+ G:'IBDRX RXPCTQ
+ ; default unit price from (50-13/15)
+ D GETS^DIQ(50,IBDRX,".01;13;15","I","IBUNIT")
+ S IBPORD=$G(IBUNIT(50,IBDRX_",",13,"I"))
+ S IBPDISP=$G(IBUNIT(50,IBDRX_",",15,"I"))
+ S (IBDQUO,IBQUO)=$S(IBPORD&IBPDISP:(IBPORD/IBPDISP),1:0)
+ ;
+ ; unit price from (50.1-402/403) if NDC exists in the SYNONYM subfile
+ D DATA^IBRXUTL(IBDRX)
+ S IBSYN=0 F  S IBSYN=$O(^TMP($J,"IBDRUG",IBDRX,"SYN",IBSYN)) Q:'IBSYN  D
+ . I IBNDC'="",$G(^TMP($J,"IBDRUG",IBDRX,"SYN",IBSYN,2))=IBNDC D
+ .. S IBPSUF=IBSYN_","_IBDRX_","
+ .. D GETS^DIQ(50.1,IBPSUF,".01;402;403","I","IBUNIT")
+ .. S IBPORD=$G(IBUNIT(50.1,IBPSUF,402,"I"))
+ .. S IBPDISP=$G(IBUNIT(50.1,IBPSUF,403,"I"))
+ .. S IBQUO=$S(IBPORD&IBPDISP:(IBPORD/IBPDISP),1:0)
+ ;
+ ; API #4970 - use the default unit price for CMOP
+ I $$MWC^PSOBPSU2(IBDIEN,IBDRFL)="C" D
+ . Q:(IBFRM="PE")!(IBFRM="PP")
+ . S IBQUO=IBDQUO
+ ; set the lowest value 0.0001 with 4 decimal if less than 0.00005
+ I IBQUO S IBQUO=$J(IBQUO,1,4),IBQUO=$S(IBQUO>0:IBQUO,1:"0.0001")
+ K ^TMP($J,"IBDRUG")
+RXPCTQ ;
+ Q IBQUO
  ;
 EXEMPT ; exemption reasons
  ; variable from SD call ^ variable from PSO ^ reason not billable

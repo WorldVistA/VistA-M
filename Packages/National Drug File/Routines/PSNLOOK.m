@@ -1,5 +1,5 @@
 PSNLOOK ;BIR/WRT-Look up into drug file ; 06/19/03 15:00
- ;;4.0; NATIONAL DRUG FILE;**2,3,5,11,22,27,62,70,169,262**; 30 Oct 98;Build 6
+ ;;4.0;NATIONAL DRUG FILE;**2,3,5,11,22,27,62,70,169,262,296**; 30 Oct 98;Build 13
  ;
  ; Reference to ^PSDRUG supported by DBIA# 2192
  ; Reference to ^PS(50.606 supported by DBIA# 2174
@@ -88,6 +88,7 @@ DSP1 D HG W "Primary Drug Class: ",$P(^PS(50.605,PSNLKCL,0),"^") D SC W !,"CS Fe
  I $G(^PSNDF(50.68,PSNLKGK,8)) W !,"Exclude Drg-Drg Interaction Ck: Yes (No check for Drug-Drug Interactions)"
  D OVER
  D POSDOS^PSNACT(PSNLKGK)
+ D REDCOP^PSNACT(PSNLKGK)
  W !
  Q
 RESTN I $O(^PSNDF(50.68,PSNLKGK,6,0)) W !,"Restriction: " F PSNLKRE=0:0 S PSNLKRE=$O(^PSNDF(50.68,PSNLKGK,6,PSNLKRE)) Q:'PSNLKRE  S PSNLKWRT=$G(^PSNDF(50.68,PSNLKGK,6,PSNLKRE,0)) W !,PSNLKWRT

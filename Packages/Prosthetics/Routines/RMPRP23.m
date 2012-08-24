@@ -14,7 +14,7 @@ PRI ;ENTRY POINT FOR PRINTING PRIVACY ACT FOR 10-2421 AND 10-55 AND 2419
 PRI1 W !,"(b) To ensure that appropriate security controls are in place, contractors must"
  W !,"follow the procedures set forth in 'VA Information and Information System"
  W !,"Security/Privacy Requirements for IT Contracts' located at the following Web"
- W !,"site: http://www.iprm.oit.va.gov.",!
+ W !,"site: http://www.iprm.oit.DOMAIN.EXT.",!
 PRI2 W !,"(c) These provisions shall apply to all contracts in which VA sensitive"
  W !,"information is stored, generated, transmitted, or exchanged by VA, a contractor,"
  W !,"subcontractor or a third-party, or on behalf of any of these entities regardless"

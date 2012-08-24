@@ -1,17 +1,17 @@
 IBNCPDS1 ;ALB/BDB - DISPLAY RX COB DETERMINATION ;30-NOV-07
- ;;2.0;INTEGRATED BILLING;**411**; 21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**411,452**; 21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % ; -- main entry point to display rx cob determination
 EN ;
  S U="^"
  D FULL^VALM1
- N IBADT,IBQUIT
+ N DIROUT,DIRUT,DTOUT,DUOUT,IBADT,IBANY,IBINS,IBQUIT,IBT,IBX,X,Y
  S IBQUIT=0
  S DIR("?",1)="Enter the date for which you want to see active insurances."
  S DIR("?",2)="A valid date entry is required, or"
  S DIR("?")="enter up-arrow ( ^ ) to return to the main display screen."
- S DIR("A")="FILL DATE",DIR("A",1)=" ",DIR("B")="TODAY",DIR(0)="D"
+ S DIR("A")="Date of Service",DIR("A",1)=" ",DIR("B")="TODAY",DIR(0)="D"
  F  D ^DIR Q:$D(DTOUT)!$D(DUOUT)  S IBADT=Y,IBQUIT=1  Q:IBQUIT
  K DIR
  G:'IBQUIT COBQ
@@ -26,7 +26,7 @@ EN ;
  S IBX=0
  F  S IBX=$O(IBINS("S",IBX)) Q:'IBX  D
  . S IBT=0 F  S IBT=$O(IBINS("S",IBX,IBT)) Q:'IBT  D
- .. N IBDAT,IBPL,IBINSN,IBPIEN,IBY,IBZ,IBCAT
+ .. N IBCAT,IBCOB,IBDAT,IBEFFDT,IBELEC,IBEXPDT,IBGRPN,IBHOLD,IBINSN,IBPIEN,IBPL,IBPTYPE,IBY,IBZ
  .. S IBQUIT=1
  .. Q:'$G(IBINS(IBT,0))
  .. S IBPL=$$GET1^DIQ(2.312,IBT_","_DFN_",",.18,"I") ; plan
@@ -40,12 +40,12 @@ EN ;
  .. S IBHOLD=$S(IBHOLD="v":"SELF",IBHOLD="s":"SPOUSE",IBHOLD="o":"OTHER",1:"")
  .. S IBEFFDT=$P(IBINS(IBT,0),U,8) I IBEFFDT]"" S IBEFFDT=$$DFORMAT(IBEFFDT) ; effective date
  .. S IBEXPDT=$P(IBINS(IBT,0),U,4) I IBEXPDT]"" S IBEXPDT=$$DFORMAT(IBEXPDT) ; expiration date
- .. S IBELEC=$$GET1^DIQ(36,$$GET1^DIQ(2.312,IBT_","_DFN_",",.01,"I")_",",3.01,"I"),IBELEC=$S(IBELEC=0:"P",1:"E") ; electronic transmit
- .. I IBELEC>0 D  Q:'IBQUIT
+ .. S IBELEC="P" D
  ... S IBPIEN=$$GET1^DIQ(355.3,$$GET1^DIQ(2.312,IBT_","_DFN_",",.18,"I")_",",6.01,"I")
- ... I 'IBPIEN S IBQUIT=0 Q  ; Not linked
+ ... I 'IBPIEN Q  ; Not linked
  ... D STCHK^IBCNRU1(IBPIEN,.IBY)
- ... I $E($G(IBY(1)))'="A" S IBQUIT=0 Q  ; not active
+ ... I $E($G(IBY(1)))'="A" Q  ; not active
+ ... S IBELEC="E"  ;Both linked and active, so electronic submit
  .. D EN^DDIOL($E(IBINSN,1,10),"","!?1")
  .. D EN^DDIOL(IBCOB,"","?14")
  .. D EN^DDIOL($E(IBPTYPE,1,12),"","?18")

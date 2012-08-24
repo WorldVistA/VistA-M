@@ -114,7 +114,7 @@ FOMRD ;Flag all definitions using the old-style MRD.
  ;===============================================================
  ;
 MAIL ;Add remote member to mail group IHD SEND
- D ADDMBRS^XMXAPIG(DUZ,"IHD SEND","XXX@Q-IHD.MED.VA.GOV")
+ D ADDMBRS^XMXAPIG(DUZ,"IHD SEND","XXX@Q-IHD.DOMAIN.EXT")
  D ADDMBRS^XMXAPIG(DUZ,"IHD","S.HL MS SERVER")
  D INIT^PXRMGECW
  Q
@@ -242,8 +242,8 @@ SVRSN ;Set the package version number.
 WEB ;Change the default web page from the prevention handbook
  ;to the oqp page.
  N IND,NEW,OLD
- S OLD="http://vaww.va.gov/publ/direc/health/handbook/1120-2hk.htm"
- S NEW="http://www.oqp.med.va.gov/cpg/cpg.htm"
+ S OLD="http://vaww.DOMAIN.EXT/publ/direc/health/handbook/1120-2hk.htm"
+ S NEW="http://www.oqp.DOMAIN.EXT/cpg/cpg.htm"
  S IND=$O(^PXRM(800,1,1,"B",$E(OLD,1,30),""))
  I IND="" Q
  K ^PXRM(800,1,1,IND,0)

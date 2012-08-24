@@ -1,9 +1,9 @@
 PSORENW0 ;IHS/DSD/JCM-renew main driver continuation ;2/8/06 8:40am
- ;;7.0;OUTPATIENT PHARMACY;**11,27,32,59,64,46,71,96,100,130,237,206,251,375**;DEC 1997;Build 17
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,32,59,64,46,71,96,100,130,237,206,251,375,379**;DEC 1997;Build 28
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
- ;External reference to $$DS^PSSDSAPI supported by DBIA 5424
+ ;External reference to $$DS^PSSDSAPI supported by DBIA 5425
  ;
  ;PSO*237 was not adding to Clozapine Override file, fix
 PROCESS ;
@@ -39,7 +39,7 @@ ANQ I $G(ANQDATA)]"" D NOW^%DTC G:$D(^PS(52.52,"B",%)) ANQ D
  ;
 PROCESSX N PSORWRIT I PSORENW("DFLG")!$G(PSORX("DFLG")) S PSOBBCLK=1 W:'$G(POERR) !,$C(7),"RENEWED RX DELETED",! S PSOWRIT=1,PSORERR=1 D
  .D:$P($G(PSOLST(+$G(ORN))),"^",2) PSOUL^PSSLOCK($P(PSOLST(ORN),"^",2)) S POERR("DFLG")=1 D CLEAN^PSOVER1 D
- ..W !! K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to Continue" D ^DIR K DIR,DTOUT,DUOUT
+ ..W !! K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to Continue" D ^DIR K DIR,DTOUT,DUOUT S VALMBCK="Q"
  D:$G(PSORENW("OLD FILL DATE"))]"" SUSDATEK^PSOUTIL(.PSORENW)
  K PRC,PHI,PSOQUIT,BBRN,BBRN1,PSORENW,PSODRUG,PSORX("PROVIDER NAME"),PSORX("CLINIC"),PSORX("FN")
  K PSOEDT,PSOLM S:$G(PSORENW("FROM"))="" (PSORENW("DFLG"),PSORENW("QFLG"))=0

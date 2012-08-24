@@ -1,5 +1,5 @@
-VAFCPTED ;ISA/RJS,Zoltan-EDIT EXISTING PATIENT ;04/06/99
- ;;5.3;Registration;**149,333,756**;Aug 13, 1993;Build 5
+VAFCPTED ;ISA/RJS,Zoltan-EDIT EXISTING PATIENT ;12/12/2011 14:10
+ ;;5.3;Registration;**149,333,756,837**;Aug 13, 1993;Build 5
 EDIT(DGDFN,ARRAY,STRNGDR) ;-- Edits existing patient
  ;Input:
  ;  DGDFN - IEN in the PATIENT (#2) file
@@ -24,6 +24,13 @@ EDIT(DGDFN,ARRAY,STRNGDR) ;-- Edits existing patient
  ;process the given PATIENT file DR string in the given order
  S STRNG=STRNGDR F VAFCX=1:1 Q:STRNG=""  S FLD=$P(STRNGDR,";",VAFCX) S STRNG=$P(STRNGDR,";",VAFCX+1,$L(STRNGDR,";")) D LOAD
  ;
+ ; **837, MVI_882 start
+ S FLD("TEMP")=""
+ F  S FLD("TEMP")=$O(@ARRAY@(FLD("TEMP"))) Q:'FLD("TEMP")  D
+ . I $G(@ARRAY@(FLD("TEMP")))]"",STRNGDR'[FLD("TEMP") D
+ . ; update TIN and/or FIN if it is missing in variable STRNGDR
+ . I FLD("TEMP")=991.08!(FLD("TEMP")=991.09) S FLD=FLD("TEMP") D LOAD
+ ; **837, MVI_882 end
  ;Do Address Bulletin if incoming Address does not equal existing
  ;Address - removed bulletin with patch DG*5.3*333
  ;
@@ -51,7 +58,7 @@ LOAD ; -- Loads fields to patient file
 ALIAS ; update Alias multiple **756
  ;allow the synchronizing of the Alias multiple with the data passed in the array
  ;array(1,x)=name (last, first middle suffix format)^ssn
- N HAVE,I,MIEN,ADD,DONE,FDA,MPIFERR,DEL,ALIAS,CNT
+ N HAVE,I,MIEN,ADD,DONE,FDA,MPIFERR,DEL,ALIAS,CNT,DGALIAS
  M HAVE=^DPT(DGDFN,.01)
  S CNT=0
  ;see if any need to be added
@@ -65,8 +72,12 @@ ALIAS ; update Alias multiple **756
  ;delete entries
  K FDA,MPIFERR
  S MIEN=0 F  S MIEN=$O(HAVE(MIEN)) Q:'MIEN  D  ;loop through existing data
+ . ; **837,MVI_805 check for duplicates (name + ssn combination)
+ . S HAVE=$P($G(HAVE(MIEN,0)),"^",1,2)
+ . X $S(HAVE="":"",$D(DGALIAS(HAVE)):"S FDA(2.01,MIEN_"",""_DGDFN_"","",.01)=""@"" Q",1:"S DGALIAS(HAVE)=HAVE")
+ . ;
  . S DEL=1,(DONE,I)=0 F  S I=$O(@ARRAY@(1,I)) Q:'I  D  I DONE Q  ;loop through incoming data
- . . I $P($G(HAVE(MIEN,0)),"^",1,2)=$P(@ARRAY@(1,I),"^",1,2) S DEL=0,DONE=1 Q  ;compare to existing data to see if data should be deleted
+ . . I HAVE=$P(@ARRAY@(1,I),"^",1,2) S DEL=0,DONE=1 Q  ;compare to existing data to see if data should be deleted
  . I DEL S FDA(2.01,MIEN_","_DGDFN_",",.01)="@" ;existing entry to delete
  I $D(FDA) D FILE^DIE("E","FDA","MPIERR") I $G(MPIFERR("DIERR",1,"TEXT",1))'=""  S RGER="-1^"_MPIFERR("DIERR",1,"TEXT",1) ;delete entry
  Q

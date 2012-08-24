@@ -1,5 +1,5 @@
-SROAPRE1 ;BIR/MAM - EDIT PAGE 1 PREOP ;05/28/10
- ;;3.0; Surgery ;**38,47,125,135,141,166,174**;24 Jun 93;Build 8
+SROAPRE1 ;BIR/MAM - EDIT PAGE 1 PREOP ;08/11/2011
+ ;;3.0;Surgery;**38,47,125,135,141,166,174,176**;24 Jun 93;Build 8
  K DA D @EMILY Q
 1 ; edit general information
  W ! K DIR S X=$P(SRAO(1),"^") I X'="" S DIR("B")=X
@@ -24,7 +24,7 @@ SROAPRE1 ;BIR/MAM - EDIT PAGE 1 PREOP ;05/28/10
  Q
 GEN ; general
  N SRUP S SRUP=""
- W ! K DR,DIE S DA=SRTN,DIE=130,DR="236T;237T;346T;202T;246T;325T;237.1T;238T" D ^DIE K DIE,DR I $D(Y) Q
+ W ! K DR,DIE S DA=SRTN,DIE=130,DR="236T;237T;519T;520T;517T;518T;246T;618T;325T;237.1T;238T" D ^DIE K DIE,DR I $D(Y) Q
  K DIR S DA=SRTN,DIR(0)="130,492",DIR("A")="Functional Health Status at Evaluation for Surgery" D ^DIR K DIR D
  .I $D(DTOUT)!$D(DUOUT) Q
  .I X="@" K DIE,DR S DIE=130,DR="492///@" D ^DIE K DA,DIE,DR Q
@@ -32,9 +32,12 @@ GEN ; general
  S SRACLR=0
  Q
 NOGEN ; no general problems
- S $P(^SRF(SRTN,200),"^",6)=$S(X="":"",1:1) F I=2,3,4,7 S $P(^SRF(SRTN,200),"^",I)=SRAX
+ S $P(^SRF(SRTN,200),"^",6)=$S(X="":"",1:1) F I=2,4,7 S $P(^SRF(SRTN,200),"^",I)=SRAX
  S $P(^SRF(SRTN,200.1),"^",2)=$S(X="":"",X="NS":"NS",1:1)
  S $P(^SRF(SRTN,200.1),"^",8)=$S(X="":"",X="NS":"NS",1:1)
+ S $P(^SRF(SRTN,200),"^",55)=$S(X="":"",X="NA":"NA",X="N":"NA",1:"NA")
+ F I=9,11,12 S $P(^SRF(SRTN,200.1),"^",I)=$S(SRAX="N":1,1:"")
+ S $P(^SRF(SRTN,200.1),"^",10)=$S(SRAX="N":"NA",1:"")
  Q
 PULM ; pulmonary
  W ! K DR,DIE S DA=SRTN,DIE=130,DR="204T;203T;326T" D ^DIE K DR
@@ -61,4 +64,9 @@ NO2ALL ; set all fields to NO
  S $P(^SRF(SRTN,200.1),"^")=SRAX D NOGAST^SROAPR1A
  S $P(^SRF(SRTN,200),"^",30)=SRAX D NOCARD^SROAPR1A
  S $P(^SRF(SRTN,200),"^",40)=SRAX D NOVAS^SROAPR1A
+ Q
+CHK518 ; check entries of the Tobacco Use Timeframe field (#518) based on the value of the Tobacco Use field.
+ S DA=$S($G(SRTN):SRTN,1:DA)
+ I "123"[X,($P($G(^SRF(DA,200.1)),"^",9)<3) D EN^DDIOL("Invalid entry as the TOBACCO USE value is less than three.","","!?2,$C(7)") K X Q
+ I X="NA",($P($G(^SRF(DA,200.1)),"^",9)>2) D EN^DDIOL("Invalid entry as the TOBACCO USE value is greater than two.","","!?2,$C(7)") K X Q
  Q

@@ -1,6 +1,6 @@
-DID2 ;SFISC/GFT-MODIFIED DD ;9:41 AM  23 Dec 2002
- ;;22.0;VA FileMan;**7,105**;Mar 30, 1999
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DID2 ;SFISC/GFT-MODIFIED DD ;6SEP2011
+ ;;22.0;VA FileMan;**7,105,168**;Mar 30, 1999;Build 25
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  I $D(DINM) G DZ:X'["C"!(X["X")!'$D(^DD(F(Z),DJ(Z),9.1)) S %Y=X,X=^(9.1),W=" --  "_X D ^DIM,W1^DIDH1:'$D(X) S X=%Y G Q:M=U G DZ
  F I=9.2:.1 Q:'$D(^(I))#2  W ! S W=I_" = "_^(I) D W G Q:M=U
  I $D(^(9.1))#2 S W=^(9.1),%Y="9.1 = " S:X["C" %Y="ALGORITHM:  " W !,?DDL1,%Y D W S W=$P("  (ALWAYS "_$E(N,$L(N)-1)_" DECIMAL DIGITS)",U,N?.E1" S X=$J(X,0,"1N1")") D W G Q:M=U
@@ -29,7 +29,7 @@ LAYGO I '$D(DINM),DJ(Z)=.01 S DIDND=$O(^DD(F(Z),DJ(Z),"LAYGO","")) I DIDND]"" D 
  . F  D  S DIDND=$O(^DD(F(Z),DJ(Z),"LAYGO",DIDND)) Q:DIDND=""!(M=U)  W !!
  .. W ?DDL2,$$QT(DIDND)_",0)= "
  .. S W=$G(^DD(F(Z),DJ(Z),"LAYGO",DIDND,0)) D W
-D I $D(^(8.5)) W !?DDL1,"DELETE AUTHORITY: " S W=^(8.5) D W G Q:M=U
+D I $D(^DD(F(Z),DJ(Z),8.5)) W !?DDL1,"DELETE AUTHORITY: " S W=^(8.5) D W G Q:M=U
  I X'["C",$D(^(9))#2,^(9)]"" W !?DDL1,"WRITE AUTHORITY:" S W=^(9) D W G Q:M=U
 RD I $D(^(8))#2,^(8)]"" W !?DDL1,"READ AUTHORITY:" S W=^(8) D W G Q:M=U
  I $D(^(10))#2,^(10)]"" W !?DDL1,"SOURCE OF DATA:" S W=^(10) D W G Q:M=U

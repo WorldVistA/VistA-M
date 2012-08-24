@@ -40,7 +40,7 @@ XMY ;EP Setup Mail Groups
  ;
  ; Hines Group
  I $G(PSUMASF) D
- .S PSUXMYH("G.PSU PBM@CMOP-NAT.MED.VA.GOV")=""
+ .S PSUXMYH("G.PSU PBM@CMOP-NAT.DOMAIN.EXT")=""
  I $G(PSUPBMG) S PSUXMYH("G.PSU PBM")=""   ;local PBM mail group
  I $G(PSUDUZ) S PSUXMYH(PSUDUZ)=""         ;self
  ;

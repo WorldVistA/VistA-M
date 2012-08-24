@@ -1,6 +1,6 @@
 IBJTLA1 ;ALB/ARH - TPI ACTIVE BILLS LIST BUILD ;2/14/95
- ;;2.0;INTEGRATED BILLING;**39,80,61,51,153,137,183,276**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**39,80,61,51,153,137,183,276,451**;21-MAR-94;Build 47
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 BLDA ; build active list for third party joint inquiry active list
  N IBIFN,IBCNT S VALMCNT=0,IBCNT=0
@@ -14,7 +14,9 @@ SCRN ; add bill to screen list (IBIFN,DFN must be defined)
  N X,IBY,IBD0,IBDU,IBDM S X=""
  S IBCNT=IBCNT+1,IBD0=$G(^DGCR(399,+IBIFN,0)),IBDU=$G(^DGCR(399,+IBIFN,"U")),IBDM=$G(^DGCR(399,+IBIFN,"M"))
  S IBY=IBCNT,X=$$SETFLD^VALM1(IBY,X,"NUMBER")
- S IBY=$P(IBD0,U,1)_$$ECME^IBTRE(IBIFN),X=$$SETFLD^VALM1(IBY,X,"BILL")
+ ; IB*2.0*451 - get EEOB indicator for bill # when applicable
+ S IBPFLAG=$$EEOB(+IBIFN)
+ S IBY=$S($G(IBPFLAG)'="":"%",1:" ")_$P(IBD0,U,1)_$$ECME^IBTRE(IBIFN),X=$$SETFLD^VALM1(IBY,X,"BILL") ;add EEOB indicator '%' to bill number when applicable
  S IBY=$S($$REF^IBJTU31(+IBIFN):"r",1:""),X=$$SETFLD^VALM1(IBY,X,"REFER")
  S IBY=$S($$IB^IBRUTL(+IBIFN,0):"*",1:""),X=$$SETFLD^VALM1(IBY,X,"HD")
  S IBY=$$DATE($P(IBDU,U,1)),X=$$SETFLD^VALM1(IBY,X,"STFROM")
@@ -53,3 +55,17 @@ SET(X,CNT) ; set up list manager screen array
  S ^TMP("IBJTLAX",$J,CNT)=VALMCNT_U_IBIFN
  Q
  ;
+EEOB(IBIFN) ; get payment information
+ ; IB*2.0*451 - find an EOB payment for a bill
+ ; input is the IEN for the bill # in file #399 and must be valid,
+ ; output is the EEOB indicator '%' if a payment is found in file #361.1,
+ ; exclude EOB type MRA (Medicare).
+ N IBPFLAG,IBVAL,Z
+ I $G(IBIFN)=0 Q ""
+ I '$O(^IBM(361.1,"B",IBIFN,0)) Q ""  ; no entry here
+ I $P($G(^DGCR(399,IBIFN,0)),"^",13)=1 Q ""  ;avoid 'ENTERED/NOT REVIEWED' status
+ ; handle both single and multiple bill entries in file #361.1
+ S Z=0 F  S Z=$O(^IBM(361.1,"B",IBIFN,Z)) Q:'Z  D  Q:$G(IBPFLAG)="%"
+ . S IBVAL=$G(^IBM(361.1,Z,0))
+ . S IBPFLAG=$S($P(IBVAL,"^",4)=1:"",$P(IBVAL,"^",4)=0:"%",1:"")
+ Q IBPFLAG  ; EOB indicator for either 1st or 3rd payment on bill

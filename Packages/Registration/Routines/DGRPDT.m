@@ -1,5 +1,5 @@
-DGRPDT ;ALB/BRM - MILITARY SERVICE DATE UTILITIES ; 1/18/05 4:27pm
- ;;5.3;Registration;**562,603,626,673,731**;Aug 13, 1993;Build 8
+DGRPDT ;ALB/BRM,LBD - MILITARY SERVICE DATE UTILITIES ; 6/30/09 2:21pm
+ ;;5.3;Registration;**562,603,626,673,731,797**;Aug 13, 1993;Build 24
  ;
 DTUTIL(DGNEWDT,DGOLDDT,MYFLG) ; Date precision comparision API
  S:$G(DGOLDDT)="" DGOLDDT="0000000"
@@ -54,11 +54,13 @@ COVRLP2(DFN,FRDT,TODT,IGNORE,OEFOIF) ; check conflict with type 0 and 2 (see bel
  Q:$P(RTN,"^")=0 RTN
  S RTN=$$OVRLPCHK(DFN,.FRDT,.TODT,2,$G(IGNORE),.OEFOIF)
  Q RTN
-OVRLPCHK(DFN,FRDT,TODT,TYPE,IGNORE,OEFOIF) ;check for overlapping date ranges
+OVRLPCHK(DFN,FRDT,TODT,TYPE,IGNORE,OEFOIF,MSE) ;check for overlapping date ranges
  ; pass OEFOIF by ref - return OEFOIF(1)=1: OEF/OIF "cnflct not within MSE
  N RTN1,DATA,NODE,RTN,FRDT1,MSG,SUBRNG,TODT1,DGW1,DGW2,DGRW1,DGRW2,DGZ
  Q:('$G(DFN))!('$D(^DPT(DFN))) "0^INVALID DFN"
  I TYPE<2 D
+ . ; If data in MSE sub-file #2.3216, do not use old MSE fields
+ . I $G(MSE)!($D(^DPT(DFN,.3216))) S NODE(2.3216)=".01,.02" K IGNORE Q
  . S NODE(.32)=".326,.327,.3285,.3292,.3293,.32945,.3297,.3298"
  E  D
  . ; If checking an OEF/OIF period, only check against OEF/OIF
@@ -66,6 +68,7 @@ OVRLPCHK(DFN,FRDT,TODT,TYPE,IGNORE,OEFOIF) ;check for overlapping date ranges
  . S NODE(.321)=".32104,.32105",NODE(.322)=".3222,.3223,.3225,.3226,.3228,.3229,.322011,.322012,.322017,.322018,.32202,.322021",NODE(.52)=".5293,.5294"
  D:$G(IGNORE)]"" IGNORE(.NODE,.IGNORE)
  D GETDAT(DFN,.NODE,.DATA) Q:'$D(DATA) "1^CANNOT FIND PATIENT DATA"
+ I $G(MSE) K DATA("MSE-"_MSE)  ;MSE entry to exclude (used instead of IGNORE) - DG*5.3*797
  I $G(OEFOIF),$P(OEFOIF,U,2)'="" K DATA($P(OEFOIF,U,2)) ; OEF/OIF entry to exclude (used instead of IGNORE)
  I TYPE<0 S DGZ=$$MSEONLY(.DATA,FRDT,TODT) S:'DGZ&$G(OEFOIF) OEFOIF(1)=1 Q DGZ
  S SUBRNG="" F  S SUBRNG=$O(DATA(SUBRNG)) Q:SUBRNG=""!($D(RTN))  D
@@ -106,6 +109,10 @@ GETDAT(DFN,NODE,DATA) ;get data from the Patient (#2) file
  ..D GETS^DIQ(2,DFN_",",DR,"I","TMPDAT","ERR")
  ..S LOOP="F X="_$G(NODE(SUB))_" S DATA1(X)=$G(TMPDAT(2,DFN_"","",X,""I"")),Z=Z+1"
  ..X LOOP
+ .I SUB-2=.3216 D  Q
+ ..; Extract data from MSE sub-file #2.3216 (DG*5.3*797)
+ ..S Z0=0 F  S Z0=$O(^DPT(DFN,.3216,Z0)) Q:'Z0  D GETS^DIQ(SUB,Z0_","_DFN_",",DR,"I","TMPDAT","ERR")
+ ..S X="" F  S X=$O(TMPDAT(SUB,X)) Q:X=""  S X1="" F  S X1=$O(TMPDAT(SUB,X,X1)) Q:X1=""  S DATA1("MSE-"_$P(X,","),X1)=TMPDAT(SUB,X,X1,"I")
  . ; Extract dates from OIF OEF multiple too
  . S Z0=0 F  S Z0=$O(^DPT(DFN,SUB-2,Z0)) Q:'Z0  S SUB1(Z0)=+$G(^(Z0,0)) D GETS^DIQ(SUB,Z0_","_DFN_",",DR,"I","TMPDAT","ERR")
  .S LOOP="F X="_$G(NODE(SUB))_" F X1=0:0 S X1=$O(SUB1(X1)) Q:'X1  S DATA1($S(SUB1(X1)=3:""UNK"",1:$$EXTERNAL^DILFD(SUB,.01,,SUB1(X1)))_""-""_X1,X)=$G(TMPDAT(SUB,X1_"",""_DFN_"","",X,""I"")),Z=Z+1" X LOOP
@@ -120,8 +127,10 @@ GETDAT(DFN,NODE,DATA) ;get data from the Patient (#2) file
  S DATA("SOM")=$G(DATA1(.322017))_"^"_$G(DATA1(.322018))
  S DATA("YUG")=$G(DATA1(.32202))_"^"_$G(DATA1(.322021))
  S DATA("COMBAT")=$G(DATA1(.5293))_"^"_$G(DATA1(.5294))
+ ; Set the MSE nodes (DG*5.3*797)
+ S Z="MSE" F  S Z=$O(DATA1(Z)) Q:Z'["MSE"  S DATA(Z)=$G(DATA1(Z,.01))_"^"_$G(DATA1(Z,.02))
  ; Pick up the OEF/OIF nodes here - subscript is not numeric
- S Z=" " F  S Z=$O(DATA1(Z)) Q:Z=""  S DATA(Z)=$G(DATA1(Z,.02))_"^"_$G(DATA1(Z,.03))
+ S Z="O" F  S Z=$O(DATA1(Z)) Q:Z=""  S DATA(Z)=$G(DATA1(Z,.02))_"^"_$G(DATA1(Z,.03))
  Q
 MSEONLY(DATA,FRDT,TODT) ; are these dates within the whole MSE period?
  N TO,FROM,SUBRNG,FRDT1,TODT1,MSEFR,MSETO

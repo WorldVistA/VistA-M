@@ -1,12 +1,13 @@
-ORSNAST2 ;SLC/RAF - continuation of nature/status search ;10/20/00  14:32
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**50,190**;Dec 17, 1997
+ORSNAST2 ;SLC/RAF - continuation of nature/status search ; 9/13/11 6:56am
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**50,190,347**;Dec 17, 1997;Build 4
  ;
 NATURE ;goes thru the "AF" xref in 100 for order dates for nature or order
 1 I SORT=1 D  I ('$D(^TMP("ORNS",$J)))&(FORMAT=1) W !,"No orders found." Q
  .D:('PAGE)&(FORMAT=1) HDR^ORS100
  .S DATE=SDATE F  S DATE=$O(^OR(100,"AF",DATE)) Q:'DATE!STOP  Q:DATE>EDATE  D
  ..S IEN=0 F  S IEN=$O(^OR(100,"AF",DATE,IEN)) Q:'IEN!STOP  I $D(^OR(100,IEN)) D
- ...S SUB=0 F  S SUB=$O(^OR(100,"AF",DATE,IEN,SUB)) Q:'SUB!STOP  D
+ ...;*347 We only want to check the current action
+ ...S SUB=$$GET1^DIQ(100,IEN,30,"I") Q:'SUB!STOP  D
  ....I $P($G(^OR(100,IEN,8,SUB,0)),U,12)=SEARCH D
  .....I $D(^VA(200,+$P(^OR(100,IEN,8,SUB,0),U,3),0)) S PROV=$$USER^ORS100(+$P(^OR(100,IEN,8,SUB,0),U,3))
  .....I $D(^VA(200,+$P(^OR(100,IEN,0),U,4),5)),$L($P(^(5),U)) S SER=$$SER^ORS100(+$P(^VA(200,+$P(^OR(100,IEN,0),U,4),5),U))

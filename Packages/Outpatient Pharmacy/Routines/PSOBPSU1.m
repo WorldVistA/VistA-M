@@ -1,5 +1,5 @@
 PSOBPSU1 ;BIRM/MFR - BPS (ECME) Utilities 1 ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290,358,359**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290,358,359,385,403**;DEC 1997;Build 9
  ;Reference to $$EN^BPSNCPDP supported by IA 4415 & 4304
  ;References to $$NDCFMT^PSSNDCUT,$$GETNDC^PSSNDCUT supported by IA 4707
  ;References to $$ECMEON^BPSUTIL,$$CMOPON^BPSUTIL supported by IA 4410
@@ -10,14 +10,15 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  ;information to ECME/IB and updates NDC in the files 50 & 52; DBIA4304
  ;Input: (r) RX   - Rx IEN (#52)
  ;       (o) RFL  - Refill #  (Default: most recent)
- ;       (r) DATE - Date of Service
+ ;       (o) DATE - Date of Service
  ;       (r) FROM - Function within OP (See BWHERE param. in EN^BPSNCPDP api)
  ;       (o) NDC  - NDC Number (If not passed, will be retrieved from DRUG file)
  ;       (o) CMOP - CMOP Rx (1-YES/0-NO) (Default: 0)
  ;       (o) RVTX - REVERSE text (e.g., RX EDIT, RX RELEASE-NDC CHANGE, etc)
- ;       (o) OVRC - Set of 3 NCPDP override codes separated by "^": 
- ;                  Piece 1: NCPDP Professional Service Code for overriding DUR REJECTS
- ;                  Piece 2: NCPDP Reason for Service Code for overriding DUR REJECTS
+ ;       (o) OVRC - Three sets of 3 NCPDP override codes separated by "~".  Each piece of the set 
+ ;                  is delimited by an "^"
+ ;                  Piece 1: NCPDP Reason for Service Code for overriding DUR REJECTS
+ ;                  Piece 2: NCPDP Professional Service Code for overriding DUR REJECTS
  ;                  Piece 3: NCPDP Result of Service Code for overriding DUR REJECTS
  ;       (o) CNDC - Changed NDC? 1 - Yes / 0 - No (Default: NO)
  ;       (o) IGSW - Ignore Switches (Master and CMOP)? 1 - Yes / 0 - No (Default: NO)
@@ -27,7 +28,7 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  ;       (o) RXCOB- Payer Sequence
  ;Output:    RESP - Response from $$EN^BPSNCPDP api
  ;
- N ACT,NDCACT,DA,PSOELIG,ACT1
+ N ACT,NDCACT,DA,PSOELIG,ACT1,SMA
  I '$D(RFL) S RFL=$$LSTRFL(RX)
  ; - ECME is not turned ON for the Rx's Division
  I '$G(IGSW),'$$ECMEON^BPSUTIL($$RXSITE^PSOBPSUT(RX,RFL)) S RESP="-1^ECME SWITCH OFF" Q
@@ -41,16 +42,24 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  . S NDC=$$GETNDC^PSSNDCUT($$GET1^DIQ(52,RX,6,"I"),$$RXSITE^PSOBPSUT(RX,RFL),+$G(CMOP))
  . I $G(NDC)'="" D SAVNDC^PSONDCUT(RX,RFL,NDC,+$G(CMOP),1)
  S PPDU="",PPDU=$$GPPDU^PSONDCUT(RX,RFL,NDC,,1,FROM) K PPDU
+ ;
+ ; Determine if this has multiple overrides from the SMA action of the reject worklist
+ S SMA=0
+ I $G(OVRC)]"",$G(CLA)]"" S SMA=1
+ I $G(OVRC)]"",$G(PA)]"" S SMA=1
+ I $G(CLA)]"",$G(PA)]"" S SMA=1
+ ;
  ; - Creating ECME Act Log in file 52
  S ACT="" I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" S ACT="Rev/Resubmit"
  S ACT=ACT_" ECME:"
+ ;
  ; - Marked any 'unresolved' REJECTS as 'resolved' (Reason: 1 - Claim re-submitted)
- N CLSCOM,COD1,COD2,COD3
- S COD2=$P($G(OVRC),"^"),COD1=$P($G(OVRC),"^",2),COD3=$P($G(OVRC),"^",3)
- I $G(COD3)'="" S CLSCOM="DUR Override Codes "_COD1_"/"_COD2_"/"_COD3_" submitted."
- I $G(CLA)'="" S CLSCOM="Clarification Code(s) "_CLA_" submitted."
- I $G(PA)'="" S CLSCOM="Prior Authorization Code ("_$P(PA,"^")_"/"_$P(PA,"^",2)_") submitted."
- D CLSALL^PSOREJUT(RX,RFL,DUZ,1,$G(CLSCOM),$G(COD1),$G(COD2),$G(COD3),$G(CLA),$G(PA))
+ N CLSCOM
+ I 'SMA D
+ . I $P($G(OVRC),"~")'="" S CLSCOM="DUR Override Codes "_$TR($P(OVRC,"~"),"^","/")_" submitted."
+ . I $G(CLA)'="" S CLSCOM="Clarification Code(s) "_CLA_" submitted."
+ . I $G(PA)'="" S CLSCOM="Prior Authorization Code ("_$P(PA,"^")_"/"_$P(PA,"^",2)_") submitted."
+ D CLSALL^PSOREJUT(RX,RFL,DUZ,1,$G(CLSCOM),$P($G(OVRC),"~",1),$P($G(OVRC),"~",2),$P($G(OVRC),"~",3),$G(CLA),$G(PA))
  ; - Call to ECME (NEWing STAT because ECME was overwriting it - Important variable for CMOP release PSXVND)
  N STAT
  I $G(RVTX)="",FROM="ED" S RVTX="RX EDITED"
@@ -63,9 +72,28 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  S PSOELIG=$P(RESP,"^",3) D:PSOELIG'="" ELIG^PSOBPSU2(RX,RFL,PSOELIG)
  ;
  ;7/8/2010; bld ; added for tricare bypass/override audit file
- I $P(RESP,"^",2)="TRICARE INPATIENT/DISCHARGE" D
+ I $P(RESP,"^",2)="TRICARE INPATIENT/DISCHARGE"!($P(RESP,"^",2)="CHAMPVA INPATIENT/DISCHARGE") D
  .D EN^PSOBORP2(RX,RFL,RESP)
  ;
+ ; If from SMA action, split message across multiple log entries
+ ; The last entry will be filed in the code that follows this section as we append other data
+ ;   to the last message.
+ I SMA,+RESP'=2,+RESP'=6,+RESP'=10 D
+ . N MSG
+ . ; If there are DUR overrides, create the message and file it since this will never be the last message
+ . I $G(OVRC)]"" D
+ .. S MSG=ACT_"REJECT WORKLIST-DUR OVERRIDE CODES("_$TR(OVRC,"^","/")_")"
+ .. D RXACT^PSOBPSU2(RX,RFL,MSG,"M",DUZ)
+ . ; If there are Clarification codes, create the message
+ . ; Only file it if we also have a Prior Auth message.
+ . ; Otherwise more data will be added to it and it will be filed below.
+ . I $G(CLA)]"" D
+ .. S MSG=ACT_"REJECT WORKLIST-(CLARIF. CODE="_CLA_")"
+ .. I $G(PA)]"" D RXACT^PSOBPSU2(RX,RFL,MSG,"M",DUZ)
+ . ; If there are Prior Auth overrides, create the message.
+ . ; More data will be added to it and it will be filed below.
+ . I $G(PA)]"" D
+ .. S ALTX="REJECT WORKLIST-(PRIOR AUTH.="_$TR(PA,"^","/")_")"
  ;
  ; - Logging ECME Act Log to file 52
  I $G(ALTX)="" D
@@ -77,10 +105,10 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  . S:FROM="PL" X="PRINTED FROM SUSPENSE(NDC:"_$$GETNDC^PSONDCUT(RX,RFL)_")"
  . S:FROM="PE"!(FROM="PP") X="PULLED FROM SUSPENSE(NDC:"_$$GETNDC^PSONDCUT(RX,RFL)_")"
  . S:FROM="PC" X="CMOP TRANSMISSION(NDC:"_$$GETNDC^PSONDCUT(RX,RFL)_")"
- . S:FROM="RRL" X="RELEASED RX PREVIOUSLY REVERSED"
+ . S:FROM="RRL"!(FROM="CRRL") X="RELEASED RX PREVIOUSLY REVERSED"
  . S:FROM="ED" X="RX EDITED"
  . S:$G(RVTX)'="" X=RVTX
- . S:$G(OVRC)'="" X="DUR OVERRIDE CODES("_$G(COD1)_"/"_$G(COD2)_"/"_$G(COD3)_")"
+ . I 'SMA,$G(OVRC)'="" S X="DUR OVERRIDE CODES("_$TR(OVRC,"^","/")_")"
  . S:$G(CNDC) X=X_"(NDC:"_NDCACT_")" S ACT=ACT_X
  . S ACT=ACT_$$STS(RX,RFL,RESP)
  I $G(ALTX)'="" S ACT=ACT_ALTX_$$STS(RX,RFL,RESP)
@@ -88,12 +116,14 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  I +RESP=6 S ACT=$P(RESP,"^",2)
  I +RESP=10 S ACT="ECME reversed/NOT re-submitted: "_$P(RESP,"^",2)
  S:PSOELIG="T" ACT="TRICARE-"_ACT
+ S:PSOELIG="C" ACT="CHAMPVA-"_ACT
  S ACT1=""
  I $P(RESP,"^",6),$P(RESP,"^",7)'=""  S ACT1="-"_$S($P(RESP,"^",6)="2":"s",$P(RESP,"^",6)="3":"t",1:"p")_$P(RESP,"^",7)
  S ACT=$E(ACT_ACT1,1,75)
  D RXACT^PSOBPSU2(RX,RFL,ACT,"M",DUZ)
  D ELOG^PSOBPSU2(RESP)  ;-Logs an ECME Act Log if Rx Qty is different than Billing Qty
  I PSOELIG="T",$P(RESP,"^",2)'="TRICARE INPATIENT/DISCHARGE" D TRICCHK^PSOREJU3(RX,RFL,RESP,FROM,$G(RVTX))
+ I PSOELIG="C",$P(RESP,"^",2)'="CHAMPVA INPATIENT/DISCHARGE" D TRICCHK^PSOREJU3(RX,RFL,RESP,FROM,$G(RVTX))
  Q
  ;
 REVERSE(RX,RFL,FROM,RSN,RTXT,IGRL,NDC) ; - Reverse a claim and close all OPEN/UNRESOLVED Rejects
@@ -123,7 +153,7 @@ REVERSE(RX,RFL,FROM,RSN,RTXT,IGRL,NDC) ; - Reverse a claim and close all OPEN/UN
  N PSOTRIC S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC)
  ; - Logging ECME Act Log
  I '$G(NOACT),REVECME D
- . S ACT=$S(PSOTRIC:"TRICARE ",1:"")_"Reversal sent to ECME: "_RTXT_$S($G(NDC)'="":" ("_NDC_")",1:"")_$$STS(RX,RFL,+RESP)
+ . S ACT=$S(PSOTRIC=1:"TRICARE ",PSOTRIC=2:"CHAMPVA ",1:"")_"Reversal sent to ECME: "_RTXT_$S($G(NDC)'="":" ("_NDC_")",1:"")_$$STS(RX,RFL,+RESP)
  . D RXACT^PSOBPSU2(RX,RFL,ACT,"M",DUZ)
  Q
  ;
@@ -133,19 +163,17 @@ DOS(RX,RFL,DATE) ; Return the Date Of Service for ECME
  ;       (o) DATE - Possible Date Of Service
  ;Output:    DOS  - Actual Date Of Service
  I '$D(RFL) S RFL=$$LSTRFL(RX)
- ; - Retrieving FILL DATE from file 52 if not passed
+ ; - Retrieving RELEASE DATE from file 52 if DATE not passed in
  I $G(DATE)="" S DATE=$$RXRLDT^PSOBPSUT(RX,RFL)
- ; - Retrieving FILL DATE from file 52 if not passed
- I 'DATE S DATE=$$RXFLDT^PSOBPSUT(RX,RFL)
- ; - Future Date not allowed
- I DATE>DT!'DATE S DATE=DT
+ ; - If no date or future date, use today's date
+ I DATE>DT!'DATE S DATE=$$DT^XLFDT
  Q (DATE\1)
  ;
 RELEASE(RX,RFL,USR) ; - Notifies IB that the Rx was RELEASED
  ;Input: (r) RX   - Rx IEN (#52)
  ;       (o) RFL  - Refill # (Default: most recent)
  ;       (o) USR  - User responsible for releasing the Rx (Default: .5 - Postmaster)
- N IBAR,RXAR,FLDT,RFAR,PSOIBN
+ N IBAR,RXAR,RFAR,PSOIBN
  S:'$D(RFL) RFL=$$LSTRFL(RX)
  S:'$D(USR) USR=.5
  D GETS^DIQ(52,RX_",",".01;2;6;7;8;22","I","RXAR")
@@ -154,8 +182,7 @@ RELEASE(RX,RFL,USR) ; - Notifies IB that the Rx was RELEASED
  S IBAR("CLAIMID")=$P($$CLAIM^BPSBUTL(RX,RFL),U,6)
  S IBAR("USER")=USR
  S IBAR("DRUG")=RXAR(52,RX_",",6,"I"),IBAR("NDC")=$$GETNDC^PSONDCUT(RX,RFL)
- S FLDT=$$RXFLDT^PSOBPSUT(RX,RFL) I FLDT>DT S FLDT=DT
- S IBAR("FILL NUMBER")=RFL,IBAR("FILL DATE")=FLDT
+ S IBAR("FILL NUMBER")=RFL,IBAR("DOS")=$$DOS(RX,RFL),IBAR("RELEASE DATE")=$$RXRLDT^PSOBPSUT(RX,RFL)
  S IBAR("QTY")=$G(RXAR(52,RX_",",7,"I")),IBAR("DAYS SUPPLY")=$G(RXAR(52,RX_",",8,"I"))
  I RFL D
  . D GETS^DIQ(52.1,RFL_","_RX_",",".01;1;1.1","I","RFAR")

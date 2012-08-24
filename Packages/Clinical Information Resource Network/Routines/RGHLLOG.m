@@ -1,5 +1,5 @@
 RGHLLOG ;CAIRO/DKM-LOG MESSAGE PROCESSING INFO ;09/04/98
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**1,3,11,13,18,19,25,45,52,57**;30 Apr 99;Build 2
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**1,3,11,13,18,19,25,45,52,57,59**;30 Apr 99;Build 1
  ;
  ;Reference to ^HLMA("C" supported by IA #3244
  ;=================================================================
@@ -61,6 +61,15 @@ EXC(RGEXC,RGERR,RGDFN,MSGID,STATNUM) ;
  ;
  I (RGEXC=215)!(RGEXC=216)!(RGEXC=217) Q  ;**52 until MPIFBT3 call eliminates these exception types
  ;I (RGEXC=215)!(RGEXC=216)!(RGEXC=217) Q  ;**52 until MPIFBT3 call eliminates these exception types;**57 done in MPIF*1*52
+ I RGEXC=234 N ACTPVR S ACTPVR=1 D  I ACTPVR=0 Q  ;**59 MVI_778 Do not log duplicate PVR (234) exception for patient if active one in CIRN HL7 EXCEPTION LOG (#991.1) file.
+ .N PVRIEN,PVRIEN2 S PVRIEN=0
+ .;Examine PVR (234) exception type, for patient - RGDFN
+ .F  S PVRIEN=$O(^RGHL7(991.1,"ADFN",234,RGDFN,PVRIEN)) Q:'PVRIEN  Q:ACTPVR=0  D
+ ..S PVRIEN2=0
+ ..F  S PVRIEN2=$O(^RGHL7(991.1,"ADFN",234,RGDFN,PVRIEN,PVRIEN2)) Q:'PVRIEN2  Q:ACTPVR=0  D
+ ...;Is there an active exception in CIRN HL7 EXCEPTION LOG (#991.1) file?
+ ...S ACTPVR=$P($G(^RGHL7(991.1,PVRIEN,1,PVRIEN2,0)),"^",5) I ACTPVR=0 Q
+ ;
  I $L($G(HL("MID"))) Q:$$INVEXC(HL("MID"))  ; is the exception valid?
  N RGI,RGZ
  S U="^"

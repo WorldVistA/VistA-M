@@ -1,5 +1,5 @@
 IBCAPP ;ALB/WCJ - Claims Auto Processing Main Processer;27-AUG-10
- ;;2.0;INTEGRATED BILLING;**432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**432,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  G AWAY
 AWAY Q
@@ -79,7 +79,9 @@ EN(IBIFN,IBORIG,IBPYMT,IBWLF) ;
  ;
  ; If it's to be auto printed, set force to local print flag on new claim 
  S IBINS=$$POLICY^IBCEF(IBNCN,1,$$COBN^IBCEF(IBNCN))
- I $P($G(^DIC(36,IBINS,6)),U,9)=1 D FORCEPRT(IBNCN)
+ ; set field 35 on original claim to indicate subsequent claim was auto-created IB*2.0*447
+ I $P($G(^DIC(36,IBINS,6)),U,9)=1 D FORCEPRT(IBNCN),AUTOPRC($G(IBIFN),2)
+ D:$P($G(^DIC(36,IBINS,6)),U,9)'=1 AUTOPRC($G(IBIFN),3)
  ;
  ; authorize the new claim
  D AUTH^IBCEMQA(IBNCN,.IBERRMSG,IBMRANOT)
@@ -106,6 +108,19 @@ PUTONWL(IBIFN,IBREASON) ; Put a claim on the worklist
  S DIE="^DGCR(399,"
  S DR="35///1"              ; place on the worklist
  S DR=DR_";"_"36///"_$P(IBREASON,":")        ; why placed on worklist
+ D ^DIE
+ Q
+ ;
+AUTOPRC(IBIFN,IBAP) ; record that a claim was auto-processed IB*2.0*447
+ ; IBIFN - internal claim number
+ ; IBAP - 2 = AUTO LOCAL PRINT, 3 = AUTO EDI
+ ;
+ N DA,DIE,DR
+ Q:IBIFN=""
+ Q:IBAP=""
+ S DA=IBIFN
+ S DIE="^DGCR(399,"
+ S DR="35///"_IBAP              ; UPDATE AUTO-PROCESS FIELD
  D ^DIE
  Q
  ;

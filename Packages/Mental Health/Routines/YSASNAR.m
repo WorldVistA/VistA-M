@@ -1,5 +1,5 @@
-YSASNAR ;ALB/ASF SLC/DKG-ASI INTERVIEW REPORTER ;3/7/03  14:55
- ;;5.01;MENTAL HEALTH;**24,30,37,38,44,55,67,76**;Dec 30, 1994
+YSASNAR ;ALB/ASF SLC/DKG HIOFO/FT - ASI INTERVIEW REPORTER ;8/15/11  8:19 am
+ ;;5.01;MENTAL HEALTH;**24,30,37,38,44,55,67,76,103**;Dec 30, 1994;Build 27
  ;
  ;Reference to ^%ZISC supported by IA #10089
  ;Reference to ^%ZTLOAD supported by IA #10063
@@ -44,7 +44,7 @@ QTEP ;Queued Task Entry Point
  S YSASC=$$GET1^DIQ(604,YSASDA_",",.09)
  S YSASIG=$$GET1^DIQ(604,YSASDA_",",.51,"I")
  S YSNM=VADM(1),YSSEX=$P(VADM(5),U),YSDOB=$P(VADM(3),U,2),YSAGE=VADM(4),YSSSN=VA("PID"),YSBID=VA("BID")
- S YSHDR=VADM(1)_"  "_$P(VADM(2),U,2)_$J("",(20-$L(VADM(1))))_" ASI "_YSAST_"  on "_YSASD_" by: "_YSASC
+ S YSHDR=VADM(1)_"  "_"xxx-xx-"_YSBID_$J("",(20-$L(VADM(1))))_" ASI "_YSAST_"  on "_YSASD_" by: "_YSASC
  ;
 MAIN ;
  K ^UTILITY($J,"YSTMP"),^UTILITY($J,"W")
@@ -90,7 +90,8 @@ PRO ;evaluate pronoun, possessive etc
  .. S V1=$P(G,";",2),I1=0 F I=1:1 Q:$P(V1,",",I)=""  S:@($P(V1,",",I))'="" I1=I1+1,V(I1)=@($P(V1,",",I))
  .. I '$D(V(1)) S X=$P(G,";",3) D L Q
  .. F I1=1:1 Q:'$D(V(I1))  S X=$S(I1=1:" ",'$D(V(I1+1)):" and ",1:", ")_V(I1) D L
-R . S X=$E(YSA,1,P1-1) D:$L(X) L
+R . ;called from YSASPNT 
+ . S X=$E(YSA,1,P1-1) D:$L(X) L
  . I $D(YSASWP) S V="" D  K YSASWP
  .. F I3=1:1 Q:'$D(YSASWP(I3))  S X=YSASWP(I3)_" " D:$L(X) L
  . S X=V D:$L(X) L

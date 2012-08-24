@@ -1,5 +1,5 @@
 FBAAVD2 ;AISC/DMK-EDIT VENDOR DEMOGRAPHICS ; 8/31/09 11:36am
- ;;3.5;FEE BASIS;**9,10,47,65,98,111**;JAN 30, 1995;Build 17
+ ;;3.5;FEE BASIS;**9,10,47,65,98,111,122**;JAN 30, 1995;Build 8
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 EDITV ;entry to edit vendor demographic data
  ;DA defined to IEN of vendor file (161.2)
@@ -14,7 +14,7 @@ EDITV ;entry to edit vendor demographic data
  L -^FBAAV(DA)
  ;check if data was changed
  I $D(^FBAAV(DA,0)),(($P(Z1,U,2,6)'=$P(^FBAAV(DA,0),U,2,6))!($P(Z1,U,8,16)'=$P(^FBAAV(DA,0),U,8,16))!($P(Z3,U,10)'=$P($G(^FBAAV(DA,1)),U,10))!$$GRPDIF^FBAAUTL6(DA)!($P($G(^FBAAV(DA,3)),U,2)'=Z6)) D
- .S FBVNAME=$P(^FBAAV(DA,0),U),FBIEN1=DA,FBADT=$P(Z5,U,4),FBNPI=$P($G(^FBAAV(FBIEN1,3)),U,2)
+ .S FBVNAME=$P(^FBAAV(DA,0),U),FBIEN1=DA,FBADT=$P(Z5,U,4),FBNPI=$P($G(^FBAAV(FBIEN1,3)),U,2),FBTXC=$P($G(^(3)),U,3)
  .;check if date last received from austin, version 3.  If so, then did not receive in upload - send update instead of change
  .;fbadt = date received from austin.
  .I '$$CKVEN^FBAADV(DA),FBADT']"" D UPDT^FBAAAV(FBDA) Q  ;,FBADT<FBINSTAL D UPDT^FBAAAV(DA) Q

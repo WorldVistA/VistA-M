@@ -1,0 +1,63 @@
+PSBOMH3 ;ALBANY/BJR-MAH ; 2/16/12 1:00pm
+ ;;3.0;BAR CODE MED ADMIN;**67**;Mar 2004;Build 23
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; Reference/IA
+ ; File 200/10060
+ ; $$GET1^DIQ/2056
+ ;
+RELINE(PSBWEEK) ;^TMP("PSB" global is expected, PSBWEEK variable is time frame for ^TMP("PSB"
+ ;Line administrations up with their admin times.  Move administrations given on the wrong day above or below admin times for current day - PSB*3*67
+ N PSBORD,PSBDT,PSBADM,PSBIEN,PSBSCH,PSBORDT,PSBORTM,PSBBFR,PSBAFTR,PSBTTL,PSBADTM,PSBFLG,PSBERLY,PSBCNT,PSBCNTR,PSBACDT,PSBCLR,PSBGDTM,PSBAT,PSBATTM
+ S PSBORD="" F  S PSBORD=$O(^TMP("PSB",$J,PSBWEEK,PSBORD)) Q:'PSBORD  D
+ .S PSBDT="" F  S PSBDT=$O(^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT)) Q:'PSBDT  D
+ ..Q:^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,0)=0
+ ..;Set up administration time array
+ ..S PSBAT=0,PSBATTM="" F  S PSBAT=$O(^TMP("PSB",$J,"ORDERS",PSBORD,"AT",PSBAT)) Q:'PSBAT  S PSBATTM=PSBATTM_$E(^TMP("PSB",$J,"ORDERS",PSBORD,"AT",PSBAT)_"0000",1,4)_", "
+ ..S PSBADM=0 F  S PSBADM=$O(^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,PSBADM))  Q:PSBADM=""  D  ;Loop through temp global and get all entries on MAH - PSB*3*67
+ ...S PSBIEN=$P(^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,PSBADM),U,4),PSBSCH=$$GET1^DIQ(53.79,PSBIEN_",",.13,"I"),PSBORDT=$P(PSBSCH,".") Q:'PSBORDT
+ ...I $$GET1^DIQ(53.795,1_","_PSBIEN_",",.04)["PATCH" Q  ;Do not modify report for patches
+ ...;add ">" before action if admin times have been changed since administration and no longer have a corresponding admin time
+ ...I PSBATTM,PSBATTM'[$E($P(PSBSCH,".",2)_"0000",1,4) S $P(^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,PSBADM),U,3)=">"_$P(^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,PSBADM),U,3)
+ ...I PSBORDT>PSBDT S PSBBFR(PSBORD,PSBDT)=$G(PSBBFR(PSBORD,PSBDT))+1 ;Initialize array and set for orders given a day late
+ ...I PSBORDT<PSBDT S PSBAFTR(PSBORD,PSBDT)=$G(PSBAFTR(PSBORD,PSBDT))+1 ;Initialize array and set for orders given a day early
+ S PSBORD="" F  S PSBORD=$O(PSBBFR(PSBORD)) Q:PSBORD=""  D  ;Loop through Before Array
+ .S PSBCNTR=0,PSBDT="" F  S PSBDT=$O(PSBBFR(PSBORD,PSBDT)) Q:PSBDT=""  S:PSBCNTR<PSBBFR(PSBORD,PSBDT) PSBCNTR=PSBBFR(PSBORD,PSBDT) D
+ ..F PSBBFR=1:1:PSBCNTR S ^TMP("PSB",$J,"ORDERS",PSBORD,"AT",$O(^TMP("PSB",$J,"ORDERS",PSBORD,"AT",""),-1)+1)="" ;Add additional lines to the end of the "AT" node
+ ..S ^TMP("PSB",$J,"ORDERS",PSBORD,"AT",0)=$O(^TMP("PSB",$J,"ORDERS",PSBORD,"AT",""),-1) ;Reset "AT" Counter
+ S PSBORD="" F  S PSBORD=$O(PSBAFTR(PSBORD)) Q:PSBORD=""  D  ;Loop through After Array
+ .S PSBCNTR=0,PSBDT="" F  S PSBDT=$O(PSBAFTR(PSBORD,PSBDT)) Q:PSBDT=""  S:PSBCNTR<PSBAFTR(PSBORD,PSBDT) PSBCNTR=PSBAFTR(PSBORD,PSBDT)
+ .F PSBAFTR=1:1:PSBCNTR S ^TMP("PSB",$J,"ORDERS",PSBORD,"AT",$O(^TMP("PSB",$J,"ORDERS",PSBORD,"AT",""),-1)+1)="" ;Add additional lines to the beginning of the "AT" node
+ .S PSBTTL=$O(^TMP("PSB",$J,"ORDERS",PSBORD,"AT",""),-1)
+ .F PSBAFTR=PSBTTL:-1:PSBCNTR+1 S ^TMP("PSB",$J,"ORDERS",PSBORD,"AT",PSBAFTR)=^TMP("PSB",$J,"ORDERS",PSBORD,"AT",PSBAFTR-PSBCNTR) ;Reset making room for additional lines at top
+ .F PSBAFTR=1:1:PSBCNTR S ^TMP("PSB",$J,"ORDERS",PSBORD,"AT",PSBAFTR)=""
+ .S ^TMP("PSB",$J,"ORDERS",PSBORD,"AT",0)=$O(^TMP("PSB",$J,"ORDERS",PSBORD,"AT",""),-1) ;Reset "AT" Counter
+ K ^TMP("PSBSRT",$J) M ^TMP("PSBSRT",$J)=^TMP("PSB",$J) ;Merge PSBSRT temp global and use to reline MAH report
+ S PSBCNT=0,PSBORD="" F  S PSBORD=$O(^TMP("PSBSRT",$J,PSBWEEK,PSBORD)) Q:'PSBORD  D
+ .S PSBDT="" F  S PSBDT=$O(^TMP("PSBSRT",$J,PSBWEEK,PSBORD,PSBDT)) Q:'PSBDT  D
+ ..Q:^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,0)=0
+ ..S PSBCNT=1,PSBCLR=0 F  S PSBCLR=$O(^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,PSBCLR)) Q:PSBCLR=""  S ^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,PSBCLR)="" ;Clear out all orders on ^TMP("PSB"
+ ..S PSBADM=0 F  S PSBADM=$O(^TMP("PSBSRT",$J,PSBWEEK,PSBORD,PSBDT,PSBADM)) Q:PSBADM=""  D  ;Loop through All orders on MAH
+ ...S PSBIEN=$P(^TMP("PSBSRT",$J,PSBWEEK,PSBORD,PSBDT,PSBADM),U,4)  S PSBSCH=$$GET1^DIQ(53.79,PSBIEN_",",.13,"I"),PSBORDT=$P(PSBSCH,"."),PSBORTM=$E($P(PSBSCH,".",2)_"0000",1,4)
+ ...I $$GET1^DIQ(53.795,1_","_PSBIEN_",",.04)["PATCH" S PSBGDTM(PSBORD,PSBDT)=1 Q  ;Don't reline patches
+ ...S PSBACDT=$P($$GET1^DIQ(53.79,PSBIEN_",",.06,"I"),".") ;Get date of last action taken on order
+ ...I PSBORDT=PSBACDT S PSBADTM=0 F  S PSBADTM=$O(^TMP("PSBSRT",$J,"ORDERS",PSBORD,"AT",PSBADTM)) Q:PSBADTM=""  I ^TMP("PSBSRT",$J,"ORDERS",PSBORD,"AT",PSBADTM)=PSBORTM D
+ ....S ^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,PSBADTM)=^TMP("PSBSRT",$J,PSBWEEK,PSBORD,PSBDT,PSBADM) S PSBGDTM=1 ;Set up ^TMP("PSB" lined up with admin time
+ ....S ^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,0)=$O(^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,""),-1) ;Set "MAH" counter
+ ...I PSBORDT=PSBACDT,'$G(PSBGDTM) S PSBGDTM(PSBORD,PSBDT)=1 Q  ;Sets the PSBGDTM array
+ ...I '$G(PSBORDT),'$G(PSBGDTM) S PSBGDTM(PSBORD,PSBDT)=1 Q  ;if not correct day, set PSBGDTM array and quit
+ ...S PSBGDTM="" ;reset PSBGDTM variable to null
+ ...;set a day early  administration to below the admin times
+ ...I PSBORDT>PSBACDT S PSBADTM="" F  S PSBADTM=$O(^TMP("PSBSRT",$J,"ORDERS",PSBORD,"AT",PSBADTM),-1) Q:PSBADTM=""  Q:^TMP("PSBSRT",$J,"ORDERS",PSBORD,"AT",PSBADTM)'=""
+ ...I PSBORDT>PSBACDT S PSBERLY=PSBADTM F  S PSBERLY=$O(^TMP("PSB",$J,"ORDERS",PSBORD,"AT",PSBERLY)) Q:'PSBERLY  Q:$G(PSBFLG)  I '$G(^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,PSBERLY)) D
+ ....S ^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,PSBERLY)=^TMP("PSBSRT",$J,PSBWEEK,PSBORD,PSBDT,PSBADM),PSBFLG=1
+ ...K PSBFLG
+ ...;set a day late  administration to above the admin times
+ ...I PSBORDT<PSBACDT S ^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,PSBCNT)=^TMP("PSBSRT",$J,PSBWEEK,PSBORD,PSBDT,PSBADM),PSBCNT=PSBCNT+1
+ ;fill in ^TMP("PSB" with all administrations which don't have current admin times from PSBGDTM array
+ S PSBORD="" F  S PSBORD=$O(PSBGDTM(PSBORD)) Q:PSBORD=""  D
+ .S PSBDT="" F  S PSBDT=$O(PSBGDTM(PSBORD,PSBDT)) Q:PSBDT=""  D
+ ..S PSBCLR=0 F  S PSBCLR=$O(^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,PSBCLR)) Q:PSBCLR=""  S ^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,PSBCLR)=""
+ ..S PSBGDTM="" F  S PSBGDTM=$O(^TMP("PSBSRT",$J,PSBWEEK,PSBORD,PSBDT,PSBGDTM)) Q:PSBGDTM=""  S ^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT,PSBGDTM)=^TMP("PSBSRT",$J,PSBWEEK,PSBORD,PSBDT,PSBGDTM)
+ K ^TMP("PSBSRT",$J)
+ Q

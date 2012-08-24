@@ -1,5 +1,5 @@
 SDRPA20 ;BPOI/ESW - Determine Admission Type for PAIT ;
- ;;5.3;Scheduling;**446**;Aug 13, 1993;Build 77
+ ;;5.3;Scheduling;**446,539**;Aug 13, 1993;Build 24
  ;
  ; This routine returns element Admission Type for appointment sent
  ; with PAIT - see TABLE SD009 - Purpose of Visit & Appointment Type
@@ -13,7 +13,7 @@ POV(DFN,SDATE,CLINIC,CRDATE) ; - Determine Purpose of Visit for encounter
  ;        CLINIC = Clinic
  ;        CRDATE = Creation date
  ;        
- ;  Identified from the Outpatient Encounter of the Appointment
+ ;  Identified from the Outpatient Encounter or the Appointment
  ;  subfile (# 2.98)
  ;  
  ;         APTYP = Appointment Type
@@ -36,8 +36,8 @@ POV(DFN,SDATE,CLINIC,CRDATE) ; - Determine Purpose of Visit for encounter
  N SDCRC S SDCRC=+$P(SDAPPT,U,16) I SDCRC'=CRDATE Q $G(SCDXPOV)
  N POV,SCDXPOV
  S POV=+$P(SDAPPT,U,18),POV=$S($L(POV)=1:"0"_POV,1:POV)
- S APTYP=+$P(SDAPPT,U,10) S SDENC=+$P(SDAPPT,U,12) I +SDENC>0 D  I 'APTYP Q $G(SCDXPOV)
- .S APTYP=$P($G(^SCE(SDENC,0)),U,10)
+ S APTYP=+$P(SDAPPT,U,10) S SDENC=+$P(SDAPPT,U,12) D  I 'APTYP Q $G(SCDXPOV)
+ .I +SDENC>0 S APTYP=$P($G(^SCE(SDENC,0)),U,10)  ;
  S APTYP=$S($L(APTYP)=1:"0"_APTYP,1:APTYP)
  S SCDXPOV=POV_APTYP
 POVQ Q $G(SCDXPOV)

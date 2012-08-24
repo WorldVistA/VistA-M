@@ -1,5 +1,5 @@
 IBCAPP1 ;ALB/WCJ - Claims Auto Processing Utilities;27-AUG-10
- ;;2.0;INTEGRATED BILLING;**432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**432,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  G AWAY
 AWAY Q
@@ -75,8 +75,8 @@ CRIT(IBIFN,IBEOB) ; Function to determine if a claim meets the criteria for auto
  ; adjustments for this EOB
  I '$$CAS(IBEOB,"B",.REASON) S REASON="IB808:Failed adjustment criteria selection" G CRITX  ; "B" for both
  ;
- ; Make sure the balance remaining amount is greater than $0
- S IBPTRESP=$$TOT^IBCECOB2(IBIFN)
+ ; Make sure the balance remaining amount is greater than $0 IB*2.0*447
+ S IBPTRESP=$$TOT^IBCECOB2(IBIFN,1)
  I IBPTRESP'>0 S REASON="IB806:Balance remaining dollar amount is less than or equal to $0" G CRITX
  ;
  ; At this point, we're OK

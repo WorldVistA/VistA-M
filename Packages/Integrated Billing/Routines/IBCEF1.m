@@ -1,5 +1,5 @@
 IBCEF1 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS - CONT ;30-JAN-96
- ;;2.0;INTEGRATED BILLING;**52,124,51,137,210,155,349,371**;21-MAR-94;Build 57
+ ;;2.0;INTEGRATED BILLING;**52,124,51,137,210,155,349,371,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 OCC(IBIFN,REL,TEXT) ;Sets up an arrays of occurrence codes for various cks
@@ -164,7 +164,10 @@ SET1(IBIFN,A,IBZ,IBXDATA,IBXNOREQ) ; Utility to set variables for output
  S A="^TMP($J,""IBLCT"")"
  S (Z,CT)=0
  F  S Z=$O(IBXDATA(Z)) Q:'Z  D  ; Don't transmit 0-charges
- . I $P(IBXDATA(Z),U,9),$P(IBXDATA(Z),U,8) S CT=CT+1 M IBZ(CT)=IBXDATA(Z)
+ . ;IB*2.0*447/TAZ - Transmit $0 charges.
+ . ;I $P(IBXDATA(Z),U,9),$P(IBXDATA(Z),U,8) S CT=CT+1 M IBZ(CT)=IBXDATA(Z)
+ . I $P(IBXDATA(Z),U,9) S CT=CT+1 M IBZ(CT)=IBXDATA(Z)
+ . ;IB*2.0*447
  K IBXDATA
  S IBXNOREQ='$$REQ(2,"O",IBIFN)
  Q

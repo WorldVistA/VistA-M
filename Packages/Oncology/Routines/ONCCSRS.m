@@ -1,5 +1,5 @@
-ONCCSRS ;Hines OIFO/GWB - Re-stage using current version ;06/23/10
- ;;2.11;ONCOLOGY;**43,46,48,51,53**;Mar 07, 1995;Build 31
+ONCCSRS ;Hines OIFO/GWB - Re-stage using current version ;11/04/11
+ ;;2.11;ONCOLOGY;**43,46,48,51,53,54**;Mar 07, 1995;Build 10
  ;
  ;Re-stage 2004+ cases using current CS Version
  K DIRUT
@@ -82,10 +82,19 @@ RS ;Re-stage
  ..S $P(^ONCO(165.5,IEN,"CS2"),U,19)=$P($G(^ONCO(165.5,IEN,"CS3")),U,1)
  .S INPUT("SSF25")=$$GET1^DIQ(165.5,IEN,44.25,"I")
  .S:INPUT("SSF25")="" INPUT("SSF25")="   "
+ .K ERRMSG,STATUS
  .S RC=$$CALC^ONCSAPI3(.ONCSAPI,.INPUT,.STORE,.DISPLAY,.STATUS)
  .D USE^%ZISUTL("ONCCSRS")
- .I $P(RC,U,1)<0 W !!?3,PID,"  ",PSCODE,"  ",AN,"/",SEQ," encountered a CS error" S ERRCTR=ERRCTR+1
- .I $P(RC,U,1)>0 W !!?3,PID,"  ",PSCODE,"  ",AN,"/",SEQ," encountered a CS warning" S ERRCTR=ERRCTR+1
+ .I $P(RC,U,1)<0 D
+ ..S ERRMSG=$P($G(STATUS("MSG",1)),".",1)
+ ..W !!?3,PID,"  ",PSCODE,"  ",AN,"/",SEQ," encountered a CS error"
+ ..W !?3,ERRMSG
+ ..S ERRCTR=ERRCTR+1
+ .I $P(RC,U,1)>0 D
+ ..S ERRMSG=$P($G(STATUS("MSG",1)),".",1)
+ ..W !!?3,PID,"  ",PSCODE,"  ",AN,"/",SEQ," encountered a CS warning"
+ ..W !?3,ERRMSG
+ ..S ERRCTR=ERRCTR+1
  .I $P(RC,U,1)=0 S SUCCTR=SUCCTR+1 D 
  ..S $P(^ONCO(165.5,IEN,"CS1"),U,1)=STORE("T")
  ..S $P(^ONCO(165.5,IEN,"CS1"),U,2)=STORE("TDESCR")

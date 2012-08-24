@@ -1,5 +1,5 @@
 BPSOSO2 ;BHAM ISC/FCS/DRS/DLF - NCPDP Override-Fman utils ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ; EDIT,EDITGEN are called from the menus in BPSOSO1,
@@ -62,7 +62,7 @@ GET511(IEN,ARR101,ARR402) ;function, called from BPSOSCD - load arrays with data
  . S BPFLDNUM=+$$FIELDNUM(F)
  . S TFLD=","_BPFLDNUM_","
  . I BPFLDNUM<402!(HDRLST[TFLD) S @ARR101@(F)=$P(X,U,2)
- . I BPFLDNUM>400!(MULTLST[TFLD) S @ARR402@(F)=$P(X,U,2)
+ . I BPFLDNUM>401!(MULTLST[TFLD) S @ARR402@(F)=$P(X,U,2)
  . ;
  . S C=C+1
  ;

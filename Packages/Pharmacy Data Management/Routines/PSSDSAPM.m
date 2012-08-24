@@ -1,5 +1,5 @@
 PSSDSAPM ;BIR/RTR-Dose Check utilities routine ;09/13/10
- ;;1.0;PHARMACY DATA MANAGEMENT;**117**;9/30/97;Build 101
+ ;;1.0;PHARMACY DATA MANAGEMENT;**117,168**;9/30/97;Build 4
  ;
  ;
  ;DRG - returns best Dispense Drug to use for Order Checks when only the Orderable Item is available
@@ -38,8 +38,6 @@ PSSDSAPM ;BIR/RTR-Dose Check utilities routine ;09/13/10
 DRG(PSSNBOI,PSSNBPK) ;
  I '$G(PSSNBOI) Q "0;;"
  I $G(PSSNBPK)'="O",$G(PSSNBPK)'="I",$G(PSSNBPK)'="X" Q "0;;"
- I '$D(^PS(50.7,PSSNBOI,0)) Q "0;;"
- I $P($G(^PS(50.7,PSSNBOI,0)),"^",9)=1 Q "0;;"
  N PSSNB1,PSSNBRS,PSSNBSTP,PSSNBIN,PSSNBAPP,PSSNBLOW,PSSNBARR,PSSNBAP1,PSSNBARX
  S PSSNBSTP=0,PSSNBLOW=13
  S PSSNBRS="0;;"

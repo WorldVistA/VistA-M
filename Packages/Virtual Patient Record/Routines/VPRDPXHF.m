@@ -1,10 +1,11 @@
 VPRDPXHF ;SLC/MKB -- PCE Health Factors ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;;Sep 01, 2011;Build 12
+ ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
  ; ^AUPNVSIT                     2028
+ ; ^AUTTHF                       4295
  ; ^PXRMINDX                     4290
  ; DILFD                         2055
  ; DIQ                           2056
@@ -46,7 +47,7 @@ SORT(DFN,START,STOP) ; -- build ^TMP("VPRHF",$J,9999999-DATE,DA)=HF^DATE in rang
  ;
 EN1(IEN,HF) ; -- return a health factor in HF("attribute")=value
  ;  from EN: expects ^TMP("VPRHF",$J,VPRIDT,IEN)=HF^DATE
- N VPRF,TMP,VISIT,X0,FAC,LOC,IENS,VPRH K HF
+ N VPRF,TMP,VISIT,X0,FAC,LOC,X K HF
  D VHF^PXPXRM(IEN,.VPRF)
  S HF("id")=IEN,HF("severity")=$G(VPRF("VALUE"))
  S TMP=$G(^TMP("VPRHF",$J,VPRIDT,IEN)),HF("recorded")=$P(TMP,U,2)
@@ -57,11 +58,8 @@ EN1(IEN,HF) ; -- return a health factor in HF("attribute")=value
  S FAC=+$P(X0,U,6),LOC=+$P(X0,U,22)
  S:FAC HF("facility")=$$STA^XUAF4(FAC)_U_$P($$NS^XUAF4(FAC),U)
  S:'FAC HF("facility")=$$FAC^VPRD(LOC)
- ;#9999999.64 additional data:
- ;S IENS=+TMP_"," D GETS^DIQ(9999999.64,IENS,"*",,"VPRH")
- ;S HF("gender")=$E(VPRH(9999999.64,IENS,.05))
- ;S HF("lowerAge")=VPRH(9999999.64,IENS,.06)
- ;S HF("upperAge")=VPRH(9999999.64,IENS,.07)
+ S X=$$GET1^DIQ(9999999.64,+TMP_",",.03,"I")
+ S:X HF("category")=X_U_$$GET1^DIQ(9999999.64,+TMP_",",.03)
  Q
  ;
  ; ------------ Return data to middle tier ------------

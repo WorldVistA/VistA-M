@@ -1,5 +1,5 @@
-SRTPUTL ;BIR/SJA - UTILITY ROUTINE ;02/27/2008
- ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
+SRTPUTL ;BIR/SJA - UTILITY ROUTINE ;08/11/2011
+ ;;3.0;Surgery;**167,175,176**;24 Jun 93;Build 8
  ;
  ; Reference to EN1^GMRVUT0 supported by DBIA #1446
  ;
@@ -37,6 +37,14 @@ PVR ; called by input transform of the PVR VASODILATION fields
  I +DR=163,$P($G(^SRT(SRTPP,.01)),"^",6)="NS" S SRY=1
  I +DR=164,$P($G(^SRT(SRTPP,.01)),"^",5)="NS" S SRY=1
  I $G(SRY)=1,SRX="NS" D EN^DDIOL("'NS' is only allowed in one of the PVR fields!",,"!,?2") K X D RET^SRTPCOM Q
+ Q
+CHK199 ; check entries of the Tobacco Use Timeframe field (#199) based on the value of the Tobacco Use field.
+ S DA=$S($G(SRTPP):SRTPP,1:DA)
+ I "123"[X,($P($G(^SRT(DA,.55)),"^",24)<3) D EN^DDIOL("Invalid entry as the TOBACCO USE value is less than three.","","!?2,$C(7)") K X Q
+ I X="NA",($P($G(^SRT(DA,.55)),"^",24)>2) D EN^DDIOL("Invalid entry as the TOBACCO USE value is greater than two.","","!?2,$C(7)") K X Q
+ Q
+TUT ; set default value for tobacco use timeframe
+ S X=$G(^SRT(SRTPP,.55)) I $P(X,"^",24)="",$P(X,"^",25)="" S $P(^SRT(SRTPP,.55),"^",25)="NA"
  Q
 HW ; get weight & height from Vitals
  N SREND,SREQ,SREX,SREY,SRSTRT

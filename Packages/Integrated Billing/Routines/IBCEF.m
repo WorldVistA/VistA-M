@@ -1,5 +1,5 @@
 IBCEF ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS ;22-JAN-96
- ;;2.0;INTEGRATED BILLING;**52,80,51,137,288,296,361,371**;21-MAR-94;Build 57
+ ;;2.0;INTEGRATED BILLING;**52,80,51,137,288,296,361,371,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;IBIFN = bill ien throughout this routine
@@ -250,4 +250,8 @@ COBCT(IBIFN) ; # of payers on claim
  N CT,Z
  S CT=0 F Z="I1","I2","I3" Q:'$D(^DGCR(399,IBIFN,Z))  S CT=CT+1
  Q CT
+ ;
+INSTOUT(IBIFN)   ; Identify a Outpatient Institutional Claim. IB*2.0*447 BI
+ ; Return a 1 if claim/bill is Institutional and Outpatient, otherwise return 0.
+ Q (($$INPAT^IBCEF(IBIFN)=0)&($$INSPRF^IBCEF(IBIFN)=1))
  ;

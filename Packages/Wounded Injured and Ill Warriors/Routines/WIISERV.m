@@ -2,10 +2,10 @@ WIISERV ;VISN20/WDE/WHN/WII-EXTRACT DATA ; [6/26/08 07:21am]
  ;;1.0;Wounded Injured and Ill Warriors;**1**;06/26/2008;Build 28;
  ;;    WII ADT SERVER  MAIL SERVER CALLED S.WII ADT SERVER
  ;API used see Appendix A Message Server Protocol
- ;http://www.va.gov/vdl/documents/Infrastructure/Mailman/xm_8_0_developerguide.pdf
+ ;http://www.DOMAIN.EXT/vdl/documents/Infrastructure/Mailman/xm_8_0_developerguide.pdf
  ;UNLOAD^WIISERV
 UNLOAD ;Entry Point
- ;http://www.va.gov/vdl/documents/Infrastructure/Mailman/xm_8_0_developerguide.pdf
+ ;http://www.DOMAIN.EXT/vdl/documents/Infrastructure/Mailman/xm_8_0_developerguide.pdf
  F WII=1:1 X XMREC Q:(XMER=-1)  D
  .I $P($G(XMRG),U,1)="987.7" D DATA1
  .I $P($G(XMRG),U,1)="987.8 DATA" D DATA2

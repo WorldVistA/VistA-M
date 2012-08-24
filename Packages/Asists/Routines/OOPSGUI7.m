@@ -1,5 +1,5 @@
 OOPSGUI7 ;WIOFO/LLH-RPC routines ;10/30/01
- ;;2.0;ASISTS;**2,4,7**;Jun 03, 2002
+ ;;2.0;ASISTS;**2,4,7,22**;Jun 03, 2002;Build 1
  ;
 ENT(RESULTS,INPUT) ; Non-interactive GUI Entry Point for transmitting data
  ;                 to DOL or NDB
@@ -16,10 +16,10 @@ ENT(RESULTS,INPUT) ; Non-interactive GUI Entry Point for transmitting data
  S MAN=1                       ; force manual xmit flag
  I RTN="DOL" D
  . S MAILG="OOPS DOL XMIT DATA"
- . S QUE="Q-AST.MED.VA.GOV"
+ . S QUE="Q-AST.DOMAIN.EXT"
  I RTN="NDB" D
  . S MAILG="OOPS XMIT 2162 DATA"
- . S QUE="Q-ASI.MED.VA.GOV"
+ . S QUE="Q-ASI.DOMAIN.EXT"
  ;Check for security keys
  I '$D(^XUSEC(MAILG,DUZ)) D  Q
  .S RESULTS(0)="ERROR"
@@ -100,7 +100,7 @@ GETFLD(RESULTS,IEN,FLD) ; Send in IEN and Field number to retrieve a single
  I FIELD=336 D  Q
  .N SSN,STR S SSN=$$GET1^DIQ(FILE,IEN,5,"I")
  .D FIND^DIC(450,,"@;.01;30","PS",SSN,"","SSN")
- .S STR=$P(^TMP("DILIST",$J,0),U) I $G(STR)'=1 S RESULTS="No Data." Q
+ .S STR=$P($G(^TMP("DILIST",$J,0)),U) I $G(STR)'=1 S RESULTS="No Data." Q
  .S RESULTS=$P($G(^TMP("DILIST",$J,1,0)),U,3)
  .I RESULTS="" S RESULTS="No Data."
  .K ^TMP("DILIST",$J),DIERR

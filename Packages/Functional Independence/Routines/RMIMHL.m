@@ -93,9 +93,9 @@ OBXN(X) ; CASE NOTES
  S $P(OBX,FS,11)="F",$P(OBX,FS,5)=X
  Q "OBX"_FS_OBX
 TASK ; NIGHTLY JOB
- I '$$FIND1^DIC(4.2,"","X","Q-FIM.MED.VA.GOV","B") D  Q
+ I '$$FIND1^DIC(4.2,"","X","Q-FIM.DOMAIN.EXT","B") D  Q
  .N TX,XMDUN,XMDUZ,XMSUB,XMTEXT,XMY,XMZ
- .S TX(1,0)="The domain Q-FIM.MED.VA.GOV does not exist in your DOMAIN "
+ .S TX(1,0)="The domain Q-FIM.DOMAIN.EXT does not exist in your DOMAIN "
  .S TX(2,0)="file."
  .S TX(3,0)="Ask your IRM to install patch XM*DBA*150."
  .S TX(4,0)="You will not be able to transmit data to FSOD until this"

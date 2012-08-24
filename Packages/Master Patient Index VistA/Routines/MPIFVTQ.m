@@ -1,5 +1,5 @@
-MPIFVTQ ;SLC/ARS-BUILD DATA TO QUERY MPI RESPONSE PROCESS (ADDPAT) ; 8/15/08 5:01pm
- ;;1.0; MASTER PATIENT INDEX VISTA ;**1,9,17,21,23,28,33,35,52**;30 Apr 99;Build 7
+MPIFVTQ ;SLC/ARS-BUILD DATA TO QUERY MPI RESPONSE PROCESS (ADDPAT) ; 1/12/10 9:28am
+ ;;1.0;MASTER PATIENT INDEX VISTA;**1,9,17,21,23,28,33,35,52,54**;30 Apr 99;Build 2
  ;
  ; Integration Agreements Utilized:
  ;  ^DPT( -9 node check - #2762
@@ -40,9 +40,10 @@ VTQ1(MPIIT,MPIOUT,HL,MPIQRYNM,MPISND) ;
  I MPITEST="" S MPIOUT(0)="-1^invalid DFN" Q
  I $P(MPITEST,"^")=""&($P(MPITEST,"^",2)="")&($P(MPITEST,"^",3)="")&($P(MPITEST,"^",9)="") D  Q
  .K MPIARR
- .S MPIOUT(0)="-1^stub entry in DPT"
- .S MPIARR(991.01)="@",MPIARR(991.02)="@",MPIARR(991.03)="@",MPIARR(991.05)="@",MPIARR(992)=MPIZICN,MPIARR(993)=+$$SITE^VASITE()
- .S ERR=$$DELALLTF^VAFCTFU(MPIZICN) ;clean up tf list
+ .S MPIOUT(0)="-1^invalid DFN" ;**54 changed the error message to allow the local/missing job to skip this record"
+ .S MPIARR(991.01)="@",MPIARR(991.02)="@",MPIARR(991.03)="@",MPIARR(991.05)="@"
+ .; **54 MVI 896 REMOVED SETTING OF VARIABLES MPIARR(992) & MPIARR(993)
+ .I $G(MPIZICN)'="" S ERR=$$DELALLTF^VAFCTFU(MPIZICN) ;clean up tf list
  .S ERR=$$UPDATE^MPIFAPI(MPIIT,"MPIARR",1,1) K MPIARR
  .;PATCH 33 - stub entry with local, remove local and don't send to MPI
  S MPISSN=$P(MPITEST,"^",9)

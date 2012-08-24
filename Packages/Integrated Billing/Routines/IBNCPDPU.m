@@ -1,5 +1,5 @@
 IBNCPDPU ;OAK/ELZ - UTILITIES FOR NCPCP ;5/22/08  15:24
- ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384,437,435**;21-MAR-94;Build 27
+ ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384,437,435,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;Reference to ECMEACT^PSOBPSU1 supported by IA# 4702
@@ -12,11 +12,11 @@ CT(DFN,IBRXN,IBFIL,IBADT,IBRMARK) ; files in claims tracking
  ;  DFN - Patient IEN
  ;  IBRXN - Rx IEN
  ;  IBFIL - Fill#
- ;  IBADT - Fill Date
+ ;  IBADT - Date of Service
  ;  IBRMARK - Non-billable Reason (.01 from 356.8)
  ;
  N DIE,DR,DA,IBRXTYP,IBEABD
-  ; Check that the Fill Date is current
+ ; Check that the Date of Service is current
  I IBTRKRN,$G(IBADT),($G(IBADT)'=$P(^IBT(356,IBTRKRN,0),U,6)) D
  . S DIE="^IBT(356,",DA=IBTRKRN,DR=".06////"_IBADT D ^DIE
  I IBTRKRN D:$D(IBRMARK)  Q
@@ -31,7 +31,7 @@ CT(DFN,IBRXN,IBFIL,IBADT,IBRMARK) ; files in claims tracking
  ; ROI check
  N IBSCROI,IBDRUG,IBDEA,IBRXDATA
  S IBRXDATA=$$RXZERO^IBRXUTL(DFN,IBRXN)
- S IBDRUG=$P(IBRXDATA,"^",6)
+ S IBDRUG=$P(IBRXDATA,U,6)
  D ZERO^IBRXUTL(IBDRUG)
  S IBDEA=$G(^TMP($J,"IBDRUG",+IBDRUG,3))
  K ^TMP($J,"IBDRUG")
@@ -56,13 +56,12 @@ FILL(X,LEN) ; Zero-fill, right justified.
  F  Q:$L(Y)>(LEN-1)  S Y="0"_Y
  Q Y
  ;
-PLANN(DFN,IBX,IBADT) ; returns the ien in the insurance multiple for the given plan
- ; /patient privided.
- ;   ien in multiple^insurance co ien
+PLANN(DFN,IBX,IBADT) ; returns the ien in the insurance multiple for the given plan/patient provided
+ ;   Output:  insurance co ien^2.312 subfile ien
  N IBPOL,IBY,IBR
  S IBR=""
- D ALL^IBCNS1(DFN,"IBPOL",3,IBADT)
- S IBY=0 F  S IBY=$O(IBPOL(IBY)) Q:IBY<1!(IBR)  I $P(IBPOL(IBY,0),"^",18)=IBX S IBR=$P(IBPOL(IBY,0),"^")_"^"_IBY
+ D ALL^IBCNS1(DFN,"IBPOL",1,IBADT)
+ S IBY=0 F  S IBY=$O(IBPOL(IBY)) Q:'IBY!IBR  I $P($G(IBPOL(IBY,0)),U,18)=IBX S IBR=$P(IBPOL(IBY,0),U,1)_U_IBY Q
  Q IBR
  ;
 PLANEPS(IBPL) ; returns the ePharmacy payer sheets for a group plan 
@@ -72,8 +71,9 @@ PLANEPS(IBPL) ; returns the ePharmacy payer sheets for a group plan
  ;   Unsuccessful: 0
  N PIEN,IBR,PLN10,B1,B2,B3,E1
  S IBR=0
+ I '$G(IBPL) Q IBR
  ; Get ePharmacy plan IEN
- S PIEN=+$P($G(^IBA(355.3,$G(IBPL),6)),U,1)
+ S PIEN=+$P($G(^IBA(355.3,IBPL,6)),U,1)
  I 'PIEN Q IBR
  S PLN10=$G(^IBCNR(366.03,PIEN,10))
  ; check for test/production sheets
@@ -97,11 +97,11 @@ RT(DFN,IBDT,IBINS,IBPTYP) ; returns rate type to use for bill
  ;  3 piece string in the following format
  ;     [1] rate type ien
  ;     [2] Rate Type (Tort or Awp or Cost)
- ;     [3] Eligibility Basis (V=VETERAN, T=TRICARE)
+ ;     [3] Eligibility Basis (V=VETERAN, T=TRICARE, C=CHAMPVA)
  ;
  ; IBPTYP - patient type - optional output parameter (pass by reference)
  ;        - this is only used by the PRO option (see IBNCPDP1)
- ;        - (V=VETERAN, T=TRICARE)
+ ;        - (V=VETERAN, T=TRICARE, C=CHAMPVA)
  ;        - NOT the same thing as [3] of this function
  ;
  N VAEL,VAERR,IBPT,IBRT,IBX,IBE,IBI,IBRET,IBRS
@@ -109,26 +109,33 @@ RT(DFN,IBDT,IBINS,IBPTYP) ; returns rate type to use for bill
  D ELIG^VADPT
  ;
  ; if primary elig is vet type, use reimbursable
- S IBPT=$P($G(^DIC(8,+VAEL(1),0)),"^",5) ; = N:NON-VETERAN;Y:VETERAN
+ S IBPT=$P($G(^DIC(8,+VAEL(1),0)),U,5) ; = N:NON-VETERAN;Y:VETERAN
  I IBPT="Y" D  Q IBRT_U_$S($G(IBRET)="VA COST":"C^V",1:"T^V")    ; IB*2*437 modifications
- .   S IBRT=$O(^DGCR(399.3,"B","REIMBURSABLE INS.",0))
- .   S IBRT=$S(IBRT:IBRT,1:8)
- .   I $G(IBDT) S IBRET=$P($$EVNTITM^IBCRU3(IBRT,3,"PRESCRIPTION FILL",IBDT,.IBRS),";",1)
+ . S IBRT=$O(^DGCR(399.3,"B","REIMBURSABLE INS.",0))
+ . S IBRT=$S(IBRT:IBRT,1:8)
+ . I $G(IBDT) S IBRET=$P($$EVNTITM^IBCRU3(IBRT,3,"PRESCRIPTION FILL",IBDT,.IBRS),";",1)
+ . Q
  ;
- ; if patient is only Tricare elig and only Tricare ins bill for Tricare
- ; ia #'s 427 & 2516
- ;  -  determine eligibilities
- S IBE=$P($G(^DIC(8.1,+$P($G(^DIC(8,+VAEL(1),0)),"^",9),0)),"^"),IBE($S(IBE="TRICARE"!(IBE="SHARING AGREEMENT"):"T",IBE="CHAMPVA":"C",1:"O"))=""
- S IBX=0 F  S IBX=$O(VAEL(1,IBX)) Q:'IBX  S IBE=$P($G(^DIC(8.1,+$P($G(^DIC(8,+VAEL(1,IBX),0)),"^",9),0)),"^") S IBE($S(IBE="TRICARE"!(IBE="SHARING AGREEMENT"):"T",IBE="CHAMPVA":"C",1:"O"))=""
+ ; ia #'s 427 & 2516 for references to ^DIC(8 and ^DIC(8.1
+ ;
+ ;  -  determine eligibilities - build the IBE array
+ S IBE=$P($G(^DIC(8.1,+$P($G(^DIC(8,+VAEL(1),0)),U,9),0)),U,1),IBE($S(IBE="TRICARE"!(IBE="SHARING AGREEMENT"):"T",IBE="CHAMPVA":"C",1:"O"))=""     ; primary pt eligibility
+ ; IB*2*452 - for CHAMPVA, CHAMPVA must be primary eligibility only - not among secondary eligibilities
+ S IBX=0 F  S IBX=$O(VAEL(1,IBX)) Q:'IBX  S IBE=$P($G(^DIC(8.1,+$P($G(^DIC(8,+VAEL(1,IBX),0)),U,9),0)),U,1) S IBE($S(IBE="TRICARE"!(IBE="SHARING AGREEMENT"):"T",1:"O"))=""    ; secondary pt eligibilities
  ;
  ; set patient type parameter
  I $G(VAEL(4)) S IBPTYP="V"   ; veteran without any pt. eligibilities defined
  I $D(IBE("T")) S IBPTYP="T"  ; TRICARE
+ I $D(IBE("C")) S IBPTYP="C"  ; CHAMPVA
  ;
- ;  -  determine insurance policies
- S IBX=0 F  S IBX=$O(IBINS(IBX)) Q:'IBX  S IBI=$P($G(^IBE(355.1,+$P($G(IBINS(IBX,355.3)),"^",9),0)),"^") S IBI($S(IBI="TRICARE":"T",IBI="CHAMPVA":"C",1:"O"))=""
- ;  -  tricare?
+ ;  -  determine insurance policies - build the IBI array
+ S IBX=0 F  S IBX=$O(IBINS(IBX)) Q:'IBX  S IBI=$P($G(^IBE(355.1,+$P($G(IBINS(IBX,355.3)),U,9),0)),U,1) S IBI($S(IBI="TRICARE":"T",IBI="CHAMPVA":"C",1:"O"))=""
+ ;
+ ;  -  if patient is only TRICARE elig and only TRICARE ins bill for TRICARE
  I $D(IBE("T")),'$D(IBE("O")),'$D(IBE("C")),$D(IBI("T")),'$D(IBI("O")),'$D(IBI("C")) S IBRT=$O(^DGCR(399.3,"B","TRICARE",0)) Q:IBRT IBRT_"^C^T"
+ ;
+ ; IB*2*452 - check for CHAMPVA
+ I $D(IBE("C")),$D(IBI("C")) S IBRT=$O(^DGCR(399.3,"B","CHAMPVA",0)) Q:IBRT IBRT_"^C^C"
  ;
  Q $S($D(IBRT):IBRT,1:"0^unable to determine rate type")
  ;
@@ -297,5 +304,30 @@ REJECT(IBECME,IBDATE) ; Is the e-claim rejected?
  I $P(IBY,U,11)>0 Q 1  ; Rejected or closed
  Q 0
  ;
+RXINS(DFN,IBADT,IBINS) ; Return an array of pharmacy insurance policies by COB order
+ ;  Input:
+ ;      DFN - Patient ien (required)
+ ;    IBADT - Date of Service (fileman format, optional defaults to today)
+ ; Output:
+ ;    IBINS - Name of destination array (pass by reference)
+ ;
+ N CT,COB,IEN,IBPL
+ K IBINS
+ S DFN=+$G(DFN)
+ S IBADT=+$G(IBADT,DT)
+ D ALL^IBCNS1(DFN,"IBINS",1,IBADT,1)   ; gather all insurance policies in COB order
+ ;
+ S CT=0   ; count up Rx policies found
+ S COB="" F  S COB=$O(IBINS("S",COB)) Q:COB=""  S IEN=0 F  S IEN=$O(IBINS("S",COB,IEN)) Q:'IEN  D
+ . S IBPL=+$P($G(IBINS(IEN,0)),U,18)  ; plan ien
+ . I 'IBPL K IBINS(IEN),IBINS("S",COB,IEN) Q   ; no plan
+ . I '$$PLCOV^IBCNSU3(IBPL,IBADT,3) K IBINS(IEN),IBINS("S",COB,IEN) Q    ; not a pharmacy plan
+ . S CT=CT+1
+ . Q
+ ;
+ S IBINS=CT    ; store total number found at the top level
+ ;
+RXINSX ;
+ Q
  ;
  ;IBNCPDPU

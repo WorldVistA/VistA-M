@@ -1,0 +1,11 @@
+TIUPR112 ; SLC/JER - PRE-Install for TIU*1*112;09/12/2003
+ ;;1.0;Text Integration Utilities;**112**;Jun 20, 1997
+MAIN ; Control subroutine
+ N TEXT,TIUNAME,TIUDA,TIUDT,TIULIST
+ S (TIUNAME,TIUDA,TIUDT)=0
+ F  S TIUNAME=$O(^PXD(811.8,"B",TIUNAME)) Q:TIUNAME=""  F  S TIUDT=$O(^PXD(811.8,"B",TIUNAME,TIUDT)) Q:TIUDT=""  F  S TIUDA=$O(^PXD(811.8,"B",TIUNAME,TIUDT,TIUDA)) Q:TIUDA=""  D
+ . I TIUNAME["TIU*1*112" S TIULIST(TIUDA)=""
+ S TEXT=" Removing Reminders Exchange File Entry from prior install..."
+ D BMES^XPDUTL(TEXT)
+ D DELETE^PXRMEXU1(.TIULIST)
+ Q

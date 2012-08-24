@@ -1,5 +1,5 @@
 PSOREJP3 ;ALB/SS - Third Party Reject Display Screen - Comments ;10/27/06
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403**;DEC 1997;Build 9
  ;
 COM ; Builds the Comments section in the Reject Display Screen
  I +$O(^PSRX(RX,"REJ",REJ,"COM",0))=0 Q
@@ -156,7 +156,7 @@ RXINFO(RX,FILL,LINE,REJ) ; Returns header displayable Rx Information
  N TXT,RXINFO,LBL,CMOP,DRG,PSOET
  I LINE=1 D
  . S RXINFO="Rx#      : "_$$GET1^DIQ(52,RX,.01)_"/"_FILL
- . ;cnf, PSO*7*358, add PSOET logic for Tricare non-billable
+ . ;cnf, PSO*7*358, add PSOET logic for TRICARE/CHAMPVA non-billable
  . S PSOET=$$PSOET(RX,FILL)
  . S $E(RXINFO,27)="ECME#: "_$S(PSOET:"",1:$$ECMENUM^PSOBPSU2(RX,FILL))
  . S $E(RXINFO,49)="Date of Service: "_$S(PSOET:"",1:$$FMTE^XLFDT($$DOS^PSOBPSU1(RX,FILL)))
@@ -166,41 +166,10 @@ RXINFO(RX,FILL,LINE,REJ) ; Returns header displayable Rx Information
  . S $E(RXINFO,56)="NDC Code: "_$$GETNDC^PSONDCUT(RX,FILL)
  Q $G(RXINFO)
  ;
-SEND(COD1,COD2,COD3,CLA,PA) ; - Sends Claim to ECME and closes Reject
- N DIR,OVRC,RESP,ALTXT,COM
- S DIR(0)="Y",DIR("A")="     Confirm",DIR("B")="YES"
- S DIR("A",1)="     When you confirm, a new claim will be submitted for"
- S DIR("A",2)="     the prescription and this REJECT will be marked"
- S DIR("A",3)="     resolved."
- S DIR("A",4)=" "
- W ! D ^DIR I $G(Y)=0!$D(DIRUT) S VALMBCK="R" Q
- I $G(COD1)'="" S OVRC=$G(COD2)_"^"_$G(COD1)_"^"_$G(COD3)
- S ALTXT="REJECT WORKLIST"
- S:$G(OVRC)'="" ALTXT=ALTXT_"-DUR OVERRIDE CODES("_$G(COD1)_"/"_$G(COD2)_"/"_$G(COD3)_")"
- S:$G(CLA) ALTXT=ALTXT_"(CLARIF. CODE="_CLA_")"
- S:$G(PA) ALTXT=ALTXT_"(PRIOR AUTH.="_$TR(PA,"^","/")_")"
- D ECMESND^PSOBPSU1(RX,FILL,,"ED",$$GETNDC^PSONDCUT(RX,FILL),,,$G(OVRC),,.RESP,,ALTXT,$G(CLA),$G(PA),$$PSOCOB^PSOREJP3(RX,FILL,REJ))
- I $G(RESP) D  Q
- . W !!?10,"Claim could not be submitted. Please try again later!"
- . W !,?10,"Reason: ",$S($P(RESP,"^",2)="":"UNKNOWN",1:$P(RESP,"^",2)),$C(7) H 2
- ;
- I $$PTLBL^PSOREJP2(RX,FILL) D PRINT(RX,FILL)
- ;
- N PSOTRIC S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,FILL,PSOTRIC)
- I $$GET1^DIQ(52,RX,100,"I")=5&(PSOTRIC) D
- . Q:$$STATUS^PSOBPSUT(RX,FILL)'["PAYABLE"
- . N XXX S XXX=""
- . W !,"This prescription can be pulled early from suspense or the label will print"
- . W !,"when PRINT FROM SUSPENSE occurs.",!
- . R !,"Press enter to continue... ",XXX:60
- ;
- I $D(PSOSTFLT),PSOSTFLT'="B" S CHANGE=1
- Q
- ;
-FILL ;Fill payable TRICARE Rx
+FILL ;Fill payable TRICARE or CHAMPVA Rx
  N COM,OPNREJ,OPNREJ2,OPNREJ3,DCSTAT,PSOREL
  S:'$G(PSOTRIC) PSOTRIC=$$TRIC^PSOREJP1(RX,FILL,PSOTRIC)  ;cnf, PSO*7*358, add line
- ;cnf, PSO*7*358, don't allow option if Tricare and released, PSOREL is set to the release date
+ ;cnf, PSO*7*358, don't allow option if TRICARE/CHAMPVA and released, PSOREL is set to the release date
  S PSOREL=0 I PSOTRIC D
  . I 'FILL S PSOREL=+$$GET1^DIQ(52,RX,31,"I")
  . I FILL S PSOREL=+$$GET1^DIQ(52.1,FILL_","_RX,17,"I")
@@ -246,17 +215,17 @@ DC ;Discontinue TRICARE Rx
  S CHANGE=1
  Q
  ;
-FILLTR ;TRICARE specific logic  ;cnf, PSO*7*358
+FILLTR ;TRICARE/CHAMPVA specific logic  ;cnf, PSO*7*358
  ;COM is not new'd so the variable can be used in FILL tag
  N CONT,PSOET,PSQSTR
  ;
 FILLTR2 ;Use for looping if user enters ^ in required comment field  ;cnf, PSO*7*358
  ;
- ;if tricare, not payable, and no security key, quit
+ ;if TRICARE/CHAMPVA, not payable, and no security key, quit
  ;reference to ^XUSEC( supported by IA 10076
- I '$D(^XUSEC("PSO TRICARE",DUZ)) S VALMSG="Action Requires <PSO TRICARE> security key",VALMBCK="R" Q
+ I '$D(^XUSEC("PSO TRICARE/CHAMPVA",DUZ)) S VALMSG="Action Requires <PSO TRICARE/CHAMPVA> security key",VALMBCK="R" Q
  ;
- ;if tricare, not payable, and user has security key, prompt to continue or not
+ ;if TRICARE/CHAMPVA, not payable, and user has security key, prompt to continue or not
  S PSQSTR="You are bypassing claims processing. Do you wish to continue"
  S CONT=$$YESNO(PSQSTR,"No")
  I (CONT=-1)!('CONT) S VALMSG="NO ACTION TAKEN.",VALMBCK="R" Q
@@ -264,22 +233,22 @@ FILLTR2 ;Use for looping if user enters ^ in required comment field  ;cnf, PSO*7
  ;check for valid electronic signature
  I '$$SIG^PSOREJU1() S VALMBCK="R" Q                               ;quit if no valid electronic signature
  ;
- ;prompt user for required TRICARE Justification
- S COM=$$TCOM() G:COM="^" FILLTR2                    ;loop back to "continue?" question if ^ entry
+ ;prompt user for required TRICARE/CHAMPVA Justification
+ S COM=$$TCOM(RX,FILL) G:COM="^" FILLTR2                    ;loop back to "continue?" question if ^ entry
  ;
  ;audit log
  S PSOET=$$PSOET(RX,FILL)
- D AUDIT^PSOTRI(RX,FILL,,COM,$S(PSOET:"N",1:"R"))
+ D AUDIT^PSOTRI(RX,FILL,,COM,$S(PSOET:"N",1:"R"),$S($G(PSOTRIC)=1:"T",$G(PSOTRIC)=2:"C",1:""))
  Q
  ;
-TCOM() ; - Ask for TRICARE Justification   ;cnf, PSO*7*358
+TCOM(RX,RFL) ; - Ask for TRICARE or CHAMPVA Justification
  N COM,DIR,DIRUT,X
- W ! S DIR(0)="F^3:100" S DIR("A")="TRICARE Justification" D ^DIR
+ W ! S DIR(0)="F^3:100" S DIR("A")=$$ELIGDISP^PSOREJP1(RX,RFL)_" Justification" D ^DIR
  S COM=X I $D(DIRUT) S COM="^"
  Q COM
  ;
-PSOET(RX,FILL) ; Returns flag for TRICARE non-billable and no claim submitted - cnf 8/9/2010 PSO*7*358
- ; Return 1 if rejection code is eT (pseudo-reject code)
+PSOET(RX,FILL) ; Returns flag for TRICARE or CHAMPVA non-billable and no claim submitted
+ ; Return 1 if rejection code is eT or eC (pseudo-reject code)
  ;        0 otherwise
  ;
  I '$G(RX) Q 0
@@ -289,6 +258,36 @@ PSOET(RX,FILL) ; Returns flag for TRICARE non-billable and no claim submitted - 
  S X=$$FIND^PSOREJUT(RX,$G(FILL),,TRIREJCD)
  Q X
  ;
-TRIREJCD ;TRICARE Reject Code, non-billable Rx   ;cnf, PSO*7*358
- ;;eT;;referenced in ^PSOREJP3, ^PSOREJ
+TRIREJCD ;TRICARE or CHAMPVA Reject Code, non-billable Rx   ;cnf, PSO*7*358
+ ;;eT,eC;;TRICARE or CHAMPVA pseudo reject codes referenced in ^PSOREJP3, ^PSOREJU4
+ Q
+ ;
+SEND(OVRCOD,CLA,PA) ; - Sends Claim to ECME and closes Reject
+ N DIR,RESP,ALTXT,COM,SMA
+ S DIR(0)="Y",DIR("A")="     Confirm",DIR("B")="YES"
+ S DIR("A",1)="     When you confirm, a new claim will be submitted for"
+ S DIR("A",2)="     the prescription and this REJECT will be marked"
+ S DIR("A",3)="     resolved."
+ S DIR("A",4)=" "
+ W ! D ^DIR I $G(Y)=0!$D(DIRUT) S VALMBCK="R" Q
+ S SMA=0 I $G(OVRCOD)]"",$G(CLA)]"",$G(PA)]"" S SMA=1
+ S ALTXT=""
+ I 'SMA D
+ . S ALTXT="REJECT WORKLIST"
+ . S:$G(OVRCOD)'="" ALTXT=ALTXT_"-DUR OVERRIDE CODES("_$TR(OVRCOD,"^","/")_")"
+ . S:$G(CLA)]"" ALTXT=ALTXT_"-(CLARIF. CODE="_CLA_")"
+ . S:$G(PA)]"" ALTXT=ALTXT_"-(PRIOR AUTH.="_$TR(PA,"^","/")_")"
+ D ECMESND^PSOBPSU1(RX,FILL,,"ED",$$GETNDC^PSONDCUT(RX,FILL),,,$G(OVRCOD),,.RESP,,ALTXT,$G(CLA),$G(PA),$$PSOCOB^PSOREJP3(RX,FILL,REJ))
+ I $G(RESP) D  Q
+ . W !!?10,"Claim could not be submitted. Please try again later!"
+ . W !,?10,"Reason: ",$S($P(RESP,"^",2)="":"UNKNOWN",1:$P(RESP,"^",2)),$C(7) H 2
+ I $$PTLBL^PSOREJP2(RX,FILL) D PRINT(RX,FILL)
+ N PSOTRIC S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,FILL,PSOTRIC)
+ I $$GET1^DIQ(52,RX,100,"I")=5&(PSOTRIC) D
+ . Q:$$STATUS^PSOBPSUT(RX,FILL)'["PAYABLE"
+ . N XXX S XXX=""
+ . W !,"This prescription can be pulled early from suspense or the label will print"
+ . W !,"when PRINT FROM SUSPENSE occurs.",!
+ . R !,"Press enter to continue... ",XXX:60
+ I $D(PSOSTFLT),PSOSTFLT'="B" S CHANGE=1
  Q

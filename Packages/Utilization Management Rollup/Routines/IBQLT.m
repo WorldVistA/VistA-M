@@ -58,7 +58,7 @@ DATA ; -- build ^tmp($j,cnt,0) and ^tmp("ibql",$j,cnt,0) for mailman handler.
 TRANSMIT ;  
  ; -- transmit data to National DataBase
  S Y=IBBDT X ^DD("DD") S IBBDT1=Y S Y=IBEDT X ^DD("DD") S IBEDT1=Y
- S XMY("S.IBQN SERVER@ISC-CHICAGO.VA.GOV")="",XMDUZ="UTILIZATION MANAGEMENT ROLLUP MONITOR"
+ S XMY("S.IBQN SERVER@ISC-CHICAGO.DOMAIN.EXT")="",XMDUZ="UTILIZATION MANAGEMENT ROLLUP MONITOR"
  S XMTEXT="^TMP(""IBQLT"",$J,",XMSUB="Rollup Extract" D ^XMD
  ; -- transmit local message
  S XMY("G.IBQ ROLLUP")=""

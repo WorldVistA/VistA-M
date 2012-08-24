@@ -1,5 +1,5 @@
 XUS1B ;ISCSF/RWF - Auto sign-on ;10/27/10  15:14
- ;;8.0;KERNEL;**59,337,395,469,543**;Jul 10, 1995;Build 15
+ ;;8.0;KERNEL;**59,337,395,469,543,594**;Jul 10, 1995;Build 6
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -17,7 +17,8 @@ AUTO ;Common code
  S Y=$$CHKVIP(),%=0
  I Y>0 S %=$$PREF($P(XOPT,U,18),$P($G(^VA(200,Y,200)),U,18))
  I Y>0,'% S Y=0 ;No Auto signon
- I Y>0 S DUZ(2)=+FG ;Set Division p543
+ ;check parameter, skip set if yes, default is no p594
+ I Y>0,'$$GET^XPAR("SYS","XU594",1,"Q") S DUZ(2)=+FG ;Set Division p543
  Q Y
  ;
 CHKVIP() ;Check for a Valid current IP

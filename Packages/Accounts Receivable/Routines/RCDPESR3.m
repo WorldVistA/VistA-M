@@ -1,5 +1,5 @@
 RCDPESR3 ;ALB/TMK/PJH - Server auto-update utilities - EDI Lockbox ; 10/14/10 5:01pm
- ;;4.5;Accounts Receivable;**173,214,208,255,269**;Mar 20, 1995;Build 113
+ ;;4.5;Accounts Receivable;**173,214,208,255,269,283**;Mar 20, 1995;Build 8
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -72,12 +72,12 @@ ADDEFT(RCTXN,RCXMZ,RCGBL,RCERR) ; File EFT TOTAL record in file 344.3
  N RCTDA,RCRCPT,RCDUP,RCHAC,Z,Z0
  S (RCERR,RCTDA)=""
  ;
- I $E($P(RCTXN,U,6),1,3)'="469",$E($P(RCTXN,U,6),1,3)'="569",$E($P(RCTXN,U,6),1,3)'="HAC" D  G ADDQ ; Invalid EFT deposit number
- . N RCDXM,RCCT
- . S RCCT=0
- . S RCCT=RCCT+1,RCDXM(RCCT)="This EFT has an invalid deposit number for EDI Lockbox and has been rejected.",RCCT=RCCT+1,RCDXM(RCCT)=" "
- . S RCCT=RCCT+1,RCDXM(RCCT)=" ",RCCT=RCCT+1,RCDXM(RCCT)="Here are the contents of this message:"
- . D DISP("EDI LBOX INVALID EFT DEPOSIT #",RCCT,.RCDXM,RCXMZ)
+ ;I $E($P(RCTXN,U,6),1,3)'="469",$E($P(RCTXN,U,6),1,3)'="569",$E($P(RCTXN,U,6),1,3)'="HAC" D  G ADDQ ; Invalid EFT deposit number
+ ;. N RCDXM,RCCT
+ ;. S RCCT=0
+ ;. S RCCT=RCCT+1,RCDXM(RCCT)="This EFT has an invalid deposit number for EDI Lockbox and has been rejected.",RCCT=RCCT+1,RCDXM(RCCT)=" "
+ ;. S RCCT=RCCT+1,RCDXM(RCCT)=" ",RCCT=RCCT+1,RCDXM(RCCT)="Here are the contents of this message:"
+ ;. D DISP("EDI LBOX INVALID EFT DEPOSIT #",RCCT,.RCDXM,RCXMZ)
  ;
  ; Make sure it's not already there or if so, it has no ptr to a deposit
  ; or if a deposit exists, that the deposit does not yet have a receipt

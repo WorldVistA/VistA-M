@@ -1,5 +1,5 @@
 PRSRTLPR ;HISC/JH-DISPLAY/PRINT SUP.,TIMEKEPPER,OT SUP. ;5/8/95
- ;;4.0;PAID;**2,6,10,16,17**;Sep 21, 1995
+ ;;4.0;PAID;**2,6,10,16,17,126**;Sep 21, 1995;Build 59
 FIS S PRSR=2,PRSTLV=3
  ;
  ;Time&Leave selection. Return TLE array populated with info about
@@ -56,14 +56,15 @@ SORT ;modified by John Heiges patch 17.
  S DA="" S DA=$O(^PRST(455.5,"B",DA(1),DA)) Q:DA'>0
  ;
  ;  loop thru each job function multiple
- S COD="" F I=0:0 S COD=$O(^PRST(455.5,DA,COD))  Q:COD=""  D
- .  S JFN=$S("T"[COD:1,"S"[COD:2,1:3)
- .  S D0=0 F NEXT=1:1 S D0=$O(^PRST(455.5,DA,COD,D0)) Q:D0'>0  D
- ..  S TL=$P($G(^PRST(455.5,DA,COD,D0,0)),U,2)
- ..  S ^TMP($J,"TLPR",DA(1),JFN,NEXT)=D0_U_TL
- ..  S CNT=1
- ..  Q
- .  Q
+ F COD="A","S","T" I $D(^PRST(455.5,DA,COD)) D
+ . S JFN=$S(COD="T":1,COD="S":2,COD="A":3,1:0)
+ . S D0=0
+ . F NEXT=1:1 S D0=$O(^PRST(455.5,DA,COD,D0)) Q:D0'>0  D
+ .. S TL=$P($G(^PRST(455.5,DA,COD,D0,0)),U,2)
+ .. S ^TMP($J,"TLPR",DA(1),JFN,NEXT)=D0_U_TL
+ .. S CNT=1
+ .. Q
+ . Q
  Q
 NONE I IOSL<66 F I=$Y:1:IOSL-5 D VLIN0
  D HDR

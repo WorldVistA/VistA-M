@@ -81,7 +81,7 @@ HEADER(ONC8DST,REQUEST,ATTS) ;
  S TAG=REQUEST,I=""
  F  S I=$O(ATTS(I))  Q:I=""  D
  . S TAG=TAG_" "_I_"="""_$$SYMENC^MXMLUTL(ATTS(I))_""""
- S TAG=TAG_" ver=""2.0"" xmlns=""http://websrv.oncology.med.va.gov"""
+ S TAG=TAG_" ver=""2.0"" xmlns=""http://websrv.oncology.DOMAIN.EXT"""
  D PUT(.ONC8DST,TAG,,1)
  S ONC8DST("REQ")=REQUEST
  Q

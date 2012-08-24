@@ -1,5 +1,5 @@
 PSBOMH2 ;BIRMINGHAM/EFC-MAH ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**6,20,27,26**;Mar 2004
+ ;;3.0;BAR CODE MED ADMIN;**6,20,27,26,67**;Mar 2004;Build 23
  ;
  ; Reference/IA
  ; EN^PSJBCMA/2828
@@ -45,8 +45,9 @@ CONT ;
  ...W ?32,"| ",$G(^TMP("PSB",$J,"ORDERS",PSBORD,"AT",PSBLINE))
  ...S PSBDAY=0,PSBCOL=0
  ...F  S PSBDAY=$O(^TMP("PSB",$J,PSBWEEK,"HDR",PSBDAY)) Q:'PSBDAY  D
- ....W ?(40+(PSBCOL*13)),"| "
+ ....W ?(40+(PSBCOL*13)),"|" ;Remove space, PSB*3*67
  ....S Y=$G(^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDAY,PSBLINE))
+ ....I $P(Y,U,3)'[">" W " " ;Write space when status does not contain >, PSB*3*67
  ....W $P(Y,U,3)
  ....W $E($P($P(Y,U,1)_"0000",".",2),1,4)," "
  ....W $P(Y,U,2)
@@ -88,7 +89,8 @@ LEGEND  ;
  I $D(^TMP("PSB",$J,"LEGEND"))  D
  .S X=$Q(^TMP("PSB",$J,"LEGEND",""))
  .F  W $S($QS(X,4)[99:"",1:$QS(X,4)),?10,$QS(X,5),! S X=$Q(@X) Q:$QS(X,3)'="LEGEND"  ;
- W !!,"Status Codes",!,"C - Completed",!,"G - Given",!,"H - Held",!,"I - Infusing",!,"M - Missing Dose Requested",!,"R - Refused",!,"RM - Removed",!,"S - Stopped",!,"*** - Medication Not Due",!  ;
+ W !!,"Status Codes",!,"C - Completed",!,"G - Given",!,"H - Held",!,"I - Infusing",!,"M - Missing Dose Requested",!,"R - Refused",!,"RM - Removed",!,"S - Stopped",!  ;
+ W "> - Scheduled administration times for the order have been changed",!,"*** - Medication Not Due",! ;add changed Admin time message, PSB*3*67
  K ^TMP("PSJ",$J),^TMP("PSB",$J)
  Q
  ;

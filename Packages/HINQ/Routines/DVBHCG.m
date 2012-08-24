@@ -1,4 +1,4 @@
-DVBHCG ; GENERATED FROM 'DVBHINQ PAT-HINQ COMP' PRINT TEMPLATE (#513) ; 01/12/06 ; (FILE 2, MARGIN=80)
+DVBHCG ; GENERATED FROM 'DVBHINQ PAT-HINQ COMP' PRINT TEMPLATE (#513) ; 03/29/12 ; (FILE 2, MARGIN=80)
  G BEGIN
 N W !
 T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
@@ -88,24 +88,7 @@ BEGIN ;
  I $D(DVBSN(4)) W ?62,DVBSN(4) K DIP K:DN Y
  W !!,?34,"Patient File" K DIP K:DN Y
  W ?57 W !,"-------------------------------------------------------------------------------" K DIP K:DN Y
- W !," Last episode" K DIP K:DN Y
- S X=$G(^DPT(D0,.32)) D N:$X>0 Q:'DN  W ?0 S Y=$P(X,U,6) D DT
- D N:$X>14 Q:'DN  W ?14 S Y=$P(X,U,7) D DT
- D N:$X>33 Q:'DN  W ?33 S Y=$P(X,U,5) S Y=$S(Y="":Y,$D(^DIC(23,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,30)
- D N:$X>47 Q:'DN  W ?47 S Y=$P(X,U,4) S Y=$S(Y="":Y,$D(^DIC(25,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,20)
- D N:$X>61 Q:'DN  W ?61,$E($P(X,U,8),1,15)
- W !," NTL episode" K DIP K:DN Y
- S X=$G(^DPT(D0,.32)) D N:$X>0 Q:'DN  W ?0 S Y=$P(X,U,11) D DT
- D N:$X>14 Q:'DN  W ?14 S Y=$P(X,U,12) D DT
- D N:$X>33 Q:'DN  W ?33 S Y=$P(X,U,10) S Y=$S(Y="":Y,$D(^DIC(23,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,30)
- D N:$X>47 Q:'DN  W ?47 S Y=$P(X,U,9) S Y=$S(Y="":Y,$D(^DIC(25,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,20)
- D N:$X>61 Q:'DN  W ?61,$E($P(X,U,13),1,15)
- D T Q:'DN  W ?2 W !," NNTL episode" K DIP K:DN Y
- S X=$G(^DPT(D0,.32)) D N:$X>0 Q:'DN  W ?0 S Y=$P(X,U,16) D DT
- D N:$X>14 Q:'DN  W ?14 S Y=$P(X,U,17) D DT
- D N:$X>33 Q:'DN  W ?33 S Y=$P(X,U,15) S Y=$S(Y="":Y,$D(^DIC(23,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,30)
- D N:$X>47 Q:'DN  W ?47 S Y=$P(X,U,14) S Y=$S(Y="":Y,$D(^DIC(25,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,20)
- D N:$X>61 Q:'DN  W ?61,$E($P(X,U,18),1,15)
+ W ?68 D DISP^DVBHQZ6(DFN) K DIP K:DN Y
  K Y
  Q
 HEAD ;

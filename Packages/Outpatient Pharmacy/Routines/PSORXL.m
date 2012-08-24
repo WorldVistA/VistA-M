@@ -1,13 +1,16 @@
 PSORXL ;BHAM ISC/SAB - action to be taken on prescriptions ;10/15/08 2:12pm
- ;;7.0;OUTPATIENT PHARMACY;**8,21,24,32,47,135,148,287,334,251**;DEC 1997;Build 202
+ ;;7.0;OUTPATIENT PHARMACY;**8,21,24,32,47,135,148,287,334,251,354,367**;DEC 1997;Build 62
  ;External reference to File #50 supported by DBIA 221
  ;External references CHPUS^IBACUS and TRI^IBACUS supported by DBIA 2030
  I $G(PSOTRVV),$G(PPL) S PSORX("PSOL",1)=PPL K PPL
- N SLBL,PSOSONE,PSOKLRXS
+ N SLBL,PSOSONE,PSOKLRXS,PSOSKIP S PSOSKIP=1
  S:'$G(PPL) PPL=$G(PSORX("PSOL",1)) G:$P(PSOPAR,"^",26) P
 LBL ;
  I $G(PPL) N PSOCKDC S PSOCKDC=1 D ECME^PSORXL1 I '$G(PPL) S PPL="" G RXSQUIT  ;*334 ;don't prompt to print labels for DC'ed Rx's
  W !! S DIR("A",1)="Label Printer: "_$S($G(SUSPT):PSLION,1:$G(PSOLAP))
+ I $$GET1^DIQ(59,PSOSITE,134)'="" D
+ . I $G(PSOFDAPT)="" S PSOFDAPT=$$DEFPRT^PSOFDAUT(PSOSITE)
+ . S DIR("A",2)="FDA Med Guide Printer: "_$S($G(PSOFDAPT)="":"HOME",1:$P(PSOFDAPT,"^"))
  S DIR("A")="LABEL: QUEUE/CHANGE PRINTER"_$S($P(PSOPAR,"^",23):"/HOLD",1:"")_$S($P(PSOPAR,"^",24):"/SUSPEND",1:"")_$S($P(PSOPAR,"^",26):"/LABEL",1:"")_" or '^' to bypass "
  S DIR("?",1)="Enter 'Q' to queue labels to print",DIR("?")="Enter '^' to bypass label functions",DIR("?",4)="Enter 'S' to suspend labels to print later"
  S DIR("?",2)="Enter 'H' to hold label until Rx can be filled",DIR("?",3)="Enter 'P' for Rx profile"
@@ -51,7 +54,7 @@ EX I $D(DUOUT)!$D(DIRUT) K BINGCRT,BINGRTE,BBRX,BBFLG S:$D(RXRS) SLBL="^" G:$D(R
 Q S PPL1=1 G:$G(PPL)']"" D1 S PSNP=0,PSL=1 D  I $G(PSOFROM)="NEW",$P(PSOPAR,"^",8) S PSNP=1
  .Q:'$P(PSOPAR,"^",8)!($G(PSONOPRT))
  .F SLPPL=0:0 S SLPPL=$O(RXRS(SLPPL)) Q:'SLPPL!($G(PSNP))  I '$O(^PSRX(SLPPL,1,0)),'$D(RXPR(SLPPL)) S PSNP=1
- I $G(PSOLAP)]"",$G(PSOLAP)'=ION G QLBL
+ I $G(PSOLAP)]"",$G(PSOLAP)'=ION G Q2
 Q1 W ! K POP S %ZIS("B")="",%ZIS="MNQ",%ZIS("A")="Select LABEL DEVICE: " D ^%ZIS S PSLION=ION K %ZIS("A")
  G:$G(POP)&($G(PSPARTXX)) RXSQUIT G:$G(POP)&($G(PSOSONE)) RXSQ D:$G(POP)&($G(PSONOPRT))
  .S PSOQFLAG=1
@@ -59,15 +62,32 @@ Q1 W ! K POP S %ZIS("B")="",%ZIS="MNQ",%ZIS("A")="Select LABEL DEVICE: " D ^%ZIS
  N PSOIOS S PSOIOS=IOS D DEVBAR^PSOBMST
  S PSOBARS=PSOBAR1]""&(PSOBAR0]"")&$P(PSOPAR,"^",10)
  D ^%ZISC S PSL=0
+Q2 ; Checking FDA Med Guide printer
+ I ($$GET1^DIQ(59,PSOSITE,134)="")!($G(PSOEXREP)&'$G(PSOMGREP))!'$$FDARX(PPL)!($G(PSOSKIP)&($G(PSOFDAPT)'="")) G QLBL
+ I $G(PSOEXREP),'$G(PSOMGREP) G QLBL
+ N FDAPRT S FDAPRT=""
+ F  D  Q:FDAPRT'=""!(FDAPRT="^")
+ . S FDAPRT=$$SELPRT^PSOFDAUT($P($G(PSOFDAPT),"^"))
+ . I FDAPRT="" W $C(7),!,"You must select a valid FDA Medication Guide printer."
+ I FDAPRT="^"!(FDAPRT="") G LBL
+ S PSOFDAPT=FDAPRT
+ ;
 QLBL I $G(PSXSYS),('$G(RXLTOP)),('$G(PSOEXREP)) D RXL^PSOCMOP G:'$G(PPL) D1
  ;
  ;- Submitting list of Rx to ECME for DUR/79 REJECT check and possible submission to 3rd Pary Payer
  D ECME^PSORXL1 I '$G(PPL) W !!,"No Label(s) printed.",!! S PSOQFLAG=1 G RXSQUIT  ;*334
  ;
- S ZTRTN="DQ^PSOLBL",ZTIO=$S($G(SUSPT):PSLION,1:PSOLAP),ZTDESC="Outpatient Pharmacy "_$S($G(SUSPT):"SUSPENSE ",$G(DG):"DRUG INTERACTION ",1:"")_"LABELS OUTPUT ROUTINE",ZTDTH=$S($G(PSOTIME):PSOTIME,1:$H),PDUZ=DUZ
- F G="PPL1","PSOSYS","DFN","PSOPAR","PDUZ","PCOMX",$S($G(SUSPT):"PFION",1:"PSOLAP"),"PPL","PSOSITE","RXY","COPIES","SIDE","PSOSUSPR","PSOBARS","PSOBAR1","PSOBAR0","PSODELE","PSOPULL","PSTAT","PSODBQ","PSOEXREP","PSOTREP" S:$D(@G) ZTSAVE(G)=""
+ S ZTRTN="DQ^PSOLBL",ZTIO=$S($G(SUSPT):PSLION,1:PSOLAP),ZTDTH=$S($G(PSOTIME):PSOTIME,1:$H),PDUZ=DUZ,OPAIO=ZTIO
+ S ZTDESC="Outpatient Pharmacy "_$S($G(SUSPT):"SUSPENSE ",$G(DG):"DRUG INTERACTION ",1:"")_"LABELS OUTPUT ROUTINE"
+ F G="PPL1","PSOSYS","DFN","PSOPAR","PDUZ","PCOMX",$S($G(SUSPT):"PFION",1:"PSOLAP"),"PPL" S:$D(@G) ZTSAVE(G)=""
+ F G="RXY","PSOSITE","COPIES","SIDE","PSOSUSPR","PSOBARS","PSOBAR1","PSOBAR0","PSODELE" S:$D(@G) ZTSAVE(G)=""
+ F G="PSOPULL","PSTAT","PSODBQ","PSOEXREP","PSOTREP","PSOFDAPT","PSOMGREP" S:$D(@G) ZTSAVE(G)=""
  S ZTSAVE("PSORX(")="",ZTSAVE("RXRP(")="",ZTSAVE("RXPR(")="",ZTSAVE("RXRS(")="",ZTSAVE("RXFL(")="",ZTSAVE("PCOMH(")=""
- D ^%ZISC,^%ZTLOAD K:$G(PSOSONE) RXRS W:$D(ZTSK)&('$G(SUSPT))&('$G(PSOEXREP)) !!,"LABEL(S) QUEUED TO PRINT",!!
+ D ^%ZISC,^%ZTLOAD K:$G(PSOSONE) RXRS
+ I $D(ZTSK)&('$G(SUSPT))&('$G(PSOEXREP)) D
+ . W !!,"LABEL(S) QUEUED TO PRINT",!!
+ . D OPAI
+ K OPAIO
  G:$G(PSPARTXX) RXSQUIT K G,PDUZ K:'$G(SUSPT) ZTSK G:$G(DG) RXSQUIT  ;*334
  G:'$G(PSNP) QUEUP G:$G(PSOPRFLG) QUEUP S HOLDRPAS=$G(PSOPRPAS),PSOPRPAS=$P(PSOPAR,"^",13)
 PLBL S PSOION=ION
@@ -122,6 +142,14 @@ P1 S PSOBARS=PSOBAR1]""&(PSOBAR0]"")&$P(PSOPAR,"^",10),PDUZ=DUZ D DQ1^PSOLBL,^%Z
  Q
 RXSQ K RXRS G RXS
  Q
+FDARX(PPL) ; Check if any Rx to be printed has an FDA Med Guide
+ N FDARX,FDARXIEN,I S FDARX=0
+ F I=1:1:$L($G(PPL),",") D  Q:FDARX
+ . S FDARXIEN=+$P(PPL,",",I) I 'FDARXIEN Q
+ . I $D(RXRP(FDARXIEN)),'$D(RXRP(FDARXIEN,"MG")) Q
+ . I FDARXIEN,$$MGONFILE^PSOFDAUT(FDARXIEN) S FDARX=1
+ Q FDARX
+ ;
 RSAVE N PMX
  S PMX="" F  S PMX=$O(RXRP(PMX)) Q:PMX=""  S PSORSAVE(PMX)=RXRP(PMX)
  S PMX="" F  S PMX=$O(RXPR(PMX)) Q:PMX=""  S PSOPSAVE(PMX)=RXPR(PMX)
@@ -130,5 +158,81 @@ RSAVE N PMX
 RREST N PMXZ
  S PMXZ="" F  S PMXZ=$O(PSORSAVE(PMXZ)) Q:PMXZ=""  S RXRP(PMXZ)=PSORSAVE(PMXZ)
  S PMXZ="" F  S PMXZ=$O(PSOPSAVE(PMXZ)) Q:PMXZ=""  S RXPR(PMXZ)=PSOPSAVE(PMXZ)
- S PSMX="" F  S PMXZ=$O(PSOHSAVE(PMXZ)) Q:PMXZ=""  S RXRH(PMXZ)=PSOHSAVE(PMXZ)
+ S PMXZ="" F  S PMXZ=$O(PSOHSAVE(PMXZ)) Q:PMXZ=""  S RXRH(PMXZ)=PSOHSAVE(PMXZ)
  Q
+ ;
+OPAI ;This section of code will display where an RX is routed.
+ ;To determine where an RX will be routed, check:
+ ;1) if the drug for the RX is associated with an ADD device in
+ ;   file #50 and if the printer is in the DISPENSING SYSTEM 
+ ;   PRINTER multiple sub-file #59.02008. If it is then the RX 
+ ;   will display as being routed to that device.  
+ ;2) Otherwise, the category of the ADD associated with the
+ ;   printer in sub-file #59.20081 will be used to determine 
+ ;   where the RX will be routed and the ADD displayed.
+ ;
+ N DIC,X,Y,PN,II,RX,DEV,DDEV,ADD,DAT,DAT1,PDAT,DRG,DRG0,OPAI,CSB,RTE,FLG
+ N ZTIO,MTH,NPPL
+ I ($G(OPAIO)="")!($G(PPL)="") Q
+ S DIC=3.5,DIC(0)="",X=OPAIO D ^DIC K DIC,X Q:Y=-1  S ZTIO=+Y
+ S FLG=1,DEV=0,PN=$O(^PS(59,PSOSITE,"P","B",ZTIO,"")) I PN="" Q 
+ I '$P($G(PSOPAR),"^",30) Q
+ I $$GET1^DIQ(59,PSOSITE_",",105,"I")'=2.4 Q
+ ;
+ ;ADD array built base on category.
+ ; if category is not "S" then 
+ ;               ADD(category)=ADD name^dns^port^inactive date
+ ; if category is "S" then (Category "S" can be multiple)
+ ;               ADD(category,ADD name)=ADD name^dns^port^inactive date
+ ;Array OPAI will be used to display the data on the screen.
+ ;               OPAI(ADD name)=ADD name^dns^port^inactive date
+ ;               OPAI(ADD name,RX)=drug
+ ;
+ F  S DEV=$O(^PS(59,PSOSITE,"P",PN,"OPAI",DEV)) Q:'DEV  D
+ .S DAT=$G(^PS(59,PSOSITE,"P",PN,"OPAI",DEV,0)) I $P(DAT,"^",2)="" Q
+ .S DAT1=$$ADDCHK^PSOHLDS($P(DAT,"^"))
+ .I DAT1 D
+ ..I $P(DAT,"^",2)'="S" S ADD($P(DAT,"^",2))=$P(DAT1,"^",2,99) Q
+ ..S ADD($P(DAT,"^",2),$P(DAT1,"^",2))=$P(DAT1,"^",2,99)
+ S NPPL=""
+ F II=1:1:$L(PPL,",") S RX=$P(PPL,",",II) D:RX'=""
+ .I $G(RXRP(RX,"RP")) Q 
+ .S PDAT=$G(^PSRX(RX,0)),DRG=$P(PDAT,"^",6),RTE=$$RTE()
+ .S DRG0=$G(^PSDRUG(+DRG,0)),DDEV=$G(^PSDRUG(+DRG,"OPAI",PSOSITE,0))
+ .I $S($P(PSOPAR,"^",30)=3:1,$P(PSOPAR,"^",30)=4:1,1:0),'$$GET1^DIQ(50,DRG,28,"I") Q
+ .S NPPL=NPPL_","_RX,DAT1=$$ADDCHK^PSOHLDS($S(RTE="W":$P(DDEV,"^",2),RTE="M":$P(DDEV,"^",3),1:"")) I DAT1 D  Q
+ ..D SETOP($P(DAT1,"^",2,99),$P(PDAT,"^"),$P(DRG0,"^"))
+ .I $D(ADD("A")) D SETOP(ADD("A"),$P(PDAT,"^"),$P(DRG0,"^")) Q
+ .S CSB=+$P(DRG0,"^",3),CSB=$S((CSB>0)&(CSB<6):"CS",1:"NCS")
+ .I $D(ADD(CSB)) D SETOP(ADD(CSB),$P(PDAT,"^"),$P(DRG0,"^")) Q
+ .I $D(ADD(RTE_CSB)) D SETOP(ADD(RTE_CSB),$P(PDAT,"^"),$P(DRG0,"^")) Q
+ .S MTH=$S(RTE="W":"WIND",RTE="M":"MAIL",1:"")
+ .I MTH'="",$D(ADD(MTH)) D SETOP(ADD(MTH),$P(PDAT,"^"),$P(DRG0,"^"))
+ .S FLG=0
+ I FLG Q  ;nothing found to print
+ I ($D(OPAI))!($D(ADD("S"))) W !,"PRESCRIPTIONS SENT TO:" D
+ .S DEV="" F  S DEV=$O(OPAI(DEV)) Q:DEV=""  W !?3,DEV D  W !
+ ..S RX=0 F  S RX=$O(OPAI(DEV,RX)) Q:'RX  W !?5,RX,?20,$P(OPAI(DEV,RX),"^")
+ I $D(ADD("S")) W !,"STORAGE DEVICES" S II="" D
+ .F  S II=$O(ADD("S",II)) Q:II=""  W !?3,II I $D(OPAI) ;W ?20,"The above Prescriptions"
+ .F II=1:1:$L(NPPL,",") S RX=$P(NPPL,",",II) D:RX'=""
+ ..Q:$G(RXRP(RX,"RP"))  S PDAT=$G(^PSRX(RX,0)),DRG=$P($G(^PSDRUG(+$P(PDAT,"^",6),0)),"^")
+ ..W !?5,$P(PDAT,"^"),?20,DRG
+ .W !
+ Q
+ ;
+SETOP(DINF,DRX,DDRG) ; Set OPAI array
+ N DNAM
+ S DNAM=$P(DINF,"^"),OPAI(DNAM)=DINF,OPAI(DNAM,DRX)=DDRG,FLG=0
+ Q
+ ;
+RTE() ; get route for RX
+ N FP,FPN,LRF,MW,XX
+ S FP=$S($G(RXPR(RX)):"P",1:"F")
+ I '$G(RXPR(RX)) S LRF=0 F XX=0:0 S XX=$O(^PSRX(RX,1,XX)) Q:'XX  I +^(XX,0) S LRF=XX
+ I '$G(RXPR(RX)),$G(RXFL(RX))'="" S LRF=$S($G(RXFL(RX))=0:0,$D(^PSRX(RX,1,+$G(RXFL(RX)),0)):+$G(RXFL(RX)),1:$G(LRF))
+ S FPN=$S($G(RXPR(RX)):RXPR(RX),1:$G(LRF))
+ I FP="F"&('FPN) S MW=$P($G(^PSRX(RX,0)),"^",11)       ;original
+ I FP="F"&(FPN) S MW=$P($G(^PSRX(RX,1,FPN,0)),"^",2)   ;refill
+ I FP="P"&(FPN) S MW=$P($G(^PSRX(RX,"P",FPN,0)),"^",2) ;partial
+ Q $G(MW)

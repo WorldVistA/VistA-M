@@ -1,5 +1,5 @@
 ORCACT1 ;SLC/MKB-Act on orders cont ;7/29/97  08:26
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,56,48,86,92,116,149,215**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,56,48,86,92,116,149,215,284**;Dec 17, 1997;Build 2
  ;
 FLAG ; -- flag orders
  D EN("FL") Q
@@ -93,7 +93,7 @@ STS(X) ; -- Return name of status X
 REPLCD ; -- Ck for unverified replaced orders for ORIFN, add to ORES(order#)
  ;    [Expects ORVER; also called from VERIFY^ORWDXA,VERIFY^ORRCOR]
  N OR3,ORIG,ORFLD,ORDA,ORI,ORLK
- S ORFLD=$S($G(ORVER)="N":8,1:10),ORDA=+$P(ORIFN,";",2)
+ S ORFLD=$S($G(ORVER)="N":8,$G(ORVER)="R":18,1:10),ORDA=+$P(ORIFN,";",2)
  I ORDA>1 D  Q  ;ck for prior unverified actions
  . ;Q:$P($G(^OR(100,+ORIFN,8,ORDA,0)),U,2)'="XX"
  . S ORI=0 F  S ORI=$O(^OR(100,+ORIFN,8,ORI)) Q:ORI<1  Q:ORI'<ORDA  D

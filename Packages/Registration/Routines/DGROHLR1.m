@@ -1,5 +1,5 @@
-DGROHLR1 ;GTS/PHH,TDM - ROM HL7 RECEIVE DRIVERS ; 9/29/09 2:08pm
- ;;5.3;Registration;**572,622,647,809,754**;Aug 13, 1993;Build 46
+DGROHLR1 ;GTS/PHH,TDM - ROM HL7 RECEIVE DRIVERS ; 10/20/10 2:47pm
+ ;;5.3;Registration;**572,622,647,809,754,797**;Aug 13, 1993;Build 24
  ;
 CONVFDA(DFN,DGDATA) ; LOOP THROUGH DATA TO FILE
  N DFNC,F,IEN,FIELD,DGROAR,FNUM,QVAR,INX,DGRONUPD
@@ -93,6 +93,9 @@ FILE ;*Execute FILE or UPDATE per FNUM (1st subscpt) for file # according
  ;* Patient file multiples processing
  I (+FNUM=2.01)!(+FNUM=2.141)!(+FNUM=2.11) DO
  . D UPDATE^DIE("E","@DGROAR","","ERR")
+ I +FNUM=2.3216 D
+ . D CONVERT ;Convert MSE fields to internal format
+ . D UPDATE^DIE("","@DGROAR","","ERR")
  I (+FNUM=2.02)!(+FNUM=2.06) DO
  . N DGRODNUM,DGIEN,DNUMDATA,DGIEN2,DGROIEN
  . S DGRODNUM=0
@@ -151,8 +154,9 @@ SETARY ;* Setup arrays of data to be filed
  . S @DGROAR@(F,"+1,",FIELD)=DATA
  . K @DGDATA@(F,IEN,FIELD)
  ;
- ;SET ALIAS AND CONFIDENTIAL ADDRESS CAT. SUBFILE ARRAYS
- I (F=2.01)!(F=2.141)!(F=2.11) D  Q
+ ;SET ALIAS, CONFIDENTIAL ADDRESS CAT. AND MILITARY SERVICE EPISODE
+ ;SUBFILE ARRAYS
+ I (F=2.01)!(F=2.141)!(F=2.11)!(F=2.3216) D  Q
  . S NODE2="+"
  . S NODE2=NODE2_$P(IEN,",")_","_DFNC
  . S @DGROAR@(F,NODE2,FIELD)=DATA ;*Indirection to Patient Array
@@ -197,3 +201,41 @@ DIS(F,FIELD) ;Check for disabled
  N SUB S SUB=$O(^DGRO(391.23,"C",F,FIELD,0)) Q:'SUB 1
  I $P($G(^DGRO(391.23,SUB,0)),"^",5)=1 Q 1
  Q 0
+ ;
+CONVERT ;External to Internal Conversion (clears field if no match found)
+ N BOS,DATE,COMP,DISCH,F,INTERNAL,LOCK,SUB,X,Y
+ S F=2.3216,SUB=""
+ F  S SUB=$O(@DGROAR@(F,SUB)) Q:SUB=""  D
+ .;Convert Branch
+ .I $D(@DGROAR@(F,SUB,.03)) D
+ ..S BOS=$G(@DGROAR@(F,SUB,.03)) Q:BOS=""
+ ..S INTERNAL=$O(^DIC(23,"B",BOS,""))
+ ..S @DGROAR@(F,SUB,.03)=INTERNAL
+ .;Convert Discharge
+ .I $D(@DGROAR@(F,SUB,.06)) D
+ ..S DISCH=$G(@DGROAR@(F,SUB,.06)) Q:DISCH=""
+ ..S INTERNAL=$O(^DIC(25,"B",DISCH,""))
+ ..S @DGROAR@(F,SUB,.06)=INTERNAL
+ .;Convert Component
+ .I $D(@DGROAR@(F,SUB,.04)) D
+ ..S COMP=$G(@DGROAR@(F,SUB,.04)) Q:COMP=""
+ ..S INTERNAL=""
+ ..S:COMP="REGULAR" INTERNAL="R"
+ ..S:COMP="ACTIVATED NG" INTERNAL="G"
+ ..S:COMP="ACTIVATED RESERVE" INTERNAL="V"
+ ..S @DGROAR@(F,SUB,.04)=INTERNAL
+ .;Convert Lock flag
+ .I $D(@DGROAR@(F,SUB,.07)) D
+ ..S LOCK=$G(@DGROAR@(F,SUB,.07)) Q:LOCK=""
+ ..S INTERNAL=$S(LOCK="YES":1,LOCK="NO":0,1:"")
+ ..S @DGROAR@(F,SUB,.07)=INTERNAL
+ .;Convert dates
+ .I $D(@DGROAR@(F,SUB,.01)) D
+ ..S X=$G(@DGROAR@(F,SUB,.01)) Q:X=""
+ ..D ^%DT
+ ..S @DGROAR@(F,SUB,.01)=Y
+ .I $D(@DGROAR@(F,SUB,.02)) D
+ ..S X=$G(@DGROAR@(F,SUB,.02)) Q:X=""
+ ..D ^%DT
+ ..S @DGROAR@(F,SUB,.02)=Y
+ Q

@@ -1,5 +1,6 @@
 ALPBFRM1 ;OIFO-DALLAS MW,SED,KC -STANDARD PRINT FORMATTING UTIL;01/01/03
- ;;3.0;BAR CODE MED ADMIN;**8**;Mar 2004
+ ;;3.0;BAR CODE MED ADMIN;**8,48**;Mar 2004;Build 15
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  ; output array...
@@ -204,7 +205,9 @@ F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  .F J=1:1:DAYS D
  ..S ALPBDAY=ALPBDAYS(J)_"."_ALPBADMT
  ..S ALPBPBOX=ALPBIBOX
- ..I ALPBDAY=ALPBSTOP!(ALPBDAY>ALPBSTOP) S ALPBPBOX=ALPBNBOX
+ ..;print asterisks in the ADMIN DATE & TIME boxes if the medications start date is in the future, and if the stop date has expired...
+ ..I ALPBDAY<$P(DATA(1),"^",1) S ALPBPBOX=ALPBNBOX
+ ..I ALPBDAY>ALPBSTOP!(ALPBDAY=ALPBSTOP) S ALPBPBOX=ALPBNBOX
  ..S RESULTS(I+3)=RESULTS(I+3)_ALPBPBOX
  .K ALPBADMT,ALPBPBOX,ALPBDAY
  K ALPBIBOX,ALPBNBOX

@@ -1,5 +1,5 @@
 PSSDEE ;BIR/WRT-MASTER DRUG ENTER/EDIT ROUTINE ;01/21/00
- ;;1.0;PHARMACY DATA MANAGEMENT;**3,5,15,16,20,22,28,32,34,33,38,57,47,68,61,82,90,110,155**;9/30/97;Build 36
+ ;;1.0;PHARMACY DATA MANAGEMENT;**3,5,15,16,20,22,28,32,34,33,38,57,47,68,61,82,90,110,155,156**;9/30/97;Build 8
  ;
  ;Reference to ^PS(59 supported by DBIA #1976
  ;Reference to REACT1^PSNOUT supported by DBIA #2080
@@ -158,15 +158,14 @@ MFS I $P($G(^PS(59.7,1,80)),"^",2)>1 S PSSOR=$P(^PS(52.7,ENTRY,0),"^",11),PSSDD=
  Q
 MFDD I $D(^PSDRUG(PSSDD,2)) S PSSOR=$P(^PSDRUG(PSSDD,2),"^",1) I PSSOR]"" D EN^PSSPOIDT(PSSOR),EN2^PSSHL1(PSSOR,"MUP")
  Q
-OPEI N PSDRUGND
- S PSDRUGND=$G(^PSDRUG(DISPDRG,"ND"))
- I PSDRUGND']"" Q
- I $P(PSDRUGND,"^",3)']"",$P(PSDRUGND,"^",10)']"" Q
- I $P(PSDRUGND,"^",10)]"" G OPEI1
- I $P($G(^PSNDF(50.68,$P(PSDRUGND,"^",3),1)),"^",2)]"" G OPEI1
- Q
-OPEI1 ;
+OPEI ;
  S DIE="^PSDRUG(",DR="28",DA=DISPDRG
+ D ^DIE
+ Q:'+$P($G(^PSDRUG(DA,6)),"^")
+OPEI2 ; get external dispensing devices associated with the drug
+ W !!,"Defining a dispensing device at the drug level for a division will override"
+ W !,"the dispensing device settings in the OUTPATIENT SITE File (#59). If populated,",!,"the drug will be sent to the dispensing device for that division.",!
+ S DR="906"
  D ^DIE
  Q
 DEA ;

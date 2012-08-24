@@ -1,5 +1,5 @@
-MAGJUTL3 ;WIRMFO/JHC VistARad subrtns & RPCs ; 24-Mar-2010 2:15 PM
- ;;3.0;IMAGING;**16,9,22,18,65,76,101,90**;Mar 19, 2002;Build 1764;Jun 09, 2010
+MAGJUTL3 ;WIRMFO/JHC - VistARad subrtns & RPCs ; 20 Sep 2011  1:50 PM
+ ;;3.0;IMAGING;**16,9,22,18,65,76,101,90,120**;Mar 19, 2002;Build 27;May 23, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -53,9 +53,21 @@ LISTINF(MAGGRY) ; RPC: MAGJ CUSTOM LISTS
  . . S T=@MAGGRY@(0)+1,^(0)=T,^(T)=INF ; add entry to reply
  Q
  ;
-LOG(ACTION,LOGDATA) ; Log exam access
- N PTCT,TXT,RADFN,MAGIEN,NIMGS,REMOTE
+LOG(ACTION,LOGDATA,PSETLST) ; Log exam access
+ ;  ACTION --- Action code string passed in (e.g. VR-VW for vrad view)
+ ;  LOGDATA - ^-delimited fields--see code immediately below
+ ;  PSETLST -- For Printset exams, has list of Rad Case Numbers included
+ ;  
+ N PTCT,TXT,RADFN,MAGIEN,NIMGS,REMOTE,PRTSET
  S RADFN=$P(LOGDATA,U),MAGIEN=$P(LOGDATA,U,2),NIMGS=$P(LOGDATA,U,3),REMOTE=$P(LOGDATA,U,4)
+ ;
+ ; For Printset, append string to TXT
+ ;   string= "|VR-PRINTSET~"_CaseNum_~x~y   ; x = nth; y = total PrtSet members
+ ;   
+ S PSETLST=$G(PSETLST)
+ S PRTSET=$L(PSETLST,U)
+ I PRTSET>1 D
+ . N I F I=1:1:PRTSET S PRTSET(I)="VR-PRINTSET~"_$P(PSETLST,U,I)_"~"_I_"~"_PRTSET
  I ACTION="" S ACTION="UNKNOWN"  ; Should never happen
  S PTCT=RADFN'=$G(MAGJOB("LASTPT",ACTION))
  I PTCT S MAGJOB("LASTPT",ACTION)=RADFN
@@ -63,11 +75,25 @@ LOG(ACTION,LOGDATA) ; Log exam access
  S TXT=TXT_U_PTCT_U_$S(+MAGJOB("USER",1):1,1:0)_U_REMOTE
  ;
  ;=== Log to Imaging Windows Sessions file (#2006.82).
- D ACTION^MAGGTAU(TXT,1)
+ ;  for PRTSET members 2 to N (prevent double-counting):
+ ;    set NIMGS = 0
+ ;    set PTCT to FALSE
+ ;
+ I PRTSET>1 N I F I=1:1:PRTSET D
+ . I I>1 S $P(TXT,U,6)=0,$P(TXT,U,7)=0
+ . D ACTION^MAGGTAU(TXT_"|"_PRTSET(I),1)
+ E  D ACTION^MAGGTAU(TXT,1)
  ;
  ;=== Log to Mag Log
+ ;  For Printset, add string to new Param-7 prior to calling ENTRY...
+ ;    string= s/a above, but no pipe char.
+ ;    for PRTSET members 2 to N set NIMGS = 0 to not double-count
+ ;
  I REMOTE S ACTION=ACTION_"/REM"
- D ENTRY^MAGLOG(ACTION,+DUZ,MAGIEN,"VRAD:"_MAGJOB("VRVERSION"),RADFN,NIMGS)
+ I PRTSET>1 N I F I=1:1:PRTSET D
+ . I I>1 S NIMGS=0
+ . D ENTRY^MAGLOG(ACTION,+DUZ,MAGIEN,"VRAD:"_MAGJOB("VRVERSION"),RADFN,NIMGS,PRTSET(I))
+ E  D ENTRY^MAGLOG(ACTION,+DUZ,MAGIEN,"VRAD:"_MAGJOB("VRVERSION"),RADFN,NIMGS)
  Q
  ;
 LOGOFF(MAGGRY,DATA) ; RPC: MAGJ LOGOFF
@@ -239,6 +265,7 @@ PINF1(MAGGRY,MAGDFN) ;RPC Call MAGJ PT INFO -- Get pt info
  ;     ^02: PSW ........ Network Password
  ;     ^03: UserType ... 3=Staff R'ist, 2=Resident R'ist, 1=Rad Tech, 0=Non-Rad
  ;     ^04: SYSADMIN ... 1/0 1=user has System User privileges
+ ;     ^05: Production account? 1/0 1=yes
  ;
  ; ^(2:N)   Security Keys
  ; ^(N+1:M) Mammography display message data
@@ -270,7 +297,7 @@ USERINF2(MAGGRY,DATA) ; RPC: MAGJ USER2--get user info
  ;=== Add "^"-pieces 7:12 for ViX (MAG*3*90).
  S MAGGRY(0)=MAGGRY(0)_U_$$GET1^DIQ(200,DUZ_",",9) ;...SSN
  S MAGGRY(0)=MAGGRY(0)_U_$$GET1^DIQ(4,DUZ(2),99,"E") ;.UserLocalStationNumber
- S MAGGRY(0)=MAGGRY(0)_U_$P($$SITE^VASITE(),U) ;.......LocalPrimaryDivision
+ S MAGGRY(0)=MAGGRY(0)_U_$P($$SITE^VASITE(),U,3) ;.......LocalPrimaryDivision
  S MAGGRY(0)=MAGGRY(0)_U_$P($$SITE^VASITE(),U,3) ;.....PrimarySiteStationNumber
  ;
  ;=== Lookup SiteServiceURL.
@@ -287,6 +314,7 @@ USERINF2(MAGGRY,DATA) ; RPC: MAGJ USER2--get user info
  S MAGGRY(1)=$P($G(^MAG(2006.1,PLACE,"NET")),U,1,2)
  S X=+MAGJOB("USER",1),X=$S(X=15:3,X=12:2,+RADTECH:1,1:0)
  S MAGGRY(1)=MAGGRY(1)_U_X_U_$D(MAGJOB("KEYS","MAGJ SYSTEM USER"))
+ S MAGGRY(1)=MAGGRY(1)_U_$S($L($T(PROD^XUPROD)):+$$PROD^XUPROD,1:0)
  S MAGGRY(2)="*KEYS",X="" F ICNT=3:1 S X=$O(MAGJOB("KEYS",X)) Q:X=""  S MAGGRY(ICNT)=X
  S MAGGRY(ICNT)="*END"
  S ICNT=ICNT+1,MAGGRY(ICNT)="*MAMMO"

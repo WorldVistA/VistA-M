@@ -1,5 +1,5 @@
 IBNCPEV1 ;DALOI/SS - NCPDP BILLING EVENTS REPORT ;21-MAR-2006
- ;;2.0;INTEGRATED BILLING;**342,339,363,411,435**;21-MAR-94;Build 27
+ ;;2.0;INTEGRATED BILLING;**342,339,363,411,435,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;IA# 10155 is used to read ^DD(file,field,0) node
@@ -43,56 +43,100 @@ GETRX(IBECMENO,IBST,IBEND,IBECME) ; get ien of file 52 from #366.14
  . Q
  Q IBRXIEN
  ;
- ;/**
- ;finish
+DSTAT(IBD2,IBD3,IBD4,IBINS,IBD7) ; finish event
  ;input:
  ;IBD2 - node ^IBCNR(366.14,D0,1,D1,2)
  ;IBD3 - node ^IBCNR(366.14,D0,1,D1,3)
  ;IBD4 - node ^IBCNR(366.14,D0,1,D1,4)
  ;IBINS - multiple of ^IBCNR(366.14,D0,1,D1,5)
  ;IBD7 - node ^IBCNR(366.14,D0,1,D1,7)
-DSTAT(IBD2,IBD3,IBD4,IBINS,IBD7) ;
+ ;
  N IBX,IBT,IBSC,IB1ST,IBNXT,IBEXMPV
  S IB1ST=1
  D CHKP^IBNCPEV Q:IBQ
+ ;
  W !?10,"ELIGIBILITY: "
+ W $$EXTERNAL^DILFD(366.141,7.05,,$P(IBD7,U,5))    ; esg - 5/1/11 - IB*2*452
+ ;
+ W !?10,"EI/SC INDICATORS: "
  F IBX=2:1 S IBT=$P($T(EXEMPT+IBX^IBNCPDP1),";",3),IBSC=$P(IBT,U,2) Q:IBSC=""  S IBEXMPV=$$EXMPFLDS(IBSC,IBD4) D:IBEXMPV]""  Q:IBQ!(IBEXMPV=3)
  . I IBEXMPV=3 W "overridden by the user" Q
  . I 'IB1ST W "," I $X>70 D CHKP^IBNCPEV Q:IBQ  W !?10 S IB1ST=1
  . W " ",IBSC,":",$S(IBEXMPV=1:"Yes",IBEXMPV=0:"No",IBEXMPV=2:"No Answer",1:"?") S IB1ST=0
  Q:IBQ
+ ;
  I $P(IBD2,U,4) D CHKP^IBNCPEV Q:IBQ  W !?10,"DRUG:",$$DRUGNAM(+$P(IBD2,U,4))
  D CHKP^IBNCPEV Q:IBQ  W !?10
- W "NDC:",$S($P(IBD2,U,5):$P(IBD2,U,5),1:"No"),", BILLED QTY:",$S($P(IBD2,U,8):$P(IBD2,U,8),1:"No"),", COST:",$S($P(IBD3,U,4):$P(IBD3,U,4),1:"No")
+ W "NDC:",$S($P(IBD2,U,5):$P(IBD2,U,5),1:"No")
+ W ", NCPDP QTY:",$S($P(IBD2,U,14):$P(IBD2,U,14),1:"No")
+ W $$UNITDISP($P(IBD2,U,14),$P(IBD2,U,15))   ; display NCPDP unit type
+ ;
+ D CHKP^IBNCPEV Q:IBQ  W !?10
+ W "BILLED QTY:",$S($P(IBD2,U,8):$P(IBD2,U,8),1:"No")
+ W $$UNITDISP($P(IBD2,U,8),$P(IBD2,U,13))    ; display billing unit type
+ W ", UNIT COST:",$S($P(IBD3,U,4):$P(IBD3,U,4),1:"No")
  I $P(IBD2,U,10)]"" W ", DEA:",$P(IBD2,U,10)
+ ;
+ ; display insurance subfile data
  S IBX=0,IBNXT=0 F  S IBX=$O(IBINS(IBX)) Q:'IBX  D  Q:IBQ  S IBNXT=1
- .N Y S Y=$P(IBINS(IBX,0),U,2,8) W:'Y "@@@@" Q:'Y
- .I IBNXT D CHKP^IBNCPEV Q:IBQ  W !?10,"-----------"
- .D CHKP^IBNCPEV Q:IBQ  W !?10
- .W "PLAN:",$P($G(^IBA(355.3,+Y,0)),U,3),"  "
- .W "INSURANCE: ",$P($G(^DIC(36,+$G(^IBA(355.3,+Y,0)),0)),U)
- .I +IBD7>0 W " COB: ",$S(+IBD7=2:"S",1:"P")
- .D CHKP^IBNCPEV Q:IBQ  W !?10 S IB1ST=1
- .I $P(Y,U,2)]"" W "BIN:",$P(Y,U,2) S IB1ST=0
- .I $P(Y,U,3)]"" W:'IB1ST ", " W "PCN:",$P(Y,U,3) S IB1ST=0
- .I $P(Y,U,4)]"" W:'IB1ST ", " W "PAYER SHEET B1:",$P(Y,U,4) S IB1ST=0
- .D CHKP^IBNCPEV Q:IBQ  W !?10 S IB1ST=1
- .S Y=IBINS(IBX,1)
- .I $P(Y,U,4)]"" W "PAYER SHEET B2:",$P(Y,U,4) S IB1ST=0
- .I $P(Y,U,5)]"" W:'IB1ST ", " W "PAYER SHEET B3:",$P(Y,U,5)
- .S Y=IBINS(IBX,2)
- .D CHKP^IBNCPEV Q:IBQ
- .W !?10,"DISPENSING FEE:",$S($L($P(Y,U,1)):$J($P(Y,U,1),0,2),1:"N/A")
- .W ", BASIS OF COST DETERM:",$S($L($P(Y,U,2)):$$BOCD^IBNCPEV($P(Y,U,2)),1:"N/A")
- .D CHKP^IBNCPEV Q:IBQ
- .W !?10,"COST:",$S($L($P(Y,U,3)):$J($P(Y,U,3),0,2),1:"N/A")
- .W ", GROSS AMT DUE:",$S($L($P(Y,U,4)):$J($P(Y,U,4),0,2),1:"N/A")
- .W ", ADMIN FEE:",$S($L($P(Y,U,5)):$J($P(Y,U,5),0,2),1:"N/A")
+ . N Y,Y3,PLANIEN
+ . S Y=$G(IBINS(IBX,0))
+ . S PLANIEN=+$P(Y,U,2) I 'PLANIEN W "@@@@" Q
+ . I IBNXT D CHKP^IBNCPEV Q:IBQ  W !?10,"-----------"
+ . D CHKP^IBNCPEV Q:IBQ  W !?10
+ . ;
+ . W "PLAN:",$P($G(^IBA(355.3,PLANIEN,0)),U,3)
+ . W ", INSURANCE:",$P($G(^DIC(36,+$G(^IBA(355.3,PLANIEN,0)),0)),U,1)
+ . I +IBD7>0 W ", COB:",$S(+IBD7=2:"S",1:"P")
+ . ;
+ . ; display pharmacy plan ID and name
+ . D CHKP^IBNCPEV Q:IBQ
+ . S Y3=$G(IBINS(IBX,3))
+ . W !?10,"PHARMACY PLAN:",$S($L($P(Y3,U,3)):$$PLANID($P(Y3,U,3)),1:"N/A")
+ . ;
+ . D CHKP^IBNCPEV Q:IBQ  W !?10 S IB1ST=1
+ . I $P(Y,U,3)]"" W "BIN:",$P(Y,U,3) S IB1ST=0
+ . I $P(Y,U,4)]"" W:'IB1ST ", " W "PCN:",$P(Y,U,4) S IB1ST=0
+ . I $P(Y,U,5)]"" W:'IB1ST ", " W "PAYER SHEET B1:",$P(Y,U,5) S IB1ST=0
+ . ;
+ . D CHKP^IBNCPEV Q:IBQ  W !?10 S IB1ST=1
+ . S Y=$G(IBINS(IBX,1))
+ . I $P(Y,U,4)]"" W "PAYER SHEET B2:",$P(Y,U,4) S IB1ST=0
+ . I $P(Y,U,5)]"" W:'IB1ST ", " W "PAYER SHEET B3:",$P(Y,U,5)
+ . ;
+ . D CHKP^IBNCPEV Q:IBQ
+ . S Y=$G(IBINS(IBX,2))
+ . W !?10,"BASIS OF COST DETERM:",$S($L($P(Y,U,2)):$$BOCD^IBNCPEV($P(Y,U,2)),1:"N/A")
+ . D CHKP^IBNCPEV Q:IBQ
+ . W !?10,"DISPENSING FEE:",$S($L($P(Y,U,1)):$J($P(Y,U,1),0,2),1:"N/A")
+ . W ", ADMIN FEE:",$S($L($P(Y,U,5)):$J($P(Y,U,5),0,2),1:"N/A")
+ . D CHKP^IBNCPEV Q:IBQ
+ . W !?10,"INGREDIENT COST:",$S($L($P(Y,U,6)):$J($P(Y,U,6),0,2),1:"N/A")
+ . W ", U&C CHARGE:",$S($L($P(Y,U,7)):$J($P(Y,U,7),0,2),1:"N/A")
+ . W ", GROSS AMT DUE:",$S($L($P(Y,U,4)):$J($P(Y,U,4),0,2),1:"N/A")
+ . Q
+ ;
  Q:IBQ
  ;
  D CHKP^IBNCPEV Q:IBQ
  W !?10,"USER:",$$USR^IBNCPEV(+$P(IBD3,U,10))
  Q
+ ;
+UNITDISP(QTY,TYP) ; display type of units
+ I 'QTY,TYP="" Q ""       ; display nothing if no QTY or TYP
+ I TYP="" S TYP="  "      ; default if ""
+ Q " ("_TYP_")"
+ ;
+PLANID(PLID) ; display Pharmacy plan ID and the name
+ ; Input:  PLID - the external plan ID as found in (366.03,.01). Stored for this report as (366.1412,.303).
+ N PLNAME,PLANIEN
+ S PLID=$G(PLID),PLNAME=""
+ I PLID="" G PLANIDX
+ S PLANIEN=+$O(^IBCNR(366.03,"B",PLID,""),-1)
+ I 'PLANIEN G PLANIDX
+ S PLNAME=$P($G(^IBCNR(366.03,PLANIEN,0)),U,2)
+PLANIDX ;
+ Q PLID_" ("_PLNAME_")"
  ;
  ;get Exemption status by name
  ;IBEXMP - exemption (like "AO","EC", etc)

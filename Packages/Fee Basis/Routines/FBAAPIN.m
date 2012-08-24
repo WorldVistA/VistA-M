@@ -1,5 +1,5 @@
 FBAAPIN ;AISC/GRR-INVOICE DISPLAY ;7/17/2003
- ;;3.5;FEE BASIS;**4,61**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**4,61,122,133,108**;JAN 30, 1995;Build 115
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  D DT^DICRW
 RD1 W ! S (FBHDONE,FBAAOUT,FBINTOT)=0,FBSW=0 K FBHED S DIR(0)="NO",DIR("A")="Select Invoice Number",DIR("?")="^D HELP^FBAAPIN1" D ^DIR K DIR G Q:$D(DIRUT)!'Y
@@ -28,10 +28,12 @@ SET2 ;
  S FBADJLR=$P(FBX,U)
  S FBADJLA=$P(FBX,U,2)
  S FBRRMKL=$$RRL^FBAAFR(M_","_L_","_K_","_J_",")
+ S FBCNTRN=$S($P(FBY3,U,8):$P($G(^FBAA(161.43,$P(FBY3,U,8),0)),U),1:"")
  S A1=$P(FBYY,"^",2)+.0001,A2=$P(FBYY,"^",3)+.0001,A3=$P(FBYY,"^",12)+.0001,A1=$P(A1,".",1)_"."_$E($P(A1,".",2),1,2),A2=$P(A2,".",1)_"."_$E($P(A2,".",2),1,2),A3=$P(A3,".",1)_"."_$E($P(A3,".",2),1,2),FBINTOT=FBINTOT+A2+.0001
  S FBINTOT=$P(FBINTOT,".")_"."_$E($P(FBINTOT,".",2),1,2)
  S FBBN=$S($P(FBYY,"^",8)]"":$S($D(^FBAA(161.7,$P(FBYY,"^",8),0)):$P(^(0),"^",1),1:""),$P(FBYY("REJ"),"^",3)]"":$S($D(^FBAA(161.7,$P(FBYY("REJ"),"^",3),0)):$P(^(0),"^",1),1:""),1:"")
  D FBCKO^FBAACCB2(J,K,L,M)
+ I $D(^FBAAC(J,1,K,1,L,1,M,4))!($D(^FBAAC(J,1,K,1,L,1,M,5))) D PROV
  I '$D(FBHED) D HED
  D WRT S FBHED=1
  Q
@@ -54,6 +56,7 @@ WRT I ($Y+5)>IOSL S DIR(0)="E" D ^DIR K DIR S:'Y FBAAOUT=1 Q:FBAAOUT  D HED
  W ?69,FBRRMKL
  ; if adjustment reasons null and suspend code = other then write desc.
  I FBADJLR="",T=4 D ^FBAAPIN1
+ I FBCNTRN]"" W !!,?2,"Contract Number: ",FBCNTRN
  D PMNT^FBAACCB2
  Q
 HED W @IOF,!,"Invoice Number: ",FBAAIN,?30,"Vendor Name: ",V,!,?2,"Date Received: ",FBINDAT
@@ -67,7 +70,7 @@ HED W @IOF,!,"Invoice Number: ",FBAAIN,?30,"Vendor Name: ",V,!,?2,"Date Received
  W !,$$REPEAT^XLFSTR("=",79)
  Q
 Q K D,N,V,D2,J,K,L,M,DIC,T,FBYY,Q,I,A1,A2,A3,C,DIYS,FBAACPT,FBAAIN,FBAAOUT,FBBN,FBINTOT,FBINDAT,FBSW,FBHDONE,HX,S,VP,Z,ZS,FBHED,FBFILE,DIRUT,FBY,FBMOD
- K FBMODLE
+ K FBMODLE,FBY3,FBCNTRN
  K FBAARCE,FBADJLA,FBADJLR,FBCSID,FBFPPSC,FBFPPSL,FBRRMKL,FBUNITS,TAMT
  Q
 ERR W !,*7,"Please enter a whole number! Alpha characters and puctuation are invalid" G RD1
@@ -80,4 +83,16 @@ INDAT S L=$O(^FBAAC("C",FBAAIN,J,K,"")),M=$O(^FBAAC("C",FBAAIN,J,K,L,""))
  S FBFPPSC=$P($G(^FBAAC(J,1,K,1,L,1,M,3)),U,1)
  S FBCSID=$P($G(^FBAAC(J,1,K,1,L,1,M,2)),U,16)
  S FBSW=0 K L,M Q
+ Q
+PROV ;Display Invoice Provider information before invoice details FB*3.5*122
+ N FBPRI,FBSRVF S FBPRI=$G(^FBAAC(J,1,K,1,L,1,M,4)),FBSRVF=$G(^FBAAC(J,1,K,1,L,1,M,5)),$P(FBSRVF,U,3)=$$GET1^DIQ(5,$P(FBSRVF,U,3)_",",1)
+ W @IOF,!?30,"INVOICE DISPLAY",!?30,"===============",!?28,"PROVIDER INFORMATION",!
+ I $L($P(FBPRI,U,1,3))>3 W !?3,"ATTENDING PROV NAME: "_$P(FBPRI,U),!?3,"ATTENDING PROV NPI: "_$P(FBPRI,U,2),?35,"ATTENDING PROV TAXONOMY CODE: "_$P(FBPRI,U,3)
+ I $L($P(FBPRI,U,4,5))>2 W !!?3,"OPERATING PROV NAME: "_$P(FBPRI,U,4),!?3,"OPERATING PROV NPI: "_$P(FBPRI,U,5)
+ I $L($P(FBPRI,U,6,8))>3 W !!?3,"RENDERING PROV NAME: "_$P(FBPRI,U,6),!?3,"RENDERING PROV NPI: "_$P(FBPRI,U,7),?35,"RENDERING PROV TAXONOMY CODE: "_$P(FBPRI,U,8)
+ I $L($P(FBPRI,U,9,10))>2 W !!?3,"SERVICING PROV NAME: "_$P(FBPRI,U,9),!?3,"SERVICING PROV NPI: "_$P(FBPRI,U,10)
+ I $L($P(FBSRVF,U,1,4))>4 W !?3,"SERVICING FACILITY ADDRESS: ",!?5,$P(FBSRVF,U),!?5,$P(FBSRVF,U,2) I $P(FBSRVF,U,2)'="" W ", "
+ W $P(FBSRVF,U,3)_" "_$P(FBSRVF,U,4)
+ I $L($P(FBPRI,U,11,12))>2 W !!?3,"REFERRING PROV NAME: "_$P(FBPRI,U,11),!?3,"REFERRING PROV NPI: "_$P(FBPRI,U,12),!!
+ I '$D(FBHED) S DIR(0)="E" D ^DIR
  Q

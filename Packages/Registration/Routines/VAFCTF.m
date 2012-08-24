@@ -1,5 +1,5 @@
 VAFCTF ;BIR/DLR-Utility for capturing patient's Date Last Treated and Event Reason ;9/9/2002
- ;;5.3;Registration;**428,713,766**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**428,713,766,856**;Aug 13, 1993;Build 5
  Q  ; quit if called from the top
  ;
  ;Reference to ^SCE("ADFN" supported by IA# 2953
@@ -32,7 +32,9 @@ EN1(VAFCDFN,VAFCSUP) ; determine the LAST TREATMENT DATE for a single
  I +VAFCDATE'>0 S VAFCDATE="",VAFCENVR=""
  I +VAFCDATE>0 S VAFCENVR=$S(VAFCTYPE=1:"A1",VAFCTYPE=3:"A2",1:"A3") ;A1=adm;A2=dis;A3=CO
  N STA,ICN S ICN=$$ICNLC^MPIF001(VAFCDFN),STA=$P($$SITE^VASITE,"^",3)
- D FILE^VAFCTFU(VAFCDFN,VAFCSITE_U_VAFCDATE_U_VAFCENVR,$G(VAFCSUP),1,.ERR) I $D(ERR(STA)) D EXC^RGHLLOG(212,ERR(STA),VAFCDFN)
+ ;**856 adding the new parameters to this FILE^VAFCTFU call
+ ;FILE(PDFN,FSTRG,TICN,VAFCSLT,ERROR,IPP,SOURCEID,IDENSTAT,AA,IDTYP)
+ D FILE^VAFCTFU(VAFCDFN,VAFCSITE_U_VAFCDATE_U_VAFCENVR,$G(VAFCSUP),1,.ERR,"",VAFCDFN,"A","USVHA","PI") I $D(ERR(STA)) D EXC^RGHLLOG(212,ERR(STA),VAFCDFN)
  ;
  Q
 ADMDIS(DFN) ; find the patient's last admission and discharge dates if

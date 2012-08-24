@@ -1,14 +1,14 @@
-SROQD ;BIR/ADM - CASES WITH DEATHS WITHIN 30 DAYS ;09/22/98  11:45 AM
- ;;3.0; Surgery ;**62,77,50,142**;24 Jun 93
+SROQD ;BIR/ADM - CASES WITH DEATHS WITHIN 30 DAYS ;07/07/2011
+ ;;3.0;Surgery;**62,77,50,142,176**;24 Jun 93;Build 8
  ;** NOTICE: This routine is part of an implementation of a nationally
- ;**         controlled procedure.  Local modifications to this routine
+ ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
  ;
  S SRSOUT=0,SRIO="A",SRSPEC="" W @IOF,!,?24,"Deaths Within 30 Days of Surgery"
- W !!,"This report lists patients who had surgery within the selected date range,",!,"who died within 30 days of surgery and whose deaths are included on the",!,"Quarterly/Summary Report."
+ W !!,"This report lists patients who had surgery within the selected date range",!,"and who died within 30 days of surgery."
  D DATE^SROUTL(.SDATE,.EDATE,.SRSOUT) G:SRSOUT END
-SEC W !! K DIR S DIR("A",1)="Print report for which section of Quarterly/Summary Report ?",DIR("A",2)="",DIR("A",3)=" 1. Total Cases Summary",DIR("A",4)=" 2. Specialty Procedures",DIR("A",5)=" 3. Index Procedures"
- S DIR("A",6)="",DIR("A")="Select number: ",DIR("B")=1,DIR(0)="SAM^1:Total Cases Summary;2:Specialty Procedures;3:Index Procedures" D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) S SRSOUT=1 G END
+SEC W !! K DIR S DIR("A",1)="Print which report?",DIR("A",2)="",DIR("A",3)=" 1. Total Cases Summary",DIR("A",4)=" 2. National Specialty Procedures",DIR("A",5)=""
+ S DIR("A")="Select number: ",DIR("B")=1,DIR(0)="SAM^1:Total Cases Summary;2:Specialty Procedures" D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) S SRSOUT=1 G END
  S SRSEL=Y D:SRSEL=2 SPEC
  I SRSEL=1 W @IOF S SRRPT="Deaths within 30 Days of Surgery" D INOUT^SROUTL
  N SRINSTP S SRINST=$$INST^SROUTL0() G:SRINST="^" END S SRINSTP=$P(SRINST,"^"),SRINST=$S(SRINST["ALL DIVISIONS":SRINST,1:$P(SRINST,"^",2))
@@ -17,11 +17,11 @@ IO W !!,"This report is designed to use a 132 column format.",!
  K %ZIS,IOP,IO("Q"),POP S %ZIS("A")="Print the report to which Printer ? ",%ZIS("B")="",%ZIS="Q" D ^%ZIS I POP S SRSOUT=1 G END
  I $D(IO("Q")) K IO("Q") S ZTDESC="Deaths within 30 Days of Surgery",(ZTSAVE("EDATE"),ZTSAVE("SDATE"),ZTSAVE("SRIO"),ZTSAVE("SRSEL"),ZTSAVE("SRINSTP"),ZTSAVE("SRSPEC*"))="",ZTRTN="EN^SROQD" D ^%ZTLOAD S SRSOUT=1 G END
 EN U IO S (SRCTOT,SRDTOT,SRHDR2,SRSNM,SRSOUT)=0,(SRHDR,SRPAGE)=1,SRSD=SDATE-.0001,SRED=EDATE+.9999,Y=SDATE X ^DD("DD") S STARTDT=Y,Y=EDATE X ^DD("DD") S ENDATE=Y
- D KTMP S SRRPT="DEATHS WITHIN 30 DAYS OF SURGERY"_$S(SRSEL=2:" LISTED FOR SPECIALTY PROCEDURES",SRSEL=3:" LISTED FOR INDEX PROCEDURES",1:"")
+ D KTMP S SRRPT="DEATHS WITHIN 30 DAYS OF SURGERY"_$S(SRSEL=2:" LISTED FOR SPECIALTY PROCEDURES",1:"")
  S SRFRTO="FOR "_$S(SRIO="O":"OUTPATIENT ",SRIO="I":"INPATIENT ",1:"")_"SURGERY PERFORMED FROM: "_STARTDT_"  TO: "_ENDATE
  S SRINST=$S(SRINSTP["ALL DIV":$P($$SITE^SROVAR,"^",2)_" - ALL DIVISIONS",1:$$GET1^DIQ(4,SRINSTP,.01))
  D NOW^%DTC S Y=$E(%,1,12) X ^DD("DD") S SRPRINT="Report Printed: "_Y
- D AC^SROQD0 D:SRSEL=1 PLIST D:SRSEL=2 NAT^SROQD1 D:SRSEL=3 IP^SROQD1
+ D AC^SROQD0 D:SRSEL=1 PLIST D:SRSEL=2 NAT^SROQD1
 END W:$E(IOST)="P" @IOF D KTMP I $D(ZTQUEUED) Q:$G(ZTSTOP)  S ZTREQ="@" Q
  I 'SRSOUT,$E(IOST)'="P" D PRESS
  D ^%ZISC K SRCTOT,SRDNAT,SRDTH,SRDTOT,SRFRTO,SRHDR2,SRINV,SRIO,SRIOSTAT,SRNAT,SRNATNM,SRRPT,SRSEL,SRTN D ^SRSKILL W @IOF

@@ -1,11 +1,9 @@
-IBXS8 ; GENERATED FROM 'IB SCREEN8' INPUT TEMPLATE(#514), FILE 399;10/26/11
+IBXS8 ; GENERATED FROM 'IB SCREEN8' INPUT TEMPLATE(#514), FILE 399;02/21/12
  D DE G BEGIN
 DE S DIE="^DGCR(399,",DIC=DIE,DP=399,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DGCR(399,DA,""))=""
- I $D(^("U4")) S %Z=^("U4") S %=$P(%Z,U,1) S:%]"" DE(3)=% S %=$P(%Z,U,2) S:%]"" DE(6)=% S %=$P(%Z,U,3) S:%]"" DE(8)=% S %=$P(%Z,U,4) S:%]"" DE(36)=% S %=$P(%Z,U,5) S:%]"" DE(37)=% S %=$P(%Z,U,7) S:%]"" DE(27)=% S %=$P(%Z,U,8) S:%]"" DE(28)=%
- I  S %=$P(%Z,U,9) S:%]"" DE(9)=% S %=$P(%Z,U,10) S:%]"" DE(10)=% S %=$P(%Z,U,11) S:%]"" DE(11)=% S %=$P(%Z,U,13) S:%]"" DE(41)=% S %=$P(%Z,U,14) S:%]"" DE(42)=%
- I $D(^("U5")) S %Z=^("U5") S %=$P(%Z,U,2) S:%]"" DE(14)=% S %=$P(%Z,U,3) S:%]"" DE(15)=% S %=$P(%Z,U,4) S:%]"" DE(16)=% S %=$P(%Z,U,5) S:%]"" DE(17)=% S %=$P(%Z,U,6) S:%]"" DE(18)=%
- I $D(^("U6")) S %Z=^("U6") S %=$P(%Z,U,1) S:%]"" DE(19)=% S %=$P(%Z,U,2) S:%]"" DE(20)=% S %=$P(%Z,U,3) S:%]"" DE(21)=% S %=$P(%Z,U,4) S:%]"" DE(22)=% S %=$P(%Z,U,5) S:%]"" DE(23)=% S %=$P(%Z,U,6) S:%]"" DE(24)=%
- I $D(^("U8")) S %Z=^("U8") S %=$P(%Z,U,1) S:%]"" DE(33)=% S %=$P(%Z,U,2) S:%]"" DE(31)=% S %=$P(%Z,U,3) S:%]"" DE(32)=%
+ I $D(^("U4")) S %Z=^("U4") S %=$P(%Z,U,1) S:%]"" DE(3)=% S %=$P(%Z,U,2) S:%]"" DE(6)=% S %=$P(%Z,U,3) S:%]"" DE(8)=% S %=$P(%Z,U,4) S:%]"" DE(23)=% S %=$P(%Z,U,5) S:%]"" DE(24)=% S %=$P(%Z,U,7) S:%]"" DE(14)=% S %=$P(%Z,U,8) S:%]"" DE(15)=%
+ I  S %=$P(%Z,U,9) S:%]"" DE(9)=% S %=$P(%Z,U,10) S:%]"" DE(10)=% S %=$P(%Z,U,11) S:%]"" DE(11)=% S %=$P(%Z,U,13) S:%]"" DE(28)=% S %=$P(%Z,U,14) S:%]"" DE(29)=%
+ I $D(^("U8")) S %Z=^("U8") S %=$P(%Z,U,1) S:%]"" DE(20)=% S %=$P(%Z,U,2) S:%]"" DE(18)=% S %=$P(%Z,U,3) S:%]"" DE(19)=%
  K %Z Q
  ;
 W W !?DL+DL-2,DLB_": "
@@ -76,7 +74,7 @@ X6 K:$L(X)>30!($L(X)<1) X
  Q
  ;
 7 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=7 D X7 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X7 S:IBT=3 Y="@85"
+X7 S:IBT=3 Y="@84"
  Q
 8 S DW="U4;3",DV="D",DU="",DLB="Date of 1st Contact",DIFLD=262
  G RE
@@ -103,128 +101,62 @@ X11 K:+X'=X!(X>9999999999)!(X<1)!(X?.E1"."1.N) X
 13 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=13 D X13 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X13 S:IBDR20'["83" Y="@84"
  Q
-14 S DW="U5;2",DV="F",DU="",DLB="P/U Address1",DIFLD=271
- G RE
-X14 K:$L(X)>40!($L(X)<1) X
- I $D(X),X'?.ANP K X
- Q
- ;
-15 S DW="U5;3",DV="F",DU="",DLB="P/U Address 2",DIFLD=272
- G RE
-X15 K:$L(X)>30!($L(X)<1) X
- I $D(X),X'?.ANP K X
- Q
- ;
-16 S DW="U5;4",DV="F",DU="",DLB="P/U City",DIFLD=273
- G RE
-X16 K:$L(X)>30!($L(X)<1) X
- I $D(X),X'?.ANP K X
- Q
- ;
-17 S DW="U5;5",DV="P5'",DU="",DLB="P/U State",DIFLD=274
- S DU="DIC(5,"
- G RE
-X17 Q
-18 S DW="U5;6",DV="F",DU="",DLB="P/U Zip",DIFLD=275
- G RE
-X18 K:$L(X)>15!($L(X)<1) X
- I $D(X),X'?.ANP K X
- Q
- ;
-19 S DW="U6;1",DV="F",DU="",DLB="D/O Location",DIFLD=276
- G RE
-X19 K:$L(X)>60!($L(X)<1) X
- I $D(X),X'?.ANP K X
- Q
- ;
-20 S DW="U6;2",DV="F",DU="",DLB="D/O Address1",DIFLD=277
- G RE
-X20 K:$L(X)>40!($L(X)<1) X
- I $D(X),X'?.ANP K X
- Q
- ;
-21 S DW="U6;3",DV="F",DU="",DLB="D/O Address2",DIFLD=278
- G RE
-X21 K:$L(X)>30!($L(X)<1) X
- I $D(X),X'?.ANP K X
- Q
- ;
-22 S DW="U6;4",DV="F",DU="",DLB="D/O City",DIFLD=279
- G RE
-X22 K:$L(X)>30!($L(X)<1) X
- I $D(X),X'?.ANP K X
- Q
- ;
-23 S DW="U6;5",DV="P5'",DU="",DLB="D/O State",DIFLD=280
- S DU="DIC(5,"
- G RE
-X23 Q
-24 S DW="U6;6",DV="F",DU="",DLB="D/O Zip",DIFLD=281
- G RE
-X24 K:$L(X)>15!($L(X)<1) X
- I $D(X),X'?.ANP K X
- Q
- ;
-25 S DQ=26 ;@84
-26 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=26 D X26 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X26 S:IBDR20'["84" Y="@85"
- Q
-27 S DW="U4;7",DV="P81'",DU="",DLB="Primary Code",DIFLD=266
+14 S DW="U4;7",DV="P81'",DU="",DLB="Primary Code",DIFLD=266
  S DU="ICPT("
  G RE
-X27 Q
-28 S DW="U4;8",DV="P81'",DU="",DLB="Secondary Code",DIFLD=267
+X14 Q
+15 S DW="U4;8",DV="P81'",DU="",DLB="Secondary Code",DIFLD=267
  S DU="ICPT("
  G RE
-X28 Q
-29 S DQ=30 ;@85
-30 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=30 D X30 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X30 S:IBDR20'["85" Y="@86"
+X15 Q
+16 S DQ=17 ;@84
+17 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=17 D X17 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X17 S:IBDR20'["84" Y="@85"
  Q
-31 S DW="U8;2",DV="P353.3'",DU="",DLB="Report Type",DIFLD=285
+18 S DW="U8;2",DV="P353.3'",DU="",DLB="Report Type",DIFLD=285
  S DU="IBE(353.3,"
  G RE
-X31 Q
-32 S DW="U8;3",DV="S",DU="",DLB="Transmission Method",DIFLD=286
+X18 Q
+19 S DW="U8;3",DV="S",DU="",DLB="Transmission Method",DIFLD=286
  S DU="AA:Available on Request at Provider Site;BM:By Mail;EL:Electronically Only;EM:E-Mail;FT:File Transfer;FX:By Fax;"
  G RE
-X32 Q
-33 S DW="U8;1",DV="F",DU="",DLB="Attachment Control #",DIFLD=284
+X19 Q
+20 S DW="U8;1",DV="F",DU="",DLB="Attachment Control #",DIFLD=284
  G RE
-X33 K:$L(X)>30!($L(X)<1) X
+X20 K:$L(X)>30!($L(X)<1) X
  I $D(X),X'?.ANP K X
  Q
  ;
-34 S DQ=35 ;@86
-35 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=35 D X35 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X35 S:IBDR20'["86" Y="@87"
+21 S DQ=22 ;@85
+22 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=22 D X22 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X22 S:IBDR20'["85" Y="@86"
  Q
-36 S DW="U4;4",DV="DX",DU="",DLB="Disability Start Date",DIFLD=263
+23 S DW="U4;4",DV="DX",DU="",DLB="Disability Start Date",DIFLD=263
  G RE
-X36 S %DT="E" D ^%DT S X=Y K:DT<X X I $D(X),$P($G(^DGCR(399,DA,"U4")),U,5)'="",X>$P($G(^DGCR(399,DA,"U4")),U,5) K X
+X23 S %DT="E" D ^%DT S X=Y K:DT<X X I $D(X),$P($G(^DGCR(399,DA,"U4")),U,5)'="",X>$P($G(^DGCR(399,DA,"U4")),U,5) K X
  Q
  ;
-37 S DW="U4;5",DV="DX",DU="",DLB="Disability End Date",DIFLD=264
+24 S DW="U4;5",DV="DX",DU="",DLB="Disability End Date",DIFLD=264
  G RE
-X37 S %DT="E" D ^%DT S X=Y K:DT<X X I $D(X),X<$P($G(^DGCR(399,DA,"U4")),U,4) K X
+X24 S %DT="E" D ^%DT S X=Y K:DT<X X I $D(X),X<$P($G(^DGCR(399,DA,"U4")),U,4) K X
  Q
  ;
-38 S DQ=39 ;@87
-39 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=39 D X39 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X39 S:IBDR20'["87" Y="@899"
+25 S DQ=26 ;@86
+26 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=26 D X26 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X26 S:IBDR20'["86" Y="@899"
  Q
-40 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=40 D X40 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X40 S:$P($G(^DGCR(IBIFN,0)),U,19)=3 Y="@899"
+27 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=27 D X27 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X27 S:$P($G(^DGCR(IBIFN,0)),U,19)=3 Y="@899"
  Q
-41 S DW="U4;13",DV="DX",DU="",DLB="Assumed Care Date",DIFLD=282
+28 S DW="U4;13",DV="DX",DU="",DLB="Assumed Care Date",DIFLD=282
  G RE
-X41 S %DT="E" D ^%DT S X=Y K:DT<X X I $D(X),$P($G(^DGCR(399,DA,"U4")),U,14)'="",X>$P($G(^DGCR(399,DA,"U4")),U,14) K X
+X28 S %DT="E" D ^%DT S X=Y K:DT<X X I $D(X),$P($G(^DGCR(399,DA,"U4")),U,14)'="",X>$P($G(^DGCR(399,DA,"U4")),U,14) K X
  Q
  ;
-42 S DW="U4;14",DV="DX",DU="",DLB="Relinquished Care Date",DIFLD=283
+29 S DW="U4;14",DV="DX",DU="",DLB="Relinquished Care Date",DIFLD=283
  G RE
-X42 S %DT="E" D ^%DT S X=Y K:DT<X X I $D(X),X<$P($G(^DGCR(399,DA,"U4")),U,13) K X
+X29 S %DT="E" D ^%DT S X=Y K:DT<X X I $D(X),X<$P($G(^DGCR(399,DA,"U4")),U,13) K X
  Q
  ;
-43 S DQ=44 ;@899
-44 G 0^DIE17
+30 S DQ=31 ;@899
+31 G 0^DIE17

@@ -1,12 +1,12 @@
 PSOBPSSP ;BIRM/LE - ePharmacy Site Parameters Definition ;04/28/08
- ;;7.0;OUTPATIENT PHARMACY;**289**;DEC 1997;Build 107
+ ;;7.0;OUTPATIENT PHARMACY;**289,385**;DEC 1997;Build 27
  ;
 DIV ; - Prompt for ePharmacy Site Parameters
  N DIC,DIE,DA,Y,PSODIV,DLAYGO,DTOUT,DUOUT
  W !!,"Regardless of any parameters defined, Refill-Too-Soon, Drug Utilization"
- W !,"Review(DUR) and Tricare rejects will always be placed on the Third Party "
- W !,"Payer Rejects - Worklist, also known as Pharmacy Reject Worklist.  These"
- W !,"parameters are uneditable and are the default parameters."
+ W !,"Review (DUR), CHAMPVA and TRICARE rejects will always be placed on the"
+ W !,"Third Party Payer Rejects - Worklist, also known as Pharmacy Reject Worklist."
+ W !,"These parameters are uneditable and are the default parameters."
  N PSODIV,XX
  ;
 DIV2 ;
@@ -50,8 +50,8 @@ EXIT ;
  K DIC,DIR,DIE,DA,DLAYGO,DATA
  Q
  ;
-HELP ;Help text for CODES field (#.01) of REJECT CODE multiple(#52.8561)
+HELP ;Help text for CODES field (#.01) of REJECT CODE multiple(#52.8651)
  W !!,"*** Enter a valid third party reject code from the previously entered codes"
  W !,"*** above, enter a new code, or enter one from the provided listing below."
- W !,"*** Valid codes are those defined in BPS NCPDP REJECT CODES file (#900231.93).",!!
+ W !,"*** Valid codes are those defined in BPS NCPDP REJECT CODES file (#9002313.93).",!!
  Q

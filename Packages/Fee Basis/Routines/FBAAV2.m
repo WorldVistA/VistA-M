@@ -1,10 +1,10 @@
 FBAAV2 ;AISC/GRR-ELECTRONICALLY TRANSMIT PHARMACY PAYMENTS ;11 Apr 2006  2:52 PM
- ;;3.5;FEE BASIS;**3,89,98,116**;JAN 30, 1995;Build 30
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;3.5;FEE BASIS;**3,89,98,116,108**;JAN 30, 1995;Build 115
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 DETP ; ENTRY FROM FBAAV0
  S FBTXT=0
  D CKB5V^FBAAV01 I $G(FBERR) K FBERR Q
- ; HIPAA 5010 - line items that have 0.00 amount paid are now required to go to Central Fee
+ ; HIPAA 5010 - line items that have 0.00 amount paid are now required togo to Central Fee
  ;F K=0:0 S K=$O(^FBAA(162.1,"AE",J,K)) Q:K'>0  F L=0:0 S L=$O(^FBAA(162.1,"AE",J,K,L)) Q:L'>0  S Y(0)=$G(^FBAA(162.1,K,"RX",L,0)),Y(2)=$G(^(2)),Y=$G(^FBAA(162.1,K,0)) I Y(0)]"",Y]"",+$P(Y(0),U,16) D
  F K=0:0 S K=$O(^FBAA(162.1,"AE",J,K)) Q:K'>0  F L=0:0 S L=$O(^FBAA(162.1,"AE",J,K,L)) Q:L'>0  S Y(0)=$G(^FBAA(162.1,K,"RX",L,0)),Y(2)=$G(^(2)),Y=$G(^FBAA(162.1,K,0)) I Y(0)]"",Y]"" D
  .N FBPICN,FBY
@@ -16,11 +16,13 @@ DETP ; ENTRY FROM FBAAV0
  Q
  ;
 GOTP ; process a B5 line item
- N DFN,FBADJ,FBADJA1,FBADJA2,FBADJR1,FBADJR2,FBIENS,FBPNAMX,FBVY0,FBX,FBNPI
+ N DFN,FBADJ,FBADJA1,FBADJA2,FBADJR1,FBADJR2,FBIENS,FBPNAMX,FBVY0,FBX
+ N FBNPI,FBEDIF
  ;
  S FBIENS=$P(FBPICN,U,2)_","_$P(FBPICN,U,1)_","
  S FBPAYT=$P(Y(0),"^",20),FBPAYT=$S(FBPAYT]"":FBPAYT,1:"V")
  S FBINVN=$P(Y,"^"),FBINVN=$E("000000000",$L(FBINVN)+1,9)_FBINVN
+ S FBEDIF=$S($P(Y,"^",13)]"":"Y",1:" ") ; EDI flag
  S FBDIN=$$AUSDT^FBAAV3($P(Y,"^",2))
  ;
  S FBVFN=$P(Y,"^",4)
@@ -44,10 +46,11 @@ GOTP ; process a B5 line item
  Q:'DFN
  Q:'$D(^DPT(DFN,0))
  ; Note: Prior to the following line Y(0) = the 0 node of subfile 161.11
- ;       After the line Y(0) will be the 0 node of file #2
+ ;After the line Y(0) will be the 0 node of file #2
  S VAPA("P")="",Y(0)=^DPT(DFN,0) D PAT^FBAAUTL2,ADD^VADPT
- S FBPNAMX=$$HL7NAME^FBAAV4(DFN)
+ S FBPNAMX=$$HL7NAME^FBAAV2(DFN)
  S FBST=$S($P(VAPA(5),"^")="":"  ",$D(^DIC(5,$P(VAPA(5),"^"),0)):$P(^(0),"^",2),1:"  ")
+ I $L(FBST)>2 S FBST="**"
  S:$L(FBST)'=2 FBST=$E(PAD,$L(FBST)+1,2)_FBST
  S FBCTY=$S($P(VAPA(7),"^")="":"   ",FBST="  ":"   ",$D(^DIC(5,$P(VAPA(5),"^"),1,$P(VAPA(7),"^"),0)):$P(^(0),"^",3),1:"   ")
  I $L(FBCTY)'=3 S FBCTY=$E("000",$L(FBCTY)+1,3)_FBCTY
@@ -62,8 +65,22 @@ GOTP ; process a B5 line item
  S FBADJA2=$$AUSAMT^FBAAV3($P(FBX,U,6),9,1)
  K FBADJ,FBX
  ;
- S FBSTR=5_FBAASN_FBSSN_FBPAYT_FBPNAMX_FBVID_FBCSN_FBAC_FBAP_FBAAON_FBSUSP_FBTD_FBRX_FBDIN_FBINVN_FBST_FBCTY_FBZIP_$E(FBPSA,1,3)
- S FBSTR=FBSTR_$P(FBY,U,2)_$E(PAD,1,8)_$$PADZ^FBAAV01(FBPICN,30)_$$AUSDT^FBAAV3(+FBY)
- S FBSTR=FBSTR_FBADJR1_FBADJR2_FBADJA1_FBADJA2_FBNPI_"$"
+ ; build 1st line
+ S FBSTR=5_FBAASN_FBSSN_FBPAYT_FBPNAMX_FBVID_FBCSN_FBAC_FBAP_FBAAON
+ S FBSTR=FBSTR_FBSUSP_FBTD_FBRX_FBDIN_FBINVN
+ S FBSTR=FBSTR_$E(PAD,1,33)_FBST_FBCTY_FBZIP ; reserved for foreign addr
+ S FBSTR=FBSTR_$E(FBPSA,1,3)_$P(FBY,U,2)_$E(PAD,1,8)
+ S FBSTR=FBSTR_$$PADZ^FBAAV01(FBPICN,30)_$$AUSDT^FBAAV3(+FBY)_"~"
+ D STORE^FBAAV01
+ ;
+ ; build 2nd line
+ S FBSTR=FBADJR1_FBADJR2_FBADJA1_FBADJA2_FBNPI_FBEDIF
+ S FBSTR=FBSTR_$E(PAD,1,32)_"~$" ; reserved for IPAC data
  D STORE^FBAAV01
  Q
+ ;
+HL7NAME(FBDFN) ; return patient name formatted in a 35 character length string
+ N FBAR,FBNM
+ S FBAR("FILE")=2,FBAR("IENS")=FBDFN,FBAR("FIELD")=.01
+ S FBNM=$$HLNAME^XLFNAME(.FBAR,"L35","|")
+ Q $$LRJ^FBAAV4(FBNM,35)

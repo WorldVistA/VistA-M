@@ -1,5 +1,5 @@
-ORWOR ; SLC/KCM - Orders Calls ;09/07/10  14:01
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,141,163,187,190,215,243,307,330,280**;Dec 17, 1997;Build 85
+ORWOR ; SLC/KCM - Orders Calls ; 3/15/11 8:10am
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,141,163,187,190,215,243,307,330,280,347**;Dec 17, 1997;Build 4
  ;
 CURRENT(LST,DFN) ; Get Current Orders for a Patient
  ; Returns two lists in ^TMP("ORW",$J), fields and text
@@ -59,7 +59,8 @@ VWSET(ORERR,VIEW)       ; Set the preferred view for orders
  ;        7 - sort by display group
  N FMT
  ; use short name for display group instead of pointer
- I $E($P(VIEW,";",2))="T" S $P(VIEW,";",2)=$P($P(VIEW,";",2),"@") ;allows all orders for Today
+ ;*347 Allow times to be saved.
+ ;I $E($P(VIEW,";",2))="T" S $P(VIEW,";",2)=$P($P(VIEW,";",2),"@") ;allows all orders for Today
  S $P(VIEW,";",4)=$P($G(^ORD(100.98,+$P(VIEW,";",4),0)),U,3)
  ; use last saved format, since this is used only by LM
  S FMT=$P($$GET^XPAR("ALL","ORCH CONTEXT ORDERS",1,"I"),";",5)

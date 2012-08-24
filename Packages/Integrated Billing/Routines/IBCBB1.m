@@ -1,5 +1,5 @@
 IBCBB1 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**27,52,80,93,106,51,151,148,153,137,232,280,155,320,343,349,363,371,395,384,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**27,52,80,93,106,51,151,148,153,137,232,280,155,320,343,349,363,371,395,384,432,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRBB1
@@ -23,7 +23,8 @@ IBCBB1 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
  S IBTFY=$$FY^IBOUTL(IBTDT)
  ;
  ;Total Charges
- I +IBTC'>0!(+IBTC'=IBTC) S IBER=IBER_"IB064;"
+ ; IB*2.0*447/TAZ Removed this error so that zero dollar revenue codes can process on the 837
+ ;I +IBTC'>0!(+IBTC'=IBTC) S IBER=IBER_"IB064;"
  ;
  ;Billable charges for secondary claim
  I $$MCRONBIL^IBEFUNC(IBIFN)&(($P(IBNDU1,U,1)-$P(IBNDU1,U,2))'>0) S IBER=IBER_"IB094;"
@@ -186,6 +187,29 @@ IBCBB1 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
  S ROIERR=0 I $P($G(^DGCR(399,IBIFN,"U")),U,5)=1,+$P($G(^DGCR(399,IBIFN,"U")),U,7)=0 S ROIERR=1 ; screen 7 sensitive record and no ROI
  I $$ROICHK^IBCBB11(IBIFN,DFN,+IBNDMP) S ROIERR=1 ; check file for sensitive Rx and missing ROI
  I ROIERR S IBER=IBER_"IB328;"
+ ;
+ ;Verify Line Charges Match Claim Total Charge. IB*2.0*447 BI
+ I +$$GET1^DIQ(399,IBIFN_",",201)'=+$$IBLNTOT^IBCBB13(IBIFN) S IBER=IBER_"IB344;"
+ ;
+ ;Test for valid EIN/SY ID Values. IB*2.0*447 BI
+ I $$IBSYEI^IBCBB13(IBIFN) S IBER=IBER_"IB345;"
+ ;
+ ;Test for a missing ICN. IB*2.0*447 BI
+ I $$IBMICN^IBCBB13(IBIFN) S IBER=IBER_"IB346;"
+ ;
+ ;Test for a ZERO charge amounts. IB*2.0*447 BI
+ I $$IBRCCHK^IBCBB13(IBIFN) D WARN^IBCBB11("Claim contains revenue codes with no associated charges.")
+ ;
+ ;Test for missing "Patient reason for visit". IB*2.0*447 BI
+ I $$FT^IBCEF(IBIFN)=3,'$$INPAT^IBCEF(IBIFN),$$IBPRV3^IBCBB13(IBIFN) S IBER=IBER_"IB347;"
+ ;
+ ;Test for missing Payer ID. IB*2.0*447 BI
+ ;I $$IBMPID^IBCBB13(IBIFN) S IBER=IBER_"IB348;"
+ ;Changed Error to Warning. IB*2.0*447 TAZ
+ I $$IBMPID^IBCBB13(IBIFN) D WARN^IBCBB11("Not all payers have Payer IDs.")
+ ;
+ ;Test for missing "Priority (Type) of Admission" for UB-04. IB*2.0*447 BI
+ I $$FT^IBCEF(IBIFN)=3,$$GET1^DIQ(399,IBIFN_",",158)="" S IBER=IBER_"IB349;"
  ;
 END ;Don't kill IBIFN, IBER, DFN
  I $O(^TMP($J,"BILL-WARN",0)),$G(IBER)="" S IBER="WARN" ;Warnings only

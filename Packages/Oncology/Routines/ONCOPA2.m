@@ -1,5 +1,5 @@
-ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;01/25/11
- ;;2.11;ONCOLOGY;**13,15,19,22,27,34,36,37,42,44,45,46,49,50,51,53**;Mar 07, 1995;Build 31
+ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;10/05/11
+ ;;2.11;ONCOLOGY;**13,15,19,22,27,34,36,37,42,44,45,46,49,50,51,53,54**;Mar 07, 1995;Build 10
  ;
  N TX
  S NAME="FIRST COURSE OF TREATMENT" D FORMAT^ONCOPA1
@@ -36,6 +36,7 @@ ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;01/25/11
  W !!,"   RX Text-Surgery: " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,14,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,14,TX,0) D P Q:EX=U
  W !,"   CAP Protocol Review:            ",ONCAB(165.5,IEN,46,"E") D P Q:EX=U
  W:ONCAB(165.5,IEN,46,"I")=0 !,"   CAP Text:                       ",ONCAB(165.5,IEN,47,"E") D P Q:EX=U
+ W !,"   Tx Guidelines Discussion:       ",ONCAB(165.5,IEN,281,"E") D P Q:EX=U
  W !,"   Treatment Guideline #1:         ",ONCAB(165.5,IEN,228,"E") D P Q:EX=U
  W !,"   Treatment Guideline #2:         ",ONCAB(165.5,IEN,229,"E") D P Q:EX=U
  W !,"   Treatment Guideline #3:         ",ONCAB(165.5,IEN,230,"E") D P Q:EX=U
@@ -92,6 +93,8 @@ OTH W !!,"   Other Treatment:  ",ONCAB(165.5,IEN,57.2) D P Q:EX=U
  W !,"   RX Text-Other:  " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,21,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,21,TX,0) D P Q:EX=U
 PES W !,"   Palliative Care:  ",ONCAB(165.5,IEN,12) D P Q:EX=U
  W !,"   Palliative Care @Fac:  ",ONCAB(165.5,IEN,13) D P Q:EX=U
+ W !,"   Clinical Trials Discussion:  ",ONCAB(165.5,IEN,279,"E") D P Q:EX=U
+ W !,"   Protocol Eligibility Status:  ",ONCAB(165.5,IEN,346) D P Q:EX=U
  W !,"   Protocol Participation:  ",ONCAB(165.5,IEN,560) D P Q:EX=U
  W !,"   Year Put on Protocol:  ",ONCAB(165.5,IEN,133) D P Q:EX=U
  ;

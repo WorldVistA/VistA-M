@@ -1,5 +1,5 @@
 RMPRN72 ;Hines OIFO/HNC -NPPD CALCULATIONS ;9/2/04  12:12
- ;;3.0;PROSTHETICS;**57,70,84,91,103,134,144,153,159,164**;Feb 09, 1996;Build 3
+ ;;3.0;PROSTHETICS;**57,70,84,91,103,134,144,153,159,164,169**;Feb 09, 1996;Build 4
  ;
  ; AAC Patch 84, 2/25/04, additions, deletions and change descriptions for Groups and lines
  ; AAC Patch 84, Changes description,100 DL,100 GL,900 IL,900 JL,R10 AL,R20 BL,R20 CL,R91 FL.
@@ -16,6 +16,8 @@ RMPRN72 ;Hines OIFO/HNC -NPPD CALCULATIONS ;9/2/04  12:12
  ; AAC patch 159 - 05/01/10 - NPPD Categories/lines - New and Repair
  ;
  ; AAC patch 164 - 01/24/11 - NPPD Categories/lines - New and Repair
+ ;
+ ; AAC patch 169 - 01/11/12 - NPPD Categories/lines - New
  ;
  ;build array or tmp
 DES ;description of line numbers
@@ -39,10 +41,10 @@ DES ;description of line numbers
  ;;200 IL;LEG COMPONENT
  ;;300 AL;ARM B/E
  ;;300 BL;ARM A/E
- ;;300 CL;COSMETIC GLOVES
+ ;;300 CL;* NO LONGER USED *
  ;;300 DL;ARM A/O
  ;;300 EL;TERMINAL DEVICES
- ;;300 FL;EXT.POWERED,ARM
+ ;;300 FL;EXT PWR ARM A/O EXT PWR TRM D
  ;;400 AL;ORTHOSIS ANKLE
  ;;400 BL;ORTHOSIS LEG AK
  ;;400 CL;ORTHOSIS, SPINAL
@@ -51,7 +53,7 @@ DES ;description of line numbers
  ;;400 FL;ORHTOSIS, KNEE
  ;;400 GL;* NO LONGER USED *
  ;;400 HL;ORHTOSIS,WHO
- ;;400 XL;ORTHOTICS UNKNOWN
+ ;;400 XL;ORTHOSIS UNKNOWN
  ;;500 AL;FOOT ORTHOSIS/INSERTS/ARCH SUPPORTS
  ;;500 BL;SHOE NON CUSTOM
  ;;500 CL;SHOE CUSTOM
@@ -93,7 +95,7 @@ DES ;description of line numbers
  ;;900 ML;COMPUTER EQUIP
  ;;900 NL;TELEHEALTH
  ;;900 OL;EXERCISE EQUIPMENT
- ;;900 PL;HEALING/RESTORATIVE EQUIPMENT
+ ;;900 PL;WOMENS HEALTH
  ;;910 AL;MED SUP AL/OTH
  ;;910 BL;BATTERIES
  ;;920 AL;HOME DIAL EQP

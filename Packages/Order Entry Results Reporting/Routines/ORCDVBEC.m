@@ -1,5 +1,5 @@
 ORCDVBEC ;SLC/MKB-Utility functions for VBECS dialogs ;2/11/08  11:04
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212,309**;Dec 17, 1997;Build 26
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212,309,332**;Dec 17, 1997;Build 44
  ;
  ; External References:
  ;   OEAPI^VBECA3       #4766
@@ -17,6 +17,7 @@ EN ; -- entry action
  N DIV,ORSTN,C,N,X S DIV=+$P($G(^SC(+$G(ORL),0)),U,15)
  S ORSTN=$P($$SITE^VASITE(DT,DIV),U,3)
  I $G(ORTYPE)'="Z" D OEAPI^VBECA3(.ORVB,+ORVP,ORSTN),PTINFO^ORCDVBC1
+ I $G(OREVENT) S ORVB("SPECIMEN")="" ;assume no specimen if delayed
  S C=0 F  S C=$O(ORVB(C)) Q:C<1  S N=0 F  S N=$O(ORVB(C,"MSBOS",N)) Q:N<1  S X=$G(ORVB(C,"MSBOS",N)),ORMSBOS(C,$P(X,U))=$P(X,U,2) ;sort
  ;get initial state: ORCOMP/ORTEST = id^id^ ^id, ORTAS = 1 or 0:
  S (ORCOMP,ORTEST,ORTAS)="" I $D(OREDIT)!$G(OREWRITE) D
@@ -28,7 +29,7 @@ EN ; -- entry action
  Q
  ;
 EX ; -- exit action
- K ORITM,ORCOMP,ORTEST,ORTAS,ORMSBOS,ORTIME,ORIMTIME,ORDIV,ORCOLLCT,ORVB,ORASK
+ K ORITM,ORCOMP,ORTEST,ORTAS,ORMSBOS,ORTIME,ORIMTIME,ORDIV,ORCOLLCT,ORVB,ORASK,ORSURG
  I $G(ORXL) S ORL=ORXL K ORXL
  Q
  ;
@@ -143,11 +144,20 @@ CHANGED ; -- Kill dependent values when Component changes
  Q
  ;
 DTW ; -- Comp D/T Wanted to specimen exp d/t for TAS [DTW Exit Action]
- Q:$G(ORTAS)  Q:'$G(ORVB("SPECIMEN"))  Q:$G(ORTYPE)="Z"
- N X,Y,%DT,EXP
+ Q:'$G(ORVB("SPECIMEN"))  Q:$G(ORTYPE)="Z"
+ N X,Y,%DT,EXP,OK
  S X=$G(ORDIALOG(PROMPT,INST)),%DT="T" D ^%DT Q:Y<1
- S EXP=$$HL7TFM^XLFDT(+$G(ORVB("SPECIMEN")))
- I EXP<Y D ADDTAS
+ S EXP=$$HL7TFM^XLFDT(+$G(ORVB("SPECIMEN"))),OK=1
+ I EXP<Y D:'$G(ORTAS) ADDTAS S OK=0
+ D UID(OK) ;[re]set Specimen UID
+ Q
+ ;
+UID(OK) ; -- [re]set the Specimen UID if DTW changes
+ N SPCSTS,I,X
+ S SPCSTS=$$PTR("SPECIMEN STATUS")
+ S I=0 F  S I=$O(ORDIALOG(SPCSTS,I)) Q:I<1  D
+ . S X=$P(ORDIALOG(SPCSTS,I),U)_U_$S($G(OK):$G(ORVB("SPECIMEN")),1:"^")
+ . S ORDIALOG(SPCSTS,I)=X
  Q
  ;
 REASON ; -- get allowable reasons
@@ -178,8 +188,10 @@ LAB60(X) ; -- Return file 60 ien for VBECS OI ID
  ;
 ENSURG ; -- Get list of surgeries from ORVB("SURGERY")
  S:$P($G(^ORD(101.42,+$$VAL^ORCD("URGENCY"),0)),U,2)="P" REQD=1
- Q:$G(ORDIALOG(PROMPT,"LIST"))  N I,CNT,X S (I,CNT)=0
+ Q:$G(ORDIALOG(PROMPT,"LIST"))  K ORSURG
+ N I,CNT,X S (I,CNT)=0
  F  S I=$O(ORVB("SURGERY",I)) Q:I'>0  S X=$G(ORVB("SURGERY",I)) D
+ . S ORSURG($P(X,U))=$P(X,U,2),X=$P(X,U) ;ORSURG(name)=NoBloodReqd
  . S CNT=CNT+1,ORDIALOG(PROMPT,"LIST",CNT)=X_U_X
  . S ORDIALOG(PROMPT,"LIST","B",$$UP^XLFSTR(X))=X
  S:CNT ORDIALOG(PROMPT,"LIST")=CNT_"^1"
@@ -187,6 +199,7 @@ ENSURG ; -- Get list of surgeries from ORVB("SURGERY")
  ;
 CKMSBOS ; -- check if MSBOS limit exists, was exceeded [from PSA]
  Q:'$L($G(Y))  N OI,AMT,I,X,COMP,LIMIT
+ I ORCOMP,$G(ORSURG($P(Y,U))) W !,"  >> No blood is required for this procedure!",! Q
  S OI=$$PTR("ORDERABLE ITEM"),AMT=$$PTR("AMOUNT")
  S I=0 F  S I=$O(ORDIALOG(OI,I)) Q:I<1  D
  . S X=ORDIALOG(OI,I),COMP=+$P($G(^ORD(101.43,+X,0)),U,2)

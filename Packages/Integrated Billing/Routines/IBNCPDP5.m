@@ -1,11 +1,11 @@
 IBNCPDP5 ;ALB/BDB - PROCESSING FOR ECME RESP FOR SECONDARY ;11/15/07 09:43
- ;;2.0;INTEGRATED BILLING;**411**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**411,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 BILLSEC(DFN,IBD) ; Create secondary bill
  ;
  N IBBCB,IBBCF,IBBCT,IBCAN,IBCCR,IBCDFN,IBCNFN,IBCOB,IBCTCOPY,IBDBC
- N IBIFN,IBINS,IBINSN,IBOFFSET,IBPLAN,IBY,IBAMT,IBRES
+ N IBIFN,IBINS,IBINSN,IBOFFSET,IBPLAN,IBY,IBAMT,IBRES,IBDUP
  ;
  ;if the primary claim was rejected and we don't have any primary bill for the RX/refill (see IBSEND^BPSECMP2 for additional information)
  I $G(IBD("PRIMREJ"))=1 D
@@ -38,16 +38,18 @@ BILLSEC(DFN,IBD) ; Create secondary bill
  . S IBAR433=$O(^PRCA(433,"C",+IBD("PRIMARY BILL"),0)) ; ICR# 3336
  . S DA=IBAR433,DIE="^PRCA(433,",DR="41///"_IBREJINF D ^DIE ; ICR# 3336
  . ; now quit to continue to create a secondary bill - i.e. allow the rest of the code to do its job
- . ;
+ . Q
  ;
+ ; IB*2*452 - esg - check for duplicate response first thing
+ S IBDUP=$$DUP^IBNCPDP2(.IBD) I IBDUP S IBY="0^Sec. Bill# "_$P(IBDUP,U,2)_" exists (Dup)" G BILLQ
  ;
- ; bill Tricare copay if applicable
+ ; bill TRICARE copay if applicable
  I $G(IBD("COPAY")) D BILL^IBNCPDP6($G(IBD("PRESCRIPTION"))_";"_$G(IBD("FILL NUMBER")),IBD("COPAY"),$G(IBD("RTYPE")))
  ;
  S IBCAN=2,IBDBC=DT,IBBCB=DUZ,IBCTCOPY=1,IBY=1
  S IBIFN=$G(IBD("PRIMARY BILL")) I IBIFN="" S IBY="0^Missing the primary bill." G BILLQ
  S IBPLAN=$G(IBD("PLAN")) I IBPLAN="" S IBY="0^The Secondary Payer is not a valid Insurance Co." G BILLQ
- S IBCDFN=$$PLANN^IBNCPDPU(DFN,IBD("PLAN"),IBD("FILL DATE"))
+ S IBCDFN=$$PLANN^IBNCPDPU(DFN,IBD("PLAN"),IBD("DOS"))
  I 'IBCDFN S IBY="-1^Plan not found in Patient's Profile." G BILLQ
  S IBCNFN=$P(IBCDFN,"^",2)
  S IBINSN=+^IBA(355.3,IBPLAN,0) ;insurance company
@@ -62,9 +64,12 @@ BILLSEC(DFN,IBD) ; Create secondary bill
  S IBIDS(.15)=IBIFN K IBIFN
 STEP2 ;
  S IBND0=^DGCR(399,IBIDS(.15),0) I $D(^("U")) S IBNDU=^("U")
+ ;
  ; *** Note - all these fields should also be included in WHERE^IBCCC1
+ ;            ECME claims should NOT define the 399,.27 - BILL CHARGE TYPE - leave it blank for RX COST Charge Set
+ ;
  F I=2:1:12 S:$P(IBND0,"^",I)]"" IBIDS(I/100)=$P(IBND0,"^",I)
- F I=16:1:19,21:1:27 S:$P(IBND0,"^",I)]"" IBIDS(I/100)=$P(IBND0,"^",I)
+ F I=16:1:19,21:1:26 S:$P(IBND0,"^",I)]"" IBIDS(I/100)=$P(IBND0,"^",I)
  F I=151,152,155 S IBIDS(I)=$P(IBNDU,"^",(I-150))
  S IBIDS(159.5)=$P(IBNDU,U,20)
  S DFN=IBIDS(.02) D DEM^VADPT
@@ -118,12 +123,12 @@ END ;
  K IBUN,IBV,IBV1,IBW,IBWW,IBX,IBYN,IBZZ,J,K
  K PRCASV,PRCAERCD,PRCAERR,PRCASVC,PRCAT,VA,VADM,VAEL,VAERR,X,X1,X2,X3,X4,Y
  ;
- N DA,IBADT,IBDIV,IBDUZ,IBPAID,IBRT,IBTRIC,X
- S IBIFN=IBBCT,IBADT=IBD("FILL DATE"),IBDIV=+$G(IBD("DIVISION")),IBDUZ=$S($G(IBD("USER")):IBD("USER"),1:DUZ)
+ N DA,IBADT,IBDIV,IBDUZ,IBPAID,IBTRIC,X
+ S IBIFN=IBBCT,IBADT=IBD("DOS"),IBDIV=+$G(IBD("DIVISION")),IBDUZ=$S($G(IBD("USER")):IBD("USER"),1:DUZ)
  ;
  S DIE="^DGCR(399,",DA=IBIFN
- ; update the primary bill,ECME fields
- S DR=".17////"_$G(IBD("PRIMARY BILL"))_";460////^S X=IBD(""BCID"")" S:$L($G(IBD("AUTH #"))) DR=DR_";461////^S X=IBD(""AUTH #"")"
+ ; update the primary bill,ECME fields (make sure .27 field is blank)
+ S DR=".17////"_$G(IBD("PRIMARY BILL"))_";.27////@;460////^S X=IBD(""BCID"")" S:$L($G(IBD("AUTH #"))) DR=DR_";461////^S X=IBD(""AUTH #"")"
  D ^DIE K DA,DR,DIE
  ;
  ; if the primary ECME claim was rejected, then do some Claims Tracking updates
@@ -142,12 +147,10 @@ END ;
  . D ^DIE
  . Q
  ;
- ; need to make sure we have computed charges.
- D
- . I $G(IBD("RXCOB"))=2,$G(IBD("RTYPE")) S IBRT=IBD("RTYPE") Q
- . S IBRT=$$RT^IBNCPDPU(IBD("BCID"))
- S IBTRIC=$$TRICARE^IBNCPDP6(IBD("BCID"))
- I '$$CHARGES^IBNCPDP2(IBIFN,IBINSN,+IBRT,$G(IBD("PAID")),IBDIV,IBTRIC,.IBY) G BILLQ
+ ; need to make sure we have computed charges
+ S IBTRIC=$$TRICARE^IBNCPDP6($G(IBD("PRESCRIPTION"))_";"_$G(IBD("FILL NUMBER")))
+ D CHARGES^IBNCPDP2(IBIFN)
+ I $P($G(^DGCR(399,IBIFN,"U1")),U,1)'>0 S IBY="-1^Total Charges for Sec. Bill must be greater than $0." G BILLQ
  ;
  ; update the authorize/print fields
  S DIE="^DGCR(399,",DA=IBIFN
@@ -155,7 +158,7 @@ END ;
  ;
  ; pass the claim to AR
  D GVAR^IBCBB,ARRAY^IBCBB1 S PRCASV("APR")=IBDUZ D ^PRCASVC6    ; perform AR checks
- I 'PRCASV("OKAY") S IBY="-1^Cannot establish receivable in AR (secondary ins)." G BILLQ
+ I 'PRCASV("OKAY") S IBY="-1^"_$$ARERR^IBNCPDP2($G(PRCAERR),2) G BILLQ
  D REL^PRCASVC     ; accept bill into AR
  ;
  ; update the AR status to Active
@@ -166,8 +169,11 @@ END ;
  ; Auto decrease from service Bill#,Tran amt,person,reason,Tran date
  S IBAMT=$G(^DGCR(399,IBIFN,"U1")),IBOFFSET=$P($G(^DGCR(399,IBIFN,"U1")),U,2)
  S IBPAID=$G(IBD("PAID"))
- I IBAMT-IBPAID>.01,'IBTRIC D
- . D DEC^PRCASER1(PRCASV("ARREC"),IBAMT-IBOFFSET-IBPAID,IBDUZ,"Adjust based on secondary ECME amount paid.",IBADT)
+ I IBAMT-IBPAID>.01 D
+ . N IBREAS
+ . S IBREAS="Adjust based on secondary ECME amount paid."
+ . I IBTRIC S IBREAS="Due to TRICARE Patient Responsibility (sec)."
+ . D DEC^PRCASER1(PRCASV("ARREC"),IBAMT-IBOFFSET-IBPAID,IBDUZ,IBREAS,IBADT)
  . I 'IBPAID S PRCASV("STATUS")=22 D STATUS^PRCASVC1 ; collected/closed
  ;
  D  ; set the user in 399
@@ -192,5 +198,5 @@ REJINF(IBREJARR) ;
  . . S IBCNT=IBCNT+1
  Q IBREJINF
  ;
-WHERE ;;.01^0^1;.02^0^2;.03^0^3;.04^0^4;.05^0^5;.06^0^6;.07^0^7;.08^0^8;.09^0^9;.11^0^11;.12^0^12;.17^0^17;.18^0^18;.19^0^19;.15^0^15;.16^0^16;.21^0^21;.22^0^22;.23^0^23;.24^0^24;.25^0^25;.26^0^26;.27^0^27;151^U^1;152^U^2;155^U^5;159.5^U^20;
+WHERE ;;.01^0^1;.02^0^2;.03^0^3;.04^0^4;.05^0^5;.06^0^6;.07^0^7;.08^0^8;.09^0^9;.11^0^11;.12^0^12;.17^0^17;.18^0^18;.19^0^19;.15^0^15;.16^0^16;.21^0^21;.22^0^22;.23^0^23;.24^0^24;.25^0^25;.26^0^26;151^U^1;152^U^2;155^U^5;159.5^U^20;
  ;

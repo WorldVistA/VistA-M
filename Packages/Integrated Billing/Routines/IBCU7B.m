@@ -1,18 +1,20 @@
 IBCU7B ;ALB/DEM - LINE LEVEL PROVIDER USER INPUT ;27-SEP-2010
- ;;2.0;INTEGRATED BILLING;**432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**432,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
 EN ;
  ;
- N X,DIC,DIE,DR,DA,DLAYGO,PRVFUN,DIPA,Y,DO,DD,I,IBPOPOUT
+ N X,DIC,DIE,DR,DA,DLAYGO,PRVFUN,DIPA,Y,DO,DD,I  ; ,IBPOPOUT IB*2.0*447 BI
  I '$D(IBLNPRV("IBCCPT")) N IBLNPRV  ; DEM;432 - Coming from routine IBCCPT.
  S:'$G(IBFT) IBFT=$$FT^IBCEF(IBIFN)  ;DEM;432 - Form Type for claim.
  I IBFT=3,$$INPAT^IBCEF(IBIFN) Q   ;WCJ*2.0*432 Don't ask line level providers if INPAT UB
  Q:(IBFT'=2)&(IBFT'=3)  ;DEM;432 - Must be CMS-1500 (2) or UB-04 (3) Form Type.
  S:IBFT=2 PRVFUN(2)="Rendering,Referring,Supervising"  ;DEM;432 - Allowable provider functions for CMS-1500.
  S:IBFT=3 PRVFUN(3)="Rendering,Referring,Operating,Other Operating"  ;DEM;432 - Allowable provider functions for UB-04.
- F PRVFUN("CNT")=1:1:$L(PRVFUN(IBFT),",") S PRVFUN=$P(PRVFUN(IBFT),",",PRVFUN("CNT")) D  I $G(IBPOPOUT) K IBPOPOUT Q
+ ; IB*2.0*447 BI
+ ; F PRVFUN("CNT")=1:1:$L(PRVFUN(IBFT),",") S PRVFUN=$P(PRVFUN(IBFT),",",PRVFUN("CNT")) D  I $G(IBPOPOUT) K IBPOPOUT Q
+ F PRVFUN("CNT")=1:1:$L(PRVFUN(IBFT),",") S PRVFUN=$P(PRVFUN(IBFT),",",PRVFUN("CNT")) D  I $G(IBPOPOUT) Q
  . S X=$S(PRVFUN="Rendering":3,PRVFUN="Referring":1,PRVFUN="Supervising":5,PRVFUN="Operating":2,1:9)  ;DEM;432 - X=Provider Function Code Number.
  . ;I $D(IBLNPRV("IBCCPT")),X'=3 Q  ; DEM;432 - Coming from routine IBCCPT, only interested in RENDERING PROVIDER.
  . K DA,DO,DD
@@ -32,12 +34,16 @@ EN ;
  . ;           user input (example, EXTCR^IBCEU5).
  . ;
  . S IBLNPRV=1
+ . ; preserve DA values
  . S IBLNPRV("LNPRVIEN")=DA  ;DEM;432 - DA of line provider entry to edit.
  . S IBLNPRV("PROCIEN")=DA(1)  ;DEM;432 - DA(1) is procedure code multiple IEN.
  . S DLAYGO=399  ;DEM;432 - Set DLAYGO.
  . D ^DIE
- . I ($G(Y)="^")!($G(Y)=-1) S IBPOPOUT=1 Q  ; User entered caret ("^"), so exit line provider entry.
- . ; DEM;432 - If line provider zero node exist, and no provider, then delete entry.
+ . ; IB*2.0*447 BI Changed to correct for empty provider types in global.
+ . ;I ($G(Y)="^")!($G(Y)=-1) S IBPOPOUT=1 Q  ; User entered caret ("^"), so exit line provider entry.
+ . I ($D(Y)) S IBPOPOUT=1  ; User entered caret ("^"), so exit line provider entry.
+ . ; DEM;432 - If line provider zero node exist, and no provider, then delete entry.  Reset DA
+ . S DA=IBLNPRV("LNPRVIEN"),DA(1)=IBLNPRV("PROCIEN")
  . I $D(^DGCR(399,IBIFN,"CP",IBLNPRV("PROCIEN"),"LNPRV",IBLNPRV("LNPRVIEN"),0))#10,'$P(^DGCR(399,IBIFN,"CP",IBLNPRV("PROCIEN"),"LNPRV",IBLNPRV("LNPRVIEN"),0),U,2) S DR=".01///@" D ^DIE
  . K DIC,DIE,DR,DA,X,Y,DO,DD,DLAYGO,DIPA  ;DEM;432 - Clean up.
  . Q

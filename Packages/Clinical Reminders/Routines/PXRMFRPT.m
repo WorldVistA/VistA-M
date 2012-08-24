@@ -1,24 +1,47 @@
-PXRMFRPT ; SLC/PKR - Finding usage report. ;11/02/2009
- ;;2.0;CLINICAL REMINDERS;**12,17,16**;Feb 04, 2005;Build 119
+PXRMFRPT ;SLC/PKR - Finding usage report. ;02/10/2011
+ ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22**;Feb 04, 2005;Build 160
  ;==============================
 BLDLIST(FILENUM,GBL,FIEN,SUB) ;
  D DEFLIST(FILENUM,GBL,FIEN,SUB)
  D TERMLIST(FILENUM,GBL,FIEN,SUB)
  D DIALOG(FILENUM,GBL,FIEN,SUB)
  D BROC(FILENUM,GBL,FIEN,SUB)
+ D BRULE(FILENUM,GBL,FIEN,SUB)
  Q
  ;
-BROC(FNUM,GBL,FIEN,SUB) ;
- N IEN,NODE,RIEN,RNAME
- S NODE=$S(FNUM=811.9:"R",FNUM=811.5:"T",FNUM=101.43:"O",FNUM=50.605:"D",1:"")
+ ;==============================
+BROC(FNUM,GBL,FIEN,SUB) ;Search reminder orderable item groups for
+ ;any that are using GBL as a finding. If FIEN is not null then search
+ ;for only those findings.
+ N IEN,ITEM,NODE,RIEN,RNAME
+ S NODE=$S(FNUM=101.43:"O",FNUM=50.605:"P",FNUM=50:"P",FNUM=50.6:"P",1:"")
  I NODE="" Q
+ S ITEM=$S(NODE="P":FIEN_";"_GBL,1:FIEN)
  I +FIEN>0 D  Q
- .I '$D(^PXD(801,NODE,FIEN)) Q
- .S IEN=0 F  S IEN=$O(^PXD(801,NODE,FIEN,IEN)) Q:IEN'>0  D
- ..I NODE="O"!(NODE="D") S ^TMP($J,SUB,FNUM,FIEN,"ROC",IEN,NODE)="" Q
- ..S RIEN="" F  S RIEN=$O(^PXD(801,NODE,FIEN,IEN,RIEN)) Q:RIEN=""  D
- ...S RNAME=$P($G(^PXD(801,IEN,3,RIEN,0)),U)
- ...S ^TMP($J,SUB,FNUM,FIEN,"ROC",IEN,RNAME)="" Q
+ . I '$D(^PXD(801,NODE,ITEM)) Q
+ . S IEN=0 F  S IEN=$O(^PXD(801,NODE,ITEM,IEN)) Q:IEN'>0  D
+ .. S ^TMP($J,SUB,FNUM,FIEN,"ROC",IEN)="" Q
+ I '$D(^PXD(801,NODE)) Q
+ S ITEM="" F  S ITEM=$O(^PXD(801,NODE,ITEM)) Q:ITEM=""  D
+ . S FIEN=$S(NODE="P":$P(ITEM,";"),1:ITEM)
+ . S IEN=0 F  S IEN=$O(^PXD(801,NODE,ITEM,IEN)) Q:IEN'>0  D
+ .. S ^TMP($J,SUB,FNUM,FIEN,"ROC",IEN)=""
+ Q
+ ;
+ ;==============================
+BRULE(FNUM,GBL,FIEN,SUB) ;Search reminder orderable item groups for
+ ;any that are using GBL as a finding. If FIEN is not null then search
+ ;for only those findings.
+ N IEN,ITEM,NODE,RIEN,RNAME
+ I FNUM'=811.5
+ I +FIEN>0 D  Q
+ . I '$D(^PXD(801.1,"T",FIEN)) Q
+ . S IEN=0 F  S IEN=$O(^PXD(801.1,"T",FIEN,IEN)) Q:IEN'>0  D
+ .. S ^TMP($J,SUB,FNUM,FIEN,"OCRULE",IEN)="" Q
+ I '$D(^PXD(801.1,"T")) Q
+ S FIEN="" F  S ITEM=$O(^PXD(801.1,"T",FIEN)) Q:FIEN=""  D
+ . S IEN=0 F  S IEN=$O(^PXD(801,"T",FIEN,IEN)) Q:IEN'>0  D
+ .. S ^TMP($J,SUB,FNUM,FIEN,"OCRULE",IEN)=""
  Q
  ;
  ;==============================
@@ -179,11 +202,11 @@ MSG ;Generate the MailMan message that reports the results.
  .... S REPGNAME=$$GET1^DID(REPFNUM,"","","NAME")
  .... S REPFNAME=$$GET1^DIQ(REPFNUM,REPIEN,.01)
  .... S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="  its replacement is "_REPGNAME_"; "_REPFNAME
- .. F TYPE="DEF","TERM","DIALOG" D
+ .. F TYPE="DEF","TERM","DIALOG","ROC","OCRULE" D
  ... I '$D(^TMP($J,"FDATA",FILENUM,FIEN,TYPE)) Q
- ... S RNUM=$S(TYPE="DEF":811.9,TYPE="TERM":811.5,TYPE="DIALOG":801.41)
+ ... S RNUM=$S(TYPE="DEF":811.9,TYPE="TERM":811.5,TYPE="DIALOG":801.41,TYPE="ROC":801,TYPE="OCRULE":801.1)
  ... S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=""
- ... S TEXT=FNAME_" is used in the following "_$S(TYPE="DEF":"Definitions:",TYPE="TERM":"Terms:",TYPE="DIALOG":"Dialogs:",1:"")
+ ... S TEXT=FNAME_" is used in the following "_$S(TYPE="DEF":"Definitions:",TYPE="TERM":"Terms:",TYPE="DIALOG":"Dialogs:",TYPE="ROC":"Orderable Item Groups:",TYPE="OCRULE":"Order Check Rules:",1:"")
  ... D FORMATS^PXRMTEXT(4,72,TEXT,.NOUT,.TEXTOUT)
  ... F IND=1:1:NOUT S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=TEXTOUT(IND)
  ... S IEN=0
@@ -211,6 +234,7 @@ MSG ;Generate the MailMan message that reports the results.
  ..... S FI=0
  ..... F  S FI=$O(^TMP($J,"FDATA",FILENUM,FIEN,TYPE,IEN,FI)) Q:FI=""  D
  ...... S TEXT="Finding number "_FI
+ ...... ;I TYPE="ROC" S TEXT="Rule Name "_FI
  ...... D FORMATS^PXRMTEXT(8,72,TEXT,.NOUT,.TEXTOUT)
  ...... F IND=1:1:NOUT S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=TEXTOUT(IND)
  .....;
@@ -218,10 +242,11 @@ MSG ;Generate the MailMan message that reports the results.
  I NL=1 W !,"None of the selected findings are used in definitions, terms, or dialogs."
  I NL>1 D
  .;Ask the user if they want the report delivered through MailMan.
- . S ANS=$$ASKYN^PXRMEUT("Y","Deliver the report as a MailMan message")
+ . ;S ANS=$$ASKYN^PXRMEUT("Y","Deliver the report as a MailMan message")
+ . S ANS=$$ASKYN^PXRMEUT("N","Deliver the report as a MailMan message")
  . I ANS="1" D
  .. S TO(DUZ)=""
- .. D SEND^PXRMMSG("PXRMXMZ","Clinical Reminders Finding Usage Report",.TO)
+ .. D SEND^PXRMMSG("PXRMXMZ","Clinical Reminders Finding Usage Report",.TO,DUZ)
  . I ANS="0" F IND=1:1:NL W !,^TMP("PXRMXMZ",$J,IND,0)
  K ^TMP("PXRMXMZ",$J)
  Q

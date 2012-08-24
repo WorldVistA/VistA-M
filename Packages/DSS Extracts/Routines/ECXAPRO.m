@@ -1,5 +1,5 @@
-ECXAPRO ;ALB/JAP - PRO Extract Audit Report ; 4/19/11 2:15pm
- ;;3.0;DSS EXTRACTS;**9,21,33,36,132**;Dec 22, 1997;Build 18
+ECXAPRO ;ALB/JAP - PRO Extract Audit Report ;11/30/11  15:43
+ ;;3.0;DSS EXTRACTS;**9,21,33,36,132,137**;Dec 22, 1997;Build 3
  ;
 EN ;entry point for PRO extract audit report
  N %X,%Y,DIV,X,Y,DIC,DA,DR,DIQ,DIR,DIRUT,DTOUT,DUOUT
@@ -99,7 +99,7 @@ PROCESS ;process the data in file #727.826
  .Q:LOC["LAB"
  .;duplicate the logic in sort^rmprn6 that sets cost=0 if form=4
  .I LOC["ORD" S COST=0
- .S LOC=$S(LOC["ORD":$P(LOC,"ORD",1),1:$P(LOC,"NONL",1))
+ .S LOC=$S(LOC["ORD":$P(LOC,"ORD",1),LOC["HO2":$P(LOC,"HO2",1),1:$P(LOC,"NONL",1)) ;137
  .;quit if feeder location isn't for division selected for report
  .I ECXALL=1,LOC'[STN Q
  .I ECXALL=0,LOC'=STN Q

@@ -1,5 +1,5 @@
 PSGS0 ;BIR/CML3 - SCHEDULE PROCESSOR ;06/22/09 7:12 PM
- ;;5.0;INPATIENT MEDICATIONS;**12,25,26,50,63,74,83,116,110,111,133,138,174,134,213,207,190,113,245**;DEC 16, 1997;Build 3
+ ;;5.0;INPATIENT MEDICATIONS;**12,25,26,50,63,74,83,116,110,111,133,138,174,134,213,207,190,113,245,227**;DEC 16, 1997;Build 1
  ;
  ; Reference to ^PS(51.1 is supported by DBIA 2177.
  ; Reference to ^PS(55   is supported by DBIA 2191.
@@ -18,7 +18,7 @@ EN5 ;
 EN ; validate
  K PSGS0Y
  I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X)>70)!($L(X)<1) K X Q
- S X=$$TRIM^XLFSTR(X,"R"," ")
+ S:X'=" " X=$$TRIM^XLFSTR(X,"R"," ") ;PSJ*5*227 - Prevent schedule crash
  I X?.E1L.E S X=$$ENLU^PSGMI(X) I '$D(PSGOES) D EN^DDIOL("  ("_X_")")
  ;
 ENOS ; order set entry
@@ -37,7 +37,7 @@ ENOS ; order set entry
  ; * GUI 27 CHANGES *
  I X["PRN",$$PRNOK(X),'$D(^PS(51.1,"AC","PSJ",X)) D  G Q
  .;PSJ*5*190 Check for One-time PRN
- .I $$ONE^PSJBCMA(DFN,$G(ON),X)="O" S XT="O" Q
+ .I $$ONE^PSJBCMA($G(DFN),$G(ON),X)="O" S XT="O" Q
  .I X["@"!$$DOW^PSIVUTL($P(X," PRN")) N DOW D  I $G(DOW) S (Y0,Y,PSGS0Y)=$P($P(X,"@",2)," ")
  ..N TMP S TMP=X N X S X=$P(TMP," PRN") D DW I $G(X)]"" S DOW=1
  ..I $G(DOW),$G(PSGST)]"" I ",P,R,"'[(","_PSGST_",") S (XT,PSGS0XT)="D"

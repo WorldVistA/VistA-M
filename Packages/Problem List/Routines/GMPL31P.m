@@ -1,0 +1,111 @@
+GMPL31P ;SLC/JEH -- Post Install Routine ;3/1/05  11:00
+ ;;2.0;Problem List;**31**;Aug 25, 1994
+ ;
+ ; This routine can be removed after installing patch 
+ ; GMPL*2*31 or kept and used as IRM tool
+ Q
+EN ;ENTRY POINT
+ ;
+ N IEN,TOTALWK,ADJUSTED
+ S IEN=0
+ S TOTALWK=0
+ S ADJUSTED=0
+ W !,"THE FOLLOWING PROBLEM LIST ENTRIES CONTAINED BAD ICD9 POINTERS"
+ W !,"AND HAVE BEEN MODIFIED WITH A CORRECTED POINTER",!
+ W !,"PROBLEM IEN     BAD POINTER        CORRECTED POINTER"
+ W !,"___________     ___________         _______________"
+ F  S IEN=$O(^AUPNPROB(IEN)) Q:IEN=""  D
+ .I $P($G(^AUPNPROB(IEN,0)),"^")["-1" D
+ ..W !,IEN,?16,$P(^AUPNPROB(IEN,0),"^")
+ ..S $P(^AUPNPROB(IEN,0),"^",1)=$P($$NOS^GMPLX,"^",1)
+ ..W ?36,$P(^AUPNPROB(IEN,0),"^",1)
+ ..S ADJUSTED=ADJUSTED+1
+ ..Q
+ .I $P($G(^AUPNPROB(IEN,0)),"^")["~" D
+ ..W !,IEN,?16,$P(^AUPNPROB(IEN,0),"^")
+ ..S $P(^AUPNPROB(IEN,0),"^",1)=+$P(^AUPNPROB(IEN,0),"^",1)
+ ..W ?36,$P(^AUPNPROB(IEN,0),"^",1)
+ ..S ADJUSTED=ADJUSTED+1
+ .S TOTALWK=TOTALWK+1
+ W !!,"TOTAL ITEMS WORKED = "_TOTALWK
+ W !,"TOTAL ITEMS ADJUSTED = "_ADJUSTED
+ W !!
+ D AUDTCLN
+ Q
+ ;
+AUDTCLN ;
+ N IEN,TOTALWK,ADJUSTED,HIT
+ S IEN=0
+ S TOTALWK=0
+ S ADJUSTED=0
+ W !,"THE FOLLOWING PROBLEM LIST AUDIT ENTRIES CONTAINED BAD ICD9 POINTERS"
+ W !,"AND HAVE BEEN MODIFIED WITH A CORRECTED POINTER",!
+ W !,"PROBLEM IEN     BAD POINTER        CORRECTED POINTER"
+ W !,"___________     ___________         _______________"
+ F  S IEN=$O(^GMPL(125.8,IEN)) Q:IEN=""  D
+ .I $P($G(^GMPL(125.8,IEN,0)),"^",2)'=.01 Q
+ .S HIT=0
+ .; look at the 5th piece
+ .I $P($G(^GMPL(125.8,IEN,0)),"^",5)["-1" D
+ ..W !,IEN,?16,$P(^GMPL(125.8,IEN,0),"^",5)
+ ..S $P(^GMPL(125.8,IEN,0),"^",5)=$P($$NOS^GMPLX,"^",1)
+ ..W ?36,$P(^GMPL(125.8,IEN,0),"^",5)
+ ..S:HIT=0 ADJUSTED=ADJUSTED+1,HIT=1
+ ..;
+ .I $P($G(^GMPL(125.8,IEN,0)),"^",5)["~" D
+ ..W !,IEN,?16,$P(^GMPL(125.8,IEN,0),"^",5)
+ ..S $P(^GMPL(125.8,IEN,0),"^",5)=+$P(^GMPL(125.8,IEN,0),"^",5)
+ ..W ?36,$P(^GMPL(125.8,IEN,0),"^",5)
+ ..S:HIT=0 ADJUSTED=ADJUSTED+1,HIT=1
+ ..;
+ .; look at the 6th piece
+ .I $P($G(^GMPL(125.8,IEN,0)),"^",6)["-1" D
+ ..W !,IEN,?16,$P(^GMPL(125.8,IEN,0),"^",6)
+ ..S $P(^GMPL(125.8,IEN,0),"^",6)=$P($$NOS^GMPLX,"^",1)
+ ..W ?36,$P(^GMPL(125.8,IEN,0),"^",6)
+ ..S:HIT=0 ADJUSTED=ADJUSTED+1,HIT=1
+ ..;
+ .I $P($G(^GMPL(125.8,IEN,0)),"^",6)["~" D
+ ..W !,IEN,?16,$P(^GMPL(125.8,IEN,0),"^",6)
+ ..S $P(^GMPL(125.8,IEN,0),"^",6)=+$P(^GMPL(125.8,IEN,0),"^",6)
+ ..W ?36,$P(^GMPL(125.8,IEN,0),"^",6)
+ ..S:HIT=0 ADJUSTED=ADJUSTED+1,HIT=1
+ .S TOTALWK=TOTALWK+1
+ W !!,"TOTAL AUDIT ITEMS WORKED = "_TOTALWK
+ W !,"TOTAL AUDIT ITEMS ADJUSTED = "_ADJUSTED
+ W !,"AN ITEM IEN MAY APPEAR UP TO 2 TIMES ONE FOR EACH BAD PIECE"
+ W !,"AS THE FIFTH AND SIXTH PIECES ARE CHECKED"
+ Q
+ ;
+ ;
+FIND ;
+ ;find and display bad ICD9 pointers in Problem List ONLY
+ N IEN,TOTALWK,ADJUSTED
+ S IEN=0
+ S TOTALWK=0
+ S ADJUSTED=0
+ F  S IEN=$O(^AUPNPROB(IEN)) Q:IEN=""  D
+ .S TOTALWK=TOTALWK+1
+ .I $P($G(^AUPNPROB(IEN,0)),"^")["-1" W !,IEN,?10,$P(^AUPNPROB(IEN,0),"^") S ADJUSTED=ADJUSTED+1 Q
+ .I $P($G(^AUPNPROB(IEN,0)),"^")["~" W !,IEN,?10,$P(^AUPNPROB(IEN,0),"^")  S ADJUSTED=ADJUSTED+1
+ W !,"TOTAL ITEMS LOOKED AT = "_TOTALWK
+ W !,"TOTAL BAD POINTERS FOUND = "_ADJUSTED
+ Q
+ ;
+FDAUDIT ;
+ ;finnd and display bad ICD9 pointer in the Audit file
+ N IEN,TOTALWK,ADJUSTED
+ S IEN=0
+ S TOTALWK=0
+ S ADJUSTED=0
+ F  S IEN=$O(^GMPL(125.8,IEN)) Q:IEN=""  D
+ .S TOTALWK=TOTALWK+1
+ .I $P($G(^GMPL(125.8,IEN,0)),"^")["-1" W !,IEN,?10,$P(^GMPL(125.8,IEN,0),"^") S ADJUSTED=ADJUSTED+1 Q
+ .I $P($G(^GMPL(125.8,IEN,0)),"^")["~" W !,IEN,?10,$P(^GMPL(125.8,IEN,0),"^")  S ADJUSTED=ADJUSTED+1
+ .I $P($G(^GMPL(125.8,IEN,0)),"^",5)["-1" W !,IEN,?10,$P(^GMPL(125.8,IEN,0),"^",5) S ADJUSTED=ADJUSTED+1 Q
+ .I $P($G(^GMPL(125.8,IEN,0)),"^",5)["~" W !,IEN,?10,$P(^GMPL(125.8,IEN,0),"^",5)  S ADJUSTED=ADJUSTED+1
+ .I $P($G(^GMPL(125.8,IEN,0)),"^",6)["-1" W !,IEN,?10,$P(^GMPL(125.8,IEN,0),"^",6) S ADJUSTED=ADJUSTED+1 Q
+ .I $P($G(^GMPL(125.8,IEN,0)),"^",6)["~" W !,IEN,?10,$P(^GMPL(125.8,IEN,0),"^",6)  S ADJUSTED=ADJUSTED+1
+ W !,"TOTAL ITEMS LOOKED AT = "_TOTALWK
+ W !,"TOTAL BAD POINTERS FOUND = "_ADJUSTED
+ Q

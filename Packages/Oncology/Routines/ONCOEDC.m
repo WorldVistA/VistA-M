@@ -1,5 +1,5 @@
-ONCOEDC ;Hines OIFO/GWB - ABSTRACT STATUS (165.5,91) Input Transform ;03/24/11
- ;;2.11;ONCOLOGY;**6,7,13,27,36,41,47,48,49,51,53**;Mar 07,1995;Build 31
+ONCOEDC ;Hines OIFO/GWB - ABSTRACT STATUS (165.5,91) Input Transform ;10/19/11
+ ;;2.11;ONCOLOGY;**6,7,13,27,36,41,47,48,49,51,53,54**;Mar 07,1995;Build 10
  ;
 CHECK ;Required field check
  ;CLASS OF CASE   = 00-22
@@ -91,6 +91,7 @@ EDITS ;Call to EDITS API
  .S $P(^ONCO(165.5,PRM,7),U,1)=DT
  .S ^ONCO(165.5,"AAD",DT,PRM)=""
  .S $P(^ONCO(165.5,PRM,7),U,3)=DUZ
+ .S $P(^ONCO(165.5,PRM,"EDITS"),U,3)="N"
  I ABSTAT=3,$P($G(^ONCO(165.5,D0,7)),U,3)="" S $P(^ONCO(165.5,PRM,7),U,3)=DUZ
  I DCC'="",$P($G(^ONCO(165.5,D0,7)),U,3)="" S $P(^ONCO(165.5,PRM,7),U,3)=DUZ
  D ^ONCGENED
@@ -102,6 +103,7 @@ EDITS ;Call to EDITS API
  ..S $P(^ONCO(165.5,D0,7),U,1)=""
  ..K ^ONCO(165.5,"AAD",DT,PRM)
  ..S $P(^ONCO(165.5,D0,7),U,3)=""
+ ..S $P(^ONCO(165.5,D0,"EDITS"),U,3)=""
  .K DIR S DIR(0)="YA"
  .S DIR("A")=" Do you wish to return to the Primary Menu Options? "
  .S DIR("B")="Yes" D ^DIR K DIR

@@ -1,5 +1,5 @@
 FBAACO2 ;AISC/GRR-PAYMENT PROCESS FOR DUPLICATE ;7/13/2003
- ;;3.5;FEE BASIS;**4,55,61,77,116**;JAN 30, 1995;Build 30
+ ;;3.5;FEE BASIS;**4,55,61,77,116,122,133,108**;JAN 30, 1995;Build 115
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
 RD S DIR(0)="Y",DIR("A")="Want this payment stored as a Medical Denial",DIR("B")="YES",DIR("?")="Enter 'Yes' to store payment entry as a denial and send a Suspension letter.  Enter 'No' to have nothing happen." D ^DIR K DIR Q:$D(DIRUT)!('Y)
  S FBDEN=1 Q
@@ -16,7 +16,8 @@ FILE ;files sp multiple entry
  .N FBCSVSTR S FBCSVSTR="I X]"""" S:$$INPICD9^FBCSV1(X,"""",$G(FBAADT)) Y=""@1"";"
  .S DR(1,162.03,4)="S:$$EXTPV^FBAAUTL5(FBPOV)=""01"" Y=""@1"";S:FB7078]""""!($D(FB583)) Y=30;@5;28R;S:$$INPICD9^FBCSV1(X,"""",$G(FBAADT)) Y=""@5"";30////^S X=FBHCFA(30);31;32R;S Y=15;@1;28;"_FBCSVSTR_"30////^S X=FBHCFA(30);31"
  .S DR(1,162.03,5)="15///^S X=FBPT;S FBX=$$RR^FBUTL4(.FBRRMK,2);S:FBX=0 Y=0"
- .S DR(1,162.03,6)="16////^S X=FBPOV;17///^S X=FBTT;18///^S X=FBAAPTC;23////^S X=FBTYPE;26////^S X=FBPSA;S:$D(FBV583) Y=""@2"";27////^S X=FB7078;S Y=""@99"";@2;27////^S X=FBV583;@99;S FBTST=1"
+ .S DR(1,162.03,6)="16////^S X=FBPOV;17///^S X=FBTT;18///^S X=FBAAPTC;23////^S X=FBTYPE;26////^S X=FBPSA;S:$D(FBV583) Y=""@2"";27////^S X=FB7078;S Y=""@99"";@2;27////^S X=FBV583;@99;S FBTST=1;54////^S X=FBCNTRP"
+ .S DR(1,162.03,7)="73;74;75;58;59;60;61;62;63;64;65;66;67;76;77;78;79;68;69" ;FB*3.5*122 Line Item Provider information ;FB*3.5*133 Provider Information
  S DIE="^FBAAC("_DFN_",1,"_FBV_",1,"_FBSDI_",1,"
  S DA(3)=DFN,DA(2)=FBV,DA(1)=FBSDI,DA=FBAACPI
  D LOCK^FBUCUTL("^FBAAC("_DFN_",1,"_FBV_",1,"_FBSDI_",1,",FBAACPI,1)
@@ -28,7 +29,7 @@ FILE ;files sp multiple entry
  L -^FBAAC(DFN,1,FBV,1,FBSDI,1,FBAACPI)
  I $D(DTOUT) D KILL Q
  I '$G(FBTST),$G(DA) S DIR(0)="YA",DIR("A")="Entering an '^' will delete "_$S($G(FBDEN):"denial",1:"payment")_".  Are you sure you want to delete? ",DIR("B")="No" D ^DIR K DIR G FILE:'$D(DIRUT)&('Y) D KILL Q
- K FBTST,FBDEN,FBAAMM1,DIE,DR,DA,FBX
+ K FBTST,FBDEN,DIE,DR,DA,FBX
  I $D(FBDL) S FBAAOUT=1 Q
  Q
 KILL S DIK=DIE D ^DIK K DIE,DIK I '$G(FBCNP) D Q^FBAACO S FBAAOUT=1

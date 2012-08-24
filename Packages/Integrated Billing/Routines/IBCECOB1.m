@@ -1,5 +1,5 @@
 IBCECOB1 ;ALB/CXW - IB COB MANAGEMENT SCREEN/REPORT ;14-JUN-99
- ;;2.0;INTEGRATED BILLING;**137,155,288,348,377,417,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**137,155,288,348,377,417,432,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; IBMRANOT = 1 when dealing with the COB Management Worklist.   
@@ -71,7 +71,8 @@ BLD1 ;
  ;
  S IBAPY=$$TPR^PRCAFN(IBIFN) ; payment on this bill from A/R
  S IBEXPY=+$G(^IBM(361.1,IBDA,1))       ; payer paid amount
- S IBPTRSP=$$PREOBTOT^IBCEU0(IBIFN)     ; patient resp. function
+ ; IB*2.0*447 add excess indicator to MRW screen and adjust calcs to include percentages
+ S IBPTRSP=$S($$MSEDT^IBCEMU4(IBIFN)'="":$$MSPRE^IBCEMU4(IBIFN,1),1:$$PREOBTOT^IBCEU0(IBIFN)) ; patient resp. function
  S IBPY=$S(IBAPY:IBAPY,1:IBEXPY)
  S IBOAM=+$G(^DGCR(399,IBIFN,"U1"))     ; total charges for bill
  S IBNBAL=IBOAM-IBPY
@@ -119,8 +120,10 @@ SCRN ;
  .. S IBPAT=$$LJ^XLFSTR($E($P(Z,U),1,18),18," ")_" "_$E($P(Z,U,9),6,9)
  .. S IBDA=$P(IB,U,10) ;361.1-ien
  .. S IBQ=$P(IB,U,14),IB364=$P(IB,U,15)
- .. S IBFORM=$$EXTERNAL^DILFD(399,.19,,+$P(IB,U,6))
- .. I +$P(IB,U,6)=2 S IBFORM=1500   ; for space reasons
+ .. ; IB*2.0*447 shorten form column to I for Instutional and P for Professional
+ .. ;S IBFORM=$$EXTERNAL^DILFD(399,.19,,+$P(IB,U,6))
+ .. ;I +$P(IB,U,6)=2 S IBFORM=1500   ; for space reasons
+ .. S IBFORM=$S(+$P(IB,U,6)=2:"P",1:"I")
  .. S IBPTRSP=$P(IB,U,18)
  .. S IBAMT=$P(IB,U,2)
  .. S IBCNT=IBCNT+1
@@ -131,7 +134,7 @@ SCRN ;
  .. S X=$$SETFLD^VALM1(IBPAT,X,"PATNM")
  .. S X=$$SETFLD^VALM1($$RJ^XLFSTR($FN(IBPTRSP,"",2),9," "),X,"PTRESP")
  .. S X=$$SETFLD^VALM1($$RJ^XLFSTR($FN(IBAMT,"",2),9," "),X,"IBAMT")
- .. S X=$$SETFLD^VALM1($$TYPE^IBJTLA1($P(IB,U,5))_"/"_IBFORM,X,"BTYPE")
+ .. S X=$$SETFLD^VALM1($E($$TYPE^IBJTLA1($P(IB,U,5)))_"/"_IBFORM,X,"BTYPE")
  .. D SET(X,IBCNT,IBIFN,IBDA,IBQ,IB364,IBX,IB)
  .. ;For R (Pt Resp), P (Pt Name) and S (Service Date) don't display sub-headers
  .. I "BIMRPS"'[IBSRT D

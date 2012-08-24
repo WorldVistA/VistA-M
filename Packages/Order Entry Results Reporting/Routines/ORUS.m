@@ -1,5 +1,5 @@
-ORUS ; slc/KCM - Display List of Items ;6/2/92  08:09
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**91**;Dec 17, 1997
+ORUS ; slc/KCM - Display List of Items ; 12/4/09 5:03pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**91,322**;Dec 17, 1997;Build 15
  ;
 EN S Y=-1 Q:'$D(ORUS)!('$D(ORUS(0)))  S:'($D(IO)#2) IO="HOME" I 'IO S IOP=$S($D(ORIO):ORIO,1:"") D ^%ZIS
  D INIT^ORUS5
@@ -16,7 +16,7 @@ SHOW S L=0  ;changed 9/18/00 by CLA for OR*3*91:
  .. S ORTXT=$E($P(^XUTL("OR",$J,"ORV",P,X),"^"),1,ORTB-5)
  .. F  Q:'(ORTXT["|SP")  S ORTXT=$P(ORTXT,"|",1)_$$SPACE(+$P($P(ORTXT,"|",2),"SP",2))_$P(ORTXT,"|",3,999)
  .. W ORTXT
- .. I ^(X)="MORE...^999",'$D(OR9(999)) S I=999,OR9(I)=^(X) D S91
+ .. I ^(X)="MORE...^+",'$D(OR9("+")) S I="+",OR9(I)=^(X) D S91  ;DJE/VM *322 replace 999 with +
  Q
 HDR S (DX,DY)=0 X ^%ZOSF("XY") X:$D(ORUS("T")) ORUS("T") S ORHL=$Y K DX,DY Q
 S9 S OR9(I)=ORUS(900,I) S:'$L($P(OR9(I),"^",2)) $P(OR9(I),"^",2)=900+I

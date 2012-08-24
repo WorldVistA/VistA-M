@@ -1,5 +1,5 @@
-PXRMCDUE ;SLC/PKR - Custom date due calculation routines. ;08/29/2008
- ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMCDUE ;SLC/PKR - Custom date due calculation routines. ;02/04/2011
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18**;Feb 04, 2005;Build 152
  ;
  ;========================================================
 CDBUILD(STRING,DA) ;Given a custom date due string build the data
@@ -10,9 +10,10 @@ CDBUILD(STRING,DA) ;Given a custom date due string build the data
  I $G(DIUTIL)="VERIFY FIELDS" Q
  ;Do not execute as part of exchange.
  I $G(PXRMEXCH) Q
- N FDA,FILIST,FREQLIST,FUNCTION,IENB,IENS,IND,MSG,NARGS,PFSTACK
+ N FDA,FILIST,FREQLIST,FUNCTION,IENB,IENS,IND,MSG
+ N OPLIST,NARGS,PFSTACK
  S STRING=$$UP^XLFSTR(STRING)
- D PARSE(STRING,.FUNCTION,.NARGS,.FILIST,.FREQLIST)
+ D PARSE(STRING,.FUNCTION,.NARGS,.FILIST,.FREQLIST,.OPLIST)
  S IENS=DA_","
  S FDA(811.9,IENS,46)=FUNCTION,FDA(811.9,IENS,47)=NARGS
  S IENB=DA
@@ -21,25 +22,27 @@ CDBUILD(STRING,DA) ;Given a custom date due string build the data
  . S IENS="+"_IENB_","_DA_","
  . S FDA(811.948,IENS,.01)=FILIST(IND)
  . S FDA(811.948,IENS,.02)=FREQLIST(IND)
+ . S FDA(811.948,IENS,.03)=OPLIST(IND)
  D UPDATE^DIE("","FDA","","MSG")
  I $D(MSG) D
- . W !,"The update failed, UPDATE^DIE returned the following error message:"
+ . W !,"The Custom Date Due update failed, UPDATE^DIE returned the following error message:"
  . D AWRITE^PXRMUTIL("MSG")
  Q
  ;
  ;========================================================
 CDUEDATE(DEFARR,FIEVAL) ;Do the custom date due calculation and return
  ;the due date.
- N DATE,DDUE,DLIST,FI,FREQ,FUNCTION,IND,NARGS,TEMP
+ N DATE,DDUE,DLIST,FI,FREQ,FUNCTION,IND,PM,NARGS,TEMP
  S FUNCTION=$P(DEFARR(46),U,1)
  S NARGS=$P(DEFARR(46),U,2)
  F IND=1:1:NARGS D
  . S TEMP=DEFARR(47,IND,0)
  . S FI=$P(TEMP,U,1)
  . S FREQ=$P(TEMP,U,2)
+ . S PM=$P(TEMP,U,3)
  . S DATE=$S(FIEVAL(FI):+FIEVAL(FI,"DATE"),1:0)
  . I DATE>0 S DATE=$$FULLDATE^PXRMDATE(DATE)
- . S DLIST(IND)=$$NEWDATE^PXRMDATE(DATE,FREQ)
+ . S DLIST(IND)=$$NEWDATE^PXRMDATE(DATE,PM,FREQ)
  S TEMP=$S(FUNCTION="MAX_DATE":$$MAXDATE(NARGS,.DLIST),FUNCTION="MIN_DATE":$$MINDATE(NARGS,.DLIST),FUNCTION="RANK_DATE":$$RANKDATE(NARGS,.DLIST),1:0)
  S DDUE=$P(TEMP,U,1)
  I DDUE=0 Q -1
@@ -47,8 +50,9 @@ CDUEDATE(DEFARR,FIEVAL) ;Do the custom date due calculation and return
  S TEMP=DEFARR(47,IND,0)
  S FI=$P(TEMP,U,1)
  S FREQ=$P(TEMP,U,2)
+ S PM=$P(TEMP,U,3)
  S DATE=+$G(FIEVAL(FI,"DATE"))
- S ^TMP(PXRMPID,$J,PXRMITEM,"zCDUE")=FI_U_FREQ_U_DATE
+ S ^TMP(PXRMPID,$J,PXRMITEM,"zCDUE")=FI_U_FREQ_U_PM_U_DATE
  Q DDUE
  ;
  ;========================================================
@@ -79,21 +83,23 @@ MINDATE(NARGS,DLIST) ;Return the minimum date from a list of dates in DLIST.
  ;
  ;========================================================
 OUTPUT(CDUEDATA,DEFARR) ;Build the custom date due output text.
- N CDUEFI,ENTRY,FINAME,TEXT,VPTR
+ N CDUEFI,ENTRY,FINAME,PM,TEXT,VPTR
  S CDUEFI=$P(CDUEDATA,U,1)
+ S PM=$P(CDUEDATA,U,3)
  S VPTR=$P(^PXD(811.9,DEFARR("IEN"),20,CDUEFI,0),U,1)
  S ENTRY="^"_$P(VPTR,";",2)_$P(VPTR,";",1)_",0)"
  S FINAME=$P(@ENTRY,U,1)
  S TEXT="Custom date due based on date of finding "_CDUEFI_" ("_FINAME_")"
- S TEXT=TEXT_" plus frequency of "_$P(CDUEDATA,U,2)_"."
+ S TEXT=TEXT_" "_PM_" frequency of "_$P(CDUEDATA,U,2)_"."
  Q TEXT
  ;
  ;========================================================
-PARSE(STRING,FUNCTION,NARGS,FILIST,FREQLIST) ;Parse a custom date due
+PARSE(STRING,FUNCTION,NARGS,FILIST,FREQLIST,OPLIST) ;Parse a custom date due
  ;string and return the function, number of arguments, finding list,
- ;and frequency list. An argument has the form M+NF where M is a
- ;finding number, N is an integer, and F is D, M, or Y.
- N IND,OPER,PFSTACK
+ ;frequency list, and operator list. An argument has the form M+NU or
+ ;M-NU where M is a finding number, N is an integer, and U is H, D, W,
+ ;M, or Y.
+ N IND,OPER,PFSTACK,PM
  S OPER=","
  D POSTFIX^PXRMSTAC(STRING,OPER,.PFSTACK)
  S FUNCTION=$$UP^XLFSTR(PFSTACK(1))
@@ -101,8 +107,10 @@ PARSE(STRING,FUNCTION,NARGS,FILIST,FREQLIST) ;Parse a custom date due
  F IND=2:1:PFSTACK(0) D
  . I PFSTACK(IND)=OPER Q
  . S NARGS=NARGS+1
- . S FILIST(NARGS)=$P(PFSTACK(IND),"+",1)
- . S FREQLIST(NARGS)=$P(PFSTACK(IND),"+",2)
+ . S PM=$S(PFSTACK(IND)["+":"+",PFSTACK(IND)["-":"-",1:"?")
+ . S FILIST(NARGS)=$P(PFSTACK(IND),PM,1)
+ . S FREQLIST(NARGS)=$P(PFSTACK(IND),PM,2)
+ . S OPLIST(NARGS)=PM
  Q
  ;
  ;========================================================
@@ -121,8 +129,8 @@ VCDUE(STRING,DA) ;Make sure a custom date due string is valid.
  I $G(PXRMEXCH) Q 1
  I '$D(DA) Q 1
  I $L(STRING)>245 Q 0
- N FILIST,FREQLIST,FUNCTION,IND,NARGS,TEXT,VALID
- D PARSE(STRING,.FUNCTION,.NARGS,.FILIST,.FREQLIST)
+ N FILIST,FREQLIST,FUNCTION,IND,OPLIST,NARGS,TEXT,VALID
+ D PARSE(STRING,.FUNCTION,.NARGS,.FILIST,.FREQLIST,.OPLIST)
  S VALID=$$VFUN(FUNCTION)
  I 'VALID D
  . S TEXT=FUNCTION_" is not a valid custom date due function."
@@ -132,18 +140,14 @@ VCDUE(STRING,DA) ;Make sure a custom date due string is valid.
  .. S TEXT="Finding number "_FILIST(IND)_" is not a valid reminder finding"
  .. D EN^DDIOL(TEXT)
  .. S VALID=0
- . I '$$VFREQ(FREQLIST(IND)) D
+ . I OPLIST(IND)="?" D
+ .. S TEXT="'+' and '-' are the only valid operators."
+ .. D EN^DDIOL(TEXT)
+ .. S VALID=0
+ . I '$$VFREQ^PXRMINTR(FREQLIST(IND)) D
  .. S TEXT=FREQLIST(IND)_" is not a valid frequency."
  .. D EN^DDIOL(TEXT)
  .. S VALID=0
- Q VALID
- ;
- ;========================================================
-VFREQ(FREQ) ;Make sure FREQ is a valid frequency.
- N VALID
- S VALID=1
- S FREQ=$$UP^XLFSTR(FREQ)
- I (FREQ'?1N.N1"D"),(FREQ'?1N.N1"M"),(FREQ'?1N.N1"Y") S VALID=0
  Q VALID
  ;
  ;========================================================
@@ -169,19 +173,20 @@ TEXT ;Custom Date Due help text.
  ;; FUNCTION(ARG1,ARG2,...,ARGN)
  ;;
  ;;FUNCTION can be one of the following:
- ;; MAX_DATE - return the maximum date from the argument list
- ;; MIN_DATE - return the minimum date from the argument list
+ ;; MAX_DATE  - return the maximum date from the argument list
+ ;; MIN_DATE  - return the minimum date from the argument list
  ;; RANK_DATE - going from left to right return the first non-zero date
  ;;             from the argument list
  ;;
  ;;The arguments have the form:
- ;; M+FREQ where M is a finding number and FREQ is a number followed by
- ;; D for days, M for months, or Y for years. Each argument is converted
- ;; to a date by adding the frequency to the date of the finding.
+ ;; F+IU or F-IU where F is a finding number, I is a integer, and U
+ ;; is one of the following units: H (hours), D (days), W (weeks),
+ ;; M (months), or Y (years). Each argument is converted to a date
+ ;; by adding or subtracting I*U with the date of the finding.
  ;;
- ;;Here is an example: MAX_DATE(1+6M,3+1Y)
+ ;;Here is an example: MAX_DATE(1+6M,3-1W)
  ;;This will take the date of finding 1 and add 6 months, the date of finding 3
- ;;and add 1 year and set the date due to the maximum of those two dates.
+ ;;and subtract 1 week and set the date due to the maximum of those two dates.
  ;;
  ;;**End Text**
  Q

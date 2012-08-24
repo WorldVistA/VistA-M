@@ -1,5 +1,5 @@
 PSIVORC1 ;BIR/MLM-PROCESS INCOMPLETE IV ORDER - CONT ;13 Jan 98 / 11:36 AM
- ;;5.0;INPATIENT MEDICATIONS ;**1,37,69,110,157,134,181,263**;16 DEC 97;Build 51
+ ;;5.0;INPATIENT MEDICATIONS ;**1,37,69,110,157,134,181,263,270**;16 DEC 97;Build 5
  ;
  ; Reference to ^DD("DD" is supported by DBIA 10017.
  ; Reference to ^DD( is supported by DBIA 2255.
@@ -28,6 +28,18 @@ PSIVORC1 ;BIR/MLM-PROCESS INCOMPLETE IV ORDER - CONT ;13 Jan 98 / 11:36 AM
  I $G(P("RES"))'="R",$G(PSGORD)["P" N IVCAT,IVTYPTMP S IVCAT=$P($G(^PS(53.1,+PSGORD,2.5)),"^",5) S IVTYPTMP=$S((P(9)]""):"P",$G(P(5)):"P",$G(P(23))="P":"P",1:"")
  S DIR("B")=$S($G(IVCAT)="C"!($G(IVTYPTMP)="A"):"ADMIXTURE",$G(IVCAT)="I"!($G(IVTYPTMP)="P"):"PIGGYBACK",1:"ADMIXTURE")
  D DIRQ,^DIR S:$D(DTOUT)!(X="^") DONE=1 Q:DONE  G:$E(X)="^" 53 S P(4)=Y D:"CS"[P(4) @P(4)
+ ;*PSJ*5*270 - Remove bottle from IVPB
+ N PSG53 I Y="P" D
+ .N ADCNT,PSGBTL F ADCNT=0:0 S ADCNT=$O(^PS(53.1,+PSGORD,"AD",ADCNT)) Q:('ADCNT)!$G(PSGBTL)  D
+ ..I $P(^PS(53.1,+PSGORD,"AD",ADCNT,0),U,3)]"" S PSGBTL=1
+ .I '$G(PSGBTL) Q
+ .W !!,"A bottle value is not allowed with a Piggyback IV order.  Do you wish to delete the bottle value(s)"
+ .S %=1 D YN^DICN I %'=1 S PSG53=1 Q
+ .N DIE,DA,DR
+ .F ADCNT=0:0 S ADCNT=$O(^PS(53.1,+PSGORD,"AD",ADCNT)) Q:'ADCNT  D
+ ..S $P(DRG("AD",ADCNT),U,4)=""
+ I $G(PSG53) G 53
+ ;*End PSJ*5*270
  I PSIVAC'="PN" D ENT^PSIVCAL K %DT S X=P(2),%DT="RTX" D ^%DT S P(2)=+Y D ENSTOP^PSIVCAL K %DT S X=P(3),%DT="RTX" D ^%DT S P(3)=+Y
 OTYP ; Get order type, display type.
  S P("DTYP")=$S(P(4)="":0,P(4)="P"!(P(23)="P")!(P(5)):1,P(4)="H":2,1:3) S:PSIVAC'="CF" P("OT")=$S(P(4)="A":"F",P(4)="H":"H",1:"I")

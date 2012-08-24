@@ -1,5 +1,5 @@
-DGENA ;ALB/CJM,ISA/KWP,Zoltan,LBD,CKN,EG,ERC - Enrollment API - Retrieve Data ; 8/15/08 11:08am
- ;;5.3;Registration;**121,122,147,232,314,564,672,659,653,688**;Aug 13, 1993;Build 29
+DGENA ;ALB/CJM,ISA/KWP,Zoltan,LBD,CKN,EG,ERC,TDM - Enrollment API - Retrieve Data ; 3/3/11 3:36pm
+ ;;5.3;Registration;**121,122,147,232,314,564,672,659,653,688,841**;Aug 13, 1993;Build 7
  ;
 FINDCUR(DFN) ;
  ;Description: Used to find a patients current enrollment.
@@ -132,6 +132,7 @@ GET(DGENRIEN,DGENR) ;
  ;     "ELIG","UNEMPLOY"        Unemployable
  ;     "ELIG","CVELEDT"         Combat Veteran End Date
  ;     "ELIG","SHAD"            SHAD Indicated
+ ;     "ELIG","MOH"             Medal of Honor Indicated
  ;     "DATETIME"      Date/Time Entered
  ;     "USER"          Entered By
  ;    
@@ -179,6 +180,7 @@ GET(DGENRIEN,DGENR) ;
  S DGENR("ELIG","CVELEDT")=$P(NODE,"^",18)
  S DGENR("ELIG","SHAD")=$P(NODE,"^",19)
  S DGENR("ELIG","RADEXPM")=$P(NODE,"^",21)
+ S DGENR("ELIG","MOH")=$P(NODE,"^",23)
  ;S DGENCDZZ=1 ; for CD Testing (disabled).
  S NODE=$G(^DGEN(27.11,DGENRIEN,"U"))
  S DGENR("DATETIME")=$P(NODE,"^")

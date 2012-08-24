@@ -1,44 +1,57 @@
-IBCSC9 ;ALB/MJB - MCCR SCREEN 9 (LOCAL SCREEN 9 SPECIFIC INFO) ;27 MAY 99 10:20
- ;;2.0;INTEGRATED BILLING;**52,51**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+IBCSC9 ;ALB/BI - MCCR SCREEN 9 (AMBULANCE INFO)  ;11 MAY 2011 10:20
+ ;;2.0;INTEGRATED BILLING;**52,51,447,473**;11-MAY-2011;Build 29
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
-EN N IBCOB,IBSCRN,IBANY,IBXERR
- S IBCOB=$$COBN^IBCEF(IBIFN),IBANY=1
- S IBSCRN=$$LOCSCRN(IBIFN) ;Find screen from file 353
- I IBSCRN="" S IBANY="No local screen has been defined for this form type"
- I '$D(^DGCR(399,IBIFN,"I"_IBCOB)),'$P($G(^DGCR(399,IBIFN,"M")),U,11) S IBANY="Bill must have insurance co or resp institution to use this screen"
- D ^IBCSCU S IBSR=9,IBSR1=""
+EN ; Main Entry Point
+ N IBACI,IBACIX,IB,IBT
+ D ^IBCSCU
+ S IBT=$P($G(^DGCR(399,IBIFN,0)),U,19)
+ S IBSR=9,IBSR1="",IBV1=$S(IBT=3:"11",IBV:"11",1:"00")
+ S IB("U")=$G(^DGCR(399,IBIFN,"U"))
+ S IB("U1")=$G(^DGCR(399,IBIFN,"U1"))
+ S IB("U4")=$G(^DGCR(399,IBIFN,"U4"))
+ S IB("U5")=$G(^DGCR(399,IBIFN,"U5"))
+ S IB("U6")=$G(^DGCR(399,IBIFN,"U6"))
+ S IB("U7")=$G(^DGCR(399,IBIFN,"U7"))
+ S IB("U8")=$G(^DGCR(399,IBIFN,"U8"))
+ M IB("U9")=^DGCR(399,IBIFN,"U9")
  D H^IBCSCU
- N IBWW,Z,IBPARMS
- ;Call formatter to extract data for screen here ... read thru the array
- ; ^TMP("IBXDATA",$J,1,PG,LINE,COL)=DATA to 'display' the data fields
- S IBPARMS(1)="BILL-SEARCH",IBPARMS(3)=$S($$INPAT^IBCEF(IBIFN):"I",1:"O"),IBPARMS(2)=$P($G(^DGCR(399,IBIFN,"I"_IBCOB)),U)
- S IBWW=""
- K ^TMP("IBXDATA",$J),^TMP("IBXEDIT",$J),IBXERR
- D FPRE^IBCEFG7(+IBSCRN,0,.IBXERR) ;Form pre-processor
- I $D(IBXERR) S IBANY=IBXERR
- I IBANY D
- .N VADM
- .S IBANY=$$EXTRACT^IBCEFG(IBSCRN,IBIFN,1,.IBPARMS) S:'IBANY IBANY="No local data fields are needed for this bill type/insurance company"
- I IBANY D
- .F Z0=1:1:$O(^TMP("IBXDATA",$J,1,1,""),-1) W ! S Z1="" F  S Z1=$O(^TMP("IBXDATA",$J,1,1,Z0,Z1)) Q:'Z1  S Z2=^(Z1),Z3="" S:$E(Z2)="[" Z3=+$P(Z2,"[",2),Z2=$P(Z2,"]",2,999) W ?Z1 W:Z3 "[",IBVI,Z3,IBVO,"]" W Z2
- .S IBV1=""
- .I $S($G(IBV)=1:0,1:$$STATOK^IBCEU4(IBIFN,"12")) S Z="" F  S Z=$O(^TMP("IBXEDIT",$J,Z)) Q:'Z  S $E(IBV1,Z)=0
- I 'IBANY S IBV1="1" W !!,IBANY
+ S Z=1,IBW=1 X IBWW W " Ambulance Transport Data"
+ W !,?41,"D/O Location: ",$P(IB("U6"),U)
+ W !,?4,"P/U Address1: ",$P(IB("U5"),U,2),?41,"D/O Address1: ",$P(IB("U6"),U,2)
+ W !,?4,"P/U Address2: ",$P(IB("U5"),U,3),?41,"D/O Address2: ",$P(IB("U6"),U,3)
+ W !,?4,"P/U City: ",$P(IB("U5"),U,4),?41,"D/O City: ",$P(IB("U6"),U,4)
+ W !,?4,"P/U State/Zip: " W:$P(IB("U5"),U,5)'="" $P($G(^DIC(5,$P(IB("U5"),U,5),0)),U,2)
+ W:$P(IB("U5"),U,6)]"" "/"_$P(IB("U5"),U,6)
+ W ?41,"D/O State/Zip: " W:$P(IB("U6"),U,5)'="" $P($G(^DIC(5,$P(IB("U6"),U,5),0)),U,2)
+ W:$P(IB("U6"),U,6)]"" "/"_$P(IB("U6"),U,6)
+ W !,?4,"Patient Weight: ",$P(IB("U7"),U,1),?41,"Transport Distance: ",$P(IB("U7"),U,3)
+ W !,?4,"Transport Reason: " I $P(IB("U7"),U,2)'="" D IBWP($$GET1^DIQ(353.4,$P(IB("U7"),U,2)_",",.02),22,55)
+ W !,?4,"R/T Purpose: " D IBWP($P(IB("U7"),U,4),17,60)
+ W !,?4,"Stretcher Purpose: " D IBWP($P(IB("U7"),U,5),23,54)
+ S Z=2,IBW=2 X IBWW W " Ambulance Certification Data"
+ W !,?4,"Condition Indicator:"
+ S IBACIX=0
+ F  S IBACIX=$O(IB("U9",IBACIX)) Q:+IBACIX=0  D
+ . S IBACI=IB("U9",IBACIX,0)
+ . W ?25,$$GET1^DIQ(353.5,IBACI_",",.01)," - ",$$GET1^DIQ(353.5,IBACI_",",.02),!
+ K IB("U9")
+ W !
  G ^IBCSCP
- ;
-EDIT ;
- N Z,DR,DA,DIE,FLDS,Z0,IBCUFT
- S IBCUFT=$P($G(^DGCR(399,IBIFN,0)),U,19)
- F Z=1:1:$L(IBDR20,",") S Z0=$P(IBDR20,",",Z) D
- .S DR=""
- .S IBGRP=Z0-90,Z0=0 F  S Z0=$O(^TMP("IBXEDIT",$J,IBGRP,Z0)) Q:'Z0  S DR=DR_$S($L(DR):";",1:"")_^(Z0)
- .I $L(DR) S DIE=+$G(^IBE(353,IBCUFT,2)),DA=IBIFN D ^DIE
  Q
  ;
-LOCSCRN(IBIFN) ; Find the local screen from the bill form type
- Q $P($G(^IBE(353,+$P($G(^DGCR(399,IBIFN,0)),U,19),2)),U,9)
+IBWP(IBX,IBLM,IBRM) ;
+ K ^UTILITY($J,"W")
+ N X,Y,DIWF,DIWL,DIWR S X=IBX
+ S DIWL=1,DIWR=IBRM,DIWF="" D ^DIWP
+ I $D(^UTILITY($J,"W")) S Y=0 F  S Y=$O(^UTILITY($J,"W",1,Y)) Q:'Y  W:Y>1 !,?(IBLM) W $G(^UTILITY($J,"W",1,Y,0))
+ K ^UTILITY($J,"W")
+ Q
  ;
-Q Q
+SCREEN1(DA1) ;
+ N A,RESPONSE S RESPONSE=0
+ I +$P($G(^DGCR(399,DA1,"U9",0)),U,4)<5 S RESPONSE=1 Q RESPONSE
+ S A(1,"F")="!?35",A(1)="Maximum of 5 Condition Indicators allowed"
+ D EN^DDIOL(.A)
+ Q RESPONSE
  ;IBCSC9
- ;

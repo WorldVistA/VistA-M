@@ -26,7 +26,7 @@ INIT ;
  S:'$D(XMC("BATCH")) XMC("BATCH")=0
  S XMTLER=0
  Q
-SYNCH ; Recv: "220 REMOTE.MED.VA.GOV MailMan 8.0 ready"
+SYNCH ; Recv: "220 REMOTE.DOMAIN.EXT MailMan 8.0 ready"
  I XMC("BATCH") S XMC("MAILMAN")=+$P($T(XMS+1),";",3) Q
  S XMC("MAILMAN")=0
  N XMI,XMX
@@ -37,8 +37,8 @@ SYNCH ; Recv: "220 REMOTE.MED.VA.GOV MailMan 8.0 ready"
  . I $E(XMRG)'=2 S XMSG="NOOP" X XMSEN Q
  Q
 HELO(XMINST,XMSITE) ;
- ; Send: "HELO LOCAL.MED.VA.GOV <security num>"
- ; Recv: "250 OK REMOTE.MED.VA.GOV <security num> [8.0,DUP,SER,FTP]"
+ ; Send: "HELO LOCAL.DOMAIN.EXT <security num>"
+ ; Recv: "250 OK REMOTE.DOMAIN.EXT <security num> [8.0,DUP,SER,FTP]"
  N XMINREC,XMSVAL,I
  S XMINREC=^DIC(4.2,XMINST,0)
  S XMSVAL=$P(XMINREC,U,15) ; Security code
@@ -124,8 +124,8 @@ RSET ; Send: "RSET"
  Q
 TURN(XMINST) ; Turn around channel
  ; Send: "TURN"
- ; Recv: "250 REMOTE.MED.VA.GOV has messages to export"
- ;   or: "502 REMOTE.MED.VA.GOV has no messages to export"
+ ; Recv: "250 REMOTE.DOMAIN.EXT has messages to export"
+ ;   or: "502 REMOTE.DOMAIN.EXT has no messages to export"
  Q:XMC("TURN")!XMC("BATCH")
  I $F("Yy",$P(^DIC(4.2,XMINST,0),U,16))>1 D  Q
  . D DOTRAN^XMC1(42355.1,XMSITE) ; TURN command disabled for |1|

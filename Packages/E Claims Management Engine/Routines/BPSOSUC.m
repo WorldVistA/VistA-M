@@ -1,5 +1,5 @@
 BPSOSUC ;BHAM ISC/FCS/DRS/FLS - ECME utilities ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ; CATEG returns the status of a Transaction or Log of Transaction
@@ -56,7 +56,7 @@ CATEG(N,WANTREV) ;
  ; During a reversal/resubmit, you may get the next line between the reversal and
  ;   and the resubmit
  I 'CLAIM S RETVAL="E OTHER" Q RETVAL
- I WANTREV S X=$$GET1^DIQ(FILENUM,N_",",401,"I") I X D  Q RETVAL
+ I WANTREV,TRANTYPE="U" D  Q RETVAL
  . S RESP=$$GET1^DIQ(FILENUM,N_",",402,"I")
  . S RETVAL="E REVERSAL "
  . I 'RESP S RETVAL=RETVAL_"OTHER" Q

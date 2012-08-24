@@ -1,5 +1,5 @@
 IBCSC5 ;ALB/MJB - MCCR SCREEN 5 (OPT. EOC) ;27 MAY 88 10:15
- ;;2.0;INTEGRATED BILLING;**52,125,51,210,266,288,287,309,389**;21-MAR-94;Build 6
+ ;;2.0;INTEGRATED BILLING;**52,125,51,210,266,288,287,309,389,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRSC5
@@ -21,6 +21,7 @@ EN I $$INPAT^IBCEF(IBIFN) G ^IBCSC4
  I +Y S Y=$$DX^IBCSC4(+Y,IBDATE) I +Y W !?4,"***There are more diagnoses associated with this bill.***"
 OP S Z=3,IBW=1 X IBWW W " OP Visits  : " F I=0:0 S I=$O(^DGCR(399,IBIFN,"OP",I)) Q:'I  S Y=I X ^DD("DD") W:$X>67 !?17 W Y_", "
  S:$D(^DGCR(399,"OP")) DGOPV=1 I '$O(^DGCR(399,IBIFN,"OP",0)) W IBU
+ W !,?4,"Type       : ",$$GET1^DIQ(399,IBIFN_",",158)  ; Added with IB*2.0*447 BI
  S Z=4,IBW=1 X IBWW W " Cod. Method: ",$S($P(IB(0),U,9)="":IBUN,$P(IB(0),U,9)=9:"ICD-9-CM",$P(IB(0),U,9)=4:"CPT-4",1:"HCPCS")
  D WRT:$D(IBPROC)
  S Z=5,IBW=1 X IBWW W " Rx. Refills: " S Y=$$RX I 'Y W IBUN

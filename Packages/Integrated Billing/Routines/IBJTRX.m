@@ -1,15 +1,16 @@
 IBJTRX ;ALB/ESG - TPJI ePharmacy ECME claim information ;22-Oct-2010
- ;;2.0;INTEGRATED BILLING;**435**;21-MAR-94;Build 27
+ ;;2.0;INTEGRATED BILLING;**435,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference to $$CLAIM^BPSBUTL supported by IA# 4719
  ; Reference to BPS RESPONSES file# 9002313.03 supported by IA# 4813
  ; Reference to $$NPI^XUSNPI supported by IA# 4532
+ ; Reference to ^BPSVRX supported by IA# 5723
  ;
  Q
  ;
 EN ; -- main entry point for IBJT ECME RESP INFO
- N IBZ,IBRXDATA,IBRXIEN,IBRXFILL,IBCOBN,IBBPS,X,Y
+ N IBZ,IBRXDATA,IBRXIEN,X,Y
  D FULL^VALM1
  I '$G(IBIFN) W !!,"No Claim Defined!" D PAUSE^VALM1 G EX
  I '$$ISRX^IBCEF1(IBIFN) W !!,"Not available. This is not a Pharmacy Claim." D PAUSE^VALM1 G EX
@@ -20,9 +21,6 @@ EN ; -- main entry point for IBJT ECME RESP INFO
  S IBRXDATA=$G(^IBA(362.4,IBZ,0))
  S IBRXIEN=+$P(IBRXDATA,U,5)            ; RX ien ptr file 52
  I 'IBRXIEN W !!,"Rx IEN cannot be determined." D PAUSE^VALM1 G EX
- S IBRXFILL=+$P(IBRXDATA,U,10)          ; rx fill#
- S IBCOBN=+$$COBN^IBCEF(IBIFN)          ; current payer sequence #
- S IBBPS=$$CLAIM^BPSBUTL(IBRXIEN,IBRXFILL,IBCOBN)
  ;
  D EN^VALM("IBJT ECME RESP INFO")
 EX ;
@@ -35,8 +33,17 @@ HDR ; -- header code
  ;
 INIT ; -- init variables and list array
  N IBM1,ECME,ECMEAP,RXORG,DOCIEN,PHARMNPI,DOCNPI,RESPIEN,ZR,RSPSUB,ZM,BPSM,BPSMCOB,IBLINE,ZC,ZCTOT,ZCN
+ N IBZ,IBRXDATA,IBRXIEN,IBRXFILL,IBCOBN,IBBPS
  K ^TMP("IBJTRX",$J)
  S VALMCNT=0
+ ;
+ S IBZ=+$O(^IBA(362.4,"C",IBIFN,0))
+ S IBRXDATA=$G(^IBA(362.4,IBZ,0))
+ S IBRXIEN=+$P(IBRXDATA,U,5)            ; RX ien ptr file 52
+ S IBRXFILL=+$P(IBRXDATA,U,10)          ; rx fill#
+ S IBCOBN=+$$COBN^IBCEF(IBIFN)          ; current payer sequence #
+ S IBBPS=$$CLAIM^BPSBUTL(IBRXIEN,IBRXFILL,IBCOBN)    ; DBIA 4719
+ ;
  S IBM1=$G(^DGCR(399,IBIFN,"M1"))
  S ECME=$P($P(IBM1,U,8),";",1)               ; ECME#
  S ECMEAP=$P(IBM1,U,9)                       ; ECME approval number
@@ -69,7 +76,7 @@ INIT ; -- init variables and list array
  ;
  D SET(" ")
  S IBLINE=$$SETL("",$P(IBRXDATA,U,1)_" / "_IBRXFILL,"Rx No",31,11,1)
- S IBLINE=$$SETL(IBLINE,$$FMTE^XLFDT($P(IBRXDATA,U,3),"2Z"),"Fill Date",8,15,40)
+ S IBLINE=$$SETL(IBLINE,$$FMTE^XLFDT($P(IBRXDATA,U,3),"2Z"),"Date of Svc",8,15,40)
  D SET(IBLINE)
  ;
  S IBLINE=$$SETL("",$$RXAPI1^IBNCPUT1(IBRXIEN,6,"E"),"Drug Name",36,11,1)
@@ -160,6 +167,32 @@ INIT ; -- init variables and list array
  ;
 INITX ;
  D SET(" "),SET(" ")
+ Q
+ ;
+VER ; Action to launch the View ePharmacy Rx report
+ N BPSVRX
+ K ^TMP("BPSVRX-TPJI",$J)
+ D FULL^VALM1
+ I $G(IBRXDATA)="" W !!,"System error. IBRXDATA missing." D PAUSE^VALM1 G VERX
+ ;
+ ; save the current TPJI display array data
+ M ^TMP("BPSVRX-TPJI",$J,"IBJTCA")=^TMP("IBJTCA",$J)
+ M ^TMP("BPSVRX-TPJI",$J,"IBJTRX")=^TMP("IBJTRX",$J)
+ M ^TMP("BPSVRX-TPJI",$J,"IBTPJI")=^TMP($J,"IBTPJI")
+ ;
+ S BPSVRX("RXIEN")=+$P(IBRXDATA,U,5)            ; RX ien ptr file 52
+ S BPSVRX("FILL#")=+$P(IBRXDATA,U,10)           ; rx fill#
+ D ^BPSVRX                                      ; DBIA #5723
+ ;
+ ; After returning from this List Manager report, we need to rebuild
+ ; the display array for the TPJI screens because they are killed by the report.
+ I '$D(^TMP("IBJTCA",$J)) M ^TMP("IBJTCA",$J)=^TMP("BPSVRX-TPJI",$J,"IBJTCA")
+ I '$D(^TMP("IBJTRX",$J)) M ^TMP("IBJTRX",$J)=^TMP("BPSVRX-TPJI",$J,"IBJTRX")
+ I '$D(^TMP($J,"IBTPJI")) M ^TMP($J,"IBTPJI")=^TMP("BPSVRX-TPJI",$J,"IBTPJI")
+ ;
+VERX ;
+ S VALMBCK="R"
+ K ^TMP("BPSVRX-TPJI",$J)
  Q
  ;
 HELP ; -- help code

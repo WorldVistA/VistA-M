@@ -109,7 +109,7 @@ COMPILE1(DOCTYPE,CNTR) ; compiles each type of document separately
     .I $S(CNTR=CNT:1,CNT#150=0:1,1:0) D
        ..S ^XTMP("RCTOPD",$J,"BUILD",1)=SITE_U_$TR($J(SEQ,2)," ",0)_U_$TR($J(TSEQ,2)," ",0)_U_(REC-1)_U_DOCAMT_U
        ..S XMDUZ="AR PACKAGE"
-       ..S XMY("XXX@Q-TOP.MED.VA.GOV")=""
+       ..S XMY("XXX@Q-TOP.DOMAIN.EXT")=""
        ..S XMY("G.TOP")=""
        ..S XMSUB=SITE_"/TOP TRANSMISSION/SEQ#: "_SEQ_"/"_$$NOW()
        ..S XMTEXT="^XTMP(""RCTOPD"","_$J_",""BUILD"","

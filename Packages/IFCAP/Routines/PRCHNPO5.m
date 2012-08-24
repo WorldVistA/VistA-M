@@ -1,5 +1,5 @@
 PRCHNPO5 ;WISC/RSD,RHD/DL-INPUT TRANSFORM FOR FILE 440,441,442 ;9/5/00  10:59
-V ;;5.1;IFCAP;**113**;Oct 20, 2000;Build 4
+V ;;5.1;IFCAP;**113,159**;Oct 20, 2000;Build 9
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN1 ;FILE 442, FCP #1
@@ -132,4 +132,9 @@ EN14 ;input transform of Contract Flag field 5, file 440
  Q
  ;
 VEN I $S('$D(^PRC(442,DA(1),1)):1,$P(^(1),U,1)="":1,1:0) W !!,"Vendor must be entered before items ! ",$C(7) K X
+ Q
+ ;
+ODATE ;PRC*5.1*159 'old date' handler call for P.O. Date exception in input template [PRCH DETAILED PURCHASE CARD]
+ K ^PRC(442,"AB",+$P(^PRC(442,DA,1),U,15),DA)
+ S $P(^PRC(442,DA,1),U,15)=""
  Q

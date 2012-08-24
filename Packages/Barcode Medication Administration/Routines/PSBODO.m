@@ -1,9 +1,15 @@
-PSBODO ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**5,21,24,38**;Mar 2004;Build 8
+PSBODO ;BRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;7/20/11 4:06pm
+ ;;3.0;BAR CODE MED ADMIN;**5,21,24,38,58**;Mar 2004;Build 37
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
  ; EN^PSJBCMA2/2830
+ ; GETPROVL^PSGSICH1/5653
+ ; INTRDIC^PSGSICH1/5654
+ ;
+ ;*58 - add sections to display Prv Override comments and Rph
+ ;      Interventions to this report for (critical drug/drug and all
+ ;      adverse reactions/allergies)
 EN ;
  ;
  ; Description:
@@ -17,7 +23,7 @@ EN ;
  Q
  ;
 DISPORD ;
- N PSBGBL,PSBOI,PSBHDR,PSJGLO
+ N PSBGBL,PSBOI,PSBHDR,PSJGLO,LINE,PSBPRV,PSBPV,PSBRPH,PSBRH,PSBOVR,I,X,Y
  S PSBOI=$$GET1^DIQ(53.69,PSBRPT_",",.09)
  D EN^PSJBCMA2(DFN,PSBOI)
  S PSJGLO="^TMP(""PSJ"""_","_$J
@@ -41,6 +47,19 @@ DISPORD ;
  .W !,"Provider: ",PSBMDX
  .I $E(PSBOTXT,1)="!"  S $E(PSBOTXT,1)=""
  .W !,"Spec Inst:      ",PSBOTXT
+ .;*58 override/intervention section * * *
+ .S PSBOVR=0
+ .D GETPROVL^PSGSICH1(DFN,PSBONX,.PSBPRV)
+ .D INTRDIC^PSGSICH1(DFN,PSBONX,.PSBRPH,2)
+ .S PSBPV=$S($D(PSBPRV)>1:1,1:0)
+ .S PSBRH=$S($D(PSBRPH)>1:1,1:0)
+ .I 'PSBPV,PSBRH D DSPPRV(.PSBPRV,132,2,26,1) S PSBOVR=1
+ .I PSBPV D DSPPRV(.PSBPRV,132,2,26) S PSBOVR=1
+ .I PSBPV,'PSBRH D DSPRPH(.PSBRPH,132,2,26,1) S PSBOVR=1
+ .I PSBRH D DSPRPH(.PSBRPH,132,2,26) S PSBOVR=1
+ .I PSBOVR W !,$TR($J("",75)," ","-")
+ .;*58 end override/intervention section * * *
+ .;
  .W !
  .I $D(PSBDDA(1)) D
  ..W !,"Dispense Drugs",!,"Drug Name",?40,"Units",?50,"Inactive Date"
@@ -71,4 +90,80 @@ DISPORD ;
  ...W !
  W !!
  D CLEAN^PSBVT K @(PSJGLO_")")
+ Q
+ ;
+DSPPRV(ARR,LN,IND,ALGN,NONE) ; Display Provider (CPRS) override reasons
+ ; ARR  = array with provider override text.
+ ; LN   = total width of report writable area.      (opt, 132 default)
+ ; IND  = indent for both left and right margins.      (opt,0 default)
+ ; ALGN = align colon on this column.                (opt, 25 default)
+ ; NONE = display empty Provider override msg.        (opt, 0 default)
+ ;
+ N CAT,QQ,OC,HDG,CTRTAB,TMPONX,LINE,L1,L2,XX
+ S LN=+$G(LN,132),IND=+$G(IND),ALGN=$G(ALGN,25),NONE=$G(NONE,0)
+ S LN=LN-(IND*2)    ;adj writeable area by both L & R margins
+ ;provider heading
+ W !!?IND,$TR($J("",LN)," ","=")
+ S HDG="** Current Provider Overrides for this order **"
+ S CTRTAB=(LN-$L(HDG))/2
+ W !?CTRTAB,HDG
+ W !?IND,$TR($J("",LN)," ","="),!
+ ;
+ ;special scenario when NO Prv overrides, but Rph Interventions do
+ I NONE W !?IND,"No Provider Overrides to display.",! Q
+ ;
+ ;provider body text
+ S TMPONX=$O(ARR("PROV",DFN,"")) I TMPONX D
+ .S QQ="" F  S QQ=$O(ARR("PROV",DFN,+TMPONX,QQ)) Q:QQ=""  D
+ ..S LINE=ARR("PROV",DFN,+TMPONX,QQ),XX=$F(LINE,":")
+ ..S L1=$J($E(LINE,1,XX),ALGN),L2=$E(LINE,XX+1,$L(LINE))
+ ..W !?IND,L1,L2
+ .W !
+ S CAT=0 F  S CAT=$O(ARR("PROVR",DFN,+TMPONX,CAT)) Q:'CAT  D
+ .S OC=0 F  S OC=$O(ARR("PROVR",DFN,+TMPONX,CAT,OC)) Q:'OC  D
+ ..S LINE=ARR("PROVR",DFN,+TMPONX,CAT,OC,0),XX=$F(LINE,":")
+ ..S L1=$J($E(LINE,1,XX),ALGN),L2=$E(LINE,XX+1,$L(LINE))
+ ..W !,?IND,$$WRAP^PSBO(IND,LN,LINE),!
+ Q
+ ;
+DSPRPH(ARR,LN,IND,ALGN,NONE) ; Display Pharmacist Interventions
+ ; ARR  = array with Pharmacist intervention text.               (opt)
+ ; LN   = total width of report writable area.       (opt,132 default)
+ ; IND  = indent for both left and right margins.     (opt, 0 default)
+ ; ALGN = align colon on this column.                (opt. 25 default)
+ ; NONE = display empty Pharmacist intervention msg.  (opt, 0 default)
+ ;
+ N FLD,WP,WPTAG,WPLIN,HDG,INT,CTRTAB,LINE,L1,L2,XX
+ S LN=+$G(LN,132),IND=+$G(IND),ALGN=$G(ALGN,25),NONE=$G(NONE,0)
+ S LN=LN-(IND*2)         ;adj writeable area by both L & R margins
+ ;
+ ;pharmacist heading
+ W !?IND,$TR($J("",LN)," ","=")
+ S HDG="** Current Pharmacist Interventions for this order **"
+ S CTRTAB=(LN-$L(HDG))/2
+ W !?CTRTAB,HDG
+ W !?IND,$TR($J("",LN)," ","="),!
+ ;
+ ;special scenario when NO Rph interventions, but Prv overrides do
+ I NONE W !?IND,"No Pharmacist Interventions to display.",! Q
+ ;
+ ;pharmacist body text
+ F INT=0:0 S INT=$O(ARR(DFN,PSBONX,INT)) Q:'INT  D
+ .F FLD=0:0 S FLD=$O(ARR(DFN,PSBONX,INT,FLD)) Q:'FLD  D
+ ..I FLD<1000 D
+ ...S LINE=ARR(DFN,PSBONX,INT,FLD),XX=$F(LINE,":")
+ ...S L1=$J($E(LINE,1,XX),ALGN),L2=$E(LINE,XX+1,$L(LINE))
+ ...W !?IND,L1,L2
+ ..I FLD>1000 D
+ ...S (WP,WPLIN,WPTAG)="",LIN1=1
+ ...F  S WP=$O(ARR(DFN,PSBONX,INT,FLD,WP)) Q:WP=""  D
+ ....S LINE=ARR(DFN,PSBONX,INT,FLD,WP)
+ ....I WP<1 D                          ;field Hdg line
+ .....S LINE=$J(LINE,ALGN) W !?IND,LINE
+ ....E  D                              ;detail WP lines
+ .....I 'LIN1 W !
+ .....W ?IND+ALGN,LINE
+ .....S LIN1=0
+ .W !
+ W !
  Q

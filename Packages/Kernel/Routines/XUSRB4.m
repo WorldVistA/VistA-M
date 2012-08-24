@@ -1,5 +1,5 @@
-XUSRB4 ;ISF/RWF - Build a temporary sign-on token ;01/06/10  09:26
- ;;8.0;KERNEL;**150,337,395,419,437,499,523**;Jul 10, 1995;Build 16
+XUSRB4 ;ISF/RWF - Build a temporary sign-on token ;10/12/11  14:53
+ ;;8.0;KERNEL;**150,337,395,419,437,499,523,573**;Jul 10, 1995;Build 3
  ;Per VHA Directive 2004-038, this routine should not be modified
  Q
  ;
@@ -83,8 +83,8 @@ CHECK(HL,TOUT) ;Check a Token
  S S=$$DECRYP^XUSRB1($E(S,2,$L(S)-1)) I S="" Q "0^Bad Token"
  S J=$P(S,"|"),T=$P(S,"|",2),D=$P(S,"|",3),M=$P(S,"|",4)
  ;Check token time
- S %=$$H3^%ZTM($H),TOUT=$G(TOUT,20)
- I T+TOUT<% D REMOVE(HL) Q "0^Token Expired" ;Token good for TOUT or 20 seconds
+ S %=$$H3^%ZTM($H),TOUT=$G(TOUT,90) ; P573 changed 20 to 90 JLI
+ I T+TOUT<% D REMOVE(HL) Q "0^Token Expired" ;Token good for TOUT or 90 seconds
  ;Check job
  ;Check that token has handle
  I M'=HL Q "0^Bad Token"

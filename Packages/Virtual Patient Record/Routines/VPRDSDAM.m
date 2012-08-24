@@ -1,20 +1,23 @@
 VPRDSDAM ;SLC/MKB -- Appointment extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;;Sep 01, 2011;Build 12
+ ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
+ ; ^DGS(41.1                     3796
+ ; ^DIC(42                      10039
+ ; ^SC                          10040
+ ; ^VA(200                      10060
  ; DIQ                           2056
  ; SDAMA301                      4433
- ; VADPT                        10061
  ;
  ; ------------ Get appointment(s) from VistA ------------
  ;
 EN(DFN,BEG,END,MAX,ID) ; -- find patient's [future] appointments
- N VPRX,VPRNUM,VPRDT,VPRCNT,VPRITM,X
+ N VPRX,VPRNUM,VPRDT,VPRCNT,VPRITM,VPRA,X
  S DFN=+$G(DFN) Q:DFN<1
  S BEG=$G(BEG,DT),END=$G(END,4141015),MAX=$G(MAX,9999)
- S VPRX(1)=BEG_";"_END,VPRX(4)=DFN,VPRX("FLDS")="1;2;3;10",VPRX("SORT")="P"
+ S VPRX(1)=BEG_";"_END,VPRX(4)=DFN,VPRX("FLDS")="1;2;3;10;13",VPRX("SORT")="P"
  ;
  ; get one appt
  I $L($G(ID)) D  Q
@@ -32,23 +35,36 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's [future] appointments
  . K VPRITM D EN1(VPRDT,.VPRITM) Q:'$D(VPRITM)
  . D XML(.VPRITM) S VPRCNT=VPRCNT+1
  K ^TMP($J,"SDAMA301",DFN)
+ ;
+ ; get scheduled admissions
+ S VPRA=0 F  S VPRA=$O(^DGS(41.1,"B",DFN,VPRA)) Q:VPRA<1  D  Q:VPRCNT'<MAX
+ . S VPRX=$G(^DGS(41.1,VPRA,0))
+ . Q:$P(VPRX,U,13)  Q:$P(VPRX,U,17)  ;cancelled or admitted
+ . S X=$P(VPRX,U,2) Q:X<BEG!(X>END)  ;out of date range
+ . K VPRITM D DGS(VPRA,.VPRITM) Q:'$D(VPRITM)
+ . D XML(.VPRITM) S VPRCNT=VPRCNT+1
  Q
  ;
 EN1(DATE,APPT) ; -- return an appointment in APPT("attribute")=value
  ;  Expects ^TMP($J,"SDAMA301",DFN,DATE)
- N X,HLOC,STS,CLS,SV,CSC,CSN K APPT
+ N X,HLOC,STS,CLS,SV,PRV K APPT
  S X=$G(^TMP($J,"SDAMA301",DFN,DATE))
- S DATE=+$G(DATE),HLOC=$P(X,U,2),STS=$P(X,U,3),CLS=$S($E(STS)="I":"I",1:"O")
+ S DATE=+$G(DATE),HLOC=$P(X,U,2),APPT("type")=$TR($P(X,U,10),";","^")
+ S STS=$P(X,U,3),CLS=$S($E(STS)="I":"I",1:"O")
  S APPT("id")="A;"_DATE_";"_+HLOC,APPT("dateTime")=DATE I HLOC D
  . S APPT("location")=$P(HLOC,";",2)
- . S CSC=$$GET1^DIQ(44,+HLOC_",",8,"I")
- . S CSN=$$GET1^DIQ(44,+HLOC_",",8,"E")
- . S APPT("clinicStop")=CSC_"^"_CSN
- . ;S APPT("type")=U_$P(HLOC,";",2)_" APPOINTMENT"
+ . S APPT("clinicStop")=$$AMIS^VPRDVSIT(+$P(X,U,13))
  . S SV=$$GET1^DIQ(44,+HLOC_",",9.5,"I")
  . I SV S APPT("service")=$$SERV(SV)
+ . ;find default provider
+ . S PRV=+$$GET1^DIQ(44,+HLOC_",",16,"I") I 'PRV D
+ .. N VPRP,I,FIRST
+ .. D GETS^DIQ(44,+HLOC_",","2600*","I","VPRP")
+ .. S FIRST=$O(VPRP(44.1,"")),I=""
+ .. F  S I=$O(VPRP(44.1,I)) Q:I=""  I $G(VPRP(44.1,I,.02,"I")) S PRV=$G(VPRP(44.1,I,.01,"I")) Q
+ .. I 'PRV,FIRST S PRV=$G(VPRP(44.1,FIRST,.01,"I"))
+ . I PRV S APPT("provider")=PRV_U_$P($G(^VA(200,PRV,0)),U) Q
  S APPT("facility")=$$FAC^VPRD(+HLOC)
- S APPT("type")=$TR($P(X,U,10),";","^")
  S APPT("patientClass")=$S(CLS="I":"IMP",1:"AMB")
  S APPT("serviceCategory")=$S(CLS="I":"I^INPATIENT VISIT",1:"A^AMBULATORY")
  S APPT("apptStatus")=$P(STS,";",2)
@@ -59,6 +75,22 @@ SERV(FTS) ; -- Return #42.4 Service for a Facility Treating Specialty
  N Y S Y="",FTS=+$G(FTS)
  S Y=$$GET1^DIQ(45.7,FTS_",","1:3","E")
  Q Y
+ ;
+DGS(IFN,ADM) ; -- return a scheduled admission in ADM("attribute")=value
+ N X0,DATE,HLOC,SV,X K ADM
+ S X0=$G(^DGS(41.1,+$G(IFN),0)) Q:X0=""  ;deleted
+ S DATE=+$P(X0,U,2),HLOC=+$G(^DIC(42,+$P(X0,U,8),44))
+ S ADM("id")="H;"_DATE,ADM("dateTime")=DATE I HLOC D
+ . S ADM("id")=ADM("id")_";"_HLOC,ADM("visitString")=HLOC_";"_DATE_";H"
+ . S ADM("location")=HLOC_U_$P($G(^SC(HLOC,0)),U)
+ . S X=$$GET1^DIQ(44,HLOC_",",8,"I"),ADM("clinicStop")=$$AMIS^VPRDVSIT(X)
+ . S SV=$$GET1^DIQ(44,HLOC_",",9.5,"I")
+ . I SV S ADM("service")=$$SERV(SV)
+ S ADM("facility")=$$FAC^VPRD(HLOC)
+ S X=$P(X0,U,5) I X S ADM("provider")=X_U_$P($G(^VA(200,X,0)),U)
+ S ADM("patientClass")="IMP",ADM("serviceCategory")="H^HOSPITALIZATION"
+ S ADM("apptStatus")=$S($P(X0,U,17):"ADMITTED",$P(X0,U,13):"CANCELLED",1:"SCHEDULED")
+ Q
  ;
  ; ------------ Return data to middle tier ------------
  ;

@@ -1,5 +1,5 @@
 PSJBCMA1 ;BIR/MV-RETURN INFORMATION FOR AN ORDER ;16 Mar 99 / 10:59 AM
- ;;5.0; INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,58,81,91,104,186,159,173**;16 DEC 97;Build 4
+ ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,58,81,91,104,186,159,173,253**;16 DEC 97;Build 31
  ;
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
@@ -63,19 +63,17 @@ IVVAR ;* Set variables for IV and pending orders
  . N SCHD S SCHD=PSJ("SCHD")  ; SCHD var required to shorten $Select
  . S PSJ("STC")=$$ONE^PSJBCMA(DFN,ON,SCHD,PSJ("STARTDT"),PSJ("STOPDT"))
  . I PSJ("STC")=""!(PSJ("STC")="C") S PSJ("STC")=$S(SCHD["PRN":"P",1:"C")
- . I PSJ("STC")="C" S PSJ("STC")=$S(SCHD["ON CALL":"OC",SCHD["ON-CALL":"OC",SCHD["ONCALL":"OC",1:"C")
+ . I PSJ("STC")="C" S PSJ("STC")=$S($$ONCALL^PSJBCMA(PSJ("SCHD")):"OC",1:"C")
  . S PSJ("NURSE")=$P($G(^PS(55,DFN,"IV",+ON,4)),U)
  D TMP
  S X=$P($G(^PS(55,DFN,"IV",+ON,1)),U) S:X]"" ^TMP(PSJTMP,$J,6)=X
  S CNT=0
  F X=0:0 S X=$O(@(F_",""AD"","_X_")")) Q:'X  D
  . S ND=$G(@(F_",""AD"","_X_",0)")),DN=$G(^PS(52.6,+ND,0)) ;,AOINAME=$$OIDF^PSJLMUT1(+$P(DN,U,11)) I AOINAME["NOTFOUND" S AOINAME=""
- . ;S AOIDF=$$GET1^DIQ(50.7,+$P(DN,U,11),.02) I AOINAME="" S AOIDF=""
  . S CNT=CNT+1,^TMP(PSJTMP,$J,850,CNT,0)=+ND_U_$P(DN,U)_U_$P(ND,U,2)_U_$P(ND,U,3) ;_U_U_$P(DN,U,11)_U_AOINAME_U_AOIDF
  S:CNT ^TMP(PSJTMP,$J,850,0)=CNT,CNT=0
  F X=0:0 S X=$O(@(F_",""SOL"","_X_")")) Q:'X  D
  . S ND=$G(@(F_",""SOL"","_X_",0)")),DN=$G(^PS(52.7,+ND,0)) ;,SOINAME=$$OIDF^PSJLMUT1(+$P(DN,U,11)) I SOINAME["NOTFOUND" S SOINAME=""
- . ;S SOIDF=$$GET1^DIQ(50.7,+$P(DN,U,11),.02) I SOINAME="" S SOIDF=""
  . S CNT=CNT+1,^TMP(PSJTMP,$J,950,CNT,0)=+ND_U_$P(DN,U)_U_$P(ND,U,2)_U_$P(DN,U,4) ;_U_U_$P(DN,U,11)_U_SOINAME_U_SOIDF
  S:CNT ^TMP(PSJTMP,$J,950,0)=CNT
  K PSJ
@@ -110,7 +108,7 @@ UDPEND ;
  S X=$G(@(F_",2)"))
  S PSJ("SCHD")=$P(X,U),PSJ("STARTDT")=$P(X,U,2)
  S PSJ("STC")=PSJ("ST")
- I PSJ("ST")="R"!(PSJ("ST")="C") S PSJ("STC")=$S(PSJ("SCHD")["PRN":"P","^ONCALL^ON-CALL^ON CALL^"[("^"_PSJ("SCHD")_"^"):"OC",$$ONE^PSJBCMA(DFN,ON,PSJ("SCHD"))="O":"O",1:"C")
+ I PSJ("ST")="R"!(PSJ("ST")="C") S PSJ("STC")=$S(PSJ("SCHD")["PRN":"P",$$ONCALL^PSJBCMA(PSJ("SCHD")):"OC",$$ONE^PSJBCMA(DFN,ON,PSJ("SCHD"))="O":"O",1:"C")
  I PSJ("STC")="O" S PSJ("ST")="O"
  S PSJ("STOPDT")=$P(X,U,4),PSJ("ADM")=$P(X,U,5)
  S PSJ("FREQ")=$P(X,U,6)

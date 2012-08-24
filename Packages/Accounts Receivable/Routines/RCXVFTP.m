@@ -25,12 +25,12 @@ SYS ;  Get system type
  ;
 ARC ;  Directly FTP to the Boston Allocation Resource Center
  I $$GET1^DIQ(342,"1,",20.06,"I")="P" D
- . S RCXVIP="MORPHEUS.ARC.MED.VA.GOV"
+ . S RCXVIP="MORPHEUS.ARC.DOMAIN.EXT"
  . S RCXVUSR="mccf"
  . S RCXVPAS="1qaz2wsx"
  ;
  I $$GET1^DIQ(342,"1,",20.06,"I")'="P" D
- . S RCXVIP="MORPHEUS.ARC.MED.VA.GOV"
+ . S RCXVIP="MORPHEUS.ARC.DOMAIN.EXT"
  . S RCXVUSR="cbotest1"
  . S RCXVPAS="1qaz2wsx"
  ;

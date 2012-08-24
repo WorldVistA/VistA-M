@@ -120,7 +120,7 @@ MAIL ;pack it up and send it off
  S XMTEXT="^TMP(""RMPR"",$J,"
 MAILS ;entry point to send summary msg
  S XMDUZ=.5
- S XMY("G.PROSTHETICS@PSAS.MED.VA.GOV")=""
+ S XMY("G.PROSTHETICS@PSAS.DOMAIN.EXT")=""
  S XMSUB=XMSUB_" Extract From "_$P($$SITE^VASITE,U,2)
  D ^XMD
  ;keep track of messages sent
@@ -143,7 +143,7 @@ EXIT ;exit point
  S RMPRMM(1)="Site^Total Record # ^ Total Message #:"_U_$P($$SITE^VASITE,U,3)_U_$P($$SITE^VASITE,U,2)_U_RMPRRECC_U_COUNT
  S XMTEXT="RMPRMM("
  S XMSUB="NPPD Summary Update From "_$P($$SITE^VASITE,U,2)
- S XMY("VHACOPSASPIPReport@med.va.gov")=""
+ S XMY("VHACOPSASPIPReport@DOMAIN.EXT")=""
  S XMDUZ=.5
  D ^XMD
  K XMTEXT,XMDUZ,XMY,XMSUB,RMPRRECC,COUNT,RMPRMM,RMPRSEND,IENSITE

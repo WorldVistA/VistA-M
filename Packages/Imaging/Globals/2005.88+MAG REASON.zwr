@@ -1,6 +1,6 @@
 MAG REASON
 ZWR
-^MAG(2005.88,0)="MAG REASON^2005.88I^14^14"
+^MAG(2005.88,0)="MAG REASON^2005.88I^15^15"
 ^MAG(2005.88,1,0)="Clinical care for the patient whose images are being downloaded^CP^^1"
 ^MAG(2005.88,2,0)="Clinical care for other VA patients^CP^^2"
 ^MAG(2005.88,3,0)="For use in approved research by VA staff^CP^^3"
@@ -17,6 +17,9 @@ ZWR
 ^MAG(2005.88,14,0)="HIMS document correction^DS^^14"
 ^MAG(2005.88,14,1,0)="^^1^1^3090804^"
 ^MAG(2005.88,14,1,1,0)="When a document or image needs to have the patient or image data corrected."
+^MAG(2005.88,15,0)="Rescinded TIU Note^SD^^15"
+^MAG(2005.88,15,1,0)="^^1^1^3120323"
+^MAG(2005.88,15,1,1,0)="The TIU Note has been Rescinded."
 ^MAG(2005.88,"B","All images were removed from t",13)=""
 ^MAG(2005.88,"B","Authorized release of medical ",6)=""
 ^MAG(2005.88,"B","Clinical care for other VA pat",2)=""
@@ -28,6 +31,7 @@ ZWR
 ^MAG(2005.88,"B","HIMS document correction",14)=""
 ^MAG(2005.88,"B","Image is incorrectly included ",12)=""
 ^MAG(2005.88,"B","Low quality image",8)=""
+^MAG(2005.88,"B","Rescinded TIU Note",15)=""
 ^MAG(2005.88,"B","Wrong case/exam/accession numb",9)=""
 ^MAG(2005.88,"B","Wrong note title",10)=""
 ^MAG(2005.88,"B","Wrong patient",11)=""
@@ -45,3 +49,4 @@ ZWR
 ^MAG(2005.88,"C",12,12)=""
 ^MAG(2005.88,"C",13,13)=""
 ^MAG(2005.88,"C",14,14)=""
+^MAG(2005.88,"C",15,15)=""

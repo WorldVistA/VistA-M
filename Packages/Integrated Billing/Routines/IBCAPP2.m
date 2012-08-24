@@ -1,5 +1,5 @@
 IBCAPP2 ;ALB/GEF - Claims Auto Processing  ;14-OCT-10
- ;;2.0;INTEGRATED BILLING;**432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**432,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; IBMRANOT = 1 when dealing with the COB Management Worklist.   
@@ -63,6 +63,8 @@ BLD1(IBIFN,IBDA) ;
  S:$G(IBDA)'="" IBEXPY=+$G(^IBM(361.1,IBDA,1))       ; payer paid amount
  S IBPY=$S(IBAPY:IBAPY,1:+$G(IBEXPY))
  S IBOAM=+$G(^DGCR(399,IBIFN,"U1"))     ; total charges for bill
+ ; Don't include claim if AR STATUS is COLLECTED/CLOSED and no subsequent payer and not one of the TRICARE/Champus claims that needs to be evaluated for Pt Payment,remove from list and quit
+ I $P($$BILL^RCJIBFN2(IBIFN),U,2)=22 S IBX=$$EOB^IBCNSBL2(IBIFN,IBOAM,IBPY,.IBTXT) I '$D(IBTXT) D RMV(IBIFN) Q
  S IBNBAL=IBOAM-IBPY
  S IBPTRSP=$S(IBNBAL>0:IBNBAL,1:0)
  I IBNBAL'>0 S IBQ=2
@@ -112,6 +114,7 @@ MELG(IBIFN,IBMRADUP) ; function to check all EOBs for a claim and determine if t
  .S IBDA=0 F  S IBDA=$O(^IBM(361.1,IBEOBNDX,IBIFN,IBDA)) Q:'+IBDA  D
  ..Q:$D(IBEOB(IBDA))
  ..S IB3611=$G(^IBM(361.1,IBDA,0)),IBCK=IBCK+1
+ ..Q:$D(^IBM(361.1,IBDA,"ERR"))
  ..; if this is a denied EOB and user does NOT want to include denied as duplicates and this EOB was denied as duplicate, don't include
  ..I $P(IB3611,U,13)=2,'$G(IBMRADUP),$$DENDUP^IBCEMU4(IBDA,1) Q
  ..; eob type must be correct for this worklist
@@ -130,3 +133,9 @@ MELG(IBIFN,IBMRADUP) ; function to check all EOBs for a claim and determine if t
  Q:IBCT=0 0
  ; if one or more EOBs passed, return the 1st one that passed the checks as the one to use for CBW display
  Q $O(IBEOB(0))
+ ;
+RMV(DA) ;remove from worklist claims that are erroneously there
+ N DIE,DR
+ S DIE="^DGCR(399,",DR="35////@" D ^DIE ; Should never have been on the WORKLIST
+ Q
+ ;

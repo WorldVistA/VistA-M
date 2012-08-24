@@ -1,5 +1,5 @@
-PSOBING1 ;BHAM ISC/LC - bingo board utility routine ; 6/2/10 4:05pm
- ;;7.0;OUTPATIENT PHARMACY;**5,28,56,135,244,268,357**;DEC 1997;Build 12
+PSOBING1 ;BHAM ISC/LC - bingo board utility routine ;6/29/06 11:46am
+ ;;7.0;OUTPATIENT PHARMACY;**5,28,56,135,244,268,357,385**;DEC 1997;Build 27
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to DD(52.11 and DD(59.2 supported by DBIA 999
  ;
@@ -45,6 +45,7 @@ BCRMV1 S NME=$P($G(^PSRX(RXP,0)),"^",2),BNAME=$P($G(^DPT(NME,0)),"^"),BDA="",CNT
  ..I BRX=RXP S DA=XX
  I '$D(DA) W !!,BNAME," isn't in the Bingo Board file.",$C(7) G BCRMV
  I $D(^PS(52.11,"ANAMK",DA)) W !!,BNAME," has already been removed from the display.",$C(7) G BCRMV
+ I $$STATUS^PSOBPSUT(RXP)]"" D SIGMSG^PSOBINGO
  D REMOVE1^PSOBINGO
  K BRX,DIK,DA,XX W !!,BNAME," is removed from the display."
  G BCRMV

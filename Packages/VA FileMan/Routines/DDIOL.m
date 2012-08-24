@@ -1,6 +1,6 @@
-DDIOL ;SFISC/MKO-THE LOADER ;1:53 PM  12 Sep 1995
- ;;22.0;VA FileMan;;Mar 30, 1999
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDIOL ;SFISC/MKO-THE LOADER ;7SEP2011
+ ;;22.0;VA FileMan;**168**;Mar 30, 1999;Build 25
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN(A,G,FMT) ;Write the text contained in local array A or global array G
  ;If one string passed, use format FMT
@@ -54,7 +54,7 @@ LD1(S,F) ;Load string S, with format F
  S:S[$C(7) S=$TR(S,$C(7),"")
  F J=1:1:$L(F,"!")-1 S N=N+1,^TMP(T,$J,N)=""
  S:'N N=1
- S:F["?" @("C="_$P(F,"?",2))
+ S:F["?" @("C="_+$P(F,"?",2))
  S L=$G(^TMP(T,$J,N))
  S ^TMP(T,$J,N)=L_$J("",$G(C)-$L(L))_S
  Q

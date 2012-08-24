@@ -1,5 +1,5 @@
 PSJGMRA ;BIR/MV - Retrieve and display Allergy data ;6 Jun 07 / 3:37 PM
- ;;5.0; INPATIENT MEDICATIONS ;**181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS ;**181,270**;16 DEC 97;Build 5
  ;
  ; Reference to ^PS(50.605 is supported by DBIA 696.
  ; Reference to ^PSDRUG( is supported by DBIA 2192.
@@ -27,7 +27,7 @@ NDF() ;Process NDF drug
  S PSJACK=$$ORCHK^GMRAOR(DFN,"DR",PTR)
  Q PSJACK
 CLASS() ;
- NEW PSJLEN,PSJLOC,PSJCLCHK,PSJCLNM,PSJDDCL
+ NEW PSJLEN,PSJLOC,PSJCLCHK,PSJCLNM,PSJDDCL,INVCL,INVCNT
  S PSJDDCL=$P($G(^PSDRUG(+PSJDD,0)),U,2)
  S PSJLEN=4,PSJCLCNT=0
  I $E(PSJDDCL,1,4)="CN10" S PSJLEN=5 ;look at 5 chars if ANALGESICS
@@ -37,9 +37,17 @@ CLASS() ;
  I '$D(^TMP("GMRAOC",$J,"APC")) Q 0
  ;
  S PSJVACL="" F  S PSJVACL=$O(^TMP("GMRAOC",$J,"APC",PSJVACL)) Q:PSJVACL=""  D
- . S PSJLOC=^TMP("GMRAOC",$J,"APC",PSJVACL),PSJCLNM=$P(^PS(50.605,+$O(^PS(50.605,"B",PSJVACL,0)),0),U,2)
+ .;*PSJ*5*270 - Check for invalid drug class, print warning message
+ . S PSJLOC=^TMP("GMRAOC",$J,"APC",PSJVACL),PSJCLNM=$P($G(^PS(50.605,+$O(^PS(50.605,"B",PSJVACL,0)),0)),U,2)
+ . I $G(PSJCLNM)="" S INVCL(PSJVACL)="" Q
  . S PSJVACL(PSJVACL)=PSJVACL_U_PSJCLNM_" ("_PSJLOC_")"
  . S PSJCLCNT=PSJCLCNT+1
+ I $D(INVCL) D
+ . W $C(7),!!,"WARNING: The following drug class does not exist in the VA DRUG CLASS file",!
+ . W "         (#50.605).  Please do a manual Drug-Allergy order check and notify",!
+ . W "         the pharmacy ADPAC for follow up.",!
+ . S INVCNT="" F  S INVCNT=$O(INVCL(INVCNT)) Q:INVCNT=""  W !,"VA Drug Class: ",INVCNT
+ . W ! S DIR("A")="Press Return to continue",DIR(0)="E",DIR("?")="Press Return to continue" D ^DIR K DIR W !
  ;
  S PSJCLCHK=0,PSJVACL="" F  S PSJVACL=$O(PSJVACL(PSJVACL)) Q:PSJVACL=""  D
  .I $E(PSJDDCL,1,PSJLEN)=$E(PSJVACL,1,PSJLEN) D

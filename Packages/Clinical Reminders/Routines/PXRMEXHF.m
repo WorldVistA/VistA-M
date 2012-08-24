@@ -1,5 +1,5 @@
-PXRMEXHF ; SLC/PKR - Routines to select and deal with host files. ;12/02/2009
- ;;2.0;CLINICAL REMINDERS;**12,17**;Feb 04, 2005;Build 102
+PXRMEXHF ;SLC/PKR - Routines to select and deal with host files. ;09/20/2010
+ ;;2.0;CLINICAL REMINDERS;**12,17,18**;Feb 04, 2005;Build 152
  ;============================================
 CHF(SUCCESS,LIST,PATH,FILE) ;Put the repository entries in LIST into the
  ;host file specified by PATH and FILE.
@@ -20,7 +20,7 @@ CHF(SUCCESS,LIST,PATH,FILE) ;Put the repository entries in LIST into the
  Q
  ;
  ;============================================
-GETEHF(EXT) ;Get an existing host file.
+GETEHF(EXT,DPATH) ;Get an existing host file.
  ;Build a list of all .EXT files in the current directory.
  N DEXT,DIR,DIROUT,DIRUT,DTOUT,DUOUT,FILESPEC,FILELIST,PATH,X,Y
  I EXT="" D
@@ -32,7 +32,7 @@ GETEHF(EXT) ;Get an existing host file.
  I $D(DIRUT) Q ""
  S DEXT="*."_EXT
  S FILESPEC(DEXT)=""
- S PATH=$$PWD^%ZISH
+ S PATH=$S($G(DPATH)'="":DPATH,1:$$PWD^%ZISH)
  S DIR(0)="FAU"_U_"1:32"
  S DIR("A")="Enter a path: "
  S DIR("B")=PATH

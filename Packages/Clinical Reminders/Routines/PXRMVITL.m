@@ -1,5 +1,5 @@
-PXRMVITL ; SLC/PKR - Handle vitals findings. ;11/02/2009
- ;;2.0;CLINICAL REMINDERS;**6,12,17**;Feb 04, 2005;Build 102
+PXRMVITL ;SLC/PKR - Handle vitals findings. ;08/19/2010
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,18**;Feb 04, 2005;Build 152
  ;
  ;===========================================================
 EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;Evaluate vital measurement findings.
@@ -25,7 +25,7 @@ GETDATA(DAS,FIEVT) ;Return data for a GMRV Vital Measurement entry.
  D EN^GMVPXRM(.GMRVDATA,DAS,"I")
  I $P(GMRVDATA(1),U,1)=-1 D  Q
  . S ^TMP("PXRMXMZ",$J,1,0)="Found GMRV entry "_DAS_" in the index, but it does not exist in ^GMR(120.5"
- . D SEND^PXRMMSG("PXRMXMZ","Bad entry in Vitals index.")
+ . D SEND^PXRMMSG("PXRMXMZ","Bad entry in Vitals index.","",DUZ)
  S FIEVT("TYPE")=$$EXTERNAL^DILFD(120.5,.03,"",GMRVDATA(3),.EM)
  ;DBIA #10040
  S TEMP=$S(+GMRVDATA(5)'=0:^SC(GMRVDATA(5),0),1:"")
@@ -36,7 +36,7 @@ GETDATA(DAS,FIEVT) ;Return data for a GMRV Vital Measurement entry.
  S (FIEVT("RATE"),FIEVT("VALUE"))=$P(GMRVDATA(7),U,1)
  I FIEVT("TYPE")="BLOOD PRESSURE",FIEVT("RATE")["/" D
  . S FIEVT("SYSTOLIC")=$P(FIEVT("RATE"),"/",1)
- . S FIEVT("DIASTOLIC")=$P(FIEVT("RATE"),"/",2)
+ . S FIEVT("DIASTOLIC")=$P(FIEVT("RATE"),"/",$L(FIEVT("RATE"),"/"))
  S IND=0
  ;Load the external form of the qualifiers.
  F  S IND=$O(GMRVDATA(12,IND)) Q:IND=""  D

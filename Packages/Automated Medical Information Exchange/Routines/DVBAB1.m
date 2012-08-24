@@ -1,5 +1,5 @@
-DVBAB1 ;ALB/SPH - CAPRI UTILITIES ; 10/08/2009
- ;;2.7;AMIE;**35,37,50,42,53,57,73,104,109,137,146,143**;Apr 10, 1995;Build 4
+DVBAB1 ;ALB/SPH - CAPRI UTILITIES ; 12/12/11 3:52pm
+ ;;2.7;AMIE;**35,37,50,42,53,57,73,104,109,137,146,143,179**;Apr 10, 1995;Build 15
  ;
 VERSION(ZMSG,DVBGUIV) ;
  ; 
@@ -165,7 +165,7 @@ INCEXAM(ZMSG) ;Increased exam # in file  and passes back the # to user
  S ^DVB(396.1,1,5)=ZMSG
  Q
  ;
-MSG(ERR,DUZ,XMSUB,XMTEXT,MGN) ;Generate mail message;KLB
+MSG(ERR,DUZ,XMSUB,XMTEXT,MGN,ID) ;Generate mail message;KLB
  ; --rpc: DVBAB SEND MSG
  ;
  ; This remote procedure is used to generate bulletins for specific CAPRI actions, such as cancellation of 2507 exams.
@@ -173,12 +173,14 @@ MSG(ERR,DUZ,XMSUB,XMTEXT,MGN) ;Generate mail message;KLB
  ;  Supported References:                                               
  ;     DBIA #10111: Allows FM read access of ^XMB(3.8,D0,0) using DIC.
  K ^TMP($J,"AMIE")
- S XMB=""
+ S XMB="",XMDUZ=DUZ
  I '$D(DUZ) S ERR="MISSING DUZ" Q
  I '$D(XMSUB) S ERR="MISSING SUBJECT" Q
  I '$D(XMTEXT) S ERR="MISSING TEXT" Q
  I '$D(MGN) S ERR="MISSING MAIL GROUP NAME" Q
- S XMDUZ=DUZ,J=0
+ ;IF MGN=DVBA C 2507 EXAM READY NO BULLETIN NECESSARY, BUILD THE EMAIL AND QUIT
+ I MGN="DVBA C 2507 EXAM READY" D SENDMSG Q
+ S J=0
  F  S J=$O(XMTEXT(J)) Q:'J  S ^TMP($J,"AMIE",J)=$G(XMTEXT(J))
  S XMTEXT="^TMP($J,""AMIE"","
  S DIC="^XMB(3.8,",DIC(0)="QM",X=MGN D ^DIC
@@ -190,6 +192,8 @@ MSG(ERR,DUZ,XMSUB,XMTEXT,MGN) ;Generate mail message;KLB
  D ^XMB
  ;XMB = -1 if bulletin not found in file (#3.6)
  S ERR=$S(XMB=-1:"BULLETIN NOT FOUND",1:"MESSAGE SENT")
+ ;before we quit, send a message to the requestor if the message is a cancellation
+ I MGN="DVBA C 2507 CANCELLATION" D SENDMSG
  K XMSUB,XMTEXT,MGN,DIC,DIC(0),J,Y,XMDUZ,XMB
  Q
 FINDEXAM(ZMSG,ZIEN) ;Returns list of exams in 396.4 that are linked to ZIEN in 396.3
@@ -208,4 +212,61 @@ FINDEXAM(ZMSG,ZIEN) ;Returns list of exams in 396.4 that are linked to ZIEN in 3
  ..S ZMSG(DVBABCNT)=DVBABIEN_"^"_DVBABD2_" "_DVBABD3
  ..S DVBABCNT=DVBABCNT+1
  K DVBABCNT,DVBABIEN,ZIEN,DVBABD1,DVBABD2,DVBABD3
+ Q
+SENDMSG ;SET UP TO SEND EMAIL/NOTIFICATION TO REQUESTOR OF 2507
+ N DVBA0,DVBAREQ,DVBAEA,DVBAC,DVBAQUIT,DVBADFN,DVBASITE,DVBADT,DUZ
+ ;SINCE MAILMAN DOES NOT ALLOW MESSAGES TO BE SENT FROM USERS WITHOUT ACCESS CODES OR MAILBOXES
+ ;WHICH CAPRI REMOTE USER DO NOT HAVE, WE HAVE TO NEW DUZ AND CHANGE XMDUZ TO THE NAME OF THE USER
+ ;AS A STRING SO THE PROCESS IS STILL LINKED TO THE USER SENDING/TRIGGERING THE MESSAGE
+ I $G(ID)="" Q
+ S XMDUZ=$P(^VA(200,XMDUZ,0),"^",1)_" CAPRI"
+ S DVBA0=$G(^DVB(396.3,ID,0))
+ S DVBADFN=$P(DVBA0,"^",1),DVBAREQ=$P(DVBA0,"^",4),DVBADT=$$FMTE^XLFDT($P(DVBA0,"^",2))
+ ;following call supported by IA 3858
+ S DVBAEA=$P($G(^VA(200,DVBAREQ,.15)),"^",1)
+ I DVBAEA'="" D
+ . S XMY(DVBAEA)="",DVBASITE=$$SITE^VASITE
+ . I MGN="DVBA C 2507 CANCELLATION" D CNCLMSG Q
+ . I MGN="DVBA C 2507 EXAM READY" D RDYMSG Q
+ Q
+CNCLMSG ;SEND CANCEL MESSAGE TO REQUESTOR OF THE 2507 EXAM
+ ;need to loop through previously built text to make sure all PII is removed
+ S J=0,DVBAQUIT=0
+ F  S J=$O(^TMP($J,"AMIE",J)) Q:'J!(DVBAQUIT)  D
+ .I $G(^TMP($J,"AMIE",J))["Name" S ^TMP($J,"AMIE",J)="DFN: `"_DVBADFN_"       SITE: "_$P($G(DVBASITE),"^",2)_"       Request Date: "_DVBADT
+ .I $G(^TMP($J,"AMIE",J))["Additional Comments" D  Q
+ ..S ^TMP($J,"AMIE1",J)="**NOTE: To view the patient using the DFN, paste the DFN number into the CAPRI"
+ ..S ^TMP($J,"AMIE1",J+1)="Patient Selector 'Patient ID' field to find the patient. Be sure to include"
+ ..S ^TMP($J,"AMIE1",J+2)="the ` (backward-apostrophe) character."
+ ..S ^TMP($J,"AMIE1",J+3)=""
+ ..S ^TMP($J,"AMIE1",J+4)=""
+ ..S ^TMP($J,"AMIE1",J+4)=""
+ ..S ^TMP($J,"AMIE1",J+5)="*****This is an auto-generated email.  Do not respond to this email address.*****"
+ ..S DVBAQUIT=1 Q
+ .S ^TMP($J,"AMIE1",J)=$G(^TMP($J,"AMIE",J))
+ S XMTEXT="^TMP($J,""AMIE1"","
+ D ^XMD
+ K ^TMP($J,"AMIE1")
+ Q
+RDYMSG ;SEND EXAM COMPLETE MESSAGE TO REQUESTOR OF 2507 
+ ;no text/body is passed in so we have to build the message from scratch
+ S ^TMP($J,"AMIE1",1)="A 2507 request as described below has been completed and released to the regional office , and is now available in CAPRI."
+ S ^TMP($J,"AMIE1",2)=""
+ S ^TMP($J,"AMIE1",3)=""
+ S ^TMP($J,"AMIE1",4)="                 DFN:  `"_DVBADFN
+ S ^TMP($J,"AMIE1",5)="          Vista Site: "_$P($G(DVBASITE),"^",2)
+ S ^TMP($J,"AMIE1",6)="        Request Date: "_DVBADT
+ S ^TMP($J,"AMIE1",7)=""
+ S ^TMP($J,"AMIE1",8)=""
+ S ^TMP($J,"AMIE1",9)="**NOTE: To view the patient using the DFN, paste the DFN number into the CAPRI"
+ S ^TMP($J,"AMIE1",10)="Patient Selector 'Patient ID' field to find the patient. Be sure to include"
+ S ^TMP($J,"AMIE1",11)="the ` (backward-apostrophe) character."
+ S ^TMP($J,"AMIE1",12)=""
+ S ^TMP($J,"AMIE1",13)=""
+ S ^TMP($J,"AMIE1",14)=""
+ S ^TMP($J,"AMIE1",15)="*****This is an auto-generated email.  Do not respond to this email address.*****"
+ S XMTEXT="^TMP($J,""AMIE1"","
+ D ^XMD
+ K ^TMP($J,"AMIE1")
+ K XMSUB,XMTEXT,MGN,XMDUZ
  Q

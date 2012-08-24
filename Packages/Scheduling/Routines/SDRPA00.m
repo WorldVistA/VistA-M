@@ -172,14 +172,14 @@ STMES ;generate start message
  N SDAMX,XMSUB,CMY,XMTEXT,XMDUZ
  S XMSUB=$G(SDST)_" - PAIT START JOB"
  S XMY("G.SD-PAIT")=""
- S XMY("S.SD-PAIT-SERVER@FORUM.VA.GOV")=""
+ S XMY("S.SD-PAIT-SERVER@FORUM.DOMAIN.EXT")=""
  S XMTEXT="SDAMX("
  S XMDUZ="POSTMASTER"
  S SDAMX(1)="The PAIT job has started - TASK #: "_ZTSK
  S SDAMX(2)="Site   Started       SD-PAIT status    Task #"
  S SDAMX(3)=SDST_"  |"_SDDT_" |"_SDSTAT_"    |"_ZTSK
  ;
- I SDSTAT="Shutdown" S XMY("VHACIONHD@MED.VA.GOV")="" D
+ I SDSTAT="Shutdown" S XMY("VHACIONHD@DOMAIN.EXT")="" D
  .S SDAMX(4)=" Please start a REMEDY ticket for station "_SDST
  .S SDAMX(5)="SD-PAIT Logical Link has to be started."
  .S SDAMX(6)="Refer the ticket to Scheduling PAIT."

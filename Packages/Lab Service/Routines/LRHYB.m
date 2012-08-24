@@ -1,0 +1,179 @@
+LRHYB ;DALOI/HOAK - HOWDY B DRIVER ;9/16/2000
+ ;;5.2;LAB SERVICE;**405**;Sep 27, 1994;Build 93
+ ;
+TEST ;
+ S DIC=2 S DIC(0)="AEMQZ" D ^DIC
+ Q:Y=-1
+ S LRDFN=$G(^DPT(+Y,"LR"))
+ ;
+ ;
+ ;
+ORDCHK ; Here is where the search for an order number starts
+ K LRHYT654
+ ; The Howdy site file will help determine which orders the site
+ ; will accept. Once an order has been selected it is handed off
+ ; to LRORDST to start the accessioning process.
+ ;
+ K LRWCZZZ,LRDTF
+ K LRHYCS33
+ K ^TMP("LRHYDY",$J,"KILL")
+ ;
+ ;
+ K ^TMP("LRHYDY",$J,"MULTD")
+ K ^TMP("LRHYDY",$J,"DUPTEST")
+ K LRHYCS
+ K ^TMP("LRHYDY",$J,"MT")
+ S LRHOWDY=1
+ S LREND=0
+ S LRORD=""
+ Q:'LRDFN
+ ;
+ K ^TMP("LRHYDY",$J,"LRSN"),LRNPZZX
+ S LRHYOK=0
+ ;
+ ;  18 days ahead
+ ;  20 days back
+ ;
+ S X2=0 K LRNPZZX
+ S LRAHEAD=$G(^LRHY(69.86,LRHYSITE,18))
+ S LRPAST=$G(^LRHY(69.86,LRHYSITE,20))
+ K LRWCZZZ
+ F LRI=-LRPAST:1:LRAHEAD D  ;Search window set by site file.
+ .  S X1=DT S X2=LRI D C^%DTC S LR3DTN=X
+ .  I $D(^LRO(69,LR3DTN,1,"AA",LRDFN)) S LRHYOK=1 D
+ ..  S LR3SN=0
+ ..  F  S LR3SN=$O(^LRO(69,LR3DTN,1,"AA",LRDFN,LR3SN)) Q:+LR3SN'>0  D
+ ...  Q:$P($G(^LRO(69,LR3DTN,1,LR3SN,1)),U,4)="C"  ;collected
+ ...  K LRWCZZZ
+ ...  ;
+ ...  K LRCOL99 S LRCOL99=$P(^LRO(69,LR3DTN,1,LR3SN,0),U,3)
+ ...  K LRCSTAT S LRCSTAT=$P(^LRO(69,LR3DTN,1,LR3SN,0),U,4)
+ ...  D CSTATUS^LRHYA Q:LRHYHOK  ;Check collection status
+ ...  ;
+ ...  D OLT^LRHYA  ;print order label tests
+ ...  Q:LRHYHOK
+ ...  ;
+ ...  ;
+ ...  K LRNOTST
+ ...  S LRNODUP=0 D LTE^LRHYA Q:LRHYHOK  ;check for excluded lab tests
+ ...  ;
+ ...  S LRORD=^LRO(69,LR3DTN,1,LR3SN,.1)
+ ...  S LRLLOC66=$P(^LRO(69,LR3DTN,1,LR3SN,0),U,9)
+ ...  D EXLOC^LRHYA Q:LRHYHOK  ;check for locations to exclude
+ ...  ;
+ ...  S LRLLOC=$G(LRLLOC66)
+ ...  S LRORD24=0
+ ...  D OLT^LRHYA Q:LRHYHOK  ;print order label tests
+ ...  ;
+ ...  D URG^LRHYA Q:LRHYHOK  ;;  CHECK URGENCY
+ ...  K LRCOL99 S LRCOL99=$P(^LRO(69,LR3DTN,1,LR3SN,0),U,3)
+ ...  D CSE^LRHYA Q:LRHYHOK  ;check for excluded collection samples
+ ...  ;
+ ...  I $O(^TMP("LRHYDY",$J,"EXLOC",LRORD,0))=$G(LRLLOC66) I $O(^LRO(69,"C",LRORD,0))'=DT QUIT
+ ...  ;  CHECK URGENCY
+ ...  S LRTST6=0 ; micro test
+ ...  F  S LRTST6=$O(^LRO(69,LR3DTN,1,LR3SN,2,"B",LRTST6)) Q:+LRTST6'>0  D
+ ....  S LRTSTZ99(LRTST6)=""
+ ....  I LRTST6 S LRSUB1=$P(^LAB(60,LRTST6,0),U,4) ; subscript
+ ....  I $G(LRSUB1)="MI" Q:$G(^LRO(69,LR3DTN,1,LR3SN,4,1,0))'=71
+ ....  Q:$D(LRNPZZX(^LRO(69,LR3DTN,1,LR3SN,.1),LR3SN,LRTST6))
+ ....  S LRORD=$G(^LRO(69,LR3DTN,1,LR3SN,.1))
+ ....  I $G(LRORD) I $D(^TMP("LRHYDY",$J,"STATUS",LRORD)) QUIT
+ ....  I $D(LRNOTST) I $D(LRNOTST(LRTST6)) K LRORD QUIT
+ ....  S ^TMP("LRHYDY",$J,"LRSN",LR3DTN,^LRO(69,LR3DTN,1,LR3SN,.1))=""
+ ....  S LRDTX=""
+ ....  S LRDTX=$O(^LRO(69,"C",^LRO(69,LR3DTN,1,LR3SN,.1),0))
+ ....  I '$D(^LRHY(69.86,LRHYSITE,16,"B",LRLLOC66)) I $G(LRDTX) S ^TMP("LRHYDY",$J,"MT",LRDTX)=""
+ ;
+ ;
+ K LRMULT
+ I $G(LRWCMULT) W !!!!,"Multple Orders Present" S LRMULT=1 D LOG1^LRHY0 K LRWCMULT QUIT
+ ; per Libba 1/14/2002
+ I $D(^TMP("LRHYDY",$J,"LRSN",DT)) S LR3DTN=DT ; I prefer today's orders but...
+ E  S LR3DTN=$O(^TMP("LRHYDY",$J,"LRSN",0)) ; I'll take whatever ya got
+ I 'LR3DTN K LRORD QUIT
+ ;
+ I '$D(^LRHY(69.86,LRHYSITE,16,"B",LRLLOC66)) I $O(^TMP("LRHYDY",$J,"LRSN",LR3DTN)) W !,"MULTIPLE DAYS WITH ORDERS" S LRMULT=1 D LOG1^LRHY0 QUIT
+ ;
+ S LRTIC=0
+ S LRMULT=0
+ ;
+ F  S LRTIC=$O(^TMP("LRHYDY",$J,"LRSN",LRTIC)) Q:+LRTIC'>0  S LRMULT=LRMULT+1
+ I '$D(^LRHY(69.86,LRHYSITE,16,"B",LRLLOC66)) I LRMULT>1 W !,"MULTIPLE DAYS WITH ORDERS" S LRMULT=0 D LOG1^LRHY0 QUIT
+ ;MODIFIED BY HOAK to flag when wc and sp are on same visit
+ ;
+ ;
+MOVE ;
+ I $D(LRNOTST) I $G(LRHYT654) I $D(LRNOTST(LRHYT654)) K LRORD QUIT
+ S LRHY3SN3=0
+ S LRHY3DT3=0
+ I $D(^TMP("LRHYDY",$J,"URG",LRORD)) K LRORD QUIT
+ I $D(^LRHY(69.86,LRHYSITE,30,"B",LRURGZ19)) K LRORD QUIT
+ S LRTIC=0
+ S LRMULT=0
+ F  S LRTIC=$O(^TMP("LRHYDY",$J,"MT",LRTIC)) Q:+LRTIC'>0  S LRMULT=LRMULT+1
+ S LR3MULT=LRMULT
+ I LRMULT>1 W !,"MULTIPLE DAYS WITH ORDERS" S LRORD=0 QUIT
+ E  S LRMULT=0
+ ; may be accessioned.
+ ; Setting up task to continue based on the specimen.
+ K LR3ZTST
+MOVE1 ;
+ S LRORD=0
+ F  S LRORD=$O(^TMP("LRHYDY",$J,"LRSN",LR3DTN,LRORD)) Q:+LRORD'>0  D
+ .  S:'$G(LR3ORD) LR3ORD=LRORD
+ .  I $D(^TMP("LRHYDY",$J,"URG",LRORD)) QUIT
+ .  S LRHYORDZ=LRORD
+ .  ;
+ .  S ZTSAVE("^TMP(""LRHYDY"",$J,")=""
+ .  S ZTRTN="PAST^LRHYPH0",ZTSAVE("L*")="",ZTDTH=$H,ZTDESC="HOWDY"
+ .  S ZTIO="NULL"
+ .  S ZTSAVE("L*")=""
+ .  S:$D(ZTQUEUED) ZTREQ="@" D ^%ZTLOAD
+ .  S LRGOTIT=1
+ .  S LRORD=LRHYORDZ
+ .  K LRSTOPZ(LRORD)
+ K ^TMP("LRHYDY",$J,"MULTD")
+ S LRORD=$G(LR3ORD) K LR3ORD
+ K LRHOWDY,LR3SN24,LR3DTN24,LR3ZTST
+ ; Remove collection info on order label tests
+ S LR3DTN=0
+ F  S LR3DTN=$O(LROLT1(LR3DTN)) Q:+LR3DTN'>0  D
+ .  S LR3SN=0
+ .  F  S LR3SN=$O(LROLT1(LR3DTN,LR3SN)) Q:+LR3SN'>0  D
+ ..  S ^LRO(69,LR3DTN,1,LR3SN,1)=""
+ K LROLT1
+ I $G(LRORD) I $D(LRSTOPZ(LRORD)) K LRORD,LRSTOPZ QUIT
+ ;
+ QUIT
+ ;
+MMM ;
+ N LRI S LRI=0
+ N LR3DTN,LR3SN,LRIENZZ,LRTSTX
+ K LRHYMORD
+ K LRHYMULT
+ F LRI=-LRPAST:1:LRAHEAD D
+ .  S X1=DT S X2=LRI D C^%DTC S LR3DTN=X
+ .  ;
+ .  I $D(^LRO(69,LR3DTN,1,"AA",LRDFN)) D
+ ..  S LR3SN=0
+ ..  F  S LR3SN=$O(^LRO(69,LR3DTN,1,"AA",LRDFN,LR3SN)) Q:+LR3SN'>0  D
+ ...  ;
+ ...  Q:$P($G(^LRO(69,LR3DTN,1,LR3SN,1)),U,4)="C"  ;collected
+ ...  S LRTSTX=0
+ ...  F  S LRTSTX=$O(^LRO(69,LR3DTN,1,LR3SN,2,"B",LRTSTX)) Q:+LRTSTX'>0  D
+ ....  S LRIENZZ=$O(^LRO(69,LR3DTN,1,LR3SN,2,"B",LRTSTX,0))
+ ....  ;
+ ....  Q:$G(^LRO(69,LR3DTN,1,LR3SN,2,LRIENZZ,1.1,1,0))'=""
+ ....  K LRCOL99 S LRCOL99=$P(^LRO(69,LR3DTN,1,LR3SN,0),U,3)
+ ....  S LRHYHOK=0 D CSE^LRHYA Q:LRHYHOK
+ ....  S LRCSTAT=$P(^LRO(69,LR3DTN,1,LR3SN,0),U,4)
+ ....  S LRHYHOK=0 D CSTATUS^LRHYA Q:LRHYHOK
+ ....  S LRLLOC66=$P(^LRO(69,LR3DTN,1,LR3SN,0),U,9)
+ ....  S LRHYHOK=0 D EXLOC^LRHYA Q:LRHYHOK
+ ....  S LRHYMULT(LR3DTN,LR3SN,LRIENZZ)=LRTSTX
+ N CNT
+ S CNT=0
+ S LR3DTN=0
+ F  S LR3DTN=$O(LRHYMULT(LR3DTN)) Q:+LR3DTN'>0  S CNT=CNT+1
+ I CNT>1 S LRHYMORD=1

@@ -1,5 +1,5 @@
 PSOSUPOE ;BIR/RTR - Suspense pull via Listman ;3/1/96
- ;;7.0;OUTPATIENT PHARMACY;**8,21,27,34,130,148,281,287,289,358**;DEC 1997;Build 35
+ ;;7.0;OUTPATIENT PHARMACY;**8,21,27,34,130,148,281,287,289,358,385,403**;DEC 1997;Build 9
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
 SEL I '$G(PSOCNT) S VALMSG="This patient has no Prescriptions!" S VALMBCK="" Q
  N PSOGETF,PSOGET,PSOGETFN,ORD,ORN,MW,PDUZ,PSLST,PSOSQ,PSOSQRTE,PSOSQMTH,PSPOP,PSOX1,PSOX2,RXLTOP,RXREC,SFN,SORD,SORN,VALMCNT
@@ -28,21 +28,29 @@ BEGQ Q:'$D(^PSRX(+$G(RXREC),0))
  I $D(RXRP(RXREC)) W !!,"A reprint has already been requested for Rx # ",$P($G(^PSRX(RXREC,0)),"^") D DIR,ULRX Q
  I $D(RXPR(RXREC)) W !!,"A partial has already been requested for Rx # ",$P($G(^PSRX(RXREC,0)),"^") D DIR,ULRX Q
  S PSPOP=0 I $G(PSODIV),$P($G(^PS(52.5,SFN,0)),"^",6)'=$G(PSOSITE) D CKDIV I $G(PSPOP) D DIR,ULRX Q
+ ;
+ ; Submitting Rx to ECME for 3rd Party Billing and checking the outcome
+ ; If there are unresolved DUR, Refill Too Soon, or TRICARE/CHAMPVA rejects, we will not add the RX to the
+ ;   list of RXs that are pulled from suspense
+ ; We also need to quit if the user discontinued from the reject notification screen as the RX Suspense record
+ ;   is deleted by a discontinue
+ N ACTION S ACTION=""
+ I '$D(RXPR(RXREC)) D  I ACTION="Q"!(ACTION="D") D ULRX Q
+ . N RFL S RFL=$G(RXFL(RXREC)) I RFL="" S RFL=$$LSTRFL^PSOBPSU1(RXREC)
+ . D ECMESND^PSOBPSU1(RXREC,RFL,,"PP")
+ . ; Quit if there is an unresolved TRICARE/CHAMPVA non-billable reject code, PSO*7*358
+ . I $$PSOET^PSOREJP3(RXREC,RFL) S ACTION="Q" W !!,"Pull early cannot be done for non-billable TRICARE/CHAMPVA Rx on the worklist" D DIR Q
+ . ; Check for unresolved rejects
+ . I $$FIND^PSOREJUT(RXREC,RFL) S ACTION=$$HDLG^PSOREJU1(RXREC,RFL,"79,88","PP","IOQ","Q")
+ . ; Check for TRICARE/CHAMPVA that are not complete
+ . I $$TRIC^PSOREJP1(RXREC,RFL),$P($$STATUS^PSOBPSUT(RXREC,RFL),U)="IN PROGRESS" S ACTION="Q" W !!,"Pull early cannot be done for IN PROGRESS TRICARE/CHAMPVA Rx" D DIR Q
+ ;
  S:$P(^PS(52.5,SFN,0),"^",5) RXPR(RXREC)=$P(^(0),"^",5) S:$P(^PS(52.5,SFN,0),"^",12) RXRP(RXREC)=1
  S RXFL(RXREC)=$P($G(^PS(52.5,SFN,0)),"^",13),RXRS(RXREC)=$G(PSODFN),RXLTOP=1
  S RXRS(RXREC)=$G(RXRS(RXREC))_"^"_$S($P($G(^PS(52.5,SFN,0)),"^",4)="W":"W",1:"M")_"^"_$P($G(^PSRX(RXREC,"MP")),"^") S PSOGET="M" D GETMW
  S RXRS(RXREC)=$G(RXRS(RXREC))_"^"_$G(PSOGETF)_"^"_$G(PSOGETFN)_"^"_$S($G(PSOGET)="W":"W",1:"M")
  S $P(^PS(52.5,SFN,0),"^",4)=$G(PSOSQRTE) S MW=$G(PSOSQRTE) N RR,RFCNT D MAILS^PSOSUPAT I $D(PSOSQMTH) S $P(^PSRX(RXREC,"MP"),"^")=$G(PSOSQMTH)
  S PSOSQ=1
- ;
- ; - Submitting Rx to ECME for 3rd Party Billing
- I '$D(RXPR(RXREC)) D
- . N ACTION,RFL S RFL=$G(RXFL(RXREC)) I RFL="" S RFL=$$LSTRFL^PSOBPSU1(RXREC)
- . D ECMESND^PSOBPSU1(RXREC,RFL,,"PP")
- . ; Quit if there is an unresolved Tricare non-billable reject code, PSO*7*358
- . I $$PSOET^PSOREJP3(RXREC,RFL) S ACTION="Q" Q
- . I $$FIND^PSOREJUT(RXREC,RFL) D
- . . S ACTION=$$HDLG^PSOREJU1(RXREC,RFL,"79,88","PP","IOQ","Q")
  ;
  D ULRX K PSOGET,PSOGETF
  Q
@@ -70,21 +78,30 @@ BBADD ;
  I $L(BBRX(PSOX2))+$L(RXREC)<220 S BBRX(PSOX2)=BBRX(PSOX2)_RXREC_"," Q
  S BBRX(PSOX2+1)=RXREC_","
  Q
-TRIC(PSOTRX) ;
- S PSOTRF=$$LSTRFL^PSOBPSU1(PSOTRX)
- S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(PSOTRX,PSOTRF,.PSOTRIC)
- S ESTAT=$P($$STATUS^PSOBPSUT(PSOTRX,PSOTRF),"^")
- I PSOTRIC S EACTION=$S(ESTAT["PAYABLE":1,ESTAT["Inactive ECME Tricare":1,ESTAT="":1,1:0)
- Q
 PPLADD ;
- N SZZ,SPSOX1,SPSOX2,LSFN,PSOTRF,PSOTRIC,PSOTRX,EACTION,ESTAT
+ ; This function will move entries from the RXRS array (which has RXs that were pulled
+ ; from supense via the PP action on the Medication profile) to the list of RXs that
+ ; will get a label (PPL variable and possible PSORX array).
+ ;
+ ; Note that arrays RXRS and PSORX and variable PPL are pre-existing
+ ;
+ N SZZ,SPSOX1,SPSOX2,LSFN
  I $G(PPL)'="",$E(PPL,$L(PPL))'="," S PPL=PPL_","
- F SZZ=0:0 S SZZ=$O(RXRS(SZZ)) Q:'SZZ  D
+ ;
+ ; Loop through entries in the RXRS array and process
+ S SZZ=0 F  S SZZ=$O(RXRS(SZZ)) Q:'SZZ  D
+ .;
+ .; Check if label already printed per the RX SUSPENSE file
  .S LSFN=$O(^PS(52.5,"B",SZZ,0))
  .Q:'$G(LSFN)
  .Q:$G(^PS(52.5,LSFN,"P"))
- .D TRIC(SZZ)
- .I $G(PSOTRIC) Q:'$G(EACTION)  ;no labels for "In Progress" Tricare Rx's.
+ .;
+ .; The following function checks for ECME conditions where we do not want a label
+ .; This is probably redundant as the RXRS array entry should not have been created if any of these
+ .;   conditions existed but things might have changed after the entry was created
+ .I $$ECMECHK^PSOREJU3(SZZ) Q
+ .;
+ .; Add to list of RXs that should get a label
  .I $G(PPL)="" S PPL=SZZ_"," Q
  .I $L(PPL)+$L(SZZ)<220 S PPL=PPL_SZZ_"," Q
  .I $G(PSORX("PSOL",2))']"" S PSORX("PSOL",2)=SZZ_"," Q

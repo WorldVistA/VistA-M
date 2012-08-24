@@ -59,8 +59,8 @@ NPP ; Notice of Privacy Practices
  I $G(PSOLAN)=2 D  Q
  . S T="La Notificacion relacionada con las Politicas de Privacidad del Departamento de Asuntos del Veterano, IB 10-163, contiene los" D PRINT(T)
  . S T="detalles acerca de sus derechos de privacidad y esta disponsible electronicamente en la siguiente direccion:" D PRINT(T)
- . S T="http://www1.va.gov/Health/.  Usted tambien puede conseguir una copia escribiendo a la Oficina de Privacidad del" D PRINT(T)
+ . S T="http://www1.DOMAIN.EXT/Health/.  Usted tambien puede conseguir una copia escribiendo a la Oficina de Privacidad del" D PRINT(T)
  . S T="Departamento de Asuntos de Salud del Veterano, (19F2), 810 Vermont Avenue NW, Washington, DC 20420." D PRINT(T)
- S T="The VA Notice of Privacy Practices, IB 10-163, which outlines your privacy rights, is available online at http://www1.va.gov/Health/" D PRINT(T)
+ S T="The VA Notice of Privacy Practices, IB 10-163, which outlines your privacy rights, is available online at http://www1.DOMAIN.EXT/Health/" D PRINT(T)
  S T="or you may obtain a copy by writing the VHA Privacy Office (19F2), 810 Vermont Avenue NW, Washington, DC 20420." D PRINT(T)
  Q

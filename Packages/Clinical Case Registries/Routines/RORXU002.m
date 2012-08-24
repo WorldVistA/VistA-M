@@ -1,5 +1,5 @@
-RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;5/18/06 11:13am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,10,13**;Feb 17, 2006;Build 27
+RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ; 8/3/11 3:55pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,10,13,15,17**;Feb 17, 2006;Build 33
  ;
  ; This routine uses the following IAs:
  ;
@@ -22,7 +22,12 @@ RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;5/18/06 11:13am
  ;                                      PARAMS tag to include the 3 new reports.
  ;ROR*1.5*13   DEC  2010   A SAUNDERS   Added Division and Clinic sections in
  ;                                      PARAMS tag (pulled from RORXU006).
- ;
+ ;ROR*1.5*15   JUN  2011   C RAY        Added HIV_DX
+ ; 
+ ;ROR*1.5*17   AUG  2011   C RAY        Modified to allow 
+ ;                                      PATIENTS,OPTIONS params to have other
+ ;                                      values besides boolean
+ ;                                      Modified to add DATE_RANGE_4
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -59,7 +64,7 @@ DATE(DT) ;
  ;       >0  IEN of the HEADER element
  ;
 HEADER(RORTSK,PARTAG) ;
- N HEADER,IENS,REGIEN,RORBUF,RORMSG,TMP
+ N HEADER,IENS,REGIEN,RORBUF,RORMSG,TMP,DIERR
  S HEADER=$$ADDVAL^RORTSK11(RORTSK,"HEADER",,PARTAG)
  Q:HEADER<0 HEADER
  D ADDVAL^RORTSK11(RORTSK,"DATE",$$DATE($$NOW^XLFDT),HEADER)
@@ -131,7 +136,7 @@ OPTXT(OPTIONS,DLGNUM) ;
  ;       >0  IEN of the PARAMETERS element
  ;
 PARAMS(RORTSK,PARTAG,STDT,ENDT,FLAGS) ;
- N BUF,ELEMENT,I,LTAG,MODE,NAME,PARAMS,RC,REGIEN,RORMSG,TMP,IEN
+ N BUF,ELEMENT,I,LTAG,MODE,NAME,PARAMS,RC,REGIEN,RORMSG,TMP,IEN,DIERR
  S PARAMS=$$ADDVAL^RORTSK11(RORTSK,"PARAMETERS",,PARTAG)
  S RC=0,(ENDT,STDT)="",FLAGS=""
  ;
@@ -143,7 +148,7 @@ PARAMS(RORTSK,PARTAG,STDT,ENDT,FLAGS) ;
  . S RC=$$ADDVAL^RORTSK11(RORTSK,"REGNAME",TMP,PARAMS)
  ;
  ;=== Alternate date ranges
- F I=2:1:3  D  Q:RC<0
+ F I=2:1:4  D  Q:RC<0
  . S STDT=$$PARAM^RORTSK01("DATE_RANGE_"_I,"START")\1  Q:STDT'>0
  . S ENDT=$$PARAM^RORTSK01("DATE_RANGE_"_I,"END")\1    Q:ENDT'>0
  . S ELEMENT=$$ADDVAL^RORTSK11(RORTSK,"DATE_RANGE_"_I,,PARAMS)
@@ -199,7 +204,7 @@ PARAMS(RORTSK,PARTAG,STDT,ENDT,FLAGS) ;
  . I ELEMENT'>0  S RC=ELEMENT  Q
  . S TMP=""
  . F  S TMP=$O(BUF(TMP))  Q:TMP=""  D  Q:RC<0
- . . S RC=$$ADDATTR^RORTSK11(RORTSK,ELEMENT,TMP,"1")
+ . . S RC=$$ADDATTR^RORTSK11(RORTSK,ELEMENT,TMP,$G(BUF(TMP)))
  . ;--- Compile the flags
  . D:NAME="PATIENTS"
  . . S:'$D(BUF("DE_BEFORE")) FLAGS=FLAGS_"P"
@@ -281,6 +286,13 @@ PARAMS(RORTSK,PARTAG,STDT,ENDT,FLAGS) ;
  ;=== get Max Date
  N MAXDT S MAXDT=$$PARAM^RORTSK01("OPTIONS","MAX_DATE")
  I $G(MAXDT)>0 D ADDVAL^RORTSK11(RORTSK,"MAX_DATE",MAXDT,PARAMS)
+ ;
+ ;=== get HIV_DX
+ N RORMODE S RORMODE=$$PARAM^RORTSK01("HIV_DX")
+ S RORMODE=$S(RORMODE=1:"Include",RORMODE=-1:"Exclude",1:"")
+ I RORMODE'="" D
+ . D ADDVAL^RORTSK11(RORTSK,"HIV_DX",RORMODE,PARAMS)
+ . S FLAGS=FLAGS_"H"
  ;
  ;=== Defaults
  S TMP=$TR(FLAGS,"FNP")  S:$L(FLAGS)-$L(TMP)=3 FLAGS=TMP

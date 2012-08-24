@@ -1,5 +1,5 @@
 SDRRUTL ;10N20/MAH;Recall Reminder-Clinic Utilities;01/18/2008  11:32
- ;;5.3;Scheduling;**536**;Aug 13, 1993;Build 53
+ ;;5.3;Scheduling;**536,571**;Aug 13, 1993;Build 3
 ASKDIV(SDRRDIV) ;
  N DIC,X,Y,I,DUOUT,DTOUT
  K SDRRDIV
@@ -166,3 +166,42 @@ BDAY ;
  W !,"100th Birthday=",$$FMADD^XLFDT(3050830,(YR1DAYS+365)\4)
  W !,"101st Birthday=",$$FMADD^XLFDT(3050830,YR1DAYS+730\4)
  Q
+ ;
+SCREEN() ;SD*571 for new RRs, screen provider for key and status
+ N KEY,VALUE
+ S SDIEN="",SDIEN=DA
+ S SDFLAG=0
+ I '$P($G(^SD(403.54,+X,0)),U,7),$P($G(^(0)),U,6)="A" S SDFLAG=1 Q SDFLAG   ;allow selection, provider has no key and is active
+ I $P($G(^SD(403.54,+X,0)),U,6)="I" D MSG1 Q SDFLAG   ;do not allow, provider is inactive
+ I $P($G(^SD(403.54,+X,0)),U,7) S KEY=$P(^(0),U,7) D
+ .S VALUE=$$LKUP^XPDKEY(KEY) K KY D OWNSKEY^XUSRB(.KY,VALUE,DUZ)
+ .I $G(KY(0))=1 S SDFLAG=1 K KY
+ I SDFLAG Q SDFLAG   ;allow, provider and user both have security key
+ I 'SDFLAG D MSG2   ;do not allow, provider has key user does not
+ Q SDFLAG
+ ;
+MSG1 ;SD*571 print Inactive provider warning message to user
+ W " ??"
+ W !?10,"Provider selected is Inactive."
+ W !?10,"Please contact your Recall Coordinator.",!
+ D:$D(PROV1) FDA Q
+ Q
+ ;
+MSG2 ;SD*571 print Security Key warning message to user
+ W " ??"
+ W !?10,"Provider selected is assigned Security Key"
+ W !?10,"which you do not hold."
+ W !?10,"Please contact your Recall Coordinator.",!
+ D:$D(PROV1) FDA Q
+ Q
+ ;
+FDA ;SD*571 insure original provider pointer is back in 403.5 record
+ Q:'$D(PROV1)
+ S (FDA,SDFLD)=""
+ S SDFLD=4,FDA(403.5,SDIEN_",",SDFLD)=PROV1
+ D FILE^DIE("","FDA")
+ D CLEAN^DILF
+ K FDA,SDFLD,SDIEN
+ S SDFLAG=""   ;null indicates edit so ^DIK will not be called at exit
+ Q
+ ;

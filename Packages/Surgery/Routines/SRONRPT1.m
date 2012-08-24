@@ -1,6 +1,5 @@
-SRONRPT1 ;BIR/ADM - NURSE INTRAOP REPORT ;02/20/05
- ;;3.0; Surgery ;**100,143,157**;24 Jun 93;Build 3
- ;
+SRONRPT1 ;BIR/ADM - NURSE INTRAOP REPORT ;06/08/2011
+ ;;3.0;Surgery;**100,143,157,176**;24 Jun 93;Build 8
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure.  Local modifications to this routine
  ;**         are prohibited.
@@ -33,10 +32,10 @@ MED ; medications
 N(SRL) N SRN I $L(Y)>SRL S SRN=$P(Y,",")_","_$E($P(Y,",",2))_".",Y=SRN
  Q
 PRO ; prosthesis
- N C,ITEM,MODEL,PRO,QTY,SERIAL,SIZE,SRISC,SRSED,SRRN,STERILE,VENDOR
+ N C,ITEM,MODEL,PRO,QTY,SERI,SERIAL,SLOT,SIZE,SRISC,SRSED,SRRN,STERILE,VENDOR
  S PRO=0 F  S PRO=$O(^SRF(SRTN,1,PRO)) Q:'PRO  D
  .S X=^SRF(SRTN,1,PRO,0),ITEM=$P(X,"^"),VENDOR=$P(X,"^",2),MODEL=$P(X,"^",3),SERIAL=$P(X,"^",5),Y=$P(X,"^",7),C=$P(^DD(130.01,5,0),"^",2) D:Y'="" Y^DIQ S STERILE=$S(Y'="":Y,1:"N/A")
- .S X=$G(^SRF(SRTN,1,PRO,1)),SIZE=$P(X,"^"),QTY=$P(X,"^",2)
+ .S X=$G(^SRF(SRTN,1,PRO,1)),SIZE=$P(X,"^"),QTY=$P(X,"^",2),SLOT=$P(X,"^",3),SERI=$P(X,"^",4)
  .S X=$G(^SRF(SRTN,1,PRO,2)),SRISC=$S($P(X,"^")="Y":"YES",1:$P(X,"^"))
  .S Y=$P(X,"^",2),C=$P(^DD(130.01,9,0),"^",2) D:Y'="" Y^DIQ S SRSED=$S(Y="":"NOT ENTERED",1:Y)
  .S Y=$P(X,"^",3),C=$P(^DD(130.01,10,0),"^",2) D:Y'="" Y^DIQ S SRRN=$S(Y="":"NOT ENTERED",1:Y)
@@ -46,7 +45,9 @@ PRO ; prosthesis
  .D LINE(1) S @SRG@(SRI)="    RN Verifier: "_SRRN
  .D LINE(1) S @SRG@(SRI)="    Vendor: "_$S(VENDOR'="":VENDOR,1:"N/A")
  .D LINE(1) S @SRG@(SRI)="    Model: "_$S(MODEL'="":MODEL,1:"N/A")
- .D LINE(1) S @SRG@(SRI)="    Lot/Serial Number: "_$S(SERIAL'="":SERIAL,1:"N/A"),@SRG@(SRI)=@SRG@(SRI)_$$SPACE(53)_"Sterile Resp: "_STERILE
+ .D LINE(1) S @SRG@(SRI)="    Lot Number: "_$S(SLOT'="":SLOT,1:"N/A")
+ .D LINE(1) S @SRG@(SRI)="    Serial Number: "_$S(SERI'="":SERI,1:"N/A")
+ .D LINE(1) S:SERIAL'="" @SRG@(SRI)="    Lot/Serial Number: "_$S(SERIAL'="":SERIAL,1:"N/A") S @SRG@(SRI)=@SRG@(SRI)_$S(SERIAL'="":$$SPACE(53),1:"    ")_"Sterile Resp: "_STERILE
  .D LINE(1) S @SRG@(SRI)="    Size: "_$S(SIZE'="":SIZE,1:"N/A"),@SRG@(SRI)=@SRG@(SRI)_$$SPACE(53)_"Quantity: "_$S(QTY'="":QTY,1:"N/A")
  Q
 THERM ; thermal unit

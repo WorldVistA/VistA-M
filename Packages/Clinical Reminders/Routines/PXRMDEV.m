@@ -1,5 +1,5 @@
-PXRMDEV ; SLC/PKR - This is a driver for testing Clinical Reminders.;10/20/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,11,16**;Feb 04, 2005;Build 119
+PXRMDEV ;SLC/PKR - This is a driver for testing Clinical Reminders. ;11/29/2011
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,16,18**;Feb 04, 2005;Build 152
  ;
  ;==================================================
 CMOUT ;Do formatted Clinical Maintenance output.
@@ -9,8 +9,8 @@ CMOUT ;Do formatted Clinical Maintenance output.
  S RNAME=$O(^TMP("PXRHM",$J,RIEN,""))
  S TEMP=$G(^TMP("PXRHM",$J,RIEN,RNAME))
  S STATUS=$P(TEMP,U,1)
- S DUE=$$EDATE^PXRMDATE($P(TEMP,U,2))
- S LAST=$$EDATE^PXRMDATE($P(TEMP,U,3))
+ S DUE=$$DDATE^PXRMDATE($P(TEMP,U,2))
+ S LAST=$$DDATE^PXRMDATE($P(TEMP,U,3))
  S STATCOL=41-($L(STATUS)/2)
  S DUECOL=53-($L(DUE)/2)
  S LASTCOL=67-($L(LAST)/2)
@@ -85,7 +85,7 @@ DEV ;Prompt for patient and reminder by name and evaluation date.
  Q
  ;
  ;==================================================
-DOREM(DFN,PXRMITEM,PXRMHM,DATE) ;Do the reminder
+DOREM(DFN,PXRMITEM,PXRHM,DATE) ;Do the reminder
  N DEFARR,FIEVAL,FINDING,PXRMDEBG,PXRMID,REF,TFIEVAL
  ;This is a debugging run so set PXRMDEBG.
  S PXRMDEBG=1
@@ -93,7 +93,7 @@ DOREM(DFN,PXRMITEM,PXRMHM,DATE) ;Do the reminder
  I +$G(DATE)=0 D EVAL^PXRM(DFN,.DEFARR,PXRHM,1,.FIEVAL)
  I +$G(DATE)>0 D EVAL^PXRM(DFN,.DEFARR,PXRHM,1,.FIEVAL,DATE)
  ;
- I $D(^TMP("PXRMFFDEB",$J)) M FIEVAL=^TMP("PXRMFFDEB",$J) K ^TMP("PXRMFFDEB",$J)
+ I $D(^TMP(PXRMID,$J,"FFDEB")) M FIEVAL=^TMP(PXRMID,$J,"FFDEB") K ^TMP(PXRMID,$J,"FFDEB")
  ;
  W !!,"The elements of the FIEVAL array are:"
  S REF="FIEVAL"
@@ -128,10 +128,8 @@ MHVCOUT ;Do formatted MHV combined output.
  S RIEN=$O(^TMP("PXRMMHVC",$J,""))
  S TEMP=^TMP("PXRMMHVC",$J,RIEN,"STATUS")
  S STATUS=$P(TEMP,U,1)
- S DUE=$$EDATE^PXRMDATE($P(TEMP,U,2))
- S LAST=$$EDATE^PXRMDATE($P(TEMP,U,3))
- S DUE=$$EDATE^PXRMDATE($P(TEMP,U,2))
- S LAST=$$EDATE^PXRMDATE($P(TEMP,U,3))
+ S DUE=$$DDATE^PXRMDATE($P(TEMP,U,2))
+ S LAST=$$DDATE^PXRMDATE($P(TEMP,U,3))
  S STATCOL=41-($L(STATUS)/2)
  S DUECOL=53-($L(DUE)/2)
  S LASTCOL=67-($L(LAST)/2)

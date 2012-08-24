@@ -1,5 +1,5 @@
 PSOREJU3 ;BIRM/LJE - BPS (ECME) - Clinical Rejects Utilities (3) ;04/25/08
- ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359,385**;DEC 1997;Build 27
  ;References to 9002313.99 supported by IA 4305
  ;Reference to $$CLAIM^BPSBUTL supported by IA 4719
  ;
@@ -9,21 +9,22 @@ TRICCHK(RX,RFL,RESP,FROM,RVTX) ;check to see if Rx is non-billable or in an "In 
  ; Input:  (r) RX  - Rx IEN (#52) 
  ;         (r) RFL - REFILL
  ;         (o) RESP - Response from $$EN^BPSNCPDP api
- ;   TRICCHK assumes that the calling routine has validated that the fill is Tricare.
+ ;   TRICCHK assumes that the calling routine has validated that the fill is TRICARE or CHAMPVA.
  ;
  ;  - \Need to be mindful of foreground and background processing.
  ;
- N ETOUT,ESTAT
+ N ETOUT,ESTAT,PSOBEI
  S:'$D(FROM) FROM="" S ESTAT="",ESTAT=$P(RESP,"^",4),NFROM=0 I FROM="PL"!(FROM="PC") S NFROM=1
  Q:ESTAT["PAYABLE"!(ESTAT["REJECTED")
+ S PSOBEI=$$ELIGDISP^PSOREJP1(RX,RFL)
  I ESTAT["IN PROGRESS",FROM="RRL"!($G(RVTX)="RX RELEASE-NDC CHANGE") D  Q
  . I 'NFROM D
- . . W !!,"TRICARE Prescription "_$$GET1^DIQ(52,RX,".01")_" cannot be released until ECME 'IN PROGRESS'"
+ . . W !!,PSOBEI_" Prescription "_$$GET1^DIQ(52,RX,".01")_" cannot be released until ECME 'IN PROGRESS'"
  . . W !,"status is resolved payable.",!!
  ;
  I $D(RESP) D  Q
- . I +RESP=6 W:'NFROM&('$G(CMOP)) !!,"Inactive ECME Tricare",!! D  Q
- . . S ACT="Inactive ECME Tricare" D RXACT^PSOBPSU2(RX,RFL,ACT,"M",DUZ)
+ . I +RESP=6 W:'NFROM&('$G(CMOP)) !!,"Inactive ECME "_PSOBEI,!! D  Q
+ . . S ACT="Inactive ECME "_PSOBEI D RXACT^PSOBPSU2(RX,RFL,ACT,"M",DUZ)
  . I +RESP=2!(+RESP=3) N PSONBILL S PSONBILL=1 D TRIC2 Q
  . I +RESP=4!(ESTAT["IN PROGRESS") N PSONPROG S PSONPROG=1 D TRIC2 Q
  Q
@@ -47,7 +48,7 @@ TRIC3 ;
  N ACTION,DIR,DIRUT,OPTS,DEF,COM
 TRIC4 S DIR(0)="SO^",DIR("A")="",OPTS="DQ",DEF="D"
  ;reference to ^XUSEC( supported by IA 10076
- I $D(^XUSEC("PSO TRICARE",DUZ)) S OPTS=OPTS_"I" ;PSO*7.0*358, if user has security key, include IGNORE in TRICARE options
+ I $D(^XUSEC("PSO TRICARE/CHAMPVA",DUZ)) S OPTS=OPTS_"I" ;PSO*7.0*358, if user has security key, include IGNORE in TRICARE/CHAMPVA options
  S:(OPTS["D") DIR(0)=DIR(0)_"D:(D)iscontinue - DO NOT FILL PRESCRIPTION;",DIR("A")=DIR("A")_"(D)iscontinue,"
  S:(OPTS["Q") DIR(0)=DIR(0)_"Q:(Q)UIT - SEND TO WORKLIST (REQUIRES INTERVENTION);",DIR("A")=DIR("A")_"(Q)uit,"
  S:(OPTS["I") DIR(0)=DIR(0)_"I:(I)GNORE - FILL Rx WITHOUT CLAIM SUBMISSION;",DIR("A")=DIR("A")_"(I)gnore,"
@@ -57,20 +58,20 @@ TRIC4 S DIR(0)="SO^",DIR("A")="",OPTS="DQ",DEF="D"
  S ACTION=Y
  I ACTION="D" S ACTION=$$DC^PSOREJU1(RX,ACTION)    ;cnf, PSO*7*358
  I ACTION="Q" D WRKLST^PSOREJU4(RX,RFL,,DUZ,DT,1,"",RESP)    ;cnf, PSO*7*358
- I ACTION="I" G TRIC4:'$$CONT^PSOREJU1() S COM=$$TCOM^PSOREJP3() G TRIC4:COM="^" G TRIC4:'$$SIG^PSOREJU1() D
- . D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,6,COM)   ;TRICARE non-billable should have only 1 reject - eT
- . D AUDIT^PSOTRI(RX,RFL,,COM,$S($$PSOET^PSOREJP3(RX,RFL):"N",1:"R"))
+ I ACTION="I" G TRIC4:'$$CONT^PSOREJU1() S COM=$$TCOM^PSOREJP3(RX,RFL) G TRIC4:COM="^" G TRIC4:'$$SIG^PSOREJU1() D
+ . D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,6,COM)   ;TRICARE/CHAMPVA non-billable should have only 1 reject - eT/eC
+ . D AUDIT^PSOTRI(RX,RFL,,COM,$S($$PSOET^PSOREJP3(RX,RFL):"N",1:"R"),$P(RESP,"^",3))
  Q
  ;
 MSG ;
- W !!,"This is a non-billable Tricare prescription."    ;cnf, PSO*7*358
+ W !!,"This is a non-billable "_$$ELIGDISP^PSOREJP1(RX,RFL)_" prescription."    ;cnf, PSO*7*358
  Q
 SUSP ;Suspense Rx due to IN PROGRESS status in ECME
  N DA,ACT,RX0,SD,RXS,PSOWFLG,DIK,RXN,XFLAG,RXP,DD,DO,X,Y,DIC,VALMSG,COMM,LFD,DFLG,RXCMOP
  N PSOQFLAG,PSORXZD,PSOQFLAG,PSOKSPPL,PSOZXPPL,PSOZXPI,RXLTOP
  S DA=RX D SUS^PSORXL1
 TACT ;
- S ACT="TRICARE-Rx placed on Suspense due to"_$S($G(PSONPROG):" ECME IN PROGRESS status",$G(PSONBILL):"the Rx being Non-billable",1:"")
+ S ACT=$$ELIGDISP^PSOREJP1(RX,RFL)_"-Rx placed on Suspense due to"_$S($G(PSONPROG):" ECME IN PROGRESS status",$G(PSONBILL):"the Rx being Non-billable",1:"")
  I '$G(DUZ) N DUZ S DUZ=.5
  D RXACT^PSOBPSU2(RX,RFL,ACT,"M",DUZ)
  Q
@@ -115,7 +116,7 @@ TYPE ;
  ;
  I $G(DATA(REJ,"REASON"))'="" W !?3,"Reason   : " D PRT^PSOREJU2("REASON",14,62)
  N RTXT,OCODE,OTXT,I
- S (OTXT,RTXT,OCODE)="",RTXT=$S(DATA(REJ,"CODE")=79:"REFILL TOO SOON",CODE=88:"DUR REJECT",1:$$EXP^PSOREJP1(CODE))_" ("_DATA(REJ,"CODE")_")"
+ S (OTXT,RTXT,OCODE)="",RTXT=$S(DATA(REJ,"CODE")=79:"REFILL TOO SOON",DATA(REJ,"CODE")=88:"DUR REJECT",1:$$EXP^PSOREJP1(DATA(REJ,"CODE")))_" ("_DATA(REJ,"CODE")_")"
  F I=1:1 S OCODE=$P(DATA(REJ,"OTHER REJECTS"),",",I) Q:OCODE=""   D
  . S OTXT=OTXT_", "_$S(OCODE=79:"REFILL TOO SOON",OCODE=88:"DUR REJECT",1:$$EXP^PSOREJP1(OCODE))_" ("_OCODE_")"
  S RTXT=RTXT_OTXT_".  Received on "_$$FMTE^XLFDT($G(DATA(REJ,"DATE/TIME")))_"."
@@ -131,9 +132,9 @@ W1 S:$L(PSOTXT)<PSOMARG PSOWRAP(PSOWRAP)=PSOTXT I $L(PSOTXT)'<PSOMARG F I=PSOMAR
  Q
  ;
 HDR ;
- I $G(PSONBILL) W !!?24,"*** TRICARE - NON-BILLABLE ***" Q
- I $G(PSONPROG) W !!?18,"*** TRICARE - 'IN PROGRESS' ECME status ***" Q
- I $G(PSOTRIC) W !!?12,"*** TRICARE - "
+ I $G(PSONBILL) W !!?24,"*** "_$$ELIGDISP^PSOREJP1(RX,RFL)_" - NON-BILLABLE ***" Q
+ I $G(PSONPROG) W !!?18,"*** "_$$ELIGDISP^PSOREJP1(RX,RFL)_" - 'IN PROGRESS' ECME status ***" Q
+ I $G(PSOTRIC) W !!?12,"*** "_$$ELIGDISP^PSOREJP1(RX,RFL)_" - "
  E  W !!?16
  W "REJECT RECEIVED FROM THIRD PARTY PAYER ***" Q
  Q
@@ -143,7 +144,7 @@ SUBMIT(RXIEN,RFCNT,PSOTRIC) ;called from PSOCAN2 (routine size exceeded)
  I SUBMITE D
  . N ACTION
  . D ECMESND^PSOBPSU1(RXIEN,,,$S($O(^PSRX(RXIEN,1,0)):"RF",1:"OF"))
- . ; Quit if there is an unresolved Tricare non-billable reject code, PSO*7*358
+ . ; Quit if there is an unresolved TRICARE or CHAMPVA non-billable reject code, PSO*7*358
  . I $$PSOET^PSOREJP3(RXIEN) S ACTION="Q" Q 
  . I $$FIND^PSOREJUT(RXIEN) S ACTION=$$HDLG^PSOREJU1(RXIEN,,"79,88","OF","IOQ","Q")
  I 'SUBMITE&(PSOTRIC) D
@@ -157,27 +158,27 @@ TRISTA(RX,RFL,RESP,FROM,RVTX) ;called from suspense
  Q:'PSOTRIC 0
  S TRESP=RESP,ESTAT=$P(TRESP,"^",4) S:ESTAT="" ESTAT=$$STATUS^PSOBPSUT(RX,RFL)
  Q:ESTAT["E PAYABLE" 0
- I $$TRIAUD(RX,RFL) Q 0  ;if Tricare Rx is in audit due to override or bypass, allow to print from suspense, cnf
- I +RESP=2,$P(RESP,"^",3)="T",$P(RESP,"^",2)="TRICARE INPATIENT/DISCHARGE" Q 0   ;if TRICARE INPATIENT/DISCHARGE, allow to print from suspense, cnf 
- Q:ESTAT["E REJECTED" 1  ;rejected tricare is not allowed to print from suspense
+ I $$TRIAUD(RX,RFL) Q 0  ;if TRICARE or CHAMPVA Rx is in audit due to override or bypass, allow to print from suspense, cnf
+ I +RESP=2,$P(RESP,"^",3)="T"!($P(RESP,"^",3)="C"),$P(RESP,"^",2)=($$ELIGDISP^PSOREJP1(RX,RFL)_" INPATIENT/DISCHARGE") Q 0   ;if TRICARE INPATIENT/DISCHARGE or CHAMPVA INPATIENT/DISCHARGE, allow to print from suspense, cnf 
+ Q:ESTAT["E REJECTED" 1  ;rejected TRICARE or CHAMPVA is not allowed to print from suspense
  ;if 'in progress' (4) or not billable (2,3) don't allow to print from suspense (IA 4415 Values)
  I '$D(RESP)!($P(RESP,"^",1)="")!($G(RESP)="") D
  . S TSTAT=$$STATUS^PSOBPSUT(RX,RFL) S TRESP=$S(TSTAT["IN PROGRESS":4,TSTAT["NOT BILLABLE":2,1:0)
  . S $P(TRESP,"^",4)=TSTAT
  ;
- I +TRESP=2!(+TRESP=3) D WRKLST^PSOREJU4(RX,RFL,"",DUZ,DT,1,"",RESP) Q 1  ;send Tricare non billable to worklist (pseudo reject), cnf
+ I +TRESP=2!(+TRESP=3) D WRKLST^PSOREJU4(RX,RFL,"",DUZ,DT,1,"",RESP) Q 1  ;send TRICARE or CHAMPVA non billable to worklist (pseudo reject), cnf
  I +TRESP=4!(ESTAT["IN PROGRESS") Q 1
  Q 0
  ;
-TRIAUD(RXIEN,RXFILL) ;is RXIEN in the Tricare audit and no open rejects  ;cnf
- ; RXIEN will only be in Tricare audit if a bypass or override has occurred and rejects are closed
- ; returns  0  if RXIEN is not in Tricare audit at all or not in audit for right fill number
+TRIAUD(RXIEN,RXFILL) ;is RXIEN in the TRICARE/CHAMPVA audit and no open rejects  ;cnf
+ ; RXIEN will only be in TRICARE/CHAMPVA audit if a bypass or override has occurred and rejects are closed
+ ; returns  0  if RXIEN is not in TRICARE/CHAMPVA audit at all or not in audit for right fill number
  ;             rejects must be closed for 0 to be returned
- ;          1  if RXIEN is in Tricare audit for the right fill number and rejects are closed
+ ;          1  if RXIEN is in TRICARE/CHAMPVA audit for the right fill number and rejects are closed
  ;
  N X,AUDIEN,REJIEN
  S X=0,AUDIEN=""
- I '$D(^PS(52.87,"C",RXIEN)) Q X   ;RXIEN is not in the Tricare audit
+ I '$D(^PS(52.87,"C",RXIEN)) Q X   ;RXIEN is not in the TRICARE/CHAMPVA audit
  ;
  I $G(RXFILL)="" S RXFILL=$$LSTRFL^PSOBPSU1(RXIEN)  ;Get latest fill if not passed in
  ;
@@ -192,3 +193,34 @@ TRIAUD(RXIEN,RXFILL) ;is RXIEN in the Tricare audit and no open rejects  ;cnf
  ;
  Q X
  ;
+ECMECHK(RX,FILL) ;
+ ; This function returns a '1' if any of the conditions below are met:
+ ;    - RX has an unresolved DUR or Refill Too Soon reject
+ ;    - RX is TRICARE/CHAMPVA and has any unresolved reject
+ ;    - RX is TRICARE/CHAMPVA and IN PROGRESS
+ ; This is used by functions such as PPLADD^PSOSUPOE to determine if
+ ;   a label should be printed (we do not want a label for the conditions)
+ ;
+ ; Incoming Parameters:
+ ;   RX - Internal IEN of the Prescription File (required)
+ ;   FILL - Fill Number (optional, defaults to last fill if not passed in)
+ ; Returns:
+ ;   0 - None of the conditions exists
+ ;   1 - One of the conditions above is met
+ ;
+ I '$G(RX) Q 0
+ I $G(FILL)="" S FILL=$$LSTRFL^PSOBPSU1(RX)
+ ;
+ ; DUR or Refill Too Soon rejects
+ I $$FIND^PSOREJUT(RX,FILL,"","79,88") Q 1
+ ;
+ ; If not TRICARE/CHAMPVA, quit with 0 as the rest of the checks
+ ;   are all TRICARE/CHAMPVA dependent
+ I '$$TRIC^PSOREJP1(RX,FILL) Q 0
+ ;
+ ; No label for TRICARE/CHAMPVA with unresolved rejects
+ I $$FIND^PSOREJUT(RX,FILL) Q 1
+ ;
+ ;No label for TRICARE/CHAMPVA claims that are IN PROGRESS
+ I $P($$STATUS^PSOBPSUT(RX,FILL),U)="IN PROGRESS" Q 1
+ Q 0

@@ -1,5 +1,5 @@
-PSOORED2 ;ISC-BHAM/SAB-edit orders from backdoor con't ;03/06/95 10:24
- ;;7.0;OUTPATIENT PHARMACY;**2,51,46,78,102,114,117,133,159,148,247,260,281,289,276,358,251**;DEC 1997;Build 202
+PSOORED2 ;ISC-BHAM/SAB - edit orders from backdoor con't ;03/06/95 10:24
+ ;;7.0;OUTPATIENT PHARMACY;**2,51,46,78,102,114,117,133,159,148,247,260,281,289,276,358,251,385**;DEC 1997;Build 27
  ;Reference to $$DIVNCPDP^BPSBUTL supported by IA 4719
  ;Reference to $$ECMEON^BPSUTIL supported by IA 4410
  ;called from psooredt. cmop edit checks.
@@ -82,7 +82,7 @@ RFE I '$D(^PSRX(PSORXED("IRXN"),1,RFL)) Q
  . . N RX S RX=PSORXED("IRXN")
  . . I '$P(CHANGED,"^",2),$$STATUS^PSOBPSUT(RX,RFL)="" Q
  . . D ECMESND^PSOBPSU1(RX,RFL,,"ED",$$GETNDC^PSONDCUT(RX,RFL),,$S($P(CHANGED,"^",2):"REFILL DIVISION CHANGED",1:"REFILL EDITED"),,+$G(CHGNDC))
- . . ; Quit if there is an unresolved Tricare non-billable reject code, PSO*7*358
+ . . ; Quit if there is an unresolved TRICARE/CHAMPVA non-billable reject code, PSO*7*358
  . . I $$PSOET^PSOREJP3(RX,RFL) S X="Q" Q
  . . ;- Checking/Handling DUR/79 Rejects
  . . I $$FIND^PSOREJUT(RX,RFL) S X=$$HDLG^PSOREJU1(RX,RFL,"79,88","ED","IOQ","Q")

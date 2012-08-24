@@ -1,10 +1,11 @@
-ORCMEDT1 ;SLC/MKB-QO,Set editor ;02/25/08
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,57,95,110,245,243,296**;Dec 17, 1997;Build 19
+ORCMEDT1 ;SLC/MKB-QO,Set editor ; 7/18/11 10:46am
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,57,95,110,245,243,296,341**;Dec 17, 1997;Build 3
 OI ; -- Enter/edit generic orderable items
  N X,Y,DA,DR,DIE,DIC,ID,DLAYGO,ORDG
  F  S ORDG=$$DGRP Q:ORDG'>0  D  W !!
  . F  S D="S."_$P(ORDG,U,4) D   Q:Y'>0  S DA=+Y,ID=DA_";99ORD",DR=".01"_$S($P(Y,U,3):";2///^S X=ID;5////"_+ORDG,1:"") D ^DIE W ! ;110
- .. S DIC="^ORD(101.43,",DIC(0)="AEQL",DLAYGO=101.43,DIE=DIC D IX^DIC ;110
+ .. ;*341 Screen OI from editing if it isn't in the DG.
+ .. S DIC("S")="I $P(^(0),U,5)="_+ORDG,DIC="^ORD(101.43,",DIC(0)="AEQL",DLAYGO=101.43,DIE=DIC D IX^DIC ;110
  Q
  ;
 DGRP() ; -- Returns sub-display group of Nursing or Other for generic OI

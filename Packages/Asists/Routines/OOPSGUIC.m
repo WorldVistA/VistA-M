@@ -1,5 +1,5 @@
 OOPSGUIC ;WIOFO/LLH-RPC routine for GET/SET CA7 ;04/22/04
- ;;2.0;ASISTS;**8,7**;Jun 03, 2002
+ ;;2.0;ASISTS;**8,7,23,24**;Jun 03, 2002;Build 1
  ;
 CA7LIST(RESULTS,PERSON,CALL) ; builds CA-7 selection list from existing
  ;                         cases - not an add
@@ -128,7 +128,7 @@ MULTIPLE(RESULTS,INPUT,DATA) ; retrieve data from multiple
  ;  Output: RESULTS - data from all records in the multiple will
  ;                     be returned.  it will be saved in a pieced
  ;                     string.
- N ACTION,ARR,IEN,FIELD,FILE,ROOT,SAVEDIK,SPEC,SUB
+ N ACTION,ARR,IEN,FIELD,FILE,ROOT,SAVEDIK,SPEC,SUB,OOPSCNT,OOPSSV,OOPSSV1
  S FILE=$P($G(INPUT),U),FIELD=$P($G(INPUT),U,2),IEN=$P($G(INPUT),U,3)
  S ACTION="" I $D(DATA)>1 S ACTION=1
  S RESULTS(0)="Record Accessed, no data"
@@ -141,6 +141,21 @@ MULTIPLE(RESULTS,INPUT,DATA) ; retrieve data from multiple
  . S RESULTS(1)="Field in not a multiple, cannot continue"
  ; now go get data from subfile
  S SAVEDIK=ROOT_IEN_","_$C(34)_$P(SUB,";")_$C(34)_","
+ ;RRA OOPS*2*23 - ticket 396917 
+ ;GUI may pass in name as a string - so if there are duplicate names in #200
+ ;it doesn't know how to resolve the name to an ien
+ ;also adding a "/" (to create a "////") to the fields so they bypass fileman  
+ ;validation in case the DUZ is 4 digits (could confuse as SSN) 
+ I ACTION,FILE=2260,FIELD=95 D
+ . S OOPSCNT=0
+ . F  S OOPSCNT=$O(DATA(OOPSCNT)) Q:OOPSCNT'>0  D
+ .. S OOPSSV=$P($P($G(DATA(OOPSCNT)),"^",8),";",2)
+ .. S OOPSSV1=$P($P($G(DATA(OOPSCNT)),"^",10),";",2)
+ .. I '+OOPSSV S OOPSSV=$P($G(^OOPS(2260,IEN,"OUTC",OOPSCNT,0)),"^",8)
+ .. I '+OOPSSV1 S OOPSSV1=$P($G(^OOPS(2260,IEN,"OUTC",OOPSCNT,0)),"^",10)
+ ..S $P(DATA(OOPSCNT),"^",8)="7;/"_OOPSSV
+ ..S $P(DATA(OOPSCNT),"^",10)="9;/"_OOPSSV1
+ ;END RRA OOPS*2*23
  I 'ACTION D GETD
  I ACTION D KILLD,SETD
  Q

@@ -1,5 +1,5 @@
 XMRUCX ;(WASH ISC)/THM/CAP-SMTP Receiver (RFC 821) for UCX ;03/25/2004  06:33
- ;;8.0;MailMan;**6,19,25,27**;Jun 28, 2002
+ ;;8.0;MailMan;**6,19,25,27,44**;Jun 28, 2002;Build 4
  ;
  ;Entry for Inet_servers interface RECEIVER
  ;SMTP service request invokes MailMan
@@ -40,9 +40,11 @@ GTM2 ;Entry point for %ZISTCPS to GT.M
 STARTGTM ;Start the %ZISTCPS service
  D LISTEN^%ZISTCPS(25,"GTM2^XMRUCX")
  Q
-CACHEVMS ;Cache/VMS tcpip service entry point
- N $ETRAP,$ESTACK S $ETRAP="S ZZIO=$ZIO H 33 D R^XMCTRAP Q"
- S (XMRPORT,IO,IO(0))="SYS$NET" D SETNM^%ZOSV($E("INETMM-"_$J,1,15))
+CACHEVMS ;Cache/VMS tcpip service and XINETD entry point
+ N $ETRAP,$ESTACK,XMOS S $ETRAP="S ZZIO=$ZIO H 33 D R^XMCTRAP Q"
+ ;CHECK OS WHEN SETTING IO VARIABLES XM*8*44 RRA
+ S XMOS=$$OS^%ZOSV
+ S (XMRPORT,IO,IO(0))=$S(XMOS["VMS":"SYS$NET",1:$P) D SETNM^%ZOSV($E("INETMM-"_$J,1,15))
  N DIQUIET S DIQUIET=1 D DT^DICRW,DUZ^XUP(.5)
  S ER=0,XMS0C=1
  O IO::33 U IO:(::"-M")

@@ -1,0 +1,110 @@
+PRSNUT05 ;WOIFO/JAH - Nurse Activity for VANOD Utilities;6/5/2009
+ ;;4.0;PAID;**126**;Sep 21, 1995;Build 59
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ Q
+ ;
+SHOWSU ; SHOW SYSTEM SETUP WITH DIVISIONS, NURSE LOCATIONS AND T&Ls
+ ;
+ N %ZIS,POP,IOP,DIVMAP,DIVS
+ D BLDMAP(.DIVMAP)
+ S DIVS=$$SELECT(.DIVMAP)
+ Q:DIVS=0
+ S %ZIS="MQ"
+ D ^%ZIS
+ Q:POP
+ I $D(IO("Q")) D
+ . K IO("Q")
+ . N ZTSK,ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,ZTUCI,ZTCPU,ZTPRI,ZTKIL,ZTSYNC
+ . S ZTDESC="PRSN SHOW SYSTEM SETUP REPORT"
+ . S ZTRTN="MAIN^PRSNUT05"
+ . S ZTSAVE("DIVMAP(")=""
+ . S ZTSAVE("DIVS")=""
+ . D ^%ZTLOAD
+ . I $D(ZTSK) S ZTREQ="@" W !,"Request "_ZTSK_" Queued."
+ E  D
+ . D MAIN
+ Q
+MAIN ;
+ N RUNDT,DATA
+ U IO
+ S RUNDT=$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_(1700+$E(DT,1,3))
+ D LOCTL(.DATA,.DIVMAP)
+ D SHOLOCTL(.DATA,.DIVMAP,RUNDT)
+ D CLEANUP
+ D ^%ZISC
+ Q
+ ;
+SELECT(DM) ; Allow selection of one or all from division
+ N DIC,DUOUT,DTOUT,X,Y
+ S DIC="^DIC(4,",DIC(0)="AEQMZ"
+ S DIC("S")="I $D(DM(""IN"",+Y))"
+ S DIC("A")="Select Division or Return for All: "
+ D ^DIC
+ I $D(DUOUT)!$D(DTOUT) Q 0
+ Q +Y
+ ;
+LOCTL(DATA,DIVMAP) ;  Build an array that sorts locations with t&ls and counts
+ ;  the number of nurses at the location and t&l
+ N PRSIEN,X,OUT,NAME,ZNODE,NCNT,TLE,NLDIV,IEN200,NL,NLE,SEPFLAG
+ S (NCNT,PRSIEN)=0
+ F  S PRSIEN=$O(^PRSPC(PRSIEN)) Q:PRSIEN'>0  D
+ . S X=$$ISNURSE^PRSNUT01(PRSIEN)
+ . Q:'X
+ . S SEPFLAG=$P($G(^PRSPC(PRSIEN,1)),U,33)
+ . Q:SEPFLAG="Y"
+ . S NCNT=NCNT+1
+ . S IEN200=$P($G(^PRSPC(PRSIEN,200)),U)
+ . S ZNODE=$G(^PRSPC(PRSIEN,0))
+ . S TLE=$P(ZNODE,U,8)
+ . I TLE="" S TLE="NONE"
+ . S (NL,NLE,NLDIV)="NONE"
+ . I IEN200>0 D
+ .. S NL=$$PRIMLOC^PRSNUT03(IEN200)
+ .. S NLE=$P(NL,U,3)
+ .. I NL>0 D
+ ... S NLDIV=$P(DIVMAP("NL",+NL),U,3)
+ .. E  D
+ ... S (NLDIV,NLE)="NONE"
+ . I ($G(NLDIV)'="")&($G(NLE)'="")&($G(TLE)'="") D
+ .. I NLDIV'="NONE",DIVS'<0,DIVS'=NLDIV Q  ;NOT ALL DIVS OR NOT THE DIV WE'RE LOOKING FOR
+ .. I '$D(DATA(NLDIV,NLE,TLE)) S (DATA(NLDIV,NLE,TLE))=0
+ .. S DATA(NLDIV,NLE,TLE)=+DATA(NLDIV,NLE,TLE)+1
+ Q
+ ;
+SHOLOCTL(DATA,DIVMAP,RUNDT) ;
+ N NLD,LSTNLD,STOP,I,J
+ S (NLD,LSTNLD,STOP)=0
+ F  S NLD=$O(DATA(NLD)) Q:NLD=""!STOP  D
+ .  I NLD'=LSTNLD S:LSTNLD'=0 STOP=$$ASK^PRSLIB00() S LSTNLD=NLD D HDR
+ .  S I=""
+ .  F  S I=$O(DATA(NLD,I)) Q:I=""  D
+ ..   W !,I
+ ..   S J=""
+ ..   F  S J=$O(DATA(NLD,I,J)) Q:J=""  D
+ ...    W !,?25,$G(DATA(NLD,I,J)),?41,J
+ ...    I (IOSL-5)<$Y S STOP=$$ASK^PRSLIB00() D HDR
+ Q
+ ;
+HDR ;
+ N K
+ W @IOF,!!!?7,"DIVISION: "
+ I $G(NLD)="NONE"!($G(NLD)="") D
+ .   W NLD
+ E  D
+ .   W $P(DIVMAP("IN",NLD),U)," (",$P(DIVMAP("IN",NLD),U,2),")"
+ W ?(IOM-22),"Run Date: ",RUNDT
+ W !,"Location",?22,"Nurse Count",?38,"T&L Unit"
+ W ! F K=1:1:IOM W "-"
+ Q
+ ;
+BLDMAP(DIVMAP) ; BUILD A DIVISION MAP OF LOCATIONS
+ N DIVINFO,LIEN
+ S LIEN=0
+ F  S LIEN=$O(^NURSF(211.4,LIEN)) Q:LIEN'>0  D
+ .  S DIVINFO=$$DIV^PRSNUT03("N",LIEN)
+ .  S DIVMAP("NL",LIEN)=DIVINFO
+ .  S DIVMAP("IN",$P(DIVINFO,U,3))=$P(DIVINFO,U,1,2)
+ Q
+CLEANUP ;
+ K DIVMAP,DATA
+ Q

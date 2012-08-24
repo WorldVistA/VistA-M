@@ -1,5 +1,6 @@
-YTAPI5 ;ALB/ASF- MH API NOTES ; 7/24/07 4:11pm
- ;;5.01;MENTAL HEALTH;**62,85**;Dec 30, 1994;Build 48
+YTAPI5 ;ALB/ASF - MH API NOTES ;11/14/11 1:03pm
+ ;;5.01;MENTAL HEALTH;**62,85,106**;Dec 30, 1994;Build 10
+ ;Reference to ^XUSEC( supported by DBIA #10076
  Q
 OUTNOTE(YSDATA) ;
  N G,I,N,P,R,X,Y,YS2,YSADATE,YSCODE,YSGG,YSGG1,YSGG2,YSJ,YSJJ,YSNCODE,YSSET,YSSR,YSST,YSX1,YSX2,YSX3,YIN,YSINN,YSINE,YSMC
@@ -62,7 +63,7 @@ MC ;mumps executable setting P
  Q
 GAFURL(YSDATA) ;returns MH GAF horizontal sheet
  S YSDATA(1)="[DATA]"
- S YSDATA(2)="http://vaww.mentalhealth.med.va.gov/gafsheet.htm"
+ S YSDATA(2)="http://vaww.mentalhealth.DOMAIN.EXT/gafsheet" ;ASF 10/13/11
  Q
 PRIVL(YSDATA,YS) ;check privileges
  N YSCODE,YSET

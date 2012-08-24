@@ -1,5 +1,5 @@
-PXRMSEL1 ; SLC/PJH - PXRM Selection ;06/19/2009
- ;;2.0;CLINICAL REMINDERS;**12**;Feb 04, 2005;Build 73
+PXRMSEL1 ;SLC/PJH - PXRM Selection ;01/03/2011
+ ;;2.0;CLINICAL REMINDERS;**12,18**;Feb 04, 2005;Build 152
  ;
  ; Called by PXRMSEL
  ;
@@ -70,7 +70,7 @@ BUILD ;Build selection list
  ...S RNAM=$E(RNAM,1,34),DNAM="",DDIS=2
  ...D:DIEN
  ....S DATA=$G(^PXRMD(801.41,DIEN,0)),DDIS=0
- ....S DNAM=$P(DATA,U) I $P(DATA,U,3)]"" S DDIS=1
+ ....S DNAM=$P(DATA,U) I +$P(DATA,U,3)>0 S DDIS=1
  ....S DNAM=$E(DNAM,1,27) I DNAM="" S DNAM="??"
  ...S TXT=RNAM_$J("",35-$L(RNAM))
  ...S TXT=TXT_DNAM_$J("",28-$L(DNAM))

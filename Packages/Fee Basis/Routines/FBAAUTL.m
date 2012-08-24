@@ -1,5 +1,5 @@
 FBAAUTL ;AISC/GRR,SBW-Fee Basis Utility Routine ; 4/23/10 3:06pm
- ;;3.5;FEE BASIS;**101,114**;JAN 30, 1995;Build 7
+ ;;3.5;FEE BASIS;**101,114,108**;JAN 30, 1995;Build 115
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 DATE N FBDT S FBPOP=0 K BEGDATE,ENDDATE K:$G(%DT)'["A" %DT W !!,"**** Date Range Selection ****"
  S FBDT=$S($D(%DT):1,1:0) W ! S %DT=$S(FBDT:%DT,1:"APEX"),%DT("A")="   Beginning DATE : " D ^%DT S:Y<0 FBPOP=1 Q:Y<0  S (%DT(0),BEGDATE)=Y
@@ -18,6 +18,7 @@ D S Y=$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",$E(Y,4,5))_" "_$S
 SITEP ;SET FBSITE(0),FBSITE(1) VARIABLE TO FEE SITE PARAMETERS
  S FBPOP=0,FBSITE(0)=$G(^FBAA(161.4,1,0)) S:FBSITE(0)']"" FBPOP=1
  S FBSITE(1)=$G(^FBAA(161.4,1,1)) S:FBSITE(1)']"" FBPOP=1
+ S FBSITE("FBNUM")=$G(^FBAA(161.4,1,"FBNUM")) S:FBSITE("FBNUM")']"" FBPOP=1
  W:FBPOP !,*7,"Fee Basis Site Parameters must be entered to proceed",!
  Q
 TM S X=$E($P(X,".",2)_"0000",1,4),%=X>1159 S:X>1259 X=X-1200 S X=X\100_":"_$E(X#100+100,2,3)_" "_$E("AP",%+1)_"M" Q

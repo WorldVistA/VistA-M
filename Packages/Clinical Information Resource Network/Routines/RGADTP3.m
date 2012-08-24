@@ -1,5 +1,5 @@
-RGADTP3 ;BIR/CMC-RGADTP2 - CONTINUED ;10/30/02  10:04
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**48**;30 Apr 99;Build 3
+RGADTP3 ;BIR/CMC-RGADTP2 - CONTINUED ;12/09/2011  11:13
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**48,59**;30 Apr 99;Build 1
  ;
  ;MOVED CHKPVT AND DIFF FROM RGADTP2 DUE TO ROUTINE SIZE ISSUE
  Q
@@ -39,14 +39,35 @@ DIFF(ARRAY,RGRSDFN,DR,ARAY) ; are there fields to update? **47
  ;if Pseudo SSN Reason field has been added to the DD then attempt to set it
  N ERROR,LABEL D FIELD^DID(2,.0906,"","LABEL","LABEL","ERROR") I '$D(ERROR("DIERR"))&$D(LABEL("LABEL")) D
  .I PSNR'=ARRAY(.0906) S ARAY(2,.0906)=$G(ARRAY(.0906)),DR=DR_".0906;"
- S MBI=$$GET1^DIQ(2,+RGRSDFN_",",994,"I") I MBI="" S MBI="@"
- I MBI="@"&(ARRAY("MBI")="") Q
+ ; **59, MVI_881 start
+ ; S MBI=$$GET1^DIQ(2,+RGRSDFN_",",994,"I") I MBI="" S MBI="@"
+ ; I MBI="@"&(ARRAY("MBI")="") Q
  ; ^ treat @ and null as the same
- I MBI'=ARRAY("MBI") S DR=DR_"994;",ARAY(2,994)=ARRAY("MBI")
- S MMN=$$GET1^DIQ(2,+RGRSDFN_",",.2403,"I") I MMN="" S MMN="@"
- D STDNAME^XLFNAME(.MMN,"F",.OLDMMN) S HLMMN=ARRAY("MMN") D STDNAME^XLFNAME(.HLMMN,"F",.OLDHLMMN)
- I MMN="@"&($G(HLMMN)="") Q
+ ; I MBI'=ARRAY("MBI") S DR=DR_"994;",ARAY(2,994)=ARRAY("MBI")
+ ; S MMN=$$GET1^DIQ(2,+RGRSDFN_",",.2403,"I") I MMN="" S MMN="@"
+ ; D STDNAME^XLFNAME(.MMN,"F",.OLDMMN) S HLMMN=ARRAY("MMN") D STDNAME^XLFNAME(.HLMMN,"F",.OLDHLMMN)
+ ; I MMN="@"&($G(HLMMN)="") Q
  ; ^ treat @ and null as same
- I MMN'=$G(HLMMN) S DR=DR_".2403;",ARAY(2,.2403)=ARRAY("MMN")
+ ; I MMN'=$G(HLMMN) S DR=DR_".2403;",ARAY(2,.2403)=ARRAY("MMN")
+ I $G(ARRAY("MBI"))'="" D
+ . S MBI=$$GET1^DIQ(2,+RGRSDFN_",",994,"I") S:MBI="" MBI="@"
+ . ; ^ treat @ and null as the same
+ . I MBI'=ARRAY("MBI") S DR=DR_"994;",ARAY(2,994)=ARRAY("MBI")
+ S HLMMN=$G(ARRAY("MMN"))
+ I HLMMN'="" D
+ . S MMN=$$GET1^DIQ(2,+RGRSDFN_",",.2403,"I") S:MMN="" MMN="@"
+ . I MMN'="@" D STDNAME^XLFNAME(.MMN,"F",.OLDMMN)
+ . I HLMMN'="@" D STDNAME^XLFNAME(.HLMMN,"F",.OLDHLMMN)
+ . ; ^ treat @ and null as same
+ . I MMN'=HLMMN S DR=DR_".2403;",ARAY(2,.2403)=ARRAY("MMN")
+ ; update TIN and FIN fields
+ N TIN,FIN
+ I $G(ARRAY("TIN"))'="" D
+ . S TIN=$$GET1^DIQ(2,+RGRSDFN_",",991.08,"I") S:TIN="" TIN="@"
+ . I TIN'=ARRAY("TIN") S DR=DR_"991.08;",ARAY(2,991.08)=ARRAY("TIN")
+ I $G(ARRAY("FIN"))'="" D
+ . S FIN=$$GET1^DIQ(2,+RGRSDFN_",",991.09,"I") S:FIN="" FIN="@"
+ . I FIN'=ARRAY("FIN") S DR=DR_"991.09;",ARAY(2,991.09)=ARRAY("FIN")
+ ; **59, MVI_881 end
  I $D(ARRAY("ALIAS")) S DR=DR_"1;"
  Q

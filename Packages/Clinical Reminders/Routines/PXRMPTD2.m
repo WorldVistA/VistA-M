@@ -1,12 +1,12 @@
-PXRMPTD2 ; SLC/PKR/PJH - Reminder Inquiry print template routines.;03/06/2007
- ;;2.0;CLINICAL REMINDERS;**4,6**;Feb 04, 2005;Build 123
+PXRMPTD2 ;SLC/PKR/PJH - Reminder Inquiry print template routines. ;03/07/2011
+ ;;2.0;CLINICAL REMINDERS;**4,6,18**;Feb 04, 2005;Build 152
  ;================================================
 DATE(FIND0,PIECE,FLDNUM,TITLE,RJC,PAD,FILENUM,FLG) ;Standard DATE
  N DATE,X
  S DATE=$P($G(FIND0),U,PIECE)
  I DATE'="" D
- .S DATE=$$FMTE^XLFDT(DATE,"5Z"),X=$$RJ^XLFSTR(TITLE,RJC,PAD),X=X_" "_DATE
- .D ^DIWP
+ . S DATE=$$FMTE^XLFDT(DATE,"5Z"),X=$$RJ^XLFSTR(TITLE,RJC,PAD),X=X_" "_DATE
+ . D ^DIWP
  Q
  ;
  ;================================================
@@ -24,7 +24,9 @@ FREQ(FREQ) ;Format frequency.
  I FREQ=-1 Q "Cannot be determined"
  I +FREQ=0 Q FREQ_" - Not indicated"
  I FREQ="99Y" Q "99Y - Once"
- Q +FREQ_($S(FREQ?1N.N1"D":" day",FREQ?1N.N1"M":" month",FREQ?1N.N1"Y":" year",1:""))_$S(+FREQ>1:"s",1:"")
+ N UNIT
+ S UNIT=$S(FREQ["H":" hour",FREQ["D":" day",FREQ["W":" week",FREQ["M":" month",FREQ["Y":" year",1:" ?")_$S(+FREQ>1:"s",1:"")
+ Q +FREQ_UNIT
  ;
  ;================================================
 FTYPE(VPTR,CNT) ;Return finding type.

@@ -1,5 +1,5 @@
 BPSSCRCL ;BHAM ISC/SS - ECME SCREEN CLOSE CLAIMS ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8**;JUN 2004;Build 29
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;

@@ -1,5 +1,5 @@
-SROESNR0 ;BIR/ADM - NURSE REPORT E-SIG UTILITY ;02/27/04
- ;;3.0;Surgery;**100,129,147,153,175**;24 Jun 93;Build 6
+SROESNR0 ;BIR/ADM - NURSE REPORT E-SIG UTILITY ;11/01/2011
+ ;;3.0;Surgery;**100,129,147,153,175,176**;24 Jun 93;Build 8
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -113,3 +113,9 @@ KACA ;;^Device(s)-130,131^46;1
 KDI ;;^Specimens-130,49;W^9;0
 KFD ;;^Cultures-130,64;W^41;0
 KPBI ;;^Nursing Care Comments-130,.29;W^7;0
+KFAI ;;^Flash Steril Contamination-130,619^52;1
+KFBJ ;;^Flash Steril SPD Processing/OR Management Issues-130,620^52;2
+KFBA ;;^Flash Steril Emergency Case-130,621^52;3
+KFBB ;;^Flash Steril No Better Option-130,622^52;4
+KFBC ;;^Flash Steril Loaner or Short Notice Instrument-130,623^52;5
+KFBD ;;^Flash Steril Decontamination of Instruments Not for Use In Patient-130,624^52;6

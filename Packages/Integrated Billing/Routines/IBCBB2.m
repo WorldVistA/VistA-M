@@ -1,5 +1,5 @@
 IBCBB2 ;ALB/ARH - CONTINUATION OF EDIT CHECKS ROUTINE (CMS-1500) ;04/14/92
- ;;2.0;INTEGRATED BILLING;**51,137,210,245,232,296,320,349,371,403,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**51,137,210,245,232,296,320,349,371,403,432,447,473**;21-MAR-94;Build 29
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRBB2
@@ -63,8 +63,12 @@ EN ;
  . I $P(IBNDU2,U,11) D
  .. I '$P(IBXDATA(IBI),U,11) S IBPS=IBPS_$S(IBPS'="":",",1:"")_IBI Q
  .. I $P(IBXDATA(IBI),U,14),"24"'[$P(IBNDU2,U,11) D WARN^IBCBB11("Outside lab charges exist on a non-lab NON-VA bill")
- . I '$P(IBNDU2,U,11),$P(IBXDATA(IBI),U,11) D WARN^IBCBB11("Purchased service amounts are invalid unless this is a NON-VA bill")
- . I IBNVFLG,'$P(IBXDATA(IBI),U,11) D WARN^IBCBB11("Non-VA facility indicated, but no purchased service charge on line# "_IBI)
+ . ; Start IB*2.0*473 Changed the following two warnings to errors.
+ . ;I '$P(IBNDU2,U,11),$P(IBXDATA(IBI),U,11) D WARN^IBCBB11("Purchased service amounts are invalid unless this is a NON-VA bill")
+ . ;I IBNVFLG,'$P(IBXDATA(IBI),U,11) D WARN^IBCBB11("Non-VA facility indicated, but no purchased service charge on line# "_IBI)
+ . I '$P(IBNDU2,U,11),$P(IBXDATA(IBI),U,11) S IBER=IBER_"IB350;"
+ . I IBNVFLG,'$P(IBXDATA(IBI),U,11) S IBER=IBER_"IB351;"
+ . ; End IB*2.0*473
  . I $D(IBXDATA(IBI,"A")) S IBER=IBER_"IB310;" Q
  . I $D(IBXDATA(IBI,"ARX")),IBER'["311;" S IBER=IBER_"IB311;" Q
  . I $P(IBXDATA(IBI),U,14) S IBOLAB=IBOLAB+1
@@ -82,7 +86,8 @@ EN ;
  . ; IB*2.0*432 - The IB system shall provide the ability for users to enter maximum line item dollar amounts of 9999999.99.
  . ; I IBER'["IB090",$P(IBXDATA(IBI),U,9)'<10000 S IBER=IBER_"IB090;"
  . I IBER'["IB090",$P(IBXDATA(IBI),U,9)'<10000000 S IBER=IBER_"IB090;"
- . I '($P(IBXDATA(IBI),U,9)*$P(IBXDATA(IBI),U,8)),$$COBN^IBCEF(IBIFN)'>1 S Z="Procedure "_$P(IBXDATA(IBI),U,5)_" has a 0-charge and will not be transmitted" D WARN^IBCBB11(Z)
+ . ; IB*2.0*447 BI Removed individual warning replaced by a claim level warning.
+ . ; I '($P(IBXDATA(IBI),U,9)*$P(IBXDATA(IBI),U,8)),$$COBN^IBCEF(IBIFN)'>1 S Z="Procedure "_$P(IBXDATA(IBI),U,5)_" has a 0-charge and will not be transmitted" D WARN^IBCBB11(Z)
  I IBTX,IBLCT>50 D
  . I '$$REQMRA^IBEFUNC(IBIFN) S IBER=IBER_"IB308;" Q
  . I '$P(IBNDTX,U,9) S IBER=IBER_"IB325;"
@@ -94,7 +99,9 @@ EN ;
  .I $P(IBU3,U,4)="" S IBER=IBER_"IB138;" Q
  .I $P(IBU3,U,3)="","AM"[$P(IBU3,U,4) S IBER=IBER_"IB139;"
  .Q
- I IBPS'="" D WARN^IBCBB11("NON-VA facility indicated, but no purchased service charge on line item"_$S(IBPS[",":"s",1:"")_" #"_IBPS)
+ ; IB*2.0*473 BI Changed the following warning to an error.
+ ;I IBPS'="" D WARN^IBCBB11("NON-VA facility indicated, but no purchased service charge on line item"_$S(IBPS[",":"s",1:"")_" #"_IBPS)
+ I IBPS'="" S IBER=IBER_"IB351;"
  I $P(IBNDU2,U,11),$P(IBNDU2,U,11)=4,IBOLAB>1 D WARN^IBCBB11("For proper payment, you must bill each outside lab on a separate claim form")
  K IBXDATA
  ;

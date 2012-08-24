@@ -1,5 +1,5 @@
 VAFCPDAT ;BIR/CML/ALS-DISPLAY MPI/PD INFORMATION FOR SELECTED PATIENT ;10/24/02  13:13
- ;;5.3;Registration;**333,414,474,505,707,712**;Aug 13, 1993;Build 7
+ ;;5.3;Registration;**333,414,474,505,707,712,837**;Aug 13, 1993;Build 5
  ;Registration has IA #3299 for MPI/PD to call START^VAFCPDAT
  ;
  ;variable DFN is not NEWed or KILLed in this routine as that variable is passed in
@@ -20,7 +20,7 @@ START ;Entry point without device call, used for RPC calls
  .W !,"ICN ",$G(ICN)," does not exist at ",SITENAM,"."
  .W !,"Search date: ",HDT,!,LN
  S DIC=2,DR=".01;.02;.03;.09;.111;.112;.113;.114;.115;.1112;.131;.313;.351;994;.0907;.0906;.121",DA=DFN,DIQ(0)="EI",DIQ="DNODE"  ;**707,712
- N NAME,SSN,DOB,SEX,CLAIM,DOD,ICN,STR1,STR2,STR3,CTY,ST,ZIP,PHN,MBI,SSNVER,PREAS,BAI  ;**707,712
+ N NAME,SSN,DOB,SEX,CLAIM,DOD,ICN,STR1,STR2,STR3,CTY,ST,ZIP,PHN,MBI,SSNVER,PREAS,BAI,TIN,FIN  ;**707,712,837
  D EN^DIQ1 K DIC,DR,DA,DIQ
  S NAME=$G(DNODE(2,DFN,.01,"E")),SSN=$G(DNODE(2,DFN,.09,"E"))
  S DOB=$$FMTE^XLFDT($G(DNODE(2,DFN,.03,"I")))
@@ -33,12 +33,13 @@ START ;Entry point without device call, used for RPC calls
  S PHN=$G(DNODE(2,DFN,.131,"E"))
  S SSNVER=$G(DNODE(2,DFN,.0907,"E"))  ;**707
  S PREAS=$G(DNODE(2,DFN,.0906,"E"))  ;**707
- S MNODE=$$MPINODE^MPIFAPI(DFN) I +MNODE=-1 S MNODE="^^^^^"
- S (ICN,CMOR,SCN,SCORE,SCRDT,DIFF)=""
+ S MNODE=$$MPINODE^MPIFAPI(DFN) I +MNODE=-1 S MNODE="^^^^^^^^"
+ S (ICN,SCN,SCORE,SCRDT,DIFF,TIN,FIN)=""   ;**837, MVI_883
  S ICN=$P($G(MNODE),"^") S:ICN="" ICN="None"
- S CMOR=$$GET1^DIQ(4,+$P($G(MNODE),"^",3)_",",.01) S:CMOR="" CMOR="None"
+ ;S CMOR=$$GET1^DIQ(4,+$P($G(MNODE),"^",3)_",",.01) S:CMOR="" CMOR="None"    ;removed for **837, MVI_918
  I $E(ICN,1,3)=SITENUM S GOT=0 D
  . I $P($G(MNODE),"^",4)=""!('$D(^DPT("AICNL",1,DFN))) S ICN=ICN_"**"
+ S TIN=$P($G(MNODE),"^",8),FIN=$P($G(MNODE),"^",9)   ;**837, MVI_883
  ;
  I $D(NOTRPC) W @IOF,!
  W !,"MPI/PD Data for: ",NAME,"  (DFN #",DFN,")"
@@ -55,7 +56,7 @@ START ;Entry point without device call, used for RPC calls
  W !,"Printed ",HDT," at ",SITENAM,!,LN
  S $Y=$Y+1
  ;next 7 lines modified for **707
- W !,"ICN    : ",ICN,?40,"CMOR: ",CMOR
+ W !,"ICN    : ",ICN  ;CMOR removed  **837, MVI_918
  W !,"SSN    : ",SSN
  I SSNVER]"" W !?9,"SSN Verification Status: ",SSNVER
  I SSNVER="",PREAS]"" W !?9,"Pseudo SSN Reason: ",PREAS
@@ -65,6 +66,8 @@ START ;Entry point without device call, used for RPC calls
  W !,"Date of Birth: ",DOB
  I DOD]"" W !,"Date of Death: ",DOD
  I MBI]"" W !,"Multiple Birth Indicator: ",MBI  ;**707
+ I TIN]"" W !,"DoD Temporary ID Number : ",TIN  ;**837, MVI_883
+ I FIN]"" W !,"DoD Foreign ID Number   : ",FIN  ;**837, MVI_883
  W !,"Address:" I BAI'="" W " (Bad Address Indicator: ",BAI,")"
  I STR1'="" W !?9,STR1
  I STR2'="" W !?9,STR2
@@ -129,8 +132,10 @@ HIS ;find ICN history
  ..W @IOF,!,"MPI/PD data for: ",NAME,"  (DFN #",DFN,")",!,LN2 D ICNHDR
  .W !,HISICN I HISDT]"" W "  - changed ",HISDT
  ;
-CONT ;Continue to VAFCPDT2 for CMOR data and extended data
- D CMORHIS^VAFCPDT2
+CONT ;Continue to VAFCPDT2 for extended data
+ ;D CMORHIS^VAFCPDT2  
+ ;CMOR History removed, called changed to EXT^VAFCPDT2  **837, MVI_918
+ D EXT^VAFCPDT2
 DONE ;
  I QFLG G QUIT
  I ($E(IOST,1,2)="C-") S LNQ=24 D SS
@@ -145,7 +150,7 @@ TFHDR ;
  W !!,"Treating Facilities:",?22,"Station:",?32,"DT Last Treated",?54,"Event Reason"
  W !,"--------------------",?22,"--------",?32,"---------------",?54,"------------"
  Q
-ICNHDR W !!,"ICN History:",!,"------------"
+ICNHDR  W !!,"ICN History:",!,"------------"
  Q
  ;
 SS S DIR(0)="E" D  D ^DIR K DIR I 'Y S QFLG=1

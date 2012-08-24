@@ -1,8 +1,8 @@
 RMPRPIFD ;PHX/RFM,RGB-DELETE ISSUE FROM STOCK ;8/27/07  07:27
- ;;3.0;PROSTHETICS;**139**;Feb 09, 1996;Build 4
+ ;;3.0;PROSTHETICS;**139,163**;Feb 09, 1996;Build 9
  ; RVD #61 - phase III of PIP enhancement.
  ;
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;Per VHA Directive 2004-038, this routine should not be modified.
 DEL1 ;ENTRY POINT TO DELETE AN ISSUE FROM STOCK
  K DIR N ITEMIEN,RITEM,ITEMCK,ITEMSTA,ITEMLOC
  S DIR("A")="Are you sure you want to DELETE this entry",DIR("B")="N",DIR(0)="Y"
@@ -11,7 +11,11 @@ DEL1 ;ENTRY POINT TO DELETE AN ISSUE FROM STOCK
  ;
 DEL1A ;ASK IF INACTIVE ITEM
  S ITEMSTA=$P(R1(0),U,10),ITEMLOC=$P(R1(1),U,5)
-DEL1B S ITEMIEN=$O(^RMPR(661.11,"ASHI",ITEMSTA,$P(RMIT,"-"),$P(RMIT,"-",2),0)) G:ITEMIEN="" DEL2 D  G:ITEMCK=0 EXIT G:ITEMCK=1 DEL2
+DEL1B S ITEMIEN=$O(^RMPR(661.11,"ASHI",ITEMSTA,$P(RMIT,"-"),$P(RMIT,"-",2),0))
+ ;Patch RMPR*3.0*163 prevents user from deleting a previous issue if the HCPCS item has been removed
+ I ITEMIEN="" D  G EXIT
+ . W !!,"  *** Scanned HCPCS has been deleted from HCPCS Item Master (ASHI). CANNOT delete previous issue." R X:4 W !
+ D  G:ITEMCK=0 EXIT G:ITEMCK=1 DEL2
  . S ITEMCK=0,RITEM=^RMPR(661.11,ITEMIEN,0)
  . I $P(RITEM,U,9)'=1 S ITEMCK=1 Q
  . S DIR("A")="Scanned item is inactive, reactivate?",DIR("B")="N",DIR(0)="Y"

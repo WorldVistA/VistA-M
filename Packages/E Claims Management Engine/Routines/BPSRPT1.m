@@ -1,5 +1,5 @@
 BPSRPT1 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -13,7 +13,7 @@ BPSRPT1 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
  ;              BPSUMDET - (1) Summary or (0) Detail format
  ;              BPINSINF - Set to 0 for all insurances or list of file 36 IENs
  ;                 BPMWC - 1-ALL,2-Mail,3-Window,4-CMOP Prescriptions
- ;               BPRTBCK - 1-ALL,2-RealTime,3-Backbill Claim Submission
+ ;               BPRTBCK - 1-ALL,2-RealTime,3-Backbill Claim Submission,4-PRO Option
  ;               BPRLNRL - 1-ALL,2-RELEASED,3-NOT RELEASED
  ;                BPDRUG - DRUG to report on (ptr to #50)
  ;               BPDRGCL - DRUG CLASS to report on (0 for ALL)
@@ -141,7 +141,7 @@ PROCESS(BP59) ;
  ;
  ;Realtime/Backbill Check
  S BPBCK=$$RTBCK(BP59)
- I BPRTBCK'=1 I ((BPRTBCK=2)&(BPBCK=0))!((BPRTBCK=3)&(BPBCK)) G XPROC
+ I BPRTBCK'=1 I ((BPRTBCK=2)&(BPBCK'=0))!((BPRTBCK=3)&(BPBCK'=1))!((BPRTBCK=4)&(BPBCK'=2)) G XPROC
  ;
  ;Check for MAIL/WINDOW/CMOP/ALL
  I BPMWC'="A",$$MWC^BPSRPT6(BPRX,BPREF)'=BPMWC G XPROC
@@ -231,11 +231,12 @@ CLSCLM(BP59) N BP02,CL
  ;Determine whether claim is Realtime or Backbilled
  ;
  ; Input Variable: BP59 - Lookup to BPS TRANSACTION (#59)
- ; Return Value -> 1 = Backbilled
+ ; Return Value -> 2 = PRO Option
+ ;                 1 = Backbilled
  ;                 0 = Realtime
 RTBCK(BP59) N BB
  S BB=$P($G(^BPST(BP59,12)),U)
- S BB=$S(BB="BB":0,1:1)
+ S BB=$S(BB="BB":1,BB="P2":2,BB="P2S":2,1:0)
  Q BB
  ;
  ;Screen Pause 1
@@ -278,9 +279,9 @@ DATTIM(X) N DATE,BPT,BPM,BPH,BPAP
  I BPT S:'BPH BPH=12 S DATE=DATE_" "_BPH_":"_BPM_BPAP
  Q $G(DATE)
  ;
- ;Display RT-Realtime,BB-Backbill, or " "
+ ;Display RT-Realtime,BB-Backbill,P2-PRO Option or " "
  ;
-RTBCKNAM(BPINDEX) Q $S(BPINDEX=1:"RT",BPINDEX=0:"BB",1:" ")
+RTBCKNAM(BPINDEX) Q $S(BPINDEX=0:"RT",BPINDEX=1:"BB",BPINDEX=2:"P2",1:" ")
  ;
  ;See for Specific Reject Code
  ;

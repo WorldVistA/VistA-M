@@ -1,6 +1,6 @@
-DICUIX2 ;SEA/TOAD,SF/TKW-FileMan: Build index data in DINDEX array (cont). ;11:19 AM  7 Nov 2000
- ;;22.0;VA FileMan;**4,28,67**;Mar 30, 1999
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICUIX2 ;SEA/TOAD,SF/TKW-FileMan: Build index data in DINDEX array (cont). ;02/28/2012
+ ;;22.0;VA FileMan;**4,28,67,168**;Mar 30, 1999;Build 25
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 COMMON1 ; Put info about data subscripts into DINDEX array
  N DIFR,DIPRT
@@ -27,7 +27,7 @@ C3 I 'DINDEX(DISUB,"FILE")!('DINDEX(DISUB,"FIELD")) S DINODE="",DICODE="DINDEX(D
 C4 S DITYPE=$P(DINODE,U,2)
  N % S %="F" D  S DINDEX(DISUB,"TYPE")=%
  . Q:DIFLAGS["Q"
- . I DITYPE["P" S %="P" Q
+ . I DITYPE["P" S %="P" S:$$ORDERQ(+$P(DITYPE,"P",2)) %="F",DITYPE="F" Q  ;TRICK:  TREAT FILE 100 POINTERS AS FREE-TEXT!
  . I DITYPE["D" S %="D" Q
  . I DITYPE["S" S %="S" Q
  . I DITYPE["V" S %="V" Q
@@ -110,3 +110,6 @@ DAT(DIFR,DIPRT,DIAPP,DIWAY,DIOUT) ; Process FROM and PART for dates
  S DINDEX(DISUB,"USE")=1
  Q
  ;
+ORDERQ(FILENUM) ;IS FILE LIKE ORDER FILE, DINUMED BUT NO CROSS-REF?
+ I $P($G(^DD(+FILENUM,.01,0)),U,5,99)["DINUM=X",$P(^(0),U,2)'["P",$P(^(0),U,2)'["D",'$D(^DD(+FILENUM,0,"IX","B")) Q 1
+ Q 0

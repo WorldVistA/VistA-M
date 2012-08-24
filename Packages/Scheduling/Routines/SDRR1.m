@@ -1,5 +1,5 @@
 SDRR1 ;10N20/MAH ;RECALL REMINDER ENTER EDIT 7/28/04
- ;;5.3;Scheduling;**536,561**;Aug 13, 1993;Build 7
+ ;;5.3;Scheduling;**536,561,566**;Aug 13, 1993;Build 5
 EN ;Entry point
  ;Tag STR will determine if the patient has already been enter into open access
  ;This routine is SDRRCLR EVENT protocol which is put on to SDAM MENU
@@ -45,9 +45,17 @@ NEW ;Adds new entry
  S DIR(0)="Y",DIR("A")="Do you have this information",DIR("B")="NO" D ^DIR I Y'=1 G QUIT
  S (DIC,DIE)="^SD(403.5,",DIC(0)="LZ",X=DFN,DLAYGO=403.5 D FILE^DICN S NUM=+Y
  S DA=NUM,DR="[SDRR RECALL CARD ADD]",DIE("NO^")="Not Allowed" D ^DIE
+ I $D(DTOUT) D DELETE  ;SD*566 if time out delete new incomplete record
  K DIC,DIE,DR,D0,DA,DLAYGO,NUM,PROV,X,Y,Z,OK,RDT,CLINIC,RS,KEY,COMM,DIR
- K ^TMP("SDRRCLR",$J)
+ K DTOUT,^TMP("SDRRCLR",$J)
  Q
+ ;
+DELETE ;SD*566 user timed out - delete new incomplete record & display message
+ S DIK=DIE
+ D ^DIK K DIK
+ W !!,*7,"*** ALL REQUIRED DATA WAS NOT ENTERED. ***",!,"*** RECALL REMINDER NOT CREATED FOR PATIENT:  ",$P(^DPT(DFN,0),U,1),". ***"
+ Q
+ ;
 UPDATE ;Asks for new data
  K DIC,DIE,DR S DIE="^SD(403.5,",DR="[SDRR RECALL CARD ADD]",DIE("NO^")="BACKOUTOK" D ^DIE
  K DIC,DIE,DR,D0,DA,DLAYGO,NUM,PROV,X,Y,Z,OK,RDT,CLINIC,RS,KEY,COMM

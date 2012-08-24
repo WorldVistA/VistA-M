@@ -1,5 +1,5 @@
 PSOCST10 ;BHAM ISC/SAB - high cost report ; 12/11/96 13:47
- ;;7.0;OUTPATIENT PHARMACY;**31,56,331**;DEC 1997;Build 17
+ ;;7.0;OUTPATIENT PHARMACY;**31,56,331,398**;DEC 1997;Build 10
  ;this routine list rxs that cost over a specified $ amount for a specified date range
  ;External Ref. ^PSDRUG( is supp. by DBIA# 221
 BEG W ! S %DT(0)=-DT,%DT("A")="Beginning Date: ",%DT="APE" D ^%DT G:Y<0!($D(DTOUT)) EXIT S (%DT(0),BEGDATE)=Y
@@ -30,8 +30,8 @@ CHK Q:'$D(^PSRX(PSRXN,0))!(+$P(^PSRX(PSRXN,"STA"),"^")=13)  S RX0=^(0) Q:'$D(^PS
  S QTY=$S('PSFILL:+$P(RX0,"^",7),1:+$P(RX1,"^",4))
  I 'DRCST S DRCST=$S($P($G(^PSDRUG(+$P(RX0,"^",6),660)),"^",6):+$P(^(660),"^",6),1:0)
  S COST=QTY*DRCST Q:COST<MAX
- D HD:($Y+4)>IOSL Q:$D(DIRUT)
- W !,$S(PSFILL&(TY="AL"):"*",TY="AM":"%",1:" ")_$P(RX0,"^"),?11,$E($P(DR0,"^"),"^",40),?51,$J(QTY,6),?60,$J(DRCST,6,3),?68,$J(COST,12,2) S CNT=CNT+1,TCOST=TCOST+COST
+ Q:$D(DIRUT)  D HD:($Y+4)>IOSL
+ Q:$D(DIRUT)  W !,$S(PSFILL&(TY="AL"):"*",TY="AM":"%",1:" ")_$P(RX0,"^"),?11,$E($P(DR0,"^"),"^",40),?51,$J(QTY,6),?60,$J(DRCST,6,3),?68,$J(COST,12,2) S CNT=CNT+1,TCOST=TCOST+COST
  Q
 HD I PAGE>1,$E(IOST)="C" S DIR(0)="E",DIR("A")=" Press Return to Continue or ^ to Exit" D ^DIR K DIR
  Q:$D(DIRUT)  W @IOF,!,"Fills That Cost at Least $"_MAX_" for the Period: " S Y=BEGDATE D DT^DIO2 W " to " S Y=ENDDATE D DT^DIO2 W ?72,"Page "_PAGE,!,"Run Date: " S Y=DT D DT^DIO2 S PAGE=PAGE+1

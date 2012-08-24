@@ -1,13 +1,12 @@
 PSOORNW1 ;ISC BHAM/SAB - continuation of finish of new order ;5/10/07 8:30am
- ;;7.0;OUTPATIENT PHARMACY;**23,46,78,117,131,133,172,148,222,268,206,251**;DEC 1997;Build 202
+ ;;7.0;OUTPATIENT PHARMACY;**23,46,78,117,131,133,172,148,222,268,206,251,379**;DEC 1997;Build 28
  ;Reference ^YSCL(603.01 supported by DBIA 2697
  ;Reference ^PS(55 supported by DBIA 2228
  ;Reference ^PSDRUG( supported by DBIA 221
  ;Reference to $$GETNDC^PSSNDCUT supported by IA 4707
  ;
-2 I $G(ORD) D
+2 I $G(ORD) W !!,"Instructions: " D
  .S INST=0 F  S INST=$O(^PS(52.41,ORD,2,INST)) Q:'INST  S (MIG,INST(INST))=^PS(52.41,ORD,2,INST,0) D
- ..W !!,"Instructions: "
  ..F SG=1:1:$L(MIG," ") W:$X+$L($P(MIG," ",SG)_" ")>IOM !?14 W $P(MIG," ",SG)_" "
  .S:'$D(PSODRUG("OI")) PSODRUG("OI")=$P(OR0,"^",8)
  .K INST,TY,MIG,SG

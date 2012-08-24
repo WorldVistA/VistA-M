@@ -73,6 +73,6 @@ INSTALL(SUBJECT,LINE2,TEXT)  ;  send install message to forum
  S TEXT(1,0)=" ",TEXT(2,0)="Installation of IFCAP "_LINE2_" information message:",TEXT(3,0)="",TEXT(4,0)="              site: "_$G(^DD("SITE"))
  X ^%ZOSF("UCI") S TEXT(5,0)="            op sys: "_$P($G(^%ZOSF("OS")),"^"),TEXT(6,0)="               uci: "_Y,TEXT(7,0)="              user: "_$P($G(^VA(200,+DUZ,0)),"^")
  D NOW^%DTC S Y=% D DD^%DT S TEXT(8,0)="         date@time: "_Y,TEXT(9,0)=" "
- S XMDUZ=.5,XMY("G.IFCAP INSTALL@FORUM.VA.GOV")="",XMTEXT="TEXT(",XMSUB=SUBJECT
+ S XMDUZ=.5,XMY("G.IFCAP INSTALL@FORUM.DOMAIN.EXT")="",XMTEXT="TEXT(",XMSUB=SUBJECT
  D ^XMD
  Q

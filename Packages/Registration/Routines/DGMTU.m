@@ -1,5 +1,5 @@
 DGMTU ;ALB/RMO,LBD,BRM,EG - Means Test Utilities ; 02/08/2005 07:10 AM
- ;;5.3;Registration;**4,33,182,277,290,374,358,420,426,411,332,433,456,476,519,451,630,783,799**;Aug 13, 1993;Build 1
+ ;;5.3;Registration;**4,33,182,277,290,374,358,420,426,411,332,433,456,476,519,451,630,783,799,834**;Aug 13, 1993;Build 4
  ;MT=Means Test
 LST(DFN,DGDT,DGMTYPT) ;Last MT for a patient
  ;         Input  -- DFN   Patient IEN
@@ -74,13 +74,14 @@ EDT(DFN,DGDT) ;Display patients current MT information and provide
  ;         Output -- None
  ;
  ; obtain lock used to synchronize local MT/CT options with income test upload
+ ; '+' added to VSITE check to allow divisions to edit parent owned tests
  N VSITE
  I $$LOCK^DGMTUTL(DFN)
  ;
  D DIS(DFN)
  S DGMTI=+$$LST(DFN,DGDT),VSITE=+$P($$SITE^VASITE(),U,3)
  G EDTQ:'DGMTI!(DGMTI'=+$$LST^DGMTU(DFN))
- I $P($G(^DGMT(408.31,DGMTI,2)),U,5)'=VSITE G EDTQ ; Test doesn't belong to site
+ I +$P($G(^DGMT(408.31,DGMTI,2)),U,5)'=VSITE G EDTQ ; Test doesn't belong to site
  S DGMT0=$G(^DGMT(408.31,DGMTI,0)),DGMTDT=+DGMT0,DGMTS=$P(DGMT0,"^",3)
  S DIR("A")="Do you wish to "_$S(DGMTS=1:"proceed with",1:"edit")_" the means test at this time"
  S DIR("B")=$S(DGMTS&($D(DGPRFLG)):"NO",DGMTS=1:"YES",1:"NO"),DIR(0)="Y"

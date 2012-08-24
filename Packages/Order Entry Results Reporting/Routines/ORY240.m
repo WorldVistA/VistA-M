@@ -1,0 +1,26 @@
+ORY240 ;SLC/JMH - Post Install for OR*3*240 ; [9/2/05 1:25pm]
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**240**;Dec 17, 1997
+POST ;
+ N RADA ;Procedure IEN
+ S RADA=0 F  S RADA=$O(^RAMIS(71,RADA)) Q:'RADA  D
+ .N CM,OIDA
+ .S OIDA=$O(^ORD(101.43,"ID",RADA_";99RAP",0))
+ .Q:'$G(OIDA)
+ .S CM=$$GETCM(RADA)
+ .I $D(^RAMIS(71,RADA,4)) D
+ ..N CHDA ;child IEN
+ ..S CHDA=0 F  S CHDA=$O(^RAMIS(71,RADA,4,"B",CHDA)) Q:'$G(CHDA)  S CM=$$MERGECM($G(CM),$$GETCM(CHDA))
+ .I $L($G(CM)) S $P(^ORD(101.43,OIDA,"RA"),U)=CM
+ Q
+GETCM(RADA) ;
+ N I,CM
+ S CM=""
+ S I=0 F  S I=$O(^RAMIS(71,RADA,"CM",I)) Q:'I  S CM=$G(CM)_$G(^RAMIS(71,RADA,"CM",I,0))
+ Q CM
+MERGECM(X,Y) ;
+ N I,RET,ARRY
+ S RET=""
+ I $L(X) F I=1:1:$L(X) S ARRY($E(X,I))=""
+ I $L(Y) F I=1:1:$L(Y) S ARRY($E(Y,I))=""
+ S I="" F  S I=$O(ARRY(I)) Q:I=""  S RET=RET_I
+ Q RET

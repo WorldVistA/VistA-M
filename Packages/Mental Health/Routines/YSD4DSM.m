@@ -6,7 +6,7 @@ YSD4DSM ;DALISC/LJA - Master DSM-IV Conversion Routine ;[ 07/13/94  2:37 PM ]
  ;           Call CONVERT to start the DSM-IV Conversion process...
  ; ----------------------------------------------------------------------
 CONVERT ;
- D CHECKENV^YSD4C000 QUIT:'YSD4OK  ;-> Call examines environment, and
+ ;D CHECKENV^YSD4C000 QUIT:'YSD4OK  ;-> Call examines environment, and
  ;                                     establishes var's needed for
  ;                                     control of following process
  ;
@@ -18,11 +18,11 @@ CONVERT ;
  ;  Let user stop process now IF restarting...
  I $O(^YSD(627.99,0)) D
  .  S YSD4RS=1
- .  D OUT^YSD4PRE0 ; Place out order message on all DSM options
+ .  ;D OUT^YSD4PRE0 ; Place out order message on all DSM options
  .  S YSD4DIRA="OK to restart conversion now"
- .  D OKCONT^YSD4C000(2)
+ .  ;D OKCONT^YSD4C000(2)
  .  I 'YSD4OK D  Q
- .  .  D OUT^YSD4POST
+ .  .  ;D OUT^YSD4POST
  .  .  K YSD4RS
  ;
 CTRL1 ;  YSD4POST calls here...  Independent calls allowed to CONVERT, above.
@@ -45,7 +45,7 @@ CTRL1 ;  YSD4POST calls here...  Independent calls allowed to CONVERT, above.
  D INSTR^YSD4C001("PROCDONE",0,2)
  ;
  D ERRORS
- D:YSD4RS OUT^YSD4POST ; take out of order message off all DSM options
+ ;D:YSD4RS OUT^YSD4POST ; take out of order message off all DSM options
  K YSD4RS
  QUIT
  ;

@@ -59,7 +59,7 @@ MAINQ ;
  ; -----------------------------------------------------
 CLIERR(VBECCODE,VBECROOT) ; -- send client error message
  NEW VBECDAT
- SET VBECDAT("MESSAGE TYPE")="gov.va.med.foundations.rpc.fault"
+ SET VBECDAT("MESSAGE TYPE")="ext.domain.foundations.rpc.fault"
  SET VBECDAT("ERRORS",1,"CODE")=1
  SET VBECDAT("ERRORS",1,"ERROR TYPE")="client"
  SET VBECDAT("ERRORS",1,"CDATA")=1
@@ -76,7 +76,7 @@ SYSERR ; -- send system error message
  SET VBECMSG=$$EC^%ZOSV      ; -- Get the error code
  DO ^%ZTER                  ; -- Save off the error
  ;
- SET VBECDAT("MESSAGE TYPE")="gov.va.med.foundations.rpc.fault"
+ SET VBECDAT("MESSAGE TYPE")="ext.domain.foundations.rpc.fault"
  SET VBECDAT("ERRORS",1,"CODE")=1
  SET VBECDAT("ERRORS",1,"ERROR TYPE")="system"
  SET VBECDAT("ERRORS",1,"CDATA")=1
@@ -86,7 +86,7 @@ SYSERR ; -- send system error message
  ;
 BUILD(VBECY,VBECDAT) ;  -- store built xml in passed store reference (VBECY)
  ; -- input format
- ; VBECDAT("MESSAGE TYPE") = type of message (ex. gov.va.med.foundations.rpc.fault) 
+ ; VBECDAT("MESSAGE TYPE") = type of message (ex. ext.domain.foundations.rpc.fault) 
  ; VBECDAT("ERRORS",<integer>,"CODE") = error code
  ; VBECDAT("ERRORS",<integer>,"ERROR TYPE") = type of error (system/application/security)
  ; VBECDAT("ERRORS",<integer>,"MESSAGE",<integer>) = error message
@@ -96,7 +96,7 @@ BUILD(VBECY,VBECDAT) ;  -- store built xml in passed store reference (VBECY)
  ;
  DO ADD($$XMLHDR^XOBVLIB())
  DO ADD("<VistaLink messageType="""_$G(VBECDAT("MESSAGE TYPE"))_""" version=""1.0"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:noNamespaceSchemaLocation=""rpcFault.xsd"" >")
- DO ADD("xmlns=""http://med.va.gov/Foundations"">")
+ DO ADD("xmlns=""http://DOMAIN.EXT/Foundations"">")
  DO ADD("<Fault>")
  DO ADD("<FaultString>Internal Application Error</FaultString>")
  DO ADD("<FaultActor>VBECS VistaLink Client</FaultActor>")

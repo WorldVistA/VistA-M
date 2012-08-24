@@ -1,5 +1,5 @@
-ONCOAIP ;Hines OIFO/GWB - [EE Abstract Edit Primary] ;03/08/11
- ;;2.11;ONCOLOGY;**1,5,6,7,11,13,15,16,18,19,22,24,27,28,32,33,34,35,36,37,38,39,40,42,43,44,45,46,47,48,49,50,51,52,53**;Mar 07, 1995;Build 31
+ONCOAIP ;Hines OIFO/GWB - [EE Abstract Edit Primary] ;09/26/11
+ ;;2.11;ONCOLOGY;**1,5,6,7,11,13,15,16,18,19,22,24,27,28,32,33,34,35,36,37,38,39,40,42,43,44,45,46,47,48,49,50,51,52,53,54**;Mar 07, 1995;Build 10
  ;
 ED ;[EE Abstract Edit Primary]
  W @IOF,!
@@ -87,7 +87,7 @@ MEN ;Primary Menu Options
  W !?22,"3. Stage of Disease at Diagnosis"
  W !?22,"   Collaborative Staging (2004+ cases)"
  W !?22,"4. First Course of Treatment"
- W !?22,"5. Patient Care Evaluation"
+ W !?22,"5. Performance Measures"
  W !?22,"6. Over-ride Flags"
  W !?22,"7. Case Administration"
  W !!?22,"A  All - Complete Abstract"

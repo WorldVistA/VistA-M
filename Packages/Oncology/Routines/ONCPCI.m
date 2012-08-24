@@ -1,5 +1,5 @@
-ONCPCI ;Hines OIFO/GWB - Patient Identification/Cancer Identification screen display ;06/23/10
- ;;2.11;ONCOLOGY;**15,19,24,26,27,28,33,35,36,42,43,44,45,46,47,49,51,53**;Mar 07, 1995;Build 31
+ONCPCI ;Hines OIFO/GWB - Patient Identification/Cancer Identification screen display ;09/22/11
+ ;;2.11;ONCOLOGY;**15,19,24,26,27,28,33,35,36,42,43,44,45,46,47,49,51,53,54**;Mar 07, 1995;Build 10
  ;
 PI ;Patient Identification
  K DASH S $P(DASH,"-",80)="-"
@@ -33,9 +33,9 @@ CI ;Cancer Identification
  K DASH S $P(DASH,"-",80)="-"
  N DI,DIC,DR,DA,DIQ,ONC,TM1,TM2,TM3,DOTS1,DOTS2,DOTS3
  S DIC="^ONCO(165.5,"
- S DR=".04;6;7;155;3;28;22;22.1;22.3;24;26;25.1;25.2;25.3;83;623;684;120;121;1010;5;171;172;173;21;96;102;156;159;193;194;195;196;24.1;24.2;233;237;238"
+ S DR=".04;6;7;155;3;28;22;22.1;22.3;24;26;25.1;25.2;25.3;83;623;684;120;121;1010;5;171;172;173;21;96;102;156;159;193;194;195;196;24.1;24.2;233;237;238;250"
  S DA=D0,DIQ="ONC" D EN^DIQ1
- F I=.04,28,24,25.1,25.2,25.3,26,83,120,623,684,1010,5,21,102,159,194,24.1,24.2,233,237,238 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
+ F I=.04,28,24,25.1,25.2,25.3,26,83,120,684,1010,5,21,102,159,194,24.1,24.2,233,237,238 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
  S COC=$E($$GET1^DIQ(165.5,D0,.04,"E"),1,2)
  S TM1=$$PRINT^ONCOTM(D0,1)
  K DOTS1 S $P(DOTS1,".",25-$L(TM1))="."
@@ -66,7 +66,8 @@ CI ;Cancer Identification
  S HIST=$$HIST^ONCFUNC(D0,.HSTFLD,.HISTNAM)
  S TXT=ONC(165.5,D0,HSTFLD),LEN=46 D TXT
  W !," Histology/Behavior Code......: ",ONC(165.5,D0,22.1)_" "_TXT1 W:TXT2'="" !,?32,TXT2
- W:$G(TOP)=67619 !," Gleason's Score..............: ",ONC(165.5,D0,623)
+ W:$G(TOP)=67619 !," Gleason Score (Clinical).....: ",ONC(165.5,D0,623)
+ W:$G(TOP)=67619 !," Gleason Score (Pathologic)...: ",ONC(165.5,D0,250)
  W:$G(TOP)=67619 !," PSA..........................: ",ONC(165.5,D0,96)," ",ONC(165.5,D0,684)
  W:$G(TOP)=67619 !," DRE +/-......................: ",ONC(165.5,D0,156)," ",ONC(165.5,D0,102)
  S TXT=ONC(165.5,D0,28),LEN=46 D TXT

@@ -1,5 +1,5 @@
-ORCACT3 ;SLC/MKB-Delayed Orders ; 08 May 2002  2:12 PM
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,45,48,79,141**;Dec 17, 1997
+ORCACT3 ;SLC/MKB-Delayed Orders ; 6/8/10 9:58am
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,45,48,79,141,324**;Dec 17, 1997;Build 2
 EN ; -- main entry point
  K ORVP D EN^ORQPT Q:'$G(ORVP)
  S ORTAB="DELAY" D EN^VALM("OR DELAYED ORDERS")
@@ -14,7 +14,9 @@ EN1(ORVP) ; -- entry point for use with DGPM MOVEMENT EVENTS
  Q
  ;
 REVIEW(PAT) ; -- Want to review delayed orders?
- N X,Y,DIR Q:'$D(^OR(100,"AEVNT",PAT_";DPT(")) 0
+ ;*324 New Quit flags, they aren't relevent to this prompt.
+ N X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT
+ Q:'$D(^OR(100,"AEVNT",PAT_";DPT(")) 0
  S DIR(0)="YA",DIR("A")="Review delayed orders? ",DIR("B")="YES"
  S DIR("?")="Answer YES to review this patient's delayed orders"
  D ^DIR

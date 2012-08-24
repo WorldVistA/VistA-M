@@ -17,8 +17,8 @@ RUN ; entry from above for normal or below for requeue
  D DMG^YSCLTST3
  S YSCLSITE=$P($$SITE^VASITE,"^",2)
  K XMY
- S XMY("G.CLOZAPINE ROLL-UP@FORUM.VA.GOV")=""
- I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.MED.VA.GOV")=""
+ S XMY("G.CLOZAPINE ROLL-UP@FORUM.DOMAIN.EXT")=""
+ I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.DOMAIN.EXT")=""
  S %DT="T",X="NOW" D ^%DT S YSCLNOW=$P(Y,".",2)
  S XMSUB=$S(YSDEBUG:"DEBUG ",1:"")_"Clozapine lab data started at "_YSCLSITE_" on "_DT_" at "_YSCLNOW,^TMP("YSCL",$J,1,0)=" ",^TMP("YSCL",$J,2,0)="+++ Clozapine data collection started at "_YSCLSITE_" on "_DT_" +++",^TMP("YSCL",$J,3,0)=" "
  S XMTEXT="^TMP(""YSCL"",$J,",XMDUZ="Clozapine MONITOR" D ^XMD
@@ -59,8 +59,8 @@ REXMIT ;Resend Clozapine data
  Q
 ABORT ;
  K XMY
- S XMY("G.CLOZAPINE ROLL-UP@FORUM.VA.GOV")=""
- I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.MED.VA.GOV")=""
+ S XMY("G.CLOZAPINE ROLL-UP@FORUM.DOMAIN.EXT")=""
+ I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.DOMAIN.EXT")=""
  S %DT="T",X="NOW" D ^%DT S YSCLNOW=$P(Y,".",2)
  S YSCLSITE=$P($$SITE^VASITE,"^",2)
  S XMSUB="Clozapine Roll-Up aborted ["_$G(YSSTOP)_"] at "_YSCLSITE_" on "_DT

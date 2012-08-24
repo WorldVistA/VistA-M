@@ -1,9 +1,9 @@
-ECRDSSA ;ALB/RPM - DSS Unit Activity Report ; 2 Sep 2008
- ;;2.0; EVENT CAPTURE ;**95,104**;8 May 96;Build 7
+ECRDSSA ;ALB/RPM - DSS Unit Activity Report ;1/24/12  16:20
+ ;;2.0;EVENT CAPTURE;**95,104,112**;8 May 96;Build 18
  ;
 EN ;Get location(s), DSS Unit(s), sort type, start & end dates, device
  ;
- N ECLOC,ECDSSU,ECSRT,ECSTDT,ECENDDT
+ N ECLOC,ECDSSU,ECSORT,ECSTDT,ECENDDT ;112
  I '$$ASKLOC^ECRUTL G ENQ
  I '$$ASKDSS^ECRUTL G ENQ
  I '$$ASKSRT(.ECSORT) G ENQ
@@ -279,7 +279,7 @@ GETSSN(ECIEN) ;get patient SSN
  I +$G(ECIEN)>0 D
  . S DFN=$$GET1^DIQ(721,ECIEN_",",1,"I")
  . D DEM^VADPT
- Q $P($G(VADM(2)),U)
+ Q $E($P($G(VADM(2)),U),6,9)  ;112, only get last 4 SSN
  ;
 GETPROV(ECIEN) ;get primary provider
  ;This function retrieves the primary provider for a given Event
@@ -316,7 +316,7 @@ GETPRNM(ECVIEN,ECDT) ;get procedure name
  ;
 GETPROC(ECVIEN) ;get procedure code
  ;  Input:
- ;    ECVIEN - varialbe pointer to CPT (#81) file or EC PROC file
+ ;    ECVIEN - variable pointer to CPT (#81) file or EC PROC file
  ;
  ;  Output:
  ;   Function value - returns procedure code on success; "" on failure

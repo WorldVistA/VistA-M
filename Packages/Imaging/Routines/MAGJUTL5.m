@@ -1,5 +1,5 @@
-MAGJUTL5 ;WOIFO/JHC - VistARad RPCs ; 21 Apr 2011  5:35 PM
- ;;3.0;IMAGING;**65,76,101,90,115,104**;Mar 19, 2002;Build 2225;Jul 12, 2011
+MAGJUTL5 ;WOIFO/JHC - VistARad RPCs ; 24 Apr 2012  7:35 PM
+ ;;3.0;IMAGING;**65,76,101,90,115,104,120**;Mar 19, 2002;Build 27;May 23, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -24,14 +24,14 @@ GETVER(SVRVER,SVRTVER,ALLOWCL,VIXVER) ;
  ;
  ;--- Synchronize the below information with that in MAGJTU4V.
  ;
- S SVRVER="3.0.115",SVRTVER=4  ; <*> Edit this line for each patch/T-version
+ S SVRVER="3.0.120",SVRTVER=8  ; <*> Edit this line for each patch/T-version
  ;
- S ALLOWCL="|3.0.90|"  ; back-compatible with P90 client
+ S ALLOWCL="|3.0.115|"  ; back-compatible with P115 client
  ;
  S VIXVER=""
  ; VIX may present versions different from vrad Client/Server versions; this would
  ; happen if M-only changes are made to vrad Server code as part of a VIX patch
- ; to support updated VIX-related functionality. VIXVERS contains the verson numbers
+ ; to support updated VIX-related functionality. VIXVERS contains the version numbers
  ; that are to be supported in this fashion; related M changes need to be back-compatible
  ; with prior vrad versions' behavior in the interface
  N T,VIXVERS
@@ -72,7 +72,7 @@ CHKVER(MAGRY,CLVER,PLC,SVERSION) ;
  S CV=$P(CLVER,".",1,3),CT=+$P(CLVER,".",4),CP=+$P(CLVER,".",3)
  ;
  D VERSTAT(.SVSTAT,SV)
- I 'SVSTAT S MAGRY(0)=SVSTAT Q  ; KIDS status for this version indeterminate
+ I 'SVSTAT S MAGRY=SVSTAT Q  ; KIDS status for this version indeterminate
  S TESTFLAG=(+SVSTAT=1)
  S SVERSION=SV
  I TESTFLAG S SVERSION=SV_"."_ST

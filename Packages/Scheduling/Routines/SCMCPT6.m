@@ -1,4 +1,4 @@
-SCMCPT6 ; GENERATED FROM 'SCMC DIRECT PC FTEE 1 CLN' PRINT TEMPLATE (#1452) ; 12/27/06 ; (FILE 404.52, MARGIN=132)
+SCMCPT6 ; GENERATED FROM 'SCMC FTEE 1 CLN' PRINT TEMPLATE (#1527) ; 07/26/12 ; (FILE 404.52, MARGIN=132)
  G BEGIN
 CP G CP^DIO2
 C S DQ(C)=Y
@@ -20,7 +20,7 @@ M D @DIXX
  Q
 BEGIN ;
  S:'$D(DN) DN=1 S DISTP=$G(DISTP),DILCT=$G(DILCT)
- I $D(DXS)<9 M DXS=^DIPT(1452,"DXS")
+ I $D(DXS)<9 M DXS=^DIPT(1527,"DXS")
  S I(0)="^SCTM(404.52,",J(0)=404.52
  S X=$G(^SCTM(404.52,D0,0)) W ?0 S Y=$P(X,U,3) S Y=$S(Y="":Y,$D(^VA(200,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,15)
  S I(100)="^SCTM(404.57,",J(100)=404.57 S I(0,0)=D0 S DIP(1)=$S($D(^SCTM(404.52,D0,0)):^(0),1:"") S X=$P(DIP(1),U,1),X=X S D(0)=+X S D0=D(0) I D0>0 D A1
@@ -35,17 +35,17 @@ A1 ;
 A1R ;
  K J(100),I(100) S:$D(I(0,0)) D0=I(0,0)
  S X=$G(^SCTM(404.52,D0,0)) W ?77 S Y=$P(X,U,9),C=1 D A:Y]"" W:Y]"" $J(Y,4,2)
- W ?85 X "N I,Y "_$P(^DD(404.52,.098,0),U,5,99) S DIP(1)=X S X=DIP(1) K DIP K:DN Y W $E(X,1,4) K Y(404.52,-1) S Y=X,C=2 D A:Y'?."*"
- W ?95 X ^DD(404.52,.097,9.2) S Y(404.52,.097,101)=$S($D(^SCTM(404.57,D0,0)):^(0),1:"") S X=$P(Y(404.52,.097,101),U,8) S D0=Y(404.52,.097,80) S X=$J(X,0,0) W $E(X,1,4) K Y(404.52,.097) S Y=X,C=3 D A:Y'?."*"
- W ?105 X DXS(2,9) K DIP K:DN Y W $E(X,1,5) K Y(404.52,-1) S Y=X,C=4 D A:Y'?."*"
- W ?116 X ^DD(404.52,.099,9.3) S Y(404.52,.099,5)=$G(X) S X=0,X=$J(Y(404.52,.099,4),Y(404.52,.099,5),X) S X=$J(X,0,0) W:X'?."*" $J(X,6,0) K Y(404.52,.099) S Y=X,C=5 D A:Y'?."*"
+ W ?83 X "N I,Y "_$P(^DD(404.52,.098,0),U,5,99) S DIP(1)=X S X=DIP(1) K DIP K:DN Y W $E(X,1,4) K Y(404.52,-1) S Y=X,C=2 D A:Y'?."*"
+ W ?93 X ^DD(404.52,.097,9.2) S Y(404.52,.097,101)=$S($D(^SCTM(404.57,D0,0)):^(0),1:"") S X=$P(Y(404.52,.097,101),U,8) S D0=Y(404.52,.097,80) S X=$J(X,0,0) W $E(X,1,4) K Y(404.52,.097) S Y=X,C=3 D A:Y'?."*"
+ W ?103 X DXS(2,9) K DIP K:DN Y W $E(X,1,5) K Y(404.52,-1) S Y=X,C=4 D A:Y'?."*"
+ W ?114 X ^DD(404.52,.099,9.3) S Y(404.52,.099,5)=$G(X) S X=0,X=$J(Y(404.52,.099,4),Y(404.52,.099,5),X) S X=$J(X,0,0) W:X'?."*" $J(X,6,0) K Y(404.52,.099) S Y=X,C=5 D A:Y'?."*"
  S C=6 S X=$$PCPOSCNT^SCAPMCU1(+$G(^SCTM(404.52,D0,0)),DT,0) S Y=X D A
  K Y
  Q
 HEAD ;
- W !,?85,"Patients",?95,"Patients"
- W !,?85,"for",?95,"for"
- W !,?55,"AP",?77,"Direct",?85,"Position",?95,"Position",?105,"Available",?116,"ADJUSTED"
- W !,?36,"Provider's Team",?55,"or",?60,"Associated",?81,"PC",?85,"Actual/",?95,"Allowed/",?105,"Patient",?119,"PANEL"
- W !,?0,"Provider's Name",?17,"PC Team",?36,"Position",?55,"PCP",?60,"Clinic",?79,"FTEE",?85,"Active",?95,"Maximum",?105,"Openings",?120,"SIZE"
+ W !,?83,"Patients",?93,"Patients"
+ W !,?83,"for",?93,"for"
+ W !,?55,"AP",?83,"Position",?93,"Position",?103,"Available",?114,"ADJUSTED"
+ W !,?55,"or",?60,"Associated",?83,"Actual/",?93,"Allowed/",?103,"Patient",?117,"PANEL"
+ W !,?0,"Provider's Name",?17,"Team",?36,"Team Position",?55,"PCP",?60,"Clinic",?77,"FTEE",?83,"Active",?93,"Maximum",?103,"Openings",?118,"SIZE"
  W !,"------------------------------------------------------------------------------------------------------------------------------------",!!

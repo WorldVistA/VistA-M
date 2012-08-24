@@ -1,5 +1,6 @@
-XUS2 ;SF/RWF - TO CHECK OR RETURN USER ATTRIBUTES ;11/29/2006
- ;;8.0;KERNEL;**59,180,313,419,437**;Jul 10, 1995;Build 2
+XUS2 ;SF/RWF - TO CHECK OR RETURN USER ATTRIBUTES ;2/1/2012
+ ;;8.0;KERNEL;**59,180,313,419,437,574**;Jul 10, 1995;Build 5
+ ;Per VHA Directive 2004-038, this routine should not be modified
  Q
  ;
 ACCED ; ACCESS CODE EDIT from DD
@@ -64,7 +65,7 @@ CVC ;From XUS1
  W !,"You must change your VERIFY CODE at this time."
  ;Fall into next code
 VERED ; VERIFY CODE EDIT From DD
- N DIR,DIR0,XUAUTO
+ N DIR,DIR0,XUAUTO,XUSVCMIN,XUSVCACCT S XUSVCACCT=$$SVCACCT(DA),XUSVCMIN=$S(+XUSVCACCT:12,1:8)
  I "Nn"[$E(X,1) S X="" Q
  I "Yy"'[$E(X,1) K X Q
  S XUH="",XUAUTO=($P($G(^XTV(8989.3,1,3)),U,3)="y") S:DUZ=DA XUAUTO="n" ;Auto only for admin
@@ -79,12 +80,12 @@ VASK1 W "Enter a new VERIFY CODE: " D GET Q:$D(DIRUT)
  D CLR S XUU=X,X=$$EN^XUSHSH(X),XUH=X,Y=$$VCHK(XUU,XUH) I +Y W $C(7),$P(Y,U,2,9),! D:+Y=1 VHELP G VASK1
  Q
  ;
-VCHK(S,EC) ;Call with String and Encripted versions
+VCHK(S,EC) ;Call with String and Encrypted versions
  ;Updated per VHA directive 6210 Strong Passwords
- N PUNC,NA S PUNC="~`!@#$%&*()_-+=|\{}[]'<>,.?/"
- S NA("FILE")=200,NA("FIELD")=.01,NA("IENS")=DA_",",NA=$$HLNAME^XLFNAME(.NA)
- I ($L(S)<8)!($L(S)>20)!(S'?.UNP)!(S[";")!(S["^")!(S[":") Q "1^"_$$AVHLPTXT
- I (S?8.20A)!(S?8.20N)!(S?8.20P)!(S?8.20AN)!(S?8.20AP)!(S?8.20NP) Q "2^VERIFY CODE must be a mix of alpha and numerics and punctuation."
+ N PUNC,NA,XUPAT S PUNC="~`!@#$%&*()_-+=|\{}[]'<>,.?/"
+ S NA("FILE")=200,NA("FIELD")=.01,NA("IENS")=DA_",",NA=$$HLNAME^XLFNAME(.NA),XUPAT=XUSVCMIN_".20"
+ I ($L(S)<XUSVCMIN)!($L(S)>20)!(S'?.UNP)!(S[";")!(S["^")!(S[":") Q "1^"_$$AVHLPTXT
+ I (S?@(XUPAT_"A"))!(S?@(XUPAT_"N"))!(S?@(XUPAT_"P"))!(S?@(XUPAT_"AN"))!(S?@(XUPAT_"AP"))!(S?@(XUPAT_"NP")) Q "2^VERIFY CODE must be a mix of alpha and numerics and punctuation."
  I $D(^VA(200,DA,.1)),EC=$P(^(.1),U,2) Q "3^This code is the same as the current one."
  I $D(^VA(200,DA,"VOLD",EC)) Q "4^This has been used previously as the VERIFY CODE."
  I EC=$P(^VA(200,DA,0),U,3) Q "5^VERIFY CODE must be different than the ACCESS CODE."
@@ -97,6 +98,9 @@ VST(XUH,%) ;
  S:XUH="" XUH="@" ;11.2 get triggerd
  S FDA(200,IEN,11)=XUH D FILE^DIE("","FDA","ERR")
  I $D(ERR) D ^%ZTER
+ I (DUZ'=(+IEN))&$$SVCACCT(+IEN)&(XUH'="@") D  ;override trigger of 11.2 by 11 for svc accts
+ .K FDA,ERR S FDA(200,IEN,11.2)=$H D FILE^DIE("","FDA","ERR")
+ .I $D(ERR) D ^%ZTER
  S:DA=DUZ DUZ("NEWCODE")=XUH Q
  ;
 DEL ;
@@ -158,15 +162,19 @@ CHK1 W "Please enter your CURRENT verify code: " D GET Q:$D(DIRUT) 0
  Q 0
  ;
 BRCVC(XV1,XV2) ;Broker change VC, return 0 if good, '1^msg' if bad.
- N XUU,XUH
+ N XUU,XUH,XUSVCMIN S XUSVCMIN=8
  Q:$G(DUZ)'>0 "1^Bad DUZ" S DA=DUZ,XUH=$$EN^XUSHSH(XV2)
  I $P($G(^VA(200,DUZ,.1)),"^",2)'=$$EN^XUSHSH(XV1) Q "1^Sorry that isn't the correct current code"
  S Y=$$VCHK(XV2,XUH) Q:Y Y
  D VST(XUH,0),CALL^XUSERP(DA,2)
  Q 0
  ;
+SVCACCT(XUSDUZ) ;return 1^CONNECTOR PROXY if CP svc acct; 0 if not svc acct
+ Q:$$ISUSERCP^XUSAP1(XUSDUZ) "1^CONNECTOR PROXY"
+ Q 0
+ ;
 AVHLPTXT(%) ;
- Q "Enter "_$S($G(%):"6-20",1:"8-20")_" characters mixed alphanumeric and punctuation (except '^', ';', ':')."
+ Q "Enter "_$S($G(%):"6-20",+$G(XUSVCMIN):XUSVCMIN_"-20",1:"8-20")_" characters mixed alphanumeric and punctuation (except '^', ';', ':')"
  ;
  ;Left over code, Don't think it is called anymore.
  G XUS2^XUVERIFY ;All check or return user attributes moved to XUVERIFY

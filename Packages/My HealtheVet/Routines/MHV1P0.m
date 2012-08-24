@@ -9,7 +9,7 @@ MHV1P0 ;WAS/GPM - My HealtheVet Install Utility Routine ; [8/23/05 2:31pm]
 ENV ;
  N EVAULT
  ; Check for the proper domain entry before proceeding
- S EVAULT=$$FIND1^DIC(4.2,,"QX","VAMHVWEB1.AAC.VA.GOV","B")
+ S EVAULT=$$FIND1^DIC(4.2,,"QX","VAMHVWEB1.AAC.DOMAIN.EXT","B")
  I EVAULT<1 D BMES^XPDUTL("       *** Patch: XM*DBA*159 is required for this package ***") S XPDQUIT=1 Q
  Q
  ;

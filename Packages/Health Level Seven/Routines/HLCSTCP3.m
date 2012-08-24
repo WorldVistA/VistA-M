@@ -116,7 +116,7 @@ DNS ;VA domains must have "med" inserted.
  ;configure their local DNS with "HL7.yourdomain.com" and entries
  ;are created in the logical link file and domain file.
  D MON^HLCSTCP("DNS Lkup")
- I HLDOM["VA.GOV"&(HLDOM'[".MED.") S HLDOM=$P(HLDOM,".VA.GOV")_".MED.VA.GOV"
+ I HLDOM["DOMAIN.EXT"&(HLDOM'[".MED.") S HLDOM=$P(HLDOM,".DOMAIN.EXT")_".DOMAIN.EXT"
  I HLTCPORT=5000 S HLDOM="HL7."_HLDOM
  I HLTCPORT=5500 S HLDOM="MPI."_HLDOM
  ;

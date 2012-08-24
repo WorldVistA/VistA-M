@@ -25,7 +25,7 @@ POST ; Post-init routine
  I '$$UPDLINK D
  . D BMES^XPDUTL("     *** Update to MHVVA logical link failed.")
  . D MES^XPDUTL("     Please update the MHVVA logical link manually.")
- . D MES^XPDUTL("     The DNS DOMAIN field shoud be 'MHV.MED.VA.GOV'")
+ . D MES^XPDUTL("     The DNS DOMAIN field shoud be 'MHV.DOMAIN.EXT'")
  . D MES^XPDUTL("     The AUTOSTART field should be 'Enabled'")
  . D MES^XPDUTL("     No other fields should be changed.")
  . D MES^XPDUTL("     If you need help with this please consult the HL7 System Manager")
@@ -84,9 +84,9 @@ UPDLINK() ; Update Logical Link
  S ERR=""
  S IEN=IEN_","
  I $P($$PARAM^HLCS2,U,3)="P" D
- . S FDA(870,IEN,.08)="MHV.MED.VA.GOV"
+ . S FDA(870,IEN,.08)="MHV.DOMAIN.EXT"
  . S FDA(870,IEN,4.5)=1
- . S FDA(870,IEN,400.01)="10.224.43.21"
+ . S FDA(870,IEN,400.01)="127.0.0.1"
  . S FDA(870,IEN,400.02)=5410
  . Q
  E  D
@@ -119,9 +119,9 @@ CHKLINK(ERR) ; Check Logical Link
  S IEN=IEN_","
  D GETS^DIQ(870,IEN,".08;4.5;400.01;400.02","","ARY","ERR")
  I $G(ERR("DIERR")) S ERR=$G(ERR("DIERR",1))_"^"_$G(ERR("DIERR",1,"TEXT",1)) Q 0
- I $G(ARY(870,IEN,.08))'="MHV.MED.VA.GOV" S ERR="DNS DOMAIN NOT UPDATED" Q 0
+ I $G(ARY(870,IEN,.08))'="MHV.DOMAIN.EXT" S ERR="DNS DOMAIN NOT UPDATED" Q 0
  I $G(ARY(870,IEN,4.5))'="Enabled" S ERR="AUTOSTART NOT ENABLED" Q 0
- I $G(ARY(870,IEN,400.01))'="10.224.43.21" S ERR="INCORRECT IP ADDRESS" Q 0
+ I $G(ARY(870,IEN,400.01))'="127.0.0.1" S ERR="INCORRECT IP ADDRESS" Q 0
  I $G(ARY(870,IEN,400.02))'=5410 S ERR="INCORRECT TCP PORT" Q 0
  Q 1
  ;

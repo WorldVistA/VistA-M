@@ -1,5 +1,5 @@
 FBFHLS ;OIFO/SAB-BUILD HL7 MESSAGE SEGMENTS ;11/21/2003
- ;;3.5;FEE BASIS;**61,68**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**61,68,122**;JUNE 6, 2011;Build 8
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -28,6 +28,7 @@ EN ;
  ;       note: only 1 adjustment for C type
  ; CL   FBD(#,"AMT")  = Amount Claimed^Amount Paid
  ; CL   FBD(#,"CK")   = Check Number^Check Date^Payment Method
+ ; CL   FBD(#,"835")  = Routing Number^Account Number^Financial Institution   FB*3.5*122
  ; CL   FBD(#,"DT")   = Date of Service/Start Date^End Date
  ;       note: End Date only applicable for C type
  ; CL   FBD(#,"FPPS") = FPPS Line Item
@@ -162,6 +163,12 @@ CL ; Claim or Line Transaction
  . I FBTTYP="C" D
  . . ; DRG WEIGHT (026)
  . . S $P(FBFT1,HLFS,27)=$P(FBD(0,"DRG"),U,2)
+ . ;
+ . ;  835 (030)     FB*3.5*122
+ . I $G(FBD(FBI,"835")) D  S $P(FBFT1,HLFS,31)=FBD(FBI,"835",1)_FBD(FBI,"835",2)_FBD(FBI,"835",3)
+ .. S FBD(FBI,"835",1)=$P(FBD(FBI,"835"),U)
+ .. S $P(FBD(FBI,"835",2),$E(HLECH),8)=$E(HLECH)_$P(FBD(FBI,"835"),U,2)
+ .. S FBD(FBI,"835",3)=$E(HLECH,4)_$P(FBD(FBI,"835"),U,3)
  . ;
  . ; generate and store FT1s for each of the different $ amounts
  . ; amount claimed

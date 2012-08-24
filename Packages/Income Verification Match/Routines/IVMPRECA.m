@@ -1,5 +1,5 @@
-IVMPRECA ;ALB/KCL/BRM/PJR/RGL/CKN,TDM - DEMOGRAPHICS MESSAGE CONSISTENCY CHECK ; 7/8/10 12:51pm
- ;;2.0; INCOME VERIFICATION MATCH ;**5,6,12,34,58,56,115,144,121**; 21-OCT-94;Build 45
+IVMPRECA ;ALB/KCL/BRM/PJR/RGL/CKN,TDM - DEMOGRAPHICS MESSAGE CONSISTENCY CHECK ; 7/19/11 11:16am
+ ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,34,58,56,115,144,121,151**;21-OCT-94;Build 10
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ; This routine will perform data validation checks on uploadable
@@ -114,11 +114,12 @@ ADDRCHK ; - validate address fields sent by IVM Center
  I $P(X,$E(HLECH),4)']"",'FORFLG S HLERR=HLERRDEF_"Missing State abbreviation" Q
  I $P(X,$E(HLECH),5)']"",'FORFLG S HLERR=HLERRDEF_"Missing Zip Code" Q
  I 'FORFLG D  Q:$D(HLERR)
- . S IVMCNTY=$G(IVMPID(12))
+ . S IVMCNTY=$P(X,$E(HLECH),9)
  . I IVMCNTY']"" S HLERR=HLERRDEF_"Missing county code" Q
  I $L($P(X,$E(HLECH),1))>35!($L($P(X,$E(HLECH),1))<3) S HLERR="Invalid "_$S(ADDRTYPE="CA":"Confidential ",1:"")_"street address [line 1]" Q
  I $P(X,$E(HLECH),2)]"",(($L($P(X,$E(HLECH),2))>30)!($L($P(X,$E(HLECH),2))<3)) S HLERR="Invalid "_$S(ADDRTYPE="CA":"Confidential ",1:"")_"street address [line 2]" Q
- I $L($P(X,$E(HLECH),3))>15!($L($P(X,$E(HLECH),3))<2) S HLERR="Invalid "_$S(ADDRTYPE="CA":"Confidential ",1:"")_"city" Q
+ I ADDRTYPE'="CA" I $L($P(X,$E(HLECH),3))>15!($L($P(X,$E(HLECH),3))<2) S HLERR="Invalid city" Q
+ ;I ADDRTYPE="CA" I $L($P(X,$E(HLECH),3))>30!($L($P(X,$E(HLECH),3))<2) S HLERR="Invalid Confidential city" Q
  ;
  ; - save state pointer for county code validation only if not foreign address
  I 'FORFLG D  Q:$D(HLERR)
@@ -192,8 +193,7 @@ PID11 ; Perform consistency check for seq. 11
  Q:$D(HLERR)
  ;perform consistency checks on Permanent and all bad address
  I '$D(ADDRESS) S HLERR="Invalid Address - Invalid Address Type" Q
- S ADDRTYPE="" S ADDRTYPE=$O(ADDRESS(ADDRTYPE)) D
- . S X=$G(ADDRESS(ADDRTYPE)) D ADDRCHK
+ S ADDRTYPE="" F  S ADDRTYPE=$O(ADDRESS(ADDRTYPE)) Q:((ADDRTYPE="")!($G(HLERR)'=""))  S X=$G(ADDRESS(ADDRTYPE)) D ADDRCHK
  Q
  ;
 PID13 ; Perform consistency checks for seq. 13

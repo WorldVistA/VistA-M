@@ -70,7 +70,7 @@ CK ;check line length to send
 MAIL1 ;send message
  S XMTEXT="^TMP($J,"
  S XMDUZ=.5
- S XMY("G.PROSTHETICS@PSAS.MED.VA.GOV")=""
+ S XMY("G.PROSTHETICS@PSAS.DOMAIN.EXT")=""
  S XMSUB="PSAS National Extract From "_$P($$SITE^VASITE,U,2)
  D ^XMD S RMPRXMZ(XMZ)=XMZ
  K ^TMP($J)
@@ -84,12 +84,12 @@ MAIL ;send it
  .I CNT>4999 D
  . .S XMTEXT="^TMP(""RMPRF"",$J,"
  . .S XMDUZ=.5
- . .S XMY("G.PROSTHETICS@PSAS.MED.VA.GOV")=""
+ . .S XMY("G.PROSTHETICS@PSAS.DOMAIN.EXT")=""
  . .S XMSUB="PSAS National Extract From "_$P($$SITE^VASITE,U,2)
  . .D ^XMD K ^TMP("RMPRF",$J) S RMPRXMZ(XMZ)=XMZ,CNT=1
  S XMTEXT="^TMP(""RMPRF"",$J,"
  S XMDUZ=.5
- S XMY("G.PROSTHETICS@PSAS.MED.VA.GOV")=""
+ S XMY("G.PROSTHETICS@PSAS.DOMAIN.EXT")=""
  S XMSUB="PSAS National Extract From "_$P($$SITE^VASITE,U,2)
  D ^XMD K ^TMP("RMPRF",$J) S RMPRXMZ(XMZ)=XMZ
 MAILS ;mail summary message
@@ -99,7 +99,7 @@ MAILS ;mail summary message
  S XMTEXT="RMPRXMZ("
  S RMPRXMZ(1)="Total Number of Unique SSN's for this site: "_RMPRTOT
  S XMDUZ=.5
- S XMY("G.PROSTHETICS@PSAS.MED.VA.GOV")=""
+ S XMY("G.PROSTHETICS@PSAS.DOMAIN.EXT")=""
  S XMSUB="PSAS Summary National Extract From "_$P($$SITE^VASITE,U,2)
  D ^XMD
  ;END
