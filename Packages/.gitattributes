@@ -1,1 +1,3 @@
-*               -whitespace
+# M routines and globals
+*.m             -whitespace
+*.zwr           -whitespace  hooks.MaxObjectKiB=0
