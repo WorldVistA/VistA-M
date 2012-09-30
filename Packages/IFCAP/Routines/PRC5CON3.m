@@ -1,0 +1,64 @@
+PRC5CON3 ;WISC/SJG-GENERATE FMS DOCS FOR CONVERSION III ; 
+V ;;5.0;IFCAP;**27**;4/21/95
+ ;
+ QUIT
+ ; No top level entry
+ ;
+ ; Front end routine for Conversion III 'Held' Documents from 423
+EN(PI1,PI2,PI3) ;
+ ; Parameters passed from entry in File 423
+ ; PI1 = Internal Record Number from File 442
+ ; PI2 = Document Action, i.e, "E" or "M"
+ ; PI3 = Transmission Date
+GET N DATE,FMSDOCT,FMSINT,LOOP,P2
+ S X=PI1,DIC=442,DIC(0)="NZ" D ^DIC K DIC
+ I Y<0 W:'$D(ZTQUEUED) !,"No entry found in File 442!!!" Q
+VAR S PO(0)=Y(0),PO=Y,PRCFA("PODA")=+Y
+ S PRC("SITE")=$P(PO(0),"-"),PRCFA("OBLDATE")=PI3
+ S PCP=+$P(PO(0),"^",3),$P(PCP,"^",2)=$S($D(^PRC(420,PRC("SITE"),1,+PCP,0)):$P(^(0),"^",12),1:"") K Y
+ S PARTDT=PRCFA("OBLDATE") D PARTS^PRCFFUC(PARTDT,.DATE) S PRCFA("ACCPD")=DATE
+ S PRC("FY")=$E($P($$DATE^PRC0C(PI3,"I"),"^"),3,4)
+ S PRCFA("REF")=$P(PO(0),U),PRCFA("SYS")="FMS"
+ S PRCFA("SFC")=$P(PO(0),U,19),PRCFA("MP")=$P(PO(0),U,2)
+ S PRCFA("TT")=$S(PRCFA("MP")=2:"SO",PRCFA("MP")=1:"MO",PRCFA("MP")=8:"MO",PRCFA("MP")=21:"SO",1:"MO")
+VAR1 S PRCFA("BBFY")=$$BBFY^PRCFFU5(+PO) D BBFYCHK^PRCFFU19(+PO)
+ S PARAM1="^"_PRC("SITE")_"^"_+PCP_"^"_PRC("FY")_"^"_PRCFA("BBFY")
+ D DOCREQ^PRC0C(PARAM1,"SPE","PRCFMO")
+ S PRCFMO("G/N")=$P(PRCFMO,U,12)
+ S IDFLAG="I",REQ=$P(PO(0),U,12)
+ ; get person 'Obligated By' from primary 2237
+VAR2 I REQ]"" D GENDIQ^PRCFFU7(410,+REQ,29,"IEN","") S PRC("PER")=$G(PRCTMP(410,+REQ,29,"I"))
+ ; if no primary 2237, get person 'Obligated By' from node 10 on PO
+ I REQ="" D
+ .N L1,TT,NODE
+ .S L1=$O(^PRC(442,+PO,10,0)) Q:L1=""  D
+ ..S NODE=^PRC(442,+PO,10,L1,0),TT=$P(NODE,".",1,2)
+ ..I TT="921.60"!(TT="921.00") S PRC("PER")=$P(NODE,U,2)
+ ..Q
+ .Q
+ ; if all else fails, use DUZ of person running conversion
+ I '$D(PRC("PER")) D DUZ^PRCFSITE
+ S PRCFA("MOD")=$S(PI2="E":"E^0^Original Entry",PI2="M":"M^1^Modification Entry")
+ S PRCFA("IDES")="Conversion III/CALM Code Sheet "
+ I PRCFA("MP")=21 S PRCFA("IDES")=PRCFA("IDES")_"1358 Obligation" D NODE^PRCS58OB(+REQ,.TRNODE)
+ E  S PRCFA("IDES")=PRCFA("IDES")_"Purchase Order"
+ I $D(ZTQUEUED) S PRCFA("CONVS")=1
+ D:'$D(ZTQUEUED) EN^DDIOL("...now converting CALM code sheet for obligation "_PRCFA("REF")_"...")
+STACK D STACK^PRCFFU(PRCFA("MOD"))
+ K ^TMP($J,"PRCMO")
+ S FMSINT=+PO,FMSMOD=$P(PRCFA("MOD"),U,1)
+ D NEW^PRCFFU1(FMSINT,PRCFA("TT"),FMSMOD)
+ S LOOP=0 F  S LOOP=$O(^TMP($J,"PRCMO",GECSFMS("DA"),LOOP)) Q:'LOOP  D SETCS^GECSSTAA(GECSFMS("DA"),^(LOOP))
+ K ^TMP($J,"PRCMO")
+ D SETSTAT^GECSSTAA(GECSFMS("DA"),"Q")
+ I '$D(POESIG) I $D(PRCFA("PODA")),+PRCFA("PODA")>0 S POESIG=1
+ S P2=+PO,$P(P2,"/",5)=$P($G(PRCFA("ACCPD")),U),$P(P2,"/",6)=PRCFA("OBLDATE")
+ S:PRCFA("MP")=21 $P(P2,"/",3)=REQ
+ D SETPARAM^GECSSDCT(GECSFMS("DA"),P2)
+ S FMSDOCT=$P(PRCFA("REF"),"-",2) D EN7^PRCFFU41(PRCFA("TT"),FMSMOD,PRCFA("OBLDATE"),FMSDOCT)
+ D KILL
+ Q
+KILL K BEGDATE,DIC,FMSMOD,FMSVENID,FOB,GECSFMS,IDFLAG,NUMB,PARAM1,PARTDT,PCP
+ K PO,PODATE,PRC,PRCCC,PRCCCC,PRCCP,PRCCSCC,PRCFA,PRCFMO,PRCREQST,PRCSTA
+ K PRCSTR,PRCTMP,REQ,SATSTN,STR2,TRNODE,X,Y
+ Q

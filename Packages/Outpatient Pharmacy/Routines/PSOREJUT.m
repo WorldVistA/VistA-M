@@ -1,5 +1,5 @@
 PSOREJUT ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities ;06/07/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359,385,403**;DEC 1997;Build 9
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;Reference to $$ADDCOMM^BPSBUTL supported by IA 4719
  ;
@@ -8,6 +8,7 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
  ;         (o) RFL - Refill # (Default: most recent)
  ;         (o) REOPEN - value of 1 means claim being reopened; null or no value passed means reopen claim functionality not being used
  ;         (r) REJ - Array containing information about the REJECT on the following subscripts:
+ ;                   "BIN" - BIN Number
  ;                   "CODE"   - Reject Code (79 or 88)
  ;                   "DATE/TIME"   - Date/Time Reject Detected
  ;                   "PAYER MESSAGE" - Message returned by Payer (up to 140 chars long)
@@ -30,6 +31,7 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
  N %,DIC,DR,DA,X,DINUM,DD,DO,DLAYGO
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  I '$G(PSODIV) S PSODIV=$$RXSITE^PSOBPSUT(RX,RFL)
+ S REJ("BIN")=$E($G(REJ("BIN")),1,6)
  S REJ("CODE")=$G(REJ("CODE"))
  I REJ("CODE")'=79&(REJ("CODE")'=88)&('$G(PSOTRIC))&('$G(REOPEN)) S ERR="",ERR=$$EVAL^PSOREJU4(PSODIV,REJ("CODE"),$G(OPECC),.ERR) Q:'+ERR
  S REJ("PAYER MESSAGE")=$E($G(REJ("PAYER MESSAGE")),1,140),REJ("REASON")=$E($G(REJ("REASON")),1,100)
@@ -47,6 +49,7 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
  S DIC("DR")=DIC("DR")_";21///"_REJ("GROUP NUMBER")_";22///"_REJ("CARDHOLDER ID")_";23///"_$G(REJ("RE-OPENED"))
  S DIC("DR")=DIC("DR")_";27///"_REJ("COB")
  S DIC("DR")=DIC("DR")_";28///"_REJ("DUR ADD MSG TEXT")
+ S DIC("DR")=DIC("DR")_";29///"_REJ("BIN")
  F  L +^PSRX(RX):5 Q:$T  H 15
  K DD,DO D FILE^DICN K DD,DO S REJ("REJECT IEN")=+Y
  S REJ("OVERRIDE MSG")=$G(DATA("OVERRIDE MSG"))
@@ -58,12 +61,12 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
 CLSALL(RX,RFL,USR,REA,COM,COD1,COD2,COD3,CLA,PA) ; Close/Resolve All Rejects
  ;Input: (r) RX   - Rx IEN (#52)
  ;       (o) RFL  - Refill # (Default: most recent)
+ ;       (o) USR  - User DUZ responsible for closing all rejects
  ;       (r) REA  - Close REASON code
  ;       (o) COM  - Close COMMENTS
- ;       (o) USR  - User DUZ responsible for closing all rejects
- ;       (o) COD1 - NCPDP Reason for Service Code for overriding DUR REJECTS
- ;       (o) COD2 - NCPDP Professional Service Code for overriding DUR REJECTS
- ;       (o) COD3 - NCPDP Result of Service Code for overriding DUR REJECTS
+ ;       (o) COD1 - First set of DUR overrides (Reason Code^Professional Code^Result Code)
+ ;       (o) COD2 - Second set of DUR overrides (Reason Code^Professional Code^Result Code)
+ ;       (o) COD3 - Third set of DUR overrides (Reason Code^Professional Code^Result Code)
  ;       (o) CLA  - NCPDP Clarification Code for overriding RTS and DUR REJECTS
  ;       (o) PA   - NCPDP Prior Authorization Type and Number (separated by "^")
  N REJ,REJDATA,DIE,DR,DA
@@ -74,7 +77,7 @@ CLSALL(RX,RFL,USR,REA,COM,COD1,COD2,COD3,CLA,PA) ; Close/Resolve All Rejects
  . . D CLOSE(RX,RFL,REJ,USR,REA,$G(COM),$G(COD1),$G(COD2),$G(COD3),$G(CLA),$G(PA))
  Q
  ;
-CLOSE(RX,RFL,REJ,USR,REA,COM,COD1,COD2,COD3,CLA,PA) ; - Mark a DUR/REFILL TOO SOON reject RESOLVED
+CLOSE(RX,RFL,REJ,USR,REA,COM,COD1,COD2,COD3,CLA,PA,IGNR) ; - Mark a DUR/REFILL TOO SOON reject RESOLVED
  ; Input:  (r) RX  - Rx IEN (#52) 
  ;         (o) RFL - Refill # (Default: most recent)
  ;         (r) REJ - REJECT ID (IEN)
@@ -90,23 +93,51 @@ CLOSE(RX,RFL,REJ,USR,REA,COM,COD1,COD2,COD3,CLA,PA) ; - Mark a DUR/REFILL TOO SO
  ;                       8:RX EDIT
  ;                      99:OTHER
  ;         (o) COM  - Close comments manually entered by the user
- ;         (o) COD1 - NCPDP Reason for Service Code for overriding DUR REJECTS
- ;         (o) COD2 - NCPDP Professional Service Code for overriding DUR REJECTS
- ;         (o) COD3 - NCPDP Result of Service Code for overriding DUR REJECTS
+ ;         (o) COD1 - First set of DUR overrides (Reason Code^Professional Code^Result Code)
+ ;         (o) COD2 - Second set of DUR overrides (Reason Code^Professional Code^Result Code)
+ ;         (o) COD3 - Third set of DUR overrides (Reason Code^Professional Code^Result Code)
  ;         (o) CLA  - NCPDP Clarification Code for overriding RTS and DUR REJECTS
  ;         (o) PA   - NCPDP Prior Authorization Type and Number (separated by "^")
+ ;         (o) IGNR - Ignore Flag; 1=IGNORE, 0=NOT IGNORE
+ ;
  I '$G(RX)!'$G(REJ) Q
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  I '$D(^PSRX(RX,"REJ",REJ)) Q
  I $$GET1^DIQ(52.25,REJ_","_RX,5)'=+$G(RFL) Q
  S:'$G(REA) REA=99 S COM=$TR($G(COM),";^",",,")
- N DQ,DA,DIE,DR,X,Y,REJCOM
+ N DQ,DA,DIE,DR,X,Y,REJCOM,I,SMACOM,SMA
  D NOW^%DTC
  S REJCOM="AUTOMATICALLY CLOSED" I REA'=1 S REJCOM=COM
  S DA(1)=RX,DA=REJ,DIE="^PSRX("_RX_",""REJ"","
- S DR="9///1;10///"_%_";11////"_$G(USR)_";12///"_REA_";13///"_REJCOM_";14///"_$G(COD1)_";15///"_$G(COD2)
- S DR=DR_";19///"_$G(COD3)_";24///"_$G(CLA)_";25///"_$P($G(PA),"^")_";26///"_$P($G(PA),"^",2)
- D ^DIE S:'$$PSOET^PSOREJP3(RX,RFL) X=$$ADDCOMM^BPSBUTL(RX,RFL,COM)   ;cnf, PSO*7*358, add check for PSOET (pseudoreject)
+ S DR="9///1;10///"_%_";11////"_$G(USR)_";12///"_REA_";13///"_REJCOM_";14///"_$P($G(COD1),"^")_";15///"_$P($G(COD1),"^",2)
+ S DR=DR_";19///"_$P($G(COD1),"^",3)_";24///"_$G(CLA)_";25///"_$P($G(PA),"^")_";26///"_$P($G(PA),"^",2)
+ D ^DIE
+ ; Quit if this is a "eT" (non-billable TRICARE) or "eC" (non-billable CHAMPVA)
+ Q:$$PSOET^PSOREJP3(RX,RFL)
+ ;
+ ; Add comment to the ECME User Screen
+ ; First check if this is has more than one override value from the SMA action of the reject worklist
+ ; If it is, we will need to enter multiple comments
+ S SMA=0
+ I $G(COD1)]"",$G(CLA)]"" S SMA=1
+ I $G(COD1)]"",$G(PA)]"" S SMA=1
+ I $G(CLA)]"",$G(PA)]"" S SMA=1
+ I SMA D  Q
+ . I $G(COD1)]"" D
+ .. S SMACOM=$TR("DUR Override Codes "_$G(COD1)_"~"_$G(COD2)_"~"_$G(COD3)_" submitted.","^","/")
+ .. S X=$$ADDCOMM^BPSBUTL(RX,RFL,SMACOM)
+ . I $G(CLA)]"" D
+ .. S SMACOM="Clarification Code(s) "_CLA_" submitted."
+ .. S X=$$ADDCOMM^BPSBUTL(RX,RFL,SMACOM)
+ . I $G(PA)]"" D
+ .. S SMACOM="Prior Authorization Code ("_$P(PA,"^")_"/"_$P(PA,"^",2)_") submitted."
+ .. S X=$$ADDCOMM^BPSBUTL(RX,RFL,SMACOM)
+ . S SMACOM="Multiple actions taken to resolve. See comments for details."
+ . S X=$$ADDCOMM^BPSBUTL(RX,RFL,SMACOM)
+ ;
+ ; If not SMA, fall through to here and enter one comment
+ ; If IGNR flag is set, add that to the comment string before sending
+ S X=$$ADDCOMM^BPSBUTL(RX,RFL,$S($G(IGNR):"IGNORED - ",1:"")_COM)
  Q
  ;
 FIND(RX,RFL,REJDATA,CODE) ; - Returns whether a Rx/fill contains UNRESOLVED rejects
@@ -121,7 +152,7 @@ FIND(RX,RFL,REJDATA,CODE) ; - Returns whether a Rx/fill contains UNRESOLVED reje
  S REJS=0,RCODE=""
  K REJDATA
  I $G(RFL),$$STATUS^PSOBPSUT(RX,RFL)="" Q 0
- I $G(CODE),CODE["," S REJS=$$MULTI^PSOREJU4(RX,$G(RFL),.REJDATA,$G(CODE),REJS) G FEND
+ I $G(CODE)]"",CODE["," S REJS=$$MULTI^PSOREJU4(RX,$G(RFL),.REJDATA,$G(CODE),REJS) G FEND
  S REJS=$$SINGLE^PSOREJU4(RX,$G(RFL),.REJDATA,$G(CODE),REJS)
 FEND ;
  Q $S(REJS:1,1:0)
@@ -137,7 +168,7 @@ SYNC(RX,RFL,USR,RXCOB) ;
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  S PSODIV=$$RXSITE^PSOBPSUT(RX,RFL)
  D DUR1^BPSNCPD3(RX,RFL,.REJ,"",RXCOB)
- S PSOTRIC="" S:$G(REJ(1,"ELIGBLT"))="T" PSOTRIC=1 S:PSOTRIC="" PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,.PSOTRIC)
+ S PSOTRIC="" S:$G(REJ(1,"ELIGBLT"))="T" PSOTRIC=1 S:$G(REJ(1,"ELIGBLT"))="C" PSOTRIC=2 S:PSOTRIC="" PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,.PSOTRIC)
  K REJS S (OPECC,IDX,ERR)=""
  F  S IDX=$O(REJ(IDX)) Q:IDX=""  S TXT=$G(REJ(IDX,"REJ CODE LST")) D
  . F I=1:1:$L(TXT,",") S CODE=$P(TXT,",",I),OVREJ="" D
@@ -152,11 +183,20 @@ SYNC2 ;
  S (IDX,CODE)="" F  S IDX=$O(REJS(IDX)) Q:IDX=""  D
  . F  S CODE=$O(REJS(IDX,CODE)) Q:CODE=""  K DATA D
  . . I 'OPECC&(CODE'[79)&(CODE'[88) S DATA("OVERRIDE MSG")="Automatically transferred due to override for reject code."
- . . I OPECC&(CODE'[79)&(CODE'[88) S DATA("OVERRIDE MSG")="Transferred by "_$S(CODE'["eT":"OPECC.",1:"")   ;cnf,PSO*7.0*358
+ . . I OPECC&(CODE'[79)&(CODE'[88) S DATA("OVERRIDE MSG")="Transferred by "_$S(CODE["eT":"",CODE["eC":"",1:"OPECC.")   ;cnf,PSO*7.0*358
  . . I $D(COMMTXT) S:COMMTXT'="" DATA("OVERRIDE MSG")=DATA("OVERRIDE MSG")_" "_$$CLEAN^PSOREJU1($P(COMMTXT,":",2))
  . . S DATA("DUR TEXT")=$$CLEAN^PSOREJU1($G(REJ(IDX,"DUR FREE TEXT DESC")))
  . . S DATA("DUR ADD MSG TEXT")=$$CLEAN^PSOREJU1($G(REJ(IDX,"DUR ADD MSG TEXT")))
- . . S DATA("PAYER MESSAGE")=$$CLEAN^PSOREJU1($G(REJ(IDX,"PAYER MESSAGE",1)))
+ . . ; In NCPDP D0, the Payer Additional Message is a repeating field and we want to display as much of the
+ . . ;   data on the reject information screen as possible so we put the messages together up to the field
+ . . ;   length of 140
+ . . N CNT,MSG
+ . . S CNT="",DATA("PAYER MESSAGE")=""
+ . . F  S CNT=$O(REJ(IDX,"PAYER MESSAGE",CNT)) Q:CNT=""!($L(DATA("PAYER MESSAGE"))>140)  D
+ . . . S MSG=$$CLEAN^PSOREJU1(REJ(IDX,"PAYER MESSAGE",CNT))
+ . . . I MSG]"" S DATA("PAYER MESSAGE")=DATA("PAYER MESSAGE")_MSG_"  "
+ . . ; Call CLEAN again to strip the extra trailing spaces we might have added
+ . . S DATA("PAYER MESSAGE")=$$CLEAN^PSOREJU1(DATA("PAYER MESSAGE"))
  . . S DATA("CODE")=CODE,DATA("REASON")=$$CLEAN^PSOREJU1($G(REJ(IDX,"REASON")))
  . . S DATA("PHARMACIST")=$G(USR),DATA("INSURANCE NAME")=$$CLEAN^PSOREJU1($G(REJ(IDX,"INSURANCE NAME")))
  . . S DATA("GROUP NAME")=$$CLEAN^PSOREJU1($G(REJ(IDX,"GROUP NAME"))),DATA("GROUP NUMBER")=$$CLEAN^PSOREJU1($G(REJ(IDX,"GROUP NUMBER")))
@@ -167,6 +207,7 @@ SYNC2 ;
  . . S DATA("REASON SVC CODE")=$$REASON^PSOREJU2($G(REJ(IDX,"REASON"))),DATA("COB")=IDX
  . . S DATA("MESSAGE")=$$CLEAN^PSOREJU1($G(REJ(IDX,"MESSAGE")))
  . . S DATA("DUR RESPONSE DATA")=$$CLEAN^PSOREJU1($G(REJ(IDX,"DUR RESPONSE DATA")))
+ . . S DATA("BIN")=$$CLEAN^PSOREJU1($G(REJ(IDX,"BIN")))
  . . D SAVE(RX,RFL,.DATA)
  L -^PSRX("REJ",RX)
  Q

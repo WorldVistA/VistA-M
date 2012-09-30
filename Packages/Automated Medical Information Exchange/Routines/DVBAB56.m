@@ -1,5 +1,5 @@
-DVBAB56 ;ALB/SPH - CAPRI READMISSION REPORT ;09/05/00
- ;;2.7;AMIE;**35,149**;Apr 10, 1995;Build 16
+DVBAB56 ;ALB/SPH - CAPRI READMISSION REPORT ; 3/22/12 8:34am
+ ;;2.7;AMIE;**35,149,179**;Apr 10, 1995;Build 15
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;Input: ZMSG      - Output Array for Re-Admission report (By Ref)
@@ -11,16 +11,16 @@ DVBAB56 ;ALB/SPH - CAPRI READMISSION REPORT ;09/05/00
  ;                    date range, so DVBADLMTR should equal the
  ;                    final EDATE in range so that XTMP global
  ;                    can be killed.
- ;Output: ZMSG contains delimited/non-delimited re-admission report 
+ ;Output: ^TMP("DVBAR",$J) contains delimited/non-delimited re-admission report
 STRT(ZMSG,BDATE,EDATE,DVBAH,DVBADLMTR)    ;
- N DVBAFNLDTE
+ N DVBAFNLDTE,SORTDT
  S DVBAFNLDTE=$S(+$G(DVBADLMTR):+$P(DVBADLMTR,"."),1:0)
  S DVBADLMTR=$S('+$G(DVBADLMTR):"",1:"^")
  S DVBABCNT=0
  G TERM
 SORT D RCV^DVBAVDPT I $D(RONUM),$D(RO) Q:CFLOC'=RONUM&(RO="Y")
- I RCVAA S ^TMP("DVBA",$J,"A&A",DFN)=""
- I RCVPEN S ^TMP("DVBA",$J,"PEN",DFN)=""
+ I RCVAA S ^TMP("DVBA",$J,"A&A",DFN)=DVBADT
+ I RCVPEN S ^TMP("DVBA",$J,"PEN",DFN)=DVBADT
  Q
  ;
 DCHGDT S (LADMDT,LDCHGDT)="",DCHPTR=$P(^DGPM(VY,0),U,17),LADMDT=$P(^(0),U,1) I DCHPTR]"",$D(^DGPM(+DCHPTR,0)) S LDCHGDT=$P(^DGPM(+DCHPTR,0),U,1)
@@ -40,16 +40,16 @@ SET S X1=CURADMDT,X2=LDCHGDT D ^%DTC Q:X>185
  .S ADMDT=LADMDT
  .D ADM^DVBAVDPT,TDIS
  .I TDIS["IRREGULAR" DO  ;**Irregular discharge, set last admis info
- ..S ^TMP("DVBA",DVBAT,$J,XCN,CFLOC,VY,DFN,"LADM")=LADMDT_U_TDIS
+ ..S ^TMP("DVBA",DVBAT,$J,SORTDT,XCN,CFLOC,VY,DFN,"LADM")=LADMDT_U_TDIS
  I $D(TDIS),(TDIS'["IRREGULAR"&(DVBAT="A&A")) Q  ;**Quit
  S ADMDT=CURADMDT
  D ADM^DVBAVDPT,TDIS
- ;**Set current admis info
- S ^TMP("DVBA",DVBAT,$J,XCN,CFLOC,VY,DFN)=CURADMDT_U_RCVAA_U_RCVPEN_U_CNUM_U_TDIS
- I DVBAT="PEN" DO  ;**Set last admis info for Pension vet 
+ ; **Set current admis info
+ S ^TMP("DVBA",DVBAT,$J,SORTDT,XCN,CFLOC,VY,DFN)=CURADMDT_U_RCVAA_U_RCVPEN_U_CNUM_U_TDIS
+ I DVBAT="PEN" DO  ;**Set last admis info for Pension vet
  .S ADMDT=LADMDT
  .D ADM^DVBAVDPT,TDIS
- .S ^TMP("DVBA",DVBAT,$J,XCN,CFLOC,VY,DFN,"LADM")=LADMDT_U_TDIS
+ .S ^TMP("DVBA",DVBAT,$J,SORTDT,XCN,CFLOC,VY,DFN,"LADM")=LADMDT_U_TDIS
  K DVBARADQ
  S (VX,VY)=9999999
  Q
@@ -72,18 +72,18 @@ ASK ;W !!,"Do you want (H)ospital or Hospital-(D)om   H// " R DVBAH:DTIME G:'$T!
  S:DVBAH="h" DVBAH="H"
  I DVBAH'?1"H"&(DVBAH'?1"D") W *7,!!,"Must be H for HOSPITAL or D for HOSPITAL-DOM",!! H 3 G ASK
  S HEAD=HEAD_" ("_$S(DVBAH="H":"Hospital",DVBAH="D":"Hospital-Dom",1:"Unknown selection")_")"
- S Z=$S(DVBAH="D":1,DVBAH="H":2,1:0) W $P("om^ospital",U,Z),!!
+ S Z=$S(DVBAH="D":1,DVBAH="H":2,1:0) W $P("Dom^Hospital",U,Z),!!
  ;S %ZIS("B")="0;P-OTHER",%ZIS("A")="Printing device: ",%ZIS="AEQ" D ^%ZIS G:POP KILL^DVBAUTIL
  I $D(IO("Q")) F I="NOASK","HEAD*","FDT(0)","DTAR","BDATE*","EDATE*","DVBAH" S ZTSAVE(I)=""
  I  S NOASK=1,ZTRTN="DQ^DVBARADM",ZTDESC="AMIE Re-admission Report",ZTIO=ION D ^%ZTLOAD W:$D(ZTSK) !,"Request queued.",!! G KILL^DVBAUTIL
 GO I '$D(NOASK) W !!,"Looking for Pension and A&A cases ...",!!
  F DVBADT=BDATE:0 S DVBADT=$O(^DGPM("AMV1",DVBADT)) Q:DVBADT=""!(DVBADT>EDATE)  W:'$D(NOASK) "." F DFN=0:0 S DFN=$O(^DGPM("AMV1",DVBADT,DFN)) Q:DFN=""  F ADM=0:0 S ADM=$O(^DGPM("AMV1",DVBADT,DFN,ADM)) Q:ADM=""  D SORT
  I '$D(NOASK) W !!,"Examining cases found for re-admissions within 185 days ...",!!
- F DVBAT="PEN","A&A" S HOSPDAYS=$S(DVBAT="PEN"&(DVBAH="H"):89,DVBAT="PEN"&(DVBAH="D"):59,1:29) F DFN=0:0 S DFN=$O(^TMP("DVBA",$J,DVBAT,DFN)) Q:DFN=""  D CAL W:'$D(NOASK) "+"
+ F DVBAT="PEN","A&A" S HOSPDAYS=$S(DVBAT="PEN"&(DVBAH="H"):89,DVBAT="PEN"&(DVBAH="D"):59,1:29) F DFN=0:0 S DFN=$O(^TMP("DVBA",$J,DVBAT,DFN)) Q:DFN=""  S SORTDT=^(DFN) D CAL W:'$D(NOASK) "+"
  K ^TMP("DVBA",$J,"PEN"),^TMP("DVBA",$J,"A&A")
  I '$D(^TMP("DVBA","PEN",$J))&('$D(^TMP("DVBA","A&A",$J))) D  H 2 D:$D(ZTQUEUED) KILL^%ZTLOAD G KILL^DVBAUTIL
  .N DVBAERTXT S DVBAERTXT="No data found for parameters entered."
- .W DVBAERTXT S:($G(DVBADLMTR)'="") ZMSG(DVBABCNT)=DVBAERTXT
+ .W DVBAERTXT S:($G(DVBADLMTR)'="") ^TMP("DVBAR",$J,DVBABCNT)=DVBAERTXT
  G ^DVBAB98
  ;
 DQ K ^TMP("DVBA",$J),^TMP("DVBA","PEN",$J),^TMP("DVBA","A&A",$J)

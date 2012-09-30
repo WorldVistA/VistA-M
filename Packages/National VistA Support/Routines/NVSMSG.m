@@ -126,14 +126,14 @@ MAIL(MSGSUBJ,RECIP,TEXT,NVS,MSG)        ; send e-mail...
  ;           Note:  this reference must be in the form required by ^XMD -- for example:
  ;             TEXT="array("
  ;             TEXT="^TMP($J,"
- ; NVS     = if passed=1 then mail group G.CSAVANTI@FORUM.MED.VA.GOV added to recipients
+ ; NVS     = if passed=1 then mail group G.CSAVANTI@FORUM.DOMAIN.EXT added to recipients
  ; MSG     = passed by reference, returned as the message number (XMZ)
  ;
  N XMDUZ,XMSUB,XMTEXT,XMY,XMZ,XTEXT
  S XMDUZ=.5
  S XMSUB=MSGSUBJ
  S XMY(RECIP)=""
- I +$G(NVS)=1 S XMY("G.CSAVANTI@FORUM.MED.VA.GOV")=""
+ I +$G(NVS)=1 S XMY("G.CSAVANTI@FORUM.DOMAIN.EXT")=""
  I TEXT'="" S XMTEXT=TEXT
  I TEXT="" D
  .S XTEXT(1)="NO TEXT WAS DEFINED FOR THIS MESSAGE"

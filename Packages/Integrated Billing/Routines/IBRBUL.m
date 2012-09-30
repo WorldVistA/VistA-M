@@ -1,5 +1,5 @@
-IBRBUL ;ALB/CJM-MEANS TEST HOLD CHARGE BULLETIN ;02-MAR-92
- ;;2.0;INTEGRATED BILLING;**70,95,121,153,195,347**;21-MAR-94;Build 24
+IBRBUL ;ALB/CJM - MEANS TEST HOLD CHARGE BULLETIN ;02-MAR-92
+ ;;2.0;INTEGRATED BILLING;**70,95,121,153,195,347,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; This bulletin is sent even if the local site has chosen not to hold
  ; Means Test charges. In that case, IBHOLDP should be set = 0.
@@ -54,18 +54,26 @@ PATLINE ; sets up lines with patient data
  D ADDLN(),ADDLN("Name: "_IBNAME_"   Age    : "_IBAGE_"       Pt. ID: "_IBPID)
  Q
 CHRG ; gets charge data and sets up charge lines
- N TP,FR,TO,IBND1,IBRXN,IBRX,IBRDT,IBRF,IENS
- S IBND1=$G(^IB(+$G(IBN),1)),(IBRX,IBRXN,IBRF,IBRDT)=0
+ N TP,FR,TO,IBND1,IBRXN,IBRX,IBRDT,IBRF,IENS,IBECME
+ S IBND1=$G(^IB(+$G(IBN),1)),(IBRX,IBRXN,IBRF,IBRDT,IBECME)=0
  S FR=$$DAT1^IBOUTL($S($P(IBX,"^",14)'="":($P(IBX,"^",14)),1:$P(IBND1,"^",2)))
  S TO=$$DAT1^IBOUTL($S($P(IBX,"^",15)'="":($P(IBX,"^",15)),1:$P(IBND1,"^",2)))
- I $P(IBX,"^",4)["52:" S IBRXN=$P($P(IBX,"^",4),":",2),IBRX=$P($P(IBX,"^",8),"-"),IBRF=$P($P(IBX,"^",4),":",3)
- I $P(IBX,"^",4)["52:"  D
- .I IBRF>0 S IENS=+IBRF,IBRDT=$$SUBFILE^IBRXUTL(+IBRXN,IENS,52,.01)
- .E  S IENS=+IBRXN,IBRDT=$$FILE^IBRXUTL(IENS,22)
+ ;
+ ; Rx Info
+ I $P(IBX,"^",4)["52:" D
+ . S IBRXN=+$P($P(IBX,"^",4),":",2)               ; Rx ien
+ . S IBRX=$P($P(IBX,"^",8),"-")                   ; external Rx#
+ . S IBRF=+$P($P(IBX,"^",4),":",3)                ; fill# or 0 for original fill
+ . S IBECME=$P($$CLAIM^BPSBUTL(IBRXN,IBRF),U,6)   ; ecme#  DBIA 4719
+ . I IBRF S IENS=+IBRF,IBRDT=$$SUBFILE^IBRXUTL(+IBRXN,IENS,52,.01)    ; refill date
+ . I 'IBRF S IENS=+IBRXN,IBRDT=$$FILE^IBRXUTL(IENS,22)                ; orig fill date
+ . Q
+ ;
  S TP=$P(IBX,"^",3) S:TP TP=$P($G(^IBE(350.1,TP,0)),"^",3) S:TP TP=$P($$CATN^PRCAFN(TP),"^",2)
  D ADDLN("Type: "_$$PR(TP,28)_" Amount : $"_+$P(IBX,"^",7))
  D ADDLN("From: "_$$PR(FR,28)_" To     : "_TO)
  I IBRXN D ADDLN("Rx #: "_$$PR(IBRX_$S(IBRF'="":" ("_IBRF_")",1:""),28)_" Fill Dt: "_$$DAT1^IBOUTL(IBRDT)_"  Rls Dt: "_TO)
+ I IBECME D ADDLN("ECME: "_IBECME)
  Q
 INS ; gets insurance data and sets up insurance lines
  N I,CO,P,G,GNB,W,E,Y,C,COV,COVD,COVFN,LEDT,LIM,PLN,X1,X2,Z0,IBCNT,P1,P2,P3,P4

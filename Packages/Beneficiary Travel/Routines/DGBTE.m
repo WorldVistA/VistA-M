@@ -1,5 +1,5 @@
 DGBTE ;ALB/SCK-BENEFICIARY TRAVEL SETUP/MAIN ENTRY CALL UP; 11/20/92@1000; 11/25/92
- ;;1.0;Beneficiary Travel;**2**;September 25, 2001
+ ;;1.0;Beneficiary Travel;**2,19**;September 25, 2001;Build 22
 START ;
  D QUIT^DGBTEND ; kill all variables
  S PRCABN=1,IOP="HOME" D ^%ZIS K IOP
@@ -24,6 +24,9 @@ PATIENT ; patient lookup, quit if patient doesn't exist
  ; get patient information#, call return patient return variables routine and set wether new claim or not
  S DFN=+Y D 6^VADPT,KVAR^DGBTEND,PID^VADPT
  S DGBTNEW=$S($D(^DGBT(392,"C",DFN)):0,1:1)
+ ;
+ S ^XTMP("DGBT BTD",0)=$$DT^XLFDT_"^"_$$DT^XLFDT
+ S ^XTMP("DGBT BTD","CLAIMERS",$G(DUZ,-1))=$G(DFN,-1)
  ;
 OLDCLAIM ;  find any past claims through DGBTE1 call
  D ^DGBTE1 Q:'$D(DGBTA)  ; set to call test routine, call old claims

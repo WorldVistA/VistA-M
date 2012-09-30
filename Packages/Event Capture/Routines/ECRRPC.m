@@ -1,14 +1,15 @@
-ECRRPC ;ALB/JAM - Event Capture Report RPC Broker ;2 Sep 2008
- ;;2.0; EVENT CAPTURE ;**25,47,61,72,95,101,100,107**;8 May 96;Build 14
+ECRRPC ;ALB/JAM - Event Capture Report RPC Broker ;1/25/12  16:52
+ ;;2.0;EVENT CAPTURE;**25,47,61,72,95,101,100,107,112**;8 May 96;Build 18
  ;
 RPTEN(RESULTS,ECARY) ;RPC Broker entry point for EC Reports
  ;All EC GUI reports will call this line tag
  ;        RPC: EC REPORTS
- ;INPUTS   ECARY - Contains the following elements for report printing
- ;          ECDEV  - Print to queue, if device
- ;          ECQDT  - Queue to print (date/time), optional
+ ;INPUTS  ECARY   - Contains the following elements for report printing
+ ;        ECDEV   - Print to queue, if device
+ ;        ECQDT   - Queue to print (date/time), optional
+ ;        ECPTYP  - Where to send output (P)rinter, (D)evice or screen, (E)xport
  ;
- ;OUTPUTS  RESULTS - Array of help text in the HELP FRAM File (#9.2)
+ ;OUTPUTS RESULTS - Array of help text in the HELP FRAM File (#9.2)
  ;
  N HLPDA,HND,ECSTR,ECFILER,ECERR,ECDIRY,ECUFILE,ECGUI
  N ECQTIME ;CMF should not need this!  %DT call below fails for future dates within this routine
@@ -16,6 +17,7 @@ RPTEN(RESULTS,ECARY) ;RPC Broker entry point for EC Reports
  S ECERR=0,ECGUI=1 D PARSE,CHKDT I ECERR Q
  K ^TMP("ECMSG",$J),^TMP($J,"ECRPT")
  D  I ECERR D END Q
+ . I ECPTYP="E" Q  ;112 For exporable format, no device needed
  . I ECPTYP="D" D HFSOPEN(ECHNDL) Q
  . I '$D(ECDEV) S ^TMP("ECMSG",$J,1)="0^Device undefined",ECERR=1
  S HND=$P($T(@ECHNDL),";;",2) I HND="" D  Q
@@ -67,6 +69,7 @@ HFSCLOSE(HANDLE) ;
  S X=$$DEL^%ZISH(ECDIRY,$NA(ECDEL))
  Q
  ;added ECSTPCD for EC*2*107
+ ;added ECDSSUA, ECRUDSS, ECRECER, ECRECSIC,ECRECSPC, ECRGP and ECRDSSEC for patch EC*2*112
 ECPAT ;;Patient Summary Report;ECPAT^ECRRPT
 ECRDSSA ;;DSS Unit Activity;ECRDSSA^ECRRPT
 ECRDSSU ;;DSS Unit Workload Summary;ECRDSSU^ECRRPT
@@ -84,3 +87,10 @@ ECSCPT ;;Event Code Screens with CPT Codes;ECSCPT^ECRRPT1
 ECINCPT ;;National/Local Procedure Codes with Inactive CPT;ECINCPT^ECRRPT1
 ECGTP ;;Generic Table Printer;ECGTP^ECRRPT1
 ECSTPCD ;;DSS Units with Associated Stop Code Error Report;ECSTPCD^ECRRPT1
+ECRDSSUA ;;Users with access to selected DSS Unit;ECRDSSUA^ECRRPT2
+ECRUDSS ;;DSS unit access by selected user;ECRUDSS^ECRRPT2
+ECRDSSEC ;;Event code screen for selected DSS Unit;ECRDSSEC^ECRRPT2
+ECRECER ;;Event capture encounters report;ECRECER^ECRRPT2
+ECRECSIC ;;Event Code Screens with Inactive Clinics;ECRECSIC^ECRRPT2
+ECRECSPC ;;Event Code Screens by Procedure Code;ECRECSPC^ECRRPT2
+ECRGP ;;Generic print of report;ECRGP^ECRRPT2

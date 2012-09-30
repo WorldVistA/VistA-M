@@ -1,5 +1,5 @@
-PXRMEUT ; SLC/PJH - General extract utilities ;11/02/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,17**;Feb 04, 2005;Build 102
+PXRMEUT ;SLC/PJH - General extract utilities ;07/29/2010
+ ;;2.0;CLINICAL REMINDERS;**4,6,17,18**;Feb 04, 2005;Build 152
  ;
  ;=================================================
 ASKNUM(TEXT,MIN,MAX) ;
@@ -184,7 +184,7 @@ MES(TEXT) ;General mail message
  K ^TMP("PXRMXMZ",$J)
  S XMSUB="CLINICAL REMINDER EXTRACT"
  S ^TMP("PXRMXMZ",$J,1,0)=TEXT
- D SEND^PXRMMSG("PXRMXMZ",XMSUB)
+ D SEND^PXRMMSG("PXRMXMZ",XMSUB,"",DUZ)
  Q
  ;
  ;=================================================

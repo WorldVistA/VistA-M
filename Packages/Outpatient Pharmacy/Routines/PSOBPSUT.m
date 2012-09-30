@@ -1,5 +1,5 @@
-PSOBPSUT ;BIRM/MFR - BPS (ECME) Utilities ; 07 Jun 2005  8:39 PM
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,358**;DEC 1997;Build 35
+PSOBPSUT ;BIRM/MFR - BPS (ECME) Utilities ;07 Jun 2005  8:39 PM
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,358,385,403**;DEC 1997;Build 9
  ;Reference to $$ECMEON^BPSUTIL supported by IA 4410
  ;Reference to IBSEND^BPSECMP2 supported by IA 4411
  ;Reference to $$STATUS^BPSOSRX supported by IA 4412
@@ -131,7 +131,7 @@ MANREL(RX,RFL,PID) ; ePharmacy Manual Rx Release
  ;       
  N ACTION
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
- ; Check for unresolved Tricare non-billable reject code, PSO*7*358
+ ; Check for unresolved TRICARE/CHAMPVA non-billable reject code, PSO*7*358
  I $$PSOET^PSOREJP3(RX,RFL) W ! Q "^"
  ; Checking for REJECTS before proceeding to Rx Release
  I $$FIND^PSOREJUT(RX,RFL) D  I ACTION="Q"!(ACTION="^") W ! Q "^"
@@ -150,12 +150,10 @@ MANREL(RX,RFL,PID) ; ePharmacy Manual Rx Release
  I $$FIND^PSOREJUT(RX,RFL) D  I ACTION="Q"!(ACTION="^") W ! Q "^"
  . S ACTION=$$HDLG^PSOREJU1(RX,RFL,"79,88","ED","OIQ","Q")
  I $G(PSOTRIC),$$STATUS^PSOBPSUT(RX,RFL)["IN PROGRESS" D TRIC Q "^"
- ; - Notifying IB of a Rx RELEASE event 
- D RELEASE^PSOBPSU1(RX,RFL,DUZ)
  Q ""
  ;
 TRIC ;
- W !!,$C(7),"TRICARE Rx remains in 'IN PROGRESS' status for ECME, and cannot be released.",! H 1
+ W !!,$C(7),$S(PSOTRIC=1:"TRICARE",1:"CHAMPVA")_" Rx remains in 'IN PROGRESS' status for ECME, and cannot be released.",! H 1
  Q
  ;
 AUTOREL(RX,RFL,RLDT,NDC,SRC,STS,HNG) ; Sends Rx Release information to ECME/IB and updates NDC
@@ -202,23 +200,34 @@ AUTOREL(RX,RFL,RLDT,NDC,SRC,STS,HNG) ; Sends Rx Release information to ECME/IB a
  . ; - If new claim returned PAYABLE, save new NDC in the DRUG/PRESCRIPTION files
  . I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" D SAVNDC^PSONDCUT(RX,RFL,$$NDCFMT^PSSNDCUT(NDC),1,1)
  ; - Calls ECME api responsible for notifying IB to create a BILL
- D IBSEND(RX,RFL)
+ D IBSEND(RX,RFL,1)
  Q
  ;
-IBSEND(RX,RFL) ; Rx Release: Calls ECME, which will call  IB to create a bill
+IBSEND(RX,RFL,AUTO) ; Rx Release
+ ; Create Release Event
+ ; Calls ECME, if needed
+ ; If Payable or Duplicate, calls IB to create a bill
+ ;
  ;Input: (r) RX  - Rx IEN (#52)
  ;       (o) RFL - Refill #  (Default: most recent)
+ ;       (o) AUTO - Called by Auto Release Process
  ;
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  ; - ECME turned OFF for Rx's site
  I '$$ECMEON^BPSUTIL($$RXSITE^PSOBPSUT(RX,RFL)) Q
+ N STATUS
+ S STATUS=$$STATUS(RX,RFL)
  ; - Not an ePharmacy Rx
- I $$STATUS^PSOBPSUT(RX,RFL)="" Q ""
- ; - Calls ECME previously reversed, re-submit the claim to the payer
- I $$STATUS^PSOBPSUT(RX,RFL)="E REVERSAL ACCEPTED"!($$STATUS^PSOBPSUT(RX,RFL)="IN PROGRESS") D  Q
- . D ECMESND^PSOBPSU1(RX,RFL,$$RXRLDT^PSOBPSUT(RX,RFL),"RRL")
+ I STATUS="" Q ""
+ ; - Notifying IB of a Rx RELEASE event 
+ ; - Do not call for auto release process as it has already been done
+ S AUTO=+$G(AUTO)
+ I 'AUTO D RELEASE^PSOBPSU1(RX,RFL,DUZ)
+ ; - If the previous ECME claim was reversed or incomplete, re-submit the claim to the payer
+ I (STATUS="E REVERSAL ACCEPTED")!(STATUS="IN PROGRESS") D  Q
+ . D ECMESND^PSOBPSU1(RX,RFL,$$RXRLDT^PSOBPSUT(RX,RFL),$S(AUTO:"C",1:"")_"RRL")
  ; - Notifying ECME of a BILLING event 
- I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" D  Q
+ I STATUS="E PAYABLE"!(STATUS="E DUPLICATE") D  Q
  . N PSOCLAIM S PSOCLAIM=$$CLAIM^BPSBUTL(RX,RFL)
  . D IBSEND^BPSECMP2($P(PSOCLAIM,"^",2),$P(PSOCLAIM,"^",3),"BILL",DUZ)
  Q

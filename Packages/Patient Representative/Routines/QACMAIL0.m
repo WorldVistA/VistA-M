@@ -75,7 +75,7 @@ SEND ;Send message.
  ;This message is the roll-up.
  S ^TMP("QAC MAIL",$J,QACLCNT)=^TMP("QAC MAIL",$J,QACLCNT)_"#"
  D KILL^XM
- S XMY("XXX@Q-PSS.MED.VA.GOV")=""
+ S XMY("XXX@Q-PSS.DOMAIN.EXT")=""
  S XMSUB="QAC ROC LIST: "_^DD("SITE")_" ("_^DD("SITE",1)_")"
  S XMTEXT="^TMP(""QAC MAIL"",$J,"
  D ^XMD D KILL^XM

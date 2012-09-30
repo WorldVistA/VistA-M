@@ -61,7 +61,7 @@ GETADDR() ;get PSAS HQ e-mail address from #669.9
  Q RMA
  ;
 ADDHQ ;update HQ MAIL ADDRESS & VISN in file 669.9
- S DIE="^RMPR(669.9,",DR="38////^S X=""VHACOPSASPIPReport@med.va.gov"""
+ S DIE="^RMPR(669.9,",DR="38////^S X=""VHACOPSASPIPReport@DOMAIN.EXT"""
  F RI=0:0 S RI=$O(^RMPR(669.9,RI)) Q:RI'>0  S DA=RI D ^DIE
  K RI,DIE,DA,DR
  Q

@@ -1,5 +1,5 @@
-MAGGSIV ;WOIFO/GEK/NST - Imaging RPC Broker calls. Validate Image data array ; 12 Apr 2010 12:52 PM
- ;;3.0;IMAGING;**7,8,20,59,108**;Mar 19, 2002;Build 1738;May 20, 2010
+MAGGSIV ;WOIFO/GEK/NST - Imaging RPC Broker calls. Validate Image data array ; [ 12/27/2000 10:49 ]
+ ;;3.0;IMAGING;**7,8,20,59,108,121**;Mar 19, 2002;Build 2340;Oct 20, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -71,6 +71,7 @@ VAL(MAGRY,MAGARRAY,ALL) ;RPC [MAG4 VALIDATE DATA]
  . ; if we are getting a WP line of text for Long Desc Field.  Can't validate it.
  . I MAGGFLD=11 Q  ; this is a line of the WP Long Desc field.
  . I (MAGGFLD=17),(MAGGDAT=0) Q  ; Patch 108 BP work around don't check -  a new TIU stub will be created 
+ . I MAGGFLD="ACTION" Q  ; Patch 121  new ACTION Field, we skip.
  . ; NEW CALL TO VALIDATE FILE,FIELD,DATA 
  . S DAT1=MAGGDAT
  . I '$$VALID^MAGGSIV1(2005,MAGGFLD,.MAGGDAT,.MAGRES) S MAGERR="0^"_MAGRES Q
@@ -94,7 +95,9 @@ ACTCODE(CODE) ;Function that returns True (1) if this code is a valid Import API
  ;   in the Acquisition Device File doesn't exist;
  ;   it will be validated in PRE^MAGGSIA1 and a new Acquisition Device entry made if needed.
  I $E(CODE,1,8)="PXTIUTXT" Q 1 ; P108
- I ",107,PXSGNTYP,PXTIUTCNT,PXNEW,PXTIUTTL,ACQD,IEN,EXT,ABS,JB,WRITE,BIG,DICOMSN,DICOMIN,ACQS,ACQL,STATUSCB,CALLMTH,USERNAME,PASSWORD,DELFLAG,TRNSTYP,"[(","_CODE_",") Q 1
+ I ",107,PXSGNTYP,PXTIUTCNT,PXNEW,PXTIUTTL,ACQD,IEN,EXT,ABS,JB,WRITE,BIG,"[(","_CODE_",") Q 1
+ I ",DICOMSN,DICOMIN,ACQS,ACQL,STATUSCB,CALLMTH,USERNAME,PASSWORD,DELFLAG,TRNSTYP,"[(","_CODE_",") Q 1
+ I ",ACTION,"[(","_CODE_",") Q 1
  Q 0
 VALCODE(CODE,VALUE) ; We validate the values for the possible action codes
  N MAGY
@@ -108,19 +111,23 @@ VALCODE(CODE,VALUE) ; We validate the values for the possible action codes
 IEN I $D(^MAG(2005,VALUE)) S MAGY=1
  E  S MAGY="0^INVALID IMAGE IEN."
  Q
-PXNEW  ; New Package (TIU note)
+ACTION ; Patch 121 ACTION = "RESCIND"
+ I VALUE="RESCIND" S MAGY=1 Q
+ S MAGY="0^Invalid ACTION: "_VALUE
+ Q
+PXNEW ; New Package (TIU note)
  I (PXNEW'=0),(PXNEW'=1),(PXNEW'="") D
  . S MAGY="0^Invalid New Package Value."
  . S CT=CT+1,MAGRY(CT)="Invalid PXNEW value - 0, 1, or blank only!"
  E  S MAGY=1
  Q
-PXSGNTYP  ; Signature type
+PXSGNTYP ; Signature type
  I (PXSGNTYP'=0),(PXSGNTYP'=1),(PXSGNTYP'="") D
  . S MAGY="0^Invalid Signature type Value."
  . S CT=CT+1,MAGRY(CT)="Invalid PXSGNTYP value - 0, 1, or blank only!"
  E  S MAGY=1
  Q
-PXTIUTTL  ; Check for valid TIU title
+PXTIUTTL ; Check for valid TIU title
  N VALIEN
  I $$GETTIUDA^MAGGSIV(.MAGY,VALUE,.VALIEN) S VALUE=VALIEN
  Q

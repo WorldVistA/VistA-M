@@ -1,5 +1,5 @@
-PSODISPS ;BIR/SAB-CONTINUATION OF RELEASE FUNCTION ;3/2/93
- ;;7.0;OUTPATIENT PHARMACY;**15,13,9,27,67,71,156,118,148,247,200**;DEC 1997;Build 7
+PSODISPS ;BIR/SAB - CONTINUATION OF RELEASE FUNCTION ;3/2/93
+ ;;7.0;OUTPATIENT PHARMACY;**15,13,9,27,67,71,156,118,148,247,200,385**;DEC 1997;Build 27
  ;External reference ^PS(59.7 supported by DBIA 694
  ;External reference to ^PSDRUG("AQ" supported by DBIA 3165
  ;External reference ^XTMP("PSA" supported by DBIA 1036
@@ -39,6 +39,7 @@ QTY ; Refill Release
  .I $G(IFN),$P($G(^PSRX(RXP,XTYPE,IFN,0)),"^",2)["W" S BINGRPR="W",BNGPDV=$P(^PSRX(RXP,XTYPE,IFN,0),"^",9),BINGNAM=$P($G(^PSRX(RXP,0)),"^",2)
  W:$G(IFN) !?7,"Prescription Number "_$P(^PSRX(RXP,0),"^")_$S('$G(XTYPE):" Partial Fill",1:" Refill(s)")_" Released" I $G(SPEED) G XMIT
  W:'$G(IFN) !?7,"No "_$S($G(XTYPE):"Refill(s)",1:"Partial(s)")_" to be Released"
+ I $G(IFN),$$STATUS^PSOBPSUT(RXP)]"",$$WINFILL^PSODISPS(RXP) D SIGMSG^PSODISPS K IFN
 XMIT I $G(PSODISP)=2.4 D  ;build an send HL7 v2.4 messages to dispense system
  . F I=0:0 S SUB=$O(^PSRX(RXP,"A",I)) Q:'I  I $P(^PSRX(RXP,"A",I,0),"^",2)="N" D
  .. D NOW^%DTC S PSODTM=% K ^UTILITY($J,"PSOHL")
@@ -88,3 +89,18 @@ SETLBL(LBL,PSOMSG) ;
  S LBL=LBL+1,^PSRX(RXP,"L",0)="^52.032DA^"_LBL_"^"_LBL
  S ^PSRX(RXP,"L",LBL,0)=PSOTXT
  Q
+ ;
+SIGMSG ;Display obtain signature alert in reverse video
+ I '$D(IORVON) D FULL^VALM1
+ W !!
+ W IORVON,"ePharmacy Rx - Obtain Signature",IORVOFF,!
+ Q
+ ;
+WINFILL(RX,RFL) ;Is this a Window prescription fill?
+ N WIN
+ S WIN=0
+ I '$G(RFL),$P(^PSRX(RX,0),"^",11)="W" S WIN=1 Q WIN
+ I $G(RFL)="" S RFL=$$LSTRFL^PSOBPSU1(RX)
+ I $P($G(^PSRX(RX,1,RFL,0)),"^",2)="W" S WIN=1
+ I $D(^PSRX("ADP",DT,RX,RFL)),$P($G(^PSRX(RX,"P",1,0)),U,2)="W" S WIN=1 ;Partials
+ Q WIN

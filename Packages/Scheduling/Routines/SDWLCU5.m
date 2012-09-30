@@ -1,5 +1,5 @@
-SDWLCU5 ;IOFO BAY PINES/TEH - EWL FILE 409.3 CLEANUP ;2/4/03  ; Compiled August 20, 2007 17:04:58
- ;;5.3;scheduling;**280,427,491**;AUG 13 1993;Build 53
+SDWLCU5 ;IOFO BAY PINES/TEH - EWL FILE 409.3 CLEANUP ;2/4/03
+ ;;5.3;scheduling;**280,427,491,539**;AUG 13 1993;Build 24
 EN ;
  W !!,"Checking file 404.51 one last time.",!
  S SDWLERR="",TEAM=0 F  S TEAM=$O(^SCTM(404.51,TEAM)) Q:'TEAM  D  Q:SDWLERR=1
@@ -31,14 +31,15 @@ EN ;
  W !!,"Checking file 409.3 one last time.",!
  S SDWLERR=""
  S SDWLDA=0,TAG="CHK" F  S SDWLDA=$O(^SDWL(409.3,SDWLDA)) Q:SDWLDA<1  D  Q:SDWLERR=1
+ .I $P($G(^SDWL(409.3,SDWLDA,0)),U,17)'="O" Q  ; sd/539 ONLY OPEN ENTRIES
  .S X=$G(^SDWL(409.3,SDWLDA,0)),SDWLINST=$P(X,"^",3),SDWLTY=$P(X,"^",5)
  .Q:'SDWLTY!'SDWLINST
  .S SDWLI=$P(X,"^",SDWLTY+5) Q:'SDWLI
  .S TAG="CHK",TAG=TAG_SDWLTY,C=0 K ^TMP($J,"SDWLCU5",$J) D @TAG
  W !,"Done."
  Q
-UPDINS(SDWLSC,INERROR) ; update 409.32 and the related entroes in 409.3
- N SDWLINS S SDWLINS=$$GET1^DIQ(409.32,SDWLSC_",",.02,"I") ; current set up IN 409.32
+UPDINS(SDWLSC,INERROR) ; update 409.32 and the related entries in 409.3
+ N SDWLINS S SDWLINS=$$GET1^DIQ(409.32,SDWLSC_",",.02,"I") ; current set up in 409.32
  ;check set up in file 44
  ;get clinic
  N CL,CLN S CL=$$GET1^DIQ(409.32,SDWLSC_",",.01,"I"),CLN=$$GET1^DIQ(44,CL_",",.01)
@@ -92,6 +93,7 @@ CH1E S SDWLINS(409.3,SDWLDA_",",2)=SDWLINSN D UPDATE^DIE("","SDWLINS","SDWLMSG")
 CHK3 ;
  S SDWLERR=""
  S SDWLI=$P(^SDWL(409.3,SDWLDA,0),U,8)
+ I $P($G(^SDWL(409.3,SDWLDA,0)),U,17)'="O" Q  ; sd/539 ONLY OPEN ewl entries
  Q:'SDWLI!'$D(^SDWL(409.31,SDWLI))
  I '$D(^SDWL(409.31,SDWLI,"I","B",SDWLINST)) D  Q:SDWLERR=1
  .S SDWLIX="",C=0 F  S SDWLIX=$O(^SDWL(409.31,SDWLI,"I","B",SDWLIX)) Q:SDWLIX=""  S C=C+1,^TMP($J,"SDWLCU5",$J,C,SDWLIX)="",^TMP($J,"SDWLCU5",$J,"B",SDWLIX)=""

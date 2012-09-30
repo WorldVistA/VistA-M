@@ -1,5 +1,5 @@
 MAGGSIA1 ;WOIFO/GEK/SG/NST - RPC Call to Add Image File entry ; 01 Nov 2010 2:08 PM
- ;;3.0;IMAGING;**7,8,85,59,93,106,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+ ;;3.0;IMAGING;**7,8,85,59,93,106,117,121**;Mar 19, 2002;Build 2340;Oct 20, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -25,6 +25,8 @@ PRE(MAGERR,MAGGFDA,MAGGRP,MAGGDRV,MAGREF) ;
  ; For VI Capture and DICOM Gateway the value of #8.1 is set
  ; in ADD^MAGGTIA 
  I '$D(MAGGFDA(2005,"+1,",8.1)) S MAGGFDA(2005,"+1,",8.1)="I"
+ ;
+ D CHKRSND ; Check if this is a Rescinded Import.
  S:$G(MAGGFDA(2005,"+1,",113))="" MAGGFDA(2005,"+1,",113)=1  ; Patch 117 Set STATUS (#113) to Viewable (1)
  I '$D(MAGGFDA(2005,"+1,",3)) D OBJTYPE
  I '$D(MAGGFDA(2005,"+1,",3)) S MAGERR="0^Need an Object Type " Q
@@ -163,4 +165,34 @@ PROCTEXT ;This call uses flds 16 and 17 to compute fld #6 PROCEDURE TEXT [8F]
  ; Parent="", and no Category pointer, then we Call it UNASSIGNED
  S MAGGFDA(2005,"+1,",100)=$O(^MAG(2005.81,"B","UNASSIGNED",""))
  S MAGGFDA(2005,"+1,",6)="UNASSIGNED"
+ Q
+ ; ----------   CHKRSND ----------
+ ; Import API Delphi Component/OCX only allows certain fields.  To get 
+ ; around that limitation, we sometimes need to get data from the 
+ ; IMAGING WINDOWS SESSION File. (#2006.82)
+ ;  
+ ;   Here we add data to MAGGFDA from fields in Session file 
+ ;   that didn't make it thought the Delphi Component/OCX
+CHKRSND ;
+ N IDATA,TRKID
+ S TRKID=$G(MAGGFDA(2005,"+1,",108)) Q:'$L(TRKID)
+ D GETIAPID^MAGGSIUI(.IDATA,TRKID)
+ ; 
+ ; PROCEDURE #6
+ ; CREATION DATE #110
+ ; LINKED IMAGE  #115.1
+ ; LINKED TYPE   #115.2
+ ; LINKED DATE   #115.3  (DATE TIME)
+ ; 
+ ;  Here we can add other fields to MAGGFDA, that aren't passed through
+ ;  the delphi control, but are stored in the Session file for the Import.
+ ; If not rescind action, then QUIT
+ I $G(IDATA("ACTION"))'="RESCIND" Q
+ ; get the LINKED IMAGE and associated fields #115*
+ ; All data was already validated before added to session file.
+ I $G(IDATA(6))'="" S MAGGFDA(2005,"+1,",6)=$G(IDATA(6))
+ I $G(IDATA(110))'="" S MAGGFDA(2005,"+1,",110)=$G(IDATA(110))
+ I $G(IDATA(115.1))'="" S MAGGFDA(2005,"+1,",115.1)=$G(IDATA(115.1))
+ I $G(IDATA(115.2))'="" S MAGGFDA(2005,"+1,",115.2)=$G(IDATA(115.2))
+ I $G(IDATA(115.3))'="" S MAGGFDA(2005,"+1,",115.3)=$G(IDATA(115.3))
  Q

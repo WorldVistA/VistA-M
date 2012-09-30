@@ -15,7 +15,7 @@ PDX(VAQOPT,VAQDFN,VAQNM,VAQISSN,VAQIDOB,DOMROOT,SEGROOT,NOTROOT) ; EP
  ;         VAQISSN  - patient social security number (no dashes)
  ;         VAQIDOB   - patients date of birth (external format)
  ;         DOMROOT - array of domains (full global reference)
- ;                   (ie: PXB.ISC-ALBANY.VA.GOV)=Institution name or null
+ ;                   (ie: PXB.ISC-ALBANY.DOMAIN.EXT)=Institution name or null
  ;         SEGROOT - array of segments (full global reference)
  ;                   (ie: PDX*MIN)=P1^P2
  ;                   P1 = TIME LIMIT

@@ -1,7 +1,7 @@
 XUMF5I ;ISS/PAVEL - XUMF5 MD5 Hash Entry point ;5/19/06  06:15
- ;;8.0;KERNEL;**383,407**;July 10, 1995;Build 8
+ ;;8.0;KERNEL;**383,407,502**;July 10, 1995;Build 17
  ;
- ;MD5 based on info from 4.005 SORT BY VUID
+ ;MD5 based on info from 4.005 SORT BY VUID or USER DEFINED SORTING
  ;
  Q
 EN(X0,MODE,IENCOUNT)  ;entry point to get MD5 algorithm
@@ -13,15 +13,23 @@ EN(X0,MODE,IENCOUNT)  ;entry point to get MD5 algorithm
  ;        1.1 debugging mode.. all values (no hash codes) returned in Apl ACK
  ;        2 debugging mode.. all fields values, all hash values, all hash codes returned in Apl. ACK.
  ; IENCOUNT  = maximum entries for MD5 hash.. if NULL.. all entries counted...        
+ ; FILTER = value of filter field defined in file 4.005, field 8. Passed in by HL7 message (X0).
  ;
  ; TMP(sequence, def entry IEN, file/subfile #, field #)=""
  ; TMP1(,"1,120.82,2,",2)="INTERNAL"
  ; TMP2(FILE #,FIELD #)=""  if internal value requested...
  N X,Y,X1,X2,X3,X20,X201,X1NEW,X2NEW,X2OLD,X0NAME,XP,H,CNT,CNTT,CNHT,XMD5,XDATE,XXP
- N DIC,ERR,ROOT,ROOTX,ROOTB,ROOTB0,POINTER,JUMP,START,TMP,TMP1,TMP2,TMP3,TMP4,TMP5,TMP6,TMP7,FDA,VERSION
- N SLEV,LEV,IENS,VAL,VALUE,SORT,SORT1,EXITMD5
+ N DIC,ERR,ROOT,ROOTX,ROOTB,ROOTB0,POINTER,JUMP,START,TMP,TMP1,TMP2,TMP3,TMP4,TMP5,TMP6,TMP7,TMP8,FDA,VERSION
+ N SLEV,LEV,IENS,VAL,VALUE,SORT,SORT1,EXITMD5,FILTER,FILTER1,FILTER2,ACTFIL,SORTXREF,SORTACT,MAPFLG,VAR,VAR0,VAR1,VAR2,VAR3
  N A,B,C,D,ABCD
- D INIT^XUMF5II S X1=0
+ S:X0["~" FILTER=$P(X0,"~",2),ACTFIL=$P(X0,"~",3),X0=$P(X0,"~",1) ;parse out file name/IEN and filter value if it exists
+ D INIT^XUMF5II S X1=0,VAR="",VAR0=0,MAPFLG=0
+ S VAR1=99.99,VAR2="99.991*",VAR3=99.991 ; fields for files other than Mappings
+ F  S VAR=$O(^DIC(4.005,"B",VAR)) Q:VAR=""  D
+ .I VAR="Mappings" S VAR0=0,VAR0=$O(^DIC(4.005,"B",VAR,VAR0))
+ .I VAR0=X0 S VAR1=.01,VAR2="3*",VAR3=3,MAPFLG=1 ; fields for Mapping file
+ S FILTER1=$$GET1^DIQ(4.005,X0,8)
+ S SORTXREF=$$GET1^DIQ(4.005,X0,7)
 2 F  S X1=$O(TMP(X1)) Q:'$$NEXTB1(LEV)!EXITMD5  S:'X1 X1=SLEV(LEV),X2OLD=0  S X2=$O(TMP(X1,X0,0)) Q:'X2  D
  .S (XP,JUMP)=0,XXP=$O(TMP(X1,X0,X2,0))
  .;************ File/subfile has changed ************
@@ -85,12 +93,14 @@ EN(X0,MODE,IENCOUNT)  ;entry point to get MD5 algorithm
  .Q:'$L(VAL)
  .D:$O(TMP1(LEV,X2,IENS,X3,0))
  ..N X4 S X4=0,VAL="" F  S X4=$O(TMP1(LEV,X2,IENS,X3,X4)) Q:'X4  S VAL=VAL_$G(TMP1(LEV,X2,IENS,X3,X4))
+ .;Filter out non-matching entries if a filter exists
+ .Q:'$$FILTER()
  .;If value set as uniqueue and already exist dont take it into MD5
  .Q:'$L(VAL)
  .I $G(TMP5(X2,X3)) Q:$D(^TMP("UNIQUE",$J,X2,X3,VAL))  S ^TMP("UNIQUE",$J,X2,X3,VAL)=""
  .D
  ..N X,TMP,I
- ..I X3=99.99,$D(^DIC(X2)) S CNTT=CNTT+1 I $G(IENCOUNT),CNTT>IENCOUNT S EXITMD5=1,CNTT=CNTT-1 Q
+ ..I X3=VAR1,$D(^DIC(X2)) S CNTT=CNTT+1 I $G(IENCOUNT),CNTT>IENCOUNT S EXITMD5=1,CNTT=CNTT-1 Q
  ..D:MODE>1.99 SETACK("File #: "_X2_" Field #: "_X3_" Value: "_VAL_" IENS: "_IENS)
  ..S CNT=$G(CNT)+1
  ..S VALUE=VALUE_VAL
@@ -112,12 +122,16 @@ GETONE(LEV,X2)     ;GET DATA
  .S ERROR="1^MD5 ROOT retrieval error, File/Subfile #: "_X2_" IENS: 1,"_IENS,EXITMD5=1,JUMP=2
  .D EM^XUMFX("file DIE call error message in RDT",.ERR)
  .K ERR
+ I SORTXREF'="" S:'$D(@(ROOT(LEV)_""""_SORTXREF_""""_")")) SORTXREF=""
  S ROOTX(LEV)=ROOT(LEV)_"X201(LEV))" ;FOR LOOKUP OF ENTRIES
- S SORT1="",SORT="B" S:$D(^DIC(X2)) SORT="AMASTERVUID",SORT1="1,"
+ S SORT1="",SORT="B" ; S:$D(^DIC(X2)) SORT="AMASTERVUID",SORT1="1,"
+ I $D(^DIC(X2)) D
+ .S SORT="AMASTERVUID",SORT1="1,"
+ .I (SORTXREF'="") S SORT1="",SORT=SORTXREF
  S ROOTB(LEV)=ROOT(LEV)_""""_SORT_""",X20(LEV))"
  S X20(LEV)="",ROOTB0(LEV)=ROOT(LEV)_""""_SORT_""",X20(LEV),"_SORT1_"X201(LEV))"
  S:SORT="B" POINTER=$G(TMP7(X2,XXP)) ;Pointer = pointer to file #
- I SORT="B",+POINTER D  ;Handle poiter type of subfile...
+ I SORT="B",+POINTER D  ;Handle pointer type of subfile...
  .N BB S POINTER=$E(POINTER,2,$L(POINTER))
  .; ^TMP("PROOT",$J,Subfile #,IEN from up level,"Name sorted",IEN level)=""
  .; ^TMP("PROOT",$J,Subfile #,IEN from up level,X20(LEV),X201(LEV))=""
@@ -126,13 +140,13 @@ GETONE(LEV,X2)     ;GET DATA
  .S X201(LEV)=0 F  S X201(LEV)=$O(@(ROOTX(LEV)))  Q:'X201(LEV)  D
  ..I $G(TMP4(X2,XXP)) D  ; If  sort By VUID
  ...S BB=$$GET1^DIQ(X2,X201(LEV)_","_IENS,XXP,"I")     ;BB=IEN of poited to field
- ...S:BB BB=$$GET1^DIQ(TMP4(X2,XXP),BB_",",99.99,"E")  ;BB=VUID
+ ...S:BB BB=$$GET1^DIQ(TMP4(X2,XXP),BB_",",VAR1,"E")  ;BB=VUID
  ..E  S BB=$$GET1^DIQ(X2,X201(LEV)_","_IENS,XXP,"E")   ; Else sort by .01    BB= .01
  ..S:$L(BB) ^TMP("PROOT",$J,X2,BB,X201(LEV))=""
  .;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
  .S ROOTB(LEV)="^TMP(""PROOT"",$J,"_X2_",X20(LEV))"
  .S ROOTB0(LEV)="^TMP(""PROOT"",$J,"_X2_",X20(LEV),X201(LEV))"
- I SORT="B",LEV=2,X2=+$P(^DD(X2OLD(1),99.991,0),U,2) D  ;Handle Effective Date/Status multiple... only last date taken to HASH... TERMSTATUS
+ I SORT="B",LEV=2,X2=+$P(^DD(X2OLD(1),VAR3,0),U,2) D  ;Handle Effective Date/Status multiple... only last date taken to HASH... TERMSTATUS
  .K ^TMP("PROOT",$J,X2)
  .S X20(LEV)=$O(@(ROOTB(LEV)),-1) ;Get last date..
  .Q:'$L(X20(LEV))  ;No Data in Effective Date Multiple.
@@ -142,8 +156,11 @@ GETONE(LEV,X2)     ;GET DATA
  .S ROOTB0(LEV)="^TMP(""PROOT"",$J,"_X2_",X20(LEV),X201(LEV))"
  .S ^TMP("PROOT",$J,X2,X20(LEV),X201(LEV))=""
  S X20(LEV)=""
-GET1 S X20(LEV)=$O(@(ROOTB(LEV))) Q:'$L(X20(LEV))  S X201(LEV)=0,X201(LEV)=$O(@(ROOTB0(LEV)))
- I $D(^DIC(X2)),'$$ACTIVE(X2,X201(LEV)_","_IENS) G GET1 ;If not active entry.. skip it..
+ I SORTXREF'="" S X20(LEV)=0,X201(LEV)=0
+GET1 I SORTXREF="" S X20(LEV)=$O(@(ROOTB(LEV))) Q:'$L(X20(LEV))  S X201(LEV)=0,X201(LEV)=$O(@(ROOTB0(LEV)))
+ I SORTXREF'="" S TMP8=$Q(@(ROOTB0(LEV))),X20(LEV)=$P(TMP8,",",3),X201(LEV)=+$P(TMP8,",",4) Q:'$L(X20(LEV))
+ I (SORTXREF'=""),'$O(@(ROOTB0(LEV))),('$L($O(@(ROOTB(LEV))))),'$$ACTALL() S EXITMD5=1 Q
+ I $D(^DIC(X2)),'$$ACTIVE(X2,X201(LEV)_","_IENS) G GET1 ;If not active entry.. skip it..  
  S IENS=X201(LEV)_","_IENS
  Q:'X201(LEV)
  D GETSIE(X2,IENS,LEV)
@@ -152,6 +169,7 @@ NEXTB(LEV,X2X)      ;Get next IEN from xref on current level.. if exist
  ;Is there other entry at current level to be proceeded..  ?? get next "B" x-ref set old X2 = NEW X2 and go to loop
  Q:'$D(X20(LEV)) 0
 N1 Q:'$L(X20(LEV)) 0
+ I LEV=1,'($O(@(ROOTB0(LEV)))!$L($O(@(ROOTB(LEV))))) S EXITMD5=1 Q 1
  Q:'($O(@(ROOTB0(LEV)))!$L($O(@(ROOTB(LEV))))) 0
  S:X201(LEV) X201(LEV)=$O(@(ROOTB0(LEV))) ;Try get new IEN fron B-xref
  I 'X201(LEV) S X20(LEV)=$O(@(ROOTB(LEV))),X201(LEV)=0 S:$L(X20(LEV)) X201(LEV)=$O(@(ROOTB0(LEV)))
@@ -171,7 +189,7 @@ NEXTB1(LEV)     ;See if some other entries in x-ref at any level exist...  no va
  I LEV=1,'($O(@(ROOTB0(LEV)))!$L($O(@(ROOTB(LEV))))) Q 0
  I LEV=1,'$$ACTALL() Q 0
  I X201(LEV),$O(@(ROOTB0(LEV))) Q 1
- Q:$L($O(@(ROOTB(LEV)))) 1 ;
+ Q:$L($O(@(ROOTB(LEV)))) 1
  Q:LEV=1 0
 4 S LEV=LEV-1 G 3
  Q
@@ -182,10 +200,13 @@ SETACK(X,MODE)      ;SET APPL. Acknowledgment + WRIGHT ??
 UP(X) ;Upercase conversion    
  Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 ACTIVE(FILE,IEN)        ;GET 1 = Active 0 = Inactive
+ I $G(ACTFIL) Q 1
  N TMP,BB,X,X1,X2,XT,XX
- D GETS^DIQ(FILE,IEN,"99.991*","I","TMP","ERR")
+ D GETS^DIQ(FILE,IEN,VAR2,"I","TMP","ERR")
  S (XT,XX)=0,X="TMP"
- F  S X=$Q(@(X)) Q:'$L(X)  S X1=$G(@(X)),X=$Q(@(X)),X2=$G(@(X)) S:X1>XT XT=X1,XX=+X2
+ F  S X=$Q(@(X)) Q:'$L(X)  D
+ .S X1=$G(@(X)),X=$Q(@(X)),X2=$G(@(X)) S:X1>XT XT=X1,XX=+X2
+ .I MAPFLG=1 S X=$Q(@(X))
  Q XX
 GETSIE(X2,IENS,LEV)     ;GET Internal/External values + replace pointed field .01 with VUID
  K TMP1(LEV) D GETS^DIQ(X2,IENS,"*","","TMP1(LEV)")
@@ -194,13 +215,28 @@ GETSIE(X2,IENS,LEV)     ;GET Internal/External values + replace pointed field .0
  .D GETS^DIQ(X2,IENS,"*","I","TMP3")
  .S I="" F  S I=$O(TMP2(X2,I)) Q:'I  S:$D(TMP1(LEV,X2,IENS,I)) TMP1(LEV,X2,IENS,I)=TMP3(X2,IENS,I,"I")
  .;+++++++++++++++ Replace pointed .01 field with VUID if indicate so in 4.005
- .S I="" F  S I=$O(TMP4(X2,I)) Q:'I  S:$D(TMP1(LEV,X2,IENS,I)) TMP1(LEV,X2,IENS,I)=$$GET1^DIQ(TMP4(X2,I),TMP3(X2,IENS,I,"I")_",",99.99)
+ .S I="" F  S I=$O(TMP4(X2,I)) Q:'I  S:$D(TMP1(LEV,X2,IENS,I)) TMP1(LEV,X2,IENS,I)=$$GET1^DIQ(TMP4(X2,I),TMP3(X2,IENS,I,"I")_",",VAR1)
  Q
 ACTALL() ;See if there is some active entry on the file....
+ I $G(SORTACT) Q 1
  N X1,X2,ACT
  S ACT=0,X1=X20(1),X2=X201(1)
  S:X20(1) X20(1)=X20(1)-.01
- F  S X20(1)=$O(@(ROOTB(1))) Q:'X20(1)!ACT  F  S X201(1)=$O(@(ROOTB0(1))) Q:'X201(1)  I $$ACTIVE(X2OLD(1),X201(1)) S ACT=1 Q
+ I SORTXREF="" F  S X20(1)=$O(@(ROOTB(1))) Q:(X20(1)="")!ACT  F  S X201(1)=$O(@(ROOTB0(1))) Q:X201(1)=""  I $$ACTIVE(X2OLD(1),X201(1)) S ACT=1 Q
+ I SORTXREF'="" D
+ .S X20(1)=""
+ .F  S X20(1)=$O(@(ROOTB(1))) Q:(X20(1)="")!ACT  S X201(1)="" F  S X201(1)=$O(@(ROOTB0(1))) Q:X201(1)=""  I $$ACTIVE(X2OLD(1),X201(1)) S ACT=1,SORTACT=1 Q
  S X20(1)=X1,X201(1)=X2
  Q ACT
- Q
+FILTER() ;if filter value passed in via HL7 message, verify it matches file/field value
+ ; FILTER = VALUE IN HL7 MESSAGE
+ ; FILTER1 = FIELD NUMBER IN 4.005
+ ; FILTER2 = VALUE OF FIELD IN REFERENCED FILE
+ ; If reference file is "Mappings", resolve pointer of 757.33 field .02 to 757.32 field 5 and compare
+ I '$D(FILTER) Q 1
+ I MAPFLG D
+ .S FILTER2=$$GET1^DIQ(X2OLD(1),X201(1),FILTER1,"I")
+ .S FILTER2=$$GET1^DIQ(757.32,FILTER2,5)
+ I 'MAPFLG S FILTER2=$$GET1^DIQ(X2,X201(1),FILTER1)
+ I ($G(FILTER2)'=$G(FILTER)) Q 0
+ Q 1

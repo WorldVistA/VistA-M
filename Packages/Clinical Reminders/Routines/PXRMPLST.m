@@ -1,5 +1,5 @@
-PXRMPLST ; SLC/PKR - Build a patient list from a reminder definition. ;01/24/2007
- ;;2.0;CLINICAL REMINDERS;**4,6**;Feb 04, 2005;Build 123
+PXRMPLST ;SLC/PKR - Build a patient list from a reminder definition. ;09/23/2010
+ ;;2.0;CLINICAL REMINDERS;**4,6,18**;Feb 04, 2005;Build 152
  ;
  ;Input  :  RIEN     - Reminder IEN
  ;          PLIST    - List returned in ^TMP($J,PLIST,DFN)
@@ -145,7 +145,7 @@ AGEFI(DEFARR,LNAME,SEX,ONLYFREQ) ;Check for patients that need to be
  ;
  ;==================================================
 CFSAA(STACK) ;Check for the first three elements on the stack being
- ;SEX, AGE, and &. If that is the case replace the with the "special"
+ ;SEX, AGE, and &. If that is the case replace them with the "special"
  ;finding SAA.
  N EL1,EL2,EL3,SAA
  S SAA=0
@@ -179,6 +179,7 @@ DOBR(DEFARR,NDR,DOBS,DOBE) ;Build the date of birth range.
 GENTERM(FINDING,FINUM,TERMARR) ;Given a reminder finding generate a term
  ;for patient list evaluation.
  N IEN,IND,TEMP,TYPE
+ K TERMARR
  S TEMP=$P(FINDING,U,1)
  S IEN=$P(TEMP,";",1)
  S TYPE=$P(TEMP,";",2)

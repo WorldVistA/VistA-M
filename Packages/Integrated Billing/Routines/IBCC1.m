@@ -1,5 +1,5 @@
 IBCC1 ;ALB/MJB - CANCEL THIRD PARTY BILL ;10-OCT-94
- ;;2.0;INTEGRATED BILLING;**19,95,160,159,320,347,377,399**;21-MAR-94;Build 8
+ ;;2.0;INTEGRATED BILLING;**19,95,160,159,320,347,377,399,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 RNB ; -- Add a reason not billable to claims tracking
@@ -81,7 +81,10 @@ RNBEDIT(IBTRE,CTTYPE,TCNT,CNT) ; CT entry display and capture RNB data and addit
  ;
  S IBTALK=1
  ;
- N %,IBTRED,IBTRED1 S IBTRED=$G(^IBT(356,IBTRE,0)),IBTRED1=$G(^IBT(356,IBTRE,1))
+ N %,IBTRED,IBTRED1
+ ;
+ S IBTRED=$G(^IBT(356,IBTRE,0))
+ S IBTRED1=$G(^IBT(356,IBTRE,1))
  ;
  W !!,"Claims Tracking Entry [",CNT," of ",TCNT,"]"
  W !?7,"Entry ID#: ",+IBTRED
@@ -99,12 +102,14 @@ RNBEDIT(IBTRE,CTTYPE,TCNT,CNT) ; CT entry display and capture RNB data and addit
  . Q
  ;
  I CTTYPE=3 D     ; prescription refill
- . N PSONTALK,PSOTMP,X
+ . N PSONTALK,PSOTMP,X,IBECME
  . S PSONTALK=1
  . S X=+$P(IBTRED,U,8)_U_+$P(IBTRED,U,10) D EN^PSOCPVW
  . ;if refill was deleted and EN^PSOCPVW doesn't return any data use IB API
  . I '$D(PSOTMP) D PSOCPVW^IBNCPDPC(+$P(IBTRED,U,2),+$P(IBTRED,U,8),.PSOTMP)
+ . S IBECME=$P($$CLAIM^BPSBUTL(+$P(IBTRED,U,8),+$P(IBTRED,U,10)),U,6)   ; ecme#  DBIA 4719
  . W !?3,"Prescription#: ",$G(PSOTMP(52,+$P(IBTRED,U,8),.01,"E"))
+ . I IBECME W !?11,"ECME#: ",IBECME    ; IB*2*452
  . I '$P(IBTRED,U,10) W !?7,"Fill Date: ",$$FMTE^XLFDT($P(IBTRED,U,6),"1P")
  . I $P(IBTRED,U,10) W !?5,"Refill Date: ",$$FMTE^XLFDT($P(IBTRED,U,6),"1P")
  . W !?12,"Drug: ",$G(PSOTMP(52,+$P(IBTRED,U,8),6,"E"))

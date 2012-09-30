@@ -1,6 +1,6 @@
-FBSHAUT ;WCIOFO/SAB-ENTER/EDIT STATE HOME AUTHORIZATION ;2/9/1999
- ;;3.5;FEE BASIS;**13**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBSHAUT ;WCIOFO/SAB - ENTER/EDIT STATE HOME AUTHORIZATION ;6/5/2009
+ ;;3.5;FEE BASIS;**13,108**;JAN 30, 1995;Build 115
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 ADD ; Enter new authorization
  ; Called from option FBSH ENTER AUTH
@@ -166,6 +166,7 @@ WRAPUP ; clean-up
  K DFN,FB,FBAAADA,FBAAASKV,FBAADDYS,FBANEW,FBAOLD,FBBEGDT
  K FBDMRA,FBENDDT,FBOPT,FBPOP,FBPROG,FBSITE,FTP,FBTYPE,FBX
  K DA,DIC,DIE,DIR,DIROUT,DIRUT,DR,DTOUT,DUOUT,X,Y
+ D GETAUTHK^FBAAUTL1
  Q
  ;
 BDATES ; get both from and to dates of new authorization

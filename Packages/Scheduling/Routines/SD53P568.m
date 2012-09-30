@@ -103,7 +103,7 @@ UPDCODES ;Compare existing entries in 40.7 with "gold" entries
 MAIL ;Send message indicating post install is finished
  N XMSUB,XMTEXT,XMDUZ,XMY,XMZ,SDTXT,CNT,DIFROM,DIEN,NODE,SC,NAME,IEN,I,PIECE
  S XMDUZ="PATCH SD*5.3*568 POST-INSTALL"
- D GETXMY("ECXMGR",.XMY),GETXMY("SD SUPERVISOR",.XMY) S XMY("G.CSPIMS@FORUM.VA.GOV")=""
+ D GETXMY("ECXMGR",.XMY),GETXMY("SD SUPERVISOR",.XMY) S XMY("G.CSPIMS@FORUM.DOMAIN.EXT")=""
  I '$D(DUP) D  ;No duplicates
  .S SDTXT(1)="The Duplicate Stop Code Clean Up Process has been completed.",SDTXT(2)="No active duplicate stop codes were found."
  I $D(DUP) D  ;Duplicates found

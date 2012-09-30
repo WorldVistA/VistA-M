@@ -1,5 +1,5 @@
-PSOUTLA1 ;BHAM ISC/RTR-Pharmacy utility program cont. ;5/22/07 10:01am
- ;;7.0;OUTPATIENT PHARMACY;**35,186,218,259,206**;DEC 1997;Build 39
+PSOUTLA1 ;BHAM ISC/RTR-Pharmacy utility program cont. ; 17 Jun 2011  2:21 PM
+ ;;7.0;OUTPATIENT PHARMACY;**35,186,218,259,206,388**;DEC 1997;Build 6
  ;External reference to File ^PS(55 supported by DBIA 2228
  ;External reference to File ^PSDRUG supported by DBIA 221
  ;External reference to File ^PS(59.7 supported by DBIA 694
@@ -91,6 +91,7 @@ DEACHK(PSIRXN,PSDEA,PSDAYS,PCLOZ,PSOCS,PSMAXRF) ;Apply DEA restrictions
  ; found and Max refills will be 0.
  ;
  ;  Function returns: 1 = no refills allowed
+ ;  Function returns: 2 = no refills allowed
  ;                    0 = ok to refill
  ;  Input Variables: PSIRXN = internal RX number or "*"=(new order)
  ;                   PSDEA  = DEA special handling for drug ordered
@@ -108,7 +109,7 @@ DEACHK(PSIRXN,PSDEA,PSDAYS,PCLOZ,PSOCS,PSMAXRF) ;Apply DEA restrictions
  I PCLOZ=1 S PSMAXRF=1 Q 0
  ;
  ;no refills if PSDEA = 'A' & not 'B' or 'F',
- I (PSDEA["A")&(PSDEA'["B")!(PSDEA["F")!(PSDEA[1)!(PSDEA[2) D  Q 1
+ I (PSDEA["A")&(PSDEA'["B")!(PSDEA["F")!(PSDEA[1)!(PSDEA[2) D  Q 2  ;*388
  . S PSMAXRF=$$NUMFILLS(PSIRXN)
  ;
  N QQ
@@ -117,7 +118,7 @@ DEACHK(PSIRXN,PSDEA,PSDAYS,PCLOZ,PSOCS,PSMAXRF) ;Apply DEA restrictions
  . S:$E(+PSDEA,QQ)=2 $P(PSOCS,"^",2)=1
  ;
  ;no refills allowed on sched 2
- I $P(PSOCS,"^",2)=1 S PSMAXRF=$$NUMFILLS(PSIRXN) Q 1
+ I $P(PSOCS,"^",2)=1 S PSMAXRF=$$NUMFILLS(PSIRXN) Q 2  ;*388
  ;
  ;set max refill for controlled substance & other based on days supply
  S PSDAYS=+$G(PSDAYS)

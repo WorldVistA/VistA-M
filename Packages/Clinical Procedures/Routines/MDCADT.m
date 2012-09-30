@@ -1,16 +1,15 @@
-MDCADT ;HINES OIFO/DP/BJ - HL7 Build ADT Axx Messages;10 Aug 2007
- ;;1.0;CLINICAL PROCEDURES;**16**;Apr 01, 2004;Build 280
+MDCADT ;HINES OIFO/DP/BJ/TJ - HL7 Build ADT Axx Messages;10 Aug 2007
+ ;;1.0;CLINICAL PROCEDURES;**16,12**;Apr 01, 2004;Build 318
  ; Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; This routine uses the following Integration Agreements (IAs):
  ;  # 2050       - $$EZBLD^DIALOG()      FileMan         (supported)
  ;  # 2887       - $$GETAPP^HLCS2 call   HL7             (supported)
  ;  #10106       - $$HLDATE^HLFNC        HL7             (supported)
- ;  # 4571       - ERR^VDEFREQ calls     VDEF            (controlled, subscribed)
  ;  #10070       - ^XMD call             MailMan         (supported)
  ;  #10035       - access ^DPT(          Registration    (supported)
  ;
-VALID ;VDEF HL7 MESSAGE BUILDER
+VALID ;HL7 MESSAGE BUILDER
  ; Creates HL7 V2.4 "Axx Type" message
  ; stolen from GMVVDEF1
  ; segments returned will fall into 1 of four categories
@@ -30,13 +29,13 @@ VALID ;VDEF HL7 MESSAGE BUILDER
  ;  I $D(SEG)=10         Case 3 or 4
  Q
  ;
-BLDMSG(EVIEN,KEY,VFLAG,OUT,MSHP,MDCEVN) ;
+BLDMSG(KEY,VFLAG,OUT,MSHP,MDCEVN) ;
  ;
- ; Inputs: EVIEN         - IEN of message in file 577
+ ; Inputs:
  ;         KEY           - IEN of file to create message from
  ;         VFLAG         - "V" for VistA HL7 destination (default)
- ;         OUT           - target array, passed by reference
- ;         MSHP          - Piece 4 contains message subtype
+ ;         OUT           - target ARRAY, passed by reference
+ ;         MSHP          - "ADT"
  ;         MDCEVN        - message type, e.g. A04
  ;
  ; Output: Two part string with parts separated by "^"
@@ -44,18 +43,14 @@ BLDMSG(EVIEN,KEY,VFLAG,OUT,MSHP,MDCEVN) ;
  ;                 "GM" - output in ^TMP("HLS",$J)
  ;         Part 2: No longer used        ;
  ;
- N HLCM,HLRP,HLSC,HLES,HLECH,HLFS,HLQ,HL7RC,HLMAXLEN
  N MDCMAIL,IENSSAVE,TARGET
- N DFN,MDCS,EV,MDCERAY,MDCERR,MDCSEG,MDCIEN
+ N MDCS,EV,MDCERAY,MDCERR,MDCSEG,MDCIEN
  ;
  S IENSSAVE=$G(IENS)
  S MDCIEN=KEY,MDCS=0
  K ^TMP("HLS",$J),OUT
  ;S ARRAY="^TMP("_"""HLS"""_",$J,MDCS)",TARGET="GM^"  ; array is a global
  S ARRAY="OUT("_"""HLS"""_",MDCS)",TARGET="LM^"  ;  array is a local variable
- ;
- ; Set up HL7 delimiters based on VDEFHL().
- D MOREDLMS^MDCUTL
  ;
  ;  Get DATA
  M MDCDATA=^MDC(704.005,KEY)
@@ -127,7 +122,6 @@ ERR(MDCERR) ;
  ;    Input:     MDCERR - Error message.
  N IENS,ZTSTOP
  S IENS=$G(IENSSAVE,MDCIEN)
- D ERR^VDEFREQ(MDCERR)
  D MAILERR
  S ZTSTOP=1
  K MDCPARM,OUT
@@ -142,7 +136,7 @@ MAILERR ; mail error notification to g.developers
  S RECEIVER="g."_$P(RECEIVER,U)
  S XMDUZ=.5
  S XMY(RECEIVER)=""
- S XMSUB=" HL7 "_MDCEVN_" Error Message Key="_KEY_" (VDEF Queue #"_EVIEN_")"
+ S XMSUB=" CP Flowsheets HL7 Error Message; file# 704.005 IEN ="_KEY_" (ADT Event #"_MDCEVN_")"
  S XMTEXT="MDCMAIL("
  S MDCMAIL(1)=MDCERR
  D ^XMD

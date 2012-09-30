@@ -1,5 +1,5 @@
-PSOCSRL ;BIR/BHW-release interface for control substance pkg ;7/22/94
- ;;7.0;OUTPATIENT PHARMACY;**27,71,118,148,247**;DEC 1997;Build 18
+PSOCSRL ;BIR/BHW - release interface for control substance pkg ;7/22/94
+ ;;7.0;OUTPATIENT PHARMACY;**27,71,118,148,247,373,385**;DEC 1997;Build 27
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PS(59.7 supported by DBIA 694
@@ -34,7 +34,7 @@ ORI ;orig
  .;
  .S:$D(^PSDRUG(QDRUG,660.1)) ^PSDRUG(QDRUG,660.1)=^PSDRUG(QDRUG,660.1)-QTY
  .Q:$P($G(^PSRX(RXP,2)),"^",13)
- .D NOW^%DTC S DIE="^PSRX(",DA=RXP,DR="31///"_%_";23///"_PSRH
+ .D NOW^%DTC S DIE="^PSRX(",DA=RXP,DR="31///"_%_";23////"_PSRH  ;pso*7*373
  .D ^DIE K DIE,DR,DA,LBL
  .D EN^PSOHLSN1(RXP,"ZD")
  .; ECME - 3rd Party Billing
@@ -50,6 +50,7 @@ EX K OUT,RX2,RXFD,RESK,ISUF,SUPN,%,DIC,IFN,J,DA,DR,DIE,X,Y,RXP,REC,DIRUT,PSOCPN,
 UPDATE I $G(ISUF) W $C(7),!!?7,$S($P(XTYPE,"^")=1:"RE",$P(XTYPE,"^")="P":"PARTIAL ",1:"ORIGINAL")_"FILL ON SUSPENSE !",!,$C(7) Q
  S PSOCPRX=$P(^PSRX(RXP,0),"^") D CP^PSOCP
  W !?7,"PRESCRIPTION NUMBER "_$P(^PSRX(RXP,0),"^")_" RELEASED"
+ I $$STATUS^PSOBPSUT(RXP)]"",$$WINFILL^PSODISPS(RXP) D SIGMSG^PSODISPS
  Q
 QTY S PSOCPN=$P(^PSRX(RXP,0),"^",2),QDRUG=$P(^PSRX(RXP,0),"^",6) K LBLP
  D:$P($G(^PSRX(RXP,$P(XTYPE,"^"),$P(XTYPE,"^",2),0)),"^")'<PSIN  K ISUF,LBLP G:$G(PSOUT) EX
@@ -76,6 +77,7 @@ QTY S PSOCPN=$P(^PSRX(RXP,0),"^",2),QDRUG=$P(^PSRX(RXP,0),"^",6) K LBLP
  .I +XTYPE,$G(IFN),'$G(ISUF) S PSOCPRX=$P(^PSRX(RXP,0),"^"),YY=$P(XTYPE,"^",2) D CP^PSOCP
  W:$G(IFN) !!?7,"PRESCRIPTION NUMBER "_$P(^PSRX(RXP,0),"^")_$S('+$G(XTYPE):" Partial Fill",1:" REFILL")_" #"_$P(XTYPE,"^",2)_" RELEASED"
  W:'$G(IFN) !!?7,$S(+$G(XTYPE):"REFILL",1:"PARTIAL")_" #"_$P(XTYPE,"^",2)_" NOT RELEASED"
+ I $G(IFN),$$STATUS^PSOBPSUT(RXP)]"",$$WINFILL^PSODISPS(RXP) D SIGMSG^PSODISPS
  K IFN
  Q
 ASK ;confirm

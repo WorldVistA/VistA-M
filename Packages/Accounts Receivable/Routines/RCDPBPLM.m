@@ -1,6 +1,6 @@
 RCDPBPLM ;WISC/RFJ - bill profile ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,153,159,241**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**114,153,159,241,276**;Mar 20, 1995;Build 87
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
  ;  called from menu option (19)
@@ -8,11 +8,11 @@ RCDPBPLM ;WISC/RFJ - bill profile ;1 Jun 99
  N RCBILLDA,RCDPFXIT
  ;
  F  D  Q:'RCBILLDA
- .   W !! S RCBILLDA=$$SELBILL^RCDPBTLM
- .   I RCBILLDA<1 S RCBILLDA=0 Q
- .   D EN^VALM("RCDP BILL PROFILE")
- .   ;  fast exit
- .   I $G(RCDPFXIT) S RCBILLDA=0
+ . W !! S RCBILLDA=$$SELBILL^RCDPBTLM
+ . I RCBILLDA<1 S RCBILLDA=0 Q
+ . D EN^VALM("RCDP BILL PROFILE")
+ . ;  fast exit
+ . I $G(RCDPFXIT) S RCBILLDA=0
  Q
  ;
  ;
@@ -37,13 +37,17 @@ INIT ;  initialization for list manager list
  S RCLINE=RCLINE+1 D SET("  Phone: "_$P(DATA,"^",10),RCLINE,1,80)
  S RCDEBTOR=$P(^PRCA(430,RCBILLDA,0),U,9)
  I $P(^RCD(340,+RCDEBTOR,0),U)["DPT(" S DFN=+^(0) D
- .   Q:$$EMGRES^DGUTL(DFN)'["K"
- .   S RCLINE=RCLINE+1
- .   D SET("EMERGENCY RESPONSE INDICATOR: HURRICANE KATRINA",RCLINE,1,80)
+ . Q:$$EMGRES^DGUTL(DFN)'["K"
+ . S RCLINE=RCLINE+1
+ . D SET("EMERGENCY RESPONSE INDICATOR: HURRICANE KATRINA",RCLINE,1,80)
  ;
  ;  bill descriptive data
  S RCLINE=RCLINE+1 D SET(" ",RCLINE,1,80)
- S RCLINE=RCLINE+1 D SET("Bill Number",RCLINE,1,80,.01,IOUON,IOUOFF)
+ ; PRCA*4.5*276 - get 1st/3rd party payment add EEOB indicator when applicable
+ S PRCOUT=$$COMP3^PRCAAPR(RCBILLDA)
+ I PRCOUT'="%" S PRCOUT=$$IBEEOBCK^PRCAAPR1(RCBILLDA)
+ S RCLINE=RCLINE+1 ; D SET("Bill Number",RCLINE,1,80,.01,IOUON,IOUOFF)
+ D SET("Bill Number: "_$G(PRCOUT)_$P(RCDPDATA(430,RCBILLDA,.01,"E"),"^"),RCLINE,1,80,0,IOUON,IOUOFF)
  D SET("Category",RCLINE,40,80,2)
  S RCLINE=RCLINE+1 D SET("Date  Prepared",RCLINE,1,80,10)
  D SET("Status",RCLINE,42,80,8)
@@ -52,18 +56,18 @@ INIT ;  initialization for list manager list
  D SET("By",RCLINE,46,80,17)
  ;display TP bills Division of Care
  I "T"=$P($G(^PRCA(430.2,+RCDPDATA(430,RCBILLDA,2,"I"),0)),"^",6) D
- .S RCDIV=$$DIV^IBJDF2(RCBILLDA) I +RCDIV D
- ..S RCDIV=$P($G(^DG(40.8,RCDIV,0)),U,1) I RCDIV="" Q
- ..S RCLINE=RCLINE+1 D SET("Division of Care: "_RCDIV,RCLINE,1,80)
+ . S RCDIV=$$DIV^IBJDF2(RCBILLDA) I +RCDIV D
+ .. S RCDIV=$P($G(^DG(40.8,RCDIV,0)),U,1) I RCDIV="" Q
+ .. S RCLINE=RCLINE+1 D SET("Division of Care: "_RCDIV,RCLINE,1,80)
  S RCLINE=RCLINE+1 D SET("Resulting From",RCLINE,1,80,4.5)
  I RCDPDATA(430,RCBILLDA,15.1,"E")'="" D
- .   S RCLINE=RCLINE+1 D SET("  Type of Care",RCLINE,1,80,15.1)
+ . S RCLINE=RCLINE+1 D SET("  Type of Care",RCLINE,1,80,15.1)
  S RCLINE=RCLINE+1 D SET("        Remark",RCLINE,1,80,15)
  ;  display comments if there
  I $O(^PRCA(430,RCBILLDA,10,0)) D
- .   S RCLINE=RCLINE+1 D SET("Comments:",RCLINE,1,80)
- .   S COMMDA=0 F  S COMMDA=$O(^PRCA(430,RCBILLDA,10,COMMDA)) Q:'COMMDA  D
- .   .   S RCLINE=RCLINE+1 D SET("  "_$G(^PRCA(430,RCBILLDA,10,COMMDA,0)),RCLINE,1,80)
+ . S RCLINE=RCLINE+1 D SET("Comments:",RCLINE,1,80)
+ . S COMMDA=0 F  S COMMDA=$O(^PRCA(430,RCBILLDA,10,COMMDA)) Q:'COMMDA  D
+ .. S RCLINE=RCLINE+1 D SET("  "_$G(^PRCA(430,RCBILLDA,10,COMMDA,0)),RCLINE,1,80)
  ;
  ;  int/adm rate and date
  S RCLINE=RCLINE+1 D SET(" ",RCLINE,1,80)
@@ -88,9 +92,9 @@ INIT ;  initialization for list manager list
  S RCLINE=RCLINE+1 D SET("      Interest: "_$J(RCDPDATA(430,RCBILLDA,72,"E"),14,2)_$J(RCDPDATA(430,RCBILLDA,78,"E"),14,2),RCLINE,1,80)
  I $G(RCDPDATA(430,RCBILLDA,131,"E")) D SET("Medicare Contr  Adj: "_$J(RCDPDATA(430,RCBILLDA,131,"E"),11,2),RCLINE,48,80)
  I RCDPDATA(430,RCBILLDA,74,"E") D
- .   S RCLINE=RCLINE+1 D SET("  Marshall Fee: "_$J(RCDPDATA(430,RCBILLDA,74,"E"),14,2)_$J(RCDPDATA(430,RCBILLDA,79.1,"E"),14,2),RCLINE,1,80)
+ . S RCLINE=RCLINE+1 D SET("  Marshall Fee: "_$J(RCDPDATA(430,RCBILLDA,74,"E"),14,2)_$J(RCDPDATA(430,RCBILLDA,79.1,"E"),14,2),RCLINE,1,80)
  I RCDPDATA(430,RCBILLDA,75,"E") D
- .   S RCLINE=RCLINE+1 D SET("    Court Cost: "_$J(RCDPDATA(430,RCBILLDA,75,"E"),14,2),RCLINE,1,80)
+ . S RCLINE=RCLINE+1 D SET("    Court Cost: "_$J(RCDPDATA(430,RCBILLDA,75,"E"),14,2),RCLINE,1,80)
  S RCLINE=RCLINE+1 D SET("Administrative: "_$J(RCDPDATA(430,RCBILLDA,73,"E"),14,2)_$J(RCDPDATA(430,RCBILLDA,79,"E"),14,2),RCLINE,1,80,0,IOUON,IOUOFF)
  I $G(RCDPDATA(430,RCBILLDA,132,"E")) D SET("Medicare Unreim Exp: "_$J(RCDPDATA(430,RCBILLDA,132,"E"),11,2),RCLINE,48,80)
  ;  compute totals
@@ -100,10 +104,10 @@ INIT ;  initialization for list manager list
  ;
  ;  show refund if there
  I RCDPDATA(430,RCBILLDA,79.18,"E") D
- .   S RCLINE=RCLINE+1 D SET(" ",RCLINE,1,80)
- .   S RCLINE=RCLINE+1 D SET("Refunded Amount",RCLINE,1,80,79.18)
- .   D SET("Date",RCLINE,27,80,79.19)
- .   D SET("By",RCLINE,50,80,79.21)
+ . S RCLINE=RCLINE+1 D SET(" ",RCLINE,1,80)
+ . S RCLINE=RCLINE+1 D SET("Refunded Amount",RCLINE,1,80,79.18)
+ . D SET("Date",RCLINE,27,80,79.19)
+ . D SET("By",RCLINE,50,80,79.21)
  ;
  ;  accounting data
  S RCLINE=RCLINE+1 D SET(" ",RCLINE,1,80)
@@ -113,12 +117,12 @@ INIT ;  initialization for list manager list
  D SET("Approp Code",RCLINE,34,46,0,IOUON,IOUOFF)
  D SET("Amount",RCLINE,50,60,0,IOUON,IOUOFF)
  S RCFYDA=0 F  S RCFYDA=$O(^PRCA(430,RCBILLDA,2,RCFYDA)) Q:'RCFYDA  D
- .   S DATA=$G(^PRCA(430,RCBILLDA,2,RCFYDA,0))
- .   S RCLINE=RCLINE+1
- .   D SET($J($P(DATA,"^"),30),RCLINE,1,80)     ;fiscal year
- .   D SET($J(RCDPDATA(430,RCBILLDA,203,"E"),6),RCLINE,39,45) ;fund
- .   D SET($J($P(DATA,"^",2),8,2),RCLINE,48,80)   ;amount
- ;  determine which rsc to display
+ . S DATA=$G(^PRCA(430,RCBILLDA,2,RCFYDA,0))
+ . S RCLINE=RCLINE+1
+ . D SET($J($P(DATA,"^"),30),RCLINE,1,80)     ;fiscal year
+ . D SET($J(RCDPDATA(430,RCBILLDA,203,"E"),6),RCLINE,39,45) ;fund
+ . D SET($J($P(DATA,"^",2),8,2),RCLINE,48,80)   ;amount
+ ; determine which rsc to display
  S %=RCDPDATA(430,RCBILLDA,255.1,"E") I %="" S %=RCDPDATA(430,RCBILLDA,255,"E")
  S RCLINE=RCLINE+1 D SET("Rev Srce Code: "_%,RCLINE,1,80)
  ;
@@ -130,12 +134,12 @@ INIT ;  initialization for list manager list
  S RCLINE=RCLINE+1 D SET("        Letter3",RCLINE,1,80,63)
  S RCLINE=RCLINE+1 D SET("        Letter4",RCLINE,1,80,68)
  I RCDPDATA(430,RCBILLDA,68.6,"I") D
- .   S RCLINE=RCLINE+1 D SET("     IRS Letter",RCLINE,1,80,68.6)
- .   D SET("Amount",RCLINE,65,80,68.93)
+ . S RCLINE=RCLINE+1 D SET("     IRS Letter",RCLINE,1,80,68.6)
+ . D SET("Amount",RCLINE,65,80,68.93)
  I RCDPDATA(430,RCBILLDA,64,"I") D
- .   S RCLINE=RCLINE+1 D SET("DC/DOJ Ref Date",RCLINE,1,80,64)
- .   D SET("To",RCLINE,40,80,65)
- .   D SET("Amount",RCLINE,65,80,66)
+ . S RCLINE=RCLINE+1 D SET("DC/DOJ Ref Date",RCLINE,1,80,64)
+ . D SET("To",RCLINE,40,80,65)
+ . D SET("Amount",RCLINE,65,80,66)
  ;
  ;  repayment plan (show only if there)
  I RCDPDATA(430,RCBILLDA,41,"I") D REPAY^RCDPBPLI
@@ -169,6 +173,8 @@ INIT ;  initialization for list manager list
 HDR ;  header code for list manager display
  ;  requires rcbillda
  S VALMHDR(1)="***** ACCOUNTS RECEIVABLE BILL PROFILE FOR "_$P($G(^PRCA(430,RCBILLDA,0)),"^")_" *****"
+ ; PRCA*4.5*276 - add explanation of '%' for the user
+ S VALMSG="|% EEOB | Enter ?? for more actions|" ; PRCA*4.5*276
  Q
  ;
  ;

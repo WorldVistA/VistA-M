@@ -1,5 +1,5 @@
-PSORENW ;BIR/SAB-renew main driver ;4/25/07 8:42am
- ;;7.0;OUTPATIENT PHARMACY;**11,27,30,46,71,96,100,130,148,206**;DEC 1997;Build 39
+PSORENW ;BIR/SAB-renew main driver ; 6/8/11 3:22pm
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,30,46,71,96,100,130,148,206,388**;DEC 1997;Build 6
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External references L, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to LK^ORX2 and ULK^ORX2 supported by DBIA 867
@@ -60,7 +60,7 @@ RENEW(PLACER,PSOCPDRG) ;passes flag to CPRS for front door renews
  I ($P(PSODRUG0,"^",3)[1)!($P(PSODRUG0,"^",3)[2)!($P(PSODRUG0,"^",3)["W") Q "0^Non-Renewable "_$S($P(PSODRUG0,"^",3)["A":"Drug Narcotic.",1:"Drug.")
  I $D(^PS(53,+$P(RX0,"^",3),0)),'$P(^(0),"^",5) Q "0^Non-Renewable Prescription."
  S PSOLC=$P(RX0,"^"),PSOLC=$E(PSOLC,$L(PSOLC)) I $A(PSOLC)'<90 Q "0^Max number of renewals (26) has been reached."
- I ST,ST'=2,ST'=5,ST'=6,ST'=11,ST'=12,ST'=14 Q "0^Prescritpion is in a Non-Renewable Status."
+ I ST,ST'=2,ST'=5,ST'=6,ST'=11,ST'=12,ST'=14 Q "0^Prescription is in a Non-Renewable Status."
  I $P($G(^PSRX(RXN,"OR1")),"^",4) Q "0^Duplicate Rx Renewal Request."
  I $O(^PS(52.41,"AQ",RXN,0)) Q "0^Duplicate Rx Renewal Request."
  K PSORFRM,PSOLC,PSODRG,PSODRUG0,RXN,ST

@@ -1,5 +1,5 @@
 BPSNCPD4 ;OAK/ELZ - Extension of BPSNCPDP ;4/16/08  17:07
- ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -25,30 +25,22 @@ CERTTEST(CERTIEN) ;
  ; or 
  ; RESPONSE code^CLAMSTAT^D(display message)^number of seconds to hang^additional info
  ; see EN^BPSNCPD4 for RESPONSE values
-REVRESUB(BPREVREQ,BRXIEN,BFILL,BFILLDAT,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPSDELAY,BPCOBIND,BPJOBFLG,IEN59,DFN,BPSTART,BPREQIEN,OLDRESP,BPSELIG,BPSRTYPE,BPSPLAN,BPSPRDAT) ;
+REVRESUB(BPREVREQ,BRXIEN,BFILL,DOS,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPSDELAY,BPCOBIND,BPJOBFLG,IEN59,DFN,BPSTART,BPREQIEN,OLDRESP,BPSELIG,BPSRTYPE,BPSPLAN,BPSPRDAT) ;
  N BPSITE,BPECMOFF,BPSARRY,MOREDATA,IB,BPRETV,BPZRET,BPCLMST,BPONLREV,BPRETVAL,BPUSRMSG,CERTIEN,BPRESP,BPRETUNC
- I BPJOBFLG'="F",BPJOBFLG'="B" D LOG(IEN59,"Job Flag missing") Q "5^Job Flag missing"  ;RESPONSE^CLMSTAT
- I BPJOBFLG="B" D LOG(IEN59,"Reversal+Resubmit cannot be done in background") Q "5^Reversal+Resubmit cannot be done in background"  ;RESPONSE^CLMSTAT
+ I BPJOBFLG'="F",BPJOBFLG'="B" D LOG^BPSOSL(IEN59,$T(+0)_"-Job Flag missing") Q "5^Job Flag missing"  ;RESPONSE^CLMSTAT
+ I BPJOBFLG="B" D LOG^BPSOSL(IEN59,$T(+0)_"-Reversal+Resubmit cannot be done in background") Q "5^Reversal+Resubmit cannot be done in background"  ;RESPONSE^CLMSTAT
  S BPCLMST="",BPONLREV=0,BPRESP=""
  ;
  S BPSITE=+$$GETSITE^BPSOSRX8(BRXIEN,BFILL)
  ;
  ;populate MOREDATA with basic data
- D BASICMOR^BPSOSRX8(BWHERE,BFILLDAT,BPSITE,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPSDELAY,.MOREDATA)
+ D BASICMOR^BPSOSRX8(BWHERE,DOS,BPSITE,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPSDELAY,.MOREDATA)
  I BPCOBIND=2 D MORE4SEC^BPSPRRX2(.MOREDATA,.BPSPRDAT) S MOREDATA("RTYPE")=$G(BPSRTYPE)
  ;
- ;Certification Testing
- ;sets:
- ; BILLNDC which is used in STARRAY^BPSNCPD1
- ; CERTIEN which is used in BILLABLE
+ ;Certification Testing - sets CERTIEN which is used in BILLABLE
  S BPRESP=$$CERTTEST(.CERTIEN) I +BPRESP=1 Q BPRESP
  ;populate BPSARRY
- ;Note:
- ;the following is passed as backdoor parameters
- ; DFN - patient's IEN
- ; BILLNDC - NDC
- ; BFILLDAT - fill date
- D STARRAY^BPSNCPD1(BRXIEN,BFILL,BWHERE,.BPSARRY,BPSITE)
+ D STARRAY^BPSNCPD1(BRXIEN,BFILL,BWHERE,.BPSARRY,BPSITE,DOS,BILLNDC)
  S BPSARRY("RXCOB")=BPCOBIND
  I BPCOBIND=2 S BPSARRY("PLAN")=$G(BPSPLAN),BPSARRY("RTYPE")=$G(BPSRTYPE) ;for secondary billing, to be used by RX^IBNCPDP
  ;Billing determination
@@ -59,7 +51,7 @@ REVRESUB(BPREVREQ,BRXIEN,BFILL,BFILLDAT,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,B
  I +IB=2 S BPONLREV=1 ;set "ONLY REVERSAL IS POSSIBLE" flag
  ;Set the User message if necessary
  S BPUSRMSG=$S(BPONLREV=1:"Claim Will Be Reversed But Will Not Be Resubmitted",1:"")
- I BPONLREV=1 D LOG(IEN59,$P($G(MOREDATA("BILL")),"^",2)_" - "_BPUSRMSG)
+ I BPONLREV=1 D LOG^BPSOSL(IEN59,$T(+0)_"-"_$P($G(MOREDATA("BILL")),"^",2)_" - "_BPUSRMSG)
  ;check IB data if it is billable
  I BPONLREV'=1 S BPRETV=$$IBDATAOK^BPSOSRX8(.MOREDATA,$G(BPSARRY("NO ECME INSURANCE"))) I BPRETV>0 Q BPRETV
  ;
@@ -72,9 +64,8 @@ REVRESUB(BPREVREQ,BRXIEN,BFILL,BFILLDAT,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,B
  . D GETOVER^BPSTEST(BRXIEN,BFILL,OLDRESP,BWHERE,"S",BPCOBIND)
  ;
  ;.... Step 1, Schedule a Reversal
- ; Log message to ECME log
  ; Needed for Turn-Around Stats - Do NOT delete/alter!!
- D LOG(IEN59,"Before Submit of Reversal")
+ D LOG^BPSOSL(IEN59,$T(+0)_"-Before Submit of Reversal")
  S BPSTART=$$STTM()
  ;
  ;schedule an UNCLAIM request
@@ -82,10 +73,10 @@ REVRESUB(BPREVREQ,BRXIEN,BFILL,BFILLDAT,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,B
  S BPREVREQ=+$P(BPRETV,U,2) ;BPS REQUEST ien of  the reversal
  ;if error
  I +BPRETV=0 D  Q $$RSPCLMS^BPSOSRX8("UC",4,.MOREDATA,$P(BPRETV,U,2))
- . D LOG(IEN59,"Create request error: "_$P(BPRETV,U,2)_". Claim Will Not Be submitted.")
+ . D LOG^BPSOSL(IEN59,$T(+0)_"-Create request error: "_$P(BPRETV,U,2)_". Claim Will Not Be submitted.")
  . L -^BPST
  ;if ok
- D LOG(IEN59,"The request "_BPREVREQ_" has been created")
+ D LOG^BPSOSL(IEN59,$T(+0)_"-The request "_BPREVREQ_" has been created")
  ;if "Reversal only not resubmit" return appropriate RESPONSE and CLMSTAT, 
  ;store MOREDATA("BILL" for the "final CLMSTAT"
  ;and quit
@@ -94,23 +85,22 @@ REVRESUB(BPREVREQ,BRXIEN,BFILL,BFILLDAT,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,B
  . S BPRETUNC=$$ACTIVATE(BPREVREQ,"U")
  ;
  ;.... Step 2, Schedule a Resubmit
- ; Log message to ECME log
- D LOG(IEN59,"Before submit of claim")
+ D LOG^BPSOSL(IEN59,$T(+0)_"-Before submit of claim")
  S BPRETV=$$REQST^BPSOSRX("C",BRXIEN,BFILL,.MOREDATA,BPCOBIND,IEN59,$G(BILLNDC))
  ; if error
  I +BPRETV=0 D  Q $$RSPCLMS^BPSOSRX8("C",4,.MOREDATA)_U_BPUSRMSG
  . ;activate the scheduled UNCLAIM request
  . S BPRETUNC=$$ACTIVATE(BPREVREQ,"U")
- . D LOG(IEN59,"Create request error: "_$P(BPRETV,U,2)_". Claim Will Not Be submitted.")
+ . D LOG^BPSOSL(IEN59,$T(+0)_"-Create request error: "_$P(BPRETV,U,2)_". Claim Will Not Be submitted.")
  . ;Set the User message if necessary
  . I +BPRETUNC=0 S BPUSRMSG="Cannot schedule resubmit: Claim Will Be Reversed But Will Not Be Resubmitted "
  ;if ok
- D LOG(IEN59,"BPS REQUEST: "_+$P(BPRETV,U,2)_" has been created")
+ D LOG^BPSOSL(IEN59,$T(+0)_"-BPS REQUEST: "_+$P(BPRETV,U,2)_" has been created")
  ;
  I +$$NXTREQST^BPSOSRX6(BPREVREQ,+$P(BPRETV,U,2))=0 D  Q $$RSPCLMS^BPSOSRX8("C",4,.MOREDATA)_U_BPUSRMSG
  . ;activate the scheduled UNCLAIM request
  . S BPRETUNC=$$ACTIVATE(BPREVREQ,"U")
- . D LOG(IEN59,"Cannot make "_+$P(BPRETV,U,2)_"as a NEXT REQUEST in "_BPREVREQ)
+ . D LOG^BPSOSL(IEN59,$T(+0)_"-Cannot make "_+$P(BPRETV,U,2)_"as a NEXT REQUEST in "_BPREVREQ)
  . I +BPRETUNC=0 S BPUSRMSG="Cannot schedule resubmit: Claim Will Be Reversed But Will Not Be Resubmitted "
  ;
  ;activate the scheduled UNCLAIM request
@@ -125,8 +115,6 @@ REVRESUB(BPREVREQ,BRXIEN,BFILL,BFILLDAT,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,B
  ;BPRETVAL - RESPONSE ^ CLAIMSTAT ^ flag:D-display on the screen ^ Hang time
 DISPL(WFLG,BPRETVAL,BPELIGIB) ;
  N BPHANG
- ;if Tricare then shall print messages to the screen
- I $G(BPELIGIB)="T" S WFLG=1
  I WFLG=0 Q
  I $P(BPRETVAL,U,3)'="D" Q
  W !!,$P(BPRETVAL,U,2)
@@ -165,13 +153,9 @@ ACTIVATE(BPIEN77,BPACTYP) ;
  S BPACTYP=$S($G(BPACTYP)="C":"CLAIM",$G(BPACTYP)="U":"UNCLAIM",$G(BPACTYP)="E":"ELIGIBILITY",1:"")
  ;if there is no existing requests for the RX/RF then simply activate the new request
  I +$$ACTIVATE^BPSOSRX4(BPIEN77)=0 D INACTIVE^BPSOSRX4(BPIEN77,"Could not activate the request") D  Q "4^Cannot ACTIVATE the scheduled """_BPACTYP_""" request^D^2"
- . D LOG(IEN59,"BPS REQUEST: "_+BPIEN77_" Cannot ACTIVATE the scheduled """_BPACTYP_""" request, it has been inactivated")
+ . D LOG^BPSOSL(IEN59,$T(+0)_"-BPS REQUEST: "_+BPIEN77_" Cannot ACTIVATE the scheduled """_BPACTYP_""" request, it has been inactivated")
  Q "0"
  ;
- ;======== end of API
-LOG(IEN59,MSG,BPDTFLG) ;
- D LOG^BPSOSL(IEN59,$T(+0)_"-"_MSG,$G(BPDTFLG))
- Q
 STTM() ;
  Q $$NOW^XLFDT
  ;

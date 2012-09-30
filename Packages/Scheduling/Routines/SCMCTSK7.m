@@ -1,5 +1,5 @@
 SCMCTSK7 ;ALB/JDS - PCMM FTEE REPORT ; 8/23/05 11:46am
- ;;5.3;Scheduling;**297**;AUG 13, 1993
+ ;;5.3;Scheduling;**297,581**;AUG 13, 1993;Build 16
  Q
 DIOEND ;End of FTEE report
  N XX
@@ -10,14 +10,13 @@ DIOEND ;End of FTEE report
 TIOEND ;
  ;;Column Heading             Explanation of column heading
  ;; 
- ;;Providers Name             The name of the primary care Provider
- ;;Institution                Institution name, previously called Division, where patient receives primary care
- ;;PC TEAM                    The name of the primary care team to which this position (and therefore provider) is assigned.
- ;;Provider's Team Position   The name of the Primary care team position to which this provider's assigned
+ ;;Provider's Name            The name of the Provider
+ ;;TEAM                       The name of the team to which this position (and therefore provider) is assigned.
+ ;;Team Position              The name of the team position to which this provider is assigned
  ;;AP or PCP                  This column displays whether this provider is an Associate Primary Care Provider
  ;;                           (AP) or a Primary Care Provider (PCP)
- ;;Associated Clinic(s)     The scheduling clinic(s) associated with this position/provider in the PCMM software
- ;;Direct PC FTEE             The number of hours the provider spends providing direct primary care expressed as a Full-Time Employee
+ ;;Associated Clinic(s)       The scheduling clinic(s) associated with this position/provider in the PCMM software
+ ;;FTEE                       The number of hours the provider spends providing care expressed as a Full-Time Employee
  ;;                           Equivalent Examples: One FTEE=1.00=40 hours per week. 0.75 FTEE=30 hours per week. 0.50 FTEE=20 hours
  ;;                           per week. Percent FTEE is equal to 100 x the FTEE number on this report. For example FTEE=0.75= 75%
  ;;Patients for Position      This represents the total maximum number of patients this provider is expected to care for on this panel
@@ -35,7 +34,7 @@ TIOEND ;
  ;;                           provider would be expected to provide primary care for if their FTEE=1.0
  ;;FTEE and Panel Size Total  The total number of FTEE, patients for positions allowed, patients for positions actual, and available 
  ;;                           patient opening for this report. If this report is sorted on Associated Clinic, then subtotals for each 
- ;;                           clinic and a total for the entire report print. If this report is sorted on PC Team, then subtotals for
+ ;;                           clinic and a total for the entire report print. If this report is sorted on Team, then subtotals for
  ;;                           each team and a total for the entire report print
  Q
 SETASC(RESULT,DATA) ;set associated clinics        

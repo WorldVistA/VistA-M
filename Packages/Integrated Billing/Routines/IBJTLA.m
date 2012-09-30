@@ -1,6 +1,6 @@
-IBJTLA ;ALB/ARH - TPI ACTIVE BILLS LIST SCREEN ; 14-FEB-1995
- ;;2.0;INTEGRATED BILLING;**39,61,153**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+IBJTLA ;ALB/ARH - TPI ACTIVE BILLS LIST SCREEN ;14-FEB-1995
+ ;;2.0;INTEGRATED BILLING;**39,61,153,451**;21-MAR-94;Build 47
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; -- main entry point for IBJ THIRD PARTY ACTIVE LIST
  D EN^VALM("IBJT ACTIVE LIST")
@@ -10,7 +10,8 @@ HDR ; -- header code
  N X S X=$$PT^IBEFUNC(+$G(DFN))
  S VALMHDR(1)=$P(X,U,1) I $P(X,U,3)'="" S VALMHDR(1)=VALMHDR(1)_"   "_$E(X,1)_$P(X,U,3)
  I $G(DFN) N VAEL,VAERR D ELIG^VADPT S X=$P(VAEL(1),U,2),VALMHDR(1)=VALMHDR(1)_$J(" ",(79-$L(VALMHDR(1))-$L(X)))_X
- S VALMSG="|r Referred |* MT on Hold |+ Multi Carriers |"
+ ; IB*2.0*451 - explanation of EEOB indicator '%' for user
+ S VALMSG="|r Referred|* MT on Hold |+ Multi Carriers|% EEOB|"
  Q
  ;
 INIT ; -- init variables and list array
@@ -29,7 +30,7 @@ EXIT ; -- exit code
  Q
  ;
 NX(IBTPLNM) ; -- IBJT CLAIM SCREEN ACTIVE action: go to next screen template
- ;            get user bill selection from Active Bills screen then open Claim Info screen for that bill
+ ; get user bill selection from Active Bills screen then open Claim Info screen for that bill
  ;
  N VALMY,IBSELN,IBIFN
  D EN^VALM2($G(XQORNOD(0)))

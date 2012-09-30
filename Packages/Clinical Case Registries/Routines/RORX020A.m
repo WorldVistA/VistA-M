@@ -1,5 +1,5 @@
-RORX020A ;BPOIFO/ACS - RENAL FUNCTION BY RANGE (CONT.) ;11/1/09
- ;;1.5;CLINICAL CASE REGISTRIES;**10,14**;Feb 17, 2006;Build 24
+RORX020A ;BPOIFO/ACS - RENAL FUNCTION BY RANGE (CONT.) ; 5/20/11 12:11pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,14,15**;Feb 17, 2006;Build 27
  ;
  Q
  ;******************************************************************************
@@ -45,7 +45,10 @@ HEADER(PARTAG,RORTSK) ;
  . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME","CRCL")
  I RORDATA("IDLST")[2 D
  . S TMP=$$ADDVAL^RORTSK11(RORTSK,"COLUMN",,COLUMNS)
- . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME","EGFR")
+ . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME","MDRD")
+ I RORDATA("IDLST")[3 D
+ . S TMP=$$ADDVAL^RORTSK11(RORTSK,"COLUMN",,COLUMNS)
+ . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME","CKD")
  ;--- LOINC codes
  N LTAG S LTAG=$$ADDVAL^RORTSK11(RORTSK,"LOINC_CODES",,PARTAG)
  N CTAG S CTAG=$$ADDVAL^RORTSK11(RORTSK,"CODE",,LTAG)
@@ -64,7 +67,8 @@ INIT(RORDATA) ;
  I $G(RORDATA("RCNT"))="" Q
  N I
  F I=1:1:RORDATA("RCNT") D
- . S RORDATA("NP",I)=0
+ .I RORDATA("IDLST")[2 S RORDATA("NPMDRD",I)=0
+ .I RORDATA("IDLST")[3 S RORDATA("NPCKD",I)=0
  Q
  ;
  ;*****************************************************************************
@@ -106,7 +110,7 @@ PARAMS(PARTAG,RORDATA) ;
  . . . S RORDATA("RANGE")=1
  ;--- Success
  ;if user didn't select any tests, default to both tests
- I $G(RORDATA("IDLST"))="" S RORDATA("IDLST")="1,2"
+ I $G(RORDATA("IDLST"))="" S RORDATA("IDLST")="1,2,3"
  Q RC
  ;
  ;*****************************************************************************
@@ -179,15 +183,29 @@ INRANGE(RORDATA) ;
  ;INPUT
  ;  RORDATA  Array with ROR data
  ;************************************************************************
-EGFRCAT(RORDATA) ;
+MDRDCAT(RORDATA) ;
  I '$G(RORDATA("SCORE",2)) Q  ;quit if no score was calculated
- I $G(RORDATA("SCORE",2))>89 S RORDATA("NP",1)=$G(RORDATA("NP",1))+1 Q
- I $G(RORDATA("SCORE",2))>59 S RORDATA("NP",2)=$G(RORDATA("NP",2))+1 Q
- I $G(RORDATA("SCORE",2))>29 S RORDATA("NP",3)=$G(RORDATA("NP",3))+1 Q
- I $G(RORDATA("SCORE",2))>14 S RORDATA("NP",4)=$G(RORDATA("NP",4))+1 Q
- S RORDATA("NP",5)=$G(RORDATA("NP",5))+1 Q
+ I $G(RORDATA("SCORE",2))>89 S RORDATA("NPMDRD",1)=$G(RORDATA("NPMDRD",1))+1 Q
+ I $G(RORDATA("SCORE",2))>59 S RORDATA("NPMDRD",2)=$G(RORDATA("NPMDRD",2))+1 Q
+ I $G(RORDATA("SCORE",2))>29 S RORDATA("NPMDRD",3)=$G(RORDATA("NPMDRD",3))+1 Q
+ I $G(RORDATA("SCORE",2))>14 S RORDATA("NPMDRD",4)=$G(RORDATA("NPMDRD",4))+1 Q
+ S RORDATA("NPMDRD",5)=$G(RORDATA("NPMDRD",5))+1 Q
  Q
  ;
+ ;************************************************************************
+ ;ADD 1 TO APPROPRIATE eGFR CATEGORY
+ ;
+ ;INPUT
+ ;  RORDATA  Array with ROR data
+ ;************************************************************************
+CKDCAT(RORDATA) ;
+ I '$G(RORDATA("SCORE",3)) Q  ;quit if no score was calculated
+ I $G(RORDATA("SCORE",3))>89 S RORDATA("NPCKD",1)=$G(RORDATA("NPCKD",1))+1 Q
+ I $G(RORDATA("SCORE",3))>59 S RORDATA("NPCKD",2)=$G(RORDATA("NPCKD",2))+1 Q
+ I $G(RORDATA("SCORE",3))>29 S RORDATA("NPCKD",3)=$G(RORDATA("NPCKD",3))+1 Q
+ I $G(RORDATA("SCORE",3))>14 S RORDATA("NPCKD",4)=$G(RORDATA("NPCKD",4))+1 Q
+ S RORDATA("NPCKD",5)=$G(RORDATA("NPCKD",5))+1 Q
+ Q
  ;*****************************************************************************
  ;ADD SUMMARY DATA TO THE REPORT (EXTRINSIC FUNCTION)
  ;
@@ -217,7 +235,8 @@ SUMMARY(RORTSK,REPORT,RORDATA) ; Add the summary values to the report
  . S RORRANGE=$P($T(@RORTAG),";;",3)
  . D ADDVAL^RORTSK11(RORTSK,"DESC",$G(RORNAME),STAG) ;severity
  . D ADDVAL^RORTSK11(RORTSK,"VALUES",$G(RORRANGE),STAG) ;range
- . D ADDVAL^RORTSK11(RORTSK,"NP",$G(RORDATA("NP",I)),STAG) ;count
+ . D ADDVAL^RORTSK11(RORTSK,"NPMDRD",$G(RORDATA("NPMDRD",I)),STAG) ;count
+ . D ADDVAL^RORTSK11(RORTSK,"NPCKD",$G(RORDATA("NPCKD",I)),STAG) ;count
  Q STAG
  ;************************************************************************
  ;eGFR by MDRD Categories and Values for the summary table.

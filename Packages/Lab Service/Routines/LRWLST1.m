@@ -1,5 +1,5 @@
 LRWLST1 ;DALOI/CJS/RWF/FHS - ACCESSION SETUP ; July 19, 2006
- ;;5.2;LAB SERVICE;**48,65,121,153,261,286,331,379**;Sep 27, 1994;Build 2
+ ;;5.2;LAB SERVICE;**48,65,121,153,261,286,331,379,415**;Sep 27, 1994;Build 1
  ;
  ; Reference to ^DIC(42 supported by IA #10039
  ; Reference to ^SC( supported by IA #10040
@@ -184,7 +184,7 @@ ST2 ; Find next available node in LR global
  ;
  ;
 GTWLN ;
- N X
+ N X,LRABV
  ;
  ; Execute accession transform for this area.
  S LRAN=0
@@ -195,10 +195,11 @@ GTWLN ;
  ;
  S:'LRAN LRAN=1+$P($G(^LRO(68,LRWLC,1,LRAD,1,0)),U,3)
  ;
- I "CYEMSP"'[LRSS F  Q:'$D(^LRO(68,LRWLC,1,LRAD,1,LRAN))  S LRAN=LRAN+1
+ I "CYEMSP"'[LRSS F  Q:('$D(^LRO(68,LRWLC,1,LRAD,1,LRAN)))&($$ORIGAAOK)  S LRAN=LRAN+1
  ;
  ; check for AP Accessions
- I "CYEMSP"[LRSS F  Q:'$D(^LRO(68,LRWLC,1,LRAD,1,LRAN))&'$D(^LR("A"_LRSS_"A",$E(LRAD,1,3),LRAN))  S LRAN=LRAN+1
+ S LRABV=$P(^LRO(68,LRWLC,0),"^",11)
+ I "CYEMSP"[LRSS F  Q:'$D(^LRO(68,LRWLC,1,LRAD,1,LRAN))&('$D(^LR("A"_LRSS_"A",$E(LRAD,1,3),LRABV,LRAN)))&($$ORIGAAOK)  S LRAN=LRAN+1
  ;
  I '$D(LRPHSET),$D(LRNCWL)!$P(^LAB(69.9,1,0),U,8) D ASK Q:LREND
  ;
@@ -206,6 +207,25 @@ GTWLN ;
  ;
  L -^LRO(68,LRWLC,1,LRAD,1,0)
  Q
+ ;
+ ;
+ORIGAAOK() ; function to determine if the accession number under consideration
+ ; is already in use in the originating accession area
+ ; 
+ ; returns 0 -- accession number under consideration already in use
+ ;         1 -- accession number under consideration is ok to use
+ ;         
+ N LRAAX,LRAAOK,LRABVX,LRAA0,LRSSX
+ S LRAAX=0,LRAAOK=1
+ ;
+ F  S LRAAX=$O(LRTSTS(LRWLC,LRUNQ,LRAAX)) Q:LRAAX<1  Q:'LRAAOK  D
+ . I $D(^LRO(68,LRAAX,1,LRAD,1,LRAN)) S LRAAOK=0 Q
+ . S LRAA0=^LRO(68,LRAAX,0),LRSSX=$P(LRAA0,"^",2)
+ . I "CYEMSP"[LRSSX D
+ . . S LRABVX=$P(LRAAX,"^",11)
+ . . I $D(^LR("A"_LRSSX_"A",$E(LRAD,1,3),LRABVX,LRAN)) S LRAAOK=0
+ ; 
+ Q LRAAOK
  ;
  ;
 ASK ;

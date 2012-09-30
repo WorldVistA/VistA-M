@@ -1,5 +1,5 @@
 PSOLBL2 ;BIR/SAB-LABEL OUTPUT CONT. ;11/18/92 19:15
- ;;7.0;OUTPATIENT PHARMACY;**16,19,30,71,92,117,135,326**;DEC 1997;Build 11
+ ;;7.0;OUTPATIENT PHARMACY;**16,19,30,71,92,117,135,326,367**;DEC 1997;Build 62
  ;External reference to ^PS(51 supported by DBIA 2224
  ;External reference to ^PS(54 supported by DBIA 2227
  ;External reference to ^PSDRUG supported by DBIA 221
@@ -51,6 +51,13 @@ REP ;LEFT SIDE ONLY REPRINT FOR NEW LABEL STOCK
  I "C"[$E(MW) W ?21,"CERTIFIED MAIL",!
  E  W !
  W !,$S($G(PS55)=2:"***DO NOT MAIL***",1:"***CRITICAL MEDICAL SHIPMENT***")
+ ;
+ ; Printing FDA Medication Guide (if there's one)
+ I $$MGONFILE^PSOFDAUT(+$G(RX)) D
+ . W ?83,"Read FDA Med Guide"
+ . I $G(REPRINT),'$D(RXRP(RX,"MG")) Q 
+ . N FDAMG S FDAMG=$$PRINTMG^PSOFDAMG(RX,$P($G(PSOFDAPT),"^",2))
+ ;
  W !!!,PNM,!,$S($D(PSMP(1)):PSMP(1),1:VAPA(1)),!,$S($D(PSMP(2)):PSMP(2),$D(PSMP(1)):"",1:$G(ADDR(2))),!,$S($D(PSMP(3)):PSMP(3),$D(PSMP(1)):"",1:$G(ADDR(3))),!,$S($D(PSMP(4)):PSMP(4),$D(PSMP(1)):"",1:$G(ADDR(4)))
  W @IOF Q
 MUL ;

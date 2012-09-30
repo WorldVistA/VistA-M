@@ -168,7 +168,7 @@ ZEB(EBDA,ERROR,IBSEG,RIEN) ;  Process the ZEB Elig/Benefit seg
  .   S MSG(1)="An invalid Eligibility Status flag '"_$G(IBSEG(3))_"' was received for site "_$P($$SITE^VASITE,"^",3)_","
  .   S MSG(2)="trace number "_$G(TRACE,"unknown")_" and message control id "_$G(MSGID,"unknown")_"."
  .   S MSG(3)="It has been interpreted as an ambiguous response in VistA."
- .   S XMY("FSCECADMIN@mail.va.gov")=""
+ .   S XMY("FSCECADMIN@mail.DOMAIN.EXT")=""
  .   D MSG^IBCNEUT5("",SUBJECT,"MSG(",,.XMY)
  .   S IIVSTAT="V"
  ;

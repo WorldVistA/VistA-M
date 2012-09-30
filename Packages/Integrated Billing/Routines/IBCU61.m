@@ -1,5 +1,5 @@
 IBCU61 ;ALB/AAS - DELETE ENTRIES IN REVENUE CODE MULT. ; 4-MAY-90
- ;;2.0;INTEGRATED BILLING;**153**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**153,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;MAP TO DGCRU61
@@ -9,7 +9,9 @@ ALL ;delete all revenue codes that may have been set up automatically
  K DA S DA(1)=IBIFN,DA=0 I '$G(IBAUTO) W !,"Removing old Revenue Codes."
  F DGII=0:0 S DA=$O(^DGCR(399,IBIFN,"RC",DA)) Q:DA<1  S X=$G(^DGCR(399,IBIFN,"RC",DA,0)) D
  . ;remove revenue codes pre-defined for automatic use AND revenue codes for BASC charges (are automatically created)
- . I $D(^DGCR(399.5,"D",+$P(X,"^")))!($D(^DGCR(399,"ASC1",+$P(X,U,6),IBIFN)))!(+$P(X,U,8)) W:'$G(IBAUTO) "." D DEL
+ . ;I $D(^DGCR(399.5,"D",+$P(X,"^")))!($D(^DGCR(399,"ASC1",+$P(X,U,6),IBIFN)))!(+$P(X,U,8)) W:'$G(IBAUTO) "." D DEL
+ . ; IB*2.0*447 BI Added a filter to avoid updating a MANUALLY EDITED revenue code.
+ . I $D(^DGCR(399.5,"D",+$P(X,"^")))!($D(^DGCR(399,"ASC1",+$P(X,U,6),IBIFN)))!(+$P(X,U,8))!('+$P(X,U,16)) W:'$G(IBAUTO) "." D DEL
  Q
 DEL S DIK="^DGCR(399,"_DA(1)_",""RC""," D ^DIK L ^DGCR(399,IBIFN):1
  Q

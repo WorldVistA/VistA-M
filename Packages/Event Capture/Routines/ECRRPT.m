@@ -1,5 +1,5 @@
-ECRRPT ;ALB/JAM - Event Capture Report RPC Broker ; 10 JUL 2008
- ;;2.0; EVENT CAPTURE ;**25,32,41,56,61,82,94,95,108**;8 May 96;Build 3
+ECRRPT ;ALB/JAM - Event Capture Report RPC Broker ;1/30/12  11:37
+ ;;2.0;EVENT CAPTURE;**25,32,41,56,61,82,94,95,108,112**;8 May 96;Build 18
  ;
 REQCHK(ECV) ;Required data check
  N I,C
@@ -18,9 +18,7 @@ DATECHK(ECSD,ECED) ;Check human format date and converts to FileMan format
  Q
 QUEUE ;Queues report to printer
  N ZTIO,ZTDESC,ZTRTN,ZTDTH,ZTSAVE,%ZIS,I,IOP,POP
- S XNAM=$P($G(^%ZIS(1,ECDEV,0)),U,2)
  S IOP="Q;`"_ECDEV,%ZIS="Q" D ^%ZIS I POP D  Q
- . ;S IOP="Q;"_XNAM,%ZIS="Q" D ^%ZIS I POP D  Q
  . S ^TMP("ECMSG",$J,1)="0^Device selection unsuccessful"
  S ZTIO=ION,ZTDESC=ECDESC,ZTRTN=ECROU
  S ZTDTH=$$FMTH^XLFDT(ECQDT)
@@ -38,6 +36,7 @@ ECPAT ;Patient Summary Report for RPC Call
  ;       ECSD   - Start Date or Report
  ;       ECED   - End Date or Report
  ;       ECRY   - Print Procedure Reason (optional)
+ ;       ECPTYP - Where to send output (P)rinter, (D)evice or screen
  ;
  ;     Variable return
  ;       ^TMP($J,"ECRPT",n)=report output or to print device.
@@ -62,6 +61,7 @@ ECRDSSU ;DSS Unit Workload Summary Report
  ;       ECSD   - Start Date or Report
  ;       ECED   - End Date or Report
  ;       ECDUZ  - User IEN from file (#200)
+ ;       ECPTYP - Where to send output (P)rinter, (D)evice or screen
  ;
  ;     Variable return
  ;       ^TMP($J,"ECRPT",n)=report output or to print device.
@@ -92,6 +92,7 @@ PROSUM ;Provider (1-3) Summary Report for RPC Call
  ;       ECSD   - Start Date or Report
  ;       ECED   - End Date or Report
  ;       ECRY   - Print Procedure Reason (optional)
+ ;       ECPTYP - Where to send output (P)rinter, (D)evice or screen
  ;
  ;     Variable return
  ;       ^TMP($J,"ECRPT",n)=report output or to print device.
@@ -115,6 +116,7 @@ ECPROV ;Provider Summary Report for RPC Call
  ;       ECED   - End Date or Report
  ;       ECRY   - Print Procedure Reason (optional)
  ;       ECDUZ  - User DUZ (ien in #200)
+ ;       ECPTYP - Where to send output (P)rinter, (D)evice or screen
  ;
  ;     Variable return
  ;       ^TMP($J,"ECRPT",n)=report output or to print device.
@@ -132,7 +134,8 @@ ECPROV ;Provider Summary Report for RPC Call
  . F  S X=$O(^VA(200,ECDUZ,"EC",X)) Q:'X  D
  . . S CNT=CNT+1,UNIT=$P(^VA(200,ECDUZ,"EC",X,0),"^")
  . . S UNIT(CNT)=UNIT_"^"_$P(^ECD(UNIT,0),"^")
- I $E($G(ECRY))'="Y" K ECRY
+ ;I $E($G(ECRY))'="Y" K ECRY ;112 Removed check for ECRY as reasons always print - remove comment and next line to restore reason check
+ S ECRY="Y" ;112 Reasons always print
  D DATECHK(.ECSD,.ECED)
  S ECSD=ECSD-.0001,ECED=ECED+.9999 S:'$D(UNIT) UNIT=""
  I ECPTYP="P" D  Q
@@ -150,6 +153,7 @@ ECOSSUM ;Ordering Section Summary Report for RPC Call
  ;       ECL    - Location to report (1 or ALL)
  ;       ECD    - DSS Unit to report (1, some or ALL)
  ;       ECDUZ  - User ien (#200)
+ ;       ECPTYP - Where to send output (P)rinter, (D)evice or screen
  ;
  ;     Variable return
  ;       ^TMP($J,"ECRPT",n)=report output or to print device.
@@ -180,6 +184,7 @@ ECPCER ;PCE Data Summary Report for RPC Call
  ;       ECDFN  - Patient IEN for file #2
  ;       ECSD   - Start Date or Report
  ;       ECED   - End Date or Report
+ ;       ECPTYP - Where to send output (P)rinter, (D)evice or screen
  ;
  ;     Variable return
  ;       ^TMP($J,"ECRPT",n)=report output or to print device.
@@ -203,6 +208,7 @@ ECRDSSA ;DSS Unit Activity Report
  ;       ECSD   - Start Date or Report
  ;       ECED   - End Date or Report
  ;       ECDUZ  - User IEN from file (#200)
+ ;       ECPTYP - Where to send output (P)rinter, (D)evice or screen
  ;
  ;     Variable return
  ;       ^TMP($J,"ECRPT",n)=report output or to print device.

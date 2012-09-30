@@ -1,9 +1,10 @@
 VPRDGMRA ;SLC/MKB -- Allergy/Reaction extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;;Sep 01, 2011;Build 12
+ ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
+ ; ^VA(200                      10060
  ; %DT                          10003
  ; GMRADPT                      10099
  ; EN1^GMRAOR2                   2422
@@ -22,7 +23,10 @@ EN(DFN,BEG,END,MAX,IFN) ; -- find patient's allergies/reactions
  I $G(IFN) D EN1(IFN,.VPRITM),XML(.VPRITM) Q
  ;
  ; get all reactions
- I 'GMRAL S VPRITM("assessment")=$S(GMRAL=0:"nka",1:"not done") D XML(.VPRITM) Q
+ I 'GMRAL D  Q
+ . S VPRITM("assessment")=$S(GMRAL=0:"nka",1:"not done")
+ . S VPRITM("facility")=$$FAC^VPRD ;local stn#^name
+ . D XML(.VPRITM)
  S VPRN=0 F  S VPRN=+$O(GMRAL(VPRN)) Q:VPRN<1  D  Q:VPRCNT'<MAX
  . K VPRITM D EN1(VPRN,.VPRITM) Q:'$D(VPRITM)
  . D XML(.VPRITM) S VPRCNT=VPRCNT+1

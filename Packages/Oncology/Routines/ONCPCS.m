@@ -1,5 +1,5 @@
-ONCPCS ;Hines OIFO/GWB - Collaborative Staging display ;04/14/11
- ;;2.11;ONCOLOGY;**40,48,51,53**;Mar 07, 1995;Build 31
+ONCPCS ;Hines OIFO/GWB - Collaborative Staging display ;11/09/11
+ ;;2.11;ONCOLOGY;**40,48,51,53,54**;Mar 07, 1995;Build 10
  ;
  Q:$G(TOP)=""
  N DISCRIM,HIST,MO,SCHNAME,SITE
@@ -16,7 +16,7 @@ ONCPCS ;Hines OIFO/GWB - Collaborative Staging display ;04/14/11
  N DI,DIC,DR,DA,DIQ,ONC
  K ONC
  S DIC="^ONCO(165.5,"
- S DR="29.2;30.2;29.1;31.1;32.1;32;33;34.3;34.4;44.1:44.999;160;161;162;163;164;165;166;167;168;169;160.7;161.7;162.7;163.7;164.7;165.7;166.7;247"
+ S DR="29.2;30.2;29.1;31.1;32.1;32;33;34.3;34.4;44.1:44.999;160;161;162;163;164;165;166;167;168;169;160.7;161.7;162.7;163.7;164.7;165.7;166.7;247;283"
  S DA=D0,DIQ="ONC",DIQ(0)="IE" D EN^DIQ1
  I $L(ONC(165.5,D0,32,"I"))=1 S ONC(165.5,D0,32,"I")="0"_ONC(165.5,D0,32,"I")
  I $L(ONC(165.5,D0,33,"I"))=1 S ONC(165.5,D0,33,"I")="0"_ONC(165.5,D0,33,"I")
@@ -25,7 +25,9 @@ ONCPCS ;Hines OIFO/GWB - Collaborative Staging display ;04/14/11
  .I ONC(165.5,D0,I,"I")'="",ONC(165.5,D0,I,"I")'=988 S SSFCNT=SSFCNT+1,SSFLIST(SSFCNT)=I
  W !," Schema name: ",SCHEMA
  W !,DASHES
- W:ONC(165.5,D0,247,"I")=1 !," CS Review Required......: ",ONC(165.5,D0,247,"E")
+ I ONC(165.5,D0,247,"I")=1 D
+ .W !," CS Review Required......: ",ONC(165.5,D0,247,"E")
+ .W !," CS Field Needing Review.: ",ONC(165.5,D0,283,"E")
  W !," Tumor Size (CS).........: ",ONC(165.5,D0,29.2,"I"),?35,"AJCC-6 T...........: ",ONC(165.5,D0,160,"E")
  W !," Extension (CS)..........: ",ONC(165.5,D0,30.2,"I"),?35,"AJCC-6 T Descriptor: ",ONC(165.5,D0,161,"E")
  W !," Tumor Size/Ext Eval (CS): ",ONC(165.5,D0,29.1,"I"),?35,"AJCC-6 N...........: ",ONC(165.5,D0,162,"E")

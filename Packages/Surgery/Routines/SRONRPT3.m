@@ -1,6 +1,5 @@
-SRONRPT3 ;BIR/ADM - NURSE INTRAOP REPORT ; [ 02/21/02  2:47 PM ]
- ;;3.0; Surgery ;**100**;24 Jun 93
- ;
+SRONRPT3 ;BIR/ADM - NURSE INTRAOP REPORT ;10/05/2011
+ ;;3.0;Surgery;**100,176**;24 Jun 93;Build 8
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure.  Local modifications to this routine
  ;**         are prohibited.
@@ -22,8 +21,16 @@ NEXT S SRLF=1,SRLINE="Laser Unit(s): " I '$O(^SRF(SRTN,44,0)),SRALL D LINE(1) S 
  S Y=$S(Y="Y":"YES",Y="N":"NO",1:"N/A") D LINE(2) S @SRG@(SRI)="Sequential Compression Device: "_Y
 CS S SRLF=1,SRLINE="Cell Saver(s): " I '$O(^SRF(SRTN,45,0)),SRALL D LINE(1) S @SRG@(SRI)=SRLINE_"N/A"
  I $O(^SRF(SRTN,45,0)) D LINE(1) S @SRG@(SRI)=SRLINE D SAVE
- S X=$P($G(^SRF(SRTN,46)),"^") S:X="" X="N/A" I 'SRALL,X="N/A" S SRLF=0 G NCC
+ S X=$P($G(^SRF(SRTN,46)),"^") S:X="" X="N/A" I 'SRALL,X="N/A" S SRLF=0 G FLASH
  D LINE(2) S @SRG@(SRI)="Devices: "_X
+FLASH S SRLF=1,SRLINE="Flash Sterilization Episodes: " I '$D(^SRF(SRTN,52)) D LINE(1) S @SRG@(SRI)=SRLINE_"N/A"
+ I $D(^SRF(SRTN,52)) D LINE(1) S @SRG@(SRI)=SRLINE S X=$G(^SRF(SRTN,52)) D
+ .D LINE(1) S @SRG@(SRI)="   Contamination:                       "_$P(X,"^")
+ .D LINE(1) S @SRG@(SRI)="   SPD Processing/OR Management Issues: "_$P(X,"^",2)
+ .D LINE(1) S @SRG@(SRI)="   Emergency Case:                      "_$P(X,"^",3)
+ .D LINE(1) S @SRG@(SRI)="   No Better Option:                    "_$P(X,"^",4)
+ .D LINE(1) S @SRG@(SRI)="   Loaner or Short Notice Instrument:   "_$P(X,"^",5)
+ .D LINE(1) S @SRG@(SRI)="   Decontamination of Instruments Not for Use In Patient: "_$P(X,"^",6)
 NCC S SRLINE="Nursing Care Comments: " D LINE(2) S @SRG@(SRI)=SRLINE D
  .I '$O(^SRF(SRTN,7,0)) S @SRG@(SRI)=@SRG@(SRI)_"NO COMMENTS ENTERED" Q
  .S SRLINE=0 F  S SRLINE=$O(^SRF(SRTN,7,SRLINE)) Q:'SRLINE  S X=^SRF(SRTN,7,SRLINE,0) D COMM(X,2)

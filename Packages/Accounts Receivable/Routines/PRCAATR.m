@@ -1,10 +1,13 @@
-PRCAATR ;WASH-ISC@ALTOONA,PA/RGY-VIEW TRANSACTION FOR BILLS ;2/14/96  2:46 PM
-V ;;4.5;Accounts Receivable;**36,104,172,138,233**;Mar 20, 1995;Build 4
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCAATR ;WASH-ISC@ALTOONA,PA/RGY - VIEW TRANSACTION FOR BILLS ;2/14/96  2:46 PM
+V ;;4.5;Accounts Receivable;**36,104,172,138,233,276**;Mar 20, 1995;Build 87
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 EN1(BILL) ;ENTRY POINT FROM PRCAAPR
- NEW X,COUNT,OUT,TRAN,SEL,PRCAATRX,PRCAIO,PRCAIOS,D0,PRCAQUE,POP,PRCAPRT,Y,ZTSK
+ NEW X,COUNT,OUT,TRAN,SEL,PRCAATRX,PRCAIO,PRCAIOS,D0,PRCAQUE,POP,PRCAPRT,Y,ZTSK,PRCOUT
  I '$D(BILL) G Q
  I BILL'?1N.N!'$D(^PRCA(430,+BILL,0)) G Q
+ ; PRCA*4.5*276
+ S PRCOUT=$$COMP3^PRCAAPR(BILL) ; check for 1st and 3rd party payments
+ I PRCOUT'="%" S PRCOUT=$$IBEEOBCK^PRCAAPR1(BILL)
  S PRCAPRT=1,PRCAIO=IO(0),PRCAIO(0)=IO(0),COUNT=0 K ^TMP("PRCAATR",$J)
  D HDR,DIS,^%ZISC
 Q K ^TMP("PRCAATR",$J),IO("Q") Q
@@ -12,7 +15,9 @@ HDR ;Header
  D HDR^PRCAAPR1
  I $P($G(^PRCA(430,BILL,13)),"^") W !,"MEDICARE CONTRACTUAL ADJUSTMENT: ",$J($P($G(^PRCA(430,BILL,13)),"^"),0,2)
  I $P($G(^PRCA(430,BILL,13)),"^",2) W !,"UNREIMBURSED MEDICARE EXPENSE: ",$J($P($G(^PRCA(430,BILL,13)),"^",2),0,2)
- W !,"Bill #: ",$P(^PRCA(430,BILL,0),"^") D:$P(^(0),"^",9)'=+DEBT DEB W !!,"#",?8,"Tr #",?17,"Type",?52,"Date",?70,"Amount"
+ ; PRCA*4.5*276 - attach EEOB indicator to bill number
+ W !,"Bill #: ",$G(PRCOUT)_$P(^PRCA(430,BILL,0),"^") D:$P(^(0),"^",9)'=+DEBT DEB
+ W !!,"#",?8,"Tr #",?17,"Type",?52,"Date",?70,"Amount"
  S X="",$P(X,"-",IOM)="" W !,X
  Q
 DIS ;Display transactions

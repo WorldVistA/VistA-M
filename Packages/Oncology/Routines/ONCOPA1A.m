@@ -1,5 +1,5 @@
-ONCOPA1A ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;12/01/10
- ;;2.11;ONCOLOGY;**15,19,27,33,34,36,40,44,45,46,47,49,51,52**;Mar 07, 1995;Build 13
+ONCOPA1A ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;10/05/11
+ ;;2.11;ONCOLOGY;**15,19,27,33,34,36,40,44,45,46,47,49,51,52,54**;Mar 07, 1995;Build 10
  ;
  I (COC=10)!(COC=11)!(COC=12)!(COC=13)!(COC=14),$E(TOP,3,4)=34 D
  .W !,"     Blood in Sputum Per Pt: ",ONCAB(165.5,IEN,174.1)," ",ONCAB(165.5,IEN,174) D P Q:EX=U
@@ -30,6 +30,7 @@ ONCOPA1A ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;12/01/10
  ;
  S NAME="EXTENT OF DISEASE AT DIAGNOSIS" D FORMAT^ONCOPA1
  W !!,TITLE
+ W !,"   Clinical Stage Discussion: ",ONCAB(165.5,IEN,280,"E") D P Q:EX=U
  W !!,"   TNM Clinical:  ",ONCAB(165.5,IEN,37),?67,"TNM Pathologic:  ",ONCAB(165.5,IEN,89.1) D P Q:EX=U
  W !,"   Clinical T:  ",$E(ONCAB(165.5,IEN,37.1),1,48),?67,"Pathologic T:  ",$E(ONCAB(165.5,IEN,85),1,48) D P Q:EX=U
  W !,"   Clinical N:  ",$E(ONCAB(165.5,IEN,37.2),1,48),?67,"Pathologic N:  ",$E(ONCAB(165.5,IEN,86),1,48) D P Q:EX=U

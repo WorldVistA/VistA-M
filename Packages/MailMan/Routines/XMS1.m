@@ -69,8 +69,8 @@ DATACMD ; Send: "DATA"
  S ER("MSG")=XMTRAN_" - "_XMRG
  Q
 MAIL(XMZ,XMZREC,XMNVFROM,XMRZ) ; Send mail
- ; Send: "MAIL FROM:<USER.JOE@LOCAL.MED.VA.GOV>"
- ; Recv: "250 OK Message-ID:123456@REMOTE.MED.VA.GOV"
+ ; Send: "MAIL FROM:<USER.JOE@LOCAL.DOMAIN.EXT>"
+ ; Recv: "250 OK Message-ID:123456@REMOTE.DOMAIN.EXT"
  S XMSG="MAIL FROM:"_XMNVFROM X XMSEN Q:ER
  I 'XMC("BATCH") S XMSTIME=300 X XMREC K XMSTIME Q:ER
  I XMC("BATCH") S XMRG="200 ID:Batch"
@@ -88,14 +88,14 @@ FROM(XMFROM,XMNETNAM) ;
  I XMFROM'["@" Q "<"_$$NETNAME^XMXUTIL(XMFROM)_">"
  Q "<"_$$REMADDR^XMXADDR3(XMFROM)_">"
 RCPT(XMNETNAM,XMINST,XMZ,XMZREC,XMNVFROM,XMRCPT) ; Identify Recipients
- ; Send: "RCPT TO:<USER.JANE@REMOTE.MED.VA.GOV>"
+ ; Send: "RCPT TO:<USER.JANE@REMOTE.DOMAIN.EXT>"
  ; Recv: "250 'RCPT' accepted"
  ;   or: "550 Addressee not found." or "550 Addressee ambiguous."
  ;
  ; When communicating with a MailMan site, we also can add non-standard
  ; information on who forwarded the message to this recipient, and/or
  ; whether the recipient is 'information only' or 'copy'.
- ; Send: "RCPT TO:<I:USER.JANE@REMOTE.MED.VA.GOV> FWD BY:<USER.LEX@LOCAL.MED.VA.GOV>"
+ ; Send: "RCPT TO:<I:USER.JANE@REMOTE.DOMAIN.EXT> FWD BY:<USER.LEX@LOCAL.DOMAIN.EXT>"
  N XMIEN,XMTO,XMTOREC,XMPREFIX,XMTOX,XMTRY,XMFWDBY,XM2MANY
  S (XMIEN,XM2MANY)=0
  F  S XMIEN=$O(^XMB(3.9,XMZ,1,"AQUEUE",XMINST,XMIEN)) Q:XMIEN=""  D  Q:ER!XM2MANY

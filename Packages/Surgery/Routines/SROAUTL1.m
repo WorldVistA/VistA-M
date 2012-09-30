@@ -1,5 +1,5 @@
-SROAUTL1 ;BIR/ADM - RISK ASSESSMENT UTILITY ;05/28/10
- ;;3.0; Surgery ;**38,47,81,125,153,160,166,174**;24 Jun 93;Build 8
+SROAUTL1 ;BIR/ADM - RISK ASSESSMENT UTILITY ;07/19/2011
+ ;;3.0;Surgery;**38,47,81,125,153,160,166,174,176**;24 Jun 93;Build 8
  S SRZ=0 F  S SRZ=$O(SRY(130,SRTN,SRZ)) Q:'SRZ  I SRY(130,SRTN,SRZ,"I")="" D TR S X=$T(@SRP),SRFLD=$P(X,";;",2),SRX(SRZ)=$P(SRFLD,"^",2)
  Q
 TR S SRP=SRZ,SRP=$TR(SRP,"1234567890.","ABCDEFGHIJP")
@@ -16,9 +16,12 @@ CID ;;394^History of MI Within Past 6 Months (Y/N)^MI Within 6 Months^
 CIE ;;395^Angina within One Month Preceding Surgery (Y/N)^Angina Within 1 Month^
 BCF ;;236^Patient's Height^Height^
 BCG ;;237^Patient's Weight^Weight^
-CDF ;;346^Diabetes^Diabetes Mellitus^
-BJB ;;202^Current Smoker within 1 Year prior to Surgery (Y/N)^Current SmokerW/I 1 Year^
+EAI ;;519^Diabetes Mellitus: Chronic, Long-term Management^Diabetes Mellitus: Chronic, Long-term Management^
+EBJ ;;520^Diabetes Mellitus: Management Prior to Surgery^Diabetes Mellitus: Management Prior to Surgery^
+EAG ;;517^Tobacco Use^Tobacco Use^
+EAH ;;518^Tobacco Use Timeframe^Tobacco Use Timeframe^
 BDF ;;246^ETOH Greater than 2 Drinks/Day (Y/N)^ETOH > 2 Drinks/Day^
+FAH ;;618^Positive Drug Screening^Positive Drug Screening^
 CBE ;;325^Dyspnea^Dyspnea^
 BCH ;;238^DNR Status (Y/N)^DNR Status^
 DIB ;;492^Functional Health Status at Evaluation for Surgery^Preop Functional Status
@@ -32,9 +35,8 @@ BAA ;;211^Currently on Dialysis (Y/N)^Currently on Dialysis^
 CCB ;;332^Impaired Sensorium (Y/N)^Impaired Sensorium^
 CCC ;;333^Coma (Y/N)^Coma^
 DJJ ;;400^Hemiplegia (Y/N)^Hemiplegia^
-CCD ;;334^History of TIAs (Y/N)^History of TIAs^
-CCE ;;335^CVA/Residual Neurologic Deficit (Y/N)^CVA/Residual Neuro Deficit^
-CCF ;;336^CVA/No Neurologic Deficit (Y/N)^CVA/No Neuro Deficit^
+EBA ;;521^Prior Surgical Repair/Carotid Artery Obstruction^Prior Surgical Repair/Carotid Artery Obstruction^
+EBB ;;522^History of CVD Events^History of CVD Events^
 DJA ;;401^Tumor Involving CNS (Y/N)^Tumor Involving CNS^
 CCH ;;338^Disseminated Cancer (Y/N)^Disseminated Cancer^
 BAH ;;218^Open Wound or Skin Infection (Y/N)^Open Wound or Infection^

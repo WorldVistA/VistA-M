@@ -1,5 +1,5 @@
 PSGOT ;BIR/CML3-TRANSFERS DATA FROM 53.1 TO 55 ;24 SEP 97 / 7:54 AM
- ;;5.0; INPATIENT MEDICATIONS ;**13,68,90,110,173,134,161**;16 DEC 97;Build 28
+ ;;5.0;INPATIENT MEDICATIONS;**13,68,90,110,173,134,161,254**;16 DEC 97;Build 84
  ;
  ; Reference to ^PS(55 supported by DBIA 2191.
  ; Reference to ^PSUHL supported by DBIA 4803.
@@ -18,6 +18,7 @@ START ; get internal record number, lock record, and write
  F X=3,12 D  S ^PS(55,PSGP,5,DA,X,0)="^55.0"_$S(X=3:8,1:612)_U_CNT_U_CNT
  .S CNT=0 F C=0:0 S C=$O(^PS(53.1,ODA,X,C)) Q:'C  I $D(^(C,0)) S ^PS(55,PSGP,5,DA,X,C,0)=^(0),CNT=CNT+1
  S $P(^PS(53.1,ODA,0),"^",19)=DA
+ D SETUDINT^PSGSICH1(ODA_"P",DA_"U")
 CR ; set x-refs
  N A
  I $D(^PS(55,PSGP,5.1)),$P(^(5.1),"^",6) S X=$P(^(5.1),"^",6) I $P(ND2,"^",3),$P(ND2,"^",6)'>X S $P(^(5.1),"^",6)=$P(ND2,"^",3)

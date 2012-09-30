@@ -1,5 +1,5 @@
 BPSOSCC ;BHAM ISC/FCS/DRS/DLF - Set up BPS() ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; GETINFO - Create BPS array for non-repeating data
@@ -12,9 +12,10 @@ BPSOSCC ;BHAM ISC/FCS/DRS/DLF - Set up BPS() ;06/01/2004
  ;
 GETINFO(IEN59,IEN5902) ; EP - BPSOSCB
  ; both parameters required
- Q:$G(IEN59)=""  Q:$G(IEN5902)=""
+ Q:$G(IEN59)=""
+ Q:$G(IEN5902)=""
  ;
- N BPPAYSEQ,DFN,FLAG,IENS,NPI,SITE,VADM,VAPA,X,ADFEE
+ N BPPAYSEQ,DFN,IENS,NPI,SITE,VADM,VAPA,X
  ;
  S BPPAYSEQ=$$COB59^BPSUTIL2(IEN59)  ; COB payer sequence
  ; Setup IENS for transaction multiple
@@ -38,6 +39,7 @@ GETINFO(IEN59,IEN5902) ; EP - BPSOSCB
  I $G(BPS("NCPDP","Version"))="" D IMPOSS^BPSOSUE("DB","TI","Payer sheet version missing.",,2,$T(+0))
  S BPS("NCPDP","# Meds/Claim")=$G(VAINFO(9002313.59902,IENS,902.32,"I"))
  I BPS("Transaction Code")="E1"!('BPS("NCPDP","# Meds/Claim")) S BPS("NCPDP","# Meds/Claim")=1
+ S BPS("NCPDP","DOS")=$$FMTHL7^XLFDT($P($G(^BPST(IEN59,12)),U,2))
  ;
  ; Patient Data
  S DFN=$P(^BPST(IEN59,0),U,6)
@@ -65,15 +67,18 @@ GETINFO(IEN59,IEN5902) ; EP - BPSOSCB
  ;
  ; Insurer Data
  S BPS("Insurer","IEN")=$G(VAINFO(9002313.59902,IENS,.01,"I"))
- S BPS("Insurer","Relationship")=$G(VAINFO(9002313.59902,IENS,902.07,"I"))
- S ADFEE=+$G(VAINFO(9002313.59902,IENS,902.16,"I"))
- I ADFEE'=0 D
- . S BPS("Insurer","Other Amt Qual",1)="04"
- . S BPS("Insurer","Other Amt Value",1)=ADFEE
- S:BPS("Insurer","Relationship")="" BPS("Insurer","Relationship")=0 ; if null set to unspecified
  S BPS("Patient","Primary Care Prov Location Code")=$G(VAINFO(9002313.59902,IENS,902.11,"I"))
- S FLAG=BPS("Insurer","Relationship")
- S BPS("Insurer","Person Code")=$S(FLAG=1:"01",FLAG=2:"02",FLAG=3:"03",1:"")
+ S BPS("Insurer","Relationship")=$G(VAINFO(9002313.59902,IENS,902.07,"I"))
+ S:BPS("Insurer","Relationship")="" BPS("Insurer","Relationship")=0 ; if null set to unspecified
+ S BPS("Insurer","Person Code")=$G(VAINFO(9002313.59902,IENS,902.1,"I"))
+ ;
+ ; If 303-C3 Person Code has no value from patient insurance policy field, then continue to 
+ ; calculate the value based upon the 306-C6 Patient Relationship Code field
+ I BPS("Insurer","Person Code")="" D
+ . N REL S REL=BPS("Insurer","Relationship")
+ . S BPS("Insurer","Person Code")=$S(REL=1:"01",REL=2:"02",REL=3:"03",1:"")
+ . Q
+ ;
  S BPS("Insurer","Plan ID")=$G(VAINFO(9002313.59902,IENS,902.24,"I"))
  S BPS("Insurer","Group #")=$G(VAINFO(9002313.59902,IENS,902.05,"I"))
  S BPS("Insurer","Policy #")=$G(VAINFO(9002313.59902,IENS,902.06,"I"))  ;CARDHOLDER ID

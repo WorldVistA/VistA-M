@@ -1,11 +1,12 @@
-PSOCAN4 ;BIR/SAB-rx speed dc listman ;10/23/06 11:50am
- ;;7.0;OUTPATIENT PHARMACY;**20,24,27,63,88,117,131,259,268,225,358**;DEC 1997;Build 35
+PSOCAN4 ;BIR/SAB - rx speed dc listman ;10/23/06 11:50am
+ ;;7.0;OUTPATIENT PHARMACY;**20,24,27,63,88,117,131,259,268,225,358,385**;DEC 1997;Build 27
  ;External reference to File #200 supported by DBIA 224
  ;External reference NA^ORX1 supported by DBIA 2186
  ;External references to L, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to PSDRUG supported by DBIA 221
  ;External reference to PS(50.7 supported by DBIA 2223
  ;External reference to PS(50.606 supported by DBIA 2174
+ ;External reference to ELIG^VADPT supported by DBIA 10061
 SEL I '$D(^XUSEC("PSORPH",DUZ)) S VALMSG="Unauthorized Action Selection.",VALMBCK="" Q
  N VALMCNT I '$G(PSOCNT) S VALMSG="This patient has no Prescriptions!" S VALMBCK="" Q
  S DFNHLD=PSODFN
@@ -13,6 +14,8 @@ SEL I '$D(^XUSEC("PSORPH",DUZ)) S VALMSG="Unauthorized Action Selection.",VALMBC
  K PSOPLCK S RXCNT=0 K PSOFDR,DIR,DUOUT,DIRUT S DIR("A")="Select Orders by number",DIR(0)="LO^1:"_PSOCNT D ^DIR S LST=Y I $D(DTOUT)!($D(DUOUT)) K DIR,DIRUT,DTOUT,DUOUT S VALMBCK="" D ULP Q
  K DIR,DIRUT,DTOUT,PSOOELSE,DTOUT I +LST S (SPEED,PSOOELSE)=1 D  D KCAN^PSOCAN3
  .S PSOCANRA=1 D RQTEST
+ .; The PSOTRIC variable is needed by NOOR, which is called by COM^PSOCAN1, to determine the default Nature of Order.
+ .N PSOTRIC S PSOTRIC=$$ELIG(PSODFN)
  .D FULL^VALM1,COM^PSOCAN1 I '$D(INCOM)!($D(DIRUT)) K SPEED S VALMBCK="R" Q
  .D FULL^VALM1 F ORD=1:1:$L(LST,",") Q:$P(LST,",",ORD)']""  S ORN=$P(LST,",",ORD) D @$S(+PSOLST(ORN)=52:"RX",1:"PEN")
  .S VALMBCK="R"
@@ -51,12 +54,14 @@ PEN ;discontinue pending orders
  D PSOUL^PSSLOCK(ORD_"S")
 OK S ORD=SAVORD,ORN=SAVORN Q
 NOOR ;ask nature of order
+ N RX
+ I '$D(PSOTRIC),$G(ORN) S RX=+$P($G(PSOLST(ORN)),U,2) I RX N PSOTRIC S PSOTRIC=$$TRIC^PSOREJP1(RX)
  D FULL^VALM1
  K DIR,DTOUT,DTOUT,DIRUT I $T(NA^ORX1)]"" D  Q:$D(DIRUT)  G NOORXP
  .S PSONOOR=$$NA^ORX1($S($G(PSOTRIC):"R",1:"S"),0,"B","Nature of Order",0,"WPSDIVR"_$S(+$G(^VA(200,DUZ,"PS")):"E",1:""))
  .I +PSONOOR S PSONOOR=$P(PSONOOR,"^",3) Q
  .S DIRUT=1 K PSONOOR
- ;cnf, PSO*7*358, default to "SERVICE REJECTED" if TRICARE
+ ;cnf, PSO*7*358, default to "SERVICE REJECTED" if TRICARE or CHAMPVA
  S DIR("A")="Nature of Order: ",DIR("B")=$S($G(PSOTRIC):"SERVICE REJECTED",$G(DODR):"SERVICE CORRECTED",1:"WRITTEN")
  S DIR(0)="SA^W:WRITTEN;V:VERBAL;P:TELEPHONE;S:SERVICE CORRECTED;D:DUPLICATE;I:POLICY;R:SERVICE REJECTED"_$S(+$G(^VA(200,DUZ,"PS")):";E:PROVIDER ENTERED",1:"")
  D ^DIR K DIR,DTOUT,DTOUT Q:$D(DIRUT)  S PSONOOR=Y
@@ -67,7 +72,7 @@ DEL ;deletes non-verified Rxs
  D FULL^VALM1
  W ! K DIR,DIRUT,DUOUT S DIR(0)="Y",DIR("B")="No",DIR("A",1)="Rx # "_$P(^PSRX($P(PSOLST(ORN),"^",2),0),"^")_" is in a Non-Verified Status.",DIR("A")="Are sure you want to mark the Rx as deleted" D ^DIR I 'Y!($D(DIRUT)) S VALMBCK="R" G EX
  I '$G(SPEED) D  I $D(DIRUT) G EX
- .D NOOR^PSOCAN4 I $D(DIRUT) S VALMSG="No Action Taken!",VALMBCK="R" Q
+ .D NOOR I $D(DIRUT) S VALMSG="No Action Taken!",VALMBCK="R" Q
  .K DIR S DIR("A")="Comments",DIR("B")="Per Pharmacy Request",DIR(0)="F^5:100" D ^DIR K DIR I $D(DIRUT) S VALMSG="No Action Taken!" Q
  K PSDEL,PSORX("INTERVENE") S PSOZVER=1,DA=$P(PSOLST(ORN),"^",2)
  I $G(PKI1) N INCOM S INCOM=Y D DCV^PSOPKIV1 Q
@@ -103,3 +108,17 @@ REF ;CONT. FROM REF^PSOCAN2; PSO*7*259
  .I '$P($G(^PS(52.5,PSOSIEN,"P")),"^") Q  ;SUSPENSE LABEL PRINT
  .S PSONODEL=1   ;REFILL NODE SHOULD NOT BE DELETED
  Q
+ ;
+ELIG(DFN) ; Return primary eligibility
+ ; Input:
+ ;   DFN: Patient IEN (required)
+ ; Output:
+ ;   "": No DFN passed in, 0: Veteran, 1: TRICARE, 2: CHAMPVA
+ I '$G(DFN) Q ""
+ ; Variables VAEL, VAERR, and I are modified by ELIG^VADPT
+ N VAEL,VAERR,I,ELIG
+ ; ELIG^VADPT assumes DFN is defined and returns arrays VAEL and VAERR
+ D ELIG^VADPT ; Supported by IA 10061
+ ; VAEL(1) contains the primary eligibility
+ S ELIG=$P($G(VAEL(1)),U,2)
+ Q $S(ELIG="TRICARE"!(ELIG="SHARING AGREEMENT"):1,ELIG="CHAMPVA":2,1:0)

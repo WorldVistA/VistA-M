@@ -1,5 +1,5 @@
 PSJRXI ;IHS/DSD/JCM/RLW-LOGS PHARMACY INTERVENTIONS ; 15 May 98 / 9:28 AM
- ;;5.0; INPATIENT MEDICATIONS ;**3,181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS;**3,181,254**;16 DEC 97;Build 84
  ;
  ; Reference to ^APSPQA(32.4 is supported by DBIA #2179
  ; Reference to ^PSDRUG supported by DBIA# 2192
@@ -45,11 +45,18 @@ DICX ;
  K X,Y
  Q
 DIE ;
- K DIE,DIC,DR,DA
+ K DIE,DIC,DR,DA N PSJRECOM,PSJOVRS,PSJINTOI,PSJTMPDT
  S DIE="^APSPQA(32.4,",DA=PSJRXI("DA"),DR=$S($G(PSJRXI("EDIT"))]"":".03:1600",1:".03;.08")
- ;L +^APSPQA(32.4,PSJRXI("DA")) D ^DIE K DIE,DIC,DR,X,Y,DA L -^APSPQA(32.4,PSJRXI("DA"))
- L +^APSPQA(32.4,PSJRXI("DA")):1 E  W !,"Sorry, someone else is editing this intervention!" Q
- D ^DIE K DIE,DIC,DR,X,Y,DA L -^APSPQA(32.4,PSJRXI("DA"))
+ L +^APSPQA(32.4,PSJRXI("DA")):$S($G(^DD("DILOCKTM")):+$G(^DD("DILOCKTM")),1:3) E  W !,"Sorry, someone else is editing this intervention!" Q
+ D ^DIE K DIE,DIC,DR,X,Y,DA
+ I $G(PSJDD) S PSJINTOI=+$G(^PSDRUG(+PSJDD,2))
+ S PSJTMPDT=+$G(^TMP("PSJINTER",$J,+$G(PSJRXI("DA"))-1))
+ S ^TMP("PSJINTER",$J,PSJRXI("DA"))=$S($G(PSJTMPDT):PSJTMPDT,1:$G(PSGDT))_"^"_$S($G(PSJINTOI):PSJINTOI,1:"")_"^"_$$DATE2^PSJUTL2($$DATE^PSJUTL2())
+ S PSJRECOM=$P($G(^APSPQA(32.4,PSJRXI("DA"),0)),"^",8) D
+ .S PSJOVRS="",X=PSJRECOM,Y="",DIC="^APSPQA(32.5,",DIC(0)="BSX" D ^DIC I $P(Y,"^",2)]"" S PSJOVRS=$P(Y,"^",2)
+ .I PSJRECOM=9 D
+ ..S DIE="^APSPQA(32.4,",DA=PSJRXI("DA"),DR="1200;" D ^DIE K DIE,DIC,DR,X,Y,DA
+ L -^APSPQA(32.4,PSJRXI("DA"))
  W $C(7),!!,"See 'Pharmacy Intervention Menu' if you want to delete this",!,"intervention or for more options.",!
  Q
 EDIT ;

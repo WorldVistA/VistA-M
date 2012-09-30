@@ -1,5 +1,5 @@
 IBCECOB2 ;ALB/CXW - IB COB MANAGEMENT SCREEN ;16-JUN-1999
- ;;2.0;INTEGRATED BILLING;**137,155,433,432**;21-MAR-1994;Build 192
+ ;;2.0;INTEGRATED BILLING;**137,155,433,432,447**;21-MAR-1994;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EDI ;history detail display
@@ -239,9 +239,9 @@ PRO ; Copy for secondary/tertiary bill
  ; for non-MRA claims copied from work list, set field 38
  I $G(IBMRANOT)=1,$G(IBNCN)'="",($G(IBNCN)'=$G(IBIFN)) D
  .S X=$$WLRMVF^IBCECOB1($G(IBIFN),"PC")
- .I $P($G(^DGCR(399,+IBNCN,"S")),U,9)'=1 D
- ..W:'$G(IBCEAUTO) !,*7,"Please note: the new bill was not AUTHORIZED.",!,"It can only be accessed now via the normal, non-EDI functions.",!,"Status of new bill is ",$$EXPAND^IBTRE(399,.13,$P(^DGCR(399,IBNCN,0),U,13))
- ..D PAUSE^VALM1
+ .;I $P($G(^DGCR(399,+IBNCN,"S")),U,9)'=1 D
+ .;.W:'$G(IBCEAUTO) !,*7,"Please note: the new bill was not AUTHORIZED.",!,"It can only be accessed now via the normal, non-EDI functions.",!,"Status of new bill is ",$$EXPAND^IBTRE(399,.13,$P(^DGCR(399,IBNCN,0),U,13))
+ .;.D PAUSE^VALM1
  .D:$G(IBMRANOT)=1 BLD^IBCECOB1
  .Q
  ;
@@ -263,10 +263,11 @@ COBCOPY(IBIFN,IB364,IBFROM,IBIEN,IBBLD,IBNCN) ; Generic entry point for EDI COB 
  ;
  S IBIFNH=IBIFN
  I IBFROM=2 S IBPRCOB=1
- ;
- I $S($G(IBMRANOT)=1:$$TOT(IBIFN)'>0,1:$$PREOBTOT^IBCEU0(IBIFN,$G(IBMRANOT))'>0) D  G COBCOPX
+ ; IB*2.0*447 Check PR to include excess and percentages where applicable
+ ;I $S($G(IBMRANOT)=1:$$TOT(IBIFN)'>0,1:$$PREOBTOT^IBCEU0(IBIFN,$G(IBMRANOT))'>0) D  G COBCOPX
+ I $$TOT(IBIFN,$G(IBMRANOT))'>0 D  G COBCOPX
  . D FULL^VALM1
- . W !!?5,"There is no "_$S($G(IBMRANOT)=1:"balance remaining",1:"patient responsibility")_" for this claim."
+ . W !!?5,"There is no "_$S($G(IBMRANOT)=1:"balance remaining",1:"patient responsibility and/or excess charges")_" for this claim."
  . W !?5,"This claim may not be processed."
  . D PAUSE^VALM1
  . Q
@@ -356,14 +357,21 @@ EXIT ; Exit out of COB
  I $G(IBFASTXT)=1 S IBFASTXT=5
  Q
  ;
-TOT(IBIFN) ; calculate if any balance remaining on non-MRA claim
+TOT(IBIFN,IBMRANOT) ; calculate if any balance remaining on non-MRA claim
  ; IBIFN = claim ien
- N IBPRTOT
- ; total up the payer paid amounts
- S IBPRTOT=$$EOBTOT^IBCEU1(IBIFN,$$COBN^IBCEF(IBIFN))
- I IBPRTOT<0 S IBPRTOT=0      ; don't allow negative prior payment or offset
- ; Subtract payer paid amount from Total Charges from BILLS/CLAIMS (#399) file
- Q $P($G(^DGCR(399,IBIFN,"U1")),U,1)-IBPRTOT
+ ; IBMRANOT = MRW/CBW flag (1=user came from CBW)  added with IB*2.0*447
+ N IBPRTOT,IBBLD,IBCBN,IBU2
+ I $G(IBMRANOT)'=1 Q $S($$MSEDT^IBCEMU4(IBIFN)'="":$$MSPRE^IBCEMU4(IBIFN),1:$$PREOBTOT^IBCEU0(IBIFN))
+ ; total up the payer paid amounts, if this is a 2ndary claim, be sure to account for what the primary paid also
+ S IBU2=$G(^DGCR(399,IBIFN,"U2")),IBCBN=$$COBN^IBCEF(IBIFN),IBPRTOT=$$EOBTOT^IBCEU1(IBIFN,IBCBN)
+ S:IBPRTOT<0 IBPRTOT=0      ; don't allow negative prior payment or offset
+ S:IBCBN=2 IBPRTOT=IBPRTOT+$P(IBU2,U,4)
+ S:IBCBN=3 IBPRTOT=IBPRTOT+$P(IBU2,U,4)+$P(IBU2,U,5)
+ S:IBPRTOT<0 IBPRTOT=0      ; don't allow negative prior payment or offset
+ ; Subtract payer paid amount from Total Charges from BILLS/CLAIMS (#399) file, don't allow neg
+ S IBBLD=$P($G(^DGCR(399,IBIFN,"U1")),U,1)-IBPRTOT
+ S:IBBLD<0 IBBLD=0
+ Q IBBLD
  ;
 CCCHK(IBIFN) ; If there are multiple EOBS on file for this claim, then one of them must be processed and AR status must be collected closed to process.
  ; returns 1 if true

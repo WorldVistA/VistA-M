@@ -28,7 +28,7 @@ MSG ; -- Drop a Message
  S MSGNUM=MSGNUM+1,XMSUB="Sta "_FACID_" Vendor Extract Part "_MSGNUM
  S XMCHAN="",XMTEXT="^TMP($J,",XMDUZ="VENDOR EXTRACT"
  I $G(DEBUG) W !,"Sending: ",XMSUB
- S XMY("XXX@Q-EDV.MED.VA.GOV")="" D ^XMD ;  Address and Send
+ S XMY("XXX@Q-EDV.DOMAIN.EXT")="" D ^XMD ;  Address and Send
  K ^TMP($J) S (LEN,I)=0
  Q
  ;
@@ -42,6 +42,6 @@ SUMM ; -- Summary Info
  ;S X(4,0)="Finish Time: "_ET
  S XMSUB="Sta "_FACID_" Vendor Extract Summary"
  S XMCHAN="",XMTEXT="X(",XMDUZ="VENDOR EXTRACT"
- S XMY("POSTMASTER@Q-EDV.MED.VA.GOV")="" D ^XMD ;  Address and Send
+ S XMY("POSTMASTER@Q-EDV.DOMAIN.EXT")="" D ^XMD ;  Address and Send
  Q
  ;

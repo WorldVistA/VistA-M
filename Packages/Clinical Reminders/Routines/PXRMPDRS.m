@@ -1,6 +1,6 @@
-PXRMPDRS ;SLC/PKR - Patient List Demographic Report data selection. ;10/02/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17**;Feb 04, 2005;Build 102
- ;
+PXRMPDRS ;SLC/PKR - Patient List Demographic Report data selection. ;03/03/2011
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18**;Feb 04, 2005;Build 152
+ ;==========================================================
 ADDSEL(DATA,SUB) ;Let the user select the address information they want.
  N ADDLIST,LIST
  S ADDLIST("A",1)=" 1 - CURRENT ADDRESS",DATA(SUB,1,1)="STREET ADDRESS #1"_U_1
@@ -19,6 +19,7 @@ ADDSEL(DATA,SUB) ;Let the user select the address information they want.
  I DATA(SUB)["1," D GCATYPE(.DATA,SUB)
  Q
  ;
+ ;==========================================================
 APPERR ;
  N ECODE
  I $D(ZTQUEUED) D  Q
@@ -38,7 +39,7 @@ APPERR ;
  . I MGIEN'="" D
  .. S MGROUP="G."_$$GET1^DIQ(3.8,MGIEN,.01)
  .. S TO(MGROUP)=""
- . D SEND^PXRMMSG("PXRMXMZ","Scheduling database error(s)",.TO)
+ . D SEND^PXRMMSG("PXRMXMZ","Scheduling database error(s)",.TO,DUZ)
  . S ZTSTOP=1
  ;
  I '$D(ZTQUEUED) D  Q
@@ -50,6 +51,7 @@ APPERR ;
  .. W !," ",^TMP($J,"SDAMA301",ECODE)
  Q
  ;
+ ;==========================================================
 APPSEL(DATA,SUB) ;Let the user select the appointment information they want.
  ;The first subscript of APPDATA is the selection number and the
  ;the second subscript is the subscript where the data is returned
@@ -69,6 +71,7 @@ APPSEL(DATA,SUB) ;Let the user select the appointment information they want.
  S DATA(SUB,"MAX")=$$ASKNUM^PXRMEUT("Maximum number of appointments to display",1,25)
  Q
  ;
+ ;==========================================================
 DATASEL(LISTIEN,DATA,SUB) ; Build a list of data that is availble for
  ;this patient list and let the user select what they want.
  N IND,DATALIST,DTYPE
@@ -87,11 +90,12 @@ DATASEL(LISTIEN,DATA,SUB) ; Build a list of data that is availble for
  S DATA(SUB,"LEN")=$L(LIST,",")-1
  Q
  ;
+ ;==========================================================
 DEMSEL(DATA,SUB) ;Let the user select the demographic information they want.
- ;The first subscript of DATA is the selection number and the
- ;the second subscript is the subscript where the data is returned
- ;in VADM. The first piece of DEMDATA is the name of the data and the
- ;second piece is the piece of VADM this is displayed.
+ ;The second subscript of DATA is the selection number and the
+ ;the third subscript is the subscript where the data is returned
+ ;in VADM by VADPT. The first piece of DEMDATA is the name of the data
+ ;and the second piece is the piece of VADM this is displayed.
  N DEMLIST,DTOUT,DUOUT,IND,ITEM,JND,KND,LIST,TEMP
  S DEMLIST("A",1)=" 1 - SSN",DATA(SUB,1,2)="SSN"_U_2
  S DEMLIST("A",2)=" 2 - DATE OF BIRTH",DATA(SUB,2,3)="DOB"_U_2
@@ -125,6 +129,7 @@ DSEL W !!,"Select from the following demographic items:"
  I $D(DTOUT)!$D(DUOUT) K DTOUT,DUOUT G DSEL
  Q
  ;
+ ;==========================================================
 ELIGSEL(DATA,SUB) ;Let the user select the eligibility data they want.
  ;The first subscript of ELIGDATA is the selection number and the
  ;the second subscript is the subscript where the data is returned
@@ -147,6 +152,7 @@ ELIGSEL(DATA,SUB) ;Let the user select the eligibility data they want.
  S DATA(SUB,"LEN")=$L(LIST,",")-1
  Q
  ;
+ ;==========================================================
 GCATYPE(DATA,SUB) ;Get the type of confidential addresses to use.
  N CATLIST,IND,JND,LIST,MSG
  D HELP^DIE(2.141,"",.01,"S","MSG")
@@ -163,12 +169,14 @@ GCATYPE(DATA,SUB) ;Get the type of confidential addresses to use.
  S DATA(SUB,22,"LIST")=LIST
  Q
  ;
+ ;==========================================================
 HELP ; -- help code.
  W !!,"You can choose any combination of numbers i.e., 1-4 or 1,3-5"
  W !!,"See the Clinical Reminders Managers manual for detailed explanations of each"
  W !,"of the selection items."
  Q
  ;
+ ;==========================================================
 INPSEL(DATA,SUB) ;Let the user select the inpatient information they want.
  ;The first subscript of INPDATA is the selection number and the
  ;the second subscript is the subscript where the data is returned
@@ -188,6 +196,7 @@ INPSEL(DATA,SUB) ;Let the user select the inpatient information they want.
  S DATA(SUB,"LEN")=$L(LIST,",")-1
  Q
  ;
+ ;==========================================================
 REMSEL(PLIEN,DATA,SUB) ;If the list was generated from a reminder report
  ;let the user select the reminder data they want.
  I '$P(^PXRMXP(810.5,PLIEN,0),U,9) S DATA(SUB,"LEN")=0 Q
@@ -209,6 +218,7 @@ REMSEL(PLIEN,DATA,SUB) ;If the list was generated from a reminder report
  S DATA(SUB,"LEN")=$L(LIST,",")-1
  Q
  ;
+ ;==========================================================
 SEL(SELLIST,LEN) ;Select global list
  N DIR,X,Y
  M DIR=SELLIST

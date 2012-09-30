@@ -218,7 +218,7 @@ SENDMAIL ; Sends an EMail Message
  ; P2(0)="SUB:Message Subject"
  ; P2(1)="TEXT:THIS IS LINE 1"
  ; P2(2)="TEXT:THIS IS LINE 2"
- ; P2(3)="TO:user.one@va.gov;user.two@va.gov"
+ ; P2(3)="TO:user.one@DOMAIN.EXT;user.two@DOMAIN.EXT"
  N MDTO,MDTEXT,XMDUZ,XMSUB,XMTEXT,XMY
  S XMDUZ="Clinical Procedure Notification System"
  S XMTEXT="MDTEXT("

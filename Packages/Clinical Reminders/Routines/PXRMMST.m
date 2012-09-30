@@ -1,5 +1,5 @@
-PXRMMST ; SLC/PKR - Routines for dealing with MST. ;12/23/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,17**;Feb 04, 2005;Build 102
+PXRMMST ;SLC/PKR - Routines for dealing with MST. ;07/29/2010
+ ;;2.0;CLINICAL REMINDERS;**4,6,17,18**;Feb 04, 2005;Build 152
  ;Use of DGMSTAPI supported by DBIA #2716.
  ;====================================================
 GSYINFO(TYPE) ;Return the Clinical Reminders MST synchronization date
@@ -181,7 +181,7 @@ UPDATE(DFN,VISIT,SOURCE,STCODE,TYPE) ;Make an update to the MST History file.
  .. S NAME=$P(@TEMP,U,1)
  .. S ^TMP("PXRMXMZ",$J,14,0)="Data type = "_FN
  .. S ^TMP("PXRMXMZ",$J,15,0)="Name = "_NAME
- .. D SEND^PXRMMSG("PXRMXMZ",XMSUB)
+ .. D SEND^PXRMMSG("PXRMXMZ",XMSUB,"",DUZ)
  Q UPDSTAT
  ;
  ;====================================================

@@ -1,5 +1,5 @@
-PSGBRJ ;BIR/CML3-UD JANITOR (BACKGROUND TASKMAN JOB) ; 30 Jun 98 / 1:59 PM
- ;;5.0; INPATIENT MEDICATIONS ;**12,50**;16 DEC 97
+PSGBRJ ;BIR/CML3-UD JANITOR (BACKGROUND TASKMAN JOB) ; 6/4/10 9:57am
+ ;;5.0;INPATIENT MEDICATIONS;**12,50,244**;16 DEC 97;Build 7
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^PS(59.7 is supported by DBIA# 2181.
@@ -15,8 +15,9 @@ LK ; kill off old labels
  ....I X<PSGKD K DA S DIK="^PS(53.41,"_PSGL1_",1,"_PSGL2_",1,"_PSGL3_",1,"_PSGL4_",1,",DA(4)=PSGL1,DA(3)=PSGL2,DA(2)=PSGL3,DA(1)=PSGL4,DA=PSGL5 D ^DIK
  ;
 AK ; kill off all orders in 53.1 that have gone active (into 55)
- N PSJNO,PSJNOACT S PSJNOACT=1
- S DIK="^PS(53.1," F PSGP=0:0 S PSGP=$O(^PS(53.1,"AS","A",PSGP)) Q:'PSGP  F PSJNO=0:0 S PSJNO=$O(^PS(53.1,"AS","A",PSGP,PSJNO)) Q:'PSJNO  S DA=PSJNO D ^DIK
+ N PSJNO,PSJNOACT,ON100 S PSJNOACT=1
+ S DIK="^PS(53.1," F PSGP=0:0 S PSGP=$O(^PS(53.1,"AS","A",PSGP)) Q:'PSGP  F PSJNO=0:0 S PSJNO=$O(^PS(53.1,"AS","A",PSGP,PSJNO)) Q:'PSJNO  S DA=PSJNO D 
+ . S ON100=+$P($G(^PS(53.1,DA,0)),U,21) I '$D(^XTMP("ORLK-"_$G(ON100))) D ^DIK ;*PSJ*5*244 - Check for lock
  ;
 DE ; kill off de orders in 53.1 that no longer tie to order in 55
  S X="ORX" X ^%ZOSF("TEST") S PSGOERRF=$T
@@ -47,6 +48,15 @@ UPARAM ; kill off entries in ^PS(53.45) INPATIENT USER PARAMETERS file if there 
  S DA=0 F  S DA=$O(^PS(53.45,DA)) Q:'DA  D
  .I '$D(^VA(200,DA)) S DIK="^PS(53.45," D ^DIK K DIK Q
  .S PSGX=$P(^VA(200,DA,0),"^",11),PSGX=$S(PSGX="":9999999,1:PSGX) I PSGX<DT S DIK="^PS(53.45," D ^DIK K DIK
+ ;
+NVK ; *PSJ*5*244 - kill discontinued orders from non-verified X-refs
+ N DFN,ON,PSGREF,X
+ S PSGREF(1)="ANV",PSGREF(2)="APV",PSGREF(3)="ANIV",PSGREF(4)="APIV"
+ F X=1:1:4 D
+ . F DFN=0:0 S DFN=$O(^PS(55,PSGREF(X),DFN)) Q:'DFN  D
+ .. F ON=0:0 S ON=$O(^PS(55,PSGREF(X),DFN,ON)) Q:'ON  D
+ ... I $P($G(^PS(55,DFN,5,ON,0)),U,9)["D" K ^PS(55,PSGREF(X),DFN,ON)
+ Q
  ;
 DONE ;
  S:$D(ZTQUEUED) ZTREQ="@"

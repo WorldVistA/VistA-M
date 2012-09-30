@@ -1,5 +1,5 @@
-MAGJMN1 ;WIRMFO/JHC VRad Maint functions ; 2-Jul-2010 6:21 PM
- ;;3.0;IMAGING;**16,9,22,18,65,76,101,90,115**;Mar 19, 2002;Build 1912;Dec 17, 2010
+MAGJMN1 ;WIRMFO/JHC - VRad Maint functions ; 9 Sep 2011  4:05 PM
+ ;;3.0;IMAGING;**16,9,22,18,65,76,101,90,115,120**;Mar 19, 2002;Build 27;May 23, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -16,6 +16,7 @@ MAGJMN1 ;WIRMFO/JHC VRad Maint functions ; 2-Jul-2010 6:21 PM
  ;; +---------------------------------------------------------------+
  ;;
 ENVCHK ; "Environment Check" for KIDS Install
+ I 'XPDENV Q  ; Proceed only if in Install phase
  N MAGJKIDS S MAGJKIDS=1
  D BGCSTOP
  Q
@@ -138,12 +139,9 @@ BLDDEF2(X) ;
  S T(T6,+X)=X_U_XT
  Q
  ;
-PRE ; init 2006.63 prior to KIDS install
- N DIK,DA S DIK="^MAG(2006.63,",DA=0 F  S DA=$O(@(DIK_DA_")")) Q:'DA  D ^DIK
- Q
- ;
 POSTINST ; Patch installation inits, etc.
- D BLDALL ; update list definitions
+ D P120DD ; Patch 120 DD mods
+ ; D BLDALL ; update list definitions  <*> Use any time fields are added
  D BGCSTRT ; re-start background compile
  D POST ; install message, etc.
  Q
@@ -162,6 +160,23 @@ BLDALL ; Create "DEF" nodes, Button labels List Def'ns
  ;
 POST ; Install msg
  D INS^MAGQBUT4(XPDNM,DUZ,$$NOW^XLFDT,XPDA)
+ Q
+ ;
+P120DD ; DD changes for MAG VISTARAD SITE PARAMETERS, deleting deprecated fields
+ ;
+ W !!,"Deleting deprecated fields from MAG VISTARAD SITE PARAMETERS file ... "
+ ; First, delete the field entries
+ N I,REC
+ S REC=$G(^MAG(2006.69,1,0))
+ I REC]"" D
+ . F I=6,12,14,15 S $P(REC,U,I)=""
+ . S ^MAG(2006.69,1,0)=REC
+ ;
+ ; Then, delete the field definitions
+ S DIK="^DD(2006.69,",DA(1)=2006.69
+ F DA=4,5.5,10,11 D ^DIK
+ K DIK,DA
+ W " done! ",!
  Q
  ;
 YN(MSG,DFLT) ; get Yes/No reply
@@ -198,7 +213,7 @@ VRSIT ;
  S DIC=2006.69,DIC(0)="ALMEQ"
  I '$D(^MAG(DIC,1)) S DLAYGO=DIC
  D ^DIC I Y=-1 K DIC,DA,DR,DIE,DLAYGO Q
- S DIE=2006.69,DA=+Y,DR=".01:3.99;4.1:20"
+ S DIE=2006.69,DA=+Y,DR=".01:20"
  D ^DIE
  K DIC,DA,DR,DIE,DLAYGO
  N PLACE S DA=""

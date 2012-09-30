@@ -1,5 +1,5 @@
-PXRMLOCF ; SLC/PKR - Handle location findings. ;05/18/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,11,12**;Feb 04, 2005;Build 73
+PXRMLOCF ;SLC/PKR - Handle location findings. ;09/16/2011
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,12,18**;Feb 04, 2005;Build 152
  ;This routine is for location list patient findings.
  ;=================================================
 ALL(FILENUM,DFN,PFINDPA,FIEVAL) ;Get all Visits with a location
@@ -9,9 +9,11 @@ ALL(FILENUM,DFN,PFINDPA,FIEVAL) ;Get all Visits with a location
  N SAVE,SDIR,TEMP,TIME,UCIFS
  ;Set the finding search parameters.
  D SSPAR^PXRMUTIL(PFINDPA(0),.NOCC,.BDT,.EDT)
+ I $G(PXRMDEBG) S FIEVAL("BDTE")=BDT,FIEVAL("EDTE")=EDT
  S SDIR=$S(NOCC<0:-1,1:1)
  S NOCC=$S(NOCC<0:-NOCC,1:NOCC)
  D SCPAR^PXRMCOND(.PFINDPA,.CASESEN,.COND,.UCIFS,.ICOND,.VSLIST)
+ I $G(PXRMDEBG) S FIEVAL("BDTE")=BDT,FIEVAL("EDTE")=EDT
  S (DONE,NFOUND)=0
  S DEND=$S(EDT[".":EDT,1:EDT+.235959)
  S INVBD=9999999-$P(BDT,".",1),BTIME="."_$P(BDT,".",2)
@@ -88,10 +90,14 @@ FIEVAL(FILENUM,SNODE,DFN,ITEM,PFINDPA,FIEVAL) ;
  N BDT,CASESEN,COND,CONVAL,DAS,DATE,EDT,FIEVD,FLIST,HLOC
  N ICOND,IND,LNAME,NFOUND,NGET,NOCC,NP
  N SAVE,SDIR,STATUSA,TEMP,UCIFS,VSLIST
+ I '$D(^PXRMD(810.9,ITEM)) D  Q
+ . S FIEVAL=0
+ . S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","NOLL",ITEM)="Location List with IEN="_ITEM_" does not exist."
  S LNAME=$P(^PXRMD(810.9,ITEM,0),U,1)
  I LNAME="VA-ALL LOCATIONS" D ALL(FILENUM,DFN,.PFINDPA,.FIEVAL) Q
  ;Set the finding search parameters.
  D SSPAR^PXRMUTIL(PFINDPA(0),.NOCC,.BDT,.EDT)
+ I $G(PXRMDEBG) S FIEVAL("BDTE")=BDT,FIEVAL("EDTE")=EDT
  S SDIR=$S(NOCC<0:-1,1:1)
  D SCPAR^PXRMCOND(.PFINDPA,.CASESEN,.COND,.UCIFS,.ICOND,.VSLIST)
  S NOCC=$S(NOCC<0:-NOCC,1:NOCC)
@@ -167,29 +173,31 @@ FPDAT(DFN,HLOCL,NOCC,SDIR,BDT,EDT,NFOUND,FLIST) ;Find patient data for
  Q
  ;
  ;=================================================
-LOCLIST(ITEM,SUB) ;Build a list of unique locations based on stop code
+LOCLIST(IEN,SUB) ;Build a list of unique locations based on stop code
  ;and/or hospital location. Reads of ^SC covered by DBIA #4482.
  N CSTOP,EXCL,EXCLNCS,EXCLP,IND,JND,HLOC,STOP
  K ^TMP($J,SUB)
+ I IEN="" Q
+ I '$D(^PXRMD(810.9,IEN)) Q
  ;Process stop codes. EXCL is the list of credit stops to exclude.
  S IND=0
- F  S IND=+$O(^PXRMD(810.9,ITEM,40.7,IND)) Q:IND=0  D
- . S STOP=$P(^PXRMD(810.9,ITEM,40.7,IND,0),U,1)
+ F  S IND=+$O(^PXRMD(810.9,IEN,40.7,IND)) Q:IND=0  D
+ . S STOP=$P(^PXRMD(810.9,IEN,40.7,IND,0),U,1)
  . K EXCL
  .;Check for individual credit stops to exclude entries.
  . S JND=0
- . F  S JND=+$O(^PXRMD(810.9,ITEM,40.7,IND,1,JND)) Q:JND=0  D
- .. S EXCL=$P(^PXRMD(810.9,ITEM,40.7,IND,1,JND,0),U,1)
+ . F  S JND=+$O(^PXRMD(810.9,IEN,40.7,IND,1,JND)) Q:JND=0  D
+ .. S EXCL=$P(^PXRMD(810.9,IEN,40.7,IND,1,JND,0),U,1)
  .. S EXCL(EXCL)=""
  .;Check for a list of credit stops to exclude.
- . S EXCLP=$G(^PXRMD(810.9,ITEM,40.7,IND,2))
+ . S EXCLP=$G(^PXRMD(810.9,IEN,40.7,IND,2))
  . I EXCLP'="" D
  .. S JND=0
  .. F  S JND=+$O(^PXRMD(810.9,EXCLP,40.7,JND)) Q:JND=0  D
  ... S EXCL=$P(^PXRMD(810.9,EXCLP,40.7,JND,0),U,1)
  ... S EXCL(EXCL)=""
  .;See if locations with no credit stop should be excluded.
- . S EXCLNCS=+$G(^PXRMD(810.9,ITEM,40.7,IND,3))
+ . S EXCLNCS=+$G(^PXRMD(810.9,IEN,40.7,IND,3))
  . S HLOC=""
  . F  S HLOC=$O(^SC("AST",STOP,HLOC)) Q:HLOC=""  D
  .. ;See if there are any to exclude.
@@ -199,9 +207,14 @@ LOCLIST(ITEM,SUB) ;Build a list of unique locations based on stop code
  .. S ^TMP($J,SUB,HLOC)=""
  ;Process locations.
  S IND=0
- F  S IND=+$O(^PXRMD(810.9,ITEM,44,IND)) Q:IND=0  D
- . S HLOC=^PXRMD(810.9,ITEM,44,IND,0)
+ F  S IND=+$O(^PXRMD(810.9,IEN,44,IND)) Q:IND=0  D
+ . S HLOC=^PXRMD(810.9,IEN,44,IND,0)
  . S ^TMP($J,SUB,HLOC)=""
+ I $D(^TMP($J,SUB))=0 D
+ . N MGIEN,MGROUP,TO
+ . S ^TMP("PXRMXMZ",$J,1,0)="Warning Reminder Location List "_$P(^PXRMD(810.9,IEN,0),U,1)
+ . S ^TMP("PXRMXMZ",$J,2,0)="does not contain or expand to contain any hospital locations!"
+ . D SEND^PXRMMSG("PXRMXMZ","Location List Problem",.TO,DUZ)
  Q
  ;
  ;=================================================

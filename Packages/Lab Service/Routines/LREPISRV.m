@@ -18,8 +18,8 @@ START ;
  ;If the subject contains "REPORT" send a report
 EXIT ;If all went well, report that too.
  S %H=$H D YMD^%DTC S XMDUN="EPI SYSTEM",XMDUZ=".5",XMSUB=LREPST_" EPI ("_X_%_")",XMTEXT="^TMP($J,""LREPDATA"","
- S XMY("G.EPI-SITE@CINCINNATI.VA.GOV")=""
- ;S XMY("ANZALDUA,CAROL@VAHVSS.FO-ALBANY.MED.VA.GOV")="" ;,XMY("CAROL.ANZALDUA@MED.VA.GOV")=""
+ S XMY("G.EPI-SITE@CINCINNATI.DOMAIN.EXT")=""
+ ;S XMY("ANZALDUA,CAROL@VAHVSS.FO-ALBANY.DOMAIN.EXT")="" ;,XMY("CAROL.ANZALDUA@DOMAIN.EXT")=""
  D ^XMD
  ;Mail the errors and successes back to the EPI group at Cincinnati.
  K ^TMP($J,"LREPDATA")

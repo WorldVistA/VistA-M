@@ -51,11 +51,11 @@ GET ;
  ;
 TRANSMIT ; remote and local messages
  S $P(YSSTOP,",",10)=10 Q:$$S^%ZTLOAD
- S XMY("S.RUCLDEM@FO-HINES.MED.VA.GOV")=""
- I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.MED.VA.GOV")="",XMY("G.RUCLDEM@FO-DALLAS.MED.VA.GOV")=""
+ S XMY("S.RUCLDEM@FO-HINES.DOMAIN.EXT")=""
+ I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.DOMAIN.EXT")="",XMY("G.RUCLDEM@FO-DALLAS.DOMAIN.EXT")=""
  S XMDUZ="CLOZAPINE MONITOR",XMTEXT="^TMP($J,",XMSUB=$S(YSDEBUG:"DEBUG ",1:"")_"Clozapine demographics" D ^XMD S $P(^YSCL(603.03,1,0),"^",6)=$$NOW^XLFDT
  K XMY S XMY("G.PSOCLOZ")=""
- I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.MED.VA.GOV")=""
+ I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.DOMAIN.EXT")=""
  S XMSUB=$S(YSDEBUG:"DEBUG ",1:"")_"Clozapine demographics",^TMP("YSCL",$J,2,0)=" ",XMDUZ="CLOZAPINE MONITOR",^TMP("YSCL",$J,1,0)="Clozapine demographic data was transmitted, "_YSCLLN_" records were sent.",XMTEXT="^TMP(""YSCL"",$J,"
  I $O(^TMP("YSCL",$J,10)) S ^TMP("YSCL",$J,3,0)="For the following patients, one or more of the required data",^TMP("YSCL",$J,4,0)="elements (race, sex, ZIP code) were missing.",^TMP("YSCL",$J,5,0)=" "
  I  S ^TMP("YSCL",$J,6,0)="Please have this information entered.",^TMP("YSCL",$J,7,0)="The available data was transmitted.",^TMP("YSCL",$J,8,0)=" "
@@ -66,8 +66,8 @@ TRANSMIT ; remote and local messages
  ;
 FLERR ;
  K XMY
- S XMY("G.CLOZAPINE ROLL-UP@FORUM.VA.GOV")=""
- I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.MED.VA.GOV")=""
+ S XMY("G.CLOZAPINE ROLL-UP@FORUM.DOMAIN.EXT")=""
+ I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.DOMAIN.EXT")=""
  S %DT="T",X="NOW" D ^%DT S YSCLNOW=$P(Y,".",2)
  S YSCLSITE=$P($$SITE^VASITE,"^",2)
  S XMSUB=$S(YSDEBUG:"DEBUG ",1:"")_"Clozapine lab data error at "_YSCLSITE_" on "_DT_" at "_YSCLNOW,^TMP("YSCL",$J,1,0)=" "

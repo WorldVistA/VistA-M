@@ -1,8 +1,8 @@
 PRCG239P ;WISC/BGJ - IFCAP 442 FILE CLEANUP (PURGE); 11/5/99 12:22pm ;9/20/00  12:56
-V ;;5.1;IFCAP;**95**;Oct 20, 2000
+V ;;5.1;IFCAP;**95,138**;Oct 20, 2000;Build 18
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;This routine is installed by patch PRC*5.1*95.
- ;The purpose of this routine is to clean up FMS reconcilliation data
+ ;The purpose of this routine is to clean up FMS reconciliation data
  ;in file 417 that were not purged by running the Archive/Purge
  ;functionality.  Routine PRCG239Q is a routine installed by patch
  ;95 that queues entries into PurgeMaster for purging.  Those entries

@@ -1,61 +1,34 @@
 VPRDPSO ;SLC/MKB -- Outpatient Pharmacy extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;;Sep 01, 2011;Build 12
+ ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
- ; ^SC                          10040
- ; ^VA(200)                     10060
- ; DIQ                           2056
- ; ORX8                          2467
- ; PSO5241                       4821
+ ; PSODI                         4858
  ; PSOORDER,^TMP("PSOR",$J)      1878
- ; PSOORRL,^TMP("PS",$J)         2400
  ; PSS50P7                       4662
  ; PSS51P2                       4548
  ; XLFDT                        10103
  ; XLFSTR                       10104
  ;
- ; ------------ Get medications from VistA ------------
- ;
-EN(DFN,BEG,END,MAX,ID) ; -- find patient's meds
- N PS0,VPRN,VPRITM K ^TMP("PS",$J)
- S DFN=+$G(DFN) Q:DFN<1
- S BEG=$G(BEG,1410101),END=$G(END,4141015),MAX=$G(MAX,9999)
- ;
- ; get one med
- I $G(ID) D  D:$D(VPRITM)>9 XML^VPRDPS(.VPRITM) Q
- . Q:ID["I"
- . I ID["N" D NVA(ID,.VPRITM) Q
- . I ID'["P",ID'["S" D RX(ID,.VPRITM) Q
- . D OEL^PSOORRL(DFN,ID),PEN1(ID,.VPRITM)
- . K ^TMP("PS",$J)
- ;
- ; get all meds
- D OCL^PSOORRL(DFN,BEG,END)
- S VPRN=0 F  S VPRN=$O(^TMP("PS",$J,VPRN)) Q:VPRN<1!(VPRN>MAX)  S PS0=$G(^(VPRN,0)) D  I $D(VPRITM)>9 D XML^VPRDPS(.VPRITM)
- . S ID=$P(PS0,U) K VPRITM Q:ID["I"
- . I ID["N" D NVA(ID,.VPRITM) Q
- . I ID["O" D RX(ID,.VPRITM) Q
- K ^TMP("PS",$J)
- Q
+ ; ------------ Get prescription from VistA ------------
  ;
 RX(ID,MED) ; -- return a prescription in MED("attribute")=value
- I ID["P"!(ID["S") G PEND ;pending order
  N RX0,RX1,DRUG,PSOI,X,I,START,STOP,ORIFN,FILL,RFD,PRV K MED
- N VPR ;PSOORDER set/killed VPR
+ N VPR ;PSOORDER kills VPR
  K ^TMP("PSOR",$J) D EN^PSOORDER(DFN,+ID)
  S RX0=$G(^TMP("PSOR",$J,+ID,0)),RX1=$G(^(1)),DRUG=$G(^("DRUG",0))
- S MED("id")=ID,MED("vaType")="O",MED("type")="Prescription"
+ S MED("medID")=ID_";O",MED("vaType")="O",MED("type")="Prescription"
  S ORIFN=+$P(RX1,U,8) S:ORIFN MED("orderID")=ORIFN
  S PSOI=$G(^TMP("PSOR",$J,+ID,"DRUGOI",0)) I PSOI D
  . S MED("name")=$P(PSOI,";",2)
  . D ZERO^PSS50P7(+PSOI,,,"OI")
  . S MED("form")=$P($G(^TMP($J,"OI",+PSOI,.02)),U,2)
+ . S:+$G(^TMP($J,"OI",+PSOI,.09)) MED("supply")=1
  D:DRUG NDF^VPRDPS(+DRUG) ;add NDF data
  S START=$P(RX0,U) S:START MED("start")=START
  S STOP=$P(RX0,U,12) S:STOP MED("stop")=STOP ;_".2359"?
- S X=$$GET1^DIQ(52,+ID_",",26,"I") S:X MED("expires")=X
+ S X=$$GET1^PSODI(52,+ID_",",26,"I") S:X MED("expires")=$P(X,U,2) ;1^date
  S X=$P(RX0,U,17) S:X MED("ordered")=X
  S MED("vaStatus")=$$UP^XLFSTR($P($P(RX0,U,4),";",2)),X=$P($P(RX0,U,4),";")
  S MED("status")=$S(X="H":"hold",X="DC":"not active",X="D"!(X="E"):"historical",1:"active")
@@ -87,7 +60,7 @@ RX(ID,MED) ; -- return a prescription in MED("attribute")=value
  . S RTE=$G(^TMP($J,"MR",RTE,1))
  . S DUR=$P(X,U,5),CONJ=$P(X,U,6),SCH=$P(X,U,8)
  . S END=$S(DUR:$$STOP(START,DUR),1:STOP)
- . S MED("dose",I)=DOSE_U_UNIT_U_UD_U_NOUN_U_RTE_U_SCH_U_DUR_U_CONJ_U_START_U_STOP
+ . S MED("dose",I)=DOSE_U_UNIT_U_UD_U_NOUN_U_RTE_U_SCH_U_DUR_U_CONJ_U_START_U_END
  . I $E(CONJ)="T",DUR S START=END
  S:RX1 X=$TR($P(RX1,U),";","^"),MED("orderingProvider")=X,MED("currentProvider")=X
  S:$G(PRV) MED("currentProvider")=$TR(PRV,";","^")
@@ -97,109 +70,17 @@ RX(ID,MED) ; -- return a prescription in MED("attribute")=value
  K ^TMP("PSOR",$J),^TMP($J,"MR"),^TMP($J,"NDF"),^TMP($J,"OI")
  Q
  ;
-PEND ; -- pending prescription
- ; [expects PS0,OCL^PSOORRL data]
- N I,X,VPRX,VPR K MED
- S MED("id")=ID,MED("vaType")="O",MED("type")="Prescription"
- S MED("vaStatus")=$P(PS0,U,9),MED("status")="not active"
- S X=+$P(PS0,U,8) S:X MED("orderID")=X
- S X=+$P(PS0,U,12) S:X MED("quantity")=X
- D GETS^DIQ(52.41,+ID_",","101;13;19;15;5;1.1","I","VPRX")
- S X=VPRX(52.41,+ID_",",101,"I") S:X MED("daysSupply")=X
- S X=VPRX(52.41,+ID_",",13,"I") S:X MED("fillsAllowed")=X
- S X=VPRX(52.41,+ID_",",19,"I") S:$L(X) MED("routing")=X
- S X=VPRX(52.41,+ID_",",15,"I") S:X MED("ordered")=X
- S X=VPRX(52.41,+ID_",",5,"I") S:X MED("orderingProvider")=X_U_$P($G(^VA(200,X,0)),U)
- S X=VPRX(52.41,+ID_",",1.1,"I") S:X MED("location")=X_U_$P($G(^SC(X,0)),U)
- S MED("facility")=$$FAC^VPRD(X)
- S X=$G(^TMP("PS",$J,VPRN,"SIG",1,0)),I=1
- F  S I=$O(^TMP("PS",$J,VPRN,"SIG",I)) Q:I<1  S X=X_$C(13,10)_$G(^(I,0))
- S MED("sig")=X
- D PEN^PSO5241(DFN,"VPRX",+ID)
- S X=$G(^TMP($J,"VPRX",DFN,+ID,8)) I X D  ;Pharmacy OI
- . S MED("name")=$P(X,U,2)_" "_$P(X,U,4),MED("form")=$P(X,U,4)
- S X=$G(^TMP($J,"VPRX",DFN,+ID,11)) D:X NDF^VPRDPS(+X) ;Dispense Drug
- D PDOSE K ^TMP($J,"VPRX")
- Q
- ;
-PEN1(ID,MED) ; -- return a pending Rx in MED("attribute")=value
- ; [expects OEL^PSOORRL data]
- N PS,PS0,I,X,VPRX,VPR K MED
- M PS=^TMP("PS",$J) S PS0=PS(0)
- S MED("id")=ID,MED("vaType")="O",MED("type")="Prescription"
- S MED("vaStatus")=$P(PS0,U,6),MED("status")="not active"
- S X=+$P(PS0,U,11) S:X MED("orderID")=X
- S X=+$P(PS0,U,8) S:X MED("quantity")=X
- S X=+$P(PS0,U,4) S:X MED("fillsAllowed")=X
- S X=+$P(PS0,U,5) S:X MED("ordered")=X
- S X=$G(PS("DD",1,0)) D:X NDF^VPRDPS(+X) ;Dispense Drug
- D GETS^DIQ(52.41,+ID_",","101;19;5;1.1","I","VPRX")
- S X=VPRX(52.41,+ID_",",101,"I") S:X MED("daysSupply")=X
- S X=VPRX(52.41,+ID_",",19,"I") S:$L(X) MED("routing")=X
- S X=VPRX(52.41,+ID_",",5,"I") S:X MED("orderingProvider")=X_U_$P($G(^VA(200,X,0)),U)
- S X=VPRX(52.41,+ID_",",1.1,"I") S:X MED("location")=X_U_$P($G(^SC(X,0)),U)
- S MED("facility")=$$FAC^VPRD(X)
- S X=$G(PS("SIG",1,0)),I=1
- F  S I=$O(PS("SIG",I)) Q:I<1  S X=X_$C(13,10)_$G(PS("SIG",I,0))
- S MED("sig")=X
- D PEN^PSO5241(DFN,"VPRX",+ID)
- S X=$G(^TMP($J,"VPRX",DFN,+ID,8)) I X D  ;Pharmacy OI
- . S MED("name")=$P(X,U,2)_" "_$P(X,U,4),MED("form")=$P(X,U,4)
- D PDOSE K ^TMP($J,"VPRX")
- Q
- ;
-PDOSE ; Pending file doses
- N QT,UNIT,UD,NOUN,DOSE,RTE,SCH,DUR,CONJ,BEG,END
- F I=1:1 K VPRX D GETS^DIQ(52.413,I_","_+ID_",","*",,"VPRX") Q:'$D(VPRX)  D
- . K QT M QT=VPRX(52.413,I_","_+ID_",")
- . S (UNIT,UD,NOUN)="",(DOSE,X)=QT(.01) I X["&" D
- .. S DOSE=$P(X,"&"),UNIT=$P(X,"&",2)
- .. S UD=$P(X,"&",3),NOUN=$P(X,"&",4)
- . S SCH=QT(1),DUR=QT(2),CONJ=QT(6),BEG=QT(3),END=QT(4)
- . S RTE=$$GET1^DIQ(52.413,I_","_+ID_",","10:1")
- . S MED("dose",I)=DOSE_U_UNIT_U_UD_U_NOUN_U_RTE_U_SCH_U_DUR_U_CONJ_U_BEG_U_END
- Q
- ;
 STOP(BEG,X) ; -- Return date after adding X to BEG
- N D,H,M,S,UNT,Y
- S Y=BEG,(D,H,M,S)=0,UNT=$P(X," ",2),X=+X
- S:UNT?1"MON".E D=30*X
- S:UNT?1"WEE".E D=7*X
- S:UNT?1"DAY".E D=X
- S:UNT?1"HOU".E H=X
- S:UNT?1"MIN".E M=X
- S:UNT?1"SEC".E S=X
- S Y=$$FMADD^XLFDT(BEG,D,H,M,S)
+ N D,H,M,UNT,Y
+ S Y=BEG,(D,H,M)=0,UNT=$P(X,+X,2),X=+X
+ S:$E(UNT)=" " UNT=$E(UNT,2,99) I UNT="" S UNT="D"
+ S:UNT="L" D=30*X
+ S:UNT="W" D=7*X
+ S:UNT="D" D=X
+ S:UNT="H" H=X
+ S:UNT="M" M=X
+ S Y=$$FMADD^XLFDT(BEG,D,H,M)
  Q Y
- ;
-NVA(ID,MED) ; -- return a non-VA med in MED("attribute")=value
- N NVA,VPRX,ORIFN,DOSE,X,VPR K MED
- D GETS^DIQ(55.05,+ID_","_DFN_",",".01:8;11:13","IE","VPRX")
- M NVA=VPRX(55.05,+ID_","_DFN_",") K VPRX
- S MED("id")=ID,MED("type")="OTC",MED("vaType")="N"
- S ORIFN=+NVA(7,"I") S:ORIFN MED("orderID")=ORIFN
- I NVA(.01,"I") D  ;orderable item
- . N FORM
- . S X=NVA(.01,"I") D ZERO^PSS50P7(+X,,,"PSOI")
- . S FORM=$P($G(^TMP($J,"PSOI",+X,.02)),U,2),MED("form")=FORM
- . S MED("name")=NVA(.01,"E")_" "_FORM
- S X=NVA(1,"I") D:X NDF^VPRDPS(+X) ;dispense drug
- S MED("sig")=NVA(2,"E")_" BY "_NVA(3,"E")_" "_NVA(4,"E")
- S X=NVA(2,"I"),NVA(2,"I")=+X_U_$P(X,+X,2) ;amt^unit
- S DOSE=NVA(2,"I")_"^^" I ORIFN D  ;reformat from order
- . S X=$$VALUE^ORX8(ORIFN,"ROUTE") S:X NVA(3,"E")=$$GET1^DIQ(51.2,+X_",",1)
- . S X=$$VALUE^ORX8(ORIFN,"SCHEDULE") S:$L(X) NVA(4,"E")=X
- . S X=$$VALUE^ORX8(ORIFN,"DOSE"),DOSE=$TR($P(X,"&",1,4),"&","^")
- S MED("dose",1)=DOSE_U_NVA(3,"E")_U_NVA(4,"E")
- S:NVA(8,"I") MED("start")=NVA(8,"I")
- S:NVA(6,"I") MED("stop")=NVA(6,"I")
- S:NVA(11,"I") MED("ordered")=NVA(11,"I")
- S MED("status")=$S($G(NVA(5,"E")):"not active",1:"active")
- S:NVA(12,"I") MED("orderingProvider")=NVA(12,"I")_U_NVA(12,"E")
- S:NVA(13,"I") MED("location")=NVA(13,"I")_U_NVA(13,"E")
- S MED("facility")=$$FAC^VPRD(NVA(13,"I"))
- K ^TMP($J,"PSOI"),^TMP($J,"NDF")
- Q
  ;
 ACTIVE(X) ; -- return 1 or 0, if X is an active status
  N Y S Y=1

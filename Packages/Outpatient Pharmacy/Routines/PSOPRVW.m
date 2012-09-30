@@ -1,5 +1,5 @@
 PSOPRVW ;BIR/SAB,MHA-enter/edit/view provider ; 2/9/07 10:39am
- ;;7.0;OUTPATIENT PHARMACY;**11,146,153,263,268,264**;DEC 1997;Build 19
+ ;;7.0;OUTPATIENT PHARMACY;**11,146,153,263,268,264,398**;DEC 1997;Build 10
  ;
  ;Ref. to ^VA(200 supp. by IA 224
  ;Ref. to ^DIC(7 supp. by IA 491
@@ -57,10 +57,13 @@ EDT W ! L +^VA(200,DA):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3)
  .I RTPB=""!('$P(RTPB,"^",3)) S DR="53.96////"_DUZ D ^DIE
  I $P($G(^VA(200,DA,"TPB")),"^",3) D
  .I RTPB=""!('$P(RTPB,"^",3)) S DR="53.96////"_DUZ D ^DIE
+ N PSORTPB S PSORTPB=$G(^VA(200,DA,"TPB"))
+ I $P(PSORTPB,"^",4)'=$P(RTPB,"^",4)!($P(PSORTPB,"^",5)'=$P(RTPB,"^",5)) D
+ .S DR="53.96////"_DUZ D ^DIE
  G:$G(PSOTPBFG) QX
 ED1 S DR="53.1:53.6;I X'=4 S Y=""@1"";29;8932.1;@1;53.7;I 'X S Y=""@2"";53.8;@2;53.9;.111:.116;.131:.134;.136;.137;.138;.141",DR(2,200.05)=".01;2;3"
  D ^DIE S FADA=DA D:'$D(Y) KEY
-QX K FADA,RTPB L -^VA(200,DA) Q:$G(PSOTPBFG)  G:+$G(VADA) ADD G ASK
+QX K FADA,RTPB,PSORTPB L -^VA(200,DA) Q:$G(PSOTPBFG)  G:+$G(VADA) ADD G ASK
  Q
  G:'$D(^VA(200,DA,"TPB")) ED1
 ADD ;add new providers (kernel 7)

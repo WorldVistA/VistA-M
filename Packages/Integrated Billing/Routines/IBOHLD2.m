@@ -1,5 +1,8 @@
 IBOHLD2 ;ALB/CJM  -  REPORT OF CHARGES ON HOLD W/INS ;MAR 6,1991
- ;;2.0;INTEGRATED BILLING;**70,95,133,153,347**;21-MAR-94;Build 24
+ ;;2.0;INTEGRATED BILLING;**70,95,133,153,347,452**;21-MAR-94;Build 26
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; Reference to $$CLAIM^BPSBUTL supported by DBIA# 4719
 REPORT ;
  N IBQUIT,IBPAGE,IBNOW,IBLINE,IBLINE2,IBCRT,IBBOT,DFN,IBNAME,IBN
  S IBCRT=0,IBBOT=7,IBQUIT=0 I $E(IOST,1,2)="C-" S IBCRT=1,IBBOT=7
@@ -71,10 +74,10 @@ PR(STR,LEN) ; pad right
  Q STR_$G(B)
 PRNTCHG ; prints a charge
  N IBACT,IBTYPE,IBBILL,IBFR,IBTO,IBCHG,IBND,IBND1
- N IBRX,IBRXN,IBRF,IBRDT,IBX,IENS
+ N IBRX,IBRXN,IBRF,IBRDT,IBX,IENS,IBECME
  S IBND=$G(^IB(IBN,0))
  S IBND1=$G(^IB(IBN,1))
- S (IBRX,IBRXN,IBRF,IBRDT,IBX)=0
+ S (IBRX,IBRXN,IBRF,IBRDT,IBX,IBECME)=0
  ; action id
  S IBACT=+IBND
  ; type
@@ -82,14 +85,15 @@ PRNTCHG ; prints a charge
  ; bill #
  S IBBILL=$P($P(IBND,"^",11),"-",2)
  ; rx info
- I $P(IBND,"^",4)["52:" S IBRXN=$P($P(IBND,"^",4),":",2),IBRX=$P($P(IBND,"^",8),"-"),IBRF=$P($P(IBND,"^",4),":",3)
- I $P(IBND,"^",4)["52:"  D
- .I +IBRF>0  D
- ..S IENS=+IBRF
- ..S IBRDT=$$SUBFILE^IBRXUTL(+IBRXN,+IENS,52,.01)
- .I +IBRF=0  D
- ..S IENS=+IBRXN
- ..S IBRDT=$$FILE^IBRXUTL(+IENS,22)
+ I $P(IBND,"^",4)["52:" D
+ . S IBRXN=+$P($P(IBND,"^",4),":",2)       ; Rx ien
+ . S IBRX=$P($P(IBND,"^",8),"-")           ; external Rx#
+ . S IBRF=+$P($P(IBND,"^",4),":",3)        ; fill# or 0 for original fill
+ . S IBECME=$P($$CLAIM^BPSBUTL(IBRXN,IBRF),U,6)   ; ecme#  DBIA# 4719
+ . I IBRF S IENS=+IBRF,IBRDT=$$SUBFILE^IBRXUTL(+IBRXN,+IENS,52,.01)    ; refill date
+ . I 'IBRF S IENS=+IBRXN,IBRDT=$$FILE^IBRXUTL(+IENS,22)                ; orig fill date
+ . Q
+ ;
  S IBX=$$APPT^IBCU3(IBRDT,DFN)
  ; from/rx fill date
  S IBFR=$$DAT1^IBOUTL($S(IBRXN>0:IBRDT,1:$P(IBND,"^",15)))
@@ -97,7 +101,8 @@ PRNTCHG ; prints a charge
  S IBTO=$$DAT1^IBOUTL($S($P(IBND,"^",15)'="":($P(IBND,"^",15)),1:$P(IBND1,"^",2)))
  ; charge$
  S IBCHG=$J(+$P(IBND,"^",7),9,2)
- W ?29,IBACT,?39,IBTYPE,?46,IBBILL W:IBRX>0 ?55,"Rx #: "_IBRX_$S(IBRF>0:"("_IBRF_")",1:""),?85,"||",!
+ W ?29,IBACT,?39,IBTYPE,?46,IBBILL
+ I IBRX>0 W ?55,"Rx #: "_IBRX_$S(IBRF>0:"("_IBRF_")",1:""),?85,"||",! I IBECME W ?55,"ECME #: ",IBECME,?85,"||",!
  W:IBX=1 ?54,"*"
  W ?55,IBFR,?66,IBTO,?75,IBCHG
  Q

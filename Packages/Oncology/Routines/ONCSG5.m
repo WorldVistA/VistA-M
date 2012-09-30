@@ -1,5 +1,5 @@
-ONCSG5 ;Hines OIFO/GWB - Automatic Staging Tables ;06/23/10
- ;;2.11;ONCOLOGY;**35,51**;Mar 07, 1995;Build 65
+ONCSG5 ;Hines OIFO/GWB - Automatic Staging Tables ;08/08/11
+ ;;2.11;ONCOLOGY;**35,51,54**;Mar 07, 1995;Build 10
  ;
  ;GENITOURINARY SITES
  ;
@@ -87,7 +87,8 @@ PROS7 ;Prostate - 7th edition
  N PSA,GS
  S PSA=+$$GET1^DIQ(165.5,D0,684)
  I (PSA=999.7)!(PSA=999.8)!(PSA=999.9) S PSA=""
- S GS=+$$GET1^DIQ(165.5,D0,623,"I")
+ I STGIND="C" S GS=+$$GET1^DIQ(165.5,D0,623,"I")
+ I STGIND="P" S GS=+$$GET1^DIQ(165.5,D0,250,"I")
  I GS=99 S GS=""
  S TNM=T_N_$E(M,1) D  K TNM Q
  .I ((TNM=100)!(TNM="1A00")!(TNM="1B00")!(TNM="1C00")),PSA<10,GS<7 S SG=1 Q

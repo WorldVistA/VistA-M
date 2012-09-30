@@ -1,5 +1,5 @@
 PSODIAG ;BIR/LE - Diagnosis code prompts ;02/27/04
- ;;7.0;OUTPATIENT PHARMACY;**143,219,239,268,225**;DEC 1997;Build 29
+ ;;7.0;OUTPATIENT PHARMACY;**143,219,239,268,225,404**;DEC 1997;Build 4
  ;Ext ref to ^XUSEC sup by DBIA 10076
  ;Ext ref to $$ICDDX^ICDCODE sup DBIA 3990
  ;Ext ref to $$STATCHK^ICDAPIU sup DBIA 3991
@@ -27,7 +27,7 @@ EN ;
  .. S OLDI(I)=$$GET1^DIQ(52.052311,I_","_PSOX("IRXN")_",",".01","I")
  . I ($D(@RAR@("ICD"))&('$D(OLD)))!($G(PSOCOPY)) D
  .. F I=1:1:8 Q:'$D(@RAR@("ICD",I))  I @RAR@("ICD",I)'="" S OLDI(I)=@RAR@("ICD",I) D
- ... S OLD(I)=$P(^ICD9(OLDI(I),0),"^",1)
+ ... S OLD(I)=$P($$ICDDX^ICDCODE(OLDI(I),FILDAT),"^",2)  ;*404
  ... S J=I-1 I I=1 W OLD(I) Q
  . F I=1:1:8 Q:'$D(OLD(I))  D WRITE
  E  I CPRS D
@@ -36,7 +36,7 @@ EN ;
  .. S OLDI(I)=$$GET1^DIQ(52.41311,I_","_ORD_",",".01","I")
  . I $D(PSONEW("ICD")) K OLD,OLDI D
  .. F I=1:1:8 Q:'$D(PSONEW("ICD",I))  S OLDI(I)=PSONEW("ICD",I) D
- ... S OLD(I)=$P(^ICD9(OLDI(I),0),"^",1)
+ ... S OLD(I)=$P($$ICDDX^ICDCODE(OLDI(I),FILDAT),"^",2)  ;*404
  . F I=1:1:8 Q:'$D(OLD(I))  D WRITE
  M SOLDI=OLDI
  ;

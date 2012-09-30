@@ -47,7 +47,7 @@ M1 ; move 8b records to mail messages
  D M3 G M1
 M2 I $D(^TMP($J)) D M3 K ^TMP($J)
  Q
-M3 U IO(0) S XMY("XXX@Q-TAB.VA.GOV")="" U IO(0) W "."
+M3 U IO(0) S XMY("XXX@Q-TAB.DOMAIN.EXT")="" U IO(0) W "."
  S XMSUB=HEADER
  S XMTEXT="^TMP($J,",XMDUZ=.5 D ^XMD S MSGCNT=MSGCNT+1
  Q

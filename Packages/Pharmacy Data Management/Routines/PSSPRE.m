@@ -1,0 +1,19 @@
+PSSPRE ;BIR/WRT-Pre-install routine to kill off old DDs for files sent with the package- clean up 50, additives and solutions files  ; 09/30/97 14:58
+ ;;1.0;PHARMACY DATA MANAGEMENT;;9/30/97
+ ; PRE-INSTALL ROUTINE
+ D KILLIT I '$D(^PS(59.7,1,80)) D CLEAN50,CLEANAD,CLEANSOL,CLEANDD K IEN
+ Q
+KILLIT W !!,"I Am Deleting Your Data Dictionary for ""APSP INTERVENTION RECOMMENDATION"" File." S DIU=9009032.5,DIU(0)="" D EN^DIU2 K DIU
+ W !!,"I Am Deleting Your Data Dictionary for ""MEDICATION ROUTES"" File." S DIU=51.2,DIU(0)="" D EN^DIU2 K DIU
+ Q
+CLEAN50 F IEN=0:0 S IEN=$O(^PSDRUG(IEN)) Q:'IEN  I $D(^PSDRUG(IEN,2)) S $P(^PSDRUG(IEN,2),"^")=""
+ Q
+CLEANAD F IEN=0:0 S IEN=$O(^PS(52.6,IEN)) Q:'IEN  I $D(^PS(52.6,IEN,0)) S $P(^PS(52.6,IEN,0),"^",11)=""
+ Q
+CLEANSOL F IEN=0:0 S IEN=$O(^PS(52.7,IEN)) Q:'IEN  I $D(^PS(52.7,IEN,0)) S $P(^PS(52.7,IEN,0),"^",11)=""
+ Q
+CLEANDD K ^DD(50,12,1,535000),^DD(50,203),^DD(50,13,1,535000),^DD(50,15,1,535000),^DD(50,16,1,1),^DD(50,"TRB",50,16)
+ K ^DD(50,0,"IX","AE",50,202),^DD(50,0,"IX","IV",50.03,.01),^DD(50,0,"IX","IV1",50,204),^DD(50,0,"IX","IV2",50,201.1),^DD(50,0,"PT",50.03,.02)
+ K ^DD(50,0,"IX","AV1",50,200),^DD(50,0,"IX","AD",50,201),^DD(50,0,"IX","AF",50,201.3),^DD(50,0,"IX","AV2",50,201),^DD(50,23,2),^DD(50,23,2.1),^DD(50,24,2),^DD(50,24,2.1),^DD(50,8,9.2)
+ S DIK="^DD(55,",DA=99,DA(1)=55 D ^DIK
+ Q

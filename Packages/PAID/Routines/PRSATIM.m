@@ -1,5 +1,5 @@
 PRSATIM ;HISC/REL - Time Input Conversion ;01/21/05
- ;;4.0;PAID;**69,70,71,93,100**;Sep 21, 1995;Build 3
+ ;;4.0;PAID;**69,70,71,93,100,126**;Sep 21, 1995;Build 59
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  S X=$TR(X,"adimnop","ADIMNOP")
  S X=$S(X="M":"MID",X="N":"NOON",1:X)
@@ -31,7 +31,7 @@ MIL ; Convert from AM/PM to 2400
  S Y=$P(X,":",1)_$P(X,":",2),Y=+Y Q:X["A"
  S:Y<1200 Y=Y+1200 Q
 HLP ; Time Help
- W !?5,"Time may be entered as 8A or 8a, 8:00A, 8:15A, 8:15AM or military"
- W !?5,"time: 0800, 1300; or MID or 12M for midnight; NOON or 12N for noon."
- W !?5,"Time must be in quarter hours; e.g., 8A or 8:15A or 8:30A or 8:45A.",!
+ D EN^DDIOL("     Time may be entered as 8A or 8a, 8:00A, 8:15A, 8:15AM or military")
+ D EN^DDIOL("     time: 0800, 1300; or MID or 12M for midnight; NOON or 12N for noon.")
+ D EN^DDIOL("     Time must be in quarter hours; e.g., 8A or 8:15A or 8:30A or 8:45A."),EN^DDIOL(" ")
  Q

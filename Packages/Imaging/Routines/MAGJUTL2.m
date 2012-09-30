@@ -1,5 +1,5 @@
-MAGJUTL2 ;WIRMFO/JHC VistRad subroutines for RPC calls ; 21 Apr 2011  5:34 PM
- ;;3.0;IMAGING;**18,65,76,104**;Mar 19, 2002;Build 2225;Jul 12, 2011
+MAGJUTL2 ;WIRMFO/JHC - VistRad subroutines for RPC calls ; 9 Sep 2011  4:05 PM
+ ;;3.0;IMAGING;**18,65,76,104,120**;Mar 19, 2002;Build 27;May 23, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -47,11 +47,28 @@ IMGINFO(RARPT,RET) ; Fetch info from Image File for input RARPT:
  . I MODALITY="" S MODALITY=X
  . E  I MODALITY'[X S MODALITY=MODALITY_","_X
  . I PLACE="" S PLACE=$P(ONLCHK,U,4)
+ I MODALITY["," S MODALITY=$$MULTMDL(MODALITY,",")
 IMGINFQ S ONL=$S(+ONL:"Y",ONL="":"n/a",1:"N")
- ; <*> add logic here to put multiple modalities into preferred sequence
- ; N T,TMDL S T=$P("^RF^XA^CT^CR^DX^MG^US^MR^PT^NM^AS^CD^CS^DG^EC^FA^LP^MA^ST^OT^BI^CP^DD^DM^ES^FS^LS^MS^RG^TG^HC^IO^PX",U_TMDL_U,1)
  S RET=CT_U_ONL_U_MAGDT_U_REMOTE_U_MODALITY_U_PLACE_U_KEY
  Q
+ ;
+MULTMDL(MDLS,DLM) ; return multiple modality codes in a preferred sequence for HP lookups
+ ; input: MDLS: list of modality codes, delimited by DLM
+ ; return: "normalized" list delimited by DLM
+ ;
+ ; The variable STR contains a list of codes, each paired with a numeric
+ ; priority value--lower number is higher priority.  The input MDLS sequence is
+ ; re-sorted according to the priorities; equivalent priorities are resolved
+ ; by alphabetic value; "unknown" input codes are give arbitrary value 6
+ ;
+ I $L(MDLS,DLM)>1 D
+ . N I,MD,ORD,STR,T,X
+ . S STR="1^CT|1^MG|1^RF|1^XA|2^MR|3^CR|4^DX|4^BDUS|4^BI|4^BMD|4^DF|4^DS|4^EC|4^MA|4^NM|4^PT|4^RG|4^ST|4^US|4^XC|5^ECG|5^IO|5^IVUS|5^PX|6^DG|6^TG|6^SC|6^VL|7^ES|7^FID|7^GM|7^HD|7^LS|7^XRAY|8^DOC|8^HC|8^OT|8^REG|8^SC|9^KO|9^PR|9^SEG|9^SR|"
+ . F I=1:1 S X=$P(STR,"|",I) Q:X=""  S MD($P(X,U,2))=+X
+ . F I=1:1:$L(MDLS,DLM) S T=$P(MDLS,DLM,I) S ORD=$S($D(MD(T)):MD(T),1:6) S MDLS(ORD,T)=T  ; assign "6" to any undefined code
+ . S MDLS="" S X="MDLS(0)" F I=1:1 S X=$Q(@X) Q:X=""  S MDLS=MDLS_DLM_@X
+ . S MDLS=$E(MDLS,2,99)
+ Q MDLS
  ;
 ONLCHK(MAGIEN,USETGA) ;
  ; Input: MAGIEN: Image pointer

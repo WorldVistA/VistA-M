@@ -1,19 +1,21 @@
 PSOREJU1 ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,359**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,359,385,403**;DEC 1997;Build 9
  ;Reference to File 9002313.21 - BPS NCPDP PROFESSIONAL SERVICE CODE supported by IA 4712
  ;Reference to File 9002313.22 - BPS NCPDP RESULT OF SERVICE CODE supported by IA 4713
  ;Reference to File 9002313.23 - BPS NCPDP REASON FOR SERVICE CODE supported by IA 4714
  ;Reference to File 9002313.25 - BPS NCPDP SUBMISSION CLARIFICATION CODE supported by IA 5064
+ ;Reference to File 9002313.26 - BPS NCPDP PRIOR AUTHORIZATION TYPE CODE supported by IA 5585 
  ;Reference to File 200 - NEW PERSON supported by IA 10060
  ;Reference to SIG^XUSESIG supported by IA 10050
  ;
 ACTION(RX,REJ,OPTS,DEF) ;
  ; Input:  (r) RX   - Rx IEN (#52) 
  ;         (r) REJ  - REJECT ID (IEN)
- ;         (r) OPTS - Available options ("QIO" for QUIT/IGNORE/OVERRIDE)
+ ;         (r) OPTS - Available options ("QIDO" for QUIT/IGNORE/DISCONTINUE/OVERRIDE)
  ;         (o) DEF  - Default Option ("O", "I" or "Q")
  ; Output: ACTION: "I^Comments" - Ignore Reject
  ;                 "O^COD1^COD2^COD3" - Override with the Override codes COD1(Prof.),COD2(Reason) and COD3(Result)
+ ;                 "D" - Discontinue
  ;                 "Q" - Quit
  ;                 "^" - Up-arrow entered or timed out
  ;
@@ -40,10 +42,10 @@ ASK K ACTION,DIR,DIRUT
  ; - IGNORE Action 
  K DIR,DIRUT,X
  ;
- ;PSO*7.0*358, add logic for TRICARE ignore
+ ;PSO*7.0*358, add logic for TRICARE/CHAMPVA ignore
  I PSOTRIC,ACTION="I",'$$CONT W $C(7),!," ACTION NOT TAKEN!",! H 1 G ASK
  ;
- I ACTION="I" S:'PSOTRIC COM=$$COM() S:PSOTRIC COM=$$TCOM^PSOREJP3() G ASK:COM="^" G ASK:'$$SIG() S ACTION=ACTION_"^"_COM
+ I ACTION="I" S:'PSOTRIC COM=$$COM() S:PSOTRIC COM=$$TCOM^PSOREJP3(RX,RFL) G ASK:COM="^" G ASK:'$$SIG() S ACTION=ACTION_"^"_COM
  ;
  ; - OVERRIDE Action
  I ACTION="O" D  G ASK:OVR="^"
@@ -57,14 +59,21 @@ DC1 ;Discontinue
 DC(RX,ACTION) ; - Discontinue inside and outside call
  N RXN,MSG,REA,DA,PSCAN,RXNUM
  S DA=RX,RXNUM=""
+ ; Variable PSOTRIC is used by NOOR^PSOCAN4 to determine the default for the nature of order prompt
+ I '$D(PSOTRIC) N PSOTRIC S PSOTRIC=$$TRIC^PSOREJP1(RX)
  D NOOR^PSOCAN4 I $D(DIRUT) W $C(7)," ACTION NOT TAKEN!",! H 1 S PSORX("DFLG")=1,ACTION="Q" Q ACTION
  D REQ^PSOCAN4 I $D(DIRUT) W $C(7)," ACTION NOT TAKEN!",! H 1 S PSORX("DFLG")=1,ACTION="Q" Q ACTION
  S REA="C",RXNUM=$P(^PSRX(DA,0),"^")
  S MSG="Discontinued "_$S($G(PSOFDR):" from Reject Processing Screen",1:"")
  S PSCAN(RXNUM)=DA_"^C"
  D CAN^PSOCAN
- N PSOCKDC S PSOCKDC=1,PSOQFLAG=1,PSOLST(1)=52_"^"_DA_"^"_$$GET1^DIQ(52,RXNUM,100),ORN=1
- D ECME^PSORXL1 I '$G(PPL) S PPL=""  ;remove rx from label print
+ ;
+ ; DMB-12/12/2011 - Removed setting PSOQFLAG.  Also fixed $$GET1 to use internal IEN.  I am not sure
+ ; if these next two lines are even needed. It especially seems a bit premature at this point to
+ ; remove the RX from the label list when the Rx probably hasn't been added yet.  In addition, PSORXL
+ ; has code to remove discontinued RXs from the label list (using the ECME^PSORXL1 call).
+ S PSOLST(1)=52_"^"_DA_"^"_$$GET1^DIQ(52,DA,100),ORN=1
+ N PSOCKDC S PSOCKDC=1 D ECME^PSORXL1 I '$G(PPL) S PPL=""  ;remove rx from label print
  Q ACTION
  ;
 CONT() ;- Ask to continue for bypassing claims processing  ;PSO*7.0*358
@@ -88,17 +97,18 @@ COM() ; - Ask for CLOSE comments
  Q COM
  ;
 OVR() ; - Ask for OVERRIDE codes
+ ; Called by ASK above (Reject Notification Screen)
  N COD1,COD2,COD3,DIR,DIRUT W !
- S COD1=$$OVRCOD(1,$$GET1^DIQ(52.25,REJ_","_RX,14)) I COD1="^" Q "^"
- S COD2=$$OVRCOD(2) I COD2="^" Q "^"
- S COD3=$$OVRCOD(3) I COD3="^" Q "^"
+ S COD1=$$OVRCOD(1,$$GET1^DIQ(52.25,REJ_","_RX,14)) I COD1="^"!(COD1="") Q "^"
+ S COD2=$$OVRCOD(2) I COD2="^" Q COD2
+ S COD3=$$OVRCOD(3) I COD3="^" Q COD3
  ;
  D OVRDSP^PSOREJU1(COD1_"^"_COD2_"^"_COD3) W !
  ;
  S DIR(0)="Y",DIR("A")="     Confirm? ",DIR("B")="YES"
  D ^DIR I $G(Y)=0!$D(DIRUT) Q "^"
  ;
- Q (COD2_"^"_COD1_"^"_COD3)
+ Q (COD1_"^"_COD2_"^"_COD3)
  ;
 OVRDSP(LST) ; - Display the Override Codes
  N I W !
@@ -108,13 +118,20 @@ OVRDSP(LST) ; - Display the Override Codes
  Q
  ;
 CLA() ; - Ask for up to 3 Clarification Codes
- N DIC,X,Y,PSOSCC,DTOUT,DUOUT,PSOQ,PSOI,I
+ ; Called by SMA^PSOREJP1 (SMA action) and CLA^PSOREJP1 (CLA action)
+ N DIC,X,Y,PSOSCC,DTOUT,DUOUT,PSOQ,PSOI,I,DUP
  S DIC(0)="QEAM",DIC=9002313.25,PSOQ=0,PSOSCC=""
  F PSOI=1:1:3 Q:PSOQ  S DIC("A")="Submission Clarification Code "_PSOI_": " D CLADIC
- Q $S(PSOSCC="":"^",1:PSOSCC)
+ Q $S(PSOQ=1:"^",1:PSOSCC)
  ;
-CLADIC D ^DIC I ($D(DUOUT))!($D(DTOUT))!(Y=-1) S PSOQ=1 Q
- F I=1:1:PSOI I $P(PSOSCC,"~",I)=$P(Y,U,2) W "  Duplicates not allowed",! G CLADIC
+CLADIC ;
+ ; DIC variables, PSOI, PSOSCC, and DUP newed and set by CLA
+ D ^DIC
+ I ($D(DUOUT))!($D(DTOUT)) S PSOQ=1 Q
+ I Y=-1 S PSOQ=2 Q
+ S DUP=0
+ F I=1:1:PSOI I $P(PSOSCC,"~",I)=$P(Y,U,2) S DUP=1 Q
+ I DUP=1 W "  Duplicates not allowed",! G CLADIC
  S $P(PSOSCC,"~",PSOI)=$P(Y,U,2)
  Q
  ;
@@ -125,38 +142,52 @@ HDLG(RX,RFL,CODES,FROM,OPTS,DEF) ; - REJECT Handling
  ;       (r) FROM  - Same values as BWHERE param. in the EN^BPSNCPDP api
  ;       (r) OPTS  - Available options ("IOQ" for IGNORE/OVERRIDE/QUIT)
  ;       (o) DEF   - Default Option ("O", "I" or "Q")
- ;Output: ACTION   - "O"-Override, "I"-Ignore,"Q"-Quit,"^"-Up-arrow entered
+ ;Output: ACTION   - "O"-Override, "I"-Ignore,"Q"-Quit,"D"-Discontinue,"^"-Up-arrow entered
  ;       
- N REJDATA,NEWDATA,CODE,ACTION,REJ,RESP,REJCDI,PSOTRIC,DCODE S CODE=""
+ N REJDATA,NEWDATA,ACTION,REJ,RESP,RESPI,REJI,PSOTRIC,RESPREJ,REJIEN
+ S ACTION=""
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
- S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC)
- I PSOTRIC D  ;note that Tricare Rejects need all codes, not just 79/88's
- . S OPTS="DQ",DEF="Q",(DCODE,CODES)=""
- . I $D(^XUSEC("PSO TRICARE",DUZ)) S OPTS=OPTS_"I" ;PSO*7.0*358, if user has security key, include IGNORE in TRICARE options
- . F  S DCODE=$O(^PSRX(RX,"REJ","B",DCODE)) Q:DCODE=""  S CODES=CODES_","_DCODE
- . S CODES=$E(CODES,2,9999)
- . I CODES["88"!(CODES["79") S OPTS="ODQ" S:$D(^XUSEC("PSO TRICARE",DUZ)) OPTS=OPTS_"I" ;PSO*7.0*358, if user has security key, include IGNORE in TRICARE options
- ;  -  In progress Rx not allowed to be filled
- I PSOTRIC,$$STATUS^PSOBPSUT(RX,RFL)["IN PROGRESS" S ACTION="",(DEF,OPTS)="D" D TRICCHK^PSOREJU3(RX,RFL,"",FROM) D  Q ACTION
- . I $P(ACTION,"^")="D" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,7,,$P(ACTION,"^",2))
  ;
- F REJCDI=1:1 S CODE=$P(CODES,",",REJCDI) Q:CODE=""  D  I ACTION="Q"!(ACTION="^") Q
- . S ACTION=""
- . I $$FIND^PSOREJUT(RX,RFL,.REJDATA,CODE) D
- . . S REJ=$O(REJDATA(""))
- . . S ACTION=$$ACTION(RX,REJ,OPTS,$G(DEF)) I ACTION="Q"!(ACTION="^") Q  ;PSO*7.0*358,add PSOTRIC as parameter
- . . ;PSO*7.0*358, put in Tricare audit if Ignore action and Tricare Rx
- . . I $P(ACTION,"^")="I" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,6,$P(ACTION,"^",2)) D:PSOTRIC AUDIT^PSOTRI(RX,RFL,,$P(ACTION,"^",2),$S($$PSOET^PSOREJP3(RX,RFL):"N",1:"R")) Q
- . . I $P(ACTION,"^")="O" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,1,,$P(ACTION,"^",3),$P(ACTION,"^",2),$P(ACTION,"^",4))
- . . I $P(ACTION,"^")="D" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,7,,$P(ACTION,"^",2)) Q
- . . D ECMESND^PSOBPSU1(RX,RFL,,FROM,$$GETNDC^PSONDCUT(RX,RFL),,,$P(ACTION,"^",2,4),,.RESP)
- . . I $G(RESP) D  Q
- . . . W !!?10,"Claim could not be submitted. Please try again later!"
- . . . W !,?10,"Reason: ",$S($P(RESP,"^",2)="":"UNKNOWN",1:$P(RESP,"^",2)),$C(7)
- . . K NEWDATA I $$FIND^PSOREJUT(RX,RFL,.NEWDATA,CODE) D  I ACTION="Q"!(ACTION="^") Q
- . . . S ACTION=$$ACTION(RX,$O(NEWDATA("")),OPTS,$G(DEF)) I ACTION="Q"!(ACTION="^") Q  ;PSO*7.0*358,add PSOTRIC as parameter
- . . . I $P(ACTION,"^")="I" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,6,$P(ACTION,"^",2))
- . . . I $P(ACTION,"^")="O" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,1,,$P(ACTION,"^",3),$P(ACTION,"^",2),$P(ACTION,"^",4))
+ ; Get all open/unresolved rejects
+ I '$$FIND^PSOREJUT(RX,RFL,.REJDATA) Q ACTION
+ ;
+ ; Check for TRICARE/CHAMPVA and quit if no open rejects
+ S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC) I PSOTRIC D
+ . S (REJIEN,CODES)=""
+ . ; Set CODES with all open reject codes for RX/Fill returned from $$FIND
+ . F  S REJIEN=$O(REJDATA(REJIEN)) Q:REJIEN=""  S CODES=REJDATA(REJIEN,"CODE")_","_CODES
+ . ; Strip the last comma off CODES
+ . I $E(CODES,$L(CODES))="," S CODES=$E(CODES,1,$L(CODES)-1)
+ . ; Set action prompt.
+ . S OPTS=$S(CODES["88"!(CODES["79"):"ODQ",1:"DQ"),DEF="Q"
+ . ; Include the Ignore action prompt if user holds key.
+ . I $D(^XUSEC("PSO TRICARE/CHAMPVA",DUZ)) S OPTS=OPTS_"I"
+ ;
+ ; In progress TRICARE/CHAMPVA Rx not allowed to be filled
+ I PSOTRIC,$$STATUS^PSOBPSUT(RX,RFL)["IN PROGRESS" D TRICCHK^PSOREJU3(RX,RFL,"",FROM) Q ACTION
+ ;
+ ; Check for open rejects that match CODES
+ I '$$FIND^PSOREJUT(RX,RFL,.REJDATA,CODES) Q ACTION
+ ;
+ ; Get reject for last response, if multiple responses exist.
+ S REJ=$O(REJDATA(""))
+ S ACTION=$$ACTION(RX,REJ,OPTS,$G(DEF))
+ ; Loop through each REJECT IEN and perform action
+ S REJI="" F  S REJI=$O(REJDATA(REJI)) Q:REJI=""  D
+ . I $P(ACTION,"^")="I" D CLOSE^PSOREJUT(RX,RFL,REJI,DUZ,6,$P(ACTION,"^",2),"","","","","",1) D AUDIT^PSOTRI(RX,RFL,,$P(ACTION,"^",2),$S($$PSOET^PSOREJP3(RX,RFL):"N",1:"R"),$S(PSOTRIC=1:"T",PSOTRIC=2:"C",1:""))
+ . I $P(ACTION,"^")="O" D CLOSE^PSOREJUT(RX,RFL,REJI,DUZ,1,,$P(ACTION,"^",2,4))
+ . I $P(ACTION,"^")="D" D CLOSE^PSOREJUT(RX,RFL,REJI,DUZ,7,,$P(ACTION,"^",2))
+ ; Resubmit claim if overriding
+ I $P(ACTION,"^")="O" D
+ . D ECMESND^PSOBPSU1(RX,RFL,,FROM,$$GETNDC^PSONDCUT(RX,RFL),,,$P(ACTION,"^",2,4),,.RESP)
+ . I $G(RESP) D  Q
+ . . W !!?10,"Claim could not be submitted. Please try again later!"
+ . . W !,?10,"Reason: ",$S($P(RESP,"^",2)="":"UNKNOWN",1:$P(RESP,"^",2)),$C(7)
+ . ; Check for same reject code that got us here and prompt for action if we got it again
+ . K NEWDATA I $$FIND^PSOREJUT(RX,RFL,.NEWDATA,REJDATA(REJ,"CODE")) D  I ACTION="Q"!(ACTION="^") Q
+ . . S ACTION=$$ACTION(RX,$O(NEWDATA("")),OPTS,$G(DEF)) I ACTION="Q"!(ACTION="^") Q
+ . . I $P(ACTION,"^")="I" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,6,$P(ACTION,"^",2),"","","","","",1)
+ . . I $P(ACTION,"^")="O" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,1,,$P(ACTION,"^",2,4))
  Q ACTION
  ;
 OVRX(TYPE,CODE) ; - Returns the extended code/description of the NCPDP DUR override codes
@@ -173,15 +204,18 @@ OVRX(TYPE,CODE) ; - Returns the extended code/description of the NCPDP DUR overr
  ;
  ;
 OVRCOD(TYPE,VALUE) ; - Prompt for NCPDP Override Codes
- N DIC,X,Y,FILE,PRPT
- ; 
+ ; Called by OVR above (reject notification screen), OVR^PSOREJP1 (OVR action)
+ ;   and SMA^PSOREJP1 (SMA action)
+ N DIC,DTOUT,DUOUT,FILE,PRPT,X,Y
  I TYPE=1 S FILE=9002313.23,PRPT="Reason for Service Code  : "
  I TYPE=2 S FILE=9002313.21,PRPT="Professional Service Code: "
  I TYPE=3 S FILE=9002313.22,PRPT="Result of Service Code   : "
- S DIC=FILE,DIC(0)="Z"
- I $G(VALUE)'="" S X=VALUE D ^DIC I Y>0 W !,PRPT,VALUE,"       ",$P(Y(0),"^",2) Q VALUE
  S DIC=FILE,DIC(0)="AQE",DIC("A")=PRPT
- D ^DIC I $D(DTOUT)!$D(DUOUT)!(Y<0) Q "^"
+ I $G(VALUE)'="" S DIC("B")=VALUE
+ D ^DIC
+ I $D(DTOUT)!$D(DUOUT) Q "^"
+ ; At second and third prompts of the set, user entering no data is like exiting the option
+ I TYPE'=1,Y<0 Q "^"
  Q $P(Y,"^",2)
  ;
 SEL(FIELD,FILE,ARRAY,DEFAULT) ; - Provides field selection (one, multiple or ALL)
@@ -243,3 +277,22 @@ CLEAN(STR) ; Remove blanks from the end of a string and replaces ";" with ","
  N LEN F LEN=$L(STR):-1:1 Q:$E(STR,LEN)'=" "
  S STR=$TR(STR,";",",")
  Q $E(STR,1,LEN)
+ ;
+DSC(FILE,VALUE,FIELD) ;Look up code descriptions
+ N IEN
+ I '$G(FILE)!($G(VALUE)="")!('$G(FIELD)) Q ""
+ I '$D(^BPS(FILE)) Q ""
+ I '$D(^BPS(FILE,"B",VALUE)) Q ""
+ S IEN=$O(^BPS(FILE,"B",VALUE,"")) I '$D(^BPS(FILE,IEN)) Q ""
+ Q $$GET1^DIQ(FILE,IEN,FIELD)
+ ;
+SMAOVR(RSC) ; - Ask for OVERRIDE codes
+ ; Called by SMA^PSOREJP1 (SMA action)
+ ;
+ ; INPUT: RSC - Reason for Service code
+ ;
+ N COD1,COD2,COD3 W !
+ S COD1=$$OVRCOD(1,$G(RSC)) I COD1="^"!(COD1="") Q COD1
+ S COD2=$$OVRCOD(2) I COD2="^" Q "^"
+ S COD3=$$OVRCOD(3) I COD3="^" Q "^"
+ Q (COD1_U_COD2_U_COD3)

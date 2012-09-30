@@ -1,5 +1,18 @@
-PXRMDLRP ; SLC/AGP - Dialog reporting routine ;09/10/2009
- ;;2.0;CLINICAL REMINDERS;**12**;Feb 04, 2005;Build 73
+PXRMDLRP ;SLC/AGP - Dialog reporting routine ;09/8/2010
+ ;;2.0;CLINICAL REMINDERS;**12,18**;Feb 04, 2005;Build 152
+ Q
+ ;
+ALL ;
+ N CNT,FAIL,IEN,MESS
+ S IEN=0 F  S IEN=$O(^PXRMD(801.41,"TYPE","R",IEN)) Q:IEN'>0  D
+ .I +$P($G(^PXRMD(801.41,IEN,0)),U,3)>0 Q
+ .K MESS
+ .S FAIL=$$RETARR(IEN,.MESS)
+ .I $D(MESS) D
+ ..W !
+ ..S CNT=0 F  S CNT=$O(MESS(CNT)) Q:CNT'>0  D
+ ...W !,MESS(CNT)
+ W !!,"**DONE**"
  Q
  ;
 BUILDMSG(TEXTIN,CNT,MESS) ;
@@ -60,8 +73,8 @@ EN(DIEN,NAME,CNT,MESS,FAIL) ;
  Q
  ;
 ODDPIPES(DIEN,NAME,EXT,TYPE,CNT,MESS,FAIL) ;
- ;this line tag returns true/false and it build an error message
- ;if the dialog text/alter PN text contains an odd number of pikes
+ ;this line tag returns true/false and it builds an error message
+ ;if the dialog text/alter PN text contains an odd number of pipes
  ;
  N AMOUNT,FLDNAM,NODE,NUM,PIPECNT,RESULT,TEXT
  S RESULT=0
@@ -219,6 +232,22 @@ VALIDTXT(DIEN,NAME,EXT,TYPE,CNT,MESS,FAIL) ;
  ;Check alternate progress note text
  D TIUSRCH^PXRMEXU1("^PXRMD(801.41,",DIEN,35,.OBJLIST,.TLIST)
  I $D(OBJLIST)>0!($D(TLIST)>0) D VALIDNAM(IEN,NAME,35,EXT,TYPE,.CNT,.MESS,.OBJLIST,.TLIST,.FAIL)
+ Q
+ ;
+TIUSRCH(DIEN) ;
+ N CNT,DLGARR,DNAME,EXT,FAIL,IEN,MESS,NAME,OCNT,OBJLIST,OLIST,TLIST,TYPE
+ S CNT=0,OCNT=0
+ S NAME=$P($G(^PXRMD(801.41,DIEN,0)),U)
+ D DITEMAR(DIEN,.DLGARR,.CNT,.MESS,.FAIL)
+ S IEN="" F  S IEN=$O(DLGARR(IEN)) Q:IEN'>0  D
+ .S DNAME=$P($G(^PXRMD(801.41,IEN,0)),U)
+ .S TYPE=$P($G(^PXRMD(801.41,IEN,0)),U,4)
+ .S EXT=$$EXTERNAL^DILFD(801.41,4,"",TYPE)
+ .I $$ODDPIPES(IEN,NAME,EXT,TYPE,.CNT,.MESS,.FAIL)=1 Q
+ .;check dialog/progress note text
+ .D TIUSRCH^PXRMEXU1("^PXRMD(801.41,",DIEN,25,.OBJLIST,.TLIST)
+ .I $D(OBJLIST)>0 D
+ ..D VALIDNAM(IEN,NAME,25,EXT,TYPE,.CNT,.MESS,.OBJLIST,.TLIST,.FAIL)
  Q
  ;
 WRITE(DIEN) ;

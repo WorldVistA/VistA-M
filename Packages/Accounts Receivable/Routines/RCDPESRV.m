@@ -74,7 +74,7 @@ MSG(RCXMZ,RCERR) ; Read/Store message lines
  .. D SENDMSG^XMXAPI(.5,"EDI LBOX TRANSFERRED EEOB "_$S(RCACC="":"RECEIVED",RCACC:"ACCEPTED",1:"REJECTED"),XMBODY,.XMTO,,.XMZ)
  . ;
  ;
- I RCTYP1["835",$E(RCTYP1,1,4)'="835X",RCD("FROM")'["POSTMASTER@FOC-AUSTIN.VA.GOV" D  G MSGQ
+ I RCTYP1["835",$E(RCTYP1,1,4)'="835X",RCD("FROM")'["POSTMASTER@FOC-AUSTIN.DOMAIN.EXT" D  G MSGQ
  . ;Send bulletin warning for non-Austin ERA/EFT message received
  . S RCDXM(1)="An electronic transmission ("_$E($P(RCTXN,U),4,6)_") has been received by the EDI Lockbox",RCDXM(2)="  system that did not originate from the Austin system.  This message"
  . S RCDXM(3)="  WILL NOT be stored on your system and may be a breach of security.",RCDXM(4)=" "

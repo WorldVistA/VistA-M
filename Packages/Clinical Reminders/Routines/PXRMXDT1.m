@@ -1,5 +1,5 @@
-PXRMXDT1 ; SLC/PJH - Build Patient list SUBROUTINES;11/02/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17**;Feb 04, 2005;Build 102
+PXRMXDT1 ;SLC/PJH - Build Patient list SUBROUTINES ;05/13/2011
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18**;Feb 04, 2005;Build 152
  ;
  ; Called by label from PXRMXSEO,PXRMXSE
  ;
@@ -45,7 +45,7 @@ SDET(DFN,STATUS,NAM,FACILITY,INP) ;
  .S ^XTMP(PXRMXTMP,PX,FACILITY,NAM)=NAM
  ;Applicable
  S DDAT="N/A"
- N APPL,FAPPTDT,DEFARR,DNEXT,DNEXT1,FIEV,PXRMDATE,BID,TMPSUB
+ N APPL,FAPPTDT,DEFARR,DLAST,DNEXT,DNEXT1,FIEV,PNAM,PXRMDATE,BID,TMPSUB
  S APPL=0,FAPPTDT=0
  ;Add any that aren't N/A, Ignore on N/A or NEVER to applicable total
  I ($P(STATUS,U)'="")&(STATUS'["NEVER")&(STATUS'["N/A")&(STATUS'["ERROR")&(STATUS'["CNBD") S APPL=1
@@ -191,24 +191,26 @@ SUM(DFN,STATUS,FACILITY,NAM,LOC) ;
  Q
  ;
 ERRMSG(TYPE) ;
- N CNT,CNT1,CNT2,STR,SUBJECT,NLINES,OUTPUT,TIME,TO
+ N CNT,CNT1,STR,SUBJECT,NLINES,OUTPUT,TO
  K ^TMP("PXRMXMZ",$J)
  S NLINES=0,CNT=0,CNT1=2
  I TYPE="C" D  Q
  .M ^TMP("PXRMXMZ",$J)=^TMP($J,"PXRM CNBD")
  .S SUBJECT="REMINDER REPORTS CNBD PATIENT LIST ("_$$FMTE^XLFDT($$NOW^XLFDT)_")"
  .S TO(DUZ)=""
- .D SEND^PXRMMSG("PXRMXMZ",SUBJECT,.TO)
+ .D SEND^PXRMMSG("PXRMXMZ",SUBJECT,.TO,DUZ)
+ ;Build the error message
+ I $G(TITLE)'="" S STR(1)="The Reminders Due Report "_$G(TITLE)_" requested by "_$$GET1^DIQ(200,DUZ,.01)_" on "_$$FMTE^XLFDT($G(PXRMXST))_" was cancelled for the following reason(s):"
+ I $G(TITLE)="" S STR(1)="The Reminders Due Report requested by "_$$GET1^DIQ(200,DUZ,.01)_" on "_$$FMTE^XLFDT($G(PXRMXST))_" was cancelled for the following reason(s):"
+ F  S CNT=$O(DBERR(CNT)) Q:CNT'>0  S STR(CNT1)="\\"_DBERR(CNT),CNT1=CNT1+1
  I 'PXRMQUE D
- .S STR(1)="The Reminders Due Report "_$G(TITLE)_" requested by "_$$GET1^DIQ(200,DUZ,.01)_" on "_$$FMTE^XLFDT($G(PXRMXST))_" for the following reason(s):"
- .F  S CNT=$O(DBERR(CNT)) Q:CNT'>0  S STR(CNT1)="\\"_DBERR(CNT),CNT1=CNT1+1
  .D FORMAT^PXRMTEXT(1,80,2,.STR,.NLINES,.OUTPUT)
  .F CNT=1:1:NLINES W !,OUTPUT(CNT)
  I PXRMQUE D
- .S ^TMP("PXRMXMZ",$J,1,0)="The Reminders Due Report "_$G(TITLE)_" requested by "_$$GET1^DIQ(200,DUZ,.01)_" on "_$$FMTE^XLFDT($G(PXRMXST))_"was cancelled for the following reason(s):"
- .F  S CNT=$O(DBERR(CNT)) Q:CNT'>0  S ^TMP("PXRMXMZ",$J,CNT1,0)=DBERR(CNT),CNT1=CNT1+1
+ .S CNT=0
+ .F  S CNT=$O(STR(CNT)) Q:CNT=""  S ^TMP("PXRMXMZ",$J,CNT,0)=STR(CNT)
  .S SUBJECT="Cancelled Reminders Due Report ("_$$FMTE^XLFDT($$NOW^XLFDT)_")"
  .S TO(DUZ)=""
- .D SEND^PXRMMSG("PXRMXMZ",SUBJECT,.TO)
+ .D SEND^PXRMMSG("PXRMXMZ",SUBJECT,.TO,DUZ)
  .S ZTSTOP=1
  Q

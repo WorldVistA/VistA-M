@@ -1,5 +1,5 @@
 DGMTR ;ALB/RMO,CAW,SCG,AEG,SCG,AEG,LBD - Check Means Test Requirements;7/8/05 2:30pm
- ;;5.3;Registration;**45,93,114,137,141,147,177,182,146,305,326,314,344,402,426,456,495,672,688,773,840**;Aug 13, 1993;Build 20
+ ;;5.3;Registration;**45,93,114,137,141,147,177,182,146,305,326,314,344,402,426,456,495,672,688,773,840,841**;Aug 13, 1993;Build 7
  ;A patient requires a means test under the following conditions:
  ;  - Primary Eligibility is NSC OR patient is SC 0% non-compensable
  ;  - who is NOT receiving disability retirement from the military
@@ -8,7 +8,7 @@ DGMTR ;ALB/RMO,CAW,SCG,AEG,SCG,AEG,LBD - Check Means Test Requirements;7/8/05 2:
  ;  - who has NOT been means tested in the past year
  ;  - who is NOT a Purple Heart recipient
  ;  - who is NOT Catastrophically Disabled
- ;  - who is NOT a Medal of Honor recipient 
+ ; 
  ; Input  -- DFN     Patient IEN
  ;           DGADDF  Means Test Add Flag  (Optional- default none)
  ;                   (1 if using the 'Add a New Means Test' option)
@@ -61,8 +61,8 @@ EN N DGCS,DGDOM,DGMT0,DGMTI,DGMTYPT,OLD,DGRGAUTO,DGQSENT,DGMTLTD,DGMDOD,DGMTDT
  I $P($G(^DPT(DFN,.53)),U)="Y" S DGREQF=0
  ;Catastrophically disabled
  I $P($G(^DPT(DFN,.39)),U,6)="Y" S DGREQF=0 ;DG*5.3*840
- ;Medal of Honor DG*5.3*840
- I $P($G(^DPT(DFN,.54)),U)="Y" S DGREQF=0
+ ;Medal of Honor DG*5.3*840.  Functionality removed with DG*5.3*841
+ ;I $P($G(^DPT(DFN,.54)),U)="Y" S DGREQF=0
  D
  .I DGREQF,DGCS=3,'OLD D REQ Q
  .I DGREQF,'$G(DGADDF),((DGCS=6)!(DGCS=2)),$P(DGMT0,U,11)=1,DGMTLTD>2991005 S DGREQF=0,DGNOCOPF=1 Q

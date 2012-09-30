@@ -1,5 +1,5 @@
-PSOATRF ;BIR/MHA - Automate Internet Refill ;07/09/07
- ;;7.0;OUTPATIENT PHARMACY;**264,322**;DEC 1997;Build 4
+PSOATRF ;BIR/MHA - Automate Internet Refill ; 5/23/11 5:00pm
+ ;;7.0;OUTPATIENT PHARMACY;**264,322,388**;DEC 1997;Build 6
  ;Reference to ^PSSLOCK supported by DBIA 2789
  ;Reference ^PSDRUG supported by DBIA 221
  ;Reference ^PS(55 supported by DBIA 2228
@@ -76,11 +76,13 @@ PRORF ;
  . S (PSOITF,PSOX("NUMBER"))=PSOY
  . S PSOX("RX0")=PSOITRX0,PSOX("RX2")=PSOITRX2,PSOX("RX3")=PSOITRX3,PSOX("STA")=PSOITRXS
  . S DRG=$P(PSOITRX0,U,6)
- . N PSODEA,PSODAY
+ . N PSODEA,PSODAY,PSOCHECK
  . S PSODEA=$P($G(^PSDRUG(DRG,0)),U,3)
  . S PSODAY=$P(PSOITRX0,U,8)
- . I $$DEACHK^PSOUTLA1(PSOITRX,PSODEA,PSODAY) D  Q
- . . S PSOITNF=1,PSOITMG="This drug has been changed, No refills allowed"
+ . S PSOCHECK=$$DEACHK^PSOUTLA1(PSOITRX,PSODEA,PSODAY)
+ . I PSOCHECK S PSOITNF=1 D  Q
+ . . I PSOCHECK=1 S PSOITMG="Requested refill exceeds maximum allowable days supply for Rx." Q  ;*388
+ . . S PSOITMG="Current drug DEA/SPECIAL HANDLING code does not allow refills."  ;*388
  . D CHKDT Q:PSOITNF
  . D EN^PSOR52(.PSOX) I PSOITF,$D(^PSRX(PSOITRX,1,PSOITF,0)) S PSOITC=PSOITC+1,PSOITMG=PSOITF_" Susp. until "_$$DSP($P(^(0),U))
  Q

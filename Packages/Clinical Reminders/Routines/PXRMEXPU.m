@@ -1,5 +1,5 @@
-PXRMEXPU ; SLC/PKR - Utilities for packing and unpacking repository entries. ;10/21/2008
- ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
+PXRMEXPU ;SLC/PKR - Utilities for packing and unpacking repository entries. ;12/07/2011
+ ;;2.0;CLINICAL REMINDERS;**6,12,22**;Feb 04, 2005;Build 160
  ;==================================================
 BTTABLE(DIQOUT,IENROOT,TTABLE) ;Build the DIQOUT to FDA iens translation table.
  N FILENUM,IENS,IENT,IND,UP
@@ -27,8 +27,8 @@ BTTABLE(DIQOUT,IENROOT,TTABLE) ;Build the DIQOUT to FDA iens translation table.
  ;==================================================
 CLDIQOUT(DIQOUT) ;Clean up DIQOUT remove null entries and change .01's
  ;to the resolved form.
- N ABBR,IENS,INTERNAL,FIELD,FILENUM,LINE
- N PTRTO,ROOT,TYPE,WPLCNT,VLIST,VPTRLIST
+ N IENS,INTERNAL,FIELD,FILENUM,LINE
+ N PLEN,PREFIX,PTRTO,ROOT,TYPE,WPLCNT,VLIST,VPTRLIST
  S FILENUM=""
  F  S FILENUM=$O(DIQOUT(FILENUM)) Q:FILENUM=""  D
  . K TYPE,VPTRLIST
@@ -53,8 +53,9 @@ CLDIQOUT(DIQOUT) ;Clean up DIQOUT remove null entries and change .01's
  ..... M VPTRLIST(FILENUM,FIELD)=VLIST
  .... S INTERNAL=$$GET1^DIQ(FILENUM,IENS,FIELD,"I")
  .... S (PTRTO,ROOT)=$P(INTERNAL,";",2)
- .... S ABBR=$P(VPTRLIST(FILENUM,FIELD,ROOT),U,4)
- .... S DIQOUT(FILENUM,IENS,FIELD)=ABBR_"."_DIQOUT(FILENUM,IENS,FIELD)
+ .... S PREFIX=$P(VPTRLIST(FILENUM,FIELD,ROOT),U,4)_"."
+ .... S PLEN=$L(PREFIX)
+ .... I $E(DIQOUT(FILENUM,IENS,FIELD),1,PLEN)'=PREFIX S DIQOUT(FILENUM,IENS,FIELD)=PREFIX_DIQOUT(FILENUM,IENS,FIELD)
  ... I TYPE(FILENUM,FIELD)="WORD-PROCESSING" D
  .... S (LINE,WPLCNT)=0
  .... F  S LINE=$O(DIQOUT(FILENUM,IENS,FIELD,LINE)) Q:LINE=""  D

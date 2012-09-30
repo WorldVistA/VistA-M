@@ -1,5 +1,5 @@
 BPSOSSG ;BHAM ISC/SD/lwj/FLS - Special gets for formats ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -59,6 +59,7 @@ FLD473 ;DUR/PPS code counter - called from SET logic in BPS NCPDP Field Defs
  ;DUR is newed/set in BPSOSHF
  S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,DUR,0),U,1)=BPS("X")
  S ^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,"B",BPS("X"),DUR)=""
+ S ^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,0)="^9002313.1001A^"_DUR_"^"_DUR
  Q
  ;
 FLD474 ;DUR/PPS level of effort - called from set logic in BPS NCPDP Field
@@ -79,21 +80,23 @@ FLD476 ;DUR Co-agent ID - called from set logic in BPS NCPDP Field
 FLD480 ; Other Amount Claimed Submitted field
  ; Called by set logic in BPS NCPDP Field DEFS for field 480
  ; Sets fields 478, 479, and 480 into BPS Claims
+ ;   478-H7 Other Amount Claimed Count
  ;   479-H8 Other Amount Claimed Submitted Qualifier
  ;   480-H9 Other Amount Claimed Submitted
  ;
- Q:'$G(BPS(9002313.0201))  ; must have entry IEN
- Q:'$O(BPS("Insurer","Other Amt Value",0))  ; nothing to do
+ Q:'$G(BPS(9002313.02))    ; must have BPS Claims IEN
+ Q:'$G(BPS(9002313.0201))  ; must have Transaction subfile IEN
+ Q:'$O(BPS("RX",BPS(9002313.0201),"Other Amt Value",0))  ; nothing to do
  ;
  N BPSCNTR,CNT,FDA,MSG
  K BPS(9002313.0601)  ; results from UPDATE^DIE
  S (CNT,BPSCNTR)=0
- F  S CNT=$O(BPS("Insurer","Other Amt Value",CNT)) Q:'CNT  D
- . I +BPS("Insurer","Other Amt Value",CNT)=0 Q
+ F  S CNT=$O(BPS("RX",BPS(9002313.0201),"Other Amt Value",CNT)) Q:'CNT  D
+ . I +BPS("RX",BPS(9002313.0201),"Other Amt Value",CNT)=0 Q
  . S BPSCNTR=BPSCNTR+1  ; ien for "PRICING REPEATING FIELDS SUB-FIELD^^480^3"
  . S FDA(9002313.0601,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",.01)=BPSCNTR
- . S FDA(9002313.0601,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",479)="H8"_$$ANFF^BPSECFM($G(BPS("Insurer","Other Amt Qual",CNT)),2)
- . S FDA(9002313.0601,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",480)="H9"_$$DFF^BPSECFM($G(BPS("Insurer","Other Amt Value",CNT)),8)
+ . S FDA(9002313.0601,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",479)="H8"_$$ANFF^BPSECFM($G(BPS("RX",BPS(9002313.0201),"Other Amt Qual",CNT)),2)
+ . S FDA(9002313.0601,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",480)="H9"_$$DFF^BPSECFM($G(BPS("RX",BPS(9002313.0201),"Other Amt Value",CNT)),8)
  ;
  I BPSCNTR D UPDATE^DIE("","FDA","BPS(9002313.0601)","MSG")
  I $D(MSG) D  Q

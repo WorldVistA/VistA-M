@@ -1,5 +1,5 @@
 FBFHLX ;WOIFO/SAB-TRANSMIT HL7 MESSAGES TO FPPS ;10/8/2003
- ;;3.5;FEE BASIS;**61,121**;JULY 18, 2003;Build 4
+ ;;3.5;FEE BASIS;**61,121,122**;JUNE 6, 2011;Build 8
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -41,7 +41,7 @@ ALL ; Transmit All Pending Invoices (interactive and non-interactive)
  ; output
  ;   FBQUIT - may change value
  ;
- N FBCNT,FBERR,FBHL,FBQDA,FBSTA,FBTTYP,FBXL,FBXMIT,HLFS,HLECH
+ N FBCNT,FBERR,FBHL,FBQDA,FBSTA,FBTTYP,FBXL,FBXMIT,FBFTRACK,HLFS,HLECH  ; FB*3.5*122
  ;
  ; init
  S FBXL=20 ; last line used for message text (save 20 lines for header)
@@ -51,6 +51,7 @@ ALL ; Transmit All Pending Invoices (interactive and non-interactive)
  ; save time that process started
  S FBXMIT("START")=$$NOW^XLFDT()
  I $E(IOST,1,2)="C-" W !!,"Starting Process..."
+ D TIME^FBFHLX2("START",FBXMIT("START"),.FBFTRACK) I $G(FBFTRACK) Q   ; active job to quit ; FB*3.5*122
  ;
  ; initialize HL variables
  D INIT^HLFNC2("FB FEE TO FPPS EVENT",.FBHL)
@@ -68,21 +69,24 @@ ALL ; Transmit All Pending Invoices (interactive and non-interactive)
  I 'FBQUIT D CHKACK^FBFHLX1
  ;
  S FBXMIT("SEND")=$$NOW^XLFDT()
+ ;
  I 'FBQUIT,$E(IOST,1,2)="C-" W !!,"Transmitting Pending Invoices..."
  ; loop thru pending invoices and transmit
  S FBQDA=0 F  S FBQDA=$O(^FBHL(163.5,"AC",0,FBQDA)) Q:'FBQDA!FBQUIT  D
  . ; check for taskman quit request
  . I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1,FBQUIT=1 Q
+ . S ^XTMP("FBFHLX","IEN")=$H_U_FBQDA_"^XMIT^"        ; FB*3.5*122
  . ; try to transmit invoice
  . D INVOICE
  . ; update counters based on result
  . I FBERR S FBCNT("PENDE")=FBCNT("PENDE")+1
  . E  S FBCNT("PENDT")=FBCNT("PENDT")+1
- . I FBCNT("PENDE")+FBCNT("PENDT")>9999 S (FBCNT("10K"),FBQUIT)=1  ;FB*3.5*121
+ . I FBCNT("PENDE")+FBCNT("PENDT")>9999 S (FBCNT("10K"),FBQUIT)=1  ; FB*3.5*121
  ;
  ; save time that process ended
  S FBXMIT("END")=$$NOW^XLFDT()
  I $E(IOST,1,2)="C-" W !!,"Process complete. Sending Summary Message to G.FEE..."
+ D TIME^FBFHLX2("END",FBXMIT("END"))  ; FB*3.5*121
  ;
  ; build and send summary mail message to G.FEE
  D SUMMSG^FBFHLX1

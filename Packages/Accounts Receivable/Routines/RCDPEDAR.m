@@ -1,10 +1,14 @@
 RCDPEDAR ;ALB/TMK - ACTIVITY REPORT ;04-NOV-02
- ;;4.5;Accounts Receivable;**173**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**173,276,284,283**;Mar 20, 1995;Build 8
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
 RPT ; Daily Activity Rpt On Demand
- N DUOUT,DTOUT,DIR,X,Y,RCDT1,RCDT2,RCDET,ZTRTN,ZTSK,ZTDESC,%ZIS,POP
+ N DUOUT,DTOUT,DIR,X,Y,RCDT1,RCDT2,RCDET,ZTRTN,ZTSK,ZTDESC,ZTSTOP,%ZIS,POP
+ N RCDIV,RCINC,VAUTD,RCRANGE,RCNP,RCJOB,RCNP1
+ ; Get division/station
+ D DIVISION^VAUTOMA
+ I 'VAUTD&($D(VAUTD)'=11) G RPTQ
  S DIR("A")="(S)UMMARY OR (D)ETAIL?: ",DIR(0)="SA^S:SUMMARY TOTALS ONLY;D:DETAIL AND TOTALS"
  S DIR("B")="D" D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT)!(Y="") G RPTQ
@@ -18,10 +22,17 @@ RPT ; Daily Activity Rpt On Demand
  S DIR(0)="DAO^"_RCDT1_":"_DT_":APE",DIR("A")="END DATE: " D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT)!(Y="") G RPTQ
  S RCDT2=Y
+ ;Get insurance company to be used as filter
+ ; PRCA*4.5*284 - RCDPEM9 now return a stack in RCNP (Type of Response(1=Range,2=All,3=Specific)^From Range^Thru Range)
+ S RCNP=$$GETPAY^RCDPEM9(344.31) I +RCNP=-1 G RPTQ
+ S RCJOB=$J
  ; Ask device
  S %ZIS="QM" D ^%ZIS G:POP RPTQ
  I $D(IO("Q")) D  G RPTQ
  . S ZTRTN="EN^RCDPEDAR("_RCDET_","_RCDT1_","_RCDT2_")",ZTDESC="AR - EDI LOCKBOX DAILY ACTIVITY REPORT"
+ . S ZTSAVE("*")=""
+ . ; PRCA*4.5*284 - Because TMP global may be on another server, save off specific payers in local
+ . I +RCNP=3 M RCNP1=^TMP("RCSELPAY",$J)
  . D ^%ZTLOAD
  . W !!,$S($D(ZTSK):"Your task number "_ZTSK_" has been queued.",1:"Unable to queue this job.")
  . K ZTSK,IO("Q") D HOME^%ZIS
@@ -32,12 +43,29 @@ RPTQ Q
 EN(RCDET,RCDT1,RCDT2) ; Entry point for queued job
  ; RCDET = 1 to include detail, 0 for totals only
  ; RCDT1,RCDT2 = date from,to
- N Z,Z0,RC,RCT,DATA,RCSTOP,RCPG
+ N Z,Z0,RC,RCT,DATA,RCSTOP,RCPG,RCIEN,STATION,RCFLG
+ ; PRCA*4.5*284 - Quueed job needs to reload payer selection list
+ I $G(RCJOB)'="",RCJOB'=$J D
+ . K ^TMP("RCSELPAY",$J)
+ . D RLOAD^RCDPEAR1(344.31)
+ . S RCJOB=$J
+ S RCNP=+RCNP
  K ^TMP("RCDAILYACT",$J)
  S Z=RCDT1-.0001,(RCSTOP,RCT)=0
- F  S Z=$O(^RCY(344.3,"ARECDT",Z)) Q:'Z!(Z>(RCDT2_".9999"))!RCSTOP  S Z0=0 F  S Z0=$O(^RCY(344.3,"ARECDT",Z,Z0)) Q:'Z0  S DATA=$G(^RCY(344.3,Z0,0)) D  Q:RCSTOP
- . S RCT=RCT+1 I '(RCT#100),$D(ZTQUEUED),$$S^%ZTLOAD S (RCSTOP,ZTSTOP)=1 K ZTREQ Q  ; Check for user stopped every 100 records
- . S ^TMP("RCDAILYACT",$J,Z\1,Z0)=DATA
+ F  S Z=$O(^RCY(344.3,"ARECDT",Z)) Q:'Z!(Z>(RCDT2_".9999"))!RCSTOP  D
+ .S Z0=0 F  S Z0=$O(^RCY(344.3,"ARECDT",Z,Z0)) Q:'Z0!RCSTOP  D
+ ..S DATA=$G(^RCY(344.3,Z0,0)),RCFLG=0
+ ..S RCIEN="" F  S RCIEN=$O(^RCY(344.31,"B",Z0,RCIEN)) Q:RCIEN=""  D
+ ...; check payer
+ ...I '$$CHKPYR(RCIEN,0,RCJOB) Q
+ ...; check station/division
+ ...I '$$CHKDIV(RCIEN,0,.VAUTD) Q
+ ...S RCFLG=1,^TMP("RCDAILYACT",$J,Z\1,Z0,"EFT",RCIEN)=""
+ ...Q
+ ..I RCFLG S ^TMP("RCDAILYACT",$J,Z\1,Z0)=DATA
+ ..S RCT=RCT+1 I '(RCT#100),$D(ZTQUEUED),$$S^%ZTLOAD S (RCSTOP,ZTSTOP)=1 K ZTREQ Q  ; Check for user stopped every 100 records
+ ..Q
+ .Q
  D:'RCSTOP RPT1(0,RCDET,RCDT1,RCDT2,.RCSTOP,.RCPG)
  D ENQ(RCSTOP,$G(RCPG))
  Q
@@ -50,6 +78,7 @@ RPT1(RCNITE,RCDET,RCDT1,RCDT2,RCSTOP,RCPG) ; Entrypoint for nightly job
  ; RCPG = the last page # printed, returned if passed by reference
  ;
  N X,Q,Q0,Z,Z0,Z1,Z2,Z3,ZCT,RCCT,RCDEP,RCDEPA,RCDEPAP,RCFMS,RCFMS1,RCD1,RCFMSTOT,RCEFT,RCMATCH,RCDEPREC,RCDT
+ N D,DIC,I,RCIEN,RCPAY
  S (RCSTOP,RCPG,ZCT,RCCT,RCDEP,RCDEPA,RCDEPAP,RCDEPREC,Z)=0,RCD1=1
  S RCNITE=+$G(RCNITE)
  F  S Z=$O(^TMP("RCDAILYACT",$J,Z)) Q:'Z  D  G:RCSTOP RPT1Q ; Z = date
@@ -73,9 +102,12 @@ RPT1(RCNITE,RCDET,RCDT1,RCDT2,RCSTOP,RCPG) ; Entrypoint for nightly job
  ... S RCFMS=$E($P(X," "),1,10),Q=$E(X),Q=$S(Q="E"!(Q="R"):0,Q="Q":2,1:1),RCFMS("D",Q)=$G(RCFMS("D",Q))+$P(Z1,U,8)
  ... ;
  .. I $G(RCDET) D  Q:RCSTOP
- ... S X=$$SETSTR^VALM1($P(Z1,U,6),"",1,6)
- ... S X=$$SETSTR^VALM1($$FMTE^XLFDT($P(Z1,U,7)\1,2),X,9,10)
- ... S X=$$SETSTR^VALM1("",X,21,10)
+ ... ; PRCA*4.5*283 - change length of DEP # from 6 to 9 to allow for 9 digit DEP #'s
+ ... S X=$$SETSTR^VALM1($P(Z1,U,6),"",1,9)
+ ... ; Change DEPOSIT DT's starting position from 9 to 12
+ ... S X=$$SETSTR^VALM1($$FMTE^XLFDT($P(Z1,U,7)\1,2),X,12,10)
+ ... ; Change starting position from 21 to 23 & reduce length of spaces from 10 to 8.
+ ... S X=$$SETSTR^VALM1("",X,23,8)
  ... S X=$$SETSTR^VALM1("",X,32,10)
  ... S X=$$SETSTR^VALM1($E($J($P(Z1,U,8),"",2)_$J("",20),1,20)_RCFMS,X,43,37)
  ... I '$G(RCNITE),($Y+5)>IOSL D HDR^RCDPEDA1(.RCCT,.RCPG,.RCSTOP,RCDT1,RCDT2,RCDET,RCNITE) Q:RCSTOP
@@ -88,13 +120,12 @@ RPT1(RCNITE,RCDET,RCDT1,RCDT2,RCSTOP,RCPG) ; Entrypoint for nightly job
  ... S V=0 F  S V=$O(^RCY(344.3,Z0,2,V)) Q:'V  D  Q:RCSTOP
  .... I '$G(RCNITE),($Y+5)>IOSL D HDR^RCDPEDA1(.RCCT,.RCPG,.RCSTOP,RCDT1,RCDT2,RCDET,RCNITE) Q:RCSTOP
  .... D SETLINE(RCNITE,$J("",12)_$G(^RCY(344.3,Z0,2,V,0)),.RCCT)
- .. S Z2=0 F  S Z2=$O(^RCY(344.31,"B",Z0,Z2)) Q:'Z2  S Z3=$G(^RCY(344.31,Z2,0)) D  Q:RCSTOP
+ .. S Z2=0 F  S Z2=$O(^TMP("RCDAILYACT",$J,Z,Z0,"EFT",Z2)) Q:'Z2  S Z3=$G(^RCY(344.31,Z2,0)) D  Q:RCSTOP
  ... S RCEFT("D")=$G(RCEFT("D"))+1
  ... S X=$S($P($G(^RCY(344,+$P(Z3,U,9),2)),U)'="":$$STATUS^GECSSGET($P(^RCY(344,+$P(Z3,U,9),2),U)),1:"")
  ... I X'="",X'=-1,$E(X)'="R",$E(X)'="E" S RCFMSTOT=RCFMSTOT+$P(Z3,U,7),RCFMS1=$S($E(X)="Q":"QUEUED TO POST",1:"POSTED")
  ... S RCFMS1(Z2)=$S(X="":"",X=-1:"NO FMS DOC",1:$E($P(X," "),1,10))
  ... I $P(Z3,U,8) S RCMATCH("D")=$G(RCMATCH("D"))+1
- ... ;
  ... I $G(RCDET) D EFTDET^RCDPEDA1(Z2,Z3,.RCCT,.RCPG,.RCSTOP,RCDT1,RCDT2,RCDET,.RCFMS1,RCNITE) Q:RCSTOP
  .. ;
  .. Q:RCSTOP
@@ -152,6 +183,7 @@ RPT1(RCNITE,RCDET,RCDT1,RCDT2,RCSTOP,RCPG) ; Entrypoint for nightly job
  D SETLINE(RCNITE,$J("",18)_"MATCHED PAYMENT AMOUNT POSTED: $"_$J(+$G(RCDEPAP),"",2),.RCCT)
  D SETLINE(RCNITE,"",.RCCT)
  ;
+ W !,"******** END OF REPORT ********",!
 RPT1Q K ^TMP("RCDAILYACT",$J)
  Q
  ;
@@ -169,3 +201,54 @@ SETLINE(RCNITE,Z,RCCT) ; Writes line
  W !,Z
  Q
  ;
+EFTDET(Z2,Z3,RCCT,RCPG,RCSTOP,RCDT1,RCDT2,RCDET,RCFMS1,RCNITE) ; Display EFT Detail
+ N X
+ I RCFLG W !,"^^^^^"
+ S RCFLG=1
+ W $P(Z3,U,1)_U
+ W $$FMTE^XLFDT($P(Z3,U,12)\1,2)_U
+ W $P(Z3,U,7)_U
+ W $$EXTERNAL^DILFD(344.31,.08,"",+$P(Z3,U,8))_$S($P(Z3,U,8)=1:":"_$P(Z3,U,10),1:"")_U
+ W $P(Z3,U,4)_U
+ W $P(Z3,U,2)_"/"_$P(Z3,U,3)_U
+ I $P(Z3,U,9) W $P($G(^RCY(344,+$P(Z3,U,9),0)),U)_U
+ I '$P(Z3,U,9) W U
+ W $G(RCFMS1(Z2))_U
+ I $O(^RCY(344.31,Z2,2,0)) D  W U Q:RCSTOP
+ . N V
+ . S V=0 F  S V=$O(^RCY(344.31,Z2,2,V)) Q:'V  D  Q:RCSTOP
+ .. W $G(^RCY(344.31,Z2,2,V,0))_";"
+ I $D(^RCY(344.31,Z2,3)) D WP^RCDPEM6($P(^RCY(344.31,Z2,3),U,3)) Q
+ W $P($G(^RCY(344.31,Z2,3)),U,3)
+ Q
+ ;
+CHKPYR(IEN,FLG,RCJOB) ;
+ ; IEN - ien in file 344.31 or 344.4
+ ; FLG - 0 if IEN contains ien in file 344.31, 1 if IEN contains ien in file 344.4
+ ; RCJOB - need to pass in the job number to access the previously populated temporary global array ^TMP("RCSELPAY",RCJOB) when rpt is queued to run
+ ; returns 1 if payer in 344.31/.02 or 344.4/.06 is in the list of selected payers ^TMP("RCSELPAY",RCJOB)
+ ; returns 0 otherwise
+ ;
+ N RCPAY,RES,Z
+ S RES=0
+ S:$G(RCJOB)="" RCJOB=$J
+ S RCPAY="" I IEN S RCPAY=$S(FLG:$P($G(^RCY(344.4,IEN,0)),U,6),1:$P($G(^RCY(344.31,IEN,0)),U,2))
+ I RCPAY'="" S (RCFLG,Z)=0 F  S Z=$O(^TMP("RCSELPAY",RCJOB,Z)) Q:Z=""  S:$E(RCPAY,1,30)=$G(^TMP("RCSELPAY",RCJOB,Z)) RES=1 I RES Q
+ Q RES
+ ;
+CHKDIV(IEN,FLG,VAUTD) ;
+ ; IEN - ien in file 344.31 or 344.4
+ ; FLG - 0 if IEN contains ien in file 344.31, 1 if IEN contains ien in file 344.4
+ ; VAUTD - array of selected divisions from DIVISION^VAUTOMA API call
+ ; returns 1 if division associated with an entry in 344.31 is on the list in VAUTD
+ ; returns 0 otherwise
+ N ERA,I,NAME,RCSTA,RES
+ S RES=0
+ I VAUTD=1 S RES=1 G CHKDIVX
+ I 'IEN G CHKDIVX
+ S ERA=$S(FLG:IEN,1:$P($G(^RCY(344.31,IEN,0)),U,10))
+ S RCSTA=$$ERASTA^RCDPEM3(ERA),NAME=$P(RCSTA,U)
+ I NAME="UNKNOWN" G CHKDIVX
+ S I=0 I 'VAUTD F  S I=$O(VAUTD(I)) Q:'I!RES  I NAME=VAUTD(I) S RES=1
+CHKDIVX ;
+ Q RES

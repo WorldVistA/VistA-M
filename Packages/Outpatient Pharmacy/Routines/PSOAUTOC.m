@@ -1,5 +1,5 @@
 PSOAUTOC ;BIR/SAB - auto cancel rxs on admission ;08/15/94
- ;;7.0;OUTPATIENT PHARMACY;**3,24,30,36,88,146,132,223,148,249,324,251**;DEC 1997;Build 202
+ ;;7.0;OUTPATIENT PHARMACY;**3,24,30,36,88,146,132,223,148,249,324,251,332**;DEC 1997;Build 4
  ;External reference to File #59.7 supported by DBIA 694
  ;External reference to File #55 supported by DBIA 2228
  ;External reference ^DPT(PSODFN,.1) supported by DBIA 10035
@@ -7,6 +7,8 @@ PSOAUTOC ;BIR/SAB - auto cancel rxs on admission ;08/15/94
  ;External reference ^DGPM("APTT1" supported by DBIA 2249
  ;External reference ^PSDRUG( supported by DBIA 221
  ;External reference ^PS(50.7 supported by DBIA 2223
+ ;External reference ^XUSEC( supported by IA 10076
+ ;External refernece GOTLOCAL^XMXAPIG supported by IA 3006
 AUTO I '$P(^PS(59.7,1,40.1),"^") W $C(7),!,"Auto cancel System Parameter must be set to 'YES'",!,"before prescriptions are discontinued."
  K %DT,DIC S DIC(0)="XZM",(DIE,DIC)="^DIC(19.2,",X="PSO AUTOCANCEL" D ^DIC
  I +Y>0 D EDIT^XUTMOPT("PSO AUTOCANCEL") G EX
@@ -22,7 +24,8 @@ CAN ;discontinue Rxs
  I $D(^PS(55,PSODFN,0)),$P($G(^PS(55,PSODFN,0)),U,6)'=2 D EN^PSOHLUP(PSODFN)
  F PSORXJ=0:0 S PSORXJ=$O(^PS(55,PSODFN,"P",PSORXJ)) Q:'PSORXJ  I $D(^(PSORXJ,0)) S PSORX=^(0) D
  .I $D(^PSRX(PSORX,0)) S PSO0=^(0),PSO2=$G(^(2)),STA=+^("STA") I STA<11,PSO2,$P(PSO2,"^",6)'<DT,$E(PSO2,1,7)'>PSOD2!(STA=16) D
- ..S $P(^PSRX(PSORX,3),"^",5)=DT,$P(^("STA"),"^")=12,$P(^(7),"^")=1
+ ..;332 - Set LAST FILL DATE holder field with the fill date upon cancelling
+ ..S $P(^PSRX(PSORX,3),"^",10)=$P(^PSRX(PSORX,3),"^"),$P(^PSRX(PSORX,3),"^",5)=DT,$P(^("STA"),"^")=12,$P(^(7),"^")=1
  ..D CHKCMOP^PSOUTL(PSORX,"A")
  ..D REVERSE^PSOBPSU1(PSORX,,"DC",7)
  ..D CAN^PSOTPCAN(PSORX)
@@ -123,8 +126,14 @@ MAIL ;builds mail message
  ..S $P(^PS(55,PSODFN,"NVA",NVA,0),"^",6)="",$P(^(0),"^",7)="" K ^PS(55,PSODFN,"NVA","APSOD",NVA)
  ..S ENT=ENT+1,^TMP("PSOAD",$J,ENT)="Non-VA "_MED,REIN=1,PSONVA=NVA D REIN^PSONVNEW
  ..K PSOOI,PSODD,PLACER,LOCATION,MED,REIN
- S XMDUZ=.5,XMSUB="Date of Death Deleted for "_$P(^DPT(PSODFN,0),"^")_" ("_VA("BID")_")",XMTEXT="^TMP(""PSOAD"",$J," N DIFROM
- F I=0:0 S I=$O(^XUSEC("PSORPH",I)) Q:'I  S XMY(I)=""
+ S XMDUZ=.5,XMSUB="Date of Death Deleted for Patient",XMTEXT="^TMP(""PSOAD"",$J," N DIFROM   ;*332
+ ;if no members in group, then send to PSORPH key holders  ;*332
+ N PSOMEM
+ S PSOMEM=$$GOTLOCAL^XMXAPIG("PSO DEATH GROUP")  ;CHECK FOR ACTIVE MEMBERS OF MAIL GROUP
+ I PSOMEM S XMY("G.PSO DEATH GROUP")=""
+ I 'PSOMEM D
+ .N PSOI
+ .F PSOI=0:0 S PSOI=$O(^XUSEC("PSORPH",PSOI)) Q:'PSOI  S XMY(PSOI)=""  ;*332
  D ^XMD
 EX1 K ^TMP("PSOHLD",$J),XMSUB,XMTEXT,XMY,XMDUZ,^TMP("PSOAD",$J),I,TOTRX,TOTPRX,PSODFN,ENT,ORTYP,X,Y,MED,RX,PTDOD
  Q

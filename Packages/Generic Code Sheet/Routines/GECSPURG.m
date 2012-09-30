@@ -1,5 +1,6 @@
-GECSPURG ;WISC/RFJ/KLD-purge code sheets (ask prompts)                  ;01 Nov 93
- ;;2.0;GCS;**23**;MAR 14, 1995
+GECSPURG ;WISC/RFJ/KLD-purge code sheets (ask prompts)                  ; 5/21/12 5:05am
+ ;;2.0;GEC;**23,36**;MAR 14, 1995;Build 2
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  W !,"This routine will delete Code Sheets from the Code Sheet file and"
  W !,"Batch and Transmission records from the Transmission Record file."
  W !,"Deletion is based upon the date a batch and a code sheet is"
@@ -16,14 +17,14 @@ GECSPURG ;WISC/RFJ/KLD-purge code sheets (ask prompts)                  ;01 Nov 
  S GECSSYS=GECS("BATCH")
  ;
 ASK ;  ask days to retain code sheets
- S DIR(0)="NO^0:999999:0",DIR("A")="Enter the number of days you wish to retain code sheets",DIR("B")=365
+ S DIR(0)="NO^0:999999:0",DIR("A")="Enter the number of days you wish to retain code sheets",DIR("B")=2558
  S DIR("?",1)="Enter the number of days you want to retain code sheets.  Code sheet created",DIR("?")="past the retaining days will be deleted."
  W ! D ^DIR I Y'>0 Q
  S GECSDT=Y
  I Y<30 W !!,"NOTICE: I recommend keeping code sheets for at least 30 days."
  ;
  I GECSSYS="*"!($G(GECS("SYSID"))="FMS") D
- .   S X1=DT,X2=-365 D C^%DTC S (Y,GECSDTST)=X D DD^%DT
+ .   S X1=DT,X2=-2558 D C^%DTC S (Y,GECSDTST)=X D DD^%DT
  .   W !!,"This program will remove all stack file entries which were created before",!,Y,"."
  ;
  ;  calculate cutoff date

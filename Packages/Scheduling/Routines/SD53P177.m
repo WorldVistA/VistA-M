@@ -73,10 +73,10 @@ PROGCHK(XPDABORT) ;checks for necessary programmer variables
  ;
 DOMNCHK(XPDABORT) ;checks for the new Austin q-domain
  ;
- I '$$FIND1^DIC(4.2,,"QX","Q-NPQ.MED.VA.GOV","B") DO
+ I '$$FIND1^DIC(4.2,,"QX","Q-NPQ.DOMAIN.EXT","B") DO
  .D BMES^XPDUTL("*****")
  .D MES^XPDUTL("Installation of this patch requires that the domain")
- .D MES^XPDUTL("Q-NPQ.MED.VA.GOV be defined (XM*999*125).  Installation aborted.")
+ .D MES^XPDUTL("Q-NPQ.DOMAIN.EXT be defined (XM*999*125).  Installation aborted.")
  .D MES^XPDUTL("*****")
  .S XPDABORT=2
  .K ^TMP("DIERR",$J)

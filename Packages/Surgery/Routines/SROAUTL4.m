@@ -1,5 +1,5 @@
-SROAUTL4 ;BIR/ADM - RISK ASSESSMENT UTILITY ;01/10/08
- ;;3.0;Surgery;**38,71,95,125,153,160,164,166,174,175**;24 Jun 93;Build 6
+SROAUTL4 ;BIR/ADM - RISK ASSESSMENT UTILITY ;07/19/2011
+ ;;3.0;Surgery;**38,71,95,125,153,160,164,166,174,175,176**;24 Jun 93;Build 8
  N SRZZ,SRXX,SRX1
  S SRZ=0 F  S SRZ=$O(SRY(130,SRTN,SRZ)) Q:'SRZ  D
  .I SRY(130,SRTN,SRZ,"I")="" D TR S (SRX1,X)=$T(@SRP),SRFLD=$P(X,";;",2) D
@@ -17,29 +17,33 @@ GET S X=$T(@J)
  Q
 BCF ;;236^Patient's Height^Height^;;1-01
 BCG ;;237^Patient's Weight^Weight^;;1-02
-DGE ;;475^Diabetes (Cardiac);;1-03
-BJC ;;203^History of COPD (Y/N)^COPD^;;1-04
-CDG ;;347^FEV1^FEV1^;;1-05
-BJI ;;209^Cardiomegaly on Chest X-Ray (Y/N)^Cardiomegaly (X-ray)^;;1-06
-CDH ;;348^Pulmonary Rales (Y/N)^Pulmonary Rales^;;1-07
-EAJ ;;510^Current Smoker^Current Smoker^;;1-08
-CDI ;;349^Active Endocarditis (Y/N)^Active Endocarditis^;;1-09
-CEJ ;;350^Resting ST Depression (Y/N)^Resting ST Depression^;;1-10
-BDJ ;;240^Functional Health Status^Functional Status^;;1-11
-CEA ;;351^PCI Status^PCI^;;1-12
-BJE ;;205^Prior Myocardial Infarction^Prior MI^;;1-13
-CEB ;;352^Number of Prior Heart Surgeries^Number of Prior Heart Surgeries^;;1-14
-DHE ;;485^Prior Heart Surgeries;;1-15
-BFE ;;265^Peripheral Vascular Disease (Y/N)^Peripheral Vascular Disease^;;1-16
-BFD ;;264^Cerebral Vascular Disease (Y/N)^Cerebral Vascular Disease^;;1-17
-BFG ;;267^Angina (use CCS Functional Class)^Angina (use CCS Functional Class)^;;1-18
-BJG ;;207^Congestive Heart Failure (use NYHA Functional Class)^CHF (use NYHA Class)^;;1-19
-CEC ;;353^Current Diuretic Use (Y/N)^Current Diuretic Use^;;1-20
-CED ;;354^Current Digoxin Use (Y/N)^Current Digoxin Use^;;1-21
-CEE ;;355^IV NTG within 48 Hours Preceding Surgery (Y/N)^IV NTG within 48 Hours^;;1-22
-DGD ;;474^Preop use of Circulatory Device;;1-23
-DFC ;;463^Hypertension^;;1-24
-EJI ;;509^Preoperative Atrial Fibrillation^;;1-25
+EAI ;;519^Diabetes Mellitus - Chronic, Long-Term Management^Diabetes - Long Term^;;1-03
+EBJ ;;520^Diabetes Mellitus - Management Prior to Surgery^Diabetes - 2 Wks Preop^;;1-04
+BJC ;;203^History of COPD (Y/N)^COPD^;;1-05
+CDG ;;347^FEV1^FEV1^;;1-06
+BJI ;;209^Cardiomegaly on Chest X-Ray (Y/N)^Cardiomegaly (X-ray)^;;1-07
+CDH ;;348^Pulmonary Rales (Y/N)^Pulmonary Rales^;;1-08
+EAG ;;517^Tobacco Use^Tobacco Use^;;1-09
+EAH ;;518^Tobacco Use Timeframe^Tobacco Use Timeframe^;;1-10
+FAH ;;618^Positive Drug Screening^Positive Drug Screening^;;1-11
+CDI ;;349^Active Endocarditis (Y/N)^Active Endocarditis^;;1-12
+CEJ ;;350^Resting ST Depression (Y/N)^Resting ST Depression^;;1-13
+BDJ ;;240^Functional Health Status^Functional Status^;;1-14
+CEA ;;351^PCI Status^PCI^;;1-15
+BJE ;;205^Prior Myocardial Infarction^Prior MI^;;1-16
+CEB ;;352^Number of Prior Heart Surgeries^Number of Prior Heart Surgeries^;;1-17
+DHE ;;485^Prior Heart Surgeries;;1-18
+BFE ;;265^Peripheral Vascular Disease (Y/N)^Peripheral Vascular Disease^;;1-19
+EBA ;;521^Prior Surgical Repair/Carotid Artery Obstruction^Prior Surgical Repair/Carotid Artery Obstruction^;;1-20
+EBB ;;522^History of CVD Events^History of CVD Events^;;1-21
+BFG ;;267^Angina (use CCS Functional Class)^Angina (use CCS Functional Class)^;;1-22
+BJG ;;207^Congestive Heart Failure (use NYHA Functional Class)^CHF (use NYHA Class)^;;1-23
+CEC ;;353^Current Diuretic Use (Y/N)^Current Diuretic Use^;;1-24
+CED ;;354^Current Digoxin Use (Y/N)^Current Digoxin Use^;;1-25
+CEE ;;355^IV NTG within 48 Hours Preceding Surgery (Y/N)^IV NTG within 48 Hours^;;1-26
+DGD ;;474^Preop use of Circulatory Device^Preop Circulatory Device^;;1-27
+DFC ;;463^Hypertension (Y/N)^Hypertension (Y/N)^;;1-28
+EJI ;;509^Preoperative Atrial Fibrillation^Preoperative Atrial Fibrillation^;;1-29
 DEG ;;457^HDL^^457.1;;2-01
 DEGPA ;;457.1^HDL, Date;;2-02
 DFA ;;461^LDL^^461.1;;2-03

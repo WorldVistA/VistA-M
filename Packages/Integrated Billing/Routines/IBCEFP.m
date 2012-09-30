@@ -1,5 +1,5 @@
 IBCEFP ;ALB/TAZ - Provider ID functions ;28-OCT-10
- ;;2.0;INTEGRATED BILLING;**432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**432,447,473**;21-MAR-94;Build 29
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -18,6 +18,14 @@ ALLIDS(IBIFN,IBXSAVE,IBSTRIP,SEG) ; Return all of the Provider IDS
  . N IBZ,CUROTH
  . I IBFRMTYP=2 D OUTPT^IBCEF11(IBIFN,0)
  . I IBFRMTYP=1 D HOS^IBCEF22(IBIFN)
+ . ; START IB*2.0*447 BI
+ . I IBCURR="A" D  Q
+ .. N IBRESARR
+ .. S IBLIMIT=5
+ .. D PROVINF(IBIFN,1,.IBRESARR,1,"C",IBFRMTYP,IBCARE,IBLIMIT,IBCURR,.IBXDATA)
+ .. M IBXSAVE=IBRESARR
+ .. S IBXSAVE("PROVINF",IBIFN)=IBIFN
+ . ; END IB*2.0*447 BI
  . F CUROTH="C","O" D PROVIDER(IBIFN,CUROTH,.IBZ,IBFRMTYP,IBCARE,IBCURR,.IBXDATA) M IBXSAVE=IBZ
  . S IBXSAVE("PROVINF",IBIFN)=IBIFN
  . Q
@@ -47,22 +55,12 @@ ALLIDS(IBIFN,IBXSAVE,IBSTRIP,SEG) ; Return all of the Provider IDS
  ... I CRED]"" S $P(IBXSAVE("PROVINF",IBIFN,"C",1,3,"NAME"),U,4)=CRED
  ;
  I SEG="LPUR",$$SUB1OK^IBCEP8A(IBIFN),$G(IBXSAVE("SLC")) D  G ALLIDSQ
- . N IBCNT,OUT,SID,SIDQ,IBPID,LINE
- . S (SID,SIDQ)=""
- . F LINE=1:1 Q:'$D(IBXSAVE("LAB/FAC",IBIFN,"C",1,LINE))  D  I SID'="" Q
- .. S SIDQ=$P($G(IBXSAVE("LAB/FAC",IBIFN,"C",1,LINE)),U) I ",0B,1G,G2,"'[(","_SIDQ_",") Q
- .. S SID=$P($G(IBXSAVE("LAB/FAC",IBIFN,"C",1,LINE)),U,2)
- . ;S $P(OUT,U,6)=$P($G(IBXSAVE("LAB/FAC",IBIFN,"C",1,0)),U,2) ; primary id
- . ;IB*2.0*432/TAZ - changed to make sure there is an ID for the Non-VA Service Facility
- . S IBPID=$P($G(IBXSAVE("LAB/FAC",IBIFN,"C",1,0)),U,2) ; primary id
- . I (IBPID=""),(SID="") D
- .. S IBPID=$P($G(IBXSAVE("PROVINF",IBIFN,"C",1,3,0)),U,4)  ; Get claim level Rendering Provider NPI
- .. I IBPID="",$D(IBXSAVE("L-PROV")) D
- ... F LINE=1:1:$O(IBXSAVE("L-PROV",IBIFN,""),-1) D  I IBPID'="" Q
- .... S IBPID=$P($G(IBXSAVE("L-PROV",IBIFN,LINE,"C",1,3,0)),U,4)
- . S $P(OUT,U,6)=IBPID
- . S $P(OUT,U,7)=SID ; secondary id (1)
- . S $P(OUT,U,8)=SIDQ ; secondary id qualifier(1)
+ . N IBCNT,OUT
+ . ;IB*2.0*473/TAZ - Moved ID lookup into seperate function.
+ . D PSID(IBIFN,.IBXSAVE,.IDS)
+ . ;IB*2.0*473/TAZ - END
+ . S $P(OUT,U,6)=IDS(0)
+ . S $P(OUT,U,7,8)=IDS(1) ; secondary id (1) ^ secondary id qualifier(1)
  . F IBCNT=1:1:IBXSAVE("SLC") S IBXSAVE("SLPRV",IBCNT)=OUT,IBXSAVE("SLPRV",IBCNT,"SLC")=IBCNT
  ;
  I SEG="LOPE" D SLPRV(IBIFN,.IBXSAVE,2) G ALLIDSQ
@@ -72,6 +70,41 @@ ALLIDS(IBIFN,IBXSAVE,IBSTRIP,SEG) ; Return all of the Provider IDS
  I SEG="LREF" D SLPRV(IBIFN,.IBXSAVE,1) G ALLIDSQ
  ;
 ALLIDSQ ;
+ Q
+ ;
+PSID(IBIFN,IBXPROV,IBXIDS) ; Build array of either the Fac/Lab ID or Rendering Provider IDs
+ ;IB*2.0*473/TAZ - Created a function to standardize IDs in LDAT and LPUR
+ ; Input:
+ ;   IBXIEN - Internal Entry Number of claim
+ ;   IBXPROV - Provider Array
+ ;   IBXIDS - Array for IDs
+ ; Output:
+ ;   IBXIDS(0) - Primary ID
+ ;   IBXIDS(1) - Secondary ID
+ ;
+ N LINE,PLINE,PID,SID,SIDQ
+ K IBXIDS
+ ; Get Lab/Facility IDs
+ S (PID,SID,SIDQ)=""
+ S PID=$P($G(IBXPROV("LAB/FAC",IBIFN,"C",1,0)),U,2)
+ F LINE=1:1 Q:'$D(IBXPROV("LAB/FAC",IBIFN,"C",1,LINE))  D  I SID'="" Q
+ . S SIDQ=$P($G(IBXPROV("LAB/FAC",IBIFN,"C",1,LINE)),U) I ",0B,1G,G2,"'[(","_SIDQ_",") S SIDQ="" Q
+ . S SID=$P($G(IBXPROV("LAB/FAC",IBIFN,"C",1,LINE)),U,2)
+ I $L(PID)!$L(SID) S IBXIDS(0)=PID,IBXIDS(1)=SID_U_SIDQ G PSIDQ
+ ; Get Claim Level Rendering Provider IDs
+ S PID=$P($G(IBXPROV("PROVINF",IBIFN,"C",1,3,0)),U,4)  ; Get claim level Rendering Provider NPI
+ F LINE=1:1 Q:'$D(IBXPROV("PROVINF",IBIFN,"C",1,3,LINE))  D  I SID'="" Q
+ . S SIDQ=$P($G(IBXPROV("PROVINF",IBIFN,"C",1,3,LINE)),U,3) I ",0B,1G,G2,"'[(","_SIDQ_",") S SIDQ="" Q
+ . S SID=$P($G(IBXPROV("PROVINF",IBIFN,"C",1,3,LINE)),U,4)
+ I $L(PID)!$L(SID) S IBXIDS(0)=PID,IBXIDS(1)=SID_U_SIDQ G PSIDQ
+ ; Get Line Level Rendering Provider IDs
+ F PLINE=1:1 Q:'$D(IBXPROV("L-PROV",IBIFN,PLINE))  D  I $L(PID)!$L(SID) Q
+ . S PID=$P($G(IBXPROV("L-PROV",IBIFN,PLINE,"C",1,3,0)),U,4)
+ . F LINE=1:1 Q:'$D(IBXPROV("L-PROV",IBIFN,PLINE,"C",1,3,LINE))  D  I SID'="" Q
+ .. S SIDQ=$P($G(IBXPROV("L-PROV",IBIFN,PLINE,"C",1,3,LINE)),U,3) I ",0B,1G,G2,"'[(","_SIDQ_",") S SIDQ="" Q
+ .. S SID=$P($G(IBXPROV("L-PROV",IBIFN,PLINE,"C",1,3,LINE)),U,4)
+ I $L(PID)!$L(SID) S IBXIDS(0)=PID,IBXIDS(1)=SID_U_SIDQ
+PSIDQ ;
  Q
  ;
 SLPRV(IBXIEN,IBX,PRTYPE) ;Build SLPRV nodes for the line provider type record
@@ -118,7 +151,7 @@ SLPRVQ ;
 PROVIDER(IB399,IBPROV,IBRES,IBFRMTYP,IBCARE,IBCURR,IBXDATA) ;
  N IBZ,IBRESARR,IBLIMIT
  S IBRESARR=""
- Q:IBPROV="A"  ;PATIENT's bill
+ Q:IBCURR="A"  ;PATIENT's bill IB*2.0*447 BI Changes IBPROV to IBCURR
  I IBPROV="C" D
  . S IBLIMIT=5
  . D:$$ISINSUR^IBCEF71(IBCURR,IB399) PROVINF(IB399,$S(IBCURR="T":3,IBCURR="S":2,IBCURR="P":1,1:1),.IBRESARR,1,IBPROV,IBFRMTYP,IBCARE,IBLIMIT,IBCURR,.IBXDATA)
@@ -229,3 +262,37 @@ PROVPTR(IBIEN399,IBFUNC,IBCP) ; Retrieve Provider Pointer from appropriate file
  . S RSLT=$P($G(^DGCR(399,IBIEN399,"CP",IBCP,"LNPRV",+IBN,0)),U,2)
  Q RSLT
  ;
+ ;Input:
+ ;IBXIEN - Internal Entry Number for the current bill/claim
+ ;IBXSAVE - Array for returning the data
+ ;
+ ;Output:
+ ;IBXSAVE - Data Array
+AMB(IBXIEN,IBXSAVE) ; Gather Ambulance Data for AMB Record(s) - IB*2.0*447/TAZ
+ N NODE,CODE,CNT,IBXDATA
+ K IBXSAVE("AMB")
+ F NODE="U5","U6","U7" S IBXDATA=$G(^DGCR(399,IBXIEN,NODE)) I $TR(IBXDATA,U)'="" S IBXSAVE("AMB",NODE)=IBXDATA
+ S CODE="",CNT=0
+ F  S CODE=$O(^DGCR(399,IBXIEN,"U9","B",CODE)) Q:'CODE  D
+ . S IBXDATA=$P($G(^IBE(353.5,CODE,0)),U,1) I IBXDATA="" Q
+ . S CNT=CNT+1,IBXSAVE("AMB","U9",CNT)=IBXDATA
+ Q
+ ;
+SNDS2(IBXDATA,PIECE) ;Determine if a SUB2 record is necessary.
+ ; Input: IBXDATA
+ ;       May contain data from field 232 of file 399.
+ ; Output: IBXDATA
+ ;       Returns Output for piece 2 or 3 or 1 for any other piece (like 1.5)
+ ;Any time that ONE of the following criteria is met we should send a SUB2 record
+ ; 1. Incoming IBXDATA is not null SEND - Non-VA facility in field 232 of file 399
+ ; 2. If the service facility is a VA Institution in file 4 or a non-VA facility in file 355.93 SEND
+ ; 3. Not a switchback payer $$SENDSF^IBCEF79(IBXIEN)'=0 SEND
+ ;
+ I IBXDATA="" D
+ . N Z,Z1
+ . S Z=$P($$B^IBCEF79(IBXIEN),U,3)
+ . S Z1=$$SENDSF^IBCEF79(IBXIEN)
+ . S IBXDATA=$S(Z="":0,'Z1:0,1:1)
+ I 'IBXDATA S IBXDATA=""
+ I IBXDATA'="" S IBXDATA=$S(PIECE=2:77,PIECE=3:2,1:1)
+ Q IBXDATA

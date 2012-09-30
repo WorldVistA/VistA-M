@@ -1,5 +1,5 @@
 BPSELG ;ALB/DRF - ECME SCREEN ELIGIBILITY VERIFICATION SUBMIT ;8/13/10  21:14
- ;;1.0;E CLAIMS MGMT ENGINE;**10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; reference to ^DIR supported by DBIA 10026
@@ -53,19 +53,15 @@ DOSELCTD(BPRXI) ;
  ;Check to make sure claim can be Submitted for Eligibility
  S BPRXIEN=$P(BP59,".")
  S BPRXR=+$E($P(BP59,".",2),1,4)
- I $$RXDEL^BPSOS($P(BP59,".",1),+$E($P(BP59,".",2),1,4)) W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"cannot be Submitted for Eligibility because it has been deleted in Pharmacy.",! G XRES
  S BPSTATUS=$P($$CLAIMST^BPSSCRU3(BP59),U)
- I BPSTATUS["IN PROGRESS" W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"is still In Progress and cannot be Submitted for Eligibility Verification",! G XRES
  I BPSTATUS'["E REJECTED" W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"is NOT Rejected and cannot be Submitted for Eligibility Verification",! G XRES
- ;can't resubmit a closed claim. The user must reopen first.
- I $$CLOSED02^BPSSCR03($P($G(^BPST(BP59,0)),U,4)) W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"is Closed and cannot be Submitted for Eligibility.",! G XRES
  ;
  ;Prompt for EDIT Information
  S BPPROMPT=$$PROMPTS(BP02,.BPDOSDT,.BPRELCD,.BPPSNCD) I BPPROMPT=-1 G XRES
  ;
  ;Send eligibility verification
  S BPSELG("PLAN")=$P($G(^BPST(BP59,10,1,0)),U,1) ;IEN to the GROUP INSURANCE PLAN (#355.3) file
- S BPSELG("FILL DATE")=BPDOSDT ;Date of Service entered by the user
+ S BPSELG("DOS")=BPDOSDT ;Date of Service entered by the user
  S BPSELG("IEN")=+$P($G(^BPST(BP59,1)),U,11) ;Prescription, if available
  S BPSELG("FILL NUMBER")=+$P($G(^BPST(BP59,1)),U,1) ;Fill Number, if available
  S BPSELG("REL CODE")=BPRELCD

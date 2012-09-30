@@ -1,5 +1,5 @@
 IBCNRDV ;OAKFO/ELZ - INSURANCE INFORMATION EXCHANGE VIA RDV ;27-MAR-03
- ;;2.0;INTEGRATED BILLING;**214,231,361,371**;21-MAR-94;Build 57
+ ;;2.0;INTEGRATED BILLING;**214,231,361,371,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; This routine is used to exchange insurance information between
@@ -140,6 +140,8 @@ MAP ; this is a mapping of data returned from ALL^IBCNS1 to the buffer file
  ;;3|12|5|13|60.13;insured's sex
  ;;4|1|5|10|60.1;primary care provider
  ;;4|2|5|11|60.11;primary provider phone
+ ;;4|5|5|15|60.15;pharmacy relationship code
+ ;;4|6|5|16|60.16;pharmacy person code
  ;;5|1|7|1|62.01;patient id
  ;;355.3|2|4|1|40.01;is this a group policy
  ;;355.3|3|4|2|40.02;group name

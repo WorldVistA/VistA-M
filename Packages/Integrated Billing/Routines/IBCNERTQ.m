@@ -1,5 +1,5 @@
-IBCNERTQ ;BI/BI-Real-time Insurance Verification ;27-AUG-2010
- ;;2.0;INTEGRATED BILLING;**438**;27-AUG-2010;Build 52
+IBCNERTQ ;ALB/BI - Real-time Insurance Verification ;27-AUG-2010
+ ;;2.0;INTEGRATED BILLING;**438,467**;21-MAR-94;Build 11
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -10,15 +10,17 @@ TRIG(N2) ; Called by triggers in the INSURANCE BUFFER FILE Dictionary (355.33)
  ;          60.01 - PATIENT NAME
  ;          60.04 - SUBSCRIBER ID
  ;          60.08 - INSURED'S DOB
+ ;          62.01 - PATIENT ID
  ;
  ; To make a request for Real Time Verification
  ; The following fields must contain data.
  ;          20.01 - INSURANCE COMPANY NAME
  ;          60.01 - PATIENT NAME
- ;          60.04 - SUBSCRIBER ID
+ ;          60.04 - SUBSCRIBER ID (if patient is the subscriber)
  ;          60.08 - INSURED'S DOB (if patient is not the subscriber)
+ ;          62.01 - PATIENT ID (if patient is not the subscriber)
  ;
- N TQIEN,TQN0,NODE20,NODE40,NODE60,QF,N4,PTID,SUBID,MGRP,DFN
+ N TQIEN,TQN0,NODE20,NODE40,NODE60,QF,N4,PTID,SUBID,MGRP,DFN,PREL
  N RESPONSE S RESPONSE=0
  ; Protect the FileMan variables.
  N DA,DC,DH,DI,DK,DL,DM,DP,DQ,DR,INI,MR,NX,UP
@@ -28,18 +30,19 @@ TRIG(N2) ; Called by triggers in the INSURANCE BUFFER FILE Dictionary (355.33)
  S NODE20=$G(^IBA(355.33,N2,20))
  S NODE40=$G(^IBA(355.33,N2,40))
  S NODE60=$G(^IBA(355.33,N2,60))
- I $P(NODE20,U,1)="" Q RESPONSE                      ;INSURANCE COMPANY NAME
- I $P(NODE60,U,1)="" Q RESPONSE                      ;PATIENT NAME
- I $P(NODE60,U,4)="" Q RESPONSE                      ;SUBSCRIBER ID
- I $P(NODE60,U,14)'=18,$P(NODE60,U,8)="" Q RESPONSE  ;DATE OF BIRTH
- ;
+ S PREL=$P(NODE60,U,14)
+ I $P(NODE20,U,1)="" Q RESPONSE                       ;INSURANCE COMPANY NAME
+ I $P(NODE60,U,1)="" Q RESPONSE                       ;PATIENT NAME
+ I $P(NODE60,U,4)="" Q RESPONSE                       ;SUBSCRIBER ID
+ ; exclude dependent inquiries w/o patient id or DOB
+ I PREL'=18,PREL'="",($P($G(^IBA(355.33,N2,62)),U)=""!($P(NODE60,U,8)="")) Q RESPONSE
  ; exclude ePharmacy buffer entries
- I $G(IBNCPDPELIG) Q  ; variable set in ^IBNCPDP3
+ I $G(IBNCPDPELIG) Q RESPONSE  ; variable set in ^IBNCPDP3
  I $P($G(^IBA(355.33,N2,0)),U,17)'="" Q RESPONSE
  ;
  ; prevent HMS entries from creating inquiries
  N PTR S PTR=+$P($G(^IBA(355.33,N2,0)),U,3)
- I PTR,$P($G(^IBE(355.12,PTR,0)),U,2)="HMS",$P($G(^IBA(355.33,N2,60)),U,14)="" Q RESPONSE
+ I PTR,$P($G(^IBE(355.12,PTR,0)),U,2)="HMS",PREL="" Q RESPONSE
  ;
  ; Quit if a waiting transaction exists in file #365.1
  S PTID=$P(NODE60,U,1)
@@ -72,7 +75,7 @@ TRIG(N2) ; Called by triggers in the INSURANCE BUFFER FILE Dictionary (355.33)
  ; Load and Send HL7 Message
  S RESPONSE=$$PROCSEND(TQIEN)
  ;
-ENDTRIG  ; Final Clean Up.
+ENDTRIG ; Final Clean Up.
  ;
  ; Restore the dictionary 355.33 temporary error global, ^TMP("DIERR",$J)
  K ^TMP("DIERR",$J)
@@ -139,6 +142,8 @@ IBE(IEN) ; Insurance Buffer Extract
  ; Allow only one MEDICARE transmission per patient
  S INSNAME=$P($G(^IBA(355.33,IEN,20)),U)
  I INSNAME["MEDICARE",$G(MCAREFLG(DFN)) Q QUEUED
+ ; make sure that entries have pat. relationship set to "self"
+ D SETREL^IBCNEDE1(IEN)
  ;
  ; If freshness overide flag is set, file to TQ and quit
  I OVRFRESH=1 D  Q $G(TQIEN)

@@ -1,5 +1,5 @@
-PXRMERRH ; SLC/PKR - Error handling routines. ;11/02/2009
- ;;2.0;CLINICAL REMINDERS;**4,17**;Feb 04, 2005;Build 102
+PXRMERRH ;SLC/PKR - Error handling routines. ;07/29/2010
+ ;;2.0;CLINICAL REMINDERS;**4,17,18**;Feb 04, 2005;Build 152
  ;
  ;=================================================================
 ERRHDLR ;PXRM error handler. Send a MailMan message to the mail group defined
@@ -47,7 +47,7 @@ ERRHDLR ;PXRM error handler. Send a MailMan message to the mail group defined
  . S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="You received this message because your IRM has not set up a mailgroup"
  . S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="to receive Clinical Reminder errors; please notify them."
  ;
- D SEND^PXRMMSG("PXRMXMZ","ERROR EVALUATING CLINICAL REMINDER")
+ D SEND^PXRMMSG("PXRMXMZ","ERROR EVALUATING CLINICAL REMINDER","",DUZ)
  ;
  ;If the reminder exists mark that an error occured.
  I PXRMITEM=999999 Q
@@ -78,7 +78,7 @@ NODEF(IEN) ;Non-existent reminder definition.
  S ^TMP("PXRMXMZ",$J,2,0)="An entry was made in the error trap that does not have a description."
  S ^TMP("PXRMXMZ",$J,3,0)="Match the time of this message with the time in the error trap."
  S SUBJ="Request to evaluate a non-existent reminder"
- D SEND^PXRMMSG("PXRMXMZ",SUBJ)
+ D SEND^PXRMMSG("PXRMXMZ",SUBJ,"",DUZ)
  K ^TMP("PXRMXMZ",$J)
  D ^%ZTER
  Q
@@ -100,7 +100,7 @@ NOINDEX(FTYPE,IEN,FILENUM) ;Error handling for missing index.
  S ^TMP("PXRMXMZ",$J,2,0)=ETEXT(3)
  S ^TMP("PXRMXMZ",$J,3,0)="Patient DFN="_$G(PXRMPDEM("DFN"))_", User DUZ="_DUZ_", Reminder="_$G(PXRMITEM)
  S SUBJ="Problem with index for file number "_FILENUM
- D SEND^PXRMMSG("PXRMXMZ",SUBJ)
+ D SEND^PXRMMSG("PXRMXMZ",SUBJ,"",DUZ)
  K ^TMP("PXRMXMZ",$J)
  Q
  ;

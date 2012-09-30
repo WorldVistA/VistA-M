@@ -1,5 +1,5 @@
-MPIFA31B ;BP/CMC-BUILD A31 MSGS ;FEB 5, 2002
- ;;1.0; MASTER PATIENT INDEX VISTA ;**22,24,27,28,31,25,44,46**;30 Apr 99;Build 5
+MPIFA31B ;BP/CMC-BUILD A31 MSGS ;23 Dec 2011  2:43 PM
+ ;;1.0;MASTER PATIENT INDEX VISTA;**22,24,27,28,31,25,44,46,54**;30 Apr 99;Build 2
  ;
  ; Integration Agreements Utilized:
  ;  START, EXC, STOP^RGHLLOG - #2796
@@ -13,7 +13,7 @@ TA31 ; Tasked entry point
 A31(DFN) ;BUILD AND SEND A31
  I $P($$SITE^VASITE,"^",3)=200 Q 1
  ; ^ PATCH 25 IF this is the FHIE Host system, don't build A31 messages
- N RESLT,CNT,MPI,EVN,TCNT,ERR,PD1,PID,EN,LAB,PV1,PV2,RAD,PRE,ZPD
+ N RESLT,CNT,MPI,EVN,TCNT,ERR,PD1,PID,EN,LAB,PV1,PV2,RAD,PRE,OLD,ZPD
  K HLA("HLA"),HLA("HLS")
  Q:$E($$GETICN^MPIF001(DFN),1,3)=$P($$SITE^VASITE(),"^",3) 0
  ; ^ LOCAL ICN DON'T SEND
@@ -37,6 +37,7 @@ A31(DFN) ;BUILD AND SEND A31
  .S LAB=$$LABE^VAFCSB ;**44 OBX FOR LAST LAB EXAM
  .S PRE=$$PHARA^VAFCSB ;**44 OBX FOR ACTIVE PRESCRIPTIONS
  .S PV2=$$PV2^VAFCSB ;**44 PV2 segment
+ S OLD=$$OLD ;**54,MVI_913: OBX to mark an older record
  S ZPD=$$EN1^VAFHLZPD(DFN,"1,17,21,34") ;25 ;**44 ADDED PSEUDO SSN REASON (34), 1 and 21 TO ZPD SEGMENT
  S EN=1
  S HLA("HLS",EN)=EVN(1),EN=EN+1
@@ -50,6 +51,7 @@ A31(DFN) ;BUILD AND SEND A31
  I $G(RAD)'="" S HLA("HLS",EN)=RAD,EN=EN+1 ;**44 only pass RADIOLOGY IN OBX segment if has values
  I $G(LAB)'="" S HLA("HLS",EN)=LAB,EN=EN+1 ;**44 only pass LAB IN OBX segment if has values
  I $G(PRE)'="" S HLA("HLS",EN)=PRE,EN=EN+1 ;**44 only pass PRESCRIPTION IN OBX segment if has values
+ I $G(OLD)'="" S HLA("HLS",EN)=OLD,EN=EN+1 ;**54,MVI_913: pass OLDER RECORD in OBX if flagged as such
  S HLA("HLS",EN)=ZPD,EN=EN+1 ;**44 ZPD SEGMENT
  S MPI=$$MPILINK^MPIFAPI()
  Q:$P($G(MPI),"^")=-1 "-1^No logical link defined for the MPI"
@@ -72,5 +74,9 @@ RES ;
  ..;**44 check which type of exception to be logged
  ..D EXC^RGHLLOG(234,ERROR,DFN) ;**46
  ..D STOP^RGHLLOG(0)
+ K:$G(DFN)>0 ^XTMP("MPIF OLD RECORDS",DFN) ;**54,MVI_913: Delete the old record designation
  K ^XTMP("MPIFA31%"_DFN)
  Q
+OLD() ; Return OBX segment to flag a record as "old"
+ ;**54,MVI_913: New subroutine
+ Q $S($D(^XTMP("MPIF OLD RECORDS",DFN))#2:"OBX"_HL("FS")_HL("FS")_"CE"_HL("FS")_"OLDER RECORD"_HL("FS")_HL("FS")_"Y",1:"")

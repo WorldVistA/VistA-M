@@ -82,7 +82,7 @@ TRAP ;
  D CLOSE,LOG^XWBDLOG("Error: "_$$EC^%ZOSV):$G(XWBDEBUG),UNWIND^%ZTER
  Q
  ;
-EN(ADDRESS) ;  test with input address or 10.161.12.182 if none entered
+EN(ADDRESS) ;  test with input address or 127.0.0.1 if none entered
  N RESULTS
  D EN1(ADDRESS,.RESULTS)
  Q

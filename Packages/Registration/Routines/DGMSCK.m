@@ -1,10 +1,23 @@
-DGMSCK ;ALB/PJR - CONSISTENCY API'S FROM DGRPC3 ; 4/19/04 10:24am
- ;;5.3;Registration;**451**;Mar 12, 2004
+DGMSCK ;ALB/PJR,LBD - CONSISTENCY API'S FROM DGRPC3 ; 5/20/09 5:33pm
+ ;;5.3;Registration;**451,797**;Mar 12, 2004;Build 24
 0 Q  ;; Must be called at a tag (API)
  ;;
 MSCK(MSECHK) ;; Check MSE API
  N I1,I2,MSE
- S (MSERR,MSDATERR)=0,ANYMSE="" F I1=1:1:3 S ANYMSE(I1)=0
+ S (MSERR,MSDATERR)=0,ANYMSE=""
+ ;Use MSE data in DGPMSE array, if it exists (DG*5.3*797)
+ I $D(DGPMSE) D  Q 1
+ .S I1=0 F  S I1=$O(DGPMSE(I1)) Q:'I1  D
+ ..S ANYMSE=ANYMSE_I1
+ ..I $P(DGPMSE(I1),U,7) Q  ;Don't check MSE verified by HEC
+ ..;Check if service dates are missing
+ ..I $P(DGPMSE(I1),U)=""!($P(DGPMSE(I1),U,2)="") S (MSERR,MSDATERR)=1 Q
+ ..;Check if service dates are inexact
+ ..I $E($P(DGPMSE(I1),U),4,7)="0000"!($E($P(DGPMSE(I1),U,2),4,7)="0000") S (MSERR,MSDATERR)=1 Q
+ ..;Check if branch of service or service discharge type are missing
+ ..I $P(DGPMSE(I1),U,3)=""!($P(DGPMSE(I1),U,6)="") S MSERR=1
+ ;Otherwise use MSE data in DGP(.32)
+ F I1=1:1:3 S ANYMSE(I1)=0
  F MSE="4;5;6;7","9;10;11;12","14;15;16;17" D ANY
  ;; ANYMSE Saved for use with checks 79 through 82
  S ANYMSE="" F I1=1:1:3 I ANYMSE(I1) S ANYMSE=ANYMSE_I1
@@ -34,11 +47,16 @@ RANGE(RANSET) ;; Set Conflict Date Ranges
  F I2=1:1:12 S I3=$P(I1,",",I2),RANGE(I3)=$$GETCNFDT^DGRPDT(I3)
  Q 1
 MSFROMTO(MSESET) ;; Set first and last overall MSE from/to dates
- N MSEFROM,MSETO,I1,I2
+ N MSEFROM,MSETO,I1,I2,I3
  S MSEFROM=9999999,MSETO=0 ;; Initialize from/to dates
  ;;
  ;; Find first MSE FROM Date and last MSE TO date
  I $G(ANYMSE) D
+ .;Use MSE data in DGPMSE array, if it exists
+ .I $D(DGPMSE) D  Q
+ ..S I1=0
+ ..F  S I1=$O(DGPMSE(I1)) Q:'I1  S I2=$P(DGPMSE(I1),U),I3=$P(DGPMSE(I1),U,2) S:I2<MSEFROM MSEFROM=I2 S:I3>MSETO MSETO=I3
+ .;Otherwise, use MSE data from DGP(.32)
  .F I1=6,11,16 S I2=$P(DGP(.32),"^",I1) I I2,I2<MSEFROM S MSEFROM=I2
  .F I1=7,12,17 S I2=$P(DGP(.32),"^",I1) I I2,I2>MSETO S MSETO=I2
  Q MSEFROM_"^"_MSETO

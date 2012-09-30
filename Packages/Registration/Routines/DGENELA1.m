@@ -1,5 +1,5 @@
-DGENELA1 ;ALB/CJM,RTK,TDM,PJR,RGL,LBD,EG,TMK,CKN,ERC - Patient Eligibility API ; 8/15/08 11:14am
- ;;5.3;Registration;**147,327,314,367,497,451,564,631,672,659,583,746,653,688**;Aug 13,1993;Build 29
+DGENELA1 ;ALB/CJM,RTK,TDM,PJR,RGL,LBD,EG,TMK,CKN,ERC - Patient Eligibility API ; 3/3/11 3:38pm
+ ;;5.3;Registration;**147,327,314,367,497,451,564,631,672,659,583,746,653,688,841**;Aug 13,1993;Build 7
  ;
 CHECK(DGELG,DGPAT,DGCDIS,ERRMSG) ;
  ;Does validation checks on the eligibility contained in the DGELG array.
@@ -201,6 +201,7 @@ FIELD(SUB) ;
  Q:SUB="AOEXPLOC" .3213
  Q:SUB="CVELEDT" .5295
  Q:SUB="SHAD" .32115
+ Q:SUB="MOH" .541
  ;
  Q ""
  ;

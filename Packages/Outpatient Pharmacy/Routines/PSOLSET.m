@@ -1,5 +1,5 @@
 PSOLSET ;BHAM ISC/SAB - site parameter set up ;12/03/92
-VERS ;;7.0;OUTPATIENT PHARMACY;**10,22,32,40,120,247,359**;DEC 1997;Build 27
+VERS ;;7.0;OUTPATIENT PHARMACY;**10,22,32,40,120,247,359,367**;DEC 1997;Build 62
  ;Reference to ^PS(59.7 supported by DBIA 694
  ;Reference to ^PSX(550 supported by DBIA 2230
  ;Reference to ^%ZIS(2 supported by DBIA 3435
@@ -29,21 +29,35 @@ DIV3 K DIR S PSOSITE=+Y W:PSOCNT>1 !!?10,"You are logged on under the ",$P(^PS(5
  E  K PSXSYS
  S PSODIV=$S(($P(PSOSYS,"^",2))&('$P(PSOSYS,"^",3)):0,1:1)
  I $D(DUZ),$D(^VA(200,+DUZ,0)) S PSOCLC=DUZ
-PLBL I $P(PSOPAR,"^",8) D
+PLBL ; Profile Printer Selection
+ I $P(PSOPAR,"^",8) D
  .S %ZIS="MNQ",%ZIS("A")="Select PROFILE PRINTER: " S:$G(PSOCLBL)&($D(PSOPROP)) %ZIS("B")=PSOPROP
  .D ^%ZIS K %ZIS,IO("Q"),IOP Q:POP  S PSOPROP=ION D ^%ZISC
-LBL S %ZIS="MNQ",%ZIS("A")="Select LABEL PRINTER: " S:$G(PSOCLBL)&($D(PSOLAP))!($G(SUSPT)) %ZIS("B")=$S($G(SUSPT):PSLION,1:PSOLAP)
- D ^%ZIS K %ZIS,IO("Q"),IOP S:POP PSOQUIT=1 G:POP EXIT S @$S($G(SUSPT):"PSLION",1:"PSOLAP")=ION,PSOPIOST=$G(IOST(0))
+LBL ; Label Printer Selection
+ S %ZIS="MNQ",%ZIS("A")="Select LABEL PRINTER: " S:$G(PSOCLBL)&($D(PSOLAP))!($G(SUSPT)) %ZIS("B")=$S($G(SUSPT):PSLION,1:PSOLAP)
+ D ^%ZIS K %ZIS,IO("Q"),IOP S:POP PSOQUIT=1 G:POP FDAPRT S @$S($G(SUSPT):"PSLION",1:"PSOLAP")=ION,PSOPIOST=$G(IOST(0))
  N PSOIOS S PSOIOS=IOS D DEVBAR^PSOBMST
  S PSOBARS=PSOBAR1]""&(PSOBAR0]"")&$P(PSOPAR,"^",19),PSOIOS=IOS D ^%ZISC
-LASK I $G(PSOPIOST),$D(^%ZIS(2,PSOPIOST,55,"B","LL")) G EXIT
- K DIR S DIR("A")="OK to assume label alignment is correct",DIR("B")="YES",DIR(0)="Y",DIR("?")="Enter Y if labels are aligned, N if they need to be aligned." D ^DIR S:$D(DIRUT) PSOQUIT=1 G:Y!($D(DIRUT)) EXIT
+LASK I $G(PSOPIOST),$D(^%ZIS(2,PSOPIOST,55,"B","LL")) G FDAPRT
+ K DIR S DIR("A")="OK to assume label alignment is correct",DIR("B")="YES",DIR(0)="Y"
+ S DIR("?")="Enter Y if labels are aligned, N if they need to be aligned."
+ D ^DIR S:$D(DIRUT) PSOQUIT=1 G:Y!($D(DIRUT)) FDAPRT
 P2 S IOP=$G(PSOLAP) D ^%ZIS K IOP I POP W $C(7),!?5,"Printer is busy.",! G LASK
  U IO(0) W !,"Align labels so that a perforation is at the top of the",!,"print head and the left side is at column zero."
- W ! K DIR,DIRUT,DUOUT,DTOUT S DIR(0)="E" D ^DIR K DIR,DTOUT,DUOUT I $D(DIRUT) D ^%ZISC G EXIT
+ W ! K DIR,DIRUT,DUOUT,DTOUT S DIR(0)="E" D ^DIR K DIR,DTOUT,DUOUT I $D(DIRUT) D ^%ZISC G FDAPRT
  D ^PSOLBLT D ^%ZISC
- K DIRUT,DIR S DIR("A")="Is this correct",DIR("B")="YES",DIR(0)="Y",DIR("?")="Enter Y if labels are aligned correctly, N if they need to be aligned." D ^DIR S:$D(DIRUT) PSOQUIT=1 G:Y!($D(DIRUT)) EXIT
+ K DIRUT,DIR S DIR("A")="Is this correct",DIR("B")="YES",DIR(0)="Y"
+ S DIR("?")="Enter Y if labels are aligned correctly, N if they need to be aligned."
+ D ^DIR S:$D(DIRUT) PSOQUIT=1 G:Y!($D(DIRUT)) FDAPRT
  G P2
+ ;
+FDAPRT ; FDA Med Guide Printer Selection
+ I $G(PSOBFLAG) G EXIT
+ N FDAPRT
+ S FDAPRT=$$SELPRT^PSOFDAUT($P($G(PSOFDAPT),"^")) I FDAPRT="^" G EXIT
+ S PSOFDAPT=FDAPRT
+ G EXIT
+ ; 
 LEAVE S XQUIT="" G FINAL
 Q W !?10,$C(7),"Default printer for labels must be entered." G LBL
  ;
@@ -53,7 +67,7 @@ EXIT D ^%ZISC Q:$G(PSOCLBL)
 FINAL ;exit action from main menu - kill and quit
  K SITE,PSOCP,PSNP,PSL,PRCA,PSLION,PSOPINST
  K GROUPCNT,DISGROUP,PSOCAP,PSOINST,PSOION,PSONULBL,PSOSITE7,PFIO,PSOIOS,X,Y,PSOSYS,PSODIV,PSOPAR,PSOPAR7,PSOLAP,PSOPROP,PSOCLC,PSOCNT
- K PSODTCUT,PSOSITE,PSOPRPAS,PSOBAR1,PSOBAR0,PSOBARS,SIG,DIR,DIRUT,DTOUT,DIROUT,DUOUT,I,%ZIS,DIC,J,PSOREL
+ K PSODTCUT,PSOSITE,PSOPRPAS,PSOBAR1,PSOBAR0,PSOBARS,SIG,DIR,DIRUT,DTOUT,DIROUT,DUOUT,I,%ZIS,DIC,J,PSOREL,PSOFDAPT
  Q
 GROUP ;display group
  S GROUPCNT=0,AGROUP="" I $D(^PS(59.3,0)) F  S AGROUP=$O(^PS(59.3,"B",AGROUP)) Q:AGROUP=""  D

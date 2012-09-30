@@ -1,19 +1,19 @@
 PSGAXR ;BIR/CML3-EXECUTE VARIOUS XREFS ;24 JUN 96 / 12:06 PM
- ;;5.0; INPATIENT MEDICATIONS ;**111**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**111,265**;16 DEC 97;Build 4
  ;
 ENSS ; set x-refs under 53.1,28
- S ZZ=+$G(^PS(53.1,DA,.2)) S:$D(PSGP)[0 PSGP=$P($G(^PS(53.1,DA,0)),"^",15)_"^1" I 'PSGP,'ZZ K ZZ K:$P(PSGP,"^",2) PSGP Q
+ S ZZ=+$G(^PS(53.1,DA,.2)),ZZZ=+$G(^PS(53.1,DA,"DSS")) S:$D(PSGP)[0 PSGP=$P($G(^PS(53.1,DA,0)),"^",15)_"^1" I 'PSGP,'ZZ K ZZ K:$P(PSGP,"^",2) PSGP Q
  I PSGP D 
- . S ^PS(53.1,"AS",X,+PSGP,DA)="" I $S(X["A":0,1:X'["D") S ^PS(53.1,"AC",+PSGP,DA)="" S:ZZ ^PS(53.1,"AOD",+PSGP,ZZ,DA)=""
+ . S ^PS(53.1,"AS",X,+PSGP,DA)="" I $S(X["A":0,1:X'["D") S ^PS(53.1,"AC",+PSGP,DA)="" S:ZZ ^PS(53.1,"AOD",+PSGP,ZZ,DA)="" S:ZZZ ^PS(53.1,"AD",ZZZ,+PSGP,DA)=""
  . I X="P",+$P($G(^PS(53.1,DA,4)),U) S ^PS(53.1,"AV",+PSGP,DA)=""
  ;I X]"" S ZZ=$S($G(ORIFN):ORIFN,1:$P($G(^PS(53.1,DA,0)),"^",21)_"^1") I ZZ S ORIFN=+ZZ D ENSC^PSGORU K:$P(ZZ,"^",2) ORIFN
  ;D EN1^PSJHL2(PSGP,"OC",DA_"P")
- K ZZ K:$P(PSGP,"^",2) PSGP Q
+ K ZZ,ZZZ K:$P(PSGP,"^",2) PSGP Q
  ;
 ENSK ; kill x-refs under 53.1,28
  S:$D(PSGP)[0 PSGP=$P($G(^PS(53.1,DA,0)),"^",15)_"^1" S ZZ=+$G(^PS(53.1,DA,.1)),ZZZ=+$G(^PS(53.1,DA,"DSS"))
  I PSGP K ^PS(53.1,"AC",+PSGP,DA),^PS(53.1,"AS",X,+PSGP,DA),^PS(53.1,"AV",+PSGP,DA) K:ZZ ^PS(53.1,"AOD",+PSGP,ZZ,DA) K:ZZZ ^PS(53.1,"AD",ZZZ,+PSGP,DA)
- K ZZ K:$P(PSGP,"^",2) PSGP Q
+ K ZZ,ZZZ K:$P(PSGP,"^",2) PSGP Q
  ;
 ENNDS ; set x-refs under 53.1,.1
  S ^PS(53.1,"D",X,DA)="" S:$D(PSGP)[0 PSGP=$P($G(^PS(53.1,DA,0)),"^",15)_"^1" I PSGP S PSGX=X D END^PSGSICHK S X=PSGX,PSGX=$P($G(^PS(53.1,DA,0)),"^",9) I $S(PSGX["A":0,1:PSGX'["D") S ^PS(53.1,"AOD",+PSGP,X,DA)=""

@@ -65,5 +65,5 @@ HLP ; Traditional Cross Reference Help - Called From NQ
  W !,?5,"cross-reference is in.  If you are not the custodian of the file, you"
  W !,?5,"should select a number that corresponds with a numberspace for which you"
  W !,?5,"have custody.  Questions regarding numberspace custody may be referred"
- W !,?5,"to:  DBA@FORUM.VA.GOV",!
+ W !,?5,"to:  DBA@FORUM.DOMAIN.EXT",!
  Q

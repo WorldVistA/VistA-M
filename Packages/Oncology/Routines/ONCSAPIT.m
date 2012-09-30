@@ -8,7 +8,7 @@ ONCSAPIT ;Hines OIFO/SG - COLLABORATIVE STAGING (TABLES) ;06/23/10
  ;   xmlns:soap="http://www.w3.org/2001/12/soap-envelope"
  ;   soap:encodingStyle="http://www.w3.org/2001/12/soap-encoding">
  ;   <soap:Body>
- ;     <CS-RESPONSE xmlns="http://vista.med.va.gov/oncology">
+ ;     <CS-RESPONSE xmlns="http://vista.DOMAIN.EXT/oncology">
  ;       <SCHEMA>...</SCHEMA>
  ;       <TABLE>
  ;         <NUMBER>...</NUMBER>

@@ -1,5 +1,5 @@
 MAGGSIUI ;WOIFO/GEK/NST - Utilities for Image Import API ; 20 Jan 2010 10:10 AM
- ;;3.0;IMAGING;**7,8,48,20,85,59,108**;Mar 19, 2002;Build 1738;May 20, 2010
+ ;;3.0;IMAGING;**7,8,48,20,85,59,108,121**;Mar 19, 2002;Build 2340;Oct 20, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -49,11 +49,12 @@ IMPORT(MAGRY,IMAGES,MAGIX) ;
  N GDESC,DFLG,TRTYPE,DOCCTG,DOCDT,IXPKG,IXCLS,IXTYPE,IXSPEC,IXPROC,IXORIGIN,MAX,SITEPLC
  N ERR,MAGTM,QTIME,MAGIXZ
  N PXNEW,PXTIUTTL,PXSGNTYP  ; Patch 108
+ N ACTION
  S CT=0,ERR=0
  M MAGIXZ=MAGIX
  ;  DON'T CONVERT ACQS(really a ACQN) to a REAL ACQS, leave it ACQS to be converted by MAGGSIV
- ; 
- F PRM="IDFN","PXSGNTYP","PXPKG","PXIEN","PXDT","PXNEW","PXTIUTTL","TRKID","ACQD","ACQS","ACQN","ACQL","STSCB","ITYPE","CMTH","CDUZ","USERNAME","PASSWORD","GDESC","DFLG","TRTYPE","DOCCTG","DOCDT","IXTYPE","IXSPEC","IXPROC","IXORIGIN" D
+ ;  121:  'ACTION' is new
+ F PRM="ACTION","IDFN","PXSGNTYP","PXPKG","PXIEN","PXDT","PXNEW","PXTIUTTL","TRKID","ACQD","ACQS","ACQN","ACQL","STSCB","ITYPE","CMTH","CDUZ","USERNAME","PASSWORD","GDESC","DFLG","TRTYPE","DOCCTG","DOCDT","IXTYPE","IXSPEC","IXPROC","IXORIGIN" D
  . S @PRM=$G(MAGIX(PRM)) K MAGIX(PRM) ; P8T14 added K.. and next line to account for field numbers later.
  . Q
  S PRM="" F  S PRM=$O(MAGIX(PRM)) Q:PRM=""  D SA(PRM,$G(MAGIX(PRM)))
@@ -116,6 +117,8 @@ IMPORT(MAGRY,IMAGES,MAGIX) ;
  D SA(43,IXPROC)     ;  Index Proc/Event
  D SA(44,IXSPEC)     ;  Index Spec/SubSpec
  D SA(45,IXORIGIN)         ;  Index Origin
+ ; Patch 121 allows ACTION of RESCIND
+ D SA("ACTION",ACTION)     ; P121 ACTION=RESCIND
  ;
  D VAL^MAGGSIV(.MAGRY,.MAGA,1) I 'MAGRY(0) D ERRTRK Q
  I MAX D SA(.05,ACQS) ; this used to be fld 105
@@ -133,7 +136,7 @@ IMPORT(MAGRY,IMAGES,MAGIX) ;
  ; Return Queue Number
  I 'MAGY S MAGRY(0)="0^Error Setting Queue: "_$P(MAGY,U,2),MAGY=TRKID
  E  S MAGRY(0)=MAGY_"^Data has been Queued.",MAGY=+MAGY
- ; for Testing, we'll track input array, and results array by Queue number.
+ ; for debugging we'll track input array, and results array by Queue number.
  I 'MAGRY(0) D ERRTRK Q
  D LOGRES^MAGGSIU3(.MAGRY,0,APISESS)
  ;
@@ -150,6 +153,8 @@ SI(FLD,ARR) ;Set the images into the data array
  N RES
  S I="" F  S I=$O(ARR(I)) Q:I=""  D  Q:'MAGRY(0)
  . S CT=CT+1
+ . ; special case ACTION=RESCIND
+ . I ACTION="RESCIND" S MAGA(CT)="IMAGE^"_ARR(I) Q
  . I ($L($P(ARR(I),U),".")<2) S MAGRY(0)="0^Invalid file name: "_ARR(I) Q
  . S MAGFN=$P(ARR(I),"^")
  . S MAGEXT=$$UP^XLFSTR($P(MAGFN,".",$L(MAGFN,".")))
@@ -207,16 +212,24 @@ ERR ; ERROR TRAP FOR Import API
  I $G(APISESS) D ERRTRK
  Q
  ; Patch 108
-GETIAPID(OUT,TRKID) ; Returns Import API data in OUT array from file (#2006.82) by tracking ID 
+GETIAPID(OUT,TRKID) ; Returns Import API data in OUT array from file (#2006.82) by tracking ID
  ; OUT(FIELD)=VALUE
- N I,X,Y,SNUM
+ N I,X,Y,SNUM,VAL1
  S SNUM=$O(^MAG(2006.82,"E",TRKID,""),-1)  ; Get the last recording for this TRKID
  I 'SNUM Q  ; no data found
+ ; Patch 121/ gek Add the Return of the 'Image:' Data
  S I=1
  F  S I=$O(^MAG(2006.82,SNUM,"ACT",I)) Q:I'?1N.N  D
- . I $G(^MAG(2006.82,SNUM,"ACT",I,0))'="Data:" Q
- . S X=$G(^MAG(2006.82,SNUM,"ACT",I,1))
- . S Y=$TR($P(X,":"),"()","")
- . S:Y'="" OUT(Y)=$P(X,": ",2,999)
+ . S VAL1=$G(^MAG(2006.82,SNUM,"ACT",I,0))
+ . I VAL1="Data:" D
+ . . S X=$G(^MAG(2006.82,SNUM,"ACT",I,1))
+ . . S Y=$TR($P(X,":"),"()","")
+ . . S:Y'="" OUT(Y)=$P(X,": ",2,999)
+ . . Q
+ . I VAL1="Image:" D
+ . . S X=$G(^MAG(2006.82,SNUM,"ACT",I,1))
+ . . S Y=$TR($P(X,":"),"()","")
+ . . S:Y'="" OUT("IMAGE",Y)=$P(X,": ",2,999)
+ . . Q
  . Q
  Q

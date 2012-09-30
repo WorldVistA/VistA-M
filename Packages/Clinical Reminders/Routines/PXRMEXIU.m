@@ -1,5 +1,5 @@
-PXRMEXIU ; SLC/PKR/PJH - Utilities for installing repository entries. ;03/16/2010
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17**;Feb 04, 2005;Build 102
+PXRMEXIU ;SLC/PKR/PJH - Utilities for installing repository entries. ;12/08/2011
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18**;Feb 04, 2005;Build 152
  ;===============================================
 DEF(FDA,NAMECHG) ;Check the reminder definition to make sure the related
  ;reminder exists and all the findings exist.
@@ -109,6 +109,7 @@ GETACT(CHOICES,DIR) ;Get the action
  I CHOICES["M" S DIR(0)=DIR(0)_";M:Merge findings"
  I CHOICES["O" S DIR(0)=DIR(0)_";O:Overwrite the current entry"
  I CHOICES["P" S DIR(0)=DIR(0)_";P:Replace with an existing entry"
+ I CHOICES["U" S DIR(0)=DIR(0)_";U:Update"
  I CHOICES["Q" S DIR(0)=DIR(0)_";Q:Quit the install"
  I CHOICES["R" S DIR(0)=DIR(0)_";R:Restart"
  I CHOICES["S" S DIR(0)=DIR(0)_";S:Skip, do not install this entry"
@@ -210,13 +211,13 @@ SFMVPI(FDA,NAMECHG,SFN) ;Search a variable pointer list for items that do not
  ;
  ;===============================================
 TIUOBJ(FDA) ;Resolve the name of the health summary object.
- N END,HSOBJIEN,IENS,TEMP
+ N END,HSOBJIEN,IENS,START,TEMP
  S IENS=$O(FDA(8925.1,""))
  S TEMP=$G(FDA(8925.1,IENS,9))
  I TEMP'["TIU^GMTSOBJ" Q
- S TEMP=$P(TEMP,",",2)
+ S START=$F(TEMP,"DFN,")
  S END=$L(TEMP)-1
- S TEMP=$E(TEMP,1,END)
+ S TEMP=$E(TEMP,START,END)
  S HSOBJIEN=$O(^GMT(142.5,"B",TEMP,""))
  I HSOBJIEN="" D  Q
  . N TEXT
@@ -228,11 +229,13 @@ TIUOBJ(FDA) ;Resolve the name of the health summary object.
  . I '$D(XPDNM) D EN^DDIOL(.TEXT)
  . I $D(XPDNM) D BMES^XPDUTL(.TEXT)
  S FDA(8925.1,IENS,9)="S X=$$TIU^GMTSOBJ(DFN,"_HSOBJIEN_")"
+ S FDA(8925.1,IENS,99)=$H
  Q
  ;
  ;===============================================
 VDLGFIND(ABBR,IEN,ALIST) ;Determine if the finding item associated with a
- ;reminder dialog is active returns a 1 if it is inactive returns a 0.
+ ;reminder dialog is active. Returns a 1 if it is active otherwise
+ ;returns a 0.
  N FILENUM
  S FILENUM=$P(ALIST(ABBR),U,1)
  Q $$FILESCR^PXRMDLG6(IEN,FILENUM)

@@ -1,5 +1,5 @@
 BPSNCPD9 ;ALB/DMB - Eligibility Verification Entry Point ;09/21/2010
- ;;1.0;E CLAIMS MGMT ENGINE;**10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -8,7 +8,7 @@ BPSNCPD9 ;ALB/DMB - Eligibility Verification Entry Point ;09/21/2010
  ;   DFN - Patient
  ;   BPSARRY - Array of values
  ;      "PLAN"        - IEN to the GROUP INSURANCE PLAN (#355.3) file 
- ;      "FILL DATE"   - Date of Service
+ ;      "DOS"         - Date of Service
  ;      "IEN"         - Prescription IEN
  ;      "FILL NUMBER" - Fill Number
  ;      "REL CODE"    - Relationship Code
@@ -22,7 +22,7 @@ EN(DFN,BPSARRY) ;
  ; Validate Incoming Parameters
  I '$G(DFN) Q "0^Invalid Patient IEN"
  I '$G(BPSARRY("PLAN")) Q "0^Invalid Plan"
- I '$G(BPSARRY("FILL DATE")) Q "0^Invalid Date of Service"
+ I '$G(BPSARRY("DOS")) Q "0^Invalid Date of Service"
  S BPSARRY("IEN")=$G(BPSARRY("IEN"))
  S BPSARRY("FILL NUMBER")=$G(BPSARRY("FILL NUMBER"))
  S BPSARRY("REL CODE")=$G(BPSARRY("REL CODE"))
@@ -54,7 +54,7 @@ EN(DFN,BPSARRY) ;
  ; Call billing determination
  K MOREDATA
  S RXACT="ELIG"
- D BASICMOR^BPSOSRX8(RXACT,BPSARRY("FILL DATE"),SITE,"","","","","","",.MOREDATA)
+ D BASICMOR^BPSOSRX8(RXACT,BPSARRY("DOS"),SITE,"","","","","","",.MOREDATA)
  S BPSARRY("DFN")=DFN
  S BPSARRY("EPHARM")=$$GETPHARM^BPSUTIL(SITE)
  S BPSARRY("USER")=DUZ

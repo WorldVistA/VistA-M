@@ -1,5 +1,5 @@
 IBAECO ;ALB/BGA - LONG TERM CARE OUTPATIENT TRACKER ;16-OCT-01
- ;;2.0;INTEGRATED BILLING;**164,171,176,188,312**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**164,171,176,188,312,454**;21-MAR-94;Build 4
  ;;Per VHA DIRECTIVE 10-93-142, this routine should not be modified.
  ;
  ; Comment- This routine is invoked via the appointment driver ^IBAMTS
@@ -46,6 +46,9 @@ EN N IBEVT,IBEV0,DFN,IBSDHDL,IBORG,IBOE,IBLTCST,IBCL,IBDT,IBST,IBM
  . . . ;
  . . . ; LTC patient check
  . . . S IBLTCST=+$$LTCST^IBAECU(DFN,IBDT\1,1)
+ . . . ;
+ . . . ; are they exempt from non-institutional LTC because of CD status?
+ . . . I $$CDEXMPT^IBAECU(DFN,IBDT\1) Q
  . . . ;
  . . . ; no 1010EC on file
  . . . I IBLTCST=0 D  D XMNOEC^IBAECU(DFN,.IBDT,.IBM) Q

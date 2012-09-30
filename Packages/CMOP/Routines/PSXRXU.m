@@ -1,10 +1,11 @@
 PSXRXU ;BIR/WPB,HTW,BAB-Remote Facility File Utilities ;14 Dec 2001
- ;;2.0;CMOP;**3,28,41,57,48**;11 Apr 97
+ ;;2.0;CMOP;**3,28,41,57,48,70**;11 Apr 97;Build 9
  ; Reference to ^PS(52.5,  supported by DBIA #1978
  ; Reference to ^PSOHLSN1  supported by DBIA #2385
  ; Reference to ^PSRX(     supported by DBIA #1977
  ; Reference to ^XTMP("ORLK-" supported by DBIA #4001
  ; Reference to $$GETNDC^PSONDCUT supported by DBIA #4705
+ ; Reference to $$MGONFILE^PSOFDAUT(RX) supported by DBIA #5740
 START ;files transmission data in file 52 52.5 after transmission is sent
  ; and clear OERR lock ^XTMP("ORLK-"
  ; setup error trap for updating RXs in 52 & 52.5
@@ -38,6 +39,8 @@ FILE ;files the data in the CMOP event multiple of PSRX(
  ;L +^PSRX(RX,4,0):600 Q:'$T
  S DA(1)=RX,DIC="^PSRX("_RX_",4,",DIC(0)="Z",X=PSXBAT
  S DIC("DR")="1////"_$G(PSXMSG)_";2////"_$G(FILL)_";3////0;12///"_$S($$PATCH^XPDUTL("PSO*7.0*148"):$$GETNDC^PSONDCUT(RX,FILL),1:"")
+ I $$MGONFILE^PSOFDAUT(RX) D
+ . S DIC("DR")=DIC("DR")_";35///"_$P($$MGONFILE^PSOFDAUT(RX),"^",2)
  D:'$D(^PSRX(RX,4,"B",PSXBAT)) FILE^DICN I 1
  E  S DIE=DIC,DR=DIC("DR"),DA=$O(^PSRX(RX,4,"B",PSXBAT,0)) K DIC D ^DIE
  K DIC,DA,DR,DIE

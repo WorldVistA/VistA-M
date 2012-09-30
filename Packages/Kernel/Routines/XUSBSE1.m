@@ -1,5 +1,7 @@
-XUSBSE1 ;JLI/OAK-OIFO - MODIFICATIONS FOR BSE ;02/01/10  07:35
- ;;8.0;KERNEL;**404,439,523**;Jul 10, 1995;Build 16
+XUSBSE1 ;JLI/OAK-OIFO - MODIFICATIONS FOR BSE ;02/27/12  08:49
+ ;;8.0;KERNEL;**404,439,523,595**;Jul 10, 1995;Build 12
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
  ; SETVISIT - returns a BSE token
 SETVISIT(RES) ; .RPC
  N TOKEN,O
@@ -14,20 +16,22 @@ SETVISIT(RES) ; .RPC
  ;   output - RES - passed by reference, contains global location on return
  ;   input  - TOKEN - token value returned by remote site
 GETVISIT(RES,TOKEN) ; .RPC
- N O
+ N O,X
  S RES="",O=0
  ; shouldn't come in with a null token ; JLI 091218
- I TOKEN="" Q  ; JLI 091218
+ I TOKEN="" S X=$$LOGERR("BSE NULL TOKEN") Q  ; JLI 091218, p595 changed to function call
  ;Check expiration time, and if it has passed.
- L +^XTMP(TOKEN):10 I '$T Q
+ L +^XTMP(TOKEN):10 I '$T Q  ; If ^XTMP is purged, token context will be lost
  I ($G(^XTMP(TOKEN,3))-$H) K ^XTMP(TOKEN)
  S RES=$G(^XTMP(TOKEN,1)) S:$L(RES) RES=$$DECRYP^XUSRB1(RES)
  L -^XTMP(TOKEN)
+ S:'$L(RES) X=$$LOGERR("BSE LOGIN ERROR") ;p595
  Q
  ;
 OLDCAPRI(XWBUSRNM) ;The OLD CAPRI code, Remove next patch
  ; Return 1 if a valid user, else 0.
  N XVAL,XOPTION
+ ; ZEXCEPT: DTIME - Kernel exemption
  S XVAL=$$PUT^XUESSO1($P(XWBUSRNM,U,3,99)) ; Sign in as Visitor
  I XVAL D
  . S XOPTION=$$FIND1^DIC(19,"","X","DVBA CAPRI GUI")
@@ -39,10 +43,11 @@ OLDCAPRI(XWBUSRNM) ;The OLD CAPRI code, Remove next patch
  ;   return value - 1 if a valid user, else 0
  ; called from XUSRB
 CHKUSER(INPUTSTR) ;
- N XUCODE,XUENTRY,XUSTR,XUTOKEN
+ N X,XUCODE,XUENTRY,XUSTR,XUTOKEN
  ; ZEXCEPT: XUREMAPP - global variable naming the REMOTE APPLICATION in use
+ ; ZEXCEPT: DTIME - Kernel exemption
  I +INPUTSTR=-31,INPUTSTR["DVBA_" Q $$OLDCAPRI(INPUTSTR)
- I +INPUTSTR'=-35 Q 0
+ I +INPUTSTR'=-35 S X=$$LOGERR("BSE LOGIN ERROR") Q 0  ;p595
  S INPUTSTR=$P(INPUTSTR,U,2,99)
  K ^TMP("XUSBSE1",$J)
  S XUCODE=$$DECRYP^XUSRB1(INPUTSTR) ;TMP
@@ -54,6 +59,7 @@ CHKUSER(INPUTSTR) ;
  . S XUENTRY=$$BSEUSER(XUENTRY,XUTOKEN,XUSTR)
  . Q
  S DTIME=$$DTIME^XUP(DUZ) ;p523
+ S:(XUENTRY'>0) X=$$LOGERR("BSE LOGIN ERROR") ;p595
  Q $S(XUENTRY'>0:0,1:XUENTRY)
  ;
  ; BSEUSER - returns internal entry number for authenicated user or 0
@@ -61,20 +67,22 @@ CHKUSER(INPUTSTR) ;
  ;   TOKEN - input - token from authenticaing site
  ;   STR   - input - remainder of input string (2 pieces)
 BSEUSER(ENTRY,TOKEN,STR) ;
- N XUIEN,XUCONTXT,XUDEMOG,XCNT,XVAL,ARRAY
+ N X,XUIEN,XUCONTXT,XUDEMOG,XCNT,XVAL,ARRAY
+ ; ZEXCEPT: XWBSEC - Kernel exemption
  S XUIEN=0,XUDEMOG=""
  S XCNT=0 F  S XCNT=$O(^XWB(8994.5,ENTRY,1,XCNT)) Q:XCNT'>0  S XVAL=^(XCNT,0) D  Q:XUDEMOG'=""
  . ; CODE TO HANDLE CONNECTION TYPE AND CONNECTIONS
  . I $P(XVAL,U)="M" S XUDEMOG=$$M2M($P(XVAL,U,3),$P(XVAL,U,2),TOKEN) D CLOSE^XWBM2MC() Q
  . I $P(XVAL,U)="R" S XUDEMOG=$$XWB($P(XVAL,U,3),$P(XVAL,U,2),TOKEN) Q
  . I $P(XVAL,U)="H" S XUDEMOG=$$POST1^XUSBSE2(.ARRAY,$P(XVAL,U,3),$P(XVAL,U,2),$P(XVAL,U,4),"xVAL="_TOKEN) Q
- . I $P(XVAL,U)="S" S XUDEMOG=$$HOME(TOKEN,XVAL,STR) Q  ;p522
+ . I $P(XVAL,U)="S" S XUDEMOG=$$HOME(TOKEN,XVAL,STR) Q  ;p522 station-based authentication, STR contains station number and port
  . Q
  ; if invalid set XWBSEC so an error is reported in the GUI application
  I +XUDEMOG=-1 S XWBSEC="BSE ERROR - "_$P(XUDEMOG,"^",2)
  I $L(XUDEMOG,"^")>2 D
  . S XUCONTXT=$P($G(^XWB(8994.5,ENTRY,0)),U,2)
  . S XUIEN=$$SETUP(XUDEMOG,XUCONTXT)
+ S:(XUIEN'>0) X=$$LOGERR("BSE LOGIN ERROR") ;p595
  Q $S(XUIEN'>0:0,1:XUIEN)
  ;
 XWB(SERVER,PORT,TOKEN) ;Special Broker service
@@ -117,7 +125,7 @@ HOME(TOKEN,RAD,BSE) ;Call home for token.
  Q:$P(RAD,U,2)'=-1 "" ;Not setup right
  ;Set Station #, port from passed in data
  S STN=$P(BSE,U),PORT=$P(BSE,U,2),XUESSO=""
- S IP=$$IPFLOC(STN) I '$L(IP) S XUESSO="-1^ADDRESS FOR STN "_STN_" NOT FOUND"
+ S IP=$$IPFLOC(STN) S:'$L(IP) IP=$$SITESVC(STN) I '$L(IP) S XUESSO="-1^ADDRESS FOR STN "_STN_" NOT FOUND" S X=$$LOGERR("BSE LOGIN ERROR") ;p595
  D:$G(XWBDEBUG) LOG^XWBDLOG("HOME BSE IP: "_IP_" PORT:"_PORT)
  I $L(IP) S XUESSO=$$CALLBSE^XWBTCPM2(IP,PORT,TOKEN,STN)
  D:$G(XWBDEBUG) LOG^XWBDLOG("LEAVING HOME XUESSO: "_XUESSO)
@@ -125,12 +133,13 @@ HOME(TOKEN,RAD,BSE) ;Call home for token.
  I XUESSO="No Response" S XUESSO="-1^BSE TOKEN EXPIRED"
  Q XUESSO
  ;
-IPFLOC(L) ;Get the addess from the station number
- N XUSBSE,I,RET,ADD,IP
+IPFLOC(L) ;Get the addess from the station number/HL LOGICAL LINK file
+ N XUSBSE,I,RET,ADD,IP,STNPRNT
  ; next line added to handle IP input directly
  D:$G(XWBDEBUG) LOG^XWBDLOG("L IN IPFLOC: "_L)
  I L?1.3N1"."1.3N1"."1.3N1"."1.3N Q L ; JLI 091007
- D FIND^DIC(870,,".03;.08","MO",L,,,,,"XUSBSE")
+ S STNPRNT=$P($$PRNT^XUAF4(L),U,2) S:'+STNPRNT STNPRNT=L ;p595 try conv subdiv to parent stn
+ D FIND^DIC(870,,".03;.08","X",STNPRNT,,"C",,,"XUSBSE") ;p595 IA# 5449 "C" index lookup
  Q:+$G(XUSBSE("DILIST",0))=0 ""
  S I=0,ADD="",IP=""
  F  S I=$O(XUSBSE("DILIST","ID",I)) Q:'I  D  Q:IP
@@ -144,11 +153,16 @@ IPFLOC(L) ;Get the addess from the station number
  . . I ADD?1.3N1"."1.3N1"."1.3N1"."1.3N S IP=ADD Q
  . . S IP=$$ADDRESS^XLFNSLK("VISTA."_ADD) S:IP="" IP=$$ADDRESS^XLFNSLK(ADD)
  . . Q
- I IP="" S IP=$$WEBADDRS(L)
+ Q IP
+ ;
+SITESVC(STNNUM) ;p595 Get IP from the stn# from VISTASITESERVICE
+ N IP,STNPRNT
+ S STNPRNT=$P($$PRNT^XUAF4(STNNUM),U,2) S:'+STNPRNT STNPRNT=STNNUM ;p595 try conv subdiv to parent stn
+ S IP=$$WEBADDRS(STNPRNT) I IP'?1.3N1"."1.3N1"."1.3N1"."1.3N S IP=$$ADDRESS^XLFNSLK(IP) ;p595
  Q IP
  ;
 WEBADDRS(STNNUM) ;
- N IP,URL,XUSBSE,RESULTS,I,X
+ N IP,URL,XUSBSE,RESULTS,I,X,POP
  D FIND^DIC(2005.2,,"1","MO","VISTASITESERVICE",,,,,"XUSBSE")
  S URL=$G(XUSBSE("DILIST","ID",1,1))
  D EN1^XUSBSE2(URL_"/getSite?siteID="_STNNUM,.RESULTS)
@@ -166,9 +180,9 @@ SETUP(XUDEMOG,XUCONTXT) ;
  Q DUZ
  ;
 SETCNTXT(XOPT) ;
- N OPT,XUCONTXT
+ N OPT,XUCONTXT,X
  S XUCONTXT="`"_XOPT
- I $$FIND1^DIC(19,"","X",XUCONTXT)'>0 Q  ; context option not in option file
+ I $$FIND1^DIC(19,"","X",XUCONTXT)'>0 S X=$$LOGERR("BSE LOGIN ERROR") Q  ; context option not in option file
  ;Have to use $D because of screen in 200.03 keeps FIND1^DIC from working.
  I '$D(^VA(200,DUZ,203,"B",XOPT)) D
  . ; Have to give the user a delegated option
@@ -187,3 +201,34 @@ SETCNTXT(XOPT) ;
  . Q
  Q
  ;
+STNTEST ; tests station#-to-IP conversion (IPFLOC,WEBADDRS) used by HOME station#-based callback
+ N XUSLSTI,XUSLSTV,XUSSTN,XUSIP1,XUSIP2,XUSBSE
+ W !,"Broker Security Enhancement (BSE) Station Number-to-IP conversion test (for BSE"
+ W !,"callbacks to home system). Note: it's not necessarily wrong if results differ"
+ W !,"or are blank. 2 methods' results are listed: HL LOGICAL LINK/VISTASITESERVICE"
+ ;
+ D FIND^DIC(2005.2,,"1","MO","VISTASITESERVICE",,,,,"XUSBSE")
+ W !!," local VISTASITESERVICE server:",!," ",$G(XUSBSE("DILIST","ID",1,1)),"",!
+ ;
+ K ^TMP($J,"XUSBSE1")
+ DO LIST^DIC(4,,"@;.01;11;99;101","IP",,,,"D",,,$NA(^TMP($J,"XUSBSE1")))
+ S XUSLSTI=0 F  S XUSLSTI=$O(^TMP($J,"XUSBSE1","DILIST",XUSLSTI)) Q:'+XUSLSTI  D
+ . S XUSLSTV=^TMP($J,"XUSBSE1","DILIST",XUSLSTI,0)
+ . Q:+$P(XUSLSTV,U,5)
+ . S XUSSTN=$P(XUSLSTV,U,4) Q:'$$TF^XUAF4(XUSSTN)
+ . S XUSIP1=$$IPFLOC(XUSSTN),XUSIP2=$$SITESVC(XUSSTN)
+ . W !,XUSSTN,?8,"(",$P(XUSLSTV,U,2),"): " I $L(XUSIP1)!$L(XUSIP2) W $S($L(XUSIP1):XUSIP1,1:"blank"),"/",$S($L(XUSIP2):XUSIP2,1:"blank") I $L(XUSIP1),$L(XUSIP2),(XUSIP1'=XUSIP2) W " ***DIFFERENT***"
+ K ^TMP($J,"XUSBSE1")
+ Q
+LOGERR(XUSETXT) ; log an error in error trap for failed login attempts ; p595
+ ; XUSETXT is the error subject line $ZE
+ ; The function returns 0 if the error was screened, and 1 if an error was trapped
+ N XUSAPP
+ ; ZEXCEPT: XWBSEC - Kernel exemption
+ ; ZEXCEPT: XUDEMOG - Kernel exemption
+ S XUSAPP=$P($G(DUZ("REMAPP")),U,2)
+ I $P($G(XUDEMOG),U,2)="BSE TOKEN EXPIRED" Q 0  ; screen out "TOKEN EXPIRED" errors
+ I $G(XWBSEC)="BSE ERROR - BSE TOKEN EXPIRED" Q 0  ; screen out "TOKEN EXPIRED" errors
+ I XUSAPP'="" S XUSETXT=XUSETXT_" ("_XUSAPP_")"
+ D APPERROR^%ZTER($E(XUSETXT,1,32))
+ Q 1

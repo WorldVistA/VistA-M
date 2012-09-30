@@ -1,5 +1,5 @@
-SRONEW ;B'HAM ISC/MAM - ENTER A NEW CASE ;01/29/01  1:09 PM
- ;;3.0;Surgery;**3,23,26,30,47,58,48,67,107,100,144,175**;24 Jun 93;Build 6
+SRONEW ;BIR/MAM - ENTER A NEW CASE ;11/01/2011
+ ;;3.0;Surgery;**3,23,26,30,47,58,48,67,107,100,144,175,176**;24 Jun 93;Build 8
  ;
  ; Reference to ^TMP("CSLSUR1" supported by DBIA #3498
  ;
@@ -32,6 +32,7 @@ DOC W ! S DIC("A")="Select Surgeon: ",DIC=200,DIC(0)="QEAM",SRSDOC="" D ^DIC K D
 CASE ; create case in SURGERY file
  K DA,DIC,DD,DO,DINUM,SRTN S X=DFN,DIC="^SRF(",DIC(0)="L" D FILE^DICN K DIC S SRTN=+Y G:'$$LOCK^SROUTL(SRTN) DEL
  S ^SRF(SRTN,8)=SRSITE("DIV"),^SRF(SRTN,"OP")=""
+ S ^SRF(SRTN,52)="0^0^0^0^0^0"  ; default flash sterilization fields to zero
  K DIE,DR S DA=SRTN,DIE=130,DR=".09////"_SRSDATE_";26////"_SRPRIN_";68////"_SRPRIN_";.14////"_SRSDOC_";616////"_SRSODP_";612////"_SRSODP_";613////"_$$DSMP^SRSDT D ^DIE K DR
 ASURG ; attending surgeon
  K DIR S DIR(0)="130,.164",DIR("A")="Attending Surgeon" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G DEL

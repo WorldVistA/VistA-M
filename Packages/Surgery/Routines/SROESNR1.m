@@ -1,6 +1,5 @@
-SROESNR1 ;BIR/ADM - NURSE REPORT E-SIG UTILITY ;02/20/05
- ;;3.0; Surgery ;**100,143,157**;24 Jun 93;Build 3
- ;
+SROESNR1 ;BIR/ADM - NURSE REPORT E-SIG UTILITY ;06/07/2011
+ ;;3.0;Surgery;**100,143,157,176**;24 Jun 93;Build 8
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure.  Local modifications to this routine
  ;**         are prohibited.
@@ -80,10 +79,11 @@ PJA ;;Prosthesis Installed^0;.47^1,0
  ;;Prosthesis Installed^04-RN Verifier-130.01,10-4^1,2;3
  ;;Prosthesis Installed^05-Vendor-130.01,1-4^1,0;2
  ;;Prosthesis Installed^06-Model-130.01,2-4^1,0;3
- ;;Prosthesis Installed^07-Lot/Serial Number-130.01,2.5-4^1,0;5
  ;;Prosthesis Installed^08-Sterile Resp-130.01,5-4^1,0;7
  ;;Prosthesis Installed^09-Size-130.01,6-4^1,1;1
  ;;Prosthesis Installed^10-Quantity-130.01,7-4^1,1;2
+ ;;Prosthesis Installed^11-Lot Number-130.01,11-4^1,1;3
+ ;;Prosthesis Installed^12-Serial Number-130.01,12-4^1,1;4
  ;;
 PCC ;;Medications^0;.375^22,0
  ;;Medications^01-Medication-130.33,.01-2^22,0;1

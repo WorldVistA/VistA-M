@@ -29,7 +29,7 @@ SYNONYM ;
  . . Q:Y<0  ; Quit if (sub) domain is not in the table
  . . D BMES^XPDUTL("Domain: "_XMDOM)
  . . S XMSYN=$P(Y(0),U,2)
- . . I XMSYN="" S XMSYN=$P(XMDOM,".",1,$L(XMDOM,".")-2)_".MED.VA.GOV"
+ . . I XMSYN="" S XMSYN=$P(XMDOM,".",1,$L(XMDOM,".")-2)_".DOMAIN.EXT"
  . . E  S XMSYN=XMSUBDOM_XMSYN
  . . D CHKSYN(XMI,XMSYN)
  K ^DOPT("XMSYN",$J)
@@ -88,7 +88,7 @@ CHANGE ;
  . . Q:Y<0  ; Quit if (sub) domain is not in the table
  . . D BMES^XPDUTL("Domain: "_XMDOM)
  . . S XMSYN=$P(Y(0),U,2)
- . . I XMSYN="" S XMSYN=$P(XMDOM,".",1,$L(XMDOM,".")-2)_".MED.VA.GOV"
+ . . I XMSYN="" S XMSYN=$P(XMDOM,".",1,$L(XMDOM,".")-2)_".DOMAIN.EXT"
  . . E  S XMSYN=XMSUBDOM_XMSYN
  . . D CHKNAME(XMI,XMDOM,XMSYN,.XMSTAT)
  . . S ^TMP("XM",$J,XMDOM)=XMSYN_U_$G(XMSTAT,"ERROR")
@@ -159,7 +159,7 @@ CSUMM ;
  F  S XMI=$O(^DOPT("XMSYN",$J,XMI)) Q:'XMI  S XMREC=^(XMI,0) D
  . S XMOLD=$P(XMREC,U,1)
  . Q:$D(^TMP("XM",$J,XMOLD))
- . S (XMNEW,XMCHK)=$P(XMREC,U,2) I XMNEW="" S XMNEW="xxx.MED.VA.GOV",XMCHK=$P(XMOLD,".",1,$L(XMOLD,".")-2)_".MED.VA.GOV"
+ . S (XMNEW,XMCHK)=$P(XMREC,U,2) I XMNEW="" S XMNEW="xxx.DOMAIN.EXT",XMCHK=$P(XMOLD,".",1,$L(XMOLD,".")-2)_".DOMAIN.EXT"
  . S ^TMP("XM",$J,XMOLD)=XMNEW_U_$S($D(^DIC(4.2,"B",XMCHK)):"OK",1:"???")
  D BMES^XPDUTL("Summary for Domain Name Change")
  D MES^XPDUTL("Status key:")
@@ -187,8 +187,8 @@ REINDEX ;
  D MES^XPDUTL("Done reindexing.  Let's get down to business...")
  Q
 S ;;current site name^new site name (Add synonyms)
- ;;ISC-SF.VA.GOV^FO-OAKLAND.MED.VA.GOV
+ ;;ISC-SF.DOMAIN.EXT^FO-OAKLAND.DOMAIN.EXT
  ;;
 C ;;current site name^new site name (Change the names)
- ;;ISC-SF.VA.GOV^FO-OAKLAND.MED.VA.GOV
+ ;;ISC-SF.DOMAIN.EXT^FO-OAKLAND.DOMAIN.EXT
  ;;

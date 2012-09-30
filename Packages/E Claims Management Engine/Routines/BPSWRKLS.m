@@ -1,5 +1,5 @@
 BPSWRKLS ;ALB/SS - SEND CLAIMS TO PHARMACY WORKLIST ;12/26/07
- ;;1.0;E CLAIMS MGMT ENGINE;**7,8**;JUN 2004;Build 29
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,8,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; -- main entry point for BPS PRTCL USRSCR PHARM WRKLST protocol (ECME User Screen option)
@@ -31,7 +31,7 @@ EN ;
  E  S BPCOMZ="Sent to Pharmacy Worklist"
  W !!,"Eligible claim(s) will be sent to the Pharmacy Worklist...",!
  S BPQ=$$YESNO^BPSSCRRS("Are you sure?(Y/N)")
- I BPQ=0 D QUIT() Q
+ I BPQ<1 D QUIT() Q
  ;send to Pharmacy
  S BP59=0,BPUPD=0
  F  S BP59=$O(BP59SENT(BP59)) Q:+BP59=0  S BPUPD=$$TOPHARM(BP59,BPCOMZ,.BPSARR59)

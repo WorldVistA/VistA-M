@@ -1,5 +1,5 @@
-MAGJLST1 ;WIRMFO/JHC VistARad RPC calls ; 23 Apr 2010  15:55 PM
- ;;3.0;IMAGING;**16,22,18,65,76,101,90**;Mar 19, 2002;Build 1764;Jun 09, 2010
+MAGJLST1 ;WIRMFO/JHC - VistARad RPC calls ; 30 Dec 2011  1:36 PM
+ ;;3.0;IMAGING;**16,22,18,65,76,101,90,120**;Mar 19, 2002;Build 27;May 23, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -17,13 +17,14 @@ MAGJLST1 ;WIRMFO/JHC VistARad RPC calls ; 23 Apr 2010  15:55 PM
  ;;
  Q
  ;
- ; Subroutines for fetching Exam Info for Radiology Workstation
- ; Exam listings:
+ ; Subroutines for fetching Patient Exam Info
  ;     PTLIST -- list subset of all exams for a patient
  ;        RPC Call: MAGJ PTRADEXAMS
  ;   PTLSTALL -- list ALL exams for a patient
- ;       RPC Call: MAGJ PT ALL EXAMS
- ;
+ ;        RPC Call: MAGJ PT ALL EXAMS
+ ;    FACLIST -- get Treating Facility List for a patient
+ ;        RPC Call: MAGJ GET TREATING LIST
+ ; 
  Q
 ERR N ERR S ERR=$$EC^%ZOSV S ^TMP($J,"RET",0)="0^4~"_ERR
  S MAGGRY=$NA(^TMP($J,"RET"))
@@ -31,50 +32,50 @@ ERR N ERR S ERR=$$EC^%ZOSV S ^TMP($J,"RET",0)="0^4~"_ERR
  Q:$Q 1  Q
  ;
 PTLSTALL(MAGGRY,DATA) ; List ALL exams for a patient
+ ; MAGGRY - indirect reference to return array of exams for a patient
+ ; DATA -- DFN ^ BEGDT ^ ONESHOT
+ ;   --> see PTLIST comments
  ;  RPC is MAGJ PT ALL EXAMS
  N PARAM
- S PARAM="^^^"_$P(DATA,U,2,3)
- D PTLIST(.MAGGRY,$P(DATA,U)_PARAM)
+ S PARAM=$P(DATA,U)_"^^^"_$P(DATA,U,2,3)
+ D PTLIST(.MAGGRY,PARAM)
  Q
  ;
 PTLIST(MAGGRY,DATA) ; get list of exams for a patient
  ; 
  ; MAGGRY - indirect reference to return array of exams for a patient
- ; DATA   - DFN ^ LIMYEARS ^ LIMEXAMS ^ BEGDT ^ ONESHOT
- ;   DFN--Patient's DFN
- ;   LIMYRS--Restrict exams up to # Years back (defunct)
- ;   LIMEXAMS--Restrict exams up to # of exams
- ;   BEGDT--Begin date for exam fetch (Patch 18 addition--see below)
- ;   ONESHOT--Number days back to search, in one fell swoop
+ ; DATA -- DFN ^ unused ^ unused ^ BEGDT ^ ONESHOT
+ ;   DFN--Required; Patient's DFN
+ ;   BEGDT--Optional; Begin date for exam fetch (see below)
+ ;   ONESHOT--Optional; Number days back to search, return all records in one fell swoop
  ; Returns data in ^TMP($J,"MAGRAEX",0:n)
  ; RPC Call: MAGJ PTRADEXAMS
  ;
- ; Patch 18 eliminates "Patient Exams" / "All Patient Exams" distinction.
- ; It always retrieves ALL exams, but uses multiple RPC calls, so the client
- ; incrementally builds the list; this is to provide all the data, but without
+ ; Client retrieves ALL exams using multiple RPC calls to
+ ; incrementally build the list; this is to provide all the data, but without
  ; incurring any long pauses to provide the info to the user.
- ; Below, the P18 code fetches RAD data in one-year chunks, and repeats
- ;   until over 20 exams have been processed, at which point the RPC reply
- ;   is posted, along with the last date processed; this value is then used for
- ;   a subsequent RPC call to get the next chunk of the record; etc. till all done.
+ ; The algorithm fetches RAD data in one-year chunks, and repeats
+ ; until over 20 exams have been processed, at which point the RPC reply
+ ; is posted, along with the last date processed; this value is then used for
+ ; a subsequent RPC call (BEGDT) to get the next chunk of the record; etc. till all done.
+ ;  * ONESHOT overrides the incremental algorithm, returning all desired data in a single call.
  ;   
  N CNT,DFN,ISS,PATNAME,DIQUIET,MAGRACNT,MAGRET,REPLY,REMOTE
  N DAYCASE,DIV,EXCAT,MAGDT,XX,XX2,WHOLOCK,MODALITY,MYLOCK,PLACE,ENDLOOP
- N LIMEXAMS,BEGDT,SAVBEGDT,ENDDT,MORE,RDRIST,PSSN,CPT,PARAM
+ N LIMEXAMS,BEGDT,SAVBEGDT,ENDDT,MORE,RDRIST,PSSN,CPT
  N CURPRIO,STATUS,RARPT,KEY,X2,REMOTE2,ONESHOT,LIMDAYS
- N IMGCNT,LRFLAG,MSG,ONL,PROCMOD,RASTCAT,RASTORD,STATPRIORITY
+ N IMGCNT,LRFLAG,MSG,ONL,PROCMOD,RASTCAT,RASTORD,STATPRIORITY,SNDREMOT
  N $ETRAP,$ESTACK S $ETRAP="D ERR^MAGJLST1"
  S DIQUIET=1 D DT^DICRW
- S PARAM=$G(^MAG(2006.69,1,0))
  S BEGDT=$P(DATA,U,4),ONESHOT=$P(DATA,U,5)
  K MAGGRY S DFN=+DATA
+ S SNDREMOT=+$P($G(^MAG(2006.69,1,0)),U,11)
  S MAGRACNT=1,CNT=0 K ^TMP($J,"MAGRAEX"),^("MAGRAEX2")
  S REPLY="0^4~Compiling list of Radiology Exams."
  I DFN,$D(^DPT(DFN,0)) S PATNAME=$P(^(0),U) D
  . D PID^VADPT6 S PSSN=$S(VAERR:"Unknown",1:VA("PID"))
  . K VA("PID"),VA("BID"),VAERR
  . S ENDLOOP=0,BEGDT=$S(+BEGDT:BEGDT,1:"")
- . I MAGJOB("P32"),+$G(MAGJOB("P32STOP")) S REPLY="0^4~VistARad Patch 32 is no longer supported; contact Imaging Support for the current version of the VistARad client software." Q  ; <*>
  . F  D  Q:'MORE  Q:ENDLOOP  S BEGDT=MORE+1
  . . I 'BEGDT S BEGDT=DT,X2=0
  . . E  S X2=-1
@@ -98,9 +99,8 @@ PTLIST(MAGGRY,DATA) ; get list of exams for a patient
  . S PSSN=" ("_PSSN_")"
  . I CNT S REPLY=CNT_"^1~Radiology Exams for: "_PATNAME_PSSN_$S(MSG="":"",1:" -- "_MSG)
  . E  S REPLY=REPLY_$S(MSG="":"",1:" -- "_MSG)
- . S ^TMP($J,"MAGRAEX2",1)="^Day/Case~S3~1^Lock~~2^Procedure~~6^Modifier~~25^Image Date/Time~S1~7^Status~~8^# Img~S2~9^Onl~~10^RC~~12^Site~~23^Mod~~15^Interp By~~20^Imaging Loc~~11^CPT~~27"
- I MAGJOB("P32"),+$G(MAGJOB("P32STOP")) S ^TMP($J,"MAGRAEX2",1)="^^"
- I 'MAGJOB("P32") S $P(REPLY,"|",2)=SAVBEGDT
+ . S ^TMP($J,"MAGRAEX2",1)="^Day/Case~S3~1^Lock~~2^Procedure~~6^Modifier~~25^Image Date/Time~S1~7^Status~~8^# Img~S2~9^Onl~~10^"_$S(SNDREMOT:"RC~~12^",1:"")_"Site~~23^Mod~~15^Interp By~~20^Imaging Loc~~11^CPT~~27"
+ S $P(REPLY,"|",2)=SAVBEGDT
  S ^TMP($J,"MAGRAEX2",0)=REPLY
  S MAGGRY=$NA(^TMP($J,"MAGRAEX2"))
  K ^TMP($J,"RAE1"),^("MAGRAEX")
@@ -124,7 +124,7 @@ PTLOOP ; loop through exam data & package it for VRAD use
  . I WHOLOCK]"" S T=$$CHKLOCK^MAGJLS2B(WHOLOCK,DAYCASE),WHOLOCK=$P(T,U),MYLOCK=$P(T,U,2)
  . S RDRIST=$P(XX2,U,3),PROCMOD=$P(XX2,U,8),CPT=$P(XX,U,17),RASTORD=$P(XX,U,15)
  . S Y=U_DAYCASE_U_WHOLOCK_U_$E($P(XX,U,9),1,26)_U_PROCMOD_U_MAGDT_U_$E($P(XX,U,14),1,16)_U_IMGCNT_U_ONL
- . S Y=Y_U_REMOTE
+ . I SNDREMOT S Y=Y_U_REMOTE
  . S Y=Y_U_PLACE_U_MODALITY_U_RDRIST_U_$E($P(XX,U,13),1,11)_U_CPT
  . S STATUS=$P(XX,U,11),EXCAT="",CURPRIO=0,RASTCAT=$P(XX2,U,11),LRFLAG=$P(XX2,U,12)
  . I STATUS]"" D

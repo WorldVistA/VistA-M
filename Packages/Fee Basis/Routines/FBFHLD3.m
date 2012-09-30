@@ -1,5 +1,5 @@
 FBFHLD3 ;OIFO/SAB-GET DATA FOR OUT/ANC INVOICE ;9/9/2003
- ;;3.5;FEE BASIS;**61**;JULY 18, 2003
+ ;;3.5;FEE BASIS;**61,122**;JUNE 6, 2011;Build 8
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -19,6 +19,7 @@ EN ;
  ;   FBD(#,"ADJ") = AdjReason1^AdjGrp1^AdjAmt1^AdjReason2^AdjGrp2^AdjAmt2
  ;   FBD(#,"AMT") = Amount Claimed^Amount Paid
  ;   FBD(#,"CK") = Check Number^Check Date^Payment Method
+ ;   FBD(#,"835") = Routing Number^Financial Institution^^Account Number    ; FB*3.5*122
  ;   FBD(#,"DT") = Date of Service
  ;   FBD(#,"FPPS") = FPPS Line Item
  ;   FBD(#,"RMK") = Remittance Remark1,Remittance Remark2
@@ -96,6 +97,7 @@ LINE ; FBC
  ;   FBD(#,"ADJ") = AdjReason1^AdjGrp1^AdjAmt1^AdjReason2^AdjGrp2^AdjAmt2
  ;   FBD(#,"AMT") = Amount Claimed^Amount Paid
  ;   FBD(#,"CK") = Check Number^Check Date^Payment Method
+ ;   FBD(#,"835") = Routing Number^Financial Institution^^Account Number    ; FB*3.5*122
  ;   FBD(#,"DT") = Date of Service
  ;   FBD(#,"FPPS") = FPPS Line Item
  ;   FBD(#,"RMK") = Remittance Remark1^Remittance Remark2
@@ -133,6 +135,9 @@ LINE ; FBC
  ;
  ;CK
  S FBD(FBC,"CK")=$P(FBY(2),U,3)_U_$P(FBY(0),U,14)_U_$$PAYMETH^FBFHLU($P(FBY(2),U,3))
+ ;
+ ;835   FB*3.5*122
+ I $P(FBY(2),U,17),$P(FBY(2),U,18),$P(FBY(2),U,19)'="" S FBD(FBC,"835")=$P(FBY(2),U,17)_U_$P(FBY(2),U,18)_U_$P(FBY(2),U,19)
  ;
  ;CAMT ; add disbursed and interest amounts to claim (0) level
  ; note - disbursed amount on file includes the interest

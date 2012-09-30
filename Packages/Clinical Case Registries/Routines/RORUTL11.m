@@ -1,5 +1,5 @@
-RORUTL11 ;HCIOFO/SG - ACCESS AND SECURITY UTILITIES ;7/21/03 10:28am
- ;;1.5;CLINICAL CASE REGISTRIES;**13,14**;Feb 17, 2006;Build 24
+RORUTL11 ;HCIOFO/SG - ACCESS AND SECURITY UTILITIES ; 6/2/11 4:12pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**13,14,15,17**;Feb 17, 2006;Build 33
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -11,8 +11,16 @@ RORUTL11 ;HCIOFO/SG - ACCESS AND SECURITY UTILITIES ;7/21/03 10:28am
  ;                                      version to the GUI during RPC call ROR
  ;                                      GET M VERSION
  ;ROR*1.5*14   APR  2011   A SAUNDERS   Updated version in tag VERSRV
- ;                                      
+ ;
+ ;ROR*1.5*15   JUN 2011    C RAY        Updated version
+ ;
+ ;ROR*1.5*17   DEC 2011    C RAY        Updated version                                      
  ;******************************************************************************
+ ; This routine uses the following IAs:
+ ;
+ ; #2055   $$ROOT^DILFD (supported)
+ ; #10013  ENALL^DIK (supported)
+ ;         
  ;******************************************************************************
  Q
  ;
@@ -80,5 +88,5 @@ RPCHECK(RPCNAME,REGIEN,FLAGS) ;
  ;associated M changes needed for it.
  ;
 VERSRV(VAL) ;
- S VAL="1.5.14"
+ S VAL="1.5.17"
  Q

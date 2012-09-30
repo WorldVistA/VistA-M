@@ -1,14 +1,6 @@
 BPSOSRX5 ;ALB/SS - ECME REQUESTS ;10-JAN-08
- ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
- ;
- ; if Resubmit then check was the previous UNCLAIM accepted 
- ; (Cannot resubmit reversed claims unless they are accepted)
- ;
-TODAY() ;
- N %
- D NOW^%DTC
- Q $P(%,".",1)
  ;
  ;check if according the last response the payer IS going to PAY
  ;(Note: reversals can be done only on previously payable claims, if reversal failed then the claim stays PAYABLE)
@@ -17,9 +9,9 @@ PAYABLE(BPRESP) ;
  ;
  ;Action type
 ACTTYPE(BWHR) ;
- Q:",AREV,CRLR,CRLX,DC,DDED,DE,EREV,HLD,RS,"[(","_BWHR_",") "U"  ;UNCLAIM (reversal)
- Q:",CRLB,ED,ERES,RL,RRL,"[(","_BWHR_",") "UC"  ;UNCLAIM (reversal) + CLAIM (resubmit)
- Q:",ARES,BB,OF,PC,PE,PL,PP,RF,RN,"[(","_BWHR_",") "C"  ;CLAIM (the very first submit OR resubmit only)
+ Q:",AREV,CRLR,CRLX,DC,DE,EREV,HLD,RS,"[(","_BWHR_",") "U"  ;UNCLAIM (reversal)
+ Q:",CRLB,ED,ERES,P2S,"[(","_BWHR_",") "UC"  ;UNCLAIM (reversal) + CLAIM (resubmit)
+ Q:",BB,CRRL,OF,PC,PE,PL,PP,RF,RN,RRL,P2,"[(","_BWHR_",") "C"  ;CLAIM (the very first submit OR resubmit only)
  Q:BWHR="ELIG" "E"
  Q ""  ;unknown
  ;
@@ -69,7 +61,7 @@ ECMESITE(SITE) ;
  ; otherwise - return IEN of next BPS REQUEST
 REQST99(IEN59,BPCLMST) ;
  N BP77,KEY1,KEY2,BPRETV,BPTYPE,RESAFTRV,BPPAYSEQ,BPTYPNXT,BPFLG
- N BFILLDAT,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPSDELAY,BPCOBIND,BPDUR
+ N DOS,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPSDELAY,BPCOBIND,BPDUR
  S RESAFTRV=0
  I '$G(IEN59) D LOG^BPSOSL(IEN59,$T(+0)_"-Transaction IEN not passed in") Q 0
  S BPCLMST=$G(BPCLMST)
@@ -135,7 +127,7 @@ REQST99(IEN59,BPCLMST) ;
  I BPPAYSEQ>1,BPTYPNXT="C" S BPRETV=$$ACTIVATE^BPSNCPD4(BPNXT77,"C") G END
  ;
  I RESAFTRV=1 D LOG^BPSOSL(IEN59,$T(+0)_"-Now resubmit")
- S BFILLDAT=+$P($G(^BPS(9002313.77,BPNXT77,2)),U)
+ S DOS=+$P($G(^BPS(9002313.77,BPNXT77,2)),U)
  S BWHERE=$P($G(^BPS(9002313.77,BPNXT77,1)),U)
  S BILLNDC=$P($G(^BPS(9002313.77,BPNXT77,2)),U,6) ;if we do not send it then BPSNCPDP will get the latest NDC
  S REVREAS=$P($G(^BPS(9002313.77,BPNXT77,2)),U,2)
@@ -150,7 +142,7 @@ REQST99(IEN59,BPCLMST) ;
  ;   Perform checks if necessary,
  ;   Update billing info if this is a CLAIM
  ;   Activate the request
- S BPRETV=$$EN^BPSNCPDP(KEY1,KEY2,BFILLDAT,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPCOBIND,"B",BPNXT77,"","","","",BPSDELAY)
+ S BPRETV=$$EN^BPSNCPDP(KEY1,KEY2,DOS,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPCOBIND,"B",BPNXT77,"","","","",BPSDELAY)
  ; Code falls through to here but is also called above
 END ;
  ; If unsuccessful, deactivate all subsequent request and quit

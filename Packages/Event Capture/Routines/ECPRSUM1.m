@@ -1,8 +1,8 @@
-ECPRSUM1 ;BIR/DMA,RHK,JPW - Provider Summary (1 to 7) ;22 Jul 2008
- ;;2.0; EVENT CAPTURE ;**5,18,33,47,62,63,61,72,88,95**;8 May 96;Build 26
+ECPRSUM1 ;BIR/DMA,RHK,JPW - Provider Summary (1 to 7) ;1/4/12  12:04
+ ;;2.0;EVENT CAPTURE;**5,18,33,47,62,63,61,72,88,95,112**;8 May 96;Build 18
  S DIC=200,DIC(0)="AQEMZ",DIC("A")="Select Provider: "
  D ^DIC K DIC G END:Y<0 S ECU=+Y,ECUN=$P(Y,"^",2)
- D REASON^ECRUTL ;* Prompt to include Procedure Reasons
+ ;D REASON^ECRUTL ;* Prompt to include Procedure Reasons. 112, Remove reasons from report
  I ($D(DIRUT))!($D(DUOUT)) G END
 BDATE K %DT S %DT="AEX",%DT("A")="Starting with Date: "
  D ^%DT G:Y<0 END S ECSD=Y
@@ -75,7 +75,7 @@ PRINT ;print report
  ..F  S PA=$O(^TMP($J,PR,ECREAS,PA)) D:PA="" TOT Q:PA=""  D  Q:ECOUT
  ...S A=$G(^TMP($J,PR,ECREAS,PA,0))
  ...W ! W:$D(ECRY) $E(ECREAS,1,23)
- ...W ?25,$E($P(PA,"^"),1,24),?50,$P(PA,"^",2)
+ ...W ?25,$E($P(PA,"^"),1,24),?52,$E($P(PA,"^",2),6,9) ;112 only print last 4
  ...F J=1:1:7 S A=$G(^TMP($J,PR,ECREAS,PA,J)),A(J)=A(J)+A W ?10*J+50,$J(A,5,0) I J=7 I $Y+8>IOSL D PAGE Q:ECOUT  D HDR
  ...;print CPT procedure modifiers
  ...Q:ECOUT  S IEN=""
@@ -98,7 +98,7 @@ PAGE ; end of page
  Q
 HDR ;
  W:$Y @IOF S ECPG=ECPG+1
- W !!?33,"EVENT CAPTURE PROVIDER SUMMARY FOR ",ECUN,?118,"Page: ",ECPG,!,?33,"FOR THE DATE RANGE ",$$FMTE^XLFDT(ECSD)," TO ",$$FMTE^XLFDT(ECED),!!,"PROCEDURE",?85,"TOTALS AS PROVIDER #",!
+ W !!?33,"EVENT CAPTURE PROVIDER (1-7) SUMMARY FOR ",ECUN,?118,"Page: ",ECPG,!,?33,"FOR THE DATE RANGE ",$$FMTE^XLFDT(ECSD)," TO ",$$FMTE^XLFDT(ECED),!!,"PROCEDURE",?85,"TOTALS AS PROVIDER #",! ;112
  W:$D(ECRY) "PROCEDURE REASON" W ?25,"PATIENT",?52,"SSN",?64,1,?74,2,?84,3,?94,4,?104,5,?114,6,?124,7
  W !,?5,"CPT MODIFIER (Volume of modifiers use)",!
  F RK=1:1:IOM W "-"

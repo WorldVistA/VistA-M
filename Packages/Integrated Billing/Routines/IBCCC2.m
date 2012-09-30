@@ -1,5 +1,5 @@
 IBCCC2 ;ALB/AAS - CANCEL AND CLONE A BILL - CONTINUED ;6/6/03 9:56am
- ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371,400,433,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371,400,433,432,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRCC2
@@ -12,13 +12,15 @@ STEP5 S IBIFN1=$P(^DGCR(399,IBIFN,0),"^",15) G END:$S(IBIFN1="":1,'$D(^DGCR(399,
  ;move pure data nodes
  F I="I1","I2","I3","M1" I $D(^DGCR(399,IBIFN1,I)) S ^DGCR(399,IBIFN,I)=^DGCR(399,IBIFN1,I)
  ;
- ;move top level data node. ;Do not move 'TX' node except piece 8 (added with IB*2.0*432)
+ ;move top level data node. ;Do not move 'TX' node EXCEPT piece 8 (added with IB*2.0*432)
  ;F I="U","U1","U2","U3","UF2","UF3","UF31","C","M" I $D(^DGCR(399,IBIFN1,I)) S IBND(I)=^(I) D @I
  ; add new data nodes introduced with IB*2.0*432
- F I="TX","U","U1","U2","U3","U4","U5","U6","U8","UF2","UF3","UF31","UF32","C","M" I $D(^DGCR(399,IBIFN1,I)) S IBND(I)=^(I) D @I
+ F I="TX","U","U1","U2","U3","U4","U5","U6","U7","U8","UF2","UF3","UF31","UF32","C","M" I $D(^DGCR(399,IBIFN1,I)) S IBND(I)=^(I) D @I
  ;
  ;move multiple level data
- F I="CC","OC","OP","OT","RC","CP","CV","PRV" I $D(^DGCR(399,IBIFN1,I,0)) D @I
+ ;F I="CC","OC","OP","OT","RC","CP","CV","PRV" I $D(^DGCR(399,IBIFN1,I,0)) D @I
+ ; add new data nodes introduced with IB*2.0*447 BI
+ F I="CC","OC","OP","OT","RC","CP","CV","PRV","U9" I $D(^DGCR(399,IBIFN1,I,0)) D @I
  ;
  ; IB*2.0*432  ADDED IBSILENT flag so that this can be processed in background
  D FTPRV^IBCEU5(IBIFN,$G(IBSILENT)) ; Ask change prov type if form type not the same
@@ -81,6 +83,8 @@ U5 F J=1:1:6 I $P(IBND("U5"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U5"),"^",J)=$P(IBND
  Q
 U6 F J=1:1:6 I $P(IBND("U6"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U6"),"^",J)=$P(IBND("U6"),"^",J)
  Q
+U7 F J=1:1:5 I $P(IBND("U7"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U7"),"^",J)=$P(IBND("U7"),"^",J)
+ Q
 U8 F J=1:1:3 I $P(IBND("U8"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U8"),"^",J)=$P(IBND("U8"),"^",J)
  Q
 UF31 F J=3 I $P(IBND("UF31"),"^",J)]"" S $P(^DGCR(399,IBIFN,"UF31"),"^",J)=$P(IBND("UF31"),"^",J)
@@ -109,7 +113,7 @@ CV ; Don't copy value codes from inpatient inst to inpatient prof bills
  S IBDD=399.047 F J=0:0 S J=$O(^DGCR(399,IBIFN1,I,J)) Q:'J  I $D(^(J,0)) S ^DGCR(399,IBIFN,I,J,0)=^DGCR(399,IBIFN1,I,J,0),X=$P(^(0),"^")
  Q
 RC S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
- S IBDD=399.042 F J=0:0 S J=$O(^DGCR(399,IBIFN1,I,J)) Q:'J  I $D(^(J,0)) S IBND("RC")=^(0) F K=1:1:15 S $P(^DGCR(399,IBIFN,I,J,0),"^",K)=$P(IBND("RC"),"^",K),X=$P(IBND("RC"),"^",K)
+ S IBDD=399.042 F J=0:0 S J=$O(^DGCR(399,IBIFN1,I,J)) Q:'J  I $D(^(J,0)) S IBND("RC")=^(0) F K=1:1:16 S $P(^DGCR(399,IBIFN,I,J,0),"^",K)=$P(IBND("RC"),"^",K),X=$P(IBND("RC"),"^",K)
  Q
 CP S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
  I +$G(IBNOCPT) Q
@@ -141,6 +145,10 @@ PRV S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
  . I Z'=Z0,$S(X=3:Z0=3,X=4:Z0=2,1:0) S $P(^DGCR(399,IBIFN,I,J,0),U)=(Z0+1)
  Q
  ;
+U9 ; Added for new data elements in IB*2.0*447 BI
+ M ^DGCR(399,IBIFN,I)=^DGCR(399,IBIFN1,I)
+ Q
+ ;
 COB S J=0 F  S J=$O(IBCOB(I,J)) Q:'J  S $P(^DGCR(399,IBIFN,I),U,J)=IBCOB(I,J)
  Q
  ;
@@ -152,7 +160,9 @@ FILE N DIC,DIE,DR,DA,X,Y,DLAYGO,DD,DO
  Q
  ;
 INDEX ;index entire file (set logic)
+ N IBMAED D SAVERC(IBIFN,.IBMAED)  ; IB*2.0*447 BI - Save the value of piece 16 of each RC node before re-indexing.
  S DIK="^DGCR(399,",DA=IBIFN D IX1^DIK K DA,DIK
+ D RESTRC(IBIFN,.IBMAED)  ; IB*2.0*447 BI - Restore the value of piece 16 of each RC node before re-indexing.
  Q
  ;
 PRIOR(IBIFN) ; set Secondary/Tertiary Bill #s on prior bills, if the bill is cancelled remove it from prior bills
@@ -237,3 +247,18 @@ COBCHG(IBIFN,IBINS,IBCOB) ; Make changes for a new COB payer for bill
  K IBCOB("TX")
  Q
  ;
+SAVERC(IBIFN,IBMAED)  ; IB*2.0*447 BI - Save the value of piece 16 of each RC node before re-indexing.
+ Q:$G(IBCTCOPY)=1  Q:$G(IBCTCOPY)=2
+ N IBCNT S IBCNT=0
+ Q:'$G(IBIFN)  Q:'$D(^DGCR(399,IBIFN,"RC"))
+ F  S IBCNT=$O(^DGCR(399,IBIFN,"RC",IBCNT)) Q:+IBCNT=0  D
+ . S IBMAED(IBCNT)=$P($G(^DGCR(399,IBIFN,"RC",IBCNT,0)),U,16)
+ Q
+ ;
+RESTRC(IBIFN,IBMAED)  ; IB*2.0*447 BI - Restore the value of piece 16 of each RC node after re-indexing.
+ Q:$G(IBCTCOPY)=1  Q:$G(IBCTCOPY)=2
+ N IBCNT S IBCNT=0
+ Q:'$G(IBIFN)  Q:'$D(^DGCR(399,IBIFN,"RC"))
+ F  S IBCNT=$O(IBMAED(IBCNT)) Q:+IBCNT=0  D
+ . S $P(^DGCR(399,IBIFN,"RC",IBCNT,0),U,16)=IBMAED(IBCNT)
+ Q

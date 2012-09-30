@@ -1,5 +1,5 @@
-PXRMSTAC ; SLC/PKR - Stack routines for use by PXRM. ;11/24/2004
- ;;2.0;CLINICAL REMINDERS;;Feb 04, 2005
+PXRMSTAC ;SLC/PKR - Stack routines for use by PXRM. ;11/08/2011
+ ;;2.0;CLINICAL REMINDERS;**18**;Feb 04, 2005;Build 152
  ;
  ;=====================================================
 POP(STACK) ;Pop an element off of the stack.
@@ -12,52 +12,55 @@ POP(STACK) ;Pop an element off of the stack.
  Q TEMP
  ;
  ;=====================================================
-POSTFIX(EXPR,OPER,PFSTACK) ;Given an expression, EXPR, in infix notation
+POSTFIX(EXPR,OPERS,PFSTACK) ;Given an expression, EXPR, in infix notation
  ;convert it to postfix and return the result in PFSTACK. PFSTACK(0)
- ;will contain the number of elements in PFSTACK. OPER is a
+ ;will contain the number of elements in PFSTACK. OPERS is a
  ;string containing allowable operators.
- N CHAR,IND,LEN,OPERP,PFP,SP,SPACE,STACK,SYM,SYMP,SYMT,TAB,TEMP
- S SPACE=$C(32)
- S TAB=$C(9)
- S TEMP=""
- S OPERP=OPER_"()"
- S SYMP=0
+ N CHAR,IND,LEN,NSYM,OPERP,PFP,QF,QUOTE,SP,STACK,SYM,SYMP,SYMT
+ N TEMP,UNARYOPS
+ S UNARYOPS=""
+ F TEMP="+","-","'" I OPERS[TEMP S UNARYOPS=UNARYOPS_TEMP
+ S QUOTE=$C(34)
+ S OPERP=OPERS_"()"
  S LEN=$L(EXPR)
  ;Break the expression into (, ), operators, and operands.
- ;Remove spaces and tabs and put the symbols onto the symbol
- ;stack in left to right order. Symbol number 1 is SYM(1).
+ ;Put the symbols onto the symbol stack in left to right order.
+ ;Symbol number 1 is SYM(1).
+ S QF=0,NSYM=0,TEMP=""
  F IND=1:1:LEN D
  . S CHAR=$E(EXPR,IND)
- . I (CHAR=SPACE)!(CHAR=TAB) Q
- . I OPERP[CHAR D
- .. I $L(TEMP)>0 D
- ... S SYMP=SYMP+1
- ... S SYM(SYMP)=TEMP
- ... S TEMP=""
- .. S SYMP=SYMP+1
- .. S SYM(SYMP)=CHAR
- . E  S TEMP=TEMP_CHAR
- . I (IND=LEN)&(TEMP'="") D
- .. S SYMP=SYMP+1
- .. S SYM(SYMP)=TEMP
+ . I (CHAR=QUOTE),('QF) S TEMP=TEMP_CHAR,QF=1 Q
+ . I (QF),(CHAR'=QUOTE) S TEMP=TEMP_CHAR Q
+ . I (QF),(CHAR=QUOTE) S TEMP=TEMP_CHAR,QF=0 Q
+ . I OPERP[CHAR D  Q
+ .. I TEMP'="" S NSYM=NSYM+1,SYM(NSYM)=TEMP,TEMP=""
+ ..;In MUMPS "'=", "'<", "'>", "'&", and "'!" must be treated as
+ ..;a single operator.
+ .. I CHAR="'" D
+ ... S TEMP=$E(EXPR,IND+1)
+ ... I (TEMP="=")!(TEMP="<")!(TEMP=">")!(TEMP="&")!(TEMP="!") S CHAR=CHAR_TEMP,IND=IND+1
+ .. S NSYM=NSYM+1,SYM(NSYM)=CHAR,TEMP=""
+ . S TEMP=TEMP_CHAR
+ I (IND=LEN),(TEMP'="") S NSYM=NSYM+1,SYM(NSYM)=TEMP
  ;Process the symbols.
  S (PFP,SP)=0
- S LEN=SYMP
- F SYMP=1:1:LEN D
+ F SYMP=1:1:NSYM D
  . S SYMT=SYM(SYMP)
  .;
  .;Symbol is "("
- . I SYMT="(" D  Q
- .. S SP=SP+1
- .. S STACK(SP)=SYMT
+ . I SYMT="(" S SP=SP+1,STACK(SP)=SYMT Q
  .;
  .;Symbol is an operator
- . I OPER[SYMT D  Q
+ . I OPERS[SYMT D  Q
+ ..;Check for a unary operator, they have the highest precendence.
+ .. ;The NOT operator is always unary.
+ .. I SYMT="'" S SYMT=SYMT_"U",SP=SP+1,STACK(SP)=SYMT Q
+ .. I (SYMP=1),(UNARYOPS[SYMT) S SYMT=SYMT_"U"
+ .. I (SYMP>1),(OPERS[SYM(SYMP-1)),(UNARYOPS[SYMT) S SYMT=SYMT_"U"
+ .. I SYMT["U" S SP=SP+1,STACK(SP)=SYMT Q
  .. S LEN=SP
  .. F IND=LEN:-1:1 S TEMP=STACK(IND) Q:TEMP="("  D
- ...;M has no operator precedence so we don't need to check.
- ... S PFP=PFP+1
- ... S PFSTACK(PFP)=TEMP
+ ... S PFP=PFP+1,PFSTACK(PFP)=TEMP
  ... K STACK(SP)
  ... S SP=SP-1
  .. S SP=SP+1
@@ -67,8 +70,7 @@ POSTFIX(EXPR,OPER,PFSTACK) ;Given an expression, EXPR, in infix notation
  . I SYMT=")" D  Q
  .. S LEN=SP
  .. F IND=LEN:-1:1 S TEMP=STACK(IND) Q:TEMP="("  D
- ... S PFP=PFP+1
- ... S PFSTACK(PFP)=TEMP
+ ... S PFP=PFP+1,PFSTACK(PFP)=TEMP
  ... K STACK(SP)
  ... S SP=SP-1
  ..;Pop the "(" at the top of the stack.
@@ -76,13 +78,10 @@ POSTFIX(EXPR,OPER,PFSTACK) ;Given an expression, EXPR, in infix notation
  .. S SP=SP-1
  .;
  .;If we get to here then symbol is an operand.
- . S PFP=PFP+1
- . S PFSTACK(PFP)=SYMT
+ . S PFP=PFP+1,PFSTACK(PFP)=SYMT
  ;
  ;Pop and output anything left on the stack.
- F IND=SP:-1:1 D
- . S PFP=PFP+1
- . S PFSTACK(PFP)=STACK(IND)
+ F IND=SP:-1:1 S PFP=PFP+1,PFSTACK(PFP)=STACK(IND)
  ;
  ;Save the number of elements in PFSTACK.
  S PFSTACK(0)=PFP

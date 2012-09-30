@@ -1,10 +1,12 @@
 SDRRCLR2 ;10N20/MAH- Recall Reminder ENTER EDIT 9/28/04
- ;;5.3;Scheduling;**536,561**;Aug 13, 1993;Build 7
+ ;;5.3;Scheduling;**536,561,566**;Aug 13, 1993;Build 5
  ;;THIS ROUTINE WILL USE OPTION SDRR CARD ADD
 STR ;Start checking entries in 403.5 if there is a "b" goes to update - if not goes to NEW   
  N I,Y,CLINIC,C,D,KY,COMM
  K ^TMP("SDRRCLR")
- D ^DPTLK Q:Y<1
+ S DIC="^DPT(",DIC(0)="AEMQZ" D ^DIC  ;SD*566 prohibit adding to file #2
+ Q:$D(DTOUT)!($D(DUOUT))  ;SD*566
+ Q:Y<1
  S DFN=+Y
  I '$D(^SD(403.5,"B",DFN)) W !,"No Clinic Recall on file",! G NEW
 EN1 S C=0 F I=0:0 S I=$O(^SD(403.5,"B",DFN,I)) Q:'I  I $D(^SD(403.5,I,0)) S D=^(0),C=C+1 S ^TMP("SDRRCLR",$J,C)=I_"^"_D
@@ -42,11 +44,19 @@ NEW ;Adds new entry
  S DIR(0)="Y",DIR("A")="Do you have this information",DIR("B")="NO" D ^DIR I Y'=1 G QUIT
  S (DIC,DIE)="^SD(403.5,",DIC(0)="LZ",X=DFN,DLAYGO=403.5 D FILE^DICN S NUM=+Y
  S DA=NUM,DR="[SDRR RECALL CARD ADD]",DIE("NO^")="Not Allowed" D ^DIE
- K DIC,DIE,DR,D0,DA,DLAYGO,NUM,PROV,X,Y,Z,OK,RDT,DIR
+ I $D(DTOUT) D DELETE  ;SD*566 if time out delete new incomplete record
+ K DIC,DIE,DR,D0,DA,DLAYGO,NUM,PROV,X,Y,Z,OK,RDT,DIR,DTOUT
  Q
+ ;
+DELETE ;SD*566 user timed out, delete new incomplete record and display message
+ S DIK=DIE
+ D ^DIK K DIK
+ W !!,*7,"*** ALL REQUIRED DATA WAS NOT ENTERED. ***",!,"*** RECALL REMINDER NOT CREATED FOR PATIENT:  ",$P(^DPT(DFN,0),U,1),". ***"
+ Q
+ ;
 UPDATE ;Asks for new data
  K DIC,DIE,DR S DIE="^SD(403.5,",DR="[SDRR RECALL CARD ADD]",DIE("NO^")="BACKOUTOK" D ^DIE
- K DIC,DIE,DR,D0,DA,DLAYGO,NUM,PROV,X,Y,Z,OK,RDT
+ K DIC,DIE,DR,D0,DA,DLAYGO,NUM,PROV,X,Y,Z,OK,RDT,DTOUT,DUOUT
  D QUIT
  Q
 QUIT K PROV,CLINIC,X,Y,C,D,ER,OK,DFN,FLAG,RS,KEY,KEYIFN,PROV1,PTN,RDT,DIR

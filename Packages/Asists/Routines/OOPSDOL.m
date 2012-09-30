@@ -10,7 +10,7 @@ OOPSDOL ;WIOFO/CAH-ASISTS TRANSMISSION OF CA1/CA2 TO DOL ;3/15/00
  .S DIR("A")=DIR("A")_" Press Enter to continue"
  .D ^DIR K DIR
  ;Assure the Queue (Q-AST) has been defined
- S VAL="Q-AST.MED.VA.GOV",FIELD=.01,FL="X"
+ S VAL="Q-AST.DOMAIN.EXT",FIELD=.01,FL="X"
  D FIND^DIC(4.2,"",FIELD,FL,VAL,"","","","","ARR")
  I '$D(ARR("DILIST",1)) D  G EXIT
  .S DIR(0)="FO" W !
@@ -41,10 +41,10 @@ EN ;Routine Entry
  S CTR=1                        ; counter for Mail message array
  S (START,END,FAIL)=""
  ; Assure the Queue (Q-AST) has been defined
- S VAL="Q-AST.MED.VA.GOV",FIELD=.01,FL="X"
+ S VAL="Q-AST.DOMAIN.EXT",FIELD=.01,FL="X"
  D FIND^DIC(4.2,"",FIELD,FL,VAL,"","","","","ARR")
  I '$D(ARR("DILIST",1)) D  G EXIT
- . S ERROR(1)="The Queue Q-AST.MED.VA.GOV has not been created.  Please contact your IRM "
+ . S ERROR(1)="The Queue Q-AST.DOMAIN.EXT has not been created.  Please contact your IRM "
  . S ERROR(2)="Dept. to have Patch XM*999*136 installed; once installed complete manual "
  . S ERROR(3)="transmission of DOL Data."
  . D ERROR2
@@ -161,7 +161,7 @@ SEND ; Send Mailman Message
  ; Indicate last line of message
  S OPL=OPL+1,^XMB(3.9,XMZ,2,OPL,0)="NNNN"_$C(13)_$C(10)
  S XMY(DUZ)=""                        ; also send here, in case of error.
- S XMY("XXX@Q-AST.MED.VA.GOV")=""
+ S XMY("XXX@Q-AST.DOMAIN.EXT")=""
  S XMCHAN=1 D ENT1^XMD K XMCHAN
  K XMZ
  Q

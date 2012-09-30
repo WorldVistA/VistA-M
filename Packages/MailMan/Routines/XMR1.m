@@ -1,7 +1,7 @@
 XMR1 ;ISC-SF/GMB-SMTP Receiver HELO/MAIL/RCPT (RFC 821) ;02/10/2004  06:31
  ;;8.0;MailMan;**6,24**;Jun 28, 2002
-HELO ; Recv: "HELO REMOTE.MED.VA.GOV <security num>"
- ; Send: "250 OK LOCAL.MED.VA.GOV <security num> [8.0,DUP,SER,FTP]"
+HELO ; Recv: "HELO REMOTE.DOMAIN.EXT <security num>"
+ ; Send: "250 OK LOCAL.DOMAIN.EXT <security num> [8.0,DUP,SER,FTP]"
  N X,Y,XMDOMREC
  I XMP="" S XMSG="501 Missing domain specification" X XMSEN Q
  I '$D(^XMB("NETNAME")) S XMSG="550 Unchristened local domain" X XMSEN Q
@@ -43,9 +43,9 @@ NORELAY ; We want to prevent this site from unwittingly acting as a relay
  S XMOKDOM="" ; Get list of acceptable sites
  F  S XMOKDOM=$O(^XMB(1,1,4.1,"B",XMOKDOM)) Q:XMOKDOM=""  D
  . S XMC("MY DOMAIN",$$UP^XLFSTR(XMOKDOM))=""
- I $F(^XMB("NETNAME"),".VA.GOV")=($L(^XMB("NETNAME"))+1) D
+ I $F(^XMB("NETNAME"),".DOMAIN.EXT")=($L(^XMB("NETNAME"))+1) D
  . ; This is a VA site.  Make sure mail from other VA sites is relayed.
- . I '$D(XMC("MY DOMAIN",".VA.GOV")) S XMC("MY DOMAIN",^XMB("NETNAME"))=""
+ . I '$D(XMC("MY DOMAIN",".DOMAIN.EXT")) S XMC("MY DOMAIN",^XMB("NETNAME"))=""
  S XMOKDOM="" ; Make sure this site is an acceptable site!
  F  S XMOKDOM=$O(XMC("MY DOMAIN",XMOKDOM)) Q:XMOKDOM=""  Q:$F(^XMB("NETNAME"),XMOKDOM)=($L(^XMB("NETNAME"))+1)
  I XMOKDOM="" S XMC("MY DOMAIN",^XMB("NETNAME"))="" ; Default
@@ -122,8 +122,8 @@ VALSET(XMINST,XMRVAL) ;check validation number
  L -^DIC(4.2,XMINST,0)
  K XMRVAL
  Q
-MAIL ; Recv: "MAIL FROM:<USER.JOE@REMOTE.MED.VA.GOV>"
- ; Send: "250 OK Message-ID:12345@LOCAL.MED.VA.GOV"
+MAIL ; Recv: "MAIL FROM:<USER.JOE@REMOTE.DOMAIN.EXT>"
+ ; Send: "250 OK Message-ID:12345@LOCAL.DOMAIN.EXT"
  N XMD
  S XMP=$P(XMP,":",2,999)
  S XMP=$$SCRUB^XMR3(XMP)

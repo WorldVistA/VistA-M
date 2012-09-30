@@ -1,0 +1,17 @@
+TYPE OF WORK
+ZWR
+^PRSN(451.5,0)="TYPE OF WORK^451.5I^7^7"
+^PRSN(451.5,1,0)="ST^Sitter"
+^PRSN(451.5,2,0)="LD^Light duty"
+^PRSN(451.5,3,0)="OR^Orientation"
+^PRSN(451.5,4,0)="ED^Onsite education"
+^PRSN(451.5,5,0)="SI^Systems improvement"
+^PRSN(451.5,6,0)="ND^Nondirect care other"
+^PRSN(451.5,7,0)="DC^Direct care"
+^PRSN(451.5,"B","DC",7)=""
+^PRSN(451.5,"B","ED",4)=""
+^PRSN(451.5,"B","LD",2)=""
+^PRSN(451.5,"B","ND",6)=""
+^PRSN(451.5,"B","OR",3)=""
+^PRSN(451.5,"B","SI",5)=""
+^PRSN(451.5,"B","ST",1)=""

@@ -4,7 +4,7 @@ DVBCWAU3        ;ALB/JAM AUDIO WKS TEXT - 1 ; 12 FEB 1998
 TXT ;
  ;;Handbook of Standard Procedures and Best Practices for Audiology
  ;;Compensation and Pension Exams is available online. At:
- ;;<http://vbaw.vba.va.gov/bl/21/rating/Medical/docs/cphandbook.pdf>
+ ;;<http://vbaw.vba.DOMAIN.EXT/bl/21/rating/Medical/docs/cphandbook.pdf>
  ;;( This is a PDF file. You need Acrobat Reader 
  ;;<http://www.adobe.com/products/acrobat/readstep2.html>
  ;;to open pdf files. It is a free download. )

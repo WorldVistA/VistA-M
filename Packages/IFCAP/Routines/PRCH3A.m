@@ -1,13 +1,13 @@
 PRCH3A ;WISC/PLT-IFCAP INACTIVATE OLD/EXPIRED PURCHASE CARDS - CITIBANK ;8/28/98  11:49
-V ;;5.1;IFCAP;**8,125**;Oct 20, 2000;Build 15
+V ;;5.1;IFCAP;**8,125,129**;Oct 20, 2000;Build 5
  ;Per VHA Directive 2004-038, this routine should not be modified.
  QUIT  ;invalid entry
  ;
  ;ZTQPARAM="REGULAR" if from schedule option, ="CITI" if from CITIBANK schedule
 EN ;inactivate charge cards
  N PRCA,PRCB,PRCRI,PRCDI,PRC,PRCTD
- S PRCF("X")="S" D ^PRCFSITE Q:'$D(PRC("SITE"))  Q:$G(X)="^"
  I $D(ZTQUEUED) G SCHED
+ S PRCF("X")="S" D ^PRCFSITE Q:'$D(PRC("SITE"))  Q:$G(X)="^"
 Q1 ;inactivate all CITI charge cards with expired date before t
  S PRCTD=$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3)
  D YN^PRC0A(.X,.Y,"Ready to inactivate old Citibank & expired US Bank charge cards before "_PRCTD,"O","NO")

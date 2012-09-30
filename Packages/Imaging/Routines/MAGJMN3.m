@@ -1,5 +1,6 @@
-MAGJMN3 ;WIRMFO/JHC VRad Maint functions ; 10 Jun 2005  2:39 PM
- ;;3.0;IMAGING;**18**;Mar 07, 2006
+MAGJMN3 ;WIRMFO/JHC - VRad Maint functions ; 9 Sep 2011  4:05 PM
+ ;;3.0;IMAGING;**18,120**;Mar 19, 2002;Build 27;May 23, 2012
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -7,7 +8,6 @@ MAGJMN3 ;WIRMFO/JHC VRad Maint functions ; 10 Jun 2005  2:39 PM
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -37,15 +37,15 @@ EECPT ;Enter/Edit CPT MATCHING SET
  G EECPT
  Q
 INCPT ; Inquire MAG RAD CPT MATCHING
- W @IOF,!!?10,"** Inquire VistARad CPT MATCHING CPT CODE **",!!
- N MAGIEN,BY,FR,TO
- S DIC=2006.67,DIC(0)="AMEQ"
+ W @IOF,!!?10,"** Inquire VistARad CPT MATCHING CPT CODE **"
+ N DATA,I,ZJ
+INC1 W !! S DIC=2006.67,DIC(0)="AMEQ"
  D ^DIC I Y=-1 K DIC Q
- S DA=+Y,(FR,TO)=$P(Y,U,2),MAGIEN=DA,L=0
- S BY="#.01",DIS(0)="I D0=MAGIEN"
- D EN^DIP
- R !,"Enter RETURN to continue: ",X:DTIME W !
- G INCPT
+ S DA=+Y,DATA=$P(Y,U,2)
+ S DATA="CPT^"_DATA_"|"
+ D DATADUMP^MAGJUTL4(.ZJ,DATA)
+ W ! S T=+$G(@ZJ@(0)) F I=1:1:T S X=$G(^(I)) W !,X
+ G INC1
  Q
 PRCPT ;Print MAG RAD CPT MATCHING LOGIC
  N FLDS

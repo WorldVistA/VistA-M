@@ -1,5 +1,5 @@
-MAGJEX1 ;WIRMFO/JHC VistARad RPC calls ; 21 Apr 2011  5:33 PM
- ;;3.0;IMAGING;**16,22,18,65,101,115,104**;Mar 19, 2002;Build 2225;Jul 12, 2011
+MAGJEX1 ;WIRMFO/JHC - VistARad RPC calls ; 9 Sep 2011  4:05 PM
+ ;;3.0;IMAGING;**16,22,18,65,101,115,104,120**;Mar 19, 2002;Build 27;May 23, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -161,8 +161,18 @@ OPENCASZ I 'CT,(REPLY["Attempting") S REPLY="4~Unable to retrieve images for Cas
  ;   & send only reply msg
  I MIXEDUP,('VIEWOK) S CT=0 K @MAGGRY S @MAGGRY@(0)=CT_U_REPLY
  E  S $P(@MAGGRY@(0),U)=CT+STARTNOD
- I CT,(LOCKED'=2),(CURCASE'["VIX") D LOG^MAGJUTL3("VR-VW",LOGDATA) ; Image access log
+ I CT,(LOCKED'=2),(CURCASE'["VIX") D LOG^MAGJUTL3("VR-VW",LOGDATA,$$PSETLST(RADFN,RADTI,RACNI)) ; Image access log
  Q
+ ;
+PSETLST(RADFN,RADTI,RACNI) ; Return list of Printset Case #'s for exam
+ N I,MAGPSET,PSETLST,RAPRTSET,X
+ S PSETLST=""  ; initialize return value
+ I +$G(RADFN),+$G(RADTI),+$G(RACNI) D
+ . D EN2^RAUTL20(.MAGPSET)
+ . Q:'RAPRTSET  ; variable set by above call; stop if not a printset
+ . S X=""
+ . F I=0:1 S X=$O(MAGPSET(X)) Q:'X  S PSETLST=PSETLST_$S(I:U,1:"")_+MAGPSET(X)
+ Q:$Q PSETLST Q
  ;
 PNAM(X) ; return pt name for input DFN
  I X S X=$G(^DPT(+X,0)) I X]"" S X=$P(X,U)

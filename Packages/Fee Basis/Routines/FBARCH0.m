@@ -1,5 +1,5 @@
 FBARCH0 ; HINOIFO/RVD - ARCH IMPORT ELIGIBILITY AND UTILITY ; 01/08/11 12:30pm
- ;;3.5;FEE BASIS;**119**;JAN 30, 1995;Build 3
+ ;;3.5;FEE BASIS;**119,130,138**;JAN 30, 1995;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;Integration Agreements:
  ; ^DPT( - #2070, 10035
@@ -11,150 +11,78 @@ FBARCH0 ; HINOIFO/RVD - ARCH IMPORT ELIGIBILITY AND UTILITY ; 01/08/11 12:30pm
  ; @XPDGREF - 2433
  ; DT^DILF - #2054
  Q
-START ;input SAS data file
- ;the imported file is located in certain directory
- N X,FBDIR,FBVMS,FBFILE
- S FBDIR="SYS$USER:[DAYO]"   ;for testing, use your own default directory
- W !!,"Enter VMS directory :"_FBDIR_"//" R X:DTIME
- Q:X="^"  S:X'="" FBDIR=X
- R !!,"Enter VMS file name :",FBVMS:DTIME
- Q:"^"[FBVMS
- S FBFILE=FBDIR_FBVMS
- W !!,"Full name of input file is ",FBFILE,!
- S DIR(0)="Y",DIR("A",1)="Import ARCH ELIGIBILITY file.",DIR("A",2)=" "
- S DIR("A")="Do you want to import data from "_FBFILE
- S DIR("B")="No"
- D ^DIR K DIR I 'Y W !!?5,"Nothing Done." D CLEANUP Q
- D OPEN^%ZISH("FILE",FBDIR,FBVMS,"R")
- I POP W !?3,"** This file cannot be opened. **" G ABEND
- S FBTAB="^",FBCOUNT=0,FBREAD=0
- ;S FBTAB=$C(9)
- W !,"Loading data into Fee Basis Patient file (#161)."
  ;
-R1 ;A(1) = Integration Control Number (ICN)
- ;DBIA # 2701 - Master Patient Index
- ;A(2) = a field for validity check
- ;A(3) = eligibility code: 1 = yes, 0 = no
- ;if theres no A(3), it assumes it's a 1 for yes
- U IO R X:DTIME I $$STATUS^%ZISH G EOF
- K A,DFN,FBARCH,FBICN,FBDTE S FBREAD=FBREAD+1
- F I=1:1:3 S A(I)=$P(X,FBTAB,I)
- ;S FBTXT=A(1)_" *** "_A(2) ;for testing
- I $L(A(1))'=17 D  G R1 ; skip header record, only record start with a 10 digits ICN.
- . W !,"First field is "_A(1)_", record is not imported"
- . Q
- I A(1)="" D  G R1 ; skip null record
- . W !,"First field is null, record is not imported"
- . Q
- ;only process if data (ICN) belongs to the station & second check is valid
- S FBICN=$P(A(1),"V"),FBCHK=$P(A(1),"V",2)
- D DT^DILF("E",A(2),.FBDTE)
- S DFN=$$GETDFN^MPIF001(FBICN)
- S FBARCH=$S($G(A(3)):1,A(3)=0:0,1:1)
- I $G(DFN),$D(^DPT(DFN,"MPI")),$P(^("MPI"),U,2)=FBCHK D SETREC S FBCOUNT=FBCOUNT+1 I '(FBCOUNT#10) U 0 W "."
- G R1
+EN ; entry point
  ;
-EOF D CLOSE^%ZISH("FILE")
- S FBTXT=FBREAD_" records read, "_FBCOUNT_" records loaded." D DISP
- D CLEANUP
+ N CNT,DFN,DIR,DTOUT,DUOUT,DIRUT,DIROUT,FBDATA,FBDATE,FBDIR,FBFILE,FBTOT,FBX,FBY,X,Y,Z
+ K ^TMP("FBARCH",$J)
+ S FBDIR=$$PWD^%ZISH
+ ;
+ S DIR("A")="Enter host file directory",DIR("B")=FBDIR
+ S DIR("?",1)="Enter the full path specification where the host file may be found"
+ S DIR("?")="or press return for the default directory "_FBDIR
+ S DIR(0)="FO^3:60"
+ D ^DIR K DIR
+ S FBDIR=$S($D(DUOUT)!$D(DTOUT):-1,1:Y)
+ I FBDIR=-1!(FBDIR="") G STARTX
+ ;
+ S DIR("A")="Enter host file name"
+ S DIR("?")="Enter the name of the host file to upload"
+ S DIR(0)="FO^3:60"
+ D ^DIR K DIR
+ S FBFILE=$S($D(DUOUT)!$D(DTOUT):-1,1:Y)
+ I FBFILE=-1!(FBFILE="") G STARTX
+ S FBX(FBFILE)="",Z=$$LIST^%ZISH(FBDIR,"FBX","FBY") K FBX,FBY
+ I 'Z D  G STARTX
+ .W !!,"File "_FBFILE_" not found in directory "_FBDIR
+ .S DIR(0)="E" D ^DIR
+ .Q
+ ; load data into global ^TMP("FBARCH",$J,n)
+ W !!,"Loading data into temporary global..."
+ S Z=$$FTG^%ZISH(FBDIR,FBFILE,$NA(^TMP("FBARCH",$J,1)),3)
+ I 'Z D  G STARTX
+ .W !!,"Unable to load data from file "_FBDIR_FBFILE
+ .S DIR(0)="E" D ^DIR
+ .Q
+ S FBTOT=$O(^TMP("FBARCH",$J,""),-1) ; total number of records in the file
+ I 'FBTOT W "No records found." S DIR(0)="E" D ^DIR G STARTX
+ W "Done."
+ W !!,FBTOT," records found",!
+ S DIR(0)="Y",DIR("B")="NO",DIR("A")="Do you wish to continue uploading ARCH eligibility data from this file"
+ D ^DIR K DIR
+ I Y'>0 G STARTX
+ ; process records
+ W !!,"Processing records..."
+ S CNT=0,Z="" F  S Z=$O(^TMP("FBARCH",$J,Z)) Q:'Z  D
+ .S FBDATA=$G(^TMP("FBARCH",$J,Z))
+ .; get and validate DFN
+ .S DFN=+$$GETDFN^MPIF001($P(FBDATA,U)) I DFN'>0 Q
+ .; get and validate date
+ .D DT^DILF("E",$P(FBDATA,U,2),.FBDATE) I FBDATE'>0 Q
+ .S CNT=CNT+1 I CNT#10=0 W "."
+ .; process record
+ .D SETREC(DFN,FBDATE)
+ .Q
+ W "Done"
+ W !!,CNT," records processed."
+ W !,"Upload complete",!
+ S DIR(0)="E" D ^DIR
+STARTX ;
+ K ^TMP("FBARCH",$J)
  Q
  ;
-SETREC ;update Fee Basis Patient record (file #161) for ARCH elilibility
- N FBDATA,FBIEN,FBIEN2,FBI11
- S DA=DFN
- I '$D(^FBAAA(DFN,0)) K DD,DO S (X,DINUM)=DFN,DIC="^FBAAA(",DIC(0)="LM",DLAYGO=161 D FILE^DICN K DIC,DA,DD,DO,DLAYGO
- ;update eligibility if different
- I $D(^FBAAA(DFN,"ARCHFEE")) S FBI11=$O(^FBAAA(DFN,"ARCHFEE"," "),-1) Q:($P(^FBAAA(DFN,"ARCHFEE",FBI11,0),U,2)=FBARCH)
- S FBIEN2="+2,"_DFN
- S FBDATA(161.011,FBIEN2_",",.01)=FBDTE
- S FBDATA(161.011,FBIEN2_",",2)=FBARCH
- D UPDATE^DIE("","FBDATA")
- K FBDATA
- Q
- ;
-ABEND U 0 W !,"Processing abended."
- D CLEANUP
- Q
- ;
-DISP ;display one-line text either interactively or within KIDS installation
- I '$D(XPDNM)#2 U 0 W !?5,FBTXT
- E  D BMES^XPDUTL(FBTXT)
- Q
- ;
-PRET ;entry point for a pre-transport routine, instead of
- ;using a global.  ARCH data should be in ^XTMP("FEEARCH") for transport
- ;
- M @XPDGREF@("^XTMP(""FEEARCH"")")=^XTMP("FEEARCH")
- Q
- ;
-POST ;entry to import SAS data to VISTA Fee Basis Patient File (#161) using pre-transport rou.
- ;only process if data (ICN) belongs to the station & second check is valid
- N FBV,FBCOUNT,FBI,FBICN,FBDTE,FBCHK,DFN,FB4,FB47,FBA,FBSTA
- ;only install ARCH data to 5 VISNs (1,6,15,18 & 19)
- S FBV="VISN "
- F FBI=FBV_1,FBV_6,FBV_15,FBV_18,FBV_19 Q:FBI=""  S FB4=$O(^DIC(4,"B",FBI,0)) D
- .D CHILDREN^XUAF4("FBA","`"_FB4,"VISN")
- S FBSTA=+$$SITE^VASITE()
- Q:'$D(FBA("C",FBSTA))
- ;
- D MES^XPDUTL(" ")
- D MES^XPDUTL("Populating ARCH ELIGIBILITY in file (#161).....")
- ;
- K ^TMP("FEEARCH",$J)
- M ^TMP("FEEARCH",$J)=@XPDGREF@("^XTMP(""FEEARCH"")")
- S XPDIDTOT=$P(^TMP("FEEARCH",$J,0),U,4),FBCOUNT=0
- S FBI=0
- F  S FBI=$O(^TMP("FEEARCH",$J,FBI)) Q:'FBI  D
- . S FBCOUNT=FBCOUNT+1 I '(FBCOUNT#100) D UPDATE^XPDID(FBCOUNT)
- . K FBICN,FBDTE,FBCHK,FBTMP,DFN
- . S FBTMP=$G(^TMP("FEEARCH",$J,FBI,0))
- . S FBICN=$P(FBTMP,U),FBARCH=$P(FBTMP,U,2),FBDTE=$P(FBTMP,U,3),FBCHK=$P(FBTMP,U,4)
- . S DFN=$$GETDFN^MPIF001(FBICN)
- . I $G(DFN),$D(^DPT(DFN,"MPI")),$P(^("MPI"),U,2)=FBCHK D SETREC
- D UPDATE^XPDID(XPDIDTOT)
- Q
- ;
-PST1 ;entry point if data is imported through a global
- S FBCOUNT=0
- S FBTXT="Importing the ARCH Eligibility to Fee Basis Patient File.."
- D DISP
- F I=0:0 S I=$O(^FBARCH(161.1,I)) Q:I'>0  D
- .K FBICN,FBDTE,FBCHK
- .S FBICN=$P(^FBARCH(161.1,I,0),U),FBARCH=$P(^(0),U,2),FBDTE=$P(^(0),U,3),FBCHK=$P(^(0),U,4)
- .S DFN=$$GETDFN^MPIF001(FBICN)
- .I $G(DFN),$D(^DPT(DFN,"MPI")),$P(^("MPI"),U,2)=FBCHK D SETREC S FBCOUNT=FBCOUNT+1
- S FBTXT="Done importing ARCH data to Fee Basis Patient File!!!!!"
- D DISP
- Q
- ;
-TMP ;set-up ARCH data to ^XTMP("FEEARCH" temporary global for kids transport
- ;ICN = piece 1
- ;ARCH ELIGIBILITY DATE = piece 2
- S FBDIR="SYS$USER:[DAYO]"  ;use this as a default for testing
- W !!,"Enter VMS directory :"_FBDIR_"//" R X:DTIME
- Q:X="^"  S:X'="" FBDIR=X
- R !!,"Enter VMS file name :",FBVMS:DTIME
- Q:"^"[FBVMS
- S FBFILE=FBDIR_FBVMS
- W !!,"Full name of input file is ",FBFILE,!
- D OPEN^%ZISH("FILE",FBDIR,FBVMS,"R")
- I POP W !?3,"** This file cannot be opened. **" G ABEND
- S FBTAB="^",FBCOUNT=0,FBREAD=0
-LOOP U IO R X:DTIME I $$STATUS^%ZISH S ^XTMP("FEEARCH",0)="^^^"_FBCOUNT G EOF
- K A,FBICN,FBDTE,FBCHK,FBARCH S FBREAD=FBREAD+1
- I '(FBREAD#500) U 0 W "."
- F I=1:1:3 S A(I)=$P(X,FBTAB,I)
- I $L(A(1))'=17 G LOOP ; skip header record, only record start with a 10 digits ICN +7 chksum
- I A(1)="" G LOOP ; skip null record
- S FBICN=$P(A(1),"V"),FBCHK=$P(A(1),"V",2)
- S FBARCH=$S($G(A(3)):1,A(3)=0:0,1:1)
- D DT^DILF("E",A(2),.FBDTE)
- S FBCOUNT=FBCOUNT+1 S ^XTMP("FEEARCH",FBCOUNT,0)=FBICN_U_FBARCH_U_FBDTE_U_FBCHK
- G LOOP
- Q
- ;
-CLEANUP ;
- K A,F
+SETREC(DFN,FBDATE) ; create/update entry in file 161
+ ; DFN - ien in file 2/file 161
+ ; FBDATE - ARCH eligibility date
+ N DA,DIC,DINUM,DLAYGO,IEN,X,Y
+ ; add this patient to file 161 if there's no existing entry
+ S IEN=$O(^FBAAA("B",DFN,""))
+ I 'IEN K DO S (X,DINUM,DA)=DFN,DIC="^FBAAA(",DIC(0)="LM",DLAYGO=161 D FILE^DICN S IEN=+Y K DINUM
+ ; update ARCH eligibility
+ I $O(^FBAAA("ARCH",FBDATE,DFN,""))>0 Q  ; ARCH eligibility record already exists
+ K DA,DO
+ S X=FBDATE,DA(1)=IEN,DLAYGO=161.011,DIC="^FBAAA("_IEN_",""ARCHFEE"",",DIC(0)="LM",DIC("DR")="2////1"
+ D FILE^DICN
  Q
  ;
 ELIG(DFN,FBBDT,FBEDT,FBDATA) ;this function returns if pt is ARCH eligible or NOT
@@ -163,7 +91,7 @@ ELIG(DFN,FBBDT,FBEDT,FBDATA) ;this function returns if pt is ARCH eligible or NO
  ;          FBEDT - ending dt
  ; output: FBDATA = 1 if eligible and FBDATA()=DFN^0 or 1^date of eligibility
  ;          from most recent to the oldest
- ;  FBDATA = 0 if not eligibile
+ ;  FBDATA = 0 if not eligible
  ;
  N FBI,FBDAT,FBEL,FBHDT,FBCNT,FBELDT,FBSAV1,FBSAV2,FBJ
  S (FBHDT,FBEL,FBELDT,FBCNT,FBDATA)=0
@@ -172,7 +100,7 @@ ELIG(DFN,FBBDT,FBEDT,FBDATA) ;this function returns if pt is ARCH eligible or NO
  Q:(FBEDT<FBBDT) FBDATA
  Q:'$D(^FBAAA(DFN,"ARCHFEE")) FBDATA
  S FBI=$O(^FBAAA(DFN,"ARCHFEE","B"," "),-1)
- S FBJ=$O(^FBAAA(DFN,"ARCHFEE","B",FBI,0)),FBDAT=$G(^FBAAA(DFN,"ARCHFEE",FBJ,0))
+ S FBJ=$O(^FBAAA(DFN,"ARCHFEE","B",FBI," "),-1),FBDAT=$G(^FBAAA(DFN,"ARCHFEE",FBJ,0))
  I (FBEDT=FBI)!(FBEDT>FBI) D
  .S FBEL=$P(FBDAT,U,2)
  .S FBCNT=FBCNT+1 S FBDATA(FBCNT)=FBEL_U_FBI,FBDATA=FBEL
@@ -186,13 +114,13 @@ ELIG(DFN,FBBDT,FBEDT,FBDATA) ;this function returns if pt is ARCH eligible or NO
  Q FBDATA
  ;
 LIST(FBBDT,FBEDT) ;this function returns a list of ARCH patients w/in the date range.
- ; input: = FBBGT - beggingin dt
+ ; input: = FBBGT - beginning dt
  ;          FBEDT - ending dt
  ; output:= number of ARCH eligible pt and ^TMP($J,"ARCHFEE",#)=DFN^0 or 1^date of eligibility
  ;          from the OLDEST to the MOST RECENT
  ; FBJ - internal entry number of file #161 which is DINUM to Patient File (2)
- N FBCOUNT,FBI,FBJ,FBEDAT,FBHDAT,FBELDA,FBELDT,FBEL,FBHDT,FBH
- K ^TMP($J,"ARCHFEE") S (FBI,FBCOUNT,FBELDTS)=0
+ N FBCOUNT,FBI,FBJ,FBEDAT,FBHDAT,FBELDA,FBELDT,FBEL,FBHDT,FBH,FBDFI
+ K ^TMP($J,"ARCHFEE") S (FBI,FBCOUNT,FBELDT)=0
  Q:'$D(^FBAAA("ARCH")) FBCOUNT
  S FBBDT=$S(FBBDT>0:FBBDT,1:0)
  S FBEDT=$S(FBEDT>0:FBEDT,1:9999999)
@@ -215,3 +143,15 @@ PARSE(FB) ; parse - remove double quotes and trailing blanks if any
  F I=$L(FB):-1:1 Q:$E(FB,I)'=" "  S B=$E(FB,1,I-1)
  S FB=B
  Q FB
+ ;
+GETDELAY() ; return the Project ARCH Reminder Delay - default is 1.
+ N FBDELAY
+ S FBDELAY=$P($G(^FBAA(161.4,1,"ARCH")),U)
+ Q $S(FBDELAY]"":FBDELAY,1:1)
+ ;
+SETDELAY ; Edit the Fee Basis Site Parameters for the Project ARCH Reminder Delay
+ N DIE,DIC,DA,DR,FBPOP
+ D SITEP^FBAAUTL Q:FBPOP
+ W !! S DIE="^FBAA(161.4,",DIC(0)="AELQ",DA=1,DR="38//1" D ^DIE
+ Q
+ ;

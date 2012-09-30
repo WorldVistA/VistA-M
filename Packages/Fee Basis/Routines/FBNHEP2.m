@@ -1,16 +1,23 @@
-FBNHEP2 ;AISC/GRR-ENTER NURSING HOME PAYMENT ;12:05 PM  13 Jun 1990;
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBNHEP2 ;AISC/GRR - ENTER NURSING HOME PAYMENT ;7/1/2009
+ ;;3.5;FEE BASIS;**108**;JAN 30, 1995;Build 115
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 NOBAT W !!,*7,"You do not have an open CNH Batch.  You must have an open",!,"CNH type Batch before you can enter a payment!",!
  D Q
  Q
  ;
-GETBAT S FBOUT=0,DIC="^FBAA(161.7,",DIC(0)="AEQM",DIC("S")="I $P(^(0),U,3)=""B9""&($P(^(0),U,5)=DUZ)&($P(^(0),U,15)="""")&($G(^(""ST""))=""O"")" W ! D ^DIC K DIC
+GETBAT ;
+ S FBAAMPI=$P($G(^FBAA(161.4,1,"FBNUM")),"^",5) ; max lines CNH batch
+ I FBAAMPI'>0 S FBAAMPI=61
+ S FBOUT=0,DIC="^FBAA(161.7,",DIC(0)="AEQM",DIC("S")="I $P(^(0),U,3)=""B9""&($P(^(0),U,5)=DUZ)&($P(^(0),U,15)="""")&($G(^(""ST""))=""O"")" W ! D ^DIC K DIC
  I X=""!(X="^") S FBOUT=1 Q
- G GETBAT:Y<0 S FBBAT=+Y,FBCNH=1
+ G GETBAT:Y<0
+ I $$B9INVC(+Y)>(FBAAMPI-1) D  G GETBAT
+ . W !!,"This Batch already has the maximum number of Payments!"
+ S FBBAT=+Y,FBCNH=1
  Q
 Q K FBYY,FBMM,FBDAYS,FBPAYDT,FBENDDT,Z,Y,DIC,FBRIFN,CNT,%DT,FBAABDT,FBAAEDT,FBAAPTC,FBDEFP,FBER,FBERR,FBHZ,FBINA,FBIRAT,FBPIFN,FBPREV,FBPROG,FBPRTR,FBSRAT,FBTRDYS,FBTYPE,FBVCAR,I,IFN,VAL,X,DA,DIE,DR,FBAAID,FBAAIN,FBNL,FBI7078,FBBAT,FBOUT
  K DAT,F,FBAUT,FBDX,FBEDT,FBI,FBMULT,FBRR,FBTDT,FBXX,FTP,PI,PTYPE,T,ZZ,FB7078,FBAAOUT,FBASSOC,FBLOC,FBPOV,FBPSA,FBPT,FBTT,FBVEN,TA,FBCNH
+ D GETAUTHK^FBAAUTL1
  Q
  ;
 CKRAT ;check rates and fill gaps if needed
@@ -71,3 +78,13 @@ DAYS S (I,FBTRDYS)=0 K FBPREV,FBHI
 CHECK N FBCK,FBCK1
  S FBCK=$S(FBABD<FBPAYDT:($E(FBPAYDT,1,5)_"01"),1:FBABD),FBCK1=$O(FB(FBCK-.1)) I $P(FB(FBCK1),"^",2)>FBCK S FBERR=1 D ERR Q
  Q
+B9INVC(FBBAT) ; B9 Batch Invoice Count
+ ; Input
+ ;   FBBAT = IEN of B9 type batch in file 161.7
+ ; Returns count of invoices in batch
+ N FBCNT,FBDA
+ S FBCNT=0
+ I $G(FBBAT) D
+ . S FBDA=0
+ . F  S FBDA=$O(^FBAAI("AC",FBBAT,FBDA)) Q:'FBDA  S:$D(^FBAAI(FBDA,0)) FBCNT=FBCNT+1
+ Q FBCNT

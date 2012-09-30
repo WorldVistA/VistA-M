@@ -1,5 +1,5 @@
-IBCNBMI ;ALB/ARH-Ins Buffer: move buffer data to insurance files ;09 Mar 2005  11:42 AM
- ;;2.0;INTEGRATED BILLING;**82,184,246,251,299,345,361,371,413,416,438**;21-MAR-94;Build 52
+IBCNBMI ;ALB/ARH - Ins Buffer: move buffer data to insurance files ;09 Mar 2005  11:42 AM
+ ;;2.0;INTEGRATED BILLING;**82,184,246,251,299,345,361,371,413,416,438,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 INS(IBBUFDA,IBINSDA,TYPE,RESULT) ;  move buffer insurance company data (file 355.33) to existing Insurance Company (file 36)
@@ -8,7 +8,7 @@ INS(IBBUFDA,IBINSDA,TYPE,RESULT) ;  move buffer insurance company data (file 355
  D SET("INS",IBBUFDA,IBINSDA,TYPE,.RESULT)
  Q
  ;
-GRP(IBBUFDA,IBGRPDA,TYPE,RESULT) ;  move buffer insurance group/plan data (file 355.33) to existing Group/Plan (file 355.33)
+GRP(IBBUFDA,IBGRPDA,TYPE,RESULT) ;  move buffer insurance group/plan data (file 355.33) to existing Group/Plan (file 355.3)
  ;
  S IBBUFDA=IBBUFDA_",",IBGRPDA=$G(IBGRPDA)_","
  D SET("GRP",IBBUFDA,IBGRPDA,TYPE,.RESULT)
@@ -145,7 +145,7 @@ GRPA ; auto set fields
  ;;1.06^DUZ^                          ; Last edited By
  ;
 POLDR ;
- ;;2.312^60.02:62.08^8;3;1;6;16;17;3.01;3.05:3.1;3.13;3.14;4.01;4.02;.2;3.12;2.1;2.015;2.11;2.12;2.01:2.08;5.01
+ ;;2.312^60.02:62.08^8;3;1;6;16;17;3.01;3.05:3.1;3.13;3.14;4.01;4.02;4.05;4.06;.2;3.12;2.1;2.015;2.11;2.12;2.01:2.08;5.01
 POLFLD ; corresponding fields:  Buffer File (355.33) and Insurance Patient Policy file (2.312)
  ;;60.02^8^Effective Date^            ; Effective Date
  ;;60.03^3^Expiration Date^           ; Expiration Date
@@ -159,6 +159,8 @@ POLFLD ; corresponding fields:  Buffer File (355.33) and Insurance Patient Polic
  ;;60.11^4.02^Provider Phone^         ; Primary Care Provider Phone
  ;;60.12^.2^Coor of Benefits^         ; Coordination of Benefits
  ;;60.13^3.12^Insured's Sex^          ; Insured's Sex
+ ;;60.15^4.05^Rx Relationship^        ; Pharmacy Relationship Code  IB*2*452
+ ;;60.16^4.06^Rx Person Code^         ; Pharmacy Person Code        IB*2*452
  ;;  
  ;;61.01^2.1^Emp Sponsored^           ; ESGHP?
  ;;61.02^2.015^Employer Name^         ; Subscriber's Employer Name

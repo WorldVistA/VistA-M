@@ -1,8 +1,9 @@
 PSOHLNEW ;BIR/RTR - CPRS orders ;11/30/06 11:49am
- ;;7.0;OUTPATIENT PHARMACY;**1,7,15,46,71,98,111,124,117,131,146,132,143,223,235,148,239,249,225,324,251,387**;DEC 1997;Build 13
- ;40.8-728,50-221,SC-2675,100-2219,50.7-2223,EN^ORERR-2187
+ ;;7.0;OUTPATIENT PHARMACY;**1,7,15,46,71,98,111,124,117,131,146,132,143,223,235,148,239,249,225,324,251,387,379**;DEC 1997;Build 28
+ ;External reference to EN^ORERR supported by DBIA 2187
+ ;External reference to ^PS(50.7 supported by DBIA 2223 
  ;External reference to ^DG(40.8 supported by DBIA 728
- ;External reference to ^OR(100 supported by DBIA 3582
+ ;External reference to ^OR(100 supported by DBIA 2219
  ;External reference to ^SC( supported by DBIA 2675
  ;External reference to ^PSDRUG( supported by DBIA 2675
 EN(MSG) ;
@@ -65,9 +66,6 @@ ORC ;
 RXO I $O(MSG(ZZ,0)) D ^PSOHLNE2 G RXOPS
  S PSORDITE=$P($P(PSOSEG,"|"),"^",4)
  S PSODDRUG=$P($P(PSOSEG,"|",10),"^",4) I $G(PSODDRUG) S:'$D(^PSDRUG(PSODDRUG,0)) PSODDRUG=""
- I '$P($P(PSOSEG,"|",10),"^",4) N PSI,PSDC S (PSDC,PSI)=0 D
- .F  S PSI=$O(^PSDRUG("ASP",PSORDITE,PSI)) Q:'PSI  I $S('$D(^PSDRUG(PSI,"I")):1,'^("I"):1,DT'>^("I"):1,1:0),$S($P($G(^PSDRUG(PSI,2)),"^",3)'["O":0,1:1) S PSDC=PSDC+1,PSDC(PSDC)=PSI
- .I PSDC=1 S PSODDRUG=PSDC(1)
  S PSOXQTY=$P(PSOSEG,"|",11)
  S PSOREFIL=$P(PSOSEG,"|",13)
  S PSODYSPL=$P(PSOSEG,"|",17)

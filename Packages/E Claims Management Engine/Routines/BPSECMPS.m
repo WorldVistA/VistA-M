@@ -1,17 +1,25 @@
 BPSECMPS ;BHAM ISC/FCS/DRS - Parse Claim Response ;3/10/08  12:31
- ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,6,7,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,6,7,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
- ; references to UPDATE^DIE and WP^DIE supported by DBIA 2053
- ; reference to FDA^DILF  supported by DBIA 2054
+ ; References to UPDATE^DIE and WP^DIE supported by DBIA 2053
+ ; Reference to FDA^DILF  supported by DBIA 2054
  ;
-PARSE(RREC,CLAIMIEN,RESPIEN) ;
+PARSE(RREC,CLAIMIEN,IEN59,TRANTYPE) ;
+ ; Parse the response from the payer and file it in the BPS Response record
+ ; Incoming Parameters:
+ ;   RREC - HL7 message
+ ;   CLAIMIEN - IEN of the BPS Claim file
+ ;   IEN59 - IEN of the BPS Transaction file
+ ;   TRANTYPE - Transaction Type (B1-Billing Request, B2-Reversal, E1-Eligibility)
+ ; Return value:
+ ;   RESPIEN - IEN of the BPS Response file
  ;
  N FDAIEN,FDAIEN03,FDATA,FILE,FS,GS,ROOT,SS,TRANSACT,TRANSCNT
  ;
  ; RREC and CLAIMIEN are required
- Q:$G(RREC)=""
- Q:$G(CLAIMIEN)=""
+ Q:$G(RREC)="" 0
+ Q:$G(CLAIMIEN)="" 0
  ;
  ;group and field separator characters
  S GS="\X1D\",FS="\X1C\",SS="\X1E\"
@@ -21,8 +29,8 @@ PARSE(RREC,CLAIMIEN,RESPIEN) ;
  ;
  ; If test system and test active, call the override routine
  ; IEN59 and TRANTYPE are set in BPSECMC2
+ I $$CHECK^BPSTEST D SETOVER^BPSTEST(+$G(IEN59),$G(TRANTYPE),.FDATA)
  ;
- I $$CHECK^BPSTEST D SETOVER^BPSTEST(IEN59,TRANTYPE,.FDATA)
  D UPDATE^DIE("S","FDATA(9002313.03)","FDAIEN")
  F TRANSACT=1:1:TRANSCNT  D
  .D PROCRESP
@@ -42,7 +50,7 @@ PARSE(RREC,CLAIMIEN,RESPIEN) ;
  D IBSEND^BPSECMP2(CLAIMIEN,RESPIEN,"","")
  D RAW(RESPIEN,RREC)
  ;
- Q
+ Q RESPIEN
  ;
 TRANSMSN ;This subroutine will work through the transmission level information
  ;
@@ -122,7 +130,7 @@ PARSETN ; parse the transaction level segments
  ;  26 = Response Prior Authorization Segment
  ;  28 = Response Coordination of Benefits/Other Payers Segment
  ;
- N CKRPT,FIELD,FLDNUM,PC,RCNT,REPEAT,RPTFLD,SEGFID,SEGID,GRPCNT,GRPFLDS
+ N CKRPT,FIELD,FLDNUM,PC,REPEAT,RPTFLD,SEGFID,SEGID,GRPCNT,GRPFLDS
  ;
  S RPTFLD=""
  S SEGID=$P(SEGMENT,FS,2)  ; this should be the segment id
@@ -135,33 +143,26 @@ PARSETN ; parse the transaction level segments
  ; setup the repeating flds based on the segment
  I SEGFID=21 D                 ;status segment
  . S RPTFLD=",548,511,546,132,526,131,"
- . S (RCNT(548),RCNT(511),RCNT(546),RCNT(132),RCNT(526),RCNT(131))=0
  . S GRPCNT=0
  . S GRPFLDS=",511,548,132,"
  ;
  I SEGFID=22 D                 ;claim segment
  . S RPTFLD=",552,553,554,555,556,"
- . S (RCNT(552),RCNT(553),RCNT(554),RCNT(555),RCNT(556))=0
  . S GRPCNT=0
  . S GRPFLDS=",552,"
  ;
  I SEGFID=23 D                ;pricing segment
  . S RPTFLD=",564,565,393,394,"
- . S (RCNT(564),RCNT(565),RCNT(393),RCNT(394))=0
  . S GRPCNT=0
  . S GRPFLDS=",564,393,"
  ;
  I SEGFID=24 D                ;DUR/PPS segment
- . S RPTFLD=",439,528,529,530,531,532,533,544,567,570"
- . S (RCNT(439),RCNT(528),RCNT(529),RCNT(530),RCNT(531))=0
- . S (RCNT(532),RCNT(533),RCNT(567),RCNT(544),RCNT(570))=0
+ . S RPTFLD=",439,528,529,530,531,532,533,544,567,570,"
  . S GRPCNT=0
  . S GRPFLDS=",567,"
  ;
  I SEGFID=28 D                ;COB/Other Payers segment
  . S RPTFLD=",127,142,143,144,145,338,339,340,356,991,992,"
- . S (RCNT(127),RCNT(142),RCNT(143),RCNT(144),RCNT(145),RCNT(338))=0
- . S (RCNT(339),RCNT(340),RCNT(356),RCNT(991),RCNT(992))=0
  . S GRPCNT=0
  . S GRPFLDS=",338,"
  ;

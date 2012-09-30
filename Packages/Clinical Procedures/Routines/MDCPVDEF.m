@@ -1,10 +1,9 @@
-MDCPVDEF ;HINES OIFO/BJ - CP Outbound message queue routine.;30 Jul 2007
- ;;1.0;CLINICAL PROCEDURES;**16**;Apr 01, 2004;Build 280
+MDCPVDEF ;HINES OIFO/BJ/TJ - CP Outbound message record maintenance routine.;30 Jul 2007
+ ;;1.0;CLINICAL PROCEDURES;**16,12,23**;Apr 01, 2004;Build 281
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; This routine uses the following IAs:
  ;  #10061       - IN5^VADPT                        Registration                   (supported)
- ;  # 4253       - $$QUEUE^VDEFQM                   VDEF             (controlled subscription)
  ;  # 2817       - access "AD" x-ref per ^DG(40.8,  Registration     (controlled subscription)
  ;  # 1373       - access ^ORD(101                  Kernel           (controlled subscription)
  ;  #10039       - access ^DIC(42                   Registration                   (supported)
@@ -29,40 +28,45 @@ EN ;
  ; Returns -
  ;   None
  ;
+ Q:'$D(DGPMA)&'$D(DGPMP)
  N MDNODE,MDDIV,MDWARD,MDBED,MDEVNT,MDTYPE,MDDFN,MDMVMT,MDQUIT,MDDA,MDEDIT,VAIP
  S MDNODE=$S(DGPMA]"":DGPMA,1:DGPMP)
  S MDEDIT=(DGPMA]"")&(DGPMP]"")
  S MDMVMT=DGPMDA
  S MDDFN=$P(MDNODE,U,3)
  S MDTYPE=+$P(MDNODE,U,2) Q:(MDTYPE'=MDTYPE\1)!(MDTYPE>3)!(MDTYPE<1)
- S MDWARD=$P(MDNODE,U,6) Q:MDWARD=""
- S MDBED=$P(MDNODE,U,7) Q:MDBED=""
- Q:$D(^MDC(704.005,"APIMS",MDMVMT,MDDFN,MDWARD))&MDEDIT  ; We've already seen this movement - Future A08
+ S MDWARD=$P(MDNODE,U,6) I MDWARD=""  D LASTLOC(MDDFN,"WARD")
+ S MDBED=$P(MDNODE,U,7) I MDBED=""  D:MDTYPE'=1 LASTLOC(MDDFN,"BED")
+ I ($G(MDWARD)="")!($G(MDBED)="") Q  ;Q NOT inpatient activity 
  ;
  ; It appears that DIV might be empty if this is a single division facility.  So, we have to
  ;   get a division of our own.
  ;
  S MDDIV=$P(^DIC(42,MDWARD,0),U,11)
  I MDDIV="" S MDDIV=DUZ(2),MDDIV=$O(^DG(40.8,"AD",MDDIV,0))
+ ; Future inclusion: MD*1*23
+ ;I $G(^MDC(704.005,"APIMS",MDMVMT,MDDFN,MDWARD),0)&MDEDIT D RESEND^MDCPHL7C(MDDFN,MDDIV,MDWARD,MDBED,MDEDIT) Q  ; We've already seen this movement - Future A08
  ;
- ;   Movement         |  DGPMP  |   DGPMA
- ;   ---------------------------------
- ;   Admit            | Absent  |  Present
- ;   Cancel Admit     | Present |  Absent
- ;   Transfer         | Absent  |  Present
- ;   Cancel Xfer      | Present |  Absent
- ;   Discharge        | Absent  |  Present
- ;   Cancel Discharge | Present |  Absent
+ ;   Movement         |  DGPMP      |   DGPMA
+ ;   ---------------------------------------------
+ ;   Admit            | Absent      |  Present
+ ;   Cancel Admit     | Present     |  Absent
+ ;   Transfer         | Absent      |  Present
+ ;   Cancel Xfer      | Present     |  Absent
+ ;   Discharge        | Absent      |  Present
+ ;   Cancel Discharge | Present     |  Absent
+ ;   Update           | Present old |  Present new
  ;
  S MDEVNT=$S(DGPMA]"":"A0",1:"A1")
  S MDEVNT=MDEVNT_MDTYPE
- Q:'$$SENDMSG(MDDIV,MDWARD,"ADT",MDEVNT)
+ W !,"Executing HL7 ADT Messaging (MD CP Flowsheets)",!
+ I '$$SENDMSG(MDDIV,MDWARD,"ADT",MDEVNT) W !,"No CP Flowsheets subscriber(s) for the movement location.",! Q
  D ADD(MDDFN,MDDIV,MDWARD,$G(MDBED),"ADT",MDEVNT,MDMVMT)
  Q
  ;
-ADD(MDCPDFN,MDCPDIV,MDCPWARD,MDCPBED,MDCPMSG,MDCPEVNT,MDCPMVMT) ;
+ADD(MDCPDFN,MDCPDIV,MDCPWARD,MDCPBED,MDCPMSG,MDCPEVNT,MDCPMVMT,MDCPROT) ;
  ;
- ; Adds information to CP_PATIENT_MOVEMENT file (704.005), and calls the VDEF queue.
+ ; Adds information to CP_PATIENT_MOVEMENT file (704.005), and generates HL7 message.
  ;
  ; Parameters -
  ;   Covert (Preset local variables) -
@@ -76,6 +80,7 @@ ADD(MDCPDFN,MDCPDIV,MDCPWARD,MDCPBED,MDCPMSG,MDCPEVNT,MDCPMVMT) ;
  ;   MDCPMSG - The HL7 message type (at this point, this should ALWAYS be ADT).
  ;   MDCPEVNT - The HL7 event type for the message (A01, A02, A03, etc.)
  ;   MDCPMVMT - PATIENT MOVEMENT IEN (Stored as PIMS_EVENT_ID, not a pointer)
+ ;   MDCPROT  - Pointer to 704.006 (optional)
  ;
  ; Returns -
  ;   None
@@ -98,26 +103,33 @@ ADD(MDCPDFN,MDCPDIV,MDCPWARD,MDCPBED,MDCPMSG,MDCPEVNT,MDCPMVMT) ;
  .S MDCPOLD=$S(MDCPEVNT="A11":"A01",MDCPEVNT="A12":"A02",MDCPEVNT="A13":"A03",1:"")
  .S MDCPPREV=$O(^MDC(704.005,"LAST",MDCPDFN,MDCPMSG,MDCPOLD,""),-1)
  .S MDCPPOLD=$O(^MDC(704.005,"LAST",MDCPDFN,MDCPMSG,MDCPEVNT,""),-1)
- .S MDCPFLG=$S(+MDCPPOLD'<+MDCPPREV:"1",1:"0")
+ .S MDCPFLG=$S(MDCPPREV="":"0",+MDCPPOLD'<+MDCPPREV:"1",1:"0")
  ;
  Q:MDCPFLG
  N MDCFDA,MDCPIEN,MDCPPAIR
  S MDCFDA(704.005,"+1,",.01)=MDCPDFN
  S MDCFDA(704.005,"+1,",.02)=MDCPDTTM
- S MDCFDA(704.005,"+1,",.03)=MDCPDIV
- S MDCFDA(704.005,"+1,",.04)=MDCPWARD
- S MDCFDA(704.005,"+1,",.05)=MDCPBED
+ S MDCFDA(704.005,"+1,",.03)=$G(MDCPDIV)
+ S MDCFDA(704.005,"+1,",.04)=$G(MDCPWARD)
+ S MDCFDA(704.005,"+1,",.05)=$G(MDCPBED)
  S MDCFDA(704.005,"+1,",.06)=MDCPMSG
  S MDCFDA(704.005,"+1,",.07)=MDCPEVNT
- S MDCFDA(704.005,"+1,",.08)=MDCPMVMT
+ S MDCFDA(704.005,"+1,",.08)=$G(MDCPMVMT)
+ S MDCFDA(704.005,"+1,",.21)=$G(MDCPROT)
  D UPDATE^DIE("","MDCFDA","MDCPIEN") Q:$G(MDCPIEN(1))<1
  ;
- N STYPE,RETRN,DYNAMIC,EVNTDRVR,REQIEN,DYNAMIC
- S STYPE=$S(MDCPEVNT="A01":"CPAN",MDCPEVNT="A02":"CPTP",MDCPEVNT="A03":"CPDE",MDCPEVNT="A08":"CPUI",MDCPEVNT="A11":"CPCAN",MDCPEVNT="A12":"CPCT",MDCPEVNT="A13":"CPCDE",1:"")
- S MDCPPAIR="SUBTYPE="_STYPE_"^IEN="_MDCPIEN(1)
+ I MDCPEVNT?1"A1"1N D
+ .S MDCPOLD=$S(MDCPEVNT="A11":"A01",MDCPEVNT="A12":"A02",MDCPEVNT="A13":"A03",1:"")
+ .N MDIFN,MDCPPREV
+ .S MDCPPREV=$O(^MDC(704.005,"LAST",MDCPDFN,MDCPMSG,MDCPOLD,""),-1)
+ .I MDCPPREV]"" D
+ ..S MDIFN=$O(^MDC(704.005,"LAST",MDCPDFN,MDCPMSG,MDCPOLD,MDCPPREV,""))
+ ..D DEL(MDIFN)
+ ;
+ N RETRN
  K MDCFDA
- S MDCFDA(704.005,MDCPIEN(1)_",",.09)=$$QUEUE^VDEFQM(MDCPMSG_U_MDCPEVNT,MDCPPAIR,.RETRN)
- S:MDCFDA(704.005,MDCPIEN(1)_",",.09)=0 MDCFDA(704.005,MDCPIEN(1)_",",.1)=$G(RETRN,"No return message.")
+ S MDCFDA(704.005,MDCPIEN(1)_",",.09)=$$QUE^MDCPMESQ(MDCPIEN(1),MDCPEVNT,.RETRN) ; Queue message
+ S MDCFDA(704.005,MDCPIEN(1)_",",.1)=$G(RETRN,"No return message.")
  D UPDATE^DIE("","MDCFDA")
  Q
  ;
@@ -140,31 +152,6 @@ DEL(MDCPIFN) ;
  D FILE^DIE("K","MDCFDA")
  Q
  ;
-GENA08(MDCPDFN,MDCPDIV,MDCPWARD,MDCPBED) ;
- ;
- ; Generates an outbound A08 message.
- ;
- ; Parameters -
- ;   MDCPDFN - The DFN of the patient (Required)
- ;   MDCPDIV - The current facility to which the patient is admitted (optional)
- ;   MDCPWARD - The current ward to which the patient is admitted (optional)
- ;   MDCPBED - The current bed to which the patient is admitted (optional)
- ;
- ;   If division, ward, or bed are blank, ^VADPT will be called to get the most recent movement information
- ;     for the patient.
- ;
- ; Returns -
- ;   None
- I ($G(MDCPDIV)="")!($G(MDCPWARD)="")!($G(MDCPBED)="") D
- .N DFN S DFN=MDCPDFN
- .D IN5^VADPT
- .S MDCPWARD=$P(VAIP(5),U)
- .S MDCPDIV=$P(^DIC(42,MDCPWARD,0),U,11)
- .S MDCPBED=$P(VAIP(6),U)
- ;
- D ADD(MDCPDFN,MDCPDIV,MDCPWARD,MDCPBED,"ADT","A08")
- Q
- ;
 GENDESTS ;
  ; Filters outbound messages.  See HL*1.6*56/66 Site Manager and Developer Manual
  ;   p. 11-7 to 11-11 (inc).
@@ -184,7 +171,7 @@ GENDESTS ;
  ;   None overt.  HLL("LINKS",n) will be read by HLO upon return.
  ;
  N MDCPV1,MDHLFS,MDHLECH,MDDIV,MDDIVI,MDWARD,MDWARDI,MDBED,MDCPSUB,MDCPROT,I,IEN
- S IEN=$P($G(NAMEVAL(2,0)),"=",2)
+ S IEN=MDCIEN
  S MDHLFS=HL("FS")
  S MDHLECH=$E(HL("ECH"),1,1)
  F  X HLNEXT D  Q:HLQUIT'>0
@@ -216,7 +203,7 @@ GETSUBS ;
  Q
  ;
 GENDEST2(IEN) ; Filters outbound messages.  Unlike GENDESTS, this is set to filter
- ;  assuming that we have not yet queued the outbound message in VDEF.
+ ;  assuming that we have not yet queued the outbound message.
  ;
  ;
  ; Parameters
@@ -241,14 +228,13 @@ ARRYDEST(DIVISION,WARD,MSGTYPE,EVNTTYPE) ;
  ; DIVISION: IEN of division in file 40.8.
  ; WARD: IEN of ward in file 42.
  ;
- N MDCPSUB,I,MDCPPROT,MDCPWARD
+ N MDCPSUB,I,MDCPROT,MDCPWARD
  S MDCPSUB=0,I=0
  F  S MDCPSUB=$O(^MDC(704.006,"LOCDEV",DIVISION,MDCPSUB)) Q:'MDCPSUB  D
  .Q:MSGTYPE'=$P(^MDC(704.006,MDCPSUB,0),U,4)
  .Q:EVNTTYPE'=$P(^MDC(704.006,MDCPSUB,0),U,5)
  .S MDCPWARD=$P(^MDC(704.006,MDCPSUB,0),U,3)
  .Q:(MDCPWARD'="")&(MDCPWARD'=WARD)
- .;Q:(MDBED'="")&(MDBED'=$P(^MDC(704.006,"LOCDEV",MDCPPROT),U,3)
  .S MDCPROT=$P(^MDC(704.006,MDCPSUB,0),U)
  .S I=I+1
  .S HLL("LINKS",I)=$P(^ORD(101,MDCPROT,0),U)_U_$$EXTERNAL^DILFD(101,770.7,"",$P(^ORD(101,MDCPROT,770),U,7))
@@ -258,14 +244,13 @@ SENDMSG(DIVISION,WARD,MSGTYPE,EVNTTYPE) ;
  ;
  ; Determines whether or not we should continue to build or save this message.  On a basis
  ;   of division, ward, message type, and event type, will return 1 or 0 based on whether or
- ;   not there is an entry in 704.006 to send the message to a specific device.  Requires
- ;   build 260 or greater of MD*1.0*16, as there are 2 new indexes that will be required.
+ ;   not there is an entry in 704.006 to send the message to a specific device.
  ;
  ; Parameters
  ;   DIVISION - Division (internal)
  ;   WARD - Ward (internal)
- ;   MSGTYPE - HL7 message type
- ;   EVNTTYPE - HL7 event type
+ ;   MSGTYPE - HL7 message type  eg. "ADT"
+ ;   EVNTTYPE - HL7 event type   eg. "A01"
  ;
  ; Returns
  ;   1 if message should be sent
@@ -281,3 +266,38 @@ SENDMSG(DIVISION,WARD,MSGTYPE,EVNTTYPE) ;
  Q:+$G(USE) 1
  Q 0
  ;
+LASTLOC(MDCPDFN,MDCPLOC) ;
+ ;
+ ; Retrieve inpatient's location via LAST known LOCation per CP  - if neccessary ....
+ ;
+ ; Parameters
+ ;   MDCPDFN - Patient's IEN
+ ;   MDCPLOC - "WARD" or "BED" (seeking ward or bed data)
+ ;
+ ; Returns
+ ;   1 if found location patient
+ ;   0 if NOT found location of patient or NOT INPATIENT
+ ;  
+ N LASTLOC S LASTLOC=""
+A02 ;Look into transfers (A02)
+ G:'$D(^MDC(704.005,"LAST",MDCPDFN,"ADT","A02")) A01
+ N MDCDAT S MDCDAT=$O(^MDC(704.005,"LAST",MDCPDFN,"ADT","A02",""),-1)
+ S LASTLOC=$O(^MDC(704.005,"LAST",MDCPDFN,"ADT","A02",MDCDAT,LASTLOC))
+ I LASTLOC]"" D  Q
+  .I MDCPLOC="WARD" S MDWARD=$P(^MDC(704.005,LASTLOC,0),U,4)
+  .I MDCPLOC="BED" S MDBED=$P(^MDC(704.005,LASTLOC,0),U,5)
+A01 ;Look into admissions (A01)
+ ;
+ G:'$D(^MDC(704.005,"LAST",MDCPDFN,"ADT","A01")) VADATA
+ N MDCDAT S MDCDAT=$O(^MDC(704.005,"LAST",MDCPDFN,"ADT","A01",""),-1)
+ S LASTLOC=$O(^MDC(704.005,"LAST",MDCPDFN,"ADT","A01",MDCDAT,LASTLOC))
+ I LASTLOC]"" D  Q
+  .I MDCPLOC="WARD" S MDWARD=$P(^MDC(704.005,LASTLOC,0),U,4)
+  .I MDCPLOC="BED" S MDBED=$P(^MDC(704.005,LASTLOC,0),U,5)
+VADATA ;Look into VADPT 
+ N DFN S DFN=MDCPDFN
+ S:MDTYPE=3 VAIP("D")=$P(MDNODE,".")
+ D IN5^VADPT
+ I MDCPLOC="WARD" S MDWARD=$P(VAIP(5),U)
+ I MDCPLOC="BED" S MDBED=$P(VAIP(6),U)
+ Q

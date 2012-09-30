@@ -83,7 +83,7 @@ STOP800 ;Delete the 800 node from all Stop Code visits
 MAIL ;Send mail messge that job is done.  Also send to SLC IRMFO.
  N XMY,XMSUB,PXTEXT,XMTEXT
  S XMY(DUZ)=""
- S XMY("G.PCEINSTAL@ISC-SLC.VA.GOV")=""
+ S XMY("G.PCEINSTAL@ISC-SLC.DOMAIN.EXT")=""
  S XMSUB="PX*1.0*1 Cleanup is finished"
  S PXTEXT(1)="PX*1.0*1 Cleanup job is done."
  S:$D(ZTQUEUED) PXTEXT(2)="The task job number "_ZTQUEUED_" is finished."

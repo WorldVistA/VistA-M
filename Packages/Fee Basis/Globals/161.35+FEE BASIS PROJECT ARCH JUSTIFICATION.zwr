@@ -1,0 +1,12 @@
+FEE BASIS PROJECT ARCH JUSTIFICATION
+ZWR
+^FBAA(161.35,0)="FEE BASIS PROJECT ARCH JUSTIFICATION^161.35^3^3"
+^FBAA(161.35,1,0)="OEF/OIF/OND, enrolled after 8/29/2011, geographic eligibility confirmed via web based tool^1"
+^FBAA(161.35,2,0)="Enrolled between 10/1/2010 and 8/29/2011, geographic eligibility confirmed via web based tool^1"
+^FBAA(161.35,3,0)="Enrolled prior to 10/1/2010, geographic eligibility confirmed via web based tool^1"
+^FBAA(161.35,"B","Enrolled between 10/1/2010 and",2)=""
+^FBAA(161.35,"B","Enrolled prior to 10/1/2010, g",3)=""
+^FBAA(161.35,"B","OEF/OIF/OND, enrolled after 8/",1)=""
+^FBAA(161.35,"C","Enrolled between 10/1/2010 and 8/29/2011, geographic eligibility confirmed via web based tool",2)=""
+^FBAA(161.35,"C","Enrolled prior to 10/1/2010, geographic eligibility confirmed via web based tool",3)=""
+^FBAA(161.35,"C","OEF/OIF/OND, enrolled after 8/29/2011, geographic eligibility confirmed via web based tool",1)=""

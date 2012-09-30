@@ -1,5 +1,5 @@
-PXRMCSTX ; SLC/PKR - Routines for taxonomy code set update. ;11/02/2009
- ;;2.0;CLINICAL REMINDERS;**9,12,17**;Feb 04, 2005;Build 102
+PXRMCSTX ;SLC/PKR - Routines for taxonomy code set update. ;07/29/2010
+ ;;2.0;CLINICAL REMINDERS;**9,12,17,18**;Feb 04, 2005;Build 152
  ;
  ;=====================================================
 ADDTMSG(LC,MSG) ;Add a set of messages to the global message.
@@ -103,7 +103,7 @@ CSU(TYPE) ;Entry point for code set update.
  . S ^TMP("PXRMXMZ",$J,1,0)="No changes in adjacent high and low codes were found."
  . S ^TMP("PXRMXMZ",$J,2,0)="No inactive selectable codes were found."
  . S ^TMP("PXRMXMZ",$J,3,0)="No action is necessary."
- D SEND^PXRMMSG("PXRMXMZ",XMSUB)
+ D SEND^PXRMMSG("PXRMXMZ",XMSUB,"",DUZ)
  K ^TMP("PXRMXMZ",$J),^TMP($J,"OLDEXP")
  Q
  ;

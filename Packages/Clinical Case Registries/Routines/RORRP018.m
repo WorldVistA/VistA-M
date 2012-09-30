@@ -1,10 +1,23 @@
 RORRP018 ;HCIOFO/SG - RPC: LIST OF LAB TESTS ; 10/19/05 8:23am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+ ;;1.5;CLINICAL CASE REGISTRIES;**17**;Feb 17, 2006;Build 33
  ;
  ; This routine uses the following IAs:
  ;
  ; #91           Access to the LABORATORY TEST file
- ;
+ ; #2051         FIND^DIC (supported)
+ ; #2056         $$GET1^DIQ(supported)
+ ; #10104        $$UP^XLFSTR (supported)
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                 --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*17   DEC  2011   C RAY        Replaced call to LIST^DIC with FIND^DIC
+ ;                                      Param FROM is not supported by FIND^DIC
+ ;                                      Flag "B" is not supported by FIND^DIC
+ ;******************************************************************************
+ ;******************************************************************************
  Q
  ;
  ;***** RETURNS THE LIST OF LAB TESTS
@@ -65,6 +78,7 @@ RORRP018 ;HCIOFO/SG - RPC: LIST OF LAB TESTS ; 10/19/05 8:23am
  ;                         ^03: Subscript (internal)
  ;                         ^04: Panel {""|1}
  ;
+ ;
 LABTLIST(RESULTS,SUBSCR,PART,FLAGS,NUMBER,FROM) ;
  N BUF,I,RC,RORERRDL,RORMSG,RORSUBS,SCR,TMP
  D CLEAR^RORERR("LABTLIST^RORRP018",1)
@@ -74,7 +88,7 @@ LABTLIST(RESULTS,SUBSCR,PART,FLAGS,NUMBER,FROM) ;
  F I=1:1  S TMP=$P(SUBSCR,",",I)  Q:TMP=""  S RORSUBS(TMP)=""
  S PART=$G(PART),FLAGS=$G(FLAGS)
  S NUMBER=$S($G(NUMBER)>0:+NUMBER,1:"*")
- ;--- Setup the start point
+ ;--- Setup the start point  FROM is passed in and formatted but not used
  I $G(FROM)'=""  D  S FROM=$P(FROM,U)
  . S:$P(FROM,U,2)>0 FROM("IEN")=+$P(FROM,U,2)
  ;--- Compile the screen logic (be careful with naked references)
@@ -83,8 +97,8 @@ LABTLIST(RESULTS,SUBSCR,PART,FLAGS,NUMBER,FROM) ;
  . S SCR=SCR_"S D=$P($G(^(0)),U,4) I D'="""",$D(RORSUBS(D)) "
  S:FLAGS'["P" SCR=SCR_"I $O(^(2,0))'>0 "  ; Exclude panels
  ;--- Get the list of tests
- S BUF="@;.01;4I",TMP="PM"_$S(FLAGS["B":"B",1:"")
- D LIST^DIC(60,,BUF,TMP,NUMBER,.FROM,PART,"B",SCR,,RESULTS,"RORMSG")
+ S BUF="@;.01;IX",TMP="PM"     ;"B" flag not supported
+ D FIND^DIC(60,,BUF,TMP,PART,NUMBER,"B^D",SCR,,RESULTS,"RORMSG")
  I $G(DIERR)  D  D RPCSTK^RORERR(.RESULTS,RC)  Q
  . S RC=$$DBS^RORERR("RORMSG",-9,,,60)
  . D FREE^RORTMP(RESULTS)

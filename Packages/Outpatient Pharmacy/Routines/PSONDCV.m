@@ -1,5 +1,5 @@
 PSONDCV ;BP/CMF - Pharmacy NDC Validation ;04/08/08
- ;;7.0;OUTPATIENT PHARMACY;**289**;DEC 1997;Build 107
+ ;;7.0;OUTPATIENT PHARMACY;**289,385**;DEC 1997;Build 27
  ;Reference to $$ECMEON^BPSUTIL supported by DBIA 4410
  ;Reference to $$STATUS^BPSOSRX suppored by DBIA 4300
  ;
@@ -83,7 +83,7 @@ VALIDATE(RX,RXIEN) ;;
  I $$ISCMOP(RXIEN,RFL) D  Q  ;can't validate RXs sent to CMOP
  .W !!,"Prescription "_RX_" is a CMOP Rx."
  .W !,"CMOP RXs may not be validated."
- S FLAG=0 D TRICARE1(.FLAG,RXIEN,RFL)
+ S FLAG=0 D ELIG(.FLAG,RXIEN,RFL)
  I FLAG=1 Q
   F LBL=0:0 S LBL=$O(^PSRX(RXIEN,"L",LBL)) Q:'LBL  I +$P(^PSRX(RXIEN,"L",LBL,0),"^",2)=RFL S LPRT=1
  I 'LPRT W !!,"The prescription label must be printed prior to the NDC being validated.",!!  Q
@@ -189,12 +189,12 @@ DEL(RXIEN,RFL) ; update validation fields
  D FILE^DIE("","FDA","ERROR")
  Q
  ;;
-TRICARE1(FLAG,RXIEN,RFL) ; tricare test #1
+ELIG(FLAG,RXIEN,RFL) ;TRICARE/CHAMPVA test #1
  N PSOTRIC
  D:$$TRIC^PSOREJP1(RXIEN,RFL,.PSOTRIC)
  .D:$$STATUS^PSOBPSUT(RXIEN,RFL)'="E PAYABLE"
  ..S FLAG=1
- ..W !,"This prescription fill has open Tricare third party insurance"
+ ..W !,"This prescription fill has open "_$$ELIGDISP^PSOREJP1(RXIEN,RFL)_" third party insurance"
  ..W !,"rejections that must be resolved prior to completion of NDC validation."
  Q
  ;;

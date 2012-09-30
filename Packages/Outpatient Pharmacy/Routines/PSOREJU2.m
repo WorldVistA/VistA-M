@@ -1,5 +1,5 @@
 PSOREJU2 ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,260,287,341,290,358,359**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**148,260,287,341,290,358,359,385,403**;DEC 1997;Build 9
  ;Reference to $$NABP^BPSBUTL supported by IA 4719
  ;Reference to File 9002313.23 - BPS NCPDP REASON FOR SERVICE CODE supported by IA 4714
  ;
@@ -7,6 +7,7 @@ GET(RX,RFL,REJDATA,REJID,OKCL,CODE) ;
  ; Input:  (r) RX  - Rx IEN (#52) 
  ;         (o) RFL - Refill # (Default: most recent)
  ;         (r) REJDATA(REJECT IEN,FIELD) - Array where these Reject fields will be returned:
+ ;                       "BIN" - Payer BIN number
  ;                       "CODE" - Reject Code (79 or 88)
  ;                       "DATE/TIME" - DATE/TIME Reject was detected
  ;                       "PAYER MESSAGE" - Message returned by the payer
@@ -69,6 +70,7 @@ GET(RX,RFL,REJDATA,REJID,OKCL,CODE) ;
  . S REJDATA(IDX,"COB")=$G(REJFLD(27))
  . S REJDATA(IDX,"GROUP NAME")=$G(REJFLD(6))
  . S REJDATA(IDX,"GROUP NUMBER")=$G(REJFLD(21))
+ . S REJDATA(IDX,"BIN")=$G(REJFLD(29))
  . S REJDATA(IDX,"CARDHOLDER ID")=$G(REJFLD(22))
  . S REJDATA(IDX,"PLAN CONTACT")=$G(REJFLD(7))
  . S REJDATA(IDX,"PLAN PREVIOUS FILL DATE")=$G(REJFLD(8))
@@ -181,11 +183,13 @@ PRT(FIELD,P,L) ; Sets the lines for fields that require text wrapping
  Q
  ;
 PA() ; - Ask for Prior Authorization Type and Number
+ ; Called by PA^PSOREJP1 (PA acton) and SMA^PSOREJP1 (SMA action)
+ ;
  ;Output:(PAT^PAN) PAT - Prior Authorization Type
  ;                 (See DD File #9002313.26 for possible values)
  ;                 PAN - Prior Authorization Number (11 digits)
  ;        
- N X,DIC,DIROUT,DTOUT,DUOUT,PAN,PAT,Y
+ N DIC,DIR,DIROUT,DIRUT,DTOUT,DUOUT,PAN,PAT,X,Y
  S DIC("B")=0
  S DIC(0)="QEAM",DIC=9002313.26,DIC("A")="Prior Authorization Type: "
  D ^DIC
@@ -195,7 +199,7 @@ PA() ; - Ask for Prior Authorization Type and Number
  K DIR,DIC,X,Y
  S DIR(0)="52.25,26",DIR("A")="Prior Authorization Number"
  S DIR("?")="^D PANHLP^PSOREJU2",DIR("??")=""
- D ^DIR I (Y["^")!$D(DIROUT) Q "^"
+ D ^DIR I (Y["^")!$D(DTOUT) Q "^"
  S PAN=Y
  Q (PAT_"^"_PAN)
  ;

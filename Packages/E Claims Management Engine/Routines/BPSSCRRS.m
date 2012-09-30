@@ -1,5 +1,5 @@
 BPSSCRRS ;BHAM ISC/SS - ECME SCREEN RESUBMIT ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;IA 4702
@@ -34,7 +34,7 @@ RESUBMIT(RXI) ;*/
  N BP59
  N UPDATFLG,BPCLTOT,BPCLTOTR
  N BPQ
- N BPSTATUS
+ N BPSTATUS,BPSCOB,BPSPCLS,BPPRIOPN
  N REVCOUNT S REVCOUNT=0
  N BPIFANY S BPIFANY=0
  N BPINPROG S BPINPROG=0
@@ -57,18 +57,27 @@ RESUBMIT(RXI) ;*/
  . I BPRVNEED=1&(BPRVRSED'=1) Q  ;cannot be resubmitted
  . I $$RXDEL^BPSOS(+RXIEN,RXR) W !!,">> Cannot Reverse or Resubmit ",!,@VALMAR@(+$G(RXI(BP59)),0),!," because it has been deleted in Pharmacy.",! Q
  . ;can't resubmit a closed claim. The user must reopen first.
- . I $$CLOSED02^BPSSCR03($P($G(^BPST(BP59,0)),U,4))  D  Q
+ . I $$CLOSED^BPSSCRU1(BP59) D  Q
  . . W !!,">> Cannot Resubmit ",!,$G(@VALMAR@(+$G(RXI(BP59)),0)),!," because the claim is Closed. Reopen the claim and try again.",! Q
  . S BPSTATUS=$P($$CLAIMST^BPSSCRU3(BP59),U)
- . I $P($G(^BPST(BP59,0)),U,14)<2,$$PAYABLE^BPSOSRX5(BPSTATUS),BPINPROG=0,$$PAYBLSEC^BPSUTIL2(BP59) D  S BPQ=$$PAUSE^BPSSCRRV() Q
+ . S BPSCOB=$$COB59^BPSUTIL2(BP59) ;get COB for the BPS TRANSACTION IEN
+ . I BPSCOB<2,$$PAYABLE^BPSOSRX5(BPSTATUS),BPINPROG=0,$$PAYBLSEC^BPSUTIL2(BP59) D  S BPQ=$$PAUSE^BPSSCRRV() Q
  . . W !,"The claim: ",!,$G(@VALMAR@(+$G(RXI(BP59)),0)),!,"cannot be Resubmitted if the secondary claim is payable.",!,"Please reverse the secondary claim first."
+ . ;If this is a secondary, make sure Primary is either Payable or Closed.
+ . S BPPRIOPN=0 I BPSCOB=2 D  Q:BPPRIOPN=1
+ . . ;Get Primary claim status
+ . . S BPSPCLS=$$FINDECLM^BPSPRRX5(RXIEN,RXR,1)
+ . . I $P(BPSPCLS,U)>1 D
+ . . . Q:$$CLOSED^BPSSCRU1($P(BPSPCLS,U,2))
+ . . . W !,"The secondary claim cannot be Resubmitted unless the primary is either payable",!,"or closed. Please resubmit or close the primary claim first."
+ . . . S BPPRIOPN=1
  . I (BPSTATUS="IN PROGRESS")!(BPSTATUS="SCHEDULED") S BPINPROG=1
  . I BPINPROG=1 D  I $$YESNO^BPSSCRRS("Do you want to proceed?(Y/N)")=0 S BPQ="^" Q
  . . W !,"The claim is in progress. The request will be scheduled and processed after"
  . . W !,"the previous request(s) are completed. Please be aware that the result of "
  . . W !,"the resubmit depends on the payer's response to the prior incomplete requests."
  . S DOSDATE=$$DOSDATE(RXIEN,RXR)
- . S BILLNUM=$$EN^BPSNCPDP(RXIEN,RXR,DOSDATE,"ERES","","ECME RESUBMIT",,,,,$$COB59^BPSUTIL2(BP59))
+ . S BILLNUM=$$EN^BPSNCPDP(RXIEN,RXR,DOSDATE,"ERES","","ECME RESUBMIT",,,,,BPSCOB)
  . ;print return value message
  . W !!
  . W:+BILLNUM>0 $S(+BILLNUM=10:"Reversal but no Resubmit:",1:"Not Processed:"),!,"  "
@@ -82,7 +91,6 @@ RESUBMIT(RXI) ;*/
  . ;4 Unable to queue the ECME claim
  . ;5 Invalid input
  . ;10 Reversal but no resubmit
- . N BPSCOB S BPSCOB=$$COB59^BPSUTIL2(BP59) ;get COB for the BPS TRANSACTION IEN
  . I +BILLNUM=0 D 
  . . D ECMEACT^PSOBPSU1(+RXIEN,+RXR,"Claim resubmitted to 3rd party payer: ECME USER's SCREEN-"_$S(BPSCOB=1:"p",BPSCOB=2:"s",1:"")_$$INSNAME^BPSSCRU6(BP59))
  . . S UPDATFLG=1,BPCLTOT=BPCLTOT+1
@@ -111,32 +119,31 @@ YESNO(BPQSTR,BPDFL) ; Default - YES
  D ^DIR
  Q $S($G(DUOUT)!$G(DUOUT)!(Y="^"):-1,1:Y)
  ;
- ;Date of service
- ;RXIEN - IEN in file #52
- ;RXR - refill number
- ;returns:
- ; date of service
 DOSDATE(RXIEN,RXR) ;
- N BPDOS,BPDT
- ;try release date
- S BPDOS=$$RXRLDT^PSOBPSUT(RXIEN,RXR)\1
- Q:+BPDOS>0 BPDOS
- ;try fill date
- S BPDOS=$$RXFLDT^PSOBPSUT(RXIEN,RXR)\1
- I '$G(DT) Q BPDOS
- I BPDOS>0,BPDOS'>DT Q BPDOS
- ;use current date (today)
- Q DT\1
+ ; Function that returns the date of service
+ ; Input
+ ;   RXIEN - IEN in file #52
+ ;   RXR - refill number
+ ; Returns:
+ ;   Date of Service
+ N BPDOS,BPDT,TODAY
  ;
- ;To display the FILL date on the screen
- ; use Date Of Service date , later on it might be changed
+ ; Try release date
+ S BPDOS=$$RXRLDT^PSOBPSUT($G(RXIEN),$G(RXR))
+ ;
+ ; If there is no release date, use the current day 
+ S TODAY=$$DT^XLFDT
+ I BPDOS=""!(BPDOS>TODAY) S BPDOS=TODAY
+ Q BPDOS\1
+ ;
+ ;Function to get the Date of Service formatted for display
+ ;  note: functionality replaces FILLDATE() which has been retired.
  ;input:
- ;RXIEN - IEN in file #52
- ;RXR - refill number
+ ;  RXIEN - IEN in file #52
+ ;  RXR   - refill number
  ;returns:
- ; date of service
- ; or empty date if failure
-FILLDATE(RXIEN,RXR) ;
+ ;  date of service or empty date if failure
+DOSDT(RXIEN,RXR) ;
  N DOSDT
  S DOSDT=$$DOSDATE(RXIEN,RXR)
  I $L(DOSDT)'=7 Q "  /  "

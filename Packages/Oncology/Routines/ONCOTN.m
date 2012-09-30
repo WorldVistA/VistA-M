@@ -1,5 +1,5 @@
 ONCOTN ;Hines OIFO/GWB - TNM Staging ;02/28/11
- ;;2.11;ONCOLOGY;**1,3,6,7,11,15,19,22,25,28,29,35,36,37,41,42,43,44,46,47,49,50,51,52,53**;Mar 07, 1995;Build 31
+ ;;2.11;ONCOLOGY;**1,3,6,7,11,15,19,22,25,28,29,35,36,37,41,42,43,44,46,47,49,50,51,52,53,54**;Mar 07, 1995;Build 10
  ;
  N DATEDX,H,ONCED,S,YR
  S DATEDX=$P(^ONCO(165.5,D0,0),U,16)
@@ -61,7 +61,7 @@ ONCOTN ;Hines OIFO/GWB - TNM Staging ;02/28/11
  .W !!?1,"Histology ",$E(H,1,4)_"/"_$E(H,5)," is not appropriate for or relevant to the staging of melanoma.",!
  .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
  ;
- I (ONCED<7)!((H<8020)!(H>8090)),(T=67140)!(T=67142)!(T=67148) D   S Y="@313" Q 
+ I (ONCED<7),((H<8020)!(H>8090)),(T=67140)!(T=67142)!(T=67148) D   S Y="@313" Q 
  .W !!?3,"AJCC does not define staging for this site.",!
  .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
  ;

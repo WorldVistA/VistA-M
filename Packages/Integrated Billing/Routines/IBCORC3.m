@@ -54,7 +54,7 @@ IRM ; IRM Entry Point to queue a one-time (?) job for MCCR.
  I '$D(IBABEG) S IBABEG=2971001
  I '$D(IBAEND) S IBAEND=2981231
  I '$D(IBNR) S IBNR=30
- I '$D(IBMAILTO) S IBMAILTO="S.PRQC SERVER IBINS@ISC-ALBANY.VA.GOV"
+ I '$D(IBMAILTO) S IBMAILTO="S.PRQC SERVER IBINS@ISC-ALBANY.DOMAIN.EXT"
  S IBIRM=1
  ;
  W !!,"This job will compile a ranking of all your insurance carriers by the total"

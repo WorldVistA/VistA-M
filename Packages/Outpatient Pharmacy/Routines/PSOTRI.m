@@ -1,27 +1,31 @@
-PSOTRI ;BIRM/BNT - OP TRICARE Audit Log Utilities ;07/21/2010
- ;;7.0;OUTPATIENT PHARMACY;**358**;DEC 1997;Build 35
+PSOTRI ;BIRM/BNT - OP TRICARE/CHAMPVA Audit Log Utilities ;07/21/2010
+ ;;7.0;OUTPATIENT PHARMACY;**358,385**;DEC 1997;Build 27
  ;
  ; Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;
  Q
  ;
  ;
-AUDIT(RX,RFL,RXCOB,TRIJST,AUD) ;
- ; Main entry to create a new record in the PSO TRICARE AUDIT LOG file #52.87
+AUDIT(RX,RFL,RXCOB,JST,AUD,ELIG) ;
+ ; Main entry to create a new record in the PSO AUDIT LOG file #52.87
  ; INPUT: RX    (r) = Prescription IEN
  ;        RFL   (o) = Prescription Fill # (Default is original zero fill)
  ;        RXCOB (o) = Coordination of Benefits
  ;                   1 = Primary (Default)
  ;                   2 = Secondary
- ;        TRIJST(o) = TRICARE Justification text
+ ;        JST   (o) = Justification text
  ;        AUD   (r) = Audit Type
- ;                   R = TRICARE NCPDP REJECT - Associated with an Override audit action
- ;                   N = TRICARE NON BILLABLE RX - Associated with an Override audit action
- ;                   I = TRICARE INPATIENT - Associated with a Bypass audit action
+ ;                   R = NCPDP REJECT - Associated with an Override audit action
+ ;                   N = NON BILLABLE RX - Associated with an Override audit action
+ ;                   I = INPATIENT - Associated with a Bypass audit action
+ ;                   P = PARTIAL FILL
+ ;        ELIG  (r) = Eligibility Type
+ ;                   T = TRICARE
+ ;                   C = CHAMPVA
  ; RETURN: Successful Audit entry will return the IEN of the new entry in file 52.87
  ;         Unsuccessful Audit entry will return "0^Error Description"
  ;
- N PROTRIC,PSODIV,RXFLDS,RFLFLDS,RXECME,PSOFDA,FN,SFN,PSOIEN,PSOIENS,PSOUSER,PSOET
+ N PSOTRIC,PSODIV,RXFLDS,RFLFLDS,RXECME,PSOFDA,FN,SFN,PSOIEN,PSOIENS,PSOUSER,PSOTC,PSOET
  N I,PSOAIEN,PSOREJ,DFN,PSODOA,PSODOS,PSOERR,PSOX,PSOY,RXARR,RFLARR,PSOPHRM,PSOQTY
  Q:'$D(^PSRX(RX,0)) "0^Prescription does not exist"
  ; Verify refill exists
@@ -30,11 +34,16 @@ AUDIT(RX,RFL,RXCOB,TRIJST,AUD) ;
  ; Not original fill
  I RFL Q:'$D(^PSRX(RX,1,RFL)) "0^Refill "_RFL_" does not exist"
  ;
- ; Verify RX is for a TRICARE patient
- Q:'$$TRIC^PSOREJP1(RX,RFL) "0^Not a TRICARE RX"
+ ; Verify RX is for a TRICARE or CHAMPVA patient
+ S (PSOTRIC,PSOTC)="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC)
+ Q:'PSOTRIC "0^Not a TRICARE or CHAMPVA RX"
  ;
  ; Verify Audit Type
- I ("/R/N/I/")'[("/"_AUD_"/") Q "0^Invalid Audit Type "_AUD
+ I ("/R/N/I/P/")'[("/"_AUD_"/") Q "0^Invalid Audit Type "_AUD
+ ;
+ ; Verify Eligibility Type
+ I ("/T/C/")'[("/"_ELIG_"/") Q "0^Invalid Eligibility Type "_ELIG
+ ;
  ; Coordination of Benefits (default is Primary)
  S RXCOB=+$G(RXCOB) I RXCOB=0 S RXCOB=1
  ; Audit File and Reject subfile
@@ -54,11 +63,11 @@ AUDIT(RX,RFL,RXCOB,TRIJST,AUD) ;
  ; Get Division
  S PSODIV=$$RXSITE^PSOBPSUT(RX,RFL)
  ; ECME Number, if exists
- S RXECME=$$ECMENUM^PSOBPSU2(RX)
+ S RXECME=$$ECMENUM^PSOBPSU2(RX,RFL)
  ; Date of Action is NOW
  S PSODOA=$$NOW^XLFDT()
  ; Date of Service
- S PSODOS=$$DOS^PSOBPSU1(RX,RFL,PSODOA\1)
+ S PSODOS=$$DOS^PSOBPSU1(RX,RFL)
  ; User (If null OR Audit Type is Inpatient set to POSTMASTER)
  S PSOUSER=DUZ
  I (PSOUSER="")!(AUD="I") S PSOUSER=.5
@@ -101,11 +110,13 @@ AUDIT(RX,RFL,RXCOB,TRIJST,AUD) ;
  ; DATE OF SERVICE field
  S PSOFDA(FN,PSOIEN,16)=PSODOS
  ; TRICARE JUSTIFICATION field
- S PSOFDA(FN,PSOIEN,17)=TRIJST
- ; Get Reject Codes, if any exist
+ S PSOFDA(FN,PSOIEN,17)=JST
+ ; Eligibility Code
+ S PSOFDA(FN,PSOIEN,18)=ELIG
  D DUR1^BPSNCPD3(RX,RFL,.PSOREJ,.PSOERR,RXCOB)
- S PSOET=$$PSOET^PSOREJP3(RX,RFL)    ;check to see if eT is the reject code as no ecme claim.
- I PSOET,'$D(PSOREJ(RXCOB,"REJ CODES")) S PSOREJ(RXCOB,"REJ CODES",1,"eT")="",PSOREJ(RXCOB,"REJ CODE LST")="eT"
+ S PSOET=$$PSOET^PSOREJP3(RX,RFL)    ;check to see if eT or eC is the reject code as no ecme claim.
+ I PSOET S PSOTC=$S(PSOTRIC=1:"eT",PSOTRIC=2:"eC",1:"")
+ I PSOTC]"",'$D(PSOREJ(RXCOB,"REJ CODES")) S PSOREJ(RXCOB,"REJ CODES",1,PSOTC)="",PSOREJ(RXCOB,"REJ CODE LST")=PSOTC
  I $G(PSOREJ(RXCOB,"REJ CODE LST"))]"" D
  . S PSOX="",PSOY=1 F I=1:1 S PSOX=$O(PSOREJ(RXCOB,"REJ CODES",I,0)) Q:PSOX=""  D
  . . S PSOY=PSOY+1,PSOIENS=PSOY_","_PSOIEN

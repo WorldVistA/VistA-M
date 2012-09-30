@@ -36,7 +36,7 @@ NN S M=$O(^LBRY(682.1,N,M))
  ;
 XM ; Take all transactions waiting for transmission and pass
  ; them to MailMan for transmission to FORUM
- S TRNSM=$S($G(^XMB("NETNAME"))["SENTIENT":"VISTA.SENTIENTCONSULT.COM",1:"FORUM.VA.GOV")
+ S TRNSM=$S($G(^XMB("NETNAME"))["SENTIENT":"VISTA.SENTIENTCONSULT.COM",1:"FORUM.DOMAIN.EXT")
  S XMDUZ=^XMB("NETNAME"),XMY("S.LBRYFSRV@"_TRNSM)=""
  S XMTEXT="^TMP(""LBRY"","
  D ^XMD

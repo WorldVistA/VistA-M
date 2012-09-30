@@ -1,7 +1,8 @@
 FBCHEP1 ;AISC/DMK-EDIT PAYMENT FOR CONTRACT HOSPITAL ;7/8/2003
- ;;3.5;FEE BASIS;**38,61**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**38,61,122,133,108**;JAN 30, 1995;Build 115
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
 EDIT ;ENTRY POINT TO EDIT PAYMENT
+ N LASTDX,LASTPROC
  S IOP=$S($D(ION):ION,1:"HOME") D ^%ZIS K IOP
 BT W ! S DIC="^FBAA(161.7,",DIC(0)="AEQMZ",DIC("S")="I $P(^(0),U,3)=""B9""&($P(^(0),U,15)=""Y"")",DIC("S")=$S($D(^XUSEC("FBAASUPERVISOR",DUZ)):DIC("S"),1:DIC("S")_"&($P(^(0),U,5)=DUZ)") D ^DIC
  G END:X=""!(X="^"),BT:Y<0 S FBN=+Y,FBN(0)=Y(0)
@@ -27,13 +28,35 @@ INV W ! S DIC="^FBAAI(",DIC(0)="AEQZ",DIC("S")="I $P(^(0),U,17)=FBN" D ^DIC K DI
  S FBADJL(0)=$$ADJL^FBUTL2(.FBADJ) ; sorted list of original adjustments
  ; load current remittance remark data
  D LOADRR^FBCHFR(FBI_",",.FBRRMK)
+ ; load Item level Rendering provider data
+ D LOADRP^FBUTL8(FBI_",",.FBPROV) ;FB*3.5*122
  ; save remittance remarks prior to edit session in sorted list
  S FBRRMKL(0)=$$RRL^FBUTL4(.FBRRMK)
- S (DIE,DIC)="^FBAAI(",DIC(0)="AEQM",DA=FBI,DR="[FBCH EDIT PAYMENT]" W ! D ^DIE
+ S LASTDX=$$LAST(FBI,"DX"),LASTPROC=$$LAST(FBI,"PROC")
+ S (DIE,DIC)="^FBAAI(",DIC(0)="AEQM",DA=FBI,DR="[FBCH EDIT PAYMENT]" W !
+ D
+ . N ICDVDT,DFN,FB583,FBAAMM1,FBAAPTC,FBCNTRA,FBCNTRP,FBV,FBVEN,FTP
+ . S ICDVDT=$$FRDTINV^FBCSV1(DA) ;date for files 80 and 80.1 identifier
+ . ;get variables for cal to PPT^FBAACO1
+ . S FBAAMM1=$P($G(^FBAAI(DA,2)),U,3)
+ . S FBCNTRP=$P($G(^FBAAI(DA,5)),U,8)
+ . S FBV=$P($G(^FBAAI(DA,0)),U,3)
+ . S DFN=$P($G(^FBAAI(DA,0)),U,4)
+ . S FBAAPTC=$P($G(^FBAAI(DA,0)),U,13)
+ . S X=$P($G(^FBAAI(DA,0)),U,5)
+ . S:X[";FB583(" FB583=+X
+ . S FTP=$S(X]"":+$O(^FBAAA("AG",X,DFN,0)),1:"")
+ . S FBVEN=$S(FTP:$P($G(^FBAAA(DFN,1,FTP,0)),U,4),1:"")
+ . S FBCNTRA=$S(FTP:$P($G(^FBAAA(DFN,1,FTP,0)),U,22),1:"")
+ . D ^DIE
  ; if adjustment data changed then file
  I $$ADJL^FBUTL2(.FBADJ)'=FBADJL(0) D FILEADJ^FBCHFA(FBI_",",.FBADJ)
  ; if remit remark data changed then file
  I $$RRL^FBUTL4(.FBRRMK)'=FBRRMKL(0) D FILERR^FBCHFR(FBI_",",.FBRRMK)
+ ; remove any gaps in codes
+ D RMVGAP(FBI,1)
+ ; if line item rendering providers exist then file FB*3.5*133
+ I $D(FBPROV) D FILERP^FBUTL8(FBI_",",.FBPROV)
  K FBAAMM,FBAAMM1
  S FBNK=$P(^FBAAI(FBI,0),"^",9)
  I FBNK-FBK S $P(^FBAA(161.7,FBN,0),"^",9)=FBBAMT+(FBNK-FBK)
@@ -41,4 +64,66 @@ END K DA,DFN,DIC,DIE,DR,FBAAOUT,FBDX,FBI,FBIN,FBLISTC,FBN,FBPROC,FBSTAT,FBVEN,FB
  K CNT,D0,FB7078,FBAABDT,FBAAEDT,FBASSOC,FBAUT,FBLOC,FBPROG,FBPSA,FBPT,FBRR,FBTT,FBTYPE,FBXX,FTP,PI,PTYPE,T,Z,ZZ,F,FBPOV,I,TA,VAL,DUOUT,FBVET,FBBAMT,FBAAI,FBEXMPT,FB1725,FBPAMT
  K FBFPPSC,FBFPPSL,FBADJ,FBADJD,FBRRMK,FBRRMKD
  D END^FBCHDI
+ Q
+LAST(FBDA,FBNODE) ; Returns number (0-25) of last code in node for invoice
+ D RMVGAP(FBDA,0)  ;Insure that gaps were not created outside normal processes
+ N FBI,FBRET,FBX
+ S FBRET=0
+ I FBDA,"^DX^PROC^"[(U_FBNODE_U) D
+ . S FBX=$G(^FBAAI(FBDA,FBNODE))
+ . F FBI=25:-1:1 I $P(FBX,"^",FBI)'="" S FBRET=FBI Q
+ Q FBRET
+ ;
+RMVGAP(FBDA,FBWRT) ;  Remove gaps in ICD diagnosis and procedure codes
+ ; input
+ ;   FBDA  IEN of invoice
+ ;   FBWRT (optional) =1 if messages can be written to the screen
+ ; remove any gaps
+ N DXFLD,FBDX,FBFDA,FBI,FBMOVED,FBN,FBPOA,FBPROC,POAFLD,PROCFLD
+ D FLDLIST ; get list of field numbers
+ ; check diagnosis and POA codes
+ S FBDX=$G(^FBAAI(FBDA,"DX"))
+ S FBPOA=$G(^FBAAI(FBDA,"POA"))
+ S FBMOVED=0
+ S FBN=0
+ F FBI=1:1:25 D
+ . Q:$P(FBDX,U,FBI)=""
+ . S FBN=FBN+1 ; increment number of diagnosis codes
+ . Q:FBI=FBN  ; no gap
+ . ; move diagnosis and POA from slot FBI to slot FBN
+ . S FBMOVED=1 ; set flag for message
+ . K FBFDA
+ . S FBFDA(162.5,FBDA_",",$P(DXFLD,U,FBN))=$P(FBDX,U,FBI)
+ . S FBFDA(162.5,FBDA_",",$P(POAFLD,U,FBN))=$P(FBPOA,U,FBI)
+ . S FBFDA(162.5,FBDA_",",$P(DXFLD,U,FBI))="@"
+ . S FBFDA(162.5,FBDA_",",$P(POAFLD,U,FBI))="@"
+ . D FILE^DIE("","FBFDA") D:$G(FBWRT) MSG^DIALOG()
+ . S $P(FBDX,U,FBN)=$P(FBDX,U,FBI)
+ . S $P(FBPOA,U,FBN)=$P(FBPOA,U,FBI)
+ . S $P(FBDX,U,FBI)=""
+ . S $P(FBPOA,U,FBI)=""
+ I $G(FBWRT),FBMOVED W !,"Diagnosis codes were moved to remove gaps"
+ ;
+ S FBPROC=$G(^FBAAI(FBDA,"PROC"))
+ S FBMOVED=0
+ S FBN=0
+ F FBI=1:1:25 D
+ . Q:$P(FBPROC,U,FBI)=""
+ . S FBN=FBN+1 ; increment number of procedure codes
+ . Q:FBI=FBN  ; no gap
+ . ; move procedure from slot FBI to slot FBN
+ . S FBMOVED=1
+ . K FBFDA
+ . S FBFDA(162.5,FBDA_",",$P(PROCFLD,U,FBN))=$P(FBPROC,U,FBI)
+ . S FBFDA(162.5,FBDA_",",$P(PROCFLD,U,FBI))="@"
+ . D FILE^DIE("","FBFDA") D:$G(FBWRT) MSG^DIALOG()
+ . S $P(FBPROC,U,FBN)=$P(FBPROC,U,FBI)
+ . S $P(FBPROC,U,FBI)=""
+ I $G(FBWRT),FBMOVED W !,"Procedure codes were moved to remove gaps"
+ Q
+ ;
+FLDLIST ; Provide list of fields for diagnosis, POA, and prodedures
+ S DXFLD="30^31^32^33^34^35^35.1^35.2^35.3^35.4^35.5^35.6^35.7^35.8^35.9^36^36.1^36.2^36.3^36.4^36.5^36.6^36.7^36.8^36.9"
+ S POAFLD="30.02^31.02^32.02^33.02^34.02^35.02^35.12^35.22^35.32^35.42^35.52^35.62^35.72^35.82^35.92^36.02^36.12^36.22^36.32^36.42^36.52^36.62^36.72^26.82^36.92"
+ S PROCFLD="40^41^42^43^44^44.06^44.07^44.08^44.09^44.1^44.11^44.12^44.13^44.14^44.15^44.16^44.17^44.18^44.19^44.2^44.21^44.22^44.23^44.24^44.25"
  Q

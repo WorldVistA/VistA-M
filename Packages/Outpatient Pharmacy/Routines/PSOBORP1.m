@@ -1,5 +1,5 @@
-PSOBORP1 ;ALBANY/BLD - TRICARE BYPASS/OVERRIDE AUDIT REPORT (CONT) ;7/1/2010
- ;;7.0;OUTPATIENT PHARMACY;**358**;DEC 1997;Build 35
+PSOBORP1 ;ALBANY/BLD - TRICARE-CHAMPVA BYPASS/OVERRIDE AUDIT REPORT (CONT) ;7/1/2010
+ ;;7.0;OUTPATIENT PHARMACY;**358,385**;DEC 1997;Build 27
  ;
  ;***********copied from routine BPSRPT3 AND BPSRPT4************
  ;
@@ -134,42 +134,70 @@ SELDATE1 ;
  ;
  Q VAL
  ;
+SELATYP(DFLT) ;
+ ;
+ ; Display (T)RICARE or (C)HAMPVA OR (A)LL Format
+ ; 
+ ; Input Variable -> DFLT = A ALL
+ ; T TRICARE
+ ; C CHAMPVA
+ ; 
+ ; Return Value -> A = ALL
+ ; T = TRICARE
+ ; C = CHAMPVA
+ ; ^ = Exit
+ ;
+ N DIR,DIRUT,DTOUT,DUOUT,EXIT,X,Y
+ S EXIT=0
+ S DFLT=$S($G(DFLT)="T":"TRICARE",$G(DFLT)="C":"CHAMPVA",1:"ALL")
+ S DIR(0)="SO^T:TRICARE;C:CHAMPVA;A:ALL",DIR("A")="Display (T)RICARE or (C)HAMPVA or (A)LL Entries",DIR("B")=DFLT
+ D ^DIR
+ I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^"
+ I Y="A" K PSOSEL("ELIG_TYPE") D
+ .S PSOSEL("ELIG_TYPE")="A"
+ .S PSOSEL("ELIG_TYPE","T")="TRICARE"
+ .S PSOSEL("ELIG_TYPE","C")="CHAMPVA"
+ .S EXIT=1
+ I EXIT Q Y
+ I Y'="" S PSOSEL("ELIG_TYPE",Y)=$S(Y="T":"TRICARE",Y="C":"CHAMPVA",1:"ALL")
+ Q Y
+ ;
 SELTCCD(PSOSEL) ;
  ;
  ; Select to Include (S)pecific Reject Code or (A)ll
  ;
  ;
- ;Prompt to Include TRICARE (I)patient, TRICARE (N)on-Billable, TRICARE (R)eject, or A)ll: (no default)
+ ;Prompt to Include (I)patient, (N)on-Billable, (R)eject, (P)artial, or A)ll: (no default)
  ;
  N DIC,DIR,DIRUT,DUOUT,EXIT,REJ,X,Y,I
  S EXIT=0
  F I=1:1:2 D  Q:Y="A"!(EXIT)
- .S DIR(0)="SO^I:TRICARE INPATIENT;N:TRICARE NON-BILLABLE PRODUCT;R:TRICARE REJECT OVERRIDE;A:ALL"
+ .S DIR(0)="SO^I:INPATIENT;N:NON-BILLABLE PRODUCT;R:REJECT OVERRIDE;P:PARTIAL FILL;A:ALL"
  .S DIR("A")="Select one of the following: **Can select multiples - limit of 2**  "
  .D ^DIR
  .I ($G(DUOUT)=1)!($G(DTOUT)=1) S EXIT=1,Y="^" Q
  .I Y="A" K PSOSEL("REJECT CODES") D  Q
  ..S PSOSEL("REJECT CODES")="A"
- ..S PSOSEL("REJECT CODES","I")="TRICARE INPATIENT"
- ..S PSOSEL("REJECT CODES","N")="TRICARE NON-BILLABLE PRODUCT"
- ..S PSOSEL("REJECT CODES","R")="TRICARE REJECT OVERRIDE"
+ ..S PSOSEL("REJECT CODES","I")="INPATIENT"
+ ..S PSOSEL("REJECT CODES","N")="NON-BILLABLE PRODUCT"
+ ..S PSOSEL("REJECT CODES","R")="REJECT OVERRIDE"
+ ..S PSOSEL("REJECT CODES","P")="PARTIAL FILL"
  ..S EXIT=1
  .I Y="",$D(PSOSEL("REJECT CODES")) S EXIT=1 Q
  .I Y="",'$D(PSOSEL("REJECT CODES")) S EXIT=0,I=0 Q
- .;
- .I Y'="" S PSOSEL("REJECT CODES",Y)=$S(Y="I":"TRICARE INPATIENT",Y="N":"TRICARE NON-BILLABLE PRODUCT",Y="R":"TRICARE REJECT OVERRIDE",1:"ALL")
+ .I Y'="" S PSOSEL("REJECT CODES",Y)=$S(Y="I":"INPATIENT",Y="N":"NON-BILLABLE PRODUCT",Y="R":"REJECT OVERRIDE",Y="P":"PARTIAL FILL",1:"ALL")
  ;
  Q Y
  ;
 SELPHMST(PSOSEL) ;
  ;
- ; Select to include (S)pecific Pharmacist or (A)ll pharmacist
+ ; Select to include (S)pecific Pharmacist or (A)ll pharmacists
  ;
  N DIR,DIRUT,DTOUT,DUOUT,VAL,X,Y
  K PSOPHARM,DIR
  ;
  ;First see if they want to enter individual divisions or ALL
- S DIR(0)="S^S:SPECIFIC PHARMACIST(S);A:ALL PHARMACIST"
+ S DIR(0)="S^S:SPECIFIC PHARMACIST(S);A:ALL PHARMACISTS"
  S DIR("A")="Select Specific Pharmacist(s) or All Pharmacists"
  S DIR("B")="ALL"
  S DIR("L",1)="Select one of the following:"

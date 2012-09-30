@@ -1,5 +1,5 @@
-PXRMMSG ; SLC/PKR - Routine for sending MailMan messages. ;11/02/2009
- ;;2.0;CLINICAL REMINDERS;**17**;Feb 04, 2005;Build 102
+PXRMMSG ;SLC/PKR - Routine for sending MailMan messages. ;04/4/2011
+ ;;2.0;CLINICAL REMINDERS;**17,18**;Feb 04, 2005;Build 152
  ;
  ;======================================================================
 SEND(NODE,SUBJECT,TO,FROM) ;Send a MailMan message whose text is in
@@ -7,8 +7,8 @@ SEND(NODE,SUBJECT,TO,FROM) ;Send a MailMan message whose text is in
  ;list of addresses, setup exactly like ;the MailMan XMY array.
  ;If TO is not defined try to send to the  Clinical Reminders mail
  ;group. If that is not defined send to the user. FROM is the
- ;optiona message from, if it is not defined then from will be
- ;Clinical Reminders.
+ ;optional message from, if it is not defined then from will be
+ ;Clinical Reminders Support. This can be free text or a DUZ.
  N MGIEN,MGROUP,NL,REF,XMDUZ,XMSUB,XMY,XMZ
  ;
  ;If this is a test run write out the message.
@@ -33,7 +33,7 @@ RETRY ;Get the message number.
  S ^XMB(3.9,XMZ,2,0)="^3.92^"_+NL_U_+NL_U_DT
  ;
  ;Send message to TO list if it is defined.
- I $D(TO) M XMY=TO D ENT1^XMD Q
+ I $D(TO)=11 M XMY=TO D ENT1^XMD Q
  ;Send the message to the site defined mail group or the user if
  ;there is no mail group.
  S MGIEN=$G(^PXRM(800,1,"MGFE"))

@@ -1,5 +1,5 @@
 IBCU62 ;ALB/AAS - UTILITY ROUTINE TO SET BEDSECTION/REVENUE CODES FROM PTF DATA ; 29-OCT-90
- ;;2.0;INTEGRATED BILLING;**133**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**133,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;MAP TO DGCRU62
@@ -38,6 +38,7 @@ FILE ;manually file entry, index with ix1^dik to use compiled x-ref
  ;
 EDITREV ;edit revenue code data.
  I '$D(DGREVHDR) D REVHDR
+ I $P(^DGCR(399,IBIFN,"RC",DA,0),U,16) Q  ; IB*2.0*447 BI
  I IBIDS(.11)="c",IBIDS(.05)<3 S DGBSLOS=1
  S DIE=DIC,DA(1)=IBIFN,DR=".02///"_DGAMNT_";.03///"_DGBSLOS_";.05///"_DGBS D ^DIE
  ;

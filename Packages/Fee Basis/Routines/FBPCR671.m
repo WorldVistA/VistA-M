@@ -1,9 +1,11 @@
 FBPCR671 ;AISC/DMK,TET-CH/CNH POTENTIAL COST RECOVERY PRINT ;07/18/2006
- ;;3.5;FEE BASIS;**4,48,55,69,76,98**;JAN 30, 1995;Build 54
+ ;;3.5;FEE BASIS;**4,48,55,69,76,98,122,108**;JAN 30, 1995;Build 115
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
 PRINT ;print data from tmp global
  I FBPG>1&(($Y+12)>IOSL) D HDR Q:FBOUT
  E  D HDR1
+ S FBPVLIST="ATTENDING PROV NAME^NPI^TAXONOMY CODE^OPERATING PROV NAME^NPI^RENDERING PROV NAME"
+ S FBPVLIST=FBPVLIST_"^NPI^TAXONOMY CODE^SERVICING PROV NAME^NPI^REFERRING PROV NAME^NPI"
  S FBVI="" F  S FBVI=$O(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI)) Q:FBVI']""!(FBOUT)  D SH Q:FBOUT  D  Q:FBOUT
  .S FBDT=0 F  S FBDT=$O(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT)) Q:'FBDT  S FBI=0 F  S FBI=$O(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,FBI)) Q:'FBI  D  Q:FBOUT
  ..I ($Y+5)>IOSL D PAGE Q:FBOUT
@@ -17,7 +19,18 @@ PRINT ;print data from tmp global
  ..W ?36,$S($P(FBINV,U,3)]"":$P(FBINV,U,3),1:$P(FBDATA,U,4))
  ..W ?46,$S($P(FBINV,U,3)]"":$J($P(FBINV,U,4),14),1:$J($P(FBDATA,U,10),14))
  ..W ?63,$P(FBINV,U,5)
- ..F FBY="DX","PROC" I $D(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,FBI,FBY)) S FBDATA=^(FBY),FBSL=$L(FBDATA,"^") W !?2,FBY,": " F I=1:1:FBSL W $P(FBDATA,U,I),"    "
+ ..; write admitting diagnosis if present
+ .. I $P(FBINV,U,6)'="" W !?6,"Admit Dx: ",$P(FBINV,U,6)
+ ..;F FBY="DX","PROC" I $D(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,FBI,FBY)) S FBDATA=^(FBY),FBSL=$L(FBDATA,"^") W !?2,FBY,": " F I=1:1:FBSL W $P(FBDATA,U,I),"    "
+ ..I $D(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,FBI,"DX")) S FBDATA=$G(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,FBI,"DX")),FBSL=$L(FBDATA,"^") F I=1:1:FBSL D WRTDX
+ ..S FBNEWLN=1
+ ..I $D(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,FBI,"PROC")) S FBDATA=$G(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,FBI,"PROC")),FBSL=$L(FBDATA,"^") F I=1:1:FBSL D WRTPC
+ ..K FBNEWLN
+ ..;I FBDATA]"" F I=1:1:FBSL I $P(FBDATA,U,I)]"" D                                                                                      ; FB*3.5*122
+ ..;.;W:FBRPROV !,?2,"PROC: " W:$G(FBRPROV)="" "    " W $P(FBDATA,U,I)                                                                         ; FB*3.5*122
+ ..;.;S FBRPROV=$G(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,FBI,"RPROV",I)) I FBRPROV="" Q                                                 ; FB*3.5*122
+ ..;.;W ?20,"RENDERING PROVIDER NAME: "_$P(FBRPROV,U,2),!,?21,"NPI: "_$P(FBRPROV,U,3),?46,"TAXONOMY CODE: "_$P(FBRPROV,U,4) S FBRPROV=1  ; FB*3.5*122
+ ..K FBRPROV
  ..I FBCATC!FBINS D
  ...W !?5,">>>"
  ...I FBCATC=0 W "Cost recover from insurance."
@@ -30,6 +43,23 @@ PRINT ;print data from tmp global
  ...S (FBOV,FBCNT)=0,FBSL=7 D SHA Q:FBOUT
  ...F  S FBCNT=$O(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,FBI,"A",FBCNT)) Q:'FBCNT  S FBDATA=^(FBCNT),FBV=$P(FBDATA,U,11)_";"_$P(FBDATA,U,12) D  D WRT Q:FBOUT
  ....N FBXX S FBXX=$O(^FBAAV("C",$P(FBDATA,U,12),"")) S $P(FBV,";",2)=$P(FBV,";",2)_"/"_$S(FBXX="":"**********",$P($G(^FBAAV(FBXX,3)),U,2)]"":$P(^FBAAV(FBXX,3),U,2),1:"**********")
+ ..D PRNT5010  ; FB*3.5*122
+ Q
+PRNT5010 ; Format and print based on data type  ; FB*3.5*122
+ N FBVDAT,FBCNT
+ I $G(FBPSF)]"",$G(FBPT)]"",$G(FBPI)]"",$G(FBVI)]"",$G(FBDT)]"",$G(FBI)]"",$G(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,FBI,"FBY4"))]""
+ E  Q
+ W ! S FBVDAT=^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,FBI,"FBY4")
+ F FBCNT=1,6 I $P(FBVDAT,U,FBCNT)]"" D
+ . W !,$P(FBPVLIST,U,FBCNT)_": "_$P(FBVDAT,U,FBCNT),?55,$P(FBPVLIST,U,FBCNT+1)_": "_$P(FBVDAT,U,FBCNT+1)
+ . W !,?6,$P(FBPVLIST,U,FBCNT+2)_": "_$P(FBVDAT,U,FBCNT+2)
+ F FBCNT=4,11,9 I $P(FBVDAT,U,FBCNT)]"" D
+ . W !,$P(FBPVLIST,U,FBCNT)_": "_$P(FBVDAT,U,FBCNT),?55,$P(FBPVLIST,U,FBCNT+1)_": "_$P(FBVDAT,U,FBCNT+1)
+ I $P(FBVDAT,U,20)]"" D
+ . W !,"  SERVICING FACILITY ADDRESS: "_$P(FBVDAT,U,20),!,"                              "_$P(FBVDAT,U,21)_", "
+ . I $P(FBVDAT,U,22)]"" W $$GET1^DIQ(5,$P(FBVDAT,U,22)_",",.01)
+ . W " "_$P(FBVDAT,U,23)
+ W !
  Q
 WRT ;write ancillary info
  N FBCATC,FBINS,FBADJ I ($Y+4)>IOSL D PAGE Q:FBOUT  D SHA,SHA2
@@ -93,10 +123,37 @@ CR ;read for display
 PAGE ;new page
  D HDR Q:FBOUT  D SH
  Q
-WRTDX I $P(FBDX,"^",K)]"" W ?4,"Dx: ",$$ICD9^FBCSV1($P(FBDX,"^",K)),"  " Q
+WRTDX ;input
+ ; FBDATA contains node from ^TMP
+ ; I contains piece to be written
+ I I=1!($X+$L($P(FBDATA,"^",I))+1>IOM) W !,?4,"DX/POA: "
+ W $P(FBDATA,"^",I)," "
  Q
-WRTPC I $P(FBPROC,"^",L)]"" W ?4,"Proc: ",$$ICD0^FBCSV1($P(FBPROC,"^",L)),"   " Q
+WRTPC ;input
+ ;FBDATA contains node from ^TMP
+ ;I contains piece to be written
+ ; if FBNEWLN true then force new line and label for procedure
+ N FBRPROV
+ S FBRPROV=$G(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,FBI,"RPROV",I))
+ ; start new line for procedures when appropriate
+ I FBRPROV'="" S FBNEWLN=1
+ I FBNEWLN!($X+$L($P(FBDATA,"^",I))+2>IOM) W !?4,"PROC: " S FBNEWLN=0
+ ; write procedure code
+ W $P(FBDATA,"^",I)," "
+ ; write line rendering provider data if applicable
+ I FBRPROV="" Q
+ W ?20,"RENDERING PROVIDER NAME: "_$P(FBRPROV,U,2)
+ W !?21,"NPI: "_$P(FBRPROV,U,3)
+ W ?46,"TAXONOMY CODE: "_$P(FBRPROV,U,4)
+ S FBNEWLN=1  ; force new line for next procedure
  Q
+ ;I I=1!($X+$L($P(FBDATA,"^",I))+1>IOM) W !,?4,"PROC: "
+ ;W $P(FBDATA,"^",I)," "
+ ;Q
+ ;S FBRPROV=$G(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,FBI,"RPROV",I))                                                 ; FB*3.5*122
+ ;W !,?2,"PROC: ",$P(FBDATA,U,I) I FBRPROV="" Q                                                                       ; FB*3.5*122
+ ;W ?20,"RENDERING PROVIDER NAME: "_$P(FBRPROV,U,2),!,?21,"NPI: "_$P(FBRPROV,U,3),?46,"TAXONOMY CODE: "_$P(FBRPROV,U,4) S FBRPROV=1  ; FB*3.5*122
+ ;Q
 WRTSC ;write service connected
  W !,"SERVICE CONNECTED? ",$S(+VAEL(3):"YES",1:"NO"),!
  Q

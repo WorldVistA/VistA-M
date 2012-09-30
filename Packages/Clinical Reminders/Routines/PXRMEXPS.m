@@ -1,5 +1,5 @@
-PXRMEXPS ; SLC/PKR - Packing save routines. ;3/08/2010
- ;;2.0;CLINICAL REMINDERS;**12,16**;Feb 04, 2005;Build 119
+PXRMEXPS ; SLC/PKR - Packing save routines. ;10/28/2011
+ ;;2.0;CLINICAL REMINDERS;**12,16,18,22**;Feb 04, 2005;Build 160
  ;==========================================
 ADD(FILENUM,IEN,PACKLIST,NF) ;
  S NF=+$O(PACKLIST(FILENUM,"IEN"),-1)+1
@@ -67,6 +67,7 @@ GETSRTN(FILENUM) ;Return the save routine according to the file number.
  I FILENUM=601.71 Q "SGEN^PXRMEXPS"
  I FILENUM=790.404 Q "SGEN^PXRMEXPS"
  I FILENUM=801 Q "SROC^PXRMEXPS"
+ I FILENUM=801.1 Q "SRULE^PXRMEXPS"
  I FILENUM=801.41 Q "SDIALOG^PXRMEXPS"
  I FILENUM=810.2 Q "SEDEF^PXRMEXPS"
  I FILENUM=810.4 Q "SLR^PXRMEXPS"
@@ -111,16 +112,18 @@ SCF(FILENUM,IEN,PACKLIST) ;Reminder computed findings.
  ;
  ;==========================================
 SDEF(FILENUM,RIEN,PACKLIST) ;Reminder definitions.
- N DIALOG,FNUM,GBL,IEN,NF,ROUTINE,SPON
+ N DIALOG,ENODE,EO,FINDING,FINUM,FNUM,GBL,IEN,NF,ROUTINE,SPON
  D SGENR(FILENUM,RIEN,.PACKLIST)
  ;Process the finding multiple.
- S GBL=""
- F  S GBL=$O(^PXD(811.9,RIEN,20,"E",GBL)) Q:GBL=""  D
+ S FINUM=0
+ F  S FINUM=+$O(^PXD(811.9,RIEN,20,FINUM)) Q:FINUM=0  D
+ . S FINDING=$P(^PXD(811.9,RIEN,20,FINUM,0),U,1)
+ . S IEN=$P(FINDING,";",1)
+ . S GBL=$P(FINDING,";",2)
  . S FNUM=$$GETFNUM(GBL)
  . I FNUM=811.4 D CHKCF("^PXD(811.9)",RIEN,GBL,.PACKLIST)
  . S ROUTINE=$$GETSRTN(FNUM)_"(FNUM,IEN,.PACKLIST)"
- . S IEN=""
- . F  S IEN=$O(^PXD(811.9,RIEN,20,"E",GBL,IEN)) Q:IEN=""  D @ROUTINE
+ . D @ROUTINE
  ;Dialog
  S DIALOG=+$G(^PXD(811.9,RIEN,51))
  I DIALOG>0,'$D(PACKLIST(801.41,"IEN",DIALOG)) D SDIALOG(801.41,DIALOG,.PACKLIST)
@@ -287,7 +290,7 @@ SHSO(FILENUM,IEN,PACKLIST) ;Health summary object.
  N HST
  D SGEN(FILENUM,IEN,.PACKLIST)
  S HST=$P($G(^GMT(142.5,IEN,0)),U,3)
- S ROUTINE=$$GETSRTN(142)_"(142,.HST,.PACKLIST)"
+ S ROUTINE=$$GETSRTN(142)_"(142,HST,.PACKLIST)"
  D @ROUTINE
  Q
  ;
@@ -299,7 +302,7 @@ SHST(FILENUM,IEN,PACKLIST) ;Health Summary Type
  .S HSC=$P($G(^GMT(142,IEN,1,CNT,0)),U,2)
  .S ROUTINE=$$GETSRTN(142.1)_"(142.1,HSC,.PACKLIST)"
  .D @ROUTINE
- .;loop through selection item, variable pointer
+ .;Loop through selection item, variable pointer
  .S SEL=0 F  S SEL=$O(^GMT(142,IEN,1,CNT,1,SEL)) Q:SEL'>0  D
  ..S NODE=$P($G(^GMT(142,IEN,1,CNT,1,SEL,0)),U)
  ..I NODE'="" D
@@ -358,7 +361,7 @@ SLT(FILENUM,IEN,PACKLIST) ;Lab tests
  ;==========================================
 SODIALOG(FILENUM,IEN,PACKLIST) ;Order dialogs.
  D SGEN(FILENUM,IEN,.PACKLIST)
- ;dbia 5446
+ ;DBIA 5446
  D EN^ORORDDSC(IEN,"ORDER DIALOG")
  Q
  ;
@@ -409,13 +412,14 @@ SRT(FILENUM,TIEN,PACKLIST) ;Reminder terms.
 SROC(FILENUM,ROCIEN,PACKLIST) ;Reminder Order Checks.
  ;packed order check structure up
  D SGENR(FILENUM,ROCIEN,.PACKLIST)
- N SUB,DRCL,OI,OLIST,RIEN,ROUTINE,TIEN,TLIST,WPNODE
- ;packed list of Drug Classes
- I $D(^PXD(801,ROCIEN,2)) D
- .S SUB=0 F  S SUB=$O(^PXD(801,ROCIEN,1.5,SUB)) Q:SUB'>0  D
- ..S DRCL=$P($G(^PXD(801,ROCIEN,1.5,SUB,0)),U) Q:DRCL'>0
- ..S ROUTINE=$$GETSRTN(50.605)_"(50.605,DRCL,.PACKLIST)"
- ..D @ROUTINE
+ N GBL,SUB,DRCL,FNUM,OI,OLIST,PHAR,RIEN,ROUTINE,TIEN,TLIST,WPNODE
+ ;Process the pharmacy multiple.
+ S PHAR=""
+ F  S PHAR=$O(^PXD(801,ROCIEN,1.5,"B",PHAR)) Q:PHAR=""  D
+ . S IEN=$P(PHAR,";"),GBL=$P(PHAR,";",2)
+ . S FNUM=$$GETFNUM(GBL)
+ . S ROUTINE=$$GETSRTN(FNUM)_"(FNUM,IEN,.PACKLIST)"
+ . D @ROUTINE
  ;packed list of Orderable Item
  I $D(^PXD(801,ROCIEN,2)) D
  .S SUB=0 F  S SUB=$O(^PXD(801,ROCIEN,2,SUB)) Q:SUB'>0  D
@@ -424,22 +428,31 @@ SROC(FILENUM,ROCIEN,PACKLIST) ;Reminder Order Checks.
  ..D @ROUTINE
  ;loop through rules and packed definitions or terms
  S SUB=0 F  S SUB=$O(^PXD(801,ROCIEN,3,SUB)) Q:SUB'>0  D
- .I $D(^PXD(801,ROCIEN,3,SUB,4))>0 D
- ..;search for TIU Objects
- ..S WPNODE="3,"_SUB_",4"
- ..D TIUSRCH^PXRMEXU1("^PXD(801,",ROCIEN,WPNODE,.OLIST,.TLIST)
- ..I $D(OLIST)>0 D
- ... S ROUTINE=$$GETSRTN(8925.1)_"(8925.1,.OLIST,.PACKLIST)"
- ... D @ROUTINE K OLIST
- ..K TLIST
+ .S RIEN=$P($G(^PXD(801,ROCIEN,3,SUB,0)),U) Q:RIEN'>0
+ .S ROUTINE=$$GETSRTN(801.1)_"(801.1,RIEN,.PACKLIST)"
+ .D @ROUTINE
+ Q
+ ;
+ ;==========================================
+SRULE(FILENUM,RULEIEN,PACKLIST) ;Reminder Order Check Rules.
+ ;packed order check structure up
+ D SGENR(FILENUM,RULEIEN,.PACKLIST)
+ N OLIST,RIEN,ROUTINE,TIEN,TLIST
+ I $D(^PXD(801.1,RULEIEN,3,4))>0 D
+ .;search for TIU Objects
+ .D TIUSRCH^PXRMEXU1("^PXD(801.1,",RULEIEN,",4",.OLIST,.TLIST)
+ .I $D(OLIST)>0 D
+ ..S ROUTINE=$$GETSRTN(8925.1)_"(8925.1,.OLIST,.PACKLIST)"
+ ..D @ROUTINE K OLIST
+ .K TLIST
  .;packed term up only
- .S TIEN=$P($G(^PXD(801,ROCIEN,3,SUB,2)),U) I TIEN>0 D  Q
- ..S ROUTINE=$$GETSRTN(811.5)_"(811.5,TIEN,.PACKLIST)"
- ..D @ROUTINE
- .;packed definition up if defined
- .S RIEN=$P($G(^PXD(801,ROCIEN,3,SUB,3)),U) I RIEN>0 D
- ..S ROUTINE=$$GETSRTN(811.9)_"(811.9,RIEN,.PACKLIST)"
- ..D @ROUTINE
+ S TIEN=$P($G(^PXD(801.1,RULEIEN,2)),U) I TIEN>0 D  Q
+ .S ROUTINE=$$GETSRTN(811.5)_"(811.5,TIEN,.PACKLIST)"
+ .D @ROUTINE
+ ;packed definition up if defined
+ S RIEN=$P($G(^PXD(801.1,RULEIEN,3)),U) I RIEN>0 D
+ .S ROUTINE=$$GETSRTN(811.9)_"(811.9,RIEN,.PACKLIST)"
+ .D @ROUTINE
  Q
  ;
  ;==========================================
@@ -447,9 +460,8 @@ STIUOBJ(FILENUM,OLIST,PACKLIST) ;
  N ARY,CNT,HSO,IEN,NAME,ROUTINE,TEMP
  S CNT=0 F  S CNT=$O(OLIST(CNT)) Q:CNT'>0  D
  . S NAME=OLIST(CNT)
- . ;dbia 5447
+ . ;DBIA 5447
  . S IEN=$$OBJBYNAM^TIUCHECK(.ARY,NAME) I IEN=-1 Q
- . ;S IEN=$O(^TIU(8925.1,"B",NAME,"")) Q:IEN'>0
  .;Do not ship non TIU/HS Objects
  . I $G(ARY(IEN,9))'["S X=$$TIU^GMTSOBJ(" D  Q
  .. D TIU^PXRMEXU5(IEN,.ARY,"TIU OBJECT")

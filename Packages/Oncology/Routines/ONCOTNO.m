@@ -1,5 +1,5 @@
-ONCOTNO ;Hines OIFO/GWB - TNM output formatting ;03/16/11
- ;;2.11;ONCOLOGY;**1,6,7,11,15,27,32,35,47,49,50,51,52,53**;Mar 07, 1995;Build 31
+ONCOTNO ;Hines OIFO/GWB - TNM output formatting ;09/22/11
+ ;;2.11;ONCOLOGY;**1,6,7,11,15,27,32,35,47,49,50,51,52,53,54**;Mar 07, 1995;Build 10
  ;
 SGOUT(IEN) ;AJCC stage formatted for display
  N G,SG,XX,XXX
@@ -101,7 +101,8 @@ TNMOUT(IEN) ;TNM coding formatted for display
  .I ONCOED<7 S G=$P(^ONCO(165.5,D0,2),U,5),ONCOTNM=ONCOTNM_" G"_G Q
  .S PSA=+$$GET1^DIQ(165.5,D0,684)
  .I (PSA=999.7)!(PSA=999.8)!(PSA=999.9) S PSA=""
- .S GS=+$$GET1^DIQ(165.5,D0,623,"I")
+ .I $G(STGIND)="C" S GS=+$$GET1^DIQ(165.5,D0,623,"I")
+ .I $G(STGIND)="P" S GS=+$$GET1^DIQ(165.5,D0,250,"I")
  .I GS=99 S GS=""
  .S ONCOTNM=ONCOTNM_" PSA"_PSA_" GS"_GS
  I $$GTT^ONCOU55(D0) D  K RF

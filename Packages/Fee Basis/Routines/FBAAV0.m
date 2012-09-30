@@ -1,6 +1,6 @@
 FBAAV0 ;AISC/GRR-ELECTRONICALLY TRANSMIT FEE DATA ;11 Apr 2006  2:51 PM
- ;;3.5;FEE BASIS;**3,4,55,89,98,116**;JAN 30, 1995;Build 30
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;3.5;FEE BASIS;**3,4,55,89,98,116,108**;JAN 30, 1995;Build 115
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  K ^TMP($J,"FBAABATCH"),^TMP($J,"FBVADAT") D DT^DICRW
  I '$D(^FBAA(161.7,"AC","S")),'$D(^FBAA(161.7,"AC","R")),'$D(^FBAA(161.25,"AE")),$S('$D(^FBAA(161.26,"AC","P")):1,$O(^FBAA(161.26,"AC","P",0))'>0:1,1:0) W !,*7,"There are no transactions requiring transmission",*7 Q
  W !!,"This option will transmit all Batches and MRA's ready to be transmitted",!,"to Austin"
@@ -23,13 +23,13 @@ SET1 ; build the payment batch header string (used by all four formats)
  S FBAACD=$$AUSDT^FBAAV3(DT)
  S FBAACP=$E($P(Y(0),"^",2),1,2)
  S FBAABT=$P(Y(0),"^",3)
- S FBAAAP=$$AUSAMT^FBAAV3($P(Y(0),"^",9),10)
+ S FBAAAP=$$AUSAMT^FBAAV3($P(Y(0),"^",9),11)
  S FBSTAT=$P(^FBAA(161.7,J,"ST"),"^")
  S FBCHB=$P(Y(0),"^",15)
  S FBEXMPT=$P(Y(0),"^",18)
  S X=$$SUB^FBAAUTL5(+$P(Y(0),U,8)_"-"_$P(Y(0),U,2))
  S FBAASN=$$LJ^XLFSTR($S(X]"":X,1:FBAASN),6," ")
- I FBSTAT="R"!(FBSTAT="S"&(FBCHB'["Y"))!(FBSTAT="S"&($G(FBEXMPT)="Y")) S FBSTR=FBHD_$S(FBAABT="B2":"BT",1:FBAABT)_FBAACD_FBAASN_FBAABN_"  "_FBAAAP_FBAACP_" $"
+ I FBSTAT="R"!(FBSTAT="S"&(FBCHB'["Y"))!(FBSTAT="S"&($G(FBEXMPT)="Y")) S FBSTR=FBHD_$S(FBAABT="B2":"BT",1:FBAABT)_FBAACD_FBAASN_FBAABN_" "_FBAAAP_FBAACP_" $"
  Q
 DET ;entry point to process B3 (outpatient/ancillary) batch
  ; input (partial list)
@@ -45,6 +45,7 @@ DET ;entry point to process B3 (outpatient/ancillary) batch
  .S FBDTSR1=+$G(^FBAAC(K,1,L,1,M,0))
  .S FBPICN=K_U_L_U_M_U_N
  .S FBY=$G(^FBAAC(K,1,L,1,M,1,N,2))
+ .S FBY3=$G(^FBAAC(K,1,L,1,M,1,N,3))
  .I 'FBTXT S FBTXT=1 D NEWMSG^FBAAV01,STORE^FBAAV01,UPD
  .D GOT
  ;
@@ -55,9 +56,11 @@ GOT ; process a B3 line item
  ;
  N DFN,FBADJ,FBADJA1,FBADJA2,FBADJR1,FBADJR2,FBADMIT,FBAUTHF,FBIENS
  N FBMOD1,FBMOD2,FBMOD3,FBMOD4,FBPNAMX,FBUNITS,FBX,FBNPI
+ N FBCSID,FBEDIF,FBCNTRN
  ;
  S FBIENS=N_","_M_","_L_","_K_","
  ;
+ S FBEDIF=$S($P($G(^FBAAC(K,1,L,1,M,1,N,3)),"^")]"":"Y",1:" ") ;EDI flag
  ; get CPT modifiers
  D
  . N FBMODA,FBMODL
@@ -107,10 +110,16 @@ GOT ; process a B3 line item
  ; the value returned from it
  S FBDOB=$$AUSDT^FBAAV3($P(Y(0),"^",3)) ; date of birth
  D ADD^VADPT
- S FBPNAMX=$$HL7NAME^FBAAV4(DFN) ; patient name
+ S FBPNAMX=$$HL7NAME^FBAAV2(DFN) ; patient name
  S FBUNITS=$P(FBY,U,14)
  S:FBUNITS<1 FBUNITS=1
  S FBUNITS=$$RJ^XLFSTR(FBUNITS,5,0) ; volume indicator (units paid)
+ S FBCSID=$$LJ^XLFSTR($P(FBY,"^",16),20," ") ; patient acct #
+ D
+ . N FBCNTRP
+ . S FBCNTRP=$P(FBY3,"^",8)
+ . S FBCNTRN=$S(FBCNTRP:$P($G(^FBAA(161.43,FBCNTRP,0)),"^"),1:"")
+ . S FBCNTRN=$$LJ^XLFSTR(FBCNTRN,20," ") ; contract number
  ;
  ; get and format adjustment reason codes and amounts (if any)
  D LOADADJ^FBAAFA(FBIENS,.FBADJ)
@@ -122,6 +131,7 @@ GOT ; process a B3 line item
  K FBADJ,FBX
  ;
  S FBST=$S($P(VAPA(5),"^")="":"  ",$D(^DIC(5,$P(VAPA(5),"^"),0)):$P(^(0),"^",2),1:"  ")
+ I $L(FBST)>2 S FBST="**"
  S:$L(FBST)'=2 FBST=$E(PAD,$L(FBST)+1,2)_FBST
  S FBCTY=$S($P(VAPA(7),"^",1)="":"   ",FBST="  ":"   ",$D(^DIC(5,$P(VAPA(5),"^"),1,$P(VAPA(7),"^"),0)):$P(^(0),"^",3),1:"   ")
  I $L(FBCTY)'=3 S FBCTY=$E("000",$L(FBCTY)+1,3)_FBCTY

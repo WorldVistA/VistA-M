@@ -1,9 +1,11 @@
 FHSEL1 ; HISC/REL/NCA/JH/RTK/FAI - Patient Preferences ;10/20/04  10:19
- ;;5.5;DIETETICS;**8**;Jan 28, 2005;Build 28
+ ;;5.5;DIETETICS;**8,24**;Jan 28, 2005;Build 3
 EN1 ; Enter/Edit Preference File entries
  I $G(FHALGMZ)=1 QUIT
  W ! S (DIC,DIE)="^FH(115.2,",DIC(0)="AEQLM",DIC("DR")=".01;1",DLAYGO=115.2 W ! D ^DIC K DIC,DLAYGO G KIL:U[X!$D(DTOUT),EN1:Y<1
- S (FHDA,DA)=+Y,DR=".01;26;1;S:X=""D"" Y=0;3;20;S:'X Y=99;21;27;99" D ^DIE K DA,DIE,DR
+ S (FHDA,DA)=+Y,DR=".01;26;1;S:X=""D"" Y=0;3;20;S:'X Y=99;21;27;99" D ^DIE
+ I $E($P($G(^FH(115.2,DA,0)),"^"),1,10)="ALLERGY - " S DR="25" D ^DIE
+ K DA,DIE,DR
  I $P($G(^FH(115.2,FHDA,0)),"^",2)'="D"!($D(Y)) G EN1
 TRAN R !!,"Do you want to import Recipes from another Food Preference? N // ",X:DTIME
  G:'$T!(X["^") EN1
@@ -16,7 +18,7 @@ T1 W ! K DIC S DIC="^FH(115.2,",DIC(0)="AEMQ",DIC("S")="I $P(^(0),U,2)=""D""" D 
 DIS S DA=FHDA,DIE="^FH(115.2,",DR="10;27;99" D ^DIE K DA,DIE,DR G EN1
 ADD ; Add dislikes recipes from another food preference
  I $D(^FH(115.2,FHDA,"X","B",+L1)) Q
-A L +^FH(115.2,FHDA,"X",0)
+A L +^FH(115.2,FHDA,"X",0):$S($G(DILOCKTM)>0:DILOCKTM,1:3)
  S FHX1=$G(^FH(115.2,FHDA,"X",0)),FHX2=$P(FHX1,"^",3)+1
  S $P(^FH(115.2,FHDA,"X",0),"^",3)=FHX2
  L -^FH(115.2,FHDA,"X",0) I $D(^FH(115.2,FHDA,"X",FHX2,0)) G A

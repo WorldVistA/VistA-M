@@ -1,6 +1,6 @@
 PRCHNPO6 ;WISC/RHD-MISCELLANEOUS ROUTINES FROM P.O.ADD/EDIT 442 ;6/22/94  3:19 PM
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**129**;Oct 20, 2000;Build 5
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN1 ;INPUT TRANSFORM FOR FILE 442, P.O.DATE #.1
  Q:'$D(^PRC(442,DA,0))  Q:'$P(^(0),U,3)  S PRCHSAVX=X,PRC("FY")=X S:'$D(PRC("SITE")) PRC("SITE")=+^(0) S X=$P(^(0),U,3)
@@ -9,7 +9,8 @@ EN1 ;INPUT TRANSFORM FOR FILE 442, P.O.DATE #.1
  Q
  ;
 EN2 ;SCREEN--P.O.#['X' (FRESH FOOD) OR 'Z' (CASCA)--INVOICE ADDRESS="FISCAL", P.O.#['C' (CERT.INV.)--MOP='CERT.INV.', INV.ADDR.="FISCAL", IMPREST FUNDS--INV.ADDR.="".
- S Z1=$E($P(^PRC(442,DA,0),"-",2),1,2),PRCHN("INV")="FMS",Z2=+$P(^(0),U,2) I $D(^PRCD(442.5,Z2,0)) S PRCHN("MP")=$P(^(0),U,3) I PRCHN("MP")=12 S Z1="IF",PRCHN("INV")="" G EN20
+ ;PRC*5.1*129 modifies INVOICE ADDRESS default from 'FMS' to 'VA FSC'
+ S Z1=$E($P(^PRC(442,DA,0),"-",2),1,2),PRCHN("INV")="VA FSC",Z2=+$P(^(0),U,2) I $D(^PRCD(442.5,Z2,0)) S PRCHN("MP")=$P(^(0),U,3) I PRCHN("MP")=12 S Z1="IF",PRCHN("INV")="" G EN20
  I (Z1["X")!(Z1["Z") S PRCHN("INV")="FISCAL" K Z1,Z2 Q
  I Z1'["C" K Z1,Z2 Q
  S PRCHN("MP")=2,$P(^PRC(442,DA,0),U,2)=2,^PRC(442,"F",2,DA)="",Z2=2,PRCHN("INV")="FISCAL"
@@ -49,8 +50,9 @@ EN7 ;FILE 442, PKG.MULT. #3.1
  ;
 EN8 ;FILE 442, P.O.NO. .01  CALLED BY THE SCREEN ON THE .01 FIELD
  Q:'$D(X)  Q:$D(PRCHNEW)&$D(^PRC(442,"B",X))
- L +^PRC(442,0):5 I '$T W $C(7),"ANOTHER USER IS EDITING SOME FILE 442 ENTRY! Please retry in a minute." K X Q
- S Z=$P(^PRC(442,0),"^",3)-1 S:Z<1 Z=100000000 F Z=Z-1:-1 I '$D(^PRC(442,Z)) L +^PRC(442,Z):0 Q:$T
+ ;PRC*5.1*129 modifies SACC lock violations
+ L +^PRC(442,0):$S($G(DILOCKTM)>5:DILOCKTM,1:5) I '$T W $C(7),"ANOTHER USER IS EDITING SOME FILE 442 ENTRY! Please retry in a minute." K X Q
+ S Z=$P(^PRC(442,0),"^",3)-1 S:Z<1 Z=100000000 F Z=Z-1:-1 I '$D(^PRC(442,Z)) L +^PRC(442,Z):$S($D(DILOCKTM):DILOCKTM,1:3) Q:$T
  L -^PRC(442,0) I Z'>0 K X L -^PRC(442,Z)
  E  S DINUM=Z
  K Z

@@ -1,5 +1,5 @@
-PXRMFF0 ;SLC/PKR - Clinical Reminders function finding routines. ;08/28/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMFF0 ;SLC/PKR - Clinical Reminders function finding routines. ;11/30/2011
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18**;Feb 04, 2005;Build 152
  ;
  ;============================================
 COUNT(LIST,FIEVAL,COUNT) ;
@@ -7,19 +7,32 @@ COUNT(LIST,FIEVAL,COUNT) ;
  S COUNT=0
  F IND=1:1:LIST(0) D
  . S JND=LIST(IND),KND=0
- . F  S KND=+$O(FIEVAL(JND,KND)) Q:KND=0  D
- .. I FIEVAL(JND,KND) S COUNT=COUNT+1
+ . F  S KND=+$O(FIEVAL(JND,KND)) Q:KND=0  I FIEVAL(JND,KND) S COUNT=COUNT+1
  Q
  ;
  ;===========================================
 DIFFDATE(LIST,FIEVAL,DIFF) ;Return the difference in days between the
  ;first two findings in the list.
- I LIST(0)<2 S DIFF=2 Q
- N DATE1,DATE2,DAYS,IND,JND
+ N DATE1,DATE2,DAYS
  S DATE1=+$G(FIEVAL(LIST(1),"DATE"))
  S DATE2=+$G(FIEVAL(LIST(2),"DATE"))
  S DAYS=$$FMDIFF^XLFDT(DATE1,DATE2)
- S DIFF=$S(DAYS<0:-DAYS,1:DAYS)
+ ;If LIST(3) is defined then return actual value.
+ S DIFF=$S($D(LIST(3)):DAYS,DAYS<0:-DAYS,1:DAYS)
+ Q
+ ;
+ ;===========================================
+DTIMDIFF(LIST,FIEVAL,DIFF) ;General date difference function.
+ N CALCUNIT,DATE1,DATE2,SF
+ S DATE1=+$G(FIEVAL(LIST(1),LIST(2),LIST(3)))
+ S DATE2=+$G(FIEVAL(LIST(4),LIST(5),LIST(6)))
+ ;If the passed unit is D get it directly, otherwise use seconds.
+ S CALCUNIT=$S(LIST(7)="D":1,1:2)
+ S DIFF=$$FMDIFF^XLFDT(DATE1,DATE2,CALCUNIT)
+ ;If the passed unit is not seconds scale appropriately. 
+ I (CALCUNIT=2),(LIST(7)'="S") S SF=$S(LIST(7)="M":60,LIST(7)="H":3600,1:1),DIFF=DIFF/SF
+ ;If LIST(8) is "A" return absolute value.
+ I $G(LIST(8))="A" S DIFF=$S(DIFF<0:-DIFF,1:DIFF)
  Q
  ;
  ;===========================================
@@ -52,37 +65,67 @@ FI(LIST,FIEVAL,LV) ;Given a regular finding return its true/false value.
  ;============================================
 MAXDATE(LIST,FIEVAL,MAXDATE) ;Given a list of findings return the maximum
  ;date. This will be the newest date.
+ S MAXDATE=$S(FIEVAL(LIST(1)):FIEVAL(LIST(1),"DATE"),1:0)
+ I LIST(0)=1 Q
  N DATE,IND
- S MAXDATE=0
- F IND=1:1:LIST(0) D
- . S DATE=$G(FIEVAL(LIST(IND),"DATE"))
+ F IND=2:1:LIST(0) D
+ . I 'FIEVAL(LIST(IND)) Q
+ . S DATE=+$G(FIEVAL(LIST(IND),"DATE"))
  . I DATE>MAXDATE S MAXDATE=DATE
  Q
  ;
  ;============================================
+MAXVALUE(LIST,FIEVAL,MAXVALUE) ;Given a list of findings and associated
+ ;CSUBs return the maximum from all the occurrences.
+ N IND,OCC,TEMP
+ S MAXVALUE=+$G(FIEVAL(LIST(1),1,LIST(2)))
+ F IND=1:2:LIST(0) D
+ . I 'FIEVAL(LIST(IND)) Q
+ . S OCC=""
+ . F  S OCC=+$O(FIEVAL(LIST(IND),OCC)) Q:OCC=0  D
+ .. S TEMP=+$G(FIEVAL(LIST(IND),OCC,LIST(IND+1)))
+ .. I TEMP>MAXVALUE S MAXVALUE=TEMP
+ Q
+ ;
+ ;============================================
 MINDATE(LIST,FIEVAL,MINDATE) ;Given a list of findings return the minimum
- ;date. This will be the oldest non-null or zero date.
- N IND,ODL
- F IND=1:1:LIST(0) S ODL(+$G(FIEVAL(LIST(IND),"DATE")))=""
- S MINDATE=+$O(ODL(0))
+ ;date.
+ N DLIST,IND
+ F IND=1:1:LIST(0) S DLIST(+$G(FIEVAL(LIST(IND),"DATE")))=""
+ S MINDATE=+$O(DLIST(0))
+ Q
+ ;
+ ;============================================
+MINVALUE(LIST,FIEVAL,MINVALUE) ;Given a list of findings return the minimum
+ ;from all the occurrences.
+ N IND,OCC,TEMP
+ S MINVALUE=+$G(FIEVAL(LIST(1),1,LIST(2)))
+ F IND=1:2:LIST(0) D
+ . I 'FIEVAL(LIST(IND)) Q
+ . S OCC=""
+ . F  S OCC=+$O(FIEVAL(LIST(IND),OCC)) Q:OCC=0  D
+ .. S TEMP=+$G(FIEVAL(LIST(IND),OCC,LIST(IND+1)))
+ .. I TEMP<MINVALUE S MINVALUE=TEMP
  Q
  ;
  ;============================================
 MRD(LIST,FIEVAL,MRD) ;Given a list of findings return the most recent
  ;finding date from the list.
+ S MRD=$S(FIEVAL(LIST(1)):FIEVAL(LIST(1),"DATE"),1:0)
+ I LIST(0)=1 Q
  N DATE,IND
- S MRD=0
- F IND=1:1:LIST(0) D
- . S DATE=$G(FIEVAL(LIST(IND),"DATE"))
+ F IND=2:1:LIST(0) D
+ . I 'FIEVAL(LIST(IND)) Q
+ . S DATE=+$G(FIEVAL(LIST(IND),"DATE"))
  . I DATE>MRD S MRD=DATE
  Q
  ;
  ;============================================
-NUMERIC(LIST,FIEVAL,VALUE) ;Given a finding, return the first numeric
+NUMERIC(LIST,FIEVAL,NUMBER) ;Given a finding, return the first numeric
  ;portion of one of the "CSUB" values. Based on original work
  ;by R. Silverman.
- S VALUE=$G(FIEVAL(LIST(1),LIST(2),LIST(3)))
- S VALUE=$$FIRSTNUM(VALUE)
+ S NUMBER=$G(FIEVAL(LIST(1),LIST(2),LIST(3)))
+ S NUMBER=$$FIRSTNUM(NUMBER)
  Q
  ;
 FIRSTNUM(STRING) ;return the first numeric portion of a string.

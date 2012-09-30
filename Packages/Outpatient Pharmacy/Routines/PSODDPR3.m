@@ -1,5 +1,5 @@
 PSODDPR3 ;BIR/SAB - display NVA enhanced order checks ;10/04/06 3:38pm
- ;;7.0;OUTPATIENT PHARMACY;**251,375**;DEC 1997;Build 17
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,379**;DEC 1997;Build 28
  ;Reference ^PSDRUG supported by DBIA 221
  ;Reference ^PS(55 supported by DBIA 2228
  ;Reference ^PS(50.7 is supported by DBIA 2223
@@ -27,7 +27,13 @@ MON ;print monograph
  .S ZTSAVE("^TMP($J,""OUT"",""REMOTE"",")="",ZTSAVE("SV")=""
  .D ^%ZTLOAD,^%ZISC W !,"Monograph Queued to Print!",!
  .S:$D(ZTQUEUED) ZTREQ="Q"
+ D QUE,^%ZISC
+ I $E(IOST)="C",'$G(PSOMONQ) K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue" D ^DIR W @IOF S:($D(DTOUT))!($D(DUOUT))!($G(DIRUT)) PSODLQT=1,PSORX("DFLG")=1 K DIR,DTOUT,DUOUT,DIRUT
+ K DIR,DTOUT,DUOUT,^UTILITY($J),DIWL,DIWR,DIWF,X,QX,PMON,RDI,^TMP($J,LIST,"PMON"),RMRX,PSOMON1,PSOMONQ,MONQ,FDBSEV,MONTITLE,SMONTI
+ Q
+ ;
 QUE   S (CT,PMON,MDRGCNT)=0 K ^TMP($J,LIST,"PMON")
+ U IO
  ;sort to attain an array of FDBSEV by drug and monograph title.  Note that the PMON array is already sorted by Vista Severity
  F  S CT=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT)) Q:'CT  D
  . I $D(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT,"PMON",5,0)) S MONSEV="",MONSEV=^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT,"PMON",5,0) D
@@ -59,9 +65,8 @@ QUE   S (CT,PMON,MDRGCNT)=0 K ^TMP($J,LIST,"PMON")
  ..I PSOMONQ=1 W @IOF Q
  ..I PSOMONQ=2 S MONQ=1
  ..W @IOF,!
- I '$G(PSOMONQ) K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue" D ^DIR W @IOF S:($D(DTOUT))!($D(DUOUT))!($G(DIRUT)) PSODLQT=1,PSORX("DFLG")=1 K DIR,DTOUT,DUOUT,DIRUT
- K DIR,DTOUT,DUOUT,^UTILITY($J),DIWL,DIWR,DIWF,X,QX,PMON,RDI,^TMP($J,LIST,"PMON"),RMRX,PSOMON1,PSOMONQ,MONQ,FDBSEV,MONTITLE,SMONTI
  Q
+ ;
 PAUSE1() ;Allow "^"
  ;Return 0 if X="" ;Return 1 if X="^" ;Return 2 if Not null or "^"
  NEW DIR,DIRUT,DUOUT,X
@@ -143,7 +148,6 @@ VAGEN(PSODD) ;Return the VA GENERIC name
  N PSOIEN I '+$G(PSODD) Q ""
  S PSOIEN=+$G(^PSDRUG(PSODD,"ND")) D ZERO^PSN50P6(PSOIEN,,,,"PSOVAG")
  S PSOVAG=$G(^TMP($J,"PSOVAG",PSOIEN,.01)) K ^TMP($J,"PSOVAG")
- S:PSOVAG="" PSOVAG="*"
  Q PSOVAG
 INST ;displays instruction and/or comments
  S INST=0 F  S INST=$O(^PS(52.41,RXREC,TY,INST)) Q:'INST  S MIG=^PS(52.41,RXREC,TY,INST,0) D

@@ -1,5 +1,5 @@
-PXRMINDX ; SLC/PKR - Routines for utilizing the index. ;02/22/2010
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17**;Feb 04, 2005;Build 102
+PXRMINDX ;SLC/PKR - Routines for utilizing the index. ;01/20/2011
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18**;Feb 04, 2005;Build 152
  ;Code for patient findings.
  ;================================================================
 EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;General finding evaluator.
@@ -54,6 +54,7 @@ FIEVAL(FILENUM,SNODE,DFN,ITEM,PFINDPA,FIEVAL) ;
  N SAVE,SDIR,SSFIND,STATOK,STATUSA,UCIFS,USESTRT,VSLIST
  ;Set the finding search parameters.
  D SSPAR^PXRMUTIL(PFINDPA(0),.NOCC,.BDT,.EDT)
+ I $G(PXRMDEBG) S FIEVAL("BDTE")=BDT,FIEVAL("EDTE")=EDT
  D SCPAR^PXRMCOND(.PFINDPA,.CASESEN,.COND,.UCIFS,.ICOND,.VSLIST)
  S SDIR=$S(NOCC<0:+1,1:-1)
  S NOCC=$S(NOCC<0:-NOCC,1:NOCC)

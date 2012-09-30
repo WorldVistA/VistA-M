@@ -1,5 +1,5 @@
 BPSPRRX ;ALB/SS - ePharmacy secondary billing ;12-DEC-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,9**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,9,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;Entry point for the menu option [BPS COB PROCESS SECONDARY AND TRICARE CLAIMS]
@@ -19,7 +19,7 @@ EN1 ;
  . S BPSZ=$$RXREFIL^BPSPRRX6(BPS52,BPSDFN,BPSRXN)
  . I +BPSZ=-1 S BPSQLOOP=1 Q
  . S BPSRF=+BPSZ
- . S BPSDOS=+$P(BPSZ,U,2)
+ . S BPSDOS=$$DOSDATE^BPSSCRRS(BPS52,BPSRF)
  . ;
  . ;Verify that the patient has valid ePharmacy coverage for the DOS
  . I '$$INSUR^IBBAPI(BPSDFN,BPSDOS,"E",.BPSINS,"1,7,8") D  S BPSQLOOP=1 Q
@@ -70,7 +70,7 @@ PRI4RXRF(BPS52,BPSRF,BPSDOS,BPSDFN) ;
  I +BPSECLM=3 Q "-102^Claim in progress"
  I +BPSECLM=1 Q "-109^Existing PAYABLE e-claim. Please reverse it before resubmitting."
  S BPNEWCLM=0
- I +BPSECLM=2 D  I BPNEWCLM=0 Q "-100^Action cancelled"
+ I +BPSECLM=2 D  I BPNEWCLM'=1 Q "-100^Action cancelled"
  . D DISPECLM^BPSPRRX5(+$P(BPSECLM,U,2))
  . W !!,"There is an existing rejected/reversed e-claim for the RX/refill."
  . S BPNEWCLM=$$YESNO^BPSSCRRS("Do you want to submit a new primary claim(Y/N)","N")
@@ -79,7 +79,7 @@ PRI4RXRF(BPS52,BPSRF,BPSDOS,BPSDFN) ;
  ;
  S BPSQ=0
  ;check for primary bill
- S BPSZ=$$RXBILL^IBNCPUT3(BPS52,BPSRF,"P",BPSDOS,.BPSARR)
+ S BPSZ=$$RXBILL^IBNCPUT3(BPS52,BPSRF,"P","",.BPSARR)
  I +BPSZ>0,+$P(BPSZ,U,2)>0 Q "-107^Existing active primary bill #"_$P($G(BPSARR(+$P(BPSZ,U,2))),U,1)
  I +BPSZ>0,+$P(BPSZ,U,2)=0 D  I +BPSQ'=0 Q BPSQ
  . N BPS399,BPSCNT
@@ -92,28 +92,34 @@ PRI4RXRF(BPS52,BPSRF,BPSDOS,BPSDFN) ;
  . . W:BPSCNT=1 !!,"Non-active primary bill(s) found:"
  . . D DISPBILL^BPSPRRX2(BPPSEQ,$P(BPSARR(BPS399),U,4),$P(BPSARR(BPS399),U,1),$P(BPSARR(BPS399),U,2),BPS52,BPSRF,$P(BPSARR(BPS399),U,3),(BPSCNT=1))
  . W !
- . I $$YESNO^BPSSCRRS("DO YOU WISH TO CREATE A NEW PRIMARY BILL ?(Y/N)","N")=0 S BPSQ="-100^Action cancelled"
+ . I $$YESNO^BPSSCRRS("DO YOU WISH TO CREATE A NEW PRIMARY BILL ?(Y/N)","N")'=1 S BPSQ="-100^Action cancelled"
  Q $$PRIMARY^BPSPRRX4(BPS52,BPSRF,BPSDFN,BPSDOS,BPSECLM,BPNEWCLM)
  ;
  ;create secondary claim for entered RX/refill
 SEC4RXRF(BPS52,BPSRF,BPSDOS,BPSDFN) ;
  N BPSARR,BPSRET,BPS399
  ;
- ; try to find the primary bill
- S BPSRET=$$RXBILL^IBNCPUT3(BPS52,BPSRF,"P",BPSDOS,.BPSARR)
+ ; Try to find the primary bill
+ S BPSRET=$$RXBILL^IBNCPUT3(BPS52,BPSRF,"P","",.BPSARR)
  ;
- ; if no primary bills found at all
+ ; SECNOPRM creates a secondary claim when there is no primary bill
  I +BPSRET=0 Q $$SECNOPRM^BPSPRRX5(BPS52,BPSRF,BPSDOS,$G(BPSDFN),"1,2")
  ;
- S BPS399=+$P(BPSRET,U,2)  ; active claim
- I BPS399'>0 S BPS399=+$O(BPSARR(999999999),-1)   ; most recent claim
+ ; Get the active claim
+ S BPS399=+$P(BPSRET,U,2)
  ;
+ ; If no active claim, then get the most recent claim
+ I BPS399'>0 S BPS399=+$O(BPSARR(999999999),-1)
+ ;
+ ; Check if there any secondary bills
  K BPSARR
- ; check if there any 2ndary bill
- S BPSRET=$$RXBILL^IBNCPUT3(BPS52,BPSRF,"S",BPSDOS,.BPSARR)
+ S BPSRET=$$RXBILL^IBNCPUT3(BPS52,BPSRF,"S","",.BPSARR)
  I +BPSRET>0,+$P(BPSRET,U,2)>0 Q "-107^Existing active secondary bill #"_$P($G(BPSARR(+$P(BPSRET,U,2))),U,1)
- Q $$SECONDRY(BPS399,"1,2")
  ;
+ ; Submit secondary claim when there is a primary bill
+ Q $$SECONDRY(BPS52,BPSRF,BPSDOS,BPS399,"1,2")
+ ;
+DISPLMES(BPSZ,BPSPSEQ) ;
  ;Display messages
  ; -100^Action cancelled
  ; -101^Existing e-claim
@@ -125,7 +131,7 @@ SEC4RXRF(BPS52,BPSRF,BPSDOS,BPSDFN) ;
  ; -108^RX not released
  ; -109^Existing PAYABLE e-claim. Please reverse it before resubmitting.
  ; -110^No valid group insurance plans
-DISPLMES(BPSZ,BPSPSEQ) ;
+ ;
  I BPSZ'<0 Q
  I +BPSZ=-100 W !!,$P(BPSZ,U,2),! Q
  I +$G(BPSPSEQ)=0 W !!,"Cannot submit e-claim:",!," ",$P(BPSZ,U,2),!
@@ -136,45 +142,51 @@ DISPLMES(BPSZ,BPSPSEQ) ;
  . W !,"Cannot submit primary claim:",!," ",$P(BPSZ,U,2),!
  Q
  ;
+SECONDRY(BPSRX,BPSRF,BPSDOS,BPS399,BPDISPPR) ;
  ;Submit a secondary claim if there is a primary bill
- ;BPS399 - primary bill (ien of file #399)
- ;BPDISPPR - display bill information for
- ; "1" - primary 
- ; "2" - secondary
- ; "1,2" - both
+ ;Input:
+ ;  BPSRX - Prescription IEN
+ ;  BPSRF - Fill Number
+ ;  BPSDOS - Date of Service
+ ;  BPS399 - primary bill (ien of file #399)
+ ;  BPDISPPR - display bill information for
+ ;    "1" - primary 
+ ;    "2" - secondary
+ ;    "1,2" - both
  ;
- ;Submission result (return value of EN^BPSNCPDP)
- ;Or one of the negative error codes:
- ; -100^Action cancelled
- ; -101^Existing e-claim
- ; -102^Claim in progress
- ; -103^Invalid or wrong bill#
- ; -104^Existing rejected/reversed e-claim
- ; -105^The same group plan selected
- ; -106^The primary insurer needs to be billed first.
- ; -107^Existing active bill
-SECONDRY(BPS399,BPDISPPR) ;
- N BPSBINFO,BPSRXCOB,BPSRX,BPSRF,BPSINIEN,BPPAYSEQ,BPSECLM,BP2NDBIL,BPSDFN,BPSRET,BPSDOS,BPRATTYP,BPSQ,BPY
- N BPSPLNSL,BPSECOND,BPRET,BPENGINE,BPSWHERE,BPSPLAN,BPSPL59,BPRTTP59,BPSARR,BPYDEF
- N BPRESUBM S BPRESUBM=0 ;default = original submission
- ;get primary bill data
+ ;Submission result:
+ ;  Return value of EN^BPSNCPDP or an error code/text
+ ;    -100^Action cancelled
+ ;    -101^Existing e-claim
+ ;    -102^Claim in progress
+ ;    -103^Invalid or wrong bill#
+ ;    -104^Existing rejected/reversed e-claim
+ ;    -105^The same group plan selected
+ ;    -106^The primary insurer needs to be billed first.
+ ;    -107^Existing active bill
+ ;
+ N BPSBINFO,BPSRXCOB,BPSINIEN,BPPAYSEQ,BPSECLM,BP2NDBIL,BPSDFN,BPSRET,BPRATTYP,BPSQ,BPY
+ N BPSPLNSL,BPSECOND,BPSWHERE,BPSPLAN,BPSPL59,BPRTTP59,BPSARR,BPYDEF,BPRESUBM
+ ;
+ ;Default = original submission
+ S BPRESUBM=0
+ ;
+ ;Get primary bill data
  S BPSRET=$$BILINF^IBNCPUT3(BPS399,.BPSBINFO)
  I +BPSRET=-1 Q "-103"_U_$P(BPSRET,U,2)
- ;
- S BPSRX=BPSBINFO("PRESCRIPTION")
- S BPSRF=BPSBINFO("FILL NUMBER")
- S BPSDOS=$G(BPSBINFO("DOS"))
  ;
  S BPSDFN=+$P(BPSRET,U,2)
  S BPPAYSEQ=$S($P(BPSRET,U)="S":"Secondary",$P(BPSRET,U)="T":"Tertiary",$P(BPSRET,U)="P":"Primary",1:"Unknown")
  S BPSRXCOB=$S($P(BPSRET,U)="S":2,$P(BPSRET,U)="T":3,1:1)
  S BPSINIEN=BPSBINFO("INS IEN")
- ;display primary bill data
+ ;
+ ;Display primary bill data
  I $G(BPDISPPR)[1 D
  . W !,"Primary bill:"
  . D DISPBILL^BPSPRRX2(BPPAYSEQ,BPSBINFO("INS NAME"),BPSBINFO("BILL #"),BPSBINFO("AR STATUS"),BPSRX,BPSRF,"",1)
  . W !
- ;check if there is the secondary e-claim
+ ;
+ ;Check if there is the secondary ePharmacy claim
  S BPSECLM=$$FINDECLM^BPSPRRX5(BPSRX,BPSRF,2)
  I +BPSECLM=3 Q "-102^Claim in progress"
  I +BPSECLM=1 Q "-109^Existing PAYABLE e-claim. Please reverse it before resubmitting."
@@ -184,15 +196,12 @@ SECONDRY(BPS399,BPDISPPR) ;
  . W !!,"There is an existing rejected/reversed secondary e-claim(s) for the RX/refill."
  . I $$YESNO^BPSSCRRS("Do you want to submit a new secondary claim(Y/N)","N")=1 S BPRESUBM=1
  . I BPRESUBM'=1 S BPSQ=1
- ; if not found or if existing rejected/reversed claim then continue , otherwise - quit
- ;I +BPSECLM'=0 Q "-101^Existing e-claim"
- ;prepopulate COB fields if this is a resubmit
- I BPRESUBM=1 I $$RES2NDCL^BPSPRRX6($$IEN59^BPSOSRX(BPSRX,BPSRF,2),.BPSPL59,.BPSECOND,.BPRTTP59)
  ;
+ ; Check for an existing secondary bill(s)
  D  Q:+$P(BP2NDBIL,U,2)>0 "-107^Existing active secondary bill"
  . N BPSARR,BPS399,BPSCNT
  . ;check for the existing secondary bill
- . S BP2NDBIL=$$RXBILL^IBNCPUT3(BPSRX,BPSRF,"S",BPSDOS,.BPSARR)
+ . S BP2NDBIL=$$RXBILL^IBNCPUT3(BPSRX,BPSRF,"S","",.BPSARR)
  . I +BP2NDBIL=0 Q  ;not found
  . S BPS399=0
  . S BPSCNT=0
@@ -206,7 +215,7 @@ SECONDRY(BPS399,BPDISPPR) ;
  . . . D DISPBILL^BPSPRRX2(BPPSEQ,$P(BPSARR(BPS399),U,4),$P(BPSARR(BPS399),U,1),$P(BPSARR(BPS399),U,2),BPSRX,BPSRF,$P(BPSARR(BPS399),U,3),(BPSCNT=1))
  . W !
  ;
- ; check for ePharmacy secondary ins policy
+ ; Check for ePharmacy secondary ins policy
  S BPYDEF="N"
  I '$$SECINSCK(BPSDFN,BPSDOS) D
  . S BPYDEF="Y"
@@ -214,35 +223,52 @@ SECONDRY(BPS399,BPDISPPR) ;
  . W !,"You must correct this in order to continue.",!
  . Q
  ;
- ;ask the user if he wants to jump to the BCN PATIENT INSURANCE option
+ ; Ask the user if he wants to jump to the BCN PATIENT INSURANCE option
  S BPY=$$YESNO^BPSSCRRS("DO YOU WISH TO ADD/EDIT INSURANCE COMPANY DATA FOR THIS PATIENT?(Y/N)",BPYDEF)
  I BPY=1 D EN1^IBNCPDPI(BPSDFN)
  I BPY=-1 Q "-100^Action cancelled"
  ;
+ ; If still no ePharmacy secondary ins policy, quit with error
  I '$$SECINSCK(BPSDFN,BPSDOS) Q "-115^No Secondary e-Pharmacy Insurance Policy."
  ;
+ ; Get data from the primary claim, if it exists
+ S BPSRET=$$PRIMDATA^BPSPRRX6(BPSRX,BPSRF,.BPSECOND)
+ ;
+ ; If the primary claim data is missing and this is a resubmit, get data from the most recent
+ ;   secondary claim
+ I 'BPSRET,BPRESUBM=1,$$SECDATA^BPSPRRX6(BPSRX,BPSRF,.BPSPL59,.BPSECOND,.BPRTTP59)
+ ;
+ ; Set the PRIMARY BILL array element with the bill selected by this procedure
  S BPSECOND("PRIMARY BILL")=BPS399
  ;
- S BPRET=$$PRIMDATA^BPSPRRX4($$IEN59^BPSOSRX(BPSRX,BPSRF,1),.BPSECOND,1,BPRESUBM)
- I BPRET=0 D GETFR52^BPSPRRX4(BPSRX,BPSRF,.BPSECOND)
+ ; Display the data and allow the user to edit
+ I $$PROMPTS^BPSPRRX3(BPSRX,BPSRF,BPSDOS,.BPSECOND)=-1 Q "-100^Action cancelled"
  ;
- I $$PROMPTS^BPSPRRX3(.BPSECOND)=-1 Q "-100^Action cancelled"
- I $$YESNO^BPSSCRRS("SUBMIT CLAIM TO "_$G(BPSECOND("INS NAME"))_" ?(Y/N)","Y")=0 Q "-100^Action cancelled"
- I BPRESUBM=0 S BPSWHERE=$S(BPSRF>0:"RF",1:"OF")
- ;set the flag that indicates that we should use new COB data to resubmit the secondary claim , 
- ;i.e. in BPSNCPDP the engine shouldn't use the COB data in BPS TRANSACTION for resubmit
- I BPRESUBM=1 S BPSECOND("NEW COB DATA")=1,BPSWHERE="ERES"
- S BPENGINE=$$SUBMCLM^BPSPRRX2(BPSECOND("PRESCRIPTION"),BPSECOND("FILL NUMBER"),BPSECOND("FILL DATE"),BPSWHERE,BPSECOND("BILLNDC"),2,BPSECOND("PLAN"),.BPSECOND,BPSECOND("RTYPE"))
- I +BPENGINE=4 W !!,$P(BPENGINE,U,2),!
- Q BPENGINE
+ ; Continue?
+ W !
+ I $$YESNO^BPSSCRRS("SUBMIT CLAIM TO "_$G(BPSECOND("INS NAME"))_" ?(Y/N)","Y")'=1 Q "-100^Action cancelled"
  ;
+ ; NEW COB DATA will indicate to BPSNCPDP that it should NOT rebuild the data from the BPS Transaction and
+ ;   the previous secondary claim
+ S BPSECOND("NEW COB DATA")=1
+ ;
+ ; Set BWHERE dependent on whether this is an original submission or a resubmit
+ I BPRESUBM=0 S BPSWHERE="P2"
+ I BPRESUBM=1 S BPSWHERE="P2S"
+ ;
+ ; Submit the claim
+ S BPSRET=$$SUBMCLM^BPSPRRX2(BPSRX,BPSRF,BPSDOS,BPSWHERE,2,BPSECOND("PLAN"),.BPSECOND,BPSECOND("RTYPE"))
+ I +BPSRET=4 W !!,$P(BPSRET,U,2),!
+ Q BPSRET
+ ;
+PROMPTRX() ;
  ; Prompts for RX# and gets confirmation
  ;returns:
  ; 1^RXIEN^RX#^DFN - Successful
  ; 0 - Timeout or Quit by user
  ; -1 = User entered "^"
-PROMPTRX() ;
- N BPRET,BPSRX,BPSDFN,BPSPTNM,BPSRXN,BPSRXST,BPSDRUG,BPSDIC,BPSRXD,X,Y,DIQ,DR,DA,DIC
+ N BPRET,BPSRX,BPSDFN,BPSPTNM,BPSRXN,BPSRXST,BPSDRUG,BPSDIC,BPSRXD
+ N X,Y,DIQ,DR,DA,DIC,DTOUT,DUOUT
  S BPRET=0,(BPSDIC,DIC)=52,X=""
  S BPSDIC(0)="AENQ"
  W ! D DIC^PSODI(52,.BPSDIC,X) ;DBIA 4858
@@ -255,9 +281,10 @@ PROMPTRX() ;
  S BPSRXST=BPSRXD(52,DA,100,"E")
  W !!,?1,"Patient",?25,"RX#",?37,"Drug Name",?63,"RX Status"
  W !,?1,$E(BPSPTNM,1,23),?25,$E(BPSRXN,1,11),?37,$E(BPSDRUG,1,25),?63,$E(BPSRXST,1,16),!
- Q $$YESNO^BPSSCRRS("DO YOU WANT TO CONTINUE?(Y/N)","Y")_U_BPSRX_U_BPSRXN_U_BPSDFN
+ Q $S($$YESNO^BPSSCRRS("DO YOU WANT TO CONTINUE?(Y/N)","Y")=1:1,1:0)_U_BPSRX_U_BPSRXN_U_BPSDFN
  ;
-SECINSCK(DFN,DOS) ; secondary insurance check
+SECINSCK(DFN,DOS) ;
+ ; secondary insurance check
  ; check to see if patient has at least one ePharmacy secondary insurance policy
  ; function value = 1 if there is one, 0 otherwise
  ;

@@ -1,5 +1,5 @@
 BPSSCRU2 ;BHAM ISC/SS - ECME SCREEN UTILITIES ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;USER SCREEN
  Q
@@ -202,12 +202,15 @@ IFREFILL(BPRX,BPREF) ;
  ;ptr to 9002313.59
  ;output :
  ; BB - back billing
+ ; P2 - PRO Option
  ; RT - all other values in (#1201) RX ACTION field on 9002313.59
 RTBB(BP59) ;*/
  N BPTRBB
  S BPTRBB=$P($G(^BPST(BP59,12)),U)
  I BPTRBB="" Q "**"
  I BPTRBB="BB" Q "BB"
+ I BPTRBB="P2" Q "P2"
+ I BPTRBB="P2S" Q "P2"
  Q "RT"
  ;
  ;------------ patient's name

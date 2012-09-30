@@ -1,10 +1,14 @@
-PSBVDLUD ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**11,13,38,32**;Mar 2004;Build 32
+PSBVDLUD ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;7/13/11 11:45am
+ ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58**;Mar 2004;Build 37
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
  ; EN^PSJBCMA/2828
  ; $$GET^XPAR/2263
+ ; GETPROVL^PSGSICH1/5653
+ ; INTRDIC^PSGSICH1/5654
+ ;
+ ;*58 - add 29th piece to Results for Override/Intervention flag 1/0
  ;
 EN(DFN,PSBDT) ;
  ;
@@ -109,12 +113,16 @@ EN(DFN,PSBDT) ;
  .; Variable dosage entered as ####-####?
  .I $P(PSBREC,U,9)?1.4N1"-"1.4N.E S $P(PSBREC,U,17)=1
  .E  S $P(PSBREC,U,17)=0
- .S:PSBDOSEF?1"CAP".E!(PSBDOSEF?1"TAB".E)!(PSBDOSEF="PATCH") $P(PSBREC,U,18)=PSBDOSEF ; dosage form
+ .S:PSBDOSEF?1"CAP".E!(PSBDOSEF?1"TAB".E)!(PSBDOSEF="PATCH")!(PSBDOSEF="GUM,CHEWABLE") $P(PSBREC,U,18)=PSBDOSEF   ;dosage form, add Gum,Chewable for HD208693
  .S $P(PSBREC,U,20)=$S((PSBSTUS="X")!(PSBSTUS="N"):"",1:PSBSTUS) ; last action status
  .S $P(PSBREC,U,21)=PSBOST
  .S $P(PSBREC,U,22)=PSBOSTS
  .S $P(PSBREC,U,26)=PSBOSP
  .S $P(PSBREC,U,27)=$$LASTG^PSBCSUTL(DFN,PSBOIT)
+ .;*58 determine if override or intervn exists, send 1/0 (true/false)
+ .N PSBARR D GETPROVL^PSGSICH1(DFN,PSBONX,.PSBARR)
+ .I $O(PSBARR(""))="" D INTRDIC^PSGSICH1(DFN,PSBONX,.PSBARR,2)
+ .S $P(PSBREC,U,29)=$S($O(PSBARR(""))]"":1,1:0)
  .;
  .; Gather Dispense Drugs
  .D NOW^%DTC

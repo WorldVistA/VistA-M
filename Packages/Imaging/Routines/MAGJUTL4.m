@@ -1,5 +1,5 @@
-MAGJUTL4 ;WIRMFO/JHC VistARad subroutines for RPC calls ; 5-Mar-2010 4:18 PM
- ;;3.0;IMAGING;**18,76,101,90**;Mar 19, 2002;Build 1764;Jun 09, 2010
+MAGJUTL4 ;WIRMFO/JHC - VistARad subroutines for RPC calls ; 9 Sep 2011  4:05 PM
+ ;;3.0;IMAGING;**18,76,101,90,120**;Mar 19, 2002;Build 27;May 23, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -139,9 +139,11 @@ MDLLST(CPTIEN,DLM) ; return DLM-delimited list of modality values for this CPT
  ;
 DATADUMP(MAGGRY,DATA) ;
  ;
- ; Initialize. <*> Do NOT change name of EP.
+ ; Initialize. <*> Do NOT change name of EP
+ ;   Also called as subroutine from INCPT^MAGJMN3
+ ;   
  N $ETRAP,$ESTACK S $ETRAP="G ERR1^MAGJUTL4"
- N CT,DIQUIET,IMGIEN,INVALID,PARAM1,PARAM2,REQUEST
+ N CT,CPT,CPTFILIEN,CPTNAM,DIQUIET,IMGIEN,INVALID,PARAM1,PARAM2,REQUEST
  S DIQUIET=1 D DT^DICRW
  K MAGGRY S MAGGRY=$NA(^TMP($J,"MAGJDATA")) K @MAGGRY
  ;
@@ -176,44 +178,44 @@ DDMPROCS ;
  S REPLY="0^Retrieving imaging internal data ..."
  ;
  ; Process. CPT request via MAG RAD CPT MATCHING File (#2006.67).
- I REQUEST="CPT" D DDMPRCPT(PARAM1)
+ I REQUEST="CPT" D DDMPRCPT(CPTFILIEN)
  I REQUEST="FLDS" D GETS^MAGGTSYS(.M,IMGIEN,PARAM1) M MM(3)=@M K M
  I REQUEST="GLB" D MAG^MAGGTSY2(.M,IMGIEN) M MM(4)=@M K M
  ;
- ; Re-subscript array MM to simplify MERGE to broker output global.
- S CT=0,MMX=$NA(MM(.999)) F  S MMX=$Q(@MMX) Q:MMX=""  D  S CT=CT+1
- . S MXX="XMM("_$QS(MMX,1)_"."_(1000+$QS(MMX,2))_")" S @MXX=@MMX
- K MM,MMX,MXX
+ ; Re-subscript array MM into XMM to simplify MERGE to broker output global.
+ S CT=0,MMX=$NA(MM(0))
+ F  S MMX=$Q(@MMX) Q:MMX=""  S CT=CT+1,XMM(CT)=@MMX
+ K MM,MMX
  Q
  ;
- ;+++++ Process a CPT request. Called by DDMPROCS.
+ ;+++++ Process a CPT request. Called by DDMPROCS
  ;
  ; Calls CPT^ICPTCOD for CPT Description.
  ;
-DDMPRCPT(CPT) ;
+DDMPRCPT(CPTFILIEN) ; 
  ;
  ; Initialize.
- N FN,FN1,NDX,NOD,SS
+ N FN,FN1,NDX,NOD,SS,X
  ;
  ; Set section headers.
- S MM(.1)="Input CPT Code ........... "_CPT_"  ("_$P($$CPT^ICPTCOD(CPT),U,3)_")."
+ S MM(.1)="Input CPT Code ........... "_CPT_"  ("_CPTNAM_")"
  S MM(.2)="          Body Part(s) ... "
  S MM(.3)="          Modality(s) .... "
  ;
  ; Set primary CPT bodyPart & modality.
- S FN=2006.67,FN1=2006.671,NDX=$O(^MAG(FN,"B",CPT,""))
+ S FN=2006.67,FN1=2006.671,NDX=$O(^MAG(FN,"B",CPTFILIEN,""))
  S NOD=$NA(^MAG(FN,NDX,0)) F  S NOD=$Q(@NOD) Q:$QS(NOD,2)>NDX  I $QS(NOD,4)="B" D
  . I $QS(NOD,3)=1 S MM(.2)=MM(.2)_$G(^MAG(FN1,$QS(NOD,5),0))_"; "
  . I $QS(NOD,3)=2 S MM(.3)=MM(.3)_$P($G(^RAMIS(73.1,$QS(NOD,5),0)),U)_"; "
  . Q
  ;
  ; Strip dangling concatenators.
- F SS=.2,.3 S MM(SS)=$$ZRUPUNCT(MM(SS),"; ",".")
+ F SS=.2,.3 S MM(SS)=$$ZRUPUNCT(MM(SS),"; ","")
  ;
  ; Fetch CPTs matching on CPT.
  D CPTGRP(.M,CPT_"^1") M MM(1)=@M K M
  S MM(1,0)=$P(MM(1,0),"~ ",2)
- S MM(1,0)=$J(+$P(MM(1,0)," "),3)_" matching CPT(s) via similar CPT:"
+ S MM(1,0)=$J(+$P(MM(1,0)," "),3)_" matching CPT(s) via Similar CPT:"
  ;
  ; Fetch CPTs matching on BodyPart & Modality.
  D CPTGRP(.M,CPT_"^3") M MM(2)=@M K M
@@ -234,14 +236,18 @@ DDMPVLD8() ;
  Q:DATA'["^"!(DATA'["|") 1
  ;
  ; Initialize.
- N RACNI,RADFN,RADTI,RARPT S REPLY="0^Validating input parameters ..."
+ N GO,RACNI,RADFN,RADTI,RARPT S REPLY="0^Validating input parameters ..."
  S REQUEST=$P(DATA,U),PARAM1=$P($P(DATA,U,2),"|"),PARAM2=$P(DATA,"|",2)
  ;
  ; ... DATA string's REQUEST piece or exit (invalid: code 2).
  Q:"^CPT^FLDS^GLB^"'[(U_REQUEST_U) 2
  ;
  ; ... PARAM1 if REQUEST="CPT" or exit (invalid: code 3).
- I REQUEST="CPT" Q:'$D(^MAG(2006.67,"B",PARAM1)) 3
+ I REQUEST="CPT" D  I 'GO Q 3
+ . S GO=PARAM1]"" Q:'GO
+ . S X=$$CPT^ICPTCOD(PARAM1),CPTFILIEN=$P(X,U),CPT=$P(X,U,2),CPTNAM=$P(X,U,3)
+ . I CPTFILIEN,$D(^MAG(2006.67,"B",CPTFILIEN))
+ . E  S GO=0
  ;
  ; ... PARAM1 if REQUEST="FLDS" or re-set to null. External call will set defaults.
  ; .......... only validate format of FileMan flags.

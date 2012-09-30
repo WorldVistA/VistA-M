@@ -304,7 +304,7 @@ ADDLINE(PRCTEXT,PRCNT,PRCXMTXT) ;Add lines of text to message array
  ;
 MAIL(PRCXMTXT) ;Send 1358 transaction mail message
  ;
- ; * Send messages to production queue Q-OLP.MED.VA.GOV
+ ; * Send messages to production queue Q-OLP.DOMAIN.EXT
  ;    [If PRC*5.1*153 installed in a production account]
  ;
  ; * Send messages to mail group G.OLP
@@ -357,7 +357,7 @@ MAIL(PRCXMTXT) ;Send 1358 transaction mail message
  . . . S PRCINST1="T"
  . S PRCACCT=$S(PRCINST1="T":2,1:0)
  ;
- S PRCREC=$S(PRCACCT=1:"XXX@Q-OLP.MED.VA.GOV",PRCACCT=2:"G.OLP",1:0)
+ S PRCREC=$S(PRCACCT=1:"XXX@Q-OLP.DOMAIN.EXT",PRCACCT=2:"G.OLP",1:0)
  Q:PRCREC=0
  ;
  S XMY(PRCREC)=""

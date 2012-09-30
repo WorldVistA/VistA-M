@@ -1,5 +1,5 @@
 MDTERM ;HINES OIFO/DP - Terminology Utilities;04 Jan 2006
- ;;1.0;CLINICAL PROCEDURES;**16**;Apr 01, 2004;Build 280
+ ;;1.0;CLINICAL PROCEDURES;**16,23**;Apr 01, 2004;Build 281
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; This routine uses the following IAs:
@@ -113,4 +113,76 @@ CHKFILE(DD,FLD) ; Loop through a file and look for inactive terms being used.
  .S MDCOUNT=MDCOUNT+1
  D MES^XPDUTL("   "_MDCOUNT_" issue(s) found.")
  Q
+ ;
+EXPORT ; Export the current Data Model to KIDS in @XPDGREF@(...)
+ D MES^XPDUTL(" Preparing Clinical Data Model for export...")
+ K ^TMP($J)
+ ; Move the working TERM_TYPE file
+ F X=0:0 S X=$O(^MDC(704.102,X)) Q:'X  S @XPDGREF@("TERM_TYPE",X)=^MDC(704.102,X,0)
+ ; Now move the rest of the term files
+ F DD=704.101,704.103,704.104,704.105,704.106 D
+ .F DA=0:0 S DA=$O(^MDC(DD,DA)) Q:'DA  D
+ ..I DD=704.108 Q:'$P(^MDC(DD,DA,0),U,9)  ; skip inactive mapping tables
+ ..I DD=704.109 Q:'$P(^MDC(704.108,$P(^MDC(704.109,DA,0),U,1),0),U,9)  ; skip inactive mapping table entries
+ ..S IENS=DA_"," D GETS^DIQ(DD,IENS,"*","",$NA(^TMP($J)))
+ .S IENS="" F  S IENS=$O(^TMP($J,DD,IENS)) Q:IENS=""  D
+ ..F FLD=0:0 S FLD=$O(^TMP($J,DD,IENS,FLD)) Q:'FLD  D
+ ...S Y=$O(@XPDGREF@("CDM",""),-1)+1
+ ...S @XPDGREF@("CDM",Y)=DD_";"_(+IENS)_";"_FLD_U_^TMP($J,DD,IENS,FLD)
+ .K ^TMP($J,DD)
+ D MES^XPDUTL(" Clinical Data Model moved to KIDS distribution global.")
+ Q
+ ;
+IMPORT ; Post installation install from @XPDGREF@(...)
+ N MD,DA,DIK,MDCMD,MDD,MDA,MDIEN,MDFDA,MDIENS,MDFLD,MDBUILD
+ S MDBUILD=$P($P($T(+2),";",7)," ",2)
+ D MES^XPDUTL(" Importing a new Dictionary and Clinical Data Model.")
+ ;
+ ; First we purge the existing CDM
+ F MD=704.102,704.103,704.104,704.105,704.106 D:$$VFILE^DILFD(MD)
+ .S DIK=$$ROOT^DILFD(MD) F DA=0:0 S DA=$O(@(DIK_"DA)")) Q:'DA  D ^DIK
+ ;
+ ; Install the new TERM_TYPE file - This file is moved with strict IEN matches
+ F X=0:0 S X=$O(@XPDGREF@("TERM_TYPE",X)) Q:'X  S ^MDC(704.102,X,0)=@XPDGREF@("TERM_TYPE",X)
+ S DIK="^MDC(704.102," D IXALL^DIK
+ ;
+ K DA,DIK ; Just in case ;)
+ ;
+ ; Next we deactivate all the terms already here so only the ones coming in are active
+ I $O(^MDC(704.101,0)) D MES^XPDUTL(" Deactivating existing terms.")
+ F MDIEN=0:0 S MDIEN=$O(^MDC(704.101,MDIEN)) Q:'MDIEN  D
+ .S MDFDA(704.101,MDIEN_",",.09)=0 D FILE^DIE("","MDFDA")
+ ;
+ ; Now install it
+ D MES^XPDUTL(" Installing new terminology.")
+ K ^TMP($J,"MDFDA") S MDIEN=0
+ F X=0:0 S X=$O(@XPDGREF@("CDM",X)) Q:'X  D
+ .S Y=@XPDGREF@("CDM",X)
+ .S MDD=+$P(Y,";",1)
+ .S MDIENS=+$P(Y,";",2)
+ .S MDFLD=+$P(Y,";",3)
+ .S ^TMP($J,"MDFDA",MDD,MDIENS,MDFLD)=$P(Y,U,2,250)
+ F MDD=0:0 S MDD=$O(^TMP($J,"MDFDA",MDD)) Q:'MDD  D
+ .F MDA=0:0 S MDA=$O(^TMP($J,"MDFDA",MDD,MDA)) Q:'MDA  D
+ ..K MDFDA
+ ..S MDIENS="+1"
+ ..S:MDD=704.101 MDIENS=$$GETIENS(^TMP($J,"MDFDA",MDD,MDA,.01))
+ ..M MDFDA(MDD,MDIENS_",")=^TMP($J,"MDFDA",MDD,MDA)
+ ..D UPDATE^DIE("EK","MDFDA",,"MDMSG")
+ ..I $D(MDMSG) D MES^XPDUTL(MDMSG("DIERR",1,"TEXT",1))
+ ..K MDMSG,MDFDA
+ ;
+ ; Update the check sums
+ F MDD=704.101,704.102,704.103,704.104,704.105,704.106 D
+ .D MES^XPDUTL(" Storing check sum for file "_$$GET1^DID(MDD,"","","NAME")_"...")
+ .D PRD^DILFD(MDD,"MD*1.0*23;b"_$P($P($T(+2),";",7)," ",2)_";"_$$CHKSUM^MDTERM(MDD))
+ ;
+ D MES^XPDUTL(" New Clinical Data Model for Terminology has been installed.")
+ Q
+ ;
+GETIENS(MDID) ; Finds the correct IEN in the SITES TERM file
+ I $D(^MDC(704.101,"PK",MDID)) Q +$O(^MDC(704.101,"PK",MDID,0))
+ ; No match in "PK" index, add it!
+ I 'MDIENS S MDIENS="+1" D MES^XPDUTL("    Term '"_^TMP($J,"MDFDA",MDD,MDA,.01)_"' ("_^(.02)_") will be added...")
+ Q MDIENS
  ;

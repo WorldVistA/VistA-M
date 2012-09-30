@@ -1,5 +1,5 @@
 SCRPW24 ;RENO/KEITH - ACRP Ad Hoc Report (cont.) ;06/19/99
- ;;5.3;Scheduling;**144,163,180,254,243,295,329,351,510,530,562**;AUG 13, 1993;Build 7
+ ;;5.3;Scheduling;**144,163,180,254,243,295,329,351,510,530,562,576**;AUG 13, 1993;Build 5
  ;06/19/99 ACS - Added CPT modifier API calls
  ;11/26/03 RLC - 329 fixes primary/secondary dx problem with report
  ;
@@ -139,7 +139,8 @@ OECL(SDX,SDZ) ;Get classification values
 OEOU(SDX) ;Get option used to create
  K SDX S SDX=+$P(SDOE0,U,5),SDX=+$P($G(^AUPNVSIT(SDX,0)),U,24)
  N SDY D GETS^DIQ(19,SDX,.01,"","SDY")
- S SDX=SDX_U_SDY(19,SDX_",",.01) S:$L($P(SDX,U,2)) SDX(1)=SDX
+ I 'SDX S SDX="0^UNKNOWN",SDX(1)=SDX    ;SD*576
+ I +SDX S SDX=SDX_U_SDY(19,SDX_",",.01) S:$L($P(SDX,U,2)) SDX(1)=SDX
  D NX Q
  ;
 SUQ(DIR) ;Set up DIR() array for Scheduled/unscheduled question

@@ -1,5 +1,5 @@
-PXRMUTIL ; SLC/PKR/PJH - Utility routines for use by PXRM. ;01/11/2010
- ;;2.0;CLINICAL REMINDERS;**4,6,11,12,17**;Feb 04, 2005;Build 102
+PXRMUTIL ;SLC/PKR/PJH - Utility routines for use by PXRM. ;07/29/2011
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,12,17,18**;Feb 04, 2005;Build 152
  ;
  ;=================================
 ATTVALUE(STRING,ATTR,SEP,AVSEP) ;STRING contains a list of attribute value
@@ -62,6 +62,16 @@ AWRITE(REF) ;Write all the descendants of the array reference.
  . S REF=$Q(@REF)
  . I REF'[ROOT S DONE=1
  D MES^XPDUTL(.TEXT)
+ Q
+ ;
+ ;=================================
+DELTLFE(FILENUM,NAME) ;Delete top level entries from a file.
+ N FDA,IENS,MSG
+ S IENS=+$$FIND1^DIC(FILENUM,"","BX",NAME)
+ I IENS=0 Q
+ S IENS=IENS_","
+ S FDA(FILENUM,IENS,.01)="@"
+ D FILE^DIE("","FDA","MSG")
  Q
  ;
  ;=================================
@@ -149,8 +159,8 @@ OPTION(ACT) ;Disable/enable options.
  ;
  D FIND^DIC(19,"","@;.01","","GMTS","*","B","","","LIST")
  F IND=1:1:+LIST("DILIST",0) S OPT=LIST("DILIST","ID",IND,.01)
-  S RESULT=$$OPTDE^XPDUTL(OPT,ACTION)
-  I RESULT=0 D MES^XPDUTL("Could not "_ACT_" option "_OPT)
+ S RESULT=$$OPTDE^XPDUTL(OPT,ACTION)
+ I RESULT=0 D MES^XPDUTL("Could not "_ACT_" option "_OPT)
  ;
  K LIST
  D FIND^DIC(19,"","@;.01","","IBDF PRINT","*","B","","","LIST")
@@ -284,7 +294,7 @@ SSPAR(FIND0,NOCC,BDT,EDT) ;Set the finding search parameters.
  I EDT="" S EDT="T"
  S EDT=$$CTFMD^PXRMDATE(EDT)
  ;If EDT does not contain a time set it to the end of the day.
- I EDT'["." S EDT=EDT_".235959"
+ I (EDT'=-1),EDT'["." S EDT=EDT_".235959"
  I $G(PXRMDDOC)'=1 Q
  S ^TMP("PXRMDDOC",$J,$P(FIND0,U,1,11))=BDT_U_EDT
  Q

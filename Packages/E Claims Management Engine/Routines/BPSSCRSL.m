@@ -1,5 +1,5 @@
 BPSSCRSL ;BHAM ISC/SS - ECME SCREEN SORT LIST ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,7**;JUN 2004;Build 46
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,7,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;USER SCREEN
  ;
@@ -13,7 +13,7 @@ BPSSCRSL ;BHAM ISC/SS - ECME SCREEN SORT LIST ;05-APR-05
  ;1.04 HOURS/DAYS -- 'D' FOR DAYS; 'H' FOR HOURS; Use HOURS or DAYS to specify timeframe 
  ;1.05 TIMEFRAME -- NUMBER Depends on the value of the field "USR SCR HOURS/DAYS" this field will
  ;store the default number of HOURS from NOW or DAYS from TODAY to select claims to display 
- ;1.06 REJECTED/PAYABLE --'R' FOR REJECTS; 'P' FOR PAYABLES 'A' FOR ALL; Display Rejects or Payables or ALL claims 
+ ;1.06 REJECTED/PAYABLE --'R' FOR REJECTS; 'P' FOR PAYABLES; 'U' FOR UNSTRANDED; 'A' FOR ALL; Display Rejects or Payables or Unstranded or ALL claims 
  ;1.07 RELEASED/NOT RELEASED --'R' FOR RELEASED; 'N' FOR NON-RELEASED; 'A' FOR ALL; Display Released Rxs or Non-Released Rxs or ALL 
  ;1.08 CMOP/MAIL/WINDOW --'C' FOR CMOP; 'M' FOR MAIL;'W' FOR WINDOW;'A' FOR ALL; Display CMOP or Mail or Window or ALL Rxs 
  ;1.09 REALTIME/BACKBILL --'R' FOR REALTIME; 'B' FOR BACKBILLS; 'A' FOR ALL; Display RealTime Fills or Backbills or ALL 
@@ -21,7 +21,7 @@ BPSSCRSL ;BHAM ISC/SS - ECME SCREEN SORT LIST ;05-APR-05
  ;Codes 0 means ALL Reject Codes otherwise - Reject Code value 
  ;1.11 SPECIFIC/ALL INSURANCES --'I' FOR SPECIFIC INSURANCE(S);'A' FOR ALL; Display Specific Insurance Company(s) or All null - ALL otherwise - pointer to INSURANCE COMPANY file #36 
  ;1.12 SORT LIST --'T' FOR TRANSACTION DATE;'D' FOR DIVISION; 'I' FOR INSURANCE; 'C' FOR REJECT CODE; 
- ;'P' FOR PATIENT NAME -- 'N' FOR DRUG NAME; 'B' FOR BILL TYPE (BB/RT); 'L' FOR FILL LOCATION;
+ ;'P' FOR PATIENT NAME -- 'N' FOR DRUG NAME; 'B' FOR BILL TYPE (BB/P2/RT); 'L' FOR FILL LOCATION;
  ;'R' FOR RELEASED/NON-RELEASED -- 'A' FOR ACTIVE/DISCONTINUED; the field used to sort claims in the list 
  ;1.13 ALL ECME PHARMACY DIVISIONS --'D' FOR DIVISION; 'A' FOR ALL; 
  ;1.14 SELECTED INSURANCE -- Single, or multiple, insurance(s) to select claims for the User Screen, to store INSURANCE COMPANY pointer (#36) 
@@ -30,7 +30,7 @@ BPSSCRSL ;BHAM ISC/SS - ECME SCREEN SORT LIST ;05-APR-05
  ;1.17 SELECTED PATIENT -- POINTER TO PATIENT FILE (#2) Selected patient for the User Screen 
  ;1.18 SELECTED RX -- POINTER TO PRESCRIPTION FILE (#52) Selected RX 
  ;2    ECME PHARMACY DIVISION -- the list of POINTERs TO BPS PHARMACIES FILE (#9002313.56) separated by "^"
- ;2.01 ELIGIBILITY TYPE --'V' FOR VETERAN;'T' FOR TRICARE;'A' FOR ALL; Display claims for specific Eligibility Type or ALL 
+ ;2.01 ELIGIBILITY TYPE --'V' FOR VETERAN;'T' FOR TRICARE;'C' FOR CHAMPVA;'A' FOR ALL; Display claims for specific Eligibility Type or ALL 
  ;2.02 OPEN/CLOSED/ALL --'O' OPEN CLAIMS;'C' CLOSED CLAIMS;'A' FOR ALL; Display Open, Closed, or ALL claims 
  ;2.03 SUBMISSION TYPE --'B' BILLING REQUESTS;'R' REVERSALS;'A' FOR ALL; Display specific submission type claims or ALL 
  ;2.04 INSURANCES -- List of POINTERs to the INSURANCE COMPANY FILE (#36) separated by ";"
@@ -70,7 +70,7 @@ EDITPROF(BPARR,BPDUZ7) ;
  N BP1
  N BPRET
  N BPSTR
- S BPSTR="S^T:TRANSACTION DATE;D:DIVISION;I:INSURANCE;C:REJECT CODE;P:PATIENT NAME;N:DRUG NAME;B:BILL TYPE (BB/RT);L:FILL LOCATION;R:RELEASED/NON-RELEASED;A:ACTIVE/DISCONTINUED"
+ S BPSTR="S^T:TRANSACTION DATE;D:DIVISION;I:INSURANCE;C:REJECT CODE;P:PATIENT NAME;N:DRUG NAME;B:BILL TYPE (BB/P2/RT);L:FILL LOCATION;R:RELEASED/NON-RELEASED;A:ACTIVE/DISCONTINUED"
  I $$EDITFLD^BPSSCRCV(1.12,+BPDUZ7,BPSTR,"ENTER SORT TYPE","TRANSACTION DATE",.BPARR)=-1 S BPDUZ7=0 Q
  Q
  ;
@@ -109,7 +109,7 @@ SORTTYPE(BPSTYPE) ;
  Q:(BPSTYPE="C") "Reject Code"
  Q:(BPSTYPE="P") "Patient Name"
  Q:(BPSTYPE="N") "Drug Name"
- Q:(BPSTYPE="B") "Claim's Origin (BB/RT)"
+ Q:(BPSTYPE="B") "Claim's Origin (BB/P2/RT)"
  Q:(BPSTYPE="L") "Fill Location"
  Q:(BPSTYPE="R") "Released/Non-released"
  Q:(BPSTYPE="A") "Active/Discontinued"

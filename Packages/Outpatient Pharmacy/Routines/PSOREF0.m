@@ -1,5 +1,5 @@
-PSOREF0 ;IHS/JCM - REFILL CON'T ; 1/18/05 8:23am
- ;;7.0;OUTPATIENT PHARMACY;**14,152,180,186,204,306,382**;DEC 1997;Build 9
+PSOREF0 ;IHS/JCM - REFILL CON'T ; 6/17/11 6:02pm
+ ;;7.0;OUTPATIENT PHARMACY;**14,152,180,186,204,306,382,388**;DEC 1997;Build 6
  ;External reference to ^PSDRUG supported by DBIA 221
  ;
  ;PSO*186 add check for DEA Special handling field refill restrictions
@@ -45,12 +45,13 @@ CHECK ;
  D NUMBER I PSOREF("NUMBER")>$P(PSOREF("RX0"),"^",9) W !?5,"Can't refill, no refills remaining." S PSOREF("DFLG")=1 G CHECKX
  ;
  ;PSO*7*186  check DEA, SPEC HNDLG field, in case changed, and apply
- N PSODRG,PSODEA,PSODAY
+ N PSODRG,PSODEA,PSODAY,PSOCHECK
  S PSODRG=$G(^PSDRUG($P(PSOREF("RX0"),U,6),0)),PSODEA=$P(PSODRG,U,3)
  S PSODAY=$P(PSOREF("RX0"),U,8)
- I $$DEACHK^PSOUTLA1(PSOREF("IRXN"),PSODEA,PSODAY) D  G CHECKX
- . W $C(7),!!,"This drug has been changed, No refills allowed",!
- . S PSOREF("DFLG")=1
+ S PSOCHECK=$$DEACHK^PSOUTLA1(PSOREF("IRXN"),PSODEA,PSODAY)
+ I PSOCHECK S PSOREF("DFLG")=1 W $C(7),!! D  G CHECKX
+ . I PSOCHECK=1 W "Requested refill exceeds maximum allowable days supply for Rx.",! Q  ;*388
+ . W "Current drug DEA/SPECIAL HANDLING code does not allow refills.",! ;*388
  ;
  D DATES
 CHECKX Q

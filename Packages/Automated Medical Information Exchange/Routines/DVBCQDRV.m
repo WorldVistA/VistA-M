@@ -18,12 +18,12 @@ EN ;
  W !?1,"Name of patient/Veteran: ",$S($G(NAME)]"":NAME,1:"_______________________")
  W ?45,"   SSN: ",$S($G(SSN)]"":SSN,1:"________________"),!!
  W !?3,"For a printed copy of the Disability Benefit Questionnaire (DBQ) form,"
- W !?3,"please visit the DBQ Switchboard, http://go.va.gov/DBQ.  This page"
+ W !?3,"please visit the DBQ Switchboard, http://go.DOMAIN.EXT/DBQ.  This page"
  W !?3,"serves as a switchboard for DBQ-related information.  For comments,"
  W !?3,"questions, or suggestions regarding DBQ policy, content, or use,"
  W !?3,"please contact the Disability Examination Management Office (DEMO)"
  W !?3,"Corporate Mailbox by sending an email to:"
- W !?8,"CorporateMailbox.DEMO@va.gov.",!!!
+ W !?8,"CorporateMailbox.DEMO@DOMAIN.EXT.",!!!
  Q
  ;
 SETIOF ;  ** Set device control var's

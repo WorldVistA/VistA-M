@@ -1,5 +1,5 @@
-PSXRPPL1 ;BIR/WPB-Resets Suspense to Print/Transmit ;[ 10/02/97  3:13 PM ]
- ;;2.0;CMOP;**3,48,62,66,65,69**;11 Apr 97;Build 60
+PSXRPPL1 ;BIR/WPB - Resets Suspense to Print/Transmit ;10/02/97
+ ;;2.0;CMOP;**3,48,62,66,65,69,73**;11 Apr 97;Build 24
  ;Reference to ^PSRX( supported by DBIA #1977
  ;Reference to File #59  supported by DBIA #1976
  ;Reference to PSOSURST  supported by DBIA #1970
@@ -116,7 +116,7 @@ SBTECME(PSXTP,PSXDV,THRDT,PULLDT) ; - Sumitting prescriptions to EMCE (3rd Party
  ;       THRDT  - T+N when scheduling the THROUGH DATE to run CMOP Transmission
  ;       PULLDT - T+N+PULL DAYS parameter in the DIVISION file (#59)
  ;Output:SBTECME- Number of prescriptions submitted to ECME
- N RX,RFL,SBTECME,PSOLRX,RESP,SDT,XDFN,REC,PSOLRX,DOS
+ N RX,RFL,SBTECME,PSOLRX,RESP,SDT,XDFN,REC,PSOLRX
  I '$$ECMEON^BPSUTIL(PSXDV)!'$$CMOPON^BPSUTIL(PSXDV) Q
  S (SDT,SBTECME)=0 K ^TMP("PSXEPHDFN",$J)
  F  S SDT=$O(^PS(52.5,"CMP","Q",PSXTP,PSXDV,SDT)) S XDFN=0 Q:(SDT>PULLDT)!(SDT'>0)  D
@@ -133,8 +133,7 @@ SBTECME(PSXTP,PSXDV,THRDT,PULLDT) ; - Sumitting prescriptions to EMCE (3rd Party
  . . . . . I '$$RETRX^PSOBPSUT(RX,RFL),'$$ECMESTAT^PSXRPPL2(RX,RFL) Q
  . . . . . I $$PATCH^XPDUTL("PSO*7.0*289") Q:'$$DUR^PSXRPPL2(RX,RFL)  ;ePharm Host error hold
  . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),$$STATUS^PSOBPSUT(RX,RFL-1)'="" Q:'$$DSH^PSXRPPL2(REC)  ;ePharm 3/4 days supply
- . . . . . S DOS=$$RXFLDT^PSOBPSUT(RX,RFL) I DOS>DT S DOS=DT
- . . . . . D ECMESND^PSOBPSU1(RX,RFL,DOS,"PC",,1,,,,.RESP)
+ . . . . . D ECMESND^PSOBPSU1(RX,RFL,"","PC",,1,,,,.RESP)
  . . . . . I $$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RX,RFL,.RESP,"PC") S ^TMP("PSXEPHNB",$J,RX,RFL)=$G(RESP)
  . . . . . I $D(RESP),'RESP S SBTECME=SBTECME+1
  . . . . . S ^TMP("PSXEPHDFN",$J,XDFN)=""

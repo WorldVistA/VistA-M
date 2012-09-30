@@ -1,5 +1,5 @@
 RMPR8PG ;PHX,HOIFO/JLT,SPS-PURGE 668 SUSPENSE FILE ;8/29/1994
- ;;3.0;PROSTHETICS;**5,75,140**;Feb 09, 1996;Build 10
+ ;;3.0;PROSTHETICS;**5,75,140,163**;Feb 09, 1996;Build 9
  ;
  ;02/03/06 Added code to delete the pointer in 664.1 field .05 when a 
  ;record is purged.
@@ -11,7 +11,8 @@ EN2 K %ZIS,IOP,ZTIO S %ZIS="MQ",%ZIS("B")="" D ^%ZIS G:POP END
  I $D(IO("Q")) K IO("Q") D ^%ZTLOAD W !,"<REQUEST QUEUED!>" G EXIT
 EN1 S (I,RMPRIEN,RDEL)=0,RMPRDT=$P(^RMPR(669.9,RMPRSITE,0),U,8) G:RMPRDT'>89 END
  S X1=DT,X2=-RMPRDT D C^%DTC S RMPRDT=X I RMPRDT<$O(^RMPR(668,"B",""))!('$O(^RMPR(668,0))) G END
- S DIS(0)="I $P(^RMPR(668,D0,0),U,7)=RMPR(""STA"")",IOP=ION,DIC="^RMPR(668,",FLDS=".01;C1,1;C20;L17,2,3,6;C45;L15,5;C65,4;C1,7;C1",BY="5",FR=$S($D(^RMPR(668,"B")):$O(^RMPR(668,"B","")),1:2890101)
+ ;RMPR*3.0*163 adds check to insure the 0 node is defined in DIP run
+ S DIS(0)="I $D(^RMPR(668,D0,0)),$P(^RMPR(668,D0,0),U,7)=RMPR(""STA"")",IOP=ION,DIC="^RMPR(668,",FLDS=".01;C1,1;C20;L17,2,3,6;C45;L15,5;C65,4;C1,7;C1",BY="5",FR=$S($D(^RMPR(668,"B")):$O(^RMPR(668,"B","")),1:2890101)
  S TO=RMPRDT,DHD="Purge Suspense File Entries from Station/Division "_RMPR("STA") D EN1^DIP
  N RMPR6641
  F  S RMPRIEN=$O(^RMPR(668,RMPRIEN)) Q:RMPRIEN'>0  I $P($G(^RMPR(668,RMPRIEN,0)),U,7)=RMPR("STA") I ($P(^RMPR(668,RMPRIEN,0),U,5))&($P(^(0),U,5)<RMPRDT) S DA=RMPRIEN,DIC="^RMPR(668," S DA=RMPRIEN,DIK=DIC D ^DIK D  S RDEL=RDEL+1
@@ -21,4 +22,5 @@ END I $G(RDEL)<1 W !!,"No Suspense entries purged."
  I $G(RDEL)>1 W !!,RDEL," Suspense entries purged."
  I $G(RDEL)=1 W !!,RDEL,"Suspense entry purged. "
 EXIT ;common exit point
- K I,RD,X,DIS,%ZIS,X1,X2,RMPRIEN,RMPRDT,RMPR6641,RDEL,DIC,DIK,DA,RL,BY,DHD,DHIT,FLDS,FR,TO D ^%ZISC Q
+ K I,RD,X,DIS,%ZIS,X1,X2,RMPRIEN,RMPRDT,RMPR6641,RDEL,DIC,DIK,DA,RL,BY,DHD,DHIT,FLDS,FR,TO D ^%ZISC
+ G AUDIT^RMPR8PG1    ;RMPR*3.0*163  Call to audit/remove file 668 'L' & 'L1' x-ref with pointer to null master rec

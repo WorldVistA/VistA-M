@@ -1,5 +1,5 @@
-PXRMLDR ; SLC/PKR - Load Definitions and terms for evaluation. ;08/09/2004
- ;;2.0;CLINICAL REMINDERS;;Feb 04, 2005
+PXRMLDR ;SLC/PKR - Load Definitions and terms for evaluation. ;11/17/2010
+ ;;2.0;CLINICAL REMINDERS;**18**;Feb 04, 2005;Build 152
  ;
  ;===================================
 DEF(DEFIEN,DEFARR) ;Load those portions of the definition needed for
@@ -28,6 +28,7 @@ DEF(DEFIEN,DEFARR) ;Load those portions of the definition needed for
  . F  S JND=+$O(^PXD(811.9,DEFIEN,20,IND,5,JND)) Q:JND=0  D
  .. S DEFARR(20,IND,5,JND)=^PXD(811.9,DEFIEN,20,IND,5,JND,0)
  M DEFARR("E")=^PXD(811.9,DEFIEN,20,"E")
+ M DEFARR("EDEP")=^PXD(811.9,DEFIEN,20,"EDEP")
  ;Load the function findings.
  S IND=0
  F  S IND=+$O(^PXD(811.9,DEFIEN,25,IND)) Q:IND=0  D

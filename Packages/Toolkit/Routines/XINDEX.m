@@ -1,5 +1,5 @@
 XINDEX ;ISC/REL,GFT,GRK,RWF - INDEX & CROSS-REFERENCE ;08/04/08  13:19
- ;;7.3;TOOLKIT;**20,27,48,61,66,68,110,121,128**;Apr 25, 1995;Build 1
+ ;;7.3;TOOLKIT;**20,27,48,61,66,68,110,121,128,132**;Apr 25, 1995;Build 13
  ; Per VHA Directive 2004-038, this routine should not be modified.
  G ^XINDX6
 SEP F I=1:1 S CH=$E(LIN,I) D QUOTE:CH=Q Q:" "[CH
@@ -9,7 +9,7 @@ QUOTE F I=I+1:1 S CH=$E(LIN,I) Q:CH=""!(CH=Q)
 ALIVE ;enter here from taskman
  D SETUP^XINDX7 ;Get ready to process
 A2 S RTN=$O(^UTILITY($J,RTN)) G ^XINDX5:RTN=""
- S INDLC=(RTN?1"|"1.4L.NP) D LOAD:'INDLC
+ S INDLC=(RTN?1"|"1.4L.NP) D LOAD:'INDLC&'$D(^UTILITY($J,1,RTN,0))
  I $D(ZTQUEUED),$$S^%ZTLOAD S RTN="~",IND("QUIT")=1,ZTSTOP=1 G A2
  I 'INDDS,INDLC W !!?10,"Data Dictionaries",! S INDDS=1
  D BEG
@@ -32,7 +32,7 @@ BEG ;
  . I $P(LIN,";",2,4)'?.E1"/".E.1"-".E D E^XINDX1(62)
  . S LIN=$G(^UTILITY($J,1,RTN,0,2,0)),TXT=2
  . ;check 2nd line (;;nn.nn[TV]nn;package;.anything)
- . I $P(LIN,";",3,99)'?1.2N1"."1.2N.1(1"T",1"V").2N1";"1A.AP1";".E D E^XINDX1(44) ;patch 121
+ . I $P(LIN,";",3,99)'?1.2N1"."1.2N.1(1"T",1"V").2N1";"1A.APN1";".E D E^XINDX1(44) ;patch 132
  . I $L(INP(11)) X INP(11) ;Version number check
  . I $L(INP(12)) X INP(12) ;Patch number check
 B5 F TXT=1:1:LC S LIN=^UTILITY($J,1,RTN,0,TXT,0),LN=$L(LIN),IND("SZT")=IND("SZT")+LN+2 D LN,ST ;Process Line

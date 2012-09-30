@@ -1,5 +1,6 @@
-XPAR1 ;SLC/KCM - Supporting Calls - Validate;11:35 PM  12 May 1998
- ;;7.3;TOOLKIT;**26**;Apr 25, 1995
+XPAR1 ; SLC/KCM - Supporting Calls - Validate;03:32 PM  22 Apr 1998
+ ;;7.3;TOOLKIT;**26,118**;Apr 25, 1995;Build 5
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 INTERN ;convert ENT, PAR, and INST to internal form - called from XPAR only
  ;  ENT: entity in external or internal form
@@ -19,7 +20,8 @@ INTERN ;convert ENT, PAR, and INST to internal form - called from XPAR only
  ; begin case
  I ($L(ENT,"^")>1)!(ENT="ALL") D ENTLST(.ENT,PAR,INST) G C1
  I ENT?3U D ENTDFLT(.ENT) G C1         ;resolve default entity
- I '(+ENT&(ENT[";")) D ENTEXT(.ENT) G C1 ;resolve external vptr fmt
+ I '(+ENT&(ENT[";")) D ENTEXT(.ENT) D:ENT=""  G C1 ;resolve external vptr fmt
+ . S ERR=$$ERR^XPARDD(89895012) ;ENT didn't resolve, set error
 C1 ; end case
  ; by this time, ENT should be in internal variable ptr format
  I '$D(XPARGET) D                      ;tighter checks when storing data
@@ -32,7 +34,7 @@ ENTEXT(ENT) ; change entity from external form (PRE.NAME) to VP form
  ;  .FN: optionally returns file number for entity
  I ENT'["." S ENT="" Q
  N FN,PRE,X
- S PRE=$P(ENT,".",1),X=$P(ENT,".",2,3),ENT=""
+ S PRE=$P(ENT,".",1),X=$P(ENT,".",2,$L(ENT,".")),ENT=""
  S FN=$O(^XTV(8989.518,"C",PRE,0))
  I $E(X)="`" S ENT=+$E(X,2,99)_$$MAKEVP(FN) Q
  S ENT=$$FIND1^DIC(FN,"","X",X)_$$MAKEVP(FN)
@@ -55,9 +57,8 @@ ENTDFLT(ENT) ; change default form (prefix only) to actual value in VP format
  . N PKG,NAM
  . S NAM=$P(^XTV(8989.51,PAR,0),"^",1),PKG=NAM
  . F  S PKG=$O(^DIC(9.4,"C",PKG),-1) Q:$E(NAM,1,$L(PKG))=PKG
- . I $L(PKG) S PKG=$O(^DIC(9.4,"C",PKG,0))
+ . S PKG=$O(^DIC(9.4,"C",PKG,0))
  . I PKG S ENT=PKG_";DIC(9.4,"
- S ENT=""                              ; no default found
  Q
 ENTLST(ENT,PAR,INST) ; resolve entity list to entity with highest precedence
  ; .ENT: multiple entity pieces or keyword 'ALL'
@@ -69,7 +70,7 @@ ENTLST(ENT,PAR,INST) ; resolve entity list to entity with highest precedence
  . F I=2:1:$L(ENT,"^") S X=$P(ENT,"^",I) I $L(X) D
  . . I $D(^XTV(8989.518,"C",X)) D ENTDFLT(.X)
  . . I '(+X&(X[";")) D ENTEXT(.X)
- . . S GREF=$P(X,";",2)
+ . . S GREF=$P(X,";",2) Q:GREF=""
  . . I $D(^XTV(8989.51,PAR,30,"AG",GREF)) S IEN=$O(^(GREF,0)) D
  . . . S LIST($P(^XTV(8989.51,PAR,30,IEN,0),"^",2))=X
  . ; using precedence defined for parameter, look up entities
@@ -90,5 +91,7 @@ ENTLST(ENT,PAR,INST) ; resolve entity list to entity with highest precedence
  . . I $L(X),$L(INST),$D(^XTV(8989.5,"AC",PAR,X,INST)) S ENT=X,FND=1 Q
  Q
 MAKEVP(FN) ; function - returns VP suffix given file number
- Q ";"_$P($$ROOT^DILFD(FN),U,2)
- ;
+ ; N Y
+ ; D FILE^DID(FN,"","GLOBAL NAME","Y")
+ ; Q ";"_$P($G(Y("GLOBAL NAME")),"^",2)
+ Q ";"_$P($G(^DIC(FN,0,"GL")),U,2)

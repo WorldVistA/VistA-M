@@ -1,5 +1,5 @@
 RCDPBTLM ;WISC/RFJ - bill transactions List Manager top routine ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,148,153,168,169,198,247,271**;Mar 20, 1995;Build 29
+ ;;4.5;Accounts Receivable;**114,148,153,168,169,198,247,271,276**;Mar 20, 1995;Build 87
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference to $$REC^IBRFN supported by DBIA 2031
@@ -96,8 +96,13 @@ HDR ;  header code for list manager display
  S DATA=$$ACCNTHDR^RCDPAPLM(RCDEBTDA)
  ;
  S %="",$P(%," ",80)=""
- S VALMHDR(1)=$E("Bill #: "_$G(RCDPDATA(430,RCBILLDA,.01,"E"))_%,1,25)_"Account: "_$P(DATA,"^")_$P(DATA,"^",2)
+ ; PRCA*4.5*276 - get EEOB indicator for 1st/3rd party payment and attach to bill when applicable
+ S PRCOUT=$$COMP3^PRCAAPR(RCBILLDA)
+ I PRCOUT'="%" S PRCOUT=$$IBEEOBCK^PRCAAPR1(RCBILLDA)
+ S VALMHDR(1)=$E("Bill #: "_$G(PRCOUT)_$G(RCDPDATA(430,RCBILLDA,.01,"E"))_%,1,25)_"Account: "_$P(DATA,"^")_$P(DATA,"^",2)
  S VALMHDR(2)=$E("Status: "_$G(RCDPDATA(430,RCBILLDA,8,"E"))_%,1,25)_$E("   Addr: "_$P(DATA,"^",4)_", "_$P(DATA,"^",7)_", "_$P(DATA,"^",8)_"  "_$P(DATA,"^",9)_%,1,55)
+ ; PRCA*4.5*276 - show caption for user
+ S VALMSG="|% EEOB | Enter ?? for more actions |" ; PRCA*4.5*276
  Q
  S VALMHDR(3)="  "_IORVON_$E("Bill Balance: "_$J($P(RCTOTAL,"^")+$P(RCTOTAL,"^",2)+$P(RCTOTAL,"^",3)+$P(RCTOTAL,"^",4)+$P(RCTOTAL,"^",5),0,2)_%,1,23)_IORVOFF_"  Phone: "_$P(DATA,"^",10)
  Q

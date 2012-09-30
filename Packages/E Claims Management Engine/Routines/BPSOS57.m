@@ -1,5 +1,5 @@
 BPSOS57 ;BHAM ISC/FCS/DRS/FLS - BPS Log of Transactions Utils ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ; Numerous BPS Log of Transaction functions are here
@@ -73,12 +73,12 @@ FIELD(F,REV) ; EP - BPS Log of Transaction fields
  ;
  ; Validate IENs
  I 'IEN02 Q ""
- I 'POS,F=308!(F>400) Q ""
+ I 'POS,F=308!(F>401) Q ""
  I 'IEN03,F>500 Q ""
  ;
  ; Get Data
- I F<400,F'=308 S X=$$GET1^DIQ(9002313.02,IEN02_",",F,"I")
- E  I F=308!(F>400&(F<500)) S X=$$GET1^DIQ(9002313.0201,POS_","_IEN02_",",F,"I")
+ I F<402,F'=308 S X=$$GET1^DIQ(9002313.02,IEN02_",",F,"I")
+ E  I F=308!(F>401&(F<500)) S X=$$GET1^DIQ(9002313.0201,POS_","_IEN02_",",F,"I")
  E  I F=501!(F=524) S X=$$GET1^DIQ(9002313.03,IEN03_",",F,"I")
  E  I F\1=511 D REJCODES S:F#1 X=$G(X(F#1*100))
  E  S X=$$GET1^DIQ(9002313.0301,POS_","_IEN03_",",F,"I")
@@ -104,17 +104,14 @@ REJCODES ; rejection codes for IEN03
  Q
  ;
 STRIPID ; some fields have two-character field ID
- ; and first eliminate all those that don't:
  Q:F<307  Q:F=308
- I F>400,F<500 Q:F<410  Q:F=411  Q:F=414  Q:F=415  Q:F=419  Q:F=420  Q:F=426
- ;IHS/DSD/lwj 10/02 nxt line changed on behalf of David Slauenwhite
- I F>500 Q:F<512  Q:F=525  Q:F=526  ;DS 10/11/01
+ I F>401,F<500 Q:F<410  Q:F=411  Q:F=414  Q:F=415  Q:F=419  Q:F=420  Q:F=426
+ I F>500 Q:F<512  Q:F=525  Q:F=526
  S X=$E(X,3,$L(X))
  Q
 MONEY ; some fields are money fields in signed overpunch format
- Q:F<400
- ;IHS/DSD/lwj 10/02 nxt line changed on behalf of David Slauenwhite
- I F>400,F<500 I F'=409,F'=410,F'=426,F'=430,F'=431,F'=433,F'=438,F'=428,F'=412 Q
+ Q:F<402
+ I F>401,F<500 I F'=409,F'=410,F'=426,F'=430,F'=431,F'=433,F'=438,F'=428,F'=412 Q
  I F>500 Q:F<505  Q:F=510  Q:F\1=511  Q:F=522  Q:F>523
  S X=+$$DFF2EXT^BPSECFM(X)
  I X=0 S X="" ; so [CAPTIONED] doesn't print it

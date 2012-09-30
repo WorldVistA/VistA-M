@@ -1,5 +1,5 @@
-PXRMVLST ; SLC/PKR - Validate a reminder definition for building a patient list. ;06/16/2005
- ;;2.0;CLINICAL REMINDERS;**4**;Feb 04, 2005;Build 21
+PXRMVLST ;SLC/PKR - Validate a reminder definition for building a patient list. ;09/07/2010
+ ;;2.0;CLINICAL REMINDERS;**4,18**;Feb 04, 2005;Build 152
  ;==================================================
 CCF(FINDING) ;Check a computed finding to see if it can be used for building
  ;a list.
@@ -50,8 +50,8 @@ HF(DEFARR,FINUM) ;
  ;==================================================
 VDEF(RIEN) ;Check a reminder definition and see if it is valid for
  ;use in creating a patient list.
- N AGEFI,AGR,DEFARR,FFL,FI,FIL,FILIST,FINDING,FINUM,FREQ,FUNN,IND,OPER
- N MAXAGE,MINAGE,NUMAFI,PCLOG,PFSTACK
+ N AGEFI,AGR,AT,DEFARR,FFL,FI,FIL,FILIST,FINDING,FINUM,FREQ,FUNCTION
+ N FUNN,IND,OPER,MAXAGE,MINAGE,NUMAFI,PCLOG,PFSTACK,ROUTINE
  N SAAFI,SEXFI,SSTACK,TEMP,TEXT,TYPE,VALID,VF
  I RIEN="" Q 0
  I '$D(^PXD(811.9,RIEN)) D  Q 0
@@ -172,14 +172,21 @@ VDEF(RIEN) ;Check a reminder definition and see if it is valid for
  F  S IND=$O(FFL(IND)) Q:IND=""  D
  . S FUNN=0
  . S FUNN=$O(DEFARR(25,FFL(IND),5,FUNN)) Q:FUNN=""  D
+ .. S FUNCTION=$P(DEFARR(25,FFL(IND),5,FUNN,0),U,2)
+ .. S ROUTINE=$P(^PXRMD(802.4,FUNCTION,0),U,1)
+ .. S ROUTINE=$TR(ROUTINE,"_","")
  .. S FI=0
  .. F  S FI=$O(DEFARR(25,FFL(IND),5,FUNN,20,FI)) Q:FI=""  D
  ... S FINUM=DEFARR(25,FFL(IND),5,FUNN,20,FI,0)
+ ...;Determine if this subscript is a finding or not before checking
+ ...;if the finding exists.
+ ... S AT=$$ARGTYPE^PXRMFFAT(ROUTINE,FI)
+ ... I AT'="F" Q
+ ... S FIL(FINUM)=""
  ... I '$D(DEFARR(20,FINUM)) D  Q
  .... S VALID=0
  .... S TEXT="Finding "_FINUM_" is used in FF("_IND_") and it does not exist!"
  .... D EN^DDIOL(TEXT)
- ... S FIL(FINUM)=""
  I 'VALID Q VALID
  S IND=0
  F  S IND=$O(FIL(IND)) Q:IND=""  D

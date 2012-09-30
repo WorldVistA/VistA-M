@@ -6,7 +6,7 @@ SPNRPC1 ;SD/WDE- Routine to list basic Patient data;DEC 26, 2006
  ;        INTEGRATION REFERENCE INQUIRY #4938 FOR ICN
  ;    INTEGRATION REFERENCE INQUIRY #10061
  ;    Refer to this link for documentation on the vadpt calls / return values
- ;    http://www.va.gov/vdl/documents/Clinical/Admis_Disch_Transfer_(ADT)/pimstm.doc
+ ;    http://www.DOMAIN.EXT/vdl/documents/Clinical/Admis_Disch_Transfer_(ADT)/pimstm.doc
  ;
  ;
 COL(ROOT,SPN1DFN,ICN) ;

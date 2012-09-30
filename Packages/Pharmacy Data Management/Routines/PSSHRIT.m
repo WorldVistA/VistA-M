@@ -1,5 +1,5 @@
 PSSHRIT ;WOIFO/SG,PO - Transmits a "ping" to determine if FDB server is down and record the down time ;7/30/2008
- ;;1.0;PHARMACY DATA MANAGEMENT;**136**;9/30/97;Build 89
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,168**;9/30/97;Build 4
  ;
  ;External reference to IN^PSSHRQ2 supported by DBIA 5369
  ;
@@ -143,7 +143,8 @@ GLASTRUN() ; get last run time
 RUNTEST ; run interaction test to PEPS server
  ; called from PSS CHECK PEPS SERVICES SETUP option
  D KILL^XUSCLEAN
- N STATUS,X
+ N STATUS,X,PSSMCHK
+ S PSSMCHK="CHECK"
  S STATUS=$$CONCHK()
  D PRSRTN Q:(STATUS=0)!(X="^") 
  ;

@@ -1,5 +1,5 @@
 IBCBB7 ;ALB/BGA - CONT. OF MEDICARE EDIT CHECKS ;09/10/98
- ;;2.0;INTEGRATED BILLING;**51,137,240**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**51,137,240,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ; Revenue Codes
@@ -21,8 +21,9 @@ IBCBB7 ;ALB/BGA - CONT. OF MEDICARE EDIT CHECKS ;09/10/98
  . . ;
  . . S IBREVD=IBREV1(IBREVC,IBI),IBREVC12=$E(IBREVC,1,2),IBBCPT=$P(IBREVD,U,2)
  . . ;
+ . . ; IB*2.0*447/TAZ Removed this error so that zero dollar revenue codes can process on the 837
  . . ; No charge associated with rev code
- . . I '$P(IBREVD,U,3),IBREVC12'=18 S IBQUIT=$$IBER^IBCBB3(.IBER,185) Q:IBQUIT
+ . . ;I '$P(IBREVD,U,3),IBREVC12'=18 S IBQUIT=$$IBER^IBCBB3(.IBER,185) Q:IBQUIT
  . . ;
  . . ; Charges cannot be negative dollar amounts
  . . I $P(IBREVD,U,5)<0 S IBQUIT=$$IBER^IBCBB3(.IBER,213) Q:IBQUIT

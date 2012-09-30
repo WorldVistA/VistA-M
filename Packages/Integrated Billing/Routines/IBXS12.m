@@ -1,4 +1,4 @@
-IBXS12 ; ;10/26/11
+IBXS12 ; ;02/21/12
  D DE G BEGIN
 DE S DIE="^DPT(D0,.01,",DIC=DIE,DP=2.01,DL=3,DIEL=1,DU="" K DG,DE,DB Q:$O(^DPT(D0,.01,DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=% S %=$P(%Z,U,2) S:%]"" DE(2)=%

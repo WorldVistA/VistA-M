@@ -36,10 +36,10 @@ TL ;-entry point for setting up database as a test lab
  W !?3,"Deleting old ^KMPTMP(""KMPR"" data..."
  K ^KMPTMP("KMPR")
  W "done"
- S IEN=$O(^DIC(4.2,"B","FO-ALBANY.MED.VA.GOV",0))
+ S IEN=$O(^DIC(4.2,"B","FO-ALBANY.DOMAIN.EXT",0))
  I IEN D 
  .K FDA,ERROR
- .W !!?3,"Setting FLAGS to SEND for domain FO-ALBANY.MED.VA.GOV..."
+ .W !!?3,"Setting FLAGS to SEND for domain FO-ALBANY.DOMAIN.EXT..."
  .S FDA($J,4.2,IEN_",",1)="S"
  .D FILE^DIE("","FDA($J)","ERROR")
  .D:$D(ROUTINE) ROUSAVE^KMPDU3(.Z,"%ZOSVKR",.ROUTINE)

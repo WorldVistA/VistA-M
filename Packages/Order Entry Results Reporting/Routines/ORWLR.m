@@ -1,5 +1,5 @@
 ORWLR ; SLC/KCM,ALB/MJK - Lab Calls ;7/20/96  15:02
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,332**;Dec 17, 1997;Build 44
  ;
 LIST(OROOT) ; -- return lists for list boxes
  ;  RPC: ORWLR REPORT LIST
@@ -70,7 +70,7 @@ CUM(OROOT,DFN,DAYS,ALPHA,OMEGA) ; Return cumulative report
  I $L($G(DAYS)),'$G(ALPHA) S ALPHA=$$FMADD^XLFDT(DT,-DAYS),OMEGA=$$NOW^XLFDT
  Q:'$G(ALPHA)  Q:'$G(OMEGA)
  I $$REMOTE^ORWLRR(.DFN,.ROOT) D EN^LR7OSUM(.OROOT,DFN,ALPHA,OMEGA)
- S (I,C)=0 F  S I=$O(^TMP("LRC",$J,I)) Q:I'>0  S C=C+$L(^(I,0))
+ ;S (I,C)=0 F  S I=$O(^TMP("LRC",$J,I)) Q:I'>0  S C=C+$L(^(I,0))
  S I=0
  I $L($O(^TMP("LRH",$J,0))) S I=.001,^TMP("LRC",$J,I)="[HIDDEN TEXT]^" D
  . S X="",C=2 F  S X=$O(^TMP("LRH",$J,X)) Q:X=""  S LINES(^(X))=X,C=C+1

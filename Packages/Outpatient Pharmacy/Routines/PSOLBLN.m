@@ -1,5 +1,5 @@
 PSOLBLN ;BIR/RTR - NEW PRINTS LABEL ;11/18/92
- ;;7.0;OUTPATIENT PHARMACY;**16,36,71,107,110,117,135,233,251,387**;DEC 1997;Build 13
+ ;;7.0;OUTPATIENT PHARMACY;**16,36,71,107,110,117,135,233,251,387,379,367**;DEC 1997;Build 62
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^VA(200 supported by DBIA 224
@@ -26,7 +26,6 @@ ST I $P($G(^PSRX(RX,3)),"^",3) S PSOPROV=+$P(^(0),"^",4) S PSOPROV=$S($G(RXP):+$
  S NURSE=$S($P($G(^DPT(DFN,"NHC")),"^")="Y":1,$P($G(^PS(55,DFN,40)),"^"):1,1:0) S FDT=$P(^PSRX(RX,2),"^",2),PS=$S($D(^PS(59,PSOSITE,0)):^(0),1:""),PS1=$S($D(^(1)):^(1),1:""),PSOSITE7=$P(^("IB"),"^")
  S PS2=$P(PS,"^")_"^"_$P(PS,"^",6)
  S (EXPDT,EXDT)=$P(^PSRX(RX,2),"^",6),EXDT=$S('EXDT:"",1:$E(EXDT,4,5)_"/"_$E(EXDT,6,7)_"/"_($E(EXDT,1,3)+1700))
- S COPIES=$S($P($G(RXRP(RX)),"^",2):$P($G(RXRP(RX)),"^",2),$P(RXY,"^",18)]"":$P(RXY,"^",18),1:1)
  S STATE=$S($D(^DIC(5,+$P(PS,"^",8),0)):$P(^(0),"^",2),1:"UKN")
  S DRUG=$$ZZ^PSOSUTL(RX),DEA=$P($G(^PSDRUG(+$P(RXY,"^",6),0)),"^",3),WARN=$P($G(^(0)),"^",8)
   I $G(^PSRX(RX,"P",+$G(RXP),0))]"" S RXPI=RXP D
@@ -78,7 +77,15 @@ L12 W !,$P(PS,"^",2),?54,$S($L($G(COPAYVAR)):$G(COPAYVAR)_"     ",1:""),"Days Su
  ;send a CR for OPTIFIL (P-MT661BC)
  I $G(PSOBARS),$P(PSOPAR,"^",19)'=1 S X="S",X2=PSOINST_"-"_RX S X1=$X W ?54,@PSOBAR1,X2,@PSOBAR0,$C(13) S $X=0 W:IOST["P-MT661BC" !
  E  W !!!
- W !,"FORWARDING SERVICE REQUESTED" W:"C"[$E(MW) !,?21,"CERTIFIED MAIL" W !?54,$G(VAPA(1))
+ W !,"FORWARDING SERVICE REQUESTED"
+ ;
+ ; Printing FDA Medication Guide (if there's one)
+ I $$MGONFILE^PSOFDAUT(RX) D
+ . W ?102,"Read FDA Med Guide"
+ . I $G(REPRINT),'$D(RXRP(RX,"MG")) Q 
+ . N FDAMG S FDAMG=$$PRINTMG^PSOFDAMG(RX,$P($G(PSOFDAPT),"^",2))
+ ;
+ W:"C"[$E(MW) !,?21,"CERTIFIED MAIL" W !?54,$G(VAPA(1))
  W !,$S($G(PS55)=2:"***DO NOT MAIL***",1:"***CRITICAL MEDICAL SHIPMENT***"),?54,$G(ADDR(2)),?102,"Routing: "_$S("W"[$E(MW):MW,1:MW_" MAIL")
  W !?54,$G(ADDR(3)),?102,"Days supply: ",$G(DAYS)," Cap: ",$S(PSCAP:"**NON-SFTY**",1:"SAFETY")
  W !?54,$G(ADDR(4)),?102,"Isd: ",ISD," Exp: ",EXPDT
@@ -100,6 +107,10 @@ REP I COPIES>0 S SIDE=1 G ST
  I $G(PSOBADR),'$G(PSOTEMP) D
  .S IR=IR+1,^PSRX(RX,"L",0)="^52.032DA^"_IR_"^"_IR
  .S ^PSRX(RX,"L",IR,0)=NOW_"^"_$S($G(RXP):99-RXPI,1:RXF)_"^"_"ROUTING="_$G(MW)_" (BAD ADDRESS)"_"^"_PDUZ
+ ;Storing FDA Medication Guide filename in the Prescription file
+ I $$MGONFILE^PSOFDAUT(RX) D
+ . I $G(RXRP(RX)),'$G(RXRP(RX,"MG")) Q
+ . S ^PSRX(RX,"L",IR,"FDA")=$P($$MGONFILE^PSOFDAUT(RX),"^",2)
  S ^PSRX(RX,"TYPE")=0 K RXF,IR,FDA,NOW,I,PCOMH(RX)
  I $G(WARN)'="" I $G(PSDFNFLG)!($G(PSOLAPPL)) D ALLWARN^PSOLBLN1
  I $G(WARN)="" I $G(PSDFNFLG)!($G(PSOLAPPL)) D ALL^PSOLBLS

@@ -1,5 +1,5 @@
 PSXRPPL2 ;BIR/WPB - Print From Suspense Utilities ;06/10/08
- ;;2.0;CMOP;**65,69**;11 Apr 97;Build 60
+ ;;2.0;CMOP;**65,69,73**;11 Apr 97;Build 24
  ;Reference to ^PSRX( supported by DBIA #1977
  ;Reference to ^PS(52.5, supported by DBIA #1978
  ;Reference to ^PSSLOCK  supported by DBIA #2789
@@ -31,8 +31,7 @@ CHKDFN(THRDT) ; use the patient 'C' index under RX multiple in file 550.2 to GET
  . . . . . . . I $$FIND^PSOREJUT(RX,RFL,,"79,88") Q
  . . . . . . . I '$$RETRX^PSOBPSUT(RX,RFL),$$ECMESTAT(RX,RFL) Q
  . . . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),'$$DUR(RX,RFL),'$$DSH(REC) Q
- . . . . . . . S DOS=$$RXFLDT^PSOBPSUT(RX,RFL) I DOS>DT S DOS=DT
- . . . . . . . D ECMESND^PSOBPSU1(RX,RFL,DOS,"PC",,1,,,,.RESP)
+ . . . . . . . D ECMESND^PSOBPSU1(RX,RFL,"","PC",,1,,,,.RESP)
  . . . . . . . I $$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RX,RFL,.RESP,"PC") S ^TMP("PSXEPHNB",$J,RX,RFL)=$G(RESP)
  . . . . . . . I $D(RESP),'RESP S SBTECME=SBTECME+1
  . . . . .  . .S ^TMP("PSXEPHDFN",$J,XDFN)=""
@@ -132,12 +131,13 @@ DSH(REC) ;ePharmacy API to check for 3/4 days supply hold
  ;Input: RXIEN = Prescription file #52 IEN
  ;Returns: DATE/TIME value
 DSHDT(RXIEN) ;
- N RXFIL,FILLDT,DAYSSUP,DSH34
+ N FILLDT,DAYSSUP,DSH34
  I '$D(^PSRX(RXIEN,0)) Q -1
- ;S RXFIL=$$LSTRFL^PSOBPSU1(RXIEN) ; Last Refill
  S FILLDT=$$LDPFDT(RXIEN) ; Last Dispensed Date or Prior Fill Date for renewal
  S DAYSSUP=$$LFDS(RXIEN) ; Days Supply of Last Refill
- S DSH34=DAYSSUP*.75 ; 3/4 of Days Supply
+ ;SLT - PSX*2.0*73
+ S DSH34=DAYSSUP*.75 ;3/4 of days supply
+ S:DSH34["." DSH34=(DSH34+1)\1
  Q $$FMADD^XLFDT(FILLDT,DSH34) ; Return today plus 3/4 of Days Supply date
  ;
  ;Description:

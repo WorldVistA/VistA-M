@@ -1,5 +1,5 @@
 IBCRCC ;ALB/ARH - RATES: CALCULATION OF ITEM CHARGE ;22-MAY-1996
- ;;2.0;INTEGRATED BILLING;**52,80,106,138,245,223,309,347,370,383,427**;21-MAR-94;Build 7
+ ;;2.0;INTEGRATED BILLING;**52,80,106,138,245,223,309,347,370,383,427,455,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; ITMCHG and RATECHG are basic item/set/rate charge functions, IBCRCI contains more standard callable functions
@@ -30,7 +30,10 @@ ITMCHG(CS,ITEM,EVDT,MOD,ARR) ; get the base unit charges for a specific item, gi
  .. I +$P(IBLN,U,7)'=+MOD Q  ; charge item modifier does not match modifier passed in
  .. S IBITMFND=1 ; item found
  .. I +$P(IBLN,U,4),+$P(IBLN,U,4)<IBEVDT Q  ; charge is inactive on event date
- .. I +$P(IBLN,U,5) D SETARR(IBDA,+$P(IBLN,U,6),+$P(IBLN,U,5),.ARR,$P(IBLN,U,8))
+ .. ; START IB*2.0*447 BI ZERO DOLLAR CHANGES
+ .. ;I +$P(IBLN,U,5) D SETARR(IBDA,+$P(IBLN,U,6),+$P(IBLN,U,5),.ARR,$P(IBLN,U,8))
+ .. D SETARR(IBDA,+$P(IBLN,U,6),+$P(IBLN,U,5),.ARR,$P(IBLN,U,8))
+ .. ; END IB*2.0*447 BI ZERO DOLLAR CHANGES
  Q
  ;
 SETARR(CI,RVCD,CHRG,ARR,CHRGB) ; set charges into an array, does not allow zero charge, a new entry is created each time,
@@ -40,7 +43,10 @@ SETARR(CI,RVCD,CHRG,ARR,CHRGB) ; set charges into an array, does not allow zero 
  ;
  N CNT,TCHRG,TCHRGB
  S CNT=+$G(ARR)+1,TCHRG=$P($G(ARR),U,2)+$G(CHRG) I +$G(CHRGB) S TCHRGB=+$P($G(ARR),U,3)+CHRGB
- I +$G(CHRG) S ARR=CNT_U_+TCHRG_U_$G(TCHRGB),ARR(CNT)=$G(CI)_U_+$G(RVCD)_U_+CHRG_U_$G(TCHRGB)
+ ; START IB*2.0*447 BI ZERO DOLLAR CHANGES
+ ;I +$G(CHRG) S ARR=CNT_U_+TCHRG_U_$G(TCHRGB),ARR(CNT)=$G(CI)_U_+$G(RVCD)_U_+CHRG_U_$G(TCHRGB)
+ S ARR=CNT_U_+TCHRG_U_$G(TCHRGB),ARR(CNT)=$G(CI)_U_+$G(RVCD)_U_+CHRG_U_$G(TCHRGB)
+ ; END IB*2.0*447 BI ZERO DOLLAR CHANGES
  Q
  ;
 PICOST(PI) ; returns (PI=ptr 362.5): total VA cost of an item (660,14) ^ quantity (660,5) from prosthetics ^ bill IFN
@@ -63,17 +69,34 @@ RATECHG(RS,CHG,EVDT,FEE) ; returns modifed item charge based on rate schedule:  
  Q IBX_IBRTY
  ;
 RXCOST(RX) ; returns (RX=ptr 362.4): VA Cost of an Rx - Per Unit Cost ^ bill IFN
- ; w/ Per Unit Cost = Refill (Current Unit Price of Drug - 52.1,1.2) or RX (Unit Price of Drug - 52,17)
+ ; w/ Per Unit Cost = Refill (Current Unit Price of Drug - 52.1,1.2) or RX (Unit Price of Drug - 52,17) or Drug (Price Per Dispense Unit - 50,16)
  ;
  N IBRXP,IBDGP,IBLN,IBX,IBIFN,IBDT,IBY
- S (IBRXP,IBX)=0
- I +$G(RX) S IBLN=$G(^IBA(362.4,+RX,0)),IBRXP=$P(IBLN,U,5),IBDGP=$P(IBLN,U,4),IBIFN=$P(IBLN,U,2),IBDT=$P(IBLN,U,3)
+ S (IBRXP,IBX,IBDGP,IBDT,IBIFN)=0,IBY=""
+ ; fill number (362.4,.1)
+ I +$G(RX) S IBLN=$G(^IBA(362.4,+RX,0)),IBRXP=$P(IBLN,U,5),IBDGP=$P(IBLN,U,4),IBIFN=$P(IBLN,U,2),IBDT=$P(IBLN,U,3),IBY=$P(IBLN,U,10)
+ I IBY="" S IBY=$$RFLNUM^IBRXUTL(IBRXP,IBDT)
  ;
- I +IBRXP S IBY=$$RFLNUM^IBRXUTL(IBRXP,IBDT) I +IBY S IBX=$$SUBFILE^IBRXUTL(IBRXP,+IBY,52,1.2)_U_IBIFN
- I +IBRXP,'IBX S IBX=$$FILE^IBRXUTL(IBRXP,17)_U_IBIFN
- I 'IBRXP,+IBDGP D DATA^IBRXUTL(+IBDGP) S IBLN=$G(^TMP($J,"IBDRUG",0)) I IBLN'="" S IBX=$G(^TMP($J,"IBDRUG",+IBDGP,16))_U_IBIFN
+ I IBRXP,IBY S IBX=$$SUBFILE^IBRXUTL(IBRXP,+IBY,52,1.2)_U_IBIFN
+ I IBRXP,'IBX S IBX=$$FILE^IBRXUTL(IBRXP,17)_U_IBIFN
+ I 'IBRXP,IBDGP D DATA^IBRXUTL(+IBDGP) S IBLN=$G(^TMP($J,"IBDRUG",0)) I IBLN'="" S IBX=$G(^TMP($J,"IBDRUG",+IBDGP,16))_U_IBIFN
+ ;
+ ; penny drug cost is 0
+ I $P(IBX,U,1)=0 S IBX=$$DRGCT(IBDGP)_U_IBIFN
  K ^TMP($J,"IBDRUG")
  Q IBX
+ ;
+ ;
+DRGCT(IBDGP) ;Penny drug cost calculation
+ ; Input - IEN
+ ; Output - true value of unit price (50-13/15)
+ N IBCUT,IBX,IBY S IBCUT=0
+ G:'IBDGP DRGCTQ
+ D:'$D(^TMP($J,"IBDRUG")) DATA^IBRXUTL(+IBDGP)
+ S IBX=$G(^TMP($J,"IBDRUG",+IBDGP,13))
+ S IBY=$G(^TMP($J,"IBDRUG",+IBDGP,15))
+ I IBX,IBY S IBCUT=$J(IBX/IBY,1,4),IBCUT=$S(IBCUT>0:IBCUT,1:0.0001)
+DRGCTQ Q IBCUT
  ;
 PRVCHG(CS,CHG,PRV,EVDT,ITEM) ; return discounted amount, based on total charge for a the care, the provider and Charge Set (BR)
  ; if no discount record found for the Charge Set or the provider then returns original amount

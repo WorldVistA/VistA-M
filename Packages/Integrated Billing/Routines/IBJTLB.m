@@ -1,6 +1,6 @@
-IBJTLB ;ALB/ARH - TPI INACTIVE LIST SCREEN ; 14-FEB-1995
- ;;2.0;INTEGRATED BILLING;**39,61,153**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+IBJTLB ;ALB/ARH - TPI INACTIVE LIST SCREEN ;14-FEB-1995
+ ;;2.0;INTEGRATED BILLING;**39,61,153,451**;21-MAR-94;Build 47
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; -- main entry point for IBJ THIRD PARTY INACTIVE LIST
  D EN^VALM("IBJT INACTIVE LIST")
@@ -10,7 +10,8 @@ HDR ; -- header code
  N X S X=$$PT^IBEFUNC(+$G(DFN))
  S VALMHDR(1)=$P(X,U,1) I $P(X,U,3)'="" S VALMHDR(1)=VALMHDR(1)_"   "_$E(X,1)_$P(X,U,3)
  S VALMHDR(1)=VALMHDR(1)_$J(IBHMSG,(80-$L(VALMHDR(1))))
- S VALMSG="|r Referred |* MT on Hold |+ Multi Carriers |"
+ ; IB*2.0*451 - explanation of EEOB indicator '%' for user
+ S VALMSG="|r Referred|* MT on Hold |+ Multi Carriers|% EEOB|"
  Q
  ;
 INIT ; -- init variables and list array

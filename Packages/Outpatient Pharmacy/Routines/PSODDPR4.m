@@ -1,5 +1,5 @@
 PSODDPR4 ;BHAM - ISC/EJW,SAB - build local OP  & RDI profiles ;07/19/07
- ;;7.0;OUTPATIENT PHARMACY;**251,375,387**;DEC 1997;Build 13
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379**;DEC 1997;Build 28
  ;External references to ^ORRDI1 supported by DBIA 4659
  ;External references to ^XTMP("ORRDI" supported by DBIA 4660
  ;External reference to ^PSDRUG supported by DBIA 221
@@ -8,6 +8,8 @@ PSODDPR4 ;BHAM - ISC/EJW,SAB - build local OP  & RDI profiles ;07/19/07
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ENCHK^PSJORUT2 supported by DBIA 2376
  ;External reference to IN^PSSHRQ2 supported by DBIA 5369
+ ;External reference to ^PS(50.606 supported by DBIA 2174
+ ;External reference to ^PS(50.7 supported by DBIA 2223
  ;
 BLD(PSODFN,LIST,PDRG,PTY) ;
  ;build OP, RDI, INP MEDS profiles
@@ -24,7 +26,6 @@ ORD N PSODTCUT,X1,X2,ODRG,ORTYP,ORN,DO,IEN,NAME,PROF,PSOON S (PROF,CNT)=0
  S ^TMP($J,LIST,"IN","SOURCE")=$P($G(PTY),";")
  N PSOICT,PSODRUG,PSOY,CNT,ZI
  D IN^PSSHRQ2(LIST)
- D NSRT
  Q
 PROFILE ;build profile drug input
  N ID,ORTYP,DD,PSOI,ORN,RECTYP S (STA,DNM)="",DO=0
@@ -49,7 +50,7 @@ PROFILE ;build profile drug input
  ...S DRNM=$P(^PSDRUG(ODRG,0),"^"),DO=DO+1 D ID
   ..E  N PSOI,DDRG,ODRG,SEQN,DDRG,DRNM S PSOI=$P(^PS(55,PSODFN,"NVA",RXREC,0),"^") D
  ...S DRNM=$P(^PS(50.7,PSOI,0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^")
- ...S DDRG=$$DRG^PSSDSAPM(PSOI,"O") I '$P(DDRG,";") D OIX Q
+ ...S DDRG=$$DRG^PSSDSAPM(PSOI,"X") I '$P(DDRG,";") D:'$$NVATST^PSODDPRE(PSOI) OIX Q
  ...I $P($G(^PSDRUG($P(DDRG,";"),0)),"^",3)["S"!($E($P($G(^PSDRUG($P(DDRG,";"),0)),"^",2),1,2)="XA") Q
  ...S ODRG=$P(DDRG,";"),SEQN=+$P(DDRG,";",3),DO=DO+1 K PSOI
  ...N ID S ID=+$$GETVUID^XTID(50.68,,+$P($G(^PSDRUG(ODRG,"ND")),"^",3)_",")
@@ -58,6 +59,7 @@ PROFILE ;build profile drug input
  .I $P($G(PTY),";")="O",$P($G(PTY),";",2)=RXREC Q
  .I $P($G(^PSRX(RXREC,0)),"^",6) S ODRG=$P(^PSRX(RXREC,0),"^",6) D
  ..I $P($G(^PSDRUG(ODRG,0)),"^",3)["S"!($E($P($G(^PSDRUG(ODRG,0)),"^",2),1,2)="XA") Q
+ ..I STA="DISCONTINUED" Q:$$DUPTHER^PSODDPRE(RXREC)  ;screen out duplicate therapy for local orders
  ..S ORN=$P($G(^PSRX(RXREC,"OR1")),"^",2),ORTYP="O",DRNM=$P(^PSDRUG(ODRG,0),"^"),DO=DO+1 D ID
  K RXREC,ID,STA,DNM,SEQN,PSOI,PSODD,P1,P3,OR1,P2,PSODRUG,DD,DRNM,DDRG
  Q
@@ -187,7 +189,7 @@ CPRS(PSODFN,LIST,PDRG,PTY) ;
  I '$G(PSODFN) W !,"Patient UNDEFINED!",! Q
  I '$O(PDRG(0)) W !,"Dispense Drug(s) UNDEFINED!",! Q
  I '$D(LIST) W !,"Input Base UNDEFINED!",! Q
- K ^TMP($J,"ORDERS"),^TMP($J,"DD"),^TMP($J,LIST) S (INDX,INDD)=0
+ K ^TMP($J,"ORDERS"),^TMP($J,"DD"),^TMP($J,LIST) N ZII,INDX,INDD S (INDX,INDD)=0
  ;build patient's drug profile outpat/inpat/non-va
  D BLD^PSOORDRG,ENCHK^PSJORUT2(PSODFN,.INDX),NVA^PSOORDRG
  ;dup drug check CPRS ONLY
@@ -206,11 +208,4 @@ DRG ;
  S P1=$P($G(^PSDRUG(IEN,"ND")),"^"),P2=$P($G(^("ND")),"^",3),X=$$PROD0^PSNAPIS(P1,P2),SEQN=$P(X,"^",7)
  S CNT=$G(CNT)+1,^TMP($J,LIST,"IN","PROSPECTIVE",$P(PTY,";")_";"_$P(PTY,";",2)_";PROSPECTIVE;"_CNT)=SEQN_"^"_+ID_"^"_IEN_"^"_NAME
  K ID,SEQN,P1,P2,X,DNM
- Q
-NSRT ;screen out dc'd & expired rxs pso*7*387
- N ON,DRG,SV,CT S (ON,DRG,SV)="",CT=0
- F  S SV=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV)) Q:SV=""  F  S DRG=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG)) Q:DRG=""  D
- .F  S ON=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON)) Q:ON=""  F  S CT=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT)) Q:'CT  D
- ..Q:$P(ON,";",2)=0
- ..I $P(ON,";")="O",$P(^PSRX($P(ON,";",2),"STA"),"^")>5,$P(^PSRX($P(ON,";",2),"STA"),"^")'=16 K ^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT)
  Q

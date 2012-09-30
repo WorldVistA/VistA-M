@@ -1,5 +1,5 @@
 IBAECU ;ALB/BGA-LTC UTILITIES DETERMINE LTC ELIG ; 25-SEPT-01
- ;;2.0;INTEGRATED BILLING;**164,171,176,198,188**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**164,171,176,198,188,454**;21-MAR-94;Build 4
  ;; Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ; This routine contains the following utilities in support of the
@@ -225,4 +225,12 @@ LASTMJ() ; function to return when the Monthly Job was last run or 0
  N IBLSTDT
  S IBLSTDT=$P($G(^IBE(350.9,1,0)),"^",16)
  Q $S(IBLSTDT>3:IBLSTDT,1:0)
+ ;
+CDEXMPT(DFN,IBDT) ; determine if the patient is exempt from non-institutional
+ ; ltc charges because of Catastrophically Disabled status
+ ; 0 - not exempt from LTC, 1 - exempt from LTC
+ N IBDG
+ S IBDG=$$GET^DGENCDA(DFN,.IBDG)  ; IA# 4969
+ I $G(IBDG("VCD"))'="Y" Q 0 ; cd indicator
+ Q $S(IBDT<$G(IBDG("DATE")):0,1:1)
  ;

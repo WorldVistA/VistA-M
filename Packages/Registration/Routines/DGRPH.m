@@ -1,5 +1,5 @@
-DGRPH ;ALB/MRL,TMK - REGISTRATION HELP ROUTINE ;19 OCT 05
- ;;5.3;Registration;**114,343,397,415,489,545,638,624,689**;Aug 13, 1993;Build 1
+DGRPH ;ALB/MRL,TMK - REGISTRATION HELP ROUTINE ; 12/14/11 4:29pm
+ ;;5.3;Registration;**114,343,397,415,489,545,638,624,689,842**;Aug 13, 1993;Build 33
  S DGRPH="" D H^DGRPU K DGRPH W !,"Enter '^' to stop the display ",$S(DGRPV:"",1:"and edit "),"of data, '^N' to jump to screen #N (see",!,"listing below), <RET> to continue on to the next available screen" I DGRPV W "." G M
  W " or enter",!,"the field group number(s) you wish to edit using commas and dashes as",!,"delimiters.  Those groups enclosed in brackets ""[]"" are editable while those",!,"enclosed in arrows ""<>"" are not."
  W "  Enter 'ALL' to edit all editable data",!,"elements on the screen."
@@ -14,7 +14,7 @@ A1 S X="Conf. Address,Dates and Types^E-Mail, Cell Phone & Pager #s" Q
 3 S X="Primary Next-of-Kin^Secondary Next-of-Kin^Primary Emergency Contact^Secondary Emergency Contact^Designee to receive personal effects" Q
 4 S X="Applicant Employer, Address^Spouses Employer, Address" Q
 5 S X="Unexpired Insurance Policies^Eligibile for Medicaid" Q
-6 S X="Service History^Conflict Locations^Exposure Factors^Prisoner of War^Combat^Military Retirement/Disability^Dental History^Purple Heart Recipient" Q
+6 S X="Service History^Conflict Locations^Exposure Factors^Prisoner of War^Combat^Military Retirement/Disability^Dental History^Purple Heart Recipient^Medal of Honor^Class II Dental Indicator" Q
 7 S X="Patient Type, SC Data, Claim Info^VA Monetary Benefits^POS, Eligibility Code(s)^SC Conditions relayed by applicant" Q
 8 S X="Spouse's Demographic Info^Dependents' Demographic Info" Q
 9 S X="Social Security^U.S. Civil Service^U.S. Railroad Retirement^Military Retirement^Unemployment^Other Retirement^Total Employment Income^Interest,Dividend,Annuity^Workers Comp or Black Lung^Other Income" Q
@@ -26,7 +26,7 @@ A1 S X="Conf. Address,Dates and Types^E-Mail, Cell Phone & Pager #s" Q
 15 W !,"Sponsor information is displayed for patients." Q
 S W ! S Z="AVAILABLE SCREENS",DGRPCM=1 D WW^DGRPV S DGRPCM=0
  S X="Demographic^Confidential Address^Patient^Contact^Employment^Insurance^Service Record^Eligibility^Family Demographic^Income Screening^Missing/Ineligible^Eligibility Verification^"
- S X=X_"Admission Info^Application Info^Appointment Info^Sponsor Demograhics"
+ S X=X_"Admission Info^Application Info^Appointment Info^Sponsor Demographics"
  ;S C=0 F I=1:1 S J=$P(X,"^",I) Q:J=""  I '$E(DGRPVV,I) S C=C+1,Z="^"_I,DGRPW=(C#2) D WW^DGRPV S Z=$S(I?1N:"  ",1:" ")_J_" Data",Z1=$S((C#2)&(I?1N):36,(C#2):35,1:1) D WW1^DGRPV:(C#2) I '(C#2) W Z
  N DGJ
  S DGJ=""

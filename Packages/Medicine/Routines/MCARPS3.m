@@ -1,5 +1,5 @@
 MCARPS3 ; HOIFO/NCA - Get Procedures for Medicine and CP ;1/13/04  14:35
- ;;1.0;CLINICAL PROCEDURES;**5,13**;Apr 01, 2004;Build 19
+ ;;1.0;CLINICAL PROCEDURES;**5,13,24**;Apr 01, 2004;Build 8
  ;Modified from MCARPS2 for CPRS
  ; Please Reference DBIA # 3397
 EN(MCDFN,CODE,MDSDT,MDEDT) ;Get procedures for a patient

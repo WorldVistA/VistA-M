@@ -1,6 +1,6 @@
 RCBEUBIL ;WISC/RFJ-utilties for bills (in file 430)                  ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,226**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**153,226,276**;Mar 20, 1995;Build 87
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
  ;
@@ -66,8 +66,7 @@ SETRCDOJ(RCBILLDA,RCTRANDA,RCDOJ) ;  set the bill and transaction to rc or doj
  D ^DIE
  Q
  ;
- ;
-SETBAL(RCTRANDA) ;  set the bills balance by adding value of transaction
+SETBAL(RCTRANDA,RCNFLG) ;  set the bills balance by adding value of transaction
  N RCBILLDA,RCDATA7,VALUE
  S RCBILLDA=$P($G(^PRCA(433,RCTRANDA,0)),"^",2) I 'RCBILLDA Q
  ;  get the value of the transaction
@@ -76,14 +75,15 @@ SETBAL(RCTRANDA) ;  set the bills balance by adding value of transaction
  I $TR(VALUE,"^0")="" Q
  ;
  S RCDATA7=$G(^PRCA(430,RCBILLDA,7))
- S $P(RCDATA7,"^",1)=$P(RCDATA7,"^",1)+$P(VALUE,"^",1) ; principal
+ ; PRCA276 - next line: if adjustment causes negative balance entry in ACCOUNTS RECEIVABLE file not updated
+ I $P(RCDATA7,"^",1)+$P(VALUE,"^")<0 S RCNFLG=1 Q
+ S $P(RCDATA7,"^",1)=$P(RCDATA7,"^")+$P(VALUE,"^") ; principal
  S $P(RCDATA7,"^",2)=$P(RCDATA7,"^",2)+$P(VALUE,"^",2) ; interest
  S $P(RCDATA7,"^",3)=$P(RCDATA7,"^",3)+$P(VALUE,"^",3) ; admin
  S $P(RCDATA7,"^",4)=$P(RCDATA7,"^",4)+$P(VALUE,"^",4) ; marshal fee
  S $P(RCDATA7,"^",5)=$P(RCDATA7,"^",5)+$P(VALUE,"^",5) ; court cost
  S $P(^PRCA(430,RCBILLDA,7),"^",1,5)=$P(RCDATA7,"^",1,5)
  Q
- ;
  ;
 FYMULT(RCTRANDA) ;  update the fiscal year multiple for bill
  ;  to equal the fiscal year multiple for transaction in file 433

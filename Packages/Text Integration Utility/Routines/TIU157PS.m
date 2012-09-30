@@ -1,0 +1,12 @@
+TIU157PS ; SLC/JMH - Patch 157 post-install routine ; [11/18/04 10:36am]
+ ;;1.0;TEXT INTEGRATION UTILITIES;**157**;Jun 20, 1997
+REINDEX ;reindex the new "AC" index on file 8925.7
+ N TIUD0
+ S TIUD0=0
+ I $O(^TIU(8925.7,"AC","")) Q
+ F  S TIUD0=$O(^TIU(8925.7,TIUD0)) Q:'TIUD0  D
+ . N TIUDOC S TIUDOC=+$G(^TIU(8925.7,TIUD0,0)) Q:'TIUDOC
+ . Q:'+$G(^TIU(8925,TIUDOC,0))
+ . N TIUDT S TIUDT=$P($G(^TIU(8925.7,TIUD0,0)),U,4) Q:TIUDT
+ . S ^TIU(8925.7,"AC",$P($G(^TIU(8925,TIUDOC,12)),U),$G(TIUDOC))=""
+ Q

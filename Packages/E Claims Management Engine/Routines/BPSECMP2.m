@@ -1,7 +1,11 @@
 BPSECMP2 ;BHAM ISC/FCS/DRS - Parse Claim Response ;11/14/07  13:23
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
  ;Reference to STORESP^IBNCPDP supported by DBIA 4299
+ ;Reference to ^DPT supported by DBIA 10035
+ ;Reference to $$SITE^VASITE supported by DBIA 10112
+ ;
  Q
  ; Parameters:
  ;    CLAIMIEN: IEN from BPS Claims
@@ -9,24 +13,24 @@ BPSECMP2 ;BHAM ISC/FCS/DRS - Parse Claim Response ;11/14/07  13:23
  ;    EVENT:    This is used by PSO to create specific events (BILL).
  ;    USER:     User who is creating the event.  This is required when EVENT is sent.
 IBSEND(CLAIMIEN,RESPIEN,EVENT,USER) ;
- N BPSARRY,RXIEN,FILLNUM,IND,TRNDX,RELDATE,X,Y,%DT
+ N BPSARRY,RXIEN,FILLNUM,IND,TRNDX
  N CLAIMNFO,RESPNFO,RXINFO,RFINFO,TRANINFO
  N RESPONSE,RXACT,CLREAS,BILLNUM,DFN,REQCLAIM
- N DIE,DA,DR
+ N DIE,DA,DR,AMT
  ;
  ; Quit if there is not a Response or Claim IEN
  I '$G(RESPIEN) Q
  I '$G(CLAIMIEN) Q
  ;
  ; Get Claims and Response Data
- D GETS^DIQ("9002313.02",CLAIMIEN,"103;400*;401;402;403;426","","CLAIMNFO")
- D GETS^DIQ("9002313.0301","1,"_RESPIEN,"112;503;509;518","I","RESPNFO")
+ D GETS^DIQ("9002313.02",CLAIMIEN,"103;400*;401;402;403;430","","CLAIMNFO")
+ D GETS^DIQ("9002313.0301","1,"_RESPIEN,"112;503;505;506;507;509;518","I","RESPNFO")
  ;
  ; Get the Transaction IEN and Data
  S IND=$S(CLAIMNFO("9002313.02",CLAIMIEN_",","103")="B2":"AER",1:"AE")
  S TRNDX=$O(^BPST(IND,CLAIMIEN,""))
  I TRNDX="" Q
- D GETS^DIQ("9002313.59",TRNDX,"1.05;3;5;13;404;501;1201","I","TRANINFO")
+ D GETS^DIQ("9002313.59",TRNDX,"1.05;3;5;13;404;509;510;1201","I","TRANINFO")
  ;
  ; If Certify Mode is On, don't send to IB
  I $$GET1^DIQ(9002313.59902,"1,"_TRNDX_",","902.22")["MODE ON" Q
@@ -45,11 +49,11 @@ IBSEND(CLAIMIEN,RESPIEN,EVENT,USER) ;
  ;
  ; Setup User data
  ; If event is passed in, the user should be passed in as well
- ; If no Event, but action is Auto-Reversal (AREV) or CMOP (CR*/PC/RL),
- ;     user postmaster (.5)
+ ; If no Event, but action is Auto-Reversal (AREV) or CMOP
+ ;   processing (CR*/PC), use postmaster (.5)
  ; Else use the user from BPS Transaction
  I EVENT]"" S BPSARRY("USER")=USER
- E  I ",AREV,CRLB,CRLX,CRLR,PC,RL,"[(","_RXACT_",") S BPSARRY("USER")=.5
+ E  I ",AREV,CRLB,CRLX,CRLR,CRRL,PC,"[(","_RXACT_",") S BPSARRY("USER")=.5
  E  S BPSARRY("USER")=TRANINFO("9002313.59",TRNDX_",",13,"I")
  ;
  ; Send eligibility response to IB
@@ -70,30 +74,45 @@ IBSEND(CLAIMIEN,RESPIEN,EVENT,USER) ;
  S RESPONSE=$S(RESPONSE="A":"ACCEPTED",RESPONSE="C":"CAPTURED",RESPONSE="D":"DUPLICATE",RESPONSE="P":"PAYABLE",RESPONSE="R":"REJECTED",RESPONSE="S":"ACCEPTED",1:"OTHER")
  ;
  ; Get Prescription Information
- D RXAPI^BPSUTIL1(RXIEN,".01;4;6;7;8;16;27","RXINFO","IE")          ; esg - 4/28/10 - add Rx QTY (*8)
+ D RXAPI^BPSUTIL1(RXIEN,".01;4;6;7;8;16;27","RXINFO","IE")
  ;
  ; Get Refill Info if this is a refill
  S FILLNUM=+$E($P(TRNDX,".",2),1,4)
- I FILLNUM>0 D RXSUBF^BPSUTIL1(RXIEN,52,52.1,FILLNUM,".01;1;1.1;11","RFINFO","E")      ; esg - 4/28/10 - add Rx QTY (*8)
+ I FILLNUM>0 D RXSUBF^BPSUTIL1(RXIEN,52,52.1,FILLNUM,".01;1;1.1;11","RFINFO","E")
  ;
- ; Fill Date
- S BPSARRY("FILL DATE")=CLAIMNFO("9002313.0201","1,"_CLAIMIEN_",","401")
- S %DT="X",X=BPSARRY("FILL DATE") D ^%DT S:Y'=-1 BPSARRY("FILL DATE")=Y
+ ; Date of Service
+ S BPSARRY("DOS")=CLAIMNFO("9002313.02",CLAIMIEN_",","401")
+ I BPSARRY("DOS") S BPSARRY("DOS")=BPSARRY("DOS")-17000000
  ;
  ; Information needed for PAID/BILLING event
  S BPSARRY("PAID")=0
- I RESPONSE="PAYABLE" D
+ I RESPONSE="PAYABLE"!(RESPONSE="DUPLICATE") D
+ . ; Patient Pay Amount
+ . S AMT=$G(RESPNFO(9002313.0301,"1,"_RESPIEN_",",505,"I"))
+ . I AMT S BPSARRY("PAT RESP")=$$DFF2EXT^BPSECFM(AMT)
+ . ; Ingredient Cost Paid
+ . S AMT=$G(RESPNFO(9002313.0301,"1,"_RESPIEN_",",506,"I"))
+ . I AMT S BPSARRY("ING COST PAID")=$$DFF2EXT^BPSECFM(AMT)
+ . ; Dispensing Fee Paid
+ . S AMT=$G(RESPNFO(9002313.0301,"1,"_RESPIEN_",",507,"I"))
+ . I AMT S BPSARRY("DISP FEE PAID")=$$DFF2EXT^BPSECFM(AMT)
+ . ; Total Amount Paid
  . S BPSARRY("PAID")=$$DFF2EXT^BPSECFM(RESPNFO(9002313.0301,"1,"_RESPIEN_",",509,"I"))
- . S BPSARRY("COPAY")=$$DFF2EXT^BPSECFM(RESPNFO(9002313.0301,"1,"_RESPIEN_",",518,"I"))
+ . ; Amount of Copay
+ . S AMT=$G(RESPNFO(9002313.0301,"1,"_RESPIEN_",",518,"I"))
+ . I AMT S BPSARRY("COPAY")=$$DFF2EXT^BPSECFM(AMT)
+ . ;
  . S BPSARRY("AUTH #")=RESPNFO(9002313.0301,"1,"_RESPIEN_",",503,"I")
  . S BPSARRY("RX NO")=RXINFO(52,RXIEN,.01,"E")
  . S BPSARRY("DRUG")=$$RXAPI1^BPSUTIL1(RXIEN,6,"I")
- . I FILLNUM<1  D
- .. S BPSARRY("DAYS SUPPLY")=RXINFO(52,RXIEN,8,"E")
- .. S BPSARRY("QTY")=RXINFO(52,RXIEN,7,"E")              ; Rx fill quantity
- . E  D
- .. S BPSARRY("DAYS SUPPLY")=$G(RFINFO(52.1,FILLNUM,1.1,"E"))
- .. S BPSARRY("QTY")=$G(RFINFO(52.1,FILLNUM,1,"E"))      ; Rx refill quantity
+ . I FILLNUM<1 S BPSARRY("DAYS SUPPLY")=RXINFO(52,RXIEN,8,"E")
+ . E  S BPSARRY("DAYS SUPPLY")=$G(RFINFO(52.1,FILLNUM,1.1,"E"))
+ . ; Billing Quantity and Units
+ . S BPSARRY("QTY")=$G(TRANINFO("9002313.59",TRNDX_",",509,"I"))
+ . S BPSARRY("UNITS")=$G(TRANINFO("9002313.59",TRNDX_",",510,"I"))
+ . ; NCPDP Quantity and Units
+ . S BPSARRY("NCPDP QTY")=$P(CLAIMNFO("9002313.0201","1,"_CLAIMIEN_",","442"),"E7",2)/1000
+ . S BPSARRY("NCPDP UNITS")=$P(CLAIMNFO("9002313.0201","1,"_CLAIMIEN_",","600"),"28",2)
  ;
  ; Get primary IB bill# and prior payment amount
  I $D(^BPST(TRNDX,10,1,2)) D
@@ -106,11 +125,10 @@ IBSEND(CLAIMIEN,RESPIEN,EVENT,USER) ;
  S BPSARRY("FILL NUMBER")=FILLNUM
  S BPSARRY("FILLED BY")=RXINFO(52,RXIEN,16,"I")
  S BPSARRY("PRESCRIPTION")=RXIEN
- S BPSARRY("BILLED")=$P(CLAIMNFO("9002313.0201","1,"_CLAIMIEN_",","426"),"DQ",2)
+ S BPSARRY("BILLED")=$P(CLAIMNFO("9002313.0201","1,"_CLAIMIEN_",","430"),"DU",2)
  S BPSARRY("BILLED")=$$DFF2EXT^BPSECFM(BPSARRY("BILLED"))
  S BPSARRY("CLAIMID")=$P(CLAIMNFO("9002313.0201","1,"_CLAIMIEN_",","402"),"D2",2)
- S RELDATE=$S(FILLNUM=0:$$RXAPI1^BPSUTIL1(RXIEN,31,"I"),1:$$RXSUBF1^BPSUTIL1(RXIEN,52,52.1,FILLNUM,17,"I"))
- S BPSARRY("RELEASE DATE")=$P(RELDATE,".")
+ S BPSARRY("RELEASE DATE")=$S(FILLNUM=0:$$RXAPI1^BPSUTIL1(RXIEN,31,"I"),1:$$RXSUBF1^BPSUTIL1(RXIEN,52,52.1,FILLNUM,17,"I"))
  S BPSARRY("RESPONSE")=RESPONSE
  S BPSARRY("EPHARM")=$$GET1^DIQ(9002313.59,TRNDX,1.07,"I")
  ;
@@ -131,7 +149,7 @@ IBSEND(CLAIMIEN,RESPIEN,EVENT,USER) ;
  . . I $$RXSTATUS^BPSSCRU2(RXIEN)'=13 S BPSARRY("CLOSE COMMENT")="DELETION OF REFILL ONLY - ORIGINAL RX MAY REMAIN ACTIVE"
  . ; If accepted inpatient autoreversal, then close the claim
  . I RXACT="AREV",RESPONSE="ACCEPTED",REQCLAIM,$P($G(^BPSC(REQCLAIM,0)),U,7)=2 D
- .. S CLREAS="OTHER",BPSARRY("CLOSE COMMENT")="INPATIENT PRESCRIPTION"
+ .. S CLREAS="INPATIENT RX AUTO-REVERSAL",BPSARRY("CLOSE COMMENT")="INPATIENT PRESCRIPTION"
  . I $D(CLREAS) S BPSARRY("CLOSE REASON")=$O(^IBE(356.8,"B",CLREAS,0))
  . ;
  . ; Call IB for Reversal Event
@@ -148,6 +166,12 @@ IBSEND(CLAIMIEN,RESPIEN,EVENT,USER) ;
  .. S DIE="^BPSC(",DA=REQCLAIM
  .. S DR="901///1;902///"_$$NOW^XLFDT()_";903////.5;904///"_BPSARRY("CLOSE REASON")
  .. D ^DIE
+ . ; If this is a primary claim, check and send a bulletin if the secondary claim is open or if there
+ . ;   is a non-cancelled IB bill for the secondary claim
+ . ; NOTE that we only want to do a bulletin for an Inpatient Auto-Reversal or an RX action.  If the code 
+ . ;   above is modified to create other automatic close events, additional checks may need to be added
+ . ;   before creating the bulletin.
+ . I BPSARRY("RXCOB")=1 D BULL(RXIEN,FILLNUM,CLAIMIEN,DFN,CLREAS,BPSARRY("CLAIMID"))
  ;
  ; If we got here, then it is not a reversal
  ; If EVENT is set, send Submit event
@@ -155,7 +179,7 @@ IBSEND(CLAIMIEN,RESPIEN,EVENT,USER) ;
  ;
  ; Sent Paid (Billable) event is the claim was paid and released or EVENT is BILL
  ;   Note: User is always postmaster except for BackBilling (BB)
- I EVENT="BILL"!(RESPONSE="PAYABLE"&(BPSARRY("RELEASE DATE")]"")) D
+ I EVENT="BILL"!(RESPONSE="PAYABLE"!(RESPONSE="DUPLICATE")&(BPSARRY("RELEASE DATE")]"")) D
  . I RXACT'="BB" S BPSARRY("USER")=.5
  . ;set reject flag and store primary plan to serve secondary billing when primary claim was rejected
  . I BPSARRY("RXCOB")=2 I $P($$STATUS^BPSOSRX(RXIEN,FILLNUM,,,1),U)["E REJECTED" D
@@ -168,10 +192,115 @@ IBSEND(CLAIMIEN,RESPIEN,EVENT,USER) ;
  . S BPSARRY("STATUS")="PAID",BILLNUM=$$STORESP^IBNCPDP(DFN,.BPSARRY)
  Q
  ;
+BULL(RX,FILL,CLAIMIEN,DFN,REASON,ECME) ;
+ ; Create bulletin to tell OPECC to reverse/close secondary claim
+ ; Input Parameters
+ ;   RX - Prescription IEN (required)
+ ;   FILL - Fill Number (required)
+ ;   CLAIMIEN - BPS Claims IEN for the primary reversal
+ ;   DFN - Patient IEN
+ ;   REASON - Close Reason
+ ;   ECME - ECME Number 
+ ;
+ ; Validate parameters
+ I '$G(RX) Q
+ I $G(FILL)="" Q
+ ;
+ ; Check to see a bulletin needs to be created
+ I '$$SENDBULL(RX,FILL) Q
+ ;
+ N STATION,PRICLAIM,PRIBILL,SECBILL,BPSBILLS,PATNAME,SSN,DOS
+ N BPSL,BPSX,XMSUB,XMDUZ,XMY,XMTEXT
+ ;
+ ; Get Station and Primary claim ID
+ S STATION=$P($$SITE^VASITE(),U,3) ;IA 10112
+ S PRICLAIM=$$GET1^DIQ(9002313.02,$G(CLAIMIEN)_",",.01)
+ ;
+ ; Get primary and secondary bill number
+ ; If the bill exists, concatenate the Station number
+ I $$RXBILL^IBNCPUT3(RX,FILL,"P","",.BPSBILLS)
+ S PRIBILL=$O(BPSBILLS(""),-1) I PRIBILL S PRIBILL=STATION_"-"_$P(BPSBILLS(PRIBILL),U,1)_" "
+ K BPSBILLS
+ I $$RXBILL^IBNCPUT3(RX,FILL,"S","",.BPSBILLS)
+ S SECBILL=$O(BPSBILLS(""),-1) I SECBILL S SECBILL=STATION_"-"_$P(BPSBILLS(SECBILL),U,1)_" "
+ ;
+ ; Get Patient Name and last four digits of the SSN - Supported by IA 10035
+ I $G(DFN) D
+ . S PATNAME=$P($G(^DPT(DFN,0)),U,1)
+ . S SSN=$P($G(^DPT(DFN,0)),U,9)
+ . S SSN=$E(SSN,$L(SSN)-3,$L(SSN))
+ ;
+ ; Get DOS in the correct format
+ S DOS=$$GET1^DIQ(9002313.02,$G(CLAIMIEN)_",",401)
+ I DOS S DOS=$E(DOS,5,6)_"/"_$E(DOS,7,8)_"/"_$E(DOS,1,4)
+ ;
+ ; Build Body of message
+ S BPSL=0
+ S BPSL=BPSL+1,BPSX(BPSL)="Primary claim "_PRIBILL_"(ECME #:"_$G(ECME)_") was closed for the following"
+ S BPSL=BPSL+1,BPSX(BPSL)="reason: "_$G(REASON)
+ S BPSL=BPSL+1,BPSX(BPSL)="Secondary claim "_SECBILL_"must be manually closed at this time."
+ S BPSL=BPSL+1,BPSX(BPSL)=" "
+ S BPSL=BPSL+1,BPSX(BPSL)="Patient Name: "_$G(PATNAME)_" ("_$G(SSN)_")"
+ S BPSL=BPSL+1,BPSX(BPSL)="Prescription: "_$$RXAPI1^BPSUTIL1(RX,.01,"E")_" Fill: "_FILL
+ S BPSL=BPSL+1,BPSX(BPSL)="Drug Name: "_$$RXAPI1^BPSUTIL1(RX,6,"E")
+ S BPSL=BPSL+1,BPSX(BPSL)="Date of Service: "_DOS
+ S BPSL=BPSL+1,BPSX(BPSL)="Primary Claim #: "_PRICLAIM
+ S BPSL=BPSL+1,BPSX(BPSL)="Close Reason (Reason Not Billable): "_$G(REASON)
+ S BPSL=BPSL+1,BPSX(BPSL)=" "
+ S BPSL=BPSL+1,BPSX(BPSL)=" "
+ S BPSL=BPSL+1,BPSX(BPSL)="Note: Depending how the secondary prescription claim was submitted,"
+ S BPSL=BPSL+1,BPSX(BPSL)="this may require using the ECME User Screen to reverse the payable"
+ S BPSL=BPSL+1,BPSX(BPSL)="secondary claim or using the correct VistA option to close the paper"
+ S BPSL=BPSL+1,BPSX(BPSL)="secondary claim."
+ S BPSL=BPSL+1,BPSX(BPSL)=" "
+ ;
+ ; Set variables needed by Mail routines - subject, from, to, body
+ S XMSUB="ACTION: Close Secondary claim for ECME "_$G(ECME)
+ S XMDUZ="BPS PACKAGE",XMY("G.BPS OPECC")="",XMTEXT="BPSX("
+ D ^XMD
+ Q 
+ ;
+SENDBULL(RX,FILL) ;
+ ; Check if a bulletin should be created, which we want to do if:
+ ;   > There is a non-cancelled IB bill for the secondary claim
+ ;   > There is a open ECME secondary claim
+ ; 
+ ; Input Parameters
+ ;   RX - Prescription IEN (required)
+ ;   FILL - Fill Number (required)
+ ; Output
+ ;   0 - Do not create the bulletin
+ ;   1 - Create bulletin
+ ;
+ ; Validate parameters
+ I '$G(RX) Q 0
+ I $G(FILL)="" Q 0
+ ;
+ ; If the secondary claim has a non-cancelled bill, create the bulletin
+ ; This could be true even if there is not a secondary claim in ePharmacy (e.g., for a paper claim)
+ N BPSBILLS,BILL,ACTIVE,IB
+ I $$RXBILL^IBNCPUT3(RX,FILL,"S","",.BPSBILLS)
+ ; Loop through the bills and set ACTIVE flag if any of the bills are not cancelled
+ S (BILL,ACTIVE)=0 F  S BILL=$O(BPSBILLS(BILL)) Q:'BILL!ACTIVE  D
+ . S IB=$G(BPSBILLS(BILL))
+ . I $P(IB,U,8)'=7,($P(IB,U,2)'="CB"),($P(IB,U,2)'="CN") S ACTIVE=1
+ I ACTIVE Q 1
+ ;
+ ; Do not create the bulletin if the secondary transaction or claim does not exist
+ N IEN59SEC,CLAIM
+ S IEN59SEC=$$IEN59^BPSOSRX(RX,FILL,2)
+ I 'IEN59SEC Q 0
+ S CLAIM=$P($G(^BPST(IEN59SEC,0)),U,4)
+ I 'CLAIM Q 0
+ I '$D(^BPSC(CLAIM)) Q 0
+ ;
+ ; Return 1 if the secondary claim is open, 0 if it is closed
+ Q '$$CLOSED02^BPSSCR03(CLAIM)
+ ;
+DURSYNC(IEN59) ;
  ; Synch DURs between ECME and PSO
  ; Parameters:
  ;   IEN59 is the BPS Transaction IEN
-DURSYNC(IEN59) ;
  N RXIEN,RXFILL
  ;
  ; Check Parameter

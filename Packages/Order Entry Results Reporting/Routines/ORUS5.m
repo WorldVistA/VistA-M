@@ -1,5 +1,5 @@
-ORUS5 ; slc/KCM - Display List of Items ;1/3/91  10:01 ;
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;;Dec 17, 1997
+ORUS5 ; slc/KCM - Display List of Items ;1/3/91  10:01 ; 12/4/09 5:15pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**322**;Dec 17, 1997;Build 15
  ;
 MOVE K OR9 I $D(^XUTL("OR",$J,"ORV",P,0)),$D(^(0)) S X=^(0),ORCO=$S($P(X,"^"):$P(X,"^"),1:+$G(ORCO)),ORSEQL=$S($P(X,"^",4):$P(X,"^",4),1:""),ORENL=$P(X,"^",2),ORENLA=$P(X,"^",3) Q
  ;I ORMOR,$D(^XUTL("OR",$J,"ORV",P,0)),$D(^(0)) S ORCO=$S(^(0):^(0),1:ORCO) Q
@@ -11,7 +11,7 @@ MOVE K OR9 I $D(^XUTL("OR",$J,"ORV",P,0)),$D(^(0)) S X=^(0),ORCO=$S($P(X,"^"):$P
  S ORMOR=0 S:($L(A)&('OREN))!($L(B)&OREN) ORMOR=1,ORENL=B,ORENLA=$S(OREN:"",1:A),ORSEQL=S
  F I=0:0 S I=$O(ORUS(900,I)) Q:I'>0  S L=L+1,^XUTL("OR",$J,"ORV",P,L)=ORUS(900,I) S:'$L($P(ORUS(900,I),"^",2)) $P(^(L),"^",2)=900+I I '$D(OR9(I)) S OR9(I)=^(L) D S91
  I ORUS(0)["Q" S L=L+1,^XUTL("OR",$J,"ORV",P,L)=$S($D(ORUS("O")):ORUS("O"),1:"OTHER "_ORFNM)_"^998",I=998,OR9(I)=^(L) D S91
- I ORMOR S L=L+1,^XUTL("OR",$J,"ORV",P,L)="MORE...^999",I=999,OR9(I)=^(L) D S91
+ I ORMOR S L=L+1,^XUTL("OR",$J,"ORV",P,L)="MORE...^+",I="+",OR9(I)=^(L) D S91  ;DJE/VM *322 replace 999 with +
  I L'>ORNE S ORCO=L\ORNC S:L#ORNC ORCO=ORCO+1
  S ^XUTL("OR",$J,"ORV",P,0)=ORCO_"^"_$S($D(ORENL):ORENL,1:"")_"^"_$S($D(ORENLA):ORENLA,1:"")_"^"_$S($D(ORSEQL):ORSEQL,1:"")
  Q

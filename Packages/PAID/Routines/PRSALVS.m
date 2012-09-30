@@ -1,5 +1,5 @@
-PRSALVS ;HISC/REL-Display Leave Request ;11/21/06
- ;;4.0;PAID;**9,69,112**;Sep 21, 1995;Build 54
+PRSALVS ;WOIFO/PLT - Display Leave Request ;02/12/08
+ ;;4.0;PAID;**9,69,112,133**;Sep 21, 1995;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  S DFN="",SSN=$P($G(^VA(200,DUZ,1)),"^",9) I SSN'="" S DFN=$O(^PRSPC("SSN",SSN,0))
  I 'DFN W !!,*7,"Your SSN was not found in both the New Person & Employee File!" G EX
@@ -38,12 +38,14 @@ B0 I Z="AL" S BAL=$P($G(^PRSPC(DFN,"ANNUAL")),"^",3) G B2
  I Z="SL" S BAL=$P($G(^PRSPC(DFN,"SICK")),"^",3) G B2
  I Z="RL" S BAL=$G(^PRSPC(DFN,"ANNUAL")),BAL=$P(BAL,"^",10)+$P(BAL,"^",11) G B2
 B1 I Z="ML" S BAL=$P($G(^PRSPC(DFN,"MILITARY")),"^",1) G B2
- Q:Z'="CU"  S Z="CT",Y=$G(^PRSPC(DFN,"COMP"))
- F K=1:1:8 S BAL=BAL+$P(Y,"^",K)
+ QUIT:Z'="CU"
+ ;balance includes all comptime/credit hours
+ S Z="CT",Y=$G(^PRSPC(DFN,"COMP")),BAL=BAL+$P(Y,U,9)
 B2 S LST=+$P($G(^PRSPC(DFN,"MISC4")),"^",16),D1=DT D PP^PRSAPPU S YR=$P(PPE,"-",1)
  S D1=+$P(PPE,"-",2),YR=$S(D1'<LST:YR,1:$E(199+YR,2,3)),PPE=YR_"-"_$S(LST>9:LST,1:"0"_LST)
  S PPI=$O(^PRST(458,"B",PPE,0)),SDT=DT I PPI S D1=$P($G(^PRST(458,PPI,2)),"^",14),SDT=$P($G(^(1)),"^",14)
- I PRT W !,Z," Leave Balance: ",$S(Z="ML":$J(BAL,13,2),1:$J(BAL,13,3))," as of ",D1
+ I PRT,Z="CT" W !,Z,?6," Leave Balance: ",$J(BAL,9,3)," as of ",D1
+ I PRT,Z'="CT" W !,Z," Leave Balance: ",$S(Z="ML":$J(BAL,13,2),1:$J(BAL,13,3))," as of ",D1
  I "AL SL"'[Z Q
  S EDT=$P($G(^PRST(458.1,DA,0)),"^",5) I EDT'>SDT G B3
  S X1=EDT,X2=SDT D ^%DTC S INC=X+13\14*$S(Z="AL":AINC,1:SINC)

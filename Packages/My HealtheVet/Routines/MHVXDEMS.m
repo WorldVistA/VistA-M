@@ -1,5 +1,5 @@
 MHVXDEMS ;WAS/GPM - Secure Messaging Demographics extract ; 12/1/05 6:58pm [3/23/08 8:17pm]
- ;;1.0;My HealtheVet;**5**;Aug 23, 2005;Build 24
+ ;;1.0;My HealtheVet;**5,9**;Aug 23, 2005;Build 24
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -14,6 +14,7 @@ EXTRACT(QRY,ERR,DATAROOT) ; Entry point to extract demographics data
  ;                             : OPD^VADPT
  ;                             : OAD^VADPT
  ;                             : KVAR^VADPT
+ ;                        1252 : OUTPTPR^SDUTL3
  ;                        1916 : PRPT^SCAPMC
  ;                       10035 : 2,.1041
  ;                        4459 : 2,.133
@@ -68,9 +69,10 @@ EXTRACT(QRY,ERR,DATAROOT) ; Entry point to extract demographics data
  S @DATAROOT@("ATTENDING-PHYSICIAN")=$$GET1^DIQ(2,DFN_",",.1041)
  ;
  S X=""
- I $$PRPT^SCAPMC(DFN,,,,,,.MHVPCP,.MHVERR) I MHVPCP'="" S X=$P($G(@MHVPCP@(1)),U,2) K @MHVPCP
- I $G(MHVERR)'="" K @MHVERR
- S @DATAROOT@("PRIMARY-CARE-PHYSICIAN")=X
+ ;I $$PRPT^SCAPMC(DFN,,,,,,.MHVPCP,.MHVERR) I MHVPCP'="" S X=$P($G(@MHVPCP@(1)),U,2) K @MHVPCP
+ S X=$$OUTPTPR^SDUTL3(DFN) ;MHV*1*9 always return Primary Care Provider
+ ;I $G(MHVERR)'="" K @MHVERR
+ S @DATAROOT@("PRIMARY-CARE-PHYSICIAN")=$P(X,"^",2)
  ;
  D KVAR^VADPT
  S @DATAROOT=1_"^"_EXTIME

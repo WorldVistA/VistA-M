@@ -1,5 +1,5 @@
 PSOSULB1 ;BHAM ISC/RTR,SAB-Print suspended labels  cont. ;10/10/96
- ;;7.0;OUTPATIENT PHARMACY;**10,200,264,289**;DEC 1997;Build 107
+ ;;7.0;OUTPATIENT PHARMACY;**10,200,264,289,367**;DEC 1997;Build 62
  ;Reference to $$INSUR^IBBAPI supported by IA 4419
  ;Reference to $$DEA^IBNCPDP controlled subscription by IA 4299
  ;
@@ -21,13 +21,21 @@ ASK K ^TMP($J),PSOSU,PSOSUSPR S PFIOQ=0,PDUZ=DUZ W !
  S X1=PRTDT,X2=$P(PSOPAR,"^",27) D C^%DTC S XDATE=X K IOP,POP,IO("Q"),ZTSK
 PRLBL W ! S %ZIS("A")="Printer 'LABEL' Device: ",%ZIS("B")="",%ZIS="MQN" D ^%ZIS S PSLION=ION I POP S IOP=PSOION D ^%ZIS D MESS G EXIT^PSOSULBL
  I $E(IOST)'["P" D MESSL G PRLBL
+ ;
+FDAPRT ; Selects FDA Medication Guide Printer
+ I $$GET1^DIQ(59,PSOSITE,134)'="" N FDAPRT S FDAPRT="" D  I FDAPRT="^"!($G(PSOFDAPT)="") G EXIT^PSOSULBL
+ . F  D  Q:FDAPRT'=""
+ . . S FDAPRT=$$SELPRT^PSOFDAUT($P($G(PSOFDAPT),"^"))
+ . . I FDAPRT="" W $C(7),!,"You must select a valid FDA Medication Guide printer."
+ . I FDAPRT'="",(FDAPRT'="^") S PSOFDAPT=FDAPRT
+ ;
  N PSOIOS S PSOIOS=IOS D DEVBAR^PSOBMST
  S PSOBARS=PSOBAR1]""&(PSOBAR0]"")&$P(PSOPAR,"^",19)
  K PSOION D ^%ZISC I $D(IO("Q")) K IO("Q")
 QUE K %DT,PSOTIME,PSOOUT D NOW^%DTC S %DT="REAX",%DT(0)=%,%DT("B")="NOW",%DT("A")="Queue to run at what time: " D ^%DT K %DT I $D(DTOUT)!(Y<0) D MESS G EXIT^PSOSULBL
  S (PSOSUSPR,PSODBQ)=1,PSOTIME=Y
  S ZTRTN="BEG^PSOSULBL",ZTDESC="PRINT LABELS FROM SUSPENSE",ZTIO=PSLION,ZTDTH=PSOTIME
- F G="PSOPAR","PSOSYS","PSOSUSPR","PSODBQ","PSRT","PSRTONE","PSOPROP","PSLION","PFIO","PSOBARS","PSODTCUT","PSOPRPAS","PRTDT","PDUZ","PSOBAR0","PSOBAR1","PSOSITE","XDATE","PSOTIME" S:$D(@G) ZTSAVE(G)=""
+ F G="PSOPAR","PSOSYS","PSOSUSPR","PSODBQ","PSRT","PSRTONE","PSOPROP","PSLION","PFIO","PSOBARS","PSODTCUT","PSOPRPAS","PRTDT","PDUZ","PSOBAR0","PSOBAR1","PSOSITE","XDATE","PSOTIME","PSOFDAPT" S:$D(@G) ZTSAVE(G)=""
  D ^%ZTLOAD W !!,"PRINT FROM SUSPENSE JOB QUEUED!",! D ^%ZISC G EXIT^PSOSULBL
  ;G:PSRT'="D" BEG^PSOSULBL
 MESS W $C(7),!!?3,"NOTHING QUEUED TO PRINT!",! Q
@@ -63,8 +71,8 @@ BAIMAIL     ;Send mail message
  ;condition.
  ;Input: REC = Pointer to Suspense file (#52.5)
  ;Returns: 1 or 0
- ;1 (one) if ¾ of days supply has elapsed.
- ;0 (zero) is returned if ¾ of days supply has not elapsed. 
+ ;1 (one) if 3/4 of days supply has elapsed.
+ ;0 (zero) is returned if 3/4 of days supply has not elapsed. 
  ;
 DSH(REC) ; ePharmacy - verify that 3/4 days supply has elapsed before printing from suspense
  N PSINSUR,PSARR,SHDT,DSHOLD,DSHDT,PS0,COMM,DIE,DA,DR,RXIEN,RFL,DAYSSUP,LSTFIL,PTDFN,IBINS,DRG
@@ -104,12 +112,12 @@ DSH(REC) ; ePharmacy - verify that 3/4 days supply has elapsed before printing f
  ;Input: RXIEN = Prescription file #52 IEN
  ;Returns: DATE/TIME value
 DSHDT(RXIEN) ;
- N RXFIL,FILLDT,DAYSSUP,DSH34
+ N FILLDT,DAYSSUP,DSH34
  I '$D(^PSRX(RXIEN,0)) Q -1
- ;S RXFIL=$$LSTRFL^PSOBPSU1(RXIEN) ; Last Refill
  S FILLDT=$$LDPFDT(RXIEN) ; Last Dispensed Date or Prior Fill Date for renewal
  S DAYSSUP=$$LFDS(RXIEN) ; Days Supply of Last Refill
  S DSH34=DAYSSUP*.75 ; 3/4 of Days Supply
+ S:DSH34["." DSH34=(DSH34+1)\1
  Q $$FMADD^XLFDT(FILLDT,DSH34) ; Return today plus 3/4 of Days Supply date
  ;
  ; Description: This function returns the DAYS SUPPLY for the Latest Fill

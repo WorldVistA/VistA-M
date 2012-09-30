@@ -1,5 +1,5 @@
-SDAM1 ;MJK/ALB - Appt Mgt (Patient);Apr 23 1999
- ;;5.3;Scheduling;**149,155,193,189,445,478,466**;Aug 13, 1993;Build 2
+SDAM1 ;MJK/ALB - Appt Mgt (Patient);Apr 23 1999 ; 1/6/12 3:36pm
+ ;;5.3;Scheduling;**149,155,193,189,445,478,466,567,591**;Aug 13, 1993;Build 8
  ;
 INIT ; -- get init pat appt data
  ;  input:          DFN := ifn of pat
@@ -93,6 +93,9 @@ STATUS(DFN,SDT,SDCL,SDATA,SDDA) ; -- return appt status
  ; -- get data for evaluation
  S:'$G(SDDA) SDDA=+$$FIND^SDAM2(DFN,SDT,SDCL)
  S Y=$G(^SC(SDCL,"S",SDT,1,SDDA,"C"))
+ ;retrieve CHECK OUT from OUTPATIENT ENCOUNTER file if not in Hospital Location file 
+ I 'Y,SDT<$$NOW^XLFDT N SDSCE S SDSCE=$P($G(^DPT(DFN,"S",SDT,0)),U,20) D  ;pointer to OE
+ .I SDSCE S $P(Y,U,3)=$P($G(^SCE(SDSCE,0)),U,7) ;check out date
  ;
  ; -- set initial status value ; non-count clinic?
  S S=$S($P(SDATA,"^",2)]"":$P($P($P(^DD(2.98,3,0),"^",3),$P(SDATA,"^",2)_":",2),";"),$P($G(^SC(SDCL,0)),U,17)="Y":"NON-COUNT",1:"")

@@ -1,5 +1,5 @@
 MDPS4 ; HOIFO/NCA - Retrieve List of Consult Procedures ;1/26/06  12:45
- ;;1.0;CLINICAL PROCEDURES;**13**;Apr 01, 2004;Build 19
+ ;;1.0;CLINICAL PROCEDURES;**13,24**;Apr 01, 2004;Build 8
  ; Integration Agreements:
  ; Reference IA# 2740 [Subscription] Routine GMRCSLM1.
  ; IA# 2693 [Subscription] TIU Extractions.
@@ -23,7 +23,7 @@ GP(MDDFN,MDSDT,MDEDT) ; Gather the completed procedure list
  ..I MDX4["TIU" D
  ...S MDFIL=8925,MDDTE=$$GET1^DIQ(MDFIL,+MDX4_",",1201,"I")
  ...S Y=MDDTE X ^DD("DD") N MDREV S MDREV=(9999999.9999-MDDTE)
- ...S:$G(^TMP("MDPLST",$J,MDREV,MDCPRO_"~"_+MDX4))="" ^(MDCPRO_"~"_+MDX4)=MDCPRO_"^"_+MDX4_"^"_"PRPRO"_"^"_"MDPS4"_"^^"_Y_"^^^^^"_MDCPRO_"^^"_+MDX_"^"_+MDX4,MDFIL=123
+ ...S:$G(^TMP("MDPLST",$J,MDREV,MDCPRO_"~"_+MDX4))="" ^(MDREV_"~"_+MDX4)=MDCPRO_"^"_+MDX4_"^"_"PRPRO"_"^"_"MDPS4"_"^^"_Y_"^^^^^"_MDCPRO_"^^"_+MDX_"^"_+MDX4,MDFIL=123
  ...Q
  ..Q
  .Q

@@ -1,6 +1,6 @@
 IBJTCA ;ALB/ARH - TPI CLAIMS INFO SCREEN ;16-FEB-1995
- ;;2.0;INTEGRATED BILLING;**39,137**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**39,137,451**;21-MAR-94;Build 47
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; -- main entry point for IBJ TP CLAIMS INFO
  D EN^VALM("IBJT CLAIM INFO")
@@ -9,6 +9,7 @@ EN ; -- main entry point for IBJ TP CLAIMS INFO
 HDR ; -- header code
  D HDR^IBJTU1(+IBIFN,+DFN,1)
  S:$$WNRBILL^IBEFUNC(+IBIFN) VALMSG="*=No payment expected, bill exists to obtain MRA"
+ S VALMSG="|% EEOB | Enter ?? for more actions|" ; IB*2.0*451
  Q
  ;
 INIT ; -- init variables and list array

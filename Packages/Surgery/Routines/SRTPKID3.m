@@ -1,5 +1,5 @@
-SRTPKID3 ;BIR/SJA - KIDNEY-PREOPERATIVE RISK ASSESSMENT ;03/04/08
- ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
+SRTPKID3 ;BIR/SJA - KIDNEY-PREOPERATIVE RISK ASSESSMENT ;09/07/2011
+ ;;3.0;Surgery;**167,175,176**;24 Jun 93;Build 8
  I '$D(SRTPP) W !!,"A Transplant Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
 START Q:SRSOUT  D DISP
  W !!,"Select Transplant Information to Edit: " R X:DTIME I '$T!(X["^") S SRSOUT=1 G END
@@ -25,7 +25,7 @@ ONE ; edit one item
  Q
 DISP ; display fields
  S SRHPG="RISK ASSESSMENT",SRPAGE="PAGE: 3 OF "_$S(SRNOVA:6,1:5) D HDR^SRTPUTL
- K DR,SRAO S:SRNOVA SRDR="147;59;60;61;75;108;113;80;83;131;115;109;110;92;145;132;146;90"
+ K DR,SRAO S:SRNOVA SRDR="200;201;59;60;61;75;108;113;80;83;131;115;109;110;92;145;132;146;90"
  S:'SRNOVA SRDR="59;60;61;75;108;113;80;115;90;83;109;110;92;133"
  K DA,DIC,DIQ,SRX,SRY S DIC="^SRT(",DA=SRTPP,DIQ="SRY",DIQ(0)="E",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
  S (SRX,SRZ)=0 F I=1:1 S SRZ=$P(SRDR,";",I) Q:'SRZ  S SRX=I,SRAO(I)=SRY(139.5,SRTPP,SRZ,"E")_"^"_SRZ
@@ -45,19 +45,20 @@ VA I 'SRNOVA D  W !!,SRLINE Q
  .W !,"13. Post-TX Prophylaxis for TB/Antimycobacterial Treatment:",?60,$P(SRAO(13),"^")
  .W !,"14. Graft Failure Date:",?31,$P(SRAO(14),"^")
 NONVA I SRNOVA D
- .W !,"1.  Diabetes Mellitus:",?26,$P(SRAO(1),"^"),?37,"15. Hypertension Requiring Meds:",?72,$P(SRAO(15),"^")
- .W !,"2.  Diabetic Retinopathy:",?26,$P(SRAO(2),"^"),?37,"16. Peripheral Vascular Disease:",?72,$P(SRAO(16),"^")
- .W !,"3.  Diabetic Neuropathy:",?26,$P(SRAO(3),"^"),?37,"17. Transfusion >4 RBC Units:",?72,$P(SRAO(17),"^")
- .W !,"4.  Cardiac Disease:",?26,$P(SRAO(4),"^"),?37,"18. Non-Compliance (Med and Diet):",?72,$P(SRAO(18),"^")
- .W !,"5.  Liver Disease:",?26,$P(SRAO(5),"^")
- .W !,"6.  HIV + (positive):",?26,$P(SRAO(6),"^")
- .W !,"7.  Lung Disease:",?26,$P(SRAO(7),"^")
- .W !,"8.  Pre-Transplant Malignancy:",?32,$P(SRAO(8),"^")
- .W !,"9.  Recipient Substance Abuse:",?32,$P(SRAO(9),"^")
- .W !,"10. Preop Functional Status:",?32,$P(SRAO(10),"^")
- .W !,"11. Active Infection Immediately Pre-Transplant Req. Antibiotics:",?66,$P(SRAO(11),"^")
- .W !,"12. Post-TX Prophylaxis for CMV/Antiviral Treatment:",?66,$P(SRAO(12),"^")
- .W !,"13. Post-TX Prophylaxis for PCP/Antibiotic Treatment:",?66,$P(SRAO(13),"^")
- .W !,"14. Post-TX Prophylaxis for TB/Antimycobacterial Treatment:",?65,$P(SRAO(14),"^")
+ .W !,"1.  Diabetes - Long Term:",?28,$J($P(SRAO(1),"^"),6),?37,"16. Hypertension Requiring Meds:",?72,$P(SRAO(16),"^")
+ .W !,"2.  Diabetes - 2 Wks Preop:",?28,$J($P(SRAO(2),"^"),6),?37,"17. Peripheral Vascular Disease:",?72,$P(SRAO(17),"^")
+ .W !,"3.  Diabetic Retinopathy:",?32,$P(SRAO(3),"^"),?37,"18. Transfusion >4 RBC Units:",?72,$P(SRAO(18),"^")
+ .W !,"4.  Diabetic Neuropathy:",?32,$P(SRAO(4),"^"),?37,"19. Non-Compliance (Med and Diet):",?72,$P(SRAO(19),"^")
+ .W !,"5.  Cardiac Disease:",?32,$P(SRAO(5),"^")
+ .W !,"6.  Liver Disease:",?32,$P(SRAO(6),"^")
+ .W !,"7.  HIV + (positive):",?32,$P(SRAO(7),"^")
+ .W !,"8.  Lung Disease:",?32,$P(SRAO(8),"^")
+ .W !,"9.  Pre-Transplant Malignancy:",?32,$P(SRAO(9),"^")
+ .W !,"10. Recipient Substance Abuse:",?32,$P(SRAO(10),"^")
+ .W !,"11. Preop Functional Status:",?32,$P(SRAO(11),"^")
+ .W !,"12. Active Infection Immediately Pre-Transplant Req. Antibiotics:",?66,$P(SRAO(12),"^")
+ .W !,"13. Post-TX Prophylaxis for CMV/Antiviral Treatment:",?66,$P(SRAO(13),"^")
+ .W !,"14. Post-TX Prophylaxis for PCP/Antibiotic Treatment:",?66,$P(SRAO(14),"^")
+ .W !,"15. Post-TX Prophylaxis for TB/Antimycobacterial Treatment:" S X=$P(SRAO(15),"^") W:$L(X)>3 ?60,X W:$L(X)<4 ?66,X
  W !!,SRLINE
  Q

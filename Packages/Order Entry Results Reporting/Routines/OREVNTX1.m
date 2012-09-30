@@ -1,5 +1,5 @@
-OREVNTX1 ; SLC/JLI - Event delayed orders RPC's ;8/20/09  13:53
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,165,149,243,280**;Dec 17, 1997;Build 85
+OREVNTX1 ; SLC/JLI - Event delayed orders RPC's ; 4/5/11 2:53pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,165,149,243,280,347**;Dec 17, 1997;Build 4
  ;
 PUTEVNT(ORY,DFN,EVT,ORIFN) ; Save new patient delayed events to file 100.2
  S ORY=$$NEW^OREVNT(DFN,EVT,ORIFN)
@@ -204,9 +204,10 @@ ISDCOD(ORY,ORIFN) ;True: the order need to be filtered out
  . S THEGRP=$P($G(ORGRPLST(IDX)),U,2)
  . I $$GRPCHK(THEGRP,ODGRP) S ORY=1
  I ORY Q
- S PAS=";1;"
+ S PAS=";1;2;7;13;"  ;*347 Update Filter
  S:$D(^OR(100,+ORIFN,3)) X3=^OR(100,+ORIFN,3)
- S:(PAS'[(";"_$P(X3,U,3)_";")) ORY=0
+ ;*347 Filter out DC
+ S:(PAS[(";"_$P(X3,U,3)_";")) ORY=1
  Q
 DEFLTS(ORY,EVTID) ;Return default specialty for EVTID(#100.5)
  Q:'+EVTID

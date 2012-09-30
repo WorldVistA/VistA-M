@@ -1,5 +1,5 @@
-SROAUTL3 ;BIR/ADM - RISK ASSESSMENT UTILITY ;01/07/08
- ;;3.0; Surgery ;**38,47,63,77,142,163,166**;24 Jun 93;Build 6
+SROAUTL3 ;BIR/ADM - RISK ASSESSMENT UTILITY ;08/11/2011
+ ;;3.0;Surgery;**38,47,63,77,142,163,166,176**;24 Jun 93;Build 8
  ;
  ; Reference to ^DIC(45.3 supported by DBIA #218
  ;
@@ -20,6 +20,9 @@ CARD ; allow input of cardiac risk assessment preop information
  I Y=1 D ^SROACLN G CARD
  I Y=2 D ^SROACAT G CARD
  D ^SROACOP G CARD
+ Q
+TUT ; set default value for field 518
+ S X=$G(^SRF(SRTN,200.1)) I $P(X,"^",9)="",$P(X,"^",10)="" S $P(^SRF(SRTN,200.1),"^",10)="NA"
  Q
 PREOP ; print preop information (managerial)
  W:$E(IOST)="P" !! D PREOP^SROAUTL0 S SRDR=DR W !,?28,"PREOPERATIVE INFORMATION",! S SRQ=1 D OUT

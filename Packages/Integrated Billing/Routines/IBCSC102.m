@@ -1,5 +1,5 @@
 IBCSC102 ;ALB/MJB - MCCR SCREEN 10 (UB-04 BILL SPECIFIC INFO) ;27 MAY 88 10:20
- ;;2.0;INTEGRATED BILLING;**432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**432,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; DEM;432 - Moved IBCSC8* billing screen routines to IBCSC10* billing screen
@@ -38,6 +38,7 @@ EN S IBCUBFT=$$FT^IBCU3(IBIFN) I IBCUBFT=2 K IBCUBFT G ^IBCSC10H ;CMS-1500
  I $P(IB("UF3"),U,5)]"" S IBZ(IBZCNT)="S: "_$P(IB("UF3"),U,5),IBZCNT=IBZCNT+1
  I $P(IB("UF3"),U,6)]"" S IBZ(IBZCNT)="T: "_$P(IB("UF3"),U,6)
  ;S IBZ(0)="",IBZ=$S($P(IB("UF3"),U,4)]"":"Pri: "_$P(IB("UF3"),U,4),1:"")_$S($P(IB("UF3"),U,5)'="":"  Sec: "_$P(IB("UF3"),U,5),1:"")_$S($P(IB("UF3"),U,6)'="":" Ter: "_$P(IB("UF3"),U,6),1:"")
+ I IBZ(0)="",$$IBMICN^IBCBB13(IBIFN) S IBZ(0)="UNSPECIFIED [REQUIRED]"
  S:IBZ(0)="" IBZ(0)=IBUN
  W !?4,"ICN/DCN(s)        : ",IBZ(0)
  F IBZCNT=1:1 Q:'$D(IBZ(IBZCNT))  W !?24,IBZ(IBZCNT)

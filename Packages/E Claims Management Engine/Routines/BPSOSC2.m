@@ -1,5 +1,5 @@
 BPSOSC2 ;BHAM ISC/FCS/DRS - Certification testing ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -51,14 +51,14 @@ SETBPS(ENTRY) ;
  .. I X]"" S CNT=CNT+1,BPS("RX",N,"Submission Clarif Code",CNT)=X
  . ;
  . ; Other Amount Claimed
- . K BPS("Insurer","Other Amt Qual")
+ . K BPS("RX",N,"Other Amt Qual")
  . S A=0,CNT=0
  . F  S A=$O(^BPS(9002313.31,ENTRY,2,N,4,A)) Q:'A  D
  .. S X=^BPS(9002313.31,ENTRY,2,N,4,A,0)
  .. I X]"" D
  ... S CNT=CNT+1
- ... S BPS("Insurer","Other Amt Value",CNT)=$P(X,U,1)
- ... S BPS("Insurer","Other Amt Qual",CNT)=$P(X,U,2)
+ ... S BPS("RX",N,"Other Amt Value",CNT)=$P(X,U,1)
+ ... S BPS("RX",N,"Other Amt Qual",CNT)=$P(X,U,2)
  . ;
  . ; COB data
  . K BPS("RX",N,"OTHER PAYER")
@@ -152,14 +152,14 @@ TABLE ;;
  ;;368;"RX",N,"Prescriber Zip/Postal Zone"
  ;;384;"Patient","Patient Residence"
  ;;391;"Claim",N,"Patient Assignment Indicator"
- ;;401;"RX",N,"Date Filled"
+ ;;401;"NCPDP","DOS"
  ;;402;"RX",N,"RX IEN"
  ;;403;"RX",N,"Refill #"
  ;;405;"RX",N,"Days Supply"
  ;;406;"RX",N,"Compound Code"
  ;;407;"RX",N,"NDC"
  ;;408;"RX",N,"DAW"
- ;;409;"RX",N,"Gross Amount Due"
+ ;;409;"RX",N,"Ingredient Cost"
  ;;411;"RX",N,"Prescriber NPI"
  ;;412;"RX",N,"Dispensing Fee"
  ;;414;"RX",N,"Date Written"
@@ -174,7 +174,7 @@ TABLE ;;
  ;;429;"RX",N,"Unit Dose Indicator"
  ;;430;"RX",N,"Gross Amount Due"
  ;;433;"RX",N,"Patient Paid Amount"
- ;;436;"RX",N,"Alt. Product Type"
+ ;;436;"RX",N,"Product ID Qualifier"
  ;;438;"RX",N,"Incentive Amount"
  ;;439;"RX",N,"DUR",DUR,439
  ;;440;"RX",N,"DUR",DUR,440

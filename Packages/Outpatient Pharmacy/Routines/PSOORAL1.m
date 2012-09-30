@@ -1,5 +1,5 @@
 PSOORAL1 ;BHAM ISC/SAB - Build Listman activity logs ; 12/4/07 12:25pm
- ;;7.0;OUTPATIENT PHARMACY;**71,156,148,247,240,287**;DEC 1997;Build 77
+ ;;7.0;OUTPATIENT PHARMACY;**71,156,148,247,240,287,354,367**;DEC 1997;Build 62
  N RX0,VALMCNT K DIR,DTOUT,DUOUT,DIRUT,^TMP("PSOAL",$J) S DA=$P(PSOLST(ORN),"^",2),RX0=^PSRX(DA,0),J=DA,RX2=$G(^(2)),R3=$G(^(3)),CMOP=$O(^PSRX(DA,4,0))
  S IEN=0,DIR(0)="LO^1:"_$S(CMOP:8,1:7),DIR("A",1)=" ",DIR("A",2)="Select Activity Log by  number",DIR("A",3)="1.  Refill      2.  Partial      3.  Activity     4.  Labels"
  S DIR("A")=$S(CMOP:"5.  Copay       6.  ECME         7.  CMOP Events  8.  All Logs",1:"5.  Copay       6.  ECME         7.  All Logs")
@@ -37,6 +37,7 @@ ACT ;activity log
  ..K ^UTILITY($J,"W") S X="Comments: "_PSOACBRV,(DIWR,DIWL)=1,DIWF="C80" D ^DIWP F I=1:1:^UTILITY($J,"W",1) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$G(^UTILITY($J,"W",1,I,0))
  .I $P($G(^PSRX(DA,"A",N,1)),"^")]"" S IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",5)=$P($G(^PSRX(DA,"A",N,1)),"^") I $P($G(^PSRX(DA,"A",N,1)),"^",2)]"" S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_":"_$P($G(^PSRX(DA,"A",N,1)),"^",2)
  .I $O(^PSRX(DA,"A",N,2,0)) F I=0:0 S I=$O(^PSRX(DA,"A",N,2,I)) Q:'I  S MIG=^PSRX(DA,"A",N,2,I,0) D
+ ..S:MIG["Mail Tracking Info.: " IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",9)=" "
  ..F SG=1:1:$L(MIG) S:$L(^TMP("PSOAL",$J,IEN,0)_" "_$P(MIG," ",SG))>80 IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",9)=" " S:$P(MIG," ",SG)'="" ^TMP("PSOAL",$J,IEN,0)=$G(^TMP("PSOAL",$J,IEN,0))_" "_$P(MIG," ",SG)
  K MIG,SG,I,^UTILITY($J,"W"),DIWF,DIWL,DIWR
  Q
@@ -45,8 +46,15 @@ LBL ;label log
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="#   Date        Rx Ref                    Printed By",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
  I '$O(^PSRX(DA,"L",0)) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There are NO Labels printed." Q
  F L1=0:0 S L1=$O(^PSRX(DA,"L",L1)) Q:'L1  S LBL=^PSRX(DA,"L",L1,0),DTT=$P(^(0),"^") D DAT D
- .S $P(RN," ",26)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=L1_"   "_DAT_"    ",RFT=$S($P(LBL,"^",2):"REFILL "_$P(LBL,"^",2),1:"ORIGINAL"),RFT=RFT_$E(RN,$L(RFT)+1,26)
- .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RFT_$P($G(^VA(200,$P(LBL,"^",4),0)),"^"),IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Comments: "_$P(LBL,"^",3)
+ . S $P(RN," ",26)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=L1_"   "_DAT_"    ",RFT=$S($P(LBL,"^",2):"REFILL "_$P(LBL,"^",2),1:"ORIGINAL"),RFT=RFT_$E(RN,$L(RFT)+1,26)
+ . S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RFT_$P($G(^VA(200,$P(LBL,"^",4),0)),"^"),IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Comments: "_$P(LBL,"^",3)
+ . N FDAMGDOC S FDAMGDOC=$G(^PSRX(DA,"L",L1,"FDA"))
+ . I FDAMGDOC'="" D
+ . . S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="FDA Med Guide: "_$E(FDAMGDOC,1,61)
+ . . I $L(FDAMGDOC)>61 D
+ . . . F  Q:$E(FDAMGDOC,62,999)=""  D
+ . . . . S FDAMGDOC=$E(FDAMGDOC,62,999),IEN=IEN+1
+ . . . . S ^TMP("PSOAL",$J,IEN,0)=$E(FDAMGDOC,1,61)
  Q
  ;
 COPAY ;Copay activity log

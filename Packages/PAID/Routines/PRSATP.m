@@ -1,5 +1,5 @@
-PRSATP ;HISC/REL,WIRMFO/MGD/PLT - Timekeeper Post Time ;11/21/06
- ;;4.0;PAID;**22,57,69,92,102,93,112**;Sep 21, 1995;Build 54
+PRSATP ;HISC/REL,WIRMFO/MGD/PLT - Timekeeper Post Time ;2/24/10
+ ;;4.0;PAID;**22,57,69,92,102,93,112,126**;Sep 21, 1995;Build 59
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; input (from calling option)
  ;   PTPF - (optional) part-time physician flag, true (=1) when called
@@ -19,10 +19,10 @@ D2 W !!,"Would you like to edit the T & A RECORDs in alphabetical order" S %=1 D
  ;
 LOOP ;
  S LP=1,NN=""
- F  S NN=$O(^PRSPC("ATL"_TLE,NN)) Q:NN=""  F DFN=0:0 S DFN=$O(^PRSPC("ATL"_TLE,NN,DFN)) Q:DFN<1  I $$PTPSCR(DFN,PRSDT,$G(PTPF)) S GLOB="" D POST D:GLOB]"" UNLOCK^PRSLIB00(GLOB) I 'LP G EX
+ F  S NN=$O(^PRSPC("ATL"_TLE,NN)) Q:NN=""  F DFN=0:0 S DFN=$O(^PRSPC("ATL"_TLE,NN,DFN)) Q:DFN<1  I $$PTPSCR(DFN,PRSDT,$G(PTPF)) S GLOB="" D POST D:GLOB]"" UNLOCK^PRSLIB00(GLOB),NURSEPOC^PRSNEETP(TLI,PPI,DFN,PRSDT) I 'LP G EX
  G EX
 NME K DIC S DIC("A")="Select EMPLOYEE: ",DIC("S")="I $P(^(0),""^"",8)=TLE,$D(^PRST(458,PPI,""E"",+Y)),$$PTPSCR^PRSATP(+Y,PRSDT,$G(PTPF))",DIC(0)="AEQM",DIC="^PRSPC(",D="ATL"_TLE W ! D IX^DIC S DFN=+Y K DIC
- G:DFN<1 EX S GLOB="" D POST D:GLOB]"" UNLOCK^PRSLIB00(GLOB) G NME
+ G:DFN<1 EX S GLOB="" D POST D:GLOB]"" UNLOCK^PRSLIB00(GLOB),NURSEPOC^PRSNEETP(TLI,PPI,DFN,PRSDT) G NME
 POST S TC=$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),"^",2),TC2=$P($G(^(0)),"^",13)
  I 'TC Q:LP'=2  W !!?5,"This Employee has no tour entered for this date." Q
  I "T"'[$P($G(^PRST(458,PPI,"E",DFN,0)),"^",2) W:LP=2 $C(7),!!,"This Employee has already been sent to Payroll." Q

@@ -1,6 +1,6 @@
 FBAACCB1 ;AISC/GRR-CLERK CLOSE BATCH CONTINUED ; 11/24/10 10:27am
- ;;3.5;FEE BASIS;**55,61,116**;JAN 30, 1995;Build 30
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;3.5;FEE BASIS;**55,61,116,108**;JAN 30, 1995;Build 115
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 PHARM ;ENTRY FOR PHARMACY BATCH CALCULATE TOTAL DOLLARS AND LINE COUNT
  ; HIPAA 5010 - count line items that have 0.00 amount paid
  F A=0:0 S A=$O(^FBAA(162.1,"AE",B,A)) Q:A'>0  F B2=0:0 S B2=$O(^FBAA(162.1,"AE",B,A,B2)) Q:B2'>0  I $D(^FBAA(162.1,A,"RX",B2,0)) S Z(0)=^(0) D MOREP
@@ -17,7 +17,7 @@ LISTC S Q="",$P(Q,"=",80)="=",(FBAAOUT,FBLISTC)=0,IOP=$S($D(ION):ION,1:"HOME") D
 PRTC D HEDC
  F I=0:0 S I=$O(^FBAAI("AC",B,I)) Q:I'>0!(FBAAOUT)  I $D(^FBAAI(I,0)) S Z(0)=^(0) D CMORE
  Q
-CMORE N FBADJLR,FBFPPSC,FBFPPSL,FBX,FBY3
+CMORE N FBADJLR,FBFPPSC,FBFPPSL,FBX,FBY3,FBDX,FBPOA,FBADMTDX
  S K=$P(Z(0),"^",3),J=$P(Z(0),"^",4) D ENV^FBAACCB0 S N=$$NAME^FBCHREQ2(J),S=$$SSN^FBAAUTL(J),FBIN=I,FBAC=$P(Z(0),"^",8)+.0001,FBAP=$P(Z(0),"^",9)+.0001,FBVP=$P(Z(0),"^",14),ZS=$P(Z(0),"^",13)
  S FBAC=$P(FBAC,".",1)_"."_$E($P(FBAC,".",2),1,2),FBAP=$P(FBAP,".",1)_"."_$E($P(FBAP,".",2),1,2)
  S FBSC=$P(Z(0),"^",11),FBSC=$S(FBSC="":"",$D(^FBAA(161.27,FBSC,0)):$P(^(0),"^",1),1:""),FBFD=$P(Z(0),"^",6),FBTD=$P(Z(0),"^",7) S FBPDT=FBFD D CDAT S FBFD=FBPDT,FBPDT=FBTD D CDAT S FBTD=FBPDT
@@ -38,8 +38,21 @@ WRITC I $Y+7>IOSL D ASKH^FBAACCB0:$E(IOST,1,2)["C-" Q:FBAAOUT  W @IOF D HEDC
  I FBFPPSC]"" W !,?4,"FPPS Claim ID: ",FBFPPSC,"   FPPS Line: ",FBFPPSL
  W !,$S($D(QQ):QQ_")",1:""),FBVP,$S(FBCAN]"":"+",1:""),?4,FBFD,?13,FBTD,?22,$J(FBAC,6),?32,$J(FBAP,6),?45,$S(FBADJLR]"":FBADJLR,1:FBSC)
  W:$P(Z(0),"^",24) ?56,"Discharge ",$$ICD^FBCSV1(+$P(Z(0),"^",24),$P(Z(0),"^",6)) W ! ;CSV
- I $D(^FBAAI(I,"DX")) S FBDX=^("DX") F FBK=1:1:5 Q:$P(FBDX,"^",FBK)=""  D WRTDX
- I $D(^FBAAI(I,"PROC")) S FBPROC=^("PROC") W ! F FBL=1:1:5 Q:$P(FBPROC,"^",FBL)=""  D WRTPC
+ ; write admitting diagnosis
+ N P7,P8
+ S P7=$G(^FBAAI(I,5))
+ S FBADMTDX=$P(P7,"^",9)
+ S P8=$$ICD9^FBCSV1(FBADMTDX,$P($G(Z(0)),"^",6))
+ I P8'="" W !,?4,"Admit Dx: ",P8
+ ; set diagnosis code and present on admission code
+ N P1,P2
+ S P1=$G(^FBAAI(I,"DX"))
+ S P2=$G(^FBAAI(I,"POA"))
+ F FBK=1:1:25 D WRTDX
+ ; set procedure code
+ N P5
+ S P5=$G(^FBAAI(I,"PROC"))
+ F FBL=1:1:25 D WRTPC
  S A2=FBAP D PMNT^FBAACCB2 K A2
  Q
 CDAT S FBPDT=$E(FBPDT,4,5)_"/"_$S($E(FBPDT,6,7)="00":$E(FBPDT,2,3),1:$E(FBPDT,6,7)_"/"_$E(FBPDT,2,3))
@@ -60,8 +73,25 @@ MORECH ; HIPAA 5010 - count line items that have 0.00 amount paid
  S FBARY($P(Z(0),"^"))=+$P(Z(0),"^",9)
  Q
  ;
-WRTDX W ?4,"Dx: ",$$ICD9^FBCSV1($P(FBDX,"^",FBK),$P($G(Z(0)),"^",6)),"  " Q  ;CSV
-WRTPC W ?4,"Proc: ",$$ICD0^FBCSV1($P(FBPROC,"^",FBL),$P($G(Z(0)),"^",6)),"  " Q  ;CSV
+WRTDX ; write diagnosis code and present on admission code
+ N P3,P4
+ S FBDX=$P(P1,"^",FBK)
+ S FBPOA=$P(P2,"^",FBK)
+ Q:FBDX=""
+ S P3=$$ICD9^FBCSV1(FBDX,$P($G(Z(0)),"^",6))_"/"
+ S P4=P3_$S(FBPOA:$P($G(^FB(161.94,FBPOA,0)),"^"),1:"")
+ I FBK=1!($X+$L(P4)+2>IOM) W !,?4,"DX/POA: "
+ W P4," "
+ Q
+ ;
+WRTPC ; write procedure code (if present)
+ N P6
+ S FBPROC=$P(P5,"^",FBL)
+ Q:FBPROC=""
+ S P6=$$ICD0^FBCSV1(FBPROC,$P($G(Z(0)),"^",6))
+ I FBL=1!($X+$L(P6)+2>IOM) W !,?4,"PROC: "
+ W P6," "
+ Q
 MORE ;
  N FBADJLA,FBADJLR,FBFPPSC,FBFPPSL,FBX,TAMT
  S J=$P(Z(0),"^",5),D=$P(Z(0),"^",3),FBAACPT=$P(Z(0),"^",1),N=$S($D(^DPT(J,0)):$P(^(0),"^",1),1:""),S=$S(N]"":$P(^DPT(J,0),"^",9),1:""),FBIN=A,CPTDESC=$P(Z(0),"^",2)

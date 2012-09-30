@@ -1,5 +1,5 @@
 RMPRN62 ;Hines OIFO/HNC -NPPD CALCULATIONS ;02/14/98
- ;;3.0;PROSTHETICS;**31,39,48,50,57,70,84,91,103,134,144,153,159,164**;Feb 09, 1996;Build 3
+ ;;3.0;PROSTHETICS;**31,39,48,50,57,70,84,91,103,134,144,153,159,164,169**;Feb 09, 1996;Build 4
  ;
  ; ODJ - patch 50 - 7/28/00 - add line label REP to mark start of repair lines.
  ; HNC - patch 57 - 4/5/01 - add Dental Implant
@@ -19,6 +19,8 @@ RMPRN62 ;Hines OIFO/HNC -NPPD CALCULATIONS ;02/14/98
  ; AAC - patch 159 - 05/01/10 - NPPD Categories/lines - New and Repair
  ;
  ; AAC - patch 164 - 01/24/11 - NPPD Categories/lines - New and Repair
+ ;
+ ; AAC - patch 169 - 01/11/12 - NPPD Categories/lines - New
  ;
  ;build array or tmp
 DES ;description of line numbers
@@ -42,10 +44,10 @@ DES ;description of line numbers
  ;;200 I;LEG COMPONENT
  ;;300 A;ARM B/E
  ;;300 B;ARM A/E
- ;;300 C;COSMETIC GLOVES
+ ;;300 C;* NO LONGER USED *
  ;;300 D;ARM A/O
  ;;300 E;TERMINAL DEVICES
- ;;300 F;EXT.POWERED,ARM
+ ;;300 F;EXT PWR ARM A/O EXT PWR TRM D
  ;;400 A;ORTHOSIS ANKLE
  ;;400 B;ORTHOSIS LEG AK
  ;;400 C;ORTHOSIS, SPINAL
@@ -96,7 +98,7 @@ DES ;description of line numbers
  ;;900 M;COMPUTER EQUIP
  ;;900 N;TELEHEALTH
  ;;900 O;EXERCISE EQUIPMENT
- ;;900 P;HEALING/RESTORATIVE EQUIPMENT
+ ;;900 P;WOMENS HEALTH
  ;;910 A;MED SUP AL/OTH
  ;;910 B;BATTERIES
  ;;920 A;HOME DIAL EQP

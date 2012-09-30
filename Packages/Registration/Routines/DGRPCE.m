@@ -1,5 +1,5 @@
-DGRPCE ;ALB/MRL,KV,PJR,BRM,ERC,TDM - CONSISTENCY CHECKER, EDIT INCONSISTENCIES ; 5/14/09 3:05pm
- ;;5.3;Registration;**121,122,175,297,342,451,626,689,653,754**;Aug 13, 1993;Build 46
+DGRPCE ;ALB/MRL,KV,PJR,BRM,ERC,TDM,LBD - CONSISTENCY CHECKER, EDIT INCONSISTENCIES ; 10/20/10 3:52pm
+ ;;5.3;Registration;**121,122,175,297,342,451,626,689,653,754,797**;Aug 13, 1993;Build 24
  ;
  ;KV;11/15/00;DG*5.3*297;Disable addition of CD Elig Code in Reg. Screens
  ;                      ;Adding CD Elig Codes in Load/Edit Screen used to
@@ -26,6 +26,9 @@ NKEY D ^DGRPCE1
  ;
  I DGER[59 D CATDIB
  I DGER["82" D EN2^DGRP6CL
+ ;
+ ;Use Screen 6.1 to edit inconsistencies with MSE data (DG*5.3*797)
+ I $$MSERR^DGRPCE1,$$NEWMSE^DGRPCE1(DFN) D EN^DGRP61(DFN)
  ;
  I (DGER[301)!(DGER[303)!(DGER[304)!(DGER[307) D
  . N DEPFLD

@@ -1,5 +1,5 @@
 FBAAVD ;AISC/DMK-DISPLAY/EDIT VENDOR DEMOGRAPHICS ; 8/28/09 12:35pm
- ;;3.5;FEE BASIS;**9,98,111**;JAN 30, 1995;Build 17
+ ;;3.5;FEE BASIS;**9,98,111,122**;JAN 30, 1995;Build 8
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;FBTEMP set = 1 if called from input template
 RDV ;ask vendor
@@ -14,7 +14,7 @@ EN1 ;display vendor demographics
  ;
  N C,I
  Q:'$G(DA)
- S Z=$G(^FBAAV(DA,0)),V=$G(^(1)),T=$G(^("AMS")),A=$G(^("ADEL")),FBNPI=$P($G(^(3)),U,2)
+ S Z=$G(^FBAAV(DA,0)),V=$G(^(1)),T=$G(^("AMS")),A=$G(^("ADEL")),FBNPI=$P($G(^(3)),U,2),FBTXC=$P($G(^(3)),U,3)
  F X=1:1:17 S Z(X)=$P(Z,U,X)
  S FBDEL=$S($P(A,U)="Y":1,1:0),FBAAPN=$P(V,U),FBAAFN=$P(V,U,9)
  ;Z=zero node,V=one node,T=ams node,A=adel node
@@ -26,6 +26,7 @@ EN1 ;display vendor demographics
  .I $$CKVEN^FBAADV(DA) W !?20,"==> AWAITING AUSTIN APPROVAL <=="
  W !!,$J("Name:",13),?15,$E(Z(1),1,30),?47,"ID Number: ",Z(2)
  W !?40,"Billing Prov NPI: ",FBNPI
+ W !?31,"Billing Prov Taxonomy code: ",FBTXC ;FB*3.5*122
  W !,$J("Address:",13),?15,Z(3),?47,"Specialty: ",$E($P($G(^FBAA(161.6,+Z(8),0)),U),1,20)
  I Z(14)]"" W !,$J("Address [2]:",13),?15,Z(14)
  W !,$J("City:",13),?15,Z(4),?52,"Type:",?58,$P($P(^DD(161.2,6,0),Z(7)_":",2),";")

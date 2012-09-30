@@ -1,5 +1,5 @@
-EASEZC1 ;ALB/jap - Compare 1010EZ Data with VistA Database ;10/16/00  13:08
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**1,51**;Mar 15, 2001
+EASEZC1 ;ALB/jap/pjh - Compare 1010EZ Data with VistA Database ; 11/5/09 5:46pm
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**1,51,92**;Mar 15, 2001;Build 20
  ;
 EN(EASAPP,EASDFN) ;this entry point is called as soon as user has selected an Application
  ;
@@ -57,6 +57,7 @@ EN(EASAPP,EASDFN) ;this entry point is called as soon as user has selected an Ap
  ..I $G(^TMP("EZDATA",$J,IEN,MULTIPLE,1))="" S ^TMP("EZDATA",$J,IEN,MULTIPLE,1)=U_ACCEPT_U_SUBIEN
  D C206^EASEZC3  ;alb/cmf/51 special for ethnicity multiple
  D C202^EASEZC3  ;alb/cmf/51 special for race multiple
+ D C3216^EASEZC3  ;pjh special for military service multiple
  ;set 'transformed' data into ^TMP("EZDISP" array
  D SORT^EASEZC3(EASAPP)
  Q

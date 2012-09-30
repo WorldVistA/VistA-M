@@ -1,5 +1,5 @@
 PSSPOIM1 ;BIR/RTR,WRT-Manual create of Orderable Item continued ; 4/28/09 4:36pm
- ;;1.0;PHARMACY DATA MANAGEMENT;**29,38,47,141,153**;9/30/97;Build 32
+ ;;1.0;PHARMACY DATA MANAGEMENT;**29,38,47,141,153,159**;9/30/97;Build 29
  ;
 CHK S PSNO=0 I $G(PSMAN) W !!,"Matching ",PSNAME,!,"   to",!,SPHOLD," ",$P($G(^PS(50.606,+DOSEPTR,0)),"^"),!
  I '$G(PSMAN) S PSMC=$P($G(^PS(50.7,PSSP,0)),"^") W !!,"Matching ",PSNAME,!,"   to",!,PSMC," ",$P($G(^PS(50.606,+$P(^PS(50.7,PSSP,0),"^",2),0)),"^"),!
@@ -32,7 +32,8 @@ OTHER W @IOF W !,"There are other Dispense Drugs with the same VA Generic Name a
 EN(PSVAR) ;
  W !?3,"Now editing Orderable Item:",!?3,$P(^PS(50.7,PSVAR,0),"^"),"   ",$P($G(^PS(50.606,+$P(^(0),"^",2),0)),"^")
  W ! K DIE N MFLG S PSBEFORE=$P(^PS(50.7,PSVAR,0),"^",4),PSBEFORE1=+$P(^PS(50.7,PSVAR,0),"^",2),PSAFTER=0,PSINORDE=""
- S PSSOTH=$P($G(^PS(59.7,1,40.2)),"^"),DIE="^PS(50.7,",DR="5;6;.04;.05;.06;D DFR^PSSPOIMO(PSBEFORE1),DFRL^PSSPOIMO;10//YES;I X=""Y"" S Y=""@2"";D PDCHK^PSSPOIMO;@2;.07;.08;7;S:'$G(PSSOTH) Y=""@1"";7.1;@1",DA=PSVAR
+ S PSSOTH=$P($G(^PS(59.7,1,40.2)),"^"),DIE="^PS(50.7,",DIE("NO^")="BACK"
+ S DR="5;6;.04;.05;@3;.06;D DFR^PSSPOIMO(PSBEFORE1),DFRL^PSSPOIMO;10//YES;I X=""Y"" S Y=""@2"";D PDCHK^PSSPOIMO;I $$DP^PSSPOIMO(PSVAR) S Y=""@3"";@2;.07;.08;7;S:'$G(PSSOTH) Y=""@1"";7.1;@1",DA=PSVAR
  D ^DIE S PSAFTER=$P(^PS(50.7,PSVAR,0),"^",4) K DIE,PSSOTH
  S:PSBEFORE&('PSAFTER) PSINORDE="D" S:PSAFTER PSINORDE="I"
  I PSINORDE'="" D REST^PSSPOIDT(PSVAR)

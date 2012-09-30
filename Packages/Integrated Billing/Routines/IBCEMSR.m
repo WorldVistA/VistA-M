@@ -1,5 +1,5 @@
 IBCEMSR ;WOIFO/AAT - MRA STATISTICS REPORT ;09/03/04
- ;;2.0;INTEGRATED BILLING;**155,288,294,349**;21-MAR-94;Build 46
+ ;;2.0;INTEGRATED BILLING;**155,288,294,349,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ;
@@ -156,7 +156,7 @@ DENIED(IBIFN) ;MRA requests denied?
  Q IBDEN
  ;
 SECOND ;Secondary claims
- N IBAUT,IBTX,IBCBPS,IBNEXT,IBBILS,IBTOT,IBUNR,IB2ND,IBNODE
+ N IBAUT,IBTX,IBCBPS,IBNEXT,IBBILS,IBTOT,IBUNR,IB2ND,IBNODE,IBGRPN,IBTYPLN,IBPRP
  I $D(@REFS@("SEC",IBIFN)) Q  ; Already included
  S IBCBPS=$P(IBBILZ,U,21) ; current bill sequence
  S IBNEXT=$S(IBSEQ="S":"T",1:"S") ;Next (after MRA) sequence
@@ -179,7 +179,14 @@ SECOND ;Secondary claims
  ;Calculate amounts
  S IBTOT=+$G(^DGCR(399,IBIFN,"U1"))
  S IBUNR=$P($G(^PRCA(430,IBIFN,13)),U,2) ; Medicare Unreimbursable
- S IB2ND=$$PREOBTOT^IBCEU0(IBIFN)
+ ; IB*2.0*447 calculate differently for claims w/Medicare supplemental, need plan type now and prior payments
+ ;S IB2ND=$$PREOBTOT^IBCEU0(IBIFN)
+ S IBGRPN=+$P($G(^DGCR(399,IBIFN,"I"_$S(IBCBPS="S":2,IBCBPS="T":3,1:1))),U,18),IBTYPLN=$P($G(^IBA(355.3,IBGRPN,0)),U,9)
+ S IBPRP=$P($G(^DGCR(399,IBIFN,"U2")),U,4) S:IBCBPS="T" IBPRP=IBPRP+$P($G(^DGCR(399,IBIFN,"U2")),U,5)
+ ; if current payer is primary, or prior payments are a negative amt., set prior payments to 0
+ I IBCBPS="P"!(IBPRP<0) S IBPRP=0
+ ; if plan type does NOT have any special calculations, just calculate the old way (PR only)
+ S IB2ND=$S($$MSEDT^IBCEMU4(IBIFN,IBTYPLN)'="":IBTOT-IBPRP,1:$$PREOBTOT^IBCEU0(IBIFN))
  D INC(IBNODE)
  D INC(IBNODE_"1",IBTOT)
  D INC(IBNODE_"2",IBUNR)

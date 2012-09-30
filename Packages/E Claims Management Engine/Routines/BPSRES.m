@@ -1,6 +1,9 @@
 BPSRES ;BHAM ISC/BEE - ECME SCREEN RESUBMIT W/EDITS ;3/12/08  14:01
- ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; Reference to $$RXRLDT^PSOBPSUT supported by DBIA 4701
+ ; Reference to $$RXFLDT^PSOBPSUT supported by DBIA 4701
  ;
  ;ECME Resubmit w/EDITS Protocol (Hidden) - Called by [BPS USER SCREEN]
  ;
@@ -28,8 +31,9 @@ XRESED Q
  ;  Return Value -> 0 - Claim was not resubmitted
  ;                  1 - Claim was resubmitted
  ;
-DOSELCTD(BPRXI) N BP02,BP59,BPBILL,BPCLTOT,BPDFN,BPDOSDT,BPOVRIEN,BPQ,BPRXIEN,BPRXR,BPSTATUS,BPUPDFLG
- N BPBILL,BPCOB,BPDOCOB,BPSURE,BPPTRES,BPPHSRV,BPDLYRS
+DOSELCTD(BPRXI) ;
+ N BP02,BP59,BPBILL,BPCLTOT,BPDFN,BPDOSDT,BPOVRIEN,BPQ,BPRXIEN,BPRXR,BPSTATUS,BPUPDFLG
+ N BPCOB,BPSURE,BPPTRES,BPPHSRV,BPDLYRS,COBDATA,BPPRIOPN,BPSPCLS
  S (BPQ)=""
  S (BPCLTOT,BPUPDFLG)=0
  ;
@@ -56,23 +60,27 @@ DOSELCTD(BPRXI) N BP02,BP59,BPBILL,BPCLTOT,BPDFN,BPDOSDT,BPOVRIEN,BPQ,BPRXIEN,BP
  I BPSTATUS'["E REJECTED" W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"is NOT Rejected and cannot be Resubmitted w/EDITS",! G XRES
  I $P($G(^BPST(BP59,0)),U,14)<2,$$PAYABLE^BPSOSRX5(BPSTATUS),$$PAYBLSEC^BPSUTIL2(BP59) D  G XRES
  . W !,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"cannot be Resubmitted if the secondary claim is payable.",!,"Please reverse the secondary claim first."
- S BPBILL=0
- ;I $P($G(^BPST(BP59,0)),U,14)=2 S BPBILL=$$PAYBLPRI^BPSUTIL2(BP59) I BPBILL=0 D G XRES
- ;. W !,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"cannot be Resubmitted if the primary is NOT 
- ;can't resubmit a closed claim. The user must reopen first.
- I $$CLOSED02^BPSSCR03($P($G(^BPST(BP59,0)),U,4)) W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"is Closed and cannot be Resubmitted w/EDITS.",! G XRES
+ ;
+ ;Can't resubmit a closed claim. The user must reopen first.
+ I $$CLOSED^BPSSCRU1(BP59) W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"is Closed and cannot be Resubmitted w/EDITS.",! G XRES
  ;
  S BPCOB=$$COB59^BPSUTIL2(BP59)
- ;Prompt for EDIT Information
- S BPOVRIEN=$$PROMPTS(BP59,BP02,BPCOB) I BPOVRIEN=-1 G XRES
- ;
+ ;If this is a secondary, make sure Primary is either Payable or Closed.
+ S BPPRIOPN=0 I BPCOB=2 D  G XRES:BPPRIOPN=1
+ . ;Get Primary claim status
+ . S BPSPCLS=$$FINDECLM^BPSPRRX5(BPRXIEN,BPRXR,1)
+ . I $P(BPSPCLS,U)>1 D
+ .. Q:$$CLOSED^BPSSCRU1($P(BPSPCLS,U,2))
+ .. W !,"The secondary claim cannot be Resubmitted unless the primary is either payable",!,"or closed. Please resubmit or close the primary claim first."
+ .. S BPPRIOPN=1
  ;Retrieve DOS
  S BPDOSDT=$$DOSDATE^BPSSCRRS(BPRXIEN,BPRXR)
  ;
- ; If secondary, call COBFLDS
- ; Otherwise, submit claim
- I BPCOB=2 S BPBILL=$$COBFLDS(BP59,BPRXIEN,BPRXR,BPDOSDT,"ERES",BPOVRIEN)
- I BPCOB'=2 S BPBILL=$$EN^BPSNCPDP(BPRXIEN,BPRXR,BPDOSDT,"ERES","","ECME RESUBMIT","",BPOVRIEN,,,BPCOB)
+ ;Prompt for EDIT Information
+ S BPOVRIEN=$$PROMPTS(BP59,BP02,BPRXIEN,BPRXR,BPCOB,.BPDOSDT,.COBDATA) I BPOVRIEN=-1 G XRES
+ ;
+ ; Submit the claim
+ S BPBILL=$$EN^BPSNCPDP(BPRXIEN,BPRXR,BPDOSDT,"ERES","","ECME RESUBMIT","",BPOVRIEN,"","",BPCOB,"F","","",$G(COBDATA("PLAN")),.COBDATA,$G(COBDATA("RTYPE")))
  ;
  ;Print Return Value Message
  W !!
@@ -91,8 +99,7 @@ DOSELCTD(BPRXI) N BP02,BP59,BPBILL,BPCLTOT,BPDFN,BPDOSDT,BPOVRIEN,BPQ,BPRXIEN,BP
  ;10 Reversal Processed But Claim Was Not Resubmitted
  ;
  I +BPBILL=0 D
- . N BPSCOB S BPSCOB=$$COB59^BPSUTIL2(BP59) ;get COB for the BPS TRANSACTION IEN
- . D ECMEACT^PSOBPSU1(+BPRXIEN,+BPRXR,"Claim resubmitted to 3rd party payer: ECME USER's SCREEN-"_$S(BPSCOB=1:"p",BPSCOB=2:"s",1:"")_$$INSNAME^BPSSCRU6(BP59))
+ . D ECMEACT^PSOBPSU1(+BPRXIEN,+BPRXR,"Claim resubmitted to 3rd party payer: ECME USER's SCREEN-"_$S(BPCOB=1:"p",BPCOB=2:"s",1:"")_$$INSNAME^BPSSCRU6(BP59))
  . S BPUPDFLG=1,BPCLTOT=1
 XRES I BPCLTOT W !,BPCLTOT," claim",$S(BPCLTOT'=1:"s have",1:" has")," been resubmitted.",!
  D PAUSE^VALM1
@@ -104,11 +111,16 @@ XRES2 I BPCLTOT W !,BPCLTOT," claim",$S(BPCLTOT'=1:"s have",1:" has")," been res
  ;
  ;  Input Values -> BP59 - The BPS TRANSACTION entry
  ;                  BP02 - The BPS CLAIMS entry
+ ;                  BPRXIEN - Prescription IEN (#52)
+ ;                  BPRXR - Fill Number
  ;                  BPCOB - (optional) payer sequence (1-primary, 2 -secondary)
+ ;                  BPDOSDT - Date of Service, passed by reference 
+ ;                  BPSECOND - Array, passed by reference, of COB data
  ;  Output Value -> BPQ  - -1 - The user chose to quit
  ;                         "" - The user completed the EDITS
-PROMPTS(BP59,BP02,BPCOB) ;
- N %,BP300,BP35401,BPCLCD1,BPCLCD2,BPCLCD3,BPFDA,BPFLD,BPOVRIEN,BPMED,BPMSG,BPPSNCD,BPPREAUT,BPPRETYP,BPQ,BPRELCD,DIC,DIR,DIROUT,DTOUT,DUOUT,X,Y,DIRUT,DUP
+PROMPTS(BP59,BP02,BPRXIEN,BPRXR,BPCOB,BPSDOSDT,BPSECOND) ;
+ N %,BP300,BP35401,BPCLCD1,BPCLCD2,BPCLCD3,BPFDA,BPFLD,BPOVRIEN,BPMED,BPMSG,BPPSNCD
+ N BPPREAUT,BPPRETYP,BPQ,BPRELCD,DIC,DIR,DIROUT,DTOUT,DUOUT,X,Y,DIRUT,DUP
  ;
  S BPQ=""
  I +$G(BPCOB)=0 S BPCOB=1
@@ -130,7 +142,7 @@ PROMPTS(BP59,BP02,BPCOB) ;
  ;Relationship Code
  N X,DIC,Y
  S DIC("B")=BPRELCD
- S DIC(0)="QEAM",DIC=9002313.19,DIC("A")="Relationship Code: "
+ S DIC(0)="QEAM",DIC=9002313.19,DIC("A")="Pharmacy Relationship Code: "
  D ^DIC
  ;Check for "^" or timeout
  I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 K X,DIC,Y G XPROMPTS
@@ -138,7 +150,7 @@ PROMPTS(BP59,BP02,BPCOB) ;
  K X,DIC,Y
  ;
  ;Person Code
- K DIR("?") S DIR(0)="FO^1:3",DIR("A")="Person Code",DIR("?")="Enter the Specific Person Code Assigned to the Patient by the Payer"
+ K DIR("?") S DIR(0)="FO^1:3",DIR("A")="Pharmacy Person Code",DIR("?")="Enter the Specific Person Code Assigned to the Patient by the Payer"
  S DIR("B")=BPPSNCD
  D ^DIR
  I $D(DTOUT)!$D(DUOUT) S BPQ=-1 G XPROMPTS
@@ -194,6 +206,8 @@ PROMPTS(BP59,BP02,BPCOB) ;
  .. S DUP=0 I BPCLCD3=BPCLCD1!(BPCLCD3=BPCLCD2) S BPCLCD3="" W !,"  Duplicates not allowed" S DUP=1
  . K X,DIC,Y
  ;
+ I $$RELDATE^BPSBCKJ(+BPRXIEN,+BPRXR)]"" S BPDOSDT=$$EDITDT(1,BPRXIEN,BPRXR,BP02) I BPDOSDT="^" S BPQ=-1 G XPROMPTS
+ ;
  ;Patient Residence Code
  N X,DIC,Y
  S DIC("B")=+BPPTRES
@@ -224,8 +238,26 @@ PROMPTS(BP59,BP02,BPCOB) ;
  S BPDLYRS=$P(Y,U,2)
  K X,DIC,Y
  ;
+ ; If secondary claim, setup secondary data and allow user to edit
+ ; Get data from the primary claim, if it exists
+ I BPCOB=2 D  I BPQ=-1 G XPROMPTS
+ . N BPSPL59,BPRTTP59
+ . S BPRET=$$PRIMDATA^BPSPRRX6(BPRXIEN,BPRXR,.BPSECOND)
+ . ; If the primary claim data is missing, get data from the most recent secondary claim
+ . I 'BPRET,$$SECDATA^BPSPRRX6(BPRXIEN,BPRXR,.BPSPL59,.BPSECOND,.BPRTTP59)
+ . ; The PRIMARY BILL element is set by $$SECDATA.  If SECDATA is not called, this element will be 
+ . ;   missing and we will need to create it
+ . I '$D(BPSECOND("PRIMARY BILL")) D
+ .. N BPBILL
+ .. S BPBILL=$$PAYBLPRI^BPSUTIL2(BP59)
+ .. I BPBILL>0 S BPSECOND("PRIMARY BILL")=BPBILL
+ . ; Set flag telling BPSNCPDP not to recompile the data from the BPS Transaction and the secondary claim
+ . S BPSECOND("NEW COB DATA")=1
+ . ; $$PROMPTS displays the data and allows the user edit the data.
+ . S BPQ=$$PROMPTS^BPSPRRX3(BPRXIEN,BPRXR,BPDOSDT,.BPSECOND)
+ ;
  ;Ask to proceed
- I BPCOB=1 W ! S BPQ=$$YESNO^BPSSCRRS("Are you sure?(Y/N)") I BPQ'=1 S BPQ=-1 G XPROMPTS
+ W ! S BPQ=$$YESNO^BPSSCRRS("Are you sure?(Y/N)") I BPQ'=1 S BPQ=-1 G XPROMPTS
  S BPQ=1
  ;
  ;Save into BPS NCPDP OVERRIDES (#9002313.511)
@@ -276,24 +308,34 @@ ASKLINE(BPROMPT,BPERRMES) ;
  . I ",-1,-8,-4,-2,-3,"'[(","_BPRET_",") W "Incorrect format." ; Corrupted array (",BPRET,")"
  Q BPRET
  ;
+EDITDT(DFLT,BPRXIEN,BPRXR,BP02) ;Prompt User to choose correct Date of Service
  ;
-COBFLDS(BP59,BPRXIEN,BPRXR,BPDOSDT,BPSWHERE,BPOVRIEN) ;
- N BPSECOND,BPSPL59,BPRTTP59,BPRET,BPENGINE,BPSPLAN,BPRATTYP
- S BPSECOND("PRESCRIPTION")=BPRXIEN
- S BPSECOND("FILL NUMBER")=BPRXR
- S BPSECOND("FILL DATE")=BPDOSDT
- S BPSPLAN=$$GETPL59^BPSPRRX5(BP59)
- S BPRATTYP=$$GETRTP59^BPSPRRX5(BP59)
- S BPSECOND("PRIMARY BILL")=$$GETBIL59^BPSPRRX5(BP59)
- I $$RES2NDCL^BPSPRRX6(BP59,.BPSPL59,.BPSECOND,.BPRTTP59)
- ; BPSECOND("RXCOB"),BPSECOND("PLAN"),BPSECOND("RTYPE") will be added in BPSNCPD4 and BPSNCPD5
- ; Note: BPSECOND("PRIMARY BILL") will be populated by the following call
- S BPRET=$$PRIMDATA^BPSPRRX4($$IEN59^BPSOSRX(BPRXIEN,BPRXR,1),.BPSECOND,1,1)
- I BPRET=0 D GETFR52^BPSPRRX4(BPRXIEN,BPRXR,.BPSECOND)
+ ; Input value ->  DFLT - The data to use as the default value. If no default
+ ;                        is provided, Current Date of Service will be used.
  ;
- I $$PROMPTS^BPSPRRX3(.BPSECOND)=-1 Q "-100^Action cancelled"
- S BPSECOND("NEW COB DATA")=1
- S BPENGINE=$$SUBMCLM^BPSPRRX2(BPSECOND("PRESCRIPTION"),BPSECOND("FILL NUMBER"),BPSECOND("FILL DATE"),BPSWHERE,BPSECOND("BILLNDC"),2,BPSECOND("PLAN"),.BPSECOND,BPSECOND("RTYPE"),"ECME RESUBMIT",BPOVRIEN)
- I +BPENGINE=4 W !!,$P(BPENGINE,U,2),!
- Q BPENGINE
+ ;                        1 - Current Date of Service
+ ;                        2 - Fill Date
+ ;                        3 - Release Date
  ;
+ ;              BPRXIEN - Pointer to the PRESCRIPTION file (#52)
+ ;                BPRXR - Refill number for prescription
+ ;                 BP02 - Pointer to the BPS CLAIMS file (#9002313.02)
+ ;
+ ; Output value -> Selected Date of Service in FileMan format
+ ;
+ ; Reference to $$RXRLDT^PSOBPSUT supported by DBIA 4701
+ ; Reference to $$RXFLDT^PSOBPSUT supported by DBIA 4701
+ ;
+ N BPRLS,BPFIL,BPCUR,DIR,DIRUT,DIROUT,DTOUT,DUOUT,OPT,TMP,X,Y
+ S BPRLS=$$RXRLDT^PSOBPSUT(BPRXIEN,BPRXR)\1 ;release date
+ S BPFIL=$$RXFLDT^PSOBPSUT(BPRXIEN,BPRXR)\1 ;fill date
+ S BPCUR=$$HL7TFM^XLFDT($$GET1^DIQ(9002313.02,BP02,401)) ;current date of service
+ S DFLT=$G(DFLT),DIR("B")=1,DIR("A")="Date of Service"
+ I DFLT=2,BPFIL]"" S DIR("B")=2
+ I DFLT=3,BPRLS]"" S DIR("B")=3
+ S OPT=1,DIR(0)="S^"_OPT_":"_$$FMTE^XLFDT(BPCUR,"5D")_" Current Date of Service",TMP(OPT)=BPCUR
+ I BPFIL'>DT,BPFIL<BPRLS S OPT=OPT+1,DIR(0)=DIR(0)_";"_OPT_":"_$$FMTE^XLFDT(BPFIL,"5D")_" Fill Date",TMP(OPT)=BPFIL
+ I BPRLS'>DT S OPT=OPT+1,DIR(0)=DIR(0)_";"_OPT_":"_$$FMTE^XLFDT(BPRLS,"5D")_" Release Date",TMP(OPT)=BPRLS
+ D ^DIR
+ I $D(DIRUT) S Y="^" Q Y
+ Q TMP(Y)

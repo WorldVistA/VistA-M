@@ -1,5 +1,5 @@
-ONCOAI ;Hines OIFO/GWB [AI Complete Abstract] ;7/19/93
- ;;2.11;ONCOLOGY;**6,15,17,18,19,25,26,27,28,29,32,33,34,35,43,45,47,49**;Mar 07, 1995;Build 38
+ONCOAI ;Hines OIFO/GWB [AI Complete Abstract] ;07/22/11
+ ;;2.11;ONCOLOGY;**6,15,17,18,19,25,26,27,28,29,32,33,34,35,43,45,47,49,54**;Mar 07, 1995;Build 10
  ;
 BEG D EX
  W @IOF,!!!
@@ -46,6 +46,9 @@ REG D KIL S DIR("B")="Yes",DIR(0)="Y",DIR("A")="    Register a Primary for this 
  ;
 PRIM2 ;patient in PRIMARY FILE
  D SDD^ONCOCOM
+ W !," Date Last Contact: ",$$GET1^DIQ(160,ONCOD0,16,"E")
+ W !," Status:            ",$$GET1^DIQ(160,ONCOD0,15,"E")
+ W !," Follow-up Status:  ",$$GET1^DIQ(160,ONCOD0,15.2,"E")
 ASK K DIR,Y S DIR(0)="S^E:EDIT existing Primary;A:ADD another Primary;F:Follow-Up;Q:Quit Patient",DIR("A")="     EDIT/ADD primary for this patient",DIR("B")="Edit" D ^DIR G EDT:Y="E",AIP:Y="A",FOL:Y="F",CONT:Y="Q",CONT:U,EX
  ;
 EDT ;Select primary to edit
@@ -98,7 +101,7 @@ KIL K D1,DI,DN,DIR,DIC,DIE,COB,COC,D,DA,D0,DIR,DR,NM,R,RC,RCC,SEX,SX,POB,SN,TL,X
  K SC,SR,T,TS,UF,XDA,XLC,XY,%ZISOS
  Q
 ER ;Error
- W !!?5,"Something is wrong with database!! - See SiteManger" S Y="" Q
+ W !!?5,"Something is wrong with database!! - See Site Manager" S Y="" Q
 EX D KILL
  K ONCOANS,D0,DA,DIC,DIE,DIR,DQ,DR,MS,PR,R1,R2,RS,RIP,SR,ST,SY,T,S,Z,ER,TM,CS,XD0,XD1
  K A,AG,D0,D1,DA,DXS,FIL,G,I,J,K,L,M,N,NM,O2,TD,TX,OT,DOP,ICD,C,XX,ONCOYR

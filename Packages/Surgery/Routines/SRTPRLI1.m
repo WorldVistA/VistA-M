@@ -1,5 +1,5 @@
-SRTPRLI1 ;BIR/SJA - PRINT LIVER-DIAGNOSIS/RISK INFORMATION ;04/21/08
- ;;3.0;Surgery;**167,175**;24 Jun 93;Build 6
+SRTPRLI1 ;BIR/SJA - PRINT LIVER-DIAGNOSIS/RISK INFORMATION ;07/12/2011
+ ;;3.0;Surgery;**167,175,176**;24 Jun 93;Build 8
  K DR,SRAO,SRX,Y
 DIAG W:$E(IOST)="P" ! W !,?28,"TRANSPLANT INFORMATION",!
  S (DR,SRDR)="85;87;89;68;13;14;15;17;16;18"
@@ -21,7 +21,7 @@ DIAG W:$E(IOST)="P" ! W !,?28,"TRANSPLANT INFORMATION",!
 RISK K DR,SRAO,SRX,Y
  W !,?28,"RISK ASSESSMENT INFORMATION",!
  S:'SRNOVA SRDR="86;84;59;60;108;113;114;90;91;78;79;81;82;83;109;110"
- I SRNOVA S SRDR="86;84;147;59;60;113;108;114;90;91;78;79"
+ I SRNOVA S SRDR="86;84;200;201;59;60;113;108;114;90;91;78;79"
  K DA,DIC,DIQ,SRX,SRY S DIC="^SRT(",DA=SRTPP,DIQ="SRY",DIQ(0)="E",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
  S (SRX,SRZ)=0 F I=1:1 S SRZ=$P(SRDR,";",I) Q:'SRZ  S SRX=I,SRAO(I)=SRY(139.5,SRTPP,SRZ,"E")_"^"_SRZ
 VA I 'SRNOVA D
@@ -44,16 +44,17 @@ VA I 'SRNOVA D
 NONVA I SRNOVA D
  .W !,"Acute or Chronic Encephalopathy:",?33,$P(SRAO(1),"^")
  .W !,"Active Infection (for PSC):",?33,$P(SRAO(2),"^")
- .W !,"Diabetes Mellitus:",?33,$P(SRAO(3),"^")
- .W !,"Diabetic Retinopathy:",?33,$P(SRAO(4),"^")
- .W !,"Diabetic Neuropathy:",?33,$P(SRAO(5),"^")
- .W !,"Lung Disease:",?33,$P(SRAO(6),"^")
- .W !,"HIV + (positive):",?33,$P(SRAO(7),"^")
- .W !,"Renal impairment:",?33,$P(SRAO(8),"^")
- .W !,"Non-Compliance:",?33,$P(SRAO(9),"^")
- .W !,"On Methadone:",?33,$P(SRAO(10),"^")
- .W !,"Porto Pulmonary Hypertension:",?33,$P(SRAO(11),"^")
- .W !,"Esophageal - Gastric Varices:",?33,$P(SRAO(12),"^")
+ .W !,"Diabetes - Long Term:",?33,$P(SRAO(3),"^")
+ .W !,"Diabetes - 2 Wks Preop:",?33,$P(SRAO(4),"^")
+ .W !,"Diabetic Retinopathy:",?33,$P(SRAO(5),"^")
+ .W !,"Diabetic Neuropathy:",?33,$P(SRAO(6),"^")
+ .W !,"Lung Disease:",?33,$P(SRAO(7),"^")
+ .W !,"HIV + (positive):",?33,$P(SRAO(8),"^")
+ .W !,"Renal impairment:",?33,$P(SRAO(9),"^")
+ .W !,"Non-Compliance:",?33,$P(SRAO(10),"^")
+ .W !,"On Methadone:",?33,$P(SRAO(11),"^")
+ .W !,"Porto Pulmonary Hypertension:",?33,$P(SRAO(12),"^")
+ .W !,"Esophageal - Gastric Varices:",?33,$P(SRAO(13),"^")
  I $E(IOST)'="P" D PAGE^SRTPPAS I SRSOUT G END^SRTPPAS
  I $E(IOST)="P" G:SRSOUT END^SRTPPAS I $Y+20>IOSL D PAGE^SRTPPAS I SRSOUT G END^SRTPPAS
 END G ^SRTPRLI2

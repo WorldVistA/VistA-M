@@ -1,5 +1,5 @@
 PRSAENT1 ;HISC/MGD-Entitlement String ;10/19/04
- ;;4.0;PAID;**96,130**;Sep 21, 1995;Build 3
+ ;;4.0;PAID;**96,130,135**;Sep 21, 1995;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -53,7 +53,7 @@ HYBRID(IEN) ;
  . . S $E(OCODE,6)=$TR($E(OCODE,6),"ABCDEFGHIJKLMNOPQR","123456789123456789")
  . I "^0640^0644^0647^0648^0649^0660^0661^0665^0667^"[$E(OCODE,1,4) D
  . . S $E(OCODE,6)=$TR($E(OCODE,6),"ABCDEFGHIJKLMNOPQR","123456789123456789")
- . I "^0669^0672^0675^0681^0682^0685^"[$E(OCODE,1,4) D
+ . I "^0669^0672^0675^0679^0681^0682^0685^"[$E(OCODE,1,4) D  ;PRS*4*135
  . . S $E(OCODE,6)=$TR($E(OCODE,6),"ABCDEFGHIJKLMNOPQR","123456789123456789")
  . ;
  . ; Check individual OCC codes
@@ -109,6 +109,7 @@ HYBRID(IEN) ;
  . . I "^05^06^07^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*130
  . I $E(OCODE,1,4)="0675" D       ; Medical Records Technician
  . . I "^01^02^04^05^06^07^08^09^11^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*130
+ . I $E(OCODE,1,4)="0679" S HYBRID=1    ;Medical Support Assistant   ;PRS*4*135
  . I $E(OCODE,1,4)="0681" D       ; Dental Assistant
  . . I "^03^05^06^07^09^42^"[(U_$E(OCODE,5,6)_U) S HYBRID=1
  . I $E(OCODE,1,4)="0682" D       ; Dental Hygienist

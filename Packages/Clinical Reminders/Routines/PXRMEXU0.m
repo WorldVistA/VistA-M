@@ -1,5 +1,5 @@
-PXRMEXU0 ; SLC/PKR - Reminder exchange general utilities, #0.;07/20/2009
- ;;2.0;CLINICAL REMINDERS;**4,12**;Feb 04, 2005;Build 73
+PXRMEXU0 ;SLC/PKR - Reminder exchange general utilities, #0. ;11/18/2010
+ ;;2.0;CLINICAL REMINDERS;**4,12,18**;Feb 04, 2005;Build 152
  ;=========================================================
 LOC(FDA) ;Process the FDA for location lists.
  ;Direct reads of ^DIC(40.7) covered by DBIA #537.
@@ -53,6 +53,16 @@ GETIEN(NFOUND,LIST) ;FIND^DIC has found multiple entries with the same name.
  . S TEXT(2)="ask for a replacement."
  . D EN^DDIOL(.TEXT)
  Q $S($D(Y(0)):Y(0),1:0)
+ ;
+ ;=========================================================
+ISPCEFIL(FILENUM) ;Return true if FILENUM is a PCE file.
+ I FILENUM=9999999.09 Q 1 ;EDUCATION TOPICS
+ I FILENUM=9999999.15 Q 1 ;EXAM
+ I FILENUM=9999999.64 Q 1 ;HEALTH FACTORS
+ I FILENUM=9999999.14 Q 1 ;IMMUNIZATION
+ I FILENUM=9999999.28 Q 1 ;SKIN TEST
+ I FILENUM=9999999.17 Q 1 ;TREATMENT
+ Q 0
  ;
  ;=========================================================
 SFNFTC(IEN) ;Set the found/not found text line counts in the reminder

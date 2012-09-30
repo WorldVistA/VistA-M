@@ -1,9 +1,8 @@
 BPSNCPD2 ;BHAM ISC/LJE - Continuation of BPSNCPDP (IB Billing Determination) ;11/7/07  16:01
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
- ;External reference $$RX^IBNCPDP supported by DBIA 4299
- ;External reference to $$NCPDPQTY^PSSBPSUT supported by IA4992
  ;
+ ;External reference $$RX^IBNCPDP supported by DBIA 4299
  ;
  ; EN - Call IB Billing Determination.  If good to go, update MOREDATA array
  ; Notes about variables
@@ -48,23 +47,19 @@ EN(DFN,BWHERE,MOREDATA,BPSARRY,IB) ;
  . S MOREDATA("ELIG")=$P(MOREDATA("BILL"),"^",3)
  . I $P(MOREDATA("BILL"),U,1)=0 S IB=2 Q  ;IB says not to bill
  . ;
- . ; esg - 4/28/10 - after the above $$RX^IBNCPDP calls to billing, now get the NCPDP quantity and units for ECME (*8)
- . N QTY
- . S QTY=$$NCPDPQTY^PSSBPSUT($G(BPSARRY("DRUG")),$G(BPSARRY("QTY")))      ; DBIA# 4992
- . S BPSARRY("QTY")=$P(QTY,U,1)                                           ; NCPDP BILLING QUANTITY
- . S BPSARRY("UNITS")=$P(QTY,U,2)                                         ; NCPDP DISPENSE UNIT
- . ;
  . S IB=1
  . M MOREDATA("IBDATA")=BPSARRY("INS")
  . S MOREDATA("PATIENT")=$G(DFN)
  . S MOREDATA("RX")=$G(BPSARRY("IEN"))
- . S $P(MOREDATA("BPSDATA",1),U,1)=$G(BPSARRY("QTY"))
+ . S $P(MOREDATA("BPSDATA",1),U,1)=$G(BPSARRY("NCPDP QTY"))
  . S $P(MOREDATA("BPSDATA",1),U,2)=$G(BPSARRY("COST"))
  . S $P(MOREDATA("BPSDATA",1),U,3)=$G(BPSARRY("NDC"))
  . S $P(MOREDATA("BPSDATA",1),U,4)=$G(BPSARRY("FILL NUMBER"))
- . S $P(MOREDATA("BPSDATA",1),U,5)=""  ; Certify Mode
- . S $P(MOREDATA("BPSDATA",1),U,6)=""  ; Cert IEN
- . S $P(MOREDATA("BPSDATA",1),U,7)=$G(BPSARRY("UNITS"))
+ . S $P(MOREDATA("BPSDATA",1),U,5)=""  ; Certification Mode
+ . S $P(MOREDATA("BPSDATA",1),U,6)=""  ; Certification IEN
+ . S $P(MOREDATA("BPSDATA",1),U,7)=$G(BPSARRY("NCPDP UNITS"))
+ . S $P(MOREDATA("BPSDATA",1),U,8)=$G(BPSARRY("QTY"))    ; Billing Quantity
+ . S $P(MOREDATA("BPSDATA",1),U,9)=$G(BPSARRY("UNITS"))  ; Billing Units
  ;
  ; If certification mode on and no IB result (somewhat redundant since IB is not called
  ;   for certification), get data from BPS Certification table
@@ -77,19 +72,21 @@ EN(DFN,BWHERE,MOREDATA,BPSARRY,IB) ;
  . I 'MOREDATA("PATIENT") S MOREDATA("PATIENT")=$G(DFN) ; Patient
  . S MOREDATA("RX")=$G(BPSARRY("IEN")) ; RX
  . S MOREDATA("ELIG")="V"    ; Eligibility
- . S $P(MOREDATA("BPSDATA",1),U,5)=1  ;Certify Mode
+ . S $P(MOREDATA("BPSDATA",1),U,5)=1   ;Certify Mode
  . S $P(MOREDATA("BPSDATA",1),U,6)=CERTIEN  ;Cert IEN
+ . S $P(MOREDATA("BPSDATA",1),U,8)=""  ; Billing Quantity
+ . S $P(MOREDATA("BPSDATA",1),U,9)=""  ; Billing Units
  . S $P(MOREDATA("IBDATA",1,1),U,1)=1  ;Plan IEN
  . S $P(MOREDATA("IBDATA",1,1),U,4)=$$GET1^DIQ(9002313.31,CERTIEN,.04,"E")  ;Billing Payer Sheet Name
  . S $P(MOREDATA("IBDATA",1,1),U,10)="01"  ;Home State Plan
- . S $P(MOREDATA("IBDATA",1,1),U,11)=$$GET1^DIQ(9002313.31,CERTIEN,.05,"E")  ;Reversal Payer Sheet Name
+ . S $P(MOREDATA("IBDATA",1,1),U,11)=$$GET1^DIQ(9002313.31,CERTIEN,.05,"E") ;Reversal Payer Sheet Name
  . S $P(MOREDATA("IBDATA",1,1),U,12)=""  ;Rebill Payer Sheet Name
  . S $P(MOREDATA("IBDATA",1,1),U,14)=""  ;Plan Name
- . S $P(MOREDATA("IBDATA",1,1),U,15)=$$GET1^DIQ(9002313.31,CERTIEN,.08,"E")  ;Eligibility Payer Sheet Name
+ . S $P(MOREDATA("IBDATA",1,1),U,15)=$$GET1^DIQ(9002313.31,CERTIEN,.08,"E") ;Eligibility Payer Sheet Name
  . S $P(MOREDATA("IBDATA",1,1),U,16)=$$GET1^DIQ(9002313.31,CERTIEN,.04,"I") ;Billing Payer Sheet IEN
  . S $P(MOREDATA("IBDATA",1,1),U,17)=$$GET1^DIQ(9002313.31,CERTIEN,.05,"I") ;Reversal Payer Sheet IEN
  . S $P(MOREDATA("IBDATA",1,1),U,18)=""  ; Rebill Payer Sheet IEN
- . S $P(MOREDATA("IBDATA",1,1),U,19)=$$GET1^DIQ(9002313.31,CERTIEN,.08,"I")  ; Eligibility Payer Sheet IEN
+ . S $P(MOREDATA("IBDATA",1,1),U,19)=$$GET1^DIQ(9002313.31,CERTIEN,.08,"I") ;Eligibility Payer Sheet IEN
  . S $P(MOREDATA("IBDATA",1,2),U,5)=0    ;Admin Fee
  . S $P(MOREDATA("IBDATA",1,3),U,1)=""   ;Group Name
  . S $P(MOREDATA("IBDATA",1,3),U,2)=""   ;Insurance Company Phone Number
@@ -124,11 +121,11 @@ EN(DFN,BWHERE,MOREDATA,BPSARRY,IB) ;
  .... I NFLD=423 S $P(MOREDATA("IBDATA",1,2),U,2)=CERTARY(9002313.3121,NODE,.02)  ;Basis of Cost Determination
  .... I NFLD=426 S $P(MOREDATA("IBDATA",1,2),U,3)=CERTARY(9002313.3121,NODE,.02)  ;Usual & Customary - Base Price
  .... I NFLD=430 S $P(MOREDATA("IBDATA",1,2),U,4)=CERTARY(9002313.3121,NODE,.02)  ;Gross Amt Due
- .... I NFLD=442 S $P(MOREDATA("BPSDATA",1),U,1)=CERTARY(9002313.3121,NODE,.02)  ;Qty
- .... I NFLD=409 S $P(MOREDATA("BPSDATA",1),U,2)=CERTARY(9002313.3121,NODE,.02)  ;Unit Cost
- .... I NFLD=407 S $P(MOREDATA("BPSDATA",1),U,3)=CERTARY(9002313.3121,NODE,.02)  ;NDC
+ .... I NFLD=442 S $P(MOREDATA("BPSDATA",1),U,1)=CERTARY(9002313.3121,NODE,.02)   ;Quantity Dispensed
+ .... I NFLD=409 S $P(MOREDATA("BPSDATA",1),U,2)=CERTARY(9002313.3121,NODE,.02)   ;Unit Cost
+ .... I NFLD=407 S $P(MOREDATA("BPSDATA",1),U,3)=CERTARY(9002313.3121,NODE,.02)   ;NDC
  .... I NFLD=403 S $P(MOREDATA("BPSDATA",1),U,4)=+CERTARY(9002313.3121,NODE,.02)  ;Fill #
- .... I NFLD=600 S $P(MOREDATA("BPSDATA",1),U,7)=CERTARY(9002313.3121,NODE,.02)  ;Unit of Measure
+ .... I NFLD=600 S $P(MOREDATA("BPSDATA",1),U,7)=CERTARY(9002313.3121,NODE,.02)   ;Unit of Measure
  . ;
  . ; If Gross Amt Due is missing, use Usual and Customary
  . I $P(MOREDATA("IBDATA",1,2),U,4)="" S $P(MOREDATA("IBDATA",1,2),U,4)=$P(MOREDATA("IBDATA",1,2),U,3)

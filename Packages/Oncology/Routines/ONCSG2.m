@@ -1,5 +1,5 @@
-ONCSG2 ;Hines OIFO/GWB - Automatic Staging Tables ;10/28/10
- ;;2.11;ONCOLOGY;**35,36,51,52**;Mar 07, 1995;Build 13
+ONCSG2 ;Hines OIFO/GWB - Automatic Staging Tables ;07/26/11
+ ;;2.11;ONCOLOGY;**35,36,51,52,54**;Mar 07, 1995;Build 10
  ;
  ;THORAX
  ;
@@ -180,18 +180,18 @@ STS6 ;Soft Tissue Sarcoma - 6th edition
  ;
 STS7 ;Soft Tissue Sarcoma - 7th edition
  S TNM=T_N_M D  K TNM Q
- .I ((G=1)!(G=""))&(TNM="1A00") S SG="1A" Q  ;IA   T1a   N0    M0 G1,GX
- .I ((G=1)!(G=""))&(TNM="1B00") S SG="1A" Q  ;     T1b   N0    M0 G1,GX
- .I ((G=1)!(G=""))&(TNM="2A00") S SG="1B" Q  ;IB   T2a   N0    M0 G1,GX
- .I ((G=1)!(G=""))&(TNM="2B00") S SG="1B" Q  ;     T2b   N0    M0 G1,GX
- .I ((G=2)!(G=3))&(TNM="1A00") S SG="2A" Q   ;IIA  T1a   N0    M0 G2,3
- .I ((G=2)!(G=3))&(TNM="1B00") S SG="2A" Q   ;     T1b   N0    M0 G2,3
- .I G=2,TNM="2A00" S SG="2B" Q               ;IIB  T2a   N0    M0 G2
- .I G=2,TNM="2B00" S SG="2B" Q               ;     T2b   N0    M0 G2
- .I G=3,TNM="2A00" S SG=3 Q                  ;III  T2a   N0    M0 G3
- .I G=3,TNM="2B00" S SG=3 Q                  ;     T2b   N0    M0 G3
- .I N=1,M=0 S SG=3 Q                         ;     Any T N1    M0 Any G
- .I M=1 S SG=4 Q                             ;IV   Any T Any N M1 Any G
+ .I ((G=1)!(G=9))&(TNM="1A00") S SG="1A" Q  ;IA   T1a   N0    M0 G1,GX
+ .I ((G=1)!(G=9))&(TNM="1B00") S SG="1A" Q  ;     T1b   N0    M0 G1,GX
+ .I ((G=1)!(G=9))&(TNM="2A00") S SG="1B" Q  ;IB   T2a   N0    M0 G1,GX
+ .I ((G=1)!(G=9))&(TNM="2B00") S SG="1B" Q  ;     T2b   N0    M0 G1,GX
+ .I ((G=2)!(G=3))&(TNM="1A00") S SG="2A" Q  ;IIA  T1a   N0    M0 G2,3
+ .I ((G=2)!(G=3))&(TNM="1B00") S SG="2A" Q  ;     T1b   N0    M0 G2,3
+ .I G=2,TNM="2A00" S SG="2B" Q              ;IIB  T2a   N0    M0 G2
+ .I G=2,TNM="2B00" S SG="2B" Q              ;     T2b   N0    M0 G2
+ .I G=3,TNM="2A00" S SG=3 Q                 ;III  T2a   N0    M0 G3
+ .I G=3,TNM="2B00" S SG=3 Q                 ;     T2b   N0    M0 G3
+ .I N=1,M=0 S SG=3 Q                        ;     Any T N1    M0 Any G
+ .I M=1 S SG=4 Q                            ;IV   Any T Any N M1 Any G
  ;
 CLEANUP ;Cleanup
  K G,M,N,T

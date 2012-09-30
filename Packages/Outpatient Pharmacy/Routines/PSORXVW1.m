@@ -1,5 +1,5 @@
-PSORXVW1 ;BIR/SAB - view prescription con't ;12/4/07 12:28pm
- ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281,359**;DEC 1997;Build 27
+PSORXVW1 ;BIR/SAB-view prescription con't ; 12/4/07 12:28pm
+ ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281,359,354,367**;DEC 1997;Build 62
  ;External reference to ^DD(52 supported by DBIA 999
  ;External reference to ^VA(200 supported by DBIA 10060
  ;PSO*210 add call to WORDWRAP api
@@ -46,6 +46,7 @@ ACT ;activity log
  ..K ^UTILITY($J,"W") S X="Comments: "_PSOACBRV,(DIWR,DIWL)=1,DIWF="C80" D ^DIWP F I=1:1:^UTILITY($J,"W",1) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$G(^UTILITY($J,"W",1,I,0))
  .I $G(^PSRX(DA,"A",N,1))]"" S IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",5)=$P(^PSRX(DA,"A",N,1),"^") I $P(^PSRX(DA,"A",N,1),"^",2)]"" S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_":"_$P(^PSRX(DA,"A",N,1),"^",2)
  .I $O(^PSRX(DA,"A",N,2,0)) F I=0:0 S I=$O(^PSRX(RXN,"A",N,2,I)) Q:'I  S MIG=^PSRX(RXN,"A",N,2,I,0) D
+ ..S:MIG["Mail Tracking Info.: " IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",9)=" "
  ..F SG=1:1:$L(MIG) S:$L(^TMP("PSOAL",$J,IEN,0)_" "_$P(MIG," ",SG))>80 IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",9)=" " S:$P(MIG," ",SG)'="" ^TMP("PSOAL",$J,IEN,0)=$G(^TMP("PSOAL",$J,IEN,0))_" "_$P(MIG," ",SG)
  K MIG,SG,I,^UTILITY($J,"W"),DIWF,DIWL,DIWR
  Q
@@ -54,10 +55,18 @@ LBL ;label log
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="#   Date        Rx Ref                    Printed By",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
  I '$O(^PSRX(DA,"L",0)) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There are NO Labels printed." Q
  F L1=0:0 S L1=$O(^PSRX(DA,"L",L1)) Q:'L1  S LBL=^PSRX(DA,"L",L1,0),DTT=$P(^(0),"^") D DAT D
- .S $P(RN," ",26)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=L1_"   "_DAT_"    ",RFT=$S($P(LBL,"^",2):"REFILL "_$P(LBL,"^",2),1:"ORIGINAL"),RFT=RFT_$E(RN,$L(RFT)+1,26)
- .K DIC,X,Y S DIC="^VA(200,",DIC(0)="N,Z",X=$P(LBL,"^",4) D ^DIC
- .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RFT_$P(Y,"^",2),IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Comments: "_$P(LBL,"^",3)
+ . S $P(RN," ",26)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=L1_"   "_DAT_"    ",RFT=$S($P(LBL,"^",2):"REFILL "_$P(LBL,"^",2),1:"ORIGINAL"),RFT=RFT_$E(RN,$L(RFT)+1,26)
+ . K DIC,X,Y S DIC="^VA(200,",DIC(0)="N,Z",X=$P(LBL,"^",4) D ^DIC
+ . S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RFT_$P(Y,"^",2),IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Comments: "_$P(LBL,"^",3)
+ . N FDAMGDOC S FDAMGDOC=$P($G(^PSRX(DA,"L",L1,"FDA")),"^")
+ . I FDAMGDOC'="" D
+ . . S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="FDA Med Guide: "_$E(FDAMGDOC,1,61)
+ . . I $L(FDAMGDOC)>61 D
+ . . . F  Q:$E(FDAMGDOC,62,999)=""  D
+ . . . . S FDAMGDOC=$E(FDAMGDOC,62,999),IEN=IEN+1
+ . . . . S ^TMP("PSOAL",$J,IEN,0)=$E(FDAMGDOC,1,61)
  K DIC,X,Y Q
+ ;
 RF ;refill log
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Refill Log:"
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="#  Log Date   Refill Date  Qty               Routing  Lot #       Pharmacist",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
@@ -126,6 +135,7 @@ HLP ; Help Text for the VIEW PRESCRIPTION prompt
  W !!,"  Or just",!
  D LKP("?")
  Q 
+ ;
 LKP(INPUT) ; - Peforms Lookup on the PRESCRIPTION file
  N DIC,X,Y
  S DIC="^PSRX(",DIC(0)="QE",D="B",X=INPUT

@@ -1,5 +1,5 @@
 BPSOSCE ;BHAM ISC/FCS/DRS/DLF - New entry in 9002313.02 ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;Create an Electronic Claim Submission record
@@ -72,8 +72,7 @@ NEWCLAIM(START,END,TOTAL) ; function, returns null on success, else error
  .S COUNT=COUNT+1,NODE0=""
  .S $P(NODE0,U)=INDEX,$P(NODE0,U,4)=$G(BPS("RX",INDEX,"Drug Name")),$P(NODE0,U,5)=$G(BPS("RX",INDEX,"RX IEN"))
  .S ^BPSC(BPS(9002313.02),400,INDEX,0)=NODE0
- .S $P(^BPSC(BPS(9002313.02),400,INDEX,400),U,1)=BPS("RX",INDEX,"Date Filled")
- .S BPS(9002313.0201)=INDEX ;07/28/96.
+ .S BPS(9002313.0201)=INDEX
  .; Process entries in medication multiple
  .F SEG=130:10:260 D XLOOP^BPSOSCF(BPS("NCPDP","IEN"),SEG,INDEX)
  .; Update the indices

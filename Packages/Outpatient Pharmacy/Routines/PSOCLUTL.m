@@ -49,6 +49,6 @@ OVER ;allow registration of patients and clozapine numbers not yet authorized by
  K DIR W ! S DIR("A")="Do you want to over-ride this warning",DIR(0)="Y",DIR("B")="No" D ^DIR
  I Y D  S %=1
  .Q  S YSCLDATA(1)="An over-ride was authorize at "_$G(DUZ(2))_" for "_$S($D(PSONAME):PSONAME,1:$G(PSO2))_" by "_$P($G(^VA(200,DUZ,0)),"^")
- .S %H=$H D YMD^%DTC S XMDUN="NCC LOGGER",XMDUZ=.5,XMSUB=$G(DUZ(2))_" NCC ENROLLER ("_X_%_")",XMTEXT="YSCLDATA(",XMY("G.CLOZAPINE ROLL-UP@FORUM.VA.GOV")=""
+ .S %H=$H D YMD^%DTC S XMDUN="NCC LOGGER",XMDUZ=.5,XMSUB=$G(DUZ(2))_" NCC ENROLLER ("_X_%_")",XMTEXT="YSCLDATA(",XMY("G.CLOZAPINE ROLL-UP@FORUM.DOMAIN.EXT")=""
  .D ^XMD K XMDUN,XMDUZ,XMER,XMREC,XRG,XMSUB,XMTEXT,XMY,XMZ,YSCLDATA
  K DIR,DIRUT,DUOUT Q

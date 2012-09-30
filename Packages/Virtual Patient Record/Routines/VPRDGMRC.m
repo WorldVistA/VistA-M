@@ -1,5 +1,5 @@
 VPRDGMRC ;SLC/MKB -- Consult extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;;Sep 01, 2011;Build 12
+ ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -22,12 +22,13 @@ EN(DFN,BEG,END,MAX,IFN) ; -- find patient's consults
  S VPRN=0 F  S VPRN=$O(^TMP("GMRCR",$J,"CS",VPRN)) Q:VPRN<1!(VPRN>MAX)  S VPRX=$G(^(VPRN,0)) Q:$E(VPRX)="<"  D
  . I $G(IFN),IFN'=+VPRX Q
  . K VPRITM D EN1(+VPRX,.VPRITM),XML(.VPRITM)
- K ^TMP("GMRCR",$J,"CS")
+ K ^TMP("GMRCR",$J,"CS"),^TMP("VPRTEXT",$J)
  Q
  ;
 EN1(ID,CONS) ; -- return a consult in CONS("attribute")=value
  ;     Expects DFN, VPRX=^TMP("GMRCR",$J,"CS",VPRN,0) [from EN]
  N VPRD,X0,VPRJ,X,VPRTIU,LT,NT
+ K CONS,^TMP("VPRTEXT",$J)
  S CONS("id")=ID,CONS("requested")=$P(VPRX,U,2)
  S CONS("status")=$P(VPRX,U,3),CONS("service")=$P(VPRX,U,4)
  S CONS("procedure")=$P(VPRX,U,5),CONS("name")=$P(VPRX,U,7)
@@ -48,7 +49,7 @@ EN1(ID,CONS) ; -- return a consult in CONS("attribute")=value
  ;
 XML(CONS) ; -- Return patient consult as XML
  ;  as <element code='123' displayName='ABC' />
- N ATT,X,Y,I,NAMES
+ N ATT,X,Y,I,J,NAMES
  D ADD("<consult>") S VPRTOTL=$G(VPRTOTL)+1
  S ATT="" F  S ATT=$O(CONS(ATT)) Q:ATT=""  D  D:$L(Y) ADD(Y)
  . S NAMES=$S(ATT="document":"id^localTitle^nationalTitle^Z",1:"code^name^Z")
@@ -58,8 +59,9 @@ XML(CONS) ; -- Return patient consult as XML
  ... S X=$G(CONS(ATT,I)),Y="<"_ATT_" "_$$LOOP
  ... S X=$G(CONS(ATT,I,"content")) I '$L(X) S Y=Y_"/>" D ADD(Y) Q
  ... S Y=Y_">" D ADD(Y)
- ... S Y="<content xml:space='preserve'>"_$$ESC^VPRD(X)_"</content>"
- ... D ADD(Y),ADD("</"_ATT_">")
+ ... S Y="<content xml:space='preserve'>" D ADD(Y)
+ ... S J=0 F  S J=$O(@X@(J)) Q:J<1  S Y=$$ESC^VPRD(@X@(J)) D ADD(Y)
+ ... D ADD("</content>"),ADD("</"_ATT_">")
  .. D ADD("</"_ATT_"s>")
  . S X=$G(CONS(ATT)),Y="" Q:'$L(X)
  . I X'["^" S Y="<"_ATT_" value='"_$$ESC^VPRD(X)_"' />" Q

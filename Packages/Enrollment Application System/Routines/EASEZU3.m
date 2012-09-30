@@ -1,5 +1,5 @@
-EASEZU3 ;ALB/jap - Utilities for 1010EZ Processing ;10/12/00  13:08
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**1,57**;Mar 15, 2001
+EASEZU3 ;ALB/jap - Utilities for 1010EZ Processing ; 11/6/09 1:25pm
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**1,57,92**;Mar 15, 2001;Build 20
  ;
 NSD(EASAPP,TYPE,MULTIPLE) ;get name, ssn, dob for person of interest
  ;input  EASAPP = application ien in file #712
@@ -71,6 +71,18 @@ ACCFLD ;accept a single 1010EZ data element
  .S ACCEPT=$P($G(^EAS(712,EASAPP,10,SUBIEN,0)),U,3)
  .;provide info to user only if exactly one line item being 'accepted'
  .I ONE D FULL^VALM1
+ .;
+ .;Block acceptance of Military Service fields if ESR data exists
+ .I ONE,KEYIEN>27,KEYIEN<33,$$ESRDATA^DGMSEUTL(EASDFN) D  Q
+ ..W !!,?5
+ ..W "Sorry, that data element cannot be 'Accepted' for 'Filing'."
+ ..W !!,?5
+ ..W "Authoritative ESR data for military service exists."
+ ..W !!,?5
+ ..W "After filing this Application to VistA, use Register a Patient "
+ ..W !,?5,"or Patient Enrollment to enter/update data as needed.",!
+ ..K DIR D PAUSE^VALM1 S VALMBCK="R"
+ .;
  .;don't allow accept of data which cannot be filed
  .I ((XFILE=0)!(ACCEPT=-1)) D:ONE  Q
  ..W !!,?5,"Sorry, that data element cannot be 'Accepted' for 'Filing'."
@@ -123,6 +135,8 @@ ACCALL ;accept all non-null 1010EZ data elements
  .S SUBIEN=$P(^TMP("EASEXP",$J,"IDX",EASLN),U,1),MULTIPLE=$P(^(EASLN),U,2),KEYIEN=$P(^(EASLN),U,3)
  .S XFILE=$P(^TMP("EZDATA",$J,KEYIEN),U,1)
  .Q:XFILE=0
+ .;Military service data excluded from accept all if ESR data exists
+ .I KEYIEN>27,KEYIEN<33,$$ESRDATA^DGMSEUTL(EASDFN) Q
  .S EZDATA=$P($G(^TMP("EZDATA",$J,KEYIEN,MULTIPLE,1)),U,1) I EZDATA'="" D
  ..I $P(^EAS(712,EASAPP,10,SUBIEN,0),U,3)="" S $P(^(0),U,3)=1
  ..D FLDCTRL^VALM10(EASLN,"EZDATA",IORVON,IORVOFF)

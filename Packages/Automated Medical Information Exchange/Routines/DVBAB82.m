@@ -1,5 +1,5 @@
-DVBAB82 ;ALB - CAPRI DVBA REPORTS;07/19/10
- ;;2.7;AMIE;**42,90,100,119,156,149**;Apr 10, 1995;Build 16
+DVBAB82 ;ALB - CAPRI DVBA REPORTS ; 01/24/12
+ ;;2.7;AMIE;**42,90,100,119,156,149,179**;Apr 10, 1995;Build 15
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -13,7 +13,7 @@ START(MSG,RPID,PARM) ; CALLED BY REMOTE PROCEDURE DVBAB REPORTS
  N DVBHFS,DVBERR,DVBGUI,I,DVBADLMTD
  K ^TMP("DVBA",$J)
  S DVBGUI=1,(DVBERR,DVBADLMTD)=0,DVBHFS=$$HFS(),RPID=$G(RPID)
- I RPID<1!(RPID>13) S DVBERR=1,^TMP("DVBA",$J,1)="0^Undefined Report ID" G END
+ I RPID<1!(RPID>14) S DVBERR=1,^TMP("DVBA",$J,1)="0^Undefined Report ID" G END
  D HFSOPEN("DVBRP",DVBHFS,"W") I DVBERR G END
  I RPID=1 D CRMS G END
  I RPID=3 D CPRNT G END
@@ -29,6 +29,7 @@ START(MSG,RPID,PARM) ; CALLED BY REMOTE PROCEDURE DVBAB REPORTS
  I RPID=10 D CNHDEOC G END  ;FBCNH Display Episode Of Care
  I RPID=12 D CNHRAD G END  ;FNCNH Report of Admissions/Discharges
  I RPID=13 D CNHSE90D G END  ;FNCNH Stays in Excess of 90 Days
+ I RPID=14 D REQSTAT G END  ;REQUEST STATUS BY DATE RANGE
  ;
 END D HFSCLOSE("DVBRP",DVBHFS)
  I ($G(DVBADLMTD)&('+DVBERR)) D  Q  ;Create delimited output if no errors
@@ -122,7 +123,9 @@ DSRP ; Report # 6 - Reprint a Notice of Discharge Report
  D VAL Q:DVBERR
  I %=1 D  Q
  . S HD="SINGLE NOTICE OF DISCHARGE REPRINTING"
- . D NOPARM^DVBAUTL2 G:$D(DVBAQUIT) KILL^DVBAUTIL S DTAR=^DVB(396.1,1,0),FDT(0)=$$FMTE^XLFDT(DT,"5DZ")
+ . D NOPARM^DVBAUTL2
+ . I $D(DVBAQUIT) D KILL^DVBAUTIL Q  ;CAUTION: Short-circuit
+ . S DTAR=^DVB(396.1,1,0),FDT(0)=$$FMTE^XLFDT(DT,"5DZ")
  . S HEAD="NOTICE OF DISCHARGE",HEAD1="FOR "_$P(DTAR,U,1)_" ON "_FDT(0)
  . I $D(^DVB(396.2,"B",DFN)) D
  . . S DFNIEN=$O(^DVB(396.2,"B",DFN,DFNIEN)),ADM=$P(^DVB(396.2,DFNIEN,0),U,3)
@@ -348,3 +351,19 @@ HFSCLOSE(HANDLE,DVBHFS) ;Close HFS and unload data
 IOF() ;used to reset position and insert page break flag when @IOF is executed.
  S $X=0,$Y=0
  Q "##FFFF##"_$C(13,10)
+ ;
+REQSTAT ; Report #14 - Request Status by Date Range
+ ; Parameters
+ ; ==========
+ ; BEGDAT        : Start date in FM format
+ ; ENDDAT        : End date in FM format
+ ; REQSTAT       : Request Status filter
+ ; ISDELIM       : 0 (Standard format); 1 (Delimited format)
+ ; ISNODT        : 0 (Use date range); 1 (Ignore date range)
+ U IO
+ N BEGDAT,ENDDAT,REQSTAT
+ S BEGDAT=$P(PARM,U,1),ENDDAT=$P(PARM,U,2)
+ S REQSTAT=$P(PARM,U,3),ISDELIM=$P(PARM,U,4),ISNODT=$P(PARM,U,5)
+ D VALDATE(BEGDAT),VALDATE(ENDDAT)
+ D:('+DVBERR) REQSTAT^DVBARSBD(BEGDAT,ENDDAT,REQSTAT,ISDELIM,ISNODT)
+ Q

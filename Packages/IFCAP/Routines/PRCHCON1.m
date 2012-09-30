@@ -1,10 +1,10 @@
 PRCHCON1 ;WISC/KMB/DL/DXH - CONV. TEMP 2237 TO PC ORDER ;7.29.99
-V ;;5.1;IFCAP;**108**;Oct 20, 2000;Build 10
+V ;;5.1;IFCAP;**108,156**;Oct 20, 2000;Build 5
  ;Per VHA Directive 2004-038, this routine should not be modified.
  I '$D(^PRC(440.5,"C",DUZ)) W !!,"You are not authorized to use this option." Q
 START ;   get transaction number, convert to regular 2237
  N PRC,Y,PRCSIP,PRCSQ,ODA,PNW,TRY,TX1,T1,T2,T3,T4,PRCSY,PRCSDIC,PRCSAPP
- N PRCHCV,PRCHCPD
+ N PRCHCV,PRCHCPD,PRCHQTDT
  I $G(QUIT)'="" K QUIT Q
  K PRC("SITE") W @IOF D EN3F^PRCSUT(1) G W5:'$D(PRC("SITE")) S:Y<0 QUIT=1 Q:Y<0
  D START1 G START
@@ -14,6 +14,7 @@ START1 ;
  S DIC="^PRCS(410,",DIC(0)="AEFMQ"
  S DIC("S")="I $P(^(0),U,2)=""O"",$P(^(0),U,5)=PRC(""SITE""),$P(^(0),U,12)'=""A"",$D(^(3)),+$P(^(3),U)=+PRC(""CP""),$P($G(^(4)),U,5)="""""
  D ^DIC S:Y<0 QUIT=1 Q:Y<0  S (ODA,DA)=+Y,PRCSDIC=DIC
+ S PRCHQTDT=$P($G(^PRCS(410,ODA,0)),U,11)
  I $P($G(^PRCS(410,DA,3)),U,4)="" W !,"This transaction has no entry in the Vendor File.",!,"Please edit this transaction's vendor before converting this order." H 4 Q
  I $P($G(^PRCS(410,DA,4)),U)>3000 W !,"The dollar amount for this transaction exceeds the $3000 purchase card cutoff." H 4 Q
  D W1^PRCSEB0 Q:%<0  S DIC=PRCSDIC
@@ -27,6 +28,9 @@ START1 ;
 CK G:'+T2 CK1 K DA S DLAYGO=410,DIC="^PRCS(410,",DIC(0)="LXZ" D ^DIC K DLAYGO Q:Y'>0  S DA=+Y
  K ^PRCS(410,"B",TX1,DA),^PRCS(410,"B2",$P(TX1,"-",5),DA),^PRCS(410,"B3",$P(TX1,"-",2)_"-"_$P(TX1,"-",5),DA),^PRCS(410,"AE",$P(TX1,"-",1,4),DA)
  K ^PRCS(410,"B",T2,T1),^PRCS(410,"B2",$P(T2,"-",5),T1),^PRCS(410,"B3",$P(T2,"-",2)_"-"_$P(T2,"-",5),T1),^PRCS(410,"AE",$P(T2,"-",1,4),T1)
+ ;Patch PRC*5.1*156 insures the running balance ('RB') index is killed for temp 2237
+ I +PRCHQTDT>0 K ^PRCS(410,"RB",PRCHQTDT_"-"_$P(T2,"-")_"-"_$P(T2,"-",4)_"-"_$P(T2,"-",2)_"-"_$P(T2,"-",5),ODA)
+ K PRCHQTDT
  S $P(^PRCS(410,DA,0),U)=T2 S (^PRCS(410,"B",T2,DA),^PRCS(410,"B2",$P(T2,"-",5),DA),^PRCS(410,"B3",$P(T2,"-",2)_"-"_$P(T2,"-",5),DA),^PRCS(410,"AE",$P(T2,"-",1,4),DA))=""
 CK1 S $P(^PRCS(410,T1,0),U)=TX1 S (^PRCS(410,"B",TX1,T1),^PRCS(410,"B2",$P(TX1,"-",5),T1),^PRCS(410,"B3",$P(TX1,"-",2)_"-"_$P(TX1,"-",5),T1),^PRCS(410,"AE",$P(TX1,"-",1,4),T1))=""
  S $P(^PRCS(410,T1,6),"^",4)="" K ^PRCS(410,"K",REM1,REM)

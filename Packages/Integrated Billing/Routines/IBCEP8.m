@@ -1,5 +1,5 @@
 IBCEP8 ;ALB/TMP/OIFO-BP/RBN - Functions for NON-VA PROVIDER ;11-07-00
- ;;2.0;INTEGRATED BILLING;**51,137,232,288,320,343,374,377,391,400,436,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**51,137,232,288,320,343,374,377,391,400,436,432,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; -- main entry point
@@ -418,8 +418,8 @@ SCREEN(IBNPRV) ;
  ; Get the user's input
  ;
 INPUT ;
- S DIR(0)="FOUr^3:30"
- S DIR("A")="NAME: "_IBNAME_"//"
+ S DIR(0)="FOUrA^3:30"
+ S DIR("A")="NAME: "_IBNAME_"// "
  ;
  S DIR("?")=" "
  S DIR("?",1)="Press <ENTER> to accept the displayed provider name"

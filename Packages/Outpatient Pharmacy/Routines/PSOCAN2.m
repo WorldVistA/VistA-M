@@ -1,19 +1,19 @@
 PSOCAN2 ;BHAM ISC/JMB - rx cancel with speed ability drug check ;10/23/06 11:30am
- ;;7.0;OUTPATIENT PHARMACY;**8,18,62,46,88,164,235,148,259,281,287,251,375**;DEC 1997;Build 17
- ;External reference to ^PSDRUG supported by dbia 221
- ;External reference to $$DS^PSSDSAPI supported by DBIA 5424
+ ;;7.0;OUTPATIENT PHARMACY;**8,18,62,46,88,164,235,148,259,281,287,251,375,379**;DEC 1997;Build 28
+ ;External reference to ^PSDRUG supported by DBIA 221
+ ;External reference to $$DS^PSSDSAPI supported by DBIA 5425
 REINS N DODR,ORN
  I $P(^PSRX(DA,2),"^",6)<DT D  Q
  .S Y=$P(^PSRX(DA,2),"^",6) X ^DD("DD")
  .W !!,"Rx: "_$P(^PSRX(DA,0),"^")_" Drug: "_$S($D(^PSDRUG($P(^PSRX(DA,0),"^",6),0)):$P(^(0),"^"),1:""),!,"Expired "_Y_" and cannot be Reinstated!",!
  .D PAUSE^VALM1
  I $D(^PSRX("APSOD",$P(^PSRX(DA,0),"^",2),DA)) S PSCAN($P(^PSRX(DA,0),"^"))=DA_"^R",DODR=1 D AUTOD G ACT
- I $P(PSOPAR,"^",2),'$D(^XUSEC("PSORPH",DUZ)) N PSOVODA S PSOVODA=DA D DRGDRG S DA=PSOVODA Q:PSORX("DFLG")  D VERIFY D  D AREC^PSOCAN1 Q
+ I $P(PSOPAR,"^",2),'$D(^XUSEC("PSORPH",DUZ)) N PSOVODA S PSOVODA=DA D DRGDRG Q:$G(PSOQUIT)&($G(PSOREINS))  S DA=PSOVODA Q:PSORX("DFLG")  D VERIFY D  D AREC^PSOCAN1 Q
  .S RX1=$P(^PSRX(DA,0),"^") S:'$D(PSCAN(RX1)) PSCAN(RX1)=DA_"^R" K RX1
 ACT W ! F I=1:1:80 W "="
  D ^PSOBUILD S DRG=+$P(^PSRX(DA,0),"^",6),DRG=$S($D(^PSDRUG(DRG,0)):$P(^(0),"^"),1:""),HOLDRX=RX
  W !!,RX_"  "_DRG I $G(POERR) S HPOERR=POERR
- D DRGDRG
+ D DRGDRG Q:$G(PSOQUIT)&($G(PSOREINS))
  S:$G(HPOERR) POERR=HPOERR S:$G(PSORX("DFLG"))'=1 PSORX("DFLG")=0
  S RX=HOLDRX K HOLDRX,HPOERR Q:$P(^PSRX(+PSCAN(RX),"STA"),"^")'=12!($G(PSORX("DFLG")))
  S DA=+PSCAN(RX),REA=$P(PSCAN(RX),"^",2) D CAN^PSOCAN W !
@@ -45,7 +45,7 @@ ACT W ! F I=1:1:80 W "="
  . Q:$$FIND^PSOREJUT(RXIEN)
  . Q:PSOTRIC&($$STATUS^PSOBPSUT(RXIEN,RFCNT)'["PAYABLE")
  . W !?5,"Either print the label using the reprint option "
- . W !?7,"or check later to see if the label has been printed." Q
+ . W !?7,"or check later to see if the label has been printed." D WAIT^PSODRG Q
  I FDT>DT&('$G(DODR)) W !?5,"Placing Rx on suspense.  Please wait..." D SUS
  K DODR
  Q
@@ -66,7 +66,7 @@ DRGDRG ;Checks for drug/drug interaction, duplicate drug and class
  S:$G(PSONEW("OLD VAL"))=+Y PSODRG("QFLG")=1
  K PSOY,PSOTECCK S PSOY=Y,PSOY(0)=Y(0)
  I '$D(^XUSEC("PSORPH",DUZ)) S PSOTECCK=1
- S PSORENW("OIRXN")=DA D SET^PSODRG,POST^PSODRG
+ S PSORENW("OIRXN")=DA D SET^PSODRG,POST^PSODRG Q:$G(PSOREINS)&$G(PSOQUIT)
  D:$$DS^PSSDSAPI&('$G(PSORX("DFLG"))) DOSCK^PSODOSUT("C")
  S REA=$P(PSCAN($P(^PSRX(PSORENW("OIRXN"),0),"^")),"^",2)
  W ! S:$G(HOLD(STAT,NAME))]"" PSOSD(STAT,NAME)=$G(HOLD(STAT,NAME)) K HOLD,STA,STAT,PSORENW("OIRXN")

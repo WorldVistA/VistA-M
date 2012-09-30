@@ -1,10 +1,10 @@
-RORRP015 ;HCIOFO/SG - RPC: DIVISIONS AND HOSPITAL LOCATIONS ; 3/13/06 9:25am
- ;;1.5;CLINICAL CASE REGISTRIES;**1**;Feb 17, 2006;Build 24
+RORRP015 ;HCIOFO/SG - RPC: DIVISIONS AND HOSPITAL LOCATIONS ; 5/25/11 11:49am
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,15**;Feb 17, 2006;Build 27
  ;
  ; This routine uses the following IAs:
  ;
  ; #1246         WIN^DGPMDDCF (supported)
- ; #2438         Access to the file #40.8 (controlled)
+ ; #417          Access to the file #40.8 (controlled)
  ; #10040        Access to the HOSPITAL LOCATION file (supported)
  ;
  Q
@@ -77,11 +77,12 @@ ACTLOC(LOCIEN) ;
  ;                         ^04: Institution IEN
  ;
 DIVLIST(RESULTS,PART,FLAGS,NUMBER,FROM) ;
- N BUF,RC,RORERRDL,RORMSG,TMP
+ N BUF,RC,RORERRDL,RORMSG,TMP,DIERR
  D CLEAR^RORERR("DIVLIST^RORRP015",1)
  K RESULTS  S RESULTS=$NA(^TMP("DILIST",$J))  K @RESULTS
  ;--- Check the parameters
  S PART=$G(PART),FLAGS=$G(FLAGS)
+ I PART="??" S PART=""  ;user selects All Divisions
  S NUMBER=$S($G(NUMBER)>0:+NUMBER,1:"*")
  ;--- Setup the start point
  I $G(FROM)'=""  D  S FROM=$P(FROM,U)

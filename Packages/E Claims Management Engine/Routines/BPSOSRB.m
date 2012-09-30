@@ -1,5 +1,5 @@
 BPSOSRB ;BHAM ISC/FCS/DRS/FLS - Process claim on processing queue ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -120,14 +120,16 @@ REVERSE(IEN59,MOREDATA,BP77) ;
  D SETSTAT^BPSOSU(IEN59,0)
  D SETSTAT^BPSOSU(IEN59,10)
  ;
- ; Update Submit Date (#6), User (#13), Request Type (#19), Reversal Reason (#404),
- ;   Reversal Request (#405), Reversal Request Date and Time (#406),
- ;   and RX Action (#1201) in BPS Transactions
+ ; Update specific fields of the BPS Transaction record - Submit Date (#6),
+ ;   User (#13), Request Type (#19), Reversal Claim (#401), Reversal Response (#402),
+ ;   Reversal Reason (#404), Reversal Request (#405), Reversal Request Date and Time (#406),
+ ;   and RX Action (#1201)
  N DIE,DR,DA
  S DIE=9002313.59,DA=IEN59
  S DR="6////"_$G(MOREDATA("SUBMIT TIME"))_";13////"_$G(MOREDATA("USER"))
  S DR=DR_";404////"_$G(MOREDATA("REVERSAL REASON"))_";1201////"_$G(MOREDATA("RX ACTION"))
- S DR=DR_";19////"_$G(MOREDATA("REQ TYPE"))_";405////"_$G(MOREDATA("REQ IEN"))_";406////"_MOREDATA("REQ DTTM")
+ S DR=DR_";19////"_$G(MOREDATA("REQ TYPE"))_";405////"_$G(MOREDATA("REQ IEN"))
+ S DR=DR_";406////"_MOREDATA("REQ DTTM")_";401////@;402////@"
  ;
  D ^DIE
  ;

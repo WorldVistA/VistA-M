@@ -1,0 +1,308 @@
+IBDEI002 ; ; 12-JAN-2012
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JAN 12, 2012
+ Q:'DIFQR(358)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358)
+ ;;=^IBE(358,
+ ;;^UTILITY(U,$J,358,0)
+ ;;=IMP/EXP ENCOUNTER FORM^358I^38^38
+ ;;^UTILITY(U,$J,358,1,0)
+ ;;=NATIONAL ADDICTION FY12-Q2^1^National Addiction form December 2011^1^0^1^1^^133^80^3^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,1,2,0)
+ ;;=^358.02I^2^2
+ ;;^UTILITY(U,$J,358,1,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,1,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,2,0)
+ ;;=NATIONAL AUDIO FY12-Q2^1^National Audiology January 2012^1^0^1^1^^133^80^2^1^^1^p^1
+ ;;^UTILITY(U,$J,358,2,2,0)
+ ;;=^358.02I^3^3
+ ;;^UTILITY(U,$J,358,2,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,2,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,2,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,3,0)
+ ;;=NATIONAL BLIN REHAB FY12-Q2^0^National Blind Rehab Service Encounter form-Updated December 2011^1^0^0^1^^133^80^1^1^^1^p^1
+ ;;^UTILITY(U,$J,358,3,2,0)
+ ;;=^358.02I^1^1
+ ;;^UTILITY(U,$J,358,3,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,4,0)
+ ;;=NATIONAL CARD CATH/IR FY12-Q2^1^National Cardiac Cath/Interventional Rad January 2012^1^0^1^1^^133^80^4^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,5,0)
+ ;;=NATIONAL CARDIOLOGY FY12-Q2^1^National Cardiology/EKG/Echo January 2012^1^0^1^1^^133^80^3^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,6,0)
+ ;;=NATIONAL CHIROPRACTIC FY12-Q2^2^National Chiropractic December 2011^1^0^1^1^^133^80^1^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,6,2,0)
+ ;;=^358.02I^1^1
+ ;;^UTILITY(U,$J,358,6,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,7,0)
+ ;;=NATIONAL CLIN PHARM FY12-Q2^2^NATIONAL CLINICAL PHARMACIST-REVIEWED/REVISED 12/2011^1^0^1^1^^133^80^1^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,7,2,0)
+ ;;=^358.02I^1^1
+ ;;^UTILITY(U,$J,358,7,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,8,0)
+ ;;=NATIONAL C&P FY12-Q2^2^NATIONAL COMPENSATION AND PENSION-December 2011 2011^1^0^1^1^^133^80^1^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,8,2,0)
+ ;;=^358.02I^1^1
+ ;;^UTILITY(U,$J,358,8,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,9,0)
+ ;;=NATIONAL DERMATOLOGY FY12-Q2^0^National Derm Form-December 2011^1^0^^1^^133^80^6^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,10,0)
+ ;;=NATIONAL DIABETES FY12-Q2^2^NATIONAL DIABETES-December 2011^1^0^1^1^^133^80^2^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,10,2,0)
+ ;;=^358.02I^2^2
+ ;;^UTILITY(U,$J,358,10,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,10,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,11,0)
+ ;;=NATIONAL ENT FY12-Q2^2^NATIONAL ENT-REVIEWED/REVISED 12/2011^1^0^1^1^^133^80^3^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,11,2,0)
+ ;;=^358.02I^2^2
+ ;;^UTILITY(U,$J,358,11,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,11,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,12,0)
+ ;;=NATIONAL ED FY12-Q2^1^National Emergency Dept Form January 2012^1^0^1^1^^133^80^9^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,12,2,0)
+ ;;=^358.02I^6^6
+ ;;^UTILITY(U,$J,358,12,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,12,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,12,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,12,2,4,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,12,2,5,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,12,2,6,0)
+ ;;=5^1
+ ;;^UTILITY(U,$J,358,13,0)
+ ;;=NATIONAL EYE FY12-Q2^1^National Eye 01/2012^1^0^1^1^^133^80^4^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,13,2,0)
+ ;;=^358.02I^4^4
+ ;;^UTILITY(U,$J,358,13,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,13,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,13,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,13,2,4,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,14,0)
+ ;;=NATIONAL GEN SURG FY12-Q2^0^National Surgery December 2011^1^0^1^1^^133^80^2^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,15,0)
+ ;;=NATIONAL GI FY12-Q2^0^National GI form January 2012^1^0^^1^^133^80^2^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,16,0)
+ ;;=NATIONAL GYN FY12-Q2^2^NATIONAL GYN SURGERY PROCEDURE UNIT-December 2011^1^0^1^1^^133^80^2^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,17,0)
+ ;;=NATL HOSP/PALL CARE FY12-Q2^2^NATIONAL HOSPICE AND PALLIATIVE CARE December 2011^1^0^1^1^^133^80^2^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,18,0)
+ ;;=NATIONAL INPATIENT FY12-Q2^0^National Inpatient Form December 2011^1^0^1^1^^133^80^3^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,18,2,0)
+ ;;=^358.02I^7^7
+ ;;^UTILITY(U,$J,358,18,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,18,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,18,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,18,2,4,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,18,2,5,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,18,2,6,0)
+ ;;=5^1
+ ;;^UTILITY(U,$J,358,18,2,7,0)
+ ;;=6^1
+ ;;^UTILITY(U,$J,358,19,0)
+ ;;=NATL LOW VISION-OPTOM FY12-Q2^1^National Low Vision Optometry January 2012^1^0^1^1^^133^80^2^1^^1^p^1
+ ;;^UTILITY(U,$J,358,19,2,0)
+ ;;=^358.02I^3^3
+ ;;^UTILITY(U,$J,358,19,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,19,2,2,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,19,2,3,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,20,0)
+ ;;=NATL MED FOSTER HOME FY12-Q2^1^National Medical Foster Home-December 2011^1^0^1^1^^133^80^9^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,20,2,0)
+ ;;=^358.02I^6^6
+ ;;^UTILITY(U,$J,358,20,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,20,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,20,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,20,2,4,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,20,2,5,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,20,2,6,0)
+ ;;=5^1
+ ;;^UTILITY(U,$J,358,21,0)
+ ;;=NATIONAL MEDICINE FY12-Q2^1^National Medicine Form January 2012^1^0^1^1^^133^80^9^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,21,2,0)
+ ;;=^358.02I^6^6
+ ;;^UTILITY(U,$J,358,21,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,21,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,21,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,21,2,4,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,21,2,5,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,21,2,6,0)
+ ;;=5^1
+ ;;^UTILITY(U,$J,358,22,0)
+ ;;=NATIONAL MENTAL HLTH FY12-Q2^0^National Mental Health 01/2012^1^0^1^1^^133^80^3^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,22,2,0)
+ ;;=^358.02I^2^2
+ ;;^UTILITY(U,$J,358,22,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,22,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,23,0)
+ ;;=NATIONAL MH MHICM FY12-Q2^1^National MH Intensive Program 1/2012^1^0^1^1^^133^80^3^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,23,2,0)
+ ;;=^358.02I^3^3
+ ;;^UTILITY(U,$J,358,23,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,23,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,23,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,24,0)
+ ;;=NATIONAL MH PHARM FY12-Q2^2^NATIONAL MHS CLINICAL PHARMACISTS-REVIEWED/REVISED 01/2012^1^0^1^1^^133^80^2^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,24,2,0)
+ ;;=^358.02I^2^2
+ ;;^UTILITY(U,$J,358,24,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,24,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,25,0)
+ ;;=NATIONAL NEUROLOGY FY12-Q2^0^National Neurology January 2012^1^0^1^1^^133^80^2^1^^1^p^1
+ ;;^UTILITY(U,$J,358,26,0)
+ ;;=NATIONAL ONCOLOGY FY12-Q2^0^National Hem/Onc January 2012^1^0^1^1^^133^80^3^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,26,2,0)
+ ;;=^358.02I^2^2
+ ;;^UTILITY(U,$J,358,26,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,26,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,27,0)
+ ;;=NATIONAL ORTHOPEDICS FY12-Q2^0^National Orthopedics December 2011^1^0^1^1^^133^80^5^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,27,2,0)
+ ;;=^358.02I^6^6
+ ;;^UTILITY(U,$J,358,27,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,27,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,27,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,27,2,4,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,27,2,5,0)
+ ;;=5^1
+ ;;^UTILITY(U,$J,358,27,2,6,0)
+ ;;=5^1
+ ;;^UTILITY(U,$J,358,28,0)
+ ;;=NATIONAL PODIATRY FY12-Q2^0^National Podiatry January 2012^1^0^1^1^^133^80^5^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,28,2,0)
+ ;;=^358.02I^6^6
+ ;;^UTILITY(U,$J,358,28,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,28,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,28,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,28,2,4,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,28,2,5,0)
+ ;;=5^1
+ ;;^UTILITY(U,$J,358,28,2,6,0)
+ ;;=6^1
+ ;;^UTILITY(U,$J,358,29,0)
+ ;;=NATIONAL PRIMARY CARE FY12-Q2^1^National Primary Care Form December 2011^1^0^1^1^^133^80^9^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,29,2,0)
+ ;;=^358.02I^6^6
+ ;;^UTILITY(U,$J,358,29,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,29,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,29,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,29,2,4,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,29,2,5,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,29,2,6,0)
+ ;;=5^1
+ ;;^UTILITY(U,$J,358,30,0)
+ ;;=NATIONAL PROSTHETIC FY12-Q2^2^National Prosthetic Form January 2012^1^0^^1^^133^80^3^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,31,0)
+ ;;=NATIONAL PULMONARY FY12-Q2^0^National Pulmonary January 2012^1^0^0^1^^133^80^2^1^^1^p^1
+ ;;^UTILITY(U,$J,358,31,2,0)
+ ;;=^358.02I^2^2
+ ;;^UTILITY(U,$J,358,31,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,31,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,32,0)
+ ;;=NATL REHAB-PT/OT/KT FY12-Q2^2^Nationalt Rehab/PT/OT/KT January 2012^1^0^1^1^^133^80^2^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,32,2,0)
+ ;;=^358.02I^3^3
+ ;;^UTILITY(U,$J,358,32,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,32,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,32,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,33,0)
+ ;;=NATIONAL SPEECH FY12-Q2^1^National Speech January 2012^1^0^1^1^^133^80^1^1^^1^p^1
+ ;;^UTILITY(U,$J,358,33,2,0)
+ ;;=^358.02I^3^3
+ ;;^UTILITY(U,$J,358,33,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,33,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,33,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,34,0)
+ ;;=NATIONAL SURG IN PROC FY12-Q2^0^National Minor Procedures January 2012^1^0^1^1^^133^80^3^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,34,2,0)
+ ;;=^358.02I^1^1
+ ;;^UTILITY(U,$J,358,34,2,1,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,35,0)
+ ;;=NATIONAL TELEPHONE FY12-Q2^2^NATIONAL TELEPHONE CLINICS-December 2011^1^0^1^1^^133^80^1^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,35,2,0)
+ ;;=^358.02I^2^2
+ ;;^UTILITY(U,$J,358,35,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,35,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,36,0)
+ ;;=NATIONAL UROLOGY FY12-Q2^0^National Urology Form January 2012^1^0^1^1^^133^80^2^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,36,2,0)
+ ;;=^358.02I^2^2
+ ;;^UTILITY(U,$J,358,36,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,36,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,37,0)
+ ;;=NATIONAL VASCULAR SURG FY12-Q2^0^NATIONAL VASCULAR SURGERY-January 2012^1^0^1^1^^133^80^2^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,38,0)
+ ;;=NATIONAL WOMENS HEALTH FY12-Q2^2^NATIONAL WOMENS HEALTH-January 2012^1^0^1^1^^133^80^3^1^^1^p^1^3

@@ -1,0 +1,27 @@
+ECRDSSUA ;ALB/DAN - Users by DSS unit report ;11/22/11  16:59
+ ;;2.0;EVENT CAPTURE;**112**;8 May 96;Build 18
+ ;
+STRPT ;Main entry point for report
+ N IEN,CNT,UNIT,NAME
+ K ^TMP($J,"ECRDSSUA") ;Temporary storage of information
+ U IO
+ S IEN=0 F  S IEN=$O(^VA(200,IEN)) Q:'+IEN  D
+ .S UNIT=0 F  S UNIT=$O(^VA(200,IEN,"EC","B",UNIT)) Q:'+UNIT  I $D(ECDSSU(UNIT)) S ^TMP($J,"ECRDSSUA",ECDSSU(UNIT),$$GET1^DIQ(200,IEN,".01"))=IEN_U_$E($P($$GET^XUA4A72(IEN,DT),U,3),1,52)
+ I ECPTYP="E" D  Q  ;Put into parsable format
+ .S CNT=0,UNIT="",NAME=""
+ .S CNT=CNT+1,^TMP($J,"ECRPT",CNT)="DSS UNIT^USER NAME^IEN^PERSON CLASS/CLASSIFICATION"
+ .F  S UNIT=$O(^TMP($J,"ECRDSSUA",UNIT)) Q:UNIT=""  F  S NAME=$O(^TMP($J,"ECRDSSUA",UNIT,NAME)) Q:NAME=""  S CNT=CNT+1,^TMP($J,"ECRPT",CNT)=UNIT_U_NAME_U_$P(^TMP($J,"ECRDSSUA",UNIT,NAME),U)_U_$P(^(NAME),U,2)
+ .K ^TMP($J,"ECRDSSUA")
+ ;
+ D HDR
+ S UNIT="",NAME=""
+ F  S UNIT=$O(^TMP($J,"ECRDSSUA",UNIT)) Q:UNIT=""  F  S NAME=$O(^TMP($J,"ECRDSSUA",UNIT,NAME)) Q:NAME=""  D
+ .W !,UNIT,?32,NAME,?64,$P(^TMP($J,"ECRDSSUA",UNIT,NAME),U),?80,$P(^(NAME),U,2)
+ .I (IOSL-$Y)<5 W @IOF D HDR
+ K ^TMP($J,"ECRDSSUA")
+ Q
+ ;
+HDR ;Print header for report
+ W !,"Users with access to selected DSS Units",?$S($G(IOM):(IOM-15),1:65),$$FMTE^XLFDT($$DT^XLFDT),!!
+ W "DSS UNIT",?32,"USER NAME",?64,"IEN",?80,"PERSON CLASS/CLASSIFICATION",!,$$REPEAT^XLFSTR("-",$S($G(IOM):IOM,1:132)),!
+ Q

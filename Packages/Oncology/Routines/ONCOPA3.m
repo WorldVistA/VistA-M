@@ -1,5 +1,5 @@
-ONCOPA3 ;Hines OIFO/GWB-[PA Print Complete Abstract (132c)] continued ;06/23/10
- ;;2.11;ONCOLOGY;**13,15,18,25,26,33,34,36,37,44,45,46,47,48,50,51**;Mar 07, 1995;Build 65
+ONCOPA3 ;Hines OIFO/GWB-[PA Print Complete Abstract (132c)] continued ;10/07/11
+ ;;2.11;ONCOLOGY;**13,15,18,25,26,33,34,36,37,44,45,46,47,48,50,51,54**;Mar 07, 1995;Build 10
  ;
  N ALHS,ALTP,ALZN,CFH,CHST,NOK,OC,OCCP,RCDT,TBHS,TBTP,TBZN,TX,Y
  S NAME="PERSONAL DATA" D FORMAT^ONCOPA1
@@ -40,7 +40,8 @@ ONCOPA3 ;Hines OIFO/GWB-[PA Print Complete Abstract (132c)] continued ;06/23/10
  W !?1,"  Afghanistan (OEF) Service:  ",ONCAB(160,PTIEN,67) D P Q:EX=U
  W !?1,"         Iraq (OIF) Service:  ",ONCAB(160,PTIEN,66) D P Q:EX=U
  W !?1,"          Branch of Service:  ",ONCAB(160,PTIEN,68) D P Q:EX=U
- W !!?1,"Comorbidity/Complication  1:  ",ONCAB(160,PTIEN,25) D P Q:EX=U
+ W !!?1,"         Source Comorbidity:  ",ONCAB(160,PTIEN,1006) D P Q:EX=U
+ W !?1,"Comorbidity/Complication  1:  ",ONCAB(160,PTIEN,25) D P Q:EX=U
  W !?1,"Comorbidity/Complication  2:  ",ONCAB(160,PTIEN,25.1) D P Q:EX=U
  W !?1,"Comorbidity/Complication  3:  ",ONCAB(160,PTIEN,25.2) D P Q:EX=U
  W !?1,"Comorbidity/Complication  4:  ",ONCAB(160,PTIEN,25.3) D P Q:EX=U

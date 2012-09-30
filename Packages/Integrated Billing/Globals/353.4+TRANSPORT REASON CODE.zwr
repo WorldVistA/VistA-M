@@ -1,0 +1,13 @@
+TRANSPORT REASON CODE
+ZWR
+^IBE(353.4,0)="TRANSPORT REASON CODE^353.4I^5^5"
+^IBE(353.4,1,0)="A^Patient was transported to nearest facility for care of symptoms, complaints or both."
+^IBE(353.4,2,0)="B^Patient was transported for the benefit of a preferred physician."
+^IBE(353.4,3,0)="C^Patient was transported for the nearness of family members."
+^IBE(353.4,4,0)="D^Patient was transported for the care of a specialist or for availability of specialized equipment."
+^IBE(353.4,5,0)="E^Patient transferred to Rehabilitation Facility."
+^IBE(353.4,"B","A",1)=""
+^IBE(353.4,"B","B",2)=""
+^IBE(353.4,"B","C",3)=""
+^IBE(353.4,"B","D",4)=""
+^IBE(353.4,"B","E",5)=""

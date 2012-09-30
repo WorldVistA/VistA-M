@@ -49,7 +49,7 @@ SENDRT ;Send Med Route Mail Message
  S XMDUZ=DUZ
  S XMTEXT="^TMP($J,""PSSMQSND"","
  S XMY(DUZ)=""
- I 'PSSMQVIS,PSSTACCT S XMY("VAOITVHITHDSSTSPEPSNTRT@va.gov")=""
+ I 'PSSMQVIS,PSSTACCT S XMY("VAOITVHITHDSSTSPEPSNTRT@DOMAIN.EXT")=""
  D ^XMD
  K ^TMP($J,"PSSMQSND")
  Q
@@ -149,7 +149,7 @@ SEND ;Send Dose Unit Mail Message
  S XMDUZ=DUZ
  S XMTEXT="^TMP($J,""PSSRQSND"","
  S XMY(DUZ)=""
- I 'PSSRQVIS,PSSTACCT S XMY("VAOITVHITPSDOSEUNITREQ@va.gov")=""
+ I 'PSSRQVIS,PSSTACCT S XMY("VAOITVHITPSDOSEUNITREQ@DOMAIN.EXT")=""
  D ^XMD
  K ^TMP($J,"PSSRQSND")
  Q
@@ -163,6 +163,6 @@ TEST ;
 WLINK ;Refer to website with patch PSS*1*147
  N DIR,DTOUT,DUOUT,DIRUT,DIROUT,X,Y
  W !!!,"Standard Medication Route requests must now be made at the following website:",!
- W !?3,"http://vista.med.va.gov/ntrt/",!
+ W !?3,"http://vista.DOMAIN.EXT/ntrt/",!
  K DIR S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR
  Q

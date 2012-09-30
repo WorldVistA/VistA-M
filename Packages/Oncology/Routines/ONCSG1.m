@@ -1,5 +1,5 @@
 ONCSG1 ;Hines OIFO/GWB - Automatic Staging Tables ;10/28/10
- ;;2.11;ONCOLOGY;**35,51,52**;Mar 07, 1995;Build 13
+ ;;2.11;ONCOLOGY;**35,51,52,54**;Mar 07, 1995;Build 10
  ;
  ;DIGESTIVE SYSTEM
  ;
@@ -29,7 +29,7 @@ ESO56 ;Esophagus - 5th and 6th editions
  .I M="1B" S SG="4B" Q         ;IVB  Any T Any N M1b
  ;
 ESO7 ;Esophagus - 7th edition
- I ($E(HT,1,3)>804)!($E(HT,1,3)<808) G ESO7A
+ I ($E(HT,1,3)>804)&($E(HT,1,3)<808) G ESO7A
  E  G ESO7B
 ESO7A ;Squamous Cell Carcinoma
  I T="IS" S TNM=T_N_M
@@ -51,9 +51,9 @@ ESO7A ;Squamous Cell Carcinoma
  .I (TNM=110)!(TNM=210) S SG="2B" Q
  .I (TNM=120)!(TNM=220) S SG="3A" Q
  .I TNM=310 S SG="3A" Q
- .I TNM="4A00" S SG="3A" Q
+ .I (T="4A")&(N=0)&(M=0) S SG="3A" Q
  .I TNM=320 S SG="3B" Q
- .I ((TNM="4A10")!(TNM="4A20")) S SG="3C" Q
+ .I ((TNM="410")!(TNM="420")) S SG="3C" Q
  .I (T="4B")&(M=0) S SG="3C" Q
  .I (N=3)&(M=0) S SG="3C" Q
  .I M=1 S SG=4 Q
@@ -71,9 +71,9 @@ ESO7B ;Adenocarcinoma
  .I ((TNM=110)!(TNM=210)) S SG="2B" Q
  .I ((TNM=120)!(TNM=220)) S SG="3A" Q
  .I TNM=310 S SG="3A" Q
- .I TNM="4A00" S SG="3A" Q
+ .I (T="4A")&(N=0)&(M=0) S SG="3A" Q
  .I TNM=320 S SG="3B" Q
- .I ((TNM="4A10")!(TNM="4A20")) S SG="3C" Q
+ .I ((TNM="410")!(TNM="420")) S SG="3C" Q
  .I (T="4B")&(M=0) S SG="3C" Q
  .I (N=3)&(M=0) S SG="3C" Q
  .I M=1 S SG=4 Q

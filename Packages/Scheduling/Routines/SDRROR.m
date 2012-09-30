@@ -1,5 +1,5 @@
 SDRROR ;10N20/MAH;Recall Reminder CPRS Display;01/15/2008
- ;;5.3;Scheduling;**536,561**;Aug 13, 1993;Build 7
+ ;;5.3;Scheduling;**536,561,571**;Aug 13, 1993;Build 3
  ;;This routine is called from ORWCV
  ;;and will be called if Outpatient Clinic param entry is either
  ;;null or cards
@@ -13,7 +13,7 @@ COVER ; GET RECALL DATES FOR A PATIENT
  .S RCTYPE=$P(RCX,U,4),RCCLIN=$P(RCX,U,2)
  .S:RCTYPE]"" RCTYPE=$P($G(^SD(403.51,RCTYPE,0)),U,2)
  .S:RCCLIN]"" RCCLIN=$$GET1^DIQ(44,RCCLIN_",",.01)
- .S DATE1=RCDT S:$D(^TMP("ORVSTLIST",$J,RCDT)) DATE1=RCDT+.0001
+ .S DATE1=RCDT S:$D(^TMP("ORVSTLIST",$J,RCDT)) DATE1=RCDT+.0001_RCIFN  ;SD*571 added RCIFN so all recalls for same date for patient display in CPRS
  .S RCNODE="RECALL ("_RCTYPE_") "_RCCLIN,RCNODE=$E(RCNODE,1,45)
  .S ^TMP("ORVSTLIST",$J,DATE1,"R",1)="R;"_RCDT_";"_RCIFN_U_RCDT_U_RCNODE
  K RCIFN,RCX,RCTYPE,RCCLIN,RCDT,RCNODE,DATE1

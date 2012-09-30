@@ -3,7 +3,7 @@ XLFNSLK ;ISF/RWF - Calling a DNS server for name lookup ;5/21/07  14:47
  ;
 TEST ;Test entry
  N XLF,XL1,XL3,Y,I S (XLF,XL3)=""
- R !,"Enter a IP address to lookup: www.va.gov//",XL1:DTIME S:XL1="" XL1="www.va.gov" Q:XL1["^"
+ R !,"Enter a IP address to lookup: www.DOMAIN.EXT//",XL1:DTIME S:XL1="" XL1="www.DOMAIN.EXT" Q:XL1["^"
  W !,"Looking up ",XL1 D NS(.XLF,XL1,"A",.XL3)
  S XL1="XL3" F  S XL1=$Q(@XL1) Q:XL1=""  W !,XL1," = ",@XL1
  S Y="" F  S Y=$O(XLF("B",Y)) Q:Y=""  W !,?5,Y," > ",XLF("B",Y)
@@ -164,6 +164,6 @@ POST ;Stuff a DNS address during install POST init.
  S XLF=$P($$PARAM^HLCS2,U,3)
  I XLF="T" D BMES^XPDUTL("Test Account DNS address not installed.") Q
  S DIC=8989.3,DR=51,DA=1,DIQ="XLF(" D EN^DIQ1 I $L(XLF(8989.3,1,51)) Q
- S DR="51///10.3.21.192",DIE="^XTV(8989.3,",DA=1 D ^DIE
+ S DR="51///127.0.0.1",DIE="^XTV(8989.3,",DA=1 D ^DIE
  D BMES^XPDUTL("DNS address installed.")
  Q

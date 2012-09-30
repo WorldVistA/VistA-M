@@ -1,0 +1,358 @@
+IBDEI014 ; ; 12-JAN-2012
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JAN 12, 2012
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,1063,0)
+ ;;=93282^^12^82^11^^^^1
+ ;;^UTILITY(U,$J,358.3,1063,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1063,1,2,0)
+ ;;=2^93282
+ ;;^UTILITY(U,$J,358.3,1063,1,3,0)
+ ;;=3^ICD DEVICE PROG EVAL, 1 SNGL
+ ;;^UTILITY(U,$J,358.3,1064,0)
+ ;;=93283^^12^82^12^^^^1
+ ;;^UTILITY(U,$J,358.3,1064,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1064,1,2,0)
+ ;;=2^93283
+ ;;^UTILITY(U,$J,358.3,1064,1,3,0)
+ ;;=3^ICD DEVICE PROGR EVAL, DUAL
+ ;;^UTILITY(U,$J,358.3,1065,0)
+ ;;=93284^^12^82^13^^^^1
+ ;;^UTILITY(U,$J,358.3,1065,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1065,1,2,0)
+ ;;=2^93284
+ ;;^UTILITY(U,$J,358.3,1065,1,3,0)
+ ;;=3^ICD DEVICE PROGR EVAL, MULT
+ ;;^UTILITY(U,$J,358.3,1066,0)
+ ;;=93285^^12^82^14^^^^1
+ ;;^UTILITY(U,$J,358.3,1066,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1066,1,2,0)
+ ;;=2^93285
+ ;;^UTILITY(U,$J,358.3,1066,1,3,0)
+ ;;=3^ILR DEVICE EVAL PROGR
+ ;;^UTILITY(U,$J,358.3,1067,0)
+ ;;=93286^^12^82^15^^^^1
+ ;;^UTILITY(U,$J,358.3,1067,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1067,1,2,0)
+ ;;=2^93286
+ ;;^UTILITY(U,$J,358.3,1067,1,3,0)
+ ;;=3^PRE-OP PM DEVICE EVAL
+ ;;^UTILITY(U,$J,358.3,1068,0)
+ ;;=93287^^12^82^16^^^^1
+ ;;^UTILITY(U,$J,358.3,1068,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1068,1,2,0)
+ ;;=2^93287
+ ;;^UTILITY(U,$J,358.3,1068,1,3,0)
+ ;;=3^PRE-OP ICD DEVICE EVAL
+ ;;^UTILITY(U,$J,358.3,1069,0)
+ ;;=93288^^12^82^17^^^^1
+ ;;^UTILITY(U,$J,358.3,1069,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1069,1,2,0)
+ ;;=2^93288
+ ;;^UTILITY(U,$J,358.3,1069,1,3,0)
+ ;;=3^PM DEVICE EVAL IN PERSON
+ ;;^UTILITY(U,$J,358.3,1070,0)
+ ;;=93289^^12^82^18^^^^1
+ ;;^UTILITY(U,$J,358.3,1070,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1070,1,2,0)
+ ;;=2^93289
+ ;;^UTILITY(U,$J,358.3,1070,1,3,0)
+ ;;=3^ICD DEVICE INTERROGATE
+ ;;^UTILITY(U,$J,358.3,1071,0)
+ ;;=93293^^12^82^19^^^^1
+ ;;^UTILITY(U,$J,358.3,1071,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1071,1,2,0)
+ ;;=2^93293
+ ;;^UTILITY(U,$J,358.3,1071,1,3,0)
+ ;;=3^PM PHONE R-STRIP DEVICE EVAL
+ ;;^UTILITY(U,$J,358.3,1072,0)
+ ;;=99201^^13^83^1
+ ;;^UTILITY(U,$J,358.3,1072,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1072,1,1,0)
+ ;;=1^Problem Focus
+ ;;^UTILITY(U,$J,358.3,1072,1,2,0)
+ ;;=2^99201
+ ;;^UTILITY(U,$J,358.3,1073,0)
+ ;;=99202^^13^83^2
+ ;;^UTILITY(U,$J,358.3,1073,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1073,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,1073,1,2,0)
+ ;;=2^99202
+ ;;^UTILITY(U,$J,358.3,1074,0)
+ ;;=99203^^13^83^3
+ ;;^UTILITY(U,$J,358.3,1074,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1074,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,1074,1,2,0)
+ ;;=2^99203
+ ;;^UTILITY(U,$J,358.3,1075,0)
+ ;;=99204^^13^83^4
+ ;;^UTILITY(U,$J,358.3,1075,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1075,1,1,0)
+ ;;=1^Comprehensive, Moderate
+ ;;^UTILITY(U,$J,358.3,1075,1,2,0)
+ ;;=2^99204
+ ;;^UTILITY(U,$J,358.3,1076,0)
+ ;;=99205^^13^83^5
+ ;;^UTILITY(U,$J,358.3,1076,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1076,1,1,0)
+ ;;=1^Comprehensive, High
+ ;;^UTILITY(U,$J,358.3,1076,1,2,0)
+ ;;=2^99205
+ ;;^UTILITY(U,$J,358.3,1077,0)
+ ;;=99211^^13^84^1
+ ;;^UTILITY(U,$J,358.3,1077,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1077,1,1,0)
+ ;;=1^Brief (no MD seen)
+ ;;^UTILITY(U,$J,358.3,1077,1,2,0)
+ ;;=2^99211
+ ;;^UTILITY(U,$J,358.3,1078,0)
+ ;;=99212^^13^84^2
+ ;;^UTILITY(U,$J,358.3,1078,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1078,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,1078,1,2,0)
+ ;;=2^99212
+ ;;^UTILITY(U,$J,358.3,1079,0)
+ ;;=99213^^13^84^3
+ ;;^UTILITY(U,$J,358.3,1079,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1079,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,1079,1,2,0)
+ ;;=2^99213
+ ;;^UTILITY(U,$J,358.3,1080,0)
+ ;;=99214^^13^84^4
+ ;;^UTILITY(U,$J,358.3,1080,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1080,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,1080,1,2,0)
+ ;;=2^99214
+ ;;^UTILITY(U,$J,358.3,1081,0)
+ ;;=99215^^13^84^5
+ ;;^UTILITY(U,$J,358.3,1081,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1081,1,1,0)
+ ;;=1^Comprehensive
+ ;;^UTILITY(U,$J,358.3,1081,1,2,0)
+ ;;=2^99215
+ ;;^UTILITY(U,$J,358.3,1082,0)
+ ;;=99241^^13^85^1
+ ;;^UTILITY(U,$J,358.3,1082,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1082,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,1082,1,2,0)
+ ;;=2^99241
+ ;;^UTILITY(U,$J,358.3,1083,0)
+ ;;=99242^^13^85^2
+ ;;^UTILITY(U,$J,358.3,1083,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1083,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,1083,1,2,0)
+ ;;=2^99242
+ ;;^UTILITY(U,$J,358.3,1084,0)
+ ;;=99243^^13^85^3
+ ;;^UTILITY(U,$J,358.3,1084,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1084,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,1084,1,2,0)
+ ;;=2^99243
+ ;;^UTILITY(U,$J,358.3,1085,0)
+ ;;=99244^^13^85^4
+ ;;^UTILITY(U,$J,358.3,1085,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1085,1,1,0)
+ ;;=1^Comprehensive, Moderate
+ ;;^UTILITY(U,$J,358.3,1085,1,2,0)
+ ;;=2^99244
+ ;;^UTILITY(U,$J,358.3,1086,0)
+ ;;=99245^^13^85^5
+ ;;^UTILITY(U,$J,358.3,1086,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1086,1,1,0)
+ ;;=1^Comprehensive, High
+ ;;^UTILITY(U,$J,358.3,1086,1,2,0)
+ ;;=2^99245
+ ;;^UTILITY(U,$J,358.3,1087,0)
+ ;;=410.01^^14^86^1
+ ;;^UTILITY(U,$J,358.3,1087,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1087,1,4,0)
+ ;;=4^410.01
+ ;;^UTILITY(U,$J,358.3,1087,1,5,0)
+ ;;=5^Acute MI, Anterolateral, Initial
+ ;;^UTILITY(U,$J,358.3,1087,2)
+ ;;=Acute MI, Anterolateral, Initial^269639
+ ;;^UTILITY(U,$J,358.3,1088,0)
+ ;;=410.02^^14^86^2
+ ;;^UTILITY(U,$J,358.3,1088,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1088,1,4,0)
+ ;;=4^410.02
+ ;;^UTILITY(U,$J,358.3,1088,1,5,0)
+ ;;=5^Acute MI Anterolateral, Subsequent
+ ;;^UTILITY(U,$J,358.3,1088,2)
+ ;;=Acute MI Anterolateral, Subsequent^269640
+ ;;^UTILITY(U,$J,358.3,1089,0)
+ ;;=410.11^^14^86^3
+ ;;^UTILITY(U,$J,358.3,1089,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1089,1,4,0)
+ ;;=4^410.11
+ ;;^UTILITY(U,$J,358.3,1089,1,5,0)
+ ;;=5^Acute MI, Anterior, Initial
+ ;;^UTILITY(U,$J,358.3,1089,2)
+ ;;=Acute MI, Anterior, Initial^269643
+ ;;^UTILITY(U,$J,358.3,1090,0)
+ ;;=410.12^^14^86^4
+ ;;^UTILITY(U,$J,358.3,1090,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1090,1,4,0)
+ ;;=4^410.12
+ ;;^UTILITY(U,$J,358.3,1090,1,5,0)
+ ;;=5^Acute MI, Anterior, Subsequent
+ ;;^UTILITY(U,$J,358.3,1090,2)
+ ;;=Acute MI, Anterior, Subsequent^269644
+ ;;^UTILITY(U,$J,358.3,1091,0)
+ ;;=410.21^^14^86^5
+ ;;^UTILITY(U,$J,358.3,1091,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1091,1,4,0)
+ ;;=4^410.21
+ ;;^UTILITY(U,$J,358.3,1091,1,5,0)
+ ;;=5^Acute MI, Inferolateral, Initial
+ ;;^UTILITY(U,$J,358.3,1091,2)
+ ;;=Acute MI, Inferolateral, Initial^269647
+ ;;^UTILITY(U,$J,358.3,1092,0)
+ ;;=410.22^^14^86^6
+ ;;^UTILITY(U,$J,358.3,1092,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1092,1,4,0)
+ ;;=4^410.22
+ ;;^UTILITY(U,$J,358.3,1092,1,5,0)
+ ;;=5^Acute MI, Inferior, Subsequent
+ ;;^UTILITY(U,$J,358.3,1092,2)
+ ;;=Acute MI, Inferior, Subsequent^269648
+ ;;^UTILITY(U,$J,358.3,1093,0)
+ ;;=410.31^^14^86^7
+ ;;^UTILITY(U,$J,358.3,1093,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1093,1,4,0)
+ ;;=4^410.31
+ ;;^UTILITY(U,$J,358.3,1093,1,5,0)
+ ;;=5^Acute MI, Inferopostior, Initial
+ ;;^UTILITY(U,$J,358.3,1093,2)
+ ;;=Acute MI, Inferopostior, Initial^269651
+ ;;^UTILITY(U,$J,358.3,1094,0)
+ ;;=410.32^^14^86^8
+ ;;^UTILITY(U,$J,358.3,1094,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1094,1,4,0)
+ ;;=4^410.32
+ ;;^UTILITY(U,$J,358.3,1094,1,5,0)
+ ;;=5^Acute MI, Inferoposterior, Subsequent
+ ;;^UTILITY(U,$J,358.3,1094,2)
+ ;;=Acute MI, Inferoposterior, Subsequent^269652
+ ;;^UTILITY(U,$J,358.3,1095,0)
+ ;;=410.41^^14^86^9
+ ;;^UTILITY(U,$J,358.3,1095,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1095,1,4,0)
+ ;;=4^410.41
+ ;;^UTILITY(U,$J,358.3,1095,1,5,0)
+ ;;=5^Acute MI, Inferorposterior, Initial
+ ;;^UTILITY(U,$J,358.3,1095,2)
+ ;;=Acute MI, Inferorposterior, Initial^269655
+ ;;^UTILITY(U,$J,358.3,1096,0)
+ ;;=410.42^^14^86^10
+ ;;^UTILITY(U,$J,358.3,1096,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1096,1,4,0)
+ ;;=4^410.42
+ ;;^UTILITY(U,$J,358.3,1096,1,5,0)
+ ;;=5^Acute MI Inferior, Subsequent
+ ;;^UTILITY(U,$J,358.3,1096,2)
+ ;;=Acute MI Inferior, Subsequent^269656
+ ;;^UTILITY(U,$J,358.3,1097,0)
+ ;;=410.51^^14^86^11
+ ;;^UTILITY(U,$J,358.3,1097,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1097,1,4,0)
+ ;;=4^410.51
+ ;;^UTILITY(U,$J,358.3,1097,1,5,0)
+ ;;=5^Acute MI, Lateral, Initial
+ ;;^UTILITY(U,$J,358.3,1097,2)
+ ;;=Acute MI, Lateral, Initial^269659
+ ;;^UTILITY(U,$J,358.3,1098,0)
+ ;;=410.52^^14^86^12
+ ;;^UTILITY(U,$J,358.3,1098,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1098,1,4,0)
+ ;;=4^410.52
+ ;;^UTILITY(U,$J,358.3,1098,1,5,0)
+ ;;=5^Acute MI, Lateral, Subsequent
+ ;;^UTILITY(U,$J,358.3,1098,2)
+ ;;=Acute MI, Lateral, Subsequent^269660
+ ;;^UTILITY(U,$J,358.3,1099,0)
+ ;;=410.61^^14^86^17
+ ;;^UTILITY(U,$J,358.3,1099,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1099,1,4,0)
+ ;;=4^410.61
+ ;;^UTILITY(U,$J,358.3,1099,1,5,0)
+ ;;=5^AMI Post, Initial
+ ;;^UTILITY(U,$J,358.3,1099,2)
+ ;;=^269663
+ ;;^UTILITY(U,$J,358.3,1100,0)
+ ;;=410.62^^14^86^18
+ ;;^UTILITY(U,$J,358.3,1100,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1100,1,4,0)
+ ;;=4^410.62
+ ;;^UTILITY(U,$J,358.3,1100,1,5,0)
+ ;;=5^AMI Post, Subsequent
+ ;;^UTILITY(U,$J,358.3,1100,2)
+ ;;=^269664
+ ;;^UTILITY(U,$J,358.3,1101,0)
+ ;;=410.71^^14^86^13
+ ;;^UTILITY(U,$J,358.3,1101,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1101,1,4,0)
+ ;;=4^410.71
+ ;;^UTILITY(U,$J,358.3,1101,1,5,0)
+ ;;=5^Acute MI, Non Q Wave, Initial
+ ;;^UTILITY(U,$J,358.3,1101,2)
+ ;;=Acute MI, Non Q Wave, Initial^269667
+ ;;^UTILITY(U,$J,358.3,1102,0)
+ ;;=410.72^^14^86^14
+ ;;^UTILITY(U,$J,358.3,1102,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1102,1,4,0)
+ ;;=4^410.72
+ ;;^UTILITY(U,$J,358.3,1102,1,5,0)
+ ;;=5^Acute MI, Non-Q Wave, Subsequent
+ ;;^UTILITY(U,$J,358.3,1102,2)
+ ;;=Acute MI, Non-Q Wave, Subsequent^269668
+ ;;^UTILITY(U,$J,358.3,1103,0)
+ ;;=410.81^^14^86^15

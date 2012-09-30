@@ -1,11 +1,15 @@
-PSBO ;BIRMINGHAM/EFC - BCMA OUTPUTS ;8/20/10 8:25am
- ;;3.0;BAR CODE MED ADMIN;**13,32,2,25,28,51,50,42**;Mar 2004;Build 23
+PSBO ;BIRMINGHAM/EFC - BCMA OUTPUTS ;3/1/11 5:42pm
+ ;;3.0;BAR CODE MED ADMIN;**13,32,2,25,28,51,50,42,58**;Mar 2004;Build 37
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
  ; EN^PSJBCMA/2828
  ; ^ORD(101.24/3429
  ; ^PSDRUG(/221
+ ;
+ ;*58 - Tag WRAP previously wrapped on a max text limit of 250 char.
+ ;       Since the use of Enhanced Order Checks, that limit has to 
+ ;       be removed and the length of the input string will be used.
  ;
 RPC(RESULTS,PSBTYPE,PSBDFN,PSBSTRT,PSBSTOP,PSBINCL,PSBDEV,PSBSORT,PSBOI,PSBWLOC,PSBWSORT,PSBFUTR,PSBORDNM,PSBRCRI,PSBLIST,PSBPST,PSBTR,PSBDIV) ;
  ;
@@ -181,7 +185,7 @@ WRAP(X,Y,Z) ; Quick text wrap
  .F PSB=Y:-1:0 Q:$E(Z,PSB)=" "
  .S:PSB<1 PSB=Y
  .W $E(Z,1,PSB)
- .S Z=$E(Z,PSB+1,250)
+ .S Z=$E(Z,PSB+1,$L(Z))
  Q ""
  ;
 CHECK ;Beginning of PSB*1*10

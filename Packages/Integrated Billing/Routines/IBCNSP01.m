@@ -1,5 +1,5 @@
 IBCNSP01 ;ALB/AAS - INSURANCE MANAGEMENT - EXPANDED POLICY  ;05-MAR-1993
- ;;2.0;INTEGRATED BILLING;**43,52,85,251,371,377,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**43,52,85,251,371,377,416,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -7,8 +7,8 @@ IBCNSP01 ;ALB/AAS - INSURANCE MANAGEMENT - EXPANDED POLICY  ;05-MAR-1993
  Q
  ;
 SUBSC ; -- subscriber region
- N OFFSET,START
- S START=24,OFFSET=2
+ N OFFSET,START,RX
+ S START=24,OFFSET=2,RX=0
  D SET^IBCNSP(START,OFFSET," Subscriber Information ",IORVON,IORVOFF)
  S Y=$P(IBCDFND,"^",6),C=$P(^DD(2.312,6,0),"^",2) D Y^DIQ
  D SET^IBCNSP(START+1,OFFSET," Whose Insurance: "_Y)
@@ -20,6 +20,18 @@ SUBSC ; -- subscriber region
  D SET^IBCNSP(START+5,OFFSET,"Coord.  Benefits: "_Y)
  D SET^IBCNSP(START+6,OFFSET,"Primary Provider: "_$P(IBCDFND4,"^",1))
  D SET^IBCNSP(START+7,OFFSET," Prim Prov Phone: "_$P(IBCDFND4,"^",2))
+ ;
+ ; IB*2*452 - esg - display Pharmacy fields if they exist
+ I $P(IBCDFND4,U,5)'=""!($P(IBCDFND4,U,6)'="") D
+ . N G,IBY S G=+$P(IBCDFND4,U,5),IBY="",RX=2
+ . I G S IBY=$$GET1^DIQ(9002313.19,G_",",.01)_" - "_$$GET1^DIQ(9002313.19,G_",",.02)
+ . D SET^IBCNSP(START+8,OFFSET," Rx Relationship: "_IBY)
+ . D SET^IBCNSP(START+9,OFFSET,"  Rx Person Code: "_$P(IBCDFND4,U,6))
+ . Q
+ ;
+ ; Two blank lines at end of section
+ D SET^IBCNSP(START+8+RX,OFFSET," ")
+ D SET^IBCNSP(START+9+RX,OFFSET," ")
  Q
  ;
 VER ; -- Entered/Verfied Region

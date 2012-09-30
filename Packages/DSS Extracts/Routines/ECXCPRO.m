@@ -1,5 +1,5 @@
-ECXCPRO ;ALB/JAP - PRO Extract YTD Report ; 8/23/05 1:36pm
- ;;3.0;DSS EXTRACTS;**21,24,33,84**;Dec 22, 1997
+ECXCPRO ;ALB/JAP - PRO Extract YTD Report ;11/30/11  15:39
+ ;;3.0;DSS EXTRACTS;**21,24,33,84,137**;Dec 22, 1997;Build 3
  ;accumulates extract data by hcpcs code for all extracts in fiscal year date range
  ;if an extract has been purged, then totals will be falsely low
  ;if more than 1 extract exists for a particular month, then totals will be falsely high
@@ -74,6 +74,7 @@ PROCESS ;begin processing
  .S ECXHCPC=$P(NODE0,U,33),ECXTYPE=$E(ECXFEKEY,6),ECXSRCE=$E(ECXFEKEY,7)
  .S ECXQTY=$P(NODE0,U,12),ECXCTAMT=$P(NODE0,U,25),ECXGRPR=$P(NODE1,U,4)
  .I ECXFELOC["NONL" S ECXSTAT=$P(ECXFELOC,"NONL",1),ECXFORM="NONL"
+ .I ECXFELOC["HO2" S ECXSTAT=$P(ECXFELOC,"HO2",1),ECXFORM="NONL" ;137
  .;if this station is lab requesting station, then count lab transaction
  .I ECXFELOC["ORD" D
  ..S ECXSTAT=$P(ECXFELOC,"ORD",1),ECXFORM="ORD"

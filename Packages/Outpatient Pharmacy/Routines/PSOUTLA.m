@@ -1,5 +1,5 @@
 PSOUTLA ;BHAM ISC/AMC - pharmacy utility program ; 07/24/96  1:13 pm
- ;;7.0;OUTPATIENT PHARMACY;**1,15,23,56,126,222**;DEC 1997;Build 12
+ ;;7.0;OUTPATIENT PHARMACY;**1,15,23,56,126,222,354**;DEC 1997;Build 16
  ;External reference ^PS(54 supported by DBIA 2227
  ;External reference ^PSDRUG( supported by DBIA 221
 CHK I '$D(PY(PSPR)) W !?10,$C(7),"  # ",PSPR," is not a valid choice." S PSPOP=1 Q
@@ -115,4 +115,8 @@ SUSFDK ;
  I '$P($G(^PS(52.5,SUSIEN,0)),"^",5),'$P($G(^(0)),"^",13) K ^PS(52.5,"C",X,SUSIEN) D
  .I $P($G(^PS(52.5,SUSIEN,0)),"^",7)="Q" K ^PS(52.5,"AQ",X,+$P($G(^PS(52.5,SUSIEN,0)),"^",3),SUSIEN) D KCMPX^PSOCMOP(SUSIEN,"Q") Q
  .K ^PS(52.5,"AC",+$P($G(^PS(52.5,SUSIEN,0)),"^",3),X,SUSIEN)
+ Q
+ADD ;enter/edit automated devices - OPAI
+ W ! S (DLAYGO,DIC,DIE)=52.53,DIC("A")="Select ADD Name: ",DIC(0)="AEQML" D ^DIC G:"^"[$E(X) ADDX G:Y<1 ADD S DA=+Y,DR=".01;1;2;3" D ^DIE G ADD
+ADDX K DIE,DIC,DA,Y,X,DR
  Q

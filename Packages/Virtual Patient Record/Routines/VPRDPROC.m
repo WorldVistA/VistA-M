@@ -1,5 +1,5 @@
 VPRDPROC ;SLC/MKB -- Procedure extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;;Sep 01, 2011;Build 12
+ ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -13,15 +13,19 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's procedures
  S DFN=+$G(DFN) Q:DFN<1
  S BEG=$G(BEG,1410101),END=$G(END,4141015),MAX=$G(MAX,9999)
  ;
- N VPRN,VPRCNT,VPRITM,VPRY
+ N VPRN,VPRCNT,VPRITM,VPRY,VPRCATG
+ S VPRCATG=$G(FILTER("category"),"SR;RA") ;NwHIN default
  ;
  ; get one procedure
- I $G(ID) D  D:$D(VPRITM) XML(.VPRITM) Q
- . I ID'["-" D EN1^VPRDSR(ID,.VPRITM) Q
+ I $G(ID),ID'[";" D  D:$D(VPRITM) XML(.VPRITM) Q
+ . I ID'["-" D EN1^VPRDSR(ID,.VPRITM) Q    ;Surgery
  . S (BEG,END)=9999999.9999=+ID D EN1^RAO7PC1(DFN,BEG,END,"1P")
- . D EN1^VPRDRA(ID,.VPRITM)
+ . D EN1^VPRDRA(ID,.VPRITM)                ;Radiology
+ . K ^TMP($J,"RAE1")
+ I $G(ID),ID[";" D EN^VPRDMC(DFN,,,,ID) Q  ;CP/Medicine
  ;
- ; get all surgeries
+SR ; get all surgeries
+ I VPRCATG'["SR" G RA
  N SHOWADD S SHOWADD=1 ;to omit leading '+' with note titles
  D LIST^SROESTV(.VPRY,DFN,BEG,END,MAX,1)
  S VPRN=0 F  S VPRN=$O(@VPRY@(VPRN)) Q:VPRN<1  D
@@ -30,7 +34,8 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's procedures
  . D XML(.VPRITM)
  K @VPRY
  ;
- ; get all radiology exams
+RA ; get all radiology exams
+ I VPRCATG'["RA" G CP
  K ^TMP($J,"RAE1") D EN1^RAO7PC1(DFN,BEG,END,MAX)
  S VPRCNT=+$G(VPRTOTL),VPRN=""
  F  S VPRN=$O(^TMP($J,"RAE1",DFN,VPRN)) Q:VPRN=""   D  Q:VPRCNT'<MAX  ;I $P($P($G(^(VPRN)),U,6),"~",2)?1"COMP".E
@@ -38,15 +43,17 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's procedures
  . D XML(.VPRITM) S VPRCNT=VPRCNT+1
  K ^TMP($J,"RAE1")
  ;
- ; Consults/ClinProc
- ; V-files [CPT, Exam, Treatment, Patient ED]
+CP ; get CP procedures
+ D:VPRCATG["CP" EN^VPRDMC(DFN,BEG,END,MAX)
+ ;
+ ; V-CPT
  ;
  Q
  ;
  ; ------------ Return data to middle tier ------------
  ;
 XML(PROC) ; -- Return procedures as XML
- N ATT,X,Y,I,NAMES
+ N ATT,X,Y,I,J,NAMES
  D ADD("<procedure>") S VPRTOTL=$G(VPRTOTL)+1
  S ATT="" F  S ATT=$O(PROC(ATT)) Q:ATT=""  D  D:$L(Y) ADD(Y)
  . S NAMES=$S(ATT="document"!(ATT="opReport"):"id^localTitle^nationalTitle^status^Z",1:"code^name^Z")
@@ -57,8 +64,9 @@ XML(PROC) ; -- Return procedures as XML
  ... S Y="<"_ATT_" "_$$LOOP ;_"/>" D ADD(Y)
  ... S X=$G(PROC(ATT,I,"content")) I '$L(X) S Y=Y_"/>" D ADD(Y) Q
  ... S Y=Y_">" D ADD(Y)
- ... S Y="<content xml:space='preserve'>"_$$ESC^VPRD(X)_"</content>"
- ... D ADD(Y),ADD("</"_ATT_">")
+ ... S Y="<content xml:space='preserve'>" D ADD(Y)
+ ... S J=0 F  S J=$O(@X@(J)) Q:J<1  S Y=$$ESC^VPRD(@X@(J)) D ADD(Y)
+ ... D ADD("</content>"),ADD("</"_ATT_">")
  .. D ADD("</"_ATT_"s>")
  . S X=$G(PROC(ATT)),Y="" Q:'$L(X)
  . I X'["^" S Y="<"_ATT_" value='"_$$ESC^VPRD(X)_"' />" Q

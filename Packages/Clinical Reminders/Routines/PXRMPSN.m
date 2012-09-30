@@ -1,5 +1,5 @@
-PXRMPSN ; SLC/PKR - Process PSN protocol events. ;03/25/2010
- ;;2.0;CLINICAL REMINDERS;**12,17,16**;Feb 04, 2005;Build 119
+PXRMPSN ;SLC/PKR - Process PSN protocol events. ;02/10/2011
+ ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22**;Feb 04, 2005;Build 160
  ;==============================
 DEF(FILENUM,GBL,FIEN,NL) ;Write out the list of definintions using this
  ;finding.
@@ -22,7 +22,7 @@ EVDRVR ;Event driver for PSN events.
  ;STRUCTURE OF MESSAGE
  ;^TMP("PSN",$J,VA PRODUCT IEN,0)=VA PRODUCT IEN^OLD DRUG CLASS IEN^
  ;NEW DRUG CLASS IEN^VA GENERIC IEN^VA GENERIC NAME
- N DEFL,FILENUM,FILES,GBL,NEWDCIEN,NEWDCNAM,NL,OLDDCIEN,OLDDCNAM
+ N DEFL,FILENUM,FILES,GBL,NEWDCIEN,NEWDCNAM,NL,NHL,OLDDCIEN,OLDDCNAM
  N SUBJECT,TEMP,VAGIEN,VAGNAM,VAPROD,VAPRODIEN
  S ZTREQ="@"
  K ^TMP($J,"FDATA"),^TMP("PXRMXMZ",$J)
@@ -31,6 +31,8 @@ EVDRVR ;Event driver for PSN events.
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="  * Add the new drug class to the reminder definition/term"
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="  * Change the finding to use the new drug class instead"
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="  * In some cases, no change will be clinically necessary"
+ ;Save the number of lines in the header.
+ S NHL=NL
  ;
  S VAPRODIEN=0
  F  S VAPRODIEN=$O(^XTMP(EVENT,VAPRODIEN)) Q:VAPRODIEN=""  D
@@ -52,9 +54,6 @@ EVDRVR ;Event driver for PSN events.
  . S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=" to drug class "_NEWDCNAM_", (IEN="_NEWDCIEN_")"
  .;Process the lists, and generate a MailMan message.
  . K ^TMP($J,"FDATA")
- . S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=""
- . S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="VA GENERIC "_VAGNAM_" (IEN="_VAGIEN_") is represented by its"
- . S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="original drug class "_OLDDCNAM
  . D DEFLIST^PXRMFRPT(50.605,"PS(50.605,",OLDDCIEN,"FDATA")
  . D DEF(50.605,"PS(50.605,",OLDDCIEN,.NL)
  . D TERMLIST^PXRMFRPT(50.605,"PS(50.605,",OLDDCIEN,"FDATA")
@@ -66,8 +65,13 @@ EVDRVR ;Event driver for PSN events.
  . D DEF(50.6,"PSNDF(50.6,",VAGIEN,.NL)
  . D TERMLIST^PXRMFRPT(50.6,"PSNDF(50.6,",VAGIEN,"FDATA")
  . D TERM(50.6,"PSNDF(50.6,",VAGIEN,.NL)
- S SUBJECT="Clinical Reminder Drug Class Update from National Drug File"
- D SEND^PXRMMSG("PXRMXMZ",SUBJECT)
+ ;Do not send the message if it only contains the header.
+ I NL>NHL D
+ . S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=""
+ . S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="Check your reminder definitions and terms to be sure the change in"
+ . S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="drug class does not require adjustment to them."
+ . S SUBJECT="Clinical Reminder Drug Class Update from National Drug File"
+ . D SEND^PXRMMSG("PXRMXMZ",SUBJECT,"",DUZ)
  K ^TMP($J,"FDATA"),^TMP("PXRMXMZ",$J),^XTMP(EVENT)
  Q
  ;
@@ -95,15 +99,15 @@ PSNEVENT ;Handle PSN events. This routine is attached to the PSN NEW CLASS
  Q
  ;
  ;==============================
-ROC(FILENUM,GBL,FIEN,NL) ;Search all reminder order checks for any that are
- ;using this finding, defined by the global (GBL) and the IEN (FIEN)
- ;should only be called for Drug Class
+ROC(FILENUM,GBL,FIEN,NL) ;Search all reminder order checks for any
+ ;that are using this finding, defined by the global (GBL) and the
+ ;IEN (FIEN). Should only be called for Drug Class findings.
  N IEN,NAME,START
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=""
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="and the following reminder order check groups:"
- I '$D(^PXD(801,"D",FIEN)) S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="  None" Q
+ I '$D(^PXD(801,"P",FIEN_";PSNDF(50.605,")) S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="  None" Q
  S (IEN,START)=0
- F  S IEN=$O(^PXD(801,"D",FIEN,IEN)) Q:IEN'>0  D
+ F  S IEN=$O(^PXD(801,"P",FIEN_";PSNDF(50.605,",IEN)) Q:IEN'>0  D
  . S NAME=$P($G(^PXD(801,IEN,0)),U) I NAME="" Q
  . I START>0 S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=""
  . S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="  "_NAME_" (IEN="_IEN_")"

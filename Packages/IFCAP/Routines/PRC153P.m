@@ -90,7 +90,7 @@ DOMCHK(XPDABORT) ;Check for new DOMAIN (#4.2) file entry
  ; Supported IAs:
  ;  #3452 Allows use of supported FM call $$FIND1^DIC
  ;  #3779 Allows read with FM on the NAME (#.01) field in the DOMAIN (#4.2)
- ;        file to ensure that the domain Q-OLP.MED.VA.GOV exists
+ ;        file to ensure that the domain Q-OLP.DOMAIN.EXT exists
  ;
  ;  Input: 
  ;   XPDABORT - KIDS var to indicate if install should
@@ -99,11 +99,11 @@ DOMCHK(XPDABORT) ;Check for new DOMAIN (#4.2) file entry
  ; Output:
  ;   XPDABORT - if = 2, then abort entire installation
  ;
- I '$$FIND1^DIC(4.2,"","MX","Q-OLP.MED.VA.GOV") D
+ I '$$FIND1^DIC(4.2,"","MX","Q-OLP.DOMAIN.EXT") D
  . W !!,"    **********"
  . W !,"      ERROR: Environment check failed!"
  . W !,"      The required DOMAIN (#4.2) file entry was not found"
- . W !,"      for 'Q-OLP.MED.VA.GOV'. Please refer to MailMan patch"
+ . W !,"      for 'Q-OLP.DOMAIN.EXT'. Please refer to MailMan patch"
  . W !,"      XM*999*175 to create this new entry. After the DOMAIN"
  . W !,"      entry has been created, re-install this patch PRC*5.1*153."
  . W !,"    **********"

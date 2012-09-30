@@ -1,5 +1,5 @@
 XINDX9 ;SF/RWF - XINDEX SYNTAX CHECKER ;06/24/08  15:39
- ;;7.3;TOOLKIT;**20,27,48,61,66,68,110,121**;Apr 25, 1995;Build 7
+ ;;7.3;TOOLKIT;**20,27,48,61,66,68,110,121,132**;Apr 25, 1995;Build 13
  ; Per VHA Directive 2004-038, this routine should not be modified.
  N CH1,EC,OP
  D PARSE S LI=0,AC=255 F %=0:0 S %=$O(LV(%)) Q:%'>0  S LI(%)=0
@@ -69,7 +69,7 @@ FUNC ;Functions and special var's.
  S S=$$CASE($E(S,2,11)),F1=$G(IND("FNC",S)) I '$L(F1) D E^XINDX1(3) S F1=S G FX
  I "ZV"[X S ERR=$S("Z"[X:31,1:27) D ^XINDX1
 FX S X="$"_F1,CH="" D FNC("$F"),ADD,SUM("F") Q
-SPV S X=S D FNC("$V"),ADD,SUM("V") S X=$E(S,2,9),CH=""
+SPV S X=S D FNC("$V"),ADD,SUM("V") S X=$E(S,2,10),CH="" ;P132 support of $PRINCIPAL, 10 characters
  I $E(S,2)="Z" D E^XINDX1(28) Q
  I '$D(IND("SVN",X)) D E^XINDX1(4)
  Q

@@ -1,5 +1,5 @@
 PSXRPPL ;BIR/WPB,BAB-Gathers data for the CMOP Transmission ;13 Mar 2002  10:31 AM
- ;;2.0;CMOP;**3,23,33,28,40,42,41,48,62,58,66,65,69**;11 Apr 97;Build 60
+ ;;2.0;CMOP;**3,23,33,28,40,42,41,48,62,58,66,65,69,70**;11 Apr 97;Build 9
  ;Reference to ^PS(52.5,  supported by DBIA #1978
  ;Reference to ^PSRX(     supported by DBIA #1977
  ;Reference to ^PSOHLSN1  supported by DBIA #2385
@@ -9,8 +9,9 @@ PSXRPPL ;BIR/WPB,BAB-Gathers data for the CMOP Transmission ;13 Mar 2002  10:31 
  ;Reference to %ZIS(2     supported by DBIA #2247
  ;Reference to ^PSSLOCK   supported by DBIA #2789
  ;Reference to ^XTMP("ORLK-" supported by DBIA #4001
- ;Reference to ^BPSUTIL supported by DBIA #4410
- ;
+ ;Reference to ^BPSUTIL   supported by DBIA #4410
+ ;Reference to ^PS(59     supported by DBIA #1976
+ ;Reference to $$SELPRT^PSOFDAUT supported by DBIA #5740
  ;Called from PSXRSUS -Builds ^PSX(550.2,,15,"C" , and returns to PSXRSUS or PSXRTRAN
  ;
 SDT K ^TMP($J,"PSX"),^TMP($J,"PSXDFN"),^TMP("PSXEPHNB",$J),ZCNT,PSXBAT D:$D(XRTL) T0^%ZOSV
@@ -89,6 +90,7 @@ CHKDFN ; use the patient 'C' index under RX multiple in file 550.2 to GET dfn to
  . . . . F  S REC=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT,NDFN,REC)) Q:REC'>0  D
  . . . . . D GETDATA D:$G(RXN) PSOUL^PSSLOCK(RXN),OERRLOCK(RXN)
  Q
+ ;
 BEGIN ; Select print device
  I '$D(PSOPAR) D ^PSOLSET
  I $D(PSOLAP),($G(PSOLAP)'=ION) S PSLION=PSOLAP G PROFILE
@@ -97,10 +99,19 @@ BEGIN ; Select print device
  F J=0,1 S @("PSOBAR"_J)="" I $D(^%ZIS(2,^%ZIS(1,IOS,"SUBTYPE"),"BAR"_J)) S @("PSOBAR"_J)=^("BAR"_J)
  S PSOBARS=PSOBAR1]""&(PSOBAR0]"")&$P(PSOPAR,"^",19)
  K PSOION,J D ^%ZISC I $D(IO("Q")) K IO("Q")
-PROFILE I $D(PSOPROP),($G(PSOPROP)'=ION) Q
+ ;
+PROFILE I $D(PSOPROP),($G(PSOPROP)'=ION) G FDAMG
  I $P(PSOPAR,"^",8) S %ZIS="MNQ",%ZIS("A")="Select PROFILE PRINTER: " D ^%ZIS K %ZIS,IO("Q"),IOP G:POP EXIT S PSOPROP=ION D ^%ZISC
  I $G(PSOPROP)=ION W !,"You must select a printer!",! G PROFILE
+ ;
+FDAMG ; Selects FDA Medication Guide Printer
+ I $$GET1^DIQ(59,PSOSITE,134)'="" N FDAPRT S FDAPRT="" D  I FDAPRT="^"!($G(PSOFDAPT)="") S POP=1 G EXIT
+ . F  D  Q:FDAPRT'=""
+ . . S FDAPRT=$$SELPRT^PSOFDAUT($P($G(PSOFDAPT),"^"))
+ . . I FDAPRT="" W $C(7),!,"You must select a valid FDA Medication Guide printer."
+ . I FDAPRT'="",(FDAPRT'="^") S PSOFDAPT=FDAPRT
  Q
+ ;
 PRT ; w auto error trapping
  D NOW^%DTC S DTTM=% K %
  S NM="" F  S NM=$O(^PSX(550.2,PSXBAT,15,"C",NM)) Q:NM=""  D DFN,PPL ;gather patient RXs, print patient RXs

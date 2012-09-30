@@ -1,5 +1,5 @@
 IBAECU3 ;WOIFO/SS-LTC PHASE 2 UTILITIES ; 20-FEB-02
- ;;2.0;INTEGRATED BILLING;**176**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**176,454**;21-MAR-94;Build 4
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;****** Outpatient LTC related utilities *********
@@ -33,8 +33,9 @@ OUTPINFO(IBFRBEG,IBFREND,IBDFN,IBLB) ;
  S IBVAL("DFN")=IBDFN,IBVAL("BDT")=IBFRBEG-.1,IBVAL("EDT")=+(IBFREND_".9999999")
  S IBFILTER=""
  ; we look only for STATUS=CHECKED OUT i.e. $P(Y0,U,12)=2 in IBCBK
- ;  consider only parent encounters, appts checked out
- S IBCBK="I '$P(Y0,U,6),$P(Y0,U,12)=2 S IBRES=$$STOPINFO^IBAECU3($P(Y0,U,3),0),^TMP($J,IBLB,IBDFN,+Y0\1,Y)=IBRES"
+ ;  consider only parent encounters, appts checked out, don't include
+ ;  if the date is when they are CD exempt
+ S IBCBK="I '$P(Y0,U,6),$P(Y0,U,12)=2 S:'$$CDEXMPT^IBAECU(IBDFN,$P(Y0,U)/1) IBRES=$$STOPINFO^IBAECU3($P(Y0,U,3),0),^TMP($J,IBLB,IBDFN,+Y0\1,Y)=IBRES"
  D SCAN^IBSDU("PATIENT/DATE",.IBVAL,IBFILTER,IBCBK,1) K ^TMP("DIERR",$J)
  Q +$O(^TMP($J,IBLB,IBDFN,0))>0
  ;/**

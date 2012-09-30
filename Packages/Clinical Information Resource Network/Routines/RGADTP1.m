@@ -1,5 +1,5 @@
-RGADTP1 ;BIR/DLR-ADT PROCESSOR TO RETRIGGER A08 or A04 MESSAGES WITH AL/AL (COMMIT/APPLICATION) ACKNOWLEDGEMENTS - CONTINUED ;6/2/02
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**26,27,42,45,44,47,48**;30 Apr 99;Build 3
+RGADTP1 ;BIR/DLR-ADT PROCESSOR TO RETRIGGER A08 or A04 MESSAGES WITH AL/AL (COMMIT/APPLICATION) ACKNOWLEDGEMENTS - CONTINUED ;15 Dec 2011  1:44 PM
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**26,27,42,45,44,47,48,59**;30 Apr 99;Build 1
 PIDP(MSG,ARRAY,HL) ;process PID segment
  N ID,IDS,PIDAA,PIDNTC
  ;Since PID can be over 245 characters loop through setting a PID ARRAY
@@ -37,8 +37,8 @@ PIDP(MSG,ARRAY,HL) ;process PID segment
  S IDS=PID(4)
  S LASTID=$L(IDS,REP),IDCNT=1,IDS=PID(4),CNT=1,ACNT=1
  F X=1:1:LASTID S ID=$P(IDS,REP,X) D
- .;if this is the last entry check for an extension of the message and reset the key variables
- .I X=LASTID I $D(PID(4,IDCNT)) S ID=ID_$P(PID(4,IDCNT),REP),IDS=$P(PID(4,IDCNT),REP,2,99),IDCNT=IDCNT+1,X=0,LASTID=$L(IDS,REP)
+ . ;if this is the last entry check for an extension of the message and reset the key variables
+ . I X=LASTID I $D(PID(4,IDCNT)) S ID=ID_$P(PID(4,IDCNT),REP),IDS=$P(PID(4,IDCNT),REP,2,99),IDCNT=IDCNT+1,X=0,LASTID=$L(IDS,REP)
  . ;get id, assigning authority, and name type code
  . S PIDAA=$P($P(ID,COMP,4),SUBCOMP),PIDNTC=$P(ID,COMP,5),PIDSITE=$P($P(ID,COMP,6),SUBCOMP,2),PIDXDT=$P(ID,COMP,8)
  . S ID=$P(ID,COMP)
@@ -55,6 +55,10 @@ PIDP(MSG,ARRAY,HL) ;process PID segment
  .. ;**47 includes HL("Q") check
  . I PIDAA="USVBA" D
  .. I PIDNTC="PN" S ARRAY("CLAIMN")=ID  ;VBA CLAIM#
+ . ;**59,MVI_880: Get TIN and FIN values
+ . I PIDAA="USDOD" D
+ .. I PIDNTC="TIN" S ARRAY("TIN")=$S(ID=HL("Q"):"@",1:ID)
+ .. E  I PIDNTC="FIN" S ARRAY("FIN")=$S(ID=HL("Q"):"@",1:ID)
  ;get PID-4 alternate ID (ICN History)
  I $G(PID(5))'="" D
  . S CNT=1

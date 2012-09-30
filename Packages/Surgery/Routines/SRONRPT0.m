@@ -1,5 +1,5 @@
 SRONRPT0 ;BIR/ADM - NURSE INTRAOP REPORT ;05/31/06
- ;;3.0;Surgery;**100,129,147,153,157,175**;24 Jun 93;Build 6
+ ;;3.0;Surgery;**100,129,147,153,157,175,176**;24 Jun 93;Build 8
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -23,14 +23,14 @@ SKIN I 'SRALL,SRSKIN="N/A",SRCONV="N/A" G VER
  ;
 VER N II,SROIM,SROUT,SROIN,SRHRM
  S Y=$P(SR("VER"),"^",7),SROIN=$S(Y="Y":"YES",Y="N":"NO",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Confirm Correct Patient Identity: "_SROIN
- S Y=$P(SR("VER"),"^",8),SROIN=$S(Y="Y":"YES",Y="N":"NO",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Confirm Procedure to be Performed: "_SROIN
- S Y=$P(SR("VER"),"^",9),SROIN=$S(Y="Y":"YES",Y="N":"NO",Y="NA":"NOT APPLICABLE",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Confirm Site of the Procedure, including laterality: "_SROIN
+ S Y=$P(SR("VER"),"^",8),SROIN=$S(Y="Y":"YES",Y="N":"NO",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Confirm Procedure To Be Performed: "_SROIN
+ S Y=$P(SR("VER"),"^",9),SROIN=$S(Y="Y":"YES",Y="N":"NO",Y="NA":"NOT APPLICABLE",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Confirm Site of the Procedure, Including Laterality: "_SROIN
  S Y=$P(SR("VER"),"^",10),SROIN=$S(Y="Y":"YES",Y="N":"NO",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Confirm Valid Consent Form: "_SROIN
  S Y=$P(SR("VER"),"^",11),SROIN=$S(Y="Y":"YES",Y="N":"NO",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Confirm Patient Position: "_SROIN
  S Y=$P(SR("VER"),"^",12),SROIN=$S(Y="Y":"YES",Y="N":"NO",1:"* NOT ENTERED *")
  D LINE(1) S @SRG@(SRI)="Confirm Procedure Site has been Marked Appropriately and that the Site of the " D LINE(1) S @SRG@(SRI)=" Mark is Visible After Prep and Draping: "_SROIN
- D LINE(1) S Y=$P(SR("VER"),"^",13),SROIM=$S(Y="Y":"YES",Y="N":"NO",Y="NA":"N/A",1:"* NOT ENTERED *") S @SRG@(SRI)="Pertinent Medical Images have been Confirmed: "_SROIN
- S Y=$P(SR("VER"),"^",14),SROIN=$S(Y="Y":"YES",Y="N":"NO",Y="NA":"NOT APPLICABLE",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Correct Medical Implant(s) is available: "_SROIN
+ D LINE(1) S Y=$P(SR("VER"),"^",13),SROIN=$S(Y="Y":"YES",Y="N":"NO",Y="NA":"N/A",1:"* NOT ENTERED *") S @SRG@(SRI)="Pertinent Medical Images Have Been Confirmed: "_SROIN
+ S Y=$P(SR("VER"),"^",14),SROIN=$S(Y="Y":"YES",Y="N":"NO",Y="NA":"NOT APPLICABLE",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Correct Medical Implant(s) is Available: "_SROIN
  S Y=$P(SR("VER"),"^",18),SROIN=$S(Y="Y":"YES",Y="N":"NO",Y="NA":"NOT APPLICABLE",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Availability of Special Equipment: "_SROIN
  S Y=$P(SR("VER"),"^",15),SROIN=$S(Y="Y":"YES",Y="N":"NO",Y="NA":"NOT APPLICABLE",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Appropriate Antibiotic Prophylaxis: "_SROIN
  S Y=$P(SR("VER"),"^",16),SROIN=$S(Y="Y":"YES",Y="N":"NO",Y="NA":"NOT APPLICABLE",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Appropriate Deep Vein Thrombosis Prophylaxis: "_SROIN

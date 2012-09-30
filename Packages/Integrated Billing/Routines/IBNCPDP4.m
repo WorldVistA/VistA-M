@@ -1,5 +1,5 @@
 IBNCPDP4 ;DALOI/AAT - HANDLE ECME EVENTS ;20-JUN-2003
- ;;2.0;INTEGRATED BILLING;**276,342,405,384,411,435**;21-MAR-94;Build 27
+ ;;2.0;INTEGRATED BILLING;**276,342,405,384,411,435,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;NCPDP PHASE III
@@ -12,7 +12,7 @@ CLOSE(DFN,IBD) ; Close Claim Event
  S IBRES=1,IBLOCK=0
  ;
  I 'DFN S IBRES="0^No patient" G CLOSEQ
- S IBADT=+$G(IBD("FILL DATE")) I 'IBADT S IBRES="0^No fill date" G CLOSEQ
+ S IBADT=+$G(IBD("DOS")) I 'IBADT S IBRES="0^No date of service" G CLOSEQ
  S IBRXN=+$G(IBD("PRESCRIPTION")) I 'IBRXN S IBRES="0^No Rx IEN" G CLOSEQ
  S IBFIL=+$G(IBD("FILL NUMBER"),-1) I IBFIL<0 S IBRES="0^No fill number" G CLOSEQ
  S IBCR=+$G(IBD("CLOSE REASON")) I 'IBCR S IBRES="0^No close reason" G CLOSEQ
@@ -58,7 +58,7 @@ RELEASE(DFN,IBD) ;
  N IBEABD,IBNBR,DA,DIE,DR,IBUSR
  S IBLOCK=0
  I 'DFN S IBRES="0^No patient" G RELQ
- S IBADT=+$G(IBD("FILL DATE")) I 'IBADT S IBRES="0^No fill date" G RELQ
+ S IBADT=+$G(IBD("DOS")) I 'IBADT S IBRES="0^No date of service" G RELQ
  S IBRXN=+$G(IBD("PRESCRIPTION")) I 'IBRXN S IBRES="0^No Rx IEN" G RELQ
  S IBFIL=+$G(IBD("FILL NUMBER"),-1) I IBFIL<0 S IBRES="0^No fill number" G RELQ
  S IBRDT=+$G(IBD("RELEASE DATE"),-1) I 'IBRDT S IBRES="0^No release date" G RELQ
@@ -93,7 +93,7 @@ RELEASE(DFN,IBD) ;
  S DR=DR_"1.1////"_IBD("CLAIMID")_";"
  ; Reject status will not be set here
  ;
- ; Check that the Fill Date is current
+ ; Check that the Date of Service is current
  I IBADT'=$P(^IBT(356,IBTRKRN,0),U,6) S DR=DR_".06////"_IBADT_";"
  ;
  D ^DIE
@@ -113,7 +113,7 @@ SUBMIT(DFN,IBD) ;
  N IBRESP,DA,DIE,DR,IBUSR
  S IBLOCK=0
  I 'DFN S IBRES="0^No patient" G SUBQ
- S IBADT=+$G(IBD("FILL DATE")) I 'IBADT S IBRES="0^No fill date" G SUBQ
+ S IBADT=+$G(IBD("DOS")) I 'IBADT S IBRES="0^No date of service" G SUBQ
  S IBRXN=+$G(IBD("PRESCRIPTION")) I 'IBRXN S IBRES="0^No Rx IEN" G SUBQ
  S IBFIL=+$G(IBD("FILL NUMBER"),-1) I IBFIL<0 S IBRES="0^No fill number" G SUBQ
  S IBRESP=$G(IBD("RESPONSE")) I IBRESP="" S IBRES="0^No response from the payer" G SUBQ
@@ -151,7 +151,7 @@ REOPEN(DFN,IBD) ;
  N IBEABD,IBNBR,DA,DIE,DR,IBUSR,IBEABD
  S (IBLOCK,IBLOCK2)=0
  I 'DFN S IBRES="0^No patient" G REOPQ
- S IBADT=+$G(IBD("FILL DATE")) I 'IBADT S IBRES="0^No fill date" G REOPQ
+ S IBADT=+$G(IBD("DOS")) I 'IBADT S IBRES="0^No date of service" G REOPQ
  S IBRXN=+$G(IBD("PRESCRIPTION")) I 'IBRXN S IBRES="0^No Rx IEN" G REOPQ
  S IBFIL=+$G(IBD("FILL NUMBER"),-1) I IBFIL<0 S IBRES="0^No fill number" G REOPQ
  I '$L($G(IBD("CLAIMID"))) S IBRES="0^Missing ECME Number" G REOPQ

@@ -1,5 +1,5 @@
-PXRMOUTU ; SLC/PKR - Utilites for preparing output. ;11/02/2009
- ;;2.0;CLINICAL REMINDERS;**17**;Feb 04, 2005;Build 102
+PXRMOUTU ;SLC/PKR - Utilites for preparing output. ;07/29/2010
+ ;;2.0;CLINICAL REMINDERS;**17,18**;Feb 04, 2005;Build 152
  ;
  ;==================================================
 ADDTXT(LM,RM,NTXT,TXT) ;
@@ -79,7 +79,7 @@ WARN(PXRMITEM,PXRMPDEM) ;Output WARNING text. An WARN node has the structure:
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="While evaluating reminder "_REMINDER
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="For patient DFN="_PXRMPDEM("DFN")
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="The time of the evaluation was "_$$FMTE^XLFDT($$NOW^XLFDT,"5Z")
- D SEND^PXRMMSG("PXRMXMZ",SUB)
+ D SEND^PXRMMSG("PXRMXMZ",SUB,"",DUZ)
  K ^TMP("PXRMXMZ",$J)
  Q
  ;

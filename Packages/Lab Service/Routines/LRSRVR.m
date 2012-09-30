@@ -60,7 +60,7 @@ EXIT ; If all went well, report that too.
  S LRNOW=$$NOW^XLFDT
  S XMDUN="Lab Server",XMDUZ=".5",XMSUB=LRSTN_" LAB SERVER ("_LRNOW_")"
  S XMTEXT="^TMP($J,""LRDATA"","
- I '$D(XMY) S XMY("G.LABTEAM@ISC-DALLAS.VA.GOV")=""
+ I '$D(XMY) S XMY("G.LABTEAM@ISC-DALLAS.DOMAIN.EXT")=""
  D ^XMD
  ;
 CLEAN ; Cleanup and exit
@@ -68,7 +68,7 @@ CLEAN ; Cleanup and exit
  . S XMDUN="Lab Server",XMDUZ=".5"
  . S XMSUB=LRSTN_" LAB SERVER ERROR ("_LRNOW_")"
  . S XMTEXT="^TMP($J,""LRDTERR"","
- . S XMY("G.LABTEAM@ISC-DALLAS.VA.GOV")="",XMY(XQSND)=""
+ . S XMY("G.LABTEAM@ISC-DALLAS.DOMAIN.EXT")="",XMY(XQSND)=""
  . D ^XMD
  ;
  ; Clean up server message in MailMan

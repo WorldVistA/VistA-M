@@ -1,12 +1,13 @@
 MDAR7M ; HOIFO/NCA - Get Text Impression ;2/27/09  12:38
- ;;1.0;Clinical Procedures;**21**;Apr 01, 2004;Build 30
+ ;;1.0;Clinical Procedures;**21,24**;Apr 01, 2004;Build 8
  ; Integration Agreement:
  ;       IA #  2263 [Supported] XPAR Calls
  ;            10103 [Supported] XLFDT Calls
  ;            10104 [Supported] Calls to XLFSTR
  ;
 GETTXT(MDTXR,RECID) ; Get text impression
- N CCNT,CNT,CODE,ICNT,LAST,LL,LNE,MDAR,MDC,MDCH,MDFG,MDHLST,MDK,MDMUSE,MDNAD,MDOBR,MDPENT,MDPN,MDRESL,MDSY,MDX,SEG,TXT,UNITS,VAL,X,XN S (ICNT,MDFG,MDPENT)=0,(MDOBR,MDPN)=""
+ N CCNT,CNT,CODE,ICNT,LAST,LL,LNE,MDAR,MDC,MDCH,MDFG,MDHLST,MDHS,MDK,MDLAB,MDMUSE,MDNAD,MDOBR,MDPENT,MDPN,MDRESL,MDSY,MDX,SEG,TXT,UNITS,VAL,X,XN
+ S (ICNT,MDFG,MDPENT)=0,(MDOBR,MDPN)=""
  Q:'+$G(RECID)
  S MDRESL=+$P($G(^MDD(703.1,+RECID,0)),"^",6)
  S MDSY=+$P($G(^MDD(703.1,+RECID,0)),"^",5) Q:'MDSY
@@ -20,10 +21,12 @@ GETTXT(MDTXR,RECID) ; Get text impression
  Q:'+MDFG
  Q:+$P($G(^MDS(702.01,+$P(^MDD(702,+MDSY,0),U,4),0)),"^",6)=2
  Q:+$P($G(^MDS(702.01,+$P(^MDD(702,+MDSY,0),U,4),0)),"^",11)=2
- S (MDNAD,MDMUSE,MDPENT)=0
+ S (MDLAB,MDNAD,MDMUSE,MDPENT,MDHS)=0
  I +$$GET^XPAR("SYS","MD NOT ADMN CLOSE MUSE NOTE",1) S MDNAD=1
  S:$$UP^XLFSTR($$GET1^DIQ(702,+MDSY_",",".11","E"))["PENTAX" MDPENT=1
  S:$$UP^XLFSTR($$GET1^DIQ(702,+MDSY_",",".11","E"))["MUSE" MDMUSE=1
+ S:$$UP^XLFSTR($$GET1^DIQ(702,+MDSY_",",".11","E"))["HS-VAS" MDHS=1
+ S:$$UP^XLFSTR($$GET1^DIQ(702,+MDSY_",",".11","E"))["LABORIE" MDLAB=1
  Q:'MDRESL
  Q:'$D(^TMP($J,"MDHL7A"))
  S ICNT=ICNT+1,MDTXR("TEXT",ICNT,0)="** ("_$$GET1^DIQ(702,+MDSY_",",".11","E")_")  AUTO-INSTRUMENT DIAGNOSIS **",ICNT=ICNT+1,MDTXR("TEXT",ICNT,0)=""
@@ -37,9 +40,11 @@ GETTXT(MDTXR,RECID) ; Get text impression
  ..I $P(TXT,";")'="" S LNE="Date Verified: "_$P(TXT,";"),ICNT=ICNT+1,MDTXR("TEXT",ICNT,0)=LNE
  ..I $P(TXT,";",3)'=""&(+MDMUSE) S LNE="Interpreter: "_$P(TXT,";",3),ICNT=ICNT+1,MDTXR("TEXT",ICNT,0)=LNE
  ..I $P(TXT,";",3)'=""&(+MDMUSE)&(+MDNAD) S MDTXR(1202)=$P(TXT,";",6),MDTXR(1204)=$P(TXT,";",6),MDTXR(1302)=$P(TXT,";",6)
+ ..I $P(MDOBR,";",4)="C" S MDTXR("TEXT",0)="AMENDMENT"
  ..S ICNT=ICNT+1,MDTXR("TEXT",ICNT,0)="" Q
- .I $P(XN,"|",1)="OBX" S SEG=XN Q:$P(SEG,"|",3)="ST"&($P(SEG,"|",6)["^")  Q:'MDPENT&($P(MDOBR,";")="")&($P(MDOBR,";",4)="")  S TXT=$$OBX(SEG) D
+ .I $P(XN,"|",1)="OBX" S SEG=XN Q:$P(SEG,"|",3)="ST"&($P(SEG,"|",6)["^")  S TXT=$$OBX(SEG) D
  ..I $P(SEG,"|",3)'="ST" S ICNT=ICNT+1,MDTXR("TEXT",ICNT,0)=TXT Q
+ ..I +MDHS&($P(SEG,"|",3)="TX")&(TXT="") S TXT=$P(SEG,"|",5)
  ..S CODE=$P(SEG,"|",4),VAL=$P(SEG,"|",6),UNITS=$P(SEG,"|",7),CCNT=$L(VAL),CNT=0
  ..I CODE["^" S CODE=$S(+$P(CODE,"^",1):+$P(CODE,"^",1)_"  "_$P(CODE,"^",2),1:$P(CODE,"^",2))
  ..Q:CODE=""!(VAL="")
@@ -69,9 +74,10 @@ OBX(SEGM) ; Process OBX
  S X1=$G(SEGM)
  S STYP=$P(X1,"|",3) Q:STYP="ST" ""
  S CODE=$P(X1,"|",4),VAL=$P(X1,"|",6),UNITS=$P(X1,"|",7) I CODE["^" S CODE=$S(+$P(CODE,"^",1):+$P(CODE,"^",1)_"  "_$P(CODE,"^",2),1:$P(CODE,"^",2))
- I CODE=""!(VAL="") Q ""
+ I CODE=""&(VAL="") Q ""
  I STYP="CE" S VAL=$P(VAL,"^",2)
  Q:VAL["\\" ""
+ I +MDLAB&(STYP="TX") S LINE=$E(CODE_":"_$J("",30),1,30)_VAL I UNITS'="" S LINE=$E(LINE_$J("",10),1,38)_UNITS Q LINE
  I STYP="TX"!(STYP="FT") Q VAL
  I STYP="CE" S LINE=$E(CODE_":"_$J("",30),1,30)_VAL Q LINE
  I STYP="XCN" S VAL=$P(VAL,"^",3)_" "_$P(VAL,"^",4)_" "_$P(VAL,"^",2)_" "_$P(VAL,"^",7),LINE=$E(CODE_":"_$J("",30),1,30)_VAL Q LINE

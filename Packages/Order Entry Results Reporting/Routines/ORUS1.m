@@ -1,17 +1,21 @@
-ORUS1 ; slc/KCM - Select Items from List ;3/24/92  08:56
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;;Dec 17, 1997
+ORUS1 ; slc/KCM - Select Items from List ; 12/4/09 4:59pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**322**;Dec 17, 1997 ;Build 15
  ;
-EN F I=0:0 D INIT R X:DTIME S:'$T X="^" S:X["^"&(X'="^^") DUOUT=1 S:'$L(X) X=ORDFLT S:X["^^" DIROUT=1 S:X["^" Y=-1 Q:'$L(X)!(X["^")!(+$G(ORNOSEL)=1&(X'["?")&(ORUS(0)'["O"))  D CHK Q:ORQUIT  Q:ORBACK  Q:(ORTOT+ORT9)>0  W:ORSEL'["?" $C(7)," ??"
+ ;DJE/VM *322 added Q:ORMOR to avoid processing of "+" index
+ ;EN F I=0:0 D INIT R X:DTIME S:'$T X="^" S:X["^"&(X'="^^") DUOUT=1 S:'$L(X) X=ORDFLT S:X["^^" DIROUT=1 S:X["^" Y=-1 Q:'$L(X)!(X["^")!(+$G(ORNOSEL)=1&(X'["?")&(ORUS(0)'["O"))  D CHK Q:ORQUIT  Q:ORBACK  Q:(ORTOT+ORT9)>0  W:ORSEL'["?" $C(7)," ??"
+EN F I=0:0 D  Q:'$L(X)!(X["^")!(+$G(ORNOSEL)=1&(X'["?")&(ORUS(0)'["O"))  D CHK Q:ORQUIT  Q:ORBACK  Q:ORMOR  Q:(ORTOT+ORT9)>0  W:ORSEL'["?" $C(7)," ??"
+ . D INIT R X:DTIME S:'$T X="^" S:X["^"&(X'="^^") DUOUT=1 S:'$L(X) X=ORDFLT S:X["^^" DIROUT=1 S:X["^" Y=-1
  Q:ORQUIT  Q:ORBACK  K Y("B"),OR9Y("B") Q:'$L(X)!(X["^")
  S:Y>0 (Y,Y(0))=ORTOT
  W "    " S ORTTAB=$X,J=1 I Y>0 K ^DISV(DUZ,ORUS) D SDISV S ^DISV(DUZ,ORUS,0)=X,I=0 F J=1:1 S I=$O(Y(I)) Q:I=""  S X=$P(Y(I),"^",3),^DISV(DUZ,ORUS)=+Y(I),^DISV(DUZ,ORUS,J)=X W:($X+$L(X))>(IOM-4) !?ORTTAB W X,"   "
  I OR9Y S I=0 F J=J:1 S I=$O(OR9Y(I)) Q:I=""  S X=$P(OR9Y(I),"^"),^DISV(DUZ,ORUS,J)=X W:($X+$L(X))>(IOM-4) !?ORTTAB W X,"   "
  Q
 CHK ;
- I X="+",'$D(OR9(999)) W !,"   THIS IS THE END OF THE LIST" S ORSEL="?" Q
- S:X="+" X=999 S ORSEL=X,Y=0
+ I X="+",'$D(OR9("+")) W !,"   THIS IS THE END OF THE LIST" S ORSEL="?" Q  ;DJE/VM *322 replace 999 with +
+ S ORSEL=X,Y=0 ;DJE/VM *322 removed S:X="+" X=999
  I X["?" D EN^ORUS3 Q
  I X="-" S ORBACK=1,P=$S(P=0:0,1:P-1) Q
+ I X="+" S ORMOR=1,P=P+1 Q  ;DJE/VM *322 avoid processing just go to the next page.
  I X=" " D SPAC Q:+$G(ORTOT)>0
  S X=$$UPPER^ORU(X)
  I ORUS(0)["S",X[",",$D(ORUS("ALT")),ORTOT+ORT9'>0,$L(ORSEL) X ORUS("ALT") S:$T ORQUIT=1 Q

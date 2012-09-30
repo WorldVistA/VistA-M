@@ -1,5 +1,5 @@
 DGRPEIS1 ;ALB/MIR - CALLS TO ADD NEW PATIENT RELATIONS AND INCOME PERSONS ; 6/19/09 11:33am
- ;;5.3;Registration;**10,45,108,624,688,805**;Aug 13, 1993;Build 4
+ ;;5.3;Registration;**10,45,108,624,688,805,834**;Aug 13, 1993;Build 4
  ;Adds entries to FILES #408.12 & 408.13
  ;
 NEW ;check if data in FILE #408.12
@@ -51,6 +51,12 @@ DIC ;* GTS - DG*6.3*688 restructured the IF code and DIC("S") that follows
  .W !?3,*7,"Entry incomplete...deleted",!
  .Q:'$G(DA)!($G(DIK)'="^DGPR(408.13,")  ;defined for deps in newip
  .D ^DIK
+ ; ADDED FOR 834
+ I $G(DFN),$$GET1^DIQ(2,DFN,.03,"I")>DGACT D  G NEWPRQ
+ . W !?3,*7,"Effective date is prior to veteran's DOB (",$$GET1^DIQ(2,DFN,.03),")...deleted",!
+ . Q:'$G(DA)!($G(DIK)'="^DGPR(408.13,")
+ . D ^DIK
+ . N DIR S DIR(0)="FAO",DIR("A")="Enter RETURN to Continue" D ^DIR K DIR
  S DIC("DR")=".02////"_$P(DGRP0ND,U,2)
  N VAR S VAR=$P(DGRP0ND,U,3)
  S DIC("DR")=DIC("DR")_";.03////^S X=VAR"

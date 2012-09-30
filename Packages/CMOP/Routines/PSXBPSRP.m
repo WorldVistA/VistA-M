@@ -1,5 +1,5 @@
 PSXBPSRP ;BHAM ISC/MFR - CMOP/ECME ACTIVITY REPORT ;09/01/2006
- ;;2.0;CMOP;**63,65**;11 Apr 97;Build 31
+ ;;2.0;CMOP;**63,65,73**;11 Apr 97;Build 24
  ;External reference to ^PSRX( supported by IA #1221
  ;External reference to ^PSOBPSUT supported by IA #4701
  ;External reference to ^BPSUTIL supported by IA #4410
@@ -155,7 +155,7 @@ PDET(TRX,PATS) N BIEN,DFN,RFL,M,N,NDCR,NDCS,RXS,PS,RDT,RXI,VA
  .S BIEN=RXI_"."_$E($TR($J("",4-$L(RFL))," ","0")_RFL,1,4)_1
  .S RDT=$S(RFL=0:$$GET1^DIQ(52,RXI,31,"I"),1:$$GET1^DIQ(52.1,RFL_","_RXI_",",17,"I"))
  .W !,$E($$GET1^DIQ(2,DFN,.01),1,14)_" ("_$G(VA("BID"))_")"
- .W ?22,RXI_"/"_$$GET1^DIQ(52,RXI,.01)_$S($G(^PSRX(RXI,"IB")):"$",1:"")_$$ECME^PSOBPSUT(RXI)_"/"_RFL
+ .W ?22,$$GET1^DIQ(52,RXI,.01)_$S($G(^PSRX(RXI,"IB")):"$",1:"")_$$ECME^PSOBPSUT(RXI)_"/"_RFL
  .S (NDCS,NDCR)="",(M,N)=0
  .F  S M=$O(^PSRX(RXI,4,M)) Q:'M  S N=^(M,0) I $P(N,"^",3)=RFL S NDCR=$P(N,"^",8),NDCS=$P(N,"^",9)
  .W ?45,$E(NDCS,1,13),?59,$E(NDCR,1,13),?73,$S(RDT:"D",1:"T")
@@ -186,7 +186,6 @@ PDETEX(TRX,PATS) N BIEN,DFN,RFL,M,N,NDCR,NDCS,RXS,PS,RDT,RXI,VA
  .W DATA(5),U  ;Transmission Date/Time
  .W $E($$GET1^DIQ(2,DFN,.01),1,14),U  ;Name
  .W "("_$G(VA("BID"))_")",U  ;Pt.ID
- .W RXI,U                             ;ECME#
  .W $$GET1^DIQ(52,RXI,.01)_$S($G(^PSRX(RXI,"IB")):"$",1:"")_$$ECME^PSOBPSUT(RXI),U  ;RX#
  .W RFL,U                     ;RFL#
  .N NDCS,NDCR,M,N S (NDCS,NDCR)="",(M,N)=0
@@ -208,14 +207,14 @@ GOODPAT(DFN,PATS) ;
  Q 0
  ;
  ;- Display Header - Normal
-PLINE W !,"NAME",?22,"ECME#/RX#/FL#",?45,"NDC SENT",?59,"NDC RECVD",?71,"CMOP-STAT"
+PLINE W !,"NAME",?22,"RX#/FL#",?45,"NDC SENT",?59,"NDC RECVD",?71,"CMOP-STAT"
  W !,"   DRUG",?22,"INSURANCE",?38,"PAY-STAT",?48,"BILL#",?58,"REL-DATE"
  X LINE
  Q
  ;
  ;- Display Header - Excel
 PLINEX W !,"TRANSMISSION",U,"STATUS",U,"DIVISION",U,"CMOP SYSTEM",U,"TRANSMISSION DATE/TIME",U
- W "NAME",U,"Pt.ID",U,"ECME#",U,"RX#",U,"FL#",U,"NDC SENT",U,"NDC RECVD",U,"CMOP-STAT",U
+ W "NAME",U,"Pt.ID",U,"RX#",U,"FL#",U,"NDC SENT",U,"NDC RECVD",U,"CMOP-STAT",U
  W "DRUG",U,"INSURANCE",U,"PAY-STAT",U,"BILL#",U,"REL-DATE"
  Q
  ;

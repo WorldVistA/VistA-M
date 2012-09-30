@@ -51,7 +51,7 @@ AGAIN I $L(RECORD)<81 S RECCNT=RECCNT+1,^TMP($J,RECCNT)=RECORD_$J("",80-$L(RECOR
 MAIL ; call MailMan
  S XMDUZ=.5
  S XMY("G.TAB@"_^XMB("NETNAME"))=""
- S XMY("XXX@Q-TAB.VA.GOV")=""
+ S XMY("XXX@Q-TAB.DOMAIN.EXT")=""
  S SN=$P($G(^XMB(1,1,"XUS")),"^",17),SN=$S(+SN>0:$P($G(^DIC(4,SN,99)),"^",1),1:"")
  S XMSUB=^DD("SITE")_" ("_SN_") Payroll Data (Pay Period "_PPE_")"
  S XMTEXT="^TMP($J,",XMDUZ=.5 D ^XMD

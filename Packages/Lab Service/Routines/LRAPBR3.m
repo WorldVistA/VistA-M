@@ -1,5 +1,5 @@
 LRAPBR3 ;DALOI/WTY - AP Browser Print Cont.;04/06/01
- ;;5.2;LAB SERVICE;**259**;Sep 27, 1994
+ ;;5.2;LAB SERVICE;**259,413**;Sep 27, 1994;Build 2
  ;
  ; This routine was created from LRSPRPT1 to be used for printing
  ; the SF515 to the browser and storing the report in a global format
@@ -31,7 +31,7 @@ SPCSTD ;Display Special Studies
  .D GLENTRY(LRTP(.01)_" "_LRTP(.03)_" Date: "_LRTP(.02),"",1)
  .D GLENTRY(LRTP(1),"",1)
  .K ^UTILITY($J,"W")
- .S LRX=$$GET1^DIQ(LRFILE1,LRA1_","_LRIENS1,1,"","LRTMP")
+ .S LRX=$$GET1^DIQ(LRFILE1,LRC_","_LRIENS1,1,"","LRTMP")
  .S DIWR=IOM-10,DIWL=10,DIWF=""
  .S LRX=+$$GET1^DID(LRFILE1,1,"","SPECIFIER")
  .I $$GET1^DID(LRX,.01,"","SPECIFIER")["L" S DIWF="N"

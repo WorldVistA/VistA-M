@@ -1,5 +1,5 @@
-ONCPTX ;Hines OIFO/GWB - First Course of Treatment ;06/23/10
- ;;2.11;ONCOLOGY;**13,15,17,19,27,32,34,36,37,39,41,42,45,46,49,50,51**;Mar 07, 1995;Build 65
+ONCPTX ;Hines OIFO/GWB - First Course of Treatment ;10/05/11
+ ;;2.11;ONCOLOGY;**13,15,17,19,27,32,34,36,37,39,41,42,45,46,49,50,51,54**;Mar 07, 1995;Build 10
  ;
  N DATEDX
  S DATEDX=$P($G(^ONCO(165.5,D0,0)),U,16)
@@ -77,9 +77,9 @@ FORDS ;Surgical Procedures (FORDS)
  .S $P(^ONCO(165.5,D0,3),U,1)="0000000"
  N DI,DIC,DR,DA,DIQ K ONC
  S DIC="^ONCO(165.5,"
- S DR="50;58.6;50.3;58.7;59;138:138.5;139:139.5;435;14;58;23;74;58.2;50.2;140;140.1;170;46;47;228;229;230;231;232;234"
+ S DR="50;58.6;50.3;58.7;59;138:138.5;139:139.5;435;14;58;23;74;58.2;50.2;140;140.1;170;46;47;228;229;230;231;232;234;281"
  S DA=D0,DIQ="ONC(" D EN^DIQ1
- F I=58.6,58.7,59,138,138.1,138.4,138.5,139,139.1,139.4,139.5,435,14,58,23,74,58.2,50.2,140,140.1,234,46,47 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
+ F I=58.6,58.7,59,138,138.1,138.4,138.5,139,139.1,139.4,139.5,435,14,58,23,74,58.2,50.2,140,140.1,234,46,47,281 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
  D FST^ONCOAIP
  ;W !," SURGICAL PROCEDURES (FORDS)"
  ;W !," ---------------------------"
@@ -112,6 +112,7 @@ FORDS ;Surgical Procedures (FORDS)
  W !," Reason no surgery of primary.: ",ONC(165.5,D0,58)
  W !," CAP Protocol Review..........: ",ONC(165.5,D0,46)
  W:ONC(165.5,D0,46)="FAILED" !," CAP Text.....................: ",ONC(165.5,D0,47)
+ W !," Tx Guidelines Discussion.....: ",ONC(165.5,D0,281)
  S TXGL=""
  I ONC(165.5,D0,228)'="" S TXGL=ONC(165.5,D0,228)
  I ONC(165.5,D0,229)'="" S TXGL=TXGL_"/"_ONC(165.5,D0,229)
@@ -201,11 +202,13 @@ PRO ;Palliative Care/Protocol Participation
  ;W !," -------------------------------------------"
  N DI,DIC,DR,DA,DIQ K ONC
  S DIC="^ONCO(165.5,"
- S DR="133;560;154;12;13;346"
+ S DR="133;560;154;12;13;346;279"
  S DA=D0,DIQ="ONC(" D EN^DIQ1
- F I=560,154,12,13,346 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
+ F I=560,154,12,13,346,279 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
  W !," Palliative care...............: ",ONC(165.5,DA,12)
  W !," Palliative care @fac..........: ",ONC(165.5,DA,13)
+ W !
+ W !," Clinical Trials Discussion....: "_ONC(165.5,DA,279)
  W !
  W !," Protocol eligibility status...: "_ONC(165.5,DA,346)
  W !," Protocol participation........: "_ONC(165.5,DA,560)

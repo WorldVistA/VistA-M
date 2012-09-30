@@ -1,5 +1,5 @@
 PSOORDRG ;BIR/SAB - order entry drug selection ;11/13/97
- ;;7.0;OUTPATIENT PHARMACY;**3,29,49,46,81,105,134,144,132,188,207,148,243,251**;DEC 1997;Build 202
+ ;;7.0;OUTPATIENT PHARMACY;**3,29,49,46,81,105,134,144,132,188,207,148,243,251,379**;DEC 1997;Build 28
  ;External references to ^PSJORUT2 supported by DBIA 2376
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference to ^PS(50.605 supported by DBIA 696
@@ -69,7 +69,7 @@ BUILD ;build profiles
  ..Q:'$P(^PS(52.41,EN,0),"^",8)
  ..S PSOOI=^PS(52.41,EN,0)
  ..I $P(PSOOI,"^",3)'="DC"&($P(PSOOI,"^",3)'="DE") D
- ...D:'$P(^PS(52.41,EN,0),"^",9) BLDOI Q
+ ...I '$P(^PS(52.41,EN,0),"^",9) D BLDOI Q
  ...S PSODD=+$P(PSOOI,"^",9) D SETTMP
  D BUILDX
  Q

@@ -1,5 +1,5 @@
-PXRMEXU5 ; SLC/PKR - Reminder exchange KIDS utilities, #5. ;03/07/2010
- ;;2.0;CLINICAL REMINDERS;**12,16**;Feb 04, 2005;Build 119
+PXRMEXU5 ;SLC/PKR - Reminder exchange KIDS utilities, #5. ;06/03/2012
+ ;;2.0;CLINICAL REMINDERS;**12,16,18,22**;Feb 04, 2005;Build 160
  ;==================================================
 BMTABLE(MTABLE,IENROOT,DIQOUT,FDA) ;Build the table for merging
  ;GETS^DIQOUT indexes into the FDA. The merge table has the form:
@@ -51,11 +51,14 @@ BMTABLE(MTABLE,IENROOT,DIQOUT,FDA) ;Build the table for merging
  Q
  ;
  ;==================================================
-LOIEN(FILENUM) ;Find the first open ien in a global.
+LOIEN(FILENUM,START) ;Find the first open IEN in a global. If the optional
+ ;parameter START is present then start there looking for the first
+ ;open IEN.
  N GBL,I1,I2,OIEN
  S GBL=$$GET1^DID(FILENUM,"","","GLOBAL NAME")_"I1)"
  S OIEN=-1
  S (I1,I2)=0
+ S (I1,I2)=$S($G(START)>0:START,1:0)
  F  S I1=+$O(@GBL) Q:(OIEN>0)!(I1=0)  D
  . I ((I1-I2)>1)!(I1="") S OIEN=I2+1 Q
  . S I2=I1
@@ -63,8 +66,8 @@ LOIEN(FILENUM) ;Find the first open ien in a global.
  Q OIEN
  ;
  ;==================================================
-MERGE(FILENUM,IEN,FIELD,FDA,IENROOT) ;Merge existing site entries into
- ;the FDA that is loaded from Exchange.
+MOU(FILENUM,IEN,FIELD,FDA,IENROOT,ACTION,WPTMP) ;Merge or update existing site
+ ;entries into the FDA that is loaded from Exchange.
  ;FILENUM - the file number
  ;IEN - internal entry number
  ;FIELD - semicolon separated list of fields.
@@ -73,39 +76,39 @@ MERGE(FILENUM,IEN,FIELD,FDA,IENROOT) ;Merge existing site entries into
  ;FDA and IENROOT are the FDA and IENROOT for UPDATE^DIE. These
  ;are already setup with the contents of the packed reminder before
  ;this routine is called.
- ;The default is to merge any nodes of the FDA with the nodes
- ;already existing at the site. If MODE="R" then the existing nodes
- ;will be replaced with the nodes already in the FDA.
- N DIQOUT,IENSD,IENSF,IND,IND1,IND2,IND2S,IND3,LE,MSG,MTABLE
+ N DIQOUT,IENS,IENSD,IENSF,IND,IND1,IND2,IND2S,IND3,FNUM,LE,MSG,MTABLE
  N SITE,TIENROOT
  S IENS=IEN_","
  D GETS^DIQ(FILENUM,IENS,FIELD,"N","DIQOUT","MSG")
  I $D(MSG) D  Q
  . N ETEXT,FILENAME
  . S FILENAME=$$GET1^DID(FILENUM,"","","NAME")
- . S ETEXT="GETS^DIQ failed for "_FILENAME_" entry "_IEN_", it returned the following error message:"
+ . S ETEXT="In MOU^PXRMEXU5 GETS^DIQ failed for "_FILENAME_" entry "_IEN_", it returned the following error message:"
  . W !,ETEXT
  . D AWRITE^PXRMUTIL("MSG")
  . H 2
- . K MSG
  ;If there is nothing to merge quit.
  I '$D(DIQOUT) Q
  ;Clean up DIQOUT remove null entries and change pointers to the resolved
  ;form.
  D CLDIQOUT^PXRMEXPU(.DIQOUT)
+ D RMEH^PXRMEXPU(FILENUM,.DIQOUT,1)
  ;If there is nothing left to merge quit.
  I '$D(DIQOUT) Q
  ;Build the merge table.
  D BMTABLE(.MTABLE,.IENROOT,.DIQOUT,.FDA)
- ;Do the merge
- S FILENUM=""
- F  S FILENUM=$O(DIQOUT(FILENUM)) Q:FILENUM=""  D
+ ;Do the merge or update.
+ S FNUM=""
+ F  S FNUM=$O(DIQOUT(FNUM)) Q:FNUM=""  D
  . S IENSD=""
- . F  S IENSD=$O(DIQOUT(FILENUM,IENSD)) Q:IENSD=""  D
- .. S IENSF=MTABLE(FILENUM,IENSD)
+ . F  S IENSD=$O(DIQOUT(FNUM,IENSD)) Q:IENSD=""  D
+ .. S IENSF=MTABLE(FNUM,IENSD)
+ ..;This is how update works for terms.
+ .. I (ACTION="U"),$D(FDA(FNUM,IENSF,.01)) Q
  .. S FIELD=""
- .. F  S FIELD=$O(DIQOUT(FILENUM,IENSD,FIELD)) Q:FIELD=""  D
- ... S FDA(FILENUM,IENSF,FIELD)=DIQOUT(FILENUM,IENSD,FIELD)
+ .. F  S FIELD=$O(DIQOUT(FNUM,IENSD,FIELD)) Q:FIELD=""  D
+ ... I DIQOUT(FNUM,IENSD,FIELD)["WP-start" D WORDPROC(FNUM,IENSD,FIELD,.DIQOUT,.WPTMP)
+ ... S FDA(FNUM,IENSF,FIELD)=DIQOUT(FNUM,IENSD,FIELD)
  Q
  ;
  ;==================================================
@@ -122,35 +125,6 @@ MMTAB(MTABLE,IENROOT,LAST,FILENUM,IENS,IENRF) ;Generate a merge table entry.
  Q
  ;
  ;==================================================
-NONULL(PXRMRIEN) ;Set any lines with a length of 0 equal to a space
- ;so KIDS will not delete them.
- N IND
- S IND=0
- F  S IND=+$O(^PXD(811.8,PXRMRIEN,100,IND)) Q:IND=0  D
- . I $L(^PXD(811.8,PXRMRIEN,100,IND,0))=0 S ^PXD(811.8,PXRMRIEN,100,IND,0)=" "
- Q
- ;
- ;==================================================
-POSTKIDS(PXRMRIEN) ;Change all ACK characters in node 100 of Exchange
- ;File entry PXRMRIEN back to "^".
- N ACK,UPA
- S ACK=$C(6)
- S UPA="^"
- D REPCHAR(PXRMRIEN,ACK,UPA)
- Q
- ;
- ;==================================================
-PREKIDS(PXRMRIEN) ;Change all "^" characters in node 100 of Exchange
- ;File entry PXRMRIEN so that KIDS does not truncate lines when it
- ;installs the file.
- N ACK,UPA
- S ACK=$C(6)
- S UPA="^"
- D REPCHAR(PXRMRIEN,UPA,ACK)
- D NONULL(PXRMRIEN)
- Q
- ;
- ;==================================================
 REPCHAR(PXRMRIEN,CHAR1,CHAR2) ;Replace CHAR1 with CHAR2 for all lines in node
  ;100 of entry PXRMRIEN of the Exchange File.
  N IND,LINE
@@ -160,7 +134,8 @@ REPCHAR(PXRMRIEN,CHAR1,CHAR2) ;Replace CHAR1 with CHAR2 for all lines in node
  . S ^PXD(811.8,PXRMRIEN,100,IND,0)=LINE
  Q
  ;
-ROC(FDA) ;
+ ;==================================================
+ROC(FDA) ;For Reminder Order Checks.
  N ACTION,IEN,IENS,OI,OOI,TEXT
  S ACTION="",IENS=""
  F  S IENS=$O(FDA(801.02,IENS)) Q:IENS=""  D  I ACTION="Q" K FDA S PXRMDONE=1
@@ -182,7 +157,6 @@ ROC(FDA) ;
  ..I ACTION="D" K FDA(801.02,IENS,.01) Q
  ..S DIC=101.43
  ..S DIC(0)="AEMNQ"
- ..;S DIC("S")="I $$FILESCR^PXRMDLG6(Y,FILENUM)=1"
  ..S Y=-1
  ..F  Q:+Y'=-1  D
  ...;If this is being called during a KIDS install we need echoing on.
@@ -195,9 +169,15 @@ ROC(FDA) ;
  ..I Y="" S ACTION="Q" Q
  ..S OI=$P(Y,U,2)
  ..S FDA(801.02,IENS,.01)=OI
- .;I OI'=OOI D
- .;.S ^TMP("PXRMEXIA",$J,"DIAF",$P(IENS,",",1),ABBR_"."_OOI)=ABBR_"."_OI
  Q
+ ;
+ ;==================================================
+ROCR(FDA) ;
+ N IENS
+ S IENS="" F  S IENS=$O(FDA(801.1,IENS)) Q:IENS=""  D
+ .I '$G(PXRMINST) S FDA(801.1,IENS,2)="I"
+ Q
+ ;
  ;==================================================
 TIU(IEN,ARRAY,SUB) ;
  I $D(^TMP($J,SUB,IEN))>0 Q
@@ -207,5 +187,13 @@ TIU(IEN,ARRAY,SUB) ;
  S CNT=1 S @OUTPUT@(CNT)="TIU Object: "_$G(ARRAY(IEN,.01))
  S CNT=CNT+1,@OUTPUT@(CNT)="Object Method: "_$G(ARRAY(IEN,9))
  S CNT=CNT+1,@OUTPUT@(CNT)=""
+ Q
+ ;
+ ;==================================================
+WORDPROC(FILENUM,IENSD,FIELD,DIQOUT,WPTMP) ;
+ N I3,NL
+ S NL=$P(DIQOUT(FILENUM,IENSD,FIELD),"~",2)
+ F I3=1:1:NL S WPTMP(FILENUM,+FIELD,I3)=DIQOUT(FILENUM,IENSD,FIELD,I3)
+ S DIQOUT(FILENUM,IENSD,FIELD)="WPTMP("_FILENUM_","_+FIELD_")"
  Q
  ;

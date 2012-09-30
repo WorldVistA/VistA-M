@@ -1,5 +1,5 @@
-DGRPDD1 ;ALB/JDS - INPUT SYNTAX CHECKS - FORMERLY DGINP ; 9/23/04 6:04pm
- ;;5.3;Registration;**72,136,244,621**;AUG 13, 1993
+DGRPDD1 ;ALB/JDS,LBD - INPUT SYNTAX CHECKS - FORMERLY DGINP ; 3/3/09 4:23pm
+ ;;5.3;Registration;**72,136,244,621,797**;AUG 13, 1993;Build 24
  ;
  ;  NOTE: THIS USED TO BE NAMED 'DGINP'
  ;                               -----
@@ -57,3 +57,15 @@ PS3 S Y=$P(L1,U,16) I X'>Y X ^DD("DD") W:'$D(ZTQUEUED) !!,"The service separatio
  S Y=$P(L1,U,11) I X'<Y X ^DD("DD") W:'$D(ZTQUEUED) !!,"The service separation date must be before the next service entry date ",Y,!!,*7 K X G POSQ
 PSQ K L1,SD1 Q
 CAT1 S DDA=DA,DA=+^DGPT(DA,0) D CAT S DA=DDA K DDA Q
+ ;
+AGE(DFN,X) ;Called from input transform of SERVICE ENTRY field (#.01) of the
+ ;MILITARY SERVICE EPISODE sub-file #2.3216. Added for DG*5.3*797.
+ N DOB,MSG
+ Q:'$G(DFN) 0 Q:'$G(X) 0
+ S DOB=+$P($G(^DPT(DFN,0)),U,3)
+ I X-DOB\10000<15 D  Q 0
+ .S MSG(1)="This service entry date would make the patient too young for service."
+ .S MSG(1,"F")="!!"
+ .S MSG(2)="DOB "_$$FMTE^XLFDT(DOB)
+ .D EN^DDIOL(.MSG)
+ Q 1

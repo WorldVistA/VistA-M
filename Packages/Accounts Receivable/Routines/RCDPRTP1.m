@@ -1,9 +1,11 @@
 RCDPRTP1 ;ALB/LDB - CLAIMS MATCHING REPORT (PRINT) ;1/26/01  2:56 PM
- ;;4.5;Accounts Receivable;**151,169**;Mar 20, 1995
- ;
+ ;;4.5;Accounts Receivable;**151,169,276,284**;Mar 20, 1995;Build 35
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; Entry point to print the Claims Matching Report.
- N %,DATEDIS1,DATEDIS2,NOW,PG,RCBILL,RCAMT,RCAMT1,RCIBDAT,RCIBFN,RCNAM,RCNAM1,RCNO,RCNOW,RCDLINE,RCLINE,RCPHIT,RCQ,RCSSN,RCSTAT,RCTP,X,Y
+ N %,DATEDIS1,DATEDIS2,NOW,PG,RCBILL,RCAMT,RCAMT1,RCIBDAT,RCIBFN,RCNAM,RCNAM1,RCNO,RCNOW,RCDLINE,RCLINE,RCPHIT
+ ; PRCA*4.5*284 - Remove RCPT 'new' as this is the receipt # from user entry
+ N RCQ,RCSSN,RCSTAT,RCTP,X,Y
  ;
  ; - initialize report header variables
  S PG=0
@@ -45,7 +47,8 @@ PROC ; Process each third party bill for a patient.
  S (RCAMT(0),RCAMT(1))=0
  ;
  S RCTP(0)=0 F  S RCTP(0)=$O(^TMP("IBRBF",$J,RCTP(0))) Q:'RCTP(0)  S RCTP(1)=0 F  S RCTP(1)=$O(^TMP("IBRBF",$J,RCTP(0),RCTP(1))) Q:'RCTP(1)  S ^TMP($J,"IBRBF",RCTP(1),RCTP(0))=""
- S RCPT(0)=0 F  S RCTP(0)=$O(^TMP($J,"IBRBF",RCTP(0))) Q:'RCTP(0)  S RCTP(1)=0 F  S RCTP(1)=$O(^TMP($J,"IBRBF",RCTP(0),RCTP(1))) Q:'RCTP(1)  D
+ ; PRCA*4.5*284 - Change typo of RCPT(0)=0 to RCTP(0)=0
+ S RCTP(0)=0 F  S RCTP(0)=$O(^TMP($J,"IBRBF",RCTP(0))) Q:'RCTP(0)  S RCTP(1)=0 F  S RCTP(1)=$O(^TMP($J,"IBRBF",RCTP(0),RCTP(1))) Q:'RCTP(1)  D
  .I RCTP(1)=RCBILL Q
  .I $D(^TMP($J,"IBRBF",RCTP(0),RCBILL))!(RCTP(1)'=$O(^TMP($J,"IBRBF",RCTP(0),0))) K ^TMP("IBRBF",$J,RCTP(1),RCTP(0)),^TMP($J,"IBRBF",RCTP(0),RCTP(1)) I '$O(^TMP("IBRBF",$J,RCTP(1),0)) K ^TMP("IBRBF",$J,RCTP(1))
  S RCTP(0)="" F  S RCTP(0)=$O(^TMP("IBRBT",$J,RCBILL,RCTP(0))) Q:RCTP(0)=""  D
@@ -76,7 +79,8 @@ PROC ; Process each third party bill for a patient.
  I $Y>(IOSL-7) D PAUSE^RCDPRTP2 G:$G(RCQ) PROCQ D HDR
  D HDR1^RCDPRTP2,PRINT1^RCDPRTP2 G:$G(RCQ) PROCQ
  ;
- ; - print the other assoicated third party bills
+ ; PRCA*4.5*284, corrected typo of 'assoicated' to 'associated'
+ ; - print the other associated third party bills
  S RCTP=0 F  S RCTP=$O(^TMP("IBRBT",$J,RCBILL,RCTP)) Q:'RCTP!$G(RCQ)  D
  .I RCBILL=RCTP Q  ; don't reprint the bill that was paid.
  .S RCIBDAT=$G(^TMP("IBRBT",$J,RCBILL,RCTP))
@@ -85,9 +89,10 @@ PROC ; Process each third party bill for a patient.
  G:$G(RCQ) PROCQ
  ;
  ; - print the third party totals
+ ; PRCA*4.5*276 - adjusted header to make room for EEOB indicator '%'
  I $Y>(IOSL-2) D PAUSE^RCDPRTP2 G:$G(RCQ) PROCQ D HDR W !
- W !,?57,"---------",?68,"---------"
- W !,?57,$J(RCAMT(0),9,2),?68,$J(RCAMT(1),9,2)
+ W !,?63,"----------",?75,"----------"
+ W !,?64,$J(RCAMT(0),9,2),?76,$J(RCAMT(1),9,2)
  ;
  ; - print the associated first party charges
  S RCTP(0)=0 F  S RCTP(0)=$O(^TMP("IBRBF",$J,RCTP(0))) Q:'RCTP(0)!$G(RCQ)  D
@@ -104,6 +109,7 @@ PROC ; Process each third party bill for a patient.
  ..; - print the patient detail line
  ..D PRINT2^RCDPRTP2
  ;.
+ ; PRCA*4.5*284, cleanup ^TMP($J) only
 PROCQ K ^TMP($J) Q
  ;
  ;

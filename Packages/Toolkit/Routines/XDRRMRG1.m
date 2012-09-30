@@ -1,5 +1,6 @@
-XDRRMRG1 ;SF-IRMFO.SEA/JLI - DUP VERIFICATION FOR ANCILLARY SERVICES ;08/09/2000  11:12
- ;;7.3;TOOLKIT;**23,29,46,47,49**;Apr 25, 1995
+XDRRMRG1 ;SF-IRMFO.SEA/JLI - DUP VERIFICATION FOR ANCILLARY SERVICES ;10/21/2010
+ ;;7.3;TOOLKIT;**23,29,46,47,49,126**;Apr 25, 1995;Build 2
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ;
  I '$D(XQADATA) Q
@@ -83,6 +84,7 @@ CHK1 K DIR
  . I XDRY'="^" D
  . . S XQAKILL=$S(XDRY'="U":0,1:1)
  . . S XDRDIR=""
+ . . I XDRY="V" D VERWARN ;p126-REM
  . . I XDRY="V",PACKAGE="PRIMARY" D
  . . . S DIR=0 F DFN=DFNFRX,DFNTOX I $D(@FILEDIC) S DIR=DIR+1
  . . . I DIR'>1 K DIR Q  ; DON'T NEED TO SELECT DIRECTION UNLESS DATA IN BOTH ENTRIES
@@ -194,4 +196,13 @@ SETUP(XDRDA) ;
  . F I=0:0 S I=$O(^VA(15.1,PRIFILE,2,XDRAID,1,I)) Q:I'>0  S X=^(I,0) D
  . . S XQA(X)=""
  . D SEND^XDRRMRG0 K R
+ Q
+VERWARN ;Warning message when ready to Verified Dupicates; p126-REM
+ W !!,"*** WARNING!!!  You have verified these two records are the SAME"
+ W !,"patient.  Once these records are merged, there is no automated way to"
+ W !,"""un-do"" the merge.  If you are not certain these are the same patient,"
+ W !,"edit the status back to 'Potential Duplicate, Unverified' and repeat the"
+ W !,"verification process.  For additional assistance, please log a NOIS/Remedy"
+ W !,"ticket. ***"
+ W !!
  Q

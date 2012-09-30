@@ -1,5 +1,5 @@
-SROAUTL2 ;BIR/ADM - RISK ASSESSMENT UTILITY ;01/29/07
- ;;3.0; Surgery ;**38,47,63,88,125,153,160**;24 Jun 93;Build 7
+SROAUTL2 ;BIR/ADM - RISK ASSESSMENT UTILITY ;08/25/2011
+ ;;3.0;Surgery;**38,47,63,88,125,153,160,176**;24 Jun 93;Build 8
  S SRZ=0 F  S SRZ=$O(SRY(130,SRTN,SRZ)) Q:'SRZ  D
  .I SRY(130,SRTN,SRZ,"I")="" D TR S X=$T(@SRP),SRFLD=$P(X,";;",2),SRX(SRZ)=$P(SRFLD,"^",2)
  .I SRY(130,SRTN,SRZ,"I")="NS" D TR S X=$T(@SRP),SRFLD=$P(X,";;",2),SRDT=$P(SRFLD,"^",4) S:SRDT'="" SRLR(SRDT)=""
@@ -80,8 +80,10 @@ BAD ;;214^PGY of Primary Surgeon ('0' for Staff Surgeon)^PGY of Primary Surgeon^
 PJCE ;;.035^Case Schedule Type^Surgical Priority^
 APJI ;;1.09^Wound Classification^Wound Classification^
 APAC ;;1.13^ASA Class^ASA Classification^
+PBJE ;;.205^Time Patient In the O.R.^Time Patient In the O.R.^
 PBB ;;.22^Time the Operation Began^Date/Time Operation Began^
 PBC ;;.23^Time the Operation Ends^Date/Time Operation Ended^
+PBCB ;;.232^Time Patient Out of the O.R.^Time Patient Out of the O.R.^
 CDJ ;;340^Number of RBC Units Transfused^RBC Units Transfused^
 DDC ;;443^Intraoperative Disseminated Cancer (Y/N)^Intraoperative Disseminated Cancer^
 DDF ;;446^Intraoperative Ascites (Y/N)^Intraoperative Ascites

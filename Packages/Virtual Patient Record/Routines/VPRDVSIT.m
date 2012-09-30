@@ -1,5 +1,5 @@
 VPRDVSIT ;SLC/MKB -- Visit/Encounter extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;;Sep 01, 2011;Build 12
+ ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -8,9 +8,10 @@ VPRDVSIT ;SLC/MKB -- Visit/Encounter extract ;8/2/11  15:29
  ; ^DIC(40.7                      557
  ; ^DIC(42                      10039
  ; ^DIC(45.7                     1154
- ; ^PXRMINDX                     4290
+ ; ^DPT(                        10035
  ; ^SC                          10040
  ; ^VA(200                      10060
+ ; DGPTFAPI                      3157
  ; DIC                           2051
  ; DILFD                         2055
  ; DIQ                           2056
@@ -19,6 +20,7 @@ VPRDVSIT ;SLC/MKB -- Visit/Encounter extract ;8/2/11  15:29
  ; PXAPI,^TMP("PXKENC",$J        1894
  ; SDOE                          2546
  ; VADPT                        10061
+ ; VADPT2                         325
  ; XUAF4                         2171
  ;
  ; ------------ Get encounter(s) from VistA ------------
@@ -29,7 +31,7 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's visits and appointments
  S BEG=$G(BEG,1410101),END=$G(END,4141015),MAX=$G(MAX,9999)
  ;
  ; get one visit
- I $G(ID) D EN1(ID,.VPRITM),XML(.VPRITM) Q
+ I $G(ID) D EN1(ID,.VPRITM),XML(.VPRITM) G ENQ
  ;
  ; -- get all visits
  I END,END'["." S END=END_".24" ;assume end of day
@@ -40,6 +42,8 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's visits and appointments
  .. S VPRDA=0 F  S VPRDA=$O(^AUPNVSIT("AET",DFN,VPRDT,VPRLOC,"P",VPRDA)) Q:VPRDA<1  D
  ... K VPRITM D EN1(VPRDA,.VPRITM) Q:'$D(VPRITM)
  ... D XML(.VPRITM) S VPRCNT=VPRCNT+1
+ENQ ; end
+ K ^TMP("VPRTEXT",$J)
  Q
  ;
 ENAA(DFN,BEG,END,MAX,ID) ; -- find patient's visits and appointments [AA]
@@ -62,7 +66,8 @@ IDT ; -- invert BEG and END dates for visit format:
  ;
 EN1(IEN,VST) ; -- return a visit in VST("attribute")=value
  N X0,X15,X,FAC,LOC,CATG,INPT,DA
- S IEN=+$G(IEN) Q:IEN<1  ;invalid ien
+ K VST,^TMP("VPRTEXT",$J)
+ S IEN=+$G(IEN) Q:IEN<1  ;invalid
  D ENCEVENT^PXAPI(IEN)
  S X0=$G(^TMP("PXKENC",$J,IEN,"VST",IEN,0)),X15=$G(^(150))
  Q:$P(X15,U,3)'="P"  Q:$P(X0,U,7)="E"  ;want primary, not historical
@@ -92,7 +97,7 @@ EN1(IEN,VST) ; -- return a visit in VST("attribute")=value
  Q
  ;
 TIU(VISIT) ; -- add notes to VST("document")
- N X,Y,I,VPRX,LT,NT,DA,CNT
+ N X,Y,I,VPRX,LT,NT,DA,CNT,VPRY
  D FIND^DIC(8925,,.01,"QX",+$G(VISIT),,"V",,,"VPRX")
  S Y="",(I,CNT)=0
  F  S I=$O(VPRX("DILIST",1,I)) Q:I<1  D
@@ -151,21 +156,20 @@ SERV(FTS) ; -- Return #42.4 Service for a Facility Treating Specialty
  Q Y
  ;
 ADM(IEN,DATE,ADM) ; -- return an admission in ADM("attribute")=value
- N VAIP,VAERR,HLOC,ICD,I K ADM
- S IEN=+$G(IEN),DATE=+$G(DATE) Q:IEN<1  Q:DATE<1  ;invalid
- S VAIP("D")=DATE D IN5^VADPT Q:'$G(VAIP(1))  ;deleted
+ N VAINDT,VADMVT,VAIP,VAIN,VAERR,HLOC,ICD,I K ADM
+ S IEN=+$G(IEN),DATE=+$G(DATE) Q:IEN<1  Q:DATE<1
+ S VAINDT=DATE D ADM^VADPT2 Q:VADMVT<1
+ I VADMVT=$G(^DPT(DFN,.105)) D INPT Q  ;current inpatient
+ S VAIP("E")=VADMVT D IN5^VADPT Q:'$G(VAIP(1))  ;deleted
  S ADM("id")=IEN,ADM("patientClass")="IMP"
  ; ADM("admitType")=$P($G(VAIP(4)),U,2)
- S DATE=+$G(VAIP(3)),(ADM("dateTime"),ADM("arrivalDateTime"))=DATE,I=0
+ S DATE=+$G(VAIP(13,1)),(ADM("dateTime"),ADM("arrivalDateTime"))=DATE,I=0
  S:$G(VAIP(7)) I=I+1,ADM("provider",I)=VAIP(7)_"^P^1" ;primary
  S:$G(VAIP(18)) I=I+1,ADM("provider",I)=VAIP(18)_"^A" ;attending
  S ADM("specialty")=$P($G(VAIP(8)),U,2)
  S X=$$SERV(+$G(VAIP(8))),ADM("service")=X
- S X=$$POV(IEN) S:X ADM("reason")=X_U_$G(VAIP(9)) I 'X D
- . ;S X=$$GET1^DIQ(45,+VAIP(12)_",",79,"I") ;PTF>ICD ien
- . S X=$S(VAIP(12):$$PTF(DFN,VAIP(12)),1:"")
- . I 'X S ADM("reason")=U_U_$G(VAIP(9)) Q  ;Dx text
- . S ICD=$$ICD(X),ADM("reason")=ICD_U_$G(VAIP(9))
+ S ICD=$$POV(IEN) S:'ICD ICD=$$PTF(DFN,VAIP(12)) ;PTF>ICD
+ S ADM("reason")=ICD_U_$G(VAIP(9)) ;ICD code^description^Dx text
  S HLOC=+$G(^DIC(42,+$G(VAIP(5)),44))
  S:HLOC ADM("location")=$P($G(^SC(HLOC,0)),U)
  S ADM("facility")=$$FAC^VPRD(+HLOC),ADM("roomBed")=$P(VAIP(6),U,2)
@@ -178,11 +182,32 @@ ADM(IEN,DATE,ADM) ; -- return an admission in ADM("attribute")=value
  D TIU(IEN) ;notes/summary
  Q
  ;
-PTF(DFN,PTF) ; -- look up ICD code for a PTF record
- N Y,ICD,DATE,IEN S Y=""
- S ICD=0 F  S ICD=$O(^PXRMINDX(45,"ICD9","PNI",DFN,"DXLS",ICD)) Q:ICD<1  D  Q:Y
- . S DATE=$O(^PXRMINDX(45,"ICD9","PNI",DFN,"DXLS",ICD,0)),IEN=$O(^(DATE,""))
- . I +IEN=PTF S Y=ICD Q
+INPT ; -- return current admission in ADM("attribute")=value [from ADM]
+ K VAINDT D INP^VADPT Q:VAIN(1)<1
+ S ADM("id")=IEN,ADM("patientClass")="IMP"
+ ; ADM("admitType")=$P($G(VAIN(8)),U,2)
+ S DATE=+$G(VAIN(7)),(ADM("dateTime"),ADM("arrivalDateTime"))=DATE,I=0
+ S:$G(VAIN(2)) I=I+1,ADM("provider",I)=VAIN(2)_"^P^1" ;primary
+ S:$G(VAIN(11)) I=I+1,ADM("provider",I)=VAIN(11)_"^A" ;attending
+ S ADM("specialty")=$P($G(VAIN(3)),U,2)
+ S X=$$SERV(+$G(VAIN(3))),ADM("service")=X
+ S ICD=$$POV(IEN) S:'ICD ICD=$$PTF(DFN,VAIN(10)) ;PTF>ICD
+ S ADM("reason")=ICD_U_$G(VAIN(9)) ;ICD code^description^Dx text
+ S HLOC=+$G(^DIC(42,+$G(VAIN(4)),44))
+ S:HLOC ADM("location")=$P($G(^SC(HLOC,0)),U)
+ S ADM("facility")=$$FAC^VPRD(+HLOC),ADM("roomBed")=$P(VAIN(5),U,2)
+ S ADM("serviceCategory")="H^HOSPITALIZATION"
+ S X=$$CPT(IEN),ADM("type")=$S(X:$P($$CPT^ICPTCOD(X),U,2,3),1:U_$$CATG("H"))
+ ; ADM("visitString")=HLOC_";"_DATE_";H"
+ D TIU(IEN) ;notes/summary
+ Q
+ ;
+PTF(DFN,PTF) ; -- return ICD code^description for a PTF record
+ N VPRPTF,N,VPRX
+ D:$G(PTF) RPC^DGPTFAPI(.VPRPTF,+PTF) I $G(VPRPTF(0))<1 Q "^"
+ S Y=$P($G(VPRPTF(1)),U,3)_U
+ S N=$$ICDD^ICDCODE(Y,"VPRX") ;ICD Description
+ I N>0,$L($G(VPRX(1))) S Y=Y_VPRX(1)
  Q Y
  ;
 ENC(IEN,ENC) ; -- return an encounter in ENC("attribute")=value
@@ -206,7 +231,7 @@ ENC(IEN,ENC) ; -- return an encounter in ENC("attribute")=value
  ; ------------ Return data to middle tier ------------
  ;
 XML(VISIT) ; -- Return patient visit as XML
- N ATT,X,Y,NAMES
+ N ATT,X,Y,NAMES,I,J
  D ADD("<visit>") S VPRTOTL=$G(VPRTOTL)+1
  S ATT="" F  S ATT=$O(VISIT(ATT)) Q:ATT=""  D  D:$L(Y) ADD(Y)
  . I $O(VISIT(ATT,0)) D  S Y="" Q  ;multiples
@@ -218,8 +243,9 @@ XML(VISIT) ; -- Return patient visit as XML
  ... S Y="<"_ATT_" "_$$LOOP ;_"/>" D ADD(Y)
  ... S X=$G(VISIT(ATT,I,"content")) I '$L(X) S Y=Y_"/>" D ADD(Y) Q
  ... S Y=Y_">" D ADD(Y)
- ... S Y="<content xml:space='preserve'>"_$$ESC^VPRD(X)_"</content>"
- ... D ADD(Y),ADD("</"_ATT_">")
+ ... S Y="<content xml:space='preserve'>" D ADD(Y)
+ ... S J=0 F  S J=$O(@X@(J)) Q:J<1  S Y=$$ESC^VPRD(@X@(J)) D ADD(Y)
+ ... D ADD("</content>"),ADD("</"_ATT_">")
  .. D ADD("</"_ATT_"s>")
  . S X=$G(VISIT(ATT)),Y="" Q:'$L(X)
  . S NAMES="code^name^"_$S(ATT="reason":"narrative^",1:"")_"Z"

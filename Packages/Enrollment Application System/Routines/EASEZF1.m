@@ -1,5 +1,5 @@
-EASEZF1 ;ALB/jap,TM - Filing 1010EZ Data to Patient Database ; 3/13/09 5:19pm
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**1,51,57,62,70,93**;Mar 15, 2001;Build 2
+EASEZF1 ;ALB/jap,TM - Filing 1010EZ Data to Patient Database ; 8/16/11 4:04pm
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**1,51,57,62,70,93,92**;Mar 15, 2001;Build 20
  ;
 F2(EASAPP,EASDFN) ;file to Patient record in #2
  ;input EASDFN = ien to #2
@@ -50,6 +50,9 @@ F2(EASAPP,EASDFN) ;file to Patient record in #2
  . I SUBFILE=2.101 Q
  . I SUBFILE=2.02 D F202^EASEZF1(SUBFILE,DATAKEY,EZDATA,SUBIEN,KEYIEN) Q
  . I SUBFILE=2.06 D F206^EASEZF1(SUBFILE,DATAKEY,EZDATA,SUBIEN) Q
+ . ;Special for Military Service Episodes
+ . I SUBFILE=2.3216 D:KEYIEN=28  Q
+ . . D F23216(SUBFILE,DATAKEY,EZDATA,SUBIEN,KEYIEN)
  . ;special conversion to file data to field #.328
  . I FLD=.328 D
  . . S X=$$UC^EASEZT1(EZDATA) I X="SSN" D
@@ -208,4 +211,83 @@ FPOB(DATAKEY,EZDATA,SUBIEN,PTDATA) ;add or edit pob city & state
  I $D(ERR) D ERROR^EASEZF2("AP",1,.ERR,"LINK") Q
  D FILE^DIE("ES",EROOT,"ERR")
  S ^EAS(712,EASAPP,10,XIEN,2)=XDATA_U_LINK
+ Q
+ ;
+F23216(SUBFILE,DATAKEY,EZDATA,SUBIEN,KEYIEN) ;add subrecord in subfile #2.3216
+ ;input SUBFILE = 2.3216
+ ;      DATAKEY = data item identifier, e.g., I;13A.
+ ;      EZDATA  = data value in external format
+ ;      KEYIEN  = record # for data element in #711
+ ;
+ ;Values for KEYIEN                     DATAKEY
+ ;           28 - Branch of Service     I;13A
+ ;           29 - Last Entry Date       I;13B
+ ;           30 - Last Separation Date  I;13C
+ ;           31 - Last Discharge Type   I;13D
+ ;           32 - Last Service Number   I;13E
+ ;
+ Q:SUBFILE'=2.3216
+ ;
+ N X,EAS,EASARRAY,LINK,PTDATA,SUBIEN
+ ;Get episodes from VistA into EASARRAY
+ D GETMSE^DGMSEUTL(EASDFN,.EASARRAY)
+ ;Move last VistA episode into PDATA (for future use in edit option)
+ S LINK=$G(EASARRAY(1,"IEN")),PTDATA=""
+ I LINK S PTDATA=$G(^DPT(EASDFN,2.3216,LINK,0))
+ ;
+ ;Only proceed to add new subrecord if no .3216 data exists
+ Q:PTDATA'=""
+ ;
+TBD1 ;if this is entirely new and later than VistA episodes, allow add?
+ ;
+ ; (compare EDATE to last episode in PDATA and allow addition if it is;  a date later than last separation date)
+ ;
+TBD2 ;if matching episode already exists, allow update?
+ ;
+ ; (see code in F202^EASEZF1 for update, get last IENS from EASARRAY)
+ ;
+ ;Get last episode 1010EZ fields from ^TMP("EZDATA"
+ N BOS,EDATE,SDATE,DTYPE,SERVNO
+ S BOS=$P($G(^TMP("EZDATA",$J,28,1,1)),U) Q:BOS=""
+ S EDATE=$P($G(^TMP("EZDATA",$J,29,1,1)),U) Q:EDATE=""
+ S SDATE=$P($G(^TMP("EZDATA",$J,30,1,1)),U) Q:SDATE=""
+ S DTYPE=$P($G(^TMP("EZDATA",$J,31,1,1)),U) Q:DTYPE=""
+ S SERVNO=$P($G(^TMP("EZDATA",$J,32,1,1)),U)
+ ;
+ ;Special conversion of service number (see code in EASEZF1)
+ I $$UC^EASEZT1(SERVNO)="SSN" D
+ .N EZSSN,KK,PTSSN
+ .;allow SSN as Service Number if service number in patient last
+ .;.3216 record is null. Always case if no .3216 data exists
+ .S PTSSN=$P(PTDATA,U,5)
+ .I PTSSN="" S SERVNO="SS" Q
+ .;alternatively Applicant SSN must match service number
+ .S KK=$$KEY711^EASEZU1("APPLICANT SOCIAL SECURITY NUMBER")
+ .S EZSSN=$P($G(^TMP("EZDATA",$J,KK,1,1)),U,1)
+ .S EZSSN=$TR(EZSSN,"-","")
+ .I EZSSN=PTSSN S SERVNO="SS" Q
+ .S SERVNO="ssn"
+ ;
+ ;File 1010EZ data to .3216
+ N X,Y,EROOT,ERR,FLD,IENS,EIEN
+ S EROOT="EAS("_EASAPP_")"
+ S IENS="+1,"_EASDFN_","
+ S FLD=.01,EAS(EASAPP,SUBFILE,IENS,FLD)=EDATE
+ S FLD=.02,EAS(EASAPP,SUBFILE,IENS,FLD)=SDATE
+ S FLD=.03,EAS(EASAPP,SUBFILE,IENS,FLD)=BOS
+ S FLD=.05,EAS(EASAPP,SUBFILE,IENS,FLD)=SERVNO
+ S FLD=.06,EAS(EASAPP,SUBFILE,IENS,FLD)=DTYPE
+ D UPDATE^DIE("ES",EROOT,"EIEN","ERR")
+ I $D(ERR) D ERROR^EASEZF2("AP",1,.ERR,"LINK") Q
+ ;
+ S SUBIEN=$O(^EAS(712,EASAPP,10,"B",28,""))
+ S:SUBIEN ^EAS(712,EASAPP,10,SUBIEN,2)=U_EASDFN_";"_$G(EIEN(1))
+ S SUBIEN=$O(^EAS(712,EASAPP,10,"B",29,""))
+ S:SUBIEN ^EAS(712,EASAPP,10,SUBIEN,2)=U_EASDFN_";"_$G(EIEN(1))
+ S SUBIEN=$O(^EAS(712,EASAPP,10,"B",30,""))
+ S:SUBIEN ^EAS(712,EASAPP,10,SUBIEN,2)=U_EASDFN_";"_$G(EIEN(1))
+ S SUBIEN=$O(^EAS(712,EASAPP,10,"B",31,""))
+ S:SUBIEN ^EAS(712,EASAPP,10,SUBIEN,2)=U_EASDFN_";"_$G(EIEN(1))
+ S SUBIEN=$O(^EAS(712,EASAPP,10,"B",32,""))
+ S:SUBIEN ^EAS(712,EASAPP,10,SUBIEN,2)=U_EASDFN_";"_$G(EIEN(1))
  Q

@@ -1,9 +1,10 @@
 RMPRPAT3 ;HINES-CIOFO/HNC,RVD - Detail Display Patient 10-2319 Transaction ;11/03/04
- ;;3.0;PROSTHETICS;**3,12,25,28,32,41,69,92,99,90,162**;Feb 09, 1996;Build 5
+ ;;3.0;PROSTHETICS;**3,12,25,28,32,41,69,92,99,90,162,163**;Feb 09, 1996;Build 9
  ;
  ; RVD 4/30/02 patch #69 - add ICD-9 CODE and description in the display.
  ;                         add HCPCS and Short Description.
  ; AAC 08/03/04 Patch 92 - Code Set Versioning (CSV)
+ ; RGB 09/14/10 Patch 163 - Add Suspense Date to appliance line item detail
  ;Used API=ICDDX^ICDCODE to replace direct calls to global ICD9(80).
  ;
  ;expect ANS,IT(ANS)
@@ -59,6 +60,7 @@ PRINT ;called from RMPRPAT2
  .W ?$X+3,$G(RV(440,RMPRV,4.4,"E")),?$X+5,$G(RV(440,RMPRV,4.6,"E"))
  W !,"DELIVERY DATE: "
  I $D(R19(660,RMPRDA,10,"E")) W R19(660,RMPRDA,10,"E")
+ W ?40,"SUSPENSE DATE: " I $D(R19(660,RMPRDA,8.1,"E")) W R19(660,RMPRDA,8.1,"E")   ;Patch RMPR*3*163
  W !
  I '$P(IT(AN),U,3) D
  .W "TOTAL COST: "

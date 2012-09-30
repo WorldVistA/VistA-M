@@ -1,5 +1,5 @@
 PRCG239Q ;WISC/BGJ-IFCAP 410 FILE CLEANUP (QUEUE) ;11/8/99
-V ;;5.1;IFCAP;**95**;Oct 20, 2000
+V ;;5.1;IFCAP;**95,138**;Oct 20, 2000;Build 18
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;This routine is installed by patch PRC*5.1*95.
  ;This routine creates entries in file 443.1 for background processing
@@ -15,7 +15,7 @@ V ;;5.1;IFCAP;**95**;Oct 20, 2000
  D NOW^%DTC K %H,%,%I
  S CFY=$E(X,1,3)+1700,CFY=$S(+$E(X,4,5)>9:CFY+1,1:CFY)
  S PFY=CFY-1700-1_"0930"
- S X="Date/Fiscal Year thru which FMS reconilliation data in file 417 will be purged."
+ S X="Date/Fiscal Year thru which FMS reconciliation data in file 417 will be purged."
  D DATE
  I +OUT G OUT
  I $E(Y,4,7)="0000" S Y=$E(Y,1,3)_"0930"
@@ -62,7 +62,7 @@ GET ;
 MSG ;
  S X="This will schedule records in file 417 for review in the "
  S X=X_"background by PurgeMaster (file 443.1 will be populated).  "
- S X=X_"FMS reconcilliation data in file 417 will be purged by "
+ S X=X_"FMS reconciliation data in file 417 will be purged by "
  S X=X_"PurgeMaster based on the date that you will enter."
  D MSG^PRCFQ W !
  S X="The date you are about to enter MUST be confirmed with A&MM "

@@ -1,5 +1,5 @@
-PXRMARCH ;SLC/PKR - Clinical Reminder ARCH routines. ;03/14/2011
- ;;2.0;CLINICAL REMINDERS;**20**;Feb 04, 2005;Build 117
+PXRMARCH ;SLC/PKR/BNT - Clinical Reminder ARCH routines. ;12/09/2011
+ ;;2.0;CLINICAL REMINDERS;**20,23**;Feb 04, 2005;Build 3
  ;==========================================================
 ELIG(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;Multiple occurrence
  ;computed finding for ARCH eligibility.
@@ -34,5 +34,28 @@ LIST(NGET,BDT,EDT,PLIST,PARAM) ;List computed finding for building a list
  . F  S DATE=$O(^TMP($J,"TLIST",DFN,DATE)) Q:(DATE="")!(CNT=NGET)  D
  .. S CNT=CNT+1,^TMP($J,PLIST,DFN,CNT)=U_DATE
  K ^TMP($J,"ARCHFEE"),^TMP($J,"TLIST")
+ Q
+ ;
+ ;==========================================================
+ISDUE(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;Multiple occurrence
+ ; computed finding for a Project ARCH Reminder Custom Date Due.
+ ; The $$GETDELAY^FBARCH0 API returns a site defined numeric value that represents
+ ; the number of days to delay the reminder from being due again after 
+ ; being declined or refused through one of the related health factors.
+ ;
+ ; $$GETDELAY^FBARCH0 Supported by IA 5619
+ ;
+ N X,HFID,ARCHVHF,ARCHDLAY
+ S NFOUND=1
+ S ARCHDLAY=$$GETDELAY^FBARCH0()
+ S ARCHVHF($P($$NOW^PXRMDATE(),"."))=""
+ ; Get DECLINES and REFUSES Health Factor ID and last date created
+ F X="DECLINES","REFUSES" S HFID=$O(^AUTTHF("B","ARCH-SERVICE NEEDED THIS VISIT "_X,0)) D
+ . Q:'$D(^PXRMINDX(9000010.23,"PI",DFN,HFID))
+ . ; Get date and add delay value
+ . S ARCHVHF($$FMADD^XLFDT($P($O(^PXRMINDX(9000010.23,"PI",DFN,HFID," "),-1),"."),ARCHDLAY))=""
+ S TEST(NFOUND)=1
+ S TEXT(NFOUND)=""
+ S DATE(NFOUND)=$O(ARCHVHF(" "),-1)
  Q
  ;

@@ -1,5 +1,5 @@
-SDWLPE ;IOFO BAY PINES/TEH - WAIT LIST - PARAMETER WAIT LIST ENTER/EDIT ;20 Aug 2002  ; Compiled April 22, 2008 14:13:00
- ;;5.3;scheduling;**263,280,288,397,491**;AUG 13 1993;Build 53
+SDWLPE ;IOFO BAY PINES/TEH - WAIT LIST - PARAMETER WAIT LIST ENTER/EDIT ; 5/24/11 11:27am
+ ;;5.3;scheduling;**263,280,288,397,491,554**;AUG 13 1993;Build 11
  ;
  ;SD/491 - identify clinic institution through DIVISION ---> INSTITUTION path
 EN ;
@@ -71,15 +71,17 @@ SB2 N STR,INST,DIC,SDWLSC,SDWLSTOP S SDWLSTOP=0
  I SDANEW,'X D  D ESB2 H 1 G SB2
  .W *7,!!,"This ENTRY requires an ACTIVATION DATE. ENTRY deleted."
  .S DA=SDANEW S DIK="^SDWL(409.32," D ^DIK
- I X S DR="2////^S X=DUZ" D ^DIE
+ I '$P(^SDWL(409.32,SDA,0),U,3) I $P(^SDWL(409.32,SDA,0),U,2) S DR="2////^S X=DUZ" D ^DIE ;Checks to see whether the ACTIVATION DATE ENTERED BY field is filled before filling it  SD*5.3*554
  N DIC
  S SDWLSCN=$P($G(^SDWL(409.32,SDA,0)),U,1) D  Q:SDWLSTOP
  .I $D(^SDWL(409.3,"SC",SDWLSCN)) D
  ..S SDWLN="",SDWLCNT=0 F  S SDWLN=$O(^SDWL(409.3,"SC",SDWLSCN,SDWLN)) Q:SDWLN=""  D
  ...S X=$G(^SDWL(409.3,SDWLN,0)) I '$D(^SDWL(409.3,SDWLN,"DIS")) S SDWLCNT=SDWLCNT+1,^TMP("SDWLPE",$J,"DIS",SDWLN,SDWLCNT)=X,SDWLSTOP=1
  ..I SDWLSTOP W !,"This Clinic has Patients on the Wait List and can not be inactivated."  H 2 Q
- .S DR="4////^S X=DUZ" D ^DIE
- S DR="3",DIE="^SDWL(409.32," D ^DIE
+ N SDTEST S SDTEST="" I $G(SDWLN) S SDTEST=$$GET1^DIQ(409.32,SDWLN,3) ;Set Variable SDTEST equal to the information in the INACTIVATED DATE field
+ S DR="3",DIE="^SDWL(409.32," D ^DIE I $G(X)'=SDTEST D  ; Populates the INACTIVATED DATE ENTERED BY field only if the INACTIVATED DATE field is filled - SD*5.3*554
+ .I X'="" S DR="4////^S X=+DUZ" D ^DIE
+ .E  S DR="4////^S X=@" D ^DIE ;SD*5.3*554
 ESB2 ;
  K DR,DIE,DIC,Y,X,SDWLY,DIC(0),DO,DA,DI,DIW,SDWLX,SDWLSCN,SDWLF
  Q

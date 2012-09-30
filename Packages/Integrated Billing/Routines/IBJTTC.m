@@ -1,5 +1,5 @@
 IBJTTC ;ALB/ARH/PJH - TPI AR COMMENT HISTORY ; 3/18/11 2:15pm
- ;;2.0;INTEGRATED BILLING;**39,377,431,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**39,377,431,432,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; AR Profile of Comments:  This screen prints the following Comments:
@@ -153,6 +153,7 @@ BLD ;
  .;D CLEAN^DILF
  .Q
  D EOBC ; IB*2.0*432
+ D MDACMTS ; IB*2.0*447 BI
  D CLEAN^DILF
  ;
  I IBLN=0 S IBLN=$$SET("",IBLN),IBLN=$$SET("No Comment Transactions Exist For This Account.",IBLN)
@@ -203,3 +204,8 @@ SETLN(STR,IBX,COL,WD) ;
 SET(STR,LN) ; set up TMP array with screen data
  S LN=LN+1 D SET^VALM10(LN,STR)
 SETQ Q LN
+ ;
+MDACMTS ; Check for MDA comments, Load for List Manager Screen IB*2.0*447 BI
+ ; INTEGRATION CONTROL REGISTRATION is contained in DBIA #5696.
+ D MCOM^PRCAMDA2(IBIFN,.IBLN)
+ Q

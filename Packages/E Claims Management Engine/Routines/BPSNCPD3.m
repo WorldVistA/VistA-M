@@ -1,5 +1,5 @@
 BPSNCPD3 ;BHAM ISC/LJE - Continuation of BPSNCPDP - DUR HANDLING ;06/16/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Due to space considerations, these comments were moved from BPSNPCPD
@@ -8,45 +8,44 @@ BPSNCPD3 ;BHAM ISC/LJE - Continuation of BPSNCPDP - DUR HANDLING ;06/16/2004
  ; ------------------ Beginning of BPSNCPDP comments ------------------
  ;Input
  ; BRXIEN = Prescription IEN
- ; BFILL = Fill Number
- ; BFILLDAT = Fill Date of current prescription and fill number
+ ; BFILL  = Fill Number
+ ; DOS    = Date of Service
  ; BWHERE (RX Action)
- ;    ARES = Resubmit for an auto-reversed claim was released while waiting
- ;           for the payer response
  ;    AREV = Auto-Reversal
  ;    BB   = Back Billing
- ;    CRLB = CMOP Release & Rebill
- ;    CRLR = CMOP Release & Reverse (successful release)
- ;    CRLX = CMOP unsuccessful release & reverse
+ ;    CRLB = CMOP/OPAI Release & Rebill
+ ;    CRLR = CMOP/OPAI Release & Reverse (successful release)
+ ;    CRLX = CMOP/OPAI unsuccessful release & reverse
+ ;    CRRL = CMOP/OPAI Release - Original claim not paid, submit another claim, no reversal
  ;    DC   = Discontinue - only reverse un-released PAYABLE DC's, release date check
  ;           should be in calling routine.
- ;    DDED = Delete in edit
  ;    DE   = Delete
- ;    ED   = Edit
+ ;    ED   = Edit (includes RX release with NDC edit)
  ;    ERES = Resubmit from ECME user screen
  ;    EREV = Reversal from ECME user screen
  ;    HLD  = Put prescription on Hold
  ;    OF   = Original Fill
+ ;    P2   = Original submission from PRO Option, no reversal
+ ;    P2S  = Resubmit from PRO Option
  ;    PC   = Pull CMOPs
  ;    PE   = Pull early from suspense
  ;    PL   = Pull local from suspense
- ;    PP   = PP from Patient Prescription Processing option
+ ;    PP   = Pull RX (PP) action from Patient Prescription Processing option
  ;    RF   = Refill
- ;    RL   = Release Rx NDC check - Rebill if billed NDC doesn't match release NDC
  ;    RN   = Renew
- ;    RRL  = Original claim rejected, submit another claim, no reversal
+ ;    RRL  = Release - Original claim not paid, submit another claim, no reversal
  ;    RS   = Return-to-Stock
  ; BILLNDC = Valid NDC# with format 5-4-2
  ; REVREAS = Reversal Reason
- ; DURREC  = String of DUR info - Three "^" pieces
- ;                Professional Service Code
- ;                Reason for Service Code
- ;                Result of Service Code
+ ; DURREC  = String of up to three sets of DUR info. Sets are delimited with "~". Each set consists of three "^" pieces:
+ ;             Reason for Service Code
+ ;             Professional Service Code
+ ;             Result of Service Code
  ; BPOVRIEN = Pointer to BPS NCPDP OVERIDE file.  This parameter will 
  ;            only be passed if there are overrides entered by the
  ;            user via the Resubmit with Edits (RED) option in the 
  ;            user screen.
- ; BPSAUTH  = pre-authorization code (preauth. code^preauth number)
+ ; BPSAUTH  = Prior authorization code (Prior auth code^Prior auth number)
  ; BPSCLARF = Submission Clarification Code (external value from #9002313.25), entered by
  ;            pharmacist and passed by Outpatient Pharmacy to ECME to put into the claim  
  ; BPCOBIND = (optional, default is Primary) for COB indicators - so when the API is called for the particular
@@ -73,13 +72,13 @@ BPSNCPD3 ;BHAM ISC/LJE - Continuation of BPSNCPDP - DUR HANDLING ;06/16/2004
  ;    3  Claim was closed, not submitted (RTS/Deletes)
  ;    4  Unable to queue claim
  ;    5  Incorrect information supplied to ECME
- ;    6  Inactive ECME - Primarily used for Tricare to say ok to process rx
+ ;    6  Inactive ECME - Primarily used for TRICARE/CHAMPVA to say ok to process rx
  ;    10 Reversal but no resubmit
  ; MESSAGE = Message associated with the response (error/submitted)
- ; ELIGIBILITY = V - VA, T - Tricare
+ ; ELIGIBILITY = V - Veteran, T - TRICARE, C - CHAMPVA
  ; CLAIMSTATUS = claim status (null or IN PROGRESS/E PAYABLE/etc...)
- ; COB  = Coordination Of Benefit indicator of the insurance as it is stored in the PATIENT file: 1- primary, 2 -secondary, 3 -tertiary
- ; RXCOB =  the payer sequence indicator of the claim which was sent to the payer as a result of this call: 1- primary, 2 -secondary)
+ ; COB  = Coordination Of Benefit indicator of the insurance as it is stored in the PATIENT file: 1-primary, 2-secondary, 3-tertiary
+ ; RXCOB =  the payer sequence indicator of the claim which was sent to the payer as a result of this call: 1-primary, 2-secondary)
  ; INSURANCE = Name of the insurance company that was billed as a result of this call
  ; 
  ; ----------------- End of BPSNCPDP comments ----------------------
@@ -136,11 +135,72 @@ DUR1(BRXIEN,BFILL,DUR,ERROR,BPRXCOB) ;
  Q
  ;
 DURRESP(DURIEN,DUR,BPRXCOB) ;
+ ;Input Variables:
+ ; DURIEN - Claim Response IEN. Pointer to the BPS RESPONSES File #9002313.03
+ ; BPRXCOB - (Optional) The Payer Sequence:
+ ;   1 - Primary (default)
+ ;   2 - Secondary
+ ;
+ ;Output Variables:
+ ; DUR - Array of DUR related information for a specific claim response in the
+ ;   BPS RESPONSES file in the following format (INSN is the Payer Sequence):
+ ;
+ ; DUR(INSN,"RESPONSE IEN") - Pointer to the RESPONSE file (#9002313.03) for
+ ;   the claim submission
+ ; DUR(INSN,"MESSAGE") - The Transmission level specific data, Message field 504
+ ; DUR(INSN,"PAYER MESSAGE") - Message returned from the payer in the Transaction
+ ;   level
+ ; DUR(INSN,"STATUS") - Status of the claim (i.e. REJECTED CLAIM, PAYABLE)
+ ;
+ ; The following four fields are redundant with the fields in the DUR PPS
+ ; array but are provided for backwards compatibility.
+ ; DUR(INSN,"REASON") - Reason for Service Code pointer to BPS NCPDP REASON FOR
+ ;   SERVICE CODE file (#9002313.23)
+ ; DUR(INSN,"PREV FILL DATE") - Plan's Previous Fill Date
+ ; DUR(INSN,"DUR FREE TEXT DESC") - Drug Utilization Review (DUR) description
+ ;   and/or claims rejection free text information from the payer
+ ; DUR(INSN,"DUR ADD MSG TEXT") - Drug Utilization Review (DUR) additional free
+ ;   text information from the payer
+ ;
+ ; The following fields are from the DUR PPS RESPONSE multiple.
+ ; DUR(INSN,"DUR PPS",SEQ,"DUR PPS RESPONSE") - Total number of DUR PPS
+ ;   responses from the payer
+ ; DUR(INSN,"DUR PPS",SEQ,"REASON FOR SERVICE CODE") - Code identifying the
+ ;   type of utilization conflict detected or the reason for the pharmacist
+ ;   professional service
+ ; DUR(INSN,"DUR PPS",SEQ,"CLINICAL SIGNIFICANCE CODE") - Code identifying
+ ;   the significance or severity level of a clinical event as contained
+ ;   in the originating data base
+ ; DUR(INSN,"DUR PPS",SEQ,"OTHER PHARMACY INDICATOR") - Code for the type of
+ ;   pharmacy dispensing the conflicting drug
+ ; DUR(INSN,"DUR PPS",SEQ,"PREVIOUS DATE OF FILL") - Date prescription was
+ ;   previously filled
+ ; DUR(INSN,"DUR PPS",SEQ,"QUANTITY OF PREVIOUS FILL") - Amount expressed in
+ ;   metric decimal units of the conflicting agent that was previously filled
+ ; DUR(INSN,"DUR PPS",SEQ,"DATABASE INDICATOR") - Code identifying the source
+ ;   of drug information used for DUR processing
+ ; DUR(INSN,"DUR PPS",SEQ,"OTHER PRESCRIBER INDICATOR") - Code comparing the
+ ;   prescriber of the current prescription to the prescriber of the previously
+ ;   filled conflicting prescription
+ ; DUR(INSN,"DUR PPS",SEQ,"DUR FREE TEXT MESSAGE") - Text that provides
+ ;   additional detail regarding a DUR conflict
+ ; DUR(INSN,"DUR PPS",SEQ,"DUR ADDITIONAL TEXT") - Descriptive information that
+ ;   further defines the referenced DUR alert
+ ; DUR(INSN,"REJ CODE LST") - List of rejection code(s) returned by the payer
+ ;   separated by commas (i.e. 79,14)
+ ; DUR(INSN,"REJ CODES",SEQ,REJ CODE) - Array of rejection code descriptions
+ ;   where REJ CODE correlates to DUR(INSN,"REJ CODE LST") value(s) and SEQ
+ ;   equals a sequential number
+ ;
  I '$G(DURIEN) Q
  S BPRXCOB=+$G(BPRXCOB)
  I BPRXCOB=0 S BPRXCOB=1 ;default is Primary
- N ADDMESS,I,DUR1
+ N ADDMESS,I,DUR1,CLMIEN
  S DUR(BPRXCOB,"RESPONSE IEN")=DURIEN
+ ;
+ ;Get BIN from claim
+ S CLMIEN=$$GET1^DIQ(9002313.03,DURIEN,.01,"I")
+ S DUR(BPRXCOB,"BIN")=$$GET1^DIQ(9002313.02,CLMIEN_",",101) ; BIN Number
  ;
  ; Get the Transmission specific data (Message)
  S DUR(BPRXCOB,"MESSAGE")=$$GET1^DIQ(9002313.03,DURIEN_",",504,"E")
@@ -164,16 +224,16 @@ DURRESP(DURIEN,DUR,BPRXCOB) ;
  S DUR(BPRXCOB,"DUR PPS RESPONSE")=""
  F I=1:1 Q:'$D(DUR1(9002313.1101,I_",1,"_DURIEN_",",.01))  D
  . S DUR(BPRXCOB,"DUR PPS RESPONSE")=I
- . S DUR(BPRXCOB,"DUR PPS",I,"DUR PPS RESPONSE")=DUR1(9002313.1101,I_",1,"_DURIEN_",",.01,"E")
- . S DUR(BPRXCOB,"DUR PPS",I,"REASON FOR SERVICE CODE")=DUR1(9002313.1101,I_",1,"_DURIEN_",",439,"E")
- . S DUR(BPRXCOB,"DUR PPS",I,"CLINICAL SIGNIFICANCE CODE")=DUR1(9002313.1101,I_",1,"_DURIEN_",",528,"E")
- . S DUR(BPRXCOB,"DUR PPS",I,"OTHER PHARMACY INDICATOR")=DUR1(9002313.1101,I_",1,"_DURIEN_",",529,"E")
- . S DUR(BPRXCOB,"DUR PPS",I,"PREVIOUS DATE OF FILL")=DUR1(9002313.1101,I_",1,"_DURIEN_",",530,"E")
- . S DUR(BPRXCOB,"DUR PPS",I,"QUANTITY OF PREVIOUS FILL")=DUR1(9002313.1101,I_",1,"_DURIEN_",",531,"E")
- . S DUR(BPRXCOB,"DUR PPS",I,"DATABASE INDICATOR")=DUR1(9002313.1101,I_",1,"_DURIEN_",",532,"E")
- . S DUR(BPRXCOB,"DUR PPS",I,"OTHER PRESCRIBER INDICATOR")=DUR1(9002313.1101,I_",1,"_DURIEN_",",533,"E")
- . S DUR(BPRXCOB,"DUR PPS",I,"DUR FREE TEXT MESSAGE")=DUR1(9002313.1101,I_",1,"_DURIEN_",",544,"E")
- . S DUR(BPRXCOB,"DUR PPS",I,"DUR ADDITIONAL TEXT")=DUR1(9002313.1101,I_",1,"_DURIEN_",",570,"E")
+ . S DUR(BPRXCOB,"DUR PPS",I,"DUR PPS RESPONSE")=$G(DUR1(9002313.1101,I_",1,"_DURIEN_",",.01,"E"))
+ . S DUR(BPRXCOB,"DUR PPS",I,"REASON FOR SERVICE CODE")=$G(DUR1(9002313.1101,I_",1,"_DURIEN_",",439,"E"))
+ . S DUR(BPRXCOB,"DUR PPS",I,"CLINICAL SIGNIFICANCE CODE")=$G(DUR1(9002313.1101,I_",1,"_DURIEN_",",528,"E"))
+ . S DUR(BPRXCOB,"DUR PPS",I,"OTHER PHARMACY INDICATOR")=$G(DUR1(9002313.1101,I_",1,"_DURIEN_",",529,"E"))
+ . S DUR(BPRXCOB,"DUR PPS",I,"PREVIOUS DATE OF FILL")=$G(DUR1(9002313.1101,I_",1,"_DURIEN_",",530,"E"))
+ . S DUR(BPRXCOB,"DUR PPS",I,"QUANTITY OF PREVIOUS FILL")=$G(DUR1(9002313.1101,I_",1,"_DURIEN_",",531,"E"))
+ . S DUR(BPRXCOB,"DUR PPS",I,"DATABASE INDICATOR")=$G(DUR1(9002313.1101,I_",1,"_DURIEN_",",532,"E"))
+ . S DUR(BPRXCOB,"DUR PPS",I,"OTHER PRESCRIBER INDICATOR")=$G(DUR1(9002313.1101,I_",1,"_DURIEN_",",533,"E"))
+ . S DUR(BPRXCOB,"DUR PPS",I,"DUR FREE TEXT MESSAGE")=$G(DUR1(9002313.1101,I_",1,"_DURIEN_",",544,"E"))
+ . S DUR(BPRXCOB,"DUR PPS",I,"DUR ADDITIONAL TEXT")=$G(DUR1(9002313.1101,I_",1,"_DURIEN_",",570,"E"))
  ;
  ; Get DUR reject codes and description and store in DUR 
  D GETS^DIQ(9002313.0301,"1,"_DURIEN_",","511*","I","DUR1","ERROR") ;get DUR codes and descriptions
@@ -183,4 +243,3 @@ DURRESP(DURIEN,DUR,BPRXCOB) ;
  . S DUR(BPRXCOB,"REJ CODE LST")=DUR(BPRXCOB,"REJ CODE LST")_","_DUR1(9002313.03511,I_",1,"_DURIEN_",",.01,"I")
  S DUR(BPRXCOB,"REJ CODE LST")=$E(DUR(BPRXCOB,"REJ CODE LST"),2,9999)
  Q
- ;

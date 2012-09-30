@@ -1,5 +1,5 @@
 IBCU5 ;ALB/AAS - MCCR MAILING ADDRESS UTILITY ROUTINE ;26-FEB-90
- ;;2.0;INTEGRATED BILLING;**8,52,80,117,51,206**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**8,52,80,117,51,206,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;MAP TO DGCRU5
@@ -44,7 +44,8 @@ MAILA ;Store Mailing Address for Bill Payer Carrier (and if not copying  bill or
  ;
  D UPDMA(DA,IB01,IB02)
  ;
- I '$D(IBCAN)!($G(IBAC)<3) S $P(^DGCR(399,DA,"U1"),U,13)=$P($G(^DIC(36,+IB01,0)),U,10)
+ ; Removed reference to obsolete data field with IB*2.0*447 BI
+ ;I '$D(IBCAN)!($G(IBAC)<3) S $P(^DGCR(399,DA,"U1"),U,13)=$P($G(^DIC(36,+IB01,0)),U,10)
  ;
 MAILQ K IB01,IB02,IB03 Q
  ;

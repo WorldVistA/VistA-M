@@ -1,5 +1,5 @@
 IBNCPEB ;WOIFO/AAT - BULLETINS FOR NCPDP ;05-NOV-04
- ;;2.0;INTEGRATED BILLING;**276,342,347,363**;21-MAR-94;Build 35
+ ;;2.0;INTEGRATED BILLING;**276,342,347,363,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -21,7 +21,7 @@ BULL(DFN,IBD,IBERR,IBIFN) ;Process NCPDP Error Messages.
  D T(" Rx filled by: "_$P($G(^VA(200,+IBDUZ,0)),U))
  D T(" Prescription: "_IBRXNO)
  D T("  Fill Number: "_$G(IBD("FILL NUMBER")))
- D T("    Fill Date: "_$G(IBD("FILL DATE")))
+ D T(" Service Date: "_$G(IBD("DOS")))
  D T("   Group Plan: "_$P($G(^IBA(355.3,+$G(IBD("PLAN")),0)),U)_"  (IEN="_+$G(IBD("PLAN"))_")")
  D ZERO^IBRXUTL(+$G(IBD("DRUG"))) S DRGNM=^TMP($J,"IBDRUG",+$G(IBD("DRUG")),.01)
  D T("         Drug: "_DRGNM)
@@ -58,7 +58,7 @@ RELBUL(DFN,IBRX,IBFIL,IBADT,IBACT,IBCR,IBCC,IBIFN,IBRETR) ;
  ;   DFN - Patient
  ;   IBRX - Rx IEN
  ;   IBFIL - Refill#
- ;   IBADT - Fill date
+ ;   IBADT - Date of Service
  ;   IBACT
  ;    -1  if ^IBR error - when the charge was sent to AR
  ;    0   == charge was not found 
@@ -87,7 +87,7 @@ RELBUL(DFN,IBRX,IBFIL,IBADT,IBACT,IBCR,IBCC,IBIFN,IBRETR) ;
  D T()
  D T("Name: "_IBNAME_"   Age    : "_IBAGE_"       Pt. ID: "_IBPID)
  S IBRXN=$$FILE^IBRXUTL(IBRX,.01)
- D T("Rx #: "_$$PR(IBRXN_$S(IBFIL:" ("_IBFIL_")",1:""),28)_" Fill Dt: "_$$DAT1^IBOUTL(IBADT))
+ D T("Rx #: "_$$PR(IBRXN_$S(IBFIL:" ("_IBFIL_")",1:""),28)_"  Svc Dt: "_$$DAT1^IBOUTL(IBADT))
  D T()
  D:$G(IBRETR)>0 T("Attempts to release a copay from hold: "_$G(IBRETR))
  ;D CHRG
@@ -109,7 +109,7 @@ CHRG ; gets charge data and sets up charge lines
  S:IBTYP IBTYP=$P($$CATN^PRCAFN(IBTYP),U,2)
  D T("Type: "_$$PR(IBTYP,28)_" Amount : $"_$J(+$P(IBX,U,7),0,2))
  D T("From: "_$$PR(IBFR,28)_" To     : "_IBTO)
- D T("Rx #: "_$$PR(IBRXN_$S(IBFIL:" ("_IBFIL_")",1:""),28)_" Fill Dt: "_$$DAT1^IBOUTL(IBADT))
+ D T("Rx #: "_$$PR(IBRXN_$S(IBFIL:" ("_IBFIL_")",1:""),28)_"  Svc Dt: "_$$DAT1^IBOUTL(IBADT))
  D T()
  D T("REFERENCE NUMBER : "_$P(IBX,U))
  D T("FIRST PARTY BILL : "_$P(IBX,U,11))

@@ -1,5 +1,5 @@
 IBCNEHLQ ;DAOU/ALA - HL7 RQI Message ;17-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,300,361,416,438**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**184,271,300,361,416,438,467**;21-MAR-94;Build 11
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
@@ -97,7 +97,7 @@ IN1 ;  Insurance Segment
  ;  If the data was extracted from Buffer get specifics from Buffer file
  I EXT=1 D
  . S PREL=$P($G(^IBA(355.33,BUFF,60)),U,14)
- . S $P(IN1,HLFS,2)=$S(PREL=18:$$SCRUB($G(SUBID)),1:$$SCRUB($G(PATID)))
+ . S $P(IN1,HLFS,2)=$S(PREL=18:$$SCRUB($G(SUBID)),PREL="":$$SCRUB($G(SUBID)),1:$$SCRUB($G(PATID)))
  . I PAYR'=$$FIND1^DIC(365.12,"","X","~NO PAYER") D
  .. S $P(IN1,HLFS,3)=$$ENCHL7($P(^IBE(365.12,PAYR,0),U,2))_HLECH_HLECH_HLECH_"USVHA"_HLECH_"VP"_HLECH
  .. S $P(IN1,HLFS,4)=$$ENCHL7($P(^IBE(365.12,PAYR,0),U,1))
@@ -118,7 +118,7 @@ IN1 ;  Insurance Segment
  . S $P(IN1,HLFS,12)=EFFDT
  . S $P(IN1,HLFS,13)=EXPDT
  . S PREL=$P($G(^DPT(DFN,.312,IRIEN,4)),U,3)
- . S $P(IN1,HLFS,2)=$S(PREL=18:$$SCRUB($G(SUBID)),1:$$SCRUB($G(PATID)))
+ . S $P(IN1,HLFS,2)=$S(PREL=18:$$SCRUB($G(SUBID)),PREL="":$$SCRUB($G(SUBID)),1:$$SCRUB($G(PATID)))
  . I PAYR'=$$FIND1^DIC(365.12,"","X","~NO PAYER") D
  .. S $P(IN1,HLFS,3)=$$ENCHL7($P(^IBE(365.12,PAYR,0),U,2))_HLECH_HLECH_HLECH_"USVHA"_HLECH_"VP"_HLECH
  .. S $P(IN1,HLFS,4)=$$ENCHL7($P(^IBE(365.12,PAYR,0),U,1))
@@ -129,7 +129,6 @@ IN1 ;  Insurance Segment
  ;
  I IN1="" Q
  ;
- I $G(QUERY)="I",$P(IN1,HLFS,17)'=18 S $P(IN1,HLFS,17)=18
  I $P(IN1,HLFS,17)="" S $P(IN1,HLFS,17)=18
  S $P(IN1,HLFS,1)=1
  S IN1="IN1"_HLFS_IN1

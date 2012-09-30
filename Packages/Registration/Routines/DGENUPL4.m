@@ -1,5 +1,5 @@
-DGENUPL4 ;ALB/CJM,RTK,ISA/KWP,ISD/GSN,PHH,RGL,PJR,BRM,TDM,TMK,EG,BAJ - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ; 01/05/07
- ;;5.3;REGISTRATION;**147,177,232,253,327,367,377,514,451,625,673,708,688**;Aug 13,1993;Build 29
+DGENUPL4 ;ALB/CJM,RTK,ISA/KWP,ISD/GSN,PHH,RGL,PJR,BRM,TDM,TMK,EG,BAJ - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ; 6/28/11 4:36pm
+ ;;5.3;REGISTRATION;**147,177,232,253,327,367,377,514,451,625,673,708,688,841,842**;Aug 13,1993;Build 33
  ;
 UOBJECTS(DFN,DGPAT,DGELG,DGCDIS,DGOEIF,MSGID,ERRCOUNT,MSGS,OLDPAT,OLDELG,OLDCDIS,OLDOEIF) ;
  ;Used to update PATIENT, ELIGIBILITY, CATASTROPHIC
@@ -40,6 +40,36 @@ UOBJECTS(DFN,DGPAT,DGELG,DGCDIS,DGOEIF,MSGID,ERRCOUNT,MSGS,OLDPAT,OLDELG,OLDCDIS
  .;Phase II CD Consistency Checks (SRS 6.5.1.4) check VISTA against HEC
  .S SUCCESS=$$CDCHECK^DGENUPL9()
  .Q:'SUCCESS
+ .;
+ .;If no 'MH' ZMH segment or Z11 value is null delete VistA value.
+ .I ($G(DGPAT("MOH"))="")&($G(OLDPAT("MOH"))'="") S DGPAT("MOH")="@"
+ .I ($G(DGELG("MOH"))="")&($G(OLDELG("MOH"))'="") S DGELG("MOH")="@"
+ .;
+ .; Don't upload Pension data if site Pension Reason='Original Award'
+ .; & Site Pension Effective Date <= the Z11 Pension Effective Date
+ .; & the Z11 does not contain a Termination Date.
+ .I +$G(OLDPAT("PENAREAS")),$P($G(^DG(27.18,OLDPAT("PENAREAS"),0)),U,2)="00" D
+ ..I (OLDPAT("PENAEFDT")<($G(DGPAT("PENAEFDT"))+1)),($G(DGPAT("PENTRMDT"))<1) D
+ ...N SUB F SUB="PENAEFDT","PENTRMDT","PENAREAS","PENTRMR1","PENTRMR2","PENTRMR3","PENTRMR4","PILOCK","PALOCK" S DGPAT(SUB)=""
+ .;
+ .;If Z11 Pension fields are set, initialize VistA Lock fields to "@"
+ .N SUB F SUB="PENAEFDT","PENTRMDT","PENAREAS","PENTRMR1","PENTRMR2","PENTRMR3","PENTRMR4" I $G(DGPAT(SUB))'="" D
+ ..S:(OLDPAT("PILOCK")'="") DGPAT("PILOCK")="@"
+ ..S:(OLDPAT("PALOCK")'="") DGPAT("PALOCK")="@"
+ .;
+ .;If Z11 RECEIVING A VA PENSION? not null, Pension Indicator Lock=Y
+ .;If Z11 RECEIVING A VA PENSION? deletion, Pension Indicator Lock=@
+ .S:DGELG("VAPEN")'="" DGPAT("PILOCK")="Y"
+ .S:DGELG("VAPEN")="@" DGPAT("PILOCK")="@"
+ .;
+ .;If any Z11 Pension fields populated, Pension Indicator Lock=Y
+ .N SUB F SUB="PENAEFDT","PENTRMDT","PENAREAS","PENTRMR1","PENTRMR2","PENTRMR3","PENTRMR4" I $G(DGPAT(SUB))'="",$G(DGPAT(SUB))'="@" S DGPAT("PILOCK")="Y"
+ .;
+ .;If Z11 Pension Termination Reason received, Pension Award Lock=Y
+ .N SUB F SUB="PENTRMR1","PENTRMR2","PENTRMR3","PENTRMR4" I $G(DGPAT(SUB))'="",$G(DGPAT(SUB))'="@" S DGPAT("PALOCK")="Y"
+ .;
+ .;If Z11 Pension Award Reason='Original Award', Pension Award Lock=Y
+ .I +$G(DGPAT("PENAREAS")),$P($G(^DG(27.18,DGPAT("PENAREAS"),0)),U,2)="00" S DGPAT("PALOCK")="Y"
  .;
  .;now merge with the update
  .D MERGE

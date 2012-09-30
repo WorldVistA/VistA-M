@@ -72,35 +72,35 @@ ADD2(FDA2,FDA,IENSVALS) ; build data for sub-file entry
  ;
 DATA ;
  ;;MYHEALTHEVET^MWVS MEDICAL DOMAIN WEB SVCS^41-WAcN_=NSXJ+ok4g_J
- ;;^H^80^VAAACAPPL.AAC.DVA.VA.GOV^/MDWS2/Web/Validate.aspx
- ;;^H^80^10.224.43.3^/MDWS2/Web/Validate.aspx
- ;;^H^80^VHAANNWEB2.V11.MED.VA.GOV^/UserValidation/Validate.aspx
+ ;;^H^80^VAAACAPPL.AAC.DVA.DOMAIN.EXT^/MDWS2/Web/Validate.aspx
+ ;;^H^80^127.0.0.1^/MDWS2/Web/Validate.aspx
+ ;;^H^80^VHAANNWEB2.V11.DOMAIN.EXT^/UserValidation/Validate.aspx
  ;;NATIONAL SUICIDE HOTLINE^MWVS MEDICAL DOMAIN WEB SVCS^$wq`WLq(0jWV2f`4xf*
- ;;^H^80^VHAV08SHS1.V08.MED.VA.GOV^/MDWS2/Web/Validate.aspx
- ;;^H^80^10.71.38.77^/MDWS2/Web/Validate.aspx
- ;;^H^80^VHAANNWEB2.V11.MED.VA.GOV^/UserValidation/Validate.aspx
+ ;;^H^80^VHAV08SHS1.V08.DOMAIN.EXT^/MDWS2/Web/Validate.aspx
+ ;;^H^80^127.0.0.1^/MDWS2/Web/Validate.aspx
+ ;;^H^80^VHAANNWEB2.V11.DOMAIN.EXT^/UserValidation/Validate.aspx
  ;;NATIONAL HOMELESS HOTLINE^MWVS MEDICAL DOMAIN WEB SVCS^cy2jzn)*;U%%3~,0p@4
- ;;^H^80^VHAV08SHS1.V08.MED.VA.GOV^/MDWS2/Web/Validate.aspx
- ;;^H^80^10.71.38.77^/MDWS2/Web/Validate.aspx
- ;;^H^80^VHAANNWEB2.V11.MED.VA.GOV^/UserValidation/Validate.aspx
+ ;;^H^80^VHAV08SHS1.V08.DOMAIN.EXT^/MDWS2/Web/Validate.aspx
+ ;;^H^80^127.0.0.1^/MDWS2/Web/Validate.aspx
+ ;;^H^80^VHAANNWEB2.V11.DOMAIN.EXT^/UserValidation/Validate.aspx
  ;;NUMI^MWVS MEDICAL DOMAIN WEB SVCS^\8,c,LP$5.qu]l\D@xA$
- ;;^H^80^VANCRWEBV4.VHA.MED.VA.GOV^/MDWS2/Web/Validate.aspx
- ;;^H^80^VANCRWEBV5.VHA.MED.VA.GOV^/MDWS2/Web/Validate.aspx
- ;;^H^80^10.208.20.108^/MDWS2/Web/Validate.aspx
- ;;^H^80^VAISHWEBV1.VHA.MED.VA.GOV^/MDWS2/Web/Validate.aspx
+ ;;^H^80^VANCRWEBV4.VHA.DOMAIN.EXT^/MDWS2/Web/Validate.aspx
+ ;;^H^80^VANCRWEBV5.VHA.DOMAIN.EXT^/MDWS2/Web/Validate.aspx
+ ;;^H^80^127.0.0.1^/MDWS2/Web/Validate.aspx
+ ;;^H^80^VAISHWEBV1.VHA.DOMAIN.EXT^/MDWS2/Web/Validate.aspx
  ;;MOVE^MWVS MEDICAL DOMAIN WEB SVCS^<9-SaNOYLMyTo.=Okk;
- ;;^H^80^VHAANNWEB2.V11.MED.VA.GOV^/UserValidation/Validate.aspx
- ;;^H^80^10.93.160.32^/UserValidation/Validate.aspx
- ;;^H^80^VHAANNVISTAWEB.V11.MED.VA.GOV^/UserValidation/Validate.aspx
+ ;;^H^80^VHAANNWEB2.V11.DOMAIN.EXT^/UserValidation/Validate.aspx
+ ;;^H^80^127.0.0.1^/UserValidation/Validate.aspx
+ ;;^H^80^VHAANNVISTAWEB.V11.DOMAIN.EXT^/UserValidation/Validate.aspx
  ;;TBI SCREENING^MWVS MEDICAL DOMAIN WEB SVCS^PvUv9RSQ.9W@FD3DcB_?
- ;;^H^80^VHAANNWEB2.V11.MED.VA.GOV^/UserValidation/Validate.aspx
- ;;^H^80^10.93.160.32^/UserValidation/Validate.aspx
- ;;^H^80^VHAANNVISTAWEB.V11.MED.VA.GOV^/UserValidation/Validate.aspx
+ ;;^H^80^VHAANNWEB2.V11.DOMAIN.EXT^/UserValidation/Validate.aspx
+ ;;^H^80^127.0.0.1^/UserValidation/Validate.aspx
+ ;;^H^80^VHAANNVISTAWEB.V11.DOMAIN.EXT^/UserValidation/Validate.aspx
  ;;MEDICAL DOMAIN WEB SERVICES^MWVS MEDICAL DOMAIN WEB SVCS^WHgafhAkItJqu&]Cbp<H
- ;;^H^80^VHAANNWEB2.V11.MED.VA.GOV^/UserValidation/Validate.aspx
- ;;^H^80^10.93.160.32^/UserValidation/Validate.aspx
- ;;^H^80^VHAANNVISTAWEB.V11.MED.VA.GOV^/UserValidation/Validate.aspx
+ ;;^H^80^VHAANNWEB2.V11.DOMAIN.EXT^/UserValidation/Validate.aspx
+ ;;^H^80^127.0.0.1^/UserValidation/Validate.aspx
+ ;;^H^80^VHAANNVISTAWEB.V11.DOMAIN.EXT^/UserValidation/Validate.aspx
  ;;PCS ANALYTICS^MWVS MEDICAL DOMAIN WEB SVCS^]y7`bj-T=*Elz6Q#wYM0
- ;;^H^80^VHAANNWEB2.V11.MED.VA.GOV^/UserValidation/Validate.aspx
- ;;^H^80^10.93.160.32^/UserValidation/Validate.aspx
- ;;^H^80^VHAANNVISTAWEB.V11.MED.VA.GOV^/UserValidation/Validate.aspx
+ ;;^H^80^VHAANNWEB2.V11.DOMAIN.EXT^/UserValidation/Validate.aspx
+ ;;^H^80^127.0.0.1^/UserValidation/Validate.aspx
+ ;;^H^80^VHAANNVISTAWEB.V11.DOMAIN.EXT^/UserValidation/Validate.aspx

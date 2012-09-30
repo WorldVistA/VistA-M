@@ -1,5 +1,5 @@
 IBNCPEV ;DALOI/SS - NCPDP BILLING EVENTS REPORT ;5/22/08  14:27
- ;;2.0;INTEGRATED BILLING;**342,363,383,384,411,435**;21-MAR-94;Build 27
+ ;;2.0;INTEGRATED BILLING;**342,363,383,384,411,435,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 RPT ;
  N IBBDT,IBDIVS,IBDTL,IBEDT,IBM1,IBM2,IBM3,IBPAGE,IBPAT,IBQ,IBRX,IBSCR,Y
@@ -53,6 +53,11 @@ START ;
 SETTMP . . S @REF@(+IBRXIEN,+$P(IBZ2,U,3),IBDTIEN,IBN)=""
  ;
  I '$D(@REF) W !!,"No data found for the specified input criteria" Q
+ ;
+PRINT ; scratch global exists and has data
+ ; begin the report printing.  Entry point into this routine from BPSVRX.
+ ; DBIA #5712 defines this entry point for ECME.
+ ;
  ;print
  S IBNUM=0
  U IO D HDR
@@ -81,7 +86,7 @@ SETTMP . . S @REF@(+IBRXIEN,+$P(IBZ2,U,3),IBDTIEN,IBN)=""
  ....I IB1ST D  Q:IBQ
  .....S IBNUM=IBNUM+1 I IBNUM>1 D ULINE("-") Q:IBQ
  .....D CHKP Q:IBQ
- .....W !,IBNUM," ",?4,$$RXNUM(IBRX1)," ",?12,IBFN," ",?16,$$DAT(+$P(IBD2,U,6)) ;RX# Fill# Fill_date
+ .....W !,IBNUM," ",?4,$$RXNUM(IBRX1)," ",?12,IBFN," ",?16,$$DAT(+$P(IBD2,U,6)) ;RX# Fill# Date of Service
  .....W " ",?28,$E($$PAT(+$P(IBZ,U,3)),1,21)," ",?50,$E($$DRUG(+$P(IBZ,U,3),IBRX1),1,30)
  .....S IB1ST=0
  ....N IND S IND=6
@@ -113,31 +118,46 @@ STAT(X,RES,CR,IBIFN) ;provides STATUS information
  I X="BILL",'RES Q "Error: "_$P(RES,U,2)
  I X="BILL",'IBIFN Q $P(RES,U,2)
  I X="BILL" Q "Bill# "_$$BILL(+IBIFN)_" created"
- I X["REVERSE",$G(CR)=7,RES=1 Q "set N/B Reason: Rx deleted, no Bill to cancel."
- I X["REVERSE" Q $S(RES=1:"success",RES>1:"Bill# "_$$BILL(+RES)_" cancelled",'RES:"ECME Claim reversed, no Bill to cancel",1:$P(RES,U,2))
+ I X["REVERSE",$G(CR)=7,+RES=1 Q "set N/B Reason: Rx deleted, no Bill to cancel."
+ I X["REVERSE" Q $S(+RES=1:"success",RES>1:"Bill# "_$$BILL(+RES)_" cancelled",'RES:"ECME Claim reversed, no Bill to cancel",1:$P(RES,U,2))
  I 'RES Q $P(RES,U,2)
  Q "OK"
  ;
- ;BILL section
- ;input params IBD*, IBZ, IBINS*
-DBILL ;
- I '$P(IBZ,U,7),$L($P(IBZ,U,8)),$P(IBD3,U,1) D CHKP Q:IBQ  W !?10,"ERROR DESCRIPTION: ",$P(IBZ,U,8)
+DBILL ; BILL section
+ ; input params IBD*, IBZ, IBINS*
+ ;
+ I '$P(IBZ,U,7),$L($P(IBZ,U,8)),$P(IBD3,U,1) D CHKP Q:IBQ  W !?10,"ERROR: ",$P(IBZ,U,8)
  D CHKP Q:IBQ
  D SUBHDR
  I $P(IBD2,U,4) D CHKP Q:IBQ  W !?10,"DRUG:",$$DRUGAPI^IBNCPEV1(+$P(IBD2,U,4),.01)
+ ;
  D CHKP Q:IBQ
- W !,?10,"NDC:",$S($P(IBD2,U,5):$P(IBD2,U,5),1:"No"),", BILLED QTY:",$S($P(IBD2,U,8):$P(IBD2,U,8),1:"No"),", DAYS SUPPLY:",$S($P(IBD2,U,9):$P(IBD2,U,9),1:"No")
- W !,?10,"BILLED:",$J($P(IBD3,U,2),0,2),", "
- W "PAID:",$J($P(IBD3,U,5),0,2)
- W:$P(IBD3,U,11) ", 3RD PARTY REPORTED COPAY:",$J($P(IBD3,U,11),0,2)
+ W !?10,"NDC:",$S($P(IBD2,U,5):$P(IBD2,U,5),1:"No")
+ W ", NCPDP QTY:",$S($P(IBD2,U,14):$P(IBD2,U,14),1:"No")
+ W $$UNITDISP^IBNCPEV1($P(IBD2,U,14),$P(IBD2,U,15))   ; display NCPDP unit type
+ ;
  D CHKP Q:IBQ
+ W !?10,"BILLED QTY:",$S($P(IBD2,U,8):$P(IBD2,U,8),1:"No")
+ W $$UNITDISP^IBNCPEV1($P(IBD2,U,8),$P(IBD2,U,13))    ; display billing unit type
+ W ", DAYS SUPPLY:",$S($P(IBD2,U,9):$P(IBD2,U,9),1:"No")
+ ;
+ W !,?10,"GROSS AMT DUE:",$J($P(IBD3,U,2),0,2),", "
+ W "TOTAL AMT PAID:",$J($P(IBD3,U,5),0,2)
+ D CHKP Q:IBQ
+ ;
+ ; display payer reported paid amounts
+ W !?10,"INGREDIENT COST PAID:",$S($L($P(IBD3,U,12)):$J($P(IBD3,U,12),0,2),1:"No")
+ W ", DISPENSING FEE PAID:",$S($L($P(IBD3,U,13)):$J($P(IBD3,U,13),0,2),1:"No")
+ D CHKP Q:IBQ
+ W !?10,"PATIENT RESP (INS):",$S($L($P(IBD3,U,14)):$FN(-$P(IBD3,U,14),"P",2),1:"No")
+ D CHKP Q:IBQ
+ ;
  W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,+$G(^IBA(355.3,+$P(IBD3,U,3),0)),0)),U)
  D CHKP Q:IBQ
  D DISPUSR
  Q
  ;
- ;reject section
-DREJ ;
+DREJ ; reject section
  D CHKP Q:IBQ
  D SUBHDR
  I +$P(IBD3,U,3) D CHKP Q:IBQ  W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,+$G(^IBA(355.3,+$P(IBD3,U,3),0)),0)),U)
@@ -145,12 +165,12 @@ DREJ ;
  D CHKP Q:IBQ
  D DISPUSR
  Q
- ;close
-DCLO ;
+ ;
+DCLO ; close
  D DREJ
  Q
- ;submit
-DSUB ;
+ ;
+DSUB ; submit
  D CHKP Q:IBQ
  D SUBHDR
  I $L($P(IBD1,U,6)) D CHKP W !?10,"PAYER RESPONSE: ",$P(IBD1,U,6)
@@ -158,12 +178,12 @@ DSUB ;
  D CHKP Q:IBQ
  D DISPUSR
  Q
- ;release
-DREL ;
+ ;
+DREL ; release
  D DREJ
  Q
- ;reverse
-DREV ;
+ ;
+DREV ; reverse
  D CHKP Q:IBQ
  D SUBHDR
  I $L($P(IBD1,U,6)),$E($P(IBD1,U,6),1)'="A"&($E($P(IBD1,U,6),1)'="R") S $P(IBD1,U,6)=""  ; only display accepted and rejected on REVERSALS
@@ -267,10 +287,10 @@ PAUSE ;
  U IO
  Q
  ;
-SUBHDR ; display ECME#, Fill Date, and Release Date (if it exists)
+SUBHDR ; display ECME#, Date of Service, and Release Date/Time (if it exists)
  ; used by many event displays
- W !?10,"ECME#:",$P(IBD1,U,3),",  FILL DATE:",$$DAT($P(IBD2,U,6))
- I $P(IBD2,U,7) W ",  RELEASE DATE:",$$TIM($P(IBD2,U,7))
+ W !?10,"ECME#:",$P(IBD1,U,3),", DOS:",$$DAT($P(IBD2,U,6))
+ I $P(IBD2,U,7) W ", RELEASE DATE:",$$TIM($P(IBD2,U,7))
  Q
  ;
 DISPUSR ;

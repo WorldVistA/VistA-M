@@ -1,5 +1,5 @@
-ORMEVNT ;SLC/MKB-Trigger HL7 msg off MAS events ;3/31/04  09:21
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**24,45,70,79,141,165,177,186,195,278,243**;Dec 17, 1997;Build 242
+ORMEVNT ;SLC/MKB-Trigger HL7 msg off MAS events ; 6/8/10 9:49am
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**24,45,70,79,141,165,177,186,195,278,243,324**;Dec 17, 1997;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN1 ; -- tasked entry point
@@ -123,7 +123,8 @@ DCEVT() ; -- Find match to event in AutoDC Rules file for [new] ORDIV,ORTS,ORL
  I DGPMT=2,MVTYPE=13,$G(^XTMP("ORDCOBS-"_+ORVP,"READMIT")) S ORY=0 K ^XTMP("ORDCOBS-"_+ORVP,"READMIT") G DCQ ;186 Obs readmit from ASIH don't auto-dc
  I XFER,ORLAST("TS")'=ORTS,$D(^ORD(100.6,"AC",ORDIV,20)) S MVTYPE=20 ;TS
  S DIV=ORDIV I DGPMT=3,MVTYPE'=14 S DIV=ORLAST("DIV") ;discharge
- S ORY=+$O(^ORD(100.6,"AC",ORDIV,MVTYPE,0)) K:ORY<1&(DGPMT=3)&(OBS) ^XTMP("ORDCOBS-"_+ORVP) G:ORY<1 DCQ ;186, If obs, no active rule, no reinstate
+ ;*324 Replace ORDIV with DIV
+ S ORY=+$O(^ORD(100.6,"AC",DIV,MVTYPE,0)) K:ORY<1&(DGPMT=3)&(OBS) ^XTMP("ORDCOBS-"_+ORVP) G:ORY<1 DCQ ;186, If obs, no active rule, no reinstate
  I MVTYPE=20,$D(^ORD(100.6,ORY,4,ORLAST("TS"),1,ORTS))!(ORTS=ORLAST("TS")) S ORY=0 G DCQ
  I MVTYPE=4 D  G DCQ ;ck Div and Loc multiples
  . I ORLAST("DIV")'=ORDIV S:'$D(^ORD(100.6,ORY,6,ORLAST("DIV"))) ORY=0 Q

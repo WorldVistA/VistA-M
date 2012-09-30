@@ -1,5 +1,5 @@
 ORWLR3 ; slc/dcm - VBEC Blood Bank Report cont. ;11/13/07  15:19
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212,309**;Dec 17, 1997;Build 26
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212,309,332**;Dec 17, 1997;Build 44
 RPT ;Pull report data from VBECS
  N ORI,ORJ,ORK,ORT,ORL,ORRY,REQX,CMT,C,ID,T,CFAG,CNTR,BUMP,OR4
  K ^TMP("VBDATA",$J),^TMP("ORCAN",$J)
@@ -36,58 +36,112 @@ RPT ;Pull report data from VBECS
  D DFN^VBECA3A(DFN)
  ;Available Units
  D AVUNIT^VBECA4(DFN,"LRB") ;New Improved Format
+ N INDEX,UNT,ORY,I,CNT,J,K,L,M,X,T,ORASSDT,OREXPDT,ORI,ID,PARAM,ORLOCAB
+ S CNT=0,PARAM=+$$GET^XPAR("DIV^SYS^PKG","OR VBECS AVAIL UNITS FORMAT"),ORLOCAB=0
+ I $D(ORPRTING)!(+$$GET^XPAR("DIV^SYS^PKG","OR VBECS LOC ABBREV BB REPORT")),PARAM'=1 S ORLOCAB=1 ;Location Abbreviation flag
+ K ^TMP("ORUTMP",$J)
  I $O(^TMP("LRB",$J,0)) D
- . D LINE^ORU4("^TMP(""ORLRC"",$J)",GIOM),LN
- . S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(0,.CCNT,"AVAILABLE/ISSUED UNITS:",.CCNT) D LN
- . S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(2,.CCNT,"Date/Time Assigned",.CCNT)_$$S^ORU4(22,.CCNT,"Unit ID",.CCNT)_$$S^ORU4(34,.CCNT,"Component",.CCNT)_$$S^ORU4(51,.CCNT,"ABO/Rh",.CCNT)
- . S ^TMP("ORLRC",$J,GCNT,0)=^TMP("ORLRC",$J,GCNT,0)_$$S^ORU4(61,.CCNT,"Exp. Date",.CCNT)_$$S^ORU4(73,.CCNT,"Location",.CCNT)_$$S^ORU4(105,.CCNT,"Division",.CCNT)
- . D LN
- . S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(2,.CCNT,"------------------",.CCNT)_$$S^ORU4(22,.CCNT,"-------",.CCNT)_$$S^ORU4(34,.CCNT,"---------",.CCNT)_$$S^ORU4(51,.CCNT,"------",.CCNT)
- . S ^TMP("ORLRC",$J,GCNT,0)=^TMP("ORLRC",$J,GCNT,0)_$$S^ORU4(61,.CCNT,"---------",.CCNT)_$$S^ORU4(73,.CCNT,"--------",.CCNT)_$$S^ORU4(105,.CCNT,"--------",.CCNT)
- . D LN
- . N ORI,ORL,ORDIV,ORASSDT
- . S ORI=0 F  S ORI=$O(^TMP("LRB",$J,ORI)) Q:ORI<1  S ID=^(ORI) D
- .. S T=9999999-ORI D T^ORWLR2 S ORASSDT=T
- .. S T=$P(ID,"^",2),X=$S($P(ID,"^",7)="P":"Pos",$P(ID,"^",7)="N":"Neg",1:$P(ID,"^",7)),ORDIV="",ORL=""
- .. I $L($P(ID,"^",9)) S ORDIV=$E($P(ID,"^",9),1,20)
- .. I $L($P(ID,"^",10)) S ORL=$E($P(ID,"^",10),1,20)
- .. D T^ORWLR2,LN
- .. S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(2,.CCNT,ORASSDT,.CCNT)_$$S^ORU4(22,.CCNT,$P(ID,"^",3),.CCNT)_$$S^ORU4(34,.CCNT,$P(ID,"^",4),.CCNT)_$$S^ORU4(51,.CCNT,$P(ID,"^",6)_"  "_X,.CCNT)
- .. S ^TMP("ORLRC",$J,GCNT,0)=^TMP("ORLRC",$J,GCNT,0)_$$S^ORU4(61,.CCNT,T,.CCNT)_$$S^ORU4(73,.CCNT,ORL,.CCNT)_$$S^ORU4(105,.CCNT,ORDIV,.CCNT)
- K ^TMP("LRB",$J)
- ;I $O(^TMP("VBDATA",$J,"UNIT",0)) D  ;Old Format
- ;. D LINE^ORU4("^TMP(""ORLRC"",$J)",GIOM),LN
- ;. S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(0,.CCNT,"AVAILABLE UNITS:",.CCNT) D LN
- ;. S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(2,.CCNT,"Unit ID",.CCNT)_$$S^ORU4(14,.CCNT,"Product",.CCNT)_$$S^ORU4(37,.CCNT,"ABO/Rh",.CCNT)_$$S^ORU4(47,.CCNT,"Location",.CCNT)_$$S^ORU4(67,.CCNT,"Exp. Date/Time",.CCNT) D LN
- ;. S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(2,.CCNT,"-------",.CCNT)_$$S^ORU4(14,.CCNT,"-------",.CCNT)_$$S^ORU4(37,.CCNT,"------",.CCNT)_$$S^ORU4(47,.CCNT,"--------",.CCNT)_$$S^ORU4(67,.CCNT,"--------------",.CCNT) D LN
- ;. K ^TMP("ORTMP",$J) N ORI,ORJ,ORL
- ;. S ORI="" F  S ORI=$O(^TMP("VBDATA",$J,"UNIT",ORI)) Q:ORI=""  S ID=^(ORI) I $L($P(ID,"^",7)) D
- ;.. S ^TMP("ORTMP",$J,$P(ID,"^",7),ORI)=ID
- ;. S ORJ="" F  S ORJ=$O(^TMP("ORTMP",$J,ORJ)) Q:ORJ=""  S ORI="" F  S ORI=$O(^TMP("ORTMP",$J,ORJ,ORI)) Q:ORI=""  D
- ;.. S ID=^TMP("VBDATA",$J,"UNIT",ORI)
- ;.. Q:'$L($P(ID,"^"))
- ;.. S T=$P(ID,"^"),X=$S($P(ID,"^",4)="P":"Pos",$P(ID,"^",4)="N":"Neg",1:$P(ID,"^",4)),ORL=""
- ;.. I $L($P(ID,"^",5)) S ORL=$S($O(^DIC(4,"D",$$TRIM($P(ID,"^",5)),0)):$P(^DIC(4,$O(^(0)),0),"^"),1:"")
- ;.. D T^ORWLR2,LN
- ;.. S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(2,.CCNT,$P(ID,"^",8),.CCNT)_$$S^ORU4(14,.CCNT,$P(ID,"^",2),.CCNT)_$$S^ORU4(37,.CCNT,$P(ID,"^",3)_"  "_X,.CCNT)_$$S^ORU4(47,.CCNT,ORL,.CCNT)_$$S^ORU4(67,.CCNT,T,.CCNT)
- ;K ^TMP("ORTMP",$J)
+ . K ^TMP("ORUTMP",$J)
+ . N ORI,ORL,ORDIV,ORASSDT,ORX,X,ORCNT,ORM,I,C1,C2,C3,C4,C5,C6,C7,C8,Y,H1,H2,H3,H4,H5,H6,H7,H8
+ . N ROWSIZ,ORSPLIT
+ . S ORSPLIT=0
+ . S ORM(1)=14,ORM(2)=7,ORM(3)=7,ORM(4)=9,ORM(5)=6,ORM(6)=9,ORM(7)=$S(ORLOCAB:6,1:8),ORM(8)=8
+ . S ORM(1,1)=14,ORM(1,2)=11,ORM(1,4)=9,ORM(2,5)=6,ORM(2,6)=9,ORM(2,7)=$S(ORLOCAB:6,1:8),ORM(2,8)=8
+ . S (ORCNT,ORI)=0 F  S ORI=$O(^TMP("LRB",$J,ORI)) Q:ORI<1  S ID=^(ORI) D
+ .. S ORX(1)=$$FMTE^XLFDT(9999999-ORI,"5M") ;Assigned Date/Time
+ .. S ORX(2)=$P(ID,"^",3) ;Unit ID
+ .. S ORX(3)=$P(ID,"^",11) ; Product ID
+ .. S ORX(4)=$P(ID,"^",4) ;Component
+ .. S X=$S($P(ID,"^",7)="P":"Pos",$P(ID,"^",7)="N":"Neg",1:$P(ID,"^",7)) S ORX(5)=$P(ID,"^",6)_" "_X ;ABO/Rh
+ .. S ORX(6)=$P(ID,"^",2) ;Expiration Date
+ .. S ORX(7)=$P(ID,"^",10) ;Location
+ .. S ORX(8)=$P(ID,"^",9) ;Division NAME
+ .. I ORLOCAB D
+ ... S X=ORX(7)
+ ... I $L(X) S Y=$O(^SC("B",X,0)) I Y S X=$S($L($P($G(^SC(Y,0)),"^",2)):$P(^(0),"^",2),1:$E(X,1,7)) S ORX(7)=X ;Location
+ ... E  S ORX(7)=$E(X,1,7)
+ .. S X=$$LKUP^XUAF4(ORX(8)) I X,PARAM'=1,$D(ORPRTING) S X=$$NS^XUAF4(X) I $L($P(X,"^",2)) S ORX(8)=$P(X,"^",2) ;Get Division #
+ .. S ORCNT=ORCNT+1,^TMP("ORUTMP",$J,ORCNT)=ORX(1)_"^"_ORX(2)_"^"_ORX(3)_"^"_ORX(4)_"^"_ORX(5)_"^"_ORX(6)_"^"_ORX(7)_"^"_ORX(8)
+ .. F I=1:1:8 I $L(ORX(I))>ORM(I) S:ORM(I)<$L(ORX(I)) ORM(I)=$L(ORX(I)) ;Expand column width to fit data size
+ .. S C1=1,C2=C1+ORM(1),C3=C2+ORM(2),C4=C3+ORM(3),C5=C4+ORM(4),C6=C5+ORM(5),C7=C6+ORM(6),C8=C7+ORM(7)
+ .. S ROWSIZ=C8+$L(ORX(8))+8
+ .. I ROWSIZ>79,'ORSPLIT S:PARAM=0 ORSPLIT=0 S:PARAM=2 ORSPLIT=1 S:$D(ORPRTING) ORSPLIT=1
+ .. I ORSPLIT D
+ ... F I=1,2,4 I $L(ORX(I))>ORM(1,I) S ORM(1,I)=$L(ORX(I)) ;Expand 1st Row column width to fit data
+ ... I $L(ORX(3))>$L(ORX(2)) S:$L(ORX(3))>ORM(1,2) ORM(1,2)=$L(ORX(3)) ;Get larger of 2 stacked columns
+ ... I $L(ORX(2))>$L(ORX(3)) S:$L(ORX(2))>ORM(1,2) ORM(1,2)=$L(ORX(2))
+ ... F I=5:1:8 I $L(ORX(I))>ORM(2,I) S ORM(2,I)=$L(ORX(I)) ;Expand 2nd Row column width to fit data
+ . D LINE^ORU4("^TMP(""ORLRC"",$J)",GIOM)
+ . S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(0,.CCNT,"AVAILABLE/ISSUED UNITS:",.CCNT)
+ . I PARAM'=1 D
+ .. D LINE^ORU4("^TMP(""ORLRC"",$J)",GIOM)
+ .. I 'ORSPLIT D
+ ... F I=1:1:8 S ORM(I)=ORM(I)+1 ;Add 1 space between columns
+ ... S C1=1,C2=C1+ORM(1),C3=C2+ORM(2),C4=C3+ORM(3),C5=C4+ORM(4),C6=C5+ORM(5),C7=C6+ORM(6),C8=C7+ORM(7)
+ ... D LINE^ORU4("^TMP(""ORLRC"",$J)",GIOM)
+ ... S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(C1,.CCNT,"Date Assigned",.CCNT)_$$S^ORU4(C2,.CCNT,"Unit ID",.CCNT)_$$S^ORU4(C3,.CCNT,"Prod ID",.CCNT)_$$S^ORU4(C4,.CCNT,"Component",.CCNT)_$$S^ORU4(C5,.CCNT,"ABO/Rh",.CCNT)
+ ... S ^TMP("ORLRC",$J,GCNT,0)=^TMP("ORLRC",$J,GCNT,0)_$$S^ORU4(C6,.CCNT,"Exp. Date",.CCNT)_$$S^ORU4(C7,.CCNT,$S(ORLOCAB:"Locale",1:"Location"),.CCNT)_$$S^ORU4(C8,.CCNT,$S($D(ORPRTING):"Div #",1:"Division"),.CCNT)
+ ... D LN
+ ... S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(C1,.CCNT,"-------------",.CCNT)_$$S^ORU4(C2,.CCNT,"-------",.CCNT)_$$S^ORU4(C3,.CCNT,"-------",.CCNT)_$$S^ORU4(C4,.CCNT,"---------",.CCNT)_$$S^ORU4(C5,.CCNT,"------",.CCNT)
+ ... S ^TMP("ORLRC",$J,GCNT,0)=^TMP("ORLRC",$J,GCNT,0)_$$S^ORU4(C6,.CCNT,"---------",.CCNT)_$$S^ORU4(C7,.CCNT,$S(ORLOCAB:"------",1:"--------"),.CCNT)_$$S^ORU4(C8,.CCNT,$S($D(ORPRTING):"-----",1:"--------"),.CCNT)
+ ... D LN
+ .. I ORSPLIT D
+ ... F I=1,2,4 S ORM(1,I)=ORM(1,I)+1 ;Add 1 spaces between columns 1st Row
+ ... F I=5:1:8 S ORM(2,I)=ORM(2,I)+1 ;Add 1 spaces between columns 2nd Row
+ ... S H1=1,H2=H1+ORM(1,1)+1,H3=H2+ORM(1,2),H4=H3+17,H5=H4+ORM(2,5),H6=H5+ORM(2,6),H7=H6+ORM(2,7),H8=H7+ORM(2,8)
+ ... D LINE^ORU4("^TMP(""ORLRC"",$J)",GIOM)
+ ... S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(H1,.CCNT,"Date Assigned",.CCNT)_$$S^ORU4(H2,.CCNT,"Unit/Prod #",.CCNT)_$$S^ORU4(H3,.CCNT,"Component",.CCNT)_$$S^ORU4($S(CCNT<29:29,1:H4),.CCNT,"ABO/Rh",.CCNT)
+ ... S ^TMP("ORLRC",$J,GCNT,0)=^TMP("ORLRC",$J,GCNT,0)_$$S^ORU4($S(CCNT<46:46,1:H5),.CCNT,"Exp. Date",.CCNT)_$$S^ORU4($S(CCNT<57:57,1:H6),.CCNT,$S(ORLOCAB:"Locale",1:"Location"),.CCNT)
+ ... S ^TMP("ORLRC",$J,GCNT,0)=^TMP("ORLRC",$J,GCNT,0)_$$S^ORU4($S(CCNT<65:65,1:H7),.CCNT,$S($D(ORPRTING):"Div #",1:"Division"),.CCNT)
+ ... D LN
+ ... S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(H1,.CCNT,"---------------",.CCNT)_$$S^ORU4(H2,.CCNT,"-----------",.CCNT)_$$S^ORU4(H3,.CCNT,"---------",.CCNT)_$$S^ORU4($S(CCNT<29:29,1:H4),.CCNT,"------",.CCNT)
+ ... S ^TMP("ORLRC",$J,GCNT,0)=^TMP("ORLRC",$J,GCNT,0)_$$S^ORU4($S(CCNT<46:46,1:H5),.CCNT,"----------",.CCNT)_$$S^ORU4($S(CCNT<57:57,1:H6),.CCNT,$S(ORLOCAB:"------",1:"--------"),.CCNT)
+ ... S ^TMP("ORLRC",$J,GCNT,0)=^TMP("ORLRC",$J,GCNT,0)_$$S^ORU4($S(CCNT<65:65,1:H7),.CCNT,$S($D(ORPRTING):"-----",1:"--------"),.CCNT)
+ ... D LN
+ . S ORI=0 F  S ORI=$O(^TMP("ORUTMP",$J,ORI)) Q:'ORI  S ID=^(ORI) D
+ .. I PARAM'=1 D
+ ... I 'ORSPLIT D
+ .... D LINE^ORU4("^TMP(""ORLRC"",$J)",GIOM)
+ .... S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(C1,.CCNT,$P(ID,"^"),.CCNT)_$$S^ORU4(C2,.CCNT,$P(ID,"^",2),.CCNT)_$$S^ORU4(C3,.CCNT,$P(ID,"^",3),.CCNT)_$$S^ORU4(C4,.CCNT,$P(ID,"^",4),.CCNT)_$$S^ORU4(C5,.CCNT,$P(ID,"^",5),.CCNT)
+ .... S ^TMP("ORLRC",$J,GCNT,0)=^TMP("ORLRC",$J,GCNT,0)_$$S^ORU4(C6,.CCNT,$P(ID,"^",6),.CCNT)_$$S^ORU4(C7,.CCNT,$P(ID,"^",7),.CCNT)_$$S^ORU4(C8,.CCNT,$P(ID,"^",8),.CCNT)
+ ... I ORSPLIT D
+ .... D LINE^ORU4("^TMP(""ORLRC"",$J)",GIOM)
+ .... S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(H1,.CCNT,$P(ID,"^"),.CCNT)_$$S^ORU4(H2,.CCNT,$P(ID,"^",2),.CCNT)_$$S^ORU4(H3,.CCNT,$P(ID,"^",4),.CCNT)
+ .... D LN
+ .... S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(H1,.CCNT,"",.CCNT)_$$S^ORU4(H2,.CCNT,$P(ID,"^",3),.CCNT)_$$S^ORU4(H3,.CCNT,"",.CCNT)_$$S^ORU4($S(CCNT<29:29,1:H4),.CCNT,$P(ID,"^",5),.CCNT)
+ .... S ^TMP("ORLRC",$J,GCNT,0)=^TMP("ORLRC",$J,GCNT,0)_$$S^ORU4($S(CCNT<46:46,1:H5),.CCNT,$P(ID,"^",6),.CCNT)_$$S^ORU4($S(CCNT<57:57,1:H6),.CCNT,$P(ID,"^",7),.CCNT)_$$S^ORU4($S(CCNT<65:65,1:H7),.CCNT,$P(ID,"^",8),.CCNT)
+ .... D LN
+ .. I PARAM=1 D
+ ... D LINE^ORU4("^TMP(""ORLRC"",$J)",GIOM)
+ ... D LN S ^TMP("ORLRC",$J,GCNT,0)=" Date/Time Assigned: "_$$S^ORU4(1,.CCNT,$P(ID,"^",1),.CCNT)
+ ... D LN S ^TMP("ORLRC",$J,GCNT,0)=" Unit ID           : "_$$S^ORU4(1,.CCNT,$P(ID,"^",2),.CCNT)
+ ... D LN S ^TMP("ORLRC",$J,GCNT,0)=" Product ID        : "_$$S^ORU4(1,.CCNT,$P(ID,"^",3),.CCNT)
+ ... D LN S ^TMP("ORLRC",$J,GCNT,0)=" Component         : "_$$S^ORU4(1,.CCNT,$P(ID,"^",4),.CCNT)
+ ... D LN S ^TMP("ORLRC",$J,GCNT,0)=" ABO/Rh            : "_$$S^ORU4(1,.CCNT,$P(ID,"^",5),.CCNT)
+ ... D LN S ^TMP("ORLRC",$J,GCNT,0)=" Expiration Date   : "_$$S^ORU4(1,.CCNT,$P(ID,"^",6),.CCNT)
+ ... D LN S ^TMP("ORLRC",$J,GCNT,0)=" Location          : "_$$S^ORU4(1,.CCNT,$P(ID,"^",7),.CCNT)
+ ... D LN S ^TMP("ORLRC",$J,GCNT,0)=" Division          : "_$$S^ORU4(1,.CCNT,$P(ID,"^",8),.CCNT)
+ D LINE^ORU4("^TMP(""ORLRC"",$J)",GIOM)
+ K ^TMP("LRB",$J),^TMP("ORUTMP",$J)
  ;Specimen Tests
  D SPEC^ORWLR4
  ;Component Requests
- N A,F,%DT,Y,SORT
+ N A,F,%DT,Y,SORT,CNT
  I $O(^TMP("VBDATA",$J,"COMPONENT REQUEST",0)) D
  . D LINE^ORU4("^TMP(""ORLRC"",$J)",GIOM),LN
- . S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(0,.CCNT,"COMPONENT REQUESTS:",.CCNT) D LN
+ . D LINE^ORU4("^TMP(""ORLRC"",$J)",GIOM),LN
+ . S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(0,.CCNT,"COMPONENT REQUESTS:",.CCNT)
+ . D LINE^ORU4("^TMP(""ORLRC"",$J)",GIOM),LN
  . S X="Component Type"
  . S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(2,.CCNT,X,.CCNT)_$$S^ORU4(22,.CCNT,"Units",.CCNT)_$$S^ORU4(28,.CCNT,"Request date",.CCNT)_$$S^ORU4(48,.CCNT,"Date wanted",.CCNT)_$$S^ORU4(68,.CCNT,"Requestor",.CCNT)_$$S^ORU4(78,.CCNT,"By",.CCNT) D LN
  . S Y="--------------"
  . S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(2,.CCNT,Y,.CCNT)_$$S^ORU4(22,.CCNT,"-----",.CCNT)_$$S^ORU4(28,.CCNT,"------------",.CCNT)_$$S^ORU4(48,.CCNT,"-----------",.CCNT)_$$S^ORU4(68,.CCNT,"---------",.CCNT)_$$S^ORU4(78,.CCNT,"--",.CCNT) D LN
- . S A=0 F  S A=$O(^TMP("VBDATA",$J,"COMPONENT REQUEST",A)) Q:'A  D
+ . S CNT=0,A=0 F  S A=$O(^TMP("VBDATA",$J,"COMPONENT REQUEST",A)) Q:'A  D
  .. S F=^TMP("VBDATA",$J,"COMPONENT REQUEST",A),T="",%DT="T",X=$P(F,"^",3),Y=-1
  .. I $L(X) D ^%DT
  .. I Y'=-1 S T=Y D T^ORWLR2
- .. S SORT=$S($P(F,"^",3):$P(F,"^",3),$P(F,"^",4):$P(F,"^",4),1:0),^TMP("ORTMP",$J,9999999-SORT,0)=F
- . S ORI=0 F  S ORI=$O(^TMP("ORTMP",$J,ORI)) Q:'ORI  I $D(^(ORI,0)) S F=^(0) D
+ .. S CNT=CNT+1,SORT=$S($P(F,"^",3):$P(F,"^",3),$P(F,"^",4):$P(F,"^",4),1:0),^TMP("ORTMP",$J,9999999-SORT,CNT,0)=F
+ . S ORI=0 F  S ORI=$O(^TMP("ORTMP",$J,ORI)) Q:'ORI  S CNT=0 F  S CNT=$O(^TMP("ORTMP",$J,ORI,CNT)) Q:'CNT  I $D(^(CNT,0)) S F=^(0) D
  .. D LN
  .. S T="",%DT="T",X=$P(F,"^",3),Y=-1
  .. I $L(X) D ^%DT
@@ -101,29 +155,43 @@ RPT ;Pull report data from VBECS
  .. S ^TMP("ORLRC",$J,GCNT,0)=^TMP("ORLRC",$J,GCNT,0)_$$S^ORU4(48,.CCNT,T,.CCNT)_$$S^ORU4(68,.CCNT,REQX,.CCNT)_$$S^ORU4(78,.CCNT,X,.CCNT)
  K ^TMP("ORTMP",$J)
  ;Transfused Units
+ D LINE^ORU4("^TMP(""ORLRC"",$J)",GIOM),LN
  D TRAN^ORWLR2
  Q
-CAN ;Process Canned comments
- ;Comments are subscripted in 1-6
- ;1-3 are user comments
- ;4-6 are canned comments
- ;Either one, both, or neither may be present
- N CNT,CCNT
+CAN(OROOT,COL) ;Take data from OROOT and build ^TMP("ORCAN",$J)
+ N START,STOP,INPUT,OUTPUT,CCNT,CNT,WORD,ORX,NEX,CJ,CTR,ORX,ICNT
+ D SPACE(OROOT)
  S CCNT=1,CNT=$S($O(^TMP("ORCAN",$J,0)):$O(^TMP("ORCAN",$J,99999999),-1),1:0)
- I ORK=4 S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,CFAG,.CCNT)
- S CZ="" F CI=1:1:$L(CX," ") S CY=$P(CX," ",CI) D
- . ;I ORK>3,$O(^TMP("VBDATA",$J,"SPECIMEN",ORI,ORK))>3,CI=$L(CX," ") S CZ=CY Q
- . I CI=$L(CX," ") S CZ=CY Q
- . I $L(CY)>80 D  S CZ="" Q
- .. F CJ=1:80 S CZ=$E(CY,CJ,CJ+79) Q:'$L(CZ)  S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,CZ,.CCNT)
- . I $L(CZ)+$L(CY)>80 S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,CZ,.CCNT),CZ="" D  Q
- .. I $L(CY)>80 D
- ... F CJ=1:80 S CZ=$E(CY,CJ,CJ+79) Q:'$L(CZ)  S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,CZ,.CCNT)
- ... S CZ=""
- .. E  S CZ=CY D
- ... I CI=$L(CX," ") S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,CZ,.CCNT),CZ=""
- . S CZ=$S($L(CZ):CZ_" "_CY,1:CY) I $L(CZ)>80 S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,CZ,.CCNT),CZ=""
- . I CI=$L(CX," ") S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,CZ,.CCNT),CZ=""
+ S OUTPUT="",ORK=3
+ F  S ORK=$O(@OROOT@(ORK)) Q:'ORK  S X=@OROOT@(ORK) D
+ . I ORK=4 S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,CFAG,.CCNT)
+ . S INPUT=OUTPUT_X,START=$S($E(INPUT)=" ":2,1:1),OUTPUT="",STOP=$L(INPUT," ")
+ . I $L(INPUT) F ICNT=START:1:STOP S WORD=$P(INPUT," ",ICNT) D
+ .. I $L(WORD)<1,$L(OUTPUT) S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,OUTPUT,.CCNT),OUTPUT="" Q
+ .. I ICNT=$L(INPUT," "),+$O(@OROOT@(ORK))<1,'$L($P(INPUT," ",ICNT+1)),$L(OUTPUT) D  Q
+ ... S OUTPUT=$S($L(OUTPUT):OUTPUT_" "_WORD,1:WORD),CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,OUTPUT,.CCNT),OUTPUT=""
+ .. I $L(WORD)>COL D  S OUTPUT="" Q
+ ... I $L(WORD," ")=1 S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,WORD,.CCNT) Q
+ ... F CJ=1:COL S OUTPUT=$E(WORD,CJ,CJ+99) Q:'$L(OUTPUT)  S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,OUTPUT,.CCNT)
+ .. I $L(OUTPUT)+$L(WORD)>COL S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,OUTPUT,.CCNT),OUTPUT="" D  Q
+ ... I $L(WORD)>COL D
+ .... I $L(WORD," ")=1 S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,WORD,.CCNT) Q
+ .... F CJ=1:COL S OUTPUT=$E(WORD,CJ,CJ+99) Q:'$L(OUTPUT)  S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,OUTPUT,.CCNT)
+ .... S OUTPUT=""
+ ... E  S OUTPUT=OUTPUT_$S($L(OUTPUT):" ",1:"")_WORD D
+ .... I ICNT=$L(INPUT," ") D
+ ..... I +$O(@OROOT@(ORK))<1 S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,OUTPUT,.CCNT),OUTPUT="" Q
+ .. S OUTPUT=$S($L(OUTPUT):OUTPUT_" "_WORD,1:WORD)
+ .. I $L(OUTPUT)>COL S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,OUTPUT,.CCNT),OUTPUT=""
+ .. I ICNT=$L(INPUT," ") D
+ ... I +$O(@OROOT@(ORK))<1 S CNT=CNT+1,^TMP("ORCAN",$J,CNT,0)=$$S^ORU4(1,.CCNT,OUTPUT,.CCNT),OUTPUT=""
+ Q
+SPACE(OROOT) ;Move Trailing spaces to next line
+ N ORI,CTR,X
+ S ORI=0
+ F  S ORI=$O(@OROOT@(ORI)) Q:'ORI  D
+ . S X=$RE(@OROOT@(ORI)),CTR=0 F  S:$E(X)=" " X=$E(X,2,999),CTR=CTR+1 Q:$E(X)'=" "  Q:'$L(X)  ;trailing spaces removed
+ . I CTR S @OROOT@(ORI)=$RE(X) I $O(@OROOT@(ORI)) S NEX=$O(@OROOT@(ORI)),ORX(NEX)=$E("               ",1,CTR)_ORX(NEX) ;move spaces to front of next line
  Q
 LN ;Increment counts
  S GCNT=GCNT+1,CCNT=1

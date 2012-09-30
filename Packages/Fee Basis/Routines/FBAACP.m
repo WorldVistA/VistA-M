@@ -1,6 +1,6 @@
-FBAACP ;AISC/CMR-C&P PAYMENT DRIVER ;7/13/2003
- ;;3.5;FEE BASIS;**4,38,55,61,77**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAACP ;AISC/CMR - C&P PAYMENT DRIVER ;6/22/2009
+ ;;3.5;FEE BASIS;**4,38,55,61,77,108**;JAN 30, 1995;Build 115
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  K FBAAOUT,FBPOP S FBCNP=1 ;C&P flag
  D SITE^FBAACO G Q:$G(FBPOP) D BT^FBAACO G Q:$G(FBAAOUT)
 1 K FBAR,FBAAOUT,FBDL,FBAAMM D GETVEN1^FBAACO1:$D(FB583),GETVEN^FBAACO1:'$D(FB583) G CLN:$G(FBAAOUT)
@@ -24,6 +24,10 @@ MULT ;begin unique patient entry
  W:FBINTOT>0 !,"Invoice: "_FBAAIN_" Totals: $ "_FBINTOT
  K FBAAOUT,FBDL S (DFN,FTP)="" D SITE^FBAACO G Q:$G(FBPOP) W !!
  I '$D(FB583) K FBDL D GETVET^FBAAUTL1 G CLN:'DFN K FBDMRA D GETAUTH^FBAAUTL1 G MULT:FTP']""
+ ; check contract
+ I $G(FBAAPTC)'="R",'$D(FB583),$$UCFA^FBUTL7($G(FBV),$G(FBVEN),$G(FBCNTRA)),FBCNTRP'=FBCNTRA D  G MULT
+ . W !,"ERROR: Contract specified for payments (",$S(FBCNTRP:$P($G(^FBAA(161.43,FBCNTRP,0)),U),1:""),") doesn't"
+ . W !,"match contract specified by this authorization (",$S(FBCNTRA:$P($G(^FBAA(161.43,FBCNTRA,0)),U),1:""),")."
  K FBAAOUT D  G Q:$G(FBAAOUT)
  . N ICDVDT S ICDVDT=$G(FBAADT)
  . F  D  Q:$G(FBAAOUT)  Q:($$INPICD9^FBCSV1(+$G(Y),"",$G(FBAADT))=0)
@@ -98,14 +102,29 @@ CLN G Q:$D(FB583)
  Q
 MMPPT ;money management/prompt pay type for multiple payment entry
  ; input
- ;   FBAAPTC
+ ;   FBAAPTC = payment type code, "R" when patient reimbursement
+ ;   FBV     = vendor being paid (ien)
+ ;   when called from FBAAMP additional variables will be available
+ ;     FBCNTRA = contract ien from authorization
+ ;     FBVEN   = vendor from authorization
+ ;     FB583   = defined when unauthorized claim
  ; output
- ;   FBAAMM
- ;   FBAAMM1
- ;   FBAAOUT
+ ;   FBAAMM  = prompt payment, =1 to ask
+ ;   FBAAMM1 = prompt payment type for line
+ ;   FBAAOUT = (optional), = 1 to quit
+ ;   FBCNTRP = contract for line item (ien)
  ;
- S (FBAAMM,FBAAMM1)=""
- I $G(FBAAPTC)'="R" D
+ S (FBAAMM,FBAAMM1,FBCNTRP)=""
+ I $G(FBAAPTC)'="R",'$D(FB583) D
+ . ;
+ . ; check if contract required by authorization
+ . I '$D(FB583),$$UCFA^FBUTL7($G(FBV),$G(FBVEN),$G(FBCNTRA)) D  Q
+ . . W !,"All lines items on this invoice will be considered as contracted services"
+ . . W !,"under Contract ",$P($G(^FBAA(161.43,FBCNTRA,0)),U)," from the authorization."
+ . . S (FBAAMM,FBAAMM1)=1
+ . . S FBCNTRP=FBCNTRA
+ . ;
+ . ; when not forced by authorization ask if contracted service
  . W !,"The answer to the following will apply to all payments entered via this option."
  . S DIR(0)="Y"
  . S DIR("A")="Are payments for contracted services"
@@ -116,4 +135,14 @@ MMPPT ;money management/prompt pay type for multiple payment entry
  . S DIR("?")="Enter either 'Y' or 'N'."
  . D ^DIR K DIR I $D(DIRUT) S FBAAOUT=1 Q
  . S (FBAAMM,FBAAMM1)=$S(Y:1,1:"")
+ . Q:FBAAMM1=""
+ . ;
+ . ; if contracted service, ask contract
+ . S DIR(0)="PO^161.43:AQEM"
+ . S DIR("A")="CONTRACT"
+ . S DIR("?",1)="If the line item is under a contract then select it."
+ . S DIR("?")="Contract must be active and applicable for the vendor."
+ . S DIR("S")="I $P($G(^(0)),""^"",2)'=""I"",$$VCNTR^FBUTL7($G(FBV),+Y)"
+ . D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) S FBAAOUT=1 Q
+ . S:Y>0 FBCNTRP=+Y
  Q

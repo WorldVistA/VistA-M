@@ -22,7 +22,7 @@ TEXT ;Privacy Act text
 PRI1 ;(b) To ensure that appropriate security controls are in place, contractors must
  ;follow the procedures set forth in 'VA Information and Information System
  ;Security/Privacy Requirements for IT Contracts' located at the following Web
- ;site: http://www.iprm.oit.va.gov.
+ ;site: http://www.iprm.oit.DOMAIN.EXT.
  ;
 PRI2 ;(c) These provisions shall apply to all contracts in which VA sensitive
  ;information is stored, generated, transmitted, or exchanged by VA, a contractor,

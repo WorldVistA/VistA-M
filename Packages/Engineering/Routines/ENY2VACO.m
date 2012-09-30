@@ -62,7 +62,7 @@ ROLLACT ;  add Y2K activity to national roll-up
  Q
  ;
 SEND ; send NetWork mail
- S XMY(DUZ)="",XMY("S.EN_UPDATE_Y2K@FORUM.VA.GOV")="",XMDUZ=.5
+ S XMY(DUZ)="",XMY("S.EN_UPDATE_Y2K@FORUM.DOMAIN.EXT")="",XMDUZ=.5
  ;S XMY(DUZ)="",XMDUZ=.5
  S XMSUB="Roll-up of Y2K Information",XMTEXT="ENC("
  D ^XMD

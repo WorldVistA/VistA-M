@@ -1,5 +1,5 @@
-ORMEVNT2 ;SLC/DAN Additional event delayed order utilities ;3/31/04  09:12
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**177,186,195**;Dec 17, 1997
+ORMEVNT2 ;SLC/DAN Additional event delayed order utilities ; 11/15/10 12:53pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**177,186,195,341**;Dec 17, 1997;Build 3
  ;
  ;DBIA SECTION
  ;10063 - %ZTLOAD
@@ -41,7 +41,8 @@ TIMERDQ ;Check if patient readmitted, if not, auto-dc orders that should have au
  I +$P($Q(^DGPM("ATID3",DFN)),",",4)'=VAIP(1) Q  ;Stop if there's been another discharge since the discharge from observation.
 DEL K ^XTMP("ORDCOBS-"_$G(DFN)) ;Inpatient meds waiting for reinstatement are no longer needed so XTMP can be deleted
  D AUTODC^ORMEVNT1(TORY,$P($G(DGPMA),U)) ;Auto-dc orders from observation
- I '$D(^ORE(100.2,$G(OREVENT),10)),$G(OREVENT) D ACTLOG^OREVNTX(OREVENT,"NW","D",1),DONE^OREVNTX(OREVENT,,DGPMDA) ;186 Log event in 100.2 if not previously done
+ ;*341 Check $G(OREVENT) first.
+ I $G(OREVENT),'$D(^ORE(100.2,$G(OREVENT),10)) D ACTLOG^OREVNTX(OREVENT,"NW","D",1),DONE^OREVNTX(OREVENT,,DGPMDA) ;186 Log event in 100.2 if not previously done
  Q
  ;
 DISCH ; -- Lapse/cancel outstanding events on discharge ;Section moved with 195

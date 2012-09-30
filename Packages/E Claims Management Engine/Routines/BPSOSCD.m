@@ -1,5 +1,5 @@
 BPSOSCD ;BHAM ISC/FCS/DRS/DLF - Set BPS() "RX" nodes for current medication ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; reference to $$ACPHONE^IBNCPDPI supported by DBIA 4721
@@ -23,7 +23,7 @@ MEDINFO(IEN59,IEN5902,MEDN) ;
  I $G(IEN5902)="" Q
  I $G(MEDN)="" Q
  ;
- N %,BPS0,DRUGIEN,FILLDT,IENS,J,NDC,NPI,OSITEIEN,PRICING,PROVIEN,RTN,RXI,RXIEN,RXRFIEN,VANATURE,VAOIEN,X
+ N %,BPS0,DRUGIEN,IENS,J,NDC,NPI,OSITEIEN,PRICING,PROVIEN,RTN,RXI,RXIEN,RXRFIEN,VANATURE,VAOIEN,X,ADFEE
  ;
  ;RXIEN=Rx IEN, RXRFIEN=Fill Number, IENS=FileMan style IENS
  S BPS0=$G(^BPST(IEN59,1)),RXIEN=$P(BPS0,U,11),RXRFIEN=$P(BPS0,U,1),IENS=IEN5902_","_IEN59_","
@@ -42,13 +42,6 @@ MEDINFO(IEN59,IEN5902,MEDN) ;
  S BPS("RX",MEDN,"IEN59")=IEN59
  S BPS("RX",MEDN,"RX IEN")=RXIEN
  S BPS("RX",MEDN,"RX Number")=RXIEN
- ;
- ; Get/format Service Date from BPS TRANSACTION, if null use $$DOSDATE^BPSSCRRS
- S FILLDT=$P($G(^BPST(IEN59,12)),U,2)
- ; Note that $$DOSDATE returns the current date if RXIEN and RXRIEN are null so this works
- ;   for Eligibility even if there is no RX/Fill.
- I FILLDT="" S FILLDT=$$DOSDATE^BPSSCRRS(RXIEN,RXRFIEN) D LOG^BPSOSL(IEN59,RTN_"-Fill Date sent as "_FILLDT)
- S BPS("RX",MEDN,"Date Filled")=$$FMTHL7^XLFDT(FILLDT)
  ;
  ; Stop if the transaction code is "E1" and there is no Prescription IEN
  I BPS("Transaction Code")="E1",RXIEN="" Q
@@ -80,6 +73,9 @@ MEDINFO(IEN59,IEN5902,MEDN) ;
  ;
  ; Basic Prescription Info
  S BPS("RX",MEDN,"Date Written")=$$RXAPI1^BPSUTIL1(RXIEN,1,"I")
+ ; SLT - BPS*1.0*11
+ ; if the RX Issue Date is in the future, set it to the current date
+ I BPS("RX",MEDN,"Date Written")>DT S BPS("RX",MEDN,"Date Written")=DT
  S BPS("RX",MEDN,"New/Refill")=$S(RXRFIEN="":"N",1:"R")
  S BPS("RX",MEDN,"# Refills")=$$RXAPI1^BPSUTIL1(RXIEN,9,"I")
  S BPS("RX",MEDN,"Refill #")=+RXRFIEN
@@ -96,6 +92,7 @@ MEDINFO(IEN59,IEN5902,MEDN) ;
  S BPS("Claim",MEDN,"Delay Reason Code")=""  ; 357-NV Delay Reason Code
  ;
  ; NDC = NDC number drug, try transaction 1st, if null get it from Rx/refill
+ S BPS("RX",MEDN,"Product ID Qualifier")="03"
  S NDC=$P(^BPST(IEN59,1),U,2)
  I NDC="" S NDC=$$GETNDC^PSONDCUT(RXIEN,RXRFIEN) D LOG^BPSOSL(IEN59,RTN_"-NDC sent as "_NDC)
  S BPS("RX",MEDN,"NDC")=NDC
@@ -123,21 +120,19 @@ MEDINFO(IEN59,IEN5902,MEDN) ;
  .S BPS("RX",MEDN,"Drug Name")=$$DRUGDIE^BPSUTIL1(DRUGIEN,.01,"E")
  ;
  ; Pricing Info
- S BPS("RX",MEDN,"Alt. Product Type")="03"
- S BPS("RX",MEDN,"Gross Amount Due")=$G(VAINFO(9002313.59902,IENS,902.15,"I"))
- S BPS("RX",MEDN,"Usual & Customary")=$G(VAINFO(9002313.59902,IENS,902.14,"I"))
- S BPS("RX",MEDN,"Basis of Cost Determination")=$G(VAINFO(9002313.59902,IENS,902.13,"I"))
- ;
- ; More pricing info
  S PRICING=$G(^BPST(IEN59,5))
- S BPS("RX",MEDN,"Quantity")=$P(PRICING,U) ; 01/31/2001
+ S BPS("RX",MEDN,"Quantity")=$P(PRICING,U)
  S BPS("RX",MEDN,"Unit Price")=$P(PRICING,U,2)
- S BPS("RX",MEDN,"Ingredient Cost")=$J($P(PRICING,U,2),0,2)
- S BPS("RX",MEDN,"Dispensing Fee")=$J($P(PRICING,U,4),0,2)
- S BPS("Site","Dispensing Fee")=BPS("RX",MEDN,"Dispensing Fee")
- S BPS("RX",MEDN,"Usual & Customary")=$P(PRICING,U,5)
  S BPS("RX",MEDN,"Unit of Measure")=$P(PRICING,U,8)
- S:$G(BPS("NCPDP","Add Disp. Fee to Ingr. Cost")) BPS("RX",MEDN,"Ingredient Cost")=BPS("RX",MEDN,"Ingredient Cost")+BPS("RX",MEDN,"Dispensing Fee")
+ S BPS("RX",MEDN,"Basis of Cost Determination")=$G(VAINFO(9002313.59902,IENS,902.13,"I"))
+ S BPS("RX",MEDN,"Usual & Customary")=$G(VAINFO(9002313.59902,IENS,902.14,"I"))
+ S BPS("RX",MEDN,"Gross Amount Due")=$G(VAINFO(9002313.59902,IENS,902.15,"I"))
+ S BPS("RX",MEDN,"Ingredient Cost")=$G(VAINFO(9002313.59902,IENS,902.2,"I"))
+ S BPS("RX",MEDN,"Dispensing Fee")=$G(VAINFO(9002313.59902,IENS,902.12,"I"))
+ S ADFEE=+$G(VAINFO(9002313.59902,IENS,902.16,"I"))
+ I ADFEE'=0 D
+ . S BPS("RX",MEDN,"Other Amt Qual",1)="04"
+ . S BPS("RX",MEDN,"Other Amt Value",1)=ADFEE
  ;
  Q
  ;

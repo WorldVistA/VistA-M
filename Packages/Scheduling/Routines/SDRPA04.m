@@ -46,7 +46,7 @@ MSG ;send mail message
  N SDAMX,XMSUB,XMY,XMTEXT,XMDUZ
  S XMSUB=$G(SDS)_" - PAIT BACKGROUND JOB"
  S XMY("G.SD-PAIT")=""
- S XMY("S.SD-PAIT-SERVER@FORUM.VA.GOV")=""
+ S XMY("S.SD-PAIT-SERVER@FORUM.DOMAIN.EXT")=""
  S XMTEXT="SDAMX("
  S DUZ=""
  S XMDUZ="POSTMASTER"
@@ -62,7 +62,7 @@ MSG ;send mail message
  S SDAMX(10)="-----------------------------------------------------------------------"
  S SDAMX(11)=SDS_"|"_$J(CRUNID,3)_"|"_$J(SDB,3)_"|"_$J(SDTOT,7)_"|"_SDTRF_"|"_$J(SDIP,11)_"|"_$J(SDMT,4)_"|"_$J(SDMS,4)_"|"_$J(SDAR,4)_"|"_$J(SDAP,4)_"| "_SDSTAT
  S SDAMX(12)=""
- I $G(SDSTOP) S XMY("VHACIONHD@MED.VA.GOV")="" D  D ^XMD Q
+ I $G(SDSTOP) S XMY("VHACIONHD@DOMAIN.EXT")="" D  D ^XMD Q
  .S SDAMX(13)="WARNING: TASK STOPPED BY USER, NEEDS TO BE RESTARTED."
  .S SDAMX(14)="Initiate a Remedy ticket TO FOLLOW UP."
  I 'SFF I SDMT>0!(SDB=0) D  D ^XMD K ^TMP("SDDPT",$J) Q
@@ -71,16 +71,16 @@ MSG ;send mail message
  .I (SDMT-SDMS)<SDB!(SDB=1&(SDMT-SDMS)'<SDB)&(SDSTAT'["Shutdown") D  Q
  ..S SDAMX(13)="WARNING: "_(SDMT-SDMS)_" out of "_SDB_" batches still have to be transmitted,"
  ..S SDAMX(14)="please verify with the HL7 System Monitor."
- .S XMY("VHACIONHD@MED.VA.GOV")=""
+ .S XMY("VHACIONHD@DOMAIN.EXT")=""
  .I SDB>0 I (SDMT-SDMS)'<SDB D  Q
- ..S XMY("VHACIONHD@MED.VA.GOV")=""
+ ..S XMY("VHACIONHD@DOMAIN.EXT")=""
  ..I SDSTAT["Shutdown" D
  ...S SDAMX(13)="SD-PAIT Logical Link has to be started, initiate Remedy ticket for Scheduling PAIT."
  ..E  S SDAMX(13)="Initiate a Remedy ticket for Interface Engine - communication problem."
  I SFF D  D ^XMD K ^TMP("SDDPT",$J) Q
  .S SDAMX(13)="WARNING!!!: Transmission of run#: "_CRUNID_" has been repaired, you may restart."
  .I SDB>0 I (SDMT-SDMS)'<SDB D
- ..S XMY("VHACIONHD@MED.VA.GOV")=""
+ ..S XMY("VHACIONHD@DOMAIN.EXT")=""
  ..I SDSTAT["Shutdown" D  Q
  ...S SDAMX(14)="SD-PAIT Logical Link has to be started, initiate Remedy ticket for Scheduling PAIT."
  ..S SDAMX(14)="Initiate a Remedy ticket for Interface Engine - communication problem."

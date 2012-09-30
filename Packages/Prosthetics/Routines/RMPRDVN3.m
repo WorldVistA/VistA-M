@@ -95,7 +95,7 @@ FTPCOM ; Issue the FTP command after RMPRDVNxxxWFTP.TXT file is built
  N PV,XPV1
  ;
  ; SACC Exception received for usage of $ZF(-1)
- S XPV1="S PV=$ZF(-1,""sftp -i "_FILEDIR_".ssh\rAgentkeys -B "_FILEDIR_"RMPRDVN"_STID_"WFTP.TXT RMPRFTP@VHAMACAPPT.V21.MED.VA.GOV"")" ; WLS/MPLS 5/28/09
+ S XPV1="S PV=$ZF(-1,""sftp -i "_FILEDIR_".ssh\rAgentkeys -B "_FILEDIR_"RMPRDVN"_STID_"WFTP.TXT RMPRFTP@VHAMACAPPT.V21.DOMAIN.EXT"")" ; WLS/MPLS 5/28/09
  X XPV1  ; FTP the files, Comment out for testing
  ;
  ; error flag logic

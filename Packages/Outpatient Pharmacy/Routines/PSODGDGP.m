@@ -1,8 +1,7 @@
 PSODGDGP ;BIR/SAB - drug drug interaction checker ;4/14/93
- ;;7.0;OUTPATIENT PHARMACY;**251,387**;DEC 1997;Build 13
- ;External reference to ^PS(56 supported by DBIA 2229
+ ;;7.0;OUTPATIENT PHARMACY;**251,387,379**;DEC 1997;Build 28
  ;External reference to ^PSDRUG supported by DBIA 221
- ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
+ ;External references PSOUL^PSSLOCK supported by DBIA 2789
  ;External references to ^ORRDI1 supported by DBIA 4659
  ;External reference ^XTMP("ORRDI" supported by DBIA 4660
  ;External reference to $$DS^PSSDSAPI supported by DBIA 5425
@@ -22,11 +21,28 @@ PSODGDGP ;BIR/SAB - drug drug interaction checker ;4/14/93
  I '$D(^XUSEC("PSORPH",DUZ)),$G(PSOREMOT)!($G(DGI)]"") K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to Continue..." D ^DIR K DIR,DUOUT,DTOUT
  Q
 TECH ;add tech entry to RX VERIFY file (#52.4); called from new order/copy/renew
- I $$DS^PSSDSAPI,+$G(^TMP("PSODOSF",$J,0)) S ^PS(52.4,PSOX("IRXN"),1)=^TMP("PSODOSF",$J,0)
- I $G(^TMP("PSODGI",$J,0))'="" D
- .S $P(^PSRX(PSOX("IRXN"),"DRI"),"^")=^TMP("PSOSER",$J,0)_"^"_^TMP("PSODGI",$J,0)
- .S $P(^PS(52.4,PSOX("IRXN"),0),"^",8)=1,$P(^PS(52.4,PSOX("IRXN"),0),"^",9)=^TMP("PSOSER",$J,0),$P(^PS(52.4,PSOX("IRXN"),0),"^",10)=^TMP("PSODGI",$J,0)
+ I $$DS^PSSDSAPI,+$G(^TMP("PSODOSF",$J,0)) S ^PS(52.4,PSOXIRXN,1)=^TMP("PSODOSF",$J,0)
+ Q:'$D(^TMP("PSODGI",$J,0))
+ S $P(^PSRX(PSOXIRXN,"DRI"),"^")=^TMP("PSOSER",$J,0)_"^"_^TMP("PSODGI",$J,0)
+ S $P(^PS(52.4,PSOXIRXN,0),"^",8)=1,$P(^PS(52.4,PSOXIRXN,0),"^",9)=^TMP("PSOSER",$J,0),$P(^PS(52.4,PSOXIRXN,0),"^",10)=^TMP("PSODGI",$J,0)
  Q
+TECH2(PSOXIRXN,PSODFN,DUZ,PSOX) ;
+ Q:$D(^XUSEC("PSORPH",DUZ))
+ N PSODWARN,PSOSIGNIF,PSOINTSV,PSOTLBL S (PSODWARN,PSOSIGNIF,PSOTLBL,PSOINTSV)=0
+ S:$$DS^PSSDSAPI&(+$G(^TMP("PSODOSF",$J,0))) PSODWARN=1  ;dosing drug warning
+ I $D(^TMP("PSOSER",$J,0)) S PSOINTSV=$G(^TMP("PSOSER",$J,0)) S:PSOINTSV[1 PSODWARN=1 S:PSOINTSV[2 PSOSIGNIF=1 ;critical and significant drug interaction drug warnings
+ I '$G(PSORX("VERIFY")),'PSODWARN&($G(PSOSIGNIF)) D  Q PSOTLBL  ;don't set 52.4 when  verification is off and only signficiant interation
+ .S $P(^PSRX(PSOXIRXN,"DRI"),"^")=^TMP("PSOSER",$J,0),$P(^PSRX(PSOXIRXN,"DRI"),"^",2)=^TMP("PSODGI",$J,0) S:'$P(PSOPAR,"^",2) PSOTLBL=1
+ I $G(PSODWARN)!($G(PSORX("VERIFY"))) D
+ .K DIC,DLAYGO,DINUM,DIADD,X,DD,DO S DIC="^PS(52.4,",DLAYGO=52.4,DINUM=PSOXIRXN,DIC(0)="ML",X=PSOXIRXN
+ .D FILE^DICN K DD,DO,DIC,DLAYGO,DINUM S ^PS(52.4,PSOXIRXN,0)=PSOXIRXN_"^"_PSODFN_"^"_DUZ_"^"_"^"_$E(PSOX("LOGIN DATE"),1,7)_"^"_PSOXIRXN_"^"_PSOX("STOP DATE")
+ .Q:PSOINTSV'[1&('PSODWARN)
+ .D TECH
+ I $D(^PS(52.4,PSOXIRXN)) K DIK,DA S DIK="^PS(52.4,",DA=PSOX("IRXN") D IX^DIK K DIK,DA
+ I '$G(PSORX("VERIFY")) S:(PSOX("STATUS")=4!$G(PSODWARN)) PSOTLBL=1 ;verification off, dose warn or drug interaction, print technician warning label
+ I $G(PSORX("VERIFY")) S PSOTLBL=$S('$G(PSODWARN)&('$G(PSOSIGNIF)):2,'$G(PSODWARN)&($G(PSOSIGNIF)):2,$G(PSODWARN):1,1:0)
+ Q PSOTLBL
+ ;
 BLD I $D(^XUSEC("PSORPH",DUZ)) S PSORX("PHARM")=DUZ D PHARM Q
 BLD2 ;
  Q:$P(ON,";")'="O"
@@ -40,18 +56,13 @@ BLD2 ;
  S:IT=1 ^TMP("PSOTDD",$J,1)=1
  Q
 PHARM ;pharmacist verification of drug interaction
- D PSOL^PSSLOCK($P(ON,";",2)) I '$G(PSOMSG) D  K PSOMSG S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to Continue" D ^DIR K DIR S PSORX("DFLG")=1 Q
- .I $P($G(PSOMSG),"^",2)'="" W !!,$P(PSOMSG,"^",2) D  Q
- ..W !,"Rx: "_$P($G(^PSRX($P(ON,";",2),0)),"^")_"    Drug: "_$P($G(^PSDRUG(+$P($G(^(0)),"^",6),0)),"^")
- ..W !,"which interacts with the drug you are entering!",!
- .W !!,"Another person is editing Rx "_$P($G(^PSRX($P(ON,";",2),0)),"^")_",",!,"which interacts with the drug you are entering!",!
  S PSODGRLX=$P(ON,";",2)
  S DIR("?",1)="Answer 'YES' if you DO want to "_$S(IT=1:"continue processing",1:"enter an intervention for")_" this medication,"
  S DIR("?")="       'NO' if you DON'T want to "_$S(IT=1:"continue processing",1:"enter an intervention for")_" this medication,"
  W ! S DIR(0)="SA^1:YES;0:NO",DIR("A")="Do you want to "_$S(IT=1:"Continue? ",1:"Intervene? "),DIR("B")="Y" D ^DIR
- I 'Y,IT=1 S PSORX("DFLG")=1,DGI="" K DIR,DTOUT,DIRUT,DIROUT,DUOUT Q
+ I 'Y,IT=1 S PSODLQT=1,DGI="" S:'$G(PSORXED)&('$G(PSOREINS)) PSORX("DFLG")=1 S:$G(PSORXED)!($G(PSOREINS)) PSOQUIT=1 K DIR,DTOUT,DIRUT,DIROUT,DUOUT Q
  I Y,IT=1 S PSORX("INTERVENE")=1,DGI="" K DIR,DTOUT,DIRUT,DIROUT,DUOUT G CRI Q
- I 'Y,IT=2 S:$G(DIRUT) PSORX("DFLG")=1 K DIR,DTOUT,DIRUT,DIROUT,DUOUT D ULRX Q
+ I 'Y,IT=2 S:$G(DIRUT) (PSODLQT,PSOQUIT)=1 K DIR,DTOUT,DIRUT,DIROUT,DUOUT D ULRX Q
  I Y,IT=2 S PSORX("INTERVENE")=2,DGI="" K DIR,DTOUT,DIRUT,DIROUT,DUOUT
  D ULRX
  Q

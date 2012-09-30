@@ -1,11 +1,12 @@
-RCDPEWL6 ;ALB/TMK - ELECTRONIC EOB WORKLIST ACTIONS ;18-MAR-03
- ;;4.5;Accounts Receivable;**173,208,222**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPEWL6 ;ALB/TMK/KML - ELECTRONIC EOB WORKLIST ACTIONS ;18-MAR-03
+ ;;4.5;Accounts Receivable;**173,208,222,276**;Mar 20, 1995;Build 87
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
 DISTADJ ; Distribute an adjustment that retracts a payment to other bill(s)
  ; NOTE: RCSCR is assumed to be the IEN of the ERA entry in file 344.49
  N RCDA,RCDA1,RCAMT,RCADJ,RCQUIT,Z,Z0,Z1,DIR,X,Y,CT,RCZ,RCZ1,RCZ2,RCADJOK,TOT,DTOUT,DUOUT
+ N RCNONSP,RCACTIVE,RCZZ1,RCZZ2,RCADJSTR  ; prca276 - variables used to establish non-specific payment adjustments and AR BILL claim status (fix to negative claim balance issue)
  D FULL^VALM1
  I $G(RCSCR("NOEDIT")) D NOEDIT^RCDPEWL G DISTQ
  I $G(^TMP("RCBATCH_SELECTED",$J)) D NOBATCH^RCDPEWL G DISTQ
@@ -53,7 +54,6 @@ DISTADJ ; Distribute an adjustment that retracts a payment to other bill(s)
  S (TOT,Z)=0 F  S Z=$O(RCZ1(Z)) Q:'Z  S TOT=TOT+Z
  I TOT<RCDA(2) D  G DISTQ
  . S DIR(0)="EA",DIR("A",1)="THE ERA DOES NOT HAVE ENOUGH VALID PAYMENTS TO OFFSET THIS DISTRIBUTION",DIR("A",2)=$$WHAT(RCSCR),DIR("A")="PRESS RETURN TO CONTINUE" W ! D ^DIR K DIR
- ;
  F  S DIR(0)="NA^1:9999:3",DIR("A")="SELECT A LINE TO DISTRIBUTE THE ADJUSTMENT AMOUNT TO: " D  Q:RCQUIT
  . S DIR("?",1)="THE FOLLOWING LINE(S) HAVE A NET PAYMENT THAT CAN BE USED TO OFFSET THE",DIR("?",2)="  NEGATIVE NET PAYMENT FOR LINE "_RCDA(1)_" ("_$J(+$P(RCZ(RCDA(1)),U),"",2)_"):",CT=2
  . S Z="" F  S Z=$O(RCZ1(Z),-1) Q:'Z  S Z0=0 F  S Z0=$O(RCZ1(Z,Z0)) Q:'Z0  S CT=CT+1,DIR("?",CT)="  "_$J(Z0,8)_"  "_$J(+Z,15,2)_$S($P(RCZ1(Z,Z0),U,2):" On hold exists",1:"")
@@ -67,6 +67,15 @@ DISTADJ ; Distribute an adjustment that retracts a payment to other bill(s)
  .. I Y'[".",$O(RCZ2(Y))\1'=Y S Y=Y_"."
  .. W !,$S(Y[".":"THIS LINE CANNOT BE USED FOR AN ADJUSTMENT DISTRIBUTION",1:"PLEASE ENTER THE ENTIRE LINE # (Such as: 1.001)") W !
  .. S Y=""
+ . ; prca276 - next few lines represent the a fix to prevent distributions agains collected/closed claims (claim balance = zero dollars)
+ . ;distributions should only occur on line items that have specific payments against active claims 
+ . S RCZZ1=$P(^TMP("RCDPE-EOB_WLDX",$J,Y),U,2) ; get line item sequence # off the VIEW order before accessing the scratchpad
+ . S (RCZZ2,RCNONSP)=0 F  S RCZZ2=$O(^RCY(344.49,RCSCR,1,RCZZ1,1,RCZZ2)) Q:'RCZZ2  Q:RCNONSP  S RCADJSTR=$G(^(RCZZ2,0)) S RCNONSP=$S($P(RCADJSTR,U,2)=3:1,$P(RCADJSTR,U,2)=5:1,1:0)    ;identify if non-specific payment adjustments exist
+ . ; do not evaluate claim status for non-specific payment adjustments
+ . I 'RCNONSP D  Q:'RCACTIVE
+ . . S RCACTIVE=$$GET1^DIQ(430,$P(^RCY(344.49,RCSCR,1,RCZZ1,0),U,7),8)
+ . . I (RCACTIVE'="ACTIVE")&(RCACTIVE'="OPEN") S RCACTIVE=0 W !,"THIS IS NOT AN ACTIVE BILL !",!,"CANNOT PERFORM DISTRIBUTION TO THIS CLAIM",! Q
+ . . S RCACTIVE=1
  . I $P(RCZ2(Y),U,3) W !,"Warning - on-hold exists for this claim",!
  . W !,"  LINE #: "_+Y_"  LINE BALANCE: "_$J(+$P(RCZ2(Y),U,2),"",2),!
  . ; RCDA1 = the ien of the line in file 344.491
@@ -149,6 +158,12 @@ ADJUST ; Allow entry into increase/decrease adjustment functions
  D FULL^VALM1
  ;
  I $G(RCSCR("NOEDIT"))=2 D NOTAV^RCDPEWL2 G ADJUSTQ
+ ; PRCA*4.5*276 - check for authorized user
+ I '$D(^XUSEC("PRCADJ",DUZ)) D  Q
+ .S DIR(0)="EA",DIR("A",1)="The Adjust (Inc/Dec) Action is locked."
+ .S DIR("A",2)="Please speak to your Supervisor to request the key."
+ .S DIR("A")="PRESS RETURN TO CONTINUE" W ! D ^DIR K DIR
+ ; PRCA*4.5*276 - end of changes
  ;
  S DIR(0)="SA^D:DECREASE ADJUSTMENT;I:INCREASE ADJUSTMENT",DIR("B")="DECREASE ADJUSTMENT",DIR("A")="TYPE OF ADJUSTMENT: "
  W ! D ^DIR K DIR

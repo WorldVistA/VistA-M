@@ -1,8 +1,14 @@
-YSASRU ;ASF/ALB ASI ROLLUP ;4/9/98  14:37
- ;;5.01;MENTAL HEALTH;**24,30,32,38,55**;Dec 30, 1994
+YSASRU ;ASF/ALB - ASI ROLLUP ;11/14/11 12:21PM
+ ;;5.01;MENTAL HEALTH;**24,30,32,38,55,106**;Dec 30, 1994;Build 10
+ ;Reference to XMD supported by IA #10070
+ ;Reference to XLFDT supported by DBIA #10103
+ ;Reference to ^DPT( supported by DBIA #10035
+ ;Reference to ^VA(200 supported by DBIA #10060
+ ;Reference to FILE 4 fields supported by DBIA #10090
  Q
 EN ;
  S:$D(ZTQUEUED) ZTREQ="@"
+ Q  ;ASF 10/13/11 stop all rollups
  N XMSUB,XMTEXT,XMY,XMZ,YSASIEN,YSASNOW,YSASSITE,YSFLD,YSIE,YSN
  D INIT
  S YSASIEN=0 F  S YSASIEN=$O(^YSTX(604,"ATR",1,YSASIEN)) Q:YSASIEN'>0!(YSN>1900)  D SET S ^TMP($J,"YSASUC",YSASIEN)=""
@@ -70,7 +76,7 @@ XMIT ;transmit
 UNCHECK ;reset the awaiting transmission flag
  S YSASIEN=0 F  S YSASIEN=$O(^TMP($J,"YSASUC",YSASIEN)) Q:YSASIEN'>0  D
  . S DA=YSASIEN,DIE="^YSTX(604,",DR="5.5///@;5.6///NOW"
- . L +^YSTX(604,YSASIEN):9999 Q:'$T
+ . L +^YSTX(604,YSASIEN):DTIME Q:'$T
  . D ^DIE
  . L -^YSTX(604,YSASIEN)
  Q

@@ -1,5 +1,5 @@
-SROAPRT7 ;BIR/MAM - PRINT OCCURRENCES ;01/24/07
- ;;3.0; Surgery ;**38,47,57,60,125,160**;24 Jun 93;Build 7
+SROAPRT7 ;BIR/MAM - PRINT OCCURRENCES ;08/16/2011
+ ;;3.0;Surgery;**38,47,57,60,125,160,176**;24 Jun 93;Build 8
  K SRA,SRAO D EN^SROCCAT S SRA(205)=$G(^SRF(SRTN,205))
  S NYUK=$P(SRA(205),"^",5) D YN S SRAO(1)=SHEMP_"^403",NYUK=$P(SRA(205),"^",6) D YN S SRAO("1A")=SHEMP_"^248",NYUK=$P(SRA(205),"^",7) D YN S SRAO("1B")=SHEMP_"^249"
  S NYUK=$P(SRA(205),"^",37) D YN S SRAO("6E")=SHEMP_"^488",NYUK=$P(SRA(205),"^",8) D YN S SRAO("1C")=SHEMP_"^404",NYUK=$P(SRA(205),"^",39) D YN S SRAO("6F")=SHEMP_"^447"
@@ -10,7 +10,7 @@ SROAPRT7 ;BIR/MAM - PRINT OCCURRENCES ;01/24/07
  S NYUK=$P(SRA(205),"^",25) D YN S SRAO(5)=SHEMP_"^321",NYUK=$P(SRA(205),"^",26) D YN S SRAO("5A")=SHEMP_"^411",NYUK=$P(SRA(205),"^",27) D YN S SRAO("5B")=SHEMP_"^258",NYUK=$P(SRA(205),"^",28) D YN S SRAO("5C")=SHEMP_"^259"
  S NYUK=$P(SRA(205),"^",30) D YN S SRAO(6)=SHEMP_"^322",NYUK=$P(SRA(205),"^",32) D YN S SRAO("6A")=SHEMP_"^257"
  S NYUK=$P(SRA(205),"^",33) D YN S SRAO("6B")=SHEMP_"^261",NYUK=$P(SRA(205),"^",34) D YN S SRAO("6C")=SHEMP_"^263",NYUK=$P(SRA(205),"^",35) D YN S SRAO("6D")=SHEMP_"^250"
- K SROOC N SRSEP,SRSTAR
+ K SROOC N SRDUR,SRSEP,SRSTAR
  D OCC^SROAUTL0
  S X=$G(SROOC(21)) I X'="" S X=$P($G(SROOC(21)),U)_" "_$E($P($G(SROOC(21)),U,2),1,17)
  S SRAO("6G")=X_"^392"
@@ -34,12 +34,15 @@ SROAPRT7 ;BIR/MAM - PRINT OCCURRENCES ;01/24/07
  .S SRIN=Y I SROC(SRI)="       "&($P(SRAO(SRIN),"^")="YES") S $P(SRAO(SRIN),"^")="ND"
  .S $P(SRAO(SRIN),"^")=$S($P(SRAO(SRIN),"^")="YES":$E(SROC(SRI),4,5)_"/"_$E(SROC(SRI),6,7)_"/"_$E(SROC(SRI),2,3),$P(SRAO(SRIN),"^")="NO":"   "_$P(SRAO(SRIN),"^"),$P(SRAO(SRIN),"^")="ND":" NO DATE",1:$P(SRAO(SRIN),"^"))
  I $G(SRSEP)'="" S X=$P(SRAO("6D"),"^"),$P(SRAO("6D"),"^")=SRSEP_" "_X
+ I $G(SRDUR)'="" S X=$P(SRAO("4A"),"^"),$P(SRAO("4A"),"^")=SRDUR_"  "_X
  F SRK="1D","4D","3D","5D","2E","6G" S SRKO=$S(SRK="4D":30,SRK="3D":31,SRK="5D":32,SRK="2E":29,SRK="6G":21,SRK="1D":36,1:"") I $P(SRAO(SRK),"^")'="" D
  .S SRSTAR=1 I SROC(SRKO)="       " S SRD="NO DATE"
  .I SROC(SRKO)'="       " S SRD=$E(SROC(SRKO),4,5)_"/"_$E(SROC(SRKO),6,7)_"/"_$E(SROC(SRKO),2,3)
  .S $P(SRAO(SRK),"^")="* "_$P(SRAO(SRK),"^")_$J(SRD,(26-$L($P(SRAO(SRK),"^")))+10)
 DISP W:$E(IOST)'="C" ! W !,?21,"PERIOPERATIVE OCCURRENCE INFORMATION",!!,"WOUND OCCURRENCES:",?33,$P(SRAO(1),"^"),?41,"CNS OCCURRENCES:",?74,$P(SRAO(4),"^")
- W !,"Superficial Incisional SSI:",?30,$P(SRAO("1A"),"^"),?41,"Stroke/CVA:",?71,$P(SRAO("4A"),"^")
+ W !,"Superficial Incisional SSI:",?30,$P(SRAO("1A"),"^"),?41,"Stroke/CVA:" D
+ .I $P(SRAO("4A"),"^")="   NO" W ?68,"NO SYMPTOMS" Q
+ .W ?58,$J($P(SRAO("4A"),"^"),21)
  W !,"Deep Incisional SSI:",?30,$P(SRAO("1B"),"^"),?41,"Coma > 24 Hours:",?71,$P(SRAO("4B"),"^")
  W !,"Wound Disruption:",?30,$P(SRAO("1C"),"^"),?41,"Peripheral Nerve Injury:",?71,$P(SRAO("4C"),"^")
  I $P(SRAO("1D"),"^")'=""!($P(SRAO("4D"),"^")'="") W !,$P(SRAO("1D"),"^"),?41,$P(SRAO("4D"),"^")
@@ -58,7 +61,7 @@ DISP W:$E(IOST)'="C" ! W !,?21,"PERIOPERATIVE OCCURRENCE INFORMATION",!!,"WOUND 
  W !,"On Ventilator > 48 Hours:",?30,$P(SRAO("2D"),"^"),?41,"Organ/Space SSI:",?71,$P(SRAO("6E"),"^")
  W !,$P(SRAO("2E"),"^"),?41,"C. difficile Colitis:",?71,$P(SRAO("6F"),"^")
  W !,?41,$P(SRAO("6G"),"^")
- I $G(SRSTAR) W !,"* indicates Other (ICD9)"
+ I $G(SRSTAR) W !,"* indicates Other (ICD)"
  I $E(IOST)="C" W !! K DIR S DIR(0)="FOA",DIR("A")="Press RETURN to continue" D ^DIR K DIR
  Q
 YN S SHEMP=$S(NYUK="NS":"NS",NYUK="N":"NO",NYUK="Y":"YES",1:"")

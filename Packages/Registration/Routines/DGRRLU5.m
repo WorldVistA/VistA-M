@@ -57,7 +57,7 @@ DOC ;INPUT:  Input is by the following parameters in the PARAMS() array:
  ;           <error message=''></error>                                  
  ;           <maximum message=''></maximum>                         
  ;           <record count='1'></record>                           
- ;           <institution name='ALBANY' number='500' productiondatabase='0' domain='DMA.FO-ALBANY.MED.VA.GOV' ></institution>
+ ;           <institution name='ALBANY' number='500' productiondatabase='0' domain='DMA.FO-ALBANY.DOMAIN.EXT' ></institution>
  ;      </persons>
  ;
  ;

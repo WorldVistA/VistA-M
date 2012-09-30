@@ -1,5 +1,5 @@
-PXRMEXPD ; SLC/PKR - General packing driver. ;03/16/2010
- ;;2.0;CLINICAL REMINDERS;**12,17,16**;Feb 04, 2005;Build 119
+PXRMEXPD ;SLC/PKR - General packing driver. ;10/28/2011
+ ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22**;Feb 04, 2005;Build 160
  ;==========================
 BLDDESC(USELLIST,TMPIND) ;If multiple entries have been selected
  ;then initialize the description with the selected list.
@@ -97,7 +97,8 @@ CRE ;Pack a reminder component and store it in the repository.
  S FILELST(10)=811.2_U_$$GET1^DID(811.2,"","","NAME")
  S FILELST(11)=811.5_U_$$GET1^DID(811.5,"","","NAME")
  S FILELST(12)=801_U_$$GET1^DID(801,"","","NAME")
- S FILELST(0)=12
+ S FILELST(13)=801.1_U_$$GET1^DID(801.1,"","","NAME")
+ S FILELST(0)=13
  D PACKORD(.RANK)
  ;
  ;Get the list to pack.
@@ -406,7 +407,8 @@ PACKORD(RANK) ;
  S RANK("FN",142)=100100,RANK(100100)=142
  S RANK("FN",142.5)=100200,RANK(100200)=142.5
  S RANK("FN",8925.1)=100300,RANK(100300)=8925.1
- S RANK("FN",801)=100400,RANK(100400)=801
+ S RANK("FN",801)=100500,RANK(100500)=801
+ S RANK("FN",801.1)=100400,RANK(100400)=801.1
  Q
  ;
  ;==========================
@@ -424,6 +426,9 @@ PUTSRC(FILENAME,NAME,TMPIND) ;Save the source information.
 TIUCONV(FILENUM,IEN,ARRAY) ;Convert health summary object to external.
  N HSO,IENS,NAME
  S IENS="+"_IEN_","
+ ;Allows non-objects to be packed up
+ I ARRAY(FILENUM,IENS,.04)'="OBJECT" Q
+ ;
  I $G(ARRAY(FILENUM,IENS,9))'["$$TIU^GMTSOBJ" D  Q
  . S ARRAY(FILENUM,IENS,9)="NOT A HS OBJECT"
  S HSO=$P(ARRAY(FILENUM,IENS,9),",",2)

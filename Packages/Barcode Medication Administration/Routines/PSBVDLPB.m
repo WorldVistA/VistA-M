@@ -1,11 +1,15 @@
-PSBVDLPB ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE LIST ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**11,13,38,32**;Mar 2004;Build 32
+PSBVDLPB ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE LIST ;7/13/11 11:46am
+ ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58**;Mar 2004;Build 37
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
  ; EN^PSJBCMA/2828
  ; $$GET^XPAR/2263
  ; File 200/10060
+ ; GETPROVL^PSGSICH1/5653
+ ; INTRDIC^PSGSICH1/5654
+ ;
+ ;*58 - add 29th piece to Results for Override/Intervention flag 1/0
  ;
 EN(DFN,PSBDT) ; Default Order List Return for Today
  ;
@@ -122,6 +126,10 @@ EN(DFN,PSBDT) ; Default Order List Return for Today
  .S $P(PSBREC,U,22)=PSBOSTS
  .S $P(PSBREC,U,26)=PSBSTOP
  .S $P(PSBREC,U,27)=$$LASTG^PSBCSUTL(DFN,PSBOIT)
+ .;*58 determine if override exists, send 1/0 (true/false)
+ .N PSBARR D GETPROVL^PSGSICH1(DFN,PSBONX,.PSBARR)
+ .I $O(PSBARR(""))="" D INTRDIC^PSGSICH1(DFN,PSBONX,.PSBARR,2)
+ .S $P(PSBREC,U,29)=$S($O(PSBARR(""))]"":1,1:0)
  .;
  .; Gather Dispense Drugs
  .D NOW^%DTC

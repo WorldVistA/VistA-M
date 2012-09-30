@@ -15,7 +15,7 @@ NVSVCSS ;emc/maw,kjw-clusterwide system status (VMS/Cache); 1/26/04
  K NVSCHK,NVSFILE,NVSPEC S NVSPEC("AXP$CLU_SS.COM")="" S NVSCHK=$$LIST^%ZISH("USER$:[AXP]","NVSPEC","NVSFILE")
  I NVSCHK=0 D  K NVSCHK,NVSFILE,NVSPEC Q
  .W !,"<<< The DCL file AXP$CLU_SS.COM is not found in the USER$:[AXP] directory. >>>",!
- .W !,"This file can be retrieved from an FTP server at DOWNLOAD.VISTA.MED.VA.GOV"
+ .W !,"This file can be retrieved from an FTP server at DOWNLOAD.VISTA.DOMAIN.EXT"
  .W !,"in the [ANONYMOUS.AXP.CACHECONV] directory, or you can log a Remedy ticket for"
  .W !,"assistance."
  .H 2

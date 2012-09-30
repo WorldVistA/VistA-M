@@ -1,0 +1,9 @@
+LRHYBL1 ;DALOI/HOAK - HOWDY NETWORK HELP ;9/26/2002
+ ;;5.2;LAB SERVICE;**405**;Sep 27, 1994;Build 93
+ ;
+ ; find the subtype from zis(2 set into LRLABLIO
+ ;
+ Q:'$G(^%ZIS(1,LRDEV,"SUBTYPE"))
+ S LRLABSTP=$G(^%ZIS(1,LRDEV,"SUBTYPE"))
+ S LRLABSTP=$P(^%ZIS(2,LRLABSTP,0),U)
+ QUIT

@@ -1,9 +1,8 @@
 IBECEA3 ;ALB/CPM - Cancel/Edit/Add... Add a Charge ;30-MAR-93
- ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402**;21-MAR-94;Build 17
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454**;21-MAR-94;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 ADD ; Add a Charge protocol
- N IBSWINFO S IBSWINFO=$$SWSTAT^IBBAPI()                     ;IB*2.0*312
  N IBGMT,IBGMTR
  S (IBGMT,IBGMTR)=0
  S IBCOMMIT=0,IBEXSTAT=$$RXST^IBARXEU(DFN,DT),IBCATC=$$BILST^DGMTUB(DFN),IBCVAEL=$$CVA^IBAUTL5(DFN),IBLTCST=$$LTCST^IBAECU(DFN,DT,1)
@@ -28,6 +27,9 @@ ADD ; Add a Charge protocol
  I IBXA=2,$P($G(^IBE(350.1,+IBATYP,0)),"^",8)'["NHCU",IBCLDAY>90 S IBMED=IBMED/2
  I IBXA=1,IBCLDAY>90 D MED^IBECEA34 G:IBY<0 ADDQ
  I "^1^2^3^"[("^"_IBXA_"^"),IBCLDA W !!,"  ** Active Billing Clock **   # Inpt Days: ",IBCLDAY,"    ",$$INPT^IBECEAU(IBCLDAY)," 90 days: $",+IBCLDOL,!
+ ;
+ ; - if LTC OPT (non-institutional) and CD display message of warning
+ I IBXA=8,$$CDEXMPT^IBAECU(DFN,DT) W !!,"  ** Patient is currently Catastrophically Disabled",!
  ;
  ; - display LTC billing clock data
  I IBXA>7,IBXA<10 D  G:IBCLDA<1 ADDQ
@@ -60,10 +62,6 @@ ADD ; Add a Charge protocol
  ;
 FR ; - ask 'bill from' date
  D FR^IBECEAU2(0) G:IBY<0 ADDQ
- ; Do NOT PROCESS on VistA if IBFR>=Switch Eff Date          ;CCR-930
- I +IBSWINFO,(IBFR+1)>$P(IBSWINFO,"^",2) D  G FR             ;IB*2.0*312
-   .W !!,"The 'Bill From' date cannot be on or AFTER the PFSS Effective Date"
-   .W ": ",$$FMTE^XLFDT($P(IBSWINFO,"^",2))
  ;
  S IBGMT=$$ISGMTPT^IBAGMT(DFN,IBFR),IBGMTR=0 ;GMT Copayment Status
  I IBGMT>0,IBXA>0,IBXA<4 W !,"The patient has GMT Copayment Status."
@@ -71,6 +69,9 @@ FR ; - ask 'bill from' date
  I IBXA'=8,IBXA'=9 D CLMSG^IBECEA33 G:IBY<0 ADDQ
  ;Adjust Deductible for GMT patient
  I IBGMT>0,IBXA>0,IBXA<4,$G(IBMED) S IBMED=$$REDUCE^IBAGMT(IBMED) W !,"Medicare Deductible reduced due to GMT Copayment Status ($",$J(IBMED,"",2),")."
+ ;
+ ; - check LTC non-institutional (opt) for CD exemption
+ I IBXA=8,$$CDEXMPT^IBAECU(DFN,IBFR) W !,"Patient is LTC non-institutional exempt, Catastrophically Disabled" G ADDQ
  ;
  ; - check the LTC billing clock
  I IBXA>7,IBXA<10 D  I IBY<0 W !!,"The patient has no LTC clock active for the date.",! G ADDQ
@@ -116,10 +117,6 @@ FR ; - ask 'bill from' date
  ;
 TO ; - ask 'bill to' date
  D TO^IBECEAU2(0) G:IBY<0 ADDQ
- ; Do NOT PROCESS on VistA if IBTO>=Switch Eff Date         ;CCR-930
- I +IBSWINFO,(IBTO+1)>$P(IBSWINFO,"^",2) D  G TO            ;IB*2.0*312
-  .W !!,"The 'Bill To' date cannot be on or AFTER the PFSS Effective Date"
-  .W ": ",$$FMTE^XLFDT($P(IBSWINFO,"^",2))
  ;
  I IBXA>0,IBXA<4,IBGMT'=$$ISGMTPT^IBAGMT(DFN,IBTO) W !!,"The patient's GMT Copayment status changed within the specified period!",! G ADDQ
  ;

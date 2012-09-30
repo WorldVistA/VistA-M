@@ -1,5 +1,5 @@
 IBJDF51 ;ALB/RB - CHAMPVA/TRICARE FOLLOW-UP REPORT (COMPILE);15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,185,240,356**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**123,185,240,356,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 ST ; - Tasked entry point.
@@ -26,14 +26,14 @@ ST ; - Tasked entry point.
  ; - Find data required for the report.
  S IBA=0 F  S IBA=$O(^PRCA(430,"AC",16,IBA)) Q:'IBA  D  Q:IBQ
  . I IBA#100=0 D  Q:IBQ
- . . S IBQ=$$STOP^IBOUTL("CHAMPVA/Tricare Follow-Up Report")
+ . . S IBQ=$$STOP^IBOUTL("CHAMPVA/TRICARE Follow-Up Report")
  . S IBAR=$G(^PRCA(430,IBA,0)) Q:'IBAR
  . I $P($G(^DGCR(399,IBA,0)),U,13)=7 Q  ;           Cancelled claim.
  . S IBCAT=+$P(IBAR,U,2) Q:'$D(IBCAT(IBCAT))  ;     Invalid AR category.
  . S IBCAT1=IBCAT(IBCAT)
  . ;
  . ; - Get division, if necessary.
- . I IBCAT1=1 S IBDIV=0                       ; CHAMPVA/Tricare Patient
+ . I IBCAT1=1 S IBDIV=0                       ; CHAMPVA/TRICARE Patient
  . ;
  . I IBCAT1'=1 D                              ; Others
  . . I 'IBSD S IBDIV=0 Q

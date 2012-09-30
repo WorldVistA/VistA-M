@@ -8,7 +8,7 @@ ONCSAPI3 ;Hines OIFO/SG - COLLABORATIVE STAGING (CALCULATE) ;06/23/10
  ;   xmlns:soap="http://www.w3.org/2001/12/soap-envelope"
  ;   soap:encodingStyle="http://www.w3.org/2001/12/soap-encoding">
  ;   <soap:Body>
- ;     <CS-CALCULATE xmlns="http://vista.med.va.gov/oncology">
+ ;     <CS-CALCULATE xmlns="http://vista.DOMAIN.EXT/oncology">
  ;       <HIST> ... </HIST>
  ;       <SITE> ... </SITE>
  ;       <DIAGNOSIS_YEAR> ... </DIAGNOSIS_YEAR>
@@ -62,7 +62,7 @@ ONCSAPI3 ;Hines OIFO/SG - COLLABORATIVE STAGING (CALCULATE) ;06/23/10
  ;   xmlns:soap="http://www.w3.org/2001/12/soap-envelope"
  ;   soap:encodingStyle="http://www.w3.org/2001/12/soap-encoding">
  ;   <soap:Body>
- ;     <CS-RESPONSE xmlns="http://vista.med.va.gov/oncology">
+ ;     <CS-RESPONSE xmlns="http://vista.DOMAIN.EXT/oncology">
  ;       <CS-STOR>
  ;         <T> ... </T>
  ;         <TDESCR> ... </TDESCR>

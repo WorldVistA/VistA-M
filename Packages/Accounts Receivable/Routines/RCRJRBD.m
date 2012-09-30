@@ -1,5 +1,5 @@
 RCRJRBD ;WISC/RFJ,TJK-bad debt extractor and report ; 10/18/10 9:00am
- ;;4.5;Accounts Receivable;**101,139,170,193,203,215,220,138,239,273**;Mar 20, 1995;Build 3
+ ;;4.5;Accounts Receivable;**101,139,170,193,203,215,220,138,239,273,282**;Mar 20, 1995;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; IA 4385 for calls to $$MRATYPE^IBCEMU2 and $$MRADTACT^IBCEMU2
  Q
@@ -18,7 +18,7 @@ START(DATEEND) ;  run bad debt report
  ;
  ;  lock the bad debt file for storing data, lock cannot fail
  ;  this lock can be used to monitor if the report is running
- L +^RC(348.1)
+ F  L +^RC(348.1):$S($G(DILOCKTM)>5:DILOCKTM,1:5) Q:$T
  ;
  ;  calculate the base percentages from past data
  ;  example:  DATEEND=2980331  => BEGDATE=2970300
@@ -246,7 +246,7 @@ BDRSGL(CAT,FUND,MRATYPE) ; Calculate SGLs for the BDR process
  I $G(FUND)=528709 Q 1319.2
  I $E($G(FUND),1,4)=4032 Q 1319.2
  I $G(FUND)=528701 Q 1319.3
- I $G(FUND)=528711&(CAT=6)!(CAT=7) Q 1319.5
+ I $G(FUND)=528711&((CAT=6)!(CAT=7)) Q 1319.5
  I $G(FUND)=528711&(CAT=9) Q "133N.2"
  I $G(FUND)=528711&(CAT=10) Q 1338.2
  I CAT=8!(CAT=21)!(CAT=7)!(CAT=6) Q 1319.4

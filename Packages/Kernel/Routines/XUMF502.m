@@ -1,0 +1,78 @@
+XUMF502 ;RAM - XUMF502 ;04/15/02 ;9/10/08  11:55
+ ;;8.0;KERNEL;**502**;Jul 10, 1995;Build 17
+ ;
+ Q
+ ;
+ ;
+MFE ;
+ ;
+ N X,Y
+ ;
+ S IEN=$O(^LEX(757.33,"B",VUID,0))
+ ;
+ Q:IEN
+ ;
+ D CHK^DIE(757.33,.01,,VUID,.X)
+ I X="^" S ERROR="1^validation error 757.33 MAPPINGS FILE map ID= "_VUID Q
+ K DIC S DIC=757.33,DIC(0)="F" D FILE^DICN K DIC
+ I Y="-1" S ERROR="1^error 757.33 MAPPINGS FILE map ID= "_VUID Q
+ S IEN=+Y,RECORD("NEW")=1
+ ;
+ Q
+ ;
+ZRT ;
+ ;
+ I $G(NAME)="EffectiveDate" D STATUS Q
+ I $G(NAME)="MapDefinition" D MAPDEF Q
+ ;
+ Q
+ ;
+STATUS ;
+ ;
+ I $D(FDA) D UPDATE^XUMF1H K FDA
+ ;
+ N VALUE,FDA
+ ;
+ S VALUE=$$UNESC^XUMF0($P(HLNODE,HLFS,3),.HL)
+ S VALUE=$$DTYP^XUMFXP(VALUE,"DT",HLCS,0,"L")
+ ;
+ ;S IEN1=$O(^LEX(757.33,2485,2,99999),-1),IEN1=IEN1+1
+ ;
+ K FDA
+ S FDA(757.333,"?+1,"_IEN_",",.01)=VALUE
+ ;
+ X HLNEXT I HLQUIT'>0 S ERROR="1^status error" Q
+ ;
+ I $P(HLNODE,HLFS,2)'="Active" S ERROR="1^status error" Q
+ S VALUE=$$UNESC^XUMF0($P(HLNODE,HLFS,3),.HL)
+ S VALUE=$$DTYP^XUMFXP(VALUE,"ST",HLCS,0)
+ ;
+ S FDA(757.333,"?+1,"_IEN_",",1)=$S(VALUE:"ACTIVE",1:"INACTIVE")
+ ;
+ D UPDATE^DIE("E","FDA",,"ERR")
+ I $D(ERR) D  Q
+ .S ERROR="1^status update error"
+ .D EM^XUMF1H(ERROR,.ERR) K ERR
+ ;
+ S OUT=1
+ ;
+ Q
+ ;
+MAPDEF ;
+ ;
+ N VALUE,IENS
+ ;
+ S IENS=IEN_","
+ S VALUE=$$UNESC^XUMF0($P(HLNODE,HLFS,3),.HL)
+ S VALUE=$O(^LEX(757.32,"C",VALUE,0))
+ S FDA(IFN,IENS,.02)=VALUE
+ S OUT=1
+ ;
+ Q
+ ;
+STAT() ;
+ ;
+ N X
+ S X=$O(^LEX(757.33,IEN,2,999),-1) Q:'X ""
+ Q $P($G(^LEX(757.33,IEN,2,X,0)),U,2)
+ ;

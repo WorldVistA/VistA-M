@@ -1,5 +1,6 @@
-XLFNAME1 ;CIOFO-SF/TKW,MKO-Utilities for person name fields ;9:25 AM  29 Jan 2003
- ;;8.0;KERNEL;**134,240**;Jul 10, 1995
+XLFNAME1 ;CIOFO-SF/TKW,MKO-Utilities for person name fields ;05/05/2010
+ ;;8.0;KERNEL;**134,240,535**;Jul 10, 1995;Build 2
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 REMDBL(X,S) ;For each char in S, remove double chars
  N I,J
@@ -25,16 +26,18 @@ ROMAN(X) ; Replace numeric suffixes to Roman Numeral equivalents
  Q X
  ;
 CHKSUF(X) ;Return X if it looks like a suffix; otherwise, return null
+ ;*p535-added "ARNP,DO,PA" to the list.-REM
  N V
- Q:"^I^II^III^IV^V^VI^VII^VIII^IX^X^JR^SR^DR^MD^ESQ^DDS^RN^"[(U_X_U) X
+ Q:"^I^II^III^IV^V^VI^VII^VIII^IX^X^JR^SR^DR^MD^ESQ^DDS^RN^ARNP^DO^PA^"[(U_X_U) X
  Q:"^1ST^2ND^3RD^4TH^5TH^6TH^7TH^8TH^9TH^10TH^"[(U_X_U) X
  I $L(X)>1,X'[" ",X'="NMN" D  I V="" S XUAUD("SUFFIX")="" Q X
  . F V="A","E","I","O","U","Y","" Q:X[V
  Q ""
  ;
 CHKSUF1(X) ; Return X if it looks like a suffix, but not I, V, X
+ ;*p535-added "ARNP,DO,PA" to the list.-REM
  N V
- Q:"^II^III^IV^VI^VII^VIII^IX^JR^SR^DR^MD^ESQ^DDS^RN^"[(U_X_U) X
+ Q:"^II^III^IV^VI^VII^VIII^IX^JR^SR^DR^MD^ESQ^DDS^RN^ARNP^DO^PA^"[(U_X_U) X
  Q:"^1ST^2ND^3RD^4TH^5TH^6TH^7TH^8TH^9TH^10TH^"[(U_X_U) X
  Q ""
  ;

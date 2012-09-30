@@ -9,7 +9,7 @@ OOPSNDB ;WISC/LLH-NATIONAL DATABASE ;10/12/99
  . S DIR("A")=DIR("A")_"  Press Enter to continue"
  . D ^DIR K DIR
  ; Assure the Queue (Q-ASI) has been defined
- S VAL="Q-ASI.MED.VA.GOV",FIELD=.01,FL="X"
+ S VAL="Q-ASI.DOMAIN.EXT",FIELD=.01,FL="X"
  D FIND^DIC(4.2,"",FIELD,FL,VAL,"","","","","ARR")
  I '$D(ARR("DILIST",1)) D  G EXIT
  . S DIR(0)="FO" W !
@@ -39,10 +39,10 @@ EN ; Routine Entry
  S CTR=1                        ; counter for Mail message array
  S (START,END,FAIL)=""
  ; Assure the Queue (Q-ASI) has been defined
- S VAL="Q-ASI.MED.VA.GOV",FIELD=.01,FL="X"
+ S VAL="Q-ASI.DOMAIN.EXT",FIELD=.01,FL="X"
  D FIND^DIC(4.2,"",FIELD,FL,VAL,"","","","","ARR")
  I '$D(ARR("DILIST",1)) D  G EXIT
- . S ERROR(1)="The Queue Q-ASI.MED.VA.GOV has not been created."
+ . S ERROR(1)="The Queue Q-ASI.DOMAIN.EXT has not been created."
  . S ERROR(2)="Install Patch XM*999*130, complete manual "
  . S ERROR(3)="Transmission of NDB Data."
  . D ERROR
@@ -139,7 +139,7 @@ SEND ; Send MailMan Message
  ; Indicate last line of message
  S OPL=OPL+1,^XMB(3.9,XMZ,2,OPL,0)="$"
  S XMY(DUZ)=""                        ; also send here, in case of error.
- S XMY("XXX@Q-ASI.MED.VA.GOV")=""
+ S XMY("XXX@Q-ASI.DOMAIN.EXT")=""
  S XMCHAN=1 D ENT1^XMD K XMCHAN
  K XMZ
  Q

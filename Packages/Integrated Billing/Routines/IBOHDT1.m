@@ -1,5 +1,6 @@
 IBOHDT1 ;ALB/EMG  -  REPORT OF CHARGES ON HOLD > 60 DAYS-CONT ;FEB 18 1997
- ;;2.0; INTEGRATED BILLING ;**70,95,347**; 21-MAR-94;Build 24
+ ;;2.0;INTEGRATED BILLING;**70,95,347,452**;21-MAR-94;Build 26
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 REPORT ;
  N IBQUIT,IBPAGE,IBNOW,IBLINE,IBCRT,IBBOT,DFN,IBNAME,IBATYPE,IBN,X
@@ -33,23 +34,27 @@ PRNTPAT ; prints patient data
  Q
 PRNTCHG ; prints a charge
  N IBACT,IBTYPE,IBBILL,IBFR,IBTO,IBCHG,IBND,IBND1,IBDAY,IBOHDT,X1,X2
- N IBRX,IBRXN,IBRF,IBRDT,IBX,IENS
+ N IBRX,IBRXN,IBRF,IBRDT,IBX,IENS,IBECME
  S IBND=$G(^IB(IBN,0))
  S IBND1=$G(^IB(IBN,1))
- S (IBRX,IBRXN,IBRF,IBRDT,IBX)=0
+ S (IBRX,IBRXN,IBRF,IBRDT,IBX,IBECME)=0
  ; action id
  S IBACT=+IBND
  ; type
  S IBTYPE=$P(IBND,"^",3),IBTYPE=$P($G(^IBE(350.1,IBTYPE,0)),"^",1),IBTYPE=$S(IBTYPE["PSO NSC":"RXNSC",IBTYPE["PSO SC":"RX SC",1:$E(IBTYPE,4,7))
  ; bill #
  ; S IBBILL=$P($P(IBND,"^",11),"-",2)
+ ;
  ; rx info
- I $P(IBND,"^",4)["52:" S IBRXN=$P($P(IBND,"^",4),":",2),IBRX=$P($P(IBND,"^",8),"-"),IBRF=$P($P(IBND,"^",4),":",3)
- I $P(IBND,"^",4)["52:"  D
- .I IBRF>0 S IENS=+IBRF,IBRDT=$$SUBFILE^IBRXUTL(+IBRXN,+IENS,52,.01)
- .E  D
- ..S IENS=+IBRXN
- ..S IBRDT=$$FILE^IBRXUTL(IENS,22)
+ I $P(IBND,"^",4)["52:" D
+ . S IBRXN=$P($P(IBND,"^",4),":",2)                ; Rx ien
+ . S IBRX=$P($P(IBND,"^",8),"-")                   ; external Rx#
+ . S IBRF=$P($P(IBND,"^",4),":",3)                 ; fill# or 0 for original fill
+ . S IBECME=$P($$CLAIM^BPSBUTL(+IBRXN,+IBRF),U,6)  ; ecme#  DBIA 4719
+ . I IBRF S IENS=+IBRF,IBRDT=$$SUBFILE^IBRXUTL(+IBRXN,+IENS,52,.01)    ; refill date
+ . I 'IBRF S IENS=+IBRXN,IBRDT=$$FILE^IBRXUTL(IENS,22)                 ; fill date
+ . Q
+ ;
  S IBX=$$APPT^IBCU3(IBRDT,DFN)
  ; from/fill date
  S IBFR=$$DAT1^IBOUTL($S(+IBRXN>0:IBRDT,1:$P(IBND,"^",14)))
@@ -61,7 +66,7 @@ PRNTCHG ; prints a charge
  S X1=DT,X2=$P(IBND1,"^",6) D ^%DTC S IBDAY=$J(X,7)
  ; charge$
  S IBCHG=$J(+$P(IBND,"^",7),9,2)
- W ?29,IBACT,?39,IBTYPE W:IBRX>0 ?46,"Rx #: "_IBRX_$S(IBRF>0:"("_IBRF_")",1:""),?95,"||",!
+ W ?29,IBACT,?39,IBTYPE W:IBRX>0 ?46,"Rx #: "_IBRX_$S(IBRF>0:"("_IBRF_")",1:""),?68,$S(IBECME:"ECME #: "_IBECME,1:""),?95,"||",!
  W:IBX=1 ?45,"*"
  W ?46,IBFR,?55,IBTO,?66,IBOHDT,?77,IBDAY,?86,IBCHG
  Q

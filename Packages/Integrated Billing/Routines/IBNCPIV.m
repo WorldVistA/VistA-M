@@ -1,5 +1,5 @@
 IBNCPIV ;ALB/ESG - Manual Rx Eligibility Verification ;23-SEP-2010
- ;;2.0;INTEGRATED BILLING;**435**;21-MAR-94;Build 27
+ ;;2.0;INTEGRATED BILLING;**435,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference to EN^BPSNCPD9 supported by IA# 5576
@@ -88,7 +88,7 @@ SEND ; send the ELIG inquiry
  ;
  ; check for pharmacy coverage as of this date
  I '$$PLCOV^IBCNSU3(IBPL,Y,3) W !!,GENERR,!,"This policy has no Active Pharmacy Coverage on this date." D PAUSE^VALM1 G SENDX
- S IBDATA("FILL DATE")=Y
+ S IBDATA("DOS")=Y
  ;
  ; Ask for Relationship Code
  S IBREL=+$P($G(^DPT(DFN,.312,IBCDFN,0)),U,16)    ; pt. relationship to insured (2.312,16)

@@ -19,10 +19,10 @@ MESSID(XMNETNAM,XMZ,XMRZ,XMRSET) ;
  ; ago and it's already been purged." or "I've already got it, so don't
  ; bother sending the text again, but maybe you've got some new
  ; recipients for me."
- ; Send: "MESS ID:654321@LOCAL.MED.VA.GOV"
+ ; Send: "MESS ID:654321@LOCAL.DOMAIN.EXT"
  ; Recv: "250 OK"
- ;   or: "RSET :21212@REMOTE.MED.VA.GOV:Duplicate purged"
- ;   or: "RSET :21212@REMOTE.MED.VA.GOV:Previously received"
+ ;   or: "RSET :21212@REMOTE.DOMAIN.EXT:Duplicate purged"
+ ;   or: "RSET :21212@REMOTE.DOMAIN.EXT:Previously received"
  N XMREMID
  S XMREMID=$$NETID^XMS3(XMZ)
  I XMREMID="" D  Q

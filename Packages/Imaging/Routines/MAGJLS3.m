@@ -1,5 +1,5 @@
-MAGJLS3 ;WIRMFO/JHC Rad. Workstation RPC calls ; 29 Jul 2003  10:00 AM
- ;;3.0;IMAGING;**16,22,18,101,90**;Mar 19, 2002;Build 1764;Jun 09, 2010
+MAGJLS3 ;WIRMFO/JHC - VistARad RPC calls ; 2 Jan 2012  11:46 AM
+ ;;3.0;IMAGING;**16,22,18,101,90,120**;Mar 19, 2002;Build 27;May 23, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -116,7 +116,7 @@ SVMAG2A(PIPE3) ;used by subroutine at tag BLDACTV
  D IMGINFO^MAGJUTL2(RARPT,.Y)
  S IMGCNT=$P(Y,U),ONL=$P(Y,U,2),MAGDT=$P(Y,U,3),REMOTE=$P(Y,U,4),MODALITY=$P(Y,U,5),PLACE=$P(Y,U,6),KEY=$P(Y,U,7)
  S REMOTE2=REMOTE
- I IMGSONLY,'IMGCNT Q  ;only list exams w/ imgs
+ I IMGSONLY,'IMGCNT,'(LSTREQ="P") Q  ;only list exams w/ imgs, except PENDING
  I REMONLY,'REMOTE,'$G(BKGPROC) Q  ; only list remote exams
  S:PLACE PLACE=$P($G(^MAG(2006.1,PLACE,0)),U,9)
  I MAGDT="" S MAGDT=$P(XX,U,7)

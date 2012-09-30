@@ -1,4 +1,5 @@
 LRO ;SLC/DCM - Being replaced ;1/10/91  16:0 ;
  ;;5.2;LAB SERVICE;;Sep 27, 1994
 EN ;;Entry point for OE/RR *THIS ROUTINE IS BEING PHASED OUT*
- G EN^LRXO0
+ ;G EN^LRXO0
+ Q

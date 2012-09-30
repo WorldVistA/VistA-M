@@ -1,6 +1,6 @@
-MAGJEX1A ;WIRMFO/JHC VistARad RPCs, exam locking ; 15 Sep 2004  10:00 AM
- ;;3.0;IMAGING;**18,65,101**;Nov 06, 2009;Build 50
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+MAGJEX1A ;WIRMFO/JHC - VistARad RPCs, exam locking ; 9 Sep 2011  4:05 PM
+ ;;3.0;IMAGING;**18,65,101,120**;Mar 19, 2002;Build 27;May 23, 2012
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -8,7 +8,6 @@ MAGJEX1A ;WIRMFO/JHC VistARad RPCs, exam locking ; 15 Sep 2004  10:00 AM
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -61,7 +60,7 @@ CASLOCK(MAGGRY,DATA) ; RPC Call: MAGJ RADCASELOCKS
  I GOTLOCK&+MYLOCK(1)&(CURCASE=3!(CURCASE=5)) D  ; update Image access log if got the lock
  . S LOGDATA=$P(MYLOCK(2),"|",2)  ; was saved when the Reserve occurred
  . I CURCASE=5 S $P(LOGDATA,U,4)=+MAGJOB("REMOTE") ; update "remote" indicator if was TAKEN
- . D LOG^MAGJUTL3("VR-VW",LOGDATA)
+ . D LOG^MAGJUTL3("VR-VW",LOGDATA,$$PSETLST^MAGJEX1(RADFN,RADTI,RACNI))
  . S $P(^XTMP("MAGJ","LOCK",RARPT,1,DAYCASE),"|",2)=LOGDATA  ; save for Interp event
  S DATAOUT=$S(+MYLOCK(1):1,+MYLOCK(2):2,1:0)
  ;

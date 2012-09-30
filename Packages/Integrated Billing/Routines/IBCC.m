@@ -1,5 +1,5 @@
 IBCC ;ALB/MJB - CANCEL THIRD PARTY BILL ;14 JUN 88  10:12
- ;;2.0;INTEGRATED BILLING;**2,19,77,80,51,142,137,161,199,241,155,276,320,358,433,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**2,19,77,80,51,142,137,161,199,241,155,276,320,358,433,432,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRC
@@ -42,11 +42,11 @@ NOPTF ; Note if IB364 is >0 it will be used as the ien to update in file 364
  ;
  F I=0,"S","U1" S IB(I)=$G(^DGCR(399,IBIFN,I))
  S IBSTAT=$P(IB(0),U,13)
- ; New messages for CRD option IB*2.0*433  IA#5630
- I $G(IBCNCRD)=1,IBSTAT'=2,'$$ACCK^PRCAACC(IBIFN) D  Q
- .W !!,"This option cannot be used to correct some Billing Rate Types (Example: TRICARE)"
- .W "Copy and cancel (CLON) must be used to correct this bill."
- .S IBQUIT=1 H 3
+ ; REMOVE New messages for CRD option IB*2.0*433 in IB*2.0*447  IA#5630
+ ;I $G(IBCNCRD)=1,IBSTAT'=2,'$$ACCK^PRCAACC(IBIFN) D  Q
+ ;.W !!,"This option cannot be used to correct some Billing Rate Types (Example: TRICARE)"
+ ;.W "Copy and cancel (CLON) must be used to correct this bill."
+ ;.S IBQUIT=1 H 3
  ;
  ; Restrict access to this process for REQUEST MRA bills
  I IBSTAT=2,'$G(IBCE("EDI")),$$MRAWL^IBCEMU2(IBIFN) D  G ASK
@@ -99,11 +99,11 @@ NOPTF ; Note if IB364 is >0 it will be used as the ien to update in file 364
  . I Y=0 W !!,"<PLEASE SUBMIT A REVERSAL USING THE APPROPRIATE OPTION IN THE ECME PACKAGE>",$C(7)
  ;
 CHK ;
- ; if user came from CLON, make sure they know about the new CRD option
+ ; if user came from CLON, make sure they know about the new CRD option  IB*2.0*447 remove TRICARE msg.
  I $G(IBCNCOPY)=1 D
- .W !!,*7,"Warning: This option should NOT be used to correct Rejected/Denied claims. It"
- .W !,"should ONLY be used to correct DENIED claims which have payments posted against"
- .W !,"them and claims with certain Billing Rate Types (Example: TRICARE)."
+ .W !!,*7,"Warning:  This option should NOT be used to correct Rejected/Denied claims."
+ .W !,"          It should ONLY be used to correct DENIED claims which have payments"
+ .W !,"          posted against them.***" ; and claims with certain Billing Rate Types (Example: TRICARE)."
  ;
  S (IBCCCC,IBQUIT)=0 I '$G(IBCEAUTO),'$G(IBMCSCAN) W !!,"ARE YOU SURE YOU WANT TO CANCEL THIS BILL" S %=2 D YN^DICN G:%=0 HELP I %'=1 S IBQUIT=1 G NO
  ;
@@ -118,8 +118,8 @@ CHK ;
  ;
 NO I 'IBCCCC W !!,"<NO ACTION TAKEN>",*7 S IBQUIT=1 G ASK:IBCAN<2,Q
  S IBCCR=$P($G(^DGCR(399,IBIFN,"S")),U,19)
- ; update claim # with new iteration
- D:$G(IBCNCRD)=1 CRD
+ ; update claim # with new iteration  IB*2.0*447 move to later in the process
+ ;D:$G(IBCNCRD)=1 CRD
  W !!,"...Bill has been cancelled..." D BULL^IBCBULL,BSTAT^IBCDC(IBIFN),PRIOR^IBCCC2(IBIFN)
  ;
  ; cancelling in ingenix claimsmanager if ingenix is running
@@ -152,7 +152,7 @@ Q K %,IBEPAR,IBSTAT,IBARST,IBAC1,IB,DFN,IBX,IBZ,DIC,DIE,DR,PRCASV,PRCASVC,X,Y,IB
  ;***
  ;I $D(XRT0) S:'$D(XRTN) XRTN="IBCC" D T1^%ZOSV ;stop rt clock
  Q
-CRD ; entry to point to add iteration # to claim
+CRD(IBIFN) ; entry to point to add iteration # to claim
  N IBFDA
  S IBITN=$$ITN^IBCCC(IBIFN)
  S IBFDA(399,IBIFN_",",.01)=IBITN

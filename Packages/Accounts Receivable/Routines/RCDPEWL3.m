@@ -1,6 +1,6 @@
-RCDPEWL3 ;ALB/TMK - ELECTRONIC EOB WORKLIST ACTIONS ;24-FEB-03
- ;;4.5;Accounts Receivable;**173**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPEWL3 ;ALB/TMK/KML - ELECTRONIC EOB WORKLIST ACTIONS ;24-FEB-03
+ ;;4.5;Accounts Receivable;**173,276**;Mar 20, 1995;Build 87
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
 SPLIT(RCSCR,RCL) ; Perform line splits
@@ -125,7 +125,11 @@ EDCL S DIR("?",1)="ENTER THE CLAIM # TO WHICH THE PAYMENT OR ADJUSTMENT WILL BE 
  ;
  I $E(Y,1,3)?3N,$L(Y)>7,Y'["-" S Y=$E(Y,1,3)_"-"_$E(Y,4,$L(Y))
  I $TR(Y," ")="" S Y=-1
- I Y'=-1 S DIC(0)="M",DIC="^PRCA(430,",X=Y D ^DIC
+ I Y'=-1 S DIC="^PRCA(430,",DIC(0)="M" D ^DIC K DIC
+ I +Y>0 D  I 'RCOK K RCSPLIT(RCSPLIT) G EDCL
+ . S RCOK=1
+ . I '$D(^DGCR(399,+Y,0)) W !,"   THIS IS NOT A 3RD PARTY CLAIM. CLAIMS NEED TO BE 3RD PARTY." S RCOK=0 Q  ; prca276 place screen to only allow selection of third party claims
+ . I '$$VALSTAT^RCDPEM5(+Y) W !,"  CLAIM IS IN AN INCOMPLETE STATUS. ENTER ANOTHER CLAIM." S RCOK=0  ; prca276 do not allow incomplete claims
  I Y<0 D  G:'RCOK EDCL
  . S RCOK=1
  . S DIR("A")="   THIS CLAIM WAS NOT FOUND IN YOUR AR.  DO YOU WANT TO CONTINUE?: ",DIR("B")="NO",DIR(0)="YA" D ^DIR K DIR W ! I Y'=1 K RCSPLIT(RCSPLIT) S RCOK=0

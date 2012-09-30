@@ -25,7 +25,7 @@ RESET ;Reset statement days for non-patients
  .S ^RCD(340,"AC",+X(1),X)=""
  ;
 DOMAIN ;sets up 349.1 entry pointer to DOMAIN
- S DIC="^DIC(4.2,",X="Q-CCP.MED.VA.GOV",DIC(0)="M" D ^DIC Q:Y<0
+ S DIC="^DIC(4.2,",X="Q-CCP.DOMAIN.EXT",DIC(0)="M" D ^DIC Q:Y<0
  S SEG=$O(^RCT(349.1,"B","PS",0)) Q:'SEG
  S $P(^RCT(349.1,+SEG,3),"^",2,3)=+Y_"^"_$P(Y,"^",2)
  ;

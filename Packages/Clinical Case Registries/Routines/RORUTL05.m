@@ -23,7 +23,7 @@ CCRNTFY(REGIEN) ;
  I $T(PROD^XUPROD)'=""  Q:'$$PROD^XUPROD() 0
  ;--- Check the domain name
  S DOMAIN=$G(^XMB("NETNAME"))
- Q:DOMAIN'?1.E1".VA.GOV" 0
+ Q:DOMAIN'?1.E1".DOMAIN.EXT" 0
  Q:(DOMAIN?1"TEST.".E)!(DOMAIN?1"TST.".E) 0
  ;--- Registry-specific checks
  I $G(REGIEN)>0  S RC=1  D  Q:'RC 0

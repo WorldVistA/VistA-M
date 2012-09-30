@@ -1,7 +1,8 @@
-ONCPAT1 ;Hines OIFO/GWB - PATIENT IDENTIFICATION (continued) ;12/08/00
- ;;2.11;ONCOLOGY;**45**;Mar 07, 1995
+ONCPAT1 ;Hines OIFO/GWB - PATIENT IDENTIFICATION (continued) ;10/07/11
+ ;;2.11;ONCOLOGY;**45,54**;Mar 07, 1995;Build 10
  ;
-CC W !,"    Comorbidity/Complication #1.: ",ONC(160,D0,25)
+CC W !,"    Source Comorbidity..........: ",ONC(160,D0,1006)
+ W !,"    Comorbidity/Complication #1.: ",ONC(160,D0,25)
  W !,"    Comorbidity/Complication #2.: ",ONC(160,D0,25.1)
  W !,"    Comorbidity/Complication #3.: ",ONC(160,D0,25.2)
  W !,"    Comorbidity/Complication #4.: ",ONC(160,D0,25.3)
@@ -23,3 +24,6 @@ CC8 W !,"    COMORBIDITY/COMPLICATION #8:"
 CC9 W !,"    COMORBIDITY/COMPLICATION #9:"
 CC10 W !,"    COMORBIDITY/COMPLICATION #10:"
  Q
+ ;
+CLEANUP ;Cleanup
+ K D0,ONC

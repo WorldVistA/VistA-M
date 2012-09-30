@@ -1,5 +1,5 @@
-PXRMCSD ;SLC/JVS - Code Set Version-dialog file ;11/02/2009
- ;;2.0;CLINICAL REMINDERS;**9,17**;Feb 04, 2005;Build 102
+PXRMCSD ;SLC/JVS - Code Set Version-dialog file ;07/29/2010
+ ;;2.0;CLINICAL REMINDERS;**9,17,18**;Feb 04, 2005;Build 152
  ;Variable List
  ;TMP        =Mail message array
  ;DLGNAME    =Dialogue Name .01 field
@@ -112,7 +112,7 @@ DLG(GLOBAL,OPTION) ;ENTRY POINT
  I '$D(^TMP("PXRMXMZ",$J)) D
  . S ^TMP("PXRMXMZ",$J,1,0)="No dialog elements using inactive codes were found."
  . S ^TMP("PXRMXMZ",$J,2,0)="No action is necessary."
- D SEND^PXRMMSG("PXRMXMZ",XMSUB)
+ D SEND^PXRMMSG("PXRMXMZ",XMSUB,"",DUZ)
  K ^TMP("PXRMXMZ",$J)
  S ZTREQ="@"
  Q

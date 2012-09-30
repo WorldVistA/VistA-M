@@ -1,5 +1,5 @@
 LR7OF5 ;slc/dcm - Setup new order from OE/RR ;2/4/99  06:42
- ;;5.2;LAB SERVICE;**223,221,256**;Sep 27, 1994
+ ;;5.2;LAB SERVICE;**223,221,256,419**;Sep 27, 1994;Build 1
  ;
  ;This routine invokes IA #2060, #2835, #2747
  ;
@@ -40,7 +40,7 @@ FIND(PAT,ODT,SDT,TYPE,SAMP,PROV,LOC,SPEC,ENTERBY) ;Look for match on patient, ti
  . ;'LC' collection types must have same collection times
  . I TYPE="LC",$P(X0,"^",8)'=SDT Q
  . I TYPE'="LC",$P(X0,"^",8),SDT,$$ABS^XLFMTH($$FMDIFF^XLFDT(SDT,$P(X0,"^",8),2))>600 Q  ;don't combine if time difference is >10 min
- . L +^LRO(69,"C",+X1):0
+ . L +^LRO(69,"C",+X1):$G(DILOCKTM,3)
  . I '$T Q
  . L -^LRO(69,"C",+X1)
  . I '$$GOT^LROE(+X1,ODT) Q  ;Don't combine on canceled order
@@ -79,7 +79,7 @@ INDAIR(LRDFN,LRORD,CHK) ;Check for test duplication and tests that require their
  N UTS,X,X4,ODT,LRSN,TST,EX
  S ODT=0,EX=0
  F  S ODT=$O(^LRO(69,"C",LRORD,ODT)) Q:'ODT!(EX)  S LRSN=0 F  S LRSN=$O(^LRO(69,"C",LRORD,ODT,LRSN)) Q:'LRSN!(EX)  D
- . I +$G(^LRO(69,LRODT,1,LRSN,0))'=LRDFN Q  ;Check for same patient
+ . I +$G(^LRO(69,LRODT,1,LRSN,0))'=LRDFN S EX=1 Q  ;Check for same patient
  . S UTS=0 F  S UTS=$O(^TMP("OR",$J,"LROT",SDT,TYPE,SAMP,SPEC,UTS)) Q:'UTS  S X=^(UTS) D  Q:EX
  .. S X4=$G(^LRO(69,LRODT,1,LRSN,4,1,0))
  .. I X4=SPEC,$D(^LRO(69,ODT,1,LRSN,2,"B",+X)) S EX=1 Q  ;Duplicate test

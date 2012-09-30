@@ -1,5 +1,5 @@
-ORWNSS ;JDL/SLC Non-Standard Schedule ;11/24/06
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**195,243**;Dec 17, 1997;Build 242
+ORWNSS ;JDL/SLC Non-Standard Schedule ; 6/15/10 1:11pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**195,243,327**;Dec 17, 1997;Build 9
 NSSOK(ORY,ORX) ;Check availability for Non-standard schedule
  N VAL
  S VAL=$$PATCH^XPDUTL("PSJ*5.0*113")
@@ -15,8 +15,9 @@ VALSCH(ORY,ORID) ;Validate a schedule for IM order; 1: valid, 0: invalid
  ;
  S ORY=0
  Q:'$D(^OR(100,+ORID,0))
- N IPGRP,ORGRP
- S IPGRP=$O(^ORD(100.98,"B","UD RX",0))
+ N IPGRP,ORGRP,UDIV  ;*327 - Add UDIV
+ S UDIV=$S($G(^OR(100,+ORID,4))["V":"IV RX",1:"UD RX")
+ S IPGRP=$O(^ORD(100.98,"B",UDIV,0))
  S ORGRP=$P($G(^OR(100,+ORID,0)),U,11)
  I ORGRP'=IPGRP S ORY=1 Q
  N SCH,IDX,SCHVAL S (SCH,SCHVAL)=""

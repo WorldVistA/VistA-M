@@ -1,5 +1,5 @@
 BPSTEST ;OAK/ELZ - ECME TESTING TOOL ;11/15/07  09:55
- ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -23,8 +23,8 @@ GETOVER(KEY1,KEY2,BPSORESP,BPSWHERE,BPSTYPE,BPPAYSEQ) ;
  ; Option can not be run for Date of Death option as it causes errors
  I $G(XQY0)["DG DEATH ENTRY" W !,"The testing tool can not be run from Date of Death option" Q
  ;
- ; Do not run for background jobs (CMOP (CR*) or ARES/AREV)
- I $D(ZTQUEUED)!(",ARES,AREV,CRLB,CRLR,CRLX,PC,PL,"[(","_BPSWHERE_",")) Q
+ ; Do not run for background jobs
+ I $D(ZTQUEUED)!(",AREV,CRLB,CRLR,CRLX,CRRL,PC,PL,"[(","_BPSWHERE_",")) Q
  ;
  ; Create Transaction Number
  S BPSTRANS=$$IEN59^BPSOSRX(KEY1,KEY2,$S($G(BPPAYSEQ)>0:+BPPAYSEQ,1:1))

@@ -1,26 +1,32 @@
 BPSPRRX3 ;ALB/SS - ePharmacy secondary billing ;16-DEC-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;External reference to file 399.3 supported by IA 3822
  ;External reference to $$INSUR^IBBAPI supported by IA 4419
  ;External reference to $$PLANEPS^IBNCPDPU supported by IA 5572
  ;
-PROMPTS(BPSPRARR) ;
+PROMPTS(RX,FILL,DOS,BPSPRARR) ;
  ;BPSPRARR - array to pass values determined earlier (if any) and to return user's input/corrections
- ;returns 
- ; 1  = the data is correct
- ; -1 = the data is not correct - Do not create the claim
+ ;Input:
+ ;  RX - Prescription IEN
+ ;  FILL - Fill Number
+ ;  DOS - Date of Service
+ ;  BPSPRARR - Array of data passed by reference
+ ;Returns 
+ ;   1 = the data is correct
+ ;  -1 = the data is not correct - Do not create the claim
  ;
  ; Check paramters
- I $G(BPSPRARR("PRESCRIPTION"))="" Q -1
- I $G(BPSPRARR("FILL NUMBER"))="" Q -1
- I $G(BPSPRARR("FILL DATE"))="" Q -1
+ I '$G(RX) Q -1
+ I $G(FILL)="" Q -1
+ I '$G(DOS) Q -1
  ;
  ;
- N BPQ,BPSQ,BPSPLAN,BPX,BPSDFLT,BPSSET,BPSDFN
- N BPSPIEN,BPSSET,BPCNT,BPSRJ,BPSPAID,RETV
+ N BPQ,BPSQ,IEN59PR,DFN,BPSPLAN,BPX,BPSDFLT,BPSSET
+ N BPSPIEN,BPSSET,BPCNT,BPSRJ,BPSPAID,RETV,TOTAL
  N BPRATTYP,BPSPDRJ,BPSPLNSL,BPX1,BPSFIEN,BPSPSARR,BPSPSHV
+ N IEN59SEC,BPSRET,BPSINS
  ;
  S (BPQ,BPSQ)=0
  ;
@@ -28,15 +34,32 @@ PROMPTS(BPSPRARR) ;
  S BPSPIEN=1
  ;
  ; Get Primary BPS Transaction
- S BP59=$$IEN59^BPSOSRX(BPSPRARR("PRESCRIPTION"),BPSPRARR("FILL NUMBER"),1)
+ S IEN59PR=$$IEN59^BPSOSRX(RX,FILL,1)
  ;
  ; Get/validate Patient DFN
- S BPSDFN=$P($G(^BPST(BP59,0)),U,6)
- I BPSDFN="" S BPSDFN=$$RXAPI1^BPSUTIL1(BPSPRARR("PRESCRIPTION"),2,"I")
- I BPSDFN="" Q -1
+ S DFN=$P($G(^BPST(IEN59PR,0)),U,6)
+ I DFN="" S DFN=$$RXAPI1^BPSUTIL1(RX,2,"I")
+ I DFN="" Q -1
  ;
- ; Validate and Display current COB fields
- I $$DISPSEC(BP59,BPSDFN,.BPSPRARR)
+ ; Get patient insurances
+ S BPSRET=$$INSUR^IBBAPI(DFN,DOS,"E",.BPSINS,"1,7,8")
+ ;
+ ; Get the first Secondary insurance for default
+ S BPSPRARR("PLAN")="",BPSPRARR("INS NAME")="",(BPX,BPQ)=0
+ F  S BPX=$O(BPSINS("IBBAPI","INSUR",BPX)) Q:'BPX  D  Q:BPQ
+ . I $P(BPSINS("IBBAPI","INSUR",BPX,7),U)'=2 Q
+ . S BPSPRARR("PLAN")=$P(BPSINS("IBBAPI","INSUR",BPX,8),U)
+ . S BPSPRARR("INS NAME")=$P(BPSINS("IBBAPI","INSUR",BPX,1),U,2)
+ . S BPQ=1
+ . Q
+ ;
+ ; Get Rate Type for the Secondary Insurance
+ S IEN59SEC=$$IEN59^BPSOSRX(RX,FILL,2)
+ S BPSPRARR("RTYPE")=$$GETRTP59^BPSPRRX5(IEN59SEC)
+ I BPSPRARR("RTYPE")="" S BPSPRARR("RTYPE")=8
+ ;
+ ; Display current COB fields
+ D DISPSEC(.BPSPRARR)
  ;
  S BPQ=0
  I $G(BPSPRARR("PLAN"))=""!($G(BPSPRARR("RTYPE"))="")!($G(BPSPRARR("308-C8"))="") S BPQ=1
@@ -51,7 +74,7 @@ PROMPTS(BPSPRARR) ;
  ; Prompt for Secondary Insurance Plan
  W !
  F  D  Q:BPSQ'=0
- . S BPSPLAN=$$SELECTPL^BPSPRRX1(BPSDFN,$G(BPSPRARR("FILL DATE")),.BPSPLNSL,"SECONDARY INSURANCE POLICY",$G(BPSPRARR("PLAN")))
+ . S BPSPLAN=$$SELECTPL^BPSPRRX1(DFN,DOS,.BPSPLNSL,"SECONDARY INSURANCE POLICY",$G(BPSPRARR("PLAN")))
  . I BPSPLAN=0 S BPSQ=-1 Q
  . I $P(BPSPLNSL(7),U)'=2 W !,"Must select a Secondary insurance plan." Q
  . S BPSPRARR("PLAN")=BPSPLAN
@@ -66,19 +89,20 @@ PROMPTS(BPSPRARR) ;
  S BPSPRARR("RTYPE")=BPRATTYP
  ;
  ; Prompt for OTHER COVERAGE CODE
+ I $G(BPSPRARR("308-C8"))="" S BPSPRARR("308-C8")="04"
  S BPSSET="" D SET308(.BPSSET)
  S RETV=$$PROMPT("SRA"_U_BPSSET,"OTHER COVERAGE CODE:  ",$G(BPSPRARR("308-C8")),"Indicate whether or not the patient has other insurance coverage")
  Q:RETV<0 -1
  S BPSPRARR("308-C8")=RETV
  ;
  ; Prompt for OTHER PAYER ID
- S BPSDFLT=$P(BPSPRARR("OTHER PAYER",BPSPIEN,0),U,4)
+ S BPSDFLT=$P($G(BPSPRARR("OTHER PAYER",BPSPIEN,0)),U,4)
  S RETV=$$PROMPT("FR"_U_"0:10:","OTHER PAYER ID",$G(BPSDFLT),"ID assigned to the payer") Q:RETV<0 -1
  Q:RETV=-1 -1
  S $P(BPSPRARR("OTHER PAYER",BPSPIEN,0),U,4)=RETV
  ;
  ; Prompt for OTHER PAYER DATE
- S BPSDFLT=$P(BPSPRARR("OTHER PAYER",BPSPIEN,0),U,5)
+ S BPSDFLT=$P($G(BPSPRARR("OTHER PAYER",BPSPIEN,0)),U,5)
  S RETV=$$PROMPT("DR"_U_"","OTHER PAYER DATE",$$FMTE^XLFDT($G(BPSDFLT)),"Payment or denial date of the claim submitted to the other payer. Used for coordination of benefits.")
  Q:RETV=-1 -1
  S $P(BPSPRARR("OTHER PAYER",BPSPIEN,0),U,5)=RETV
@@ -98,23 +122,25 @@ PROMPTS(BPSPRARR) ;
  . S $P(BPSPRARR("OTHER PAYER",BPSPIEN,0),U,7)=""
  . ;
  . K BPSPAID
- . S (BPCNT,BPX,BPQ)=0
+ . S (BPCNT,BPX,BPQ,TOTAL)=0
  . ; BPS NCPDP FIELD DEFS for field 342 codes
  . S BPSSET=$$GETCDLST(342,BPSPSHV)
  . F BPX1=0:1 S BPX=$O(BPSPRARR("OTHER PAYER",BPSPIEN,"P",BPX)) Q:'BPX  D  Q:BPQ=1
  . . S BPSQUAL=$P(BPSPRARR("OTHER PAYER",BPSPIEN,"P",BPX,0),U,2)
+ . . I BPSQUAL="  " S BPSQUAL="00"
  . . S BPSAMT=$P(BPSPRARR("OTHER PAYER",BPSPIEN,"P",BPX,0),U,1)
  . . S BPQ=$$ASKPAID(BPSSET,BPSQUAL,BPSAMT,.BPCNT,.BPSPAID)
  . ;
  . I 'BPQ F  S BPQ=$$ASKPAID(BPSSET,"","",.BPCNT,.BPSPAID) Q:BPQ=1
- . ; Enter update values into the BPSPRARR array
+ . ; Enter updated values into the BPSPRARR array
  . K BPSPRARR("OTHER PAYER",BPSPIEN,"P")
  . S BPX=0 F BPX1=0:1 S BPX=$O(BPSPAID(1,BPX)) Q:BPX=""  D
  . . I $P(BPSPAID(1,BPX),U,2)="00" S $P(BPSPAID(1,BPX),U,2)="  "
  . . S BPSPRARR("OTHER PAYER",BPSPIEN,"P",BPX,0)=BPSPAID(1,BPX)
+ . . S TOTAL=TOTAL+BPSPAID(1,BPX)
  . . ;
- . . ; Set the OTHER PAYER AMOUNT PAID COUNT
- . . S $P(BPSPRARR("OTHER PAYER",BPSPIEN,0),U,6)=BPX1
+ . ; Set the OTHER PAYER AMOUNT PAID COUNT
+ . S $P(BPSPRARR("OTHER PAYER",BPSPIEN,0),U,6)=BPX1
  . Q
  ;
  ; Edit/add reject codes
@@ -126,20 +152,19 @@ PROMPTS(BPSPRARR) ;
  . K BPSRJ
  . S (BPCNT,BPX)=0
  . F BPX1=0:1 S BPX=$O(BPSPRARR("OTHER PAYER",BPSPIEN,"R",BPX)) Q:'BPX  D  Q:BPCNT>4
- . . S BPCNT=BPCNT+1 I BPCNT>4 W !,"Maximum of 5 OTHER PAYER REJECT CODES reached." Q
  . . S BPSDFLT=BPSPRARR("OTHER PAYER",BPSPIEN,"R",BPX,0)
- . . S RETV=$$PROMPT("PO^9002313.93:AEMNQ","OTHER PAYER REJECT CODE",$G(BPSDFLT),"Enter the reject code returned by the previous payer")
+ . . S RETV=$$PROMPT("PO^9002313.93:AEMQ","OTHER PAYER REJECT CODE",$G(BPSDFLT),"Enter the reject code returned by the previous payer")
  . . Q:RETV=-1
- . . S BPSRJ(BPCNT)=$P(RETV,U,2)
- . I BPCNT<5 F  S RETV=$$PROMPT("PO^9002313.93:AEMNQ","OTHER PAYER REJECT CODE","","Enter the reject code returned by the previous payer") Q:RETV=-1  D  Q:BPCNT>4
+ . . S BPCNT=BPCNT+1,BPSRJ(BPCNT)=$P(RETV,U,2)
+ . I BPCNT=5 W !,"Maximum of 5 OTHER PAYER REJECT CODES reached."
+ . I BPCNT<5 F  S RETV=$$PROMPT("PO^9002313.93:AEMQ","OTHER PAYER REJECT CODE","","Enter the reject code returned by the previous payer") Q:RETV=-1  D  Q:BPCNT>4
  . . S BPCNT=BPCNT+1
  . . S BPSRJ(BPCNT)=$P(RETV,U,2)
  . . I BPCNT>4 W !,"Maximum of 5 OTHER PAYER REJECT CODES reached."
  . K BPSPRARR("OTHER PAYER",BPSPIEN,"R")
- . S BPX=0 F BPX1=0:1 S BPX=$O(BPSRJ(BPX)) Q:BPX=""  D
- . . S BPSPRARR("OTHER PAYER",BPSPIEN,"R",BPX,0)=BPSRJ(BPX)
- . . ; Set the OTHER PAYER REJECT COUNT
- . . S $P(BPSPRARR("OTHER PAYER",BPSPIEN,0),U,7)=BPX1
+ . S BPX=0 F BPX1=0:1 S BPX=$O(BPSRJ(BPX)) Q:BPX=""  S BPSPRARR("OTHER PAYER",BPSPIEN,"R",BPX,0)=BPSRJ(BPX)
+ . ; Set the OTHER PAYER REJECT COUNT
+ . S $P(BPSPRARR("OTHER PAYER",BPSPIEN,0),U,7)=BPX1
  . Q
  ;
  I '$D(BPSPRARR("OTHER PAYER",BPSPIEN,"P")),'$D(BPSPRARR("OTHER PAYER",BPSPIEN,"R")) W !,"No Paid Amounts or Reject Codes entered" Q -1
@@ -150,9 +175,13 @@ PROMPTS(BPSPRARR) ;
  ; Default OTHER PAYER ID QUALIFIER to BIN
  S $P(BPSPRARR("OTHER PAYER",BPSPIEN,0),U,3)="03"
  ;
-END ; Prompt to continue
- W !
- I $$YESNO^BPSSCRRS("IS THIS CLAIM CORRECT?(Y/N)","Y")<1 Q -1
+ ; If the PRIOR PAYMENT is 0 but the user entered paid amounts, update the PRIOR PAYMENT
+ I +$G(BPSPRARR("PRIOR PAYMENT"))=0,$D(BPSPRARR("OTHER PAYER",BPSPIEN,"P")) D
+ . S BPSPRARR("PRIOR PAYMENT")=TOTAL
+ . I TOTAL>0 S BPSPRARR("308-C8")="02"
+ . E  S BPSPRARR("308-C8")="04"
+ ;
+END ;
  Q 1
  ;
  ; 
@@ -176,41 +205,22 @@ ASK1 S RETV1=$$PROMPT("SOA"_U_BPSSET,"OTHER PAYER AMOUNT PAID QUALIFIER:  ",$G(B
  I RETV1="08" Q 1
  Q 0
  ;
-DISPSEC(BP59,BPSDFN,BPSPRARR) ;
+DISPSEC(BPSPRARR) ;
  ; Validate and Display the current secondary insurance information and prompt to edit.
- ; Return:  0 = Invalid data
- ;          1 = Valid data
+ ; Input:
+ ;   BPSPARR - Array of COB data, passed by reference
  ;
- N BPSCOB,BPX,BPQ,BPSRET,BPSPIEN,BPSRESP,BPSOPDT,BPSINS,BPSSTAT,BPSCOV,BP592
+ N BPSPIEN,BPSCOB,BPSCOV,BPX,BPSCOV,DATA
+ ;
  ; Other Payer IEN defaults to 1 since we don't do tertiary
- S BPSPIEN=1
- ; Get patient insurances
- S BPSRET=$$INSUR^IBBAPI($G(BPSDFN),$G(BPSPRARR("FILL DATE")),"E",.BPSINS,"1,7,8")
- ; Get the first Secondary insurance for default
- S (BPSCOB,BPSPRARR("PLAN"))="",(BPX,BPQ)=0
- F  S BPX=$O(BPSINS("IBBAPI","INSUR",BPX)) Q:'BPX  D  Q:BPQ
- . I $P(BPSINS("IBBAPI","INSUR",BPX,7),U)'=2 Q
- . S BPSPRARR("PLAN")=$P(BPSINS("IBBAPI","INSUR",BPX,8),U)
- . S BPSPRARR("INS NAME")=$P(BPSINS("IBBAPI","INSUR",BPX,1),U,2)
- . S BPSCOB="SECONDARY",BPQ=1
- . Q
- S BPSRET=0
- ; Get the Other Payer Date in internal format from the response
- S BPSOPDT="",BPSRESP=$P($G(^BPST(BP59,0)),U,5)
- I BPSRESP S BPSOPDT=($P($G(^BPSR(BPSRESP,0)),U,2))\1
- ; Set array of Other Payer Data
- S BPSPRARR("337-4C")=1
- S BPSPRARR("OTHER PAYER",BPSPIEN,0)="1^01^03^"_$G(BPSPRARR("BIN NUMBER"))_"^"_$G(BPSOPDT)_"^0^0"
- ; Get Rate Type for the Secondary Insurance
- S BP592=$$IEN59^BPSOSRX($G(BPSPRARR("PRESCRIPTION")),$G(BPSPRARR("FILL NUMBER")),2)
- S BPSPRARR("RTYPE")=$$GETRTP59^BPSPRRX5(BP592)
- I BPSPRARR("RTYPE")="" S BPSPRARR("RTYPE")=8
+ S BPSPIEN=1,BPSCOB="SECONDARY"
+ ;
  ; Get Coverage Code
- S BPSSTAT=$P($$STATUS^BPSOSRX($G(BPSPRARR("PRESCRIPTION")),$G(BPSPRARR("FILL NUMBER")),,,1),U)
- I $G(BPSPRARR("PRIOR PAYMENT"))>0 S BPSCOV="02 (OTHER COVERAGE EXISTS - PAYMENT COLLECTED)"
- E  I BPSSTAT["E REJECTED" S BPSCOV="03 (OTHER COVERAGE EXISTS - THIS CLAIM NOT COVERED)"
+ S BPSCOV=$G(BPSPRARR("308-C8"))
+ I BPSCOV="02" S BPSCOV="02 (OTHER COVERAGE EXISTS - PAYMENT COLLECTED)"
+ E  I BPSCOV="03" S BPSCOV="03 (OTHER COVERAGE EXISTS - THIS CLAIM NOT COVERED)"
  E  S BPSCOV="04 (OTHER COVERAGE EXISTS - PAYMENT NOT COLLECTED)"
- S BPSPRARR("308-C8")=$P(BPSCOV," ",1)
+ ;
  ; Write Data
  W !!,"Data for Secondary Claim"
  W !,"------------------------"
@@ -219,26 +229,22 @@ DISPSEC(BP59,BPSDFN,BPSPRARR) ;
  W !,"Other Coverage Code:  "_BPSCOV
  W !,"Other Payer Coverage Type:  01 (PRIMARY)"
  W !,"Other Payer ID Qualifier:  03 (BANK INFORMATION NUMBER (BIN))"
- W !,"Other Payer ID:  "_$G(BPSPRARR("BIN NUMBER"))
- W !,"Other Payer Date:  "_$$FMTE^XLFDT($G(BPSOPDT))
- ; Build/Write Paid Amounts if previous claim was paid
- K BPSPRARR("OTHER PAYER",BPSPIEN,"P")
- I BPSSTAT["E PAYABLE",BPSPRARR("PRIOR PAYMENT")]"" D
- . N BPARR,BPX D GETOPAP(BPSRESP,.BPARR)
- . S BPX=0 F  S BPX=$O(BPARR(BPX)) Q:BPX=""  D
- . . W !,"Other Payer Paid Qualifier:  "_$P($G(BPARR(BPX)),U,2)_" ("_$$TRANCODE(342,$P($G(BPARR(BPX)),U,2))_")"
- . . S BPSPRARR("OTHER PAYER",BPSPIEN,"P",BPX,0)=BPARR(BPX)
- . . W !,"Other Payer Amount Paid:  $"_$FN($P($G(BPARR(BPX)),U,1),",",2)
- . . S $P(BPSPRARR("OTHER PAYER",BPSPIEN,0),U,6)=BPX
- ; Build/Write Reject Codes if previous claims was rejected
- K BPSPRARR("OTHER PAYER",BPSPIEN,"R")
- I BPSSTAT["E REJECTED" D
- . N BPARR,BPX D GETRJCOD(BP59,.BPARR)
- . S BPX=0 F  S BPX=$O(BPARR(BPX)) Q:BPX=""  D
- . . W !,"Other Payer Reject Code:  "_BPARR(BPX)
- . . S BPSPRARR("OTHER PAYER",BPSPIEN,"R",BPX,0)=$P(BPARR(BPX),":")
- . . S $P(BPSPRARR("OTHER PAYER",BPSPIEN,0),U,7)=BPX
- Q 1
+ W !,"Other Payer ID:  "_$P($G(BPSPRARR("OTHER PAYER",BPSPIEN,0)),U,4)
+ W !,"Other Payer Date:  "_$$FMTE^XLFDT($P($G(BPSPRARR("OTHER PAYER",BPSPIEN,0)),U,5))
+ ;
+ ; Write Paid Amounts if previous claim if they are there
+ I $D(BPSPRARR("OTHER PAYER",BPSPIEN,"P")) D
+ . S BPX=0 F  S BPX=$O(BPSPRARR("OTHER PAYER",BPSPIEN,"P",BPX)) Q:BPX=""  D
+ . . S DATA=BPSPRARR("OTHER PAYER",BPSPIEN,"P",BPX,0)
+ . . I $P(DATA,U,2)="  " S $P(DATA,U,2)="00"
+ . . W !,"Other Payer Paid Qualifier:  "_$P(DATA,U,2)_" ("_$$TRANCODE(342,$P(DATA,U,2))_")"
+ . . W !,"Other Payer Amount Paid:  $"_$FN($P(DATA,U,1),",",2)
+ ;
+ ; Write Reject Codes if previous claims if they are there
+ I $D(BPSPRARR("OTHER PAYER",BPSPIEN,"R")) D
+ . S BPX=0 F  S BPX=$O(BPSPRARR("OTHER PAYER",BPSPIEN,"R",BPX)) Q:BPX=""  D
+ . . W !,"Other Payer Reject Code:  "_$$TRANREJ^BPSECFM($G(BPSPRARR("OTHER PAYER",BPSPIEN,"R",BPX,0)))
+ Q
  ;
 PROMPT(ZERONODE,PRMTMSG,DFLTVAL,BPSHLP) ;
  ;prompts for selection
@@ -293,83 +299,6 @@ TRANCODE(FLD,CODE) ;CODE will be the incoming reason for NCPDP code
  . S BPSDESC=ARRAY(CSUB,X,1,"E")
  S:$G(BPSDESC)="" BPSDESC="Description not found for NCPDP field code"
  Q BPSDESC
- ;
-GETOPAP(BPSRESP,BPSDAT) ; Get the Other Payer Amount Paid values and qualifiers
- ; BPSRESP = IEN of BPS RESPONSE file
- ; BPSDAT(N)=Paid Amount^Qualifier
- I '$D(^BPSR(BPSRESP,1000)) Q
- N CNT,BPS509,BPS559,BPS558,BPS523,BPS563,BPS562,BPS521,BPSQUAL,BPSAMNT,BPSTAX,BPSOAP,BPSX
- S CNT=0
- ; Set up D.0 fields for COB segment
- S BPS509=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,500)),U,9))
- ; If Total Amount Paid is a negative number, set it to zero.
- ; Zero Pay amount is allowed
- I BPS509<0 S BPS509=0
- ;
- ; Cognitive Services Qualifier/Professional Service Fee Paid
- S BPS562=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,560)),U,2))
- I BPS562<0 S BPS562=0
- I +BPS562 S CNT=CNT+1,BPSDAT(CNT)=BPS562_U_"06"
- ;
- ; Incentive Qualifier/Incentive Amt Paid
- S BPS521=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,500)),U,21))
- I BPS521<0 S BPS521=0
- I +BPS521 S CNT=CNT+1,BPSDAT(CNT)=BPS521_U_"05"
- ; Subtract Incentive Qualifier from Paid Amount for Drug Benefit
- S BPS509=BPS509-BPS521
- ;
- ; Default all Tax values to zero for negative values
- S BPS559=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,550)),U,9)) ; Percentage Sales Tax Paid
- I BPS559<0 S BPS559=0
- S BPS558=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,550)),U,8)) ; Flat Sales Tax Paid
- I BPS558<0 S BPS558=0
- S BPS523=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,500)),U,23)) ; Amount Attributed to Sales Tax
- I BPS523<0 S BPS523=0
- ;
- ; Sales Tax Qualifier
- S BPSTAX=BPS559+BPS558-BPS523
- I BPSTAX<0 S BPSTAX=0
- I +BPSTAX S CNT=CNT+1,BPSDAT(CNT)=BPSTAX_U_"10"
- ; Subtract Sales Tax Qualifier from Paid Amount for Drug Benefit
- S BPS509=BPS509-BPSTAX
- ;
- ; Set OTHER AMOUNT PAID multiples
- S BPS563=0 F  S BPS563=$O(^BPSR(BPSRESP,1000,1,563.01,BPS563)) Q:BPS563=""  D
- . S BPSQUAL=$P($G(^BPSR(BPSRESP,1000,1,563.01,BPS563,1)),U,1)
- . ; Quit if qualifier = 99 since there is no NCPDP mapping for this qualifier
- . Q:BPSQUAL']""!(BPSQUAL=99)
- . S BPSAMNT=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,563.01,BPS563,1)),U,2))
- . ; Default negative amounts to zero
- . I BPSAMNT<0 S BPSAMNT=0
- . I $D(BPSOAP(BPSQUAL)) S BPSOAP(BPSQUAL)=BPSOAP(BPSQUAL)+BPSAMNT
- . I '$D(BPSOAP(BPSQUAL)) S BPSOAP(BPSQUAL)=BPSAMNT
- . ; Subtract Amount if Qualifier is 01,02,03,04 or 09
- . I "0102030409"[BPSQUAL S BPS509=BPS509-BPSAMNT
- I $D(BPSOAP) D
- . S BPSX="" F  S BPSX=$O(BPSOAP(BPSX)) Q:BPSX=""  D
- . . S CNT=CNT+1,BPSDAT(CNT)=BPSOAP(BPSX)_U_BPSX
- ; Set Drug Benefit Qualifier
- I BPS509<0 S BPS509=0
- S CNT=CNT+1,BPSDAT(CNT)=BPS509_U_"07"
- Q
- ; Get Reject Codes
-GETRJCOD(BP59,BPARR1) ;
- N BP59DAT S BP59DAT=$G(^BPST(BP59,0))
- N BPRESP,BPPOS,BPRAR,BPRCNT,BPRX,BPRJCOD,BPRJTXT,BPRJ,BPN1
- ;pointers for RESPONSE file (#9002313.03) by pointer in TRANSACTION file #9002313.59
- ;get response and position 
- I $$GRESPPOS^BPSSCRU3(BP59,.BPRESP,.BPPOS)=0 Q
- S (BPRCNT,BPRJ,BPN1)=0
- F  S BPRJ=$O(^BPSR(BPRESP,1000,BPPOS,511,BPRJ)) Q:+BPRJ=0  D  Q:BPRCNT>4
- . S BPRJCOD=$P($G(^BPSR(BPRESP,1000,BPPOS,511,BPRJ,0)),U)
- . Q:$L(BPRJCOD)=0
- . S BPRJTXT=$$GETRJNAM^BPSSCRU3(BPRJCOD)
- . ; Remove Duplicate Reject Codes and only allow 5 max
- . S BPRCNT=BPRCNT+1,BPRAR(BPRJCOD)=BPRJTXT
- I $D(BPRAR) D
- . S BPRX="" F  S BPRX=$O(BPRAR(BPRX)) Q:BPRX=""  D
- . . S BPN1=BPN1+1,BPARR1(BPN1)=BPRAR(BPRX)
- Q
  ;
  ;because the set of codes is too long to fit the MUMPS code line - use a special code to populte set of codes
 SET308(BPSSET) ;

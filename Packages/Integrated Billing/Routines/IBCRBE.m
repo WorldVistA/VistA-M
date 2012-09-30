@@ -1,5 +1,5 @@
 IBCRBE ;ALB/ARH - RATES: BILL ENTER/EDIT (RS/CS) SCREEN ; 22-MAY-1996
- ;;2.0;INTEGRATED BILLING;**52,106,245,287**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**52,106,245,287,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ; 
 EDIT(IBIFN) ; ENTRY POINT from Enter/Edit a Bill option:  
@@ -82,6 +82,9 @@ SELCT(IBIFN,IBSRTARR,IBCHGARR) ; get the user selection of rs/cs charges to add 
  S DIR("?",9)="displayed in the first set and used as the selection default.",DIR("?",10)=" "
  S DIR("??")="^D HELP^IBCRBE("_IBIFN_")"
  S DIR("A")="Select Schedule Charges to ADD to the bill: " I +IBSRTARR S DIR("B")="1-"_+IBSRTARR
+ ;
+ ; Clear the manually edited flag. IB*2.0*447 BI
+ D CMAEDALL^IBCU9(IBIFN)
  ;
  W !! S DIR(0)="LOA^1:"_+$P(IBSRTARR,U,2) D ^DIR K DIR I 'Y!$D(DIRUT) G SELCTQ
  ;

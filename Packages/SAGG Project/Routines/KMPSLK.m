@@ -89,7 +89,7 @@ OUT(NOWDT,OS,SESSNUM,SITENUM,XMZSENT,TEXT)     ;
  S TEXT(I+1)=" Please ensure that this list concurs with your present volume set"
  S TEXT(I+2)=" configuration.",TEXT(I+3)=""
  S TEXT(I+4)=" A local e-mail message #"_XMZSENT_" was created by the collection"
- S TEXT(I+5)=" routines.  Check the FO-ALBANY.MED.VA.GOV NetMail Queue to ensure"
+ S TEXT(I+5)=" routines.  Check the FO-ALBANY.DOMAIN.EXT NetMail Queue to ensure"
  S TEXT(I+6)=" transmission delivery."
  ;
  Q ""

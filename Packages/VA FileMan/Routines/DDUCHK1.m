@@ -1,6 +1,6 @@
-DDUCHK1 ;SFISC/RWF-CHECK DD part 2 ;7:08 AM  1 Oct 2003
- ;;22.0;VA FileMan;**130**;Mar 30, 1999
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDUCHK1 ;SFISC/RWF-CHECK DD part 2 ;3JUNE2011
+ ;;22.0;VA FileMan;**130,168**;Mar 30, 1999;Build 25
+ ;Per VHA Directive 2004-038, this routine should not be modified.
 ID S DDUCRFE="" F DDUCZ=0:0 S DDUCRFE=$O(^DD(DDUCFI,0,"ID",DDUCRFE)) Q:DDUCRFE=""  S DDUCX=$S($D(^DD(DDUCFI,0,"ID",DDUCRFE))#2:^(DDUCRFE),1:"") I DDUCX="Q" W !?5,"'ID' node for field ",DDUCRFE," = 'Q'" D:DDUCFIX ID1
  Q
 ID1 K ^DD(DDUCFI,0,"ID",DDUCRFE) D M1 W """ID"",",DDUCRFE D M2
@@ -53,11 +53,13 @@ M2 W ") was killed." Q
 IXDUP ;Check for duplicate fields for same xref ;22*130
  N DDUCRFE,DDUCRFEP
  S (DDUCRFE,DDUCRFEP)=0
- S DDUCRFE=$O(^DD(DDUCFI,0,"IX",DDUCRFI,DDUCRFE))
+ S DDUCRFE=$O(^DD(DDUCFI,0,"IX",DDUCRFI,DDUCRFE)) ;HUH??
  D
  . F  S DDUCRFE=$O(^DD(DDUCFI,0,"IX",DDUCXREF,DDUCRFI,DDUCRFE)) Q:'DDUCRFE  D
  .. I 'DDUCRFEP S DDUCRFEP=DDUCRFE Q
  .. I DDUCRFE'=DDUCRFEP D
+MN ...N I F I=0:0 S I=$O(^DD(DDUCRFI,DDUCRFE,1,I)) Q:'I  I +$G(^(I,0))=DDUCFI,$P(^(0),U,2)=DDUCXREF,$P(^(0),U,3)="MNEMONIC" K I Q
+ ...Q:'$D(I)
  ... W !?5,"*File: ",DDUCRFI," Index: """_DDUCXREF_""" has duplicate Fields."
  ... W !?21,"Field: ",DDUCRFEP,"  Field: ",DDUCRFE
  .. S DDUCRFEP=DDUCRFE

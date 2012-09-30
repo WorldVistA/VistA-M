@@ -1,5 +1,5 @@
-PSODISP ;BIR/SAB,PWC-MANUAL BARCODE RELEASE FUNCTION ;03/02/93
- ;;7.0;OUTPATIENT PHARMACY;**15,71,131,156,185,148,247,200**;DEC 1997;Build 7
+PSODISP ;BIR/SAB,PWC - MANUAL BARCODE RELEASE FUNCTION ;03/02/93
+ ;;7.0;OUTPATIENT PHARMACY;**15,71,131,156,185,148,247,200,385**;DEC 1997;Build 27
  ;Reference to $$SERV^IBARX1 supported by DBIA 2245
  ;Reference to ^PSD(58.8 supported by DBIA 1036
  ;Reference to ^PS(55 supported by DBIA 2228
@@ -78,6 +78,7 @@ UPDATE I $G(ISUF) W $C(7),!!?7,"Prescription "_$P(^PSRX(RXP,0),"^")_" - Original
  N BFILL S BFILL=0
  S PSOCPRX=$P(^PSRX(RXP,0),"^") D CP^PSOCP
  W !?7,"Prescription Number "_$P(^PSRX(RXP,0),"^")_" Released"
+ I $$STATUS^PSOBPSUT(RXP)]"",$$WINFILL^PSODISPS(RXP) D SIGMSG^PSODISPS
  ;initialize bingo board variables
  I $G(LBLP),$P(^PSRX(RXP,0),"^",11)["W" S BINGRO="W",BINGNAM=$P(^PSRX(RXP,0),"^",2),BINGDIV=$P(^PSRX(RXP,2),"^",9)
  I $G(PSODISP)=2.4 D    ;HL7 v2.4 dispensing machines

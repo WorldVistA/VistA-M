@@ -1,6 +1,6 @@
-RCDPRPL4 ;WISC/RFJ/PJH - receipt profile listmanager options ; 5/6/11 12:30pm
- ;;4.5;Accounts Receivable;**169,172,173,269**;Mar 20, 1995;Build 113
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPRPL4 ;WISC/RFJ/PJH-receipt profile listmanager options ;1 Apr 01
+ ;;4.5;Accounts Receivable;**169,172,173,269,276**;Mar 20, 1995;Build 87
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
  ;  this routine contains the entry points for receipt management
@@ -83,7 +83,7 @@ ERAWL(RCSCR) ; Generate automatic dec adj from ERA Worklist in RCSCR
  ;       returned = 2 if passed by ref and adjustments aborted
  ;       returned = -1 if error
  ;       returned = 0 if no WL adjustments found
- N RCZ,RCZ0,Z00,V00,RCCOM,RC1,RCADJ,RCOK
+ N RCZ,RCZ0,Z00,V00,RCCOM,RC1,RCADJ,RCOK,WLA
  S RC1=1,RCZ=0,RCADJ=0
  F  S RCZ=$O(^RCY(344.49,RCSCR,1,RCZ)) Q:'RCZ!(RCADJ=2)  S V00=$G(^(RCZ,0)),RCZ0=0 F  S RCZ0=$O(^RCY(344.49,RCSCR,1,RCZ,1,RCZ0)) Q:'RCZ0!(RCADJ=2)  S Z00=$G(^(RCZ0,0)) Q:"12"'[+$P(Z00,U,5)  D
  . S RCCOM(1)=$P(Z00,U,9)
@@ -95,9 +95,13 @@ ERAWL(RCSCR) ; Generate automatic dec adj from ERA Worklist in RCSCR
  . I $P(Z00,U,8)=1 D  Q  ; previously done
  .. I $P(Z00,U,5)=1 W !,"  Automatic decrease adj from ERA Worklist for bill #"_$P($G(^PRCA(430,+$P(V00,U,7),0)),U),!,"    for amount of "_$J(+$P(Z00,U,3),"",2)_" was previously completed" S RCADJ=1
  . I $P(Z00,U,5)=1 D  Q  ; Decrease adj
- .. I '$$INCDEC^RCBEUTR1($P(V00,U,7),$P(Z00,U,3),.RCCOM,,,1) D
- ... W !,"  Could not perform automatic decrease adj from ERA Worklist for ",!,"    bill # "_$P($G(^PRCA(430,+$P(V00,U,7),0)),U)_" for amount of "_$J(+$P(Z00,U,3),"",2)
- ... S RCADJ=-1
+ .. S WLA=$$INCDEC^RCBEUTR1($P(V00,U,7),$P(Z00,U,3),.RCCOM,,,1) I 'WLA D
+ ... ; PRCA276 - $$INCDEC can now return "0^1" which means a negative claim balance could have occurred if the decrease adjustment was applied to the claim
+ ... S RCADJ=-1 W !,"  Could not perform automatic decrease adj from ERA Worklist for ",!,"    bill # "_$P($G(^PRCA(430,+$P(V00,U,7),0)),U)_" for amount of "_$J(+$P(Z00,U,3),"",2)
+ ... I $P(WLA,U,2) D
+ .... S RCADJ=2
+ .... W !,"WARNING:  Receipt cannot be processed.",!,"Processing this receipt will cause this bill to have a negative balance",!,"which is outside the scope of VA Accounting regulations."
+ .... W !,"Correct the error and reprocess this receipt."
  .. E  D  ; success
  ... D UPD(RCSCR,RCZ,RCZ0)
  ... S RCADJ=1

@@ -1,5 +1,5 @@
-SRTPUTL4 ;BIR/SJA - RISK ASSESSMENT UTILITY ;05/15/08
- ;;3.0; Surgery ;**167**;24 Jun 93;Build 27
+SRTPUTL4 ;BIR/SJA - RISK ASSESSMENT UTILITY ;07/20/2011
+ ;;3.0;Surgery;**167,176**;24 Jun 93;Build 8
  N SRZZ,SRXX,SRX1
  S SRZ=0 F  S SRZ=$O(SRYY(139.5,SRTPP,SRZ)) Q:'SRZ  D
  .I $P(SRYY(139.5,SRTPP,SRZ,"I"),"^")="" S SRZ1=$P($G(SRYY(139.5,SRTPP,SRZ,"I")),"^",2) D TR S X=$T(@SRP),SRFLD=$P(X,";;",2),SRX(SRMM,SRZ)=$P(SRFLD,"^",2)_"^"_SRZ1
@@ -151,7 +151,6 @@ ADC ;;143^PRA at Listing^
 ADD ;;144^PRA at Transplant^
 ADE ;;145^Hypertension Requiring Meds^
 ADF ;;146^Transfusion >4 RBC Units^
-ADG ;;147^Diabetes Mellitus^
 ADH ;;148^Reoperation for Bleeding^
 ADI ;;149^Amiodarone Use^
 AEJ ;;150^Heparin Sensitivity^
@@ -175,10 +174,8 @@ AFG ;;167^PA Systolic Pressure^
 AFH ;;168^PAW Mean Pressure^
 AFI ;;169^FEV1 ^
 AGJ ;;170^Date of Death^
-AGA ;;171^Current Smoker^
 AGB ;;172^Prior MI^
 AGC ;;173^Number of Prior Heart Surgeries^
-AGD ;;174^Cerebral Vascular Disease^
 AGE ;;175^Congestive Heart Failure (CHF)^
 AGF ;;176^IV NTG within 48 Hours^
 AGG ;;177^Current Digoxin Use^
@@ -195,4 +192,10 @@ AIA ;;191^Renal Failure Requiring Dialysis^
 AIB ;;192^Perioperative MI^
 AIC ;;193^Operative Death^
 AIG ;;197^Plasmapheresis^
+AIH ;;198^Tobacco Use^
+AII ;;199^Tobacco Use Timeframe^
+BJJ ;;200^Diabetes Mellitus: Chronic, Long-term Management^
+BJA ;;201^Diabetes Mellitus: Management Prior to Surgery^
+BJB ;;202^Prior Surgical Repair/Carotid Artery Obstruction^
+BJC ;;203^History of CVD Events^
  Q

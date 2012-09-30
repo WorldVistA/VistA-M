@@ -1,11 +1,12 @@
 PSOHLSNC ;BIR/RTR - Send CHCS message to CPRS ;07/03/02
- ;;7.0;OUTPATIENT PHARMACY;**111,157,143,225**;DEC 1997;Build 29
+ ;;7.0;OUTPATIENT PHARMACY;**111,157,143,225,404**;DEC 1997;Build 4
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference to ^PS(51.2 supported by DBIA 2226
  ;External reference to ^PSDRUG( supported by DBIA 221
  ;External reference to ^PS(50.607 supported by DBIA 2221
  ;External reference to ^PS(50.606 supported by DBIA 2174
  ;External reference to EN^PSSUTIL1 supported by DBIA 3179
+ ;External reference to ^ICDCODE sup DBIA 3990
  ;
  ;PSOPND=Internal number from 52.41
  ;PSOPNDST=Order Control Code Status
@@ -45,8 +46,11 @@ DG1 ;Build DG1 segment
  F LP=1:1:8 Q:'$D(^PS(52.41,PSOPND,"ICD",LP,0))  D
  . S VDG="",VDG=^PS(52.41,PSOPND,"ICD",LP,0) Q:$P(VDG,U,1)=""
  . S (DG,DXDESC)=""
- . S DXDESC=$$GET1^DIQ(80,$P(VDG,U,1)_",",10),PSOXFLD(1)=LP
- . S PSOXFLD(3)=$P(VDG,U,1)_U_DXDESC_U_"80"_U_$$GET1^DIQ(80,$P(VDG,U,1)_",",.01)_U_DXDESC_U_"ICD9"
+ . N PSOARRY,PSOICDD,PSOICDDX  ;*404
+ . S PSOICDDX=$$ICDDX^ICDCODE($P(VDG,U,1))  ;*404
+ . S PSOICDD=$$ICDD^ICDCODE($P(PSOICDDX,U,2),"PSOARRY"),PSOXFLD(1)=LP  ;*404
+ . S DXDESC=PSOARRY(1)  ;*404
+ . S PSOXFLD(3)=$P(VDG,U,1)_U_DXDESC_U_"80"_U_$P(PSOICDDX,U,2)_U_DXDESC_U_"ICD9"  ;*404
  . D SEG
  Q
 ORC ;Build ORC segment

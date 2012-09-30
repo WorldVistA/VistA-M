@@ -1,5 +1,5 @@
-DGRP6CL ;ALB/TMK - REGISTRATION SCREEN 6 FIELDS Conflict locations ; 09/15/2005
- ;;5.3;Registration;**689,751,764**;Aug 13, 1993;Build 16
+DGRP6CL ;ALB/TMK,LBD - REGISTRATION SCREEN 6 FIELDS Conflict locations ; 6/23/09 4:08pm
+ ;;5.3;Registration;**689,751,764,797**;Aug 13, 1993;Build 24
  ;
 CLLST(DFN,DGCONF,DGPOSS,DGMSE) ;
  ; For patient DFN:
@@ -10,15 +10,12 @@ CLLST(DFN,DGCONF,DGPOSS,DGMSE) ;
  ; DGPOSS = array of possible conflict locations, based on service
  ;          episode dts DGPOSS(conf loc)=""
  ; DGMSE = array of military svc episodes
- ;          DGMSE(1-3)=fr dt^to dt^branch ien^comp code
+ ;          DGMSE(1-n)=fr dt^to dt^branch ien^comp code
  ;
- N DGZ,DGZ0,DGZ1,DG32,DG3291,DIQUIET,FRTO
+ N DGZ,DGZ0,DIQUIET,FRTO
  S DIQUIET=1 K DGCONF,DGPOSS
- S DG32=$G(^DPT(DFN,.32)),DG3291=$G(^(.3291))
- S DGZ1=0
- F DGZ=1:1:3 S DGZ0=$S(DGZ=1:"5^5^6^7",DGZ=2:"19^10^11^12",1:"20^15^16^17") D
- . Q:$S($P(DG32,U,+DGZ0)="Y":0,1:'$P(DG32,U,+DGZ0))
- . S DGZ1=DGZ1+1,DGMSE(DGZ1)=$P(DG32,U,$P(DGZ0,U,3))_U_$P(DG32,U,$P(DGZ0,U,4))_U_$P(DG32,U,$P(DGZ0,U,2))_U_$P(DG3291,U,DGZ)
+ ; Get Military Service Episodes and store in DGMSE array (DG*5.3*797)
+ D GETMSE
  ;
  ; Must chk all possible/on-file conf locs for valid mil svc pd
  ; Extract OEF/OIF data
@@ -33,6 +30,22 @@ CLLST(DFN,DGCONF,DGPOSS,DGMSE) ;
  . S $P(DGCONF(DGCONFX),U,4)=$G(DGZ("LOCK",DGZ0))
  F DGCONF="OEF","OIF","UNK" D CKDT^DGRP6CL1(.DGCONF,.DGMSE,.DGPOSS)
  F DGCONF="VIET","LEB","GREN","PAN","GULF","SOM","YUG" F FRTO=1,0 S $P(DGCONF(DGCONF),U,$S(FRTO:1,1:2))=$$GETDT^DGRPMS(DFN,DGCONF,FRTO) I FRTO=0 D CKDT^DGRP6CL1(.DGCONF,.DGMSE,.DGPOSS)
+ Q
+ ;
+GETMSE ;Get Military Service Data and store in DGMSE array (DG*5.3*797)
+ ;DGMSE(1-3)=fr dt^to dt^branch ien^comp code
+ ;Get MSE data from MSE sub-file #2.3216, if it's populated
+ N MSE,DGZ,DGZ0,DGZ1,DG32,DG3291
+ I $D(^DPT(DFN,.3216)) D  Q
+ . D GETMSE^DGMSEUTL(DFN,.MSE)
+ . S (MSE,DGZ)=0
+ . F  S MSE=$O(MSE(MSE)) Q:'MSE  S DGZ=DGZ+1,DGMSE(DGZ)=$P(MSE(MSE),U,1,4)
+ ;Else get MSE data from .32 and .3291 nodes of Patient file #2
+ S DG32=$G(^DPT(DFN,.32)),DG3291=$G(^(.3291))
+ S DGZ1=0
+ F DGZ=1:1:3 S DGZ0=$S(DGZ=1:"5^5^6^7",DGZ=2:"19^10^11^12",1:"20^15^16^17") D
+ . Q:$S($P(DG32,U,+DGZ0)="Y":0,1:'$P(DG32,U,+DGZ0))
+ . S DGZ1=DGZ1+1,DGMSE(DGZ1)=$P(DG32,U,$P(DGZ0,U,3))_U_$P(DG32,U,$P(DGZ0,U,4))_U_$P(DG32,U,$P(DGZ0,U,2))_U_$P(DG3291,U,DGZ)
  Q
  ;
 YN(DGRPX,X) ;Format Yes/No fld in $P(DGRPX,U,X)
@@ -68,7 +81,8 @@ EN1 ; Entry from conf subscreen off reg screen 6
  S DGCT=DGCT+1,DIR("A",DGCT)=$$SSNNM^DGRPU(DFN)
  S DGCT=DGCT+1,DIR("A",DGCT)="",$P(DIR("A",DGCT),"=",81)=""
  S DGCT=DGCT+1,DIR("A",DGCT)=$S($O(DGMSE(0)):"MILITARY SERVICE PERIODS:",1:"NO SERVICE PERIODS FOR THIS PATIENT - NO CONFLICT LOC CAN BE ENTERED")
- S Z=0 F  S Z=$O(DGMSE(Z)) Q:'Z  D
+ S Z=0 F  S Z=$O(DGMSE(Z)) Q:'Z!(Z>4)  D
+ . I Z=4 S DGCT=DGCT+1,DIR("A",DGCT)=$J("",3)_"<more episodes>" Q
  . S DGCT=DGCT+1,DIR("A",DGCT)=$J("",3)_$E($$EXTERNAL^DILFD(2,.325,"",$P(DGMSE(Z),U,3))_$S($P(DGMSE(Z),U,4)'="":"/"_$$SVCCOMP($P(DGMSE(Z),U,4)),1:"")_$J("",30),1,30)
  . S DIR("A",DGCT)=DIR("A",DGCT)_"  ("_$S($P(DGMSE(Z),U):$$FMTE^XLFDT($P(DGMSE(Z),U),"5DZ"),1:"missing")_"-"_$S($P(DGMSE(Z),U,2):$$FMTE^XLFDT($P(DGMSE(Z),U,2),"5DZ"),1:"missing")_")"
  S DGCT=DGCT+1,DIR("A",DGCT)=" "

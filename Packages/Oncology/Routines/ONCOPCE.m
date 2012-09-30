@@ -1,8 +1,15 @@
-ONCOPCE ;HINES OIFO/GWB PCE MAIN ROUTINE ;04/28/00
- ;;2.11;ONCOLOGY;**6,7,11,13,16,18,19,22,26,29**;Mar 07, 1995
- N D0,DA,DD,DIC,DIE,DINUM,DIR,DLAYGO,DO,DR,DP,DL,DQ,DM,DK,DI,DIEL,DOV
+ONCOPCE ;HINES OIFO/GWB PCE MAIN ROUTINE ;08/15/11
+ ;;2.11;ONCOLOGY;**6,7,11,13,16,18,19,22,26,29,47,54**;Mar 07, 1995;Build 10
+ ;
+ N D0,DA,DATEDX,DD,DIC,DIE,DINUM,DIR,DLAYGO,DO,DR,DP,DL,DQ,DM,DK,DI,DIEL
+ N DOV,ITFLAG,ONCONUM,ONCOPA,%DT
  G:'ONCOD0P EXIT S ONCONUM=+ONCOD0P N ONCOD0P
  G:'ONCOD0 EXIT S ONCOPA=ONCOD0 N ONCOD0
+ S DATEDX=$P($G(^ONCO(165.5,ONCONUM,0)),U,16)
+ I DATEDX>3111231 D ^ONCPM Q
+ I DATEDX<3120000 D
+ .W !!,?10,"DATE DX earlier than 2012.  Performance Measures not collected."
+ .W !,?10,"Checking for PCE eligibility..."
  K PCEITC
  S PCEITC("C16.0")="" ;Cardia, NOS
  S PCEITC("C16.1")="" ;Fundus of stomach
@@ -94,7 +101,7 @@ ONCOPCE ;HINES OIFO/GWB PCE MAIN ROUTINE ;04/28/00
  S PCEITC("C70.1")="" ;Spinal meninges
  S PCEITC("C70.9")="" ;Meninges, NOS
  S PCEITC("C71.0")="" ;Cerebrum
- S PCEITC("C71.1")="" ;Fontal lobe
+ S PCEITC("C71.1")="" ;Frontal lobe
  S PCEITC("C71.2")="" ;Temporal lobe
  S PCEITC("C71.3")="" ;Parietal lobe
  S PCEITC("C71.4")="" ;Occipital lobe
@@ -182,3 +189,6 @@ CHDTOT ;Date output transform for fields #1103 and #1105
  I Y=8888888 S Y="88/8888" Q
  S Y=$E(Y,4,5)_"/"_($E(Y,1,3)+1700)
  Q
+ ;
+CLEANUP ;Cleanup
+ K ONCOANS,Y

@@ -16,7 +16,7 @@ BUILD ;BUILD MESSAGE IN UTILITY AND TRANSMIT
  ;       to be changed back before 5.0 is released for Alpha test.
  ;
  S XMY(XMDUZ)=""
- S XMY("XXX@Q-CRD.VA.GOV")="" ;,DIC=3.8,DIC(0)="MOX",X="CRD" D ^DIC K DIC I Y<0 S XMY(.5)=""
+ S XMY("XXX@Q-CRD.DOMAIN.EXT")="" ;,DIC=3.8,DIC(0)="MOX",X="CRD" D ^DIC K DIC I Y<0 S XMY(.5)=""
  ;I Y>0 S DA=+Y,D1=0 F I=1:1 S D1=$O(^XMB(3.8,DA,1,"B",D1)) Q:'D1  S XMY(D1)=""
  D ^XMD K ^TMP("PRCFARR",$J) Q
 CREATE ;CREATE TRANSMISSION RECORD

@@ -1,4 +1,4 @@
-PRCATR3 ; GENERATED FROM 'PRCA TRANS PROFILE' PRINT TEMPLATE (#421) ; 06/27/96 ; (FILE 433, MARGIN=80)
+PRCATR3 ; GENERATED FROM 'PRCA TRANS PROFILE' PRINT TEMPLATE (#421) ; 01/12/12 ; (FILE 433, MARGIN=80)
  G BEGIN
 N W !
 T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
@@ -11,19 +11,20 @@ M D @DIXX
  Q
 BEGIN ;
  S:'$D(DN) DN=1 S DISTP=$G(DISTP),DILCT=$G(DILCT)
- I $D(DXS)<9 F X=0:0 S X=$O(^DIPT(421,"DXS",X)) Q:'X  S Y=$O(^(X,"")) F X=X:0 Q:Y=""  S DXS(X,Y)=^(Y),Y=$O(^(Y))
+ I $D(DXS)<9 M DXS=^DIPT(421,"DXS")
+ S I(0)="^PRCA(433,",J(0)=433
  D N:$X>0 Q:'DN  W ?0 W "ACCOUNT:"
- D N:$X>9 Q:'DN  W ?9 X DXS(1,9) K DIP K:DN Y W $E(X,1,25)
+ D N:$X>9 Q:'DN  W ?9 N DIERR X DXS(1,9.3) S X=$$EXTERNAL^DIDU(340,.01,"",$P(DIP(201),U,1)) S D0=I(0,0) K DIP K:DN Y W $E(X,1,25)
  D N:$X>34 Q:'DN  W ?34 W "SSN:"
  W ?40 S X=$$SSN^RCFN01(+$$EN^PRCAFN1(D0)),X=$S(X<0:"",1:X) W ?40,X K DIP K:DN Y
  D N:$X>0 Q:'DN  W ?0 W "TRANS. NO:"
  S X=$G(^PRCA(433,D0,0)) D N:$X>11 Q:'DN  W ?11,$E($P(X,U,1),1,9)
  D N:$X>34 Q:'DN  W ?34 W "BILL NO:"
- D N:$X>49 Q:'DN  W ?49 S Y=$P(X,U,2) S Y=$S(Y="":Y,$D(^PRCA(430,Y,0))#2:$P(^(0),U,1),1:Y) W $E(Y,1,30)
+ W ?44 X DXS(2,9) K DIP K:DN Y
  D N:$X>0 Q:'DN  W ?0 W "TRANS. DATE:"
  S X=$G(^PRCA(433,D0,1)) D N:$X>17 Q:'DN  W ?17 S Y=$P(X,U,1) D DT
  D N:$X>34 Q:'DN  W ?34 W "TRANS. TYPE:"
- D N:$X>49 Q:'DN  W ?49 X DXS(2,9.4) S X=X_Y K DIP K:DN Y W $E(X,1,26)
+ D N:$X>49 Q:'DN  W ?49 X DXS(3,9) K DIP K:DN Y W $E(X,1,26)
  D T Q:'DN  W ?2 D EN1^PRCADR3 K DIP K:DN Y
  D N:$X>0 Q:'DN  W ?0 W " "
  D N:$X>0 Q:'DN  W ?0 W "Brief Comment: "
@@ -39,11 +40,12 @@ A1 ;
  S X=$G(^PRCA(433,D0,7,D1,0)) S DIWL=13,DIWR=78 D ^DIWP
  Q
 A1R ;
- D A^DIWW
+ D 0^DIWW
+ D ^DIWW
  D N:$X>0 Q:'DN  W ?0 W "RECEIPT #: "
  S X=$G(^PRCA(433,D0,1)) W ?13,$E($P(X,U,3),1,10)
  D T Q:'DN  D N D N:$X>0 Q:'DN  W ?0 W "PROCESSED BY: "
- S X=$G(^PRCA(433,D0,0)) W ?16 S Y=$P(X,U,9) S Y=$S(Y="":Y,$D(^VA(200,Y,0))#2:$P(^(0),U,1),1:Y) W $E(Y,1,35)
+ S X=$G(^PRCA(433,D0,0)) W ?16 S Y=$P(X,U,9) S Y=$S(Y="":Y,$D(^VA(200,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,35)
  K Y K DIWF
  Q
 HEAD ;

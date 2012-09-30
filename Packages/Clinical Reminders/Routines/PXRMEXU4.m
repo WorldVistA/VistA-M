@@ -1,5 +1,5 @@
-PXRMEXU4 ; SLC/PJH,PKR - Reminder Exchange #4, dialog changes. ;06/30/2009
- ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
+PXRMEXU4 ;SLC/PJH,PKR - Reminder Exchange #4, dialog changes. ;02/29/2012
+ ;;2.0;CLINICAL REMINDERS;**6,12,22**;Feb 04, 2005;Build 160
  ;===============================================
 DLG(FDA,NAMECHG) ;Check the dialog for renamed entries, called by
  ;silent installer. KIDSDONE is newed in INSDLG^PXRMEXSI.
@@ -172,7 +172,7 @@ DLG(FDA,NAMECHG) ;Check the dialog for renamed entries, called by
  . I FINDING'=OFINDING D
  .. S ^TMP("PXRMEXIA",$J,"DIAF",$P(IENS,",",1),OFINDING)=FINDING
  . ;Convert ICD9 codes to `ien format
- . I $P(FINDING,".")="ICD9" S FDA(801.4118,IENS,.01)=$$ICD9(FINDING)
+ . I $P(FINDING,".")="ICD9" S FDA(801.4118,IENS,.01)="ICD9."_$$ICD9(FINDING)
  ;
  I ACTION="Q" S PXRMDONE=1 Q
  ;Process DIALOG COMPONENT

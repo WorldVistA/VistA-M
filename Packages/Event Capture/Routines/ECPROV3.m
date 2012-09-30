@@ -1,9 +1,10 @@
-ECPROV3 ;BIR/MAM,JPW - Event Capture Provider Summary (cont'd) ;1 Jul 2008
- ;;2.0; EVENT CAPTURE ;**5,8,18,29,47,56,63,72,95**;8 May 96;Build 26
+ECPROV3 ;BIR/MAM,JPW - Event Capture Provider Summary (cont'd) ; 04 Jan 2012  12:06 PM
+ ;;2.0;EVENT CAPTURE;**5,8,18,29,47,56,63,72,95,112**;8 May 96;Build 18
  ; This routine is used when printing the report for
  ; all ACCESSIBLE DSS Units
  ;JAM/3/7/03, This routine now combines ECPROV3, ECPROV4 and ECPROV5
  ;
+ N %H ;112
  S %H=$H D YX^%DTC S ECRDT=Y
  I ECL D  D LOC,PRINT Q
  .I ECPRV=1 D UNIT Q
@@ -38,10 +39,10 @@ MORE ;
  ..;use end date/date range to get CPT description; CTD project.
  ..S ECPI=$$CPT^ICPTCOD(ECCPT,$P(ECED,".")),ECCPT=$P(ECPI,"^",2)
  .S EC725="" I $P(ECPN,"~",3)="E" S EC725=$G(^EC(725,+$P(ECPN,"~",2),0))
- .S ECPNAM=$S($P(ECPN,"~",3)="E":$P(EC725,"^",2)_" "_$P(EC725,"^"),$P(ECPN,"~",3)="I":$P(ECPI,"^",3),1:"UNKNOWN")
+ .S ECPNAM=$S($P(ECPN,"~",3)="E":$P(EC725,"^"),$P(ECPN,"~",3)="I":$P(ECPI,"^",3),1:"UNKNOWN") ;112
  .S ECPSY=$P(ECPN,"~",4),ECPSYN=""
  .I ECPSY'="" S ECPSYN=$P($G(^ECJ(ECPSY,"PRO")),"^",2)
- .W !,?6,$J(ECCPT_" ",6),$E(ECPNAM,1,40)
+ .W !,?6,$J(ECCPT_" ",6),$J($S($P($G(EC725),"^",2)="":ECCPT_" ",1:$P($G(EC725),"^",2)_" "),6),?18,$E(ECPNAM,1,40) ;112
  .W:ECPSYN'="" " [",$E(ECPSYN,1,25),"]"
  .W:$D(ECRY) ?70,ECPRSN
  .W ?105,$J(^TMP($J,ECINZ,ECCN,ECPN,ECPRSN),6)
@@ -121,16 +122,16 @@ PAGE ; end of page
  I $D(ECPG),$E(IOST,1,2)="C-" W !!,"Press <RET> to continue, or ^ to quit  " R X:DTIME I '$T!(X="^") S ECOUT=1 Q
 HDR ; print heading
  W:$Y @IOF W !!,?49,"EVENT CAPTURE PROVIDER SUMMARY",!,?49,"FROM "_$P(ECDATE,"^")_"  TO "_$P(ECDATE,"^",2),!,?49,"Run Date : ",ECRDT
- W !!?3,"Category",!,?6,"CPT Code",?20,"Description"
- W:$D(ECRY) ?70,"Procedure Reason"
- W ?105,"Volume",!,?10,"CPT Modifier (volume)",!
+ W !!?3,"Category",?105,"Procedure/Reason",!,?6,"CPT",?12,"Proc",?18,"Procedure Name" ;112
+ W:$D(ECRY) ?70,"Procedure Reason #1" ;112
+ W ?105,"Volume*",!,?6,"Code",?12,"Code",!,?10,"CPT Modifier (volume)",! ;112
  F LINE=1:1:132 W "-"
  W !!,"Location: "_ECLN,! W:ECDN]"" "DSS Unit: "_ECDN
  I ECPRV,$D(ECUSER) W !!,ECUN,!,ECCN
  Q
 FOOTER ;print page footer
- W !!?4,"Volume totals may represent days, minutes, numbers of procedures"
- W !?4,"and/or a combination of these."
+ W !!?4,"*Volume totals may represent days, minutes, numbers of procedures and/or a combination of these."
+ I $G(ECRY)'="" W !?4,"Procedure/Reason Volume = count of unique combinations of procedure code and procedure reason" ;112
  Q
  ;
 TOTP Q:ECOUT  W !,?105,"------",!,"Total Procedures for "_ECUN,?105,$J(^TMP($J,ECLN,ECDN,ECUN),6)

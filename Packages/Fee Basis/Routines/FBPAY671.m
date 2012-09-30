@@ -1,5 +1,5 @@
-FBPAY671 ;AISC/DMK,TET-CH/CNH PAYMENT HISTORY PRINT ;21/NOV/2006
- ;;3.5;FEE BASIS;**4,32,55,69,101**;JAN 30, 1995;Build 2
+FBPAY671 ;AISC/DMK,TET,BPOIFO/MEC - CH/CNH PAYMENT HISTORY PRINT ; 9/14/09 3:34pm
+ ;;3.5;FEE BASIS;**4,32,55,69,101,108**;JAN 30, 1995;Build 115
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 PRINT ;print data from tmp global
  S FBOUT=0 D:FBCRT&(FBPG) CR Q:FBOUT
@@ -21,7 +21,10 @@ EN1 N FBI,FBINV ;entry point from fbchdi
  .. ;If FPPS Claim ID exists then print it.
  ..I $P(FBINV,U,3)]"" D
  ...W !?5,"FPPS Claim ID: ",$P(FBINV,U,3),"    FPPS Line Item: ",$P(FBINV,U,4)
- ..F FBY="DX","PROC" I $D(^TMP($J,"FB",FBPI,FBVI,FBPT,FBDT,FBI,FBY)) S FBDATA=^(FBY),FBSL=$L(FBDATA,"^") W !?2,FBY,": " F I=1:1:FBSL W $P(FBDATA,U,I),"    "
+ .. ; write admitting diagnosis if present
+ ..I $P(FBINV,U,8)'="" W !?6,"Admit Dx: ",$P(FBINV,U,8)
+ ..I $D(^TMP($J,"FB",FBPI,FBVI,FBPT,FBDT,FBI,"DX")) S FBDATA=^("DX"),FBSL=$L(FBDATA,"^") F I=1:1:FBSL D WRTDX
+ ..I $D(^TMP($J,"FB",FBPI,FBVI,FBPT,FBDT,FBI,"PROC")) S FBDATA=^("PROC"),FBSL=$L(FBDATA,"^") F I=1:1:FBSL D WRTPC
  ..I $D(^TMP($J,"FB",FBPI,FBVI,FBPT,FBDT,FBI,"FBCK")) D EFBCK^FBPAY21(^TMP($J,"FB",FBPI,FBVI,FBPT,FBDT,FBI,"FBCK")) D PMNT^FBAACCB2 K A2
  Q
 CKANC I +$O(^TMP($J,"FB",FBPI,FBVI,FBPT,"A",0)) D PANC(FBI) Q:FBOUT  W !,FBDASH1
@@ -104,9 +107,17 @@ PAGE ;new page
  I FBCRT D CR Q:FBOUT
  D HDR,SH
  Q
-WRTDX I $P(FBDX,"^",K)]"" W ?4,"Dx: ",$$ICD9^FBCSV1($P(FBDX,"^",K)),"  " Q
+WRTDX ; inputs
+ ; FBDATA contains node from ^TMP 
+ ; I contains piece to be written
+ I I=1!($X+$L($P(FBDATA,"^",I))+2>IOM) W !,?4,"DX/POA: "
+ W $P(FBDATA,"^",I)," "
  Q
-WRTPC I $P(FBPROC,"^",L)]"" W ?4,"Proc: ",$$ICD0^FBCSV1($P(FBPROC,"^",L)),"   " Q
+WRTPC ; inputs
+ ; FBDATA contains node from ^TMP
+ ; I contains piece to be written
+ I I=1!($X+$L($P(FBDATA,"^",I))+2>IOM) W !,?4,"PROC: "
+ W $P(FBDATA,"^",I)," "
  Q
 WRTSC ;write service connected
  W !,"SERVICE CONNECTED? ",$S(+VAEL(3):"YES",1:"NO"),!

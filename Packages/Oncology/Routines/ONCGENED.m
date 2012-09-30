@@ -1,5 +1,5 @@
-ONCGENED ;Hines OIFO/GWB - EDITS API ;03/14/11
- ;;2.11;ONCOLOGY;**47,48,49,50,51,53**;Mar 07,1995;Build 31
+ONCGENED ;Hines OIFO/GWB - EDITS API ;10/19/11
+ ;;2.11;ONCOLOGY;**47,48,49,50,51,53,54**;Mar 07,1995;Build 10
  ;
 NAACCR D CLEAR^ONCSAPIE(1)
  K ^TMP("ONC",$J)
@@ -10,9 +10,9 @@ NAACCR D CLEAR^ONCSAPIE(1)
  S ZERO=0
  S NINE=9
  S ZNINE="09"
- S EXTRACT=$O(^ONCO(160.16,"B","VACCR EXTRACT V12.1",0))
+ S EXTRACT=$O(^ONCO(160.16,"B","VACCR EXTRACT V12.2",0))
  S EXT="VACCR"
- S EXTVER=12.1
+ S EXTVER=12.2
  S DEVICE=0,OIEN=0,PAGE=1,OUT=0
  S OSP=$O(^ONCO(160.1,"C",DUZ(2),0))
  I OSP="" S OSP=$O(^ONCO(160.1,0))
@@ -93,6 +93,20 @@ CHKSUM ;Compute checksum
  Q
  ;
 CHANGE ;Check for change to ONCOLOGY PRIMARY (165.5) record
+ ;first check if there are missing required fields.
+ ;if there are and DTDX>3031231, set abstract status to incomplete - P54
+ N ONCFILE,DTDX,PRM
+ S ONCFILE=165.5,PRM=ONCOD0P
+ S DTDX=$P(^ONCO(165.5,PRM,0),U,16)
+ D F1655^ONCOEDC1
+ I $D(LIST),(DTDX>3031231),ABSTAT=3 D  Q
+ .S ONCTYP="A" D PRINT^ONCOEDC
+ .S DIE="^ONCO(165.5,"
+ .S DA=ONCOD0P
+ .S DR="91///^S X=0" D ^DIE
+ .W !!,"ABSTRACT STATUS changed to 0 (Incomplete).",!
+ .K DIR S DIR(0)="E" D ^DIR
+ ;
  N CHECKSUM,ERRFLG
  S EDITS="NO" D NAACCR K EDITS
  S CHECKSUM=$$CRC32^ONCSNACR(.ONCDST)
@@ -102,13 +116,18 @@ CHANGE ;Check for change to ONCOLOGY PRIMARY (165.5) record
  .W !," You have made a change to a 'Complete' abstract."
  .W !," This abstract needs to be re-run through the EDITS API."
  .W !!," Calling EDITS API..."
+ .S $P(^ONCO(165.5,ONCOD0P,"EDITS"),U,3)="U"
+ .S DIE="^ONCO(165.5,"
+ .S DA=ONCOD0P
+ .S DR="198///^S X=DT"
+ .D ^DIE
  .D ^ONCGENED
  .I ERRFLG'=0 D  Q
  ..W !!," EDITS errors were encountered."
  ..W !!," The ABSTRACT STATUS has been changed to 0 (Incomplete)."
  ..S DIE="^ONCO(165.5,"
  ..S DA=ONCOD0P
- ..S DR="91///0;197///@;198///^S X=DT;199////^S X=DUZ"
+ ..S DR="91///0;197///@;199////^S X=DUZ"
  ..D ^DIE
  ..W !
  ..Q:$G(EAFLAG)="YES"
@@ -119,7 +138,7 @@ CHANGE ;Check for change to ONCOLOGY PRIMARY (165.5) record
  .W !!," No EDITS errors or warnings.  ABSTRACT STATUS = 3 (Complete)."
  .S DIE="^ONCO(165.5,"
  .S DA=ONCOD0P
- .S DR="197///^S X=CHECKSUM;197.1///^S X=EXTVER;198///^S X=DT;199////^S X=DUZ"
+ .S DR="197///^S X=CHECKSUM;197.1///^S X=EXTVER;199////^S X=DUZ"
  .D ^DIE
  .S EDITS="NO" D NAACCR K EDITS
  .S CHECKSUM=$$CRC32^ONCSNACR(.ONCDST)

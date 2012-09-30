@@ -1,5 +1,5 @@
 IBRREL ;ALB/CPM - RELEASE MEANS TEST CHARGES 'ON HOLD' ; 03-MAR-92
- ;;2.0;INTEGRATED BILLING;**95,153,199,347**;21-MAR-94;Build 24
+ ;;2.0;INTEGRATED BILLING;**95,153,199,347,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; Entry point for stand-alone 'release' option
@@ -11,10 +11,6 @@ EN ; Entry point for stand-alone 'release' option
  W !,"charges will be displayed and may be selected to be released to Accounts",!,"Receivable.",!
  ;
 ASK ;
- ;***
- ;I $D(XRT0) S:'$D(XRTN) XRTN="IBRREL" D T1^%ZOSV ;stop rt clock
- ;S XRTL=$ZU(0),XRTN="IBRREL-1" D T0^%ZOSV ;start rt clock
- ;
  R !,"Select PATIENT NAME: ",X:DTIME G END:"^"[$E(X)
  I $E(X,1,2)="??" D HLP1 G ASK
  I $E(X)="?" D HLP G ASK
@@ -27,24 +23,43 @@ ASK ;
  ;
  S IBPT=$$PT^IBEFUNC(DFN) W @IOF,$P(IBPT,"^"),"      Pt ID: ",$P(IBPT,"^",2),! S I="",$P(I,"-",80)="" W I K I
  ;
- ; - display header and list charges
-RESUME W !!,"The following IB Actions ",$S($D(PRCABN):"associated with this bill",1:"for this patient")," are ON HOLD:" D HDR
- S IBQ=0 F IBNUM=1:1 Q:'$D(IBA(IBNUM))  D:'(IBNUM#15)  Q:IBQ  S IBN=IBA(IBNUM) D LST
- . R !,"Enter RETURN to continue or '^' to stop: ",X:DTIME S:X["^"!('$T) IBQ=1 Q
+RESUME ; - display header and list charges
+ ;
+ ; *** This tag is also called by ECME routine IBNCPDPR ***
+ ; Special variable IBNCPDPR will be set to 1 when called from ECME.
+ ; If this variable is set, then processing in this routine will GOTO tag END and quit rather than go back up
+ ; and ask for another patient.
+ ; Also, special variable IBNCPDPRDEF is the entry# in the list if a specific Rx# was chosen from the ECME screen.
+ ; 
+ ;
+ W !!,"The following IB Actions ",$S($D(PRCABN):"associated with this bill",1:"for this patient")," are ON HOLD:"
+ D HDR
+ ;
+ ; display the list of IB charges on hold
+ S IBQ=0 F IBNUM=1:1 Q:'$D(IBA(IBNUM))!IBQ  D  Q:IBQ
+ . I $Y+5>IOSL D PAUSE^VALM1 S:$D(DIRUT) IBQ=1 Q:IBQ  S $Y=0 D HDR
+ . S IBN=IBA(IBNUM) D LST
+ . Q
  ;
  ; - prompt user to select IB Actions
- S DIR(0)="LA^1:"_(IBNUM-1)_"^K:X[""."" X",DIR("A")="Select IB Action"_$E("s",IBNUM>2)_" (REF #) to release (or '^' to exit): ",DIR("?")="^D HELP^IBRREL"
- W ! D ^DIR K DIR I $D(DIRUT)!($D(DUOUT)) G END:$D(PRCABN) D END W ! G ASK
+ S DIR(0)="LA^1:"_(IBNUM-1)_"^K:X[""."" X"
+ S DIR("A")="Select IB Action"_$E("s",IBNUM>2)_" (REF #) to release (or '^' to exit): "
+ I $G(IBNCPDPRDEF) S DIR("B")=IBNCPDPRDEF    ; default value if coming in from ECME
+ S DIR("?")="^D HELP^IBRREL"
+ W ! D ^DIR K DIR
+ I $D(DIRUT)!($D(DUOUT)) G END:($D(PRCABN)!$G(IBNCPDPR)) D END W ! G ASK
  ;
  S IBRANGE=Y,IBSEQNO=1,IBDUZ=DUZ
  ;
  S DIR(0)="Y",DIR("A")="OK to pass "_$S($P(Y,",",2):"these charges",1:"this charge")_" to Accounts Receivable"
- D ^DIR K DIR I 'Y!($D(DIRUT))!($D(DUOUT)) G END:$D(PRCABN) D END W ! G ASK
+ D ^DIR K DIR I 'Y!($D(DIRUT))!($D(DUOUT)) G END:($D(PRCABN)!$G(IBNCPDPR)) D END W ! G ASK
  ;
  ; - pass charges to Accounts Receivable
  W !!,"Passing charges to Accounts Receivable...",! D HDR
  F IBCTR=1:1 S IBNUM=$P(IBRANGE,",",IBCTR) Q:'IBNUM  I $D(IBA(IBNUM)) S IBNOS=IBA(IBNUM) D ^IBR,ERR:Y<1 I Y>0 S IBN=IBA(IBNUM) D LST
  W !!,"The charge"_$E("s",$P(IBRANGE,",",2)>0)_" listed above "_$S($P(IBRANGE,",",2):"have",1:"has")_" been passed to Accounts Receivable.",!
+ ;
+ I $G(IBNCPDPR) W !! S DIR(0)="E" D ^DIR K DIR G END   ; exit for ECME
  ;
  I '$D(PRCABN) W !! S DIR(0)="E" D ^DIR K DIR D END W ! G ASK
  ;
@@ -52,33 +67,33 @@ END K DIC,DIRUT,DUOUT,DTOUT,IBA,IBAFY,IBARTYP,IBATYP,IBCTR,IBN,IBDA,IBDUZ
  K IBFAC,IBI,IBIL,IBRANGE,IBNOS,IBNUM,IBPT,IBQ,IBSEQNO,IBSERV,IBSITE
  K IBTOTL,IBTRAN,IBWHER,VA,VAERR,VADM
  K:'$D(PRCABN) DFN
- ;***
- ;I $D(XRT0) S:'$D(XRTN) XRTN="IBRREL" D T1^%ZOSV ;stop rt clock
  Q
  ;
  ;
 HDR ; Display charge header.
  N IBLINE S $P(IBLINE,"=",81)=""
- W !,IBLINE,!," REF   Action ID  Bill Type",?42,"Bill #",?51,"Fr/Fl Dt",?61,"To/Rls Dt",?73,"Charge"
+ W !,IBLINE,!," REF  Action ID    Bill Type",?42,"Bill #",?51,"Fr/Fl Dt",?61,"To/Rls Dt",?73,"Charge"
  W !,IBLINE Q
  ;
 LST ; Display individual IB Action.
- N IBND,IBND1,IBRXN,IBRX,IBRF,IBRDT,IENS
- S IBND=$G(^IB(IBN,0)),IBND1=$G(^IB(IBN,1)),(IBRXN,IBRX,IBRF,IBRDT)=0
- I $P(IBND,"^",4)["52:" S IBRXN=$P($P(IBND,"^",4),":",2),IBRX=$P($P(IBND,"^",8),"-"),IBRF=$P($P(IBND,"^",4),":",3)
- I $P(IBND,"^",4)["52:"  D
- .I IBRF>0 D
- ..S IENS=+IBRF
- ..S IBRDT=$$SUBFILE^IBRXUTL(+IBRXN,+IENS,52,.01)
- .E  D
- ..S IENS=+IBRXN
- ..S IBRDT=$$FILE^IBRXUTL(+IENS,22)
- W !?1,$J(IBNUM,2),?7,$J(+IBND,9)
- W ?18,$S(IBRXN>0:"Rx #: "_IBRX_$S(IBRF>0:"("_IBRF_")",1:""),1:$P($G(^IBE(350.1,+$P(IBND,"^",3),0)),"^",8))
+ N IBND,IBND1,IBRXN,IBRX,IBRF,IBRDT,IENS,IBECME
+ S IBND=$G(^IB(IBN,0)),IBND1=$G(^IB(IBN,1)),(IBRXN,IBRX,IBRF,IBRDT,IBECME)=0
+ I $P(IBND,"^",4)["52:" D
+ . S IBRXN=+$P($P(IBND,"^",4),":",2)   ; Rx ien
+ . S IBRX=$P($P(IBND,"^",8),"-")       ; external Rx#
+ . S IBRF=+$P($P(IBND,"^",4),":",3)    ; fill# or 0 for original fill
+ . S IBECME=$P($$CLAIM^BPSBUTL(IBRXN,IBRF),U,6)   ; ecme#  DBIA# 4719
+ . I IBRF S IENS=+IBRF,IBRDT=$$SUBFILE^IBRXUTL(+IBRXN,+IENS,52,.01)
+ . I 'IBRF S IENS=+IBRXN,IBRDT=$$FILE^IBRXUTL(+IENS,22)
+ . Q
+ ;
+ W !?1,$J(IBNUM,2),?6,$J(+IBND,9)
+ W ?19,$S(IBRXN>0:"Rx #: "_IBRX_$S(IBRF>0:"("_IBRF_")",1:""),1:$P($G(^IBE(350.1,+$P(IBND,"^",3),0)),"^",8))
  W ?42,$P($P(IBND,"^",11),"-",2)
  W ?51,$$DAT1^IBOUTL($S(IBRXN>0:IBRDT,1:$P(IBND,"^",14)))
  W ?61,$$DAT1^IBOUTL($S($P(IBND,"^",15)'="":($P(IBND,"^",15)),1:$P(IBND1,"^",2)))
  W ?70,$J(+$P(IBND,"^",7),9,2)
+ I IBECME W !?19,"ECME #: ",IBECME
  Q
  ;
 ERR ; Display error message.

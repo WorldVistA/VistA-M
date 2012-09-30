@@ -1,11 +1,12 @@
-PXRMPDRP ;SLC/AGP,PKR - Patient List Demographic report print routine ;09/02/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
- ;
+PXRMPDRP ;SLC/AGP,PKR - Patient List Demographic report print routine ;03/03/2011
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18**;Feb 04, 2005;Build 152
+ ;==========================================
 ADDTXT(TEXT) ;Accumulate text in ^TMP.
  S LINCNT=LINCNT+1
  S ^TMP("PXRMPDEM",$J,LINCNT)=TEXT
  Q
  ;
+ ;==========================================
 APPHDR(DC,DDATA,SUB) ;Build the appointment header.
  I DDATA(SUB,"LEN")'>0 Q
  N HDR,IND,JND,KND,LND,TEMP
@@ -20,6 +21,7 @@ APPHDR(DC,DDATA,SUB) ;Build the appointment header.
  S DDATA(SUB,"HDR")=HDR
  Q
  ;
+ ;==========================================
 APPPRINT(DFN,DDATA,SUB) ;Print appointment data.
  N CLINIC,DATE,HDR,IND,JND,LINE,PCLINIC,PDATE,TEMP
  S (PCLINIC,PDATE)=0
@@ -41,6 +43,7 @@ APPPRINT(DFN,DDATA,SUB) ;Print appointment data.
  . D ADDTXT(LINE)
  Q
  ;
+ ;==========================================
 DELIMHDR(DC,DDATA,SUB) ;Build the delimited header for a data type.
  I DDATA(SUB,"LEN")'>0 Q
  N HDR,IND,JND,KND,LND,MAX,TEMP
@@ -56,6 +59,7 @@ DELIMHDR(DC,DDATA,SUB) ;Build the delimited header for a data type.
  S DDATA(SUB,"HDR")=HDR
  Q
  ;
+ ;==========================================
 DELIMPR(DC,PLIEN,DDATA) ;
  ;Print the delimited report.
  N DATALIST,DFN,IND,NDT,PNAME
@@ -98,6 +102,7 @@ DELIMPR(DC,PLIEN,DDATA) ;
  .. W "\\"
  Q
  ;
+ ;==========================================
 DELTITLE(DC,DATALIST,DDATA) ;Combine all the headers to create the delimited title.
  W !,"PATIENT"_DC
  N IND
@@ -105,6 +110,7 @@ DELTITLE(DC,DATALIST,DDATA) ;Combine all the headers to create the delimited tit
  W "\\"
  Q
  ;
+ ;==========================================
 FINDPR(DFN,DDATA,SUB) ;Print finding information.
  N IND,JND,LINE,TEMP
  D ADDTXT(" ")
@@ -118,6 +124,7 @@ FINDPR(DFN,DDATA,SUB) ;Print finding information.
  . D ADDTXT(LINE)
  Q
  ;
+ ;==========================================
 OUTPUT ;Output the text.
  N IND,LC,LO,VSIZE
  S VSIZE=IOSL-2
@@ -131,6 +138,7 @@ OUTPUT ;Output the text.
  .. S LO=0
  Q
  ;
+ ;==========================================
 PAGE ;
  I ($E(IOST,1,2)="C-")&(IO=IO(0)) D
  . N DIR
@@ -142,6 +150,7 @@ PAGE ;
  I ($E(IOST,1,2)="C-")&(IO=IO(0)) W @IOF
  Q
  ;
+ ;==========================================
 PAPPDATA(DFN,DC,DDATA,SUB) ;Print the delimited appointment data.
  N IND,JND,KND,LINE,LND,PIECE,TEMP
  I DDATA(SUB,"LEN")'>0 Q
@@ -157,35 +166,44 @@ PAPPDATA(DFN,DC,DDATA,SUB) ;Print the delimited appointment data.
  W LINE
  Q
  ;
+ ;==========================================
 PDELDATA(DFN,DC,DDATA,SUB) ;Print the delimited data.
- N IND,JND,KND,LINE,LND,TEMP,TTEMP
+ N IND,JND,KND,LINE,LND,MAX,TEMP,TTEMP
  S TEMP=$G(^TMP("PXRMPLD",$J,DFN,SUB))
  S LINE=""
  F IND=1:1:DDATA(SUB,"LEN") D
  . S JND=$P(DDATA(SUB),",",IND)
  . S KND=""
  . F  S KND=$O(DDATA(SUB,JND,KND)) Q:KND=""  D
- .. S MAX=$P(DDATA(SUB,JND,KND),U,3)
- .. I MAX="" S LINE=LINE_$P(TEMP,U,KND)_DC Q
- .. I +MAX>1 S TTEMP=$P(TEMP,U,KND) F LND=1:1:MAX S LINE=LINE_$P(TTEMP,"~",LND)_DC
+ ..;KND is the piece number in TEMP
+ ..;MAX is the number of occurrences to get.
+ .. S MAX=+$P(DDATA(SUB,JND,KND),U,3)
+ ..;If MAX=0 just append the delimiter character.
+ .. I MAX=0 S LINE=LINE_$P(TEMP,U,KND)_DC Q
+ ..;"~" is the within piece separator for multiple occurrences.
+ .. I MAX>0 S TTEMP=$P(TEMP,U,KND) F LND=1:1:MAX S LINE=LINE_$P(TTEMP,"~",LND)_DC
  W LINE
  Q
  ;
+ ;==========================================
 PFACHDR(DDATA,SUB) ;Build the preferred facility header.
  I DDATA(SUB,0)=1 S DDATA(SUB,"HDR")="PATIENT'S PREFERRED FACILITY"
  Q
  ;
+ ;==========================================
 PFACDATA(DFN,DDATA,SUB) ;Print the patient's preferred facility data, delimited.
  I DDATA(SUB,0)=0 Q
  W ^TMP("PXRMPLD",$J,DFN,"PFAC")
  Q
  ;
+ ;==========================================
 PFACPR(DFN,DDATA,SUB) ;Print the patient's preferred facility.
  I DDATA(SUB,0)=0 Q
  D ADDTXT("Patient's Preferred Facility")
  D ADDTXT(" "_$G(^TMP("PXRMPLD",$J,DFN,"PFAC")))
  Q
  ;
+ ;==========================================
 PFINDATA(DFN,DC,DDATA,SUB) ;Print the finding data.
  N IND,JND,LINE,TEMP
  I DDATA(SUB,"LEN")'>0 Q
@@ -197,6 +215,7 @@ PFINDATA(DFN,DC,DDATA,SUB) ;Print the finding data.
  W LINE
  Q
  ;
+ ;==========================================
 PREMDATA(DFN,DC,DDATA,SUB) ;Print the reminder data.
  N IND,JND,LINE,TEMP
  I DDATA(SUB,"LEN")'>0 Q
@@ -209,6 +228,7 @@ PREMDATA(DFN,DC,DDATA,SUB) ;Print the reminder data.
  W LINE
  Q
  ;
+ ;==========================================
 REGPR(PLIEN,DDATA,SUB) ;
  ;Print the regular report..
  N DATATYPE,DFN,PNAME,LINCNT
@@ -235,6 +255,7 @@ REGPR(PLIEN,DDATA,SUB) ;
  K ^TMP("PXRMPDEM",$J)
  Q
  ;
+ ;==========================================
 REMHDR(DC,DDATA,SUB) ;Build the reminder data delimited header.
  N HDR,IND,JND
  S HDR=""
@@ -244,6 +265,7 @@ REMHDR(DC,DDATA,SUB) ;Build the reminder data delimited header.
  S DDATA(SUB,"HDR")=HDR
  Q
  ;
+ ;==========================================
 REMPR(DFN,DDATA,SUB) ;Print reminder status information.
  N DUE,IND,JND,LAST,LINE,NSP,RIEN,STATUS,TEMP
  D ADDTXT(" ")
@@ -266,6 +288,7 @@ REMPR(DFN,DDATA,SUB) ;Print reminder status information.
  . D ADDTXT(LINE)
  Q
  ;
+ ;==========================================
 TITLE(PLIEN,DELIM) ;Print the report title.
  N LISTNAME
  S LISTNAME=$P(^PXRMXP(810.5,PLIEN,0),U,1)
@@ -280,6 +303,7 @@ TITLE(PLIEN,DELIM) ;Print the report title.
  . D ADDTXT("   Created on "_$$FMTE^XLFDT(DCREAT))
  Q
  ;
+ ;==========================================
 VADPTPR(DFN,DNAME,DTYPE,DDATA,SUB) ;Print data returned by a VADPT call.
  N IND,JND,KND,LINE,LND,MAX,TEMP,TTEMP
  D ADDTXT(" ")
@@ -290,6 +314,7 @@ VADPTPR(DFN,DNAME,DTYPE,DDATA,SUB) ;Print data returned by a VADPT call.
  . S KND=""
  . F  S KND=$O(DDATA(SUB,JND,KND)) Q:KND=""  D
  .. S TTEMP=$P(TEMP,U,KND)
+ ..;MAX is the number of occurrences to print.
  .. S MAX=+$P(DDATA(SUB,JND,KND),U,3)
  .. I MAX=0 S MAX=1
  .. F LND=1:1:MAX D

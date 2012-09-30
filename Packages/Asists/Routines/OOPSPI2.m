@@ -1,0 +1,4 @@
+OOPSPI2 ;HINES CIOFO/GB-Patch OOPS*1.1*2 pre-install ;12/10/98
+ ;;2.0;ASISTS;;Jun 03, 2002
+ K ^DD(2260,0,"ID",1)
+ Q

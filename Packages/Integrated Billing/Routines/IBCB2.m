@@ -1,5 +1,5 @@
 IBCB2 ;ALB/AAS - Process bill after enter/edited ;13-DEC-89
- ;;2.0;INTEGRATED BILLING;**52,51,161,182,155**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**52,51,161,182,155,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;MAP TO DGCRB2
@@ -148,7 +148,7 @@ LOCERR ; Check for local edits
  ; Execute screen post-processor for bills with local scrn 9 affiliations
  N IBZ,IBXIEN,IBPRT
  K IBXERR
- S IBZ=$$LOCSCRN^IBCSC9(IBIFN)
+ S IBZ=$$LOCSCRN^IBCSC11(IBIFN)     ; IB*2.0*447 BI
  I IBZ S IBXIEN=IBIFN W !!,"... Executing local IB edits" D FPOST^IBCEFG7(IBZ,0,.IBXERR) I '$D(IBXERR) W !!,"No errors found for local edits"
  Q
  ;
@@ -218,5 +218,5 @@ IIQMED(IBIFN) ; DSS QuadraMed Interface: QuadraMed Claim Scrubber
  ; QuadraMed Scrubber EN^VEJDIBSC returns IBQMED = 1 if no error found, returns 0 if error found
  ;
  N IBQMED S IBQMED=1
- I +$G(IBIFN),$$QMED^IBCU1("EN^VEJDIBSC",IBIFN) D EN^VEJDIBSC(IBIFN)
+ ;I +$G(IBIFN),$$QMED^IBCU1("EN^VEJDIBSC",IBIFN) D EN^VEJDIBSC(IBIFN)
  Q IBQMED

@@ -1,5 +1,5 @@
 MDCSPV1 ;HINES OIFO/DP/BJ - Build Segment PV1 Routine;17 Aug 2007
- ;;1.0;CLINICAL PROCEDURES;**16**;Apr 01, 2004;Build 280
+ ;;1.0;CLINICAL PROCEDURES;**16,23**;Apr 01, 2004;Build 281
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; - This sub-routine is the Segment Builder proper for the HL7 Patient
@@ -83,7 +83,9 @@ BUILD(VAFSTR,VAFNUM,PMOOV,PSEG,TRUBL) ;
  .; developers did with the variable that was supposed to hold the subfield separator.
  .S RUMBE=$TR(RUMBE,"-","^")
  .; - assemble field from components; no separators for absent trailing components
- .I RUMBE'="" S WRDLO=WRDLO_HLRP_RUMBE
+ .; blj 17 Mar 2011: The wrong delimiter was being used below
+ .;I RUMBE'="" S WRDLO=WRDLO_HLRP_RUMBE
+ .I RUMBE'="" S WRDLO=WRDLO_HLCM_RUMBE
  .I WRDLO'="" S FLD=WRDLO
  ;
  S PRAW(3)=FLD

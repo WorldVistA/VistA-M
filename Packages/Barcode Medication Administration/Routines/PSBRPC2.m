@@ -1,5 +1,5 @@
 PSBRPC2 ;BIRMINGHAM/EFC-BCMA RPC BROKER CALLS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**6,3,16,32**;Mar 2004;Build 32
+ ;;3.0;BAR CODE MED ADMIN;**6,3,16,32,61**;Mar 2004;Build 11
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -27,7 +27,7 @@ GETOHIST(RESULTS,DFN,PSBORD) ;
  ..F PSBL=1:1 Q:'$D(^PSB(53.79,PSBIEN,.7,PSBL,0))  S PSB=PSB+1,^TMP("PSB",$J,PSB)="SOL^"_^PSB(53.79,PSBIEN,.7,PSBL,0)
  ..S PSB=PSB+1,^TMP("PSB",$J,PSB)="END"
  .I $P(PSBUIDS,U,1)="I" Q  ; IV parameters say bag is invalid
- .I $P(PSBUIDS,U,8)'="",$P(PSBUIDS,U,2)'="I",$P(PSBUIDS,U,2)'="S" Q  ; label has been reprinted/distroyed etc. - bag is not infusing or stopped
+ .I $P(PSBUIDS,U,8)'="",$P(PSBUIDS,U,2)'="I",$P(PSBUIDS,U,2)'="S" Q  ; label has been reprinted/destroyed etc. - bag is not infusing or stopped
  .S PSB=PSB+1,^TMP("PSB",$J,PSB)=$P(PSBUIDS,U,5)_U_PSBUID_U_U_PSBNOW_U_"A"
  .S PSBUIDP=$P(PSBUIDS,U,10,999)
  .F Y=3:1 S PSBMEDTY=$P(PSBUIDP,U,Y) Q:PSBMEDTY=""  D
@@ -65,10 +65,10 @@ BAGDTL(RESULTS,PSBUID,PSBORD)  ; bag detail
  ; audit
  S PSBGA="" I $D(PSBMLA(.9,0)) D
  .S PSBX="0" F  S PSBX=$O(PSBMLA(.9,PSBX)) Q:PSBX=""  I ((PSBMLA(.9,PSBX,0)["ACTION STATUS")!(PSBMLA(.9,PSBX,0)["ADMINISTRATION STATUS")) D  Q
- ..S PSBDATE=$P(PSBMLA(0),U,4) I (PSBX-2)>0 D DT^DILF("ENPST",$P(PSBMLA(.9,PSBX-2,0),"'",2),.PSBDATE)
+ ..S PSBDATE=$P(PSBMLA(0),U,4) I (PSBX-2)>0&(PSBMLA(.9,1,0)["ACTION STATUS"!(PSBMLA(.9,1,0)["ADMINISTRATION STATUS")) D DT^DILF("ENPST",$P(PSBMLA(.9,PSBX-2,0),"'",2),.PSBDATE) ;verify entry is an action- PSB*3*61
  ..S PSBTMP(10000000-PSBDATE,"B")=PSBDATE_U_$$INITIAL($P(PSBMLA(0),U,5))_U_$P(PSBMLA(.9,PSBX,0),"'",2)
  ..S PSBGA=1
- .S PSBX="0" F  S PSBX=$O(PSBMLA(.9,PSBX)) Q:PSBX=""  I ((PSBMLA(.9,PSBX,0)["ACTION STATUS")!(PSBMLA(.9,PSBX,0)["ADMINISTRATION STATUS"))  D
+ .S PSBX=$G(PSBX,0) F  S PSBX=$O(PSBMLA(.9,PSBX)) Q:PSBX=""  I ((PSBMLA(.9,PSBX,0)["ACTION STATUS")!(PSBMLA(.9,PSBX,0)["ADMINISTRATION STATUS"))  D  ;start at next node in audit log from where you left off - PSB*3*61
  ..S PSBTMP(10000000-$P(PSBMLA(.9,PSBX,0),U,1),"B")=$P(PSBMLA(.9,PSBX,0),U,1)_U_$$INITIAL($P(PSBMLA(.9,PSBX,0),U,2))_U_$P($P(PSBMLA(.9,PSBX,0),U,3),"'",2)
  ..S PSBGA=1
  I PSBGA'=1 S PSBTMP(10000000-$P(PSBMLA(0),U,6),"A")=$P(PSBMLA(0),U,6)_U_$$INITIAL($P(PSBMLA(0),U,7))_U_PSBLAC
@@ -98,6 +98,7 @@ SCANMED(RESULTS,PSBDIEN,PSBTAB)  ; Lookup Medication
  S RESULTS(PSBCNT)=1
  S PSBCNT=PSBCNT+1,RESULTS(PSBCNT)="-1^Invalid Medication Lookup"
  I $$GET^XPAR("DIV","PSB ROBOT RX"),PSBDIEN?1"3"15N!(PSBDIEN?1"3"17N),123[$E(PSBDIEN,12) S PSBDIEN=$E(PSBDIEN,2,11)
+ Q:PSBDIEN=" "
  I PSBTAB="UDTAB" D  Q
  .S X=$$FIND1^DIC(50,"","AX",PSBDIEN,"B^C")
  .I X<1 Q

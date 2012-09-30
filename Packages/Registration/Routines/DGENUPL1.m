@@ -1,8 +1,8 @@
-DGENUPL1 ;ALB/CJM,ISA/KWP,CKN - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ; 8/15/08 11:22am
- ;;5.3;REGISTRATION;**147,222,232,314,397,379,407,363,673,653,688**;Aug 13,1993;Build 29
+DGENUPL1 ;ALB/CJM,ISA/KWP,CKN,LBD,TDM - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ; 5/19/11 3:45pm
+ ;;5.3;REGISTRATION;**147,222,232,314,397,379,407,363,673,653,688,797,842**;Aug 13,1993;Build 33
  ;
+PARSE(MSGIEN,MSGID,CURLINE,ERRCOUNT,DGPAT,DGELG,DGENR,DGCDIS,DGOEIF,DGSEC,DGNTR,DGMST,DGNMSE) ;
  ;
-PARSE(MSGIEN,MSGID,CURLINE,ERRCOUNT,DGPAT,DGELG,DGENR,DGCDIS,DGOEIF,DGSEC,DGNTR,DGMST) ;
  ;Description:  This function parses the HL7 segments.  It creates arrays
  ;defined by the PATIENT, ENROLLMENT, ELIGIBILY, CATASTROPHIC DISABILITY,
  ;OEF/OIF CONFLICT objects.
@@ -27,6 +27,7 @@ PARSE(MSGIEN,MSGID,CURLINE,ERRCOUNT,DGPAT,DGELG,DGENR,DGCDIS,DGOEIF,DGSEC,DGNTR,
  ;  DGOEIF - array defined by the OEF/OIF CONFLICT object.  (pass by ref)
  ;  DGNTR - array defined for NTR data.
  ;  DGMST - array defined for MST data.
+ ;  DGNMSE - array define for MILITARY SERVICE EPISODE data (pass by ref)
  N SEG,ERROR,COUNT,QFLG,NFLG
  ;
  K DGEN,DGPAT,DGELG,DGCDIS,DGNTR,DGMST
@@ -48,6 +49,15 @@ PARSE(MSGIEN,MSGID,CURLINE,ERRCOUNT,DGPAT,DGELG,DGENR,DGCDIS,DGOEIF,DGSEC,DGNTR,
  I 'ERROR F COUNT=2:1 D NXTSEG^DGENUPL(MSGIEN,CURLINE,.SEG) Q:(SEG("TYPE")'="ZEL")  D  Q:ERROR
  .S CURLINE=CURLINE+1
  .D ZEL^DGENUPL2(COUNT)
+ ;
+ ;ZE2 is optional, If no ZE2 segment delete pension data
+ I 'ERROR D
+ .I SEG("TYPE")="ZE2" D ZE2^DGENUPLB S CURLINE=CURLINE+1 Q
+ .I SEG("TYPE")'="ZE2" D
+ ..Q:$$GET1^DIQ(2,DFN,.3852,"I")=$O(^DG(27.18,"C","00",""))
+ ..N PSUB
+ ..F PSUB="PENAEFDT","PENTRMDT","PENAREAS","PENTRMR1","PENTRMR2","PENTRMR3","PENTRMR4" S DGPAT(PSUB)="@"
+ ;
  ;Phase II Add the capability to accept more than 1 ZCD
  I 'ERROR F SEG="ZEN","ZMT","ZCD" D  Q:ERROR
  .D NXTSEG^DGENUPL(MSGIEN,.CURLINE,.SEG)
@@ -121,6 +131,7 @@ CONVERT(VAL,DATATYPE,ERROR) ;
  ;       "EXT" convert from code to abbreviation
  ;       "POS" convert from Period of Service code to a point to Period of Service file
  ;       "AGENCY" convert Agency/Allied Country code from file 35
+ ;       "PENSIONCD" convert Pension Award/Termination Reason code from file 27.18
  ;OUTPUT:
  ;  Function Value - the result of the conversion
  ;  ERROR - set to 1 if an error is detected, 0 otherwise (optional,pass by ref)
@@ -170,6 +181,11 @@ CONVERT(VAL,DATATYPE,ERROR) ;
  ..N OLDVAL
  ..S OLDVAL=VAL
  ..S VAL=$O(^DIC(35,"C",OLDVAL,0))
+ ..I 'VAL S ERROR=1
+ .I ($G(DATATYPE)="PENSIONCD") D  Q
+ ..N OLDVAL
+ ..S OLDVAL=VAL
+ ..S VAL=$O(^DG(27.18,"C",OLDVAL,0))
  ..I 'VAL S ERROR=1
  Q VAL
  ;

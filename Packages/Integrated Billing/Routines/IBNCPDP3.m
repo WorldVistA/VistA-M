@@ -1,5 +1,5 @@
 IBNCPDP3 ;OAK/ELZ - STORES NDC/AWP UPDATES ;11/14/07  13:18
- ;;2.0;INTEGRATED BILLING;**223,276,342,363,383,384,411,435**;21-MAR-94;Build 27
+ ;;2.0;INTEGRATED BILLING;**223,276,342,363,383,384,411,435,452**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference to ^PRCASER1 supported by IA# 593
@@ -34,14 +34,14 @@ REVERSE(DFN,IBD,IBAUTO) ;process reversed claims
  ; find bill number
  I 'DFN S IBY="0^No patient" G REVQ
  I '$L($G(IBD("CLAIMID"))) S IBY="0^Missing ECME Number" G REVQ
- S IBADT=+$G(IBD("FILL DATE")) I 'IBADT S IBY="0^Missing Fill Date" G REVQ
+ S IBADT=+$G(IBD("DOS")) I 'IBADT S IBY="0^Missing Date of Service" G REVQ
  S IBRXN=+$G(IBD("PRESCRIPTION")) I 'IBRXN S IBY="0^No Rx IEN" G REVQ
  S IBFIL=+$G(IBD("FILL NUMBER"),-1) I IBFIL<0 S IBY="0^No fill number" G REVQ
  I $E($G(IBD("RESPONSE")),1)="R" D  G REVQ:+'$G(IBRTS)
  . S IBY="0^REVERSAL rejected by payer"
  . S IBRTS=$$RTS(IBD("REVERSAL REASON"))
  ;
- D CANC^IBNCPDP6(IBRXN_";"_IBFIL) ; cancel 1st party charge for Tricare
+ D CANC^IBNCPDP6(IBRXN_";"_IBFIL) ; cancel 1st party charge for TRICARE
  ;
  S IBD("BCID")=$$BCID^IBNCPDP4(IBD("CLAIMID"),IBADT)
  L +^DGCR(399,"AG",IBD("BCID")):15 E  S IBY="0^Cannot lock ECME number" G REVQ

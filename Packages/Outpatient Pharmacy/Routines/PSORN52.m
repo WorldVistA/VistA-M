@@ -1,10 +1,8 @@
 PSORN52 ;BIR/DSD - files renewal entries in prescription file ;08/09/93
- ;;7.0;OUTPATIENT PHARMACY;**1,11,27,37,46,79,71,100,117,157,143,219,148,239,201,225,303,358,251,387**;DEC 1997;Build 13
- ;Ext ref to ^PS(55 sup by DBIA 2228
+ ;;7.0;OUTPATIENT PHARMACY;**1,11,27,37,46,79,71,100,117,157,143,219,148,239,201,225,303,358,251,387,379**;DEC 1997;Build 28
  ;Ext ref to PSOUL^PSSLOCK sup by DBIA 2789
- ;Ext ref to ^VA(200 sup by DBIA 10060
  ;Ext ref to SWSTAT^IBBAPI sup by DBIA 4663
- ;External reference to $$DS^PSSDSAPI supported by DBIA 5424
+ ;External reference to $$DS^PSSDSAPI supported by DBIA 5425
 EN(PSOX) ;EP
 START ;
  D:$D(XRTL) T0^%ZOSV ; Start RT Mon
@@ -76,17 +74,9 @@ INIT S PSORN52("QFLG")=0 S:'$D(PSOX("DAYS SUPPLY")) PSOX("DAYS SUPPLY")=$P(PSOX(
  Q
  ;
 FINISH ;
- N PSODWARN,PSOSIGNIF S (PSODWARN,PSOSIGNIF)=0 S:$$DS^PSSDSAPI&(+$G(^TMP("PSODOSF",$J,0))) PSODWARN=1
- I '$D(^XUSEC("PSORPH",DUZ)),$D(^TMP("PSOSER",$J,0)) N PSOINTSV S PSOINTSV="",PSOINTSV=$G(^TMP("PSOSER",$J,0)) S:PSOINTSV[1 PSODWARN=1 S:'$G(PSODWARN)&(PSOINTSV[2) PSOSIGNIF=1
- I '$D(^XUSEC("PSORPH",DUZ)),$G(PSODWARN)!$G(PSOSIGNIF) D  ;if a tech and regardless of verification parmameter, set 52.4 if there's a critical, significant or dose waring.
- .K DIC,DLAYGO,DINUM,DIADD,X,DD,DO S DIC="^PS(52.4,",DLAYGO=52.4,DINUM=PSOX("IRXN"),DIC(0)="ML",X=PSOX("IRXN")
- .D FILE^DICN K DD,DO,DIC,DLAYGO,DINUM,X
- .S ^PS(52.4,PSOX("IRXN"),0)=PSOX("IRXN")_"^"_$P(PSOX("NRX0"),"^",2)_"^"_DUZ_"^"_$G(PSOX("OIRXN"))_"^"_$E(PSOX("LOGIN DATE"),1,7)_"^"_PSOX("IRXN")_"^"_PSOX("STOP DATE")
- .D TECH^PSODGDGP K DIK,DA S DIK="^PS(52.4,",DA=PSOX("IRXN") D IX^DIK K DIK,DA
- ;
- I ($P(PSOPAR,"^",2)&'$D(^XUSEC("PSORPH",DUZ))),'$G(PSODWARN),$G(PSOSIGNIF) G FINISHX
- G FINISHP:'$D(^XUSEC("PSORPH",DUZ))&(PSOX("STATUS")=4!$G(PSODWARN))  ;if a tech and regardless of verification parmameter, set label variables if there's a critical, signifcant or dose warning.
- G FINISHX:'$D(^XUSEC("PSORPH",DUZ))&($D(PSORX("VERIFY")))
+ N PSOTFIN
+ I '$D(^XUSEC("PSORPH",DUZ)) S PSOTFIN="",PSOTFIN=$$TECH2^PSODGDGP(PSOX("IRXN"),PSODFN,DUZ,.PSOX)
+ I '$D(^XUSEC("PSORPH",DUZ)) G FINISHP:$G(PSOTFIN)=1 G FINISHX:$G(PSOTFIN)=2
  ;
  I $G(PSOX("QS"))="S",$G(PSOBARCD) S DA=PSOX("IRXN"),RXFL(PSOX("IRXN"))=0 D SUS^PSORXL K DA G FINISHX
  ;
@@ -95,8 +85,8 @@ FINISH ;
  ; - Submitting Rx to ECME for 3rd Party Billing
  N ACTION
  I $$SUBMIT^PSOBPSUT(PSOX("IRXN"),0) D  I ACTION="Q"!(ACTION="^") Q
- . S ACTION="" D ECMESND^PSOBPSU1(PSOX("IRXN"),0,PSOX("FILL DATE"),"RN")
- .; Quit if there is an unresolved Tricare non-billable reject code, PSO*7*358
+ . S ACTION="" D ECMESND^PSOBPSU1(PSOX("IRXN"),0,"","RN")
+ .; Quit if there is an unresolved Tricare/CHAMPVA non-billable reject code, PSO*7*358
  . I $$PSOET^PSOREJP3(PSOX("IRXN"),0) S ACTION="Q" Q
  . I $$FIND^PSOREJUT(PSOX("IRXN"),0) D
  . . S ACTION=$$HDLG^PSOREJU1(PSOX("IRXN"),0,"79,88","RN","IOQ","Q")

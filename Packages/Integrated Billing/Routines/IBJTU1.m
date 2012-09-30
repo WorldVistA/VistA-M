@@ -1,6 +1,6 @@
 IBJTU1 ;ALB/ARH - TPI UTILITIES ;2/14/95
- ;;2.0;INTEGRATED BILLING;**39,80,276**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**39,80,276,451**;21-MAR-94;Build 47
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 PRVSCR(SCRNARR) ; called as part of a screen ACTION PROTOCOL'S ENTRY ACTION to determine if screen has already been displayed
  ; returns true if screen array already exists (ie. already displayed), 
@@ -25,16 +25,21 @@ HDR(IBIFN,DFN,LNS) ; called by a screens's LIST TEMPLATE HEADER to get lines for
  S IBDOB="DOB: "_$$DATE^IBJU1($P(IBPD0,U,3))
  I +IBIFN S X=$P(IBDI1,U,2),X=X_$J("",(13-$L(X))),IBSUB="Subsc ID: "_X
  ;
+ ; IB*2.0*451 - get EEOB indicator for bill #
+ S IBPFLAG=$$EEOB^IBJTLA1(IBIFN)
+ S IBBILL=$G(IBPFLAG)_IBBILL
  S IBPNWDTH=80-($L(IBBILL)+3+2+$L(IBPATID)+3+$L(IBDOB)+3+$L(IBSUB)),IBPAT=$E(IBPAT,1,IBPNWDTH),Z="   "
  S VALMHDR(IBCNT)=IBBILL_Z_IBPAT_"  "_IBPATID_$J("",(IBPNWDTH-$L(IBPAT)))_Z_IBDOB_Z_IBSUB
- ;
+ ; IB*2.0*451 - add explanation of '%' indicator for the user
+ S VALMSG="|% EEOB | Enter ?? for more actions|"
 2 I LNS'[2 G 3
  ; -- bill screens line 2: STATEMENT DATES, TIMEFRAME, ORIG AMT (AR)
  N IBDU S IBCNT=IBCNT+1,IBDU=$G(^DGCR(399,+IBIFN,"U"))
  S X=" "_$$DATE^IBJU1(+IBDU)_" - "_$$DATE^IBJU1(+$P(IBDU,U,2)),VALMHDR(IBCNT)=X_$J("",(28-$L(X)))
  S X=$$EXSET^IBJU1(+$P(IBD0,U,6),399,.06),VALMHDR(IBCNT)=VALMHDR(IBCNT)_X_$J("",(29-$L(X)))
  S X=$$BILL^RCJIBFN2(IBIFN),X="Orig Amt: "_$FN($P(X,U,1),",",2),VALMHDR(IBCNT)=VALMHDR(IBCNT)_X
- ;
+ ; IB*2.0*451 - add explanation of '%' indicator for the user
+ S VALMSG="|% EEOB | Enter ?? for more actions|"
 3 I LNS'[3 G HDRQ
  ; -- AR screens line 2: CURRENT STATUS (AR), ORIGINAL AMT (AR), CURRENT AMT (AR)
  N IBST,IBOC,IBBD,IBY S IBCNT=IBCNT+1,IBY=$$BILL^RCJIBFN2(+IBIFN)

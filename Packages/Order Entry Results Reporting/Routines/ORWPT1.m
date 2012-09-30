@@ -1,5 +1,5 @@
 ORWPT1 ; SLC/KCM - Patient Lookup Functions (cont) ;01/19/10  05:31
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,109,280**;Dec 17, 1997;Build 85
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,109,280,340**;Dec 17, 1997;Build 6
  ;
 SAVDFLT ; continued from ORWPT, save new default patient list
  N DAY,HOLDX S OK=1
@@ -44,30 +44,39 @@ PCDETAIL(LST,PATIENT)   ; return Primary Care Detail information
  N ILST,X S ILST=0
  S X=$$OUTPTTM^SDUTL3(PATIENT,DT)
  I +X>0 D
- . S ILST=ILST+1,LST(ILST)="    Primary Care Team:  "_$P(X,U,2)
- . S ILST=ILST+1,LST(ILST)="                Phone:  "_$P($G(^SCTM(404.51,+X,0)),U,2)
+ . S ILST=ILST+1,LST(ILST)="        Primary Care Team:  "_$P(X,U,2)
+ . S ILST=ILST+1,LST(ILST)="                    Phone:  "_$P($G(^SCTM(404.51,+X,0)),U,2)
  E  S ILST=ILST+1,LST(ILST)="No Primary Care Team Assigned."
  S ILST=ILST+1,LST(ILST)=" "
  S X=$$OUTPTPR^SDUTL3(PATIENT,DT)
  I +X>0 D
- . S ILST=ILST+1,LST(ILST)="Primary Care Provider:  "_$P(X,U,2)
- . S ILST=ILST+1,LST(ILST)="         Analog Pager:  "_$P($G(^VA(200,+X,.13)),U,7)
- . S ILST=ILST+1,LST(ILST)="        Digital Pager:  "_$P($G(^VA(200,+X,.13)),U,8)
- . S ILST=ILST+1,LST(ILST)="         Office Phone:  "_$P($G(^VA(200,+X,.13)),U,2)
+ . S ILST=ILST+1,LST(ILST)="    Primary Care Provider:  "_$P(X,U,2)
+ . S ILST=ILST+1,LST(ILST)="             Analog Pager:  "_$P($G(^VA(200,+X,.13)),U,7)
+ . S ILST=ILST+1,LST(ILST)="            Digital Pager:  "_$P($G(^VA(200,+X,.13)),U,8)
+ . S ILST=ILST+1,LST(ILST)="             Office Phone:  "_$P($G(^VA(200,+X,.13)),U,2)
  E  S ILST=ILST+1,LST(ILST)="No Primary Care Provider Assigned."
  S ILST=ILST+1,LST(ILST)=" "
  S X=$$OUTPTAP^SDUTL3(PATIENT,DT)
  I +X>0 D
- . S ILST=ILST+1,LST(ILST)="   Associate Provider:  "_$P(X,U,2)
- . S ILST=ILST+1,LST(ILST)="         Analog Pager:  "_$P($G(^VA(200,+X,.13)),U,7)
- . S ILST=ILST+1,LST(ILST)="        Digital Pager:  "_$P($G(^VA(200,+X,.13)),U,8)
- . S ILST=ILST+1,LST(ILST)="         Office Phone:  "_$P($G(^VA(200,+X,.13)),U,2)
+ . S ILST=ILST+1,LST(ILST)="       Associate Provider:  "_$P(X,U,2)
+ . S ILST=ILST+1,LST(ILST)="             Analog Pager:  "_$P($G(^VA(200,+X,.13)),U,7)
+ . S ILST=ILST+1,LST(ILST)="            Digital Pager:  "_$P($G(^VA(200,+X,.13)),U,8)
+ . S ILST=ILST+1,LST(ILST)="             Office Phone:  "_$P($G(^VA(200,+X,.13)),U,2)
  E  S ILST=ILST+1,LST(ILST)="No Associate Provider Assigned."
  S ILST=ILST+1,LST(ILST)=" "
  S X=$G(^DPT(PATIENT,.1041))
  I +X D
- . S ILST=ILST+1,LST(ILST)="  Attending Physician:  "_$P($G(^VA(200,+X,0)),U)
- . S ILST=ILST+1,LST(ILST)="         Analog Pager:  "_$P($G(^VA(200,+X,.13)),U,7)
- . S ILST=ILST+1,LST(ILST)="        Digital Pager:  "_$P($G(^VA(200,+X,.13)),U,8)
- . S ILST=ILST+1,LST(ILST)="         Office Phone:  "_$P($G(^VA(200,+X,.13)),U,2)
+ . S ILST=ILST+1,LST(ILST)="      Attending Physician:  "_$P($G(^VA(200,+X,0)),U)
+ . S ILST=ILST+1,LST(ILST)="             Analog Pager:  "_$P($G(^VA(200,+X,.13)),U,7)
+ . S ILST=ILST+1,LST(ILST)="            Digital Pager:  "_$P($G(^VA(200,+X,.13)),U,8)
+ . S ILST=ILST+1,LST(ILST)="             Office Phone:  "_$P($G(^VA(200,+X,.13)),U,2)
+ S ILST=ILST+1,LST(ILST)=" "
+ S X=$$START^SCMCMHTC(PATIENT) ;Retrieve Mental Health Provider
+ I +X>0 D
+ . S ILST=ILST+1,LST(ILST)="        MH Treatment Team:  "_$P(X,U,5)
+ . S ILST=ILST+1,LST(ILST)=" MH Treatment Coordinator:  "_$P(X,U,2)
+ . S ILST=ILST+1,LST(ILST)="             Analog Pager:  "_$P($G(^VA(200,+X,.13)),U,7)
+ . S ILST=ILST+1,LST(ILST)="            Digital Pager:  "_$P($G(^VA(200,+X,.13)),U,8)
+ . S ILST=ILST+1,LST(ILST)="             Office Phone:  "_$P($G(^VA(200,+X,.13)),U,2)
+ ;E  S ILST=ILST+1,LST(ILST)="No MH Treatment Coordinator Assigned."
  Q

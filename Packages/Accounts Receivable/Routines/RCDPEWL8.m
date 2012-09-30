@@ -1,11 +1,11 @@
-RCDPEWL8 ;ALB/TMK/PJH - EDI LOCKBOX WORKLIST ERA LEVEL ; 8/24/10 11:40am
- ;;4.5;Accounts Receivable;**208,269**;Mar 20, 1995;Build 113
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPEWL8 ;ALB/TMK/PJH - EDI LOCKBOX WORKLIST ERA LEVEL ;12-FEB-04
+ ;;4.5;Accounts Receivable;**208,269,276**;Mar 20, 1995;Build 87
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
 FILESP ; Action that files the split lines
  ; Assumes RCDIR,RCLINE,RCSCR,RCSPLIT array defined
- N RCTOT,Z,RCZ0,RCZ1,DTOUT,DUOUT,DIR,X,Y,DIE,DA,DR,DIC,DD,DO,DLAYGO,RCZ,RCZZ,RCZT
+ N RCTOT,Z,RCZ0,RCZ1,DTOUT,DUOUT,DIR,X,Y,DIE,DA,DR,DIC,DD,DO,DLAYGO,RCZ,RCZZ,RCZT,VALBCK
  D FULL^VALM1
  I '$G(^TMP("RCDPE_EOB_SPLIT_OK",$J)) D  Q
  . S VALMBCK="R"
@@ -19,6 +19,14 @@ FILESP ; Action that files the split lines
  S DA(1)=RCSCR
  S RCZ0=+$P(RCLINE,U,2),RCZZ=+$G(^RCY(344.49,DA(1),1,RCZ0,0)),RCZZ(1)=""
  S RCZ=+$O(RCSPLIT(0))
+ ;
+ ;Option to move/copy EOB
+ I RCZ D  Q:$G(VALMBCK)="Q"
+ .;;Move/Copy removed 10/19/11-now in receipt creation +136^RCDPEM
+ .;;Q:$$UPDWL^RCDPEM5($P(RCDIR,U),.RCSPLIT,RCERA)
+ .;;User abort
+ .;;K ^TMP($J,"RCDPE_SPLIT_FILE") S VALMBCK="Q"
+ ;
  I RCZ D
  . S DIE="^RCY(344.49,"_DA(1)_",1,",DA=RCZ0,RCZT=$P(RCSPLIT(RCZ),U,2)+$P(RCSPLIT(RCZ),U,3)
  . S DR=".02////"_$P(RCSPLIT(RCZ),U)_";.05////"_$J(+$P(RCSPLIT(RCZ),U,2),"",2)_";.06////"_$J(+RCZT,"",2)_";.08////"_$J($P(RCSPLIT(RCZ),U,3),"",2)

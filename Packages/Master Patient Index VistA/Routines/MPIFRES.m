@@ -1,5 +1,5 @@
 MPIFRES ;SF/CMC-LOCAL AND MISSING ICN RESOLUTION ;JUL 13, 1998
- ;;1.0; MASTER PATIENT INDEX VISTA ;**1,7,10,15,17,21,26,28,33,35,43,39,52**;30 Apr 99;Build 7
+ ;;1.0;MASTER PATIENT INDEX VISTA;**1,7,10,15,17,21,26,28,33,35,43,39,52,54**;30 Apr 99;Build 2
  ;
  ; Integration Agreements Utilized:
  ;  EXC, START and STOP^RGHLLOG - #2796
@@ -80,19 +80,22 @@ MAKE ;
  F  S MPIIT=$O(^DPT("AMPIMIS",MPIIT)) Q:MPIIT=""  D
  .K STOP
  .I $D(^DPT(MPIIT,-9)) K ^DPT("AMPIMIS",MPIIT) Q  ;**43 CHECK IF MERGED PATIENT AND CLEANUP CROSS REFERENCE
+ .I '$D(^DPT(MPIIT,0)) K ^DPT("AMPIMIS",MPIIT) Q  ;**54 cleanup for x-ref if 0 node doesn't exist
  .S TICN=+$$GETICN^MPIF001(MPIIT)
  .I TICN<0 L +^DPT(MPIIT):5 I '$T Q  ;**35
  .L -^DPT(MPIIT) ;**35 **52 UNLOCK WHAT IS LOCKED ABOVE
  .;**35 If don't have ICN yet, try to lock if can't get lock skip record - still creating patient.
  .I TICN<0,'$D(STOP) D MAKE3
- .I TICN>0 K ^DPT("AMPIMIS",MPIIT)
+ .K ^DPT("AMPIMIS",MPIIT) ;**54 include cleanup for x-ref here
  Q
 MAKE3 ;
  K MPIOUT
  S MPIFRES=""
  S:$G(MPIQRYNM)="" MPIQRYNM="EXACT_MATCH_QUERY" ;**43 changed MPIQRYNM from VTQ_PID_ICN_LOAD_1 to stop automatic add pts on the MPI
  D VTQ1^MPIFVTQ(MPIIT,.MPIOUT,.HL,.MPIQRYNM)
- I $P(MPIOUT(0),"^")<0,$P(MPIOUT(0),"^",2)="invalid DFN"!($P(MPIOUT(0),"^",2)="no encoding characters") D EXC^RGHLLOG(206,"DFN = "_MPIIT_"  Problem with building VTQ was "_$P(MPIOUT(0),"^",2),MPIIT) Q
+ ;**54 MVI 874 STOP LOGGING EXCEPTION AS WE CORRECTED THE DANGLING X-REF FOR INVALID DFN
+ I $P(MPIOUT(0),"^")<0,$P(MPIOUT(0),"^",2)="invalid DFN" Q
+ I $P(MPIOUT(0),"^",2)="no encoding characters" D EXC^RGHLLOG(206,"DFN = "_MPIIT_"  Problem with building VTQ was "_$P(MPIOUT(0),"^",2),MPIIT) Q
  ;I $P(MPIOUT(0),"^")<0,$P(MPIOUT(0),"^",2)="Missing Required Field(s)" Q
  ;Q:$P(MPIOUT(0),"^")<0
  S ^DPT("AICNL",1,MPIIT)="1^"_TODAY

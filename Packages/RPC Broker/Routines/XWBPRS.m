@@ -1,5 +1,5 @@
-XWBPRS ;ISF/STAFF - VISTA BROKER MSG PARSER ; 3/28/2006
- ;;1.1;RPC BROKER;**35,43,46**;Mar 28, 1997
+XWBPRS ;ISF/STAFF - VISTA BROKER MSG PARSER ;11/15/11  12:39
+ ;;1.1;RPC BROKER;**35,43,46,57**;Mar 28, 1997;Build 13
  ;XWB holds info from the message used by the RPC
 CALLP(XWBP,XWBDEBUG) ;make API call using Protocol string
  N ERR,S,XWBARY K XWB
@@ -187,12 +187,17 @@ CLRBUF ;Empties Input buffer
  F  R *%:2 Q:'$T!(%=4)  ;!(%=-1)
  Q
 ZZZ(X) ;Convert
- N I
+ N I,J
  F  S I=$F(X,"$C(") Q:'I  S J=$F(X,")",I),X=$E(X,1,I-4)_$C($E(X,I,J-2))_$E(X,J,999)
  Q X
  ;
 CAPI(XWBY,PAR) ;make API call
  N XWBCALL,T,DX,DY
+ ; ZEXCEPT: XWBFGTIM - created here, will be killed in STRTCVR2 or ONECOVER
+ ; ZEXCEPT: XWBCSRPC - created here, will be killed in ONECOVER
+ ; JLI 110606 next line checks for start call to Coversheet Timing
+ I XWB(2,"RTAG")="START",XWB(2,"RNAM")="ORWCV" I +$G(^KMPTMP("KMPD-CPRS")) S XWBFGTIM=$H D STRTCVR1 I 1
+ E  I $G(XWBCOVER),$D(^TMP("XWBFGP",$J,"TODO",XWB(2,"RPC"))) S XWBFGTIM=$H,XWBCSRPC=XWB(2,"RPC")
  S XWBCALL=XWB(2,"RTAG")_"^"_XWB(2,"RNAM")_"(.XWBY"_$S($L(PAR):","_PAR,1:"")_")",XWBCALL2=""
  K PAR
  O XWBNULL U XWBNULL ;p43 Make sure its open
@@ -202,6 +207,9 @@ CAPI(XWBY,PAR) ;make API call
  I $G(XWB(2,"CAPI"))]"" D LOGRSRC^%ZOSV(XWB(2,"CAPI"),2,1)
  ;
  D @XWBCALL S XWBCALL2=XWBCALL ;Save call for debug
+ ;
+ I $G(XWBCOVER),XWB(2,"RTAG")="START",XWB(2,"RNAM")="ORWCV" D STRTCVR2(XWBY) I 1
+ E  I $D(XWBCOVER),$D(XWBCSRPC) D ONECOVER ; JLI 110606
  ;
  ;restart RUM for handler
  D LOGRSRC^%ZOSV("$BROKER HANDLER$",2,1)
@@ -229,4 +237,54 @@ CREF(R,P) ;Convert array contained in P to reference A
  . . S X(I)="."_R
  . S S=S_X(I)_","
  Q $E(S,1,$L(S)-1)
+ ;
+STRTCVR1 ; JLI 110606
+ ; SET UP DATA FOR OBTAINING FOREGROUND PROCESSING TIMES FOR COVERSHEET LOADS
+ ; REQUESTED FOR TIMING ON COMMODITY SERVERS, ETC.
+ N DFN,IP,HWND,NODE
+ ; ZEXCEPT: XWBCOVER - created here, will be killed when foreground processing is complete
+ S XWBCOVER=1
+ K ^TMP("XWBFGP",$J)
+ S DFN=XWB(5,"P",0),IP=XWB(5,"P",1),HWND=XWB(5,"P",2)
+ S NODE="ORWCV "_IP_"-"_HWND_"-"_DFN
+ S ^TMP("XWBFGP",$J,"NODE")=NODE ; SO WE CAN GET IT EASILY EACH PASS
+ S ^KMPTMP("KMPDT","ORWCV-FT",NODE)=XWBFGTIM_"^^"_$G(DUZ)_"^"_$G(IO("CLNM"))
+ Q
+ ;
+STRTCVR2(RETRNVAL) ; JLI 110606 - setup after coming back from initial start for coversheets
+ N XWBFGDIF,I
+ ; the return value contains ids for coversheets to be handled in the foreground separated by commas
+ F I=1:1 S XWBCSID=$P(RETRNVAL,";",I) Q:XWBCSID=""  D SETCSID(XWBCSID)
+ K XWBFGTIM
+ Q
+ ;
+SETCSID(XWBCSID) ; Obtain and setup selected coversheet ids for foreground processing
+ N I,RPC
+ ; The coversheet ID value (XWBCSID) will be used for a look-up on the "AC" cross-reference of file 101.24.
+ ; It is possible to have multiple entries with the same ID value, so checking that the 8th piece of the zero node of the value is a "C" will be required.
+ F I=0:0 S I=$O(^ORD(101.24,"AC",XWBCSID,I)) Q:I'>0  I $P(^ORD(101.24,I,0),U,8)="C" S RPC=$P(^(0),U,13),RPC=$P(^XWB(8994,RPC,0),U),^TMP("XWBFGP",$J,"TODO",RPC)=I Q
+ I $D(^TMP("XWBFGP",$J,"TODO","ORQQPX REMINDERS LIST")) D
+ .N XWBCSIEN S XWBCSIEN=^TMP("XWBFGP",$J,"TODO","ORQQPX REMINDERS LIST")
+ .S ^TMP("XWBFGP",$J,"TODO","ORQQPXRM REMINDERS APPLICABLE")=XWBCSIEN
+ .S ^TMP("XWBFGP",$J,"TODO","ORQQPXRM REMINDERS UNEVALUATED")=XWBCSIEN
+ .S ^TMP("XWBFGP",$J,"TODO","ORQQPXRM REMINDER CATEGORIES")=XWBCSIEN
+ .Q
+ Q
+ONECOVER ; called after data is returned to client
+ I "^ORQQPXRM REMINDERS APPLICABLE^ORQQPXRM REMINDERS UNEVALUATED^ORQQPXRM REMINDER CATEGORIES^"[U_XWBCSRPC_U K ^TMP("XWBFGP",$J,"TODO","ORQQPX REMINDERS LIST")
+ I XWBCSRPC="ORQQPX REMINDERS LIST" D
+ .K ^TMP("XWBFGP",$J,"TODO","ORQQPXRM REMINDERS APPLICABLE")
+ .K ^TMP("XWBFGP",$J,"TODO","ORQQPXRM REMINDERS UNEVALUATED")
+ .K ^TMP("XWBFGP",$J,"TODO","ORQQPXRM REMINDER CATEGORIES")
+ .Q
+ ;
+ K ^TMP("XWBFGP",$J,"TODO",XWBCSRPC),XWBCSRPC,XWBFGTIM
+ I '$D(^TMP("XWBFGP",$J,"TODO")) D ENDCOVER
+ Q
+ ;
+ENDCOVER ; no more cover sheets to process, so set final values, clean up
+ N I,NODE,X
+ S NODE=^TMP("XWBFGP",$J,"NODE")
+ S $P(^KMPTMP("KMPDT","ORWCV-FT",NODE),U,2)=$H
+ K XWBCOVER,^TMP("XWBFGP",$J)
  ;

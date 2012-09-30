@@ -1,5 +1,5 @@
 IBCEMQC ;ALB/ESG - MRA EOB CRITERIA FOR AUTO-AUTHORIZE ; 11/1/06 10:34am
- ;;2.0;INTEGRATED BILLING;**155,323,302,350,359**;21-MAR-94;Build 9
+ ;;2.0;INTEGRATED BILLING;**155,323,302,350,359,447**;21-MAR-94;Build 80
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  Q   ; must be called at proper entry point
@@ -45,6 +45,8 @@ CRIT(IBEOB) ; Function to determine if EOB entry meets the criteria for
  ; Make sure the patient responsibility amount for this MRA is greater than $0
  S IBPTRESP=$P($G(^IBM(361.1,IBEOB,1)),U,2)      ; Pt Resp Amt 1.02 field
  I $$FT^IBCEF(IBIFN)=3 S IBPTRESP=$$PTRESPI^IBCECOB1(IBEOB)
+ ; IB*2.0*447 PR for supplemental plans can be different
+ S:$$MSEDT^IBCEMU4(IBIFN)'="" IBPTRESP=$$MSPRE^IBCEMU4(IBIFN)
  I IBPTRESP'>0 S REASON="Patient responsibility dollar amount is less than or equal to $0" G CRITX
  ;
  ; Check the parameter values last of all

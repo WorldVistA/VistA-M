@@ -1,5 +1,5 @@
 BPSOSRX8 ;ALB/SS - ECME REQUESTS ;10-JAN-08
- ;;1.0;E CLAIMS MGMT ENGINE;**7,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,10,11**;JUN 2004;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;check parameters for EN^BPSNCPDP
@@ -8,22 +8,20 @@ BPSOSRX8 ;ALB/SS - ECME REQUESTS ;10-JAN-08
  ;BWHERE - RX action
  ;DFN - patient's ien
  ;PNAME - patient name
- ;BILLNDC - NDC
  ;return 
  ;1 - passed
  ;0^message - failed
-CHCKPAR(BRXIEN,BRX,BWHERE,DFN,PNAME,BILLNDC) ;
+CHCKPAR(BRXIEN,BRX,BWHERE,DFN,PNAME) ;
  I '$G(BRXIEN) Q "0^Prescription IEN parameter missing"
  I $G(BWHERE)="" Q "0^RX Action parameter missing"
  I $G(BRX)="" Q "0^Prescription does not exist"
  I $G(DFN)="" Q "0^Patient's IEN does not exist"
  I $G(PNAME)="" Q "0^Patient name missing"
- I $G(BILLNDC)="" Q "0^Invalid NDC"
  Q 1
  ;
  ;===== check if we need to print the messages to the screen =======
 PRINTSCR(BWHER) ;
- I ",ARES,AREV,CRLB,CRLR,CRLX,DDED,DE,HLD,PC,PE,PL,RS,"[(","_BWHER_",") Q 0
+ I ",AREV,CRLB,CRLR,CRLX,CRRL,PC,PL,"[(","_BWHER_",") Q 0
  Q 1  ;print messages to the screen
  ;check if any IB DATA is missing
  ;returns 
@@ -48,13 +46,14 @@ GETSITE(BRXIEN,BFILL) ;
  ;
  ; Store general information/parameters into MOREDATA
  ; In instances where duz is null set it equal to .5 (postmaster)
-BASICMOR(BWHERE,BFILLDAT,BPSITE,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPSDELAY,MOREDATA) ;
+BASICMOR(BWHERE,DOS,BPSITE,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPSDELAY,MOREDATA) ;
+ N I
  S MOREDATA("USER")=$S('DUZ:.5,1:DUZ)
  S MOREDATA("RX ACTION")=$G(BWHERE)
- S MOREDATA("DATE OF SERVICE")=$P($G(BFILLDAT),".",1)
+ S MOREDATA("DATE OF SERVICE")=$P($G(DOS),".",1)
  S MOREDATA("REVERSAL REASON")=$S($G(REVREAS)="":"UNKNOWN",1:$E($G(REVREAS),1,40))
  S MOREDATA("DIVISION")=$G(BPSITE)
- I $G(DURREC)]"" S MOREDATA("DUR",1,0)=DURREC
+ I $G(DURREC)]"" F I=1:1:3 I $P(DURREC,"~",I)]""  S MOREDATA("DUR",I,0)=$P(DURREC,"~",I)
  I $G(BPOVRIEN)]"" S MOREDATA("BPOVRIEN")=BPOVRIEN
  I $G(BPSCLARF)]"" S MOREDATA("BPSCLARF")=BPSCLARF
  I $TR($G(BPSAUTH),"^")]"" S MOREDATA("BPSAUTH")=BPSAUTH
@@ -63,18 +62,13 @@ BASICMOR(BWHERE,BFILLDAT,BPSITE,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPSDELA
  ;====== Prepare ret. value
  ;return RESPONSE ^ CLMSTAT ^ Display= D ^ seconds to HANG
 RSPCLMS(BPREQTYP,RESPONSE,MOREDATA,BPADDINF) ;
- I BPREQTYP="C",RESPONSE=0 Q RESPONSE_U_$S($G(MOREDATA("ELIG"))="T":"TRICARE ",1:"")_"Prescription "_BRX_$S($G(MOREDATA("ELIG"))="T":"",1:" successfully")_" submitted to ECME for claim generation.^D^"
+ N ELIG
+ S ELIG=$G(MOREDATA("ELIG"))
+ I BPREQTYP="C",RESPONSE=0 Q RESPONSE_U_$S(ELIG="T":"TRICARE ",ELIG="C":"CHAMPVA ",1:"")_"Prescription "_BRX_$S(ELIG="T":"",ELIG="C":"",1:" successfully")_" submitted to ECME for claim generation.^D^"
  I BPREQTYP="C",RESPONSE>0 Q RESPONSE_U_"No claim submission made: "_$S($G(BPADDINF)'="":BPADDINF,1:"Unable to queue claim submission.")_"^D"
  I BPREQTYP="U",RESPONSE=0 Q RESPONSE_U_"Reversing prescription "_BRX_".^D^2"
  I BPREQTYP="U",RESPONSE>0 Q RESPONSE_U_"No claim submission made.  Unable to queue reversal.^D^2"
- I BPREQTYP="UC",RESPONSE=10 Q RESPONSE_U_$S($G(MOREDATA("ELIG"))="T":"TRICARE ",1:"")_"Prescription "_BRX_$S($G(MOREDATA("ELIG"))="T":"",1:" successfully")_" submitted to ECME for claim reversal.^D^"
- I BPREQTYP="UC",RESPONSE=0 Q RESPONSE_U_$S($G(MOREDATA("ELIG"))="T":"TRICARE ",1:"")_"Prescription "_BRX_$S($G(MOREDATA("ELIG"))="T":"",1:" successfully")_" submitted to ECME for claim generation.^D^"
+ I BPREQTYP="UC",RESPONSE=10 Q RESPONSE_U_$S(ELIG="T":"TRICARE ",ELIG="C":"CHAMPVA ",1:"")_"Prescription "_BRX_$S(ELIG="T":"",ELIG="C":"",1:" successfully")_" submitted to ECME for claim reversal.^D^"
+ I BPREQTYP="UC",RESPONSE=0 Q RESPONSE_U_$S(ELIG="T":"TRICARE ",ELIG="C":"CHAMPVA ",1:"")_"Prescription "_BRX_$S(ELIG="T":"",ELIG="C":"",1:" successfully")_" submitted to ECME for claim generation.^D^"
  I BPREQTYP="UC",RESPONSE>0,RESPONSE'=10 Q RESPONSE_U_"No claim submission made: "_$S($G(BPADDINF)'="":BPADDINF,1:"Unable to queue claim submission.")_"^D"
  Q ""
- ;
-SENDBUL(RESPONSE,BWHERE,BRXIEN,BFILL,SITE,DFN,PNAME,BPSERTXT,BPSRESP) ;
- ; if RESPONSE=4 (Unable to queue claim)
- ; and
- ; If not OP, then send an email to the OPECC
- I RESPONSE=4,",AREV,BB,ERES,EREV,"'[(","_BWHERE_",") D BULL^BPSNCPD1(BRXIEN,BFILL,$G(SITE),$G(DFN),$G(PNAME),,$G(BPSERTXT),$G(BPSRESP))
- Q
