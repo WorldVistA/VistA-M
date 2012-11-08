@@ -57,10 +57,10 @@ VLHDR(NUM) ; -- provides current VistaLink standard header
  QUIT $$ENVHDR(TYPE,SCHEMA)
  ;
 TYPE ; -- return message types [ number ^ message type ^ schema file ]
- ;;1^ext.domain.foundations.rpc.response^rpcResponse.xsd
- ;;2^ext.domain.foundations.rpc.fault^rpcFault.xsd
- ;;3^ext.domain.foundations.vistalink.system.fault^vlFault.xsd
- ;;4^ext.domain.foundations.vistalink.system.response^vlSimpleResponse.xsd
+ ;;1^gov.va.med.foundations.rpc.response^rpcResponse.xsd
+ ;;2^gov.va.med.foundations.rpc.fault^rpcFault.xsd
+ ;;3^gov.va.med.foundations.vistalink.system.fault^vlFault.xsd
+ ;;4^gov.va.med.foundations.vistalink.system.response^vlSimpleResponse.xsd
  ;
 ERROR(XOBDAT) ; -- send error type message
  NEW XOBI,XOBY,XOBOS
@@ -79,7 +79,7 @@ ERROR(XOBDAT) ; -- send error type message
  ;
 BUILD(XOBY,XOBDAT) ;  -- store built xml in passed store reference (XOBY)
  ; -- input format
- ; XOBDAT("MESSAGE TYPE") = # type of message (ex. 2 = ext.domain.foundations.vistalink.rpc.fault :: See TYPE tag) 
+ ; XOBDAT("MESSAGE TYPE") = # type of message (ex. 2 = gov.va.med.foundations.vistalink.rpc.fault :: See TYPE tag) 
  ; XOBDAT("ERRORS",<integer>,"CODE")         = error code
  ; XOBDAT("ERRORS",<integer>,"ERROR TYPE")   = type of error (system/application/security)
  ; XOBDAT("ERRORS",<integer>,"MESSAGE",<integer>) = error message
@@ -166,7 +166,7 @@ ENVHDR(TYPE,SCHEMA) ; -- vistalink beg tag (header)
  SET X=X_" version="""_VLVER_""""
  SET X=X_" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"""
  SET X=X_" xsi:noNamespaceSchemaLocation="""_SCHEMA_""""
- ;SET X=X_" xmlns=""http://DOMAIN.EXT/Foundations"""
+ ;SET X=X_" xmlns=""http://med.va.gov/Foundations"""
  SET X=X_">"
  QUIT X
  ;
