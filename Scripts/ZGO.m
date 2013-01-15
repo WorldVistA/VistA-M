@@ -1,4 +1,4 @@
-ZGO ; Save globals to ZWR files organized by FileMan
+ZGO ; Save globals to ZWR files organized by FileMan ; 12/3/12 4:06P
  ;---------------------------------------------------------------------------
  ; Copyright 2011 The Open Source Electronic Health Record Agent
  ;
@@ -14,34 +14,68 @@ ZGO ; Save globals to ZWR files organized by FileMan
  ; See the License for the specific language governing permissions and
  ; limitations under the License.
  ;---------------------------------------------------------------------------
- N  W "ZWR Global Output, organized by FileMan"
+ N  D CONFIG
+ W "ZWR Global Output, organized by FileMan"
  D ASKDIR Q:DIR["^"
- D SAVEALL(DIR)
+ D DUMPALL
  Q
 SAVEALL(DIR) ; Save all globals to files in host DIR
+ N CONFIG D CONFIG
  I '$$SLASH(DIR) Q
- D FILES
- D GLOBALS
- S G="" F  S G=$O(GLOBALS(G)) Q:G=""  D GLOBAL(G)
+ D DUMPALL
  Q
 SAVEONE(DIR,G) ; Save global G to files in host DIR
+ N CONFIG D CONFIG
  I '$$SLASH(DIR) Q
- D FILES
- D GLOBAL(G)
+ D DUMPONE
  Q
  ;---------------------------------------------------------------------------
  ; Private implementation entry points below
  ;
+CONFIG
+ I $D(CONFIG) Q
+ I $ZV["Cache" D  Q
+ . S CONFIG("OPENIORW")="O IO:(""WNS""):1"
+ . S CONFIG("GLOBALS")="D Fetch^%SYS.GD(""*"",1,0) S G="""" F  S G=$O(^CacheTempJ($J,G)) Q:G=""""  I G'?.E1L.E S GLOBALS(G)="""""
+ I $ZV["GT.M" D  Q
+ . S CONFIG("OPENIORW")="D GTMIOW(IO)"
+ . S CONFIG("GLOBALS")="S G=""^%"" F  S G=$O(@G) Q:G=""""  S:$D(^%) G(""^%"")="""" I G'?.E1L.E S GLOBALS(G)="""""
+ W "ZGO does not support "_$ZV,!
+ Q
+GTMIOW(IO) ; GT.M open-for-output impl.
+ O IO:(newversion:noreadonly:nowrap:except="S IO=""""") I IO'=""
+ Q
 ASKDIR
  R !,!,"Host output directory: ",DIR,! Q:DIR["^"   G:'$$SLASH(DIR) ASKDIR
  Q
 SLASH(DIR)
  I $E(DIR,$L(DIR))?1(1"/",1"\") Q 1
  E  U $P W "Output directory must end in a slash!" Q 0
+DUMPALL
+ D FILES
+ D GLOBALS
+ S G="" F  S G=$O(GLOBALS(G)) Q:G=""  D GLOBAL(G)
+ Q
+DUMPONE
+ D FILES
+ D GLOBAL(G)
+ Q
 FILES ; Build FILES() mapping FGR components to file number
  N N S N=0 F  S N=$O(^DIC(N)) Q:N=""  D:+N
- . N F S F=$$FILE($$ROOT^DILFD(N,"",1)),@F=N
+ . N FGR S FGR=$$ROOT^DILFD(N,"",1),FGR=$$FGRFIX(FGR)
+ . Q:'$$FGROK(FGR,N)
+ . N F S F=$$FILE(FGR),@F=N
  Q
+FGROK(FGR,N) ; Verify that FGR is a canonical M node name
+ I FGR="" W "W: File "_N_" has no root!",! Q
+ N $ET S $ET="S $EC="""" W ""W: File "_N_" has non-canonical root: ""_FGR,! Q 0"
+ N (FGR) ; Hide local variables from evaluation of @FGR
+ Q ($NA(@FGR)]"")&($QL(FGR)'<0)
+FGRFIX(FGR) ; Fix known non-canonical FGRs
+ N N F N="DUZ(2)" D
+ . N B,E,S S B=$L(FGR)-$L(N) Q:B<1  S E=$L(FGR)-1,S=$E(FGR,B-1)
+ . I ((S=",")!(S="("))&($E(FGR,B,E)=N)&($E(FGR,E+1)=")") S $E(FGR,B-1,E+1)=$S(S="(":"",1:")")
+ Q FGR
 FILE(N)
  N I,FILE
  S FILE=$NAME(FILES($QS(N,0)))
@@ -49,9 +83,8 @@ FILE(N)
  Q FILE
 GLOBALS
  N G
- D Fetch^%SYS.GD("*",1,0) ; Undocumented API, stores in ^CacheTempJ($J,
- S G="" F  S G=$O(^CacheTempJ($J,G)) Q:G=""  I G'?.E1L.E S GLOBALS(G)=""
- F G="^ROUTINE","^TMP","^UTILITY","^XUTL" K GLOBALS(G)
+ X CONFIG("GLOBALS")
+ F G="^ROUTINE","^TMP","^UTILITY","^XUTL","^%ZOSF","^XTMP","^DISV" K GLOBALS(G)
  Q
 GLOBAL(G) ; Dump global G
  N IO S IO=$$OPENGBL(G)
@@ -103,7 +136,7 @@ OPENFILE(F)
  Q IO
 OPEN(IO)
  ;U $P W "OPEN ",IO,!
- C IO O IO:("WNS"):1 I '$T U $P W "Cannot open """_IO_""" for write!",!
+ C IO X CONFIG("OPENIORW") I '$T U $P W "Cannot open """_IO_""" for write!",!
  Q
 CLOSE(IO)
  ;U $P W "CLOSE ",IO,!
