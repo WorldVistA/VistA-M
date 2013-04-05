@@ -89,7 +89,7 @@ FMSDOC(PRCA,PRCB) ;PRCA=ri of file 420.92, prcb=ri of file 420.923
 MMCALM(A,B) ;send CALM conversion done message
  N X,Y
  S X(1)=B
- S Y(.5)="",Y(PRCDUZ)="",Y("G.CSFISMGMT@FORUM.DOMAIN.EXT")=""
+ S Y(.5)="",Y(PRCDUZ)="",Y("G.CSFISMGMT@FORUM.domain.ext")=""
  D MM^PRC0B2(A,"X(",.Y)
  K PRCDUZ
  QUIT

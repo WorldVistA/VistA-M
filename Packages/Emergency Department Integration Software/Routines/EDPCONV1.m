@@ -1,5 +1,5 @@
-EDPCONV1 ;SLC/MKB - Convert local ED configuration
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPCONV1 ;SLC/MKB - Convert local ED configuration ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 CONFIG(OLD) ; -- Save local OLD(NODE) configuration into ^EDPB(231.9)
  N EDPSITE,TZDIFF,EDPAREA,X,X2,X3,X5,Y,NODE

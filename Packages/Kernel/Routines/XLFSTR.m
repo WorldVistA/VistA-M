@@ -1,5 +1,6 @@
-XLFSTR ;ISC-SF/STAFF - String Functions ;12/19/06  09:45
- ;;8.0;KERNEL;**112,120,400,437**;Jul 10, 1995;Build 2
+XLFSTR ;ISC-SF/STAFF - String Functions ;04/18/12
+ ;;8.0;KERNEL;**112,120,400,437,598**;Jul 10, 1995;Build 2
+ ;Per VHA Directive 2004-038, this routine should not be modified
  ;
 UP(X) Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
  ;
@@ -68,8 +69,10 @@ QUOTE(%) ;Add quotes to value for concatenation
 TRIM(%X,%F,%V) ;Trim spaces\char from front(left)/back(right) of string
  N %R,%L
  S %F=$$UP($G(%F,"LR")),%L=1,%R=$L(%X),%V=$G(%V," ")
- I %F["R" F %R=$L(%X):-1:1 Q:$E(%X,%R)'=%V
- I %F["L" F %L=1:1:$L(%X) Q:$E(%X,%L)'=%V
+ ;I %F["R" F %R=$L(%X):-1:1 Q:$E(%X,%R)'=%V  ;take out BT
+ I %F["R" F %R=$L(%X):-1:0 Q:$E(%X,%R)'=%V  ;598
+ ;I %F["L" F %L=1:1:$L(%X) Q:$E(%X,%L)'=%V  ;take out BT
+ I %F["L" F %L=1:1:$L(%X)+1 Q:$E(%X,%L)'=%V  ;598
  I (%L>%R)!(%X=%V) Q ""
  Q $E(%X,%L,%R)
  ;

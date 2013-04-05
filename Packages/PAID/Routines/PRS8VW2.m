@@ -1,5 +1,5 @@
 PRS8VW2 ;WCIOFO/JAH - DECOMPOSITION, VIEW RESULTS ;01/11/08
- ;;4.0;PAID;**6,32,34,45,69,112,117**;Sep 21, 1995;Build 32
+ ;;4.0;PAID;**6,32,34,45,69,112,117,132**;Sep 21, 1995;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; 
  ; This routine is used to show the results of the decomp to
@@ -72,7 +72,7 @@ O ;;A:20:3^B:21:3^C:22:3^K:24:3^M:25:3^N:34:4^E:20:3^F:21:3^G:22:3^S:24:3^U:25:3
 P ;;T:32:3^A:33:3^H:32:3^B:33:3^C:56:2
 R ;;T:6:3^A:26:3^B:27:3^C:28:3^L:6:3^E:26:3^F:27:3^G:28:3^R:58:1^S:66:3^N:66:3
 S ;;K:2:3^P:12:3^A:13:3^B:14:3^C:15:3^L:2:3^Q:12:3^E:13:3^F:14:3^G:15:3^R:67:3^S:67:3^D:68:3^H:68:3
-T ;;F:19:3^A:42:3^C:43:3^G:19:3^B:42:3^D:43:3^L:47:3^O:52:1
+T ;;F:19:3^A:42:3^C:43:3^G:19:3^B:42:3^D:43:3^L:47:3^O:52:1^W:74:3^S:75:3^M:76:3^X:74:3^T:75:3^N:76:3
 U ;;N:9:3^S:9:3
 V ;;C:37:6^S:37:6
 W ;;D:3:3^P:3:3
@@ -152,3 +152,6 @@ TYP ; literal values of activities (actual name)
  ;;Comp Time for Travel Used
  ;;Credit Hours Earned
  ;;Credit Hours Used
+ ;;Scheduled Telework
+ ;;Situational Telework
+ ;;Medical Telework

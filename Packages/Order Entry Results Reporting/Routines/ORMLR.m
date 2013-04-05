@@ -1,5 +1,5 @@
 ORMLR ; SLC/MKB - Process Lab ORM msgs ;11:59 AM  26 Jul 2000
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,92,153,174,195,243**;Dec 17, 1997;Build 242
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,92,153,174,195,243,315**;Dec 17, 1997;Build 20
 EN ; -- entry point for LR messages
  I '$L($T(@ORDCNTRL)) Q  ;S ORERR="Invalid order control code" Q
  I ORDCNTRL'="SN",ORDCNTRL'="ZC",ORDCNTRL'="ZP" D  Q:$L($G(ORERR))
@@ -122,7 +122,7 @@ RE ; -- Completed, w/results
  S ^OR(100,+ORIFN,4)=PKGIFN,ORX="" D  ;get Results D/T [from OBR]
  . N OBR S OBR=+$O(@ORMSG@(+ORC)),X=""
  . I OBR,$E($G(@ORMSG@(OBR)),1,3)="OBR" S X=$P(@ORMSG@(OBR),"|",23)
- . S X=$S(X:$$FMDATE^ORM(X),1:+$E($$NOW^XLFDT,1,12))
+ . S X=+$E($$NOW^XLFDT,1,12)
  . S $P(^OR(100,+ORIFN,7),U)=X,^OR(100,"ARS",ORVP,9999999-X,+ORIFN)=""
  D RR^LR7OR1(DFN,PKGIFN)
  S ORABN="",ORFIND=""

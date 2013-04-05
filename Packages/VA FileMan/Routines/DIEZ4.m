@@ -1,5 +1,5 @@
 DIEZ4 ;SFISC/MKO-COMPILE INPUT TEMPLATE, RECORD-LEVEL INDEXES ;2:15 PM  14 Jul 1999
- ;;22.0;VA FileMan;**11**;Mar 30, 1999
+ ;;22.0;VA FileMan;**11**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;Variables passed in through symbol table:

@@ -63,7 +63,7 @@ TXT ;
  ;;                HCV RNA assay is negative. (Reference: Under Secretary for
  ;;                Health's Information Letter 10-2002-019 "Diagnostic Testing
  ;;                for Hepatitis C"
- ;;                http://vaww.DOMAIN.EXT/publ/direc/health/infolet/10200219.pdf
+ ;;                http://vaww.domain.ext/publ/direc/health/infolet/10200219.pdf
  ;; 
  ;;The following are established risk factors for acquisition of hepatitis C
  ;;infection:

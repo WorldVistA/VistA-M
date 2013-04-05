@@ -1,5 +1,5 @@
-HLOPING ;alb/cjm HLO PING UTILITY - 10/4/94 1pm ;02/18/2011
- ;;1.6;HEALTH LEVEL SEVEN;**147*,155*;Oct 13, 1995;Build 4
+HLOPING ;alb/cjm HLO PING UTILITY - 10/4/94 1pm ;07/12/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**147,155,158**;Oct 13, 1995;Build 14
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -12,6 +12,7 @@ PING ;
  W !,"What HL Logical Link do you want to test?"
  S LINK=$$ASKLINK^HLOUSR
  Q:LINK=""
+ I $$NOPING(LINK) W !,"That link does not allowing PINGING!" D PAUSE^VALM1 Q
  S PORT=$$ASKPORT(LINK)
  Q:'PORT
  L +^HLB("QUEUE","OUT",LINK_":"_PORT,"HLOPING"_$J):1
@@ -30,6 +31,13 @@ PING ;
  L -^HLB("QUEUE","OUT",LINK_":"_PORT,"HLOPING"_$J)
  D STARTQUE^HLOQUE("OUT","HLOPING"_$J)
  Q
+ ;
+NOPING(LINK) ;
+ N IEN,RETURN
+ S RETURN=1
+ S IEN=$O(^HLCS(870,"B",LINK,0))
+ I IEN S RETURN=$P($G(^HLCS(870,IEN,0)),"^",24)
+ Q RETURN
  ;
 ASKPORT(LINK) ;
  N IEN,NODE,HLOPORT,HL7PORT,DIR,X,Y
@@ -55,7 +63,7 @@ ADDMSG(LINK) ;
  S PARMS("EVENT")="ZZZ"
  I '$$NEWMSG^HLOAPI(.PARMS,.MSG,.ERROR) W !,"ERROR",ERROR Q 0
  D SET^HLOAPI(.SEG,"NTE",0)
- D SET^HLOAPI(.SEG,"This is a PING message to test connectivity.",1)
+ D SET^HLOAPI(.SEG,"This is a PING message to test connectivity. Sender DUZ: "_$G(DUZ),1)
  I '$$ADDSEG^HLOAPI(.MSG,.SEG,.ERROR) W !,"ERROR",ERROR Q 0
  S PARMS("SENDING APPLICATION")="HLO PING CLIENT",WHOTO("RECEIVING APPLICATION")="HLO PING SERVER",WHOTO("FACILITY LINK NAME")=LINK
  S PARMS("ACCEPT ACK TYPE")="AL"
@@ -67,7 +75,7 @@ ADDMSG(LINK) ;
 PURGE(LINK) ;
  N IEN
  S IEN=0
- F  S IEN=$O(^HLB("QUEUE","OUT",LINK,"HLOPING"_$J,IEN)) Q:'IEN  D DEQUE^HLOQUE(LINK,"HLOPING"_$J,"OUT",IEN),SETPURGE^HLOAPI3(IEN)
+ F  S IEN=$O(^HLB("QUEUE","OUT",LINK,"HLOPING"_$J,IEN)) Q:'IEN  D DEQUE^HLOQUE(LINK,"HLOPING"_$J,"OUT",IEN),SETPURGE^HLOUSR7(IEN)
  Q
  ;
 BREAKS ;
@@ -125,6 +133,8 @@ WRITE(MSG) ;
  Q
 ZB2 ;
  D WRITE($S('HLCSTATE("CONNECTED"):"Unable to Connect!",1:"Connected!"))
+ ;!!!!!!!!!!!!
+ ;F I=1:1:15 H 1
  Q
 ZB3 ;
  N CON,MSG
@@ -140,6 +150,8 @@ ZB9 ;
  .D WRITE("Acknowledgment received!")
  E  D
  .D WRITE("Acknowledgment NOT returned!")
+ ;!!!!!!!!!!!!
+ ;H 50
  Q
 ZB24 ;
  S HLCSTATE("LINK","SHUTDOWN")=0

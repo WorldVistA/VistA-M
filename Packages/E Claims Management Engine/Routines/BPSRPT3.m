@@ -1,5 +1,5 @@
 BPSRPT3 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,11**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,11,14**;JUN 2004;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -202,10 +202,15 @@ SELDRG() N DIC,DIRUT,DUOUT,X,Y
 SELDRGCL() N DIC,DIRUT,DUOUT,Y
  ;
  ;Prompt for entry
- W ! D SELDRGC^BPSRPT6
+ ;W ! D SELDRGC^BPSRPT6
+ ;Using DIC^PSNDI per ICR 4554 - BPS*1*14 ticket 313337
+ S DIC="50.605",DIC(0)="QEAMZ" D DIC^PSNDI(DIC,"BPS",.DIC,,,)
  ;
- ;Check for "^", timeout, or blank entry
- I ($G(DUOUT)=1)!($G(DTOUT)=1)!($G(Y)="") S Y="^"
+ ;call returns DRUG CLASS CODE, need to extract DRUG CLASSIFICATION
+ I +$G(Y)>0 S Y=$P($G(Y(0)),"^",2) I $G(Y)="" S Y=-1
+ ;
+ ;If nothing was returned set Y="-1" so report knows 
+ I $G(Y)=-1 S Y="^"
  ;
  Q Y
  ;

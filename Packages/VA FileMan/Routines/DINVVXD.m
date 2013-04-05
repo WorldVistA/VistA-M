@@ -1,5 +1,5 @@
 %ZOSV ;SFISC/AC - View commands & special functions. ;12:48 PM  30 Sep 1998
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 ACTJ() ; # active jobs
  Q $P($$JOBS^%SY,",",2)

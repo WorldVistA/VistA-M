@@ -1,5 +1,5 @@
-ORWDXR ; SLC/KCM/JDL - Utilites for Order Actions ;5/30/06  14:50
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,134,141,149,187,190,213,243**;Dec 17, 1997;Build 242
+ORWDXR ;SLC/KCM/JDL - Utilites for Order Actions ;12/16/10 3:50pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,134,141,149,187,190,213,243,331**;Dec 17, 1997;Build 30
  ;
 ACTDCREA(DCIEN) ; Valid DC Reason
  N X
@@ -80,8 +80,8 @@ RNWFLDS(LST,ORIFN) ; Return fields for renew action
  . ;D WPVAL(.LST,ORIFN,"COMMENT")
  I +LST(0)=999 S LST(0)=LST(0)_U_$$VAL(ORIFN,"START")_U_$$VAL(ORIFN,"STOP")
  ; make sure start/stop times are relative times, otherwise use NOW, no Stop
- I +$P(LST(0),U,2) S $P(LST(0),U,2)="NOW"
- I +$P(LST(0),U,3)!($P(LST(0),U,3)="0") S $P(LST(0),U,3)=""
+ ;I +$P(LST(0),U,2) S $P(LST(0),U,2)="NOW" ;DJE-VM *331 - moved to $$VAL
+ ;I +$P(LST(0),U,3)!($P(LST(0),U,3)="0") S $P(LST(0),U,3)=""
  ;NEW STUFF AFTER THIS LINE OR*3*243
  S $P(LST(0),U,9)=0
  S OROI=$O(^OR(100,+ORIFN,4.5,"ID","ORDERABLE",0))
@@ -102,8 +102,19 @@ RNWFLDS(LST,ORIFN) ; Return fields for renew action
  .M LST(1)=ORY
  Q
 VAL(ORIFN,ID) ; Return value for order response
- N DA S DA=+$O(^OR(100,ORIFN,4.5,"ID",ID,0))
- Q $G(^OR(100,ORIFN,4.5,DA,1))
+ N DA,Y,ORDIALOG,ORDGDA,CAPS,XCODE
+ S DA=+$O(^OR(100,ORIFN,4.5,"ID",ID,0))
+ I (ID="START")!(ID="STOP") D  I 1 ;DJE-VM *331
+ . ; make sure start/stop times are relative times, otherwise use dialog default values
+ . S CAPS=$$UP^XLFSTR($G(^OR(100,ORIFN,4.5,DA,1)))
+ . I ('$L(CAPS))!($E(CAPS)="T")!($E(CAPS)="V")!($E(CAPS)="N"&($E(CAPS,1,3)'="NOV")) S Y=CAPS Q
+ . S ORDIALOG=$P(^OR(100,+ORIFN,0),U,5)
+ . S ORDGDA=+^OR(100,ORIFN,4.5,DA,0)
+ . S XCODE=$G(^ORD(101.41,+ORDIALOG,10,ORDGDA,7))
+ . I $L(XCODE) X XCODE
+ . I '$L($G(Y)),ID="START" S Y="NOW" ;if no default, set START to NOW
+ E  S Y=$G(^OR(100,ORIFN,4.5,DA,1))
+ Q $G(Y)
 WPVAL(TXT,ORIFN,ID) ; Return word processing value
  N DA S DA=+$O(^OR(100,ORIFN,4.5,"ID",ID,0))
  S I=0 F  S I=$O(^OR(100,ORIFN,4.5,DA,2,I)) Q:'I  S TXT(I)=^(I,0)

@@ -7,7 +7,7 @@ CSUM ;Calculate checksum for routines and transmit errors to Forum
  F YSI=1:1 S YSA=$T(ROU+YSI) Q:YSA["***"  S X=$P($P(YSA,","),";",3) D
   . X ^%ZOSF("TEST") I '$T S ^TMP("YSCL",$J,YSI+3,0)=X_" is missing." Q
   . X ^%ZOSF("RSUM") S ^TMP("YSCL",$J,YSI+3,0)=X_" should be "_$P(YSA,",",2)_" is "_Y
- K XMY S XMY("G.CLOZAPINE ROLL-UP@FORUM.DOMAIN.EXT")=""
+ K XMY S XMY("G.CLOZAPINE ROLL-UP@FORUM.domain.ext")=""
  I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.DOMAIN.EXT")=""
  S XMSUB=$S(YSDEBUG:"DEBUG ",1:"")_"Clozapine Checksum data at "_YSCLST_" run on "_XQDATE
  S XMTEXT="^TMP(""YSCL"",$J,",XMDUZ="CLOZAPINE MONITOR" D ^XMD

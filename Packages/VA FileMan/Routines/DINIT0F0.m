@@ -1,5 +1,5 @@
 DINIT0F0 ;SFISC/MKO-DATA FOR FORM AND BLOCK FILES ;4APR2007
- ;;22.0;VA FileMan;**152**;Mar 30, 1999;Build 10
+ ;;22.0;VA FileMan;**152**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  D PRE^DINIT29P
  F I=1:2 S X=$T(ENTRY+I) G:X="" ^DINIT0F1 S Y=$E($T(ENTRY+I+1),5,999),X=$E(X,4,999),@X=Y

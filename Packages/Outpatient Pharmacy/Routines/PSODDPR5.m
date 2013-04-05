@@ -1,10 +1,8 @@
 PSODDPR5 ;BIR/SAB - displays OP/rdi/pending/nva orders ;09/320/06 11:33am
- ;;7.0;OUTPATIENT PHARMACY;**251,375,379**;DEC 1997;Build 28
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,379,390**;DEC 1997;Build 86
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.606 supported by DBIA 2174
  ;External reference to ^PS(50.7 supported by DBIA 2223
- ;External reference to ^PS(55 supported by DBIA 2228
- ;External reference to $$DRG^PSSDSAPM supported by DBIA 5570
  ;
 EXC ;displays order check exceptions
  N Q,CT,ONT,OT,ON,TD,ERRTY,OP,OPP,ZEXC,ZREA,X,DIWL,DIWR,DIWF,PSOWROTE
@@ -13,12 +11,13 @@ EXC ;displays order check exceptions
  F  S ONT=$O(^TMP($J,LIST,"OUT","EXCEPTIONS",ONT)) Q:ONT=""  F  S CT=$O(^TMP($J,LIST,"OUT","EXCEPTIONS",ONT,CT)) Q:'CT  D
  .S ZEXC=^TMP($J,LIST,"OUT","EXCEPTIONS",ONT,CT),ZREA=$P(^TMP($J,LIST,"OUT","EXCEPTIONS",ONT,CT),"^",10)
  .S OT=$P(ONT,";"),ON=$P(ONT,";",2),OP=$P(ONT,";",3),OPP=OT_";"_ON_";"_OP
- .I OT="Z",ZREA="Drug not matched to NDF"!($P(^TMP($J,LIST,"OUT","EXCEPTIONS",ONT,CT),"^",7)["manual check") S PSODRUG("BAD",PSODRUG("IEN"))=1
+ .I '$D(PSODGCK),'$D(PSSDGCK),OT="Z",ZREA="Drug not matched to NDF"!($P(^TMP($J,LIST,"OUT","EXCEPTIONS",ONT,CT),"^",7)["manual check") S PSODRUG("BAD",PSODRUG("IEN"))=1
  .Q:$G(^TMP($J,"PSEXC","OUT",OPP))
  .S Q=Q+1,ERRTY=$S(OT="R":"RDI",OT="N":"Non-VA",OT="P":"Pending",OT="O":"Rx",1:"")
  .K ^UTILITY($J,"W") S DIWL=1,DIWR=75,DIWF=""
  .W ! S X=$P(^TMP($J,LIST,"OUT","EXCEPTIONS",ONT,CT),"^",7) D ^DIWP
  .F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  W !,^UTILITY($J,"W",1,ZX,0)
+ .I $D(PSODGCK)!$D(PSSDGCK) K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." W ! D ^DIR K DIR W @IOF
  .S:OT'="Z" ^TMP($J,"PSEXC","OUT",OPP)=1,PSOWROTE=1
  .Q:ZREA=""
  .K ^UTILITY($J,"W") S DIWL=1,DIWR=75,DIWF=""
@@ -53,7 +52,6 @@ DUPCL ;
  I $P(ON,";")="O",$G(^TMP("PSORXDC",$J,RXREC,0)) Q
  I $P(ON,";")="P",$G(^TMP("PSORXDC",$J,RXREC,0)) Q
  I $P(ON,";")="O",$G(^TMP("PSORXDD",$J,RXREC,0)) Q
- ;Q:$G(DDTH(ON))
  S ORT=$S($P(ON,";")="N":4,$P(ON,";")="P":3,$P(ON,";")="R":2,1:1)
  S DOCPL(ORT,ON)=""
  Q
@@ -84,7 +82,6 @@ DUPCP D HD^PSODDPR2():(($Y+5)'>IOSL) S ORT=0,ON=""  F  S ORT=$O(DOCPL(ORT)) Q:'O
  D HD^PSODDPR2():(($Y+5)'>IOSL) Q:$G(PSODLQT)
  D CLASSES^PSODDPR3
  D HD^PSODDPR2(0,1) Q:$G(PSODLQT)
- ;K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to Continue" D ^DIR K DIR,X,Y W @IOF
  Q
 REMOTE ;backdoor RDI
  Q:$G(PSODLQT)
@@ -98,51 +95,50 @@ REMOTE ;backdoor RDI
  .S ^TMP($J,LIST,"IN","PROFILE","R;"_PSORDI_";PROFILE;"_DO)=SEQN_"^"_RDIVUID_"^0^"_RDIDNAM_"^^"
  Q
 NSRT ;sort of drug interactions ; called by psoddpr2
- Q:$G(PSODLQT)  S COUNT=0
+ N SV,SEV,STOP,TYP,CNT,CHK,DRG,ON,CT,ZOT,PSOVAG,PSODD,COUNT,NSRT,NSRT2 S COUNT=0,(SV,DRG,ON,CT,PSOVAG)=""
  F  S SV=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV)) Q:SV=""!$G(PSODLQT)  D  Q:$G(PSORX("DFLG"))
  .F  S DRG=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG)) Q:DRG=""!$G(PSODLQT)  F  S ON=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON)) Q:ON=""!$G(PSODLQT)  F  S CT=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT)) Q:'CT!$G(PSODLQT)  D
- ..I $P(ON,";")="O",$P(^PSRX($P(ON,";",2),"STA"),"^")>5,$P(^PSRX($P(ON,";",2),"STA"),"^")'=16 Q
- ..I $P(ON,";")="R" D RVAGEN Q
- ..I $P(ON,";")="P",'$P($G(^PS(52.41,$P(ON,";",2),0)),"^",9) S PSORDIT=$P($G(^PS(52.41,$P(ON,";",2),0)),"^",8) D:$G(PSORDIT) DVAGEN Q
- ..I $P(ON,";")="N",'$P($G(^PS(55,PSODFN,"NVA",$P(ON,";",2),0)),"^",2) S PSORDIT=$P($G(^PS(55,PSODFN,"NVA",$P(ON,";",2),0)),"^") D:$G(PSORDIT) DVAGEN Q
+ ..I $P(ON,";")'="Z",$P(ON,";")="O",$P(^PSRX($P(ON,";",2),"STA"),"^")>5,$P(^PSRX($P(ON,";",2),"STA"),"^")'=16 Q
+ ..I $P(ON,";")'="Z",$P(ON,";")="R" D RVAGEN Q
+ ..I $P(ON,";")'="Z",$P(ON,";")="P",'$P($G(^PS(52.41,$P(ON,";",2),0)),"^",9) S PSORDIT=$P($G(^PS(52.41,$P(ON,";",2),0)),"^",8) D:$G(PSORDIT) DVAGEN Q
+ ..I $P(ON,";")'="Z",$P(ON,";")="N",'$P($G(^PS(55,PSODFN,"NVA",$P(ON,";",2),0)),"^",2) S PSORDIT=$P($G(^PS(55,PSODFN,"NVA",$P(ON,";",2),0)),"^") D:$G(PSORDIT) DVAGEN Q
  ..S PSODD=$O(^PSDRUG("B",DRG,0)) D:PSODD'="" VAGEN^PSODDPR3(PSODD)
  ..S:PSOVAG="" PSOVAG=DRG
- ..S ZOT=$S($P(ON,";")="O":1,$P(ON,";")="R":2,$P(ON,";")="P":3,1:4)
+ ..S ZOT=$S($P(ON,";")["C":1,$P(ON,";")="O":2,$P(ON,";")="R":3,$P(ON,";")="P":4,1:5)
  ..S ZDGDG(SV,ZOT,PSOVAG,DRG)=ON_"^"_CT
- ;
- N SV,TYP,PSOVAG,PSONAM K ZZDGDG,NSRT S (SV,TYP,PSOVAG,PSONAM)=""
- F  S SV=$O(ZDGDG(SV)) Q:SV=""  F  S TYP=$O(ZDGDG(SV,TYP)) Q:TYP=""  F  S PSOVAG=$O(ZDGDG(SV,TYP,PSOVAG)) Q:PSOVAG=""  D
- .F  S PSONAM=$O(ZDGDG(SV,TYP,PSOVAG,PSONAM)) Q:PSONAM=""  D
- ..I '$D(NSRT(SV,PSOVAG)) S NSRT(SV,PSOVAG)=TYP
- ..E  S $P(NSRT(SV,PSOVAG),"^",1)=$P(NSRT(SV,PSOVAG),"^",1)_","_TYP
+ ..I ZOT=1 S PSOCLNS(SV,PSOVAG,DRG,ON)=CT
+ ..I '$D(NSRT(SV,PSOVAG)) S NSRT(SV,PSOVAG)=ZOT
+ ..E  S $P(NSRT(SV,PSOVAG),"^",1)=$P(NSRT(SV,PSOVAG),"^",1)_","_ZOT
  ;resort of zdgdg
- N SEV,STOP,PSOVAG,TYP,CNT,CHK
- K ZZDGDG S (SEV,STOP,PSOVAG,TYP)="",CNT=0
- F J=1:1:4 F  S SEV=$O(NSRT(SEV)) Q:SEV=""  F I=1:1:4 F  S PSOVAG=$O(NSRT(SEV,PSOVAG)) Q:PSOVAG=""  D
- .F TYP=1:1:$L(NSRT(SEV,PSOVAG),",") Q:$P(NSRT(SEV,PSOVAG),",",TYP)']""  D
+ K ZZDGDG S (SEV,STOP,PSOVAG,TYP,ON)="",CNT=0
+ F J=1:1:5 F  S SEV=$O(NSRT(SEV)) Q:SEV=""  F I=1:1:5 F  S PSOVAG=$O(NSRT(SEV,PSOVAG)) Q:PSOVAG=""  D
  .S TYP="",TYP=","_$P(NSRT(SEV,PSOVAG),"^",1)_","
  .Q:TYP'[(","_J_",")
- .S STOP=0 F CHK=1:1:4 I TYP[(","_CHK_",")&(CHK<J) S STOP=1
+ .S STOP=0 F CHK=1:1:5 I TYP[(","_CHK_",")&(CHK<J) S STOP=1
  .Q:STOP
- .S CNT=CNT+1 F I=J:1:4 S TYP=I I $D(ZDGDG(SEV,TYP)) D S2(SEV,TYP,PSOVAG,CNT)
+ .S CNT=CNT+1 F I=J:1:5 S TYP=I I $D(ZDGDG(SEV,TYP)) D S2(SEV,TYP,PSOVAG,CNT)
  K NSRT,J,F,ZDGDG,COUNT,CNT
  Q
  ;print order sort
 S2(SEV,TYP,PSOVAG,CNT) ;
- N PSONAM S (PSONAM)="",COUNT2=0
- F  S PSONAM=$O(ZDGDG(SEV,TYP,PSOVAG,PSONAM)) Q:PSONAM=""  S COUNT2=COUNT2+1 D
+ N PSONAM S (PSONAM)=""
+ F  S PSONAM=$O(ZDGDG(SEV,TYP,PSOVAG,PSONAM)) Q:PSONAM=""  D
  .S:$G(ZZDGDG2(SEV,PSOVAG)) ZZDGDG2(SEV,PSOVAG)=ZZDGDG2(SEV,PSOVAG)+1 S:'$G(ZZDGDG2(SEV,PSOVAG)) ZZDGDG2(SEV,PSOVAG)=1
  .S ZZDGDG(SEV,CNT,TYP,PSOVAG,PSONAM)=ZDGDG(SEV,TYP,PSOVAG,PSONAM)
+ .S ZZDGCK(SEV,CNT,TYP,PSOVAG,PSONAM)=ZDGDG(SEV,TYP,PSOVAG,PSONAM)
  Q
  ;
-NSRT1 ;sort out dc'd drug therapies for remote rxs
+NSRT1 ;sort out dc'd drug therapies local and remote rxs
  S (SUB,CT)=0 K PSODCTH N RXN
  F  S CT=$O(^TMP($J,LIST,"OUT","THERAPY",CT)) Q:'CT  F  S SUB=$O(^TMP($J,LIST,"OUT","THERAPY",CT,"DRUGS",SUB)) Q:'SUB  D
  .S ON=$P(^TMP($J,LIST,"OUT","THERAPY",CT,"DRUGS",SUB),"^")
+ .I $P(ON,";")="O",$P($G(^PSRX($P(ON,";",2),3)),"^",5) D  Q
+ ..S RXN=$P(ON,";",2),X1=$P($G(^PSRX($P(ON,";",2),3)),"^",5),X2=(+$P(^PSRX($P(ON,";",2),0),"^",8)+7)
+ ..D C^%DTC I X<DT S PSODCTH(ON)=1 K X,Y,X1,X2
  .I $P(ON,";")="R",$P($G(^TMP($J,LIST,"OUT","REMOTE",$P(ON,";",2))),"^",4)["DISC" D
  ..S RXN=$P(ON,";",2) K X,Y,X1,X2
  ..S X=$P(^TMP($J,LIST,"OUT","REMOTE",RXN),"^",6) D ^%DT S X1=Y,X2=(+$P(^TMP($J,LIST,"OUT","REMOTE",RXN),"^",7)+7)
- ..D C^%DTC I X<DT S PSODCTH(ON)=1  K X,Y,X1,X2
+ ..D C^%DTC I X<DT S PSODCTH(ON)=1 K X,Y,X1,X2
  Q
  ;
 RVAGEN ;va generic for remote drugs
@@ -155,26 +151,96 @@ RVAGEN ;va generic for remote drugs
  Q
  ;
 DVAGEN ;va generic for non-va/pending meds
- S PSI=0 N PSID,PSODD,PSOVAG,PSOSRTPK,PSOSRTDG,PSOSRTDF
- S PSOSRTPK=$S($P(ON,";")="N":"X",1:"O"),PSOVAG=""
- S PSOSRTDG=$P($$DRG^PSSDSAPM(PSORDIT,PSOSRTPK),";")
- D:PSOSRTDG VAGEN^PSODDPR3(PSOSRTDG)
- I PSOVAG="",PSOSRTDG S PSOVAG=$P($G(^PSDRUG(PSOSRTDG,0)),"^")
- I PSOVAG="" S PSOSRTDF=$P($G(^PS(50.7,PSORDIT,0)),"^",2) S PSOVAG=$P($G(^PS(50.7,PSORDIT,0)),"^")_"  "_$S($G(PSOSRTDF):$P($G(^PS(50.606,+PSOSRTDF,0)),"^"),1:"")
+ S PSI=0 N PSID,PSODD,PSOVAG
+ F  S PSI=$O(^PSDRUG("ASP",PSORDIT,PSI)) Q:'PSI!($G(PSID)'="")  I $S('$D(^PSDRUG(PSI,"I")):1,'^("I"):1,DT'>^("I"):1,1:0),$S($P($G(^PSDRUG(PSI,2)),"^",3)'["X":0,1:1) S PSID=$P($G(^PSDRUG(PSI,0)),"^")
+ I PSI="" S PSI=0 F  S PSI=$O(^PSDRUG("ASP",PSORDIT,PSI)) Q:'PSI!($G(PSID)'="")  I $S('$D(^PSDRUG(PSI,"I")):1,'^("I"):1,DT'>^("I"):1,1:0),$S($P($G(^PSDRUG(PSI,2)),"^",3)'["O":0,1:1) S PSID=$P($G(^PSDRUG(PSI,0)),"^")
+ I PSI="" S PSI=0 F  S PSI=$O(^PSDRUG("ASP",PSORDIT,PSI)) Q:'PSI!($G(PSID)'="")  I $S('$D(^PSDRUG(PSI,"I")):1,'^("I"):1,DT'>^("I"):1,1:0),$S($P($G(^PSDRUG(PSI,2)),"^",3)'["U":0,1:1) S PSID=$P($G(^PSDRUG(PSI,0)),"^")
+ I PSI="" S PSI=0 F  S PSI=$O(^PSDRUG("ASP",PSORDIT,PSI)) Q:'PSI!($G(PSID)'="")  I $S('$D(^PSDRUG(PSI,"I")):1,'^("I"):1,DT'>^("I"):1,1:0),$S($P($G(^PSDRUG(PSI,2)),"^",3)'["I":0,1:1) S PSID=$P($G(^PSDRUG(PSI,0)),"^")
+ I PSI="" S PSI=0 F  S PSI=$O(^PSDRUG("ASP",PSORDIT,PSI)) Q:'PSI!($G(PSID)'="")  I $S('$D(^PSDRUG(PSI,"I")):1,'^("I"):1,DT'>^("I"):1,1:0),$S('$L($P($G(^PSDRUG(PSI,2)),"^",3)):0,1:1) S PSID=$P($G(^PSDRUG(PSI,0)),"^")
+ I PSI="" S PSI=0 F  S PSI=$O(^PSDRUG("ASP",PSORDIT,PSI)) Q:'PSI!($G(PSID)'="")  I $S('$D(^PSDRUG(PSI,"I")):1,'^("I"):1,DT'>^("I"):1,1:0),$S($L($P($G(^PSDRUG(PSI,2)),"^",3)):0,1:1) S PSID=$P($G(^PSDRUG(PSI,0)),"^")
+ Q:$G(PSID)']""
+ S PSODD=$O(^PSDRUG("B",PSID,0)) D VAGEN^PSODDPR3(PSODD)
  Q:$G(PSOVAG)']""
  S ZOT=$S($P(ON,";")="O":1,$P(ON,";")="R":2,$P(ON,";")="P":3,1:4),ZDGDG(SV,ZOT,PSOVAG,DRG)=ON_"^"_CT,COUNT=COUNT+1
  K PSI,PSID,PSORDIT,PSODD,PSOVAG
  Q
-  ;
+ ;
 INT ;
   I $G(PSOVORD),$P(PSOINTV,"^")=1 D  Q
  .K DIR,DTOUT,DIRUT,DIROUT,DUOUT
  .W ! S DIR(0)="SA^1:YES;0:NO",DIR("A")="Do you want to Continue? ",DIR("B")="Y" D ^DIR S:($D(DTOUT))!($D(DUOUT))!($G(DIRUT)) PSODLQT=1,PSORX("DFLG")=1 Q:$G(PSODLQT)
  .K DIR,DTOUT,DIRUT,DIROUT,DUOUT
- .I 'Y S PSODLQT=1,PSORX("DFLG")=1 Q
+ .I 'Y S PSORX("DFLG")=1 Q
  .S DA=PSONV,RXREC=DA,RX=$G(^PSRX(RXREC,0)),PSORX("INTERVENE")=1
- .D CRI^PSODGDG1
+ .D:'$D(PSODGCK) CRI^PSODGDG1
  .I $G(OLDDA) S DA=OLDDA K OLDDA
  Q:$G(PSODLQT)!($G(PSORX("DFLG")))
- I $P(PSOINTV,"^") S IT=$P(PSOINTV,"^"),ON=$P(PSOINTV,"^",2) D ^PSODGDGP K DIR S IT=$P(PSOINTV,"^")
+ I '$D(PSODGCK),$P(PSOINTV,"^") S IT=$P(PSOINTV,"^"),ON=$P(PSOINTV,"^",2) D ^PSODGDGP K DIR S IT=$P(PSOINTV,"^")
  Q
+ ;
+DGCK ;CK - Drug check option at patient profile
+ I '$D(PSOSD) D FULL^VALM1 W !!,"Not enough drugs found in profile!",! K DIR S DIR("A")="Press Return to continue",DIR(0)="E",DIR("?")="Press Return to continue" D ^DIR K DIR G DGCKQ
+ S PSODGCK=1
+ D FULL^VALM1
+ D PSOCK^PSOUTL
+ K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." W ! D ^DIR K DIR W @IOF,!
+ D SELECT
+ I $G(PSONEW("DFLG"))=1!'$D(PSOSD) W ! G DGCKQ
+ D SET^PSODRG
+DGCKNP D POST^PSODRG
+DGCKQ S VALMBCK="R"
+ K PSODGCK,PSODGCKX,MON,PSONEW("DFLG"),PSORX("DFLG"),PSOIENID,PSOGCNPT,PSOGCNID,PSONDFID,DGCKDUPF
+ Q
+ ;
+GCN(PSOIENID) ;Return 0 for not matched, 1 for matched with no GCNSEQNO, 1^1 for matched with a GCNSEQNO
+ N PSONDFID,PSOGCNPT,PSOGCNID
+ S PSONDFID=$P($G(^PSDRUG(PSOIENID,"ND")),"^"),PSOGCNPT=$P($G(^PSDRUG(PSOIENID,"ND")),"^",3)
+ I 'PSONDFID!('PSOGCNPT) Q 0
+ S PSOGCNID=$$PROD0^PSNAPIS(PSONDFID,PSOGCNPT)
+ I $P(PSOGCNID,"^",7) Q PSOIENID_";"_PSONDFID_";"_$P(PSOGCNID,"^",7)
+ Q PSOIENID_";"_PSONDFID
+ ;
+PKGFLG(PKF1) ;Return 0 for not in range of acceptable package flags, 1 for within range
+ I $S(PKF1["O":1,1:0) Q 1
+ I $S(PKF1["X":1,1:0) Q 1
+ Q 0
+ ;
+SELECT ;
+ N PSODGCKD S PSODGCKD=0 K:'$G(PSORXED) CLOZPAT
+ K IT,DIC,X,Y,PSODRUG("TRADE NAME"),PSODRUG("NDC"),PSODRUG("DAW"),PSODRUG("BAD") S:$G(POERR)&($P($G(OR0),"^",9)) Y=$P(^PSDRUG($P(OR0,"^",9),0),"^")
+ I $G(PSODRUG("IEN"))]"",'$D(PSODGCK) S Y=PSODRUG("NAME"),PSONEW("OLD VAL")=PSODRUG("IEN")
+ W !,"DRUG: " R X:$S($D(DTIME):DTIME,1:300) I '$T S DTOUT=1
+ I PSODGCK,X="",PSOSD<2 W !!,"Not enough drugs found in profile!",! K DIR S DIR("A")="Press Return to continue",DIR(0)="E",DIR("?")="Press Return to continue" D ^DIR K DIR S PSONEW("DFLG")=1 G SELECTX
+ S:X="" PSODGCKX=1
+ I X="",$G(Y)]"" S:Y X=Y S:'X X=$G(PSODRUG("IEN")) S:X X="`"_X
+ I X="",$D(PSOSD) S X=$O(PSOSD($O(PSOSD("")),"")),PSODGCKD=1
+ I X="",'$D(PSOSD) D  Q
+ .W !!,"Now Processing Enhanced Order Checks!  Please wait..." H 1
+ .W !!,"No Order Check Warnings Found",! K DIR S DIR("A")="Press Return to continue",DIR(0)="E",DIR("?")="Press Return to continue" D ^DIR K DIR
+ I X?1."?" W !!,"Answer with DRUG NUMBER, or GENERIC NAME, or VA PRODUCT NAME, or",!,"NATIONAL DRUG CLASS, or SYNONYM" G SELECT
+ I $G(PSORXED),X["^" S PSORXED("DFLG")=1 G SELECTX
+ I X="^"!(X["^^")!($D(DTOUT)) S PSONEW("DFLG")=1 G SELECTX
+ I '$G(POERR),X[U,$L(X)>1 S PSODIR("FLD")=PSONEW("FLD") D JUMP^PSODIR1 S:$G(PSODIR("FIELD")) PSONEW("FIELD")=PSODIR("FIELD") K PSODIR S PSODRG("QFLG")=1 G SELECTX
+ S DIC=50,DIC(0)="MZV",D="B^C^VAPN^VAC"
+ I 'PSODGCKD S DIC=50,DIC(0)="EMQZVT",DIC("T")="",D="B^C^VAPN^VAC"
+ S DIC("S")="I $S('$D(^PSDRUG(+Y,""I"")):1,'^(""I""):1,DT'>^(""I""):1,1:0),$$GCN^PSODDPR5(+Y),$$PKGFLG^PSODDPR5($P($G(^PSDRUG(+Y,2)),""^"",3)),$D(^PSDRUG(""ASP"",+$G(^(2)),+Y))"
+ D MIX^DIC1 K DIC,PKF1,D
+ I $$PSOSUPCK^PSOUTL(+Y) G SELECT
+ S (DGCKSTA,DGCKDNM)=""
+ I '$D(PSODGCKX),$D(PSOSD) F  S DGCKSTA=$O(PSOSD(DGCKSTA)) Q:DGCKSTA=""!$G(DGCKDUPF)  F  S DGCKDNM=$O(PSOSD(DGCKSTA,DGCKDNM)) Q:DGCKDNM=""!$G(DGCKDUPF)  D
+ .I DGCKDNM=$G(Y(0,0)) D
+ ..S DGCKDUPF=1 W !!,"Duplicate Drug in Patient profile, please select a different drug:",!
+ ..K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR W @IOF
+ I $D(DGCKDUPF) K DGCKDUPF,PSODGCKX G SELECT
+ I '$D(PSOSD) D  Q
+ .W !!,"Now Processing Enhanced Order Checks!  Please wait..." H 1
+ .W !!,"No Order Check Warnings Found",! K DIR S DIR("A")="Press Return to continue",DIR(0)="E",DIR("?")="Press Return to continue" D ^DIR K DIR
+ I $D(DTOUT) S PSONEW("DFLG")=1 G SELECTX
+ I $D(DUOUT) K DUOUT G SELECT
+ I Y<0 G SELECT
+ S:$G(PSONEW("OLD VAL"))=+Y&('$G(PSOEDIT)) PSODRG("QFLG")=1
+ K PSOY S PSOY=Y,PSOY(0)=Y(0)
+ I $P(PSOY(0),"^")="OTHER DRUG"!($P(PSOY(0),"^")="OUTSIDE DRUG") D TRADE^PSODRG
+SELECTX K X,Y,DTOUT,DUOUT,PSONEW("OLD VAL"),PSODGCKD,DGCKDNM,DGCKSTA
+ Q
+ ;

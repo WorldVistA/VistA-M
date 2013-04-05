@@ -1,5 +1,6 @@
-LA7ADL1 ;DALOI/JMC - Automatic Download of Test Orders (Cont'd) ; 1/30/95 09:00
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**17,23,57**;Sep 27, 1994
+LA7ADL1 ;DALOI/JMC - Automatic Download of Test Orders (Cont'd) ;Aug 14, 2008
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**17,23,57,74**;Sep 27, 1994;Build 229
+ ;
  ;
 BUILD ; Build test listing for all instruments designated for auto download.
  ;
@@ -80,7 +81,7 @@ CHKRTN() ; Check if download routine defined and valid
  . S XQAMSG="No download routine (field #94)"
  ;
  ; Check if download routine valid
- I $L($P(LA7AUTO(LA7INST,9),"^",4)) D
+ I $P(LA7AUTO(LA7INST,9),"^",4)'="" D
  . S X=$P(LA7AUTO(LA7INST,9),"^",4) X ^%ZOSF("TEST") Q:$T
  . S LA7ERR=1
  . S XQAMSG="Invalid download routine (field #94)"
@@ -100,12 +101,11 @@ CHKRTN() ; Check if download routine defined and valid
  Q LA7ERR
  ;
  ;
-UNWIND(LA760,LA7URG,LA7TYP) ; Unwind profile - set tests into array LA7TREE with urgency.
+UNWIND(LA760,LA7URG,LA7PARNT) ; Unwind profile - set tests into array LA7TREE with urgency.
  ;
  ; Call with  LA760 = file #60 ien
  ;           LA7URG = file #62.05 ien
- ;           LA7TYP =  0 ordered test
- ;                     1 expanded from panel
+ ;         LA7PARNT = file #60 ien -  ordered parent (panel)
  ;
  ; Recursive panel, caught in a loop.
  I $G(LA7PCNT)>50 Q
@@ -128,7 +128,7 @@ UNWIND(LA760,LA7URG,LA7TYP) ; Unwind profile - set tests into array LA7TREE with
  . I LA7URG<LA7TREE(LA760) S $P(LA7TREE(LA760),"^")=LA7URG
  ;
  ; Not a panel, list test with urgency.
- I '$O(^LAB(60,LA760,2,0)) S LA7TREE(LA760)=LA7URG_"^"_LA7TYP,LA7PCNT=0 Q
+ I '$O(^LAB(60,LA760,2,0)) S LA7TREE(LA760)=LA7URG_"^"_LA7PARNT,LA7PCNT=0 Q
  ;
  N I
  ;
@@ -142,7 +142,7 @@ UNWIND(LA760,LA7URG,LA7TYP) ; Unwind profile - set tests into array LA7TREE with
  . S II=+$G(^LAB(60,LA760,2,I,0))
  . ; Recursive panel, panel calls itself.
  . I II,II=LA760 Q
- . I II D UNWIND(II,LA7URG,1)
+ . I II D UNWIND(II,LA7URG,LA7PARNT)
  ;
  Q
  ;

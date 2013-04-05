@@ -187,8 +187,8 @@ REINDEX ;
  D MES^XPDUTL("Done reindexing.  Let's get down to business...")
  Q
 S ;;current site name^new site name (Add synonyms)
- ;;ISC-SF.DOMAIN.EXT^FO-OAKLAND.DOMAIN.EXT
+ ;;ISC-SF.domain.ext^FO-OAKLAND.DOMAIN.EXT
  ;;
 C ;;current site name^new site name (Change the names)
- ;;ISC-SF.DOMAIN.EXT^FO-OAKLAND.DOMAIN.EXT
+ ;;ISC-SF.domain.ext^FO-OAKLAND.DOMAIN.EXT
  ;;

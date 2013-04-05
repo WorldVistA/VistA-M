@@ -1,5 +1,5 @@
 DIFROM6 ;SFISC/XAK-CREATES RTN ENDING IN 'INIT' ;03:06 PM  28 Nov 1994
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S DH=" ;",Q=" K DIF,DIFQ,DIFQR,DIFQN,DIK,DDF,DDT,DTO,D0,DLAYGO,DIC,DIDUZ,DIR,DA,DIFROM,DFR,DTN,DIX,DZ,DIRUT,DTOUT,DUOUT"
  S ^UTILITY($J,.3,0)=" S DIOVRD=1,U=""^"",DIFQ=0,DIFROM="""_$S($D(DPK(1)):DPK(1),1:0)_""" W !,""This version"_$S($D(DPK(1)):" (#"_DPK(1)_")",1:"")_" of '"_DTL_"INIT' was created on "_DIFROM(1)_""""

@@ -1,5 +1,5 @@
 KMPDHUA ;OAK/RAK - Remote Synchronous HL7 Protocol ;3/15/04  07:48
- ;;2.0;CAPACITY MANAGEMENT TOOLS;;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 EN ;-entry point
  ;

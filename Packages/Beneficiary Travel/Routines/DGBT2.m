@@ -1,7 +1,8 @@
 DGBT2 ;ALB/GAH - BENEFICIARY TRAVEL SCREEN 2 ; 10/11/2006
- ;;1.0;Beneficiary Travel;**7,8,13**;September 25, 2001;Build 11
+ ;;1.0;Beneficiary Travel;**7,8,13,20**;September 25, 2001;Build 185
  Q
 SCREEN ;
+ Q:'$D(VADM)
  W @IOF
  W !?18,"Beneficiary Travel Claim Information <Screen 2>"
  D PID^VADPT6 W !!?8,"Name: ",VADM(1),?42,"PT ID: ",VA("PID"),?64,"DOB: ",$P(VADM(3),"^",2)

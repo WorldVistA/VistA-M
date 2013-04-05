@@ -1,4 +1,4 @@
-ONCOY53 ; GENERATED FROM 'ONCOY53' PRINT TEMPLATE (#863) ; 02/24/11 ; (FILE 165.5, MARGIN=80)
+ONCOY53 ; GENERATED FROM 'ONCOY53' PRINT TEMPLATE (#863) ; 03/18/13 ; (FILE 165.5, MARGIN=80)
  G BEGIN
 N W !
 T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
@@ -111,7 +111,7 @@ BEGIN ;
  S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,6) W:Y]"" $S($D(DXS(7,Y)):DXS(7,Y),1:Y)
  D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 Stage Group....:"
  D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,7) S Y(0)=Y D SGOT^ONCCSOT W $E(Y,1,30)
- D T Q:'DN  D N D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 T..............:"
+ D T Q:'DN  D N D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-7 T..............:"
  S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,13) S Y(0)=Y D TOT^ONCCSOT W $E(Y,1,30)
  D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-7 T Descriptor...:"
  S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,14) W:Y]"" $S($D(DXS(8,Y)):DXS(8,Y),1:Y)

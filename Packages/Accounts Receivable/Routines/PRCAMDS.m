@@ -14,7 +14,7 @@ SERVER ; Entry point for server option to process MDA msgs received from Austin
  ;
  ; Test to determine if the email came from AUSTIN for production systems(DBIA 1143).
  S PRCAFROM=$P($$NET^XMRENT(PRCAXMZ),U,3)
- I $$PROD^XUPROD,PRCAFROM'["AUSTIN.DOMAIN.EXT" Q
+ I $$PROD^XUPROD,PRCAFROM'["AUSTIN.domain.ext" Q
  ;
  ; get the message and process it
  S PRCAEFLG=$$MSG(PRCAXMZ,.PRCAERR)

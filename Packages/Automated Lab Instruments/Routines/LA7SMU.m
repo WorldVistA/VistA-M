@@ -1,5 +1,6 @@
-LA7SMU ;DALOI/JMC - Shipping Manifest Utility ;5/5/97 14:44;
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,64**;Sep 27, 1994
+LA7SMU ;DALOI/JMC - Shipping Manifest Utility ;11/16/11  15:10
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,64,74**;Sep 27, 1994;Build 229
+ ;
  Q
  ;
 CHKSM(X) ; Shipping manifest status check
@@ -47,7 +48,8 @@ CSM(LA7SCFG) ; Creates a new shipping manifest
  S DT=$$DT^XLFDT,LA7DT=$E($$FMTHL7^XLFDT(DT),1,8)
  S LA7SM=LA7SM_"-"_LA7DT_"-"
  ;
- L +^LAHM(62.8,0):5 ; Set lock
+ ;L +^LAHM(62.8,0):5 ; Set lock
+ D LOCK^DILF("^LAHM(62.8,0)")
  I '$T Q "-1^Unable to obtain lock on file LAB SHIPPING MANIFEST #62.8"
  S X=0
  F  S X=X+1 Q:'$D(^LAHM(62.8,"B",LA7SM_X))
@@ -78,11 +80,11 @@ SMSUP(LA7SM,LA7ST,LA7EVNC) ; Shipping manifest status update.
  ;           LA7ST = status to update
  ;         LA7EVNC = event code^event date/time (default=NOW)
  ;
- N DATA,FDA,LA7IEN
+ N DATA,LA7DIE,LA7FDA,LA7IEN
  ;
  S LA7IEN(1)=+LA7SM
- S FDA(2,62.8,+LA7SM_",",.03)=LA7ST
- D UPDATE^DIE("","FDA(2)","LA7IEN","LA7DIE(2)")
+ S LA7FDA(2,62.8,+LA7SM_",",.03)=LA7ST
+ D UPDATE^DIE("","LA7FDA(2)","LA7IEN","LA7DIE(2)")
  S DATA=$P(LA7EVNC,"^")_"^"_$S($P(LA7EVNC,"^",2):$P(LA7EVNC,"^",2),1:$$NOW^XLFDT)
  D SEUP($P(LA7SM,"^",2),1,DATA)
  Q
@@ -92,10 +94,10 @@ STSUP(LA7SM,LA762801,LA7DATA) ; Shipping test status update
  ; Call with    LA7SM = ien of shipping manifest (#62.8)
  ;           LA762801 = ien of test entry on shipping manifest
  ;            LA7DATA = data to be filed
- N FDA
+ N LA7FDA,LA7DIE
  S LA762801=LA762801_","_+LA7SM_","
- S FDA(62.8,62.801,LA762801,.08)=LA7DATA
- D FILE^DIE("","FDA(62.8)","LA7DIE(2)")
+ S LA7FDA(62.8,62.801,LA762801,.08)=LA7DATA
+ D FILE^DIE("","LA7FDA(62.8)","LA7DIE(2)")
  Q
  ;
  ;
@@ -104,15 +106,17 @@ SEUP(LA7ID,LA7EVN,LA7DATA) ; Shipping event update
  ;           LA7EVN = event type (1=shipping manifest/2=test)
  ;           LA7DATA = data to be filed
  N FDA,I,LA7IEN,X
- L +^LAHM(62.85,0) ; Set lock
+ ;L +^LAHM(62.85,0) ; Set lock
+ D LOCK^DILF("^LAHM(62.85,0)")
+ I '$T Q
  S FDA(3,62.85,"+1,",.01)=LA7ID
  S FDA(3,62.85,"+1,",.02)=$S($G(DUZ)>0:DUZ,1:.5)
  S FDA(3,62.85,"+1,",.03)=$$NOW^XLFDT
  S FDA(3,62.85,"+1,",.04)=LA7EVN
- I $L($P(LA7DATA,"^")) D
+ I $P(LA7DATA,"^")'="" D
  . S X=$$EVNC($P(LA7DATA,"^"))
  . I X S FDA(3,62.85,"+1,",.05)=+X
- F I=2:1:4 I $L($P(LA7DATA,"^",I)) S FDA(3,62.85,"+1,",$P("^.07^.08^.09","^",I))=$P(LA7DATA,"^",I)
+ F I=2:1:4 I $P(LA7DATA,"^",I)'="" S FDA(3,62.85,"+1,",$P("^.07^.08^.09","^",I))=$P(LA7DATA,"^",I)
  ;
  ; Add event to lab shipping event.
  D UPDATE^DIE("","FDA(3)","LA7IEN","LA7DIE(3)")

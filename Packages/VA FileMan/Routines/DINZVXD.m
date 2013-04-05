@@ -1,5 +1,5 @@
 DINZVXD ;SFISC/MVB-SETS %ZOSF FOR VAX DSM(V6) ;1:10 PM  30 Sep 1998
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  K ^%ZOSF("MASTER"),^%ZOSF("SIGNOFF")
  F I=1:2 S Z=$P($T(Z+I),";;",2) Q:Z=""  S X=$P($T(Z+1+I),";;",2,99),^%ZOSF(Z)=X

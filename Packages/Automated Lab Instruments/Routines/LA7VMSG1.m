@@ -1,13 +1,12 @@
-LA7VMSG1 ;DALOI/JMC - LAB ORU (Observation Result) message builder cont'd;Aug 8, 2008
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**56,46,61,64,68**;Sep 27, 1994;Build 56
+LA7VMSG1 ;DALOI/JMC - LAB ORU (Observation Result) message builder cont'd ;Aug 8, 2008
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**56,46,61,64,68,74**;Sep 27, 1994;Build 229
  ;
 START ; Process entries in queue
  ; Called from LA7VMSG
  ;
- N LA,LAER,LA7VER
- N EID,HLEID,HLMTIEN,HLRESLT,HLARYTYP,HLECH,HLFS,HLCOMP,HLFORMAT
- N GBL,LA7MID,LA7V,LA7VS,LA7V0N,LA7VIEN,RSITE,LRNT
- N LA76248,LA76249,LA76249P,LA7DT,LA7ECH,LA7END,LA7FS,LA7NVAF,LA7ROOT,LA7X,LRDFN,LRIDT,LRSS,LRUID
+ N EID,GBL,HLEID,HLMTIEN,HLRESLT,HLARYTYP,HLECH,HLFS,HLCOMP,HLFORMAT,RSITE
+ N LA,LA76248,LA76249,LA76249P,LA7DT,LA7ECH,LA7END,LA7FS,LA7ID,LA7MID,LA7NVAF,LA7ROOT,LA7V,LA7VS,LA7VER,LA7V0N,LA7VIEN,LA7X
+ N LAER,LRDFN,LRIDT,LRNT,LRSS,LRUID
  ;
  ; variable list
  ; LA("LRUID") - Host Unique ID from the local ACCESSION file (#68)
@@ -21,7 +20,8 @@ START ; Process entries in queue
  ; LA("ORDT")  - Order date
  ; LA(62.49)   - entry in #62.49 which contains pointer to results to build
  ;
- L +^LAHM(62.49,"HL7 PROCESS",LA7MTYP):0 Q:'$T
+ D LOCK^DILF("^LAHM(62.49,""HL7 PROCESS"",LA7MTYP)")
+ I '$T Q
  ;
  S GBL="^TMP(""HLS"","_$J_")"
  ;
@@ -39,7 +39,7 @@ START ; Process entries in queue
  Q
  ;
  ;
-SORTPAT ; Sort all results for tranmsission
+SORTPAT ; Sort all results for transmission
  ;
  N LA76248,LA76249,LA7END,LA7ROOT,LRDFN,LRUID
  ;
@@ -48,14 +48,17 @@ SORTPAT ; Sort all results for tranmsission
  S LA7END=0
  ;
  ; Sort by configuration (LA76248), patient (LRDFN), UID (LRUID), file #62.49 ien (LA76249)
+ ; Check status of each message to insure that cross-reference is not an orphan which can cause
+ ; repetitive message generation and receving problems.
  S LA7ROOT="^LAHM(62.49,""AC"",LA7MTYP,""P"")"
  F  S LA7ROOT=$Q(@LA7ROOT) Q:LA7END  D
  . I $QS(LA7ROOT,3)'=LA7MTYP!($QS(LA7ROOT,6)<1) S LA7END=1 Q
  . S LA76248=$QS(LA7ROOT,5),LA76249=$QS(LA7ROOT,6)
- . L +^LAHM(62.49,LA76249):5 Q:'$T
+ . D LOCK^DILF("^LAHM(62.49,LA76249)") Q:'$T
+ . I $P($G(^LAHM(62.49,LA76249,0)),"^",3)'="P" K ^LAHM(62.49,"AC",LA7MTYP,"P",LA76248,LA76249) L -^LAHM(62.49,LA76249) Q
  . S LRDFN=$P($G(^LAHM(62.49,LA76249,63)),"^",8)
  . S LRUID=$P($G(^LAHM(62.49,LA76249,63)),"^",1)
- . I LRDFN,LRUID]"" S ^TMP("LA76248",$J,LA76248,LRDFN,LRUID,LA76249)=""
+ . I LRDFN,LRUID'="" S ^TMP("LA76248",$J,LA76248,LRDFN,LRUID,LA76249)=""
  . L -^LAHM(62.49,LA76249)
  ;
  Q
@@ -108,7 +111,7 @@ STARTMSG ; Initialize a HL7 message and variables
  I LA7MTYP="ORR" S LA7EVNT="LA7V Order Response to "_SITE
  D STARTMSG^LA7VHLU(LA7EVNT,LA76249P)
  I $G(HL) S LA7END=1
- ;
+  ;
  Q
  ;
  ;
@@ -145,7 +148,7 @@ CONFIG ; Setup for this configuration
  ;
  ; Initialize variables
  S (LA76249,LA76249P,LRDFN)=0
- S LRUID=""
+ S LRUID="",LA7ID=$P(LA76248(0),"^")_"-O-"
  ;
  Q
  ;
@@ -164,6 +167,12 @@ PAT ; Build patient information
  S LRDFN=$QS(LA7ROOT,4)
  S LRDPF=$P(^LR(LRDFN,0),"^",2),DFN=$P(^(0),"^",3)
  D DEM^LRX
+ I $G(PNM)'="" D
+ . D SETID^LA7VHLU1(LA76249,LA7ID,PNM,0)
+ . D SETID^LA7VHLU1(LA76249,"",PNM,0)
+ I $G(SSN)'="" D
+ . D SETID^LA7VHLU1(LA76249,LA7ID,SSN,0)
+ . D SETID^LA7VHLU1(LA76249,"",SSN,0)
  ;
  ; Send placer's patient id (PID-3), return in PID-2, return PID-4 with alternate id
  S (LA7ALTID,LA7EXTID)=""
@@ -192,25 +201,31 @@ UPDT6249 ; Update entries in file #62.49
  ;
  N LA7ERR,LA76249,LA76249P
  ;
+ ; UNDEF HL array will cause HL7 filers to stop. The $G(HL(x)) prevents the filers from halting on UNDEF error but we
+ ; want to log the missing HL array as an error for system monitoring/troubleshooting.
+ I $D(HL)<10 D ^%ZTER
+ ;
  S LA76249=0
  F  S LA76249=$O(^TMP("LA7VS",$J,LA76249)) Q:'LA76249  D
  . N FDA,LA7ERR
  . S LA76249P=+$G(^TMP("LA7VS",$J,LA76249))
  . ; Set pointer to parent on child entry.
  . I LA76249'=LA76249P S FDA(1,62.49,LA76249_",",6)=LA76249P
- . I $G(HL("APAT"))="AL"!($G(HL("APAT"))="") S FDA(1,62.49,LA76249_",",2)="A"
- . E  S FDA(1,62.49,LA76249_",",2)="X"
- . S FDA(1,62.49,LA76249_",",102)=HL("SAN")
- . S FDA(1,62.49,LA76249_",",103)=HL("SAF")
- . S FDA(1,62.49,LA76249_",",108)=HL("MTN")
- . S FDA(1,62.49,LA76249_",",110)=HL("PID")
- . S FDA(1,62.49,LA76249_",",111)=HL("VER")
+ . I $P(^LAHM(62.49,LA76249,0),"^",3)'="E" D
+ . . I $G(HL("APAT"))="AL"!($G(HL("APAT"))="") S FDA(1,62.49,LA76249_",",2)="A"
+ . . E  S FDA(1,62.49,LA76249_",",2)="X"
+ . S FDA(1,62.49,LA76249_",",102)=$G(HL("SAN"))
+ . S FDA(1,62.49,LA76249_",",103)=$G(HL("SAF"))
+ . S FDA(1,62.49,LA76249_",",108)=$G(HL("MTN"))
+ . S FDA(1,62.49,LA76249_",",110)=$G(HL("PID"))
+ . S FDA(1,62.49,LA76249_",",111)=$G(HL("VER"))
  . I $P($G(LA7MID),"^")'="" S FDA(1,62.49,LA76249_",",109)=$P(LA7MID,"^")
  . I $P($G(LA7MID),"^",2) D
  . . S FDA(1,62.49,LA76249_",",160)=$P(LA7MID,"^",2)
  . . S FDA(1,62.49,LA76249_",",161)=$P(LA7MID,"^",3)
  . D FILE^DIE("","FDA(1)","LA7ERR(1)")
  . D CLEAN^DILF
+ . D UPID^LA7VHLU1(LA76249)
  ;
  Q
  ;
@@ -248,7 +263,7 @@ UPD696 ; Update LAB PENDING ORDERS file #69.6
  . S LA76964=$O(^LRO(69.6,LA7696,2,"B",LA7ORDT,0))
  . I LA76964<1 Q
  . ;
- . L +^LRO(69.6,LA7696):99999
+ . D LOCK^DILF("^LRO(69.6,LA7696)")
  . ; Cannot get lock on ENTRY in 69.6
  . I '$T D CREATE^LA7LOG(33) Q
  . ;

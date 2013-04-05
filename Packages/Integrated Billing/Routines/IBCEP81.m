@@ -1,5 +1,5 @@
 IBCEP81 ;ALB/KJH - NPI and Taxonomy Functions ;19 Apr 2008  5:17 PM
- ;;2.0;INTEGRATED BILLING;**343,391,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**343,391,400,476**;21-MAR-94;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Must call at an entry point  
@@ -103,6 +103,7 @@ TAXDEF(IBIEN399) ; Get Taxonomy for Default Division
  ;
 NPIUSED(IBNPI,IBOLDNPI,IBIEN,IBCHECK,IBKEY) ; Check whether NPI is already used within files 200, 4, or 355.93.
  N IBNOTIFY,IBVA200,DUP,DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
+ I $G(IBFBFLAG)=1 Q ""  ;IB*2.0*476 Consider updating RULES^IBCEP8C for FB PAID TO IB interface if changes are made
  S (IBNOTIFY,IBVA200,DUP)=""
  S IBNOTIFY=$S(IBCHECK=2:1,1:$$RULES(IBNPI,IBIEN,IBOLDNPI))
  I IBNOTIFY=0!(IBNOTIFY="") Q ""

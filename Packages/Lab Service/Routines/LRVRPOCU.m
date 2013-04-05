@@ -1,5 +1,5 @@
-LRVRPOCU ;DALOI/JMC - POINT OF CARE UTILITY PROGRAM ; May 10, 2004 12:06
- ;;5.2;LAB SERVICE;**290**;Sep 27, 1994
+LRVRPOCU ;DALOI/JMC - POINT OF CARE UTILITY PROGRAM ;05/11/10  16:38
+ ;;5.2;LAB SERVICE;**290,350**;Sep 27, 1994;Build 230
  ;
  ; Reference to DUZ^XUP supported by DBIA #4129
  ; Reference to DIVSET^XUSRB2 supported by DBIA #4055
@@ -10,6 +10,19 @@ LRVRPOCU ;DALOI/JMC - POINT OF CARE UTILITY PROGRAM ; May 10, 2004 12:06
 INIT ; Initialize user
  ;
  N I,LR60,LR61,LR62,LR64,LR0070,LRNLT,LRX,LRY
+ ;
+ ; If rollover has not completed then requeue task 1 hour in future and send alert.
+ I $G(^LAB(69.9,1,"RO"))'=+$H D  Q
+ . S ZTREQ=$$HADD^XLFDT($H,0,1,0,0)
+ . S LAMSG="POC: Lab Rollover has not completed as of "_$$HTE^XLFDT($H,"1M")
+ . S LREND=1
+ ;
+ ;
+ ; Must be POC Load/Work List
+ I $$GET1^DIQ(68.2,LRLL,.03,"I")'=2 D  Q
+ . S LAMSG="POC: Unable to process POC results using non-POC worklist "_$$GET1^DIQ(68.2,LRLL,.01)
+ . S LREND=1
+ ;
  S (LRCNT,LREND,LRSTORE)=0,(DIQUIET,LRNOECHO,LRQUIET)=1,LAMSG=""
  K LRDUZ,LRERR,LRIEN,LRORDNLT
  D KVAR^VADPT
@@ -24,7 +37,7 @@ INIT ; Initialize user
  S $P(LRPARAM,U,3)="",$P(LRPARAM,U,4)=""
  S LRLABKY="1^^^1" ;lab verification keys
  ;
- ; Get list of test and setup variables 
+ ; Get list of test and setup variables
  S (LRORDR,LRLWC)="P" ; Order type POC
  S LRTYPE=+$P($G(^LRO(68.2,LRLL,0)),U,3)
  ;
@@ -145,9 +158,15 @@ VASD ; Check for clinic appointment at same time as specimen
  ; If ordering division in message then only check those clinic locations
  ; that are in the same division.
  ;
+ ; If collection date/time within 6 hours of start of day
+ ;  then start look back 6 hours previous to collection date/time
+ ;  Example: if 3 am then start 9pm previous day.
+ ;
  N LRDATE,LRCLIEN,LRCOUNT,LRENC,LREXACT,LRP,LRX,LRY
  S (LRDATE,LRENC,LREXACT,LRY)=0
- S LRP(1)=(LRCDT\1)_";"_(LRCDT\1)
+ S LRX=LRCDT#1
+ I LRX>.06 S LRP(1)=(LRCDT\1)_";"_(LRCDT\1)
+ E  S LRP(1)=$$FMADD^XLFDT(LRCDT,0,-6,0,0)_";"_(LRCDT\1)
  S LRP(3)="R;I;NT"
  S LRP(4)=DFN
  S LRP("FLDS")="2;12"
@@ -173,6 +192,8 @@ FINDAPPT ; Find an appointment for the collection date/time
  . I 'LRY,LRDATE<LRCDT S LRY=LRX,LROLLOC=LRCLIEN,LRENC=$P(LRX,"^",12) Q
  . I 'LRY,LRDATE>LRCDT S LRY=LRX,LROLLOC=LRCLIEN,LRENC=$P(LRX,"^",12) Q
  . I LRDATE>LRY,LRDATE<LRCDT S LRY=LRX,LROLLOC=LRCLIEN,LRENC=$P(LRX,"^",12)
+ ;
+ I 'LROLDIV S LROLDIV=$$GET1^DIQ(44,LRCLIEN_",",3,"I")
  Q
  ;
  ;
@@ -186,7 +207,7 @@ CHKAPPT ; Check for an appointment that matches the ordering location
  ;
  ;
 OENC(LRENC) ; Lookup provider on encounter
- ; Use primary provider if possbile otherwise use first provider listed.
+ ; Use primary provider if possible otherwise use first provider listed.
  ;
  N LRI,LRPRVLST,LRERR
  D GETPRV^SDOE(LRENC,"LRPRVLST","LRERR")
@@ -207,3 +228,15 @@ SENDACK ; Send HL7 ACKnowledgment message
  S LA("MSG")=LA("MSG")_$P(LRERR,"^",2)
  D ACK^LA7POC(.LA)
  Q
+ ;
+ ;
+GETDFN(LAPID) ; Find patient in PATIENT (#2) file based on patient id
+ ; Call with LAPID = patient id to lookup
+ ;
+ ; Returns     DFN = ien of patient in PATIENT (#2) file
+ ;                   0^error encountered
+ ;
+ I DUZ("AG")="V" D
+ . S DFN=$$FIND1^DIC(2,"","X",LAPID,"SSN","","")
+ ;
+ Q DFN

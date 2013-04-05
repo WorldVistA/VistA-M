@@ -1,5 +1,5 @@
-PSJBCMA ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ;16 Mar 99 / 10:13 AM
- ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,69,58,81,91,104,111,112,186,159,173,190,113,225,253**;16 DEC 97;Build 31
+PSJBCMA ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ;4/10/12 10:48am
+ ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,69,58,81,91,104,111,112,186,159,173,190,113,225,253,267**;16 DEC 97;Build 158
  ;
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
  ; Reference to ^PS(51 is supported by DBIA 2176.
@@ -10,6 +10,9 @@ PSJBCMA ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ;16 Mar 99 / 10:13 AM
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ; Reference to ^PSDRUG is supported by DBIA 2192.
  ; Usage of this routine by BCMA is supported by DBIA 2828.
+ ;
+ ;*267 - add new piece of info to return TMP gloabl. Need the Med 
+ ;       route IEN per each order.
  ;
 EN(DFN,BDT,OTDATE)         ; return condensed list of inpatient meds
  NEW CNT,DN,F,FON,ON,PST,WBDT,X,X1,X2,Y,%
@@ -149,7 +152,7 @@ TMP ;Setup ^TMP that have common fields between IV and U/D
  S A=$G(^PS(51.2,+PSJ("MR"),0)),PSJ("MRABB")=$P(A,U,3),PSJ("MRNM")=$P(A,U)
  S ^TMP("PSJ",$J,PSJINX,0)=DFN_U_+ON_U_FON_U_PSJ("PREV")_U_PSJ("FOLLOW")_U_$G(PSJ("IVTYPE"))_U_$G(PSJ("INSYR"))_U_$G(PSJ("CHEMO"))_U_PSJ("CPRS")_U_$G(PSJ("RFO"))
  S ^TMP("PSJ",$J,PSJINX,1)=PSJ("MRABB")_U_PSJ("STC")_U_$G(PSJ("SCHD"))_U_PSJ("STARTDT")_U_PSJ("STOPDT")_U_PSJ("ADM")_U_PSJ("STATUS")_U_$G(PSJ("NGIVEN"))_U_$G(PSJ("ST"))_U_$G(PSJ("AUTO"))
- S ^TMP("PSJ",$J,PSJINX,1,0)=$P(A,U,8)_U_PSJ("MRNM")_U_$P(A,U,9)
+ S ^TMP("PSJ",$J,PSJINX,1,0)=$P(A,U,8)_U_PSJ("MRNM")_U_$P(A,U,9)_U_+PSJ("MR")   ;*267 append file 51.2 ien
  S ^TMP("PSJ",$J,PSJINX,2)=PSJ("DO")_U_$G(PSJ("INFRATE"))_U_$G(PSJ("SM"))_U_$G(PSJ("HSM"))
  S ^TMP("PSJ",$J,PSJINX,3)=PSJ("OI")_U_PSJ("OINAME")_U_PSJ("OIDF")
  S ^TMP("PSJ",$J,PSJINX,4)=PSJ("SIOPI")

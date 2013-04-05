@@ -14,7 +14,7 @@ DNS(XMDUZ,XMDOMAIN,XMVIA,XMVIAN) ;
  . S XMVIAN=XMNETNAM
  D FINDDOMN
  Q:$D(XMERROR)
- I XMVIAN="DOMAIN.EXT",$$FORUM D  Q
+ I XMVIAN="domain.ext",$$FORUM D  Q
  . D SETERR^XMXADDR4($G(XMIA),"!",39100,XMDOMAIN) ;Domain not found: |1|
  I $G(XMIA) D
  . W:XMDOMAIN'=XMVIAN $$EZBLD^DIALOG(39101,XMVIAN) ;via |1|
@@ -132,7 +132,7 @@ LOOKSFX ; Look for top level domain in internet suffix file
  D ^DIC
  I Y>0 D  Q:XMVIA
  . S XMVIA=$G(^XMB("PARENT"))
- . I 'XMVIA S XMVIA=$$FIND1^DIC(4.2,"","MQX",$S($$FORUM:"GK.DOMAIN.EXT",1:"FORUM.DOMAIN.EXT"),"B^C") Q:'XMVIA
+ . I 'XMVIA S XMVIA=$$FIND1^DIC(4.2,"","MQX",$S($$FORUM:"GK.domain.ext",1:"FORUM.domain.ext"),"B^C") Q:'XMVIA
  . S XMVIAREC=^DIC(4.2,XMVIA,0)
  . S XMVIAN=$P(XMVIAREC,U)
  D SETERR^XMXADDR4($G(XMIA),"!",39100,X) ;Domain not found: |1|

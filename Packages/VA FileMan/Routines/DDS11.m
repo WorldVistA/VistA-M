@@ -1,5 +1,5 @@
 DDS11(DDSBK,DDSNFO) ;SFISC/MLH,MKO-LOAD DATA ; 04 Jun 2007
- ;;22.0;VA FileMan;**151**;Mar 30, 1999;Build 10
+ ;;22.0;VA FileMan;**151**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;Input variables:
  ;  DDSBK   = Block #

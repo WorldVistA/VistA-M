@@ -17,7 +17,7 @@ ENV ; Environment Check
  s ^TMP("VBEC",$J,1,0)="Patch VBEC*1.0*10 has been installed by "_$$GET1^DIQ(200,DUZ_",",".01","E","VBECN","ERR")_" at "_$P($$SITE^VASITE,"^",2)
  s XMSUB="VBEC*1.0*10 Patch Installation verification",XMTEXT="^TMP(""VBEC"",$J)",XMDUN="VBECS Patch Monitor"
  d PATCH
- s XMY("G.VBEC@FORUM.DOMAIN.EXT")=""
+ s XMY("G.VBEC@FORUM.domain.ext")=""
  d SENDMSG^XMXAPI(DUZ,XMSUB,XMTEXT,.XMY)
  k ^TMP("VBEC",$J)
  q

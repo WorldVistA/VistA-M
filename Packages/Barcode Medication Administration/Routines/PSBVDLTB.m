@@ -1,5 +1,5 @@
-PSBVDLTB ;BIRMINGHAM/EFC-BCMA VIRTUAL DUE LIST FUNCTIONS (CONT) ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**3,4,16**;Mar 2004
+PSBVDLTB ;BIRMINGHAM/EFC-BCMA VIRTUAL DUE LIST FUNCTIONS (CONT) ;1/10/12 8:33pm
+ ;;3.0;BAR CODE MED ADMIN;**3,4,16,68**;Mar 2004;Build 26
  ;
  ; Reference/IA
  ; EN^PSJBCMA/2828
@@ -9,9 +9,14 @@ PSBVDLTB ;BIRMINGHAM/EFC-BCMA VIRTUAL DUE LIST FUNCTIONS (CONT) ;Mar 2004
  ; $$FMADD^XLFDT/10103
  ; $$GET^XPAR/2263
  ; 
+ ;*68 - add new parameter to use new SI/OPI word processing fields
  ;
-RPC(RESULTS,DFN,PSBTAB,PSBDT) ;
+ ; ** Warning: PSBSIOPI will be used as a global variable for all down
+ ;    streams calls from this RPC tag call.
+ ;
+RPC(RESULTS,DFN,PSBTAB,PSBDT,PSBSIOPI) ;
  K RESULTS,^TMP("PSB",$J),^TMP("PSJ",$J)
+ S PSBSIOPI=+$G(PSBSIOPI)   ;*68 init to 0 if not present or 1 if sent
  N PSBCNT
  S PSBTRFL=0
  S RESULTS=$NAME(^TMP("PSB",$J,PSBTAB))

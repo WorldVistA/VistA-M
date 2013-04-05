@@ -1,8 +1,8 @@
-HLOQUE ;ALB/CJM/OAK/PIJ/RBN- HL7 QUEUE MANAGEMENT - 10/4/94 1pm ;02/22/2011
- ;;1.6;HEALTH LEVEL SEVEN;**126,132,134,137,138,143,147,153**;Oct 13, 1995;Build 11
+HLOQUE ;ALB/CJM/OAK/PIJ/RBN- HL7 QUEUE MANAGEMENT - 10/4/94 1pm ;03/07/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**126,132,134,137,138,143,147,153,158**;Oct 13, 1995;Build 14
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
-INQUE(FROM,QNAME,IEN778,ACTION,PURGE) ;
+INQUE(FROM,QNAME,IEN778,ACTION,PURGE,ORIG) ;
  ;Will place the message=IEN778 on the IN queue, incoming
  ;Input:
  ;  FROM - sending facility from message header.
@@ -10,16 +10,16 @@ INQUE(FROM,QNAME,IEN778,ACTION,PURGE) ;
  ;  QNAME - queue named by the application
  ;  IEN778 = ien of the message in file 778
  ;  ACTION - <tag^routine> that should be executed for the application
- ;  PURGE (optional) - PURGE=1 indicates that the purge dt/tm needs to be set by the infiler
- ;     If PURGE("ACKTOIEN") is set, it indicates that the purge dt/tm of
- ;     the original message to this application ack also needs to be set.
+ ;  PURGE (optional) - +PURGE>0 indicates that the purge dt/tm needs to be set by the infiler. 
+ ;  ORIG - (optional, pass by reference)
+ ;     If ORIG("IEN") is set, it indicates that the the incomming message was an app ack, and the original message needs to be updated with the purge dtate, status (ORIG("STATUS")), and the msgid of the original (ORIG("ACK BY"))
  ;Output: none
  ;
  N FLG
 ZB36 I $G(FROM)="" S FROM="UNKNOWN"
  I $$RCNT^HLOSITE L +RECOUNT("IN",FROM,QNAME):20 S:$T FLG=1
  I '$L($G(QNAME)) S QNAME="DEFAULT"
- S ^HLB("QUEUE","IN",FROM,QNAME,IEN778)=ACTION_"^"_$G(PURGE)_"^"_$G(PURGE("ACKTOIEN"))
+ S ^HLB("QUEUE","IN",FROM,QNAME,IEN778)=ACTION_"^"_$G(PURGE)_"^"_$G(ORIG("IEN"))_"^"_$G(ORIG("ACK BY"))_"^"_$G(ORIG("STATUS"))
  I $$INC^HLOSITE($NA(^HLC("QUEUECOUNT","IN",FROM,QNAME)))
  L:$G(FLG) -RECOUNT("IN",FROM,QNAME)
  Q
@@ -473,3 +473,9 @@ SETP(QUEUE,PRIORITY,LINK) ;
  I $$ADD^HLOASUB1(779.91,.DA,.DATA,.ERROR) Q 1
  Q 0
  ;**P147 END CJM
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;

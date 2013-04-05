@@ -2,9 +2,9 @@ ONCPST54 ;Hines OIFO/GWB - Post-Install Routine for Patch ONC*2.11*54 ;09/01/11
  ;;2.11;ONCOLOGY;**54**;Mar 07, 1995;Build 10
  ;
  ;Set the COLLABORATIVE STAGING URL (160.1,19) value in all ONCOLOGY
- ;SITE PARAMETERS entries = http://websrv.oncology.DOMAIN.EXT/oncsrv.exe
+ ;SITE PARAMETERS entries = http://websrv.oncology.domain.ext/oncsrv.exe
  N RC
- S RC=$$UPDCSURL^ONCSAPIU("http://websrv.oncology.DOMAIN.EXT/oncsrv.exe")
+ S RC=$$UPDCSURL^ONCSAPIU("http://websrv.oncology.domain.ext/oncsrv.exe")
  ;For testing purposes. Comment out for final release.
  ;S RC=$$UPDCSURL^ONCSAPIU("http://127.0.0.1:1755/cgi-bin/oncsrv.exe")
  ;check if the server is up. If down, instruct IRM to re-run the conversion.

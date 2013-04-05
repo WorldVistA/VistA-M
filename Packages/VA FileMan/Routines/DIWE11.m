@@ -1,5 +1,5 @@
 DIWE11 ;SFISC/GFT,MWE-WORD PROCESSING UTILITY FUNCTION ;3/4/92  9:55 AM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S DWOU="EFT"
 1 R !,"UTILITY Option: ",X:DTIME S:'$T DTOUT=1 G QQ:U[X!(X=".")

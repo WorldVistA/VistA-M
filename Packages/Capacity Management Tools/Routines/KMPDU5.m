@@ -1,5 +1,5 @@
 KMPDU5 ;OAK/RAK - CM Tools Utilities ;8/25/04  08:56
- ;;2.0;CAPACITY MANAGEMENT TOOLS;**2**;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 FILEINQ(KMPDY,KMPDFN,KMPDIEN,KMPDGBL) ;-- file inquiry.
  ;-----------------------------------------------------------------------
@@ -151,7 +151,7 @@ ENV(KMPDRES) ;-- get uci/volume set
  K KMPDRES
  N Y X ^%ZOSF("UCI")
  S KMPDRES(0)=Y
- ;S KMPDRES(1)=$$SITE^VASITE
+ S KMPDRES(1)=$$SITE^VASITE
  ;
  Q
  ;

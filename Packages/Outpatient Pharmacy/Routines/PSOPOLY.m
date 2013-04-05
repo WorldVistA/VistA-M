@@ -1,5 +1,5 @@
 PSOPOLY ;BHAM ISC/SAB - patients with a minimum amount of rx's within a # of days ;10/06/93
- ;;7.0;OUTPATIENT PHARMACY;**19,28,132,326**;DEC 1997;Build 11
+ ;;7.0;OUTPATIENT PHARMACY;**19,28,132,326,405**;DEC 1997;Build 2
  ;External reference ^PS(55 supported by DBIA# 2228
  ;External reference ^PSDRUG( supported by DBIA# 221
  ;External reference ^DPT( supported by DBIA# 10035
@@ -16,7 +16,7 @@ BEG S RXS=0 S:$G(PSDATEX) PSDATE=PSDATEX
  F  S PSDATE=$O(^PS(55,DFN,"P","A",PSDATE)) Q:'PSDATE  S (P,J)=0 F  S J=$O(^PS(55,DFN,"P","A",PSDATE,J)) Q:'J  D:$D(^PSRX(J,0))
  .I 134'[$E(+$P($G(^PSRX(J,"STA")),"^")),$P($G(^PSDRUG($P($G(^PSRX(J,0)),"^",6),0)),"^",3)'["S" S RXS=RXS+1,RX(DFN,J)=+$P($G(^PSRX(J,"STA")),"^")
  N NVA F NVA=0:0 S NVA=$O(^PS(55,DFN,"NVA",NVA)) Q:'NVA  I '$P(^PS(55,DFN,"NVA",NVA,0),"^",7) S RXS=RXS+1
- I RXS'<RX F  S P=$O(RX(DFN,P)) Q:'P  S RX0=$S($D(^PSRX(P,0)):^(0),1:""),RX2=$S($D(^(2)):^(2),1:""),RX3=$S($D(^(3)):^(3),1:"") D
+ I RXS'<RX S P=0 F  S P=$O(RX(DFN,P)) Q:'P  S RX0=$S($D(^PSRX(P,0)):^(0),1:""),RX2=$S($D(^(2)):^(2),1:""),RX3=$S($D(^(3)):^(3),1:"") D
  .S STA=RX(DFN,P),DRUG=$S($D(^PSDRUG($P(RX0,"^",6),0)):$P(^PSDRUG($P(RX0,"^",6),0),"^"),1:"UNKNOWN"),CLASS=$S($P($G(^PSDRUG($P(RX0,"^",6),0)),"^",2)]"":$P(^(0),"^",2),1:"UNKNOWN")
 A .S STAT="A^N^R^H^N^S^^^^^^E^DC^^DC^DE^H^P^",STATUS=$P(STAT,"^",STA+1)
  .S FILLDATE=9999999-$P(^PSRX(P,2),"^",2)
@@ -73,6 +73,10 @@ HDR ;report header
  Q
 NVA ;displays non-va meds
  Q:'$O(^PS(55,PSODFN,"NVA",0))  N TITLE
+ D  ;*405
+ .N DFN S DFN=PSODFN
+ .D KVA^VADPT
+ .D PID^VADPT
  S PSOSTA=">>>Non-VA MEDS (Not dispensed by VA)<<<"
  S STR=($L(PSOSTA)+IOM/2)-$L(PSOSTA),STP=IOM-(STR+$L(PSOSTA)) F I=1:1:STR S TITLE=$G(TITLE)_" "
  S TITLE=TITLE_PSOSTA F I=1:1:STP S TITLE=TITLE_" "

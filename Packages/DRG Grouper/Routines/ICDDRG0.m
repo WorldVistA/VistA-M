@@ -1,5 +1,5 @@
 ICDDRG0 ;ALB/GRR/EG/ADL - DRG GROUPER PROCESSING BEGINS ; 11/13/07 4:06pm
- ;;18.0;DRG Grouper;**1,2,7,10,14,17,20,24,27,30,31,32,33,37,45,50,53,56**;Oct 20, 2000;Build 18
+ ;;18.0;DRG Grouper;**1,2,7,10,14,17,20,24,27,30,31,32,33,37,45,50,53,56,65*;Oct 20, 2000;Build 12
  ;GROUPING PROCESS BEGINS
  ;
 GROUP ;
@@ -60,7 +60,7 @@ DODRG ;Go to DRG file and retrieve table entry to use if defined
  N ICDMCV,ICDMCV1,ICDMCV2
  N DRGFY,ICDREF S (DRGFY,ICDREF)=""
  I ICDRG S DRGFY=$O(^ICD(ICDRG,2,"B",$P(+$G(ICDDATE),".")_.01),-1)
- I 'DRGFY S DRGFY=3111001 ;default to current fiscal year
+ I 'DRGFY S DRGFY=3121001 ;default to current fiscal year
  S ICDREF=$O(^ICD(+ICDRG,2,"B",+DRGFY,ICDREF))
  I ICDREF'="" D
  . S ICDREF=$P($G(^ICD(+ICDRG,2,ICDREF,0)),U,3)

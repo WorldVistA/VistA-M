@@ -41,19 +41,19 @@ NVSMKPRN ;emc/maw-VistA and VMS device setup utilities main menu; 04/01/04
  ..K NVSDEV
  ..D SELDEV
  ..I $G(NVSDEV("DA"))="" K NVSMOPT Q
- ..;D GETDEV^NVSMKPU1(.NVSDEV)
+ ..D GETDEV^NVSMKPU1(.NVSDEV)
  ..; LPD queue...
- ..;I NVSDEV("VMSTYPE")="LPD" D ^NVSMKP1
+ ..I NVSDEV("VMSTYPE")="LPD" D ^NVSMKP1
  ..; telnet queue...
- ..;I NVSDEV("VMSTYPE")="TNQ" D ^NVSMKP2
+ ..I NVSDEV("VMSTYPE")="TNQ" D ^NVSMKP2
  ..; LAT device...
- ..;I NVSDEV("VMSTYPE")="LAT" D ^NVSMKP3
+ ..I NVSDEV("VMSTYPE")="LAT" D ^NVSMKP3
  ..; Outbound telnet...
- ..;I NVSDEV("VMSTYPE")="TNA" D ^NVSMKP4
+ ..I NVSDEV("VMSTYPE")="TNA" D ^NVSMKP4
  ..K NVSDEV,NVSMOPT
  .; create subtype...
  .I NVSMOPT=2 D  Q
- ..;D ^NVSMKP5
+ ..D ^NVSMKP5
  ..K NVSMOPT
  .; reload LAT...
  .I NVSMOPT=3 D  Q
@@ -67,7 +67,7 @@ NVSMKPRN ;emc/maw-VistA and VMS device setup utilities main menu; 04/01/04
  ...W !!,"The routine ^NVSTNSET is not present in this system."
  ...W !,"Aborted."
  ...K NVSMOPT
- ..;D ^NVSTNSET
+ ..D ^NVSTNSET
  ..K NVSMOPT
  ;
  K DIRUT,DTOUT,NVSDNS,NVSHOST,X,Y

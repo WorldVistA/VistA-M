@@ -87,7 +87,7 @@ OK ;Site's file conforms to standard (Modified for MailMan 7.1 *50)
  S ZZ(5)=" "
  S ZZ(6)="SITE: "_$G(^DD("SITE"))
  S ZZ(7)="UCI: "_Y
- S XMY("I:G.STATUS UPDATES@FORUM.DOMAIN.EXT")=""
+ S XMY("I:G.STATUS UPDATES@FORUM.domain.ext")=""
  S XMY("I:G.IRM")=""
  S XMY(DUZ)=""
  S XMDUN="IFCAP File Checker"
@@ -117,7 +117,7 @@ ERROR ;Site's file does NOT conform to standard (Modified for MailMan 7.1 *50)
  S XMDUZ="IFCAP File Checker"
  S XMBODY="ZZ"
  S XMY(DUZ)=""
- S XMY("I:G.STATUS UPDATES@FORUM.DOMAIN.EXT")=""
+ S XMY("I:G.STATUS UPDATES@FORUM.domain.ext")=""
  S XMY("I:G.IRM")=""
  D SENDMSG^XMXAPI(DUZ,XMSUB,XMBODY,.XMY)
  ;
@@ -133,7 +133,7 @@ ERROR ;Site's file does NOT conform to standard (Modified for MailMan 7.1 *50)
  S XMSUB="Problem in File "_FN_" "_$G(^DD("SITE"))
  S XMDUZ="IFCAP File Checker"
  S XMBODY="ZZ"
- S XMY("I:G.STATUS UPDATES@FORUM.DOMAIN.EXT")=""
+ S XMY("I:G.STATUS UPDATES@FORUM.domain.ext")=""
  ;
  ;Load DD for file 442.3 into message array
  S COUNT=6

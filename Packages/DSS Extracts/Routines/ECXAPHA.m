@@ -1,9 +1,9 @@
-ECXAPHA ;ALB/TMD-Pharmacy Extracts Unusual Volumes Report ; 12/22/03 10:20am
- ;;3.0;DSS EXTRACTS;**40,49,66,104,109,113**;Dec 22, 1997;Build 7
+ECXAPHA ;ALB/TMD-Pharmacy Extracts Unusual Volumes Report ;8/23/12  00:16
+ ;;3.0;DSS EXTRACTS;**40,49,66,104,109,113,136**;Dec 22, 1997;Build 28
  ;
 EN ; entry point
  N X,Y,DATE,ECRUN,ECXOPT,ECXDESC,ECXSAVE,ECXTL,ECTHLD,ECSD
- N ECSD1,ECSTART,ECED,ECEND,ECXERR,QFLG
+ N ECSD1,ECSTART,ECED,ECEND,ECXERR,QFLG,ECXISIG
  S QFLG=0
  ; get today's date
  D NOW^%DTC S DATE=X,Y=$E(%,1,12) D DD^%DT S ECRUN=$P(Y,"@") K %DT
@@ -43,6 +43,7 @@ BEGIN ; display report description
  ;
 SELECT ; user inputs for report option, threshold volume and date range
  N DONE,OUT
+ S ECXISIG=0
  ; allow user to select report option (PRE,IVP or UDP)
  W "Choose the report you would like to run."
  S DIR(0)="S^1:PRE;2:IVP;3:UDP",DIR("A")="Selection",DIR("B")=1 D ^DIR K DIR S ECXOPT=Y I X["^" S QFLG=1 Q
@@ -54,6 +55,8 @@ SELECT ; user inputs for report option, threshold volume and date range
  I Y D
  .W !!,$S(ECXOPT=2:"threshold > Total Doses Per Day < -threshold",1:"Quantity > threshold")
  .S DIR(0)="N^0:100000:0",DIR("A")="Enter the new threshold volume" D ^DIR K DIR S ECTHLD=Y I X["^" S QFLG=1 Q
+ ; check to see if SIG should be place on the sec line of rpt cvw - *136 
+ I ECXOPT=3 S DIR(0)="Y",DIR("A")="Include SIG/Order Direction on line 2 of report",DIR("B")="NO" D ^DIR K DIR S:Y ECXISIG=1 I X["^" S QFLG=1 Q
  ; get date range from user
  W !!,"Enter the date range for which you would like to scan the ",ECXTL,!,"Extract records."
  S DONE=0 F  S (ECED,ECSD)="" D  Q:QFLG!DONE
@@ -100,6 +103,8 @@ PRINT ; process temp file and print report
  ......W ?108,$$RJ^XLFSTR($P(REC,U,8),12),?125,$$RJ^XLFSTR($P(REC,U,9),3)
  .....I ECXOPT'=1 D
  ......W ?116,$$RJ^XLFSTR($P(REC,U,8),14)
+ .....I ECXOPT=3&($G(ECXISIG)) D
+ ......W !,?5,"SIG: ",$S($P(REC,U,10)="":"N/A",1:$P(REC,U,10)),! ;136
  Q:QFLG
  I COUNT=0 W !!,?8,"No unusual volumes to report for this extract"
 CLOSE ;
@@ -127,3 +132,11 @@ HEADER ;header and page control
  W !,LN,!
  Q
  ;
+SIG(ORDNO,PATNO) ;Get ordering instructions for unit dose order.  API added in patch 136
+ N DATA,RECNO,I,SIG
+ S SIG=""
+ I ORDNO=""!(PATNO="") Q SIG
+ S RECNO=ORDNO_","_PATNO_","
+ D GETS^DIQ(55.06,RECNO,"26;120;121","E","DATA")
+ F I=120,121,26 S SIG=$G(SIG)_$S($L(SIG)>0:" ",1:"")_$G(DATA(55.06,RECNO,I,"E"))
+ Q SIG

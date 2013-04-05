@@ -1,5 +1,5 @@
 DIP3 ;SFISC/GFT,TKW-PRINT HEADING, PAGE, COPIES ;06:51 PM  9 Dec 1999
- ;;22.0;VA FileMan;**23**;Mar 30, 1999
+ ;;22.0;VA FileMan;**23**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  I DJ,DE]"" S DJ=DJ+1,^UTILITY("DIP2",$J,DJ)=DE,DE=""
 H G G:((L?1"]".E)!($G(DDXP)=2)!($G(DDXP)=4)) I '$D(DIASKHD),'L G:$D(DALL)>9 G G PAGE

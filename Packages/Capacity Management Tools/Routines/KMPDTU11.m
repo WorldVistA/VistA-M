@@ -1,5 +1,5 @@
 KMPDTU11 ;OAK/RAK - CP Tools Timing Utility ;5/1/07  15:07
- ;;2.0;CAPACITY MANAGEMENT TOOLS;**6**;Mar 22, 2002;Build 3
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 RLTMHR(KMPDQIET,KMPDASK,KMPDEF) ;-- extrinsic function - real time hours
  ;-----------------------------------------------------------------------

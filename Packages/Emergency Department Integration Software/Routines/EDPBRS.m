@@ -1,5 +1,5 @@
-EDPBRS ;SLC/KCM - Reset Board Configuration
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPBRS ;SLC/KCM - Reset Board Configuration ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 RESET(AREA) ; Set initial configuration for site & area
  D SPEC(AREA),COLOR(AREA),ROOMS(AREA),PARAMS(AREA)
@@ -74,17 +74,17 @@ ROOMS(AREA) ; baseline rooms
  . D UPDATE^DIE("","FDA","FDAIEN","ERR")
  D CLEAN^DILF
  Q
-ROOMLST ; Name^Display Name^Seq^When^Category
- ;;Waiting^WAIT^1^0^2
- ;;Ambulance^AMBU^5^0^1
- ;;Hallway^HALL^10^0^1
- ;;General Radiology^RAD^110^0^1
- ;;CT^CT^120^0^1
- ;;MRI^MRI^130^0^1
- ;;Cardiac Cath^CATH^140^0^1
- ;;Cardiac Stress Test^STEST^150^0^1
- ;;Dialysis^DIAL^160^0^1
- ;;Subspecialty Clinic^SCLIN^170^0^1
+ROOMLST ; Name^Display Name^Seq^When^Category^Primary
+ ;;Waiting^WAIT^1^0^2^1
+ ;;Ambulance^AMBU^5^0^1^1
+ ;;Hallway^HALL^10^0^1^1
+ ;;General Radiology^RAD^110^0^1^0
+ ;;CT^CT^120^0^1^0
+ ;;MRI^MRI^130^0^1^0
+ ;;Cardiac Cath^CATH^140^0^1^0
+ ;;Cardiac Stress Test^STEST^150^0^1^0
+ ;;Dialysis^DIAL^160^0^1^0
+ ;;Subspecialty Clinic^SCLIN^170^0^1^0
  ;;zzzzz
 PARAMS(AREA) ; baseline parameters
  N FDA,DIERR

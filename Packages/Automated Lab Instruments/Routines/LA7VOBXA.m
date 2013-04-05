@@ -1,5 +1,5 @@
-LA7VOBXA ;DALOI/JMC - LAB OBX Segment message builder (cont'd) ;Sep 18, 2008
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,70,64,68**;Sep 27, 1994;Build 56
+LA7VOBXA ;DALOI/JMC - LAB OBX Segment message builder (cont'd) ;04/14/11  10:56
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,70,64,68,74**;Sep 27, 1994;Build 229
  ;
  Q
  ;
@@ -23,14 +23,15 @@ OBX2 ; Build OBX-2 sequence - Value type
  ;
 OBX3 ; Build OBX-3 sequence - Observation identifier field
  ;
- ; Initialize variables 
+ ; Initialize variables
  S LA7J=1,LA7Y="",LA7INTYP=$G(LA7INTYP)
  ;
  ; Build sequence using LOINC codes. LOINC code/code name/"LN"
  ; VA VUID in 2nd triplet when sending to VA HDR. Use VA Display name (field #82) for VUID test name
  I LA7953'="" D
  . N LA7IENS,LA7Z
- . S LA7953=$P(LA7953,"-"),LA7IENS=LA7953_","
+ . I LA7953?1.N S LA7IENS=LA7953_","
+ . E  S LA7IENS=$O(^LAB(95.3,"B",LA7953,0))_","
  . D GETS^DIQ(95.3,LA7IENS,".01;80;99.99","E","LA7X")
  . ; Invalid code???
  . I $G(LA7X(95.3,LA7IENS,.01,"E"))="" Q
@@ -74,14 +75,16 @@ OBX3 ; Build OBX-3 sequence - Observation identifier field
  . S LA7J=LA7J+3
  ;
  ; Non-standard/non-VA code
+ ; Local VA display name in 2nd triplet of LA7ALT
  ; If alternate is a non-VA code then use as alternate code.
  I LA7ALT="" Q
- I LA7INTYP'=30,$P(LA7ALT,"^",3)'="99VA63",LA7J>4 S LA7J=4
- I LA7J<7 D
- . S $P(LA7Y,$E(LA7ECH,1),LA7J)=$$CHKDATA^LA7VHLU3($P(LA7ALT,"^"),LA7FS_LA7ECH)
- . S $P(LA7Y,$E(LA7ECH,1),LA7J+1)=$$CHKDATA^LA7VHLU3($P(LA7ALT,"^",2),LA7FS_LA7ECH)
- . S $P(LA7Y,$E(LA7ECH,1),LA7J+2)=$$CHKDATA^LA7VHLU3($P(LA7ALT,"^",3),LA7FS_LA7ECH)
- . I $P(LA7ALT,"^",3)="99VA63" S $P(LA7Y,$E(LA7ECH,1),$S(LA7J=1:7,1:8))="5.2"
+ I $P(LA7ALT,"^",1,3)'="^^" D
+ . I LA7INTYP'=30,$P(LA7ALT,"^",3)'="99VA63",LA7J>4 S LA7J=4
+ . I LA7J<7 D
+ . . S $P(LA7Y,$E(LA7ECH,1),LA7J)=$$CHKDATA^LA7VHLU3($P(LA7ALT,"^"),LA7FS_LA7ECH)
+ . . S $P(LA7Y,$E(LA7ECH,1),LA7J+1)=$$CHKDATA^LA7VHLU3($P(LA7ALT,"^",2),LA7FS_LA7ECH)
+ . . S $P(LA7Y,$E(LA7ECH,1),LA7J+2)=$$CHKDATA^LA7VHLU3($P(LA7ALT,"^",3),LA7FS_LA7ECH)
+ . . I $P(LA7ALT,"^",3)="99VA63" S $P(LA7Y,$E(LA7ECH,1),$S(LA7J=1:7,1:8))="5.2"
  ;
  ; Put local test name in local text (9th component)
  I $E($P(LA7ALT,"^",6),1,5)="99VA6",$P(LA7ALT,"^",6)'="99VA64" D
@@ -101,13 +104,17 @@ OBX5 ; Build OBX-5 sequence - Observation value
  S LA7Y=""
  ;
  I $G(LA7OBX2)="" S LA7OBX2="ST" ; default value type
+ ;
  I LA7OBX2="ST"!(LA7OBX2="TX") D
  . S LA7VAL=$$TRIM^XLFSTR(LA7VAL,"R"," ")
  . S LA7Y=$$CHKDATA^LA7VHLU3(LA7VAL,LA7FS_LA7ECH)
- I LA7OBX2="NM" S LA7Y=$$TRIM^XLFSTR(LA7VAL,"RL"," ")
+ ;
+ I LA7OBX2?1(1"NM",1"SN") S LA7Y=$$TRIM^XLFSTR(LA7VAL,"RL"," ")
+ ;
  I LA7OBX2="TS" D
  . S LA7VAL=$$CHKDT^LA7VHLU1(LA7VAL)
  . S LA7Y=$$FMTHL7^XLFDT(LA7VAL)
+ ;
  I LA7OBX2?1(1"CE",1"CNE",1"CWE") D
  . N LA7I,LA7J,X
  . S LA7J=$S(LA7OBX2="CE":6,1:9)
@@ -129,8 +136,7 @@ OBX5M ; Build OBX-5 sequence - Observation value - multi-line textual result
  . N DIWF,DIWL,DIWR,X
  . S LA7WP=$$GET1^DIQ(LA7FN,LA7IENS,LA7FLD,"","LA7WP","LA7ERR(2)")
  . K ^UTILITY($J,"W")
- . S DIWL=1,DIWR=245,DIWF="",LA7I=0
- . I $$GET1^DID(+$$GET1^DID(LA7FN,LA7FLD,"","SPECIFIER","LA7ERR(1)"),.01,"","SPECIFIER","LA7ERR(3)")["L" S DIWF="N"
+ . S DIWL=1,DIWR=245,DIWF="N",LA7I=0
  . F  S LA7I=$O(LA7WP(LA7I)) Q:'LA7I  S X=LA7WP(LA7I) D ^DIWP
  . K LA7WP
  . S LA7I=0
@@ -163,6 +169,7 @@ OBX6 ; Build OBX-6 sequence - Units
  ; If HDR interface (LA7INTYP=30) then add coding system (L) to units.
  I $G(LA7VAL)'="" D
  . S LA7Y=$$TRIM^XLFSTR(LA7VAL,"LR"," ")
+ . S LA7Y=$$CHKDATA^LA7VHLU3(LA7Y,LA7FS_LA7ECH)
  . I $G(LA7INTYP)=30 D
  . . S $P(LA7Y,$E(LA7ECH,1),2)=LA7Y
  . . S $P(LA7Y,$E(LA7ECH,1),3)="L"

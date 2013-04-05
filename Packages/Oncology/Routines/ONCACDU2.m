@@ -1,5 +1,6 @@
-ONCACDU2 ;Hines OIFO/GWB - Utility routine ;03/09/11
- ;;2.11;Oncology;**12,18,20,21,22,24,26,27,29,30,31,32,34,36,37,38,39,41,46,47,49,50,51,52,53**;Mar 07, 1995;Build 31
+ONCACDU2 ;Hines OIFO/GWB - Utility routine ;05/03/12
+ ;;2.11;Oncology;**12,18,20,21,22,24,26,27,29,30,31,32,34,36,37,38,39,41,46,47,49,50,51,52,53,56,57**;Mar 07, 1995;Build 6
+ ;rvd - 05/03/12 p56.  Use ICD API (#3990) instead of direct global read.
  ;
 VAFLD(ACDANS) ;Convert data to NAACCR format
  I ACDANS="N" S ACDANS=0
@@ -49,11 +50,13 @@ WORD(IEN,NODE,LEN) ;Get word processing data
  N X
  S X=""
  I $D(^ONCO(165.5,IEN,NODE,0)) D
- .N CNT,LINE
+ .N CNT,LINE,ONCLINE
  .S CNT=0
- .S LINE=""
- .F  S CNT=$O(^ONCO(165.5,IEN,NODE,CNT)) Q:CNT<1  D  Q:($L(LINE)>LEN)
+ .S (LINE,ONCLINE)=""
+ .F  S CNT=$O(^ONCO(165.5,IEN,NODE,CNT)) Q:CNT<1  D  Q:($L(ONCLINE)>LEN)
  ..Q:'$D(^ONCO(165.5,IEN,NODE,CNT,0))
+ ..S ONCLINE=LINE_^ONCO(165.5,IEN,NODE,CNT,0)_" "
+ ..I ($L(ONCLINE)>LEN) S LINE=$E(ONCLINE,1,LEN) Q
  ..S LINE=LINE_^ONCO(165.5,IEN,NODE,CNT,0)_" "
  .S X=LINE
  S X=$TR(X,$C(10,12,13),"   ")
@@ -216,9 +219,43 @@ CSTST(ACD160) ;
  S X=$S(X="CANAD":"CD",X="EU":"YY",X="MX":"XX",X="NF":"NL",X="PH":"XX",X="UN":"ZZ",1:X)
  Q X
  ;
+ADDCTRY(IEN,ITEM) ;
+ ;Addr at DX--Country [102] 436-438
+ ;Addr Current--Country [1832] 439-441
+ ;Followup Contact--Country [1847] 447-449
+ ; Value derived from:
+ ;    ITEM #102 - STATE AT DX (#165.5,16) pointer to File #5
+ ;    ITEM #1832 - STATE (#160,.115 --> #2,.115) pointer to File #5
+ ;    ITEM #1847 - ZIP CODE (#165,.119 --> #5.11,3) pointer to File #5
+ N XX
+ I ITEM=102 S XX=$S($$GET1^DIQ(165.5,IEN,16,"I")'="":$$GET1^DIQ(5,$$GET1^DIQ(165.5,IEN,16,"I"),1,"I"),1:"")
+ I ITEM=1832 S XX=$$GET1^DIQ(160,ACD160,.115,"E")
+ I ITEM=1847 S XX="",VICPNT=$$FCNODE^ONCACDU2(ACD160,.119,"I") S:$G(VICPNT) STATE=$P($G(^VIC(5.11,VICPNT,0)),U,4) S:$G(STATE)'="" XX=$$GET1^DIQ(5,STATE,1,"I") K STATE,VICPNT
+ I XX="" Q XX
+ S ACDANS="USA"
+ I XX="QC"!(XX="AB")!(XX="ZZMB")!(XX="NB")!(XX="NF")!(XX="NS")!(XX="NT")!(XX="ON")!(XX="PE")!(XX="SK")!(XX="YT")!(XX="CANAD")!(XX="MB")!(XX="NU")!(XX="BC") S ACDANS="CAN"
+ I XX="FM" S ACDANS="FSM"
+ I XX="GU" S ACDANS="GUM"
+ I XX="MH" S ACDANS="MHL"
+ I XX="MP" S ACDANS="MNP"
+ I XX="PW" S ACDANS="PWL"
+ I XX="UM" S ACDANS="UMI"
+ I XX="FG" S ACDANS="ZZX"
+ I XX="MX" S ACDANS="MEX"
+ I XX="EU" S ACDANS="ZZE"
+ I XX="PH" S ACDANS="PHL"
+ I XX="AS" S ACDANS="ASM"
+ I XX="PR" S ACDANS="PRI"
+ I XX="VI" S ACDANS="VIR"
+ I XX="ZZEQ" S ACDANS="KIR"
+ I XX="ZZIQ" S ACDANS="ZZP"
+ I XX="ZZYQ" S ACDANS="JPN"
+ I XX="UN" S ACDANS="ZZU"
+ Q ACDANS
+ ;
 ICD(ICD) ;ICD Code
  N X
- S ICD=$S(ICD'="":$P($G(^ICD9(ICD,0)),U),1:"0000")
+ S ICD=$S(ICD'="":$P($$ICDDX^ICDCODE(ICD),U,2),1:"0000")
  I ICD["." S ICD=$P(ICD,".")_$P(ICD,".",2)
  S:$L(ICD)=3 ICD=ICD_9
  S:$L(ICD)<4 ICD=$E("0000",1,4-$L(ICD))_ICD

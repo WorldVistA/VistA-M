@@ -1,5 +1,5 @@
 DIFROM7 ;SFISC/(SLC/STAFF)-SITE TRACKING INSTALL BULLETIN ;01:06 PM  23 Aug 1993
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 SETUP(ROUTINE,STATUS) ;
  K ^TMP($J) N LINE,LINE1,LINE2,NUM,OK,ROUTINIS,TXT
@@ -37,11 +37,11 @@ NMSPINIS ;;
  ;; ;
  ;; ; Site tracking updates only occur if run in a VA production primary domain
  ;; ; account.
- ;; I $G(^XMB("NETNAME"))'[".DOMAIN.EXT" Q
+ ;; I $G(^XMB("NETNAME"))'[".domain.ext" Q
  ;; Q:'$D(^%ZOSF("UCI"))  Q:'$D(^%ZOSF("PROD"))
  ;; X ^%ZOSF("UCI") I Y'=^%ZOSF("PROD") Q
  ;; ;
- ;; S SERVER="S.A5CSTS@FORUM.DOMAIN.EXT"
+ ;; S SERVER="S.A5CSTS@FORUM.domain.ext"
  ;; S PACKAGE=$P($P(PKG,";",3),U)
  ;; S SITE=$G(^XMB("NETNAME"))
  ;; S START=$P($G(^DIC(9.4,VER(0),"PRE")),U,2) I '$L(START) S START="Unknown"

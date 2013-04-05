@@ -1,5 +1,5 @@
-PSJBCMA1 ;BIR/MV-RETURN INFORMATION FOR AN ORDER ;16 Mar 99 / 10:59 AM
- ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,58,81,91,104,186,159,173,253**;16 DEC 97;Build 31
+PSJBCMA1 ;BIR/MV-RETURN INFORMATION FOR AN ORDER ;2/27/12 4:51pm
+ ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,58,81,91,104,186,159,173,253,267**;16 DEC 97;Build 158
  ;
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
@@ -10,6 +10,8 @@ PSJBCMA1 ;BIR/MV-RETURN INFORMATION FOR AN ORDER ;16 Mar 99 / 10:59 AM
  ; Reference to ^DIC is supported by DBIA 10006.
  ; Reference to ^DIQ is supported by DBIA 2056.
  ; Usage of this routine by BCMA is supported by DBIA 2829.
+ ;
+ ;*267 add Standard Rtoue Name from file 51.2 field 10
  ;
 EN(DFN,ON,PSJTMP)         ; return detail data for Inpatient Meds.
  NEW F,A
@@ -130,6 +132,7 @@ TMP ;* Setup ^TMP that have common fields between IV and U/D
  . D NAME(PSJ("NURSE"),.PSJNAME,.PSJINIT,"")
  . S PSJ("NNAME")=PSJNAME,PSJ("NINIT")=PSJINIT K PSJNAME,PSJINIT
  S A=$G(^PS(51.2,+PSJ("MR"),0)),PSJ("MRNM")=$P(A,U),PSJ("MRABB")=$P(A,U,3),PSJ("MRPIJ")=$P(A,U,8),PSJ("MRIVP")=$P(A,U,9)
+ S PSJ("MRSTDRNM")=$$GET1^DIQ(51.2,+PSJ("MR"),10)  ;*267 Std Rte name
  S PSJ("OINAME")=$$OIDF^PSJLMUT1(+PSJ("OI")) I PSJ("OINAME")["NOT FOUND" S PSJ("OINAME")=""
  S PSJ("OIDF")=$$GET1^DIQ(50.7,+PSJ("OI"),.02)
  I PSJ("OINAME")="" S PSJ("OIDF")=""
@@ -141,7 +144,7 @@ TMP ;* Setup ^TMP that have common fields between IV and U/D
  ;
  S ^TMP(PSJTMP,$J,0)=DFN_U_+ON_U_ON_U_PSJ("PREV")_U_PSJ("FOLLOW")_U_$G(PSJ("IVTYPE"))_U_$G(PSJ("INSYR"))_U_$G(PSJ("CHEMO"))_U_PSJ("CPRS")
  S ^TMP(PSJTMP,$J,1)=PSJ("PROVIDER")_U_PSJ("PRONAME")_U_PSJ("MR")_U_PSJ("MRABB")_U_$G(PSJ("SM"))_U_$G(PSJ("SMYN"))_U_$G(PSJ("HSM"))_U_$G(PSJ("HSMYN"))_U_$G(PSJ("NGIVEN"))_U_PSJ("STATUS")
- S ^TMP(PSJTMP,$J,1)=^TMP(PSJTMP,$J,1)_U_$$STATUS(ON,PSJ("STATUS"))_U_$G(PSJ("AUTO"))_U_$G(PSJ("MRNM"))
+ S ^TMP(PSJTMP,$J,1)=^TMP(PSJTMP,$J,1)_U_$$STATUS(ON,PSJ("STATUS"))_U_$G(PSJ("AUTO"))_U_$G(PSJ("MRNM"))_U_PSJ("MRSTDRNM") ;*267 Std Rte nam
  S ^TMP(PSJTMP,$J,1,0)=PSJ("MRPIJ")_U_$G(PSJ("MRIVP"))
  S ^TMP(PSJTMP,$J,2)=PSJ("OI")_U_PSJ("OINAME")_U_PSJ("DO")_U_$G(PSJ("INFRATE"))_U_$G(PSJ("SCHD"))_U_PSJ("OIDF")
  S ^TMP(PSJTMP,$J,3)=PSJ("SIOPI")
@@ -181,3 +184,25 @@ ADMIN(X) ;
  . S PSJADM=PSJADM_$S(PSJADM]"":"-",1:"")_PSJX
  Q PSJADM
  ;
+MVOPIAL(DFN,PSJI1,PSJI2) ; Move Other Print Info Activity log entries from NV order to Active order, during Verification
+ Q:'$G(DFN)!'$G(PSJI1)!'$G(PSJI2)  Q:'$D(^PS(55,DFN,"IV",+PSJI2,0))
+ I PSJI1["P",PSJI2["V" N AL,ALND,PNDND0,TXTLN,TXTCNT S AL=0,ALND=0 F  S AL=$O(^PS(53.1,+PSJI1,"A",AL)) Q:'AL  I ^(AL,0)["OTHER PRINT INFO" D
+ .Q:'$D(^PS(53.1,+PSJI1,"A",AL,1,0))  ; Don't retain activity log entry if no text
+ .S PNDND0=$G(^PS(53.1,+PSJI1,"A",AL,0)) N USER,NAME S USER=$P(PNDND0,"^",2) D NAME^PSGSICH(USER,.NAME)
+ .N AL2 S AL2=$O(^PS(55,DFN,"IV",+PSJI2,"A"," "),-1)+1 N OPILIN S OPILIN=+$O(^PS(53.1,+PSJI1,"A",AL,1,""),-1)
+ .S ^PS(55,DFN,"IV",+PSJI2,"A",AL2,0)=AL_"^E^"_NAME_"^^"_$P(PNDND0,"^")_"^"_USER,^PS(55,DFN,"IV",+PSJI2,"A",AL2,1,0)="^55.151^1^1"
+ .S ^PS(55,DFN,"IV",+PSJI2,"A",AL2,1,1,0)="OTHER PRINT INFO"
+ .S TXTLN=0 F TXTCNT=0:1 S TXTLN=$O(^PS(53.1,+PSJI1,"A",AL,1,TXTLN)) Q:'TXTLN  D
+ ..S ^PS(55,DFN,"IV",+PSJI2,"A",AL2,2,TXTLN,0)=^PS(53.1,+PSJI1,"A",AL,1,TXTLN,0)
+ .I $G(TXTCNT) S ^PS(55,DFN,"IV",+PSJI2,"A",AL2,2,0)="^^"_+$G(TXTCNT)_"^"_$G(TXTCNT)_"^"_+$G(^PS(53.1,+PSJI1,"A",AL,0)) D
+ ..S ^PS(55,DFN,"IV",+PSJI2,"A",AL2,1,1,0)="OTHER PRINT INFO"
+ Q
+ ;
+OPIWARN(AFTER) ; Warn user about OPI not printing on IV labels
+ N DIR S DIR=""
+ N PSJSTARZ S $P(PSJSTARZ,"*",69)="*" W !!?5,$E(PSJSTARZ,1,29)," WARNING ",$E(PSJSTARZ,1,31)
+ W !?5,"**",$S(AFTER:"       ",1:"      If "),"OTHER PRINT INFO exceeds one line of 60 characters"_$S(AFTER:"!       **",1:",     **")
+ W !?5,"**  'Instructions too long. See Order View or BCMA for full text.' **"
+ W !?5,"**      will print on the IV label instead of the full text.       **",!?5,PSJSTARZ
+ W !! D PAUSE^VALM1
+ Q

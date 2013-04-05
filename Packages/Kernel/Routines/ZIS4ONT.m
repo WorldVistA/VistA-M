@@ -1,5 +1,5 @@
 %ZIS4 ;SFISC/RWF,AC - DEVICE HANDLER SPOOL SPECIFIC CODE (Cache) ;08/02/10  14:50
- ;;8.0;KERNEL;**34,59,69,191,278,293,440,499,524,546,543**;Jul 10, 1995;Build 15
+ ;;8.0;KERNEL;**34,59,69,191,278,293,440,499,524,546,543,584**;Jul 10, 1995;Build 6
  ;Per VHA Directive 2004-038, this routine should not be modified
  ;
 OPEN ;Called for TRM devices
@@ -49,7 +49,8 @@ ZIO I $D(IO("IP")),$D(IO("ZIO")) Q  ;p499,p524
  I $$OS^%ZOSV="UNIX",$G(IO("IP"))="" S IO("IP")=$P($SYSTEM.Util.GetEnviron("SSH_CLIENT")," ") ;For SSH, p543
  S:'$L(IO("ZIO")) IO("ZIO")=$G(IO("IP"))
  ;If have FQDN keep it in IO("CLNM") and get IP.
- I $L($G(IO("IP"))),IO("IP")'?1.3N1P1.3N1P1.3N1P1.3N S:'$D(IO("CLNM")) IO("CLNM")=IO("IP") S IO("IP")=$P($ZU(54,13,IO("IP")),",") ;p499,p546
+ ;I $L($G(IO("IP"))),IO("IP")'?1.3N1P1.3N1P1.3N1P1.3N S:'$D(IO("CLNM")) IO("CLNM")=IO("IP") S IO("IP")=$P($ZU(54,13,IO("IP")),",") ;p499,p546
+ I $L($G(IO("IP"))),IO("IP")'?1.3N1P1.3N1P1.3N1P1.3N S:'$D(IO("CLNM")) IO("CLNM")=IO("IP") S IO("IP")=$P(##class(%Library.Function).IPAddresses(IO("IP")),",") ;Cache2010
  Q
  ;
 SPOOL ;%ZDA=pointer to ^XMB(3.51, %ZFN=spool file Num/Name.
@@ -79,7 +80,7 @@ SPL3 ;Open to read
  I %ZOS="NT" G SPL4:'$D(^SPOOL(%ZFN,2147483647)) O IO:(%ZFN:$P(^(2147483647),"{",3)):1 S:'$T ZISPLQ=1 K ^(2147483647) S IO(1,IO)="" Q
  ;VMS
  N $ETRAP S $ETRAP="S $EC="""" G SPL4^%ZIS4"
- O %ZFN:"RV":1 S:'$T ZISPLQ=1 G:$ZA<0!('$T) SPL4 S IO(1,%ZFN)="" Q
+ O %ZFN:"R":1 S:'$T ZISPLQ=1 G:$ZA<0!('$T) SPL4 S IO(1,%ZFN)="" Q
  ;
 SPL4 W:'$D(IOP) !,"Spool file already open" S %ZFN=-1 Q
  ;
@@ -105,7 +106,9 @@ LIMIT D ADD("*** INCOMPLETE REPORT  -- SPOOL DOCUMENT LINE LIMIT EXCEEDED ***") 
  Q
 CLVMS ;Close for Cache VMS & Linux
  N $ES,$ET S $ET="D:$EC'[""ENDOF"" ^%ZTER,UNWIND^%ZTER S $EC="""" D SPLEX^%ZIS4,UNWIND^%ZTER"
- S %ZA=$ZU(68,40,1) ;Work like DSM
+ ;Check Cache version, if 2008 use $ZU, else use system object
+ I '$G(XUOSVER) N XUOSVER S XUOSVER=$$VERSION^%ZOSV
+ S %ZA=$S(XUOSVER<2010:$ZU(68,40,1),1:##class(%SYSTEM.Process).SetZEOF(1)) ;Handle EOF like DSM
  ;%ZFN Could be set at the top
  S %ZFN=$S($G(%ZFN)]"":%ZFN,1:$P(%ZS,"^",2)) D SPL3 Q:%ZFN']""  U %ZFN S %ZCR=$C(13),%Y=""
  S %Z1=+$G(^XTV(8989.3,1,"SPL")),%=0

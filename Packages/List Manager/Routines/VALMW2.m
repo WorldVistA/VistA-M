@@ -29,8 +29,8 @@ RUNQ S VALMBCK="R"
  ;
 EDITOR ; -- routine editor
  S X=VALMWD X ^%ZOSF("RM") D FULL^VALM1
- ;I ^%ZOSF("OS")["VAX DSM" D ^%EDT G EDITORQ
- ;I ^%ZOSF("OS")["DTM" D ^%editor G EDITORQ
+ I ^%ZOSF("OS")["VAX DSM" D ^%EDT G EDITORQ
+ I ^%ZOSF("OS")["DTM" D ^%editor G EDITORQ
  ;I ^%ZOSF("OS")["MSM" X ^%E G EDITORQ
  S VALMSG="No compatiable editor for operating system."
 EDITORQ S VALMBCK="R",X=0 X ^%ZOSF("RM")

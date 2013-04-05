@@ -1,5 +1,5 @@
-ONCODSP ;Hines OIFO/GWB - MISCELLANEOUS OPTIONS ;05/05/10
- ;;2.11;ONCOLOGY;**1,5,6,13,18,22,23,25,26,39,40,44,48,51,53**;Mar 07, 1995;Build 31
+ONCODSP ;Hines OIFO/GWB,RTK - MISCELLANEOUS OPTIONS ;05/05/10
+ ;;2.11;ONCOLOGY;**1,5,6,13,18,22,23,25,26,39,40,44,48,51,53,56**;Mar 07, 1995;Build 10
  ;
 TR ;[TR Define Tumor Registry Parameters]
  W ! S DIC="^ONCO(160.1,",DIC(0)="AEMLQ",DLAYGO=160.1 D ^DIC
@@ -111,17 +111,25 @@ TK ;Tasked [RS Registry Summary Reports - Today] report
  S YR=ONCOS("T")
  G AN:YR'="T"
  S V(9)=0,F(8)=0 F I=0,1 S G(I)=0,V(I)=0,F(I)=0
- S G=0,XD0=0 F  S XD0=$O(^ONCO(165.5,"AG",G,XD0)) Q:XD0'>0  I $$DIV^ONCFUNC(XD0)=DUZ(2) S G(G)=G(G)+1
- S G=1,XD0=0 F  S XD0=$O(^ONCO(165.5,"AG",G,XD0)) Q:XD0'>0  I $$DIV^ONCFUNC(XD0)=DUZ(2) S G(G)=G(G)+1
+ ;S G=0,XD0=0 F  S XD0=$O(^ONCO(165.5,"AG",G,XD0)) Q:XD0'>0  I $$DIV^ONCFUNC(XD0)=DUZ(2) S G(G)=G(G)+1
+ ;S G=1,XD0=0 F  S XD0=$O(^ONCO(165.5,"AG",G,XD0)) Q:XD0'>0  I $$DIV^ONCFUNC(XD0)=DUZ(2) S G(G)=G(G)+1
+ S G=0,XD0=0 F  S XD0=$O(^ONCO(165.5,"AG",G,XD0)) Q:XD0'>0  I $$DIV^ONCFUNC(XD0)=DUZ(2),$P($G(^ONCO(165.5,XD0,7)),"^",2)'="A" S G(G)=G(G)+1
+ S G=1,XD0=0 F  S XD0=$O(^ONCO(165.5,"AG",G,XD0)) Q:XD0'>0  I $$DIV^ONCFUNC(XD0)=DUZ(2),$P($G(^ONCO(165.5,XD0,7)),"^",2)'="A" S G(G)=G(G)+1
  S W=0,X0=0 F  S X0=$O(^ONCO(160,"ADX",X0)) Q:'X0  S X1=0 F  S X1=$O(^ONCO(160,"ADX",X0,X1)) Q:'X1  S X2=0 F  S X2=$O(^ONCO(160,"ADX",X0,X1,X2)) Q:'X2  I $$SUSDIV^ONCFUNC(X1,X2)=DUZ(2) S W=W+1
- F I=0:1:3 S W(I)=0
- F I=0:1:3 S X0=0 F  S X0=$O(^ONCO(165.5,"AS",I,X0)) Q:X0'>0  I $$DIV^ONCFUNC(X0)=DUZ(2) S W(I)=W(I)+1
+ ;F I=0:1:3 S W(I)=0
+ ;F I=0:1:3 S X0=0 F  S X0=$O(^ONCO(165.5,"AS",I,X0)) Q:X0'>0  I $$DIV^ONCFUNC(X0)=DUZ(2) S W(I)=W(I)+1
+ F I=0,1,2,3,"A" S W(I)=0
+ F I=0,1,2,3,"A" S X0=0 F  S X0=$O(^ONCO(165.5,"AS",I,X0)) Q:X0'>0  I $$DIV^ONCFUNC(X0)=DUZ(2) S W(I)=W(I)+1
  W !!?30,"Analytical: ",$J(G(1),5)
  W !?26,"Non-Analytical: ",$J(G(0),5)
+ W !?26,"Accession Only: ",$J(W("A"),5)
  W !?42,"-----"
- W !?35,"Total: ",$J(G(0)+G(1),5),!!
+ ;W !?35,"Total: ",$J(G(0)+G(1),5),!!
+ W !?35,"Total: ",$J(G(0)+G(1)+W("A"),5),!!
  W !,?30,"WORKLOAD STATISTICS",!!
- W "Suspense: ",W,?15,"Incomplete: ",W(0),?35,"Minimal: ",W(1),?50,"Partial: ",W(2),?65,"Complete: ",W(3),!!
+ ;W "Suspense: ",W,?15,"Incomplete: ",W(0),?35,"Minimal: ",W(1),?50,"Partial: ",W(2),?65,"Complete: ",W(3),!!
+ W "Suspense: ",W,!!,"Incomplete: ",W(0),?19,"Minimal: ",W(1),?34,"Partial: ",W(2),?49,"Complete: ",W(3),?65,"Acc Only: ",W("A"),!
+ W "---------------",!,"Total: ",W(0)+W(1)+W(2)+W(3)+W("A")
  Q
  ;
 AN ;[RS Registry Summary Reports - Annual]

@@ -1,5 +1,5 @@
 DIS ;SFISC/GFT-GATHER SEARCH CRITERIA ;23JUN2006
- ;;22.0;VA FileMan;**6,97,144**;Mar 30, 1999;Build 5
+ ;;22.0;VA FileMan;**6,97,144**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  K ^UTILITY($J),DC,DIS,%ZIS,O,N,R D ^DICRW
  G Q:'$D(DIC)!$D(DTOUT)

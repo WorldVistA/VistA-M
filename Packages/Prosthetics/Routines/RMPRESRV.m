@@ -27,7 +27,7 @@ RMPRESRV ;PHX/HNC - SERVER ROUTINE FOR NATIONAL DATA EXTRACT ; 1/19/2005
  . ;Send message to local VAMC staff and to PCM VACO Staff on Outlook
  . S XMDUZ=.5
  . S XMY("G.RMPR SERVER")=""
- . S XMY("VHACOPSASPIPReport@DOMAIN.EXT")=""
+ . S XMY("VHACOPSASPIPReport@domain.ext")=""
  . S XMSUB="Retransmit Patient Notification Data "_$P($$SITE^VASITE,U,2)
  . S RMPRMSG(1)="The National PSAS Server has been activated today by Prosthetics HQ."
  . S RMPRMSG(2)="Please note data for Patient Notification was not received"

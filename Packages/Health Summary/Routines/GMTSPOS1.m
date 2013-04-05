@@ -23,7 +23,7 @@ SOWK ; Controls Social Work install
  ; Checks conditions for auto-disable of Social Work component
  I $$VERSION^XPDUTL("SOWK")<3 D
  . S GMMSG="Social Work Service version 3.0 not yet installed"
- . S X="SOCIAL WORK" ; D DISABLE^GMTSPOST
+ . S X="SOCIAL WORK" D DISABLE^GMTSPOST
  I $$VERSION^XPDUTL("SOWK")>2.99 D
  . ;If Social Work extract routine for Health Summary is present, quit
  . I $L($T(^SOWKHSUM)) Q
@@ -41,7 +41,7 @@ MED ; Controls Medicine 2.0 install and disable 2.2 components
  ;Checks conditions for auto-disable of Medicine 2.2 components
  I $$VERSION^XPDUTL("MC")<2.2 D
  . S GMMSG="Medicine 2.2 Package not yet installed or available"
- . F X="MEDICINE ABNORMAL BRIEF","MEDICINE BRIEF REPORT","MEDICINE FULL CAPTIONED","MEDICINE FULL REPORT" ; D DISABLE^GMTSPOST
+ . F X="MEDICINE ABNORMAL BRIEF","MEDICINE BRIEF REPORT","MEDICINE FULL CAPTIONED","MEDICINE FULL REPORT" D DISABLE^GMTSPOST
  . ;If Medicine 2.2 not installed, restore 2.0 medicine routines
  . W !,"** Installing GMTSMCPS routine for Medicine 2.0 component. **"
  . D MED2INST
@@ -64,7 +64,7 @@ PL ; Controls Problem List 2.0 install
  N X,GMMSG
  I $$VERSION^XPDUTL("GMPL")<2 D
  . S GMMSG="Problem List 2.0 Package not yet installed or available"
- . F X="PROBLEM LIST ACTIVE","PROBLEM LIST INACTIVE","PROBLEM LIST ALL" ; D DISABLE^GMTSPOST
+ . F X="PROBLEM LIST ACTIVE","PROBLEM LIST INACTIVE","PROBLEM LIST ALL" D DISABLE^GMTSPOST
  I $$VERSION^XPDUTL("GMPL")>1.99 D
  . W !,"** Installing GMPLHS routine for Problem List components. **"
  . D PLINST

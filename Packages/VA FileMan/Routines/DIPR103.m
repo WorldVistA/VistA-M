@@ -1,5 +1,5 @@
 DIPR103 ;SFISC/SO-PRE INSTALL ROUTINE FOR PATCH DI*22.0*103 ;1:18 PM  28 Feb 2002
- ;;22.0;VA FileMan;**103**;Mar 30, 1999
+ ;;22.0;VA FileMan;**103**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;Check for field whose type are WP and missing the 'W'
  ;whose $P#2 was has been corrupted and report them out for maunal

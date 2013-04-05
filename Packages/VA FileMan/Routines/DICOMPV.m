@@ -1,5 +1,5 @@
 DICOMPV ;SFISC/GFT  BACKWARD-POINTERS IN COMPUTED FIELDS ;29JAN2005
- ;;22.0;VA FileMan;**1,6,76,114,144**;Mar 30, 1999;Build 5
+ ;;22.0;VA FileMan;**1,6,76,114,144**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  N DIX,DICOTRY,DICOLEV
  D DRW^DICOMPX

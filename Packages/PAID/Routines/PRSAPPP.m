@@ -1,5 +1,5 @@
 PRSAPPP ; HISC/REL-Payroll Process Prior PP ;5/31/95  10:00
- ;;4.0;PAID;**114**;Sep 21, 1995;Build 6
+ ;;4.0;PAID;**114,132**;Sep 21, 1995;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  S PRSTLV=7
  W:$E(IOST,1,2)="C-" @IOF W !?26,"VA TIME & ATTENDANCE SYSTEM"
@@ -31,15 +31,18 @@ HZ ; Process Hazard Change
  W !?29,"* * * Prior Data * * *" S IFN=AUN D GET S Z=AUR(1) D ED^PRSAPPQ
  W !,LNE W !?27,"* * * Corrected Data * * *" S IFN=AUN+1 D GET S Z=AUR(1) D ED^PRSAPPQ
  W !,LNE Q
-GET ; Get Data Array
- K AUR S AUC=0 I '$D(^PRST(458,PPI,"E",DFN,"X",IFN)) S IFN=$O(^(IFN)) I IFN<1 S AUC=1 G G1 ;Get current data
+GET ; get prior data array of node x
+ K AUR S AUC=0 I '$D(^PRST(458,PPI,"E",DFN,"X",IFN)) S IFN=$O(^(IFN)) I IFN<1 S AUC=1 G G1
  I $P($G(^PRST(458,PPI,"E",DFN,"X",IFN,0)),"^",4)'=TYP S IFN=IFN+1 G GET
  I TYP="T",$P($G(^PRST(458,PPI,"E",DFN,"X",IFN,1)),"^",1)'=DAY S IFN=IFN+1 G GET
  F L1=1:1:$S(TYP="T":6,1:1) S AUR(L1)=$G(^PRST(458,PPI,"E",DFN,"X",IFN,L1))
- Q
+ ;get the prior telework tour and hours
+ I TYP="T" S AUR(8)=$G(^PRST(458,PPI,"E",DFN,"X",IFN,8))
+ QUIT
+ ;get current data array of node day #
 G1 I TYP'="T" G G2
- S L2=0 F L1=0,1,2,10,3,4 S L2=L2+1,AUR(L2)=$G(^PRST(458,PPI,"E",DFN,"D",DAY,L1))
- Q
+ S L2=0 F L1=0,1,2,10,3,4,8 S L2=L2+1,AUR(L2)=$G(^PRST(458,PPI,"E",DFN,"D",DAY,L1))
+ QUIT
 G2 I TYP="H" S AUR(1)=$G(^PRST(458,PPI,"E",DFN,4))
  I TYP="V" S AUR(1)=$G(^PRST(458,PPI,"E",DFN,2))
  Q

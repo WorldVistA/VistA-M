@@ -1,4 +1,4 @@
-DVBHCE ; GENERATED FROM 'DVBHINQ UPDATE' INPUT TEMPLATE(#960), FILE 2;06/29/12
+DVBHCE ; GENERATED FROM 'DVBHINQ UPDATE' INPUT TEMPLATE(#960), FILE 2;08/29/12
  D DE G BEGIN
 DE S DIE="^DPT(",DIC=DIE,DP=2,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DPT(DA,""))=""
  I $D(^(.32)) S %Z=^(.32) S %=$P(%Z,U,4) S:%]"" DE(24)=% S %=$P(%Z,U,5) S:%]"" DE(22)=% S %=$P(%Z,U,6) S:%]"" DE(20)=% S %=$P(%Z,U,7) S:%]"" DE(21)=% S %=$P(%Z,U,8) S:%]"" DE(25)=% S %=$P(%Z,U,9) S:%]"" DE(37)=% S %=$P(%Z,U,10) S:%]"" DE(36)=%

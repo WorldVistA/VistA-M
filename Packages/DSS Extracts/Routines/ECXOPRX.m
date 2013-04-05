@@ -1,5 +1,5 @@
 ECXOPRX ;ALB/JAP,BIR/DMA,CML,PTD-Prescription Extract for DSS ;9/13/10  15:38
- ;;3.0;DSS EXTRACTS;**10,11,8,13,24,30,33,38,39,46,49,71,81,84,92,105,112,120,127**;Dec 22, 1997;Build 36
+ ;;3.0;DSS EXTRACTS;**10,11,8,13,24,30,33,38,39,46,49,71,81,84,92,105,112,120,127,136**;Dec 22, 1997;Build 28
  ;
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
@@ -29,8 +29,8 @@ V6 ;version 6 or better
  Q
  ;
 STUFF ;get data
- N ECXPHA
- S ECDATA=$G(^PSRX(ECRX,0)),ECXPHA="" Q:'ECDATA
+ N ECXPHA,ECTI
+ S ECDATA=$G(^PSRX(ECRX,0)),ECXPHA="",ECTI="" Q:'ECDATA
  I ECRFL S ECDATA1=$G(^PSRX(ECRX,ECREF,ECRFL,0)) I ECDATA1="" Q
  ;ecref set to 1 in extract+5 and v6+1 and to "P" in v6+2
  ;refill nodes and partial nodes are identical in layout.  Fills
@@ -59,7 +59,19 @@ STUFF ;get data
  .S ECPRC=+$P(ECDATA1,U,11),ECOPAY=$P($G(^PSRX(ECRX,1,ECRFL,"IB")),U)]""
  S ECXCOST=$J((ECQTY*ECPRC),1,2),ECDS=$S(ECRFL:$P(ECDATA1,U,10),1:$P(ECDATA,U,8))
  ;call pharmacy drug file (#50) api
- S ECXPHA=$$PHAAPI^ECXUTL5(ECDRG),ECCAT=$P(ECXPHA,U,2),ECINV=$P(ECXPHA,U,4)["I",ECINV=$S(ECINV:"I",1:""),ECUI=$P(ECXPHA,U,8),ECNDC=$P(ECXPHA,U,3)
+ S ECXPHA=$$PHAAPI^ECXUTL5(ECDRG),ECCAT=$P(ECXPHA,U,2),ECINV=$P(ECXPHA,U,4)
+ ; new method of dea spl hndlg **136
+ I ECXLOGIC>2012 D
+ .I ECINV["5" S ECTI="5"
+ .I ECINV["4" S ECTI="4"
+ .I ECINV["3" S ECTI="3"
+ .I ECINV["2" S ECTI="2"
+ .I ECINV["1" S ECTI="1"
+ .I ECINV["I" S ECTI="I"
+ .S ECINV=ECTI
+ ; old method of dea spl hndlg **136
+ I ECXLOGIC<2013 S ECINV=$S(ECINV["I":"I",1:"")
+ S ECUI=$P(ECXPHA,U,8),ECNDC=$P(ECXPHA,U,3)
  S ECNFC=$$RJ^XLFSTR($P(ECNDC,"-"),6,0)_$$RJ^XLFSTR($P(ECNDC,"-",2),4,0)_$$RJ^XLFSTR($P(ECNDC,"-",3),2,0),ECNFC=$TR(ECNFC,"*",0),P1=$P(ECXPHA,U,5),P3=$P(ECXPHA,U,6)
  S X="PSNAPIS" X ^%ZOSF("TEST") I $T S ECNFC=$$DSS^PSNAPIS(P1,P3,ECXYM)_ECNFC
  I $L(ECNFC)=12 S ECNFC=$$RJ^XLFSTR(P1,4,0)_$$RJ^XLFSTR(P3,3,0)_ECNFC

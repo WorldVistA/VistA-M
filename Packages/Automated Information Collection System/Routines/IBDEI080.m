@@ -1,278 +1,368 @@
-IBDEI080 ; ; 12-JAN-2012
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JAN 12, 2012
+IBDEI080 ; ; 20-FEB-2013
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 20, 2013
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10724,1,3,0)
- ;;=3^28531
- ;;^UTILITY(U,$J,358.3,10725,0)
- ;;=27760^^84^656^27^^^^1
- ;;^UTILITY(U,$J,358.3,10725,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10725,1,2,0)
- ;;=2^Closed TX of medial malleolus fracture; without manipulation 
- ;;^UTILITY(U,$J,358.3,10725,1,3,0)
- ;;=3^27760
- ;;^UTILITY(U,$J,358.3,10726,0)
- ;;=27762^^84^656^28^^^^1
- ;;^UTILITY(U,$J,358.3,10726,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10726,1,2,0)
- ;;=2^Closed TX of medial malleolus fracture; with manipulation, with or without skin or skeletal traction
- ;;^UTILITY(U,$J,358.3,10726,1,3,0)
- ;;=3^27762
- ;;^UTILITY(U,$J,358.3,10727,0)
- ;;=27766^^84^656^29^^^^1
- ;;^UTILITY(U,$J,358.3,10727,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10727,1,2,0)
- ;;=2^Open/Closed TX of medial matteolus FX,w/ internal fixation
- ;;^UTILITY(U,$J,358.3,10727,1,3,0)
- ;;=3^27766
- ;;^UTILITY(U,$J,358.3,10728,0)
- ;;=27786^^84^656^30^^^^1
- ;;^UTILITY(U,$J,358.3,10728,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10728,1,2,0)
- ;;=2^Closed TX of distal fibular fracture (lateral malleolus); without manipulation
- ;;^UTILITY(U,$J,358.3,10728,1,3,0)
- ;;=3^27786
- ;;^UTILITY(U,$J,358.3,10729,0)
- ;;=27788^^84^656^31^^^^1
- ;;^UTILITY(U,$J,358.3,10729,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10729,1,2,0)
- ;;=2^Closed TX of distal fibular (lateral malleolus); with manipulation
- ;;^UTILITY(U,$J,358.3,10729,1,3,0)
- ;;=3^27788
- ;;^UTILITY(U,$J,358.3,10730,0)
- ;;=27792^^84^656^32^^^^1
- ;;^UTILITY(U,$J,358.3,10730,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10730,1,2,0)
- ;;=2^Open TX of distal fibular fracture (lateral malleolus), with or without internal or external fixation
- ;;^UTILITY(U,$J,358.3,10730,1,3,0)
- ;;=3^27792
- ;;^UTILITY(U,$J,358.3,10731,0)
- ;;=27808^^84^656^33^^^^1
- ;;^UTILITY(U,$J,358.3,10731,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10731,1,2,0)
- ;;=2^Closed TX of bimalleolar ankle fracture, (including Potts); without manipulation
- ;;^UTILITY(U,$J,358.3,10731,1,3,0)
- ;;=3^27808
- ;;^UTILITY(U,$J,358.3,10732,0)
- ;;=27810^^84^656^34^^^^1
- ;;^UTILITY(U,$J,358.3,10732,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10732,1,2,0)
- ;;=2^Closed TX of bimalleolar ankle fracture, (including Potts); with manipulation
- ;;^UTILITY(U,$J,358.3,10732,1,3,0)
- ;;=3^27810
- ;;^UTILITY(U,$J,358.3,10733,0)
- ;;=27814^^84^656^35^^^^1
- ;;^UTILITY(U,$J,358.3,10733,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10733,1,2,0)
- ;;=2^Open TX of bimalleolar ankle fracture, with or without internal or external fixation
- ;;^UTILITY(U,$J,358.3,10733,1,3,0)
- ;;=3^27814
- ;;^UTILITY(U,$J,358.3,10734,0)
- ;;=27816^^84^656^36^^^^1
- ;;^UTILITY(U,$J,358.3,10734,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10734,1,2,0)
- ;;=2^Closed TX of trimalleolar ankle fracture; without manipulation
- ;;^UTILITY(U,$J,358.3,10734,1,3,0)
- ;;=3^27816
- ;;^UTILITY(U,$J,358.3,10735,0)
- ;;=27818^^84^656^37^^^^1
- ;;^UTILITY(U,$J,358.3,10735,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10735,1,2,0)
- ;;=2^Closed TX of trimalleolar ankle fracture; with manipulation
- ;;^UTILITY(U,$J,358.3,10735,1,3,0)
- ;;=3^27818
- ;;^UTILITY(U,$J,358.3,10736,0)
- ;;=27822^^84^656^38^^^^1
- ;;^UTILITY(U,$J,358.3,10736,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10736,1,2,0)
- ;;=2^Open Tx of trimalleolar ankle fracture, with or w/o internal or external fixation of, medial and/or lateral malleolus; w/o fixation of posterior lip
- ;;^UTILITY(U,$J,358.3,10736,1,3,0)
- ;;=3^27822
- ;;^UTILITY(U,$J,358.3,10737,0)
- ;;=27823^^84^656^39^^^^1
- ;;^UTILITY(U,$J,358.3,10737,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10737,1,2,0)
- ;;=2^Open Tx of trimalleolar ankle fracture, with or w/o internal or external fixation, medial and/or lateral malleolus; with fixation of posterior lip  
- ;;^UTILITY(U,$J,358.3,10737,1,3,0)
- ;;=3^27823
- ;;^UTILITY(U,$J,358.3,10738,0)
- ;;=27824^^84^656^40^^^^1
- ;;^UTILITY(U,$J,358.3,10738,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10738,1,2,0)
- ;;=2^Closed Tx of fracture of weight bearing articular portion of distal tibia, with or w/o anesthesia; w/o manipulation 
- ;;^UTILITY(U,$J,358.3,10738,1,3,0)
- ;;=3^27824
- ;;^UTILITY(U,$J,358.3,10739,0)
- ;;=27825^^84^656^41^^^^1
- ;;^UTILITY(U,$J,358.3,10739,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10739,1,2,0)
- ;;=2^Closed Tx of fracture of weight bearing articular portion of distal tibia, with or w/o anesthesia; with skeletal traction &/or requiring manipulation
- ;;^UTILITY(U,$J,358.3,10739,1,3,0)
- ;;=3^27825
- ;;^UTILITY(U,$J,358.3,10740,0)
- ;;=27826^^84^656^42^^^^1
- ;;^UTILITY(U,$J,358.3,10740,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10740,1,2,0)
- ;;=2^Open Tx of fracture of weight bearing articular surface/portion of distal tibia, w/ internal or external fixation; of fibula only
- ;;^UTILITY(U,$J,358.3,10740,1,3,0)
- ;;=3^27826
- ;;^UTILITY(U,$J,358.3,10741,0)
- ;;=27827^^84^656^43^^^^1
- ;;^UTILITY(U,$J,358.3,10741,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10741,1,2,0)
- ;;=2^Open Tx of fracture of weight bearing articular surface/portion of distal tibia, w/ internal or external fixation; of tibia only
- ;;^UTILITY(U,$J,358.3,10741,1,3,0)
- ;;=3^27827
- ;;^UTILITY(U,$J,358.3,10742,0)
- ;;=27828^^84^656^44^^^^1
- ;;^UTILITY(U,$J,358.3,10742,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10742,1,2,0)
- ;;=2^Open Tx of fracture of weight bearing articular surface/portionof distal tibia, w/ internal or external fixation; of both tibia & fibula
- ;;^UTILITY(U,$J,358.3,10742,1,3,0)
- ;;=3^27828
- ;;^UTILITY(U,$J,358.3,10743,0)
- ;;=27829^^84^656^45^^^^1
- ;;^UTILITY(U,$J,358.3,10743,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10743,1,2,0)
- ;;=2^Open Tx of distal tibiofibular joint disruption, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,10743,1,3,0)
- ;;=3^27829
- ;;^UTILITY(U,$J,358.3,10744,0)
- ;;=28540^^84^656^46^^^^1
- ;;^UTILITY(U,$J,358.3,10744,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10744,1,2,0)
- ;;=2^Closed Tx of tarsal bone dislocation, other than talotarsal; w/o anesthesia
- ;;^UTILITY(U,$J,358.3,10744,1,3,0)
- ;;=3^28540
- ;;^UTILITY(U,$J,358.3,10745,0)
- ;;=28545^^84^656^47^^^^1
- ;;^UTILITY(U,$J,358.3,10745,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10745,1,2,0)
- ;;=2^Closed Tx of tarsal bone dislocation, other than talotarsal; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,10745,1,3,0)
- ;;=3^28545
- ;;^UTILITY(U,$J,358.3,10746,0)
- ;;=28546^^84^656^48^^^^1
- ;;^UTILITY(U,$J,358.3,10746,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10746,1,2,0)
- ;;=2^Perc Fixation Tarsal Bone Dislocation
- ;;^UTILITY(U,$J,358.3,10746,1,3,0)
- ;;=3^28546
- ;;^UTILITY(U,$J,358.3,10747,0)
- ;;=28555^^84^656^49^^^^1
- ;;^UTILITY(U,$J,358.3,10747,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10747,1,2,0)
- ;;=2^Open TX of tarsal bone disloc,w/ internal fixation
- ;;^UTILITY(U,$J,358.3,10747,1,3,0)
- ;;=3^28555
- ;;^UTILITY(U,$J,358.3,10748,0)
- ;;=28570^^84^656^50^^^^1
- ;;^UTILITY(U,$J,358.3,10748,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10748,1,2,0)
- ;;=2^Closed Tx of talotarsal joint dislocation; w/o anesthesia
- ;;^UTILITY(U,$J,358.3,10748,1,3,0)
- ;;=3^28570
- ;;^UTILITY(U,$J,358.3,10749,0)
- ;;=28575^^84^656^51^^^^1
- ;;^UTILITY(U,$J,358.3,10749,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10749,1,2,0)
- ;;=2^Closed Tx of talotarsal joint dislocation; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,10749,1,3,0)
- ;;=3^28575
- ;;^UTILITY(U,$J,358.3,10750,0)
- ;;=28576^^84^656^52^^^^1
- ;;^UTILITY(U,$J,358.3,10750,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10750,1,2,0)
- ;;=2^Perc Fixation Talotarsal Joint Dislocation
- ;;^UTILITY(U,$J,358.3,10750,1,3,0)
- ;;=3^28576
- ;;^UTILITY(U,$J,358.3,10751,0)
- ;;=28585^^84^656^53^^^^1
- ;;^UTILITY(U,$J,358.3,10751,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10751,1,2,0)
- ;;=2^Open Tx of talotarsal joint dislocation, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,10751,1,3,0)
- ;;=3^28585
- ;;^UTILITY(U,$J,358.3,10752,0)
- ;;=28600^^84^656^55^^^^1
- ;;^UTILITY(U,$J,358.3,10752,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10752,1,2,0)
- ;;=2^Closed Tx of tarsometatarsal joint dislocation; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,10752,1,3,0)
- ;;=3^28600
- ;;^UTILITY(U,$J,358.3,10753,0)
- ;;=28606^^84^656^56^^^^1
- ;;^UTILITY(U,$J,358.3,10753,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10753,1,2,0)
- ;;=2^Perc Fixation Tarsometatarsal Joint Dislocation
- ;;^UTILITY(U,$J,358.3,10753,1,3,0)
- ;;=3^28606
- ;;^UTILITY(U,$J,358.3,10754,0)
- ;;=28615^^84^656^57^^^^1
- ;;^UTILITY(U,$J,358.3,10754,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10754,1,2,0)
- ;;=2^Open Tx of tarsometatarsal joint dislocation, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,10754,1,3,0)
- ;;=3^28615
- ;;^UTILITY(U,$J,358.3,10755,0)
- ;;=28630^^84^656^58^^^^1
- ;;^UTILITY(U,$J,358.3,10755,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10755,1,2,0)
- ;;=2^Closed Tx of metatarsophalangeal joint dislocation; w/o anesthesia
- ;;^UTILITY(U,$J,358.3,10755,1,3,0)
- ;;=3^28630
- ;;^UTILITY(U,$J,358.3,10756,0)
- ;;=28635^^84^656^59^^^^1
- ;;^UTILITY(U,$J,358.3,10756,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10756,1,2,0)
- ;;=2^Closed Tx of metatarsophalangeal joint dislocation; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,10756,1,3,0)
- ;;=3^28635
- ;;^UTILITY(U,$J,358.3,10757,0)
- ;;=28636^^84^656^60^^^^1
- ;;^UTILITY(U,$J,358.3,10757,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10757,1,2,0)
- ;;=2^Perc Fixation Metatarsophalangeal Joint Dislocation
- ;;^UTILITY(U,$J,358.3,10757,1,3,0)
- ;;=3^28636
- ;;^UTILITY(U,$J,358.3,10758,0)
- ;;=28645^^84^656^61^^^^1
- ;;^UTILITY(U,$J,358.3,10758,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10758,1,2,0)
- ;;=2^Open Tx of metatarsophalangeal joint dislocation, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,10758,1,3,0)
- ;;=3^28645
+ ;;^UTILITY(U,$J,358.3,10530,2)
+ ;;=^267069
+ ;;^UTILITY(U,$J,358.3,10531,0)
+ ;;=151.5^^82^704^36
+ ;;^UTILITY(U,$J,358.3,10531,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10531,1,4,0)
+ ;;=4^Ca,Stomach Less Curv
+ ;;^UTILITY(U,$J,358.3,10531,1,5,0)
+ ;;=5^151.5
+ ;;^UTILITY(U,$J,358.3,10531,2)
+ ;;=CA of Lesser Curve of Stomach^267068
+ ;;^UTILITY(U,$J,358.3,10532,0)
+ ;;=151.1^^82^704^37
+ ;;^UTILITY(U,$J,358.3,10532,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10532,1,4,0)
+ ;;=4^Cancer of Pylorus
+ ;;^UTILITY(U,$J,358.3,10532,1,5,0)
+ ;;=5^151.1
+ ;;^UTILITY(U,$J,358.3,10532,2)
+ ;;=Cancer of Pylorus^267064
+ ;;^UTILITY(U,$J,358.3,10533,0)
+ ;;=151.8^^82^704^33
+ ;;^UTILITY(U,$J,358.3,10533,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10533,1,4,0)
+ ;;=4^CA, Stomach, Other
+ ;;^UTILITY(U,$J,358.3,10533,1,5,0)
+ ;;=5^151.8
+ ;;^UTILITY(U,$J,358.3,10533,2)
+ ;;=CA, Stomach, Other^267070
+ ;;^UTILITY(U,$J,358.3,10534,0)
+ ;;=150.9^^82^704^14
+ ;;^UTILITY(U,$J,358.3,10534,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10534,1,4,0)
+ ;;=4^CA of Esophagus
+ ;;^UTILITY(U,$J,358.3,10534,1,5,0)
+ ;;=5^150.9
+ ;;^UTILITY(U,$J,358.3,10534,2)
+ ;;=CA of Esophagus^267055
+ ;;^UTILITY(U,$J,358.3,10535,0)
+ ;;=150.2^^82^704^3
+ ;;^UTILITY(U,$J,358.3,10535,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10535,1,4,0)
+ ;;=4^CA of Abdominal Esophagus
+ ;;^UTILITY(U,$J,358.3,10535,1,5,0)
+ ;;=5^150.2
+ ;;^UTILITY(U,$J,358.3,10535,2)
+ ;;=CA of Abdominal Esophagus^267058
+ ;;^UTILITY(U,$J,358.3,10536,0)
+ ;;=150.0^^82^704^7
+ ;;^UTILITY(U,$J,358.3,10536,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10536,1,4,0)
+ ;;=4^CA of Cervical Esophagus
+ ;;^UTILITY(U,$J,358.3,10536,1,5,0)
+ ;;=5^150.0
+ ;;^UTILITY(U,$J,358.3,10536,2)
+ ;;=CA of Cervical Esophagus^267056
+ ;;^UTILITY(U,$J,358.3,10537,0)
+ ;;=150.5^^82^704^19
+ ;;^UTILITY(U,$J,358.3,10537,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10537,1,4,0)
+ ;;=4^CA of Lower Esophagus
+ ;;^UTILITY(U,$J,358.3,10537,1,5,0)
+ ;;=5^150.5
+ ;;^UTILITY(U,$J,358.3,10537,2)
+ ;;=CA of Lower Esophagus^267061
+ ;;^UTILITY(U,$J,358.3,10538,0)
+ ;;=150.4^^82^704^20
+ ;;^UTILITY(U,$J,358.3,10538,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10538,1,4,0)
+ ;;=4^CA of Middle Esoph
+ ;;^UTILITY(U,$J,358.3,10538,1,5,0)
+ ;;=5^150.4
+ ;;^UTILITY(U,$J,358.3,10538,2)
+ ;;=CA of Middle Esoph^267060
+ ;;^UTILITY(U,$J,358.3,10539,0)
+ ;;=150.3^^82^704^34
+ ;;^UTILITY(U,$J,358.3,10539,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10539,1,4,0)
+ ;;=4^CA, Upper Esophagus
+ ;;^UTILITY(U,$J,358.3,10539,1,5,0)
+ ;;=5^150.3
+ ;;^UTILITY(U,$J,358.3,10539,2)
+ ;;=CA, Upper Esophagus^267059
+ ;;^UTILITY(U,$J,358.3,10540,0)
+ ;;=150.1^^82^704^31
+ ;;^UTILITY(U,$J,358.3,10540,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10540,1,4,0)
+ ;;=4^CA of Thoracic Esophagus
+ ;;^UTILITY(U,$J,358.3,10540,1,5,0)
+ ;;=5^150.1
+ ;;^UTILITY(U,$J,358.3,10540,2)
+ ;;=CA of Thoracic Esophagus^267057
+ ;;^UTILITY(U,$J,358.3,10541,0)
+ ;;=157.9^^82^704^21
+ ;;^UTILITY(U,$J,358.3,10541,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10541,1,4,0)
+ ;;=4^CA of Pancreas
+ ;;^UTILITY(U,$J,358.3,10541,1,5,0)
+ ;;=5^157.9
+ ;;^UTILITY(U,$J,358.3,10541,2)
+ ;;=CA of Pancreas^267103
+ ;;^UTILITY(U,$J,358.3,10542,0)
+ ;;=157.1^^82^704^23
+ ;;^UTILITY(U,$J,358.3,10542,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10542,1,4,0)
+ ;;=4^CA of Pancreatic Body
+ ;;^UTILITY(U,$J,358.3,10542,1,5,0)
+ ;;=5^157.1
+ ;;^UTILITY(U,$J,358.3,10542,2)
+ ;;=^267105
+ ;;^UTILITY(U,$J,358.3,10543,0)
+ ;;=157.3^^82^704^24
+ ;;^UTILITY(U,$J,358.3,10543,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10543,1,4,0)
+ ;;=4^CA of Pancreatic Duct
+ ;;^UTILITY(U,$J,358.3,10543,1,5,0)
+ ;;=5^157.3
+ ;;^UTILITY(U,$J,358.3,10543,2)
+ ;;=CA of Pancreatic Duct^267107
+ ;;^UTILITY(U,$J,358.3,10544,0)
+ ;;=157.0^^82^704^25
+ ;;^UTILITY(U,$J,358.3,10544,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10544,1,4,0)
+ ;;=4^CA of Pancreatic Head
+ ;;^UTILITY(U,$J,358.3,10544,1,5,0)
+ ;;=5^157.0
+ ;;^UTILITY(U,$J,358.3,10544,2)
+ ;;=CA of Pancreatic Head^267104
+ ;;^UTILITY(U,$J,358.3,10545,0)
+ ;;=157.4^^82^704^18
+ ;;^UTILITY(U,$J,358.3,10545,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10545,1,4,0)
+ ;;=4^CA of Islet of Langerhans
+ ;;^UTILITY(U,$J,358.3,10545,1,5,0)
+ ;;=5^157.4
+ ;;^UTILITY(U,$J,358.3,10545,2)
+ ;;=CA of Islet of Langerhans^267108
+ ;;^UTILITY(U,$J,358.3,10546,0)
+ ;;=157.8^^82^704^22
+ ;;^UTILITY(U,$J,358.3,10546,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10546,1,4,0)
+ ;;=4^CA of Pancreas, Oth
+ ;;^UTILITY(U,$J,358.3,10546,1,5,0)
+ ;;=5^157.8
+ ;;^UTILITY(U,$J,358.3,10546,2)
+ ;;=CA of Pancreas, Oth^267109
+ ;;^UTILITY(U,$J,358.3,10547,0)
+ ;;=157.2^^82^704^26
+ ;;^UTILITY(U,$J,358.3,10547,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10547,1,4,0)
+ ;;=4^CA of Pancreatic Tail
+ ;;^UTILITY(U,$J,358.3,10547,1,5,0)
+ ;;=5^157.2
+ ;;^UTILITY(U,$J,358.3,10547,2)
+ ;;=CA of Pancreatic Tail^267106
+ ;;^UTILITY(U,$J,358.3,10548,0)
+ ;;=789.1^^82^704^57
+ ;;^UTILITY(U,$J,358.3,10548,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10548,1,4,0)
+ ;;=4^Hepatomegaly
+ ;;^UTILITY(U,$J,358.3,10548,1,5,0)
+ ;;=5^789.1
+ ;;^UTILITY(U,$J,358.3,10548,2)
+ ;;=^56494
+ ;;^UTILITY(U,$J,358.3,10549,0)
+ ;;=211.3^^82^704^77
+ ;;^UTILITY(U,$J,358.3,10549,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10549,1,4,0)
+ ;;=4^Polyp,Colon
+ ;;^UTILITY(U,$J,358.3,10549,1,5,0)
+ ;;=5^211.3
+ ;;^UTILITY(U,$J,358.3,10549,2)
+ ;;=^13295
+ ;;^UTILITY(U,$J,358.3,10550,0)
+ ;;=792.1^^82^704^74
+ ;;^UTILITY(U,$J,358.3,10550,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10550,1,4,0)
+ ;;=4^Occult Blood In Stool
+ ;;^UTILITY(U,$J,358.3,10550,1,5,0)
+ ;;=5^792.1
+ ;;^UTILITY(U,$J,358.3,10550,2)
+ ;;=^273412
+ ;;^UTILITY(U,$J,358.3,10551,0)
+ ;;=564.00^^82^704^43
+ ;;^UTILITY(U,$J,358.3,10551,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10551,1,4,0)
+ ;;=4^Constipation
+ ;;^UTILITY(U,$J,358.3,10551,1,5,0)
+ ;;=5^564.00
+ ;;^UTILITY(U,$J,358.3,10551,2)
+ ;;=^323537
+ ;;^UTILITY(U,$J,358.3,10552,0)
+ ;;=560.39^^82^704^64
+ ;;^UTILITY(U,$J,358.3,10552,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10552,1,4,0)
+ ;;=4^Impaction,Fecal
+ ;;^UTILITY(U,$J,358.3,10552,1,5,0)
+ ;;=5^560.39
+ ;;^UTILITY(U,$J,358.3,10552,2)
+ ;;=^87650
+ ;;^UTILITY(U,$J,358.3,10553,0)
+ ;;=455.3^^82^704^54
+ ;;^UTILITY(U,$J,358.3,10553,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10553,1,4,0)
+ ;;=4^Hemorrhoid,External
+ ;;^UTILITY(U,$J,358.3,10553,1,5,0)
+ ;;=5^455.3
+ ;;^UTILITY(U,$J,358.3,10553,2)
+ ;;=^269827
+ ;;^UTILITY(U,$J,358.3,10554,0)
+ ;;=571.5^^82^704^41
+ ;;^UTILITY(U,$J,358.3,10554,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10554,1,4,0)
+ ;;=4^Cirrhosis,Nonalcoholic
+ ;;^UTILITY(U,$J,358.3,10554,1,5,0)
+ ;;=5^571.5
+ ;;^UTILITY(U,$J,358.3,10554,2)
+ ;;=^24731
+ ;;^UTILITY(U,$J,358.3,10555,0)
+ ;;=553.21^^82^704^59
+ ;;^UTILITY(U,$J,358.3,10555,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10555,1,4,0)
+ ;;=4^Hernia,Incisional
+ ;;^UTILITY(U,$J,358.3,10555,1,5,0)
+ ;;=5^553.21
+ ;;^UTILITY(U,$J,358.3,10555,2)
+ ;;=^270246
+ ;;^UTILITY(U,$J,358.3,10556,0)
+ ;;=530.20^^82^704^78
+ ;;^UTILITY(U,$J,358.3,10556,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10556,1,4,0)
+ ;;=4^Ulcer of Esophagus
+ ;;^UTILITY(U,$J,358.3,10556,1,5,0)
+ ;;=5^530.20
+ ;;^UTILITY(U,$J,358.3,10556,2)
+ ;;=^329929
+ ;;^UTILITY(U,$J,358.3,10557,0)
+ ;;=555.0^^82^704^45
+ ;;^UTILITY(U,$J,358.3,10557,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10557,1,4,0)
+ ;;=4^Crohn's/Enteritis Sm Intes
+ ;;^UTILITY(U,$J,358.3,10557,1,5,0)
+ ;;=5^555.0
+ ;;^UTILITY(U,$J,358.3,10557,2)
+ ;;=^270247
+ ;;^UTILITY(U,$J,358.3,10558,0)
+ ;;=555.1^^82^704^44
+ ;;^UTILITY(U,$J,358.3,10558,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10558,1,4,0)
+ ;;=4^Crohn's/Enteritis Lg Intes
+ ;;^UTILITY(U,$J,358.3,10558,1,5,0)
+ ;;=5^555.1
+ ;;^UTILITY(U,$J,358.3,10558,2)
+ ;;=^270248
+ ;;^UTILITY(U,$J,358.3,10559,0)
+ ;;=555.2^^82^704^47
+ ;;^UTILITY(U,$J,358.3,10559,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10559,1,4,0)
+ ;;=4^Crohn/Enteri Sm/Lg Intes
+ ;;^UTILITY(U,$J,358.3,10559,1,5,0)
+ ;;=5^555.2
+ ;;^UTILITY(U,$J,358.3,10559,2)
+ ;;=^270249
+ ;;^UTILITY(U,$J,358.3,10560,0)
+ ;;=531.90^^82^704^53
+ ;;^UTILITY(U,$J,358.3,10560,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10560,1,4,0)
+ ;;=4^Gastric Ulcer
+ ;;^UTILITY(U,$J,358.3,10560,1,5,0)
+ ;;=5^531.90
+ ;;^UTILITY(U,$J,358.3,10560,2)
+ ;;=^51128
+ ;;^UTILITY(U,$J,358.3,10561,0)
+ ;;=536.41^^82^704^66
+ ;;^UTILITY(U,$J,358.3,10561,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10561,1,4,0)
+ ;;=4^Infection of Gastrostomy
+ ;;^UTILITY(U,$J,358.3,10561,1,5,0)
+ ;;=5^536.41
+ ;;^UTILITY(U,$J,358.3,10561,2)
+ ;;=^321189
+ ;;^UTILITY(U,$J,358.3,10562,0)
+ ;;=536.42^^82^704^70
+ ;;^UTILITY(U,$J,358.3,10562,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10562,1,4,0)
+ ;;=4^Mech Compl of Gastrostomy
+ ;;^UTILITY(U,$J,358.3,10562,1,5,0)
+ ;;=5^536.42
+ ;;^UTILITY(U,$J,358.3,10562,2)
+ ;;=^321190
+ ;;^UTILITY(U,$J,358.3,10563,0)
+ ;;=536.49^^82^704^76
+ ;;^UTILITY(U,$J,358.3,10563,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10563,1,4,0)
+ ;;=4^Oth Gastrostomy Compl
+ ;;^UTILITY(U,$J,358.3,10563,1,5,0)
+ ;;=5^536.49
+ ;;^UTILITY(U,$J,358.3,10563,2)
+ ;;=^321191
+ ;;^UTILITY(U,$J,358.3,10564,0)
+ ;;=569.61^^82^704^65
+ ;;^UTILITY(U,$J,358.3,10564,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10564,1,4,0)
+ ;;=4^Infect Colos/Enteros
+ ;;^UTILITY(U,$J,358.3,10564,1,5,0)
+ ;;=5^569.61
+ ;;^UTILITY(U,$J,358.3,10564,2)
+ ;;=^303300
+ ;;^UTILITY(U,$J,358.3,10565,0)
+ ;;=569.62^^82^704^69
+ ;;^UTILITY(U,$J,358.3,10565,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10565,1,4,0)
+ ;;=4^Mech Compl Colost/Enterost
+ ;;^UTILITY(U,$J,358.3,10565,1,5,0)
+ ;;=5^569.62
+ ;;^UTILITY(U,$J,358.3,10565,2)
+ ;;=^321192
+ ;;^UTILITY(U,$J,358.3,10566,0)
+ ;;=569.69^^82^704^75
+ ;;^UTILITY(U,$J,358.3,10566,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10566,1,4,0)
+ ;;=4^Oth Compl Colost/Enterost
+ ;;^UTILITY(U,$J,358.3,10566,1,5,0)
+ ;;=5^569.69
+ ;;^UTILITY(U,$J,358.3,10566,2)
+ ;;=^303301
+ ;;^UTILITY(U,$J,358.3,10567,0)
+ ;;=278.00^^82^704^73

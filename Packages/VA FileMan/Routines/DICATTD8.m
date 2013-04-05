@@ -1,5 +1,5 @@
 DICATTD8 ;SFISC/GFT;12:19 PM  13 Dec 2001;VARIABLE POINTER FIELDS
- ;;22.0;VA FileMan;**44,42,83**;Mar 30, 1999
+ ;;22.0;VA FileMan;**44,42,83**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 GET ;

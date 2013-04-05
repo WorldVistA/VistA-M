@@ -1,5 +1,5 @@
-EDPX ;SLC/KCM - Common Utilities
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPX ;SLC/KCM - Common Utilities ;4/25/12 12:51pm
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 ESC(X) ; Escape for XML transmission
  ; Q $ZCONVERT(X,"O","HTML")  ; uncomment for fastest performance on Cache
@@ -75,4 +75,6 @@ MSG(MSG) ; Write out error message
  I MSG=2300014 S X="Name missing"
  I MSG=2300015 S X="Unable to lock record"
  I MSG=2300016 S X="The selected room/area is now occupied."
+ I MSG=2300017 S X="Report too big, unable to task."
+ I MSG=2300018 S X="Required parameters missing or invalid."
  Q $$ESC^EDPX(X)

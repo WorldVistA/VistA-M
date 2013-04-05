@@ -1,6 +1,6 @@
 PRCHMA1 ;WISC/AKS/DWA-Amendments to purchase orders and requisitions ;6/8/96  13:42
- ;;5.1;IFCAP;**22,40,79**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;5.1;IFCAP;**22,40,79,157**;Oct 20, 2000;Build 2
+ ;Per VHA Directive 2004-038, this routine should not be modified.
 EN4 ;Line Item edit
  ;
  ;MOP=Method of Processing
@@ -91,12 +91,15 @@ EN13 ;Replace P.O. Number
  ;F  S I=$O(^PRC(442,PRCHPO,11,I)) Q:'I  I $D(^(I,0)) S X=$P(^(0),U,8) Q:X]""
  D CAN^PRCHMA3
  I $G(NOCAN)=1 W !?5,$S($D(PRCHREQ):"REQUISITION",1:"PURCHASE ORDER")_" HAS BEEN RECEIVED, CANNOT CANCEL !",$C(7) Q
- I $G(PRCHAUTH)=1 D PAID^PRCHINQ I $G(PAID)=1 D  Q
+ ;PRC*5.1*157   insures that if the user does not use Amendment to Purchase Card option
+ ;              an order using a credit card (MOP=25) will also be checked for any recon charges 
+ ;              still attached to order attempting to be cancelled
+ I $G(PRCHAUTH)=1!($P(^PRC(442,PRCHPO,0),U,2)=25) D PAID^PRCHINQ I $G(PAID)=1 D  K PAID Q
  . W !,?5,"THERE HAS BEEN PAYMENT MADE FOR THIS PURCHASE CARD ORDER, CANNOT CANCEL !",$C(7)
  I $P($G(^PRC(443.6,PRCHPO,6,PRCHAM,3,0)),U,4)>2 D ERR Q
  I $P($G(^PRC(443.6,PRCHPO,6,PRCHAM,3,0)),U,4)=2 I $P($G(^PRC(443.6,PRCHPO,6,PRCHAM,3,2,0)),U,2)'=34 D ERR Q
  S P2237=$P(^PRC(443.6,PRCHPO,0),U,12),OK=1 D:P2237>0  Q:OK=0
- .I '$$VERIFY^PRCSC2(P2237) W !!,?5,"This purchase order has been tampered with.",!,?5,"Please notify IFCAP APPLICATION COORDINATOR.",! S OK=0
+ .I '$$VERIFY^PRCSC2(P2237) W !!,?5,"This requisition has been tampered with.",!,?5,"Please notify IFCAP APPLICATION COORDINATOR.",! S OK=0
  I $D(PRCHREQ) S PRCHNRQ=PRCHREQ
  S PRCH0=$G(^PRC(443.6,PRCHPO,0))
  S PRCHO=$P(PRCH0,U),PRCH=PRCHPO D

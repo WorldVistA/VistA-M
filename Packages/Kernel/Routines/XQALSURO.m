@@ -1,5 +1,5 @@
-XQALSURO ;ISC-SF.SEA/JLI,ISD/HGW - SURROGATES FOR ALERTS ;12/30/11  11:01
- ;;8.0;KERNEL;**114,125,173,285,366,443,513**;Jul 10, 1995;Build 13
+XQALSURO ;ISC-SF.SEA/JLI,ISD/HGW - SURROGATES FOR ALERTS ;07/24/12  10:24
+ ;;8.0;KERNEL;**114,125,173,285,366,443,513,602**;Jul 10, 1995;Build 9
  ;Per VHA Directive 2004-038, this routine should not be modified
  Q
 OTHRSURO ; OPT:- XQALERT SURROGATE SET/REMOVE -- OTHERS SPECIFY SURROGATE FOR SELECTED USER
@@ -15,18 +15,21 @@ SURROGAT ; USER SPECIFICATION OF SURROGATE
  I '$D(XQAUSER) N XQAUSER S XQAUSER=DUZ
  D SURRO1^XQALSUR1(XQAUSER)
  Q
+ ;
 CYCLIC(XQALSURO,XQAUSER,XQASTRT,XQAEND) ; code added to prevent cyclical surrogates
- I '$$ACTIVE^XUSER(XQALSURO) Q "You cannot have an INACTIVE USER ("_XQALSURO_") as a surrogate!" ;P443
+ I '$$ACTIVE^XUSER(XQALSURO) Q "You cannot have an INACTIVE USER ("_$$NAME^XUSER(XQALSURO,"F")_") as a surrogate!" ;P443
  I XQALSURO=XQAUSER Q "You cannot specify yourself as your own surrogate!" ; moved in P443
  I $G(XQASTRT)>0 Q $$DCYCLIC^XQALSUR1(XQALSURO,XQAUSER,XQASTRT,$G(XQAEND))
- N XQALSTRT
- S XQALSTRT=$$CURRSURO(XQALSURO) I XQALSTRT>0 D
- . I XQALSTRT=XQAUSER S XQALSURO="YOU are designated as the surrogate for this user ("_XQALSURO_") - can't do it!" Q
- . F  S XQALSTRT=$$CURRSURO(XQALSTRT) Q:XQALSTRT'>0  I XQALSTRT=XQAUSER S XQALSURO="This forms a circle which leads back to you - can't do it!" Q
- . Q
+ ;p602 in SURRO11^XQALSUR1 split the check for cyclical surrogates into two parts. The following code becomes unnecessary.
+ ;N XQALSTRT
+ ;S XQALSTRT=$$CURRSURO(XQALSURO) I XQALSTRT>0 D
+ ;. I XQALSTRT=XQAUSER S XQALSURO="YOU are designated as the surrogate for this user ("_XQALSURO_") - can't do it!" Q
+ ;. F  S XQALSTRT=$$CURRSURO(XQALSTRT) Q:XQALSTRT'>0  I XQALSTRT=XQAUSER S XQALSURO="This forms a circle which leads back to you - can't do it!" Q
+ ;. Q
  Q XQALSURO
  ;
-SETSURO(XQAUSER,XQALSURO,XQALSTRT,XQALEND) ; Use SETSURO1 instead
+SETSURO(XQAUSER,XQALSURO,XQALSTRT,XQALEND) ; SR. ICR #2790 (Supported)
+ ; Use SETSURO1 instead
  N XQALVAL ; P443
  S XQALVAL=$$SETSURO1(XQAUSER,XQALSURO,$G(XQALSTRT),$G(XQALEND)) ; P443
  Q
@@ -40,17 +43,17 @@ SETSUROX(XQAUSER,XQALSURO,XQALSTRT,XQALEND) ; SETSURO CODE MOVED TO HERE TO PERM
  . D UPDATE^DIE("","XQALFM","XQALFM1")
  . Q
  S XQAIENS=XQAUSER_","
- ; P366 - force no start date/time to NOW
- ; P366 - change to force anything less than NOW to NOW - 8/22/05
+ ; P366 - force no start date/time to NOW, and anything less than NOW to NOW
  I $G(XQALSTRT)<$$NOW^XLFDT() S XQALSTRT=$$NOW^XLFDT()
  ; P366 - add values to new multiple
  S XQALFM(8992.02,"+1,"_XQAIENS,.01)=XQALSTRT
  S XQALFM(8992.02,"+1,"_XQAIENS,.02)=XQALSURO
+ I (XQALEND>0)&(XQALEND'>XQALSTRT) S XQALEND=$$FMADD^XLFDT(XQALSTRT,0,0,0,1) ;p602 force end date/time to be after start date/time
  I XQALEND>0 S XQALFM(8992.02,"+1,"_XQAIENS,.03)=XQALEND
  K XQALIEN D UPDATE^DIE("","XQALFM","XQALIEN")
  ; P366 - if start date time is already in effect - place in old locations to make active
- ;I XQALSTRT'>$$NOW^XLFDT() D ACTIVATE(XQAUSER,XQALIEN(1)) ; P513 commented out
- D ACTIVATE(XQAUSER,XQALIEN(1)) ; P513 activate if current or next
+ ;D ACTIVATE(XQAUSER,XQALIEN(1)) ; P513 activate if current or next
+ I XQALSTRT'>$$NOW^XLFDT() D ACTIVATE(XQAUSER,XQALIEN(1)) ; p602 activate only if current
  N XQAMESG,XMSUB,XMTEXT
  S XQAMESG(1,0)="You have been specified as a surrogate recipient for alerts for"
  S XQAMESG(2,0)=$$GET1^DIQ(200,XQAIENS,.01,"E")_" (IEN="_XQAUSER_") effective "_$$FMTE^XLFDT(XQALSTRT)
@@ -66,7 +69,7 @@ ACTIVATE(XQAUSER,XQALIEN) ; activates a surrogate
  N X0,XQALFM,XQALSURO,XQALSTRT,XQALEND
  S X0=$G(^XTV(8992,XQAUSER,2,XQALIEN,0)) Q:X0=""  S XQALSTRT=$P(X0,U),XQALSURO=$P(X0,U,2),XQALEND=$P(X0,U,3)
  S X0=^XTV(8992,XQAUSER,0)
- I $P(X0,U,2)>0,$P(X0,U,3)'>$$NOW^XLFDT() D REMVSURO(XQAUSER) ; If we are activaing a new surrogate, if one exists simply remove.
+ I $P(X0,U,2)>0,$P(X0,U,3)'>$$NOW^XLFDT() D REMVSURO(XQAUSER) ; If we are activating a new surrogate, if one exists simply remove.
  K XQALFM S XQALFM(8992,XQAUSER_",",.03)=XQALSTRT
  S XQALFM(8992,XQAUSER_",",.02)=XQALSURO
  S XQALFM(8992,XQAUSER_",",.04)=$S($G(XQALEND)>0:XQALEND,1:"@")
@@ -74,7 +77,8 @@ ACTIVATE(XQAUSER,XQALIEN) ; activates a surrogate
  Q
  ;
  ; usage $$SETSURO1(XQAUSER,XQALSURO,XQALSTRT,XQALEND)  returns 0 if invalid, otherwise > 0
-SETSURO1(XQAUSER,XQALSURO,XQALSTRT,XQALEND) ; SR. This should be used instead of SETSURO
+SETSURO1(XQAUSER,XQALSURO,XQALSTRT,XQALEND) ;EXTRINSIC. ICR #3213 (supported)
+ ; This should be used instead of SETSURO
  I $G(XQAUSER)'>0 Q "Invalid Internal Entry Number for user ("_XQAUSER_")" ; P513 moved from SETSUROX+2
  I $G(XQALSURO)'>0 Q "Invalid Internal Entry Number for surrogate ("_XQALSURO_")" ; P513 moved from SETSUROX+3
  I $G(XQALSTRT)'>0 S XQALSTRT=$$NOW^XLFDT()
@@ -96,13 +100,15 @@ CHKREMV ;
  Q
  ;
  ; P366 - added OPTIONAL second and third arguments to permit deletion of a specific pending surrogate and start date
-REMVSURO(XQAUSER,XQALSURO,XQALSTRT) ; SR - ends the currently active surrogate relationship
+REMVSURO(XQAUSER,XQALSURO,XQALSTRT) ;SR. ICR #2790 (supported)
+ ; Ends the currently active surrogate relationship
  I $G(XQAUSER)'>0 Q
  D REMVSURO^XQALSUR1(XQAUSER,$G(XQALSURO),$G(XQALSTRT))
  Q
  ;
  ; P366 - added OPTIONAL second and third arguments to determine surrogate for specified time range
-CURRSURO(XQAUSER,XQASTRT,XQAEND) ;SR. - returns current surrogate for user or -1  usage $$CURRSURO^XQALSURO(DUZ)
+CURRSURO(XQAUSER,XQASTRT,XQAEND) ;SR. ICR #2790 (supported)
+ ; Returns current surrogate for user or -1  usage $$CURRSURO^XQALSURO(DUZ)
  N X,ACTIVE,XQANOW,XQASTR1,XQAIVAL,XQA0,XQAI
  D CHEKSUBS^XQALSUR2(XQAUSER)
  I $G(XQASTRT)>0 Q $$DATESURO^XQALSUR1(XQAUSER,XQASTRT,$G(XQAEND)) ; P366 - check for current in specified date/times
@@ -159,14 +165,16 @@ ISACTIVE(XQAUSER) ; checks for whether a surrogate relationship is active or not
  I $P(DATA,U,4)>0,$P(DATA,U,4)<$$NOW^XLFDT() Q 0  ; PAST END DATE/TIME
  Q 1
  ;
-ACTVSURO(XQAUSER) ;SR. - returns the actual surrogate at this time
+ACTVSURO(XQAUSER) ;SR. ICR #2790 (supported)
+ ; Returns the actual surrogate at this time
  N CURRSURO,NEXTSURO,SURODATA,NOW
  S NOW=$$NOW^XLFDT()
  S CURRSURO=$$CURRSURO(XQAUSER),SURODATA=$$GETSURO(XQAUSER) I (CURRSURO'>0)!(+$P(SURODATA,U,3)>NOW)!('(+$$ACTIVE^XUSER(CURRSURO))) Q -1
  F  S NEXTSURO=$$CURRSURO(CURRSURO),SURODATA=$$GETSURO(CURRSURO) Q:NEXTSURO'>0  Q:+$P(SURODATA,U,3)>NOW  Q:'(+$$ACTIVE^XUSER(NEXTSURO))  S CURRSURO=NEXTSURO
  Q CURRSURO
  ;
-GETSURO(XQAUSER) ;SR. - returns data for surrogate for user including times
+GETSURO(XQAUSER) ;EXTRINSIC. ICR #3213 (supported)
+ ; Returns data for surrogate for user including times
  I $$CURRSURO(XQAUSER)'>0 Q ""
  N GLOBREF,IENS,X
  S IENS=XQAUSER_",",GLOBREF=$NA(^TMP($J,"XQALSURO")) K @GLOBREF
@@ -178,8 +186,11 @@ GETSURO(XQAUSER) ;SR. - returns data for surrogate for user including times
  ;
 GETFOR ;OPT.
  N XQAUSER,VALUES,XQACNT,DIR,DIRUT,I,Y
- S DIR(0)="PD^200:AEMQ",DIR("A",1)="View Users who have selected a specified User as their Surrogate."
- S DIR("A")="Select User (NEW PERSON entry)"
+ S DIR(0)="PD^200:AEMQ"
+ S DIR("A")="Select Surrogate (NEW PERSON entry)"
+ S DIR("A",1)="",DIR("A",2)=""
+ S DIR("A",3)=" - List Users who have chosen this User to be their current Surrogate." ;p602
+ S DIR("A",4)=""
  D ^DIR K DIR Q:Y'>0  W "  ",$P(Y,U,2)
  S XQAUSER=+Y
  D SUROFOR(.VALUES,XQAUSER) I VALUES'>0 W !,"No entries found.",!! Q
@@ -189,11 +200,13 @@ GETFOR ;OPT.
  K DIRUT
  Q
  ;
-SUROLIST(XQAUSER,XQALIST) ; SR. returns list of current and scheduled surrogates for XQAUSER
+SUROLIST(XQAUSER,XQALIST) ;SR. ICR #3213 (supported)
+ ; Returns list of current and scheduled surrogates for XQAUSER
  D SUROLIST^XQALSUR1(XQAUSER,.XQALIST)
  Q
  ;
-SUROFOR(LIST,XQAUSER) ;SR. - returns list of users XQAUSER is acting as a surrogate for
+SUROFOR(LIST,XQAUSER) ;SR. ICR #3213 (supported)
+ ; Returns list of users XQAUSER is acting as a surrogate for
  I $G(XQAUSER)="" Q
  N I,COUNT S I=0,COUNT=0 F  S I=$O(^XTV(8992,"AC",XQAUSER,I)) Q:I'>0  I $$CURRSURO(I)>0 D
  . S COUNT=COUNT+1,LIST(COUNT)=I_U_$$GET1^DIQ(200,(I_","),".01","E")_U_$$GET1^DIQ(8992,(I_","),".03","E")_U_$$GET1^DIQ(8992,(I_","),".04","E")

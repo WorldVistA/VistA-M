@@ -1,5 +1,5 @@
 DDS4 ;SFISC/MKO-FILE AND RELOAD ;21SEP2006
- ;;22.0;VA FileMan;**11,151**;Mar 30, 1999;Build 10
+ ;;22.0;VA FileMan;**11,151**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  D ^DDS41 Q:Y'=1
  N DA,DDO,DIE,DDP,DDSDA

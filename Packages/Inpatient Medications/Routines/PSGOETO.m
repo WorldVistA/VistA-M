@@ -1,5 +1,5 @@
 PSGOETO ;BIR/CML3-TRANSCRIBE ORDERS ;25 Feb 99 / 1:17 PM
- ;;5.0;INPATIENT MEDICATIONS;**3,13,25,31,33,50,68,58,85,105,90,117,110,111,112,161,254**;16 DEC 97;Build 84
+ ;;5.0;INPATIENT MEDICATIONS;**3,13,25,31,33,50,68,58,85,105,90,117,110,111,112,161,254,267,268**;16 DEC 97;Build 9
  ;
  ; Reference to ^PS(51.2 is supported by DBIA #2178.
  ; Reference to ^PS(55 is supported by DBIA #2191.
@@ -27,6 +27,7 @@ PSGOETO ;BIR/CML3-TRANSCRIBE ORDERS ;25 Feb 99 / 1:17 PM
  I '$D(PSJDOSE("DO")),$D(PSGORD),PSGPDRG=$P(@("^PS("_$S(PSGORD["U":"55,"_PSGP_",5",1:53.1)_","_+PSGORD_",.2)"),U) S $P(@(F_".2)"),U,5,6)=$P(@("^PS("_$S(PSGORD["U":"55,"_PSGP_",5",1:53.1)_","_+PSGORD_",.2)"),U,5,6)
  ;naked reference below refers to full reference inside indirection @(F_"2)") for either file 53.1 or 55
  S @(F_"2)")=$S(PSGOEAV:ND2,1:$P(ND2,"^",1,6)),^(4)=ND4 S:PSGSI]"" ^(6)=PSGSI
+ S X=-1 S:'$D(^PS(53.45,+$G(DUZ),5,1,0)) X=$S($G(PSGORD):$$GETSIOPI^PSJBCMA5(DFN,PSGORD),1:"") I X D FILESI^PSJBCMA5(PSGP,DA_$S(F["PS(55":"U",1:"P"))
  S (C,X)=0 F  S X=$O(^PS(53.45,PSJSYSP,2,X)) Q:'X  S D=$G(^(X,0)) I D,$S('$P(D,U,3):1,1:$P(D,U,3)>DT) S C=C+1,@(F_"1,"_C_",0)")=$P(D,U,1,2),@(F_"1,""B"","_+D_","_C_")")=""
  S:C @(F_"1,0)")=U_$S(PSGOEAV:55.07,1:53.11)_"P^"_C_U_C
  S (C,Q)=0 F  S Q=$O(^PS(53.45,PSJSYSP,1,Q)) Q:'Q  S X=$G(^(Q,0)) S:X]"" C=C+1,@(F_"3,"_C_",0)")=X
@@ -50,10 +51,14 @@ PSGOETO ;BIR/CML3-TRANSCRIBE ORDERS ;25 Feb 99 / 1:17 PM
  D STOREINT^PSGSICH1
 OUT ;
  K PSGOETOF
+  ; ** This is where the Automated Dispensing Machine hook is called. Do NOT DELETE or change location **
+ D NEWG^PSJADM
+  ; ** END of Interface hook **
 DONE ;
  I PSGOEAV L -^PS(55,PSGP,5,+PSGORD)
  I 'PSGOEAV L -^PS(53.1,+PSGORD)
  K C,D,ND,ND2,ND4,PSGDO,PSGDRG,PSGDRGN,PSGFOK,PSGHSM,PSGMR,PSGMRN,PSGNEDFD,PSGNEFD,PSGNESD,PSGPDRG,PSGPDRGN,PSGSI,PSGSTN,PSJDOSE,ND0
+ K ^PS(53.45,+$G(DUZ),5)
  Q
 CRA ;
  S:PSGPDRG ^PS(55,PSGP,5,"C",PSGPDRG,DA)="" S (^PS(55,"AUE",PSGP,DA),^PS(55,PSGP,5,"AU",PSGST,+PSGNEFD,DA),^PS(55,PSGP,5,"AUS",+PSGNEFD,DA))="",^PS(55,"AUD",+$P(ND2,"^",4),PSGP,DA)="",^PS(55,"AUDS",+$P(ND2,"^",2),PSGP,DA)=""

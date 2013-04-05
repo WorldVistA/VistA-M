@@ -1,5 +1,5 @@
 DDBR4 ;SFISC/DCL-LOAD CURRENT LIST ;NOV 04, 1996@13:49
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 LOADCL(DDBSA,DDBFLG,DDBPMSG,DDBL,DDBC,DDBLST) ;
  ;DDBSA=source array by value

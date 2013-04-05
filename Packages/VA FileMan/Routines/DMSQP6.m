@@ -1,5 +1,5 @@
 DMSQP6 ;SFISC/EZ-DISPLAY TABLE GROUPINGS ;10/30/97  17:51
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 INIT ; initialize variables and clear tmp arrays
  D DT^DICRW

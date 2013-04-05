@@ -1,13 +1,15 @@
-SDCNP1 ;ALB/LDB - CANCEL APPOINTMENT (cont.) ; 14 MAR 88@13:00
- ;;5.3;Scheduling;**398,467,478,554**;Aug 13, 1993;Build 11
+SDCNP1 ;ALB/LDB - CANCEL APPOINTMENT (cont.) ; 5/25/12 11:42am
+ ;;5.3;Scheduling;**398,467,478,554,597**;Aug 13, 1993;Build 3
  ;
  ;SD/467 - EWL Open Matched Entry with rebook
 NOPE W !,*7,$S(CNT:CNT_" Appointment"_$S(CNT>1:"s",1:"")_" cancelled",1:"NOTHING CANCELLED")
+ N SDCLNK S SDCLNK=$G(SC) ; Hold value of SC for EWL Notification call
  S SDCNT=CNT,SDA=1,SDCNT1=0 I CNT,$S('$D(^DPT(DFN,.35)):1,'$P(^(.35),U):1,1:0) S (SDA,X8)=0 D ASK G:X8="^" END
  ;no rebooking to take place; open EWL entries only if applicable
  I $D(DFN)>0 D EWL(DFN) ;SD/467
  I SDA,SDCNT W !,*7,"NO AUTO-REBOOKING --Patient has died."
- I 'SDA,SDCNT S A=DFN D LOOP1^SDCNP1A,LET
+ I 'SDA,SDCNT S A=DFN D LOOP1^SDCNP1A,LET,CANQ^SDAMC(DFN,$G(SDCLNK)) K SDCLNK
+ ;Calls subroutine CANQ to display wait list message if applicable. - PATCH SD*5.3*597
 END K:'$D(DIROUT) DFN D END^SDCNP Q:$D(DIROUT)  G RD^SDCNP
 ASK S (SDCTR,SDCTRL)=0,%=2 W !!,"DO YOU WISH TO REBOOK ANY APPOINTMENT(S) THAT YOU HAVE CANCELLED" D YN^DICN S ALS=% D:'% REASK G:'% ASK I %-1 S CNT=0 S:%<0 X8="^" D  Q
  .W !,"OK"
@@ -35,7 +37,7 @@ DEL1 S SDERR=0 F J=1:1 S SDDH=$P(A8,",",J) Q:SDDH']""  S SDDI=$P(SDDH,"-"),SDDM=
  D NOPE1
  Q 
 LET ;
- S %=2 W !!,"DO YOU WISH TO PRINT LETTERS FOR THE CANCELLED APPOINTMENT(S)" D YN^DICN D CANQ^SDAMC(DFN,SC) S ANS="Y" D:'% REASK G:'% LET Q:(%-1)  ; Calls subroutine CANQ to display wait list message if applicable. - PATCH SD*5.3*554
+ S %=2 W !!,"DO YOU WISH TO PRINT LETTERS FOR THE CANCELLED APPOINTMENT(S)" D YN^DICN S ANS="Y" D:'% REASK G:'% LET Q:(%-1)
  I $$BADADR^DGUTL3(+DFN) D  Q  ;display, don't print BAI list
  . W *7,!,"** THIS PATIENT HAS BEEN FLAGGED WITH A BAD ADDRESS INDICATOR, NO LETTER"
  . W !,"WILL BE PRINTED."

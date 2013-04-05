@@ -1,5 +1,5 @@
-EDPCONV ;SLC/MKB - Process incoming mail to convert local ED Visits
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPCONV ;SLC/MKB - Process incoming mail to convert local ED Visits ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 AREA(DIV) ; -- Return #231.9 ien for DIVision (#4 ien)
  Q +$O(^EDPB(231.9,"C",DIV,0))
@@ -17,7 +17,12 @@ VST(OLD) ; -- Copy OLD(node) ER visit entry into ^EDP(230)
  S EDPLOG(1)=$P(OLD(1),U)_U_$$DISP(X)_U_$P(OLD(9),U,2)_U_$P(OLD(9),U)_U_$$DEL($P(OLD(4),U,7))
  S X=$P(OLD(2),U) S:$L(X) EDPLOG(2)=X
  S EDPLOG(3)=U_$$STS($P(OLD(0),U,4))_U_$$ACU($P(OLD(4),U,3))_U_$$LOC($P(OLD(3),U,2))_U_$P(OLD(4),U)_U_$P(OLD(4),U,2)_U_$P(OLD(4),U,6)_U_$P(OLD(6),U)
- I $D(OLD(8)) M EDPLOG(4)=OLD(8) S $P(EDPLOG(4,0),U,2)="230.04A"
+ I $D(OLD(8)) M EDPLOG(4)=OLD(8) S $P(EDPLOG(4,0),U,2)="230.04A" D
+ . S EDPI=0 F  S EDPI=$O(EDPLOG(4,EDPI)) Q:EDPI<1  D
+ .. S X=$P($G(EDPLOG(4,EDPI,0)),U,2) Q:'$L(X)  ;code -> ien
+ .. I X?1"ICD-9-CODE-".E S X=$P(X,"-",4)
+ .. I X["/" S X=$P(X,"/")
+ .. S X=$$ICDDX^ICDCODE(X),$P(EDPLOG(4,EDPI,0),U,2)=$S(X>0:+X,1:"")
  ; Save/Xref log entry
  M ^EDP(230,EDPY)=EDPLOG
  D XREF(230,EDPY)
@@ -149,7 +154,7 @@ LOC(X) ; -- Return[/add] #231.8 ien for Location X
  ; add local item
  N FDA,FDAIEN,DIERR,ERR,X
  S FDA(231.8,"+1,",.01)=$TR($P(NODE,U),"-") ;Name
- S FDA(231.8,"+1,",.02)=EDPSTA              ;Station#
+ S FDA(231.8,"+1,",.02)=EDPSITE             ;Institution ien
  S FDA(231.8,"+1,",.03)=EDPAREA             ;Area ien
  S FDA(231.8,"+1,",.04)='$P(NODE,U,4)       ;Inactive
  S FDA(231.8,"+1,",.05)=$P(NODE,U,6)        ;Sequence
@@ -185,4 +190,52 @@ ORDERS(LOG,NODE) ; -- build Orders multiple
  . ;S:$$VAL("stat") DIC("DR")=DIC("DR")_";.04///1"
  . D FILE^DICN
  K ^TMP("ORR",$J,ORLIST)
+ Q
+ ;
+ ; ------- fix ICD9 Code field -------
+ ;
+ICD ; -- convert ICD codes to #80 iens
+ N EDP1,EDP2,X0,X,Y
+ S EDP1=0 F  S EDP1=$O(^EDP(230,EDP1)) Q:EDP1<1  I $D(^(EDP1,4)) D
+ . S EDP2=0 F  S EDP2=$O(^EDP(230,EDP1,4,EDP2)) Q:EDP2<1  S X0=$G(^(EDP2,0)) D
+ .. S X=$P(X0,U,2) Q:'$L(X)
+ .. I X?1"ICD-9-CODE-".E S X=$P(X,"-",4)
+ .. I X["/" S X=$P(X,"/")
+ .. S Y=$$ICDDX^ICDCODE(X)
+ .. I Y>0 S $P(^EDP(230,EDP1,4,EDP2,0),U,2)=+Y
+ Q
+ ;
+SHOWICD(BEG,END) ; -- show Dx nodes from BEG to END
+ N IEN,DA,X0,X
+ S BEG=$G(BEG,0),END=$G(END,9999999)
+ S IEN=BEG F  S IEN=$O(^EDP(230,IEN)) Q:(IEN<1)!(IEN>END)  I $D(^(IEN,4)) D
+ . S DA=0 F  S DA=$O(^EDP(230,IEN,4,DA)) Q:DA<1  S X0=$G(^(DA,0)) D
+ .. S X=$P(X0,U,2) Q:X=""  ;show any non-ien value
+ .. I $S(X<0:1,+X'=X:1,X[".":1,1:0) W !,IEN,?10,DA,?15,X0
+ Q
+ ;
+ ; ------ fix Tracking Room-Bed file #231.8 ------
+ ;
+MARK(STN) ; -- mark duplicate locations with correct ien,
+ ;             for repointing from STN to Institution ien set
+ N AREA,NM,IEN,LOC
+ S AREA=+$O(^EDPB(231.8,"AC",STN,0))
+ S NM="" F  S NM=$O(^EDPB(231.8,"AC",STN,AREA,NM)) Q:NM=""  D
+ . S LOC=+$O(^EDPB(231.8,"AC",STN,AREA,NM,0))  ;keep 1st, or
+ . I $G(^EDPB(231.8,LOC,"FIX")) S LOC=^("FIX") ;manually set to desired
+ . S IEN=LOC F  S IEN=+$O(^EDPB(231.8,"AC",STN,AREA,NM,IEN)) Q:IEN<1  S ^EDPB(231.8,IEN,"FIX")=LOC
+ Q
+ ;
+LOOP ; -- loop through Log,History files and repoint if FIX node exists
+ N FILE,IEN,LOC,FIX
+ F FILE=230,230.1 D
+ . S IEN=0 F  S IEN=$O(^EDP(FILE,IEN)) Q:IEN<1  S LOC=$P($G(^(IEN,3)),U,4) I LOC D
+ .. S FIX=+$G(^EDPB(231.8,LOC,"FIX"))
+ .. I FIX S $P(^EDP(FILE,IEN,3),U,4)=FIX
+ Q
+ ;
+DIK ; -- remove duplicate entries from #231.8
+ N IEN,DA,DIK
+ S IEN=0 F  S IEN=$O(^EDPB(231.8,IEN)) Q:IEN<1  I $G(^(IEN,"FIX")) D
+ . S DA=IEN,DIK="^EDPB(231.8," D ^DIK
  Q

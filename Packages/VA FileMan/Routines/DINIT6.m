@@ -1,5 +1,5 @@
 DINIT6 ;SFISC/XAK-INITIALIZE VA FILEMAN ;2:13 PM  2 Nov 1998
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  I $D(^DD("OS"))[0 D OS^DINIT
  W !!,"The following files have been installed:",!

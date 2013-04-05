@@ -1,5 +1,5 @@
 DICATTD9 ;SFISC/GFT ;10:55 AM  26 Jan 2001;MUMPS FIELDS
- ;;22.0;VA FileMan;**42**;Mar 30, 1999
+ ;;22.0;VA FileMan;**42**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 2 S DICATT2N="K",DICATT3N=""

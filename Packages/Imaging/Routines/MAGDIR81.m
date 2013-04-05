@@ -1,5 +1,5 @@
-MAGDIR81 ;WOIFO/PMK - Read a DICOM image file ; 25 Feb 2008 11:06 AM
- ;;3.0;IMAGING;**11,30,51,50,46,54,53**;Mar 19, 2002;Build 1719;Apr 28, 2010
+MAGDIR81 ;WOIFO/PMK/JSL/SAF - Read a DICOM image file ; 25 Feb 2008 11:06 AM
+ ;;3.0;IMAGING;**11,30,51,50,46,54,53,123**;Mar 19, 2002;Build 67;Jul 24, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -23,6 +23,7 @@ MAGDIR81 ;WOIFO/PMK - Read a DICOM image file ; 25 Feb 2008 11:06 AM
  ; "parent data files".
  ;
 ENTRY ; process one image
+ N MEDATA ;--- medicine pkg patient & study data (set in ^MAGDIR8A)
  N FILEDATA ;- array of data to be passed between routines
  N FIRSTDCM ;- patient first name from the image header (ie, PNAMEDCM)
  N GMRCIEN ;-- internal entry number of consult/procedure request
@@ -103,7 +104,8 @@ ENTRY ; process one image
  . S X="0|"_RETURN
  . ; save pname, pid, dob, age, and sex from DEM^VADPT for gateway
  . F I=1:1:5 S X=X_"|"_VADM(I)
- . S X=X_"|"_$$GETICN^MPIF001(DFN) ; save ICN value
+ . I $T(GETICN^MPIF001)'="" S X=X_"|"_$$GETICN^MPIF001(DFN) ; save ICN value
+ . E  S X=X_"|"  ;P123 - for sites that have not implemented the MPI package
  . D RESULT^MAGDIR8("STORE",X)
  . Q
  Q

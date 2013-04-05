@@ -1,5 +1,5 @@
 DIL11 ;SFISC/GFT-TURN PRINT FLDS INTO CODE ;5APR2007
- ;;22.0;VA FileMan;**152**;Mar 30, 1999;Build 10
+ ;;22.0;VA FileMan;**152**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
 DOWN ;
  I W>0,'$D(^DD(DP,+W,0)) Q  ;IN CASE FIELD IS GONE FOR SOME REASON!

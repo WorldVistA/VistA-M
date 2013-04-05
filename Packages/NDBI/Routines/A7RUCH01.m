@@ -31,7 +31,7 @@ DQ K ^A7RTMP1("A7RUCH01",A7RSTN)
  . S C=C+1 I C#50=0 W "."
  S X=0,C=0 F  S X=$O(^A7RTMP1("A7RUCH01",X)) Q:'X  S C=C+1 ;Count stations
  I $G(A7RNORPT) D KILL Q
- ;I C>1 D PRINTALL,DTALL^A7RUCH04,KILL Q  ;Print multiple station report
+ I C>1 D PRINTALL,DTALL^A7RUCH04,KILL Q  ;Print multiple station report
  D PRINT,KILL  ;Print single station report
  Q
  ;

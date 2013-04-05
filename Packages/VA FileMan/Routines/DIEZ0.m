@@ -1,5 +1,5 @@
 DIEZ0 ;SFISC/GFT-COMPILE INPUT TEMPLATE ;13SEP2004
- ;;22.0;VA FileMan;**159**;Mar 30, 1999;Build 8
+ ;;22.0;VA FileMan;**159**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  D L
 DL S DQ=0,DK=0,DQFF=0

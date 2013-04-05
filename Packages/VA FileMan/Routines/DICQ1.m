@@ -1,5 +1,5 @@
 DICQ1 ;SFISC/GFT,TKW-HELP FOR LOOKUPS ;7/18/00  08:14
- ;;22.0;VA FileMan;**4,3,54**;Mar 30, 1999
+ ;;22.0;VA FileMan;**4,3,54**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 EN ; Set up parameters for lister call, then display current entries.
  I 'DIRECUR,'$D(DDS) D Z^DDSU

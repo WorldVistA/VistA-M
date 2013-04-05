@@ -1,5 +1,5 @@
-ECXPLBB ;DALOI/KML - DSS BLOOD BANK PRE-EXTRACT AUDIT REPORT ; 8/13/07 7:08am
- ;;3.0;DSS EXTRACTS;**78,92,105**;Dec 22, 1997;Build 70
+ECXPLBB ;DALOI/KML - DSS BLOOD BANK PRE-EXTRACT AUDIT REPORT ;11/19/12  11:08
+ ;;3.0;DSS EXTRACTS;**78,92,105,136,143**;Dec 22, 1997;Build 4
  ;Per VHA Directive 97-033 this routine should not be modified.  Medical Device # BK970021
  ;entry point from option
  D SETUP^ECXLBB I ECFILE="" Q
@@ -23,7 +23,7 @@ OUTPUT ; entry point called by EN tag
  S (ECPG,ECDATE,ECQUIT,ECXDFN)=0,ECLINE="",$P(ECLINE,"=",80)="="
  S ECSDN=$$FMTE^XLFDT(ECSD,9),ECEDN=$$FMTE^XLFDT(ECED,9),ECRDT=$$FMTE^XLFDT(DT,9)
  W:$E(IOST,1,2)="C-" @IOF D HED
- F  S ECXDFN=$O(^TMP("ECXLBB",ECXJOB,ECXDFN)) Q:'ECXDFN  F  S ECDATE=$O(^TMP("ECXLBB",ECXJOB,ECXDFN,ECDATE))  Q:'ECDATE  Q:ECQUIT  S ECXSTR=^(ECDATE) D PRINT
+ F  S ECXDFN=$O(^TMP("ECXLBB",ECXJOB,ECXDFN)) Q:'ECXDFN  F  S ECDATE=$O(^TMP("ECXLBB",ECXJOB,ECXDFN,ECDATE))  Q:'ECDATE  Q:ECQUIT  S ECXSTR=^(ECDATE) D PRINT ;143 Put correct code back into routine
  D ^ECXKILL
  Q
  ;
@@ -38,7 +38,7 @@ PRINT ;
  ;
 HED ;
  S ECPG=ECPG+1
- W !,"LBB Extract Audit Report",?72,"Page",$J(ECPG,3)
+ W !,"LBB Pre-Extract Audit Report",?72,"Page",$J(ECPG,3) ;136
  W !,ECSDN," - ",ECEDN,?58,"Run Date:",$J(ECRDT,12)
  W !,?37,"Transf",?57,"Number"
  W !,"Name",?14,"SSN",?25,"FDR LOC",?37,"Date",?49,"COMP"
@@ -49,7 +49,11 @@ DATES ;
  N OUT,CHKFLG
  I '$D(ECNODE) S ECNODE=7
  I '$D(ECHEAD) S ECHEAD=" "
- W @IOF,!,"LBB Extract Audit Report Information for DSS",!!
+ W @IOF,!,"LBB Pre-Extract Audit Report Information for DSS",!! ;136
+ ;Added descriptive text DSS FY13 Logic
+ W !,"**NOTE: This audit can only be run prior to the LBB Extract being generated." ;136
+ W !,"If you have already generated your LBB Extract, refer to the Processing "
+ W !,"Guide Chapter 4 section on Regenerating.**",!
  S:'$D(ECINST) ECINST=+$P(^ECX(728,1,0),U)
  S ECXINST=ECINST
  K ECXDIC S DA=ECINST,DIC="^DIC(4,",DIQ(0)="I",DIQ="ECXDIC",DR=".01;99"

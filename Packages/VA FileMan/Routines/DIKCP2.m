@@ -1,5 +1,5 @@
 DIKCP2 ;SFISC/MKO-PRINT INDEX(ES) ;9:39 AM  5 Aug 1998
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 LFILE ;Format list of indexes and print; Come here from LFILE^DIKCP
  N LN,NAM,NO,TXT,XR,XRL

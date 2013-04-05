@@ -1,5 +1,21 @@
 RORRP013 ;HCIOFO/SG - RPC: ACCESS & SECURITY ; 11/9/05 8:56am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+ ;;1.5;CLINICAL CASE REGISTRIES;**18**;Feb 17, 2006;Build 25
+ ;;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*18   APR  2012   C RAY        Dynamically rebuilds ACL index
+ ;                                      Returns value of AUTO-CONFIRM
+ ;                                     
+ ;***********************************************************************
+ ; This routine uses the following IAs:
+ ;
+ ; #10103 $$FMADD^XLFDT (supported)
+ ; #10076 Direct read of XUSEC global
+ ;        BLD^DIALOG
+ ;        $$ROOT^DILFD
+ ;        $$GET1^DIQ
+ ;        GETS^DIQ
  ;
  Q
  ;
@@ -24,9 +40,11 @@ RORRP013 ;HCIOFO/SG - RPC: ACCESS & SECURITY ; 11/9/05 8:56am
  ;                         ^02: Registry name
  ;                         ^03: Administrator? (0 or 1)
  ;                         ^04: Short description
+ ;                         ^05: Auto Confirm (0 or 1)
  ;
 ACREGLST(RESULTS,USER) ;
  N ADMIN,CNT,IENS,KEY,RC,REGIEN,RORBUF,RORERRDL,RORMSG,TMP
+ N REGNAME,DA
  K RESULTS  S RESULTS(0)=0
  D CLEAR^RORERR("ACREGLST^RORRP013",1)
  ;--- Check the version of the GUI
@@ -40,13 +58,26 @@ ACREGLST(RESULTS,USER) ;
  ;--- User must be defined
  I $G(USER)'>0  S USER=+$G(DUZ)  Q:USER'>0
  ;
+ ;-- Rebuild user ACL index of registry keys
+ S REGIEN=0
+ K ^ROR(798.1,"ACL",DUZ)
+ F  S REGIEN=$O(^ROR(798.1,REGIEN)) Q:REGIEN=""  D
+ . S KEY="",REGNAME=$$REGNAME^RORUTL01(REGIEN) Q:REGNAME=""!'+($P($G(^ROR(798.1,REGIEN,21)),U,4)) 
+ . F  S KEY=$O(^ROR(798.1,REGIEN,18,"B",KEY)) Q:KEY=""  D:$D(^XUSEC(KEY,DUZ))
+ . . S DA=$O(^ROR(798.1,REGIEN,18,"B",KEY,""))
+ . . S ^ROR(798.1,"ACL",DUZ,REGIEN,KEY,DA)=""
+ . . S ^ROR(798.1,"ACL",DUZ,$P(REGNAME,U),KEY,DA)=""
+ ;--- end of re-build
+ ;--- Returns registry descriptors
  S (CNT,RC,REGIEN)=0
  F  S REGIEN=$O(^ROR(798.1,"ACL",USER,REGIEN))  Q:REGIEN=""  D  Q:RC<0
  . Q:REGIEN'>0  S IENS=REGIEN_","  K RORBUF
- . D GETS^DIQ(798.1,IENS,".01;4",,"RORBUF","RORMSG")
+ . D GETS^DIQ(798.1,IENS,".01;4;31",,"RORBUF","RORMSG")
  . I $G(DIERR)  S RC=$$DBS^RORERR("RORMSG",-9,,,798.1,IENS)  Q
  . ;--- Add the registry descriptor to the list
  . S CNT=CNT+1,RESULTS(CNT)=REGIEN_"^"_$G(RORBUF(798.1,IENS,.01))
+ . S TMP=$G(RORBUF(798.1,IENS,31))
+ . S $P(RESULTS(CNT),"^",5)=$S(TMP="YES":1,1:0)  ;Auto confirm?
  . S $P(RESULTS(CNT),"^",4)=$G(RORBUF(798.1,IENS,4))
  . ;--- Check if the user has the administrator security key
  . S KEY="",ADMIN=0

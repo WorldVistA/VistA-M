@@ -1,5 +1,5 @@
 DDSOPT ;SFISC/MLH,MKO-SCREENMAN OPTIONS ;07:32 AM  15 Jul 1994
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 0 S DIC="^DOPT(""DDS"","
  G OPT:$D(^DOPT("DDS",1)) S ^(0)="SCREENMAN OPTION^1.01" K ^("B")

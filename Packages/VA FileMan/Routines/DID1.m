@@ -1,5 +1,5 @@
 DID1 ;SFISC/XAK,JLT-STD DD LIST ;9APR2007
- ;;22.0;VA FileMan;**7,76,105,152**;Mar 30, 1999;Build 10
+ ;;22.0;VA FileMan;**7,76,105,152**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  S DJ(Z)=D0,DDL1=14,DDL2=32 G B
  ;

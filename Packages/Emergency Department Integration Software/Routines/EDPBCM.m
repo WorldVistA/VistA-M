@@ -1,5 +1,5 @@
-EDPBCM ;SLC/KCM - Available color maps
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPBCM ;SLC/KCM - Available color maps ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 LOAD(AREA) ; Load Color Spec
  N I,TOKEN
@@ -13,7 +13,7 @@ LOAD(AREA) ; Load Color Spec
  D READU^EDPBLK(AREA,"color",.TOKEN)  ; read color config -- UNLOCK
  Q
 SAVE(REQ) ; Save Configuration
- N X,WP,AREA,TOKEN,LOCKERR
+ N X,WP,AREA,TOKEN,LOCKERR,DIERR
  S X="xml-",AREA=$G(REQ("area",1))
  I 'AREA D SAVERR^EDPX("fail","Missing area") Q
  ;
@@ -74,7 +74,10 @@ EXMAP ; create closing tag
  Q
 CODES(NM) ; create map elements for a set of codes
  N CODESET,IEN
- S CODESET=EDPSTA_"."_NM
+ ; bwf - placed $G around EDPSTA to pervent undefined - commented original line below
+ S CODESET=$G(EDPSTA)_"."_NM
+ ;S CODESET=EDPSTA_"."_NM
+ ; bwf - end changes
  I '$D(^EDPB(233.2,"B",CODESET)) S CODESET="edp."_NM
  S IEN=$O(^EDPB(233.2,"B",CODESET,0))
  Q:'IEN

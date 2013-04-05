@@ -3,14 +3,14 @@ DVBAPLNG ;ALB/JLU;updates the long description of file 31.;1/18/94
  ;
 EN I +$$VERSION^DVBAPST1>2.59 DO  Q
  .S VAR=" - Version 2.6 of AMIE has already been loaded."
- .;D BUMPBLK^DVBAPOST
- .;D BUMPBLK^DVBAPOST
- .;D BUMP^DVBAPOST(VAR)
+ .D BUMPBLK^DVBAPOST
+ .D BUMPBLK^DVBAPOST
+ .D BUMP^DVBAPOST(VAR)
  .W !!,VAR
  .S VAR="There is no need to add Long Descriptions to the Disability Condition file."
- .;D BUMP^DVBAPOST(VAR)
+ .D BUMP^DVBAPOST(VAR)
  .W !,VAR,!
- .;D BUMPBLK^DVBAPOST
+ .D BUMPBLK^DVBAPOST
  .Q
  D SET ;sets up variables.
  D LOOP ;loops through tmp global and adds long desc
@@ -20,11 +20,11 @@ EN I +$$VERSION^DVBAPST1>2.59 DO  Q
  ;
 SET S CT=0
  S DIE="^DIC(31,"
- ;F LP1=1:1:3 D BUMPBLK^DVBAPOST
+ F LP1=1:1:3 D BUMPBLK^DVBAPOST
  S V1=" - Adding Long Description to the Disability Condition file."
  W !!!,V1,!
- ;D BUMP^DVBAPOST(V1)
- ;D BUMPBLK^DVBAPOST
+ D BUMP^DVBAPOST(V1)
+ D BUMPBLK^DVBAPOST
 SET1 S DIF="^TMP($J,""DVBA"",",XCNP=0
  K ^TMP($J,"DVBA")
  N R
@@ -40,22 +40,22 @@ SE ;writes and updates the tmp global with error message.
  ;
  S V1="- Problems exist with the disability condition "_CODE_"."
  W !,V1
- ;D BUMP^DVBAPOST(V1)
+ D BUMP^DVBAPOST(V1)
  S V1=" Long description NOT added!"
  W !,V1
- ;D BUMP^DVBAPOST(V1)
+ D BUMP^DVBAPOST(V1)
  Q
  ;
 SG1 ;writes and updates the tmp global with the finish.
  ;
- ;F LP1=1:1:2 D BUMPBLK^DVBAPOST
+ F LP1=1:1:2 D BUMPBLK^DVBAPOST
  S V1="I have finished updating the long descriptions of the Disability Condition file!"
  W !!,V1
- ;D BUMP^DVBAPOST(V1)
+ D BUMP^DVBAPOST(V1)
  S V1="I updated "_CT_" disabilities."
  W !,V1
- ;D BUMP^DVBAPOST(V1)
- ;D BUMPBLK^DVBAPOST
+ D BUMP^DVBAPOST(V1)
+ D BUMPBLK^DVBAPOST
  Q
  ;
 LOOP ;loops through tmp and updates file 31 long description field.

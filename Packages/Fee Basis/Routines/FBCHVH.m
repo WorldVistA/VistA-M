@@ -1,5 +1,5 @@
 FBCHVH ;AISC/DMK-VENDOR PAYMENT HISTORY ;7/17/2003
- ;;3.5;FEE BASIS;**55,61,122,108**;JAN 30, 1995;Build 115
+ ;;3.5;FEE BASIS;**4,61,122,133,108,135**;JAN 30, 1995;Build 3
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
 GETVEN K FBAANQ D GETVEN^FBAAUTL1 G END:IFN']""
  D DATE^FBAAUTL G:FBPOP GETVEN S ZZ=9999999.9999,FBBEG=ZZ-ENDDATE,FBEND=ZZ-BEGDATE
@@ -52,11 +52,22 @@ WRT I $Y+6>IOSL D HANG^FBAAUTL1:$E(IOST,1,2)["C-" Q:FBAAOUT  I $D(^FBAAI(FBI,4))
  S P1=$G(^FBAAI(FBI,"DX"))
  S P2=$G(^FBAAI(FBI,"POA"))
  F K=1:1:25 D WRTDX
- ;set procedure code
- N P5
- S P5=$G(^FBAAI(FBI,"PROC"))
- F L=1:1:25 D WRTPC
- N A2 S A2=FBIN(9) D PMNT^FBAACCB2
+ ;display procedure code with line item prov data - FB*3.5*135
+ N DIR,DUOUT,DTOUT,FBOUT,F135,L,P3,P5,RPROV,STRLEN,WRTPC
+ S P5=$G(^FBAAI(FBI,"PROC"))   ; Procedure codes
+ M RPROV=^FBAAI(FBI,"RPROV")   ; LI Provider array
+ S F135=24,FBOUT=0,STRLEN=66
+ F L=1:1:25 S WRTPC=$$WRTPC I WRTPC]"" D  Q:FBOUT
+ . S P3=$O(RPROV("B",L,0))
+ . I P3 D    ; display LI Provider and NPI/TAXONOMY data if present
+ .. W !,?4,"PROC: "_WRTPC,?17,"RENDERING PROV NAME (LI): "_$P(RPROV(P3,0),U,2) S F135=1+F135,STRLEN=66
+ .. I '$L($P(RPROV(P3,0),U,3)),'$L($P(RPROV(P3,0),U,4)) Q
+ .. W !,?22,"NPI: "_$P(RPROV(P3,0),U,3),?43,"TAXONOMY CODE: "_$P(RPROV(P3,0),U,4) S F135=1+F135
+ . E  D  Q   ; only display procedure code
+ .. I STRLEN>65 W !,?4,"PROC: " S STRLEN=0    ; start new line
+ .. W WRTPC_" " S STRLEN=1+STRLEN+$L(WRTPC)
+ . I F135>22 S F135=0,STRLEN=66,DIR(0)="E" W ! D ^DIR K DIR S:$D(DUOUT)!($D(DTOUT)) FBOUT=1   ; pagination
+ N A2 S A2=FBIN(9) W ! D PMNT^FBAACCB2
  Q
 WRTDX ;write dianosis code and present on admission code
  N P3,P4
@@ -68,14 +79,12 @@ WRTDX ;write dianosis code and present on admission code
  I K=1!($X+$L(P4)+2>IOM) W !,?4,"DX/POA: "
  W P4,""
  Q
-WRTPC ;write procedure code (if present)
+WRTPC() ;write procedure code (if present)    ; FB*3.5*135
  N P6
  S FBPROC=$P(P5,"^",L)
- Q:FBPROC=""
+ Q:FBPROC="" ""
  S P6=$$ICD0^FBCSV1((FBPROC),$P($G(FBIN),"^",6))_" "
- I L=1!($X+$L(P6)+2>IOM) W !,?4,"PROC: "
- W P6,""
- Q
+ Q P6
 HEDC I $D(FBHEAD) W:'$G(FBPG) @IOF K:$G(FBPG) FBPG W ?25,FBHEAD_" PAYMENT HISTORY",!,?24,$E(Q,1,24),!?48,"Date Range: ",BEGDATE_" to "_ENDDATE
  I '$D(FBHEAD) W:'$G(FBPG) @IOF K:$G(FBPG) FBPG W !?32,"INVOICE DISPLAY",!,?31,$E(Q,1,17),!
  W !,"Veteran's Name",?48,"Patient Control Number"

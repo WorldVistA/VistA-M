@@ -1,11 +1,6 @@
-FBAARD3 ;AISC/GRR-VOUCHER AUDIT DELETE REJECTS ENTERED IN ERROR ;08JAN86
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
-STUFF S (FBAAMT,FBAAAP)=+$P(^FBAAC(J,1,K,1,L,1,M,0),"^",3) D POST G PROB^FBAARD1:$D(FBERR)
- S $P(^FBAAC(J,1,K,1,L,1,M,0),"^",8)=$P(^FBAAC(J,1,K,1,L,1,M,"FBREJ"),"^",3),FBAARA=FBAARA+FBAAAP,FBIN=$P(^FBAAC(J,1,K,1,L,1,M,0),"^",16)
- S ^FBAAC("AC",B,J,K,L,M)="",^FBAAC("AJ",B,FBIN,J,K,L,M)="" K ^FBAAC("AH",B,J,K,L,M) S $P(FZ,"^",9)=($P(FZ,"^",9)+FBAAAP),$P(FZ,"^",11)=($P(FZ,"^",11)+1)
- K ^FBAAC(J,1,K,1,L,1,M,"FBREJ")
- I '$D(^FBAAC("AH",B)) S $P(FZ,"^",17)=""
+FBAARD3 ;AISC/GRR-VOUCHER AUDIT DELETE REJECTS ENTERED IN ERROR ;3/27/2012
+ ;;3.5;FEE BASIS;**132**;JAN 30, 1995;Build 17
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
 POST ;entry point to put dollars back into an authorization on the 1358

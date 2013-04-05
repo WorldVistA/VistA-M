@@ -1,5 +1,5 @@
 DIPZ2 ;SFISC/GFT,XAK-COMPILE PRINT TEMPLATES ;09:33 PM  9 Feb 1999
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  F R=0:0 S R=$O(DXS(R)),W="" Q:'R  K:$D(DXS(R))>9 ^DIPT(DIPZ,"DXS",R) F R=R:0 S W=$O(DXS(R,W)) Q:W=""  S ^DIPT(DIPZ,"DXS",R,W)=DXS(R,W)
  S DIPZLR=DRN,DRN="",DIL=0 D NEW

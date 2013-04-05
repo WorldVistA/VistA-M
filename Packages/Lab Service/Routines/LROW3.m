@@ -1,5 +1,6 @@
-LROW3 ;DALOI/CJS - LIST THE TESTS ORDERED AND ALLOW EDITING ;Mar 23, 2004
- ;;5.2;LAB SERVICE;**33,121,286**;Sep 27, 1994
+LROW3 ;DALOI/STAFF - LIST THE TESTS ORDERED AND ALLOW EDITING ;11/18/11  16:29
+ ;;5.2;LAB SERVICE;**33,121,286,350**;Sep 27, 1994;Build 230
+ ;
 L ;
  ; Only ask nature of order for CPRS - file #2 patients.
  I $G(LRDPF,2)=2 D  Q:'$D(LRNATURE)
@@ -42,10 +43,16 @@ ENSTIK ;from LRMIBL, LRORD1
  D LL3
 LL W !!,"All satisfactory" S %=1 D YN^DICN D:%=0 HELP G:%=0 LL Q:%'=2
  ;
-LL1 W !,"Delete test entry no.: " R X:DTIME W:X["?" !,"Select entry number to be deleted." W:X'?.N !,"Select one entry at a time." D LL3:X["?" G LL1:X["?"!(X'?.N)
+LL1 W !,"Delete test entry no.: " R X:DTIME
+ W:X["?" !,"Select entry number to be deleted."
+ W:X'?.N !,"Select one entry at a time."
+ D LL3:X["?" G LL1:X["?"!(X'?.N)
+ I X I +X=X I '$D(J(+X)) W !!?5,$C(7),"( "_X_" ) is not a valid entry.",! H 2 G LL1
  I '(+X'=X!(X>J)!(X<1)) S LRSAMP=$P(J(X),U),LRSPEC=$P(J(X),U,2),LRTEST=$P(J(X),U,3) K LROT(LRSAMP,LRSPEC,LRTEST) G LL1
  ;
-LL1A W !!,"Add more tests" S %=2 D YN^DICN D:%=0 HELP G:%=0 LL1A G ENSTIK:%'=1 K % Q
+LL1A W !!,"Add more tests" S %=2 D YN^DICN D:%=0 HELP G:%=0 LL1A G ENSTIK:%'=1
+ K %
+ Q
  ;
  ;
 LL2 ;

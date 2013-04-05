@@ -1,5 +1,5 @@
 KMPDTU10 ;OAK/RAK - CP Tools Timing Utility ;6/21/05  10:17
- ;;2.0;CAPACITY MANAGEMENT TOOLS;**4**;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 DATERNG(KMPDSS,KMPDEF,KMPDRES,KMPDDT) ; timing date range for a subscript
  ;-----------------------------------------------------------------------
@@ -51,7 +51,7 @@ DATERNG(KMPDSS,KMPDEF,KMPDRES,KMPDDT) ; timing date range for a subscript
  ; determine start date
  S START=END
  I Y'=1 S COUNT=1 D 
- .F  S START=$O(SESS(START),-1) Q:'START  S COUNT=COUNT+1 Q:COUNT'<Y
+ .F  S START=$O(DATERNG(START),-1) Q:'START  S COUNT=COUNT+1 Q:COUNT'<Y
  S KMPDRES(0)=START_U_END_U_$$FMTE^XLFDT(START)_U_$$FMTE^XLFDT(END)
  S KMPDRES(1)=Y
  ;

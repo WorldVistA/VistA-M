@@ -98,7 +98,7 @@ AVAIL ; -- test web services availability
  ;
 WST ; -- web server tester
  ; -- Protocol: XOBW WEB SERVER TESTER
- ;DO EN1^XOBTWU
+ DO EN1^XOBTWU
  DO REFRESH
  DO MSG
  QUIT

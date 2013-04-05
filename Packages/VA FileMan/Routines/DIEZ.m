@@ -1,5 +1,5 @@
 DIEZ ;SFISC/GFT-COMPILE INPUT TEMPLATE ;19JAN2010
- ;;22.0;VA FileMan;**1,11,159,163**;Mar 30, 1999;Build 28
+ ;;22.0;VA FileMan;**1,11,159,163**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  I $G(DUZ(0))'="@" W $C(7),$$EZBLD^DIALOG(101) G K
 EN1 D:'$D(DISYS) OS^DII I '$D(^DD("OS",DISYS,"ZS")) W $$EZBLD^DIALOG(820),$C(7) G K

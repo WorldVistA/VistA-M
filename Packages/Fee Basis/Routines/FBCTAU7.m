@@ -1,4 +1,4 @@
-FBCTAU7 ; ;08/06/12
+FBCTAU7 ; ;08/29/12
  D DE G BEGIN
 DE S DIE="^FBAAA(D0,1,",DIC=DIE,DP=161.01,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^FBAAA(D0,1,DA,""))=""
  I $D(^("C")) S %Z=^("C") S %=$P(%Z,U,1) S:%]"" DE(1)=%

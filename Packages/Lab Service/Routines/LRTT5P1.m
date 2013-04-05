@@ -1,5 +1,6 @@
-LRTT5P1 ;DALOI/FHS-LAB URGENCY TURNAROUND TIMES PROCESSOR ;12/3/1997
- ;;5.2;LAB SERVICE;**153,221,263,274,358**;Sep 27, 1994
+LRTT5P1 ;DALOI/FHS - LAB URGENCY TURNAROUND TIMES PROCESSOR ;02/28/12  19:45
+ ;;5.2;LAB SERVICE;**153,221,263,274,358,350**;Sep 27, 1994;Build 230
+ ;
 ONE ; from LRTT5
  ; return for reg & irreg: # tests, total time, bad turnaround time
  ; input:
@@ -35,7 +36,7 @@ START ; go thru tests
  . . . Q:'$D(^LRO(68,LRAA,1,LRAD,1,LRAN,3))  S LRPLRRX1=$P(^(3),U,3) Q:LRPLRRX1<LRSDT  Q:LRPLRRX1>(LREDT)
  . . . I $G(^LRO(68,LRAA,1,LRAD,1,LRAN,.4)),$O(LRLLOC(0)),'$D(LRLLOC(+$G(^(.4)))) Q
  . . . ; go thru tests on accession, if valid urgency get date reported
- . . . S LRTEST=0 F  S LRTEST=$O(^TMP("LRTT5",$J,"TESTS",LRTEST)) Q:LRTEST<1  I $D(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRTEST,0)),$D(LRPQ("URGENCY",+$P(^(0),U,2))),$P(^(0),U,8)'="" S LRPLRRX2=+$P(^(0),U,5) D
+ . . . S LRTEST=0 F  S LRTEST=$O(^TMP("LRTT5",$J,"TESTS",LRTEST)) Q:LRTEST<1  I $D(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRTEST,0)),$D(LRPQ("URGENCY",+$P(^(0),U,2))) S LRPLRRX2=+$P(^(0),U,5) D
  . . . . Q:'$P(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRTEST,0),U,4)  ;Must be verified and have suffix code.
  . . . . ; increment sequence number
  . . . . S LRPN=LRPN+1

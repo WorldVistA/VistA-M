@@ -1,5 +1,5 @@
 DINIT3 ;SFISC/GFT-INITIALIZE VA FILEMAN ;10:37 AM  22 Mar 1999
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S ^DIC(.2,0)="DESTINATION^.21^",^(0,"GL")="^DIC(.2,"  S ^DIC(.5,0)="FUNCTION^.5I",^(0,"GL")="^DD(""FUNC"",",(^("LAYGO"),^("WR"))="@",^("DD")=U
  S ^DIC(.2,"%D",0)="^^2^2^2940908^"

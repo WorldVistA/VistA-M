@@ -1,12 +1,16 @@
-PSBOCM ;BIRMINGHAM/TEJ-COVERSHEET MEDICATION OVERVIEW REPORT ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**32,50**;Mar 2004;Build 78
+PSBOCM ;BIRMINGHAM/TEJ-COVERSHEET MEDICATION OVERVIEW REPORT ;1/11/12 2:03pm
+ ;;3.0;BAR CODE MED ADMIN;**32,50,68**;Mar 2004;Build 26
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
  ; File 4/10090
  ; File 200/10060
+ ; GETSIOPI^PSJBCMA5/5763
+ ; 
+ ;*68 - allow SIOPI builder to accomodate more than 1 line in SI array
+ ;
 EN ;
- N PSBX1X,RESULTS,RESULT,PSBFUTR
+ N PSBX1X,RESULTS,RESULT,PSBFUTR,QQ
  S PSBFUTR=$TR(PSBRPT(1),"~","^")
  S (PSBOCRIT,PSBXFLG,PSBCFLG)=""        ;  Order Status search criteria - "A"ctive, "D"C ed, "E"xpired"
  S:$P(PSBFUTR,U,7) PSBOCRIT=PSBOCRIT_"D" S:$P(PSBFUTR,U,8) PSBOCRIT=PSBOCRIT_"E" S:$P(PSBFUTR,U,5) PSBOCRIT=PSBOCRIT_"A"
@@ -61,8 +65,12 @@ EN ;
  ...S PSBNXTX(PSBORDN,$G(PSBNXTX2," "))=""
  ...; ** SPECIAL INSTRUCTIONS  **
  ...S PSBX2X=PSBX2X+1
- ...S PSBSI=$P(PSBDATA(PSBX2X),U,2)
- ...I PSBSI]" " S PSBSI(PSBORDN,PSBSI)=""
+ ...;  *68
+ ...K ^TMP("PSJBCMA5",$J)
+ ...I PSBSIFLG D GETSIOPI^PSJBCMA5(PSBX1X,PSBORDN,1)
+ ...F QQ=0:0 S QQ=$O(^TMP("PSJBCMA5",$J,PSBX1X,PSBORDN,QQ)) Q:'QQ  D
+ ....S PSBSI(PSBORDN,QQ)=^TMP("PSJBCMA5",$J,PSBX1X,PSBORDN,QQ)
+ ...;  *68 end
  ...S PSBOSTDT=$P(PSBDATA,U,22)
  ...S PSBOSTDT(PSBORDN,PSBOSTDT)=""
  ...S PSBOSPDT=$P(PSBDATA,U,27)
@@ -97,6 +105,7 @@ EN ;
  D SUBHDR^PSBOCE
  D BLDRPT
  D WRTRPT^PSBOCM1
+ K ^TMP("PSJBCMA5",$J)    ;*68
  Q
 BLDRPT ; Buld REPORT DATA
  S PSBTOPHD=PSBLNTOT-2
@@ -123,10 +132,10 @@ BLDRPT ; Buld REPORT DATA
  ..S:PSBDATA(1,6)'["Hold" $P(PSBDATA(1,6)," ",2)=$$FMTDT^PSBOCE1($P(PSBDATA(1,6)," ",2))
  ..S PSBDATA(1,7)=$$FMTDT^PSBOCE1($O(PSBOSTDT(PSBX2X,"")))
  ..S PSBDATA(1,8)=$$FMTDT^PSBOCE1($E($O(PSBOSPDT(PSBX2X,"")),1,12))
- ..S PSBSIDAT(1)=$O(PSBSI(PSBX2X,""))
+ ..K PSBSIDAT M PSBSIDAT=PSBSI(PSBX2X)               ;*68
  ..S PSBTOT1=PSBTOT1+1
  ..K PSBDATA(2),PSBDATA(3),PSBSILN
- ..D BUILDLN^PSBOCM1,SIOPI(.PSBSIDAT,PSBTAB8,$S(PSBX2X["V":"Other Print Info:",1:""))
+ ..D BUILDLN^PSBOCM1,SIOPI(.PSBSIDAT,PSBTAB8,$S(PSBX2X["V":"Other Print Info: ",1:""))
  ..I $D(PSBRPLN) S PSBMORE=$O(PSBRPLN(""),-1)+6 I $D(PSBSILN) S PSBMORE=PSBMORE+$O(PSBSILN(""),-1)
  ..K PSB1,X I $D(PSBFLGD(PSBX2X)) S PSB="" F  S PSB=$O(PSBFLGD(PSBX2X,PSB)) Q:PSB=""  I ($P(PSB,":")'="NOX")&($P(PSB,":")'="STAT") S PSB1=$G(PSB1,"")_PSB
  ..S PSBCNT=PSBTOT1_"   "_$G(PSB1,"")
@@ -143,15 +152,21 @@ PGTOT(X) ;mnt PAGE Number
  I (PSBLNTOT+PSBMORE)>(IOSL) D PGC^PSBOCE1
  I $G(X,1) S PSBLNTOT=PSBLNTOT+$G(X,1),PSBMORE=PSBMORE-$G(X,1)
  Q PSBPGNUM
-SIOPI(PSBXSI,TAB,Y) ;
- Q:$G(PSBXSI(1))']""
- I $G(Y,"")']"" S Y="Special Instructions: "
- S PSBXSI(1)="  "_Y_PSBXSI(1)
- N X
- K J,TXT1,TXT2 S J(0)=""
+SIOPI(PSBXSI,TAB,Y) ;create SIOPI text
+ ;  *68 - modified this tag to handle only WP extra lines
+ Q:$O(PSBXSI(""))=""
+ ;
+ N X,LBL,LBLLN,RMAR,TXT
+ I $G(Y)="" S Y="Special Instructions: "
+ ; build label for SI field, then check $L to make a right margin
+ S LBL="  "_Y
+ S LBLLN=$L(LBL),RMAR="",$P(RMAR," ",LBLLN+1)=""  ;make margin of " "
+ K J,TXT,TXT1,TXT2 S J(0)=""
  S J=($O(J(""),-1)+1) S PSBSILN(J)="",J(J)="" S J=($O(J(""),-1)+1)
- F X=1:1 Q:'$D(PSBXSI(X))  D
- .S TXT1=PSBXSI(X)
+ F X=0:0 S X=$O(PSBXSI(X)) Q:'X  D
+ .I X=1 S TXT=LBL_PSBXSI(X)    ;put label & 1st line together
+ .E  S TXT=RMAR_PSBXSI(X)      ;all other lines add rmar
+ .S TXT1=TXT
  .I ($L(TXT1)>0),$F(TXT1,"""")>1 D
  ..S TXT1=$TR(TXT1,"""","^")
  ..I $L(TXT1)+5'<TAB S TXT2=$E(TXT1,TAB-9,999),TXT1=$E(TXT1,1,TAB-10)

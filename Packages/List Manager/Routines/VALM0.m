@@ -17,7 +17,7 @@ TERM ; -- set up term characteristics
  ; -- cursor off/on to avoid bouncing
  S (VALMCON,VALMCOFF)=""
  I $E(IOST,1,4)="C-VT" S VALMCOFF=$C(13,27,91)_"?25l"_$C(13),VALMCON=$C(13,27,91)_"?25h"_$C(13)
- ;S X="XQORM6" X ^%ZOSF("TEST") D:$T INIT^XQORM6
+ S X="XQORM6" X ^%ZOSF("TEST") D:$T INIT^XQORM6
  S VALMIOXY=^%ZOSF("XY")
  Q
  ;
@@ -49,7 +49,7 @@ POP ; -- clean up and unstack vars
  .S Y=$$IO F I=1:1 S X=$P(Y,";",I) Q:X=""  K @X
  .K IOBON,IOBOFF,IOSGR0,VALMSGR
  .K Y,X,I,VALMEVL,VALMWD,VALMFIND,VALMIOXY,VALMKEY,VALMCON,VALMCOFF,VALMQUIT
- .;S X="XQORM6" X ^%ZOSF("TEST") D:$T EXIT^XQORM6
+ .S X="XQORM6" X ^%ZOSF("TEST") D:$T EXIT^XQORM6
  ;
  ; -- unstack'em
  S VALMEVL=$S(VALMEVL:VALMEVL-1,1:0)

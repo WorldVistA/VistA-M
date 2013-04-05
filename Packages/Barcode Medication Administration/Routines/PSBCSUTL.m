@@ -1,5 +1,5 @@
-PSBCSUTL ;BIRMINGHAM/TEJ- BCMA-HSC COVER SHEET UTILITIES ;7/20/11 11:09am
- ;;3.0;BAR CODE MED ADMIN;**16,13,38,32,50,60,58**;Mar 2004;Build 37
+PSBCSUTL ;BIRMINGHAM/TEJ- BCMA-HSC COVER SHEET UTILITIES ;1/10/12 8:32pm
+ ;;3.0;BAR CODE MED ADMIN;**16,13,38,32,50,60,58,68**;Mar 2004;Build 26
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -14,10 +14,15 @@ PSBCSUTL ;BIRMINGHAM/TEJ- BCMA-HSC COVER SHEET UTILITIES ;7/20/11 11:09am
  ; INTRDIC^PSGSICH1/5654
  ;
  ;*58 - add 30th piece to Results for Override/Intervention flag 1/0
+ ;*68 - add new parameter to use new SI/OPI word processing fields
  ;
-RPC(RESULTS,DFN,EXPWIN) ;
+ ; ** Warning: PSBSIOPI will be used as a global variable for all down
+ ;    streams calls from this RPC tag call.
+ ;
+RPC(RESULTS,DFN,EXPWIN,PSBSIOPI) ;
  K RESULTS,^TMP("PSB",$J),^TMP("PSJ",$J)
  S PSBXWIN=$G(EXPWIN,24)
+ S PSBSIOPI=+$G(PSBSIOPI)   ;*68 init to 0 if not present or 1 if sent
  S PSBTAB="CVRSHT"
  N PSBCNT S PSBTRFL=0,PSBDFNX=DFN
  D PAINCMT(DFN) ;;Correct Comment if Pain Score entered in BCMA was marked "Entered in Error" in Vitals. (PSB*3*50)

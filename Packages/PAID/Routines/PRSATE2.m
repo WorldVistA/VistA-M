@@ -1,5 +1,5 @@
 PRSATE2 ; HISC/REL,WIRMFO/JAH - Display Employee Tour of Duty ;3/3/1998
- ;;4.0;PAID;**8,22,35,114**;Sep 21, 1995;Build 6
+ ;;4.0;PAID;**8,22,35,114,132**;Sep 21, 1995;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;VARIABLES:
@@ -68,22 +68,24 @@ S0 ; Short Display
  ;Loop thru both weeks of pay period simultaneously, 
  ;displaying sun-sat side by side.
  D HDR^PRSADP1,DT
- W !!?11,"Week 1 - ",$E(Y1,5,13),?45,"Week 2 - ",$E(Y2,5,13),!
+ W !!?7,"TW  Week 1 - ",$E(Y1,5,13),?41,"TW  Week 2 - ",$E(Y2,5,13),!
  F DAY=1:1:7 D S1
  Q
  ;====================================================================
 S1 ;
  ; Y1 =  employee tour of duty node 4 current day of week one.
  ; Y2 =  employee tour of duty node 4 current day of week two.
+ ; Y2 =  node 8 telework
  ; TD =  tour of duty pointer to Tour of Duty file.
  ;
- S Y1=$G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),TD=$P(Y1,"^",2)
- I SRT="N",$P(Y1,"^",3) S TD=$P(Y1,"^",4)
- W !?4,$P("Sun Mon Tue Wed Thu Fri Sat"," ",DAY)
- W:TD ?11,$P($G(^PRST(457.1,TD,0)),"^",1)
- S Y2=$G(^PRST(458,PPI,"E",DFN,"D",DAY+7,0)),TD=$P(Y2,"^",2)
- I SRT="N",$P(Y2,"^",3) S TD=$P(Y2,"^",4)
- W:TD ?45,$P($G(^PRST(457.1,TD,0)),"^",1) Q:SRT="N"
+ N Y1,Y2,Y8,TD,PRSA
+ S Y1=$G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),Y8=$G(^(8)),TD=$P(Y1,"^",2),PRSA=$P(Y8,U)
+ I SRT="N",$P(Y1,"^",3) S TD=$P(Y1,"^",4),PRSA=$P(Y8,U,5)
+ W !?2,$P("Sun Mon Tue Wed Thu Fri Sat"," ",DAY)
+ W ?7,PRSA W:TD ?11,$P($G(^PRST(457.1,TD,0)),"^",1)
+ S Y2=$G(^PRST(458,PPI,"E",DFN,"D",DAY+7,0)),Y8=$G(^(8)),TD=$P(Y2,"^",2),PRSA=$P(Y8,U)
+ I SRT="N",$P(Y2,"^",3) S TD=$P(Y2,"^",4),PRSA=$P(Y8,U,5)
+ W ?41,PRSA W:TD ?45,$P($G(^PRST(457.1,TD,0)),"^",1) Q:SRT="N"
  I $P(Y1,"^",13)="",$P(Y2,"^",13)="" Q
  W ! S TD=$P(Y1,"^",13)
  W:TD ?11,$P($G(^PRST(457.1,TD,0)),"^",1)
@@ -92,9 +94,9 @@ S1 ;
  ;====================================================================
 L0 ; Long Display
  S C0=^PRSPC(DFN,0)
- W !!,$P(C0,U)
+ W !!,$P(C0,U),?30,"Telework Indicator: ",$S($P($$TWE^PRSATE0(DFN,PPI),U,3)]"":$P($$TWE^PRSATE0(DFN,PPI),U,3),1:"None")
  S X=$P(C0,U,9) W ?65,$E(X),"XX-XX-",$E(X,6,9)
- D DT W !!,?11,"Week 1 - ",$E(Y1,5,13),?45,"Week 2 - ",$E(Y2,5,13),!
+ D DT W !!,?7,"TW  Week 1 - ",$E(Y1,5,13),?41,"TW  Week 2 - ",$E(Y2,5,13),!
  F DAY=1:1:7 D ^PRSATE3
  Q
  ;

@@ -1,8 +1,13 @@
-PSBVDLU1 ;BIRMINGHAM/EFC-VIRTUAL DUE LIST (VDL) UTILITIES ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**13,32**;Mar 2004;Build 32
+PSBVDLU1 ;BIRMINGHAM/EFC-VIRTUAL DUE LIST (VDL) UTILITIES ;1/10/12 8:34pm
+ ;;3.0;BAR CODE MED ADMIN;**13,32,68**;Mar 2004;Build 26
  ;
  ; Reference/IA
  ; EN^PSJBCMA1/2829
+ ; GETSIOPI^PSJBCMA5/5763
+ ;
+ ;*68 - add call to add special instructions (SI) entries to the
+ ;      ^TMP("PSB")  global that ends up in the RESULTS ARRAY of
+ ;      RPC PSB GETORDERTAB.
  ;
 ODDSCH(PSBTABX) ;
  I (PSBOST'<PSBWBEG)&(PSBOST'>PSBWEND) D ADD(PSBREC,PSBOTXT,PSBOST,PSBDDS,PSBSOLS,PSBADDS,PSBTABX)  ;Include start date/time as admin
@@ -104,6 +109,7 @@ ADD(PSBREC,PSBSI,PSBDT,PSBDD,PSBSOL,PSBADD,PSBTAB) ;
  .I $P(PSBUIDS,U,2)="G" Q  ; bag is given (PBTAB)
  .S PSB=PSB+1,^TMP("PSB",$J,PSBTAB,PSB)=$P(PSBUIDS,U,10,999)
  K ^TMP("PSBAR",$J)
+ D:PSBSIOPI GETSI(DFN,PSBONX,PSBTAB)                    ;*68
  S PSB=PSB+1,^TMP("PSB",$J,PSBTAB,PSB)="END"
  S ^TMP("PSB",$J,PSBTAB,0)=PSB
  Q
@@ -183,3 +189,18 @@ LAST ;
  .I (PSBCC=2)!($P($P(PSBDATA2,U)," ")="Refused:")!($P($P(PSBDATA2,U)," ")="Held:") S $P(PSBREC,U,11)=$P(PSBDATA2,U,3),PSBFLAG=1
  Q
  ;
+GETSI(DFN,ORD,TAB) ;Get Special Instructions/Other Print Info from IM   ;*68
+ ;
+ ; This Tag will load the SIOPI WP text into the TMP global used by
+ ; the PSB GETORDERTAB RPC, which ends up in the RESULTS array passed
+ ; back to the BCMA GUI.
+ ;
+ N QQ
+ K ^TMP("PSJBCMA5",$J,DFN,ORD)
+ D GETSIOPI^PSJBCMA5(DFN,ORD,1)
+ Q:'$D(^TMP("PSJBCMA5",$J,DFN,ORD))
+ F QQ=0:0 S QQ=$O(^TMP("PSJBCMA5",$J,DFN,ORD,QQ)) Q:'QQ  D
+ .S PSB=PSB+1
+ .S ^TMP("PSB",$J,TAB,PSB)="SI^"_^TMP("PSJBCMA5",$J,DFN,ORD,QQ)
+ K ^TMP("PSJBCMA5",$J,DFN,ORD)
+ Q

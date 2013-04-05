@@ -1,5 +1,5 @@
 DIUTL ;GFT;01:02 PM  8 Apr 2001
- ;;22.0;VA FileMan;**76**;Mar 30, 1999
+ ;;22.0;VA FileMan;**76**;Mar 30, 1999;Build 1
  ;
 WP(DIRF,DIWL,DIWR) ;Write out WP field (if any) stored at DIRF
  N DIWF,Z,A1,D,X,DIW,DIWT,DN,I

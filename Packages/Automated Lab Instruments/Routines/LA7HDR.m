@@ -1,8 +1,10 @@
 LA7HDR ;DALOI/JMC - LAB HDR ORU (Observation Result) message builder ;12/08/09  16:39
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**68**;Sep 27, 1994;Build 56
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**68,74**;Sep 27, 1994;Build 229
  ;
  ; Reference to variable DIQUIET supported by DBIA #2098
  ;
+ ; ZEXCEPT is used to identify variables which are external to a specific TAG
+ ;         used in conjunction with Eclipse M-editor.
  Q
  ;
  ;
@@ -16,9 +18,11 @@ QUEUE ;
  ;  LRIDT  - inverse date/time (collection date/time)
  ;  LRSS   - test subscript defined in LABORATORY TEST file (#60)
  ;  LRDFN  - IEN in LAB DATA file (#63)
- ;  LRSPEC - specimen 
+ ;  LRSPEC - specimen
  ;  LRSB (Optional) - array of Chemistry results
  ;                      ex. glucose LRSB(2)=LR NODE
+ ;
+ ;ZEXCEPT: LRAA,LRAD,LRAN,LRDFN,LRNIFN,LRSA,LRSB,LRTMPO
  ;
  N I,LA76248,LA7V,LA7VCH,LASTYP,LAVERR,X,ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,ZTSK
  ;
@@ -41,7 +45,7 @@ QUEUE ;
  ;
  ; Check for configuration LA7HDR in 62.48 to see if turned on and site wants subscribers to receive HL7 messages for this event.
  ; Task HL7 message building and transmission.
- ; HDR-IMS will be using HL7 messaging, no call to VDEF API.
+ ; HDR-2 will be using HL7 messaging, no call to VDEF API.
  S LA76248=$O(^LAHM(62.48,"B","LA7HDR",0))
  I 'LA76248 Q
  I '$P(^LAHM(62.48,LA76248,0),"^",3) Q  ; not active
@@ -56,7 +60,7 @@ QUEUE ;
  . . I $D(LRSA(LA7V,2)) S LA7VCH(LA7V,1)="C"
  . S ZTSAVE("LA7VCH*")="",ZTSAVE("LRSPEC")=""
  I LRSS="CH",'$D(LA7VCH) Q
- S ZTSAVE=("LA7MTYP")="ORU"
+ S ZTSAVE("LA7MTYP")="ORU"
  D ^%ZTLOAD
  I $G(ZTSK)'>0 Q
  ;
@@ -79,16 +83,15 @@ APQ(LRDFN,LRSS,LRIDT) ; Anatomic Pathology (CY,EM,SP) subscript entry point from
 BUILD ; Tasked entry point to build HL7 message to VA's HDR
  ; Tasked from above.
  ;
- N DIQUIET,FDA,GBL,HL,HLQ,RUID,SITE
- N LA76248,LA76249,LA76249P,LA7DT,LA7ERR,LA7EVNT,LA7ID,LA7INTYP,LA7LNCVR,LA7LOAD,LA7NOMSG,LA7NVAF,LA7RSITE,LA7X,LA7Y,LRQUIET,LRUID
+ ;ZEXCEPT: LA7MTYP,LA7VCH,LRAA,LRAD,LRAN,LRDFN,LRIDT,LRSPEC,LRSS
+ ;
+ N DIQUIET,FDA,GBL,HL,HLQ,PNM,RUID,SITE
+ N LA76248,LA76249,LA76249P,LA7CODE,LA7DT,LA7ERR,LA7EVNT,LA7ID,LA7INTYP,LA7LNCVR,LA7LOAD,LA7ND,LA7NOMSG,LA7NVAF,LA7RSITE,LA7X,LA7Y,LRQUIET,LRNLT,LRUID
  ;
  ; Prevent FileMan from issuing any unwanted WRITE(s).
  S (DIQUIET,LRQUIET)=1
  ; Insure DILOCKTM is defined
  D DT^DICRW
- ;
- ; Lock record while building message.
- F  L +^LR(LRDFN,LRSS,LRIDT,0):DILOCKTM Q:$T  H 5
  ;
  S (LA7ERR,LA7NVAF)=0,LA7EVNT="LA7 LAB RESULTS AVAILABLE (EVN)"
  ; Create 62.49 entry but don't store message text.
@@ -114,6 +117,9 @@ BUILD ; Tasked entry point to build HL7 message to VA's HDR
  S (LA76249,LA76249P)=$$INIT6249^LA7VHLU
  I LA76249<1 D  Q
  . ; Log entry creation error
+ ;
+ ; Lock record while building message.
+ F  L +^LR(LRDFN,LRSS,LRIDT,0):DILOCKTM Q:$T  H 5
  ;
  K ^TMP("LA7-QRY",$J)
  ;
@@ -162,8 +168,15 @@ BUILD ; Tasked entry point to build HL7 message to VA's HDR
  . . D BCD^LA7QRY2
  . D BUILDMSG^LA7QRY1
  . D SENDMSG^LA7VMSG1
- S LA7ID=LA7RSITE_"-O-"_LRUID
+ S LA7ID=LA7RSITE_"-O-"
+ D SETID^LA7VHLU1(LA76249,LA7ID,LRUID,1)
+ D SETID^LA7VHLU1(LA76249,"",LRUID,0)
+ I $G(PNM)="" D DEM^LRX
+ I PNM'="" D
+ . D SETID^LA7VHLU1(LA76249,LA7ID,PNM,0)
+ . D SETID^LA7VHLU1(LA76249,"",PNM,0)
  D UPDT6249^LA7VORM1
+ ;
  ; File additional data
  S FDA(1,62.49,LA76249_",",151)=LRUID
  S FDA(1,62.49,LA76249_",",156)=LRIDT
@@ -174,7 +187,7 @@ BUILD ; Tasked entry point to build HL7 message to VA's HDR
  ;
  ; Release locks on entries.
  L -^LAHM(62.49,LA76249)
- L -^LR(LRDFN,LRSS,LRIDT)
+ L -^LR(LRDFN,LRSS,LRIDT,0)
  ;
  ; Cleanup
  K LA7ND,LRUID,LRNLT,LRIDT,LRSS,LRDFN,LA7VCH,LA7MTYP
@@ -192,9 +205,11 @@ RTR(LA7SS) ;
  ; Check outgoing message and find OBR segment to determine Laboratory
  ;  subscript this result is associated with and if it's contained in
  ;  the LA7SS subscript list.
- ; 
+ ;
+ ;ZEXCEPT: HL,HLL,HLNEXT,HLNODE
+ ;
  N LA7I,LA7SEG,LA7VI,LA7VJ,LA7X,LRSS,LRX
- ; 
+ ;
  S LRSS=""
  F LA7VI=1:1 X HLNEXT Q:HLQUIT'>0  D  Q:LRSS'=""
  . I $E(HLNODE,1,3)'="OBR" Q

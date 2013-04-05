@@ -1,5 +1,5 @@
 XPDCOMF ;SFISC/GFT/MSC - COMPARE FILES ;08/14/2008
- ;;8.0;KERNEL;**506,539**;Jul 10, 1995;Build 11
+ ;;8.0;KERNEL;**506,539,559**;Jul 10, 1995;Build 4
  ; Per VHA Directive 2004-038, this routine should not be modified.
  ;DI1 & DI2 are left & right roots
  ;DIFLAG[1 -->compare files   [2-->compare entries   ["L" --> IGNORE EXTRA ENTRIES ON RIGHT SIDE
@@ -62,7 +62,7 @@ WPD D SUBHD W !?IOM-$L(X)\2,X,"..."
 ENTRY S DIGL=0,DIN=1 G NEXTENT:'$D(@DI1@(+DIN1,0)) S X=$P(^(0),U)
  ;check if we are comparing to KIDS
  I $E(DI1,1,12)="^XTMP(""XPDI""" D  G NEXTENT:Y
- .;check KIDS action,(0,3)=continue processing
+ .;check KIDS action; 0=send, 3=merge. Only these send the full record
  .S Y=+$G(@DI1@(+DIN1,-1)) I Y=3!'Y S Y=0 Q
  .;delete: save & goto next entry
  .I Y=1 S ^UTILITY("DITCP",$J,"X2",DIDD,DIN1)=X
@@ -71,12 +71,13 @@ ENTRY S DIGL=0,DIN=1 G NEXTENT:'$D(@DI1@(+DIN1,0)) S X=$P(^(0),U)
  I DIDD=.4032 D  D BLOCK(X) G NEXTENT
  .N V S V=$$EXT(X,.01,1) I V]"" S V=$O(@($$NS(2)_"DIST(.404,""B"",V,0)")) I V S X=V
  .S ^UTILITY("DITCP",$J,DIL,X)=""
- S DIV=$D(^DD(DIDD,.001)) G UP:DIDD=.4032!(DIDD=19.01) ;for now, give up matching BLOCKS or MENUS
+ S DIV=$D(^DD(DIDD,.001)) G UP:DIDD=.4032!(DIDD=19.01)!(DIDD=101.01) ;for now, give up matching BLOCKs,MENUs, or ITEMs
  I DIDD=.1 S DIN2=+DIN1,X=@DI1@(DIN1,0) G NEW:'$D(@DI2@(DIN2,0)),NEW:^(0)'=X,OLD ;CROSS-REFERENCE matches on entire 0 node
 BIX I $P($G(@DI2@(DIN1,0)),U)=X S DIN2=DIN1 G OLD:$$MATCH,NEW:DIV
  I $P(^DD(DIDD,.01,0),U,2)["P" S MSCP=$$EXT(X,.01,1) F DIN2=0:0 S DIN2=$O(@DI2@(DIN2)) G NEW:DIN2'>0  I $$EXT($P($G(^(DIN2,0)),U),2)=MSCP G OLD:$$MATCH
+ ;if no "B" x-ref, then check entire file for match
  S DIN2=0 I '$D(^DD(DIDD,0,"IX","B",DIDD,.01)) F  S DIN2=$O(@DI2@(DIN2)) G NEW:DIN2'>0 I $P($G(^(DIN2,0)),U)=X G OLD:$$MATCH
-BI S DIN2=$O(@DI2@("B",X,DIN2)) I 'DIN2 S:$L(X)>30 DIN2=$O(@DI2@("B",$E(X,1,30),DIN2)) G NEW:'DIN2
+BI S DIN2=$O(@DI2@("B",$E(X,1,30),DIN2)) I 'DIN2 S:$L(X)>30 DIN2=$O(@DI2@("B",X,DIN2)) G NEW:'DIN2
  I $D(@DI2@(DIN2,0)),$P(^(0),X)="" G OLD:$$MATCH ;COMPARE BY NAME
  G BI
  ;
@@ -184,8 +185,8 @@ FLDNUM() I DIN]"" Q $O(^DD(DIDD,"GL",DIGL,DIN,0))
 DIT ;
  S DIT=$P(Y,U,2),I=$P(Y,U,3) Q
  ;
-EXT(X,C,MSCSIDE) I X]"" N Y I C S C=$P($G(^DD(DIDD,C,0)),U,2),Y=X D:$G(MSCSIDE)  D S^DIQ I Y]"" Q Y ;101.41 BOMBED IN $$EXTERNAL^DIDU(DIDD,$$FLDNUM,,X)
- .F  Q:C'["P"  Q:'$D(@($$NS(MSCSIDE)_$P(^(0),U,3)_"0)"))  S C=$P(^(0),U,2) Q:'$D(^(+Y,0))  S Y=$P(^(0),U),C=$P($G(^DD(+C,.01,0)),U,2)
+EXT(X,C,MSCSIDE) I X]"" N Y,Y1 I C S C=$P($G(^DD(DIDD,C,0)),U,2),Y=X,Y1=1 D:$G(MSCSIDE)  D:Y1 S^DIQ I Y]"" Q Y ;101.41 BOMBED IN $$EXTERNAL^DIDU(DIDD,$$FLDNUM,,X)
+ .F  Q:C'["P"  Q:'$D(@($$NS(MSCSIDE)_$P(^(0),U,3)_"0)"))  S C=$P(^(0),U,2),Y1=$D(^(+Y,0)) Q:'Y1  S Y=$P(^(0),U),C=$P($G(^DD(+C,.01,0)),U,2)
  Q X
  ;
 NS(MSCSIDE) N N S N=@("DI"_MSCSIDE) I $E(N,2)="[" Q $E(N,1,$F(N,"]")-1) ;returns "^" OR "^[NS]"

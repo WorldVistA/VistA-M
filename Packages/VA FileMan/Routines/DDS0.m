@@ -1,5 +1,5 @@
 DDS0 ;SFISC/MLH-SETUP, CLEANUP ;4:45 AM  7 Sep 2006
- ;;22.0;VA FileMan;**8,151**;Mar 30, 1999;Build 10
+ ;;22.0;VA FileMan;**8,151**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN(DDSFILE,DR,DA) ;Initial setup

@@ -1,5 +1,5 @@
-MAGDQR04 ;WOIFO/EdM - Imaging RPCs for Query/Retrieve ; 08 Aug 2008 9:26 AM
- ;;3.0;IMAGING;**51,54,66**;Mar 19, 2002;Build 1836;Sep 02, 2010
+MAGDQR04 ;WOIFO/EdM/JSL/SAF - Imaging RPCs for Query/Retrieve ; 08 Aug 2008 9:26 AM
+ ;;3.0;IMAGING;**51,54,66,123**;Mar 19, 2002;Build 67;Jul 24, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -111,9 +111,9 @@ INFO(OUT,IMAGE) ; RPC = MAG IMAGE CURRENT INFO
  S DFN=$P(X,"^",7) D:DFN
  . N VA,VADM,VAPA,VAERR,DOB,TOB ; return arrays from VADPT
  . N I ; scratch loop array
- . D ^VADPT ; populate standard patient data array VADM()
+ . D DEM^VADPT ; populate standard patient data array VADM()
  . S TAG("0010,0010")=$G(VADM(1)) ; Patient Name
- . S TAG("0010,0020")=$G(VADM(2)) ; Patient ID (SSN)
+ . S TAG("0010,0020")=$S($$ISIHS^MAGSPID():$G(VA("PID")),1:VADM(2)) ; Patient ID (HRN or SSN) - P123
  . S DOB=$G(VADM(3))\1+17000000 ; Patient's Birth Date
  . ; make sure month and year are DICOM valid
  . S TAG("0010,0030")=$S($E(DOB,5,6)="00":"",$E(DOB,7,8)="00":"",1:DOB)
@@ -121,7 +121,7 @@ INFO(OUT,IMAGE) ; RPC = MAG IMAGE CURRENT INFO
  . S TAG("0010,0032")=$S(VADM(3)[".":$TR($J("."_$P($G(VADM(3)),".",2)*1E6,6)," ",0),1:"")
  . S TAG("0010,2160")=$G(VADM(8)) ; Patient's Race
  . S TAG("0010,0040")=$P($G(VADM(5)),"^",1) ; Patient's Sex
- . S X=$$GETICN^MPIF001(DFN)
+ . S X=$S($T(GETICN^MPIF001)'="":$$GETICN^MPIF001(DFN),1:"-1^NO MPI")  ;P123
  . S TAG("0010,1000")=$S(X<0:$E(TAG("0010,0010"),1)_$E(TAG("0010,0020"),6,99),1:X) ; Other Patient ID
  . D ADD^VADPT ; populate patient address array
  . F I=1,2,3,4,6 S $P(TAG("0010,1040"),"^",I)=$G(VAPA(I))

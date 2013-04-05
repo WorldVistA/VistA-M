@@ -1,5 +1,5 @@
 PSODEM ;BHAM ISC/SAB - PATIENT DEMOGRAPHICS ; 02/17/93 12:29
- ;;7.0;OUTPATIENT PHARMACY;**5,19,233,258,326**;DEC 1997;Build 11
+ ;;7.0;OUTPATIENT PHARMACY;**5,19,233,258,326,390**;DEC 1997;Build 86
 GET S DFN=DA D 6^VADPT,PID^VADPT U IO W @IOF,!,VADM(1)
  I +VAPA(9) W !?5,"(TEMP ADDRESS from "_$P(VAPA(9),"^",2)_" till "_$S($P(VAPA(10),"^",2)]"":$P(VAPA(10),"^",2),1:"(no end date)")_")"
  W !,VAPA(1),?40,"DOB:   ",$S(+VADM(3):$P(VADM(3),"^",2),1:"UNKNOWN") W:VAPA(2)]"" !,VAPA(2) W:VAPA(3)]"" !,VAPA(3)
@@ -11,6 +11,12 @@ RE S (WT,HT)="",X="GMRVUTL" X ^%ZOSF("TEST") I $T D
  .S X=$P(WT,"^",8),Y=$J(X/2.2,0,2),$P(WT,"^",9)=Y,X=$P(HT,"^",8),Y=$J(2.54*X,0,2),$P(HT,"^",9)=Y
  Q:$G(POERR)
  W !!,"WEIGHT(Kg): " W:+$P(WT,"^",8) $P(WT,"^",9)_" ("_$P(WT,"^")_")" W ?41,"HEIGHT(cm): " W:$P(HT,"^",8) $P(HT,"^",9)_" ("_$P(HT,"^")_")" K VM,WT,HT
+CRCL S PSOBSA=$$BSA^PSSDSAPI(DFN),PSOBSA=$P(PSOBSA,"^",3),PSOBSA=$S(PSOBSA'>0:"_______",1:$J(PSOBSA,4,2))
+ S RSLT=$$CRCL^PSOORUT2(DFN)
+ ; RSLT -- DATE^CRCL^Serum Creatinine -- Ex.  11/25/11^68.7^1.1
+ I $P(RSLT,"^",2)["Not Found" S ZDSPL="CrCL: "_$P(RSLT,"^",2)
+ E  S ZDSPL="CrCL: "_$P($G(RSLT),"^",2)_"(est.) "_"(CREAT:"_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ W !,ZDSPL,?40,"BSA: ",PSOBSA K PSOBSA,ZDSPL,RSLT
  S PSLC=0 G MA:$P($G(^DPT(DFN,.17)),"^",2)'="I"
  I '$D(VAEL(1)) D ELIG^VADPT W !!,"ELIGIBILITY: ",$P(VAEL(1),"^",2) W:+VAEL(3) ?$X+5,"SC%: "_$P(VAEL(3),"^",2) S PSLC=PSLC+2
 MA K SC W !,"DISABILITIES: " S PSLC=PSLC+2

@@ -1,5 +1,5 @@
 DIFROMSC ;SCISC/DCL-EDE IN CONTINUE FPRE & FPOST ;08:38 AM  22 Nov 1994
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 FPRE ;
  I '$D(DIQUIET) N DIQUIET S DIQUIET=1

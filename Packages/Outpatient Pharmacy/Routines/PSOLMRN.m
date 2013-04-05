@@ -1,5 +1,5 @@
 PSOLMRN ;ISC-BHAM/SAB - displays renewal rxs ;04/21/1995
- ;;7.0;OUTPATIENT PHARMACY;**11,46,84,225**;DEC 1997;Build 29
+ ;;7.0;OUTPATIENT PHARMACY;**11,46,84,225,386**;DEC 1997;Build 4
 EN ; -- main entry point for PSO LM RENEW LIST
  S VALMCNT=PSOPF,PSOLM=1
  D EN^VALM("PSO LM RENEW LIST")
@@ -12,6 +12,7 @@ HDR ; -- header code
 INIT ; -- init variables and list array
  ;F LINE=1:1:30 D SET^VALM10(LINE,LINE_"     Line number "_LINE)
  S VALMCNT=PSOPF,PSOLM=1
+ I $G(ORD),$$GET1^DIQ(52.41,ORD,102,"I") S VALM("TITLE")="FL-"_VALM("TITLE")
  D RV^PSONFI Q
  ;
 HELP ; -- help code

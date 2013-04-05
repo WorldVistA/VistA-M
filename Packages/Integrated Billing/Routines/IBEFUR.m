@@ -1,5 +1,5 @@
 IBEFUR ;ALB/ARH - UTILITY: FIND RELATED FIRST AND THIRD PARTY BILLS ; 3/7/00
- ;;2.0;INTEGRATED BILLING;**130**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**130,459**;21-MAR-94;Build 16
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ; 
  ; Called by Accounts Receivable report option
@@ -99,11 +99,12 @@ OF ; find First Party charges for the Opt Visit Dates on the Third Party Bill
  . D FPINPT^IBEFURF(DFN,+IBADM,IBIFN)
  ;
 RF ; find First Party charges for any Rx's on the selected Third Party bill
- ; based on Rx IFN (52) and fill date (362.4,.05,.03)
+ ; based on Rx IFN (52), fill date and fill# (362.4,.05,.03,.1)
+ N IBRXFL
  S IBXRF="AIFN"_IBIFN,IBRXN="" F  S IBRXN=$O(^IBA(362.4,IBXRF,IBRXN))  Q:'IBRXN  D
  . S IBX=0 F  S IBX=$O(^IBA(362.4,IBXRF,IBRXN,IBX)) Q:'IBX  D
- .. S IBY=$G(^IBA(362.4,IBX,0)),IBRXIFN=$P(IBY,U,5),IBRXDT=$P(IBY,U,3) Q:'IBRXIFN
- .. D FPRX^IBEFURF(IBRXIFN,IBRXDT,IBIFN)
+ .. S IBY=$G(^IBA(362.4,IBX,0)),IBRXIFN=$P(IBY,U,5),IBRXDT=$P(IBY,U,3),IBRXFL=$P(IBY,U,10) Q:'IBRXIFN
+ .. D FPRX^IBEFURF(IBRXIFN,IBRXDT,IBIFN,IBRXFL)
  ;
  ; find First Party Charges for any RX filled on one of the Third Party bill's Opt Visit Dates
  ; that is not billed on any Third Party bill

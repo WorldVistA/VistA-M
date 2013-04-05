@@ -1,5 +1,5 @@
 DDS6 ;SFISC/MKO-DELETIONS ;2:09 PM  9 Feb 1996
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;Enter here if user deleted record from the .01 of the (sub)record
  ;(called from DDS01)

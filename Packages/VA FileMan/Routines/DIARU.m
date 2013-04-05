@@ -1,5 +1,5 @@
 DIARU ;SFISC/TKW-ARCHIVING FUNCTIONS (CONT) ;2/18/93  5:21 AM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 UPDATE ;UPDATE ARCHIVING FILE (DJ=#ITEMS SELECTED) called w/in DIO4
  N DIE D:DIAR=3 NOW^%DTC S DA=DIARC,DIE="^DIAR(1.11,",X=""

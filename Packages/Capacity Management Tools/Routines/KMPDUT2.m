@@ -1,5 +1,5 @@
 KMPDUT2 ;OAK/RAK - CM Tools Utility ;2/17/04  10:45
- ;;2.0;CAPACITY MANAGEMENT TOOLS;;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 ID(KMPDIEN) ;--called from ^DD(8973.1,0,"ID","W")
  ;-----------------------------------------------------------------------
@@ -41,20 +41,19 @@ ID1(KMPDIEN) ;--called from ^DD(8973.2,0,"ID","W")
  S TXT(1)=TXT(1)_$$FMTE^XLFDT($P(DATA,U,3),2)
  S TXT(1)=TXT(1)_$J(" ",18-$L(TXT(1)))
  ; title
- S TXT(1)=TXT(1)_$E($P(DATA,U,8),1,16)
+ S TXT(1.1)=$P(DATA,U,8)
  ; client name
- S TXT(2)=$E($P(DATA,U,6),1,30)
+ S TXT(2)="client: "_$E($P(DATA,U,6),1,30)
  ; person
- S TXT(3)=$P($G(^VA(200,+$P(DATA,U,5),0)),U)
+ S TXT(3)="pers  : "_$P($G(^VA(200,+$P(DATA,U,5),0)),U)
  ; sent to national database
- S TXT(4)="weekly - "_$S($P(DATA,U,2):"sent",1:"not sent")
- S TXT(5)="daily - "_$S($P(DATA,U,10):"sent",1:"not sent")
+ S TXT(4)="daily : "_$S($P(DATA,U,10):"sent",1:"not sent")
  ;S TXT(1)=TXT(1)_$J(" ",11-$L(TXT(1)))
  S TXT(1,"F")="?45"
- S TXT(2,"F")="!?48"
- S TXT(3,"F")="!?48"
- S TXT(4,"F")="!?48"
- S TXT(5,"F")="!?48"
+ S TXT(1.1,"F")="!?38"
+ S TXT(2,"F")="!?38"
+ S TXT(3,"F")="!?38"
+ S TXT(4,"F")="!?38"
  D EN^DDIOL(.TXT)
  Q
  ;

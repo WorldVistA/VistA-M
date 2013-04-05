@@ -1,5 +1,5 @@
-EDPLOGH ;SLC/KCM - Add History Entry for ED Log
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPLOGH ;SLC/KCM - Add History Entry for ED Log ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
  ;TODO:  add transaction processing
  ;
@@ -52,14 +52,30 @@ COLLIDE(LOG,LOADTS) ; return true if new updates since load time
  D XML^EDPX("</upd>")
  Q 1
  ;
-BEDGONE(AREA,CURBED,BED) ; return true if bed is no longer available
+BEDGONE(AREA,CURBED,HOLDBED,BED) ; return true if bed is no longer available
  I 'BED Q 0
  I BED=CURBED Q 0
+ I BED=HOLDBED Q 0
  N MULTI S MULTI=$P(^EDPB(231.8,BED,0),U,9) S:MULTI=3 MULTI=0
  I MULTI Q 0
- I '$D(^EDP(230,"AL",EDPSITE,AREA,BED)) Q 0
+ N OCCUPIED
+ S OCCUPIED=$D(^EDP(230,"AL",EDPSITE,AREA,BED))!$D(^EDP(230,"AH",EDPSITE,AREA,BED))
+ I 'OCCUPIED Q 0
  Q 1
  ;
+UPDHOLD(FDA,IEN,CURBED) ; hold the current bed if primary > secondary
+ Q:'$G(FDA(230,IEN_",",3.4))  ; no change in bed
+ N NEWBED,HOLDBED
+ S NEWBED=FDA(230,IEN_",",3.4),HOLDBED=""
+ ; new bed is none, set hold bed to none
+ I (NEWBED="@")!(NEWBED=0) S HOLDBED="@"
+ ; new bed is primary, set hold bed to none
+ I NEWBED,($P(^EDPB(231.8,NEWBED,0),U,13)<2) S HOLDBED="@"
+ ; new bed is secondary, set hold bed to current bed if primary
+ I ($P(^EDPB(231.8,NEWBED,0),U,13)=2),($P(^EDPB(231.8,CURBED,0),U,13)<2) S HOLDBED=CURBED
+ ;
+ I $L(HOLDBED) S FDA(230,IEN_",",3.9)=HOLDBED
+ Q
 MSG(VAL,LBL) ; add to XML message
  D XML^EDPX(LBL_" changed to:  "_VAL)
  Q

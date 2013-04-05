@@ -1,7 +1,79 @@
-EDPFAA ;SLC/KCM - RPC Calls to Facility
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPFAA ;SLC/KCM - RPC Calls to Facility ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
-SESS ; set up session
+BOOT(APP) ; bootstrap appliction
+ D USER
+ D APP(APP)
+ Q
+USER ; set bootstrap USER node
+ N X
+ S X("duz")=DUZ
+ S X("userNm")=$P($G(^VA(200,DUZ,0)),U)
+ S X("timeOut")=$$GET^XPAR("USR^DIV^SYS","ORWOR TIMEOUT CHART",1,"I")
+ S:'X("timeOut") X("timeOut")=$$DTIME^XUP(DUZ)
+ S:'X("timeOut") X("timeOut")=300
+ S X("timeOut")=X("timeOut")*1000        ; milliseconds
+ S X("countDown")=$$GET^XPAR("USR^SYS^PKG","ORWOR TIMEOUT COUNTDOWN",1,"I")
+ S:'X("countDown") X("countDown")=10
+ S X("countDown")=X("countDown")*1000    ; milliseconds
+ D XML^EDPX($$XMLA^EDPX("user",.X,""))
+ I $D(^XUSEC("XUPROGMODE",DUZ))>0 D XML^EDPX("<auth name=""debug"" />")
+ D XML^EDPX("</user>")
+ Q
+APP(APP) ; set bootstrap APP node
+ N X,AREA
+ S X("name")=APP
+ S X("site")=DUZ(2)
+ S X("siteNm")=$$NAME^XUAF4(X("site"))
+ S X("station")=$$STA^XUAF4(DUZ(2))
+ S X("time")=$$NOW^XLFDT
+ S X("version")=$$VERSRV^EDPQAR
+ S X("vistaSession")=$$SESSID
+ D XML^EDPX($$XMLA^EDPX("app",.X,""))
+ D AREA
+ I APP="cpe-ui-reports" D RPTS
+ I APP="cpe-ui-care" D ROLES
+ D XML^EDPX("</app>")
+ Q
+AREA ; set default area node
+ N X
+ S X("area")=$$DFLTAREA^EDPQAR(""),AREA=X("area")
+ I X("area") S X("areaNm")=$P(^EDPB(231.9,X("area"),0),U)
+ D XML^EDPX($$XMLA^EDPX("defaultArea",.X))
+ Q
+RPTS ; set auth nodes for reports
+ I $D(^XUSEC("EDPR EXPORT",DUZ))>0 D XML^EDPX("<auth name=""rptExport"" />")
+ I $D(^XUSEC("EDPR PROVIDER",DUZ))>0 D XML^EDPX("<auth name=""rptProvider"" />")
+ I $D(^XUSEC("EDPR XREF",DUZ))>0 D XML^EDPX("<auth name=""rptXRef"" />")
+ Q
+ROLES ; set up roles
+ N ROLE S ROLE=0         ; TEMPORARY!!
+ I DUZ=20011 S ROLE=573
+ I DUZ=20014 S ROLE=272
+ I DUZ=20013 S ROLE=426
+ I DUZ=20028 S ROLE=623
+ I 'ROLE S ROLE=459
+ S X("id")=ROLE
+ S X("displayName")=$$CLNAME^USRLM(ROLE)
+ D XML^EDPX($$XMLA^EDPX("role",.X))
+ S IEN=$O(^EDPB(232.5,"C",EDPSITE,AREA,ROLE,0)) Q:'IEN
+ S BRD=$P(^EDPB(232.5,IEN,0),U,5)
+ D XML^EDPX("<board defaultName='"_BRD_"' />")
+ Q
+ ; TODO: provide a mechanism to rebuild role list if AREA changes
+ N X,ROLE,IEN,BRD,DONE,ERR
+ S ROLE=0,DONE=0
+ F  S ROLE=$O(^EDPB(232.5,"C",EDPSITE,AREA,ROLE)) Q:'ROLE  D  Q:DONE
+ . Q:'$$ISA^USRLM(DUZ,ROLE,.ERR,DT)
+ . S DONE=1
+ . S X("id")=ROLE
+ . S X("displayName")=$$CLNAME^USRLM(ROLE)
+ . D XML^EDPX($$XMLA^EDPX("role",.X))
+ . S IEN=$O(^EDPB(232.5,"C",EDPSITE,AREA,ROLE,0)) Q:'IEN
+ . S BRD=$P(^EDPB(232.5,IEN,0),U,5)
+ . D XML^EDPX("<board defaultName='"_BRD_"' />")
+ Q
+SESS ; set up session -- (OLD from version 1?)
  N X
  S X("duz")=DUZ
  S X("userNm")=$P($G(^VA(200,DUZ,0)),U)
@@ -20,15 +92,30 @@ SESS ; set up session
  ;S AREA=$$GET^XPAR(DUZ_";VA(200,","EDPF USER AREA",1,"Q")
  ;I AREA S X("area")=AREA,X("areaNm")=$P($G(^EDPB(231.9,AREA,0)),U)
  ;
- S X("timeOut")=$$GET^XPAR("USR^DIV^SYS","ORWOR TIMEOUT CHART",1,"I")
+ ;TDP - Patch 2 change to use new EDIS timeout parameter
+ ;S X("timeOut")=$$GET^XPAR("USR^DIV^SYS","ORWOR TIMEOUT CHART",1,"I")
+ S X("timeOut")=$$GET^XPAR("USR^DIV^SYS","EDP APP TIMEOUT",1,"I")
  S:'X("timeOut") X("timeOut")=$$DTIME^XUP(DUZ)
  S:'X("timeOut") X("timeOut")=300
  S X("timeOut")=X("timeOut")*1000        ; milliseconds
- S X("countDown")=$$GET^XPAR("USR^SYS^PKG","ORWOR TIMEOUT COUNTDOWN",1,"I")
+ ;
+ ;TDP - Patch 2 change to use new EDIS timeout countdown parameter
+ ;S X("countDown")=$$GET^XPAR("USR^SYS^PKG","ORWOR TIMEOUT COUNTDOWN",1,"I")
+ S X("countDown")=$$GET^XPAR("USR^SYS^PKG","EDP APP COUNTDOWN",1,"I")
  S:'X("countDown") X("countDown")=10
  S X("countDown")=X("countDown")*1000    ; milliseconds
  D XML^EDPX($$XMLA^EDPX("user",.X))
  Q
+SESSID() ; Return the next session identifier
+ ; May lock any string, does not have to be actual global node
+ ; Use ^XTMP("EDP... to assure uniqueness to this package
+ ;
+ L +^XTMP("EDP-LOCK-SESSION-ID"):10  E  Q 0
+ N X S X=$$GET^XPAR("PKG","EDPW SESSION ID",1,"I")+1
+ I X>4294967295 S X=1  ; wrap around if bigger than 32-bit uint
+ D EN^XPAR("PKG","EDPW SESSION ID",1,X)
+ L -^XTMP("EDP-LOCK-SESSION-ID")
+ Q X
  ;
 VIEWS ; Return views allowed for this user
  N I,X,ID

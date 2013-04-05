@@ -3,7 +3,7 @@ XLFNSLK ;ISF/RWF - Calling a DNS server for name lookup ;5/21/07  14:47
  ;
 TEST ;Test entry
  N XLF,XL1,XL3,Y,I S (XLF,XL3)=""
- R !,"Enter a IP address to lookup: www.DOMAIN.EXT//",XL1:DTIME S:XL1="" XL1="www.DOMAIN.EXT" Q:XL1["^"
+ R !,"Enter a IP address to lookup: www.domain.ext//",XL1:DTIME S:XL1="" XL1="www.domain.ext" Q:XL1["^"
  W !,"Looking up ",XL1 D NS(.XLF,XL1,"A",.XL3)
  S XL1="XL3" F  S XL1=$Q(@XL1) Q:XL1=""  W !,XL1," = ",@XL1
  S Y="" F  S Y=$O(XLF("B",Y)) Q:Y=""  W !,?5,Y," > ",XLF("B",Y)

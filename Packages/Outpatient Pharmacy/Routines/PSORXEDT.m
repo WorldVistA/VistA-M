@@ -1,6 +1,7 @@
 PSORXEDT ;BIR/SAB-edit rx routine ;10/21/98
- ;;7.0;OUTPATIENT PHARMACY;**21,23,44,71,146,185,148,253**;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**21,23,44,71,146,185,148,253,390**;DEC 1997;Build 86
  ;Ref. ^PS(55 supp. IA 2228
+ ;;External reference to $$BSA^PSSDSAPI supported by DBIA 5425
  D:'$D(PSOPAR) ^PSOLSET I '$D(PSOPAR) G EOJ Q
  K PSODRUG,PSOLIST,DIR,DIRUT,DUOUT,X,Y,PSOFROM,^TMP("PSOBEDT",$J),NOPP,CLOZPST
  W !! S DIR(0)="FAO^1:245",DIR("A")="Edit Rx(s) => ",DIR("?",1)="Enter Rx Number or A List of numbers Separated",DIR("?")="by Commas, e.g. 1234A,345,937002Q."
@@ -64,6 +65,12 @@ PT ;
  S ^TMP("PSOHDR",$J,7,0)=$S($P(HT,"^",8):$P(HT,"^",9)_" ("_$P(HT,"^")_")",1:"_______ (______)") K VM,WT,HT S PSOHD=7
  S ^TMP("PSOHDR",$J,9,0)="",^TMP("PSOHDR",$J,10,0)=""
  S GMRA="0^0^111" D ^GMRADPT S ^TMP("PSOHDR",$J,8,0)=+$G(GMRAL)
+ S PSOBSA=$$BSA^PSSDSAPI(DFN),PSOBSA=$P(PSOBSA,"^",3),PSOBSA=$S(PSOBSA'>0:"_______",1:$J(PSOBSA,4,2)) S ^TMP("PSOHDR",$J,12,0)=PSOBSA
+ S RSLT=$$CRCL^PSOORUT2(DFN)
+ I $P(RSLT,"^",2)["Not Found" S ZDSPL=" CrCL: "_$P(RSLT,"^",2)
+ E  S ZDSPL=" CrCL: "_$P($G(RSLT),"^",2)_"(est.) "_"(CREAT:"_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ S ^TMP("PSOHDR",$J,13,0)=ZDSPL
+ K PSOBSA,RSLT,ZDSPL
  D NOW^%DTC S TM=$E(%,1,12),TM1=$P(TM,".",2) S ^TMP("PSOBB",$J)=TM_"^"_TM1
  S PSOLOUD=1 D:$P($G(^PS(55,PSODFN,0)),"^",6)'=2 EN^PSOHLUP(PSODFN) K PSOLOUD
  S PSOX=$G(^PS(55,PSODFN,"PS")) I PSOX]"" S PSORX("PATIENT STATUS")=$P($G(^PS(53,PSOX,0)),"^")

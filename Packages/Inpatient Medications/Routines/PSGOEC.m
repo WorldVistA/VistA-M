@@ -1,5 +1,5 @@
 PSGOEC ;BIR/CML3-CANCEL ORDERS ;02 Mar 99 / 9:29 AM
- ;;5.0; INPATIENT MEDICATIONS ;**23,58,110,175,201,134,181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS ;**23,58,110,175,201,134,181,260,288**;16 DEC 97;Build 7
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^PSSLOCK is supported by DBIA 2789.
@@ -30,9 +30,14 @@ ENO(PSGP,PSGORD) ; single order
  S PSJCOM=+$S(PSGORD["U":$P($G(^PS(55,PSGP,5,+PSGORD,.2)),"^",8),1:$P($G(^PS(53.1,+PSGORD,.2)),"^",8))
  I 'CF,PSJCOM W !!,"This order is part of a complex order and CANNOT be marked for discontinuation." Q
  I $$PNDRNOK(PSGORD) N PSJDCTYP S PSJDCTYP=$$PNDRNA(PSGORD) D:(PSJDCTYP=1!(PSJDCTYP=2)) PNDRN($G(PSJDCTYP),PSGORD) G DONE
+ ;I PSJCOM W !!,"This order is part of a complex order. If you discontinue this order the",!,"following orders will be discontinued too (unless the stop date has already",!,"been reached)." D CMPLX^PSJCOM1(PSGP,PSJCOM,PSGORD)
+ ;F  W !!,"Do you want to ",$S(PSJCOM:"discontinue this series of complex orders",CF:"discontinue this order",1:"mark this order for discontinuation") S %=$S($G(PSJOCFLG):2,1:1) D YN^DICN Q:%  D ENCOM^PSGOEM
+ ;I %<0 S VALMBCK="" Q
  I PSJCOM W !!,"This order is part of a complex order. If you discontinue this order the",!,"following orders will be discontinued too (unless the stop date has already",!,"been reached)." D CMPLX^PSJCOM1(PSGP,PSJCOM,PSGORD)
- F  W !!,"Do you want to ",$S(PSJCOM:"discontinue this series of complex orders",CF:"discontinue this order",1:"mark this order for discontinuation") S %=$S($G(PSJOCFLG):2,1:1) D YN^DICN Q:%  D ENCOM^PSGOEM
- I %<0 S VALMBCK="" Q
+ I PSJCOM F  W !!,"Do you want to discontinue this series of complex orders" S %=$S($G(PSJOCFLG):2,1:1) D YN^DICN Q:%  D ENCOM^PSGOEM
+ I 'PSJCOM,CF,'$D(PSJDCDTF) F  W !!,"Do you want to discontinue this order" S %=$S($G(PSJOCFLG):2,1:1) D YN^DICN Q:%  D ENCOM^PSGOEM I %<0 S VALMBCK="" Q
+ I 'PSJCOM,CF,$D(PSJDCDTF) F  W !!,"Enter DC to discontinue the above order or press <RETURN> to continue:" S %=$S($G(PSJOCFLG):2,1:1) D TST4DC W:%=2 !,"No action taken!" Q:%  D ENDC^PSGOEM I %<0 S VALMBCK="" Q
+ I 'PSJCOM,'CF,'$D(PSJDCDTF) F  W !!,"Do you want mark this order for discontinuation" S %=$S($G(PSJOCFLG):2,1:1) D YN^DICN Q:%  D ENCOM^PSGOEM I %<0 S VALMBCK="" Q
  G:%=1 SOC I $S(PSGORD["U":$D(^PS(55,PSGP,5,+PSGORD,4)),1:$D(^PS(53.1,+PSGORD,4))),$P(^(4),U,12) W !!,"THIS ORDER HAS"
  I  D ENUMK^PSGOEM I %=1 W "..." K DA S:PSGORD["A" PSGAL("C")=PSJSYSU*10+21400,DA=+PSGORD,DA(1)=PSGP D RS,^PSGAL5:PSGORD["A" W " . . . DONE!"
  G DONE
@@ -74,6 +79,7 @@ AC ;
  I 'CF K DA S $P(^PS(55,PSGP,5,+PSGORD,4),U,11,14)="^1^"_DUZ_U_PSGDT,PSGAL("C")=13040,DA=+PSGORD,DA(1)=PSGP D ^PSGAL5
  I 'CF,$D(PSJSYSO) S PSGORD=+PSGORD_"A",PSGPOSA="C",PSGPOSD=PSGDT D ENPOS^PSGVDS
  Q:'CF  K DA,ORIFN S PSGAL("C")=PSJSYSU*10+4000,DA=+PSGORD,DA(1)=PSGP D ^PSGAL5 S $P(^(2),U,3)=$P(^PS(55,PSGP,5,+PSGORD,2),U,4) D ^DIE S ^PS(55,"AUE",PSGP,+PSGORD)=""
+ I '$D(PSJSYSL) S PSJSYSL=""
  I PSJSYSL K DA S $P(^PS(55,PSGP,5,+PSGORD,7),U,1,2)=PSGDT_U_$S($D(PSGEDIT):"DE",1:"D"),PSGTOL=2,PSGUOW=DUZ,PSGTOO=1,DA=+PSGORD,DA(1)=PSGP D ENL^PSGVDS
  S ORIFN=$P($G(^PS(55,PSGP,5,+PSGORD,0)),U,21) D:ORIFN DCOR^PSGOECS
  Q
@@ -150,3 +156,8 @@ PNDRNOK(ORDER) ; Execute DC Pending Renew enhancement only if
  .S ORIGSTOP=$S(ORIGORD["U":$P($G(^PS(55,PSGP,5,+ORIGORD,2)),"^",4),ORIGORD["V":$P($G(^PS(55,PSGP,"IV",+ORIGORD,0)),"^",3),1:"")
  Q:'($P($G(^PS(53.1,+PSGORD,0)),U,24)="R") 0
  Q 1
+ ;
+TST4DC ; Test for DC at prompt
+ R X:$S($D(DTIME):DTIME,1:300) I '$T S %=2 Q
+ S %=$S(X="DC":1,X="Dc":1,X="dc":1,X="dC":1,X="D":1,X="d":1,X="":2,X="^":2,X]"":"",1:2)
+ Q

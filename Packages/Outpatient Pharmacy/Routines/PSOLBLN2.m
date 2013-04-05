@@ -57,14 +57,14 @@ NPP1 ;
  N PSOLAN S PSOLAN=$P($G(^PS(55,DFN,"LAN")),"^",2) S:'PSOLAN PSOLAN=1
  I $G(PSOLAN)=1 D
  . W !,"The VA Notice of Privacy Practices, IB 10-163, which outlines your privacy",!
- . W "rights, is available online at http://www1.DOMAIN.EXT/Health/ or you may obtain",!
+ . W "rights, is available online at http://www1.domain.ext/Health/ or you may obtain",!
  . W "a copy by writing the VHA Privacy Office (19F2), 810 Vermont Avenue NW,",!
  . W "Washington, DC 20420.",!
  I $G(PSOLAN)=2 D
  . W !,"La Notificacion relacionada con las Politicas de Privacidad del Departamento",!
  . W "de Asuntos del Veterano, IB 10-163, contiene los detalles acerca de sus",!
  . W "derechos de privacidad y esta disponible electronicamente en la siguiente",!
- . W "direccion: http://www1.DOMAIN.EXT/Health/.  Usted tambien puede conseguir una",!
+ . W "direccion: http://www1.domain.ext/Health/.  Usted tambien puede conseguir una",!
  . W "copia escribiendo a la Oficina de Privacidad del Departamento de Asuntos de",!
  . W "Salud del Veterano, (19F2), 810 Vermont Avenue NW, Washington, DC 20420.",!
  Q

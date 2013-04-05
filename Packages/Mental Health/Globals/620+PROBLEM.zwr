@@ -1,7 +1,13 @@
 PROBLEM
 ZWR
 ^DIC(620,0)="PROBLEM^620^29^29"
+^DIC(620,0,"AUDIT")="@"
+^DIC(620,0,"DD")="@"
+^DIC(620,0,"DEL")="@"
 ^DIC(620,0,"GL")="^DIC(620,"
+^DIC(620,0,"LAYGO")="@"
+^DIC(620,0,"RD")="@"
+^DIC(620,0,"WR")="@"
 ^DIC(620,1,0)="Suicidal/Self-injury Risk^A"
 ^DIC(620,1,1)="SUICIDE SUICIDAL SELF-INJURY RISK"
 ^DIC(620,2,0)="Violence Risk^B"

@@ -7,7 +7,7 @@ LAB ;Requires Lab 5.0 and Mailman 7.0 (Spooling to XMBS GlobaL)
  ;    LRRDEV=Name of the spool Device. 
  ;           Default is "SPOOL80"  if not defined.
  ;   LRRSITE=Name Of Referring Lab (Should be domain file
- ;           entry i.e "MILWAUKEE.DOMAIN.EXT")
+ ;           entry i.e "MILWAUKEE.domain.ext")
  ;   LRRNORP=1 If "NEGATIVE" Mail Messages are -NOT- Required.
  ;
  S U="^" S:'$D(DTIME) DTIME=600
@@ -35,7 +35,7 @@ MANYLOC ;Entry point to create lab reports for several sites.
  ;Enter with LRRLST=List of File #44 Locations (abbreviations) 
  ;Separated by ";" (i.e. LRRLST="XXX;YYY")
  ;LRRDLST=List of corresponding domain names to send reports
- ;         to (i.e. LRRDLST="AAA.DOMAIN.EXT;BBB.DOMAIN.EXT")
+ ;         to (i.e. LRRDLST="AAA.domain.ext;BBB.domain.ext")
  F LRRZZ=1:1 S LRRLROC=$P(LRRLST,";",LRRZZ) Q:LRRLROC=""  S LRRSITE=$P(LRRDLST,";",LRRZZ) D LAB
  D KILL Q
  ;

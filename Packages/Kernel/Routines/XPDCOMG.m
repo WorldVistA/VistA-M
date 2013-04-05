@@ -1,5 +1,5 @@
 XPDCOMG ;SFISC/RSD - compare globals ;08/14/2008
- ;;8.0;KERNEL;**304,506**;Jul 10, 1995;Build 11
+ ;;8.0;KERNEL;**304,506,559**;Jul 10, 1995;Build 4
  ;Per VHA Directive 2004-038, this routine should not be modified.
 EN D IX,FIA:'$D(DIRUT),KRN:'$D(DIRUT)
  Q
@@ -16,8 +16,8 @@ IX ;FileMan new style cross-references
 FIA ;FileMan DD and Data
  N DIC,OLDA,XPDFIL,XPDFILO,XPDFILS,XPDS,XPDS0,XPDX,XPDX0,XPDY,XPDY1,XPDZ,XPDZ1,X,Y
  S XPDFIL=0
- F  S XPDFIL=$O(^XTMP("XPDI",XPDA,"FIA",XPDFIL)) Q:'XPDFIL!$D(DIRUT)  S XPDZ1=^(XPDFIL,0),XPDFILO=^(0,1) D
- .I '$D(^DIC(XPDFIL)) W !!," File # ",XPDFIL," is NEW",! Q
+ F  S XPDFIL=$O(^XTMP("XPDI",XPDA,"FIA",XPDFIL)) Q:'XPDFIL!$D(DIRUT)  S X=^(XPDFIL),XPDZ1=^(XPDFIL,0),XPDFILO=^(0,1) D
+ .I '$D(^DIC(XPDFIL)) W !!,?14," FILE # ",XPDFIL," (",X,") is NEW",! Q
  .S XPDZ="^XTMP(""XPDI"","_XPDA,XPDY=XPDZ_",""^DIC"","_XPDFIL_","_XPDFIL_",0",XPDX=XPDY_")"
  .S XPDY=XPDY_",",XPDY1="^DIC("_XPDFIL_",0",XPDS=XPDY1_")",XPDY1=XPDY1_","
  .I $P(XPDFILO,U)="y" D

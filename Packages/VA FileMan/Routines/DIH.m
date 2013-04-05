@@ -1,5 +1,5 @@
 DIH ;SFISC/GFT-HISTOGRAM ;8:19 AM  28SEP2004
- ;;22.0;VA FileMan;**2,61,144**;Mar 30, 1999;Build 5
+ ;;22.0;VA FileMan;**2,61,144**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  I $O(^DOSV(0,IO(0),0))'>0 W !,$C(7),"NO SUB-COUNTS WERE RUN" Q
  K ZTSK S:$D(^%ZTSK) %ZIS="QM" D ^%ZIS G ENDK:POP,QUE:$D(IO("Q"))

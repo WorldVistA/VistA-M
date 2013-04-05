@@ -1,5 +1,5 @@
 FHASM2A ; HISC/REL - Target Weight - Metropolitan 83 ;5/14/93  08:59
- ;;5.5;DIETETICS;**8,20**;Jan 28, 2005;Build 7
+ ;;5.5;DIETETICS;**8,20,27**;Jan 28, 2005;Build 9
 M ; Metropolitan Height & Weight tables
  ; 1983 Metropolitan Life Insurance Company Height & Weight Tables
  ; as measured with 1" heels and clothes weighing 5# for men and 3# for women.
@@ -26,7 +26,6 @@ ALRT ;process nutrition assessment alert.
  Q:'DFN    ;only inpt will have the alert
  Q:'$G(WRD)
  S WARD=$G(^DPT(DFN,.1)) Q:WARD=""
- S ADM=$P($G(^FHPT(FHDFN,"A",0)),U,3)
  S:'$G(FHDUZ) FHDUZ=""
  I $G(DT) S DTE=DT
  S FHSDT=DTE

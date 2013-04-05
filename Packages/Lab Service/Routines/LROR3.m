@@ -13,9 +13,7 @@ C ;;Cancel execute from OR
  I $D(^LRO(69,LRODT,1,LRSN,3)),$P(^(3),"^",2) W !,"Tests already verified for this portion of the order, cannot delete." G END
 C1 S LRORD=+^LRO(69,LRODT,1,LRSN,.1),X=^(2,I,0),LRTSN=+X,LRAD=+$P(X,"^",3),LRAA=+$P(X,"^",4),LRAN=+$P(X,"^",5),(LRNOP,LRACC)="",LRONE=""
  I LRAD,LRAA,LRAN,$D(^LRO(68,LRAA,1,LRAD,1,LRAN,0)),'$D(^XUSEC("LRLAB",DUZ)) W !!,$C(7),"Already accessioned.  Contact lab to cancel.",! G END
-C2 ;
- ;I ORGY=0 D DC^ORX5 S LREND=1 G END
- I ORGY=0 S LREND=1 G END
+C2 I ORGY=0 D DC^ORX5 S LREND=1 G END
  I ORGY=9 D C4
 END K LRODT,LRSN,LRAD,LRAA,LRAN,LRNOP,LRACC,LRONE,LRC,LRDFN,LRDPF,LRSX,LRTSN,LRUSNM
  Q

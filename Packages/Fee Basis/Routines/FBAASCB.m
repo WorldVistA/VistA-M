@@ -1,5 +1,5 @@
-FBAASCB ;AISC/GRR - SUPERVISOR RELEASE ;12/20/2010
- ;;3.5;FEE BASIS;**38,61,116,117**;JAN 30, 1995;Build 9
+FBAASCB ;AISC/GRR - SUPERVISOR RELEASE ;4/4/2012
+ ;;3.5;FEE BASIS;**38,61,116,117,132**;JAN 30, 1995;Build 17
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  S FBERR=0 D DT^DICRW
  I '$D(^FBAA(161.7,"AC","C"))&('$D(^FBAA(161.7,"AC","A"))) W !!,*7,"There are no batches Pending Release!" Q
@@ -18,25 +18,26 @@ BT W !! S DIC="^FBAA(161.7,",DIC(0)="AEQ",DIC("S")="I ($G(^(""ST""))=""C""!($G(^
  . I $P(FBUOK,U)="0" W !,"Due to segregation of duties, you cannot also certify an invoice for payment."
  . I $P(FBUOK,U)="E" W !,"This 1358 error must be resolved before the batch can be released."
  ;
- S DA=FBN,DR="0;ST" W !! D EN^DIQ
+ S DA=FBN,DR="0:1;ST" W !! D EN^DIQ
 RD S B=FBN S DIR(0)="Y",DIR("A")="Want line items listed",DIR("B")="NO" D ^DIR K DIR G Q:$D(DIRUT) W:Y @IOF D:Y LIST^FBAACCB:FBTYPE="B3",LISTP^FBAACCB:FBTYPE="B5",LISTT^FBAACCB0:FBTYPE="B2",LISTC^FBAACCB1:FBTYPE="B9"
 RDD S DIR(0)="Y",DIR("A")="Do you want to Release Batch as Correct",DIR("B")="NO" D ^DIR K DIR G Q:$D(DIRUT) I 'Y W !!,"Batch has NOT been Released!",*7 D Q G FBAASCB
- D WAIT^DICD I FBTYPE="B9" D ^FBAASCB0 G SHORT:$D(FBERR),FIN
- D POST I $D(FBERR) G SHORT
- G:FBTYPE="B5" FIN
- G:FBTYPE="B9" FIN
+ D WAIT^DICD
+ S FBAARA=0
+ I FBTYPE="B9" D ^FBAASCB0 G SHORT:$D(FBERR)
+ I FBTYPE="B9",FBAARA>0 S FBAAMT=FBAARA D POST G SHORT:$D(FBERR)
+ I FBTYPE'="B9" D POST I $D(FBERR) G SHORT
 FIN ;
  ; use FileMan to update fields 5 and 6, store date & time (FB*3.5*117)
  S DA=FBN,DIE="^FBAA(161.7,"
  S DR="11////^S X=FBSTAT;6////^S X=DUZ;5////^S X=$$NOW^XLFDT" D ^DIE
  K DA,DIE,DIC,DR
  D UCAUTOP
- S DA=FBN,DR="0;ST",DIC="^FBAA(161.7," W !! D EN^DIQ W !!," Batch has been Released!"
+ S DA=FBN,DR="0:1;ST",DIC="^FBAA(161.7," W !! D EN^DIQ W !!," Batch has been Released!"
  D Q G FBAASCB
 Q I $G(FBN) K ^XTMP("FBAASCB",FBN) L -^FBAA(161.7,FBN)
  K B,J,K,L,M,X,Y,Z,DIC,FBN,A,A1,A2,BE,CPTDESC,D0,DA,DL,DR,DRX,DX,FBAACB,FBAACPT,FBAAON,FBAAOUT,FBVP,FBIN,DK,N,XY,FBINOLD,FBINTOT,FBTYPE,FZ,P3,P4,Q,S,T,V,VID,ZS,FBAAB,FBAAMT,FBAAOB,FBCOMM,FBAUT,FBSITE,I,X,Y,Z,FBERR,DIRUT,FBSTAT,FBLOCK
  K FBAC,FBAP,FBCNH,FBFD,FBI,FBLISTC,FBPDT,FBSC,FBTD,PRCSCPAN,DFN,FBINV
- K FBUOK
+ K FBUOK,FBAARA
  Q
 SHORT ;
  I '$D(FBINV) W !!,*7,"This batch CANNOT be released. Check your 1358.",!

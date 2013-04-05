@@ -1,5 +1,5 @@
-MAGGTUP ;WOIFO/GEK/SG/NST - Imaging System User preferences ; 07 Mar 2011 2:14 PM
- ;;3.0;IMAGING;**7,8,48,45,59,93,94,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+MAGGTUP ;WOIFO/GEK/SG/NST/JSL - Imaging System User preferences ; 07 Mar 2011 2:14 PM
+ ;;3.0;IMAGING;**7,8,48,45,59,93,94,117,122**;Mar 19, 2002;Build 92;Aug 02, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -128,4 +128,7 @@ DFLTARR(ARR) ; Return an Array of All Default settings
  ;
  ; MAG*3.0*94
  S ARR($J,"EKG")="2^1^1^600^400^0"
+ ; MAG*3.0*122
+ S ARR($J,"ANNOTCAPTURE")="Arial^0^36^5^32768^159^0^35^35^0^0"
+ S ARR($J,"ANNOTDISPLAY")="Arial^0^36^5^32768^159^0^35^35^0^0^1"
  Q

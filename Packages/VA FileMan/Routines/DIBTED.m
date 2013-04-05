@@ -1,5 +1,5 @@
 DIBTED ;SFISC/GFT-SCREEN-EDIT A SORT TEMPLATE ;03:43 PM  10 Jul 2002
- ;;22.0;VA FileMan;**111**;Mar 30, 1999
+ ;;22.0;VA FileMan;**111**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  N DIC,DIBT0,DIBTED,DRK,I,J,DDSCHG
  S DIC=.401,DIC(0)="AEQ" D ^DIC Q:Y<1

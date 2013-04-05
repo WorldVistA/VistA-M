@@ -94,7 +94,7 @@ MAIL(STAT) ;
  S MPIF(1,6)="     A31 Errors: "_$P(NODE,"^",7)
  S XMDUZ="MPIF VISTA PACKAGE"
  S XMSUB="Seeding msg "_$P($$SITE^VASITE(),"^",2)_" ("_$P($$SITE^VASITE(),"^",3)_")"
- S XMY("G.CIRN DEV@FORUM.DOMAIN.EXT")="",XMTEXT="MPIF(1,"
+ S XMY("G.CIRN DEV@FORUM.domain.ext")="",XMTEXT="MPIF(1,"
  D ^XMD
  Q
  ;

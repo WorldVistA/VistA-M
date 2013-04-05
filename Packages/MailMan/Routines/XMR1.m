@@ -43,9 +43,9 @@ NORELAY ; We want to prevent this site from unwittingly acting as a relay
  S XMOKDOM="" ; Get list of acceptable sites
  F  S XMOKDOM=$O(^XMB(1,1,4.1,"B",XMOKDOM)) Q:XMOKDOM=""  D
  . S XMC("MY DOMAIN",$$UP^XLFSTR(XMOKDOM))=""
- I $F(^XMB("NETNAME"),".DOMAIN.EXT")=($L(^XMB("NETNAME"))+1) D
+ I $F(^XMB("NETNAME"),".domain.ext")=($L(^XMB("NETNAME"))+1) D
  . ; This is a VA site.  Make sure mail from other VA sites is relayed.
- . I '$D(XMC("MY DOMAIN",".DOMAIN.EXT")) S XMC("MY DOMAIN",^XMB("NETNAME"))=""
+ . I '$D(XMC("MY DOMAIN",".domain.ext")) S XMC("MY DOMAIN",^XMB("NETNAME"))=""
  S XMOKDOM="" ; Make sure this site is an acceptable site!
  F  S XMOKDOM=$O(XMC("MY DOMAIN",XMOKDOM)) Q:XMOKDOM=""  Q:$F(^XMB("NETNAME"),XMOKDOM)=($L(^XMB("NETNAME"))+1)
  I XMOKDOM="" S XMC("MY DOMAIN",^XMB("NETNAME"))="" ; Default

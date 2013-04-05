@@ -1,5 +1,5 @@
-ECXALAR ;ALB/TMD-LAR Extract Report of Untranslatable Results ; 5/5/11 2:39pm
- ;;3.0;DSS EXTRACTS;**46,51,112,132**;Dec 22, 1997;Build 18
+ECXALAR ;ALB/TMD-LAR Extract Report of Untranslatable Results ;6/26/12  16:51
+ ;;3.0;DSS EXTRACTS;**46,51,112,132,136**;Dec 22, 1997;Build 28
  ;
 EN ; entry point
  N X,Y,DATE,ECRUN,ECXOPT,ECXDESC,ECXSAVE,ECXTL,ECTHLD,ECSD,ECSD1,ECSTART,ECED,ECEND,ECXERR,QFLG,PG
@@ -23,6 +23,7 @@ EN ; entry point
 BEGIN ; display report description
  W @IOF,!,"This report prints a listing of results that are not translatable i.e. have",!,"no entry in the Lab Results Translation File (#727.7)."
  W !!,"This report is a pre-extract type audit report and should be run prior to the",!,"generation of the actual extract.  Running this report has no effect on the",!,"actual extract."
+ W !!,"**WARNING: This report can take a long time to process.  You are encouraged",!,"to queue this report for processing during the evening if possible.**" ;136
  W !!,"Enter the date range for which you would like to scan the ",ECXTL," Extract records.",!
  S DONE=0 F  S (ECED,ECSD)="" D  Q:QFLG!DONE
  .K %DT S %DT="AEX",%DT("A")="Starting with Date: ",%DT(0)=-DATE D ^%DT

@@ -1,5 +1,5 @@
 GMRCP ;SLC/DLT,DCM - Message audit and status process ;4/19/01  11:52
- ;;3.0;CONSULT/REQUEST TRACKING;**1,4,17,22,27,53,55**;DEC 27, 1997;Build 4
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,4,17,22,27,53,55,46**;DEC 27, 1997;Build 23
  ;Processing action on Generic Requests/Consults from OE/RR
 MSG(GMRCDFN,GMRCALRM,GMRCIFN,ORN,GMRCADUZ,FLG) ;send alert notification information to OERR for notification or update
  ;GMRCDFN=patient's DFN           GMRCORFN=OR file # ^OR(100,GMRCORFN
@@ -18,7 +18,8 @@ MSG(GMRCDFN,GMRCALRM,GMRCIFN,ORN,GMRCADUZ,FLG) ;send alert notification informat
  . S GMRCADUZ(+$P(^GMR(123,+GMRCIFN,0),U,14))=""
  I FLG,$P(^GMR(123,+GMRCIFN,0),"^",11) S GMRCADUZ($P(^(0),"^",11))=""
  S:'$D(GMRCADUZ) GMRCADUZ=""
- N X S X="" F  S X=$O(GMRCADUZ(X)) Q:((X="")!(X=DUZ))  I +X=DUZ K GMRCADUZ(X) ;Don't send alert to user generating alert
+ ;N X S X="" F  S X=$O(GMRCADUZ(X)) Q:(X="")  I +X=DUZ,X'=DUZ K GMRCADUZ(X) ;Don't send alert to user generating alert
+ K GMRCADUZ(DUZ) ;Don't send alert to user generating alert
  D EN^ORB3(ORN,GMRCDFN,GMRCORFN,.GMRCADUZ,GMRCALRM,GMRCIFN)
  Q
 AUDIT ;Build processing activity audit trail multiple.

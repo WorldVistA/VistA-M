@@ -17,22 +17,20 @@ BEGIN ; Create DDEFS
  I $O(^USR(8930,"B","CLINICAL COORDINATOR",""))="" D  Q
  . W !,"I can't find User Class CLINICAL COORDINATOR. Option cannot be run without it."
  ; -- Set basic DDEF data into BASICS node of data array ^TMP("TIU169":
- ;D SETBASIC^TIUEN169
+ D SETBASIC^TIUEN169
  ; -- If DC was created or designated on previous run, set DESDC &
  ;    check for new dups:
  I $G(^XTMP("TIU169",1,"DONE")) D  Q:$G(TIUQUIT)
  . S DESDC=^XTMP("TIU169",1,"DONE")
  . W !!,"Proceeding with Document Class C&P EXAMINATION REPORTS..."
- . ; D TIUDUPS^TIUEN169(.TIUDUPS,+DESDC)
- . ;I $G(TIUDUPS("NOTINDC")) D LISTDUPS^TIUEN169(.TIUDUPS,0) S TIUQUIT=1 Q
- . I $G(TIUDUPS("NOTINDC")) S TIUQUIT=1 Q
+ . D TIUDUPS^TIUEN169(.TIUDUPS,+DESDC)
+ . I $G(TIUDUPS("NOTINDC")) D LISTDUPS^TIUEN169(.TIUDUPS,0) S TIUQUIT=1 Q
  ; -- If DC NOT created or designated on previous run, designate:
  I '$G(^XTMP("TIU169",1,"DONE")) D  Q:$G(TIUQUIT)
- . ;S DESDC=$$DESGNATE^TIUEN169
+ . S DESDC=$$DESGNATE^TIUEN169
  . I +DESDC=-1 W !,"Try later." S TIUQUIT=1 Q
- . ;D TIUDUPS^TIUEN169(.TIUDUPS,+DESDC)
- . ;I +$G(TIUDUPS("NOTINDC")) D LISTDUPS^TIUEN169(.TIUDUPS,0) S TIUQUIT=1 Q
- . I +$G(TIUDUPS("NOTINDC")) S TIUQUIT=1 Q
+ . D TIUDUPS^TIUEN169(.TIUDUPS,+DESDC)
+ . I +$G(TIUDUPS("NOTINDC")) D LISTDUPS^TIUEN169(.TIUDUPS,0) S TIUQUIT=1 Q
  . ; -- User has not designated a DC:
  . I +DESDC=0 D  Q:$G(TIUQUIT)
  . . S TIUY=$$READ^TIUU("YO","I will create a new Document Class with new Titles under it. OK","YES")
@@ -43,7 +41,7 @@ BEGIN ; Create DDEFS
  . . I +TIUY'=1 W !,"OK, try again when you're ready." S TIUQUIT=1
  . ; -- Matching titles in Des DC:
  . I +DESDC>0,+$G(TIUDUPS("INDC")) D  Q:$G(TIUQUIT)
- . . ;D LISTDUPS^TIUEN169(.TIUDUPS,1)
+ . . D LISTDUPS^TIUEN169(.TIUDUPS,1)
  . . S TIUY=$$READ^TIUU("YO","I will create the non-matching Titles under Document Class "_$P(DESDC,U,2)_", and skip the matching Titles. OK","YES")
  . . I +TIUY'=1 W !,"OK, try again when you're ready." S TIUQUIT=1
  . ; -- If user has designated DC and agreed, change Name & set DONE node:

@@ -1,5 +1,12 @@
-YTONLY ;ASF/ALB-Restricted Psych Testing Option ;7/9/96  11:50
- ;;5.01;MENTAL HEALTH;**19,37**;Dec 30, 1994
+YTONLY ;ASF/ALB,HIOFO/FT - Restricted Psych Testing Option ;8/7/12 3:41pm
+ ;;5.01;MENTAL HEALTH;**19,37,60**;Dec 30, 1994;Build 47
+ ;
+ ;Reference to VADPT APIs supported by DBIA #10061
+ ;Reference to ^%ZIS supported by IA #10086
+ ;Reference to ^XLFDT APIs supported by DBIA #10103
+ ;Reference to ^VA(200 supported by IA #10060
+ ;Reference to ^XLFSTR supported by DBIA #10104
+ ;
 MAIN ; main loop
  S (YSXT,YSENTRY)=$O(^YTT(601,"B",YSCODE,0))
  S YSXTP=1,T1=1,T1(0)=$P(^YTT(601,YSXT,"P"),U,4)
@@ -24,12 +31,12 @@ ADMIN ;
  D A4^YTAR
  Q
 RESTART ;
- K DIR S DIR(0)="S^R:Restart "_YSCODE_";D:Delete previous incomplete and adminster;Q:Quit"
+ K DIR S DIR(0)="S^R:Restart "_YSCODE_";D:Delete previous incomplete and administer;Q:Quit"
  D ^DIR K DIR
  Q:$D(DIRUT)!(Y="Q")
  I Y="D" S YSTEST=YSENTRY D KT,ADMIN Q
  S YSTEST=YSENTRY
- S YTLM=$P($G(^YSA(602,1,0)),U,3) S:YTLM="" YTLM=3
+ S YTLM=3
  I $P($G(^YTT(601,YSTEST,0)),U,16) S YTLM=$P(^(0),U,16)
  S X2=$S($P(^YTD(601.4,YSDFN,1,YSTEST,0),U,8):$P(^(0),U,8),1:$P(^(0),U,2))
  S X=$$FMDIFF^XLFDT(DT,X2,1)
@@ -60,7 +67,7 @@ CLERK ;
  Q
 PT ;
  D ^YSLRP G:YSDFN<1 END D ENPT^YSUTL
- I YSSEX="" W !,"Gender not poperly specified. Call IRM" H 3 G MAIN
+ I YSSEX="" W !,"Gender not properly specified. Call IRM" H 3 G MAIN
  Q
 OPT1 ;admin, clerk, print
  W !
@@ -98,9 +105,6 @@ PREV ;
 KT ;
  K J I $D(^YTD(601.4,YSDFN,1,YSTEST)) S YSENTRY=YSTEST D ENKIL^YTFILE
  Q
-SF36 ;
- S YSCODE="SF36" G MAIN
- ;
 END ;
  D KVAR^VADPT
  K %,%Y,A,A1,B,C,I,J,N2,T1,X,X2,Y,YSAGE,YSBEGIN,YSBL,YSCL,YSCLERK

@@ -1,8 +1,8 @@
-ECXFEKEY ;BIR/DMA,CML-Print Feeder Keys; [ 05/15/96  9:44 AM ] ; 8/15/06 9:10am
- ;;3.0;DSS EXTRACTS;**10,11,8,40,84,92,123,132**;Dec 22, 1997;Build 18
+ECXFEKEY ;BIR/DMA,CML-Print Feeder Keys; [ 05/15/96  9:44 AM ] ;5/3/12  11:33
+ ;;3.0;DSS EXTRACTS;**10,11,8,40,84,92,123,132,136**;Dec 22, 1997;Build 28
 EN ;entry point from option
  W !!,"Print list of Feeder Keys:",!
- W !,"Select : 1. CLI",!,?9,"2. ECS",!,?9,"3. LAB",!,?9,"4. NUT",!,?9,"5. PHA",!,?9,"6. RAD",!,?9,"7. SUR",! S DIR(0)="L^1:7" D ^DIR Q:$D(DIRUT)
+ W !,"Select : 1. CLI",!,?9,"2. ECS",!,?9,"3. LAB",!,?9,"4. NUT",!,?9,"5. PHA",!,?9,"6. RAD",!,?9,"7. SUR",!,?9,"8. PRO",! S DIR(0)="L^1:8" D ^DIR Q:$D(DIRUT)  ;136
  S ECY=Y
  I ECY["2" D
  .W !!,"The Feeder Key List for the Feeder System ECS can be printed by:",!?5,"(O)ld Feeder Key sort by Category-Procedure",!?5,"(N)ew Feeder Key sort by Procedure-CPT Code"
@@ -21,7 +21,7 @@ EN ;entry point from option
 START ;queued entry point
  I '$D(DT) S DT=$$HTFM^XLFDT(+$H)
  K ^TMP($J)
- F ECLIST=1:1 S EC=$P(ECY,",",ECLIST) Q:EC=""  D:EC=1 CLI D:EC=2 ECS D:EC=3 LAB D:EC=4 NUT D:EC=5 PHA D:EC=6 RAD D:EC=7 SUR^ECXFEKE1
+ F ECLIST=1:1 S EC=$P(ECY,",",ECLIST) Q:EC=""  D:EC=1 CLI D:EC=2 ECS D:EC=3 LAB D:EC=4 NUT D:EC=5 PHA D:EC=6 RAD D:EC=7 SUR^ECXFEKE1 D:EC=8 PRO ;136
  U IO D PRINT^ECXFEKE1
  Q
 LAB S EC=0
@@ -123,6 +123,20 @@ NUT ;Feeder keys for Nutrition and Food Service extract
  . S IENS=""_IN_","_TIEN_","_""
  . S KEY=$$GET1^DIQ(728.451,IENS,1,"E")
  . S ^TMP($J,"ECX",KEY,DIET)=TYP_"  "_$$GET1^DIQ(728.451,IENS,.01,"E")
+ Q
+PRO ;Prosthetics Feeder Key section, API added in patch 136
+ N H,HCPCS,CODE,CPTNM,DESC,TYPE,SOURCE,LOC,FKEY,KEY
+ S H=0
+ F  S H=$O(^ECX(727.826,H)) Q:+H<1  D
+ .S HCPCS=$P($G(^ECX(727.826,H,0)),U,33),KEY=$E($P($G(^ECX(727.826,H,0)),U,11),6,20)
+ .I HCPCS'="" I '$D(FKEY(HCPCS_KEY)) S FKEY(HCPCS_KEY)=HCPCS
+ S HCPCS="" F  S HCPCS=$O(FKEY(HCPCS)) Q:HCPCS=""  D
+ .S CODE=$$CPT^ICPTCOD(FKEY(HCPCS)) Q:+CODE=-1
+ .S CPTNM=HCPCS,DESC=$P(CODE,U,3)
+ .I $P(CODE,U,2)=""!(DESC="") Q
+ .S TYPE=$E(HCPCS,6),SOURCE=$E(HCPCS,7),LOC=$S(HCPCS["REQ":"REQ",HCPCS["REC":"REC",1:"")
+ .S DESC=DESC_$S(TYPE="R":"/Rent",TYPE="N":"/New",TYPE="X":"/Repair",1:"")_$S(SOURCE="V":"/VA",SOURCE="C":"/COM",1:"")_$S(LOC="REQ":"/XXX Site REQ",LOC="REC":"/XXX Site REC",1:"")
+ .S ^TMP($J,"PRO",CPTNM,CPTNM)=DESC
  Q
 QUIT ;
  K ECY,ECPHA,ECECS,ECLAB,ECPPDU,DIR,DIRUT,DUOUT,X,Y

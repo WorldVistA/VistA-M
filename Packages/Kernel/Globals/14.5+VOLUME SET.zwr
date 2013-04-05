@@ -3,5 +3,4 @@ ZWR
 ^%ZIS(14.5,0)="VOLUME SET^14.5^1^1"
 ^%ZIS(14.5,1,0)="PLA^N^N^N^N^PLA^1^^4^G^1^12"
 ^%ZIS(14.5,"B","PLA",1)=""
-^%ZIS(14.5,"LOGON","PLA")="0"
 ^%ZIS(14.5,"LOGON","VISTA")="0"

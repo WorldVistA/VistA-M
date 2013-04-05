@@ -1,8 +1,9 @@
-PRCSD12 ;WISC/SAW-CONTROL POINT ACT. 2237 TERMINAL DISPLAY ;10-11-91/10:16
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCSD12 ;WISC/SAW-CONTROL POINT ACT. 2237 TERMINAL DISPLAY ;6/22/12  16:26
+V ;;5.1;IFCAP;**167**;Oct 20, 2000;Build 17
+ ;Per VHA Directive 2004-38, this routine should not be modified.
  S U="^",P(1)=0,Z1="" D NOW^%DTC S Y=% D DD^%DT W @IOF S L="",$P(L,"-",IOM)="-"
  S P=$S($D(^PRCS(410,DA,1)):$P(^(1),U,3),1:""),P=$S(P="EM":"***EMERGENCY***",P="SP":"*SPECIAL*",1:"STANDARD") W ?26,"PRIORITY: ",P
+ W:$$ECMS2237^PRCHJUTL(DA) ?55,"Sent to eCMS"
  W !,Y,?31,$P(^PRCS(410,DA,0),U) W !,L
  W !,?16,"REQUEST, TURN-IN, AND RECEIPT FOR PROPERTY OR SERVICES" W !,L
  W !,"TO: A&MM Officer",?24,"Requesting Office"

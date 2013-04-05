@@ -1,5 +1,5 @@
 DICATTDK ;SFISC/GFT-DELETE FIELD ;25MAY2007
- ;;22.0;VA FileMan;**8,118,151**;Mar 30, 1999;Build 10
+ ;;22.0;VA FileMan;**8,118,151**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;FROM ^DICATTDE
 KILL N M,DI,DA,DQ,DICL,D0,DIU,DQI,S,Q,O,X,DICATT4M

@@ -1,5 +1,5 @@
 DICATT22 ;SFISC/GFT-CREATE A SUBFILE ;7:38 AM  3 Jan 2002
- ;;22.0;VA FileMan;**52,89**;Mar 30, 1999
+ ;;22.0;VA FileMan;**52,89**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  G M:V I P,$D(^DD(J(N-1),P,0)) S I=A_$E("I",$P(^(0),U,2)["I") D P
  I O,DA=.01,'N S I=$P(@(I(0)_"0)"),U,2) D P

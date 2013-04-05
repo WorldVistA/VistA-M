@@ -1,5 +1,5 @@
 DITC3 ;SFISC/XAK-COMPARE FILE ENTRIES ;9/17/91  3:12 PM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  F I=1:1:(IOSL-$Y-1) W !
  W "Enter RETURN to continue: " R X:DTIME S:'$T DTOUT=1

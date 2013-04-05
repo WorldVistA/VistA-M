@@ -1,5 +1,5 @@
 PSJOERI ;BIR/LDT-CPRS ORDER UPDATE FOR INPATIENT MEDS ; 7/30/08 7:51am
- ;;5.0; INPATIENT MEDICATIONS ;**86,108,204**;16 DEC 97;Build 3
+ ;;5.0;INPATIENT MEDICATIONS ;**86,108,204,276**;16 DEC 97;Build 3
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191
  ; Reference to ^%DTC is supported by DBIA 10000
@@ -16,9 +16,10 @@ ENR(DFN,ON,PSJWARD) ;
  . N DA,DR,DIE,DIK,PSIVREA,PSIVALCK,PSIVOPT,PSIVAL,PSIVALT,X,Y
  . S P(3)=$P($G(^PS(55,DFN,"IV",+ON,0)),"^",3)
  . S X=$G(^PS(55,DFN,"IV",+ON,"ADC")) I X K ^PS(55,"ADC",X,DFN,+ON),^PS(55,DFN,"IV",+ON,"ADC")
- . S PSIVACT=1,DR="100///A;.03////"_+$P($G(^PS(55,DFN,"IV",+ON,2)),U,7)_";9////^S X=PSJWARD;109///@;116///@;121///@",DIE="^PS(55,"_DFN_",""IV"",",DA=+ON,DA(1)=DFN
+ . ;*276 - Update Display Status on reinstate
+ . S PSIVACT=1,DR="100///A;157///@;.03////"_+$P($G(^PS(55,DFN,"IV",+ON,2)),U,7)_";9////^S X=PSJWARD;109///@;116///@;121///@",DIE="^PS(55,"_DFN_",""IV"",",DA=+ON,DA(1)=DFN
  .;PSJ*5.0*204
- . I $P($G(^PS(55,DFN,"IV",+ON,4)),"^",18)=1 S DR="100////H;.03////"_+$P($G(^PS(55,DFN,"IV",+ON,2)),U,7)_";9////^S X=PSJWARD;109///@;116///@;121///@"
+ . I $P($G(^PS(55,DFN,"IV",+ON,4)),"^",18)=1 S DR=$S(+$P($G(^PS(55,DFN,"IV",+ON,0)),U,10)=1:"100////H;157////HP",1:"100////H;157////@")_";.03////"_+$P($G(^PS(55,DFN,"IV",+ON,2)),U,7)_";9////^S X=PSJWARD;109///@;116///@;121///@"
  . N CHKIT S CHKIT=$G(^PS(55,DFN,"IV",+ON,2)) I $P(CHKIT,U,6)["P",($P(CHKIT,U,9)="R") S DR=DR_";114///@;123///@"
  . D ^DIE
  . D IRA(1),EN1^PSJHL2(DFN,"SC",ON,"AUTO REINSTATED (CPRS)")
@@ -28,9 +29,10 @@ ENR(DFN,ON,PSJWARD) ;
  . I $P(^PS(55,DFN,5,+ON,4),"^",11)="" Q
  . N DA,DR,DIE,PSGFD,X,Z
  . S PSGFD=$P($G(^PS(55,DFN,5,+ON,2)),"^",3)
- . S DR="28////A;34////^S X=PSGFD;68////^S X=PSJWARD",Z=$G(^PS(55,DFN,5,+ON,4)),$P(Z,U,11)="",$P(Z,"^",15,17)="^^" S ^(4)=Z
+ . ;*276 - Update Display Status on reinstate
+ . S DR="28////A;136////@;34////^S X=PSGFD;68////^S X=PSJWARD",Z=$G(^PS(55,DFN,5,+ON,4)),$P(Z,U,11)="",$P(Z,"^",15,17)="^^" S ^(4)=Z
  .;PSJ*5.0*204
- . I $P($G(^PS(55,DFN,5,+ON,4)),"^",18)=1 S DR="28////H;34////^S X=PSGFD;68////^S X=PSJWARD"
+ . I $P($G(^PS(55,DFN,5,+ON,4)),"^",18)=1 S DR=$S(+$P($G(^PS(55,DFN,5,+ON,4)),U,26)=1:"28////H;136////HP",1:"28///H;136////@")_";34////^S X=PSGFD;68////^S X=PSJWARD"
  . N CHKIT S CHKIT=$G(^PS(55,DFN,5,+ON,0)) I $P(CHKIT,U,26)["P",($P(CHKIT,U,27)="R") S DR=DR_";105///@;107///@"
  . S DIE="^PS(55,"_DFN_",5,",DA(1)=DFN,DA=+ON D ^DIE
  . S X=$P(^PS(55,DFN,5,+ON,0),"^",20),$P(^(0),"^",20)="" K:X ^PS(55,"AUDDD",X,DFN,+ON) ;Removed cross reference after reinstate order.

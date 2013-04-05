@@ -1,5 +1,5 @@
-LR7OGMG ;DALOI/STAFF- Interim report rpc memo grid ;7/1/09  07:26
- ;;5.2;LAB SERVICE;**187,230,286,290,331,364,395**;Sep 27, 1994;Build 27
+LR7OGMG ;DALOI/STAFF- Interim report rpc memo grid ;11/20/09  10:35
+ ;;5.2;LAB SERVICE;**187,230,286,290,331,364,395,350**;Sep 27, 1994;Build 230
  ;
 GRID(OUTCNT) ; from LR7OGMC
  N ACC,AGE,CDT,CMNT,DATA,DOC,FLAG,IDT,INTP,LINE,LRCW,LRX,MPLS,PLS,PORDER,PRNTCODE,RANGE,SEX,SPEC,SUB,TCNT,TESTNAME,TESTNUM
@@ -48,31 +48,45 @@ GRID(OUTCNT) ; from LR7OGMC
  . . S ^TMP("LR7OGX",$J,"OUTPUT",OUTCNT)="   "_LINE
  . . S OUTCNT=OUTCNT+1
  ;
+ ; Display reporting lab
+ I $$GET^XPAR("DIV^PKG","LR REPORTS FACILITY PRINT",1,"Q")#2 D
+ . S LRX=+$G(^LR(LRDFN,"CH",IDT,"RF"))
+ . I LRX D RL(LRX)
+ ;
  D PLS
- ;S ^TMP("LR7OGX",$J,"OUTPUT",OUTCNT)="Report Released Date/Time: "_$$FMTE^XLFDT($P(ZERO,"^",3),"M"),OUTCNT=OUTCNT+1
+ ;
+ Q
+ ;
+ ;
+RL(LRX) ; Set reporting lab into TMP global
+ ; Call with LRX = IEN of entry in file #4
+ ;
+ N LINE
+ S LINE=$$PLSADDR^LR7OSUM2(LRX)
+ D SETLINE^LR7OGMP(" ",.OUTCNT)
+ D SETLINE^LR7OGMP("Reporting Lab: "_$P(LINE,"^"),.OUTCNT)
+ D SETLINE^LR7OGMP("               "_$P(LINE,"^",2),.OUTCNT)
+ D SETLINE^LR7OGMP(" ",.OUTCNT)
  Q
  ;
  ;
 PLS ; List performing laboratories
  ; If multiple performing labs then list tests associated with each lab.
  ;
- N CNT,LINE,LRPLS,X
+ N CNT,LINE,LLEN,LRPLS,TESTNAME,X
  S (CNT,LRPLS)=0
  F  S LRPLS=$O(^TMP("LRPLS",$J,LRPLS)) Q:LRPLS<1  D
  . I CNT S ^TMP("LR7OGX",$J,"OUTPUT",OUTCNT)=" ",OUTCNT=OUTCNT+1
  . I $D(^TMP("LRMPLS",$J,LRPLS)) D
- . . S TESTNAME="",LINE="For test(s): "
+ . . S TESTNAME="",LINE="For test(s): ",LLEN=13
  . . F  S TESTNAME=$O(^TMP("LRMPLS",$J,LRPLS,TESTNAME)) Q:TESTNAME=""  D
- . . . I ($L(LINE)+$L(TESTNAME))>240 D
- . . . . S ^TMP("LR7OGX",$J,"OUTPUT",OUTCNT)=LINE
- . . . . S OUTCNT=OUTCNT+1,LINE=""
- . . . S LINE=LINE_TESTNAME_", "
- . . S ^TMP("LR7OGX",$J,"OUTPUT",OUTCNT)=LINE,OUTCNT=OUTCNT+1
- . S LINE=$$NAME^XUAF4(LRPLS)
- . S X=$$PADD^XUAF4(LRPLS)
- . S LINE=LINE_"  "_$P(X,U)_"  "_$P(X,U,2)_", "_$P(X,U,3)_" "_$P(X,U,4)
- . S ^TMP("LR7OGX",$J,"OUTPUT",OUTCNT)="Performing Lab: "_LINE
- . S OUTCNT=OUTCNT+1,CNT=CNT+1
+ . . . S X=$L(TESTNAME)
+ . . . I (LLEN+X)>240 S ^TMP("LR7OGX",$J,"OUTPUT",OUTCNT)=LINE,OUTCNT=OUTCNT+1,LINE="",LLEN=0
+ . . . S LINE=LINE_$S(LLEN>13:", ",1:"")_TESTNAME,LLEN=LLEN+X+$S(LLEN>13:2,1:0)
+ . . I LINE'="" S ^TMP("LR7OGX",$J,"OUTPUT",OUTCNT)=LINE,OUTCNT=OUTCNT+1
+ . S LINE=$$PLSADDR^LR7OSUM2(LRPLS)
+ . S ^TMP("LR7OGX",$J,"OUTPUT",OUTCNT)="Performing Lab: "_$P(LINE,"^"),OUTCNT=OUTCNT+1,CNT=CNT+1
+ . S ^TMP("LR7OGX",$J,"OUTPUT",OUTCNT)="                "_$P(LINE,"^",2),OUTCNT=OUTCNT+1
  ;
  K ^TMP("LRPLS",$J),^TMP("LRMPLS",$J)
  Q

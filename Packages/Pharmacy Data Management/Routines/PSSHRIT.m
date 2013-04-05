@@ -1,5 +1,5 @@
 PSSHRIT ;WOIFO/SG,PO - Transmits a "ping" to determine if FDB server is down and record the down time ;7/30/2008
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,168**;9/30/97;Build 4
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,168,164**;9/30/97;Build 9
  ;
  ;External reference to IN^PSSHRQ2 supported by DBIA 5369
  ;
@@ -143,8 +143,29 @@ GLASTRUN() ; get last run time
 RUNTEST ; run interaction test to PEPS server
  ; called from PSS CHECK PEPS SERVICES SETUP option
  D KILL^XUSCLEAN
- N STATUS,X,PSSMCHK
- S PSSMCHK="CHECK"
+ N STATUS,X,PSSFLAG,%ZIS,POP,ZTDESC,ZTQUEUED,ZTREQ,ZTRTN
+ S PSSFLAG=ION
+ ;
+ W !!,"This option performs several checks. You may queue this report if you wish."
+ W !!,"Among these checks are:"
+ W !,"-----------------------"
+ W !,"A connection check to the Vendor Database"
+ W !,"Drug-Drug Interaction Check"
+ W !,"Duplicate Therapy Order Check"
+ W !,"Dosing Order Check"
+ W !,"Custom Drug-Drug Interaction Check"
+ ;
+ W ! S %ZIS="MQ",%ZIS("A")="Select Device: " D ^%ZIS G EXIT:POP
+ ;
+ IF '$D(IO("Q"))&(PSSFLAG=ION) D TESTS^PSSHRIT  Q
+ ELSE  IF $D(IO("Q"))!(PSSFLAG'=ION)  D  Q
+ .S ZTRTN="QTESTS^PSSHRIT",ZTDESC="Interaction test to PEPS server"
+ .D ^%ZTLOAD D HOME^%ZIS,^%ZISC K IO("Q") Q
+ ;
+EXIT S:$D(ZTQUEUED) ZTREQ="@" Q
+ ;
+TESTS ; interaction tests to PEPS server
+ ;
  S STATUS=$$CONCHK()
  D PRSRTN Q:(STATUS=0)!(X="^") 
  ;
@@ -158,7 +179,25 @@ RUNTEST ; run interaction test to PEPS server
  D PRSRTN Q:X="^" 
  ;
  S STATUS=$$CUSTOM()
- D PRSRTN Q:X="^" 
+ D PRSRTN Q:X="^"
+ ;
+ Q
+ ;
+QTESTS ; queued interaction tests to PEPS server
+ ;
+ N %,PSSTIME,PSSCOUNT S PSSTIME="",PSSCOUNT=0
+ D NOW^%DTC S PSSTIME=$$FMTE^XLFDT(%,"1P")
+ W ! F PSSCOUNT=1:1:79 W "-"
+ W !!,?15,"Check PEPS Services Setup",?55,PSSTIME,!!
+ F PSSCOUNT=1:1:79 W "-"
+ W !!
+ ;
+ S STATUS=$$CONCHK()
+ S STATUS=$$INTERACT()
+ S STATUS=$$DUPTHRPY()
+ S STATUS=$$DOSECHK()
+ S STATUS=$$CUSTOM()
+ ;
  Q
  ;
 CONCHK() ; check connection
@@ -381,4 +420,23 @@ SCUST ;Set Custom info
  I $D(^TMP($J,BASE,"OUT","DRUGDRUG","S",DRUG1,ORDER,1)) S INFO=$G(^TMP($J,BASE,"OUT","DRUGDRUG","S",DRUG1,ORDER,1,"PMON",9,0)) Q
  I $D(^TMP($J,BASE,"OUT","DRUGDRUG","S",DRUG2,"I;10U;PROFILE;10",1)) S INFO=$G(^TMP($J,BASE,"OUT","DRUGDRUG","S",DRUG2,"I;10U;PROFILE;10",1,"PMON",9,0)) Q
  S INFO=""
+ Q
+ ;
+VENDRPT ;**Prints out the VENDOR INTERFACE DATA FILE (#59.74) sorted by most recent downtime first**
+ ;
+ ;The report retrieves the output using the Fileman EN1^DIP data retrieval call
+ ;
+ W !!,"This report will print out all information related to when and for how long the"
+ W !,"vendor interface is unavailable (sorted by most recent down time first)."
+ W !,"This information comes from the VENDOR INTERFACE DATA FILE."
+ W !!,?15,"*** This has the potential to be a long report ***"
+ W !!,"You may queue the report to print if you wish. You may also ""^"" to halt the"
+ W !,"report at any time.",!!
+ ;
+ N DIC,BY,L,DIPCRIT,FR,TO,DHD,DIOBEG,DIOEND,FLDS
+ S DIC="^PS(59.74,",BY="-.01",L=0,DIPCRIT=1
+ S FR="?,",TO="?,",DHD="VENDOR INTERFACE DATA LIST"
+ S DIOBEG="W @IOF"
+ S FLDS=".01;""DATE/TIME UNAVAILABLE"",1;""DATE/TIME AVAILABLE"""";C26"",2;""TOTAL DOWNTIME"""
+ D EN1^DIP
  Q

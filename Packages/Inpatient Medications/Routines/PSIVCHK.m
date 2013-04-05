@@ -1,5 +1,5 @@
 PSIVCHK ;BIR/PR,MLM-CHECK ORDER FOR INTEGRITY ; 10/1/10 8:48am
- ;;5.0; INPATIENT MEDICATIONS ;**54,58,81,111,213,113,179**;16 DEC 97;Build 45
+ ;;5.0;INPATIENT MEDICATIONS ;**54,58,81,111,213,113,179,248**;16 DEC 97;Build 6
  ;
  ; Reference to ^PS(51.1 supported by DBIA# 2177.
  ; Reference to ^DIE supported by DBIA# 2053.
@@ -32,7 +32,8 @@ M I P(15)<0 S ERR=1 W !,"*** Time interval between doses is less than zero !"
  ;179 Add Error for before dose if given.
  I $G(ON)&$G(DFN)&$G(PSIVCHG) D  ;179 xtra Protection.
  .S PSJLDD=$P($$EN^PSBAPIPM(DFN,ON),"^")
- .I PSJLDD>P(2) S ERR=1 W !,"*** Start date/time CANNOT be before given last dose due ("_$$ENDTC1^PSGMI(PSJLDD)_") ***"
+ .;PSJ*5*248 - Changed warning message
+ .I PSJLDD>P(2) S ERR=1 W !,"*** Start date/time must be set AFTER last BCMA admin time ("_$$ENDTC1^PSGMI(PSJLDD)_")",!,"of this medication ***"
 INF I P(8)="","AH"[P("TYP") S ERR=1 W !,"*** You have no infusion rate defined !"
  I "AH"[P("TYP"),P(8)'?1N.N.1".".1N1" ml/hr",P(8)'?.E1"@"1N.N,P(8)'?1"0."1N1" ml/hr" S ERR=1 W !,"*** Your infusion rate is in an invalid format !"
  I P(8)="",P("TYP")="P" S:'ERR ERR=2 W !,"*** WARNING -- You have not specified an infusion rate. "

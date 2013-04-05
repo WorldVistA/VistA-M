@@ -4,10 +4,9 @@ ENARX21 ;(WASH ISC)/SAW/DH-2162 Archive ;3-28-93
  W ?9,"(","AT AEMS Development"," BY VA FileMan V.17.32)",!,"TO SET UP FOR YOU THE FOLLOWING FILE:",! F I=1:1:1 D 1
  G Q:DIFQ I $D(^DD("VERSION")),^("VERSION")'<17 G GO:$O(^("VERSION",17))="" W !,"BUT I'M OBSOLETE!!" G Q
  W !,"FIRST, I'LL FRESHEN UP YOUR VA FILEMAN...." D N^DINIT
-GO ;D ^ENARX22
- G Q:'$D(DIFQ) S DIK(0)="B"
+GO D ^ENARX22 G Q:'$D(DIFQ) S DIK(0)="B"
  F DIF=1:1:1 S %=$T(IXF+DIF),DIK=$P(%,";",6),N=$P(%,";",3),D=$P(%,";",4)_U_N S:$D(^DIC(+N,0))[0 ^(0)=D S X=$D(@(DIK_"0)")),^(0)=D_U_$S(X#2:$P(^(0),U,3,9),1:U) I '$D(DIFQ(+N)),$P(%,";",5)!'X D IXALL^DIK:$O(^(0))>0 W "."
- ;S DIFROM=0 D ^ENARX23,^ENARX24
+ S DIFROM=0 D ^ENARX23,^ENARX24
  L  W !,*7,"OK, I'M DONE.",!,"NO"_$P("TE THAT FILE",U,DSEC)_" SECURITY-CODE PROTECTION HAS BEEN MADE" S:$D(DIFROM(0)) ^DIC(9.4,DIFROM(0),"VERSION")=DIFROM G Q^DIFROM0
  ;
 1 S X=$T(IXF+I),N=+$P(X,";",3),N(N)=$P(X,";",4),D=$P(X,";",5),S=$P(X,";",6),U="^" W !?3,N,?13,N(N),$P("  (PARTIAL DEFINITION)",U,$P(X,";",7)),$P("  (INCLUDING DATA)",I,D)

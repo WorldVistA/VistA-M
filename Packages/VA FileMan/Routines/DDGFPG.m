@@ -1,5 +1,5 @@
 DDGFPG ;SFISC/MKO-ADD A NEW PAGE ;2:26 PM  13 Sep 1995
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 ADD ;Invoke forms to add a new page

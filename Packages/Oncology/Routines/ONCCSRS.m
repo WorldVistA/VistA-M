@@ -1,5 +1,5 @@
 ONCCSRS ;Hines OIFO/GWB - Re-stage using current version ;11/04/11
- ;;2.11;ONCOLOGY;**43,46,48,51,53,54**;Mar 07, 1995;Build 10
+ ;;2.11;ONCOLOGY;**43,46,48,51,53,54,57**;Mar 07, 1995;Build 6
  ;
  ;Re-stage 2004+ cases using current CS Version
  K DIRUT
@@ -20,6 +20,16 @@ RS ;Re-stage
  W !?3,"Restaging using CS Version ",VERDSP," for ",DIVISION
  S CTR=0,SUCCTR=0,ERRCTR=0
  S XDT=3040000 F  S XDT=$O(^ONCO(165.5,"ADX",XDT)) Q:XDT=""  S IEN=0 F  S IEN=$O(^ONCO(165.5,"ADX",XDT,IEN)) Q:IEN=""  I $$DIV^ONCFUNC(IEN)=DUZ(2) D  G:$G(DIRUT)=1 EXIT
+ .;added p57 for 96703 histology
+ .I (XDT>3120000),($P($G(^ONCO(165.5,IEN,2.2)),U,3)=96703) D  Q
+ ..W !!,"Starting 2012, ","Histology 96703 is obsolete for patient: "
+ ..W $$GET1^DIQ(165.5,IEN,61),"   ",$$GET1^DIQ(165.5,IEN,.02),"   ",$$GET1^DIQ(165.5,IEN,.05),"/",$$GET1^DIQ(165.5,IEN,.06)
+ ..N ONPIC
+ ..F ONPIC=1:1:12 S $P(^ONCO(165.5,IEN,"CS"),U,ONPIC)=""
+ ..F ONPIC=1:1:19 S $P(^ONCO(165.5,IEN,"CS1"),U,ONPIC)=""
+ ..F ONPIC=1:1:19 S $P(^ONCO(165.5,IEN,"CS2"),U,ONPIC)=""
+ ..S $P(^ONCO(165.5,IEN,"CS3"),U,1)=""
+ ..S ERRCTR=ERRCTR+1
  .I $P($G(^ONCO(165.5,IEN,"CS1")),U,11)="" Q
  .I +$P($G(^ONCO(165.5,IEN,"CS1")),U,11)>+VER Q
  .I $P($G(^ONCO(165.5,IEN,"CS1")),U,11)=VER Q

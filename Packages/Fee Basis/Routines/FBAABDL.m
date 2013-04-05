@@ -1,6 +1,6 @@
-FBAABDL ;AISC/DMK-DELETE A BATCH ;23JUL93
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAABDL ;AISC/DMK - DELETE A BATCH ;4/4/2012
+ ;;3.5;FEE BASIS;**132**;JAN 30, 1995;Build 17
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;This routine allows the deletion of a batch that has no line
  ;items associated with it.  Access is restricted to the user
  ;who opened the batch or the holder of the 'FBAASUPERVISOR'
@@ -10,6 +10,7 @@ BT ;select batch
  W ! S DIC="^FBAA(161.7,",DIC(0)="AEQZ",DIC("S")=$S($D(^XUSEC("FBAASUPERVISOR",DUZ)):"",1:"I $P(^(0),U,5)=DUZ")
  D ^DIC K DIC G END:X=""!(X="^") G BT:Y<0 S FBBAT=+Y,FBBAT(0)=Y(0)
  ;
+ I $$GET1^DIQ(161.7,FBBAT_",",25,"I")=1 W !!,"Batch cannot be deleted because:",!?5,$P($T(NOGO+6),";;",2) S FBNO=0 D END G BT
  ;reset batch line count and total dollars first
  I $G(FBBAT) N FBTOTAL,FBLCNT D
  .  D CNTTOT^FBAARB(FBBAT) S DA=FBBAT,DIE="^FBAA(161.7,",DR="10////^S X=FBLCNT;8////^S X=FBTOTAL;S:FBLCNT!(FBTOTAL) Y="""";9///@" D ^DIE K DIE,DR,DA D
@@ -27,7 +28,7 @@ BT ;select batch
  .W !!?5,$P($T(NOGO+5),";;",2)
  I $P(FBBAT(0),U,17)="Y" W !!?5,$P($T(NOGO+4),";;",2) S FBNO=0 D END G BT
  ;display batch and ask if sure want to delete
- W !! S DIC="^FBAA(161.7,",DA=FBBAT,DR="0;ST" D EN^DIQ K DIC,DR,DA
+ W !! S DIC="^FBAA(161.7,",DA=FBBAT,DR="0:1;ST" D EN^DIQ K DIC,DR,DA
  ;
  S DIR(0)="Y",DIR("B")="No",DIR("A")="Sure you want to DELETE this batch" D ^DIR K DIR S:'Y FBNO=0
  I $D(DIRUT)!('Y) D END G BT
@@ -45,3 +46,4 @@ NOGO ;reasons why batch cannot be deleted
  ;;PAYMENT LINE COUNT in batch is greater than zero.
  ;;REJECTS PENDING flag in batch is set to 'YES'.
  ;;Batch has INVOICES associated with it.
+ ;;Batch was rejected using the Reprocess Overdue Batch option.

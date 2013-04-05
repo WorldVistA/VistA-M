@@ -1,6 +1,9 @@
-ALPBFRM1 ;OIFO-DALLAS MW,SED,KC -STANDARD PRINT FORMATTING UTIL;01/01/03
- ;;3.0;BAR CODE MED ADMIN;**8,48**;Mar 2004;Build 15
+ALPBFRM1 ;OIFO-DALLAS MW,SED,KC -STANDARD PRINT FORMATTING UTIL;2/24/12 12:11am
+ ;;3.0;BAR CODE MED ADMIN;**8,48,69**;Mar 2004;Build 16
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;*69 move code to print Long Wp special istructions lines near end of
+ ;    a grid boundary
  ;
 F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  ; output array...
@@ -16,7 +19,7 @@ F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  ;           (note: total line count is returned at RESULTS(0))
  I $D(DATA)="" Q
  ;
- N ALPBADM,ALPBDAYS,ALPBDRUG,ALPBIBOX,ALPBNBOX,ALPBPBOX,ALPBSTOP,ALPBTEXT,ALPBTIME,ALPBX,DATE,LINE,BOLDON,BOLDOFF,X,ALPBPRNG,ALPBFLG,ALPBPRN,ALPBMLC
+ N ALPBADM,ALPBDAYS,ALPBDRUG,ALPBIBOX,ALPBNBOX,ALPBPBOX,ALPBSTOP,ALPBTEXT,ALPBTIME,ALPBX,DATE,LINE,BOLDON,BOLDOFF,X,ALPBPRNG,ALPBFLG,ALPBPRN,ALPBMLC,ALPBTSTART
  ; to use BOLD, comment out the next line and remove comments from
  ; the following five lines...
  S BOLDON="<<",BOLDOFF=">>"
@@ -109,19 +112,6 @@ F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  S ALPBPRNG=0
  S:$P($G(DATA(4)),"^",3)["PRN" ALPBPRNG=1
  ;
- ; provider comments, special instructions, and other print info...
- I +$O(DATA(5,0)) D
- .K ALPBCMNT
- .M ALPBCMNT=DATA(5)
- .S ALPBCOL=60
- .D FTEXT^ALPBFRMU(ALPBCOL,.ALPBCMNT,.ALPBTEXT)
- .K ALPBCMNT
- .S ALPBX=0
- .F  S ALPBX=$O(ALPBTEXT(ALPBX)) Q:'ALPBX  D
- ..S ALPBLINE=ALPBTEXT(ALPBX,0)
- ..S LINE=LINE+1
- ..S RESULTS(LINE)=ALPBLINE
- .K ALPBCOL,ALPBLINE,ALPBTEXT,ALPBX
  ;S LINE=LINE+1,RESULTS(LINE)=""
  ;
  ; provider, pharmacist or entry person, and verifier...
@@ -191,6 +181,7 @@ F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  S ALPBNBOX="******|"
  I +$G(ALPBADM)=0 S ALPBADM=8
  ;S ALPBPRN=ALPBADM+4
+ S ALPBTSTART=$P($G(DATA(1)),"^",1)
  S ALPBSTOP=$P($G(DATA(1)),"^",2)
  F I=1:1:ALPBADM D
  .S ALPBPRN=I+3
@@ -205,9 +196,11 @@ F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  .F J=1:1:DAYS D
  ..S ALPBDAY=ALPBDAYS(J)_"."_ALPBADMT
  ..S ALPBPBOX=ALPBIBOX
- ..;print asterisks in the ADMIN DATE & TIME boxes if the medications start date is in the future, and if the stop date has expired...
- ..I ALPBDAY<$P(DATA(1),"^",1) S ALPBPBOX=ALPBNBOX
- ..I ALPBDAY>ALPBSTOP!(ALPBDAY=ALPBSTOP) S ALPBPBOX=ALPBNBOX
+ ..;prints asterisks in boxes if start date is in the future
+ ..;and if the stop date has already expired
+ ..I ALPBDAY<ALPBTSTART S ALPBPBOX=ALPBNBOX
+ ..I ALPBDAY>ALPBSTOP S ALPBPBOX=ALPBNBOX
+ ..;I ALPBDAY=ALPBSTOP!(ALPBDAY>ALPBSTOP) S ALPBPBOX=ALPBNBOX
  ..S RESULTS(I+3)=RESULTS(I+3)_ALPBPBOX
  .K ALPBADMT,ALPBPBOX,ALPBDAY
  K ALPBIBOX,ALPBNBOX
@@ -217,6 +210,18 @@ F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  .S:'$D(RESULTS(ALPBPRN)) RESULTS(ALPBPRN)=" ",ALPBFLG=1
  .S RESULTS(ALPBPRN)=$$PAD^ALPBUTL(RESULTS(ALPBPRN),63)_"  PRN Effectiveness:_____________"
  .S:ALPBFLG LINE=LINE+1
+ ;
+ ;*69 move SI text to here outside confines of grid
+ ; provider comments, special instructions, and other print info...
+ I +$O(DATA(5,0)) D
+ .K ALPBTEXT M ALPBTEXT=DATA(5)
+ .S ALPBX=0
+ .F  S ALPBX=$O(ALPBTEXT(ALPBX)) Q:'ALPBX  D
+ ..S ALPBLINE=ALPBTEXT(ALPBX,0)
+ ..S LINE=LINE+1
+ ..S RESULTS(LINE)=ALPBLINE
+ .K ALPBLINE,ALPBTEXT,ALPBX
+ ;
  S LINE=LINE+1
  S RESULTS(LINE)=$$REPEAT^XLFSTR("-",132)
  S RESULTS(0)=LINE

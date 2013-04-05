@@ -1,5 +1,5 @@
 DIL1 ;SFISC/GFT-STATS, NUMBER FIELD, ON-THE-FLY ;04:27 PM  26 Aug 1999
- ;;22.0;VA FileMan;**2**;Mar 30, 1999
+ ;;22.0;VA FileMan;**2**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  I $A(W)=34 D  Q
  .N A9

@@ -1,5 +1,5 @@
 DIKCUTL ;SFISC/MKO-UTILITY OPTION TO MODIFY INDEX ;2:57 PM  25 Apr 2002
- ;;22.0;VA FileMan;**68,108**;Mar 30, 1999
+ ;;22.0;VA FileMan;**68,108**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 MOD ;Utility option to modify an index

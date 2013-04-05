@@ -1,5 +1,5 @@
-HLOCLNT ;ALB/CJM- Client for sending messages - 10/4/94 1pm ;02/10/2011
- ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,139,143,147,155**;Oct 13, 1995;Build 4
+HLOCLNT ;ALB/CJM- Client for sending messages - 10/4/94 1pm ;02/29/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,139,143,147,155,158**;Oct 13, 1995;Build 14
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;GET WORK function for the process running under the Process Manager
@@ -119,9 +119,7 @@ CNNCTD(LINK) ;
  Q 0
  ;
 DEQUE(UPDATE) ;
- ;**P143 START CJM
 ZB25 ;
- ;**P143 END CJM
  I $D(UPDATE) S DEQUE=DEQUE+1,DEQUE(+UPDATE)=$P(UPDATE,"^",2,99) S:$G(UPDATE("MSA"))]"" DEQUE(+UPDATE,"MSA")=UPDATE("MSA") S:$G(UPDATE("ACTION"))]"" DEQUE(+UPDATE,"ACTION")=UPDATE("ACTION")
  I '$D(UPDATE)!(DEQUE>15) D
  .N MSGIEN S MSGIEN=0
@@ -178,18 +176,18 @@ RETRY D
  ..;does the MSA refer to the correct control id?
  ..S FS=$E(HDR(1),4)
  ..I $P(MSA,FS,3)'=HLMSTATE("ID") D  Q
-ZB21 ...;**P143 START CJM
- ...;**P43 END CJM
+ZB21 ...;
  ..N ACKID,ACKCODE
  ..S ACKCODE=$P(MSA,FS,2)
  ..S ACKID=$S($E(HDR(1),1,3)="MSH":$P(HDR(2),FS,5),1:$P(HDR(2),FS,6))
  ..S $P(UPDATE,"^",5)=1
  ..S UPDATE("MSA")=ACKID_"^"_MSA
- ..I '(ACKCODE="CA") D
- ...S $P(UPDATE,"^",3)="ER",$P(UPDATE,"^",4)=2
-ZB22 ...;**P143 START CJM
- ...;**P143 END CJM
- ..I ACKCODE="CA",HLMSTATE("HDR","APP ACK TYPE")="NE" S $P(UPDATE,"^",3)="SU",$P(UPDATE,"^",4)=$S(HLMSTATE("BATCH"):"2",1:1)
+ ..;**P158 START CJM - allow "AA" in place of "CA"
+ ..I '(ACKCODE="CA"),'(ACKCODE="AA") D
+ ...S $P(UPDATE,"^",3)="ER",$P(UPDATE,"^",4)=1
+ZB22 ...;
+ ...;
+ ..I (ACKCODE="CA")!(ACKCODE="AA"),HLMSTATE("HDR","APP ACK TYPE")="NE" S $P(UPDATE,"^",3)="SU",$P(UPDATE,"^",4)=1
  ..I ($P(UPDATE,"^",3)="ER") S $P(UPDATE,"^",6)=$P(HLMSTATE("HDR",1),FS,5) ;errors need the application for xref
  ..;
  ..;if it's from a sequence queue, timestamp the queue
@@ -198,8 +196,7 @@ ZB22 ...;**P143 START CJM
  ...I $P($G(^HLB("QUEUE","SEQUENCE",HLMSTATE("STATUS","SEQUENCE QUEUE"))),"^")'=MSGIEN L -^HLB("QUEUE","SEQUENCE",HLMSTATE("STATUS","SEQUENCE QUEUE")) Q
  ...I ACKCODE="CA" D
  ....S $P(^HLB("QUEUE","SEQUENCE",HLMSTATE("STATUS","SEQUENCE QUEUE")),"^",2)=$$FMADD^XLFDT($P(UPDATE,"^",2),,,$$TIMEOUT^HLOAPP($$GETSAP^HLOCLNT2(MSGIEN))) L -^HLB("QUEUE","SEQUENCE",HLMSTATE("STATUS","SEQUENCE QUEUE"))
-ZB23 ....;**P143 START CJM
- ....;**P143 END CJM
+ZB23 ....;
  ...;if the message wasn't accepted, need to notify without waiting
  ...S $P(^HLB("QUEUE","SEQUENCE",HLMSTATE("STATUS","SEQUENCE QUEUE")),"^",2)=$P(UPDATE,"^",2)
  ...L -^HLB("QUEUE","SEQUENCE",HLMSTATE("STATUS","SEQUENCE QUEUE"))
@@ -210,12 +207,12 @@ ZB23 ....;**P143 START CJM
  ..S SUCCESS=1
  .E  D  ;accept ack wasn't requested
  ..S SUCCESS=1
- ..I HLMSTATE("HDR","APP ACK TYPE")="NE" S $P(UPDATE,"^",3)="SU",$P(UPDATE,"^",4)=$S(HLMSTATE("BATCH"):2,1:1)
+ ..I HLMSTATE("HDR","APP ACK TYPE")="NE" S $P(UPDATE,"^",3)="SU",$P(UPDATE,"^",4)=1
  ;
  I 'SUCCESS,'HLCSTATE("CONNECTED"),(HLCSTATE("ATTEMPT")<2) G RETRY
  I SUCCESS D
  .D COUNT^HLOSTAT(.HLCSTATE,HLMSTATE("HDR","RECEIVING APPLICATION"),HLMSTATE("HDR","SENDING APPLICATION"),$S(HLMSTATE("BATCH"):"BATCH",1:HLMSTATE("HDR","MESSAGE TYPE")_"~"_HLMSTATE("HDR","EVENT")))
- .;if this is an ack to a message need to purge the original message, so store its ien with the purge date
+ .;if this is an ack to a message need to purge the original message, so store its ien with the purge indicator
  .S:$G(HLMSTATE("ACK TO IEN")) $P(UPDATE,"^",4)=$P(UPDATE,"^",4)_"-"_HLMSTATE("ACK TO IEN")
  I ('HLCSTATE("CONNECTED"))!('SUCCESS) D LINKDOWN(.HLCSTATE)
  Q SUCCESS

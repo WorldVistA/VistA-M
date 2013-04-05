@@ -1,5 +1,5 @@
-ECXSCLD ;BIR/DMA,CML-Enter, Print and Edit Entries in 728.44 ;9/7/11  12:30
- ;;3.0;DSS EXTRACTS;**2,8,24,30,71,80,105,112,120,126,132**;Dec 22, 1997;Build 18
+ECXSCLD ;BIR/DMA,CML-Enter, Print and Edit Entries in 728.44 ;9/4/12  12:55
+ ;;3.0;DSS EXTRACTS;**2,8,24,30,71,80,105,112,120,126,132,136**;Dec 22, 1997;Build 28
 EN ;entry point from option
  ;load entries
  W !!,"This option creates local entries in the DSS CLINIC AND STOP CODES"
@@ -212,6 +212,7 @@ EDIT ; put in DSS stopcodes and which one to send
  W !,"CREDIT STOP CODE :",$P(Y(0),U,3),?35,"DSS CREDIT STOP CODE :",$P(Y(0),U,5)
  W !
 EDIT1 ;check input & update field #3; allow '@' deletion; allow bypass empty with no entry
+ N DIR ;136
  S OUT=0 F  D  Q:OUT
  .K DIC,DIR,ECXMSG,FDA,AMIS,X,Y
  .S STOP=$P(^ECX(728.44,CLIEN1,0),U,4)
@@ -281,7 +282,7 @@ ENDCHK ;check validity of clinic
  I ERRCHK=1 W !!,"...Errors found please fix." G EDIT1
  ;remaining fields
  S DIE=728.44,DA=+CLIEN1
- S DR="5//1;S:X'=4 Y=6;7;6///"_DT_";8" D ^DIE
+ S DR="5//1;S:X'=4 Y=6;7;6///"_DT_";8;10" D ^DIE ;136
  S:$P(^ECX(728.44,DA,0),U,6)'=4 $P(^(0),U,8)="" S $P(^(0),U,7)=""
  Q
 ERRPRNT ;print errors

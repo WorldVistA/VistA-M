@@ -1,7 +1,7 @@
 WIIGATD ;VISN20/WDE/WHN WII-EXTRACT DATA ; [6/26/08 07:21am]
  ;;1.0;Wounded Injured and Ill Warriors;**1**;06/26/2008;Build 28;
  ;API used see Appendix A Message Server Protocol
- ;http://www.DOMAIN.EXT/vdl/documents/Infrastructure/Mailman/xm_8_0_developerguide.pdf
+ ;http://www.domain.ext/vdl/documents/Infrastructure/Mailman/xm_8_0_developerguide.pdf
  ; INTEGRATION REFERENCE #3041  All fields can be accessed/edited using FileMan tools.
  ;      ACCESS TO FILE 20 NAME COMPONENTS     VA(20
  ;Once the data is approved at the local facility this routine is called from the exit action of option

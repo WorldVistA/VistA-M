@@ -1,5 +1,5 @@
 DICQ ;SFISC/XAK,TKW-HELP FOR LOOKUPS ;7:20 AM  17 May 2007
- ;;22.0;VA FileMan;**4,3,57,151**;Mar 30, 1999;Build 10
+ ;;22.0;VA FileMan;**4,3,57,151**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  S DZ=X D:DIC(0)]"" DQ
  I '$D(DDS),$G(DDH) D ^DDSU

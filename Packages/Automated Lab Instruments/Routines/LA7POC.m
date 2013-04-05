@@ -1,7 +1,7 @@
-LA7POC ;DALOI/JMC - Lab HL7 Point of Care; Jan 12, 2004
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**67**;Sep 27, 1994
+LA7POC ;DALOI/JMC - Lab HL7 Point of Care ;05/04/10  16:13
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**67,74**;Sep 27, 1994;Build 229
  ;
- ; Reference to HLL("SET FOR APP ACK") supported by DBIA #TBD
+ ; Reference to HLL("SET FOR APP ACK") supported by patch HL*1.6*117
  Q
  ;
 RTRA ; Setup links and subscriber array for HL7 ADT message generation
@@ -34,12 +34,12 @@ ACK(LA7) ; Returns the application acknowledgement to the sending POC
  ; Called by routine LA7VPOC
  ;
  ; Call with LA7 array passed by reference
- ;      LA7(62.48)=ien of related configuration in file #62.48  
+ ;      LA7(62.48)=ien of related configuration in file #62.48
  ;      LA7(62.49)=ien of message in file #62.49 being acknowledged
  ;      LA7("ACK")=acknowledgment status (AA, AE, AR)
  ;      LA7("MSG")=text of error message to be returned
  ;
- N HL,HLMTIENS,LA6249,LA76248,LA7X,LA7Y
+ N HL,HLMTIENS,I,LA6249,LA76248,LA7X,LA7Y
  ;
  ; Check for entry in 62.48
  S LA76248=+$G(LA7(62.48))
@@ -51,6 +51,11 @@ ACK(LA7) ; Returns the application acknowledgement to the sending POC
  I '$G(LA6249)!('$D(^LAHM(62.49,LA6249,0))) Q
  F I=0,700 S LA6249(I)=$G(^LAHM(62.49,LA6249,I))
  ;
+ ; Store Accession's UID on incoming message being processed
+ I LA7("ACK")="AA",$P(LA7("MSG"),"^")'="" D
+ . D SETID^LA7VHLU1(LA6249,"",$P(LA7("MSG"),"^"),0)
+ . D UPID^LA7VHLU1(LA6249)
+ ;
  ; Call reprocess message to build and send ACK and clear purge flag
  S LA7Y=$$REPROC^HLUTIL($P(LA6249(700),";",2),"D BLDACK^LA7POC")
  I LA7Y=0 S HLMTIENS=$P(LA6249(700),";",2),LA7X=$$TOPURG^HLUTIL()
@@ -59,6 +64,8 @@ ACK(LA7) ; Returns the application acknowledgement to the sending POC
  ;
  ;
 BLDACK ; Create/initialize HL ACK message
+ ;
+ ;ZEXCEPT:LA7,LA76248
  ;
  N GBL,HLL,HLP,I,X
  N LA76249,LA7AERR,LA7DATA,LA7ECH,LA7FS,LA7ID,LA7MID,LA7MSA,LA7MSH,LA7X,LA7Y
@@ -90,9 +97,15 @@ BLDACK ; Create/initialize HL ACK message
  S LA7MSA(0)="MSA",LA7MSA(1)=LA7("ACK"),LA7MSA(2)=HL("MID")
  I $G(LA7("MSG"))'="" D
  . S LA7MSA(3)=$$CHKDATA^LA7VHLU3($P(LA7("MSG"),"^"),LA7FS_LA7ECH)
+ . I LA7("ACK")="AA",$P(LA7("MSG"),"^")'="" D SETID^LA7VHLU1(LA76249,"",$P(LA7("MSG"),"^"),0)
  . I $P(LA7("MSG"),"^",2)="" Q
  . S $P(LA7MSA(3),$E(LA7ECH),2)=$$CHKDATA^LA7VHLU3($P(LA7("MSG"),"^",2),LA7FS_LA7ECH)
+ ;
+ ; Save message ids in file #62.49
  S LA7ID=$P(LA76248(0),"^",1)_"-O-ACK-"_LA7MSA(2)
+ D SETID^LA7VHLU1(LA76249,"",LA7ID,1)
+ D SETID^LA7VHLU1(LA76249,"",LA7MSA(2),0)
+ ;
  D BUILDSEG^LA7VHLU(.LA7MSA,.LA7DATA,LA7FS)
  D FILESEG^LA7VHLU(GBL,.LA7DATA)
  D FILE6249^LA7VHLU(LA76249,.LA7DATA)

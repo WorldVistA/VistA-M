@@ -14,7 +14,7 @@ CSLIEN() ; make CoreFLS query call returning IEN
  ; output: Y ( <1 := invalid IEN, >0 := IEN )
  N OUT,DGBTI,DGBTLINE,DGBTFLD,DIERR
 ASK S OUT=""
- ;D VENQ^CSLVQ(.OUT)
+ D VENQ^CSLVQ(.OUT)
  I OUT="",$O(OUT(""))="" Q -1  ; assuming ^abort response
  I $D(OUT("ERROR")) K OUT G ASK
  I $G(OUT("NAME"))=""!($G(OUT("NUMBER"))="")!($G(OUT("SITE_CODE"))="") G BAD

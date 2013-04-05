@@ -33,10 +33,10 @@ PT(DFN,PSBHDR,PSBCONT,PSBDT) ;
  .;IHS/MSC/PLS - Call Vitals lookup based on agency code
  .;  and PCC Vitals package usage flag "BEHOVM USE VMSR"=1
  .I $G(DUZ("AG"))="I",$$GET^XPAR("ALL","BEHOVM USE VMSR") D
- ..;S X=+$P($$VITAL^APSPFUNC(DFN,"HT"),U,2)
- ..;S X=$$VITCHT^APSPFUNC(X)\1,PSBHDR("HEIGHT")=$S(X:X_"cm",1:"*")
- ..;S X=+$P($$VITAL^APSPFUNC(DFN,"WT"),U,2)
- ..;S X=$$VITCWT^APSPFUNC(X)\1,PSBHDR("WEIGHT")=$S(X:X_"kg",1:"*")
+ ..S X=+$P($$VITAL^APSPFUNC(DFN,"HT"),U,2)
+ ..S X=$$VITCHT^APSPFUNC(X)\1,PSBHDR("HEIGHT")=$S(X:X_"cm",1:"*")
+ ..S X=+$P($$VITAL^APSPFUNC(DFN,"WT"),U,2)
+ ..S X=$$VITCWT^APSPFUNC(X)\1,PSBHDR("WEIGHT")=$S(X:X_"kg",1:"*")
  .E  D
  ..S GMRVSTR="HT" D EN6^GMRVUTL
  ..S X=+$P(X,U,8) S:X X=X*2.54\1 S PSBHDR("HEIGHT")=$S(X:X_"cm",1:"*")

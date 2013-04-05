@@ -1,5 +1,5 @@
 DDGFBSEL ;SFISC/MKO-SELECT BLOCK ;07:50 AM  23 Aug 1993
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;Sets:
  ;  DDGFORIG(B) = original $Y^original $X for all blocks that were

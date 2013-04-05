@@ -1,5 +1,6 @@
-LA7VIN3 ;DALOI/JMC - Process Incoming UI Msgs, continued ; 01/14/99
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64**;Sep 27, 1994
+LA7VIN3 ;DALOI/JMC - Process Incoming UI Msgs, continued ;11/17/11  15:55
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74**;Sep 27, 1994;Build 229
+ ;
  ;This routine is a continuation of LA7VIN1 and is only called from there.
  Q
  ;
@@ -15,6 +16,7 @@ MSA ; Process MSA segment
  N LA7696,LA76964,LA7I,LA7MSAID,LA7MSTAT,LA7ORT,LA7RUID,LA7ST,LA7SITE,LA7X,LA7Y
  S LA7MSTAT=$$P^LA7VHLU(.LA7SEG,2,LA7FS)
  S LA7MSAID=$$P^LA7VHLU(.LA7SEG,3,LA7FS)
+ I LA7MSAID="" Q
  ;
  ; Extract text message from MSA-3
  S LA7X=$$P^LA7VHLU(.LA7SEG,4,LA7FS)
@@ -29,15 +31,15 @@ MSA ; Process MSA segment
  . . I LA7Y="" S LA7Y=$$UNESC^LA7VHLU3($P(LA7X,$E(LA7ECH)),LA7FS_LA7ECH) Q
  . . S LA7Y="["_$P(LA7X,$E(LA7ECH))_"] "_LA7Y
  . S LA7MSATM=$S(LA7MSATM'="":LA7MSATM_" ",1:"")_LA7Y
- I LA7MSAID="" Q
  ;
- D SETID^LA7VHLU1(LA76249,LA7ID,"ACK-"_LA7MSAID)
+ D SETID^LA7VHLU1(LA76249,LA7ID,"ACK-"_LA7MSAID,1)
+ D SETID^LA7VHLU1(LA76249,"",LA7MSAID,0)
  ;
  S LA7ST=$$FIND1^DIC(64.061,"","MX","Results/data Received","","I $P(^(0),U,7)=""U""")
  ;
  ; Only look for messages id's that are outgoing messages, those that
  ; originated from this system. Other systems (incoming) messages can
- ; use a message id that is the same as a Vista message.
+ ; use a message id that is the same as a Vista message id.
  ;
  N LA76249
  S LA76249=0

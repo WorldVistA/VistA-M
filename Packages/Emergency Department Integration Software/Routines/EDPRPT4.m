@@ -1,7 +1,7 @@
-EDPRPT4 ;SLC/MKB - Delay Summary Report
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPRPT4 ;SLC/MKB - Delay Summary Report ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
-SUM(BEG,END) ; Get Delay Report for EDPSITE by date range
+SUM(BEG,END,CSV) ; Get Delay Report for EDPSITE by date range
  ;   CNT = counters
  ;   MIN = accumulate #minutes
  N IN,OUT,LOG,X,X0,X1,X3,X4,ELAPSE,ADMDEC,ADMDEL,DISP,STS,VADM,CNT,MIN,PROV,DEL,ACU,Y
@@ -10,6 +10,8 @@ SUM(BEG,END) ; Get Delay Report for EDPSITE by date range
  F  S IN=$O(^EDP(230,"ATI",EDPSITE,IN)) Q:'IN  Q:IN>END  S LOG=0 F  S LOG=+$O(^EDP(230,"ATI",EDPSITE,IN,LOG)) Q:LOG<1  D
  . S X0=^EDP(230,LOG,0),X1=$G(^(1)),X3=$G(^(3)),X4=$G(^(4,1,0))
  . S DISP=$$ECODE^EDPRPT($P(X1,U,2)),VADM=$$VADMIT^EDPRPT2(DISP)
+ . ;TDP - Patch 2, additional check for VA Admissions w/o abbreviation
+ . I VADM=0 S VADM=$$VADMIT1^EDPRPT2($P(X1,U,2))
  . S ACU=$$ECODE($P(X3,U,3)),STS=$P(X3,U,2)
  . S DEL=+$P(X1,U,5),CNT=CNT+1
  . S OUT=$P(X0,U,9) ;S:OUT="" OUT=NOW

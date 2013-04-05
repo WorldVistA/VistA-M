@@ -1,5 +1,5 @@
 DIFG0 ;SFISC/DG(OHPRD)-SETS UP DIC("S"), EVALS 1ST LINE OF A (SUB)FILE ; [ 05/25/93  10:17 AM ]
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 NDPC ;DETERMINE NODE,PIECE FOR DATA FOR THIS FIELD
  S DIFGCT=DIFGCT+1

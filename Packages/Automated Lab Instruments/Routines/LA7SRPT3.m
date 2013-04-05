@@ -1,0 +1,257 @@
+LA7SRPT3 ;DALOI/JDB - CODE USAGE REPORT (cont) ;03/07/12  09:21
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**74**;Sep 27, 1994;Build 229
+ ;
+ Q
+ ;
+F61(CODE,SYS,FOUND) ;
+ ; (private method for LA7SRPT2)
+ N NODE,NODE1,POS,R61,STATUS
+ S CODE=$G(CODE)
+ S SYS=$G(SYS)
+ K FOUND
+ Q:CODE="" 0
+ Q:SYS="" 0
+ S STATUS=0
+ S (NODE,NODE1)=""
+ I SYS="SCT" D  ;
+ . S (NODE,NODE1)="^LAB(61,""F"","_CODE_")"
+ . S POS("R61")=4
+ ;
+ I NODE="" Q 0
+ S NODE1=$$TRIM^XLFSTR(NODE1,"R",")")
+ S NODE1=$TR(NODE1,"""","")
+ F  S NODE=$Q(@NODE)  Q:$E($TR(NODE,"""",""),1,$L(NODE1))'=NODE1  D  ;
+ . S R61=$QS(NODE,POS("R61"))
+ . S FOUND(1,R61)=""
+ . S STATUS=1
+ Q STATUS
+ ;
+F612(CODE,SYS,FOUND) ;
+ ; (private method for LA7SRPT2)
+ N NODE,NODE1,POS,R612,STATUS
+ S CODE=$G(CODE)
+ S SYS=$G(SYS)
+ K FOUND
+ Q:CODE="" 0
+ Q:SYS="" 0
+ S STATUS=0
+ S (NODE,NODE1)=""
+ I SYS="SCT" D  ;
+ . S (NODE,NODE1)="^LAB(61.2,""F"","_CODE_")"
+ . S POS("R612")=4
+ ;
+ I NODE="" Q 0
+ S NODE1=$$TRIM^XLFSTR(NODE1,"R",")")
+ S NODE1=$TR(NODE1,"""","")
+ F  S NODE=$Q(@NODE)  Q:$E($TR(NODE,"""",""),1,$L(NODE1))'=NODE1  D  ;
+ . S R612=$QS(NODE,POS("R612"))
+ . S FOUND(1,R612)=""
+ . S STATUS=1
+ Q STATUS
+ ;
+F62(CODE,SYS,FOUND) ;
+ ; (private method for LA7SRPT2)
+ N NODE,NODE1,POS,R62,STATUS
+ S CODE=$G(CODE)
+ S SYS=$G(SYS)
+ K FOUND
+ Q:CODE="" 0
+ Q:SYS="" 0
+ S STATUS=0
+ S (NODE,NODE1)=""
+ I SYS="SCT" D  ;
+ . S (NODE,NODE1)="^LAB(62,""F"","_CODE_")"
+ . S POS("R62")=4
+ ;
+ I NODE="" Q 0
+ S NODE1=$$TRIM^XLFSTR(NODE1,"R",")")
+ S NODE1=$TR(NODE1,"""","")
+ F  S NODE=$Q(@NODE)  Q:$E($TR(NODE,"""",""),1,$L(NODE1))'=NODE1  D  ;
+ . S R62=$QS(NODE,POS("R62"))
+ . S FOUND(1,R62)=""
+ . S STATUS=1
+ Q STATUS
+ ;
+F6206(CODE,SYS,FOUND) ;
+ ; (private method for LA7SRPT2)
+ N NODE,NODE1,POS,R64,R953,R6206,STATUS,DATA,X
+ S CODE=$G(CODE)
+ S SYS=$G(SYS)
+ K FOUND
+ Q:CODE="" 0
+ Q:SYS="" 0
+ S STATUS=0
+ Q:SYS'="LN" 0
+ S (NODE,NODE1)=""
+ S R64=0
+ F  S R64=$O(^LAM("AH",$P(CODE,"-",1),R64)) Q:'R64  D  ;
+ . S DATA=$G(^LAM(R64,9))
+ . S X=$P(DATA,U,1)
+ . Q:X=""
+ . S R953=X
+ . S R6206=0
+ . F  S R6206=$O(^LAB(62.06,R6206)) Q:'R6206  D  ;
+ . . S DATA=$G(^LAB(62.06,R6206,64))
+ . . S X=$P(DATA,U,1) ;NATL VA CODE
+ . . Q:X'=R64
+ . . S STATUS=1
+ . . S FOUND(1,R6206)=""
+ . ;
+ Q STATUS
+ ;
+F6247(CODE,SYS,FOUND,MSGCFG) ;
+ ; (private method for LA7SRPT2)
+ N NODE,NODE1,POS,R6247,R624701,R6248,STATUS,DATA
+ S CODE=$G(CODE)
+ S SYS=$G(SYS)
+ S MSGCFG=+$G(MSGCFG)
+ K FOUND
+ Q:CODE="" 0
+ Q:SYS="" 0
+ S STATUS=0
+ S (NODE,NODE1)=""
+ S (NODE,NODE1)="^LAB(62.47,""AF"","""_SYS_""","""_CODE_""")"
+ S POS("R6247")=5
+ S POS("R624701")=6
+ ;
+ I NODE="" Q 0
+ S NODE1=$$TRIM^XLFSTR(NODE1,"R",")")
+ S NODE1=$TR(NODE1,"""","")
+ F  S NODE=$Q(@NODE)  Q:$E($TR(NODE,"""",""),1,$L(NODE1))'=NODE1  D  ;
+ . S R6247=$QS(NODE,POS("R6247"))
+ . S R624701=$QS(NODE,POS("R624701"))
+ . S DATA=$G(^LAB(62.47,R6247,1,R624701,2,0))
+ . S R6248=$P(DATA,U,2)
+ . I MSGCFG I R6248'=MSGCFG Q  ;
+ . S FOUND(1,R6247,R624701)=""
+ . S STATUS=1
+ Q STATUS
+ ;
+F6248(CODE,SYS,FOUND,MSGCFG) ;
+ ; Loop through all 
+ ; ^LAHM(62.48,DA(1),"SCT","AD",CODE,VARPTR,DA)
+ ; #62.48 only supports SCT code sets
+ ; (private method for LA7SRPT2)
+ N NODE,NODE1,POS,R6248,R624802,STATUS,D61,D62,X,DATA,REC,FILE
+ S CODE=$G(CODE)
+ S SYS=$G(SYS)
+ S MSGCFG=+$G(MSGCFG)
+ K FOUND
+ Q:CODE="" 0
+ Q:SYS="" 0
+ Q:SYS'="SCT" 0
+ S STATUS=0
+ S (NODE,NODE1)=""
+ S POS("R6248")=2
+ S POS("X")=6
+ S POS("R624802")=7
+ ;
+ ; Is SCT code in #61 or #62
+ S X=$$F61(CODE,"SCT",.D61)
+ S X=$$F62(CODE,"SCT",.D62)
+ ;
+ ; #62.482 fld #.01 (VA FILE ENTRY) point to entry with the SCT?
+ S R6248=0
+ I MSGCFG S R6248=MSGCFG-1
+ F  S R6248=$O(^LAHM(62.48,R6248)) Q:'R6248  Q:MSGCFG&(R6248'=MSGCFG)  D  ;
+ . S R624802=0
+ . F  S R624802=$O(^LAHM(62.48,R6248,"SCT",R624802)) Q:'R624802  D  ;
+ . . S DATA=$G(^LAHM(62.48,R6248,"SCT",R624802,0))
+ . . S X=$P(DATA,U,1)
+ . . S REC=$P(X,";",1)
+ . . S FILE=$P(X,";",2)
+ . . S FILE=$P(FILE,"(",2) S FILE=$P(FILE,",",1)
+ . . I FILE=61 D  ;
+ . . . Q:'$D(D61(1,REC))
+ . . . S STATUS=1
+ . . . S FOUND(1,R6248,R624802)=$P(DATA,U,1)
+ . . . S FOUND(2,R6248,R624802)=$P(DATA,U,1)
+ . . . S FOUND(61,R6248,R624802)=$P(DATA,U,1)
+ . . . S X=$$VARPTR01^LA7XREF($P(DATA,U,1))
+ . . ;
+ . . I FILE=62 D  ;
+ . . . Q:'$D(D62(1,REC))
+ . . . S STATUS=1
+ . . . S FOUND(1,R6248,R624802)=$P(DATA,U,1)
+ . . . S FOUND(2,R6248,R624802)=$P(DATA,U,1)
+ . . . S FOUND(62,R6248,R624802)=$P(DATA,U,1)
+ . . . S X=$$VARPTR01^LA7XREF($P(DATA,U,1))
+ . . ;
+ . ;
+ ;
+ ; Does #62.4802 fld #.02 contain this SCT?
+ S R6248=0
+ I MSGCFG S R6248=MSGCFG-1
+ F  S R6248=$O(^LAHM(62.48,R6248)) Q:'R6248  Q:MSGCFG&(R6248'=MSGCFG)  D  ;
+ . S (NODE,NODE1)="^LAHM(62.48,"_R6248_",""SCT"",""AD"","""_CODE_""")"
+ . S NODE1=$$TRIM^XLFSTR(NODE1,"R",")")
+ . S NODE1=$TR(NODE1,"""","")
+ . F  S NODE=$Q(@NODE) Q:$E($TR(NODE,"""",""),1,$L(NODE1))'=NODE1  D  ;
+ . . S R624802=$QS(NODE,POS("R624802"))
+ . . S FOUND(1,R6248,R624802)=$QS(NODE,POS("X"))
+ . . S FOUND(3,R6248,R624802)=$QS(NODE,POS("X"))
+ . . S STATUS=1
+ . ;
+ Q STATUS
+ ;
+F629(CODE,SYS,FOUND,SHPCFG) ;
+ ; #62.9
+ ; check .03 data
+ ; check .09 data
+ ; check 5.1
+ ; check 5.3
+ ; check 5.7
+ ; (private method for LA7SRPT2)
+ N R629,R629001,STATUS,DIERR,DATA,X,LAMSG
+ N F03,F09,F51,F53,F55,F56,F57,F59
+ S CODE=$G(CODE)
+ S SYS=$G(SYS)
+ S SHPCFG=+$G(SHPCFG)
+ K FOUND
+ Q:CODE="" 0
+ Q:SYS="" 0
+ S STATUS=0
+ S R629=0
+ I SHPCFG S R629=SHPCFG-1
+ F  S R629=$O(^LAHM(62.9,R629)) Q:'R629  Q:SHPCFG&(R629'=SHPCFG)  D  ;
+ . S R629001=0
+ . F  S R629001=$O(^LAHM(62.9,R629,60,R629001)) Q:'R629001  D  ;
+ . . S DATA=$G(^LAHM(62.9,R629,60,R629001,0))
+ . . S F03=$P(DATA,U,3) ;#61
+ . . S F09=$P(DATA,U,9) ;#62
+ . . S DATA=$G(^LAHM(62.9,R629,60,R629001,5))
+ . . S F51=$P(DATA,U,1)
+ . . S F53=$P(DATA,U,3)
+ . . S F55=$P(DATA,U,5)
+ . . S F56=$P(DATA,U,6)
+ . . S F57=$P(DATA,U,7)
+ . . S F59=$P(DATA,U,9)
+ . . S X=$$GET1^DIQ(61,F03_",",20,"I","","LAMSG")
+ . . I SYS="SCT" I X=CODE D  ;
+ . . . S STATUS=1
+ . . . S FOUND(1,R629,R629001)=""
+ . . . S FOUND(2,R629,R629001)=""
+ . . ;
+ . . S X=$$GET1^DIQ(62,F09_",",20,"I","","LAMSG")
+ . . I SYS="SCT" I X=CODE D  ;
+ . . . S STATUS=1
+ . . . S FOUND(1,R629,R629001)=""
+ . . . S FOUND(3,R629,R629001)=""
+ . . ;
+ . . I F56=SYS I F53=CODE D  ;
+ . . . S STATUS=1
+ . . . S FOUND(1,R629,R629001)=""
+ . . . S FOUND(4,R629,R629001)=""
+ . . ;
+ . . I F59=SYS I F57=CODE D  ;
+ . . . S STATUS=1
+ . . . S FOUND(1,R629,R629001)=""
+ . . . S FOUND(5,R629,R629001)=""
+ . . ;
+ . . I F55=SYS I F51=CODE D  ;
+ . . . S STATUS=1
+ . . . S FOUND(1,R629,R629001)=""
+ . . . S FOUND(6,R629,R629001)=""
+ . ;
+ ;
+ Q STATUS

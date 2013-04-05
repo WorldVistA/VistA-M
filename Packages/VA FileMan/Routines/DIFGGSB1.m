@@ -1,5 +1,5 @@
 DIFGGSB1 ;SFISC/XAK,EDE(OHPRD)-FILEGRAM SPECIAL BLOCK PART 2 ;8/12/98  13:16
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 BODY S DIFGSB(DILL,"SPSPEC")=0
  I $D(DIFG(DILL,"FUNC")),"AL"[DIFG(DILL,"FUNC") I 1

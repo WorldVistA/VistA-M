@@ -172,9 +172,9 @@ MAIL ;
  I $G(DUZ) S XMY(DUZ)=""
  S XMDUZ=PATCH_" "_JOBN
  S XMSUB="Outpatient Pharmacy "_PATCH_" "_JOBN
- S XMY("ELLZEY.LINDA@FORUM.DOMAIN.EXT")=""
- S XMY("WHITE.ELAINE@FORUM.DOMAIN.EXT")=""
- S XMY("WILLIAMSON.ERIC@FORUM.DOMAIN.EXT")=""
+ S XMY("ELLZEY.LINDA@FORUM.domain.ext")=""
+ S XMY("WHITE.ELAINE@FORUM.domain.ext")=""
+ S XMY("WILLIAMSON.ERIC@FORUM.domain.ext")=""
  I $O(XMY(""))="" Q  ; no recipients for mail message
  S PSOTEXT(1)="The "_JOBN_" job for the Outpatient Pharmacy"
  S PSOTEXT(2)="patch ("_PATCH_") started "_PSOSTART

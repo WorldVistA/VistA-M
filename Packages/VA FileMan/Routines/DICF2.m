@@ -1,5 +1,5 @@
 DICF2 ;SEA/TOAD,SF/TKW-VA FileMan: Finder, Part 3 (All Indexes) ;12/17/99  08:24
- ;;22.0;VA FileMan;**4,20**;Mar 30, 1999
+ ;;22.0;VA FileMan;**4,20**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 CHKALL(DIFILE,DIEN,DIFIEN,DIFLAGS,DIVALUE,DISCREEN,DINUMBER,DIFORCE,DINDEX,DIDENT,DILIST,DIC,DIY,DIYX) ;

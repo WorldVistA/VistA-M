@@ -1,0 +1,67 @@
+IB20PT62 ;ALB/AAS - Insurance post init stuff ; 2/22/93
+ ;;Version 2.0 ; INTEGRATED BILLING ;; 21-MAR-94
+ ;
+ W:'$D(ZTQUEUED) !!,"    I'll write a dot for each 100 entries"
+ ;
+ N IBTRNSF S IBTRNSF=0 I $O(^IBA(362.2,0)) S IBTRNSF=1 D DQ362
+ ;
+DQ399 D NOW^%DTC S IBSCDT=%
+ N IBCIFN
+ W:'$D(ZTQUEUED) !!,"    Updating Bill/Claims file"
+ S (IBCIFN,IBCNT,IBCNTD)=0
+ F  S IBCIFN=$O(^DGCR(399,IBCIFN)) Q:'IBCIFN  D
+ .I +$G(^DGCR(399,IBCIFN,"M")),$P($G(^(0)),"^",2) S ^DGCR(399,"AE",$P(^(0),"^",2),+^("M"),IBCIFN)=""
+ .I +$P($G(^DGCR(399,IBCIFN,0)),U,13)=3 S ^DGCR(399,"AST",3,IBCIFN)=""
+ .I '$G(IBTRNSF),$D(^DGCR(399,IBCIFN,"C")) D MVDX
+ .I +$P($G(^DGCR(399,IBCIFN,0)),U,19)>1 D DXCPTCV
+ .S IBCNT=$G(IBCNT)+1 I '$D(ZTQUEUED) W:'(IBCNT#100) "."
+ S $P(^IBE(350.9,1,3),"^",19)=DT
+ D NOW^%DTC S IBECDT=%
+ I '$D(ZTQUEUED) W !,"    Completed!"
+ Q
+ ;
+DQ362 ;transfer entries from 362.2 to 362.3
+ N IBDIFN,IBD,IBCIFN,IBDX,IBP,IBDA,IBCNT
+ I '$D(ZTQUEUED) W !!,"    Moving diagnosis to new file"
+ S IBCNT=0,IBDIFN=0 F  S IBDIFN=$O(^IBA(362.2,IBDIFN)) Q:'IBDIFN  D
+ .S IBD=$G(^IBA(362.2,IBDIFN,0))
+ .S IBCIFN=+IBD,IBDX=+$P(IBD,U,2),IBP=$P(IBD,U,3)
+ .I +IBCIFN,+IBDX D SETDX
+ .S IBCNT=IBCNT+1 I '$D(ZTQUEUED),'(IBCNT#100) W "."
+ S DIU="^IBA(362.2,",DIU(0)="D" D EN^DIU2 K DIU
+ I '$D(ZTQUEUED) W " Completed!"
+ Q
+ ;
+DXCPTCV ;transfer/convert associated dx (399,304,7->399,304,10)
+ N IBCP,IBDX,IBDXP
+ L +^DGCR(399,IBCIFN)
+ S IBCP=0 F  S IBCP=$O(^DGCR(399,IBCIFN,"CP",IBCP)) Q:'IBCP  D
+ . S IBDX=+$P($G(^DGCR(399,IBCIFN,"CP",IBCP,0)),U,8) Q:'IBDX
+ . S IBDXP=$O(^IBA(362.3,"AIFN"_IBCIFN,IBDX,0)) Q:'IBDXP
+ . S $P(^DGCR(399,IBCIFN,"CP",IBCP,0),U,11)=IBDXP
+ L -^DGCR(399,IBCIFN)
+ Q
+ ;
+MVDX ; -- move procedures from file 399 fields 64-68 to new file 362.2
+ ;
+ N IBC,IBDA,IBDX,IBP
+ S IBC=$G(^DGCR(399,IBCIFN,"C"))
+ F IBP=14:1:18 S IBDX=$P(IBC,"^",IBP) I IBDX D SETDX
+ Q
+ ;
+SETDX Q:$D(^IBA(362.3,"AIFN"_IBCIFN,IBDX))  ; same diag for a bill not allowed
+ L +^IBA(362.3,0):10 Q:'$T
+ S IBDA=$P($G(^IBA(362.3,0)),"^",3)+1
+ L -^IBA(362.3,0)
+ F IBDA=IBDA:1 I '$D(^IBA(362.3,IBDA,0)) L +^IBA(362.3,IBDA) Q
+ S ^IBA(362.3,IBDA,0)=IBDX_"^"_IBCIFN_"^"_IBP
+ S ^IBA(362.3,"B",IBDX,IBDA)=""
+ S ^IBA(362.3,"AIFN"_IBCIFN,IBDX,IBDA)=""
+ I +IBP S ^IBA(362.3,"AO",IBCIFN,IBP,IBDA)=""
+ L -^IBA(362.3,IBDA)
+ L +^IBA(362.3,0):10
+ S $P(^IBA(362.3,0),"^",4)=$P(^IBA(362.3,0),"^",3)+1
+ S $P(^IBA(362.3,0),"^",3)=IBDA
+ L -^IBA(362.3,0)
+ S IBCNTD=$G(IBCNTD)+1
+ Q

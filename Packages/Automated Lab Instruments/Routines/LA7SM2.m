@@ -1,5 +1,5 @@
-LA7SM2 ;DALOI/JMC - Shipping Manifest Options ;5/5/97  14:39
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64**;Sep 27, 1994
+LA7SM2 ;DALOI/JMC - Shipping Manifest Options ;Oct 30, 2008
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74**;Sep 27, 1994;Build 229
  ;
 REQINFO ; Enter required information prior to shipping.
  D INIT^LA7SM
@@ -13,84 +13,11 @@ REQINFO ; Enter required information prior to shipping.
  . D EN^DDIOL($P(LA7QUIT,"^",2),"","!?5")
  . D UNLOCKSM^LA7SM,CLEANUP^LA7SM
  S LA7SM(0)=$G(^LAHM(62.8,+LA7SM,0))
- F  D INFOEE Q:LA7QUIT
+ F  D INFOEE^LA7SM2A Q:LA7QUIT
  D UNLOCKSM^LA7SM
- I LA7QUIT,$L($P(LA7QUIT,"^",2)) D EN^DDIOL($P(LA7QUIT,"^",2),"","!?5")
+ I LA7QUIT,$P(LA7QUIT,"^",2)'="" D EN^DDIOL($P(LA7QUIT,"^",2),"","!?5")
  E  D ASK^LA7SMP(LA7SM)
  D CLEANUP^LA7SM
- Q
- ;
-INFOEE ; Required Info Enter/Edit
- ;
- N DIR,DIROUT,DIRUT,DTOUT,DUOUT,LA7CDT,LA7I,LA7INFO,LA7J,LA7RINFO,LA7TCNT,LA7X,LA7Y,X,Y
- ;
- D SEL^LA7SM
- I LA7QUIT Q
- ;
- S (LA7I,LA7TCNT)=0
- F  S LA7I=$O(^LAHM(62.8,+LA7SM,10,"UID",LA7UID,LA7I)) Q:'LA7I  D
- . F LA7J=0,1,2 S LA7I(LA7J)=$G(^LAHM(62.8,+LA7SM,10,LA7I,LA7J))
- . I $P(LA7I(0),"^",8)=0 Q  ; Previously "removed".
- . I $P(LA7I(0),"^",8),$P(LA7I(0),"^",8)'=1 S LA7QUIT="1^Accession not pending shipment" Q  ; Not pending shipment
- . S LA7TCNT=LA7TCNT+1
- . F LA7J=1,4 I $P(LA7I(1),"^",LA7J) D
- . . I '$P(LA7I(1),"^",LA7J+2) Q  ; No units specified
- . . S LA7X=$S(LA7J=1:1.11,LA7J=4:1.21,1:0)
- . . S LA7RINFO(LA7X)=$P(LA7I(1),"^",LA7J+1) ; Value
- . . S $P(LA7RINFO(LA7X),"^",2)=$P(LA7I(1),"^",LA7J+2) ; Units
- . . S LA7RINFO(LA7X,LA7I)=LA7RINFO(LA7X)_"^"_$P(LA7I(0),"^",2)
- . F LA7J=1,4,8 I $P(LA7I(2),"^",LA7J) D
- . . I '($S(LA7J=4:$P(LA7I(2),"^",7),1:$P(LA7I(2),"^",LA7J+2))) Q  ; No units specified.
- . . S LA7X=$S(LA7J=1:2.11,LA7J=4:2.21,LA7J=8:2.31,1:0)
- . . S LA7RINFO(LA7X)=$P(LA7I(2),"^",LA7J+1) ; Value
- . . S $P(LA7RINFO(LA7X),"^",2)=$S(LA7J=4:$P(LA7I(2),"^",7),1:$P(LA7I(2),"^",LA7J+2)) ; Units
- . . S LA7RINFO(LA7X,LA7I)=LA7RINFO(LA7X)_"^"_$P(LA7I(0),"^",2)
- ;
- I 'LA7TCNT,'LA7QUIT S LA7QUIT="1^Accession is not on this shipping manifest"
- I '$O(LA7RINFO(0)),'LA7QUIT S LA7QUIT="1^No test needs required information for shipping"
- I LA7QUIT Q
- ;
- S LA7CDT=+$P($G(^LRO(68,LA7AA,1,LA7AD,1,LA7AN,3)),"^")
- S LA7Y=0
- F  S LA7Y=$O(LA7RINFO(LA7Y)) Q:'LA7Y  D  Q:LA7QUIT
- . N DA,DIR,DIRUT
- . S DIR(0)="62.801,"_LA7Y
- . S DIR("A")=$$GET1^DID(62.801,LA7Y,"","LABEL")
- . I LA7Y=2.21 D
- . . S DIR("A",1)=" "
- . . S DIR("A",2)="Specimen Collection Date/time: "_$$FMTE^XLFDT(LA7CDT,"M")
- . . S $P(DIR(0),"^",3)="I Y<LA7CDT!(Y>$$NOW^XLFDT) K X" ; d/t after specimen collect d/t
- . I LA7Y'=2.21 D
- . . N LA7X
- . . S LA7X=$$GET1^DIQ(64.061,$P(LA7RINFO(LA7Y),"^",2)_",",.01) ; Units
- . . S DIR("A")=DIR("A")_" (in "_LA7X_")"
- . I $L($P(LA7RINFO(LA7Y),"^")) D   ; Default value
- . . I LA7Y=2.21 S DIR("B")=$$FMTE^XLFDT($P(LA7RINFO(LA7Y),"^"))
- . . E  S DIR("B")=$P(LA7RINFO(LA7Y),"^")
- . D ^DIR
- . I $D(DTOUT)!$D(DUOUT) S LA7QUIT=1 Q
- . S $P(LA7INFO(LA7Y),"^")=$P(Y,"^") ; New value
- I LA7QUIT Q
- ;
- S LA7Y=0
- F  S LA7Y=$O(LA7RINFO(LA7Y)) Q:'LA7Y  D
- . S LA7I=0
- . F  S LA7I=$O(LA7RINFO(LA7Y,LA7I)) Q:'LA7I  D
- . . I $P(LA7INFO(LA7Y),"^")=$P(LA7RINFO(LA7Y,LA7I),"^") Q  ; Value unchanged
- . . N FDA,LA7628,LA768,LA7DATA
- . . S LA762801=LA7I_","_+LA7SM_","
- . . I LA7Y=2.21 D
- . . . N LA7DURT,LA7UID,LA7UNITS,LA7X
- . . . S LA7UNITS=$$GET1^DIQ(64.061,+$P(LA7RINFO(LA7Y,LA7I),"^",2)_",",.01,"E")
- . . . S LA7DURT=$$FMDIFF^XLFDT(LA7INFO(LA7Y),LA7CDT,2) ; Collection duration (in seconds)
- . . . I LA7UNITS="min" S LA7DURT=$FN(LA7DURT/60,"",0) ; Convert to minutes, rounded to nearest minute.
- . . . I LA7UNITS="hr" S LA7DURT=$FN(LA7DURT/3600,"",0) ; Convert to hours, rounded to nearest hour.
- . . . S FDA(62.8,62.801,LA762801,2.22)=LA7DURT
- . . S FDA(62.8,62.801,LA762801,LA7Y)=$P(LA7INFO(LA7Y),"^") ; New value
- . . D FILE^DIE("","FDA(62.8)","LA7DIE(2)") ; Update required info
- . . ; Update event file
- . . S LA7DATA="SM40^"_$$NOW^XLFDT_"^"_$P(LA7RINFO(LA7Y,LA7I),"^",3)_"^"_$P(LA7SM,"^",2)
- . . D SEUP^LA7SMU(LA7UID,2,LA7DATA)
  Q
  ;
  ;
@@ -101,9 +28,9 @@ CHKREQI(LA7628,LA762801) ; Check for required info/incomplete setup
  ; If errors sets LA7ERR array with error messages and TMP(LA7ERR",$J)
  ;    with specific tests.
  ;
- N LA7FILE,LA7FLD,LA7SCFG,LA7I,LA7J
+ N LA7ERMSG,LA7FILE,LA7FLD,LA7SCFG,LA7I,LA7J,LA7X,LA7Y,LRSS
  ;
- S LA7ERR=$G(LA7ERR,0)
+ S LA7ERR=$G(LA7ERR,0),LA7ERMSG=""
  S LA7628(0)=$G(^LAHM(62.8,LA7628,0))
  S LA7SCFG=$P(LA7628(0),"^",2)
  S LA7SCFG(0)=$G(^LAHM(62.9,LA7SCFG,0))
@@ -113,25 +40,45 @@ CHKREQI(LA7628,LA762801) ; Check for required info/incomplete setup
  S LA7FILE=62.801
  ;
  I $P(LA7I(1),"^") D
- . F LA7J=2,3,7 I '$L($P(LA7I(1),"^",LA7J)) S LA7FLD=$S(LA7J=2:1.11,LA7J=3:1.13,1:1.14) D SETERR
+ . F LA7J=2,3,7 I $P(LA7I(1),"^",LA7J)="" S LA7FLD=$S(LA7J=2:1.11,LA7J=3:1.13,1:1.14) D SETERR
  ;
  I $P(LA7I(1),"^",4) D
- . F LA7J=5,6,8 I '$L($P(LA7I(1),"^",LA7J)) S LA7FLD=$S(LA7J=5:1.21,LA7J=6:1.23,1:1.24) D SETERR
+ . F LA7J=5,6,8 I $P(LA7I(1),"^",LA7J)="" S LA7FLD=$S(LA7J=5:1.21,LA7J=6:1.23,1:1.24) D SETERR
  ;
  I $P(LA7I(2),"^") D
- . F LA7J=2,3,11 I '$L($P(LA7I(2),"^",LA7J)) S LA7FLD=$S(LA7J=2:2.11,LA7J=3:2.13,1:2.14) D SETERR
+ . F LA7J=2,3,11 I $P(LA7I(2),"^",LA7J)="" S LA7FLD=$S(LA7J=2:2.11,LA7J=3:2.13,1:2.14) D SETERR
  ;
  I $P(LA7I(2),"^",4) D
- . F LA7J=5,6,7,12 I '$L($P(LA7I(2),"^",LA7J)) S LA7FLD=$S(LA7J=5:2.21,LA7J=6:2.22,LA7J=7:2.23,1:2.24) D SETERR
+ . F LA7J=5,6,7,12 I $P(LA7I(2),"^",LA7J)="" S LA7FLD=$S(LA7J=5:2.21,LA7J=6:2.22,LA7J=7:2.23,1:2.24) D SETERR
  ;
  I $P(LA7I(2),"^",8) D
- . F LA7J=9,10,13 I '$L($P(LA7I(2),"^",LA7J)) S LA7FLD=$S(LA7J=9:2.31,LA7J=10:2.33,1:2.34) D SETERR
+ . F LA7J=9,10,13 I $P(LA7I(2),"^",LA7J)="" S LA7FLD=$S(LA7J=9:2.31,LA7J=10:2.33,1:2.34) D SETERR
  ;
  ; Check if using non-VA codes
  I $P(LA7628(0),"^",5) D
- . F LA7J=1,2 I '$L($P(LA7I(5),"^",LA7J)) S LA7FLD=$S(LA7J=1:5.1,1:5.2) D SETERR
+ . F LA7J=1,2 I $P(LA7I(5),"^",LA7J)="" S LA7FLD=$S(LA7J=1:5.1,1:5.2) D SETERR
  I '$$GET1^DIQ(60,+$P(LA7I(0),"^",2)_",",64,"I") S LA7FILE=60,LA7FLD=64 D SETERR
  I 'LA7ERR,$O(LA7ERR(""))'="" S LA7ERR=1
+ ;
+ ; Check if accession for "CH" or "MI" subscript test has specimen
+ ; Check if AP accessions have specimens specified in file #63
+ S LRSS=$P($G(^LAB(60,$P(LA7I(0),"^",2),0)),"^",4)
+ I LRSS?1(1"CH",1"MI"),'$P(LA7I(0),"^",3) S LA7FILE=62.801,LA7FLD=.03,LA7ERMSG="No specimen specified for accession" D SETERR
+ I LRSS?1(1"SP",1"CY",1"EM") D CHKAP
+ ;
+ ; Check specimen has SNOMED CT ID, HL7 code or non-HL7 specimen code.
+ I $P(LA7I(0),"^",3) D
+ . N LA761
+ . S LA761=$P(LA7I(0),"^",3)
+ . I $P($G(^LAB(61,LA761,"SCT")),"^")'="" Q
+ . I $P(LA7I(5),"^",3)'="" Q
+ . I $P($G(^LAB(61,LA761,0)),"^",9) Q
+ . S LA761(0)=$$GET1^DIQ(61,LA761,.01),LA7FILE=61
+ . I LRSS="CH",'$P($G(^LAB(61,LA761,0)),"^",9)  D
+ . . S LA7FLD=.09,LA7ERMSG="No LEDI HL7 code (field #.09) specified in TOPOGRAPHY file (#61) for entry "_LA761(0)_" (#"_LA761_")"
+ . . D SETERR
+ . S LA7FLD=20,LA7ERMSG="No SNOMED CT ID (field #20) specified in TOPOGRAPHY file (#61) for entry "_LA761(0)_" (#"_LA761_")"
+ . D SETERR
  ;
  Q
  ;
@@ -140,7 +87,30 @@ SETERR ; Set error log for entries missing values in 62.8
  ; Called from above.
  ;
  S LA7ERR(LA7FILE_":"_LA7FLD)="Missing Required Info - "_$$GET1^DID(LA7FILE,LA7FLD,"","LABEL")
+ I $G(LA7ERMSG)'="" S LA7ERR(LA7FILE_":"_LA7FLD,.1)=LA7ERMSG
  S ^TMP("LA7ERR",$J,LA7FILE_":"_LA7FLD,LA7628,$P(LA7I(0),"^",5),$P(LA7I(0),"^",2))=""
+ S LA7ERMSG=""
+ Q
+ ;
+ ;
+CHKAP ; Check AP subscripts for specimen and associated topographies
+ N LA7ERMSG,LA7FILE,LA7FLD,LA7J,LA7OK,LRAA,LRAD,LRAN,LRDFN,LRIDT,LRUID,X
+ ;
+ S LRDFN=+LA7I(0),LRUID=$P(LA7I(0),"^",5),LA7OK=1
+ S X=$Q(^LRO(68,"C",LRUID)) Q:X=""
+ I LRUID'=$QS(X,3) Q  ; Skip - UID missing.
+ S LRAA=+$QS(X,4),LRAD=+$QS(X,5),LRAN=+$QS(X,6),LRIDT=+$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,3)),"^",5)
+ S LA7FILE=$S(LRSS="SP":63.812,LRSS="CY":63.902,LRSS="EM":63.202,1:0)
+ ;
+ ; Check for missing specimen node (.1) 
+ I '$O(^LR(LRDFN,LRSS,LRIDT,.1,0)) D  Q
+ . S LA7OK=0,LA7FLD=.01,LA7ERMSG="No specimen entered for accession."  D SETERR
+ ;
+ ; Check for pointer to file #61 for each free text specimen.
+ S LA7J=0
+ F  S LA7J=$O(^LR(LRDFN,LRSS,LRIDT,.1,LA7J)) Q:'LA7J  I '$P(^(LA7J,0),"^",6) D
+ . S LA7OK=0,LA7FLD=.06,LA7ERMSG="No topography specified for specimen on accession." D SETERR
+ ;
  Q
  ;
  ;
@@ -168,7 +138,7 @@ BUILDRI ; Build global with required info to print on manifest.
  . I LA7I=8 S $P(LA7X(2),"^",9,10)=$P(LA762801(2),"^",9,10) Q
  ;
  ; Store required info for printing
- F LA7I=1,2 I $L($G(LA7X(LA7I))) S ^TMP("LA7SMRI",$J,+$P(LA762801(0),"^",7),+$P(LA762801(0),"^",9),$P(LA762801(0),"^",5),LA7I)=LA7X(LA7I)
+ F LA7I=1,2 I $G(LA7X(LA7I))'="" S ^TMP("LA7SMRI",$J,+$P(LA762801(0),"^",7),+$P(LA762801(0),"^",9),$P(LA762801(0),"^",5),LA7I)=LA7X(LA7I)
  ;
  Q
  ;

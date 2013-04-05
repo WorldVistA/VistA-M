@@ -4,7 +4,7 @@ V ;;5.1;IFCAP;;Oct 20, 2000
  ;invoke by the pre-initial installation field of package file.
 EN ;called from routine prcinit[1]
  D EN^DDIOL("IFCAP PRE-INIT STARTS at "_$$NOW)
- ;D DESCRIP^PRC5INS1(410,443.99) ;remove ifcap dd field descriptions
+ D DESCRIP^PRC5INS1(410,443.99) ;remove ifcap dd field descriptions
  ;remove erroneous computed field nodes of Free-Text field
  K ^DD(420.01,2,9.01),^(9.1),^(9.2)
  K ^DD(420.01,3,9.01),^(9.1),^(9.2)
@@ -16,13 +16,13 @@ EN ;called from routine prcinit[1]
  ;kill old "NM" nodes where name change
  K ^DD(420.11,0,"NM","SUBACCOUNT")
  F X="PRCO EDI RE-TRAN^PRCHPC PO","PRCHPM CS RETRANSMIT BATCH^PRCHPM CS TRANSMISSION MENU" D UNLINK($P(X,"^"),$P(X,"^",2))
- ;D ^PRCIPR1A ;delete option/routine/template(s)
- ;D EN3^PRC5C1 ;reindex special fcp in file 420
+ D ^PRCIPR1A ;delete option/routine/template(s)
+ D EN3^PRC5C1 ;reindex special fcp in file 420
  ;add entry in file 420.92 if not defined
  I '$O(^PRCU(420.92,"B",PRCFIXV,"")) D
  . N PRCRI,A
  . S A="",PRCRI(9.4)=$O(^DIC(9.4,"B","IFCAP",0)) I PRCRI(9.4) S A=$P(^DIC(9.4,PRCRI(9.4),"VERSION"),"^",1)
- . ; S A=A_"/"_$P($T(+2^PRCINIT),";",3)
+ . S A=A_"/"_$P($T(+2^PRCINIT),";",3)
  . S X=PRCFIXV,X("DR")="1////"_A_";2.6///^S X=""N"""
  . D ADD^PRC0B1(.X,.Y,"420.92;^PRCU(420.92,")
  . I Y=-1 K Y I Y W !,"ERROR TRAP! CALL IRM/ISC SUPPORT."

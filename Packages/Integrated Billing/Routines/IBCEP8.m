@@ -1,5 +1,5 @@
 IBCEP8 ;ALB/TMP/OIFO-BP/RBN - Functions for NON-VA PROVIDER ;11-07-00
- ;;2.0;INTEGRATED BILLING;**51,137,232,288,320,343,374,377,391,400,436,432,447**;21-MAR-94;Build 80
+ ;;2.0;INTEGRATED BILLING;**51,137,232,288,320,343,374,377,391,400,436,432,476**;21-MAR-94;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; -- main entry point
@@ -98,9 +98,11 @@ EDIT1(IBNPRV,IBNOLM) ; Edit non-VA provider/facility demographics
  . ;S DR=".01;"_$S(IBP:".03;.04",1:".05;.1;.06;.07;.08;.13///24;W !,""ID Qualifier: 24 - EMPLOYER'S IDENTIFICATION #"";.09Lab or Facility Primary ID;.11;.15")_";D PRENPI^IBCEP81(IBNPRV);D EN^IBCEP82(IBNPRV);S DIE(""NO^"")="""";42;K DIE(""NO^"")"
  . ;S DR=$S(IBP:".03;.04",1:".05;.1;.06;.07;.08;.13///24;W !,""ID Qualifier: 24 - EMPLOYER'S IDENTIFICATION #"";.09Lab or Facility Primary ID;.11;.15")_";D PRENPI^IBCEP81(IBNPRV);D EN^IBCEP82(IBNPRV);S DIE(""NO^"")="""";42;K DIE(""NO^"")"
  . ; End IB*2.0*436 - RBN
- . ;IB*2.0*432 - add contact phone and name
+ . ;IB*2.0*432  - add contact phone and name
  . S DR=$S(IBP:".03;.04",1:".05;.1;.06;.07;.08;1.01;I X="""" S Y=""@2"";1.02R;S Y=""@3"";@2;1.02;@3;1.03;.13///24;W !,""ID Qualifier: 24 - EMPLOYER'S IDENTIFICATION #"";.09Lab or Facility Primary ID;.11;.15")
- . S DR=DR_";D PRENPI^IBCEP81(IBNPRV);D EN^IBCEP82(IBNPRV);S DIE(""NO^"")="""";42;K DIE(""NO^"")"
+ . ;IB*2.0*476 - Add FEE BASIS allow multiple value
+ . ;S DR=DR_";D PRENPI^IBCEP81(IBNPRV);D EN^IBCEP82(IBNPRV);S DIE(""NO^"")="""";42;K DIE(""NO^"")"
+ . S DR=DR_";D PRENPI^IBCEP81(IBNPRV);D EN^IBCEP82(IBNPRV);S DIE(""NO^"")="""";42;K DIE(""NO^"");D FBTGLSET^IBCEP8C1(IBNPRV)"
  . D ^DIE
  . Q:$G(IBNOLM)
  . D BLD^IBCEP8B(IBNPRV)
@@ -288,26 +290,31 @@ PRIMID(IEN35593) ; Return External Primary ID and ID Quailier
 PRVFMT ;  called only by the INPUT TRANSFORM of #355.93,.01
  ;      no other calls are allowed to this tag
  ;
+ ; DSS/SCR 032812 PATCH 476 : Modified to support FB PAID TO IB background job
+ ;
  ; DESCRIPTION  : Sets the NAME (.01) and the ENTITY TYPE (.02) fields
  ;                of file 355.93.  Allows the user to change the ENTITY
  ;                TYPE and forces reentry of the provider data so
- ;                that it matches the ENTITY TYPE.  Also formats the 
+ ;                that it matches the ENTITY TYPE,if changes are being 
+ ;                made through IB menues.  Also formats the 
  ;                NAME to correspond to the ENTITY TYPE. Disallows
  ;                changing of the NAME field from ANYWHERE other than
  ;                PROVIDER ID MAINTENANCE or IB EDIT BILLING INFO 
- ;                (billing screens).  Adding new entries directly from
- ;                FileMan is no longer permitted.
+ ;                (billing screens) or FB AUTO INTERFACE TO IB.  
+ ;                Adding new entries directly from FileMan is no longer permitted.
  ; 
  ; INPUTS       : Variables set by user selected option, screen actions
  ;                and user input:
  ;                X        - Provider name passed in by .01 field input
  ;                           transform.
- ;                XQY0     - IB option selected by the user.
- ;                DA       - IEN of the record selected by the user
- ;                IBNVPMIF - ENTITY TYPE flag passed in from ListManager
+ ;                XQY0     - IB option selected by the user OR "FB PAID TO IB"
+ ;                DA       - IEN of the record selected by the user or provided 
+ ;                            by the OPTION: FB PAID TO IB
+ ;                IBNVPMIF - ENTITY TYPE flag passed in from ListManager or provided 
+ ;                           by the OPTION: FB PAID TO IB
  ;                           (F=Facility,I=Individual).
  ;                IBSCNN   - IB variable indication of the actions/submenu:
- ;                           #3, #4, and #7 found on bill screen #8
+ ;                           #3, #4, and #7 found on bill screen #8  OR "" for FB PAID TO IB
  ;
  ; OUTPUTS      : IBFLPFLP - Indicate that the user is changing the
  ;                           ENTITY TYPE (flip flop).  Possible states:
@@ -329,6 +336,9 @@ PRVFMT ;  called only by the INPUT TRANSFORM of #355.93,.01
  ;
  I $P($G(XQY0),U,1)="IB EDIT BILLING INFO" D PRVINIT,PRVMANT S OKRTN=1
  I $P($G(XQY0),U,1)="IBCE PROVIDER MAINT" D PRVINIT,PRVMANT S OKRTN=1
+ ;
+ I $P($G(XQY0),U,1)="IB AUTO INTERFACE FROM FB" D EPTRANS^IBCEP8C() S OKRTN=1  ;IB*2.0*476
+ ;
  I 'OKRTN K X
  Q
  ;==========================
@@ -418,8 +428,8 @@ SCREEN(IBNPRV) ;
  ; Get the user's input
  ;
 INPUT ;
- S DIR(0)="FOUrA^3:30"
- S DIR("A")="NAME: "_IBNAME_"// "
+ S DIR(0)="FOUr^3:30"
+ S DIR("A")="NAME: "_IBNAME_"//"
  ;
  S DIR("?")=" "
  S DIR("?",1)="Press <ENTER> to accept the displayed provider name"

@@ -1,5 +1,5 @@
 DINIT11A ;SFISC/XAK-INITIALIZE VA FILEMAN ;12:28 PM  6 Jan 2000
- ;;22.0;VA FileMan;**26**;Mar 30, 1999
+ ;;22.0;VA FileMan;**26**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) Q:X?.P  S @("^DD("_$E($P(X," ",2),3,99)_")=Y")
  ;;.001,0 DESCRIPTION^

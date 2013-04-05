@@ -12,7 +12,7 @@ VALID8 ;
  . Q:$$FIND1^DIC(4.2,"","QO",XMDOM,"B^C")
  . I $L(XMDOM,".")<3 D
  . . Q:$$FIND1^DIC(4.2,"","QO",XMDOM_".DOMAIN.EXT","B^C")
- . . Q:$$FIND1^DIC(4.2,"","QO",XMDOM_".DOMAIN.EXT","B^C")
+ . . Q:$$FIND1^DIC(4.2,"","QO",XMDOM_".domain.ext","B^C")
  . W $S($L(XMDOM,".")<3:".DOMAIN.EXT",1:"")," is not in your domain file." S XMNO=XMNO+1
  Q
 TABLE ;;Name
@@ -80,11 +80,11 @@ TABLE ;;Name
  ;;FO-OAKLAND
  ;;FO-SLC
  ;;FO-WASH
- ;;FOC-AUSTIN.DOMAIN.EXT
+ ;;FOC-AUSTIN.domain.ext
  ;;FORT-LYON
- ;;FORUM.DOMAIN.EXT
+ ;;FORUM.domain.ext
  ;;FRESNO
- ;;GK.DOMAIN.EXT
+ ;;GK.domain.ext
  ;;GRAND-JUNCT
  ;;HAC
  ;;HAMPTON
@@ -108,7 +108,7 @@ TABLE ;;Name
  ;;LOUISVILLE
  ;;MADISON
  ;;MAIL.CIO
- ;;MAIL.DOMAIN.EXT
+ ;;MAIL.domain.ext
  ;;MANCHESTER
  ;;MANILA
  ;;MARTINEZ
@@ -166,7 +166,7 @@ TABLE ;;Name
  ;;TUCSON
  ;;TUSCALOOSA
  ;;V02
- ;;VBA.DOMAIN.EXT
+ ;;VBA.domain.ext
  ;;WALLA-WALLA
  ;;WASHINGTON
  ;;WEST-HAVEN

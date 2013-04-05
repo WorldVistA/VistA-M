@@ -1,5 +1,5 @@
 DIVR ;SFISC/GFT-VERIFY FLDS ;8:43 AM  1 Jul 1999
- ;;22.0;VA FileMan;**7**;Mar 30, 1999
+ ;;22.0;VA FileMan;**7**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  I $D(DIVFIL)[0 N DIVDAT,DIVFIL,DIVMODE,DIVPG,POP D  G:$G(POP) Q^DIV
  . S DIVMODE="C"

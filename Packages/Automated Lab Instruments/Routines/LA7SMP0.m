@@ -1,5 +1,5 @@
-LA7SMP0 ;DALOI/JMC - Shipping Manifest Print (Cont'd);11/25/96  14:39
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64**;Sep 27, 1994
+LA7SMP0 ;DALOI/JMC - Shipping Manifest Print (Cont'd) ;12/03/09  11:21
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74**;Sep 27, 1994;Build 229
  ;
 HED ; Header
  I $E(IOST,1,2)="C-" D TERM Q:$G(LA7EXIT)
@@ -10,14 +10,18 @@ HED ; Header
  W !,?1,"Shipping Manifest: ",$P(LA7SM,"^",2)
  I +LA7SMST'=4,IOM'<132 D WARN
  ;
- W ?IOM-37," Page: ",LA7PAGE
+ W ?(IOM-$S(IOM>131:42,1:32))," Page: ",LA7PAGE
  W !,?11,"to Site: ",LA7TSITE
- W ?IOM-40," Printed: ",LA7NOW
+ ;
+ W ?(IOM-$S(IOM>131:45,1:35))," Printed: ",LA7NOW
  W !,?9,"from Site: ",LA7FSITE
+ ;
+ I IOM>131 W ?(IOM-53),"Electronic Order: ",$S($P(LA7SCFG(0),"^",7):"YES",1:"NO")
+ E  W ?(IOM-35)," E-Order: ",$S($P(LA7SCFG(0),"^",7):"YES",1:"NO")
  ;
  I +LA7SMST=4 W !,?6,"Date Shipped: ",$P(LA7SDT,"^",2)
  E  W !,?12,"Status: ",$P(LA7SMST,"^",2)
- W ?IOM-41," Ship via: ",LA7SVIA
+ W ?(IOM-$S(IOM>131:46,1:36))," Ship via: ",LA7SVIA
  ;
  ; Check if task has been asked to stop.
  I $D(ZTQUEUED),$$S^%ZTLOAD D  Q
@@ -30,35 +34,62 @@ HED ; Header
  . W !,LA7LINE
  . I $P(LA7SMR,"^",2)=2 W !!,"Following Required Information and/or Test Codes Missing",!!
  ;
- W !,"Shipping Condition: ",$S(LA7SCOND:$$GET1^DIQ(62.93,LA7SCOND_",",.01),1:"None Specified")
- W ?(IOM-42)," Container: ",$S(LA7SCONT:$$GET1^DIQ(62.91,LA7SCONT_",",.01),1:"None Specified")
+ W !,"Shipping Condition: ",LA7SCOND(0)
+ W ?(IOM-$S(IOM>131:47,1:37))," Container: ",LA7SCONT(0)
  ;
- I $L($P(LA7SCFG(0),"^",13)) W !,?4,"Account Number: ",$P(LA7SCFG(0),"^",13)
+ I $P(LA7SCFG(0),"^",13)'="" W !,?4,"Account Number: ",$P(LA7SCFG(0),"^",13)
  ;
  I LA7SBC D SBC1
- W !!,?11,"Patient Name",?41,"Patient ID",?64,"Accession"
- I IOM>131 W ?86,"Requested By"
- W !,?11,"Date of Birth",?41,"Sex",?64,"Specimen UID"
- I IOM>131 W ?86,"Collect Date/Time"
- I IOM'>131 W !,?11,"Requested By",?41,"Collect Date/Time"
+ ;
+ W !!,"Item",?11,"Patient Name",?41,"Patient ID"
+ ;
+ I IOM>131 D
+ . W ?64,"Accession",?86,"Requested By"
+ . W !,?11,"Date of Birth",?30,"Sex",?41,"Patient ICN",?64,"Specimen UID",?86,"Collect Date/Time"
+ ;
+ I IOM'>131 D
+ . W ?60,"Accession"
+ . W !,?11,"Date of Birth",?41,"Patient ICN",?60,"Specimen UID"
+ . W !,?11,"Requested By",?41,"Sex",?60,"Collect Date/Time"
+ ;
+ ; If COTS system then include site id and patient's DFN.
+ I $E(LA7TSITE(99),1,5)="200LR" W !,?11,"Site ID:DFN:CRC16"
+ ;
  W !,LA7LINE
  Q
  ;
  ;
 SH ; Subheader
- W !,"Item: ",LA7ITEM
- W ?11,PNM
- ;I LRDPF=2,LA7ICN W ?41,LA7ICN
- ;E  W ?41,$S(LRDPF=2:SSN,1:SSN(2))
+ W !,LA7ITMID,?11,PNM
  W ?41,$S(LRDPF=2:SSN,1:SSN(2))
- W ?64,LA7ACC
- I IOM>131 W ?86,$P(LA7PROV,"^",2)
+ ;
+ I IOM'>131 W ?60,LA7ACC
+ ;
+ I IOM>131 W ?64,LA7ACC,?86,$P(LA7PROV,"^",2)
+ ;
  W !
  I LA7DC W "Cont'd"
- W ?11,$$FMTE^XLFDT(DOB),?41,$S(SEX="M":"Male",SEX="F":"Female",SEX="":"Unknown",1:SEX),?64,LA7UID
- I IOM'>131 W !,?11,$E($P(LA7PROV,"^",2),1,28),?41,$S(LA7CDT:$$FMTE^XLFDT(LA7CDT,"1M"),1:LA7CDT)
- I IOM>131 W ?86,$S(LA7CDT:$$FMTE^XLFDT(LA7CDT,"1M"),1:LA7CDT)
+ ;
+ W ?11,$$FMTE^XLFDT(DOB)
+ ;
+ I IOM'>131 D
+ . W ?41,LA7ICN,?60,LA7UID
+ . W !,?11,$E($P(LA7PROV,"^",2),1,28)
+ . W ?41,$S(SEX="M":"Male",SEX="F":"Female",SEX="":"Unknown",1:SEX)
+ . W ?60,$S(LA7CDT:$$FMTE^XLFDT(LA7CDT,"1M"),1:LA7CDT)
+ ;
+ I IOM>131 D
+ . W ?30,$S(SEX="M":"Male",SEX="F":"Female",SEX="":"Unknown",1:SEX)
+ . W ?41,LA7ICN,?64,LA7UID,?86,$S(LA7CDT:$$FMTE^XLFDT(LA7CDT,"1M"),1:LA7CDT)
+ ;
+ ; If COTS system and file #2 patient then include site id and patient's DFN with a CRC.
+ I $E(LA7TSITE(99),1,5)="200LR",LRDPF=2 D
+ . N LA7X
+ . S LA7X=$$CRC16^XLFCRC(LA7FSITE(99)_":"_DFN_":",0)
+ . W !,?11,LA7FSITE(99)_":"_DFN_":"_LA7X
+ ;
  W !
+ ;
  I +LA7SMST'=4 D
  . D PROV(+LA7PROV)
  . I $P($G(LA762801(0)),"^",6) D
@@ -93,14 +124,14 @@ SH ; Subheader
  ;
  ;
 WARN ; Write warning for work copy.
- W ?$S(IOM<131:5,1:40),"*** DO NOT USE FOR SHIPPING DOCUMENT - WORK COPY ONLY ***"
+ W ?$S(IOM<131:5,1:36)," *** DO NOT USE FOR SHIPPING DOCUMENT - WORK COPY ONLY *** "
  Q
  ;
  ;
 SBC1 ; Site bar codes
  ;
  ; Print "SM" bar code
- ; Calculate/append LPC to barcode. 
+ ; Calculate/append LPC to barcode.
  I $G(LA7SM("BARCODE"))="" D
  . N LA7X,X,Y
  . I LA7SBC=1 D
@@ -156,10 +187,10 @@ PTID ; Get/setup patient identifier information
  ;
  ; Integration control number (ICN) from MPI
  S LA7ICN=""
- S X="MPIF001" X ^%ZOSF("TEST")
- I $T,LRDPF=2 D
+ I LRDPF=2 D
  . S LA7ICN=$$GETICN^MPIF001(DFN)
- . I LA7ICN<1 S LA7ICN=""
+ . I LA7ICN<0 S LA7ICN=""
+ ;
  Q
  ;
  ;
@@ -211,6 +242,19 @@ INIT ; Initialize variables
  S LA7SCFG(0)=$G(^LAHM(62.9,+LA7SCFG,0))
  Q
  ;
+ ;
+ITEM ; Setup item identifier to print on manifest.
+ N LA7ITEM,LA7PC,LA7PREFX,LA7SC,LA7ROOT,LA7UID
+ K ^TMP("LA7ITEM",$J)
+ S LA7ROOT="^TMP(""LA7SM"",$J)",(LA7ITEM,LA7PC,LA7PREFX)=0,(LA7SC,LA7UID)=""
+ F  S LA7ROOT=$Q(@LA7ROOT) Q:LA7ROOT=""  Q:$QS(LA7ROOT,1)'="LA7SM"!($QS(LA7ROOT,2)'=$J)  D
+ . I LA7SC'=$QS(LA7ROOT,3) S LA7PREFX=LA7PREFX+1,LA7ITEM=0,LA7SC=$QS(LA7ROOT,3),LA7PC=$QS(LA7ROOT,4),LA7UID=""
+ . I LA7PC'=$QS(LA7ROOT,4) S LA7PREFX=LA7PREFX+1,LA7ITEM=0,LA7PC=$QS(LA7ROOT,4),LA7UID=""
+ . I LA7UID'=$QS(LA7ROOT,5) S LA7UID=$QS(LA7ROOT,5),LA7ITEM=LA7ITEM+1
+ . S ^TMP("LA7ITEM",$J,LA7UID,$QS(LA7ROOT,6))=LA7PREFX_"-"_LA7ITEM
+ Q
+ ;
+ ;
 END ;
  I $E(IOST,1,2)="C-",'$G(LA7EXIT) D TERM
  I $E(IOST,1,2)="P-" W @IOF S IONOFF=""
@@ -218,11 +262,11 @@ END ;
  ;
 KILL ; Cleanup variables
  K %,%DT,%ZIS,A,IO("Q"),AGE,DA,DFN,DIC,DIB,DIR,DIRUT,DTOUT,DUOUT,I,J,K,LAST,PNM,SEX,SSN,X,Y,Z
- K LA7AA,LA7ACC,LA7AD,LA7AN,LA7CDT,LA7CHK,LA7CMT,LA7DC,LA7END,LA7ERR,LA7EV,LA7EXIT,LA7FSITE,LA7I,LA7ICN,LA7ITEM,LA7LINE,LA7NLT,LA7NLTN,LA7NOW,LA7PAGE,LA7PROV
+ K LA7AA,LA7ACC,LA7AD,LA7AN,LA7CDT,LA7CHK,LA7CMT,LA7DC,LA7END,LA7ERR,LA7EV,LA7EXIT,LA7FSITE,LA7I,LA7ICN,LA7LINE,LA7NLT,LA7NLTN,LA7NOW,LA7PAGE,LA7PROV
  K LA7QUIT,LA7ROOT,LA7SBC,LA7SCFG,LA7SCOND,LA7SCONT,LA7SDT,LA7SKIP,LA7SM,LA7SMR,LA7SMST,LA7SPEC,LA7SVIA,LA7TSITE,LA7UID,LA7X
- K LA760,LA762801
+ K LA760,LA762,LA762801
  K LRDFN,LRDPF,LRPRAC
- K ^TMP("LA7ERR",$J),^TMP("LA7SM",$J),^TMP("LA7SMRI",$J)
+ K ^TMP("LA7ERR",$J),^TMP("LA7ITEM",$J),^TMP("LA7SM",$J),^TMP("LA7SMRI",$J)
  D KVAR^LRX
  ;
  I $D(ZTQUEUED) S ZTREQ="@"

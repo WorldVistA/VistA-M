@@ -1,5 +1,5 @@
 ECXLARA ;ALB/JRC - LAR Extract Audit Report ; 9/24/08 3:35pm
- ;;3.0;DSS EXTRACTS;**105,112,120**;Dec 22, 1997;Build 43
+ ;;3.0;DSS EXTRACTS;**105,112,120,136**;Dec 22, 1997;Build 28
  Q
 EN ;entry point for NUT extract audit report
  N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,DIRUT,DTOUT,DUOUT,SCRNARR,REPORT
@@ -70,10 +70,10 @@ PROCESS ;process data in file #727.824 and store in ^tmp global
  Q
  ;
 PRINT ;print report
- N PG,NODE,ECN
+ N PG,NODE,ECN,ECXTSTNM
  U IO
  I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ Q
- S PG=0
+ S PG=0,ECXTSTNM=""
  I '$D(^TMP($J,"ECXDSS")) D  Q
  .S DIV=0 F  S DIV=$O(@SCRNARR@("DIVISION",DIV)) Q:'DIV  D  Q:FLAG
  ..D HEADER Q:FLAG
@@ -83,14 +83,14 @@ PRINT ;print report
  ..W !,"**************************************************"
  S DIV=0 F  S DIV=$O(^TMP($J,"ECXDSS",DIV)) Q:'DIV  D
  .D HEADER Q:FLAG
- .S ECN=0 F  S ECN=$O(^ECX(727.29,"AC",ECN)) Q:'ECN  S TEST=$$RJ^XLFSTR(ECN,4,0) D  Q:FLAG
+ .S ECN=0 F  S ECN=$O(^ECX(727.29,"AC",ECN)) Q:'ECN  S TEST=$$RJ^XLFSTR(ECN,4,0),ECXTSTNM=$$GET1^DIQ(727.29,+$O(^ECX(727.29,"AC",ECN,0)),.03) D  Q:FLAG
  ..S NODE=$S($D(^TMP($J,"ECXDSS",DIV,TEST)):^TMP($J,"ECXDSS",DIV,TEST),1:"")
  ..;S TEST="" F  S TEST=$O(^TMP($J,"ECXDSS",DIV,TEST)) Q:TEST']""  D  Q:FLAG
  ..;S NODE=^TMP($J,"ECXDSS",DIV,TEST)
  ..;S MIN=$P(^TMP($J,"ECXDSS",DIV,TEST),U,2)
  ..;S MAX=$P(^TMP($J,"ECXDSS",DIV,TEST),U,3)
  ..D:($Y+3>IOSL) HEADER Q:FLAG
- ..W !,?4,TEST,?14,$$ECXYMX^ECXUTL($$ECXYM^ECXUTL(DATE)),?27,$S(NODE:$J($P(NODE,U,1),15),1:$J("Not in Extract",15))
+ ..W !,?1,TEST,?13,ECXTSTNM,?55,$$ECXYMX^ECXUTL($$ECXYM^ECXUTL(DATE)),?65,$S(NODE:$J($P(NODE,U,1),15),1:$J("Not in Extract",15))
  ..;;W !,?4,TEST,?14,$$ECXYMX^ECXUTL($$ECXYM^ECXUTL(DATE)),?27,$S(MIN["NEG":$J("NEG",15),1:$J(MIN,15,4)),?44,$S(MAX["POS":$J("POS",15),MAX>0:$J(MAX,15,4),1:""),?60,$J($P(NODE,U,1),15)
  Q
  ;
@@ -109,6 +109,6 @@ HEADER ;header and page control
  W !,"Division: "_$P(DSSID,U)_$S($P(DSSID,U,2)'="":" ("_$P(DSSID,U,2)_")",1:""),?68,"Page: "_PG
  ;Detailed report sub-header
  Q:'$D(^TMP($J))
- W !!,?2,"Test Code",?14,"Month Year",?32,"Total Count"
+ W !!,?1,"Test Code",?13,"DSS TEST NAME",?53,"Month Year",?69,"Total Count"
  ;W !!,?2,"Test Code",?14,"Month Year",?32,"Min Result",?49,"Max Result",?64,"Total Count"
  Q

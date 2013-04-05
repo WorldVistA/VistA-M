@@ -1,5 +1,5 @@
-EDPBLK ;SLC/KCM - Handle locking for configuration
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPBLK ;SLC/KCM - Handle locking for configuration ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 READL(AREA,PART,TOKEN) ; lock for reading
  N DAY,SEQ

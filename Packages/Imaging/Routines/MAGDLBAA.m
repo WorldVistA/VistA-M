@@ -1,5 +1,5 @@
-MAGDLBAA ;WOIFO/LB - Routine to move failed dicom images to ^MAG(2006.575 ; 05/18/2007 11:23
- ;;3.0;IMAGING;**11,51,54,53**;Mar 19, 2002;Build 1719;Apr 28, 2010
+MAGDLBAA ;WOIFO/LB/JSL/SAF - Routine to move failed dicom images to ^MAG(2006.575 ; 05/18/2007 11:23
+ ;;3.0;IMAGING;**11,51,54,53,123**;Mar 19, 2002;Build 67;Jul 24, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -24,7 +24,7 @@ MOVE ;called from MAGDIR1 to move entries not matching Radiology case #.
  N DATE,REASON,ENTRY,IEN,NIEN,ORIG,DCMPNME,CASE,CASENUM,PATIENT,RESULT
  S DATE=$$NOW^XLFDT()\1,RESULT=0
  ;
- ; if the entry alreay exists in file 2006.575, skip it
+ ; if the entry already exists in file 2006.575, skip it
  S MACHID=$G(MACHID,"A")
  I $$EXIST(.RESULT,FROMPATH,MACHID,LOCATION) D  Q
  . D REMOAFX(.RESULT,MACHID,LOCATION,STUDYUID)
@@ -48,7 +48,8 @@ MOVE ;called from MAGDIR1 to move entries not matching Radiology case #.
  S ^MAGD(2006.575,IEN,1)=CASE_"^"_CASENUM_"^"_DATE_"^"_MACHID_"^"_LOCATION
  S ^MAGD(2006.575,IEN,"AIUID")=$G(IMAGEUID)
  S ^MAGD(2006.575,IEN,"ASUID")=STUDYUID
- S ^MAGD(2006.575,IEN,"AMFG")=$G(INSTNAME)_"^"_$G(ROWS)_"^"_$G(COLUMNS)_"^"_$G(OFFSET)_"^"_$G(MODIEN)_"^"_$G(MODALITY)_"^"_$$UP^MAGDFCNV($G(MFGR))_"^"_$$UP^MAGDFCNV($G(MODEL))_"^"_LOCATION
+ ;MOD for IHS multiple Chart ID (i.e. Chawktaw)
+ S ^MAGD(2006.575,IEN,"AMFG")=$G(INSTNAME)_"^"_$G(ROWS)_"^"_$G(COLUMNS)_"^"_$G(OFFSET)_"^"_$G(MODIEN)_"^"_$G(MODALITY)_"^"_$$UP^MAGDFCNV($G(MFGR))_"^"_$$UP^MAGDFCNV($G(MODEL))_"^"_INSTLOC ;P123
  S ^MAGD(2006.575,IEN,"ACSTXT")=$G(CASETEXT)
  ; Image type can be RAD, MEDICINE, SURGERY, etc.
  S ^MAGD(2006.575,IEN,"TYPE")=$G(IMGSVC)

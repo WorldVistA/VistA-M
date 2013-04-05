@@ -1,5 +1,5 @@
 DDWT1 ;SFISC/PD KELTZ,MKO-READ AND PROCESS ;11:35 AM  25 Aug 2000
- ;;22.0;VA FileMan;**18**;Mar 30, 1999
+ ;;22.0;VA FileMan;**18**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  D LOAD^DDW1 K DUOUT ;GFT
  F  D GETIN Q:$D(DDWFIN)

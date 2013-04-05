@@ -1,5 +1,5 @@
-LRRP ;DALOI/RWF/BA - PROCESS DATA FOR INTERIM REPORTS ; 11/10/88  08:48
- ;;5.2;LAB SERVICE;**195,221,283,286**;Sep 27, 1994
+LRRP ;DALOI/STAFF - PROCESS DATA FOR INTERIM REPORTS ;04/21/10  15:32
+ ;;5.2;LAB SERVICE;**195,221,283,286,350**;Sep 27, 1994;Build 230
  ;
 SET ;from LRRSP, LRRS, LRRD - call with LRORDER=ORDERS, LRODT=DATE, LRDFN
  K ^TMP("LR",$J,"TP"),LRORD
@@ -14,7 +14,8 @@ SET ;from LRRSP, LRRS, LRRD - call with LRORDER=ORDERS, LRODT=DATE, LRDFN
 TEST ;
  I LRORD(1)="" K ^TMP("LR",$J,"TP") Q
  S LRFOUND=1,LRORD=$S($D(^LRO(69,LRODT,1,LRORD(1),0))#2:^(0),1:"") Q:LRORD=""!(+LRORD'=LRDFN)
- K S,LRAAO S LRTEST=0
+ K S,LRAAO
+ S LRTEST=0
  F  S LRTEST=+$O(^LRO(69,LRODT,1,LRORD(1),2,LRTEST)) Q:LRTEST<1  S X=^(LRTEST,0) I LRTSCRN=0!(LRTSCRN=+X) D DATA K S
  K S Q:'$D(LRAAO)  Q:LRAAO<.1
  S LRDPF=$P(^LR(LRDFN,0),U,2),DFN=$P(^(0),U,3) D PT^LRX
@@ -23,10 +24,13 @@ TEST ;
  Q
  ;
  ;
-DATA S LRTSTS=+X,LRAD=$P(X,U,3),LRAA=+$P(X,U,4),LRAN=$P(X,U,5)
+DATA ;
+ S LRTSTS=+X,LRAD=$P(X,U,3),LRAA=+$P(X,U,4),LRAN=$P(X,U,5)
  S LRAAO=$S($D(^LRO(68,LRAA,0)):$P(^(0),U,8),1:0)
  I LRAAO<.1 Q:'LRAA  D  Q
- . W !?2,$C(7),$P(^LRO(68,LRAA,0),"^")_" accession area is missing a print order!",!?2,$P(^LAB(60,LRTSTS,0),"^")_" results will not be displayed until this is corrected.",!?2,"Please contact IRM or the Lab ADPAC."
+ . W !?2,$C(7),$P(^LRO(68,LRAA,0),"^")_" accession area is missing a print order!"
+ . W !?2,$P(^LAB(60,LRTSTS,0),"^")_" results will not be displayed until this is corrected."
+ . W !?2,"Please contact IRM or the Lab ADPAC."
  S LRSS=$P(^LRO(68,LRAA,0),U,2)
  Q:'$D(^LRO(68,LRAA,1,LRAD,1,LRAN,0))  Q:'$D(^(3))
  S ^TMP("LR",$J,"TP",LRAAO)=LRAA_U_LRSS
@@ -44,13 +48,15 @@ DATA S LRTSTS=+X,LRAD=$P(X,U,3),LRAA=+$P(X,U,4),LRAN=$P(X,U,5)
  Q
  ;
  ;
-XPND Q:'$D(^LAB(60,LRTSTS,.1))  S LRDN=$P($P(^(0),U,5),";",2)
- I '$L(LRDN) S LRJJ=0 F  S LRJJ=+$O(^LAB(60,LRTSTS,2,LRJJ)) Q:LRJJ<1  S S=S+1,S(S)=+^(LRJJ,0)
+XPND ;
+ Q:'$D(^LAB(60,LRTSTS,.1))  S LRDN=$P($P(^(0),U,5),";",2)
+ I LRDN="" S LRJJ=0 F  S LRJJ=+$O(^LAB(60,LRTSTS,2,LRJJ)) Q:LRJJ<1  S S=S+1,S(S)=+^(LRJJ,0)
  D:$L(LRDN) SETUP
  Q
  ;
  ;
-SETUP Q:'LRTSTS  Q:'$D(^LAB(60,LRTSTS,.1))  S X=^(.1)
+SETUP Q:'LRTSTS
+ S X=$G(^LAB(60,LRTSTS,.1))
  I 'LRLAB,"BO"'[$P(^LAB(60,LRTSTS,0),U,3) Q
  Q:'$D(^LR(LRDFN,LRSS,LRIDT,LRDN))  Q:'$L($P(^(LRDN),U))
  S LRPO=$P(X,U,6),LRPO=$S(LRPO:LRPO,1:LRDN/1000000)
@@ -84,4 +90,47 @@ GO ;from LRRP3
  S LRLAB=$S($D(LRLABKY):1,1:0),LRDN=1
  F  S LRDN=$O(^TMP("LR",$J,"TMP",LRDN)) Q:LRDN<1  S LRTSTS=+^(LRDN) D SETUP
  D CMNT,^LRRP1
+ Q
+ ;
+ ;
+LOOKUP ; Lookup results by accession
+ ;
+ N %ZIS,DIR,DIROUT,DIRUT,LRAA,LRACC,LRAD,LRAN,LRDFN,LRDPF,LREND,LRIDT,LRLAB,LRPRTPG,LRSS,LRSTOP,LRVBY,X,Y,ZTDESC,ZTRTN,ZTSAVE
+ ;
+ ;ZEXCEPT: CH,MI
+ ;
+ ; Ask if printing address page
+ S DIR(0)="Y",DIR("A")="Print address page",DIR("B")="NO",LRPRTPG=0
+ D ^DIR K DIR
+ I $D(DIRUT) Q
+ I Y S LRPRTPG=1
+ ;
+ F  D  Q:LREND!LRSTOP
+ . S (LREND,LRSTOP,LRVBY)=0
+ . S LRACC="" D ^LRWU4
+ . I LRAN<1 S LREND=1 Q
+ . I '$D(^LRO(68,LRAA,1,LRAD,1,LRAN,0)) W !,"Doesn't exist." Q
+ . K LRDFN,LRDPF,LRIDT,LRSS
+ . S LRSS=$P(^LRO(68,LRAA,0),"^",2),LRDFN=$P(^LRO(68,LRAA,1,LRAD,1,LRAN,0),"^"),LRIDT=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,3)),"^",5)
+ . I LRSS=""!(LRIDT<1)!(LRDFN<1) W !,"Incomplete accession - unable to identify results." Q
+ . I LRSS'?1(1"CH",1"MI") W !,"This option only supports CH and MI subscripted accessions." Q
+ . S %ZIS="Q",ZTSAVE("DFN")="",ZTSAVE("LR*")="",ZTRTN="ADQ^LRRP",ZTDESC="Interim Report for an Accession"
+ . D IO^LRWU
+ . W !!
+ ;
+ Q
+ ;
+ ;
+ADQ ; Tasked entry point to print interim report for an accession
+ ;
+ ;
+ U IO
+ N LREND,LRLAB,LRSTOP
+ D INIT^LRRP2,PT^LRX
+ S LRLAB=$S($D(LRLABKY):1,1:0)
+ I LRSS="CH" D CH^LRRP2
+ I LRSS="MI" D MI^LRRP2
+ D FOOT^LRRP1
+ I $G(LRPRTPG),$D(LRPLS) D PLSPG^LRRP2
+ D QUIT^LRRP2
  Q

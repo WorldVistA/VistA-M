@@ -89,7 +89,7 @@ TASK ;
  S SPNTXT(5)="If you are not happy with the run time you"
  S SPNTXT(6)="can reschedule it for another time."
  S SPNTXT(7)="The task number is "_ZTSK
- S XMY("G.SPNL SCD REGISTRY@SAN-DIEGO.DOMAIN.EXT")=""
+ S XMY("G.SPNL SCD REGISTRY@SAN-DIEGO.domain.ext")=""
  S XMY("G.SPNL SCD COORDINATOR")=""
  S SPNDESC=$G(SPNPARM("DESCRIPTION"))
  D ^SPNMAIL
@@ -114,7 +114,7 @@ SENDERR ; this tag is called if the requested didn't get task.
  S SPNTXT(2)="Resubmit it with the correct sting."
  S SPNTXT(3)="XMRG value was"
  S SPNTXT(4)=$G(SPNPARM("REQUEST STRING"))
- S SPNGRP="G.SPNL SCD REGISTRY@SAN-DIEGO.DOMAIN.EXT"
+ S SPNGRP="G.SPNL SCD REGISTRY@SAN-DIEGO.domain.ext"
  S SPNDESC=$G(SPNPARM("DESCRIPTION"))
  D ^SPNMAIL
  Q

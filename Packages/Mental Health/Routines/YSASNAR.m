@@ -1,5 +1,5 @@
-YSASNAR ;ALB/ASF SLC/DKG HIOFO/FT - ASI INTERVIEW REPORTER ;8/15/11  8:19 am
- ;;5.01;MENTAL HEALTH;**24,30,37,38,44,55,67,76,103**;Dec 30, 1994;Build 27
+YSASNAR ;ALB/ASF,SLC/DKG,HIOFO/FT - ASI INTERVIEW REPORTER ;3/13/12  3:25 pm
+ ;;5.01;MENTAL HEALTH;**24,30,37,38,44,55,67,76,103,60**;Dec 30, 1994;Build 47
  ;
  ;Reference to ^%ZISC supported by IA #10089
  ;Reference to ^%ZTLOAD supported by IA #10063
@@ -47,8 +47,8 @@ QTEP ;Queued Task Entry Point
  S YSHDR=VADM(1)_"  "_"xxx-xx-"_YSBID_$J("",(20-$L(VADM(1))))_" ASI "_YSAST_"  on "_YSASD_" by: "_YSASC
  ;
 MAIN ;
- K ^UTILITY($J,"YSTMP"),^UTILITY($J,"W")
- S YSLFN=1,^UTILITY($J,"YSTMP",0,1,0)=""
+ K ^TMP($J,"YSTMP"),^TMP($J,"W")
+ S YSLFN=1,^TMP($J,"YSTMP",0,1,0)=""
  D VARPRO
  D R1
  D SIG
@@ -62,7 +62,7 @@ R1 ;
 R2 ;
  I YSA?1"~".E Q
  I YSA?1"W{".E1"}" K YSWP S YSWP=$$GET1^DIQ(604,YSASDA_",",$E(YSA,3,$L(YSA)-1),"Z","YSWP") D:YSWP'=""  K YSWP Q
- . S YSN2="" F  S YSN2=$O(YSWP(YSN2)) Q:YSN2'>0  S YSLFN=YSLFN+1,^UTILITY($J,"YSTMP",0,YSLFN,0)=YSWP(YSN2,0)
+ . S YSN2="" F  S YSN2=$O(YSWP(YSN2)) Q:YSN2'>0  S YSLFN=YSLFN+1,^TMP($J,"YSTMP",0,YSLFN,0)=YSWP(YSN2,0)
  ;
  I YSA'["{" S X=YSA D:$L(X) L Q  ;DIWL=0,DIWR=IOM,X=YSA D ^DIWP Q
 PRO ;evaluate pronoun, possessive etc
@@ -80,8 +80,8 @@ PRO ;evaluate pronoun, possessive etc
  . S:G="him" V=$S(YSSEX="F":"her",1:"him")
  . S:G="himself" V=$S(YSSEX="F":"herself",1:"himself")
  . S:G="Title" V=$S(YSSEX="F":"Ms.",1:"Mr.")
- . I G="Blank" S:$L($G(^UTILITY($J,"YSTMP",0,YSLFN,0))) YSLFN=YSLFN+1 S ^UTILITY($J,"YSTMP",0,YSLFN,0)=$G(^UTILITY($J,"YSTMP",0,YSLFN,0))_"|BLANK(1)||NOBLANKLINE|",YSLFN=YSLFN+1,V=""
- . S:G="Line" YSLFN=YSLFN+1,^UTILITY($J,"YSTMP",0,YSLFN,0)="",V=""
+ . I G="Blank" S:$L($G(^TMP($J,"YSTMP",0,YSLFN,0))) YSLFN=YSLFN+1 S ^TMP($J,"YSTMP",0,YSLFN,0)=$G(^TMP($J,"YSTMP",0,YSLFN,0))_"|BLANK(1)||NOBLANKLINE|",YSLFN=YSLFN+1,V=""
+ . S:G="Line" YSLFN=YSLFN+1,^TMP($J,"YSTMP",0,YSLFN,0)="",V=""
  . I G="Last" S X=$P($P(^DPT(DFN,0),U),",") D
  .. F %=2:1:$L(X) I $E(X,%)?1U,$E(X,%-1)?1A S X=$E(X,0,%-1)_$C($A(X,%)+32)_$E(X,%+1,999)
  .. S V=X
@@ -100,24 +100,24 @@ R . ;called from YSASPNT
  ;
  Q
 SIG ; signature
- S YSLFN=YSLFN+1,^UTILITY($J,"YSTMP",0,YSLFN,0)=""
- S YSLFN=YSLFN+1,^UTILITY($J,"YSTMP",0,YSLFN,0)="esig: "
+ S YSLFN=YSLFN+1,^TMP($J,"YSTMP",0,YSLFN,0)=""
+ S YSLFN=YSLFN+1,^TMP($J,"YSTMP",0,YSLFN,0)="esig: "
  S Y=$P($G(^YSTX(604,YSASDA,.5)),U,2) S:Y?1N.N Y=$G(^VA(200,Y,20)),Y=$P(Y,U,2)_" "_$P(Y,U,3)
- S ^UTILITY($J,"YSTMP",0,YSLFN,0)=^UTILITY($J,"YSTMP",0,YSLFN,0)_Y
- S Y=$G(^YSTX(604,YSASDA,12)) I Y'="" X ^DD("DD") S YSLFN=YSLFN+1,^UTILITY($J,"YSTMP",0,YSLFN,0)="signed: "_Y
+ S ^TMP($J,"YSTMP",0,YSLFN,0)=^TMP($J,"YSTMP",0,YSLFN,0)_Y
+ S Y=$G(^YSTX(604,YSASDA,12)) I Y'="" X ^DD("DD") S YSLFN=YSLFN+1,^TMP($J,"YSTMP",0,YSLFN,0)="signed: "_Y
  Q
 END ;
  K I,YSLCK,R,YSSTEM,YSYX,YSYCK,YSSCK Q
 L ;
- S ^UTILITY($J,"YSTMP",0,YSLFN,0)=$G(^UTILITY($J,"YSTMP",0,YSLFN,0))_X
- I $L(^UTILITY($J,"YSTMP",0,YSLFN,0))>80 D
- . S Y=^UTILITY($J,"YSTMP",0,YSLFN,0)
- . F I=$L(Y):-1:1 S Y1=$E(Y,I) I Y1=" "&(I<81) S ^UTILITY($J,"YSTMP",0,YSLFN,0)=$E(Y,1,I-1),YSLFN=YSLFN+1,^UTILITY($J,"YSTMP",0,YSLFN,0)=$E(Y,I+1,999) Q 
+ S ^TMP($J,"YSTMP",0,YSLFN,0)=$G(^TMP($J,"YSTMP",0,YSLFN,0))_X
+ I $L(^TMP($J,"YSTMP",0,YSLFN,0))>80 D
+ . S Y=^TMP($J,"YSTMP",0,YSLFN,0)
+ . F I=$L(Y):-1:1 S Y1=$E(Y,I) I Y1=" "&(I<81) S ^TMP($J,"YSTMP",0,YSLFN,0)=$E(Y,1,I-1),YSLFN=YSLFN+1,^TMP($J,"YSTMP",0,YSLFN,0)=$E(Y,I+1,999) Q 
  Q
 PRT ; Print output
  W @IOF,YSHDR,! W:'YSASIG ?25,"##### Unsigned Draft #####",!
- S N=0 F  S N=$O(^UTILITY($J,"YSTMP",0,N)) Q:N'>0!YSZZ  D
- . S X=^UTILITY($J,"YSTMP",0,N,0),DIWL=1,DIWF="WN" D ^DIWP
+ S N=0 F  S N=$O(^TMP($J,"YSTMP",0,N)) Q:N'>0!YSZZ  D
+ . S X=^TMP($J,"YSTMP",0,N,0),DIWL=1,DIWF="WN" D ^DIWP
  . I IOT'="HFS" D:$Y+4>IOSL WAIT ;ASF 3/7/03
  ;
  Q

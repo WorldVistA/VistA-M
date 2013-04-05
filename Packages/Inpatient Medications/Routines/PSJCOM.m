@@ -1,5 +1,5 @@
 PSJCOM ;BIR/CML3-FINISH COMPLEX UNIT DOSE ORDERS ENTERED THROUGH OE/RR ;02 Feb 2001  12:20 PM
- ;;5.0; INPATIENT MEDICATIONS ;**110,186**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**110,186,267**;16 DEC 97;Build 158
  ;
  ; Reference to ^VALM1 is supported by DBIA 10116.
  ; Reference to ^PS(55 is supported by DBIA 2191.
@@ -25,6 +25,7 @@ UPD ;
  I $S(X="R":1,+$G(^PS(55,PSGP,5.1))>PSGDT:0,1:X'="E") S X=$G(^TMP("PSJCOM",$J,+PSGORD,2)) D ENWALL^PSGNE3(+$P(X,U,2),+$P(X,U,4),PSGP)
  S $P(^TMP("PSJCOM",$J,+PSGORD,.2),U,2)=PSGDO,$P(^TMP("PSJCOM",$J,+PSGORD,2),U,5)=PSGAT S:$G(PSGS0XT) $P(^(2),U,6)=PSGS0XT
  I 'PSGOEAV D NEWNVAL(PSGORD,$S(+PSJSYSU=3:22005,1:22000))
+ I $D(^PS(53.45,DUZ,5,1,0)) D FILESI^PSJBCMA5(PSGP,PSGORD) N SIARRAY S SIARRAY="" D NEWNVAL^PSGAL5(PSGORD,6000,"SPECIAL INSTRUCTIONS",,.SIARRAY)
  I PSGOEAV,+PSJSYSU=3 D VFY Q
  I PSGOEAV,$G(PSJRNF) D VFY
  Q
@@ -58,7 +59,6 @@ VFY ; change status, move to 55, and change label record
  NEW X S X=0 I $G(PSGONF),(+$G(PSGODDD(1))'<+$G(PSGONF)) S X=1
  I +PSJSYSU=3,PSGORD'["O",$S(X:0,'$P(VND4,"^",16):1,1:$P(VND4,"^",15)) ;D EN^PSGPEN(+PSGORD)
  S:'$P(VND4,U,+PSJSYSU=3+9) $P(VND4,U,+PSJSYSU=3+9)=+$P(VND4,U,+PSJSYSU=3+9)
- ;S $P(VND4,"^",+PSJSYSU=1+9)=1,$P(VND4,U,+PSJSYSU=3+9)=0
  S:$P(VND4,"^",15)&'$P(VND4,"^",16) $P(VND4,"^",15)="" S:$P(VND4,"^",18)&'$P(VND4,"^",19) $P(VND4,"^",18)="" S:$P(VND4,"^",22)&'$P(VND4,"^",23) $P(VND4,"^",22)=""
  S $P(VND4,"^",PSJSYSU,PSJSYSU+1)=DUZ_"^"_PSGDT
  S:'$D(^TMP("PSJCOM2",$J,+PSGORD)) ^TMP("PSJCOM",$J,+PSGORD,4)=VND4 S:$D(^TMP("PSJCOM2",$J,+PSGORD)) ^TMP("PSJCOM2",$J,+PSGORD,4)=VND4
@@ -85,7 +85,7 @@ DDCHK ; dispense drug check
 CONT() ;
  NEW DIR,DIRUT,Y
  W ! K DIR,DIRUT
- S DIR(0)="Y",DIR("A")="Would you like to continue verifying the order",DIR("B")="Yes"
+ S DIR(0)="Y",DIR("A")="Would you like to continue verifying the order",DIR("B")="No"
  D ^DIR
  Q Y
  ;

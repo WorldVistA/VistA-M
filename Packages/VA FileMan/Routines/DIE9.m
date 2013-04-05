@@ -1,5 +1,5 @@
 DIE9 ;SFISC/GFT-JUMPING, FILING, MULTIPLES ;8:03 AM  13 Aug 1997
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  G:$A(X)-94 X:'$P(DW,";E",2),@("T^"_DNM)
  I $D(DIE("NO^")),DIE("NO^")="OUTOK"'&(X=U) W $C(7),!?3,"Sorry, ""^"" is not allowed!" G B

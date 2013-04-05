@@ -23,7 +23,7 @@ WIIACT4 ;VISN20/WDE/WHN/WII Admission & Discharges or OIE-OEF PTS TO VISN CONTAC
  ;      SVC^VADPT
  ;      DEM^VADPT
  ;to send mail out we use the xmb API listed below
- ;http://www.DOMAIN.EXT/vdl/documents/Infrastructure/Mailman/xm_8_0_developerguide.pdf
+ ;http://www.domain.ext/vdl/documents/Infrastructure/Mailman/xm_8_0_developerguide.pdf
  ;-------------------------------------------------------------------------------------------------
 EN ; set a default past 7 days time frame
  D NOW^%DTC S WIIENDT=X_".2359" S X1=X,X2=-7 D C^%DTC S WIISTRT=X K X1,X2,X

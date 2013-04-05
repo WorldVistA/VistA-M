@@ -1,5 +1,5 @@
 PSODRG ;IHS/DSD/JCM - ORDER ENTRY DRUG SELECTION ; 2/16/12 12:50pm
- ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324,251,375,387,398**;DEC 1997;Build 10
+ ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324,251,375,387,398,390**;DEC 1997;Build 86
  ;Reference ^PSDRUG supported by DBIA 221
  ;Reference ^PS(50.7 supported by DBIA 2223
  ;Reference to PSSDIN supported by DBIA 3166
@@ -100,7 +100,7 @@ POST ;order checks
  K PSORX("INTERVENE") N STAT,SIG,PTR,NDF,VAP S PSORX("DFLG")=0
  W !! D HD^PSODDPR2():(($Y+5)'>IOSL)
  D ^PSOBUILD
- D @$S($G(COPY):"^PSOCPPRE",1:"^PSODDPRE") ; Duplicate drug check
+ D:'$D(PSODGCK) @$S($G(COPY):"^PSOCPPRE",1:"^PSODDPRE") ; Duplicate drug check
  G:$G(PSORX("DFLG")) POSTX
  D HD^PSODDPR2():(($Y+5)'>IOSL)
  I $P($G(^PSDRUG(PSODRUG("IEN"),"CLOZ1")),"^")="PSOCLO1" W !,"Now doing Clozapine Order checks.  Please wait...",! D CLOZ
@@ -110,7 +110,9 @@ POST ;order checks
  S PSONOAL="" D ALLERGY^PSOORUT2 D:PSONOAL'="" NOALRGY K PSONOAL
  D HD^PSODDPR2():(($Y+5)'>IOSL)
  G:PSORX("DFLG") POSTX
- D ^PSODGAL1 K PSORX("INTERVENE")
+ I '$D(PSODGCKX) D ^PSODGAL1 K PSORX("INTERVENE")
+ ;This is the allergy check for profile drugs
+ I $D(PSODGCK),$D(PSOSD) D PRFLP^PSOUTL
  ;aminoglycoside
  N AOC
  D HD^PSODDPR2():(($Y+5)'>IOSL)
@@ -182,6 +184,8 @@ NOALRGY ;
  .D DUPINV^PSORXI
  W $C(7),!,"There is no allergy assessment on file for this patient."
  W !,"You will be prompted to intervene if you continue with this prescription"
+ I $D(PSODGCK) W ! K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR
+ Q:$D(PSODGCK)
  N DUOUT,DTOUT,RXIEN,RXSTA               ;*398
  S DIR("A")="Do you want to Continue?: ",DIR("B")="N" D ^DIR
  I 'Y!($D(DUOUT))!($D(DTOUT)) D  Q       ;*398 - Exit/Timeout

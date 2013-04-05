@@ -1,5 +1,5 @@
 FBUTL5 ;WOIFO/SAB-FEE BASIS UTILITY ;7/6/2003
- ;;3.5;FEE BASIS;**61**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**61,135**;JAN 30, 1995;Build 3
  Q
 FPPSC(FBEDIT,FBFPPSC) ; Prompt EDI Claim and FPPS Claim ID Extrinsic Function
  ; Input
@@ -35,6 +35,10 @@ ASKID ; If EDI then ask claim ID
  . W $C(7),!,"  The FPPS CLAIM ID must be entered for EDI claims!"
  ;
 FPPSCX ; FPPSC Exit
+ I FBRET'="-1" D    ; EDIT UCID FB3.5*135
+ . N XQOPT
+ . D OP^XQCHK I $P(XQOPT,U,1)'="FBAA EDIT PAYMENT" Q
+ . D EDITOUTP^FBUTL136(.FBRET,.DA) Q
  Q FBRET
  ;
 FPPSL(FBFPPSL,FBALL,FBNOOUT) ; Prompt FPPS Line Item Extrinsic Function

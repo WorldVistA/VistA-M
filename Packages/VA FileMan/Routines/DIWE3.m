@@ -1,5 +1,5 @@
 DIWE3 ;SFISC/GFT-WP - MOVE, DELETE, REPEAT, TRANSFER ;12:49 PM  5 Oct 1999
- ;;22.0;VA FileMan;**8**;Mar 30, 1999
+ ;;22.0;VA FileMan;**8**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 M ;MOVE
  S DWAFT=1 G 1:X=U,OPT:'X S (DW1,DW3)=0 D MOVE Q:$D(DTOUT)  S:DW1>DW3 DW1=DW1+I,DW2=DW2+I D DEL:DW1

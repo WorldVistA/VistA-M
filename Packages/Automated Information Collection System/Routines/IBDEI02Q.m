@@ -1,380 +1,360 @@
-IBDEI02Q ; ; 12-JAN-2012
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JAN 12, 2012
+IBDEI02Q ; ; 20-FEB-2013
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 20, 2013
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3336,1,4,0)
- ;;=4^625.6
- ;;^UTILITY(U,$J,358.3,3336,1,5,0)
- ;;=5^Incontinence, Stress
- ;;^UTILITY(U,$J,358.3,3336,2)
- ;;=^114717
- ;;^UTILITY(U,$J,358.3,3337,0)
- ;;=628.9^^36^273^30
- ;;^UTILITY(U,$J,358.3,3337,1,0)
+ ;;^UTILITY(U,$J,358.3,3163,2)
+ ;;=Tachycardia^117041
+ ;;^UTILITY(U,$J,358.3,3164,0)
+ ;;=785.1^^40^248^70
+ ;;^UTILITY(U,$J,358.3,3164,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3337,1,4,0)
- ;;=4^628.9
- ;;^UTILITY(U,$J,358.3,3337,1,5,0)
- ;;=5^Infertility
- ;;^UTILITY(U,$J,358.3,3337,2)
- ;;=Infertility^62820
- ;;^UTILITY(U,$J,358.3,3338,0)
- ;;=626.4^^36^273^31
- ;;^UTILITY(U,$J,358.3,3338,1,0)
+ ;;^UTILITY(U,$J,358.3,3164,1,4,0)
+ ;;=4^785.1
+ ;;^UTILITY(U,$J,358.3,3164,1,5,0)
+ ;;=5^Palpitations
+ ;;^UTILITY(U,$J,358.3,3164,2)
+ ;;=Palpitations^89281
+ ;;^UTILITY(U,$J,358.3,3165,0)
+ ;;=424.1^^40^248^11
+ ;;^UTILITY(U,$J,358.3,3165,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3338,1,4,0)
- ;;=4^626.4
- ;;^UTILITY(U,$J,358.3,3338,1,5,0)
- ;;=5^Irregular Menstruation
- ;;^UTILITY(U,$J,358.3,3338,2)
- ;;=^270567
- ;;^UTILITY(U,$J,358.3,3339,0)
- ;;=626.2^^36^273^32
- ;;^UTILITY(U,$J,358.3,3339,1,0)
+ ;;^UTILITY(U,$J,358.3,3165,1,4,0)
+ ;;=4^424.1
+ ;;^UTILITY(U,$J,358.3,3165,1,5,0)
+ ;;=5^Aortic Stenosis
+ ;;^UTILITY(U,$J,358.3,3165,2)
+ ;;=Aortic Stenosis^9330
+ ;;^UTILITY(U,$J,358.3,3166,0)
+ ;;=424.0^^40^248^62
+ ;;^UTILITY(U,$J,358.3,3166,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3339,1,4,0)
- ;;=4^626.2
- ;;^UTILITY(U,$J,358.3,3339,1,5,0)
- ;;=5^Menometrorrhagia
- ;;^UTILITY(U,$J,358.3,3339,2)
- ;;=Menometrorrhagia^75895
- ;;^UTILITY(U,$J,358.3,3340,0)
- ;;=627.2^^36^273^44
- ;;^UTILITY(U,$J,358.3,3340,1,0)
+ ;;^UTILITY(U,$J,358.3,3166,1,4,0)
+ ;;=4^424.0
+ ;;^UTILITY(U,$J,358.3,3166,1,5,0)
+ ;;=5^Mitral Valve Prolapse
+ ;;^UTILITY(U,$J,358.3,3166,2)
+ ;;=^78367
+ ;;^UTILITY(U,$J,358.3,3167,0)
+ ;;=394.0^^40^248^61
+ ;;^UTILITY(U,$J,358.3,3167,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3340,1,4,0)
- ;;=4^627.2
- ;;^UTILITY(U,$J,358.3,3340,1,5,0)
- ;;=5^Perimenopause
- ;;^UTILITY(U,$J,358.3,3340,2)
- ;;=Perimenopause^75863
- ;;^UTILITY(U,$J,358.3,3341,0)
- ;;=611.79^^36^273^34
- ;;^UTILITY(U,$J,358.3,3341,1,0)
+ ;;^UTILITY(U,$J,358.3,3167,1,4,0)
+ ;;=4^394.0
+ ;;^UTILITY(U,$J,358.3,3167,1,5,0)
+ ;;=5^Mitral Stenosis
+ ;;^UTILITY(U,$J,358.3,3167,2)
+ ;;=Mitral Stenosis^78404
+ ;;^UTILITY(U,$J,358.3,3168,0)
+ ;;=394.9^^40^248^40
+ ;;^UTILITY(U,$J,358.3,3168,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3341,1,4,0)
- ;;=4^611.79
- ;;^UTILITY(U,$J,358.3,3341,1,5,0)
- ;;=5^Nipple Discharge
- ;;^UTILITY(U,$J,358.3,3341,2)
- ;;=Nipple Discharge^270462
- ;;^UTILITY(U,$J,358.3,3342,0)
- ;;=278.00^^36^273^35
- ;;^UTILITY(U,$J,358.3,3342,1,0)
+ ;;^UTILITY(U,$J,358.3,3168,1,4,0)
+ ;;=4^394.9
+ ;;^UTILITY(U,$J,358.3,3168,1,5,0)
+ ;;=5^Heart Dis Mitral Valve
+ ;;^UTILITY(U,$J,358.3,3168,2)
+ ;;=^269571
+ ;;^UTILITY(U,$J,358.3,3169,0)
+ ;;=397.1^^40^248^41
+ ;;^UTILITY(U,$J,358.3,3169,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3342,1,4,0)
- ;;=4^278.00
- ;;^UTILITY(U,$J,358.3,3342,1,5,0)
- ;;=5^Obesity
- ;;^UTILITY(U,$J,358.3,3342,2)
- ;;=Obesity^84823
- ;;^UTILITY(U,$J,358.3,3343,0)
- ;;=626.1^^36^273^36
- ;;^UTILITY(U,$J,358.3,3343,1,0)
+ ;;^UTILITY(U,$J,358.3,3169,1,4,0)
+ ;;=4^397.1
+ ;;^UTILITY(U,$J,358.3,3169,1,5,0)
+ ;;=5^Heart Dis Pulmon Valve
+ ;;^UTILITY(U,$J,358.3,3169,2)
+ ;;=^269587
+ ;;^UTILITY(U,$J,358.3,3170,0)
+ ;;=397.0^^40^248^42
+ ;;^UTILITY(U,$J,358.3,3170,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3343,1,4,0)
- ;;=4^626.1
- ;;^UTILITY(U,$J,358.3,3343,1,5,0)
- ;;=5^Oligomenorrhea
- ;;^UTILITY(U,$J,358.3,3343,2)
- ;;=Oligomenorrhea^108125
- ;;^UTILITY(U,$J,358.3,3344,0)
- ;;=733.00^^36^273^37
- ;;^UTILITY(U,$J,358.3,3344,1,0)
+ ;;^UTILITY(U,$J,358.3,3170,1,4,0)
+ ;;=4^397.0
+ ;;^UTILITY(U,$J,358.3,3170,1,5,0)
+ ;;=5^Heart Dis Tricuspid Valve
+ ;;^UTILITY(U,$J,358.3,3170,2)
+ ;;=^35528
+ ;;^UTILITY(U,$J,358.3,3171,0)
+ ;;=424.90^^40^248^82
+ ;;^UTILITY(U,$J,358.3,3171,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3344,1,4,0)
- ;;=4^733.00
- ;;^UTILITY(U,$J,358.3,3344,1,5,0)
- ;;=5^Osteoporosis
- ;;^UTILITY(U,$J,358.3,3344,2)
- ;;=Osteoporosis^87159
- ;;^UTILITY(U,$J,358.3,3345,0)
- ;;=626.5^^36^273^39
- ;;^UTILITY(U,$J,358.3,3345,1,0)
+ ;;^UTILITY(U,$J,358.3,3171,1,4,0)
+ ;;=4^424.90
+ ;;^UTILITY(U,$J,358.3,3171,1,5,0)
+ ;;=5^Valvular Heart Disease
+ ;;^UTILITY(U,$J,358.3,3171,2)
+ ;;=^40327
+ ;;^UTILITY(U,$J,358.3,3172,0)
+ ;;=V43.3^^40^248^76
+ ;;^UTILITY(U,$J,358.3,3172,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3345,1,4,0)
- ;;=4^626.5
- ;;^UTILITY(U,$J,358.3,3345,1,5,0)
- ;;=5^Ovulation Bleeding
- ;;^UTILITY(U,$J,358.3,3345,2)
- ;;=Ovulation Bleeding^270570
- ;;^UTILITY(U,$J,358.3,3346,0)
- ;;=625.2^^36^273^40
- ;;^UTILITY(U,$J,358.3,3346,1,0)
+ ;;^UTILITY(U,$J,358.3,3172,1,4,0)
+ ;;=4^V43.3
+ ;;^UTILITY(U,$J,358.3,3172,1,5,0)
+ ;;=5^S/P Heart Valve Replacement
+ ;;^UTILITY(U,$J,358.3,3172,2)
+ ;;=^295440
+ ;;^UTILITY(U,$J,358.3,3173,0)
+ ;;=401.1^^40^248^57
+ ;;^UTILITY(U,$J,358.3,3173,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3346,1,4,0)
- ;;=4^625.2
- ;;^UTILITY(U,$J,358.3,3346,1,5,0)
- ;;=5^Ovulation Pain
- ;;^UTILITY(U,$J,358.3,3346,2)
- ;;=Ovulation Pain^265259
- ;;^UTILITY(U,$J,358.3,3347,0)
- ;;=614.9^^36^273^41
- ;;^UTILITY(U,$J,358.3,3347,1,0)
+ ;;^UTILITY(U,$J,358.3,3173,1,4,0)
+ ;;=4^401.1
+ ;;^UTILITY(U,$J,358.3,3173,1,5,0)
+ ;;=5^Hypertension, Benign
+ ;;^UTILITY(U,$J,358.3,3173,2)
+ ;;=^269591
+ ;;^UTILITY(U,$J,358.3,3174,0)
+ ;;=796.2^^40^248^32
+ ;;^UTILITY(U,$J,358.3,3174,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3347,1,4,0)
- ;;=4^614.9
- ;;^UTILITY(U,$J,358.3,3347,1,5,0)
- ;;=5^Pelvic Inflammatory Disease
- ;;^UTILITY(U,$J,358.3,3347,2)
- ;;=^3537
- ;;^UTILITY(U,$J,358.3,3348,0)
- ;;=789.30^^36^273^42
- ;;^UTILITY(U,$J,358.3,3348,1,0)
+ ;;^UTILITY(U,$J,358.3,3174,1,4,0)
+ ;;=4^796.2
+ ;;^UTILITY(U,$J,358.3,3174,1,5,0)
+ ;;=5^Elev BP w/o dx hypertension
+ ;;^UTILITY(U,$J,358.3,3174,2)
+ ;;=^273464
+ ;;^UTILITY(U,$J,358.3,3175,0)
+ ;;=402.10^^40^248^33
+ ;;^UTILITY(U,$J,358.3,3175,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3348,1,4,0)
- ;;=4^789.30
- ;;^UTILITY(U,$J,358.3,3348,1,5,0)
- ;;=5^Pelvic Mass
- ;;^UTILITY(U,$J,358.3,3348,2)
- ;;=Pelvic Mass^917
- ;;^UTILITY(U,$J,358.3,3349,0)
- ;;=622.7^^36^273^45
- ;;^UTILITY(U,$J,358.3,3349,1,0)
+ ;;^UTILITY(U,$J,358.3,3175,1,4,0)
+ ;;=4^402.10
+ ;;^UTILITY(U,$J,358.3,3175,1,5,0)
+ ;;=5^HTN w/ Heart Involvement
+ ;;^UTILITY(U,$J,358.3,3175,2)
+ ;;=^269598
+ ;;^UTILITY(U,$J,358.3,3176,0)
+ ;;=402.11^^40^248^34
+ ;;^UTILITY(U,$J,358.3,3176,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3349,1,4,0)
- ;;=4^622.7
- ;;^UTILITY(U,$J,358.3,3349,1,5,0)
- ;;=5^Polyp Of Cervix
- ;;^UTILITY(U,$J,358.3,3349,2)
- ;;=Polyp of Cervix^79612
- ;;^UTILITY(U,$J,358.3,3350,0)
- ;;=627.1^^36^273^46
- ;;^UTILITY(U,$J,358.3,3350,1,0)
+ ;;^UTILITY(U,$J,358.3,3176,1,4,0)
+ ;;=4^402.11
+ ;;^UTILITY(U,$J,358.3,3176,1,5,0)
+ ;;=5^HTN with CHF
+ ;;^UTILITY(U,$J,358.3,3176,2)
+ ;;=HTN with CHF^269599
+ ;;^UTILITY(U,$J,358.3,3177,0)
+ ;;=403.11^^40^248^39
+ ;;^UTILITY(U,$J,358.3,3177,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3350,1,4,0)
- ;;=4^627.1
- ;;^UTILITY(U,$J,358.3,3350,1,5,0)
- ;;=5^Postmenopausal Bleeding
- ;;^UTILITY(U,$J,358.3,3350,2)
- ;;=^97040
- ;;^UTILITY(U,$J,358.3,3351,0)
- ;;=V24.2^^36^273^47
- ;;^UTILITY(U,$J,358.3,3351,1,0)
+ ;;^UTILITY(U,$J,358.3,3177,1,4,0)
+ ;;=4^403.11
+ ;;^UTILITY(U,$J,358.3,3177,1,5,0)
+ ;;=5^HTN with Renal Failure
+ ;;^UTILITY(U,$J,358.3,3177,2)
+ ;;=^269608
+ ;;^UTILITY(U,$J,358.3,3178,0)
+ ;;=404.10^^40^248^37
+ ;;^UTILITY(U,$J,358.3,3178,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3351,1,4,0)
- ;;=4^V24.2
- ;;^UTILITY(U,$J,358.3,3351,1,5,0)
- ;;=5^Postpartum
- ;;^UTILITY(U,$J,358.3,3351,2)
- ;;=Postpartum^114052
- ;;^UTILITY(U,$J,358.3,3352,0)
- ;;=V22.2^^36^273^48
- ;;^UTILITY(U,$J,358.3,3352,1,0)
+ ;;^UTILITY(U,$J,358.3,3178,1,4,0)
+ ;;=4^404.10
+ ;;^UTILITY(U,$J,358.3,3178,1,5,0)
+ ;;=5^HTN with Heart & Renal Involvement
+ ;;^UTILITY(U,$J,358.3,3178,2)
+ ;;=^269618
+ ;;^UTILITY(U,$J,358.3,3179,0)
+ ;;=404.11^^40^248^35
+ ;;^UTILITY(U,$J,358.3,3179,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3352,1,4,0)
- ;;=4^V22.2
- ;;^UTILITY(U,$J,358.3,3352,1,5,0)
- ;;=5^Pregnancy Status
- ;;^UTILITY(U,$J,358.3,3352,2)
- ;;=Pregnancy Status^97923
- ;;^UTILITY(U,$J,358.3,3353,0)
- ;;=627.0^^36^273^49
- ;;^UTILITY(U,$J,358.3,3353,1,0)
+ ;;^UTILITY(U,$J,358.3,3179,1,4,0)
+ ;;=4^404.11
+ ;;^UTILITY(U,$J,358.3,3179,1,5,0)
+ ;;=5^HTN with CHF & Renal Involvement
+ ;;^UTILITY(U,$J,358.3,3179,2)
+ ;;=^269619
+ ;;^UTILITY(U,$J,358.3,3180,0)
+ ;;=404.12^^40^248^38
+ ;;^UTILITY(U,$J,358.3,3180,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3353,1,4,0)
- ;;=4^627.0
- ;;^UTILITY(U,$J,358.3,3353,1,5,0)
- ;;=5^Premenopausal Menorrhagia
- ;;^UTILITY(U,$J,358.3,3353,2)
- ;;=^270575
- ;;^UTILITY(U,$J,358.3,3354,0)
- ;;=625.4^^36^273^50
- ;;^UTILITY(U,$J,358.3,3354,1,0)
+ ;;^UTILITY(U,$J,358.3,3180,1,4,0)
+ ;;=4^404.12
+ ;;^UTILITY(U,$J,358.3,3180,1,5,0)
+ ;;=5^HTN with Heart Involvement & Renal Failure
+ ;;^UTILITY(U,$J,358.3,3180,2)
+ ;;=^269620
+ ;;^UTILITY(U,$J,358.3,3181,0)
+ ;;=404.13^^40^248^36
+ ;;^UTILITY(U,$J,358.3,3181,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3354,1,4,0)
- ;;=4^625.4
- ;;^UTILITY(U,$J,358.3,3354,1,5,0)
- ;;=5^Premenstrual Tension
- ;;^UTILITY(U,$J,358.3,3354,2)
- ;;=^98014
- ;;^UTILITY(U,$J,358.3,3355,0)
- ;;=302.70^^36^273^52
- ;;^UTILITY(U,$J,358.3,3355,1,0)
+ ;;^UTILITY(U,$J,358.3,3181,1,4,0)
+ ;;=4^404.13
+ ;;^UTILITY(U,$J,358.3,3181,1,5,0)
+ ;;=5^HTN with CHF & Renal failure
+ ;;^UTILITY(U,$J,358.3,3181,2)
+ ;;=^269621
+ ;;^UTILITY(U,$J,358.3,3182,0)
+ ;;=401.9^^40^248^58
+ ;;^UTILITY(U,$J,358.3,3182,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3355,1,4,0)
- ;;=4^302.70
- ;;^UTILITY(U,$J,358.3,3355,1,5,0)
- ;;=5^Sexual Dysfunction, Psychosexual
- ;;^UTILITY(U,$J,358.3,3355,2)
- ;;=^100647
- ;;^UTILITY(U,$J,358.3,3356,0)
- ;;=599.0^^36^273^56
- ;;^UTILITY(U,$J,358.3,3356,1,0)
+ ;;^UTILITY(U,$J,358.3,3182,1,4,0)
+ ;;=4^401.9
+ ;;^UTILITY(U,$J,358.3,3182,1,5,0)
+ ;;=5^Hypertension, Essential
+ ;;^UTILITY(U,$J,358.3,3182,2)
+ ;;=^186630
+ ;;^UTILITY(U,$J,358.3,3183,0)
+ ;;=272.0^^40^248^56
+ ;;^UTILITY(U,$J,358.3,3183,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3356,1,4,0)
- ;;=4^599.0
- ;;^UTILITY(U,$J,358.3,3356,1,5,0)
- ;;=5^Urinary Tract Infection
- ;;^UTILITY(U,$J,358.3,3356,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,3357,0)
- ;;=218.9^^36^273^57
- ;;^UTILITY(U,$J,358.3,3357,1,0)
+ ;;^UTILITY(U,$J,358.3,3183,1,4,0)
+ ;;=4^272.0
+ ;;^UTILITY(U,$J,358.3,3183,1,5,0)
+ ;;=5^Hypercholesterolemia, Pure
+ ;;^UTILITY(U,$J,358.3,3183,2)
+ ;;=^59973
+ ;;^UTILITY(U,$J,358.3,3184,0)
+ ;;=272.1^^40^248^59
+ ;;^UTILITY(U,$J,358.3,3184,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3357,1,4,0)
- ;;=4^218.9
- ;;^UTILITY(U,$J,358.3,3357,1,5,0)
- ;;=5^Uterine Fibroids
- ;;^UTILITY(U,$J,358.3,3357,2)
- ;;=Uterine Fibroids^68944
- ;;^UTILITY(U,$J,358.3,3358,0)
- ;;=618.1^^36^273^58
- ;;^UTILITY(U,$J,358.3,3358,1,0)
+ ;;^UTILITY(U,$J,358.3,3184,1,4,0)
+ ;;=4^272.1
+ ;;^UTILITY(U,$J,358.3,3184,1,5,0)
+ ;;=5^Hypertriglyceridemia
+ ;;^UTILITY(U,$J,358.3,3184,2)
+ ;;=Hypertriglyceridemia^101303
+ ;;^UTILITY(U,$J,358.3,3185,0)
+ ;;=272.2^^40^248^63
+ ;;^UTILITY(U,$J,358.3,3185,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3358,1,4,0)
- ;;=4^618.1
- ;;^UTILITY(U,$J,358.3,3358,1,5,0)
- ;;=5^Uterine Prolapse
- ;;^UTILITY(U,$J,358.3,3358,2)
- ;;=Uterine Prolapse^124773
- ;;^UTILITY(U,$J,358.3,3359,0)
- ;;=623.0^^36^273^59
- ;;^UTILITY(U,$J,358.3,3359,1,0)
+ ;;^UTILITY(U,$J,358.3,3185,1,4,0)
+ ;;=4^272.2
+ ;;^UTILITY(U,$J,358.3,3185,1,5,0)
+ ;;=5^Mixed Hyperlipidemia
+ ;;^UTILITY(U,$J,358.3,3185,2)
+ ;;=^78424
+ ;;^UTILITY(U,$J,358.3,3186,0)
+ ;;=396.0^^40^248^13
+ ;;^UTILITY(U,$J,358.3,3186,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3359,1,4,0)
- ;;=4^623.0
- ;;^UTILITY(U,$J,358.3,3359,1,5,0)
- ;;=5^Vaginal Dysplasia
- ;;^UTILITY(U,$J,358.3,3359,2)
- ;;=^270536
- ;;^UTILITY(U,$J,358.3,3360,0)
- ;;=625.1^^36^273^60
- ;;^UTILITY(U,$J,358.3,3360,1,0)
+ ;;^UTILITY(U,$J,358.3,3186,1,4,0)
+ ;;=4^396.0
+ ;;^UTILITY(U,$J,358.3,3186,1,5,0)
+ ;;=5^Aortic and Mitral Stenosis
+ ;;^UTILITY(U,$J,358.3,3186,2)
+ ;;=Aortic and Mitral Stenosis^269580
+ ;;^UTILITY(U,$J,358.3,3187,0)
+ ;;=414.02^^40^248^19
+ ;;^UTILITY(U,$J,358.3,3187,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3360,1,4,0)
- ;;=4^625.1
- ;;^UTILITY(U,$J,358.3,3360,1,5,0)
- ;;=5^Vaginismus
- ;;^UTILITY(U,$J,358.3,3360,2)
- ;;=Vaginismus^125225
- ;;^UTILITY(U,$J,358.3,3361,0)
- ;;=616.10^^36^273^62
- ;;^UTILITY(U,$J,358.3,3361,1,0)
+ ;;^UTILITY(U,$J,358.3,3187,1,4,0)
+ ;;=4^414.02
+ ;;^UTILITY(U,$J,358.3,3187,1,5,0)
+ ;;=5^CAD, Occlusion of Venous Graft
+ ;;^UTILITY(U,$J,358.3,3187,2)
+ ;;=CAD, Occlusion of Venous Graft^303282
+ ;;^UTILITY(U,$J,358.3,3188,0)
+ ;;=459.10^^40^248^74
+ ;;^UTILITY(U,$J,358.3,3188,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3361,1,4,0)
- ;;=4^616.10
- ;;^UTILITY(U,$J,358.3,3361,1,5,0)
- ;;=5^Vaginitis, Unsp Cause
- ;;^UTILITY(U,$J,358.3,3361,2)
- ;;=^125233
- ;;^UTILITY(U,$J,358.3,3362,0)
- ;;=112.1^^36^273^67
- ;;^UTILITY(U,$J,358.3,3362,1,0)
+ ;;^UTILITY(U,$J,358.3,3188,1,4,0)
+ ;;=4^459.10
+ ;;^UTILITY(U,$J,358.3,3188,1,5,0)
+ ;;=5^Post Phlebotic Syndrome
+ ;;^UTILITY(U,$J,358.3,3188,2)
+ ;;=Post Phlebotic Syndrome^328597
+ ;;^UTILITY(U,$J,358.3,3189,0)
+ ;;=428.20^^40^248^52
+ ;;^UTILITY(U,$J,358.3,3189,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3362,1,4,0)
- ;;=4^112.1
- ;;^UTILITY(U,$J,358.3,3362,1,5,0)
- ;;=5^Vulvovaginal Candidiasis
- ;;^UTILITY(U,$J,358.3,3362,2)
- ;;=^18615
- ;;^UTILITY(U,$J,358.3,3363,0)
- ;;=131.01^^36^273^61
- ;;^UTILITY(U,$J,358.3,3363,1,0)
+ ;;^UTILITY(U,$J,358.3,3189,1,4,0)
+ ;;=4^428.20
+ ;;^UTILITY(U,$J,358.3,3189,1,5,0)
+ ;;=5^Heart Failure, Systolic, Unspec
+ ;;^UTILITY(U,$J,358.3,3189,2)
+ ;;=Heart Failure, Systolic^328594
+ ;;^UTILITY(U,$J,358.3,3190,0)
+ ;;=428.21^^40^248^44
+ ;;^UTILITY(U,$J,358.3,3190,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3363,1,4,0)
- ;;=4^131.01
- ;;^UTILITY(U,$J,358.3,3363,1,5,0)
- ;;=5^Vaginitis, Trichomonas
- ;;^UTILITY(U,$J,358.3,3363,2)
- ;;=^121763
- ;;^UTILITY(U,$J,358.3,3364,0)
- ;;=698.1^^36^273^63
- ;;^UTILITY(U,$J,358.3,3364,1,0)
+ ;;^UTILITY(U,$J,358.3,3190,1,4,0)
+ ;;=4^428.21
+ ;;^UTILITY(U,$J,358.3,3190,1,5,0)
+ ;;=5^Heart Failure, Acute Systolic
+ ;;^UTILITY(U,$J,358.3,3190,2)
+ ;;=Heart Failure, Acute Systolic^328494
+ ;;^UTILITY(U,$J,358.3,3191,0)
+ ;;=428.22^^40^248^46
+ ;;^UTILITY(U,$J,358.3,3191,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3364,1,4,0)
- ;;=4^698.1
- ;;^UTILITY(U,$J,358.3,3364,1,5,0)
- ;;=5^Vulvar Pruritis
- ;;^UTILITY(U,$J,358.3,3364,2)
- ;;=Vulvar Pruritis^100071
- ;;^UTILITY(U,$J,358.3,3365,0)
- ;;=793.80^^36^273^3
- ;;^UTILITY(U,$J,358.3,3365,1,0)
+ ;;^UTILITY(U,$J,358.3,3191,1,4,0)
+ ;;=4^428.22
+ ;;^UTILITY(U,$J,358.3,3191,1,5,0)
+ ;;=5^Heart Failure, Chronic Systolic
+ ;;^UTILITY(U,$J,358.3,3191,2)
+ ;;=Heart Failure, Chronic Systolic^328495
+ ;;^UTILITY(U,$J,358.3,3192,0)
+ ;;=428.23^^40^248^51
+ ;;^UTILITY(U,$J,358.3,3192,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3365,1,4,0)
- ;;=4^793.80
- ;;^UTILITY(U,$J,358.3,3365,1,5,0)
- ;;=5^Abnormal Mammogram
- ;;^UTILITY(U,$J,358.3,3365,2)
- ;;=Abnormal Mammogram^323613
- ;;^UTILITY(U,$J,358.3,3366,0)
- ;;=795.00^^36^273^4
- ;;^UTILITY(U,$J,358.3,3366,1,0)
+ ;;^UTILITY(U,$J,358.3,3192,1,4,0)
+ ;;=4^428.23
+ ;;^UTILITY(U,$J,358.3,3192,1,5,0)
+ ;;=5^Heart Failure, Systolic, Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,3192,2)
+ ;;=Heart Failure, Systolic, Acute on Chronic^328496
+ ;;^UTILITY(U,$J,358.3,3193,0)
+ ;;=428.30^^40^248^47
+ ;;^UTILITY(U,$J,358.3,3193,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3366,1,4,0)
- ;;=4^795.00
- ;;^UTILITY(U,$J,358.3,3366,1,5,0)
- ;;=5^Abnormal Pap Smear
- ;;^UTILITY(U,$J,358.3,3366,2)
- ;;=Abnormal Pap Smear^328609
- ;;^UTILITY(U,$J,358.3,3367,0)
- ;;=625.9^^36^273^43
- ;;^UTILITY(U,$J,358.3,3367,1,0)
+ ;;^UTILITY(U,$J,358.3,3193,1,4,0)
+ ;;=4^428.30
+ ;;^UTILITY(U,$J,358.3,3193,1,5,0)
+ ;;=5^Heart Failure, Diastolic
+ ;;^UTILITY(U,$J,358.3,3193,2)
+ ;;=Heart Failure, Diastolic^328595
+ ;;^UTILITY(U,$J,358.3,3194,0)
+ ;;=428.31^^40^248^43
+ ;;^UTILITY(U,$J,358.3,3194,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3367,1,4,0)
- ;;=4^625.9
- ;;^UTILITY(U,$J,358.3,3367,1,5,0)
- ;;=5^Pelvic Pain
- ;;^UTILITY(U,$J,358.3,3367,2)
- ;;=Pelvic Pain^123993
- ;;^UTILITY(U,$J,358.3,3368,0)
- ;;=624.09^^36^273^20
- ;;^UTILITY(U,$J,358.3,3368,1,0)
+ ;;^UTILITY(U,$J,358.3,3194,1,4,0)
+ ;;=4^428.31
+ ;;^UTILITY(U,$J,358.3,3194,1,5,0)
+ ;;=5^Heart Failure, Acute Diastolic
+ ;;^UTILITY(U,$J,358.3,3194,2)
+ ;;=Heart Failure, Acute Diastolic^328497
+ ;;^UTILITY(U,$J,358.3,3195,0)
+ ;;=428.32^^40^248^45
+ ;;^UTILITY(U,$J,358.3,3195,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3368,1,4,0)
- ;;=4^624.09
- ;;^UTILITY(U,$J,358.3,3368,1,5,0)
- ;;=5^Dystrophy Of Vulva Nec
- ;;^UTILITY(U,$J,358.3,3368,2)
- ;;=^335272
- ;;^UTILITY(U,$J,358.3,3369,0)
- ;;=796.70^^36^273^1
- ;;^UTILITY(U,$J,358.3,3369,1,0)
+ ;;^UTILITY(U,$J,358.3,3195,1,4,0)
+ ;;=4^428.32
+ ;;^UTILITY(U,$J,358.3,3195,1,5,0)
+ ;;=5^Heart Failure, Chronic Diastolic
+ ;;^UTILITY(U,$J,358.3,3195,2)
+ ;;=Heart Failure, Chronic Diastolic^328498
+ ;;^UTILITY(U,$J,358.3,3196,0)
+ ;;=428.33^^40^248^49
+ ;;^UTILITY(U,$J,358.3,3196,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3369,1,4,0)
- ;;=4^796.70
- ;;^UTILITY(U,$J,358.3,3369,1,5,0)
- ;;=5^Abn Pap Smear of Anus, NOS
- ;;^UTILITY(U,$J,358.3,3369,2)
- ;;=^336766
- ;;^UTILITY(U,$J,358.3,3370,0)
- ;;=795.10^^36^273^2
- ;;^UTILITY(U,$J,358.3,3370,1,0)
+ ;;^UTILITY(U,$J,358.3,3196,1,4,0)
+ ;;=4^428.33
+ ;;^UTILITY(U,$J,358.3,3196,1,5,0)
+ ;;=5^Heart Failure, Diastolic, Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,3196,2)
+ ;;=Heart Failure, Diastolic, Acute on Chronic^328499
+ ;;^UTILITY(U,$J,358.3,3197,0)
+ ;;=428.40^^40^248^48
+ ;;^UTILITY(U,$J,358.3,3197,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3370,1,4,0)
- ;;=4^795.10
- ;;^UTILITY(U,$J,358.3,3370,1,5,0)
- ;;=5^Abn Pap Smear of Vagina, NOS
- ;;^UTILITY(U,$J,358.3,3370,2)
- ;;=^336765
- ;;^UTILITY(U,$J,358.3,3371,0)
- ;;=795.07^^36^273^11
- ;;^UTILITY(U,$J,358.3,3371,1,0)
+ ;;^UTILITY(U,$J,358.3,3197,1,4,0)
+ ;;=4^428.40
+ ;;^UTILITY(U,$J,358.3,3197,1,5,0)
+ ;;=5^Heart Failure, Diastolic& Systolic
+ ;;^UTILITY(U,$J,358.3,3197,2)
+ ;;=Heart Failure, Systolic and Diastolic^328596
+ ;;^UTILITY(U,$J,358.3,3198,0)
+ ;;=428.41^^40^248^50
+ ;;^UTILITY(U,$J,358.3,3198,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3371,1,4,0)
- ;;=4^795.07
- ;;^UTILITY(U,$J,358.3,3371,1,5,0)
- ;;=5^Cerv Smear,w/o Transformation Zone
- ;;^UTILITY(U,$J,358.3,3371,2)
- ;;=^336674
- ;;^UTILITY(U,$J,358.3,3372,0)
- ;;=611.82^^36^273^28
- ;;^UTILITY(U,$J,358.3,3372,1,0)
+ ;;^UTILITY(U,$J,358.3,3198,1,4,0)
+ ;;=4^428.41
+ ;;^UTILITY(U,$J,358.3,3198,1,5,0)
+ ;;=5^Heart Failure, Systolic & Diastolic, Acute
+ ;;^UTILITY(U,$J,358.3,3198,2)
+ ;;=Heart Failure, Systolic & Diastolic, Acute^328500
+ ;;^UTILITY(U,$J,358.3,3199,0)
+ ;;=428.42^^40^248^54
+ ;;^UTILITY(U,$J,358.3,3199,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3372,1,4,0)
- ;;=4^611.82
- ;;^UTILITY(U,$J,358.3,3372,1,5,0)
- ;;=5^Hypoplasia of Breast
- ;;^UTILITY(U,$J,358.3,3372,2)
- ;;=^336614
- ;;^UTILITY(U,$J,358.3,3373,0)
- ;;=611.81^^36^273^51
- ;;^UTILITY(U,$J,358.3,3373,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3373,1,4,0)
- ;;=4^611.81
- ;;^UTILITY(U,$J,358.3,3373,1,5,0)
- ;;=5^Ptosis of Breast
- ;;^UTILITY(U,$J,358.3,3373,2)
- ;;=^336613

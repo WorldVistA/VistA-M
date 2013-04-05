@@ -1,5 +1,6 @@
-XQ12 ;SEA/LUKE - MENU MANAGER UTILITIES ;11/14/2002  11:55
- ;;8.0;KERNEL;**9,20,46,157,253**;Jul 10, 1995
+XQ12 ;SEA/LUKE,ISD/HGW - MENU MANAGER UTILITIES ;05/02/12  16:11
+ ;;8.0;KERNEL;**9,20,46,157,253,593**;Jul 10, 1995;Build 7
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 DVARS ;Set up (or reset) necessary variables. From ^XQ1 and ^XQT1.
  S U="^" I '$D(DUZ)#2 S DUZ=^XUTL("XQ",$J,"DUZ")
@@ -9,6 +10,7 @@ DVARS ;Set up (or reset) necessary variables. From ^XQ1 and ^XQT1.
  I '$D(IOS) S IOS=$S($D(^XUTL("XQ",$J,"IOS"))#2:^("IOS"),1:"")
  I '$D(DTIME) S DTIME=$$DTIME^XUP(DUZ,IOS)
  I '$D(DUZ("AUTO")) S I=$S($D(^VA(200,DUZ,200)):$P(^(200),U,6),1:"") S:'$L(I) I=$S($D(^%ZIS(1,$I,"XUS")):$P(^("XUS"),U,6),1:"") S:'$L(I) I=$S($D(^XTV(8989.3,1,"XUS")):$P(^("XUS"),U,6),1:"") S:'$L(I) I=1 S DUZ("AUTO")=I
+ I '$D(DUZ("TEST"))&'$$PROD^XUPROD S DUZ("TEST")=1 ; p593 IA #4440
  Q
  ;
 INIT ;Entry for new logon, called from the top of ^XQ and ^XQ1
@@ -33,6 +35,9 @@ INIT ;Entry for new logon, called from the top of ^XQ and ^XQ1
  D SET^XQCHK
  S ^XUTL("XQ",$J,1)=XQY_"P"_XQY_"^"_XQY0,^("T")=1
  S XQDIC=XQY,XQPSM="P"_XQY
+ ;
+ ; P593 Run XU USER START-UP menu option for terminal sessions only
+ I $E($G(IOST),1,2)="C-" S XUSQUIT=$$STARTUP() G:XUSQUIT HALT
  ;
  ;D MERGE,MGPXU,MGSEC ;get the menu trees this user will need to jump
  ;
@@ -76,13 +81,14 @@ MERGE ;Merge in the menu trees that this user needs, start with Primary Menu
  I $D(^XUTL("XQMERGED",XQPSM)) D OLDF(XQPSM)
  Q:$D(^XUTL("XQMERGED",XQPSM))  ;It's already being done
  ;
- L +^XUTL("XQO",XQPSM):0 Q:'$T
+ L +^XUTL("XQO",XQPSM):DILOCKTM Q:'$T  ;P593
  S ^XUTL("XQMERGED",XQPSM)=$H
  ;
  K ^XUTL("XQO",XQPSM)
  M ^XUTL("XQO",XQPSM)=^DIC(19,"AXQ",XQPSM)
  ;
- L -^DIC(19,"AXQ",XQPSM)
+ ;L -^DIC(19,"AXQ",XQPSM) ;P593
+ L -^XUTL("XQO",XQPSM) ;P593
  K ^XUTL("XQMERGED",XQPSM)
  Q
  ;
@@ -91,13 +97,14 @@ MGPXU ;Check for XUCOMMAND
  I $D(^XUTL("XQMERGED","PXU")) D OLDF("PXU")
  Q:$D(^XUTL("XQMERGED","PXU"))  ;Already being merged
  ;
- L +^XUTL("XQO","PXU"):0 Q:'$T
+ L +^XUTL("XQO","PXU"):DILOCKTM Q:'$T  ;P593
  S ^XUTL("XQMERGED","PXU")=$H
  ;
  K ^XUTL("XQO","PXU")
  M ^XUTL("XQO","PXU")=^DIC(19,"AXQ","PXU")
  ;
- L -^DIC(19,"AXQ","PXU")
+ ;L -^DIC(19,"AXQ","PXU")
+ L -^XUTL("XQO","PXU") ;P593
  K ^XUTL("XQMERGED","PXU")
  Q
  ;
@@ -109,12 +116,13 @@ MGSEC ;Now the Secondary Menu trees
  ..I $D(^XUTL("XQMERGED",%1)) D OLDF(%1)
  ..Q:$D(^XUTL("XQMERGED",%1))  ;Already merging as we speak
  ..S ^XUTL("XQMERGED",%1)=$H
- ..L +^XUTL("XQO",%1):0 Q:'$T
+ ..L +^XUTL("XQO",%1):DILOCKTM Q:'$T  ;P593
  ..I '$D(^XUTL("XQO",%1)) D
  ...K ^XUTL("XQO",%1)
  ...M ^XUTL("XQO",%1)=^DIC(19,"AXQ",%1)
  ...Q
- ..L -^DIC(19,"AXQ",%1)
+ ..;L -^DIC(19,"AXQ",%1) ;P593
+ ..L -^XUTL("XQO",%1) ;P593
  ..K ^XUTL("XQMERGED",%1)
  ..Q
  .Q
@@ -140,13 +148,21 @@ LOGOPT ;Option audit
  K K1,K2
  Q
 XPRMP D CHK^XM W !!,"Do you really want to ",$S(XQUR="REST":"restart",1:"halt"),"? YES// " R X:10 S:'$L(X) X="Y"
- I "Yy"'[$E(X) S Y=1 S:^XUTL("XQ",$J,"T")>1 Y=^("T")-1 S ^("T")=Y,Y=^(Y),XQY0=$P(Y,U,2,99),XQPSM=$P(Y,U,1),(XQY,XQDIC)=+XQPSM,XQPSM=$P(XQPSM,XQY,2,3),XQAA="Select "_$P(XQY0,U,2)_" Option: " W ! G ASK^XQ
+ ;Modified - p593 to display <TEST ACCOUNT> if not a production VistA system
+ S XQXQTEST=$S($D(DUZ("TEST")):" <TEST ACCOUNT>",1:"")
+ I "Yy"'[$E(X) S Y=1 S:^XUTL("XQ",$J,"T")>1 Y=^("T")-1 S ^("T")=Y,Y=^(Y),XQY0=$P(Y,U,2,99),XQPSM=$P(Y,U,1),(XQY,XQDIC)=+XQPSM,XQPSM=$P(XQPSM,XQY,2,3),XQAA="Select "_$P(XQY0,U,2)_XQXQTEST_" Option: " W ! G ASK^XQ
+ K XQXQTEST
+ ;end of p593 modifications
  G REST:XQUR="REST",HALT:XQUR'="CON"
  ;
 CON ;Continue option logic.  Enter from ASK^XQ on timeout.
  W !!,"Do you want to halt and continue with this option later? YES// " R XQUR:20 S:(XQUR="")!('$T) XQUR="Y"
  I "YyNn"'[$E(XQUR,1) W !!,"   If you enter 'Y' or 'RETURN' you will halt and continue here next time",!,"    you logon to the computer.",!,"   If you enter 'N' you will resume processing where you were." G CON
- I "Nn"[$E(XQUR,1) W ! S XQUR=0,Y=^XUTL("XQ",$J,"T"),Y=^(Y),XQY0=$P(Y,U,2,99),XQPSM=$P(Y,U,1),(XQY,XQDIC)=+XQPSM,XQPSM=$P(XQPSM,XQY,2,3),XQAA="Select "_$P(XQY0,U,2)_" Option: " G ASK^XQ
+ ;Modified - p593 to display <TEST ACCOUNT> if not a production VistA system
+ S XQXQTEST=$S($D(DUZ("TEST")):" <TEST ACCOUNT>",1:"")
+ I "Nn"[$E(XQUR,1) W ! S XQUR=0,Y=^XUTL("XQ",$J,"T"),Y=^(Y),XQY0=$P(Y,U,2,99),XQPSM=$P(Y,U,1),(XQY,XQDIC)=+XQPSM,XQPSM=$P(XQPSM,XQY,2,3),XQAA="Select "_$P(XQY0,U,2)_XQXQTEST_" Option: " G ASK^XQ
+ K XQXQTEST
+ ;end of p593 modifications
  S X=^XUTL("XQ",$J,^XUTL("XQ",$J,"T")),Y=^("XQM") I (+X'=+Y) S XQM="P"_+Y S XQPSM=$S($D(^XUTL("XQO",XQM,"^",+X)):XQM,$D(^XUTL("XQO","PXU","^",+X)):"PXU",1:"") D:XQPSM="" SS S:XQPSM'="" ^VA(200,DUZ,202.1)=+X_XQPSM
  S X=$P($H,",",2),X=(X>41400&(X<46800))
  W !!,$P("HMM^OK^ALL RIGHT^WELL CERTAINLY^FINE","^",$R(5)+1),"... ",$P("SEE YOU LATER^I'LL BE READY WHEN YOU ARE.^HURRY BACK!^HAVE A GOOD LUNCH BREAK!","^",$R(3)+X+1)
@@ -154,7 +170,7 @@ HALT ;
  G H^XUS
 REST S XQNOHALT=1 D ^XUSCLEAN G ^XUS
  ;
-SS ;Search Secondaries for a particuloar option.
+SS ;Search Secondaries for a particular option.
  Q:'$D(^VA(200,DUZ,203,0))  Q:$P(^VA(200,DUZ,203,0),U,4)<1
  S Y=0 F XQI=1:1 Q:XQPSM'=""  S Y=$O(^VA(200,DUZ,203,Y)) Q:Y'>0  S %=^(Y,0) I $D(^XUTL("XQO","P"_%,"^",+X)) S XQPSM="U"_DUZ_",P"_%
  Q
@@ -163,4 +179,22 @@ ABLOG S %2=0 F %3=0:0 S %2=$O(^XTV(8989.3,1,"ABPKG",%2)) Q:%2'>0  F %=0:0 S %=$O
  Q
 ABLOG1 F %4=0:0 S %4=$O(^XTV(8989.3,1,"ABPKG",%2,1,%,1,%4)) Q:%4'>0  S %1=$P(^(%4,0),U) I $E(XQY0,1,$L(%1))=%1 Q
  I %4'>0 S:'$D(^XTV(8989.3,1,"ABOPT",0)) ^(0)="^8989.333P^" S:'$D(^(XQY)) %4=+$P(^(0),U,3),$P(^(0),U,3,4)=$S(XQY>%4:XQY,1:%4)_U_($P(^(0),U,4)+1) S ^(0)=XQY_U_($S($D(^(XQY,0)):$P(^(0),U,2),1:0)+1),%2="A"
+ Q
+STARTUP() ; P593 Run XU USER START-UP option
+ N XUSER,XUSQUIT ;Protect ourself.
+ S DIC="^DIC(19,",X="XU USER START-UP",XUSQUIT=0
+ D EN^XQOR
+ K X,DIC
+ Q XUSQUIT ;If option set XUSQUIT will stop sign-on.
+SAMPLE ; P593 sample start-up option
+ N DA
+ S DA=+DUZ
+ W !!,"  Sample: Testing XU USER START-UP option for patch XU*8.0*593"
+ W !!,"  Sample: Prompt to edit fields in NEW PERSON file (#200)",!
+ S DA=+DUZ,DIE="^VA(200,",DR="20.2;20.3;.132;.138" D ^DIE
+ W !!,"  Sample: Yes(Y) or No(N) prompt."
+ W !,"     Entering Y will set the variable XUSQUIT to 1 and end your session."
+ W !,"     Entering anything else (including ^ or <CR>) will continue."
+ W !,"     Do you want to end your session now" D YN^DICN I %=1 S XUSQUIT=%
+ W !!,"  Sample: End of sample script."
  Q

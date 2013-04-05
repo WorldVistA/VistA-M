@@ -1,5 +1,5 @@
 FBAAUTL ;AISC/GRR,SBW-Fee Basis Utility Routine ; 4/23/10 3:06pm
- ;;3.5;FEE BASIS;**101,114,108**;JAN 30, 1995;Build 115
+ ;;3.5;FEE BASIS;**101,114,108,124**;JAN 30, 1995;Build 20
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 DATE N FBDT S FBPOP=0 K BEGDATE,ENDDATE K:$G(%DT)'["A" %DT W !!,"**** Date Range Selection ****"
  S FBDT=$S($D(%DT):1,1:0) W ! S %DT=$S(FBDT:%DT,1:"APEX"),%DT("A")="   Beginning DATE : " D ^%DT S:Y<0 FBPOP=1 Q:Y<0  S (%DT(0),BEGDATE)=Y
@@ -44,8 +44,16 @@ GETNXI ;GET NEXT AVAILABLE INVOICE NUMBER
  L -^FBAA(161.4) Q
 PDATE S FBPDT=$P("January^February^March^April^May^June^July^August^September^October^November^December","^",$E(Y,4,5))_" "_$S(Y#100:$J(Y#100\1,2)_", ",1:"")_(Y\10000+1700)_$S(Y#1:"  "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12),1:"") Q
 DATCK S HOLDY=Y,HOLDY=$S($P(HOLDY,"^",2):$P(HOLDY,"^",2),1:HOLDY)
- I $D(FBAAID),Y>FBAAID W !!,*7,"Date of Service cannot be later than Invoice Date!" K X Q
- I $D(FBAABDT),$D(FBAAEDT),(Y<FBAABDT!(Y>FBAAEDT)) W !!,*7,"Date of Service ",$S(Y<FBAABDT:"prior to ",1:"later than "),"Authorization period.",! K X
+ I $D(FBAAID),Y>FBAAID D  K X Q
+ .N SHODAT S SHODAT=$E(FBAAID,4,5)_"/"_$E(FBAAID,6,7)_"/"_$E(FBAAID,2,3)
+ .W !!,*7,?5,"*** Date of Service cannot be later than",!?8," Invoice Received Date ("_SHODAT_") !!!",!
+ I $D(FBAABDT),$D(FBAAEDT),(Y<FBAABDT!(Y>FBAAEDT)) D  K X
+ .N PRIORLAT,AUTHDAT,SHODAT
+ .S PRIORLAT=$S($P(Y,"^",2)<FBAABDT:"prior to ",1:"later than ")
+ .S AUTHDAT=$S($P(Y,"^",2)<FBAABDT:FBAABDT,1:FBAAEDT)
+ .S SHODAT=$E(AUTHDAT,4,5)_"/"_$E(AUTHDAT,6,7)_"/"_$E(AUTHDAT,2,3)
+ .W !!,*7,?5,"*** Date of Service cannot be ",PRIORLAT
+ .W !?8," Authorization period ("_SHODAT_") !!!",!
  S Y=HOLDY Q
  ;
 DATX(X) ;external output function for date format

@@ -1,5 +1,5 @@
 DIFROM0 ;SFISC/XAK-GATHER PCS TO SEND ;2:59 PM  25 Sep 1998
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S %=2,DIT=0,DIH=""
  I DPK<0,$O(F(0))>0 K DIR S DIR(0)="Y",DIR("A")="Do you want to include all the templates and forms",DIR("B")="NO",DIR("??")="^D NOPKG^DIFROMH" D ^DIR G Q:$D(DIRUT) S DIT=Y=1

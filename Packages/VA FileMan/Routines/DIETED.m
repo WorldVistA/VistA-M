@@ -1,5 +1,5 @@
 DIETED ;SFISC/GFT SCREEN-EDIT AN INPUT TEMPLATE ;22MAY2006
- ;;22.0;VA FileMan;**111,159**;Mar 30, 1999;Build 8
+ ;;22.0;VA FileMan;**111,159**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  N DIC,DIET,DRK,DIETED,I,J,DDSCHG
  S DIC=.402,DIC(0)="AEQ" D ^DIC Q:Y<1

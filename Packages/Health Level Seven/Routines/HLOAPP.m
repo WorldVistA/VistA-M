@@ -1,5 +1,5 @@
-HLOAPP ;ALB/CJM-HL7 -Application Registry ;11/10/2008
- ;;1.6;HEALTH LEVEL SEVEN;**126,132,137,139**;Oct 13, 1995;Build 11
+HLOAPP ;ALB/CJM-HL7 -Application Registry ;02/23/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**126,132,137,139,158**;Oct 13, 1995;Build 14
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 GETIEN(NAME) ;given the application name, it finds the ien.  Returns 0 on failure
@@ -8,7 +8,7 @@ GETIEN(NAME) ;given the application name, it finds the ien.  Returns 0 on failur
  ;
 ACTION(HEADER,ACTION,QUEUE) ;Given the parsed header of a message it returns both the action that should be performed in response to the message and the incoming queue that it should be placed on.
  ;
- ;** do not immplement the Pass Immediate parameter **
+ ;** do not implement the Pass Immediate parameter **
  ;ACTION(HEADER,ACTION,QUEUE,IMMEDIATE);Given the parsed header of a message it returns both the action that should be performed in response to the message and the incoming queue that it should be placed on.
  ;
  ;Input:
@@ -18,7 +18,7 @@ ACTION(HEADER,ACTION,QUEUE) ;Given the parsed header of a message it returns bot
  ;  ACTION (pass by reference) <tag>^<rtn>
  ;  QUEUE (pass by reference) returns the named queue if there is one, else "DEFAULT"
  ;
- ;** do not immplement the Pass Immediate parameter **
+ ;** do not implement the Pass Immediate parameter **
  ;  IMMEDIATE (pass by reference, optional) returns 1 if the application wants its messages passed to the incoming queue immediately, 0 otherwise
  ;
  N IEN
@@ -46,15 +46,15 @@ ACTION(HEADER,ACTION,QUEUE) ;Given the parsed header of a message it returns bot
  ...I $P(NODE,"^",5)]"" S ACTION=$P(NODE,"^",4,5)
  ...I $P(NODE,"^",3)]"" S QUEUE=$P(NODE,"^",3)
  ...;
- ...;** do not immplement the Pass Immediate parameter **
- ...S IMMEDIATE=$P(NODE,"^",8)
+ ...;** do not implement the Pass ImMediate parameter **
+ ...;S IMMEDIATE=$P(NODE,"^",8)
  ...;
  ..I ACTION="" S NODE=$G(^HLD(779.2,IEN,0)) I $P(NODE,"^",7)]"" S ACTION=$P(NODE,"^",6,7)
  ..I QUEUE="" S NODE=$G(^HLD(779.2,IEN,0)) I $P(NODE,"^",3)]"" S QUEUE=$P(NODE,"^",3)
  I QUEUE="" S QUEUE="DEFAULT"
  ;
- ;** do not immplement the Pass Immediate parameter **
- I $G(IMMEDIATE)'=1 S IMMEDIATE=0
+ ;** do not implement the Pass Immediate parameter **
+ ;I $G(IMMEDIATE)'=1 S IMMEDIATE=0
  ;
  I ACTION="" Q 0
  Q 1
@@ -128,3 +128,33 @@ TIMEOUT(APPNAME) ;
  I IEN S TIME=$P($G(^HLD(779.2,IEN,0)),"^",12)
  Q:'$G(TIME) 10
  Q TIME
+ ;
+RTNTN(APP,MSGTYPE,EVENT,VERSION) ;
+ ;Returns the retention time for this message, if specified.
+ ;
+ ;Input:
+ ;  APP (required) the name of the sending application
+ ;  MSGTYPE (required) 3 character HL7 message type
+ ;  EVENT (required) 3 character HL7 event
+ ;  VERSION (optional) HL7 version ID as it appears in the message header
+ ;Output:
+ ;  Function returns retention time if spcified, 0 otherwise
+ ;
+ N IEN,RET,SUBIEN
+ S RET=0
+ S IEN=$$GETIEN($G(APP))
+ Q:'$G(IEN) RET
+ I $L($G(MSGTYPE)),$L($G(EVENT)) D
+ .;did the application specify an action for the particular version of this message?
+ .I $G(VERSION)'="" S SUBIEN=$O(^HLD(779.2,IEN,1,"D",MSGTYPE,EVENT,VERSION,0)) I SUBIEN S RET=$P($G(^HLD(779.2,IEN,1,SUBIEN,0)),"^",8)
+ .;if not, look on the "C" index
+ .S:'RET SUBIEN=$O(^HLD(779.2,IEN,1,"C",MSGTYPE,EVENT,0)) I SUBIEN S RET=$P($G(^HLD(779.2,IEN,1,SUBIEN,0)),"^",8)
+ ;
+ S:'RET RET=+$P($G(^HLD(779.2,IEN,0)),"^",13)
+ Q RET
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;

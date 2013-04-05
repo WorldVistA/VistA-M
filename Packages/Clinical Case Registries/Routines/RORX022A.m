@@ -1,5 +1,5 @@
 RORX022A ;BPOIFO/CLR LAB DAA MONITOR (CONT.) ; 8/2/11 3:08pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,17**;Feb 17, 2006;Build 33
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,17,18**;Feb 17, 2006;Build 25
  ;
  ; This routine uses the following IAs:
  ;
@@ -8,6 +8,10 @@ RORX022A ;BPOIFO/CLR LAB DAA MONITOR (CONT.) ; 8/2/11 3:08pm
  ; #10035 Direct read of the DOD field of the file #2
  ; #10000 C^%DTC (supported)
  ;   
+ ;******************************************************************************
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*18   APR  2012   C RAY        Adds select patient panel
  ;******************************************************************************
  Q
  ;
@@ -72,12 +76,11 @@ QUERY(FLAGS,RORTSK,NSPT) ;
  N RORCDENDT     ; End date for clinic/division utilization search
  N RORDAA        ; Date of patient's 1st DAA fill
  N RORXL         ; Location of drug list
- N RORXSDT       ; Location of results
  N RXSDT         ; RX start date
  N RXEDT         ; RX end date
  ;
  N CNT,ECNT,IEN,IENS,PATIEN,RC,SKIP,TMP,VA,VADM,XREFNODE
- N RCC,FLAG,DAASDT,DAAEDT
+ N RCC,FLAG,DAASDT,DAAEDT,RORXSDT
  N LTEDT,LTSDT,LTWKDYS,LTWKS
  S XREFNODE=$NA(^RORDATA(798,"AC",+RORREG))
  S (CNT,ECNT,NSPT,RC,RORCDLIST)=0
@@ -113,6 +116,8 @@ QUERY(FLAGS,RORTSK,NSPT) ;
  . ;--- Get patient DFN
  . S PATIEN=$$PTIEN^RORUTL01(IEN)  Q:PATIEN'>0
  . I +$P($G(^DPT(PATIEN,.35)),U)>0 Q  ;patient has died
+ . ;check for patient list and quit if not on list  ;+18
+ . I $D(RORTSK("PARAMS","PATIENTS","C")),'$D(RORTSK("PARAMS","PATIENTS","C",PATIEN)) Q
  . ;--- Check if the patient should be skipped
  . Q:$$SKIP^RORXU005(IEN,FLAGS)
  . ;--- Check if patient should be skipped because of ICD9 codes

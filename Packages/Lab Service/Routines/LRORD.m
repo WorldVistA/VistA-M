@@ -1,10 +1,11 @@
-LRORD ;DALOI/CJS - LAZY ACCESSION LOGGING ;2/6/91  12:54 ;
- ;;5.2;LAB SERVICE;**100,121,153,286**;Sep 27, 1994
+LRORD ;DALOI/CJS - LAZY ACCESSION LOGGING ;05/29/12  10:25
+ ;;5.2;LAB SERVICE;**100,121,153,286,350**;Sep 27, 1994;Build 230
+ ;
 EN ;;
  I $D(^LAB(69.9,1,"RO")),+$H'=+^("RO") W $C(7),!,"ROLLOVER ",$S($P(^("RO"),U,2):"IS RUNNING.",1:"HAS NOT RUN.")," ACCESSIONING SHOULDN'T BE DONE NOW.",$C(7),!,"  Are you sure you want to continue"
  I $T S %=2 D YN^DICN W:%=0 !,"If you continue to accession, you may block accessions from yesterday from",!,"rolling over." G LRORD:%=0 I %'=1 W !,"OK, try later." Q
 EN1 ;;from LROR4
- D ^LRPARAM
+ D EN^LRPARAM
  K ^TMP("LRSTIK",$J),DIC,LRURG,LRSAME,LRCOM,LRNATURE,LRTCOM
  S LRORDTIM="" S:'$D(LRORDR) LRORDR="" D DT^LRX
  I $D(LRADDTST) Q:LRADDTST=""
@@ -88,6 +89,9 @@ LEDI ; Laboratory Electronic Data Exchange
  I LRRSITE("ERROR") D  Q
  . W !!,$C(7),"ERROR -- ",$P(LRRSITE("ERROR"),"^",2),!
  . D ^LRORDK
+ ;
+ ; Handle inter-divisional manifests
+ I DUZ(2)=$P(LRRSITE("HSITE"),"^"),$$KSP^XUPARAM("INST")=$P(LRRSITE("RPSITE"),"^") D INTERDIV^LA7SMA(.LRRSITE),^LRORDK Q
  ;
  ; Get shipping manifest ID manual input
  I $G(LRRSITE("SMID"))="" D

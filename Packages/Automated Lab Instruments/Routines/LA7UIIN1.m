@@ -146,7 +146,7 @@ OBR F  S LA762495=$O(^LAHM(62.49,LA76249,150,LA762495)) Q:'LA762495!($E($G(^(+LA
  I $P(LA7AA(0),"^",2)="MI" D
  . N X
  . S X="LA7UIIN3" X ^%ZOSF("TEST") Q:'$T
- . ; D MI^LA7UIIN3
+ . D MI^LA7UIIN3
  ;
  ; No more segments to process, reached end of global array.
  I 'LA762495 Q

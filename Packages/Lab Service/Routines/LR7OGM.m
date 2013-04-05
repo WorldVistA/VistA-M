@@ -1,5 +1,5 @@
-LR7OGM ;DALOI/STAFF- Interim report rpc memo ;7/1/09  07:28
- ;;5.2;LAB SERVICE;**187,220,312,286,395**;Sep 27, 1994;Build 27
+LR7OGM ;DALOI/STAFF- Interim report rpc memo ;11/19/09  17:38
+ ;;5.2;LAB SERVICE;**187,220,312,286,395,350**;Sep 27, 1994;Build 230
  ;
 TEST ; test use only
  N TESTS,I K TESTS,^TMP("LR7OGX",$J)
@@ -42,12 +42,11 @@ MICRO(ROOT,DFN,SDATE,EDATE) ; from ORWLRR
 SELECT(DFN,SDATE,EDATE,TESTS,FORMAT,MICROCHK) ;
  ; get patient info, and expand tests
  ; route setup chem and/or micro data
- ; 9th piece of output indicates FORMAT, when set, seems to get used when evaluating next result
- ;     (2: CH subscript, 3: MI subscript, else 1 or "")
- N AGE,ALL,ASK,AVAIL,CNIDT,DIRECT,DONE,SKIP,EDT,FOK,I,IDT,LRCAN,LRDFN,MICROSUB,MNIDT,OUTCNT,PNM,ROUTE,SEX,SDT,NEWOLD
+ ; 9th piece of output indicates format (2: CH of CH/MI exact date/time, 3: MI of CH/MI, else 1 or "")
+ N AGE,ALL,ASK,AVAIL,CNIDT,DIRECT,DONE,EDT,FOK,I,IDT,LRCAN,LRDFN,MICROSUB,MNIDT,NEWOLD,OUTCNT,PNM,ROUTE,SEX,SDT,SKIP
  K MICROSUB
  K ^TMP("LR7OG",$J),^TMP("LR7OGX",$J,"OUTPUT"),^TMP("LRPLS",$J)
- S OUTCNT=1,DONE=0,SKIP=0
+ S OUTCNT=1,(DONE,SKIP)=0
  D DEMO^LR7OGU(DFN,.LRDFN,.PNM,.AGE,.SEX)
  I '$G(LRDFN) Q
  D NEWOLD^LR7OGMU(.NEWOLD,DFN)
@@ -60,21 +59,21 @@ SELECT(DFN,SDATE,EDATE,TESTS,FORMAT,MICROCHK) ;
  S (IDT,SDT)=9999999-SDATE,EDT=9999999-EDATE
  I FORMAT>1 S FOK=0 D  I FOK Q
  . I DIRECT=1 D  Q
- .. I FORMAT=2 D  Q
- ... D MI^LR7OGMM(LRDFN,IDT,.MICROSUB,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
- ... I SKIP S SKIP=0 Q
- ... S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=3
- ... S FOK=1
- .. I FORMAT=3 D  Q
- ... S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=1
+ . . I FORMAT=2 D  Q
+ . . . D MI^LR7OGMM(LRDFN,IDT,.MICROSUB,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
+ . . . I SKIP S SKIP=0 Q
+ . . . S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=3
+ . . . S FOK=1
+ . . I FORMAT=3 D  Q
+ . . . S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=1
  . I DIRECT=-1 D  Q
- .. I FORMAT=2 D  Q
- ... S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=1
- .. I FORMAT=3 D  Q
- ... D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
- ... I SKIP S SKIP=0 Q
- ... S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=2
- ... S FOK=1
+ . . I FORMAT=2 D  Q
+ . . . S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=1
+ . . I FORMAT=3 D  Q
+ . . . D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
+ . . . I SKIP S SKIP=0 Q
+ . . . S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=2
+ . . . S FOK=1
  I ALL S ASK="BOTH"
  E  I $O(MICROSUB(0)) D
  . S ASK="MI" I $O(^TMP("LR7OG",$J,"TMP",0)) S ASK="BOTH"
@@ -94,66 +93,72 @@ SELECT(DFN,SDATE,EDATE,TESTS,FORMAT,MICROCHK) ;
  I ROUTE="NONE" D  Q
  . K ^TMP("LR7OG",$J)
  ;
+ ; Print "printed at" header on start of report.
+ I 'FORMAT,$$GET^XPAR("DIV^PKG","LR REPORTS FACILITY PRINT",1,"Q")>1 D PFAC^LR7OGMP
+ ;
  I ROUTE="CH" D  Q
  . F  S IDT=$O(^LR(LRDFN,"CH",IDT),DIRECT) Q:IDT<1  Q:IDT>EDT  D  Q:DONE
- .. D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
- .. I SKIP S SKIP=0
+ . . D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
+ . . I SKIP S SKIP=0 Q
  . I 'FORMAT,$D(^TMP("LRPLS",$J)) D PLS^LR7OGMP
  . K ^TMP("LR7OG",$J),^TMP("LRPLS",$J)
  ;
  I ROUTE="MI" D  Q
  . F  S IDT=$O(^LR(LRDFN,"MI",IDT),DIRECT) Q:IDT<1  Q:IDT>EDT  D  Q:DONE
- .. D MI^LR7OGMM(LRDFN,IDT,.MICROSUB,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
- .. I SKIP S SKIP=0
+ . . D MI^LR7OGMM(LRDFN,IDT,.MICROSUB,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
+ . . I SKIP S SKIP=0 Q
  . K ^TMP("LR7OG",$J)
  F  D  Q:DONE
  . S I=IDT,CNIDT=0 F  S I=$O(^LR(LRDFN,"CH",I),DIRECT) Q:'I  S CNIDT=I Q
  . S I=IDT,MNIDT=0 F  S I=$O(^LR(LRDFN,"MI",I),DIRECT) Q:'I  S MNIDT=I Q
  . I 'CNIDT,'MNIDT S DONE=1 Q
  . D  I IDT>EDT S DONE=1 Q
- .. I CNIDT=MNIDT D  Q  ; both chem and micro at this date/time
- ... S IDT=CNIDT
- ... I IDT'>EDT D
- .... I FORMAT D  Q
- ..... I SDT=(9999999-2700101)!(DIRECT=-1) D  Q
- ...... D MI^LR7OGMM(LRDFN,IDT,.MICROSUB,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
- ...... I SKIP S SKIP=0 D  Q
- ....... D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
- ....... I SKIP S SKIP=0 Q
- ....... I $P(NEWOLD,"^",1),$P(NEWOLD,"^",1)'=IDT S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=3 Q
- ....... S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=1
- ...... S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=3
- ..... D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
- ..... I SKIP S SKIP=0 D  Q
- ...... D MI^LR7OGMM(LRDFN,IDT,.MICROSUB,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
- ...... I SKIP S SKIP=0 Q
- ...... I $P(NEWOLD,"^",1),$P(NEWOLD,"^",1)'=IDT S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=3 Q
- ...... S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=1
- ..... I $P(NEWOLD,"^",1),$P(NEWOLD,"^",1)'=IDT S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=2 Q
- ..... S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=2
- .... I MICROCHK'=1 D  Q:DONE
- ..... D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
- ..... I SKIP S SKIP=0 Q
- ..... I FORMAT S MICROCHK=1
- .... D MI^LR7OGMM(LRDFN,IDT,.MICROSUB,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
- .... I SKIP S SKIP=0 Q
- .. I 'MNIDT D  Q  ; no micro since this date/time, only chem at this date/time
- ... S IDT=CNIDT
- ... I IDT'>EDT D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
- ... I SKIP S SKIP=0 Q
- .. I 'CNIDT D  Q  ; no chem since this date/time, only micro at this date/time
- ... S IDT=MNIDT
- ... I IDT'>EDT D MI^LR7OGMM(LRDFN,IDT,.MICROSUB,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
- ... I SKIP S SKIP=0 Q
- .. I (DIRECT=1&(CNIDT<MNIDT))!(DIRECT=-1&(CNIDT>MNIDT)) D  Q  ;chem and micro data, chem is more recent
- ... S IDT=CNIDT
- ... I IDT'>EDT D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
- ... I SKIP S SKIP=0 Q
- .. S IDT=MNIDT
- .. I IDT'>EDT D MI^LR7OGMM(LRDFN,IDT,.MICROSUB,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
- .. I SKIP S SKIP=0 Q
+ . . I CNIDT=MNIDT D  Q  ; both chem and micro at this date/time
+ . . . S IDT=CNIDT
+ . . . I IDT'>EDT D
+ . . . . I FORMAT D  Q
+ . . . . . I SDT=(9999999-2700101)!(DIRECT=-1) D  Q
+ . . . . . . D MI^LR7OGMM(LRDFN,IDT,.MICROSUB,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
+ . . . . . . I SKIP S SKIP=0 D  Q
+ . . . . . . . D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
+ . . . . . . . I SKIP S SKIP=0 Q
+ . . . . . . . I $P(NEWOLD,U),$P(NEWOLD,U)'=IDT D  Q
+ . . . . . . . . S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=3
+ . . . . . . . S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=1
+ . . . . . . S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=3
+ . . . . . D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
+ . . . . . I SKIP S SKIP=0 D  Q
+ . . . . . . D MI^LR7OGMM(LRDFN,IDT,.MICROSUB,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
+ . . . . . . I SKIP S SKIP=0 Q
+ . . . . . . I $P(NEWOLD,U),$P(NEWOLD,U)'=IDT D  Q
+ . . . . . . . S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=3
+ . . . . . . S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=1
+ . . . . . I $P(NEWOLD,U),$P(NEWOLD,U)'=IDT D  Q
+ . . . . . . S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=2
+ . . . . . S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=2
+ . . . . I MICROCHK'=1 D  Q:DONE
+ . . . . . D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
+ . . . . . I SKIP S SKIP=0 Q
+ . . . . . I FORMAT S MICROCHK=1
+ . . . . D MI^LR7OGMM(LRDFN,IDT,.MICROSUB,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
+ . . . . I SKIP S SKIP=0 Q
+ . . I 'MNIDT D  Q  ; no micro since this date/time, only chem at this date/time
+ . . . S IDT=CNIDT
+ . . . I IDT'>EDT D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
+ . . . I SKIP S SKIP=0 Q
+ . . I 'CNIDT D  Q  ; no chem since this date/time, only micro at this date/time
+ . . . S IDT=MNIDT
+ . . . I IDT'>EDT D MI^LR7OGMM(LRDFN,IDT,.MICROSUB,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
+ . . . I SKIP S SKIP=0 Q
+ . . I (DIRECT=1&(CNIDT<MNIDT))!(DIRECT=-1&(CNIDT>MNIDT)) D  Q  ;chem and micro data, chem is more recent
+ . . . S IDT=CNIDT
+ . . . I IDT'>EDT D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
+ . . . I SKIP S SKIP=0 Q
+ . . S IDT=MNIDT
+ . . I IDT'>EDT D MI^LR7OGMM(LRDFN,IDT,.MICROSUB,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
+ . . I SKIP S SKIP=0 Q
  ;
  I 'FORMAT,$D(^TMP("LRPLS",$J)) D PLS^LR7OGMP
  ;
- K ^TMP("LR7OG",$J),^TMP("LRPLS",$J)
+ K ^TMP("LR7OG",$J),^TMP("LRPLS",$J),^TMP("LRPLS-ADDR",$J)
  Q

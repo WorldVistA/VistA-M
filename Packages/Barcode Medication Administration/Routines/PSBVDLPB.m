@@ -1,5 +1,5 @@
-PSBVDLPB ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE LIST ;7/13/11 11:46am
- ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58**;Mar 2004;Build 37
+PSBVDLPB ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE ;4/10/12 12:33pm
+ ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58,68**;Mar 2004;Build 26
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -10,6 +10,9 @@ PSBVDLPB ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE LIST ;7/13/11 11:46am
  ; INTRDIC^PSGSICH1/5654
  ;
  ;*58 - add 29th piece to Results for Override/Intervention flag 1/0
+ ;*68 - add 30th piece to Results for Last Injection Site and
+ ;    - add 31st piece to Results for Piggyback tab to know the IV
+ ;      order is rotation type injectable.
  ;
 EN(DFN,PSBDT) ; Default Order List Return for Today
  ;
@@ -27,6 +30,8 @@ EN(DFN,PSBDT) ; Default Order List Return for Today
  ;This routine now re-uses the ^TMP("PSJ",$J global built in PSBVDLTB
  ;
  I $G(^TMP("PSJ",$J,1,0))=-1 Q  ; No orders
+ ;
+ N RTBL D BLDTBL^PSBINJEC(.RTBL)  ;build valid IV rotable inj *68
  ;
  F PSBX=0:0 S PSBX=$O(^TMP("PSJ",$J,PSBX)) Q:('PSBX)!(PSBTBOUT)  D
  .D CLEAN^PSBVT,PSJ^PSBVT(PSBX)
@@ -130,6 +135,14 @@ EN(DFN,PSBDT) ; Default Order List Return for Today
  .N PSBARR D GETPROVL^PSGSICH1(DFN,PSBONX,.PSBARR)
  .I $O(PSBARR(""))="" D INTRDIC^PSGSICH1(DFN,PSBONX,.PSBARR,2)
  .S $P(PSBREC,U,29)=$S($O(PSBARR(""))]"":1,1:0)
+ .;*68 inject rotation flag, send 1/0 (true/false)
+ .I PSBONX["V" D
+ ..N STDRTE S STDRTE=$$GET1^DIQ(51.2,PSBMRIEN,10)
+ ..S $P(PSBREC,U,31)=$$IVROTATN^PSBINJEC(.RTBL,STDRTE,PSBIVT,PSBISYR)
+ ..;*68 if param 31 is 1 then go get last injection site for param 30
+ ..I $P(PSBREC,U,31)=1 D
+ ...N LI D RPC^PSBINJEC(.LI,DFN,PSBOIT,9999999,1)
+ ...S $P(PSBREC,U,30)=$P(LI(1),U,6)   ;if no inj's, 6th will be null
  .;
  .; Gather Dispense Drugs
  .D NOW^%DTC

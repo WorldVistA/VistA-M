@@ -1,5 +1,5 @@
 DIR3 ;SFISC/DCM,RDS-READER-MAID (PROCESS RANGE/LIST) ;6/28/2009
- ;;22.0;VA FileMan;**30,164**;Mar 30, 1999;Build 20
+ ;;22.0;VA FileMan;**30,164**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;12364;2913754;3396;
  ;

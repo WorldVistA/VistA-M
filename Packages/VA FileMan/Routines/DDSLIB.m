@@ -1,5 +1,5 @@
 DDSLIB ;SFISC/MKO-LIBRARY FUNCTIONS ;01:37 PM  6 Sep 1994
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 FIND(E,C,S) ;Find in expression E, starting from pos S, the char pos
  ;after the next occurrence of char C, ignoring those within quoted

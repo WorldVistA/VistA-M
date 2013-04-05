@@ -1,5 +1,5 @@
-HLOAPI3 ;ALB/CJM-HL7 - Developer API's for sending application acks ;07/21/2008
- ;;1.6;HEALTH LEVEL SEVEN;**126,133,134,137,138**;Oct 13, 1995;Build 34
+HLOAPI3 ;ALB/CJM-HL7 - Developer API's for sending application acks ;07/17/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**126,133,134,137,138,158**;Oct 13, 1995;Build 14
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 BATCHACK(HLMSTATE,PARMS,ACK,ERROR) ;; Starts a batch message that is the response to a batch message. Individual acks are placed in the batch by calling $$ADDACK.
@@ -14,6 +14,8 @@ BATCHACK(HLMSTATE,PARMS,ACK,ERROR) ;; Starts a batch message that is the respons
  ;;     "ENCODING CHARACTERS" - the 4 HL7 encoding characters (optional,defaults to "^~\&"
  ;;    "FAILURE RESPONSE" (optional) the <tag>^<routine> that the sending application routine should execute if the transmission of the message fails, i.e., the message can not be sent or a requested commit ack is not received.
  ;;     "FIELD SEPARATOR" - the field separator (optional, defaults to "|")
+ ;;    "RETURN LINK NAME" (optional)
+ ;;    "RETURN LINK IEN" (optional)
  ;;     "QUEUE" (optional) An application can name a private queue (a string under 20 characters, namespaced). The default is the name of the queue of the original message
  ;;     "SECURITY" - security information to include in the header segment, SEQ 8 (optional)
  ;;    "VERSION" - the HL7 Version ID (optional, defaults to 2.4)
@@ -26,15 +28,21 @@ BATCHACK(HLMSTATE,PARMS,ACK,ERROR) ;; Starts a batch message that is the respons
  ;
  N I,TOLINK,SUCCESS
  S SUCCESS=0
+ S TOLINK=""
  ;
  D
- .N PORT
+ .N PORT S PORT=""
  .I '$G(HLMSTATE("IEN")) S ERROR="ORIGINAL MESSAGE TO ACKNOWLEDGMENT IS NOT IDENTIFIED" Q
  .;if the return link can not be determined, the HL Logical Link file has a problem
- .S TOLINK=$$ACKLINK^HLOAPI2(.HLMSTATE)
- .I TOLINK="" S ERROR="TRANSMISSION LINK FOR APPLICATION ACK CANNOT BE DETERMINED" Q
- .S PORT=$P(HLMSTATE("HDR","SENDING FACILITY",2),":",2)
- .I 'PORT S PORT=$$PORT2^HLOTLNK(TOLINK)
+ .I $G(PARMS("RETURN LINK IEN")) D
+ ..S TOLINK=$P($G(^HLCS(870,PARMS("RETURN LINK IEN"),0)),"^")
+ ..S PORT=$$PORT2^HLOTLNK(TOLINK)
+ .E  I $L($G(PARMS("RETURN LINK NAME"))) D
+ ..S TOLINK=PARMS("RETURN LINK NAME")
+ ..S PORT=$$PORT2^HLOTLNK(TOLINK)
+ .E  D
+ ..S TOLINK=$$ACKLINK^HLOAPI2(.HLMSTATE,.PORT)
+ .I (TOLINK="")!('PORT) S ERROR="TRANSMISSION LINK FOR APPLICATION ACK CANNOT BE DETERMINED" Q
  .;
  .I $$NEWBATCH^HLOAPI(.PARMS,.ACK)  ;can't fail!
  .S ACK("STATUS","QUEUE")=$G(PARMS("QUEUE"),$G(HLMSTATE("STATUS","QUEUE")))
@@ -48,7 +56,7 @@ BATCHACK(HLMSTATE,PARMS,ACK,ERROR) ;; Starts a batch message that is the respons
  .S ACK("HDR","APP ACK TYPE")="NE"
  .S ACK("HDR","ACCEPT ACK TYPE")=$G(PARMS("ACCEPT ACK TYPE"),"AL")
  .S ACK("ACK TO")=$G(HLMSTATE("HDR","BATCH CONTROL ID"))
- .S ACK("ACK TO","IEN")=HLMSTATE("IEN")
+ .S ACK("ACK TO IEN")=HLMSTATE("IEN")
  .S ACK("ACK TO","BODY")=$G(HLMSTATE("BODY"))
  .S ACK("STATUS","LINK NAME")=TOLINK
  .S ACK("LINE COUNT")=0
@@ -90,7 +98,7 @@ ADDACK(ACK,PARMS,ERROR) ;;This API adds an application acknowledgment to a batch
  .;
  .I $G(PARMS("MESSAGE CONTROL ID"))="" S ERROR="MESSAGE CONTROL ID MUST EXIST TO RETURN AN APPLICATION ACK" Q
  .S SUB=""
- .F  S SUB=$O(^HLB("AE",PARMS("MESSAGE CONTROL ID"),SUB)) Q:SUB=""  I $P(SUB,"^")=ACK("ACK TO","IEN"),$P(SUB,"^",2) S PARMS("ACK TO","IEN")=SUB Q
+ .F  S SUB=$O(^HLB("AE",PARMS("MESSAGE CONTROL ID"),SUB)) Q:SUB=""  I $P(SUB,"^")=ACK("ACK TO IEN"),$P(SUB,"^",2) S PARMS("ACK TO IEN")=SUB Q
  .S PARMS("MESSAGE TYPE")=$G(PARMS("MESSAGE TYPE"),"ACK")
  .S:PARMS("MESSAGE TYPE")="ACK" PARMS("MESSAGE STRUCTURE")="ACK"
  .S PARMS("EVENT")=$G(PARMS("EVENT"))
@@ -132,20 +140,29 @@ SETPURGE(MSGIEN,TIME) ;;  Set message up for purging.
  ;;Resets the purge date/time.
  ;;Input:
  ;;   MSGIEN (required) ien of the message, file #778
- ;;   TIME (optional) dt/time to set the purge time to, defaults to NOW
+ ;;   TIME (required) dt/time to set the purge time to
  ;;Output:
  ;;   Function returns 1 on success, 0 on failure
  ;;   
- N NODE,OLDTIME,HLDIR
+ N NODE,OLDTIME,HLDIR,DAYS
  Q:'$G(MSGIEN) 0
+ Q:'$G(TIME) 0
  S NODE=$G(^HLB(MSGIEN,0))
  Q:NODE="" 0
  S OLDTIME=$P(NODE,"^",9)
- S:'$G(TIME) TIME=$$NOW^XLFDT
- S HLDIR=$S($E($P(NODE,"^",4))="I":"IN",1:"OUT")
- K:OLDTIME ^HLB("AD",HLDIR,OLDTIME,MSGIEN)
- S $P(^HLB(MSGIEN,0),"^",9)=TIME
- S ^HLB("AD",HLDIR,TIME,MSGIEN)=""
+ ;
+ ;applications may delay the purge, but not purge sooner
+ I OLDTIME,OLDTIME>TIME Q 0
+ ;
+ I OLDTIME D  Q 1
+ .S HLDIR=$S($E($P(NODE,"^",4))="I":"IN",1:"OUT")
+ .K ^HLB("AD",HLDIR,OLDTIME,MSGIEN)
+ .S $P(^HLB(MSGIEN,0),"^",9)=TIME
+ .S ^HLB("AD",HLDIR,TIME,MSGIEN)=""
+ ;
+ ;if the message isn't yet scheduled for purge, use TIME to set the retention time
+ S DAYS=$$FMDIFF^XLFDT(TIME,$$NOW^XLFDT,3)+1
+ I DAYS>$P(NODE,"^",22) S $P(^HLB(MSGIEN,0),"^",22)=DAYS
  Q 1
  ;
 REPROC(MSGIEN,ERROR) ;;  Reprocess message.
@@ -213,3 +230,10 @@ PROCNOW(MSGIEN,PURGE,ERROR) ;;
  S MCODE="D "_ACTION
  X MCODE
  Q 1
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;

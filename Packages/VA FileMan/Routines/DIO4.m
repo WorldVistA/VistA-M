@@ -1,5 +1,5 @@
 DIO4 ;SFISC/GFT,XAK,TKW-FINISH OUTPUT, CLOSE DEVICE ;9:57 AM  30 Dec 2003
- ;;22.0;VA FileMan;**2,32,45,136**;Mar 30, 1999
+ ;;22.0;VA FileMan;**2,32,45,136**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  K DIXX,DIWT,DIW,DIP,DSC,DRK,DIO("SCR") D:'$D(DISYS) OS^DII
  G:$G(DIFIXPT)=1 K1

@@ -1,5 +1,5 @@
-HLOCLNT1 ;IRMFO-ALB/CJM/RBN - Writing messages, reading acks;03/24/2004  14:43 ;02/18/2011
- ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,139,146,155**;Oct 13, 1995;Build 4
+HLOCLNT1 ;IRMFO-ALB/CJM/RBN - Writing messages, reading acks;03/24/2004  14:43 ;02/27/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,139,146,155,158**;Oct 13, 1995;Build 14
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -125,44 +125,6 @@ ZB24 ;
 ZB2 ;
  Q HLCSTATE("CONNECTED")
  ;
-BADMSGS(WORK) ;
- ;finds messages that won't transmit after 8 hours of trying and takes them off the outgoing queue
- N LINK
- S LINK=""
- F  S LINK=$O(^HLTMP("FAILING LINKS",LINK)) Q:LINK=""  D
- .N TIME,QUE,COUNT
- .S TIME=$G(^HLTMP("FAILING LINKS",LINK)) Q:TIME=""
- .Q:$$HDIFF^XLFDT($H,TIME,2)<28800  ;8 hours
- .Q:'$$IFOPEN^HLOUSR1(LINK)
- .L +^HLB("QUEUE","OUT",LINK):0
- .S QUE=""
- .F  S QUE=$O(^HLB("QUEUE","OUT",LINK,QUE)) Q:QUE=""  D
- ..N MSG S MSG=0
- ..S MSG=$O(^HLB("QUEUE","OUT",LINK,QUE,MSG))
- ..Q:'MSG
- ..S COUNT=$G(^HLB(MSG,"TRIES"))
- ..I COUNT>20 D
- ...N NODE0,NODE1,NODE2,TIME,RAPP,SAPP,FS,CS,ACTION,MTYPE,EVENT
- ...S NODE0=$G(^HLB(MSG,0))
- ...Q:'$P(NODE0,"^",2)
- ...S TIME=$$NOW^XLFDT
- ...S NODE1=$G(^HLB(MSG,1))
- ...S NODE2=$G(^HLB(MSG,2))
- ...S FS=$E(NODE1,4)
- ...Q:FS=""
- ...S CS=$E(NODE1,5)
- ...Q:CS=""
- ...S SAPP=$P(NODE1,FS,3)
- ...S:SAPP="" SAPP="UNKNOWN"
- ...S RAPP=$P(NODE1,FS,5)
- ...S MTYPE=$P($P(NODE2,FS,4),CS)
- ...S EVENT=$P($P(NODE2,FS,4),CS,2)
- ...S $P(^HLB(MSG,0),"^",21)=COUNT_" FAILED TRANSMISSIONS"
- ...S $P(^HLB(MSG,0),"^",20)="TF"
- ...S ^HLB("ERRORS",RAPP,TIME,MSG)=""
- ...D COUNT^HLOESTAT("OUT",RAPP,SAPP,MTYPE,EVENT)
- ...S ACTION=$P(NODE0,"^",14,15)
- ...I ACTION'="^",ACTION]"" D INQUE^HLOQUE(LINK,QUE,MSG,ACTION,1)
- ...D DEQUE^HLOQUE(LINK,QUE,"OUT",MSG)
- .L -^HLB("QUEUE","OUT",LINK)
- Q
+ ;
+ ;
+ ;

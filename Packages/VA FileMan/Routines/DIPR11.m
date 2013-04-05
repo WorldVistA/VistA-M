@@ -1,5 +1,5 @@
 DIPR11 ;SFISC/MKO-PRE INSTALL ROUTINE FOR PATCH DI*22.0*11 ;2/15/00  10:22
- ;;22.0;VA FileMan;**11**;Mar 30, 1999
+ ;;22.0;VA FileMan;**11**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;Modify the trigger logic of fields that trigger fields with

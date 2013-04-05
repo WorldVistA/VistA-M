@@ -1,5 +1,5 @@
 FBAACO1 ;AISC/GRR - ENTER PAYMENT CONTINUED ;6/25/2009
- ;;3.5;FEE BASIS;**4,61,77,108**;JAN 30, 1995;Build 115
+ ;;3.5;FEE BASIS;**4,61,77,108,124**;JAN 30, 1995;Build 20
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 SVCPR ;set up service provided multiple
  I '$D(^FBAAC(DFN,1,FBV,1,FBSDI,1,0)) S ^FBAAC(DFN,1,FBV,1,FBSDI,1,0)="^162.03A^0^0"
@@ -107,7 +107,12 @@ GETINDT ;get invoice dates
  ;input requires FBAABDT (authorization from date)
  K FBAAOUT W !,"Enter Date Correct Invoice Received or Last Date of Service" S %DT("A")="(whichever is later): " S:$G(FBAAID) %DT("B")=$$DATX^FBAAUTL(FBAAID) I $G(FBCNH) S %DT(0)=$G(FBENDDT)
  S %DT="AEXP" D ^%DT K %DT I X="^"!(X="") S FBAAOUT=1 Q
- S FBAAID=Y I '$G(FBCNP) I FBAAID<FBAABDT W !!,$C(7),"Invoice date is earlier than Patient's Authorization date!!" K FBAAID G GETINDT
+ S FBAAID=Y I $G(CALLERID)="FBCHEP",FBAAID<FBAAEDT D  K FBAAID G GETINDT
+ .N SHOWDOS S SHOWDOS=$E(FBAAEDT,4,5)_"/"_$E(FBAAEDT,6,7)_"/"_$E(FBAAEDT,2,3) ;Convert FBAAEDT (Treatment TO Date) into display format for error message
+ .W *7,!!?5,"*** Invoice Received Date cannot be before the ",!?8," Treatment TO Date ("_SHOWDOS_") !!!"
+ I '$G(FBCNP) I FBAAID<FBAABDT D  K FBAAID G GETINDT
+ .N SHOWDOS S SHOWDOS=$E(FBAABDT,4,5)_"/"_$E(FBAABDT,6,7)_"/"_$E(FBAABDT,2,3) ;Convert FBAABDT (Authorization From Date) into display format for error message
+ .W !!,$C(7),?5,"*** Invoice Received Date cannot be earlier than",!?8," Patient's Authorization Date ("_SHOWDOS_") !!!"
 GETIND1 W ! S %DT("A")="Enter Vendor Invoice Date: ",%DT="AEXP" S:$G(FBAAVID) %DT("B")=$$DATX^FBAAUTL(FBAAVID) D ^%DT K %DT G GETINDT:X="" I X="^" S FBAAOUT=1 Q
  S FBAAVID=Y I FBAAVID>FBAAID W !!,$C(7),"Vendor's invoice date is later than the date you received it!!" K FBAAVID G GETIND1
  Q

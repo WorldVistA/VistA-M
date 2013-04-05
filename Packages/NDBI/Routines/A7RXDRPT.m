@@ -16,6 +16,6 @@ EN(A7RARY) ;
  X ^%ZOSF("TEST")
  Q:'$T
  ;
- ;D EN^A7RDUP(A7RARY,2)
+ D EN^A7RDUP(A7RARY,2)
  ;
  Q

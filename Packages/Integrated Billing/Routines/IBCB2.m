@@ -218,5 +218,5 @@ IIQMED(IBIFN) ; DSS QuadraMed Interface: QuadraMed Claim Scrubber
  ; QuadraMed Scrubber EN^VEJDIBSC returns IBQMED = 1 if no error found, returns 0 if error found
  ;
  N IBQMED S IBQMED=1
- ;I +$G(IBIFN),$$QMED^IBCU1("EN^VEJDIBSC",IBIFN) D EN^VEJDIBSC(IBIFN)
+ I +$G(IBIFN),$$QMED^IBCU1("EN^VEJDIBSC",IBIFN) D EN^VEJDIBSC(IBIFN)
  Q IBQMED

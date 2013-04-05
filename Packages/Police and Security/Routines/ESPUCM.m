@@ -31,7 +31,7 @@ MSG S ^TMP($J,"UCM",ESPL)=ESPX,ESPL=ESPL+1
 VADB ; transmit to national database
  N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
  W !
- S DIR("A")="Do you want to transmit this report to the National Database (XXX@Q-VAP.DOMAIN.EXT)",DIR("B")="NO",DIR(0)="Y"
+ S DIR("A")="Do you want to transmit this report to the National Database (XXX@Q-VAP.domain.ext)",DIR("B")="NO",DIR(0)="Y"
  D ^DIR
  S ESPFLG=Y
  W !

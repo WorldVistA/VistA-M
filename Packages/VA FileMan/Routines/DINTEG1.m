@@ -1,5 +1,5 @@
 DINTEG1 ;SFISC/dizSUMB FILEMAN-FileMan checksum checker ;MAR 30, 1999  13:20
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S DIZ4="I 1" D DSP,INI
 CONT F DIZ1=1:1 S DIZ2=$T(ROU+DIZ1) Q:DIZ2=""  S X=$P(DIZ2," ",1),DIZ3=$P(DIZ2,";",3) X DIZ4 I $T W !,X X DIZTEST W:'$T ?28,DIZ6 S:'$T DIZ3=0 X:DIZ3 DIZSUM W ?10,$S('DIZ3:"",DIZ3'=Y:$C(7)_"Calculated "_Y_", off by "_(Y-DIZ3),1:"ok")

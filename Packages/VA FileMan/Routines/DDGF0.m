@@ -1,5 +1,5 @@
 DDGF0 ;SFISC/MKO-SETUP, CLEANUP ;09:58 AM  9 Sep 1994
- ;;22.0;VA FileMan;**160**;Mar 30, 1999;Build 21
+ ;;22.0;VA FileMan;**160**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  D INIT^DDGLIB0() Q:$G(DIERR)

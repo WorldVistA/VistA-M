@@ -1,5 +1,5 @@
 DIFG7 ;SFISC/DG(OHPRD)-CALLS TO DIC,DIE,DIK ;1/7/92  2:47 PM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 CALLDIC ;
  I $D(^UTILITY("DIFG",$J,DIFGORDR,DIFGFILE,"DINUM")) S DINUM=^("DINUM")

@@ -1,5 +1,5 @@
 DICE2 ;SFISC/GFT-TRIGGER LOGIC ;09:41 AM  10 Jul 1999
- ;;22.0;VA FileMan;**6**;Mar 30, 1999
+ ;;22.0;VA FileMan;**6**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  Q:$D(DTOUT)  W !!!,"---",$P("SET^KILL",U,DIK)," LOGIC---" S DA="^DD("_DI_","_DL_",1,"_DQ_","_(DIK+3)
 C K DICOMPX,DATE S:DOLD=DNEW DNEW="TRIGGERED "_DNEW S DNEW=$E(DNEW,1,30),DICOMPX(DNEW)="DIU",DICOMPX(DNEW,U)=DIN_U_DENEW,DCOND="SET" S:$P(^DD(DIN,DENEW,0),U,2)["D" DICOMPX(DNEW,"DATE")=1

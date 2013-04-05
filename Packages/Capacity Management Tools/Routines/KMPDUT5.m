@@ -1,5 +1,5 @@
 KMPDUT5 ;OAK/RAK - CM Tools Utility Text Display ;2/17/04  10:49
- ;;2.0;CAPACITY MANAGEMENT TOOLS;;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 DISPLAY(KMPDARRY,KMPDMRGN,KMPDNW,KMPDCLR,KMPDBX) ;display text
  ;-------------------------------------------------------------------

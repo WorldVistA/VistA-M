@@ -1,5 +1,5 @@
 PRS8UP ;HISC/MRL,JAH/WIRMFO-DECOMPOSITION, UPDATE TOTALS ;7/10/08
- ;;4.0;PAID;**6,21,30,45,117**;Sep 21, 1995;Build 32
+ ;;4.0;PAID;**6,21,30,45,117,132**;Sep 21, 1995;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;This routine is used to collect information related to
@@ -91,6 +91,31 @@ PRS8UP ;HISC/MRL,JAH/WIRMFO-DECOMPOSITION, UPDATE TOTALS ;7/10/08
  .  S $P(WK(I),U,55)=""
  ;
  ;      end credit hours move to ct buckets }
+ ;
+ ; PRS*4*132
+ ; Telework hours are stored as actual hours for each day of the
+ ; pay period.  Loop through timecard and add up any telework hours
+ ; recorded.  Disregard two day tours as telework hours will be
+ ; reported on the week in which the telework started.
+ ;
+ ; Store telework in wk array
+ ;
+ F I=1,2 D
+ .  N NODE,STW,ATW,MTW
+ .  S (STW(I),ATW(I),MTW(I))=0
+ .  N PRSD
+ .  F PRSD=I*7-6:1:I*7 D
+ ..    S NODE=$G(^PRST(458,+PY,"E",+DFN,"D",PRSD,8))
+ ..    S STW(I)=STW(I)+$P(NODE,U,2)
+ ..    S ATW(I)=ATW(I)+$P(NODE,U,4)
+ ..    S MTW(I)=MTW(I)+$P(NODE,U,3)
+ .  I TYP'["D" D
+ ..    S STW(I)=STW(I)*100/.25\100
+ ..    S ATW(I)=ATW(I)*100/.25\100
+ ..    S MTW(I)=MTW(I)*100/.25\100
+ .  S $P(WK(I),U,56)=STW(I)
+ .  S $P(WK(I),U,57)=ATW(I)
+ .  S $P(WK(I),U,58)=MTW(I)
  ;
  ; -- Lump Sum Data (LY, LH, LD, DT)
  ;

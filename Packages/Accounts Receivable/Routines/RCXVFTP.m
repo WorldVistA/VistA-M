@@ -1,5 +1,6 @@
 RCXVFTP ;DAOU/ALA-FTP AR Data Extract Batch Files ;08-SEP-03
- ;;4.5;Accounts Receivable;**201,256**;Mar 20, 1995;Build 6
+ ;;4.5;Accounts Receivable;**201,256,292**;Mar 20, 1995;Build 3
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This code will ftp a batch file
@@ -18,6 +19,8 @@ SYS ;  Get system type
  . E  S RCXVSYS="UNIX",RCXVSYT="MSM"
  I RCXVSYS["Cache" D
  . I RCXVSYS["VMS" S RCXVSYS="VMS",RCXVSYT="CACHE" Q
+ . ; For Full Linux OS
+ . I RCXVSYS["UNIX" S RCXVSYS="UNIX",RCXVSYT="CACHE" Q
  . S RCXVSYS="CACHE",RCXVSYT="CACHE"
  ;
  I RCXVSYS="VMS" S RCXVNME=FILE_";1"

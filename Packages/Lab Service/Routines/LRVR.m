@@ -1,18 +1,19 @@
-LRVR ;DALOI/CJS/DALOI/FHS - LAB ROUTINE DATA VERIFICATION ;3/28/90  17:06
- ;;5.2;LAB SERVICE;**42,153,263,286**;Sep 27, 1994
+LRVR ;DALOI/STAFF - LAB ROUTINE DATA VERIFICATION ;06/05/10  00:33
+ ;;5.2;LAB SERVICE;**42,153,263,286,350**;Sep 27, 1994;Build 230
+ ;
  N LRDUZ,LRVBY
  D INIT G QUIT:$G(LREND)
- S LRVBY=$$SELBY^LRWU4("Verify by")
+ S LRVBY=$$GET^XPAR("USR^PKG","LR VER EA VERIFY BY UID","`"_LRAA,"Q")
+ I LRVBY<2 S LRVBY=$$SELBY^LRWU4("Verify by",LRVBY+1)
+ I "MISPEMCY"[$P($G(^LRO(68,LRAA,0)),U,2) D EN^LRVR0,QUIT Q
  I LRVBY=0 D QUIT Q
  I LRVBY=2 D ^LRVRA,QUIT Q
 DAT D ADATE^LRWU G:LRAD<1 QUIT
  I $P(^LRO(68,LRAA,0),U,3)="D" F I=0:0 S I=$O(^LRO(68,LRAA,1,LRAD,1,I)) Q:I<1  I $D(^LRO(68,LRAA,1,LRAD,1,I,3)),'$P(^(3),U,4) S LRAN=I Q
  S:$D(^LRO(68,LRAA,1,LRAD,2))&'LRAN LRAN=$P(^(2),U,4)
- D
- . N X
- . S X=$S(+$P($G(^LAB(69.9,1,0)),U,7):+$P(^(0),U,7),1:1)
- . S LRTM60=9999999-$$FMADD^XLFDT(DT,-X)
-L10 S LRCFL="",EAMODE=1
+ ;
+L10 ;
+ S LRCFL="",EAMODE=1
  K LRTEST,C5,LRSET,LRLDT,DIC,LRNM,LRNG,LRDL,LRDEL,T,LRFP,LRAB,LRVER,Y,Z
  D WLN G QUIT:LREND
  D ^LRVR1,NEXT
@@ -20,6 +21,7 @@ L10 S LRCFL="",EAMODE=1
  ;
  ;
 YN R X:DTIME Q:X=""!(X["N")!(X["Y")  W !,"Answer 'Y' or 'N': " G YN
+ ;
  ;
 WLN ;
  S LRNOP=0
@@ -31,6 +33,7 @@ WLN ;
  I $D(DIRUT) G STOP
  S LRAN=Y
  I '$D(^LRO(68,LRAA,1,LRAD,1,LRAN,0)) W !,"NOT ON FILE" S LRNOP=1
+WLN2 ;
  I '$G(LRNOP) D
  . S LRDFN=+^LRO(68,LRAA,1,LRAD,1,LRAN,0),LRCEN=$S($D(^(.1)):^(.1),1:0),LRODT=$S($P(^(0),U,4):$P(^(0),U,4),1:$P(^(0),U,3)),LRSN=$P(^(0),U,5)
  . S LRORU3=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,.3))
@@ -60,6 +63,7 @@ WLN ;
  I '$G(LRNOP),$D(^LRO(69,LRODT,1,LRSN)),'$D(^(LRSN,1)) W !,"This Order # has not been collected",$C(7) S LRNOP=1
  I '$G(LRNOP),$D(^LRO(69,LRODT,1,LRSN,1)),$P(^LRO(69,LRODT,1,LRSN,1),U,4)'="C" W !,"You cannot verify an accession which has not been collected.",$C(7) S LRNOP=1
  I $G(LRNOP) D NEXT G WLN
+ ;
  Q
  ;
  ;
@@ -103,7 +107,8 @@ STOP S LREND=1
  ;
 INIT ;from LRVRW
  N DIC,LRX
- D ^LRPARAM Q:$G(LREND)  S LREND=0,LRAN=0 K LRORD,LRDUZ
+ D ^LRPARAM Q:$G(LREND)
+ S LREND=0,LRAN=0 K LRORD,LRDUZ
  S DIC="^LRO(68.2,",DIC(0)="AEMZ",DIC("S")="S LRX=$P(^(0),U,12) Q:'$L(LRX)  I $D(^XUSEC($P($G(^DIC(19.1,LRX,0)),U),DUZ))"
  D ^DIC K DIC("S") G STOP:Y<1 S LRLL=+Y,LRTYPE=$P(Y(0),U,3)
  S LRPROF=$O(^LRO(68.2,LRLL,10,0))
@@ -118,9 +123,13 @@ INIT ;from LRVRW
  I LRX,LRX'=DUZ(2) S LRDUZ(2)=LRX
  ;
  D:$P(LRPARAM,U,14)&($P($G(^LRO(68,LRAA,0)),U,16)) AUTO^LRCAPV Q:LREND
- I $P(^LRO(68,LRAA,0),U,2)="MI" D ^LRMIEDZ S LREND=1 Q
+ ;
+ I "MISPCYEM"[$P(^LRO(68,LRAA,0),U,2) Q
+ ;
  G STOP:$P(^LRO(68,LRAA,0),U,2)'="CH"
  S LREND=0 D EXPAND G STOP:LREND!($O(LRVTS(0))<0)
+ ;
+CONT ;
  F I=0:0 S I=$O(LRORD(I)) Q:I<1  S J=LRORD(I),X=$P(^LAB(60,J,0),U,5),LRORD(I)=$P(X,";",2)
  S Y=^LRO(68,LRAA,0),LRTSE=-1
  ;
@@ -130,3 +139,16 @@ REV ;
  K LRPER
  D REV^LRVER
  Q
+ ;
+ ;
+LRTM60(LRX) ; Calculate days back for delta check based on specimen collection date/time
+ ;
+ ; Call with LRX = specimen collection date/time (FileMan D/T format)
+ ;
+ ; Return LRY = Inverse date/time value of delta days back
+ ;
+ N LRDB,LRY
+ S LRDB=$P($G(^LAB(69.9,1,0)),U,7)
+ I LRDB="" S LRDB=1
+ S LRY=9999999-$$FMADD^XLFDT(LRX,-LRDB)
+ Q LRY

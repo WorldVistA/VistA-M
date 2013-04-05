@@ -1,5 +1,5 @@
-PSBVDLUD ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;7/13/11 11:45am
- ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58**;Mar 2004;Build 37
+PSBVDLUD ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;2/1/12 10:27am
+ ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58,68**;Mar 2004;Build 26
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -9,6 +9,7 @@ PSBVDLUD ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;7/13/11 11:4
  ; INTRDIC^PSGSICH1/5654
  ;
  ;*58 - add 29th piece to Results for Override/Intervention flag 1/0
+ ;*68 - add 30th piece to Results for Last Injection Site
  ;
 EN(DFN,PSBDT) ;
  ;
@@ -123,6 +124,9 @@ EN(DFN,PSBDT) ;
  .N PSBARR D GETPROVL^PSGSICH1(DFN,PSBONX,.PSBARR)
  .I $O(PSBARR(""))="" D INTRDIC^PSGSICH1(DFN,PSBONX,.PSBARR,2)
  .S $P(PSBREC,U,29)=$S($O(PSBARR(""))]"":1,1:0)
+ .;*68 add last injection site
+ .K LI D RPC^PSBINJEC(.LI,DFN,PSBOIT,9999999,1)
+ .S $P(PSBREC,U,30)=$P(LI(1),U,6)   ;if no inj's, 6th will be null
  .;
  .; Gather Dispense Drugs
  .D NOW^%DTC

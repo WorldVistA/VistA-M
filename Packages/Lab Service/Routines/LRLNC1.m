@@ -1,19 +1,24 @@
 LRLNC1 ;DALOI/CA-LOOKUP LOINC CODE ;1-OCT-1998
- ;;5.2;LAB SERVICE;**215,278**;Sep 27,1994
+ ;;5.2;LAB SERVICE;**215,278,418**;Sep 27,1994;Build 1
  ;Reference to ^DD supported by IA 10154
  ;=================================================================
  ; Ask VistA test to Lookup LOINC code in Lab Test file #60
+ N LRLOINC
  W @IOF
 START ;entry point from option LR LOINC LOOKUP
  D TEST
  I $G(LREND) G EXIT
  D SPEC
  I $G(LREND) D EXIT G START
+ K DIC
 ENT S DIC="^LAB(95.3,",DIC(0)="AEQMZ"
- S DIC("B")=LRTEST_".."_$G(LRSPECL)
- S DIC("A")="LOINC Name..Specimen: "
+ S LRLOINC=$G(^LAB(60,LRIEN,1,LRSPEC,95.3))
+ S:+LRLOINC DIC("B")=LRLOINC
+ I '+LRLOINC D
+ . S DIC("B")=LRTEST_".."_$G(LRSPECL)
+ . S DIC("A")="LOINC Name..Specimen: "
  W !,$$CJ^XLFSTR(" Your initial lookup entry is ",IOM)
- W !,$$CJ^XLFSTR(DIC("B"),IOM)
+ W !,$$CJ^XLFSTR(LRTEST_".."_$G(LRSPECL),IOM)
  W !,$$CJ^XLFSTR("e.g. TEST NAME..SPECIMEN",IOM),!
  D ^DIC
  I $D(DIRUT) G START
@@ -39,7 +44,7 @@ SPEC ; Ask Specimen- Lookup in Specimen multiple in Lab Test file #60
  S DIC("P")=$P(^DD(60.01,0),"^",2)
  D ^DIC
  I $D(DIRUT)!(Y=-1) K DIC,DA,DIRUT S LREND=1 Q
- S LRSPEC=$P(Y,U,2),LRSPECN=Y(0,0)
+ S LRSPEC=+Y,LRSPECN=Y(0,0)
  ;Check to see if linked to file 64.061.  If not, then let enter link.
  I '$P($G(^LAB(61,LRSPEC,0)),U,9) D  Q
  .W !!,"There is not a LEDI HL7 code for "_LRSPECN,".",!

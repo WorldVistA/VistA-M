@@ -39,8 +39,7 @@ IB ; Find Pharmacy Co-pay IB Actions which may be archived.  Check
  ..  Q:$$RXFILE(IBND)  ; billed prescription has not been archived
  ..  S IBAR=$P(IBND,"^",11) Q:IBAR=""
  ..  S X="RCFN03" X ^%ZOSF("TEST")
- ..  S IBAR=0
- ..  ;S IBAR=$S($T:$$BIEN^RCFN03(IBAR),1:$O(^PRCA(430,"B",IBAR,0)))
+ ..  S IBAR=$S($T:$$BIEN^RCFN03(IBAR),1:$O(^PRCA(430,"B",IBAR,0)))
  ..  I IBAR,$$CLO(IBAR,IBEDT) F DA=0:0 S DA=$O(^IB("AD",IBN,DA)) Q:'DA  S IBCNT=IBCNT+1,^DIBT(IBTMPL,1,DA)=""
  ;
  ; - kill variables and quit.

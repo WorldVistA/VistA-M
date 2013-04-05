@@ -1,11 +1,11 @@
 FBAACO2 ;AISC/GRR-PAYMENT PROCESS FOR DUPLICATE ;7/13/2003
- ;;3.5;FEE BASIS;**4,55,61,77,116,122,133,108**;JAN 30, 1995;Build 115
+ ;;3.5;FEE BASIS;**4,55,61,77,116,122,133,108,135**;JAN 30, 1995;Build 3
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
 RD S DIR(0)="Y",DIR("A")="Want this payment stored as a Medical Denial",DIR("B")="YES",DIR("?")="Enter 'Yes' to store payment entry as a denial and send a Suspension letter.  Enter 'No' to have nothing happen." D ^DIR K DIR Q:$D(DIRUT)!('Y)
  S FBDEN=1 Q
 FILE ;files sp multiple entry
  K DR S TP="" I $G(FBDEN) S FBAMTPD=0
- S DR="49///^S X=$G(FBCSID);50///^S X=$G(FBFPPSC);I $G(FBDEN) S Y=1;48;47//1;S FBUNITS=X;S:$G(FBFPPSC)="""" Y=""@11"";S FBX=$$FPPSL^FBUTL5();S:FBX=-1 Y=0;51///^S X=FBX;@11"
+ S DR="49///^S X=$G(FBCSID);50///^S X=$G(FBFPPSC);81///^S X=$G(FBUCI135);I $G(FBDEN) S Y=1;48;47//1;S FBUNITS=X;S:$G(FBFPPSC)="""" Y=""@11"";S FBX=$$FPPSL^FBUTL5();S:FBX=-1 Y=0;51///^S X=FBX;@11"
  ; fb*3.5*116 do not enable different interest indicator values at line item level; interest indicator set at invoice level
  ;S DR(1,162.03,1)="D PPT^FBAACO1();34///^S X=$G(FBAAMM1);D POS^FBAACO1;S:'$G(FBHCFA(30)) Y=0;1;S J=X;I $G(FBDEN) S Y=2;D FEE^FBAACO0;44////^S X=FBFSAMT;45///^S X=FBFSUSD;2///^S X=FBAMTPD;S K=X"
  S DR(1,162.03,1)="34///^S X=$G(FBAAMM);D POS^FBAACO1;S:'$G(FBHCFA(30)) Y=0;1;S J=X;I $G(FBDEN) S Y=2;D FEE^FBAACO0;44////^S X=FBFSAMT;45///^S X=FBFSUSD;2///^S X=FBAMTPD;S K=X"

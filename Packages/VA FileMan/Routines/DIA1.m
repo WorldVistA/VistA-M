@@ -1,5 +1,5 @@
 DIA1 ;SFISC/GFT-PROCESS TEMPLATES, RANGES FOR INPUT ;20MAR2006
- ;;22.0;VA FileMan;**159**;Mar 30, 1999;Build 8
+ ;;22.0;VA FileMan;**159**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
 S D NOW^%DTC S DIADT=+$J(%,0,4) K %,DW G Q:DRS<5 R !,"STORE THESE FIELDS IN TEMPLATE: ",X:DTIME S:'$T DTOUT=1 G Q:X="" S DIC(0)="LZSEQ",DLAYGO=0 D T K DLAYGO,DIC I Y<0 G S:X'[U K DR G Q
  S X=$P(^(0),U,6) I DUZ(0)'["@",X]"" F %=1:1 I DUZ(0)[$E(X,%) Q:%'>$L(X)  W !?7,$C(7),"YOU HAVE NO 'WRITE ACCESS' TO THIS TEMPLATE",! G S

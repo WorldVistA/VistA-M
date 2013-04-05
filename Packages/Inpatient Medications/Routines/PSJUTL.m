@@ -1,5 +1,5 @@
 PSJUTL ;BIR/MLM-MISC. INPATIENT UTILITIES ; 10/7/08 1:22pm
- ;;5.0; INPATIENT MEDICATIONS ;**9,47,58,80,110,136,157,177,134,179**;16 DEC 97;Build 45
+ ;;5.0;INPATIENT MEDICATIONS;**9,47,58,80,110,136,157,177,134,179,267**;16 DEC 97;Build 158
  ;
  ; Reference to ^DIC(42 is supported by DBIA 10039.
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
@@ -53,20 +53,41 @@ ENAQ ; application query
  S X=DZ N D,DA,DIC,DIE,DO,DR,DZ,XQH S DIC="^PS(50.35,",DIC(0)="EIMQ" D DO^DIC1,^DIC
  Q
  ;
-ENPC(PSJTYP,PSJSYSP,LEN,TEXT) ; Copy Provider Comments -> Special Instructions.
+ENPCL(PSJTYP,PSGP,PSJORD) ; Copy Provider Comments -> Special Instructions.
+ Q:'$G(PSJORD) ""
  Q:'$D(^PS(53.1,+$G(PSJORD),12,1,0)) ""
- N DIR,PSGSI,PSGOEE,X,Y
- S Y="" F X=0:0 S X=$O(^PS(53.1,+$G(PSJORD),12,X)) Q:'X  S Y=Y_^(X,0)_" " Q:$L(Y)>LEN
- S:$G(PSJTYP)'="V" Y=$$ENSET^PSGSICHK(Y) S:$G(PSJTYP)="V" Y=$E(Y,1,$L(Y)-1)
- I $L(Y)'<LEN S PSGOEE=0 D REDISP Q PSGSI
+ ; Count number of lines minus blank trailing lines
+ N LN,LNCNT S LNCNT=0,LN=9999 F  S LN=$O(^PS(53.1,+$G(PSJORD),12,LN),-1) Q:'LN  D
+ .I 'LNCNT,($G(^PS(53.1,+$G(PSJORD),12,LN,0))="") Q
+ .S LNCNT=LNCNT+1
+ I 'LNCNT Q ""
+ K ^PS(53.45,+$G(PSJSYSP),5),^PS(53.45,+$G(PSJSYSP),6)
+ N DIR,X,Y,PSJSAVY S (X,Y)="" F  S X=$O(^PS(53.1,+$G(PSJORD),12,X)) Q:'X  S Y=$G(^PS(53.1,+$G(PSJORD),12,X)) S:($G(PSJTYP)'="V") Y=$$ENSET^PSGSICHK(Y) S ^PS(53.45,+$G(PSJSYSP),5,X,0)=Y
+ W !,"PROVIDER COMMENTS: "
  ;Display Provider Comments Prior to Asking the Copy Provider Comments Question;BHW;PSJ*5*136
  N PSJTMP S PSJTMP=0
- W !,"PROVIDER COMMENTS:"
  F  S PSJTMP=$O(^PS(53.1,+$G(PSJORD),12,PSJTMP)) Q:'PSJTMP  W !,^PS(53.1,+$G(PSJORD),12,PSJTMP,0)
- S PSGSI=Y W ! S DIR(0)="S^Y:Yes;N:No;!:Copy and flag for display in a BCMA Message Box",DIR("A")="Copy the Provider Comments into "_$$ENFIELD(PSJTYP)_" (Yes/No/!)",DIR("??")="^D ENPCHLP1^PSJUTL(PSJTYP)" D ^DIR
- Q:Y="Y" PSGSI
- Q:Y="!" PSGSI_"^1"
- Q ""
+ S PSGSI=Y W ! S DIR(0)="S^Y:Yes (copy);N:No (don't copy);!:Copy and flag for display in a BCMA Message Box;E:Copy and Edit;"
+ S DIR("A")="Copy the Provider Comments into "_$$ENFIELD(PSJTYP)_" (Yes/No/!/E)",DIR("??")="^D ENPCHLP1^PSJUTL(PSJTYP)" D ^DIR S PSJSAVY=Y
+ S PSGSI=$S(PSJSAVY="Y":$P(PSGSI,"^"),PSJSAVY="!":$P(PSGSI,"^")_"^1",PSJSAVY="E":$P(PSGSI,"^"),1:"")
+ I PSJSAVY="Y"!(PSJSAVY="E")!(PSJSAVY="!") D
+ .I ($G(PSJTYP)="V") N OPILN S OPILN=$O(^PS(53.1,+$G(PSJORD),12," "),-1) N TXT,OPIMSG,PSJTMPTX,PSJOVRMX S OPIMSG="Instructions too long. See Order View or BCMA for full text." D
+ ..S PSJTMPTX="",PSJOVRMX=0 S TMPLIN=0 F  S TMPLIN=$O(^PS(53.1,+PSJORD,12,TMPLIN)) Q:'TMPLIN!(PSJOVRMX)  D
+ ...S:($L(PSJTMPTX)+$L($G(^PS(53.1,+PSJORD,12,TMPLIN,0))))>60 PSJOVRMX=1 Q:$G(PSJOVRMX)  S PSJTMPTX=$G(PSJTMPTX)_$S($G(PSJTMPTX)]"":" ",1:"")_$G(^PS(53.1,+PSJORD,12,TMPLIN,0))
+ ..S PSGSI=$S(PSJTMPTX]"":PSJTMPTX,1:OPIMSG) I $G(PSJOVRMX),(PSJSAVY'="E") D OPIWARN^PSJBCMA5(1)
+ .S PSGSI=$S(PSJSAVY="!":$P($$PUT5345(PSGORD),"^")_"^1",1:$P($$PUT5345(PSGORD),"^"))
+ I PSJSAVY="E"  K ^PS(53.45,+$G(PSJSYSP),5),^PS(53.45,+$G(PSJSYSP),6) D
+ .N PRVCLN,X S PRVCLN=$O(^PS(53.1,+$G(PSJORD),12,""),-1)
+ .S:($G(PSJTYP)["V") ^PS(53.45,+$G(PSJSYSP),6,0)="^53.1136^"_+$G(PRVCLN)_"^"_+$G(PRVCLN)_"^"_1
+ .S:($G(PSJTYP)'["V") ^PS(53.45,+$G(PSJSYSP),5,0)="^53.1135^"_+$G(PRVCLN)_"^"_+$G(PRVCLN)_"^"_1
+ .S X=0 F  S X=$O(^PS(53.1,+$G(PSJORD),12,X)) Q:'X  S Y=$G(^PS(53.1,+$G(PSJORD),12,X,0)) S:($G(PSJTYP)'="V") Y=$$ENSET^PSGSICHK(Y) S ^PS(53.45,+$G(PSJSYSP),$S($G(PSJTYP)="V":6,1:5),X,0)=Y
+ .D:PSJTYP="V" EDITOPI^PSJBCMA5(PSGP,PSJORD) D:PSJTYP'="V" EDITSI^PSJBCMA5(PSGP,PSJORD)
+ I PSJSAVY="E" S PSGSI=$$ENBCMA(PSJTYP)
+ Q PSGSI
+ ;
+ENPC(PSJTYP,PSJSYSP,LEN,TEXT) ; Copy Provider Comments -> Special Instructions.
+ S PSGSI=$$ENPCL(PSJTYP,$G(PSGP),$G(PSGORD))
+ Q PSGSI
  ;
 REDISP ; Redisplay Provider Comments and allow entry of Spec. Instructions.
  D CLEAR^VALM1 F X=0:0 S X=$O(^PS(53.1,+$G(PSJORD),12,X)) Q:'X  W ^(X,0),!
@@ -76,18 +97,22 @@ REDISP ; Redisplay Provider Comments and allow entry of Spec. Instructions.
  Q
  ;
 ENPCHLP1(Y) ; Display help messages for Provider Comment copy.
- W !,"Enter ""YES"" to copy Provider Comments into the ",$$ENFIELD(Y)," field",!,"or ""NO"" to bypass",!,"or ""!"" to copy the Provider Comments into the ",$$ENFIELD(PSJTYP)," field",!,"and flag them for display in a BCMA Message Box",!!
+ W !,"Enter ""YES"" to copy Provider Comments into the ",$$ENFIELD(Y)," field",!,"or ""NO"" to bypass",!,"or ""!"" to copy the Provider Comments into the ",$$ENFIELD(PSJTYP)," field",!,"and flag them for display in a BCMA Message Box"
+ W !,"or type ""E"" to copy the Provider Comments into the ",$$ENFIELD(PSJTYP)," field and open a word processing window for editing."
  Q
 ENPCHLP2(Y,X) ;
  W !,"The Provider Comments entered for this order are longer than the space available",!,"in the ",$$ENFIELD(Y)," field.",!!,"Enter ""YES"" to copy the first ",X-3," characters into the ",$$ENFIELD(Y),!,"field, or ""NO"" to continue.",!!
  Q
 ENBCMA(PSJTYP)  ;
  N DIR,X,Y
+ I $G(PSJTYP)="V" Q:'$L($G(^PS(53.45,+$G(PSJSYSP),6,0))) ""
+ I $G(PSJTYP)="V" Q:($G(^PS(53.45,+$G(PSJSYSP),6,0))<0) ""
+ I $G(PSJTYP)="U" Q:'$L($G(^PS(53.45,+$G(PSJSYSP),5,0))) ""
  W !!,"Would you like to flag the ",$$ENFIELD(PSJTYP)," field for display in a BCMA",!,"Message box?"
  W ! S DIR(0)="S^Y:Yes;N:No",DIR("A")="Flag the "_$$ENFIELD(PSJTYP)_" (Yes/No)" D ^DIR
  K PSJCOMSI I $G(PSJCOM),$G(PSJORD)'["P" N TEXT S TEXT=$S(PSJTYP="U":$G(PSGSI),1:$G(P("OPI"))) S PSJCOMSI=$$COMSI(PSJCOM,TEXT)
  Q:Y="Y" $S($G(PSJTYP)="U":$P(PSGSI,"^")_"^1",1:$P(P("OPI"),"^")_"^1")
- Q $S(PSJTYP="U":$P(PSGSI,"^"),1:$P($G(P("OPI")),"^"))
+ Q $S(PSJTYP="U":PSGSI,1:P("OPI"))
 ENFIELD(Y) ;
  Q $S(Y="V":"Other Print Info",1:"Special Instructions")
  ;
@@ -214,3 +239,44 @@ CHKSTOP ;BHW - PSJ*5*177 Warn user if the Stop Date is < now.
  . W !,$C(7),"The Stop Date/Time is in the Past!!!  This order will",!,"automatically EXPIRE upon Verification!!",!
  . Q
  Q
+ ;
+PUT5345(PSGORD) ; Get text from provider comments, place into temp storage
+ Q:'$D(^PS(53.1,+PSGORD,12)) ""
+ N PSJTMPTX,PSJOVRMX,TMPLIN,SIMSG
+ N LN,TXT,LNCNT S TXT="",LN=0 F LNCNT=0:1 S LN=$O(^PS(53.1,+PSGORD,12,LN)) Q:'LN  D
+ .S TXT=$G(^PS(53.1,+PSGORD,12,LN,0)) S ^PS(53.45,+PSJSYSP,$S($G(PSJTYP)="U":5,$G(PSJTYP)="V":6,1:5),LN,0)=TXT
+ I $G(LNCNT) N PSJFIREF S PSJFIREF="^PS(53.45,"_+PSJSYSP_","_$S($G(PSJTYP)="U":5,$G(PSJTYP)="V":6,1:5)_"," D ENSI(PSJFIREF)
+ I $G(LNCNT) S ^PS(53.45,+PSJSYSP,$S(($G(PSJTYP)="V"):6,1:5),0)="^^"_LNCNT_"^"_LNCNT
+ N DIE,DA
+ S SIMSG="Instructions too long. See Order View or BCMA for full text."
+ S PSJTMPTX="",PSJOVRMX=0 S TMPLIN=0 F  S TMPLIN=$O(^PS(53.45,+PSJSYSP,$S($G(PSJTYP)="V":6,1:5),TMPLIN)) Q:'TMPLIN!(PSJOVRMX)  D
+ .S:($L(PSJTMPTX)+$L($G(^PS(53.45,+PSJSYSP,$S($G(PSJTYP)="V":6,1:5),TMPLIN,0))))>$S($G(PSJTYP)["V":60,1:180) PSJOVRMX=1
+ .Q:$G(PSJOVRMX)  S PSJTMPTX=$G(PSJTMPTX)_$S($G(PSJTMPTX)]"":" ",1:"")_$G(^PS(53.45,+PSJSYSP,$S($G(PSJTYP)="V":6,1:5),TMPLIN,0))
+ S TXT=$S(PSJOVRMX:SIMSG,1:PSJTMPTX)
+ Q TXT
+ ;
+ENSI(PSJSIFIL) ; Expand comments using MEDICATIONS INSTRUCTIONS file (#51)
+ N X,PSJTMPFI,PSJTMPLI,DONE,PSJNWTXT,TOLIN,II,PSJSITXT,FULL,OLD,I S PSJTMPFI=PSJSIFIL_"1)" Q:'$D(@PSJTMPFI)
+ K ^TMP("PSGSIL",$J)
+ F I=1:1 Q:$G(DONE)  S PSJTMPFI=PSJSIFIL_I_",0)" S DONE=$D(@PSJTMPFI) S DONE=$S(DONE:0,1:1) D
+ .S PSJTMPLI=$G(@PSJTMPFI) I ($TR(PSJTMPLI," ")'="") D TXT^PSGMUTL($$ENSISET(PSJTMPLI),74)
+ .I ($TR(PSJTMPLI," ")="") S MARX(1)=PSJTMPLI
+ .S II="" F  S II=$O(MARX(II)) Q:'II  S TOLIN=+$O(^TMP("PSGSIL",$J,+$G(PSJSYSP),""),-1) D
+ ..S ^TMP("PSGSIL",$J,+$G(PSJSYSP),TOLIN+1)=MARX(II) Q
+ S I="" I $O(^TMP("PSGSIL",$J,+$G(PSJSYSP),0)) K ^PS(53.45,+$G(PSJSYSP),5) S TOLIN="" F I=0:1 S TOLIN=$O(^TMP("PSGSIL",$J,+$G(PSJSYSP),TOLIN)) Q:TOLIN=""  D
+ .S ^PS(53.45,+$G(PSJSYSP),5,TOLIN,0)=^TMP("PSGSIL",$J,+$G(PSJSYSP),TOLIN)
+ S I=$O(^PS(53.45,+$G(PSJSYSP),5,""),-1),^PS(53.45,+$G(PSJSYSP),5,0)="^55.6135^"_I_"^"_I_"^"_$P($G(PSGDT),".")
+ K ^TMP("PSGSIL",$J)
+ Q
+ ;
+ENSISET(X) ; expands the SPECIAL INSTRUCTIONS field contained in X into Y
+ N X1,X2,Y S Y=""
+ ;BHW;PSJ*5*185;Modified Logic below to NOT strip spaces and allow existing logic to flow.
+ ;             ;Removed code I X2]"" Before Set of Y and created argumentless DO structure.
+ F X1=1:1:$L(X," ") S X2=$P(X," ",X1) D
+ . I X2']"" S Y=Y_" " Q  ;if multiple spaces in text and were $P'ing through text, X2 will="" so just add space and continue
+ . S Y=Y_$S($L(X2)>30:X2,'$D(^PS(51,+$O(^PS(51,"B",X2,0)),0)):X2,$P(^(0),"^",2)]""&$P(^(0),"^",4):$P(^(0),"^",2),1:X2)_" "
+ . Q
+ ;BHW;Modified stripping of spaces at end of string
+ F X1=$L(Y):-1:0 Q:$E(Y,X1,X1)'=" "  S Y=$E(Y,1,X1-1)
+ Q Y

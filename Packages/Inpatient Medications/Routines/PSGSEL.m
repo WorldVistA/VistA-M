@@ -1,9 +1,11 @@
 PSGSEL ;BIR/CML3 - SELECT ORDERS BY WARD, WARD GROUP, PATIENT, OR PRIORITY ;05/15/98 9:26 AM
- ;;5.0;INPATIENT MEDICATIONS;**3,111,145,243**;DEC 16, 1997;Build 45
+ ;;5.0;INPATIENT MEDICATIONS;**3,111,145,243,283**;DEC 16, 1997;Build 4
 SELECT ; give user choice to select search method
  S:'$D(PSGSSH) PSGSSH="GENERIC"
  ;
- F  W !!,"Select by GROUP (G), WARD (W), CLINIC (C), "_$S($G(PSGPRIFL):"PATIENT (P) or PRIORITY (PR)",1:"or PATIENT (P)")_": " R PSGSS:DTIME W:'$T $C(7) S:'$T PSGSS="^" Q:"^"[PSGSS  D CHK I ",C,G,P,W,PR,"[(","_PSGSS_",") Q
+ ;*283 - Change prompts for NOCL tag
+ N PSGWGSTR,PSGCLSTR,PSGCHKSTR S PSGWGSTR=$S($G(PSGNOCL):"WARD GROUP",1:"GROUP"),PSGCLSTR=$S('$G(PSGNOCL):"CLINIC (C), ",1:""),PSGCHKSTR=$S($G(PSGNOCL):",G,P,W,",1:",C,G,P,W,PR,")
+ F  W !!,"Select by ",PSGWGSTR," (G), WARD (W), ",PSGCLSTR_$S($G(PSGPRIFL):"PATIENT (P) or PRIORITY (PR)",1:"or PATIENT (P)")_": " R PSGSS:DTIME W:'$T $C(7) S:'$T PSGSS="^" Q:"^"[PSGSS  D CHK I PSGCHKSTR[(","_PSGSS_",") Q
  N PSGPRMT
  S PSGPRMT=$P(XQY0,U,1)
  ;DAM   5-01-07  Adding new prompt.  If user selects to print by WARD, he is prompted to "Include Clinic Orders?"  If user selects to print by CLINIC, he is prompted to "Include Ward Orders?"
@@ -31,7 +33,8 @@ SELECT ; give user choice to select search method
  ;End DAM 5-01-07
  ;
  K PSGSSA Q:PSGSS'="G"
- F  R !!,"Select by WARD GROUP (W) or CLINIC GROUP (C): ",PSGSS2:DTIME W:'$T $C(7) S:'$T PSGSS2="^" Q:"^"[PSGSS2  D CHK2 I "CW"[PSGSS2 Q
+ I $G(PSGNOCL)=1 S PSGSS2="W"
+ E  F  R !!,"Select by WARD GROUP (W) or CLINIC GROUP (C): ",PSGSS2:DTIME W:'$T $C(7) S:'$T PSGSS2="^" Q:"^"[PSGSS2  D CHK2 I "CW"[PSGSS2 Q
  G SELECT:PSGSS2="" S PSGSS=$S(PSGSS2="C":"L",1:"G")
  ;
  ;DAM 5-01-07  Adding new prompt.  If user selects to print by WARD GROUP, he is prompted to "Include Clinic Orders?"  If user selects to print by CLINIC GROUP, he is prompted to "Include Ward Orders?"
@@ -62,7 +65,7 @@ SELECT ; give user choice to select search method
  ;
 CHK ;
  S PSGSSA="" F Q=1:1:$L(PSGSS) S PSGSSA=PSGSSA_$S($E(PSGSS,Q)'?1L:$E(PSGSS,Q),1:$C($A(PSGSS,Q)-32))
- F X="CLINIC","GROUP","WARD","PATIENT",$S($G(PSGPRIFL):"PRIORITY",1:"PATIENT") I $P(X,PSGSSA)="" W $P(X,PSGSSA,2,99) S PSGSS=$S($E(PSGSSA,1,2)="PR":"PR",1:$E(PSGSSA)) Q
+ F X=$S($G(PSGNOCL):"GROUP",1:"CLINIC"),"GROUP","WARD","PATIENT",$S($G(PSGPRIFL):"PRIORITY",1:"PATIENT") I $P(X,PSGSSA)="" W $P(X,PSGSSA,2,99) S PSGSS=$S($E(PSGSSA,1,2)="PR":"PR",1:$E(PSGSSA)) Q
  Q:$T  I PSGSS'?1."?" W $C(7),"  ??" S PSGSS="Z" Q
  W ! D @PSGSSH W !!?2,"To leave this option, press the RETURN key or enter '^'." Q
  ;
@@ -101,4 +104,8 @@ ORVC W !?2,"To complete orders for an entire WARD GROUP, enter 'G'. To complete 
  ;
 PRI ; Priompt for Priority along with Group, Ward, Clinic and Patient
  S PSGPRIFL=1 D SELECT K PSGPRIFL
+ Q
+ ;
+NOCL ; *283 - Prompt to only allow Ward Group, Ward, and Patient
+ N PSGNOCL S PSGNOCL=1 D SELECT
  Q

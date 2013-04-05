@@ -1,6 +1,6 @@
 PRCFFM2M ;WOIFO/SJG/AS-ROUTINE TO PROCESS OBLIGATIONS ;3/8/05
-V ;;5.1;IFCAP;**81**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**81,120**;Oct 20, 2000;Build 27
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 SUPP ; Entry point for FMS Documents for Supply Fund Special Control Point
  ; Amendments
@@ -39,14 +39,15 @@ TRANS ; Transfer amendment entry from work file to Purchase Order file
  D DOCREQ^PRC0C(PARAM,"SPE","PRCFMO")
  S (PRCFA("G/N"),PRCFMO("G/N"))=$P(PRCFMO,U,12)
  D LIST^PRCFFU7(PRCFA("PODA"),PRCFA("AMEND#"))
- I MTOP'=25,$P($G(^PRC(442,PRCFA("PODA"),0)),U,19)=2,$G(PRCFA("AUTHE"))=1 D AMEND^PRCFFUD,FCP^PRCFFU11 G EXIT
+ ;PRC*5.1*120 => AUTOOBLG (set in PRCHSWCH) controls auto obligation of FCP UNOBL $$
+ I MTOP'=25,($P($G(^PRC(442,PRCFA("PODA"),0)),U,19)=2!($G(AUTOOBLG)=1)),$G(PRCFA("AUTHE"))=1 D AMEND^PRCFFUD,FCP^PRCFFU11 G EXIT
  I MTOP'=25,'PRCFA("MOMREQ") D MSG^PRCFFU8 G EXIT
  D AMEND^PRCFFUD
  I MTOP'=25 D STACK^PRCFFM1M
  D EXIT QUIT
 MSG W ! S X="No further processing is being taken on this obligation.*" D MSG^PRCFQ
  Q
-EXIT K %,AMT,C1,C,D0,DA,DI,DIC,DEL,E,I,J,N1,N2,POP,PO,PODA,PRCFA,PRCFQ,MTOP
+EXIT K %,AMT,C1,C,D0,DA,DI,DIC,DEL,E,I,J,N1,N2,POP,PO,PODA,PRCFA,PRCFQ,MTOP,AUTOOBLG
  K PTYPE,T,T1,TIME,TRDA,Y,Z,Z5,ZX
  K PODATE,P,MO,GECSFMS
  Q

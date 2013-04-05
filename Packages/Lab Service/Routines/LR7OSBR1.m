@@ -1,5 +1,5 @@
 LR7OSBR1 ;slc/dcm - Silent BB rpt cont. ;8/11/97
- ;;5.2;LAB SERVICE;**121,201,228,230,292,387**;Sep 27, 1994;Build 10
+ ;;5.2;LAB SERVICE;**121,201,228,230,292,387,412**;Sep 27, 1994;Build 1
  ;from LRBLPBR
  ;Reference to GETS^DIQ supported by IA #2056
 EN ;
@@ -56,7 +56,8 @@ W ;
  S J=0 F  S J=$O(^LR(LRDFN,LRSS,LRI,99,J)) Q:'J  S J(1)=^(J,0) D LN S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(8,CCNT,J(1))
  Q
 T ;
- S T=T_"000",T=$$FMTE^XLFDT($P(T,"."),"5Z")_$S(T[".":" "_$E(T,9,10)_":"_$E(T,11,12),1:"")
+ ;S T=T_"000",T=$$FMTE^XLFDT($P(T,"."),"5Z")_$S(T[".":" "_$E(T,9,10)_":"_$E(T,11,12),1:"")
+ S T=$$FMTE^XLFDT(T,"5Z")
  Q
 C ;
  S A=0 F B=1:1 S A=$O(^LRD(65,"AP",LRDFN,A)) Q:'A  D N

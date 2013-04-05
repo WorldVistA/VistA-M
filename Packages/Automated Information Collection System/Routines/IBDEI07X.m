@@ -1,300 +1,366 @@
-IBDEI07X ; ; 12-JAN-2012
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JAN 12, 2012
+IBDEI07X ; ; 20-FEB-2013
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 20, 2013
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10612,1,3,0)
- ;;=3^27650
- ;;^UTILITY(U,$J,358.3,10613,0)
- ;;=27686^^84^652^5^^^^1
- ;;^UTILITY(U,$J,358.3,10613,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10613,1,2,0)
- ;;=2^Lengthening or shortening of tendon each, leg or ankle; multiple  tendon
- ;;^UTILITY(U,$J,358.3,10613,1,3,0)
- ;;=3^27686
- ;;^UTILITY(U,$J,358.3,10614,0)
- ;;=27685^^84^652^4^^^^1
- ;;^UTILITY(U,$J,358.3,10614,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10614,1,2,0)
- ;;=2^Lengthening or shortening of tendon, leg or ankle; single tendon
- ;;^UTILITY(U,$J,358.3,10614,1,3,0)
- ;;=3^27685
- ;;^UTILITY(U,$J,358.3,10615,0)
- ;;=27695^^84^652^7^^^^1
- ;;^UTILITY(U,$J,358.3,10615,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10615,1,2,0)
- ;;=2^Repair, primary, disrupted ligament, ankle; both collateral ligaments
- ;;^UTILITY(U,$J,358.3,10615,1,3,0)
- ;;=3^27695
- ;;^UTILITY(U,$J,358.3,10616,0)
- ;;=27698^^84^652^8^^^^1
- ;;^UTILITY(U,$J,358.3,10616,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10616,1,2,0)
- ;;=2^Repair, secondary, disrupted ligament ankle, collateral
- ;;^UTILITY(U,$J,358.3,10616,1,3,0)
- ;;=3^27698
- ;;^UTILITY(U,$J,358.3,10617,0)
- ;;=28200^^84^652^9^^^^1
- ;;^UTILITY(U,$J,358.3,10617,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10617,1,2,0)
- ;;=2^Repair, tendon, flexor, foot; primary or secondary, without free graft, each tendon
- ;;^UTILITY(U,$J,358.3,10617,1,3,0)
- ;;=3^28200
- ;;^UTILITY(U,$J,358.3,10618,0)
- ;;=28202^^84^652^10^^^^1
- ;;^UTILITY(U,$J,358.3,10618,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10618,1,2,0)
- ;;=2^Repair, tendon, flexor, foot; secondarywith free graft, each tendon (includes obtaining graft), 
- ;;^UTILITY(U,$J,358.3,10618,1,3,0)
- ;;=3^28202
- ;;^UTILITY(U,$J,358.3,10619,0)
- ;;=28210^^84^652^12^^^^1
- ;;^UTILITY(U,$J,358.3,10619,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10619,1,2,0)
- ;;=2^Repair, tendon, extensor, foot; secondary with free graft, each tendon (includes obtaining graft) 
- ;;^UTILITY(U,$J,358.3,10619,1,3,0)
- ;;=3^28210
- ;;^UTILITY(U,$J,358.3,10620,0)
- ;;=28208^^84^652^11^^^^1
- ;;^UTILITY(U,$J,358.3,10620,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10620,1,2,0)
- ;;=2^Repair, tendon, extensor, foot; primary or secondary, each tendon
- ;;^UTILITY(U,$J,358.3,10620,1,3,0)
- ;;=3^28208
- ;;^UTILITY(U,$J,358.3,10621,0)
- ;;=28230^^84^652^13^^^^1
- ;;^UTILITY(U,$J,358.3,10621,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10621,1,2,0)
- ;;=2^Tenotomy, open, tendon flexor; foot, single or multiple tendon(s)(separate procedure)
- ;;^UTILITY(U,$J,358.3,10621,1,3,0)
- ;;=3^28230
- ;;^UTILITY(U,$J,358.3,10622,0)
- ;;=28232^^84^652^14^^^^1
- ;;^UTILITY(U,$J,358.3,10622,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10622,1,2,0)
- ;;=2^Tenotomy, open, tendon flexor; toe, single tendon (separate procedure) 
- ;;^UTILITY(U,$J,358.3,10622,1,3,0)
- ;;=3^28232
- ;;^UTILITY(U,$J,358.3,10623,0)
- ;;=28234^^84^652^15^^^^1
- ;;^UTILITY(U,$J,358.3,10623,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10623,1,2,0)
- ;;=2^Tenotomy, open, extensor, foot or toe, each tendon
- ;;^UTILITY(U,$J,358.3,10623,1,3,0)
- ;;=3^28234
- ;;^UTILITY(U,$J,358.3,10624,0)
- ;;=28270^^84^652^16^^^^1
- ;;^UTILITY(U,$J,358.3,10624,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10624,1,2,0)
- ;;=2^Capsulotomy; metatarsophalangeal joint, with or without tenorrhaphy, each joint (separate procedure) 
- ;;^UTILITY(U,$J,358.3,10624,1,3,0)
- ;;=3^28270
- ;;^UTILITY(U,$J,358.3,10625,0)
- ;;=28272^^84^652^17^^^^1
- ;;^UTILITY(U,$J,358.3,10625,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10625,1,2,0)
- ;;=2^Capsulotomy; interphalangeal joint, each joint
- ;;^UTILITY(U,$J,358.3,10625,1,3,0)
- ;;=3^28272
- ;;^UTILITY(U,$J,358.3,10626,0)
- ;;=28285^^84^652^18^^^^1
- ;;^UTILITY(U,$J,358.3,10626,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10626,1,2,0)
- ;;=2^Correction, hammertoe
- ;;^UTILITY(U,$J,358.3,10626,1,3,0)
- ;;=3^28285
- ;;^UTILITY(U,$J,358.3,10627,0)
- ;;=28288^^84^652^19^^^^1
- ;;^UTILITY(U,$J,358.3,10627,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10627,1,2,0)
- ;;=2^Ostectomy, partial, exostectomy or condylectomy, metatarsal head, each metatarsal head
- ;;^UTILITY(U,$J,358.3,10627,1,3,0)
- ;;=3^28288
- ;;^UTILITY(U,$J,358.3,10628,0)
- ;;=28290^^84^652^20^^^^1
- ;;^UTILITY(U,$J,358.3,10628,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10628,1,2,0)
- ;;=2^Correction, hallux valgus, with or without sesamoidectomy; simple exostectomy
- ;;^UTILITY(U,$J,358.3,10628,1,3,0)
- ;;=3^28290
- ;;^UTILITY(U,$J,358.3,10629,0)
- ;;=28292^^84^652^21^^^^1
- ;;^UTILITY(U,$J,358.3,10629,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10629,1,2,0)
- ;;=2^Resection of Joint by Keller Type
- ;;^UTILITY(U,$J,358.3,10629,1,3,0)
- ;;=3^28292
- ;;^UTILITY(U,$J,358.3,10630,0)
- ;;=28293^^84^652^22^^^^1
- ;;^UTILITY(U,$J,358.3,10630,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10630,1,2,0)
- ;;=2^Resection of joint with implant
- ;;^UTILITY(U,$J,358.3,10630,1,3,0)
- ;;=3^28293
- ;;^UTILITY(U,$J,358.3,10631,0)
- ;;=28296^^84^652^23^^^^1
- ;;^UTILITY(U,$J,358.3,10631,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10631,1,2,0)
- ;;=2^Resection of joint with metatarsal osteotomy
- ;;^UTILITY(U,$J,358.3,10631,1,3,0)
- ;;=3^28296
- ;;^UTILITY(U,$J,358.3,10632,0)
- ;;=28298^^84^652^25^^^^1
- ;;^UTILITY(U,$J,358.3,10632,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10632,1,2,0)
- ;;=2^Resection of joint by phalanx osteotomy
- ;;^UTILITY(U,$J,358.3,10632,1,3,0)
- ;;=3^28298
- ;;^UTILITY(U,$J,358.3,10633,0)
- ;;=28299^^84^652^26^^^^1
- ;;^UTILITY(U,$J,358.3,10633,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10633,1,2,0)
- ;;=2^Resection of joint by double osteotomy 
- ;;^UTILITY(U,$J,358.3,10633,1,3,0)
- ;;=3^28299
- ;;^UTILITY(U,$J,358.3,10634,0)
- ;;=28300^^84^652^27^^^^1
- ;;^UTILITY(U,$J,358.3,10634,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10634,1,2,0)
- ;;=2^Resection of joint,Lapidus Type
- ;;^UTILITY(U,$J,358.3,10634,1,3,0)
- ;;=3^28300
- ;;^UTILITY(U,$J,358.3,10635,0)
- ;;=28302^^84^652^28^^^^1
- ;;^UTILITY(U,$J,358.3,10635,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10635,1,2,0)
- ;;=2^Osteotomy; talus
- ;;^UTILITY(U,$J,358.3,10635,1,3,0)
- ;;=3^28302
- ;;^UTILITY(U,$J,358.3,10636,0)
- ;;=28304^^84^652^29^^^^1
- ;;^UTILITY(U,$J,358.3,10636,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10636,1,2,0)
- ;;=2^Osteotomy, tarsal bones, other than calcaneus or talus
- ;;^UTILITY(U,$J,358.3,10636,1,3,0)
- ;;=3^28304
- ;;^UTILITY(U,$J,358.3,10637,0)
- ;;=28306^^84^652^30^^^^1
- ;;^UTILITY(U,$J,358.3,10637,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10637,1,2,0)
- ;;=2^Osteotomy, with or without lengthening, shortening or angular correction, metatarsal; 1st metatarsal
- ;;^UTILITY(U,$J,358.3,10637,1,3,0)
- ;;=3^28306
- ;;^UTILITY(U,$J,358.3,10638,0)
- ;;=28308^^84^652^32^^^^1
- ;;^UTILITY(U,$J,358.3,10638,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10638,1,2,0)
- ;;=2^Osteotomy, with or without lengthening, shortening or angular correction, metatarsal; other than first metatarsal, each
- ;;^UTILITY(U,$J,358.3,10638,1,3,0)
- ;;=3^28308
- ;;^UTILITY(U,$J,358.3,10639,0)
- ;;=28315^^84^652^33^^^^1
- ;;^UTILITY(U,$J,358.3,10639,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10639,1,2,0)
- ;;=2^Sesamoidectomy, first toe
- ;;^UTILITY(U,$J,358.3,10639,1,3,0)
- ;;=3^28315
- ;;^UTILITY(U,$J,358.3,10640,0)
- ;;=28001^^84^653^1^^^^1
- ;;^UTILITY(U,$J,358.3,10640,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10640,1,2,0)
- ;;=2^Incision and Drainage, bursa, foot
- ;;^UTILITY(U,$J,358.3,10640,1,3,0)
- ;;=3^28001
- ;;^UTILITY(U,$J,358.3,10641,0)
- ;;=28002^^84^653^2^^^^1
- ;;^UTILITY(U,$J,358.3,10641,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10641,1,2,0)
- ;;=2^Incision and Drainage below fascia, with/without tendon sheath involvement, foot; single bursal space 
- ;;^UTILITY(U,$J,358.3,10641,1,3,0)
- ;;=3^28002
- ;;^UTILITY(U,$J,358.3,10642,0)
- ;;=28003^^84^653^3^^^^1
- ;;^UTILITY(U,$J,358.3,10642,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10642,1,2,0)
- ;;=2^Incision and Drainage below fascia, with/without tendon sheath involvement, foot; multiple areas 
- ;;^UTILITY(U,$J,358.3,10642,1,3,0)
- ;;=3^28003
- ;;^UTILITY(U,$J,358.3,10643,0)
- ;;=28008^^84^653^4^^^^1
- ;;^UTILITY(U,$J,358.3,10643,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10643,1,2,0)
- ;;=2^Fasciotomy, foot and/or toe
- ;;^UTILITY(U,$J,358.3,10643,1,3,0)
- ;;=3^28008
- ;;^UTILITY(U,$J,358.3,10644,0)
- ;;=28010^^84^653^5^^^^1
- ;;^UTILITY(U,$J,358.3,10644,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10644,1,2,0)
- ;;=2^Tenotomy, percutaneous, toe; single tendon
- ;;^UTILITY(U,$J,358.3,10644,1,3,0)
- ;;=3^28010
- ;;^UTILITY(U,$J,358.3,10645,0)
- ;;=28011^^84^653^6^^^^1
- ;;^UTILITY(U,$J,358.3,10645,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10645,1,2,0)
- ;;=2^Tenotomy, percutaneous, toe; multiple tendons
- ;;^UTILITY(U,$J,358.3,10645,1,3,0)
- ;;=3^28011
- ;;^UTILITY(U,$J,358.3,10646,0)
- ;;=28020^^84^653^7^^^^1
- ;;^UTILITY(U,$J,358.3,10646,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10646,1,2,0)
- ;;=2^Arthrotomy, including exploration, drainage, or removal of loose or foreign body; intertarsal or tarsometatarsal joint
- ;;^UTILITY(U,$J,358.3,10646,1,3,0)
- ;;=3^28020
- ;;^UTILITY(U,$J,358.3,10647,0)
- ;;=28022^^84^653^8^^^^1
- ;;^UTILITY(U,$J,358.3,10647,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10647,1,2,0)
- ;;=2^Arthrotomy, including exploration, drainage, or removal of loose or foreign body; metatarsophalangeal joint 
- ;;^UTILITY(U,$J,358.3,10647,1,3,0)
- ;;=3^28022
- ;;^UTILITY(U,$J,358.3,10648,0)
- ;;=28024^^84^653^9^^^^1
- ;;^UTILITY(U,$J,358.3,10648,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10648,1,2,0)
- ;;=2^Arthrotomy, including exploration, drainage, or removal of loose or foreign body; interphalangeal joint
- ;;^UTILITY(U,$J,358.3,10648,1,3,0)
- ;;=3^28024
- ;;^UTILITY(U,$J,358.3,10649,0)
- ;;=28035^^84^653^11^^^^1
- ;;^UTILITY(U,$J,358.3,10649,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10649,1,2,0)
- ;;=2^Release, tarsal tunnel
+ ;;^UTILITY(U,$J,358.3,10420,2)
+ ;;=Laceration, Groin/Inguinal^275017
+ ;;^UTILITY(U,$J,358.3,10421,0)
+ ;;=884.0^^82^698^1
+ ;;^UTILITY(U,$J,358.3,10421,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10421,1,4,0)
+ ;;=4^Laceration, Arm Nos
+ ;;^UTILITY(U,$J,358.3,10421,1,5,0)
+ ;;=5^884.0
+ ;;^UTILITY(U,$J,358.3,10421,2)
+ ;;=Laceration, Arm NOS^275064
+ ;;^UTILITY(U,$J,358.3,10422,0)
+ ;;=883.0^^82^698^9
+ ;;^UTILITY(U,$J,358.3,10422,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10422,1,4,0)
+ ;;=4^Laceration, Finger
+ ;;^UTILITY(U,$J,358.3,10422,1,5,0)
+ ;;=5^883.0
+ ;;^UTILITY(U,$J,358.3,10422,2)
+ ;;=Laceration, Finger^275060
+ ;;^UTILITY(U,$J,358.3,10423,0)
+ ;;=881.01^^82^698^7
+ ;;^UTILITY(U,$J,358.3,10423,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10423,1,4,0)
+ ;;=4^Laceration, Elbow
+ ;;^UTILITY(U,$J,358.3,10423,1,5,0)
+ ;;=5^881.01
+ ;;^UTILITY(U,$J,358.3,10423,2)
+ ;;=Laceration, Elbow^275045
+ ;;^UTILITY(U,$J,358.3,10424,0)
+ ;;=882.0^^82^698^13
+ ;;^UTILITY(U,$J,358.3,10424,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10424,1,4,0)
+ ;;=4^Laceration, Hand
+ ;;^UTILITY(U,$J,358.3,10424,1,5,0)
+ ;;=5^882.0
+ ;;^UTILITY(U,$J,358.3,10424,2)
+ ;;=Laceration, Hand^275056
+ ;;^UTILITY(U,$J,358.3,10425,0)
+ ;;=881.02^^82^698^23
+ ;;^UTILITY(U,$J,358.3,10425,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10425,1,4,0)
+ ;;=4^Laceration, Wrist
+ ;;^UTILITY(U,$J,358.3,10425,1,5,0)
+ ;;=5^881.02
+ ;;^UTILITY(U,$J,358.3,10425,2)
+ ;;=Laceration, Wrist^275046
+ ;;^UTILITY(U,$J,358.3,10426,0)
+ ;;=880.00^^82^698^21
+ ;;^UTILITY(U,$J,358.3,10426,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10426,1,4,0)
+ ;;=4^Laceration, Shoulder
+ ;;^UTILITY(U,$J,358.3,10426,1,5,0)
+ ;;=5^880.00
+ ;;^UTILITY(U,$J,358.3,10426,2)
+ ;;=Laceration, Shoulder^275025
+ ;;^UTILITY(U,$J,358.3,10427,0)
+ ;;=890.0^^82^698^15
+ ;;^UTILITY(U,$J,358.3,10427,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10427,1,4,0)
+ ;;=4^Laceration, Hip/Thigh
+ ;;^UTILITY(U,$J,358.3,10427,1,5,0)
+ ;;=5^890.0
+ ;;^UTILITY(U,$J,358.3,10427,2)
+ ;;=Laceration, Hip/Thigh^275083
+ ;;^UTILITY(U,$J,358.3,10428,0)
+ ;;=891.0^^82^698^17
+ ;;^UTILITY(U,$J,358.3,10428,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10428,1,4,0)
+ ;;=4^Laceration, Knee/Leg/Ankle
+ ;;^UTILITY(U,$J,358.3,10428,1,5,0)
+ ;;=5^891.0
+ ;;^UTILITY(U,$J,358.3,10428,2)
+ ;;=Laceration, Knee/Leg/Ankle^275087
+ ;;^UTILITY(U,$J,358.3,10429,0)
+ ;;=893.0^^82^698^22
+ ;;^UTILITY(U,$J,358.3,10429,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10429,1,4,0)
+ ;;=4^Laceration, Toe
+ ;;^UTILITY(U,$J,358.3,10429,1,5,0)
+ ;;=5^893.0
+ ;;^UTILITY(U,$J,358.3,10429,2)
+ ;;=Laceration, Toe^275095
+ ;;^UTILITY(U,$J,358.3,10430,0)
+ ;;=892.0^^82^698^10
+ ;;^UTILITY(U,$J,358.3,10430,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10430,1,4,0)
+ ;;=4^Laceration, Foot
+ ;;^UTILITY(U,$J,358.3,10430,1,5,0)
+ ;;=5^892.0
+ ;;^UTILITY(U,$J,358.3,10430,2)
+ ;;=Laceration, Fott^275091
+ ;;^UTILITY(U,$J,358.3,10431,0)
+ ;;=209.31^^82^699^1
+ ;;^UTILITY(U,$J,358.3,10431,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10431,1,4,0)
+ ;;=4^Merkel Cell CA-Face
+ ;;^UTILITY(U,$J,358.3,10431,1,5,0)
+ ;;=5^209.31
+ ;;^UTILITY(U,$J,358.3,10431,2)
+ ;;=^338212
+ ;;^UTILITY(U,$J,358.3,10432,0)
+ ;;=209.32^^82^699^2
+ ;;^UTILITY(U,$J,358.3,10432,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10432,1,4,0)
+ ;;=4^Merkel Cell CA-Sclp/Neck
+ ;;^UTILITY(U,$J,358.3,10432,1,5,0)
+ ;;=5^209.32
+ ;;^UTILITY(U,$J,358.3,10432,2)
+ ;;=^338213
+ ;;^UTILITY(U,$J,358.3,10433,0)
+ ;;=209.33^^82^699^3
+ ;;^UTILITY(U,$J,358.3,10433,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10433,1,4,0)
+ ;;=4^Merkel Cell CA-Upper Limb
+ ;;^UTILITY(U,$J,358.3,10433,1,5,0)
+ ;;=5^209.33
+ ;;^UTILITY(U,$J,358.3,10433,2)
+ ;;=^338214
+ ;;^UTILITY(U,$J,358.3,10434,0)
+ ;;=209.34^^82^699^4
+ ;;^UTILITY(U,$J,358.3,10434,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10434,1,4,0)
+ ;;=4^Merkel Cell CA-Lower Limb
+ ;;^UTILITY(U,$J,358.3,10434,1,5,0)
+ ;;=5^209.34
+ ;;^UTILITY(U,$J,358.3,10434,2)
+ ;;=^338215
+ ;;^UTILITY(U,$J,358.3,10435,0)
+ ;;=209.35^^82^699^5
+ ;;^UTILITY(U,$J,358.3,10435,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10435,1,4,0)
+ ;;=4^Merkel Cell-Trunk
+ ;;^UTILITY(U,$J,358.3,10435,1,5,0)
+ ;;=5^209.35
+ ;;^UTILITY(U,$J,358.3,10435,2)
+ ;;=^338216
+ ;;^UTILITY(U,$J,358.3,10436,0)
+ ;;=209.36^^82^699^6
+ ;;^UTILITY(U,$J,358.3,10436,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10436,1,4,0)
+ ;;=4^Merkel Cell CA-Oth Sites
+ ;;^UTILITY(U,$J,358.3,10436,1,5,0)
+ ;;=5^209.36
+ ;;^UTILITY(U,$J,358.3,10436,2)
+ ;;=^338217
+ ;;^UTILITY(U,$J,358.3,10437,0)
+ ;;=V67.09^^82^700^11
+ ;;^UTILITY(U,$J,358.3,10437,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10437,1,4,0)
+ ;;=4^F/U exam, Following Surg
+ ;;^UTILITY(U,$J,358.3,10437,1,5,0)
+ ;;=5^V67.09
+ ;;^UTILITY(U,$J,358.3,10437,2)
+ ;;=F/U exam, completed treatment^322080
+ ;;^UTILITY(U,$J,358.3,10438,0)
+ ;;=V58.42^^82^700^1
+ ;;^UTILITY(U,$J,358.3,10438,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10438,1,4,0)
+ ;;=4^Aftercare after CA surgery
+ ;;^UTILITY(U,$J,358.3,10438,1,5,0)
+ ;;=5^V58.42
+ ;;^UTILITY(U,$J,358.3,10438,2)
+ ;;=Aftercare after CA surgery^295530
+ ;;^UTILITY(U,$J,358.3,10439,0)
+ ;;=V58.73^^82^700^5
+ ;;^UTILITY(U,$J,358.3,10439,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10439,1,4,0)
+ ;;=4^Aftercare after Vasc Surg
+ ;;^UTILITY(U,$J,358.3,10439,1,5,0)
+ ;;=5^V58.73
+ ;;^UTILITY(U,$J,358.3,10439,2)
+ ;;=Aftercare after Vasc Surg^295530
+ ;;^UTILITY(U,$J,358.3,10440,0)
+ ;;=V58.74^^82^700^3
+ ;;^UTILITY(U,$J,358.3,10440,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10440,1,4,0)
+ ;;=4^Aftercare after Lung Surg
+ ;;^UTILITY(U,$J,358.3,10440,1,5,0)
+ ;;=5^V58.74
+ ;;^UTILITY(U,$J,358.3,10440,2)
+ ;;=Aftercare after Lung Surg^295530
+ ;;^UTILITY(U,$J,358.3,10441,0)
+ ;;=V58.77^^82^700^4
+ ;;^UTILITY(U,$J,358.3,10441,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10441,1,4,0)
+ ;;=4^Aftercare after Skin Surg
+ ;;^UTILITY(U,$J,358.3,10441,1,5,0)
+ ;;=5^V58.77
+ ;;^UTILITY(U,$J,358.3,10441,2)
+ ;;=Aftercare after Skin Surg^295530
+ ;;^UTILITY(U,$J,358.3,10442,0)
+ ;;=V58.75^^82^700^2
+ ;;^UTILITY(U,$J,358.3,10442,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10442,1,4,0)
+ ;;=4^Aftercare after GI Surgery
+ ;;^UTILITY(U,$J,358.3,10442,1,5,0)
+ ;;=5^V58.75
+ ;;^UTILITY(U,$J,358.3,10442,2)
+ ;;=Aftercare after GI Surgery^295530
+ ;;^UTILITY(U,$J,358.3,10443,0)
+ ;;=V58.31^^82^700^12
+ ;;^UTILITY(U,$J,358.3,10443,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10443,1,4,0)
+ ;;=4^Removal Surg Dressing
+ ;;^UTILITY(U,$J,358.3,10443,1,5,0)
+ ;;=5^V58.31
+ ;;^UTILITY(U,$J,358.3,10443,2)
+ ;;=^334216
+ ;;^UTILITY(U,$J,358.3,10444,0)
+ ;;=V58.30^^82^700^10
+ ;;^UTILITY(U,$J,358.3,10444,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10444,1,4,0)
+ ;;=4^Change/Remove Dressing
+ ;;^UTILITY(U,$J,358.3,10444,1,5,0)
+ ;;=5^V58.30
+ ;;^UTILITY(U,$J,358.3,10444,2)
+ ;;=^334215
+ ;;^UTILITY(U,$J,358.3,10445,0)
+ ;;=V58.32^^82^700^13
+ ;;^UTILITY(U,$J,358.3,10445,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10445,1,4,0)
+ ;;=4^Removal Sutures
+ ;;^UTILITY(U,$J,358.3,10445,1,5,0)
+ ;;=5^V58.32
+ ;;^UTILITY(U,$J,358.3,10445,2)
+ ;;=^334217
+ ;;^UTILITY(U,$J,358.3,10446,0)
+ ;;=V58.71^^82^700^9
+ ;;^UTILITY(U,$J,358.3,10446,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10446,1,4,0)
+ ;;=4^Aftercare,Sense Organ Surg
+ ;;^UTILITY(U,$J,358.3,10446,1,5,0)
+ ;;=5^V58.71
+ ;;^UTILITY(U,$J,358.3,10446,2)
+ ;;=^328689
+ ;;^UTILITY(U,$J,358.3,10447,0)
+ ;;=V58.72^^82^700^8
+ ;;^UTILITY(U,$J,358.3,10447,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10447,1,4,0)
+ ;;=4^Aftercare,Nervous Sys Surg
+ ;;^UTILITY(U,$J,358.3,10447,1,5,0)
+ ;;=5^V58.72
+ ;;^UTILITY(U,$J,358.3,10447,2)
+ ;;=^328690
+ ;;^UTILITY(U,$J,358.3,10448,0)
+ ;;=V58.76^^82^700^6
+ ;;^UTILITY(U,$J,358.3,10448,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10448,1,4,0)
+ ;;=4^Aftercare,GU Surg
+ ;;^UTILITY(U,$J,358.3,10448,1,5,0)
+ ;;=5^V58.76
+ ;;^UTILITY(U,$J,358.3,10448,2)
+ ;;=^328694
+ ;;^UTILITY(U,$J,358.3,10449,0)
+ ;;=V58.78^^82^700^7
+ ;;^UTILITY(U,$J,358.3,10449,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10449,1,4,0)
+ ;;=4^Aftercare,Musculos Surg
+ ;;^UTILITY(U,$J,358.3,10449,1,5,0)
+ ;;=5^V58.78
+ ;;^UTILITY(U,$J,358.3,10449,2)
+ ;;=^328696
+ ;;^UTILITY(U,$J,358.3,10450,0)
+ ;;=443.9^^82^701^15
+ ;;^UTILITY(U,$J,358.3,10450,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10450,1,4,0)
+ ;;=4^PVD
+ ;;^UTILITY(U,$J,358.3,10450,1,5,0)
+ ;;=5^443.9
+ ;;^UTILITY(U,$J,358.3,10450,2)
+ ;;=PVD^184182
+ ;;^UTILITY(U,$J,358.3,10451,0)
+ ;;=441.4^^82^701^3
+ ;;^UTILITY(U,$J,358.3,10451,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10451,1,4,0)
+ ;;=4^Aneurysm,Abdom Aortic
+ ;;^UTILITY(U,$J,358.3,10451,1,5,0)
+ ;;=5^441.4
+ ;;^UTILITY(U,$J,358.3,10451,2)
+ ;;=^269769
+ ;;^UTILITY(U,$J,358.3,10452,0)
+ ;;=444.22^^82^701^10
+ ;;^UTILITY(U,$J,358.3,10452,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10452,1,4,0)
+ ;;=4^Embolism/Thrombosis LE
+ ;;^UTILITY(U,$J,358.3,10452,1,5,0)
+ ;;=5^444.22
+ ;;^UTILITY(U,$J,358.3,10452,2)
+ ;;=^269790
+ ;;^UTILITY(U,$J,358.3,10453,0)
+ ;;=454.9^^82^701^16
+ ;;^UTILITY(U,$J,358.3,10453,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10453,1,4,0)
+ ;;=4^Varicose Vein
+ ;;^UTILITY(U,$J,358.3,10453,1,5,0)
+ ;;=5^454.9
+ ;;^UTILITY(U,$J,358.3,10453,2)
+ ;;=^125437
+ ;;^UTILITY(U,$J,358.3,10454,0)
+ ;;=433.10^^82^701^13
+ ;;^UTILITY(U,$J,358.3,10454,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10454,1,4,0)
+ ;;=4^Occ&Sten,Carotid Art
+ ;;^UTILITY(U,$J,358.3,10454,1,5,0)
+ ;;=5^433.10
+ ;;^UTILITY(U,$J,358.3,10454,2)
+ ;;=^295801
+ ;;^UTILITY(U,$J,358.3,10455,0)
+ ;;=454.0^^82^701^17
+ ;;^UTILITY(U,$J,358.3,10455,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10455,1,4,0)
+ ;;=4^Varicose Vein W Ulcer
+ ;;^UTILITY(U,$J,358.3,10455,1,5,0)
+ ;;=5^454.0
+ ;;^UTILITY(U,$J,358.3,10455,2)
+ ;;=^125410
+ ;;^UTILITY(U,$J,358.3,10456,0)
+ ;;=444.21^^82^701^11
+ ;;^UTILITY(U,$J,358.3,10456,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10456,1,4,0)
+ ;;=4^Embolism/Thrombosis UE
+ ;;^UTILITY(U,$J,358.3,10456,1,5,0)
+ ;;=5^444.21
+ ;;^UTILITY(U,$J,358.3,10456,2)
+ ;;=^269789

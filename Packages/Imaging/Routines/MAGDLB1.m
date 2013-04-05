@@ -1,5 +1,5 @@
-MAGDLB1 ;WOIFO/LB - Routine to fix failed DICOM entries ; 05/18/2007 11:23
- ;;3.0;IMAGING;**11,30,54**;03-July-2009;;Build 1424
+MAGDLB1 ;WOIFO/LB/JSL/SAF - Routine to fix failed DICOM entries ; 05/18/2007 11:23
+ ;;3.0;IMAGING;**11,30,54,123**;Mar 19, 2002;Build 67;Jul 24, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -20,7 +20,7 @@ MAGDLB1 ;WOIFO/LB - Routine to fix failed DICOM entries ; 05/18/2007 11:23
 DISPLAY ;
  S OUT=0
  W !,"**************Processing entry**********"
- W !!?2,"PATIENT: ",PAT,?50,"SSN: ",PID,!,"RADIOLOGY CASE #: ",CASENO
+ W !!?2,"PATIENT: ",PAT,?50,$$PIDLABEL^MAGSPID(),": ",PID,!,"RADIOLOGY CASE #: ",CASENO  ;;P123
  W !?2,"Equipment: ",MOD,?50,"Model: ",MODEL
  W !?2,"Date Processed: ",DATE,?50,"Problem with: ",REASON
  W !?2,"Comment: ",COMNT1
@@ -29,7 +29,7 @@ DISPLAY ;
  Q
  ;
 NEWCASE ;
- S NEWDFN=$P(MAGDY,"^"),NEWNME=$P(MAGDY,"^",2),NEWSSN=$P(MAGDY,"^",3)
+ S NEWDFN=$P(MAGDY,"^"),NEWNME=$P(MAGDY,"^",2),NEWPID=$P(MAGDY,"^",3)
  S NEWCAS=$P(MAGDY,"^",4),NEWPROC=$P(MAGDY,"^",5),NEWDTI=$P(MAGDY,"^",6)
  S NEWMUL=$P(MAGDY,"^",7),NEWPIEN=$P(MAGDY,"^",8),PP=$P(MAGDY,"^",9)
  Q
@@ -52,7 +52,8 @@ CHK ;remove any punctuation before doing comparison on SSN
  ;stop on 1st check.
  N OLD,I
  S OLD="" F I=1:1:$L(PID) I $E(PID,I)?1AN S OLD=OLD_$E(PID,I)
- I NEWSSN'=OLD D  Q
+ I NEWPID'=OLD D  Q
+ . I $$ISIHS^MAGSPID() S MSG="Patient ID numbers do not match. Update? " Q  ;P123
  . S MSG="Social Security numbers do not match. Update? "
  I NEWNME'=PAT D  Q
  . S MSG="Patient names do not match. Update? "
@@ -64,7 +65,7 @@ CHK ;remove any punctuation before doing comparison on SSN
 NEWDIS ;
  W !?2,"****Please review the following: *****"
  W !?2,"Previous name: ",PAT,!?2,"     New name: ",NEWNME
- W !?2,"Previous ssn: ",PID,!?2,"     New ssn: ",NEWSSN
+ W !?2,"Previous ",$$PIDLABEL^MAGSPID(),": ",PID,!?2,"     New ",$$PIDLABEL^MAGSPID(),": ",NEWPID  ;P123
  W !?2,"Previous case #: ",CASENO,!?2,"     New case #: ",NEWCAS
  I $L($G(PP)) W !?15,"Case number selected: ",PP
  ; Variable PP already has text message about being part of printset.
@@ -72,12 +73,13 @@ NEWDIS ;
  ;
 UPDT ;
  N GWLOC ; -- gateway location
+ N % ; ------ utility variable for FM calls
  W !,"Will change the following: " D NEWDIS
  W !,"Are you sure you want to correct this entry? " S %=2 D YN^DICN
  I %=-1!(%=2) S OUT=1 Q
  W !,"Updating the file."
  S NEWDTIM=$TR(NEWDTI,"0123456789","9876543210")
- S ^MAGD(2006.575,MAGIEN,"FIXD")="1^"_NEWDFN_"^"_NEWNME_"^"_NEWSSN_"^"_NEWCAS_"^"_NEWDTI_"^"_NEWMUL_"^"_NEWDTIM W "."
+ S ^MAGD(2006.575,MAGIEN,"FIXD")="1^"_NEWDFN_"^"_NEWNME_"^"_NEWPID_"^"_NEWCAS_"^"_NEWDTI_"^"_NEWMUL_"^"_NEWDTIM W "."
  S ^MAGD(2006.575,MAGIEN,"FIXPR")=NEWPIEN_"^"_NEWPROC W "."
  ;Same as ^radpt(newdfn,"DT",newdti,"P",newmul,0) & ^RAMIS(71,newpien,0)
  S MACHID=$S(MACHID="":"A",1:MACHID) ; server ID
@@ -137,7 +139,7 @@ SET ;
  S DATA=^MAGD(2006.575,MAGIEN,0)
  S FILE=$P(^MAGD(2006.575,MAGIEN,0),"^")
  S DATA1=^MAGD(2006.575,MAGIEN,1) ; Case no. info
- S DATA2=^MAGD(2006.575,MAGIEN,"AMFG") ; Modality info
+ S DATA2=$G(^MAGD(2006.575,MAGIEN,"AMFG")) ; Modality info
  S PAT=$P(DATA,"^",4),PID=$P(DATA,"^",3),REASON=$P(DATA,"^",2)
  S MOD=$P(DATA2,"^"),MODEL=$P(DATA2,"^",6)
  S CASENO=$P(DATA1,"^",2),MACHID=$P(DATA1,"^",4)

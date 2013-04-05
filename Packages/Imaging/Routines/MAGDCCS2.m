@@ -1,5 +1,5 @@
-MAGDCCS2 ;WOIFO/MLH - DICOM Correct - Clinical Specialties - subroutines ; 13 Nov 2007 1:40 PM
- ;;3.0;IMAGING;**10,11,30,54**;03-July-2009;;Build 1424
+MAGDCCS2 ;WOIFO/MLH/JSL/SAF - DICOM Correct - Clinical Specialties - subroutines ; 13 Nov 2007 1:40 PM
+ ;;3.0;IMAGING;**10,11,30,54,123**;Mar 19, 2002;Build 67;Jul 24, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -20,7 +20,7 @@ MAGDCCS2 ;WOIFO/MLH - DICOM Correct - Clinical Specialties - subroutines ; 13 No
  ; manually correcting DICOM FIX files. 
 EN ;
  ; MAGDY variable to be created during this execution.
- N D,DIC,DUOUT,DZ,MAGBEG,MAGEND,MAGDFN,MAGOUT,MAGX,MAGXX,INFO,MAGNME,MAGSSN,Y
+ N D,DIC,DUOUT,DZ,MAGBEG,MAGEND,MAGDFN,MAGOUT,MAGX,MAGXX,INFO,MAGNME,MAGPID,Y
  S MAGBEG=1070101,MAGEND=$$DT^XLFDT
  W !,"*** Select a request/consult with whose ***"
  W !,"***  TIU note to associate this image   ***"
@@ -45,6 +45,10 @@ EN ;
 PTINFO() ;
  N INFO,MAGOUT,MAGERR
  I '$D(MAGDFN) Q ""
+ I $$ISIHS^MAGSPID() D  Q INFO  ;P123 - MOD for IHS patients with multiple chart numbers (i.e. Chawktaw)
+ . N DFN S DFN=MAGDFN,INFO="" D DEM^VADPT
+ . I $G(VA("PID"))'="" S INFO=$G(VADM(1))_"^"_$TR(VA("PID"),"-")
+ . Q
  D GETS^DIQ(2,MAGDFN,".01;.09","E","MAGOUT","MAGERR")
  I $D(MAGERR) Q ""
  I $D(MAGOUT) D  Q INFO
@@ -64,7 +68,7 @@ ONE ; Process the single entry that was selected.
  N MAGIENS  ; internal entry number for MAGRCARY
  ;
  S MAGDFN=$P(MAGX,"~"),INFO=$$PTINFO
- S MAGNME=$P(INFO,"^"),MAGSSN=$P(INFO,"^",2)
+ S MAGNME=$P(INFO,"^"),MAGPID=$P(INFO,"^",2)
  S MAGCASE=$P($P(MAGX,"~",2),U)
  S (MAGPRC,MAGDTI,MAGCNI,MAGPIEN,MAGLOC,MAGDATE,MAGEXST,MAGPST)=""
  K MAGRCARY D GETS^DIQ(123,MAGCASE,"*","EI","MAGRCARY")
@@ -74,7 +78,7 @@ ONE ; Process the single entry that was selected.
  S MAGLOC=MAGRCARY(123,MAGIENS,1,"E") ; to service
  S MAGDATE=MAGRCARY(123,MAGIENS,.01,"E") ; request date
  S MAGPST=MAGRCARY(123,MAGIENS,8,"E") ; procedure status
- W !,"PATIENT: ",MAGNME,?51,"SSN: ",MAGSSN
+ W !,"PATIENT: ",MAGNME,?51,$$PIDLABEL^MAGSPID(),": ",MAGPID
  W !,"Req/Con No.",?13,"Procedure",?38,"To Service",?58,"Req Date"
  W !,"-----------",?13,"---------",?38,"----------------",?58,"--------"
  W !,MAGCASE,?13,MAGPRC,?38,MAGLOC,?58,MAGDATE
@@ -84,7 +88,7 @@ ONE ; Process the single entry that was selected.
  ;
 MAGDY ;
  K MAGDY
- S MAGDY=MAGDFN_"^"_MAGNME_"^"_MAGSSN_"^"_"GMRC-"_MAGCASE_"^"_MAGPRC_"^"_MAGDTI
+ S MAGDY=MAGDFN_"^"_MAGNME_"^"_MAGPID_"^"_"GMRC-"_MAGCASE_"^"_MAGPRC_"^"_MAGDTI
  S MAGDY=MAGDY_"^"_MAGCNI_"^"_MAGPIEN_"^"_$G(MAGPST)_"^"
- K MAGNME,MAGSSN,MAGCASE,MAGPRC,MAGDTI,MAGCNI,MAGPIEN,MAPST
+ K MAGNME,MAGPID,MAGCASE,MAGPRC,MAGDTI,MAGCNI,MAGPIEN,MAPST
  Q

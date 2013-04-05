@@ -1,7 +1,10 @@
 PRCHLO5 ;WOIFO/DAP/RLL-manual run for procurement reports  ; 10/16/06 2:12pm
-V ;;5.1;IFCAP;**83,98,139**;Oct 20, 2000;Build 16
+V ;;5.1;IFCAP;**83,98,139,172**;Oct 20, 2000;Build 2
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
+ ;Patch PRC*5.1*172 are modifications to CLRS transmission processing 
+ ;to support those sites that have migrated to Full LINUX OS
+ ; 
 ENT ;This routine tasks out the execution of the procurement extract 
  ;reports associated with PRC*5.1*83 (CLRS).
  ;
@@ -114,6 +117,12 @@ CRFILE ; Create .txt file to confirm write privileges to directory
  I CKOS["NT"  D
  . I CLRSERR=0 D CRTWIN^PRCHLO4A
  . Q
+ ;PRC*5.1*172 added check for Full Linux
+ I CKOS["UNIX"  D
+ . I CLRSERR=0  D
+ . . D CRTUNX1^PRCHLO4
+ . . Q
+ . Q
  I CLRSERR=6  D
  . N PRCPMSG
  . S PRCPMSG(1)="Error encountered when attempting to run CLO PO"
@@ -164,6 +173,12 @@ CRFILE ; Create .txt file to confirm write privileges to directory
  . I CLRSERR=0  D
  . . D CRTCOM1^PRCHLO4
  . . D FTPCOM^PRCHLO4
+ . . Q
+ . Q
+ ;PRC*5.1*172 added check for Full Linux
+ I CKOS["UNIX"  D
+ . I CLRSERR=0  D
+ . . D UNXFTP^PRCHLO4
  . . Q
  . Q
  I CKOS["NT"  D
@@ -251,5 +266,9 @@ DELFILS ; Delete the files / clean-up before processing
  . N PV,PV1,XPV,XPV1
  . S XPV="S PV=$ZF(-1,""DELETE "_FILEDIR_"*"_STID_"*.*;*"")"
  . X XPV
+ . Q
+ ;PRC*5.1*172 added check for Full Linux
+ I CKOS["UNIX"  D
+ . D DELUNX^PRCHLO4A
  . Q
  Q

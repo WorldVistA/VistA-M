@@ -1,5 +1,5 @@
 DDSRUN ;SFISC/MKO-RUN A FORM ;21SEP2006
- ;;22.0;VA FileMan;**151**;Mar 30, 1999;Build 10
+ ;;22.0;VA FileMan;**151**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;Select file (DDSFILE)

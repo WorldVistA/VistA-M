@@ -1,12 +1,12 @@
 PSBPOIV ;BIRMINGHAM/EFC-IV PARAMETER VALIDATION ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**2**;Mar 2004;Build 22
+ ;;3.0;BAR CODE MED ADMIN;**2,66**;Mar 2004;Build 11
  ;;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
  ; ^DIC(42/2440
  ; EN^PSJBCMA2/2830
  ; VADPT/10061
- ;
+ ; $$GET^XPAR/2263
  ;
 EN(PSBDFN,PSBORD) ;
  ;
@@ -19,12 +19,15 @@ EN(PSBDFN,PSBORD) ;
  I $G(PSBWARD)'="",$D(^PSB(53.66,"B",PSBWARD)) D  ; if IV paramaters defined for ward use them
  .S PSBWARD=$O(^PSB(53.66,"B",PSBWARD,""))
  .S:$D(^PSB(53.66,PSBWARD,1,"B",PSBIVT)) PSBIVPAR=^PSB(53.66,PSBWARD,1,$O(^PSB(53.66,PSBWARD,1,"B",PSBIVT,""),-1),0)
+ N PSBFLAG,PSBDFLT
  I '$D(PSBIVPAR) S PSBIVPAR=PSBIVT D  ; if IV parameters not defined for ward get defaults for division
  .D:$D(PSBWDIV)  ; Get the appropriate DIV for ward and DIVISIONAL IV PARAMETERS
  ..S PSBWDIV=$$GET1^DIQ(42,PSBWDIV_",",.015,"I")
  ..I $G(PSBWDIV)']"" S PSBWDIV="DIV"
  ..E  S PSBWDIV=$P($$SITE^VASITE(DT,PSBWDIV),U,1),PSBWDIV="DIV.`"_PSBWDIV
- ..F X=2:1 Q:$P(PSBCSTR,U,X)=""  S PSBIVPAR=PSBIVPAR_U_$P($P($$GET^XPAR(PSBWDIV,"PSBIV "_$P(PSBCSTR,U,X),PSBIVT,"B"),U,2),"-",1)
+ ..S PSBDFLT="^I^I^I^I^I^W^I^I^I^I^W^I^I^I^I" ;Set default IV Bag Parameters variable
+ ..F X=2:1 Q:$P(PSBCSTR,U,X)=""  S PSBIVPAR=PSBIVPAR_U_$P($P($$GET^XPAR(PSBWDIV,"PSBIV "_$P(PSBCSTR,U,X),PSBIVT,"B"),U,2),"-",1) I $P(PSBIVPAR,U,X)="" D  ;If null, set default - PSB*3*66
+ ...S $P(PSBIVPAR,U,X)=$P(PSBDFLT,U,X),PSBFLAG=""  ;If null, set default - PSB*3*66
  ..K PSBWDIV ; Kill temp variable.
  F PSBC1=1:1 Q:$P(PSBONXS,U,PSBC1)=""  D  ; process all orders
  .D CLEAN^PSBVT,PSJ1^PSBVT(DFN,$P(PSBONXS,U,PSBC1))
@@ -132,7 +135,7 @@ BWAR ;
  Q
  ;
 MSG(PSBMVAR,PSBDATE) ;
- I PSBMI=1 Q  ;already have an invalid don't need anymore
+ ;I PSBMI=1 Q  ;already have an invalid don't need anymore - Removed by Patch PSB*3*66 for multiple edits issue.
  F Y=1:1 S PSBSPAR=$P(PSBCSTR,U,Y) I PSBSPAR=$TR(PSBMVAR,"^") D  Q
  .I $P(PSBIVPAR,U,Y)="W" D
  ..S PSBMVAR=$TR(PSBMVAR,"^")

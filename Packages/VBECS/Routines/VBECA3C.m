@@ -1,5 +1,5 @@
 VBECA3C ;HIOFO/BNT - VBECS Utility to parse XML for CPRS ;12/19/2003  01:00
- ;;1.0;VBECS;;Apr 14, 2005;Build 35
+ ;;1.0;VBECS;**27**;Apr 14, 2005;Build 1
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without
@@ -103,7 +103,7 @@ STELE(ELE,ATR) ; -- element start event handler
  . QUIT
  IF ELE="Surgery" DO
  . SET VBECSRC=VBECSRC+1
- . SET @VBECRES@("SURGERY",VBECSRC)=$G(ATR("name"))
+ . SET @VBECRES@("SURGERY",VBECSRC)=$G(ATR("name"))_"^"_$G(ATR("noBloodRequiredIndicator"))
  QUIT
 ENELE(ELE) ; -- element end event handler
  KILL VBECNT

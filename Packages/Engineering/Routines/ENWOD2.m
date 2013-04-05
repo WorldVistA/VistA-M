@@ -3,7 +3,7 @@ ENWOD2 ;(WASH ISC)/DLM/DH-Formatted Work Order Display ;12.10.97
  ;  write the information
 TOP N I,I1,J,K,X,ENPG
  N IOINLOW,IOINHI,IOINORM D ZIS^ENUTL
- ;S X="ENZWO1" X ^%ZOSF("TEST") I $T D ^ENZWO1
+ S X="ENZWO1" X ^%ZOSF("TEST") I $T D ^ENZWO1
  S ENX("WP")=$S($L(EN(31))>120:3,$L(EN(31))>70:2,EN(31)]"":1,1:0),ENPG=0
  S ENX("AT")=0,I=100 F  S I=$O(EN(I)) Q:'I  S ENX("AT")=ENX("AT")+1
  S ENORIG=$P(^ENG(6920,DA,0),U,6) S ENORIG("P")=0 I ENORIG]"",ENORIG'=ENWO S ENORIG("P")=1
@@ -63,7 +63,7 @@ WCO S (ENX,X)="" I $D(^ENG(6920,DA,6)) S DIWL=5,DIWR=(IOM-5),DIWF="|" K ^UTILITY
  .. S J=9999999999,K=0
  .. F  S J=$O(ENX("WO",J),-1),K=K+1 Q:J'>0!(K>9)  W !,?2,$P(^ENG(6920,J,0),U),?18,$S($E(^(0),1,3)'="PM-":$P($G(^(1)),U,2),1:$P($G(^(5)),U,7)) I (IOSL-$Y)'>2 D HOLD Q:ENX="^"
  .. I K>9 W !,?2,"There are more..."
- ;S X="ENZWO2" X ^%ZOSF("TEST") I $T D ^ENZWO2
+ S X="ENZWO2" X ^%ZOSF("TEST") I $T D ^ENZWO2
  I $O(^DIPT("B","ENZWO.LOCAL",0))>0 D
  . S L=0,DIC="^ENG(6920,",FLDS="[ENZWO.LOCAL]",BY=".01",(FR,TO)=ENWO,DHD="@@",IOP=ION,DISUPNO=1,ENX("DA")=DA
  . I (IOSL-$Y)'>5 D HOLD Q:ENX="^"

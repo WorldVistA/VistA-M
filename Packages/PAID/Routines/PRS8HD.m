@@ -1,5 +1,5 @@
 PRS8HD ;HISC/MGD-DECOMPOSITION, DETERMINE HOLIDAYS ;12/17/2008
- ;;4.0;PAID;**4,33,72,88,94,98,113,118,122,123**;Sep 21, 1995;Build 1
+ ;;4.0;PAID;**4,33,72,88,94,98,113,118,122,123,139**;Sep 21, 1995;Build 5
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;This routine is used to determine legal holidays.  One calls
@@ -161,6 +161,7 @@ EHOL ;
  ;;3070102^President Ford Funeral^TUESDAY^PRS*4*113
  ;;3071224^Extra Christmas Day^MONDAY^PRS*4*118
  ;;3081226^Extra Christmas Day^FRIDAY^PRS*4*122
+ ;;3121224^Extra Christmas Day^MONDAY^PRS*4*139
  ;
  ;---------------------------------------------------------------------
  ;New Section Added for Extra Non-Recurring Holidays (holiday code E)

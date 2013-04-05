@@ -1,5 +1,5 @@
 DDGF4 ;SFISC/MKO-ACTIONS AFTER BLOCK SELECTION ;02:49 PM  12 Oct 1994
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;Input:
  ;  B     = Block number

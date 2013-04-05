@@ -1,5 +1,5 @@
-EDPFPTL ;SLC/KCM - Select Patient at Facility
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPFPTL ;SLC/KCM - Select Patient at Facility ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 MATCH(MATCH) ; return XML of matching patients
  S MATCH=$$UP^XLFSTR(MATCH)

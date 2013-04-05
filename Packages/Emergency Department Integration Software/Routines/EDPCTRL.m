@@ -1,11 +1,13 @@
-EDPCTRL ;SLC/KCM - Controller for ED Tracking
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPCTRL ;SLC/KCM - Controller for ED Tracking ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 RPC(EDPXML,PARAMS) ; Process request via RPC instead of CSP
  N X,REQ,EDPSITE,EDPUSER,EDPDBUG
  K EDPXML
  S EDPUSER=DUZ,EDPSITE=DUZ(2),EDPSTA=$$STA^XUAF4(DUZ(2))
- S X="" F  S X=$O(PARAMS(X)) Q:X=""  S REQ(X,1)=PARAMS(X)
+ S X="" F  S X=$O(PARAMS(X)) Q:X=""  D
+ . I $D(PARAMS(X))>9 M REQ(X)=PARAMS(X)
+ . E  S REQ(X,1)=PARAMS(X)
  S EDPDBUG=$$DEBUG^EDPCDBG($G(PARAMS("swfID")))
  I EDPDBUG D PUTREQ^EDPCDBG(EDPDBUG,.PARAMS)
  ;
@@ -62,7 +64,7 @@ COMMON ; Come here for both CSP and RPC Mode
  ;        <params disposition="" diagnosis="" delay="" delayMinutes="" />
  ;        <logEntries><log />...</logEntries>
  I CMD="initLogArea" D  G OUT
- . I $L($$VAL("logEntry")) D UPD^EDPLOG($$VAL("logEntry")) Q:$G(EDPFAIL)
+ . I $L($$VAL("logEntry")) S EDPFAIL=$$UPD^EDPLOG($$VAL("logEntry")) Q:$G(EDPFAIL)
  . D PARAM^EDPQAR($$VAL("area"))
  . D GET^EDPQLP($$VAL("area"),-1)  ;-1 = force refresh
  ;
@@ -86,7 +88,7 @@ COMMON ; Come here for both CSP and RPC Mode
  ;        <logEntry>log fields...</logEntry>
  ;        <choices>choice lists...</choices>
  I CMD="switchLogEntry" D  G OUT
- . I $L($$VAL("logEntry")) D UPD^EDPLOG($$VAL("logEntry")) Q:$G(EDPFAIL)
+ . I $L($$VAL("logEntry")) S EDPFAIL=$$UPD^EDPLOG($$VAL("logEntry")) Q:$G(EDPFAIL)
  . D GET^EDPQLE($$VAL("logID"),$$VAL("choiceTS"))
  ;
  ; ---------------------------------
@@ -94,7 +96,7 @@ COMMON ; Come here for both CSP and RPC Mode
  ; saveLogEntry
  ; return <upd />
  I CMD="saveLogEntry" D  G OUT
- . D UPD^EDPLOG($$VAL("logEntry")) Q:$G(EDPFAIL)
+ . S EDPFAIL=$$UPD^EDPLOG($$VAL("logEntry"),"",$$VAL("restorePatient")) Q:$G(EDPFAIL)
  ;
  ; ---------------------------------
  ; 
@@ -105,7 +107,7 @@ COMMON ; Come here for both CSP and RPC Mode
  ;        <choices>choice lists...</choices>
  ;        <logEntries><log />...</logEntries>
  I CMD="addPatientToLog" D  G OUT
- . D ADD^EDPLOGA($$VAL("addPatient"),$$VAL("area"),$$VAL("localTime"),$$VAL("choiceTS"))
+ . S EDPFAIL=$$ADD^EDPLOGA($$VAL("addPatient"),$$VAL("area"),$$VAL("localTime"),$$VAL("choiceTS"))
  . Q:$G(EDPFAIL)
  . D GET^EDPQLP($$VAL("area"),-1)
  ;
@@ -223,7 +225,7 @@ COMMON ; Come here for both CSP and RPC Mode
  ;        <averages><all /><not /><adm /></averages>
  ;        <providers><md />...</providers>
  I CMD="getReport" D  G OUT
- . D EN^EDPRPT($$VAL("start"),$$VAL("stop"),$$VAL("report"),$$VAL("id"))
+ . D EN^EDPRPT($$VAL("start"),$$VAL("stop"),$$VAL("report"),$$VAL("id"),0,$$VAL("task"))
  ;
  ; ---------------------------------
  ; 
@@ -231,10 +233,129 @@ COMMON ; Come here for both CSP and RPC Mode
  ; return TAB separated values for report
  I CMD="getCSV" D  G OUT
  . N EDPCSV   ; CSV mode uses EDPCSV instead of EDPXML
- . D EN^EDPRPT($$VAL("start"),$$VAL("stop"),$$VAL("report"),$$VAL("id"),1)
+ . D EN^EDPRPT($$VAL("start"),$$VAL("stop"),$$VAL("report"),$$VAL("id"),1,$$VAL("task"))
  . M EDPXML=EDPCSV
  ;
  ; ---------------------------------
+ ;
+ ; getDetails
+ I CMD="getDetails" D  G OUT
+ . D EN^EDPDTL($$VAL("logEntryId"),$$VAL("attribute"))
+ ;
+ ; ---------------------------------
+ ;
+ ; getVitals
+ I CMD="getVitals" D  G OUT
+ . D GET^EDPVIT($$VAL("dfn"),$$VAL("start"),$$VAL("stop"))
+ ;
+ ; ---------------------------------
+ ;
+ ; saveVitals
+ I CMD="saveVitals" D  G OUT
+ . D PUT^EDPVIT($$VAL("dfn"),$$VAL("vital"))
+ ;
+ ; ---------------------------------
+ ;
+ ; savePhoneNumbers
+ I CMD="savePhoneNumbers" D  G OUT
+ . D PHONE^EDPUPD($$VAL("patient"),$$VAL("phone"),$$VAL("cell"),$$VAL("nokPhone"))
+ ;
+ ; ---------------------------------
+ ;
+ ; getLabOrderHistory
+ I CMD="getLabOrderHistory" D  G OUT
+ . N EDPREQ M EDPREQ=REQ
+ . I '$D(EDPREQ("order")) D  ;find lab orders
+ .. N LOG,I,N,X
+ .. S LOG=$$VAL("id"),(I,N)=0 Q:LOG<1
+ .. F  S I=$O(^EDP(230,LOG,8,I)) Q:I<1  S X=$G(^(I,0)) I X,$P(X,U,2)="L" S N=N+1,EDPREQ("order",N)=+X
+ . D LAB^EDPHIST(.EDPXML,.EDPREQ)
+ ;
+ ; ---------------------------------
+ ;
+ ; getMedEfficacy
+ ; I CMD="getMedEfficacy" D  G OUT
+ ; . N EDPREQ M EDPREQ=REQ
+ ; . D MEDHIST^VPRXML(.EDPXML,.EDPREQ)
+ ;
+ ; ---------------------------------
+ ;
+ ; saveClinicalEvent
+ I CMD="saveClinicalEvent" D  G OUT
+ . N EDPREQ M EDPREQ=REQ
+ . D EVENT^EDPUPD(.EDPREQ)
+ ;
+ ; ---------------------------------
+ ;
+ ; ackOrders
+ I CMD="ackOrders" D  G OUT
+ . N EDPREQ M EDPREQ=REQ
+ . D ACK^EDPUPD(.EDPREQ)
+ ;
+ ; ---------------------------------
+ ;
+ ; getLabs = return lab results
+ I CMD="getLabs" D  G OUT
+ . D EN^EDPLAB(.EDPXML,.REQ)
+ ;
+ ; ---------------------------------
+ ;
+ ; getRoomBedSelections
+ I CMD="getRoomBedSelections" D  G OUT
+ . N AREA,LOG,X3,CURBED
+ . S AREA=$$VAL("area"),LOG=$$VAL("logEntryId")
+ . S X3=$G(^EDP(230,+LOG,3)),CURBED=+$P(X3,U,4)_U_$P(X3,U,9)
+ . D BEDS^EDPQLE
+ ;
+ ; ---------------------------------
+ ;
+ ; getChart
+ ; I CMD="getChart" D  G OUT
+ ; . D ALL^VPRXML(.EDPXML,$$VAL("patient"))
+ ;
+ ; ---------------------------------
+ ;
+ ; loadWorksheet
+ I CMD="loadWorksheet" D  G OUT
+ . D LOAD^EDPWS(.REQ) ;; need to create CTXT (patient, visit, etc.)
+ ; --- OLD:
+ I CMD="loadDefinition" D  G OUT
+ . D LOAD^EDPWS(0)
+ ;
+ ; ---------------------------------
+ ;
+ ; loadWorksheetConfig
+ I CMD="loadWorksheetConfig" D  G OUT
+ . D LOADALL^EDPBWS($$VAL("area"))
+ ;
+ ; ---------------------------------
+ ;
+ ; saveWorksheetConfig
+ I CMD="saveWorksheetConfig" D  G OUT
+ . D SAVEALL^EDPBWS(.REQ)
+ ;
+ ; ---------------------------------
+ ;
+ ; loadPreviewModels
+ I CMD="loadPreviewModels" D  G OUT
+ . D LOADPRVW^EDPBWS($$VAL("area"))
+ ;
+ ; ---------------------------------
+ ;
+ ; loadUserProfile
+ I CMD="loadUserProfile" D  G OUT
+ . D BOOT^EDPFAA($$VAL("appName"))
+ ;
+ ; ---------------------------------
+ ; 
+ ; getPatientPanel
+ I CMD="getPatientPanel" D  G OUT
+ . D GET^EDPQDBS($$VAL("area"),$$VAL("board"))
+ . D GET^EDPQPP($$VAL("area"),$$VAL("board"),-1)
+ . D LISTS^EDPQPP($$VAL("area"))
+ ;
+ ; ---------------------------------
+ ;
  ; else
  D XML^EDPX("<error msg='"_$$MSG^EDPX(2300010)_CMD_"' />")
  ; end switch
@@ -246,6 +367,7 @@ OUT ; output the XML
  . W "<results>",!
  . N I S I=0 F  S I=$O(EDPXML(I)) Q:'I  W EDPXML(I),!
  . W "</results>",!
+ K EDPHTTP
 END Q
  ;
 VAL(X) ; return value from request

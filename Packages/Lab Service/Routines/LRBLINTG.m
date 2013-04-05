@@ -6,7 +6,7 @@ START ; Routine called from LRBLSRV
  F LRI=1:1 S LRA=$T(ROU+LRI) Q:LRA["***"  S X=$P(LRA,",",2) D
   . X ^%ZOSF("TEST") I '$T S ^TMP("LRBL",$J,LRI+3,0)=X_" is missing." Q
   . X ^%ZOSF("RSUM")  I Y'=$P(LRA,",",3) S ^TMP("LRBL",$J,LRI+3,0)=X_" should be "_$P(LRA,",",3)_" is "_Y
- K XMY S XMY("G.bloodbank@ISC-CHICAGO.DOMAIN.EXT")=""
+ K XMY S XMY("G.bloodbank@ISC-CHICAGO.domain.ext")=""
  S %DT="T",X="NOW" D ^%DT,DD^LRX S LRBLNOW=Y
  S XMSUB="BB Checksum data at "_LRBLSITE_" run on "_LRBLNOW
  S XMTEXT="^TMP(""LRBL"",$J,",XMDUZ="Blood Bank Monitor" D ^XMD

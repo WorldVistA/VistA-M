@@ -1,5 +1,5 @@
 DIWE4 ;SFISC/GFT-WP - ROUGH DRAFT, BREAK, JOIN ;10/28/96  15:00
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  W " to Line: "_DWLC_"// " R DW2:DTIME S:'$T DW2=U,DTOUT=1 S:DW2="" DW2=DWLC Q:DW2>DWLC!(DW2<X)  S DW2=+DW2
  S:$D(DV)[0 DV=0 S %=2 W !,"WANT LINE NUMBERS" D YN^DICN Q:%<1  S I=%,J=0

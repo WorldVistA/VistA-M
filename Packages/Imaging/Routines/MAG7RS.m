@@ -1,5 +1,6 @@
-MAG7RS ;WOIFO/PMK,MLH - copy radiology message from HLSDATA to ^MAGDHL7 - add segment data ; 30 Jun 2004  4:32 PM
- ;;3.0;IMAGING;**11,40,30**;16-September-2004
+MAG7RS ;WOIFO/PMK,MLH,SAF - copy radiology message from HLSDATA to ^MAGDHL7 - add segment data ; 30 Jun 2004  4:32 PM
+ ;;3.0;IMAGING;**11,40,30,123**;Mar 19, 2002;Build 67;Jul 24, 2012
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -7,7 +8,6 @@ MAG7RS ;WOIFO/PMK,MLH - copy radiology message from HLSDATA to ^MAGDHL7 - add se
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -23,6 +23,7 @@ PIDADD ; SUBROUTINE - called by ADDDTA^MAGDHL7
  N DIQUIET ; -------------- FileMan verbose/silent variable
  N IXPID ; ---------------- index to PID segment in MAG7WRK array
  N VADM,VAPA ; ------------ VADPT return arrays
+ N STATNUMB ; ------------- STATION NUMBER of primary site
  ;
  ; ====================================================
  ; Get patient DFN and retrieve demo data.
@@ -36,6 +37,24 @@ PIDADD ; SUBROUTINE - called by ADDDTA^MAGDHL7
  I '$G(VAERR),VADM(3)]"" D
  . S MAG7WRK(IXPID,7,1,1,1)=$P(VADM(3),"^")+17000000 ; DOB
  . Q
+ I $$ISIHS^MAGSPID() D
+ . S STATNUMB=$P($$SITE^VASITE(),"^",3)
+ . S MAG7WRK(IXPID,2,1,1,1)=STATNUMB_"-"_DFN
+ . S MAG7WRK(IXPID,2,1,2,1)=""
+ . S MAG7WRK(IXPID,2,1,3,1)=""
+ . S MAG7WRK(IXPID,2,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA")
+ . S MAG7WRK(IXPID,2,1,5,1)="PI"
+ . ;
+ . K MAG7WRK(IXPID,3)
+ . S MAG7WRK(IXPID,3)=VA("PID")_"^^^USIHS^MR"
+ . S MAG7WRK(IXPID,3,1,1,1)=VA("PID")
+ . S MAG7WRK(IXPID,3,1,1)=VA("PID")
+ . S MAG7WRK(IXPID,3,1,1,1)=VA("PID")
+ . S MAG7WRK(IXPID,3,1,4)="USIHS"
+ . S MAG7WRK(IXPID,3,1,4,1)="USIHS"
+ . S MAG7WRK(IXPID,3,1,5)="MR"
+ . S MAG7WRK(IXPID,3,1,5,1)="MR"
+ . Q 
  ;
  ; ================================================
  ; load address information into HL7 PID segment

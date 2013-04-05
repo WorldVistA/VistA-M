@@ -1,31 +1,37 @@
-LA7VHL ;DALOI/DLR - Main Driver for incoming HL7 V1.6 messages ; Jan 12, 2005
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,62,64,67**;Sep 27, 1994
+LA7VHL ;DALOI/DLR - Main Driver for incoming HL7 V1.6 messages ;11/17/11  09:19
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,62,64,67,74**;Sep 27, 1994;Build 229
+ ;
  ; This routine is not meant to be invoked by name
  ;
  QUIT
  ;
- ; This routine is called by the HL7 package V1.6 to process
- ; incoming HL7 messages.  Expected variables are those
- ; documented in the HL7 package documentation.  The line
- ; tag is called if it is entered into the PROCESSING ROUTINE
- ; field for the server protocol.
+ ; This routine is called by the HL v1.6 package to process incoming HL7 messages.  Expected variables are those documented in the HL7 package documentation.
+ ; The line tag is called if it is entered into the PROCESSING ROUTINE field for the server protocol.
  ;
 ORR ; Process incoming ORR messages
 ACK ; Process incoming ACK messages
 ORM ; Process incoming ORM messages
 ORU ; Process incoming ORU messages
  ;
- N HLA,HLL,HLP,X,Y
- N LA76248,LA76249,LA7AAT,LA7AERR,LA7CS,LA7DT,LA7ECH,LA7FS,LA7HLS,LA7HLSA,LA7INTYP,LA7MEDT,LA7MTYP,LA7RAP,LA7PRID,LA7RSITE,LA7SAP,LA7SEQ,LA7SSITE,LA7TYPE,LA7VER,LA7VI,LA7VJ,LA7X
+ N DIQUIET,HLA,HLL,HLP,X,Y
+ N LA76248,LA76249,LA7AAT,LA7AERR,LA7CS,LA7DT,LA7ECH,LA7FS,LA7HLS,LA7HLSA,LA7INTYP,LA7MEDT,LA7MTYP,LA7RAP,LA7PRID,LA7RSITE,LA7SAP,LA7SEQ,LA7SSITE,LA7STYP,LA7TYPE,LA7VER,LA7VI,LA7VJ,LA7X,LRQUIET
  ;
- S DT=$$DT^XLFDT
- S (LA76248,LA76249,LA7INTYP,LA7SEQ)=0
+ ; Prevent FileMan from issuing any unwanted WRITE(s).
+ S (DIQUIET,LRQUIET)=1
+ ; Insure DT and DILOCKTM is defined
+ D DT^DICRW
+ ;
+ S (LA76248,LA76249,LA7INTYP,LA7SEQ)=0,LA7AERR=""
  ;
  K ^TMP("HLA",$J)
  ;
  ; Setup DUZ array to 'non-human' user LRLAB,HL
  ; If user not found - send alert to G.LAB MESSAGING
- S LA7X=$$FIND1^DIC(200,"","OX","LRLAB,HL","B","")
+ S LA7X=$P($G(^XTMP("LA7 PROXY","LRLAB,HL")),"^")
+ I LA7X<1 D
+ . S LA7X=$$FIND1^DIC(200,"","OQUX","LRLAB,HL","B","")
+ . S ^XTMP("LA7 PROXY",0)=DT_"^"_DT_"^LAB HL7 PROXY USERS"
+ . I LA7X>0 S ^XTMP("LA7 PROXY","LRLAB,HL")=LA7X
  I LA7X<1 D  Q
  . N MSG
  . S MSG="Lab Messaging - Unable to identify user 'LRLAB,HL' in NEW PERSON file"
@@ -38,13 +44,16 @@ ORU ; Process incoming ORU messages
  ;
  ; Move message from HL7 global to Lab global
  F LA7VI=1:1 X HLNEXT Q:HLQUIT'>0  D
- . K LA7SEG
+ . K LA7SEG,LA7STYP
  . I HLNODE="" Q
- . S LA7SEG(0)=HLNODE
+ . S LA7SEG(0)=HLNODE,LA7STYP=$E(LA7SEG(0),1,3)
+ . I LA7STYP'?2U1UN D
+ . . S LA7ERR=34,LA7AERR=$$CREATE^LA7LOG(LA7ERR,1)
+ . . D REJECT($P(LA7AERR,"^",2))
  . S LA7VJ=0
  . F  S LA7VJ=$O(HLNODE(LA7VJ)) Q:'LA7VJ  S LA7SEG(LA7VJ)=HLNODE(LA7VJ)
- . I $E(LA7SEG(0),1,3)="MSH" D MSH
- . I LA7SEQ<1 D REJECT("no MSH segment found") Q
+ . I LA7STYP="MSH" D MSH
+ . I LA7AERR="",LA7SEQ<1 D REJECT("no MSH segment found") Q
  . D FILE6249^LA7VHLU(LA76249,.LA7SEG)
  ;
  ; Update entry in 62.49
@@ -73,14 +82,16 @@ ORU ; Process incoming ORU messages
  ; Other system only wants ACK on error/reject condition
  I $G(LA7AERR)="",$G(LA7AAT(1))="ER" Q
  ;
- ; If POC interface and no error then quit - send application ack after
- ; processing message.
+ ; If POC interface and no error then quit - send application ack after processing message.
  I $G(LA7AERR)="",LA7INTYP>19,LA7INTYP<30 S X=$$DONTPURG^HLUTIL() Q
+ ;
+ ; If LEDI interface and ORM message and no error then quit - send application ack after processing message.
+ I $G(LA7AERR)="",LA7INTYP=10,$G(LA7MTYP)="ORM" S X=$$DONTPURG^HLUTIL() Q
  ;
  ; If POC interface and error then setup HLL array
  I LA7INTYP>19,LA7INTYP<30 D
  . S HLL("SET FOR APP ACK")=1
- . S HLL("LINKS",1)=HL("EIDS")_"^"_$P(LA76248(0),"^")
+ . S HLL("LINKS",1)=HL("EIDS")_"^"_$S($G(LA76248):$P(LA76248(0),"^"),1:$G(LA7SAP))
  ;
  ; HL7 returns this as ACK if no errors found
  I $G(LA7AERR)="" S HLA("HLA",1)="MSA"_LA7HLS("RFS")_"AA"_LA7HLS("RFS")_HL("MID")
@@ -137,6 +148,8 @@ MSH ;;MSH
  I 'LA76248 D  Q
  . D CREATE^LA7LOG(1)
  . D REJECT("no config in 62.48")
+ ;
+ S LA76248(0)=$G(^LAHM(62.48,LA76248,0))
  ;
  ; Determine interface type
  S LA7INTYP=+$P(^LAHM(62.48,LA76248,0),"^",9)

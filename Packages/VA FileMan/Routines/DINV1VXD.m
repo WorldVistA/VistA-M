@@ -1,5 +1,5 @@
 ZOSV1VXD ;SFISC/AC - View commands & special functions(continued). ;1:05 PM  30 Sep 1998
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 DEVOPN ;List devices opened.
  N %,%B,%I,%L,%X,%X1,%X2,%Y

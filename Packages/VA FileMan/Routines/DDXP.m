@@ -1,5 +1,5 @@
 DDXP ;SFISC/DPC-EXPORT MENU DRIVER ;12:09 PM  16 Jun 1999
- ;;22.0;VA FileMan;**9**;Mar 30, 1999
+ ;;22.0;VA FileMan;**9**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 NOKL ;
  I ($G(^DIC(.44,0,"GL"))'="^DIST(.44,")!($G(^DIC(.81,0,"GL"))'="^DI(.81,") W !!,$C(7),"SORRY. You cannot use the Data Export options",!,"because you do not have the necessary files on your system." G Q^DII1

@@ -1,5 +1,5 @@
-XQALSUR2 ;FO-OAK.SEA/JLI-Continuation of alert surrogate processing ;07/24/11  15:15
- ;;8.0;KERNEL;**366,513**;Jul 10, 1995;Build 13
+XQALSUR2 ;FO-OAK.SEA/JLI-Continuation of alert surrogate processing ;07/12/12  11:30
+ ;;8.0;KERNEL;**366,513,602**;Jul 10, 1995;Build 9
  ;Per VHA Directive 2004-038, this routine should not be modified
  Q
  ; added to handle adjustment for manual or Fileman editing of surrogate on top zero node
@@ -33,3 +33,13 @@ CHKCRIT(ZERONODE) ;EXTRINSIC - check for critical indication for alert
  . S ALERTTXT=$$UP^XLFSTR($P(ZERONODE,U,3))
  . I ALERTTXT[CRITTEXT,ALERTTXT'["NOT "_CRITTEXT S RESULT=1
  Q RESULT
+CLEANUP(XQAUSER) ;SR. - clean up expired surrogate info
+ N XQAI,XQANOW,XQASUR
+ S XQANOW=$$NOW^XLFDT()
+ I $P($G(^XTV(8992,XQAUSER,2,0)),U,2)>0 D
+ . S XQAI=0 F  S XQAI=$O(^XTV(8992,XQAUSER,2,XQAI)) Q:XQAI'>0  D
+ . . S XQASUR=$G(^XTV(8992,XQAUSER,2,XQAI,0))
+ . . I ($P(XQASUR,U)<XQANOW)&($P(XQASUR,U,4)'=1)&($P(XQASUR,U,3)<XQANOW)&($P(XQASUR,U,3)>0) D
+ . . . N XQAIEN S XQAIEN=XQAI_","_XQAUSER_","
+ . . . N XQAFDA S XQAFDA(8992.02,XQAIEN,.01)="@" D FILE^DIE("","XQAFDA")
+ Q

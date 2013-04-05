@@ -1,5 +1,5 @@
 KMPDSSD ;OAK/RAK - CM Tools Status ;2/14/05  11:42
- ;;2.0;CAPACITY MANAGEMENT TOOLS;**3**;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 FORMAT(KMPDLN) ;-format text for display
  ;-----------------------------------------------------------------------------
@@ -185,7 +185,7 @@ OPT(KMPDOPT) ;-- option data
  S STATUS=$$TSKSTAT^KMPDUTL1(KMPDOPT)
  ;
  ; option not in system
- Q:(+STATUS)=3
+ ;Q:(+STATUS)=3
  ;
  S OPTEXT=""
  S:KMPDOPT="KMPD BACKGROUND DRIVER" OPTEXT="CM Tools Background Driver"
@@ -195,37 +195,27 @@ OPT(KMPDOPT) ;-- option data
  ; if background option is missing
  I (+STATUS)=3 D  Q
  .S LN=LN+1
- .D SET^VALM10(LN,"   The "_OPTEXT_" option [KMPD BACKGROUND DRIVER] is missing!")
+ .D SET^VALM10(LN,"   The "_OPTEXT_" option ["_KMPDOPT_" is missing!")
  ;
  ; background option is present
  ;
  ; if cm tools and not scheduled or no task id
- I KMPDOPT="KMPD BACKGROUND DRIVER"&(+(STATUS)=3) D  Q:'Y
- .K DIR S DIR(0)="YO",DIR("B")="YES"
- .S DIR("A")="Do you want to queue this option to run each night at 1:30am"
- .W ! D ^DIR I 'Y D  Q
- ..S LN=LN+1
- ..D SET^VALM10(LN,"   The "_OPTEXT_" ["_KMPDOPT_"] is not scheduled")
- ..S LN=LN+1
- ..D SET^VALM10(LN,"   to run!"),SET^VALM10(LN,"")
- .D QUEBKG^KMPDUTL("KMPD BACKGROUND DRIVER","T+1@0130","1D",0)
+ I KMPDOPT="KMPD BACKGROUND DRIVER"&(+(STATUS)=3) D 
+ .D SET^VALM10(LN,"   The "_OPTEXT_" ["_KMPDOPT_"] is not scheduled")
+ .S LN=LN+1
+ .D SET^VALM10(LN,"   to run!"),SET^VALM10(LN,"")
  ;
  ; if not scheduled or no task id
- I KMPDOPT="KMPR BACKGROUND DRIVER"&(+(STATUS)=3) D   Q:'Y
- .K DIR S DIR(0)="YO",DIR("B")="YES"
- .S DIR("A")="Do you want to queue this option to run each night at 1am"
- .W ! D ^DIR I 'Y D  Q
- .. S LN=LN+1
- ..D SET^VALM10(LN,"   The "_OPTEXT_" ["_KMPDOPT_"] is not scheduled")
- ..S LN=LN+1
- ..D SET^VALM10(LN,"   to run!"),SET^VALM10(LN,"")
- .D QUEBKG^KMPRUTL1
+ I KMPDOPT="KMPR BACKGROUND DRIVER"&(+(STATUS)=3) D 
+ .D SET^VALM10(LN,"   The "_OPTEXT_" ["_KMPDOPT_"] is not scheduled")
+ .S LN=LN+1
+ .D SET^VALM10(LN,"   to run!"),SET^VALM10(LN,"")
  ;
  ; check status again in case it has been requeued
  S STATUS=$$TSKSTAT^KMPDUTL1(KMPDOPT)
  ;
  ; not scheduled
- I (+STATUS)=1 S LN=LN+1 D SET^VALM10(LN,"   The "_OPTEXT_" [KMPD BACKGROUND DRIVER] is not scheduled") Q
+ I (+STATUS)=1 S LN=LN+1 D SET^VALM10(LN,"   The "_OPTEXT_" ["_KMPDOPT_"] is not scheduled") Q
  ;
  S TEXT="   "_OPTEXT
  S TEXT=TEXT_$$REPEAT^XLFSTR(".",31-$L(TEXT))
@@ -254,7 +244,7 @@ OPT(KMPDOPT) ;-- option data
  S LN=LN+1
  D SET^VALM10(LN,TEXT)
  ; if user is not active
- I $P(STATUS,U,9)="NOT ACTIVE" D 
+ I KMPDOPT="KMPS SAGG REPORT" I $P(STATUS,U,9)="NOT ACTIVE" D 
  .S LN=LN+1
  .D SET^VALM10(LN,"                                ***The user that originally queued this task is no ")
  .S LN=LN+1

@@ -1,5 +1,5 @@
 FBPCR ;AISC/DMK,GRR,TET-POTENTIAL COST RECOVERY OUTPUT DRIVER ;23 May 2006  10:06 AM
- ;;3.5;FEE BASIS;**12,48,76,98,103**;JAN 30, 1995;Build 19
+ ;;3.5;FEE BASIS;**12,48,76,98,103,135**;JAN 30, 1995;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; DBIA SUPPORTED REF $$NPI^XUSNPI = 4532
 DOC ;Refer to fbdoc, tag fbpcr, for documentation of fbpcr* routines
@@ -40,6 +40,8 @@ ARRAY ;set fee program array for all programs
  . I $G(DIRUT) S FBINCUNK=-1 Q
  . I $G(Y)=0 S FBINCUNK=0
  I FBINCUNK=-1 G EXIT ;uparrow - exit
+ N FBINEXCL  ; FB*3.5*135
+ D EXCLINS  ;select insurances to be excluded ; FB*3.5*135
  ;
 DATE ;select date range
  D DATE^FBAAUTL I FBPOP G PSF
@@ -67,6 +69,17 @@ OUT I $G(^TMP($J,"FBINSIBAPI"))>0 D ERRHDL^FBPCR4
  I FBOUT!$D(ZTQUEUED) G EXIT
  D EXIT G PSF
  Q
+ ;
+EXCLINS ;create list of insurance type to be excluded ; FB*3.5*135
+ N Y,X,DIC,DTOUT,DUOUT,DIR,DIRUT,DIROUT
+ K FBINEXCL S FBINEXCL=0,X=1
+ W !!!,"Select the TYPE of INSURANCE PLANS to be EXCLUDED from the PCR report:"
+ F  Q:$G(X)=""  S DIC="^IBE(355.1,",DIC(0)="QEAFIBS",DIC("S")="I '$P($G(^(0)),U,4)" K X,Y D ^DIC I $G(Y)>0 S FBINEXCL(+Y)=$P(Y,U,2),FBINEXCL("INS",$P(Y,U,2))=+Y
+ S FBINEXCL="A",X=0 F  S FBINEXCL=$O(FBINEXCL("INS",FBINEXCL)) Q:FBINEXCL=""  W:'X !!,"Type of Plan selected for EXCLUSION: " S X=1 W ?41,FBINEXCL,!
+ I $O(FBINEXCL(0)) K X,Y S DIR(0)="Y",DIR("B")="NO",DIR("A")="Recreate Exclusion List" D ^DIR I Y D EXCLINS
+ K FBINEXCL("INS")
+ Q
+ ;
 EXIT ;kill and quit
 KILL ;kill all variables set in the FBPCR* routines, other than fbx
  D CLOSE^FBAAUTL K ^TMP($J,"FB")
@@ -88,11 +101,11 @@ WMSG ;write message if no matches found
 CATC(DFN,FBDT,FBPOV) ;
  ;treats all copays as Means test for date < 3020705 (JULY 5,2002)
  ;check if patient is liable for copay
- ;INPUT:  
+ ;INPUT:
  ; DFN = IEN of Patient file
  ; FBDT= Date
  ; FBPOV = POV code (for LTC determination)
- ;OUTPUT:  
+ ;OUTPUT:
  ;0 - the patient is not liable for any co-pay;
  ;1 - if Means test catc or pending adjudication and agree to pay deduc
  ;2 - the patient is liable for LTC co-pay;

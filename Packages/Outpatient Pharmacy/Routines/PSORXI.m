@@ -1,5 +1,5 @@
 PSORXI ;IHS/DSD/JCM - logs pharmacy interventions ;03/19/93 11:56
- ;;7.0;OUTPATIENT PHARMACY;**268,324,251,387**;DEC 1997;Build 13
+ ;;7.0;OUTPATIENT PHARMACY;**268,324,251,387,390,417**;DEC 1997;Build 7
  ;External reference to ^APSPQA(32.4 supported by DBIA 2179
  ; This routine is used to create entries in the APSP INTERVENTION file.
 START ;  
@@ -18,7 +18,7 @@ DIC ;
  S DIC("DR")=".02////"_+PSODFN_";.04////"_DUZ_";.05////"_PSODRUG("IEN")_";.06///PHARMACY"
  S DIC("DR")=DIC("DR")_";.07"_$S($G(PSOIVDSN):"////"_$G(PSOIVDSN),$G(PSORX("INTERVENE"))=1:"////18",$G(PSORX("INTERVENE"))=2:"////19",1:"////6")_";.14////0"_";.16////"_$S($G(PSOSITE)]"":PSOSITE,1:"")
  D FILE^DICN K DIC,DR,DA
- I Y>0 S PSORXI("DA")=+Y
+ I Y>0 S PSORXI("DA")=+Y S:$G(PSODAL) PSODAL("DA")=+Y
  E  S PSORXI("QFLG")=1 G DICX
  D DIE
 DICX K X,Y

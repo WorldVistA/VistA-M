@@ -1,5 +1,5 @@
 PSJOC ;BIR/MV - NEW ORDER CHECKS DRIVER ;6 Jun 07 / 3:37 PM
- ;;5.0; INPATIENT MEDICATIONS ;**181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS ;**181,260**;16 DEC 97;Build 94
  ;
  ; Reference to ^PSODDPR4 is supported by DBIA# 5366.
  ; Reference to ^PSSHRQ2 is supported by DBIA# 5369.
@@ -15,6 +15,7 @@ OC(PSPDRG,PSJPTYP) ;
  ;Quit OC if FDB link is down.  PSGORQF is defined if user wish to stop the order process
  I $$SYS^PSJOCERR() Q
  ;
+ I $D(PSJDGCK) W !!,"Building MEDS profile please wait...",!
  D BLD^PSODDPR4(DFN,"PSJPRE",.PSPDRG,PSJPTYP)
  D DISPLAY
  K ^TMP($J,"PSJPRE")
@@ -28,13 +29,16 @@ DISPLAY ;
  ; If there are no OC or errors to display, this var will trigger a pause before continue /w the order
  S PSJPAUSE=1
  D DRUGERR
+ I $D(PSJDGCK) W:'$D(^TMP($J,"PSJPRE","OUT","DRUGDRUG"))&'$D(^TMP($J,"PSJPRE","OUT","THERAPY",1)) !,"No Order Check Warnings Found",!
  ;Process drug interaction & drug interception
  D DI^PSJOCDI
  Q:$G(PSGORQF)
  D DSPERR^PSJOCERR("DRUGDRUG")
  ;Process duplicate therapy order checks
- D DT^PSJOCDT
+ D:'$D(PSJDGCK) DT^PSJOCDT
+ I $D(PSJDGCK) D:$D(^TMP($J,"PSJPRE","OUT","THERAPY")) DTDGCK^PSJOCDT
  D:'$G(PSGORQF) DSPERR^PSJOCERR("THERAPY")
+ I $D(PSJDGCK),'$D(^TMP($J,"PSJPRE","OUT","THERAPY")) D PAUSE^PSJLMUT1 Q  ;DX action
  Q:$G(PSGORQF)
  D:$G(PSJPAUSE) PAUSE^PSJLMUT1
  Q
@@ -47,15 +51,26 @@ ALLERGY ;Do allergy order check
  ;The allergy check will be processed for each of the dispense drug stores in the PSJALLGY array
  ;PSJALLGY(X)="" Where X is the disp drug IEN.  PSJALLGY array store all dispense drugs use in an order
  ;
- NEW PSJDD
- F PSJDD=0:0 S PSJDD=$O(PSJALLGY(PSJDD)) Q:'PSJDD  D EN^PSJGMRA(DFN,PSJDD)
+ I '$D(PSJDGCK) D
+ .NEW PSJDD
+ .F PSJDD=0:0 S PSJDD=$O(PSJALLGY(PSJDD)) Q:'PSJDD  D EN^PSJGMRA(DFN,PSJDD)
+ I $D(PSJDGCK) D
+ .S PSJXX="" S PSJYY=1
+ .F  S PSJXX=$O(^TMP($J,"PSJPRE","IN","PROSPECTIVE",PSJXX)) Q:PSJXX=""  D
+ ..S PSJALLGY(PSJYY,$P(^TMP($J,"PSJPRE","IN","PROSPECTIVE",PSJXX),U,3))=""
+ ..S PSJYY=PSJYY+1
+ .F PSJDD=0:0 S PSJDD=$O(PSJALLGY(PSJDD)) Q:'PSJDD  F PSJCC=0:0 S PSJCC=$O(PSJALLGY(PSJDD,PSJCC)) Q:'PSJCC  D EN^PSJGMRA(DFN,PSJCC)
+ K PSJXX,PSJYY,PSJDD,PSJCC,PSJALLGY
  Q
-DSPORD(ON,PSJNLST) ;Display the order data
+DSPORD(ON,PSJNLST,PSJCLINF) ;Display the order data
  ;ON - ON_U/V/P ex: 21V
  ;PSJNLST - It's number list and also use to trigger pg break, line break
  NEW PSJCOL,PSJX,PSJOC,PSJLINE,X
  Q:ON=""
+ S:'$D(PSJCLINF) PSJCLINF=";0"
  S PSJLINE=1,PSJCOL=1
+ I $P(PSJCLINF,";",2) D CLNDISP^PSJCLNOC(.PSJCLINF) D  Q
+ .I $G(PSJNLST)="",(($Y+6)>IOSL) D PAUSE^PSJLMUT1 W @IOF
  I ON'["V" D DSPLORDU^PSJLMUT1(DFN,ON)
  I ON["V" D DSPLORDV^PSJLMUT1(DFN,ON)
  F PSJX=0:0 S PSJX=$O(PSJOC(ON,PSJX)) Q:'PSJX  D

@@ -1,5 +1,5 @@
-ECXUTL5 ;ALB/JRC - Utilities for DSS Extracts ; 10/17/07 3:49pm
- ;;3.0;DSS EXTRACTS;**71,84,92,103,105,120**;Dec 22, 1997;Build 43
+ECXUTL5 ;ALB/JRC - Utilities for DSS Extracts ;5/17/12  15:52
+ ;;3.0;DSS EXTRACTS;**71,84,92,103,105,120,136**;Dec 22, 1997;Build 28
  ;
 REPEAT(CHAR,TIMES) ;REPEAT A STRING
  ;INPUT  : CHAR - Character to repeat
@@ -219,6 +219,8 @@ SSN(SSN,FILE) ; extended validation of ssn
  I $G(SSN)']"" Q 0
  S FILE=$G(FILE)
  I (FILE=67)&(SSN="000123456") Q 1
- I "89"[$E(SSN) Q 0
+ ;I "89"[$E(SSN) Q 0  ;136 Removed filtering of SSNs that start with 8 or 9
  I (SSN="123456789")!(SSN="111111111")!(SSN="222222222")!(SSN="333333333")!(SSN="444444444")!(SSN="555555555")!($E(SSN,1,3)="666")!($E(SSN,4,5)="00")!($E(SSN,1,3)="000") Q 0
+ I SSN="777777777"!(SSN="888888888")!(SSN="999999999") Q 0  ;136 adding new exclusions for the 7, 8, and 9 series where the numbers repeat
  Q 1
+ ;

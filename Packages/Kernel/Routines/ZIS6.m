@@ -1,5 +1,5 @@
-%ZIS6 ;SFISC/AC - DEVICE HANDLER -- RESOURCES ;06/10/10  09:27
- ;;8.0;KERNEL;**24,49,69,118,127,136,440,546**;JUL 10, 1995;Build 9
+%ZIS6 ;SFISC/AC - DEVICE HANDLER -- RESOURCES ;10/14/2011
+ ;;8.0;KERNEL;**24,49,69,118,127,136,440,546,585**;JUL 10, 1995;Build 22
  ;Per VHA Directive 2004-038, this routine should not be modified
  ;Expect that IO is current device
 OXECUTE ;Open Execute
@@ -76,6 +76,14 @@ SDP ;Sequential disk processor type
 HFS ;Host File Server type
  D MARGN^%ZIS3,HFS^%ZISF W:'$D(IOP) ! D O^%ZIS4:'POP&(%ZISB&(%ZIS'["T"))
  G Q
+ ;
+ ;**P585 START CJM
+PQ ;Print Queue type
+ D MARGN^%ZIS3,OPEN^ZISPQ
+ G Q^%ZIS3
+ Q
+ ;**585 END CJM
+ ;
 RES ;Resources
  G Q:%ZIS["T" N X,X1 I %ZIS'["R"!'$D(IOP) S POP=1 W:'$D(IOP) *7,"  [NOT AVAILABLE]" Q
  G Q:$D(IO(1,IO)) I %ZIS["T" S X=IO,X1="RES" D DEVOK^%ZIS3 S:Y POP=1 G Q:POP

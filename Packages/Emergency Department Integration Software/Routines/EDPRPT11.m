@@ -1,7 +1,7 @@
-EDPRPT11 ;SLC/MKB - Patient Intake Report
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPRPT11 ;SLC/MKB - Patient Intake Report ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
-CNT(BEG,END) ; Get Patient Intake Report for EDPSITE by date range
+CNT(BEG,END,CSV) ; Get Patient Intake Report for EDPSITE by date range
  ;   CNT = counters
  N IN,LOG,LAST,X,CNT,HR,DAY,%H,%T,%Y,H,D,ROW,AVG,NM,TAB,DAYS
  D INIT S LAST="" ;set counters to 0

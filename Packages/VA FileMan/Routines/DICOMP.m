@@ -1,5 +1,5 @@
 DICOMP ;SFISC/GFT-EVALUATE COMPUTED FLD EXPR ;27FEB2008
- ;;22.0;VA FileMan;**6,76,114,118,157**;;Build 7
+ ;;22.0;VA FileMan;**6,76,114,118,157**;;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  S DICOMP=$G(DICOMP) N DLV,K S K=0 F DLV=0:1 G A:'$D(J(DLV+1))
 EN1 ;

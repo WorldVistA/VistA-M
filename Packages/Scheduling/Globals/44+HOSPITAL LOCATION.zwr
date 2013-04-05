@@ -4,7 +4,7 @@ ZWR
 ^SC(1,0)="LAB DIV 050 OOS ID 108^^C^1^^^111^0^^^^^^^1^^N^^Y^^0^1^^^^^^"
 ^SC(1,"OOS")="1^14"
 ^SC(1,"SDPROT")="Y"
-^SC(2,0)="SECURE MESSAGING^SM^Z^1^^^^^^^Secure Messaging System^^^^^^Y^^N^^^4"
+^SC(2,0)="SECURE MESSAGING^SM^Z^1^^^^^^^Secure Messaging System^^^^^^Y^^N^^^4^^^^^^"
 ^SC("AC","C",1)=""
 ^SC("AC","Z",2)=""
 ^SC("AOOS",1,1)=""

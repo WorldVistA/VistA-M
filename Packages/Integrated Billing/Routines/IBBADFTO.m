@@ -13,7 +13,7 @@ EN ;entry point from menu option IBBA BATCH DFT
  S $P(^IBBAS(372,1,0),U,10)=1,$P(^(0),U,11)=$$NOW^XLFDT()
  S IBBMMAX=+$P(^IBBAS(372,1,0),U,3) S:'IBBMMAX IBBMMAX=999
  ;call batch builder
- ;S X=$T(BATCH^IBBVP03) I X'="" D BATCH^IBBVP03(IBBMMAX)
+ S X=$T(BATCH^IBBVP03) I X'="" D BATCH^IBBVP03(IBBMMAX)
  ;clear batch running flag
  S $P(^IBBAS(372,1,0),U,10)=0,$P(^(0),U,11)=""
  Q

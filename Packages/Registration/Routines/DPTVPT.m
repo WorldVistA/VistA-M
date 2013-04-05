@@ -1,0 +1,12 @@
+DPTVPT ;alb/mjk - Patient File Post-Init Driver ; 3/26/93
+ ;;5.3;Patient File;;Aug 13, 1993
+ ;
+EN ; entry point
+ S XQABT4=$H
+ D EN^DPTV53PT
+ D H^DGUTL S DPTIME(106)=DGTIME D H^DGUTL S DPTIME(107)=DGTIME
+ I DGVCUR'=DGVNEW,$D(^DG(48,+DGVREL,0)) S DIE="^DG(48,",DA=+DGVREL,DR="104////"_DPTIME(104)_";105////"_DPTIME(105)_";106////"_DPTIME(106)_";107////"_DPTIME(107) D ^DIE K DIC,DIE,DR,DA,Y,DPTIME,DGTIME
+ S XQABT5=$H
+ S X="DPTINITY" X ^%ZOSF("TEST") I $T D ^DPTINITY
+ W !!,*7,">>> Initialization of Version ",DGVNEWVR," of DPT Complete."
+ENQ G Q^DGVPP

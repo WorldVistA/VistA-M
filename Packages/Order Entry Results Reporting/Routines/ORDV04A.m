@@ -74,9 +74,9 @@ EXTRCT ; Extract surgical case record
  Q
 VS ;Continuation of Vitals Extract (from ORDV04)
  ;Calls GMRVUT0
- ;I $L($T(GCPR^OMGCOAS1)) D  Q  ; OMGCOAS1 routine only on Station 200
- ;. D GCPR^OMGCOAS1(DFN,"VIT",ORDBEG,ORDEND,ORMAX)
- ;. S ROOT=$NA(^TMP("ORDATA",$J))
+ I $L($T(GCPR^OMGCOAS1)) D  Q  ; OMGCOAS1 routine only on Station 200
+ . D GCPR^OMGCOAS1(DFN,"VIT",ORDBEG,ORDEND,ORMAX)
+ . S ROOT=$NA(^TMP("ORDATA",$J))
  N ORDT,I,TYPE,IEN,GMRVSTR,ORSITE,SITE,PLACE,GO,X,QUALIF,NODE,UNITS,UCNT,QCNT,ORI
  Q:'$L(OREXT)
  S GO=$P(OREXT,";")_"^"_$P(OREXT,";",2)

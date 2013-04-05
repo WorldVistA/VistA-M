@@ -1,5 +1,7 @@
-YTMMPI2 ;ALB/ASF-MMPI2 REPORT; ;4/21/92  08:53
- ;;5.01;MENTAL HEALTH;;Dec 30, 1994
+YTMMPI2 ;ALB/ASF,HIOFO/FT - MMPI2 REPORT ;9/15/11  13:14
+ ;;5.01;MENTAL HEALTH;**60**;Dec 30, 1994;Build 47
+ ;
+ ;Reference to TERMINAL TYPE (#3.2) file supported by DBIA #5725) - pending
  ;
  S J=1,(YSTR,YSFR,YSQR)=0 F I=1:1:3 I $D(^YTD(601.2,YSDFN,1,YSET,1,YSED,I)) S X=^(I),L=$L(X) F K=1:1:L S:$E(X,K)="X" YSQR=YSQR+1 S:$E(X,K)="T" YSTR=YSTR+1 S:$E(X,K)="F" YSFR=YSFR+1
 T0 ;
@@ -27,7 +29,7 @@ ST ;
  S S="",J=1,P=YSSX
 LK ;
  S A=$P(R,U,J) G:A="" K0 S L1=$P(^YTT(601,YSTEST,"S",J,P),U) I A<L1 S YSTVL=$P(^(P),U,2) G LK1
- S YSTVL=$P(^(P),U,A+2-L1) I YSTVL="" S YSTVL=$P(^(P),U,$L(^(P),"^"))
+ S YSTVL=$P(^YTT(601,YSTEST,"S",J,P),U,A+2-L1) I YSTVL="" S YSTVL=$P(^(P),U,$L(^(P),"^"))
 LK1 ;
  S S=S_YSTVL_"^",J=J+1 G LK
 K0 ;
@@ -48,13 +50,15 @@ WC ;WELSH CODE
  S YSULON="",YSULOF="",Z=2
  ;I IO=0 S YSULON="*27,*91,*52,*109",YSULOF=HL ; *** PC *** 
  ;I IO>0 S YSULON="*27,*45,1",YSULOF="*27,*45,0"
- I $D(^%ZIS(2,IO,6)) S YSULON=$P(^%ZIS(2,IO,6),U,4),YSULOF=$P(^(6),U,5)
- K ^UTILITY($J,"YTMMPI2") F I=4:1:13 S X=999-$P(S,U,I),X1=$S(I=13:0,1:I-3) S:'$D(^UTILITY($J,"YTMMPI2",X)) ^(X)="" S ^(X)=^(X)_X1
+ ;I $D(^%ZIS(2,IO,6)) S YSULON=$P(^%ZIS(2,IO,6),U,4),YSULOF=$P(^(6),U,5)
+ S YSULON=$$GET1^DIQ(3.2,IO_",",23)
+ S YSULOF=$$GET1^DIQ(3.2,IO_",",24)
+ K ^TMP($J,"YTMMPI2") F I=4:1:13 S X=999-$P(S,U,I),X1=$S(I=13:0,1:I-3) S:'$D(^TMP($J,"YTMMPI2",X)) ^(X)="" S ^(X)=^(X)_X1
  W !!?2,"Welsh Code (new): " S X=0,Z=2
- F  S X=$O(^UTILITY($J,"YTMMPI2",X)) Q:'X  S X1=^(X),X2=999-X,Y=X,Y=$O(^UTILITY($J,"YTMMPI2",Y)) S:Y Y=999-Y D UL:$L(X1)>1!(X2-Y<2) W X1 S Z1=Z D:(X2-Y>1) ULOF:Z1=1,NUL:Z1'=1 D WCM
- K ^UTILITY($J,"YTMMPI2") F I=1,2,3 S X=999-$P(S,U,I),X1=$S(I=1:"L",I=2:"F",1:"K") S:'$D(^UTILITY($J,"YTMMPI2",X)) ^(X)="" S ^(X)=^(X)_X1
+ F  S X=$O(^TMP($J,"YTMMPI2",X)) Q:'X  S X1=^(X),X2=999-X,Y=X,Y=$O(^TMP($J,"YTMMPI2",Y)) S:Y Y=999-Y D UL:$L(X1)>1!(X2-Y<2) W X1 S Z1=Z D:(X2-Y>1) ULOF:Z1=1,NUL:Z1'=1 D WCM
+ K ^TMP($J,"YTMMPI2") F I=1,2,3 S X=999-$P(S,U,I),X1=$S(I=1:"L",I=2:"F",1:"K") S:'$D(^TMP($J,"YTMMPI2",X)) ^(X)="" S ^(X)=^(X)_X1
  W "   " S X=0,Z=2
- F  S X=$O(^UTILITY($J,"YTMMPI2",X)) Q:'X  S X1=^(X),X2=999-X,Y=X,Y=$O(^UTILITY($J,"YTMMPI2",Y)) S:Y Y=999-Y D UL:$L(X1)>1!(X2-Y<2) W X1 S Z1=Z D:(X2-Y>1) ULOF:Z1=1,NUL:Z1'=1 D WCM
+ F  S X=$O(^TMP($J,"YTMMPI2",X)) Q:'X  S X1=^(X),X2=999-X,Y=X,Y=$O(^TMP($J,"YTMMPI2",Y)) S:Y Y=999-Y D UL:$L(X1)>1!(X2-Y<2) W X1 S Z1=Z D:(X2-Y>1) ULOF:Z1=1,NUL:Z1'=1 D WCM
  W:YSULON="" "   unable to show ties"
  W !! D DTA^YTMMPI2P,WAIT^YTMMPI2P G:YSLFT END
 OUT ;

@@ -1,10 +1,11 @@
-LRGP2 ;SLC/CJS/RWF/DALOI/FHS-COMMON PARTS TO INSTRUMENT GROUP VERIFY/CHECK ;2/5/91  13:23
- ;;5.2;LAB SERVICE;**153,221,263,290**;Sep 27, 1994
+LRGP2 ;DALOI/STAFF - COMMON PARTS TO INSTRUMENT GROUP VERIFY/CHECK ;11/18/11  15:52
+ ;;5.2;LAB SERVICE;**153,221,263,290,350**;Sep 27, 1994;Build 230
+ ;
  Q
  ;
  ;
 EXPLODE ; from LRGP1, LRVR
- N %,C,DIC,DIR,DIRUT,DIROUT,DUOUT,LREND,LRI,LRTEST,LRX,I,X,Y
+ N %,C,DIC,DIR,DIROUT,DIRUT,DUOUT,LREND,LRI,LRTEST,LRX,I,X,X1,Y
  I $G(LRORDR)'="P" K ^TMP("LR",$J)
  S LRCFL="",LRI=0 S:'$D(LRNX) LRNX=0
  F  S LRI=$O(^LRO(68.2,LRLL,10,LRPROF,1,LRI)) Q:LRI<1  I $D(^(LRI,0))#2 D
@@ -12,15 +13,17 @@ EXPLODE ; from LRGP1, LRVR
  . S LRX=$P(LRI(0),"^") K LRTEST
  . I '$P(LRI(0),U,3) D EX6(LRX)
  . S:'$D(^TMP("LR",$J,"VTO",LRX))#2 ^(LRX)=""
- K LRVTS S LRVTS=11,LRI=0 D
- . F  S LRI=+$O(^TMP("LR",$J,"T",LRI)) Q:LRI<1  S X=^(LRI) D
- . . S LRVTS($P(X,";",2))=LRI,LRVTS=LRVTS+1
- . . S ^TMP("LR",$J,"VTO",LRI)=$P(X,";",2)
+ K LRVTS S LRVTS=11,LRI=0
+ F  S LRI=+$O(^TMP("LR",$J,"T",LRI)) Q:LRI<1  D
+ . S X=$P(^TMP("LR",$J,"T",LRI),"^",5)
+ . I $P(X,";",2)<1 Q  ; Invalid data name number
+ . S LRVTS($P(X,";",2))=LRI,LRVTS=LRVTS+1
+ . S ^TMP("LR",$J,"VTO",LRI)=$P(X,";",2)
  Q:$G(LRORDR)="P"
 EX3 ;
  G:$G(LREND) STOP
  ;
- K DIR,DIRUT,DIROUT,DUOUT,X,Y
+ K DIR,DIROUT,DIRUT,DUOUT,X,Y
  S DIR(0)="YO",DIR("A")="Would you like to see the test list",DIR("B")="No"
  D ^DIR
  I $S($G(DIRUT):1,$G(LREND):1,1:0) K ^TMP("LR",$J),LRVTS Q
@@ -28,7 +31,7 @@ EX3 ;
  . W @IOF,!,"The ("_$P(^LRO(68.2,LRLL,0),U)_") ["_$P(^LRO(68.2,LRLL,10,LRPROF,0),U)_"] Profile has"
  . D LIST
  ;
- K DIR
+ K DIR,DIROUT,DIRUT,DUOUT,X,Y
  S DIR("A",1)=" "
  S DIR("A")="Do you wish to modify the test list"
  S DIR("?")="i.e. would you like to add or subtract ATOMIC tests?"
@@ -36,7 +39,10 @@ EX3 ;
  S DIR(0)="Y" D ^DIR
  I $D(DIRUT) S LREND=1 G STOP
  I Y=1 D EX1 G:'$G(LREND) EX3
-STOP I $G(LREND) K ^TMP("LR",$J),LRVTS S LREND=0 Q
+ ;
+STOP ;
+ I $G(LREND) K ^TMP("LR",$J),LRVTS S LREND=0 Q
+ ;
 EX2 ;
  K LRVTS,DIC
  S LRVTS=11,LRI=0,C=0
@@ -54,9 +60,11 @@ EX2 ;
  K ^TMP("LR",$J,"T")
  Q
  ;
+ ;
 EX1 ;
- K DIR
- S DIR("A")="Do you want to add ATOMIC test(s) to this panel",DIR("B")="NO"
+ N DIC,DIR,DIRUT,DIROUT,DTOUT,X,X1,Y
+ ;
+ S DIR("A")="Do you want to add ATOMIC test(s) to this panel",DIR("B")="NO",DIR(0)="YO"
  D ^DIR
  I $D(DIRUT) S LREND=1 Q
  I Y=1 D
@@ -64,6 +72,7 @@ EX1 ;
  . S DIC("A")="Select ATOMIC test(s) you wish to add: ",DIC="^LAB(60,",DIC(0)="AEMOQZ" ; ,DIC("S")="I $G(^(.2))"
  . F  D ^DIC Q:Y<1  K LRTEST D EX6(+Y)
  . W @IOF,!?5,"The List now has" D LIST
+ ;
 EX4 ;
  K DIR
  S DIR("A",1)=" "
@@ -89,8 +98,9 @@ EX4 ;
  . . W @IOF,!,"Excluding" S I=0 F  S I=$O(LREXCL(I)) Q:I<1  W !,LREXCL(I) K LRVTS(I) H 2
  Q
  ;
+ ;
 LIST ;
- N LRI,DIR,DUOUT,X
+ N LRI,DIR,DIRUT,DTOUT,DUOUT,X
  W " the following tests: "
  S LRI=0,DIR(0)="E"
  F  S LRI=$O(^TMP("LR",$J,"VTO",LRI)) Q:LRI<1!($D(DUOUT))  D
@@ -101,13 +111,16 @@ LIST ;
  ;
 YESNO ;
  W !
- N DIR
+ N DIR,DIRUT,DTOUT,DUOUT,X,Y
  S DIR("B")=$S($G(%)=1:"Yes",$G(%)=2:"No",1:"")
  S DIR(0)="Y" D ^DIR S %=Y
  Q
  ;
  ;
-EX6(LRX) ;Expand test list
+EX6(LRX) ; Expand test list
+ ;
+ N T1
+ ;
  S (T1,LRTEST)=LRX,LRTEST(T1)=LRX_U_$G(^LAB(60,T1,0))
  S LRTEST(T1,"P")=LRTEST
  D ^LREXPD

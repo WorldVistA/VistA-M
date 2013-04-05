@@ -1,5 +1,5 @@
 DICM ;SFISC/GFT,XAK,TKW-MULTIPLE LOOKUP FOR FLDS WHICH MUST BE TRANSFORMED ;28SEP2010
- ;;22.0;VA FileMan;**4,20,31,40,149,159,165**;Mar 30, 1999;Build 32
+ ;;22.0;VA FileMan;**4,20,31,40,149,159,165**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  I '$D(DICR(1)),DIC(0)'["T" N DICR S DICR=0
  I $A(X)=34,X?.E1"""" G N

@@ -1,5 +1,5 @@
 DIQGDDT ;SFISC/DCL-DATA DICTIONARY ATTRIBUTE TEXT ;8/15/96  13:29
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 LIST(TYPE,DIDARRAY,TP,EQL) ;DO CALL
  ;TYPE="FILETXT" OR "FIELDTXT"

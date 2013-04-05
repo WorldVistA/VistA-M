@@ -1,5 +1,5 @@
 DIIS ;SFISC/GFT-DELETE THIS LINE AND SAVE AS '%ZIS' IF YOU DON'T HAVE A '%ZIS' ROUTINE ;11:04 AM  18 Aug 1994
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 %ZIS ;
  I $D(IOP)#2 S IO=$I G PARAMS

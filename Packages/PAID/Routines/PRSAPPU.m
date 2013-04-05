@@ -1,5 +1,6 @@
 PRSAPPU ; HISC/REL,WIRMFO/JAH - Calculate Pay Period; 22-JAN-1998
- ;;4.0;PAID;**19,22,35**;Sep 21, 1995
+ ;;4.0;PAID;**19,22,35,136**;Sep 21, 1995;Build 2
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  ;====================================================================
 PP ;Calculate Pay Period from a FileMan date.
  ;
@@ -19,7 +20,7 @@ PP ;Calculate Pay Period from a FileMan date.
  N Y,K,X1,X2,X
  ;
  S Y=$P($T(DAT),";;",2)
- F K=1:1:23 Q:D1<$P(Y,",",K)
+ F K=1:1:28 Q:D1<$P(Y,",",K)
  S X2=$P(Y,",",K-1)
  ;
  S PPE=$E(X2,2,3),PP4Y=$E(X2,1,3)+1700
@@ -42,7 +43,7 @@ NX ; Calculate Date of 1st day of Pay Period.
  N Y,K,X1,X2
  ;
  S Y=$P($T(DAT),";;",2)
- F K=1:1:23 Q:$E($P(Y,",",K),2,3)=$E(PPE,1,2)
+ F K=1:1:28 Q:$E($P(Y,",",K),2,3)=$E(PPE,1,2)
  S X1=$P(Y,",",K),X2=14*($E(PPE,4,5)-1) D C^%DTC
  S D1=X Q
  ;====================================================================
@@ -53,7 +54,7 @@ DTP ; Printable Date
  ;These FileMan dates correspond to 1st day of pay period #1
  ;of respective years.
  ;
-DAT ;;2910113,2920112,2930110,2940109,2950108,2960107,2970105,2980104,2990103,3000102,3010114,3020113,3030112,3040111,3050109,3060108,3070107,3080106,3090104,3100103,3110102,3120101,3130113
+DAT ;;2910113,2920112,2930110,2940109,2950108,2960107,2970105,2980104,2990103,3000102,3010114,3020113,3030112,3040111,3050109,3060108,3070107,3080106,3090104,3100103,3110102,3120101,3130113,3140112,3150111,3160110,3170108,3180107
  ;
  ;====================================================================
 PREP(CURP) ;given a pay period, return the previous pay period.

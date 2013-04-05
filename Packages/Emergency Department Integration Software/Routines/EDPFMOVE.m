@@ -1,5 +1,5 @@
-EDPFMOVE ;SLC/MKB - Move local ER Visits to EDIS
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPFMOVE ;SLC/MKB - Move local ER Visits to EDIS ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 EN ; -- Option EDP CONVERSION to copy local data
  I '$D(^DIZ(172006,0)) W !!,"You have no ER data to convert." H 1 Q
@@ -87,7 +87,8 @@ LOOP ; -- Queued loop to send previous [closed] visits
  Q
  ;
 EN1(IEN,OPEN) ; -- convert single ER visit
- N I,X,Y,X0,DIZ
+ N I,X,Y,X0,DIZ,GONE
+ S GONE=$D(^DIZ(172009,"B","GONE"))
  F I=0,1,2,3,4,6,9 S DIZ(I)=$G(^DIZ(172006,IEN,I))
  I $O(^DIZ(172006,IEN,8,0)) M DIZ(8)=^DIZ(172006,IEN,8)
  S X=$P(DIZ(3),U),DIZ("SITE")=X                 ;Institution file ien
@@ -96,7 +97,9 @@ EN1(IEN,OPEN) ; -- convert single ER visit
  ;
  ;include static file nodes used:
  S X=$P(DIZ(0),U,4) S:X DIZ("STS"_X)=$$STS(X)   ;Status
- I '$G(OPEN),X,$P($G(DIZ("STS"_X)),U,4)="GONE" S DIZ("CLOSED")=1
+ I '$G(OPEN) D  ;Closed Status
+ . I '$G(GONE) S DIZ("CLOSED")=1
+ . I $G(GONE),X,$P($G(DIZ("STS"_X)),U,4)="GONE" S DIZ("CLOSED")=1
  S X=$P(DIZ(0),U,6) S:X DIZ("ARR"_X)=$$ARR(X)   ;Arrival Mode
  S X=$P(DIZ(3),U,2) S:X DIZ("LOC"_X)=$$LOC(X)   ;Location
  S X=$P(DIZ(4),U,2) S:X $P(DIZ(4),U,2)=$$NUR(X) ;RN->200

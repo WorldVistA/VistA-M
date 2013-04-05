@@ -1,5 +1,5 @@
 PRSASR ;HISC/MGD,WOIFO/JAH/PLT - Supervisor Certification ;02/05/2005
- ;;4.0;PAID;**2,7,8,22,37,43,82,93,112,117**;Sep 21, 1995;Build 32
+ ;;4.0;PAID;**2,7,8,22,37,43,82,93,112,117,132**;Sep 21, 1995;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;Called by Pay Per Cert Option on T&A Superv menu. Timecard 4 each 
@@ -22,9 +22,9 @@ PRSASR ;HISC/MGD,WOIFO/JAH/PLT - Supervisor Certification ;02/05/2005
  W !?27,"SUPERVISORY CERTIFICATION"
  S PRSTLV=3 D ^PRSAUTL G:TLI<1 EX
  D NOW^%DTC
- S DT=%\1,APDT=%,Y=$G(^PRST(458,"AD",DT)),PPI=$P(Y,"^",1),DAY=$P(Y,"^",2)
+ S DT=%\1,APDT=%,Y=$G(^PRST(458,"AD",DT)),PPI=$P(Y,U,1),DAY=$P(Y,U,2)
  I DAY>5,DAY<11 W $C(7),!!,MIDPP G EX
- I DAY<6 S X1=DT,X2=-7 D C^%DTC S PPI=$P($G(^PRST(458,"AD",X)),"^",1) G:'PPI EX
+ I DAY<6 S X1=DT,X2=-7 D C^%DTC S PPI=$P($G(^PRST(458,"AD",X)),U,1) G:'PPI EX
  ;     -----------------------------------------
 P0 ;PDT     = string of pay period dates with format - Sun 29-Sep-96^
  ;PDTI    = string of pay period dates in fileman format.
@@ -56,7 +56,7 @@ P0 ;PDT     = string of pay period dates with format - Sun 29-Sep-96^
  ;     ---------------------------------------------------
  ;
  S CKS=0
- F VA2=0:0 S VA2=$$TLSUP Q:VA2<1  S SSN=$$SSN I SSN'="" S DFN=$$DFN S Z=$P($G(^PRSPC(+DFN,0)),"^",8) I Z'="",Z'=TLE,$$AVAILREC^PRSLIB00("SUP",.GLOB) D CHK I QT G EX:'$T,T0
+ F VA2=0:0 S VA2=$$TLSUP Q:VA2<1  S SSN=$$SSN I SSN'="" S DFN=$$DFN S Z=$P($G(^PRSPC(+DFN,0)),U,8) I Z'="",Z'=TLE,$$AVAILREC^PRSLIB00("SUP",.GLOB) D CHK I QT G EX:'$T,T0
  ;
  ;     ---------------------------------------------------
 T0 I $D(^TMP($J,"E")) G T1
@@ -79,15 +79,15 @@ T1 ;if supervisor signs off then update all records in tmp
  ;     ---------------------------------------------------
 CHK ; Check for needed approvals
  N PRSENT,PRSWOC
- S STAT=$P($G(^PRST(458,PPI,"E",DFN,0)),"^",2) I "PX"[STAT Q
+ S STAT=$P($G(^PRST(458,PPI,"E",DFN,0)),U,2) I "PX"[STAT Q
  I USR=DFN Q:'$D(^XUSEC("PRSA SIGN",DUZ))
- E  I CKS S SSN=$P($G(^PRSPC(DFN,0)),"^",9) I SSN S EDUZ=+$O(^VA(200,"SSN",SSN,0)) I $D(^PRST(455.5,"AS",EDUZ,TLI)) Q:$P($G(^PRST(455.5,TLI,"S",EDUZ,0)),"^",2)'=TLE
+ E  I CKS S SSN=$P($G(^PRSPC(DFN,0)),U,9) I SSN S EDUZ=+$O(^VA(200,"SSN",SSN,0)) I $D(^PRST(455.5,"AS",EDUZ,TLI)) Q:$P($G(^PRST(455.5,TLI,"S",EDUZ,0)),U,2)'=TLE
  S HDR=0 D HDR,^PRSAENT S PRSENT=ENT
  ;
  ;Loop to display tour, exceptions(leave, etc..) & errors.
  ;
  S (XF,X9)=0
- F DAY=1:1:14 D TOURERR($P(PDT,"^",DAY),.X9,.XF) D:$Y>(IOSL-6)&(DAY<14) HDR G:QT O1
+ F DAY=1:1:14 D TOURERR($P(PDT,U,DAY),.X9,.XF) D:$Y>(IOSL-6)&(DAY<14) HDR G:QT O1
  ;
  ;Display VCS commission sales, if applicable
  S Z=$G(^PRST(458,PPI,"E",DFN,2))
@@ -109,7 +109,7 @@ CHK ; Check for needed approvals
  N WK,OTERR,O8,OA
  F WK=1:1:2 D
  .  D WARNSUP^PRSAOTT(PPE,DFN,VAL,WK,.OTERR,.O8,.OA)
- .  I OTERR S ^TMP($J,"OT",DFN,WK)=O8_"^"_OA
+ .  I OTERR S ^TMP($J,"OT",DFN,WK)=O8_U_OA
  ;
  ;warning message for rs/rn and on type of time
  I $E(PRSENT,5) D
@@ -125,7 +125,7 @@ OK ;Prompt Supervisor to release timecard.  If yes, store in ^TMP(.
  ;If supervisor answers no then bypass & unlock record.
  ;     ---------------------------------------------------
  W !!,IORVON,"Release to Payroll?",IORVOFF," "
- R X:DTIME S:'$T!(X["^") QT=1 Q:QT  S:X="" X="*" S X=$TR(X,"yesno","YESNO")
+ R X:DTIME S:'$T!(X[U) QT=1 Q:QT  S:X="" X="*" S X=$TR(X,"yesno","YESNO")
  I $P("YES",X,1)'="",$P("NO",X,1)'="" W $C(7)," Answer YES or NO" G OK
  I X?1"Y".E S ^TMP($J,"E",DFN)=VAL
  E  D
@@ -140,21 +140,23 @@ PROC ; Set Approval, file any exceptions & update 8B string
  D ^PRSAENT
  ;
  ; set approvals
- S $P(^PRST(458,PPI,"E",DFN,0),"^",3,5)=DUZ_"^"_APDT_"^"_A1
+ S $P(^PRST(458,PPI,"E",DFN,0),U,3,5)=DUZ_U_APDT_U_A1
  ; VCS approval
- I $D(^PRST(458,PPI,"E",DFN,2)) S $P(^(2),"^",17,18)=DUZ_"^"_APDT
+ I $D(^PRST(458,PPI,"E",DFN,2)) S $P(^(2),U,17,18)=DUZ_U_APDT
  ;
  ; loop thru any exceptions & file in 458.5
- I $D(^TMP($J,"X",DFN)) S K="" F  S K=$O(^TMP($J,"X",DFN,K)) Q:K=""  S DAY=$P(K," ",1),X1=$P(PDTI,"^",DAY),X2=$G(^(K)) D ^PRSATPF
+ I $D(^TMP($J,"X",DFN)) S K="" F  S K=$O(^TMP($J,"X",DFN,K)) Q:K=""  S DAY=$P(K," ",1),X1=$P(PDTI,U,DAY),X2=$G(^(K)) D ^PRSATPF
  ;
  ; file overtime warnings
  F WK=1:1:2 I $G(^TMP($J,"OT",DFN,WK))'="" D
- .  S O8=$P(^TMP($J,"OT",DFN,WK),"^")
- .  S OA=$P(^TMP($J,"OT",DFN,WK),"^",2)
+ .  S O8=$P(^TMP($J,"OT",DFN,WK),U)
+ .  S OA=$P(^TMP($J,"OT",DFN,WK),U,2)
  .  D FILEOTW^PRSAOTTF(PPI,DFN,WK,O8,OA)
  ;
  ;set 8b string & change status of timecard to payroll
- S ^PRST(458,PPI,"E",DFN,5)=VAL S $P(^PRST(458,PPI,"E",DFN,0),"^",2)="P"
+ S ^PRST(458,PPI,"E",DFN,5)=VAL S $P(^PRST(458,PPI,"E",DFN,0),U,2)="P"
+ ;set the pp telework indicator
+ S:$P($$TWE^PRSATE0(DFN),U)]"" $P(^PRST(458,PPI,"E",DFN,0),U,8)=$P($$TWE^PRSATE0(DFN),U)
  ;
  ; If employee is a PT Phys w/ memo update hours credited
  D PTP^PRSASR1(DFN,PPI)
@@ -169,17 +171,17 @@ PROC ; Set Approval, file any exceptions & update 8B string
  ;
 HDR ; Display Header
  I HDR S QT=$$ASK^PRSLIB00() Q:QT
- S X=$G(^PRSPC(DFN,0)) W !,@IOF,?3,$P(X,"^",1) S X=$P(X,"^",9) I X W ?68,$E(X),"XX-XX-",$E(X,6,9) S HDR=1
- W !,?6,"Date",?20,"Scheduled Tour",?40,"Tour Exceptions",?63,IORVON,"Tour Errors",IORVOFF
- W !?3 F I=1:1:72 W "-"
+ S X=$G(^PRSPC(DFN,0)) W !,@IOF,?2,$P(X,U,1) S X=$P(X,U,9) I X W ?68,$E(X),"XX-XX-",$E(X,6,9) S HDR=1
+ W !,?6,"Date",?16,"TW",?20,"Scheduled Tour",?40,"Tour Exceptions",?63,IORVON,"Tour Errors",IORVOFF
+ W !?2 F I=1:1:72 W "-"
  Q
  ;====================================================================
 HDR2 ; Display Header don't quit
  N HOLD
  S HOLD=$$ASK^PRSLIB00(1)
- S X=$G(^PRSPC(DFN,0)) W !,@IOF,?3,$P(X,"^",1) S X=$P(X,"^",9) I X W ?68,$E(X),"XX-XX-",$E(X,6,9)
- W !,?6,"Date",?20,"Scheduled Tour",?40,"Tour Exceptions",?63,IORVON,"Tour Errors",IORVOFF
- W !?3 F I=1:1:72 W "-"
+ S X=$G(^PRSPC(DFN,0)) W !,@IOF,?2,$P(X,U,1) S X=$P(X,U,9) I X W ?68,$E(X),"XX-XX-",$E(X,6,9)
+ W !,?6,"Date",?16,"TW",?20,"Scheduled Tour",?40,"Tour Exceptions",?63,IORVON,"Tour Errors",IORVOFF
+ W !?2 F I=1:1:72 W "-"
  Q
  ;====================================================================
  ;
@@ -200,7 +202,7 @@ TLSUP() ;get next supervisor who certifies other supervisors
  Q $O(^PRST(455.5,"ASX",TLE,VA2))
  ;     ---------------------------------------------------
 SSN() ;get ssn of supervisor to be certified by this supervisor.
- Q $P($G(^VA(200,VA2,1)),"^",9)
+ Q $P($G(^VA(200,VA2,1)),U,9)
  ;     ---------------------------------------------------
 DFN() ;get internal entry number of supvisor of other T&L 2b approved
  ;by current supervisor.
@@ -215,16 +217,16 @@ TOURERR(DTE,X9,XF) ;DISPLAY TOUR & ERRORS
  . I $Y>(IOSL-4) D HDR2
  . W:K>1 !
  . W:$D(Y1(K)) ?21,Y1(K)
- . W:$P($G(Y2(K)),"^")'="" ?45,$P(Y2(K),"^",1)
- . I $P($G(Y2(K)),"^",2)'="" W:$X>44 ! W ?45,$P(Y2(K),"^",2)
+ . W:$P($G(Y2(K)),U)'="" ?45,$P(Y2(K),U,1)
+ . I $P($G(Y2(K)),U,2)'="" W:$X>44 ! W ?45,$P(Y2(K),U,2)
  W:Y3'="" !?10,Y3
  I $D(ER) S:FATAL XF=1 F K=0:0 S K=$O(ER(K)) Q:K<1  D
  .  I $Y>(IOSL-4) D HDR2
  .  S ERRLEN=$S($P(ER(K),U,2)'="":$L(ER(K)),1:$L($P($G(ER(K)),U))+1)
  .  W:X9!((ERRLEN+1)>(IOM-$X)) !
  .  W ?(IOM-(ERRLEN+1)),IORVON
- .  W:$P(ER(K),"^",2)'="" $P(ER(K),"^",2)
- .  W " ",$P(ER(K),"^",1),IORVOFF
+ .  W:$P(ER(K),U,2)'="" $P(ER(K),U,2)
+ .  W " ",$P(ER(K),U,1),IORVOFF
  .  S X9=0 S:'XF ^TMP($J,"X",DFN,DAY_" "_K)=ER(K)
  .  Q
  Q

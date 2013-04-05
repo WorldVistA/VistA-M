@@ -1,5 +1,5 @@
 DIS3 ;SFISC/SEARCH - PROGRAMMER ENTRY POINT ;12/16/93  13:16
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 EN ;
  N DIQUIET,DIFM S L=$G(L),DIFM=+L D CLEAN^DIEFU,INIT^DIP

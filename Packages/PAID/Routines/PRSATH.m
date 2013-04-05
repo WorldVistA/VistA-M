@@ -18,7 +18,7 @@ PRSATH ; HISC/FPT-Transmission History ;12/16/92  14:06
 MSGIEN ; count messages transmitted to and acknowledged by Austin
  S (ACKNOW,MSGIEN,TRANS)=0
  F  S MSGIEN=$O(^PRST(458,PPIEN,"X",MSGIEN)) Q:MSGIEN<1  S TRANS=TRANS+1 D
- .S X=+$O(^XMB(3.9,MSGIEN,1,"C","XXX@Q-TAB.DOMAIN.EXT",0)) I X<1!('$D(^XMB(3.9,MSGIEN,1,X,0))) W !,"MESSAGE# ",MSGIEN," NO LONGER EXISTS",*7 Q
+ .S X=+$O(^XMB(3.9,MSGIEN,1,"C","XXX@Q-TAB.domain.ext",0)) I X<1!('$D(^XMB(3.9,MSGIEN,1,X,0))) W !,"MESSAGE# ",MSGIEN," NO LONGER EXISTS",*7 Q
  .S:$P(^XMB(3.9,MSGIEN,1,X,0),"^",4)'="" ACKNOW=ACKNOW+1
  W !!,"Total Number of Messages for Transmission: ",?50,TRANS
  W !,"Number of Messages Acknowledged by Austin: ",?50,ACKNOW

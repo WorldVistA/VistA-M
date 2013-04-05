@@ -38,7 +38,7 @@ REMOTE(XMDUZ,XMZO,XMZOSUBJ,XMZ,XMINSTR) ;
  S XMINSTR("EXACT")=1 ; Match on exact domain name
  D ADDR^XMXADDR(XMDUZ,XMTO,.XMINSTR)
  K XMINSTR("EXACT")
- ;S:XMTO[".DOMAIN.EXT" XMTO=$TR($P(XMTO,"@"),"._+",", .")_"@"_$P(XMTO,"@",2)
+ ;S:XMTO[".domain.ext" XMTO=$TR($P(XMTO,"@"),"._+",", .")_"@"_$P(XMTO,"@",2)
  I $$GOTADDR^XMXADDR D
  . W !,$$EZBLD^DIALOG(34212) ; Sending network reply...
  . D NETREPLY^XMXREPLY(XMDUZ,XMZO,XMZ,XMSUBJ,.XMINSTR)

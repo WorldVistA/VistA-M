@@ -1,4 +1,4 @@
-FBCTAU1 ; ;08/06/12
+FBCTAU1 ; ;08/29/12
  D DE G BEGIN
 DE S DIE="^FBAAA(D0,1,",DIC=DIE,DP=161.01,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^FBAAA(D0,1,DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(4)=%,DE(8)=% S %=$P(%Z,U,2) S:%]"" DE(14)=% S %=$P(%Z,U,3) S:%]"" DE(16)=% S %=$P(%Z,U,4) S:%]"" DE(43)=% S %=$P(%Z,U,5) S:%]"" DE(18)=% S %=$P(%Z,U,7) S:%]"" DE(22)=% S %=$P(%Z,U,8) S:%]"" DE(34)=%
@@ -292,7 +292,7 @@ X46 S:'$P(FBEDCNTR,"^") Y="@11"
  G RE
 C47 G C47S:$D(DE(47))[0 K DB
 C47S S X="" G:DG(DQ)=X C47F1 K DB
-C47F1 N X,X1,X2 S DIXR=1043 D C47X1(U) K X2 M X2=X D C47X1("O") K X1 M X1=X
+C47F1 N X,X1,X2 S DIXR=879 D C47X1(U) K X2 M X2=X D C47X1("O") K X1 M X1=X
  I $G(X(1))]"" D
  . K ^FBAAA("ACN",X,DA(1),DA)
  K X M X=X2 I $G(X(1))]"" D

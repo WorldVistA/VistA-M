@@ -120,7 +120,7 @@ OR ; -- new Generic order
  ;
 GMRA ; -- new Allergy order
  Q:$$PATCH^XPDUTL("OR*3.0*216")  ;195 quit if patch 216 is in
- ;D:$L($T(ALG^ORMBLDAL)) ALG^ORMBLDAL
+ D:$L($T(ALG^ORMBLDAL)) ALG^ORMBLDAL
  Q
  ;
 GMRC ; -- new Consult order

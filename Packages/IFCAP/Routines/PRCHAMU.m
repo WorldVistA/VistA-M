@@ -1,6 +1,9 @@
 PRCHAMU ;WISC/AKS-Modules helpful in amendments ;8/18/97  9:12
- ;;5.1;IFCAP;**21,117**;Oct 20, 2000;Build 2
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;5.1;IFCAP;**21,117,175**;Oct 20, 2000;Build 4
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;Patch PRC*5.1*175 modifies cancel error switch used in template
+ ;                  PRCHAMENDPRO to be PRCPROSW. 
+ ;     
  W !,"Call at the appropriate entry point",$C(7)
  Q
  ;
@@ -77,7 +80,7 @@ INFO ; Ask for common information for amendments
  S:$G(PRCPROST)=90 DR="[PRCHAMENDPRO]"
  S:$G(PRCPROST)=6 DR="[PRCHAMENDPRO EDIT]"
  D ^DIE
- I $D(Y)!'FLGUP S ER=1 Q
+ I $G(PRCPROSW)!'FLGUP S ER=1 Q     ;PRC*5.1*175    
  S DIE="^PRC(443.6,"_PRCHPO_",6,",DA=PRCHAM,DR="15///TODAY+4" D ^DIE
  I '$D(^PRC(443.6,PRCHPO,6,PRCHAM,1)) D  S ER=1 Q
  .W !,?5,"Can't continue without a Purchasing Agent !"

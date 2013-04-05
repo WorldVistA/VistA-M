@@ -1,8 +1,8 @@
-LA7VMSG ;DALOI/JMC - LAB ORU (Observation Result) message builder ; 12-12-96
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,50,56,46,64**;Sep 27, 1994
+LA7VMSG ;DALOI/JMC - LAB ORU (Observation Result) message builder ;06/19/12  16:18
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,50,56,46,64,74**;Sep 27, 1994;Build 229
  ;
 ORU ; Bleed the ORU (Observation Result) message queue
- ; Tasked by LRCAPV2
+ ; Tasked by LA7SRR, LRCAPV2, LRU
  ;
  N LA7MTYP
  S LA7MTYP="ORU"
@@ -20,7 +20,7 @@ ORR ; Bleed the ORR (Order Response) message queue
  Q
  ;
  ;
-SET(LRUID,SITE,RUID,SITEN,ORD,LRNLT,LRIDT,LRSS,LRDFN,ORDT,LA7VCH,LA7MTYP) ; adds entries to LA7V QUEUE file
+SET(LRUID,SITE,RUID,SITEN,ORD,LRNLT,LRIDT,LRSS,LRDFN,ORDT,LA7VDB,LA7MTYP) ; adds entries to LA7V QUEUE file
  ; Called by LA7SRR, LRVER3, LRWLST12
  ; variable list
  ; LRUID - Host Unique ID from the local ACCESSION file (#68)
@@ -33,12 +33,16 @@ SET(LRUID,SITE,RUID,SITEN,ORD,LRNLT,LRIDT,LRSS,LRDFN,ORDT,LA7VCH,LA7MTYP) ; adds
  ; LRSS  - test subscript defined in LABORATORY TEST file (#60)
  ; LRDFN - IEN in LAB DATA file (#63)
  ; ORDT  - Order date
- ; LA7VCH (Optional) - array of Chemistry results
- ;                     ex. glucose LA7VCH(2)=LR NODE
- ;                                 LA7VCH(2,1)="C" (corrected results)
+ ; LA7VDB - <opt><byref> Chemistry results or database section
+ ;          for MI, SP, CY, EM subscripts
+ ;           ex. glucose LA7VDB(2)=LR NODE
+ ;                       LA7VDB(2,1)="C" (corrected results)
+ ;   MI: LA7VDB(File #64 Field #63)=""
+ ;   SP: LA7VDB("88515.0000")=""  CY: LA7VDB("88593.0000")=""
+ ;   EM: LA7VDB("88597.0000")=""  AU: LA7VDB("88533.0000")=""
  ; LA7MTYP (Optional) - Message Type (ORU or ORR) defaults to ORU
  ;
- N FDA,LA76248,LA76249,LA7DT,LA7FACID,LA7ERR,LA7RSITE,LA7Y,PORD,PORT,RSITE
+ N FDA,LA76248,LA76249,LA7DT,LA7FACID,LA7ERR,LA7RSITE,LA7Y,LAHLSTAT,PORD,PORT,RSITE
  ;
  S LA7ERR=0
  I $G(LA7MTYP)="" S LA7MTYP="ORU"
@@ -52,6 +56,11 @@ SET(LRUID,SITE,RUID,SITEN,ORD,LRNLT,LRIDT,LRSS,LRDFN,ORDT,LA7VCH,LA7MTYP) ; adds
  ; No entry in 62.48 - *** Need to add error logging ****
  I 'LA76248 Q
  I '$P(^LAHM(62.48,LA76248,0),"^",3) Q  ; not active
+ ;
+ ;
+ ; add check here to see if agency associated with site (SITE) is enabled for this subscript;CKA 6/11
+ S LAHLSTAT=$$HLSTATUS("ORU",SITE,LRSS)
+ I 'LAHLSTAT Q
  ;
  ; Create new outgoing entry in 62.49
  S LA76249=$$INIT6249^LA7VHLU
@@ -83,16 +92,49 @@ SET(LRUID,SITE,RUID,SITEN,ORD,LRNLT,LRIDT,LRSS,LRDFN,ORDT,LA7VCH,LA7MTYP) ; adds
  ;
  ; Add test to order
  S LA7Y=0
- F  S LA7Y=$O(LA7VCH(LA7Y)) Q:'LA7Y  D
+ F  S LA7Y=$O(LA7VDB(LA7Y)) Q:'LA7Y  D
  . N FDAIEN
  . S FDA(2,62.49162,"+2,"_LA76249_",",.01)=LA7Y
- . I $G(LA7VCH(LA7Y,1))="C" S FDA(2,62.49162,"+2,"_LA76249_",",.02)="C"
+ . I $G(LA7VDB(LA7Y,1))="C" S FDA(2,62.49162,"+2,"_LA76249_",",.02)="C"
  . S FDAIEN(1)=LA76249
  . D UPDATE^DIE("","FDA(2)","FDAIEN","LA7ERR(2)")
  . D CLEAN^DILF
  ;
+ ; Check for date report completed.
+ I '$$OK2SEND^LA7SRR D CREATE^LA7LOG(122)
+ ;
  ; Release lock on entry.
  L -^LAHM(62.49,LA76249)
+ Q
+ ;
+ ;
+MIAP(LRAA,LRAD,LRAN,LR60,LRDFN,LRSS,LRIDT,LRODT) ; Makes MI/AP calls to send results to LA7V QUEUE
+ ;
+ ; Call with LRAA = accession area IEN
+ ;           LRAD = accession date (FM format)
+ ;           LRAN = accession number
+ ;           LR60 = file #60 test IEN
+ ;          LRDFN = IEN in LAB DATA file (#63)
+ ;           LRSS = test subscript defined in LABORATORY TEST file (#60)
+ ;          LRIDT = Inverse date/time (accession date/time)
+ ;         LRORDT = Order date (FM format)
+ ;
+ ; Called by LRVR0, LRMIUT, LRVRAP4
+ ;
+ N LA764,LA7NLT,LA7NLTN,LA7SS,LA7VDB,LA7Y,LRORU3
+ ;
+ S LA764=$$GET1^DIQ(60,LR60_",",64,"I")
+ S LA7NLT=$$GET1^DIQ(64,LA764_",",1)
+ I LA7NLT="" Q
+ S LA7NLTN=$$GET1^DIQ(64,LA764_",",.01)
+ ;
+ S LA7VDB=$$GET1^DIQ(64,LA764_",",63,"I")
+ I LA7VDB'="" S LA7Y(LA7VDB)=""
+ ;
+ S LRORU3=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,.3))
+ ;
+ D SET^LA7VMSG($P(LRORU3,U,4),$P(LRORU3,U,2),$P(LRORU3,U,5),$P(LRORU3,U,3),LA7NLTN,LA7NLT,LRIDT,LRSS,LRDFN,LRODT,.LA7Y,"ORU")
+ ;
  Q
  ;
  ;
@@ -137,25 +179,32 @@ ACK ; ACKnowledgment message processor
  ;
  G ACK^LA7VHL
  Q
+HLSTATUS(LA7MTYP,SITE,LRSS) ;
  ;
+ ; Check if agency associated with site has LEDI HL7 messaging enabled for this Subscript.
  ;
-TRIGGER(LRAA,LRAD,LRAN,LRTS) ; Call with LRTS by reference
- ; LRTS array contains a list of verified test.
- ; Sets the queue for out going messages. ^LAHM(62.49
+ ; Call with:
+ ;     LA7MTYP = The HL7 message type. Either: "ORU" or "ORM"
+ ;        SITE = Site's IEN in INSTITUTION file (#4)
+ ;        LRSS = Subscript
  ;
- N ERR,LRDFN,LREND,LRIDT,LRNIEN,LRNLT,LRNLTN,LRODT,LRSS,LRTSX
- N LRORU3,LRX
- S LRDFN=+$G(^LRO(68,LRAA,1,LRAD,1,LRAN,0)),LRODT=+$P(^(0),U,4)
- S LRIDT=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,3)),U,5)
- S LRSS=$P($G(^LRO(68,LRAA,0)),U,2)
- S LRORU3=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,.3))
- Q:'$P($G(LRORU3),U,2)!('LRIDT)
- Q:'$D(^LRO(68,LRAA,1,LRAD,1,LRAN,0))#2
+ ; Returns    0: LEDI HL7 messaging is disabled for this SITE and Subscript.
+ ;            1: LEDI HL7 messaging is enabled for this SITE and Subscript.
+ ; -- if LSRP cutover is installed and rollback restore is not installed, return 1 (enabled)
+ I $$PATCH^XPDUTL("LA*5.2*75"),'$$PATCH^XPDUTL("LA*5.2*78") Q 1
  ;
- S LRX=0 F  S LRX=$O(LRTS(LRX)) Q:'LRX  D
- . S LRNLT=+$G(^LAB(60,+LRTS(LRX),64)) Q:'LRNLT
- . Q:'$D(^LAM(LRNLT,0))#2
- . S LRNLTN=$P(^LAM(LRNLT,0),U),LRNLT=$P(^(0),U,2)
- . Q:'LRNLT
- . D SET($P(LRORU3,U,4),$P(LRORU3,U,2),$P(LRORU3,U,5),$P(LRORU3,U,3),LRNLTN,LRNLT,LRIDT,LRSS,LRDFN,LRODT,"","ORU")
- Q
+ N LA7PAR
+ ;
+ S LA7PAR=2
+ I LA7MTYP="ORU" S LA7PAR=$$GET^XPAR("ALL","LA LEDI ORU HL7 STATUS",$$WHAT^XUAF4(SITE,"AGENCY"),"Q")
+ I LA7MTYP="ORM" S LA7PAR=$$GET^XPAR("ALL","LA LEDI ORM HL7 STATUS",$$WHAT^XUAF4(SITE,"AGENCY"),"Q")
+ ;
+ I LA7PAR=0 Q 0
+ I LA7PAR=2,LRSS'="CH" Q 0
+ I LA7PAR=3,LRSS'="MI" Q 0
+ I LA7PAR=4,LRSS'["SPCYEM" Q 0
+ I LA7PAR=5,"CHMI"'[LRSS Q 0
+ I LA7PAR=6,"CHSPCYEM"'[LRSS Q 0
+ I LA7PAR=7,"MISPCYEM"'[LRSS Q 0
+ ;
+ Q 1

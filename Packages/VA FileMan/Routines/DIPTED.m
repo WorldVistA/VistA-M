@@ -1,5 +1,5 @@
 DIPTED ;SFISC/GFT-EDIT PRINT TEMPLATE ;02/24/2009
- ;;22.0;VA FileMan;**97,160**;Mar 30, 1999;Build 21
+ ;;22.0;VA FileMan;**97,160**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  N DIC,DIPT,DIPTED,DRK,DIPTEDTY,I,J

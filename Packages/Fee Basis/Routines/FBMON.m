@@ -90,7 +90,7 @@ REPORTIT(FBFARG1) ;
  ;
  S XMSUB="FPPS Transmit Issue "_$P($$SITE^VASITE,U,2)
  S XMDUZ=.5
- S XMY("Fee.EDI_Issues@DOMAIN.EXT")=""
+ S XMY("Fee.EDI_Issues@domain.ext")=""
  S XMTEXT="^TMP($J,"""_FBFARG1_""","
  D ^XMD
  Q

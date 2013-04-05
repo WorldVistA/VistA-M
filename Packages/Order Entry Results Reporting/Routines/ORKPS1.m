@@ -1,5 +1,5 @@
-ORKPS1 ; slc/CLA - Order checking support procedures for medications ;07/27/11  07:10
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,272,346**;Dec 17, 1997;Build 5
+ORKPS1 ; SLC/CLA - Order checking support procedures for medications ;04/06/2012  06:50
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,272,346,352**;Dec 17, 1997;Build 18
  Q
 PROCESS(OI,DFN,ORKDG,ORPROSP,ORGLOBL) ;process data from pharmacy order check API
  ;ORPROSP = the med that is being checked
@@ -40,47 +40,50 @@ PROCESS(OI,DFN,ORKDG,ORPROSP,ORGLOBL) ;process data from pharmacy order check AP
  Q
  ;
 DI(TDATA) ;add drug interaction checks
- N GL
+ N GL,ORSEV,ORDRUG,ORTXT,ORIEN
  S GL=$NA(^TMP($J,ORGLOBL,"OUT","DRUGDRUG"))
  S J="" F  S J=$O(@GL@(J)) Q:'$L(J)  D
  .S K="" F  S K=$O(@GL@(J,K)) Q:'$L(K)  D
  ..S L=0 F  S L=$O(@GL@(J,K,L)) Q:'$L(L)  D
  ...S M=0 F  S M=$O(@GL@(J,K,L,M)) Q:'M  D
- ....N ORTXT,ORNUM,ORSEV,ORDNAME,ORZ,CNT,ORSTAT,ORMON,ORWHICH
- ....S ORWHICH=""
- ....I $P($P(@GL@(J,K,L,M),U),";",3,4)=TDATA("NEW","PROSP") D
- .....S ORWHICH=K
- .....I $P(L,";",3)="PROSPECTIVE" S ORWHICH=ORWHICH_" [UNRELEASED]" Q
- .....S ORWHICH=ORWHICH_" ["_$$PHSTAT(DFN,$P(L,";",1,2))_"]"
- ....I $P(L,";",3,4)=TDATA("NEW","PROSP") D
- .....S ORWHICH=$P(@GL@(J,K,L,M),U,4)
- .....I $P($P(@GL@(J,K,L,M),U),";",3)="PROSPECTIVE" S ORWHICH=ORWHICH_" [UNRELEASED]" Q
- .....S ORWHICH=ORWHICH_" ["_$$PHSTAT(DFN,$P($P(@GL@(J,K,L,M),U),";",1,2))_"]"
- ....Q:$L(ORWHICH)<2
+ ....N ORNUM,ORSEV,ORDNAME,ORZ,CNT,ORSTAT,ORMON,ORWHICH,ORLINE,ORIDX
  ....;get the associated order number
  ....S ORNUM=$P(L,";",1,2)
+ ....;if the status of the associated order is DISCONTINUED then don't add
+ ....S ORSTAT=$$PHSTAT(DFN,ORNUM)
+ ....Q:ORSTAT="DISCONTINUED"
+ ....S ORWHICH=""
+ ....I $P($P(@GL@(J,K,L,M),U),";",3,4)=TDATA("NEW","PROSP") D
+ .....S ORWHICH=K_" ["_$S($P(L,";",3)="PROSPECTIVE":"UNRELEASED",1:ORSTAT)_"]"
+ ....I $P(L,";",3,4)=TDATA("NEW","PROSP") D
+ .....S ORWHICH=$P(@GL@(J,K,L,M),U,4)_" ["
+ .....S ORWHICH=ORWHICH_$S($P($P(@GL@(J,K,L,M),U),";",3)="PROSPECTIVE":"UNRELEASED",1:$$PHSTAT(DFN,$P($P(@GL@(J,K,L,M),U),";",1,2)))
+ .....S ORWHICH=ORWHICH_"]"
+ ....Q:$L(ORWHICH)<2
  ....;get text
- ....S ORTXT=TDATA("NEW","TXT")_" and "_ORWHICH_" - "_$P($G(@GL@(J,K,L,M,"CLIN")),"CLINICAL EFFECTS:  ",2)
- ....;loop through the PMON nodes to get the CLINICAL EFFECTS
- ....;N PMON S PMON=0 F  S PMON=$O(@GL@(J,K,L,M,"PMON",PMON)) Q:'PMON  D
- ....;.I $L($G(@GL@(J,K,L,M,"PMON",PMON,0)),"CLINICAL EFFECTS:  ")>1 S ORTXT=TDATA("NEW","TXT")_" & "_K_$S($P(L,";")="P":"[PENDING]",ORNUM:"["_$$PHSTAT(DFN,ORNUM)_"]",1:"")_" - "_$P(@GL@(J,K,L,M,"PMON",PMON,0),"CLINICAL EFFECTS:  ",2)
+ ....S ORTXT(J,K)=$S($G(ORTXT(J,K))'="":ORTXT(J,K)_" ",1:"")_$P($G(@GL@(J,K,L,M,"CLIN")),"CLINICAL EFFECTS:  ",2),ORTXT(J,K,"ORWHICH")=ORWHICH
  ....;set the monograph into the temp global
  ....I $D(@GL@(J,K,L,M,"PMON")) D
  .....S ^TMP($J,"ORMONOGRAPH")=1+$G(^TMP($J,"ORMONOGRAPH"))
  .....S ORMON=^TMP($J,"ORMONOGRAPH")
- .....S ^TMP($J,"ORMONOGRAPH",ORMON,"OC")=ORTXT
  .....S ^TMP($J,"ORMONOGRAPH",ORMON,"INT")=@GL@(J,K,L,M,"INT")
- .....M ^TMP($J,"ORMONOGRAPH",ORMON,"DATA")=@GL@(J,K,L,M,"PMON")
+ .....S ORIDX="",ORLINE=1 F  S ORIDX=$O(@GL@(J,K,L,M,"PMON",ORIDX)) Q:+$G(ORIDX)=0  D
+ ......S ^TMP($J,"ORMONOGRAPH",ORMON,"DATA",ORLINE,0)=@GL@(J,K,L,M,"PMON",ORIDX,0),ORLINE=ORLINE+1
+ .....S ORTXT(J,K,"MONOGRAPH")=1,ORTXT(J,K,"ORMON",ORMON)=""
  ....;get the severity
  ....S ORSEV=$$UPPER^ORU($G(@GL@(J,K,L,M,"SEV")))
  ....;get the drug name
  ....S ORDNAME=K
- ....;if the status of the associated order is DISCONTINUED then don't add
- ....S ORSTAT=$$PHSTAT(DFN,ORNUM)
- ....Q:ORSTAT="DISCONTINUED"
- ....;set info into order check array
- ....S YY(II)="DI^"_ORSEV_U_ORNUM_U_ORDNAME_U_ORTXT_" - Monograph Available"_U_$G(@GL@(J,K,L,M,"INT"))
- ....S II=II+1
+ ....S ORTXT(J,K,"YY")="DI^"_ORSEV_U_ORNUM_U_ORDNAME_U_U_$G(@GL@(J,K,L,M,"INT"))
+ ;RETURN DATA IN EXPECTED FORMAT
+ S ORSEV="" F  S ORSEV=$O(ORTXT(ORSEV)) Q:$G(ORSEV)=""  D
+ .S ORDRUG="" F  S ORDRUG=$O(ORTXT(ORSEV,ORDRUG)) Q:$G(ORDRUG)=""  D
+ ..S YY(II)=ORTXT(ORSEV,ORDRUG,"YY")
+ ..S $P(YY(II),U,5)=TDATA("NEW","TXT")_" and "_ORTXT(ORSEV,ORDRUG,"ORWHICH")_" - "_ORTXT(ORSEV,ORDRUG)
+ ..S ORIEN=0 F  S ORIEN=$O(ORTXT(ORSEV,ORDRUG,"ORMON",ORIEN)) Q:+$G(ORIEN)=0  D
+ ...S ^TMP($J,"ORMONOGRAPH",ORIEN,"OC")=$P(YY(II),U,5)
+ ..S:$G(ORTXT(ORSEV,ORDRUG,"MONOGRAPH")) $P(YY(II),U,5)=$P(YY(II),U,5)_" - Monograph Available"
+ ..S II=II+1
  Q
  ;
 DD(TDATA) ;add duplicate drug checks
@@ -146,24 +149,29 @@ DT(TDATA) ;add duplicate therapy checks
 PHSTAT(DFN,ORNUM) ;get the status of the order
  N RET,J,I
  S RET=""
- I $P(ORNUM,";")="P" Q "PENDING"
- I $P(ORNUM,";")="N" Q "NON-VA"
- I $P(ORNUM,";")="O" D  Q RET
+ I $P(ORNUM,";")="P" S RET="PENDING"
+ I $P(ORNUM,";")="N" S RET="NON-VA"
+ I $P(ORNUM,";")="O" D
  .K ^TMP($J,"OROCLST") D RX^PSO52API(DFN,"OROCLST",$P(ORNUM,";",2),,"ST")
  .S RET=$P($G(^TMP($J,"OROCLST",DFN,$P(ORNUM,";",2),100)),U,2)
  .K ^TMP($J,"OROCLST")
- I $P(ORNUM,";")="I" D  Q RET
+ I $P(ORNUM,";")="I"!($E($P(ORNUM,";"),1)="C") D
  .N ORLAST,ORPHNUM
- .S ORLAST=$E(ORNUM,$L(ORNUM))
+ .I $E($P(ORNUM,";"),1)="C" S ORLAST=$S($E($P(ORNUM,";"),2)=1:"V",$E($P(ORNUM,";"),2)=2:"U",1:"NV")
+ .E  S ORLAST=$E(ORNUM,$L(ORNUM))
  .I ORLAST="P" S RET="PENDING" Q
  .S ORPHNUM=+$P(ORNUM,";",2)
- .I ORLAST="U" D  Q
+ .I ORLAST="U" D
  ..K ^TMP($J,"OR GET STATUS") D PSS431^PSS55(DFN,ORPHNUM,"","","OR GET STATUS")
  ..S RET=$P($G(^TMP($J,"OR GET STATUS",ORPHNUM,28)),U,2)
- .I ORLAST="V" D  Q
+ .I ORLAST="V" D
  ..K ^TMP($J,"OR GET STATUS") D PSS436^PSS55(DFN,ORPHNUM,"OR GET STATUS")
  ..S RET=$P($G(^TMP($J,"OR GET STATUS",ORPHNUM,100)),U,2)
- I $P(ORNUM,";")="R" D  Q RET
+ .I ORLAST="NV" D
+ ..K ^TMP($J,"OR GET STATUS") D PSJ^PSJ53P1(ORPHNUM,"OR GET STATUS")
+ ..S RET=$P($G(^TMP($J,"OR GET STATUS",ORPHNUM,28)),U,2)
+ .S:$E($P(ORNUM,";"),1)="C" RET=RET_" CLINIC ORDER"
+ I $P(ORNUM,";")="R" D
  .N ORREMOTE S ORREMOTE=$G(^TMP($J,ORGLOBL,"OUT","REMOTE",$P(ORNUM,";",2)))
  .S RET=$P(ORREMOTE,U,4)_" >> "_$P(ORREMOTE,U)
  Q RET

@@ -1,5 +1,5 @@
-LRVER1 ;DALOI/FHS/JAH - LAB ROUTINE DATA VERIFICATION ;8/10/04
- ;;5.2;LAB SERVICE;**42,153,201,215,239,240,263,232,286,291**;Sep 27, 1994
+LRVER1 ;DALOI/STAFF - LAB ROUTINE DATA VERIFICATION ;01/20/11  18:00
+ ;;5.2;LAB SERVICE;**42,153,201,215,239,240,263,232,286,291,350**;Sep 27, 1994;Build 230
  ;
 VER ; from LRGVP
  N LRBEY
@@ -8,6 +8,10 @@ VER ; from LRGVP
  S LRCDT=+LRCDT,LRSAMP=$S($D(^LRO(69,LRODT,1,LRSN,0)):$P(^(0),U,3),1:"")
  S LRIDT=$S($P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,3)),U,5):$P(^(3),U,5),1:"")
  S:'LRIDT LRIDT=9999999-LRCDT
+ ;
+ ; Setup LRUID when called from LRGVP (group data review)
+ I $G(LRUID)="" N LRUID S LRUID=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,.3)),"^")
+ ;
  D EXP
 LD S LRSS="CH" ;ONLY WORKS FOR 'CH'
  S LRMETH=LRSS IF $D(^LR(LRDFN,LRSS,LRIDT,0)) S LRMETH=$P($P(^(0),U,8),";",1)
@@ -28,6 +32,7 @@ EXP ; Get the list of tests for this ACC. from LRGVG1
  . I 'X Q
  . I $P(X,"^",6)="*Not Performed" Q
  . S N=N+1,LRTEST(N)=I,LRNLT=$S($P(X,"^",2)>50:$P(X,U,9),1:$P(X,"^"))
+ . I $P(X,"^",9),$P(X,"^")'=$P(X,"^",9),'$D(^LRO(68,LRAA,1,LRAD,1,LRAN,4,$P(X,"^",9))) S LRNLT=$P(X,"^",9)
  . S LRTEST(N,"P")=LRNLT_U_$$NLT(LRNLT)
  . S LRAL=$P(X,U,2)#50
  . I LRAL S LRALERT=$S(LRAL<LRALERT:LRAL,1:LRALERT)
@@ -83,7 +88,7 @@ ORD ;
  ; If panel being exploded then set parent("P" node)
  ;  to file #60 test being exploded
  I $G(LRTEST(T1,"P")) D
- . I +LRTEST(T1)=+LRTEST(T1,"P") S ^TMP("LR",$J,"TMP",S2,"P")=LRTEST(T1,"P")_"!"_$$RNLT(+X)
+ . I +LRTEST(T1)'=+LRTEST(T1,"P") S ^TMP("LR",$J,"TMP",S2,"P")=LRTEST(T1,"P")_"!"_$$RNLT(+X)
  . E  S ^TMP("LR",$J,"TMP",S2,"P")=+LRTEST(T1)_U_$$NLT(+LRTEST(T1))_"!"_$$RNLT(+X)
  ;
  I $P(X,U,18) D

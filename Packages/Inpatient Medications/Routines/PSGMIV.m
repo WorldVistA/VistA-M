@@ -1,5 +1,5 @@
 PSGMIV ;BIR/MV-IV ORDER FOR THE 24 HOUR MAR. ;25 Nov 98 / 9:07 AM
- ;;5.0; INPATIENT MEDICATIONS ;**4,20,21,28,58,111,131,145**;16 DEC 97;Build 17
+ ;;5.0;INPATIENT MEDICATIONS;**4,20,21,28,58,111,131,145,267**;16 DEC 97;Build 158
  ;
  ; Reference to ^PS(55 supported by DBIA #2191.
  ; Reference to ^PS(52.7 supported by DBIA #2173.
@@ -22,32 +22,10 @@ IV ;*** Sort IV orders for 24 Hrs MAR.
  . . N X,X1,Y
  . . D SPN^PSGMAR0
  . . Q
- . . ;
- . I PSGSS="P" S ^TMP($J,PPN,PSGMARWN,$S(+PSGMSORT:$E(QST,1),1:QST),X)="" Q                         ;DAM 5-01-07 Print by PATIENT
- . I PSGSS="L" Q:((PSGINWDG="")&(PSGMARWN'["C!"))  S ^TMP($J,PPN,PSGMARWN,$S(+PSGMSORT:$E(QST,1),1:QST),X)="" Q     ;DAM 5-01-07 Print by clinic group
- . I PSGSS="C" Q:((PSGINWD="")&(PSGMARWN'["C!"))  I ((PSGMARWN[PSGCLNC)!(PSGMARWN'["C!")) S ^TMP($J,PPN,PSGMARWN,$S(+PSGMSORT:$E(QST,1),1:QST),X)=""  Q    ;DAM 5-01-07 Print by Clinic
- . ;
- . ;DAM 5-01-07 Set up XTMP global where location and patient names are switched
- . I '$G(PSGREP) N PSGDEM1 S PSGDEM1=X D   ;transfer contents of patient drug information contained in "X" above to a new variable temporarily
- . . S PSGREP="PSGM_"_$J
- . . S X1=DT,X2=1 D C^%DTC K %,%H,%T
- . . S ^XTMP(PSGREP,0)=X_U_DT
- . I PSGRBPPN="P",PSGSS="W" Q:((PSGINCL="")&(PSGMARWN["C!"))  D         ;Construct XTMP global for printing by WARD and sort by PATIENT
- . . S ^XTMP(PSGREP,TM,PPN,PSGMARWN,PSJPRB,$S(+PSGMSORT:$E(QST,1),1:QST),PSGDEM1)=""
- . . D SPN^PSGMAR0
- . I PSGRBPPN="P",PSGSS="G" Q:((PSGINCLG="")&(PSGMARWN["C!"))  D       ;Construct XTMP global for printing by WARD GROUP and sort by PATIENT
- . .  S ^XTMP(PSGREP,TM,PPN,PSGMARWN,PSJPRB,$S(+PSGMSORT:$E(QST,1),1:QST),PSGDEM1)=""
- . .  D SPN^PSGMAR0
- . S X=$G(PSGDEM1)
- . ;END DAM
- . ;
- . I PSGRBPPN="R",PSGSS="W" Q:((PSGINCL="")&(PSGMARWN["C!"))  D        ;Construct TMP global for printing by WARD and sort by ROOM/BED
- . . S ^TMP($J,TM,PSGMARWN,PSJPRB,PPN,$S(+PSGMSORT:$E(QST,1),1:QST),X)=""
- . I PSGRBPPN="R",PSGSS="G" Q:((PSGINCLG="")&(PSGMARWN["C!"))  D      ;Construct TMP global for printing by WARD GROUP and sort by ROOM/BED
- . . S ^TMP($J,TM,PSGMARWN,PSJPRB,PPN,$S(+PSGMSORT:$E(QST,1),1:QST),X)=""
- . ;
+ . I PSGSS="P"!(PSGSS="C")!(PSGSS="L") S ^TMP($J,PPN,PSGMARWN,$S(+PSGMSORT:$E(QST,1),1:QST),X)="" Q
+ . S:PSGRBPPN="P" ^TMP($J,TM,PSGMARWN,PPN,PSJPRB,$S(+PSGMSORT:$E(QST,1),1:QST),X)=""
+ . S:PSGRBPPN="R" ^TMP($J,TM,PSGMARWN,PSJPRB,PPN,$S(+PSGMSORT:$E(QST,1),1:QST),X)=""
  S:PSGMARWN'=PSGMARWC PSGMARWN=PSGMARWC
- ;
  Q
 PRT ;*** Print IV orders.
  K TS,P,DRG NEW ON55,LN,PSJLABEL S PSJLABEL=1
@@ -67,7 +45,8 @@ LNNEED ;*** Find lines needed per label.
  ;*** for infusion rate and x line for OPI. Divide by 5 to determine
  ;*** of label(s) needed for this order.
  F X="AD","SOL" D NAMENEED^PSJMUTL(X,47,.NEED) S NAMENEED=NAMENEED+NEED
- S X=($L($P(P("OPI"),"^"))\47)+(($L($P(P("OPI"),"^"))#47)>28)+1+($P(P("OPI"),"^")]""&(P(4)="C"))
+ N OPILEN,OPILAST S OPILAST=$S(($G(ON55)["V"):$O(^PS(55,DFN,"IV",ON55,10," "),-1),1:"") S OPILEN=$S(OPILAST:(74*OPILAST),1:$L(P("OPI")))
+ S X=(OPILEN\47)+((OPILEN#47)>28)+1+($P(P("OPI"),"^")]""&(P(4)="C"))
  S X=(NAMENEED+X+2) S X=$S(X<6:1,1:((X-6)\5)+2)
  S LN=$S(TS/6>X:TS/6,1:X)
  Q
@@ -102,8 +81,8 @@ PRTIV ;*** Print IV order on MAR
  I (L#5)=0,($L($P(P("OPI"),"^"))<29),(TS<7) S L=L+1
  E  D L(1)
  W:P("OPI")=""&(TS>6) !
- I P("OPI")'="" D
- . W:(L#6)=0 !
+ I P("OPI")'="" I '$$OPI(PSGP,ON55) D
+ . W:(L#6)=1 !
  . F Y=1:1:$L($P(P("OPI"),"^")," ") S Y1=$P($P(P("OPI"),"^")," ",Y) D  W Y1," "
  . I ($X+$L(Y1))>47 W ?48,PSGL,$G(TS(L)),?55,"|" D L(1) W !
  I L>TS,(L#6) W ?48,PSGL,$G(TS(L)),?55,"|" S L=L+1 W:L#6=0 !
@@ -116,6 +95,17 @@ PRTIV ;*** Print IV order on MAR
  W ?29,"RPH: ",PSGLRPH,?38,"RN: ",PSGLRN,?48,PSGL,$G(TS(L)),?55,"|" W:PSGMAROC<6 !?7,LN2
  Q
  ;
+OPI(DFN,ORDER) ; Retrieve, format, and print Other Print Info
+ N TXTLN S TXTLN=$$GETSIOPI^PSJBCMA5($G(PSGP),$G(ON55),1) I 'TXTLN Q 0
+ N TXTLN,TXT,I,TMPMARX,MARXTXT,LAST,II,Y K MARX S LAST=0,TMPMARX="" S PSGL=$S(($G(PSGL)]""):PSGL,1:"|")
+ I ORDER["V" S TXTLN=0 F I=1:1 S TXTLN=$O(^PS(55,DFN,"IV",+ORDER,10,TXTLN)) Q:'TXTLN  D
+ .S MARXTXT=^PS(55,DFN,"IV",+ORDER,10,TXTLN,0) D TXT^PSGMUTL(MARXTXT,47) S LAST=$O(TMPMARX(" "),-1) S II=0 F  S II=$O(MARX(II)) Q:'II  S TMPMARX(LAST+II)=MARX(II)
+ I ORDER["P" S TXTLN=0 F I=1:1 S TXTLN=$O(^PS(53.1,+ORDER,16,TXTLN)) Q:'TXTLN  D
+ .S MARXTXT=^PS(53.1,+ORDER,16,TXTLN,0) D TXT^PSGMUTL(MARXTXT,47) S LAST=$O(TMPMARX(" "),-1) S II=0 F  S II=$O(MARX(II)) Q:'II  S TMPMARX(LAST+II)=MARX(II)
+ K MARX M MARX=TMPMARX S I=0 F  S I=$O(MARX(I)) Q:'I  D
+ . W:(L#6)=0 !
+ . S Y1=MARX(I) W Y1," ",?48,PSGL,$G(TS(L)),?55,"|" D L(1) W !
+ Q 1
 L(X) ;***Check to see if a new block is needed.
  S L=L+X
  I L#6=0,PSGMAROC<6 W !,"See next label for continuation",?48,PSGL,$G(TS(L)),?55,"|" W:PSGMAROC<6 !?7,LN2 S PSGMAROC=PSGMAROC+1,L=L+1 D

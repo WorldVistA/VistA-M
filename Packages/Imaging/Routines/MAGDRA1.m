@@ -1,5 +1,6 @@
-MAGDRA1 ;WOIFO/LB -Routine for DICOM fix ; 09/15/2004  13:34
- ;;3.0;IMAGING;**10,11,30**;16-September-2004
+MAGDRA1 ;WOIFO/LB,JSL,SAF -Routine for DICOM fix ; 09/15/2004  13:34
+ ;;3.0;IMAGING;**10,11,30,123**;Mar 19, 2002;Build 67;Jul 24, 2012
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -7,7 +8,6 @@ MAGDRA1 ;WOIFO/LB -Routine for DICOM fix ; 09/15/2004  13:34
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -18,7 +18,7 @@ MAGDRA1 ;WOIFO/LB -Routine for DICOM fix ; 09/15/2004  13:34
  Q
 LOOP ;Loop thru ^TMP($J,"RAE1" global
  ;MAGDFN should exist.
- ;MAGNME,MAGSSN may exist.
+ ;MAGNME,MAGPID may exist.
  Q:'$D(^TMP($J,"RAE1"))!('$D(MAGDFN))
  N CCASE,CASE,CDATE,CODE,DATA,DATE,ENTRY,ENTRIES,ERR,ESTAT,INDEX
  N LOC,MAGCASE,MAGCNI,MAGCPT,MAGDTI,MAGPIEN,MAGPRC,MAGPSET,MAGPST
@@ -51,9 +51,9 @@ LOOP ;Loop thru ^TMP($J,"RAE1" global
  . . . S MAGPSET=CASE_" is part of this printset."
  . . . Q
  . . Q
- . I '$D(MAGNME)!'($D(MAGSSN)) D
+ . I '$D(MAGNME)!'($D(MAGPID)) D
  . . S PTINFO=$$PTINFO^MAGDRA2
- . . S MAGNME=$P(PTINFO,"^"),MAGSSN=$P(PTINFO,"^",2)
+ . . S MAGNME=$P(PTINFO,"^"),MAGPID=$P(PTINFO,"^",2) ;P123
  . . Q
  . S INDEX(ENTRIES)=PROC_"^"_$G(MAGPSET)_"^"_RADTI_"^"_RACNI_"^"_MAGCASE
  . ; Radiology procedure^Printset^Inverse radiology date/time^Radioloty multiple^radiology case number
@@ -71,7 +71,7 @@ PRT ;
  D SEL
  Q
 HEAD ;
- W @IOF,"Patient: ",MAGNME,?50,"SSN: ",MAGSSN
+ W @IOF,"Patient: ",MAGNME,?50,$$PIDLABEL^MAGSPID(),": ",MAGPID ;P123
  W !!,?3,"Case #",?12,"Procedure",?41,"Exam Date",?52,"Status of"
  W "Exam",?69,"Imaging Loc"
  W !?3,"--------",?12,"-------------",?41,"---------"

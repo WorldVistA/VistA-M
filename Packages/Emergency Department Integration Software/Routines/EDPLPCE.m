@@ -1,10 +1,10 @@
-EDPLPCE ;SLC/KCM - Create a Visit
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPLPCE ;SLC/KCM - Create a Visit ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 UPDVISIT(LOG,PCE) ; Get / Create a Visit
  ; PCE is list of potential updates to the visit
  ; PCE(TYP,n)=type^ien^code^label^add^del^upd^prim^qty
- N DFN,TS,LOC,X0
+ N DFN,TS,LOC,X0,I,X
  S X0=^EDP(230,LOG,0),DFN=$P(X0,U,6),TS=$P(X0,U,8),LOC=$P(X0,U,14)
  I 'LOC S LOC=$$DFLTLOC(DFN)
  I 'DFN!('TS)!('LOC) Q 0  ; not enough info

@@ -6,9 +6,9 @@ EN(ST) ;
  .S SA=$P(STR,";",2) Q:SA'="B"
  .S SB=$P(STR,";",3),SM=$P(STR,";",4) D
  ..F GG=1:1 S STE=$P($T(@ST+II+GG),";;",2) Q:+STE'=ST!($P(STE,";",2)="B")  D
- ...S ER=$P(STE,";",3) S SQS=$P(STE,";",4) F SS=1:1 S SQ=$P(SQS,",",SS) Q:SQ=""  ; D PR^SD376P(SB,SM,ER,SQ)
+ ...S ER=$P(STE,";",3) S SQS=$P(STE,";",4) F SS=1:1 S SQ=$P(SQS,",",SS) Q:SQ=""  D PR^SD376P(SB,SM,ER,SQ)
  ..;update batch acknowledgement
- ..S ER="" S SQ=$O(^SDWL(409.6,"AMSG",SM,"")) Q:SQ=""  ; D PR^SD376P(SB,SM,ER,SQ)
+ ..S ER="" S SQ=$O(^SDWL(409.6,"AMSG",SM,"")) Q:SQ=""  D PR^SD376P(SB,SM,ER,SQ)
  Q
 554 ;;
  ;;554;B;55437796563;55448521745

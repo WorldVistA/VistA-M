@@ -1,5 +1,5 @@
-MAGDQR21 ;WOIFO/EdM,NST,MLH - RPCs for Query/Retrieve SetUp ; 09 May 2011 4:27 PM
- ;;3.0;IMAGING;**83,104**;Mar 19, 2002;Build 2225;Jul 12, 2011
+MAGDQR21 ;WOIFO/EdM,NST,MLH,JSL,SAF - RPCs for Query/Retrieve SetUp ; 09 May 2011 4:27 PM
+ ;;3.0;IMAGING;**83,104,123**;Mar 19, 2002;Build 67;Jul 24, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -173,7 +173,7 @@ STUDY(UID,IEN,REQDFN,IMGLESS) ;
  ; (VA internal only!)
  I QINTEG Q:'REQDFN  Q:$P($G(^MAG(2005,I0,0)),"^",7)'=REQDFN
  ;
- S N=N+1,@OUT@(N)="STUDY_PAT|"_REQDFN_"|"_$$GETICN^MPIF001(REQDFN)_"|"_$P($G(^DPT(REQDFN,0)),"^",1)
+ S N=N+1,@OUT@(N)="STUDY_PAT|"_REQDFN_"|"_$S($T(GETICN^MPIF001)'="":$$GETICN^MPIF001(REQDFN),1:"-1^NO MPI")_"|"_$P($G(^DPT(REQDFN,0)),"^",1)
  ;
  ; CR, 5-28-09
  ; For study-level data stop here without additional checks 

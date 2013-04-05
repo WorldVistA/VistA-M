@@ -1,5 +1,5 @@
 PRSAPPO ; HISC/MGD - Open New Pay Period ;07/30/07
- ;;4.0;PAID;**93,112**;Sep 21, 1995;Build 54
+ ;;4.0;PAID;**93,112,132**;Sep 21, 1995;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  S PPI=$P(^PRST(458,0),"^",3),PPE=$P(^PRST(458,PPI,0),"^",1)
  D NX^PRSAPPU S X1=D1,X2=14 D C^%DTC S D1=X
@@ -51,7 +51,7 @@ A3 S ^PRST(458,PPI,"E",0)="^458.01P^^" D NOW^%DTC S NOW=% D ^PRSAPPH
  .I $G(CT36),CM36<MAX S FDA(456,IND_",",4)=CM36+1
  .Q:'$D(FDA)  D FILE^DIE("","FDA"),MSG^DIALOG()
  .S S=$$GET1^DIQ(4,+S,99)_" "_$$GET1^DIQ(4,+S,100),XMTEXT="TMP("
- .S TMP(3)="At "_S,XMDUZ=.5,XMY("VHAOIPAIDETANAWSBULLETIN@DOMAIN.EXT")=""
+ .S TMP(3)="At "_S,XMDUZ=.5,XMY("VHAOIPAIDETANAWSBULLETIN@domain.ext")=""
  .S XMSUB=+S_" 36/40, 9 month AWS nurse(s) deployed PRS*4.0*112"
  .D ^XMD K TMP
  S $P(^PRST(458,PPI,"E",0),"^",3,4)=N_"^"_N W !!,N," Employee Records created.",!
@@ -81,7 +81,10 @@ MOV ; Create PP entry for Employee
  Q
  ;
 M1 ; Set a day
- S Z=$G(^PRST(458,PPIP,"E",DFN,"D",DAY,0)),TD=$P(Z,"^",2) I $P(Z,"^",3) S TD=$P(Z,"^",4)
- S X=$G(^PRST(457.1,+TD,1)),TDH=$P($G(^(0)),"^",6)
+ N Y
+ S Z=$G(^PRST(458,PPIP,"E",DFN,"D",DAY,0)),Y=$G(^(8)),TD=$P(Z,"^",2) I $P(Z,"^",3) S TD=$P(Z,"^",4),Y=$P(Y,U,5)
+ S Y=$P(Y,U),X=$G(^PRST(457.1,+TD,1)),TDH=$P($G(^(0)),"^",6)
  S ^PRST(458,PPI,"E",DFN,"D",DAY,0)=DAY_"^"_TD S:TDH'="" $P(^(0),"^",8)=TDH S:X'="" ^(1)=X
- Q
+ ;telework tour
+ I Y]"",$P($$TWE^PRSATE0(DFN),U,2)="Y" S ^PRST(458,PPI,"E",DFN,"D",DAY,8)=Y
+ QUIT

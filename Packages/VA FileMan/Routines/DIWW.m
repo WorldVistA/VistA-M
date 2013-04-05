@@ -1,5 +1,5 @@
 DIWW ;SFISC/GFT-OUTPUT WP LINE ;5NOV2007
- ;;22.0;VA FileMan;**64,144,152**;Mar 30, 1999;Build 10
+ ;;22.0;VA FileMan;**64,144,152**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  F I=0:1 G:$D(DN) QQ:'DN Q:$D(^UTILITY($J,"W"))<9  D T G:$D(DN) QQ:'DN D 0
 T W:$X !

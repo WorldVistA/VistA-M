@@ -1,5 +1,5 @@
 DIWE ;SFISC/GFT,XAK-START OF WP ;11:35 AM  25 Aug 2000
- ;;22.0;VA FileMan;**8,18**;Mar 30, 1999
+ ;;22.0;VA FileMan;**8,18**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 EN K DTOUT,DUOUT,DIRUT ;G Q:'$D(@(DIC_"0)")) D A
  L @("+"_DIC_"0):1") E  W !,"FILE IS IN USE BY ANOTHER TERMINAL" G Q

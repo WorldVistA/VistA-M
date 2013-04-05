@@ -1,5 +1,5 @@
 DDUCHK2 ;SFISC/RWF/SO-CHECK DD (FIELDS) ;11:46 AM  5 Mar 2004
- ;;22.0;VA FileMan;**100,130**;Mar 30, 1999
+ ;;22.0;VA FileMan;**100,130**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 CHK6 ;W !?5,"Checking FIELDs"
  F DDUCFE=0:0 S DDUCFE=+$O(^DD(DDUCFI,DDUCFE)) Q:DDUCFE'>0  D FIELD Q:$D(DIRUT)  D FIVE,DXREF^DDUCHK3,XREF^DDUCHK3,COMP^DDUCHK3

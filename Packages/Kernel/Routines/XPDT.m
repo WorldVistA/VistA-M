@@ -1,5 +1,5 @@
 XPDT ;SFISC/RSD - Transport a package ;02/12/2009
- ;;8.0;KERNEL;**2,10,28,41,44,51,58,66,68,85,100,108,393,511,539**;Jul 10, 1995;Build 11
+ ;;8.0;KERNEL;**2,10,28,41,44,51,58,66,68,85,100,108,393,511,539,547**;Jul 10, 1995;Build 15
  ;Per VHA Directive 2004-038, this routine should not be modified.
 EN ;build XTMP("XPDT",ien, XPDA=ien,XPDNM=name
  ;XPDT(seq #)=ien^name^1=use current transport global on system
@@ -132,17 +132,20 @@ GW ;global write
  Q
 XM ;Send HFS checksum message
  Q:'$G(XPDFMSG)
- N XMTEXT,C,RN,X,X2
+ N XMTEXT,C,RN,RN2,X,X2
  K ^TMP($J)
  S XMSUB="**KIDS** Checksum for "_XPDNM,XMTEXT="^TMP($J)"
- I $G(^XMB("NETNAME"))["DOMAIN.EXT" S XMY("S.A1AE HFS CHKSUM SVR@FORUM.DOMAIN.EXT")=""
+ I $G(^XMB("NETNAME"))["domain.ext" S XMY("S.A1AE HFS CHKSUM SVR@FORUM.domain.ext")=""
  E  S X=$$GET^XPAR("PKG","XPD PATCH HFS SERVER",1,"Q") S:$L(X) XMY(X)=""
  I '$D(XMY) Q  ;No one to send it to.
  S C=1,@XMTEXT@(1,0)="~~1:"_XPDNM
  I XPDT=1,$O(XPDT(1)) D
  . S RN=1 F  S RN=$O(XPDT(RN)) Q:'RN  S C=C+1,@XMTEXT@(C,0)="~~2:"_$P(XPDT(RN),"^",2)
- S RN="" ;Send full RTN node
- F  S RN=$O(^XTMP("XPDT",XPDA,"RTN",RN)) Q:'$L(RN)  S X=^(RN),X2=$G(^(RN,2,0)),C=C+1,@XMTEXT@(C,0)="~~3:"_RN_"^"_X_"^"_$P(X2,";",5)
+ S (RN,RN2)="" ;Send full RTN node
+ F  S RN=$O(^XTMP("XPDT",XPDA,"RTN",RN)) Q:'$L(RN)  S X=^(RN),X2=$G(^(RN,2,0)) D
+ . S C=C+1,@XMTEXT@(C,0)="~~3:"_RN_"^"_X_"^"_$P(X2,";",5)
+ . I RN2="",$E(X2,1,3)=" ;;" S RN2=$P(X2,"**",1)_"**[Patch List]**"_$P(X2,"**",3)
+ S C=C+1,@XMTEXT@(C,0)="~~4:"_RN2
  S C=C+1,@XMTEXT@(C,0)="~~8:"_$G(^XMB("NETNAME"))
  S C=C+1,@XMTEXT@(C,0)="~~9:Save"
  S XMTEXT="^TMP($J,"

@@ -1,5 +1,5 @@
 DIU31 ;SFISC/GFT-UNEDITABLE, INPUT TRANS., OUTPUT TRANS. ;10/4/90  8:57 AM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 9 ;

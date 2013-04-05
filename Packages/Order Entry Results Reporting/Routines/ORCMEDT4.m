@@ -1,5 +1,6 @@
 ORCMEDT4 ;SLC/MKB-Prompt Editor ;6/19/01  15:05
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,95,245**;Dec 17, 1997;Build 2
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,95,245,313**;Dec 17, 1997;Build 12
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 EN ; -- Enter/edit prompts
  N PRMT F  S PRMT=+$$PROMPT Q:PRMT'>0  D  W !
  . I $P($G(^ORD(101.41,PRMT,0)),U,7)=$O(^DIC(9.4,"C","OR",0)) D  Q
@@ -156,7 +157,7 @@ PTR ; -- pointer
 ROOT ; -- pointer via file root
  N X,Y,DIR,STR
  S DIR(0)="FA^1:100",DIR("A")="POINT TO WHICH FILE: "
- S DIR("?")="Enter the file or subfile by name, file number, or global root (without the leading '^')."
+ S DIR("?")="Enter the file by name, file number, or global root (without the leading '^')."
  S:$L(DOMAIN) DIR("B")=$S(+DOMAIN:$$FILENAME(+DOMAIN),1:$P(DOMAIN,":"))
 RT1 D ^DIR I $D(DTOUT)!$D(DUOUT) S DOMAIN="^" Q
  I $L(DOMAIN),$L(X),X=$G(DIR("B")) S Y=$P(DOMAIN,":") G RTQ ; default

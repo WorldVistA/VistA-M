@@ -1,5 +1,5 @@
 DIFROMSX ;SFIRMFO/DCM/TKW-MOVE INDEX FILE ENTRIES ;12:31 PM  31 Oct 2001
- ;;22.0;VA FileMan;**1,11,92**;Mar 30, 1999
+ ;;22.0;VA FileMan;**1,11,92**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 DDIXOUT(DIFRFILE,DIFRF2,DIFRFDD,DIFRTA) ; retrieve INDEX entries for file
  ; DIFRFILE=top level file#

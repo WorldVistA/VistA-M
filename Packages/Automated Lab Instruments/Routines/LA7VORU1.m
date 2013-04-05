@@ -1,84 +1,139 @@
-LA7VORU1 ;DALOI/JMC - Builder of HL7 Lab Results Microbiology OBR/OBX/NTE ;12/08/09  16:39
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,68**;Sep 27, 1994;Build 56
+LA7VORU1 ;DALOI/JMC - Builder of HL7 Lab Results Microbiology OBR/OBX/NTE ;11/18/11  14:52
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,68,74**;Sep 27, 1994;Build 229
+ ;
  Q
  ;
  ;
 MI ; Build segments for "MI" subscript
  ;
- N LA7I,LA7ID,LA7IDT,LA7IENS,LA7NLT,LRDFN,LRIDT,LRSB,LRSS
+ N LA7I,LA7IDT,LA7ISOID,LA7IENS,LA7MISB,LA7NLT,LA7REL,LA7SUBFL,LA7VNLT,LA7VT,LA7VTIEN,LRDFN,LRIDT,LRSB,LRSS
  ;
  S LRDFN=LA("LRDFN"),LRSS=LA("SUB"),(LA7IENS,LRIDT)=LA("LRIDT")
+ ; Flag that whole report has been released, complete date in field  #.03
+ S LA7REL=$P(^LR(LRDFN,LRSS,LRIDT,0),"^",3)
+ ;
+ ; Determine if there are specific sections to send back.
+ I $G(LA(62.49)) D
+ . S LA7VNLT=$P($G(^LAHM(62.49,LA(62.49),63)),"^",5),LA7VTIEN=0
+ . F  S LA7VTIEN=$O(^LAHM(62.49,LA(62.49),1,LA7VTIEN)) Q:'LA7VTIEN  D
+ . . S LA7VT=^LAHM(62.49,LA(62.49),1,LA7VTIEN,0)
+ . . I $P(LA7VT,"^") D
+ . . . S LA7VT(63)=$G(^LAB(64.061,$P(LA7VT,"^"),63))
+ . . . I $P(LA7VT(63),"^")'="MI" Q
+ . . . I $P(LA7VT(63),"^",3) S LA7MISB($P(LA7VT(63),"^",2,3))=LA7VNLT
+ ;
+ ; Send gram stain if C&S
+ I $D(LA7MISB("63.05^11")) S LA7MISB("63.05^11.6;63.29")=LA7MISB("63.05^11")
+ ;
+ ; Send acid fast stain if AFB culture
+ I $D(LA7MISB("63.05^22")) S LA7MISB("63.05^24")=LA7MISB("63.05^22")
+ ;
+ ; If no specific section then check all sections
+ I '$D(LA7MISB) F LA7VT="63.05^11","63.05^11.6;63.29","63.05^14","63.05^18","63.05^22","63.05^24","63.05^33" S LA7MISB(LA7VT)=""
  ;
  ; Bacteriology Report
- I $D(^LR(LRDFN,LRSS,LRIDT,1)) D
- . S LA7IDT=LRIDT,LRSB=11,LA7NLT="87993.0000"
+ I $D(^LR(LRDFN,LRSS,LRIDT,1)),(LA7REL!$P($G(^LR(LRDFN,LRSS,LRIDT,1)),"^")) D
+ . I '$D(LA7MISB("63.05^11")),'$D(LA7MISB("63.05^11.6;63.29"))  Q
+ . S LA7NTESN=0,LA7IDT=LRIDT,LRSB=11
+ . I '$D(LA7MISB("63.05^11")),$D(LA7MISB("63.05^11.6;63.29")) S LA7NLT=$S($P(LA7MISB("63.05^11.6;63.29"),"^"):$P(LA7MISB("63.05^11.6;63.29"),"^"),1:"87754.0000")
+ . E  S LA7NLT=$S($P(LA7MISB("63.05^11"),"^"):$P(LA7MISB("63.05^11"),"^"),1:"87993.0000")
  . D OBR^LA7VORU
+ . I LA7NVAF=1 D PLC^LA7VORUA
  . D NTE^LA7VORU
- . F LRSB=1,11.7,1.5,11 D RPTNTE
- . N LRSB
+ . I LA7NVAF=1 D
+ . . S LRSB=11 D RPT^LA7VORU2
+ . . F LRSB=1,11.7,1.5 D RPTNTE^LA7VORU2
+ . I LA7NVAF'=1 F LRSB=1,11.7,1.5,11 D RPTNTE^LA7VORU2
  . S LA7OBXSN=0
  . ; Report urine/sputum screens
  . F LA7I=5,6 I $P(^LR(LRDFN,LRSS,LRIDT,1),"^",LA7I)'="" S LRSB=$S(LA7I=5:11.58,1:11.57) D OBX
  . ; Report gram stain
- . I $D(^LR(LRDFN,LRSS,LRIDT,2)) D GS
+ . I $D(^LR(LRDFN,LRSS,LRIDT,2)),$D(LA7MISB("63.05^11.6;63.29")) D GS
+ . N LRSB
  . ; Check for organism id
  . I '$D(^LR(LRDFN,LRSS,LRIDT,3)) Q
- . S LRSB=12
- . D ORG
- . D MIC
+ . S LRSB=12,LA7SUBFL=63.3
+ . D ORG,MIC
  ;
  ; Parasite report
- I $D(^LR(LRDFN,LRSS,LRIDT,5)) D
- . S LRSB=14,LA7NLT="87505.0000"
+ I $D(^LR(LRDFN,LRSS,LRIDT,5)),(LA7REL!$P($G(^LR(LRDFN,LRSS,LRIDT,5)),"^")) D
+ . I '$D(LA7MISB("63.05^14")) Q
+ . S LRSB=14,LA7NTESN=0
+ . S LA7NLT=$S($P(LA7MISB("63.05^14"),"^"):$P(LA7MISB("63.05^14"),"^"),1:"87925.0000")
  . D OBR^LA7VORU
+ . I LA7NVAF=1 D PLC^LA7VORUA
  . D NTE^LA7VORU
- . F LRSB=16.5,15.51,16.4,14 D RPTNTE
+ . S LA7OBXSN=0
+ . I LA7NVAF=1 D
+ . . S LRSB=14 D RPT^LA7VORU2
+ . . F LRSB=16.5,15.51,16.4 D RPTNTE^LA7VORU2
+ . I LA7NVAF'=1 F LRSB=16.5,15.51,16.4,14 D RPTNTE^LA7VORU2
  . ; Check for organism id
  . I '$D(^LR(LRDFN,LRSS,LRIDT,6)) Q
  . N LRSB
- . S LA7OBXSN=0,LA7IDT=LRIDT,LRSB=16
+ . S LA7IDT=LRIDT,LRSB=16
  . D ORG
  ;
  ; Mycology report
- I $D(^LR(LRDFN,LRSS,LRIDT,8)) D
- . S LRSB=18,LA7NLT="87994.0000"
+ I $D(^LR(LRDFN,LRSS,LRIDT,8)),(LA7REL!$P($G(^LR(LRDFN,LRSS,LRIDT,8)),"^")) D
+ . I '$D(LA7MISB("63.05^18")) Q
+ . S LRSB=18,LA7NTESN=0
+ . S LA7NLT=$S($P(LA7MISB("63.05^18"),"^"):$P(LA7MISB("63.05^18"),"^"),1:"87994.0000")
  . D OBR^LA7VORU
+ . I LA7NVAF=1 D PLC^LA7VORUA
  . D NTE^LA7VORU
- . F LRSB=20.5,19.6,20.4,18 D RPTNTE
+ . S LA7OBXSN=0
+ . I LA7NVAF=1 D
+ . . S LRSB=18 D RPT^LA7VORU2
+ . . F LRSB=20.5,19.6,20.4 D RPTNTE^LA7VORU2
+ . I LA7NVAF'=1 F LRSB=20.5,19.6,20.4,18 D RPTNTE^LA7VORU2
  . ; Check for organism id
  . I '$D(^LR(LRDFN,LRSS,LRIDT,9)) Q
  . N LRSB
- . S LA7OBXSN=0,LA7IDT=LRIDT,LRSB=20
+ . S LA7IDT=LRIDT,LRSB=20
  . D ORG
  ;
  ; Mycobacterium report
- I $D(^LR(LRDFN,LRSS,LRIDT,11)) D
- . S LRSB=22,LA7NLT="87995.0000"
+ I $D(^LR(LRDFN,LRSS,LRIDT,11)),(LA7REL!$P($G(^LR(LRDFN,LRSS,LRIDT,11)),"^")) D
+ . I '$D(LA7MISB("63.05^22")),'$D(LA7MISB("63.05^24"))  Q
+ . S LA7NTESN=0,LA7IDT=LRIDT,LRSB=22
+ . I '$D(LA7MISB("63.05^22")),$D(LA7MISB("63.05^24")) S LA7NLT=$S($P(LA7MISB("63.05^24"),"^"):$P(LA7MISB("63.05^24"),"^"),1:"87756.0000")
+ . E  S LA7NLT=$S($P(LA7MISB("63.05^22"),"^"):$P(LA7MISB("63.05^22"),"^"),1:"87995.0000")
  . D OBR^LA7VORU
+ . I LA7NVAF=1 D PLC^LA7VORUA
  . D NTE^LA7VORU
- . F LRSB=26.5,26.4,22 D RPTNTE
- . N LRSB
- . S LA7OBXSN=0,LA7IDT=LRIDT
+ . I LA7NVAF=1 D
+ . . S LRSB=22 D RPT^LA7VORU2
+ . . F LRSB=26.5,26.4 D RPTNTE^LA7VORU2
+ . I LA7NVAF'=1 F LRSB=26.5,26.4,22 D RPTNTE^LA7VORU2
+ . S LA7OBXSN=0
  . ; Report acid fast stain
  . I $P(^LR(LRDFN,LRSS,LRIDT,11),"^",3)'="" D
  . . S LRSB=24 D OBX
- . . S LRSB=25 D OBX
+ . . I $P(^LR(LRDFN,LRSS,LRIDT,11),"^",4)'="" S LRSB=25 D OBX
  . ; Check for organism id
  . I '$D(^LR(LRDFN,LRSS,LRIDT,12)) Q
- . S LRSB=26
- . D ORG
- . D MIC
+ . N LRSB
+ . S LA7IDT=LRIDT,LRSB=26,LA7SUBFL=63.39
+ . D ORG,MIC
  ;
  ; Virology report
- I $D(^LR(LRDFN,LRSS,LRIDT,16)) D
- . S LRSB=33,LA7NLT="87996.0000"
+ I $D(^LR(LRDFN,LRSS,LRIDT,16)),(LA7REL!$P($G(^LR(LRDFN,LRSS,LRIDT,16)),"^")) D
+ . I '$D(LA7MISB("63.05^33")) Q
+ . S LRSB=33,LA7NTESN=0
+ . S LA7NLT=$S($P(LA7MISB("63.05^33"),"^"):$P(LA7MISB("63.05^33"),"^"),1:"87996.0000")
  . D OBR^LA7VORU
+ . I LA7NVAF=1 D PLC^LA7VORUA
  . D NTE^LA7VORU
- . F LRSB=36.5,36.4,33 D RPTNTE
+ . S LA7OBXSN=0
+ . I LA7NVAF=1 D
+ . . S LRSB=33 D RPT^LA7VORU2
+ . . F LRSB=36.5,36.4 D RPTNTE^LA7VORU2
+ . I LA7NVAF'=1 F LRSB=36.5,36.4,33 D RPTNTE^LA7VORU2
  . ; Check for virus id
  . I '$D(^LR(LRDFN,LRSS,LRIDT,17)) Q
  . N LRSB
- . S LA7OBXSN=0,LA7IDT=LRIDT,LRSB=36
+ . S LA7IDT=LRIDT,LRSB=36
  . D ORG
  ;
  ; Antibiotic Levels
@@ -89,6 +144,23 @@ MI ; Build segments for "MI" subscript
  . S LA7SR=0
  . F  S LA7SR=$O(^LR(LRDFN,LRSS,LRIDT,14,LA7SR)) Q:'LA7SR  S LA7IDT=LRIDT_","_LA7SR D OBX
  ;
+ ; Sterility results
+ I $D(^LR(LRDFN,LRSS,LRIDT,31)) D
+ . N LA7SR
+ . S LRSB=11.52,LA7NLT="93982.0000",LA7NTESN=0
+ . D OBR^LA7VORU
+ . S LA7SR=0
+ . F  S LA7SR=$O(^LR(LRDFN,LRSS,LRIDT,31,LA7SR)) Q:'LA7SR  S LA7IDT=LRIDT_","_LA7SR D OBX
+ ;
+ ; Check if specific NLT in the ORUT node for test being NP and build OBR for the NP test.
+ I $G(LA7VNLT)'="" D
+ . N LA7DISPO,LA7I
+ . S LA7DISPO=$$FIND1^DIC(64.061,"","OQX","X","D","I $P(^(0),U,5)=""0123""")
+ . S LA7I=$O(^LR(LRDFN,LRSS,LRIDT,"ORUT","B",LA7VNLT,0)) Q:'LA7I
+ . I LA7DISPO'="",$P(^LR(LRDFN,LRSS,LRIDT,"ORUT",LA7I,0),"^",10)=LA7DISPO D
+ . . S LA7NLT=LA7VNLT,LRSB=$P($G(LA7VT(63)),"^",3),LA7NTESN=0,LA7IDT=LRIDT
+ . . S:LRSB="" LRSB=0 D OBR^LA7VORU,NTE^LA7VORU
+ ;
  Q
  ;
  ;
@@ -96,64 +168,14 @@ GS ; Report Gram stain
  ;
  N LA7GS
  ;
- S LRSB=11.6,LA7GS=0
+ S LA7GS=0,LRSB=11.6
  F  S LA7GS=$O(^LR(LRDFN,LRSS,LRIDT,2,LA7GS)) Q:'LA7GS  D
- . S LA7IDT=LRIDT_","_LA7GS
+ . S LA7IDT=LRIDT_","_LA7GS,LA7NTESN=0
  . D OBX
  Q
  ;
  ;
-RPTNTE ; Send report comments
- ;
- N LA7CMTYP,LA7FMT,LA7J,LA7ND,LA7SOC,LA7TXT,LA7X
- ;
- ; Source of comment - handle special codes for other systems, i,e. DOD-CHCS
- S LA7SOC=$S($G(LA7NVAF)=1:"AC",1:"L"),LA7ND=0
- ;
- S LA7FMT=0
- ; If HDR interface then send as repetition text.
- I $G(LA7INTYP)=30 S LA7FMT=2
- ;
- D
- . ; Bacterial preliminary/report/tests remark
- . I LRSB=11 S LA7ND=4,LA7CMTYP="VA-LRMI010" Q
- . I LRSB=1 S LA7ND=19,LA7CMTYP="VA-LRMI011" Q
- . I LRSB=1.5 S LA7ND=26,LA7CMTYP="VA-LRMI012" Q
- . I LRSB=11.7 S LA7ND=25,LA7CMTYP="VA-LRMI013" Q
- . ; Parasite preliminary/report/tests remark
- . I LRSB=14 S LA7ND=7,LA7CMTYP="VA-LRMI020" Q
- . I LRSB=16.5 S LA7ND=21,LA7CMTYP="VA-LRMI021" Q
- . I LRSB=16.4 S LA7ND=27,LA7CMTYP="VA-LRMI022" Q
- . I LRSB=15.1 S LA7ND=24,LA7CMTYP="VA-LRMI023" Q
- . ; Fungal preliminary/report/tests remark
- . I LRSB=18 S LA7ND=10,LA7CMTYP="VA-LRMI030" Q
- . I LRSB=20.5 S LA7ND=22,LA7CMTYP="VA-LRMI031" Q
- . I LRSB=20.4 S LA7ND=28,LA7CMTYP="VA-LRMI032" Q
- . I LRSB=19.6 S LA7ND=15,LA7CMTYP="VA-LRMI033" Q
- . ; Mycobacteria preliminary/report/tests remark
- . I LRSB=22 S LA7ND=13,LA7CMTYP="VA-LRMI040" Q
- . I LRSB=26.5 S LA7ND=23,LA7CMTYP="VA-LRMI041" Q
- . I LRSB=26.4 S LA7ND=29,LA7CMTYP="VA-LRMI042" Q
- . ; Viral preliminary/report/tests remark
- . I LRSB=33 S LA7ND=18,LA7CMTYP="VA-LRMI050" Q
- . I LRSB=36.5 S LA7ND=20,LA7CMTYP="VA-LRMI051" Q
- . I LRSB=36.4 S LA7ND=30,LA7CMTYP="VA-LRMI052" Q
- ;
- I LA7ND'>0 Q
- ;
- S LA7J=0
- F  S LA7J=$O(^LR(LRDFN,LRSS,LRIDT,LA7ND,LA7J)) Q:'LA7J  D
- . S LA7X=$G(^LR(LRDFN,LRSS,LRIDT,LA7ND,LA7J,0))
- . I LA7FMT=0 S LA7TXT=LA7X D NTE^LA7VORU1 Q
- . S LA7TXT(LA7J)=LA7X
- ;
- ; If formatted or repetition format then build comments to a NTE segment.
- I LA7FMT,$D(LA7TXT) D NTE^LA7VORU1
- ;
- Q
- ;
- ;
-ORG ; Build OBR/OBX segments for MI subscript organism id
+ORG ; Build OBX segments for MI subscript organism id
  ;
  N LA7ND,LA7ORG
  ;
@@ -173,6 +195,7 @@ ORG ; Build OBR/OBX segments for MI subscript organism id
  . S LA7IDT=LRIDT_","_LA7ORG_","
  . D OBX
  . I LA7ND=17 Q  ; no quantity/comments on viruses
+ . I LA7ND=6 D PSTAGE Q
  . D ORGNTE
  . I $P($G(^LR(LRDFN,LRSS,LRIDT,LA7ND,LA7ORG,0)),"^",2)'="" D CC
  Q
@@ -185,9 +208,33 @@ CC ; Send colony count (quantity)
  I LA7ND=3 S LRSB="12,1"
  I LA7ND=9 S LRSB="20,1"
  I LA7ND=12 S LRSB="26,1"
- ;
  D OBX
  ;
+ Q
+ ;
+ ;
+PSTAGE ; Send parasite's stage/quantity/comments
+ N LA7CMTP,LA7FMT,LA7J,LA7SB,LA7SOC,LA7NTESN,LA7TXT,LA7X,LRSB
+ ;
+ ; Source of comment - handle special codes for other systems, ie DOD-CHCS
+ S LA7SOC=$S($G(LA7NVAF)=1:"RC",1:"L")
+ ;
+ S LA7FMT=0,LA7CMTYP=""
+ ; If HDR interface then send as repetition text.
+ I $G(LA7INTYP)=30 S LA7FMT=2
+ ;
+ S LA7SB=0
+ F  S LA7SB=$O(^LR(LRDFN,LRSS,LRIDT,6,LA7ORG,1,LA7SB)) Q:'LA7SB  D
+ . S LA7IDT=LRIDT_","_LA7ORG_","_LA7SB
+ . S LRSB="16,.01" D OBX
+ . S (LA7J,LA7NTESN)=0
+ . F  S LA7J=$O(^LR(LRDFN,LRSS,LRIDT,LA7ND,LA7ORG,1,LA7SB,1,LA7J)) Q:'LA7J  D
+ . . S LA7X=$G(^LR(LRDFN,LRSS,LRIDT,LA7ND,LA7ORG,1,LA7SB,1,LA7J,0))
+ . . I LA7X="" S LA7X=" "
+ . . I LA7FMT S LA7TXT(LA7J)=LA7X
+ . . E  S LA7TXT=LA7X D NTE
+ . I LA7FMT,$D(LA7TXT) D NTE
+ . S LRSB="16,1" D OBX
  Q
  ;
  ;
@@ -195,7 +242,7 @@ ORGNTE ; Send comments on organisms.
  ;
  N LA7CMTYP,LA7FMT,LA7J,LA7SOC,LA7NTESN,LA7TXT,LA7X
  ;
- ; Source of comment - handle special codes for other systems, i,e. DOD-CHCS
+ ; Source of comment - handle special codes for other systems, ie DOD-CHCS
  S LA7SOC=$S($G(LA7NVAF)=1:"RC",1:"L")
  ;
  S LA7FMT=0,LA7CMTYP=""
@@ -206,25 +253,25 @@ ORGNTE ; Send comments on organisms.
  F  S LA7J=$O(^LR(LRDFN,LRSS,LRIDT,LA7ND,LA7ORG,1,LA7J)) Q:'LA7J  D
  . S LA7X=$G(^LR(LRDFN,LRSS,LRIDT,LA7ND,LA7ORG,1,LA7J,0))
  . I LA7X="" S LA7X=" "
- . I LA7FMT=0 S LA7TXT=LA7X D NTE Q
- . S LA7TXT(LA7J)=LA7X
+ . I LA7FMT S LA7TXT(LA7J)=LA7X
+ . E  S LA7TXT=LA7X D NTE
  ;
- ; If formatted or repetition format then build comments to a NTE segment.
- I LA7FMT,$D(LA7TXT) D NTE^LA7VORU1
+ ; If formatted or repetition format then build each type of comments to a NTE segment.
+ I LA7FMT,$D(LA7TXT) D NTE
  ;
  Q
  ;
  ;
-MIC ; Build OBR/OBX segments for MI subscript susceptibilities(MIC)
+MIC ; Build OBR/OBX segments for MI subscript susceptibilities (MIC)
  ;
  N LA7ORG,LA7ND,LA7NLT,LA7SB,LA7SB1,LA7SOC
  ;
- ; Source of comment - handle special codes for other systems, i,e. DOD-CHCS
+ ; Source of comment - handle special codes for other systems, ie DOD-CHCS
  S LA7SOC=$S($G(LA7NVAF)=1:"RC",1:"L")
  ;
- S (LA7NLT,LA7NLT(1))=""
- I LRSB=12 S LA7ND=3,LA7NLT="87565.0000",LA7NLT(1)="87993.0000"
- I LRSB=26 S LA7ND=12,LA7NLT="87899.0000",LA7NLT(1)="87525.0000"
+ S LA7NLT=""
+ I LRSB=12 S LA7ND=3,LA7NLT="87565.0000"
+ I LRSB=26 S LA7ND=12,LA7NLT="87568.0000"
  ;
  S LA7ORG=0,LA7SB=LRSB
  F  S LA7ORG=$O(^LR(LRDFN,LRSS,LRIDT,LA7ND,LA7ORG)) Q:'LA7ORG  D
@@ -232,25 +279,27 @@ MIC ; Build OBR/OBX segments for MI subscript susceptibilities(MIC)
  . ; Check for susceptibilities for this organism
  . S X=$O(^LR(LRDFN,LRSS,LRIDT,LA7ND,LA7ORG,2))
  . I X<2!(X>3) Q
- . S LA7PARNT=LA7SB_"-"_LA7ORG
- . M LA7PARNT=LA7ID(LA7PARNT)
+ . S LA7PARNT=$$GETISO^LA7VHLU1(LA7SUBFL,LA7ORG_","_LRIDT_","_LRDFN_",")
+ . M LA7PARNT=LA7ISOID(LA7PARNT)
  . D OBR^LA7VORU
  . S LA7OBXSN=0,LA7SB1=2
  . F  S LA7SB1=$O(^LR(LRDFN,LRSS,LRIDT,LA7ND,LA7ORG,LA7SB1)) Q:'LA7SB1!(LA7SB1>2.99)  D
- . . N LA7CMTYP,LA7FMT,LA7TXT,LRSB
+ . . N LA7CMTYP,LA7FMT,LA7TXT,LRSB,X
  . . S LA7IDT=LRIDT_","_LA7ORG_","_LA7SB1,LRSB=LA7SB_","_LA7SB1
  . . D OBX
- . . S X=$O(^LAB(62.06,"AD",LA7SB1,0)) Q:'X
+ . . S X=""
+ . . I LA7SB=12 S X=$O(^LAB(62.06,"AD",LA7SB1,0))
+ . . I LA7SB=26 S X=$O(^LAB(62.06,"AD1",LA7SB1,0))
+ . . I X<1 Q
  . . S LA7TXT=$P($G(^LAB(62.06,X,0)),"^",3)
  . . I LA7TXT'="" S (LA7NTESN,LA7FMT)=0,LA7CMTYP="" D NTE
  . I LA7ND'=3 Q  ; no free text antibiotics on AFB
  . S LA7SB1=0
  . F  S LA7SB1=$O(^LR(LRDFN,LRSS,LRIDT,LA7ND,LA7ORG,3,LA7SB1)) Q:'LA7SB1  D
- . . N LRSB
- . . S LA7IDT=LRIDT_","_LA7ORG_","_LA7SB1
- . . S LRSB=LA7SB_",3,1" D OBX
- . . S LRSB=LA7SB_",3,2" D OBX
- . 
+ . . N LA7I,LRSB
+ . . F LA7I=2,3 I $P(^LR(LRDFN,LRSS,LRIDT,LA7ND,LA7ORG,3,LA7SB1,0),"^",LA7I)'="" D
+ . . . S LA7IDT=LRIDT_","_LA7ORG_","_LA7SB1,LRSB=LA7SB_",3,"_(LA7I-1)
+ . . . N LA7I D OBX
  Q
  ;
  ;
@@ -265,7 +314,7 @@ OBX ; Build OBX segments for MI subscript
  ;
  D FILESEG^LA7VHLU(GBL,.LA7DATA)
  ;
- ; Check for flag to only build meesage but do not file
+ ; Check for flag to only build message but do not file
  I '$G(LA7NOMSG) D FILE6249^LA7VHLU(LA76249,.LA7DATA)
  Q
  ;
@@ -277,7 +326,7 @@ NTE ; Build NTE segment with comment
  D NTE^LA7VHLU3(.LA7DATA,.LA7TXT,$G(LA7SOC),LA7FS,LA7ECH,.LA7NTESN,$G(LA7CMTYP),$G(LA7FMT))
  D FILESEG^LA7VHLU(GBL,.LA7DATA)
  ;
- ; Check for flag to only build meesage but do not file
+ ; Check for flag to only build message but do not file
  I '$G(LA7NOMSG) D FILE6249^LA7VHLU(LA76249,.LA7DATA)
  ;
  Q

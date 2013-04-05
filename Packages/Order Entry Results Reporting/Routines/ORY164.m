@@ -1,0 +1,28 @@
+ORY164 ;SLC/MKB - Postinit for OR*3*164
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**164**;Dec 17, 1997
+ ;
+PRE ; -- preinit
+ N ORY,ORERR D FIELD^DID(101.439,2,,"LABEL","ORY","ORERR")
+ I '$L($G(ORY("LABEL"))) S ^TMP("OR164",$J)=1 ;first install
+ Q
+ ;
+POST ; -- postinit
+ N X,Y,DIC,DIE,DR,DA,ORCM
+ S DIC="^DIC(19,",DIC(0)="",X="ORCM MGMT" D ^DIC I Y S ORCM=+Y D
+ . S DIC="^DIC(19,"_ORCM_",10,",DIC(0)="",X="ORCM ORDERABLES"
+ . D ^DIC Q:Y<1
+ . S DR=".01///^S X=""ORCM ORDERABLES MENU"""
+ . S DA(1)=ORCM,DA=+Y,DIE=DIC D ^DIE
+ Q:'$G(^TMP("OR164",$J))
+P1 ;convert OI Screens on first install only
+ N I,ORDLG,ORP,ORDA,ORS,Z,NEWSCR
+ S I=0 F  S I=$O(^ORD(101.41,I)) Q:I<1  I $P($G(^(I,0)),U,4)="P",$P($G(^(1)),U)="P",+$P(^(1),U,2)=101.43 S ORP(I)=""
+ S ORDLG=0 F  S ORDLG=+$O(^ORD(101.41,ORDLG)) Q:ORDLG<1  I $P($G(^(ORDLG,0)),U,4)="D" D
+ . S I=0 F  S I=$O(ORP(I)) Q:I<1  S ORDA=+$O(^ORD(101.41,ORDLG,10,"D",I,0)) I ORDA D
+ .. S ORS=$G(^ORD(101.41,ORDLG,10,ORDA,4))
+ .. I '$L(ORS) S ^ORD(101.41,ORDLG,10,ORDA,4)="I $$ACTIVE^ORDD43(Y)" Q
+ .. S Z=$F(ORS,"'$G(^(.1))!($G(^(.1))>$$NOW^XLFDT)") ;$L=34
+ .. I Z S NEWSCR=$E(ORS,1,(Z-35))_"$$ACTIVE^ORDD43(Y)"_$E(ORS,Z,999),^ORD(101.41,ORDLG,10,ORDA,4)=NEWSCR Q
+ .. I ORS?1"I ".E S ^ORD(101.41,ORDLG,10,ORDA,4)="I $$ACTIVE^ORDD43(Y),"_$E(ORS,3,999) Q
+ K ^TMP("OR164",$J)
+ Q

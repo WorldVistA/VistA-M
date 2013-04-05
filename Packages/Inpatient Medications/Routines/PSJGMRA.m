@@ -1,18 +1,27 @@
 PSJGMRA ;BIR/MV - Retrieve and display Allergy data ;6 Jun 07 / 3:37 PM
- ;;5.0;INPATIENT MEDICATIONS ;**181,270**;16 DEC 97;Build 5
+ ;;5.0;INPATIENT MEDICATIONS ;**181,270,260**;16 DEC 97;Build 94
  ;
  ; Reference to ^PS(50.605 is supported by DBIA 696.
  ; Reference to ^PSDRUG( is supported by DBIA 2192.
  ; Reference to ^TMP("GMRAOC" supported by DBIA 4848.
  ; Reference to GETDATA^GMRAOR supported by DBIA 4847.
+ ; Reference to PSODGAL1 supported by DBIA 5764.
+ ; Reference to ^PS(50.7 supported by DBIA 2180
  ;
 EN(DFN,PSJDD) ;
  ;DFN - Patient IEN
  ;PSJDD - ^PSDRUG IEN
- NEW PTR,GMRAING,PSJACK,PSJCLCNT,PSJFLG,PSJVACL,DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,PSJNEW
  Q:'+$G(DFN)
  Q:'+$G(PSJDD)
- K ^TMP("GMRAOC",$J),^TMP($J,"PSJCLS"),PSJVACL
+ N PTR,GMRAING,PSJACK,PSJCLCNT,PSJFLG,PSJVACL,DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,PSJNEW,X,Y,PSODRUG,PSODFN,PSJAOC
+ K ^TMP("GMRAOC",$J),^TMP($J,"PSJCLS"),PSJVACL,^TMP("PSJDAI",$J),^TMP("PSJDAOC",$J)
+ S DIC=50,DIC(0)="MQZV",X=PSJDD D ^DIC K DIC Q:Y=-1
+ S PSODRUG("IEN")=PSJDD,PSODRUG("VA CLASS")=$P(Y(0),"^",2),PSODRUG("NAME")=$P(Y(0),"^")
+ S:+$G(^PSDRUG(+Y,2)) PSODRUG("OI")=+$G(^(2)),PSODRUG("OIN")=$P(^PS(50.7,+$G(^(2)),0),"^")
+ S PSODRUG("NDF")=$S($G(^PSDRUG(PSJDD,"ND"))]"":+^("ND")_"A"_$P(^("ND"),"^",3),1:0)
+ ;changed n psj*5*260
+ S PSODFN=DFN G ^PSODGAL1
+ ;
  S PSJACK=0
  S PTR=$P($G(^PSDRUG(PSJDD,"ND")),U)_"."_$P($G(^PSDRUG(PSJDD,"ND")),U,3)
  I +PTR S PSJACK=$$NDF()
@@ -69,7 +78,7 @@ DISP ;
  .. S PSJX=PSJX_$S(PSJX="":"",1:", ")_GMRAING(X)
  . I PSJX]"" W !?6,"Ingredients: " D MYWRITE^PSJMISC(PSJX,19,75)
  D:PSJCLCNT DISPCL
- D:PSJFLG INTERV("ALLERGY")
+ D:(PSJFLG&'$D(PSJDGCK)) INTERV("ALLERGY")
  Q
 DISPCL ;Display class(es)
  NEW PSJX,X
@@ -88,7 +97,7 @@ INTERV(PSJRXREQ,PSJDD1) ;Prompt if user to log an intervention for significant i
  ;PSJDD1 - Prospective drug name
  NEW DIR,DTOUT,DIRUT,DIROUT,DUOUT,Y,X
  I $G(PSGORQF)=1 Q
- S DIR(0)="SA^1:YES;0:NO",DIR("A")="Do you want to Intervene? ",DIR("B")="NO"
+ S DIR(0)="SA^1:YES;0:NO",DIR("A")="Do you want to Intervene? ",DIR("B")=$S($G(PSJRXREQ)="ALLERGY":"YES",1:"NO")
  I $G(PSJDD1)]"" S DIR("A")="Do you want to Intervene with "_PSJDD1_"? "
  W ! D ^DIR
  S DIR("?",1)="Answer 'YES' if you DO want to enter an intervention for this medication,"

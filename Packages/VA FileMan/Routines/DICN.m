@@ -1,5 +1,5 @@
 DICN ;SFISC/GFT,XAK,TKW,SEA/TOAD-ADD NEW ENTRY ;4/7/00  13:11
- ;;22.0;VA FileMan;**4,31**;Mar 30, 1999
+ ;;22.0;VA FileMan;**4,31**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  N DIENTRY,DIFILE,DIAC D:'$D(DO) GETFA^DIC1(.DIC,.DO) S DO(1)=1

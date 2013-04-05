@@ -1,5 +1,5 @@
 DIOS ;SFISC/GFT,TKW-BUILD SORT LOGIC ;12:07 PM  5 Aug 1999
- ;;22.0;VA FileMan;**6**;Mar 30, 1999
+ ;;22.0;VA FileMan;**6**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  D INIT S ^UTILITY($J,"DX")=DX,^("F")="^UTILITY($J,0,"_DCC_U_(DPP+1)
  F X=-1:0 S X=$O(DX(X)) Q:X=""  S ^UTILITY($J,"DX",X)=DX(X)

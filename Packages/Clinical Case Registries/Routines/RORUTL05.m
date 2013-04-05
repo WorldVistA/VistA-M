@@ -1,5 +1,5 @@
 RORUTL05 ;HCIOFO/SG - MISCELLANEOUS UTILITIES ; 1/26/07 4:24pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,2**;Feb 17, 2006;Build 6
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,2,18**;Feb 17, 2006;Build 25
  ;
  ; This routine uses the following IAs:
  ;
@@ -7,6 +7,15 @@ RORUTL05 ;HCIOFO/SG - MISCELLANEOUS UTILITIES ; 1/26/07 4:24pm
  ; #10040        Access to the HOSPITAL LOCATION file (supported)
  ; #10061        DEM^VADPT (supported)
  ;
+ ;*************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*18   AUG  2012   C RAY        Added logic to quit if registry is
+ ;                                      local
+ ;*************************************************************************
+ ;                                     
  Q
  ;
  ;***** CHECKS IF THE E-MAIL NOTIFICATION IS ENABLED
@@ -23,7 +32,7 @@ CCRNTFY(REGIEN) ;
  I $T(PROD^XUPROD)'=""  Q:'$$PROD^XUPROD() 0
  ;--- Check the domain name
  S DOMAIN=$G(^XMB("NETNAME"))
- Q:DOMAIN'?1.E1".DOMAIN.EXT" 0
+ Q:DOMAIN'?1.E1".domain.ext" 0
  Q:(DOMAIN?1"TEST.".E)!(DOMAIN?1"TST.".E) 0
  ;--- Registry-specific checks
  I $G(REGIEN)>0  S RC=1  D  Q:'RC 0
@@ -227,6 +236,8 @@ REMARK(REGLST,WD) ;
  F  S REGNAME=$O(REGLST(REGNAME))  Q:REGNAME=""  D
  . S REGIEN=+REGLST(REGNAME)
  . I REGIEN'>0  S REGIEN=$$REGIEN^RORUTL02(REGNAME)  Q:REGIEN'>0
+ . ;--- quit if local registry
+ . Q:'+($P($G(^ROR(798.1,REGIEN,0)),U,11))
  . S IENS=REGIEN_","
  . ;--- Get the registry parameters
  . D GETS^DIQ(798.1,IENS,"21.04;21.05","I","RORFDA","RORMSG")

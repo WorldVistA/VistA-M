@@ -1,5 +1,5 @@
 PRSASC3 ; HISC/REL,WOIFO/JAH - Supervisor Approve Prior PP Actions ;2/16/05
- ;;4.0;PAID;**6,93**;Sep 21, 1995;Build 7
+ ;;4.0;PAID;**6,93,132**;Sep 21, 1995;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 DIS ; Display PP Action
  N IFN
@@ -9,7 +9,7 @@ DIS ; Display PP Action
 DT ; Display Time
  S DAY=$P($G(^PRST(458,PPI,"E",DFN,"X",AUN,1)),"^",1) Q:'DAY
  W !!,?28,"Prior Pay Period Change"
- W !,?7,"Date",?21,"Scheduled Tour",?46,"Tour Exceptions"
+ W !,?7,"Date",?17,"TW  Scheduled Tour",?46,"Tour Exceptions"
  W !?3,"------------------------------------------------------------------------"
  S DTE=$P($G(^PRST(458,PPI,2)),"^",DAY) S IFN=AUN+1 D GET^PRSAPPP D F0^PRSAPPQ Q
 DV ; Display VCS/Fee changes
@@ -37,7 +37,7 @@ AT ; Approve time
  ; If disapproved, un-do
  S DAY=$P($G(^PRST(458,PPI,"E",DFN,"X",AUN,1)),"^",1) Q:'DAY
  S IFN=AUN+1 D GET^PRSAPPP
- I AUC N L2 S L2=0 F L1=0,1,2,10,3,4 S L2=L2+1 S Z=$G(^PRST(458,PPI,"E",DFN,"X",AUN,L2)) K ^PRST(458,PPI,"E",DFN,"D",DAY,L1) I Z'="" S ^(L1)=Z
+ I AUC N L2 S L2=0 F L1=0,1,2,10,3,4,8 S L2=L2+1 S Z=$G(^PRST(458,PPI,"E",DFN,"X",AUN,$P("1^2^3^4^5^6^8",U,L2))) K ^PRST(458,PPI,"E",DFN,"D",DAY,L1) I Z'="" S ^(L1)=Z
  ;if PTP corrected timecard is disapproved then call hrs bank API
  ;since the unapproved work node for the corrected tc may have been
  ;used in a call to the hours bank.  Call will quit if not PTP w/memo

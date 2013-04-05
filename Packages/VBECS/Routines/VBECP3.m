@@ -39,7 +39,7 @@ POST ;Post Install entry point
  s XMSUB="VBEC*1.0*3 Patch Installation verification",XMTEXT="^TMP(""VBEC"",$J)",XMDUN="VBECS Patch Monitor"
  s ^TMP("VBEC",$J,2,0)=$s($D(DIMSGA):"",1:"No ")_"errors encountered updating 6002.03"
  d PATCH
- s XMY("G.VBEC@FORUM.DOMAIN.EXT")=""
+ s XMY("G.VBEC@FORUM.domain.ext")=""
  d SENDMSG^XMXAPI(DUZ,XMSUB,XMTEXT,.XMY)
  ;d ^XMD
  k ^TMP("VBEC",$J)

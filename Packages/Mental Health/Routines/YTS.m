@@ -1,15 +1,23 @@
-YTS ;SLC/DKG,TGA-START TESTS, QUESTIONNAIRES & REPORTS ;12/12/90  16:34
- ;;5.01;MENTAL HEALTH;**37,54**;Dec 30, 1994
+YTS ;SLC/DKG,TGA,HIOFO/FT - START TESTS, QUESTIONNAIRES & REPORTS ;9/29/11 17:01
+ ;;5.01;MENTAL HEALTH;**37,54,60**;Dec 30, 1994;Build 47
  ;
-ADM ; Called by MENU option YSADMTEST
+ ;Reference to ^XUSEC( supported by DBIA #10076
+ ;Reference to ^DPT( supported by DBIA #10035
+ ;Reference to ^XLFDT APIs supported by DBIA #10103
+ ;Reference to %ZISC supported by IA #10089
  ;
- D ^YSLRP G:YSDFN<1 END S:'$D(^YTD(601.2,"B",YSDFN,YSDFN)) ^(YSDFN)=""
+ ; 7 June 2011
+ ;
+ ;ADM ; Called by MENU option YSADMTEST
+ ;Q  ; disabled by Patch 60
+ ;D ^YSLRP G:YSDFN<1 END S:'$D(^YTD(601.2,"B",YSDFN,YSDFN)) ^(YSDFN)=""
 C ;
  I $P(^DPT(YSDFN,0),U,2)']"" W !!,"Patient's SEX required to administer instruments!" Q
  D ENPT^YSUTL,NX G ^YTAR
  ;
 RPT ; Called by MENU option YSPRINT
- D ^YSLRP G:YSDFN<1 END S YSNO=1 D NX G ^YTDP
+ ; disabled by Patch 60
+ Q  D ^YSLRP G:YSDFN<1 END S YSNO=1 D NX G ^YTDP
 NX ;
  S %=$H>21549+$H-.1,%Y=%\365.25+141,%=%#365.25\1,YSPTD=%+306#(%Y#4=0+365)#153#61#31+1,YSPTM=%-YSPTD\29+1,Y=%Y_"00"+YSPTM_"00"+YSPTD,YSDT(0)=$$FMTE^XLFDT(Y,"5ZD")
  S YSSX=YSSEX,YSBL="           ",YSHDR=YSSSN_"  "_YSNM_YSBL_YSBL_YSBL,YSHDR=$E(YSHDR,1,44)_YSSX_" AGE "_YSAGE_" "_YSDT(0),YSHD=DT
@@ -43,31 +51,34 @@ HX2F ;
 HX2FS ;
  S YSNT=YSNT+1,A1(YSNT)=YSXT_"^"_N3_"^"_N Q
  ;
-ENT ; Called by MENU option YSCLERK
- S YSCLERK=$O(^YTT(601,"B","CLERK",0)) G ADM ;CLERK ENTRY
+ ;ENT ; Called by MENU option YSCLERK
+ ; disabled by Patch 60
+ ;Q  S YSCLERK=$O(^YTT(601,"B","CLERK",0)) G ADM ;CLERK ENTRY
  ;
-ENSTAF ; Called by MENU option YSDIRTEST
- S YSM=1 G ADM
+ ;ENSTAF ; Called by MENU option YSDIRTEST
+ ; disabled by Patch 60
+ ;Q  S YSM=1 G ADM
 INT ;
  D ^YSLRP G:YSDFN<1 END D C:$P(YSDFN(0),U,2)="" G:YSDFN<1 END S YSXTP=1 D NX,HX2F S T1=1,YSXT=$O(^YTT(601,"B",YSXT,0)),T1(0)=$P(^YTT(601,YSXT,"P"),U,4) G ^YTAR:A9="A",^YTDP
+ Q
  ;
-HX2A ; Called by MENU option YSHXPAST
- S YSXT="HX2",A9="A" G INT
+ ;HX2A ; Called by MENU option YSHXPAST
+ ;S YSXT="HX2",A9="A" G INT
  ;
-HX2R ; Called by MENU option YSHXPASTR
- S YSXT="HX2",A9="R" G INT
+ ;HX2R ; Called by MENU option YSHXPASTR
+ ;S YSXT="HX2",A9="R" G INT
  ;
-MROSA ; Called by MENU option YSREVSYS
- S YSXT="MROS",A9="A" G INT
+ ;MROSA ; Called by MENU option YSREVSYS
+ ;S YSXT="MROS",A9="A" G INT
  ;
-MROSR ; Called by MENU option YSREVSYSR
- S YSXT="MROS",A9="R" G INT
+ ;MROSR ; Called by MENU option YSREVSYSR
+ ;S YSXT="MROS",A9="R" G INT
  ;
-PSOCA ; Called by MENU option YSPERSHX
- S YSXT="PSOC",A9="A" G INT
+ ;PSOCA ; Called by MENU option YSPERSHX
+ ;S YSXT="PSOC",A9="A" G INT
  ;
-PSOCR ; Called by MENU option YSPERSHXR
- S YSXT="PSOC",A9="R" G INT
+ ;PSOCR ; Called by MENU option YSPERSHXR
+ ;S YSXT="PSOC",A9="R" G INT
  ;
 BECK ; Called by YTAR -> BECK msg.
  I YSTESTN="BECK" D  ; modification made 11/2/94 mjd

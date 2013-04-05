@@ -1,5 +1,5 @@
 DINIT271 ;SFISC/DPC-LOAD OF FOREIGN FORMAT DD (END) ;9/9/94  12:56
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  F I=1:2 S X=$T(Q+I) G ^DINIT27A:X="" S Y=$E($T(Q+I+1),5,999),X=$E(X,4,999),@X=Y
 Q Q

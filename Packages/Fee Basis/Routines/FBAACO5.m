@@ -1,5 +1,5 @@
 FBAACO5 ;AISC/GRR-ENTER PAYMENT CONTINUED ;5/5/93  09:24
- ;;3.5;FEE BASIS;**73,79**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**73,79,124**;JAN 30, 1995;Build 20
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
 FILEV(DFN,FBV) ;files vendor multiple in outpatient payment file
  ;required input variable DFN,FBV (vendor ien)
@@ -22,9 +22,16 @@ TRYAGAIN ;
  I '$D(^FBAAC(DFN,1,FBV,1,0)) S ^FBAAC(DFN,1,FBV,1,0)="^162.02DA^0^0"
  S DLAYGO=162,DA(2)=DFN,DA(1)=FBV,DIC="^FBAAC("_DFN_",1,"_FBV_",1," D ^DIC K DLAYGO,DIC,DA I X=""!(X="^")!(Y<0) S FBAAOUT=1 Q
  ;if date of service input transform called skip checks
- I $D(HOLDY) GOTO DONASK
- I $D(FBAAID),$P(Y,"^",2)>FBAAID W !!,*7,"Date of Service cannot be later than Invoice Date!",! G TRYAGAIN
- I $D(FBAABDT),$D(FBAAEDT),($P(Y,"^",2)<FBAABDT!($P(Y,"^",2)>FBAAEDT)) W !!,*7,"Date of Service ",$S($P(Y,"^",2)<FBAABDT:"prior to ",1:"later than "),"Authorization period.",! G TRYAGAIN
+ I $D(HOLDY),HOLDY=$P(Y,"^",2) GOTO DONASK
+ I $D(FBAAID),$P(Y,"^",2)>FBAAID D  G TRYAGAIN
+ .N SHODAT S SHODAT=$E(FBAAID,4,5)_"/"_$E(FBAAID,6,7)_"/"_$E(FBAAID,2,3)
+ .W !!,*7,?5,"*** Date of Service cannot be later than",!?8," Invoice Received Date ("_SHODAT_") !!!",!
+ I $D(FBAABDT),$D(FBAAEDT),($P(Y,"^",2)<FBAABDT!($P(Y,"^",2)>FBAAEDT)) D  G TRYAGAIN
+ .N PRIORLAT,AUTHDAT,SHODAT
+ .S PRIORLAT=$S($P(Y,"^",2)<FBAABDT:"prior to ",1:"later than ")
+ .S AUTHDAT=$S($P(Y,"^",2)<FBAABDT:FBAABDT,1:FBAAEDT)
+ .S SHODAT=$E(AUTHDAT,4,5)_"/"_$E(AUTHDAT,6,7)_"/"_$E(AUTHDAT,2,3)
+ .W !!,*7,?5,"*** Date of Service cannot be ",PRIORLAT,!?8," Authorization period ("_SHODAT_") !!!",!
 DONASK ;
  S FBSDI=+Y,FBAADT=$P(Y,"^",2) I FBASSOC>0 S DA(2)=DFN,DA(1)=FBV,DA=FBSDI,DIE="^FBAAC("_DFN_",1,"_FBV_",1,",DR="3///^S X=FBASSOC" D ^DIE K DIE,DA,DR
  Q

@@ -41,7 +41,7 @@ HDR ;PRINT HEADING
 MSG S ^TMP($J,"UCM",ESPL)=ESPX,ESPL=ESPL+1
  QUIT
  ;
-VAPTX S XMY("XXX@Q-VAP.DOMAIN.EXT")=""
+VAPTX S XMY("XXX@Q-VAP.domain.ext")=""
  D ENT1^XMD
  W !,"...Forwarded to National Database.",!
  Q

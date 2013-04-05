@@ -1,5 +1,5 @@
 GMRCR ;SLC/DLT - Driver for reviewing patient consult/requests - Used by Medicine Package to link Consults to Medicine results ;9/18/98  16:26
- ;;3.0;CONSULT/REQUEST TRACKING;**1,5**;DEC 27, 1997
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,5,46**;DEC 27, 1997;Build 23
 EN ;Entry point for medicine results entry by procedure or consult type
  ;Required variables:
  ;  GMRCPRNM = name of procedure file with results.
@@ -61,12 +61,12 @@ RESULT ;Entry point to set up variable pointer to results and update OE/RR statu
  I '$D(ORSTS) S ORSTS=6 ;Assume order entry status of active
  S GMRCA=$O(^GMR(123.1,"AC",+ORSTS,"")) I 'GMRCA S GMRCA=9
  S DIE=123,DA=GMRCO,DR="11////^S X=GMRCSR;8////^S X=ORSTS;9////^S X=GMRCA"
- L +^GMR(123,GMRCO) I '$T S GMRCMSG="Consult/Request Is Being Used By Another User.",GMRCMSG(1)="RESULT UPDATE WAS UNSUCCESSFUL!  Try Again Later" D EXAC^GMRCADC(.GMRCMSG) K GMRCO,ORIFN,GMRCMSG D KILL Q
+ L +^GMR(123,GMRCO):$S($G(DILOCKTM)>0:DILOCKTM,1:5) I '$T S GMRCMSG="Consult/Request Is Being Used By Another User.",GMRCMSG(1)="RESULT UPDATE WAS UNSUCCESSFUL!  Try Again Later" D EXAC^GMRCADC(.GMRCMSG) K GMRCO,ORIFN,GMRCMSG D KILL Q
  D ^DIE K DIE,DA,DR
  L -^GMR(123,GMRCO) D AUDIT^GMRCP
  S:'$D(ORIFN) ORIFN=$P(^GMR(123,+GMRCO,0),"^",3)
  S GMRCORNP=$P(GMR(0),"^",14),GMRCTYPE=$P(GMR(0),"^",17)
- I $L($P(GMR(0),"^",14)) S GMRCADUZ($P(GMR(0),"^",14))=""
+ I $L($P(GMR(0),"^",14)),$P(GMR(0),"^",14)'=DUZ S GMRCADUZ($P(GMR(0),"^",14))=""
  I ORIFN D EN^GMRCHL7(DFN,GMRCO,$G(GMRCTYPE),$G(GMRCRB),"RE",GMRCORNP,$G(GMRCVSIT),.GMRCOM)
  K GMR,GMRCSS,GMRCORVP,GMRCVP,GMRCNM,DIC,GMRCPR
  Q

@@ -1,5 +1,5 @@
 LRLNCNLT ;DALOI/FHS-PRINT LAB TEST W/O RESULT NLT CODE ;1-OCT-1998
- ;;5.2;LAB SERVICE;**215,278**;Sep 27,1994
+ ;;5.2;LAB SERVICE;**215,278,418**;Sep 27,1994;Build 1
 EN ;
  W @IOF,!! S LREND=0
  W $$CJ^XLFSTR("This option will print tests and their RESULT NLT CODES",IOM)
@@ -27,6 +27,8 @@ DQ ;
  . Q:$G(@LRNODE)!($G(LREND))
  . S LRIEN=$QS(LRNODE,4),LRNAME=$QS(LRNODE,3),LRC=$P($G(^LAB(60,LRIEN,64)),U,2)
  . S LRX=$G(^LAB(60,+$G(LRIEN),0)) Q:$P(LRX,U,3)=""
+ . Q:$P(LRX,"^",4)'="CH"           ;only CH tests are relevant
+ . Q:$O(^LAB(60,LRIEN,2,0))'=""    ;only atomic tests are relevant
  . Q:"BO"'[$P(LRX,U,3)
  . I $G(LRSEL)=2,LRC Q
  . I $G(LRSEL)=1,'LRC Q

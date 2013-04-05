@@ -1,5 +1,5 @@
-XUSBSE1 ;JLI/OAK-OIFO - MODIFICATIONS FOR BSE ;02/27/12  08:49
- ;;8.0;KERNEL;**404,439,523,595**;Jul 10, 1995;Build 12
+XUSBSE1 ;JLI/OAK-OIFO - MODIFICATIONS FOR BSE ;06/01/12  10:13
+ ;;8.0;KERNEL;**404,439,523,595,522**;Jul 10, 1995;Build 10
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ; SETVISIT - returns a BSE token
@@ -28,10 +28,17 @@ GETVISIT(RES,TOKEN) ; .RPC
  S:'$L(RES) X=$$LOGERR("BSE LOGIN ERROR") ;p595
  Q
  ;
-OLDCAPRI(XWBUSRNM) ;The OLD CAPRI code, Remove next patch
+OLDCAPRI(XWBUSRNM) ;The old CAPRI code, disable with system parameter XU522.
  ; Return 1 if a valid user, else 0.
- N XVAL,XOPTION
- ; ZEXCEPT: DTIME - Kernel exemption
+ ; ZEXCEPT: XTMUNIT,ZZUTPVAL - Variables set for unit testing
+ N XVAL,XOPTION,XVAL522
+ I '$D(XTMUNIT) D
+ .S XVAL522=$$GET^XPAR("SYS","XU522",1,"Q")  ;p522 system parameter XU522 controls CAPRI login disabling, logging
+ E  D
+ .S XVAL522=ZZUTPVAL
+ D:(XVAL522="E"!(XVAL522="L")) APPERROR^%ZTER("OLDCAPRI LOGIN ATTEMPT")  ;p522 record CAPRI login attempt if XU522 = E or L
+ Q:(XVAL522'="L")&(XVAL522'="N") 0  ;p522 fully activate BSE unless param XU522 = N or L
+ ;
  S XVAL=$$PUT^XUESSO1($P(XWBUSRNM,U,3,99)) ; Sign in as Visitor
  I XVAL D
  . S XOPTION=$$FIND1^DIC(19,"","X","DVBA CAPRI GUI")

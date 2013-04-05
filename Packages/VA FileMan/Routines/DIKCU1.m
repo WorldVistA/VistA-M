@@ -1,5 +1,5 @@
 DIKCU1 ;SFISC/MKO-FILE/RECORD INFO ;11:21 AM  20 Aug 1999
- ;;22.0;VA FileMan;**12**;Mar 30, 1999
+ ;;22.0;VA FileMan;**12**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;===================
  ; $$VDA([.]DA,Flag)

@@ -1,6 +1,11 @@
-LA7SCE ;DALOI/JMC - Shipping Configuration Utility ;5/5/97  14:44
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,61,64**;Sep 27, 1994
+LA7SCE ;DALOI/JMC - Shipping Configuration Utility ;05/13/10  15:41
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,61,64,74**;Sep 27, 1994;Build 229
+ ;
+ ; ZEXCEPT is used to identify variables which are external to a specific TAG
+ ;         used in conjunction with Eclipse M-editor.
+ ;
  Q
+ ;
  ;
 SCFE ; Edit file #62.9, Shipping Configuration.
  ;
@@ -15,10 +20,12 @@ SCFE ; Edit file #62.9, Shipping Configuration.
  ;
  S LA7SCFG=+Y,LA7SCFG(0)=Y(0)
  ;
- L +^LAHM(62.9,LA7SCFG):5
+ D LOCK^DILF("^LAHM(62.9,LA7SCFG)")
  I '$T D  Q
  . D EN^DDIOL("Unable to obtain lock on entry "_$P(LA7SCFG(0),"^"),"","!?3")
  ;
+ ; LA7TYPE=1 editing as collecting facility
+ ; LA7TYPE=2 editing as host facility
  S DIR(0)="SO^1:Collecting facility;2:Host facility",DIR("A")="Are you editing this entry as the"
  S DIR("?",1)="Is this entry used by the Collecting facility to ship specimens,"
  S DIR("?",2)="or by the Host facility to accept a shipment."
@@ -30,16 +37,19 @@ SCFE ; Edit file #62.9, Shipping Configuration.
  ; Determine if other facility is non-VA.
  ; When acting as collecting facility is host non-VA
  ; When acting as host is collecting facility non-VA
- S LA7VAF="",LA7NVAF=0
+ S LA7VAF="",LA7VAF(1)=0,LA7NVAF=0
  I $P(LA7SCFG(0),"^",2),$P(LA7SCFG(0),"^",3) D
  . S LA7X=$S(LA7TYPE=1:$P(LA7SCFG(0),"^",3),1:$P(LA7SCFG(0),"^",2))
  . S LA7VAF=$$GET1^DIQ(4,LA7X_",","AGENCY CODE","I")
  . S LA7NVAF=$$NVAF^LA7VHLU2(LA7X)
+ . I LA7TYPE=1,$E($$ID^XUAF4("VASTANUM",$P(LA7SCFG(0),"^",3)),1,5)="200LR" S LA7VAF(1)=1
  I LA7VAF="" D  Q
- . N LA7MSG
+ . N LA7ERR,LA7MSG,LA7X,LA7Y
  . S LA7MSG="Unable to proceed - institution "
- . S LA7MSG=LA7MSG_$$GET1^DIQ(4,$S(LA7TYPE=1:$P(LA7SCFG(0),"^",3),1:$P(LA7SCFG(0),"^",2))_",",.01)
- . S LA7MSG=LA7MSG_" missing AGENCY CODE field in INSITUTION file (#4)"
+ . S LA7Y=$S(LA7TYPE=1:$P(LA7SCFG(0),"^",3),1:$P(LA7SCFG(0),"^",2))
+ . S LA7X=$$GET1^DIQ(4,LA7Y_",",.01,"","","LA7ERR")
+ . I LA7X="" S LA7MSG=LA7MSG_"IEN #"_LA7Y_" - "_$G(LA7ERR("DIERR",1,"TEXT",1))
+ . E  S LA7MSG=LA7MSG_LA7X_" missing AGENCY CODE field in INSTITUTION file (#4)"
  . D EN^DDIOL(LA7MSG,"","!!?3")
  . D UNL629
  ;
@@ -69,8 +79,9 @@ SCFE ; Edit file #62.9, Shipping Configuration.
  . S DR=".01;.02;.06;.03;.031;"
  . I LA7NVAF>1 S DR=DR_".11;.12;.14;.15;"
  . I LA7NVAF=1 S DR=DR_".14////1;.15////1;"
- . S DR=DR_".04;.07;.08;.09;.1;.13;60"
- . S DR(2,62.9001)=".01;.02;.025;.03;.04;.05;.06;.07"
+ . I LA7VAF="V",LA7VAF(1)=1 S DR=DR_".14;"
+ . S DR=DR_".04;.07;.08;.09;.1;.13;44;60"
+ . S DR(2,62.9001)=".01;S LRSS=$P(^LAB(60,X,0),U,4);.02;.025;.026;.03;.04;.05;.06;.07"
  ;
  ; Set up DR string when acting as host facility
  I LA7TYPE=2 D
@@ -78,12 +89,13 @@ SCFE ; Edit file #62.9, Shipping Configuration.
  . I LA7NVAF>1 S DR=DR_".11;.14;.15;"
  . I LA7NVAF=1 S DR=DR_".14////0;.15////1;"
  . S DR=DR_".04;.05;60"
- . S DR(2,62.9001)=".01;S LRSS=$P(^LAB(60,X,0),U,4);.04;.09;S LR62=X I LRSS'=""MI"" S Y=""@2"";I LR62,$P(^LAB(62,LR62,0),U,2)'="""" S Y=""@2"";.03;5.7;@2"
+ . S DR(2,62.9001)=".01;S LRSS=$P(^LAB(60,X,0),U,4);.04;.09;S LR62=X D HLP62^LA7SMU1(LR62);.03;I LR62,$P(^LAB(62,LR62,0),U,2)'="""" S Y=""@2"";5.7;5.9"_$S(LA7NVAF=0:"////99VA62",1:"")_";@2"
  ;
  ; Determine if non-VA test codes/specimen fields should be asked
- I LA7VAF'="V" D
+ I LA7VAF'="V"!(LA7VAF="V"&(LA7VAF(1)=1)) D
  . S DR(2,62.9001)=DR(2,62.9001)_";I $P(^LAHM(62.9,LA7SCFG,0),U,15)'=1 S Y=""@9"";5.1;5.2;5.5"
  . I LA7TYPE=1,LA7NVAF=1 S DR(2,62.9001)=DR(2,62.9001)_"////99LST"
+ . I LA7TYPE=1,LA7VAF="V",LA7VAF(1)=1 S DR(2,62.9001)=DR(2,62.9001)_"//L"
  . S DR(2,62.9001)=DR(2,62.9001)_";@9"
  . I LA7TYPE=1 D
  . . S DR(2,62.9001)=DR(2,62.9001)_";I $P(^LAHM(62.9,LA7SCFG,0),U,16)'=1 S Y=""@10"";5.3;5.4;5.6"
@@ -111,7 +123,11 @@ SCFE ; Edit file #62.9, Shipping Configuration.
  ;
  ;
  ; Unlock entry in 62.9
-UNL629 L -^LAHM(62.9,LA7SCFG)
+UNL629 ;
+ ;
+ ;ZEXCEPT: LA7SCFG
+ ;
+ L -^LAHM(62.9,LA7SCFG)
  ;
  Q
  ;
@@ -156,14 +172,14 @@ ASKCOPY() ; Ask if user want to copy tests from file #60 or another configuratio
  S DIR("A")="Copy a test profile from",DIR("B")="Do NOT copy"
  S DIR("?",1)="If you want to duplicate a shipping configuration using another configuration"
  S DIR("?",2)="or build from the tests marked as catalog tests in the LABORATORY TEST file."
- S DIR("?")="Select the appropiate option."
+ S DIR("?")="Select the appropriate option."
  D ^DIR
  I $D(DIRUT) S Y=-1
  Q Y
  ;
  ;
 CHECK(LA7SCFG) ; Check if test exists for configuration and warn if overwriting
- ; Call with LA7SCFG = shiping configuration ien
+ ; Call with LA7SCFG = shipping configuration ien
  ;   Returns  -1 = user aborted/timeout
  ;             0 = no - don't overwrite
  ;             1 = yes - overwrite
@@ -179,7 +195,9 @@ CHECK(LA7SCFG) ; Check if test exists for configuration and warn if overwriting
 COPYSC(LA7FR,LA7TO) ; Copy one shipping configuration to another
  ; Call with LA7FR = shipping configuration to copy FROM.
  ;           LA7TO = shipping configuration ien to copy TO.
- N LA760,LA762,LA6205,LA7X
+ ;
+ N LA760,LA762,LA76205,LA7X
+ ;
  W !!,"Copying tests from configuration: ",$P(LA7FR(0),"^")," to ",$P(LA7TO(0),"^"),!
  S LA7X=0
  F  S LA7X=$O(^LAHM(62.9,LA7FR,60,LA7X)) Q:'LA7X  D

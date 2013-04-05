@@ -1,4 +1,4 @@
-ONCOXU ; GENERATED FROM 'ONCO XABSTRACT RECORD' PRINT TEMPLATE (#826) ; 04/23/09 ; (FILE 165.5, MARGIN=80)
+ONCOXU ; GENERATED FROM 'ONCO XABSTRACT RECORD' PRINT TEMPLATE (#826) ; 09/27/12 ; (FILE 165.5, MARGIN=80)
  G BEGIN
 N W !
 T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
@@ -16,7 +16,7 @@ BEGIN ;
  W ?0 W @IOF K DIP K:DN Y
  S X=$G(^ONCO(165.5,D0,0)) D N:$X>2 Q:'DN  W ?2 S Y=$P(X,U,3) S Y(0)=Y I Y'="" S Y=$P($G(^ONCO(160.19,Y,0)),U,2) W $E(Y,1,30)
  S X="PATIENT SUMMARY",X=$J("",$S($D(DIWR)+$D(DIWL)=2:DIWR-DIWL+1,$D(IOM):IOM,1:80)-$L(X)\2-$X)_X K DIP K:DN Y W X
- D N:$X>67 Q:'DN  W ?67 S X=DT S Y=X K DIP K:DN Y S Y=X D DT
+ D N:$X>67 Q:'DN  W ?67 N %I,%H,% D NOW^%DTC S Y=X K DIP K:DN Y S Y=X D DT
  D T Q:'DN  W ?2 W !,"" K DIP K:DN Y
  S I(100)="^ONCO(160,",J(100)=160 S I(0,0)=D0 S DIP(1)=$S($D(^ONCO(165.5,D0,0)):^(0),1:"") S X=$P(DIP(1),U,2),X=X S D(0)=+X S D0=D(0) I D0>0 D A1
  G A1R
@@ -42,7 +42,7 @@ A1 ;
  D N:$X>2 Q:'DN  W ?2 W "Autopsy #: "
  S X=$G(^ONCO(160,D0,1)) D N:$X>33 Q:'DN  W ?33,$E($P(X,U,10),1,15)
  D N:$X>2 Q:'DN  W ?2 W "Cause of Death: "
- D N:$X>33 Q:'DN  W ?33 S Y=$P(X,U,3) S Y=$S(Y="":Y,$D(^ICD9(Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,7)
+ D N:$X>33 Q:'DN  W ?33 S Y=$P(X,U,3) S Y(0)=Y I Y'="" N ONCICD,CODE,SPACE S ONCICD=$$ICDDX^ICDCODE(Y) S:(ONCICD=-1) Y=-1 S:(Y'=-1) CODE=$P(ONCICD,U,2),SPACE=$S($L(CODE)=4:"   ",$L(CODE)=5:"  ",1:" "),Y=CODE_SPACE_$P(ONCICD,U,4) W $E(Y,1,30)
  Q
 A1R ;
  K J(100),I(100) S:$D(I(0,0)) D0=I(0,0)
@@ -60,7 +60,7 @@ A1R ;
  D N:$X>2 Q:'DN  W ?2 W "Primary Site: "
  S X=$G(^ONCO(165.5,D0,2)) D N:$X>19 Q:'DN  W ?19 S Y=$P(X,U,1) S Y=$S(Y="":Y,$D(^ONCO(164,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,30)
  D N:$X>2 Q:'DN  W ?2 W "Histology: "
- S X=$G(^ONCO(165.5,D0,2.2)) D N:$X>19 Q:'DN  W ?19 S Y=$P(X,U,3) S Y=$S(Y="":Y,$D(^ONCO(169.3,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,45)
+ S X=$G(^ONCO(165.5,D0,2.2)) D N:$X>19 Q:'DN  W ?19 S Y=$P(X,U,3) S Y=$S(Y="":Y,$D(^ONCO(169.3,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,80)
  K Y
  Q
 HEAD ;

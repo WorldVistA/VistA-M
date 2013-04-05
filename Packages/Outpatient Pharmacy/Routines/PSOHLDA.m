@@ -1,5 +1,5 @@
 PSOHLDA ;BIR/MFR - HOLD/UNHOLD functionality (cont.) ;07/15/96
- ;;7.0;OUTPATIENT PHARMACY;**148,225**;DEC 1997;Build 29
+ ;;7.0;OUTPATIENT PHARMACY;**148,225,386**;DEC 1997;Build 4
  ;
 HOLD ;hold function
  I $P($G(^PSRX(DA,"STA")),"^")=3 Q
@@ -15,7 +15,7 @@ HOLD ;hold function
  S:$G(PSOHD) VALMSG="RX# "_$P(^PSRX(DA,0),"^")_" has been placed in a hold status."
  K RXRS(DA)
  I +$G(PSDA) S DA=$O(^PS(52.5,"B",PSDA,0)) I DA S:$P($G(^PS(52.5,DA,"P")),"^")=0 PSUS=1 S DIK="^PS(52.5," D ^DIK K DA,DIK
- S:+$G(PSDA) DA=PSDA D ACT
+ S:+$G(PSDA) DA=PSDA D RXACT^PSOHLD(DA,"H",$$GET1^DIQ(52,DA,99),$$GET1^DIQ(52,DA,99.1),$G(PSUS))
  S PSOHNX=+$P($G(^PSRX(+$G(DA),"H")),"^") D
  .I $G(PSOHNX),$P($G(^PSRX(DA,"H")),"^",2)'="" S COMM=$P($G(^("H")),"^",2) Q
  .S COMM="Medication placed on Hold "_$E(DT,4,5)_"-"_$E(DT,6,7)_"-"_$E(DT,2,3)
@@ -23,13 +23,7 @@ HOLD ;hold function
  ;
  ; - Closes any OPEN/UNRESOLVED REJECTs and Reverses ECME Claim
  D REVERSE^PSOBPSU1(DA,+$G(RXF),"HLD",2)
- Q
  ;
-ACT ;adds activity info for rx removed or placed on hold
- D NOW^%DTC S NOW=%
- S IR=0 F FDA=0:0 S FDA=$O(^PSRX(DA,"A",FDA)) Q:'FDA  S IR=FDA
- S IR=IR+1,^PSRX(DA,"A",0)="^52.3DA^"_IR_"^"_IR
- S ^PSRX(DA,"A",IR,0)=NOW_"^"_$S(ACT:"U",1:"H")_"^"_DUZ_"^"_$S(RXF>5:RXF+1,1:RXF)_"^"_"RX "_$S('ACT:"placed in a",1:"removed from")_" HOLD status "_$S(+$G(PSUS):"and removed from SUSPENSE ",1:"")_"("_$E(DT,4,5)_"-"_$E(DT,6,7)_"-"_$E(DT,2,3)_")"
  K PSUS,RXF,I,FDA,DIC,DIE,DR,Y,X,%,%I,%H,RSDT
  Q
  ;

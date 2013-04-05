@@ -1,5 +1,5 @@
 DIPOS104 ;SFISC/SO,GFT-POST INSTALL ROUTINE FOR PATCH DI*22.0*104 ;5:37 AM  5 Jun 2002
- ;;22.0;VA FileMan;**104**;Mar 30, 1999
+ ;;22.0;VA FileMan;**104**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 BEGIN ;
  S X="Checking Audit File for bad dates..."

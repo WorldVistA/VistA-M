@@ -256,9 +256,9 @@ ERR ;   Error Summary
 ADR(LEX) ; Mailing Address -G.LEXINS@FO-SLC.DOMAIN.EXT,
  N DIC,DTOUT,DUOUT,X,Y
  S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
- S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
+ S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.domain.ext" D ^DIC Q:+Y>0 LEX
  S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="ISC-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
- Q "ISC-SLC.DOMAIN.EXT"
+ Q "ISC-SLC.domain.ext"
 FN(X) ;   Filename
  Q:$D(^LEX(+($G(X)),0)) $$TITLE^XLFSTR($P($G(^LEX(+($G(X)),0)),"^",1))
  Q:$D(^LEXT(+($G(X)),0)) $$TITLE^XLFSTR($P($G(^LEXT(+($G(X)),0)),"^",1))

@@ -1,5 +1,5 @@
 DIRCR ;SFISC/GFT-DELETE THIS LINE AND SAVE AS '%RCR'*** ;12:18 PM  20 Apr 1993
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 %RCR ;GFT/SF
  ;

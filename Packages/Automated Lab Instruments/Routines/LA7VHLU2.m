@@ -1,5 +1,5 @@
-LA7VHLU2 ;DALOI/JMC - HL7 Segment Utility ;Aug 20, 2007
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,61,64,68**;Sep 27, 1994;Build 56
+LA7VHLU2 ;DALOI/JMC - HL7 Segment Utility ;July 16, 2008
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,61,64,68,74**;Sep 27, 1994;Build 229
  ;
  Q
  ;
@@ -8,10 +8,10 @@ GETSEG(LA76249,LA7NODE,LA7ARR) ; Returns the next segment from file 62.49
  ;   are used for the processing.
  ;
  ; Call with  LA76249 - Entry in 62.49 where message is
- ;            LA7NODE - Curent ien of "150" wp field
+ ;            LA7NODE - Current ien of "150" wp field
  ;
  ; Returns     LA7ARR - Data is returned in LA7ARR(0) and
- ;                      LA7ARR(n) if segmemt is greater than 245 chars.
+ ;                      LA7ARR(n) if segment greater than 245 chars.
  ;             LA7END - flag that end of message has been reached
  ;
  N LA7I,LA7END,LA7QUIT
@@ -55,6 +55,8 @@ FINDSITE(LA7Z,LA7TYPE,LA7SEM) ; Look up an institution in file #4
  I LA7Z?1(3N,3.4N2U,3N1U1N) S LA7Y=$$IDX^XUAF4("VASTANUM",LA7Z)
  ; If appears to be a DoD DMIS number
  I LA7Z?4N S LA7Y=$$IDX^XUAF4("DMIS",LA7Z)
+ ; If appears to be a IHS ASUFAC number
+ I LA7Z?6N S LA7Y=$$IDX^XUAF4("ASUFAC",LA7Z)
  ; Else try anything
  I 'LA7Y S LA7Y=$$FIND1^DIC(4,"","OMX",LA7X)
  ;
@@ -102,6 +104,7 @@ RETFACID(LA7Z,LA7TYPE,LA7SEM) ; (RET)urn (FAC)ility (ID)entifier
  S LA7NVAF=$$NVAF(LA7Z)
  I LA7NVAF=0 S LA7Y=$$ID^XUAF4("VASTANUM",LA7Z)
  I LA7NVAF=1 S LA7Y=$$ID^XUAF4("DMIS",LA7Z)
+ I LA7NVAF=2 S LA7Y=$$ID^XUAF4("ASUFAC",LA7Z)
  ;
  ; If unable to find in INSTITUTION file (#4) then try looking in
  ; SHIPPING CONFIGURATION file (#62.9) using non-VA identifier.
@@ -167,18 +170,18 @@ NVAF(LA7X) ; Set flag sending to non-VA facility.
  ; Used to code certain segments for other systems, i.e. CHCS-DOD.
  ; Call with LA7X = ien of institution in file #4
  ; Returns   LA7Y = 0 (VA facility)
- ;                  1 (DoD facility - Army, Navy, Air Force)
+ ;                  1 (DoD facility - Army, Navy, Air Force, Coast Guard)
  ;                  2 (Indian Health Service)
  ;                  3 (Other - non US Government)
  ;
  N LA7Y
  S LA7Y=""
  I LA7X S LA7Y=$$GET1^DIQ(4,LA7X_",",95,"I")
- S LA7Y=$S(LA7Y="N":1,LA7Y="AF":1,LA7Y="ARMY":1,LA7Y="I":2,LA7Y="O":3,1:0)
+ S LA7Y=$S(LA7Y="N":1,LA7Y="AF":1,LA7Y="ARMY":1,LA7Y="USCG":1,LA7Y="I":2,LA7Y="O":3,1:0)
  Q LA7Y
  ;
  ;
-FACDNS(LA74,LA7FS,LA7ECH,LA7LV) ; Build facility DNS identifer
+FACDNS(LA74,LA7FS,LA7ECH,LA7LV) ; Build facility DNS identifier
  ; Call with LA74 = pointer to entry in INSITUTION file (#4)
  ;          LA7FS = HL field separator
  ;         LA7ECH = HL encoding characters
@@ -192,16 +195,85 @@ FACDNS(LA74,LA7FS,LA7ECH,LA7LV) ; Build facility DNS identifer
  ; Retrieve saved valued
  I $D(^TMP($J,"LA7VHLU","INST-DNS",LA74,LA7FS_LA7ECH,LA7LV)) S LA7Y=^TMP($J,"LA7VHLU","INST-DNS",LA74,LA7FS_LA7ECH,LA7LV)
  ;
- ; Retrieve station# or DMIS code for VA/DoD facilities.
+ ; Retrieve station # or DMIS code for VA/DoD facilities, ASUFAC for IHS facilities.
  ; Others leave blank for now (Jun 2005)
  ; Retrieve domain name for this institution.
  ; Build component and save for other parts of message building
  I LA7Y="" D
  . S LA7FAC="",LA7NVAF=$$NVAF(LA74)
- . I LA7NVAF<2 S LA7FAC=$$ID^XUAF4($S(LA7NVAF=1:"DMIS",1:"VASTANUM"),LA74)
+ . I LA7NVAF<3 S LA7FAC=$$ID^XUAF4($S(LA7NVAF=1:"DMIS",LA7NVAF=2:"ASUFAC",1:"VASTANUM"),LA74)
  . S LA7Y=LA7FAC
  . S LA7DN=$$WHAT^XUAF4(LA74,60)
  . I LA7DN'="" S LA7DN=$$CHKDATA^LA7VHLU3(LA7DN,LA7FS_LA7ECH),LA7Y=LA7FAC_$S(LA7LV=1:$E(LA7ECH),1:$E(LA7ECH,4))_LA7DN_$S(LA7LV=1:$E(LA7ECH),1:$E(LA7ECH,4))_"DNS"
  . S ^TMP($J,"LA7VHLU","INST-DNS",LA74,LA7FS_LA7ECH,LA7LV)=LA7Y
  ;
  Q LA7Y
+ ;
+ ;
+RESFID(LA7PRDID,LA7SFAC,LA7CS) ; Resolve facility id to file #4 INSTIUTION file entry.
+ ; Call with LA7PRDID = Producer's ID field
+ ;            LA7SFAC = sending facility
+ ;              LA7CS = component encoding character
+ N LA74,LA7I,LA7X,LA7Y
+ ;
+ S LA7X=$P(LA7PRDID,LA7CS,2),LA74=""
+ ;
+ F LA7I=1,4 D  Q:LA74
+ . I $P(LA7PRDID,LA7CS,LA7I+2)="99VA4" S LA74=$$LKUP^XUAF4($P(LA7PRDID,LA7CS,LA7I))
+ . I $P(LA7PRDID,LA7CS,LA7I+2)="DNS" S LA74=$$LKUP^XUAF4($P(LA7PRDID,LA7CS,LA7I))
+ . I $P(LA7PRDID,LA7CS,LA7I+2)?1(1"L-CL",1"CLIA",1"99VACLIA") S LA74=$$IDX^XUAF4("CLIA",$P(LA7PRDID,LA7CS,LA7I))
+ . I 'LA74 S LA74=$$LKUP^XUAF4($P(LA7PRDID,LA7CS,LA7I+1))
+ . I 'LA74 S LA74=$$FINDSITE($P(LA7PRDID,LA7CS,LA7I),1,1)
+ I 'LA74 S LA74=$$FINDSITE($P(LA7SFAC,LA7CS),1,1)
+ ;
+ Q LA74
+ ;
+ ;
+RESPL(LA7X) ; Resolve performing lab from file #63 designation
+ ;
+ ; Call with LA7X = lab data reference (entry in file #63, #.12 multiple)
+ ;
+ ; Returns   LA7Y = file #4 ien of performing lab associated with the result ^ ien of entry in "PL" multiple
+ ;
+ N LA7I,LA7J,LA7K,LA7Z,LA7QUIT,LRDFN
+ S LRDFN=$P(LA7X,","),LA7Y="",LA7Z=LA7X
+ ;
+ ; Found a direct hit on this item
+ D CHKNODE
+ ;
+ ; Walk up tree to find any performing lab at a higher level
+ I LA7Y="" D
+ . S LA7QUIT=0
+ . I $P(LA7X,",",2)'="CH" D CHCHK Q
+ . I $P(LA7X,",",2)?1(1"MI",1"SP",1"CY",1"EM",1"AU") D MIAPCHK Q
+ ;
+ Q LA7Y
+ ;
+ ;
+CHCHK ; Find performing lab for a CH subscript reference
+ ;
+ S LA7Z=$P(LA7X,";") D CHKNODE
+ ;
+ Q
+ ;
+ ;
+MIAPCHK ; Find performing lab for a MI and AP subscript reference
+ ;
+ I $P(LA7X,";",2)'="" S LA7Z=$P(LA7X,";")
+ ;
+ S LA7J=$L(LA7Z,",")
+ F LA7K=LA7J:-1:4 D  Q:LA7Y
+ . S LA7Z=$P(LA7Z,",",1,LA7K)
+ . D CHKNODE Q:LA7Y
+ . I $P(LA7Z,",",LA7K)>0 S $P(LA7Z,",",LA7K)=0 D CHKNODE
+ ;
+ I LA7Y="",$P(LA7X,",",2)="MI",$P(LA7X,",",4)=99 F I=1,5,8,11,16 S $P(LA7Z,",",4)=I D CHKNODE Q:LA7Y
+ ;
+ Q
+ ;
+ ;
+CHKNODE ; Check if node exists and return file #4 ien
+ ;
+ S LA7I=$O(^LR(LRDFN,"PL","B",LA7Z,0))
+ I LA7I S LA7Y=$P(^LR(LRDFN,"PL",LA7I,0),"^",2)_"^"_LA7I
+ Q

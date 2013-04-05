@@ -1,5 +1,5 @@
-DGADDUTL ;ALB/PHH,EG,BAJ,ERC,CKN,TDM-PATIENT ADDRESS ; 4/2/09 2:29pm
- ;;5.3;Registration;**658,695,730,688,808**;Aug 13, 1993;Build 4
+DGADDUTL ;ALB/PHH,EG,BAJ,ERC,CKN,TDM,LBD-PATIENT ADDRESS ; 2/27/12 4:15pm
+ ;;5.3;Registration;**658,695,730,688,808,851**;Aug 13, 1993;Build 10
  Q
 ADDR ; validate/edit Patient address (entry for DG ADDRESS UPDATE option)
  N %,QUIT,DIC,Y,DFN,USERSEL
@@ -29,12 +29,14 @@ ADD(DFN) ; validate/edit Patient address (entry point for routine DGREG)
  ;         Input  -- DFN
  ;
  N RETVAL,ADDYN
+ ;Display the permanent address (DG*5.3*851)
+ D DISPADD^DGADDUT2(DFN)
  S (RETVAL,ADDYN)=0
  F  D  Q:ADDYN
- .S ADDYN=$$ADDYN("Do you want to validate/edit the Patient's Address")
+ .S ADDYN=$$ADDYN("Do you want to edit the Patient's Address")
  .S RETVAL=ADDYN
  .I ADDYN'=1,ADDYN'=2 S (ADDYN,RETVAL)=0
- .I 'ADDYN W !?5,"Enter 'YES' to validate/edit Patient's Address or 'NO' to continue."
+ .I 'ADDYN W !?5,"Enter 'YES' to edit Patient's Address or 'NO' to continue."
  I ADDYN=1,$G(DFN)'="",$D(^DPT(DFN,0)) D
  .D UPDATE(DFN,"PERM")
  .S RETVAL=1
@@ -78,7 +80,9 @@ ADDRED(DFN,FLG) ; Address Edit (Code copied from DGREGAED and modified)
  D EN^DGREGAED(DFN,.FLG,SRC)
  ;
  ; Update the Date/Time Stamp
- D UPDDTTM(DFN,TYPE)
+ ;The next line was disabled to fix problem of Date/Time stamp being
+ ;updated even if no changes were made (DG*5.3*851).
+ ;D UPDDTTM(DFN,TYPE)
  Q
 GETPRIOR(DFN,DGPRIOR) ; Get prior address fields.
  N DGCURR,DGN,DGARRY,DGCIEN,DGST,DGCNTY

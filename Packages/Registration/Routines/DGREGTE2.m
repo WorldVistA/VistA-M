@@ -1,5 +1,5 @@
-DGREGTE2 ;ALB/BAJ,TDM - Temporary & Confidential Address Support Routine; 02/27/2006 ; 12/24/08 12:12pm
- ;;5.3;Registration;**688,754**;Aug 13, 1993;Build 46
+DGREGTE2 ;ALB/BAJ,TDM,BDB - Temporary & Confidential Address Support Routine; 02/27/2006 ; 12/24/08 12:12pm
+ ;;5.3;Registration;**688,754,851**;Aug 13, 1993;Build 10
  ;
  Q
  ;
@@ -32,7 +32,8 @@ INPT1(DFN,FORGN,PSTR) ; address input prompts
  ; PSTR contains the full list of address fields to be modified
  ; FSTR contains the field list based on country
  S PSTR=FSLINE1_","_FSLINE2_","_FSLINE3_","_FCITY_","_FSTATE_","_FCOUNTY_","_FZIP_","_FPROV_","_FPSTAL_","_FCNTRY_","_FPHONE
- S FSTR=FSLINE1_","_FSLINE2_","_FSLINE3_","_FCITY_","_FSTATE_","_FCOUNTY_","_FZIP_","_FPHONE
+ ;S FSTR=FSLINE1_","_FSLINE2_","_FSLINE3_","_FCITY_","_FSTATE_","_FCOUNTY_","_FZIP_","_FPHONE
+ S FSTR=FSLINE1_","_FSLINE2_","_FSLINE3_","_FZIP_","_FPHONE ;DG*5.3*851
  I FORGN S FSTR=FSLINE1_","_FSLINE2_","_FSLINE3_","_FCITY_","_FPROV_","_FPSTAL_","_FPHONE
  Q FSTR
  ;

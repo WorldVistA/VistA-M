@@ -214,9 +214,9 @@ CWAD(Y,DFN) ;  returns CWAD flags for a patient
 LEGACY(ORLST,DFN) ; return message if data on the legacy system
  ; ORLST(0)=1 if data,  ORLST(n)=display message if data
  S ORLST(0)=0
- ;I $L($T(HXDATA^A7RDPAGU)) D
- ;. D HXDATA^A7RDPAGU(.ORLST,DFN)
- ;. I $O(ORLST(0)) S ORLST(0)=1
+ I $L($T(HXDATA^A7RDPAGU)) D
+ . D HXDATA^A7RDPAGU(.ORLST,DFN)
+ . I $O(ORLST(0)) S ORLST(0)=1
  Q
 INPLOC(REC,DFN) ; Return a patient's current location
  N X

@@ -1,10 +1,23 @@
 RORUPD09 ;HCIOFO/SG - PROCESSING OF THE 'PTF' FILE  ; 8/3/05 9:50am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+ ;;1.5;CLINICAL CASE REGISTRIES;**18**;Feb 17, 2006;Build 25
  ;
+ ;*****************************************************************************
+ ;*****************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*18   APR 2012    C RAY        Modified PTF RULE to use B xref #798.5
+ ;                                      
+ ;*****************************************************************************
+ ;*****************************************************************************
  ; This routine uses the following IAs:
  ;
  ; #3157         RPC^DGPTFAPI
  ; #3545         Access to the "AAD" cross-reference and the field 80
+ ; #10103        $$FMADD^XLFDT (supported)
+ ; #2171         $$IEN^XUAF4 (supported)
+ ;
  ;
  Q
  ;
@@ -82,10 +95,10 @@ PTF(UPDSTART,PATIEN) ;
  D CLRDES^RORUPDUT(RORFILE)
  Q RC
  ;
- ;***** IMPLEMENTATION OF THE 'VA HEPC PTF' RULE
+ ;***** IMPLEMENTATION OF THE 'PTF' RULE
 PTFRULE(ICD) ;
  N DATELMT,RC
  S RC=0
  F DATELMT=111,101,102,103,104,105,106,107,108,109,110  D  Q:RC
- . S RC=ICD[(","_$G(RORVALS("DV",45,DATELMT,"E"))_",")
+ . S RC=+$D(^ROR(798.5,REGIEN,1,"B",+$G(RORVALS("DV",45,DATELMT,"I"))))
  Q RC

@@ -1,5 +1,5 @@
-HLCS2 ;SF/JC - More Communication Server utilities ; 10/04/2007  14:31
- ;;1.6;HEALTH LEVEL SEVEN;**14,40,43,49,57,58,82,84,109,122**;Oct 13, 1995;Build 14
+HLCS2 ;SF/JC - More Communication Server utilities ; 08/05/2011  11:22
+ ;;1.6;HEALTH LEVEL SEVEN;**14,40,43,49,57,58,82,84,109,122,157**;Oct 13, 1995;Build 8
  ;Per VHA Directive 2004-038, this routine should not be modified.
 FWD ; Add supplemental clients from HLL("LINKS") to HLSUP array
  ;This enhancement also supports distribution of a message to
@@ -97,14 +97,18 @@ LLP(ALL) ;Stop Logical Links
  . ; patch HL*1.6*122
  . ; TCP Multi listener: quit if TCP service as GT.M, DSM,
  . ; or Cache/VMS
- . I $P(HLPARM4,U,3)="M" Q:^%ZOSF("OS")'["OpenM"  Q:$$OS^%ZOSV["VMS"
+ . ; patch HL*1.6*157
+ . ; I $P(HLPARM4,U,3)="M" Q:^%ZOSF("OS")'["OpenM"  Q:$$OS^%ZOSV["VMS"
+ . I $P(HLPARM4,U,3)="M" Q:^%ZOSF("OS")'["OpenM"  Q:($$OS^%ZOSV["VMS")!($$OS^%ZOSV["UNIX")
  . ;
  . ;4=status,10=Time Stopped,9=Time Started,11=Task Number,3=Device Type,14=shutdown?
  . S X="HLJ(870,"""_HLDP_","")",@X@(10)=$$NOW^XLFDT,(@X@(11),@X@(9))="@",@X@(14)=1
  . I "Shutdown,SHUTDOWN"'[$P(HLDP0,U,5) S @X@(4)="Halting"
  . I $P(HLPARM4,U,3)="C"&("N"[$P(HLPARM4,U,4)),'$P(HLDP0,U,12) S @X@(4)="Shutdown"
  . D FILE^HLDIE("","HLJ","","LLP","HLCS2") ;HL*1.6*109
- . I ^%ZOSF("OS")["OpenM",($P(HLPARM4,U,3)="M"!($P(HLPARM4,U,3)="S")) D
+ . ; patch HL*1.6*157
+ . ; I ^%ZOSF("OS")["OpenM",($P(HLPARM4,U,3)="M"!($P(HLPARM4,U,3)="S")) D
+ . I ($P(HLPARM4,U,3)="M"!($P(HLPARM4,U,3)="S")) D
  .. ; pass task number to stop listener
  .. S:$P(HLDP0,U,12) X=$$ASKSTOP^%ZTLOAD(+$P(HLDP0,U,12))
  ; patch HL*1.6*122 start
@@ -128,7 +132,9 @@ STRT ;Start Links
  . ; patch HL*1.6*122
  . ; TCP Multi listener: quit if TCP service as GT.M, DSM,
  . ; or Cache/VMS
- . I $P(HLPARM4,U,3)="M" Q:^%ZOSF("OS")'["OpenM"  Q:$$OS^%ZOSV["VMS"
+ . ; patch HL*1.6*157
+ . ; I $P(HLPARM4,U,3)="M" Q:^%ZOSF("OS")'["OpenM"  Q:$$OS^%ZOSV["VMS"
+ . I $P(HLPARM4,U,3)="M" Q:^%ZOSF("OS")'["OpenM"  Q:($$OS^%ZOSV["VMS")!($$OS^%ZOSV["UNIX")
  . ;
  . I $P(HLPARM4,U,3)="C"&("N"[$P(HLPARM4,U,4)) D  Q
  .. ;4=status 9=Time Started, 10=Time Stopped, 11=Task Number 

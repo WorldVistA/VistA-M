@@ -1,5 +1,5 @@
 DIFROM ;SFISC/XAK-GENERATE INITS ;2/27/99  12:38
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  D Q
  S X=$S('$D(^DD("VERSION"))#2:0,1:^("VERSION")),Y=$P($T(DIFROM+1),";",3) G:X'=Y ERV K X,Y

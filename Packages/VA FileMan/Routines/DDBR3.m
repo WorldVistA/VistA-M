@@ -1,5 +1,5 @@
 DDBR3 ;SFISC/DCL-SELECT FILE & WP FIELD TO BROWSE ;NOV 04, 1996@13:48
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 LIST(DDBLIST) ;DDBLIST=Target array for file number,ien,field,...
  S DDBLIST=-1  ;no selection

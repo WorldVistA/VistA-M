@@ -1,5 +1,5 @@
 DIM ;SFISC/JFW,GFT,TOAD-FileMan: M Syntax Checker, Main ;5/6/97  08:34
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;12275;2236006;1898;
  ;

@@ -1,11 +1,12 @@
 PSJDDUT2 ;BIR/LDT-INPATIENT MEDICATIONS DD UTILITY ; 7/28/09 6:48am
- ;;5.0; INPATIENT MEDICATIONS ;**184**;16 DEC 97;Build 12
+ ;;5.0;INPATIENT MEDICATIONS ;**184,248**;16 DEC 97;Build 6
  ;
 ENDLP ;Called from Inpatient User Parameters file (53.45), Label Printer
  ;field .07 (Replaces ENDLP^PSGSET)
  ;BHW - HD168525 - Don't default when user exits (POP) if LABEL DEVICE or REPORT DEVICE already defined.
- I POP,(DIFLD=13)&($L($P($G(^PS(59.5,DA(1),0)),U,2))) S X=$P($G(^PS(59.5,DA(1),0)),U,2) Q  ;HD168525 - Check LABEL DEVICE
- I POP,(DIFLD=14)&($L($P($G(^PS(59.5,DA(1),0)),U,3))) S X=$P($G(^PS(59.5,DA(1),0)),U,3) Q  ;HD168525 - Check REPORT DEVICE
+ ;PSJ*5*248 - Fix label and report devices
+ I POP,(DIFLD=13)&($L($P($G(^PS(59.5,DA,0)),U,2))) S X=$P($G(^PS(59.5,DA,0)),U,2) Q  ;HD168525 - Check LABEL DEVICE
+ I POP,(DIFLD=14)&($L($P($G(^PS(59.5,DA,0)),U,3))) S X=$P($G(^PS(59.5,DA,0)),U,3) Q  ;HD168525 - Check REPORT DEVICE
  S PSGION=$S($D(ION):ION,1:"HOME") K %ZIS S %ZIS="QN",IOP=X D ^%ZIS I POP S IOP=PSGION D ^%ZIS K %ZIS,IOP,PSGION S X="" Q
  D EN^DDIOL($S(X=$E(ION,1,$L(X)):$E(ION,$L(X)+1,$L(ION)),1:"  "_ION),"","?0") S X=ION D ^%ZISC K %ZIS,PSGION,IOP Q
  ;

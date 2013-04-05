@@ -1,22 +1,25 @@
 FBPCR4 ;WOIFO/SS-LTC PHASE 3 UTILITIES ;03/17/04
- ;;3.5;FEE BASIS;**48,76**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**48,76,135**;JAN 30, 1995;Build 3
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  Q
  ;
-INSURED(FBDFN,FBINDT1,FBINDT2) ;check if the patient has insurance
+INSURED(FBDFN,FBINDT1,FBINDT2) ;check if the patient has insurance ;modified for FB*3.5*135 filtering
  ;FBDFN - patient DFN
  ;FBINDT1 - the treatment date - for outpatients,
  ;    FROM date - for inpatients,
  ;    certified date  - for Pharmacy
  ;FBINDT2 (optional) - TO date for inpatients
- N FBINS1
- S FBINS1=+$$INSUR^IBBAPI(FBDFN,FBINDT1)
+ ;
+ N FBINS1,FBINSDAT
+ S FBINS1=+$$INSUR^IBBAPI(FBDFN,FBINDT1,,.FBINSDAT,"1,21")
  I FBINS1<0 D ADDERR(DFN) Q FBINCUNK  ;error handling
+ S FBINS1=$$SETFBINS ;FB*3.5*135 filtering
  Q:'$D(FBINDT2) FBINS1
  Q:FBINS1=1 1  ;if was insured for FROM date - don't check TO date
- S FBINS1=+$$INSUR^IBBAPI(FBDFN,FBINDT2) ;otherwise return the state on TO date
+ K FBINSDAT S FBINS1=+$$INSUR^IBBAPI(FBDFN,FBINDT2,,.FBINSDAT,"1,21") ;otherwise return the state on TO date
  I FBINS1<0 D ADDERR(DFN) Q FBINCUNK  ;error handling
+ S FBINS1=$$SETFBINS ;FB*3.5*135 filtering for inpatient TO date
  Q FBINS1
  ;
 ADDERR(FBDFN) ;add error to ^TMP, FBDFN - patient DFN
@@ -27,6 +30,17 @@ ADDERR(FBDFN) ;add error to ^TMP, FBDFN - patient DFN
  S ^TMP($J,"FBINSIBAPI")=$G(^TMP($J,"FBINSIBAPI"))+1
  S ^TMP($J,"FBINSIBAPI",DFN)=FBPID_"^"_FBDOB_"^"_FBPNAME
  Q
+ ;
+SETFBINS() ;reset FBINS based on excluded Type of Plans (if any) and Patient 'Policy Not Billable' field
+ ;TYPE OF PLAN (pointer to file 355.1) will be in FBINEXCL if user selected to exclude insurance type(s)
+ I 'FBINS1 Q FBINS1
+ N X,TYPID,FBPOLIEN
+ S X=0 F  S X=$O(FBINSDAT("IBBAPI","INSUR",X)) Q:'X  D
+ .S TYPID=+$G(FBINSDAT("IBBAPI","INSUR",X,21)) ;get Type of Plan
+ .I $D(FBINEXCL(TYPID)) K FBINSDAT("IBBAPI","INSUR",X) ; not billable, so kill it
+ .Q
+ I $D(FBINSDAT("IBBAPI","INSUR"))>1 Q 1 ; something left to bill
+ Q 0
  ;
 ERRHDL ;Error handler called from FBPCR
  I +$G(^TMP($J,"FBINSIBAPI"))=0 Q  ;no errors

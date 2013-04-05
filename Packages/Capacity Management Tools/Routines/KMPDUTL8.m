@@ -1,5 +1,5 @@
 KMPDUTL8 ;OAK/RAK - CM Tools Utility ;2/17/04  10:52
- ;;2.0;CAPACITY MANAGEMENT TOOLS;**2**;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 ADD(KMPDNAME,KMPDARRY,KMPDIEN) ;-- add new entry to file #8972.1
  ;-----------------------------------------------------------------------

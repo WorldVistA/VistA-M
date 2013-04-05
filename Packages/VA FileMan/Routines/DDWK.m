@@ -1,5 +1,5 @@
 DDWK ;SFISC/MKO-SCREEN EDITOR MAIN ROUTINE ;11:32 AM  25 Aug 2000
- ;;22.0;VA FileMan;**18**;Mar 30, 1999
+ ;;22.0;VA FileMan;**18**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 GETKEY ;Get key sequences and defaults

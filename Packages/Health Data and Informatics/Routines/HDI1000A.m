@@ -73,7 +73,7 @@ SYSPAR() ;Initialize HDIS System and HDIS Parameter files
  .D MES^XPDUTL(.HDIMSG) K HDIMSG
  D MES^XPDUTL("Entry number "_PRAMPTR_" created")
  ;Done if this is not FORUM
- I DOMAIN'="FORUM.DOMAIN.EXT" Q 1
+ I DOMAIN'="FORUM.domain.ext" Q 1
  ;This is FORUM - make it a server
  D BMES^XPDUTL("Making FORUM a server")
  D SETTYPE^HDISVF02(2,SYSPTR)

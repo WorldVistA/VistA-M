@@ -1,5 +1,5 @@
 XPDUTL ;SFISC/RSD - KIDS utilities ;10/15/2008
- ;;8.0;KERNEL;**21,28,39,81,100,108,137,181,275,491,511**;Jul 10, 1995;Build 5
+ ;;8.0;KERNEL;**21,28,39,81,100,108,137,181,275,491,511,559**;Jul 10, 1995;Build 4
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 VERSION(X) ;Get current version from Package file, X=package name or
@@ -19,15 +19,17 @@ STATUS(IEN) ;returns status from Install File, IEN=Install File IEN
 PKG(X) ;returns package name from Build file, X=build name
  Q $S(X["*":$P(X,"*"),1:$P(X," ",1,$L(X," ")-1))
  ;
-LAST(PKG,VER) ;returns last patch applied for a Package, PATCH^DATE
- ;        Patch includes Seq # if Released
- N PKGIEN,VERIEN,LATEST,PATCH,SUBIEN
- I $G(VER)="" S VER=$$VERSION^XPDUTL(PKG) Q:'VER -1
- S PKGIEN=$O(^DIC(9.4,"B",PKG,"")) Q:'PKGIEN -1
+LAST(PKG,VER,REL) ;returns last patch applied for a Package, PATCH^DATE
+ ;PKG=package name, VER=version number, REL[optional]=1 if you want released patches only
+ ;Patch includes Seq # if Released
+ N PKGIEN,VERIEN,LATEST,PATCH,SUBIEN,Y
+ S PKGIEN=$$LKPKG($G(PKG)) Q:'PKGIEN -1
+ I $G(VER)="" S VER=$P($G(^DIC(9.4,PKGIEN,"VERSION")),"^") Q:'VER -1
  S VERIEN=$O(^DIC(9.4,PKGIEN,22,"B",VER,"")) Q:'VERIEN -1
  S LATEST=-1,PATCH=-1,SUBIEN=0
- F  S SUBIEN=$O(^DIC(9.4,PKGIEN,22,VERIEN,"PAH",SUBIEN)) Q:SUBIEN'>0  D
- . I $P(^DIC(9.4,PKGIEN,22,VERIEN,"PAH",SUBIEN,0),U,2)>LATEST S LATEST=$P(^(0),U,2),PATCH=$P(^(0),U)
+ F  S SUBIEN=$O(^DIC(9.4,PKGIEN,22,VERIEN,"PAH",SUBIEN)) Q:SUBIEN'>0  S Y=$G(^(SUBIEN,0)) D:$P(Y,U,2)>LATEST
+ . I $G(REL),$P(Y,U)'["SEQ #" Q  ;released only, must contain SEQ
+ . S LATEST=$P(Y,U,2),PATCH=$P(Y,U)
  Q PATCH_U_LATEST
  ;
 PATCH(X) ;return 1 if patch X was installed, X=aaaa*nn.nn*nnn

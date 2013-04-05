@@ -1,5 +1,5 @@
 DDGLIB0 ;SFISC/MKO-SETUP AND CLEANUP FOR WINDOWS ;1:09 PM  19 Jun 1998
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 INIT() ;Setup required variables
  ;Set margin to 0

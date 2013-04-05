@@ -6,14 +6,14 @@ MAIN ; Create new User Class & new Business Rules
  ; -- Check for potential dup User Class created after install
  ;    but before option:
  K ^TMP("USR23",$J)
- ;D SETXTMP^USREN23
+ D SETXTMP^USREN23
  N USRDUPS,TMPCNT,SILENT
  S TMPCNT=0
  S TMPCNT=TMPCNT+1,^TMP("USR23",$J,TMPCNT)=""
  S TMPCNT=TMPCNT+1,^TMP("USR23",$J,TMPCNT)="        ***** User Class and Rules for LABORATORY REPORTS *****"
  S TMPCNT=TMPCNT+1,^TMP("USR23",$J,TMPCNT)=""
  S SILENT=1
- ;S USRDUPS=$$USRDUPS^USREN23(SILENT)
+ S USRDUPS=$$USRDUPS^USREN23(SILENT)
  I $G(USRDUPS) D  G MAINX
  . S TMPCNT=TMPCNT+1,^TMP("USR23",$J,TMPCNT)="Duplicate problem.  See description for patch TIU*1*137,"
  . S TMPCNT=TMPCNT+1,^TMP("USR23",$J,TMPCNT)="in the National Patch Module."

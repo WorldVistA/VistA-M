@@ -19,7 +19,7 @@ STAT ; Queued job entrypoint
  W !,"PENDING BATCH TRANSMISSION STATUS REPORT",?50,"Run Date: ",$$HTE^XLFDT($H,"2P"),!
  S Y=IBBDA,Y(0)=$G(^IBA(364.1,IBBDA,0)),Y(1)=$G(^(1))
  S:$P(Y(0),U,14) IBQ=IBQ1
- S IBMSG=$P(Y(0),U,4),Y(1)=$G(^IBA(364.1,+Y,1)),IBST=$$STATUS^XMS1(IBMSG,"XXX@Q-"_IBQ_".DOMAIN.EXT")
+ S IBMSG=$P(Y(0),U,4),Y(1)=$G(^IBA(364.1,+Y,1)),IBST=$$STATUS^XMS1(IBMSG,"XXX@Q-"_IBQ_".domain.ext")
  W !,"Status of batch ",$P(Y,U,2)," (mail message #: ",IBMSG,"): ",$S(IBST'="":IBST,1:"Sent")
  S Z=$$EXPAND^IBTRE(364.1,1.02,$P(Y(1),U,2))
  W !!,"First Sent: ",$$FMTE^XLFDT(+Y(1),"2P"),?35,"By: ",$S(Z'="":Z,1:"Unknown")

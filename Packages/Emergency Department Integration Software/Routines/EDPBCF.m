@@ -1,5 +1,5 @@
-EDPBCF ;SLC/KCM - Display Board Configuration
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPBCF ;SLC/KCM - Display Board Configuration ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 LOAD(AREA) ; Load General Configuration for an Area
  N I,NODE
@@ -130,4 +130,5 @@ COLUMNS ;; Available Columns
  ;;New (Unverified) Orders^@ordNew^New
  ;;Total Minutes^@emins^E Mins
  ;;Minutes at Location^@lmins^Mins
+ ;;Alerts^@alerts^Alerts
  ;;zzzzz

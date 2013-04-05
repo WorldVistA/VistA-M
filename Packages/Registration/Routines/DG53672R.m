@@ -37,7 +37,7 @@ SNDMSG ; Send Mailman bulletin when process completes
  S SITE=$$SITE^VASITE,STATN=$P($G(SITE),U,3),SITENM=$P($G(SITE),U,2)
  S:$$GET1^DIQ(869.3,"1,",.03,"I")'="P" STATN=STATN_" [TEST]"
  S XMDUZ="REIMBURSABLE INS OTHER EC CLEANUP",XMSUB=XMDUZ_" - "_STATN
- S (XMY(DUZ),XMY("HECDQSUPPORT@DOMAIN.EXT"))=""
+ S (XMY(DUZ),XMY("HECDQSUPPORT@domain.ext"))=""
  S XMTEXT="MSG("
  S MSG(1)="The Reimbursable Insurance Other Eligibility clean-up process has completed successfully."
  S MSG(2)="This process searched for patient records with an other eligibility code of"

@@ -1,46 +1,143 @@
-LRTSTJAM ;SLC/CJS/JAH - JAM TESTS ONTO (OR OFF) ACCESSIONS ;8/10/04
- ;;5.2;LAB SERVICE;**121,153,291**;Sep 27, 1994
+LRTSTJAM ;DALOI/STAFF - JAM TESTS ONTO (OR OFF) ACCESSIONS ;10/25/11  12:29
+ ;;5.2;LAB SERVICE;**121,153,291,350**;Sep 27, 1994;Build 230
+ ;
 EN ;
-ADD I $G(LRAA),$G(LRAD),$G(LRAN) L -^LRO(68,LRAA,1,LRAD,1,LRAN)
- K LRPARAM D ^LRPARAM G:'$D(LRPARAM) END S LRACC=1 D LRACC^LRTSTOUT K LRACC,LRTSAD,LRNATURE G:LRAN<1 END ;ADD A TEST
- I '$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,0)),U,2) W !?5,"This is not a valid Accession number ",!,$C(7) G ADD
- L +^LRO(68,LRAA,1,LRAD,1,LRAN):1 I '$T W !?5,"Someone else is editing this entry ",!,$C(7) G ADD
+ADD ; I $G(LRAA),$G(LRAD),$G(LRAN) L -^LRO(68,LRAA,1,LRAD,1,LRAN)
+ N LRACC,LRADL,LRADD1,LRADDTST,LREXTFLG,LRTSAD,LRNATURE,LRORDTYP
+ K LRPARAM D EN^LRPARAM
+ I '$D(LRPARAM) D END Q
+ ; Initialize flag for test added for auto download
+ S LRADL=0
+ ;
+ ;    LRADD1: Set flag to loop back to ADD1 tag
+ ;  LRADDTST: Set flag to loop back to ADDTST tag
+ ;  LREXTFLG: Set flag to exit
+ ;
+ D ADD1
+ ;
+ F  Q:$D(LREXTFLG)!(('$D(LRADD1))&('$D(LRADDTST)))  D
+ . I $D(LRADD1) K LRADD1,LRADDTST D UNLOCK,ADD1 Q
+ . I $D(LRADDTST) K LRADD1,LRADDTST D ADDTST Q
+ ;
+ D END
+ ;
+ Q
+ ;
+ ;
+ADD1 ;
+ ; If test added then check for automatic downloading
+ I LRADL D EN^LA7ADL($P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,.3),0),"^")) S LRADL=0
+ ;
+ S LRACC=1 D LRACC^LRTSTOUT
+ K LRACC,LRTSAD,LRNATURE
+ I LRAN<1 S LREXTFLG=1 Q
+ ;
+ I '$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,0)),U,2) W !?5,"This is not a valid Accession number ",!,$C(7) S LRADD1=1 Q
+ ;
+ L +^LRO(68,LRAA,1,LRAD,1,LRAN):DILOCKTM
+ I '$T W !?5,"Someone else is editing this entry ",!,$C(7) S LRADD1=1 Q
+ ;
  S X=^LRO(68,LRAA,1,LRAD,1,LRAN,0),LRDFN=$P(X,U),LRAODT=$P(X,U,3),LRODT=$P(X,U,4),LRSN=$P(X,U,5),LRDPF=$P(^LR(LRDFN,0),U,2),DFN=$P(^(0),U,3) D PT^LRX W !,PNM,?30,SSN
- D:'$D(LRNATURE) NEW^LROR6() I $G(LRNATURE)=-1 W !!,"...process aborted",$C(7) K LRNATURE G ADD
- W !,"TESTS ALREADY ON THE ACCESSION: " S I=0 F  S I=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,I)) Q:I<1  W !,?5,$P(^LAB(60,I,0),U,1) S LRTSAD(1,I)=""
-LRTSP W ! K DIC,DA S DIC("A")="Select Original Ordered Test ",DA=LRSN,DA(1)=LRODT
+ ;
+ ; Only ask nature of order on file #2 patients.
+ I LRDPF=2,'$D(LRNATURE) D NEW^LROR6() I $G(LRNATURE)=-1 W !!,"...process aborted",$C(7) K LRNATURE S LRADD1=1 Q
+ ;
+ W !,"TESTS ALREADY ON THE ACCESSION: "
+ S I=0
+ F  S I=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,I)) Q:I<1  W !,?5,$P(^LAB(60,I,0),U,1) S LRTSAD(1,I)=""
+ ;
+LRTSP ;
+ W ! K DIC,DA S DIC("A")="Select Original Ordered Test: ",DA=LRSN,DA(1)=LRODT
  I $P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,.3)),U,2) S DIC("S")="I $L($P($G(^(.3)),U))"
  S DIC="^LRO(69,"_LRODT_",1,"_LRSN_",2,",DIC(0)="AQEZNM"
- W ! D ^DIC K DIC,DA G:Y<1 ADD S LRTSP=$P(Y,U,2) W !
-ADDTST S DIC("A")="Add LABORATORY TEST: ",DIC=60,DIC(0)="AEMOQ",DIC("S")="I $P(^(0),U,4)'="""""_$S('$D(^XUSEC("LRSUPER",DUZ)):",""N""'[$P(^(0),U,3)",1:"") D ^DIC K DIC("A"),DIC("S") G ADD:Y<1 W !,"  ...OK" S %=1 D YN^DICN
- G ADDTST:%=2,ADD:%'=1 S (LRTS,I)=+Y I $D(^LRO(68,LRAA,1,LRAD,1,LRAN,4,I,0)) W !,"The accession already has this test." G ADDTST
- S LRTSUB=1 D EXPLD^LRTSTJM1 I $D(LRTSAD(1,LRTS)) W !,"The accession already has this test." G ADDTST
- I $D(^LAB(60,I,8,+DUZ(2),0)) S J=$P(^LAB(60,I,8,+DUZ(2),0),U,2) I J,J'=LRAA W !,"That test normally belongs to accession area ",$P(^LRO(68,J,0),U),",",!,"are you sure" S %=2 D YN^DICN G ADD:%'=1
- I $O(^LAB(60,LRTS,2,0)) S LRTSURG=$P(^LAB(60,LRTS,0),U,18) K LRTSAD(2) S LRTSAD(2,LRTS)="" S LRTSUB=2 D EXPLD^LRTSTJM1,COMPTST^LRTSTJM1 I 'LRTSUB G ADDTST
- S LRFLG=1 S (LRURG,Y)=$P(^LAB(60,I,0),U,18) G SETTST:$L(Y)
-ADDURG S DIC=62.05,DIC("B")="ROUTINE" D ^DIC K DIC("B") W:Y<1 !,"URGENCY must be defined.  Test not added." G ADDTST:Y<1 W !,"  ...OK" S %=1 D YN^DICN
- G ADDURG:%=2,ADD:%<1 S LRURG=+Y,LRFLG=""
+ W ! D ^DIC K DIC,DA
+ I Y<1 S LRADD1=1 Q
+ S LRTSP=$P(Y,U,2) W !
+ ;
+ADDTST ;
+ S DIC("A")="Add LABORATORY TEST: ",DIC=60,DIC(0)="AEMOQ"
+ S DIC("S")="I $P(^(0),U,4)'="""""_$S('$D(^XUSEC("LRSUPER",DUZ)):",""N""'[$P(^(0),U,3)",1:"")
+ D ^DIC
+ K DIC("A"),DIC("S")
+ I Y<1 S LRADD1=1 Q
+ W !,"  ...OK" S %=1 D YN^DICN
+ ;
+ I %=2 S LRADDTST=1 Q
+ I %'=1 S LRADD1=1 Q
+ ;
+ S (LRTS,I)=+Y I $D(^LRO(68,LRAA,1,LRAD,1,LRAN,4,I,0)) W !,"The accession already has this test." S LRADDTST=1 Q
+ S LRTSUB=1 D EXPLD^LRTSTJM1 I $D(LRTSAD(1,LRTS)) W !,"The accession already has this test." S LRADDTST=1 Q
+ I $D(^LAB(60,I,8,+DUZ(2),0)) D  Q:$D(LRADD1)
+ . S J=$P(^LAB(60,I,8,+DUZ(2),0),U,2)
+ . I J,J'=LRAA D
+ . . W !,"That test normally belongs to accession area ",$P(^LRO(68,J,0),U),",",!,"are you sure"
+ . . S %=2 D YN^DICN
+ . . I %'=1 S LRADD1=1 Q
+ I $O(^LAB(60,LRTS,2,0)) D  Q:$D(LRADDTST)
+ . S LRTSURG=$P(^LAB(60,LRTS,0),U,18)
+ . K LRTSAD(2)
+ . S LRTSAD(2,LRTS)=""
+ . S LRTSUB=2
+ . D EXPLD^LRTSTJM1
+ . D COMPTST^LRTSTJM1
+ . I 'LRTSUB S LRADDTST=1 Q
+ S LRFLG=1 S (LRURG,Y)=$P(^LAB(60,I,0),U,18)
+ I LRURG'="" D SETTST Q
+ ;
+ADDURG ;
+ S DIC=62.05,DIC("B")="ROUTINE"
+ D ^DIC K DIC("B")
+ I Y<1 W !,"URGENCY must be defined.  Test not added." S LRADDTST=1 Q
+ W !,"  ...OK" S %=1 D YN^DICN
+ G ADDURG:%=2
+ I %<1 S LRADD1=1 Q
+ S LRURG=+Y,LRFLG=""
+ ;
 SETTST ;
- D:+LRDPF=2&($G(LRSS)'="BB")&('$$CHKINP^LRBEBA4(LRDFN,LRODT))
- .S LRBERF=$$RFLX^LRBEBA4()  ; CIDC
- G EN^LRTSTSET Q
+ ; LRORDTYP=1(add)/2(reflex)^file #64.061 ien for code^if reflex parent test^if reflex parent NLT^
+ S LRORDTYP=$$ORDTYP^LRTSTJM1()
+ I LRORDTYP<1 S LRADD1=1 Q
+ I $P(LRORDTYP,"^")=2 D
+ . N LRORDTST
+ . S LRORDTST=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRTSP,0)),U,9)
+ . I LRORDTST="" S LRORDTST=LRTSP
+ . S $P(LRORDTYP,"^",3)=LRORDTST,$P(LRORDTYP,"^",4)=$$NLT^LRVER1(LRORDTST)
+ I +LRDPF=2,$G(LRSS)'="BB",'$$CHKINP^LRBEBA4(LRDFN,LRODT) S LRBERF=$S(LRORDTYP>0:LRORDTYP-1,1:-1) ;CIDC
+ D EN^LRTSTSET
+ K DIC("B")
+ Q:$D(LRTSAD(2))
+ S LRADDTST=1
  Q
+ ;
+ ;
 IDENT ;D LRACC^LRTSTOUT Q:LREND
-FXID S LRACC=1 D LRACC^LRTSTOUT K LRACC Q:LRAN<1  ;R !,"What Accession number: ",X:DTIME Q:X=""!(X["^")
+FXID ;
+ S LRACC=1 D LRACC^LRTSTOUT K LRACC Q:LRAN<1
  S LRWDT1=DA(1) D:$D(^LRO(68,LRAA,.3))#2 ^LRWLST2 G FXID
  ;
 % R %:DTIME Q:%=""!(%["N")!(%["Y")  W !,"Answer 'Y' or 'N': " G %
  Q
-END I $G(LRAA),$G(LRAD),$G(LRAN) L -^LRO(68,LRAA,1,LRAD,1,LRAN)
+ ;
+ ;
+END ;
+ I $G(LRAA),$G(LRAD),$G(LRAN) L -^LRO(68,LRAA,1,LRAD,1,LRAN)
  K %,A,AGE,DD,DFN,DIC,DIE,DO,DOB,DR,I,K,LRAA,LRAD,LRACD,LRAN,LRCCOM,LRDFN,LRDPF,LREND,LRIDT,LRODT,LRSN,LRSS,LRTNM,LRTS,LRWRD,PNM,SEX,SSN,X,Y,Z,LRUSNM
  K %DT,%H,%X,%Y,DA,J,LRBED,LRCS,LRCSS,LRDTM,LRDTO,LRGVP,LRIDENT,LRIOZERO,LRLLOC,LRLWC,LRNOP,LRONE,LRORD,LRORDTIM,LROWLE,LRPR,LRTP,LRTSN,LRUR,LRUSNM,LRWDT1,LRXD,POP,T
  K LRTSAD,LRTSUB,LRDATE,D,D0,D1,DN,LRAODT,LRFLG,LRRB,LRSAMP,LRTREA,LRTSP
  K LRURG,VA,LRX,LRBERF,LRBETN
  Q
-CHK ;from LRTSTJAN
+ ;
+ ;
+CHK ; from LRTSTJAN
  D CHK1 I LREND W !,$C(7),"CAN'T DO IT.  The data has been approved for that log number."
  Q
-CHK1 I $D(^LRO(68,LRWL1,1,LRWDT1,1,LRAN,3)),$P(^(3),U,4) S LREND=1 Q
+ ;
+ ;
+CHK1 ;
+ I $D(^LRO(68,LRWL1,1,LRWDT1,1,LRAN,3)),$P(^(3),U,4) S LREND=1 Q
  I $D(^LRO(69,LRODT,1,LRSN,3)),$P(^(3),U,2) S LREND=1 Q
  S LRTST=0 F  S LRTST=$O(^LRO(68,LRWL1,1,LRWDT1,1,LRAN,4,LRTST)) Q:LRTST<1  I $D(^(LRTST,0)),$P(^(0),U,5) S LREND=1 Q
+ Q
+UNLOCK ;
+ I $G(LRAA),$G(LRAD),$G(LRAN) L -^LRO(68,LRAA,1,LRAD,1,LRAN)
  Q

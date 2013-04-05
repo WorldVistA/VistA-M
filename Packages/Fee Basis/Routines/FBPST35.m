@@ -52,7 +52,7 @@ LOCK ;remove the FBAASUPERVISOR lock from  option
  D ^FBPST35C
  D VENDOR^FBPST35B
  D XREF^FBPST35B
- ;D ^FBONIT ;to create protocols for list manager phone inq menu
+ D ^FBONIT ;to create protocols for list manager phone inq menu
  D ^FBP35D ; to create list template for phone inq menu
  S X="FBINITY" X ^%ZOSF("TEST") I $T D @("^"_X)
  Q

@@ -1,5 +1,5 @@
 DICATT2 ;SFISC/GFT,XAK-DEFINING MULTIPLES ;9APR2007
- ;;22.0;VA FileMan;**89,152**;Mar 30, 1999;Build 10
+ ;;22.0;VA FileMan;**89,152**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  S T=$E(Z) G CHECK^DICATT:$D(DTOUT)
  F P="I","O","L","x" S:$P(O,U,2)[P Z=$P(Z,U)_P_U_$P(Z,U,2)

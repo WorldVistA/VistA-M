@@ -1,5 +1,5 @@
-FBAAV0 ;AISC/GRR-ELECTRONICALLY TRANSMIT FEE DATA ;11 Apr 2006  2:51 PM
- ;;3.5;FEE BASIS;**3,4,55,89,98,116,108**;JAN 30, 1995;Build 115
+FBAAV0 ;AISC/GRR - ELECTRONICALLY TRANSMIT FEE DATA ;3/22/2012
+ ;;3.5;FEE BASIS;**3,4,55,89,98,116,108,132**;JAN 30, 1995;Build 17
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  K ^TMP($J,"FBAABATCH"),^TMP($J,"FBVADAT") D DT^DICRW
  I '$D(^FBAA(161.7,"AC","S")),'$D(^FBAA(161.7,"AC","R")),'$D(^FBAA(161.25,"AE")),$S('$D(^FBAA(161.26,"AC","P")):1,$O(^FBAA(161.26,"AC","P",0))'>0:1,1:0) W !,*7,"There are no transactions requiring transmission",*7 Q
@@ -44,6 +44,7 @@ DET ;entry point to process B3 (outpatient/ancillary) batch
  .N FBDTSR1,FBPICN
  .S FBDTSR1=+$G(^FBAAC(K,1,L,1,M,0))
  .S FBPICN=K_U_L_U_M_U_N
+ .S FBPICN=$$ORGICN^FBAAVR5(162.03,FBPICN)
  .S FBY=$G(^FBAAC(K,1,L,1,M,1,N,2))
  .S FBY3=$G(^FBAAC(K,1,L,1,M,1,N,3))
  .I 'FBTXT S FBTXT=1 D NEWMSG^FBAAV01,STORE^FBAAV01,UPD

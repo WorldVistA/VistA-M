@@ -74,7 +74,7 @@ DATA ;Process DATA
  ;Use the Null Device
  U IO(0)
  ;Now call soneone to process the data
- ;I HCSA1("P1")="MPI" D ^MPIDIRQ(HCSIN,HCSOUT)
+ I HCSA1("P1")="MPI" D ^MPIDIRQ(HCSIN,HCSOUT)
  I HCSA1("P1")="PING" M @HCSOUT=@HCSIN
  U IO ;Back to the TCP device
  D LLCNT^HLCSTCP(HLDP,2)

@@ -36,7 +36,7 @@ XPAR ; Setup preliminary parameters
  D EN^XPAR("SYS","GMV GUI VERSION","VITALS.EXE:"_GMVGUI,1)
  D EN^XPAR("SYS","GMV GUI VERSION","VITALSMANAGER.EXE:"_GMVGUI,1)
  ; Set latest Vital Home Page
- D EN^XPAR("SYS","GMV WEBLINK",1,"http://vista.DOMAIN.EXT/ClinicalSpecialties/vitals/")
+ D EN^XPAR("SYS","GMV WEBLINK",1,"http://vista.domain.ext/ClinicalSpecialties/vitals/")
  ;
  ; Kill bogus DD nodes
  K ^DD(120.5,1,0)

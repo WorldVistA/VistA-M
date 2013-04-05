@@ -1,5 +1,5 @@
 RORUTL01 ;HCIOFO/SG - UTILITIES  ; 5/12/05 3:29pm
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+ ;;1.5;CLINICAL CASE REGISTRIES;**18**;Feb 17, 2006;Build 25
  ;
  ; This routine uses the following IAs:
  ;
@@ -7,6 +7,18 @@ RORUTL01 ;HCIOFO/SG - UTILITIES  ; 5/12/05 3:29pm
  ; #3744         $$TESTPAT^VADPT
  ; #10035        Access to the .01 and .09 fields of the file #2
  ; #10038        Access to the HOLIDAY file (supported)
+ ; #2051         $$FIND1^DIC         
+ ;               LIST^DIC            
+ ; #10016       ^DIM
+ ; #2056         GETS^DIQ                
+ ;*****************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*18   APR  2012   C RAY        Added API $$REGSEL
+ ;                                               
+ ;******************************************************************************
  Q
  ;
  ;***** SENDS ALERT TO REGISTRY COORDINATORS
@@ -153,6 +165,35 @@ REGNAME(REGIEN) ;
  I $G(DIERR)  D  Q ""
  . D DBS^RORERR("RORMSG",-9,,,798.1,IENS)
  Q RORBUF(798.1,IENS,.01)_U_$G(RORBUF(798.1,IENS,4))
+ ;
+ ;***** RETURNS LIST OF REGISTRIES
+ ;
+ ; FLAGS         "I": Registry is initialized
+ ;               "U": Registry is uninitialized
+ ;               "A": Registry records are auto confirm
+ ;               "M": Registry records are manually confirmed
+ ; 
+ ; Return Values:
+ ; REGLST       Reference to a local array containing registry
+ ;               names as subscripts 
+ ;      0        No errors
+ ;     -9        DBS FM error
+ ;
+REGSEL(FLAGS) ;
+ N RORSCR,RORMSG,INDX,REGIEN,REGNAME,RORBUF,DIERR,RC
+ ;--- filter by auto-confirm and HDT date/time 
+ S RORSCR="I $P(^(0),U,7)'=1" ;exclude inactive
+ D LIST^DIC(798.1,,"@;.01E;21.05;31I",,,,,"B",.RORSCR,,"RORBUF","RORMSG")
+ I $G(DIERR) S RC=$$DBS^RORERR("RORMSG",-9,,,798.1) Q RC
+ I $G(FLAGS)="" S FLAGS=""
+ S INDX="" F  S INDX=$O(RORBUF("DILIST","ID",INDX)) Q:INDX=""  D
+ . I FLAGS["I",($G(RORBUF("DILIST","ID",INDX,21.05))="") Q
+ . I FLAGS["U",($G(RORBUF("DILIST","ID",INDX,21.05))'="") Q
+ . I FLAGS["M",($G(RORBUF("DILIST","ID",INDX,31))=1) Q  ;skip auto confirm
+ . I FLAGS["A",($G(RORBUF("DILIST","ID",INDX,31))'=1) Q  ;skip non auto-confirm
+ . S REGNAME=$G(RORBUF("DILIST","ID",INDX,.01)) Q:REGNAME=""
+ . S REGLST(REGNAME)=""
+ Q 0
  ;
  ;***** CHECKS IF THE PATIENT IS A TEST ONE
  ;

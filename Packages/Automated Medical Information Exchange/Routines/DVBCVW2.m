@@ -5,7 +5,7 @@ DVBCVW2 ;ALB/CMM LIST MANAGER PROTOCOL DRIVER ;17FEB92
 EN() ;
  I VWQRY<2 Q
  I '$D(QUIT)!(QUIT="Y") Q
- ;I $D(DVBCSPR) G LEAVE^DVBCPGD
+ I $D(DVBCSPR) G LEAVE^DVBCPGD
  S VALMBG=1
  ;
  ;vwqry     reference query number
@@ -20,7 +20,7 @@ INIT ;   set up the doc to be viewed based on parameters
  I QUIT="Y" Q
  S DVBCVAR="^TMP"
  S VALMAR=VALMAR_"(""DVBCVIEW"",$J,"_VWQRY_","_VWDOC_")"
- ;I $D(DVBCFLG) D CALLIT^DVBCPG1
+ I $D(DVBCFLG) D CALLIT^DVBCPG1
  ;
  S VWLINE=1,VALMBG=VWLINE
  ;

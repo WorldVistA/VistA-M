@@ -1,5 +1,5 @@
 DIQGDDF ;SFISC/DCL,MMW-DD ATTRIBUTE RETRIEVER (FILES) ;12:44 PM  26 Sep 1996
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  Q  ;not for interactive use
 FILE(DIQGR,DR,DIQGPARM,DIQGTA,DIQGERRA,DIQGIPAR) ;

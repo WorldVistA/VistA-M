@@ -1,5 +1,5 @@
-DGADDUT2 ;ALB/ERC,CKN - CONTINUATION OF ADDRESS UTILITIES ; 8/1/08 1:48pm
- ;;5.3;Registration;**688**; AUG 13, 1993;Build 29
+DGADDUT2 ;ALB/ERC,CKN,LBD - CONTINUATION OF ADDRESS UTILITIES ; 2/27/12 4:26pm
+ ;;5.3;Registration;**688,851**; AUG 13, 1993;Build 10
  ;a continuation of utilities from DGADDUTL
  ;
 UPDDTTM(DFN,TYPE) ; Update the PATIENT file #2 with the current date and time
@@ -52,4 +52,28 @@ CNTRY(DGARR) ;
  I '$D(^HL(779.004,"B",DGC)) Q ""
  S DGC=$$COUNTRY^DGADDUTL(DGC)
  S DGARR("CNTRY")=DGC
+ Q
+ ;
+DISPADD(DFN) ;Display Permanent Address (DG*5.3*851)
+ Q:'$G(DFN)
+ N DGRP,DGA1,DGA2,DGA,DGAD,DGI,DGCC,DGUN,FOR
+ ;Get current address & phone data
+ S DGRP(.11)=$G(^DPT(DFN,.11)),DGRP(.13)=$G(^DPT(DFN,.13))
+ S DGUN="UNANSWERED"
+ ;Format address data
+ S DGAD=.11,(DGA1,DGA2)=1 D A^DGRPU
+ ;Display address
+ W !!," Permanent Address: "
+ W !,?11,$S($D(DGA(1)):DGA(1),1:"NONE ON FILE")
+ S DGI=1 F  S DGI=$O(DGA(DGI)) Q:'DGI  W !,?11,DGA(DGI)
+ ; only print county info if it's a US address
+ I '$$FORIEN^DGADDUTL($P(DGRP(.11),U,10)) D
+ . S DGCC=$S($D(^DIC(5,+$P(DGRP(.11),U,5),1,+$P(DGRP(.11),U,7),0)):$E($P(^(0),U,1),1,20)_$S($P(^(0),U,3)]"":" ("_$P(^(0),U,3)_")",1:""),1:DGUN)
+ S DGCC=$S($G(DGCC)]"":"County: "_DGCC,1:"")
+ W !?3,DGCC
+ ;Display phone numbers
+ W !?4,"Phone: ",$S($P(DGRP(.13),U,1)]"":$P(DGRP(.13),U,1),1:DGUN)
+ W !?3,"Office: ",$S($P(DGRP(.13),U,2)]"":$P(DGRP(.13),U,2),1:DGUN)
+ ;Display Bad Address Indicator
+ W !?1,"Bad Addr: ",$$EXTERNAL^DILFD(2,.121,"",$P(DGRP(.11),U,16))
  Q

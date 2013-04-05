@@ -1,5 +1,5 @@
 DINIT25 ;SFISC/XAK-INITIALIZE VA FILEMAN ;3/16/94  11:26 AM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  F I=1:2 S X=$T(Q+I) G ^DINIT250:X="" S Y=$E($T(Q+I+1),5,999),X=$E(X,4,999),@X=Y
 Q Q

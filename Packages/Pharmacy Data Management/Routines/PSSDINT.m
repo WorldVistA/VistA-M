@@ -43,5 +43,5 @@ ADDMSG ;If adding new local interaction; send mail message.
  ;
 HEADER ;Message header; facility name
  S PSSIIEN=$$KSP^XUPARAM("INST"),PSSFLTY=$$GET1^DIQ(4,PSSIIEN,.01)
- S XMDUZ=DUZ,XMY("G.NDF SUPPORT@ISCPNDF.ISC-BIRM.DOMAIN.EXT")=""
+ S XMDUZ=DUZ,XMY("G.NDF SUPPORT@ISCPNDF.ISC-BIRM.domain.ext")=""
  Q

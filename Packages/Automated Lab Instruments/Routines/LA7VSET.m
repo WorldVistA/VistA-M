@@ -1,5 +1,5 @@
-LA7VSET ;DALOI/JMC - MENU TO SETUP VISN LABS ; 12/3/1997
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,51,55,46,64**;Sep 27, 1994
+LA7VSET ;DALOI/JMC - MENU TO SETUP VISN LABS ;11/15/11  9:13
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,51,55,46,64,74**;Sep 27, 1994;Build 229
  ;
  ; Reference to HL LOGICAL LINK file (#870) supported by DBIA #1495, 1496, 2063
  ; Reference to PROTOCOL file (#101) supported by DBIA #872
@@ -235,7 +235,7 @@ CHSET ; Edit chem test multiple for selected fields
  . N DA,DIC,DLAYGO ; Protect variables in case changed in DIE call.
  . S LA7NLT=$$GET1^DIQ(64,+$P($G(^LAB(60,$P(LA7Y,U,2),64)),U,2)_",",1)
  . S DA=+LA7Y,DA(1)=LA7624
- . S DR=".01;2;6//"_LA7NLT_";14;16;18//YES;19;22//NO"
+ . S DR=".01;6//"_LA7NLT_";14;16;18//YES;19;22//NO"
  . D ^DIE
  . W !
  Q
@@ -272,7 +272,7 @@ H2HLP ;HOST Lab Setup help
  S DIR("?",2)="and LA7 Message Configuration."
  S DIR("?",3)="Enter a '2' to create the link between the HOST and COLLECTION labs."
  S DIR("?",5)="Enter a '3' to configure the LA7 MESSAGE PARAMETER file."
- S DIR("?",4)="Enter a '4' to identify the list of test you expect back from the HOST lab."
+ S DIR("?",4)="Enter a '4' to identify the list of tests you expect back from the HOST lab."
  Q
  ;
  ;

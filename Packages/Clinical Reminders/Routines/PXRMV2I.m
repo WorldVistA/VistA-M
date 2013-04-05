@@ -242,8 +242,8 @@ SVRSN ;Set the package version number.
 WEB ;Change the default web page from the prevention handbook
  ;to the oqp page.
  N IND,NEW,OLD
- S OLD="http://vaww.DOMAIN.EXT/publ/direc/health/handbook/1120-2hk.htm"
- S NEW="http://www.oqp.DOMAIN.EXT/cpg/cpg.htm"
+ S OLD="http://vaww.domain.ext/publ/direc/health/handbook/1120-2hk.htm"
+ S NEW="http://www.oqp.domain.ext/cpg/cpg.htm"
  S IND=$O(^PXRM(800,1,1,"B",$E(OLD,1,30),""))
  I IND="" Q
  K ^PXRM(800,1,1,IND,0)

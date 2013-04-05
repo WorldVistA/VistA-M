@@ -56,7 +56,7 @@ SPH2 F  S SD=$O(^PSRX("AD",SD)) Q:'SD!(SD>3010801)  D
  .S ^TMP(ZZ,$J,6)="----------- -------------------------------------------------------------------"
  .S XX=7,J=0
  .F  S J=$O(^XTMP(TY,JN,2,J)) Q:'J  S ^TMP(ZZ,$J,XX)=^XTMP(TY,JN,2,J),XX=XX+1
- S XMY("G.PL2 PATCH TRACKING@FORUM.DOMAIN.EXT")=""
+ S XMY("G.PL2 PATCH TRACKING@FORUM.domain.ext")=""
  ;S XMY(DUZ)=""
  S XMSUB=$P($$SITE^VASITE(),"^",2)_" - PSO*7*69 - PART TWO"
  S XMDUZ="Missing Rx entries from PHARMACY PATIENT file (#55)"

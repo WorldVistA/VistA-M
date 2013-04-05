@@ -1,7 +1,8 @@
 PSOUTL ;BHAM ISC/SAB - pso utility routine ;4/28/09 4:14pm
- ;;7.0;OUTPATIENT PHARMACY;**1,21,126,174,218,259,324**;DEC 1997;Build 6
+ ;;7.0;OUTPATIENT PHARMACY;**1,21,126,174,218,259,324,390**;DEC 1997;Build 86
  ;External reference SERV^IBARX1 supported by DBIA 2245
  ;External reference ^PS(55,     supported by DBIA 2228
+ ;External reference ^PSSDIUTL is supported by DBIA# 5737.
  ;
  ;*218 prevent refill from being deleted if pending processing via
  ; external dispense machines
@@ -236,4 +237,37 @@ MAILCMOP(RX,STR,REA) ;Send mail message to mail group PSX EXTERNAL DISPENSE ALER
  S PSOTEXT(8)="********    Please contact CMOP or take appropriate action    ********"
  S XMTEXT="PSOTEXT(" D ^XMD
  D KVA^VADPT
+ Q
+ ;
+PSOCK ;
+ W !!!,"*The following list of order checks is a comprehensive report of all"
+ W !,"Outpatient, Non-VA, and Clinic medication orders on this patient's profile."
+ W !,"It may include orders that are local, remote, active, pending, recently"
+ W !,"discontinued, or expired. Please note that the sort order and format"
+ W !,"displayed in this report differs from the display of MOCHA 1.0 order"
+ W !,"checks which occurs during order processing.*",!
+ Q
+ ;
+PSSDGCK ;
+ D ^PSSDIUTL
+ Q
+ ;
+PSOSUPCK(CHK) ;
+ I '($P($G(^PSDRUG(CHK,0)),"^",3)["S"!($E($P($G(^PSDRUG(CHK,0)),"^",2),1,2)="XA")) K CHK Q 0
+ W !!,"You have selected a supply item, please select another drug"
+ W !,"or leave blank and hit enter for Profile Order Checks." W !
+ K CHK
+ Q 1
+ ;
+PRFLP ;ZB POST+18^PSODRG THE RUN D LOOP^ZZME3
+ N PSODRUG S (DGCKSTA,DGCKDNM)="" S PSODGCKF=1
+ I $D(PSOSD) F  S DGCKSTA=$O(PSOSD(DGCKSTA)) Q:DGCKSTA=""  F  S DGCKDNM=$O(PSOSD(DGCKSTA,DGCKDNM)) Q:DGCKDNM=""  D
+ .S DIC=50,DIC(0)="MQZV",X=DGCKDNM D ^DIC K DIC
+ .S DIC=50,DIC(0)="MQZV",X=+Y D ^DIC K DIC Q:Y=-1
+ .S PSODRUG("IEN")=DGCKDNM,PSODRUG("VA CLASS")=$P(Y(0),"^",2),PSODRUG("NAME")=$P(Y(0),"^")
+ .S:+$G(^PSDRUG(+Y,2)) PSODRUG("OI")=+$G(^(2)),PSODRUG("OIN")=$P(^PS(50.7,+$G(^(2)),0),"^")
+ .S PSODRUG("NDF")=$S($G(^PSDRUG(DGCKDNM,"ND"))]"":+^("ND")_"A"_$P(^("ND"),"^",3),1:0)
+ .S PSODFN=DFN D ^PSODGAL1
+ .K X,Y,DTOUT,DUOUT
+ K DGCKSTA,DGCKDNM,PSODGCKF,X,Y,DTOUT,DUOUT
  Q

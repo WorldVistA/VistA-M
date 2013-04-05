@@ -1,5 +1,5 @@
-LRWLST11 ;DALOI/CJS,RWF/FHS - ACCESSION SETUP ;July 19, 2006
- ;;5.2;LAB SERVICE;**121,128,153,202,286,331,375**;Sep 27, 1994;Build 3
+LRWLST11 ;DALOI/STAFF - ACCESSION SETUP ;Mar 27, 2008
+ ;;5.2;LAB SERVICE;**121,128,153,202,286,331,375,350**;Sep 27, 1994;Build 230
  ;
 ST21 ;
  S LRTS="",LRIX=0
@@ -9,7 +9,7 @@ ST21 ;
  D SCDT,SLRSS
  ;
 COMMON ; Setup 'in common' accession if not already setup unless it will be 
- ; when tests are acessioned to the 'in common' area.
+ ; when tests are accessioned to the 'in common' area.
  I +LRWLC,+LRWLC'=+LRAA,$G(^LRO(68,LRWLC,1,LRAD,1,LRAN,0))=$G(LRDFN) D
  . I 'LRUNQ,$D(LRTSTS(LRWLC,LRUNQ,LRWLC)) Q
  . Q:$G(^LRO(68,LRWLC,1,LRAD,1,LRAN,.1))
@@ -33,24 +33,30 @@ SCDT ; Set collection, inverse and lab arrival date/times on accession
  I '$D(LRPHSET) S FDA(4,68.02,LR6802,12)=LRNT
  S FDA(4,68.02,LR6802,13.5)=LRIDT
  D FILE^DIE("","FDA(4)","LRDIE(4)")
- I $D(LRDIE(4)) D MAILALRT^LRWLST1
+ I $D(LRDIE(4)) D MAILALRT^LRWLST12("SCDT~LRWLST11")
  Q
  ;
  ;
 SLRSS ;
  ;
+ N FDA,FDAIEN,LRDIE,LRX
+ S LRX=$S(LRSS="CH":63.04,LRSS="MI":63.05,LRSS="SP":63.08,LRSS="CY":63.09,LRSS="EM":63.02,LRSS="BB":63.01,1:0)
  S X=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,5,1,0)) ; change for AP
- S H8=$S($D(LRSPEC):LRSPEC,1:X)_U_$S("CYEMSPAU"[LRSS:LRACC,1:LRACC)_U_$S(LRSS="MI":LRPRAC,1:"")_U_$S(LRSS="MI":LRLLOC,1:"")_"^^"_$S(LRSS="CH":LRPRAC,1:"")_"^"_$S(LRSS="MI":$P(LRSAMP,";",1),LRSS="CH":LRLLOC,1:"")
+ S H8=$S($D(LRSPEC):LRSPEC,1:X)_U_$S("CYEMSPAU"[LRSS:LRACC,1:LRACC)_U_$S(LRSS="MI":LRPRAC,1:"")_U_$S(LRSS="MI":LRLLOC,1:"")_"^^"_$S(LRSS="CH":LRPRAC,1:LRNT)_"^"_$S(LRSS="MI":$P(LRSAMP,";",1),LRSS="CH":LRLLOC,1:"")
  ;
  I $S(LRSS="CH":1,LRSS="MI":1,1:0) D
  . I $G(LRORDRR)="R",+$G(LRRSITE("RSITE")) S $P(H8,U,9)=+LRRSITE("RSITE")_";DIC(4,"
  . I $G(LROLLOC),$G(LRORDRR)'="R" S $P(H8,U,9)=LROLLOC_";SC("
  . S $P(H8,U,10)=$S($G(LRDUZ(2)):LRDUZ(2),1:$G(DUZ(2)))
  ;
- S ^LR(LRDFN,LRSS,LRIDT,0)=LRCDT_U_LREAL_"^^^"_H8
- I $G(LRORU3)'="" S ^LR(LRDFN,LRSS,LRIDT,"ORU")=LRORU3
+ D SLRSS^LRWLST1A
+ Q:"SPEMCY"[LRSS
+ ;S ^LR(LRDFN,LRSS,LRIDT,0)=LRCDT_U_LREAL_"^^^"_H8
+ ;I $G(LRORU3)'="" S ^LR(LRDFN,LRSS,LRIDT,"ORU")=LRORU3
  ;
-ST3 D ST4:(LRSS="MI"),LRCCOM
+ST3 ;
+ I LRSS="MI" D ST4
+ D LRCCOM
  ;
  S LRDPF=$P(^LR(LRDFN,0),U,2),DFN=$P(^(0),U,3),LRPR=1
  S LRRB=0
@@ -61,13 +67,15 @@ ST3 D ST4:(LRSS="MI"),LRCCOM
  I '$D(LRTJ) D  Q
  . I $G(LRORDRR)="R",LRSS="CH",$G(LRORU3)'="",$P(LRORU3,"^")'=$P(LRORU3,"^",4) Q  ; Don't print, use label from sending facility.
  . I LRLBLBP,'$G(LRCOMMON) S LRLBL(LRAA,LRAN)=LRSN_U_LRAD_U_LRODT_U_LRRB_U_LRLLOC_U_LRACC_U_$S($D(LRORD):LRORD,1:"")
+ ;
  S I=0
  F  S I=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,I)) Q:I<.5  S LRTS=^(I,0) D Z
+ ;
  Q
  ;
  ;
 ST4 ;
- S $P(^LR(LRDFN,LRSS,LRIDT,0),U,10)=$S($D(LRNT):LRNT,1:""),$P(^(0),U,8)=LRLLOC
+ ;S $P(^LR(LRDFN,LRSS,LRIDT,0),U,10)=$S($D(LRNT):LRNT,1:""),$P(^(0),U,8)=LRLLOC
  ; Used to be LRSPCDSC,63.05,.9 (Word Processing field) replaces 63.05,.99
  S:$D(LRCCOM) ^LR(LRDFN,LRSS,LRIDT,99)=LRCCOM
  I '$D(LRPHSET) D
@@ -89,7 +97,9 @@ ST5 S I("SUBSC")=$S(I("EDIT")[11.5:26,I("EDIT")[15:27,I("EDIT")[19:28,I("EDIT")[
  Q
  ;
  ;
-SET S LRTS=LRTSTS(LRWLC,LRUNQ,LRAA,LRIX),LRIN=$P(LRTS,U,3),LRORIFN=$P(LRTS,U,4),LRTSORU=+$P(LRTS,U,6),LRTS=$P(LRTS,U,1,2),LRBACK=$P(LRTS,U,5)
+SET ;
+ S LRTS=LRTSTS(LRWLC,LRUNQ,LRAA,LRIX)
+ S LRIN=$P(LRTS,U,3),LRORIFN=$P(LRTS,U,4),LRTSORU=+$P(LRTS,U,6),LRTS=$P(LRTS,U,1,2),LRBACK=$P(LRTS,U,5)
  ;
  I '$G(LRQUIET),'$D(LRPHSET) D
  . W !,$P(^LAB(60,+LRTS,0),U)
@@ -108,6 +118,16 @@ SET S LRTS=LRTSTS(LRWLC,LRUNQ,LRAA,LRIX),LRIN=$P(LRTS,U,3),LRORIFN=$P(LRTS,U,4),
  . I DA>0,$O(^LAB(60,+LRTS,3,DA,2,0))>0 D EN^DIQ H 3
  ;
  D ORUT
+ ;
+ ; Check if LEDI specimen being accessioned then
+ ;  -  update test status of order in file #69.6
+ ;  -  if LEDI AP specimen copy data accompanying order from file #69.6 to file #63
+ ;  -  update remote ordering provider from file #69.6 to ordered test multiple (#.35)
+ I $G(LRORDRR)="R",$G(LR696)>0 D
+ . D ORUT2^LRWLST12
+ . D PROVCPY^LRWLST12
+ . I "SPCYEM"[LRSS D APMOVE^LRWLST12
+ ;
  D CAP^LRWLST12
  K LRTSTS(LRWLC,LRUNQ,LRAA,LRIX)
  ;
@@ -134,18 +154,29 @@ RUID I $G(LRORU3)'="" D
 % R %:DTIME Q:%=""!(%["N")!(%["Y")  W !,"Answer 'Y' or 'N': " G %
  ;
  ;
-LRCCOM ;
+LRCCOM ; Copy comments from file #69 to file #63 comment multiple
  N I,LRCCOM,LRTN,X
- S (I,LRTN,LRCCOM)=0 Q:LRSS'="CH"!($D(^LR(LRDFN,LRSS,LRIDT,0))[0)
+ S (I,LRTN,LRCCOM)=0
+ ;
+ I LRSS'="CH"!($D(^LR(LRDFN,LRSS,LRIDT,0))[0) Q
+ ;
+ ; Copy (#16) WARD COMMENTS ON SPECIMEN to file #63 comment multiple
  F  S I=$O(^LRO(69,LRODT,1,LRSN,6,I)) Q:I<1  I $D(^(I,0)) S X=^(0),LRCCOM=LRCCOM+1,^LR(LRDFN,LRSS,LRIDT,1,LRCCOM,0)=X
- F  S LRTN=$O(^LRO(69,LRODT,1,LRSN,2,LRTN)) Q:'LRTN  I $D(^(LRTN,0)) S X=^(0) I $P(X,"^",8),'$P(X,"^",3),$O(^(1,0)) D  ;Get comments for expanded panels
- . S I=0 F  S I=$O(^LRO(69,LRODT,1,LRSN,2,LRTN,1,I)) Q:'I  I $D(^(I,0)) S X=^(0),LRCCOM=LRCCOM+1,^LR(LRDFN,LRSS,LRIDT,1,LRCCOM,0)=X
+ ;
+ ; Copy expanded panels (#99) TEST COMMENTS to file #63 comment multiple
+ F  S LRTN=$O(^LRO(69,LRODT,1,LRSN,2,LRTN)) Q:'LRTN  I $D(^(LRTN,0)) S X=^(0) I $P(X,"^",8),'$P(X,"^",3),$O(^(1,0)) D
+ . S I=0
+ . F  S I=$O(^LRO(69,LRODT,1,LRSN,2,LRTN,1,I)) Q:'I  I $D(^(I,0)) S X=^(0),LRCCOM=LRCCOM+1,^LR(LRDFN,LRSS,LRIDT,1,LRCCOM,0)=X
+ ;
  S:LRCCOM ^LR(LRDFN,LRSS,LRIDT,1,0)="^63.041^"_LRCCOM_U_LRCCOM
+ ;
  Q
  ;
  ;
-Z L +^LRO(69.1,LRTE)
+Z ; Update collection list (#69.1)
+ L +^LRO(69.1,LRTE):999
  S LRZ3=$S($D(^LRO(69.1,LRTE,1,0)):$P(^(0),U,3),1:0)
+ ;
 Z1 S LRZ3=LRZ3+1 G:$D(^LRO(69.1,LRTE,1,LRZ3)) Z1
  S LRZO="^LRO(69.1,"_LRTE_",1,",LRZ1="69.11P",LRZB=+LRTS,LRIFN=LRZ3
  D Z^LRWU
@@ -155,28 +186,53 @@ Z1 S LRZ3=LRZ3+1 G:$D(^LRO(69.1,LRTE,1,LRZ3)) Z1
  Q
  ;
  ;
-ORUT Q:'$G(LRTSORU)!($G(LRSS)'="CH")
- N LRTT,DLAYGO,DIC,DIE,DR,LRTST,DA,LRURG
- S DA=LRIDT,DA(1)=LRDFN
- S LRNLT=$$NLT^LRVER1(+LRTSORU) Q:+LRNLT<1  Q:$D(^LR(DA(1),LRSS,DA,"ORUT","B",LRNLT))
- S DR=".35///^S X=LRNLT",DR(1)=".35"
- S DR(1,63.04)=".35///^S X=LRNLT"
- S DR(1,63.07)=".01///^S X=LRNLT"
- S DIC="^LR("_DA(1)_","""_LRSS_""","
- S DIC(0)="MNL",DIE=DIC W:$G(LRDBUG) !,LRNLT
- D ^DIE
+ORUT ;Set ORUT/ordered test node in file 63
+ ;LRSS=subscript-required
+ ;LRIDT=inverse date-required
+ ;LRDFN=IEN file 63-required
+ ;LRTSORU=ordered test (file #60 IEN)-required
+ ;LRURG=ordered urgency
+ ;LRORIFN=CPRS order #
+ ;LRORNUM=Lab order # LR_XXXX where XXXX is a julian date
+ ;LRORTYP=ordered type
+ ;LRPROVL=ordering provider local
+ ;LRSPEC=specimen topography
+ ;LRSAMP=Collection sample
  ;
-ORUT2 S LRTST=$P($G(^LAM($O(^LAM("E",LRNLT,0)),0)),U) Q:LRTST=""!('$G(LR696IEN))
- Q:'($D(^LRO(69.6,LR696IEN,0))#2)!($D(^LRO(69.6,LR696IEN,2,"C",LRNLT)))
- S:'$D(^LRO(69.6,LR696IEN,2,0)) ^(0)="^69.64A^"
- S DLAYGO=69.6
- K DIC,DIE,DA,DR,DA
- S DA=LR696IEN
- S LRURG="R",LRURG=$S($L($P($G(^LAB(62.05,+$P(LRTS,U,2),0)),U,4)):$P(^(0),U,4),1:LRURG)
- S (DIE,DIC)="^LRO(69.6,",DIC(0)="LM"
- S DR=20_"///"_LRTST_";",DR(1,69.6)="20///"_LRTST_";"
- S DR(2,69.64)=".01///"_LRTST_";1///"_LRNLT_";4///"_LRURG_";5////160;8///"_LRNT_";9///"_LRUID
- D ^DIE
+ N LRFDA,LRFILE,LRIEN,LRIENS,LRJUL,LRMSG,LRNLT,LRORNUM,LRORTYP
+ N LRPROVL,LRX,LRY,DIERR
+ S LRFILE=$S(LRSS="CH":63.07,LRSS="MI":63.5,LRSS="SP":63.53,LRSS="CY":63.51,LRSS="EM":63.52,1:"")
+ Q:'LRFILE!('$G(LRTSORU))
+ ;
+ S LRNLT=$$NLT^LRVER1(+LRTSORU) Q:+LRNLT<1
+ S LRORTYP=""
+ I $P($G(LRORDTYP),"^",2) S LRORTYP=$P(LRORDTYP,"^",2)
+ I LRORTYP="" D
+ . I $G(LRORDR)'="" S LRX=$S($G(LRORDR)="WC":"O",1:"L")
+ . I $G(LRORDR)="" S LRX=$S($G(LRORDRR)="R":"O",$G(LRLWC)="WC":"O",1:"L")
+ . S LRORTYP=$$FIND1^DIC(64.061,"","OX",LRX,"D","I $P(^(0),U,5)=""0065""")
+ S LRPROVL=$S($G(LRPRAC)?1.N:LRPRAC,1:"")
+ I $G(LRORD) D
+ . S LRX=$$FMDIFF^XLFDT(DT,$E(DT,1,3)_"0101",1)
+ . S LRX=LRX+1,LRJUL=$E("000",1,3-$L(LRX))_LRX
+ . S LRORNUM="LR-"_LRORD_"-"_$E(DT,1,3)_LRJUL
+ ;
+ S LRIEN="?+1"_","_LRIDT_","_LRDFN_","
+ S LRFDA(5,LRFILE,LRIEN,.01)=LRNLT
+ I $G(LRURG) S LRFDA(5,LRFILE,LRIEN,2)=LRURG
+ I $G(LRORIFN) S LRFDA(5,LRFILE,LRIEN,3)=LRORIFN
+ I $G(LRORNUM)'="" S LRFDA(5,LRFILE,LRIEN,4)=LRORNUM
+ I LRORTYP'="" S LRFDA(5,LRFILE,LRIEN,5)=LRORTYP
+ I LRPROVL'="" S LRFDA(5,LRFILE,LRIEN,6)=LRPROVL
+ I $G(LRSPEC) S LRFDA(5,LRFILE,LRIEN,8)=LRSPEC
+ I $G(LRSAMP) S LRFDA(5,LRFILE,LRIEN,9)=LRSAMP
+ I +LRTSORU S LRFDA(5,LRFILE,LRIEN,13)=+LRTSORU
+ I $P($G(LRORDTYP),"^",3) D
+ . S LRFDA(5,LRFILE,LRIEN,14)=$P(LRORDTYP,"^",3)
+ . S LRFDA(5,LRFILE,LRIEN,15)=$P(LRORDTYP,"^",4)
+ D UPDATE^DIE("","LRFDA(5)","LRIENS","LRMSG")
+ D CLEAN^DILF
+ ;
  Q
  ;
  ;
@@ -184,8 +240,10 @@ SICA ; Check accessions 'in common' and setup reference to this accession
  N FDA,LR6802,LRDIE,LRAA
  S LRX=$P($G(^LRO(68,LRWLC,1,LRAD,1,LRAN,.2)),"^"),LRAA=0
  F  S LRAA=$O(LRTSTS(LRWLC,LRUNQ,LRAA)) Q:LRAA<1  I LRWLC'=LRAA D
+ . I '$D(^LRO(68,LRAA,1,LRAD,1,LRAN,0)) Q
+ . K FDA,LRDIE
  . S LR6802=LRAN_","_LRAD_","_LRAA_","
  . S FDA(5,68.02,LR6802,15.1)=LRX
  . D FILE^DIE("","FDA(5)","LRDIE(5)")
- . I $D(LRDIE(5)) D MAILALRT^LRWLST1
+ . I $D(LRDIE(5)) D MAILALRT^LRWLST12("SICA~LRWLST11")
  Q

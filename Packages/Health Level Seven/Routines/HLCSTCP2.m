@@ -1,5 +1,5 @@
-HLCSTCP2 ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;12/01/2010
- ;;1.6;HEALTH LEVEL SEVEN;**19,43,49,57,63,64,66,67,76,77,87,109,133,122,140,142,145,153**;Oct 13,1995;Build 11
+HLCSTCP2 ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;08/04/2011 16:27
+ ;;1.6;HEALTH LEVEL SEVEN;**19,43,49,57,63,64,66,67,76,77,87,109,133,122,140,142,145,153,157**;Oct 13,1995;Build 8
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;Sender 
  ;Request connection, send outbound message(s) delimited by MLLP
@@ -301,7 +301,10 @@ OPEN() ; -- Open TCP/IP device (Client)
  ;HLPORTA=number of attempted opens
  I $D(HLPORT) S IO=HLPORT D  Q 1
  . U IO
- . I HLOS["OpenM" X "U IO:(::""-M"")" ;use packet mode on Cache'
+ . ; patch HL*1.6*157: HLOS is from calling $$OS^%ZOSV
+ . ; use packet mode on Cache'
+ . ; I HLOS["OpenM" X "U IO:(::""-M"")" ;use packet mode on Cache'
+ . I (HLOS["VMS")!(HLOS["UNIX"),^%ZOSF("OS")'["GT.M"  X "U IO:(::""-M"")"
  N HLDOM,HLI,HLIP,HLPORTA
  G OPENA^HLCSTCP3
  ;

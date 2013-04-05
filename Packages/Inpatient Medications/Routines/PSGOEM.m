@@ -1,5 +1,5 @@
 PSGOEM ;BIR/CML3-PSGOE MESSAGES ;26 NOV 97 / 8:28 AM 
- ;;5.0; INPATIENT MEDICATIONS ;**81**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS ;**81,260**;16 DEC 97;Build 94
  ;
  ; Reference to ^DD(53.1 is supported by DBIA# 2256.
  ; Reference to ^PS(55 is supported by DBIA# 2191.
@@ -13,6 +13,9 @@ ENCAM ;
  ;
 ENCOM ;
  W !!,"Enter a 'Y' to ",$S(CF:"discontinue this order",1:"mark this order for discontinuation"),".  Press the RETURN key (or" W:'CF ! W:CF " " W "enter an 'N'" W:CF ! W:'CF " " W "or '^') to leave this option now." Q
+ ;
+ENDC ;
+ W !!,"You must enter 'DC' to discontinue the order or leave blank and press return to continue without discontinuing the order." Q
  ;
 ENUMK ;
  W " BEEN 'MARKED FOR DISCONTINUATION'."

@@ -1,0 +1,352 @@
+DGBTDW ;ALB/RFE - DEDUCTIBLE WAIVER SETUP/MAIN ENTRY CALLUP; 01/19/12
+ ;;1.0;Beneficiary Travel;**20**;November 11, 2011;Build 185
+ Q
+EN ; Entry point
+ N %,%H,%I,%Y,ANS,C,DELRAY,DFN,DGBTDTI,DGBTDW,DGBTFDA,DGBTFDA1,DGBTIENS,DGBTNEW,DGBTOK,DGBTTOUT,DGENR,DGRETV,DISPLAY,DTSUB,ERRMSG,PENSION,THISYR,I,X,Y
+ N VAEL,VAERR,DELETRAY,DGBTERR
+ D CLEAN^DILF
+ F  D ENTRQ Q:'$D(DFN)
+ D QUIT
+ Q
+ENTRQ ; Keep prompting until we don't get a DFN
+ D PATIENT Q:'$D(DFN)
+ K VAEL D ELIG^VADPT ;
+ I '+VAEL(1) W !!,"Eligibility is missing from registration and is required to continue.",*7 D QUIT Q
+ S DGBTNEW='$D(^DGBT(392.7,"C",DFN))
+ D DATE
+ I ($D(DIRUT))!($D(DUOUT))!($D(DIROUT))!($D(DTOUT))!(Y=-1)!('$D(DGBTDTI)) D QUIT Q
+ W !
+ S DGBTNEW='$D(^DGBT(392.7,"C",DFN,DGBTDTI))
+ S (DGBTOK,DISPLAY)=0
+ S DGBTOK=1
+ I 'DGBTNEW D OLDREQ
+ I DISPLAY D DISPLAY,QUIT Q
+ I 'DGBTOK D QUIT Q
+ I 'DGBTNEW W !,$$GET1^DIQ(2,DFN,.01)," ",DGBTDW("REQDT")
+ D AUTH
+ I 'DGBTOK D QUIT Q
+ D GRANT
+ I 'DGBTOK D QUIT Q
+ D APPDT
+ I 'DGBTOK D QUIT Q
+ D RMRK
+ I 'DGBTOK D QUIT Q
+ W !,"NAME: ",$$GET1^DIQ(2,DFN,.01)," DEDUCTIBLE WAIVER REQUEST DATE: ",DGBTDW("REQDT")
+ W !,$S(DGBTDW("AUTH")="YES":"GRANT",1:"DENI"),"ED BY: ",$$GET1^DIQ(200,DGBTDW("GRANT"),.01)," ON DATE: ",DGBTDW("APPDT")
+ ;
+ I '$$YESNO^DGBTUTL("Complete waiver request") W !,"Not completed" D QUIT Q            ;changed by bld
+ ;
+ D UPDATE
+ D QUIT
+ Q
+PATIENT ;
+ K DIC,DFN
+ S DGBTTOUT="",DIC="^DPT(",DIC(0)="AEQMZ",DIC("A")="Select PATIENT: "
+ W !! D ^DIC K DIC Q:Y'>0
+ S (DFN,DGBTDW("NAME"))=+Y
+ S PENSION=$$PENSION
+ Q
+PENSION() ;
+ N HIT,VAEL,VAERR
+ D ELIG^VADPT
+ I $P(VAEL(1),"^",2)["PENSION" Q 1
+ I $P(VAEL(1),"^",2)="AID & ATTENDANCE" Q 1
+ I $P(VAEL(1),"^",2)="HOUSEBOUND" Q 1
+ S (HIT,I)=""
+ F  S I=$O(VAEL(1,I)) Q:I=""  D  Q:HIT
+ .I VAEL(1,I)["PENSION" S HIT=1 Q
+ .I $P(VAEL(1,I),"^",2)="AID & ATTENDANCE" S HIT=1 Q
+ .I $P(VAEL(1,I),"^",2)="HOUSEBOUND" S HIT=1
+ Q HIT
+UPDATE ;
+ K ERRMSG
+ I DGBTNEW D
+ .S DGBTFDA(392.7,"+1,",.01)=DGBTDW("REQDT")
+ .S DGBTFDA(392.7,"+1,",3)=DGBTDW("AUTH")
+ .S DGBTFDA(392.7,"+1,",5)=DGBTDW("APPDT")
+ .I $G(DGBTDW("REMARK"))'="" S DGBTFDA(392.7,"+1,",7)=DGBTDW("REMARK")
+ .S DGBTFDA(392.7,"+1,",9)=$$FMTE^XLFDT(DT)
+ .D UPDATE^DIE("E","DGBTFDA",,"ERRMSG")
+ .I $D(ERRMSG) Q
+ .;
+ .S DGBTFDA1(392.7,DGBTDTI_",",2)=DGBTDW("NAME")
+ .S DGBTFDA1(392.7,DGBTDTI_",",4)=DGBTDW("GRANT")
+ .S DGBTFDA1(392.7,DGBTDTI_",",6)=DUZ
+ .S DGBTFDA1(392.7,DGBTDTI_",",8)=$$EXP
+ .D FILE^DIE("S","DGBTFDA1","ERRMSG")
+ ;
+ I '$G(DGBTNEW) D
+ .S DGBTFDA(392.7,DGBTDTI_",",3)=DGBTDW("AUTH")
+ .S DGBTFDA(392.7,DGBTDTI_",",5)=DGBTDW("APPDT")
+ .I $G(DGBTDW("REMARK"))'="" S DGBTFDA(392.7,DGBTDTI_",",7)=DGBTDW("REMARK")
+ .S DGBTFDA(392.7,DGBTDTI_",",9)=$$FMTE^XLFDT(DT)
+ .D FILE^DIE("E","DGBTFDA","ERRMSG")
+ .I $D(ERRMSG) Q
+ .S DGBTFDA(392.7,DGBTDTI_",",4)=DGBTDW("GRANT")
+ .S DGBTFDA(392.7,DGBTDTI_",",6)=DUZ
+ .S DGBTFDA(392.7,DGBTDTI_",",8)=$$EXP
+ .D FILE^DIE(,"DGBTFDA","ERRMSG")
+ I '$D(ERRMSG) D FILDLT Q
+ F I=1:1 Q:'$D(ERRMSG("DIERR","1","TEXT",I))  W !,ERRMSG("DIERR",1,"TEXT",I)
+ Q
+FILDLT ;
+ Q:'$D(DELETRAY)
+ S I=$O(DELETRAY("")) Q:I=""
+ K ERR
+ S DGBTFDA(392.7,I_",",97)=DELETRAY(I,"DATE")
+ S DGBTFDA(392.7,I_",",98)=DELETRAY(I,"DUZ")
+ S DGBTFDA(392.7,I_",",99)=DELETRAY(I,"REMARK")
+ D FILE^DIE(,"DGBTFDA","ERR")
+ Q
+DATE ;
+ Q:$$PENSDT
+ K DGBTDTI,DELETRAY
+ N PASTDT,PASTYR,DEL
+ D DEL
+ I 'DGBTNEW N DGBTC D OLD S:'DGBTC DGBTNEW=1
+ F  D DATE1 Q:DONE
+ K DONE
+ Q
+DATE1 ;
+ S DONE=1
+ K DIR
+ I 'DGBTNEW S DIR("A",2)="Enter 'P' for past requests"
+ S (DIR("A",1),DIR("A",3))="",DIR("A")="DEDUCTIBLE WAIVER REQUEST DATE AND TIME",DIR("?")="^D DHELP^DGBTDW"
+ S DIR(0)="F",DIR("B")="NOW" D ^DIR K DIR
+ I ($D(DIRUT))!($D(DUOUT)) Q
+ S %DT="EXR",DTSUB=$S($$UP^XLFSTR(Y)="P":"PASTRQ",1:"OTHR") D @DTSUB K DTSUB,%DT
+ Q
+ ; Date-requested subroutines
+OTHR ; date/time entry for manually entered date
+ S %DT(0)="-NOW" D ^%DT I Y<0 S DONE=0 Q
+ I Y<$$FMADD^XLFDT(DT,-30) W !,"Date cannot precede ",$$FMTE^XLFDT($$FMADD^XLFDT(DT,-30)) S DONE=0 Q
+ I $D(DEL($E(Y,1,3))),('$D(PASTYR($E(Y,1,3)))) D  I 'ANS S Y=-1 Q
+ .S THISYR=DEL($E(Y,1,3))
+ .W !,"Request already on file and has been deleted on ",$$UP^XLFSTR($$FMTE^XLFDT(THISYR)),!
+ .N RQDT S RQDT=Y
+ .S ANS=$$YESNO^DGBTUTL("Do you wish to enter a new manual waiver request")
+ .S Y=RQDT
+ .I ($D(DIRUT))!($D(DIROUT))!($D(DTOUT))!($D(DUOUT)) S ANS=0
+ I $D(PASTYR($E(Y,1,3))),'$D(^DGBT(392.7,"C",DFN,Y)) N RQDT D DELETE S Y=RQDT I 'ANS Q
+ I ($D(DIRUT))!($D(DIROUT))!($D(DTOUT))!($D(DUOUT)) Q
+ I $D(^DGBT(392.7,"C",DFN,Y)) S (DGBTDTI,DGBTIENS)=Y,DGBTDW("REQDT")=$$FMTE^XLFDT(DGBTDTI) Q
+ S DGBTDTI=$$LOCKNEW(Y,0) I DGBTDTI=-1 W !,"Please enter another date/time" K DGBTDTI Q
+ S DGBTDW("REQDT")=$$FMTE^XLFDT(DGBTDTI)
+ Q
+LOCKNEW(DGBTDTI,DONE) ;
+ F  D  Q:DONE
+ .L +^DGBT(392.7,DGBTDTI):1
+ .I ($T),('$D(^DGBT(392.7,DGBTDTI))) S DONE=1 Q
+ .L  S DGBTDTI=DGBTDTI+.000001
+ .I ($L(DGBTDTI)=13),$E(DGBTDTI,13)=6 S DONE=1,DGBTDTI=-1 Q
+ .I $E(DGBTDTI,13,14)>59 S DONE=1,DGBTDTI=-1 Q
+ Q DGBTDTI
+PASTRQ ;
+ I DGBTNEW W !,"No past dates on file, please enter a valid date/time" S DONE=0 Q
+ N DGBTCH
+ S DGBTCH=1
+ F  D LIST Q:DONE1
+ K DONE1
+ I ('$D(DTOUT)),(Y'>0) S DONE=0
+ Q
+DELETE ;
+ S RQDT=Y
+ W !!,"Request already on file for this year: "
+ S THISYR=PASTYR($E(Y,1,3))
+ W $$UP^XLFSTR($$FMTE^XLFDT(THISYR)),!
+ D
+ .N X,Y
+ .S ANS=$$YESNO^DGBTUTL("Do you wish to delete the request for "_$$UP^XLFSTR($$FMTE^XLFDT(THISYR)))
+ I ($D(DIRUT))!($D(DIROUT))!($D(DTOUT))!($D(DUOUT)) Q
+ I 'ANS S Y=THISYR Q
+ D
+ .N X,Y
+ .S ANS=$$YESNO^DGBTUTL("Are you sure you wish to delete this request?")
+ I ($D(DIRUT))!($D(DIROUT))!($D(DTOUT))!($D(DUOUT)) Q
+ I 'ANS S Y=THISYR Q
+ S DELETRAY(THISYR,"DATE")=DT
+ S DELETRAY(THISYR,"DUZ")=DUZ
+ F  D  Q:DONE
+ .S DONE=1
+ .N X,Y
+ .K DIR S DIR("A")="Enter reason for deletion",DIR(0)="FO^1:100" D ^DIR K DIR
+ .I ($D(DUOUT))!($D(DIROUT))!($D(DTOUT)) Q
+ .S ANS=$TR(Y,U," ")
+ .I $L($TR(ANS," ",""))=0 S DONE=0
+ I ($D(DUOUT))!($D(DIROUT))!($D(DTOUT)) K DELETRAY Q
+ S DELETRAY(THISYR,"REMARK")=ANS
+ S ANS=$$YESNO^DGBTUTL("Do you wish to enter a deductible waiver request for "_$$UP^XLFSTR($$FMTE^XLFDT(Y)))
+ I ($D(DIRUT))!($D(DIROUT))!($D(DTOUT))!($D(DUOUT)) Q
+ I ANS Q
+ D FILDLT K DELETRAY
+ Q
+OLD ; Previously entered waiver request dates
+ S DGBTC=0,I=""
+ F  S I=$O(^DGBT(392.7,"C",DFN,I),-1) Q:'I  D
+ .Q:$$GET1^DIQ(392.7,I,97,"I")  ;deleted
+ .S DGBTC=DGBTC+1
+ .S PASTYR($E(I,1,3))=I
+ .S PASTDT(DGBTC)=$$FMTE^XLFDT(I)_"^"_I
+ Q
+DEL ; Deleted waivers on file
+ S I=""
+ F  S I=$O(^DGBT(392.7,"C",DFN,I),-1) Q:'I  D
+ .Q:'$$GET1^DIQ(392.7,I,97,"I")  ;deleted
+ .S DEL($E(I,1,3))=I
+ Q
+LIST ;
+ S DONE1=1
+ F I=DGBTCH:1:DGBTC W !?5,I,". ",$P(PASTDT(I),"^") I (I#5=0)!(I=DGBTC) D  Q:($D(DTOUT))!($D(DIRUT))!(Y>0)
+ .N DONE
+ .F  D CHOZ Q:DONE
+ I ('$D(DTOUT))&(Y="")&(I=DGBTC) S Y=-1 Q
+ S:('$D(DTOUT))&(Y="") DONE1=0,DGBTCH=I+1 Q
+ I Y=-1 Q
+ Q
+DHELP ;
+ S %DT="EXR" D ^%DT K %DT
+ W ! I 'DGBTNEW W !,"If there is more than one waiver request, select by number to edit."
+ W !,"You cannot enter a future date/time."
+ W !,"The date you enter cannot precede ",$$FMTE^XLFDT($$FMADD^XLFDT(DT,-30)),"."
+ Q
+PENSDT() ;
+ I 'PENSION Q 0
+ S DGBTDTI=$O(^DGBT(392.7,"C",DFN,""),-1) I 'DGBTDTI Q 0
+ I $$GET1^DIQ(392.7,DGBTDTI,8)'="PENSION" Q 0
+ S (DGBTIENS,Y)=DGBTDTI,DGBTDW("REQDT")=$$FMTE^XLFDT(DGBTDTI)
+ W !,$$UP^XLFSTR(DGBTDW("REQDT"))
+ Q 1
+CHOZ ;  select from the displayed past claims dates for claim to be edited.
+ S DONE=1
+ K DIR
+ W !! S Y=0,DIR(0)="FO^1:5",DIR("A")="Select DEDUCTIBLE WAIVER REQUEST"
+ I I<DGBTC S DIR("A",1)="Type '^' to exit date list, or <RETURN> to display more dates"
+ I I=DGBTC S DIR("A",1)="Type <RETURN> or '^' to exit date list"
+ S DIR("?")="Entering a '^' will exit the Past REQUEST list, entering <RETURN> will continue to scroll through past dates.",DIR("?",1)="Select a Past CLAIM date by number, or enter 'T' for TODAY."
+ D ^DIR K DIR I $D(DTOUT)!($D(DUOUT)) S Y=-1 Q
+ Q:Y=""
+ I (X<1)!(X>I)!(X'=+X) W !?25,*7,"INVALID ENTRY" S DONE=0 Q
+ S (DGBTDTI,DGBTIENS)=$P(PASTDT(Y),"^",2),DGBTDW("REQDT")=$P(PASTDT(Y),"^") W !,$$GET1^DIQ(392.7,DGBTDTI,2)," ",$$GET1^DIQ(392.7,DGBTDTI,.01)
+ Q
+AUTH ; Deductible waiver authorized Y/N
+ I PENSION W !,"DEDUCTIBLE WAIVER AUTHORIZED YES" S DGBTDW("AUTH")="YES" Q
+ K DIR
+ S DIR("A")="DEDUCTIBLE WAIVER AUTHORIZED Y/N",DIR(0)="Y"
+ S DIR("B")=$S(DGBTNEW:"YES",1:$$GET1^DIQ(392.7,DGBTIENS,3))
+ D ^DIR K DIR
+ I ($D(DTOUT))!($D(DIRUT)) S DGBTOK=0 Q
+ S DGBTDW("AUTH")=Y(0)
+ Q
+RMRK ; Remarks
+ K DGBTDW("REMARK"),DIR
+ S DIR("A")="DEDUCTIBLE WAIVER REMARKS"
+ I 'DGBTNEW S DIR("B")=$$GET1^DIQ(392.7,DGBTIENS,7)
+ S DIR(0)="FO^1:235"
+ D ^DIR K DIR
+ I (Y=""),('$D(DTOUT)) Q
+ I ($E(Y,1)="^")!($D(DIRUT))!($D(DTOUT)) S DGBTOK=0 D QUIT Q
+ S DGBTDW("REMARK")=Y
+ Q
+APPDT ; Waiver Approval Date
+ F  D  Q:DONE
+ .S DONE=1
+ .K DIR
+ .S DIR("A")=$S(DGBTDW("AUTH")="YES":"WAIVER APPROVAL DATE: ",1:"WAIVER DENIAL DATE: ")
+ .S DIR(0)="DA^2991231:NOW:EX",DIR("B")=$S(DGBTNEW:"TODAY",1:$$GET1^DIQ(392.7,DGBTIENS,5)) D ^DIR K DIR
+ .I ($D(DIRUT))!($D(DIROUT)) Q
+ .I Y<$P(DGBTDTI,".") W !,"Cannot be before request date" S DONE=0 Q
+ K DONE
+ I ($D(DIRUT))!($D(DIROUT))!(Y=-1) S DGBTOK=0 Q
+ S DGBTDW("APPDT")=Y(0)
+ Q
+GRANT ; Waiver granted by:
+ K DIC
+ F  D  Q:DONE
+ .S DONE=1
+ .S DIC="^VA(200,",DIC(0)="AEQMZ",DIC("A")=$S(DGBTDW("AUTH")="YES":"DEDUCTIBLE WAIVER GRANTED BY: ",1:"DEDUCTIBLE WAIVER DENIED BY: ")
+ .I 'DGBTNEW S DIC("B")=$$GET1^DIQ(392.7,DGBTIENS,4)
+ .D ^DIC K DIC
+ .I ($D(DTOUT))!($D(DUOUT)) Q
+ .I +Y<0 S DONE=0
+ K DONE
+ I ($D(DTOUT))!($D(DUOUT))!(+Y'>0) S DGBTOK=0 Q
+ S DGBTDW("GRANT")=+Y
+ Q
+EXP() ; Expiration date
+ I PENSION Q "PENSION"
+ I $G(DGBTDW("AUTH"))'="YES" Q ""
+ N DGBTINCA,EXPDT
+ D GA^DGBTUTL(DFN,"DGBTINCA",DGBTDTI)
+ S EXPDT=$$EXPDT
+ I EXPDT<DGBTDTI Q $E(DGBTDTI,1,3)_1231            ;BLD changed exp to expdt
+ N DGARRAY,DGBTDATA,DGBTRET,DGMTST,DGMTYPT1,FIELDS,FILE,FLAGS,INCOM,LOWINC,MTDATA,MTIEN,MTT,NETINC,THRESHLD
+ I +$$LI^DGBTUTL(DFN,DGBTDTI,$$DEP^VAFMON(DFN,DGBTDTI),,DGBTINCA) Q EXPDT ;
+ Q $E(DGBTDTI,1,3)_1231      ;BLD add $g around DGBTDW("APPR")
+EXPDT() ;
+ I +$G(DGBTINCA) Q $P(DGBTINCA,U,5)
+ N TESTDATE
+ S TESTDATE=$P($$LST^DGMTCOU1(DFN,DGBTDTI,3),"^",2)
+ I +TESTDATE=0 Q 0
+ Q ($E(TESTDATE,1,3)+1)_$E(TESTDATE,4,7)
+OLDREQ ;
+ K DIR
+ ;I $$EDITOLD S DIR("A")="<E>dit Request, <D>isplay Request, or <Q>uit ",DIR(0)="SA^Q:Quit;E:Edit;D:Display"
+ ;E  S DIR("A")="<D>isplay Request, or <Q>uit ",DIR(0)="SA^Q:Quit;D:Display"
+ I $$EDITOLD S DIR("A")="<E>dit Request, <D>isplay Request, <DEL>ete Request, or <Q>uit ",DIR(0)="SA^Q:Quit;E:Edit;D:Display;DEL:Delete"
+ E  S DIR("A")="<D>isplay Request, <DEL>ete Request, or <Q>uit ",DIR(0)="SA^Q:Quit;D:Display;DEL:Delete"
+ S DIR("B")="Quit"
+ D ^DIR K DIR
+ ;S X=$E($$UP^XLFSTR(X),1)
+ S X=$$UP^XLFSTR(X)
+ I ($E(X,1)="Q")!($D(DIRUT))!($D(DUOUT)) S DGBTOK=0 Q
+ I $E(X,1,3)="DEL" D  Q
+ .I $G(DGBTIENS)="" S DGBTIENS=$G(PASTYR($E(Y,1,3)))
+ .I DGBTIENS="" Q
+ .S DELETRAY(DGBTIENS,"DATE")=DT
+ .S DELETRAY(DGBTIENS,"DUZ")=DUZ
+ .F  D  Q:DONE
+ ..S DONE=1
+ ..N X,Y
+ ..K DIR S DIR("A")="Enter reason for deletion",DIR(0)="FO^1:100" D ^DIR K DIR
+ ..I ($D(DUOUT))!($D(DIROUT))!($D(DTOUT)) Q
+ ..S ANS=$TR(Y,U," ")
+ ..I $L($TR(ANS," ",""))=0 S DONE=0
+ .I ($D(DUOUT))!($D(DIROUT))!($D(DTOUT)) K DELETRAY Q
+ .S DELETRAY(DGBTIENS,"REMARK")=ANS
+ .I ($D(DIRUT))!($D(DIROUT))!($D(DTOUT))!($D(DUOUT)) Q
+ .D FILDLT K DELETRAY
+ .S DGBTOK=0
+ S DGBTOK=1
+ I $E(X,1)="D" S DISPLAY=1
+ Q
+EDITOLD() ;
+ N EXPDT
+ S EXPDT=$$GET1^DIQ(392.7,DGBTIENS_",",8,"I")
+ I EXPDT="PENSION" Q 1
+ Q EXPDT'<DT
+DISPLAY ;
+ I $G(DGBTIENS)="" S DGBTIENS=$G(PASTYR($E(Y,1,3)))
+ I DGBTIENS="" Q
+ N AUTH,DENYDT
+ S AUTH=$$GET1^DIQ(392.7,DGBTIENS,3)
+ W !,"PATIENT: ",$$GET1^DIQ(392.7,DGBTIENS,2)
+ W !,"DEDUCTIBLE WAIVER REQUEST DATE: ",$$GET1^DIQ(392.7,DGBTIENS,.01)
+ W !,"DEDUCTIBLE WAIVER AUTHORIZED?: ",AUTH
+ W !,"DEDUCTIBLE WAIVER "
+ W $S(AUTH="YES":"GRANT",1:"DENI"),"ED BY: ",$$GET1^DIQ(392.7,DGBTIENS,4)
+ W !,"DEDUCTIBLE WAIVER "
+ W $S(AUTH="YES":"APPROV",1:"DENI"),"AL DATE: ",$$GET1^DIQ(392.7,DGBTIENS,5)
+ W !,"DEDUCTIBLE WAIVER ENTERED BY: ",$$GET1^DIQ(392.7,DGBTIENS,6)
+ W !,"DEDUCTIBLE WAIVER ENTRY DATE: ",$$GET1^DIQ(392.7,DGBTIENS,9)
+ W !,"DEDUCTIBLE WAIVER EXPIRATION DATE: "
+ S I=$$GET1^DIQ(392.7,DGBTIENS,8)
+ W $S(I?7N:$$UP^XLFSTR($$FMTE^XLFDT(I)),1:I)
+ W !,"DEDUCTIBLE WAIVER REMARKS: ",$$GET1^DIQ(392.7,DGBTIENS,7)
+ S DENYDT=$$GET1^DIQ(392.7,DGBTIENS,97)
+ I DENYDT'="" W !,"DEDUCTIBLE WAIVER DELETION DATE: ",DENYDT
+ D CLEAN^DILF
+ Q
+QUIT ;
+ D CLEAN^DILF
+ L
+ Q

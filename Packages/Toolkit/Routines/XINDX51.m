@@ -1,5 +1,6 @@
 XINDX51 ;ISC/REL,GRK,RWF - PRINT ROUTINE ;06/24/08  16:06
- ;;7.3;TOOLKIT;**20,48,61,110**;Apr 25, 1995;Build 11
+ ;;7.3;TOOLKIT;**20,48,61,110,133**;Apr 25, 1995;Build 15
+ ; Per VHA Directive 2004-038, this routine should not be modified.
  ;Setup Local IO paramiters
 B S RTN="",INL(1)=IOM-2,INL(2)=IOSL-4,INL(3)=("C"=$E(IOST)),INL(4)=IOM-1,PG=0,INL(5)="Compiled list of Errors and Warnings "
  K ER,HED D HD1 ;Do header
@@ -60,6 +61,7 @@ B3 ;
  S HED="Local Variables      Line Occurrences   ( >> not killed explicitly)",HED(1)=$J("",40)_"( * Changed  ! Killed  ~ Newed)" D P("L","") Q:$D(IND("QUIT"))
  S HED="Global Variables  ( * Changed  ! Killed)" D P("G","") Q:$D(IND("QUIT"))
  S HED="Naked Globals" D P("N","") Q:$D(IND("QUIT"))
+ S HED="Cache Objects" D P("O","") Q:$D(IND("QUIT"))
  S HED="Marked Items" D P("MK","") Q:$D(IND("QUIT"))
  S HED="Label References" D P("I","") Q:$D(IND("QUIT"))
  S HED="External References" D P("X","^") Q:$D(IND("QUIT"))
@@ -67,7 +69,7 @@ B3 ;
  Q
  ;
 P(LOC,SYM) ;
- S L="",PC="",TAB=$S("XG"[LOC:23,1:16) D HD Q:$D(IND("QUIT"))
+ S L="",PC="",TAB=$S("XG"[LOC:23,"O"[LOC:35,1:16) D HD Q:$D(IND("QUIT"))
 P1 S L=$O(^UTILITY($J,1,RTN,LOC,L)) G:L="" PX
  I LOC="X",L?1L.LNP Q
  S PC(1)=$G(^UTILITY($J,1,RTN,LOC,$P(L,"(")))_$S("^DT^DUZ^DTIME^IO^IOF^ION^IOM^IOSL^IOST^U^"[("^"_$P(L,"(")_"^"):"!",1:" ")
@@ -97,6 +99,7 @@ CR S INDB="C" U IO(0) W !!,"--- CROSS-REFERENCING ALL ROUTINES ---" U IO
  S HED="Local Variables    Routines   ( >> not killed explicitly)",HED(1)=$J("",30)_"( * Changed  ! Killed  ~ Newed)" D P("L","") G:$D(IND("QUIT")) END
  S HED="Global Variables" D P("G","") G:$D(IND("QUIT")) END
  S HED="Naked Globals" D P("N","") Q:$D(IND("QUIT"))
+ S HED="Cache Objects" D P("O","") Q:$D(IND("QUIT"))
  S HED="Marked Items" D P("MK","") G:$D(IND("QUIT")) END
  S HED="Routine             Invokes:" D P("Z","") G:$D(IND("QUIT")) END
  S HED="Routine             is Invoked by:" D P("X","^")

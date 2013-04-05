@@ -1,5 +1,5 @@
 PRSASC1 ; HISC/MGD - File Approvals ;01/22/05
- ;;4.0;PAID;**55,93**;Sep 21, 1995;Build 7
+ ;;4.0;PAID;**55,93,132**;Sep 21, 1995;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  D NOW^%DTC S NOW=%
  F DA=0:0 S DA=$O(AP(1,DA)) Q:DA<1  D LV1
@@ -47,8 +47,10 @@ ED1 ; Process action
  S $P(^PRST(458.3,DA,0),"^",9)=ACT K ^PRST(458.3,"AR",DFN,DA)
  S $P(^PRST(458.3,DA,0),"^",12,14)=DUZ_"^"_NOW_"^"_X
  S:COM'="" $P(^PRST(458.3,DA,1),"^",1)=COM D:ACT="A" ^PRSASC2 Q
-TC1 ; Process action
+TC1 ; Tour Process action
+ N PRSTW,PRSTWA,PRSTWB
  S DFN=$P(AP(4,NX),"^",1),ACT=$P(AP(4,NX),"^",2),PPI=$P(NX,"~",2)
+ S PRSTWA=$$TWE^PRSATE0(DFN,PPI),PRSTWB=$P(PRSTWA,U,4)="Y"
  S X=ESNAM,X1=DUZ,X2=DFN D EN^XUSHSHP
  I ACT="A" F DAY=0:0 S DAY=$O(^PRST(458,"ATC",DFN,PPI,DAY)) G:DAY="" T1 S $P(^PRST(458,PPI,"E",DFN,"D",DAY,0),"^",5,7)=DUZ_"^"_NOW_"^"_X
  ; tour change(s) were disapproved or canceled so undo them
@@ -58,8 +60,11 @@ TC1 ; Process action
  .I $P($G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),U,3)=2 D  Q
  ..S $P(^PRST(458,PPI,"E",DFN,"D",DAY,0),U,3,4)="^"
  ..S $P(^PRST(458,PPI,"E",DFN,"D",DAY,0),U,10,11)=DUZ_"^"_NOW
+ ..I $G(^PRST(458,PPI,"E",DFN,"D",DAY,8))]"" S $P(^(8),U,5)="" I ^(8)?."^" K ^PRST(458,PPI,"E",DFN,"D",DAY,8)
+ ..QUIT
  .; tour change not made to next pay period
  .I $D(^PRST(458,PPI,"E",DFN,"D",DAY,4)) K ^(4) S $P(^(0),"^",13,15)="^^"
+ .I $D(^PRST(458,PPI,"E",DFN,"D",DAY,8)) S PRSTW(DAY)=$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,8)),U,5)
  .S TD=$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),"^",4),Y=$G(^PRST(457.1,+TD,1)),TDH=$P($G(^(0)),"^",6) D SET^PRSATE
  .Q
 T1 K ^PRST(458,"ATC",DFN,PPI) Q

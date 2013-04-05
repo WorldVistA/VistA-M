@@ -1,12 +1,12 @@
-LA7PURG ;DALOI/JMC - Purge Lab Messaging Interface Messages ; Nov 4, 2004
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,64**;Sep 27, 1994
+LA7PURG ;DALOI/JMC - Purge Lab Messaging Interface Messages ;05/07/10  14:13
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,64,74**;Sep 27, 1994;Build 229
  ;
  ; This routine purges messages and checks file intregrity for Lab Messaging.
  Q
  ;
  ;
 EN ; Entry point from taskman
- D IC^LA7CHKF
+ D DQ^LA7CHKF
  D PURGE,PSM,PLPO
  S X=$$LACHK^LA7CHKF
  Q

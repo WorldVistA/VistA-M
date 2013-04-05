@@ -1,5 +1,5 @@
-EDPQLE ;SLC/KCM - Retrieve Log Entry
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPQLE ;SLC/KCM - Retrieve Log Entry ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 GET(LOG,CHOICES) ; Get a log entry by request
  N CURBED,CURVAL,PERSON,CODED,CHTS,CHLOAD,CLINIC
@@ -58,7 +58,7 @@ LOG(LOG) ; return the log entry as XML
  S X("delay")=$$CODE($P(X1,U,5)),CODED("delay")=X("delay")
  S X("disposition")=$$CODE($P(X1,U,2)),CODED("disposition")=X("disposition")
  S X("required")=$$REQ(.X)
- S CURBED=X("bed")  ; for later use by BEDS
+ S CURBED=X("bed")_U_$P(X3,U,9)  ; for later use by BEDS
  ;
  D XML^EDPX("<logEntry>")
  D XMLE^EDPX(.X)
@@ -131,7 +131,7 @@ CODE(IEN) ; set NOVAL code to 0 when returning code
 BEDS ; add a list of available room/beds for this area
  D XML^EDPX("<bedList>")
  D XML^EDPX($$XMLS^EDPX("bed",0,"None"))   ;non-selected
- N BED,X0,MULTI,SEQ
+ N BED,X0,MULTI,SEQ,OCCUPIED,MYBED
  S BED=0 F  S BED=$O(^EDPB(231.8,"C",EDPSITE,AREA,BED)) Q:'BED  D
  . S SEQ=$P(^EDPB(231.8,BED,0),U,5) S:'SEQ SEQ=99999
  . S SEQ(SEQ,BED)=""
@@ -142,7 +142,9 @@ BEDS ; add a list of available room/beds for this area
  .. I $P(X0,U,4) Q
  .. ; QUIT if occupied, unless own bed or multi-assign
  .. S MULTI=+$P(X0,U,9) S:MULTI=3 MULTI=0 ; single non-ed
- .. I $D(^EDP(230,"AL",EDPSITE,AREA,BED)),((BED'=CURBED)&'MULTI) Q
+ .. S OCCUPIED=$D(^EDP(230,"AL",EDPSITE,AREA,BED))!$D(^EDP(230,"AH",EDPSITE,AREA,BED))
+ .. S MYBED=(BED=+CURBED)!(BED=$P(CURBED,U,2))
+ .. I OCCUPIED,'MYBED,'MULTI Q
  .. ;
  .. S X("data")=BED
  .. S X("label")=$P(X0,U,6)_"  ("_$P(X0,U)_")"

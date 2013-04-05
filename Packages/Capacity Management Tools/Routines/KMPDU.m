@@ -1,5 +1,5 @@
 KMPDU ;OAK/RAK - CM Tools Utility ;2/17/04  09:47
- ;;2.0;CAPACITY MANAGEMENT TOOLS;**2**;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 GBLCHECK(GLOBAL) ;-- extrinsic function
  ;-----------------------------------------------------------------------

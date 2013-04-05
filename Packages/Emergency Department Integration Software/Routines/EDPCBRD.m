@@ -1,5 +1,5 @@
-EDPCBRD ;SLC/KCM - Controller for ED Tracking Board
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPCBRD ;SLC/KCM - Controller for ED Tracking Board ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 RPC(EDPXML,SESS,PARAMS) ; Process request via RPC instead of CSP
  N X,REQ,EDPSITE,EDPUSER,EDPDBUG
@@ -16,7 +16,9 @@ COMMON ; Come here for both CSP and RPC Mode
  I $L($G(REQ("machine",1))) D  G:$D(EDPXML)>0 OUT  ; exit on error
  . N BRD
  . S REQ("machine",1)=$$LOW^XLFSTR(REQ("machine",1))
- . S BRD=$$GET^XPAR(EDPSITE_";DIC(4,","EDPF BIGBOARD KIOSKS",REQ("machine",1),"I")
+ . S BRD=$$GET^XPAR("DIV","EDPF BIGBOARD KIOSKS",REQ("machine",1),"I")
+ . I '$L(BRD) D
+ .. S BRD=$$GET^XPAR(EDPSITE_";DIC(4,","EDPF BIGBOARD KIOSKS",REQ("machine",1),"I")
  . I '$L(BRD) D XML^EDPX("<error>Computer name not found.</error>") Q
  . S REQ("board",1)=BRD
  ;
@@ -26,7 +28,7 @@ COMMON ; Come here for both CSP and RPC Mode
  ;
  ; initTracking
  ; return <user area="" areaNm="" />...
- I CMD="initTracking" D DFLTAREA^EDPQAR($$VAL("area")) G OUT
+ I CMD="initTracking" D BRDUSER^EDPQAR($$VAL("area")) G OUT
  ;
  ; ---------------------------------
  ; 
@@ -57,6 +59,7 @@ OUT ; output the XML
  . W "<results>",!
  . N I S I=0 F  S I=$O(EDPXML(I)) Q:'I  W EDPXML(I),!
  . W "</results>",!
+ K EDPHTTP
 END Q
  ;
 VAL(X) ; return value from request

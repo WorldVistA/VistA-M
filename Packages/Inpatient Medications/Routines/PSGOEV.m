@@ -1,5 +1,5 @@
 PSGOEV ;BIR/CML3-VERIFY (MAKE ACTIVE) ORDERS ; 4/16/10 9:18am
- ;;5.0; INPATIENT MEDICATIONS ;**5,7,15,28,33,50,64,58,77,78,80,110,111,133,171,207,241**;16 DEC 97;Build 10
+ ;;5.0;INPATIENT MEDICATIONS;**5,7,15,28,33,50,64,58,77,78,80,110,111,133,171,207,241,267,268,260,288**;16 DEC 97;Build 7
  ;
  ; Reference to ^ORD(101 supported by DBIA #872.
  ; Reference to ^PS(50.7 supported by DBIA #2180.
@@ -22,10 +22,22 @@ ENSF ; This entry point is used by Speed finish only.
  I PSGORD["U" G:'$D(^PS(55,PSGP,5,+PSGORD,4)) VFY I +PSJSYSU=3,$P(^(4),"^",3) W $C(7),!!,"THIS ORDER HAS ALREADY BEEN VERIFIED BY A PHARMACIST." S PSGACT=$P(PSGACT,"V")_$P(PSGACT,"V",2) G DONE
  I PSGORD["U" I +PSJSYSU=1,+^PS(55,PSGP,5,+PSGORD,4) W $C(7),!!,"THIS ORDER HAS ALREADY BEEN VERIFIED BY A NURSE." S PSGACT=$P(PSGACT,"V")_$P(PSGACT,"V",2) G DONE
  ;
-VFY ; change status, move to 55, and change label record
+VFY ; change status, move to 55, and change label record **ENHANCEMENTS MADE IN PSJ*5.0*260 **CCR 6214 **CCR 6244
  I PSGORD["P" S PSJCOM=+$P($G(^PS(53.1,+PSGORD,.2)),"^",8) I PSJCOM D VFY^PSJCOM Q
- NEW PSJDOSE,PSJDSFLG
+ NEW PSJDOSE,PSJDSFLG,PSJDIS,PSGORQF,PSJCNT,PSJCNT1,PSJCNT2,LIST,PSJFLG,PSGDN SET PSJDIS="",PSJCNT=0,PSJCNT1="",PSJCNT2="",LIST="PSGPRE",PSJFLG="",PSGDN=""
  D DOSECHK^PSJDOSE
+ SET PSJFLG=+$G(PSGORD)
+ FOR  SET PSJCNT=$O(^PS(53.1,PSJFLG,1,PSJCNT)) Q:'+PSJCNT  D
+ .IF $D(^PS(53.1,PSJFLG,1,PSJCNT,0)) SET PSGDN=$P($G(^PS(53.1,PSJFLG,1,PSJCNT,0)),U,1)
+ .IF ($P($G(^PSDRUG(PSGDN,0)),U,3)'["S")&($E($P($G(^PSDRUG(PSGDN,0)),U,2),1,2)'="XA")  D
+ ..D PROFILE^PSJBLDOC($G(DFN),LIST,"I;"_$G(PSGORD))
+ ..FOR  SET PSJCNT1=$O(^TMP($J,LIST,"IN","PROFILE",PSJCNT1)) Q:(PSJCNT1="")!(PSJDIS'="")  D
+ ...SET PSJCNT2=$P(PSJCNT1,";",2)
+ ...IF PSJCNT2=$G(PSGORD) SET PSJDIS=$P(^TMP($J,LIST,"IN","PROFILE",PSJCNT1),U,3)
+ ..;**Do order checks if PSJDIS (Dispense drug IEN) has a value
+ ..IF $G(PSJNEWOE)=0,'$G(PSJLMFIN),'$G(PSJSTARI),'$G(PSGCOPY),$G(PSJDIS)  D 
+ ...D EN^PSJGMRA($G(DFN),PSJDIS),IN^PSJOCDS($G(PSGORD),"UD",PSJDIS),ENDDC^PSGSICHK($G(PSGP),PSJDIS) IF $G(PSGORQF) K ^TMP($J,LIST) D EN^VALM("PSJ LM UD ACTION") QUIT
+ IF $G(PSGORQF) QUIT
  D FULL^VALM1 ;PSJ*5*241
  I +$G(PSJDSFLG) D SETVAR^PSJDOSE W !!,PSJDOSE("WARN"),!,PSJDOSE("WARN1") I '$$CONT() W !,"...order was not verified..." D PAUSE^VALM1 D  Q:'$G(PSJACEPT)
  . S PSGOEEF(109)=1
@@ -64,7 +76,6 @@ VFY ; change status, move to 55, and change label record
  NEW X S X=0 I $G(PSGONF),(+$G(PSGODDD(1))'<+$G(PSGONF)) S X=1
  I +PSJSYSU=3,PSGORD'["O",$S(X:0,'$P(VND4,"^",9):1,1:$P(VND4,"^",15)) D EN^PSGPEN(+PSGORD)
  S $P(VND4,"^",+PSJSYSU=1+9)=1 S:'$P(VND4,U,+PSJSYSU=3+9) $P(VND4,U,+PSJSYSU=3+9)=+$P(VND4,U,+PSJSYSU=3+9)
- ;S $P(VND4,"^",+PSJSYSU=1+9)=1,$P(VND4,U,+PSJSYSU=3+9)=0
  I PSJSYSL>1 S $P(^PS(55,PSGP,5,+PSGORD,7),U)=PSGDT S:$P(^(7),U,2)="" $P(^(7),U,2)="N"_$S($P(^PS(55,PSGP,5,+PSGORD,0),"^",24)="E":"E",1:"") S PSGTOL=2,PSGUOW=DUZ,PSGTOO=1,DA=+PSGORD D ENL^PSGVDS
  S:$P(VND4,"^",15)&'$P(VND4,"^",16) $P(VND4,"^",15)="" S:$P(VND4,"^",18)&'$P(VND4,"^",19) $P(VND4,"^",18)="" S:$P(VND4,"^",22)&'$P(VND4,"^",23) $P(VND4,"^",22)="" S $P(VND4,"^",PSJSYSU,PSJSYSU+1)=DUZ_"^"_PSGDT,^PS(55,PSGP,5,+PSGORD,4)=VND4
  I '$P(VND4,U,9) S ^PS(55,"APV",PSGP,+PSGORD)=""
@@ -75,6 +86,9 @@ VFY ; change status, move to 55, and change label record
  I '$D(PSJSPEED) K DIR S DIR(0)="E" D ^DIR K DIR
  S:+PSJSYSU=3 ^PS(55,"AUE",PSGP,+PSGORD)="" S PSGACT="C"_$S('$D(^PS(55,PSGP,5,+PSGORD,4)):"E",$P(^(4),"^",16):"",1:"E")_"RS",PSGCANFL=2
  S VALMBCK="Q" D EN1^PSJHL2(PSGP,$S(+PSJSYSU=3:"SC",+PSJSYSU=1:"SC",1:"XX"),+PSGORD_"U")     ; allow status change to be sent for pharmacists & nurses
+  ; **This is where the Automated Dispensing Machine hook is called. Do NOT DELETE or change this location **
+ D NEWJ^PSJADM
+  ; **END of Interface hook **
  D:+PSJSYSU=1 EN1^PSJHL2(PSGP,"ZV",+PSGORD_"U")
 DONE ;
  W:CHK !!,"...order NOT verified..."
@@ -91,6 +105,7 @@ CHK(ND,DRG,ND2) ; checks for data in required fields
  ; Input: ND  - ^(PS(53.1,PSGORD,0)
  ;        DRG - ^(.2)
  ;        ND2 - ^(2)
+ S Y=$G(Y)
  S CHK="" I DRG,$D(^PS(50.7,+DRG,0))
  E  S CHK=1
  I ND="" S CHK=CHK_23
@@ -108,9 +123,10 @@ CHK(ND,DRG,ND2) ; checks for data in required fields
  W $C(7)
  ;
 CHKM ;
- D FULL^VALM1
+ D FULL^VALM1 K:CHK Y
  ; changed to remove ^DD ref
- W !!,"THE FOLLOWING ",$S($L(CHK)>1:"ARE",1:"IS")," EITHER INVALID OR MISSING FROM THIS ORDER:" F X=1:1:7 W:CHK[X !?5,$P("ORDERABLE ITEM^MED ROUTE^SCHEDULE TYPE^SCHEDULE^START DATE/TIME^STOP DATE/TIME^DISPENSE DRUG","^",X)
+ ; PSJ*5*267 VMP Add the 8th condition
+ W !!,"THE FOLLOWING ",$S($L(CHK)>1:"ARE",1:"IS")," EITHER INVALID OR MISSING FROM THIS ORDER:" F X=1:1:8 W:CHK[X !?5,$P("ORDERABLE ITEM^MED ROUTE^SCHEDULE TYPE^SCHEDULE^START DATE/TIME^STOP DATE/TIME^DISPENSE DRUG^DOSAGE ORDERED","^",X)
  I CHK=7 W !,"Orders with no dispense drugs or multiple dispense drugs",!,"require dosage ordered"
  W:CHK]"" !!,$S($L(CHK)>1:"THESE FIELDS ARE",1:"THIS FIELD IS")," NECESSARY FOR VERIFICATION."
  N DIR S DIR(0)="E" D ^DIR I $D(DUOUT)!$D(DTOUT) S CHK=1 Q
@@ -119,7 +135,7 @@ CHKM ;
 CONT() ;
  NEW DIR,DIRUT,Y
  W ! K DIR,DIRUT
- S DIR(0)="Y",DIR("A")="Would you like to continue verifying the order",DIR("B")="Yes"
+ S DIR(0)="Y",DIR("A")="Would you like to continue verifying the order",DIR("B")="No"
  D ^DIR
  Q Y
  ;
@@ -155,4 +171,7 @@ ACTLOG(PSGORDP,DFN,PSGORD)  ;Store 53.1 activity log in local array to be moved 
  . S PSGAL531=$G(^PS(53.1,+PSGORDP,"A",PSGX,0))
  . S QQ=$G(^PS(55,DFN,5,+PSGORD,9,0)) S:QQ="" QQ="^55.09D" F Q=$P(QQ,U,3)+1:1 I '$D(^(Q)) S $P(QQ,U,3,4)=Q_U_Q,^(0)=QQ,PSGXDA=Q Q
  . S ^PS(55,DFN,5,+PSGORD,9,PSGXDA,0)=PSGAL531
+ . N TXTLN S TXTLN="" F  S TXTLN=$O(^PS(53.1,+PSGORDP,"A",PSGX,1,TXTLN)) Q:TXTLN=""  D
+ .. I TXTLN=0 S ^PS(55,DFN,5,+PSGORD,9,PSGXDA,1,TXTLN)=^PS(53.1,+PSGORDP,"A",PSGX,1,TXTLN) Q
+ .. S ^PS(55,DFN,5,+PSGORD,9,PSGXDA,1,TXTLN,0)=^PS(53.1,+PSGORDP,"A",PSGX,1,TXTLN,0)
  Q

@@ -1,5 +1,5 @@
 PSSMEDRQ ;BIR/RTR-Request New Standard Medication Route ;10/17/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**129,147**;9/30/97;Build 16
+ ;;1.0;PHARMACY DATA MANAGEMENT;**129,147,164**;9/30/97;Build 9
  ;
 REQ ;Request Med Route change
  D WLINK Q
@@ -49,7 +49,7 @@ SENDRT ;Send Med Route Mail Message
  S XMDUZ=DUZ
  S XMTEXT="^TMP($J,""PSSMQSND"","
  S XMY(DUZ)=""
- I 'PSSMQVIS,PSSTACCT S XMY("VAOITVHITHDSSTSPEPSNTRT@DOMAIN.EXT")=""
+ I 'PSSMQVIS,PSSTACCT S XMY("VAOITVHITHDSSTSPEPSNTRT@domain.ext")=""
  D ^XMD
  K ^TMP($J,"PSSMQSND")
  Q
@@ -88,7 +88,7 @@ DOSE ;Request Dose Unit change
  D ^DIR K DIR I $D(DUOUT)!($D(DTOUT)) D MESS Q
  I Y'="N",Y'="C" D MESS Q
  S PSSRQANS=Y
- I PSSRQANS="C" W ! K DIC S DIC=51.24,DIC(0)="QEAMZ" D ^DIC K DIC S PSSRQIEN=+Y I Y<0!($D(DUOUT))!($D(DTOUT)) D MESS Q
+ I PSSRQANS="C" W ! K DIC S DIC=51.24,DIC(0)="QEAMZ",D="UPCASE" D IX^DIC K DIC,D S PSSRQIEN=+Y I Y<0!($D(DUOUT))!($D(DTOUT)) D MESS Q
  I PSSRQANS="C" S PSSRQNME=$P($G(^PS(51.24,PSSRQIEN,0)),"^")
  I PSSRQANS="N" D NEW I PSSRQOUT D MESS Q
  W !!,"You must now enter a reason or references for this request.",!
@@ -149,7 +149,7 @@ SEND ;Send Dose Unit Mail Message
  S XMDUZ=DUZ
  S XMTEXT="^TMP($J,""PSSRQSND"","
  S XMY(DUZ)=""
- I 'PSSRQVIS,PSSTACCT S XMY("VAOITVHITPSDOSEUNITREQ@DOMAIN.EXT")=""
+ I 'PSSRQVIS,PSSTACCT S XMY("VAOITVHITPSDOSEUNITREQ@domain.ext")=""
  D ^XMD
  K ^TMP($J,"PSSRQSND")
  Q
@@ -163,6 +163,6 @@ TEST ;
 WLINK ;Refer to website with patch PSS*1*147
  N DIR,DTOUT,DUOUT,DIRUT,DIROUT,X,Y
  W !!!,"Standard Medication Route requests must now be made at the following website:",!
- W !?3,"http://vista.DOMAIN.EXT/ntrt/",!
+ W !?3,"http://vista.domain.ext/ntrt/",!
  K DIR S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR
  Q

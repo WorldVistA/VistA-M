@@ -1,5 +1,5 @@
 IBEFURF ;ALB/ARH - UTILITY: FIND RELATED FIRST PARTY BILLS ; 3/7/00
- ;;2.0;INTEGRATED BILLING;**130,347**;21-MAR-94;Build 24
+ ;;2.0;INTEGRATED BILLING;**130,347,459**;21-MAR-94;Build 16
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; the following procedures search for First Party charges for specific events, matchs are returned in TMP
@@ -30,17 +30,18 @@ FPOPV(DFN,DT1,DT2,XRF) ; given a patient and date range, find any Outpatient Cha
  .. D FPONE(IBFPIFN,$G(XRF))
  Q
  ;
-FPRX(RXIFN,FILLDT,XRF) ; given the prescription ifn (52) and the fill date, find any First Party charges
+FPRX(RXIFN,FILLDT,XRF,IBRXFL) ; given the prescription ifn (52) and the fill date, find any First Party charges
  ; get specific charge entry for an Rx from the Prescription file (52,106 and 52,52,9)
  N IBFPIFN,IBFILLN,DFN S IBFPIFN=""
  I '+$G(RXIFN) Q
  I '+$G(FILLDT) Q
+ S IBFILLN=$G(IBRXFL)
  S DFN=$$FILE^IBRXUTL(RXIFN,2) Q:'DFN
  I $$FILE^IBRXUTL(RXIFN,22)=$G(FILLDT) D
  . S IBFPIFN=+$P($$IBND^IBRXUTL(DFN,RXIFN),"^",2)
  . D FPONE(IBFPIFN,$G(XRF))
  E  D
- . S IBFILLN=$$RFLNUM^IBRXUTL(RXIFN,FILLDT)
+ . S:IBFILLN="" IBFILLN=$$RFLNUM^IBRXUTL(RXIFN,FILLDT)
  . S IBFPIFN=+$$IBNDFL^IBRXUTL(DFN,RXIFN,IBFILLN)
  . D FPONE(IBFPIFN,$G(XRF))
  Q

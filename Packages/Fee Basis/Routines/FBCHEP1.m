@@ -1,6 +1,6 @@
-FBCHEP1 ;AISC/DMK-EDIT PAYMENT FOR CONTRACT HOSPITAL ;7/8/2003
- ;;3.5;FEE BASIS;**38,61,122,133,108**;JAN 30, 1995;Build 115
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBCHEP1 ;AISC/DMK-EDIT PAYMENT FOR CONTRACT HOSPITAL ; 5/16/12 3:31pm
+ ;;3.5;FEE BASIS;**38,61,122,133,108,124,132**;JAN 30, 1995;Build 17
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 EDIT ;ENTRY POINT TO EDIT PAYMENT
  N LASTDX,LASTPROC
  S IOP=$S($D(ION):ION,1:"HOME") D ^%ZIS K IOP
@@ -10,7 +10,7 @@ BT W ! S DIC="^FBAA(161.7,",DIC(0)="AEQMZ",DIC("S")="I $P(^(0),U,3)=""B9""&($P(^
  S FBSTAT=^FBAA(161.7,FBN,"ST"),FBBAMT=$S($P(FBN(0),"^",9)="":0,1:$P(FBN(0),"^",9))
  I FBSTAT="C"&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) W !!,*7,?3,"You must Reopen the batch prior to editting the invoice.",! G END
  I FBSTAT="S"!(FBSTAT="P")!(FBSTAT="R")&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) W !!,*7,?3,"You must be a holder of the 'FBAASUPERVISOR' security key",!,?3,"to edit this invoice.",! G END
- I FBSTAT="T"!(FBSTAT="V") W !!,?3,"Batch has already been sent to Austin for payment.",! G END
+ I FBSTAT="T"!(FBSTAT="F")!(FBSTAT="V") W !!,?3,"Batch has already been sent to Austin for payment.",! G END
 INV W ! S DIC="^FBAAI(",DIC(0)="AEQZ",DIC("S")="I $P(^(0),U,17)=FBN" D ^DIC K DIC("S") G BT:X=""!(X="^"),INV:Y<0 S FBI=+Y
  S FBK=$S($P(^FBAAI(FBI,0),"^",9)="":0,1:$P(^(0),"^",9))
  S FBLISTC="",FBAAI=FBI W @IOF D START^FBCHDI2 S FBI=FBAAI I $P(^FBAAI(FBI,0),"^",9)="" S FBPRICE=""
@@ -65,6 +65,17 @@ END K DA,DFN,DIC,DIE,DR,FBAAOUT,FBDX,FBI,FBIN,FBLISTC,FBN,FBPROC,FBSTAT,FBVEN,FB
  K FBFPPSC,FBFPPSL,FBADJ,FBADJD,FBRRMK,FBRRMKD
  D END^FBCHDI
  Q
+ ;
+BADDATE(INVRCVDT,TEMPDA) ;Compare edited Invoice Received Date to Treatment Date, reject if before. Called from [FBCH EDIT PAYMENT] template. 
+ I INVRCVDT="" Q 0 ;Inv Date not changed, no check necessary
+ N TDAT,SHODAT S TDAT=$$GET1^DIQ(162.5,TEMPDA_",",6,"I") I TDAT]"" S SHODAT="TO"
+ I TDAT="" S TDAT=$$GET1^DIQ(162.5,TEMPDA_",",5,"I"),SHODAT="FROM"
+ I INVRCVDT<TDAT D  Q 1 ;Reject entered date
+ .N SHOTDAT S SHOTDAT=$E(TDAT,4,5)_"/"_$E(TDAT,6,7)_"/"_$E(TDAT,2,3) ;Convert TDAT into display format for error message.
+ .N MSG1,MSG2 S MSG1="*** Invoice Received Date cannot be before",MSG2=" Treatment "_SHODAT_" Date ("_SHOTDAT_") !!!"
+ .W !!?5,*7,MSG1,!?8,MSG2
+ Q 0 ;Date entered is OK
+ ;
 LAST(FBDA,FBNODE) ; Returns number (0-25) of last code in node for invoice
  D RMVGAP(FBDA,0)  ;Insure that gaps were not created outside normal processes
  N FBI,FBRET,FBX

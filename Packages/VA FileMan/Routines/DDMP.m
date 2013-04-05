@@ -1,5 +1,5 @@
 DDMP ;SFISC/DPC-IMPORT ASCII DATA ;9/23/96  14:58
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 FILE(DDMPF,DDMPFLDS,DDMPFLG,DDMPFSRC,DDMPFMT) ;
  ;API for import tool.

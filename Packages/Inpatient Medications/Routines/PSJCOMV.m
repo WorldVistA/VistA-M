@@ -1,5 +1,5 @@
 PSJCOMV ;BIR/CML3-FINISH COMPLEX IV ORDERS ENTERED THROUGH OE/RR ;02 Feb 2001  12:20 PM
- ;;5.0; INPATIENT MEDICATIONS ;**110,127**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**110,127,267**;16 DEC 97;Build 158
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ; Reference to ^%DTC is supported by DBIA 10000..
@@ -10,7 +10,6 @@ IV ; Move IV data in local variables to ^TMP
  Q:'PSJCOM  Q:ON'["P"
  M ^TMP("PSJCOM",$J,+ON)=^PS(53.1,+ON)
  S P(17)="N"
- ;I PSIVCHG D NEWIV Q
  K ND S ND(0)=+ON_U_+P(6)_U_$S(+P("MR"):+P("MR"),1:"")_U_$P(P("OT"),U)_U_U_U_"C",$P(ND(0),U,9)=P(17),$P(ND(0),U,21)=$G(P(21))
  S $P(ND(0),U,14,16)=P("LOG")_U_DFN_U_P("LOG"),$P(ND(0),U,24,26)=$G(P("RES"))_U_$G(P("OLDON"))_U_$G(P("NEWON")) S ND(2)=P(9)_U_P(2)_U_U_P(3)_U_P(11)_U_P(15),$P(ND(4),U,7,9)=+P("CLRK")_U_U_P("REN")
  S ND(8)=P(4)_U_P(23)_U_P("SYRS")_U_P(5)_U_P(8)_"^^"_P(7),ND(9)=$S($L(P("REM")_P("OPI")):P("REM")_U_P("OPI"),1:"")
@@ -18,8 +17,6 @@ IV ; Move IV data in local variables to ^TMP
  F X=0,2,4,8,9 S ^TMP("PSJCOM",$J,+ON,X)=ND(X)
  S:'+$G(^TMP("PSJCOM",$J,+ON,.2)) $P(^(.2),U,1,3)=+P("PD")_U_P("DO")_U_$G(P("NAT"))
  F DRGT="AD","SOL" D:$D(DRG(DRGT)) PTD531
- ;K DA,DIK S PSGS0Y=P(11),PSGS0XT=P(15),DA=+ON,DIK="^PS(53.1," D IX^DIK K DA,DIK,PSGS0Y,PSGS0XT,ND,^PS(53.1,"AS","P",DFN,+ON)
- ;K:P(17)="A" ^PS(53.1,"AS","N",DFN,+ON)
  I '+$P(PSJSYSP0,"^",9) D NEWNVAL^PSJCOM(ON,$S(+PSJSYSU=3:22005,1:22000))
  I +PSJSYSU=3,+$P(PSJSYSP0,U,9) D VFYIV Q
  I +PSJSYSU=1,+$P(PSJSYSP0,U,9),$G(PSJIRNF) D VFYIV
@@ -74,8 +71,6 @@ NEWIV ;Create new IV order in appropriate file format
  S:'+$G(^TMP("PSJCOM2",$J,+ON,.2)) $P(^(.2),U,1,3)=+P("PD")_U_P("DO")_U_$G(P("NAT"))
  I $G(P("PRNTON"))]"" S $P(^TMP("PSJCOM2",$J,+ON,.2),"^",8)=$G(P("PRNTON"))
  F DRGT="AD","SOL" D:$D(DRG(DRGT)) PTD5312
- ;K DA,DIK S PSGS0Y=P(11),PSGS0XT=P(15),DA=+ON,DIK="^PS(53.1," D IX^DIK K DA,DIK,PSGS0Y,PSGS0XT,ND,^PS(53.1,"AS","P",DFN,+ON)
- ;K:P(17)="A" ^PS(53.1,"AS","N",DFN,+ON)
  D EN^VALM("PSJ LM IV INPT ACTIVE")
  Q
  ;
@@ -94,15 +89,12 @@ NEWAIV ;Creates new IV order in the file 55 format
  S $P(ND(0),U,17)="A",ND(1)=P("REM"),ND(3)=P("OPI"),ND(.2)=$P($G(P("PD")),U)_U_$G(P("DO"))_U_+P("MR")_U_$G(P("PRY"))_U_$G(P("NAT"))_U_U_U_$G(P("PRNTON"))
  F X=0,1,3,.2,.3 S ^TMP("PSJCOM2",$J,+ON,X)=ND(X)
  S $P(^TMP("PSJCOM2",$J,+ON,2),U,1,4)=P("LOG")_U_+P("IVRM")_U_U_P("SYRS"),$P(^(2),U,8,10)=P("RES")_U_$G(P("FRES"))_U_$S($G(VAIN(4)):+VAIN(4),1:"")
- ;S X=^PS(55,DFN,0) I $P(X,"^",7)="" S $P(X,"^",7)=$P($P(P("LOG"),"^"),"."),$P(X,"^",8)="A",^(0)=X
  S $P(^TMP("PSJCOM2",$J,+ON,2),U,11)=+P("CLRK")
  S:+$G(P("CLIN")) ^TMP("PSJCOM2",$J,+ON,"DSS")=P("CLIN")
  S:+$G(P("NINIT")) ^TMP("PSJCOM2",$J,+ON,4)=P("NINIT")_U_P("NINITDT")
  I +PSJSYSU=3 S $P(^TMP("PSJCOM2",$J,+ON,4),"^",4)=DUZ,$P(^TMP("PSJCOM2",$J,+ON,4),"^",5)=PSGDT,$P(^TMP("PSJCOM2",$J,+ON,4),"^",9)=1
  I +PSJSYSU=1 S $P(^TMP("PSJCOM2",$J,+ON,4),"^",10)=1
- ;S:'$D(PSIVUP) PSIVUP=+$$GTPCI^PSIVUTL K ^PS(55,DFN,"IV",+ON55,5) I $O(^PS(53.45,PSIVUP,4,0)) S %X="^PS(53.45,"_PSIVUP_",4,",%Y="^PS(55,"_DFN_",""IV"","_+ON55_",5," D %XY^%RCR
  F DRGT="AD","SOL" D PUTD55
- ;K DA,DIK S DA(1)=DFN,DA=+ON55,DIK="^PS(55,"_DA(1)_",""IV"",",PSIVACT=1 D IX^DIK
  Q
  ;
 PUTD55 ; Move drug data from local array into 55

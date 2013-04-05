@@ -1,5 +1,5 @@
-MAGDRPCA ;WOIFO/PMK/MLS/SG - Imaging RPCs for Importer ; 02 Nov 2009 8:47 AM
- ;;3.0;IMAGING;**53**;Mar 19, 2002;Build 1719;Apr 28, 2010
+MAGDRPCA ;WOIFO/PMK/MLS/SG/JSL/SAF - Imaging RPCs for Importer ; 02 Nov 2009 8:47 AM
+ ;;3.0;IMAGING;**53,123**;Mar 19, 2002;Build 67;Jul 24, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -85,17 +85,18 @@ LOOKUP1(MAGIEN) ; patient and accession number lookup
  S DFN=+$P(MAG0,"^",7)
  D  ; Protect variables that are referenced by the DEM^VADPT
  . N A,I,J,K,K1,NC,NF,NQ,T,VAHOW,VAPTYP,VAROOT,X
- . D DEM^VADPT
+ . D DEM^VADPT  ; Supported IA (#10061)
  . Q
  S X="^"_DFN ; piece 1 is for an error message
  S X=X_"^"_VADM(1) ; patient name
- S X=X_"^"_$P(VADM(2),"^",2) ; patient id (ssn)
+ S X=X_"^"_VA("PID") ; patient id
  S TMP=$S(VADM(3)>0:17000000+VADM(3),1:"-1,Invalid date of birth")
  S X=X_"^"_TMP ; Patient DOB
  S X=X_"^"_$P(VADM(5),"^",1) ; patient sex
  ; $$GETICN^MPIF001 can return error code and message separated
  ; by "^". If this happens, the "^" is replaced by comma.
- S X=X_"^"_$TR($$GETICN^MPIF001(DFN),"^",",")  ; ICN
+ S TMP=$S($T(GETICN^MPIF001)'="":$$GETICN^MPIF001(DFN),1:"-1^NO MPI") ; Supported IA (#2701)
+ S X=X_"^"_$TR(TMP,"^",",") ; ICN
  I $P(MAG2,"^",6)=2006.5839 D  ; temporary consult association
  . N ACNUMB,GMRCIEN,MODIFIER,PROCNAME,STUDYDAT
  . S GMRCIEN=$P(MAG2,"^",7),ACNUMB="GMRC-"_GMRCIEN
@@ -115,7 +116,7 @@ LOOKUP1(MAGIEN) ; patient and accession number lookup
  ;
  ;
 GETDFN(OUT,ICN) ; RPC = MAG DICOM GET DFN
- S OUT=$$GETDFN^MPIF001(ICN)
+ S OUT=$S($T(GETDFN^MPIF001)'="":$$GETDFN^MPIF001(ICN),1:"-1^NO MPI") ; Supported IA (#2701)
  Q
  ;
  ;
@@ -123,7 +124,7 @@ GETDFN(OUT,ICN) ; RPC = MAG DICOM GET DFN
 ACNUMB(OUT,ACNUMB) ; RPC = MAG DICOM GET RAD INFO BY ACN
  N RADFN,RADTI,LIST,STATUS
  I $T(ACCFIND^RAAPI)'="" D  ; requires RA*5.0*47
- . S STATUS=$$ACCFIND^RAAPI(ACNUMB,.LIST)
+ . S STATUS=$$ACCFIND^RAAPI(ACNUMB,.LIST) ; Private IA (#5020) 
  . Q
  E  D  ; before RA*5.0*47
  . S STATUS=$$ACCFIND(ACNUMB,.LIST)
@@ -154,7 +155,7 @@ ACCFIND(Y,RAA) ; borrowed from RA*5.0*47
  ;
  I $L(Y,"-")=3 Q:Y'?3N1"-"6N1"-"1.5N "-1^invalid site accession number format^"_Y
  I $L(Y,"-")=2 Q:Y'?6N1"-"1.5N "-2^invalid accession number format^"_Y
- N X S X=$S($L(Y,"-")=3:$NA(^RADPT("ADC1")),1:$NA(^RADPT("ADC")))
+ N X S X=$S($L(Y,"-")=3:$NA(^RADPT("ADC1")),1:$NA(^RADPT("ADC"))) ; Private IA (#1172)
  Q:$O(@X@(Y,0))'>0 "-3^no data associated with this accession number^"_Y
  N RADFN,RADTI,RACNI,Z S:$D(U)#2=0 U="^"
  S (RADFN,Z)=0 F  S RADFN=$O(@X@(Y,RADFN)) Q:'RADFN  D
@@ -218,7 +219,7 @@ PROC(ARRAY,DIV) ;
  . Q
  ;
  S (ARRAY(1),IEN)=0,TODAY=$$DT^XLFDT()
- F  S IEN=$O(^RAMIS(71,IEN))  Q:'IEN  D
+ F  S IEN=$O(^RAMIS(71,IEN))  Q:'IEN  D  ; Private IA (#1174) 
  . S RADPROC=^RAMIS(71,IEN,0),IMAGTYPE=+$P(RADPROC,U,12)
  . ;--- Get outside imaging location associated
  . ;--- with the imaging type of the procedure
@@ -253,12 +254,12 @@ MOD(ARRAY) ;
  N IEN2          ; IEN in the TYPE OF IMAGING subfile (#71.23)
  N IMAGTYPE      ; Imaging type (#79.2)
  N MODIFIER      ; Radiology procedure modifier name (71.2,.01)
- N PROCMOD       ; Radiology procedure modifer data
+ N PROCMOD       ; Radiology procedure modifier data
  ;
  K ARRAY
  ;
  S (ARRAY(1),IEN)=0
- F  S IEN=$O(^RAMIS(71.2,IEN))  Q:'IEN  D
+ F  S IEN=$O(^RAMIS(71.2,IEN))  Q:'IEN  D  ; Private IA (#4197) 
  . S PROCMOD=^RAMIS(71.2,IEN,0),MODIFIER=$P(PROCMOD,U)
  . S IEN2=0
  . F  S IEN2=$O(^RAMIS(71.2,IEN,1,IEN2))  Q:'IEN2  D

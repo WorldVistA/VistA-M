@@ -1,14 +1,15 @@
 PRSAPPQ ; HISC/REL-Display Time Data for Prior Pay Periods ;11/29/95  13:44
- ;;4.0;PAID;**6**;Sep 21, 1995
-DIS W !!,?7,"Date",?21,"Scheduled Tour",?46,"Tour Exceptions"
+ ;;4.0;PAID;**6,132**;Sep 21, 1995;Build 13
+DIS W !!,?7,"Date",?17,"TW  Scheduled Tour",?46,"Tour Exceptions"
 F0 ; Display Frames
- K Y1,Y2 S Y1=AUR(2),Y2=AUR(3),Y3=AUR(5),Y4=AUR(6),TC=$P(AUR(1),"^",2)
+ N Y8
+ K Y1,Y2 S Y1=AUR(2),Y2=AUR(3),Y3=AUR(5),Y4=AUR(6),TC=$P(AUR(1),"^",2),Y8=$G(AUR(7))
  I Y1="" S Y1=$S(TC=1:"Day Off",TC=2:"Day Tour",TC=3!(TC=4):"Intermittent",1:"")
  I " 1 3 4 "'[TC,$P(AUR(4),"^",1)="" S Y2(1)="Unposted"
  I TC=3,$P(AUR(4),"^",4)=1 S Y2(1)="Day Worked"
  W !?3,DTE S (L3,L4)=0 I Y1="",Y2="" G EX
  D S1
- F K=1:1 Q:'$D(Y1(K))&'$D(Y2(K))  W:K>1 ! W:$D(Y1(K)) ?21,Y1(K) W:$D(Y2(K)) ?45,$P(Y2(K),"^",1),?63,$P(Y2(K),"^",2)
+ F K=1:1 Q:'$D(Y1(K))&'$D(Y2(K))  W:K>1 ! W:$D(Y1(K)) ?17,$P($G(Y8),U),?21,Y1(K) W:$D(Y2(K)) ?45,$P(Y2(K),"^",1),?63,$P(Y2(K),"^",2)
  W:Y3'="" !?10,Y3
 EX Q
 S1 ; Set Schedule Array
@@ -16,13 +17,18 @@ S1 ; Set Schedule Array
  G:Y4="" S2
  F L1=1:3:19 S A1=$P(Y4,"^",L1) Q:A1=""  S L3=L3+1,Y1(L3)=A1 S:$P(Y4,"^",L1+1)'="" Y1(L3)=Y1(L3)_"-"_$P(Y4,"^",L1+1) I $P(Y4,"^",L1+2)'="" S L3=L3+1,Y1(L3)="  "_$P($G(^PRST(457.2,+$P(Y4,"^",L1+2),0)),"^",1)
 S2 ; Set Worked Array
- F L1=1:4:25 D  I A1="" G S3
+ F L1=1:4:25 D  I A1="" G S8
  .S A1=$P(Y2,"^",L1+2) Q:A1=""  S L4=L4+1
  .S A2=$P(Y2,"^",L1) I A2'="" S Y2(L4)=A2_"-"_$P(Y2,"^",L1+1)
  .S K=$O(^PRST(457.3,"B",A1,0)) S $P(Y2(L4),"^",2)=A1_" "_$P($G(^PRST(457.3,+K,0)),"^",2)
  .I $P(Y2,"^",L1+3)'="" S L4=L4+1,Y2(L4)="  "_$P($G(^PRST(457.4,+$P(Y2,"^",L1+3),0)),"^",1)
- .Q
-S3 Q
+ .QUIT
+ QUIT
+ ;
+S8 ;telweork hours of node 8
+ F L1=2,3,4 I $P(Y8,U,L1) S L4=L4+1,Y2(L4)=$J($P(Y8,U,L1),0,2)_" "_$S(TC=2!(TC=3):"Day",1:"Hrs")_" - Telework "_$P("REG^MED^Ad Hoc",U,L1-1)
+ QUIT
+ ;
 VCS ; Display VCS Sales/Fee Basis
  S PAYP=$P($G(^PRSPC(DFN,0)),"^",21) W !!?30,$S(PAYP="F":"Fee Basis Appointee",1:"VCS Commission Sales")
  W !?11,"Sun     Mon     Tue     Wed     Thu     Fri     Sat     Total",!

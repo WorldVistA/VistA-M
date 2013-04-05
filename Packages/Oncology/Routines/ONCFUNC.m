@@ -1,5 +1,6 @@
-ONCFUNC ;Hines OIFO/GWB - OncoTrax functions ;06/23/10
- ;;2.11;ONCOLOGY;**24,25,26,27,28,30,32,33,35,36,41,49,51**;Mar 07, 1995;Build 65
+ONCFUNC ;Hines OIFO/GWB - OncoTrax functions ;05/03/12
+ ;;2.11;ONCOLOGY;**24,25,26,27,28,30,32,33,35,36,41,49,51,56**;Mar 07, 1995;Build 10
+ ;rvd - 05/03/12 p56.  Use ICD API (#3990) instead of direct global read.
  ;
 SHN() ;STATE HOSPITAL NUMBER (160.1,1.03)
  N OSP,SHN
@@ -114,15 +115,17 @@ HEMATO(IEN) ;Hematopoietic, reticuloendothelial, immunoproliferative or
  Q HEMATO
  ;
 CC ;COMORBIDITY/COMPLICATION #1-10 (160,25-25.9) screen
- I $E($P(^ICD9(Y,0),U,1),1)="V",+($E($P(^ICD9(Y,0),U,1),2,9)>7.1)&+($E($P(^ICD9(Y,0),U,1),2,9)<7.4) Q 
- I $E($P(^ICD9(Y,0),U,1),1)="V",+($E($P(^ICD9(Y,0),U,1),2,9)>9.91)&+($E($P(^ICD9(Y,0),U,1),2,9)<16) Q 
- I $E($P(^ICD9(Y,0),U,1),1)="V",+($E($P(^ICD9(Y,0),U,1),2,9)>21.9)&+($E($P(^ICD9(Y,0),U,1),2,9)<23.2) Q 
- I $E($P(^ICD9(Y,0),U,1),1)="V",+($E($P(^ICD9(Y,0),U,1),2,9)>25.3)&+($E($P(^ICD9(Y,0),U,1),2,9)<25.5) Q 
- I $E($P(^ICD9(Y,0),U,1),1)="V",+($E($P(^ICD9(Y,0),U,1),2,9)>43.89)&+($E($P(^ICD9(Y,0),U,1),2,9)<46) Q 
- I $E($P(^ICD9(Y,0),U,1),1)="V",+($E($P(^ICD9(Y,0),U,1),2,9)>50.4)&+($E($P(^ICD9(Y,0),U,1),2,9)<50.8) Q 
- I $E($P(^ICD9(Y,0),U,1),1)'="V",$E($P(^ICD9(Y,0),U,1),1)="E",($E($P(^ICD9(Y,0),U,1),2,9)>869.9)&($E($P(^ICD9(Y,0),U,1),2,9)<880) Q 
- I $E($P(^ICD9(Y,0),U,1),1)'="V",$E($P(^ICD9(Y,0),U,1),1)="E",($E($P(^ICD9(Y,0),U,1),2,9)>929.9)&($E($P(^ICD9(Y,0),U,1),2,9)<950) Q 
- I $E($P(^ICD9(Y,0),U,1),1)'="V",$E($P(^ICD9(Y,0),U,1),1)'="E",($P(^ICD9(Y,0),U,1)<140)!($P(^ICD9(Y,0),U,1)>239.9) Q
+ N ONCICDY
+ S ONCICDY=$$ICDDX^ICDCODE(Y) Q:ONCICDY=-1
+ I $E($P(ONCICDY,U,2),1)="V",+($E($P(ONCICDY,U,2),2,9)>7.1)&+($E($P(ONCICDY,U,2),2,9)<7.4) Q 
+ I $E($P(ONCICDY,U,2),1)="V",+($E($P(ONCICDY,U,2),2,9)>9.91)&+($E($P(ONCICDY,U,2),2,9)<16) Q 
+ I $E($P(ONCICDY,U,2),1)="V",+($E($P(ONCICDY,U,2),2,9)>21.9)&+($E($P(ONCICDY,U,2),2,9)<23.2) Q 
+ I $E($P(ONCICDY,U,2),1)="V",+($E($P(ONCICDY,U,2),2,9)>25.3)&+($E($P(ONCICDY,U,2),2,9)<25.5) Q 
+ I $E($P(ONCICDY,U,2),1)="V",+($E($P(ONCICDY,U,2),2,9)>43.89)&+($E($P(ONCICDY,U,2),2,9)<46) Q 
+ I $E($P(ONCICDY,U,2),1)="V",+($E($P(ONCICDY,U,2),2,9)>50.4)&+($E($P(ONCICDY,U,2),2,9)<50.8) Q 
+ I $E($P(ONCICDY,U,2),1)'="V",$E($P(ONCICDY,U,2),1)="E",($E($P(ONCICDY,U,2),2,9)>869.9)&($E($P(ONCICDY,U,2),2,9)<880) Q 
+ I $E($P(ONCICDY,U,2),1)'="V",$E($P(ONCICDY,U,2),1)="E",($E($P(ONCICDY,U,2),2,9)>929.9)&($E($P(ONCICDY,U,2),2,9)<950) Q 
+ I $E($P(ONCICDY,U,2),1)'="V",$E($P(ONCICDY,U,2),1)'="E",($P(ONCICDY,U,2)<140)!($P(ONCICDY,U,2)>239.9) Q
  Q
  ;
 DSTS(IEN) ;DATE SYSTEMIC THERAPY STARTED

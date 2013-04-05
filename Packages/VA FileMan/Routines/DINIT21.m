@@ -1,5 +1,5 @@
 DINIT21 ;SFISC/GFT-INITIALIZE VA FILEMAN ;1SEP2010
- ;;22.0;VA FileMan;**110,160,165**;Mar 30, 1999;Build 32
+ ;;22.0;VA FileMan;**110,160,165**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
 DINITOSX G DD:'$O(^DD("OS",0)) W !!,"Do you want to change the MUMPS OPERATING SYSTEM File? NO//" R Y:60 Q:Y["^"!("Nn"[$E(Y))!('$T)
 DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) Q:X?.P  S D="^DD(""OS"","_$E($P(X," ",2),3,99)_")" S @D=Y

@@ -1,6 +1,6 @@
-PRCSP121 ;WISC/SAW/BMM-CONTROL POINT ACTIVITY 2237 PRINTOUT CON'T ; 3/29/05 1:50pm
- ;;5.1;IFCAP;**81**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCSP121 ;WISC/SAW/BMM-CONTROL POINT ACTIVITY 2237 PRINTOUT CON'T ;6/25/12  14:00
+ ;;5.1;IFCAP;**81,167**;Oct 20, 2000;Build 17
+ ;Per VHA Directive 2004-38, this routine should not be modified.
  ;
  ;PRINT ITEMS  ;  REW fixed next line for Archiving "just in case"
  ;
@@ -20,8 +20,10 @@ ITEM2 I '$D(^UTILITY($J,"W",DIWL)) S ^(DIWL)=1,^(DIWL,1,0)="***NO DESCRIPTION***
  I $L(P(4))>12 W !,$E(P(4),1,12),"|",?38,"|",?48,"|",?53,"|",?63,"|",?73,"|",?84,"|",!,$E(P(4),13,24)
  I $L(P(4))<13 W !,P(4)
  I Z>1 F J=1:1:(Z-1) W ?12,"|",^UTILITY($J,"W",DIWL,J,0),?38,"|",?48,"|",?53,"|",?63,"|",?73,"|",?84,"|" D:$Y>61 NEWP W !
- I Z>1 W ?12,"|",^UTILITY($J,"W",DIWL,Z,0),?38,P(0),?73,"|",?84,"|" D:$Y>61 NEWP W !,?12,"|",?38,"|",?48,"|",?53,"|",?63,"|",?73,"|",?84,"|"
- I Z<2 W ?12,"|",^UTILITY($J,"W",DIWL,1,0),?38,P(0),?73,"|",?84,"|" D:$Y>61 NEWP W !,?12,"|",?38,"|",?48,"|",?53,"|",?63,"|",?73,"|",?84,"|"
+ I Z>1 W ?12,"|",^UTILITY($J,"W",DIWL,Z,0),?38,P(0),?73,"|",?84,"|"
+ I Z<2 W ?12,"|",^UTILITY($J,"W",DIWL,1,0),?38,P(0),?73,"|",?84,"|"
+ I $P($G(^PRCS(410,DA,"IT",P(1),4)),U,3)]"" D:$Y>61 NEWP W !?12,"|","eCMS Line ID ",$P(^PRCS(410,DA,"IT",P(1),4),U,3),?38,"|",?48,"|",?53,"|",?63,"|",?73,"|",?84,"|"
+ D:$Y>61 NEWP W !,?12,"|",?38,"|",?48,"|",?53,"|",?63,"|",?73,"|",?84,"|"
  Q
 PRCARD S P("PR")=$P(^PRCS(410,DA,"IT",P(1),0),U,5) G ITEM2:'$D(^PRC(441,P("PR"),1,0))
  S P("PR1")=0,X=$P(^PRCS(410,DA,"IT",P(1),0),U)_" ITEM ID NO. "_P("PR") D DIWP^PRCUTL($G(DA)) F I=1:1 S P("PR1")=$O(^PRC(441,P("PR"),1,P("PR1"))) Q:P("PR1")=""  S X=^(P("PR1"),0) D DIWP^PRCUTL($G(DA))

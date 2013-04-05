@@ -1,5 +1,5 @@
-MAGDRAHL ;WOIFO/PMK - Program to read a DICOM file ; 21 Oct 2010 3:01 PM
- ;;3.0;IMAGING;**49**;Mar 19, 2002;Build 2033;Apr 07, 2011
+MAGDRAHL ;WOIFO/PMK,SAF - Program to read a DICOM file ; 21 Oct 2010 3:01 PM
+ ;;3.0;IMAGING;**49,123**;Mar 19, 2002;Build 67;Jul 24, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -32,7 +32,8 @@ STUDYUID(RADTI,RACNI,ACNUMB) ; return the Study Instance UID
  N STATNUMB ;- Station number
  N STUDYUID ;- Resulting unique identifier
  ;
- S STATNUMB=$E($P($$NS^XUAF4($$KSP^XUPARAM("INST")),U,2),1,3) ; station number
+ S STATNUMB=$P($$SITE^VASITE(),"^",3) ; station number
+ ;S STATNUMB=$E($P($$NS^XUAF4($$KSP^XUPARAM("INST")),U,2),1,3) ; station number
  S RAW=^MAGD(2006.15,1,"UID ROOT")_".1.4."_STATNUMB_"."_RADTI_"."_RACNI_"."_ACNUMB
  S STUDYUID="",FLAG=0 F I=1:1:$L(RAW) D
  . N E

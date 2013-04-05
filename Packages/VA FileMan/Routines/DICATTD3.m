@@ -1,5 +1,5 @@
 DICATTD3 ;GFT;09:06 AM  21 Jan 1999;SET OF CODES
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 Y(ORDER,CM) ;

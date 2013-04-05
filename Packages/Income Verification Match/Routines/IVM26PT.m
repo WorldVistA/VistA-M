@@ -27,7 +27,7 @@ SENDNOT ;Send notification to the IVM Center once the facility has installed
  D BMES^XPDUTL("  >> Sending a 'completed installation' notice to the IVM Center... ")
  S XMSUB="IVM*2*6 PATCH INSTALLATION"
  S XMDUZ="IVM PACKAGE"
- S XMY("BONNER@IVM.DOMAIN.EXT")="",XMY(DUZ)="",XMY(.5)=""
+ S XMY("BONNER@IVM.domain.ext")="",XMY(DUZ)="",XMY(.5)=""
  S XMTEXT="IVMTEXT("
  S IVMX=$$SITE^VASITE
  S IVMTEXT(1)="  Facility:                   "_$P(IVMX,"^",2)

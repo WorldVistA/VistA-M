@@ -1,5 +1,5 @@
 PSOORRNW ;BIR/SAB-finish OP renew orders from OE/RR ; 4/26/11 2:20pm
- ;;7.0;OUTPATIENT PHARMACY;**11,27,51,46,71,94,130,131,146,206,225,384**;DEC 1997;Build 7
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,51,46,71,94,130,131,146,206,225,384,386**;DEC 1997;Build 4
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.607 supported by DBIA 2221
  ;External reference to ^PS(51.2 supported by DBIA 2226
@@ -10,15 +10,6 @@ PSOORRNW ;BIR/SAB-finish OP renew orders from OE/RR ; 4/26/11 2:20pm
  .W $C(7),!!,"Another person is editing Rx "_$P($G(^PSRX(PSORENXX,0)),"^")
  K PSOMSG N OI,VALMCNT K POERR("DFLG") D FULL^VALM1 S (PSORX("DFLG"),PSORENW("DFLG"))=0,(PSORNW("FILL DATE"),PSORENW("FILL DATE"))=DT
  S Y=DT X ^DD("DD") S PSORX("FILL DATE")=Y K Y
- ;
- I $G(ORD),+$P($G(^PS(52.41,+ORD,0)),"^",23)=1 D  Q:$D(DIRUT)!'Y  D EN1^ORCFLAG(+$P($G(^PS(52.41,ORD,0)),"^")) H 1
- . K DIRUT,DUOUT,DTOUT,DIR
- . S DIR("A",1)="This Renewal Request is flagged. In order to process it"
- . S DIR("A",2)="you must unflag it first."
- . S DIR("A",3)=""
- . S DIR(0)="Y",DIR("A")="Unflag Renewal Request",DIR("B")="NO"
- . W ! D ^DIR I $D(DIRUT)!'Y S VALMBCK="Q"
- I $G(ORD),+$P($G(^PS(52.41,+ORD,0)),"^",23)=1 Q
  ;
  W !!,"Now Renewing Rx # "_$P(^PSRX($P(OR0,"^",21),0),"^")_"   Drug: "_$P($G(^PSDRUG($P(^PSRX($P(OR0,"^",21),0),"^",6),0)),"^"),! H 2
  I $P($G(^PSRX($P(OR0,"^",21),"OR1")),"^",4) D  D PROCESSX^PSORENW0 D UL Q

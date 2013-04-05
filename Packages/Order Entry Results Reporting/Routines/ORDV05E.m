@@ -1,5 +1,11 @@
 ORDV05E ; slc/jdl - Microbiology Extract Routine ;6/13/01  11:49
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**109,208**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**109,208,315**;Dec 17, 1997;Build 20
+ ;
+ ;   DBIA   531  ^LRO(68
+ ;   DBIA   684  ^LR(
+ ;   DBIA  2387  ^LAB(60
+ ;   DBIA  5466  GETACC^LRJWLST
+ ;
  ;;Called from ORDV05, return ^TMP("ORM",$J in GCPR format
  ;;For Bacteriology,Sterility,Gram stain
 GET ;Extract data from LR global
@@ -11,11 +17,14 @@ GET ;Extract data from LR global
  S IX=GMTS1
  F IXO=1:1:GMTSNDM S IX=$O(^LR(LRDFN,"MI",IX)) Q:'IX!(IX>GMTS2)  D XTRCT
  Q
-XTRCT N ACC,CDT,SS,CS,X,X0,DIC,DIQ,DA,DR,MICRO,LOC,RDT,MICCOM,RPT
+XTRCT N ACC,CDT,SS,CS,X,X0,DIC,DIQ,DA,DR,MICRO,LOC,RDT,MICCOM,RPT,OACC
  S RPT=IX,X0=^LR(LRDFN,"MI",IX,0),X=$P(X0,U),RDT=$P(X0,U,3),ACC=$P(X0,U,6),LOC=$P(X0,U,8)
  Q:'X  Q:'$P(X0,"^",5)
  S CDT=$$REGDTM4^ORDVU(X)
  D LABTEST(X,ACC)
+ I $T(GETACC^LRJWLST)]"" D
+ . N X,OACC
+ . S OACC=$$GETACC^LRJWLST(LRDFN,"MI",IX) I OACC]"" S ACC=OACC
  ; External format of site/specimen, collection sample, and comment
  S DIC=63,DIQ="MICRO",DIQ(0)="E",DA=LRDFN,DA(63.05)=IX,DR=5,DR(63.05)=".05;.055;.99"
  D EN^DIQ1

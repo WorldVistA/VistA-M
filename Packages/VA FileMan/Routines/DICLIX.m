@@ -1,5 +1,5 @@
 DICLIX ;SEA/TOAD,SF/TKW-FileMan: Lister, Search Compound Indexes ;6/5/00  10:13
- ;;22.0;VA FileMan;**4,3**;Mar 30, 1999;
+ ;;22.0;VA FileMan;**4,3**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 WALK(DIFLAGS,DINDEX,DIDENT,DIFILE,DIEN,DIFIEN,DISCREEN,DILIST,DINDEX0,DIXV,DIC) ;

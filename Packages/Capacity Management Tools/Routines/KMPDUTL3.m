@@ -1,5 +1,5 @@
 KMPDUTL3 ;OAK/RAK - CM Tools Utility ;2/17/04  10:53
- ;;2.0;CAPACITY MANAGEMENT TOOLS;;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 PURGE(KMPDT) ;-- purge data in file #8973.1
  ;-----------------------------------------------------------------------
@@ -35,7 +35,7 @@ PURGE1 ;-- purge data in file #8973.2
  S DATE=PURGE-.1
  F  S DATE=$O(^KMPD(8973.2,"C",DATE),-1) Q:'DATE!(DATE>PURGE)  D 
  .F IEN=0:0 S IEN=$O(^KMPD(8973.2,"C",DATE,IEN)) Q:'IEN  D 
- ..Q:'$D(^KMPD(8973.2,IEN,0))
+ ..I '$D(^KMPD(8973.2,IEN,0)) K ^KMPD(8973.2,"C",DATE,IEN) Q
  ..W:'$D(ZTQUEUED)&('(IEN#10)) "."
  ..; delete entry.
  ..S DA=IEN,DIK="^KMPD(8973.2," D ^DIK

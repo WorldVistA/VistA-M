@@ -1,5 +1,5 @@
 PRSADP2 ; HISC/REL-Display Employee Pay Period ;7/22/97
- ;;4.0;PAID;**21,28,46,114**;Sep 21, 1995;Build 6
+ ;;4.0;PAID;**21,28,46,114,132**;Sep 21, 1995;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 PAY ; Payroll Entry
  N PPERIOD
@@ -70,7 +70,7 @@ L1 W ! K IOP,%ZIS S %ZIS("A")="Select Device: ",%ZIS="MQ" D ^%ZIS K %ZIS,IOP Q:P
 DIS ; Display 14 days
  S PDT=$G(^PRST(458,PPI,2)),STAT=$P($G(^PRST(458,PPI,"E",DFN,0)),"^",2)
  S (PG,QT)=0 D HDR
- W !!,?7,"Date",?21,"Scheduled Tour",?46,"Tour Exceptions"
+ W !!,?7,"Date",?17,"TW",?21,"Scheduled Tour",?46,"Tour Exceptions"
  W !?3,"------------------------------------------------------------------------"
  F DAY=1:1:14 S DTE=$P(PDT,"^",DAY) D:$Y>(IOSL-5) HDR G:QT D1 D F0^PRSADP1
  S Z=$G(^PRST(458,PPI,"E",DFN,2)) I Z'="" D:$Y>(IOSL-10) HDR Q:QT  D VCS^PRSASR1
@@ -82,10 +82,11 @@ D1 I PRSTLV>5 S Z=$G(^PRST(458,PPI,"E",DFN,5)) W:Z'="" !!,"8B Codes: ",Z
  ;====================================================================
 HDR ; Display Header
  D H1 Q:QT  W:'($E(IOST,1,2)'="C-"&'PG) @IOF
- S PG=PG+1
+ N A
+ S PG=PG+1,A=$$TWE^PRSATE0(DFN,$S($G(PPI)]"":PPI,1:""))
  S X=$G(^PRSPC(DFN,0)) ;employees (partial) master record.
  W ! W:$E(IOST,1,2)="C-" @IOF
- W ?3,$P(X,"^",1),?36,"T&L ",$S($G(TLE):TLE,1:$P(X,"^",8))
+ W ?3,$P(X,"^",1),?36,"T&L ",$S($G(TLE):TLE,1:$P(X,"^",8)),?45,"Telework Ind: ",$S($P(A,U,3)]"":$P(A,U,3),$P(A,U)]""&($G(PPI)=""):$P(A,U),1:"None")
  S X=$P(X,"^",9)
  I '$G(PRSTLV)!($G(PRSTLV)=1) W ?68,"XXX-XX-",$E(X,6,9) W:PG>1 ! Q
  I PRSTLV=2!(PRSTLV=3) W ?68,$E(X),"XX-XX-",$E(X,6,9) W:PG>1 ! Q 

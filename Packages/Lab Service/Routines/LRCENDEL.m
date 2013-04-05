@@ -1,5 +1,6 @@
-LRCENDEL ;SLC/CJS/DALOI/FHS-ORDER CANCELING NO TEST DELETE ;8/11/97
- ;;5.2;LAB SERVICE;**100,121,202,221,263**;Sep 27, 1994
+LRCENDEL ;SLC/CJS/DALOI/FHS - ORDER CANCELING NO TEST DELETE ;04/12/12  13:14
+ ;;5.2;LAB SERVICE;**100,121,202,221,263,350**;Sep 27, 1994;Build 230
+ ;
  W @IOF N LRCANK,LRTN
 FIND S LREND=0 D ^LRPARAM I $G(LREND) G END
  K LRDFN,LRONE,LRNATURE
@@ -25,7 +26,7 @@ LOOK ;
  . S LRTN=0 F  S LRTN=$O(^LRO(69,LRODT,1,LRSN,2,LRTN)) Q:LRTN<1  S X=^(LRTN,0) I '$P(X,"^",11) S LRCANK=1 Q
  I $G(LREND) D UNL69,END Q
  I LRCNT<1 W !,"No order found with that number." D UNL69,END Q
- I 'LRCANK W !!,"[ * All tests on this order # have already been dispositoned. * ]" D NAME Q
+ I 'LRCANK W !!,"[ * All tests on this order # have already been dispositioned. * ]" D NAME Q
  I $G(LRCOL) D  D UNL69,END Q
  . W !!?5," You CAN NOT change the status of test(s) on this order."
  . W !,"Test sample(s) have already been received into the laboratory."
@@ -43,7 +44,11 @@ ONE R !,"Change status of which entry: ",LRJ:DTIME W:LRJ["?" !,"Pick one of the 
  I '$D(LRT(LRJ)) W !,"You've already dispositioned that one.",! G MORE
  K LRNATURE
  D FX2^LRTSTOUT I $G(LREND) D UNL69,END Q
- K LRTSTI,LRMSTATI D EN1,UNL69 G LOOK
+ K LRTSTI,LRMSTATI,LROTA
+ D EN1
+ I $D(LROTA) D LEDISET^LRTSTOUT(.LROTA) ;ccr_6164n
+ D UNL69
+ G LOOK
  Q
 EN1 S LREND=0,LRSN=+LRT(LRJ),LRTSTI=+$P(LRT(LRJ),U,2),LRTSTS=+$P(LRT(LRJ),U,3)
  I '$D(^LRO(69,LRODT,1,LRSN,2,LRTSTI,0))#2 W !,"Does not exist ",! Q
@@ -54,10 +59,11 @@ EN1 S LREND=0,LRSN=+LRT(LRJ),LRTSTI=+$P(LRT(LRJ),U,2),LRTSTS=+$P(LRT(LRJ),U,3)
  S LRIDT=+$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,3)),U,5)
  I LRIDT L +^LR(LRDFN,LRSS,LRIDT):1 I '$T W !?5,"Someone else is editing this entry",! S LREND=1 Q
  D SET^LRTSTOUT I LRIDT L -^LR(LRDFN,LRSS,LRIDT)
+ D LEDICHK^LRTSTOUT ; If LEDI test, add test to LROTA array - ccr_6164n
  D UNL69
  Q
  D CEN1^LRCENDE1 K LRONE Q:LRACC&'$D(^XUSEC("LRLAB",DUZ))
- I LRTSTI,'$G(LRNOP) D 
+ I LRTSTI,'$G(LRNOP) D
  . N LRI S LRI(LRTSN)=""
  . D NEW^LR7OB1(LRODT,LRSN,$S($G(LRMSTATI)=""!($G(LRMSTATI)=1):"OC",1:"SC"),$G(LRNATURE),.LRI,$G(LRMSTATI))
  . S $P(^LRO(69,LRODT,1,LRSN,2,LRTSTI,0),"^",3,6)="^^^",$P(^(0),"^",9,11)="CA^L^"_DUZ K T(LRJ)
@@ -69,7 +75,9 @@ EN1 S LREND=0,LRSN=+LRT(LRJ),LRTSTI=+$P(LRT(LRJ),U,2),LRTSTS=+$P(LRT(LRJ),U,3)
 OUT Q:$G(LRNOP)  S LRJ=0
  D FX2^LRTSTOUT I $G(LREND) D UNL69,END Q
  S LRCCOMX=LRCCOM
+ K LROTA ;ccr_6164n
  S LRJ=0 F  S LRJ=$O(LRT(LRJ)) Q:LRJ<1  S LRCCOM=LRCCOMX D EN1
+ I $D(LROTA) D LEDISET^LRTSTOUT(.LROTA) ;ccr_6164n
  K LRCCOMX D UNL69
  Q
  S LRSN=0 F  S LRSN=$O(^LRO(69,"C",+LRORD,LRODT,LRSN)) Q:LRSN<1  D
@@ -88,14 +96,46 @@ TSET I $D(^LRO(69,LRODT,1,LRSN,3)),$P(^(3),"^",2) D  Q
  . W !,$$CJ^XLFSTR("Test(s) already verified for this order, cannot change ENTIRE order",IOM)
  . W !,$$CJ^XLFSTR(" You must select individual test using the 'Delete Test from Accession' option.",IOM),!!
  . D UNL69 S LRNOP=1
- S I=0 F  S I=$O(^LRO(69,LRODT,1,LRSN,2,I)) Q:I<1  S X=^(I,0) D
+ S I=0 F  S I=$O(^LRO(69,LRODT,1,LRSN,2,I)) Q:I<1!($G(LRNOP))  S X=^(I,0) D
  . Q:$P(X,"^",11)
  . I $P(X,U,3),'$D(LRLABKY) Q
+ . ;
+ . ; ccr_5538n - Prevent user from being able to cancel tests that have results
+ . N LRX
+ . S LRX=$$CHK63(LRDFN,LRODT,LRSN,I)
+ . I LRX>0 D  Q
+ . . W !!,$$CJ^XLFSTR("Test result(s) already entered for this order; cannot change order.",IOM)
+ . . W !,$$CJ^XLFSTR("You must select individual test using the 'Delete test from accession' option.",IOM),!!
+ . . D UNL69
+ . . S LRNOP=1
+ . . S LROV=1
+ . . K LRT
+ . ;
  . S J=J+1,LRSPEC=$S($D(^LRO(69,LRODT,1,LRSN,4,1,0)):+^(0),1:""),LRT(J)=LRSN_U_I_U_+X_U_$S(LRSPEC:$P(^LAB(61,+LRSPEC,0),U),1:"")_U_$P(X,U,2,99)
  Q
+ ;
+ ;
+CHK63(LRDFN,LRODT,LRSN,LRTSTI) ; ccr_5538n - Check if tests being NP already have results in file #63.
+ ;
+ N LR60,LRAA,LRAD,LRAN,LRIDT,LRNOP,LRSS,LRX
+ S LRNOP=0
+ I '($D(^LRO(69,LRODT,1,LRSN,2,LRTSTI,0))#2) Q LRNOP
+ S LRX=$G(^LRO(69,LRODT,1,LRSN,2,LRTSTI,0))
+ S LR60=+$P(LRX,U,1)
+ S LRAD=+$P(LRX,U,3)
+ S LRAA=+$P(LRX,U,4)
+ S LRAN=+$P(LRX,U,5)
+ S LRSS=$P($G(^LRO(68,LRAA,0)),U,2)
+ I 'LR60!('LRAD)!('LRAA)!('LRAN)!(LRSS="") Q LRNOP
+ S LRIDT=+$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,3)),U,5)
+ S LRX=$$CHK63^LRTSTOUT(LR60,LRDFN,LRSS,LRIDT)
+ I LRX>0 S LRNOP=1
+ Q LRNOP
+ ;
+ ;
 END K %,A,AGE,DFN,DIC,DIE,DOB,DQ,DR,DWLW,I,J,K,LRAA,LRACC,LRACN0,LRAD,LRAN,LRCL,LRCNT,LRCOL,LRDOC,LRDPF,LRDTM,LREND,LRIDT
  K LRNOW,LRLL,LRLLOC,LRNOP,LROD0,LROD1,LROD3,LRODT,LROOS,LRORD,LROS,LROSD,LROT,LROV,LRROD
  K LRSCNXB,LRSN,LRSPEC,LRSS,LRTC,LRTP,LRTSTS,LRT,LRTT,LRURG,LRUSI,LRUSNM,LRWRD,PNM,SEX,SSN,T,X,X1,X2,X3,X4,Y,Z,LRNATURE,ORIFN
  K LRCANK,LRTN,LRCCOM,LRCCOM1 D END^LRTSTOUT
- K LRACN,LRJ,LRTSTI
+ K LRACN,LRJ,LRTSTI,LROTA
  Q

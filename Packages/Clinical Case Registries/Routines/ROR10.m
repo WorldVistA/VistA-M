@@ -1,6 +1,12 @@
 ROR10 ;HCIOFO/SG - NIGHTLY TASK UTILITIES ; 11/29/05 4:21pm
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+ ;;1.5;CLINICAL CASE REGISTRIES;**18**;Feb 17, 2006;Build 25
  ;
+ ;******************************************************************************
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*18   APR  2012   C RAY        Replaces list in TASK PARAMETERS with
+ ;                                      list of all initialized registries
+ ;******************************************************************************
  Q
  ;
  ;***** DISPLAYS THE ALERT ABOUT PROBLEMATIC HL7 MESSAGES
@@ -133,16 +139,11 @@ CHECKMSG(REGLST) ;
 TASKPRMS(REGLST) ;
  N %DT,DTOUT,INFO,REGNAME,TMP,X,Y
  ;--- Log the task parameters
- D TP(.INFO,"ZTQPARAM")
  D TP(.INFO,"RORFLSET")
  D TP(.INFO,"RORFLCLR")
  D TP(.INFO,"RORMNTSK")
  D TP(.INFO,"RORSUSP")
  D LOG^RORLOG(,"Task Parameters",,.INFO)
- ;--- Check the task parameters
- I ZTQPARAM=""  D  Q RC
- . D TEXT^RORTXT(7980000.001,.INFO)
- . S RC=$$ERROR^RORERR(-88,,.INFO,,"TASK PARAMETERS")
  ;--- Maximum number of subtasks
  S RORMNTSK=$S(RORMNTSK'="":$TR(RORMNTSK,"-","^"),1:"2^3^AUTO")
  ;--- Suspension parameters
@@ -150,10 +151,8 @@ TASKPRMS(REGLST) ;
  . S TMP=RORSUSP,RORSUSP=""
  . F I=1,2  D  S:$G(Y)>0 $P(RORSUSP,"^",I)=Y#1
  . . S X=$P(TMP,"-",I),%DT="R"  D ^%DT
- ;--- Extract registry names from task parameters
- F I=1:1  S REGNAME=$P(ZTQPARAM,",",I)  Q:REGNAME=""  D
- . S REGNAME=$$TRIM^XLFSTR(REGNAME)
- . S:REGNAME'="" REGLST(REGNAME)=""
+ S RC=$$REGSEL^RORUTL01("I")  ;only initialized registries
+ Q:RC<0 RC
  ;--- Flags
  S RORFLCLR=$$UP^XLFSTR(RORFLCLR)
  S RORFLSET=$$UP^XLFSTR(RORFLSET)

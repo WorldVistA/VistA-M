@@ -1,5 +1,5 @@
 DIDC ;SFISC-CONDENSED DD ;10:02 AM  4 Mar 2002
- ;;22.0;VA FileMan;**19,105**;Mar 30, 1999
+ ;;22.0;VA FileMan;**19,105**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S DM="",DAT=$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3),X="I $Y+3>IOSL W $C(7) D P"
 EN S N(0)=$O(^DD(X1),-1),I=0 F  S N(0)=$O(^DD(N(0))) Q:N(0)'>0!(N(0)>X2)  S NAME=$O(^DD(N(0),0,"NM",0)) I NAME'="" S P=0 D P,P2 G:DM["^" EXIT

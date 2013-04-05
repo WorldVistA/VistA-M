@@ -1,5 +1,5 @@
-EDPQAR ;SLC/KCM - Log Area Information
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPQAR ;SLC/KCM - Log Area Information ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 PARAM(AREA) ; return parameters for area
  N X,X1
@@ -36,6 +36,13 @@ LSTIENS(ROOT) ; list IEN's that should bypass remove-from-board checks
  .. S FLAGS=$P(^EDPB(233.1,IEN,0),U,5) Q:FLAGS'["B"
  .. D XML^EDPX("<ien>"_IEN_"</ien>")
  Q
+BRDUSER(AREA) ; set XML for anonymous board user
+ N X
+ S X("area")=$$DFLTAREA(AREA)
+ I X("area") S X("areaNm")=$P(^EDPB(231.9,X("area"),0),U)
+ S X("version")=$$VERSRV
+ D XML^EDPX($$XMLA^EDPX("user",.X))
+ Q 
 DFLTAREA(AREA) ; return the default area for a site
  N X,DFLT
  I $L($G(AREA)),(+AREA'=AREA) D
@@ -44,11 +51,7 @@ DFLTAREA(AREA) ; return the default area for a site
  S DFLT=$S($G(AREA):AREA,1:$O(^EDPB(231.9,"C",EDPSITE,0)))
  ;
  I 'DFLT D ADDAREA S DFLT=$O(^EDPB(231.9,"C",EDPSITE,0))
- S X("area")=DFLT
- I X("area") S X("areaNm")=$P(^EDPB(231.9,X("area"),0),U)
- S X("version")=$$VERSRV
- D XML^EDPX($$XMLA^EDPX("user",.X))
- Q
+ Q DFLT
 ADDAREA ; add area if none is defined for this site
  N FDA,FDAIEN,DIERR,ERR
  S FDA(231.9,"+1,",.01)="Emergency Department"

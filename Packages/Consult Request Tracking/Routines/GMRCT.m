@@ -1,5 +1,5 @@
 GMRCT ; SLC/DLT\JFR - Get DUZ's of users for notification to service ; 11/25/2000
- ;;3.0;CONSULT/REQUEST TRACKING;**1,5,11,18**;Dec 27, 1997
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,5,11,18,46**;Dec 27, 1997;Build 23
 EN(GMRCSRV,USER,TEST) ;Get who is to be notified for alert action
  ; return them in array GMRCADUZ(DUZ)=""
  N GMRCLIS,GMRCHKD,GMRCNT,GMRCLP,GMRCQUIT
@@ -22,7 +22,8 @@ EN(GMRCSRV,USER,TEST) ;Get who is to be notified for alert action
  Q
 RECIP(GMRCSS,NOTNULL) ;gather recipients for GMRCSS
  N GMRCTM,GMRCTMI,GMRCLST,GMRCER,GMRCHL,GMRCSSI,GMRCU,GMRCWL
- I $D(^GMR(123.5,GMRCSS,123)),$P(^GMR(123.5,GMRCSS,123),"^",8) S GMRCADUZ($P(^(123),"^",8))=$S($G(NOTNULL):$$NOTSERV($P(^(123),"^",8)),1:"")
+ ;I $D(^GMR(123.5,GMRCSS,123)),$P(^GMR(123.5,GMRCSS,123),"^",8),(('$G(NOTNULL))&($P(^GMR(123.5,GMRCSS,123),"^",8)'=DUZ)!($G(NOTNULL))) S GMRCADUZ($P(^(123),"^",8))=$S($G(NOTNULL):$$NOTSERV($P(^(123),"^",8)),1:"")
+ I $D(^GMR(123.5,GMRCSS,123)),$P(^GMR(123.5,GMRCSS,123),"^",8),($P(^GMR(123.5,GMRCSS,123),"^",8)'=DUZ)!$G(NOTNULL) S GMRCADUZ($P(^(123),"^",8))=$S($G(NOTNULL):$$NOTSERV($P(^(123),"^",8)),1:"")
  I $D(^GMR(123.5,GMRCSS,123.1)) D TEAM
  I $D(^GMR(123.5,GMRCSS,123.2)),+$G(GMRCO) D LOC
  I $D(^GMR(123.5,GMRCSS,123.33)) D ADMU
@@ -36,7 +37,10 @@ LOC ;Find the patients location and match to location assignments
  I +GMRCHL S GMRCSSI=$O(^GMR(123.5,GMRCSS,123.2,"B",GMRCHL,"")) I GMRCSSI D LOC1
  Q
 LOC1 ;Get user and/or team assigned to location
- I $P(^GMR(123.5,GMRCSS,123.2,GMRCSSI,0),"^",2) S GMRCADUZ($P(^(0),"^",2))=$S($G(NOTNULL):$$NOTSERV($P(^(0),"^",2)),1:"")
+ N GMRCUSER
+ S GMRCUSER=$P($G(^GMR(123.5,GMRCSS,123.2,GMRCSSI,0)),"^",2)
+ ;I GMRCUSER,(('$G(NOTNULL))&(GMRCUSER'=DUZ)!($G(NOTNULL))) S GMRCADUZ(GMRCUSER)=$S($G(NOTNULL):$$NOTSERV(GMRCUSER),1:"") ;If not user taking action, then add to notification list
+ I GMRCUSER,(GMRCUSER'=DUZ)!($G(NOTNULL)) S GMRCADUZ(GMRCUSER)=$S($G(NOTNULL):$$NOTSERV(GMRCUSER),1:"") ;If not user taking action, then add to notification list
  I $P(^GMR(123.5,GMRCSS,123.2,GMRCSSI,0),"^",3) S GMRCTMI=$P(^(0),"^",3) D TEAM1
  Q
 ADMU ;Get notification recips from admin users field (123.33)
@@ -44,6 +48,7 @@ ADMU ;Get notification recips from admin users field (123.33)
  N RECIP
  S RECIP=0
  F  S RECIP=$O(^GMR(123.5,GMRCSS,123.33,"AC",1,RECIP)) Q:'RECIP  D
+ . I '$G(NOTNULL),RECIP=DUZ Q  ;Don't notify user taking action
  . S GMRCADUZ(RECIP)=$S($G(NOTNULL):$$NOTSERV(RECIP),1:"")
  Q
 ADMT ;Get notification recips from admin teams field (123.34)
@@ -59,7 +64,8 @@ TEAM1 ;Get user DUZ's from Team pointed to in File
  S GMRCLST="" D TEAMPROV^ORQPTQ1(.GMRCLST,GMRCTMI)
  Q:$S('$O(GMRCLST(0)):1,$P(GMRCLST(1),"^",2)="No providers found.":1,1:0)
  S GMRCU=0 F  S GMRCU=$O(GMRCLST(GMRCU)) Q:GMRCU=""  D
- . I '$G(NOTNULL) D  Q
+ . I $P($G(GMRCLST(GMRCU)),"^",1)=DUZ Q  ;Don't notify user taking action
+ . I '$G(NOTNULL),$P($G(GMRCLST(GMRCU)),"^",1)'=DUZ D  Q
  .. S GMRCADUZ($P(GMRCLST(GMRCU),"^",1)_U_GMRCTMI)=""
  . S GMRCADUZ($P(GMRCLST(GMRCU),"^",1))=$S($G(NOTNULL):$$NOTSERV(GMRCU),1:"")
  K GMRCLST

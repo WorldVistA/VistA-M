@@ -1,5 +1,5 @@
 DIEH1 ;SFISC/DPC-DBS HELP CON'T ;2:53 PM  25 May 2001
- ;;22.0;VA FileMan;**85**;Mar 30, 1999
+ ;;22.0;VA FileMan;**85**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;;
 DT(DIEHDT) ;
