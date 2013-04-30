@@ -86,7 +86,7 @@ HCPCS ;HCPCS code
  I $G(RMITFLG) G:$G(REDIT) LAB D RDL^RMPR29LU G EXIT
  K:'$G(RMHCDA)!'$G(RMITDA) RMLOC I $G(RMLOC) S RMGIP=0 G VEN
  G GI
-HMESS1 W !,$C(7),"HCPCS has no pre-determined time....",!,"Please SEND mail message to G.PROS-CODE@FORUM.DOMAIN.EXT!!!" X CK Q
+HMESS1 W !,$C(7),"HCPCS has no pre-determined time....",!,"Please SEND mail message to G.PROS-CODE@FORUM.domain.ext!!!" X CK Q
  Q
  ;
 GI I $P(^RMPR(669.9,RMPRSITE,0),U,3),'$D(^PRCP(445,"AD",DUZ)) W $C(7),!,"You are not an authorized user of any Inventory Point, please see your ADPAC." H 2 D RDL^RMPR29LU G EXIT
@@ -155,7 +155,7 @@ PRINT D SG^RMPR29LS
  G CREATE
 HELP ;
  W !,"** You can only select HCPCS that have a LAB pre-determined time.",!,"** If the HCPCS you are selecting are not in the list, please send an E-mail"
- W !,"** message to G.PROS-CODE@FORUM.DOMAIN.EXT to be added in the list..."
+ W !,"** message to G.PROS-CODE@FORUM.domain.ext to be added in the list..."
  Q
  ;
 EXIT ;common exit

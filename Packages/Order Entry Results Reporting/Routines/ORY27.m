@@ -1,0 +1,75 @@
+ORY27 ;SLC/MKB-Postinit for OR*3*27 ;5/11/98  08:28
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**27**;Dec 17, 1997
+ ;
+PRE ; -- preinstall
+ N DA,DR,DIE
+ S DA=$O(^ORD(101,"B","ORC VERIFY ORELSE MENU",0)) Q:DA'>0
+ S DIE="^ORD(101,",DR=".01///ORC VERIFY MENU" D ^DIE
+ Q
+ ;
+POST ; -- postinstall
+ D VER,COMP,ORDTAB ;       << update protocol menus
+ D PARAM ;                 << copy user preferences to new parameter
+ I '$D(^OR(100,"AR")) D  ; << build AR xref
+ . N ZTRTN,ZTIO,ZTDTH,ZTDESC,ZTSK,MSG
+ . S ZTRTN="AR^ORY27",ZTIO="",ZTDTH=$H,ZTDESC="Build ^OR(100,AR) xref"
+ . D ^%ZTLOAD S MSG="Task "_$S($G(ZTSK):"#"_ZTSK,1:"not")_" started."
+ . D MES^XPDUTL(MSG)
+ Q
+ ;
+VER ; -- Replace Verify action w/menu
+ ;
+ N ORKEY,ORMENU,OROLD,ORNEW,DA,DR,DIE,X,Y
+ S OROLD=+$O(^ORD(101,"B","ORC VERIFY ORDERS",0)) Q:OROLD'>0
+ S ORNEW=+$O(^ORD(101,"B","ORC VERIFY MENU",0)) Q:ORNEW'>0
+ F ORKEY="ORELSE","OREMAS" D
+ . S ORMENU=+$O(^ORD(101,"B","ORC "_ORKEY_" ORDER ACTIONS",0)) Q:ORMENU<1
+ . S DA=$O(^ORD(101,"AD",OROLD,ORMENU,0)) Q:'DA  ;already replaced
+ . S DA(1)=ORMENU,DR=".01///"_ORNEW,DIE="^ORD(101,"_DA(1)_",10,"
+ . D ^DIE
+ Q
+ ;
+COMP ; -- Add Complete action
+ ;
+ N ORKEY,ORMENU,ORCOMP,DA,DIC,X,Y
+ S ORCOMP=+$O(^ORD(101,"B","ORC COMPLETE ORDERS",0)) Q:ORCOMP'>0
+ F ORKEY="ORES","OREMAS" D
+ . S ORMENU=+$O(^ORD(101,"B","ORC "_ORKEY_" ORDER ACTIONS",0)) Q:ORMENU<1
+ . Q:$O(^ORD(101,"AD",ORCOMP,ORMENU,0))  ;already added
+ . S DIC="^ORD(101,"_ORMENU_",10,",DIC(0)="LX",DA(1)=ORMENU
+ . S DIC("P")=$P(^DD(101,10,0),U,2),DIC("DR")="3///53"
+ . S X="ORC COMPLETE ORDERS" D ^DIC
+ Q
+ ;
+ORDTAB ; -- Add RV, screens to Orders Tab menu
+ ;
+ N ORMENU,ORITM,DA,DR,DIE
+ S ORMENU=+$O(^ORD(101,"B","ORCHART ORDERS MENU",0)) Q:ORMENU'>0
+ S ORITM=+$O(^ORD(101,"B","ORC NEXT SCREEN",0)) Q:ORITM'>0
+ S DA=+$O(^ORD(101,"AD",ORITM,ORMENU,0)) Q:DA'>0  ;already replaced
+ S ORITM=+$O(^ORD(101,"B","ORC NEW ORDERS",0)) Q:ORITM'>0
+ S DA(1)=ORMENU,DIE="^ORD(101,"_DA(1)_",10,",DR=".01///"_ORITM_";2///RV"
+ D ^DIE F ORITM="ORC PATIENT","ORCHART TABS" D
+ . S DA=+$O(^ORD(101,"B",ORITM,0)) Q:DA'>0
+ . S ^ORD(101,DA,24)="I '$G(DGPMT)" ;unavailable in DGPM MOVEMENT EVENTS
+ Q
+ ;
+PARAM ; -- Reset user parameter values for ORCH CONTEXT MEDS
+ ;
+ N ORPARAM,ORI,ORP,ORENT,ORVAL,ORDA,DA,DIK
+ S ORPARAM=+$O(^XTV(8989.51,"B","ORCH CONTEXT MEDS",0)) Q:ORPARAM'>0
+ F ORI="IN","OUT" D
+ . S ORP=+$O(^XTV(8989.51,"B","ORCH CONTEXT "_ORI_"PT MEDS",0)) Q:ORP'>0
+ . S ORENT="" F  S ORENT=$O(^XTV(8989.5,"AC",ORP,ORENT)) Q:ORENT=""  S ORVAL=$G(^(ORENT,1)),ORDA=+$O(^(1,0)) D
+ . . I $P(ORENT,";",2)="VA(200,",$L(ORVAL) D EN^XPAR(ORENT,ORPARAM,1,ORVAL)
+ . . I ORDA S DA=ORDA,DIK="^XTV(8989.5," D ^DIK
+ . S DA=ORP,DIK="^XTV(8989.51," D ^DIK
+ S ORI=$O(^DIC(9.4,"C","OR",0)),ORDA=$O(^XTV(8989.5,"AC",ORPARAM,+ORI_";DIC(9.4,",1,0)) I ORDA S DA=ORDA,DIK="^XTV(8989.5," D ^DIK ;fix V1
+ Q
+ ;
+AR ; -- Build ^OR(100,"AR") xref
+ ;
+ Q:$D(^OR(100,"AR"))  N ORIFN,ORDA,ORVP,ORRDT
+ S ORIFN=0 F  S ORIFN=$O(^OR(100,ORIFN)) Q:ORIFN'>0  S ORVP=$P($G(^(ORIFN,0)),U,2) I ORVP D
+ . S ORDA=0 F  S ORDA=$O(^OR(100,ORIFN,8,ORDA)) Q:ORDA'>0  S ORRDT=$P($G(^(ORDA,0)),U,16) I ORRDT S ^OR(100,"AR",ORVP,9999999-ORRDT,ORIFN,ORDA)=""
+ Q

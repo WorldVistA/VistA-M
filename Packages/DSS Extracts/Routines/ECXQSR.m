@@ -1,5 +1,5 @@
 ECXQSR ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ; 2/5/10 6:50am
- ;;3.0;DSS EXTRACTS;**11,8,13,26,24,34,33,35,39,43,46,49,64,71,84,92,106,105,120,124,127,132**;Dec 22, 1997;Build 18
+ ;;3.0;DSS EXTRACTS;**11,8,13,26,24,34,33,35,39,43,46,49,64,71,84,92,106,105,120,124,127,132,136**;Dec 22, 1997;Build 28
 BEG ;entry point from option
  I '$O(^ACK(509850.8,0)) W !,"You must be using the Quality Audiology & Speech Pathology",!,"Audit & Review (QUASAR) software to run this extract.",!! Q
  I '$D(^ACK(509850.8,1,"DSS")) W !,"Linkage has not been established between QUASAR and the DSS UNIT file (#724).",!! Q
@@ -28,6 +28,7 @@ QINST ;Get installed information for QUASAR
  Q
 UPDATE ;create record for each unique CPT code for clinic visit 
  N ARY,ECZNODE,CPT,LOC,MOD,STR,VOL,XX,ECTP,ECV
+ N ECXICD10P,ECXICD101,ECXICD102,ECXICD103,ECXICD104
  Q:'$D(^ACK(509850.6,ECDA,0))
  S ECZNODE=^ACK(509850.6,ECDA,0),EC2NODE=$G(^ACK(509850.6,ECDA,2))
  S ECDT=$P(ECZNODE,U),ECDAY=$$ECXDATE^ECXUTL(ECDT,ECXYM)
@@ -58,7 +59,8 @@ UPDATE ;create record for each unique CPT code for clinic visit
  ;Create local array of procedure codes and # of times each procedure
  ; was performed.
  F I=1:1:4 S @("ECXICD9"_I)=""
- S (ECDIA,ECXPPC,ECXPRV1,ECXPRV2,ECXPRV3,ECXPRV4,ECXPRV5)=""
+ F I=1:1:4 S @("ECXICD10"_I)=""
+ S (ECDIA,ECXPPC,ECXPRV1,ECXPRV2,ECXPRV3,ECXPRV4,ECXPRV5,ECXICD10P)=""
  ;if QUASAR v2
  I +ECXQV=2 D
  .S ECXPRV1=$P(EC2NODE,U,7),ECXPRV2=$P(EC2NODE,U,3),ECXPRV3=$P(EC2NODE,U,5),ECPN=0

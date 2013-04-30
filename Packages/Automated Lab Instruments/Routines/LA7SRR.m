@@ -1,5 +1,5 @@
-LA7SRR ;DALOI/JMC - Select Accessions for Resending LEDI Results ; 11/21/01
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64**;Sep 27, 1994
+LA7SRR ;DALOI/JMC - Select Accessions for Resending LEDI Results ;11/20/09  14:09
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74**;Sep 27, 1994;Build 229
  ;
 EN ; Select Accessions to resend.
  ;
@@ -21,7 +21,7 @@ EN ; Select Accessions to resend.
  . I LRAN<1 S LA7QUIT=1 Q
  . S FIRST=LRAN,X=$O(^LRO(68,LRAA,1,LRAD,1,":"),-1)
  . S DIR(0)="NO^"_LRAN_":"_X_":0",DIR("B")=LRAN
- . S DIR("A",1)="",DIR("A")="Download from "_LRAN_" to"
+ . S DIR("A",1)="",DIR("A")="Retransmit from "_LRAN_" to"
  . D ^DIR K DIR
  . I $D(DIRUT) S LA7QUIT=1 Q
  . S LRAN=FIRST-1,LAST=Y
@@ -59,8 +59,7 @@ EN ; Select Accessions to resend.
  . . D SET^LA7VMSG($P(LA7X,"^"),$P(LA7X,"^",2),$P(LA7X,"^",3),$P(LA7X,"^",4),LA7NLTN,LA7NLT,$P(LA7X,"^",5),$P(LA7X,"^",6),$P(LA7X,"^",7),$P(LA7X,"^",8),.LA7Y,"ORU")
  ;
  ; Task background job to create messages
- S ZTIO="",ZTRTN="ORU^LA7VMSG",ZTDTH=$H
- S ZTDESC="Resend Lab LEDI HL7 Result Message"
+ S ZTIO="",ZTRTN="ORU^LA7VMSG",ZTDTH=$H,ZTDESC="Resend Lab LEDI HL7 Result Message"
  D ^%ZTLOAD
  ;
  K LA7X
@@ -76,7 +75,7 @@ EN ; Select Accessions to resend.
  ;
 SETTMP ; Setup TMP global with accession to resend.
  ;
- N LA763,LA768,LA7I,LA7X,LA7Y,LR60,LR61,LRDFN,LRIDT,LRODT,LRSB,LRSS
+ N LA763,LA768,LA7ERR,LA7I,LA7VDB,LA7X,LA7Y,LR60,LR61,LRDFN,LRIDT,LRODT,LRSB,LRSS
  ;
  S LRSS=$P(^LRO(68,LRAA,0),"^",2)
  F LA7I=0,.2,.3,3 S LA768(LA7I)=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,LA7I))
@@ -88,7 +87,7 @@ SETTMP ; Setup TMP global with accession to resend.
  . S LA7X="Not a LEDI specimen - Accession "_$P(LA768(.2),"^")_" ("_LA7UID_") skipped"
  . D EN^DDIOL(LA7X,"","!")
  ;
- I "CHMICYEMSP"'[LRSS!(LRSS="") D
+ I LRSS'?1(1"CH",1"MI",1"SP",1"CY",1"EM") D  Q
  . N LA7X
  . S LA7X(1)=$$GET1^DIQ(68,LRAA_",",.02)_" subscript NOT supported at this time"
  . S LA7X(2)="Accession "_$P(LA768(.2),"^")_" ("_LA7UID_") skipped"
@@ -96,11 +95,10 @@ SETTMP ; Setup TMP global with accession to resend.
  ;
  ; Check file #63 for order codes and results
  ; If no order NLT code found then use default NLT
- ; Check if test has been added to order then report results using NLT
- ; code of the added test.
+ ; Check if test has been added to order then report results using NLT code of the added test.
  S LRDFN=$P(LA768(0),"^"),LRODT=$P(LA768(0),"^",4),LRIDT=$P(LA768(3),"^",5)
  ; Check for date report completed.
- I '$P(^LR(LRDFN,LRSS,LRIDT,0),"^",3) D  Q
+ I '$$OK2SEND D  Q
  . N LA7X
  . S LA7X="No date report completed - Accession "_$P(LA768(.2),"^")_" ("_LA7UID_") skipped"
  . D EN^DDIOL(LA7X,"","!")
@@ -120,11 +118,32 @@ SETTMP ; Setup TMP global with accession to resend.
  . F  S LR60=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LR60)) Q:'LR60  D
  . . S LA764=$P($G(^LAB(60,LR60,64)),"^")
  . . S LA7NLT=$$GET1^DIQ(64,LA764_",",1)
- . . I LA7NLT'="" S LA7Y(LA7NLT)=""
+ . . S LA7VDB=$$GET1^DIQ(64,LA764_",",63,"I")
+ . . I LA7VDB'="" S LA7Y(LA7NLT,LA7VDB)=""
+ . I $D(LA7Y) Q
+ . N LA7X
+ . S LA7X(1)="No test on accession has an associated NLT database code"
+ . S LA7X(2)="Accession "_$P(LA768(.2),"^")_" ("_LA7UID_") skipped"
+ . D EN^DDIOL(.LA7X)
  ;
- I LRSS="SP" S LA7Y("88515.0000")=""
- I LRSS="CY" S LA7Y("88593.0000")=""
- I LRSS="EM" S LA7Y("88597.0000")=""
+ ; Check ordered test multiple for dispositioned tests
+ ; Check AP type test for database codes
+ K LA7I
+ S LA7I=0
+ F  S LA7I=$O(^LR(LRDFN,LRSS,LRIDT,"ORUT",LA7I)) Q:'LA7I  D
+ . S LA7I(0)=^LR(LRDFN,LRSS,LRIDT,"ORUT",LA7I,0)
+ . S LA7NLT=$P(LA7I(0),"^"),LA764=$$FIND1^DIC(64,"","X",LA7NLT,"E","","LA7ERR")
+ . I LRSS?1(1"SP",1"CY",1"EM") D
+ . . S LA7Y(LA7NLT)=""
+ . . S LA7VDB=$$GET1^DIQ(64,LA764_",",63,"I")
+ . . I LA7VDB'="" S LA7Y(LA7NLT,LA7VDB)=""
+ . I $P(LA7I(0),"^",10),'$D(LA7Y(LA7NLT)) S LA7Y(LA7NLT)=""
+ ;
+ I LRSS?1(1"SP",1"CY",1"EM"),'$D(LA7Y) D
+ . I LRSS="SP" S LA7Y("88515.0000")="" Q
+ . I LRSS="CY" S LA7Y("88593.0000")="" Q
+ . I LRSS="EM" S LA7Y("88597.0000")="" Q
+ ;
  I LRSS="AU" S LA7Y("88533.0000")=""
  ;
  I LA7UID'="",$D(LA7Y) D
@@ -133,6 +152,40 @@ SETTMP ; Setup TMP global with accession to resend.
  . S ^TMP("LA7S-RTM",$J,LA7UID)=X
  . S LA7I=""
  . F  S LA7I=$O(LA7Y(LA7I)) Q:LA7I=""  M ^TMP("LA7S-RTM",$J,LA7UID,LA7I)=LA7Y(LA7I)
+ Q
+ ;
+ ;
+OK2SEND() ; Check is this accession is OK to send, i.e. approved, released (preliminary/final/corrected)
+ ; Returns OK = 1 (true)  - report can be sent
+ ;              0 (false) - report not in a status to be sent.
+ ;
+ ; Called from above, LRVR0 and LA7VORU
+ ;
+ N LA7X,OK
+ S OK=0
+ ; Check 0th node for complete date
+ I $P(^LR(LRDFN,LRSS,LRIDT,0),"^",3) S OK=1
+ ;
+ ; If complete and AP subscript then check RELEASE DATE/TIME
+ I OK,LRSS?1(1"SP",1"CY",1"EM"),$P($G(^LR(LRDFN,LRSS,LRIDT,0)),"^",11)="" S OK=0
+ ;
+ ; If not complete and "CH" subscript then check for NP status
+ I 'OK,LRSS="CH",'$O(^LR(LRDFN,"CH",LRIDT,1)) S OK=1
+ ;
+ ; If not complete and "MI" subscript then check each section of report
+ I 'OK,LRSS="MI" F LA7X=1,5,8,11,16 I $P($G(^LR(LRDFN,LRSS,LRIDT,LA7X)),"^") S OK=1 Q
+ ;
+ ; Also check for test that has NP status
+ I 'OK D NPSTATUS
+ Q OK
+ ;
+ ;
+NPSTATUS ; Check ORUT node for test with NP status
+ ;
+ N LA7DISPO,LA7I
+ S LA7DISPO=$$FIND1^DIC(64.061,"","OQX","X","D","I $P(^(0),U,5)=""0123""")
+ S LA7I=0
+ F  S LA7I=$O(^LR(LRDFN,LRSS,LRIDT,"ORUT",LA7I)) Q:'LA7I  I $P(^(LA7I,0),"^",10)=LA7DISPO S OK=1 Q
  Q
  ;
  ;

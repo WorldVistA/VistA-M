@@ -1,5 +1,5 @@
 DMSQT ;SFISC/EZ-TROUBLE SHOOTING ;11/13/97  12:25
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ; DMQ - status flag for flow of control

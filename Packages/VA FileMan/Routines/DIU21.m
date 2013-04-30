@@ -1,5 +1,5 @@
 DIU21 ;SFISC/XAK-EDIT FILE (PGMR PART) ;06:21 PM  2 Apr 2001
- ;;22.0;VA FileMan;**82**;Mar 30, 1999
+ ;;22.0;VA FileMan;**82**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  D:'$D(DISYS) OS^DII Q:$G(^DD("OS",DISYS,18))=""
 SCR K DIR S DIR(0)="FOU^3:250",DIR("A")="FILE SCREEN" S:$D(^DD(DA,0,"SCR")) DIR("B")=^("SCR")

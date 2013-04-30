@@ -1,5 +1,5 @@
 PSJCOMR ;BIR/CML3-RENEW A COMPLEX ORDER SERIES ;07 MAR 96 / 1:23 PM
- ;;5.0; INPATIENT MEDICATIONS ;**110,127,136,157,181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS;**110,127,136,157,181,268**;16 DEC 97;Build 9
  ;
  ; Reference to ^PS(55 supported by DBIA 2191.
  ; Reference to ^PSSLOCK is supported by DBIA 2789.
@@ -67,6 +67,9 @@ FILEUD ;
  I +$G(PSJSYSU)=3,$G(PSJCOM) D CMPLX2^PSJCOM1(PSGP,PSJCOM,PSGORD) I $G(PSGPXN) S PSJPREX=1
  W !!,"...updating order..." K DA S DA(1)=PSGP,DA=+PSGORD,PSGAL("C")=PSJSYSU*10+18000 D ^PSGAL5 W "."
  I '$G(PSGOERDP),$P(PSJSYSW0,"^",4) I $G(PSGFD),$G(PSGWLL),(PSGFD'<PSGWLL) S $P(^PS(55,PSGP,5.1),"^")=+PSGFD
+ ; ** This is where the Automated Dispensing Machine hook is called. Do NOT DELETE or change location **
+ D RENEW^PSJADM
+ ; ** END of INTERFACE Hook **
  D UNL^PSSLOCK(PSGP,PSGORD)
  W ".DONE!" S VALMBCK="Q"
  Q

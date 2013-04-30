@@ -1,12 +1,12 @@
-LRCAPDAR ;DALOI/FHS/RBN - LAB DSS RESULTS EXTRACT (LAR) ; 8/13/08 1:41pm
- ;;5.2;LAB SERVICE;**143,169,258,307,326,386,385,394,399**;Sep 27, 1994;Build 1
+LRCAPDAR ;DALOI/FHS/RBN - LAB DSS RESULTS EXTRACT (LAR) ;6/29/12  16:42
+ ;;5.2;LAB SERVICE;**143,169,258,307,326,386,385,394,399,420**;Sep 27, 1994;Build 5
  ;
  ; Call with Start Date (LRSDT)  End Date (LREDT) FileMan format
  ; Calling routine should have already purged ^LAR(64.036)
 EN S:$D(ZTQUEUED) ZTREQ="@"
  I $S($G(LRSDT)'?7N:1,$G(LREDT)'?7N:1,1:0) Q
  L +^LAR(64.036):2 G:'$T END
- N DIR,DIC,DIE,X,I,LR3,LRAA,LRAD,LRAN,LRC,LRSPDT,LRSPTM,UID,Y,DLAYGO
+ N DIR,DIC,DIE,X,I,LR3,LRAA,LRAD,LRAN,LRC,LRSPDT,LRSPTM,UID,Y,DLAYGO,NEXTMO,RERUN ;420
  N LRDFN,LRDN,LRY,LRNLT,LRLOINC,ARRAY,LRP8
  S DLAYGO=64
  I LRSDT>LREDT S X=LRSDT,LRSDT=LREDT,LREDT=X
@@ -14,10 +14,16 @@ EN S:$D(ZTQUEUED) ZTREQ="@"
  S:'$D(^LAR(64.036,0))#2 ^LAR(64.036,0)="LAB DSS LAR EXTRACT^64.036^2"
 LR ;
  K ARRAY S ARRAY("ALL")="" D LOINC^ECXUTL6(.ARRAY) ;Build ^TMP($J,"ECXUTL6")
+ S NEXTMO=$E($$FMADD^XLFDT(LREDT,1),1,5) ;420 Get next month, year and month
+ S RERUN=$D(^XTMP("LRECX",NEXTMO)) ;420 Need to know if we're re-running an extract.
+ D MISSED ;420 Look at skipped entries from previous month's extract
  S LRDFN=0 F  S LRDFN=$O(^LR(LRDFN)) Q:LRDFN<1  I $P($G(^LR(LRDFN,0)),U,2)=2 S LRN=^(0) D
  . S DFN=$P(LRN,U,3),LRDPF=$P(LRN,U,2)
  . S LRIDT=LRX2
- . F  S LRIDT=$O(^LR(LRDFN,"CH",LRIDT)) Q:LRIDT<1!(LRIDT>LRX1)  I $D(^(LRIDT,0)),$P(^(0),U,3) S LRVSPEC=$P(^(0),U,5),LRN0=^(0) D
+ . F  S LRIDT=$O(^LR(LRDFN,"CH",LRIDT)) Q:LRIDT<1!(LRIDT>LRX1)  I $D(^(LRIDT,0)) S LRVSPEC=$P(^(0),U,5),LRN0=^(0) D
+ . . I '$P(^LR(LRDFN,"CH",LRIDT,0),U,3) D SAVE Q  ;420 If accessioned and no result, put on list for next month.
+ . . I RERUN I +$G(^XTMP("LRECX",NEXTMO,LRDFN,LRIDT))=1 Q  ;420 Don't consider this record as it's already been counted in the following month's extract.
+ . . I RERUN I $G(ECXTL)'="LAR" K ^XTMP("LRECX",NEXTMO,LRDFN,LRIDT) ;420 If re-running the extract and it's not the untranslatable report then remove entry from next month's list as we now have a result
  . . S LRDN=0 F  S LRDN=$O(^LR(LRDFN,"CH",LRIDT,LRDN)) Q:LRDN<1  D
  . . . S LRY=$$TSTRES^LRRPU(LRDFN,"CH",LRIDT,LRDN,"",1)
  . . . S LRP8=$P(LRY,U,8)
@@ -78,4 +84,44 @@ UID ;
  . S LRODT=$P(LR3,U,4),LRSN=$P(LR3,U,5)
  . S LROODT=$P($G(^LRO(69,LRODT,1,LRSN,0)),U,5)
  . I $G(LROODT) S $P(LRN0,U)=LROODT
+ Q
+ ;
+SAVE ;added in patch 420, save records for next month's review if no result
+ ;In this section we're saving any records that don't have a value in
+ ;the date report completed field in the CHEM multiple of the LAB DATA
+ ;file.  We don't save records if the user is running the lab
+ ;untranslatable report.  If we're re-running the extract for the month
+ ;then we don't count the record if it's been counted in a subsequent
+ ;month's extract. Finally, we set the record into the XTMP global for
+ ;later retrieval.  It will be deleted one year from being stored.
+ I $G(ECXTL)="LAR" Q  ;Don't add to the list if running untranslatable report.
+ I RERUN I +$G(^XTMP("LRECX",NEXTMO,LRDFN,LRIDT)) Q  ;Don't update an entry on the list if we've already counted it.
+ I '$D(^XTMP("LRECX",NEXTMO,0)) S ^XTMP("LRECX",NEXTMO,0)=$$FMADD^XLFDT($$DT^XLFDT,365)_"^"_$$DT^XLFDT_"^"_"Accessioned tests without results"
+ S ^XTMP("LRECX",NEXTMO,LRDFN,LRIDT)="" ;save specific record
+ Q
+ ;
+MISSED ;added in patch 420, process any records missed in previous month's extract
+ ;In this section we will look at the lab tests from the previous month
+ ;that didn't have a result when the extract was run.  If they now have
+ ;a result, they'll be counted if they match the LOINC criteria.  We 
+ ;only check records in the month after they were identified as no lab
+ ;test that we report on should take more than 30 days to result.  When
+ ;we count a test that we previously skipped, the entry in the XTMP
+ ;global is set equal to 1 to denote that we've processed this record
+ ;and it shouldn't be counted in future extracts or in reruns of
+ ;an extract month.
+ N CURMO,LRDFN,LRN,LRDN,LRIDT,LRVSPEC,LRN0,LRY,LRP8,LRNLT,LRLOINC,LRVV
+ S CURMO=$E(LRSDT,1,5) ;Year and month we're extracting
+ I '$D(^XTMP("LRECX",CURMO,0)) Q  ;No records to review
+ S LRDFN=0 F  S LRDFN=$O(^XTMP("LRECX",CURMO,LRDFN)) Q:LRDFN<1  I $P($G(^LR(LRDFN,0)),U,2)=2 S LRN=^(0) D
+ . S DFN=$P(LRN,U,3),LRDPF=$P(LRN,U,2)
+ . S LRIDT=0
+ . F  S LRIDT=$O(^XTMP("LRECX",CURMO,LRDFN,LRIDT)) Q:LRIDT<1  I $D(^LR(LRDFN,"CH",LRIDT,0)),$P(^(0),U,3) S LRVSPEC=$P(^(0),U,5),LRN0=^(0) D
+ . . S LRDN=0 F  S LRDN=$O(^LR(LRDFN,"CH",LRIDT,LRDN)) Q:LRDN<1  D
+ . . . S LRY=$$TSTRES^LRRPU(LRDFN,"CH",LRIDT,LRDN,"",1)
+ . . . S LRP8=$P(LRY,U,8)
+ . . . S LRNLT=$P($P(LRP8,"!",2),";"),LRLOINC=$P($P(LRP8,"!",3),";")
+ . . . Q:'(+LRLOINC)
+ . . . I +$G(^TMP($J,"ECXUTL6",LRLOINC))>0 D SET
+ . . I $O(LRVV(0)) D FILE I $G(ECXTL)'="LAR" S ^XTMP("LRECX",CURMO,LRDFN,LRIDT)=1 ;Mark it as counted in this month's extract
  Q

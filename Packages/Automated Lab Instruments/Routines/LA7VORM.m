@@ -1,43 +1,47 @@
-LA7VORM ;DALOI/DLR - LAB ORM (Order) message PROCESSOR ; April 13, 2004
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,42,46,64**;Sep 27, 1994
+LA7VORM ;DALOI/DLR - LAB ORM (Order) message PROCESSOR ;06/08/09  17:35
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,42,46,64,74**;Sep 27, 1994;Build 229
+ ;
+ ;
 IN ;
  D ORM^LA7VHL
  Q
  ;
+ ;
 OBR ;;OBR
- N LA760,LA76205,LA7629,LA7ACC,LA7CEDT,LA7CSCS,LA7CSNM,LA7CSTY,LA7DCODE,LA7HSITE,LA7I,LA7NCS,LA7OTST,LA7OTSTN,LA7PF1,LA7PF2,LA7RCI,LA7SPCS,LA7SPNM,LA7SPTY,LA7USID,LA7X,LA7Y,RTST,RTSTN
+ N LA760,LA76205,LA7629,LA7ACC,LA7CEDT,LA7CSCS,LA7CSNM,LA7CSTY,LA7DCODE,LA7HSITE,LA7I,LA7NCS,LA7OBR4,LA7OK,LA7OTST,LA7OTSTN,LA7PF1,LA7PF2,LA7RCI,LA7SPCS,LA7SPNM,LA7SPTY,LA7X,LA7Y,RTST,RTSTN
  ;
  ; OBR Set ID
  S LA7SOBR=$$P^LA7VHLU(.LA7SEG,2,LA7FS)
  ;
  ; Placer order number
  S LA7SID=$$P^LA7VHLU(.LA7SEG,3,LA7FS)
+ I LA7SID'="" D
+ . D SETID^LA7VHLU1(LA76249,LA7ID,LA7SID,0)
+ . D SETID^LA7VHLU1(LA76249,"",LA7SID,0)
  ;
  ; Universal service ID
- S LA7USID=$$P^LA7VHLU(.LA7SEG,5,LA7FS)
- S LA7OTSTN=$P(LA7USID,LA7CS)
- I LA7OTSTN="" D  Q
+ S (LA7OBR4,LA7OTSTN)=$$P^LA7VHLU(.LA7SEG,5,LA7FS)
+ D FLD2ARR^LA7VHLU7(.LA7OTSTN,LA7FS_LA7ECH)
+ ;
+ I $G(LA7OTSTN(1))="" D  Q
  . N LA7X
  . S LA7X="PID-"_LA7SPID_"/OBR-"_LA7SOBR
- . D CREATE^LA7LOG(26)
+ . S LA7AERR=$$CREATE^LA7LOG(26,1)
  ;
- S LA7OTST=$$UNESC^LA7VHLU3($P(LA7USID,LA7CS,2),LA7FS_LA7ECH)
- S LA7NCS=$P(LA7USID,LA7CS,3) ; Name of coding system
- S RTSTN=$P(LA7USID,LA7CS,4)
- S RTST=$$UNESC^LA7VHLU3($P(LA7USID,LA7CS,5),LA7FS_LA7ECH)
- ;
- ; No ORC segment
- I LA7SEQ<20 D  Q
- . D CREATE^LA7LOG(29)
- ;
- ; Missing patient name
- I $G(LA7PNM)="" D  Q
- . D CREATE^LA7LOG(30)
+ S LA7OTST=$G(LA7OTSTN(2))
+ I LA7OTST="" S LA7OTST=$G(LA7OTSTN(5))
+ S RTSTN=$G(LA7OTSTN(4)),RTST=$G(LA7OTSTN(5))
  ;
  ; Non-VA system, not using NLT codes/file #60 tests
- I LA7NCS'="99VA64" D
- . I RTSTN="" S RTSTN=LA7OTST
- . I RTST="" S RTST=LA7OTSTN
+ I LA7OTSTN(3)'="99VA64" D
+ . I RTSTN="" S RTSTN=LA7OTSTN(1)
+ . I RTST="" S RTST=LA7OTSTN(2)
+ ;
+ ; No ORC segment
+ I LA7SEQ<20 S LA7AERR=$$CREATE^LA7LOG(29,1) Q
+ ;
+ ; Missing patient name
+ I $G(LA7PNM)="" S LA7AERR=$$CREATE^LA7LOG(30,1) Q
  ;
  ; Specimen collection date/time
  S LA7CDT=$$HL7TFM^XLFDT($P($$P^LA7VHLU(.LA7SEG,8,LA7FS),LA7CS),"L")
@@ -48,7 +52,7 @@ OBR ;;OBR
  ; Collection volume
  S LA7VOL=""
  S LA7X=$$P^LA7VHLU(.LA7SEG,10,LA7FS)
- I $L($P(LA7X,LA7CS)) D
+ I $P(LA7X,LA7CS)'="" D
  . S $P(LA7VOL,"^")=$P(LA7X,LA7CS) ; volume
  . S $P(LA7VOL,"^",2)=$P(LA7X,LA7CS,2) ; volume units
  . S $P(LA7VOL,"^",3)=$P(LA7X,LA7CS,3) ; volume coding system
@@ -61,39 +65,37 @@ OBR ;;OBR
  ; Danger code
  S LA7X=$P($$P^LA7VHLU(.LA7SEG,13,LA7FS),LA7CS,2)
  S LA7DCODE=$$UNESC^LA7VHLU3(LA7X,LA7FS_LA7ECH)
- I LA7DCODE]"" D
+ I LA7DCODE'="" D
  . S LA7DCODE=$$TRIM^XLFSTR(LA7DCODE,"RL"," ")
  . S LA7DCODE="Danger Code - "_LA7DCODE
  ;
  ; Relevant clinical information
  S LA7X=$$P^LA7VHLU(.LA7SEG,14,LA7FS)
  S LA7RCI=$$UNESC^LA7VHLU3(LA7X,LA7FS_LA7ECH)
- I LA7RCI]"" D
+ I LA7RCI'="" D
  . S LA7RCI=$$TRIM^XLFSTR(LA7RCI,"RL"," ")
  . S LA7RCI="Relevant clinical information - "_LA7RCI
  ;
- ; Specimen source -  specimen code - name of specimen coding system
- ; If no primary then try alternate
+ ; Specimen source -  specimen code - name of specimen coding system, move SCT code system to primary if needed
+ K LA7X,LA7Y
  S LA7X=$$P^LA7VHLU(.LA7SEG,16,LA7FS)
- S LA7SPTY=$P($P(LA7X,LA7CS),$E(LA7ECH,4))
- S LA7SPNM=$P($P(LA7X,LA7CS),$E(LA7ECH,4),2)
- S LA7SPCS=$P($P(LA7X,LA7CS),$E(LA7ECH,4),3)
- I LA7SPTY="" D
- . S LA7SPTY=$P($P(LA7X,LA7CS),$E(LA7ECH,4),4)
- . S LA7SPNM=$P($P(LA7X,LA7CS),$E(LA7ECH,4),5)
- . S LA7SPCS=$P($P(LA7X,LA7CS),$E(LA7ECH,4),6)
+ D FLD2ARR^LA7VHLU7(.LA7X,LA7FS_LA7ECH)
+ K LA7Y
+ M LA7Y=LA7X(1)
+ D CHKCDSYS^LA7SMU2(.LA7Y,.LA7SPTY,"SCT",LA7CS)
  ;
- ; Collection sample from body site
- S LA7CSTY=$P($P(LA7X,LA7CS,4),$E(LA7ECH,4))
- S LA7CSNM=$P($P(LA7X,LA7CS,4),$E(LA7ECH,4),2)
- S LA7CSCS=$P($P(LA7X,LA7CS,4),$E(LA7ECH,4),3)
+ ; Collection sample from body site, move SCT code system to primary if needed
+ K LA7Y
+ M LA7Y=LA7X(4)
+ D CHKCDSYS^LA7SMU2(.LA7Y,.LA7CSTY,"SCT",LA7CS)
+ K LA7X,LA7Y
  ;
  ; Placer's ordering provider (last name, first name, mi [id])
  ; Only process if LA7POP from ORC-12 is blank.
  I LA7POP="" D
  . S LA7X=$$P^LA7VHLU(.LA7SEG,17,LA7FS)
- . S LA7POP=$$XCNTFM^LA7VHLU4(LA7X,LA7ECH)
- . I LA7POP="^^" S LA7POP=""
+ . S LA7POP=$$XCNTFM^LA7VHLU9(LA7X,LA7ECH)
+ . I LA7POP="^0^" S LA7POP=""
  ;
  ; Specimen urgency
  S LA7UR=$P($$P^LA7VHLU(.LA7SEG,28,LA7FS),LA7CS,6)
@@ -106,23 +108,21 @@ OBR ;;OBR
  I LA7HSITE'>0 S LA7HSITE=$$FINDSITE^LA7VHLU2(LA7RFAC,1,0)
  ;
  ; Find an "active" shipping configuration for this pair.
- S LA7629=0
+ S (LA7629,LA7X)=0
  I LA7CSITE,LA7HSITE D
- . N LA7X
- . S LA7X=0
  . F  S LA7X=$O(^LAHM(62.9,"CH",LA7CSITE,LA7HSITE,LA7X)) Q:'LA7X  I $P($G(^LAHM(62.9,LA7X,0)),"^",4) S LA7629=LA7X Q
  ; Log error and quit if no active shipping configuration identified
- I 'LA7629 D  Q
- . D CREATE^LA7LOG(39)
+ I 'LA7629 S LA7AERR=$$CREATE^LA7LOG(39,1) Q
  ;
- S LA7Y=$$DTTO^LA7SMU2(LA7629,LA7OTSTN,LA7SPTY,LA7NCS,LA7SPCS,LA7UR,LA7CSTY_"^"_LA7CSNM_"^"_LA7CSCS)
+ S LA7Y=$$DTTO^LA7SMU2(LA7629,.LA7OTSTN,.LA7SPTY,LA7UR,.LA7CSTY),LA7OK=1
  S LA760=$P(LA7Y,"^"),LA761=$P(LA7Y,"^",2),LA762=$P(LA7Y,"^",3),LA76205=$P(LA7Y,"^",4)
  I $P(LA7Y,"^",5)'="" S LA7OTSTN=$P(LA7Y,"^",5),LA7OTST=$P(LA7Y,"^",6)
  F LA7I=1:1:4 I '$P(LA7Y,"^",LA7I) D
- . I LA7I=3,LA760,"MISPCYEM"[$P(^LAB(60,LA760,0),"^",4) Q
- . S LA7X="No local "_$P("lab test^topography^collection sample^urgency","^",LA7I)_" mapped."
+ . I LA7I>1,LA760,"MISPCYEM"[$P(^LAB(60,LA760,0),"^",4) Q
+ . S LA7X="No local "_$P("lab test^topography^collection sample^urgency","^",LA7I)_" mapped.",LA7OK=0
  . N LA7I,LA7Y
  . D CREATE^LA7LOG(47)
+ I 'LA7OK S LA7AERR="47^A VistA lab test has not been defined for order code "_LA7OTSTN_" and specimen/collection sample combination"
  ;
  ; Placer fields 1 & 2
  S LA7X=$$P^LA7VHLU(.LA7SEG,19,LA7FS)
@@ -134,7 +134,7 @@ OBR ;;OBR
  S LA7ACC=$P(LA7PF2,"^",6)
  ;
  ; New order - add to LAB PENDING ORDERS file #69.6
- I LA7OTYPE="NW" D NW
+ I LA7OTYPE="NW",LA7OK D NW
  ;
  Q
  ;
@@ -143,9 +143,9 @@ NW ; Create new order in LAB PENDING ORDERS file #69.6
  N FDA,I,LA76964,LA7DIE,LA7I,LA7IEN,LA7PATID,LA7SSITE,LA7STAT,LA7WP
  ;
  ; Get lock on 69.6
- L +^LRO(69.6,0):99999
- I '$T D  Q
- . D CREATE^LA7LOG(31)
+ ;L +^LRO(69.6,0):99999
+ D LOCK^DILF("^LRO(69.6,0)")
+ I '$T S LA7AERR=$$CREATE^LA7LOG(31,1) Q
  ;
  S LA7696=$O(^LRO(69.6,"AD",$S($P(LA7SM,"^",2)'="":$P(LA7SM,"^",2),1:0),LA7SID,0))
  ;
@@ -158,14 +158,15 @@ NW ; Create new order in LAB PENDING ORDERS file #69.6
  . S FDA(1,69.6,"+1,",6)=LA7STAT
  . D UPDATE^DIE("","FDA(1)","LA7IEN","LA7DIE(1)")
  . S LA7696=LA7IEN(1)
- . I LA7696<1 D CREATE^LA7LOG(32)
+ . I LA7696<1 S LA7AERR=$$CREATE^LA7LOG(32,1)
  ;
  L -^LRO(69.6,0)
  I LA7696<1 Q
  ;
- L +^LRO(69.6,LA7696):99999
+ ;L +^LRO(69.6,LA7696):99999
+ D LOCK^DILF("^LRO(69.6,LA7696)")
  I '$T D  Q  ;cannot get lock on ENTRY in 69.6
- . D CREATE^LA7LOG(33)
+ . S LA7AERR=$$CREATE^LA7LOG(33,1)
  ;
  ; Prevent duplication of tests
  I $D(^LRO(69.6,LA7696,2,"C",LA7OTSTN)) D UNLOCK Q
@@ -215,7 +216,7 @@ NW ; Create new order in LAB PENDING ORDERS file #69.6
  I LA760 S FDA(3,69.64,"+2,"_LA7696_",",11)=LA760
  I LA76205 S FDA(3,69.64,"+2,"_LA7696_",",12)=LA76205
  I $P(LA7POP,"^",3)'="" S FDA(3,69.64,"+2,"_LA7696_",",13)=$P(LA7POP,"^",3)
- I LA7USID'="" S FDA(3,69.64,"+2,"_LA7696_",",700.04)=LA7USID
+ I LA7OBR4'="" S FDA(3,69.64,"+2,"_LA7696_",",700.04)=LA7OBR4
  I LA7PF1'="" S FDA(3,69.64,"+2,"_LA7696_",",700.18)=LA7PF1
  I LA7PF2'="" S FDA(3,69.64,"+2,"_LA7696_",",700.19)=LA7PF2
  D UPDATE^DIE("","FDA(3)","LA76964","LA7DIE(3)")
@@ -238,8 +239,10 @@ NW ; Create new order in LAB PENDING ORDERS file #69.6
  I LA7RCI'="" F I=1:250:$L(LA7RCI) S LA7I=LA7I+1,LA7WP(LA7I,0)=$S(I=1:" ",1:"")_$E(LA7RCI,I,I+249)
  ;
  I LA760,"MISPCYEM"[$P(^LAB(60,LA760,0),"^",4) D
- . S LA7I=LA7I+1,LA7WP(LA7I,0)=" Specimen source: "_LA7SPNM_" ["_LA7SPCS_": "_LA7SPTY_"]"
- . S LA7I=LA7I+1,LA7WP(LA7I,0)=" Collection sample: "_LA7CSNM_" ["_LA7CSCS_": "_LA7CSTY_"]"
+ . S LA7I=LA7I+1,LA7WP(LA7I,0)=" Specimen source: "
+ . F I=1,4 I $G(LA7SPTY(I))'="" S LA7WP(LA7I,0)=LA7WP(LA7I,0)_$G(LA7SPTY(I+1))_" ["_$G(LA7SPTY(I))_":"_$G(LA7SPTY(I+2))_"]"_$S(I=1:" ; ",1:"")
+ . S LA7I=LA7I+1,LA7WP(LA7I,0)=" Collection sample: "
+ . F I=1,4 I $G(LA7CSTY(I))'="" S LA7WP(LA7I,0)=LA7WP(LA7I,0)_$G(LA7CSTY(I+1))_" ["_$G(LA7CSTY(I))_":"_$G(LA7CSTY(I+2))_"]"_$S(I=1:" ; ",1:"")
  ;
  I $O(LA7WP(1)) D WP^DIE(69.6,LA7696_",",99,"A","LA7WP","LA7DIE(99)")
  ;

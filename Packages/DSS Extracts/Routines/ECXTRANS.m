@@ -148,7 +148,7 @@ SEND(ECXXMZ) ;send individual messages
  N ECXDD,DA,DIC,DIE,DINUM,X,Y,Z,XMDUZ,XMTEXT,XMSUB,XMY,XMZ,FODMN
  S XMSUB="("_ECGRP_") "_ECINST_" - "_ECPACK_" DSS EXTRACT, MESSAGE "_ECMS_" OF "_ECMSN
  S XMDUZ="DSS SYSTEM",^TMP($J,ECMS,1,0)=ECHD(1)
- S XMY("XXX@Q-"_ECXQUEUE_".DOMAIN.EXT")=""
+ S XMY("XXX@Q-"_ECXQUEUE_".domain.ext")=""
  ;Send extracts done at field offices to user instead of AAC
  S FODMN=$$FODMN()
  I FODMN D

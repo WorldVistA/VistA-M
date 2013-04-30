@@ -1,5 +1,5 @@
-MAGDIR8A ;WOIFO/PMK - Read a DICOM image file ; 15 May 2007  10:42 AM
- ;;3.0;IMAGING;**11,51,49**;Mar 19, 2002;Build 2033;Apr 07, 2011
+MAGDIR8A ;WOIFO/PMK/JSL/SAF - Read a DICOM image file ; 03/08/2005  07:02
+ ;;3.0;IMAGING;**11,51,49,123**;Mar 19, 2002;Build 67;Jul 24, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -119,11 +119,12 @@ PIDCHECK() ; compare VistA patient ID with DICOM patient ID
  I $G(RADATA("EXAMSTS"))="CANCELLED" Q "-3,CANCELLED"
  ;
  ; lookup patient in VistA database
- S DIQUIET=1 D DEM^VADPT
+ S DIQUIET=1 D DEM^MAGSPID($G(INSTLOC)) ; P123
  S PNAMEVAH=VADM(1)
  S LASTVAH=$P(PNAMEVAH,","),FIRSTVAH=$P(PNAMEVAH,",",2)
  S MIVAH=$TR($P(FIRSTVAH," ",2,999),"."),FIRSTVAH=$P(FIRSTVAH," ")
- S IDVAH=$P(VADM(2),"^"),DCMPID=$P(VADM(2),"^",2)
+ I $$ISIHS^MAGSPID() S (IDVAH,DCMPID)=VA("PID")  ; P123 proper VA/IHS PID
+ E  S IDVAH=$P(VADM(2),"^"),DCMPID=$P(VADM(2),"^",2)
  ;
  ; compare the values - allow a single transposition in the patient name,
  ; but require exact patient id values (i.e., social security numbers)

@@ -1,5 +1,5 @@
 PSJO ;BIR/CML3,PR-GET AND PRINT INPATIENT ORDERS ;28 Jun 99 / 10:20 AM
- ;;5.0; INPATIENT MEDICATIONS ;**31,58,110,181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS;**31,58,110,181,267**;16 DEC 97;Build 158
  ;
  ; Reference to ^PSD(58.8 supported by DBIA #2283.
  ; Reference to ^PSI(58.1 supported by DBIA #2284.
@@ -27,12 +27,10 @@ ON ;
 PUD ; print unit dose
  ; Naked reference below refers to full reference ^PS(53.1,+PSJO,0) or ^PS(55,DFN,5,+PSJO,0) using indirection.
  S ND=$S($D(@(PSJF_+PSJO_",0)")):^(0),1:""),SCH=$G(^(2)),ND4=$G(^(4)),ND6=$P($G(^(6)),"^"),DO=$S($P(DN,"^",2)=.2:$P($G(@(PSJF_+PSJO_",.2)")),"^",2),1:$G(@(PSJF_+PSJO_",.3)")))
- ;I PSJC["A" S V='$P(ND4,"^",UDU) W $S(ND4="":" ",$P(ND4,"^",12):"D",$P(ND4,"^",18)&($P(ND4,"^",19)!V):"H",$P(ND4,"^",22)&($P(ND4,"^",23)!V):"H",$P(ND4,"^",15)&($P(ND4,"^",16)!V):"R",1:" ") W:V&(PSJSYSU) "->"
  I ("AO"[PSJC)!(PSJC="DF") D
  .S V='$P(ND4,"^",UDU),V=$S(+PSJSYSU=1&V:1,+PSJSYSU=3&V:1,1:0)
  .W $S(ND4="":" ",$P(ND4,"^",12):"D",$P(ND4,"^",18)&($P(ND4,"^",19)!V):"H",$P(ND4,"^",22)&($P(ND4,"^",23)!V):"H",$P(ND4,"^",15)&($P(ND4,"^",16)!V):"R",1:" ")
  .W $S($P($G(@(PSJF_+PSJO_",.2)")),"^",4)="D":"d",1:" ")_$S(V:"->",1:"  ")
- ;I $S(PSJC["NZ":0,1:PSJC["N") W $S($P(ND4,"^",12):"D",1:" "),$S(PSJSYSU:"->",1:"")
  I $S(PSJC["NZ":0,1:PSJC["N") W $S($P(ND4,"^",12):"D",1:" ")
  S RTE=$P(ND,"^",3),SM=$S('$P(ND,"^",5):0,$P(ND,"^",6):1,1:2),STAT=$S($P(ND,"^",28)]"":$P(ND,"^",28),$P(ND,"^",9)]"":$P(ND,"^",9),1:"NF")
  S PF=$E("*",$P(ND,"^",20)>0),PSGID=$P(SCH,"^",2),SD=$P(SCH,"^",4),SCH=$P(SCH,"^")
@@ -46,7 +44,10 @@ PUD ; print unit dose
  . W:'$D(PSJEXTP) ?53,$S(PSJC["NZ":"*****",1:$E($$ENDTC^PSGMI(PSGID),1,5)),?60,$S(PSJC["NZ":"*****",1:$E($$ENDTC^PSGMI(SD),1,5)),?67,STAT
  . W:$D(PSJEXTP) ?53,$S(PSJC["NZ":"*****",1:$E($$ENDTC^PSGMI(PSGID),1,8)),?63,$S(PSJC["NZ":"*****",1:$E($$ENDTC^PSGMI(SD),1,8)),?73,STAT
  . I NF!WS!SM!PF!(PSJRNDT]"") W ?71 W:NF "NF " W:WS "WS " W:SM $E("HSM",SM,3) W:$G(PSJRNDT) PSJRNDT W:PF ?79,"*"
- I ND6]"" S Y=$$ENSET^PSGSICHK(ND6) W !?11 F X=1:1:$L(Y," ") S V=$P(Y," ",X) W:$L(V)+$X>66 !?11 W V_" "
+ I ND6]"" S Y=$$ENSET^PSGSICHK(ND6) D  K ^PS(53.45,DUZ,5)
+ .D GETSI^PSJBCMA5(DFN,PSJO) I $G(^PS(53.45,DUZ,5)) N TXTLN S TXTLN=0 F  S TXTLN=$O(^PS(53.45,DUZ,5,TXTLN)) Q:'TXTLN  D
+ ..W !?11,$G(^PS(53.45,DUZ,5,TXTLN,0))
+ .W !?11 F X=1:1:$L(Y," ") S V=$P(Y," ",X) W:$L(V)+$X>66 !?11 W V_" "
  Q
  ;
 TF ;

@@ -15,7 +15,7 @@ PAC(PKG,VER) ; from package init (A5CSTBUL installs code to call this routine)
  ;
  ; Site tracking updates only occur if run in a VA production primary domain
  ; account and having a domain for FORUM
- I $G(^XMB("NAME"))'[".DOMAIN.EXT" Q
+ I $G(^XMB("NAME"))'[".domain.ext" Q
  X ^%ZOSF("UCI") I Y'=^%ZOSF("PROD") Q
  I $L($G(^XMB("NAME")),".")>3 Q
  S DOMAIN=$O(^DIC(4.2,"B","FORUM")) I DOMAIN'["FORUM." Q

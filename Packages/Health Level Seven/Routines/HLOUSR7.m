@@ -1,5 +1,5 @@
-HLOUSR7 ;OIFO-ALB/CJM - Deleting HLO queues ;01/13/2011
- ;;1.6;HEALTH LEVEL SEVEN;**147,153**;Oct 13, 1995;Build 11
+HLOUSR7 ;OIFO-ALB/CJM - Deleting HLO queues ;03/26/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**147,153,158**;Oct 13, 1995;Build 14
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -104,7 +104,7 @@ OUTPURGE ;Purge outgoing queue
  .I '(CNT#100),'$D(ZTQUEUED) W "."
  .I '(CNT#70000),'$D(ZTQUEUED) W "!"
  .D DEQUE^HLOQUE(LINK,QUE,"OUT",MSG)
- .I $$SETPURGE^HLOAPI3(MSG,WHEN) S $P(^HLB(MSG,0),"^",21)="MESSAGE GENERATED IN ERROR AND NOT TRANSMITTED"
+ .I $$SETPURGE(MSG,WHEN) S $P(^HLB(MSG,0),"^",21)="MESSAGE GENERATED IN ERROR AND NOT TRANSMITTED"
  Q
  ;
 SEQPURGE ;Purge sequence queue
@@ -116,8 +116,28 @@ SEQPURGE ;Purge sequence queue
  .I '(CNT#100),'$D(ZTQUEUED) W "."
  .I '(CNT#70000),'$D(ZTQUEUED) W "!"
  .K ^HLB("QUEUE","SEQUENCE",QUE,MSG)
- .I $$SETPURGE^HLOAPI3(MSG,WHEN) S $P(^HLB(MSG,0),"^",21)="MESSAGE GENERATED IN ERROR AND NOT TRANSMITTED"
+ .I $$SETPURGE(MSG,WHEN) S $P(^HLB(MSG,0),"^",21)="MESSAGE GENERATED IN ERROR AND NOT TRANSMITTED"
  I $$INC^HLOSITE($NA(^HLC("QUEUECOUNT","SEQUENCE")),-$G(^HLC("QUEUECOUNT","SEQUENCE",QUE)))
  S ^HLC("QUEUECOUNT","SEQUENCE",QUE)=0
  S ^HLB("QUEUE","SEQUENCE",QUE)=""
  Q
+ ;
+SETPURGE(MSGIEN,TIME) ;  Set message up for purging.
+ ;Resets the purge date/time.
+ ;Input:
+ ;   MSGIEN (required) ien of the message, file #778
+ ;   TIME (optional) dt/time to set the purge time to, defaults to NOW
+ ;Output:
+ ;   Function returns 1 on success, 0 on failure
+ ;   
+ N NODE,OLDTIME,HLDIR
+ Q:'$G(MSGIEN) 0
+ S NODE=$G(^HLB(MSGIEN,0))
+ Q:NODE="" 0
+ S OLDTIME=$P(NODE,"^",9)
+ S:'$G(TIME) TIME=$$NOW^XLFDT
+ S HLDIR=$S($E($P(NODE,"^",4))="I":"IN",1:"OUT")
+ K:OLDTIME ^HLB("AD",HLDIR,OLDTIME,MSGIEN)
+ S $P(^HLB(MSGIEN,0),"^",9)=TIME
+ S ^HLB("AD",HLDIR,TIME,MSGIEN)=""
+ Q 1

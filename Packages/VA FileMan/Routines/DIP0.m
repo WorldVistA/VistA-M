@@ -1,5 +1,5 @@
 DIP0 ;SFISC/XAK-COMPUTED FIELD ON A SORT, EDITING A SORT TEMPLATE ;02:12 PM  10 Nov 1999
- ;;22.0;VA FileMan;**2**;Mar 30, 1999
+ ;;22.0;VA FileMan;**2**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S P=P_Q,DPP=$P(X,U,1)
 C ;

@@ -8,8 +8,8 @@ RMPFSET I '$D(RMPFMENU) D MENU^RMPFUTL I '$D(RMPFMENU) W !!,$C(7),"*** A MENU SE
  W !!,"This option will allow you to queue the transmission of a batch"
  W !,"to the VA Denver Distribution Center.  Only batches with the status"
  W !,"CLOSED, QUEUED FOR TRANSMISSION or TRANSMITTED may be chosen."
- S XMINST=$O(^DIC(4.2,"B","DDC.DOMAIN.EXT",0)) I XMINST,$D(^DIC(4.2,XMINST,0))
- E  W !!,"*** 'DDC.DOMAIN.EXT' DOMAIN NOT SET UP FOR TRANSMISSION ***" H 2 G END
+ S XMINST=$O(^DIC(4.2,"B","DDC.domain.ext",0)) I XMINST,$D(^DIC(4.2,XMINST,0))
+ E  W !!,"*** 'DDC.domain.ext' DOMAIN NOT SET UP FOR TRANSMISSION ***" H 2 G END
  F I=1:1 Q:$Y>21  W !
  W !!,"Enter <RETURN> to continue. " D READ G END:$D(RMPFOUT)
 DISP K RMPFS S (RMPFS(4),RMPFS(2),RMPFS(3))="" D DISP^RMPFDB G SHOW:$D(RMPFBT)
@@ -29,7 +29,7 @@ CONT1 I $D(RMPFQUT) W !!,"Enter a <Y> to transmit the batch, <N> or <RETURN> to 
 AUTOQ ;;Automatic queueing of transmission batch
  ;; input: RMPFBT
  ;;output: None
- S XMINST=$O(^DIC(4.2,"B","DDC.DOMAIN.EXT",0)) I XMINST,$D(^DIC(4.2,XMINST,0))
+ S XMINST=$O(^DIC(4.2,"B","DDC.domain.ext",0)) I XMINST,$D(^DIC(4.2,XMINST,0))
  E  G END
  S RMPFP3=$P(RMPFSYS,U,3)
  S ZTRTN="TRANS^RMPFQT",ZTIO="",ZTDESC="DDC ORDER"
@@ -58,7 +58,7 @@ TRANS ;;Build and send message with ROES orders
  D XMZ^XMA2 Q:XMZ=-1  S X="NOW",%DT="T" D ^%DT
  S DIE="^RMPF(791812,",DA=RMPFBT,DR=".06////"_XMZ_";.07////"_Y_";.02////3" D ^DIE
  D ^RMPFQT1
- S XMY("S.RMPFAUTO-READ@DDC.DOMAIN.EXT")=XMINST D ENT1^XMD
+ S XMY("S.RMPFAUTO-READ@DDC.domain.ext")=XMINST D ENT1^XMD
 TRANSE K XMDUZ,XMSUB,XMTEXT,XMY,XMZ,DIE,DR,D0,DI,DQ,DR,DA,D,X,Y Q
 STAT ;;change status of lines to be sent to APROVED if batch status=transmitted
  Q:$P(^RMPF(791812,RMPFBT,0),U,2)'=3

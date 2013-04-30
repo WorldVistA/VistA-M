@@ -1,5 +1,5 @@
 KMPDUTL5 ;OIFO/KAK - Obtain CPU Configuration;28 Feb 2002 ;2/17/04  10:56
- ;;2.0;CAPACITY MANAGEMENT TOOLS;;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;;
 CPU(ARRAY) ;-- get cpu configuration information
  ;---------------------------------------------------------------------
@@ -67,19 +67,20 @@ CVMS(CPUINFO,TYP) ;-- for Cache for OpenVMS Platform
  ;           : for TYP=2 CPUINFO(1)=os version
  ;---------------------------------------------------------------------
  ;
- N DIR,FILE,LOG,TYPNM
+ N DFILE,DIR,DLOG,FILE,FILESPEC,LOG,TYPNM,Y
  ;
  S TYPNM=$S(TYP=1:"CPU",TYP=2:"VER",1:"")
  ;
  S DIR=$ZU(12)
  ;
- ; cleanup log file
- S LOG=DIR_"KMPDU"_TYPNM_".LOG"
- O LOG:("R"):0 C LOG:("D")
- ;
- ; cleanup com file
+ ; cleanup com file and log file
  S FILE=DIR_"KMPDU"_TYPNM_".COM"
- O FILE:("R"):0 C FILE:("D")
+ S DFILE="KMPDU"_TYPNM_".COM"
+ S LOG=DIR_"KMPDU"_TYPNM_".LOG"
+ S DLOG="KMPDU"_TYPNM_".LOG"
+ S FILESPEC(DFILE)=""
+ S FILESPEC(DLOG)=""
+ S Y=$$DEL^%ZISH(DIR,.FILESPEC)
  ;
  ; create com file   quit on file creation error
  Q:$$CREATE(FILE,TYP)<0
@@ -91,10 +92,11 @@ CVMS(CPUINFO,TYP) ;-- for Cache for OpenVMS Platform
  ; parse log file
  D PARSE(LOG,.CPUINFO,TYP)
  ;
- ; cleanup com file
- O FILE:("R"):0 C FILE:("D")
- ; cleanup log file
- O LOG:("R"):0 C LOG:("D")
+ ; cleanup com file and log file
+ K FILESPEC
+ S FILESPEC(DFILE)=""
+ S FILESPEC(DLOG)=""
+ S Y=$$DEL^%ZISH(DIR,.FILESPEC)
  ;
  Q
  ;
@@ -109,7 +111,8 @@ CWINNT(CPUINFO,TYP) ;-- for Cache for Windows NT Platform
  ;           : for TYP = 2 CPUINFO(1)=os version
  ;---------------------------------------------------------------------
  ;
- N DATA,FILE,NODE,OUT,X
+ N DATA,FILE,I,NODE,OUT,POP,X
+ S:'$G(DTIME) DTIME=30
  ;
  S DATA="",OUT=0
  ;
@@ -129,19 +132,15 @@ CWINNT(CPUINFO,TYP) ;-- for Cache for Windows NT Platform
  I $ZF(-1,"WINMSD /s /f")
  ;
  S X="EOF1",@^%ZOSF("TRAP")
- ; append *eof* line to report file
- O FILE:("WA"):0 I $T U FILE W !,"*EOF*" C FILE
  ;
  ; read from report file
- O FILE:("R"):0
- ;
- I '$T C FILE:"D" Q
- ;
- U FILE
+ D OPEN^%ZISH("CWINNT","",FILE,"R")
+ Q:POP
+ U IO
  ;
  ; TYP=1 => cpu information
  I TYP=1 D
- .F  R X Q:X["*EOF*"  D  Q:OUT
+ .F  R X:DTIME Q:$$STATUS^%ZISH  D  Q:OUT
  ..; type of cpu
  ..I X["Hardware Abstraction Layer:" S $P(DATA,U)=$$STRIP^KMPDUTL4($P(X,"Hardware Abstraction Layer:",2)) Q
  ..; number of processors
@@ -149,23 +148,21 @@ CWINNT(CPUINFO,TYP) ;-- for Cache for Windows NT Platform
  ..; processor speed - no information available
  ..; amount of memory
  ..I X["Physical Memory (K)" D  Q
- ...R X
- ...I X["*EOF*" S OUT=1 Q
+ ...R X:DTIME I $$STATUS^%ZISH S OUT=1 Q
  ...I X["Total:" S $P(DATA,U,4)=$$STRIP^KMPDUTL4($$COMMA^KMPDUTL4($P(X,"Total:",2)))\1024 Q
  ..S CPUINFO(NODE)=DATA
  ;
  ; TYP=2 => os version
  I TYP=2 D
- .F  R X Q:X["*EOF*"  D  Q:OUT
+ .F  R X:DTIME Q:$$STATUS^%ZISH  D  Q:OUT
  ..; version of operating system
  ..I X["OS Version Report" D
- ...F I=1:1:2 R X I X["*EOF*" S OUT=1 Q
+ ...F I=1:1:2 R X:DTIME I $$STATUS^%ZISH S OUT=1 Q
  ...S DATA=X
- ...R X I X["*EOF*" S OUT=1 Q
  ...S DATA=DATA_" "_X
  ...S CPUINFO(1)=DATA
  ;
- C FILE:"D"
+ D CLOSE^%ZISH("CWINNT")
  ;
  Q
  ;
@@ -204,7 +201,7 @@ CREATE(FILE,TYP) ;-- function to create new com file
  W "$   if ID .eqs. """" then goto EXIT"
  W "$   write sys$output ""NODE=""    , f$getsyi(""NODENAME"",,ID)"
  W "$   write sys$output ""TYPE=""    , f$getsyi(""HW_NAME"",,ID)"
- W "$   write sys$output ""CPU_CNT="" , f$getsyi(""ACTIVECPU_CNT"",,ID)" 
+ W "$   write sys$output ""CPU_CNT="" , f$getsyi(""ACTIVECPU_CNT"",,ID)"
  W "$   write sys$output ""SPEED=n/a"""
  W "$   write sys$output ""MEMSIZE="" , f$getsyi(""MEMSIZE"",,ID)"
  W "$   goto START"
@@ -240,13 +237,14 @@ PARSE(LOG,CPUARRY,TYP) ;-- parse log file data
  S X="EOF",@^%ZOSF("TRAP"),NODE=""
  K X S U="^"
  ;
- O LOG:("R")
- U LOG
+ D OPEN^%ZISH("LOG",DIR,DLOG,"R")
+ Q:POP
+ U IO
  ;
  I TYP=1 D
- .F  R X Q:X["*EOF*"  I $E(X)'="$" I X["NODE=" D
+ .F  R X:DTIME Q:$$STATUS^%ZISH  I $E(X)'="$" I X["NODE=" D
  ..I X["NODE=" S NODE=$P(X,"=",2)
- ..F  R X  I $E(X)'="$" D  Q:X["MEMSIZE="
+ ..F  R X:DTIME  I $E(X)'="$" D  Q:X["MEMSIZE="
  ...; type of cpu
  ...I X["TYPE=" S $P(CPUARRY(NODE),U)=$P(X,"=",2) Q
  ...; number of processors
@@ -257,23 +255,23 @@ PARSE(LOG,CPUARRY,TYP) ;-- parse log file data
  ...I X["MEMSIZE=" S $P(CPUARRY(NODE),U,4)=$P(X,"=",2)/128 Q
  ;
  I TYP=2 D
- .F  R X Q:X["*EOF*"  I $E(X)'="$" D
+ .F  R X:DTIME Q:$$STATUS^%ZISH  I $E(X)'="$" D
  ..; version of operating system
  ..I X["VERSION=" S CPUARRY(1)=$P(X,"=",2) Q
  ;
- C LOG
+ D CLOSE^%ZISH("LOG")
  ;
  S X="ERR^ZU",@^%ZOSF("TRAP")
  Q
  ;
 EOF ;-- end of file condition for CVMS
  S X="ERR^ZU",@^%ZOSF("TRAP")
- C LOG
+ D CLOSE^%ZISH("LOG")
  Q
  ;
 EOF1 ;-- end of file condition for CWINNT
  S X="ERR^ZU",@^%ZOSF("TRAP")
- C FILE:"D"
+ D CLOSE^%ZISH("CWINNT")
  Q
  ;
 CVMSVER() ;-- returns version of Cache for OpenVMS operating system

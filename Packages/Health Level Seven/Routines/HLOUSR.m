@@ -1,5 +1,5 @@
-HLOUSR ;ALB/CJM/OAK/PIJ/RBN -ListManager Screen for viewing system status;12 JUN 1997 10:00 am ;12/01/2010
- ;;1.6;HEALTH LEVEL SEVEN;**126,130,134,137,138,139,146,147,153**;Oct 13, 1995;Build 11
+HLOUSR ;ALB/CJM/OAK/PIJ/RBN -ListManager Screen for viewing system status;12 JUN 1997 10:00 am ;02/28/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**126,130,134,137,138,139,146,147,153,158**;Oct 13, 1995;Build 14
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ;
@@ -237,6 +237,7 @@ TESTLINK ;
  Q:'PORT
  S LINK=LINKNAME_":"_PORT
  ;S OK=$$IFOPEN^HLOUSR1(LINKNAME)
+ W !,"Testing...." ;P158
  S OK=$$IFOPEN^HLOUSR1(LINK)
  ;** P138 END
  I OK W !,LINK_" IS operational..."

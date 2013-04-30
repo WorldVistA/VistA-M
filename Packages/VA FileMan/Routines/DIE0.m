@@ -1,5 +1,5 @@
 DIE0 ;SFISC/GFT-BRANCHING, UP-ARROWING ;27MAR2006
- ;;22.0;VA FileMan;**60,159**;Mar 30, 1999;Build 8
+ ;;22.0;VA FileMan;**60,159**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  G Q^DIE1:$D(DTOUT) G:X'?1"^".E T^DIED:$P($P(DQ(DQ),U,4),";E",2),X
  I $D(DIE("NO^")),X=U,DIE("NO^")'["OUTOK" W !?3,"EXIT NOT ALLOWED " G X

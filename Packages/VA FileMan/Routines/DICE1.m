@@ -1,5 +1,5 @@
 DICE1 ;SFISC/XAK-TRIGGER LOGIC ;10:24 AM  9 Jul 1999
- ;;22.0;VA FileMan;**6**;Mar 30, 1999
+ ;;22.0;VA FileMan;**6**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 FIELD S %=DI,%F=DL,DOLD=$P(^DD(DI,DL,0),U) W !!,"WHEN THE " D WR^DIDH
  R "IS CHANGED,",!,"WHAT FIELD SHOULD BE 'TRIGGERED': ",X:DTIME Q:U[X

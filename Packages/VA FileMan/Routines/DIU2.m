@@ -1,5 +1,5 @@
 DIU2 ;SFISC/XAK/GFT-EDIT FILE ;8:03 AM  24 Oct 2001
- ;;22.0;VA FileMan;**82**;Mar 30, 1999
+ ;;22.0;VA FileMan;**82**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;from DIU0

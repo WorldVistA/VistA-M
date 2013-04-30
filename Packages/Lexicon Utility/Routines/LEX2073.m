@@ -90,7 +90,7 @@ MAILQ ;   Quit Mail
 ADR(LEX) ;   Mailing Address
  N DIC,DTOUT,DUOUT,X,Y S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
  S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="ISC-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
- Q "ISC-SLC.DOMAIN.EXT"
+ Q "ISC-SLC.domain.ext"
 KILL ;   Kill all ^TMP(
  K ^TMP("LEXMSG",$J),^TMP("LEXKID",$J)
  Q

@@ -1,5 +1,5 @@
-EDPRPT7C ;SLC/MKB - Exposure Report (CSV format)
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPRPT7C ;SLC/MKB - Exposure Report (CSV format) ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 EXP(IEN) ; Get Exposure Report for IEN at EDPSITE
  S IEN=+$G(IEN)  Q:IEN<1  Q:'$D(^EDP(230,IEN,0))
@@ -81,7 +81,8 @@ ADD(LOG) ; Add row to CSV for each room used during visit
  . S ROW=ROW_TAB_$$SHIFT^EDPRPT5(X)_" - "_$$EDATE^EDPRPT(X)
  . S X0=$G(^EDP(230,LOG,0)),X=$$DXPRI^EDPQPCE(+$P(X0,U,3),LOG)
  . S ROW=ROW_TAB_$P(X,U,2) ;Dx
- . S X=$P($G(^EDP(230,LOG,1)),U,2),ROW=ROW_TAB_$$ECODE^EDPRPT(X) ;dis
+ . ;TDP - Patch 2 mod to capture all dispositions
+ . S X=$P($G(^EDP(230,LOG,1)),U,2),ROW=ROW_TAB_$S($$ECODE^EDPRPT(X)'="":$$ECODE^EDPRPT(X),1:$$DISP^EDPRPT(X)) ;dis
  . S X=$P(X0,U,10),ROW=ROW_TAB_$$ENAME^EDPRPT(X) ;arrival
  . S LABS=$D(^EDP(230,LOG,8,"AC","L")),XRAY=$D(^("R")),X=""
  . I LABS!XRAY D  S X=X_" ordered"

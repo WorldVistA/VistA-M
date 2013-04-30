@@ -1,9 +1,9 @@
 XPDDCS ;SFISC/RSD - Display Checksum for a package ;05/05/2008
- ;;8.0;KERNEL;**2,44,108,202,393,511**;Jul 10, 1995;Build 5
+ ;;8.0;KERNEL;**2,44,108,202,393,511,547**;Jul 10, 1995;Build 15
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 EN1 ;Verify checksums in Transport Global
- N D0,DIC,X,XPD,XPDS,XPDST,XPDT,Y,Z
+ N D0,DIC,X,XPD,XPDS,XPDSHW,XPDST,XPDT,Y,Z
  ;S DIC="^XPD(9.7,",DIC(0)="AEQMZ",DIC("S")="I $D(^XTMP(""XPDI"",Y))"
  ;D ^DIC Q:Y<0
  S XPDS="I $D(^XTMP(""XPDI"",Y))"
@@ -44,7 +44,7 @@ LST1(FILE) ;Print group
  Q
  ;
 PNT(XPDFIL) ;print
- N XPD0,XPDC,XPDDT,XPDE,XPDI,XPDJ,XPDPG,XPDQ,XPDUL,X
+ N XPD0,XPDC,XPDDT,XPDE,XPDI,XPDJ,XPDPG,XPDQ,XPDUL,XPDBCS,X
  Q:'$D(^XPD(XPDFIL,D0,0))  S XPD0=^(0),XPDPG=1,$P(XPDUL,"-",IOM)="",XPDDT=$$HTE^XLFDT($H,"1PM")
  W:$E(IOST,1,2)="C-" @IOF D HDR
  W !
@@ -58,6 +58,8 @@ PNT(XPDFIL) ;print
  ..I XPDJ="" W !," **Transport Global corrupted, please reload **" S XPDQ=1 Q
  ..;if deleting at site, there is no checksum
  ..I +XPDJ=1 S XPDC=XPDC-1 Q
+ ..;if no before checksum, get from FORUM, XPDBCS(routine)=checksum, doesn't work no web service on Forum
+ ..;I $P(XPDJ,U,4)="" D:'$D(XPDBCS) CHKS^XPDIST($P(XPD0,U),.XPDBCS) S $P(XPDJ,U,4)=$G(XPDBCS(XPDI))
  ..D SUM(XPDI,$NA(^XTMP("XPDI",D0,"RTN",XPDI)),$P(XPDJ,U,3),$P(XPDJ,U,4))
  ..S XPDQ=$$CHK(4)
  ;check build file

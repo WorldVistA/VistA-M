@@ -1,5 +1,5 @@
 DDSCLONE ;SFISC/MKO-CLONE A FORM ;10:20 PM  10 Jul 1994
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  N %,%CHK,%RET,%X,%Y,D,D0,D1,DA,DI,DIOVRD,DIC,DIR,DIZ,DQ,DREF,X,Y
  K ^TMP("DDSCLONE",$J)

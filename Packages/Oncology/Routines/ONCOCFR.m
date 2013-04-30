@@ -1,5 +1,6 @@
-ONCOCFR ;Hines OIFO/GWB - RADIOLOGY CASEFINDING ;06/16/11
- ;;2.11;ONCOLOGY;**13,24,25,26,27,34,37,39,46,50,53**;Mar 07, 1995;Build 31
+ONCOCFR ;Hines OIFO/GWB - RADIOLOGY CASEFINDING ;05/07/12
+ ;;2.11;ONCOLOGY;**13,24,25,26,27,34,37,39,46,50,53,56**;Mar 07, 1995;Build 10
+ ;rvd - 05/07/12. Add the word 'cancer' to the search criteria
  ;
 ST ;Start RAD/NUC MED PATIENT (70) file search
  W @IOF
@@ -56,14 +57,14 @@ SER ;Search RAD/NUC MED PATIENT (70) file/Set multidivisional variables
  ..S RA0=$G(^(D2,0)) I RA0="" Q
  ..S PC13=$P(RA0,U,13) I PC13="" Q
  ..S EXP=$$GET1^DIQ(78.3,PC13,6),EXP=$TR(EXP,"malig","MALIG"),EXP=$TR(EXP,"Suspicious","SUSPICIOUS")
- ..S MG=$P($G(^RA(78.3,PC13,0)),U,1),MG=$TR(MG,"malig","MALIG")
- ..I (MG["MALIG")!(EXP["MALIG")!(EXP["SUSPICIOUS") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ..S MG=$P($G(^RA(78.3,PC13,0)),U,1),MG=$TR(MG,"malig","MALIG"),MG=$TR(MG,"cancer","CANCER")
+ ..I (MG["MALIG")!(MG["CANCER")!(EXP["MALIG")!(EXP["SUSPICIOUS") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
  ..S D3=0 F  S D3=$O(^RADPT(D0,"DT",D1,"P",D2,"DX",D3)) Q:D3'>0  D
  ...S RASDC0=$G(^(D3,0)) I RASDC0="" Q
  ...S PC1=$P(RASDC0,U,1) I PC1="" Q
  ...S EXP=$$GET1^DIQ(78.3,PC1,6),EXP=$TR(EXP,"malig","MALIG"),EXP=$TR(EXP,"Suspicious","SUSPICIOUS")
- ...S MG=$P($G(^RA(78.3,PC1,0)),U,1),MG=$TR(MG,"malig","MALIG")
- ...I (MG["MALIG")!(EXP["MALIG")!(EXP["SUSPICIOUS") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ...S MG=$P($G(^RA(78.3,PC1,0)),U,1),MG=$TR(MG,"malig","MALIG"),MG=$TR(MG,"cancer","CANCER")
+ ...I (MG["MALIG")!(MG["CANCER")!(EXP["MALIG")!(EXP["SUSPICIOUS") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
  ;
 CK ;Check ONCOLOGY PATIENT (160) file
 GT S XX=0 F  S XX=$O(RA(XX)) Q:XX=""  D

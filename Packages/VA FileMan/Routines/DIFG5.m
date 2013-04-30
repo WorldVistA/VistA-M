@@ -1,5 +1,5 @@
 DIFG5 ;SFISC/DG(OHPRD)-MISC FUNCTIONS ;3/11/93  1:25 PM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 CHECKY ;CHECKS Y AFTER DIC CALL
  I Y>0,DIFGTYP="FILE"!(DIFGTYP="MV FIELD"),$P(DIFGMO(DIFGMULT),U)="L" S ^("MODE")="M"_"^"_$P(^UTILITY("DIFG",$J,DIFGINCR,DIFGDIC,"MODE"),U,2)

@@ -970,7 +970,7 @@ ZWR
 ^ORD(101.41,52,10,8,0)="1.1^1136^^^^1"
 ^ORD(101.41,52,10,8,1)="Enter the service that will be requested to perform this procedure"
 ^ORD(101.41,52,10,8,2)="2^^^^Proc"
-^ORD(101.41,52,10,8,3)="I $G(ORDIALOG(PROMPT,""LIST""))>1"
+^ORD(101.41,52,10,8,3)="I $G(ORDIALOG(PROMPT,""LIST""))>0"
 ^ORD(101.41,52,10,8,6)="D LIST^ORCD"
 ^ORD(101.41,52,10,8,7)="S:+$G(ORDIALOG(PROMPT,""LIST""))=1 Y=+$G(ORDIALOG(PROMPT,""LIST"",1))"
 ^ORD(101.41,52,10,8,9)="D PROCSVC^ORCDGMRC"

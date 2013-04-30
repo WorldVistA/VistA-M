@@ -1,5 +1,5 @@
 DIEZ2 ;SFISC/GFT-COMPILE INPUT TEMPLATE ;20SEP2004
- ;;22.0;VA FileMan;**11,95,159**;Mar 30, 1999;Build 8
+ ;;22.0;VA FileMan;**11,95,159**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  K DIEZAR D RECXR^DIEZ4(.DIEZAR)
  K ^DIE(DIEZ,"AR") M:$D(DIEZAR) ^DIE(DIEZ,"AR")=DIEZAR

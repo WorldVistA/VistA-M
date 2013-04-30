@@ -1,8 +1,9 @@
 XPDR ;SFISC/RSD - Routine File Edit ;09/17/96  10:05
- ;;8.0;KERNEL;**1,2,44,393**;Jul 10, 1995;Build 12
+ ;;8.0;KERNEL;**1,2,44,393,547**;Jul 10, 1995;Build 15
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 UPDT ;update routine file
- N DIR,DIRUT,XPD,XPDI,XPDJ,XPDN,X,X1,Y,Y1,% W !
+ N DIR,DIRUT,XPD,XPDI,XPDJ,XPDN,XPDGTM,X,X1,Y,Y1,% W !
  W ! S DIR(0)="FO^1:9^K:X'?.1""-""1U.7UNP X",DIR("A")="Routine Namespace",DIR("?")="Enter 1 to 8 characters, preceed with ""-"" to exclude namespace"
  ;XPDN(0=excluded names or 1=include names, namespace)=""
  F  D ^DIR Q:$D(DIRUT)  S X=$E(Y,$L(Y))="*",%=$E(Y)="-",XPDN('%,$E(Y,%+1,$L(Y)-X))=""
@@ -14,21 +15,29 @@ UPDT ;update routine file
  K DIR S DIR(0)="Y",DIR("A")="OK to continue",DIR("B")="YES" D ^DIR
  Q:'Y!$D(DIRUT)  W !
  S DIR(0)="Y",DIR("A")="Want me to clean up the Routine File before updating",DIR("?")="YES means you want to go throught the Routine file and delete any routine name that no longer exists on the system."
- D ^DIR
- Q:$D(DIRUT)  D WAIT^DICD,DELRTN:Y
+ D ^DIR Q:$D(DIRUT)
+ D WAIT^DICD,DELRTN:Y
+ ;if GTM, create temporary list in %ZR
+ S XPDGTM=$G(^%ZOSF("OS"))["GT.M" I XPDGTM D SILENT^%RSEL("*")
  ;loop thru include list XPDN(1,XPDI)
- S XPDI="" F  S XPDI=$O(XPDN(1,XPDI)) Q:XPDI=""  D
- .S XPDJ=XPDI D:$D(^$R(XPDJ))  F  S XPDJ=$O(^$R(XPDJ)) Q:XPDJ=""!($P(XPDJ,XPDI)]"")  D
- ..;if name XPDJ is in the exclude list, XPDN(0,XPDJ) or in Routine file, quit
- ..Q:$D(XPDN(0,XPDJ))!$O(^DIC(9.8,"B",XPDJ,0))
- ..;check if XPDJ is refered in the namespace by checking the subscript
- ..;before XPDJ, if sub exist and $P(XPDJ,sub)="" then it is part of the
- ..;namespace, quit
- ..S %=$O(XPDN(0,XPDJ),-1) I $L(%),$P(XPDJ,%)="" Q
- ..N XPD S XPD(9.8,"+1,",.01)=XPDJ,XPD(9.8,"+1,",1)="R"
- ..D ADD^DICA("","XPD")
+ S XPDI="" F  S XPDI=$O(XPDN(1,XPDI)) Q:XPDI=""  S XPDJ=XPDI D
+ . I 'XPDGTM D:$D(^$R(XPDJ)) UPDT1(XPDJ) F  S XPDJ=$O(^$R(XPDJ)) Q:XPDJ=""!($P(XPDJ,XPDI)]"")  D UPDT1(XPDJ)
+ . I XPDGTM D:$D(%ZR(XPDJ)) UPDT1(XPDJ) F  S XPDJ=$O(%ZR(XPDJ)) Q:XPDJ=""!($P(XPDJ,XPDI)]"")  D UPDT1(XPDJ)
+ . Q
  W "    ...Done.",!
  Q
+ ;
+UPDT1(XPDRT) ;check routine XPDRT
+ ;if name XPDRT is in the exclude list, XPDN(0,XPDRT) or in Routine file, quit
+ Q:$D(XPDN(0,XPDRT))!$O(^DIC(9.8,"B",XPDRT,0))
+ ;check if XPDRT is refered in the namespace by checking the subscript
+ ;before XPDRT, if sub exist and $P(XPDRT,sub)="" then it is part of the
+ ;namespace, quit
+ S %=$O(XPDN(0,XPDRT),-1) I $L(%),$P(XPDRT,%)="" Q
+ N XPD S XPD(9.8,"+1,",.01)=XPDRT,XPD(9.8,"+1,",1)="R"
+ D ADD^DICA("","XPD")
+ Q
+ ;
 VER ;verify Routine file
  N DIR,DIRUT,X,Y
  W !,"I will delete all local entries in the Routine File in which",!,"the Routine no longer exist on this system!",!

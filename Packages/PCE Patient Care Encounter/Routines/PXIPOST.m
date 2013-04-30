@@ -153,7 +153,7 @@ PACKAGE ;Remove the old package entries that are no longer used.
 QUE ; Queue job to populate IHS Patient File #9000001
  N ZTRTN,ZTDESC,ZTDTH,ZTIO,ZTSK,ZTSAVE
  N PXPTLOC,DINUM,PXPTLAST
- ;D GETLOC^PXPTPOST
+ D GETLOC^PXPTPOST
  I 'PXPTLOC D  Q
  . D MES^XPDUTL($C(7)_$C(7)_"Could not start the task job.")
  . D MES^XPDUTL("You should start it by doing:  D QUE^PXPTPOST  at the programmers prompt.")

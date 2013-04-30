@@ -1,7 +1,7 @@
 XU8P378 ;OOIFO/SO- POST XU378 DRIVER ;7:06 AM  27 Dec 2005
  ;;8.0;KERNEL;**378**;Jul 10, 1995;Build 59
  ;
- ;D ^XU8P378A ;Make any edits to the State & County Code files
+ D ^XU8P378A ;Make any edits to the State & County Code files
  ;
  ; Set current C xrefs in 5 to Q
  S ^DD(5,1,1,1,1)="Q"

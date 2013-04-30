@@ -1,5 +1,5 @@
 DICM1 ;SFISC/XAK,TKW-LOOKUP WHEN INPUT MUST BE TRANSFORMED ;2/8/00  09:29
- ;;22.0;VA FileMan;**20,29**;Mar 30, 1999
+ ;;22.0;VA FileMan;**20,29**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  G @Y
  ;

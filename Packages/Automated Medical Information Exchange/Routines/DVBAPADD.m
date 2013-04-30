@@ -3,23 +3,23 @@ DVBAPADD ;ALB/JLU;adds new disability codes to file 31
 EN ;start of routine
  I +$$VERSION^DVBAPST1>2.59 DO  Q
  .S VAR=" - Version 2.6 of AMIE has already been loaded."
- .;D BUMPBLK^DVBAPOST
- .;D BUMPBLK^DVBAPOST
- .;D BUMP^DVBAPOST(VAR)
+ .D BUMPBLK^DVBAPOST
+ .D BUMPBLK^DVBAPOST
+ .D BUMP^DVBAPOST(VAR)
  .W !!,VAR
  .S VAR="There is no need to update the Disability Condition file."
- .;D BUMP^DVBAPOST(VAR)
+ .D BUMP^DVBAPOST(VAR)
  .W !,VAR,!
- .;D BUMPBLK^DVBAPOST
+ .D BUMPBLK^DVBAPOST
  .Q
  S JCNT=0
  N LP,LP1
  S VAR="Adding to the Disability Condition file."
  W !!,VAR,!
- ;D BUMPBLK^DVBAPOST
- ;D BUMPBLK^DVBAPOST
- ;D BUMP^DVBAPOST(VAR)
- ;D BUMPBLK^DVBAPOST
+ D BUMPBLK^DVBAPOST
+ D BUMPBLK^DVBAPOST
+ D BUMP^DVBAPOST(VAR)
+ D BUMPBLK^DVBAPOST
  F LP=1:1 S LP1=$T(TXT+LP) Q:LP1=""  DO
  .S DCODE=$P(LP1,";;",2)
  .S DTEXT=$P(DCODE,";",2)
@@ -37,9 +37,9 @@ EN ;start of routine
  .Q
  S VAR="Additions to the Disability Condition file (31) has finished.  "_JCNT_" were added."
  W !!,VAR
- ;D BUMPBLK^DVBAPOST
- ;D BUMPBLK^DVBAPOST
- ;D BUMP^DVBAPOST(VAR)
+ D BUMPBLK^DVBAPOST
+ D BUMPBLK^DVBAPOST
+ D BUMP^DVBAPOST(VAR)
  K DIC,JSTOP,JCNT,DLAYGO,X,DCODE,DTEXT
  Q
  ;
@@ -49,16 +49,16 @@ CHK ;checks for the existance of the codes in the c cross ref.
  I $D(JSTOP) DO
  .S VAR="Disability Condition "_DCODE_" was not added.  Entry already exists."
  .W !,VAR
- .;D BUMPBLK^DVBAPOST
- .;D BUMP^DVBAPOST(VAR)
+ .D BUMPBLK^DVBAPOST
+ .D BUMP^DVBAPOST(VAR)
  .Q
  Q
  ;
 ERR ;not added
  S VAR="Not able to add Disability Condition "_DCODE_".  Consult the Install Guide."
  W !,VAR
- ;D BUMPBLK^DVBAPOST
- ;D BUMP^DVBAPOST(VAR)
+ D BUMPBLK^DVBAPOST
+ D BUMP^DVBAPOST(VAR)
  Q
  ;
 TXT ;new exams to be added.

@@ -1,5 +1,5 @@
 DIPR161 ;O-OIFO/GMB-Correct LABEL DD node ;6/28/2009
- ;;22.0;VA FileMan;**161**;Mar 30, 1999;Build 17
+ ;;22.0;VA FileMan;**161**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
 ENV ; Environmental Check
  D BMES^XPDUTL("Perform Environment Check...")

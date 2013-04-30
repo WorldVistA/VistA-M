@@ -81,7 +81,7 @@ HIDE2 ;---Hide Duplicates and count them.
  ;---Send Bulletin
  S XMB="GMPL DUPLICATE PROBLEMS"
  S XMDUZ=$P($$SITE^VASITE,"^",2)_" "_"GMPL*2*12"
- S XMY("SMITH,VAUGHN@ISC-SLC.DOMAIN.EXT")=""
+ S XMY("SMITH,VAUGHN@ISC-SLC.domain.ext")=""
  S XMY(DUZ)=""
  S XMB(1)=$G(CNT)
  D ^XMB

@@ -1,5 +1,5 @@
 XPDCOM ;SFISC/RSD - Compare Transport Global ;08/14/2008
- ;;8.0;KERNEL;**21,58,108,124,393,506,539**;Jul 10, 1995;Build 11
+ ;;8.0;KERNEL;**21,58,108,124,393,506,539,547**;Jul 10, 1995;Build 15
  ;Per VHA Directive 2004-038, this routine should not be modified.
 EN1 ;compare to current system
  N DIC,DIR,DIRUT,DITCPT,DTOUT,DUOUT,POP,XPD,XPDA,XPDC,XPDNM,XPDT,XPDST,XPDUL,Y,Z,%ZIS
@@ -35,7 +35,8 @@ COMR ;compare routines
  ..D EN^XPDCOML("XL","YL",NAME)
  ..W:'XPDHEAD !,?IOM-$L(NAME)\2,NAME
  ..W !
- ..I XL(2)=YL(2)!(XL(2)'["**") Q
+ ..;lines the same or site routine has no patches
+ ..I XL(2)=YL(2)!(YL(2)'["**") Q
  ..;check patch string
  ..S X=$P(XL(2),"**",2),XL=$L(X,","),Y=$P(YL(2),"**",2),YL=$L(Y,",")
  ..Q:X=Y

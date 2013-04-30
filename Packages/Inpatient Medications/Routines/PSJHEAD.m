@@ -1,7 +1,8 @@
 PSJHEAD ;BIR/KKA-PROFILE HEADER ; 4/1/08 4:29pm
- ;;5.0; INPATIENT MEDICATIONS ;**8,20,85,95,203**;16 DEC 97;Build 13
+ ;;5.0;INPATIENT MEDICATIONS;**8,20,85,95,203,260**;16 DEC 97;Build 94
  ;
  ; Reference to ^PS(55 supported by DBIA #2191.
+ ;External reference to $$BSA^PSSDSAPI supported by DBIA 5425.
  ;
 ENTRY(DFN,PSJOPC,PG,PSJNARC,PSJTEAM,PSJY2K)   ;
  ;DFN=patient internal entry number
@@ -11,7 +12,7 @@ ENTRY(DFN,PSJOPC,PG,PSJNARC,PSJTEAM,PSJY2K)   ;
  ;PSJTEAM=code telling whether or not to print team
  ;PSJY2K=code telling whether or not to print 4 digit year
 STUFF ;
- N %,ALFLG,GONE,HDT,KKA,LEN,LENCHK,PSGALG,PSGADR,PSGDT,PSGVWA,PSJPAD,PSJPAGE,PSJPDD,PSJPDOB,PSJPDX,PSJPHT,PSJPHTD,PSJPPID,PSJPR,PSJPRB,PSJPSEX,PSJPTD,PSJPWD,PSJPWDN,PSJPWT,PSJWTD,RB,SI,TEAM,VA,VA200,VADM,VAIN,VAIP,WCNT,WRD,X
+ N %,ALFLG,GONE,HDT,KKA,LEN,LENCHK,PSGALG,PSGADR,PSGDT,PSGVWA,PSJPAD,PSJPAGE,PSJPDD,PSJPDOB,PSJPDX,PSJPHT,PSJPHTD,PSJPPID,PSJPR,PSJPRB,PSJPSEX,PSJPTD,PSJPWD,PSJPWDN,PSJPWT,PSJWTD,RB,SI,TEAM,WCNT,WRD,X
  ;
  ;PPAGE=the page of the individual we are now printing. This is needed to keep track of how we print the Allergy/ADR info
  ;PSJNEW is set at the top of all options which call this header, if this is the first time the option has called the routine, PSJNEW will exist
@@ -43,6 +44,11 @@ ENHEAD ; print new page, name, ssn, dob, and ward
  W ?53,"Wt(kg): ",?61 W:PSJPWT["_" PSJPWT W:PSJPWT'["_" $J(PSJPWT,6,2) W ?68,PSJPWTD
  W !?4,"Sex: ",$P(PSJPSEX,"^",2),?'PSJPDD*5+46,$S(PSJPDD:"Last ",1:""),"Admitted: ",$S($D(PSJY2K):$E($P(PSJPAD,"^",2),1,10),1:$E($P(PSJPAD,"^",2),1,8))
  W !?5,"Dx: ",$S(PSJPDX]"":PSJPDX,1:"* NF *") S X=$S(PSJPDD:PSJPDD,1:$G(PSJPTD)) I X W ?PSJPDD>0*6+43,$S(PSJPDD:"Discharged: ",1:"Last transferred: "),$S($D(PSJY2K):$E($P(X,"^",2),1,10),1:$E($P(X,"^",2),1,8))
+ S PSJBSA=$$BSA^PSSDSAPI(DFN),PSJBSA=$P(PSJBSA,"^",3),PSJBSA=$S(PSJBSA'>0:"_________",1:$J(PSJBSA,4,2))
+ S RSLT=$$CRCL^PSJLMHED(DFN)
+ I $P(RSLT,"^",2)["Not Found" S ZDSPL=" CrCL: "_$P(RSLT,"^",2)
+ E  S ZDSPL=" CrCL: "_$P($G(RSLT),"^",2)_"(est.) "_"(CREAT:"_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ W !?2,ZDSPL,?51,"BSA (m2): ",$G(PSJBSA) K ZDSPL,RSLT,PSJBSA
  I PSJNARC=1 W !?1,"Pharmacy Narrative: " S WCNT=1,SI=$G(^PS(55,DFN,1)) W:SI=""&($E(IOST)="P") " ____________________" I SI]"" D
  .S LENCHK=0,LEN=$L(SI)
  .F  S WRD=$P(SI," ",WCNT) Q:$L(WRD)=0&(LENCHK'<LEN)  S WCNT=WCNT+1 W:$X+$L(WRD)>79 !,?21 W " ",WRD S LENCHK=LENCHK+$L(WRD)+1

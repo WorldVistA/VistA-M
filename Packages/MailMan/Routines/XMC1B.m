@@ -4,7 +4,7 @@ XMC1B ;(WASH ISC)/THM-Script Interpreter (Open/Close) ;06/11/2002  09:33
  ; XMB
  ; XMC1
 OPEN ;OPEN Command
- ; O H=FORUM.DOMAIN.EXT,P=TCP/IP-MAILMAN
+ ; O H=FORUM.domain.ext,P=TCP/IP-MAILMAN
  N XMI,XMCP,XMCP1,XMCP2
  F XMI=1:1:$L(XMC1,",") S XMCP=$P(XMC1,",",XMI) D  Q:ER
  . S XMCP1=$P(XMCP,"=",1),XMCP2=$P(XMCP,"=",2)

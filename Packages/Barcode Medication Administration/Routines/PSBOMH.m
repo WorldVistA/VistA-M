@@ -1,5 +1,5 @@
-PSBOMH ;BIRMINGHAM/EFC-MAH ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**5,9,38,57,67**;Mar 2004;Build 23
+PSBOMH ;BIRMINGHAM/EFC-MAH ;2/17/12 8:19am
+ ;;3.0;BAR CODE MED ADMIN;**5,9,38,57,67,68**;Mar 2004;Build 26
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -7,6 +7,8 @@ PSBOMH ;BIRMINGHAM/EFC-MAH ;Mar 2004
  ; EN^PSJBCMA2/2830
  ; File 200/10060
  ; ^DIWP/10011
+ ;
+ ;*68 - remove old special instruction text encoding, defer to PSBOMH2
  ;
 EN ; Called from DQ^PSBO
  N PSBGBL,DFN
@@ -124,11 +126,6 @@ EN1 ; Expects DFN,STRT,STOP
  ....I X'="99" S X=" "_X D ^DIWP   ;get init & store
  ....S Y=$P(PSBHLD(PSBHLDX),U,PSBHLDXP) D DD^%DT S X=Y D ^DIWP  ;format hold date / write 
  ..K PSBHLD,PSBHLDF,PSBHLDN,PSBHLDT,PSBHLDX,PSBHLDXP,PSBHLDI,PSBDISX,PSBDISC,PSBDISXP,PSBDISI,PSBDIST,PSBDISN,PSBDESC
- .I PSBOTXT]"" D
- ..I $E(PSBOTXT,1)="!"  S $E(PSBOTXT,1)=""
- ..S PSBOTXT=" Spec Inst: "_PSBOTXT
- ..F  S PSBWORD=$P(PSBOTXT," ",1),PSBOTXT=$P(PSBOTXT," ",2,250) D  Q:PSBOTXT=""
- ...F  Q:'$L(PSBWORD)  S X=$E(PSBWORD,1,30),PSBWORD=$E(PSBWORD,30,250) D ^DIWP
  .F X=0:0 S X=$O(^UTILITY($J,"W",0,X)) Q:'X  S PSBO(X)=$G(^(X,0)) D
  .S X=$O(PSBO(""),-1) S X=$S(X<8:8,1:X+1)
  .S PSBO(X)=" RPH: "_PSBVPHI_"  RN: "_PSBVNI

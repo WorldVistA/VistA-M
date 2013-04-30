@@ -1,5 +1,5 @@
 DICUIX ;SEA/TOAD,SF/TKW-FileMan: Lookup Tools, Indexes ;19APR2011
- ;;22.0;VA FileMan;**20,28,67,164,165**;Mar 30, 1999;Build 32
+ ;;22.0;VA FileMan;**20,28,67,164,165**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 INDEX(DIFILE,DIFLAGS,DINDEX,DIFROM,DIPART,DINUMBER,DISCREEN,DILIST,DIOUT) ;

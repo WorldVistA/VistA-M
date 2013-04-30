@@ -1,5 +1,5 @@
-MAGGNTI ;WOIFO/GEK/SG/NST - Imaging interface to TIU RPC Calls etc. ; 20 Jan 2010 10:08 AM
- ;;3.0;IMAGING;**10,8,59,93,108**;Mar 19, 2002;Build 1738;May 20, 2010
+MAGGNTI ;WOIFO/GEK/SG/NST/JSL - Imaging interface to TIU RPC Calls etc. ; 20 Jan 2010 10:08 AM
+ ;;3.0;IMAGING;**10,8,59,93,108,122**;Mar 19, 2002;Build 92;Aug 02, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -35,9 +35,28 @@ FILE(MAGRY,MAGDA,TIUDA) ;RPC [MAG3 TIU IMAGE]
  Q
 DATA(MAGRY,TIUDA) ;RPC [MAG3 TIU DATA FROM DA]
  ; Call to get TIU data from the TIUDA
- ; Return =     TIUDA^Document Type ^Document Date^DFN^Author DUZ
+ ; MAGRY: returns data from fields .01,1201,.02,1202 , .05
+ ;           .01            1201         .02   1202 
+ ;    TIUDA^Document Type ^Document Date^DFN^Author DUZ^Status
  ;
- S MAGRY=TIUDA_U_$$GET1^DIQ(8925,TIUDA,".01","E")_U_$$GET1^DIQ(8925,TIUDA,"1201","I")_U_$$GET1^DIQ(8925,TIUDA,".02","I")_U_$$GET1^DIQ(8925,TIUDA,"1202","I")_U
+ ;  - old code
+ ;S MAGRY=TIUDA_U_$$GET1^DIQ(8925,TIUDA,".01","E")_U_$$GET1^DIQ(8925,TIUDA,"1201","I")_U_$$GET1^DIQ(8925,TIUDA,".02","I")_U_$$GET1^DIQ(8925,TIUDA,"1202","I")_U
+ ;
+ ;P122 we need 1 if Status is Complete 0 otherwise. Status is field .05
+ ; reformat code for easier reading, and add the 1 or 0 as 6th piece.
+ ;
+ N RES,CDA,ST
+ D GETS^DIQ(8925,TIUDA,".01;1201;.02;1202;.05","EI","RES")
+ I '$D(RES) S MAGRY="" Q  ;no TIU data
+ S CDA=TIUDA_","
+ S $P(MAGRY,U,1)=TIUDA
+ S $P(MAGRY,U,2)=RES(8925,CDA,".01","E") ; Document Type
+ S $P(MAGRY,U,3)=RES(8925,CDA,"1201","I") ;Document Date
+ S $P(MAGRY,U,4)=RES(8925,CDA,".02","I") ;DFN
+ S $P(MAGRY,U,5)=RES(8925,CDA,"1202","I") ;Author DUZ
+ ; P122 Return Status  as 6th piece of Result String
+ S $P(MAGRY,U,6)=RES(8925,CDA,".05","E") ; Status
+ S $P(MAGRY,U,7)="" ; put's "^" on end of string.
  Q
 IMAGES(MAGRY,TIUDA) ;RPC [MAG3 CPRS TIU NOTE]
  ; Call to get all images for a given TIU DA
@@ -52,7 +71,7 @@ IMAGES(MAGRY,TIUDA) ;RPC [MAG3 CPRS TIU NOTE]
  N MAGARR,CT,TCT,I,J,Z K ^TMP($J,"MAGGX")
  N DA,MAGQI,MAGNCHK,MAGXX,MAGRSLT
  N TIUDFN,MAGQUIT ; MAGQI 8/22/01
- ; MAGFILE is returned from MAGGTII
+ N MAGFILE ; MAGFILE is returned from MAGGTII
  ; 
  S MAGQUIT=0 ; MAGQI 8/22/01
  S TIUDFN=$P($G(^TIU(8925,TIUDA,0)),U,2) ;MAGQI 8/22/01
@@ -183,7 +202,7 @@ ISDOCCL(MAGRY,IEN,TIUFILE,CLASS) ;RPC [MAGG IS DOC CLASS]
  ; ================
  ;  MAGDA - Image IEN in file #2005
  ; 
-SETTIUDA(MAGRY,MAGDA,TIUDA)  ;
+SETTIUDA(MAGRY,MAGDA,TIUDA) ;
  N TRKID,TIUTTL,TIUTCNT
  N MAGTEXT,MAGDFN,MAGADCL,MAGMODE,MAGES,MAGESBY,MAGDATE
  N MAGIAPI,TIUIEN

@@ -10,7 +10,7 @@ MAIN ; Control branching
  . S TIUPRMT="Would you like me to run that program now"
  . S TIUOK=$$READ^TIUU("Y",TIUPRMT,"NO")
  . I +TIUOK'>0 W !,"Okay, hurry back!" Q
- . ;I +TIUOK>0 D QUE^PXPTPOST S ^GMR(128,"CNV","PXPTPOST")=1
+ . I +TIUOK>0 D QUE^PXPTPOST S ^GMR(128,"CNV","PXPTPOST")=1
  W !!?9,"***************************************************************"
  W !?9,"* This option will convert your Discharge Summary version 1.0 *"
  W !?9,"*   Database in preparation for implementation of Discharge   *"
@@ -118,7 +118,7 @@ CONVERT(GMRDA,TIUSNGL) ; "Turn or burn!"
  . S ^GMR(128,"CNV","FAIL",GMRDA)="MISSING INFORMATION"
  . S TIUCRCT=+$G(^GMR(128,"CNV","FAIL",0))+1
  . S $P(^GMR(128,"CNV","FAIL",0),U)=TIUCRCT
- ;D ALERTDEL^GMRDALRT(GMRDA)
+ D ALERTDEL^GMRDALRT(GMRDA)
  S DOCTYP=$S(+$P(GMRD0,U,6):"ADDENDUM",1:"DISCHARGE SUMMARY")
  S TIUTYP(1)=1_U_+$$WHATITLE^TIUPUTU(DOCTYP)_U_DOCTYP
  S DFN=+$P(GMRD0,U,2),GMRDADT=$P(GMRD0,U,7)

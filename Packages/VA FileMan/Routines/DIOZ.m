@@ -1,5 +1,5 @@
 DIOZ ;SFISC/TKW - COMPILED SORT TEMPLATE ;11/29/94  09:53
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 ENCU ;MARK A SORT TEMPLATE FOR ROUTINE COMPILATION
  I $G(DUZ(0))'="@" W !,$C(7),$$EZBLD^DIALOG(101) Q

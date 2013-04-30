@@ -86,7 +86,7 @@ FILE1 ;  file procedures, if BASC, only for 1 visit date
  S DR=$$SPCUNIT^IBCU7(IBIFN,IBPROCP) I DR'="" D ^DIE ; miles/minutes/hours
  ;
  ; DSS QuadraMed Interface: CPT Sequence and Diagnosis Linkage for Single CPT
- ;I $$QMED^IBCU1("DX^VEJDIBE1",IBIFN) D DX^VEJDIBE1(IBIFN,IBPROCP)
+ I $$QMED^IBCU1("DX^VEJDIBE1",IBIFN) D DX^VEJDIBE1(IBIFN,IBPROCP)
  ;
  Q:$D(Y)
  D DX^IBCU72(IBIFN,IBPROCP):IBFT=2

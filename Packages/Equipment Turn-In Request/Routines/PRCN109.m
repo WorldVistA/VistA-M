@@ -96,7 +96,7 @@ MAIL ;
  D ^XMD
  Q
 MAILGRP ;
- ;;G.coreFLS VistA Stats@FORUM.DOMAIN.EXT
+ ;;G.coreFLS VistA Stats@FORUM.domain.ext
  ;;
  Q
 FORMAT ;

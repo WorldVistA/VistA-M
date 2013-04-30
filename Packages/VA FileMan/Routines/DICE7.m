@@ -1,5 +1,5 @@
 DICE7 ;SFISC/GFT-BULLETIN X-REFS ;12:38 PM  8 Jun 1995
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  K ^UTILITY("DICE",$J) S ^($J,0)="^^BULLETIN MESSAGE",DOLD=$P(^DD(DI,DL,0),U,1)
  F DIK=1,2 Q:$D(DTOUT)  D M G QQ:X[U!$D(DTOUT) I X]"" S DQI="Y(",DCOND="SENDING OF '"_DREF_"'" D DA,CC^DICE4,DA G QQ:$D(DTOUT) S DHI=0,DLAY=$S($D(DCOND):X,1:"") D S G QQ:X=U

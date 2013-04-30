@@ -12,7 +12,7 @@ HEADER(XMZ,XMZREC,XMFROM,XMNETNAM) ; RFC 822 - Header Records
  I $D(^XMB(3.9,XMZ,"IN")) D  Q:ER
  . N XMINRE
  . S XMINRE=^XMB(3.9,XMZ,"IN")
- . I $P(XMINRE,"@",1)?.E1".DOMAIN.EXT"!($P(XMINRE,"@",2)?.N) S XMINRE=$P(XMINRE,"@",2)_"@"_$P(XMINRE,"@")
+ . I $P(XMINRE,"@",1)?.E1".domain.ext"!($P(XMINRE,"@",2)?.N) S XMINRE=$P(XMINRE,"@",2)_"@"_$P(XMINRE,"@")
  . S XMSG="In-reply-to: <"_XMINRE_">" X XMSEN
  I "^Y^y^"[(U_$P(XMZREC,U,5)_U) D  Q:ER
  . S XMSG="Return-Receipt-To: "_XMFROM X XMSEN
@@ -55,7 +55,7 @@ NETID(XMZ) ;
  N XMREMID
  I $D(^XMB(3.9,XMZ,5)) D  Q:XMREMID'="" XMREMID
  . S XMREMID=^XMB(3.9,XMZ,5)
- . I $P(XMREMID,"@",1)?.E1".DOMAIN.EXT"!($P(XMREMID,"@",2)?.N) S XMREMID=$P(XMREMID,"@",2)_"@"_$P(XMREMID,"@")
+ . I $P(XMREMID,"@",1)?.E1".domain.ext"!($P(XMREMID,"@",2)?.N) S XMREMID=$P(XMREMID,"@",2)_"@"_$P(XMREMID,"@")
  . Q:XMREMID'=""
  . D PARSE^XMR3(XMZ,.XMREMID)
  ;Q XMZ_"@"_^XMB("NETNAME")

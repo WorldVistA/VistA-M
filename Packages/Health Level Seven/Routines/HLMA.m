@@ -195,7 +195,7 @@ DNS ;
  ; patch HL*1.6*122
  ; I HLDOM]"" D  Q:'POP
  I HLDOM]""!($L(HLDOM("DNS"),".")>2) D  Q:'POP
- . I HLDOM["DOMAIN.EXT"&(HLDOM'[".MED.") S HLDOM=$P(HLDOM,".DOMAIN.EXT")_".DOMAIN.EXT"
+ . I HLDOM["domain.ext"&(HLDOM'[".MED.") S HLDOM=$P(HLDOM,".domain.ext")_".DOMAIN.EXT"
  . I HLTCPORT=5000 S HLDOM="HL7."_HLDOM
  . I HLTCPORT=5500 S HLDOM="MPI."_HLDOM
  . ; patch HL*1.6*122

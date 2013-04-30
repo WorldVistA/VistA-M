@@ -1,10 +1,31 @@
-HLCSTCPA ;OIFO-O/RJH - (TCP/IP) VMS ;07/26/2007  10:29
- ;;1.6;HEALTH LEVEL SEVEN;**84,122**;Oct 13, 1995;Build 14
+HLCSTCPA ;OI&T-OAKLAND/RJH  TCP/IP FOR VMS/LINUX(UNIX) ;08/02/2011  16:31
+ ;;1.6;HEALTH LEVEL SEVEN;**84,122,157**;Oct 13, 1995;Build 8
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
- ; 1. port number is input from VMS COM file, such as HLSxxxxDSM.COM,
- ;    HLSxxxxCACHE.COM, or HLSxxxxGTM.COM file, where xxxx is port
- ;    number.
+ ; 1. port number is input from VMS COM file, or Linux/UNIX xinetd service file.
+ ;    example: (file: /etc/xinetd.d/fey_hlot)
+ ;     #default: on
+ ;     #description: VA HL7 Listener for DEVFEY - port 5000
+ ;     #
+ ;     service fey_hlst
+ ;     {
+ ;         type = UNLISTED
+ ;         disable = no
+ ;         flags = REUSE
+ ;         socket_type = stream
+ ;         protocol = tcp
+ ;         port = 5000
+ ;         wait = no
+ ;         user = feytcpip
+ ;         env = TZ=/usr/share/zoneinfo/US/Eastern
+ ;         env += port=5000
+ ;         server = /usr/local/cachesys/devfey/bin/csession
+ ;         server_args = devfey -ci -U DEVFEY PORT^HLCSTCPA
+ ;         instances = UNLIMITED
+ ;         per_source = UNLIMITED
+ ;     }
+ ;     #end
+ ;
  ; 2. find the ien of #870(logical link file) for the multi-listener
  Q
  ;
@@ -23,8 +44,22 @@ PORT ;
  ;
  N HLPORT
  S HLPORT=0
- I ^%ZOSF("OS")["OpenM" D
+ ; patch HL*1.6*157 start, supports both OpenVMS/TCPIP and Linux/xinetd
+ ; I ^%ZOSF("OS")["OpenM" D
+ N HLOSYS
+ S HLOSYS=$$OS^%ZOSV
+ I HLOSYS["UNIX" D  G IEN
+ . ; Cache system call
+ . S HLPORT=$System.Util.GetEnviron("port")
+ . Q:HLPORT
+ . I 'HLPORT S HLPORT=$System.Util.GetEnviron("PORT")
+ . Q:HLPORT
+ . S ^XTMP("HL7-LINUX: No port from O.S.",0)=$$FMADD^XLFDT($$NOW^XLFDT,30)_"^"_$$NOW^XLFDT
+ ;
+ I HLOSYS["VMS" D  G IEN
  . S HLPORT=$ZF("GETSYM","PORT")
+ ; patch HL*1.6*157 end
+ ;
  I ^%ZOSF("OS")["DSM" D
  . S HLPORT=$P(%,"^",2)
  ;
@@ -37,15 +72,21 @@ IEN ;
  S HLIEN870=0
  F  S HLIEN870=$O(^HLCS(870,"E","M",HLIEN870)) Q:'HLIEN870  D  Q:(HLPRTS=HLPORT)
  . S HLPRTS=$P(^HLCS(870,HLIEN870,400),"^",2)
+ ;
  I 'HLIEN870 D ^%ZTER Q
  ;
  K HLPORT,HLPRTS
  ; patch 122
  S U="^"
  ;
- ;for Cache/VMS
- I ^%ZOSF("OS")["OpenM" D  Q
+ ; patch HL*1.6*157 start, supports both OpenVMS/TCPIP and Linux/xinetd
+ ; I ^%ZOSF("OS")["OpenM" D  Q
+ I $G(HLOSYS)="" S HLOSYS=""
+ I (HLOSYS["UNIX") D  Q
+ . D LINUX(HLIEN870)
+ I (HLOSYS["VMS") D  Q
  . D CACHEVMS(HLIEN870)
+ ; patch HL*1.6*157 end
  ;
  ;for DSM
  I ^%ZOSF("OS")["DSM" D  Q
@@ -91,6 +132,19 @@ CACHEVMS(%) ;Cache'/VMS tcpip
  S IO="SYS$NET",U="^",HLDP=%
  S IO(0)="_NLA0:" O IO(0) ;Setup null device
  ; **Cache'/VMS specific code**
+ O IO::5 E  D MON^HLCSTCP("Openfail") Q
+ X "U IO:(::""-M"")" ;Packet mode like DSM
+ D LISTEN^HLCSTCP
+ C IO
+ Q
+ ;
+LINUX(%) ;
+ ; patch HL*1.6*157, Cache/UNIX for Linux
+ ; listener,  % = HLDP
+ I $G(%)="" D ^%ZTER Q
+ S IO=$P,U="^",HLDP=%
+ S IO(0)="/dev/null" O IO(0) ;Setup null device
+ ; 
  O IO::5 E  D MON^HLCSTCP("Openfail") Q
  X "U IO:(::""-M"")" ;Packet mode like DSM
  D LISTEN^HLCSTCP

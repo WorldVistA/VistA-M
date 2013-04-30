@@ -87,7 +87,7 @@ MAIL N SITE,STATN,SITENM,XMDUZ,XMSUB,XMY,XMTEXT,MSG,ADR
  S:$$GET1^DIQ(869.3,"1,",.03,"I")'="P" STATN=STATN_" [TEST]"
  S XMDUZ="CV END DATE SYNCHRONIZATION",XMSUB=XMDUZ_" - "_STATN_" (DG*5.3*602)"
  S (XMY(DUZ),XMY(.5))=""
- S XMY("terry.moore3@DOMAIN.EXT")="",XMY("pat.wilson@DOMAIN.EXT")=""
+ S XMY("terry.moore3@domain.ext")="",XMY("pat.wilson@domain.ext")=""
  S XMTEXT="MSG("
  S MSG(1)="Combat Veteran End Date synchronization process has completed successfully."
  S MSG(1.5)="Task: "_$G(^XTMP("DG53602S","TASK"))

@@ -1,5 +1,5 @@
 DDS3 ;SFISC/MLH-COMMAND UTILS ;9:02 AM  6 Feb 1996
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  I Y(0)]"","ECNRS"[$E(Y(0)) D @$E(Y(0))
  Q

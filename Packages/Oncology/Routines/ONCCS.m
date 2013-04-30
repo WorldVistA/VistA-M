@@ -1,11 +1,16 @@
 ONCCS ;Hines OIFO/GWB - Collaborative Staging ;06/23/10
- ;;2.11;ONCOLOGY;**40,43,44,47,48,49,51**;Mar 07, 1995;Build 65
+ ;;2.11;ONCOLOGY;**40,43,44,47,48,49,51,57**;Mar 07, 1995;Build 6
  ;
  N DIR,IEN,LV,PS,RC,X
  W !
  S DIR("A")=" Compute Collaborative Staging"
  S DIR(0)="Y",DIR("B")="Yes" D ^DIR
  I (Y=0)!(Y="")!(Y[U) S Y=$S(ONCOANS="A":"@4",1:"@0") Q
+ ;
+ ;re-initialize if 96703
+ I ($P($G(^ONCO(165.5,D0,2.2)),U,3)=96703),($P($G(^ONCO(165.5,D0,0)),U,16)>3120000) D  Q
+ .D CLNCS
+ .W !!,"96703 is obsolete for primaries starting 2012!!!"
  ;
  S IEN=D0
  S $P(^ONCO(165.5,IEN,"CS1"),U,1,9)=U_U_U_U_U_U_U_U
@@ -123,11 +128,16 @@ CSERR N DIR,X
  ;
 INIT ;Initialize CS fields when HISTOLOGY (ICD-O-3) (165.5,22.3) changes
  N HISTNAM,HSTFLD,HSTI,LNS,LSC,MEL,OLDHST,SITEGRP,TEXT
+ ;Malignant Lymphoma is obsolete for ADX 2012 and up.
+ I ($P($G(^ONCO(165.5,D0,0)),U,16)>3120000),(X=96703) D  Q
+ .W !!,"96703 is obsolete for primaries starting 2012!!!"
+ .K X
  S LNS=$O(^ONCO(164.2,"B","LUNG NOS",0))
  S LSC=$O(^ONCO(164.2,"B","LUNG SMALL CELL",0))
  S MEL=$O(^ONCO(164.2,"B","MELANOMA",0))
  S SITEGRP=$P($G(^ONCO(165.5,D0,0)),U,1)
  S OLDHST=$P($G(^ONCO(165.5,D0,2.2)),U,3)
+ I (OLDHST=96703),($P($G(^ONCO(165.5,D0,0)),U,16)>3120000) D CLNCS  ;re-initialized if 96703, obsolete histology.
  I X=OLDHST Q
  I SITEGRP=LNS D
  .I ($E(X,1,4)=8041)!($E(X,1,4)=8042)!($E(X,1,4)=8043)!($E(X,1,4)=8044)!($E(X,1,4)=8045)!($E(X,1,4)=8246) D  W !!," SITE/GP changed to LUNG SMALL CELL",!
@@ -162,6 +172,7 @@ INIT ;Initialize CS fields when HISTOLOGY (ICD-O-3) (165.5,22.3) changes
  W !?3,"Therefore, the CS fields have been initialized and need to"
  W !?3,"be re-entered."
  W !
+CLNCS ;re-initialize if Histology 96703
  F PIECE=1:1:12 S $P(^ONCO(165.5,D0,"CS"),U,PIECE)=""
  F PIECE=1:1:19 S $P(^ONCO(165.5,D0,"CS1"),U,PIECE)=""
  F PIECE=1:1:19 S $P(^ONCO(165.5,D0,"CS2"),U,PIECE)=""

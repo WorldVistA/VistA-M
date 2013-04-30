@@ -1,5 +1,5 @@
 DIPS95 ;SFISC/MKO-POST INSTALL ROUTINE FOR PATCH DI*22*95 ;8:38 AM  18 Sep 2002
- ;;22.0;VA FileMan;**95**;Mar 30, 1999
+ ;;22.0;VA FileMan;**95**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;Recompile all input templates that contain fields with new-style

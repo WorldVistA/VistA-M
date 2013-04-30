@@ -1,5 +1,5 @@
-%ZIS2 ;SFISC/AC,RWF -- DEVICE HANDLER (CHECKS) ;08/17/10  10:12
- ;;8.0;KERNEL;**69,104,112,118,136,241,440,546**;JUL 10, 1995;Build 9
+%ZIS2 ;SFISC/AC,RWF -- DEVICE HANDLER (CHECKS) ;11/08/2011
+ ;;8.0;KERNEL;**69,104,112,118,136,241,440,546,585**;JUL 10, 1995;Build 22
  ;Per VHA Directive 2004-038, this routine should not be modified
  ;
 L2 ;Entry point from %ZIS1, %E holds the IEN value
@@ -15,6 +15,15 @@ VTRM I %ZTYPE="VTRM",'('$D(IO("Q"))&(%A=%H)) W:'$D(IOP)&'$D(%ZISHP) *7,"  [YOU C
  S:%ZTYPE="VTRM"&'$D(IO("Q"))&(%A=%H) IO=$I
  ;
 SLAVE I $D(IO("Q")),$P(%Z,"^",2)=0,$P(%Z,"^",8)']"" W:'$D(IOP) *7,!?10,"  [SLAVE device NOT set up for queuing]" S POP=1 G T
+ ;
+ ;
+ ;**P585 START CJM
+PQ ;Check (if not queueing to secondary system) that print queue is established and available
+ I %ZTYPE="PQ",%ZISB!'$P($G(^XTV(8989.3,1,0)),"^",5),(%ZIS'["T"),'$$QEXIST^ZISPQ(%E) D  G T
+ .S POP=1
+ .W:'$D(IOP) *7,!?10,"  [The Print Queue does not exist]"
+ ;**P585 END CJM
+ ;
 OCPU D OTHCPU("DEVICE")
  ;
 OOS G T:POP
@@ -53,7 +62,10 @@ TMPVAR K IO("S") S %ZISIOS=%E S:IO=0 IO=$I,IO("S")=%H
  D ST^%ZIS3(%ZISTP) S:%ZIS["U" USIO=$P(%Z91,"^",1,4)
 T2 I POP S:%ZIS'["T" IO="" Q
  ;Removed HG from next line.
- G ^%ZIS3:"^MTRM^VTRM^TRM^SPL^MT^SDP^HFS^RES^OTH^BAR^IMPC^CHAN^"[("^"_%ZTYPE_"^") ;Jump to next part
+ ;**P585 START CJM
+ ;G ^%ZIS3:"^MTRM^VTRM^TRM^SPL^MT^SDP^HFS^RES^OTH^BAR^IMPC^CHAN^"[("^"_%ZTYPE_"^") ;Jump to next part
+ G ^%ZIS3:"^MTRM^VTRM^TRM^SPL^MT^SDP^HFS^RES^OTH^BAR^IMPC^CHAN^PQ^"[("^"_%ZTYPE_"^") ;Jump to next part
+ ;**P585 END CJM
  S POP=1 Q
  ;
 QUECHK() ;Return 1 if OK
@@ -94,3 +106,8 @@ SEC ;Do Security check
  I %Z95]"" S %X=$G(DUZ(0)) I %X'="@" S POP=1 F %A=1:1:$L(%X) I %Z95[$E(%X,%A) S POP=0 Q
  I POP,'$D(IOP),'$D(%ZISHP) W *7,"  [Access Prohibited]"
  Q
+ ;
+ ;
+ ;
+ ;
+ ;

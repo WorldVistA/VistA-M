@@ -1,5 +1,5 @@
 DINIT27A ;ISCSF/DPC-FOREIGN FORMAT 1-2-3 DATA PARSE ;1/11/93  2:27 PM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  F I=1:2 S X=$T(ENTRY+I) G:X="" ^DINIT27B S Y=$E($T(ENTRY+I+1),5,999),X=$E(X,4,999),@X=Y
  Q

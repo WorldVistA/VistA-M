@@ -1,5 +1,5 @@
 PSGOE8 ;BIR/CML3-EDIT ORDERS IN 53.1 ; 7/6/11 9:44am
- ;;5.0;INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113,223**;16 DEC 97;Build 8
+ ;;5.0;INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113,223,269**;16 DEC 97;Build 2
  ;
  ; Reference to ^PS(50.7 is supported by DBIA# 2180
  ; Reference to ^PS(51.1 is supported by DBIA 2177
@@ -80,6 +80,7 @@ A26 I $$PNDREN($G(PSGORD)) D  Q
  .. I PSGSCH]"" S XX=+$O(^PS(51.1,"AC","PSJ",PSGSCH,0))
  .. S PSGOST=$G(PSGST),PSGST=$P($G(^PS(51.1,XX,0)),"^",5) I PSGST="D" S PSGST="C"  ;DOW schedules are converted to Continuous
  .. S PSGSTN=$$ENSTN^PSGMI(PSGST)
+ . I $G(PSJSYSW0),($P(PSJSYSW0,U,5)'=2),'$G(PSGEFN(8)) W !!,"NOTE: This may cause the Admin Times and the Start Time to be out of sync."
  . W !!,"NOTE: This change in schedule also changes the ADMIN TIMES and SCHEDULE TYPE.",!
  . S MSG=1,PSGOEEF(39)=1
  . I $G(PSJNEWOE) D PAUSE^VALM1
@@ -97,6 +98,8 @@ A7 W !,"SCHEDULE TYPE: "_$S(PSGSTN]"":PSGSTN_"// ",1:"") R X:DTIME S X=$TR(X,"co
  I $E(X)="^" D ENFF^PSGOE82 G:Y>0 @Y G A7
  ;*223 Don't allow O sched type on C orders
  I X="O",$$SCHTP(PSGSCH)'="O" W !,"  SCHEDULE ("_PSGSCH_") is not a ONE TIME Schedule." G A7
+ ;*269 Don't allow C sched type on O orders
+ I X="C",$$SCHTP(PSGSCH)="O" W !,"  SCHEDULE ("_PSGSCH_") is not a CONTINUOUS Schedule." G A7
  S PSGOST=PSGST
  S PSGST=X,PSGSTN=$$ENSTN^PSGMI(X) W:PSGSTN]"" "  ",PSGSTN
  I X="P",$G(PSGAT)]"" S PSGOAT=PSGAT S PSGAT="" D

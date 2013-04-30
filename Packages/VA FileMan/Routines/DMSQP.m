@@ -1,5 +1,5 @@
 DMSQP ;SFISC/EZ-PRINT SQLI TABLE POINTERS ;10/30/97  16:49
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
 EN1 ; in pointers (to this table from others)

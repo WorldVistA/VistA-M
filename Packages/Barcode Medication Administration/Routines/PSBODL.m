@@ -1,11 +1,14 @@
-PSBODL ;BIRMINGHAM/EFC-DUE LIST ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**5,9,38,32,25,63**;Mar 2004;Build 9
+PSBODL ;BIRMINGHAM/EFC-DUE LIST ;1/10/12 8:47pm
+ ;;3.0;BAR CODE MED ADMIN;**5,9,38,32,25,63,68**;Mar 2004;Build 26
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified. 
  ;
  ; Reference/IA
  ; EN^PSJBCMA/2828
  ; $$GET^XPAR/2263
  ; ^XLFDT/10103
+ ; GETSIOPI^PSJBCMA5/5763
+ ;
+ ;*68 - add call to retrieve New WP Special Instructions/OPI fields
  ;
 EN ; Prt DL
  N PSBGBL,PSBHDR,IOINHI,IOINORM,PSBGIVEN,PSBIEN,PSBLGDT,PSBEVDT,DFN,PSBFLAG
@@ -72,6 +75,10 @@ PRINT(DFN) ;^TMP($J.
  ..S PSBORD=$QS(PSBGBL,7)
  ..D CLEAN^PSBVT
  ..D PSJ1^PSBVT(DFN,PSBORD)
+ ..;*68 begin
+ ..K ^TMP("PSJBCMA5",$J,DFN,PSBONX)
+ ..D GETSIOPI^PSJBCMA5(DFN,PSBONX,1)
+ ..;*68 end
  ..D NOW^%DTC S PSBNOW=%
  ..Q:PSBOSP<PSBOSTRT
  ..Q:(PSBOSP<PSBOSTRT)&(PSBSCHT'="O")
@@ -164,6 +171,8 @@ PRINT(DFN) ;^TMP($J.
  .S PSBORD=$O(^TMP("PSBO",$J,DFN,""),-1)
  .I +$G(PSBORD)>0,$P(PSBRPT(.4),U,1),$D(^TMP("PSBO",$J,DFN,PSBORD)) D EN^PSBODL1
  I $G(PSBODATE)=-1 W !!,?10,"** NO SPECIFIED MEDICATIONS TO PRINT **",$$BLANKS(),$$FTR^PSBODL1() ;Add no medications message, blank lines and footer to patients for invalid Fileman date in PSB*3*63
+ ;
+ K ^TMP("PSJBCMA5",$J)
  Q
 HDR() ;
  D PT^PSBOHDR(DFN,.PSBHDR)

@@ -1,5 +1,5 @@
 DIQ ;SFISC/GFT-CAPTIONED TEMPLATE ;6DEC2009
- ;;22.0;VA FileMan;**19,64,74,81,99,133,163**;Mar 30, 1999;Build 28
+ ;;22.0;VA FileMan;**19,64,74,81,99,133,163**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  G INQ^DII
  ;

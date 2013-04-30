@@ -1,5 +1,6 @@
-LRSRVR ;DALOI/RLM/JMC - LAB DATA SERVER ; Aug 17, 2006
- ;;5.2;LAB SERVICE;**232,303,346**;Sep 27, 1994;Build 10
+LRSRVR ;DALOI/RLM/JMC - LAB DATA SERVER ;11/18/11  16:47
+ ;;5.2;LAB SERVICE;**232,303,346,350**;Sep 27, 1994;Build 230
+ ;
  ; Reference to ^%ZOSF supported by IA #10096
  ; Reference to $$SITE^VASITE supported by IA #10112
  ;
@@ -41,10 +42,11 @@ START ;
  ; Send RELMA mapper formatted message
  I LRSUB="RELMA" D SERVER^LRSRVR2 Q
  ; Process RELMA mapper Packman global message
- ;I LRSUB="RELMA MAPPING" D RMAP^LRSRVR5 Q
+ I LRSUB="RELMA MAPPING" D RMAP^LRSRVR5 Q
  ;
  ; Send SNOMED mapping formatted message
  I LRSUB="SNOMED" D SERVER^LRSRVR6 Q
+ I LRSUB="SNOMED MAPPING" D CTMAP^LRSRVR5 Q
  ;
  ; Send NLT/CPT mapping formatted message
  I LRSUB="NLT/CPT" D SERVER^LRSRVR7 Q
@@ -60,7 +62,7 @@ EXIT ; If all went well, report that too.
  S LRNOW=$$NOW^XLFDT
  S XMDUN="Lab Server",XMDUZ=".5",XMSUB=LRSTN_" LAB SERVER ("_LRNOW_")"
  S XMTEXT="^TMP($J,""LRDATA"","
- I '$D(XMY) S XMY("G.LABTEAM@ISC-DALLAS.DOMAIN.EXT")=""
+ I '$D(XMY) S XMY("G.LABTEAM@ISC-DALLAS.domain.ext")=""
  D ^XMD
  ;
 CLEAN ; Cleanup and exit
@@ -68,7 +70,7 @@ CLEAN ; Cleanup and exit
  . S XMDUN="Lab Server",XMDUZ=".5"
  . S XMSUB=LRSTN_" LAB SERVER ERROR ("_LRNOW_")"
  . S XMTEXT="^TMP($J,""LRDTERR"","
- . S XMY("G.LABTEAM@ISC-DALLAS.DOMAIN.EXT")="",XMY(XQSND)=""
+ . S XMY("G.LABTEAM@ISC-DALLAS.domain.ext")="",XMY(XQSND)=""
  . D ^XMD
  ;
  ; Clean up server message in MailMan
@@ -100,7 +102,7 @@ CSUM ;Calculate checksum for routines and transmit errors to LABTEAM group
  ;
 SUMLST ;Calculate checksum for routines and transmit to requestor
  K ^TMP($J,"LRDATA"),^TMP($J,"LRDTERR")
- S LRCLST=$P($$SITE^VASITE,"^",2),LINE=2,LINR=1,$P(FILL," ",8)=""
+ S LRCLST=$P($$SITE^VASITE,"^",2),LINE=2,$P(FILL," ",8)=""
  S ^TMP($J,"LRDATA",1)="Lab Server triggered at "_LRCLST_" by "_XMFROM_" on "_XQDATE
  ;
  ; Check for a plus sign in front of the routine name.  Bypass the

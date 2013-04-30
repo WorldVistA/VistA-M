@@ -68,13 +68,13 @@ SEND ;Send message to Data Management Team
  F  S RGNUM=$O(RGARRAY(RGNUM)) Q:'RGNUM  W !,RGARRAY(RGNUM)
  ;
 DOMAIN ;Determine test or production account (production must have
- ;"MPI-AUSTIN.DOMAIN.EXT" domain for logical link "MPIVA").
+ ;"MPI-AUSTIN.domain.ext" domain for logical link "MPIVA").
  ;Get logical link IEN for "MPIVA".
  ;Get domain for "MPIVA" logical link in HL LOGICAL LINK (#870) file.
  N RGDOMAIN,RGDMNC S RGDOMAIN=""
  D LINK^HLUTIL3("200M",.HLL,"I")
  S IEN=$O(HLL(0)) I +IEN>0 S RGDOMAIN=$$GET1^DIQ(870,+IEN_",",.03)
- S RGDMNC=$$FIND1^DIC(4.2,"","MQ","MPI-AUSTIN.DOMAIN.EXT") I RGDMNC>0 S RGDMNC=$$GET1^DIQ(4.2,RGDMNC_",",.01)
+ S RGDMNC=$$FIND1^DIC(4.2,"","MQ","MPI-AUSTIN.domain.ext") I RGDMNC>0 S RGDMNC=$$GET1^DIQ(4.2,RGDMNC_",",.01)
  I RGDOMAIN="" Q
  I RGDOMAIN'=RGDMNC W !!,"No data will be transmitted from a TEST account." Q  ;Not production; quit SEND.
  ;

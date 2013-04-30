@@ -1,25 +1,19 @@
-YSDX3UA ;SLC/DJP/LJA-Utilities for Diagnosis Entry in the MH Medical Record (cont.) ; 11/12/09 4:14pm
- ;;5.01;MENTAL HEALTH;**96**;Dec 30, 1994;Build 46
+YSDX3UA ;SLC/DJP/LJA,HIOFO/FT - Utilities for Diagnosis Entry in the MH Medical Record (cont.) ;10/21/11 1:24pm
+ ;;5.01;MENTAL HEALTH;**96,60**;Dec 30, 1994;Build 47
+ ;
  ;Reference to ^VA(200, supported by DBIA #10060
  ;Reference to ^ICD9( supported by DBIA #5388
  ;Reference to ^ICDCODE APIs supported by DBIA #3990
- ;Reference to ^VDEFQM APIs supported by DBIA #4253
- ;D RECORD^YSDX0001("^YSDX3UA") ;Used for testing.  Inactivated in YSDX0001...
+ ;
  ;
 DSMLK ; Called by routine YSDX3
- ; Keywork lookup for DSM
- ;D RECORD^YSDX0001("DSMLK^YSDX3UA") ;Used for testing.  Inactivated in YSDX0001...
- S X=$P(X1," ") G:$P(X1," ",2)="" LK1
- S Q=$C(34),D="S A=^(1) I "
- F I=2:1 S B=$P(X1," ",I) Q:B=""  S:B'[Q D=D_"(A["" "_B_""")&"
- S DIC("S")=$E(D,1,$L(D)-1)
-LK1 ;
- ;D RECORD^YSDX0001("LK1^YSDX3UA") ;Used for testing.  Inactivated in YSDX0001...
- S DIC("S")="I $P(^(0),U,2)=4" ;Allow DSM-IV selection only...
+ ; Keyword lookup for DSM
+ ; naked reference to ^YSD(627.7,D0,0)
+ S DIC("S")="I $P(^(0),U,2)=4" ; Allow DSM-IV selection only
  S DIC(0)="QMZE",DIC="^YSD(627.7,"
  D ^DIC
  K DIC("S")
- QUIT
+ Q
  ;
 DSMP ; Called by routine YSDX3
  ;D RECORD^YSDX0001("DSMP^YSDX3UA") ;Used for testing.  Inactivated in YSDX0001...
@@ -30,13 +24,12 @@ DSMP ; Called by routine YSDX3
  ;
 ICDLK ; Called from YSDX3A
  ; Lookup on the ICD9 File
- ;D RECORD^YSDX0001("ICDLK^YSDX3UA") ;Used for testing.  Inactivated in YSDX0001...
  S X=$P(X2," ") G:$P(X2," ",2)="" ICD1
+ ; naked reference to ^ICD9(D0,1) for (#10) DESCRIPTION [1F]
  S Q=$C(34),D="S A=$C(32)_^(1) I "
  F I=2:1 S B=$P(X2," ",I) Q:B=""  S:B'[Q D=D_"(A["" "_B_""")&"
  S DIC("S")=$E(D,1,$L(D)-1)
 ICD1 ;
- ;D RECORD^YSDX0001("ICD1^YSDX3UA") ;Used for testing.  Inactivated in YSDX0001...
  S X=X2,DIC(0)="QMZE",DIC="^ICD9("
  D ^DIC
  K DIC("S")
@@ -77,38 +70,39 @@ FILE ; Called from routines YSDX3, YSDX3A
  ;D RECORD^YSDX0001("FILE^YSDX3UA") ;Used for testing.  Inactivated in YSDX0001...
  S YSDUZ=$P(^VA(200,DUZ,0),U)
  W !
- S DIE=DIC,DA=YSDA,DR=".02////"_YSDFN_";.03//NOW;.04//"_YSDUZ_";.05///^S X=""`""_DUZ;1////^S X=YSDXDA;5"
- L +@(DIE_"DA)"):0
+ S DIE=DIC,DA=YSDA,DR=".02///"_YSDFN_";.03//NOW;.04//"_YSDUZ_";.05///^S X=""`""_DUZ;1///^S X=YSDXDA;5"
+ L +@(DIE_"DA)"):DILOCKTM
+ I '$T D ERRMSG^YSSITE,DELETE Q
  D ^DIE
  L -@(DIE_"DA)")
- D HDRQUE(YSDA)
  S YSTOUT=$D(DTOUT) I YSTOUT D DELETE QUIT  ;->
  D CHECK QUIT:YSUOUT  ;->
  S C1=$P(^YSD(627.8,YSDA,1),U,2)
  I C1="" W !!?18,"Incomplete information." D DELETE QUIT  ;->
  S C2=$S(C1="v":"A",C1="p":"A",C1="i":"I",C1="r":"I",C1="n":"I",C1="ru":"A",1:"I")
  S DIE="^YSD(627.8,",DA=YSDA,DR="7///^S X=C2;8///NOW"
- L +^YSD(627.8,DA):0
+ L +^YSD(627.8,DA):DILOCKTM
+ I '$T D ERRMSG^YSSITE Q
  D ^DIE
  L -^YSD(627.8,DA)
- D HDRQUE(YSDA)
  K DIE
  S YSTOUT=$D(DTOUT) I YSTOUT QUIT  ;->
  D CHECK QUIT:YSUOUT  ;->
- I $D(W3) D
+ N YSTO S YSTO=0
+ I $D(W3) D  Q:YSTO
  .  S DIE="^YSD(627.8,",DA=YSDUPDA
  .  S DR="7///^S X=""I"";8///NOW;9///^S X=""Y"""
- .  L +^YSD(627.8,DA):0
+ .  L +^YSD(627.8,DA):DILOCKTM
+ .  I '$T D ERRMSG^YSSITE S YSTO=1 Q
  .  D ^DIE
  .  L -^YSD(627.8,DA)
- .  D HDRQUE(YSDA)
  D DXLS,DXLSQ
  S DIE="^YSD(627.8,",DA=YSDA
  S DR="10///^S X=YSDXLX;80"
- L +^YSD(627.8,DA):0
+ L +^YSD(627.8,DA):DILOCKTM
+ I '$T D ERRMSG^YSSITE Q
  D ^DIE
  L -^YSD(627.8,DA)
- D HDRQUE(YSDA)
  S YSTOUT=$D(DTOUT) QUIT:YSTOUT  ;->
  D CHECK QUIT:YSUOUT  ;->
 FILEQ ;
@@ -131,11 +125,5 @@ DELETE ; Called by routine YSDX3UB
  D ^DIK
  W !!?15,"< This diagnosis deleted. >"
  QUIT
- ;
-HDRQUE(YSDA) ; patch YS*5.01*80 hdr trigger event
- N X,YSERR
- Q:'$L($T(QUEUE^VDEFQM))
- S X=$$QUEUE^VDEFQM("PPR^PC1","SUBTYPE=MTLH^IEN="_YSDA,.YSERR)
- Q
  ;
 EOR ;YSDX3UA - Utilities for Diagnosis Entry in the MH Medical Record (cont.) ;4/16/92 11:17

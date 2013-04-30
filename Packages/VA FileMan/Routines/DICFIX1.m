@@ -1,5 +1,5 @@
 DICFIX1 ;SEA/TOAD,SF/TKW-FileMan: Finder, Search Compound Indexes (cont.) ;2/20/98  09:53
- ;;22.0;VA FileMan;;Mar 30, 1999;
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 NXTNAM(DIVAL,DIPART,DINDEX,DISKIP,DIDONE) ;

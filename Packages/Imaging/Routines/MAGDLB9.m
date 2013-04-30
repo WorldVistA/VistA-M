@@ -1,5 +1,6 @@
-MAGDLB9 ;WOIFO/LB - DICOM correct entries ; 01/30/2004  17:14
- ;;3.0;IMAGING;**11**;14-April-2004
+MAGDLB9 ;WOIFO/LB/JSL/SAF - DICOM correct entries ; 01/30/2004  17:14
+ ;;3.0;IMAGING;**11,123**;Mar 19, 2002;Build 67;Jul 24, 2012
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -7,7 +8,6 @@ MAGDLB9 ;WOIFO/LB - DICOM correct entries ; 01/30/2004  17:14
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -52,7 +52,7 @@ EXIT ;
  K ANS,ANSR,CASENO,COMNT1,DATA,DATA1,DATA2,DATE,FILE,FIRST,FIRSTS,I,MACHID,MAGDY
  K MAGDIEN,MAGCSE,MAGERR,MAGFIX,MAGDTPRT,MAGTYPE,MAGDTPRT,MAGSTP,MSG
  K MOD,MODEL,NEWCAS,NEWDFN,NEWDTI,NEWDTIM,NEWMUL,NEWNME,NEWPIEN,NEWPROC
- K NEWSSN,OK,OOUT,OUT,PAT,PID,PREV,PREVS,REASON,STUDYUID,SUID,WHY
+ K NEWPID,OK,OOUT,OUT,PAT,PID,PREV,PREVS,REASON,STUDYUID,SUID,WHY
  Q
 SELECT() ;
  N DIC,D,X,Y

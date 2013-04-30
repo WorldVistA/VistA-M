@@ -1,10 +1,11 @@
 XINDX3 ;ISC/REL,GRK,RWF - PROCESS MERGE/SET/READ/KILL/NEW/OPEN COMMANDS ;06/24/08  15:44
- ;;7.3;TOOLKIT;**20,27,61,68,110,121,128,132**;Apr 25, 1995;Build 13
+ ;;7.3;TOOLKIT;**20,27,61,68,110,121,128,132,133**;Apr 25, 1995;Build 15
  ; Per VHA Directive 2004-038, this routine should not be modified.
 PEEK S Y=$G(LV(LV,LI+1)) Q
 PEEK2 S Y=$G(LV(LV,LI+2)) Q
 INC2 S LI=LI+1 ;Drop into INC
-INC S LI=LI+1,S=$G(LV(LV,LI)),S1=$G(LV(LV,LI+1)),CH=$E(S) G ERR:$A(S)=10 Q
+INC S LI=LI+1,S=$G(LV(LV,LI)),S1=$G(LV(LV,LI+1)),CH=$E(S)
+ G ERR:$A(S)=10 Q
 DN S LI(LV)=LI,LI(LV,1)=AC,LV=LV+1,LI=LI(LV),AC=NOA
  Q
 UP ;Inc LI as we save to skip the $C(10).
@@ -19,8 +20,8 @@ S ;Set
 S2 S GK="" D INC I S="" D:'RHS E^XINDX1(10) Q
  I CH=",","!""#&)*+-,./:;<=?\]_~"[$E(S1),RHS=1 D E^XINDX1(10) G S2 ;patch 121
  I CH="," S RHS=0 G S2
- I CH="=" S RHS=1 D:"!#&)*,/:;<=?\]_~"[$E(S1) E^XINDX1(10) G S2 ;patch 119
- I CH="$",'RHS D  D:% E^XINDX1(10) ;Can't be on RHS of set.
+ I CH="=" S RHS=1 I "!#&)*,/:;<=?\]_~"[$E(S1) D:$E(S1,1,2)'="##" E^XINDX1(10) G S2 ;patch 119
+ I CH="$",'RHS D  D:% E^XINDX1(10) ;Can't be on left side of set.
  . S %=1
  . I "$E$P$X$Y"[$E(S,1,2) S %=0 Q
  . I "$EC$ET$QS"[$E(S,1,3) S %=0 Q
@@ -28,11 +29,15 @@ S2 S GK="" D INC I S="" D:'RHS E^XINDX1(10) Q
  . Q
  I CH="^" D FL G S2
  I CH="@" S Y=$$ASM(LV,LI,",") S:Y'["=" RHS=1 D INC,ARG^XINDX2 G S2
+ I CH="(",$D(LV(LV,"OBJ",LI-1)) D ARG^XINDX2 G S2
  I CH="(" D MULT G S2
+ I CH="#",$E(S,1,2)="##" D ARG^XINDX2 G S2 ;Cache Objects
  D FL G S2
+ ;NOA=number of arguments
 MULT D INC S NOA=S I S'>0 S ERR=5 G ^XINDX1
  D DN S AC=AC+LI F  Q:AC'>LI  S:'RHS GK="*" D INC,ARG^XINDX2
- D UP Q
+ D UP
+ Q
 FL ;
  S:'RHS GK="*" D ARG^XINDX2
  Q
@@ -60,14 +65,16 @@ KL5 S GK="!" D ARG^XINDX2 Q  ;KILL SUBS
 KL4 S NOA=S1 D DN,ARGS^XINDX2,UP,INC2 Q
 NE ;NEW
  S ERR=$S("("[$E(ARG):26,1:0) I ERR G ^XINDX1 ;look for null or (
- S STR=ARG D ^XINDX9
+ S STR=ARG D ^XINDX9 K ERTX
 N2 D INC Q:S=""  G N2:CH=","
  ;I CH?1P,("%@()"'[CH)&("$E"'[$E(S,1,2)) D E^XINDX1(11) G N2
- ;check for '@' and '$$' patch 128
- I CH?1P,(CH'=S) D  G:$G(ERTX)]"" N2
- . I "@("[CH,"$$E"'[$E(S,1,2),($P(S,CH,2)'?1A) D E^XINDX1(11) Q  ;$E(  & $$ only works with @
- . ;I "$"[CH,(LV(LV,1)'="@") D E^XINDX1(11) Q ;didn't allow $ET or $ES
- . I "$"[CH,(LV(LV,1)'="@"),$E(S,1,3)'="$ET",$E(S,1,3)'="$ES" D E^XINDX1(11) Q  ;P132 allow $ET & $ES
+ ;check for "@", functions, special variables, or %variables
+ I CH?1P,(CH'=S) D  I $G(ERTX)]"" K ERTX G N2
+ . Q:"@("[CH!(CH="%"&($E(S,2,8)?.1A.E))  ;check what's indirected on next pass or
+ . ;if not $ET or $ES must use indirection 
+ . I "$"[CH Q:$E(S,1,3)="$ET"!($E(S,1,3)="$ES")  I LI>1,(LV(LV,LI-1)="@") Q
+ . D E^XINDX1(11)
+ . Q
  S GK="~" D ARG^XINDX2
  G N2
  ;

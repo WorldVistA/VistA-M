@@ -1,5 +1,5 @@
 FBAAPIE1 ;AISC/GRR - ENTER FEE PHARMACY INVOICE ;6/5/2009
- ;;3.5;FEE BASIS;**68,108**;JAN 30, 1995;Build 115
+ ;;3.5;FEE BASIS;**68,108,124**;JAN 30, 1995;Build 20
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 LISTLI I '$D(^FBAA(162.1,DA,"RX","AB")) W !,"No prescriptions currently in this invoice.",! Q
  D HOME^%ZIS S FSW=1
@@ -25,6 +25,7 @@ CALC ;Calculate Invoice Total
  K I Q
 RDM W ! S DIR("A")="Do you want to continue a previously entered Invoice",DIR("B")="No",DIR(0)="Y" D ^DIR K DIR G Q:$D(DIRUT)!('Y)
 RD2 W !! S DIC="^FBAA(162.1,",DIC(0)="AEQM",DIC("S")="I $P(^(0),U,5)'=4" D ^DIC G Q:X="^"!(X=""),RD2:Y<0 S (DA,DA(1),IN)=+Y,VIN=$P(^(0),"^",4)
+ S INVDATE=$$GET1^DIQ(162.1,DA_",",12,"I") ;Load Inv Rcvd Date for validity check of Rx fill Date in RDD^FBAAPIE
  D CALC W:FBINTOT>0 !,?30,"Current Total: $ "_$J(FBINTOT,1,2)
 RD3 W ! S DIR("A")="Want to list previously entered line items",DIR("B")="No",DIR(0)="Y" D ^DIR K DIR G Q:$D(DIRUT) D:Y LISTLI
  S LCNT=+$P(^FBAA(162.1,IN,0),"^",9),TAC=+$P(^(0),"^",6),STAT=+$P(^(0),"^",5),STAT(STAT)="",FBFPPSC=$P(^FBAA(162.1,IN,0),"^",13) G RDP^FBAAPIE

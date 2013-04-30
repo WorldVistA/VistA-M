@@ -4,7 +4,7 @@ INF ;  Inform FORUM when integration is completed for VA library sites
  S CODE="" F I=1:1 S CODE=$O(^LBRY(680.6,"C",CODE)) Q:CODE=""  D
  . S MES(I)="Library Station "_$G(CODE)_" has been integrated." Q
  S MES(I+1)="Please update associated DOMAINs."
- S TRNSM=$S($G(^XMB("NETNAME"))["SENTIENT":"BBB.SENTIENT.ISC-WASH.DOMAIN.EXT",1:"FORUM.DOMAIN.EXT")
+ S TRNSM=$S($G(^XMB("NETNAME"))["SENTIENT":"BBB.SENTIENT.ISC-WASH.domain.ext",1:"FORUM.domain.ext")
  S XMDUZ=DUZ,XMSUB="LIBRARY PATCH 8 LOADED",XMY("G.LBRYRECV@"_TRNSM)=""
  S XMTEXT="MES("
  D ^XMD K XMSUB,XMY,XMTEXT,MSG,XMZ,XMDUZ,MES,TRNSM

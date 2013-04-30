@@ -1,12 +1,12 @@
-HLOSITE ;ALB/CJM/OAK/PIJ-HL7 - API for getting site parameters ;12/30/2010
- ;;1.6;HEALTH LEVEL SEVEN;**126,138,147,153**;Oct 13, 1995;Build 11
+HLOSITE ;ALB/CJM/OAK/PIJ-HL7 - API for getting site parameters ;03/26/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**126,138,147,153,158**;Oct 13, 1995;Build 14
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 SYSPARMS(SYSTEM) ;Gets system parameters from file 779.1
  ;Input: none
- ;Output:
+ ;Output:  SYSTEM array (pass by reference)
  ;
- N NODE,LINK
+ N NODE,LINK,PURGE
  S NODE=$G(^HLD(779.1,1,0))
  S SYSTEM("DOMAIN")=$P(NODE,"^")
  S SYSTEM("STATION")=$P(NODE,"^",2)
@@ -20,7 +20,7 @@ SYSPARMS(SYSTEM) ;Gets system parameters from file 779.1
  S SYSTEM("USER BUFFER")=$P(NODE,"^",6)
  S:'SYSTEM("USER BUFFER") SYSTEM("USER BUFFER")=5000
  S SYSTEM("NORMAL PURGE")=$P(NODE,"^",7)
- I 'SYSTEM("NORMAL PURGE") S SYSTEM("NORMAL PURGE")=36
+ I 'SYSTEM("NORMAL PURGE") S SYSTEM("NORMAL PURGE")=3
  S SYSTEM("ERROR PURGE")=$P(NODE,"^",8)
  I 'SYSTEM("ERROR PURGE") S SYSTEM("ERROR PURGE")=7
  S LINK=$P(NODE,"^",10)
@@ -28,6 +28,16 @@ SYSPARMS(SYSTEM) ;Gets system parameters from file 779.1
  S:'$G(SYSTEM("PORT")) SYSTEM("PORT")=$S(SYSTEM("PROCESSING ID")="P":5001,1:5026)
  S SYSTEM("NODE")=$P(NODE,"^",13)
  I SYSTEM("NODE") S SYSTEM("NODE")=$P($G(^%ZIS(14.7,SYSTEM("NODE"),0)),"^")
+ Q
+SYSPURGE(PURGE) ;returns system purge parameters
+ ;Output:  PURGE (pass by reference)
+ ;
+ N NODE
+ S NODE=$G(^HLD(779.1,1,0))
+ S PURGE("NORMAL")=$P(NODE,"^",7)
+ I 'PURGE("NORMAL") S PURGE("NORMAL")=3
+ S PURGE("ERROR")=$P(NODE,"^",8)
+ I 'PURGE("ERROR") S PURGE("ERROR")=7
  Q
  ;
 GETNODE() ;

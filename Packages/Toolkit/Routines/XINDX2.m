@@ -1,5 +1,5 @@
 XINDX2 ;ISC/REL,GRK,RWF - PROCESS "GRB" ;4/2/08  16:35
- ;;7.3;TOOLKIT;**20,27,48,110,121**;Apr 25, 1995;Build 7
+ ;;7.3;TOOLKIT;**20,27,48,110,121,133**;Apr 25, 1995;Build 15
  ; Per VHA Directive 2004-038, this routine should not be modified.
 % S LINE=GRB,(CM,COM)="" F I=0:0 S STR=$P(LINE,$C(9),1),LINE=$P(LINE,$C(9),2,999),NOA=0 D:STR]"" ARGG Q:LINE']""
  Q
@@ -10,9 +10,12 @@ ARGS ;Proccess all agruments at this level
  Q
  ;
 ARG ;Process one argument
- I CH="," D PEEK,E^XINDX1(21):(","[Y)&($$FNC()'="$$") Q
+ I CH="," D PEEK I ","[Y Q:$$OBJF()  D E^XINDX1(21):($$FNC()'="$$") Q  ;if ",," must be function of object method
  Q:CH=Q
- I (CH?1A)!(CH="%") D LOC Q
+ ;Cache Objects;  Package.Class.method or ##class(package.class).method
+ I $D(LV(LV,"OBJ",LI)) G OBJ2:CH=".",OBJ1
+ I CH="#",$E(S,1,2)="##" D OBJ Q
+ I S'[".",(CH?1A)!(CH="%") D LOC Q
  I CH="^" S LOC="G" G NAK:S="^",EXTGLO:S["[",EXTGLO:S["|",GLO Q
  I CH="$" D FUN Q
  I CH="?" D PAT Q
@@ -21,8 +24,10 @@ ARG ;Process one argument
  ;
 NAK S LOC="N"
  G GLO
+ ;
 EXTGLO D E^XINDX1(50),EG,INC S S=U_S
  G GLO
+ ;
 EG N GK,LOC S GK="",LOC="L" ;HANDLE EXTENDED GLOBAL
  F  D INC Q:"]"[CH  Q:"|"[CH  D ARG
  Q
@@ -36,18 +41,43 @@ LOC S LOC="L" ;Check variables at end. I S'?1.8UN,S'?1"%".7UN,S'?1.8LN,S'?1"%".7
  I S1="(" S S=S_S1 D PEEKDN S:(Y?1.N)!($A(Y)=34) S=S_Y
  D ST(LOC,S) I S1="(" D INC2 S NOA=S D DN,INC
  Q
+OBJ ;Cache Objects within ##class
+ S LOC="O"
+ I S1'="("  D E^XINDX1(3)
+ D PEEKDN S S=Y I S[".",'$$OBJTST(S) D E^XINDX1(64)
+ D ST(LOC,S),INC2 S NOA=S D DN,INC
+ Q
+OBJ1 ;Cache Objects not within ##class, contains "."
+ S LOC="O"
+ D ST(LOC,S)
+ Q
+OBJ2 ;Method
+ D PEEKDN
+ I 'Y D INC2 S NOA=S D DN,INC
+ Q
  ;
-PEEK S Y=$G(LV(LV,LI+1)) Q
+OBJF() ; return line where object has an open "(" for parameters
+ N %
+ Q:LV<2 0  ;must be down at least 1 level
+ S %=$O(LV(LV-1,"OBJ",""),-1) ;find last object at previous level
+ Q $S('%:0,LV(LV-1,%+1)="(":%,1:0) ; returns 0 if can't find object or object has no parameter
+ ;
+PEEK S Y=$G(LV(LV,LI+1))
+ Q
  ;
 INC2 S LI=LI+1 ;Drop into INC
-INC S LI=LI+1,S=$G(LV(LV,LI)),S1=$G(LV(LV,LI+1)),CH=$E(S) G:$A(S)=10 ERR Q
+INC S LI=LI+1,S=$G(LV(LV,LI)),S1=$G(LV(LV,LI+1)),CH=$E(S) G:$A(S)=10 ERR
+ Q
  ;
 DN S LI(LV)=LI,LI(LV,1)=AC,LV=LV+1,LI=LI(LV),AC=NOA
- D ARGS,UP Q
+ D ARGS,UP
+ Q
 UP ;Inc LI as we save to skip the $C(10).
- D PEEK D:$A(Y)'=10 ERR S LI(LV)=LI+1,LV=LV-1,LI=LI(LV),AC=LI(LV,1) Q
+ D PEEK D:$A(Y)'=10 ERR S LI(LV)=LI+1,LV=LV-1,LI=LI(LV),AC=LI(LV,1)
+ Q
  ;
-PEEKDN S Y=$G(LV(LV+1,LI(LV+1)+1)) Q
+PEEKDN S Y=$G(LV(LV+1,LI(LV+1)+1))
+ Q
  ;
 ERR D E^XINDX1(43) S (S,S1,CH)="" Q
  S Z=$P(LV(LV+1),$C(9),LI(LV+1),99),Z=$P(Z,$C(10)) W !,"COUNT=",$L(Z,",")
@@ -57,12 +87,17 @@ FUN N FUN S FUN=S G EXT:S["$$",PKG:S["$&",SPV:S1'["(" S NOA=$P(S,"^",2)
  G:FUN["$TE" TEXT
  S Y=1 F Z1=LI(LV+1)+1:1 S X=$G(LV(LV+1,Z1)) Q:$A(X)=10!(X="")  S:X="," Y=Y+1
  I NOA,Y<NOA!(Y>$P(NOA,";",2)) D E^XINDX1(43)
- S NOA=S D DN,INC Q
+ S NOA=S D DN,INC
+ Q
  ;
-TEXT S Y=$$ASM^XINDX3(LV+1,LI(LV+1)+1,$C(10)) D ST("MK","$T("_$S($E(Y)'="+":Y,1:""))
- I $$VT(Y) D ST("I",Y)
- I Y["^",$$VT($P(Y,"^",2)) N X1,X2 S X1=$P(Y,"^"),X2=$P(Y,"^",2) D ST("X",X2_$S($$VT(X1):" "_X1,1:""))
- D FLUSH(LV+1) Q
+TEXT ; process $T
+ N X1,X2
+ S Y=$$ASM^XINDX3(LV+1,LI(LV+1)+1,$C(10)) D ST("MK","$T("_$S($E(Y)'="+":Y,1:""))
+ I $$VT(Y) D ST("I",Y) ;internal label
+ ;check if external routine
+ I Y["^",$$VT($P(Y,"^",2)) S X1=$P(Y,"^"),X2=$P(Y,"^",2),Y=X1 D ST("X",X2_$S($$VT(X1):" "_X1,1:""))
+ D FLUSH(LV+1)
+ Q
  ;special variables
 SPV ;
  I "^$D^$EC^$ES^$ET^$I^$K^$P^$Q^$ST^$SY^"[("^"_X_"^") D ST("MK",X)
@@ -121,4 +156,8 @@ OP(NEW) ;Sets or returns the current operator
  I $D(NEW) S LV(LV,"OP",LI)=NEW Q
  N W S W=+$S($D(LV(LV,"OP",LI)):LI,1:$O(LV(LV,"OP",LI),-1))
  Q $G(LV(LV,"OP",W))
+ ;
+OBJTST(OBJ) ;test if OBJ exists, returns 1 if exists
+ Q:$G(OBJ)="" 0
+ Q ##class(%Dictionary.ClassDefinition).%ExistsId(""_OBJ_"")
  ;

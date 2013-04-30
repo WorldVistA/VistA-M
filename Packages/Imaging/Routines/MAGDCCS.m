@@ -1,5 +1,5 @@
-MAGDCCS ;WOIFO/MLH - DICOM Correct - Clinical Specialties ; 05/18/2007 11:23
- ;;3.0;IMAGING;**10,11,85,54**;03-July-2009;;Build 1424
+MAGDCCS ;WOIFO/MLH/JSL/SAF - DICOM Correct - Clinical Specialties ; 13 Feb 2012 1:13 PM
+ ;;3.0;IMAGING;**10,11,85,54,123**;Mar 19, 2002;Build 67;Jul 24, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -23,8 +23,8 @@ L ;Loop thru the entire file for entries that need processing
  ;that unique Study UID.
  N ANS,ANSR,CASENO,COMNT1,DATA,DATA1,DATA2,DATE,FILE,FIRST,FIRSTS
  N MACHID,MAGDY,MAGDIEN,MAGIEN,MAGTYPE,MSG,START,STOP
- N MOD,MODEL,NEWCAS,NEWDFN,NEWDTI,NEWDTIM,NEWMUL,NEWNME,NEWPIEN,NEWPROC
- N NEWSSN,OK,OOUT,OUT,PAT,PID,PP,PREV,PREVS,REASON,STUDYUID,WHY,MAGFIX
+ N MOD,MODEL,NEWCAS,NEWDFN,NEWDTI,NEWDTIM,NEWMUL,NEWNME,NEWPID,NEWPIEN,NEWPROC
+ N OK,OOUT,OUT,PAT,PID,PP,PREV,PREVS,REASON,STUDYUID,WHY,MAGFIX
  N KFIXALL ; --- does user hold MAGDFIX ALL key
  N GWLOC ; -- gateway site
  ;
@@ -45,13 +45,14 @@ L ;Loop thru the entire file for entries that need processing
  . . I $D(^MAGD(2006.575,MAGIEN,"FIXD")),$P(^MAGD(2006.575,MAGIEN,"FIXD"),"^") Q
  . . I 'FIRST S PREV=MAGIEN,PREVS=SUID,FIRST=MAGIEN
  . . D SET
+ . . Q
  . Q
  Q
  ;
 DISPLAY ;
  S OUT=0
  W !,"**************Processing entry**********"
- W !!,?2,"PATIENT: ",PAT,?50,"SSN: ",PID,!,"Request/Consultation #: ",CASENO
+ W !!,?2,"PATIENT: ",PAT,?50,$$PIDLABEL^MAGSPID(),PID,!,"Request/Consultation #: ",CASENO
  W !,?2,"Equipment: ",MOD,?50,"Model: ",MODEL
  W !,?2,"Date Processed: ",DATE,?50,"Problem with: ",REASON
  W !,?2,"Comment: ",COMNT1
@@ -60,7 +61,7 @@ DISPLAY ;
  Q
  ;
 NEWCASE ;
- S NEWDFN=$P(MAGDY,"^"),NEWNME=$P(MAGDY,"^",2),NEWSSN=$P(MAGDY,"^",3)
+ S NEWDFN=$P(MAGDY,"^"),NEWNME=$P(MAGDY,"^",2),NEWPID=$P(MAGDY,"^",3)
  S NEWCAS=$P(MAGDY,"^",4),NEWPROC=$P(MAGDY,"^",5),NEWDTI=$P(MAGDY,"^",6)
  S NEWMUL=$P(MAGDY,"^",7),NEWPIEN=$P(MAGDY,"^",8),PP=$P(MAGDY,"^",9)
  Q
@@ -75,6 +76,7 @@ ASK1 S ASK="Y/N/D/Q"
  I "YNDPQyndpq"'[$E(ANS) D  G ASK1
  . W !,"Please respond with one of the following codes."
  . W !,"Legend: Y=yes, N=no, D=delete, P=Previous entry, and Q=quit",!
+ . Q
  S ANS=$TR(ANS,"yndpq","YNDPQ")
  Q $E(ANS)
  ;
@@ -82,8 +84,8 @@ CHK ;remove any punctuation before doing comparison on SSN
  ;stop on 1st check.
  N OLD,I
  S OLD="" F I=1:1:$L(PID) I $E(PID,I)?1AN S OLD=OLD_$E(PID,I)
- I NEWSSN'=OLD D  Q
- . S MSG="Social Security numbers do not match. Update? "
+ I NEWPID'=OLD D  Q
+ . S MSG=$$PIDLABEL^MAGSPID()_"s do not match. Update? "
  I NEWNME'=PAT D  Q
  . S MSG="Patient names do not match. Update? "
  ;Finally the problem is with the case number...either no longer in "C"
@@ -94,19 +96,20 @@ CHK ;remove any punctuation before doing comparison on SSN
 NEWDIS ;
  W !,?2,"****Please review the following: *****"
  W !,?2,"Previous name: ",PAT,!,?2,"     New name: ",NEWNME
- W !,?2,"Previous ssn: ",PID,!,?2,"     New ssn: ",NEWSSN
+ W !,?2,"Previous ",$$PIDLABEL^MAGSPID(),": ",PID,!,?2,"     New ",$$PIDLABEL^MAGSPID(),": ",NEWPID
  W !,?2,"Previous request/consultation #: ",CASENO,!,?2,"     New request/consultation #: ",NEWCAS
  ; Variable PP already has text message about being part of printset.
  Q
  ;
 UPDT ;
  N GWLOC ; -- gateway location
+ N % ; ------ var for FM utility call
  W !,"Will change the following: " D NEWDIS
  W !,"Are you sure you want to correct this entry? " S %=2 D YN^DICN
  I %=-1!(%=2) S OUT=1 Q
  W !,"Updating the file."
  S NEWDTIM=$TR(NEWDTI,"0123456789","9876543210")
- S ^MAGD(2006.575,MAGIEN,"FIXD")="1^"_NEWDFN_"^"_NEWNME_"^"_NEWSSN_"^"_NEWCAS_"^"_NEWDTI_"^"_NEWMUL_"^"_NEWDTIM W "."
+ S ^MAGD(2006.575,MAGIEN,"FIXD")="1^"_NEWDFN_"^"_NEWNME_"^"_NEWPID_"^"_NEWCAS_"^"_NEWDTI_"^"_NEWMUL_"^"_NEWDTIM W "."
  S ^MAGD(2006.575,MAGIEN,"FIXPR")=NEWPIEN_"^"_NEWPROC W "."
  ;Same as ^radpt(newdfn,"DT",newdti,"P",newmul,0) & ^RAMIS(71,newpien,0)
  S GWLOC=$P($G(^MAGD(2006.575,MAGIEN,1)),"^",5)
@@ -166,7 +169,7 @@ SET ;
  S DATA=^MAGD(2006.575,MAGIEN,0)
  S FILE=$P(^MAGD(2006.575,MAGIEN,0),"^")
  S DATA1=^MAGD(2006.575,MAGIEN,1)    ;Case no. info
- S DATA2=^MAGD(2006.575,MAGIEN,"AMFG")    ;Modality info
+ S DATA2=$G(^MAGD(2006.575,MAGIEN,"AMFG"))    ;Modality info
  S PAT=$P(DATA,"^",4),PID=$P(DATA,"^",3),REASON=$P(DATA,"^",2)
  S MOD=$P(DATA2,"^"),MODEL=$P(DATA2,"^",6)
  S CASENO=$P(DATA1,"^",2),MACHID=$P(DATA1,"^",4)
@@ -182,10 +185,8 @@ SET ;
  K MAGDY W !," Lookup by case number or patient name"
  ;
 LOOK ;
- ;D ^MAGDLB2 Q:'$D(MAGDY)  Q:MAGDY'[""
  D EN^MAGDCCS2 Q:'$D(MAGDY)  Q:MAGDY'[""
  D NEWCASE,CHK,NEWDIS S ANS=$$ASK
- ;W !,"Sorry, under construction (",$T(+0),")... please try again later.",! Q
  I ANS="Q"!(ANS["^") S (OOUT,OUT)=1 D SETPREV Q
  I ANS="D" D SETDEL,SETPREV Q
  I ANS="P" D CHKPREV Q
@@ -226,4 +227,3 @@ CHKPREV ;
  W !,"Previous entry has been "_STATUS_".",$C(7)
  G SET
  Q
- ;

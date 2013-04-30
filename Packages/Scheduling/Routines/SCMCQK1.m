@@ -1,5 +1,10 @@
-SCMCQK1 ;ALBOI/REW - Single Pt Tm/Pt Tm Pos Assign and Discharge;11/07/02
- ;;5.3;Scheduling;**148,177,231,264,436,297,446,524,535**;AUG 13, 1993;Build 3
+SCMCQK1 ;ALBOI/REW - Single Pt Tm/Pt Tm Pos Assign and Discharge;11/07/02 ; 6/13/12 3:38pm
+ ;;5.3;Scheduling;**148,177,231,264,436,297,446,524,535,563**;AUG 13, 1993;Build 45
+ ;
+ ;
+ ; Reference/ICR
+ ; ^DPT(DFN,.35)/10035
+ ;
  ;
  ;04/25/2006 SD*5.3*446 INTER-FACILITY TRANSFER
 UNTP ;unassign patient from pc prac position
@@ -7,7 +12,7 @@ UNTP ;unassign patient from pc prac position
  N OK,SCER,SCCL,SCBEGIN,SCN,SCLIST,SCEND,SCINCL,SCLSEQ,SCDATES,SCDTS
  S OK=0
  W !,"About to Unassign "_$$NAME(DFN)_" from: ",!,?8,$$POSITION(SCTP)_" position   ["_$P($$GETPRTP^SCAPMCU2(SCTP,DT),U,2)_"]"
- S SCDISCH=$$DATE("D")
+ S SCDISCH=$$DATE("D",DFN) ;SD*5.3*563 pass DFN
  G:SCDISCH<1 QTUNTP
  G:'$$CONFIRM() QTUNTP
  S OK=$$INPTSCTP^SCAPMC22(DFN,SCTP,SCDISCH,.SCER)  ; og/sd/524
@@ -60,7 +65,7 @@ UNTM ;
  S OK=0
  W !!,"About to Unassign "_$$NAME(DFN)_" from "_$$TEAMNM(SCTM)_" team"
  W:'SCTPSTAT !,?5,"AND from "_$$POSITION(SCTP)_" position  ["_$$WRITETP^SCMCDD1(SCTP)_"]"
- S SCDISCH=$$DATE("D")
+ S SCDISCH=$$DATE("D",DFN) ;SD*5.3*563 pass DFN
  G:SCDISCH<1 QTUNTM
  G:'$$CONFIRM() QTUNTM
  IF 'SCTPSTAT D  G:OK2'>0 QTUNTM
@@ -127,7 +132,7 @@ ASTM ;assign patient to PC team
  .Q:'$$YESNO1()  ; new function call per SD*5.3*436
  .Q:'$$CONFIRM()
  .S SCFLAG=1 W !
- S SCASSDT=$$DATE("A")
+ S SCASSDT=$$DATE("A",DFN) ;SD*5.3*563 Pass DFN
  G:SCASSDT<1 QTASTM
  S SCTMCT=$$TEAMCNT^SCAPMCU1(SCTM)
  S SCTMMAX=$P($$GETEAM^SCAPMCU3(SCTM),"^",8)
@@ -173,7 +178,7 @@ ASTP ;assign patient to PC practitioner
  .S SCTP=$P(Y,U,2)
  ELSE  D
  .S SCTP=$P(Y,U,1)
- S SCASSDT=$$DATE("A")
+ S SCASSDT=$$DATE("A",DFN) ;SD*5.3*563 Pass DFN
  G:SCASSDT<1 QTASTP
  S SCTMCT=$$PCPOSCNT^SCAPMCU1(SCTP),SCTMMAX=+$P($G(^SCTM(404.57,SCTP,0)),U,8)
  I SCTMCT'<SCTMMAX D  G QTASTP:$$WAITYN,QTASTP:'$$YESNO2
@@ -231,15 +236,21 @@ SELPOS() ;return way to select position: 1=PRACT,2=POSIT,3=NONE
  S DIR("B")=1
  D ^DIR
  Q $S(Y'>0:"",+Y=1:"PRACT",1:"POSIT")
-DATE(TYPE) ;return date type=A or D
- N DIR,X,Y
- S DIR("A")=$S(TYPE="A":"Assignment",1:"Unassignment")_" date: "
- S DIR(0)="DA^::EXP"
- S Y=$S($D(SCDISCH):SCDISCH,$D(SCASSDT):SCASSDT,(TYPE="A"):"TODAY",1:"TODAY-1")
- X ^DD("DD")
- S DIR("B")=Y
- D ^DIR
- Q Y
+DATE(TYPE,DFN) ;type=A(Assignment) or D(Unassignment)
+ ; Returns assignment/unassignment date or "^"
+ I '$G(DFN) Q -1
+ N DIR,X,Y,SDFLG,SDY
+ ;SD*5.3*563 SDFLG=0 allow to proceed with date if prior to DOD
+ F  D  Q:SDFLG=0
+ .S DIR("A")=$S(TYPE="A":"Assignment",1:"Unassignment")_" date: "
+ .S DIR(0)="DA^::EXP"
+ .S Y=$S($D(SCDISCH):SCDISCH,$D(SCASSDT):SCASSDT,(TYPE="A"):"TODAY",1:"TODAY-1")
+ .X ^DD("DD")
+ .S DIR("B")=Y
+ .D ^DIR K DIR S SDY=Y
+ .I $D(DIRUT) K DIRUT,DUOUT,X,Y S SDFLG=0 Q
+ .D WARNMESS^SCMCQK1(SDY,DFN,.SDFLG)
+ Q SDY
 ACTCL(DFN,SCCL) ;is patient enrolled in clinic? - not called with SD*5.3*535
  Q
  N SCXX
@@ -270,3 +281,20 @@ WAITYN() ;
  Q Y>0
 SC(DFN) ;Is patient 50 to 100%
  D ELIG^VADPT Q $P($G(VAEL(3)),U,2)>49
+ ;
+WARNMESS(SDY,DFN,SDFLG) ;SD*5.3*563
+ ;If the patient is deceased warns the user to choose assignment
+ ;date prior to the date of death
+ ;SDY - Assignment/Unassignment date
+ ;SDFLG=0 - Allow to proceed with the date if prior to DOD
+ ;
+ N SDDODPAT,SDDODCF
+ S SDFLG=1
+ I $P($G(^DPT(DFN,.35)),U)="" S SDFLG=0 Q
+ I $P($G(^DPT(DFN,.35)),U)'="" D
+ .S SDDODPAT=$P($P(^DPT(DFN,.35),U),".")
+ .S SDDODCF=$$FMTE^XLFDT(SDDODPAT)
+ .I SDY<SDDODPAT S SDFLG=0 Q
+ .I SDY>=SDDODPAT D
+ ..W !,"Patient is deceased as of "_SDDODCF_". Please use an earlier Assignment date."
+ Q

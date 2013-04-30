@@ -1,16 +1,18 @@
-GMTSMHPE ; SLC/JER,KER - Mental Health Physical Exam Component ; 02/27/2002
- ;;2.7;Health Summary;**49**;Oct 20, 1995
+GMTSMHPE ; SLC/JER,KER - Mental Health Physical Exam Component ; 11/14/2011
+ ;;2.7;Health Summary;**49,102**;Oct 20, 1995;Build 25
  ;                     
  ; External References
  ;   DBIA  1280  ^MR(    (file #90)
  ;   DBIA 10015  EN^DIQ1 (file #90)
  ;                    
 MAIN ; Main control
+ Q
  N GMCKC,GMDATA,GMDATE,GMEND,GMTSE,GMTSB,GMFLD,GMI,GMIL,GMTIMES,GMX,MAX Q:'$G(DFN)  Q:'$D(^MR(+DFN,"PE"))
  S GMTSB=$G(GMTS1) S:GMTSB'?7N GMTSB=6666666 S GMTSE=$G(GMTS2) S:GMTSE'?7N GMTSE=9999999
  S MAX=$S(+($G(GMTSNDM))>0:+($G(GMTSNDM)),1:99999)
  S GMTIMES=0
 PHYEXAM ; Check for existence of PHYSICAL EXAM data
+ Q
  S GMEND=GMTSE S GMDATE=GMTSB-.1
  F  S GMDATE=$O(^MR(+DFN,"PE",GMDATE)) Q:GMDATE']""!(GMDATE>GMEND)  D  Q:$D(GMTSQIT)!(MAX'>GMTIMES)
  . N DIC,DIQ,DA,DR

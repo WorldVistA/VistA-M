@@ -1,10 +1,11 @@
-LRAPBR4 ;DALOI/WTY/KLL - Autopsy Browser Display;7/27/01
- ;;5.2;LAB SERVICE;**259,317**;Sep 27, 1994
+LRAPBR4 ;DALOI/STAFF - Autopsy Browser Display ;04/06/10  15:52
+ ;;5.2;LAB SERVICE;**259,317,350**;Sep 27, 1994;Build 230
  ;
- ;Reference to ^DPT supported by IA #918
+ ; Reference to ^DPT supported by IA #918
  ;
  Q
-ENTER ;Entry point
+ ;
+ENTER ; Entry point
  N LRTEXT,LRFILE,LRFIELD,LRTMP,LRFLG
  D INIT
  Q:'$D(^LR(LRDFN,LRSS))
@@ -14,64 +15,77 @@ ENTER ;Entry point
  D:LRTIU ESIGLN^LRAPBR1
  D FOOTER
  Q
-INIT ;Initialize variables
+ ;
+ ;
+INIT ; Initialize variables
  S X=^LR(LRDFN,0) D ^LRUP
  Q:'$D(^LR(LRDFN,LRSS))
  F LRTMP=1:1 D  Q:LRFIELD="Q"
- .S X=$T(VART1+LRTMP)
- .S LRFIELD=$P(X,";",2),VAR=$P(X,";",3),LRFLG=$P(X,";",4)
- .Q:LRFIELD="Q"
- .S @VAR=$$GET1^DIQ(63,LRDFN_",",LRFIELD,LRFLG)
- .I VAR["LRM",@VAR S X=@VAR D D^LRUA S @VAR=X
+ . S X=$T(VART1+LRTMP)
+ . S LRFIELD=$P(X,";",2),VAR=$P(X,";",3),LRFLG=$P(X,";",4)
+ . Q:LRFIELD="Q"
+ . S @VAR=$$GET1^DIQ(63,LRDFN_",",LRFIELD,LRFLG)
+ . I VAR["LRM",@VAR S X=@VAR D D^LRUA S @VAR=X
  S LRH(2)=$E(LRH(2),2,3)
- ;Get date of death (LRH)
+ ;
+ ; Get date of death (LRH)
  S DA=LRDFN D D^LRAUAW
  S Y=LR(63,12) D D^LRU S LRH=Y
+ ;
  S LCT=0
  S:'LRTIU GROOT="^TMP(""LRAPBR"",$J,"
  S:LRTIU GROOT="^TMP(""TIUP"",$J,"
  K ^TMP("LRAPBR",$J)
+ ;
+ ; If reporting lab available then use instead of VistA site name.
+ S LRX=$P($G(^LR(LRDFN,"AU")),"^",18)
+ I LRX S LRQ(1)=$$NAME^XUAF4(LRX)
+ ;
  Q
-BODY ;Report body
+ ;
+ ;
+BODY ; Report body
  D:LRTIU GLENTRY("$TEXT",,1)
  S LR("F")=1
  I LRH(1)="" D
- .D GLENTRY("+*+* REPORT INCOMPLETE *+*+",20,1)
- .D GLENTRY(,,1)
+ . D GLENTRY("+*+* REPORT INCOMPLETE *+*+",20,1)
+ . D GLENTRY(,,1)
  D MODAUCK
- ;Display supplementary report header if one or more has been added
+ ; Display supplementary report header if one or more has been added
  I $P($G(^LR(LRDFN,84,0)),U,4) D
- .S LRTEXT="*+* SUPPLEMENTARY REPORT HAS BEEN ADDED *+*"
- .S LRTEXT=$$CJ^XLFSTR(LRTEXT,IOM)
- .D GLENTRY(LRTEXT,,1)
- .S LRTEXT="*+* REFER TO BOTTOM OF REPORT *+*"
- .S LRTEXT=$$CJ^XLFSTR(LRTEXT,IOM)
- .D GLENTRY(LRTEXT,,1)
+ . S LRTEXT="*+* SUPPLEMENTARY REPORT HAS BEEN ADDED *+*"
+ . S LRTEXT=$$CJ^XLFSTR(LRTEXT,IOM)
+ . D GLENTRY(LRTEXT,,1)
+ . S LRTEXT="*+* REFER TO BOTTOM OF REPORT *+*"
+ . S LRTEXT=$$CJ^XLFSTR(LRTEXT,IOM)
+ . D GLENTRY(LRTEXT,,1)
  D GLENTRY(,,1)
  F LRV=81,82,84 D
- .D:LRV'=84 GLENTRY(,,1)
- .D:LRV=81 GLENTRY(LRAU(1),0)
- .D:LRV=82 GLENTRY(LRAU(2),0)
- .I LRV'=84 D
- ..D GLENTRY(,,1)
- ..S LRFILE=63,LRIENS=LRDFN_","
- ..S LRFIELD=$S(LRV=81:32.2,1:32.3)
- ..D WP
- .I LRV=84 D
- ..N LRIENS1,LRIENS
- ..S LRFILE=63.324
- ..S LRA=0 F  S LRA=$O(^LR(LRDFN,84,LRA)) Q:'LRA  D
- ...S LRIENS1=LRA_","_LRDFN_","
- ...D GLENTRY("SUPPLEMENTARY REPORT DATE: ",0,1)
- ...S LRB=$$GET1^DIQ(LRFILE,LRIENS1,.01)
- ...D GLENTRY(LRB,BTAB)
- ...D:$P($G(^LR(LRDFN,84,LRA,2,0)),U,4) SUPA
- ...S LRFIELD=1,LRIENS=LRIENS1 D WP
- ...D GLENTRY(,,1)
- .I LRV'=84 D DASH,GLENTRY(,,1)
+ . D:LRV'=84 GLENTRY(,,1)
+ . D:LRV=81 GLENTRY(LRAU(1),0)
+ . D:LRV=82 GLENTRY(LRAU(2),0)
+ . I LRV'=84 D
+ . . D GLENTRY(,,1)
+ . . S LRFILE=63,LRIENS=LRDFN_","
+ . . S LRFIELD=$S(LRV=81:32.2,1:32.3)
+ . . D WP
+ . I LRV=84 D
+ . . N LRIENS1,LRIENS
+ . . S LRFILE=63.324
+ .  . S LRA=0 F  S LRA=$O(^LR(LRDFN,84,LRA)) Q:'LRA  D
+ . . . S LRIENS1=LRA_","_LRDFN_","
+ . . . D GLENTRY("SUPPLEMENTARY REPORT DATE: ",0,1)
+ . . . S LRB=$$GET1^DIQ(LRFILE,LRIENS1,.01)
+ . . . D GLENTRY(LRB,BTAB)
+ . . . D:$P($G(^LR(LRDFN,84,LRA,2,0)),U,4) SUPA
+ . . . S LRFIELD=1,LRIENS=LRIENS1 D WP
+ . . . D GLENTRY(,,1)
+ . I LRV'=84 D DASH,GLENTRY(,,1)
  D ^LRAPBR5
  Q
-WP ;Display word procesing fields
+ ;
+ ;
+WP ; Display word procesing fields
  K LRTMP,^UTILITY($J,"W")
  N LRX,DIWR,DIWL,LRA1
  S LRX=$$GET1^DIQ(LRFILE,LRIENS,LRFIELD,"","LRTMP","LRERR(1)")
@@ -83,7 +97,9 @@ WP ;Display word procesing fields
  .D GLENTRY(^UTILITY($J,"W",DIWL,LRA1,0),DIWL,1)
  K ^UTILITY($J,"W")
  Q
-SUPA ;Print supplementary report audit information
+ ;
+ ;
+SUPA ; Print supplementary report audit information
  N LRFILE,LRIENS1,LRWP
  S LRTEXT="*+* SUPPLEMENTARY REPORT HAS BEEN ADDED/MODIFIED *+*"
  S LRTEXT=$$CJ^XLFSTR(LRTEXT,IOM)
@@ -103,10 +119,28 @@ SUPA ;Print supplementary report audit information
  D D^LRU
  S LRTEXT=LRDSC_Y_LRSGN_A2_")" D GLENTRY(LRTEXT,BTAB)
  Q
+ ;
+ ;
 HEADER ;
  S LRQ=LRQ+1
  D:LRTIU GLENTRY("$APHDR",,1)
  F I=1:1:2 D GLENTRY(,,1)
+ ;
+ ; Print names of facilities printing/releasing this report.
+ N LRN,LRPL,LRRL,LRX
+ I $$GET^XPAR("DIV^PKG","LR REPORTS FACILITY PRINT",1,"Q")>1,'LRTIU D
+ . D PFAC^LRRP1(DUZ(2),"",1,.LRPL)
+ . S LRN=0
+ . F  S LRN=$O(LRPL(LRN)) Q:'LRN  D GLENTRY(LRPL(LRN),"",1)
+ ;
+ ; Display reporting lab
+ I $$GET^XPAR("DIV^PKG","LR REPORTS FACILITY PRINT",1,"Q")#2 D
+ . S LRX=+$P($G(^LR(LRDFN,"AU")),"^",18)
+ . I LRX<1 Q
+ . D RL^LRRP1(LRX,1,.LRRL),GLENTRY("","",1)
+ . S LRN=0
+ . F  S LRN=$O(LRRL(LRN)) Q:'LRN  D GLENTRY(LRRL(LRN),"",1)
+ ;
  D DASH
  S LRTEXT="CLINICAL RECORD |" D GLENTRY(LRTEXT,5,1)
  S LRTEXT="AUTOPSY PROTOCOL" D GLENTRY(LRTEXT,40)
@@ -119,7 +153,9 @@ HEADER ;
  D GLENTRY(LRTEXT,56)
  D DASH
  Q
-MODAUCK ;Display modified banner if required
+ ;
+ ;
+MODAUCK ; Display modified banner if required
  S LRAPMR=$$GET1^DIQ(63,LRDFN,102,"I")
  Q:'LRAPMR
  S LRAPMD=$$GET1^DIQ(63,LRDFN,102.2,"I")
@@ -134,7 +170,9 @@ MODAUCK ;Display modified banner if required
  D GLENTRY(LRTEXT,"",1)
  D GLENTRY("","",1)
  Q
-POW ;Determine POW or Persian Gulf status
+ ;
+ ;
+POW ; Determine POW or Persian Gulf status
  I $P($G(^LR(LRDFN,0)),"^",2)=2 D
  .S LRPOW=0
  .I $D(^DPT(DFN,.52)) S:$P(^(.52),U,5)="Y" LRPOW=1
@@ -142,19 +180,21 @@ POW ;Determine POW or Persian Gulf status
  .D ^LRAPBRPW
  .K LRPOW
  Q
-FOOTER ;Report footer
+ ;
+ ;
+FOOTER ; Report footer
  D:LRTIU GLENTRY("$FTR",,1)
  D DASH
  D GLENTRY(,,1)
  I LRH(3)=""&(LRH(17)'="") D
- .S LRTEXT="| Provisional Anatomic Dx"
- .D GLENTRY(LRTEXT,55)
+ . S LRTEXT="| Provisional Anatomic Dx"
+ . D GLENTRY(LRTEXT,55)
  S LRTEXT="Pathologist: "_LRM(3) D GLENTRY(LRTEXT,0,1)
  D GLENTRY(LRW(9),52)
  S LRTEXT="| Date " D GLENTRY(LRTEXT,55)
  S LRTEXT=$E($S(LRH(3)'="":LRH(3),1:LRH(17)),1,12) D GLENTRY(LRTEXT,BTAB)
  D DASH
- S LRTEXT=LRQ(1) D GLENTRY(LRTEXT,0,1)
+ S LRTEXT=$E(LRQ(1),1,IOM-20) D GLENTRY(LRTEXT,0,1)
  S LRTEXT="AUTOPSY PROTOCOL" D GLENTRY(LRTEXT,IOM-17)
  S LRTEXT="Patient: "_$E(LRP,1,30) D GLENTRY(LRTEXT,0,1)
  D GLENTRY(SSN,43),GLENTRY("SEX:"_SEX,56),GLENTRY("DOB:"_DOB,63)
@@ -162,17 +202,23 @@ FOOTER ;Report footer
  S LRTEXT="Physician: "_$E(LRM(1),1,28) D GLENTRY(LRTEXT,23)
  S LRTEXT="AGE AT DEATH:"_$J(AGE,3) D GLENTRY(LRTEXT,63)
  Q
+ ;
+ ;
 DASH ;
  D GLENTRY(LR("%"),0,1)
  Q
-GLENTRY(LRPR1,LRPR2,LRPR3) ;Write to global
- ;LRPR1 = Text to be written to global
- ;LRPR2 = Tab position
- ;LRPR3 = 1 means start a new line.  Othewise, write on current line.
+ ;
+ ;
+GLENTRY(LRPR1,LRPR2,LRPR3) ; Write to global
+ ; LRPR1 = Text to be written to global
+ ; LRPR2 = Tab position
+ ; LRPR3 = 1 means start a new line.  Othewise, write on current line.
  S LRPR1=$G(LRPR1),LRPR2=+$G(LRPR2),LRPR3=+$G(LRPR3)
  D:LRPR3 NEWLN^LRAPUTL(LRPR1,LRPR2)
  D:'LRPR3 GLBWRT^LRAPUTL(LRPR1,LRPR2)
  Q
+ ;
+ ;
 VART1 ;Setup variables
  ;14;LRAC;I;AUTOPSY ACCESSION #
  ;13.5;LRM(2);I;RESIDENT PATHOLOGIST

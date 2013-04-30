@@ -1,12 +1,13 @@
-XQ83 ;SF-ISC.SEA/JLI/LUKE - FIND ^XUTL NODES NEEDING SURGERY ;04/08/2003  11:46
- ;;8.0;KERNEL;**60,157,286**;Jul 10, 1995
+XQ83 ;SF-ISC.SEA/JLI/LUKE,ISD/HGW - FIND ^XUTL NODES NEEDING SURGERY ;05/01/12  09:43
+ ;;8.0;KERNEL;**60,157,286,593**;Jul 10, 1995;Build 7
+ ;Per VHA Directive 2004-038, this routine should not be modified
  Q
 DQ ;TaskMan entry fired by CHEK below
  ;
  Q:'$D(^DIC(19,"AT"))  ;Nothing to do
  ;
  I $D(^DIC(19,"AXQ","P0"))=1 D  ;Somebody is rebuilding menus
- .L +^DIC(19,"AXQ","P0"):0 ;If we can lock it the flag is bogus
+ .L +^DIC(19,"AXQ","P0"):DILOCKTM ;If we can lock it the flag is bogus ;P593
  .I $T L -^DIC(19,"AXQ","P0") K ^DIC(19,"AXQ","P0")
  .Q
  Q:$D(^DIC(19,"AXQ","P0"))=1
@@ -28,8 +29,8 @@ DQ ;TaskMan entry fired by CHEK below
  S X=% S %XQT1=X H 2
  S XQSTART=$$HTE^XLFDT($H) ;Returns: Jul 06, 2001@13:19:20
  ;
- S X1=X,X2=-21 D C^%DTC F %K=0:0 S %K=$O(^DIC(19,"AT",%K)) Q:%K'>0!(%K'<X)  K ^(%K) ;Kill of those that are 21 says old
- S X=DT+2 F  S X=$O(^DIC(19,"AT",X)) Q:X'>0  S %K="" F  S %K=$O(^DIC(19,"AT",X,%K)) Q:%K=""  K ^(%K) S ^DIC(19,"AT",$$NOW^XLFDT(),%K)=""
+ S X1=X,X2=-21 D C^%DTC F %K=0:0 S %K=$O(^DIC(19,"AT",%K)) Q:%K'>0!(%K'<X)  K ^(%K) ;Kill of those that are 21 days old
+ S X=DT+2 F  S X=$O(^DIC(19,"AT",X)) Q:X'>0  S %K="" F  S %K=$O(^DIC(19,"AT",X,%K)) Q:%K=""  W !,X K ^(%K) S ^DIC(19,"AT",$$NOW^XLFDT(),%K)="" W " ",$$NOW^XLFDT()
  ;Kill off old "AT" nodes
  ;
 LOOP ;Main loop
@@ -94,7 +95,7 @@ CHEK ;See if microsurgery needs to be run here
  Q:'$D(^DIC(19,"AT"))  ;Nothing to do
  ;
  I $D(^DIC(19,"AXQ","P0"))=1 D  ;Somebody is rebuilding menus
- .L +^DIC(19,"AXQ","P0"):0 ;If we can lock it the flag is bogus
+ .L +^DIC(19,"AXQ","P0"):DILOCKTM ;If we can lock it the flag is bogus ;P593
  .I $T L -^DIC(19,"AXQ","P0") K ^DIC(19,"AXQ","P0")
  .Q
  Q:$D(^DIC(19,"AXQ","P0"))=1
@@ -118,7 +119,7 @@ CHEK ;See if microsurgery needs to be run here
  .D ^%ZTLOAD
  .Q
  ;
- Q:'$D(^XUTL("XQO",%XQH,0))  L ^XUTL("XQO",%XQH,0):0 I '$T K %XQH Q
+ Q:'$D(^XUTL("XQO",%XQH,0))  L ^XUTL("XQO",%XQH,0):DILOCKTM I '$T K %XQH Q  ;P593
  ;If the first menu has a 0th node lock it, if it won't lock quit
  N X S %H=$P(^XUTL("XQO",%XQH,0),U,1) D YMD^%DTC S:%>.001 %=%-.001 S:%=0 %="" S %XQT=X_%
  ;Get date off first entry set %XQT (looks like: 3000414.081043)
@@ -130,7 +131,6 @@ CHEK ;See if microsurgery needs to be run here
  S ^DIC(19,"AXQ","P0","MICRO")=$H,%XQX=1
  S %TIM=$P($H,",")-1_","_$P($H,",",2)
  L -^XUTL("XQO",%XQH,0)
- ;
  ;
  S ZTDESC="MICRO UPDATING XUTL",ZTRTN="DQ^XQ83",ZTSAVE("%XQT")="",ZTSAVE("DUZ")=.5,ZTDTH=%TIM,ZTIO="" D:'$D(ZTCPU) SETVOL D ^%ZTLOAD
  ;Unlock the node and task off DQ above and quit

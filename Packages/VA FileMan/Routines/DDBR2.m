@@ -1,5 +1,5 @@
 DDBR2 ;SFISC/DCL-VA FILEMAN BROWSER ;26AUG2009
- ;;22.0;VA FileMan;**162**;Mar 30, 1999;Build 19
+ ;;22.0;VA FileMan;**162**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 SWITCH(DDBLST,DDBRET) ;Switch to another document in list or FileMan Database

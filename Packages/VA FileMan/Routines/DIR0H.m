@@ -1,5 +1,5 @@
 DIR0H ;SFISC/MKO-HELP FOR SCREENS ;10:59 AM  22 Jul 1994
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S DIR0DX=DX,DIR0DY=DY
  W $P(DDGLVID,DDGLDEL,10)_$P(DDGLCLR,DDGLDEL,2)_$P(DDGLVID,DDGLDEL)

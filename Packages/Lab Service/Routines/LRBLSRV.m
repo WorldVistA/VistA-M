@@ -20,7 +20,7 @@ START ;
  S ^TMP($J,"LRBLDATA",1)=""
  S ^TMP($J,"LRBLDATA",2)="Sorry, but I don't know how to "_XQSUB
  S ^TMP($J,"LRBLDATA",3)="No action taken"
- S XMY("G.bloodbank@ISC-CHICAGO.DOMAIN.EXT")=""
+ S XMY("G.bloodbank@ISC-CHICAGO.domain.ext")=""
  S %DT="T",X="NOW" D ^%DT,DD^LRX S LRBLNOW=Y
  S XMSUB="Invalid BB Server Request From "_LRBLSITE_" run on "_LRBLNOW
  S XMTEXT="^TMP($J,""LRBLDATA"",",XMDUZ="Blood Bank Monitor" D ^XMD

@@ -1,8 +1,13 @@
-PSBOMH2 ;BIRMINGHAM/EFC-MAH ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**6,20,27,26,67**;Mar 2004;Build 23
+PSBOMH2 ;BIRMINGHAM/EFC-MAH ;4/12/12 9:46am
+ ;;3.0;BAR CODE MED ADMIN;**6,20,27,26,67,68**;Mar 2004;Build 26
  ;
  ; Reference/IA
  ; EN^PSJBCMA/2828
+ ; GETSIOPI^PSJBCMA5/5763
+ ;
+ ;*68 - Add ability to get special instructions at end of each orders
+ ;      grid and print in free space before next orders grid, check
+ ;      for page overflow each line of word processing text.
  ;
 EN ;
  ; Okay, let's print this puppy
@@ -19,7 +24,9 @@ EN ;
  ;
  D LEGEND
  Q
+ ;
 CONT ;
+ N SILN,SITXT
  S PSBHDR(1)="Continuing/PRN/Stat/One Time Medication/Treatment Record (VAF 10-2970 B, C, D)"
  W $$HDR()
  S PSBDRUG=""
@@ -37,17 +44,15 @@ CONT ;
  ..S:$O(^TMP("PSB",$J,"ORDERS",PSBORD,"AT",""),-1)>PSBCNT PSBCNT=$O(^(""),-1)
  ..W:$Y>(IOSL-PSBCNT-4) $$HDR()
  ..F PSBLINE=1:1:PSBCNT D
- ...I IOSL>24,$Y>$S(PSBCNT<13:(IOSL-PSBCNT-4),(PSBCNT-PSBLINE=12):(IOSL-12),1:(IOSL-12)) D
- ....W !?(IOM-35\2),"*** CONTINUED ON NEXT PAGE ***"
- ....W $$HDR()
- ....W !?(IOM-35\2),"*** CONTINUED FROM PREVIOUS PAGE ***"
+ ...D CHKPAGE                ;*68 convert overflow logic to a tag call
  ...W !,$G(^TMP("PSB",$J,"ORDERS",PSBORD,"INST",PSBLINE))
  ...W ?32,"| ",$G(^TMP("PSB",$J,"ORDERS",PSBORD,"AT",PSBLINE))
  ...S PSBDAY=0,PSBCOL=0
  ...F  S PSBDAY=$O(^TMP("PSB",$J,PSBWEEK,"HDR",PSBDAY)) Q:'PSBDAY  D
  ....W ?(40+(PSBCOL*13)),"|" ;Remove space, PSB*3*67
  ....S Y=$G(^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDAY,PSBLINE))
- ....I $P(Y,U,3)'[">" W " " ;Write space when status does not contain >, PSB*3*67
+ ....;Write space when status does not contain >, PSB*3*67
+ ....I ($L($P(Y,U,2))'=5)!($P(Y,U,3)'="RM"),($P(Y,U,3)'[">") W " "
  ....W $P(Y,U,3)
  ....W $E($P($P(Y,U,1)_"0000",".",2),1,4)," "
  ....W $P(Y,U,2)
@@ -56,6 +61,7 @@ CONT ;
  .....I $D(^TMP("PSB",$J,"ORDERS",PSBORD,"NTDUE",PSBDAY)),(PSBLINE=PSBCNT) W "***"  ;write *** when day no due
  ....I $D(^TMP("PSB",$J,"ORDERS",PSBORD,"DISC",PSBDAY)),(PSBLINE=PSBCNT) W "***"   ;output discontinued status
  ....S PSBCOL=PSBCOL+1
+ ..D SIOPI                     ;*68 get and print SI lines, if exist
  ..W !,$TR($J("",IOM)," ","-")
  Q
  ;
@@ -72,16 +78,14 @@ PRN ;
  ..S:PSBCNT<8 PSBCNT=8  ; Minimum space for order
  ..W:$Y>(IOSL-PSBCNT-4) $$HDR(1)
  ..F PSBLINE=1:1:PSBCNT D
- ...I IOSL>24,$Y>$S(PSBCNT<13:(IOSL-PSBCNT-4),(PSBCNT-PSBLINE=12):(IOSL-12),1:(IOSL-12)) D
- ....W !?(IOM-35\2),"*** CONTINUED ON NEXT PAGE ***"
- ....W $$HDR(1)
- ....W !?(IOM-35\2),"*** CONTINUED FROM PREVIOUS PAGE ***"
+ ...D CHKPAGE                  ;*68 move overflow page logic to a tag
  ...W !,$G(^TMP("PSB",$J,"ORDERS",PSBORD,"INST",PSBLINE))
  ...W ?32,"| ",$G(^TMP("PSB",$J,PSBWEEK,PSBORD,"AT",PSBLINE))
+ ..D SIOPI                     ;*68 get and print SI lines, if exist
  ..W !,$TR($J("",IOM)," ","-")
  Q
  ;
-LEGEND  ;
+LEGEND ;
  ;print the initials - name legend as an extra page  ;
  ;I '$D(^TMP("PSB",$J,"LEGEND")) K ^TMP("PSJ",$J),^TMP("PSB",$J) Q  ;
  D PT^PSBOHDR(DFN,.PSBHDR)  ;
@@ -94,7 +98,7 @@ LEGEND  ;
  K ^TMP("PSJ",$J),^TMP("PSB",$J)
  Q
  ;
-HDR(PRN)   ;
+HDR(PRN) ;
  ; PRN = TRUE IF DISPLAYING PRN MED (OPTIONAL)
  D PT^PSBOHDR(DFN,.PSBHDR)
  W !,"Start Date",?20,"Stop Date",?32,"| ",$S('$G(PRN):"Admin",1:"Action Status")
@@ -135,7 +139,7 @@ PSBSTIV ;
  ....D PSBOUT^PSBOMH1($P(PSBAUD(YB),U,1),$P(PSBAUD(YB),U,2))
  Q
  ;
-PSBCTAR   ;
+PSBCTAR ;
  S YC="" F  S YC=$O(PSBTAR(YC)) Q:YC=""  D
  .S Z="" F  S Z=$O(^PSB(53.79,PSBIEN,.9,Z)) Q:Z=""  I Z'=0  D
  ..I $P(PSBTAR(YC),U,1)=$P(^PSB(53.79,PSBIEN,.9,Z,0),"^",1)  D
@@ -144,3 +148,20 @@ PSBCTAR   ;
  ....D PSBOUT^PSBOMH1($P(^PSB(53.79,PSBIEN,.9,Z,0),"^",1),$P(PSBTAR(YC),U,2))
  Q
  ;
+SIOPI ;Get and print SI/OPI Wp text *68
+ K ^TMP("PSJBCMA5",$J,DFN)
+ S SILN=$$GETSIOPI^PSJBCMA5(DFN,PSBORD,1)
+ I SILN F QQ=0:0 S QQ=$O(^TMP("PSJBCMA5",$J,DFN,PSBORD,QQ)) Q:'QQ  D
+ .S SITXT=^TMP("PSJBCMA5",$J,DFN,PSBORD,QQ)
+ .I SILN=1,SITXT="" Q
+ .D CHKPAGE I QQ=1 W !," Special Instructions:"
+ .D CHKPAGE W !," ",SITXT
+ K ^TMP("PSJBCMA5",$J,DFN)
+ Q
+ ;
+CHKPAGE ;check for page full and print overflow msgs and new page headers *68
+ I IOSL>24,$Y>$S(PSBCNT<13:(IOSL-PSBCNT-4),(PSBCNT-PSBLINE=12):(IOSL-12),1:(IOSL-12)) D
+ .W !!?(IOM-35\2),"*** CONTINUED ON NEXT PAGE ***"
+ .W $$HDR()
+ .W !?(IOM-35\2),"*** CONTINUED FROM PREVIOUS PAGE ***",!
+ Q

@@ -95,12 +95,12 @@ MAIL ;
  S XMSUB=$S($G(PSOMLINN)="":"Unknown Institution",1:$G(PSOMLINN)_" ("_$G(PSOMLIN)_")")_" TPB FILE BUILD"
  S XMDUZ="Patch PSO*7*145 Post Install" I $G(DUZ) S XMY(DUZ)=""
  X ^%ZOSF("UCI") S PSOTUCI=$P($G(Y),",") S PSOTUCI1=$P($G(^%ZOSF("PROD")),",") I PSOTUCI=PSOTUCI1 D
- .S XMY("TEMPLETON,SHANNON@FORUM.DOMAIN.EXT")=""
- .S XMY("BROCKERT,JUDITH@FORUM.DOMAIN.EXT")=""
- .S XMY("CHOW,ANGELA@FORUM.DOMAIN.EXT")=""
- .S XMY("RUZBACKI,RON@FORUM.DOMAIN.EXT")=""
- .S XMY("BARRON,LUANNE@FORUM.DOMAIN.EXT")=""
- .S XMY("WASHINGTON,JANET P@FORUM.DOMAIN.EXT")=""
+ .S XMY("TEMPLETON,SHANNON@FORUM.domain.ext")=""
+ .S XMY("BROCKERT,JUDITH@FORUM.domain.ext")=""
+ .S XMY("CHOW,ANGELA@FORUM.domain.ext")=""
+ .S XMY("RUZBACKI,RON@FORUM.domain.ext")=""
+ .S XMY("BARRON,LUANNE@FORUM.domain.ext")=""
+ .S XMY("WASHINGTON,JANET P@FORUM.domain.ext")=""
  I $G(PSOTLOCK) D  G MAILX
  .D NOW^%DTC S Y=% X ^DD("DD") S PSOQTIME=Y
  .K PSOSTEXT S PSOSTEXT(1)="The TPB ELIGIBILITY file building, and other post-install functions of",PSOSTEXT(2)="patch PSO*7*145, queued to run at "_$G(PSOQTIME)_",",PSOSTEXT(3)="was NOT run, because the XTMP patient global was locked."

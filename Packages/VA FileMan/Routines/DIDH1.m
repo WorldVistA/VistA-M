@@ -1,5 +1,5 @@
 DIDH1 ;SFISC-HDR FOR DD LISTS ;7:34 AM  29 Sep 2003
- ;;22.0;VA FileMan;**76,105,131**;Mar 30, 1999
+ ;;22.0;VA FileMan;**76,105,131**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  N DIDHI,DIDHJ,W D  ;*131*
  .N I,J D IJ^DIUTL(DFF) M DIDHJ=J,DIDHI=I S DIDHJ=$O(J(""),-1)

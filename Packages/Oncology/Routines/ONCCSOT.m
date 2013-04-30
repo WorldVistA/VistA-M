@@ -1,5 +1,5 @@
 ONCCSOT ;Hines OIFO/GWB - Collaborative Staging OUTPUT TRANSFORMS ;06/23/10
- ;;2.11;ONCOLOGY;**40,51**;Mar 07, 1995;Build 65
+ ;;2.11;ONCOLOGY;**40,51,56**;Mar 07, 1995;Build 10
  ;
 TOT ;DERIVED AJCC-6 T (165.5,160) OUTPUT TRANSFORM
  ;DERIVED AJCC-7 T (165.5,160.7) OUTPUT TRANSFORM
@@ -12,15 +12,23 @@ TOT ;DERIVED AJCC-6 T (165.5,160) OUTPUT TRANSFORM
  I (Y=10)!(Y=100) S Y="T1" Q
  I (Y=11)!(Y=110) S Y="T1mic" Q
  I (Y=19)!(Y=199) S Y="T1 NOS" Q
+ I Y=191 S Y="T1 NOS(s)" Q
+ I Y=192 S Y="T1 NOS(m)" Q
  I (Y=12)!(Y=120) S Y="T1a" Q
+ I Y=121 S Y="T1a(s)" Q
+ I Y=122 S Y="T1a(m)" Q
  I (Y=13)!(Y=130) S Y="T1a1" Q
  I (Y=14)!(Y=140) S Y="T1a2" Q
  I (Y=15)!(Y=150) S Y="T1b" Q
+ I Y=151 S Y="T1b(s)" Q
+ I Y=152 S Y="T1b(m)" Q
  I (Y=16)!(Y=160) S Y="T1b1" Q
  I (Y=17)!(Y=170) S Y="T1b2" Q
  I (Y=18)!(Y=180) S Y="T1c" Q
  I Y=181 S Y="T1d" Q
  I (Y=20)!(Y=200) S Y="T2" Q
+ I Y=201 S Y="T2(s)" Q
+ I Y=202 S Y="T2(m)" Q
  I (Y=29)!(Y=299) S Y="T2 NOS" Q
  I (Y=21)!(Y=210) S Y="T2a" Q
  I Y=211 S Y="T2a1" Q
@@ -30,6 +38,8 @@ TOT ;DERIVED AJCC-6 T (165.5,160) OUTPUT TRANSFORM
  I (Y=23)!(Y=230) S Y="T2c" Q
  I Y=240 S Y="T2d" Q
  I (Y=30)!(Y=300) S Y="T3" Q
+ I Y=301 S Y="T3(s)" Q
+ I Y=302 S Y="T3(m)" Q
  I (Y=39)!(Y=399) S Y="T3 NOS" Q
  I (Y=31)!(Y=310) S Y="T3a" Q
  I (Y=32)!(Y=320) S Y="T3b" Q
@@ -37,8 +47,14 @@ TOT ;DERIVED AJCC-6 T (165.5,160) OUTPUT TRANSFORM
  I Y=340 S Y="T3d" Q
  I (Y=40)!(Y=400) S Y="T4" Q
  I (Y=49)!(Y=499) S Y="T4 NOS" Q
+ I Y=491 S Y="T4 NOS(s)" Q
+ I Y=492 S Y="T4 NOS(m)" Q
  I (Y=41)!(Y=410) S Y="T4a" Q
+ I Y=411 S Y="T4a(s)" Q
+ I Y=412 S Y="T4a(m)" Q
  I (Y=42)!(Y=420) S Y="T4b" Q
+ I Y=421 S Y="T4b(s)" Q
+ I Y=422 S Y="T4b(m)" Q
  I (Y=43)!(Y=430) S Y="T4c" Q
  I (Y=44)!(Y=440) S Y="T4d" Q
  I Y=450 S Y="T4e" Q

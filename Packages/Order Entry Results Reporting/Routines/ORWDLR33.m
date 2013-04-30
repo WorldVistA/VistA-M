@@ -1,5 +1,10 @@
-ORWDLR33 ; SLC/KCM/REV/JDL - Lab Calls ; 7/1/2002 11AM
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,141,243**;Dec 17, 1997;Build 242
+ORWDLR33 ; SLC/KCM/REV/JDL - Lab Calls ;7/1/2002 11AM
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,141,243,315**;Dec 17, 1997;Build 20
+ ;
+ ;
+ ; DBIA 2388   ^LAB(61
+ ; DBIA 2429   ^LR7OV4
+ ; DBIA 2992   ^XTV(8989.51
  ;
 STOP(VAL,X2)       ; return a calculated stop date
  N X1,X
@@ -18,9 +23,12 @@ MAXDAYS(Y,LOC,SCHED) ; Return max number of days for a continuing order
  K ^TMP($J,"ORWDLR33 MAXDAYS")
  Q
 ALLSPEC(Y,FROM,DIR) ; Return a set of specimens from topography file
- N I,IEN,CNT S I=0,CNT=44
+ N I,IEN,CNT,A,%,NOW,B
+ D NOW^%DTC S NOW=$P(%,".")
+ S I=0,CNT=44
  F  Q:I'<CNT  S FROM=$O(^LAB(61,"B",FROM),DIR) Q:FROM=""  D
  . S IEN=0 F  S IEN=$O(^LAB(61,"B",FROM,IEN)) Q:'IEN  D
+ . . S A=$G(^LAB(61,IEN,64.91)) S B=$P(A,"^",3) I B]"",B'>NOW Q
  . . S I=I+1,Y(I)=IEN_U_FROM_"  ("_$P($G(^LAB(61,IEN,0)),U,2)_")"
  Q
 LABCOLTM(ORYN,ORDATE,ORLOC) ; Is this a routine lab collect time for this location?

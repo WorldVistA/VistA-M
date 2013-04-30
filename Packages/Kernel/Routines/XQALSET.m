@@ -1,5 +1,6 @@
 XQALSET ;ISC-SF.SEA/JLI - SETUP ALERTS ;4/10/07  14:06
- ;;8.0;KERNEL;**1,6,65,75,114,125,173,207,285,443**;Jul 10, 1995;Build 4
+ ;;8.0;KERNEL;**1,6,65,75,114,125,173,207,285,443,602**;Jul 10, 1995;Build 9
+ ;Per VHA Directive 2004-038, this routine should not be modified
  ;;
  Q
  ; Original entry point - throw away return value since no value expected

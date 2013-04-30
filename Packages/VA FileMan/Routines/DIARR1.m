@@ -1,5 +1,5 @@
 DIARR1 ;SFISC/DCM-ARCHIVING FUNCTION, PROMPT FOR ARCHIVED RECORD ;7/1/93  8:43 AM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 PROC D N Q:$D(DTOUT)!($D(DUOUT)&(DIARREQ'>0))!('$D(DIARR))
  D PRINTDEV Q:POP

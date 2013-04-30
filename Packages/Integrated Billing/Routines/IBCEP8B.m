@@ -1,9 +1,10 @@
 IBCEP8B ;ALB/CJS - Functions for NON-VA PROVIDER cont'd ;06-06-08
- ;;2.0;INTEGRATED BILLING;**391,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**391,432,476**;21-MAR-94;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 BLD(IBNPRV) ; Build/Rebuild display
  N IBLCT,IBCT,IBLST,IBPRI,IBIEN,Z,Z1,Z2,IB1
+ N IBFBTGL,IBFBOK ;IB*2.0*476
  K @VALMAR
  ;S (IBLCT,IBCT)=0,Z=$G(^IBA(355.93,IBNPRV,0))
  S (IBLCT,IBCT)=0,Z=$G(^IBA(355.93,IBNPRV,0)),IB1=$G(^IBA(355.93,IBNPRV,1))
@@ -29,7 +30,18 @@ BLD(IBNPRV) ; Build/Rebuild display
  .. S IBCT=IBCT+1
  .. S Z1=$J("",15)_$P(IBLST(IBIEN),U)_" ("_$S($P(IBLST(IBIEN),U,3)=1:"Primary",1:"Secondary")_")"
  .. D SET1(.IBLCT,Z1,IBCT)
- E  D
+ . ;IB*2.0*476 - BEGIN added prompt to allow OPTION FB PAID TO IB to make updates or not
+ . S IBCT=IBCT+1
+ . S Z1=" " D SET1(.IBLCT,Z1,IBCT)
+ . S IBCT=IBCT+1
+ . S IBFBTGL=$$FBTGLGET^IBCEP8C1(IBNPRV)  ;RETURNS 0,1 OR ""
+ . S IBFBOK="YES"
+ . S:IBFBTGL=0 IBFBOK="NO"
+ . S Z1=$J("Allow future updates by FEE BASIS automatic interface? : ",50)_IBFBOK
+ . D SET1(.IBLCT,Z1,IBCT)
+ ;E  D
+ I $P(Z,U,2)'=2 D
+ .;IB*2.0*476 - END added prompt to allow OPTION FB PAID TO IB to make updates or not
  . S IBCT=IBCT+1
  . S Z1=$J("Address: ",15)_$P(Z,U,5) D SET1(.IBLCT,Z1,IBCT)
  . I $P(Z,U,10) D
@@ -70,6 +82,16 @@ BLD(IBNPRV) ; Build/Rebuild display
  .. S IBCT=IBCT+1
  .. S Z1=$J("",30)_$P(IBLST(IBIEN),U)_" ("_$S($P(IBLST(IBIEN),U,3)=1:"Primary",1:"Secondary")_")"
  .. D SET1(.IBLCT,Z1,IBCT)
+ . ;IB*2.0*476 - BEGIN added prompt to allow OPTION FB PAID TO IB to make updates or not
+ . S IBCT=IBCT+1
+ . S Z1=" " D SET1(.IBLCT,Z1,IBCT)
+ . S IBCT=IBCT+1
+ . S IBFBTGL=$$FBTGLGET^IBCEP8C1(IBNPRV)  ;RETURNS 1,0 OR ""
+ . S IBFBOK="YES"
+ . S:IBFBTGL=0 IBFBOK="NO"
+ . S Z1=$J("Allow future updates by FEE BASIS automatic interface? : ",60)_IBFBOK
+ . D SET1(.IBLCT,Z1,IBCT)
+ . ;IB*2.0*476 - END added prompt to allow OPTION FB PAID TO IB to make updates or not
  K VALMBG,VALMCNT
  S VALMBG=1,VALMCNT=IBLCT
  Q

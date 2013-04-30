@@ -1,5 +1,5 @@
 DICM2 ;SFISC/XAK/TKW-LOOKUP FOR VAR PTR ;2/15/00  14:55
- ;;22.0;VA FileMan;**4,31**;Mar 30, 1999
+ ;;22.0;VA FileMan;**4,31**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  N A9,DIEX,DISAVIEX,DIV,DIVDIC,DIVDO,DIVP,DIVP1,DIVP2,DIVPDIC,DIVY,DIASKOK

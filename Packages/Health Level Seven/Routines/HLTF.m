@@ -1,5 +1,5 @@
-HLTF ;AISC/SAW,JRP-Create/Process Message Text File Entries ;10/01/2008  14:05
- ;;1.6;HEALTH LEVEL SEVEN;**1,19,43,55,109,120,122,142**;Oct 13, 1995;Build 17
+HLTF ;AISC/SAW,JRP-Create/Process Message Text File Entries ;08/05/2011  14:37
+ ;;1.6;HEALTH LEVEL SEVEN;**1,19,43,55,109,120,122,142,157**;Oct 13, 1995;Build 8
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -158,8 +158,11 @@ STUB772(FLD01,OS) ;
  ;
  N IEN
  I '$L($G(OS)) N OS S OS=$G(^%ZOSF("OS"))
- ;
- I OS'["DSM",OS'["OpenM" D
+ ; patch HL*1.6*157 start, supports Linux/xinetd
+ N HLOSYS
+ S HLOSYS=$$OS^%ZOSV
+ ; I OS'["DSM",OS'["OpenM" D
+ I OS'["DSM",(OS'["OpenM")!((OS["OpenM")&(HLOSYS'["VMS")&(HLOSYS'["UNIX")) D
  .F  L +^HLCS(869.3,1,772):10 S IEN=+$G(^HLCS(869.3,1,772))+1,^HLCS(869.3,1,772)=IEN S:$D(^HL(772,IEN)) IEN=0,^HLCS(869.3,1,772)=($O(^HL(772,":"),-1)\1) L -^HLCS(869.3,1,772) Q:IEN
  E  D
  .F  S IEN=$I(^HLCS(869.3,1,772),1) S:$D(^HL(772,IEN)) IEN=0,^HLCS(869.3,1,772)=($O(^HL(772,":"),-1)\1) Q:IEN
@@ -182,8 +185,11 @@ STUB773(FLD01,OS) ;
  ;
  N IEN
  I '$L($G(OS)) N OS S OS=$G(^%ZOSF("OS"))
- ;
- I OS'["DSM",OS'["OpenM" D
+ ; patch HL*1.6*157 start, supports Linux/xinetd
+ N HLOSYS
+ S HLOSYS=$$OS^%ZOSV
+ ; I OS'["DSM",OS'["OpenM" D
+ I OS'["DSM",(OS'["OpenM")!((OS["OpenM")&(HLOSYS'["VMS")&(HLOSYS'["UNIX")) D
  .F  L +^HLCS(869.3,1,773):10 S IEN=+$G(^HLCS(869.3,1,773))+1,^HLCS(869.3,1,773)=IEN S:$D(^HLMA(IEN)) IEN=0,^HLCS(869.3,1,773)=($O(^HLMA(":"),-1)\1) L -^HLCS(869.3,1,773) Q:IEN
  E  D
  .F  S IEN=$I(^HLCS(869.3,1,773),1) S:$D(^HLMA(IEN)) IEN=0,^HLCS(869.3,1,773)=($O(^HLMA(":"),-1)\1) Q:IEN

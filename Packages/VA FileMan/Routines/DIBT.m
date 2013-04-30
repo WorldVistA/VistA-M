@@ -1,5 +1,5 @@
 DIBT ;SFISC/GFT,TKW,TOAD-STORE A SORT TEMPLATE ;11NOV2008
- ;;22.0;VA FileMan;**82,160**;Mar 30, 1999;Build 21
+ ;;22.0;VA FileMan;**82,160**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
 MENU ;
 0 ; select and edit templates, until user quits

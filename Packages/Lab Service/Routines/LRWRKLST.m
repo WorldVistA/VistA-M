@@ -1,5 +1,5 @@
-LRWRKLST ;DALOI/CJS/DRH-LONG ACCESSION LIST ;2/19/91  11:46
- ;;5.2;LAB SERVICE;**1,17,38,153,185,221,268,362**;Sep 27, 1994;Build 11
+LRWRKLST ;DALOI/STAFF - LONG ACCESSION LIST ;02/28/12  19:21
+ ;;5.2;LAB SERVICE;**1,17,38,153,185,221,268,362,350**;Sep 27, 1994;Build 230
  ;
  N LRDICS
  ;
@@ -18,13 +18,17 @@ LRWRKLST ;DALOI/CJS/DRH-LONG ACCESSION LIST ;2/19/91  11:46
  ; Ask if list by date rather than accession number
  I $P(^LRO(68,LRAA,0),U,3)="Y" D STAR^LRWU3 S LRLAST=$G(LAST)
  I LREND D LREND Q
- ; List by acccession number
+ ; List by accession number
  I '$D(LRSTAR) D PHD
  I LREND D LREND Q
  ;
-W ;from LRVER, LRVR
+W ; from LRVER, LRVR
+ ; Added to protect "%*" variables from %ZTLOAD corruption
+ N %,%A,%A0,%B,%B1,%B2,%B3,%BA,%BU,%C,%D1,%D2,%DT,%E,%G,%H,%I,%J
+ N %J1,%K,%M,%N,%P,%S,%T,%W,%W0,%X,%Y
+ N A0,C,D,DD,DDH,DDQ,DDSV,DG,DH,DIC,DIFLD,DIR,DIRO,DIROUT,DIRUT
+ N DIX,DIY,DISYS,DO,DP,DQ,DTOUT,DU,DZ,X1,XQH
  ;
- N DIR,DTOUT,DIRUT,DIROUT
  I '$D(^LRO(68,LRAA,1,LRAD,1,0)),'$D(LRSTAR) D LREND Q
  ;
  S (LRUNC,LRTSE)=0
@@ -118,7 +122,7 @@ TESTS ;
  S LN=LN+1
  ;
  S LRLO69=$G(^LRO(69,LRDAT,1,LRSN,0))
- I $L(LRLO69),$D(^LRO(69,LRDAT,1,LRSN,1)),$L($P(^(1),U,6)) W !,$P(^(1),U,6) S LN=LN+1
+ I LRLO69'="",$D(^LRO(69,LRDAT,1,LRSN,1)),$L($P(^(1),U,6)) W !,$P(^(1),U,6) S LN=LN+1
  ;
  K LRNAC
  S LRI=0
@@ -140,7 +144,7 @@ TS2 ;
  S LN=LN+1
  ;
  W ?40,$S($D(LRURG(LRURG)):LRURG(LRURG),1:"")
- W:$L($P(LRXXX,U,3)) ?55," LIST: ",$P($G(^LRO(68.2,+$P(LRXXX,U,3),0)),U,1)," ",$P($P(LRXXX,U,3),";",2,3)
+ I $P(LRXXX,U,3)'="" W ?55," LIST: ",$P($G(^LRO(68.2,+$P(LRXXX,U,3),0)),U,1)," ",$P($P(LRXXX,U,3),";",2,3)
  ;
  I $D(^LRO(69,LRDAT,1,LRSN,2,"B",LRI)) D
  . N I,X
@@ -151,23 +155,50 @@ TS2 ;
  ;
  D REF
  ;
- I $P(LRXXX,U,5) W !,"  COMPLETED: ",$$FMTE^XLFDT($P(LRXXX,U,5),"5MZ") S LN=LN+1
+ I $P(LRXXX,U,5) W !,"  COMPLETED: ",$$FMTE^XLFDT($P(LRXXX,U,5),"MZ") S LN=LN+1
  E  S LRNAC=""
  Q
  ;
  ;
 REF ; if referred test, display status and manifest
  ;
- N LREVNT,LRUID,LRMAN
+ N LRDFN,LRDN,LREVNT,LRIDT,LRIENS,LRMAN,LRSCFG,LRSS,LRUID,LRY
  ;
  S LRUID=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,.3)),"^")  Q:LRUID=""
- S LRMAN=$P(LRXXX,"^",10)
- I LRMAN S LRMAN=$P($G(^LAHM(62.8,LRMAN,0)),"^")
+ S LRMAN=$P(LRXXX,"^",10),LRSCFG=""
+ I LRMAN D
+ . S LRSCFG=$P($G(^LAHM(62.8,LRMAN,0)),"^",2)
+ . I LRSCFG S LRSCFG(0)=$G(^LAHM(62.9,LRSCFG,0),"Unknown/deleted")
+ . S LRMAN=$P($G(^LAHM(62.8,LRMAN,0)),"^")
  S LREVNT=$$STATUS^LREVENT(LRUID,+LRXXX,LRMAN)
  I LREVNT'="" D
- . W !,?5,"REFERRAL STATUS: "_$P(LREVNT,"^")_" ("_$P(LREVNT,"^",2)_")"
- . W !,?8,"SHIPPING MANIFEST: "_$P(LREVNT,"^",3)
+ . W !,?4,"REFERRAL STATUS..: "_$P(LREVNT,"^")_" ("_$P(LREVNT,"^",2)_")"
+ . W !,?4,"SHIPPING MANIFEST: "_$P(LREVNT,"^",3)
  . S LN=LN+2
+ . I LRSCFG D
+ . . W " using shipping config "_$P(LRSCFG(0),"^")
+ . . W !,?4,"SHIPPED TO.......: "_$P($$NS^XUAF4($P(LRSCFG(0),"^",3)),"^")
+ . . S LN=LN+1
+ ;
+ ; Display external order info (placer/filler) if any.
+ S LRDFN=+LRDX
+ S LRY=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,3))
+ S LRIDT=$P(LRY,"^",5),LRSS=$P($G(^LRO(68,LRAA,0)),"^",2)
+ S LRDN=0,LRTEST=+LRXXX
+ I LRSS="CH" D LR60DN(.LRDN,LRTEST,.LRTST)
+ ;
+ S LRDN=0
+ F  S LRDN=$O(LRDN(LRDN)) Q:LRDN<1  D
+ . S LRIENS=LRDFN_","_LRSS_","_LRIDT_","_LRDN
+ . F LRTYPE=3,4 I $D(^LR(LRDFN,"EPR","AD",LRIENS,LRTYPE)) D
+ . . N LRDATA,LRON,LRREF,LRJ
+ . . S LRJ=$O(^LR(LRDFN,"EPR","AD",LRIENS,LRTYPE,0)),LRREF=LRJ_","_LRDFN_","
+ . . D GETDATA^LRUEPR(.LRDATA,LRREF)
+ . . S LRON=$G(LRDATA(63.00013,LRREF,1,"I")),LRON(0)="Unknown"
+ . . I LRON="" Q
+ . . I $P($G(LRDATA(63.00013,LRREF,.03,"I")),";",2)="DIC(4," S LRON(0)=$P($$NS^XUAF4(+LRDATA(63.00013,LRREF,.03,"I")),"^")
+ . . W !,?4,LRON(0)_$S(LRTYPE=3:" placer",1:" filler")_" order # "_LRON
+ ;
  Q
  ;
  ;
@@ -214,10 +245,11 @@ LREND ;
  K PNM,SEX,SSN,X,X1,X2,Y,Z,ZTSK
  Q
  ;
+ ;
 EN ;
 SINGLE ;
  ;
- N LRACC,LREND,LRSTOP,LRTSE,LRUNC,LRURG
+ N LRAA,LRACC,LRAD,LRAN,LREND,LRSTOP,LRTSE,LRUNC,LRURG
  ;
  D URG^LRX
  ;
@@ -230,4 +262,21 @@ SINGLE ;
  . W !
  ;
  D LREND
+ Q
+ ;
+ ;
+LR60DN(LRDN,LR60,LRTST) ; Retreive CH subscript dataname for a test
+ N LRX,LRY
+ ;
+ S LRX=$P($G(^LAB(60,LR60,.2)),"^")
+ I LRX>0 S LRDN(LRX)="" Q
+ ;
+ ; Expand and check panel tests
+ S LRY=0
+ F  S LRY=$O(^LAB(60,LR60,2,LRY)) Q:LRY<1  D
+ . S LRY(0)=$P($G(^LAB(60,LR60,2,LRY,0)),"^")
+ . I LRY(0)<1 Q
+ . I $D(LRTST(LRY(0))) Q  ; test on panel also on accession as individual test
+ . D LR60DN(.LRDN,LRY(0))
+ ;
  Q

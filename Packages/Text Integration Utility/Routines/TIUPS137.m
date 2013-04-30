@@ -21,20 +21,20 @@ BEGIN ; Create DDEFS
 MAIN ; Create DDEFS for Laboratory Reports
  ; -- Check for dups created after the install but before this option:
  K ^XTMP("TIU137","DUPS"),^TMP("TIU137",$J)
- ;D SETXTMP^TIUEN137
+ D SETXTMP^TIUEN137
  N TIUDUPS,TMPCNT,SILENT S TMPCNT=0
  S TMPCNT=TMPCNT+1,^TMP("TIU137",$J,TMPCNT)=""
  S TMPCNT=1,^TMP("TIU137",$J,TMPCNT)="         ***** Document Definitions for LABORATORY REPORTS *****"
  S TMPCNT=TMPCNT+1,^TMP("TIU137",$J,TMPCNT)=""
  S SILENT=1
- ;D TIUDUPS^TIUEN137(.TIUDUPS,SILENT)
+ D TIUDUPS^TIUEN137(.TIUDUPS,SILENT)
  ; -- If potential duplicates exist, quit:
  I $G(TIUDUPS) D  G MAINX
  . S ^XTMP("TIU137","DUPS")=1
  . S TMPCNT=TMPCNT+1,^TMP("TIU137",$J,TMPCNT)="Duplicate problem.  See description for patch TIU*1*137,"
  . S TMPCNT=TMPCNT+1,^TMP("TIU137",$J,TMPCNT)="in the National Patch Module."
  ; -- Set file data, other data for DDEFS: 
- ;D SETDATA^TIU137D
+ D SETDATA^TIU137D
  N NUM S NUM=0
  F  S NUM=$O(^XTMP("TIU137","BASICS",NUM)) Q:'NUM  D
  . N IEN,YDDEF,TIUDA

@@ -1,14 +1,15 @@
-EDPLOG ;SLC/KCM - Update ED Log - Update ;1/26/09  14:14
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPLOG ;SLC/KCM - Update ED Log Update ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
  ;TODO:  add transaction processing
  ;
-UPD(REQ,REMOVE) ; Update a record
- N REC D NVPARSE^EDPX(.REC,REQ)
+UPD(REQ,REMOVE,RESTORE) ; Update a record
+ N REC,EDPFAIL D NVPARSE^EDPX(.REC,REQ)
+ S EDPFAIL=0
  N IEN S IEN=$$VAL("id")
- I '$G(IEN) D FAIL("upd",2300007) Q
- I '$D(^EDP(230,IEN,0)) D FAIL("upd",2300006) Q
- N ERR S ERR=$$VALID^EDPLOG1(.REC) I $L(ERR) D FAIL("upd",ERR) Q
+ I '$G(IEN) D FAIL("upd",2300007) Q EDPFAIL
+ I '$D(^EDP(230,IEN,0)) D FAIL("upd",2300006) Q EDPFAIL
+ N ERR S ERR=$$VALID^EDPLOG1(.REC) I $L(ERR) D FAIL("upd",ERR) Q EDPFAIL
  N AMB S AMB="(ambulance en route)"
  ;
  ; compute the local time & "no value" ien
@@ -16,12 +17,19 @@ UPD(REQ,REMOVE) ; Update a record
  N EDPNOVAL S EDPNOVAL=+$O(^EDPB(233.1,"B","edp.reserved.novalue",0))
  ; before allowing remove, check the required fields
  S REMOVE=$G(REMOVE,0)!$P(^EDP(230,IEN,0),U,7)  ; removing or closed
- I REMOVE D RDY2RMV Q:'REC("closed")
+ S RESTORE=$G(RESTORE,"") ; restoring to board
+ I REMOVE D RDY2RMV I 'REC("closed") Q EDPFAIL
+ I REMOVE S REC("closedBy")=$G(DUZ) ; if we are removing, set up the 'closedBy' and 'closed' value
  ;
  ; get the existing log entry
  N X0,X1,X2,X3,AREA,I
  S X0=^EDP(230,IEN,0),X1=$G(^(1)),X2=$G(^(2)),X3=$G(^(3))
  S AREA=$P(X0,U,3),^EDPB(231.9,AREA,230)=$H  ; last update timestamp
+ ;
+ ; if we are restoring to the board, set 'closed' to "" (removing the closed status)
+ ; and set the bed to the waiting room
+ I RESTORE D
+ .S REC("closed")="",REC("bed")=$P(^EDPB(231.9,AREA,1),U,12),REC("restoredBy")=$G(DUZ),REC("restorePatient")=1,REC("outTS")=""
  ;
  N NAME,DFN,SSN,PCE
  S NAME=$$VAL("name"),DFN=$$VAL("dfn"),SSN=""
@@ -48,26 +56,37 @@ UPD(REQ,REMOVE) ; Update a record
  D SETFDA(X3,8,"comment",3.8)
  D SETFDA(X1,5,"delay",1.5)
  D SETFDA(X1,2,"disposition",1.2)
+ ; 10-18-2011 bwf: add handling of fields related to removal and restoring of patient to the board
+ I $G(REMOVE) D
+ .D SETFDA(X0,16,"closedBy",.072) ; DFN of the user who 'closed' this record.
+ I $G(RESTORE) D
+ .; bwf - 2/16/2012
+ .; The following fields should only be set if this record is actually being restored to the board
+ .; There is a trigger x-ref that we need to stay consistent and not be changing every time we save the log entry.
+ .D SETFDA(X0,17,"restorePatient",.073) ; flag - if the entry is found to have been 'Removed In Error'
+ .D SETFDA(X0,18,"restoredBy",.074) ; DFN of the user who 'restored' this patient to the board. Triggers Restored By Date/Time field
+ ; end changes
+ D UPDHOLD^EDPLOGH(.FDA,IEN,$P(X3,U,4))
  I $G(FDA(230,IEN_",",1.2)) S FDA(230,IEN_",",1.3)=TIME
  I $L(NAME)&$L(SSN) S FDA(230,IEN_",",.11)=$E(NAME)_$E(SSN,6,9)
  I $$VAL("updDiag") S HIST(230.1,"+1,",9.1)=$G(HIST(230.1,"+1,",9.1))_"4;"
  ;
- L +^EDP(230,IEN):3 E  D FAIL("upd",2300015) Q
+ L +^EDP(230,IEN):3 E  D FAIL("upd",2300015) Q EDPFAIL
  ; be sure to unlock before quitting!
- I $$COLLIDE^EDPLOGH(IEN,$$VAL("loadTS")) L -^EDP(230,IEN) Q
- I $$BEDGONE^EDPLOGH(AREA,$P(X3,U,4),$$VAL("bed")) D FAIL("upd",2300016) L -^EDP(230,IEN) Q
+ I $$COLLIDE^EDPLOGH(IEN,$$VAL("loadTS")) L -^EDP(230,IEN) Q EDPFAIL
+ I $$BEDGONE^EDPLOGH(AREA,$P(X3,U,4),$P(X3,U,9),$$VAL("bed")) D FAIL("upd",2300016) L -^EDP(230,IEN) Q EDPFAIL
  I $D(HIST)>9 D SAVE^EDPLOGH(IEN,TIME,.HIST)
  I $D(FDA)>9 D FILE^DIE("","FDA","ERR")
  I '$D(DIERR),$$VAL("updDiag") D UPDDIAG
  L -^EDP(230,IEN)
- I $D(DIERR) D FAIL("upd",2300008) Q
+ I $D(DIERR) D FAIL("upd",2300008) Q EDPFAIL
  ;
  D UPDVISIT^EDPLPCE(IEN,.PCE)
  ;
  I (DFN&'$P(X0,U,6))!($G(REC("inTS"))&'$P(X0,U,8)) D EVT^EDPLOGA(IEN)
  ;
  D XML^EDPX("<upd status='ok' id='"_IEN_"' />")
- Q
+ Q EDPFAIL
 UPDDIAG ; process diagnoses
  ; called from UPD^EDPLOG
  ; expects REC,PCE,IEN,TIME,AREA to be defined
@@ -164,6 +183,7 @@ SETFDA(NODE,P,SUB,FLD) ; Creates value in FDA & HIST arrays as appropriate
  ; save the changed fields in the history
  I $L(REC(SUB)) D
  . S HIST(230.1,"+1,",9.1)=$G(HIST(230.1,"+1,",9.1))_FLD_";"
+ . S:FLD=.07 FLD=.0701    ; closed
  . S:FLD=1.1 FLD=.07      ; complaint
  . S:FLD=1.2 FLD=.11      ; disposition
  . S:FLD=1.5 FLD=.12      ; delay
@@ -174,9 +194,10 @@ SETFDA(NODE,P,SUB,FLD) ; Creates value in FDA & HIST arrays as appropriate
  . S:FLD=3.7 PCE("PRV",3)=REC(SUB)                      ; resident
  Q
 FAIL(ELEM,MSG) ; creates failure node for returned XML
- N X
+ N X,EDPFAIL
+ S EDPFAIL=0
  I +MSG S MSG=$$MSG^EDPX(MSG)
  S X="<"_ELEM_" id='"_$$VAL("id")_"' status='fail' msg='"_MSG_"' />"
  D XML^EDPX(X)
  S EDPFAIL=1
- Q
+ Q EDPFAIL

@@ -31,7 +31,7 @@ IPADDR(XMSITE) ;
  . ; we're trying to get to FORUM, but we don't want messages destined
  . ; for another site to be routed through FORUM.  If this is a non-VA
  . ; site, then it's OK to route through FORUM.
- . I ^XMB("NETNAME")[".DOMAIN.EXT",XMSITE'["FORUM.DOMAIN.EXT",XMIPSITE["FORUM.DOMAIN.EXT" D  Q
+ . I ^XMB("NETNAME")[".domain.ext",XMSITE'["FORUM.domain.ext",XMIPSITE["FORUM.domain.ext" D  Q
  . . D SHOW(42260.2,XMIPREC) ;Ignore '|1|' - that's a different site
  . ;I '$$SAMESITE(XMIPSITE,XMSITE) D  Q
  . ;. D SHOW(42260.2,XMIPREC) ;Ignore '|1|' - that's a different site

@@ -1,5 +1,5 @@
 GMRCGUIS ;ALB/TDP - update Consult Status ;4/26/2006
- ;;3.0;CONSULT/REQUEST TRACKING;**52**;DEC 27, 1997
+ ;;3.0;CONSULT/REQUEST TRACKING;**52,46**;DEC 27, 1997;Build 23
  ;
  ;Called by SDCNSLT for Scheduling Consult Appointment Linkage
 STATUS(GMRCO,GMRCSTS,GMRCA,GMRCORNP,GMRCAD,GMRCADUZ,GMRCMT) ;Change status/last action/add comment consult API
@@ -40,7 +40,7 @@ STATUS(GMRCO,GMRCSTS,GMRCA,GMRCORNP,GMRCAD,GMRCADUZ,GMRCMT) ;Change status/last 
  D  ;send alerts
  . N TXT
  . S TXT="Comment Added to Consult "_$$ORTX^GMRCAU(GMRCO)
- . I $P(^GMR(123,+GMRCO,0),U,14) S GMRCADUZ($P(^(0),U,14))=""
+ . I $P(^GMR(123,+GMRCO,0),U,14),$P(^GMR(123,+GMRCO,0),U,14)'=DUZ S GMRCADUZ($P(^(0),U,14))=""
  . D MSG^GMRCP(DFN,TXT,GMRCO,63,.GMRCADUZ,0)
  D EXIT^GMRCGUIA
  Q GMRCERR_"^"_GMRCERMS

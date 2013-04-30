@@ -1,5 +1,5 @@
 DIWE2 ;SFISC/GFT-WP SEARCH, CHANGE, INSERT ;11:04 AM  1 Oct 1999
- ;;22.0;VA FileMan;**8**;Mar 30, 1999
+ ;;22.0;VA FileMan;**8**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S DWI=DWLC,DWJ=0,DWLR=DWLW I DWLC W !,$J(DWLC,3),">",@(DIC_DWLC_",0)")
 NEWL W !,$J(DWJ+DWI+1,3),">" R X#245:DTIME I '$T,X="" S DTOUT=1 Q

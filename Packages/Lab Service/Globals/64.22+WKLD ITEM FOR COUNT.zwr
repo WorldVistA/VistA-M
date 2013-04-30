@@ -213,4 +213,4 @@ ZWR
 ^LAB(64.22,"D","TRAY",42)=""
 ^LAB(64.22,"D","TUBE",65)=""
 ^LAB(64.22,"D","UNIT",43)=""
-^LAB(64.22,"VR")=" ;;5.2;LAB SERVICE;**302**;Sep 27,1994"
+^LAB(64.22,"VR")="2.14 ;;5.2;LAB SERVICE;**334**;Sep 27, 1994;Build 12"

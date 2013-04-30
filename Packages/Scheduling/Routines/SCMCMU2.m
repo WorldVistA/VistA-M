@@ -1,5 +1,5 @@
-SCMCMU2 ;ALBOI/MJK - PCMM Mass Team/Position Unassignment Processing;07/10/98
- ;;5.3;Scheduling;**148,177,524**;AUG 13, 1993;Build 29
+SCMCMU2 ;ALBOI/MJK - PCMM Mass Team/Position Unassignment Processing;07/10/98 ; 5/14/12 1:54pm
+ ;;5.3;Scheduling;**148,177,524,563**;AUG 13, 1993;Build 45
  ;
 QUE() ; -- queue mass unassignment
  ;D START Q 99999 ; -- for interactive testing
@@ -168,10 +168,10 @@ TPDIS(SCDATE,SCPOS,SCNT,SCPTX) ; -- position unassignment for patient
  IF SCOK D
  . ; -- if assignment date is in future then delete
  . IF SCASDT>DT,SCASDT>SCDATE D  Q
- . . N DA,DIE,DIK,DR
- . . S DA=SCIEN,(DIE,DIK)="^SCPT(404.43,",DR=".04///"_DT D ^DIE  ; og/sd/524
- . . D LOCK(SCNODE)
- . . D ^DIK
+ . . N DA,DIE,DIK,DR D LOCK(SCNODE) ; Call Lock subroutine prior to DIE Call SD*5.3*563
+ . . S DA=SCIEN,DIE="^SCPT(404.43,",DR=".04///"_DT D ^DIE ; og/sd/524
+ . . ;Set variables DIK and DA after DIE call to preserve value SD*5.3*563
+ . . S DIK="^SCPT(404.43,",DA=SCIEN D ^DIK
  . . D UNLOCK(SCNODE)
  . . S @SCOKAR@(SCNT,"POS",SCPOS,1)="    >>> Future position assignment deleted."
  . . S @SCOKAR@(SCNT,"POS",SCPOS,2)="        Assignment Date: "_$$FMTE^XLFDT(SCASDT,"5Z")_"   Entry#: "_SCIEN

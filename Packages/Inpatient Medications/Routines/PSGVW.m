@@ -1,5 +1,5 @@
 PSGVW ;BIR/CML3-EXPANDED VIEW OF AN ORDER ;17 SEP 97 /  1:41 PM
- ;;5.0; INPATIENT MEDICATIONS ;**50,58,85,80,104,110**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**50,58,85,80,104,110,267**;16 DEC 97;Build 158
  ;
  ; Reference to ^PS(50.7 is supported by DBIA# 2180.
  ; Reference to ^PS(51.2 is supported by DBIA# 2178.
@@ -15,7 +15,7 @@ EN2 ;
  .. W !!,"Press RETURN to continue or '^' to exit: " R CONT:DTIME W @IOF S:CONT["^" PSGOEA="^",PSGPR=1,PSJPR=1
  I PSGORD="" S PSGOEA="^" Q
 EN21 ;
- K ^PS(53.45,PSJSYSP,2)
+ K ^PS(53.45,PSJSYSP,2),^TMP("PSJBCMA5",$J)
  N ESIG,PSJ21
  S NF=$S(PSGORD["P":1,PSGORD["N":1,1:0)
  S (FL,Y)="",$P(FL,"-",71)="",F="^PS("_$S(NF:"53.1,",1:"55,"_PSGP_",5,")_+PSGORD_","
@@ -51,7 +51,12 @@ WRT ;
  W !?1,"Schedule Type: ",$$ENSTN^PSGMI(SCT)
  W !?6,"Schedule: ",$S(SCH="":"NOT FOUND",$L(SCH)>27:$E(SCH,1,24)_"...",1:SCH)
  W !?3,$S(AT&("P"'[SCT):"Admin Times: "_AT,1:"(No Admin Times)"),!?6,"Provider: ",PR
- I SI]"" W !,"Special Instructions: " F Q=1:1:$L(SI," ") S QQ=$P(SI," ",Q) W:$L(QQ)+$X>79 !?2 W QQ," "
+ N SIL S SIL=$$GETSIOPI^PSJBCMA5(PSGP,PSGORD,1) I SIL!(SI]"") D
+ .I SI]"",'SIL W !,"Special Instructions: (see below) " D  Q
+ ..F Q=1:1:$L(SI," ") S QQ=$P(SI," ",Q) W !?2,QQ," "
+ .Q:'$G(PSJSYSP)  N LNTXT S LNTXT=0 F  S LNTXT=$O(^TMP("PSJBCMA5",$J,PSGP,PSGORD,LNTXT)) Q:'LNTXT  D
+ ..I LNTXT=1 W !,"Special Instructions: (see below)"
+ ..W !,$G(^TMP("PSJBCMA5",$J,PSGP,PSGORD,LNTXT))
  W !?48,"Units",?56,"Units",?64,"Inactive",!," Dispense Drugs",?43,"U/D",?48,"Disp'd",?56,"Ret'd",?64,"Date",!,FL,$E(FL,1,10)
  ; the naked reference on the line below refers to the full reference created by indirect reference to F_ON, where F may refer to ^PS(53.1 or the IV or UD multiple ^PS(55
  F X=0:0 S X=$O(@(F_"1,"_X_")")) Q:'X  S DRG=$G(^(X,0)) I DRG]"" D  ;
@@ -71,5 +76,6 @@ ACTFLG W ! S AT="",Y="12,13,D,18,19,H1,22,23,H0,15,16,R" F X=1:3:12 I $P(ND4,"^"
  W:DRGI !!?3,"(THE ORDERABLE ITEM IS CURRENTLY LISTED AS INACTIVE.)" I PRI W:'DRGI ! W !?3,"(PROVIDER IS CURRENTLY LISTED AS INACTIVE.)"
  ;
 DONE ;
+ K ^TMP("PSJBCMA5",$J)
  K AND,D,DRG1,DRG2,AT,DO,DRG,EB,F,FD,FL,HSM,INS,LID,MR,ND4,OD,PN,PR,PSGID,PSGOD,R,SCH,SCT,SI,SIG,SM,ST,STD,UD,X,XU,Y Q
  Q

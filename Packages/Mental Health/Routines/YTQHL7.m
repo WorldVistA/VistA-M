@@ -52,7 +52,7 @@ ERRMAIL(X,YSAD) ;mail error reports
  S ^TMP("YSMHAHL7",$J,1,0)="An attempt to send MHA3 Administration ien #"_YSAD
  S ^TMP("YSMHAHL7",$J,2,0)="generated an error."
  S ^TMP("YSMHAHL7",$J,3,0)="Error: "_X
- S ^TMP("YSMHAHL7",$J,4,0)="Please report this error mailto:hl7err@mentalhealth.DOMAIN.EXT"
+ S ^TMP("YSMHAHL7",$J,4,0)="Please report this error mailto:hl7err@mentalhealth.domain.ext"
  S XMSUB="Mental Health Assistant 3 HL7 Error"
  S XMY("G."_$P(YSMAILG,U))=""
  S XMTEXT="^TMP(""YSMHAHL7"",$J,"

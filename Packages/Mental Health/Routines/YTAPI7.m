@@ -1,15 +1,19 @@
-YTAPI7 ;ASF/ALB- PSYCH TEST API INCOMPLETES ;5/9/01  16:55
- ;;5.01;MENTAL HEALTH;**71**;Dec 30, 1994
-SAVEINC(YSDATA,YS) ; save incomplete admins
+YTAPI7 ;ASF/ALB,HIOFO/FT - PSYCH TEST API INCOMPLETES ;9/29/11 15:08
+ ;;5.01;MENTAL HEALTH;**71,60**;Dec 30, 1994;Build 47
+ ;
+ ;Reference to ^XLFDT APIs supported by DBIA #10103
+ ;
+SAVEINC(YSDATA,YS) ; save incomplete admins [YTAPI SAVE INCOMPLETES rpc]
  N B,R1,R2,R3,DA,DIK,YSNEXT,X,Y,N1,YSADATE,DFN,YSCODE,YSNEXT,YSORDER
  D PARSE(.YS)
  I '$D(DFN) S YSDATA(1)="[ERROR]",YSDATA(2)="no pt dfn" Q  ;--->OUT
  I '$D(YSNEXT) S YSDATA(1)="[ERROR]",YSDATA(2)="no next" Q  ;---> OUT
- I YSCODE=""!'$D(^YTT(601,YSCODE)) S YSDATA(1)="[ERROR]",YSADTA(2)="bad test code" Q  ;--->OUT
- I YSORDER'?1N.N S YSDATA(1)="[ERROR]",YSADTA(2)="bad ORDERED BY" Q  ;--->OUT
+ I YSCODE=""!'$D(^YTT(601,YSCODE)) S YSDATA(1)="[ERROR]",YSDATA(2)="bad test code" Q  ;--->OUT
+ I YSORDER'?1N.N S YSDATA(1)="[ERROR]",YSDATA(2)="bad ORDERED BY" Q  ;--->OUT
 SAV1 ;
- L +^YTD(601.4,DFN):0 Q:'$T
- I '$D(^YTD(601.4,DFN,0)) D NEWPT ;add at dfn level
+ L +^YTD(601.4,DFN):DILOCKTM
+ I '$T S YSDATA(1)="[ERROR]",YSDATA(2)="cannot lock record" Q  ;--->OUT
+ I '$D(^YTD(601.4,DFN,0)) D NEWPT I '$D(^YTD(601.4,DFN,0)) S YSDATA(1)="[ERROR]",YSDATA(2)="cannot lock record" Q  ;add at dfn level or OUT
  S $P(^YTD(601.4,DFN,1,0),U,2)="601.4P"
  S:YSCODE>$P(^YTD(601.4,DFN,1,0),U,3) $P(^YTD(601.4,DFN,1,0),U,3)=YSCODE
  S $P(^YTD(601.4,DFN,1,0),U,4)=$P(^YTD(601.4,DFN,1,0),U,4)+1
@@ -26,16 +30,16 @@ SAV1 ;
  S YSDATA(1)="[DATA]",YSDATA(2)="saved ok"
  Q
 NEWPT ;new entry to 601.4
- L +^YTD(601.4,0):0 Q:'$T
+ L +^YTD(601.4,0):DILOCKTM Q:'$T
  S X=^YTD(601.4,0),X(4)=$P(X,U,4),X(3)=$P(X,U,3),X(4)=X(4)+1
  S:DFN>X(3) X(3)=DFN
  S X=$P(X,U,1,2)_"^"_X(3)_"^"_X(4)
  S ^YTD(601.4,0)=X,^YTD(601.4,DFN,0)=DFN,^YTD(601.4,"B",DFN,DFN)=""
  L -^YTD(601.4,0)
  Q
-LISTINC(YSDATA,YS) ;list all incompletes for a pt
+LISTINC(YSDATA,YS) ;list all incompletes for a pt [YTAPI LIST INCOMPLETES rpc]
  N DFN,YSCODE,YSCODEN,X,Y,N,N1,G,YSL,YSADATE,YTLM,YSRSLMT
- S YSRSLMT=$P($G(^YSA(602,1,0)),U,3)
+ S YSRSLMT=3
  S DFN=$G(YS("DFN"))
  I '$D(DFN) S YSDATA(1)="[ERROR]",YSDATA(2)="no pt dfn" Q  ;--->OUT
  S YSDATA(1)="[DATA]"
@@ -54,11 +58,11 @@ LISTINC(YSDATA,YS) ;list all incompletes for a pt
  . S N=N+1
  . S YSDATA(N)=YSL(N1)
  Q
-GETINC(YSDATA,YS) ;get saved data
+GETINC(YSDATA,YS) ;get saved data [YTAPI GET INCOMPLETES rpc]
  N DFN,YSCODE,YSCLERK,YSCLERKN,YSENT
  D PARSE(.YS)
  I '$D(DFN) S YSDATA(1)="[ERROR]",YSDATA(2)="no pt dfn" Q  ;--->OUT
- I YSCODE=""!'$D(^YTT(601,YSCODE)) S YSDATA(1)="[ERROR]",YSADTA(2)="bad test code" Q  ;--->OUT
+ I YSCODE=""!'$D(^YTT(601,YSCODE)) S YSDATA(1)="[ERROR]",YSDATA(2)="bad test code" Q  ;--->OUT
  I '$D(^YTD(601.4,DFN)) S YSDATA(1)="[ERROR]",YSDATA(2)="no inc for dfn" Q  ;--> OUT
  S YSCLERK=$O(^YTT(601,"B","CLERK",0))
  S YSCLERKN=$P($G(^YTD(601.4,DFN,1,YSCLERK,0)),U,6)

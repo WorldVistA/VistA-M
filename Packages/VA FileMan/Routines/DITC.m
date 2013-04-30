@@ -1,5 +1,5 @@
 DITC ;SFISC/XAK-MERGE OR COMPARE ENTRIES ;9/17/91  10:36 AM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 START ;

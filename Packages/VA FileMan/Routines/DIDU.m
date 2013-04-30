@@ -1,5 +1,5 @@
 DIDU ;SEA/TOAD-VA FileMan: DD Tools, External Format ;24AUG2009
- ;;22.0;VA FileMan;**31,48,162**;Mar 30, 1999;Build 19
+ ;;22.0;VA FileMan;**31,48,162**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EXTERNAL(DIFILE,DIFIELD,DIFLAGS,DINTERNL,DIMSGA) ;

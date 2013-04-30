@@ -1,5 +1,5 @@
-MAGGTPT1 ;WOIFO/GEK/SG/NST - Delphi-Broker calls for patient lookup and information ; 05 Oct 2010 9:15 AM
- ;;3.0;IMAGING;**16,8,92,46,59,93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+MAGGTPT1 ;WOIFO/GEK/SG/NST/JSL- Delphi-Broker calls for patient lookup and information ; 05 Oct 2010 9:15 AM
+ ;;3.0;IMAGING;**16,8,92,46,59,93,117,122**;Mar 19, 2002;Build 92;Aug 02, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -45,6 +45,15 @@ FIND(MAGRY,ZY) ;RPC [MAGG PAT FIND]
  S SCR=$P(ZY,U,5,99)
  S FLDS=$P(ZY,U,3)
  S RTYPE=$P(ZY,U,4)
+ ;
+ ;HRN lookup for IHS - HRN is always 1 to 6 numbers - P122
+ ;Use ^DIC lookup to find patient by MRN
+ ;If a match is found, set VAL to the patient DFN and continue as usual
+ I $$ISIHS^MAGSPID() I VAL?1.6N D  ;P122 IHS Health Record No - patient lookup
+ . N DIC S DIC=FILE,DIC(0)="XMF",X=VAL D ^DIC
+ . I Y>0 S VAL="`"_$P(Y,"^")
+ . Q
+ ;
  ;  If specific fields aren't requested, 
  ;     Get Identifiers, and ward as FLDS
  ;I '$L(FLDS) S FLDS=FLDS_";.1;.03;.09;.301;391"
@@ -74,14 +83,14 @@ FIND(MAGRY,ZY) ;RPC [MAGG PAT FIND]
  . S SEX=^TMP("DILIST",$J,"ID",I,.02)
  . S WARD=^TMP("DILIST",$J,"ID",I,.1)
  . K ^TMP("DILIST",$J,"ID",I,.1)
- . S ICN=$$GETICN^MPIF001(MAGDFN)
+ . S ICN=$S($T(GETICN^MPIF001)="":"-1^NO MPI",1:$$GETICN^MPIF001(MAGDFN)) ;P122 - site not use ICN
  . S ICN=$S(ICN'<0:ICN,1:"")
  . I RTYPE=2 D
  . . S MAGRY(I+1)=PNAME_U_$$DOB^DPTLK1(MAGDFN)_U_SEX_U_WARD_"|"_MAGDFN_U_ICN
  . I RTYPE'=2 D
  . . S X=PNAME
  . . I $E(WARD,1,$L(VAL))=VAL S X=WARD_"   "_PNAME
- . . S X=X_"   "_$$DOB^DPTLK1(MAGDFN)_"   "_$$SSN^DPTLK1(MAGDFN)
+ . . N DFN,VA S DFN=MAGDFN D PID^VADPT6 S X=X_"   "_$$DOB^DPTLK1(MAGDFN)_"   "_VA("PID")  ;P122 - Patient ID (VA SSN/IHS HRN)
  . . S Z=0
  . . ; We are displaying other identifiers with each patient.
  . . F  S Z=$O(^TMP("DILIST",$J,"ID",I,Z)) Q:Z=""  S X=X_"   "_^(Z)
@@ -106,6 +115,7 @@ INFO(MAGRY,DATA) ;RPC [MAGG PAT INFO]  Call to  Return patient info.
  ;       NOLOG  -- 0/1; if 1, then do NOT update the Session log
  ;       ISICN  -- 0/1  if 1, then this is an ICN, if 0 (default) this is a DFN ; Patch 41
  ;       FLAGS  -- "D" Include Deleted images
+ ;       YYFORMAT - 0/1; if 1, return DOB as MM/DD/YYYY not MM/DD/YY (MAG*3.0*118).
  ;  MAGRY is a string, we return the following :
  ; //$P     1        2      3     4     5     6     7     8        9                     10
  ; //    status ^   DFN ^ name ^ sex ^ DOB ^ SSN ^ S/C ^ TYPE ^ Veteran(y/n)  ^ Patient Image Count
@@ -119,24 +129,26 @@ INFO(MAGRY,DATA) ;RPC [MAGG PAT INFO]  Call to  Return patient info.
  ; VAEL(4)=Patient's Veteran Y/N (#1901) (1=yes)
  ; VAEL(6)=Patient's Type (#391) (internal^external)
  ;
- N MAGDFN,DFN,X,NOLOG,VADM,VAEL,VAERR,ISICN,FLAGS
- S MAGDFN=$P(DATA,U),NOLOG=+$P(DATA,U,2),ISICN=+$P(DATA,U,3),FLAGS=$P(DATA,U,4)
+ N MAGDFN,DFN,X,NOLOG,VADM,VAEL,VAERR,ISICN,FLAGS,YYFORMAT
+ S MAGDFN=$P(DATA,U),NOLOG=+$P(DATA,U,2),ISICN=+$P(DATA,U,3),FLAGS=$P(DATA,U,4),YYFORMAT=+$P(DATA,U,5)
  I ISICN D GETDFN^VAFCTFU1(.DFN,MAGDFN)
  E  S DFN=+MAGDFN
  D DEM^VADPT,ELIG^VADPT
  I VAERR S MAGRY="0^"_"Entry not found in Patient file." Q
- S X=$TR($$FMTE^XLFDT($P(VADM(3),"^"),"2FD")," ",0)
+ ;--- Format year as ..... YYYY or YY.
+ S YYFORMAT=$S(YYFORMAT=1:"5DZ",1:"2DZ")
+ S X=$$FMTE^XLFDT($P(VADM(3),"^"),YYFORMAT)
  ; //           status ^   DFN ^ name ^ sex ^ DOB ^ SSN    ^ S/C ^ TYPE ^ Veteran(y/n)  ^ Patient Image Count
  S $P(MAGRY,"^",1,2)="1^"_DFN
- ;          Fields:      NAME,           SEX,      DATE OF BIRTH,    SSN
- S $P(MAGRY,"^",3,6)=$G(VADM(1))_"^"_$P(VADM(5),"^",2)_"^"_X_"^"_$P(VADM(2),"^")
+ ;          Fields:      NAME,           SEX,      DATE OF BIRTH,    PID/SSN
+ S $P(MAGRY,"^",3,6)=$G(VADM(1))_"^"_$P(VADM(5),"^",2)_"^"_X_"^"_$S($$ISIHS^MAGSPID():VA("PID"),1:$P(VADM(2),"^"))  ;P122 $sel(IHS,VA)
  ;          Fields:  Service Connected?,       Type,                   Veteran Y/N?     
  S $P(MAGRY,"^",7,9)=$S(+VAEL(3):"YES",1:"")_"^"_$P(VAEL(6),"^",2)_"^"_$S(+VAEL(4):"YES",1:"")
  ;          Fields:  Patient Image Count   
  S $P(MAGRY,"^",10)=$$IMGCT(DFN,FLAGS)_"^"
  ;  Additions. for Patch 41
  ;          Fields :   Patient ICN
- S $P(MAGRY,"^",11)=$$GETICN^MPIF001(DFN)
+ S $P(MAGRY,"^",11)=$S($T(GETICN^MPIF001)'="":$$GETICN^MPIF001(DFN),1:"") ; P122 site may not implemented MPI
  S X=$$SITE^VASITE
  ;          Fields:   Site Number       Prod Acct
  S $P(MAGRY,"^",12)=$P($G(X),"^",3)_"^"_"1" ; We'll default to Production Account = Yes.
@@ -179,7 +191,7 @@ BS5CHK(MAGRY,MAGDFN) ;RPC [MAGG PAT BS5 CHECK]
  ; and see if any similar patients exist.
  ; If yes, all matching patients will be listed and shown to the user.
  ;
- N MAGX,MAGDPT,XDFN,XSSN,CT,LNTH
+ N MAGX,MAGDPT,XDFN,XPID,CT,LNTH
  S LNTH=0
  S MAGRY(1)="-1^Error checking cross reference"
  D GUIBS5A^DPTLK6(.MAGRY,MAGDFN)
@@ -195,8 +207,9 @@ BS5CHK(MAGRY,MAGDFN) ;RPC [MAGG PAT BS5 CHECK]
  . S XDFN=$P(MAGRY(I),U,2)
  . I +XDFN=+MAGDFN S MAGX="   >>>>>> "
  . E  S MAGX="          "
- . S XSSN=$$SSN^DPTLK1(XDFN) I XSSN?9N S XSSN=$E(XSSN,1,3)_"-"_$E(XSSN,4,5)_"-"_$E(XSSN,6,9)
+ . N DFN,VA S DFN=XDFN D PID^VADPT6 S XPID=VA("PID") ;P122 - Patient (VA SSN/IHS HRN)
+ . I XPID?9N S XPID=$E(XPID,1,3)_"-"_$E(XPID,4,5)_"-"_$E(XPID,6,9)
  . S MAGDPT=$P(MAGRY(I),U,3),$E(MAGDPT,LNTH)=" "
- . S MAGX=MAGX_MAGDPT_"   "_$$DOB^DPTLK1(XDFN)_"   "_XSSN
+ . S MAGX=MAGX_MAGDPT_"   "_$$DOB^DPTLK1(XDFN)_"   "_XPID
  . S MAGRY(I)=MAGX
  Q

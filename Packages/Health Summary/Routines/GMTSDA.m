@@ -25,7 +25,7 @@ PAST ; Gets Patient's Past Appointments for date range
  . . . Q:$P($G(^SCE(GMI,0)),U,6)'=""
  . . . I $P($G(^SCE(GMI,0)),U,4) Q:$P($G(^SC($P(^SCE(GMI,0),U,4),"OOS")),U)
  . . . S ^UTILITY("GMTSVASD",$J,GMIDT)=GMDT_U_$S(+$P(^SCE(GMI,0),U,4):$P($G(^SC(+$P(^(0),U,4),0)),U),1:$P($G(^DIC(40.7,$P(^SCE(GMI,0),U,3),0)),U))_U_"UNSCHEDULED"
- ;D:$$ROK^GMTSU("A7RHSM")&($$NDBI^GMTSU) CVP^A7RHSM
+ D:$$ROK^GMTSU("A7RHSM")&($$NDBI^GMTSU) CVP^A7RHSM
  I '$D(^UTILITY("GMTSVASD",$J)) D END Q
  S IDATE="",YCNT=0
  F  S IDATE=$O(^UTILITY("GMTSVASD",$J,IDATE)) Q:+IDATE'>0!(YCNT=MAX)  D

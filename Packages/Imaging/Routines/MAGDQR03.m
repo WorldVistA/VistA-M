@@ -1,5 +1,5 @@
-MAGDQR03 ;WOIFO/EdM - Imaging RPCs for Query/Retrieve ; 17 Feb 2010 11:18 AM
- ;;3.0;IMAGING;**51,54,66**;Mar 19, 2002;Build 1836;Sep 02, 2010
+MAGDQR03 ;WOIFO/EdM/JSL/SAF - Imaging RPCs for Query/Retrieve ; 17 Feb 2010 11:18 AM
+ ;;3.0;IMAGING;**51,54,66,123**;Mar 19, 2002;Build 67;Jul 24, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -368,7 +368,7 @@ Q0101000 ;O  Other Patient IDs
  S X=$P(^DPT(DFN,0),"^",9) S:X'="" DFN(X)=""
  S:$G(VA("PID"))'="" DFN(VA("PID"))=""
  S:$G(VA("BID"))'="" DFN(VA("BID"))=""
- S X=$$GETICN^MPIF001(DFN) S:X'="" DFN(X)=""
+ I $T(GETICN^MPIF001)'="" S X=$$GETICN^MPIF001(DFN) S:+X DFN(X)=""
  S I=0,X="" F  S X=$O(DFN(X)) Q:X=""  S I=I+1,V(T,I)=X
  ;;;S:'$$COMPARE(T,V(T)) OK=0
  Q

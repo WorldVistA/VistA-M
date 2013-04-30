@@ -1,5 +1,5 @@
-HLOCLNT2 ;ALB/CJM- Performs message updates for the client - 10/4/94 1pm ;06/16/2009
- ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,133,134,137,143**;Oct 13, 1995;Build 3
+HLOCLNT2 ;ALB/CJM- Performs message updates for the client - 10/4/94 1pm ;03/07/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,133,134,137,143,158**;Oct 13, 1995;Build 14
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 GETWORK(WORK) ;
@@ -38,7 +38,7 @@ DOWORK(WORK) ;
  ..S PARMS("LINK")=$P(NODE,"^")
  ..S PARMS("QUEUE")=$P(NODE,"^",2)
  ..S PARMS("STATUS")=$P(NODE,"^",3)
- ..S PARMS("PURGE TYPE")=$P(NODE,"^",4)
+ ..S PARMS("PURGE")=$P(NODE,"^",4)
  ..S PARMS("ACK TO IEN")=+$P($P(NODE,"^",4),"-",2)
  ..S PARMS("ACCEPT ACK")=$P(NODE,"^",5)
  ..S PARMS("RECEIVING APP")=$P(NODE,"^",6)
@@ -58,16 +58,10 @@ UPDATE(MSGIEN,TIME,PARMS) ;
  S:PARMS("ACCEPT ACK") $P(^HLB(MSGIEN,0),"^",17)=PARMS("ACCEPT ACK")
  S $P(^HLB(MSGIEN,0),"^",16)=TIME
  S:PARMS("MSA")]"" ^HLB(MSGIEN,4)=TIME_"^"_PARMS("MSA")
- I PARMS("PURGE TYPE"),PARMS("ACTION")="" D
- .;don't set purge if going on the infiler - let infiler do it
- .N PTIME
- .S:(PARMS("PURGE TYPE")=2) PTIME=$$FMADD^XLFDT(TIME,SYSTEM("ERROR PURGE")) ;error purge is in days
- .S:(PARMS("PURGE TYPE")'=2) PTIME=$$FMADD^XLFDT(TIME,,SYSTEM("NORMAL PURGE")) ;normal purge is in hours
- .S $P(^HLB(MSGIEN,0),"^",9)=PTIME,^HLB("AD","OUT",PTIME,MSGIEN)=""
- .I PARMS("ACK TO IEN"),$D(^HLB(PARMS("ACK TO IEN"),0)) S $P(^HLB(PARMS("ACK TO IEN"),0),"^",9)=PTIME,^HLB("AD","OUT",PTIME,PARMS("ACK TO IEN"))=""
+ I PARMS("PURGE"),PARMS("ACTION")="" D SETPURGE^HLOF778A(MSGIEN,PARMS("STATUS"),PARMS("ACK TO IEN"))
  D:PARMS("ACTION")]""
  .N PURGE
- .S PURGE=$S(PARMS("PURGE TYPE"):1,1:0)
+ .S PURGE=PARMS("PURGE")
  .S:PARMS("ACK TO IEN") PURGE("ACKTOIEN")=PARMS("ACK TO IEN")
  .D INQUE^HLOQUE(PARMS("LINK"),PARMS("QUEUE"),MSGIEN,PARMS("ACTION"),.PURGE)
  Q
@@ -81,7 +75,9 @@ GETMSG(IEN,MSG) ;
  ;  Function returns 1 on success, 0 on failure
  ;  MSG (pass by reference, required) These are the subscripts returned:
  ;    "ACCEPT ACK RESPONSE" - if the sending app requested notification of the accept ack, this is the routine to perform
- ;    "ACKTOIEN" - if this is an app ack to a message not in a batch, this is the ien of the original message
+ ;    "ACK TO IEN" - if this is an app ack to a message not in a batch, this is the ien of the original message
+ ;    "ACK BY"
+ ;    "STATUS"
  ;    "BATCH"  = 1 if this is a batch message, 0  if not
  ;    "CURRENT MESSAGE" - defined only for batch messages -  a counterused during building and parsing messages to indicate the current message.  It will be set to 0 initially.
  ;    "BODY" - ptr to file 778 which contains the body of the message.
@@ -111,10 +107,9 @@ GETMSG(IEN,MSG) ;
  S MSG("ID")=$P(NODE,"^")
  Q:'MSG("BODY") 0
  ;
- ;**P143 START CJM
  S MSG("ACK BY")=$P(NODE,"^",7)
  S MSG("STATUS")=$P(NODE,"^",20)
- ;**P143 END CJM
+ ;
  ;
  S MSG("STATUS","ACCEPTED")=$P(NODE,"^",17)
  S MSG("DT/TM")=$P(NODE,"^",16)

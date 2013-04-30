@@ -29,7 +29,7 @@ ASK I '$D(DENTC)!($D(ZTSK))!($D(DENTF1)) G CLOSE
 A W !!,"Okay to release this report for transmission to Austin" S %=2 D YN^DICN D:%=0 Q4^DENTQ G A:%=0 I %'=1 W !,"Nothing released",*7 G CLOSE
 EN1 S ^UTILITY($J,"DENTV",Q,DENTC,0)=^UTILITY($J,"DENTV",Q,DENTC,0)_"$"
  S DENTA=$S($E(DENTSTA,4,5)="  ":+DENTSTA,1:DENTSTA),DENTA=$O(^DENT(225,"B",DENTA,0)) I DENTA S DENTA=$S($D(^DENT(225,DENTA,0)):$P(^(0),"^",3),1:"")
- I DENTA="Y" F Q1=1:1:Q S XMDUZ=DUZ,XMY(DUZ)="",XMY("XXX@Q-DAS.DOMAIN.EXT")="",XMSUB="DENTAL SERVICE TREATMENT DATA, "_$P(H5,":",1)_": "_Z3_" ( MESSAGE NO.: "_Q1_")",XMTEXT="^UTILITY("_$J_",""DENTV"","_Q1_"," D ^XMD
+ I DENTA="Y" F Q1=1:1:Q S XMDUZ=DUZ,XMY(DUZ)="",XMY("XXX@Q-DAS.domain.ext")="",XMSUB="DENTAL SERVICE TREATMENT DATA, "_$P(H5,":",1)_": "_Z3_" ( MESSAGE NO.: "_Q1_")",XMTEXT="^UTILITY("_$J_",""DENTV"","_Q1_"," D ^XMD
  G M:DENTA="Y" S K=0,Q1=$S($D(^UTILITY("DENTV")):^("DENTV"),1:0) F I=1:1:Q S N="" F J=0:0 S N=$O(^UTILITY($J,"DENTV",I,N)) Q:N=""  S K=K+1,%X="^UTILITY("_$J_",""DENTV"","_I_","_N_",",%Y="^UTILITY(""DENTV"","_(Q1+K)_"," D %XY^%RCR
  S ^UTILITY("DENTV")=Q1+K
 M F X=0:0 S X=$O(^UTILITY($J,"DENTP",X)) Q:X=""  S X1=^(X),^DENT(221,X,.1)=DUZ_"^"_DT,^DENT(221,"AG",Z3,DT,X)="" K:X1["," ^DENT(221,"AC",Z3,X1,X),^DENT(221,"A",Z3,$P(X1,",",1),X) K:X1'["," ^DENT(221,"AC",Z3,X1),^DENT(221,"A",Z3,X1)

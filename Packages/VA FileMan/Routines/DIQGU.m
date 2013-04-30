@@ -1,5 +1,5 @@
 DIQGU ;SFISC/DCL-DATA RETRIEVAL INTERNAL FUNCTIONS ;16JAN2010
- ;;22.0;VA FileMan;**163**;Mar 30, 1999;Build 28
+ ;;22.0;VA FileMan;**163**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
 DT(H) Q $$HTFM^DILIBF(H,1)
  ;

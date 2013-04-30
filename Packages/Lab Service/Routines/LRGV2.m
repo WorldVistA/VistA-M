@@ -1,5 +1,5 @@
-LRGV2 ;DALOI/RWF - PART2 OF INSTRUMENT GROUP VERIFY DATA ;8/11/97
- ;;5.2;LAB SERVICE;**121,153,269**;Sep 27, 1994
+LRGV2 ;DALOI/STAFF - PART2 OF INSTRUMENT GROUP VERIFY DATA ;02/11/11  12:21
+ ;;5.2;LAB SERVICE;**121,153,269,350**;Sep 27, 1994;Build 230
  ;
  N LRGVP,LRSB,LRX
  ;
@@ -57,24 +57,22 @@ DC ; Perform range and delta checks
  ; Setup variable for range and delta checking
  D V25^LRVER5
  ;
+ ; Display test name, results
+ S X=$P(LRSB(LRSB),"^"),LRCW=8
+ W !,$P(^LAB(60,+LRTS,0),"^"),?31,@LRFP," "
+ ;
+ ; Do delta checking
+ S X=$P(LRSB(LRSB),"^"),Y=0,LRQ=""
+ I LRDEL'="" S LRQ=1 D XDELTACK^LRVERA S:Y LRDELTA=Y
+ ;
  ; Do range checking
- S LRQ=""
  D RANGE^LRVR4
  I LRFLG["*" S LRCRIT=1
  ;
- ; Display test name, results, flags and units
- S X=$P(LRSB(LRSB),"^"),LRCW=8
- ;W !,$P(^LAB(60,+LRTS,0),"^"),?31,@LRFP," ",$$LJ^XLFSTR(LRFLG,2)," ",$$LJ^XLFSTR($P(LRNGS,"^",7),10)
- W !,$P(^LAB(60,+LRTS,0),"^"),?31,@LRFP," ",$$LJ^XLFSTR(LRFLG,2)," ",$P(LRNGS,"^",7)
- I LRFLG["*" D
- . N X
- . S X="CRITICAL "_$S(LRFLG["L":"LOW",LRFLG["H":"HIGH",1:"")_"!!"
- . I $E(IOST,1,2)="C-" W " ",@LRVIDO,X,@LRVIDOF,$C(7,7,7)
- . E  W " ",X
+ ; Display test flags and units
+ W $$LJ^XLFSTR(LRFLG,2),?56," ",$P(LRNGS,"^",7)
+ I LRFLG["*" D DISPFLG^LRVER4
  ;
- ; Do delta checking
- S X=$P(LRSB(LRSB),"^")
- S Y=0 I LRDEL'="" X LRDEL S:Y LRDELTA=Y
  Q
  ;
  ;

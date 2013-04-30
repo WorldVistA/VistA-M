@@ -1,5 +1,6 @@
-MAGDLB12 ;WOIFO/LB,MLH - Routine to fix failed DICOM entries  ; 04/25/2005  07:46
- ;;3.0;IMAGING;**11,51,20**;Apr 12, 2006
+MAGDLB12 ;WOIFO/LB,MLH/JSL/SAF - Routine to fix failed DICOM entries  ; 04/25/2005  07:46
+ ;;3.0;IMAGING;**11,51,20,123**;Mar 19, 2002;Build 67;Jul 24, 2012
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -7,12 +8,11 @@ MAGDLB12 ;WOIFO/LB,MLH - Routine to fix failed DICOM entries  ; 04/25/2005  07:4
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
- ;; | a Class II medical device.  As such, it may not be changed    |
- ;; | in any way.  Modifications to this software may result in an  |
- ;; | adulterated medical device under 21CFR820, the use of which   |
- ;; | is considered to be a violation of US Federal Statutes.       |
+ ;; | a medical device.  As such, it may not be changed in any way. |
+ ;; | Modifications to this software may result in an adulterated   |
+ ;; | medical device under 21CFR820, the use of which is considered |
+ ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
  Q
@@ -20,7 +20,7 @@ LOOP ;
  N ANS,ANSR,CASENO,COMNT1,DATA,DATA1,DATA2,DATE,FILE,FIRST,FIRSTS
  N MACHID,MAGDY,MAGDIEN,MAGIEN,MAGTYPE,MSG,START,STOP,SUID
  N MOD,MODEL,NEWCAS,NEWDFN,NEWDTI,NEWDTIM,NEWMUL,NEWNME,NEWPIEN,NEWPROC
- N NEWSSN,OK,OOUT,OUT,PAT,PID,PP,PREV,PREVS,REASON,SITE,STUDYUID,WHY,MAGFIX
+ N NEWPID,OK,OOUT,OUT,PAT,PID,PP,PREV,PREVS,REASON,SITE,STUDYUID,WHY,MAGFIX
  N KFIXALL ; -- does user hold MAGDFIX ALL security key?
  ;
  S KFIXALL=$$SECKEY()

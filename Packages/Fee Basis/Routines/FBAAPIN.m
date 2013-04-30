@@ -1,5 +1,5 @@
 FBAAPIN ;AISC/GRR-INVOICE DISPLAY ;7/17/2003
- ;;3.5;FEE BASIS;**4,61,122,133,108**;JAN 30, 1995;Build 115
+ ;;3.5;FEE BASIS;**4,61,122,133,108,135**;JAN 30, 1995;Build 3
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  D DT^DICRW
 RD1 W ! S (FBHDONE,FBAAOUT,FBINTOT)=0,FBSW=0 K FBHED S DIR(0)="NO",DIR("A")="Select Invoice Number",DIR("?")="^D HELP^FBAAPIN1" D ^DIR K DIR G Q:$D(DIRUT)!'Y
@@ -58,6 +58,11 @@ WRT I ($Y+5)>IOSL S DIR(0)="E" D ^DIR K DIR S:'Y FBAAOUT=1 Q:FBAAOUT  D HED
  I FBADJLR="",T=4 D ^FBAAPIN1
  I FBCNTRN]"" W !!,?2,"Contract Number: ",FBCNTRN
  D PMNT^FBAACCB2
+ ; Display LI Rendering Provider data
+ N FBLIPRV S FBLIPRV=$G(^FBAAC(J,1,K,1,L,1,M,3))  ; FB*3.5*135
+ I $L($P(FBLIPRV,U,3)) D
+ . W !?3,"RENDERING PROV NAME (LI): "_$P(FBLIPRV,U,3)
+ . I $L($P(FBLIPRV,U,4,5))>1 W !?7,"NPI: "_$P(FBLIPRV,U,4),?29,"TAXONOMY CODE: "_$P(FBLIPRV,U,5)
  Q
 HED W @IOF,!,"Invoice Number: ",FBAAIN,?30,"Vendor Name: ",V,!,?2,"Date Received: ",FBINDAT
  I +$G(FBY) W ?33,"Invoice Date: ",$$DATX^FBAAUTL(+FBY)
@@ -70,7 +75,7 @@ HED W @IOF,!,"Invoice Number: ",FBAAIN,?30,"Vendor Name: ",V,!,?2,"Date Received
  W !,$$REPEAT^XLFSTR("=",79)
  Q
 Q K D,N,V,D2,J,K,L,M,DIC,T,FBYY,Q,I,A1,A2,A3,C,DIYS,FBAACPT,FBAAIN,FBAAOUT,FBBN,FBINTOT,FBINDAT,FBSW,FBHDONE,HX,S,VP,Z,ZS,FBHED,FBFILE,DIRUT,FBY,FBMOD
- K FBMODLE,FBY3,FBCNTRN
+ K FBMODLE
  K FBAARCE,FBADJLA,FBADJLR,FBCSID,FBFPPSC,FBFPPSL,FBRRMKL,FBUNITS,TAMT
  Q
 ERR W !,*7,"Please enter a whole number! Alpha characters and puctuation are invalid" G RD1

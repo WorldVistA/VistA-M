@@ -1,7 +1,7 @@
-EDPRPT6 ;SLC/MKB - Provider Report
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPRPT6 ;SLC/MKB - Provider Report ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
-PRV(BEG,END) ; Get Provider Report for EDPSITE by date range
+PRV(BEG,END,CSV) ; Get Provider Report for EDPSITE by date range
  N IN,LOG,X,X0,X1,X3,X4,MD,MDTIME,DISP,S,ACU
  N CNT,IN2MD,MD2DS,ROW,SHIFT
  S IN=BEG-.000001 D SETUP^EDPRPT5 ;build SHIFT(#)
@@ -13,7 +13,7 @@ PRV(BEG,END) ; Get Provider Report for EDPSITE by date range
  . S MDTIME=$$MD^EDPRPT(LOG)
  . D:'$D(CNT(MD)) INIT(MD) ;set counters,sums to 0 per provider
 D1 . ; all visits
- . S S=$$SHIFT^EDPRPT5(MDTIME)
+ . S S=$$SHIFT^EDPRPT5(MDTIME) Q:S<1
  . S CNT(MD)=CNT(MD)+1,CNT(MD,S,ACU)=CNT(MD,S,ACU)+1
  . S IN2MD=$$FMDIFF^XLFDT(MDTIME,IN,2)\60
  . S IN2MD(MD)=IN2MD(MD)+IN2MD,IN2MD(MD,S,ACU)=IN2MD(MD,S,ACU)+IN2MD

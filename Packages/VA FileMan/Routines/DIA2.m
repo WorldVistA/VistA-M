@@ -1,5 +1,5 @@
 DIA2 ;SFISC/GFT-SELECT ENTRY TO EDIT, ^LOOP ;22MAR2006
- ;;22.0;VA FileMan;**147**;Mar 30, 1999
+ ;;22.0;VA FileMan;**147**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  K ^UTILITY("DIT",$J),DA,DRS,DW,DIAP,DI I '$D(DR(1,J(0))) S DR(1,J(0))=".01:99999999"
  I $L(DR(1,J(0)))+$L(DIA)<216,+DR(1,J(0))=.01 S DR(1,J(0))="S:DIA(9) DQ=2,X=$P("_DIA_"DA,0),U,1);"_DR(1,J(0))

@@ -1,5 +1,5 @@
 LRAPD1 ;AVAMC/REG/WTY/KLL - AP DATA ENTRY ;9/25/00
- ;;5.2;LAB SERVICE;**41,91,248,259,317**;Sep 27, 1994
+ ;;5.2;LAB SERVICE;**41,91,248,259,317,350**;Sep 27, 1994;Build 230
  ;
  ;WTY;17-AUG-01;Unwrapped text and add kills for DR string
  ;
@@ -7,7 +7,7 @@ SP ;Gross Desc/Clinical Hx, Surg Path
  S LRSOP="G"
  K DR S DR=".09///^S X=LRWHO;.012;.013;.014;.015;.016;"
  S DR=DR_".021//^S X=LR(""TR"");1;S:'LR(""FS"") Y=0;1.3"
- S LR(6)=1,DR(2,63.812)=.01
+ S LR(6)=1,DR(2,63.812)=".01;.06R;.07R"
  Q
 MSP ;Micro Description/Gross Review, Surg Path
  S LRSOP="M"
@@ -54,7 +54,7 @@ CY ;Gross Desc/Clinic Hx, Cytopath
  S LRSOP="G"
  K DR S DR=".09///^S X=LRWHO;.012;.013;.014;.015;.016;"
  S DR=DR_".021//^S X=LR(""TR"");1"
- S LR(6)=1,DR(2,63.902)=".01;.02"
+ S LR(6)=1,DR(2,63.902)=".01;.02;.06R;.07R"
  Q
 MCY ;Micro Desc/Gross Review, Cytopath
  S LRSOP="M"
@@ -104,7 +104,7 @@ EM ;Gross Desc/Clinical Hx, Em
  S LRSOP="G",LR(6)=1
  K DR S DR=".09///^S X=LRWHO;.012;.013;.014;.015;.016;"
  S DR=DR_".021//^S X=LR(""TR"");1"
- S DR(2,63.202)=.01
+ S DR(2,63.202)=".01;.06R;.07R"
  Q
 MEM ;Micro Desc/Gross Review, EM
  S LRSOP="M"

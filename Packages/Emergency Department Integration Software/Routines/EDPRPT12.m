@@ -1,7 +1,7 @@
-EDPRPT12 ;SLC/MKB - Orders by Acuity Report
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPRPT12 ;SLC/MKB - Orders by Acuity Report ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
-ORD(BEG,END) ; Get Acuity Report for EDPSITE by date range
+ORD(BEG,END,CSV) ; Get Acuity Report for EDPSITE by date range
  ;   CNT = counters by acuity
  N IN,OUT,X,X0,I,SERV,ACU,CNT,ROW,EDLOC
  D INIT ;set counters, sums to 0

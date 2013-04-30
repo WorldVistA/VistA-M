@@ -1,6 +1,6 @@
 PRCSC3 ;WISC/LEM-ESIG MAINTENANCE ROUTINE ; 08/02/93  8:12 AM
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**120**;Oct 20, 2000;Build 27
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;ROUTINE FOR MAINTAINING FIELD 44.8 (GPF ELECTRONIC SIGNATURE), FILE 410
 DECODE(LEVEL0) ;Extrinsic Function to return hashed electronic sig to readable form.
  ;returns "" if unsuccessful
@@ -22,7 +22,7 @@ D1 ;decode e signature for version 1
  QUIT $$DECODE^PRCUESIG(SIG,PERSON,CHECKSUM)
 ENCODE(LEVEL0,USERNUM,Y) ;Encode e signature for version 1 only
  ;Parameter passing entry point
- NEW SIGBLOCK,CHECKSUM,OLDUSER
+ NEW SIGBLOCK,CHECKSUM,OLDUSER,HLDCP
  NEW RECORD,RECORD1,RECORD3,RECORD4,RECORD7,RECORD71,RECORD10
  ;get record
  S USERNUM=+USERNUM
@@ -41,6 +41,18 @@ ENCODE(LEVEL0,USERNUM,Y) ;Encode e signature for version 1 only
  S OLDUSER=+$P(RECORD7,"^",8)
  I OLDUSER=0 S $P(RECORD7,"^",8)=USERNUM
  I OLDUSER>0 S USERNUM=OLDUSER
+ ;PRC*5.1*120 will check FCP EDI switch and ALL/DELIVERY ORDER switch to recode record due to auto obligation
+ I $P($G(XQY0),"^")'="PRCSENRB",$P($G(XQY0),"^")'="PRCSANTN",$P($G(XQY0),"^")'="PRCSRI GENERATE",$P($G(XQY0),"^")'="PRCSEDTD",$P($G(XQY0),"^")'="PRCSAPP" D
+ . I $G(PRCHDELV),'$G(AUTOOBLG) Q
+ . S HLDCP=""
+ . I $P(RECORD4,"^",4)="" S $P(RECORD4,"^",4)=$P($$NOW^PRCUESIG,".",1),^PRCS(410,LEVEL0,4)=RECORD4
+ . S:$D(PRCB("CP")) HLDCP=PRCB("CP")
+ . S:$D(PRC("CP")) HLDCP=PRC("CP")
+ . I $D(PRC("CP")) I ($P($G(^PRC(420,+PRC("SITE"),1,+PRC("CP"),6)),U)="Y")!($P($G(^PRC(420,+PRC("SITE"),3)),U)="Y")!($P($G(^PRC(420,+PRC("SITE"),3)),U,2)'="")!($P($G(^PRC(420,+PRC("SITE"),1,+PRC("CP"),6)),U,2)'="")  D
+ .. Q:$G(PRCHAMDA)=32
+ .. D ENCODE^PRCSC2(LEVEL0,USERNUM)
+ . K HLDCP
+ S:$P(RECORD7,"^",7)="" $P(RECORD7,"^",7)=$$NOW^PRCUESIG
  S:$P(RECORD7,"^",10)="" $P(RECORD7,"^",10)=$$NOW^PRCUESIG
  S CHECKSUM=$$SUM^PRCUESIG(LEVEL0_"^"_$$STRING(RECORD,RECORD1,RECORD3,RECORD4,RECORD7,RECORD10))
  S $P(RECORD7,"^",9)=$$ENCODE^PRCUESIG(SIGBLOCK,USERNUM,CHECKSUM)
@@ -58,13 +70,13 @@ REMOVE(LEVEL0) ;Entry point to remove e signature from record
  S ^PRCS(410,LEVEL0,7)=RECORD7
  S ^PRCS(410,LEVEL0,7.1)=RECORD71
  QUIT
-VERIFY(LEVEL0)      ;extrinsic function to verify version 1 signature.  Returns 1 if valid, 0 if not valid
+VERIFY(LEVEL0) ;extrinsic function to verify version 1 signature.  Returns 1 if valid, 0 if not valid
  NEW RECORD71,VERSION,SIGBLOCK
  ;get record variables
  S RECORD71=$G(^PRCS(410,LEVEL0,7.1))
  S VERSION=$P(RECORD71,"^",1),SIGBLOCK=$P(RECORD71,"^",2)
  I VERSION_SIGBLOCK="" QUIT 1
  QUIT ($$SUM^PRCUESIG($$DECODE(LEVEL0))=SIGBLOCK)
-STRING(X,X1,X3,X4,X7,X10)          ;Build String of critical fields
+STRING(X,X1,X3,X4,X7,X10) ;Build String of critical fields
  NEW RECORD,RECORD7,RECORD71,SIGBLOCK,CHECKSUM,OLDUSER
  Q $P(X,"^",1)_"^"_$P(X1,"^",1)_"^"_$P(X3,"^",1)_"^"_$P(X4,"^",1)_"^"_$P(X7,"^",10)_"^"_$P(X10,"^",1)

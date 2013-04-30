@@ -1,5 +1,5 @@
-MAGGI13 ;WOIFO/SG/BNT/NST - IMAGE FILE API (QUERY) ; 21 Jul 2010 11:05 AM
- ;;3.0;IMAGING;**93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+MAGGI13 ;WOIFO/SG/BNT/NST/GEK/JSL - IMAGE FILE API (QUERY) ; 21 Jul 2010 11:05 AM
+ ;;3.0;IMAGING;**93,117,122**;Mar 19, 2002;Build 92;Aug 02, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,6 +15,10 @@ MAGGI13 ;WOIFO/SG/BNT/NST - IMAGE FILE API (QUERY) ; 21 Jul 2010 11:05 AM
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;P122 : Stop Timeout error from QA Review window.
+ ;       Modified tag : QUERY,  to now use ADTDUZ Cross reference 
+ ;       when searching for images captured by a User.
+ ;       Remedy _<todo, get remedy ticket>
  Q
  ;
  ;+++++ RETURNS INVERTED/REVERSED DATE/TIME (FILEMAN)
@@ -177,6 +181,9 @@ PTCHK(IMGIEN,DFN) ;
  ;
 QUERY(CALLBACK,FLAGS,MAG8DATA,MAG8FROM,MAG8TO,DFN) ;
  N MAG8BOTH,MAG8CALL,MAG8DT,MAG8IEN,MAG8RC,MAG8ROOT,MAG8XREF,TMP
+ ;P122
+ N MAG8APP,MAG8DUZ,MAG8SITE,BOTHAPP
+ ;
  S FLAGS=$G(FLAGS)
  ;=== Validate parameters
  Q:'(CALLBACK?2"$"1.8UN1"^MAG"1.5UN) $$IPVE^MAGUERR("CALLBACK")
@@ -195,7 +202,33 @@ QUERY(CALLBACK,FLAGS,MAG8DATA,MAG8FROM,MAG8TO,DFN) ;
  S TMP=$$DDQ^MAGUTL05(FLAGS)
  S MAG8CALL="S MAG8RC="_CALLBACK_"(MAG8IEN,"_TMP_",.MAG8DATA)"
  S MAG8RC=0
- ;
+ ;P122 set a variable (MAG8DUZ) to $Order through the Cross Ref.
+ S MAG8DUZ=+$P($G(MAG8DATA("SAVEDBY")),"^",1)
+ ;=== Return images in the capture date range captured by a User MAG8DUZ
+ ;    This call is made by the QA Review window.  Looking for a list of images
+ ;    captured by a certain user in a certain date range.
+ I (FLAGS["C"),(MAG8DUZ) D  Q MAG8RC
+ . ;--- Modify the callback to check for patient
+ . S:$G(DFN)>0 $E(MAG8CALL,1)="S:$$PTCHK(MAG8IEN,"_DFN_")"
+ . ;---
+ . ; ATDUZ may be used by more than QA Review,  can't Force MAG8BOTH
+ . ; to '0', Deleted Images may be wanted by other functions.
+ . ;- S MAG8BOTH=0
+ . ; Loop through both Capture Application nodes of  ADTDUZ
+ . F MAG8APP="C","I" D
+ . . S MAG8XREF=$NA(@MAG8ROOT@("ADTDUZ",MAG8APP))
+ . . S MAG8DT=MAG8TO
+ . . F  S MAG8DT=$$MAGORD($NA(@MAG8XREF@(MAG8DT)),-1,MAG8BOTH)  Q:(MAG8DT="")!(MAG8DT<MAG8FROM)  D  Q:MAG8RC
+ . . . S MAG8SITE=""
+ . . . F  S MAG8SITE=$$MAGORD($NA(@MAG8XREF@(MAG8DT,MAG8DUZ,MAG8SITE)),-1,MAG8BOTH) Q:(MAG8SITE="")  D
+ . . . . S MAG8IEN=""
+ . . . . F  D  Q:(MAG8IEN="")!MAG8RC  X MAG8CALL  Q:MAG8RC
+ . . . . . S MAG8IEN=$$MAGORD($NA(@MAG8XREF@(MAG8DT,MAG8DUZ,MAG8SITE,MAG8IEN)),-1,MAG8BOTH)
+ . . . . . I $D(ZTQUEUED),$$S^%ZTLOAD S MAG8RC="1^Task asked to stop",ZTSTOP=1
+ . . . . . Q
+ . . . . Q
+ . . Q
+ . Q
  ;=== Browse images in the capture date range
  I FLAGS["C"  D  Q MAG8RC
  . ;--- Modify the callback to check for patient

@@ -1,5 +1,5 @@
 PSGAP0 ;BIR/CML3-ACTION PROFILE ;20 May 98 / 12:36 PM
- ;;5.0; INPATIENT MEDICATIONS ;**8,58,111**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS ;**8,58,111,278**;16 DEC 97;Build 4
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191
  ;
@@ -42,6 +42,7 @@ GDT ;
  K %DT Q
  ;
 EN ; entry point
+ K ^TMP($J)  ;PSJ*5*278
  I PSGSS'="P" D NOW^%DTC S PSGDT=%,DT=$$DT^XLFDT F N="START","STOP" D GDT I X="^" S PSJSTOP=1 Q
  I PSGSS'="P" Q:X="^"  S:'$P(STP,".",2) $P(STP,".",2)=24 S:'$P(STT,".",2) $P(STT,".",2)="0001"
  S PSJSTOP=$$MEDTYPE^PSJMDIR($G(PSGWD)) Q:PSJSTOP  S PSGMTYPE=Y

@@ -1,13 +1,12 @@
 PSIVORAL ;BIR/MLM-ACTIVITY LOGGER FOR PHARMACY EDITS ;16 DEC 97 / 1:40 PM 
- ;;5.0; INPATIENT MEDICATIONS ;**58,135**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**58,135,267**;16 DEC 97;Build 158
  ;
  ; Reference to ^PS(52.7 is supported by DBIA 2173.
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ;
 EN ; Entry point for updating activity log from Pharmacy.
  ;
-OPI ; Record changes to Other print info.
- I $P($G(^PS(55,DFN,"IV",+ON55,3)),"^")'=$P(P("OPI"),"^") S P("FC")="OTHER PRINT INFO^"_$P($G(^(3)),"^")_U_$P(P("OPI"),"^") D GTFC
+ D OPI
  ;
 REMARKS ; Record changes to remarks.
  I $G(^PS(55,DFN,"IV",+ON55,1))'=P("REM") S P("FC")="REMARKS^"_$G(^(1))_U_P("REM") D GTFC
@@ -38,9 +37,18 @@ SOL1 ;
  Q
  ;
 GTFC ; Create field change entry in activity log.
+ N TXTCNT,TXTLN
  S ND=$G(^PS(55,DFN,"IV",+ON55,"A",PSIVLN,1,0)) S:ND="" ND="^55.151^^" S $P(ND,U,3)=$P(ND,U,3)+1,$P(ND,U,4)=$P(ND,U,4)+1,^PS(55,DFN,"IV",+ON55,"A",PSIVLN,1,0)=ND,^PS(55,DFN,"IV",+ON55,"A",PSIVLN,1,$P(ND,U,3),0)=P("FC") K ND
+ I $P(P("FC"),U)="OTHER PRINT INFO" D
+ .S TXTLN=0 F TXTCNT=0:1 S TXTLN=$O(^PS(55,DFN,"IV",+ON55,10,TXTLN)) Q:'TXTLN  S ^PS(55,DFN,"IV",+ON55,"A",PSIVLN,2,TXTLN,0)=$G(^PS(55,DFN,"IV",+ON55,10,TXTLN,0))
+ .I TXTCNT S ^PS(55,DFN,"IV",+ON55,"A",PSIVLN,2,0)="^"_+TXTCNT_"^"_+TXTCNT
+ .S TXTLN=0 F TXTCNT=0:1 S TXTLN=$O(^PS(53.45,+$G(PSJSYSP),6,TXTLN)) Q:'TXTLN  S ^PS(55,DFN,"IV",+ON55,"A",PSIVLN,3,TXTLN,0)=$G(^PS(53.45,+$G(PSJSYSP),6,TXTLN,0))
+ .I TXTCNT S ^PS(55,DFN,"IV",+ON55,"A",PSIVLN,3,0)="^"_+TXTCNT_"^"_+TXTCNT S ^PS(53.45,+$G(PSJSYSP),6)=PSIVLN
+ .N ACNT,AND S ACNT=+$O(^PS(55,DFN,"IV",+ON55,"A",""),-1) I ACNT S AND="^55.04^"_+ACNT_"^"_+ACNT,^PS(55,DFN,"IV",+ON55,"A",0)=AND
+ K ND
  Q
 LOG ; Update activity log (ask for comment.)
+ I $G(P("FC"))["OTHER PRINT INFO" Q:$G(^PS(53.45,+$G(PSJSYSP),6))
  N ON S ON=ON55
  ;PSJPINIT is defined in PSJUTL3.
  S:+$G(PSJPINIT)'>0 PSJPINIT=DUZ
@@ -54,4 +62,8 @@ LOG ; Update activity log (ask for comment.)
  D FILE^DIE("","TMP")
  K TMP
  D:$D(PSIVALCK) @PSIVALCK K PSIVALT,PSIVALCK,PSIVAL
+ Q
+ ;
+OPI ; Record changes to Other print info.
+ I $$DIFFOPI^PSJBCMA5(DFN,ON55) S P("FC")="OTHER PRINT INFO^^" D GTFC
  Q

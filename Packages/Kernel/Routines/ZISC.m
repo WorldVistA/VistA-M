@@ -1,5 +1,5 @@
-%ZISC ;SFISC/GFT,AC,MUS - CLOSE LOGIC FOR DEVICES  ;1/24/08  16:09
- ;;8.0;KERNEL;**24,36,49,69,199,216,275,409,440**;JUL 10, 1995;Build 13
+%ZISC ;SFISC/GFT,AC,MUS - CLOSE LOGIC FOR DEVICES  ;11/08/2011
+ ;;8.0;KERNEL;**24,36,49,69,199,216,275,409,440,585**;JUL 10, 1995;Build 22
  ;Per VHA Directive 2004-038, this routine should not be modified
 C0 ;
  N %,%E,%H,%ZISI,%ZISOS,%ZISX,%ZISV
@@ -40,9 +40,13 @@ C0 ;
  ;Don't use IOCPU as we now use IO(1,IO)
  I (IO'=IO(0)!$D(IO("C"))),$D(IO(1,IO)) D
  . U:$S($D(ZTQUEUED):0,'$L($G(IO(0))):0,$D(IO(1,IO(0)))#2:1,1:0) IO(0)
- . C IO K IO(1,IO) S IO("CLOSE")=IO ;close device
+ . C IO K IO(1,IO) S IO("CLOSE")=IO ;close device`
  ;Unlock global used to control access.
  S %=$G(^XUTL("XQ",$J,"lock",+$G(IOS))) I $L(%) L -@% K ^XUTL("XQ",$J,"lock",IOS)
+ ;
+ ;**P585 START CJM
+ I $G(IOT)="PQ" D CLOSE^ZISPQ(IO)
+ ;**P585 END CJM
  ;
  I $D(IO("SPOOL")) D CLOSE^%ZIS4 ;Special close for spool device
  ;
@@ -128,3 +132,11 @@ FF() ;Issue form feed
 CLOSPP() ;Close printer port
  I $D(IO("S")),$D(^%ZIS(2,+IO("S"),11))&$D(IO(1,IO)) Q 1
  Q 0
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;

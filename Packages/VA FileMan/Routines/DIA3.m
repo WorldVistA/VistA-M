@@ -1,5 +1,5 @@
 DIA3 ;SFISC/GFT-UPDATE POINTERS, CHECK CODE IN INPUT STRING, CHECK FILE ACCESS ;19SEP2004
- ;;22.0;VA FileMan;**159**;Mar 30, 1999;Build 8
+ ;;22.0;VA FileMan;**159**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  S Y=DIA("P"),DH=1,DTO=DIA D PTS^DIT:'$D(^UTILITY("DIT",$J,0)) S ^UTILITY("DIT",$J,0)=0 Q:$D(^(0))<9
  D ASK^DITP Q:%-1

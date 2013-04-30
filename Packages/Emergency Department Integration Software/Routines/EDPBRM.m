@@ -1,5 +1,5 @@
-EDPBRM ;SLC/KCM - Room/Bed Configuration
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPBRM ;SLC/KCM - Room/Bed Configuration ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 LOAD(AREA) ; Load the list of rooms/beds for this area
  N BED,SEQ,BEDS,X0,TOKEN
@@ -31,6 +31,7 @@ LOAD(AREA) ; Load the list of rooms/beds for this area
  . . S X("shared")=$P(X0,U,10)
  . . S X("board")=$P(X0,U,11)
  . . S X("color")=$P(X0,U,12)
+ . . S X("primary")=$S($P(X0,U,13)=2:2,1:1,1:"")  ; ""=unknown,1=primary,2=secondary
  . . D XML^EDPX($$XMLA^EDPX("bed",.X))
  D XML^EDPX("</beds>")
  ;
@@ -76,6 +77,7 @@ UPD(FLD,ERRMSG) ; Add/Update Record
  S FDA(231.8,EDPIEN,.1)=FLD("shared")
  S FDA(231.8,EDPIEN,.11)=FLD("board")
  S FDA(231.8,EDPIEN,.12)=FLD("color")
+ S FDA(231.8,EDPIEN,.13)=$S($G(FLD("primary"))=1:1,2:2,1:"")
  I EDPIEN="+1," D
  . D UPDATE^DIE("","FDA","FDAIEN","ERR")
  . I $D(DIERR) S ERRMSG=ERRMSG_"Adding "_FLD("name")_" failed.  "

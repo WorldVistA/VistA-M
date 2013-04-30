@@ -1,5 +1,5 @@
 DICATTDE ;GFT;;END SCREEN EDIT ; 04 Jun 2007  3:39 PM
- ;;22.0;VA FileMan;**42,83,103,151**;Mar 30, 1999;Build 10
+ ;;22.0;VA FileMan;**42,83,103,151**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 LAYGODEF ;should user see 'ADDING NEW'?

@@ -1,5 +1,5 @@
 XUSRB4 ;ISF/RWF - Build a temporary sign-on token ;10/12/11  14:53
- ;;8.0;KERNEL;**150,337,395,419,437,499,523,573**;Jul 10, 1995;Build 3
+ ;;8.0;KERNEL;**150,337,395,419,437,499,523,573,596**;Jul 10, 1995;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified
  Q
  ;
@@ -96,6 +96,7 @@ CHECK(HL,TOUT) ;Check a Token
  S CLNM=$S($L($G(IO("CLNM"))):IO("CLNM"),$L(CLNM):CLNM,1:"") ;p499
  I $L($G(^XTMP(HL,"D3"))),^XTMP(HL,"D3")=% S T=1
  I 'T,$L(CLNM),$G(^XTMP(HL,"CLNM"))=IO("CLNM") S T=1
+ I 'T,$$LOW^XLFSTR($S($L($G(IO("ZIO"))):IO("ZIO"),1:$G(IO)))[$P($G(^XTMP(HL,"CLNM")),".") S T=1  ;ram p596
  I 'T Q "0^Different IP" ;p499
  I $D(^XTMP(HL,"D2")),D>0 S DUZ(2)=^XTMP(HL,"D2")
  D USER^XUS(D)

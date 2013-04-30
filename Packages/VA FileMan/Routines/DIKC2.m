@@ -1,5 +1,5 @@
 DIKC2 ;SFISC/MKO-CHECK INPUT PARAMETERS TO INDEX^DIKC ;8:25 AM  30 Jul 1999
- ;;22.0;VA FileMan;**11**;Mar 30, 1999
+ ;;22.0;VA FileMan;**11**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;CHK:  Check input parameters to INDEX^DIKC
  ;Also set:

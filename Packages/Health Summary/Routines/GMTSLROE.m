@@ -1,5 +1,5 @@
 GMTSLROE ; SLC/JER,KER - Lab Orders Extract Routine ; 09/21/2001
- ;;2.7;Health Summary;**9,28,47**;Oct 20, 1995
+ ;;2.7;Health Summary;**9,28,47,96**;Oct 20, 1995;Build 9
  ;
  ; External References
  ;   DBIA 10035  ^DPT(
@@ -9,6 +9,7 @@ GMTSLROE ; SLC/JER,KER - Lab Orders Extract Routine ; 09/21/2001
  ;   DBIA    67  ^LAB(60
  ;   DBIA   530  ^LAB(62.05,
  ;   DBIA   531  ^LRO(68,
+ ;   DBIA  5466  ^LRJWLST
  ;   DBIA 10142  $$VERSION^XPDUTL
  ;                 
 XTRCT ; Gets lab orders and loads them into GMTSLRO local array
@@ -31,7 +32,7 @@ SET ; Sets ^TMP("LRO",$J, w/appropriate data
  S SITE=+$G(^LRO(69,CD,1,SN,4,+$O(^LRO(69,CD,1,SN,4,0)),0)),SPEC=$S(SITE>0:SITE_";"_$P(^LAB(61,SITE,0),U),1:";UNKNOWN")
  I $D(^LRO(69,CD,1,SN,2,TN,0)) S TST=^(0) S:$P(TST,"^",9)="CA" OS="CANCELED" D TEST
  I $D(BADTEST) K BADTEST Q
- I $D(IDT),$D(SN),$D(TN) S ^TMP("LRO",$J,IDT,SN_TN)=CDT_U_TEST_U_SPEC_U_URG_U_OS_U_MD_U_ODT_U_ACC_U_RDT_U_COLL_U_CD,GMI=GMI+1
+ I $D(IDT),$D(SN),$D(TN) S ^TMP("LRO",$J,IDT,SN_TN)=CDT_U_TEST_U_SPEC_U_URG_U_OS_U_MD_U_ODT_U_ACC_U_RDT_U_COLL_U_CD_U_$P(TST,U,7),GMI=GMI+1
  Q
 ORDER ; Get Orders
  N IFN,FNF,FILE,NM,NSPACE,PKG,X
@@ -57,5 +58,9 @@ TEST ; Lab Test Ordered
  S URG=$E($S($D(^LAB(62.05,+UPTR,0)):$P(^(0),U),1:""),1,7)
  I $S('$D(ACCD):1,'$L(ACCA):1,'$L(ACCD):1,1:0) S ACC="NONE" Q
  S ACC=$S($D(^LRO(68,+ACCA,1,+ACCD,1,+ACCN,.2)):^(.2),1:"NONE")
- I $D(^LRO(68,+ACCA,1,+ACCD,1,+ACCN,4,TPTR,0)) S X=$P(^(0),U,5) S OS=$S('$L(X):"PROCESSING",1:"COMPLETED")
+ I $T(GETACC^LRJWLST)]"" D
+ . N OACC
+ . S OACC=$P($G(^LRO(69,CD,1,SN,2,TN,64.91)),"^",3)
+ . I OACC]"" S ACC=OACC
+ I $D(^LRO(68,+ACCA,1,+ACCD,1,+ACCN,4,TPTR,0)) S X=$P(^(0),U,5) I $G(OS)'="CANCELED" S OS=$S('$L(X):"PROCESSING",1:"COMPLETED")
  Q

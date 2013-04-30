@@ -11,12 +11,12 @@ EN ;
  Q
 SET N VAR
  S VAR=" - Adding to 2507 Body System File."
- ;D BUMPBLK^DVBAPOST
- ;D BUMPBLK^DVBAPOST
- ;D BUMPBLK^DVBAPOST
+ D BUMPBLK^DVBAPOST
+ D BUMPBLK^DVBAPOST
+ D BUMPBLK^DVBAPOST
  W !!!,VAR
- ;D BUMP^DVBAPOST(VAR)
- ;D BUMPBLK^DVBAPOST
+ D BUMP^DVBAPOST(VAR)
+ D BUMPBLK^DVBAPOST
 SET1 ;
  S DIF="^TMP($J,""DVBA"",",XCNP=0
  K ^TMP($J,"DVBA")
@@ -59,13 +59,13 @@ SE ;
  N VAR
  S VAR="Could not add code "_X_" to body system "_BODY
  W !!,VAR
- ;D BUMP^DVBAPOST(VAR)
+ D BUMP^DVBAPOST(VAR)
  Q
 SE1 ;
  N VAR
  S VAR="Could not find body system "_BODY
  W !!,VAR
- ;D BUMP^DVBAPOST(VAR)
+ D BUMP^DVBAPOST(VAR)
  Q
 CHK ;
  N COD,COD1
@@ -76,11 +76,11 @@ CHK ;
  Q
 SG1 ;writes and updates the tmp global with the finish
  N LP1,V1
- ;F LP1=1:1:2 D BUMPBLK^DVBAPOST
+ F LP1=1:1:2 D BUMPBLK^DVBAPOST
  S V1="I have updated "_BDYCNT_" exams to the 2507 Body System File!"
  W !!,V1
- ;D BUMP^DVBAPOST(V1)
- ;D BUMPBLK^DVBAPOST
+ D BUMP^DVBAPOST(V1)
+ D BUMPBLK^DVBAPOST
  Q
 EXIT ;
  K X,Y,BODY,STOP,LINE,^TMP($J,"DVBA")
@@ -94,5 +94,5 @@ SE2 ;
  N VAR
  S VAR="Zero node of the "_X_" code does not exist.  Please investigate!"
  W !!,VAR
- ;D BUMP^DVBAPOST(VAR)
+ D BUMP^DVBAPOST(VAR)
  Q

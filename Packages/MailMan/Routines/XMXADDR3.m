@@ -95,7 +95,7 @@ REMOTE(XMDUZ,XMADDR,XMSTRIKE,XMPREFIX,XMLATER,XMFULL) ;
  . . ;waiver has been granted.  Please contact your site Information
  . . ;Security Officer (ISO) for further information.
  . . D SETERR^XMXADDR4($G(XMIA),"P",38130.2)
- . ; I XMDOMAIN?.E1".DOMAIN.EXT" D
+ . ; I XMDOMAIN?.E1".domain.ext" D
  . ;. ; Check the address before the @ to find any obvious errors
  . ; Now transform spaces, commas, and periods in XMNAME
  . S XMFULL=XMNAME_"@"_XMDOMAIN

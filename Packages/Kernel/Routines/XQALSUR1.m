@@ -1,7 +1,7 @@
-XQALSUR1 ;ISC-SF.SEA/JLI - SURROGATES FOR ALERTS ;11/21/07  08:35
- ;;8.0;KERNEL;**366,443**;Jul 10, 1995;Build 4
+XQALSUR1 ;ISC-SF.SEA/JLI - SURROGATES FOR ALERTS ;10/23/12  12:12
+ ;;8.0;KERNEL;**366,443,602**;Jul 10, 1995;Build 9
+ ;Per VHA Directive 2004-038, this routine should not be modified
  Q
- ;
 RETURN(XQAUSER) ; P366 - return alerts to the user
  N XQAI,X0,XQASTRT,XQASURO,XQAEND
  ; identify periods in the surrogate multiple that haven't been returned
@@ -94,6 +94,8 @@ SURRO11 ;
  I $$CYCLIC^XQALSURO(XQALSURO,XQAUSER)'>0 W $C(7),!,$$CYCLIC^XQALSURO(XQALSURO,XQAUSER),! G SURRO11
  S XQALSTRT=+$$STRTDLG() I XQALSTRT<0 Q
  S XQALEND=+$$ENDDLG() I XQALEND<0 Q
+ ; p602 check again for cyclical surrogates
+ I $$DCYCLIC(XQALSURO,XQAUSER,XQALSTRT,XQALEND)'>0 W $C(7),!,$$DCYCLIC(XQALSURO,XQAUSER,XQALSTRT,XQALEND),! G SURRO11
  D SETSURO^XQALSURO(XQAUSER,XQALSURO,XQALSTRT,XQALEND)
  G SURRO11 ;
  Q
@@ -111,6 +113,7 @@ REMVSURO(XQAUSER,XQALSURO,XQALSTRT) ; SR - ends the currently active surrogate r
  . S XQALEND=$P(^XTV(8992,XQAUSER,2,XQALXREF,0),U,3) D DELETENT(XQAUSER,XQALXREF,XQALSURO,XQALSTRT,XQALSUR1,XQALSTR1,XQALEND)
  . Q
  S XQALSURO=$$CURRSURO^XQALSURO(XQAUSER) ; make sure current surrogate is updated if necessary.
+ D CLEANUP^XQALSUR2(XQAUSER) ;p602 clean up surrogate history (moved from SR. RETURN)
  Q
  ;
 DELETENT(XQAUSER,XQALXREF,XQALSURO,XQALSTRT,XQALSUR1,XQALSTR1,XQALEND) ;
@@ -148,18 +151,24 @@ NEWDLG() ; new surrogate dialog
  ;
 STRTDLG() ; new surrogate start date/time dialog
  N DIR
- S DIR(0)="DO^::ATEX",DIR("A")="Specify Date/Time SURROGATE becomes active" ; BRX-1000-10427
+ S DIR(0)="DO^NOW::AEFRX",DIR("A")="Enter Date/Time SURROGATE is to start" ; BRX-1000-10427
  S DIR("A",1)="",DIR("A",2)=""
- S DIR("A",3)="if no date/time is entered, alerts will start going to"
- S DIR("A",4)="the SURROGATE immediately."
+ S DIR("A",3)=" - If no date/time is entered, new alerts will start going to"
+ S DIR("A",4)="   the SURROGATE immediately."
+ S DIR("A",5)=" - A past date/time (earlier than NOW) is not permitted."
+ S DIR("A",6)=" - If a date is entered, then a time is also required."
+ S DIR("A",7)=""
  Q +$$ASKDIR(.DIR)
  ;
 ENDDLG() ; new surrogate end date/time dialog
  N DIR
- S DIR(0)="DO^::AETX",DIR("A")="Specify Date/Time SURROGATE should be removed" ; BRX-1000-10427
+ S DIR(0)="DO^NOW::AEFRX",DIR("A")="Enter Date/Time SURROGATE is to end" ; BRX-1000-10427
  S DIR("A",1)="",DIR("A",2)=""
- S DIR("A",3)="if no date/time is entered, YOU must remove the SURROGATE"
- S DIR("A",4)="to terminate alerts going to the SURROGATE"
+ S DIR("A",3)=" - If no date/time is entered, YOU must remove the SURROGATE"
+ S DIR("A",4)="   to terminate the surrogacy."
+ S DIR("A",5)=" - A past date/time (earlier than NOW) is not permitted."
+ S DIR("A",6)=" - If a date is entered, then a time is also required."
+ S DIR("A",7)=""
  Q +$$ASKDIR(.DIR)
  ;
 ASKDIR(DIR) ;

@@ -1,5 +1,5 @@
-HLCSTCP4 ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;04/16/08  14:20
- ;;1.6;HEALTH LEVEL SEVEN;**109,122,140**;Oct 13,1995;Build 5
+HLCSTCP4 ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;08/03/2011  13:29
+ ;;1.6;HEALTH LEVEL SEVEN;**109,122,140,157**;Oct 13,1995;Build 8
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -21,7 +21,13 @@ ERROR ; Error trap
  ; patch HL*1.6*140
  S $ETRAP="D HALT^ZU" ;RWF
  S HLTCP("$ZA\8192#2")=""
- I (^%ZOSF("OS")["OpenM") D
+ ;
+ ; patch HL*1.6*157 start
+ N HLOSYS
+ S HLOSYS=$$OS^%ZOSV
+ ; I (^%ZOSF("OS")["OpenM") D
+ I (HLOSYS["UNIX")!(HLOSYS["VMS") D
+ . ; patch HL*1.6*157 end
  . S HLTCP("$ZA")=$ZA
  . ; For TCP devices $ZA\8192#2: the device is currently in the
  . ; Connected state talking to a remote host.
@@ -187,12 +193,19 @@ ERROR1 ;
  ; patch HL*1.6*140
  ; S $ETRAP="D HALT^ZU" ;RWF
  S $ETRAP="H 1 D HALT^ZU" ;RWF
- I (^%ZOSF("OS")["OpenM") D
+ ; patch HL*1.6*157 start
+ N HLOSYS
+ S HLOSYS=$$OS^%ZOSV
+ ; I (^%ZOSF("OS")["OpenM") D
+ I (HLOSYS["UNIX")!(HLOSYS["VMS") D
+ . ; patch HL*1.6*157 end
  . S HLTCP("$ZA")=$ZA
  . ; For TCP devices $ZA\8192#2: the device is currently in the
  . ; Connected state talking to a remote host.
  . S HLTCP("$ZA\8192#2")=$ZA\8192#2
- . I HLTCP("$ZA\8192#2")=0 D
+ . ; patch HL*1.6*157 to include <DSCON>: disconnected by client
+ . ; I HLTCP("$ZA\8192#2")=0 D
+ . I (HLTCP("$ZA\8192#2")=0)!($$EC^%ZOSV["DSCON") D
  .. ; decrement counter of multi-listener
  .. I $D(^HLCS(870,"E","M",+$G(HLDP))) D EXITM^HLCSTCP
  .. ; process terminated

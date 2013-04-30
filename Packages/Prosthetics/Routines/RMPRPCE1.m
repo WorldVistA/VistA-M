@@ -1,5 +1,5 @@
 RMPRPCE1 ;HCIOFO/RVD - Prosthetics/PCE UPDATE UTILITY ;5/7/03  09:12
- ;;3.0;PROSTHETICS;**62,69,77,78,146,163**;Feb 09, 1996;Build 9
+ ;;3.0;PROSTHETICS;**62,69,77,78,146,163,171**;Feb 09, 1996;Build 1
  ;
  ;patch #69
  ;RVD 4/10/02 - validate the length (16 c) of provisional diagnosis
@@ -119,7 +119,8 @@ LINK ;link 2319 to suspense
  ;if unlinked transactions it will then make call to file 660 to display available items to be linked
  D GETPAT^RMPRUTIL G:$D(X) EXIT
  S IEN660=+DFN,XIEN=0,CTR=0
- F I=1:1 S XIEN=$O(^RMPR(660,"C",IEN660,XIEN)) Q:XIEN=""  S R10=$G(^RMPR(660,XIEN,10)) I R10'="",$P(R10,U,14)'=1,$D(^RMPR(660,XIEN,"AMS")),RMPR("STA")=$P($G(^RMPR(660,XIEN,0)),U,10) S CTR=1 Q
+ ;Patch RMPR*3.0*171  Insure node ^RMPR(660,IEN660,10) exists, if not, count as unlinked
+ F I=1:1 S XIEN=$O(^RMPR(660,"C",IEN660,XIEN)) Q:XIEN=""  S R10=$G(^RMPR(660,XIEN,10)) S:R10="" CTR=1 Q:CTR  I $P(R10,U,14)'=1,$D(^RMPR(660,XIEN,"AMS")),RMPR("STA")=$P($G(^RMPR(660,XIEN,0)),U,10) S CTR=1 Q
  I CTR'=1 W !,?2,$C(7),">> NO patient unlinked items available to be posted to Suspense, hit return" R CTR:15 G EXIT
  W ! S DIC="^RMPR(660,",DIC(0)="EQZ",D="C",X=+DFN
  S DIC("S")="S RMZ=$G(^RMPR(660,+Y,10)) I $P(RMZ,U,14)'=1,$D(^(""AMS"")),RMPR(""STA"")=$P(^(0),U,10)"

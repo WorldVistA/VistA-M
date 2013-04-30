@@ -1,5 +1,5 @@
 DIFROM11 ;SFISC/XAK-CREATES RTN ENDING IN INIT1 ;APR 13, 1995@14:31;11/24/92  10:31
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S %Y="^UTILITY(U,$J,D,Y,",E=0
  F D="DIE","DIPT","DIBT" S %X=U_D_"(Y,",Y=0 F  S @("Y=$O(^"_D_"(Y))") Q:'Y  I $D(^(Y,0))#2 S DSV=^(0),F=$P(DSV,U,4) I F,$P(DSV,U,8)<3,$D(F(F))!$D(Q(D,Y)) D 1

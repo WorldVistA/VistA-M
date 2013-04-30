@@ -1,5 +1,5 @@
 DDU ;SFISC/DCM-DD UTILITES ;3/24/91  12:22 PM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 0 S DIC="^DOPT(""DDU"","
  G OPT:$D(^DOPT("DDU",3)) S ^(0)="DATA DICTIONARY UTILITY OPTION^1.01" K ^("B")

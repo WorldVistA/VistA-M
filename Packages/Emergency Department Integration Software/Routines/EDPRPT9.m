@@ -1,7 +1,7 @@
-EDPRPT9 ;SLC/MKB - Patient Xref Report
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPRPT9 ;SLC/MKB - Patient Xref Report ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
-XRF(BEG,END) ; Get Patient Xref Report for EDPSITE by date range
+XRF(BEG,END,CSV) ; Get Patient Xref Report for EDPSITE by date range
  ;   CNT = counters
  N IN,LOG,DFN,ID,X,ROW,TAB
  D:'$G(CSV) XML^EDPX("<patients>") I $G(CSV) D  ;headers

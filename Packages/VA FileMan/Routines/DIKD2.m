@@ -1,5 +1,5 @@
 DIKD2 ;SFISC/MKO-DELETE A NEW-STYLE INDEX ;10:28 AM  1 Nov 2002
- ;;22.0;VA FileMan;**12,95**;Mar 30, 1999
+ ;;22.0;VA FileMan;**12,95**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 DELIXN(DIFIL,DIXR,DIFLG,DIKDOUT,DIKDMSG) ;Delete new-style index

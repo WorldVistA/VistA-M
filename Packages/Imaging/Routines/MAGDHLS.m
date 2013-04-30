@@ -1,5 +1,5 @@
-MAGDHLS ;WOIFO/MLH - IHE-based ADT interface for PACS - segments ; 23 Jul 2009 8:15 AM
- ;;3.0;IMAGING;**49**;Mar 19, 2002;Build 2033;Apr 07, 2011
+MAGDHLS ;WOIFO/MLH/JSL/SAF - IHE-based ADT interface for PACS - segments ; 23 Jul 2009 8:15 AM
+ ;;3.0;IMAGING;**49,123**;Mar 19, 2002;Build 67;Jul 24, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -33,6 +33,9 @@ AL1(XDFN,XYMSG) ; patient allergies
  N ALDTA ; ---- allergy data
  N IXREAC ; --- reaction index
  N REPIX ; ---- field repetition index
+ N VA,VADPT ; - Return arrays from DEM^VADPT containing patient demographics
+ ;
+ D DEM^VADPT
  ;
  K YSEGA
  S DFN=XDFN D ^GMRADPT ; get patient's allergies
@@ -126,7 +129,7 @@ MRG(XMRGICN,XYMSG) ; FUNCTION - merge ICNs
  S @XYMSG@(SEGIX,0)="MRG"
  ; populate ICN info into element leaves
  S @XYMSG@(SEGIX,1,1,1,1)=XMRGICN
- S @XYMSG@(SEGIX,1,1,4,1)="USVHA"
+ S @XYMSG@(SEGIX,1,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA")  ;P123
  S @XYMSG@(SEGIX,1,1,5,1)="NI"
  Q 0
  ;
@@ -149,37 +152,41 @@ PID(XDFN,XYMSG) ; FUNCTION - patient ID/demo
  N STATNUMB ; - station number
  N STAT ; ----- status return from function calls
  N PTICN ; ---- patient integration control number
+ N DFN ; ---- patient internal entry number (needed for VADPT call)
  ;
  S HL("ECH")=HLECH,HL("FS")=HLFS,HL("Q")=HLQ
- S STATNUMB=$E($P($$NS^XUAF4($$KSP^XUPARAM("INST")),U,2),1,3) ; station number
+ S STATNUMB=$P($$SITE^VASITE(),"^",3) ; station number
+ ;S STATNUMB=$E($P($$NS^XUAF4($$KSP^XUPARAM("INST")),U,2),1,3) ; station number
  ; does pt have a national ICN?
- S PTICN=$$GETICN^MPIF001(XDFN) ; ICR #2701
- K:PTICN<0 PTICN ; no ICN exists
- K:$$IFLOCAL^MPIF001(XDFN)=1 PTICN ; ICR #2701 - ICN is local, not national
+ I $L($T(IFLOCAL^MPIF001)) I $$IFLOCAL^MPIF001(XDFN)'=1 D   ;p123 - ICN is local, not national
+ . S PTICN=$$GETICN^MPIF001(XDFN) ; ICR #2701
+ . K:+PTICN<0 PTICN ; no ICN exists
+ . Q
  ; build a dummy message including MSH, PID
  ; (MSH required for $$PARSE^MAG7UP to work)
  S MSGDMY(1)="MSH"_HLFS_HLECH
  S MSGDMY(2)=$$EN^VAFHLPID(XDFN,"5,7,8,10BN,11,19,22B"),IX=0 ; DBIA #263
  S NUL=$$PARSE^MAG7UP("MSGDMY","MSGTREE") ; parse the message
+ S DFN=XDFN D PID^VADPT  ;Get patient Identifiers in VA array
  ; purge patient identifiers PID-2 thru PID-4
  F IX=2,3,4 K MSGTREE(2,IX)
  ; assign station number-dfn to PID-2
  S MSGTREE(2,2,1,1,1)=STATNUMB_"-"_XDFN
  S MSGTREE(2,2,1,2,1)=""
  S MSGTREE(2,2,1,3,1)=""
- S MSGTREE(2,2,1,4,1)="USVHA"
+ S MSGTREE(2,2,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA")  ;P123
  S MSGTREE(2,2,1,5,1)="PI"
- ; assign social security number to PID-3
- S MSGTREE(2,3,1,1,1)=MSGTREE(2,19,1,1,1)
+ ; assign HRN or social security number to PID-3
+ S MSGTREE(2,3,1,1,1)=$S($$ISIHS^MAGSPID():VA("PID"),1:$G(MSGTREE(2,19,1,1,1)))  ;P123
  S MSGTREE(2,3,1,2,1)=""
  S MSGTREE(2,3,1,3,1)=""
- S MSGTREE(2,3,1,4,1)="USVHA"
+ S MSGTREE(2,3,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA")  ;P123
  S MSGTREE(2,3,1,5,1)="NI"
  D:$D(PTICN)  ; use nat'l ICN (if available) as the alternate pt id in PID-4
  . S MSGTREE(2,4,1,1,1)=PTICN
  . S MSGTREE(2,4,1,2,1)="" ; no checksum (included in ICN)
  . S MSGTREE(2,4,1,3,1)="" ; no checksum (included in ICN)
- . S MSGTREE(2,4,1,4,1)="USVHA"
+ . S MSGTREE(2,4,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA")  ;P123
  . S MSGTREE(2,4,1,5,1)="NI"
  . Q
  ; strip suffix, if any, off race and ethnicity codes

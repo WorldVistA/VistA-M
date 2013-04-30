@@ -1,5 +1,5 @@
 PRCHMA ;WISC/AKS-Amend to PO, req ;6/10/96  14:07
- ;;5.1;IFCAP;**21,79,100,113**;Oct 20, 2000;Build 4
+ ;;5.1;IFCAP;**21,79,100,113,157**;Oct 20, 2000;Build 2
  ;Per VHA Directive 2004-038, this routine should not be modified.
 REQ N PRCHREQ
  S PRCHREQ=1
@@ -135,8 +135,11 @@ ERR I $D(PRCHER) W !!,?5,"This amendment needs to be re-edited before it can be 
  G EXIT
 ENC S ER=0
  D CAN^PRCHMA3
+ ;PRC*5.1*157   insures that if the user does not use Amendment to Purchase Card option
+ ;              an order using a credit card (MOP=25) will also be checked for any recon charges 
+ ;              still attached to order attempting to be cancelled
  I $G(NOCAN)=1 W !?5,$S($D(PRCHREQ):"REQUISITION",1:"PURCHASE ORDER")_" HAS BEEN RECEIVED, CANNOT CANCEL !",$C(7) S ER=1 Q
- I $G(PRCHAUTH)=1 D PAID^PRCHINQ I $G(PAID)=1 D  S ER=1 Q
+ I $G(PRCHAUTH)=1!($P(^PRC(442,PRCHPO,0),U,2)=25) D PAID^PRCHINQ I $G(PAID)=1 D  S ER=1 K PAID Q
  . W !,?5,"THERE HAS BEEN PAYMENT MADE FOR THIS PURCHASE CARD ORDER, CANNOT CANCEL !",$C(7)
  S %="",%A="     SURE YOU WANT TO CANCEL THIS ORDER ",%B="" D ^PRCFYN
  I %'=1 W ?40,"    <NOTHING CANCELLED>" D  Q

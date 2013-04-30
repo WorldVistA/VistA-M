@@ -1,10 +1,13 @@
-PSJHLU ;BIR/RLW-UTILITIES USED IN BUILDING HL7 SEGMENTS ;20 Apr 98 / 9:58 AM
- ;;5.0; INPATIENT MEDICATIONS ;**1,56,72,102,134,181**;16 DEC 97;Build 190
+PSJHLU ;BIR/RLW-UTILITIES USED IN BUILDING HL7 SEGMENTS ;4/24/12 2:52pm
+ ;;5.0;INPATIENT MEDICATIONS;**1,56,72,102,134,181,267,285**;16 DEC 97;Build 4
  ;
  ; Reference to ^PS(52.6 is supported by DBIA# 1231.
  ; Reference to ^PS(52.7 is supported by DBIA# 2173.
  ; Reference to ^VA(200 is supported by DBIA 10060.
  ; Reference to ^PS(55 is supported by DBIA# 2191.
+ ;
+ ;*267 Change NTE|21 so it can send over the Long Wp Special Inst/
+ ;     Other Prt Info fields if populated.
  ;
 INIT ; set up HL7 application variables
  S PSJHLSDT="PS",PSJHINST=$P($$SITE^VASITE(),"^")
@@ -28,18 +31,33 @@ SEGMENT2 ; Retrieve text fields
  K SEGMENT S JJ=0 F  S JJ=$O(@(PSJORDER_"12,"_JJ_")")) Q:'JJ  S SEGMENT(JJ-1)=$G(@(PSJORDER_"12,"_JJ_",0)"))
  I $D(SEGMENT(0)) S SEGMENT(0)="NTE|6|L|"_$S($G(PSJBCBU):SEGMENT(0),1:$$ESC^ORHLESC(SEGMENT(0))) D
  .D SET^PSJHLU K SEGMENT,JJ
- I $P($G(@(PSJORDER_"6)")),"^")]"" K SEGMENT S SEGMENT(0)="NTE|21|L|"_$S($G(PSJBCBU):$P($G(@(PSJORDER_"6)")),"^"),1:$$ESC^ORHLESC($P($G(@(PSJORDER_"6)")),"^"))) D
- .D SET^PSJHLU K SEGMENT
- I PSJORDER["P",$P($G(@(PSJORDER_"9)")),"^",2)]"" K SEGMENT S SEGMENT(0)="NTE|21|L|"_$S($G(PSJBCBU):$P($G(@(PSJORDER_"9)")),"^",2),1:$$ESC^ORHLESC($P($G(@(PSJORDER_"9)")),"^",2))) D
- .D SET^PSJHLU K SEGMENT
+ ;build NTE 21 with Special Inst/Other Prt Info Wp fields  *267
+ N QQ K ^TMP("PSJBCMA5",$J)
+ D GETSIOPI^PSJBCMA5(PSJHLDFN,RXORDER,1)
+ I RXORDER["V"!(RXORDER["U") I ($G(PSJORD)["P"),($P($G(^PS(53.1,+PSJORD,0)),"^",25)=RXORDER) D
+ .D GETSIOPI^PSJBCMA5(PSJHLDFN,PSJORD,1)
+ .N LINES,TEXT1 S LINES=($G(^TMP("PSJBCMA5",$J,PSJHLDFN,PSJORD))),TEXT1=$G(^TMP("PSJBCMA5",$J,PSJHLDFN,PSJORD,1))
+ .I LINES<1!(LINES=1&(TEXT1["Instructions too long. See Order View or BCMA for full text")) Q
+ .K ^TMP("PSJBCMA5",$J,PSJHLDFN,RXORDER) M ^TMP("PSJBCMA5",$J,PSJHLDFN,RXORDER)=^TMP("PSJBCMA5",$J,PSJHLDFN,PSJORD) K ^TMP("PSJBCMA5",$J,PSJHLDFN,PSJORD)
+ F QQ=0:0 S QQ=$O(^TMP("PSJBCMA5",$J,PSJHLDFN,RXORDER,QQ)) Q:'QQ  D
+ .I QQ=1 D  Q
+ ..S SEGMENT(0)="NTE|21|L|"_$$ESC^ORHLESC(^TMP("PSJBCMA5",$J,PSJHLDFN,RXORDER,QQ))
+ ..S:$G(PSJBCBU) SEGMENT(0)=SEGMENT(0)_"\.br\"
+ .S SEGMENT(QQ-1)=$$ESC^ORHLESC(^TMP("PSJBCMA5",$J,PSJHLDFN,RXORDER,QQ))
+ .S:$G(PSJBCBU) SEGMENT(QQ-1)=SEGMENT(QQ-1)_"\.br\"
+ I $D(SEGMENT(0)) D SET^PSJHLU K SEGMENT,^TMP("PSJBCMA5",$J)
+ ;*267 end
  Q
  ;
 CALL(HLEVN) ; call DHCP HL7 package -or- protocol, to pass Orders
  ; HLEVN = number of segments in message
- K CLERK,DDIEN,DDNUM,DOSEFORM,DOSEOR,FIELD,IVTYPE,LIMIT,NAME,NDNODE,NODE1,NODE2,PRODNAME,PROVIDER,PSGS0Y,PSJHINST,PSJHLSDT,PSJI,PSJORDER,PSOC,PSREASON,ROOMBED,SPDIEN,SEGMENT
+ K CLERK,DDIEN,DDNUM,DOSEFORM,DOSEOR,FIELD,IVTYPE,LIMIT,NAME,NDNODE,NODE1,NODE2,PRODNAME,PROVIDER,PSGS0Y,PSJHINST,PSJHLSDT,PSJI,PSJORDER,PSOC,PSREASON,ROOMBED,SPDIEN,SEGMENT,%
  I $G(PSJBCBU)=1 M PSJNAME=^TMP("PSJHLS",$J,"PS") Q
  S PSJMSG="^TMP(""PSJHLS"",$J,""PS"")"
  D MSG^XQOR("PS EVSEND OR",.PSJMSG)
+ I $G(RXORDER),$G(PSJHLDFN) N PSJSTOP S PSJSTOP=$S(RXORDER["U":$P(^PS(55,PSJHLDFN,5,+RXORDER,2),"^",4),RXORDER["V":$P(^PS(55,PSJHLDFN,"IV",+RXORDER,0),"^",3),1:"") I PSJSTOP D
+ .N PSJSTATU S PSJSTATU=$S(RXORDER["U":$P(^PS(55,PSJHLDFN,5,+RXORDER,0),"^",9),RXORDER["V":$P(^PS(55,PSJHLDFN,"IV",+RXORDER,0),"^",17),1:"")
+ .I ",A,H,"[(","_PSJSTATU_",") D NOW^%DTC I PSJSTOP<% N RXON S RXON=RXORDER D EXPIR^PSJHL6
  Q
  ;
 IVTYPE(PSJORDER) ; check whether a back-door order is Inpatient IV or IV fluid
@@ -79,7 +97,8 @@ ENI ;Calculate Frequency for IV orders
  .I X2=+X2 S X2=X2_" ml/hr"
  .S:$P(X2,"@")=+X2 $P(X2,"@")=$P(X2,"@")_" ml/hr"
  .S X=X1_"="_X2
- I X'=+X,($P($TR(X," ml/hr",""),"@",2,999)'=+$P($TR(X," ml/hr",""),"@",2,999)!(+$P(X,"@",2,999)<0)),($P(X," ml/hr")'=+$P(X," ml/hr")!(+$P(X," ml/hr")<0)) Q:(X>0&($E(X)=0))  K X Q
+ ;*285 - Allow for decimals with trailing zeroes
+ I X'?.N.1".".N,($P($TR(X," ml/hr",""),"@",2,999)'=+$P($TR(X," ml/hr",""),"@",2,999)!(+$P(X,"@",2,999)<0)),($P(X," ml/hr")'?.N.1".".N!(+$P(X," ml/hr")<0)) Q:(X>0&($E(X)=0))  K X Q
  I X=+X!(X>0&($E(X)=0)) S:$S(X'["ml/hr":0,X["@":0,1:1) X=X_" ml/hr" D SPSOL S FREQ=$S('X:0,1:SPSOL\X*60+(SPSOL#X/X*60+.5)\1) K SPSOL Q
  I X[" ml/hr" D SPSOL S FREQ=$S('X:0,1:SPSOL\X*60+(SPSOL#X/X*60+.5)\1) K SPSOL Q
  S SPSOL=$P(X,"@",2) S:$P(X,"@")=+X $P(X,"@")=$P(X,"@")_" ml/hr" S FREQ=$S('SPSOL:0,1:1440/SPSOL\1) K SPSOL
@@ -102,6 +121,8 @@ IVCAT(DFN,PSJORD,PARRAY) ; This returns the IV CATEGORY based on the IV TYPE and
  S CAT=$S(",A,H,"[(","_TYP_","):"C",TYP="C"&(",A,H,S,"[(","_CHEMTYP_",")&'INTSYR):"C",TYP="C"&(CHEMTYP="P"):"I",TYP="S"&'INTSYR:"C",TYP="P":"I",$G(INTSYR):"I",1:"")
  Q CAT
 ZRX ; Perform outbound processing
+ N NODE1
+ S NODE1=$G(@(PSJORDER_"0)"))
  S LIMIT=6 X PSJCLEAR
  S FIELD(0)="ZRX"
  I '$G(PSJREN) N PREON,PSJREN I $G(PSJORD)["U"&($P(NODE1,"^",24)="R") S PSJREN=1

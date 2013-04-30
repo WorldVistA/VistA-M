@@ -1,0 +1,15 @@
+PSXCPOST ;BIR/WPB - Post-init routine for PSX*1*3 [ 03/07/96  11:02 AM ]
+ ;;1.0;CONSOLIDATED MAIL OUTPATIENT PHARMACY;**3**;10 May 95
+HOST G:$G(^XMB("NETNAME"))'["CMOP-" MED
+ F ZZ=52.5,550,550.1 S DIU=ZZ,DIU(0)="D" D EN^DIU2 K DIU,DIU(0)
+ K ZZ
+ D DRG^PSXUTL
+ Q
+MED Q:$G(^XMB("NETNAME"))["CMOP-"
+ S XX=0 F  S XX=$O(^PS(52.5,"AG",XX)) Q:XX'>0  S ZZ=0 F  S ZZ=$O(^PS(52.5,"AG",XX,ZZ)) Q:ZZ'>0  D
+ .I '$D(^PS(52.5,ZZ,0)) K ^PS(52.5,"AG",XX,ZZ) Q
+ .I $P(^PS(52.5,ZZ,0),"^",7)'="Q"&($P(^PS(52.5,ZZ,0),"^",7)'="P") K ^PS(52.5,"AG",XX,ZZ)
+ I $D(^PS(52.5,"AR")) K ^PS(52.5,"AR")
+ K XX,DIK,DIK(1),ZZ
+ D DRG^PSXUTL
+ Q

@@ -1,5 +1,5 @@
 PSJPDV1 ;BIR/KKA-LIST PATIENTS ON SPECIFIC DRUGS (CONT.) ;15 May 98 / 9:28 AM
- ;;5.0; INPATIENT MEDICATIONS ;**3,33,58**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**3,33,58,267**;16 DEC 97;Build 158
  ;
  ; Reference to ^PS(55 supported by DBIA #2191.
  ;
@@ -23,7 +23,7 @@ UDREC ;write Unit Dose record
  D:$Y+5>IOSL HEADING Q:$D(QFLG)
  W !!,NM,?32,PSJ(1),?68,$E($$ENDTC^PSGMI(STD),1,5),?75,$E($$ENDTC^PSGMI($P(ND,U,6)),1,5),! W:'WFLG SSN
  N X F X=1:0 S X=$O(PSJ(X)) Q:'X  W ?32,PSJ(X) D THEREST I RSTFLG>3&($X>32) W !
- S WCNT=1,SI=$P($G(^PS(55,PSGP,5,PSJJORD,6)),"^") I SI]"" W:$X>31 ! F  S WRD=$P(SI," ",WCNT) Q:$L(WRD)=0  S WCNT=WCNT+1 D
+ N I S WCNT=1,SI=$P($G(^PS(55,PSGP,5,PSJJORD,6)),"^") I $TR(SI," ")]"" W:$X>31 ! F I=1:1:$L(SI," ") S WRD=$P(SI," ",I) Q:(I>1)&$P(SI," ",I-1,180)=""  S WCNT=WCNT+1 D
  .I $X+$L(WRD)>79 W ! I 'WFLG&('$D(ND3FLG)) W $P(ND,"^",3) S ND3FLG=1
  .W ?31," ",WRD
  I 'WFLG&('$D(ND3FLG)) W !,$P(ND,"^",3)

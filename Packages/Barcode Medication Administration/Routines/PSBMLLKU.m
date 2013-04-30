@@ -72,7 +72,7 @@ PTLKUP(RESULTS,PSBREC) ; Patient lookup handled separately for security
  S PSBDATA=$E(PSBREC(1),1,60)
  I PSBDATA?12N!(PSBDATA?1.6N)&(DUZ("AG")="I") D  Q  ; HRN/ASUFAC code
  .N X
- .;S X=$$HRCNF^APSPFUNC($S($L(PSBDATA)=12:PSBDATA,1:$$PAD($$GET1^DIQ(9999999.06,+DUZ(2),.12))_$$PAD(PSBDATA)))
+ .S X=$$HRCNF^APSPFUNC($S($L(PSBDATA)=12:PSBDATA,1:$$PAD($$GET1^DIQ(9999999.06,+DUZ(2),.12))_$$PAD(PSBDATA)))
  .I X<0 D  Q
  ..S RESULTS(0)=1,RESULTS(1)="-1^No patients matching '"_PSBDATA_"'."
  .S RESULTS(0)=1
@@ -106,7 +106,7 @@ PTREC(DFN) ;
  ; Extrinsic to return a Pt Rec  in standard list format
  N PSBXX
  S PSBXX=$G(^DPT(DFN,0))
- ;S PSBXX=DFN_U_$P(PSBXX,U,1)_U_$P(PSBXX,U,2)_U_$P(PSBXX,U,3)_U_$S(DUZ("AG")="I":$$HRCNF^BDGF2(DFN,DUZ(2)),1:$P(PSBXX,U,9))
+ S PSBXX=DFN_U_$P(PSBXX,U,1)_U_$P(PSBXX,U,2)_U_$P(PSBXX,U,3)_U_$S(DUZ("AG")="I":$$HRCNF^BDGF2(DFN,DUZ(2)),1:$P(PSBXX,U,9))
  S $P(PSBXX,U,6)=$$GET1^DIQ(2,DFN_",",.1)
  S $P(PSBXX,U,7)=$$GET1^DIQ(2,DFN_",",.101)
  S $P(PSBXX,U,10)=$$DOB^DPTLK1(DFN)

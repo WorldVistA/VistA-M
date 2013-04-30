@@ -9,7 +9,7 @@ MAIL ; Send a mailman msg to user with results
  N DIFROM,NODE,MSG,XMDUZ,XMSUB,XMTEXT,XMY
  S XMSUB="Future Dated MT Distribution/Cleanup"
  S XMDUZ="IVM*2.0*71 Distribution/Cleanup",XMY(DUZ)=""
- S XMY("richard.muller@DOMAIN.EXT")=""
+ S XMY("richard.muller@domain.ext")=""
  S XMTEXT="MSG(",NODE=0
  S NODE=NODE+1,MSG(NODE)="Income Test Data (Z10) transmissions may not have"
  S NODE=NODE+1,MSG(NODE)="been successfully received/uploaded for Income Tests"

@@ -1,5 +1,5 @@
 DIOC ;SFISC/TKW-GENERATE CODE TO CHECK QUERY CONDITIONS ;04:18 PM  13 Feb 2002
- ;;22.0;VA FileMan;**97**;Mar 30, 1999
+ ;;22.0;VA FileMan;**97**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 BEF(X,Y,N,M) ; BEFORE  (X before Y)
  N Z D Q(.Y)

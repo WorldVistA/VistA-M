@@ -1,5 +1,5 @@
 PSSDDUT3 ;BIR/LDT-Pharmacy Data Management DD Utility ; 09/17/97 14:35
- ;;1.0;PHARMACY DATA MANAGEMENT;**35**;9/30/97
+ ;;1.0;PHARMACY DATA MANAGEMENT;**35,171**;9/30/97;Build 19
  ;
  ; Reference to ENSD^PSGNE3 is supported by DBIA #2150.
  ; Reference to EN^PSGCT is supported by DBIA #2146.
@@ -114,3 +114,12 @@ CHK3 F Y=1:1 Q:$L(P(11))>240!($P(P(11),"-",Y)="")  S $P(P(11),"-",Y)=$P(P(11),"-
 WRITE ;Calls EN^DDIOL to write text
  D EN^DDIOL(.PSSHLP) K PSSHLP Q
  Q
+ ;
+AASCRN(PSSREC) ; Screen the RECOMMENDATION field (#.08) in APSPQA INTERVENTION file
+ ; Input : PSSREC - IEN of APSP INTERVENTION RECOMMENDATION file (#9009032.5) entry
+ ; Output : FALSE - Filter out 'UNABLE TO ASSESS' recommendations if not a NO ALLERGY ASSESSMENT intervention type, 
+ ;          filter out all recommendation except 'OTHER' and 'UNABLE TO ASSESS' if not a NO ALLERGY ASSESSMENT intervention type
+ ; Output : TRUE - Include only 'UNABLE TO ASSESS' and 'OTHER' recommendations if working on a NO ALLERGY ASSESSMENT intervention type, 
+ ;          include all recommendatons except 'UNABLE TO ASSESS' and 'OTHER' if not working on a NO ALLERGY ASSESSMENT intervention type
+ I $G(^APSPQA(32.3,+$P($G(^APSPQA(32.4,+$G(DA),0)),"^",7),0))="NO ALLERGY ASSESSMENT" Q $S($G(^APSPQA(32.5,+$G(PSSREC),0))="UNABLE TO ASSESS":1,$G(^APSPQA(32.5,+$G(PSSREC),0))="OTHER":1,1:0)
+ Q $S($G(^APSPQA(32.5,+$G(PSSREC),0))="UNABLE TO ASSESS":0,1:1)

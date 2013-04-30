@@ -1,5 +1,5 @@
 GMRCAAC ;SLC/DLT - Administrative Complete action consult logic ;7/16/98  01:47
- ;;3.0;CONSULT/REQUEST TRACKING;**4,12,53**;DEC 27, 1997;Build 3
+ ;;3.0;CONSULT/REQUEST TRACKING;**4,12,53,46**;DEC 27, 1997;Build 23
 COMP(GMRCO) ;Clerk action to Complete an order
  ;GMRCO is the selected consult
  K GMRCQUT,GMRCQIT
@@ -41,7 +41,7 @@ COMP(GMRCO) ;Clerk action to Complete an order
  ;
  D EN^GMRCHL7(DFN,GMRCO,$G(GMRCTYPE),$G(GMRCRB),"RE",GMRCORNP,$G(GMRCVSIT),.GMRCOM,,$G(GMRCAD))
  S GMRCADUZ=""
- I $P(^GMR(123,GMRCO,0),"^",14) S GMRCADUZ($P(^(0),"^",14))=""
+ I $P(^GMR(123,GMRCO,0),"^",14),$P(^GMR(123,GMRCO,0),"^",14)'=DUZ S GMRCADUZ($P(^(0),"^",14))=""
  S GMRCORTX="Completed Consult "_$$ORTX^GMRCAU(GMRCO)_$S(GMRCSF="Y":" with Sig Findings",GMRCSF="N":" with no Sig Findings",1:"")
  D MSG^GMRCP($P(^GMR(123,GMRCO,0),"^",2),GMRCORTX,+GMRCO,23,.GMRCADUZ,0)
  Q

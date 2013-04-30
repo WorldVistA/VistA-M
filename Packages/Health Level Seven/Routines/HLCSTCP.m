@@ -1,5 +1,5 @@
-HLCSTCP ;SFIRMFO/TNV-ALB/JFP,PKE - (TCP/IP) MLLP ;04/15/2008  10:58
- ;;1.6;HEALTH LEVEL SEVEN;**19,43,49,57,58,64,84,109,133,122,140**;Oct 13, 1995;Build 5
+HLCSTCP ;SFIRMFO/TNV-ALB/JFP,PKE - (TCP/IP) MLLP ;08/08/2011 14:29
+ ;;1.6;HEALTH LEVEL SEVEN;**19,43,49,57,58,64,84,109,133,122,140,157**;Oct 13, 1995;Build 8
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; This is an implementation of the HL7 Minimal Lower Layer Protocol
@@ -49,10 +49,12 @@ HLCSTCP ;SFIRMFO/TNV-ALB/JFP,PKE - (TCP/IP) MLLP ;04/15/2008  10:58
  . I $$STOP D EXITS("Shutdown") Q
  . D EXITS("Openfail")
  ;
- ;multi-threaded listener (for OpenM/NT)
+ ; multi-threaded listener code (for OpenM/NT)
  I ($G(HLTCPCS)'="M")!(^%ZOSF("OS")'["OpenM") D  Q
  . L -^HLCS("HLTCPLINK",HLDP)
- I $$OS^%ZOSV["VMS" L -^HLCS("HLTCPLINK",HLDP) Q
+ ; patch HL*1.6*157
+ ; I $$OS^%ZOSV["VMS" L -^HLCS("HLTCPLINK",HLDP) Q
+ I ($$OS^%ZOSV["VMS")!($$OS^%ZOSV["UNIX") L -^HLCS("HLTCPLINK",HLDP) Q
  D ST1,MON("Listen"),LISTEN^%ZISTCPS(HLTCPORT,"SERVERS^HLCSTCP("""_HLDP_""")",HLZRULE)
  ; update status of listener
  I $$STOP D EXITS("Shutdown") Q
@@ -107,7 +109,9 @@ DCOPEN(HLDP) ;open direct connect - called from HLMA2
  ;
 INIT() ; Initialize Variables
  ; HLDP should be set to the IEN or name of Logical Link, file 870
- S HLOS=$P($G(^%ZOSF("OS")),"^")
+ ; patch HL*1.6*157
+ ; S HLOS=$P($G(^%ZOSF("OS")),"^")
+ S HLOS=$$OS^%ZOSV
  N DA,DIQUIET,DR,TMP,X,Y
  ; patch HL*1.6*140
  ; S IOF=$$FLUSHCHR^%ZISTCP ; HL*1.6*122 set device flush character
@@ -238,8 +242,13 @@ LLCNT(DP,Y,Z) ;update Logical Link counters
  ; patch HL*1.6*122 start
  ; F  L +^HLCS(870,DP,P):2 Q:$T
  ; S X=+$G(^HLCS(870,DP,P)),^(P)=X+$S($G(Z):-1,1:1)
+ ; patch HL*1.6*157 start
+ ; adds call $$OS^%ZOSV
  I '$L($G(OS)) N OS S OS=$G(^%ZOSF("OS"))
- I OS'["DSM",OS'["OpenM" D
+ I '$L($G(HLOSYS)) N HLOSYS S HLOSYS=$$OS^%ZOSV
+ ; I OS'["DSM",OS'["OpenM" D
+ I OS'["DSM",OS'["OpenM",(OS["OpenM")&((HLOSYS'["VMS")&(HLOSYS'["UNIX")) D
+ . ; patch HL*1.6*157 end
  . F  L +^HLCS(870,DP,P):10 Q:$T  H 1
  . S X=+$G(^HLCS(870,DP,P)),^(P)=X+$S($G(Z):-1,1:1)
  . L -^HLCS(870,DP,P)

@@ -1,6 +1,6 @@
-FBCHDIN ;AISC/DMK-DELETE INPATIENT INVOICE ;1/12/93  08:10
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBCHDIN ;AISC/DMK - DELETE INPATIENT INVOICE ;3/27/2012
+ ;;3.5;FEE BASIS;**132**;JAN 30, 1995;Build 17
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 BAT ;ask batch Number
  ;cannot delete an invoice from a batch that has a status of
@@ -11,9 +11,10 @@ BAT ;ask batch Number
  ;
  D HOME^%ZIS
  W ! S DIC="^FBAA(161.7,",DIC(0)="AEQMZ"
- S DIC("S")=$S($D(^XUSEC("FBAASUPERVISOR",DUZ)):"I ""TV""'[$G(^(""ST""))",1:"I $P(^(0),U,5)=DUZ&(""TVRS""'[($G(^(""ST""))))")_"&($P(^(0),U,3)=""B9"")"
+ S DIC("S")=$S($D(^XUSEC("FBAASUPERVISOR",DUZ)):"I ""TFV""'[$G(^(""ST""))",1:"I $P(^(0),U,5)=DUZ&(""TFVRS""'[($G(^(""ST""))))")_"&($P(^(0),U,3)=""B9"")"
  D ^DIC K DIC G END:X=""!(X="^")
- L +^FBAA(161.7,+Y)
+ L +^FBAA(161.7,+Y):$G(DILOCKTM,3)
+ I '$T W !,"Another user is editing this batch.  Try again later." G BAT
  S FBBAT=+Y,FBBAT(0)=Y(0)
  ;
 INV ;get invoice user wants to delete in batch selected

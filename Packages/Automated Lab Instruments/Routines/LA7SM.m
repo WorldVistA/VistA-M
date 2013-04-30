@@ -1,5 +1,5 @@
-LA7SM ;DALOI/JMC - Shipping Manifest Options ;5/5/97  14:39
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46**;Sep 27, 1994
+LA7SM ;DALOI/JMC - Shipping Manifest Options ;05/10/12  12:07
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,74**;Sep 27, 1994;Build 229
  ;
 CLSHIP ; Close/ship a shipping manifest
  D INIT
@@ -30,11 +30,12 @@ CLSHIP ; Close/ship a shipping manifest
  D UNLOCKSM,CLEANUP
  Q
  ;
+ ;
 SMET ; Edit a test on a shipping manifest
  ; Used to add/remove a test.
  D INIT
  I LA7QUIT D CLEANUP Q
- S LA7SM=$$SELSM^LA7SMU(+LA7SCFG,"0,1,3")
+ S LA7SM=$$SELSM^LA7SMU(+LA7SCFG,"1,3")
  I LA7SM<0 D  Q
  . D EN^DDIOL($P(LA7SM,"^",2),"","!?5")
  . D CLEANUP
@@ -48,9 +49,9 @@ SMET ; Edit a test on a shipping manifest
  D ^DIR
  I $D(DIRUT) D CLEANUP Q
  S LA7ACTON=+Y
- I LA7ACTON=1 F  D ADDTEST Q:LA7QUIT
- I LA7ACTON=2 F  D REMVTST Q:LA7QUIT
- I LA7QUIT,$L($P(LA7QUIT,"^",2)) D EN^DDIOL($P(LA7QUIT,"^",2),"","!?5")
+ I LA7ACTON=1 F  D ADDTEST Q:LA7QUIT>.9  I $P(LA7QUIT,"^",2)'="" D EN^DDIOL($P(LA7QUIT,"^",2),"","!?5")
+ I LA7ACTON=2 F  D REMVTST Q:LA7QUIT>.9  I $P(LA7QUIT,"^",2)'="" D EN^DDIOL($P(LA7QUIT,"^",2),"","!?5")
+ I LA7QUIT>.9,$P(LA7QUIT,"^",2)'="" D EN^DDIOL($P(LA7QUIT,"^",2),"","!?5")
  E  D ASK^LA7SMP(LA7SM)
  D CLEANUP
  Q
@@ -58,8 +59,9 @@ SMET ; Edit a test on a shipping manifest
  ;
 ADDTEST ; Add individual test to an existing manifest
  ;
- N LA760,LA7AA,LA7AD,LA7AN,LA7BY,LA7DIV,LA7I,LA7UID,LA7X
+ N LA760,LA762,LA76805,LA7AA,LA7AD,LA7AN,LA7BY,LA7DIV,LA7I,LA7UID,LA7X
  ;
+ S LA7QUIT=""
  D SEL
  I LA7QUIT Q
  ;
@@ -76,49 +78,61 @@ ADDTEST ; Add individual test to an existing manifest
  S LA760(0)=$G(^LRO(68,LA7AA,1,LA7AD,1,LA7AN,4,LA760,0))
  ;
  ; Test completed - skip
- I $P(LA760(0),"^",5) S LA7QUIT="1^Test already completed" Q
+ I $P(LA760(0),"^",5) S LA7QUIT=".5^Test already completed" Q
+ ;
+ ; Don't build if configuration has specific ordering locations and accession's ordering location is not on list.
+ I $$CHKOLOC^LA7SM1(LA7AA,LA7AD,LA7AN,+LA7SCFG)<1 S LA7QUIT=".5^Accession's ordering location not on this configuration's list" Q
  ;
  ; Test urgency
  S LA76205=+$P(LA760(0),"^",2)
  I LA76205>49 S LA76205=$S(LA76205=50:9,1:LA76205-50)
  ;
  ; Don't build controls
- I $P($G(^LRO(68,LA7AA,1,LA7AD,1,LA7AN,0)),"^",2)=62.3 S LA7QUIT="1^Cannot select controls" Q
+ I $P($G(^LRO(68,LA7AA,1,LA7AD,1,LA7AN,0)),"^",2)=62.3 S LA7QUIT=".5^Cannot select controls" Q
  ;
  S LA7I=0
  F  S LA7I=$O(^LAHM(62.8,+LA7SM,10,"UID",LA7UID,LA7I)) Q:'LA7I  D  Q:LA7QUIT
  . N X
  . S X(0)=$G(^LAHM(62.8,+LA7SM,10,LA7I,0))
- . I $P(X(0),"^",2)=LA760,$P(X(0),"^",8)'=0 S LA7QUIT="1^Test already on shipping manifest"
+ . I $P(X(0),"^",2)=LA760,$P(X(0),"^",8)'=0 S LA7QUIT=".5^Test already on this shipping manifest"
  I LA7QUIT Q
  ;
  ; Build TMP global with test profile
  D SCBLD^LA7SM1(+LA7SCFG)
+ ;
+ ; Test already on shipping manifest - skip
+ I $$SHIPCK^LA7SMU1(LA7UID,LA7AA,LA760,$P(LA760(0),"^",10)) D  Q
+ . S LA7QUIT=".5^Test already on manifest "_$P($G(^LAHM(62.8,+$P(LA760(0),"^",10),0)),"^")
  ;
  ; Accession's division
  S LA7DIV=+$P($G(^LRO(68,LA7AA,1,LA7AD,1,LA7AN,.4)),"^")
  ;
  ; Check if test eligible for manifest
  D SCHK^LA7SM1
- I 'LA7FLAG S LA7QUIT="1^Test not selectable for this configuration" Q
+ I 'LA7FLAG S LA7QUIT=".5^Test not selectable for this configuration" Q
+ ;
  D LOCK68^LA7SMB
- S LA7I=0
- F  S LA7I=$O(LA7X(LA7I)) Q:'LA7I  D ADD^LA7SMB
+ I '$T D  Q
+ . I $D(ZTQUEUED) Q
+ . D EN^DDIOL("Unable to obtain lock for accession "_LA7UID_" test "_$$GET1^DIQ(60,LA760_",",.01),"","!?5")
+ ;
+ D ADD^LA7SMB1,EN^DDIOL("Test added to manifest","","!?5")
  D UNLOCK68^LA7SMB
  Q
  ;
  ;
 REMVTST ; Remove a test from manifest - actually flags test as "removed".
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,LA7I,LA7TCNT,LA7Y,LA760,X,Y
+ S LA7QUIT=""
  D SEL
  I LA7QUIT Q
  S (LA7I,LA7TCNT)=0
  F  S LA7I=$O(^LAHM(62.8,+LA7SM,10,"UID",LA7UID,LA7I)) Q:'LA7I  D
  . S LA7I(0)=$G(^LAHM(62.8,+LA7SM,10,LA7I,0))
  . I $P(LA7I(0),"^",8)=0 Q  ; Previously "removed".
- . I $P(LA7I(0),"^",8),$P(LA7I(0),"^",8)'=1 S LA7QUIT="1^Accession not pending shipment" Q
+ . I $P(LA7I(0),"^",8),$P(LA7I(0),"^",8)'=1 S LA7QUIT=".5^Accession not pending shipment" Q
  . S LA7TCNT=LA7TCNT+1,LA760(LA7TCNT)=LA7I_"^"_LA7I(0)
- I 'LA7TCNT,'LA7QUIT S LA7QUIT="1^Accession is not on this shipping manifest"
+ I 'LA7TCNT,'LA7QUIT S LA7QUIT=".5^Accession is not on this shipping manifest"
  I LA7QUIT Q
  S LA7I=0
  F  S LA7I=$O(LA760(LA7I)) Q:'LA7I  D EN^DDIOL(LA7I_" "_$P($G(^LAB(60,+$P(LA760(LA7I),"^",3),0)),"^"),"","!?5")
@@ -134,12 +148,13 @@ REMVTST ; Remove a test from manifest - actually flags test as "removed".
  . . S LA762801=+(LA760(LA7X))_","_+LA7SM_","
  . . S FDA(62.8,62.801,LA762801,.08)=0
  . . D FILE^DIE("","FDA(62.8)","LA7DIE(2)") ; "Remove" test from shipping manifest
+ . . D EN^DDIOL($P($G(^LAB(60,+$P(LA760(LA7X),"^",3),0)),"^")_" removed from manifest...","","!?5")
  . . ; Update event file
  . . S LA7DATA="SM51^"_$$NOW^XLFDT_"^"_$P(LA760(LA7X),"^",3)_"^"_$P(LA7SM,"^",2)
  . . D SEUP^LA7SMU(LA7UID,2,LA7DATA)
  . . ; Update accession
  . . D ACCSUP^LA7SMU(LA7UID,$P(LA760(LA7X),"^",3),"@")
- Q
+  Q
  ;
  ;
 CANC ; Cancel a shipping manifest
@@ -196,9 +211,11 @@ SEL ; Select accession
  I LA7UID="" S LA7QUIT="2^Database error - accession missing UID" Q
  ;
  ; Specimen type
- S LA76805=0
+ S (LA762,LA76805)=0
  S X=+$O(^LRO(68,LA7AA,1,LA7AD,1,LA7AN,5,0))
- I X S LA76805=+$G(^LRO(68,LA7AA,1,LA7AD,1,LA7AN,5,X,0))
+ I X D
+ . S X=$G(^LRO(68,LA7AA,1,LA7AD,1,LA7AN,5,X,0))
+ . S LA76805=+$P(X,"^"),LA762=+$P(X,"^",2)
  Q
  ;
  ;
@@ -213,7 +230,8 @@ INIT ; Initialize variables
  ;
  ;
 LOCKSM ; Lock entry in file 62.8
- L +^LAHM(62.8,+LA7SM):1 ; Set lock.
+ ;L +^LAHM(62.8,+LA7SM):1 ; Set lock.
+ D LOCK^DILF("^LAHM(62.8,+LA7SM)")
  I '$T S LA7QUIT="1^Someone else is editing this shipping manifest"
  Q
  ;
@@ -226,7 +244,8 @@ UNLOCKSM ; Unlock entry in file 62.8
 CLEANUP ; Cleanup variables
  I $D(ZTQUEUED) S ZTREQ="@"
  K DA,DIC,DIR,DIRUT,DTOUT,DUOUT,X,Y
- K LA7AA,LA7ACTON,LA7AD,LA7AN,LA7EV,LA7FLAG,LA7I,LA7QUIT,LA7SCFG,LA7SDT,LA7SM,LA7ST,LA7UID,LA7X,LA7YARRY
+ K LA7AA,LA7ACTON,LA7AD,LA7AN,LA7DATA,LA7EV,LA7FLAG,LA7I,LA7QUIT,LA7SCFG,LA7SDT,LA7SM,LA7SMCNT,LA7ST,LA7UID,LA7X,LA7YARRY
  K LA760,LA76205,LA762801,LA76805
  K ^TMP("LA7ERR",$J)
+ D CLEANUP^LA7SMB
  Q

@@ -9,7 +9,7 @@ ONCSED01 ;Hines OIFO/SG - EDITS 'RUN BATCH' REQUEST ; 11/6/06 11:48am
  ;   soap:encodingStyle="http://www.w3.org/2001/12/soap-encoding">
  ;   <soap:Body>
  ;     <ED-RUN-BATCH [edits-config="..."] ver="2.0"
- ;       xmlns="http://vista.DOMAIN.EXT/oncology">
+ ;       xmlns="http://vista.domain.ext/oncology">
  ;       <NAACCR-RECORD> ... </NAACCR-RECORD>
  ;     </ED-RUN-BATCH>
  ;   </soap:Body >

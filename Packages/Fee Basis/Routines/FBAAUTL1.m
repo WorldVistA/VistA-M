@@ -1,5 +1,5 @@
-FBAAUTL1 ;AISC/GRR - Fee Basis Utility Routine ;6/16/2009
- ;;3.5;FEE BASIS;**3,12,13,108**;JAN 30, 1995;Build 115
+FBAAUTL1 ;AISC/GRR - Fee Basis Utility Routine ;9/12/2012
+ ;;3.5;FEE BASIS;**3,12,13,108,132**;JAN 30, 1995;Build 17
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 PLUSOB ;ENTRY POINT TO INCREASE OBLIGATION ADJUSTMENT
  S FBAAMT="-"_FBAARA
@@ -95,3 +95,17 @@ ADD ;call to add money back into 1358 when version of IFCAP>3.6
  S PRCSX=FBADDX_"^"_%_"^"_FBAAMT_"^"_FBCOMM_"^"_1
  D ^PRCS58CC I Y'=1 W !!,*7,$P(Y,U,2),! S FBERR=1
  Q
+ ;
+ASKVET(FBSCR) ; Prompt for patient
+ ; input FBSCR - (optional) screen logic for DIC lookup
+ ;                e.g. I $D(^FBAAC("AH",12,+Y))
+ ; returns IEN of patient in file 161 or 0 if none selected
+ N DIC,FBRET,Y
+ S FBRET=0
+ W !!
+ S DIC="^FBAAA("
+ S DIC(0)="AQEM"
+ S:$G(FBSCR)'="" DIC("S")=FBSCR
+ D ^DIC
+ I Y'<0 S FBRET=+Y
+ Q FBRET

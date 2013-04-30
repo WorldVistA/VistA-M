@@ -1,5 +1,5 @@
 PSORXVW1 ;BIR/SAB-view prescription con't ; 12/4/07 12:28pm
- ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281,359,354,367**;DEC 1997;Build 62
+ ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281,359,354,367,386**;DEC 1997;Build 4
  ;External reference to ^DD(52 supported by DBIA 999
  ;External reference to ^VA(200 supported by DBIA 10060
  ;PSO*210 add call to WORDWRAP api
@@ -102,8 +102,13 @@ PAR ;partial log
  .S:$P(P1,"^",3)]"" IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="  REMARKS: "_$P(P1,"^",3) K RTS
  Q
 HLD ;hold info
- S DTT=$P(^PSRX(DA,"H"),"^",3) D DAT S HLDR=$P(^DD(52,99,0),"^",3),HLDR=$S($P(^PSRX(DA,"H"),"^")'>8:$P(HLDR,";",$P(^PSRX(DA,"H"),"^")),1:$P(HLDR,";",9)),HLDR=$P(HLDR,":",2)
- S $P(RN," ",60)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Hold Reason: "_HLDR_$E(RN,$L("Hold Reason: "_HLDR)+1,60)_"Hold Date: "_DAT S:$P(^PSRX(DA,"H"),"^",2)]"" IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Hold Comments: "_$P(^PSRX(DA,"H"),"^",2)
+ S DTT=$P(^PSRX(DA,"H"),"^",3) D DAT S HLDR=$$GET1^DIQ(52,DA,99)
+ S $P(RN," ",60)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Hold Reason: "_HLDR_$E(RN,$L("Hold Reason: "_HLDR)+1,60)_"Hold Date: "_DAT
+ I $P($G(^PSRX(DA,"H")),"^",2)]"" D
+ . N HLDCOMM S HLDCOMM=$P(^PSRX(DA,"H"),"^",2)
+ . S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Hold Comments: "_$E(HLDCOMM,1,65),HLDCOMM=$E(HLDCOMM,66,999)
+ . F  Q:HLDCOMM=""  D
+ . . S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="               "_$E(HLDCOMM,1,65),HLDCOMM=$E(HLDCOMM,66,999)
  K RN,DAT,DTT,HLDR
  Q
 DAT S DAT="",DTT=DTT\1 Q:DTT'?7N  S DAT=$E(DTT,4,5)_"/"_$E(DTT,6,7)_"/"_$E(DTT,2,3)

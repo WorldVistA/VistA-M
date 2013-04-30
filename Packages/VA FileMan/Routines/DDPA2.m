@@ -1,5 +1,5 @@
 DDPA2 ;SFISC/TKW  FIND NON-CANONIC SORT RANGES WITH NO ASK NODE ;8/8/95  10:46
-V ;;22.0;VA FileMan;;Mar 30, 1999
+V ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 EN ;  This routine will find any sort templates that have a sort field
  ; with a range that is FROM or TO a non-canonic number, has no

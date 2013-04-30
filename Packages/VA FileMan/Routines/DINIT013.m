@@ -1,5 +1,5 @@
 DINIT013 ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;9:34 AM  7 Aug 2002
- ;;22.0;VA FileMan;**41,110**;Mar 30, 1999
+ ;;22.0;VA FileMan;**41,110**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q

@@ -1,8 +1,9 @@
 PRSATE0 ;WCIOFO/PLT - Data Validate for Edit Variable Tours ;7/18/08  14:37
- ;;4.0;PAID;**112,117**;Sep 21, 1995;Build 32
+ ;;4.0;PAID;**112,117,132**;Sep 21, 1995;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
- S TOLD="" F K=1:1:14 S Z=$P($G(^PRST(458,PPI,"E",DFN,"D",K,0)),"^",2),$P(TOLD,"^",K)=Z I SRT="N",$P($G(^(0)),"^",3) S $P(TOLD,"^",K)=$P(^(0),"^",4)
+ N PRSTWO
+ S TOLD="" F K=1:1:14 S Z=$P($G(^PRST(458,PPI,"E",DFN,"D",K,0)),"^",2),$P(TOLD,"^",K)=Z S:SRT="N"&$P($G(^(0)),"^",3) $P(TOLD,"^",K)=$P(^(0),"^",4) S:PRSTWB (PRSTW(K),PRSTWO(K))=$P($G(^(8)),U,$S(SRT="N"&$P($G(^(0)),"^",3):5,1:1))
  K K S ^PRST(458,PPI,"E",DFN,"T")=TOLD D DT^PRSATE2
  N DDSFILE,DA,DR,PRSAERR,DDSBR
  S DDSFILE=458,DDSFILE(1)=458.01,DA(1)=PPI,DA=DFN
@@ -14,8 +15,9 @@ PRSATE0 ;WCIOFO/PLT - Data Validate for Edit Variable Tours ;7/18/08  14:37
  QUIT
  ;
 S1 ; Set Tour if necessary
- I TD=$P(TOLD,"^",DAY),$G(^PRST(457.1,+TD,1))=$G(^PRST(457.1,+$P(TOLD,"^",DAY),1)) Q
- I SRT'="N" S Y=$G(^PRST(457.1,TD,1)),TDH=$P(^(0),"^",6) D SET^PRSATE Q
+ I '$G(PRSTWB),$D(^PRST(458,PPI,"E",DFN,"D",DAY,8)) K ^PRST(458,PPI,"E",DFN,"D",DAY,8)
+ I TD=$P(TOLD,"^",DAY),$G(^PRST(457.1,+TD,1))=$G(^PRST(457.1,+$P(TOLD,"^",DAY),1)),$G(PRSTW(DAY))=$G(PRSTWO(DAY))!'$G(PRSTWB) QUIT
+ I SRT'="N" S Y=$G(^PRST(457.1,TD,1)),TDH=$P(^(0),"^",6) D SET^PRSATE QUIT
  D NX^PRSATE
  QUIT
  ;
@@ -67,3 +69,19 @@ V1 S (DDSERROR,PRSAERR)=1 D HLP^DDSUTL(.STR) K DDSERROR Q
 NAWS1 ;;Warning: There are not three 12 hour tours in week 1 and/or week 2 for this AWS 36/40 Nurse
 NAWS2 ;;Warning: Hours in week 1 and/or week 2 are not 36 for this AWS 36/40 Nurse.
 NAWS3 ;;Warning: Tour overlaps two administrative work weeks for this 36/40 Nurse.
+ ;
+ ;a=ien of 450, b=[ien of 458], c=[ien (day # 1 to 14) of 458.02]
+ ;d=[1 if pp/tem tour of dute, 5 if prior/next]
+TWE(A,B,C,D) ;ef=^1-emp 450 tw indicator, ^2=emp eligible code, ^3-emp pp 458 tw
+ ;       ^4 emp pp eliglble code, ^5-daily tw tour
+ N E
+ S:'$G(D) D=1 S E=$$TWP($P($G(^PRSPC(A,1)),U,45))
+ QUIT:'$G(B) E
+ QUIT E_U_$S("PX"[$P($G(^PRST(458,B,"E",A,0)),U,2):$$TWP($P($G(^(0)),U,8)),1:E)_$S($G(C):U_$P($G(^PRST(458,B,"E",A,"D",C,8)),U,D),1:"")
+ ;
+ ;a=telework paid code of file#454, [b=1 for return with description]
+TWP(A,B) ;ef=^1-telework code, ^2-eligible code, ^3-description
+ QUIT:A="" U
+ S A=$O(^PRSP(454,1,"TW","B",A,0)) QUIT:'A U
+ S A=^PRSP(454,1,"TW",A,0)
+ QUIT $P(A,U)_U_$P(A,U,3)_$S($G(B):U_$P(A,U,2),1:"")

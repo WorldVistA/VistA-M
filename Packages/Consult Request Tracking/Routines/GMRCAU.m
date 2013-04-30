@@ -1,5 +1,5 @@
 GMRCAU ;SLC/DLT,JFR - Action Utilities  ;10/17/01 18:31
- ;;3.0;CONSULT/REQUEST TRACKING;**1,4,11,14,12,15,17,22,55**;DEC 27, 1997;Build 4
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,4,11,14,12,15,17,22,55,46**;DEC 27, 1997;Build 23
  ;
  ; This routine invokes IA #2324,#2692
  ;
@@ -218,7 +218,7 @@ TEST ;called from GMRC UPDATE AUTHORITY
  . I +UPD=2 W !!,"This user is an update user for: ",$P(UPD,U,3)
  . I +UPD=3 W !!,"This user is an administrative user for: ",$P(UPD,U,3)
  . I +UPD=4 D
- .. W !!,"This user is both and administrative and update user"
+ .. W !!,"This user is both an administrative and update user"
  .. W " for: ",!,$P(UPD,U,3)
  . W !,"via the ",$P(UPD,U,2)," field",$S(+UPD=4:"(s).",1:".")
  . W ! I $L($P(UPD,U,3)) D

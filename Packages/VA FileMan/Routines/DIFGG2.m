@@ -1,5 +1,5 @@
 DIFGG2 ;SFISC/XAK,EDE(OHPRD)-FILEGRAM FIELDS ;2/4/93  10:59 AM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 START K ^UTILITY("DIQ1",$J,DIFG(DILL,"FILE"))
  D DRS

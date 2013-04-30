@@ -1,33 +1,18 @@
-YSMHMENU ;SLC/TGA-MENTAL HEALTH MENU HEADINGS ;7/27/89  11:28 ;
- ;;5.01;MENTAL HEALTH;;Dec 30, 1994
+YSMHMENU ;SLC/TGA,HIOFO/hrubovcak-MENTAL HEALTH MENU HEADINGS ;10/25/11 9:10am
+ ;;5.01;MENTAL HEALTH;**60**;Dec 30, 1994;Build 47
  ;
-MSG ; Called as ENTRY action from MENU option YSCENMAIN
+ Q
  ;
- W !,@IOF,#,?(IOM-$L(H2)/2),H2,!?(IOM-$L(L2)/2),L2
-D ;
- S YSLCN=$$SITE^YSFORM,YSLCN="VAMC "_YSLCN K H2,X,L2,Y,DIC(0) Q
+CLIN ; Called as ENTRY action in option YSCLINRECORD
+ N H2,L2 S H2="*** MENTAL HEALTH ***",L2="Clinical Record" D WRT
+ Q
  ;
-CLIN ;; Called as ENTRY action from MENU option YSCLINRECORD
- ; and routine YSPPJ
+MHS ; Called as ENTRY action in option YSMANAGER
+ N H2,L2 S H2="*** MENTAL HEALTH ***",L2="MHS Manager Functions" D WRT
+ Q
  ;
- D H2 S L2="CLINICAL RECORD" G MSG
+WRT ;
+ W @IOF,$J(" ",IOM-$L(H2)\2)_H2,!,$J(" ",IOM-$L(L2)\2)_L2
+ Q
+ ; 13 October 2011
  ;
-PATIN ; Called as ENTRY action from MENU option YSPTINSTRU
- ;
- D H2 S L2="PATIENT ADMINISTERED TESTS AND INTERVIEWS" S YSSCN=1 G MSG
- ;
-MANAG ; Called as ENTRY action from MENU option YSMANAGEMENT
- ;
- D H2 S L2="GENERAL MANAGEMENT FUNCTIONS" G MSG
- ;
-VOC ; Called as ENTRY action from MENU option YSVOCATIONAL
- ;
- D H2 S L2="VOCATIONAL REHABILITATION FUNCTIONS" G MSG
- ;
-MHS ; Called as ENTRY action from MENU option YSMANAGER
- ;
- D H2 S L2="MHS MANAGER FUNCTIONS" G MSG
- ;
-H2 ; Called as ENTRY action from MENU option YSCENMAIN
- ;
- S H2="*** MENTAL HEALTH ***" Q

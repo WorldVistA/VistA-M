@@ -1,5 +1,5 @@
-LA7SBCR2 ;DALOI/JMC - Shipping Barcode Reader Utility ; 16 Sept 2004
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,64**;Sep 27, 1994
+LA7SBCR2 ;DALOI/JMC - Shipping Barcode Reader Utility ;05/29/12  10:28
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,64,74**;Sep 27, 1994;Build 229
  ;
  Q
  ;
@@ -13,18 +13,19 @@ SITE(LA7,LA7PROM,LA7BAR) ; Setup remote site info.
  ;
  ;  If successful ERROR=0
  ;               IDTYPE=source of UID
+ ;                HSITE=host site ien^name^station number
  ;                  LPC=longitudinal parity check of SM barcode info
  ;               RPSITE=primary sending site ien^name^station number
  ;                RSITE=sending site ien^name^station number
  ;                 SCFG=pointer to shipping configuration (file #62.9)^name
  ;                  SDT=Shipping date/time
  ;                 SMID=shipping manifest id
- ;           
+ ;
  ;   unsuccessful ERROR=>0^error message
  ;
  N LA7X,X,Y
  ; Initialize array.
- F Y="ERROR","IDTYPE","LPC","RPSITE","RSITE","SCFG","SDT","SMID" S LA7(Y)=""
+ F Y="ERROR","HSITE","IDTYPE","LPC","RPSITE","RSITE","SCFG","SDT","SMID" S LA7(Y)=""
  S LA7PROM=$G(LA7PROM,"Site")
  I LA7BAR D BAR
  ;
@@ -52,8 +53,10 @@ GETSITE ; Retrieve site info from institution file for this shipping configurati
  S Y(0)=$G(^LAHM(62.9,+LA7("SCFG"),0))
  S LA7("IDTYPE")=$P(Y(0),"^",5)
  ;
- ; *** Remove line when other id types supported. ***
- I LA7("IDTYPE")>1 S LA7("ERROR")=4
+ ; Check if same system and idtype=3
+ I LA7("IDTYPE")>1 D
+ . I LA7("IDTYPE")=3,$P(Y(0),"^",6)=$P(Y(0),"^",11) Q
+ . S LA7("ERROR")=4
  ;
  S LRX=$P(Y(0),"^",2)
  S LRY=$$GET1^DIQ(4,LRX_",",.01)
@@ -68,6 +71,14 @@ GETSITE ; Retrieve site info from institution file for this shipping configurati
  . S LRY(99)=$$RETFACID^LA7VHLU2(LRX,2,1)
  . S LA7("RPSITE")=LRX_"^"_LRY_"^"_LRY(99)
  E  S LA7("ERROR")=5
+ ;
+ S LRX=$P(Y(0),"^",3)
+ S LRY=$$GET1^DIQ(4,LRX_",",.01)
+ I LRX,LRY'="" D
+ . S LRY(99)=$$RETFACID^LA7VHLU2(LRX,1,1)
+ . S LA7("HSITE")=LRX_"^"_LRY_"^"_LRY(99)
+ I 'LRX!(LRY="") S LA7("ERROR")=5
+ ;
  Q
  ;
  ;

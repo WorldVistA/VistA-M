@@ -1,5 +1,5 @@
 DIS2 ;SFISC/GFT-SEARCH, TEMPLATES & COMPUTED FIELDS;4JUN2005
- ;;22.0;VA FileMan;**6,144**;Mar 30, 1999;Build 5
+ ;;22.0;VA FileMan;**6,144**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  K DISV G G:'DUZ
 0 D  K DIRUT,DIROUT I $D(DTOUT)!($D(DUOUT)) G Q

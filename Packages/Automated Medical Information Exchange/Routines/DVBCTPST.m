@@ -1,0 +1,23 @@
+DVBCTPST ;ALB/GTS-POST INIT CORRECT EXAM NAME SPELLING ; 5/24/95 14:30
+ ;;2.7;AMIE;**1**;Apr 10, 1995
+EN I '$D(IOF) D HOME^%ZIS
+ N VAR
+ S VAR(1,0)="1,5,0,2:2,0^AMIE Exam spelling correction"
+ D WR^DVBAUTL4("VAR")
+ ;
+ ;** Get the Exam's IEN
+ S DVBAIEN=$O(^DVB(396.6,"B","PYELITIS, NEPHROLITHIAIS, ETC.",""))
+ I DVBAIEN'="" DO  ;**Correct the spelling
+ .S DA=DVBAIEN,DIE="^DVB(396.6,"
+ .S DR=".01///PYELITIS, NEPHROLITHIASIS, ETC."
+ .D ^DIE
+ .K DA,DIE,DR
+ .S VAR(1,0)="0,5,0,2,0^'PYELITIS, NEPHROLITHIAIS, ETC.' corrected."
+ .S VAR(2,0)="0,7,0,1:2,0^It is now spelled 'PYELITIS, NEPHROLITHIASIS, ETC.'"
+ .D WR^DVBAUTL4("VAR")
+ I DVBAIEN="" DO  ;**Spelling NOT corrected
+ .S VAR(1,0)="0,5,0,2,0^'PYELITIS, NEPHROLITHIAIS, ETC.' NOT corrected."
+ .S VAR(2,0)="0,7,0,1:2,0^Check this exam in the AMIE EXAM FILE (396.6)"
+ .D WR^DVBAUTL4("VAR")
+ K VAR,DVBAIEN,X
+ Q

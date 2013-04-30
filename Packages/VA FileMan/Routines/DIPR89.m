@@ -1,5 +1,5 @@
 DIPR89 ;SFISC/SO-PRE INSTALL ROUTINE FOR PATCH DI*22.0*89 ;5:23 AM  2 Feb 2002
- ;;22.0;VA FileMan;**89**;Mar 30, 1999
+ ;;22.0;VA FileMan;**89**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;Utility to follow up patch DI*22*83
  ;Check for field whose type are Pointer and Set Of Codes

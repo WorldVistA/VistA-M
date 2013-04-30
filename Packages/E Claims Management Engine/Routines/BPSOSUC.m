@@ -1,5 +1,5 @@
 BPSOSUC ;BHAM ISC/FCS/DRS/FLS - ECME utilities ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11,14**;JUN 2004;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ; CATEG returns the status of a Transaction or Log of Transaction
@@ -70,6 +70,8 @@ CATEG(N,WANTREV) ;
  I 'RESP S RETVAL="E OTHER" Q RETVAL
  S RESP500=$$RESP500^BPSOSQ4(RESP,"I")
  N POS S POS=$$GET1^DIQ(FILENUM,N_",",14)
+ ;if POS comes back null set equal to 1 - BPS*14 ticket 367742 RRA
+ S:'POS POS=1
  S X=$$RESP1000^BPSOSQ4(RESP,POS,"I")
  I X="P"!(X="DP") Q "E PAYABLE"
  I X="D" Q "E DUPLICATE" ; SHOULD NEVER HAPPEN as of 02/06/2001

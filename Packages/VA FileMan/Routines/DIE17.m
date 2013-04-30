@@ -1,5 +1,5 @@
 DIE17 ;SFISC/GFT-COMPILED TMPLT UTIL ;9:08 AM  22 Oct 1999
- ;;22.0;VA FileMan;**4,11**;Mar 30, 1999
+ ;;22.0;VA FileMan;**4,11**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  I $D(DTOUT) S X="" G OUT
  G:$A(X)-94 X:'$P(DW,";E",2),@("T^"_DNM)

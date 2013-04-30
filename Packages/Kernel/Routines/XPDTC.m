@@ -1,5 +1,5 @@
 XPDTC ;SFISC/RSD - Transport calls ;10/15/2008
- ;;8.0;KERNEL;**10,15,21,39,41,44,58,83,92,95,100,108,124,131,463,511,517**;Jul 10, 1995;Build 6
+ ;;8.0;KERNEL;**10,15,21,39,41,44,58,83,92,95,100,108,124,131,463,511,517,559**;Jul 10, 1995;Build 4
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;^XTMP("XPDT",XPDA,data type,file #,
@@ -25,7 +25,9 @@ KRN ;build Kernel Files
  F XPDFILE=1:1 S Y0=$P($T(FILES+XPDFILE^XPDE),";;",2,99) Q:Y0=""  S XPDI(+Y0)=Y0
  ;XPDI(XPDFILE)=file;order;x-ref;fact;eact;fpre;epre;fpos;epos;fdel
  S XPDFILE=0
- F  S XPDFILE=$O(^XPD(9.6,XPDA,"KRN",XPDFILE)) Q:'XPDFILE  S XPDI=$G(XPDI(XPDFILE)) I XPDI S FACT=$P(XPDI,";",4),EACT=$P(XPDI,";",5) D  Q:$D(XPDERR)  D:FACT]"" ACT(FACT)
+ ;check we are sending something and have the executes
+ F  S XPDFILE=$O(^XPD(9.6,XPDA,"KRN",XPDFILE)) Q:'XPDFILE  S XPDI=$G(XPDI(XPDFILE)) I $O(^(XPDFILE,"NM",0)),XPDI D  Q:$D(XPDERR)  D:FACT]"" ACT(FACT)
+ .S FACT=$P(XPDI,";",4),EACT=$P(XPDI,";",5)
  .;need to add code to check if File and data is already being sent in the File
  .;mult. If it is, don't bother sending it again.  DTL(XPDFILE)
  .S XPDOLDA=0,FGR=$$FILE^XPDV(XPDFILE) I FGR="" S XPDERR=1 Q

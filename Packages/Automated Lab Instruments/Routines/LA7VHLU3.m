@@ -1,5 +1,5 @@
-LA7VHLU3 ;DALOI/JMC - HL7 Segment Utility ;Jan 29, 2009
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,68**;Sep 27, 1994;Build 56
+LA7VHLU3 ;DALOI/JMC - HL7 Segment Utility ;Feb 13, 2009
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,68,74**;Sep 27, 1994;Build 229
  ;
  Q
  ;
@@ -24,14 +24,15 @@ NTE(LA7ARRAY,LA7TXT,LA7TYP,LA7FS,LA7ECH,LA7NTESN,LA7CMTYP,LA7FMT) ; Build NTE se
  . S LA7TEXT=$$CHKDATA^LA7VHLU3(LA7TXT,LA7FS_LA7ECH)
  ;
  I LA7FMT>0 D
- . N LA7I
- . S LA7I=0
+ . N LA7I,LA7J
+ . S (LA7I,LA7J)=0
  . F  S LA7I=$O(LA7TXT(LA7I)) Q:'LA7I  D
+ . . S LA7J=LA7J+1
  . . I $E(LA7TXT(LA7I),1)="~" S LA7TXT(LA7I)=$$TRIM^XLFSTR(LA7TXT(LA7I),"L","~")
  . . S LA7TXT(LA7I)=$$TRIM^XLFSTR(LA7TXT(LA7I),"R"," ")
  . . S LA7TXT(LA7I)=$$CHKDATA^LA7VHLU3(LA7TXT(LA7I),LA7FS_LA7ECH)
- . . I LA7FMT=1 S LA7TEXT(LA7I)=LA7TEXT_$S(LA7I>1:$E(LA7ECH,3)_".br"_$E(LA7ECH,3),1:"")_LA7TXT(LA7I) Q
- . . I LA7FMT=2 S LA7TEXT(LA7I)=LA7TEXT_LA7TXT(LA7I)_$E(LA7ECH,2) Q
+ . . I LA7FMT=1 S LA7TEXT(LA7I)=LA7TEXT_$S(LA7J>1:$E(LA7ECH,3)_".br"_$E(LA7ECH,3),1:"")_LA7TXT(LA7I) Q
+ . . I LA7FMT=2 S LA7TEXT(LA7I)=LA7TEXT_$S(LA7J>1:$E(LA7ECH,2),1:"")_LA7TXT(LA7I) Q
  ;
  ; Update segment SET ID
  S LA7NTESN=$G(LA7NTESN)+1
@@ -80,7 +81,7 @@ CHKDATA(LA7IN,LA7CH) ; Check data to be built into an HL7 field for characters t
  S LA7LEN=$L(LA7CH),LA7ESC=$E(LA7CH,4)
  F J=1:1:LA7LEN S LA7CH($E(LA7CH,J))=$E("FSRET",J)
  ;
- ; Check each character and convert if appropiate
+ ; Check each character and convert if appropriate
  F J=1:1:$L(LA7IN) D
  . S X=$E(LA7IN,J)
  . I $D(LA7CH(X)) S X=LA7ESC_LA7CH(X)_LA7ESC
@@ -94,7 +95,7 @@ CNVFLD(LA7IN,LA7ECH1,LA7ECH2) ; Convert an encoded HL7 segment/field from one en
  ;           LA7ECH1 = delimiters of input
  ;           LA7ECH2 = delimiters of output
  ;
- ; Returns LA7OUT - segment/field converted to new encoding scheme
+ ; Returns    LA7OUT = segment/field converted to new encoding scheme
  ;
  N J,LA7ECH,LA7ESC,LA7OUT,X
  ;
@@ -113,7 +114,7 @@ CNVFLD(LA7IN,LA7ECH1,LA7ECH2) ; Convert an encoded HL7 segment/field from one en
  ; Build array to convert source encoding to target encoding
  F J=1:1:$L(LA7ECH1) S LA7ECH($E(LA7ECH1,J))=$E(LA7ECH2,J)
  ;
- ; Check each character and convert if appropiate
+ ; Check each character and convert if appropriate
  ; If source conflicts with target encoding character then convert to escape encoding
  ; If match on source encoding character - convert to new encoding
  F J=1:1:$L(LA7IN) D
@@ -222,7 +223,7 @@ PCENC(LRDFN,LRSS,LRIDT) ; Find PCE encounter for an entry in file #63
  . S LA7Y=$G(^LRO(68,$P(LA7X,"^",2),1,$P(LA7X,"^",3),1,$P(LA7X,"^",4),0))
  . S LRODT=+$P(LA7Y,"^",4),LRSN=+$P(LA7Y,"^",5)
  . I $P(LA7Y,"^",2)=2,LRODT,LRSN S LA7ENC=$G(^LRO(69,LRODT,1,LRSN,"PCE"))
- ; 
+ ;
  Q LA7ENC
  ;
  ;

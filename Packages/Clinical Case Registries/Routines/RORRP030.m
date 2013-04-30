@@ -1,6 +1,14 @@
 RORRP030 ;HCIOFO/SG - RPC: PATIENT DELETE ;11/29/05 3:04pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10**;Feb 17, 2006;Build 32
- ;
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,18**;Feb 17, 2006;Build 25
+ ;*************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*18   APR  2012   C RAY        Added logic to immediately delete
+ ;                                      patients in auto confirm registries
+ ;                                      Deletion is logged
+ ;***********************************************************************
  ; This routine uses the following IAs:
  ;
  ; #2053    FILE^DIE (supported)
@@ -30,7 +38,7 @@ RORRP030 ;HCIOFO/SG - RPC: PATIENT DELETE ;11/29/05 3:04pm
  ;         9  The record has been marked as deleted
  ;
 DELETE(RESULTS,REGIEN,RORDFN,FORCE) ;
- N IENS,RC,REGNAME,RORFDA,RORMSG,TMP
+ N IENS,RC,REGNAME,RORFDA,RORMSG,TMP,DIERR,RORPARM,REGLST
  D CLEAR^RORERR("DELETE^RORRP030",1)
  K RESULTS  S RESULTS(0)=0
  ;
@@ -44,12 +52,16 @@ DELETE(RESULTS,REGIEN,RORDFN,FORCE) ;
  S IENS=$$PRRIEN^RORUTL01(RORDFN,REGIEN)_","
  I IENS'>0  D  D RPCSTK^RORERR(.RESULTS,RC)  Q
  . S RC=$$ERROR^RORERR(-97,,,RORDFN,REGNAME)
+ ;--- non-CCR registries delete immediately and log -- Patch 18
+ I $D(^ROR(798.1,"C",1,REGIEN)) D  S RESULTS(0)=9 Q
+ . S RORPARM("LOG")=1
+ . S REGLST(REGNAME)=REGIEN
+ . S RC=$$OPEN^RORLOG(.REGLST,,"PATIENT DELETION")
+ . D LOG^RORERR(-90,,RORDFN,$G(REGNAME))
+ . N DA,DIK  S DIK=$$ROOT^DILFD(798),DA=+IENS  D ^DIK
+ . D CLOSE^RORLOG()
  ;
- ;I $$PENDING^RORUTL18(+IENS)  D
- ;. ;--- Delete the pending record immediately
- ;. N DA,DIK  S DIK=$$ROOT^DILFD(798),DA=+IENS  D ^DIK
- ;E  D
- ;
+ ;-- CCR registries mark as deleted
  ;Patch 10: mark any deleted record as deleted (don't delete pending record immediately)
  D
  . ;--- Mark the record as deleted

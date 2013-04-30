@@ -1,6 +1,6 @@
-PRCHG ;ID/RSD,SF-ISC/TKW/DAP-PROCESS 2237 ;2/03/98  10:49 AM
-V ;;5.1;IFCAP;**81**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCHG ;ID/RSD,SF-ISC/TKW/DAP-PROCESS 2237 ;6/18/12  13:07
+V ;;5.1;IFCAP;**81,167**;Oct 20, 2000;Build 17
+ ;Per VHA Directive 2004-38, this routine should not be modified.
  ;
 ES ;SIGN 2237 IN PPM
  G Q:'$D(PRC("PER"))!('$D(PRC("SITE"))) I $S('$D(^VA(200,+PRC("PER"),400)):1,$P(^(400),U,1)=4:0,$P(^(400),U,1)=2:0,1:1) W !!,"You are not a Supply Accountable Officer !",$C(7) G Q
@@ -17,11 +17,62 @@ ES1 ;S PRCHG=$S($D(^PRCD(442.3,+$P(^PRC(443,DA,0),U,7),0)):$P(^(0),U,2),1:""),$P
  S PRCSIG="" D ENCODE^PRCHES11(DA,DUZ,.PRCSIG) S ROUTINE=$T(+0) G:PRCSIG<1 QQ
  ;set AO name, signature date on 2237 record
  I $D(DA2237) L +^PRCS(410,DA2237):15 Q:'$T  D NOW^%DTC S $P(^PRCS(410,DA2237,7),"^",11)=P,$P(^PRCS(410,DA2237,7),"^",12)=% L -^PRCS(410,DA2237)
+ ;
+ ;if 2237 status is 'Sent to eCMS(P&C)', transmit to eCMS via HL7 msg OMN^O07 (PRC*5.1*167)
+ N PRCERFLG ;2237 transmission error flag
+ N PRCER    ;transmission error msg
+ N PRCEVNT  ;event array for LOG^PRCHJTA
+ I PRCHG=69 D
+ . N PRCLOGER ;error returned from LOG^PRCHJTA
+ . N PRCMSGID ;ien of msg in HLO MESSAGES (#778)
+ . W !!,"Transmitting 2237 transaction to eCMS..."
+ . S PRCMSGID=$$SEND2237^PRCHJS01($G(DA2237),.PRCER)
+ . ;
+ . ;was the transmission successful, ELSE did it fail?
+ . I $G(PRCMSGID)>0 D
+ . . W !?3,">>> 2237 transaction has been successfully transmitted to eCMS."
+ . . W !?3,"    Transaction Number: "_$G(PRCTRANS)
+ . . W !?3,"        HLO Message ID: "_$G(PRCMSGID)
+ . . W !!?3,">>> Updating transmission in IFCAP/ECMS Transaction file..."
+ . . S PRCEVNT("MSGID")=$G(PRCMSGID)
+ . . S PRCEVNT("IEN410")=$G(DA2237)
+ . . S PRCEVNT("IFCAPU")=$G(DUZ)
+ . . D LOG^PRCHJTA($G(PRCTRANS),,1,.PRCEVNT,.PRCLOGER)
+ . . I +$G(PRCLOGER) W !?3,"    Error: "_$P($G(PRCLOGER),U,2)
+ . E  D
+ . . W !?3,">>> ERROR: 2237 was not transmitted to eCMS!"
+ . . W !?3,"    Transaction Number: "_$G(PRCTRANS)
+ . . W !?3,"    Error: "_$G(PRCER)
+ . . S PRCERFLG=1 ;set flag for sending notification msg to Accountable Officer
+ . . W !!?3,">>> Updating transmission error in IFCAP/ECMS Transaction file..."
+ . . S PRCEVNT("MSGID")=""
+ . . S PRCEVNT("IEN410")=$G(DA2237)
+ . . S PRCEVNT("IFCAPU")=$G(DUZ)
+ . . S PRCEVNT("ERROR",1)="An error occurred when transmitting the 2237 transaction to eCMS."
+ . . S PRCEVNT("ERROR",2)="Error: "_$E($G(PRCER),1,60)
+ . . I $D(XQY0) S PRCEVNT("ERROR",3)="Option: "_$P($G(XQY0),"^",2)
+ . . D LOG^PRCHJTA($G(PRCTRANS),,1,.PRCEVNT,.PRCLOGER)
+ . . I +$G(PRCLOGER) W !?3,"    Error: "_$P($G(PRCLOGER),U,2)
+ ;
+ ;if 2237 transmission error occurred, send notification msg to AO (PRC*5.1*167)
+ I PRCHG=69,($G(PRCERFLG)) D
+ . W !!?3,">>> Sending error notification mail message to Accountable Officer..."
+ . N PRCMSG1,PRCMSG2 ;input arrays for PHMSG^PRCHJMSG, pass by ref
+ . S PRCMSG1(1)=$G(PRCTRANS) ;2237 transaction #
+ . S PRCMSG1(2)=5 ;return to AO since failed transmission to eCMS
+ . S PRCMSG1(3)=$$NOW^XLFDT ;action date/time
+ . I $G(PRCER)["REQUESTING SERVICE" D
+ . . S PRCMSG1(7)="Return 2237 to Control Point for edit and re-approval!"
+ . E  D
+ . . S PRCMSG1(7)="Please forward this message to appropriate OIT staff!"
+ . M PRCMSG2=PRCEVNT("ERROR") ;merge error array into PRCMSG2 array
+ . D PHMSG^PRCHJMSG(.PRCMSG1,.PRCMSG2) ;send msg
+ ;
  Q
  ;
 QQ S:'$D(ROUTINE) ROUTINE=$T(+0) W !!,$$ERR^PRCHQQ(ROUTINE,PRCSIG) W:PRCSIG=0!(PRCSIG=-3) !,"Notify Application Coordinator!",$C(7) S DIR(0)="EAO",DIR("A")="Press <return> to continue" D ^DIR
  ;
-Q K %,DA,DIC,DIE,DR,P,PRCHNM,PRCHTDA,PRCHG,PRCHPO,PRCHS,PRCHSIT,PRCHSX,PRCHSY,PRCHSZ,PRCHX,ROUTINE
+Q K %,DA,DIC,DIE,DR,P,PRCHNM,PRCHTDA,PRCHG,PRCHPO,PRCHS,PRCHSIT,PRCHSX,PRCHSY,PRCHSZ,PRCHX,PRCTRANS,ROUTINE
  Q
  ;
 RET ;RETURN TO SERVICE--UPDATE CP BALANCES, ERASE CP OFFICIAL SIGNATURE, SEND BULLETIN BACK TO SERVICE
@@ -38,7 +89,7 @@ SIT S PRCF("X")="SP" D ^PRCFSITE K PRCHNM
 TR S DIC("S")="I $P(^(0),U,3)="""",$D(^PRCS(410,Y,7)),$P(^(7),U,6)]"""",+^(0)=PRC(""SITE"")"
  S DIC("S")=$S('$D(PRCFDICS):DIC("S")_" S Z=$O(^PRCD(442.3,""C"",+$P(^PRC(443,Y,0),U,7),0)) I Z'=10&(Z'=85)",1:DIC("S")_PRCFDICS)
  ;
-DIC W !! K DA S DIC="^PRC(443,",DIC(0)="QEAMZ",DIC("A")="2237 TRANSACTION NUMBER: " D ^DIC S DIE=DIC K DIC S:Y>0 DA=+Y
+DIC W !! K DA S DIC="^PRC(443,",DIC(0)="QEAMZ",DIC("A")="2237 TRANSACTION NUMBER: " D ^DIC S DIE=DIC K DIC S:Y>0 DA=+Y,PRCTRANS=$G(Y(0,0))
  Q
  ;
 ST S DIC("S")="I $P(^(0),U,3)]"""",$O(^PRCD(442.3,""C"",+$P(^(0),U,7),0))'=65,$D(^PRCS(410,+Y,0)),+^(0)=PRC(""SITE"")" D DIC
@@ -98,6 +149,6 @@ STAT I $D(PRCFGPF) S DIC("S")="S Z=$P(^(0),U,2) I Z=10!(Z=60)!(Z=85)" Q
  . . I '$$CHKDM^PRCVLIC(PRC2237) Q
  . . I $O(^PRCS(410,"AG",PRC2237,""))]"" S DIC("S")="I $P(^(0),U,2)=75"
  I '$D(PRCHPPM) S DIC("S")="I $P(^(0),U,2)>69" Q
- K Z0 S (Z0(60),Z0(62),Z0(63),Z0(65),Z0(74))="" S:$P(^PRC(443,DA,0),U,10)=4 Z0(70)=""
+ K Z0 S (Z0(60),Z0(62),Z0(63),Z0(65),Z0(74))="" S:$P(^PRC(443,DA,0),U,10)=4 Z0(70)="",Z0(69)=""
  S DIC("S")="I $D(Z0(+$P(^(0),U,2)))"
  Q

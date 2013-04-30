@@ -1,5 +1,5 @@
-DGREGTED ;ALB/BAJ - Temporary & Confidential Address Edits API ; 8/1/08 1:22pm
- ;;5.3;Registration;**688**;Aug 13, 1993;Build 29
+DGREGTED ;ALB/BAJ,BDB - Temporary & Confidential Address Edits API ; 8/1/08 1:22pm
+ ;;5.3;Registration;**688,851**;Aug 13, 1993;Build 10
 EN(DFN,TYPE,RET) ;Entry point
  ; This routine controls Edits to Temporary & Confidential addresses
  ; 
@@ -40,6 +40,7 @@ INPUT(DGINPUT,DFN,FSTR) ;Let user input address changes
  F L=1:1:$L(FSTR,",") S DGN=$P(FSTR,",",L) Q:DGINPUT=-1  D
  . S REP=0
  . I $$SKIP^DGREGTE2(DGN,.DGINPUT) Q
+ . I DGN=FZIP D ZIPINP(.DGINPUT,DFN) Q  ;DG*5.3*851
  . S SUCCESS=$$READ(DFN,.DGOLD,DGN,.Y,.REP) I 'SUCCESS D  Q
  . . I 'REP S DGINPUT=-1 Q
  . . ; repeat the question so we have to set the counter back
@@ -89,6 +90,7 @@ SAVE(DGINPUT,DFN,FSTR,CNTRY) ;Save changes
  ; need to get the country code into the DGINPUT array
  S DGINPUT(FCNTRY)=$O(^HL(779.004,"B",CNTRY,""))
  S FSTR=FSTR_","_FCNTRY
+ I (TYPE="TEMP")!(TYPE="CONF") S FSTR=FSTR_","_FCITY_","_FSTATE_","_FCOUNTY ;DG*5.3*851
  F L=1:1:$L(FSTR,",") S T=$P(FSTR,",",L) S DATA(T)=$P($G(DGINPUT(T)),U)
  Q $$UPD^DGENDBS(FILE,.DGENDA,.DATA,.ERROR)
  ;
@@ -169,4 +171,23 @@ EOP ;End of page prompt
  S DIR(0)="E"
  S DIR("A")="Press ENTER to continue"
  D ^DIR
+ Q
+  ; DG*5.3*851
+ZIPINP(DGINPUT,DFN) ;get ZIP+4 input
+ N DGR,DGX
+ D EN^DGREGTZL(.DGR,DFN)
+ I $G(DGR)=-1 Q
+ M DGINPUT=DGR
+ S DGX=DGINPUT(FCOUNTY),DGINPUT(FCOUNTY)=$P(DGX,"^",2)_"^"_$P(DGX,"^",1)
+ S DGX=DGINPUT(FSTATE),DGINPUT(FSTATE)=$P(DGX,"^",2)_"^"_$P(DGX,"^",1)
+ Q
+SKIP(DGN,DGINPUT,FLG) ; determine whether or not to skip this step
+ N SKIP
+ S SKIP=0
+ I ($G(DGINPUT(FSLINE1))="")&((DGN=FSLINE2)!(DGN=FSLINE3)) S SKIP=1
+ I ($G(DGINPUT(FSLINE2))="")&(DGN=FSLINE3) S SKIP=1
+ I ($G(FLG(1))'=1)&((DGN=FPHONE)) S SKIP=1
+ Q SKIP
+UPCT ;Indicate "^" or "^^" are unacceptable inputs.
+ W !,"EXIT NOT ALLOWED ??"
  Q

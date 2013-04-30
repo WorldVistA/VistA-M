@@ -27,11 +27,10 @@ A ;S DIR(0)="SA^1:All at once;2:Do not convert at this time",DIR("?")="^D SETOFC
  ;I TYPE=2 G ^PRCUX0
  I TYPE=1 S %ZIS="Q" D ^%ZIS I POP QUIT
  I $G(IO("Q"))=1 D  QUIT
- . S ZTSK=0
- . ;S ZTDESC="IFCAP CONVERSION",ZTRTN="^PRCUCV3" D ^%ZTLOAD
+ . S ZTDESC="IFCAP CONVERSION",ZTRTN="^PRCUCV3" D ^%ZTLOAD
  . W !,"IFCAP CONVERSION IS SUBMITTED TO THE TASK MANAGE WITH TASK NUMBER ",ZTSK
  . QUIT
- ;D ^PRCUCV3
+ D ^PRCUCV3
  QUIT
  S X="To meet the criterion outlined by the VA Inspector General, you must run this conversion in the near future."
  W !! D MSG^PRCFQ

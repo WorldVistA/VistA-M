@@ -1,5 +1,5 @@
 PSGVW0 ;BIR/CML3-SHOWS ACTIVITY LOG ;16 DEC 97 / 1:38 PM 
- ;;5.0; INPATIENT MEDICATIONS ;**49,54,85**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**49,54,85,267**;16 DEC 97;Build 158
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191
  ;
@@ -10,7 +10,15 @@ AL1 S PN=PN+1,UD=$P(AND,"^",3) I AT="S",UD?4N,$E(UD)=6,UD#6000 Q
  W !!?4,"Date: ",$$ENDTC^PSGMI(+AND) W:$S(UD'?4N:1,1:$E(UD,1,2)'=10) ?30,"User: ",$$ENNPN^PSGMI($P(AND,"^",2))
  W !,"Activity: ORDER ",$S(UD="":"****",'$D(^PS(53.3,UD,0)):UD,$P(^(0),"^")]"":$P(^(0),"^"),1:UD)
 AL2 I UD?4N,$E(UD)=6 W !?3,"Field: ",$P(AND,"^",4) S OD=$P(AND,"^",5) I OD>2000000,$P(OD,".",2) S OD=$$ENDTC^PSGMI(OD)
- I UD?4N,$E(UD)=6 W !,"Old Data: ",OD
+ I AND'["SPECIAL INSTRUCTIONS"&(AND'["OTHER PRINT INFO") I UD?4N,$E(UD)=6 W !,"Old Data: ",OD
+ I AND["SPECIAL INSTRUCTIONS" W !,"Old Data: " D
+ .I ($G(PSJORD)["U") D
+ ..N Q2 S Q2=0 F  S Q2=$O(^PS(55,DFN,5,+PSJORD,9,Q,1,Q2)) Q:'Q2  W !?3,^(Q2,0)
+ ..S Q2=0 F  S Q2=$O(^PS(55,DFN,5,+PSJORD,9,Q,2,Q2)) Q:'Q2  W:(Q2=1) !,"New Data: " W !?3,^(Q2,0)
+ .I ($G(PSJORD)["P") N Q2 S Q2=0 F  S Q2=$O(^PS(53.1,+PSJORD,"A",Q,1,Q2)) Q:'Q2  W !?3,^(Q2,0)
+ I AND["OTHER PRINT INFO" W !,"Old Data: " D
+ .I ($G(PSJORD)["U") N Q2 S Q2=0 F  S Q2=$O(^PS(55,DFN,"IV",+PSJORD,"A",Q,1,1,Q2)) Q:'Q2  W !?3,^(Q2,0)
+ .I ($G(PSJORD)["P") N Q2 S Q2=0 F  S Q2=$O(^PS(53.1,+PSJORD,"A",Q,1,Q2)) Q:'Q2  W !?3,^(Q2,0)
  I UD?4N,$E(UD)=7,$P(AND,"^",4)]"" W !?3,"Field: ",$P(AND,"^",4)
  Q
 NPAGE I $E(IOST)="C" R !!,"Enter '^' to stop, or press RETURN to continue.",PX:DTIME

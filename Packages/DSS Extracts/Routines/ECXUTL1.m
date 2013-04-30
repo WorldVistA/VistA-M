@@ -1,5 +1,5 @@
-ECXUTL1 ;ALB/GTS - Utilities for DSS Extracts ;July 16, 1998
- ;;3.0;DSS EXTRACTS;**9,49**;Dec 22, 1997
+ECXUTL1 ;ALB/GTS - Utilities for DSS Extracts ;6/27/12  13:54
+ ;;3.0;DSS EXTRACTS;**9,49,136**;Dec 22, 1997;Build 28
  ;
 CYFY(ECXFMDT) ;** Return the calandar and fiscal years for a FM date
  ;
@@ -99,3 +99,54 @@ PAD(ECXVAL,ECXLGTH,ECXFB,ECXCHAR) ;* Pad the value passed in with ECXCHAR
  ..S:ECXFB="F" ECXVAL=ECXCHAR_ECXVAL
  I '$D(ECXVAL) S ECXVAL=""
  Q ECXVAL
+ ;
+BLDXREF(START,END) ;Build temporary xref from EDIS LOG file #230 API added in patch 136
+ N STDT,ENDT,TIME,SITE,IEN,PIEN
+ S STDT=$$FMADD^XLFDT(START,-1) ;Start day before
+ S ENDT=$$FMADD^XLFDT(END,1,23,59,59) ;Extend to next day, just before midnight.
+ S SITE=0 F  S SITE=$O(^EDP(230,"ATO",SITE)) Q:'+SITE  S TIME=STDT F  S TIME=$O(^EDP(230,"ATO",SITE,TIME)) Q:'+TIME!(TIME>ENDT)  D
+ .S IEN=0 F  S IEN=$O(^EDP(230,"ATO",SITE,TIME,IEN)) Q:'+IEN  S PIEN=$$GET1^DIQ(230,IEN,".06","I") I PIEN S ^TMP($J,"EDIS",PIEN,TIME)=IEN
+ Q
+ ;
+EDIS(ECXDFN,ECD,ECETYPE,ECXVISIT,ECXSTOP) ;Find emergency room disposition, if it exists, and translate it to a value for DSS. API added with patch 136
+ N DISP,STDT,DATE,IEN,ENDT
+ I '+$$VERSION^XPDUTL("EDP") Q ""  ;If emergency department software not installed, return null
+ I ECETYPE="N" Q:ECXSTOP=130 "N"  Q ""  ;If no-show and ER visit, set to N otherwise set to null
+ I ECETYPE="A" D  Q:'$D(DISP) ""  ;If no dispositions found in time frame return null
+ .S STDT=$$FMADD^XLFDT(ECD,,-24) ;find date/time 24 hours prior to admit date/time
+ .S ENDT=$$FMADD^XLFDT(ECD,,24) ;add 24 hours to the admit date/time to allow for late entry of disposition following admission
+ .S DATE=STDT F  S DATE=$O(^TMP($J,"EDIS",ECXDFN,DATE)) Q:'+DATE!(DATE>ENDT)  S DISP=$$GET1^DIQ(230,^TMP($J,"EDIS",ECXDFN,DATE),1.2,"I")
+ I ECETYPE="C" Q:$G(ECXSTOP)'=130 ""  D
+ .I +$G(ECXVISIT) S IEN=+$O(^EDP(230,"V",ECXVISIT,0)) ;Check visit file pointer
+ .I '+$G(IEN) S IEN=+$O(^EDP(230,"B",ECD,0)) I IEN I ECXDFN'=$$GET1^DIQ(230,IEN_",",.06,"I") K IEN ;Check log date/time and patient IEN for match
+ .I +$G(IEN) S DISP=$$GET1^DIQ(230,IEN,1.2,"I")
+ I '$D(DISP) Q "N"  ;If no visits, return "N" for none
+ I DISP="" Q "U"
+ Q $$TRANS(DISP)
+ ;
+TRANS(DISP) ;Translate disposition to set of codes. API added in patch 136
+ N CODE,DSP
+ S CODE=$$GET1^DIQ(233.1,DISP_",",".01"),DSP=$$UP^XLFSTR($$GET1^DIQ(233.1,DISP_",",".02")) ;Get code name and display name for disposition
+ I +CODE Q "U"  ;If code begins with a number, it's local
+ I DSP["ADMIT" Q "A"
+ I DSP["TRANSFER" Q "T"
+ I DSP["HOME"!(DSP["AMA")!(DSP["LEFT")!(DSP["ELOPED") Q "L"
+ I DSP["DECEASED" Q "D"
+ I DSP["SENT" Q "R"
+ I DSP["ERROR" Q "E"
+ Q "U"
+ ;
+ERR ;Send email when scheduling system reports an error.  API added in patch 136
+ N XMSUB,XMTEXT,XMDUZ,XMY,XMZ,I,CNT,TEXT
+ I '$D(^TMP($J,"SDAMA301")) Q  ;No error to report
+ S XMY($G(DUZ,.5))="" ;Send to user or postmaster if no user identified
+ S XMY("G.DSS-"_$G(ECGRP))="" ;Include extract group
+ S XMDUZ="DSS SYSTEM"
+ S XMSUB="Error in retrieving appointment data during extract"
+ S CNT=1 S TEXT(CNT)="An error was encountered by the scheduling system during an extract.",CNT=CNT+1
+ S TEXT(CNT)="The system returned the following error:",CNT=CNT+1,TEXT(CNT)="",CNT=CNT+1
+ S I=0 F  S I=$O(^TMP($J,"SDAMA301",I)) Q:'+I  S TEXT(CNT)="Error code "_I_" - "_^TMP($J,"SDAMA301",I)_".",CNT=CNT+1
+ S TEXT(CNT)="",CNT=CNT+1,TEXT(CNT)="Contact your local I.T. department for assistance."
+ S XMTEXT="TEXT("
+ D ^XMD
+ Q

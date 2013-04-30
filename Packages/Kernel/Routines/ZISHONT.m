@@ -1,7 +1,8 @@
-%ZISH ;IHS/PR,SFISC/AC - Host File Control for Cache for VMS/NT/UNIX ;06/09/10  16:01
- ;;8.0;KERNEL;**34,65,84,104,191,306,385,440,518,524,546**;JUL 10, 1995;Build 9
+%ZISH ;IHS/PR,SFISC/AC - Host File Control for Cache for VMS/NT/UNIX ;05/22/12  11:01
+ ;;8.0;KERNEL;**34,65,84,104,191,306,385,440,518,524,546,599**;JUL 10, 1995;Build 8
  ;Per VHA Directive 2004-038, this routine should not be modified
  ;
+ ; ZEXCEPT: IOM,IOSL,IOT,POP
 OPEN(X1,X2,X3,X4,X5,X6)    ;SR. Open Host File
  ;X1=handle name
  ;X2=directory name \dir\
@@ -14,14 +15,14 @@ OPEN(X1,X2,X3,X4,X5,X6)    ;SR. Open Host File
  I %ZOS'="VMS" S %1=$S(X4["A":"AW",X4["W":"WN",1:"R")_$S(X4["B":"U",1:"S") ;NT & Unix
  I %ZOS="VMS" S %1=$S(X4["A":"AW",X4["W":"WN",1:"RH")_$S(X4["B":"U",1:"S")
  ;The next line eliminates the <ENDOFFILE> error for sequential files for the current process.
- S %ZA=$ZUTIL(68,40,1) ;Work like DSM
+ S %ZA=$$ENDOFILE^%ZISUTL ;p599 Work like DSM
  S %=X2_X3 O %:(%1):2 I '$T S POP=1 Q
  S IO=%,IO(1,IO)="",IOT="HFS",IOM=80,IOSL=60,POP=0 D SUBTYPE^%ZIS3($G(X6,"P-OTHER"))
  I $G(X1)]"" D SAVDEV^%ZISUTL(X1)
- ;I $L($G(%I)) U %I ;Would only needed if we had done a USE.
  Q
  ;
 OPNERR ;Handle open error
+ ; ZEXCEPT: POP
  S POP=1,$ECODE=""
  ;I $L($G(%I)) U %I
  Q
@@ -68,6 +69,7 @@ DEL(%ZX1,%ZX2) ;ef,SR. Del files, return 1 if deleted all requested.
  Q %ZXDEL
  ;
 DELERR ;Trap any $ETRAP error, unwind and return.
+ ; ZEXCEPT: %ZARG,%ZXDEL
  S $ETRAP="D UNWIND^%ZTER"
  S %ZXDEL=0,%ZARG=""
  D UNWIND^%ZTER
@@ -204,6 +206,7 @@ EOF(X) ;Eof flag, pass in $ZEOF
  ;
 MAKEREF(HF,IX,OVF) ;Internal call to rebuild global ref.
  ;Return %ZISHF,%ZISHO,%ZISHI,%ZISUB
+ ; ZEXCEPT: %ZISHF,%ZISHI,%ZISHO,%ZISUB
  N I,F,MX
  S OVF=$G(OVF,"%ZISHOF")
  S %ZISHI=$QS(HF,IX),MX=$QL(HF) ;
@@ -216,12 +219,14 @@ MAKEREF(HF,IX,OVF) ;Internal call to rebuild global ref.
  Q
  ;
 READNXT(REC) ;Read any sized record into array. %ZB has terminator
+ ; ZEXCEPT: %ZB
  N %,I,X,$ES,$ET S REC="",$ET="D READNX^%ZISH Q"
  U IO R X:5 S %ZB=$A($ZB),REC=$E(X,1,255)
  Q:$L(X)<256
  S %=256 F I=1:1 Q:$L(X)<%  S REC(I)=$E(X,%,%+254),%=%+255
  Q
 READNX ;Check for EOF
+ ; ZEXCEPT: %ZA
  I $ZE["ENDOFFILE" S %ZA=-1
  S $EC=""
  Q
@@ -271,6 +276,7 @@ MGTF(%ZX1,%ZX2,%ZX3,%ZX4,%ZX5) ;
  ;p2=incrementing subscript
  ;p3=host file directory
  ;p4=host file name
+ ; ZEXCEPT: %ZISHF,POP
  N %ZISH,%ZISH1,%ZISHI,%ZISHL,%ZISHS,%ZISHOX,IO,%ZX,Y,%ZC
  D MAKEREF(%ZX1,%ZX2)
  D OPEN^%ZISH(,$G(%ZX3),%ZX4,%ZX5) ;Default dir set in open

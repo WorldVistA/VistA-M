@@ -86,7 +86,7 @@ MAILMSG(V1,V2,V3,V4) ;create mail message
  S GROUP=0
  ;
  ;  build receiving queue and user array
- F %=1:1 Q:$P(V4,"^",%)=""  S XMY("XXX@Q-"_$P(V4,"^",%)_".DOMAIN.EXT")="" I $G(GROUP) S XMY("G."_$P(V4,"^",%))=""
+ F %=1:1 Q:$P(V4,"^",%)=""  S XMY("XXX@Q-"_$P(V4,"^",%)_".domain.ext")="" I $G(GROUP) S XMY("G."_$P(V4,"^",%))=""
  S DA=+$P($G(^PRCD(420.4,+$O(^PRCD(420.4,"B",V3,0)),0)),"^",4),%=0 F  S %=$O(^PRCF(423.9,DA,1,%)) Q:'%  S XMDUZ=+$G(^(%,0)) I XMDUZ S XMY(XMDUZ)=""
  S XMDUZ=DUZ,XMTEXT="^TMP($J,""PRCPSMC0"","_V1_",",XMSUB=V3_" TRANSACTION TO Q-"_$TR(V4,"^","/")_" (MSG "_V1_" OF "_V2_")"
  K XMZ D ^XMD Q

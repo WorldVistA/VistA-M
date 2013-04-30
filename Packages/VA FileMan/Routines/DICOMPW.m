@@ -1,5 +1,5 @@
 DICOMPW ;SFISC/GFT-EVALUATE COMPUTED FLD EXPR ;5:56 AM  20 Dec 2001
- ;;22.0;VA FileMan;**6,76**;Mar 30, 1999
+ ;;22.0;VA FileMan;**6,76**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 COLON N DICOMPW K DP,Y S DICOMPW=DICOMP
  I $D(DIC)#2,$P(X,":",2)="" S X=$P(X,":"),DIC(0)="FIZO",DIC("S")="N A S A=$P(^(0),U,2) I A[""P""!(A[""p""),'A" D ^DIC K DIC S X=X_":" D:Y>0 ARC I Y>0 S X="INTERNAL(#"_+Y_")",DP=+$P($P(Y(0),U,2),"P",2)_U_$P(Y(0),U,3)

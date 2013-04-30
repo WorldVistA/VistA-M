@@ -1,5 +1,5 @@
 DIE1 ;SFISC/GFT-FILE DATA, XREF IT, GO UP AND DOWN MULTIPLES ;28MAY2008
- ;;22.0;VA FileMan;**1,4,11,159**;Mar 30, 1999;Build 8
+ ;;22.0;VA FileMan;**1,4,11,159**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  K DQ,DB G E1:$D(DG)<9 I DP<0 K DG S DQ=0 Q
  S DQ="",DU=-2,DG="$D("_DIE_DA_",DU))"

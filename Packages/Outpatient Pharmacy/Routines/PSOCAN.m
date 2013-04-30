@@ -1,5 +1,5 @@
-PSOCAN ;BIR/JMB - Rx discontinue and reinstate ;8/3/06 12:38pm
- ;;7.0;OUTPATIENT PHARMACY;**11,21,24,27,32,37,88,117,131,185,253,251,375,379**;DEC 1997;Build 28
+PSOCAN ;BIR/JMB-Rx discontinue and reinstate ;8/3/06 12:38pm
+ ;;7.0;OUTPATIENT PHARMACY;**11,21,24,27,32,37,88,117,131,185,253,251,375,379,390**;DEC 1997;Build 86
  ;External reference to File #55 supported by DBIA 2228
  ;External references L, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
 START S WARN=0,(DAYS360,SPCANC)=1 D KCAN1^PSOCAN3 W !! S DIR("A")="Discontinue/Reinstate by Rx# or patient name",DIR(0)="SBO^R:RX NUMBER;P:PATIENT NAME"
@@ -23,7 +23,9 @@ LMNO D CHK S:'$G(DA)&($G(IFN)) DA=IFN
  I DEAD!$P(^PSRX(DA,"STA"),"^")'<13,$P(^("STA"),"^")'=16 S PSINV($P(^PSRX(DA,0),"^"))="" D:$G(PSOWUN) ULP,ULRX G EP1
  I $G(PSODIV),$P($G(^PSRX(DA,2)),"^",9),$P(^(2),"^",9)'=$G(PSOSITE) S RXREC=DA D DIV D:$G(POERR)&(PSPOP) ULP,ULRX Q:$G(POERR)&(PSPOP)  D:$G(PSOWUN)&($G(PSPOP)) ULP,ULRX G:PSPOP NUM
  D ICN^PSODPT(PSODFN)
- S PS=$S($P(^PSRX(DA,"STA"),"^")=12:"Reinstate",1:"Discontinue")
+ N PSTS S PSTS=$S($P(^PSRX(DA,"STA"),"^")=12:1,$P(^PSRX(DA,"STA"),"^")=14:1,$P(^PSRX(DA,"STA"),"^")=15:1,1:0)
+ S PS=$S($G(PSTS):"Reinstate",1:"Discontinue")
+ ;S PS=$S($P(^PSRX(DA,"STA"),"^")=12:"Reinstate",1:"Discontinue")
  I '$G(POERR) N PKIR D
  .I $P(^PSRX(DA,"STA"),"^")=1,$P($G(^("PKI")),"^") S PKIR=""
  .D ^PSORXPR
@@ -47,7 +49,9 @@ YN D EN^PSOCMOPA I $G(XFLAG)]"" S %=0 K XFLAG Q
 REA S REA=+$P(^PSRX(DA,"STA"),"^") I REA=12 S REA="R" Q
  I REA,REA'=11 W !?5,$C(7) D
  .W "Rx# "_RXNUM_" was"_$S(REA=1:" Non-Verified",REA=13:" Deleted",REA=11:" Expired",REA=5:" Suspended",REA=4:" Pending Due to Drug Interactions",REA=3:" On Hold",REA=14!(REA=15):" Discontinued",REA=16:" Provider Held",1:" In Fill Status")_"."
- I REA,REA'=1,REA'=3,REA'=5,REA'=11,REA'<13,REA'=16 K REA W !?10,"Rx Cannot Be Discontinued/Reinstated!" Q
+ I REA,REA'=1,REA'=3,REA'=5,REA'=11,REA'<13,REA'=16 D  Q
+ .K REA W !?10,"Rx Cannot Be Discontinued/Reinstated!" H 2
+ .S VALMSG="Rx# "_RXNUM_" Cannot Be "_$S($G(PSTS):"Reinstated",1:"Discontinued")_"."
  S REA="C" Q
 CAN N PSODRUG D CAN1^PSOCAN3 Q
 DIV I '$P($G(PSOSYS),"^",2) W !?10,$C(7),"RX# ",$P(^PSRX(DA,0),"^")," is not a valid choice.  (Different Division)" S PSPOP=1 Q

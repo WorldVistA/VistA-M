@@ -1,12 +1,14 @@
-PSBODO ;BRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;7/20/11 4:06pm
- ;;3.0;BAR CODE MED ADMIN;**5,21,24,38,58**;Mar 2004;Build 37
+PSBODO ;BRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;1/30/12 1:13pm
+ ;;3.0;BAR CODE MED ADMIN;**5,21,24,38,58,68**;Mar 2004;Build 26
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
  ; EN^PSJBCMA2/2830
  ; GETPROVL^PSGSICH1/5653
  ; INTRDIC^PSGSICH1/5654
+ ; GETSIOPI^PSJBCMA5/5763
  ;
+ ;*68 - add ability to print new WP Special Instructions/OPI fields
  ;*58 - add sections to display Prv Override comments and Rph
  ;      Interventions to this report for (critical drug/drug and all
  ;      adverse reactions/allergies)
@@ -45,8 +47,14 @@ DISPORD ;
  .I PSBONX'["V" W !,"Admin Times:    ",PSBADST
  .I PSBONX["V",((PSBIVT="P")!(PSBISYR=1)) W !,"Admin Times:    ",PSBADST
  .W !,"Provider: ",PSBMDX
- .I $E(PSBOTXT,1)="!"  S $E(PSBOTXT,1)=""
- .W !,"Spec Inst:      ",PSBOTXT
+ .;*68 change
+ .W !,"Special Instructions/Other Print Info:"
+ .K ^TMP("PSJBCMA5",$J)
+ .D GETSIOPI^PSJBCMA5(DFN,PSBONX,1)
+ .F QQ=0:0 S QQ=$O(^TMP("PSJBCMA5",$J,DFN,PSBONX,QQ)) Q:'QQ  D
+ ..W !,^TMP("PSJBCMA5",$J,DFN,PSBONX,QQ)
+ .K ^TMP("PSJBCMA5",$J)
+ .;*68 end
  .;*58 override/intervention section * * *
  .S PSBOVR=0
  .D GETPROVL^PSGSICH1(DFN,PSBONX,.PSBPRV)

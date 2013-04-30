@@ -1,5 +1,5 @@
 PSODDPR4 ;BHAM - ISC/EJW,SAB - build local OP  & RDI profiles ;07/19/07
- ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379**;DEC 1997;Build 28
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379,390**;DEC 1997;Build 86
  ;External references to ^ORRDI1 supported by DBIA 4659
  ;External references to ^XTMP("ORRDI" supported by DBIA 4660
  ;External reference to ^PSDRUG supported by DBIA 221
@@ -19,11 +19,13 @@ BLD(PSODFN,LIST,PDRG,PTY) ;
  K ^TMP($J,LIST)
 ORD N PSODTCUT,X1,X2,ODRG,ORTYP,ORN,DO,IEN,NAME,PROF,PSOON S (PROF,CNT)=0
  F ZI=0:0 S ZI=$O(PDRG(ZI)) Q:'ZI  S IEN=$P(PDRG(ZI),"^"),NAME=$P(PDRG(ZI),"^",2) D DRG
- Q:$O(^TMP($J,LIST,"IN","PROSPECTIVE",""))=""   ;no prospective drugs to pass in
+ I '$D(PSJDGCK) Q:$O(^TMP($J,LIST,"IN","PROSPECTIVE",""))=""   ;no prospective drugs to pass in
+ I $D(PSJDGCK),'$D(PSGDGCKF) Q:$O(^TMP($J,LIST,"IN","PROSPECTIVE",""))=""   ;no prospective drugs to pass in
  S X1=DT,X2=-120 D C^%DTC S PSODTCUT=X D ^PSOBUILD,PROFILE
  K PSOSD D REMOTE D:$P($G(PTY),";")="I" IN^PSJBLDOC(PSODFN,LIST,.PDRG,$G(PTY))
  S ^TMP($J,LIST,"IN","IEN")=PSODFN,^TMP($J,LIST,"IN","DRUGDRUG")="",^TMP($J,LIST,"IN","THERAPY")=""
  S ^TMP($J,LIST,"IN","SOURCE")=$P($G(PTY),";")
+ I $P($G(PTY),";")="O" D IMO^PSODDPR7(PSODFN)
  N PSOICT,PSODRUG,PSOY,CNT,ZI
  D IN^PSSHRQ2(LIST)
  Q
@@ -65,7 +67,8 @@ PROFILE ;build profile drug input
  Q
 ID N ID S ID=+$$GETVUID^XTID(50.68,,+$P($G(^PSDRUG(ODRG,"ND")),"^",3)_",")
  S P1=$P($G(^PSDRUG(ODRG,"ND")),"^"),P2=$P($G(^("ND")),"^",3),X=$$PROD0^PSNAPIS(P1,P2),SEQN=+$P(X,"^",7)
-ID1 S ^TMP($J,LIST,"IN","PROFILE",ORTYP_";"_RXREC_";PROFILE;"_DO)=SEQN_"^"_ID_"^"_ODRG_"^"_DRNM_"^"_ORN_"^O" K ID
+ID1 I '$D(PSJDGCK) S ^TMP($J,LIST,"IN","PROFILE",ORTYP_";"_RXREC_";PROFILE;"_DO)=SEQN_"^"_ID_"^"_ODRG_"^"_DRNM_"^"_ORN_"^O" K ID
+ I $D(PSJDGCK) S ^TMP($J,LIST,"IN","PROSPECTIVE",ORTYP_";"_RXREC_";PROSPECTIVE;"_DO)=SEQN_"^"_ID_"^"_ODRG_"^"_DRNM_"^"_ORN_"^O" K ID
  Q
 OIX S ^TMP($J,LIST,"IN","EXCEPTIONS","OI",DRNM)=1_"^"_ORTYP_";"_RXREC_";PROFILE;"_DO
  K TU
@@ -206,6 +209,7 @@ DRG ;
  N ID,SEQN S PSODRUG("NDF")=$S($G(^PSDRUG(IEN,"ND"))]"":+^("ND")_"A"_$P(^("ND"),"^",3),1:0)
  S ID=$$GETVUID^XTID(50.68,,+$P($G(PSODRUG("NDF")),"A",2)_",")
  S P1=$P($G(^PSDRUG(IEN,"ND")),"^"),P2=$P($G(^("ND")),"^",3),X=$$PROD0^PSNAPIS(P1,P2),SEQN=$P(X,"^",7)
- S CNT=$G(CNT)+1,^TMP($J,LIST,"IN","PROSPECTIVE",$P(PTY,";")_";"_$P(PTY,";",2)_";PROSPECTIVE;"_CNT)=SEQN_"^"_+ID_"^"_IEN_"^"_NAME
+ I '$D(PSJDGCK) S CNT=$G(CNT)+1,^TMP($J,LIST,"IN","PROSPECTIVE",$P(PTY,";")_";"_$P(PTY,";",2)_";PROSPECTIVE;"_CNT)=SEQN_"^"_+ID_"^"_IEN_"^"_NAME
+ I $D(PSJDGCK),'$D(PSGDGCKF) S CNT=$G(CNT)+1,^TMP($J,LIST,"IN","PROSPECTIVE",$P(PTY,";")_";"_$P(PTY,";",2)_";PROSPECTIVE;"_CNT)=SEQN_"^"_+ID_"^"_IEN_"^"_NAME
  K ID,SEQN,P1,P2,X,DNM
  Q

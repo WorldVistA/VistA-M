@@ -1,5 +1,5 @@
 DIO0 ;SFISC/GFT,TKW-BUILD SORT AND SUB-HDR ;28SEP2004
- ;;22.0;VA FileMan;**2,23,138,144**;Mar 30, 1999;Build 5
+ ;;22.0;VA FileMan;**2,23,138,144**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  S C=",",Z=Z+1,DE=$P(DN,C,Z)_"=$O("_DI_$P(DN,C,1,Z)_")),DN="_(Z+1) ;22*138

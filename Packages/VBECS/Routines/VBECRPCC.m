@@ -22,7 +22,7 @@ EXECUTE(VBECPRMS) ; -- execute rpc call
  ;
  ; -- call method to build request from parameters array
  DO REQUEST(.VBECPRMS)
- SET VBECPRMS("CLOSE MESSAGE")="<VistaLink messageType='ext.domain.foundations.rpc.request' ></VistaLink>"
+ SET VBECPRMS("CLOSE MESSAGE")="<VistaLink messageType='gov.va.med.foundations.rpc.request' ></VistaLink>"
  IF $G(VBECPRMS("RESULTS"))="" SET VBECPRMS("RESULTS")=$NA(^TMP("VBECRPC",$J,"XML"))
  QUIT $$EXECUTE^VBECVLC(.VBECPRMS)
  ;
@@ -33,7 +33,7 @@ VALIDATE(VBECPRMS) ; -- validate parameters sent in
 REQUEST(VBECPRMS) ; -- build xml request
  NEW VBECLINE,VBECPI,PTYPE,VBECREQ
  SET VBECLINE=0
- SET VBECPRMS("MESSAGE TYPE")="ext.domain.foundations.rpc.request"
+ SET VBECPRMS("MESSAGE TYPE")="gov.va.med.foundations.rpc.request"
  SET VBECPRMS("MODE")="singleton"
  IF $G(VBECPRMS("REQUEST"))="" SET VBECPRMS("REQUEST")=$NA(VBECPRMS("REQUEST","XML"))
  SET VBECREQ=VBECPRMS("REQUEST")
@@ -41,7 +41,7 @@ REQUEST(VBECPRMS) ; -- build xml request
  ;
  DO ADD($$XMLHDR^XOBVLIB())
  DO ADD("<VistaLink messageType="""_$G(VBECPRMS("MESSAGE TYPE"))_""" mode="""_$G(VBECPRMS("MODE"))_""" version=""1.0"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:noNamespaceSchemaLocation=""rpcRequest.xsd"" ")
- DO ADD("xmlns=""http://DOMAIN.EXT/Foundations"">")
+ DO ADD("xmlns=""http://domain.ext/Foundations"">")
  DO ADD("<RpcHandler version=""1.0"" />")
  DO ADD("<Request rpcName="""_$G(VBECPRMS("RPC NAME"))_""" version=""1.0"" rpcClientTimeOut=""900"" >")
  DO ADD("<RpcContext><![CDATA["_$G(VBECPRMS("RPC CONTEXT"))_"]]></RpcContext>")
@@ -158,10 +158,10 @@ ERR(ERRTXT) ; Set VBECPRMS("ERROR") node with error text and quit
  ; [ Sample XML produced by calling REQUEST^VBECRPCC(.VBECPRMS) ]
  ; 
  ; <?xml version="1.0" encoding="utf-8" ?>
- ; <VistaLink type="ext.domain.foundations.rpc.request" mode="singleton" 
+ ; <VistaLink type="gov.va.med.foundations.rpc.request" mode="singleton" 
  ;   version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  ;   xsi:noNamespaceSchemaLocation="rpcRequest.xsd"
- ;   xmlns="http://DOMAIN.EXT/Foundations">
+ ;   xmlns="http://domain.ext/Foundations">
  ;   <RpcHandler version="1.0" />
  ;   <Request rpcName="VBECS Order Entry" version="1.0"
  ;     rpcClientTimeOut="900">

@@ -1,6 +1,9 @@
-XWBTCPM2 ;ISF/RWF - BROKER Other Service ;12/16/09  07:58
- ;;1.1;RPC BROKER;**43,45,53**;Mar 28, 1997;Build 4
+XWBTCPM2 ;ISF/RWF - BROKER Other Service ;06/28/2012
+ ;;1.1;RPC BROKER;**43,45,53,59**;Mar 28, 1997;Build 2
+ ;Per VHA Directive 2004-038, this routine should not be modified
+ ;
  Q
+ ;
 OTH ;Check if some other special service.
  ; ZEXCEPT: XWB - set prior to call from CONNTYPE^XWBTCPM
  S $ETRAP="D ERR^XWBTCPM2"
@@ -15,13 +18,13 @@ SVR ;Handle
 EAC ;Enterprise Access
  Q
  ;
-BSE ;Broker Security Enhansment
+BSE ;Broker Security Enhancement
  D LOG("BSE msg")
  N L,HDL,RET,XWBSBUF
  S XWBSBUF="",RET="",HDL=""
  S L=$$BREAD^XWBRW(3) I L S HDL=$$BREAD^XWBRW(L)
  I $E(HDL,1,3)="PUT" D
- . D RPUT^XUSBSE1(.RET,HDL)
+ . ;D RPUT^XUSBSE1(.RET,HDL) ;p59(REM)-RPUT^XUSBSE1 does not exsist.
  . Q
  ;Check IT
  I $E(HDL,1,3)'="PUT" D GETVISIT^XUSBSE1(.RET,HDL)

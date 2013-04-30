@@ -1,5 +1,5 @@
 DIAXD ;SFISC/DCM-GET SOURCE DATA ;9/6/96  15:17
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 EN ;
  N DILL,FRFILE,TOFILE,DIAXIEN,DIAXI,DIAXFR,DIAXTO,DATAFR,DATALST,Z

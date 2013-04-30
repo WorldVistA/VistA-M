@@ -1,6 +1,7 @@
-LA7VSTP ;DALOI/JMC - HL7 environment setup routine ; 12/3/1997
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,44,51,46,64**;Sep 27, 1994
- ; This routine will create LEDI and UNIVERSAL INTERFACE HL7 v1.6 file setups.
+LA7VSTP ;DALOI/JMC - HL7 environment setup routine ;June 20, 2007
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,44,51,46,64,74**;Sep 27, 1994;Build 229
+ ;
+ ; This routine will create LEDI v1.6 file setups.
  ;
  ; Reference to PROTOCOL file (#101) supported by DBIA #872
  ;
@@ -30,6 +31,7 @@ HOST(PRIMARY,PRSITE,LRI,SITE,LA7VER) ;
  S LASERV(770.1)=$P(LAHOST,"^")
  S LASERV(770.3)="ORU"
  S LASERV(770.4)="R01"
+ S LASERV(770.8)="AL"
  S LASERV(770.95)=LA7VER
  D SETPRO(.LASERV)
  ;
@@ -134,6 +136,7 @@ REMOTE(PRIMARY,PRSITE,LRI,SITE,LA7VER) ;
  S LASERV(770.1)=$P(LAREMOTE,"^")
  S LASERV(770.3)="ORM"
  S LASERV(770.4)="O01"
+ S LASERV(770.8)="AL"
  S LASERV(770.95)=LA7VER
  F I=770.2,770.11 S LASERV(I)="@"
  D SETPRO(.LASERV)

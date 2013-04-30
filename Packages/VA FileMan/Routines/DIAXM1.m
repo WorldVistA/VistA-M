@@ -1,5 +1,5 @@
 DIAXM1 ;SFISC/DCM-PROCESS MAPPING INFORMATION (CONT) ;7/11/95  06:33
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 EN D @DIAXFTY Q:DIAXFR  Q:$D(DIAXMSG)
  I DIAXFR("TYP")'=DIAXTO("TYP"),'$D(DIAXEXT) S DIAXEXT=1

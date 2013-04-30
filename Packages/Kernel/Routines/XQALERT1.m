@@ -1,9 +1,13 @@
-XQALERT1 ;ISC-SF.SEA/JLI - ALERT HANDLER ;07/24/11  15:11
- ;;8.0;KERNEL;**20,65,114,123,125,164,173,285,366,443,513**;Jul 10, 1995;Build 13
+XQALERT1 ;ISC-SF.SEA/JLI - ALERT HANDLER ;07/05/12  11:27
+ ;;8.0;KERNEL;**20,65,114,123,125,164,173,285,366,443,513,602**;Jul 10, 1995;Build 9
  ;Per VHA Directive 2004-038, this routine should not be modified
  Q
  ;
-DOIT I $D(XQX1),XQX1'>0 K XQX1
+DOIT ;SR.
+ ; ZEXCEPT: IOF,XQAID,XQAUSER,XQX1 - global variables
+ ; ZEXCEPT: XQACNT,XQADATA,XQAKILL,XQALDELE,XQALFWD,XQAQ,XQAREV,XQAROU,XQAROUX,XQI,XQII,XQK,XQX,XQXOUT,XQZ4
+ N DIR,DIRUT,DUOUT,Y
+ I $D(XQX1),XQX1'>0 K XQX1
  I $D(XQAID) D  I '$D(XQAID) G EXIT
  . N XQACHOIC,REASK S REASK=0
  . I '$D(XQX1),$O(^XTV(8992,XQAUSER,"XQA",+$O(^XTV(8992,XQAUSER,"XQA",0))))'>0,$G(XQAROUX)="^ " S XQAROU=""
@@ -29,16 +33,17 @@ AGAIN . S XQACHOIC="Y:YES;N:NO;C:CONTINUE;",XQAQ("?")="Enter Y (or C) to continu
 SUBLOOP W @IOF
  N XQZ1,XQZ
  S XQK=0 F XQI=0:0 Q:XQX1!XQXOUT  S XQI=$O(^TMP("XQ",$J,"XQA",XQI)) Q:XQI'>0  S XQX=^(XQI),XQII=^(XQI,1),XQZ=^(2),XQZ1=^(3),XQZ4=^(4) D  I XQX'="" D DOIT1
- . I '$D(^XTV(8992,XQAUSER,"XQA",XQII)) S XQX="" K ^TMP("XQ",$J,"XQA",XQI),^TMP("XQ",$J,"XQA1",(999999-XQI))
+ . I '$D(^XTV(8992,XQAUSER,"XQA",XQII)) S XQX="" K ^TMP("XQ",$J,"XQA",XQI),^TMP("XQ",$J,"XQA1",(XQI))
  . Q
  S:'$D(XQXOUT) XQXOUT=0 G:XQXOUT EXIT G:XQK'>0&'XQX1 EXIT I 'XQX1 D ASK G:XQXOUT EXIT
  G:+XQX1=0 EXIT I XQX1<0 S XQX1=0 G DOIT
  I $D(XQALDELE)!$D(XQALFWD) Q
- ;D WAIT(+XQX1) G:XQXOUT EXIT
  G:XQXOUT EXIT
  G EN^XQALDOIT
  ;
-RESTORE ; Restore a deleted message for use
+RESTORE ; SR. ICR #4100 (controlled subscription)
+ ; Restore a deleted message for use
+ ; ZEXCEPT: XQAID
  N ALERTREF,XTVGLOB,ADUZ,X,X0,X1,X2,TIME,MESG,OPT,TAG,ROU,X4,LONG
  S XTVGLOB=$NA(^XTV(8992,DUZ,"XQA"))
  S ADUZ=$O(^XTV(8992,"AXQA",XQAID,0)) I ADUZ>0 S TIME=$O(^(ADUZ,0)) D  I 1
@@ -52,13 +57,13 @@ RESTORE ; Restore a deleted message for use
  Q
  ;
 EXIT ;
+ ; ZEXCEPT: %ZIS,XQ1,XQ1OFF,XQ1ON,XQA1,XQACNT,XQALAST,XQALDELE,XQALFWD,XQAQ,XQAREV,XQAROU,XQAROUX,XQI,XQII,XQJ,XQK,XQOFF,XQON,XQOUT,XQX,XQX1,XQX2,XQXOUT
  I $G(XQALAST)="I",$G(DUZ("AUTO")) D WAIT2
  I $D(XQALDELE)!$D(XQALFWD) Q
  K ^TMP("XQ",$J,"XQA"),^("XQA1"),^("XQA2"),XQI,XQX,XQJ,XQK,XQX1,XQX2,XQXOUT,XQ1,XQII,XQACNT,XQA1,XQAREV,%ZIS,XQAROU,XQALAST,XQAROUX,XQON,XQOFF,XQ1ON,XQ1OFF,XQOUT,XQAQ
  K ^TMP("XQALERT1",$J)
  Q
  ;
- ; CHKSURO added 2/2/99 to give user opportunity to add/remove surrogate if no alerts present
 CHKSURO ; If user selects process alerts with no alerts present, give him/her the opportunity to add or delete a surrogate
  ; P366 - list currently established surrogates if any
  I '$G(^TMP("XQALERT1",$J,"NOTFIRST")) W !!,"You have no alerts for processing.",!
@@ -66,8 +71,8 @@ CHKSURO ; If user selects process alerts with no alerts present, give him/her th
  Q
  ;
 DOIT1 ;
+ ; ZEXCEPT: IOF,IOSL,XQ1OFF,XQ1ON,XQALFWD,XQALINFO,XQI,XQII,XQK,XQOFF,XQON,XQX,XQZ,XQZ1,XQZ4
  I XQK=0 S XQALINFO=0 I '$D(XQALFWD) W @IOF
- ;S XQON="$C(0)",XQOFF="$C(0)" S XQOUT=$P(XQX,U,3) I ($$UP^XLFSTR(XQOUT)["CRITICAL")!($$UP^XLFSTR(XQOUT)["ABNORMAL IMA") D:'$D(XQ1ON) SETREV^XQALERT S XQON=XQ1ON,XQOFF=XQ1OFF ; P285
  S XQON="$C(0)",XQOFF="$C(0)" I $$CHKCRIT^XQALSUR2(XQX) D:'$D(XQ1ON) SETREV^XQALERT S XQON=XQ1ON,XQOFF=XQ1OFF ; P513 modified to add use data from file 8992.3 for identifying critical alerts
  S XQK=XQK+1 W !,$J(XQK,2),".",$S(XQZ4:"L",$P(XQX,U,8)=" ":"I",1:" "),"  ",@XQON,$E($P(XQX,U,3),1,70),@XQOFF S:$P(XQX,U,8)=" " XQALINFO=XQALINFO+1 D:XQZ1'=""  ; P285
  . W !?8,"Forwarded by: ",$P(^VA(200,+XQZ1,0),U),"  Generated: ",$$DAT8^XQALERT(+$P($P(XQX,U,2),";",3),1)
@@ -77,12 +82,9 @@ DOIT1 ;
  Q
  ;
 ASK0(XQI) ;Stack XQI
+ ; ZEXCEPT: DIR,X,XQ1,XQACNT,XQALAST,XQALDELE,XQALFWD,XQAUSER,XQII,XQK,XQX1,XQX2,XQXOUT,Y
 ASK ;
  N XQALNEWF K XQALAST
- ;I '$D(XQALDELE)&'$D(XQALFWD) S XQALNEWF=$P(^XTV(8992,XQAUSER,0),U,5) I XQALNEWF<20 D
- ;. N XQALFDA
- ;. S XQALNEWF=XQALNEWF+1,XQALFDA=(8992,(XQAUSER_","),.05)=XQALNEWF D FILE^DIE("","XQALFDA")
- ;. W !,"NEW OPTIONS: S-to add/remove SURROGATE and D-to selectively Delete SOME alerts"
  S XQ1=0,XQXOUT=0 W !?10,"Select from 1 to ",XQK W:$D(XQALDELE) " to DELETE" W:$D(XQALFWD) " to FORWARD"
  W !?10,"or enter ?, A, " W:'$D(XQALDELE)&'$D(XQALFWD)&(XQALINFO>0) "I, D, " W:'$D(XQALDELE)&'$D(XQALFWD) "F, S, P, M, R, " W "or ^ to exit" I XQI>0,$O(^XTV(8992,XQAUSER,"XQA",XQI))>0 W !?10,"or RETURN to continue" S XQ1=1
  R ": ",XQII:DTIME S:'$T!(XQII[U)!(XQII=""&'XQ1) XQXOUT=1 Q:XQXOUT
@@ -101,19 +103,25 @@ ASK ;
  S X=XQII,DIR(0)="LV^1:"_XQK D ^DIR I '$D(Y) W $C(7),"  ??" D HELP G ASK ;Use of 'LV' is special
  K XQX1 M XQX1=Y K Y S Y=XQX1 ;Merge list from Y
  Q
+ ;
 WAIT(IFN) ;Wait for user input if last alert is INFO and next isn't.
+ ; ZEXCEPT: IOF,IOSL,XQALAST
  N X,YY Q:$G(XQXOUT)
  S X=$G(^TMP("XQ",$J,"XQA1",IFN)),YY=$P(X,U,7,8),YY=$S(YY="^ ":"I",YY="^":"O",1:"R")
  I $G(XQALAST)="I","OR"[YY D WAIT2
  I YY="I",$Y+4>IOSL D WAIT2 W @IOF
  S XQALAST=YY
  Q
+ ;
 WAIT2 ;Wait for user input before continuing
+ ; ZEXCEPT: XQXOUT
  N DIR,Y,DIROUT,DIRUT S DIR(0)="E",DIR("?")="The next ALERT may cause the loss of info on the screen."
  D ^DIR S:$D(DIRUT) XQXOUT=1
  Q
  ;
-HELP W !!,"YOU MAY ENTER:",!?3,$S(XQK>1:"One or more numbers",1:"A number")," in the range 1 to ",XQK," to select specific alert(s)"
+HELP ;
+ ; ZEXCEPT: XQALDELE,XQALFWD,XQI,XQK
+ W !!,"YOU MAY ENTER:",!?3,$S(XQK>1:"One or more numbers",1:"A number")," in the range 1 to ",XQK," to select specific alert(s)"
  W !?6,"for "_$S($D(XQALDELE):"DELETION.",$D(XQALFWD):"FORWARDING",1:"processing.") W:XQK>1 "  This may be a series of numbers, e.g., 2,3,6-9"
  W !?3,"A to "_$S($D(XQALDELE):"DELETE",$D(XQALFWD):"FORWARD",1:"process")," all of the pending alerts in the order shown."
  W:'$D(XQALDELE)&'$D(XQALFWD) !?3,"I to process all of the INFORMATION ONLY alerts, if any, without further ado."
@@ -129,14 +137,35 @@ HELP W !!,"YOU MAY ENTER:",!?3,$S(XQK>1:"One or more numbers",1:"A number")," in
  Q
  ;
 SORT ;Sort and remove display only
+ ; ZEXCEPT: XQAUSER,XQACNT,XQAREV - global variable
+ ; Unit test: P602T3^ZZUTXQA6
  N XQZ,XQZ1,XQZ4,XQI,XQK,XQX,XQJ
- F XQI=0:0 S XQI=$O(^XTV(8992,XQAUSER,"XQA",XQI)) Q:XQI'>0  S XQX=^(XQI,0),XQZ=$G(^(1)),XQZ1=$G(^(2)),XQZ4=$O(^(4,0)) S XQJ=$P(XQX,U,7,8) K:XQJ=U ^XTV(8992,XQAUSER,"XQA",XQI) I XQJ'=U D
- . S XQACNT=XQACNT+1,XQJ=$S(XQAREV:999999-XQACNT,1:XQACNT),^TMP("XQ",$J,"XQA",XQJ)=XQX,^(XQJ,1)=XQI,^(2)=XQZ,^(3)=XQZ1,^(4)=XQZ4
+ K ^TMP("XQ",$J,"XQA")
+ K ^TMP("XQ",$J,"XQA1")
+ F XQI=0:0 S XQI=$O(^XTV(8992,XQAUSER,"XQA",XQI)) Q:(XQI'>0)!(XQACNT>10000)  D
+ . S XQX=^XTV(8992,XQAUSER,"XQA",XQI,0) ; zero node for the alert
+ . S XQZ=$G(^XTV(8992,XQAUSER,"XQA",XQI,1)) ; data for alert
+ . S XQZ1=$G(^XTV(8992,XQAUSER,"XQA",XQI,2)) ; comment for display
+ . S XQZ4=$O(^XTV(8992,XQAUSER,"XQA",XQI,4,0)) ; long info text
+ . S XQJ=$P(XQX,U,7,8) K:XQJ=U ^XTV(8992,XQAUSER,"XQA",XQI) I XQJ'=U D
+ . . S XQACNT=XQACNT+1
+ . . I $$CHKCRIT^XQALSUR2(XQX) D
+ . . . S XQJ=$S(XQAREV:499999-XQACNT,1:XQACNT) ; critical alert
+ . . E  D
+ . . . S XQJ=$S(XQAREV:999999-XQACNT,1:500000+XQACNT) ; normal alert
+ . . S ^TMP("XQ",$J,"XQA",XQJ)=XQX ; zero node for the alert
+ . . S ^TMP("XQ",$J,"XQA",XQJ,1)=XQI ; IEN of the alert
+ . . S ^TMP("XQ",$J,"XQA",XQJ,2)=XQZ ; data for the alert
+ . . S ^TMP("XQ",$J,"XQA",XQJ,3)=XQZ1 ; comment for display
+ . . S ^TMP("XQ",$J,"XQA",XQJ,4)=XQZ4 ; long info text
  S XQK=0 F XQI=0:0 S XQI=$O(^TMP("XQ",$J,"XQA",XQI)) Q:XQI'>0  S XQK=XQK+1 M ^TMP("XQ",$J,"XQA1",XQK)=^TMP("XQ",$J,"XQA",XQI)
+ K ^TMP("XQ",$J,"XQA")
+ S XQK=0 F XQI=0:0 S XQI=$O(^TMP("XQ",$J,"XQA1",XQI)) Q:XQI'>0  S XQK=XQK+1 M ^TMP("XQ",$J,"XQA",XQK)=^TMP("XQ",$J,"XQA1",XQI)
  Q
  ;
 ASKDEL ;
- N XQALDELE,XQX1COPY,XQAID,DA,XQAKILL,XQXOUT,XQAUSERD,XQALVALU
+ ; ZEXCEPT: XQAUSER,XQX1 - global variables
+ N DIR,XQALDELE,XQX1COPY,XQAID,DA,XQAKILL,XQXOUT,XQAUSERD,XQALVALU,Y
  S XQALDELE=1
  K XQX1
  D DOIT^XQALERT1
@@ -157,6 +186,7 @@ ASKDEL ;
  Q
  ;
 FRWRDONE ;
+ ; ZEXCEPT: XQAID - global variable
  N XQX1,XQALFWDL S XQALFWDL(1)=XQAID
  N XQAID
  D FWDONE^XQALFWD

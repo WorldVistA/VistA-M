@@ -1,5 +1,5 @@
 PSOLMUTL ;BIR/SAB - listman utilities ;03/07/95
- ;;7.0;OUTPATIENT PHARMACY;**19,46,84,99,131,132,148,268,225,305**;DEC 1997;Build 8
+ ;;7.0;OUTPATIENT PHARMACY;**19,46,84,99,131,132,148,268,225,305,386,390**;DEC 1997;Build 86
  ;External reference FULL^VALM1 supported by dbia 10116
  ;External reference $$SETSTR^VALM1 supported by dbia 10116
  ;External reference EN2^GMRAPEMO supported by dbia 190
@@ -23,6 +23,12 @@ HDR ;patient med profile display
  S VALMHDR(4)=HDR
  S $P(VALMHDR(4)," ",30)="  "_$E(^TMP("PSOHDR",$J,5,0),48,80)
  Q:$G(PS)="VIEW"!($G(PS)="DELETE")
+ K HDR S HDR=$G(^TMP("PSOHDR",$J,13,0))
+ I $G(HDR)]"" D  Q
+ .S VALMHDR(5)=$$SETSTR^VALM1(" BSA (m2): "_^TMP("PSOHDR",$J,12,0),HDR,49,19)
+ .S VALMHDR(6)=$G(^TMP("PSOHDR",$J,9,0))
+ .S VALMHDR(7)=$G(^TMP("PSOHDR",$J,10,0))
+ .S VALMHDR(8)=$G(^TMP("PSOHDR",$J,11,0))
  S VALMHDR(5)=$G(^TMP("PSOHDR",$J,9,0))
  S VALMHDR(6)=$G(^TMP("PSOHDR",$J,10,0))
  Q
@@ -82,6 +88,12 @@ ACTIONS1() ;screen actions on pending orders
  Q 1
 PKIACT() ;screen actions on pending orders DEA/PKI proj.
  Q:$G(PKI1)=2 0
+ N DIC,X,Y K DIC,Y S DIC="^ORD(101,"_DA(1)_",10,",X=DA,DIC(0)="ZN" D ^DIC Q:Y<0 0
+ S Y=Y(0,0)
+ I Y="PSO LM DISCONTINUE" Q $S(PSOACT["D":1,1:0)
+ I Y="PSO LM RENEW EDIT" Q $S(PSOACT["E":1,1:0)
+ I Y="PSO LM FLAG",'$G(PSOFDR) Q 0
+ I Y="PSO LM FLAG",$G(PSOFDR) Q $S(PSOACT["X":1,1:0)
  Q 1
 RFDSP ;screen action to toggle display of prescriptions between LAST FILL date and LAST RELEASE Date.
  S PSORFG='$G(PSORFG)

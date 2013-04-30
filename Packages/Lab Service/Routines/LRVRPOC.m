@@ -1,12 +1,12 @@
-LRVRPOC ;DALOI/JMC - POINT OF CARE VERIFICATION ; 4 May 2004
- ;;5.2;LAB SERVICE;**290**;Sep 27, 1994
+LRVRPOC ;DALOI/JMC - POINT OF CARE VERIFICATION ;05/11/10  16:48
+ ;;5.2;LAB SERVICE;**290,350**;Sep 27, 1994;Build 230
  ;
  ; Reference to DIVSET^XUSRB2 supported by DBIA #4055
  ; Reference to ADM^VADPT2 supported by DBIA #325
  ;
 EN ; Entry Point Call with LRLL=Load/Worklist IEN
  ;
- N DIQUIET
+ N DIQUIET,LA76248,LA76249,LADFN,LAIEN,LAMSG,LASSN,LREND,LRERR
  ;
  S LRLL=+$G(LRLL)
  ;
@@ -17,21 +17,6 @@ EN ; Entry Point Call with LRLL=Load/Worklist IEN
  I '$D(^LRO(68.2,LRLL,0))#2 D END Q
  S LRLL(0)=^LRO(68.2,LRLL,0)
  ;
- ; Must be POC Load/Work List
- I $$GET1^DIQ(68.2,LRLL,.03,"I")'=2 D  Q
- . S LAMSG="POC: Unable to process POC results using non-POC worklist "_$$GET1^DIQ(68.2,LRLL,.01)
- . D XQA^LA7UXQA(2,0,0,0,LAMSG,"")
- . D END
- ;
- ;
- ; If rollover has not completed
- ; then requeue task 1 hour in future and send alert.
- I $G(^LAB(69.9,1,"RO"))'=+$H D  Q
- . S ZTREQ=$$HADD^XLFDT($H,0,1,0,0)
- . S LAMSG="POC: Lab Rollover has not completed as of "_$$HTE^XLFDT($H,"1M")
- . D XQA^LA7UXQA(2,0,0,0,LAMSG,"")
- . D END
- ;
  D INIT^LRVRPOCU
  I LREND D  Q
  . D XQA^LA7UXQA(2,0,0,0,"POC: "_LAMSG,"")
@@ -39,7 +24,7 @@ EN ; Entry Point Call with LRLL=Load/Worklist IEN
  ;
  S LAIEN=0
  F  S LAIEN=$O(^LAH(LRLL,1,LAIEN)) Q:LAIEN<1  D
- . I $$S^%ZTLOAD S ZTSTOP=1 Q  ; Task has been requested to stop
+ . I $$S^%ZTLOAD("Processing loadlist "_$P(LRLL(0),"^")_", entry #"_LAIEN) S ZTSTOP=1 Q  ; Task has been requested to stop
  . K LRERR
  . S LASSN=$P($G(^LAH(LRLL,1,LAIEN,.1,"PID","SSN")),"^")
  . ; Interface message number in ^LAHM(62.49
@@ -70,7 +55,7 @@ END ; Clean up and quit
 LOOK ; Check for data
  K LRDFN,LRERR
  S LRODT=DT,(LREND,LRERR)=0
- S DFN=$$FIND1^DIC(2,"","X",LASSN,"SSN","","")
+ S DFN=$$GETDFN^LRVRPOCU(LASSN)
  I 'DFN D  Q
  . S LRERR=$$CREATE^LA7LOG(101,1)
  . D SENDACK^LRVRPOCU
@@ -107,7 +92,7 @@ FNLRDFN(DFN) ;Lookup/set LRDFN and define patient variables
  . I $G(LREND) S LRDFN=0 Q
  . S VAINDT=LRCDT D ADM^VADPT2
  . S VAIP("D")=$S(VADMVT:LRCDT,1:LRCDT\1) D IN5PT^LRX
- . D DPT(SSN(2))
+ . D DPT(DFN)
  . I LRERR S LREND=1,LRDFN=0
  Q 0
  ;
@@ -122,14 +107,9 @@ NEWPT(DFN) ;Set ^LR( root for patient
  Q LRDFN
  ;
  ;
-DPT(LRASSN) ;
+DPT(DFN) ;
  N LRX,X,Y,DIC
  S (LRERR,LRDFN)=""
- S DFN=$$FIND1^DIC(2,"","X",LRASSN,"SSN","","")
- I 'DFN D  Q
- . N LASSN
- . S LASSN=LRASSN,LRERR=$$CREATE^LA7LOG(101,1)
- . D SENDACK^LRVRPOCU
  S LRDFN=$$GET1^DIQ(2,DFN_",",63,"I","ANS","ERR")
  I 'LRDFN D END^LRDPA Q:'$G(LRDFN)
  S LRX=$G(^LAH(LRLL,1,LAIEN,.1,"PID","LRDFN"))
@@ -211,7 +191,7 @@ DPT(LRASSN) ;
  ;
 DATA(LRLL,LAIEN) ;Extract results into LROT(
  ;
- K LR642,LRDATA,LRERR,LRSPECX,LRCNT,LROSPEC,LROT,LRSAMP,LRSB,LRSPEC,LRTRAY,LRCUP,LRSQ,LRTS,LRX,LRY,LRZ
+ K LR642,LRDATA,LRERR,LRSPECX,LRCNT,LRNOW,LROSPEC,LROT,LRSAMP,LRSB,LRSPEC,LRTRAY,LRCUP,LRSQ,LRTS,LRX,LRY,LRZ
  S LRSQ=LAIEN,LRDATA=1,(LR642,LRCNT,LRERR)=0,(LRDAA,LRSAMP,LRSPEC)=""
  S LRLL(0)=^LRO(68.2,LRLL,0)
  S LROSPEC=$P($G(^LAH(LRLL,1,LAIEN,.1,"OBR","ORDSPEC")),"^")
@@ -294,7 +274,7 @@ DATA(LRLL,LAIEN) ;Extract results into LROT(
  . D FILE^DIE("","FDA(1)","LA7DIE(1)")
  ;
  ; Store ^LR( data [results]
- S LRVF=0,LRALERT=LROUTINE,LRUSI="POC.5"
+ S LRVF=0,LRALERT=LROUTINE,LRUSI="POC.5",LRNOW=$$NOW^XLFDT
  M LRSB=LRDATA
  D TEST^LRVR1
  S LRSB=0
@@ -308,6 +288,7 @@ DATA(LRLL,LAIEN) ;Extract results into LROT(
  . S LRX=LRNGS,LRY=$P(LRSB(LRSB),U,5)
  . F I=1:1:$L(LRX,U) I $P(LRY,"!",I)="" S $P(LRY,"!",I)=$P(LRX,U,I)
  . S $P(LRSB(LRSB),U,5)=LRY
+ . S $P(LRSB(LRSB),U,6)=LRNOW
  . I $P(LRSB(LRSB),U,9)="" S $P(LRSB(LRSB),U,9)=$S($G(LRDUZ(2)):LRDUZ(2),1:$G(DUZ(2)))
  . S ^LR(LRDFN,"CH",LRIDT,LRSB)=LRSB(LRSB)
  ;

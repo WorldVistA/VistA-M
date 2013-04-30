@@ -1,5 +1,13 @@
 ROREXT ;HCIOFO/SG - DATA EXTRACTION & TRANSMISSION ; 11/1/05 3:08pm
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+ ;;1.5;CLINICAL CASE REGISTRIES;**18**;Feb 17, 2006;Build 25
+ ;*************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*18   APR  2012   C RAY        Added logic to prevent data
+ ;                                      transmission if registry is local         
+ ;***********************************************************************
  ;
  ; ROREXT -------------- DATA EXTRACTION DESCRIPTOR
  ;
@@ -141,6 +149,8 @@ EXTRACT(REGLST,DXBEG,SUSPEND,FLAGS) ;
  . S REGIEN=+REGLST(REGNAME)
  . I REGIEN'>0  D  Q:REGIEN'>0
  . . S REGIEN=$$REGIEN^RORUTL02(REGNAME)
+ . ;--- Do not transmit data for local registries
+ . Q:'+($P($G(^ROR(798.1,REGIEN,0)),U,11))
  . ;--- Get the HL7 protocol name
  . S RORPROT=$$GET1^DIQ(798.1,REGIEN_",",13,"E",,"RORMSG")
  . D:$G(DIERR) DBS^RORERR("RORMSG",-9,,,798.1,REGIEN_",")

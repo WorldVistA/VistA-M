@@ -21,7 +21,7 @@ INIT ; Initial Christening
  S XMFDA(4.3,"+1,",.01)=+Y
  D UPDATE^DIE("","XMFDA")
  K DIC,Y
- S DR="3//FORUM.DOMAIN.EXT;1//EST"
+ S DR="3//FORUM.domain.ext;1//EST"
  S DIE=4.3,DA=1
  D ^DIE I $D(Y) S XMABORT=1 D E1
  Q
@@ -45,7 +45,7 @@ CHANGE ;
  E  D
  . W !!,"The domain name for this facility remains: ",^XMB("NETNAME")
  K DIC,Y
- S DR="3//FORUM.DOMAIN.EXT;1//EST"
+ S DR="3//FORUM.domain.ext;1//EST"
  S DIE=4.3,DA=1
  D ^DIE
  Q

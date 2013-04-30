@@ -42,7 +42,7 @@ POST ;Post-install for patch 36
 MAIL ;Send message indicating post install is finished
  N XMSUB,XMTEXT,XMDUZ,XMY,XMZ,GMRATXT
  S XMDUZ="PATCH GMRA*4*36 POST-INSTALL",XMY(.5)="" S:$G(DUZ) XMY(DUZ)=""
- S XMY("DAVID.NABER@DOMAIN.EXT")="",XMY("CATHERINE.HOANG2@DOMAIN.EXT")="",XMY("THOMAS.CAMPBELL2@DOMAIN.EXT")="",XMY("HULET.LEE_ANN@FORUM.DOMAIN.EXT")=""
+ S XMY("DAVID.NABER@domain.ext")="",XMY("CATHERINE.HOANG2@domain.ext")="",XMY("THOMAS.CAMPBELL2@domain.ext")="",XMY("HULET.LEE_ANN@FORUM.domain.ext")=""
  S XMY("VHAOIHSITESHDRIM@DOMAIN.EXT")=""
  S GMRATXT(1)="The post-install routine for patch GMRA*4*36"
  S GMRATXT(2)="finished on "_$$FMTE^XLFDT($$NOW^XLFDT)_"."

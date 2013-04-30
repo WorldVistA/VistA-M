@@ -12,11 +12,11 @@ EN ;
 SET N VAR
  S VAR=" - Adding to AMIE Exam File"
  W !!!,VAR
- ;D BUMPBLK^DVBAPOST
- ;D BUMPBLK^DVBAPOST
- ;D BUMPBLK^DVBAPOST
- ;D BUMP^DVBAPOST(VAR)
- ;D BUMPBLK^DVBAPOST
+ D BUMPBLK^DVBAPOST
+ D BUMPBLK^DVBAPOST
+ D BUMPBLK^DVBAPOST
+ D BUMP^DVBAPOST(VAR)
+ D BUMPBLK^DVBAPOST
 SET1 ;
  S DIF="^TMP($J,""DVBA"",",XCNP=0
  K ^TMP($J,"DVBA")
@@ -61,13 +61,13 @@ SE ;
  N VAR
  S VAR="Could not find AMIE Exam "_EXM
  W !!,VAR
- ;D BUMP^DVBAPOST(VAR)
+ D BUMP^DVBAPOST(VAR)
  Q
 SE1 ;
  N VAR
  S VAR="Addition of exam "_X_" to "_EXM_" has failed."
  W !!,VAR
- ;D BUMP^DVBAPOST(VAR)
+ D BUMP^DVBAPOST(VAR)
  Q
 CHK ;
  S DIC="^DVB(396.6,",DIC(0)="OZ",X=EXM,D="B"
@@ -80,11 +80,11 @@ CHK ;
  ;
 SG1 ;writes and updates the tmp global with the finish
  N LP1,V1
- F LP1=1:1:2 ;D BUMPBLK^DVBAPOST
+ F LP1=1:1:2 D BUMPBLK^DVBAPOST
  S V1="I have updated "_WKSCNT_" exams to the AMIE Exam file."
  W !!,V1
- ;D BUMP^DVBAPOST(V1)
- ;D BUMPBLK^DVBAPOST
+ D BUMP^DVBAPOST(V1)
+ D BUMPBLK^DVBAPOST
  Q
 EXIT ;
  K X,Y,STOP,EXAM,LINE,^TMP($J,"DVBA"),DVBAVAR
@@ -102,12 +102,12 @@ SE2 ;
  N VAR
  S VAR="Zero node of the "_X_" code does not exist, AMIE Exam "_EXM_".  Please investigate!"
  W !!,VAR
- ;D BUMP^DVBAPOST(VAR)
+ D BUMP^DVBAPOST(VAR)
  Q
  ;
 SE3 ;
  N VAR
  S VAR="'C' cross reference for code "_X_" does not exist, AMIE Exam "_EXM_".  Please investigate!"
  W !!,VAR
- ;D BUMP^DVBAPOST(VAR)
+ D BUMP^DVBAPOST(VAR)
  Q

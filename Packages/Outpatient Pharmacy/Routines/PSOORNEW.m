@@ -1,5 +1,5 @@
 PSOORNEW ;BIR/SAB - display orders from oerr ;6/19/06 3:53pm
- ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,55,46,71,90,94,106,131,133,143,237,222,258,206,225,251**;DEC 1997;Build 202
+ ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,55,46,71,90,94,106,131,133,143,237,222,258,206,225,251,386,390**;DEC 1997;Build 86
  ;^PS(50.7 -2223
  ;^PSDRUG -221
  ;^PS(50.606 -2174
@@ -19,6 +19,7 @@ OI I '$G(PSODRUG("OI")) D
  I '$D(CLOZPAT) I $G(PSODRUG("DEA"))["A",$G(PSODRUG("DEA"))'["B"!($G(PSODRUG("DEA"))["F") S PSONEW("# OF REFILLS")=0
  I $D(CLOZPAT) S PSONEW("# OF REFILLS")=$S($D(PSONEW("# OF REFILLS")):PSONEW("# OF REFILLS"),$G(CLOZPAT)=2&($P(OR0,"^",11)>2):3,$G(CLOZPAT)&($P(OR0,"^",11)>1):1,1:0)
  S IEN=0 D OBX^PSOORFI1,DIN^PSONFI(PSODRUG("OI"),$S($G(PSODRUG("IEN")):PSODRUG("IEN"),1:""))
+ D LMDISP^PSOORFI5(+$G(ORD)) ; Display Flag/Unflag Information
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="*(1) Orderable Item: "_$P(^PS(50.7,PSODRUG("OI"),0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^")_NFIO
  S:NFIO["<DIN>" NFIO=IEN_","_($L(^TMP("PSOPO",$J,IEN,0))-4)
  K LST I $G(PSODRUG("NAME"))]"" D  G PT
@@ -76,8 +77,15 @@ EDTSEL N LST,FLD,OUT D KV S OUT=0
  E  S VALMBCK="" Q
  Q
 ACP ;
+ N DIR,Y S Y=0
  I $G(ORD),+$P($G(^PS(52.41,+ORD,0)),"^",23)=1 D  Q:$D(DIRUT)!'Y  D EN1^ORCFLAG(+$P($G(^PS(52.41,ORD,0)),"^")) H 1
- . D FULL^VALM1 D KV
+ . D FULL^VALM1
+ . I '$D(^XUSEC("PSORPH",DUZ)) D  S Y=0 Q
+ . . S DIR("A",1)="Order must be unflagged by a pharmacist before it can be finished."
+ . . S DIR("A",2)=""
+ . . S DIR(0)="E",DIR("A")="Enter RETURN to continue" W !,$C(7) D ^DIR
+ . . S VALMBCK="R"
+ . D KV
  . S DIR("A",1)="This Order is flagged. In order to finish it"
  . S DIR("A",2)="you must unflag it first."
  . S DIR("A",3)=""
@@ -106,6 +114,11 @@ ACP ;
  .S:$G(PSORX("METHOD OF PICK-UP"))]"" DIR("B")=PSORX("METHOD OF PICK-UP") D ^DIR I $D(DIRUT) K DIR,DIRUT Q
  .S (PSONEW("METHOD OF PICK-UP"),PSORX("METHOD OF PICK-UP"))=Y K X,Y
  S PSONEW("POE")=1 D EN^PSON52(.PSONEW) G:$G(PSONEW("DFLG")) ABORT D DCORD^PSONEW2
+ ;saves drug allergy order chks pso*7*390
+ I +$G(^TMP("PSODAOC",$J,1,0)) D
+ .I $G(PSORX("DFLG")) K ^TMP("PSODAOC",$J) Q
+ .S RXN=PSONEW("IRXN"),PSODAOC="Finished CPRS Rx "_$S($P(^PSRX(RXN,"STA"),"^")=4:"NON-VERIFIED ",1:"")_"Order Acceptance_OP"
+ .D DAOC^PSONEW
  D NPSOSD^PSOUTIL(.PSONEW),FULL^VALM1 K PSORX("MAIL/WINDOW")
  D EOJ^PSONEW
 ABORT S VALMBCK="Q",DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to Continue" D ^DIR,CLEAN^PSOVER1,KV

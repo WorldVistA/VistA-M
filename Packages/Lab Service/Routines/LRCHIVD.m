@@ -37,8 +37,7 @@ ALL W !,"This may take some time!",! F LRDFN=0:0 S LRDFN=$O(^LAR("Z",LRDFN)) Q:L
 CONV ;
  W !,"Would you like to run the conversion option now " S %=1 D YN^DICN
  I %'=1 G STOP
- ;D ^LRNPXA
- G STOP
+ D ^LRNPXA G STOP
  Q
 EN ;
 FIND K DIC S DIC=0 D ^LRDPA Q:LRDFN<1  S DA=$O(^LR(LRDFN,"T",0)) I DA="" W !,"No data archived." G FIND

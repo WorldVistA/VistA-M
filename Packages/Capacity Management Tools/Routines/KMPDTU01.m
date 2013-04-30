@@ -1,5 +1,5 @@
 KMPDTU01 ;OAK/RAK - CM Tools Timing Utility ;4/6/06  08:40
- ;;2.0;CAPACITY MANAGEMENT TOOLS;**4,5**;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 DAILY(KMPDT) ;-- transmit daily stats to national database
  ;-----------------------------------------------------------------------

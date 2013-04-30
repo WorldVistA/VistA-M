@@ -1,5 +1,5 @@
 %ZISS1 ;AC/SFISC - Collect screen parameters 5/29/88  2:02 PM ;1/24/08  16:10
- ;;8.0;KERNEL;**69,440**;JUL 10, 1995;Build 13
+ ;;8.0;KERNEL;**69,440,584**;JUL 10, 1995;Build 6
  ;Per VHA Directive 2004-038, this routine should not be modified
 VALID ;
  N %ZISI,%ZISNP,ZISCH,ZISEND,ZISNUM,ZISQ,ZISXL,ZISXLN ;p440
@@ -16,7 +16,7 @@ INDCK ;
  ;E  S @("%ZISY="_"""""")
  I $E(%ZISFN,1,2)="IO" S @%ZISFN=%ZISY
  E  S @("IO"_$E(%ZISFN,1,6))=%ZISY
- Q:'$D(%ZIS)#2  Q:%ZIS'["I"  Q:'$D(%ZISZ(%ZISFN,1))
+ Q:'($D(%ZIS)#2)  Q:%ZIS'["I"  Q:'$D(%ZISZ(%ZISFN,1))
  ;
 SRAY ;
  S %=%ZISY,%ZISY=$A($E(%ZISY,1))

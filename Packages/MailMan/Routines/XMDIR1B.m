@@ -28,7 +28,7 @@ P S X=Y X XMB0 F %=0:0 Q:$E(Y)'?1P  S Y=$E(Y,2,99)
  ;
  ;Network address
  S X=$$STRIP($P(XMY,":",9)),X=$P(X,"@")
- G R1:'$L(X),R1:X?.E1C.E S X("NET")=X_"@VACO.DOMAIN.EXT"
+ G R1:'$L(X),R1:X?.E1C.E S X("NET")=X_"@VACO.domain.ext"
  I $D(^XMD(4.2997,"B",X("LN"))) S %="" F  S %=$O(^XMD(4.2997,"B",X("LN"),%)) Q:%=""  I $D(^XMD(4.2997,%,0)) S %6=^XMD(4.2997,%,0) I X("NET")=$P(%6,U,7) S XME="Already on file - not filed " D ER^XMDIR1 G R1
  ;
  D FILE^XMDIR1A(.X)

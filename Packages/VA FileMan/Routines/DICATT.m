@@ -1,5 +1,5 @@
 DICATT ;SFISC/GFT,XAK-MODIFY FILE ATTR ;11NOV2008
- ;;22.0;VA FileMan;**7,82,160**;Mar 30, 1999;Build 21
+ ;;22.0;VA FileMan;**7,82,160**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  I $D(DIAX) S %=2
  E  S %=$$SCREEN^DIBT("^D SCREENQ^DICATT") Q:%=U  S %=2-%

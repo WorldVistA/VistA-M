@@ -1,5 +1,5 @@
 DDXP5 ;SFISC/DPC-PRINT FOREIGN FORMAT DOC ;12/17/92  10:15
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 EN1 ;
  N SEL,CHOICE,OUT,NOMORE K DIS

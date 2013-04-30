@@ -1,5 +1,5 @@
-ZISEDIT ;ISF/AC - DEVICE EDIT ;01/17/2008
- ;;8.0;KERNEL;**440**;Jul 10, 1995;Build 13
+ZISEDIT ;ISF/AC - DEVICE EDIT ;10/26/2011
+ ;;8.0;KERNEL;**440,585**;Jul 10, 1995;Build 22
  ;
 TRM ;TRM or VTRM
  D EDIT("TRM",,"Select Terminal/Printer Device: ")
@@ -24,6 +24,11 @@ SPL ;Spool
 HFS ;Host file
  D EDIT("HFS",,"Select Host File Device: ")
  Q
+ ;**P 585 START CJM
+PQ ;Print Queue
+ D EDIT("PQ","PQ","Select Print Queue Device: ")
+ Q
+ ;**P 585 END CJM
  ;
 CHAN ;Network
  D EDIT("CHAN",,"Select Network Channel: ")
@@ -47,3 +52,12 @@ ED2 S DIC("A")=DICA,ZISSCR=$G(ZISSCR,ZISTYPE)
  S DR="[XUDEVICE "_ZISTYPE_"]",DDSFILE=3.5 D ^DDS
  G ED2
  Q
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;

@@ -1,5 +1,5 @@
 DIRQ ;SFISC/XAK-READER-MAID END ;7/11/94  14:34
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  K:$D(%G) DIR("B")
  K DIR0("L")

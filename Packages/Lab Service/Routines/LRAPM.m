@@ -1,5 +1,5 @@
-LRAPM ;AVAMC/REG/WTY - ANATOMIC PATH MODIFY MICRO/DX ;10/23/04  22:55
- ;;5.2;LAB SERVICE;**72,91,130,231,248,295**;Sep 27, 1994
+LRAPM ;AVAMC/REG/WTY - ANATOMIC PATH MODIFY MICRO/DX ;03/07/12  16:17
+ ;;5.2;LAB SERVICE;**72,91,130,231,248,295,350**;Sep 27, 1994;Build 230
  ;
  ;Reference to ^%DT supported by IA #10003
  ;Reference to %XY^%RCR supported by IA #10022
@@ -46,9 +46,9 @@ A S:'$D(^LR(LRDFN,LRSS,LRI,LRE,0)) ^(0)=LRQ(LRB) S LRT(1)=^(0),(B,C)=0
  W ! S DR=LRF,DIE="^LR(LRDFN,LRSS,",DA=LRI,DA(1)=LRDFN
  I LRF=1 D
  .S DR=".012;1"
- .S:LRSS="SP" DR(2,63.812)=".01"
- .S:LRSS="CY" DR(2,63.902)=".01;.02"
- .S:LRSS="EM" DR(2,63.202)=".01"
+ .S:LRSS="SP" DR(2,63.812)=".01;.06R;.07R"
+ .S:LRSS="CY" DR(2,63.902)=".01;.02;.06R;.07R"
+ .S:LRSS="EM" DR(2,63.202)=".01;.06R;.07R"
  L +^LR(LRDFN,LRSS,DA):5 I '$T D  Q
  .S MSG="This record is locked by another user.  "
  .S MSG=MSG_"Please try again later."
@@ -64,8 +64,9 @@ A S:'$D(^LR(LRDFN,LRSS,LRI,LRE,0)) ^(0)=LRQ(LRB) S LRT(1)=^(0),(B,C)=0
  . S X=^LR(LRDFN,LRSS,LRI,LRE,0),A=$P(X,"^",4),Y=$O(^(0))
  . S ^LR(LRDFN,LRSS,LRI,LRE,0)=$P(X,"^",1,2)_"^"_Y_"^"_$S(A:A-1,1:0)
  S X=^LR(LRDFN,LRSS,LRI,0),Y=$P(X,"^",15),$P(^(0),"^",11)="" S:'Y $P(^(0),"^",15)=$P(X,"^",11)
- I $G(SEX)["F","SPCY"[LRSS D DEL^LRWOMEN ;This sends notificatin to WHP
- ;that a previously verified report has been modified. ;cym 2/20/1999
+ I $G(SEX)["F","SPCY"[LRSS D DEL^LRWOMEN ;This sends notification to WHP
+ ;that a previously verified report has been modified.
+ ;cym 2/20/1999
  D UPDATE^LRPXRM(LRDFN,LRSS,LRI)
  I '$D(^LRO(69.2,LRAA,2,LRAN,0)) D
  .L +^LRO(69.2,LRAA,2):5 I '$T D  Q

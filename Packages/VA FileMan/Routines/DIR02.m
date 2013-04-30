@@ -1,5 +1,5 @@
 DIR02 ;SFISC/MKO-MULTILINE FIELD EDITOR ;3:24 PM  29 Aug 1995
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 EN ;
  N DIR0FL,DIR0LN,DIR0NC,DIR0QU

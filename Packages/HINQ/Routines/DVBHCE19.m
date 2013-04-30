@@ -1,4 +1,4 @@
-DVBHCE19 ; ;06/29/12
+DVBHCE19 ; ;08/29/12
  D DE G BEGIN
 DE S DIE="^DPT(D0,.372,",DIC=DIE,DP=2.04,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^DPT(D0,.372,DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,2) S:%]"" DE(1)=% S %=$P(%Z,U,3) S:%]"" DE(2)=% S %=$P(%Z,U,4) S:%]"" DE(3)=% S %=$P(%Z,U,5) S:%]"" DE(4)=% S %=$P(%Z,U,6) S:%]"" DE(5)=%

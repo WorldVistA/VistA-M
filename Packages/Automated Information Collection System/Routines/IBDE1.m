@@ -82,7 +82,7 @@ INITS ;executes inits to bring stuff into the imp/exp files
  ;
  ;ask for the init rtn
  F  Q:QUIT  D
- .S DIR(0)="FA^5:8"; ,DIR("B")=$S($L($T(^IBDEINIT)):"IBDEINIT",1:"")
+ .S DIR(0)="FA^5:8",DIR("B")=$S($L($T(^IBDEINIT)):"IBDEINIT",1:"")
  .S DIR("?",1)="In order for you to import forms from another site the other site must have",DIR("?")="prepared and sent you inits created using the import/export facility."
  .S DIR("A",1)="What is the name of the init routine that contains the forms that you want to",DIR("A")="import? "
  .D ^DIR K DIR

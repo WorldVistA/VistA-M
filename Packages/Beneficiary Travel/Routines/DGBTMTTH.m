@@ -1,0 +1,23 @@
+DGBTMTTH ;BLD-RETRIVE MT THRESHOLD AMOUNTS; 10/05/2012@1130; 03/04/2012
+ ;;1.0;Beneficiary Travel;**20**;March 4, 2012;Build 185
+ ;
+ Q
+ ;
+MTTH(DEP,DGBTDT) ;entry point to return MT threshold amounts
+ ;      input - DEP - number of dependents
+ ;              DGBTDT - BT Claim Date
+ ;      output - DGBTMTTH - MT threshold amount
+ ;
+ N DGBTMTTH,DGBTYEAR,THDATA,MTYEAR,DGBTTH,DGBTTHD1,DGBTTHD2
+ S DGBTMTTH=0
+ S DGBTYEAR=$E(DGBTDT,1,3)_"0000"+1
+ S MTYEAR=$O(^DG(43,1,"MT",DGBTYEAR),-1)
+ S THDATA=^DG(43,1,"MT",MTYEAR,0)
+ S DGBTTH=$P(THDATA,"^",2)
+ S DGBTTHD1=$P(THDATA,"^",3)
+ S DGBTTHD2=$P(THDATA,"^",4)
+ I DEP=0 Q DGBTTH
+ I DEP=1 Q DGBTTH+DGBTTHD1
+ I DEP>1 Q DGBTTH+DGBTTHD1+(DGBTTHD2*(DEP-1))
+ ;
+ Q DGBTMTTH

@@ -1,5 +1,5 @@
 DDWF ;SFISC/MKO-FIND, REPLACE ;8:14 AM  27 Mar 1996
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 NEXT ;Find next occurrence of same text

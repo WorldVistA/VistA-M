@@ -1,5 +1,5 @@
 DICE3 ;SFISC/GFT-TRIGGER LOGIC ;8/14/89  12:37
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  G DIU:DIK=1
  ;

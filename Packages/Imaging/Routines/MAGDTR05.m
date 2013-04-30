@@ -1,5 +1,5 @@
-MAGDTR05 ;WOIFO/PMK - Read a DICOM image file ; 25 Sep 2008 10:53 AM
- ;;3.0;IMAGING;**46,54**;03-July-2009;;Build 1424
+MAGDTR05 ;WOIFO/PMK/JSL/SAF - Read a DICOM image file ; 25 Sep 2008 10:53 AM
+ ;;3.0;IMAGING;**46,54,123**;Mar 19, 2002;Build 67;Jul 24, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -112,9 +112,9 @@ LOOKUP1(UNREAD) ; retrieve one entry from the unread list
  ; patient information
  S DFN=$$GET1^DIQ(123,GMRCIEN,.02,"I")
  D DEM^VADPT,PTSEC^DGSEC4(.VIPSTS,DFN)
- S ICN=$$GETICN^MPIF001(DFN)
- S X=$P(VADM(2),"^",1),SHORTID=$E(VADM(1),1)_$E(X,$L(X)-3,$L(X))
- S Z=Z_"|"_VADM(1)_"|"_$P(VADM(2),"^",2)_"|"_ICN_"|"_SHORTID
+ S ICN=$S($T(GETICN^MPIF001)'="":$$GETICN^MPIF001(DFN),1:"-1^NO MPI")  ;p123
+ S X=$TR(VA("PID"),"-",""),SHORTID=$E(VADM(1),1)_$E(X,$L(X)-3,$L(X)) ;P123
+ S Z=Z_"|"_VADM(1)_"|"_VA("PID")_"|"_ICN_"|"_SHORTID ;P123
  S Z=Z_"|"_VIPSTS(1) ; VIP status
  S Z=Z_"|"_$P(^MAG(2005.84,ISPECIDX,0),"^",1)_"|"_$P(^MAG(2005.84,ISPECIDX,2),"^",1)
  S Z=Z_"|"_$P(^MAG(2005.85,IPROCIDX,0),"^",1)_"|"_$P(^MAG(2005.85,IPROCIDX,2),"^",1)

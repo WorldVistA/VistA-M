@@ -1,5 +1,5 @@
 DIDX ;SFISC/XAK-BRIEF DD ;06:18 PM  20 Mar 2001
- ;;22.0;VA FileMan;**76**;Mar 30, 1999
+ ;;22.0;VA FileMan;**76**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S D1=D0,DINM=1,DDRG=1,DDL1=14,DDL2=32 G B
  ;

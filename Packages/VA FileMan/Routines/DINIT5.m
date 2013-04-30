@@ -1,5 +1,5 @@
 DINIT5 ;SFISC/GFT-INITIALIZE VA FILEMAN ;10:11 AM  3 Mar 1998
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  K ^DOPT("DDS"),^("DDU"),^("DIAR"),^("DIAU"),^("DIBT"),^("DICATT"),^("DICR"),^("DID"),^("DIFG"),^("DII"),^("DII1"),^("DIS"),^("DIT"),^("DIU"),^("DIX"),^("DIAX"),^("DDXP")
  S ^DOPT("DICATT",0)="DATA TYPE^1.01"

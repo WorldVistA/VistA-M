@@ -1,5 +1,5 @@
 DII ;SFISC/GFT,XAK,TKW-OPTION RDR, INQUIRY ;5:21 AM  15 Mar 2005
-V ;;22.0;VA FileMan;**64,81,143**;Mar 30, 1999
+V ;;22.0;VA FileMan;**64,81,143**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  W !!,"VA FileMan "_$P($T(V),";",3),!

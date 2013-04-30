@@ -1,7 +1,7 @@
-EDPRPTBV ;SLC/MKB - BVAC Report
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPRPTBV ;SLC/MKB - BVAC Report ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
-EN(BEG,END) ; Get Activity Report for EDPSITE by date range
+EN(BEG,END,CSV) ; Get Activity Report for EDPSITE by date range
  N LOG,X,X0,X1,X3,DX,IN,OUT,ROW,ICD,I
  N ELAPSE,TRIAGE,ADMDEC,ADMDEL,CNT,ADM,MIN,AVG
  D INIT ;set counters, sums to 0

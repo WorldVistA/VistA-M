@@ -1,5 +1,5 @@
 DIALOG ;SFISC/TKW - BUILD FILEMAN DIALOGUE ;10:29 AM  14 May 2001
-V ;;22.0;VA FileMan;**28,87**;Mar 30, 1999
+V ;;22.0;VA FileMan;**28,87**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 BLD(D0,DIPI,DIPE,DIALOGO,DIFLAG) ;BUILD FILEMAN DIALOG
  ;1)DIALOG file IEN, 2)Internal params, 3)External params, 4)Output array name, 5)S=Suppress blank line between messages, F=Format output like ^TMP

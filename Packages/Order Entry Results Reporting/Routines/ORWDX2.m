@@ -1,5 +1,5 @@
-ORWDX2 ; SLC/JM/AGP - Order dialog utilities ;11/09/2006
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**246,243,280**;Dec 17, 1997;Build 85
+ORWDX2 ;SLC/JM/AGP - Order dialog utilities ;11/09/2006
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**246,243,280,331**;Dec 17, 1997;Build 30
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -24,7 +24,7 @@ XROOT ; Part of LOADRSP^ORWDX - moved here because of routine size
  . I '$L(ID) S ID="ID"_DLG
  . S VAL=$G(@ROOT@(I,1))
  . I $P($G(^ORD(101.41,DLG,0)),U)="OR GTX ADDITIVE" S ID="ADDITIVE"
- . I $E(RSPID)="C",(ID="START"),VAL Q  ; skip literal start time on copy
+ . ;I $E(RSPID)="C",(ID="START"),VAL Q  ; skip literal start time on copy ;DJE/VM *331 - removed, not working consistently
  . S LST($$NXT)="~"_DLG_U_INST_U_ID
  . I $L(VAL) D
  .. S LST($$NXT)="i"_VAL,LST($$NXT)="e"_$$EXTVAL(VAL,DLG)

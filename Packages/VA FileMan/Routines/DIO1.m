@@ -1,5 +1,5 @@
 DIO1 ;SFISC/GFT,TKW-BUILD P-ARRAY (OR LINES IN COMPILED SORT) WHICH CREATES SORTED DATA ;20MAR2005
- ;;22.0;VA FileMan;**2,97,113,144**;Mar 30, 1999;Build 5
+ ;;22.0;VA FileMan;**2,97,113,144**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  F DJ=0:1:7 F DX=-1:0 S DX=$O(Y(DJ,DX)) Q:DX=""  F DPR=-1:0 S DPR=$O(Y(DJ,DX,DPR)) D  Q:DPR=""

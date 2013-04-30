@@ -1,5 +1,5 @@
 DIPOS140 ;SFISC/SO- POST INSTAL DI*22*140 RE-COMPILE XREF;8:50 AM  18 Aug 2004
- ;;22.0;VA FileMan;*140*;Mar 30, 1999
+ ;;22.0;VA FileMan;*140*;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  D MES^XPDUTL("Begin re-compile of cross references...")
  N FILE S FILE=1.99999

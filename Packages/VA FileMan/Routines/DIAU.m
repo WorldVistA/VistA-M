@@ -1,5 +1,5 @@
 DIAU ;SFISC/XAK-AUDIT OPTIONS ;24JUNE2003
- ;;22.0;VA FileMan;**76,129**;Mar 30, 1999
+ ;;22.0;VA FileMan;**76,129**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 0 S DIC="^DOPT(""DIAU"","
  G OPT:$D(^DOPT("DIAU",5)) S ^(0)="AUDIT OPTION^1.01" K ^("B")

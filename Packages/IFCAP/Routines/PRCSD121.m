@@ -1,6 +1,6 @@
-PRCSD121 ;WISC/SAW/BMM-CONTROL POINT ACTIVITY 2237 DISPLAY CON'T ; 3/30/05 9:59am
- ;;5.1;IFCAP;**70,81**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCSD121 ;WISC/SAW/BMM-CONTROL POINT ACTIVITY 2237 DISPLAY CON'T ;6/25/12  12:59
+ ;;5.1;IFCAP;**70,81,167**;Oct 20, 2000;Build 17
+ ;Per VHA Directive 2004-38, this routine should not be modified.
  ;PRINT ITEMS
  ;
  ;BMM PRC*5.1*81 edit PRCARD to also display new fields DM Doc ID 
@@ -24,6 +24,7 @@ ITEM2 I '$D(^UTILITY($J,"W",DIWL)) S ^(DIWL)=1,^(DIWL,1,0)="***NO DESCRIPTION***
  I Z>1 F J=1:1:(Z-1) W ?13,^UTILITY($J,"W",DIWL,J,0) D:IOSL-$Y<2 NEWP Q:Z1=U  W !
  I Z>1 W ?13,^UTILITY($J,"W",DIWL,Z,0),?52,P(0) D:IOSL-$Y<2 NEWP Q:Z1=U  W !
  I Z<2 W ?13,^UTILITY($J,"W",DIWL,1,0),?52,P(0) D:IOSL-$Y<2 NEWP Q:Z1=U  W !
+ I $P($G(^PRCS(410,DA,"IT",P(1),4)),U,3)]"" D:IOSL-$Y<2 NEWP Q:Z1=U  W ?13,"eCMS Item Line ID ",$P(^PRCS(410,DA,"IT",P(1),4),U,3),!
  Q
 PRCARD S P("PR")=$P(^PRCS(410,DA,"IT",P(1),0),U,5) G ITEM2:'$D(^PRC(441,P("PR"),1,0))
  S P("PR1")=0,X=$P(^PRCS(410,DA,"IT",P(1),0),U)_" ITEM ID NO. "_P("PR") D DIWP^PRCUTL($G(DA)) F I=1:1 S P("PR1")=$O(^PRC(441,P("PR"),1,P("PR1"))) Q:P("PR1")=""  S X=^(P("PR1"),0) D DIWP^PRCUTL($G(DA))

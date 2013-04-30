@@ -68,7 +68,7 @@ ERRORS ; check and process errors.
  ...F I=0:0 S I=$O(^XTMP("KMPR","ERR",H,N,O,"MSG",I)) Q:'I  D 
  ....S TEXT(LN)=^XTMP("KMPR","ERR",H,N,O,"MSG",I),LN=LN+1
  S XMTEXT="TEXT("
- S XMY("G.KMP2-RUM@ISC-ALBANY.DOMAIN.EXT")=""
+ S XMY("G.KMP2-RUM@ISC-ALBANY.domain.ext")=""
  D ^XMD
  ;
  K ^KMPTMP("KMPR","ERR")

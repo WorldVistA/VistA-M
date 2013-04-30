@@ -1,5 +1,5 @@
 DDBR ;SFISC/DCL-VA FILEMAN BROWSER ;4MAY2011
- ;;22.0;VA FileMan;**165**;Mar 30, 1999;Build 32
+ ;;22.0;VA FileMan;**165**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
 EN N DDBC,DDBFLG,DDBL,DDBPMSG,DDBSA,DDBX,IOTM,IOBM
  I '$$TEST^DDBRT W $C(7),!!,"This terminal does not support scroll region or reverse index",!! Q

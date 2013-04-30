@@ -1,5 +1,5 @@
 DIP5 ;SFISC/GFT-INITIALIZE TO PROCESS THE PRINT ;01:09 PM  13 Feb 2002
- ;;22.0;VA FileMan;**32,97**;Mar 30, 1999
+ ;;22.0;VA FileMan;**32,97**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S %H=$H D YMD^%DTC S DT=X K %H,^UTILITY($J),^("DIL",$J)
  I $G(DIFIXPT)=1 D  G GO

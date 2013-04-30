@@ -39,10 +39,10 @@ PATCH7 ;ENTRY POINT FOR PATCH NUMBER 7
  I (STOP) D  Q
  .W $C(7),!!,"*** Installation of VAQ*1.5*7 halted ***",!!
  ;INSTALL MODIFIED MENU OPTIONS
- ;D ^VAQ1INIT
+ D ^VAQ1INIT
  ;RE-INSTALL PROTOCOLS
  W !!!
- ;D ^VAQONIT
+ D ^VAQONIT
  ;PRINT FOOTER
  W !!,DASHES
  S TMP="Installation of patch number 7 completed"

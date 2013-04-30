@@ -55,7 +55,7 @@ ITEM ;Write item data
  S PRCX(4)="  Number of vendors: "_$G(^TMP($J,"V"),0)
  S PRCX(5)=" ",PRCX(6)="Physical count transactions were "_$S(PRCPHYS="Y":"",1:"not ")_"included in the analysis."
  X ^%ZOSF("UCI") S PRCY=^%ZOSF("PROD") S:PRCY'["," Y=$P(Y,",")
- I Y=PRCY,PRCW'["FO-",PRCW'["ISC-" S XMY("prchitem@DOMAIN.EXT")=""
+ I Y=PRCY,PRCW'["FO-",PRCW'["ISC-" S XMY("prchitem@domain.ext")=""
  I $G(DUZ)>0,$D(^VA(200,DUZ)) D
  . N PRCNAME
  . S XMY(DUZ)=""

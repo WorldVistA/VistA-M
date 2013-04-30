@@ -1,5 +1,5 @@
-LRLABLIO ;DALOI/TGA/JMC - TESTS LABEL PRINTER ;8/8/89  11:17
- ;;5.2;LAB SERVICE;**107,161,218**;Sep 27, 1994
+LRLABLIO ;DALOI/TGA/JMC - TESTS LABEL PRINTER ;May 21, 2007
+ ;;5.2;LAB SERVICE;**107,161,218,350**;Sep 27, 1994;Build 230
  ;
  ; Reference to File #3.5 supported by DBIA #2469
  ;
@@ -11,16 +11,17 @@ LRLABLIO ;DALOI/TGA/JMC - TESTS LABEL PRINTER ;8/8/89  11:17
  ; Setup handle for user's "HOME" device.
  D OPEN^%ZISUTL("LRHOME","HOME")
  ;
- S %ZIS("B")="LABLABEL"
+ S %ZIS("B")=$$GET^XPAR("USR","LR LABEL PRINTER DEFAULT","`"_DUZ(2),"E")
+ I %ZIS("B")="" S %ZIS("B")="LABLABEL"
  ;
  ; Check if label device assigned to this user's HOME Device file entry.
  I $G(IOS) D
  . S X=$$GET1^DIQ(3.5,IOS_",",101,"E")
- . I $L(X) S %ZIS("B")=X
+ . I X'="" S %ZIS("B")=X
  ;
- I %ZIS("B")="LABLABEL",$D(^LAB(69.9,1,3.5,+$G(DUZ(2)),0)) D
- . ; Get this division's default printer
- . S %ZIS("B")=$P($G(^LAB(69.9,1,3.5,+DUZ(2),0)),U,3)
+ ; Get this division's default printer
+ I %ZIS("B")="LABLABEL",$D(^LAB(69.9,1,3.5,+$G(DUZ(2)),0)) S %ZIS("B")=$P($G(^LAB(69.9,1,3.5,+DUZ(2),0)),U,3)
+ ;
  I %ZIS("B")="" S %ZIS("B")="LABLABEL"
  S %ZIS("A")="Print labels on: ",%ZIS="NQ"
  ; Setup handle for user's LABEL device.

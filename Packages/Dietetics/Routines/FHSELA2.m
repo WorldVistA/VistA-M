@@ -1,12 +1,15 @@
 FHSELA2 ;Hines OIFO/RTK - Map GMR Allergy file to Food Prefs ;3/07/2007
- ;;5.5;DIETETICS;**8,13,23,25**;Jan 28, 2005;Build 4
+ ;;5.5;DIETETICS;**8,13,23,25,28**;Jan 28, 2005;Build 1
  ;
  ;10/9/2009 SLC/GDU FH*5.5*23
  ;  Remedy 317642 FGH - patient food allergy not mapping to N&FS food preferences
  ;  Adding the following food allergies:
  ;  Arugula, Capers, Curry, Gooseberries, Meat Tenderizer, Olestra, Orange Dye
  ;  Pomegranates, Pudding, Saffron, Stevia, Water Chestnuts
- ;  
+ ;
+ ;6/22/2011 SLC/GDU FH*5.5*28
+ ;  Remedy 490577 - Need N&FS patch to add OCTOPUS, KIDNEY BEANS as food allergies
+ ;  Adding the following food allergies: Kidney Beans, Octopus
 TMPGL ; Create ^TMP Global
  K ^TMP($J,"FHALG") S FHK=0
  F  S FHK=FHK+1,FHFPS=$T(FPS+FHK),FHZ1=$P(FHFPS,";",3) Q:FHZ1=""  D
@@ -325,3 +328,5 @@ FPS ;;
  ;;SAFFRON;SAFFRON
  ;;STEVIA;STEVIA
  ;;WATER CHESTNUTS;WATER CHESTNUTS
+ ;;BEANS, KIDNEY;KIDNEY BEANS
+ ;;OCTOPUS;OCTOPUS

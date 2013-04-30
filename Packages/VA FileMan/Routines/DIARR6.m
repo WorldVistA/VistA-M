@@ -1,5 +1,5 @@
 DIARR6 ;SFISC/DCM-PROCESS ARCHIVED FILE WITH INDEX ;11/18/92  11:49 AM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S DIARFILE=$P(DIARL,U,3),DIARFN=+$P(DIARL,U,2)
  S DIARREC=$P(DIARL,U,4,99)

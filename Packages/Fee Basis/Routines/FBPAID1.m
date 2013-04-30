@@ -1,5 +1,5 @@
-FBPAID1 ;WOIFO/SAB - SERVER ROUTINE TO UPDATE PAYMENTS CON'T ;2/10/2009
- ;;3.5;FEE BASIS;**19,107,121**;JAN 30, 1995;Build 4
+FBPAID1 ;WOIFO/SAB - SERVER ROUTINE TO UPDATE PAYMENTS CON'T ;1/11/2012
+ ;;3.5;FEE BASIS;**19,107,121,132**;JAN 30, 1995;Build 17
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 PARSE ;set-up variables for payment record called from FBPAID
  ;  FBPROG = 3 for Outpatient (file 162)
@@ -76,33 +76,46 @@ DATE4(X) ;pass in 'X'=date in yyyymmdd format and return date in
  N Y I '$G(X) Q ""
  S %DT="",X=$E(X,5,6)_"/"_$E(X,7,8)_"/"_$E(X,1,4) D ^%DT K %DT
  Q $S(Y=-1:"",1:Y)
-CHKMOVE ;check if payment moved
+CHKMOVE ;check if payment line item was moved by patient merge process
  ; input
- ;   FBPROG - fee program
+ ;   FBPROG - fee program (3 or "T")
  ;   FBIEN - ien of payment (from austin)
  ;   FBIEN() - ien(s) of higher level entries (1 for next higher, etc.)
  ; output
- ;   FBIEN   may be changed
- ;   FBIEN() may be changed
- N FBDA,FBFILE,FBNIENS,FBOIENS
+ ;   FBIEN   may be changed to reflect current value
+ ;   FBIEN() may be changed to reflect current value
+ N FBDA,FBFILE,FBNIENS,FBCIENS,FBSIENS
+ ;
+ ; determine file
  S FBFILE=$S(FBPROG=3:162.03,FBPROG="T":162.04,1:"")
  Q:FBFILE=""
- I FBPROG=3 D
- . S FBOIENS=FBIEN_","_FBIEN(1)_","_FBIEN(2)_","_FBIEN(3)_","
- . S FBDA=$O(^FBAA(161.45,"C",FBFILE,FBOIENS,0))
- . Q:'FBDA  ; not moved
- . S FBNIENS=$P($G(^FBAA(161.45,FBDA,0)),U,3)
- . Q:FBNIENS=""  ; don't know new iens
- . S FBIEN=$P(FBNIENS,",",1)
- . S FBIEN(1)=$P(FBNIENS,",",2)
- . S FBIEN(2)=$P(FBNIENS,",",3)
- . S FBIEN(3)=$P(FBNIENS,",",4)
- I FBPROG="T" D
- . S FBOIENS=FBIEN_","_FBIEN(1)_","
- . S FBDA=$O(^FBAA(161.45,"C",FBFILE,FBOIENS,0))
- . Q:'FBDA  ; not moved
- . S FBNIENS=$P($G(^FBAA(161.45,FBDA,0)),U,3)
- . Q:FBNIENS=""  ; don't known new iens
- . S FBIEN=$P(FBNIENS,",",1)
- . S FBIEN(1)=$P(FBNIENS,",",2)
+ ;
+ ; determine starting IEN string
+ I FBPROG="3" S FBSIENS=FBIEN_","_FBIEN(1)_","_FBIEN(2)_","_FBIEN(3)_","
+ I FBPROG="T" S FBSIENS=FBIEN_","_FBIEN(1)_","
+ Q:FBSIENS=""
+ ;
+ S FBCIENS=FBSIENS ; init current IEN string as starting IEN string
+ ;
+ ; loop thru moves for current IENs until no more moves are found
+ F  D  Q:FBNIENS=""
+ . S FBNIENS="" ; init new IENs value for a move
+ . S FBDA=$O(^FBAA(161.45,"C",FBFILE,FBCIENS,0))
+ . Q:'FBDA  ; no more moves
+ . S FBNIENS=$P($G(^FBAA(161.45,FBDA,0)),U,3) ; new IENs
+ . ; if new IEN is same as starting IEN, break out of the endless loop
+ . I FBNIENS=FBSIENS S FBNIENS="" Q
+ . ; set current IENs to the new value
+ . S:FBNIENS'="" FBCIENS=FBNIENS
+ ;
+ ; if current IENs is different from starting IENs update outputs
+ I FBCIENS'=FBSIENS D
+ . I FBPROG="3" D
+ . . S FBIEN=$P(FBCIENS,",",1)
+ . . S FBIEN(1)=$P(FBCIENS,",",2)
+ . . S FBIEN(2)=$P(FBCIENS,",",3)
+ . . S FBIEN(3)=$P(FBCIENS,",",4)
+ . I FBPROG="T" D
+ . . S FBIEN=$P(FBCIENS,",",1)
+ . . S FBIEN(1)=$P(FBCIENS,",",2)
  Q

@@ -1,5 +1,5 @@
-MAGDRPC9 ;WOIFO/EdM - Imaging RPCs ; 11 Feb 2008 12:36 PM
- ;;3.0;IMAGING;**50,54,53,49**;Mar 19, 2002;Build 2033;Apr 07, 2011
+MAGDRPC9 ;WOIFO/EdM/JSL/SAF - Imaging RPCs ; 11 Feb 2008 12:36 PM
+ ;;3.0;IMAGING;**50,54,53,49,123**;Mar 19, 2002;Build 67;Jul 24, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -111,7 +111,7 @@ NXTPTRPT(OUT,DFN,RARPT1,DIR) ; RPC = MAG RAD GET NEXT RPT BY PT
  Q
  ;
 GETICN(OUT,DFN) ; RPC = MAG DICOM GET ICN
- S OUT=$$GETICN^MPIF001(DFN)
+ S OUT=$S($T(GETICN^MPIF001)'="":$$GETICN^MPIF001(DFN),1:"-1^NO MPI") ;P123
  Q
  ;
 CLEAN ; Overflow from MAGDRPC4

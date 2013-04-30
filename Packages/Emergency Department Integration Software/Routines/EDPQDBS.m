@@ -1,5 +1,5 @@
-EDPQDBS ;SLC/KCM - Display Board Specs
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPQDBS ;SLC/KCM - Display Board Specs ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 GET(AREA,BOARD) ; Get Display Board Specs
  ;N I S I=0
@@ -19,7 +19,7 @@ GET(AREA,BOARD) ; Get Display Board Specs
  Q
 CLRBED(AREA) ; add bed colors
  D XML^EDPX("<colors id='bed' type='bed' >")
- N BED
+ N BED,X0
  S BED=0 F  S BED=$O(^EDPB(231.8,"C",EDPSITE,AREA,BED)) Q:'BED  D
  . S X0=^EDPB(231.8,BED,0)
  . I $P(X0,U,12)="" Q

@@ -1,5 +1,5 @@
 KMPDUTL1 ;OAK/RAK,KAK - CM TOOLS Utilities ;2/17/04  10:51
- ;;2.0;CAPACITY MANAGEMENT TOOLS;**3**;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 CONT(KMPDEXT)  ;-- function displays 'return to continue' message at bottom of page
  ;--------------------------------------------------------------------
@@ -108,7 +108,7 @@ TSKSTAT(OPT) ;-- status of scheduled task option
  ;
  Q:$G(OPT)="" "^UNDEFINED"
  ;
- N ACTV,DA,DAY,DOW,FREQ,RTN,TSK,TSKINFO,USER,Y
+ N ACTV,DA,DAY,DOW,FREQ,RTN,TSK,TSKINFO,USER
  ;
  S (DOW,FREQ)=-1
  S RTN="9^UNKNOWN^NO DATE^-1^UNKNOWN^^^UNKNOWN^NOT ACTIVE"
@@ -116,8 +116,9 @@ TSKSTAT(OPT) ;-- status of scheduled task option
  I '$D(^DIC(19,"B",OPT)) S $P(RTN,U,1,2)="3^MISSING" Q RTN
  S DA=$O(^DIC(19,"B",OPT,0)),DA=+$O(^DIC(19.2,"B",DA,0))
  S TSKINFO=$G(^DIC(19.2,DA,0)),(DOW,Y)=$P(TSKINFO,U,2),FREQ=$P(TSKINFO,U,6)
- D:+Y DD^%DT S $P(TSKINFO,U,2)=Y
+ S $P(TSKINFO,U,2)=$$FMTE^XLFDT($P(TSKINFO,U,2))
  I DOW'="" S DAY=$$DOW^XLFDT(DOW),DOW=$$DOW^XLFDT(DOW,1)
+ K:$G(DAY)="day" DAY
  S TSK=+$G(^DIC(19.2,+DA,1))
  I (DOW="")!(TSK="") S $P(RTN,U,1,2)="1^NOT SCHEDULED"
  E  D

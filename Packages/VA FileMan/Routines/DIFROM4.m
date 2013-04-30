@@ -1,5 +1,5 @@
 DIFROM4 ;SFISC/XAK-CREATES 'INIT3' ;2:49 PM  25 Sep 1998
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S DNAME=E_3,DIRS=E_4,DL=0,(DH,Q)=" ;"
  K ^UTILITY($J) F DD=1:1 S X=$T(TXT+DD) Q:X=""  S ^UTILITY($J,DD,0)=$E(X,4,999) S:$E(X,4,5)="OR" ^(0)=^(0)_DIRS

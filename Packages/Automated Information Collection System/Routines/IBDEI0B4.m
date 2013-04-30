@@ -1,132 +1,352 @@
-IBDEI0B4 ; ; 12-JAN-2012
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JAN 12, 2012
- Q:'DIFQ(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0B4 ; ; 20-FEB-2013
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 20, 2013
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.6,0,"GL")
- ;;=^IBE(358.6,
- ;;^DIC("B","IMP/EXP PACKAGE INTERFACE",358.6)
- ;;=
- ;;^DIC(358.6,"%D",0)
- ;;=^^1^1^2950927^^^^
- ;;^DIC(358.6,"%D",1,0)
- ;;=This file is used as a workspace by the import/export utility.
- ;;^DIC(358.6,"%D",2,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.6,"%D",3,0)
- ;;=that is being imported or exported.
- ;;^DIC(358.6,"%D",4,0)
- ;;= 
- ;;^DIC(358.6,"%D",5,0)
- ;;=This file contains a description of all of the interfaces with other packages.
- ;;^DIC(358.6,"%D",6,0)
- ;;=The form will invoke the proper interface routines by doing a lookup on
- ;;^DIC(358.6,"%D",7,0)
- ;;=this file and then invoking the routine by indirection. The INPUT VARIABLE
- ;;^DIC(358.6,"%D",8,0)
- ;;=fields are for documentation purposes and to verify that the proper
- ;;^DIC(358.6,"%D",9,0)
- ;;=variables are defined. Data will be exchanged between the encounter form
- ;;^DIC(358.6,"%D",10,0)
- ;;=utilities and other packages by putting the data in a predefined location.
- ;;^DIC(358.6,"%D",11,0)
- ;;=The first part of the subscript is always be ^TMP("IB",$J,"INTERFACES".
- ;;^DIC(358.6,"%D",12,0)
- ;;=For output routines, but not selection routines, the fourth subscript is
- ;;^DIC(358.6,"%D",13,0)
- ;;=be the patient DFN. The next subscript is the name of the Package
- ;;^DIC(358.6,"%D",14,0)
- ;;=Interface. For single valued data and record valued data there is no
- ;;^DIC(358.6,"%D",15,0)
- ;;=additional subscript. For interfaces returning a list there is one
- ;;^DIC(358.6,"%D",16,0)
- ;;=additional subscript level, the number of the item on the list. For
- ;;^DIC(358.6,"%D",17,0)
- ;;=word processing type data the data will be in FM word-processing format,
- ;;^DIC(358.6,"%D",18,0)
- ;;=i.e., the final subscripts will be ...1,0),...2,0),...3,0), etc.
- ;;^DIC(358.6,"%D",19,0)
- ;;=these items of data can have its own entry in the Package Interface file,
- ;;^DIC(358.6,"%D",20,0)
- ;;=but by using the same entry point there is a savings because all of the
- ;;^DIC(358.6,"%D",21,0)
- ;;=data on that node can be obtained at once. The routines that invoke the
- ;;^DIC(358.6,"%D",22,0)
- ;;=entry point keep track of the entry points already invoked so they are
- ;;^DIC(358.6,"%D",23,0)
- ;;=not repeated.
- ;;^DD(358.6,0)
- ;;=FIELD^^21^76
- ;;^DD(358.6,0,"DDA")
- ;;=N
- ;;^DD(358.6,0,"DT")
- ;;=3000124
- ;;^DD(358.6,0,"ID",.06)
- ;;=W ""
- ;;^DD(358.6,0,"ID","WRITE")
- ;;=N IBDWNAM S IBDWNAM=$E($P(^(0),U),1,40) D EN^DDIOL(IBDWNAM,"","!?0")
- ;;^DD(358.6,0,"ID","WRITE1")
- ;;=N IBDWTYPE S IBDWTYPE=$S($P(^(0),"^",6)=1:"INPUT",$P(^(0),"^",6)=2:"OUTPUT",$P(^(0),"^",6)=3:"SELECTION",1:"REPORT")_$S($P(^(0),U,6)=3&'$P(^(0),"^",13):"  ** NOT SCANNABLE **",1:"") D EN^DDIOL("TYPE="_IBDWTYPE,"","?45")
- ;;^DD(358.6,0,"IX","B",358.6,.01)
- ;;=
- ;;^DD(358.6,0,"IX","C",358.6,.04)
- ;;=
- ;;^DD(358.6,0,"IX","D",358.6,3)
- ;;=
- ;;^DD(358.6,0,"IX","E",358.6,.01)
- ;;=
- ;;^DD(358.6,0,"NM","IMP/EXP PACKAGE INTERFACE")
- ;;=
- ;;^DD(358.6,0,"PT",358.2,.11)
- ;;=
- ;;^DD(358.6,0,"PT",358.5,.03)
- ;;=
- ;;^DD(358.6,0,"PT",358.6,.13)
- ;;=
- ;;^DD(358.6,0,"PT",358.93,.06)
- ;;=
- ;;^DD(358.6,0,"VRPK")
- ;;=IBD
- ;;^DD(358.6,.01,0)
- ;;=NAME^RF^^0;1^K:X[""""!($A(X)=45) X I $D(X) K:$L(X)>40!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.6,.01,1,0)
- ;;=^.1
- ;;^DD(358.6,.01,1,1,0)
- ;;=358.6^B
- ;;^DD(358.6,.01,1,1,1)
- ;;=S ^IBE(358.6,"B",$E(X,1,30),DA)=""
- ;;^DD(358.6,.01,1,1,2)
- ;;=K ^IBE(358.6,"B",$E(X,1,30),DA)
- ;;^DD(358.6,.01,1,2,0)
- ;;=358.6^E^MUMPS
- ;;^DD(358.6,.01,1,2,1)
- ;;=S ^IBE(358.6,"E",$E(X,$F(X," "),40),DA)=""
- ;;^DD(358.6,.01,1,2,2)
- ;;=K ^IBE(358.6,"E",$E(X,$F(X," "),40),DA)
- ;;^DD(358.6,.01,1,2,"%D",0)
- ;;=^^4^4^2940224^
- ;;^DD(358.6,.01,1,2,"%D",1,0)
- ;;= 
- ;;^DD(358.6,.01,1,2,"%D",2,0)
- ;;=For package interfaces that are output routines the name has the custodial
- ;;^DD(358.6,.01,1,2,"%D",3,0)
- ;;=package's name space as a prefix. This cross-reference removes that
- ;;^DD(358.6,.01,1,2,"%D",4,0)
- ;;=prefix. It is used to improve the display of output routines for the user.
- ;;^DD(358.6,.01,1,2,"DT")
- ;;=2930409
- ;;^DD(358.6,.01,3)
- ;;=Answer must be 3-40 characters in length. All entries with Action Type other than PRINT REPORT must be be prefixed with the namespace of the package that is responsible for the data.
- ;;^DD(358.6,.01,21,0)
- ;;=^^3^3^2950412^^^^
- ;;^DD(358.6,.01,21,1,0)
- ;;= 
- ;;^DD(358.6,.01,21,2,0)
- ;;=The name of the Package Interface. For interfaces returning data the name
- ;;^DD(358.6,.01,21,3,0)
- ;;=should be preceded with the namespace of the package.
- ;;^DD(358.6,.01,23,0)
- ;;=^^1^1^2950412^
- ;;^DD(358.6,.01,23,1,0)
- ;;= 
- ;;^DD(358.6,.01,"DT")
- ;;=2930409
+ ;;^UTILITY(U,$J,358.3,14769,1,3,0)
+ ;;=3^TB
+ ;;^UTILITY(U,$J,358.3,14770,0)
+ ;;=95024^^108^885^3^^^^1
+ ;;^UTILITY(U,$J,358.3,14770,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14770,1,2,0)
+ ;;=2^95024
+ ;;^UTILITY(U,$J,358.3,14770,1,3,0)
+ ;;=3^Intradermals (each)
+ ;;^UTILITY(U,$J,358.3,14771,0)
+ ;;=86510^^108^885^2^^^^1
+ ;;^UTILITY(U,$J,358.3,14771,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14771,1,2,0)
+ ;;=2^86510
+ ;;^UTILITY(U,$J,358.3,14771,1,3,0)
+ ;;=3^Histoplasmosis
+ ;;^UTILITY(U,$J,358.3,14772,0)
+ ;;=86486^^108^885^4^^^^1
+ ;;^UTILITY(U,$J,358.3,14772,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14772,1,2,0)
+ ;;=2^86486
+ ;;^UTILITY(U,$J,358.3,14772,1,3,0)
+ ;;=3^Mumps
+ ;;^UTILITY(U,$J,358.3,14773,0)
+ ;;=94640^^108^886^11^^^^1
+ ;;^UTILITY(U,$J,358.3,14773,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14773,1,2,0)
+ ;;=2^94640
+ ;;^UTILITY(U,$J,358.3,14773,1,3,0)
+ ;;=3^Nebulizer Treatment
+ ;;^UTILITY(U,$J,358.3,14774,0)
+ ;;=69210^^108^886^3^^^^1
+ ;;^UTILITY(U,$J,358.3,14774,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14774,1,2,0)
+ ;;=2^69210
+ ;;^UTILITY(U,$J,358.3,14774,1,3,0)
+ ;;=3^Ear cleaning/lavage
+ ;;^UTILITY(U,$J,358.3,14775,0)
+ ;;=82948^^108^886^4^^^^1
+ ;;^UTILITY(U,$J,358.3,14775,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14775,1,2,0)
+ ;;=2^82948
+ ;;^UTILITY(U,$J,358.3,14775,1,3,0)
+ ;;=3^Glucose finger stick
+ ;;^UTILITY(U,$J,358.3,14776,0)
+ ;;=11719^^108^886^12^^^^1
+ ;;^UTILITY(U,$J,358.3,14776,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14776,1,2,0)
+ ;;=2^11719
+ ;;^UTILITY(U,$J,358.3,14776,1,3,0)
+ ;;=3^Trim Nails (nondystrophic)
+ ;;^UTILITY(U,$J,358.3,14777,0)
+ ;;=81002^^108^886^13^^^^1
+ ;;^UTILITY(U,$J,358.3,14777,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14777,1,2,0)
+ ;;=2^81002
+ ;;^UTILITY(U,$J,358.3,14777,1,3,0)
+ ;;=3^UA Dipstick
+ ;;^UTILITY(U,$J,358.3,14778,0)
+ ;;=93005^^108^886^2^^^^1
+ ;;^UTILITY(U,$J,358.3,14778,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14778,1,2,0)
+ ;;=2^93005
+ ;;^UTILITY(U,$J,358.3,14778,1,3,0)
+ ;;=3^EKG
+ ;;^UTILITY(U,$J,358.3,14779,0)
+ ;;=36600^^108^886^1^^^^1
+ ;;^UTILITY(U,$J,358.3,14779,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14779,1,2,0)
+ ;;=2^36600
+ ;;^UTILITY(U,$J,358.3,14779,1,3,0)
+ ;;=3^ABG
+ ;;^UTILITY(U,$J,358.3,14780,0)
+ ;;=29580^^108^886^15^^^^1
+ ;;^UTILITY(U,$J,358.3,14780,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14780,1,2,0)
+ ;;=2^29580
+ ;;^UTILITY(U,$J,358.3,14780,1,3,0)
+ ;;=3^Unna Boot
+ ;;^UTILITY(U,$J,358.3,14781,0)
+ ;;=97602^^108^886^16^^^^1
+ ;;^UTILITY(U,$J,358.3,14781,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14781,1,2,0)
+ ;;=2^97602
+ ;;^UTILITY(U,$J,358.3,14781,1,3,0)
+ ;;=3^Wound Care, non-selective debridement
+ ;;^UTILITY(U,$J,358.3,14782,0)
+ ;;=51701^^108^886^9^^^^1
+ ;;^UTILITY(U,$J,358.3,14782,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14782,1,2,0)
+ ;;=2^51701
+ ;;^UTILITY(U,$J,358.3,14782,1,3,0)
+ ;;=3^Insert Catheter for Residual Urine
+ ;;^UTILITY(U,$J,358.3,14783,0)
+ ;;=51702^^108^886^10^^^^1
+ ;;^UTILITY(U,$J,358.3,14783,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14783,1,2,0)
+ ;;=2^51702
+ ;;^UTILITY(U,$J,358.3,14783,1,3,0)
+ ;;=3^Insert Foley Cath
+ ;;^UTILITY(U,$J,358.3,14784,0)
+ ;;=51798^^108^886^14^^^^1
+ ;;^UTILITY(U,$J,358.3,14784,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14784,1,2,0)
+ ;;=2^51798
+ ;;^UTILITY(U,$J,358.3,14784,1,3,0)
+ ;;=3^Ultrasound for Resid Urine
+ ;;^UTILITY(U,$J,358.3,14785,0)
+ ;;=96360^^108^886^6^^^^1
+ ;;^UTILITY(U,$J,358.3,14785,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14785,1,2,0)
+ ;;=2^96360
+ ;;^UTILITY(U,$J,358.3,14785,1,3,0)
+ ;;=3^Hydration,IV,first hour
+ ;;^UTILITY(U,$J,358.3,14786,0)
+ ;;=96361^^108^886^7^^^^1
+ ;;^UTILITY(U,$J,358.3,14786,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14786,1,2,0)
+ ;;=2^96361
+ ;;^UTILITY(U,$J,358.3,14786,1,3,0)
+ ;;=3^Hydration,IV,e addl hour
+ ;;^UTILITY(U,$J,358.3,14787,0)
+ ;;=96365^^108^886^8^^^^1
+ ;;^UTILITY(U,$J,358.3,14787,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14787,1,2,0)
+ ;;=2^96365
+ ;;^UTILITY(U,$J,358.3,14787,1,3,0)
+ ;;=3^Infusion,IV up to 1 hour
+ ;;^UTILITY(U,$J,358.3,14788,0)
+ ;;=96366^^108^886^8.5^^^^1
+ ;;^UTILITY(U,$J,358.3,14788,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14788,1,2,0)
+ ;;=2^96366
+ ;;^UTILITY(U,$J,358.3,14788,1,3,0)
+ ;;=3^Infusion,IV e addl hour
+ ;;^UTILITY(U,$J,358.3,14789,0)
+ ;;=17000^^108^887^1^^^^1
+ ;;^UTILITY(U,$J,358.3,14789,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14789,1,2,0)
+ ;;=2^17000
+ ;;^UTILITY(U,$J,358.3,14789,1,3,0)
+ ;;=3^   Destr ben les, any method, 1st les
+ ;;^UTILITY(U,$J,358.3,14790,0)
+ ;;=17003^^108^887^2^^^^1
+ ;;^UTILITY(U,$J,358.3,14790,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14790,1,2,0)
+ ;;=2^17003
+ ;;^UTILITY(U,$J,358.3,14790,1,3,0)
+ ;;=3^   Destr ben les, any method, addt'l les, ea (use with 17000)
+ ;;^UTILITY(U,$J,358.3,14791,0)
+ ;;=17004^^108^887^3^^^^1
+ ;;^UTILITY(U,$J,358.3,14791,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14791,1,2,0)
+ ;;=2^17004
+ ;;^UTILITY(U,$J,358.3,14791,1,3,0)
+ ;;=3^   Destr ben les, over 15
+ ;;^UTILITY(U,$J,358.3,14792,0)
+ ;;=0^1^108^887^0^Use 17000 then 17003x units, OR 17004^0
+ ;;^UTILITY(U,$J,358.3,14792,1,0)
+ ;;=^358.31IA^0^0
+ ;;^UTILITY(U,$J,358.3,14793,0)
+ ;;=10060^^108^887^13^^^^1
+ ;;^UTILITY(U,$J,358.3,14793,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14793,1,2,0)
+ ;;=2^10060
+ ;;^UTILITY(U,$J,358.3,14793,1,3,0)
+ ;;=3^I&D abscess
+ ;;^UTILITY(U,$J,358.3,14794,0)
+ ;;=10061^^108^887^12^^^^1
+ ;;^UTILITY(U,$J,358.3,14794,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14794,1,2,0)
+ ;;=2^10061
+ ;;^UTILITY(U,$J,358.3,14794,1,3,0)
+ ;;=3^I&D Complicated Abscess
+ ;;^UTILITY(U,$J,358.3,14795,0)
+ ;;=11042^^108^887^10^^^^1
+ ;;^UTILITY(U,$J,358.3,14795,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14795,1,2,0)
+ ;;=2^11042
+ ;;^UTILITY(U,$J,358.3,14795,1,3,0)
+ ;;=3^Debridement, Skin & Subcu. Tissue
+ ;;^UTILITY(U,$J,358.3,14796,0)
+ ;;=20550^^108^887^15^^^^1
+ ;;^UTILITY(U,$J,358.3,14796,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14796,1,2,0)
+ ;;=2^20550
+ ;;^UTILITY(U,$J,358.3,14796,1,3,0)
+ ;;=3^Injection, Tendon Sheath, Ligament, Ganglion Cyst
+ ;;^UTILITY(U,$J,358.3,14797,0)
+ ;;=20551^^108^887^14^^^^1
+ ;;^UTILITY(U,$J,358.3,14797,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14797,1,2,0)
+ ;;=2^20551
+ ;;^UTILITY(U,$J,358.3,14797,1,3,0)
+ ;;=3^Injection, Tendon Origin/Insertion
+ ;;^UTILITY(U,$J,358.3,14798,0)
+ ;;=20552^^108^887^16^^^^1
+ ;;^UTILITY(U,$J,358.3,14798,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14798,1,2,0)
+ ;;=2^20552
+ ;;^UTILITY(U,$J,358.3,14798,1,3,0)
+ ;;=3^Injection, Trigger Point, 1 or 2 Muscle groups
+ ;;^UTILITY(U,$J,358.3,14799,0)
+ ;;=20600^^108^887^4^^^^1
+ ;;^UTILITY(U,$J,358.3,14799,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14799,1,2,0)
+ ;;=2^20600
+ ;;^UTILITY(U,$J,358.3,14799,1,3,0)
+ ;;=3^Arthrocentesis, Fingers/Toes
+ ;;^UTILITY(U,$J,358.3,14800,0)
+ ;;=20605^^108^887^6^^^^1
+ ;;^UTILITY(U,$J,358.3,14800,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14800,1,2,0)
+ ;;=2^20605
+ ;;^UTILITY(U,$J,358.3,14800,1,3,0)
+ ;;=3^Arthrocentesis, Wrist/Elbow/Ankle/AC Joint
+ ;;^UTILITY(U,$J,358.3,14801,0)
+ ;;=20610^^108^887^5^^^^1
+ ;;^UTILITY(U,$J,358.3,14801,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14801,1,2,0)
+ ;;=2^20610
+ ;;^UTILITY(U,$J,358.3,14801,1,3,0)
+ ;;=3^Arthrocentesis, Knee/Shoulder/Hip
+ ;;^UTILITY(U,$J,358.3,14802,0)
+ ;;=30901^^108^887^18^^^^1
+ ;;^UTILITY(U,$J,358.3,14802,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14802,1,2,0)
+ ;;=2^30901
+ ;;^UTILITY(U,$J,358.3,14802,1,3,0)
+ ;;=3^Nasal Packing
+ ;;^UTILITY(U,$J,358.3,14803,0)
+ ;;=31500^^108^887^11^^^^1
+ ;;^UTILITY(U,$J,358.3,14803,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14803,1,2,0)
+ ;;=2^31500
+ ;;^UTILITY(U,$J,358.3,14803,1,3,0)
+ ;;=3^Endotrach Intubation
+ ;;^UTILITY(U,$J,358.3,14804,0)
+ ;;=92950^^108^887^7^^^^1
+ ;;^UTILITY(U,$J,358.3,14804,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14804,1,2,0)
+ ;;=2^92950
+ ;;^UTILITY(U,$J,358.3,14804,1,3,0)
+ ;;=3^CPR
+ ;;^UTILITY(U,$J,358.3,14805,0)
+ ;;=11055^^108^887^24^^^^1
+ ;;^UTILITY(U,$J,358.3,14805,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14805,1,2,0)
+ ;;=2^11055
+ ;;^UTILITY(U,$J,358.3,14805,1,3,0)
+ ;;=3^Trim Corn/Callous, One
+ ;;^UTILITY(U,$J,358.3,14806,0)
+ ;;=11056^^108^887^22^^^^1
+ ;;^UTILITY(U,$J,358.3,14806,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14806,1,2,0)
+ ;;=2^11056
+ ;;^UTILITY(U,$J,358.3,14806,1,3,0)
+ ;;=3^Trim Corn/Callous, 2 to 4
+ ;;^UTILITY(U,$J,358.3,14807,0)
+ ;;=11057^^108^887^23^^^^1
+ ;;^UTILITY(U,$J,358.3,14807,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14807,1,2,0)
+ ;;=2^11057
+ ;;^UTILITY(U,$J,358.3,14807,1,3,0)
+ ;;=3^Trim Corn/Callous, 5 or more
+ ;;^UTILITY(U,$J,358.3,14808,0)
+ ;;=29105^^108^888^2^^^^1
+ ;;^UTILITY(U,$J,358.3,14808,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14808,1,2,0)
+ ;;=2^29105
+ ;;^UTILITY(U,$J,358.3,14808,1,3,0)
+ ;;=3^Long Arm Splint
+ ;;^UTILITY(U,$J,358.3,14809,0)
+ ;;=29125^^108^888^4^^^^1
+ ;;^UTILITY(U,$J,358.3,14809,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14809,1,2,0)
+ ;;=2^29125
+ ;;^UTILITY(U,$J,358.3,14809,1,3,0)
+ ;;=3^Short Arm Splint; Static
+ ;;^UTILITY(U,$J,358.3,14810,0)
+ ;;=29126^^108^888^3^^^^1
+ ;;^UTILITY(U,$J,358.3,14810,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14810,1,2,0)
+ ;;=2^29126
+ ;;^UTILITY(U,$J,358.3,14810,1,3,0)
+ ;;=3^Short Arm Splint; Dynamic
+ ;;^UTILITY(U,$J,358.3,14811,0)
+ ;;=29130^^108^888^1^^^^1
+ ;;^UTILITY(U,$J,358.3,14811,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14811,1,2,0)
+ ;;=2^29130
+ ;;^UTILITY(U,$J,358.3,14811,1,3,0)
+ ;;=3^Finger Splint
+ ;;^UTILITY(U,$J,358.3,14812,0)
+ ;;=12001^^108^889^1^^^^1
+ ;;^UTILITY(U,$J,358.3,14812,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14812,1,2,0)
+ ;;=2^12001
+ ;;^UTILITY(U,$J,358.3,14812,1,3,0)
+ ;;=3^Simple repair; 2.5 cm or less
+ ;;^UTILITY(U,$J,358.3,14813,0)
+ ;;=12002^^108^889^2^^^^1
+ ;;^UTILITY(U,$J,358.3,14813,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14813,1,2,0)
+ ;;=2^12002

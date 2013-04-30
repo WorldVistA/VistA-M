@@ -1,5 +1,5 @@
 DIEVK1 ;SFISC/MKO-KEY VALIDATION ;10:42 AM  30 Sep 1998
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 BUILD(DIVKFDA,DIVKFLAG) ;Loop thru FDA and load key info

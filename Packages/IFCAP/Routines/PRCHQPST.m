@@ -1,0 +1,94 @@
+PRCHQPST ;(WASH IRMFO)/LKG-Post Init routine for RFQ install ;10/24/96  16:31
+ ;;5.0;IFCAP;**68**;4/21/95
+ Q
+EN N X,PRCX,DA,DIC,DIE,DLAYGO,DR,Y
+ S X="PRCHQ RFQ",DIC=3.8,DIC(0)="LX",DLAYGO=3.8 D ^DIC K DIC,DLAYGO
+ I $P(Y,U,3)=1 D
+ . N %,%H,%I
+ . S DA=+Y,DIE=3.8,DR="4////PU" D ^DIE
+ . S DR="5////.5" D ^DIE
+ . S DR="7////n" D ^DIE
+ . S DR="10////0" D ^DIE
+ . D NOW^%DTC S ^XMB(3.8,DA,2,0)="^^1^1^"_X_"^"
+ . S ^XMB(3.8,DA,2,1,0)="This Mail Group gets bulletins sent from vendors and filing errors."
+ . I $G(XPDQUES("POS001"))>0 D
+ . . S X=+XPDQUES("POS001")
+ . . Q:$D(^XMB(3.8,DA,1,"B",X))
+ . . S Y=DA K DA S DA(1)=Y,DIC="^XMB(3.8,DA(1),1,",DIC(0)="LX",DLAYGO=3.81
+ . . S DIC("P")=$P(^DD(3.8,2,0),U,2) K DD,DO D FILE^DICN K DIC,DLAYGO,DA
+ S X="RFQ",DIC=420.4,DIC(0)="LX",DLAYGO=420.4 D ^DIC K DIC,DLAYGO
+ I +Y>0 D
+ . S DA=+Y,DIE=420.4,PRCX="Transmit 840 - Request for Quotation"
+ . S DR="2///^S X=PRCX" D ^DIE
+ . S PRCX="PHA",DR=".7///^S X=PRCX" D ^DIE
+ . S DR="1////Y" D ^DIE
+ . S DR="3////PHA" D ^DIE
+ . K DA,DR,DIE
+ S X="TXT",DIC=420.4,DIC(0)="LX",DLAYGO=420.4 D ^DIC K DIC,DLAYGO
+ I +Y>0 D
+ . S DA=+Y,DIE=420.4,PRCX="Transmit 864 Text Message"
+ . S DR="2///^S X=PRCX" D ^DIE
+ . S PRCX="PHA",DR=".7///^S X=PRCX" D ^DIE
+ . S DR="1////Y" D ^DIE
+ . S DR="3////PHA" D ^DIE
+ . K DA,DR,DIE
+ S X="ISM-TXT",DIC=423.5,DIC(0)="LX",DLAYGO=423.5 D ^DIC K DIC,DLAYGO
+ I +Y>0 D
+ . S DA=+Y,DIE=423.5
+ . S PRCX="PRCHQ RFQ",DR="1///^S X=PRCX" D ^DIE
+ . S PRCX="IN",DR="2///^S X=PRCX" D ^DIE
+ . S PRCX="PRCHQ7",DR="3///^S X=PRCX" D ^DIE
+ . K DA,DIE,DR
+ S X="ISM-VQT",DIC=423.5,DIC(0)="LX",DLAYGO=423.5 D ^DIC K DIC,DLAYGO
+ I +Y>0 D
+ . S DA=+Y,DIE=423.5
+ . S PRCX="PRCHQ RFQ",DR="1///^S X=PRCX" D ^DIE
+ . S PRCX="IN",DR="2///^S X=PRCX" D ^DIE
+ . S PRCX="PRCHQ6",DR="3///^S X=PRCX" D ^DIE
+ . K DA,DIE,DR
+ S X="ISM-ACT",DIC=423.5,DIC(0)="LX",DLAYGO=423.5 D ^DIC K DIC,DLAYGO
+ I +Y>0,$P(Y,U,3)=1 D
+ . S DA=+Y,DIE=423.5
+ . S PRCX="EDP",DR="1///^S X=PRCX" D ^DIE
+ . S PRCX="START",DR="2///^S X=PRCX" D ^DIE
+ . S PRCX="PRCOACT",DR="3///^S X=PRCX" D ^DIE
+ . K DA,DIE,DR
+ ;
+ S X="ISM-PRJ",DIC=423.5,DIC(0)="LX",DLAYGO=423.5 D ^DIC K DIC,DLAYGO
+ I +Y>0,$P(Y,U,3)=1 D
+ . S DA=+Y,DIE=423.5
+ . S PRCX="EDP",DR="1///^S X=PRCX" D ^DIE
+ . S PRCX="START",DR="2///^S X=PRCX" D ^DIE
+ . S PRCX="PRCOACT",DR="3///^S X=PRCX" D ^DIE
+ . K DA,DIE,DR
+ K DIC,DA
+ F PRCX="PRCHQ 843 UPDATE VENDOR INFO","PRCHQ 864 ERROR","PRCHQ 864 NORMAL" D
+ . S X=PRCX,DIC="^XMB(3.6,",DIC(0)="X" D ^DIC K DIC
+ . Q:+Y<1
+ . S DA(1)=+Y,DIC="^XMB(3.6,DA(1),2,",DIC(0)="LX",DLAYGO=3.62
+ . S DIC("P")=$P(^DD(3.6,4,0),U,2),X="PRCHQ RFQ" D ^DIC K DA,DIC,DLAYGO
+ S X="PRCOEDI ACKNOWLEDGE",DIC="^XMB(3.6,",DIC(0)="X" D ^DIC K DIC
+ I +Y>0 D
+ . S DA(1)=+Y,DIC="^XMB(3.6,DA(1),2,",DIC(0)="LX",DLAYGO=3.62
+ . S DIC("P")=$P(^DD(3.6,4,0),U,2),X="EDP" D ^DIC K DA,DIC,DLAYGO
+IND L +^PRC(440) N DIK S DIK="^PRC(440,",DIK(1)="18.3^DB" D ENALL^DIK K DIK L -^PRC(440)
+OPT ;Add options to menu
+ K DA S DA(1)=$O(^DIC(19,"B","PRCHQ REPORTS",""))
+ I DA(1)]"" D
+ . K DIC,DIE,DR N PRCI,PRCX,X,Y
+ . F PRCI=1:1:3 D
+ . . S PRCX=$P("PRCHPC VEN EDIT~10^PRCHPC ITEM EDIT~11^PRCHPC PO EDIT~12","^",PRCI)
+ . . S X=$P(PRCX,"~"),PRCX=$P(PRCX,"~",2),X=$O(^DIC(19,"B",X,"")) Q:X=""
+ . . Q:$D(^DIC(19,DA(1),10,"B",X))  K DD,DO
+ . . S DIC="^DIC(19,DA(1),10,",DIC(0)="LX",DIC("P")=$P(^DD(19,10,0),U,2)
+ . . D FILE^DICN K DIC
+ . . I Y>0 D
+ . . . S DA=+Y,DIE="^DIC(19,DA(1),10,",DR="3///^S X=PRCX" D ^DIE K DIE,DR
+ K DA S DA(1)=$O(^DIC(19,"B","PRCHUSER PA",""))
+ I DA(1)]"" D
+ . K DIC,DIE,DR
+ . S X=$O(^DIC(19,"B","PRCHQM","")) Q:X=""
+ . Q:$D(^DIC(19,DA(1),10,"B",X))  K DD,DO
+ . S DIC="^DIC(19,DA(1),10,",DIC(0)="LX",DIC("P")=$P(^DD(19,10,0),U,2)
+ . D FILE^DICN K DIC
+ Q

@@ -1,5 +1,5 @@
 DIWE1 ;SFISC/GFT-WORD PROCESSING FUNCTION ;4JUN2008
- ;;22.0;VA FileMan;**159**;Mar 30, 1999;Build 8
+ ;;22.0;VA FileMan;**159**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  G X:$D(DTOUT) I '$D(DWL) S I=DWLC,J=$S(I<11:1,1:I-8) W:J>1 ?7,". . .",!?7,". . ." D LL
 1 G X:$D(DTOUT) R !,"EDIT Option: ",X:DTIME S:'$T DTOUT=1 G X:U[X!(X=".")

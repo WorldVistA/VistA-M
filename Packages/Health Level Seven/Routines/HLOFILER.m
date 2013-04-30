@@ -1,5 +1,5 @@
-HLOFILER ;ALB/CJM- Passes messages on the incoming queue to the applications - 10/4/94 1pm ;05/26/2011
- ;;1.6;HEALTH LEVEL SEVEN;**126,131,134,137,152**;Oct 13, 1995;Build 3
+HLOFILER ;ALB/CJM- Passes messages on the incoming queue to the applications - 10/4/94 1pm ;03/12/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**126,131,134,137,152,158**;Oct 13, 1995;Build 14
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;GET WORK function for the process running under the Process Manager
@@ -13,11 +13,6 @@ GETWORK(QUE) ;
  ;  QUE-  updated to identify next queu of messages to process.
  ;
  N FROM,QUEUE
- I '$D(QUE("SYSTEM")) D
- .N SYS
- .D SYSPARMS^HLOSITE(.SYS)
- .S QUE("SYSTEM","NORMAL PURGE")=SYS("NORMAL PURGE")
- .S QUE("SYSTEM","ERROR PURGE")=SYS("ERROR PURGE")
  S FROM=$G(QUE("FROM")),QUEUE=$G(QUE("QUEUE"))
  I ($G(FROM)]""),($G(QUEUE)]"") D
  .L -^HLB("QUEUE","IN",FROM,QUEUE)
@@ -41,13 +36,13 @@ DOWORK(QUEUE) ;passes the messages on the queue to the application
  S MSGIEN=0
  ;
  F  S MSGIEN=$O(^HLB("QUEUE","IN",QUEUE("FROM"),QUEUE("QUEUE"),MSGIEN)) Q:'MSGIEN  S COUNT=COUNT+1 Q:COUNT>1000  D  M QUEUE=QUE
- .N MCODE,ACTION,QUE,PURGE,ACKTOIEN,NODE,COUNT
+ .N MCODE,ACTION,QUE,PURGE,ORIG,NODE,COUNT
  .N $ETRAP,$ESTACK S $ETRAP="G ERROR2^HLOFILER"
  .S NODE=$G(^HLB("QUEUE","IN",QUEUE("FROM"),QUEUE("QUEUE"),MSGIEN))
  .S ACTION=$P(NODE,"^",1,2)
  .S PURGE=$P(NODE,"^",3)
- .S ACKTOIEN=$P(NODE,"^",4)
- .D DEQUE(MSGIEN,PURGE,ACKTOIEN)
+ .S ORIG("IEN")=$P(NODE,"^",4),ORIG("ACK BY")=$P(NODE,"^",5),ORIG("STATUS")=$P(NODE,"^",6)
+ .D DEQUE(MSGIEN,PURGE,.ORIG)
  .I ACTION]"" D
  ..N HLMSGIEN,MCODE,DEQUE,DUZ
  ..N $ETRAP,$ESTACK S $ETRAP="G ERROR3^HLOFILER"
@@ -65,26 +60,27 @@ ENDWORK ;where the execution resumes upon an error
  D DEQUE()
  Q
  ;
-DEQUE(MSGIEN,PURGE,ACKTOIEN) ;
- ;Dequeues the message.  Also sets up the purge dt/tm and the completion status.
- S:$G(MSGIEN) DEQUE=$G(DEQUE)+1,DEQUE(MSGIEN)=PURGE_"^"_ACKTOIEN
+DEQUE(MSGIEN,PURGE,ORIG) ;
+ ;Dequeues the message.  Also sets up the purge indicator and the completion status.
+ S:$G(MSGIEN) DEQUE=$G(DEQUE)+1,DEQUE(MSGIEN)=PURGE_"^"_ORIG("IEN")_"^"_ORIG("ACK BY")_"^"_ORIG("STATUS")
  I '$G(MSGIEN)!($G(DEQUE)>25) S MSGIEN=0 D
  .F  S MSGIEN=$O(DEQUE(MSGIEN)) Q:'MSGIEN  D
- ..N NODE,PURGE,ACKTOIEN
+ ..N NODE,PURGE,ORIG
  ..S NODE=DEQUE(MSGIEN)
- ..S PURGE=$P(NODE,"^"),ACKTOIEN=$P(NODE,"^",2)
+ ..S PURGE=$P(NODE,"^"),ORIG("IEN")=$P(NODE,"^",2),ORIG("ACK BY")=$P(NODE,"^",3),ORIG("STATUS")=$P(NODE,"^",4)
  ..D DEQUE^HLOQUE(QUEUE("FROM"),QUEUE("QUEUE"),"IN",MSGIEN)
- ..S NODE=$G(^HLB(MSGIEN,0))
- ..Q:NODE=""
- ..S $P(NODE,"^",19)=1 ;sets the flag to show that the app handoff was done
- ..D:PURGE
+ ..S $P(^HLB(MSGIEN,0),"^",19)=1 ;sets the flag to show that the app handoff was done
+ ..;
+ ..;update original message
+ ..I ORIG("IEN"),$D(^HLB(ORIG("IEN"),0)) D
+ ...S:$L(ORIG("ACK BY")) $P(^HLB(ORIG("IEN"),0),"^",7)=ORIG("ACK BY"),$P(^HLB(ORIG("IEN"),0),"^",18)=1
+ ...S:$L(ORIG("STATUS")) $P(^HLB(ORIG("IEN"),0),"^",20)=ORIG("STATUS")
+ ..;
+ZB2 ..D:PURGE
  ...N STATUS
- ...S STATUS=$P(NODE,"^",20)
- ...S:STATUS="" $P(NODE,"^",20)="SU",STATUS="SU"
- ...S $P(NODE,"^",9)=$$FMADD^XLFDT($$NOW^XLFDT,,$S(PURGE=2:24*QUEUE("SYSTEM","ERROR PURGE"),$D(^HLB(MSGIEN,3,1,0)):24*QUEUE("SYSTEM","ERROR PURGE"),1:QUEUE("SYSTEM","NORMAL PURGE")))
- ...S ^HLB("AD",$S($E($P(NODE,"^",4))="I":"IN",1:"OUT"),$P(NODE,"^",9),MSGIEN)=""
- ...I ACKTOIEN,$D(^HLB(ACKTOIEN,0)) S $P(^HLB(ACKTOIEN,0),"^",9)=$P(NODE,"^",9),^HLB("AD",$S($E($P(NODE,"^",4))="I":"OUT",1:"IN"),$P(NODE,"^",9),ACKTOIEN)=""
- ..S ^HLB(MSGIEN,0)=NODE
+ ...S STATUS=$P(^HLB(MSGIEN,0),"^",20)
+ ...S:STATUS="" $P(^HLB(MSGIEN,0),"^",20)="SU",STATUS="SU"
+ ...D SETPURGE^HLOF778A(MSGIEN,STATUS,ORIG("IEN"),ORIG("STATUS"))
  .K DEQUE S DEQUE=0
  Q
  ;
@@ -116,7 +112,8 @@ ERROR2 ;
  ;
  ;may need to change the status to Error
  D
- .N NODE,RAPP,SAPP,FS,CS,REP,ESCAPE,SUBCOMP,HDR,DIR,NOW
+ .N NODE,RAPP,SAPP,FS,CS,REP,ESCAPE,SUBCOMP,HDR,DIR,NOW,SYS
+ .D SYSPARMS^HLOSITE(.SYS)
  .S NOW=$$NOW^XLFDT
  .S NODE=$G(^HLB(MSGIEN,0))
  .Q:NODE=""
@@ -124,7 +121,7 @@ ERROR2 ;
  .S $P(NODE,"^",20)="ER",$P(NODE,"^",21)="APPLICATION ROUTINE ERROR"
  .S DIR=$S($E($P(NODE,"^",4))="I":"IN",1:"OUT")
  .I $P(NODE,"^",9) K ^HLB("AD",DIR,$P(NODE,"^",9),MSGIEN)
- .S $P(NODE,"^",9)=$$FMADD^XLFDT(NOW,,24*QUEUE("SYSTEM","ERROR PURGE"))
+ .S $P(NODE,"^",9)=$$FMADD^XLFDT(NOW,SYS("ERROR PURGE"))
  .S ^HLB(MSGIEN,0)=NODE
  .S ^HLB("AD",DIR,$P(NODE,"^",9),MSGIEN)=""
  .S HDR=$G(^HLB(MSGIEN,1))
@@ -163,3 +160,8 @@ ERROR3 ;error trap for application context
  ;drop to the ERROR2 error handler
  Q:$QUIT ""
  Q
+ ;
+ ;
+ ;
+ ;
+ ;

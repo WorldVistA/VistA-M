@@ -1,10 +1,13 @@
-YTRPWRP ;DALOI/YH - Report Calls ; 8/2/10 2:44pm
- ;;5.01;MENTAL HEALTH;**71,76,96**;Dec 30, 1994;Build 46
+YTRPWRP ;DALOI/YH - Report Calls ;8/2/10 2:44pm
+ ;;5.01;MENTAL HEALTH;**71,76,96,60**;Dec 30, 1994;Build 47
+ ;
  ;Reference to VADPT APIs supported by DBIA #10061
  ;Reference to ^XLFDT APIs supported by DBIA #10103
  ;Reference to ^%ZISC supported by IA #10089
  ;Reference to ^%ZIS supported by IA #10086
  ;Reference to %ZISH supported by DBIA #2320
+ ;Reference to DT^DICRW supported by DBIA #10005
+ ;
 INTRMNT(ROOT,YSDFN,YSXT) ; -- return report text
  ;ROOT=Where you want it
  ;YSDFN=Patient DFN
@@ -95,3 +98,33 @@ TESTTL(ROOT) ;YTRP LIST TEST/TITLE
  N A S A="T"
  D START(132,"ENP^YTLCTD")
  Q
+ ;
+ ; Hrubovcak - 30 March 2012
+ ;
+AL60193 ; strip control chars. from all entries in MH REPORT (#601.93)
+ ;
+ D DT^DICRW
+ N YSI S YSI=0
+ F  S YSI=$O(^YTT(601.93,YSI)) Q:'(YSI>0)  D:$O(^YTT(601.93,YSI,1,0))  ; if W-P field exists
+ .L +^YTT(601.93,YSI):DILOCKTM E  Q  ; exclusive access
+ .D RMVCC(YSI) L -^YTT(601.93,YSI)
+ ;
+ Q
+ ;
+RMVCC(YSIEN) ; remove control chars. from W-P field in MH REPORT (#601.93)
+ ; entry should be LOCKed before call
+ N J,X,Y  ; X=original, Y=fixed
+ S J=0
+ F  S J=$O(^YTT(601.93,YSIEN,1,J)) Q:'J  S X=$G(^YTT(601.93,YSIEN,1,J,0)) I X]"" S Y=X D
+ .N FLAG  ; indicates what was done
+ .I Y[$C(8) D  ; backspace
+ ..I $L(Y,$C(8))=$L(Y,$C(95)) S Y=$TR(Y,$C(8,95),""),FLAG("BSUN")=1 Q  ; backspace & underscore
+ ..S Y=$TR(Y,$C(8),""),FLAG("BS")=1  ; backspace
+ .;
+ .I Y[$C(7)!(Y[$C(12)) S:Y[$C(12) FLAG("FF")=1 S:Y[$C(7) FLAG("BELL")=1 S Y=$TR(Y,$C(7,12),"") ; bell or form feed
+ .Q:Y=X  ; no changes
+ .S ^YTT(601.93,YSIEN,1,J,0)=Y
+ .I J>7,$G(FLAG("FF")) S ^YTT(601.93,YSIEN,1,J+.5,0)="***eop***"_$C(10)
+ ;
+ Q
+ ;

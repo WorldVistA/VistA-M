@@ -1,32 +1,195 @@
-LRMIPSZ4 ;SLC/CJS/BA - MICRO PATIENT REPORT - AFB, FUNGUS ; 6/22/87  16:17 ;
- ;;5.2;LAB SERVICE;;Sep 27, 1994
-TB ;from LRMIPSZ1
- I '$L($P(^LR(LRDFN,"MI",LRIDT,11),U)) Q:'$D(LRWRDVEW)  Q:LRSB'=11
- S LRTUS=$P(^LR(LRDFN,"MI",LRIDT,11),U,2),DZ=$P(^(11),U,5),LRAFS=$P(^(11),U,3),LRAMT=$P(^(11),U,4),Y=$P(^(11),U) D D^LRU
- W:LRHC ! W !,"* MYCOBACTERIOLOGY ",$S(LRTUS="F":"FINAL",LRTUS="P":"PRELIMINARY",1:"")," REPORT => "_Y_"   TECH CODE: "_DZ
- S LRPRE=23 D PRE^LRMIPSU
- K LRTA I $D(^LR(LRDFN,"MI",LRIDT,12,0)),$P(^(0),U,4)>0 S LRTA=0
- D:LRAFS'=""!($D(LRTA)) AFS
- I $D(^LR(LRDFN,"MI",LRIDT,13,0)),$P(^(0),U,4)>0 W:LRHC ! W !,"Mycobacteriology Remark(s):" S B=0 F I=0:0 S B=+$O(^LR(LRDFN,"MI",LRIDT,13,B)) Q:B<1  W !,?3,^(B,0)
+LRMIPSZ4 ;DALOI/RBN - MICRO PATIENT REPORT - AFB, FUNGUS ;09/02/10  15:21
+ ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+ ;
+ ;Reference to ^DD supported by ICR #999
+ ;
  Q
-AFS I LRAFS'="" W:LRHC ! W !,$S(LRAFS["D":"Direct",LRAFS["C":"Concentrate",1:"")," Acid Fast Stain:  ",$S(LRAFS["P":"Positive",LRAFS["N":"Negative",1:LRAFS),"   " W:$L(LRAMT) !,?3,"Quantity: ",LRAMT
- K ^TMP("LR",$J,"T"),LRTSTS I $D(LRTA) S LRTSTS=0 F A=0:1 S LRTA=+$O(^LR(LRDFN,"MI",LRIDT,12,LRTA)) Q:LRTA<1  S (LRBUG(LRTA),LRTBC)=$P(^(LRTA,0),U),LRQU=$P(^(0),U,2),LRTBC=$P(^LAB(61.2,LRTBC,0),U) D LIST
+ ;
+TB ;
+ ; from LRMIPSZ1
+ ; also called from RPT^LROR4
+ N B,LRBLDTMP,LRQUIT,LRTA,LRX
+ S (LRBLDTMP,LRQUIT)=0
+ I '$D(^TMP("LRMI",$J,LRDFN,"MI",LRIDT)) D  ;
+ . S LRBLDTMP=1
+ . M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT)=^LR(LRDFN,"MI",LRIDT)
+ . K ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,32)
+ ;
+ I $P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,11),U)="",'$G(LRLABKY) S:'$D(LRWRDVEW) LRQUIT=1 S:LRSB'=11 LRQUIT=1
+ ;
+ I LRQUIT D  Q
+ . I LRBLDTMP K ^TMP("LRMI",$J,LRDFN,"MI",LRIDT)
+ ;
+ S LRX=^TMP("LRMI",$J,LRDFN,"MI",LRIDT,11)
+ S LRTUS=$P(LRX,U,2),DZ=$P(LRX,U,5),LRAFS=$P(LRX,U,3),LRAMT=$P(LRX,U,4),Y=$P(LRX,U)
+ D D^LRU
+ W:LRHC !
+ W !,"* MYCOBACTERIOLOGY ",$S(LRTUS="F":"FINAL",LRTUS="P":"PRELIMINARY",1:"")," REPORT => "_Y_"   TECH CODE: "_DZ
+ S LRPRE=23
+ D PRE^LRMIPSU
+ ;
+ S LRTA=""
+ I $O(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,12,0)) S LRTA=0
+ D:LRAFS'=""!(LRTA=0) AFS
+ ;
+ I $D(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,13)) D  ;
+ . W:LRHC !
+ . W !,"Mycobacteriology Remark(s):"
+ . D NP Q:LRABORT
+ . S B=0
+ . F  S B=+$O(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,13,B)) Q:B<1  W !,?3,^(B,0) D NP Q:LRABORT
+ ;
+ I LRBLDTMP K ^TMP("LRMI",$J,LRDFN,"MI",LRIDT)
  Q
-LIST W:LRHC ! W !,"Mycobacterium: ",LRTBC W:$L(LRQU) !,?3,"Quantity: ",LRQU S:$D(^LR(LRDFN,"MI",LRIDT,12,LRTA,2)) LRTSTS=LRTSTS+1
- I $D(^LR(LRDFN,"MI",LRIDT,12,LRTA,1,0)) W !,"   Comment: " S B=0 F I=0:0 S B=+$O(^LR(LRDFN,"MI",LRIDT,12,LRTA,1,B)) Q:B<1  W ?13,^(B,0),!
-SEN S LRTB=2 F I=0:0 S LRTB=+$O(^LR(LRDFN,"MI",LRIDT,12,LRTA,LRTB)) Q:LRTB'["2."!(LRTB="")  S LRTBA=$O(^DD(63.39,"GL",LRTB,1,0)),LRTBA=$P(^DD(63.39,LRTBA,0),U),LRTBS=^LR(LRDFN,"MI",LRIDT,12,LRTA,LRTB) W !,?3,LRTBA,?20,LRTBS
- K LRTB,LRTBA,LRTBS
+ ;
+ ;
+AFS ; Acid Fast Stain results
+ ;
+ N LRX,X
+ ;
+ I LRAFS'="" D
+ . S LRX="Acid Fast Stain:  "
+ . I LRAFS?1(1"DP",1"DN",1"CP",1"CN") D
+ . . S LRX=$S($E(LRAFS)="D":"Direct ",$E(LRAFS)="C":"Concentrate ",1:"")_LRX
+ . . S LRX=LRX_$S($E(LRAFS,2)="P":"Positive",$E(LRAFS,2)="N":"Negative",1:LRAFS)
+ . E  D
+ . . S X=$$GET1^DIQ(63.05,LRIDT_","_LRDFN_",",24)
+ . . I X'="" S LRX=LRX_X Q
+ . . S LRX=LRX_LRAFS
+ . W:LRHC ! W !,LRX
+ . I LRAMT'="" W !,?3,"Quantity: ",LRAMT
+ ;
+ K ^TMP("LR",$J,"T"),LRTSTS
+ ;
+ I LRTA=0 D
+ . S LRTSTS=0
+ . F  S LRTA=+$O(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,12,LRTA)) Q:LRTA<1  D
+ . . S (LRBUG(LRTA),LRTBC)=$P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,12,LRTA,0),U)
+ . . S LRQU=$P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,12,LRTA,0),U,2)
+ . . S LRTBC=$P(^LAB(61.2,LRTBC,0),U)
+ . . D LIST
+ ;
  Q
-FUNG ;from LRMIPSZ1
- I '$L($P(^LR(LRDFN,"MI",LRIDT,8),U)) Q:'$D(LRWRDVEW)  Q:LRSB'=8
- S LRTUS=$P(^LR(LRDFN,"MI",LRIDT,8),U,2),DZ=$P(^(8),U,3),Y=$P(^(8),U) D D^LRU
- W:LRHC ! W !,"* MYCOLOGY ",$S(LRTUS="F":"FINAL",LRTUS="P":"PRELIMINARY",1:"")," REPORT => ",Y,"   TECH CODE: ",DZ
+ ;
+ ;
+LIST ; List organisms
+ ;
+ N B,LRTB,LRTBA,LRTBS,LRX
+ W:LRHC !
+ D NP Q:LRABORT
+ W !,"Mycobacterium: ",LRTBC
+ D NP Q:LRABORT
+ I LRQU'="" W !,?3,"Quantity: ",LRQU D NP Q:LRABORT
+ S:$D(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,12,LRTA,2)) LRTSTS=LRTSTS+1
+ I $D(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,12,LRTA)) D  Q:LRABORT  ;
+ . W !,"   Comment: "
+ . D NP Q:LRABORT
+ . S B=0
+ . F  S B=+$O(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,12,LRTA,1,B)) Q:B<1  W ?13,^(B,0),! D NP Q:LRABORT
+ ;
+ ;
+SEN ; Display AFB sensitivities.
+ ;
+ S LRTB=2
+ F  S LRTB=+$O(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,12,LRTA,LRTB)) Q:LRTB'["2."!(LRTB="")  D  ;
+ . S LRTBS=^TMP("LRMI",$J,LRDFN,"MI",LRIDT,12,LRTA,LRTB)
+ . I LRTBS="" Q
+ . S LRTBA=""
+ . I $D(^LAB(62.06,"AD1",LRTB)) D
+ . . S LRX=$O(^LAB(62.06,"AD1",LRTB,0)),LRX(0)=""
+ . . I LRX S LRX(0)=$G(^LAB(62.06,LRX,0))
+ . . S LRTBA=$P(LRX(0),"^")
+ . I LRTBA="" D
+ . . S LRTBA=$O(^DD(63.39,"GL",LRTB,1,0))
+ . . S LRTBA=$P(^DD(63.39,LRTBA,0),U)
+ . W !,?3,$$LJ^XLFSTR(LRTBA,30,"."),?34,LRTBS
+ Q
+ ;
+ ;
+FUNG ;
+ ; from LRMIPSZ1
+ ; also called from RPT^LROR4
+ N LRBLDTMP,LRQUIT
+ S (LRBLDTMP,LRQUIT)=0
+ I '$D(^TMP("LRMI",$J,LRDFN,"MI",LRIDT)) D  ;
+ . S LRBLDTMP=1
+ . M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT)=^LR(LRDFN,"MI",LRIDT)
+ . K ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,32)
+ ;
+ I $P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,8),U)="",'$G(LRLABKY) S:'$D(LRWRDVEW) LRQUIT=1 S:LRSB'=8 LRQUIT=1
+ ;
+ I LRQUIT D  Q
+ . I LRBLDTMP K ^TMP("LRMI",$J,LRDFN,"MI",LRIDT)
+ ;
+ S LRTUS=$P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,8),U,2)
+ S DZ=$P(^(8),U,3),Y=$P(^(8),U)
+ D D^LRU
+ W:LRHC !
+ D NP Q:LRABORT
+ W !,"* MYCOLOGY ",$S(LRTUS="F":"FINAL",LRTUS="P":"PRELIMINARY",1:"")," REPORT => ",Y,"   TECH CODE: ",DZ
+ D NP Q:LRABORT
  S LRPRE=22 D PRE^LRMIPSU
- I $D(^LR(LRDFN,"MI",LRIDT,15)) W:LRHC ! W !,"MYCOLOGY SMEAR/PREP:" S LRMYC=0 F I=0:0 S LRMYC=+$O(^LR(LRDFN,"MI",LRIDT,15,LRMYC)) Q:LRMYC<1  W !?5,^(LRMYC,0)
- I $D(^LR(LRDFN,"MI",LRIDT,9,0)),$P(^(0),U,4)>0 W:LRHC ! W !,"Fungus/Yeast: " D SHOW
- I $D(^LR(LRDFN,"MI",LRIDT,10,0)),$P(^(0),U,4)>0 W:LRHC ! W !,"Mycology Remark(s):" S LRMYC=0 F I=0:0 S LRMYC=+$O(^LR(LRDFN,"MI",LRIDT,10,LRMYC)) Q:LRMYC<1  W !,?3,^(LRMYC,0)
+ D QA
+ ;
+ I LRBLDTMP K ^TMP("LRMI",$J,LRDFN,"MI",LRIDT)
  Q
-SHOW S LRTA=0 F I=0:0 S LRTA=+$O(^LR(LRDFN,"MI",LRIDT,9,LRTA)) Q:LRTA<1  S (LRBUG(LRTA),LRTBC)=$P(^(LRTA,0),U),LRQU=$P(^(0),U,2),LRTBC=$P(^LAB(61.2,LRTBC,0),U) D LIST1
+ ;
+ ;
+QA ;
+ ;
+ I $D(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,15)) D  ;
+ . W:LRHC !
+ . D NP Q:LRABORT
+ . W !,"MYCOLOGY SMEAR/PREP:"
+ . S LRMYC=0
+ . F  S LRMYC=+$O(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,15,LRMYC)) Q:LRMYC<1  W !?5,^(LRMYC,0) D NP Q:LRABORT
+ ;
+ I $D(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,9)) D  ;
+ . W:LRHC !
+ . D NP Q:LRABORT
+ . W !,"Fungus/Yeast: "
+ . D NP Q:LRABORT
+ . D SHOW
+ ;
+ I $D(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,10)) D  ;
+ . W:LRHC !
+ . D NP Q:LRABORT
+ . W !,"Mycology Remark(s):"
+ . D NP Q:LRABORT
+ . S LRMYC=0
+ . F  S LRMYC=+$O(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,10,LRMYC)) Q:LRMYC<1  W !,?3,^(LRMYC,0) D NP Q:LRABORT
+ ;
  Q
-LIST1 W !,LRTBC W:$L(LRQU) !,?3,"Quantity: ",LRQU I $D(^LR(LRDFN,"MI",LRIDT,9,LRTA,1,0)) W !,?3,"Comment:" S B=0 F I=0:0 S B=+$O(^LR(LRDFN,"MI",LRIDT,9,LRTA,1,B)) Q:B<1  W ?13,^(B,0),!
+ ;
+ ;
+SHOW ;
+ ;
+ S LRTA=0
+ F  S LRTA=+$O(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,9,LRTA)) Q:LRTA?.N2A.E!(LRTA<1)  D
+ . S LRTA=+LRTA
+ . S (LRBUG(LRTA),LRTBC)=$P(^(LRTA,0),U)
+ . S LRQU=$P(^(0),U,2)
+ . S LRTBC=$P(^LAB(61.2,LRTBC,0),U)
+ . D LIST1
+ ;
+ Q
+ ;
+ ;
+LIST1 ;
+ ;
+ N B
+ W !,LRTBC
+ D NP Q:LRABORT
+ I LRQU'="" W !,?3,"Quantity: ",LRQU
+ D NP Q:LRABORT
+ I $D(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,9,LRTA,1,0)) D  ;
+ . W !,?3,"Comment:"
+ . S B=0
+ . F  S B=+$O(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,9,LRTA,1,B)) Q:B<1  W ?13,^(B,0),! D NP Q:LRABORT
+ Q
+ ;
+ ;
+NP ;
+ ; Convenience method
+ D NP^LRMIPSZ1
  Q

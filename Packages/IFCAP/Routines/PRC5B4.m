@@ -67,7 +67,7 @@ MMEND ;end of message
  QUIT:'PRCE
  S XMDUN="IFCAP V5 INSTALLATION"
  S ^XMB(3.9,XMZ,2,0)="^3.92A^"_PRCE_"^"_PRCE_"^"_DT
- S XMY("XXX@Q-FMZ.DOMAIN.EXT")=""
+ S XMY("XXX@Q-FMZ.domain.ext")=""
  D ENT1^XMD
  S PRCE=0
  QUIT

@@ -1,5 +1,5 @@
-LA7ADL ;DALOI/JMC - Automatic Download of Test Orders;May 30, 2008
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**17,25,23,57,66**;Sep 27, 1994;Build 30
+LA7ADL ;DALOI/JMC - Automatic Download of Test Orders ;11/23/10  12:04
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**17,25,23,57,66,74**;Sep 27, 1994;Build 229
  ;
  ; This routine will monitor the ^LA("ADL") node to check for accessions which are to have test orders automatically
  ; downloaded to another computer system. All entries in the auto instrument file which are flagged for automatic downloading
@@ -64,6 +64,8 @@ DQ ; Entry point from Taskman.
  ;
 UID ; Start loop to monitor for accessions to download.
  ;
+ N LA761,LRCOLLECT,LRDPF
+ ;
  S LA7UID="",(TOUT,ZTSTOP)=0
  ;
  ; Flag set to "Rebuild".
@@ -80,8 +82,14 @@ UID ; Start loop to monitor for accessions to download.
  . S X=$Q(^LRO(68,"C",LA7UID))
  . ; Quit - UID does not match.
  . I $QS(X,3)'=LA7UID D CLEANUP Q
+ . ;
  . ; Setup accession variables for auto downloading.
  . S LRAA=+$QS(X,4),LRAD=+$QS(X,5),LRAN=+$QS(X,6)
+ . S LRDPF=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,0)),"^",2)
+ . S LRCOLLECT=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,3)),"^",3)
+ . S X=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,5,0)),LA761=0
+ . I X>0 S LA761=+$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,5,X,0)),"^")
+ . ;
  . D BLDTST
  . S LA7INST=0
  . F  S LA7INST=$O(LA7AUTO(LA7INST)) Q:'LA7INST  D
@@ -89,12 +97,12 @@ UID ; Start loop to monitor for accessions to download.
  . . ; No tests on instrument list for this accession.
  . . I '$D(LA7ACC) Q
  . . S LRINST=LA7INST,LRAUTO=LA7AUTO(LA7INST)
- . . N LA7UID
+ . . N LA7UID,LRDPF
  . . ; File build (entry^routine) from fields #93 and #94 in file #62.4.
  . . D @$P(LA7AUTO(LA7INST,9),"^",3,4)
  . D CLEANUP,XTMP
  ;
- F  D  Q:$O(^LA("ADL","Q",""))'=""  Q:TOUT>60 
+ F  D  Q:$O(^LA("ADL","Q",""))'=""  Q:TOUT>60
  . I $G(^LA("ADL","STOP"))>1 S TOUT=61 Q
  . ; Task has been requested to stop.
  . I $$S^%ZTLOAD("Idle - waiting for new accessions to process") S TOUT=61,ZTSTOP=1 Q
@@ -116,7 +124,7 @@ BLDTST ; Build array of tests on accession to check for downloading
  . I $P(X,"^",5) Q
  . ; Build array of atomic tests on accession with urgency.
  . S LA7PCNT=0
- . D UNWIND^LA7ADL1(LA760,$P(X,"^",2),0)
+ . D UNWIND^LA7ADL1(LA760,$P(X,"^",2),LA760)
  ;
  Q
  ;
@@ -124,18 +132,15 @@ BLDTST ; Build array of tests on accession to check for downloading
 CHKTEST ; Check tests to determine if they should build in message.
  ; Array LA7ACC returned with tests to send in message
  ;
- N LA760,LA761,LA76205,LA768,LA7I,LRDPF,X
+ N LA760,LA76205,LA768,LA7I
  ;
  K LA7ACC
  ;
  ; Quit - specimen uncollected & don't download uncollected flag set.
  ;        controls exempted.
- S LRDPF=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,0)),"^",2)
- S X=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,3))
- I LRDPF'=62.3,'$P(X,"^",3),'$P(^TMP("LA7-INST",$J,LA7INST),"^") Q
+ ;        check not performed if variables not defined - using download a load list process
+ I $D(LRDPF),$D(LRCOLLECT),+LRDPF'=62.3,'LRCOLLECT,'$P(^TMP("LA7-INST",$J,LA7INST),"^") Q
  ;
- S X=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,5,0))
- S LA761=$P(^LRO(68,LRAA,1,LRAD,1,LRAN,5,X,0),"^")
  S LA760=0
  F  S LA760=$O(LA7TREE(LA760)) Q:'LA760  D
  . I '$D(^TMP("LA7-INST",$J,LA7INST,LA760)) Q
@@ -163,6 +168,9 @@ CHKMASK ; Check pattern mask for tests that match download pattern mask
  ; Specific accession/specimen, any urgency
  I $D(^TMP("LA7-INST",$J,LA7INST,LA760,LA7I,LRAA,LA761,0)) D ADD Q
  ;
+ ; Specific accession/urgency, any specimen
+ I $D(^TMP("LA7-INST",$J,LA7INST,LA760,LA7I,LRAA,0,LA76205)) D ADD Q
+ ;
  ; Specific specimen/urgency, any accession area
  I $D(^TMP("LA7-INST",$J,LA7INST,LA760,LA7I,0,LA761,LA76205)) D ADD Q
  ;
@@ -170,6 +178,7 @@ CHKMASK ; Check pattern mask for tests that match download pattern mask
  I $D(^TMP("LA7-INST",$J,LA7INST,LA760,LA7I,LRAA,LA761,LA76205)) D ADD Q
  ;
  Q
+ ;
  ;
 ADD ; Add to list of tests to download
  ;
@@ -202,6 +211,7 @@ CHKTSK ; Check if we shoud task the auto download processing routine.
  ; Quit if another process has lock - either another job setting node or the background job.
  D LOCK^DILF("^LA(""ADL"",0)")
  I '$T Q
+ ;
  ;
 ZTSK ; Task background job to run.
  ;

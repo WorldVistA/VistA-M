@@ -1,5 +1,5 @@
 ONCOTN ;Hines OIFO/GWB - TNM Staging ;02/28/11
- ;;2.11;ONCOLOGY;**1,3,6,7,11,15,19,22,25,28,29,35,36,37,41,42,43,44,46,47,49,50,51,52,53,54**;Mar 07, 1995;Build 10
+ ;;2.11;ONCOLOGY;**1,3,6,7,11,15,19,22,25,28,29,35,36,37,41,42,43,44,46,47,49,50,51,52,53,54,56**;Mar 07, 1995;Build 10
  ;
  N DATEDX,H,ONCED,S,YR
  S DATEDX=$P(^ONCO(165.5,D0,0),U,16)
@@ -50,7 +50,7 @@ ONCOTN ;Hines OIFO/GWB - TNM Staging ;02/28/11
  .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
  ;
  I T=67695,SD="020",ONCED>6 D  S Y="@313" Q
- .W !!?3,"AJCC does not define staging for lacrinal sac.",!
+ .W !!?3,"AJCC does not define staging for lacrimal sac.",!
  .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
  ;
  I (T=67254)!(T=67312)!(T=67313)!(T=67318)!(T=67319) D  S Y="@313" Q
@@ -210,6 +210,10 @@ ES ;Automatic Staging
  I M="" D  G SG
  .W !?3,"No ",STGTYP," M category has been assigned."
  .S SG=99
+ ;
+ ;Esophagus/GE Junction C16.0-C16.2
+ I TX=67160,ONCED>6 S AG="9" G AG
+ I TX=67161!(TX=67162),ONCED>6,SD="010"!(SD="020")!(SD="040")!(SD="060") S AG="9" G AG
  ;
  ;Gastrointestinal Stromal Tumor (Gist) 8935-8936
  I ($E(HT,1,4)=8935)!($E(HT,1,4)=8936),(($E(TX,3,4)=15)!($E(TX,3,4)=16)!($E(TX,3,4)=17)!($E(TX,3,4)=18)!($E(TX,3,4)=21)!($E(TX,3,4)=48)!(TX=67199)!(TX=67209)),ONCED>6 S AG="121" G AG

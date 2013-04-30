@@ -1,5 +1,5 @@
 DICN1 ;SFISC/GFT,TKW,SEA/TOAD-PROCESS DIC("DR") ;10:54 AM  9 Feb 2001
- ;;22.0;VA FileMan;**4,67**;Mar 30, 1999
+ ;;22.0;VA FileMan;**4,67**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  K DIDA,DICRS,Y,%RCR

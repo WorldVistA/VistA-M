@@ -1,5 +1,5 @@
 DINIT2AC ;SFISC/MKO-DATA FOR KEY AND INDEX FILES ;10:50 AM  30 Mar 1999
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  F I=1:2 S X=$T(ENTRY+I) G:X="" ^DINIT2B0 S Y=$E($T(ENTRY+I+1),5,999),X=$E(X,4,999),@X=Y
  Q

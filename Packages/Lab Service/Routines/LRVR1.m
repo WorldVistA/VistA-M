@@ -1,6 +1,7 @@
-LRVR1 ;DALOI/CJS/JAH - LAB ROUTINE DATA VERIFICATION ;8/10/04
- ;;5.2;LAB SERVICE;**42,153,221,286,291**;Sep 27, 1994
- N LRI,LRN,LRBETST,LRBEY
+LRVR1 ;DALOI/CJS/JAH - LAB ROUTINE DATA VERIFICATION ;11/23/11  12:11
+ ;;5.2;LAB SERVICE;**42,153,221,286,291,350**;Sep 27, 1994;Build 230
+ ;
+ N LRBETST,LRBEY,LRI,LRN,LRPRGSQ
  S (LRI,LRN)=0
  F  S LRI=$O(^LAH(LRLL,1,"C",LRAN,LRI)) Q:LRI<1  D
  . N LRX
@@ -10,11 +11,22 @@ LRVR1 ;DALOI/CJS/JAH - LAB ROUTINE DATA VERIFICATION ;8/10/04
  . ; Quit if different accession date and not a rollover accession (same original accession date).
  . I $P(LRX,"^",4),$P(LRX,"^",4)'=LRAD,$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,0)),"^",3)'=$P($G(^LRO(68,LRAA,1,$P(LRX,"^",4),1,LRAN,0)),"^",3) Q
  . I LRN W !
- . S LRN=LRN+1,LRSQ=LRI
+ . S LRN=LRN+1,LRSQ=LRI,LRPRGSQ(LRI)=""
  . W !,?2,"Seq #: ",LRI,?13," Accession: ",$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,.2)),"^")
  . I $P(LRX,"^",10) W ?40," Results received: ",$$FMTE^XLFDT($P(LRX,"^",10),"1M")
- . W !,?20,"UID: ",$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,.3),"UNKNOWN"),"^")
+ . W !,?20,"UID: ",$P($G(^LAH(LRLL,1,LRI,.3),"UNKNOWN"),"^")
  . I $P(LRX,"^",11) W ?44," Last updated: ",$$FMTE^XLFDT($P(LRX,"^",11),"1M")
+ ;
+ ; If multiple sets of results then query user if they want to display a specific sequence
+ I LRN>1 D
+ . N DIR,DIROUT,DIRUT,DTOUT,DUOUT,I,X,Y
+ . S DIR(0)="SO^0:Skip Display"
+ . S I=0 F  S I=$O(LRPRGSQ(I)) Q:'I  S DIR(0)=DIR(0)_";"_I_":Seq # "_I
+ . S DIR("A")="Display results associated with sequence #",DIR("B")="Skip Display"
+ . D ^DIR
+ . I Y<1 W ! Q
+ . D SEQDISP(LRLL,Y)
+ ;
  G VER:LRN=1,T3:LRN>1
  ;
  ; If attempting to verify reference lab results and no entry in LAH
@@ -27,14 +39,19 @@ T1 R !,"What tray: ",X:DTIME Q:X["^"!'$T  I X["?"!(X'?.N) W !,"Enter a number" G
  I $D(^LRO(68.2,"AS",LRLL)) W !,"Can't MANUALLY add to a SEQUENCE instrument data file." G QUIT
  W !,"Enter manually" S %=1 D YN^DICN G QUIT:%<1,T1:%=2 S LRSQ=-1 G VER
  G VER
+ ;
 T2 R !,"What cup: ",X:DTIME Q:X["^"!'$T  I X["?"!(X'?.N) W !,"Enter a number" G T2
- Q:X=""  S LRTRCP=LRTRAY_";"_X
+ Q:X=""
+ S LRTRCP=LRTRAY_";"_X
  K LRPRGSQ
- S LRN=0 F LRI=0:0 S LRI=$O(^LAH(LRLL,1,"B",LRTRCP,LRI)) Q:LRI<1  S LRN=LRN+1,LRSQ=LRI,LRPRGSQ(LRI)="" W !,?5,LRI
+ S LRN=0
+ F LRI=0:0 S LRI=$O(^LAH(LRLL,1,"B",LRTRCP,LRI)) Q:LRI<1  S LRN=LRN+1,LRSQ=LRI,LRPRGSQ(LRI)="" W !,?5,LRI
+ ;
 T3 I LRN=0 W !,"No data for that tray & cup" Q
  I LRN>1 R !,"Choose sequence number: ",X:DTIME Q:'$T  I X["?"!(X'?.N) W !,"Enter a number" G T3
  I X["^"!(X="") K LRPRGSQ Q
- S:LRN'=1 LRSQ=X I '$D(^LAH(LRLL,1,LRSQ,0)) W !,"No data there" G T3
+ S:LRN'=1 LRSQ=X
+ I '$D(^LAH(LRLL,1,LRSQ,0)) W !,"No data there" G T3
  ;
 VER ; from LRFLAG, LRGP, LRVRW
  N LRROOT
@@ -51,13 +68,17 @@ VER ; from LRFLAG, LRGP, LRVRW
  I $O(^TMP("LR",$J,"TMP",0))="" W !,"No tests in editing profile" Q
  S X=DUZ D DUZ^LRX
  G V2:LRSQ>0
- L +^LAH(LRLL)
+ ;
+ L +^LAH(LRLL):DILOCKTM
+ I '$T Q
+ ;
  S (^LAH(LRLL),LRSQ)=1+$G(^LAH(LRLL))
  S ^LAH(LRLL,1,LRSQ,0)="^^"_LRAA_"^"_LRAD_"^"_LRAN_"^^MANUAL"
  D UID^LAGEN(LRLL,LRSQ,LRUID)
  D UPDT^LAGEN(LRLL,LRSQ)
  S ^LAH(LRLL,1,"C",LRAN,LRSQ)=""
  L -^LAH(LRLL)
+ ;
 V2 K LRPRGSQ(LRSQ)
  S LRLLOC=0,LROUTINE=$P(^LAB(69.9,1,3),U,2)
  I $D(^LRO(69,LRODT,1,LRSN,0)) S LRLLOC=$P(^(0),U,7) S:'$L(LRLLOC) LRLLOC=0 W !,$P(^LRO(69,LRODT,1,LRSN,1),U,6)
@@ -89,7 +110,12 @@ V2 K LRPRGSQ(LRSQ)
  ;
  S LRCW=8
 LD S LRSS="CH"
- I '($D(^LAH(LRLL,1,LRSQ,0))#2) W !!?5,"No Data for this Accession ",!! K ^LAH(LRLL,1,LRSQ),^LAH(LRLL,1,"C",LRAN,LRSQ) K LRPRGSQ Q
+ ;
+ ; If bad entry then cleanup as best as possible.
+ I '($D(^LAH(LRLL,1,LRSQ,0))#2) D  Q
+ . W !!?5,"No Data for this Accession ",!!
+ . D ZAPALL^LRVR3(LRLL,LRSQ)
+ . K LRPRGSQ
  ;
  ; Store any new methods with existing methods on file.
  S LRMETH=$P(^LAH(LRLL,1,LRSQ,0),U,7) S:$D(LRGVP) LRMETH=LRMETH_"(GV)"
@@ -98,6 +124,8 @@ LD S LRSS="CH"
  . S X=$P(^LR(LRDFN,LRSS,LRIDT,0),U,8)
  . F I=1:1:$L(X,";") I $P(X,";",I)'="",LRMETH'[$P(X,";",I) S LRMETH=LRMETH_";"_$P(X,";",I)
  I LRMETH'="" S $P(^LR(LRDFN,LRSS,LRIDT,0),U,8)=LRMETH
+ ;
+ S LRTM60=$$LRTM60^LRVR(LRCDT)
  ;
  W:$D(^LAB(62,+LRSAMP,0)) !,"Sample: ",$P(^(0),U)
  ;
@@ -113,6 +141,7 @@ TEST ; from LRGV1
  S (LRI,LRNT)=0
  F  S LRI=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRI)) Q:LRI<.5  I $D(^(LRI,0)),'$L($P(^(0),U,6)) S X=^(0) I $D(^TMP("LR",$J,"VTO",+X)) D
  . S LRNT=LRNT+1,LRTEST(LRNT)=+X,LRX=$S($P(X,"^",2)>50:$P(X,"^",9),1:$P(X,"^"))
+ . I $P(X,"^",9),$P(X,"^")'=$P(X,"^",9),'$D(^LRO(68,LRAA,1,LRAD,1,LRAN,4,$P(X,"^",9))) S LRX=$P(X,"^",9)
  . S LRTEST(LRNT,"P")=LRX_U_$$NLT^LRVER1(LRX)_"!"
  . S ^TMP("LR",$J,"VTO",+X,"P")=$P(LRTEST(LRNT,"P"),"!")
  ;
@@ -159,5 +188,43 @@ EX2 ;
  ;
 QUIT Q
  ;
+ ;
 WAIT W !,"Type ""^"" to skip "
-WAIT1 R X:10 G LRVR1:X[U,WAIT1:$O(^LAH(LRLL,1,"C",LRAN,0))<1 G LRVR1
+WAIT1 R X:10
+ G LRVR1:X[U,WAIT1:$O(^LAH(LRLL,1,"C",LRAN,0))<1
+ G LRVR1
+ ;
+ ;
+SEQDISP(LRLL,LRISQN) ; Display test results for a LAH entry.
+ ; Call with LRLL = ien of enry in LAH
+ ;         LRISQN = sequence ien of enry in LAH
+ ;
+ N LR60,LRI,LRJ,LRSB,LRX,LRY
+ ;
+ W !!,"Results for Sequence #"_LRISQN
+ ;
+ I $O(^LAH(LRLL,1,LRISQN,1)) D
+ . W !,"Test",?25,"Value",?40,"Flag",?50,"Units"
+ . W !,"----",?25,"-----",?40,"----",?50,"-----"
+ ;
+ ; Display CH subsript results.
+ S LRSB=1
+ F  S LRSB=$O(^LAH(LRLL,1,LRISQN,LRSB)) Q:LRSB<1  D
+ . S LRX=^LAH(LRLL,1,LRISQN,LRSB)
+ . S LR60=+$O(^LAB(60,"C","CH;"_LRSB_";1",0))
+ . S LR60(0)=$G(^LAB(60,LR60,0))
+ . W !,$E($P(LR60(0),"^"),1,24),?25," ",$P(LRX,"^"),?39," ",$P(LRX,"^",2),?49," ",$P($P(LRX,"^",5),"!",7)
+ ;
+ ; Display comments
+ I $D(^LAH(LRLL,1,LRISQN,1)) D
+ . W !,"Comments"
+ . S (LRI,LRY)=0,LRJ=""
+ . F  S LRY=$O(^LAH(LRLL,1,LRISQN,1,LRY)) Q:LRY<1  D
+ . . S LRX=^LAH(LRLL,1,LRISQN,1,LRY),LRI=LRI+1
+ . . W !,"#",LRI," ",$P(LRX,"^")
+ . . I $P(LRX,"^",2) S LRJ=LRJ_$S(LRJ'="":",",1:"")_LRJ
+ . W !,"Comments # ",LRJ," previously processed"
+ ;
+ W !
+ ;
+ Q

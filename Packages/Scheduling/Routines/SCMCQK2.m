@@ -1,5 +1,5 @@
-SCMCQK2 ;ALB/REW - Single Pt Tm/Pt Tm Pos Assign and Discharge ; 07 Oct 2002  12:10 PM
- ;;5.3;Scheduling;**297**;AUG 13, 1993
+SCMCQK2 ;ALB/REW - Single Pt Tm/Pt Tm Pos Assign and Discharge ; 5/16/12 12:09pm
+ ;;5.3;Scheduling;**297,563**;AUG 13, 1993;Build 45
  ;
 DSPL ;
  N LP,SCD,SCPOS
@@ -32,7 +32,7 @@ NPC N SCDT,SCER1,SCD,SCPOS
  S DIR("B")=1
  D ^DIR
  I Y=0 Q
- I Y=U Q
+ I $D(DIRUT) K DIRUT,X,Y Q  ; Quit operation if the user enters "^" or times out SD*5.3*563
  I Y=1 D ASTM G NPC
 READ S:CNT=1 X=1 I CNT>1 W !,"Select 1-"_CNT_": " R X:DTIME  Q:X=U  S X=+X I X>CNT!X<1 G READ
  I Y=3 S DATA=DATA(+X) S SCTPSTAT=1,SCTP=+$P(DATA,U,2),SCTM=+DATA D UNTP:SCTP,UNTM:'SCTP G NPC
@@ -43,7 +43,7 @@ UNTP ;unassign patient from position
  N OK,SCER,SCCL,SCBEGIN,SCN,SCLIST,SCEND,SCINCL,SCLSEQ,SCDATES,SCDTS
  S OK=0
  W !,"About to Unassign "_$$NAME(DFN)_" from: ",!,?8,$$POSITION(SCTP)_" position   ["_$P($$GETPRTP^SCAPMCU2(SCTP,DT),U,2)_"]"
- S SCDISCH=$$DATE("D")
+ S SCDISCH=$$DATE("D",DFN) ;SD*5.3*563 Pass DFN
  G:SCDISCH<1 QTUNTP
  G:'$$CONFIRM() QTUNTP
  S OK=$$INPTSCTP^SCAPMC22(DFN,SCTP,SCDISCH,.SCER)
@@ -59,7 +59,7 @@ UNTM ;
  S OK=0
  W !!,"About to Unassign "_$$NAME(DFN)_" from "_$$TEAMNM(SCTM)_" team"
  W:'SCTPSTAT !,?5,"AND from "_$$POSITION(SCTP)_" position  ["_$$WRITETP^SCMCDD1(SCTP)_"]"
- S SCDISCH=$$DATE("D")
+ S SCDISCH=$$DATE("D",DFN) ;SD*5.3*563 Pass DFN
  G:SCDISCH<1 QTUNTM
  G:'$$CONFIRM() QTUNTM
  IF 'SCTPSTAT D  G:OK2'>0 QTUNTM
@@ -88,7 +88,7 @@ ASTM ;assign patient to team
  D ^DIC
  G:Y<1 QTASTM
  S SCTM=+Y
- S SCASSDT=$$DATE("A")
+ S SCASSDT=$$DATE("A",DFN) ;SD*5.3*563 Pass DFN
  G:SCASSDT<1 QTASTM
  S SCTMCT=$$TEAMCNT^SCAPMCU1(SCTM)
  S SCTMMAX=$P($$GETEAM^SCAPMCU3(SCTM),"^",8)
@@ -133,7 +133,7 @@ ASTP ;assign patient to practitioner
  .S SCTP=$P(Y,U,2)
  ELSE  D
  .S SCTP=$P(Y,U,1)
- S SCASSDT=$$DATE("A")
+ S SCASSDT=$$DATE("A",DFN) ;SD*5.3*563 Pass DFN
  G:SCASSDT<1 QTASTP
  S SCTMCT=$$PCPOSCNT^SCAPMCU1(SCTP),SCTMMAX=+$P($G(^SCTM(404.57,SCTP,0)),U,8)
  I SCTMCT'<SCTMMAX D  G QTASTP:'$$YESNO2
@@ -190,16 +190,21 @@ SELPOS() ;return way to select position: 1=PRACT,2=POSIT,3=NONE
  D ^DIR
  Q $S(Y'>0:"",+Y=1:"PRACT",1:"POSIT")
  ;
-DATE(TYPE) ;return date type=A or D
- N DIR,X,Y
- S DIR("A")=$S(TYPE="A":"Assignment",1:"Unassignment")_" date: "
- S DIR(0)="DA^::EXP"
- S Y=$S($D(SCDISCH):SCDISCH,$D(SCASSDT):SCASSDT,(TYPE="A"):"TODAY",1:"TODAY-1")
- X ^DD("DD")
- S DIR("B")=Y
- D ^DIR
- Q Y
- ;
+DATE(TYPE,DFN) ;type=A(Assignment) or D(Unassignment) 
+ ; Returns assignment/unassignment date or "^"
+ I '$G(DFN) Q -1
+ N DIR,X,Y,SDFLG,SDY
+ ;SD*5.3*563 SDFLG=0 allow to proceed with date if prior to DOD
+ F  D  Q:SDFLG=0
+ .S DIR("A")=$S(TYPE="A":"Assignment",1:"Unassignment")_" date: "
+ .S DIR(0)="DA^::EXP"
+ .S Y=$S($D(SCDISCH):SCDISCH,$D(SCASSDT):SCASSDT,(TYPE="A"):"TODAY",1:"TODAY-1")
+ .X ^DD("DD")
+ .S DIR("B")=Y
+ .D ^DIR K DIR S SDY=Y
+ .I $D(DIRUT) K DIRUT,DUOUT,X,Y S SDFLG=0 Q
+ .D WARNMESS^SCMCQK1(SDY,DFN,.SDFLG)
+ Q SDY
 PRACSCR(SC40452) ;screen for for file 404.52
  N SCP,SCNODE,OK
  S SCP=$G(^SCTM(404.52,SC40452,0))

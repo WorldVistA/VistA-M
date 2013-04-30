@@ -1,5 +1,5 @@
-HLOUSR3 ;ALB/CJM/RBN -ListManager Screen for viewing messages(continued);12 JUN 1997 10:00 am ;01/07/2010
- ;;1.6;HEALTH LEVEL SEVEN;**126,134,138,139,147**;Oct 13, 1995;Build 15
+HLOUSR3 ;ALB/CJM/RBN -ListManager Screen for viewing messages(continued);12 JUN 1997 10:00 am ;03/26/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**126,134,138,139,147,158**;Oct 13, 1995;Build 14
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -146,7 +146,7 @@ SETPURGE ; Set a message up for purging.
  S DIR(0)="D^"_DT_":"_$$FMADD^XLFDT(DT,+45)_":E"
  S DIR("A")="When should the message be purged?"
  D ^DIR
- D:Y SETPURGE^HLOAPI3(+MSGIEN,Y),DISPLAY^HLOUSR1
+ D:Y SETPURGE^HLOUSR7(+MSGIEN,Y),DISPLAY^HLOUSR1
  Q
 SCREEN() ;  Screen for message purge status.
  N TRUE
@@ -182,8 +182,8 @@ RESEND ; If outbound message has been sent, resends it.
  W !,"The message has been copied to MsgID ",MSGIEN," which will be displayed next"
  I $$ASKYESNO^HLOUSR2("Do you want the original message purged?","NO") D
  . D SYSPARMS^HLOSITE(.SYS)
- . S HLOPURDT=$$FMADD^XLFDT($$NOW^XLFDT,0,SYS("ERROR PURGE"),0,0)
- . S FLG=$$SETPURGE^HLOAPI3(OLDIEN,HLOPURDT)
+ . S HLOPURDT=$$FMADD^XLFDT($$NOW^XLFDT,SYS("ERROR PURGE"))
+ . S FLG=$$SETPURGE^HLOUSR7(OLDIEN,HLOPURDT)
  S FLG=$$GETMSG^HLOMSG(+MSGIEN,.MSG)
  D DISPLAY^HLOUSR1
  Q
@@ -209,8 +209,8 @@ REPROC ; If inbound message has been processed, reprocesses it.
  S DIR(0)="D^"_DT_":"_$$FMADD^XLFDT(DT,+45)_":E"
  I '$$ASKYESNO^HLOUSR2("Do you want to purge the message?","NO") D
  . D SYSPARMS^HLOSITE(.SYSPARM)
- . S HLOPURDT=$$FMADD^XLFDT($$NOW^XLFDT,0,SYSPARM("ERROR PURGE"),0,0)
- . S FLG=$$SETPURGE^HLOAPI3(MSGIEN,HLOPURDT)
+ . S HLOPURDT=$$FMADD^XLFDT($$NOW^XLFDT,SYSPARM("ERROR PURGE"))
+ . S FLG=$$SETPURGE^HLOUSR7(MSGIEN,HLOPURDT)
  Q
  ;
 MSGPREP ; Enable or disable menu options

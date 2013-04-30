@@ -1,5 +1,5 @@
 DDGFFLD ;SFISC/MKO-EDIT A FIELD ;01:47 PM  22 Nov 1994
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 EDIT ;
  Q:$D(^DIST(.404,B,40,F,0))[0

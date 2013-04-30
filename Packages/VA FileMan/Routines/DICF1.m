@@ -1,5 +1,5 @@
 DICF1 ;SEA/TOAD,SF/TKW-VA FileMan: Finder, Part 2 (Transform) ;1:36 PM  6 May 2004
- ;;22.0;VA FileMan;**15,51,70,135**;Mar 30, 1999
+ ;;22.0;VA FileMan;**15,51,70,135**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 XFORM(DIFLAGS,DIVALUE,DISCREEN,DINDEX) ;

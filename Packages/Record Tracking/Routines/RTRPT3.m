@@ -33,7 +33,7 @@ DIV K RTOP,DIC,RTDV I $O(^DIC(195.1,+RTAPL,"INST",0)) S I=+$O(^(0)) I '$O(^(I)),
  ;
 SORT S RTRD(1)="Borrower^sort by borrower",RTRD(2)="Name^sort by name",RTRD(3)="Terminal Digits^sort by terminal digits",RTRD(0)="S",RTRD("B")=1,RTRD("A")="How do you want the listing sorted? " D SET^RTRD K RTRD S RTSORT=$E(X) Q
  ;
-ON ;I ^%ZOSF("OS")["M/11+" D ON^%XECOPT Q
+ON I ^%ZOSF("OS")["M/11+" D ON^%XECOPT Q
  Q
-OFF ;I ^%ZOSF("OS")["M/11+" D OFF^%XECOPT Q
+OFF I ^%ZOSF("OS")["M/11+" D OFF^%XECOPT Q
  Q

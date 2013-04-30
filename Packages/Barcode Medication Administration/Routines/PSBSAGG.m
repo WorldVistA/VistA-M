@@ -35,7 +35,7 @@ EN ;
  ; Begin Patch PSB*1*2
  ; DP/Topeka 7-SEP-1999 12:12:49 
  ; Changed server name per request of SAGG Team
- S XMY("S.KMP90-BCMA-SERVER@ISC-ALBANY.DOMAIN.EXT")=""
+ S XMY("S.KMP90-BCMA-SERVER@ISC-ALBANY.domain.ext")=""
  ; End Patch PSB*1*2
  ;
  S XMTEXT="^TMP(""PSBO"",$J,"

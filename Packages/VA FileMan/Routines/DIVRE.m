@@ -1,5 +1,5 @@
 DIVRE ;SFISC/MWE-REQ FLD(S) CHK ;2:52 PM  10 Jun 1997
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 B K ^UTILITY($J),DIBT S (DK,DIC)=DI,DIC(0)="EQM",DIK=0
  W !,"CHECK WHICH ENTRY: " R X:DTIME G QQ:U[X!'$T

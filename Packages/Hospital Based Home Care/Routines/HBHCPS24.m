@@ -39,7 +39,7 @@ MFH ; Clean up MFH Error file (#634.7)
  I $D(^HBHC(634.7,"B")) K ^HBHC(634.7) S ^HBHC(634.7,0)="HBHC MEDICAL FOSTER HOME ERROR(S)^634.7P"
  Q
 MAIL ; Send mail message
- S XMSUB="HBHC Site: "_$S($P(^HBHC(631.9,1,0),U,5)]"":$E(HBHCHOSP,1,3),1:"")_"  Message: "_HBHCMSG_"  "_HBHCDATE_" Transmission",XMTEXT="^TMP(""HBHC"",$J,HBHCMSG,",XMY("XXX@Q-HBH.DOMAIN.EXT")=""
+ S XMSUB="HBHC Site: "_$S($P(^HBHC(631.9,1,0),U,5)]"":$E(HBHCHOSP,1,3),1:"")_"  Message: "_HBHCMSG_"  "_HBHCDATE_" Transmission",XMTEXT="^TMP(""HBHC"",$J,HBHCMSG,",XMY("XXX@Q-HBH.domain.ext")=""
  D ^XMD
  S HBHCMSG=HBHCMSG+1,HBHCCNT=0
 LOOP ; Loop thru ^HBHC(631,"AE") (Form 3 Transmit Flag), ^HBHC(631,"AF") (Form 5 Transmit Flag), & ^HBHC(632,"AC") (Form 4 Transmit Flag) cross-refs to set batch initial MM message number & mailman message date fields in ^HBHC(631/632)

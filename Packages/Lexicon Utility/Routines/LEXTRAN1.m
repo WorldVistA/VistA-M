@@ -1,5 +1,5 @@
 LEXTRAN1 ;ISL/FJF/KER - Lexicon code and text wrapper API's ;01/03/2011
- ;;2.0;LEXICON UTILITY;**59,73**;Sep 23, 1996;Build 10
+ ;;2.0;LEXICON UTILITY;**59,73,51**;Sep 23, 1996;Build 77
  ; Per VHA Directive 2004-038, this routine should not be modified.
 GETSYN(LEXSRC,LEXCODE,LEXVDT,LEXRAY,LEXIENS) ; obtain synonyms
  ;
@@ -109,6 +109,13 @@ GETFSN(LEXSRC,LEXCODE,LEXVDT) ; obtain fully specified name
  ;     where LEXSCNM is the source name
  ;       
  N SYNS,LEX
+ I $G(LEXCODE)="" Q -1_U_"no code specified"
+ I $G(LEXSRC)="" Q -1_U_"no source specified"
+ I '$D(^LEX(757.03,"B",LEXSRC)) Q -1_U_"source not recognized"
+ I $D(^TMP("LEXSCH",$J,"VDT",0)) S LEXVDT=^(0)
+ I $G(LEXVDT)'="" S LEXVDT=$$INTDAT(LEXVDT)
+ I $G(LEXVDT)=-1 Q -1_U_"invalid date format"
+ I $G(LEXVDT)="" S LEXVDT=$$DT^XLFDT
  S SYNS=$$GETSYN(LEXSRC,LEXCODE,$G(LEXVDT))
  I +SYNS'>0 Q SYNS
  I $D(LEX("F")) Q 1_U_LEX("F")
@@ -133,6 +140,13 @@ GETPREF(LEXSRC,LEXCODE,LEXVDT) ; obtain preferred term
  ;     where LEXSCNM is the source name
  ;
  N SYNS,LEX
+ I $G(LEXCODE)="" Q -1_U_"no code specified"
+ I $G(LEXSRC)="" Q -1_U_"no source specified"
+ I '$D(^LEX(757.03,"B",LEXSRC)) Q -1_U_"source not recognized"
+ I $D(^TMP("LEXSCH",$J,"VDT",0)) S LEXVDT=^(0)
+ I $G(LEXVDT)'="" S LEXVDT=$$INTDAT(LEXVDT)
+ I $G(LEXVDT)=-1 Q -1_U_"invalid date format"
+ I $G(LEXVDT)="" S LEXVDT=$$DT^XLFDT
  S SYNS=$$GETSYN(LEXSRC,LEXCODE,$G(LEXVDT))
  I +SYNS'>0 Q SYNS
  Q 1_U_LEX("P")
@@ -237,9 +251,9 @@ GETASSN(LEXCODE,LEXMAP,LEXVDT,LEXRAY) ;
  I $G(LEXVDT)="" S LEXVDT=$$DT^XLFDT
  S LEXRAY=$G(LEXRAY,"LEX")
  ;
- N MIDIEN,CSYS,CIEN,VALCD,MORD,MTAR,MIEN,EFDT,STAT,CT
+ N MIDIEN,CSYS,CIEN,VALCD,MORD,MTAR,MIEN,EFDT,STAT,CT,VUID
  ;
- I '$D(^LEX(757.32,"B",LEXMAP)),'$D(^LEX(757.32,"C",LEXMAP))
+ I '$D(^LEX(757.32,"B",LEXMAP)),'$D(^LEX(757.32,"C",LEXMAP)) Q -1_U_"unrecognized mapping identifier"
  I $D(^LEX(757.32,"C",LEXMAP)) D
  .S MIDIEN=$O(^LEX(757.32,"C",LEXMAP,""))
  I $D(^LEX(757.32,"B",LEXMAP)) D
@@ -264,9 +278,10 @@ GETASSN(LEXCODE,LEXMAP,LEXVDT,LEXRAY) ;
  .F  S MTAR=$O(^LEX(757.33,"C",MIDIEN,LEXCODE,MORD,MTAR)) Q:MTAR=""  D
  ..F  S MIEN=$O(^LEX(757.33,"C",MIDIEN,LEXCODE,MORD,MTAR,MIEN)) Q:MIEN=""  D
  ...N MAT S MAT=$P($G(^LEX(757.33,+MIEN,0)),U,5) ; Pch 73 adds variable MAT for match
- ...S EFDT=+$O(^LEX(757.33,"G",MIEN,LEXVDT+.0001),-1)
+ ...S VUID=$P(^LEX(757.33,MIEN,0),U)
+ ...S EFDT=+$O(^LEX(757.33,"G",VUID,LEXVDT+.0001),-1)
  ...Q:EFDT=0
- ...S STAT=+$O(^LEX(757.33,"G",MIEN,EFDT,""))
+ ...S STAT=+$O(^LEX(757.33,"G",VUID,EFDT,""))
  ...Q:STAT=0
  ...S LEX=LEX+1
  ...S LEX(MORD,MTAR)=MAT ; Pch 73 adds variable MAT for match

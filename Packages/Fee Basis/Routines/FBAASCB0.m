@@ -1,10 +1,10 @@
-FBAASCB0 ;AISC/DMK-POST 1358 FOR INPATIENT 7078'S ; 11/24/10 9:59am
- ;;3.5;FEE BASIS;**116**;JAN 30, 1995;Build 30
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAASCB0 ;AISC/DMK - POST 1358 FOR INPATIENT 7078'S ;4/2/2012
+ ;;3.5;FEE BASIS;**116,132**;JAN 30, 1995;Build 17
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  K FBERR,^TMP($J) S FBRJC=0,FBINTOT=$P(FZ,U,10)
  I '$O(^FBAAI("AC",FBN,0)) W !,*7,"No invoices found for this batch. Unable to release.",! S FBERR=1 Q
  ;
- S FBII=0 F  S FBII=$O(^FBAAI("AC",FBN,FBII)) Q:'FBII!($D(FBERR))  S FBII78=$P($G(^FBAAI(FBII,0)),"^",5),FBAAMT=$P($G(^(0)),"^",9),FBMM=$E($P(^(0),U,6),4,5) D GETAP,GET78:FBII78["FB7078(",POST^FBAASCB:FBII78["FB583("
+ S FBII=0 F  S FBII=$O(^FBAAI("AC",FBN,FBII)) Q:'FBII!($D(FBERR))  S FBII78=$P($G(^FBAAI(FBII,0)),"^",5),FBAAMT=$P($G(^(0)),"^",9),FBMM=$E($P(^(0),U,6),4,5) D GETAP,GET78:FBII78["FB7078(",UC:FBII78["FB583("
  I $G(FBRJC),FBRJC=FBINTOT S FBERR=1 D KILL Q
  I $G(FBRJC) K FBERR S (FBRJC,FBII)=0 F  S FBII=$O(^TMP($J,FBII)) Q:'FBII  S X=$G(^FBAAI(FBII,0)),FBII78=$P(X,U,5),FBAAMT=$P(X,U,9),FBMM=$E($P(X,U,6),4,5) K X,^TMP($J,FBII) D GET78
  I $G(FBRJC) S (FBAAMT,FBINTOT)=0 D NEWBT S FBII=0 F  S FBII=$O(^TMP($J,FBII)) Q:'FBII  D
@@ -69,4 +69,7 @@ GETAP ; FB*3.5*116 build array of invoices in batch
  Q:$D(FBCNH)  ; do not build array if CNH batch
  Q:FBAAMT>0  ; do not place invoice reference in array if the amount paid is greater than 0.00
  S FBINV(FBII)=""
+ Q
+UC ; accumulate amount of unauthorized inpatient claims for later posting
+ S FBAARA=FBAARA+FBAAMT
  Q

@@ -1,6 +1,6 @@
-FBAAPET ;AISC/DMK-EDIT PAYMENT ;7/13/2003
- ;;3.5;FEE BASIS;**4,38,55,61,77,116,122,133,108**;JAN 30, 1995;Build 115
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAAPET ;AISC/DMK - EDIT PAYMENT ; 5/16/12 12:44pm
+ ;;3.5;FEE BASIS;**4,38,55,61,77,116,122,133,108,124,132**;JAN 30, 1995;Build 17
+ ;;VHA Directive 2004-038, this routine should not be modified.
  S FBOT=1
 GETPT I $G(BAT) D
  .I '$D(^FBAAC("AC",+BAT)) F I=9,10,11 S $P(^FBAA(161.7,+BAT,0),U,I)=""
@@ -44,8 +44,12 @@ SERV S DA(3)=FBDA(3),DA(2)=FBDA(2),DA(1)=FBDA(1)
  S FBFPPSL(0)=$P($G(^FBAAC(FBDA(3),1,FBDA(2),1,FBDA(1),1,FBDA,3)),U,2)
  S FBFPPSL=FBFPPSL(0)
  G:BAT']"" EDIT
- I $G(^FBAA(161.7,BAT,"ST"))]"",$P(^FBAA(161.7,BAT,"ST"),"^")="S"!($P(^FBAA(161.7,BAT,"ST"),"^")="T")&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) W !!,*7,"Sorry, only the Supervisor can edit a payment once the batch has been released." G GETPT
- I $G(^FBAA(161.7,BAT,"ST"))]"",$P(^FBAA(161.7,BAT,"ST"),"^")="V" W !!,*7,"Sorry,you cannot edit a payment once the batch has been Finalized." G GETPT
+ ; check batch status
+ S FBSTAT=$P($G(^FBAA(161.7,BAT,"ST")),U) ; batch status
+ I FBSTAT="S",'$D(^XUSEC("FBAASUPERVISOR",DUZ)) W !!,*7,"Sorry, only the Supervisor can edit a payment once the batch has been released." G GETPT
+ I "^T^F^V^"[(U_FBSTAT_U) W !!,*7,"Sorry, you cannot edit a payment when the batch has been sent to Austin." G GETPT
+ K FBSTAT
+ ;
 EDIT S DA=FBSV
  ;
  ; first edit CPT code and modifiers
@@ -69,7 +73,7 @@ EDIT S DA=FBSV
  ;S DR(1,162.03,3)="3////^S X=$S(J-K:J-K,1:"""");I X S Y=""@11"";4////@;S Y=""@5"";@11;3R;4R;S:X'=4 Y=""@5"";22"
  S DR(1,162.03,3)="K FBADJD;M FBADJD=FBADJ;S FBX=$$ADJ^FBUTL2(J-K,.FBADJ,2,,.FBADJD,1)"
  S DR(1,162.03,4)="S FBX=$$FPPSC^FBUTL5(1,FBFPPSC);S:FBX=-1 Y=0;S:FBX="""" Y=""@5"";50///^S X=FBX;S FBFPPSC=X;S FBX=$$FPPSL^FBUTL5(FBFPPSL);S:FBX=-1 Y=0;51///^S X=FBX;S FBFPPCL=X;S Y=""@55"";@5;50///@;S FBFPPSC="""";51///@;S FBFPPSL="""";@55"
- S DR(1,162.03,5)="K DIE(""NO^"");W !,""Exit ('^') allowed now"";26;S PRC(""SITE"")=X;8;13;Q;33;49"
+ S DR(1,162.03,5)="K DIE(""NO^"");W !,""Exit ('^') allowed now"";26;S PRC(""SITE"")=X;8;@13;13;I $$BADDATE^FBAAPET(FBAADT,X) S Y=""@13"";Q;33;49"
  S DR(1,162.03,6)="15;17;16;S:X=1 Y=""@1"";@6;28R;S:$$INPICD9^FBCSV1(X,"""",$G(FBAADT)) Y=""@6"";31;32R;S Y=""@7"";@1;28;I X]"""" S:$$INPICD9^FBCSV1(X,"""",$G(FBAADT)) Y=""@1"";31"
  S DR(1,162.03,7)="@7;K FBRRMKD;M FBRRMKD=FBRRMK;S FBX=$$RR^FBUTL4(.FBRRMK,2,,.FBRRMKD)"
  S DR(1,162.03,8)="73;74;75;58;59;60;61;62;63;64;65;66;67;76;77;78;79;68;69" ;FB*3.5*122,FB*3.5*133 edit line item provider fields
@@ -96,6 +100,13 @@ EDIT S DA=FBSV
  . S FBAAIN=$$GET1^DIQ(162.03,FBDA_","_FBDA(1)_","_FBDA(2)_","_FBDA(3)_",",14)
  . D CKINVEDI^FBAAPET1(FBFPPSC(0),FBFPPSC,FBAAIN,FBDA_","_FBDA(1)_","_FBDA(2)_","_FBDA(3)_",")
  K FBSV W !! G SERV
+ ;
+BADDATE(FBDOS,INVRCVDT) ;Reject entry if InvRcvDt is Prior to the Date of Service on the Invoice
+ I INVRCVDT<FBDOS D  Q 1 ;Reject entry
+ .N SHOWDOS S SHOWDOS=$E(FBDOS,4,5)_"/"_$E(FBDOS,6,7)_"/"_$E(FBDOS,2,3) ;Convert FBDOS into display format for error message
+ .W *7,!!?5,"*** Invoice Received Date cannot be prior to the",!?8,"Date of Service ("_SHOWDOS_") !!!"
+ Q 0 ;Accept entry
+ ;
 END K DR,DIC,DIE,X,DFN,FBOT,FBVD,FBSD,BAT,FBAADT,FBSV,DA,FBDA,FBZ,FBDUZ,FBAACP,FBFY,FY,FBAMTPD,J,K,Y,ZZ,PRC,FBHOLDX,FBV,FBSDI,FBAACPI
  K FBFSAMT,FBFSUSD,FBMODA,FBZIP,FBTIME,FBHCFA(30),FBAAPTC,FB1725,FBADJ,FBADJD,FBADJL(0),FBRRMK,FBRRMKD,FBRRMKL(0),FBX,FBUNITS
  Q

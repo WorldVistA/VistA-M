@@ -1,5 +1,5 @@
-HLCSTCP3 ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;12/01/2010
- ;;1.6;HEALTH LEVEL SEVEN;**76,77,133,122,153**;OCT 13, 1995;Build 11
+HLCSTCP3 ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;08/03/2011
+ ;;1.6;HEALTH LEVEL SEVEN;**76,77,133,122,153,157**;OCT 13, 1995;Build 8
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 OPENA ;
@@ -64,7 +64,9 @@ RETRY ;
  . ;if address came from DNS, set back into LL
  . I $D(HLIP) S $P(^HLCS(870,HLDP,400),U)=HLTCPADD
  . ; write and read to check if still open
- . Q:HLOS'["OpenM"  X "U IO:(::""-M"")" ; must be Cache/NT + use packet mode
+ . ; patch HL*1.6*157: HLOS is from calling $$OS^%ZOSV
+ . ; Q:HLOS'["OpenM"  X "U IO:(::""-M"")" ; must be Cache/NT + use packet mode
+ . Q:(HLOS'["VMS")&(HLOS'["UNIX")  X "U IO:(::""-M"")" ; must be Cache + packet mode
  . Q:$P(^HLCS(870,HLDP,400),U,7)'="Y"  ; must want to SAY HELO
  . U IO W "HELO "_$$KSP^XUPARAM("WHERE"),! R X:1
  ;openfail-try DNS lookup
@@ -116,7 +118,7 @@ DNS ;VA domains must have "med" inserted.
  ;configure their local DNS with "HL7.yourdomain.com" and entries
  ;are created in the logical link file and domain file.
  D MON^HLCSTCP("DNS Lkup")
- I HLDOM["DOMAIN.EXT"&(HLDOM'[".MED.") S HLDOM=$P(HLDOM,".DOMAIN.EXT")_".DOMAIN.EXT"
+ I HLDOM["domain.ext"&(HLDOM'[".MED.") S HLDOM=$P(HLDOM,".domain.ext")_".DOMAIN.EXT"
  I HLTCPORT=5000 S HLDOM="HL7."_HLDOM
  I HLTCPORT=5500 S HLDOM="MPI."_HLDOM
  ;

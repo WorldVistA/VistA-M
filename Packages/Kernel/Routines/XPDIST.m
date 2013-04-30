@@ -1,9 +1,9 @@
-XPDIST ;SFISC/RSD - site tracking; 06/01/2006 ;03/05/2008
- ;;8.0;KERNEL;**66,108,185,233,350,393,486,539**;Jul 10, 1995;Build 11
+XPDIST ;SFISC/RSD - site tracking ;03/05/2008
+ ;;8.0;KERNEL;**66,108,185,233,350,393,486,539,547**;Jul 10, 1995;Build 15
  ; Per VHA Directive 2004-038, this routine should not be modified.
  ;Returns ""=failed, XMZ=sent
  ;D0=ien in file 9.7, XPY=national site tracking^address(optional)
-EN(D0,XPY) ;send message
+EN(D0,XPY) ;EF. send message
  N %,DIFROM,XPD,XPD0,XPD1,XPD2,XPDV,XPZ,X,X1,Z,Y,XPD6,XPDTRACK
  ;Get data needed
  I '$D(^XPD(9.7,$G(D0),0)) D BMES^XPDUTL(" INSTALL file entry missing") Q ""
@@ -37,10 +37,10 @@ LOCAL ;Send a message to local mail group
  S XMDUZ=$S($P(XPD0,U,11):+$P(XPD0,U,11),1:.5),XMTEXT="XPDTEXT(",XMSUB=$P(XPD0,U)_" INSTALLATION"
  D ^XMD
  Q
-TRACK() ; Should VA track the installation of this patch at a national level?
+TRACK() ;EF. Should VA track the installation of this patch at a national level?
  Q:$G(XPY)="" 0  ; No - National site tracking was not requested
  ;Quit if not VA production primary domain
- I $G(^XMB("NETNAME"))'[".DOMAIN.EXT" D BMES^XPDUTL(" Not a VA primary domain") Q 0
+ I $G(^XMB("NETNAME"))'[".domain.ext" D BMES^XPDUTL(" Not a VA primary domain") Q 0
  ;X ^%ZOSF("UCI") S %=^%ZOSF("PROD")
  ;S:%'["," Y=$P(Y,",")
  ;I Y'=% D BMES^XPDUTL(" Not a production UCI") Q ""
@@ -67,11 +67,11 @@ REMEDY ;Send to Remedy Server - ESSRESOURCE@DOMAIN.EXT *p350 -REM
  S XMDUZ=$S($P(XPD0,U,11):+$P(XPD0,U,11),1:.5),XMTEXT="XPDTEXT(",XMSUB="KIDS-"_$P(XPD0,U)_" INSTALLATION"
  D ^XMD
  Q
-FORUM() ;send to Server on FORUM
+FORUM() ;EF. send to Server on FORUM
  Q:'XPDTRACK ""
  N XMY,XPDTEXT,XMTEXT,XMDUZ,XMSUB,XMZ
  K ^TMP($J)
- S:XPY XMY("S.A5CSTS@FORUM.DOMAIN.EXT")=""
+ S:XPY XMY("S.A5CSTS@FORUM.domain.ext")=""
  S:$L($P(XPY,U,2)) XMY($P(XPY,U,2))=""
  ;Message for server
  S XPDTEXT(1,0)="PACKAGE INSTALL"
@@ -90,3 +90,21 @@ FORUM() ;send to Server on FORUM
  S XMDUZ=$S($P(XPD0,U,11):+$P(XPD0,U,11),1:.5),XMTEXT="XPDTEXT(",XMSUB=$P(XPD0,U)_" INSTALLATION"
  D ^XMD
  Q "#"_$G(XMZ)
+ ;
+CHKS(XPDPH,XPDTEXT) ;Get Checksum from Forum for patch XPDPH, XPDTEXT is passed by reference
+ ;returns XPDTEXT(routine name)= before checksum
+ ;need to create parameter to store url - future
+ Q
+ K ^TMP($J,"XPDTHC")
+ Q:$G(XPDPH)=""
+ N XPDCHK,XPDHDR,XPDURL,I,X,Y
+ S XPDURL="http://127.0.0.1:6100/cgi/PCHCSUM?PCH="_XPDPH,XPDCHK=0
+ S X=$$GETURL^XTHC10(XPDURL,,$NA(^TMP($J,"XPDTHC")),.XPDHDR)
+ I X>0 D
+ . S I=""
+ . F  S I=$O(^TMP($J,"XPDTHC",I)) Q:I=""  S X=$G(^(I)) D:$E(X,1,4)="<li>"
+ .. S Y=$P($P(X,"</li>"),U,4),X=$P($P(X,"<li>",2),U),XPDTEXT(X)=Y,XPDCHK=XPDCHK+1
+ . Q
+ S XPDTEXT=XPDCHK
+ K ^TMP($J,"XPDTHC")
+ Q

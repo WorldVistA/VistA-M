@@ -1,5 +1,5 @@
 DICF ;SEA/TOAD,SF/TKW-VA FileMan: Finder, Part 1 (Main) ;20APR2010
- ;;22.0;VA FileMan;**20,31,165**;Mar 30, 1999;Build 32
+ ;;22.0;VA FileMan;**20,31,165**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
 FIND(DIFILE,DIFIEN,DIFIELDS,DIFLAGS,DIVALUE,DINUMBER,DIFORCE,DISCREEN,DIWRITE,DILIST,DIMSGA,DINDEX,DIC,DIY,DIYX) ;
  ; ENTRY POINT--silent selecter

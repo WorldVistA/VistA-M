@@ -1,7 +1,7 @@
-EDPRPT10 ;SLC/MKB - Admissions Report
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPRPT10 ;SLC/MKB - Admissions Report ;3/1/12 10:40am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
-ADM(BEG,END) ; Get Admissions Report for EDPSITE by date range
+ADM(BEG,END,CSV) ; Get Admissions Report for EDPSITE by date range
  N IN,OUT,LOG,X,X0,X1,X3,DX,DISP,ROW,TAB
  N ELAPSE,TRIAGE,WAIT,ADMDEC,ADMDEL
  D INIT ;set counters, sums to 0
@@ -12,8 +12,15 @@ ADM(BEG,END) ; Get Admissions Report for EDPSITE by date range
  S IN=BEG-.000001
  F  S IN=$O(^EDP(230,"ATI",EDPSITE,IN)) Q:'IN  Q:IN>END  S LOG=0 F  S LOG=+$O(^EDP(230,"ATI",EDPSITE,IN,LOG)) Q:LOG<1  D
  . S X0=^EDP(230,LOG,0),X1=$G(^(1)),X3=$G(^(3))
+ . Q:'+$P(X1,U,2)
  . S DISP=$$ECODE^EDPRPT($P(X1,U,2)),OUT=$P(X0,U,9)
- . Q:DISP=""  Q:'$D(CNT($$UP^XLFSTR(DISP)))  ;visits w/admit disp
+ . ;TDP - Patch 2 change to capture entries without abbreviations
+ . ;Q:DISP=""  Q:'$D(CNT($$UP^XLFSTR(DISP)))  ;visits w/admit disp
+ . ;S:DISP="" DISP="NONE"
+ . I DISP="" S DISP=$$DISP^EDPRPT($P(X1,U,2))
+ . ;Q:'$D(CNT($$UP^XLFSTR(DISP)))  ;visits w/admit disp
+ . ;TDP - Patch 2, added VADMIT1 call for additional VA Admit check
+ . I '$D(CNT($$UP^XLFSTR(DISP))),'$$VADMIT1^EDPRPT2($P(X1,U,2)) Q  ;visits w/admit disp
  . S DX=$$DXPRI^EDPQPCE(+$P(X0,U,3),LOG)
  . K ROW S ROW("id")=LOG
  . S ROW("outTS")=$S($G(CSV):$$EDATE^EDPRPT(OUT),1:OUT)
@@ -79,15 +86,28 @@ A2 ; calculate & include averages
  . K ROW M ROW=MIN(DISP)
  . S X=$$XMLA^EDPX("average",.ROW) D XML^EDPX(X)
  D XML^EDPX("</averages>")
+ K CNT,MIN
  Q
  ;
 INIT ; Initialize counters and sums
- N I,DISP
+ N I,DISP,DA,X,Y
  ;F D="VA","T","ICU","OBS","ALL" D
  S DISP="" F  S DISP=$O(^EDPB(233.1,"AB","disposition",DISP)) Q:DISP=""  D
  . Q:'$$VADMIT^EDPRPT2(DISP)
  . S CNT(DISP)=0
  . F I="elapsed","triage","wait","admDec","admDel" S MIN(DISP,I)=0
+ ;TDP - Patch 2, Added additional disposition inits to prevent undefined
+ ;      errors and capture dispositions without abbreviations
+ S Y=EDPSTA_".disposition"
+ S X=0 F  S X=$O(^EDPB(233.2,"AS",Y,X)) Q:X=""  D
+ . S DA=0 F  S DA=$O(^EDPB(233.2,"AS",Y,X,DA)) Q:DA=""  D
+ .. S DISP=$P($G(^EDPB(233.2,"AS",Y,X,DA)),U)
+ .. I '$L(DISP) S DISP=$E($TR($P($G(^EDPB(233.2,"AS",Y,+X,DA)),U,2)," ","_"),1,30)
+ .. I $L(DISP),'$D(CNT(DISP)),(($$VADMIT^EDPRPT2(DISP))!($$VADMIT1^EDPRPT2(X))) D
+ ... S DISP=$$UP^XLFSTR(DISP)
+ ... S CNT(DISP)=0
+ ... F I="elapsed","triage","wait","admDec","admDel" S MIN(DISP,I)=0
+ ;S CNT("NONE")=0 F I="elapsed","triage","wait","admDec","admDel" S MIN("NONE",I)=0
  S CNT("ALL")=0
  F I="elapsed","triage","wait","admDec","admDel" S MIN("ALL",I)=0
  Q

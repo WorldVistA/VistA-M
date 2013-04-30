@@ -1,5 +1,5 @@
 DIB ;SFISC/GFT,XAK-CREATE A NEW FILE ;8:53 AM  27 Mar 2002
- ;;22.0;VA FileMan;**107**;Mar 30, 1999
+ ;;22.0;VA FileMan;**107**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  W !! K DLAYGO,DTOUT D W^DICRW G Q:$D(DTOUT) K DICS,DIA Q:Y<0
 1 Q:'$D(@(DIC_"0)"))  I $P($G(^DD(+$P(@(DIC_"0)"),U,2),0,"DI")),U,2)["Y" W !!,$C(7),"RESTRICTED"_$S($P(^("DI"),U)["Y":" (ARCHIVE)",1:"")_" FILE - NO EDITING ALLOWED!" Q

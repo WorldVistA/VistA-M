@@ -1,5 +1,5 @@
 DIR03 ;SFISC/MKO-MULTILINE FIELD EDITOR ;12:36 PM  15 Feb 1995
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  F  D E X IOXY Q:DIR0DN!$G(DIR0QT)
  Q

@@ -1,5 +1,5 @@
 PSSHRVL1 ;WOIFO/Alex Vasquez, Timothy Sabat, Steve Gordon - Continuation Data Validation routine for drug checks ;01/15/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136**;9/30/97;Build 89
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,169**;9/30/97;Build 41
  ;
  ; Reference to ^PSNDF(50.68 GCNSEQNO field is supported by IA #3735 
  ; 
@@ -415,7 +415,8 @@ STATMSG() ;
 GCMESS() ;Get Exclude field
  N PSSVQND,PSSVQEXC,PSSVQPVP
  S PSSVQPVP=$P(ORDRNUM,";",3)
- S PSSVQND=^TMP($J,PSSHASH("Base"),"IN",PSSVQPVP,ORDRNUM)
+ I '$D(PSJDGCK) S PSSVQND=^TMP($J,PSSHASH("Base"),"IN",PSSVQPVP,ORDRNUM)
+ I $D(PSJDGCK) S PSSVQND=^TMP($J,PSSHASH("Base"),"IN","PROSPECTIVE",ORDRNUM)
  S PSSVQEXC=""
  D GCNMESX
  Q PSSVQEXC

@@ -1,5 +1,5 @@
 DIPR160 ;O-OIFO/GMB-Change Routine Size ;2/3/2009
- ;;22.0;VA FileMan;**160**;Mar 30, 1999;Build 21
+ ;;22.0;VA FileMan;**160**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
 ENV ; Environmental Check
  D BMES^XPDUTL("Perform Environment Check...")

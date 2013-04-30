@@ -1,10 +1,11 @@
-ONCOCFP ;Hines OIFO/GWB - [PT Automatic Casefinding-PTF Search] ;06/16/11
- ;;2.11;ONCOLOGY;**22,23,25,26,27,28,29,34,43,46,49,52,53**;Mar 07, 1995;Build 31
+ONCOCFP ;Hines OIFO/GWB - [PT Automatic Casefinding-PTF Search] ;05/03/12
+ ;;2.11;ONCOLOGY;**22,23,25,26,27,28,29,34,43,46,49,52,53,56**;Mar 07, 1995;Build 10
  ;
+ ; rvd - 0403/12 p56. Use ICD API (#3990) instead of direct global call
  W @IOF
  W !!!?10,"****************** PTF CASEFINDING ******************",!
  W !?10,"This option will search the PRINCIPLE DIAGNOSIS and"
- W !?10,"SECONDARY DIAGNOSIS fields of the PTF file for ICD-9"
+ W !?10,"SECONDARY DIAGNOSIS fields of the PTF file for ICD"
  W !?10,"codes which identify cases to be added to the Suspense"
  W !?10,"list."
  ;
@@ -46,7 +47,7 @@ ED K DIR
  G EX:(Y="")!(Y[U)
  G T:'Y
  S ONCO("SD")=SD,ONCO("ED")=ED
- W !!?3,"The following ICD-9 codes will be searched for:"
+ W !!?3,"The following ICD codes will be searched for:"
  W !
  W !?3,"140-239        NEOPLASMS"
  W !?3,"               (excluding benign neoplasms 210-229 unless listed below)"
@@ -115,11 +116,11 @@ WP ;Wrap-up report
  W !?3,$G(^TMP("ONCO",$J,0))_" PTF cases added to Suspense"
  Q
  ;
-IC ;Search for ICD9 codes
+IC ;Search for ICD codes
  K HT,IC9,IC,ICD,ICP
  S P="",CI=0
- F F=10,16:1:24 S ICP=+$P(X70,U,F) I ICP S ICD=$G(^ICD9(ICP,0)),IC9=$P(ICD,U,1) D FD Q:CI=1
- I X71'="",CI=0 F F=1,2,3,4 S ICP=+$P(X71,U,F) I ICP S ICD=$G(^ICD9(ICP,0)),IC9=$P(ICD,U,1) D FD Q:CI=1
+ F F=10,16:1:24 S ICP=+$P(X70,U,F) I ICP S ICD=$$ICDDX^ICDCODE(ICP),IC9=$P(ICD,U,2) D FD Q:CI=1
+ I X71'="",CI=0 F F=1,2,3,4 S ICP=+$P(X71,U,F) I ICP S ICD=$$ICDDX^ICDCODE(ICP),IC9=$P(ICD,U,1) D FD Q:CI=1
  Q:CI=0  G CK
  ;
 FD I ((IC9>139.9)&(IC9<210)) S CI=1 Q

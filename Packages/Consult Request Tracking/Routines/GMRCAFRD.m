@@ -1,5 +1,5 @@
 GMRCAFRD ;SLC/DLT,DCM,JFR - LM FORWARD ACTION ;7/11/03 14:02
- ;;3.0;CONSULT/REQUEST TRACKING;**1,4,10,12,15,22,35,39,64**;DEC 27, 1997;Build 20
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,4,10,12,15,22,35,39,64,46**;DEC 27, 1997;Build 23
  ;
  ; This routine invokes IA #2395
  ;
@@ -93,7 +93,7 @@ FRMSG ; Common logic used by GUI and List Manager to process the HL7 message
  D EN^GMRCHL7(DFN,GMRCO,$G(GMRCTYPE),$G(GMRCRB),"XX^FORWARD",$G(DUZ),$G(VISIT),.GMRCOM,,$G(GMRCAD))
  S GMRCADUZ=""
  S GMRCORNP=$P(^GMR(123,GMRCO,0),"^",14) ;This is the original provider that ordered the consult
- I +$G(GMRCORNP) S GMRCADUZ(+GMRCORNP)="" ;alert original provider of forward
+ I +$G(GMRCORNP),+$G(GMRCORNP)'=DUZ S GMRCADUZ(+GMRCORNP)="" ;alert original provider of forward
  S GMRCORTX="Forwarded consult "_$$ORTX^GMRCAU(+GMRCO)_" ("_GMRCURG_")"
  D MSG^GMRCP(DFN,GMRCORTX,+GMRCO,27,.GMRCADUZ,1) ;GMRCO=IEN of consult from file 123; 27 is notification entry from file ORD(100.9
  K GMRCOM

@@ -1,5 +1,5 @@
 ONCOAIP ;Hines OIFO/GWB - [EE Abstract Edit Primary] ;09/26/11
- ;;2.11;ONCOLOGY;**1,5,6,7,11,13,15,16,18,19,22,24,27,28,32,33,34,35,36,37,38,39,40,42,43,44,45,46,47,48,49,50,51,52,53,54**;Mar 07, 1995;Build 10
+ ;;2.11;ONCOLOGY;**1,5,6,7,11,13,15,16,18,19,22,24,27,28,32,33,34,35,36,37,38,39,40,42,43,44,45,46,47,48,49,50,51,52,53,54,57**;Mar 07, 1995;Build 6
  ;
 ED ;[EE Abstract Edit Primary]
  W @IOF,!
@@ -124,6 +124,7 @@ EXT S SECTION="Stage of Disease at Diagnosis" D SECTION
  S T=$P($G(^ONCO(165.5,D0,2)),U,1)
  S H=$$HIST^ONCFUNC(D0)
  I (S=35)!($$LEUKEMIA^ONCOAIP2(D0))!((S>64)&(S<71)) D  G PSD
+ .I $P($G(^ONCO(165.5,D0,0)),U,16)>3111231,$E(T,3,4)=77,H=98233 Q
  .S N=$S($E(H,1,4)=9731:"999^10^9",1:"999^80^9") ;Plasmacytoma, NOS
  .S N=$S(S=65:"999^99^9^99^99^9^9^9^9",1:N_"^99^99^9^9^9^7") ;Unk primary
  .I (T=67422)&(L'=1)&(H'=91403) S $P(N,U,2)=99,$P(N,U,9)=9   ;Spleen

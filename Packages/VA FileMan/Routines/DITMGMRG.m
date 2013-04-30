@@ -1,5 +1,5 @@
 DITMGMRG ;SFISC/EDE(OHPRD)-RELINK/MERGE TWO ENTRIES BELOW POINTED TO FILE ;2/24/94  16:10
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ; Merge two entries below pointed to file.  See ^DITMDOC.

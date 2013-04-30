@@ -1,5 +1,5 @@
-PRSATP ;HISC/REL,WIRMFO/MGD/PLT - Timekeeper Post Time ;2/24/10
- ;;4.0;PAID;**22,57,69,92,102,93,112,126**;Sep 21, 1995;Build 59
+PRSATP ;HISC/REL,WIRMFO/MGD/PLT - Timekeeper Post Time ;4/13/2012
+ ;;4.0;PAID;**22,57,69,92,102,93,112,126,132**;Sep 21, 1995;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; input (from calling option)
  ;   PTPF - (optional) part-time physician flag, true (=1) when called
@@ -56,18 +56,33 @@ P0 R !!,"Did Employee Only Work Scheduled Tour? ",X:DTIME S:'$T X="^^" S:X["^^" 
 P1 R !!,"Was Employee Absent the Entire Tour? ",X:DTIME S:'$T X="^" Q:X["^"  S X=$TR(X,"yesno","YESNO")
  S:X="" X="*" I $P("YES",X,1)'="",$P("NO",X,1)'="" W $C(7)," Answer YES or NO" G P1
  I X?1"Y".E D ^PRSATP0 Q:X["^"  G UPD
- I $E(ENT,1,2)["D" K ^PRST(458,PPI,"E",DFN,"D",DAY,2),^(3),^(10) Q
+ ;
+ ;for daily employees if you say they didn't work and they were not absent
+ ;then effectively you have not created any posting for the day and we
+ ;clean up any prior posting
+ I $E(ENT,1,2)["D" D  Q
+ . K ^PRST(458,PPI,"E",DFN,"D",DAY,2),^(3),^(10)
+ . D CLEANTW^PRSATPTW(PPI,DFN,DAY)
+ ;
 P3 S ZENT=$S($E(ENT,2)="H"&('$G(PTPF)):"RG ",$E(ENT,1,2)="00":"RG ",1:"")
  I TC=1 D OT S:$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),"^",12)&(AC="M2E") ZENT=ZENT_"HW " S ZENT=ZENT_"NP CP " G P31
  I TC=3!(TC=4) D LV S:$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),"^",12)&($E(ENT,22)) ZENT=ZENT_"HW " G P31
  D LV,OT S ZENT=ZENT_"TV TR " S:$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),"^",12) ZENT=ZENT_"HX HW "
 P31 S DDSFILE=458,DDSFILE(1)=458.02,DA(2)=PPI,DA(1)=DFN,DA=DAY
  S Z=$G(^PRST(458,PPI,"E",DFN,"D",DAY,2)) K ZS
- S DR="[PRSA TP POST1]" D ^DDS K DS Q:'$D(ZS)
+ S DR="[PRSA TP POST1]" D ^DDS K DS
+ ; timekeeper has indicated there are exceptions, if they don't enter any, quit.
+ I '$D(ZS) QUIT:'$D(^PRST(458,PPI,"E",DFN,"D",DAY,2))  S PTY=3 G UPD
  I ZS'="" S ^PRST(458,PPI,"E",DFN,"D",DAY,2)=ZS,PTY=3 G UPD
- I $D(^PRST(458,PPI,"E",DFN,"D",DAY,2)) K ^(2),^(3),^(10)
+ ; if employee had exceptions, but timekeeper deletes them, then clear posting
+ ; data because prompts that the employee was not absent and did not work
+ ; entire tour were answered such that there must be exceptions
+ I $D(^PRST(458,PPI,"E",DFN,"D",DAY,2)) D
+ .  K ^(2),^(3),^(10)
+ .  D CLEANTW^PRSATPTW(PPI,DFN,DAY)
  Q
 UPD ; Update status
+ D TELEWORK^PRSATPTW(PPI,DFN,DAY,STAT,PTY,TC)
  D NOW^%DTC
  S $P(^PRST(458,PPI,"E",DFN,"D",DAY,10),"^",1,4)="T^"_DUZ_"^"_%_"^"_PTY
  N DAH,DBH,HOL,QUIT

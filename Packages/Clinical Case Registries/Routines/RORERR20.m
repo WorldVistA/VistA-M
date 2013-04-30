@@ -1,6 +1,16 @@
 RORERR20 ;HCIOFO/SG - LIST OF ERROR MESSAGES  ; 1/22/06 7:00pm
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+ ;;1.5;CLINICAL CASE REGISTRIES;**18**;Feb 17, 2006;Build 25
  ;
+ ;***************************************************************************
+ ;***************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*18   APR  2012   C RAY        Added error code -112
+ ;                                      
+ ;***************************************************************************
+ ;***************************************************************************
  Q
  ;
  ;***** RETURNS THE TEXT OF THE MESSAGE
@@ -160,3 +170,4 @@ MSGLIST ; Code Type  Message Text
  ;;-109 ^ 2 ^ Automatic backpull has been completed.
  ;;-110 ^ 5 ^ Pointer(s) in the restored data cannot be resolved.
  ;;-111 ^ 2 ^ Patient "merge" from DFN #|2| to DFN #|3|.
+ ;;-112 ^ 5 ^ Intialization of |2| could not be completed.

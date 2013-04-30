@@ -1,5 +1,5 @@
 KMPDU3 ;OAK/RAK - CM Tools Utilities ;7/22/04  09:10
- ;;2.0;CAPACITY MANAGEMENT TOOLS;**2**;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 ERRDATA(KMPDY,KMPDIEN,KMPDGBL) ;-- error log data.
  ;-----------------------------------------------------------------------
@@ -29,7 +29,7 @@ ERRDATA(KMPDY,KMPDIEN,KMPDGBL) ;-- error log data.
  I DATA="" S @KMPDGBL@(0)="[No data for "_KMPDIEN_"]" Q
  ;
  ; $h date in external format.
- S @KMPDGBL@(0)=$$HTE^XLFDT(+DATA)
+ S @KMPDGBL@(0)=$$HTE^XLFDT($G(^%ZTER(1,IEN,1,IEN1,"H")))
  ; error text.
  S @KMPDGBL@(1)=$G(^%ZTER(1,IEN,1,IEN1,"ZE"))
  S @KMPDGBL@(2)="",LN=3
@@ -106,6 +106,38 @@ ERRDATE(KMPDY,KMPDATE) ;-- get error log date or list all dates
  ;
  Q
  ;
+ERRLIST(KMPDRES,KMPDTH,KMPDSCRN,KMPDGBL) ;
+ ;----------------------------------------------------------------------
+ ; KMPDT.... $H date.
+ ; KMPDSCRN. (optional) free text screen for certain error
+ ;----------------------------------------------------------------------
+ K KMPDRES
+ S KMPDTH=+$G(KMPDTH),KMPDSCRN=$G(KMPDSCRN),KMPDGBL=$G(KMPDGBL)
+ ;
+ N DATA,I,LN
+ ;
+ ; kill global with check for ^tmp or ^utility.
+ D KILL^KMPDU(.DATA,KMPDGBL)
+ ; if error.
+ I $E(DATA)="[" S @KMPDGBL@(0)=DATA Q
+ ;
+ I 'KMPDTH S @KMPDGBL@(0)="[The Error Date is not defined]" Q
+ I '$D(^%ZTER(1,KMPDTH,0)) S @KMPDGBL@(0)="[There is no data to report]" Q
+ I KMPDGBL="" S @KMPDGBL@(0)="[Global for storage is not defined]" Q
+ ;
+ S (I,LN)=0,KMPDRES(0)=KMPDGBL
+ F  S I=$O(^%ZTER(1,KMPDTH,1,I)) Q:'I  I $D(^(I,0)) D 
+ .I KMPDSCRN'="" X KMPDSCRN Q:'$T
+ .S @KMPDGBL@(LN)=I
+ .S $P(@KMPDGBL@(LN),U,2)=$P($G(^%ZTER(1,KMPDTH,1,I,"ZE")),U)
+ .S $P(@KMPDGBL@(LN),U,3)=$P($$HTE^XLFDT($P($G(^%ZTER(1,KMPDTH,1,I,"H")),U)),"@",2)
+ .S LN=LN+1
+ ;
+ S KMPDRES=$NA(@KMPDGBL)
+ I '$D(@KMPDGBL) S @KMPDGBL@(0)="[There are no Errors for this date]" Q
+ ;
+ Q
+ ;
 ROUSAVE(KMPDRES,KMPDRNM,KMPDRCD) ;-- routine save
  ;-----------------------------------------------------------------------
  ; KMPDRNM... Routine name.
@@ -164,9 +196,11 @@ ROUSTATS(KMPDRES,KMPDIENS) ;-- routine stats
  .Q:'$D(^KMPD(8972.1,IEN,0))  S DATA=^(0)
  .; put second piece (date/time entered) in external format
  .S $P(DATA,U,2)=$$FMTE^XLFDT($P(DATA,U,2))
+ .; make sure there are no null values
+ .F J=4:1:10,12 S $P(DATA,U,J)=+($P(DATA,U,J))
  .S KMPDRES(LN)=DATA
  .; computed fields
- .F J=4:1:9 S $P(KMPDRES(LN),U,(J+10))=$$GET1^DIQ(8972.1,IEN,(99+(.01*J)))
+ .F J=4:1:9 S $P(KMPDRES(LN),U,(J+10))=+$$GET1^DIQ(8972.1,IEN,(99+(.01*J)))
  .S LN=LN+1
  ;
  S:'$D(KMPDRES) KMPDRES(0)="<No Data to Report>"

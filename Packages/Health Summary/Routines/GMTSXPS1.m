@@ -21,7 +21,7 @@ EN ; Display status only
  N POP,GMTSENV S GMTSENV=$$ENV Q:'GMTSENV
  K ^TMP($J,"GMTSINFO"),GMTSMAIL N X,Y,ZTSAVE D HDR
  D:'$D(GMTSHORT) FI,INS^GMTSXPS2 D OUTPUT Q
-SEND ; Send status to G.GMTS@ISC-SLC.DOMAIN.EXT
+SEND ; Send status to G.GMTS@ISC-SLC.domain.ext
  N POP,GMTSENV S GMTSENV=$$ENV2 Q:'GMTSENV
  S GMTSIENS=$G(GMTSIENS) S:$L(GMTSIENS) GMTSIENS=";"_GMTSIENS_";"
  S GMTSENV=$$ROK("XMD") Q:'GMTSENV  K ^TMP($J,"GMTSINFO") N X,Y,ZTSAVE,ZTQUEUED,ZTREQ,ZTRTN
@@ -97,7 +97,7 @@ P(X) ;   Person
  S GMTSPH=$P($G(^VA(200,GMTSDUZ,.13)),"^",2) S:GMTSPH="" GMTSPH=$P($G(^VA(200,GMTSDUZ,.13)),"^",1) S:GMTSPH="" GMTSPH=$P($G(^VA(200,GMTSDUZ,.13)),"^",3) S:GMTSPH="" GMTSPH=$P($G(^VA(200,GMTSDUZ,.13)),"^",4)
  S GMTSDUZ=$P(^VA(200,GMTSDUZ,0),"^",1),X=GMTSDUZ_"^"_GMTSPH Q X
 INST(X) ;   Institution
- S X=$G(^XMB("NETNAME")) I $L(X) S:X[".DOMAIN.EXT" X=$P(X,".DOMAIN.EXT",1) S:X["." X=$P(X,".",$L(X,".")) Q X
+ S X=$G(^XMB("NETNAME")) I $L(X) S:X[".domain.ext" X=$P(X,".domain.ext",1) S:X["." X=$P(X,".",$L(X,".")) Q X
  S X=$P($G(^XMB(1,1,"XUS")),"^",17) I +X>0 S X=$$GET1^DIQ(4,+X,.01,"E") Q:$L(X) X
  S X="" Q X
  ;                     
@@ -110,9 +110,9 @@ DISPLAY ;   Display global array
 MAIL ;   Mail global array in message
  N DIFROM S U="^",XMSUB="Health Summary Info"
  S:$D(GMTSINST)&($L($G(GMTSBLD))) XMSUB="Health Summary "_GMTSBLD_" Install"
- S XMY("G.GMTS@ISC-SLC.DOMAIN.EXT")=""
+ S XMY("G.GMTS@ISC-SLC.domain.ext")=""
  S XMTEXT="^TMP($J,""GMTSINFO"",",XMDUZ=.5 D ^XMD
- K ^TMP($J,"GMTSINFO"),%Z,XCNP,XMSCR,XMDUZ,XMY("G.GMTS@ISC-SLC.DOMAIN.EXT"),XMZ,XMSUB,XMY,XMTEXT,XMDUZ Q
+ K ^TMP($J,"GMTSINFO"),%Z,XCNP,XMSCR,XMDUZ,XMY("G.GMTS@ISC-SLC.domain.ext"),XMZ,XMSUB,XMY,XMTEXT,XMDUZ Q
  Q
  ;                            
  ; Temporary Global

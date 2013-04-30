@@ -1,5 +1,5 @@
-ECXFELOC ;BIR/DMA,CML-Print Feeder Locations; [ 05/07/96  8:41 AM ] ;7/21/11  14:24
- ;;3.0;DSS EXTRACTS;**1,8,105,132**;Dec 22, 1997;Build 18
+ECXFELOC ;BIR/DMA,CML-Print Feeder Locations; [ 05/07/96  8:41 AM ] ;5/10/12  10:52
+ ;;3.0;DSS EXTRACTS;**1,8,105,132,136**;Dec 22, 1997;Build 28
 EN ;entry point from option
  W !!,"Print list of feeder locations.",! S QFLG=1
  K %ZIS S %ZIS="Q" D ^%ZIS Q:POP 
@@ -47,6 +47,14 @@ C ;;SURGERY TIME (SPINAL CORD)
 S ;;SURGERY TIME (SURGERY)
 UDP S EC=0 F  S EC=$O(^DG(40.8,EC)) Q:'EC  I $D(^DG(40.8,EC,0)) S EC1=$E($P(^(0),U),1,30),^TMP($J,"UDP","UDP"_EC,EC)="Unit Dose Medications-"_EC1
 DEN ;S EC=0 F  S EC=$O(^DENT(225,EC)) Q:'EC  I $D(^(EC,0)) S EC1=$P(^(0),U),^TMP($J,"DEN",EC1,EC)="Dental "_EC1
+PRO ;Prosthetics Location Information. API added in patch 136
+ N IEN,LOC,DIV,X,ORDER
+ S IEN=0 F  S IEN=$O(^ECX(727.826,IEN)) Q:'+IEN  S LOC=$P($G(^ECX(727.826,IEN,0)),U,10) I LOC'="" S:'$D(LOC(LOC)) LOC(LOC)=""
+ S LOC="" F  S LOC=$O(LOC(LOC)) Q:LOC=""  D
+ .S DIV=$P(LOC,$S(LOC["NONL":"NONL",LOC["ORD":"ORD",LOC["HO2":"HO2",LOC["LAB":"LAB",1:""),1) I DIV="" S DIV=+LOC
+ .S DIC=4,DIC(0)="MXQ",X=DIV D ^DIC Q:Y=-1
+ .S ORDER=$P(LOC,DIV,2)
+ .S ^TMP($J,"PRO",LOC,LOC)=$P(Y,U,2)_" "_$S(ORDER="HO2":"Home Oxygen",ORDER="NONL":"Non Lab Location",ORDER="LAB":"Prosthetics Lab",ORDER="ORD":"Ordering Location",1:"")
  ;
 PRINT ;
  S EC="" F  S EC=$O(^TMP($J,EC)),EC1="" Q:EC=""  Q:QFLG  D HEAD Q:QFLG  F  S EC1=$O(^TMP($J,EC,EC1)),EC2=""  Q:EC1=""  Q:QFLG  F  S EC2=$O(^TMP($J,EC,EC1,EC2)) Q:EC2=""  Q:QFLG  D

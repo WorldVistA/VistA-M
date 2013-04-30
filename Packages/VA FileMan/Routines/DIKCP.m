@@ -1,5 +1,5 @@
 DIKCP ;SFISC/MKO-PRINT INDEX(ES) ;11:33 AM  1 Nov 1999
- ;;22.0;VA FileMan;**11**;Mar 30, 1999
+ ;;22.0;VA FileMan;**11**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;==============================
  ; PRINT(File,Field,Flag,.Page)

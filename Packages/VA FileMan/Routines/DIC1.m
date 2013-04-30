@@ -1,5 +1,5 @@
 DIC1 ;SFISC/GFT/TKW-READ X, SHOW CHOICES ;29SEP2010
- ;;22.0;VA FileMan;**1,4,17,20,31,48,78,86,70,122,165**;Mar 30, 1999;Build 32
+ ;;22.0;VA FileMan;**1,4,17,20,31,48,78,86,70,122,165**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  K DUOUT,DTOUT N DD,DIY,DISUB,DIPRMT
  D GETFA(.DIC,.DO)

@@ -1,5 +1,5 @@
 FBPAID ;WOIFO/SAB - SERVER ROUTINE TO UPDATE PAYMENTS ;2/10/2009
- ;;3.5;FEE BASIS;**5,61,107,121**;JAN 30, 1995;Build 4
+ ;;3.5;FEE BASIS;**5,61,107,121,135**;JAN 30, 1995;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;incoming record from AAC will contain the following data
  ;   - Fee Program  - from Fee Basis Program  (161.8)
@@ -23,6 +23,13 @@ FBPAID ;WOIFO/SAB - SERVER ROUTINE TO UPDATE PAYMENTS ;2/10/2009
  K ^TMP("FBPAID",$J),^TMP("FBERR",$J)
  D STATION^FBAAUTL I $S($G(FB("ERROR")):1,'$G(FBAASN):1,1:0) Q
  K FB
+ ;
+ ;FB*3.5*135 Start changes
+ N FBDATE,FBIBOK
+ S FBDATE=DT
+ S FBIBOK=$$IBALLWD^FBPAID3()  ;RETURNS 0 if the site has sent the site parameter ALLOW FB PAID TO IB to NO or if it is blank
+ ;FB*3.5*135 End changes
+ ;
  ;start to read in message from central fee
  ;edits are:
  ;          1. invalid station number
@@ -61,6 +68,7 @@ FBPAID ;WOIFO/SAB - SERVER ROUTINE TO UPDATE PAYMENTS ;2/10/2009
  . N FBAAIN
  . S FBAAIN=$P($G(^FBAAC(DA(3),1,DA(2),1,DA(1),1,DA,0)),U,16)
  . I FBAAIN]"" S FBINV(3,FBAAIN)=""
+ I FBACT="C" D:FBIBOK ADDONE^FBPAID3(3,.FBIEN,+FBIEN(3),FBDATE)  ;FB*3.5*135
  D KILL
  Q
  ;
@@ -102,6 +110,7 @@ FBPAID ;WOIFO/SAB - SERVER ROUTINE TO UPDATE PAYMENTS ;2/10/2009
  . N FBAAIN
  . S FBAAIN=$P($G(^FBAAI(DA,0)),U)
  . I FBAAIN]"" S FBINV(9,FBAAIN)=""
+ I FBACT="C" D:FBIBOK ADDONE^FBPAID3(9,+FBIEN,$P(^FBAAI(+FBIEN,0),U,4),FBDATE)  ;FB*3.5*135
  D KILL
  Q
  ;

@@ -1,5 +1,5 @@
-EDPQPCE ;SLC/KCM - Retrieve PCE information for ED Visits
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPQPCE ;SLC/KCM - Retrieve PCE information for ED Visits ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 DXPRI(AREA,LOG) ; return primary diagnosis
  N DXLST

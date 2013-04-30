@@ -1,5 +1,5 @@
 GMRCASF ;SLC/DLT - Significant Findings Action ;7/11/03 13:28
- ;;3.0;CONSULT/REQUEST TRACKING;**4,10,14,22,29,35**;DEC 27, 1997
+ ;;3.0;CONSULT/REQUEST TRACKING;**4,10,14,22,29,35,46**;DEC 27, 1997;Build 23
 SF(GMRCO) ;Evaluate Significant Findings and update accordingly
  ;GMRCO is the selected consult
  N GMRCQIT,GMRCLCK
@@ -70,8 +70,10 @@ SETORTX ;Set prefix text for the alert
 SENDALRT(GMRCORTX) ;Send to the requesting provider
  N GMRCRP,GMRCADUZ,GMRCDELR
  S GMRCRP=$P($G(^GMR(123,+GMRCO,0)),U,14) ;requesting clinician
- I +GMRCRP S GMRCADUZ(+GMRCRP)=""
- W !,"Alert will be sent to Requesting Provider: "_$P($G(^VA(200,+GMRCRP,0)),U,1)
+ I +GMRCRP,GMRCRP'=DUZ D
+ . S GMRCADUZ(+GMRCRP)=""
+ . W !,"Alert will be sent to Requesting Provider: "_$P($G(^VA(200,+GMRCRP,0)),U,1)
+ E  W !,"No automatic alerts will be sent to the Requesting Provider."
  S GMRCDELR=0
  D ANDTO^GMRCACMT
  D SENDMSG^GMRCACMT(23,+GMRCO)

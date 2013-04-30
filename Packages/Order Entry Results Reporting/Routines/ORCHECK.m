@@ -1,5 +1,5 @@
-ORCHECK ;SLC/MKB-Order checking calls ;04/27/12
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,56,70,94,141,215,243,293,280,346,357**;Dec 17, 1997;Build 52
+ORCHECK ;SLC/MKB-Order checking calls ;06/08/12  07:16
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,56,70,94,141,215,243,293,280,346,357,352**;Dec 17, 1997;Build 18
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 DISPLAY ; -- DISPLAY event [called from ORCDLG,ORCACT4,ORCMED]
  ;    Expects ORVP, ORNMSP, ORTAB, [ORWARD]
@@ -178,7 +178,7 @@ FDBDOWN(ORX) ; -- Checks to see if the FDB was down and if so set appropriate OC
  ..N ORCNT S ORCNT=1
  ..I ORENH S ORCNT=ORCNT+1,^TMP($J,"ORK XTRA TXT",ORKGLOB,ORMAIN,ORCNT)="      Drug Interactions"
  ..I ORENH S ORCNT=ORCNT+1,^TMP($J,"ORK XTRA TXT",ORKGLOB,ORMAIN,ORCNT)="      Duplicate Therapy"
- ..I '$G(ORX),ORDSG S ORCNT=ORCNT+1,^TMP($J,"ORK XTRA TXT",ORKGLOB,ORMAIN,ORCNT)="      Dosing Warnings"
+ ..I '$G(ORX),ORDSG S ORCNT=ORCNT+1,^TMP($J,"ORK XTRA TXT",ORKGLOB,ORMAIN,ORCNT)="      Dosing"
  Q
  ;
 RETURN ; -- Return checks in ORCHECK(ORIFN,CDL,#)

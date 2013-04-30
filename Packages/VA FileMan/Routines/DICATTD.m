@@ -1,5 +1,5 @@
 DICATTD ;SFISC/GFT-SCREEN-MODE 'MODIFY FILE ATTRIBUTES' ;01:41 PM  24 Dec 2001
- ;;22.0;VA FileMan;**1,8,42,89**;Mar 30, 1999
+ ;;22.0;VA FileMan;**1,8,42,89**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  N DG,DLAYGO,DIC,DICATTB,DICATTA,DICATTF,DA,DDA

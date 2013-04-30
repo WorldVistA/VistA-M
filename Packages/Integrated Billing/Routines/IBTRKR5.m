@@ -1,5 +1,5 @@
 IBTRKR5 ;ALB/AAS - CLAIMS TRACKING - ADD/TRACK PROSTHETICS ;13-JAN-94
- ;;2.0;INTEGRATED BILLING;**13,260,312,339,389**;21-MAR-94;Build 6
+ ;;2.0;INTEGRATED BILLING;**13,260,312,339,389,474**;21-MAR-94;Build 29
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % ; -- entry point for nightly background job
@@ -82,6 +82,8 @@ PRCHK ; -- check and add item
  ;
  S IBDATA=$G(^RMPR(660,+IBDA,0)) Q:IBDATA=""
  S DFN=$P(IBDATA,"^",2) Q:'DFN
+ ; quit if non billable PSAS HCPCS code is found 
+ I $$IBPHP(IBDA) Q
  D CL^SDCO21(DFN,IBDT,"",.IBARR)
  ;
  ; -- checks copied from rmprbil v2.0 /feb 2, 1994
@@ -108,6 +110,17 @@ CLQ ; -- ok to add to tracking module
  I $G(IBRMARK)="" S IBCNT1=IBCNT1+1
  K VAEL,VA,IBDATA,DFN,X,Y
 PRCHKQ Q
+ ;
+IBPHP(IBDA) ; non billable PSAS HCPCS codes
+ ; input-patient item in #660
+ ; output-value if the code with the first 2 chars in the string is found
+ N IBPSAS,IBPIN S IBPIN=""
+ S IBPSAS=",DI,DL,EC,EV,FE,HN,HS,NR,RE,SB,SI,TH,TR,VA,"
+ ; return the pointer^description^the code (#661.1,.01)
+ S IBPIN=$$PIN^IBATUTL(+IBDA)
+ S IBPIN=$P(IBPIN,U,3)
+ S IBPIN=$F(IBPSAS,","_$E(IBPIN,1,2)_",")
+ Q IBPIN
  ;
 BULL ; -- send bulletin
  ;

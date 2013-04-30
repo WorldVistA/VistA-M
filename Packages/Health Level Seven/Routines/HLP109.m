@@ -54,7 +54,7 @@ POST ; Called by KIDS post-init...
  ; Send Mailman message.
  S XMDUZ=.5,XMSUB="HL*1.6*109 Installation - Site# "_$P($$SITE^VASITE,U,3)
  S XMTEXT="^TMP("_$J_",""HLMAIL"","
- S XMY("HL7SystemMonitoring@DOMAIN.EXT")=""
+ S XMY("HL7SystemMonitoring@domain.ext")=""
  ;
  D ^XMD
  ;
@@ -170,14 +170,14 @@ IENSUM(IEN) ; Checksum of entry...
 DELMGRP ; Delete mailgroup in monitor...
  N IEN,MIEN
  ;
- ; CHECK 773 AC XREF --- @ --- HL7DevelopmentTeam@DOMAIN.EXT
+ ; CHECK 773 AC XREF --- @ --- HL7DevelopmentTeam@domain.ext
  S IEN=$O(^HLEV(776.1,"B","CHECK 773 AC XREF",0))
- S MIEN=$O(^HLEV(776.1,+IEN,62,"B","HL7DevelopmentTeam@DOMAIN.EXT",0))
+ S MIEN=$O(^HLEV(776.1,+IEN,62,"B","HL7DevelopmentTeam@domain.ext",0))
  D DELGRP1(IEN,MIEN)
  ;
  ; LINK (870) CHECKS
  S IEN=$O(^HLEV(776.1,"B","LINK (870) CHECKS",0))
- S MIEN=$O(^HLEV(776.1,+IEN,62,"B","HL7DevelopmentTeam@DOMAIN.EXT",0))
+ S MIEN=$O(^HLEV(776.1,+IEN,62,"B","HL7DevelopmentTeam@domain.ext",0))
  D DELGRP1(IEN,MIEN)
  ;
  Q

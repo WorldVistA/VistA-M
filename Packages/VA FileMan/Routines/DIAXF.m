@@ -1,5 +1,5 @@
 DIAXF ;SFISC/DCM-FILE EXTRACTED DATA ;5/13/96  14:01
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 EN ;
  Q:'$D(^TMP("DIAX",$J))

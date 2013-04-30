@@ -1,5 +1,5 @@
 DIFG3 ;SFISC/DG(OHPRD)-LOOKUP PROCESSING ;3/11/93  1:33 PM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S DIFGTYP="" X DIFGLINE
  N DIC,DIFGDRAD,DIFGDRCT,DIFGFLUS

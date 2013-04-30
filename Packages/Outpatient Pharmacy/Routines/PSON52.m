@@ -1,11 +1,11 @@
 PSON52 ;BIR/DSD - files new entries in prescription file ;08/09/93
- ;;7.0;OUTPATIENT PHARMACY;**1,16,23,27,32,46,71,111,124,117,131,139,157,143,219,148,239,201,268,260,225,303,358,251,387,379**;DEC 1997;Build 28
+ ;;7.0;OUTPATIENT PHARMACY;**1,16,23,27,32,46,71,111,124,117,131,139,157,143,219,148,239,201,268,260,225,303,358,251,387,379,390**;DEC 1997;Build 86
  ;External reference ^PS(55 supported by DBIA 2228
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to ^XUSEC supported by DBIA 10076
  ;External reference SWSTAT^IBBAPI supported by DBIA 4663
  ;External reference SAVNDC^PSSNDCUT supported by DBIA 4707
- ;External reference to $$DS^PSSDSAPI supported by DBIA 5424
+ ;External reference to $$DS^PSSDSAPI supported by DBIA 5425
 EN(PSOX) ;Entry Point
 START ;
  D:$D(XRTL) T0^%ZOSV ; Start RT Monitor

@@ -1,5 +1,5 @@
 FHASN6 ; HISC/NCA - List Inpats By Nutrition Status Level ;3/1/95  10:58
- ;;5.5;DIETETICS;;Jan 28, 2005
+ ;;5.5;DIETETICS;**27**;Jan 28, 2005;Build 9
 EN2 ; Select Status to print
  K DIR S DIR(0)="SO^1:NORMAL;2:MILDLY COMPROMISED;3:MODERATELY COMPROMISED;4:SEVERELY COMPROMISED;5:UNCLASSIFIED",DIR("A")="Choose a Nutrition Status Level" D ^DIR G:$D(DIRUT)!($D(DIROUT)) KIL S STS=+Y
 F0 R !!,"Print by CLINICIAN or WARD? WARD// ",X:DTIME G:'$T!(X["^") KIL S:X="" X="W" D TR^FH I $P("CLINICIAN",X,1)'="",$P("WARD",X,1)'="" W *7,"  Answer with C or W" G F0
@@ -33,9 +33,15 @@ P0 ; Print summary
  I '$D(^TMP($J)) W !!,"There are No current inpatients with ",$S(STS<5:$P($G(^FH(115.4,+STS,0)),"^",2),1:"Unclassified")," nutrition status.",!! Q
  W ! S NAM="" F W1=0:0 S NAM=$O(^TMP($J,NAM)) Q:NAM=""!(ANS="^")  W NAM F W2=0:0 S W2=$O(^TMP($J,NAM,W2)) Q:W2<1!(ANS="^")  S PAT="" D P2
  W ! Q
-P1 I SRT="W" S NAM=$E($P($G(^FH(119.6,+XX,0)),"^",1),1,15)
- E  S NAM=$E($P($G(^VA(200,+XX,0)),"^",1),1,26)
- Q:NAM=""  S:DTE="" DTE=$P(^FHPT(FHDFN,"A",ADM,0),"^",1) S ^TMP($J,NAM,DTE,PAT)=BID_"^"_$E(RM,1,10) Q
+P1 I SRT="W" S NAM=$E($P($G(^FH(119.6,+XX,0)),"^",1),1,15) D P15
+ E  D
+ . F X1=0:0 S X1=$O(^FH(119.6,W1,2,X1)) Q:'X1>0  D
+ .. S X2=$G(^FH(119.6,W1,2,X1,0)) Q:X2=""
+ ..S NAM=$E($P($G(^VA(200,+X2,0)),"^",1),1,26)
+ .. D P15
+ . K X1,X2
+ Q
+P15 Q:NAM=""  S:DTE="" DTE=$P(^FHPT(FHDFN,"A",ADM,0),"^",1) S ^TMP($J,NAM,DTE,PAT)=BID_"^"_$E(RM,1,10) Q
 P2 S PAT=$O(^TMP($J,NAM,W2,PAT)) Q:PAT=""  S D1=$G(^(PAT))
  D:$Y'<(IOSL-3) HD Q:ANS="^"
  S BID=$P(D1,"^",1),RM=$P(D1,"^",2)

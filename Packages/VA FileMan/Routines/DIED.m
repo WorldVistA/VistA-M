@@ -1,5 +1,5 @@
 DIED ;SFISC/GFT,XAK-MAJOR INPUT PROCESSOR ;05:43 PM  2 Jan 2002
- ;;22.0;VA FileMan;**4,21,11,59,96**;Mar 30, 1999
+ ;;22.0;VA FileMan;**4,21,11,59,96**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 O D W W Y W:$X>48 !?9
  I $L(Y)>19,'DV,DV'["I",(DV["F"!(DV["K")) G RW^DIR2

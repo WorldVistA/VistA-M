@@ -1,5 +1,6 @@
-ORWDXM1 ; SLC/KCM - Order Dialogs, Menus;5/12/08 6:14am ;9/10/2010
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,131,132,141,178,185,187,215,243,280**;Dec 17, 1997;Build 85
+ORWDXM1 ;SLC/KCM - Order Dialogs, Menus;5/12/08 6:14am ;9/10/2010
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,131,132,141,178,185,187,215,243,280,331**;Dec 17, 1997;Build 30
+ ;
 BLDQRSP(LST,ORIT,FLDS,ISIMO,ENCLOC) ; Build responses for an order
  ; LST=QuickLevel^ResponseID(ORIT;$H)^Dialog^Type^FormID^DGrp
  ; LST(n)=verify or reject text
@@ -76,6 +77,32 @@ BLDQRSP(LST,ORIT,FLDS,ISIMO,ENCLOC) ; Build responses for an order
  N SEQ,DA,XCODE,MUSTASK,PROMPT,INST,KEY,IVFID
  S IVFID=$O(^ORD(101.41,"B","PSJI OR PAT FLUID OE",0))
  S AUTOACK=$S($D(ORWPSWRG):0,1:1)
+ ; If copying, clear bad dates. Later, SETITEM will fill dates with default values. ;DJE-VM *331
+ I ORWMODE=1 D  ;
+ . I $L($$VAL^ORCD("START DATE")) D  ;
+ . . S X=$$VAL^ORCD("START DATE"),%DT="TX" D ^%DT
+ . . I Y'<$$DT^XLFDT,(($L($$VAL^ORCD("STOP DATE"))=0)!('$$FTDCOMP^ORCD("START DATE","STOP DATE",">"))) Q  ;quit if valid dates: start not in the past or stop after start
+ . . K ORDIALOG($$PTR("START DATE"),1),ORDIALOG($$PTR("START DATE/TIME"),1) ;erase bad start and stop dates.
+ . . K ORDIALOG($$PTR("STOP DATE"),1),ORDIALOG($$PTR("STOP DATE/TIME"),1)
+ . ; check start and stop dates found in diet orders
+ . I $L($$VAL^ORCD("EFFECTIVE DATE/TIME")) D  ;
+ . . S X=$$VAL^ORCD("EFFECTIVE DATE/TIME"),%DT="TX" D ^%DT
+ . . I Y'<$$DT^XLFDT,(($L($$VAL^ORCD("EXPIRATION DATE/TIME"))=0)!('$$FTDCOMP^ORCD("EFFECTIVE DATE/TIME","EXPIRATION DATE/TIME",">"))) Q  ;quit if valid dates: start not in the past or stop after start
+ . . K ORDIALOG($P(ORDIALOG("B","EFFECTIVE DATE/TIME"),U,2),1) ;erase bad start and stop dates.
+ . . K ORDIALOG($P(ORDIALOG("B","EXPIRATION DATE/TIME"),U,2),1)
+ . ; check date desired field found in imaging orders
+ . I $L($$VAL^ORCD("DATE DESIRED")) D  ;
+ . . S X=$$VAL^ORCD("DATE DESIRED"),%DT="TX" D ^%DT
+ . . I Y'<$$DT^XLFDT Q  ;quit if not a past date
+ . . K ORDIALOG($P(ORDIALOG("B","DATE DESIRED"),U,2),1) ;erase bad date
+ . ; check collection date field found in lab orders
+ . I $L($$VAL^ORCD("COLLECTION DATE/TIME")) D  ;
+ . . S X=$$VAL^ORCD("COLLECTION DATE/TIME")
+ . . I X="NEXT" Q  ;No need to check this.
+ . . S %DT="TX" D ^%DT
+ . . I $P(Y,".",2),Y'<$E($$NOW^XLFDT,1,12) Q  ;quit if not a past date and time (lab is more precise than other dates)
+ . . I $P(Y,".",2)="",Y'<$$DT^XLFDT Q  ;
+ . . K ORDIALOG($P(ORDIALOG("B","COLLECTION DATE/TIME"),U,2),1) ;erase bad date
  S SEQ=0 F  S SEQ=$O(^ORD(101.41,+ORDIALOG,10,"B",SEQ)) Q:'SEQ  D
  . S DA=0 F  S DA=$O(^ORD(101.41,+ORDIALOG,10,"B",SEQ,DA)) Q:'DA  D
  . . ; skip if child prmpt

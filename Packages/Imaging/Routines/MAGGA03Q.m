@@ -1,5 +1,5 @@
-MAGGA03Q ;WOIFO/GEK/BNT/NST - TASK IMAGE STATISTICS ; 07 Oct 2010 9:48 PM
- ;;3.0;IMAGING;**117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+MAGGA03Q ;WOIFO/GEK/BNT/NST/JSL - TASK IMAGE STATISTICS ; 07 Oct 2010 9:48 PM
+ ;;3.0;IMAGING;**117,122**;Mar 19, 2002;Build 92;Aug 02, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,6 +15,8 @@ MAGGA03Q ;WOIFO/GEK/BNT/NST - TASK IMAGE STATISTICS ; 07 Oct 2010 9:48 PM
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;P122 gek Fix the issue of not being able to Re-Run a report that
+ ;  was previously canceled while it was still running.
  Q
  ;
  ;***** RETURNS VARIOUS IMAGE STATISTICS DATA
@@ -149,13 +151,23 @@ TASK ;
  ;--- ^XTMP($$TNODE,"I",0)=Task Number^User ID^Start Date/Time^Complete Date/Time
  S ^XTMP(MAGXTN,"I",0)=$G(ZTSK)_U_$G(DUZ)_U_$$NOW^XLFDT_U
  ;--- Collect Report Data from Imaging API
- D IMGQUERY^MAGGA03(.MAGRES,FLAGS,FROMDATE,TODATE)
- ;--- Save Completed date/time of Report
- S $P(^XTMP(MAGXTN,"I",0),U,4)=$$NOW^XLFDT
- ;--- Update the Save Through date to midnight
- S $P(^XTMP(MAGXTN,0),U,1)=$$FMADD^XLFDT($$DT^XLFDT(),1)
- ;--- Save Report Data in temporary storage
- M ^XTMP(MAGXTN,"R")=@MAGRES
+ D IMGQUERY^MAGGA03(.MAGRES,FLAGS,FROMDATE,TODATE) ; GEK BOOKMARK 1
+ ;P122 gek 
+ ;  If the variable ZSTOP = '1', then the TASK/Report was stopped,
+ ;  or if the Report's User Index: ^XTMP("MAGGAO3Q",DUZ,MAGXTN)  
+ ;  does not exist, the report was stopped.
+ ;  We only save report Data if report was not Stopped.
+ ;  This Fixes the issue of not being able to Re-Run a report that
+ ;  was previously canceled while it was still running.
+ ;  
+ I '$G(ZTSTOP),($D(^XTMP("MAGGA03Q",DUZ,MAGXTN))) D
+ . ;--- Save Completed date/time of Report
+ . S $P(^XTMP(MAGXTN,"I",0),U,4)=$$NOW^XLFDT
+ . ;--- Update the Save Through date to midnight
+ . S $P(^XTMP(MAGXTN,0),U,1)=$$FMADD^XLFDT($$DT^XLFDT(),1)
+ . ;--- Save Report Data in temporary storage
+ . M ^XTMP(MAGXTN,"R")=@MAGRES
+ . Q
  Q
  ;
  ; Returns status of existing report based on MQUE flag
@@ -180,11 +192,13 @@ RESOLVE(RY,MAGXTN,MQUE) ;
  . ;
  . D STAT^%ZTLOAD
  . I 'ZTSK(0) S RY="0^Task is undefined" D  Q
+ . . ;Kill Report Data and Report's User Index
  . . K ^XTMP(MAGXTN),^XTMP("MAGGA03Q",DUZ,MAGXTN)
  . . S RY="0^Okay to retask"
  . . Q
  . I ZTSK(1)<3 S RY="1^Task In Progress : "_ZTSK Q
  . ;I ZTSK(1) is either 4 or 5,  both mean not a running task. Inactive. problem
+ . ;Kill Report Data and Report's User Index
  . K ^XTMP(MAGXTN),^XTMP("MAGGA03Q",DUZ,MAGXTN)
  . S RY="0^Okay to retask"
  . Q
@@ -194,6 +208,7 @@ RESOLVE(RY,MAGXTN,MQUE) ;
  . S ZTSK=$$GETTASK(MAGXTN)
  . S MAGSTP=$$ASKSTOP^%ZTLOAD(ZTSK)
  . I 'MAGSTP S RY="1^Report cannot be stopped. Try again later" Q
+ . ;Kill Report Data and Report's User Index
  . K ^XTMP(MAGXTN),^XTMP("MAGGA03Q",DUZ,MAGXTN)
  . S RY="1^Report data deleted"
  Q

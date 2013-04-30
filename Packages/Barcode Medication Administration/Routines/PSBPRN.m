@@ -1,11 +1,22 @@
-PSBPRN ;BIRMINGHAM/EFC-BCMA PRN FUNCTIONS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**5,3,13,61**;Mar 2004;Build 11
+PSBPRN ;BIRMINGHAM/EFC-BCMA PRN FUNCTIONS ;2/15/12 9:26pm
+ ;;3.0;BAR CODE MED ADMIN;**5,3,13,61,68**;Mar 2004;Build 26
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ;Reference/IA
  ;DEM^VADPT/10061
  ;INP^VADPT/10061
  ;$$GET1^DIQ/2056
+ ;GETSIOPI^PSJBCMA5/5763
+ ;
+ ;*68 - add call to add special instructions (SI) entries to the
+ ;      ^TMP("PSB")  global that ends up in the RESULTS ARRAY of
+ ;      RPC PSB GETPRNS.
+ ;      and add new parameter to GETPRNS tag to use new SI/OPI word
+ ;      processing fields.
+ ;
+ ; ** Warning: PSBSIOPI will be used as a global variable for all down
+ ;    streams calls from this RPC tag call.
+ ;
 EN ;
  Q
  ;
@@ -50,7 +61,7 @@ EDIT1 ;
  K PSBCNT,PSBDT,PSBIEN,PSBSRCH,PSBTMP,DA,DR,DDSFILE
  Q
  ;
-GETPRNS(RESULTS,DFN,PSBORD) ; Get the PRN's for a pt needing effectiveness
+GETPRNS(RESULTS,DFN,PSBORD,PSBSIOPI) ; Get the PRN's for a pt needing effectiveness
  ;
  ; RPC PSB GETPRNS
  ;
@@ -60,6 +71,7 @@ GETPRNS(RESULTS,DFN,PSBORD) ; Get the PRN's for a pt needing effectiveness
  ;
  N PSBIEN,PSBSTOP
  K ^TMP("PSB",$J),RESULTS
+ S PSBSIOPI=+$G(PSBSIOPI)   ;*68 init to 0 if not present or 1 if sent
  ;
  Q:$$DISCHRGD(DFN)
  ;
@@ -97,6 +109,7 @@ GETPRNS(RESULTS,DFN,PSBORD) ; Get the PRN's for a pt needing effectiveness
  ...I PSBUNIT>0&(PSBUNIT<1) S PSBUNIT="0"_+PSBUNIT ;add leading 0 for a decimal value less than 1 - PSB*3*61
  ...S Y=Y+1
  ...S ^TMP("PSB",$J,Y)=PSBSOL_U_$$GET1^DIQ(PSBDD,PSBY_","_PSBIEN_",",.01)_U_PSBUNIT_U_PSBUNFR
+ ..D:PSBSIOPI GETSI(DFN,PSBONX,.Y)     ;*68 get spec inst/oth prt info
  ..S Y=Y+1,^TMP("PSB",$J,Y)="END"
  S ^TMP("PSB",$J,0)=+$O(^TMP("PSB",$J,""),-1)
  S RESULTS=$NAME(^TMP("PSB",$J))
@@ -122,3 +135,18 @@ DISCHRGD(DFN) ; Patient Discharged OR Deceased?
  ;
  Q DISCHRGD
  ;
+GETSI(DFN,ORD,PSB) ;Get Special Instructions/Other Print Info from IM   ;*68
+ ;
+ ; This Tag will load the SIOPI WP text into the TMP global used by
+ ; the PSB GETPRNS RPC, which ends up in the RESULTS array passed
+ ; back to the BCMA GUI.
+ ;
+ N QQ
+ K ^TMP("PSJBCMA5",$J,DFN,ORD)
+ D GETSIOPI^PSJBCMA5(DFN,ORD,1)
+ Q:'$D(^TMP("PSJBCMA5",$J,DFN,ORD))
+ F QQ=0:0 S QQ=$O(^TMP("PSJBCMA5",$J,DFN,ORD,QQ)) Q:'QQ  D
+ .S PSB=PSB+1
+ .S ^TMP("PSB",$J,PSB)="SI^"_^TMP("PSJBCMA5",$J,DFN,ORD,QQ)
+ K ^TMP("PSJBCMA5",$J,DFN,ORD)
+ Q

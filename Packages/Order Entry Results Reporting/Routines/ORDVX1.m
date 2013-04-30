@@ -1,8 +1,10 @@
 ORDVX1 ; slc/dcm - OE/RR Extract Lab AP Reports ;3/22/03  9:34
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243**;Dec 17, 199;Build 242
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,315**;Dec 17, 199;Build 20
+ ;
  ; Modified from Health Summary Extract ^GMTSLREE
  ; External References
  ;   DBIA   525  ^LR(
+ ;   DBIA  5466  GETACC^LRJWLST
  ;   DBIA 10011  ^DIWP
  ;                    
 XEM ; Extract EM Data
@@ -18,8 +20,9 @@ XCY ; Extract CY Data
  F IX0=1:0:ORMAX S IX=$O(^LR(LRDFN,"CY",IX)) Q:IX'>0!(IX>ORALPHA)  D APSET("CY")
  Q
 APSET(LRSS)   ; Sets ^TMP("OROOT",$J
- N ACC,CDT,DA,DIC,DIQ,DR,GMW,SN,X,YR
+ N ACC,CDT,DA,DIC,DIQ,DR,GMW,SN,X,YR,OACC
  S CDT=$P(^LR(LRDFN,LRSS,IX,0),U),ACC=$P(^(0),U,6)
+ I $T(GETACC^LRJWLST)]"" S OACC=$$GETACC^LRJWLST(LRDFN,LRSS,IX) I OACC]"" S ACC=OACC
  ;I $S(+$P(^LR(LRDFN,LRSS,IX,0),U)'>0:1,+$P(^(0),U,11)'>0:1,1:0) Q
  I $D(ACC) S IX0=IX0+1
  S X=CDT D DTM4 S CDT=X K X

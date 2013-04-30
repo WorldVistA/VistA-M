@@ -1,5 +1,5 @@
 DIFROMS2 ;SFISC/DCL/TKW-INSTALL DD FROM SOURCE ARRAY ;9:06 AM  14 Jul 2000
- ;;22.0;VA FileMan;**11,53**;Mar 30, 1999
+ ;;22.0;VA FileMan;**11,53**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  Q

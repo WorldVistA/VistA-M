@@ -1,5 +1,5 @@
 IBAMTC ;ALB/CPM-MEANS TEST NIGHTLY COMPILATION JOB ;09-OCT-91
-V ;;2.0;INTEGRATED BILLING;**34,52,70,93,100,118,115,132,150,153,137,176,215,275,321,312**;21-MAR-94
+V ;;2.0;INTEGRATED BILLING;**34,52,70,93,100,118,115,132,150,153,137,176,215,275,321,312,457**;21-MAR-94;Build 30
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 INIT ; Entry point - initialize variables and parameters
@@ -68,6 +68,9 @@ CLEAN S %H=+$H-1 D YMD^%DTC S IBDT=X,(IBN,DFN)=0,IBWHER=23
  ;
  ; Print Pharmacy Copay Exemption Income Test Reminder Letters
  D EN^IBARXEL
+ ;
+ ; Send HMS extract files to AITC DMI queues
+ D SENDEII^IBCNFSND
  ;
  ; Kill variables and quit.
  D KILL1

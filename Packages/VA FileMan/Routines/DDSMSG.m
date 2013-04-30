@@ -1,5 +1,5 @@
 DDSMSG ;SFISC/MKO-PRINT MESSAGES ;3:14 PM  9 Feb 2001
- ;;22.0;VA FileMan;**75**;Mar 30, 1999
+ ;;22.0;VA FileMan;**75**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 ERR ;Print "DIERR" messages in help box

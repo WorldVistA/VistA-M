@@ -1,5 +1,5 @@
 DIPT ;SFISC/XAK,TKW-DISPLAY PRINT OR SORT TEMPLATE ;3DEC2008
- ;;22.0;VA FileMan;**157**;Mar 30, 1999;Build 7
+ ;;22.0;VA FileMan;**157**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  N DS,DIWD,D,DRK,J,D9,Y,L,DA
  Q:'$D(^DIPT(D0,0))  S (DRK,J(0))=$P(^(0),U,4),L=0,DS(1)=0,D(L)="0FIELD",D9="",Y=2

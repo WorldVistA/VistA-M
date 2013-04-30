@@ -1,5 +1,6 @@
-XQTOC ;SEA/MJM - Time Out/Continue/Jump Start ;05/31/2001  10:57
- ;;8.0;KERNEL;**20,157**;Jul 10, 1995
+XQTOC ;SEA/MJM - Time Out/Continue/Jump Start ;05/02/12  16:46
+ ;;8.0;KERNEL;**20,157,593**;Jul 10, 1995;Build 7
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  S ^XUTL("XQ",$J,1)=XQY_XQPSM_U_XQY0,^("T")=1
  Q:XQJS=0
@@ -62,7 +63,11 @@ NOGO ;Continue fails: reset to primary menu
 CON ;Continue option logic.  Enter from ASK^XQ on timeout.
  W !!,"Do you want to halt and continue with this option later? YES// " R XQUR:20 S:(XQUR="")!('$T) XQUR="Y"
  I "YyNn"'[$E(XQUR,1) W !!,"   If you enter 'Y' or 'RETURN' you will halt and continue here next time",!,"    you logon to the computer.",!,"   If you enter 'N' you will resume processing where you were." G CON
- I "Nn"[$E(XQUR,1) W ! S XQUR=0,Y=^XUTL("XQ",$J,"T"),Y=^(Y),XQY0=$P(Y,U,2,99),XQPSM=$P(Y,U,1),(XQY,XQDIC)=+XQPSM,XQPSM=$P(XQPSM,XQY,2,3),XQAA="Select "_$P(XQY0,U,2)_" Option: " G ASK^XQ
+ ;Modified - p593 to display <TEST ACCOUNT> if not a production VistA system
+ S XQXQTEST=$S($D(DUZ("TEST")):" <TEST ACCOUNT>",1:"")
+ I "Nn"[$E(XQUR,1) W ! S XQUR=0,Y=^XUTL("XQ",$J,"T"),Y=^(Y),XQY0=$P(Y,U,2,99),XQPSM=$P(Y,U,1),(XQY,XQDIC)=+XQPSM,XQPSM=$P(XQPSM,XQY,2,3),XQAA="Select "_$P(XQY0,U,2)_XQXQTEST_" Option: " G ASK^XQ
+ K XQXQTEST
+ ;end of p593 modifications
  S X=^XUTL("XQ",$J,^XUTL("XQ",$J,"T")),Y=^("XQM") I (+X'=+Y) S XQM="P"_+Y S XQPSM=$S($D(^XUTL("XQO",XQM,"^",+X)):XQM,$D(^XUTL("XQO","PXU","^",+X)):"PXU",1:"") D:XQPSM="" SS S:XQPSM'="" ^VA(200,DUZ,202.1)=+X_XQPSM
  S X=$P($H,",",2),X=(X>41400&(X<46800))
  W !!,$P("Great^OK^All right^Well certainly^Fine","^",$R(5)+1),".  ",$P("See you later.^I'll be ready when you are.^Hurry back!^Have a nice lunch.","^",$R(3)+X+1)

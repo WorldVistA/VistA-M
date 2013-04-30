@@ -1,5 +1,5 @@
 DINIT42 ;SFISC-INITIALIZE VA FILEMAN ;10MAR2008
- ;;22.0;VA FileMan;**76,157**;Mar 30, 1999;Build 7
+ ;;22.0;VA FileMan;**76,157**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  S %=47
 DD F I=1:5 S X=$E($T(DD+I),4,999),%=%+1 G FUNC:X?.P S ^DD("FUNC",%,0)=$P(X,";"),Y=I F DU=1,2,3,9 S Y=Y+1,X=$E($T(DD+Y),4,999) I X]"" S ^(DU)=X

@@ -1,5 +1,5 @@
 DIFG6 ;SFISC/DG(OHPRD)-UPDATE FILES ;2/3/93  12:23 PM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 START ;
  S DIFGORDR=0

@@ -1,5 +1,5 @@
 DDSPTR ;SFISC/MKO-SET "PT" AND "PTB" NODES ;9:43 AM  4 Apr 1996
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 PT(DDSDDP,EXP,DDS,PG,BK) ;Set "PT" and "PTB" nodes

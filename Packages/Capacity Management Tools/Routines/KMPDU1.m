@@ -1,5 +1,5 @@
 KMPDU1 ;SF/RAK - CM Developer Tools Utilities ;2/17/04  09:49
- ;;2.0;CAPACITY MANAGEMENT TOOLS;;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
 GBLCHK(KMPDY,KMPDGBL) ;-- check global name.
  ;----------------------------------------------------------------------
  ; KMPDGBL... Global name.
@@ -37,18 +37,20 @@ GBLCHK(KMPDY,KMPDGBL) ;-- check global name.
  ;
  Q
  ;
-GBLLIST(KMPDY,KMPDGBL,KMPDST,KMPDLN) ;-- get global data
+GBLLIST(KMPDY,KMPDGBL,KMPDST,KMPDLN,KMPDLEN) ;-- get global data
  ;----------------------------------------------------------------------
  ; KMPDGBL... Global name.
  ; KMPDST... Starting global node.  If this is a continuation then use
  ;           this entry as starting point.  If original time through
  ;           this should be set to null ("").
  ; KMPDLN... Number of lines to fill before quitting.
+ ; KMPDLEN.. Length of line before continuing on next line
  ;----------------------------------------------------------------------
  ;
  K KMPDY
  ;
- S KMPDGBL=$G(KMPDGBL),KMPDST=$G(KMPDST),KMPDLN=+$G(KMPDLN)
+ S KMPDGBL=$G(KMPDGBL),KMPDST=$G(KMPDST),KMPDLN=+$G(KMPDLN),KMPDLEN=+$G(KMPDLEN)
+ S:'KMPDLEN KMPDLEN=80
  ;
  I 'KMPDLN S KMPDY(0)="[Number of lines not defined]" Q
  ;
@@ -60,12 +62,13 @@ GBLLIST(KMPDY,KMPDGBL,KMPDST,KMPDLN) ;-- get global data
  ;
  S GLOBAL=$G(KMPDY(0))
  I GLOBAL="" S KMPDY(0)="[Unable to process]" Q
+ I GLOBAL[",," S KMPDY(0)="[Cannot have a blank subscript]" Q
  I $Q(@GLOBAL)="" S KMPDY(0)="<No Data to Report>" Q
  ;
  S GBL=$E(GLOBAL,1,$L(GLOBAL)-1)
  ; if GLOBAL("") then just use GLOBAL.
  S:$E(GBL,$L(GBL))="""" GBL=$P(GBL,"(")
- S LEN=80,LN=1
+ S LEN=KMPDLEN,LN=1
  ;
  ; if data in GLOBAL.
  I KMPDST=""&(GLOBAL'["("""")") I $D(@GLOBAL)#2 D 

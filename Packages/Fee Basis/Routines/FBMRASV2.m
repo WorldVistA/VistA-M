@@ -1,6 +1,6 @@
-FBMRASV2 ;AISC/TET - Server routine (Cont'd) ;8/29/97
- ;;3.5;FEE BASIS;**9**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBMRASV2 ;AISC/TET - Server routine (Cont'd) ;2/29/2012
+ ;;3.5;FEE BASIS;**9,132**;JAN 30, 1995;Build 17
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 EXIT S XMSER="S."_XQSOP,XMZ=XQMSG D REMSBMSG^XMA1C
  K I,XMER,XMRG,FBI,FBID,FBER,FBERR,FBSITE,FBPOP,FBSN,FBAASN,FBJ,FBRT,FBAC,FBSTN,FBVID,FBCHAIN,FBFEEO,FBVNAME,FBADD1,FBADD2,FBCITY,FBST,FBZIP,FBMRC,FBCC,FBPC,FBTID,FB1099,FBVT,FBICN,FBSC,FBPART,FBSTATE,FBICN1,K,DIE,DA,DR,X,DLAYGO
  K FBOGN,DIC,FBNGN,%X,%Y,DIK,FBTMP,FBMRA,FBCNT,FBATOT,FBCTOT,FBFTOT,FBQTOT,FBZIP1,FBCHK,FBOUT,XMSER,XMZ,^TMP("FBMRA",$J),^TMP("FBER",$J)
@@ -27,10 +27,17 @@ TRAP ;trap error, have bulletin message record error, send server message to gro
  S XQSTXT(3)="Please contact your IRM representative immediately."
  S XQSTXT(4)="",XQSTXT(5)="The above message # has been forwarded to the FEE mail group."
  S XQSTXT(6)="Once the problem has been identified AND corrected, forward the server message"
- S XQSTXT(7)=$S($G(FBPAID):"  to S.FBAA PAID SERVER",1:"  to S.FBAA MRA SERVER")_" server to complete processing."
+ S XQSTXT(7)="  to S."_$G(XQSOP)_" server to complete processing."
  ;S %ZTERLGR=$$LGR^%ZOSV D ^%ZTER
  ;S X="ERROR^XQSRV2",@^%ZOSF("TRAP")
-SEND K XMY S XMY("G.FEE")="" D ENT1^XMD ;send message to be processed
+ ; generate FBAA SERVER bulletin for selected server options
+ I "^FBAA BATCH SERVER^FBAA VOUCHER SERVER^FBAA REJECT SERVER^"[("^"_$G(XQSOP)_"^") D SNDBUL^FBSVBR("of Trapped Error")
+SEND ; send served message to G.FEE
+ D
+ . N XMDUZ,XMY,XMZ
+ . S XMY("G.FEE")=""
+ . S XMZ=XQMSG
+ . D ENT1^XMD
  D EXIT
  Q
 MSG ;set up server bulletin upon successful completion of processing

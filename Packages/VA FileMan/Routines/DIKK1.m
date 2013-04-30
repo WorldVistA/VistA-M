@@ -1,5 +1,5 @@
 DIKK1 ;SFISC/MKO-CHECK KEY INTEGRITY ;9:19 AM  5 Feb 1998
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;========================

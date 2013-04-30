@@ -1,5 +1,5 @@
 DIC3 ;SFISC/XAK,TKW,SEA/TOAD-VA FileMan: Lookup, Part 1 (called from DIC) ;28SEP2010
- ;;22.0;VA FileMan;**1,16,4,17,20,28,40,86,70,159,164,165**;Mar 30, 1999;Build 32
+ ;;22.0;VA FileMan;**1,16,4,17,20,28,40,86,70,159,164,165**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 SEARCH ; Begin search through x-refs.

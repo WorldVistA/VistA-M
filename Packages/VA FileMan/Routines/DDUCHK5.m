@@ -1,5 +1,5 @@
 DDUCHK5 ;SFISC/MKO-CHECK KEYS ON FILE ;8/8/03  06:26
- ;;22.0;VA FileMan;*130*;Mar 30, 1999
+ ;;22.0;VA FileMan;*130*;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 KEY(DDUCFI,DDUCFIX) ;Check and optionally fix structure of Key file entry

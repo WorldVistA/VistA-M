@@ -1,5 +1,6 @@
 XPDIJ1 ;SFISC/RSD - Cont. of Install Job ;05/11/2001  09:07
- ;;8.0;KERNEL;**41,68,108,200**;Jul 10, 1995
+ ;;8.0;KERNEL;**41,68,108,200,559**;Jul 10, 1995;Build 4
+ ;Per VHA Directive  2004-038, this routine should not be modified.
 IN ;install XPDA
  ;XPDA=ien of file 9.7, XPDNM=package name
  Q:'$D(^XTMP("XPDI",XPDA))!'$D(^XPD(9.7,XPDA,0))
@@ -9,10 +10,9 @@ IN ;install XPDA
  ;XPDBLD subscript for build entry i.e. ^XTMP("XPDI",XPDA,"BLD",XPDBLD
  S DIFROM=$$VER^XPDUTL(XPDNM),XPDBLD=$O(^XTMP("XPDI",XPDA,"BLD",0)),XPDGREF="^XTMP(""XPDI"","_XPDA_",""TEMP"")"
  D TITLE^XPDID(XPDNM)
- ;the $T is there only for installing patch 41 to prevent a noline error
- ;check that Package file has entry
- I $T(PKGADD^XPDIP)]"" S Y=$$PKGADD^XPDIP
- S XPD0=^XTMP("XPDI",XPDA,"BLD",XPDBLD,0)
+ ;^XTMP("XPDI",XPDA,"BLD",XPDBLD,6) is set when the msg is loaded.  Forum adds this as the last line of the msg.
+ ;add Package file entry if sent, set TEST # & SEQ #
+ S Y=$$PKGADD^XPDIP,XPD0=^XTMP("XPDI",XPDA,"BLD",XPDBLD,0),Y=$G(^(6)),XPDNM("TST")=$P(Y,U),XPDNM("SEQ")=$P(Y,U,2)
  I '$$CHK(11) D
  .D BMES^XPDUTL(" Install Started for "_XPDNM_" : "),STMP(11)
  .;update status, installed by fields and distribution date

@@ -1,5 +1,5 @@
 DIQG ;SFISC/DCL-DATA RETRIEVAL PRIMITIVE ;24AUG2009
- ;;22.0;VA FileMan;**76,118,133,149,162**;Mar 30, 1999;Build 19
+ ;;22.0;VA FileMan;**76,118,133,149,162**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
 GET(DIQGR,DA,DR,DIQGPARM,DIQGETA,DIQGERRA,DIQGIPAR) ; file,rec,fld,parm,targetarray,errarray,int
 DDENTRY I $G(U)'="^" N U S U="^"

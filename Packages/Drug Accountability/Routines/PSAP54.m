@@ -7,8 +7,8 @@ PSAP54 ;VMP/RJS BUILD XTMP("PSAVSN" FROM A FLAT FILE ; 14MAR06
  W !," Build McKesson VSN to Dispense Units Per Order Unit and Drug Description Data"
  W !!,"This Utility is used to build the ^XTMP(""PSAVSN"" global with then McKesson VSN,",!,"DUOU & Description. Please follow these steps prior to running this utility:",!
  W !,"1) Retrieve the MCKESSON_UPDATE.DAT in ASCII format directly from one of these",!,?5,"FTP servers:"
- W !,?5,"Albany          ftp.fo-albany.DOMAIN.EXT",!,?5,"Hines           ftp.fo-hines.DOMAIN.EXT",!,?5,"Salt Lake City  ftp.fo-slc.DOMAIN.EXT"
- W !," The preferred FTP server retrieve the file from   download.vista.DOMAIN.EXT",!," which will transmit the files from the first available FTP server."
+ W !,?5,"Albany          ftp.fo-albany.domain.ext",!,?5,"Hines           ftp.fo-hines.domain.ext",!,?5,"Salt Lake City  ftp.fo-slc.domain.ext"
+ W !," The preferred FTP server retrieve the file from   download.vista.domain.ext",!," which will transmit the files from the first available FTP server."
  W !!,"2) At the HOST DIRECTORY: prompt enter the name of the directory that you",!,"   placed the file in.  i.e. USER$:[TEMP]"
  W !!,?5,"If you enter an invalid directory this utility will return you to the",!,?5,"HOST DIRECTORY: prompt:     Enter ^ to Quit:",!!
  N DUOUT,X,Y

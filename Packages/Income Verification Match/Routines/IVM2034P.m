@@ -14,7 +14,7 @@ NOTIFY ; Generates a notification message that the facility has
  N DIFROM,IVMSITE,IVMNOW,IVMTEXT,SERVLINE,XMTEXT,XMSUB,XMDUZ,XMY,Y,%,IVMPORT,IVMIP
  ;
  ; Quit if not VA production primary domain
- Q:$G(^XMB("NETNAME"))'[".DOMAIN.EXT"
+ Q:$G(^XMB("NETNAME"))'[".domain.ext"
  X ^%ZOSF("UCI") S %=^%ZOSF("PROD")
  S:%'["," Y=$P(Y,",")
  Q:Y'=%
@@ -32,8 +32,8 @@ NOTIFY2 ;
  S XMSUB="Patch IVM*2*34 Installed "_"("_$P(IVMSITE,"^",3)_")" ;subj
  S XMDUZ="REGISTRATION PACKAGE"   ;sender
  S XMY(DUZ)="",XMY(.5)=""       ;local recipients
- S XMY("G.IRM SOFTWARE SECTION@"_X_"IVM.DOMAIN.EXT")=""   ;remote recipient
- S XMY("S.AYC PATCH SERVER@"_X_"IVM.DOMAIN.EXT")=""    ;remote server option
+ S XMY("G.IRM SOFTWARE SECTION@"_X_"IVM.domain.ext")=""   ;remote recipient
+ S XMY("S.AYC PATCH SERVER@"_X_"IVM.domain.ext")=""    ;remote server option
  ;
  ; Notification MSG text
  S XMTEXT="IVMTEXT("

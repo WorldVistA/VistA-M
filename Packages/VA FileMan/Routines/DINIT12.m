@@ -1,5 +1,5 @@
 DINIT12 ;SFISC/GFT,XAK-INITIALIZE VA FILEMAN ;16FEB2010
- ;;22.0;VA FileMan;**104,163**;Mar 30, 1999;Build 28
+ ;;22.0;VA FileMan;**104,163**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
 DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G T:X?.P S @("^DD("_$E($P(X," ",2),3,99)_")=Y")
  ;;.4,0 FIELD^^1819^21

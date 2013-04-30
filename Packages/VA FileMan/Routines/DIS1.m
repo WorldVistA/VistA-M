@@ -1,5 +1,5 @@
 DIS1 ;SFISC/GFT-BUILD DIS-ARRAY ;20MAR2005
- ;;22.0;VA FileMan;**6,77,97,113,144**;Mar 30, 1999;Build 5
+ ;;22.0;VA FileMan;**6,77,97,113,144**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  K DIS0 I $D(DL)#2 S DIS0=DL
  S DL(0)="" W ! G 1:$D(DE)>1!$D(DJ) I DL=1 S DL(0)=DL(1),DL=0 K DL(1)

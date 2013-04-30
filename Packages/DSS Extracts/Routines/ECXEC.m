@@ -1,5 +1,5 @@
 ECXEC ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ; 10/2/07 2:33pm
- ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132**;Dec 22, 1997;Build 18
+ ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132,136**;Dec 22, 1997;Build 28
 BEG ;entry point from option
  I '$D(^ECH) W !,"Event Capture is not initialized",!! Q
  D SETUP I ECFILE="" Q
@@ -7,6 +7,7 @@ BEG ;entry point from option
  Q
 START ;begin EC extract
  N X,Y,ECDCM,ECXNPRFI
+ N ECXICD10P,ECXICD101,ECXICD102,ECXICD103,ECXICD104
  S ECED=ECED+.3,ECLL=0
  K ^TMP("EC",$J)
  F  S ECLL=$O(^ECH("AC1",ECLL)),ECD=ECSD-.1 Q:'ECLL  D
@@ -25,8 +26,9 @@ UPDATE ;sets record and updates counters
  S ECXUNIT=$G(^ECD(ECDU,0)),ECCS=+$P(ECXUNIT,U,4),ECDCM=$P(ECXUNIT,U,5)
  S ECXDSSP="",ECXDSSD=$E(ECDCM,1,10),ECUSTOP=$P(ECXUNIT,U,10),ECUPCE=$P(ECXUNIT,U,14)
  S ICD9=$P($G(^ECH(ECDA,"P")),U,2) S:ICD9="" ICD9=" "
- S ECXICD9=$P($G(^ICD9(ICD9,0)),U)
+ S ECXICD9=$P($G(^ICD9(ICD9,0)),U),ECXICD10P=""
  F I=1:1:4 S @("ECXICD9"_I)=""
+ F I=1:1:4 S @("ECXICD10"_I)=""
  S (CNT,I)=0
  F  S CNT=$O(^ECH(ECDA,"DX",CNT)) Q:'CNT  D  Q:I>3
  .S ICD9=$P($G(^ECH(ECDA,"DX",CNT,0)),U) D:ICD9'=""
@@ -161,7 +163,10 @@ FILE ;file record in #727.815
  ;provider npi ECU1NPI^provider #2 ECU2NPI^provider #3 ECU3NPI^
  ;shad status ECXSHADI^shad encounter ECXSHAD^patcat ECXPATCAT^
  ;prov #4 ECU4A^prov #4 pc ECXPPC4^prov #4 ECXU4NPI^prov #5 ECU5A^
- ;prov #5 pc ECXPPC5^prov #5 ECXU5NPI 
+ ;prov #5 pc ECXPPC5^prov #5 ECXU5NPI^
+ ;primary ICD-10 code (currently null) ECXICD10P^Secondary ICD-10 Code #1 (currently null) ECXICD101^
+ ;Secondary ICD-10 Code #2 (currently null) ECXICD102^Secondary ICD-10 Code #3 (currently null) ECXICD103^
+ ;Secondary ICD-10 Code #4 (currently null) ECXICD104  
  ;
  ;convert specialty to PTF Code for transmission
  N ECXDATA
@@ -193,6 +198,7 @@ FILE ;file record in #727.815
  ; PATCAT added
  I ECXLOGIC>2010 S ECODE2=ECODE2_U_ECXSHADI_U_ECXSHAD_U_ECXPATCAT
  I ECXLOGIC>2011 S ECODE2=ECODE2_U_ECU4A_U_ECXPPC4_U_ECU4NPI_U_ECU5A_U_ECXPPC5_U_ECU5NPI
+ I ECXLOGIC>2012 S ECODE2=ECODE2_U_ECXICD10P_U_ECXICD101_U_ECXICD102_U_ECXICD103_U_ECXICD104
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD

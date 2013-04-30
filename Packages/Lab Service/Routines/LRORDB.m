@@ -1,17 +1,30 @@
-LRORDB ;DALOI/FHS - ORDER LEDI TEST USING BARCODE FROM 69.6 ; 12/3/1997
- ;;5.2;LAB SERVICE;**153,222,286**;Sep 27, 1994
+LRORDB ;DALOI/STAFF - ORDER LEDI TEST USING BARCODE FROM 69.6 ;06/22/11  12:38
+ ;;5.2;LAB SERVICE;**153,222,286,350**;Sep 27, 1994;Build 230
  ;
 EN(LRRUID,LRSSMP) ;
  ;
- N I,LRSTATUS,LRX
+ N I,LRDIR,LRSTATUS,LRX,X
  ;
  K LROT
  ;
  S (LROT,LRSTATUS)=""
  ;
- Q:'$L($G(LRRUID))!('$L($G(LRSSMP)))
+ Q:($G(LRRUID)="")!($G(LRSSMP)="")
  S LR696=$O(^LRO(69.6,"AD",LRSSMP,LRRUID,0)) Q:'LR696
- Q:'$D(^LRO(69.6,LR696,0))#2
+ Q:'($D(^LRO(69.6,LR696,0))#2)
+ ;
+ S LRDIR("A",2)=" "
+ S LRDIR("A",2.001)="Collecting Site UID: "_LRRUID
+ ;S LRDIR("A",2.002)="Current Tests on Order:"
+ S LRDIR("A",2.003)="Collecting Site Test           Host UID        Host Site Test"
+ S LRDIR("A",2.004)="--------------------           --------        --------------"
+ S I=0
+ F  S I=$O(^LRO(69.6,LR696,2,I)) Q:'I  D
+ . S I(0)=$G(^LRO(69.6,LR696,2,I,0))
+ . S X=$P(I(0),"^",3)
+ . I X="" S X=$P(I(0),"^",1) ; If no remote test name then display NLT Test field value.
+ . S LRDIR("A","2."_I)=$$LJ^XLFSTR($E(X,1,30),31)_$$LJ^XLFSTR($P(I(0),"^",9),15)_" "_$E($P($G(^LAB(60,+$P(I(0),"^",11),0)),"^"),1,30)
+ K I
  ;
  S LRX=+$P(^LRO(69.6,LR696,0),U,10)
  I LRX S LRSTATUS=$$GET1^DIQ(64.061,LRX_",",.01)
@@ -22,10 +35,9 @@ EN(LRRUID,LRSSMP) ;
  . . I $$GET1^DIQ(64.061,X_",",.01)="In-Transit" S LRSTATUS="In-Transit"
  ;
  I LRSTATUS'="",LRSTATUS'="In-Transit" D  Q
- . N DIR
- . S DIR("A",1)="This order has a status of [ "_LRSTATUS_" ]"
- . S DIR("A",2)="No test selected."
- . D DISPLO
+ . S LRDIR("A",1)="This order has a status of ["_LRSTATUS_"]"
+ . S LRDIR("A",1.1)="No test selected."
+ . D DISPLO(.LRDIR)
  ;
  ; Display any comments that accompanied order
  I $D(^LRO(69.6,LR696,99)) D
@@ -36,12 +48,11 @@ EN(LRRUID,LRSSMP) ;
  ;
  D LROT(LR696)
  ;
- I $O(LROT(0)) D LL3^LROW3
+ ;I $O(LROT(0)) D LL3^LROW3
  I '$O(LROT(0)) D  Q
- . N DIR
- . S DIR("A",1)="NO tests found on Shipping Manifest "_$G(LRRSITE("SMID"))
- . S DIR("A",2)="For UID "_$G(LRRUID)
- . D DISPLO
+ . S LRDIR("A",2)="NO tests found on Shipping Manifest "_$G(LRRSITE("SMID"))
+ . S LRDIR("A",2.1)="For UID "_$G(LRRUID)
+ . D DISPLO(.LRDIR)
  ;
  S $P(^LRO(69.6,LR696,0),U,11)=$G(LRSD("RIEN"))
  Q
@@ -63,7 +74,7 @@ LROT(LR696) ;
  . I $P(LR6964(0),"^",6),$$GET1^DIQ(64.061,$P(LR6964(0),"^",6)_",",.01)'="In-Transit" Q
  . S LR60=$P(LR6964(0),U,11) ; Lab test to order
  . S LR6205=$P(LR6964(0),U,12) ; Urgency
- . I 'LRMICHK,LR60>0,$P(^LAB(60,LR60,0),U,4)="MI" D MICHECK
+ . I 'LRMICHK,LR60>0,"MISPCYEM"[$P(^LAB(60,LR60,0),U,4) D MICHECK
  . S LRATG=0
  . ; If have everything, then don't check accession test group.
  . I LR60,LRSPEC,LRSAMP,LR6205 D  Q:LRATG
@@ -106,10 +117,10 @@ CHKURG ; Check for forced, highest allowed and missing urgency on this test
  I +$P(^LAB(60,LR60,0),U,18) S LR6205=+$P(^LAB(60,LR60,0),U,18)
  ;
  ; If missing urgency then look above workload urgencies for last urgency
- ; that matches on HL7 urgency othewise use site's default for routine.
+ ; that matches on HL7 urgency otherwise use site's default for routine.
  I 'LR6205 D
  . S X=$P(LR6964(0),U,5)
- . I $L(X) S LR6205=+$O(^LAB(62.05,"HL7",X,50),-1)
+ . I X'="" S LR6205=+$O(^LAB(62.05,"HL7",X,50),-1)
  . S LR6205=$S(LR6205>0:LR6205,1:LROUTINE)
  ;
  ; Highest urgency allowed, reset if higher than highest allowed.
@@ -126,6 +137,7 @@ MICHECK ; Check "MI" subscript test for missing topography and collection sample
  I LRSPEC'>0 S DR=4_";"
  I LRSAMP'>0 S DR=DR_5
  I LRSPEC D
+ . I $P(^LAB(60,LR60,0),U,4)'="MI" Q
  . S LRX=$$GET1^DIQ(61,LRSPEC_",",".09:2")
  . I LRX="XXX"!(LRX="ORH") S DR="4;5"
  I DR="" Q
@@ -145,7 +157,10 @@ SMID ; Call to get shipping manifest ID (manual selection)
  I $D(DTOUT)!($D(DUOUT)) S LREND=1 Q
  I $D(DIRUT) Q
  S LRY=Y
- I LRY'="",$D(^LRO(69.6,"D",LRY)) S LRSMID=LRY
+ I LRY'="",$D(^LRO(69.6,"D",LRY)) D
+ . N LR696
+ . S LR696=$O(^LRO(69.6,"D",LRY,0))
+ . I $P($G(^LRO(69.6,+LR696,0)),"^",5)=+$G(LRRSITE("RSITE")) S LRSMID=LRY
  I LRSMID="" D
  . D SHOW
  . K ^TMP("LR",$J,"SMID")
@@ -161,7 +176,7 @@ SMID ; Call to get shipping manifest ID (manual selection)
  I LRY S LRRSITE("SDT")=$$GET1^DIQ(69.6,LRY_",",14,"I")
  K DIR
  ;
- ; Flag to determine if this shipping manfiest should be used to
+ ; Flag to determine if this shipping manifest should be used to
  ; look up orders when manually accessioning.
  S DIR(0)="YO",DIR("A")="Lookup orders using this manifest",DIR("B")="YES"
  D ^DIR
@@ -204,10 +219,14 @@ DISPL ;
  Q
  ;
  ;
-DISPLO ; Display the order from #69.6
- N DA,DIC,DIRUT,DTOUT,DUOUT,DX,S,X,Y
- S DIR("A")="Would you like a display of the Order"
+DISPLO(LRDIR) ; Display the order from #69.6
+ ; Call with LRDIR = array of additonal prompts to display, pass by reference
+ ;
+ N DA,DIC,DIR,DIRUT,DTOUT,DUOUT,DX,S,X,Y
+ ;
+ M DIR=LRDIR
+ S DIR("A")="Would you like a display of the Order",DIR("B")="NO"
  S DIR(0)="Y" D ^DIR K DIR
- I $D(DIROUT)!(Y'=1) W ! Q
+ I $D(DIRUT)!(Y'=1) W ! Q
  S DA=LR696,DIC="^LRO(69.6,",S=0 W @IOF D EN^DIQ W !
  Q

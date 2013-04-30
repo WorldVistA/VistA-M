@@ -1,5 +1,5 @@
 DIO2 ;SFISC/GFT,TKW-PRINT ;9:17 AM  24 Feb 2000
- ;;22.0;VA FileMan;**32**;Mar 30, 1999
+ ;;22.0;VA FileMan;**32**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S (DISTP,DILCT)=0
 XDY I $D(DIBTPGM) D @("EN"_DIBTPGM),ENRLS^DIOZ(+$P(DIBTPGM,"^DISZ",2)) Q

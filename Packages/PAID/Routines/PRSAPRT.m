@@ -1,5 +1,5 @@
 PRSAPRT ; HISC/REL,WIRMFO/JAH-Return Record to TimeKeeper ;1/31/2007
- ;;4.0;PAID;**7,8,21,111**;Sep 21, 1995;Build 2
+ ;;4.0;PAID;**7,8,21,111,132**;Sep 21, 1995;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Comments & Modifications by JAH Washington IRMFO.
@@ -58,7 +58,8 @@ A R !!,"Return to Timekeeper Anyway? ",X:DTIME G:'$T!(X["^") EX S:X="" X="*" S X
  I $P("YES",X,1)'="",$P("NO",X,1)'="" W $C(7)," Answer YES or NO" G A
  I X?1"Y".E D B W !!," . . . Returned to Timekeeper." G EX
  G EX
-B S $P(^PRST(458,PPI,"E",DFN,0),"^",2)="T" K ^(5)
+ ;reset status and telework indicator
+B S $P(^PRST(458,PPI,"E",DFN,0),"^",2)="T",$P(^(0),"^",8)="" K ^(5)
  D AUTOPINI^PRS8(PPI,DFN)
  Q
 EX G KILL^XUSCLEAN

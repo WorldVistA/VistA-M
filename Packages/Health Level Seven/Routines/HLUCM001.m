@@ -1,5 +1,5 @@
-HLUCM001 ;CIOFO-O/LJA - HL7/Capacity Mgt API (continued) ;2/27/01 10:15
- ;;1.6;HEALTH LEVEL SEVEN;**79,88,103**;Oct 13, 1995
+HLUCM001 ;CIOFO-O/LJA - HL7/Capacity Mgt API (continued) ;05/01/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**79,88,103,158**;Oct 13, 1995;Build 14
  ;
 ADDTMP ; Accumulate totals into ^TMP(TOTALS,$J,...)
  ; FAC,ORIGETM,ORIGSTM,TYPEHR,TYPEIO,TYPELR -- req
@@ -175,7 +175,7 @@ TYPELR(IEN772,FACNM) ; Is this Local or Remote or Unknown?
  .  QUIT:$P(DATA,U,3)'=1  ;-> Not MAIL...
  .  S MGIEN=$P($G(^HLCS(870,+IEN870,100)),U) QUIT:MGIEN'>0  ;->
  .  ; If a MAIL type link and there is an associated mail group,
- ;  ; it is almost always REMOTE.  Enough so, that "R" will be assumed.
+ .  ; it is almost always REMOTE.  Enough so, that "R" will be assumed.
  .  ; QUIT:$O(^XMB(3.8,+MGIEN,6,0))'>0  ;-> No remote groups
  .  S TYPE="R"
  .  ; Rare to hit this point.

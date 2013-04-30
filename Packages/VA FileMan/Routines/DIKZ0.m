@@ -1,5 +1,5 @@
 DIKZ0 ;SFISC/XAK-XREF COMPILER ;23AUG2004
- ;;22.0;VA FileMan;**140**;Mar 30, 1999
+ ;;22.0;VA FileMan;**140**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  S DIK0=" I X'=""""" D DD^DIK,A,SD Q:DIKZQ
 RET I $D(DK1) S A=A+1,DIKA=1,DH=0 F  S DH=$O(DK1(DH)) Q:DH'>0  D E^DIK

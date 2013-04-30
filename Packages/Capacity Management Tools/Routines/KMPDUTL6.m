@@ -1,5 +1,5 @@
 KMPDUTL6 ;OIFO/RAK - CPU Utilities ;2/17/04  10:58
- ;;2.0;CAPACITY MANAGEMENT TOOLS;;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;;
 CPUDEL ;-- delete cpu data from file #8973 - cp parameters
  ;

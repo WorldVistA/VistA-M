@@ -1,368 +1,376 @@
-IBDEI00Q ; ; 12-JAN-2012
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JAN 12, 2012
+IBDEI00Q ; ; 20-FEB-2013
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 20, 2013
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,487,0)
- ;;=92592^^5^36^9^^^^1
- ;;^UTILITY(U,$J,358.3,487,1,0)
+ ;;^UTILITY(U,$J,358.3,275,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,487,1,2,0)
- ;;=2^92592
- ;;^UTILITY(U,$J,358.3,487,1,3,0)
- ;;=3^Ha Check, Monaural
- ;;^UTILITY(U,$J,358.3,488,0)
- ;;=92593^^5^36^10^^^^1
- ;;^UTILITY(U,$J,358.3,488,1,0)
+ ;;^UTILITY(U,$J,358.3,275,1,2,0)
+ ;;=2^90853
+ ;;^UTILITY(U,$J,358.3,275,1,3,0)
+ ;;=3^Group Psychotherapy
+ ;;^UTILITY(U,$J,358.3,276,0)
+ ;;=90846^^2^23^14^^^^1
+ ;;^UTILITY(U,$J,358.3,276,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,488,1,2,0)
- ;;=2^92593
- ;;^UTILITY(U,$J,358.3,488,1,3,0)
- ;;=3^Ha Check, Binaural
- ;;^UTILITY(U,$J,358.3,489,0)
- ;;=V5014^^5^36^11^^^^1
- ;;^UTILITY(U,$J,358.3,489,1,0)
+ ;;^UTILITY(U,$J,358.3,276,1,2,0)
+ ;;=2^90846
+ ;;^UTILITY(U,$J,358.3,276,1,3,0)
+ ;;=3^Family Psychotherapy w/o pt.
+ ;;^UTILITY(U,$J,358.3,277,0)
+ ;;=90847^^2^23^15^^^^1
+ ;;^UTILITY(U,$J,358.3,277,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,489,1,2,0)
- ;;=2^V5014
- ;;^UTILITY(U,$J,358.3,489,1,3,0)
- ;;=3^Ha Repair/Modification
- ;;^UTILITY(U,$J,358.3,490,0)
- ;;=V5020^^5^36^12^^^^1
- ;;^UTILITY(U,$J,358.3,490,1,0)
+ ;;^UTILITY(U,$J,358.3,277,1,2,0)
+ ;;=2^90847
+ ;;^UTILITY(U,$J,358.3,277,1,3,0)
+ ;;=3^Family Psychotherpy w/pt.
+ ;;^UTILITY(U,$J,358.3,278,0)
+ ;;=90875^^2^23^16^^^^1
+ ;;^UTILITY(U,$J,358.3,278,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,490,1,2,0)
- ;;=2^V5020
- ;;^UTILITY(U,$J,358.3,490,1,3,0)
- ;;=3^Real-Ear(Probe Tube) Measurement
- ;;^UTILITY(U,$J,358.3,491,0)
- ;;=L7510^^5^36^13^^^^1
- ;;^UTILITY(U,$J,358.3,491,1,0)
+ ;;^UTILITY(U,$J,358.3,278,1,2,0)
+ ;;=2^90875
+ ;;^UTILITY(U,$J,358.3,278,1,3,0)
+ ;;=3^Psych Thpy w/ Biofeedback 20-30min
+ ;;^UTILITY(U,$J,358.3,279,0)
+ ;;=90876^^2^23^17^^^^1
+ ;;^UTILITY(U,$J,358.3,279,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,491,1,2,0)
- ;;=2^L7510
- ;;^UTILITY(U,$J,358.3,491,1,3,0)
- ;;=3^Repair/Modify Prosthetic Device
- ;;^UTILITY(U,$J,358.3,492,0)
- ;;=L8499^^5^36^14^^^^1
- ;;^UTILITY(U,$J,358.3,492,1,0)
+ ;;^UTILITY(U,$J,358.3,279,1,2,0)
+ ;;=2^90876
+ ;;^UTILITY(U,$J,358.3,279,1,3,0)
+ ;;=3^Psych Thpy w/ Biofeedback 45-50min
+ ;;^UTILITY(U,$J,358.3,280,0)
+ ;;=90832^^2^23^1^^^^1
+ ;;^UTILITY(U,$J,358.3,280,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,492,1,2,0)
- ;;=2^L8499
- ;;^UTILITY(U,$J,358.3,492,1,3,0)
- ;;=3^Unlisted Misc Prosthetic Ser
- ;;^UTILITY(U,$J,358.3,493,0)
- ;;=S0618^^5^36^15^^^^1
- ;;^UTILITY(U,$J,358.3,493,1,0)
+ ;;^UTILITY(U,$J,358.3,280,1,2,0)
+ ;;=2^90832
+ ;;^UTILITY(U,$J,358.3,280,1,3,0)
+ ;;=3^PsyTx Pt/Fam 16-37Min
+ ;;^UTILITY(U,$J,358.3,281,0)
+ ;;=90834^^2^23^2^^^^1
+ ;;^UTILITY(U,$J,358.3,281,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,493,1,2,0)
- ;;=2^S0618
- ;;^UTILITY(U,$J,358.3,493,1,3,0)
- ;;=3^Audiometry For Hearing Aid
- ;;^UTILITY(U,$J,358.3,494,0)
- ;;=69200^^5^37^1^^^^1
- ;;^UTILITY(U,$J,358.3,494,1,0)
+ ;;^UTILITY(U,$J,358.3,281,1,2,0)
+ ;;=2^90834
+ ;;^UTILITY(U,$J,358.3,281,1,3,0)
+ ;;=3^PsyTx Pt/Fam 38-52Min
+ ;;^UTILITY(U,$J,358.3,282,0)
+ ;;=90837^^2^23^3^^^^1
+ ;;^UTILITY(U,$J,358.3,282,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,494,1,2,0)
- ;;=2^69200
- ;;^UTILITY(U,$J,358.3,494,1,3,0)
- ;;=3^Remove Foreign Body, External Canal
- ;;^UTILITY(U,$J,358.3,495,0)
- ;;=69210^^5^37^2^^^^1
- ;;^UTILITY(U,$J,358.3,495,1,0)
+ ;;^UTILITY(U,$J,358.3,282,1,2,0)
+ ;;=2^90837
+ ;;^UTILITY(U,$J,358.3,282,1,3,0)
+ ;;=3^PsyTx Pt/Fam 53+ Min
+ ;;^UTILITY(U,$J,358.3,283,0)
+ ;;=90833^^2^23^4^^^^1
+ ;;^UTILITY(U,$J,358.3,283,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,495,1,2,0)
- ;;=2^69210
- ;;^UTILITY(U,$J,358.3,495,1,3,0)
- ;;=3^Remove Impacted Ear Wax 1 or 2 ears
- ;;^UTILITY(U,$J,358.3,496,0)
- ;;=92543^^5^38^2^^^^1
- ;;^UTILITY(U,$J,358.3,496,1,0)
+ ;;^UTILITY(U,$J,358.3,283,1,2,0)
+ ;;=2^90833
+ ;;^UTILITY(U,$J,358.3,283,1,3,0)
+ ;;=3^PsyTx Pt/Fam w/ E&M 30Min
+ ;;^UTILITY(U,$J,358.3,284,0)
+ ;;=90836^^2^23^5^^^^1
+ ;;^UTILITY(U,$J,358.3,284,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,496,1,2,0)
- ;;=2^92543
- ;;^UTILITY(U,$J,358.3,496,1,3,0)
- ;;=3^Caloric Vestibular Test, W/Recording, Each
- ;;^UTILITY(U,$J,358.3,497,0)
- ;;=92548^^5^38^3^^^^1
- ;;^UTILITY(U,$J,358.3,497,1,0)
+ ;;^UTILITY(U,$J,358.3,284,1,2,0)
+ ;;=2^90836
+ ;;^UTILITY(U,$J,358.3,284,1,3,0)
+ ;;=3^PsyTx Pt/Fam w/ E&M 45Min
+ ;;^UTILITY(U,$J,358.3,285,0)
+ ;;=90838^^2^23^6^^^^1
+ ;;^UTILITY(U,$J,358.3,285,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,497,1,2,0)
- ;;=2^92548
- ;;^UTILITY(U,$J,358.3,497,1,3,0)
- ;;=3^Computerized Dynamic Posturography
- ;;^UTILITY(U,$J,358.3,498,0)
- ;;=92544^^5^38^4^^^^1
- ;;^UTILITY(U,$J,358.3,498,1,0)
+ ;;^UTILITY(U,$J,358.3,285,1,2,0)
+ ;;=2^90838
+ ;;^UTILITY(U,$J,358.3,285,1,3,0)
+ ;;=3^PsyTx Pt/Fam w/ E&M 60Min
+ ;;^UTILITY(U,$J,358.3,286,0)
+ ;;=90839^^2^23^7^^^^1
+ ;;^UTILITY(U,$J,358.3,286,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,498,1,2,0)
- ;;=2^92544
- ;;^UTILITY(U,$J,358.3,498,1,3,0)
- ;;=3^Optokinetic Nystagmus Test Bidirec,w/Recording
- ;;^UTILITY(U,$J,358.3,499,0)
- ;;=92545^^5^38^5^^^^1
- ;;^UTILITY(U,$J,358.3,499,1,0)
+ ;;^UTILITY(U,$J,358.3,286,1,2,0)
+ ;;=2^90839
+ ;;^UTILITY(U,$J,358.3,286,1,3,0)
+ ;;=3^PsyTx Crisis Initial 60Min
+ ;;^UTILITY(U,$J,358.3,287,0)
+ ;;=90840^^2^23^8^^^^1
+ ;;^UTILITY(U,$J,358.3,287,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,499,1,2,0)
- ;;=2^92545
- ;;^UTILITY(U,$J,358.3,499,1,3,0)
- ;;=3^Oscillating Tracking Test W/Recording
- ;;^UTILITY(U,$J,358.3,500,0)
- ;;=92542^^5^38^6^^^^1
- ;;^UTILITY(U,$J,358.3,500,1,0)
+ ;;^UTILITY(U,$J,358.3,287,1,2,0)
+ ;;=2^90840
+ ;;^UTILITY(U,$J,358.3,287,1,3,0)
+ ;;=3^PsyTx Crisis Ea Addl 30Min
+ ;;^UTILITY(U,$J,358.3,288,0)
+ ;;=90863^^2^23^9^^^^1
+ ;;^UTILITY(U,$J,358.3,288,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,500,1,2,0)
- ;;=2^92542
- ;;^UTILITY(U,$J,358.3,500,1,3,0)
- ;;=3^Positional Nystagmus Test min 4 pos w/Recording
- ;;^UTILITY(U,$J,358.3,501,0)
- ;;=92546^^5^38^7^^^^1
- ;;^UTILITY(U,$J,358.3,501,1,0)
+ ;;^UTILITY(U,$J,358.3,288,1,2,0)
+ ;;=2^90863
+ ;;^UTILITY(U,$J,358.3,288,1,3,0)
+ ;;=3^Pharmacologic Mgmt w/ PsyTx
+ ;;^UTILITY(U,$J,358.3,289,0)
+ ;;=90785^^2^23^10^^^^1
+ ;;^UTILITY(U,$J,358.3,289,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,501,1,2,0)
- ;;=2^92546
- ;;^UTILITY(U,$J,358.3,501,1,3,0)
- ;;=3^Sinusiodal Vertical Axis Rotation
- ;;^UTILITY(U,$J,358.3,502,0)
- ;;=92547^^5^38^9^^^^1
- ;;^UTILITY(U,$J,358.3,502,1,0)
+ ;;^UTILITY(U,$J,358.3,289,1,2,0)
+ ;;=2^90785
+ ;;^UTILITY(U,$J,358.3,289,1,3,0)
+ ;;=3^PsyTx Complex Interactive
+ ;;^UTILITY(U,$J,358.3,290,0)
+ ;;=99354^^2^23^11^^^^1
+ ;;^UTILITY(U,$J,358.3,290,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,502,1,2,0)
- ;;=2^92547
- ;;^UTILITY(U,$J,358.3,502,1,3,0)
- ;;=3^Vertical Channel (Add On To Each Eng Code)
- ;;^UTILITY(U,$J,358.3,503,0)
- ;;=92541^^5^38^8^^^^1
- ;;^UTILITY(U,$J,358.3,503,1,0)
+ ;;^UTILITY(U,$J,358.3,290,1,2,0)
+ ;;=2^99354
+ ;;^UTILITY(U,$J,358.3,290,1,3,0)
+ ;;=3^Prolonged Office Visit 1st hr
+ ;;^UTILITY(U,$J,358.3,291,0)
+ ;;=99355^^2^23^12^^^^1
+ ;;^UTILITY(U,$J,358.3,291,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,503,1,2,0)
- ;;=2^92541
- ;;^UTILITY(U,$J,358.3,503,1,3,0)
- ;;=3^Spontaneous Nystagmus Test W/Recording
- ;;^UTILITY(U,$J,358.3,504,0)
- ;;=92540^^5^38^1^^^^1
- ;;^UTILITY(U,$J,358.3,504,1,0)
+ ;;^UTILITY(U,$J,358.3,291,1,2,0)
+ ;;=2^99355
+ ;;^UTILITY(U,$J,358.3,291,1,3,0)
+ ;;=3^Prolonged Office Vst Ea Addl 30Min
+ ;;^UTILITY(U,$J,358.3,292,0)
+ ;;=96116^^2^24^1^^^^1
+ ;;^UTILITY(U,$J,358.3,292,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,504,1,2,0)
- ;;=2^92540
- ;;^UTILITY(U,$J,358.3,504,1,3,0)
- ;;=3^Basic Vestibular Eval w/Recordings
- ;;^UTILITY(U,$J,358.3,505,0)
- ;;=92531^^5^39^1^^^^1
- ;;^UTILITY(U,$J,358.3,505,1,0)
+ ;;^UTILITY(U,$J,358.3,292,1,2,0)
+ ;;=2^96116
+ ;;^UTILITY(U,$J,358.3,292,1,3,0)
+ ;;=3^Neuropsych Status Exam
+ ;;^UTILITY(U,$J,358.3,293,0)
+ ;;=96120^^2^24^2^^^^1
+ ;;^UTILITY(U,$J,358.3,293,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,505,1,2,0)
- ;;=2^92531
- ;;^UTILITY(U,$J,358.3,505,1,3,0)
- ;;=3^Spontaneous Nystagmus Test, W/O Recording
- ;;^UTILITY(U,$J,358.3,506,0)
- ;;=92532^^5^39^2^^^^1
- ;;^UTILITY(U,$J,358.3,506,1,0)
+ ;;^UTILITY(U,$J,358.3,293,1,2,0)
+ ;;=2^96120
+ ;;^UTILITY(U,$J,358.3,293,1,3,0)
+ ;;=3^Neuropsych Tst Adm by Comp
+ ;;^UTILITY(U,$J,358.3,294,0)
+ ;;=96118^^2^24^3^^^^1
+ ;;^UTILITY(U,$J,358.3,294,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,506,1,2,0)
- ;;=2^92532
- ;;^UTILITY(U,$J,358.3,506,1,3,0)
- ;;=3^Positional Nystagmus Test, W/O Recording
- ;;^UTILITY(U,$J,358.3,507,0)
- ;;=92533^^5^39^3^^^^1
- ;;^UTILITY(U,$J,358.3,507,1,0)
+ ;;^UTILITY(U,$J,358.3,294,1,2,0)
+ ;;=2^96118
+ ;;^UTILITY(U,$J,358.3,294,1,3,0)
+ ;;=3^Neuropsych Tst by Psych/Phys
+ ;;^UTILITY(U,$J,358.3,295,0)
+ ;;=96119^^2^24^4^^^^1
+ ;;^UTILITY(U,$J,358.3,295,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,507,1,2,0)
- ;;=2^92533
- ;;^UTILITY(U,$J,358.3,507,1,3,0)
- ;;=3^Caloric Vestibular Test, W/O Recording
- ;;^UTILITY(U,$J,358.3,508,0)
- ;;=92534^^5^39^4^^^^1
- ;;^UTILITY(U,$J,358.3,508,1,0)
+ ;;^UTILITY(U,$J,358.3,295,1,2,0)
+ ;;=2^96119
+ ;;^UTILITY(U,$J,358.3,295,1,3,0)
+ ;;=3^Neuropsych Tst,Tech,Ea Hr
+ ;;^UTILITY(U,$J,358.3,296,0)
+ ;;=90899^^2^24^5^^^^1
+ ;;^UTILITY(U,$J,358.3,296,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,508,1,2,0)
- ;;=2^92534
- ;;^UTILITY(U,$J,358.3,508,1,3,0)
- ;;=3^Opokinetic Nystagmus Test, W/O Recording
- ;;^UTILITY(U,$J,358.3,509,0)
- ;;=98960^^5^40^1^^^^1
- ;;^UTILITY(U,$J,358.3,509,1,0)
+ ;;^UTILITY(U,$J,358.3,296,1,2,0)
+ ;;=2^90899
+ ;;^UTILITY(U,$J,358.3,296,1,3,0)
+ ;;=3^NOS Psych Service (Anyone)
+ ;;^UTILITY(U,$J,358.3,297,0)
+ ;;=96103^^2^24^6^^^^1
+ ;;^UTILITY(U,$J,358.3,297,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,509,1,2,0)
- ;;=2^98960
- ;;^UTILITY(U,$J,358.3,509,1,3,0)
- ;;=3^Education & Training, Individual
- ;;^UTILITY(U,$J,358.3,510,0)
- ;;=98961^^5^40^2^^^^1
- ;;^UTILITY(U,$J,358.3,510,1,0)
+ ;;^UTILITY(U,$J,358.3,297,1,2,0)
+ ;;=2^96103
+ ;;^UTILITY(U,$J,358.3,297,1,3,0)
+ ;;=3^Psych Tst Admin by Comp
+ ;;^UTILITY(U,$J,358.3,298,0)
+ ;;=96101^^2^24^7^^^^1
+ ;;^UTILITY(U,$J,358.3,298,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,510,1,2,0)
- ;;=2^98961
- ;;^UTILITY(U,$J,358.3,510,1,3,0)
- ;;=3^Education & Training,2-4 Patients
- ;;^UTILITY(U,$J,358.3,511,0)
- ;;=98962^^5^40^3^^^^1
- ;;^UTILITY(U,$J,358.3,511,1,0)
+ ;;^UTILITY(U,$J,358.3,298,1,2,0)
+ ;;=2^96101
+ ;;^UTILITY(U,$J,358.3,298,1,3,0)
+ ;;=3^Psych Tst by Psych/Phys
+ ;;^UTILITY(U,$J,358.3,299,0)
+ ;;=96102^^2^24^8^^^^1
+ ;;^UTILITY(U,$J,358.3,299,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,511,1,2,0)
- ;;=2^98962
- ;;^UTILITY(U,$J,358.3,511,1,3,0)
- ;;=3^Education & Training,5-8 Patients
- ;;^UTILITY(U,$J,358.3,512,0)
- ;;=V5011^^5^40^4^^^^1
- ;;^UTILITY(U,$J,358.3,512,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,512,1,2,0)
- ;;=2^V5011
- ;;^UTILITY(U,$J,358.3,512,1,3,0)
- ;;=3^Hearing Aid Fitting/Checking
- ;;^UTILITY(U,$J,358.3,513,0)
- ;;=99211^^6^41^1
- ;;^UTILITY(U,$J,358.3,513,1,0)
+ ;;^UTILITY(U,$J,358.3,299,1,2,0)
+ ;;=2^96102
+ ;;^UTILITY(U,$J,358.3,299,1,3,0)
+ ;;=3^Psych Tst,Tech,Ea Hr
+ ;;^UTILITY(U,$J,358.3,300,0)
+ ;;=438.0^^3^25^48
+ ;;^UTILITY(U,$J,358.3,300,1,0)
  ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,513,1,1,0)
- ;;=1^Office Visit
- ;;^UTILITY(U,$J,358.3,513,1,2,0)
- ;;=2^99211
- ;;^UTILITY(U,$J,358.3,514,0)
- ;;=379.31^^7^42^15
- ;;^UTILITY(U,$J,358.3,514,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,514,1,3,0)
- ;;=3^379.31
- ;;^UTILITY(U,$J,358.3,514,1,4,0)
- ;;=4^Aphakia without IOL implant
- ;;^UTILITY(U,$J,358.3,514,2)
- ;;=^9445
- ;;^UTILITY(U,$J,358.3,515,0)
- ;;=366.9^^7^42^11
- ;;^UTILITY(U,$J,358.3,515,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,515,1,3,0)
- ;;=3^366.9
- ;;^UTILITY(U,$J,358.3,515,1,4,0)
- ;;=4^Cataract
- ;;^UTILITY(U,$J,358.3,515,2)
- ;;=^20266
- ;;^UTILITY(U,$J,358.3,516,0)
- ;;=371.00^^7^42^12
- ;;^UTILITY(U,$J,358.3,516,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,516,1,3,0)
- ;;=3^371.00
- ;;^UTILITY(U,$J,358.3,516,1,4,0)
- ;;=4^Corneal Disease
- ;;^UTILITY(U,$J,358.3,516,2)
- ;;=^28398
- ;;^UTILITY(U,$J,358.3,517,0)
- ;;=362.51^^7^42^4
- ;;^UTILITY(U,$J,358.3,517,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,517,1,3,0)
- ;;=3^362.51
- ;;^UTILITY(U,$J,358.3,517,1,4,0)
- ;;=4^Macular Degeneration (ARMD), Dry
- ;;^UTILITY(U,$J,358.3,517,2)
- ;;=^268636
- ;;^UTILITY(U,$J,358.3,518,0)
- ;;=362.52^^7^42^5
- ;;^UTILITY(U,$J,358.3,518,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,518,1,3,0)
- ;;=3^362.52
- ;;^UTILITY(U,$J,358.3,518,1,4,0)
- ;;=4^Macular Degeneration (ARMD), Wet
- ;;^UTILITY(U,$J,358.3,518,2)
- ;;=^268637
- ;;^UTILITY(U,$J,358.3,519,0)
- ;;=377.10^^7^42^13
- ;;^UTILITY(U,$J,358.3,519,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,519,1,3,0)
- ;;=3^377.10
- ;;^UTILITY(U,$J,358.3,519,1,4,0)
- ;;=4^Optic Atrophy
- ;;^UTILITY(U,$J,358.3,519,2)
- ;;=^85926
- ;;^UTILITY(U,$J,358.3,520,0)
- ;;=377.49^^7^42^14
- ;;^UTILITY(U,$J,358.3,520,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,520,1,3,0)
- ;;=3^377.49
- ;;^UTILITY(U,$J,358.3,520,1,4,0)
- ;;=4^Optic Nerve
- ;;^UTILITY(U,$J,358.3,520,2)
- ;;=^269230
- ;;^UTILITY(U,$J,358.3,521,0)
- ;;=362.74^^7^42^6
- ;;^UTILITY(U,$J,358.3,521,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,521,1,3,0)
- ;;=3^362.74
- ;;^UTILITY(U,$J,358.3,521,1,4,0)
- ;;=4^Retinitis Pigmentosa
- ;;^UTILITY(U,$J,358.3,521,2)
- ;;=^105693
- ;;^UTILITY(U,$J,358.3,522,0)
- ;;=362.50^^7^42^3
- ;;^UTILITY(U,$J,358.3,522,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,522,1,3,0)
- ;;=3^362.50
- ;;^UTILITY(U,$J,358.3,522,1,4,0)
- ;;=4^Other Macular Disease
- ;;^UTILITY(U,$J,358.3,522,2)
- ;;=^73072
- ;;^UTILITY(U,$J,358.3,523,0)
- ;;=438.7^^7^42^16
- ;;^UTILITY(U,$J,358.3,523,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,523,1,3,0)
- ;;=3^438.7
- ;;^UTILITY(U,$J,358.3,523,1,4,0)
- ;;=4^Lt Effect of Stroke w/Vision prob
- ;;^UTILITY(U,$J,358.3,523,2)
- ;;=Lt Effect of Stroke w/Vision prob^328504
- ;;^UTILITY(U,$J,358.3,524,0)
- ;;=250.50^^7^42^2
- ;;^UTILITY(U,$J,358.3,524,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,524,1,3,0)
- ;;=3^250.50
- ;;^UTILITY(U,$J,358.3,524,1,4,0)
- ;;=4^Diabetes w/ OPHTH manifestations
- ;;^UTILITY(U,$J,358.3,524,2)
- ;;=Diabetes w/ OPHTH manifestations^267839
- ;;^UTILITY(U,$J,358.3,525,0)
- ;;=363.20^^7^42^9
- ;;^UTILITY(U,$J,358.3,525,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,525,1,3,0)
- ;;=3^363.20
- ;;^UTILITY(U,$J,358.3,525,1,4,0)
- ;;=4^Chorioretinitis, Unspecified
- ;;^UTILITY(U,$J,358.3,525,2)
- ;;=^23913
- ;;^UTILITY(U,$J,358.3,526,0)
- ;;=365.9^^7^42^10
- ;;^UTILITY(U,$J,358.3,526,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,526,1,3,0)
- ;;=3^365.9
- ;;^UTILITY(U,$J,358.3,526,1,4,0)
- ;;=4^Glaucoma, Unspecified
- ;;^UTILITY(U,$J,358.3,526,2)
- ;;=Glaucoma, Unspecified^51160
- ;;^UTILITY(U,$J,358.3,527,0)
- ;;=115.90^^7^42^1
- ;;^UTILITY(U,$J,358.3,527,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,527,1,3,0)
- ;;=3^115.90
- ;;^UTILITY(U,$J,358.3,527,1,4,0)
- ;;=4^Histoplasmosis, Unspecified
- ;;^UTILITY(U,$J,358.3,527,2)
- ;;=^57700
- ;;^UTILITY(U,$J,358.3,528,0)
- ;;=362.9^^7^42^8
- ;;^UTILITY(U,$J,358.3,528,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,528,1,3,0)
- ;;=3^362.9
- ;;^UTILITY(U,$J,358.3,528,1,4,0)
- ;;=4^Retinal Disorder
+ ;;^UTILITY(U,$J,358.3,300,1,1,0)
+ ;;=1^438.0
+ ;;^UTILITY(U,$J,358.3,300,1,2,0)
+ ;;=2^LATE EFF CEREB/VASC, COG DEF
+ ;;^UTILITY(U,$J,358.3,300,2)
+ ;;=^317905
+ ;;^UTILITY(U,$J,358.3,301,0)
+ ;;=438.10^^3^25^53
+ ;;^UTILITY(U,$J,358.3,301,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,301,1,1,0)
+ ;;=1^438.10
+ ;;^UTILITY(U,$J,358.3,301,1,2,0)
+ ;;=2^LATE EFF CEREB/VASC,LANG.,UNSP
+ ;;^UTILITY(U,$J,358.3,301,2)
+ ;;=^317906
+ ;;^UTILITY(U,$J,358.3,302,0)
+ ;;=438.11^^3^25^49
+ ;;^UTILITY(U,$J,358.3,302,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,302,1,1,0)
+ ;;=1^438.11
+ ;;^UTILITY(U,$J,358.3,302,1,2,0)
+ ;;=2^LATE EFF CEREB/VASC,APHASIA
+ ;;^UTILITY(U,$J,358.3,302,2)
+ ;;=^317907
+ ;;^UTILITY(U,$J,358.3,303,0)
+ ;;=438.12^^3^25^50
+ ;;^UTILITY(U,$J,358.3,303,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,303,1,1,0)
+ ;;=1^438.12
+ ;;^UTILITY(U,$J,358.3,303,1,2,0)
+ ;;=2^LATE EFF CEREB/VASC,DYSPHASIA
+ ;;^UTILITY(U,$J,358.3,303,2)
+ ;;=^317908
+ ;;^UTILITY(U,$J,358.3,304,0)
+ ;;=438.19^^3^25^54
+ ;;^UTILITY(U,$J,358.3,304,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,304,1,1,0)
+ ;;=1^438.19
+ ;;^UTILITY(U,$J,358.3,304,1,2,0)
+ ;;=2^LATE EFF CEREB/VASC,OTH SP/LAN
+ ;;^UTILITY(U,$J,358.3,304,2)
+ ;;=^317909
+ ;;^UTILITY(U,$J,358.3,305,0)
+ ;;=438.20^^3^25^52
+ ;;^UTILITY(U,$J,358.3,305,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,305,1,1,0)
+ ;;=1^438.20
+ ;;^UTILITY(U,$J,358.3,305,1,2,0)
+ ;;=2^LATE EFF CEREB/VASC,HEMIPL,UNS
+ ;;^UTILITY(U,$J,358.3,305,2)
+ ;;=^317910
+ ;;^UTILITY(U,$J,358.3,306,0)
+ ;;=438.21^^3^25^51
+ ;;^UTILITY(U,$J,358.3,306,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,306,1,1,0)
+ ;;=1^438.21
+ ;;^UTILITY(U,$J,358.3,306,1,2,0)
+ ;;=2^LATE EFF CEREB/VASC,HEMIPL,DOM
+ ;;^UTILITY(U,$J,358.3,306,2)
+ ;;=^317911
+ ;;^UTILITY(U,$J,358.3,307,0)
+ ;;=438.22^^3^25^38
+ ;;^UTILITY(U,$J,358.3,307,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,307,1,1,0)
+ ;;=1^438.22
+ ;;^UTILITY(U,$J,358.3,307,1,2,0)
+ ;;=2^LATE EFF CEREB DIS, HEM NONDOM
+ ;;^UTILITY(U,$J,358.3,307,2)
+ ;;=^317912
+ ;;^UTILITY(U,$J,358.3,308,0)
+ ;;=438.30^^3^25^44
+ ;;^UTILITY(U,$J,358.3,308,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,308,1,1,0)
+ ;;=1^438.30
+ ;;^UTILITY(U,$J,358.3,308,1,2,0)
+ ;;=2^LATE EFF CEREB DIS, MON U/L UN
+ ;;^UTILITY(U,$J,358.3,308,2)
+ ;;=^317913
+ ;;^UTILITY(U,$J,358.3,309,0)
+ ;;=438.31^^3^25^42
+ ;;^UTILITY(U,$J,358.3,309,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,309,1,1,0)
+ ;;=1^438.31
+ ;;^UTILITY(U,$J,358.3,309,1,2,0)
+ ;;=2^LATE EFF CEREB DIS, MON U/L DO
+ ;;^UTILITY(U,$J,358.3,309,2)
+ ;;=^317914
+ ;;^UTILITY(U,$J,358.3,310,0)
+ ;;=438.32^^3^25^43
+ ;;^UTILITY(U,$J,358.3,310,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,310,1,1,0)
+ ;;=1^438.32
+ ;;^UTILITY(U,$J,358.3,310,1,2,0)
+ ;;=2^LATE EFF CEREB DIS, MON U/L ND
+ ;;^UTILITY(U,$J,358.3,310,2)
+ ;;=^317915
+ ;;^UTILITY(U,$J,358.3,311,0)
+ ;;=438.40^^3^25^41
+ ;;^UTILITY(U,$J,358.3,311,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,311,1,1,0)
+ ;;=1^438.40
+ ;;^UTILITY(U,$J,358.3,311,1,2,0)
+ ;;=2^LATE EFF CEREB DIS, MON L/L UN
+ ;;^UTILITY(U,$J,358.3,311,2)
+ ;;=^317916
+ ;;^UTILITY(U,$J,358.3,312,0)
+ ;;=438.41^^3^25^39
+ ;;^UTILITY(U,$J,358.3,312,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,312,1,1,0)
+ ;;=1^438.41
+ ;;^UTILITY(U,$J,358.3,312,1,2,0)
+ ;;=2^LATE EFF CEREB DIS, MON L/L DO
+ ;;^UTILITY(U,$J,358.3,312,2)
+ ;;=^317917
+ ;;^UTILITY(U,$J,358.3,313,0)
+ ;;=438.42^^3^25^40
+ ;;^UTILITY(U,$J,358.3,313,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,313,1,1,0)
+ ;;=1^438.42
+ ;;^UTILITY(U,$J,358.3,313,1,2,0)
+ ;;=2^LATE EFF CEREB DIS, MON L/L ND
+ ;;^UTILITY(U,$J,358.3,313,2)
+ ;;=^317918
+ ;;^UTILITY(U,$J,358.3,314,0)
+ ;;=438.50^^3^25^47
+ ;;^UTILITY(U,$J,358.3,314,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,314,1,1,0)
+ ;;=1^438.50
+ ;;^UTILITY(U,$J,358.3,314,1,2,0)
+ ;;=2^LATE EFF CEREB DIS, OTH PAR UN
+ ;;^UTILITY(U,$J,358.3,314,2)
+ ;;=^317919
+ ;;^UTILITY(U,$J,358.3,315,0)
+ ;;=438.51^^3^25^45
+ ;;^UTILITY(U,$J,358.3,315,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,315,1,1,0)
+ ;;=1^438.51
+ ;;^UTILITY(U,$J,358.3,315,1,2,0)
+ ;;=2^LATE EFF CEREB DIS, OTH PAR DO
+ ;;^UTILITY(U,$J,358.3,315,2)
+ ;;=^317920
+ ;;^UTILITY(U,$J,358.3,316,0)
+ ;;=438.52^^3^25^46
+ ;;^UTILITY(U,$J,358.3,316,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,316,1,1,0)
+ ;;=1^438.52
+ ;;^UTILITY(U,$J,358.3,316,1,2,0)
+ ;;=2^LATE EFF CEREB DIS, OTH PAR ND
+ ;;^UTILITY(U,$J,358.3,316,2)
+ ;;=^317921
+ ;;^UTILITY(U,$J,358.3,317,0)
+ ;;=438.53^^3^25^75
+ ;;^UTILITY(U,$J,358.3,317,1,0)
+ ;;=^358.31IA^2^2

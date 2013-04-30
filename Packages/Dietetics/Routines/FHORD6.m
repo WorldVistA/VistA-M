@@ -1,5 +1,5 @@
 FHORD6 ; HISC/REL/NCA/JH/RTK - Diet Inquiry ;5/3/01  11:04
- ;;5.5;DIETETICS;**1,5,24**;Jan 28, 2005;Build 3
+ ;;5.5;DIETETICS;**1,5,24,32**;Jan 28, 2005;Build 3
  S FHALL=1 D ^FHOMDPA I 'FHDFN G KIL
  D MONUM^FHOMUTL I FHNUM="" Q
  I FHDFN,DFN="" D ^FHOMPP Q  ;profile for file #200 outpatients
@@ -10,7 +10,7 @@ FHORD6 ; HISC/REL/NCA/JH/RTK - Diet Inquiry ;5/3/01  11:04
 F0 ; Display Diet
  D NOW^%DTC S NOW=%,DT=NOW\1,QT=""
  S WARD=$P($G(^FHPT(FHDFN,"A",ADM,0)),"^",8) S:WARD WARD=$P($G(^FH(119.6,WARD,0)),"^",1)
- S Y(0)=^DPT(DFN,0),SEX=$P(Y(0),"GH^",2),DOB=$P(Y(0),"^",3)
+ S Y(0)=^DPT(DFN,0),SEX=$P(Y(0),"^",2),DOB=$P(Y(0),"^",3)
  S AGE=$E(NOW,1,3)-$E(DOB,1,3)-($E(NOW,4,7)<$E(DOB,4,7)),X=$P($G(^DPT(DFN,.101)),"^",1),RM=$E(WARD,1,15) S:X'="" RM=RM_"/"_X
  S QT="",PG=0 D HDR
  D ALG^FHCLN I ALG'="" W !!,"Allergies: ",ALG

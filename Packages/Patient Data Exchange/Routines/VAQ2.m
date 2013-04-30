@@ -37,7 +37,7 @@ PATCH15 ;Entry point for patch 15 installation
  I (($D(DTOUT))!($D(DUOUT))) S ABORT=1 G EXIT
  G:('Y) SKIP1
  W !!
- ;D ^VAQ2INIT
+ D ^VAQ2INIT
 SKIP1 ;Allow user to skip updating of file 394.82
  S DIR(0)="YA"
  S DIR("A")="Do you want to update the VAQ - RELEASE GROUP file ? "

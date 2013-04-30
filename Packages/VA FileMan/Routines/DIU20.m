@@ -1,5 +1,5 @@
 DIU20 ;SFISC/GFT-SCREEN-EDIT FILE ;06:20 PM  2 Apr 2001
- ;;22.0;VA FileMan;**8,82**;Mar 30, 1999
+ ;;22.0;VA FileMan;**8,82**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;from DIU0 -- DA=FILE NUMBER

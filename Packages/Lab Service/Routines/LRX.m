@@ -1,109 +1,156 @@
-LRX ;SLC/BA/DALISC/FHS - UTILITY ROUTINES -- PREVIOUSLY ^LAB("X","...") ;2/8/91  07:30
- ;;5.2;LAB SERVICE;**65,153,201,217,290,360**;Sep 27, 1994;Build 1
-PT ;patient info
+LRX ;DALOI/STAFF - UTILITY ROUTINES -- PREVIOUSLY ^LAB("X","...") ;03/31/09  11:39
+ ;;5.2;LAB SERVICE;**65,153,201,217,290,360,350**;Sep 27, 1994;Build 230
+ ;
+ ;
+PT ; Patient info
  ;
  N X,I,N,Y
  D KVAR^VADPT
- K LRTREA,LRWRD,AGE S (AGE,PNM,SEX,DOB,DOD,SSN,VA200,LRWRD,LRRB,LRTREA,VA("PID"),VA("BID"))=""
+ K LRTREA,LRWRD,AGE
+ S (AGE,AGE(2),PNM,SEX,DOB,DOD,SSN,VA200,LRWRD,LRRB,LRTREA,VA("PID"),VA("BID"))=""
  I $G(LRDFN),'$G(LRDPF),$G(^LR(LRDFN,0)) S LRDPF=$P(^(0),U,2),DFN=$P(^(0),U,3)
- S LREND=0 S:$G(DFN)<1!('$G(LRDPF)) LREND=1 Q:$G(LREND)
+ S LREND=0
+ S:$G(DFN)<1!('$G(LRDPF)) LREND=1 Q:$G(LREND)
+ ;
  I +$G(LRDPF)'=2 D
  . S X=$$GET1^DID(1,+LRDPF,"","GLOBAL NAME","ANS","ANS1")
  . S X=X_DFN_",0)",X=$S($D(@X):@X,1:""),LRWRD=$S($D(^(.1)):$P(^(.1),U),1:0),LRRB=$S($D(^(.101)):$P(^(.101),U),1:""),DOD=$S($D(^(.35)):$P(^(.35),U),1:"")
- . S PNM=$P(X,U),SSN=$P(X,U,9) Q:+$G(LRDPF)=62.3
+ . S PNM=$P(X,U),SSN=$P(X,U,9)
+ . I +$G(LRDPF)=62.3 Q
  . S SEX=$P(X,U,2),SEX=$S(SEX="":"M",1:SEX)
  . S DOB=$P(X,U,3)
  . S AGE=$S($D(DT)&(DOB?1(7N,7N1".".6N)):DT-DOB\10000,1:"??")
  . S AGE(2)=$$AGE2(DOB,$G(LRCDT)) ;Age of the patient when the specimen was collected (default =99Yr if no valid DOB present)
  . ;Default for LRCDT (collection date) is DT
+ ;
  I +$G(LRDPF)=2 D
  . N I,X,N,Y
- . D OERR^VADPT D:'VAERR
- . . S PNM=VADM(1)
- . . S SEX=$P(VADM(5),U),DOB=$P(VADM(3),U),DOD=$P(VADM(6),U)
- . . S AGE=VADM(4),AGE(2)=$$AGE2(DOB,$G(LRCDT))
- . . S SSN=$P(VADM(2),U),LRWRD=$P(VAIN(4),U,2)
- . . S LRWRD(1)=+VAIN(4),LRRB=VAIN(5),LRPRAC=+VAIN(2)
- . . S:VAIN(3) LRTREA=+VAIN(3)
+ . D OERR^VADPT Q:VAERR
+ . S PNM=VADM(1)
+ . S SEX=$P(VADM(5),U),DOB=$P(VADM(3),U),DOD=$P(VADM(6),U)
+ . S AGE=VADM(4),AGE(2)=$$AGE2(DOB,$G(LRCDT))
+ . S SSN=VA("PID"),SSN(1)=VA("BID"),LRWRD=$P(VAIN(4),U,2)
+ . S LRWRD(1)=+VAIN(4),LRRB=VAIN(5),LRPRAC=+VAIN(2)
+ . S:VAIN(3) LRTREA=+VAIN(3)
+ ;
  D SSNFM^LRU
  Q
-DEM ;Call DEM^VADPT instead of OERR used above
+ ;
+ ;
+DEM ; Call DEM^VADPT instead of OERR used above
  N X,I,N,Y
  D KVAR^VADPT
- K LRTREA,LRWRD,AGE S (AGE,PNM,SEX,DOB,SSN,VA200,LRWRD,LRRB,LRTREA,VA("PID"),VA("BID"))=""
+ K LRTREA,LRWRD,AGE
+ S (AGE,AGE(2),PNM,SEX,DOB,DOD,SSN,VA200,LRWRD,LRRB,LRTREA,VA("PID"),VA("BID"))=""
  I $G(LRDFN),'$G(LRDPF),$G(^LR(LRDFN,0)) S LRDPF=$P(^(0),U,2),DFN=$P(^(0),U,3)
  S LREND=0 S:$G(DFN)<1!('$G(LRDPF)) LREND=1 Q:$G(LREND)
+ ;
  I +$G(LRDPF)'=2 D
  . S X=^DIC(+LRDPF,0,"GL")_DFN_",0)",X=$S($D(@X):@X,1:""),LRWRD=$S($D(^(.1)):$P(^(.1),U),1:0),LRRB=$S($D(^(.101)):$P(^(.101),U),1:"")
- . S PNM=$P(X,U),SEX=$P(X,U,2),SEX=$S(SEX="":"M",1:SEX),DOB=$P(X,U,3)
+ . S PNM=$P(X,U),SSN=$P(X,U,9)
+ . I +$G(LRDPF)=62.3 Q
+ . S SEX=$P(X,U,2),SEX=$S(SEX="":"M",1:SEX),DOB=$P(X,U,3)
  . S AGE=$S($D(DT)&(DOB?1(7N,7N1".".6N)):DT-DOB\10000,1:"??")
  . S AGE(2)=$$AGE2(DOB,$G(LRCDT))
- . S SSN=$P(X,U,9)
+ ;
  I +$G(LRDPF)=2 N I,X,N,Y D
- . D DEM^VADPT D:'VAERR
- . . S PNM=VADM(1),SEX=$P(VADM(5),U)
- . . S DOB=$P(VADM(3),U),SSN=$P(VADM(2),U)
- . . S AGE=VADM(4),AGE(2)=$$AGE2(DOB,$G(LRCDT))
+ . D DEM^VADPT Q:VAERR
+ . S PNM=VADM(1),SEX=$P(VADM(5),U),DOD=$P(VADM(6),U)
+ . S DOB=$P(VADM(3),U),SSN=VA("PID"),SSN(1)=VA("BID")
+ . S AGE=VADM(4),AGE(2)=$$AGE2(DOB,$G(LRCDT))
+ ;
  D SSNFM^LRU
  Q
+ ;
+ ;
 DD ;date/time format
  S Y=$$FMTE^XLFDT(Y,"5Z")
  S Y=$P(Y,"@")_" "_$P($P(Y,"@",2),":",1,2)
  Q
+ ;
+ ;
 DDOLD ;OLD
  I $E(Y,4,7)="0000" S Y=$S($E(Y)=2:"19"_$E(Y,2,3),1:"20"_$E(Y,2,3)) Q
  S Y=$E(Y,4,5)_"/"_$E(Y,6,7)_"/"_$E(Y,2,3)_$S(Y#1:" "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12),1:"")
  Q
+ ;
+ ;
 DT ;current date format is LRDT0
  N X,DIK,DIC,%I,DICS,%DT
  D DT^DICRW
  S Y=$$FMTE^XLFDT(DT,"5D")
  S LRDT0=Y
  Q
+ ;
+ ;
 DTOLD ;2-DIGIT
  ;current date format is LRDT0
  N X,DIK,DIC,%I,DICS,%DT
  D DT^DICRW
  S Y=$P(DT,".") D DDOLD S LRDTO=Y
  Q
+ ;
+ ;
 DASH ;line of dashes
  W !,$E("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",1,IOM-1)
  Q
+ ;
+ ;
 EQUALS ;line of equals
  W !,$E("====================================================================================================================================================================================================================",1,IOM-1)
  Q
+ ;
+ ;
 DUZ ;user info
  S (LRUSNM,LRUSI)="" Q:'$D(X)  Q:'$D(^VA(200,+X,0))  S LRUSNM=$P(^(0),"^"),LRUSI=$P(^(0),"^",2)
  Q
+ ;
+ ;
 DOC ;provider info
  I $L(X),'X S LRDOC=X Q
  S LRDOC=$P($G(^VA(200,+X,0)),U)
  S:LRDOC="" LRDOC="Unknown"
  Q
+ ;
+ ;
 PRAC(X) ;prac info
  N Y
  I $L(X),'X Q X
  S Y=$P($G(^VA(200,+X,0)),U)
  S:Y="" Y="Unknown"
  Q Y
+ ;
+ ;
 YMD ;year/month/date
  S %=%H>21549+%H-.1,%Y=%\365.25+141,%=%#365.25\1,%D=%+306#(%Y#4=0+365)#153#61#31+1,%M=%-%D\29+1,X=%Y_"00"+%M_"00"+%D K %Y,%D,%M,%
  Q
+ ;
+ ;
 STAMP ;time stamp
  S X="N",%DT="ET" D ^%DT
  Q
+ ;
+ ;
 KEYCOM ;key to result flags
  D EQUALS W !!,"  ------------------------------  COMMENTS  ------------------------------",!,"  Key:  'L' = reference Low,  'H' = reference Hi, '*' = critical range"
  Q
-URG ;urgencys
+ ;
+ ;
+URG ;urgencies
  K LRURG S LRURG(0)="ROUTINE" S I=0 F  S I=$O(^LAB(62.05,I)) Q:I<1  I $D(^(I,0)) S:'$P(^(0),U,3) LRURG(I)=$P(^(0),U)
  Q
+ ;
+ ;
 ADD ;date format
  S Y=$E("JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC",$E(Y,4,5)*3-2,$E(Y,4,5)*3)_" "_$S(Y#100:$J(Y#100\1,2)_", ",1:"")_(Y\10000+1700)_$S(Y#1:"  "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12),1:"")
  Q
+ ;
+ ;
 INF ;Display Infectious Warning
  I $L($G(IO)),$D(^LR(LRDFN,.091)),$L(^(.091)),'$G(LRQUIET) W !,$C(7)," Pat Info: ",^(.091) Q
  Q
+ ;
+ ;
 LRGLIN ;
  N HZ
  D GSET^%ZISS W IOG1
@@ -111,9 +158,11 @@ LRGLIN ;
  W IOG0 D GKILL^%ZISS
  W !
  Q
-LRUID(LRAA,LRAD,LRAN) ;Extrinsic function call to create a unique 
+ ;
+ ;
+LRUID(LRAA,LRAD,LRAN) ;Extrinsic function call to create a unique
  ;accession identifier for an accession number.  See description
- ;of field .092 in file 68 for a full explanation of this number.   
+ ;of field .092 in file 68 for a full explanation of this number.
  ;This function returns a value equal to the unique ID generated.
  ;LRAA=ien in file 68, accession area
  ;LRAD=ien for accession date in field 68.01
@@ -144,6 +193,7 @@ LRUID(LRAA,LRAD,LRAN) ;Extrinsic function call to create a unique
  . N X
  . S X=$E(LRUID,3,10)
  . F  S LRUID="00"_X Q:'$D(^LRO(68,"C",LRUID))  S X=X+1 S:X>99999999 X=11111111
+ I $G(LRORDRR)="NSR" Q LRUID ;Special trigger for NSR AP merge
  ;The following fields are also set in rtn LROLOVER
 SET3 I $G(LRORDRR)'="R" S DR="16////"_LRUID
  I $G(LRORDRR)="R" D

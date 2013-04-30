@@ -1,5 +1,5 @@
-MAGDRPC3 ;WOIFO/EdM - Imaging RPCs ; 04 Jan 2011 8:37 AM
- ;;3.0;IMAGING;**11,30,51,50,85,54,49**;Mar 19, 2002;Build 2033;Apr 07, 2011
+MAGDRPC3 ;WOIFO/EdM,SAF - Imaging RPCs ; 04 Jan 2011 8:37 AM
+ ;;3.0;IMAGING;**11,30,51,50,85,54,49,123**;Mar 19, 2002;Build 67;Jul 24, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -55,7 +55,7 @@ RADLKUP(OUT,CASENUMB,STUDYDAT) ; RPC = MAG DICOM LOOKUP RAD STUDY
  ; get patient demographics file pointer
  S DFN=$P(^RADPT(RADPT1,0),"^",1)
  ;
- I '$D(^RADPT(RADPT1,"DT",RADPT2,0)) S OUT(1)="-7,No datetime level" Q
+ I '$D(^RADPT(RADPT1,"DT",RADPT2,0)) S OUT(1)="-7,No date/time level" Q
  ;
  ; get date and time of examination
  S DATETIME=$P($G(^RADPT(RADPT1,"DT",RADPT2,0)),"^",1)
@@ -96,7 +96,7 @@ RADLKUP(OUT,CASENUMB,STUDYDAT) ; RPC = MAG DICOM LOOKUP RAD STUDY
  S OUT(13)=X ; List of Modality-codes
  S X="" I $G(RADPT1),$G(RADPT2) S X=$G(^RADPT(RADPT1,"DT",RADPT2,0))
  S DIVISION=$P(X,"^",3) ; pointer to INSTITUION file (#4) for division
- S OUT(14)=$E($$GET1^DIQ(4,DIVISION,99),1,3) ; station number, exclusive of any modifiers
+ S OUT(14)=$S($$ISIHS^MAGSPID():$P($$SITE^VASITE(),"^",3),1:$E($$GET1^DIQ(4,DIVISION,99),1,3)) ; station number, exclusive of any modifiers
  ; Patient's pregnancy status at the time of the exam
  S X="" I $G(DFN),$G(RADPT2),$G(RADPT3) S X=$G(^RADPT(DFN,"DT",RADPT2,"P",RADPT3,0))
  S OUT(15)=$P($G(^RAO(75.1,+$P(X,"^",11),0)),"^",13)

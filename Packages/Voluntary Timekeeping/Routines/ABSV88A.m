@@ -18,7 +18,7 @@ V ;;4.0;VOLUNTARY TIMEKEEPING;**7,11,18**;JULY 6, 1994
  I '$D(^TMP($J,"ABSVTT88")) S X="There are no master records on file requiring TT 88's for transmission to Austin.  No further action taken." D MSG^ABSVQ
  S MSGNUM=0 F  S MSGNUM=$O(^TMP($J,"ABSVTT88",ABSV("INST"),MSGNUM)) Q:'MSGNUM  D
  . S XMDUZ=$S($G(DUZ)]"":DUZ,1:.5),XMSUB="VOLUNTARY TRANSACTION TYPE 88'S - "_ABSV("SITE"),XMTEXT="^TMP("_$J_",""ABSVTT88"","_ABSV("INST")_","_MSGNUM_","
- . S XMY("XXX@Q-NST.DOMAIN.EXT")=""
+ . S XMY("XXX@Q-NST.domain.ext")=""
  . S XMY("G.NST")=""
  . D ^XMD
  . W !,XMZ," - Message Filed"

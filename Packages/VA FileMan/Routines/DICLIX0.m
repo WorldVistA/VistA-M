@@ -1,5 +1,5 @@
 DICLIX0 ;SEA/TOAD,SF/TKW-FileMan: Continuation of DICLIX ;7/31/98  09:03
- ;;22.0;VA FileMan;;Mar 30, 1999;
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 FINDMORE(DISUB,DIVAL,DIPART,DINDEX,DIMORE) ; Look across the numeric/string collation boundary

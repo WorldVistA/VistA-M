@@ -1,5 +1,5 @@
 PRCE58P0 ;WISC/SAW/LDB-DISPLAY 1358 FORM CONT. 19-FEB-92 ;6/7/11  16:26
-V ;;5.1;IFCAP;**148,158**;Oct 20, 2000;Build 1
+V ;;5.1;IFCAP;**148,158,161**;Oct 20, 2000;Build 19
  ;Per VHA Directive 2004-038, this routine should not be modified.
 PRCSD11 ;Entry for print
  U IO W @IOF S U="^",PRCSP=1 D NOW^%DTC S Y=% D DD^%DT W !,$P(TRNODE(0),U),?34,Y,?73,"PAGE ",PRCSP S L="",$P(L,"_",IOM)="_" W !,L
@@ -23,7 +23,8 @@ PRCSD11 ;Entry for print
  W !,"Appropriation & Acct. Symbols:",?41,"|Obligated By: ",?62,"|Date Obligated:"
 TST S DIWL=0,DIWR=80,DIWF="" K ^UTILITY($J)
  I $D(TRNODE(8)) S X1=0 F I=1:1 S X1=$O(TRNODE(8,X1)) Q:X1=""  S X=TRNODE(8,X1),PRCSDAA=DA D DIWP^PRCUTL($G(DA)) S DA=PRCSDAA K PRCSDAA
- S P=PRC("SITE") I $D(PRCSG) S:$P(PRCSG,U,2)]"" P=P_"-"_$P(PRCSG,U,2) S P=P_"-"_$P(PRC("CP")," ") S:$P(PRCSG,U,3)]"" P=P_"-"_$P($P(PRCSG,U,3)," ") S:$P(PRCSG,U,6)]"" P=P_"-"_+$P(PRCSG,U,6)
+ ;PRC*5.1*161 get control point from PRCSG as PRC("CP") will not exist from obligating print call
+ S P=PRC("SITE") I $D(PRCSG) S:$P(PRCSG,U,2)]"" P=P_"-"_$P(PRCSG,U,2) S P=P_"-"_+$P(PRCSG,U) S:$P(PRCSG,U,3)]"" P=P_"-"_$P($P(PRCSG,U,3)," ") S:$P(PRCSG,U,6)]"" P=P_"-"_+$P(PRCSG,U,6)
  N PROJ I $D(TRNODE(3)),$P($G(TRNODE(3)),"^",12)'="" S PROJ=$P(TRNODE(3),"^",12),P=P_" "_PROJ
  W !,P,?41,"|" K PRCSG I $D(TRNODE(4)) S PRCSG=TRNODE(4) I $P(PRCSG,U,9),$P(PRCSG,U,10)'="" S X=$$DECODE^PRCSC2(DA) W "/ES/"_$E(X,1,27)
  W ?62,"|" I $D(PRCSG) S Y=$P(PRCSG,U,4) I Y D DD^%DT W Y

@@ -1,5 +1,5 @@
-HLOPROC ;ALB/CJM- Generic HL7 Process - 10/4/94 1pm ;08/23/2010
- ;;1.6;HEALTH LEVEL SEVEN;**126,134,146,147**;Oct 13, 1995;Build 15
+HLOPROC ;ALB/CJM- Generic HL7 Process - 10/4/94 1pm ;03/26/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**126,134,146,147,158**;Oct 13, 1995;Build 14
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 PROCESS ;queued entry point
@@ -86,7 +86,7 @@ ERROR ;error trap
  I ($ECODE["TOOMANYFILES")!($ECODE["EDITED") D  Q:$QUIT "" Q
  .S:'$D(PROCNAME) PROCNAME=$G(^HL7TMP("HL7 PROCESS NAME",$J))
  .D END
- .G UNWIND^%ZTER
+ .D UNWIND^%ZTER
  ;
  ;don't log READ/WRITE errors unless logging is turned on, but do resume
  ;execution
@@ -103,7 +103,7 @@ ERROR ;error trap
  I $G(^TMP("HL7 ERRORS",$J,HOUR,$P($ECODE,",",2)))>30 D  Q:$QUIT "" Q
  .S:'$D(PROCNAME) PROCNAME=$G(^HL7TMP("HL7 PROCESS NAME",$J))
  .D END
- .G UNWIND^%ZTER
+ .D UNWIND^%ZTER
  ;
  ;can log error and continue processing
  D ^%ZTER

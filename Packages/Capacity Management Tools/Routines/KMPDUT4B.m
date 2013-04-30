@@ -1,5 +1,5 @@
 KMPDUT4B ;OAK/RAK; Multi-Lookup Array Selection cont. ;2/17/04  10:48
- ;;2.0;CAPACITY MANAGEMENT TOOLS;;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
  ;--------------------------------------------------------------------
  ;  sub-routines to select entries - called from ^KMPDUT4

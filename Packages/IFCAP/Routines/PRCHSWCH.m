@@ -1,6 +1,6 @@
 PRCHSWCH ;WISC/AKS-Check switches ;7/13/2001  08:00
- ;;5.1;IFCAP;**37**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;5.1;IFCAP;**37,120**;Oct 20, 2000;Build 27
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 CHECK ;check switches
  ;
@@ -8,8 +8,12 @@ CHECK ;check switches
  ; PRCHOBL=0 do nothing  PRCHOBL=1 obligate immediately without Fiscal
  ; PRCHOBL=2 call PRCOEDI to generate PHA transactions
  I FILE'=442&(FILE'=443.6) W !,"Improper file." Q
+ ; PRC*5.1*120 => AUTOOBLG switch (1=ON, 0=OFF) will control EDO Delivery 
+ ;                and SITE/FCP All/Delivery switch auto obligating to 
+ ;                insure the FCP UNOBL dollars are updated. 
+ ;                EDIVEN switch (Y/N) will hold whether EDI vendor or not
  N EDICHK,EDIVEN S EDICHK="N",EDIVEN=$P($G(^PRC(FILE,PRCHPO,1)),U) S:EDIVEN'="" EDICHK=$P($G(^PRC(440,EDIVEN,3)),U,2)
- K PRCHOBL
+ K PRCHOBL,AUTOOBLG
  N PRCHFUND
  S PRCHOBL=0,PRCHFUND=""
  S PRCHFUND=$P(^PRC(FILE,PRCHPO,0),U,3) Q:PRCHFUND=""  S PRCHFUND=+$P(PRCHFUND," ")
@@ -23,10 +27,13 @@ CHECK ;check switches
  I '$G(PRCHOBL) D
  . I $P($G(^PRC(420,PRC("SITE"),3)),U)="Y",EDICHK="Y" S PRCHOBL=1
  . I $P($G(^PRC(420,PRC("SITE"),1,PRCHFUND,6)),U)="N" S PRCHOBL=0
- . ;  PRC*5.1*37, Added a missing check for EDI vendor at FCP level
- . I $P($G(^PRC(420,PRC("SITE"),1,PRCHFUND,6)),U)="Y",EDICHK="Y" S PRCHOBL=1
  ;  if a certified invoice, set flag to 0 so that Fiscal must process
  I $P($G(^PRC(FILE,PRCHPO,0)),"^",2)=2 S PRCHOBL=0
+ ;PRC*5.1*37, Added a missing check for EDI vendor at FCP level - ** Updated check via PRC*5.1*120 for EDI Delivery Order cancel
+ I PRCHOBL=1 D 
+ . I $P($G(^PRC(442,PRCHPO,23)),U,11)="D" S AUTOOBLG=1
+ . I $P($G(^PRC(442,PRCHPO,0)),U,2)'=25 S AUTOOBLG=1
+ I $P($G(^PRC(442,PRCHPO,23)),U,11)="D"!($P($G(^PRC(442,PRCHPO,0)),U,2)'=25) I ($P($G(^PRC(420,PRC("SITE"),1,PRCHFUND,6)),U)="Y")!($P($G(^PRC(420,PRC("SITE"),3)),U)="Y"),EDICHK="Y" S PRCHOBL=1,AUTOOBLG=1
  K FILE
  QUIT
 POST ;post init for PRC*5*113

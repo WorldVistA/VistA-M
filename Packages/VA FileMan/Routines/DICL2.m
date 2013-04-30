@@ -1,5 +1,5 @@
 DICL2 ;SEA/TOAD,SF/TKW-VA FileMan: Lookup: Lister, Part 3 ;12/13/99  09:17
- ;;22.0;VA FileMan;**20**;Mar 30, 1999
+ ;;22.0;VA FileMan;**20**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 SCREEN(DIFILE,DIEN,DIFLAGS,DIFIEN,DISCREEN,DINDEX,DI0NODE) ;
  ;

@@ -1,5 +1,6 @@
-ORKLR ; slc/CLA - Order checking support procedure for lab orders ;7/23/96  14:31
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,51,92,105,243**;Dec 17, 1997;Build 242
+ORKLR ;slc/CLA - Order checking support procedure for lab orders ;7/23/96  14:31
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,51,92,105,243,331**;Dec 17, 1997;Build 30
+ ;
  Q
 DUP(ORKLR,OI,ORDFN,NEWORDT,SPECIMEN) ; return duplicate lab order info
  N ORL,DDT,ODT,ORN,ORNC,LRID,DGIEN,ORPANEL
@@ -20,11 +21,11 @@ DUP(ORKLR,OI,ORDFN,NEWORDT,SPECIMEN) ; return duplicate lab order info
  S HOR=$O(^TMP("ORR",$J,HOR)) Q:+HOR<1
  F  S SEQ=$O(^TMP("ORR",$J,HOR,SEQ)) Q:+SEQ<1  D
  .S X=^TMP("ORR",$J,HOR,SEQ),ORN=+$P(X,U),ODT=$P(X,U,4)
- .Q:+$G(ORN)=+$G(ORIFN)  ;quit current order # = dup order #
+ .I $G(ORREN)=1 Q:+$G(ORN)=+$G(ORIFN)  ;quit current order # = dup order # ;DJE-VM *331 on renewed orders only
  .;break into child orders if they exist:
  .I $D(^OR(100,ORN,2,0)) D  ;child orders exist
  ..S ORNC=0 F  S ORNC=$O(^OR(100,ORN,2,ORNC)) Q:ORNC=""  D
- ...Q:+$G(ORNC)=+$G(ORIFN)  ;quit current order # = dup order #
+ ...I $G(ORREN)=1 Q:+$G(ORNC)=+$G(ORIFN)  ;quit current order # = dup order # ;DJE-VM *331 on renewed orders only
  ...D DUP2(.ORKLR,ORNC,ODT,.ORL,$G(ORPANEL))
  .I '$D(^OR(100,ORN,2,0)) D DUP2(.ORKLR,ORN,ODT,.ORL,$G(ORPANEL))
  K ^TMP("ORR",$J)

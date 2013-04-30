@@ -29,7 +29,7 @@ TEMP ; update input template SRONOP-ENTER
  I "YyNn"'[SRYN W !!,"Enter ""YES"" or ""NO"".  If you need additional help, enter ""?""." G TEMP
  I "Nn"[SRYN W !!,"No updates have been made to the SRNON-OR template." G END
  W !!,"Updating the SRNON-OR template.",!
- ;D ^SRRTINIT
+ D ^SRRTINIT
 END ;
  K DIC S DIC=9.4,DIC(0)="M",X="TISSUE EXAM/NON O.R." D ^DIC I +Y>0 S SRPKG=+Y D
  .W !!,"The update to SRNON-OR is complete.",!!,"Removing TISSUE EXAM/NON O.R. from the PACKAGE file..." K DIC,DIK,DA S DA=SRPKG,DIK="^DIC(9.4," D ^DIK

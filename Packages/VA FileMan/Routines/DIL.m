@@ -1,5 +1,5 @@
 DIL ;SFISC/GFT/XAK-TURN PRINT FLDS INTO CODE ;2DEC2002
- ;;22.0;VA FileMan;**25,102,119**;Mar 30, 1999
+ ;;22.0;VA FileMan;**25,102,119**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 LOOP F DD=1:1 S W=$P(R,$C(126),DD) G Q:W="" S:DIWL DIWL=9 D DM I DIO D  S DIO=0
  .S DN=-8 Q:DIO=1

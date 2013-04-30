@@ -1,5 +1,5 @@
 DDSM ;SFISC/MKO-MULTILINE ;10:12 AM  1 Oct 1999
- ;;22.0;VA FileMan;**8**;Mar 30, 1999
+ ;;22.0;VA FileMan;**8**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 MNAV(FND) ;Navigate within repeating blocks
  ;Returns FND if navigating to another field within the repeating

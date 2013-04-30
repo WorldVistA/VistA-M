@@ -1,5 +1,5 @@
 KMPDTP1 ;OAK/RAK - CP Timing Time to Load Summary ;2/17/04  09:22
- ;;2.0;CAPACITY MANAGEMENT TOOLS;**4**;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 EN ;-- entry point
  N KMPDATE,KMPDPTNP,KMPDTTL,POP,X,Y,ZTDESC,ZTRTN,ZTRSAVE,%ZIS
@@ -39,11 +39,11 @@ EN1 ;-- entry point from taskman
  Q:'$D(KMPDATE)
  Q:'$G(KMPDPTNP)
  K ^TMP($J)
- D DATA,PRINT,EXIT
+ D DATA(.KMPDATE,KMPDPTNP,$G(KMPDTTL)),PRINT,EXIT
  K ^TMP($J)
  Q
  ;
-DATA ;-- compile data
+DATA(KMPDATE,KMPDPTNP,KMPDTTL) ;-- compile data
  Q:'$D(KMPDATE)
  Q:'$G(KMPDPTNP)
  N DATA,DATE,DOT,END,IEN,PTNP,QUEUED
@@ -98,6 +98,10 @@ PRINT ;-- print data
  ;
 HDR ;-- print header
  W @IOF
+ N HDR,I
+ D HDR1(.HDR)
+ F I=0:0 S I=$O(HDR(I)) Q:'I  W !,HDR(I)
+ Q
  S X=$G(KMPDTTL)
  W !?(80-$L(X)\2),X
  S X=$P($G(KMPDPTNP),U,2)
@@ -108,6 +112,23 @@ HDR ;-- print header
  W !?12,"|---------------Seconds---------------|"
  W !,"Date",?12,"Average TTL",?26,"Minimum TTL",?40,"Maximum TTL",?54,"# of CV Loads"
  W !,$$REPEAT^XLFSTR("-",IOM)
+ ;
+ Q
+ ;
+HDR1(KMPDHDR) ;- set up header array
+ K KMPDHDR
+ N X
+ S X=$G(KMPDTTL)
+ S KMPDHDR(1)=$J(" ",(80-$L(X)\2))_X
+ S X=$P($G(KMPDPTNP),U,2)
+ S KMPDHDR(2)=$J(" ",(80-$L(X)\2))_X
+ S X=$G(KMPDATE(0)),X=$P(X,U,3)_" - "_$P(X,U,4)
+ S KMPDHDR(3)=$J(" ",(80-$L(X)\2))_X
+ S KMPDHDR(3)=KMPDHDR(3)_$J(" ",61-$L(KMPDHDR(3)))_"Printed: "_$$FMTE^XLFDT(DT,2)
+ S KMPDHDR(4)=""
+ S KMPDHDR(5)=$J("",12)_"|---------------Seconds---------------|"
+ S KMPDHDR(6)="Date"_$J(" ",8)_"Average TTL"_$J(" ",3)_"Minimum TTL"_$J(" ",3)_"Maximum TTL"_$J(" ",3)_"# of CV Loads"
+ S KMPDHDR(7)=$$REPEAT^XLFSTR("-",80)
  ;
  Q
  ;

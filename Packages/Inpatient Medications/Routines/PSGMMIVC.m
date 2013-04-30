@@ -1,5 +1,5 @@
 PSGMMIVC ;BIR/MV-PRT MULT DAYS MAR C ORDERS(IV) ;16 Mar 99 / 2:10 PM
- ;;5.0; INPATIENT MEDICATIONS ;**20,21,28,31,35,67,58,110**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**20,21,28,31,35,67,58,110,267**;16 DEC 97;Build 158
  ;
  ; Reference to ^PS(52.7 supported by DBIA #2173.
  ; Reference to ^PS(55 supported by DBIA #2191.
@@ -44,12 +44,10 @@ PRTIV ;*** Print IV order on MAR
  . S PSJPRT2=$P(^PS(52.7,+DRG("SOL",X),0),U,4) I PSJPRT2]"" W !?7,PSJPRT2 W:L=3 ?47,PSGST W ?48,"|",$G(TS(L)) D CELL(L,'(L#6)) D L(1)
  W !,$P(P("MR"),U,2)," ",P(9)," ",P(8) W ?48,"|",$G(TS(L)) D CELL(L,'(L#6)) I L>5 S PSJTMPL=L\6,PSJDIV=PSJTMPL+4 I L>PSJDIV,(L#PSJDIV>1) W ! ;I L>5,(L#5>1) W !
  I '$G(DRG("SOL",0)) S L=L+1 W !,?48,"|",$G(TS(L)) D CELL(L,'(L#6))
- ;I P(4)="C",'(L#5),P("OPI")="" D L(1) W !,"*CAUTION-CHEMOTHERAPY*",?48,"|",$G(TS(L)) D CELL(L,'(L#6)) W ! ;S L=L+1 
  I P(4)="C",'(L#5),P("OPI")="" D
  . D L(1)
  . W !,"*CAUTION-CHEMOTHERAPY*",?48,"|",$G(TS(L))
  . D CELL(L,'(L#6)) W ! ;S L=L+1
- ;E  I P(4)="C" D L(1) W "*CAUTION-CHEMOTHERAPY*",?48,"|",$G(TS(L)) D CELL(L,'(L#6)) I (L+1)#6'=0 W !
  E  I P(4)="C" D
  . D L(1)
  . W:L#7=0 !
@@ -59,7 +57,7 @@ PRTIV ;*** Print IV order on MAR
  I (L#5)=0,($L($P(P("OPI"),"^"))<29),(TS<7) S L=L+1
  E  D L(1)
  W:P("OPI")=""&(TS>6) !
- I P("OPI")'="" D
+ I P("OPI")'="",'$$OPI^PSGMIV(PSGP,ON55) D
  . I L#7=0 W !
  . I L#5=1 W !
  . N PSJTMPX S PSJTMPX=0

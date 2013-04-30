@@ -1,5 +1,5 @@
-YSDXR ;SLC/DKG/RWF/ASF/LJA-(DSM-III) DIAGNOSIS REPORT ;12/14/93 12:34
- ;;5.01;MENTAL HEALTH;;Dec 30, 1994
+YSDXR ;SLC/DKG/RWF/ASF/LJA,HIOFO/FT - (DSM-III) DIAGNOSIS REPORT ;9/20/11 16:37
+ ;;5.01;MENTAL HEALTH;**60**;Dec 30, 1994;Build 47
  ;
  ;D RECORD^YSDX0001("^YSDXR") ;Used for testing.  Inactivated in YSDX0001...
  ;  Called by routine YSDX3
@@ -37,101 +37,101 @@ PR ;
  W !
  ;
  ;  Principal DSM-III Diagnosis
- I $D(^MR(YSDFN,"DX1")),+^("DX1")?7N.E,$P(^("DX1"),U,2)?1N.E D
- .  S X(1)=^MR(YSDFN,"DX1")
- .  W !,"DXLS (DSM-III): ",$P(^YSD(627.7,+$P(X(1),U,2),0),U,2)
- .  W " ON" S X=+X(1) D DAT
+ ;I $D(^MR(YSDFN,"DX1")),+^("DX1")?7N.E,$P(^("DX1"),U,2)?1N.E D
+ ;.  S X(1)=^MR(YSDFN,"DX1")
+ ;.  W !,"DXLS (DSM-III): ",$P(^YSD(627.7,+$P(X(1),U,2),0),U,2)
+ ;.  W " ON" S X=+X(1) D DAT
  ;
  ;  Principal ICD9 Diagnosis
- I $D(^MR(YSDFN,"DX2")),+^("DX2")?7N.E,$P(^("DX2"),U,2)?1N.E D
- .  S X(1)=^MR(YSDFN,"DX2")
- .  W !,"DXLS (ICD9): ",$P(^ICD9($P(X(1),U,2),0),U)
- .  W " ON" S X=+X(1) D DAT
+ ;I $D(^MR(YSDFN,"DX2")),+^("DX2")?7N.E,$P(^("DX2"),U,2)?1N.E D
+ ;.  S X(1)=^MR(YSDFN,"DX2")
+ ;.  W !,"DXLS (ICD9): ",$P(^ICD9($P(X(1),U,2),0),U)
+ ;.  W " ON" S X=+X(1) D DAT
  ;
  ;  X DSM-III Diagnosis
- I $D(^MR(YSDFN,"DX1")),$P(^("DX1"),U,3)?7N.E,$P(^("DX1"),U,4)?1N.E D
- .  S X(1)=^MR(YSDFN,"DX1")
- .  W !,"'X' DIAGNOSIS (DSM-III): ",$P(^YSD(627.7,$P(X(1),U,4),0),U,2)
- .  W " ON" S X=$P(^MR(YSDFN,"DX1"),U,3) D DAT
+ ;I $D(^MR(YSDFN,"DX1")),$P(^("DX1"),U,3)?7N.E,$P(^("DX1"),U,4)?1N.E D
+ ;.  S X(1)=^MR(YSDFN,"DX1")
+ ;.  W !,"'X' DIAGNOSIS (DSM-III): ",$P(^YSD(627.7,$P(X(1),U,4),0),U,2)
+ ;.  W " ON" S X=$P(^MR(YSDFN,"DX1"),U,3) D DAT
  ;
  ;  X ICD9 Diagnosis
- I $D(^MR(YSDFN,"DX2")),$P(^("DX2"),U,3)?7N.E,$P(^("DX2"),U,4)?1N.E D
- .  S X(1)=^MR(YSDFN,"DX2")
- .  W !,"'X' DIAGNOSIS (ICD9): ",$P(^ICD9($P(X(1),U,4),0),U)
- .  W " ON" S X=$P(^MR(YSDFN,"DX2"),U,3) D DAT
+ ;I $D(^MR(YSDFN,"DX2")),$P(^("DX2"),U,3)?7N.E,$P(^("DX2"),U,4)?1N.E D
+ ;.  S X(1)=^MR(YSDFN,"DX2")
+ ;.  W !,"'X' DIAGNOSIS (ICD9): ",$P(^ICD9($P(X(1),U,4),0),U)
+ ;.  W " ON" S X=$P(^MR(YSDFN,"DX2"),U,3) D DAT
  ;
  ;  DSM-III Diagnosis
- I $D(^MR(YSDFN,"DX",1)) W !!,"DSM-III DIAGNOSES:"
- I $D(A) G:A?1"C".E ^YSDXR1 ;->
-PRT ;
+ ;I $D(^MR(YSDFN,"DX",1)) W !!,"DSM-III DIAGNOSES:"
+ ;I $D(A) G:A?1"C".E ^YSDXR1 ;->
+ ;PRT ;
  ;D RECORD^YSDX0001("PRT^YSDXR") ;Used for testing.  Inactivated in YSDX0001...
- S T=$O(^MR(YSDFN,"DX","B",T))
- G PRE:'T ;->
- S Y1=$O(^MR(+YSDFN,"DX","B",T,0))
- G PRE:'Y1 ;->
- S D2=^MR(YSDFN,"DX",+Y1,0),T1=0
- G PRT:(D2<1) ;->
- S Y2=^YSD(627.7,+D2,0)
- I $D(A1),A1?1"Y".E G PRT:$P(D2,U,2)="I" ;->
- I $Y+YSSL+2>IOSL D CK QUIT:YSLFT  ;->
- W !!,$P(Y2,U,2),?8
- S Y2=$P(Y2,U)
- F I=3:1:8 I $L($P(Y2," ",I))>70 QUIT
- W $P(Y2," ",1,I-1) W:$L($P(Y2," ",I,99)) !?9,$P(Y2," ",I,99)
- S C=$P(^MR(YSDFN,"DX",Y1,0),U,2)
- S C=$S(C="A":"A C T I V E",C="I":"** INACTIVE",1:"")
- W "  ",C
-PT1 ;
+ ;S T=$O(^MR(YSDFN,"DX","B",T))
+ ;G PRE:'T ;->
+ ;S Y1=$O(^MR(+YSDFN,"DX","B",T,0))
+ ;G PRE:'Y1 ;->
+ ;S D2=^MR(YSDFN,"DX",+Y1,0),T1=0
+ ;G PRT:(D2<1) ;->
+ ;S Y2=^YSD(627.7,+D2,0)
+ ;I $D(A1),A1?1"Y".E G PRT:$P(D2,U,2)="I" ;->
+ ;I $Y+YSSL+2>IOSL D CK QUIT:YSLFT  ;->
+ ;W !!,$P(Y2,U,2),?8
+ ;S Y2=$P(Y2,U)
+ ;F I=3:1:8 I $L($P(Y2," ",I))>70 QUIT
+ ;W $P(Y2," ",1,I-1) W:$L($P(Y2," ",I,99)) !?9,$P(Y2," ",I,99)
+ ;S C=$P(^MR(YSDFN,"DX",Y1,0),U,2)
+ ;S C=$S(C="A":"A C T I V E",C="I":"** INACTIVE",1:"")
+ ;W "  ",C
+ ;PT1 ;
  ;D RECORD^YSDX0001("PT1^YSDXR") ;Used for testing.  Inactivated in YSDX0001...
- I $Y+YSSL+2>IOSL D CK QUIT:YSLFT  ;->
- S T1=$O(^MR(YSDFN,"DX",Y1,1,T1))
- G PRT:'T1 ;->
- S S2=^MR(YSDFN,"DX",Y1,1,T1,0)
- W !?8 S X=+S2,Z=$P(S2,U,2) D DAT,ENS
- S X=$P(S2,U,3)
- I X>0,$D(^VA(200,X,0)) D
- .  W "  ",$P(^VA(200,X,0),U)
- .  S X=$P(^VA(200,X,0),U,9)
- . I X>0,$D(^DIC(3.1,X,0)) W ", ",^(0)
- S X=$P(S2,U,4)
- I $L(X) F I=4:1:10 IF $L($P(X," ",I))>50 QUIT
- I $L(X) D
- .  W !?20,"COMMENT: ",$P(X," ",1,I)
- .  W:$L($P(X," ",I+1,99)) !?21,$P(X," ",I+1,99)
- G PT1
+ ;I $Y+YSSL+2>IOSL D CK QUIT:YSLFT  ;->
+ ;S T1=$O(^MR(YSDFN,"DX",Y1,1,T1))
+ ;G PRT:'T1 ;->
+ ;S S2=^MR(YSDFN,"DX",Y1,1,T1,0)
+ ;W !?8 S X=+S2,Z=$P(S2,U,2) D DAT,ENS
+ ;S X=$P(S2,U,3)
+ ;I X>0,$D(^VA(200,X,0)) D
+ ;.  W "  ",$P(^VA(200,X,0),U)
+ ;.  S X=$P(^VA(200,X,0),U,9)
+ ;. I X>0,$D(^DIC(3.1,X,0)) W ", ",^(0)
+ ;S X=$P(S2,U,4)
+ ;I $L(X) F I=4:1:10 IF $L($P(X," ",I))>50 QUIT
+ ;I $L(X) D
+ ;.  W !?20,"COMMENT: ",$P(X," ",1,I)
+ ;.  W:$L($P(X," ",I+1,99)) !?21,$P(X," ",I+1,99)
+ ;G PT1
 PRE ;
  ;D RECORD^YSDX0001("PRE^YSDXR") ;Used for testing.  Inactivated in YSDX0001...
- D MULT
- I '$D(^MR(YSDFN,"PHDX",1)) G END ;->
- S T=0
- G ^YSPDXR ;->
+ ;D MULT
+ ;I '$D(^MR(YSDFN,"PHDX",1)) G END ;->
+ ;S T=0
+ ;G ^YSPDXR ;->
  ;
-DAT D DAT^YSDXR000 ;->
+DAT ;D DAT^YSDXR000 ;->
  QUIT
  ;
-ENS D ENS^YSDXR000 ;->
+ENS ;D ENS^YSDXR000 ;->
  QUIT
  ;
-MULT D MULT^YSDXR000 ;->
+MULT ;D MULT^YSDXR000 ;->
  QUIT
  ;
-CK D CK^YSDXR000 ;->
+CK ;D CK^YSDXR000 ;->
  QUIT
  ;
-ENPP ;
+ ;ENPP ;
  ;D RECORD^YSDX0001("ENPP^YSDXR") ;Used for testing.  Inactivated in YSDX0001...
- S YSFHDR="DSM/ICDA9 Diagnosis List",YSPP=1
- G PR ;->
+ ;S YSFHDR="DSM/ICDA9 Diagnosis List",YSPP=1
+ ;G PR ;->
  ;
-END ;
+ ;END ;
  ;D RECORD^YSDX0001("END^YSDXR") ;Used for testing.  Inactivated in YSDX0001...
- QUIT:$D(YSNOFORM)  ;->
- D ENFT^YSFORM:YST
- D:'YSPP WAIT^YSUTL:'YST
- QUIT:YSPP  ;->
- D ^%ZISC
- S:$G(ZTSK) ZTREQ="@"
- K:$G(ZTSK) YSCON
- QUIT
+ ;QUIT:$D(YSNOFORM)  ;->
+ ;D ENFT^YSFORM:YST
+ ;D:'YSPP WAIT^YSUTL:'YST
+ ;QUIT:YSPP  ;->
+ ;D ^%ZISC
+ ;S:$G(ZTSK) ZTREQ="@"
+ ;K:$G(ZTSK) YSCON
+ ;QUIT
  ;
-EOR ;YSDXR - (DSM-III) DIAGNOSIS REPORT ;12/6/90  11:24
+ ;EOR ;YSDXR - (DSM-III) DIAGNOSIS REPORT ;12/6/90  11:24

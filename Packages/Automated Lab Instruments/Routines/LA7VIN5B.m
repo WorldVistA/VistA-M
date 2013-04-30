@@ -1,0 +1,185 @@
+LA7VIN5B ;DALOI/JMC - Process Incoming UI Msgs, continued ;11/17/11  16:09
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**74**;Sep 27, 1994;Build 229
+ ;
+ ; This routine is a continuation of LA7VIN5.
+ ;
+ Q
+ ;
+ ;
+ORESULTS ; Process results that accompany order (ORM) messages
+ ;
+ N I,LA74,LA764,LA7DIE,LA7ERR,LA7I,LA7WP,LA7X,LA7Y,X,Y
+ ;
+ ; Identify producing laboratory
+ S LA7X=$$P^LA7VHLU(.LA7SEG,24,LA7FS),LA74=""
+ I $P(LA7X,LA7CS,6)="CLIA" S LA74=$$IDX^XUAF4("CLIA",$P(LA7X,LA7CS,10))
+ I 'LA74 S LA74=$$RESFID^LA7VHLU2($$P^LA7VHLU(.LA7SEG,16,LA7FS),LA7SFAC,LA7CS)
+ ;
+ ; Special handling of AP specimen codes in OBX segment.
+ I LA7TEST(0,1)="LN",LA7TEST="22633-2" D APSPEC Q
+ ;
+ ; Special handling of AP specimen codes in OBX segment used by DoD CHCS
+ I LA7TEST(0,1)="AS4",LA7TEST="5000.12" D APSPEC Q
+ I LA7TEST(0,1)="99LAB",LA7TEST="TOP" D APSPEC Q
+ ;
+ ; Special handling of AP data in OBX segments
+ I LA7TEST(0,1)="LN","10215-2^10218-6^10219-4^22634-0^22635-7^22636-5^22637-3^22639-9^"[LA7TEST D APDATA Q
+ ;
+ ; Special handling of frozen section AP data used by VistA.
+ I LA7TEST(0,1)="99VA64",LA7TEST="88569.0000" D APDATA Q
+ ;
+ ; Special handling of AP data in OBX segments used by DoD CHCS.
+ I LA7TEST(0,1)="AS4","5000.3^5000.4^5000.10^"[LA7TEST D APDATA Q
+ ;
+ S LA7I=2,X=""
+ ;
+ I LA7RLNC D
+ . S X="[LOINC "_$$GET1^DIQ(95.3,LA7RLNC_",",.01)_"] "
+ . S Y=$$GET1^DIQ(95.3,LA7RLNC_",",81)
+ . I Y="" S Y=$$GET1^DIQ(95.3,LA7RLNC_",",80)
+ . S X=X_Y
+ I 'LA7RLNC,LA7RNLT D
+ . S LA764=$$FIND1^DIC(64,"","X",LA7RNLT,"E","","LA7ERR")
+ . I 'LA764 S LA7RNLT="" Q
+ . S X="[NLT "_$$GET1^DIQ(64,LA764_",",1)_"] "_$$GET1^DIQ(64,LA764_",",.01,"I")
+ I 'LA7RLNC,'LA7RNLT D
+ . I LA7TEST(0)]""!(LA7TEST]"") S X="["_LA7TEST(0,1)_" "_LA7TEST_"] "_LA7TEST(0) Q
+ . S X="["_LA7TEST(2,1)_" "_LA7TEST(2)_"] "_LA7TEST(2,0)
+ ;
+ S LA7WP(LA7I,0)="Test result: "_X
+ ;
+ ; Date value
+ I LA7VTYP?1(1"DT",1"TS") D
+ . S LA7X=$$P^LA7VHLU(.LA7SEG,6,LA7FS)
+ . S LA7X=$$HL7TFM^XLFDT(LA7X,"L")
+ . S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test value: "_LA7X
+ ;
+ ; Coded entry
+ I LA7VTYP?1(1"CE",1"CM",1"CNE",1"CWE") D
+ . S LA7X=$P($$P^LA7VHLU(.LA7SEG,6,LA7FS),LA7CS,2)
+ . S LA7X=$$UNESC^LA7VHLU3(LA7X,LA7FS_LA7ECH)
+ . S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test value: "_LA7X_$S(LA7UNITS'="":" "_LA7UNITS,1:"")
+ ;
+ ; Numeric/ Structured Numeric value
+ I LA7VTYP?1(1"NM",1"SN") D
+ . S LA7X=$$P^LA7VHLU(.LA7SEG,6,LA7FS)
+ . S LA7X=$$UNESC^LA7VHLU3(LA7X,LA7FS_LA7ECH)
+ . S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test value: "_LA7X_$S(LA7UNITS]"":" "_LA7UNITS,1:"")
+ ;
+ ; String Data/ Formatted Text/ Text Data
+ I LA7VTYP?1(1"ST",1"FT",1"TX") D
+ . D PA^LA7VHLU(.LA7SEG,6,LA7FS,.LA7X)
+ . D UNESCFT^LA7VHLU3(.LA7X,LA7FS_LA7ECH,.LA7Y)
+ . I LA7Y=1,(($L(LA7Y(1,0))+$L(LA7UNITS))<225) S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test value: "_LA7Y(1,0)_$S(LA7UNITS]"":" "_LA7UNITS,1:"") Q
+ . S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test value:"
+ . F I=1:1:LA7Y S LA7I=LA7I+1,LA7WP(LA7I,0)=LA7Y(I,0)
+ . I LA7UNITS'="" S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test units: "_LA7UNITS
+ ;
+ ; Normals/ Reference range
+ S LA7X=$$P^LA7VHLU(.LA7SEG,8,LA7FS)
+ I LA7X'="" S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test normals: "_LA7X
+ ;
+ ; Normalcy status
+ S LA7X=$$P^LA7VHLU(.LA7SEG,9,LA7FS)
+ I LA7X'="" D
+ . S X=" L^ H^LL^HH^ <^ >^ N^ A^AA^ U^ D^ B^ W^ S^ R^ I^MS^VS"
+ . S I=$F(X,LA7X)\3,LA7X=$P($T(ABFLAGS+I^LA7VHLU1),";;",2)
+ . I LA7X'="" S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test normalcy status: "_LA7X
+ ;
+ I $D(LA7WP) S LA7WP(1,0)=" " D WP^DIE(69.6,LA7696_",",99,"A","LA7WP","LA7DIE(99)")
+ Q
+ ;
+ ;
+APSPEC ; Process anatomic pathology specimens that accompany order (ORM) messages
+ ;
+ N I,FDA,LA761,LA762,LA76961,LA7ALTXT,LA7DIE,LA7IEN,LA7TXT,LA7VAL,LA7X,LA7Y
+ ;
+ S (LA761,LA7ALTXT,LA7TXT)=""
+ S LA7VAL=$$P^LA7VHLU(.LA7SEG,6,LA7FS)
+ ;
+ ; Coded entry
+ I LA7VTYP?1(1"CE",1"CM",1"CNE",1"CWE") D
+ . D FLD2ARR^LA7VHLU7(.LA7VAL,LA7FS_LA7ECH)
+ . F I=1,4 D
+ . . I $G(LA7VAL(I+2))="SCT" D  Q
+ . . . N LA7HL7
+ . . . S LA7HL7("FSEC")=LA7FS_LA7ECH
+ . . . S LA7HL7("OBX",3)=$$P^LA7VHLU(.LA7SEG,4,LA7FS)
+ . . . S LA7HL7("OBX",5)=$$P^LA7VHLU(.LA7SEG,6,LA7FS)
+ . . . S LA761=$$SCT2IEN^LA7VHLU6(LA7VAL(I),LA7VAL(I+1),$G(LA7VAL($S(I=1:7,1:8))),61,0,LA76248)
+ . . . I 'LA761 S LA761=+$$EN^LRSCTX(61,LA7VAL(I+1),LA7VAL(I),.LA7HL7)
+ . . . S LA7ALTXT=LA7VAL(I+1)
+ . . I $G(LA7VAL(I+2))="",$G(LA7VAL(I+1))'="" S LA7TXT=LA7VAL(I+1)
+ ;
+ I LA7VTYP?1(1"ST",1"FT",1"TX") S LA7TXT=$$UNESC^LA7VHLU3(LA7VAL,LA7FS_LA7ECH)
+ ;
+ ; Handle OBX-3 with LOINC code
+ I LA7TEST(0,1)="LN",LA7TEST="22633-2" D
+ . I LA7TXT="",LA7ALTXT="" Q
+ . S FDA(1,69.6061,"+2,"_LA7696_",",.01)=$S(LA7TXT'="":LA7TXT,1:LA7ALTXT)
+ . I LA761 S FDA(1,69.6061,"+2,"_LA7696_",",.02)=LA761
+ ;
+ ; Handle OBX-3 with old AS4 code from HL7 standard - used by DoD CHCS
+ I LA7TEST(0,1)="AS4",LA7TEST="5000.12",LA7TXT'="" S FDA(1,69.6061,"+2,"_LA7696_",",.01)=LA7TXT
+ ;
+ ; Handle OBX-3 with 99LAB - used by DoD CHCS
+ I LA7TEST(0,1)="99LAB",LA7TEST="TOP" D
+ . N LA7HL7
+ . S LA7HL7("FSEC")=LA7FS_LA7ECH
+ . S LA7HL7("OBX",3)=$$P^LA7VHLU(.LA7SEG,4,LA7FS)
+ . S LA7HL7("OBX",5)=$$P^LA7VHLU(.LA7SEG,6,LA7FS)
+ . I LA7VTYP?1(1"ST",1"FT",1"TX"),LA7TXT'="" S FDA(1,69.6061,"+2,"_LA7696_",",.01)=LA7TXT Q
+ . S LA761=+$$EN^LRSCTX(61,LA7VAL,"",.LA7HL7)
+ . S LA7IEN=$O(^LRO(69.6,LA7696,61," "),-1)
+ . I LA7IEN,LA761 S FDA(2,69.6061,LA7IEN_","_LA7696_",",.02)=LA761
+ ;
+ ; File the data in the respective fields.
+ I $D(FDA(1)) D
+ . S LA762=$P(^LRO(69.6,LA7696,0),"^",8)
+ . I LA762 S FDA(1,69.6061,"+2,"_LA7696_",",.03)=LA762
+ . D UPDATE^DIE("","FDA(1)","LA76961","LA7DIE(1)")
+ I $D(FDA(2)) D FILE^DIE("","FDA(2)","LA7DIE(2)")
+ ;
+ Q
+ ;
+ ;
+APDATA ; Process anatomic pathology information that accompany order (ORM) messages
+ ;
+ N I,FDA,LA769063,LA7DIE,LA7ERR,LA7I,LA7WP,LA7X,LA7Y,TYPE,X,Y
+ ;
+ S TYPE=0
+ ;
+ I LA7TEST(0,1)="LN" D
+ . I LA7TEST="22636-5" S TYPE=.013 Q
+ . I LA7TEST="10219-4" S TYPE=.014 Q
+ . I LA7TEST="10215-2" S TYPE=.015 Q
+ . I LA7TEST="10218-6" S TYPE=.016 Q
+ . I LA7TEST="22634-0" S TYPE=1 Q
+ . I LA7TEST="22635-7" D  Q
+ . . I LA7TEST(2,1)="99VA64",LA7TEST(2)="88569.0000" S TYPE=1.3 Q
+ . . S TYPE=1.1
+ . I LA7TEST="22637-3" S TYPE=1.4 Q
+ . I LA7TEST="22639-9" S TYPE=1.2 Q
+ ;
+ I LA7TEST(0,1)="99VA64",LA7TEST="88569.0000" S TYPE=1.3
+ ;
+ I LA7TEST(0,1)="AS4" D
+ . I LA7TEST="5000.10" S TYPE=.013 Q
+ . I LA7TEST="5000.3" S TYPE=.014 Q
+ . I LA7TEST="5000.4" S TYPE=.016 Q
+ ;
+ I LA7TEST(0,1)="99LAB",LA7TEST="FRZ" S TYPE=1.3
+ ;
+ ; String Data/ Formatted Text/ Text Data
+ I LA7VTYP?1(1"ST",1"FT",1"TX") D
+ . D PA^LA7VHLU(.LA7SEG,6,LA7FS,.LA7X)
+ . D UNESCFT^LA7VHLU3(.LA7X,LA7FS_LA7ECH,.LA7WP)
+ ;
+ ; File the data in the respective fields.
+ I TYPE,$D(LA7WP) D
+ . S FDA(1,69.6063,"?+1,"_LA7696_",",.01)=TYPE
+ . I LA74 S FDA(1,69.6063,"?+1,"_LA7696_",",.02)=LA74
+ . D UPDATE^DIE("","FDA(1)","LA769063","LA7DIE(1)")
+ . D WP^DIE(69.6063,LA769063(1)_","_LA7696_",",1,"A","LA7WP","LA7DIE(2)")
+ ;
+ Q

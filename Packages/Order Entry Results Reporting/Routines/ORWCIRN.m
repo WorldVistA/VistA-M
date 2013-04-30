@@ -47,8 +47,8 @@ CHKLNK(ORY) ;Check for active HL7 TCP link on local system
  Q
 WEBADDR(ORY,PATID) ;Get VistaWeb Address
  S ORY=$$GET^XPAR("ALL","ORWRP VISTAWEB ADDRESS",1,"I")
- I ORY="" S ORY="https://vistaweb.DOMAIN.EXT" Q
- I ORY="https://vistaweb.DOMAIN.EXT" Q
+ I ORY="" S ORY="https://vistaweb.domain.ext" Q
+ I ORY="https://vistaweb.domain.ext" Q
  S ORY=ORY_"?q9gtw0="_$P($$SITE^VASITE,"^",3)_"&xqi4z="_PATID_"&yiicf="_DUZ
  Q
 AUTORDV(ORY) ;Get parameter value for ORWRP CIRN AUTOMATIC

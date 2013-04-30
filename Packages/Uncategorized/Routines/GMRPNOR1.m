@@ -58,21 +58,21 @@ SEL ;selects single note from screen -- assumes GMRPN(GMRPNN) array
  I $D(GMRPADDM),$P($G(^GMR(121,GMRPIFN,5)),U)=1 D  Q
  .W !!,"This note requires a cosignature before it may be amended!"
  .W $C(7) S GMRPQT=1 K GMRPIFN
- ;D DISPL^GMRPN2 K:'$D(DIROUT)&('$D(DTOUT)) GMRPQT,DUOUT
+ D DISPL^GMRPN2 K:'$D(DIROUT)&('$D(DTOUT)) GMRPQT,DUOUT
  Q
 CURR ;Redisplay current screen -- needs GMRPPG & calls SCREEN
  I $S('$D(GMRPPG):1,GMRPPG'>0:1,1:0) S GMRPPG=1
- ;D SCREEN^GMRPNOR
+ D SCREEN^GMRPNOR
  Q
 NEXT ;Display next screen -- needs GMRPPG & calls SCREEN
  I $S('$D(GMRPPG):1,GMRPPG'>0:1,1:0) S GMRPPG=1
  I GMRPPG<GMRPN("PG") S GMRPPG=GMRPPG+1
- ;D SCREEN^GMRPNOR
+ D SCREEN^GMRPNOR
  Q
 PREV ;Display previous screen -- needs GMRPPG & calls SCREEN
  I $S('$D(GMRPPG):1,GMRPPG'>0:1,1:0) S GMRPPG=1
  I GMRPPG>1 S GMRPPG=GMRPPG-1
- ;D SCREEN^GMRPNOR
+ D SCREEN^GMRPNOR
  Q
 CTXT ;Select new context for viewing/acting on notes
  ;Requires/Returns GMRPCTXT
@@ -84,7 +84,7 @@ CTXT ;Select new context for viewing/acting on notes
  S DIR("?")="of the context you wish to work within.",DIR("B")="1"
  W ! D ^DIR K DIR S:$D(DIROUT) GMRPEND=1
  Q:$D(DUOUT)!($D(DTOUT))!($D(DIROUT))
- ;S GMRPSAV=Y D AUTHOR:Y=4,DATES^GMRPNP:Y=5 Q:$D(GMRPQT)
+ S GMRPSAV=Y D AUTHOR:Y=4,DATES^GMRPNP:Y=5 Q:$D(GMRPQT)
  S GMRPCTXT=GMRPSAV K GMRPBLD,GMRPSAV
  Q
 AUTHOR ;selects author - Returns GMRPDUZ=#^NAME or GMRPQT

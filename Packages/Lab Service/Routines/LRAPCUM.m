@@ -1,9 +1,6 @@
-LRAPCUM ;AVAMC/REG/KLL - AP PATIENT CUM ;9/25/00
- ;;5.2;LAB SERVICE;**34,72,173,248,259**;Sep 27, 1994
+LRAPCUM ;DALOI/STAFF - AP PATIENT CUM ;Sep 17,2007
+ ;;5.2;LAB SERVICE;**34,72,173,248,259,350**;Sep 27, 1994;Build 230
  ;
- ;Reference to ^%ZIS supported by IA #10086
- ;Reference to ^DIWP supported by IA #10011
- ;Reference to ^DIWW supported by IA #10029
  ;
  S IOP="HOME" D ^%ZIS,L^LRU
  W !!?15,LRAA(1)," PATIENT REPORT(S) DISPLAY"
@@ -23,9 +20,15 @@ F D E
  .D ^DIWP
  Q:LRA(2)?1P  D:LRZ ^DIWW
  Q
-E K ^TMP($J) S DIWL=3,DIWR=IOM-3,DIWF="W" Q
+ ;
+ ;
+E K ^TMP($J) S DIWL=3,DIWR=IOM-3,DIWF="W"
+ Q
+ ;
+ ;
 W S Y=+B D D^LRU S LRW(1)=Y,Y=$P(B,"^",10) D D^LRU S LRW(10)=Y,Y=$P(B,"^",3) D D^LRU S LRW(3)=Y,X=$P(B,"^",2) D:X D^LRUA S LRW(2)=X,LRW(11)=$P(B,"^",11)
  S X=$P(B,"^",4) D:X D^LRUA S LRW(4)=X,X=$P(B,"^",7) D:X D^LRUA S LRW(7)=X
+ ;
  W !,"Date Spec taken: ",LRW(1),?38,"Pathologist:",LRW(2),!,"Date Spec rec'd: ",LRW(10),?38,$S(LRSS="SP":"Resident: ",1:"Tech: "),LRW(4)
  W !,$S($L(LRW(3)):"Date  completed: ",1:"REPORT INCOMPLETE"),LRW(3),?38,"Accession #: ",$P(B,"^",6),!,"Submitted by: ",$P(B,"^",5),?38,"Practitioner:",LRW(7),!,LR("%")
  I LRW(11)="" D A W !,$C(7),"Report not verified",! G MORE
@@ -54,17 +57,31 @@ W S Y=+B D D^LRU S LRW(1)=Y,Y=$P(B,"^",10) D D^LRU S LRW(10)=Y,Y=$P(B,"^",3) D D
  ...S LRA(2)=LR("Q")
  ..D:X U Q:LRA(2)?1P
  Q:LRA(2)?1P
- ;USER MUST POSSESS THE LRLAB KEY TO VIEW SNOMED CODES
+ ;
+ ; User must possess the LRLAB key to view SNOMED codes
  I $D(^LR(LRDFN,LRSS,LRI,2)) D
  .D B
  .I $D(^XUSEC("LRLAB",DUZ)) D ^LRAPCUM1
- Q:LRA(2)?1P  D MORE Q
+ Q:LRA(2)?1P
+ I $D(^LR(LRDFN,LRSS,LRI,99)) D
+ . N A
+ . W !,"Comments:" S A=0
+ . F  S A=$O(^LR(LRDFN,LRSS,LRI,99,A)) Q:'A  W !,$P(^(A,0),"^")
+ D MORE
+ Q
+ ;
+ ;
 MORE R !,"'^' TO STOP: ",LRA(2):DTIME I LRA(2)["?" W $C(7) G MORE
  I LRA(2)?1P S A=0 Q
  S LRA(1)=LRA(1)+21
  W $C(13),$J("",15),$C(13)
  Q
-S S (A,LRA(2))=0 Q
+ ;
+ ;
+S S (A,LRA(2))=0
+ Q
+ ;
+ ;
 U D E
  K ^UTILITY($J,"W")
  S E=0
@@ -74,10 +91,16 @@ U D E
  .D ^DIWP
  Q:LRA(2)?1P  D:LRZ ^DIWW
  Q
+ ;
+ ;
 B F C=0:0 S C=$O(^LR(LRDFN,LRSS,LRI,2,C)) Q:'C!(LRA(2)?1P)  D SP
  Q
+ ;
+ ;
 SP F G=0:0 S G=$O(^LR(LRDFN,LRSS,LRI,2,C,5,G)) Q:'G  S X=^(G,0),Y=$P(X,"^",2),E=$P(X,"^",3),E(1)=$P(X,"^")_":",E(1)=$P($P(LR(LRSS),E(1),2),";") D D^LRU S T(2)=Y D:$Y>LRA(1)!'$Y MORE Q:LRA(2)?1P  D WP
  Q
+ ;
+ ;
 WP W !,E(1)," ",E," Date: ",T(2)," ",!
  D E
  K ^UTILITY($J,"W")
@@ -87,5 +110,7 @@ WP W !,E(1)," ",E," Date: ",T(2)," ",!
  .S X=^LR(LRDFN,LRSS,LRI,2,C,5,G,1,F,0) D ^DIWP
  Q:LRA(2)?1P  D:LRZ ^DIWW
  Q
+ ;
+ ;
 A S A=0 F  S A=$O(^LR(LRDFN,LRSS,LRI,97,A)) Q:'A  W !,^(A,0)
  Q

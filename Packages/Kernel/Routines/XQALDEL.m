@@ -1,5 +1,6 @@
-XQALDEL ;ISC-SF.SEA/JLI - DELETE ALERTS ;4/9/07  15:13
- ;;8.0;KERNEL;**6,24,65,114,174,285,443**;Jul 10, 1995;Build 4
+XQALDEL ;ISC-SF.SEA/JLI - DELETE ALERTS ;07/16/12  11:40
+ ;;8.0;KERNEL;**6,24,65,114,174,285,443,602**;Jul 10, 1995;Build 9
+ ;Per VHA Directive 2004-038, this routine should not be modified
  ;;
  Q
  ;

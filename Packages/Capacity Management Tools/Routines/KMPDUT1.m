@@ -1,5 +1,5 @@
 KMPDUT1 ;OAK/RAK - Test Lab Utility ;6/21/05  10:17
- ;;2.0;CAPACITY MANAGEMENT TOOLS;**4**;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 TL ;-entry point for setting up database as a test lab
  ;

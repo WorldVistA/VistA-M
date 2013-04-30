@@ -1,7 +1,13 @@
 INDICATOR
 ZWR
 ^DIC(625,0)="INDICATOR^625^252^245"
+^DIC(625,0,"AUDIT")="@"
+^DIC(625,0,"DD")="@"
+^DIC(625,0,"DEL")="@"
 ^DIC(625,0,"GL")="^DIC(625,"
+^DIC(625,0,"LAYGO")="@"
+^DIC(625,0,"RD")="@"
+^DIC(625,0,"WR")="@"
 ^DIC(625,1,0)="Thoughts of harming self^A"
 ^DIC(625,1,1)="THOUGHTS OF HARMING SELF"
 ^DIC(625,2,0)="Threats of harming self^A"

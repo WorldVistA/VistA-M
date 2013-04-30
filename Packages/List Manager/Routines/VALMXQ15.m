@@ -18,7 +18,7 @@ EVERY ;Setup for every new node in 'add orders' context
  I $S($D(^DD(100,0,"VR")):^("VR")<1.89,1:1) D WARN Q
  I $D(^ORD(100.99,1,0)),$P(^(0),"^",16) S DIROUT="^^" W !!,*7,"OE/RR Software is currently being updated. Access temporarily denied.",! Q
  K ORIFN,ORCOST,ORIT,ORSTRT,ORSTOP,ORTO,ORPURG,ORTX,ORSTS,ORPK,ORLOG,ORPCL,OR,ORZ,ORNS
- D RSTR I $P(^TMP("XQORS",$J,XQORS,"FLG"),"^")="Q",($G(^ORD(101,+XQORNOD,26))'["^OR") S XQORM("H")="S ORUIEN=XQORNOD D OE^ORUHDR K ORUIEN" ; D:$L($T(^ORGKEY)) SET^ORGKEY
+ D RSTR I $P(^TMP("XQORS",$J,XQORS,"FLG"),"^")="Q",($G(^ORD(101,+XQORNOD,26))'["^OR") S XQORM("H")="S ORUIEN=XQORNOD D OE^ORUHDR K ORUIEN" D:$L($T(^ORGKEY)) SET^ORGKEY
  ;I "OL"[$P(^TMP("XQORS",$J,XQORS,"FLG"),"^") S X="(for "_ORPNM_")" W !?(40-($L(X)\2)),X
  I $P(^TMP("XQORS",$J,XQORS,"FLG"),"^",3),"OL"[$P(^TMP("XQORS",$J,XQORS,"FLG"),"^"),$P(^ORD(100.99,1,0),"^",11) W !!,"<Orders for ",ORPNM,">"
  S:$D(@(^TMP("XQORS",$J,XQORS,"REF")_"0)")) ORNS=$P(^(0),"^",12),ORTX=$P(^(0),"^",2)

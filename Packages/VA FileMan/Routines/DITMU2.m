@@ -1,5 +1,5 @@
 DITMU2(SUBFILE,GBL,FORM) ;SFISC/EDE(OHPRD)-RETURN SUBFILE GLOBAL REFERENCE ;
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ; Given a subfile number and global reference form, this routine

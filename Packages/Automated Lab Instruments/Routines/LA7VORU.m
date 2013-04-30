@@ -1,5 +1,5 @@
-LA7VORU ;DALOI/JMC - Builder of HL7 Lab Results OBR/OBX/NTE ;Aug 8, 2008
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,61,64,71,68**;Sep 27, 1994;Build 56
+LA7VORU ;DALOI/JMC - Builder of HL7 Lab Results OBR/OBX/NTE ;July 18, 2007
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,61,64,71,68,74**;Sep 27, 1994;Build 229
  ;
 EN(LA) ; called from IN^LA7VMSG(...)
  ; variables
@@ -14,7 +14,7 @@ EN(LA) ; called from IN^LA7VMSG(...)
  ; LA("ORD"), LA("NLT"), and LA("SUB") are sent for specific lab results.
  ; LA("AUTO-INST") - Auto-Instrument
  ;
- N LA763,LA7NLT,LA7NVAF,LA7X,PRIMARY
+ N LA763,LA7NLT,LA7NVAF,LA7RS,LA7X,PRIMARY
  ;
  S PRIMARY=$$PRIM^VASITE(DT),LA("AUTO-INST")=""
  I $G(PRIMARY)'="" D
@@ -25,7 +25,9 @@ EN(LA) ; called from IN^LA7VMSG(...)
  I '$O(^LR(LA("LRDFN"),LA("SUB"),LA("LRIDT"),0)) D  Q
  . ; need to add error logging when no entry in 63.
  ;
+ ; Check for date report completed.
  S LRDFN=LA("LRDFN"),LRSS=LA("SUB"),LRIDT=LA("LRIDT")
+ I '$$OK2SEND^LA7SRR D CREATE^LA7LOG(122) Q
  ;
  ; Get zeroth node of entry in #63.
  S LA763(0)=$G(^LR(LA("LRDFN"),LA("SUB"),LA("LRIDT"),0))
@@ -53,9 +55,12 @@ CH ; Build segments for "CH" subscript
  ;
 ORC ; Build ORC segment
  ;
- N LA763,LA7696,LA7DATA,LA7SM,LA7X,LA7Y,LADFINST,ORC
+ N LA76205,LA763,LA7696,LA7DATA,LA7PLOBR,LA7SM,LA7X,LA7Y,LADFINST,ORC
  ;
  S LA763(0)=$G(^LR(LA("LRDFN"),LA("SUB"),LA("LRIDT"),0))
+ ;
+ ; Retrieve placer's OBR information stored in #69.6
+ D RETOBR^LA7VHLU(LA("SITE"),LA("RUID"),LA("NLT"),.LA7PLOBR)
  ;
  ; Default institution from Kernel
  S LADFINST=+$$KSP^XUPARAM("INST")
@@ -79,11 +84,22 @@ ORC ; Build ORC segment
  S LA7SM="",LA7696=0
  I LA("SITE")'="",LA("RUID")'="" S LA7696=$O(^LRO(69.6,"RST",LA("SITE"),LA("RUID"),0))
  I LA7696 S LA7SM=$P($G(^LRO(69.6,LA7696,0)),U,14)
- I LA7SM'="" S ORC(4)=$$ORC4^LA7VORC(LA7SM,LA7FS,LA7ECH)
+ I LA7SM'="" D
+ . S ORC(4)=$$ORC4^LA7VORC(LA7SM,LA7FS,LA7ECH)
+ . D SETID^LA7VHLU1(LA76249,LA7ID,LA7SM,0)
+ . D SETID^LA7VHLU1(LA76249,"",LA7SM,0)
  ;
  ; Order status
  ; DoD/CHCS requires ORC-5 valued otherwise will not process message
  I LA7NVAF=1 S ORC(5)=$$ORC5^LA7VORC("CM",LA7FS,LA7ECH)
+ ;
+ ; Test urgency - lookup ordered test in "ORUT" node
+ K LA7X
+ I LA("NLT")'="" D
+ . S LA7X=$O(^LR(LA("LRDFN"),LA("SUB"),LA("LRIDT"),"ORUT","B",LA("NLT"),""))
+ . I LA7X<1 Q
+ . S LA76205=$P($G(^LR(LA("LRDFN"),LA("SUB"),LA("LRIDT"),"ORUT",LA7X,0)),"^",2)
+ . S ORC(7)=$$ORC7^LA7VORC("","",LA76205,LA7FS,LA7ECH)
  ;
  ; Ordering provider
  K LA7X,LA7Y
@@ -99,6 +115,9 @@ ORC ; Build ORC segment
  ;
  ; Other subscripts only store requesting provider
  I "CYEMSP"[LA("SUB") S LA7X=$P(LA763(0),"^",7)
+ ;
+ ; Send back ordering provider stored in #69.6 if available.
+ I LA7INTYP=10,$G(LA7PLOBR("OBR-17"))'="" S LA7X=LA7PLOBR("OBR-17")
  ;
  I LA7Y="" S LA7Y=LADFINST
  S ORC(12)=$$ORC12^LA7VORC(LA7X,LA7Y,LA7FS,LA7ECH,$S($G(LA7INTYP)=30:2,$G(LA7NVAF)=1:0,1:1))
@@ -122,7 +141,14 @@ ORC ; Build ORC segment
  D FILESEG^LA7VHLU(GBL,.LA7DATA)
  ;
  ; Check for flag to only build message but do not file
- I '$G(LA7NOMSG) D FILE6249^LA7VHLU(LA76249P,.LA7DATA)
+ I '$G(LA7NOMSG) D
+ . D FILE6249^LA7VHLU(LA76249P,.LA7DATA)
+ . I LA("HUID")'="" D
+ . . D SETID^LA7VHLU1(LA76249,LA7ID,LA("HUID"),0)
+ . . D SETID^LA7VHLU1(LA76249,"",LA("HUID"),0)
+ . I LA("RUID")'="" D
+ . . D SETID^LA7VHLU1(LA76249,LA7ID,LA("RUID"),0)
+ . . D SETID^LA7VHLU1(LA76249,"",LA("RUID"),0)
  ;
  Q
  ;
@@ -135,30 +161,7 @@ OBR ;Observation Request segment for Lab Order
  ;
 OBX ;Observation/Result segment for Lab Results
  ;
- N LA7953,LA7DATA,LA7VT,LA7VTIEN,LA7X
- ;
- S LA7VTIEN=0
- F  S LA7VTIEN=$O(^LAHM(62.49,LA(62.49),1,LA7VTIEN)) Q:'LA7VTIEN  D
- . S LA7VT=$P(^LAHM(62.49,LA(62.49),1,LA7VTIEN,0),"^",1,2)
- . ; Build OBX segment
- . K LA7DATA
- . D OBX^LA7VOBX(LA("LRDFN"),LA("SUB"),LA("LRIDT"),$P(LA7VT,"^",1,2),.LA7DATA,.LA7OBXSN,LA7FS,LA7ECH,$G(LA7NVAF))
- . ; If OBX failed to build then don't store
- . I '$D(LA7DATA) Q
- . ;
- . D FILESEG^LA7VHLU(GBL,.LA7DATA)
- . I '$G(LA7NOMSG) D FILE6249^LA7VHLU(LA76249,.LA7DATA)
- . ;
- . ; Send performing lab comment and interpretation from file #60
- . S LA7NTESN=0
- . I LA7NVAF=1 D PLC^LA7VORUA
- . D INTRP^LA7VORUA
- . ;
- . ; Mark result as sent - set to 1, if corrected results set to 2
- . I LA("SUB")="CH" D
- . . I $P(^LR(LA("LRDFN"),LA("SUB"),LA("LRIDT"),$P(LA7VT,"^")),"^",10)>1 Q
- . . S $P(^LR(LA("LRDFN"),LA("SUB"),LA("LRIDT"),$P(LA7VT,"^")),"^",10)=$S($P(LA7VT,"^",2)="C":2,1:1)
- ;
+ D OBX^LA7VORUA
  Q
  ;
  ;

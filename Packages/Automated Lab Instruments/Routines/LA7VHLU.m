@@ -1,5 +1,5 @@
-LA7VHLU ;DALOI/JMC - HL7 segment builder utility ;Nov 26, 2007
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,62,64,68**;Sep 27, 1994;Build 56
+LA7VHLU ;DALOI/JMC - HL7 segment builder utility ;12/07/11  16:18
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,62,64,68,74**;Sep 27, 1994;Build 229
  ;
  ; Reference to PROTOCOL file (#101) supported by DBIA #872
  ;
@@ -58,7 +58,7 @@ GEN ; Generate HL7 v1.6 message
  ; HLP("CONTPTR") - continuation pointer field value
  ; HLP("PRIORITY") - priority field value
  ; HLP("NAMESPACE") - package namespace
- ; 
+ ;
  N HLEID,HLARYTYP,HLFORMAT,HLMTIEN,HLRESLT,I
  S HLEID=LA7101,HLARYTYP="GM",HLFORMAT=1,HLMTIEN="",HLRESLT=""
  S HLP("NAMESPACE")="LA"
@@ -97,13 +97,14 @@ BUILDSEG(LA7ARRAY,LA7DATA,LA7FS) ; Build HL segment
  ;
  F LA7I=0:1:LA7LAST D
  . I ($L($G(LA7DATA(LA7SUB)))+$L($G(LA7ARRAY(LA7I))))>245 S LA7SUB=LA7SUB+1
+ . I LA7I>0 S LA7DATA(LA7SUB)=$G(LA7DATA(LA7SUB))_LA7FS
  . I $O(LA7ARRAY(LA7I,""))'="" D
  . . S LA7J=""
  . . F  S LA7J=$O(LA7ARRAY(LA7I,LA7J)) Q:LA7J=""  D
  . . . I ($L($G(LA7DATA(LA7SUB)))+$L($G(LA7ARRAY(LA7I,LA7J))))>245 S LA7SUB=LA7SUB+1
  . . . S LA7DATA(LA7SUB)=$G(LA7DATA(LA7SUB))_$G(LA7ARRAY(LA7I,LA7J))
- . S LA7DATA(LA7SUB)=$G(LA7DATA(LA7SUB))_$G(LA7ARRAY(LA7I))_LA7FS
- Q 
+ . S LA7DATA(LA7SUB)=$G(LA7DATA(LA7SUB))_$G(LA7ARRAY(LA7I))
+ Q
  ;
  ;
 FILESEG(LA7ROOT,LA7DATA) ; File HL segment in global
@@ -271,14 +272,17 @@ RETOBR(LA74,LA7UID,LA7NLT,LA7Y) ; Retrieve placer's various OBR's that were tran
  ;               LA7Y("OBR-18") - original OBR-18 sequence
  ;               LA7Y("OBR-19") - original OBR-19 sequence
  ;
- N LA7696,LA76964,LA7X
+ N I,LA7696,LA76964,LA7X
  ;
+ ; Initialize return array
  S LA74=$G(LA74),LA7UID=$G(LA7UID),LA7Y=""
+ F I="FS","ECH","OBR-4","OBR-17","OBR-18","OBR-19" S LA7Y(I)=""
  ;
  ; Return null if no values passed
  I LA74<1!(LA7UID="")!(LA7NLT="") Q
  ;
- S LA7696=$O(^LRO(69.6,"RST",LA74,LA7UID,0))
+ S LA7696=0
+ F  S LA7696=$O(^LRO(69.6,"RST",LA74,LA7UID,LA7696)) I 'LA7696!($D(^LRO(69.6,+LA7696,2,"C",LA7NLT))) Q
  I LA7696<1 Q
  ;
  S LA7X=$G(^LRO(69.6,LA7696,700))

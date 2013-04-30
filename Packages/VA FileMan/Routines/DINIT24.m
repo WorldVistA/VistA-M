@@ -1,5 +1,5 @@
 DINIT24 ;SFISC/GFT-INITIALIZE VA FILEMAN ;09:09 AM  15 Sep 1994
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  K ^DD(.5)
  ;BRING IN DD FOR FUNCTION FILE .5

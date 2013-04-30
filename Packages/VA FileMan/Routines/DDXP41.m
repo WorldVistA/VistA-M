@@ -1,5 +1,5 @@
 DDXP41 ;SFISC/DPC-EXPORT DATA (CONT) ;1/8/93  09:18
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 SORTVAL ;
  N DDXPNG,CHK

@@ -7,10 +7,10 @@ NVA(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT) ;All Outpatient Pharmacy
  ;                          ^date/time documented (fm format)^documented by (ptr to 200_";"_.01)^dc date/time(fm format)
  ;^TMP("PSOO",$J,"NVA",n,1,0)=dosage^med route^schedule (previous 3 fields are Instructions)^drug (file #50_";"_.01)^clinic (file #44_";"_.01)
  ;^TMP("PSOO",$J,"NVA",n,"DSC",nn,0)=statement/explanation/comments
- ;I $L($T(GCPR^OMGCOAS1)) D  ; Call if FHIE station 200
- ;. N BEG,END,MAX
- ;. S BEG=0,END=9999999,MAX=9999
- ;. D GCPR^OMGCOAS1(DFN,"RXOP",BEG,END,MAX)
+ I $L($T(GCPR^OMGCOAS1)) D  ; Call if FHIE station 200
+ . N BEG,END,MAX
+ . S BEG=0,END=9999999,MAX=9999
+ . D GCPR^OMGCOAS1(DFN,"RXOP",BEG,END,MAX)
  ;
  N GO
  Q:'$L(OREXT)
@@ -23,9 +23,9 @@ GET N J,ORDT,ORDRGIEN,ORDRG,ORRXNO,ORSTAT,ORQTY,OREXP,ORISSUE,ORLAST,ORREF,ORPRV
  S ORSITE=$$SITE^VASITE,ORSITE=$P(ORSITE,"^",2)_";"_$P(ORSITE,"^",3)
  S PSOBEGIN=0
  K ^TMP("ORDATA",$J)
- ;I '$L($T(GCPR^OMGCOAS1)) D
- ;. K ^TMP("PSOO",$J)
- ;. D @GO
+ I '$L($T(GCPR^OMGCOAS1)) D
+ . K ^TMP("PSOO",$J)
+ . D @GO
  S ORDT=0
  F  S ORDT=$O(^TMP("PSOO",$J,"NVA",ORDT)) Q:(ORDT'>0)  S ORX0=$G(^(ORDT,0)) I ORX0'="" S ORX1=$G(^(1,0)) D
  . S SITE=$S($L($G(^TMP("PSOO",$J,"NVA",ORDT,"facility"))):^("facility"),1:ORSITE)

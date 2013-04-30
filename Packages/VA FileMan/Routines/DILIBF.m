@@ -1,5 +1,5 @@
 DILIBF ;SFISC/STAFF-LIBRARY OF FUNCTIONS ;9:03 AM  9 Jan 2001
- ;;22.0;VA FileMan;**48,71**;Mar 30, 1999
+ ;;22.0;VA FileMan;**48,71**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 HTFM(%H,%F) ;$H to FM
  N X,%,%Y,%M,%D S:'$D(%F) %F=0

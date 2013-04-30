@@ -1,5 +1,5 @@
 DIFROMH ;SFISC/XAK-HELP FOR DIFROM ;03:19 PM  7 Sep 1994
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;HELP FOR OPTIONS, BULLETINS, ETC.
  W !!?5,"YES means that you want to bring the ",$P(^DIC(DL,0),U)

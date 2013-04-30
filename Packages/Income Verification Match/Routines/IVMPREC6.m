@@ -1,5 +1,5 @@
-IVMPREC6 ;ALB/KCL/BRM/CKN,TDM,PWC - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES ; 7/18/11 5:36pm
- ;;2.0;INCOME VERIFICATION MATCH;**3,4,12,17,34,58,79,102,115,140,144,121,151**;21-OCT-94;Build 10
+IVMPREC6 ;ALB/KCL/BRM/CKN,TDM,PWC,LBD - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES ; 3/10/12 4:06pm
+ ;;2.0;INCOME VERIFICATION MATCH;**3,4,12,17,34,58,79,102,115,140,144,121,151,152**;21-OCT-94;Build 4
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ; This routine will process batch ORU demographic (event type Z05) HL7
@@ -146,7 +146,7 @@ EN ; - entry point to process HL7 patient demographic message
  .;     in the Patient (#2) file if the incoming address is more
  .;     recent than the existing one.
  .;Modified code to handle multiple RF1 segment - IVM*2*115
- .S (UPDEPC("SAD"),UPDEPC("CPH"),UPDEPC("PNO"),UPDEPC("EAD"))=0
+ .S (UPDEPC("SAD"),UPDEPC("CPH"),UPDEPC("PNO"),UPDEPC("EAD"),UPDEPC("PHH"))=0
  .S QFLG=0 I $$RF1CHK(IVMRTN,IVMDA) F I=1:1 D  Q:QFLG
  ..D NEXT
  ..S IVMSEG=$$CLEARF^IVMPRECA(IVMSEG,HLFS,",7,") ;ignore seq. 6
@@ -261,6 +261,7 @@ BLDPID(PIDTMP,IVMPID) ;Build IVMPID subscripted by sequence number
  . S IVMPID(X1)=STR
  Q
 ADDRCHNG(DFN) ;Store Address Change Date/time, Source and site if necessary
+ ;Store Residence Number Change Date/Time, Source and Site (IVM*2*152)
  N IVMVALUE,IVMFIELD
  I '$D(^TMP($J,"CHANGE UPDATE")) Q
  S IVMFIELD=0 F  S IVMFIELD=$O(^TMP($J,"CHANGE UPDATE",IVMFIELD)) Q:IVMFIELD=""  D
@@ -269,6 +270,9 @@ ADDRCHNG(DFN) ;Store Address Change Date/time, Source and site if necessary
  . D ^DIE K DA,DIE,DR
  .; - delete inaccurate Addr Change Site data if Source is not VAMC
  . I IVMFIELD=.119,IVMVALUE'="VAMC" S FDA(2,+DFN_",",.12)="@" D UPDATE^DIE("E","FDA")
+ .; - delete inaccurate Residence Number Change Site data if Source
+ .;   is not VAMC (IVM*2*152)
+ . I IVMFIELD=.1322,IVMVALUE'="VAMC" S FDA(2,+DFN_",",.1323)="@" D UPDATE^DIE("E","FDA")
  K ^TMP($J,"CHANGE UPDATE")
  Q
 EPCFLDS(EPCFARY,EPCDEL) ;

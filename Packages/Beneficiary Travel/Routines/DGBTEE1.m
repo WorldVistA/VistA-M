@@ -1,9 +1,9 @@
-DGBTEE1 ;ALB/SCK - BENEFICIARY TRAVEL ENTER/EDIT CHECK; 12/7/92 3/19/93
- ;;1.0;Beneficiary Travel;**14**;September 25, 2001;Build 7
+DGBTEE1 ;ALB/SCK - BENEFICIARY TRAVEL ENTER/EDIT CHECK; 12/7/92 3/19/93 ;11/10/11  13:16
+ ;;1.0;Beneficiary Travel;**14,20**;September 25, 2001;Build 185
  Q
 SCREEN ;  called by dgbtee,dgbtce
- Q:'$D(^DGBT(392,DGBTDT,0))
- K DGBTVAR F I=0,"A","D","M","R","T" S DGBTVAR(I)=$S($D(^DGBT(392,DGBTDT,I)):^(I),1:"") ; ref file #392, claims
+ Q:'$D(^DGBT(392,DGBTDT,0))!($G(DGBTSP("CLAIM TYPE"))="S")
+ K DGBTVAR F I=0,"A","C","D","M","R","T" S DGBTVAR(I)=$S($D(^DGBT(392,DGBTDT,I)):^(I),1:"") ; ref file #392, claims
  W @IOF S DGBTFLAG=0
  I '$D(^DG(43,1,"BT"))!('$D(^DG(43.1,$O(^DG(43.1,(9999999.99999-DGBTDT))),"BT"))) W !!,"Module has not been properly initialized - to continue you should first complete",!,"the parameters" Q
  W !?16,"Beneficiary Travel Claim Information <Enter/Edit>"
@@ -13,11 +13,12 @@ START ; ask date/time, and division
  K DIC,^TMP("DGBT",$J),X
  S DIE="^DGBT(392,",DIE("NO^")="OUTOK"
  S DR=".01;S (DGBTDT,VADAT(""W""))=X D ^VADATE S DGBTDTI=VADATE(""I""),DGBTDTE=VADATE(""E"") K VADAT,VADATE I '$D(DGBTMD) S Y=""@1"";11;@1"
+ ;
  S DIDEL=392 ; allows users to delete BT claims
- D ^DIE K DIE,DIDEL,DQ,DR I $D(DTOUT)!($D(Y)) S DGBTTOUT=-1 Q
+ D ^DIE K DIE,DIDEL,DQ,DR I $D(DTOUT)!$G(DUOUT)!($D(Y)) S DGBTTOUT=-1,%=-1 Q       ;PAVEL
  K X
  I '$D(^DGBT(392,DGBTDT,0)) Q
- I $D(^DGBT(392,DGBTDT,0)) L ^DGBT(392,DGBTDT):2 I '$T W !?5,"Another user is editing this entry.",*7 S DGBTTOUT=1 G QUIT
+ I $D(^DGBT(392,DGBTDT,0)) L +^DGBT(392,DGBTDT):2 I '$T W !?5,"Another user is editing this entry.",*7 S DGBTTOUT=1 G QUIT
  ; set rates and build eligibilities in DGBTEE2
  D RATES^DGBTEE2
 ELIG1 ;  select eligibility from those available in TMP list
@@ -45,20 +46,29 @@ CERT ;  stuff of certification date if appropriate
  ; naked global ref file #392.2, certification file.
  I $P(VAEL(3),"^") S DGBTCD="" I VAEL(3)&($P(VAEL(3),"^",2)'>29) S DGBTIDT=9999999.99999-DGBTDT F I=0:0 S I=$O(^DGBT(392.2,"C",DFN,I)) Q:'I  I I'>DGBTIDT&($P(^DGBT(392.2,I,0),"^",3)) S DGBTCD=$P(^(0),"^")
 ACCT ;  allowed to select only valid active accounts
+ ;I DGBTDTI>PATCHDT S DGBTOACT=$S('$D(^DGBT(392.3,+$P(DGBTVAR(0),"^",6),0)):0,1:+$P(^DGBT(392.3,$P(DGBTVAR(0),"^",6),0),"^",5))
  S DGBTOACT=$S('$D(^DGBT(392.3,+$P(DGBTVAR(0),"^",6),0)):0,1:+$P(^DGBT(392.3,$P(DGBTVAR(0),"^",6),0),"^",5))
- K X S (DIC("B"),X)=$S(+$P(DGBTVAR(0),"^",6):$P(^DGBT(392.3,$P(DGBTVAR(0),"^",6),0),"^"),1:$$DEFLT1) S DIC("A")="Select ACCOUNT: "
- S DIC="^DGBT(392.3,",DIC(0)="AEQMZ",DIC("S")="I $P(^(0),U,3)'>DGBTDT&('$P(^(0),U,4)!($P(^(0),U,4)'<DGBTDT))"
+ K X S (DIC("B"),X)=$S(+$P(DGBTVAR(0),"^",6):$P(^DGBT(392.3,$P(DGBTVAR(0),"^",6),0),"^"),1:$$DEFLT1()) S DIC("A")="Select ACCOUNT: "
+ S DIC="^DGBT(392.3,",DIC(0)="AEQMZ"
+ S DIC("S")="I $$ACCTHELP^DGBTEE1"
  D ^DIC K DIC I $D(DTOUT) S DGBTTOUT=-1 K DTOUT Q
  I Y'>0 W !,"ACCOUNT IS REQUIRED!!" G ACCT
  S DGBTACTN=$P(Y,"^"),DGBTACCT=$P(Y(0),"^",5)
  ;  if account is ALL OTHER - stuff in mileage info
  I $D(DGBTVAR("M")) S DGBTML=$P(DGBTVAR("M"),"^",2),DGBTOWRT=$P(DGBTVAR("M"),"^"),DGBTMLT=$J((DGBTML*DGBTOWRT*DGBTMR),0,2)
 QUIT ;
- K A,C,I,IA,J,X,XX,^TMP("DGBT",$J),DGBTDIV,DGBTIDT,DGBTCT
+ K A,C,I,IA,J,X,XX,^TMP("DGBT",$J),DGBTIDT,DGBTCT
  Q
  ;
 DEFLT1() ;
  N REC,Y
+ I $P(DGBTDTI,".",1)'=DT Q ""
  S REC="0" F  S REC=$O(^DGBT(392.3,REC)) Q:'REC  D  Q:$D(Y)
  . S:$P(^DGBT(392.3,REC,0),U,5)=4&($P(^(0),U,3)'>DGBTDT&('$P(^(0),U,4)!($P(^(0),U,4)'<DGBTDT))) Y=$P(^(0),U,1)
  Q $G(Y)
+ACCTHELP() ;
+ N DATUM
+ S DATUM=$G(^DGBT(392.3,Y,0))
+ I $P(DATUM,U,3)>DGBTDT Q 0
+ I ($P(DATUM,U,4)<DGBTDT)&(+$P(DATUM,U,4)>0) Q 0
+ Q $E(DATUM,5,16)'="SPECIAL MODE"

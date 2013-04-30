@@ -1,5 +1,5 @@
 DDBRZIS ;SFISC/DCL-BROWSER DEVICE UTILITIES ;4:50 AM  9 Apr 2006
- ;;22.0;VA FileMan;**145,148**;Mar 30, 1999
+ ;;22.0;VA FileMan;**145,148**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 OPEN ;
  ;DDBRZIS AND DDBDMSG ARE KILLED IN POST

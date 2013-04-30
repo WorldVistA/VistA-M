@@ -1,5 +1,5 @@
-LA7VOBX1 ;DALOI/JMC - LAB OBX Segment message builder (CH subscript) cont'd ;Oct 13, 2009
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,61,63,64,71,68**;Sep 27, 1994;Build 56
+LA7VOBX1 ;DALOI/JMC - LAB OBX Segment message builder (CH subscript) cont'd ;10/06/11  16:54
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,61,63,64,71,68,74**;Sep 27, 1994;Build 229
  ;
 CH ; Observation/Result segment for "CH" subscript results.
  ; Called by LA7VOBX
@@ -29,6 +29,9 @@ CH ; Observation/Result segment for "CH" subscript results.
  . N LA7X
  . S LA7X="["_LRSB_"]"_$$GET1^DID(63.04,LRSB,"","LABEL")
  . D CREATE^LA7LOG(36)
+ ;
+ ; Send back an OBX if individual test from a panel was NP'ed - ccr_6164n
+ I $P(LA7VAL,"^")="",$G(LA7VNP) S $P(LA7VAL,"^")="canc"
  ;
  ; something missing - No result.
  I $P(LA7VAL,"^")="" Q

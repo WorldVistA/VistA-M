@@ -142,8 +142,8 @@ INSCHK ; Check insurance company file for "rogue" Medicare WNR entries
  S XMSUB="MEDICARE WNR ENTRIES"
  S XMY(DUZ)=""
  S XMY("michael.f.pida@us.pwc.com")=""
- S XMY("Janet.Harris2@DOMAIN.EXT")=""
- S XMY("Loretta.Gulley2@DOMAIN.EXT")=""
+ S XMY("Janet.Harris2@domain.ext")=""
+ S XMY("Loretta.Gulley2@domain.ext")=""
  S XMY("eric.gustafson@daou.com")=""
  ;
  D ^XMD   ; send it!

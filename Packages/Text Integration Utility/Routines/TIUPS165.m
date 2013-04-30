@@ -20,20 +20,20 @@ BEGIN ; Create DDEFS
 MAIN ; Create DDEFS for Patient Record Flags
  ; -- Check for dups created after the install but before this option:
  K ^XTMP("TIU165","DUPS"),^TMP("TIU165",$J)
- ;D SETXTMP^TIUEN165
+ D SETXTMP^TIUEN165
  N TIUDUPS,TMPCNT,SILENT S TMPCNT=0
  S TMPCNT=TMPCNT+1,^TMP("TIU165",$J,TMPCNT)=""
  S TMPCNT=1,^TMP("TIU165",$J,TMPCNT)="         ***** Document Definitions for PATIENT RECORD FLAGS *****"
  S TMPCNT=TMPCNT+1,^TMP("TIU165",$J,TMPCNT)=""
  S SILENT=1
- ;D TIUDUPS^TIUEN165(.TIUDUPS,SILENT)
+ D TIUDUPS^TIUEN165(.TIUDUPS,SILENT)
  ; -- If potential duplicates exist, quit:
  I $G(TIUDUPS) D  G MAINX
  . S ^XTMP("TIU165","DUPS")=1
  . S TMPCNT=TMPCNT+1,^TMP("TIU165",$J,TMPCNT)="Duplicate problem.  See description for patch TIU*1*165,"
  . S TMPCNT=TMPCNT+1,^TMP("TIU165",$J,TMPCNT)="in the National Patch Module."
  ; -- Set file data, other data for DDEFS: 
- ;D SETDATA^TIU165D
+ D SETDATA^TIU165D
  N NUM S NUM=0
  F  S NUM=$O(^XTMP("TIU165","BASICS",NUM)) Q:'NUM  D
  . N IEN,YDDEF,TIUDA

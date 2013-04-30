@@ -1,5 +1,5 @@
-ECXPIVDN ;ALB/JAP,BIR/DMA,CML,PTD-Extract from IV EXTRACT DATA File (#728.113) ; 10/31/07 1:38pm
- ;;3.0;DSS EXTRACTS;**10,11,8,13,24,33,39,46,49,71,84,96,92,107,105,112,120,127**;Dec 22, 1997;Build 36
+ECXPIVDN ;ALB/JAP,BIR/DMA,CML,PTD-Extract from IV EXTRACT DATA File (#728.113) ;12/5/12  12:19
+ ;;3.0;DSS EXTRACTS;**10,11,8,13,24,33,39,46,49,71,84,96,92,107,105,112,120,127,136,143**;Dec 22, 1997;Build 4
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -34,8 +34,11 @@ START ; start package specific extract
  K ^TMP($J),CLIN,DA,DFN,DIC,DIK,DRG,ON,SA,X,Y,P1,P3
  Q
 STUFF ;get data
- N ECORDST
- S ECST=^TMP($J,SA,DRG),ECXCNT=^(DRG,1),ECXCOST=^(2),ECXCOST=ECXCOST*ECXCNT,ECVACL=$P(ECXPHA,U,2),ECORDST=""
+ N ECORDST,ECTI ;143
+ S ECST=^TMP($J,SA,DRG),ECXCNT=^(DRG,1),ECXCOST=^(2),ECVACL=$P(ECXPHA,U,2),ECORDST="",ECTI=""
+ ;if older logic, use incorrect calculation for cost **136
+ I ECXLOGIC<2013 S ECXCOST=ECXCOST*ECXCNT
+ ;S ECST=^TMP($J,SA,DRG),ECXCNT=^(DRG,1),ECXCOST=^(2),ECXCOST=ECXCOST*ECXCNT,ECVACL=$P(ECXPHA,U,2),ECORDST="",ECTI="" removed old cost calc **136
  ;if outpatient get division from iv rm; get dss identifier for clinic
  I ECXA="O" D
  .;- Only set ward to .5 if outpatient (but NOT observation patient)
@@ -51,7 +54,20 @@ STUFF ;get data
  .S ECXDSSI=ECXP1_ECXP2
  .I ECXLOGIC>2003 D
  ..I "^18^23^24^41^65^94^108^"[("^"_ECXTS_"^") S ECXDSSI=$$TSMAP^ECXUTL4(ECXTS)
- S ECINV=$P(ECXPHA,U,4),ECINV=$S(ECINV["I":"I",1:""),ECST=ECXCNT*ECST_" "_$P(ECST,U,2)
+ S ECINV=$P(ECXPHA,U,4),ECST=ECXCNT*ECST_" "_$P(ECST,U,2)
+  ;New way to calculate cost dea spl hndlg **136
+ I ECXLOGIC>2012 D
+ .I ECINV["5" S ECTI="5"
+ .I ECINV["4" S ECTI="4"
+ .I ECINV["3" S ECTI="3"
+ .I ECINV["2" S ECTI="2"
+ .I ECINV["1" S ECTI="1"
+ .I ECINV["I" S ECTI="I"
+ .S ECINV=ECTI
+ .; Update cost calculation use exist cost x quant x count
+ .S ECXCOST=+ECST*ECXCOST ;143
+ ; old method of dea spl hndlg **136
+ I ECXLOGIC<2013 S ECINV=$S(ECINV["I":"I",1:"")
  S ECNDC=$P(ECXPHA,U,3),ECNFC=$$RJ^XLFSTR($P(ECNDC,"-"),6,0)_$$RJ^XLFSTR($P(ECNDC,"-",2),4,0)_$$RJ^XLFSTR($P(ECNDC,"-",3),2,0),ECNFC=$TR(ECNFC,"*",0)
  S P1=$P(ECXPHA,U,5),P3=$P(ECXPHA,U,6)
  S X="PSNAPIS" X ^%ZOSF("TEST") I $T S ECNFC=$$DSS^PSNAPIS(P1,P3,ECXYM)_ECNFC

@@ -1,28 +1,37 @@
-EDPRPT ;SLC/MKB - Reports
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPRPT ;SLC/MKB - Reports ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
-EN(BEG,END,RPT,ID,CSV) ; Get RPT data for EDPSITE by date range
- N NOW S NOW=$$NOW
- I BEG,END D  ;check
+EN(BEG,END,RPT,ID,CSV,TASK) ; Get RPT data for EDPSITE by date range
+ ;
+ I $G(TASK) D  Q  ;return text from task
+ . I '$D(^XTMP("EDIS-"_TASK)) D XML^EDPX("<task id='"_TASK_"' />") Q
+ . M EDPXML=^XTMP("EDIS-"_TASK)
+ . K EDPXML(0),^XTMP("EDIS-"_TASK)
+ ;
+ N NOW,ZTSAVE,ZTRTN,ZTDESC
+ S NOW=$$NOW I BEG,END D  ;check
  . N X I END<BEG S X=BEG,BEG=END,END=X ;switch
  . S:$L(END,".")<2 END=END_".2359"
  S RPT=$$UP^XLFSTR($G(RPT))
+ S CSV=$G(CSV,"")
  ; switch on report type
- I RPT="EXPOSURE"   D EXP^EDPRPT7(ID)       G CONT
+ I RPT="EXPOSURE"   D EXP^EDPRPT7(ID,CSV)   G CONT
  I BEG<1            D ERR(2300012)          G CONT
- I RPT="SHIFT"      D SFT^EDPRPT5(BEG)      G CONT
+ I RPT="SHIFT"      D SFT^EDPRPT5(BEG,CSV)  G CONT
  I END<1            D ERR(2300012)          G CONT
- I RPT="ACTIVITY"   D ACT^EDPRPT1(BEG,END)  G CONT
- I RPT["DELAY"      D DEL^EDPRPT2(BEG,END)  G CONT
- I RPT="SUMMARY"    D SUM^EDPRPT4(BEG,END)  G CONT
- I RPT="MISSEDOP"   D MO^EDPRPT3(BEG,END)   G CONT
- I RPT="PROVIDER"   D PRV^EDPRPT6(BEG,END)  G CONT
- I RPT="ACUITY"     D ACU^EDPRPT8(BEG,END)  G CONT
- I RPT="PATIENT"    D XRF^EDPRPT9(BEG,END)  G CONT
- I RPT="ADMISSIONS" D ADM^EDPRPT10(BEG,END) G CONT
- I RPT="INTAKE"     D CNT^EDPRPT11(BEG,END) G CONT
- I RPT="ORDERS"     D ORD^EDPRPT12(BEG,END) G CONT
- I RPT="BVAC"       D EN^EDPRPTBV(BEG,END)  G CONT
+ I RPT="ACTIVITY"   D ACT^EDPRPT1(BEG,END,CSV)  G CONT
+ I RPT["DELAY"      D DEL^EDPRPT2(BEG,END,CSV)  G CONT
+ I RPT="SUMMARY"    D SUM^EDPRPT4(BEG,END,CSV)  G CONT
+ I RPT="MISSEDOP"   D MO^EDPRPT3(BEG,END,CSV)   G CONT
+ I RPT="PROVIDER"   D PRV^EDPRPT6(BEG,END,CSV)  G CONT
+ I RPT="ACUITY"     D ACU^EDPRPT8(BEG,END,CSV)  G CONT
+ I RPT="PATIENT"    D XRF^EDPRPT9(BEG,END,CSV)  G CONT
+ I RPT="ADMISSIONS" D ADM^EDPRPT10(BEG,END,CSV) G CONT
+ I RPT="INTAKE"     D CNT^EDPRPT11(BEG,END,CSV) G CONT
+ I RPT="ORDERS"     D ORD^EDPRPT12(BEG,END,CSV) G CONT
+ I RPT="BVAC"       D EN^EDPRPTBV(BEG,END,CSV)  G CONT
+ ; 10-18-2011 bwf: New report for patients removed in error
+ I RPT="REMOVED"    D EN^EDPRPT13(BEG,END,CSV)   G CONT
  ; else
  D ERR(2300011)
 CONT ; end switch
@@ -36,6 +45,16 @@ ERR(MSG) ; -- return error MSG
  ;
 NOW() ; -- Return local value of NOW, based on EDPSITE
  Q $$NOW^XLFDT
+ ;
+TASK ; -- task report: expects ZTSAVE,ZTRTN,ZTDESC
+ N ZTDTH,ZTIO,ZTSK,I
+ S ZTDTH=$H,ZTIO=""
+ F I="NOW","EDPSTA","EDPSITE","EDPXML","EDPXML(" S ZTSAVE(I)=""
+ I $G(CSV) S ZTSAVE("CSV")="",ZTSAVE("EDPCSV(")=""
+ D ^%ZTLOAD I '$G(ZTSK) D ERR(2300017) Q
+ K EDPXML
+ D XML^EDPX("<task id='"_ZTSK_"' />")
+ Q
  ;
 PROV(MD) ; add list of assigned providers to XML
  N I,X0,X
@@ -119,3 +138,12 @@ ADMIT(LOG) ; Return 1st time admitting disposition was assigned
  . I $P(X1,U,2),$P($G(^EDPB(233.1,+$P(X1,U,2),0)),U,5)["A" S Y=$P(X1,U,3)
  I Y S OUT=$P($G(^EDP(230,LOG,0)),U,9) S:OUT&(OUT<Y) Y=OUT ;use Time Out if earlier
  Q Y
+DISP(X) ;Return disposition abbreviation or display name from file 233.2
+ ;X = IEN of disposition entry in file 233.1
+ I +X=0 Q ""
+ N DA,DISP,Y
+ S Y=EDPSTA_".disposition"
+ S DA=0 F  S DA=$O(^EDPB(233.2,"AS",Y,+X,DA)) Q:DA=""  D
+ . S DISP=$P($G(^EDPB(233.2,"AS",Y,+X,DA)),U)
+ . I '$L(DISP) S DISP=$E($TR($P($G(^EDPB(233.2,"AS",Y,+X,DA)),U,2)," ","_"),1,30)
+ Q DISP

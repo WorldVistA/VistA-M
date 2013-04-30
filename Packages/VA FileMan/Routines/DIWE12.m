@@ -1,5 +1,5 @@
 DIWE12 ;SFISC/XAK,RWF-WORD PROCESSING CHANGE EDITORS ;11:21 AM  5 Mar 1999
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  Q:$D(DIWE(1))  S DIWE(1)=DIWE D 1 K DIWE(1) Q
  ;

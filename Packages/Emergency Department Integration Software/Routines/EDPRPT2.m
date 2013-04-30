@@ -1,10 +1,10 @@
-EDPRPT2 ;SLC/MKB - Delay Report
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPRPT2 ;SLC/MKB - Delay Report ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
-DEL(BEG,END) ; Get Delay Report for EDPSITE by date range
+DEL(BEG,END,CSV) ; Get Delay Report for EDPSITE by date range
  ;   CNT = counters
  ;   MIN = accumulate #minutes
- N IN,OUT,LOG,X,X0,X1,X3,DX,ELAPSE,ADMDEC,ADMDEL,DISP,VADISP,CNT,MIN,DEL,ACU
+ N IN,OUT,LOG,X,X0,X1,X3,DX,ELAPSE,ADMDEC,ADMDEL,DISP,VADISP,CNT,MIN,DEL,ACU,ED,NOT
  D INIT ;set counters, sums to 0
  D:'$G(CSV) XML^EDPX("<logEntries>") I $G(CSV) D  ;headers
  . N TAB S TAB=$C(9)
@@ -15,6 +15,9 @@ DEL(BEG,END) ; Get Delay Report for EDPSITE by date range
  . S X0=^EDP(230,LOG,0),X1=$G(^(1)),X3=$G(^(3))
  . S ACU=$$ECODE^EDPRPT($P(X3,U,3)),DEL=+$P(X1,U,5),CNT=CNT+1
  . S DISP=$$ECODE^EDPRPT($P(X1,U,2)),VADISP=$$VADMIT(DISP)
+ . ;TDP - Patch 2 mod to catch all dispositions listed as VA admit
+ . I VADISP=0 S VADISP=$$VADMIT1($P(X1,U,2))
+ . I DISP="" S DISP=$$DISP^EDPRPT($P(X1,U,2))
  . S OUT=$P(X0,U,9) ;S:OUT="" OUT=NOW
  . S ELAPSE=$S(OUT:($$FMDIFF^XLFDT(OUT,IN,2)\60),1:0),MIN=MIN+ELAPSE
 D1 . ; all admissions
@@ -46,9 +49,12 @@ D3 . ; elapsed visit time >=6 hrs
  .. S ROW("dx")=$P(DX,U,2)
  .. S ROW("admDec")=ADMDEC
  .. S ROW("admDel")=ADMDEL
+ .. D LOCTIMES ;split Elapsed into Time in/out of ED
+ .. S ROW("timeInED")=$$ETIME^EDPRPT(ED)
+ .. S ROW("timeOutED")=$$ETIME^EDPRPT(NOT)
  .. I '$G(CSV) S X=$$XMLA^EDPX("log",.ROW) D XML^EDPX(X) Q
  .. S X=ROW("id")
- .. F I="inTS","elapsed","disposition","delayReason","md","admDec","admDel","acuity","dx" S X=X_$C(9)_$G(ROW(I))
+ .. F I="inTS","elapsed","timeInED","timeOutED","disposition","delayReason","md","admDec","admDel","acuity","dx" S X=X_$C(9)_$G(ROW(I))
  .. D ADD^EDPCSV(X)
  D:'$G(CSV) XML^EDPX("</logEntries>")
  Q
@@ -77,3 +83,27 @@ VADMIT(X) ; -- Return 1 or 0, if disposition indicates a VA admission
  S I=+$O(^EDPB(233.1,"AB","disposition",X,0))
  S Y=$S($P($G(^EDPB(233.1,I,0)),U,5)["V":1,1:0)
  Q Y
+ ;
+VADMIT1(X) ; -- Return 1 or 0, if disposition indicates a VA admission
+ I +$G(X)=0 Q 0
+ N Y
+ S Y=$S($P($G(^EDPB(233.1,X,0)),U,5)["V":1,1:0)
+ Q Y
+ ;
+LOCTIMES ; -- Returns time in ED and NOT ed locations
+ ; Expects LOG, IN, OUT from above
+ N LIST,I,TM,LOC,X,T1,T2,TYPE
+ S LIST(IN)="ED",LIST(OUT)="NOT"
+ S I=0 F  S I=$O(^EDP(230.1,"B",LOG,I)) Q:I<1  D
+ . S TM=+$P($G(^EDP(230.1,I,0)),U,2),LOC=+$P($G(^(3)),U,4) Q:'LOC
+ . S X=$P($G(^EDPB(231.8,LOC,0)),U,9)
+ . S LIST(TM)=$S(X>2:"NOT",1:"ED")
+ ; get time in each type of location
+ S (ED,NOT)=0,TYPE=LIST(IN)
+ S (T1,T2)=IN
+ F  S T2=$O(LIST(T2)) Q:T2<1  D
+ . S X=LIST(T2) I T2<OUT,X=TYPE Q
+ . S @TYPE=@TYPE+$$FMDIFF^XLFDT(T2,T1,2) ;#seconds
+ . S T1=T2,TYPE=X
+ S ED=ED\60,NOT=NOT\60                   ;#minutes
+ Q

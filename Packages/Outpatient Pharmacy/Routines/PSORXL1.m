@@ -1,5 +1,5 @@
-PSORXL1 ;BIR/SAB - action to be taken on prescriptions ;10/5/07 2:40pm
- ;;7.0;OUTPATIENT PHARMACY;**36,46,148,260,274,287,289,358,251,385,403**;DEC 1997;Build 9
+PSORXL1 ;BIR/SAB - action to be taken on prescriptions ; 7/5/12 12:04pm
+ ;;7.0;OUTPATIENT PHARMACY;**36,46,148,260,274,287,289,358,251,385,403,409**;DEC 1997;Build 2
  ;External reference to $$DS^PSSDSAPI supported by DBIA 5424
 S S SPPL="",PPL1=1 S:'$G(PPL) PPL=$G(PSORX("PSOL",PPL1)) G:$G(PPL)']"" D1
 S1 F PI=1:1 Q:$P(PPL,",",PI)=""  S DA=$P(PPL,",",PI) D
@@ -38,6 +38,10 @@ LOCK I $P($G(^PSRX(RXN,"STA")),"^")=3 G SUSQ
  I '$G(RXFL(RXN)) S RXFL(RXN)=$$LSTRFL^PSOBPSU1(RXN)
  I '$G(RXP),'$G(PSONPROG) D REVERSE^PSOBPSU1(RXN,,"DC",3)  ;PSONPROG - TRICARE or CHAMPVA in progress, don't reverse
  K COMM
+ ;
+ ;Telephone refill does not use list manager
+ K:$G(VEXPSORX)!($G(VEXANS2)]"") VALMSG ;PSO*7*409
+ ;
 SUSQ Q
  ;PSO*7*274 always recalculate RXF
 ACT S RXF=0 F I=0:0 S I=$O(^PSRX(DA,1,I)) Q:'I  S RXF=I S:I>5 RXF=I+1

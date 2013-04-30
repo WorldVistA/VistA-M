@@ -1,5 +1,5 @@
 DDGFFLDA ;SFISC/MKO-ADD A FIELD ;2:22 PM  13 Sep 1995
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 ADD ;Add a field
  I '$O(^DIST(.403,+DDGFFM,40,DDGFPG,40,0)) D  Q

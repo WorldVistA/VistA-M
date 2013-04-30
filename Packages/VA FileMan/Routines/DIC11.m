@@ -1,5 +1,5 @@
 DIC11 ;SFISC/TKW-PROMPT USER FOR LOOKUP VALUES ;1:33 PM  26 Dec 2000
- ;;22.0;VA FileMan;**1,13,40,67**;Mar 30, 1999
+ ;;22.0;VA FileMan;**1,13,40,67**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 PROMPT N DIOUT S (DIVAL(0),DIOUT)=0
  F DISUB=1:1:DINDEX("#") D PR1 Q:DIOUT

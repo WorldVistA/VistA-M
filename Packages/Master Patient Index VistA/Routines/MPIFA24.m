@@ -67,7 +67,7 @@ A24 ;
  .; ^ checking if this is a result of a "merge" of ICNs from the MPI
  .; to trigger if this is station 200 the MERGE for the FHIE Framework
  .Q:$P($$SITE^VASITE,"^",3)'=200
- .;N FHIE S FHIE=$$MERGE^OMGPIDMI(ARRY("ICN",2),ARRY("ICN",1))
+ .N FHIE S FHIE=$$MERGE^OMGPIDMI(ARRY("ICN",2),ARRY("ICN",1))
  .;       ^^ THIS API IS ONLY AVAILABLE ON THE FHIE HOST SYSTEM
  .I +FHIE=-1 D START^RGHLLOG(),EXC^RGHLLOG(208,$P(FHIE,"^",2),DFN),STOP^RGHLLOG()
  Q

@@ -1,12 +1,12 @@
-LA7VHLU9 ;DALOI/JMC - HL7 segment builder utility ;Jun 20, 2008
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**68**;Sep 27, 1994;Build 56
+LA7VHLU9 ;DALOI/JMC - HL7 segment builder utility ;09/14/11  15:56
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**68,74**;Sep 27, 1994;Build 229
  ;
  ; Reference to NPI^XUSNPI supported by DBIA #4532
  ; Reference to QI^XUSNPI supported by DBIA #4532
  ;
  ;
 XCN(LA7DUZ,LA7DIV,LA7FS,LA7ECH,LA7DMT,LA7IDTYP) ; Build composite ID and name for person
- ; Call with   LA7DUZ = DUZ of person 
+ ; Call with   LA7DUZ = DUZ of person
  ;                      If not pointer to #200, then use as literal
  ;             LA7DIV = Institution of user
  ;              LA7FS = HL field separator
@@ -81,7 +81,7 @@ XCNTFM(LA7X,LA7ECH) ; Resolve XCN data type to FileMan (last name, first name, m
  ; Check for NPI
  I $P(LA7X,$E(LA7ECH),9)="USDHHS",$P(LA7X,$E(LA7ECH),13)="NPI" D
  . S X=$$QI^XUSNPI(LA7IDC)
- . I $P(X,"^")="Individual_ID",$P(X,"^",2)>0 S LA7DUZ=X
+ . I $P(X,"^")="Individual_ID",$P(X,"^",2)>0 S LA7DUZ=$P(X,"^",2)
  ;
  ; Check for coding that indicates DUZ from a VA facility
  I 'LA7DUZ,LA7Z?.(1.N1"-VA"3N,1.N1"-VA"3N2U) D
@@ -90,6 +90,8 @@ XCNTFM(LA7X,LA7ECH) ; Resolve XCN data type to FileMan (last name, first name, m
  . S LA7K=$$FINDSITE^LA7VHLU2(LA7Z(2),1,1)
  . S LA7J=$$DIV4^XUSER(.LA7J,LA7Z(1))
  . I LA7K,$D(LA7J(LA7K)) S LA7DUZ=LA7Z(1)
+ . I LA7K,'LA7DUZ,'LA7J D  ;ccr_5591n - If user is not assigned any divisions, try find match based off default institution
+ . . I $$KSP^XUPARAM("INST")=LA7K,$$ACTIVE^XUSER(LA7Z(1))'="" S LA7DUZ=LA7Z(1)
  ;
  ; Check if code resolves to a valid user.
  I 'LA7DUZ,LA7Z=+LA7Z D

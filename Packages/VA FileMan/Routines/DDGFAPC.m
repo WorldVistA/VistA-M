@@ -1,5 +1,5 @@
 DDGFAPC ;SFISC/MKO-ADJUST PAGE COORDINATES ;01:16 PM  19 Jan 1994
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;Input:
  ; T  = PTOP: top of page

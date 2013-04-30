@@ -1,5 +1,5 @@
 DDSU ;SFISC/MLH-PROCESS HELP ;10:48 AM  6 Sep 2006
- ;;22.0;VA FileMan;**4,3,54,151**;Mar 30, 1999;Build 10
+ ;;22.0;VA FileMan;**4,3,54,151**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
 LIST ;
  D FM:'$D(DDS),SC:$D(DDS)

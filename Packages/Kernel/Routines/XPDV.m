@@ -1,5 +1,5 @@
 XPDV ;SFISC/RSD - Verify Build ;10/15/2008
- ;;8.0;KERNEL;**30,44,58,108,511,525,539**;Jul 10, 1995;Build 11
+ ;;8.0;KERNEL;**30,44,58,108,511,525,539,547**;Jul 10, 1995;Build 15
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;checks that everything is ready to do a build
  ;XPDA=build ien, loop thru all nodes in ^XPD(9.6,XPDA and verify data
@@ -121,10 +121,10 @@ RTN(X,MSG) ;verify tag^routine
  E  S T="",R=X
  I (R'?1A.E) S MSG=" Name violates the SAC!!" Q 0
  I $T(^@R)="" S MSG=" DOESN'T EXIST!!" Q 0
- ;2nd line must begin with "[label] ;;n[n.nn];"
+ ;2nd line must begin with "[label] ;;n[n.nn];A[APN];"
  S S=$T(+2^@R) D  I MSG]"" Q 0
  .I $L($P(S," ")) S L=$P(S," "),S=$P(S,L,2,99) I L'?1U.7UN S MSG=" 2nd line violates the SAC!!" Q
- .I S'?.1" ;;"1.2N.1".".2N1";".E S MSG=" 2nd line violates the SAC!!"
+ .I S'?.1" ;;"1.2N.1".".2N1";"1.APN1";".E S MSG=" 2nd line violates the SAC!!"
  ;if no tag or tag^routine exists, then return 1
  Q:T="" 1 Q:$T(@T^@R)]"" 1
  S MSG=" Tag DOESN'T EXIST!!" Q 0

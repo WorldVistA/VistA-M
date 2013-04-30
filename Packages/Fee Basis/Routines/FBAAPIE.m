@@ -1,5 +1,5 @@
 FBAAPIE ;AISC/GRR-ENTER FEE PHARMACY INVOICE ;7/8/2003
- ;;3.5;FEE BASIS;**61**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**61,124**;JAN 30, 1995;Build 20
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  D SITEP^FBAAUTL W:FBPOP !!,*7,"Fee site parameters must be initialized!!" Q:FBPOP  S FBMDF=$P(FBSITE(0),"^",10),FBAAPTC=$S($D(FBAAPTC):FBAAPTC,1:"V")
 RD1 W ! S DIR("A")="Are you sure you want to enter a new invoice",DIR("B")="Yes",DIR(0)="Y" D ^DIR K DIR G Q^FBAAPIE1:$D(DIRUT),RDM^FBAAPIE1:'Y
@@ -29,6 +29,9 @@ RDP S FBPHARM=1 W:FBINTOT>0 !,?15,"Pharmacy Invoice #: "_IN_"  Totals: $ "_$J(FB
  D HOME^%ZIS,FBPH^FBAAUTL2 I $D(DIRUT),$D(FB583) G CHK
 RDD W !! S %DT(0)=-DT,%DT="AEXP",%DT("A")="DATE PRESCRIPTION FILLED: " D ^%DT K %DT G:X["^"!(X="") RDP G RDD:Y<0 S DATEF=Y
  I DATEF<FBAABDT!(DATEF>FBAAEDT) W !!,*7,"Date Prescription Filled is ",$S(DATEF<FBAABDT:" prior to ",1:"later than "),"authorization period!!" G RDD
+ I INVDATE]"",DATEF>INVDATE D  G RDD
+ .N SHOINVDT S SHOINVDT=$E(INVDATE,4,5)_"/"_$E(INVDATE,6,7)_"/"_$E(INVDATE,2,3)
+ .W !!,*7,?5,"*** Date Prescription Filled cannot be later than",!?8," Invoice Received Date (",SHOINVDT,") !!!"
  I '$D(^FBAA(162.1,IN,"RX",0)) S ^FBAA(162.1,IN,"RX",0)="^162.11A^^"
 RDRX S DIR(0)="162.11,.01",DIR("A")="Select PRESCRIPTION NUMBER" D ^DIR K DIR G CHK:Y="^"!(Y="") S PSRX=Y,AC=0
  I $D(^FBAA(162.1,IN,"RX","B",PSRX)) G RX2^FBAAPIE1

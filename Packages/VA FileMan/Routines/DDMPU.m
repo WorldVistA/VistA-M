@@ -1,5 +1,5 @@
 DDMPU ;SFISC/DPC-IMPORT USER INTERFACE, TEMPLATE CREATE ;9/12/96  17:07
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 EN ;Entry point for Import Data option.
  D CLEAN^DIEFU

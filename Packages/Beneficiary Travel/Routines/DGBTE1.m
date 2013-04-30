@@ -1,12 +1,14 @@
-DGBTE1 ;ALB/SCK/GAH - BENEFICIARY TRAVEL FIND OLD CLAIM DATES  ; 10/10/06 11:17am
- ;;1.0;Beneficiary Travel;**8,12,13**;September 25, 2001;Build 11
+DGBTE1 ;ALB/SCK/GAH - BENEFICIARY TRAVEL FIND OLD CLAIM DATES; 10/10/06@11:17am; 10/10/06
+ ;;1.0;Beneficiary Travel;**8,12,13,20**;September 25, 2001;Build 185
 DATE ;  get date for claim, either new or past date
+ N DGBTDCLM
  K ^TMP("DGBT",$J),^TMP("DGBTARA",$J),DIR
  I 'DGBTNEW S DIR("A",2)="Enter a 'P' to display Past CLAIM dates for editing."
  S DIR("A",3)="Time is required when adding a new CLAIM.",DIR("A",4)="",DIR("A",1)="",DIR("A")="Select TRAVEL CLAIM DATE/TIME",DIR("?")="^D HELP^DGBTE1A"
  S DIR(0)="F",DIR("B")="NOW" D ^DIR K DIR G ERR1:$D(DIRUT)
- S CHZFLG=0,%DT="EXR",DTSUB=$S(Y="N":"NOW",Y="P":"OLD",Y="p":"OLD",1:"OTHR")_"^DGBTE1A" D @DTSUB K DTSUB
- G ERR1:$D(DTOUT),DATE:Y1<0 S DGBTA=Y1 G SET:CHZFLG
+ S CHZFLG=0,%DT="EXR",DTSUB=$S(Y="N":"NOW",Y="P":"OLD",Y="p":"OLD",1:"OTHR")_"^DGBTE1A" D @DTSUB   ;PAVEL - DGBT*1*20
+ S:$P(DTSUB,U,1)="OLD"&(Y1>0) DGBTOLD=1 K DTSUB        ;PAVEL DGBT*1*20
+ G ERR1:$D(DTOUT),DATE:Y1<0 S DGBTA=Y1 G SET:CHZFLG    ;PAVEL DGBT*1*20
 DATE1 ;  for past claims, set DGBTDT to inverse date of claim date
  I $D(^DGBT(392,"C",DFN)) D
  . S DGBTC=0,DGBTDT=9999999-$E(DGBTA,1,7) ; set past claims counter=0
@@ -15,18 +17,20 @@ DATE1 ;  for past claims, set DGBTDT to inverse date of claim date
  I '$D(DGBT) G LOCK
  W !!,"There are other claims on this date.",!,"Select by number to edit or <RETURN> to add a new CLAIM.",!
  ; convert inverse claim date to external format through VADATE conversion routine
- F I=0:0 S I=$O(DGBT(I)) Q:'I  S VADAT("W")=DGBT(I) D ^VADATE W !?5,I,".",?10,VADATE("E")
+ F I=0:0 S I=$O(DGBT(I)) Q:'I  D
+ .S DGBTDCLM=$$GET1^DIQ(392,DGBT(I),45,"I")
+ .S VADAT("W")=DGBT(I) D ^VADATE W !?5,I,".",?10,VADATE("E")_$S($G(DGBTDCLM)'="":" (D)",1:"")
  K DIR S DIR("A")="Select 1"_$S(DGBTC=1:"",1:"-"_DGBTC)_", or <RETURN> to add a new claim: ",DIR(0)="NOA^1:"_DGBTC,DIR("?")="Select, by number, one of the displayed claim dates: "
- D ^DIR K DIR G QUIT^DGBTEND:$D(DTOUT)!($D(DUOUT))
+ D ^DIR K DIR S:$G(Y) CHZFLG=1 G QUIT^DGBTEND:$D(DTOUT)!($D(DUOUT))
  G LOCK:Y="" G DATE:'$D(DGBT(Y))
- S DGBTA=DGBT(Y) G SET
+ S DGBTA=DGBT(Y),DGBTOLD=1 G SET
 LOCK ;
- L ^DGBT(392,DGBTA):1
+ L +^DGBT(392,DGBTA):1
  I '$T!$D(^DGBT(392,DGBTA)) L  S DGBTA=DGBTA+.00001 G LOCK
- S VADAT("W")=DGBTA D ^VADATE W VADATE("E")
+ S (DGBTDT,VADAT("W"))=DGBTA D ^VADATE W VADATE("E")      ;for CCR235 by RE
 ASKADD ;
  W !!,"Are you sure you want to add a new claim"
- S %=1 D YN^DICN G PATIENT^DGBTE:%<0!(%=2)
+ S %=1 D YN^DICN G EXIT2^DGBTE:%<0!(%=2)
  I '% W !!,"Enter 'YES' to add a new claim, or 'NO' not to add the claim." G ASKADD
  K DD,DO
  ; create new file entry, stuff patient DFN into name field(pointer)
@@ -37,26 +41,35 @@ ASKADD ;
 SET ; call inhouse generic date routine
  S (DA,DGBTDT,VADAT("W"))=DGBTA D ^VADATE
  ; get internal and external formats of converted inverse dates
- S DGBTDTI=VADATE("I"),DGBTDTE=VADATE("E") K VADAT,VADATE,DIC,Y
- S DGBTDIVN=$P(^DG(40.8,DGBTDIVI,0),"^",7)
+ S DGBTDTI=$S($G(VADAT("W"))'="":VADAT("W"),1:VADATE("I")),DGBTDTE=VADATE("E") K VADAT,VADATE,DIC,Y
+ I $G(DGBTDIVI)'="" S DGBTDIVN=$P(^DG(40.8,DGBTDIVI,0),"^",7)
+ D GA^DGBTUTL(DFN,"DGBTINCA",DGBTDTI) ;Get Alternate Income PAVEL
 STUFF ;  stuff departure with address data from patient file, dest from institution file
- S:'$D(^DGBT(392,DGBTDT,"D")) ^DGBT(392,DGBTDT,"D")=VAPA(1)_"^"_VAPA(2)_"^"_VAPA(3)_"^"_VAPA(4)_"^"_$S(VAPA(5)]"":+VAPA(5),1:"")_"^"_$P(VAPA(11),U,1)
- I '$D(^DGBT(392,DGBTDT,"T")) D
+ S DGBTCMTY=$$GET1^DIQ(392,DGBTDT,56)
+ S:'$L(DGBTCMTY) DGBTCMTY="M"
+ I '$G(CHZFLG),DGBTCMTY="M" S:'$D(^DGBT(392,DGBTDT,"D")) ^DGBT(392,DGBTDT,"D")=VAPA(1)_"^"_VAPA(2)_"^"_VAPA(3)_"^"_VAPA(4)_"^"_$S(VAPA(5)]"":+VAPA(5),1:"")_"^"_$P(VAPA(11),U,1)
+ I '$G(CHZFLG),DGBTCMTY="M" I '$D(^DGBT(392,DGBTDT,"T")) D
  . S X=$S($D(^DIC(4,DGBTDIVN,1)):^(1),1:"")
  . S ^DGBT(392,DGBTDT,"T")=($P(^DG(40.8,DGBTDIVI,0),U)_"^"_$P(X,U)_"^"_$P(X,U,2)_"^"_$P(X,U,3)_"^"_$P(^DIC(4,DGBTDIVN,0),U,2)_"^"_$P(X,U,4))
 CHKFILES ; section removed, dependents picked up below in MEANS ; abr 10/94
 MEANS ;  find corres. means test entry, gets MT income, status, no. of dependents
  ;DGBTMTS= MT Status;  DGBTCSC= claim Service Connected indicator & %;  DGBTELG=Eligibility status
  N X,X2,X3,Y,DGBTIFL
- S X=$$LST^DGMTU(DFN,DGBTA),DGBTMTS=$P(X,U,4)_U_$P(X,U,3) ; returns corres. MT info,X=IEN of last MT
+ S X=$$LST^DGMTCOU1(DFN,DT,3),DGBTMTS=$P(X,U,4)_U_$P(X,U,3) ; returns corres. MT info,X=IEN of last MT. passing a 3 will check both MT and RX Co-Pays
  ; get income, # dependents
  S Y=$$INCOME^VAFMON(DFN,DGBTA,1)
+ S:"I^V"[$P(Y,U,2) Y=U ;If income type is I or V ignore it PAVEL
+ S:DGBTINCA Y=$P(DGBTINCA,U,2)_U_$E($P(DGBTINCA,U,4)) ;Set Alternate Income
  S X=$P(Y,U),DGBTIFL=$P(Y,U,2) ; returns income & source.
  I X?1N.E!(X<0) D
  .I X<0 S X=0
  .S X2="0$",X3=8 D COMMA^%DTC
  S DGBTINC=X_U_$G(DGBTIFL) K X,X2
  S DGBTDEP=$$DEP^VAFMON(DFN,DGBTA) ; finds depedents Vet, Spouse, Children
+ S DGBTDTY=" (Year: "_$$FMTE^XLFDT($E(DGBTDTI,1,3)_"0000")_")" ;Year to be displayed with Income
+ S DGBTMTTH=$$MTTH^DGBTMTTH(DGBTDEP,DGBTDTI) ; Means test threshold
+ S DGBTRXTH=+$$THRES^IBARXEU1(DGBTDTI,1,DGBTDEP) ; RX co-pay threshhold
+ S DGBTDYFL=$$DAYFLAG^DGBTUTL ; valid income test y/n
  ;
 PREV ; if past claim get SC%, elig.
  I CHZFLG S X=^DGBT(392,DGBTA,0),DGBTELG=$P(X,U,3),DGBTCSC=$P(X,U,4) D

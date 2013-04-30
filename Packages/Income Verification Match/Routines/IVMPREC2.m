@@ -80,7 +80,7 @@ ORU ; - Receive Observational Results Unsolicited Message
  ; The following line is added for  PFSS Registration.  This line will ensure any patient 
  ; registration updates received from the HEC are forwarded to a COTS billing application
  ; See DBIA#4840
- ;S X="DGPFSS2" X ^%ZOSF("TEST") I $T D BATCH^DGPFSS2(IVMRTN)
+ S X="DGPFSS2" X ^%ZOSF("TEST") I $T D BATCH^DGPFSS2(IVMRTN)
  ;
 ORUQ ;
  K DFN,IVMCNTR,IVMCT,IVMDA,IVMERR,IVMERROR,IVMHLMID,IVMNDE,IVMPTID

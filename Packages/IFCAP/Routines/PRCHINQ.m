@@ -1,5 +1,5 @@
 PRCHINQ ;WISC/AKS-Add/Edit Surrogate Users and inquire Card Info ;6/8/96  13:38
- ;;5.1;IFCAP;**18,117,126**;Oct 20, 2000;Build 2
+ ;;5.1;IFCAP;**18,117,126,157**;Oct 20, 2000;Build 2
  ;Per VHA Directive 2004-038, this routine should not be modified.
  QUIT
  ;
@@ -56,8 +56,10 @@ STAT1 ;Called from field #50, subfield #9, file #443.6
  K PRCHOLD,MOPPC
  QUIT
 PAID ;To check if there is any payment made for this PO
+ ;PRC*5.1*157 in addition to "Paid" status check, check added to insure there are no reconciliation charges linked to order that should prevent PO cancelling.
  I $G(PRCHAUTH)=1!($P(^PRC(442,PRCHPO,0),U,2)=25) D
  . S PRCHOLD=$P($G(^PRC(443.6,PRCHPO,7)),U)
  . I $P($G(^PRCD(442.3,PRCHOLD,0)),"(")="Paid " S PAID=1
  . I $P($G(^PRCD(442.3,PRCHOLD,0)),"(")="Partial Payment " S PAID=1
+ . I $G(PAID)'=1,$O(^PRCH(440.6,"PO",PRCHPO,0)) S PAID=1
  QUIT

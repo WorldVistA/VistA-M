@@ -1,5 +1,5 @@
-LA7VHLU4 ;DALOI/JMC - HL7 segment builder utility ;Aug 6, 2008
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,68**;Sep 27, 1994;Build 56
+LA7VHLU4 ;DALOI/JMC - HL7 segment builder utility ;03/15/11  12:28
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,68,74**;Sep 27, 1994;Build 229
  ;
  ;
 INST(LA74,LA7FS,LA7ECH) ; Build institution field
@@ -26,8 +26,8 @@ INST(LA74,LA7FS,LA7ECH) ; Build institution field
  ;
  I LA7Y="",LA74>0,LA74=+LA74 D
  . S LA7NVAF=$$NVAF^LA7VHLU2(LA74)
- . ; Build id - VA station #/DMIS code
- . I LA7NVAF<2 S LA7Y=$$ID^XUAF4($S(LA7NVAF=1:"DMIS",1:"VASTANUM"),LA74)
+ . ; Build id - VA station #/DMIS code/IHS ASUFAC
+ . I LA7NVAF<3 S LA7Y=$$ID^XUAF4($S(LA7NVAF=1:"DMIS",LA7NVAF=2:"ASUFAC",1:"VASTANUM"),LA74)
  . ; Build name using field #100, otherwise #.01
  . S LA7Z=$$NAME^XUAF4(LA74)
  . S $P(LA7Y,$E(LA7ECH,1),2)=$$CHKDATA^LA7VHLU3(LA7Z,LA7FS_LA7ECH)
@@ -50,10 +50,8 @@ XAD(LA7FN,LA7DA,LA7DT,LA7FS,LA7ECH) ; Build extended address
  ;
  ; Returns extended address
  ;
- N LA7X,LA7Y,LA7Z
- ;
+ N I,LA7X,LA7Y,LA7Z
  S LA7Y=""
- ;
  ; Check if this field has been built previously for this institution
  I LA7FN,LA7DA,$D(^TMP($J,"LA7VHLU","99VA4A",LA7FN,LA7DA,LA7FS_LA7ECH)) S LA7Y=^TMP($J,"LA7VHLU","99VA4A",LA7FN,LA7DA,LA7FS_LA7ECH)
  ;
@@ -93,13 +91,12 @@ XAD(LA7FN,LA7DA,LA7DT,LA7FS,LA7ECH) ; Build extended address
  ;
  ;
 XON(LA7FN,LA7DA,LA7TYP,LA7FS,LA7ECH) ; Build extended composite name/id for organization
- ; Call with LA7FN = Source File number
- ;                   Presently #4 (INSTITUTION)
+ ; Call with LA7FN = Source File number - presently #4 (INSTITUTION)
  ;           LA7DA = Entry in source file
- ;          LA7TYP = type of identifer (0/null=station #, 1=CLIA)
+ ;          LA7TYP = type of identifier (0/null=station #, 1=CLIA)
  ;           LA7FS = HL field separator
  ;          LA7ECH = HL encoding characters
- ;           
+ ;
  ;
  N LA7X,LA7Y,LA7Z
  ;
@@ -147,8 +144,9 @@ XCNTFM(LA7X,LA7ECH) ; Resolve XCN data type to FileMan (last name, first name, m
  Q $$XCNTFM^LA7VHLU9(LA7X,LA7ECH)
  ;
  ;
-PLTFM(LA7PL,LA7ECH) ; Resolve location from PL (person location) data type.
+PLTFM(LA7PL,LA7FS,LA7ECH) ; Resolve location from PL (person location) data type.
  ; Call with LA7PL = HL7 field containing person location
+ ;           LA7FS = HL field separator
  ;          LA7ECH = HL7 encoding characters
  ;
  ; Returns    LA7Y = file #44 ien^name field (#.01)^division(institution)
@@ -156,16 +154,21 @@ PLTFM(LA7PL,LA7ECH) ; Resolve location from PL (person location) data type.
  N LA7X,LA7Y,X,Y
  S LA7X=$P(LA7PL,$E(LA7ECH)),(LA7Y,Y)=""
  I LA7X?1.N S Y=$$GET1^DIQ(44,LA7X_",",.01)
+ ;
+ ; Check and unescape if needed
+ S LA7X=$$UNESC^LA7VHLU3(LA7X,LA7FS_LA7ECH)
+ ;
  ; If not ien try as name
  I Y="" D
- . S X=$$FIND1^DIC(44,"","X",LA7X,"B")
+ . S X=$$FIND1^DIC(44,"","X",LA7X,"B^C")
  . I X S Y=LA7X,LA7X=X
  I Y'="" S LA7Y=LA7X_"^"_Y
- E  I $P(LA7PL,$E(LA7ECH),2)'="" S LA7Y="^"_$P(LA7PL,$E(LA7ECH),2)
+ E  I $P(LA7PL,$E(LA7ECH),2)'="" S LA7Y="^"_$$UNESC^LA7VHLU3($P(LA7PL,$E(LA7ECH),2),LA7FS_LA7ECH)
  ;
  ; Process division (institution) - pass 1st sub-component of 4th component
  S LA7X=$P(LA7PL,$E(LA7ECH),4)
  S LA7X=$P(LA7X,$E(LA7ECH,4))
+ S LA7X=$$UNESC^LA7VHLU3(LA7X,LA7FS_LA7ECH)
  S Y=""
  I LA7X'="" S Y=$$FINDSITE^LA7VHLU2(LA7X,1,1)
  S $P(LA7Y,"^",3)=Y

@@ -1,5 +1,5 @@
 DDMAP ;SFISC/JKS(Helsinki)-GRAPH OF FILEMAN POINTER RELATIONS ;7/1/93  4:14 PM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;EXPLANATIONS:
  ; N =  normal reference

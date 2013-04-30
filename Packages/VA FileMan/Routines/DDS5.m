@@ -1,5 +1,5 @@
 DDS5 ;SFISC/MKO-MULTS,NEXT/PREV PAGE,NEXT BLOCK ;9:53 AM  1 Oct 1999
- ;;22.0;VA FileMan;**8**;Mar 30, 1999
+ ;;22.0;VA FileMan;**8**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  I X="" D:DDSOLD="" NF^DDS01 D:DDSOLD]"" DM^DDS6 Q
  I DIR0N,$D(DUZ)#2 S ^DISV(DUZ,$E(DDSGL,1,28))=$E(DDSGL,29,999)_X

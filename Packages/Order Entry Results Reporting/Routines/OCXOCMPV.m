@@ -157,7 +157,7 @@ BULL(OCXDUZ) ;
  .S XMB(9)="No longer tracked" ; $S($G(OCXLCNT):OCXLCNT,1:"Zero")
  .S XMB(10)=$G(OCXERRM)
  .S XMB(11)=$S($L($G(OCXERRM)):"ABORTED",1:"has completed normally")
- .S XMY("G.OCX DEVELOPERS@ISC-SLC.DOMAIN.EXT")=""
+ .S XMY("G.OCX DEVELOPERS@ISC-SLC.domain.ext")=""
  .S XMY("G.OCX DEVELOPERS")=""
  .S XMY(OCXDUZ)=""
  .S XMDUZ=.5

@@ -1,5 +1,5 @@
 IBCREE ;ALB/ARH - RATES: CM ENTER/EDIT ;16-MAY-1996
- ;;2.0;INTEGRATED BILLING;**52,106,115,223**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**52,106,115,223,474**;21-MAR-94;Build 29
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 EDITRT ; ACTION enter/edit rate types (399.3)
@@ -33,10 +33,11 @@ EDITRS ; ACTION enter/edit rate schedules (363)
  Q
  ;
 EDITRSA ; OPTION enter/edit Rate Schedule Adjustment field (363,10) if DUZ="@"
- N IBRS10,IBRS10A,DIR,DIC,DIE,DA,DR,X,Y,IBRSFN
+ N IBRS10,IBRS10A,IBRS10B,DIR,DIC,DIE,DA,DR,X,Y,IBRSFN
  I DUZ(0)'="@" W !,"This option requires programmer access (DUZ(0)=@).",! G ERSA1Q
  ;
  S DIC="^IBE(363,",DIC(0)="AENQ" D ^DIC K DIC S IBRSFN=+Y I Y<1 K X,Y Q
+ S IBRS10B=$G(^IBE(363,+IBRSFN,10))
  ;
 ERSA1 W !
  S IBRS10=$G(^IBE(363,+IBRSFN,10))
@@ -47,9 +48,18 @@ ERSA1 W !
  I IBRS10A=IBRS10 W "  ... no change"
  I IBRS10A="" W !!,?7,"The base unit charges will not be modified."
  S X=100 X IBRS10A W !!,?7,"If the base unit charge is $100,",!,?7,"this Adjustment will result in a charge of: $",$J(X,10,2),!
- S DIR("?")="To Exit the option the correct Adjustment must be entered, i.e. must be able to enter Yes to this question.",DIR("?",1)="Enter either 'Y' or 'N'.",DIR("?",2)=" "
+ S DIR("?")="If the correct Adjustment has been entered, answer Yes to this question. If the Adjustment has been entered incorrectly, answer No, and then enter the correct value."
+ S DIR("?")=DIR("?")_" To exit the option without saving changes to the original Adjustment, enter '^'."
+ S DIR("?",1)="Enter 'Y' or 'N' or '^' to exit the option.",DIR("?",2)=" "
  S DIR("?",3)="The Adjustment has an immediate effect on the charges for this rate."
- S DIR(0)="Y",DIR("A")="Is this correct" D ^DIR K DIR I Y'=1 G ERSA1
+ ;
+ W !,"Please note: using '^' to exit the option will not change the adjustment."
+ S DIR(0)="Y",DIR("A")="Is this correct" D ^DIR K DIR
+ ; restore the original adjustment or remove the change (#10)
+ I $D(DIRUT) D  G ERSA1Q
+ . I IBRS10B'="" S DIE="^IBE(363,",DA=+IBRSFN,DR="10///"_IBRS10B D ^DIE K DIE,DA,DR,X,Y Q
+ . S DA(1)=+IBRSFN,DIK="^IBE(363,"_DA(1)_",",DA=10 D ^DIK K DIK,DA
+ G:'Y ERSA1
  ;
  I $P($G(^DGCR(399.1,+$P(^IBE(363,+IBRSFN,0),"^",4),0)),"^")="PRESCRIPTION",IBRS10A["+" D
  . W !,"The adjustment you entered may have included a dispensing fee or administrative"

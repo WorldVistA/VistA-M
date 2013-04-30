@@ -1,5 +1,5 @@
-HLCSLNCH ;ALB/MTC/JC - START AND STOP THE LLP ;07/26/2007  17:10
- ;;1.6;HEALTH LEVEL SEVEN;**6,19,43,49,57,75,84,109,122**;Oct 13, 1995;Build 14
+HLCSLNCH ;ALB/MTC/JC - START AND STOP THE LLP ;08/08/2011  15:18
+ ;;1.6;HEALTH LEVEL SEVEN;**6,19,43,49,57,75,84,109,122,157**;Oct 13, 1995;Build 8
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;This program is callable from a menu
@@ -44,7 +44,11 @@ START ; Start up the lower level protocol
  ; patch HL*1.6*122 start
  ; Multi-Servers: TCP service (GT.M, DSM, and Cache/VMS) is controlled
  ; by the external service
- I $P(HLPARM4,U,3)="M",$S(^%ZOSF("OS")'["OpenM":1,1:$$OS^%ZOSV["VMS") D  G STARTQ
+ ; patch HL*1.6*157, for Cache/UNIX for Linux
+ N HLOSYS
+ S HLOSYS=$$OS^%ZOSV
+ ; I $P(HLPARM4,U,3)="M",$S(^%ZOSF("OS")'["OpenM":1,1:$$OS^%ZOSV["VMS") D  G STARTQ
+ I $P(HLPARM4,U,3)="M",$S(^%ZOSF("OS")'["OpenM":1,1:(HLOSYS["VMS")!(HLOSYS["UNIX")) D  G STARTQ
  . W !,$C(7),"This LLP is a multi-threaded server. It is controlled by external service, i.e. TCPIP/UCX. You must use the external service to start this LLP."
  . Q
  ; patch HL*1.6*122 end
@@ -134,7 +138,11 @@ STOP ; Shut down a lower level protocol..
  ; patch HL*1.6*122
  ; Multi-Servers: TCP service (GT.M, DSM, and Cache/VMS) is controlled
  ; by the external service
- I $P(HLPARM4,U,3)="M",$S(^%ZOSF("OS")'["OpenM":1,1:$$OS^%ZOSV["VMS") D  Q
+ ; patch HL*1.6*157, for Cache/UNIX for Linux
+ N HLOSYS
+ S HLOSYS=$$OS^%ZOSV
+ ; I $P(HLPARM4,U,3)="M",$S(^%ZOSF("OS")'["OpenM":1,1:$$OS^%ZOSV["VMS") D  Q
+ I $P(HLPARM4,U,3)="M",$S(^%ZOSF("OS")'["OpenM":1,1:(HLOSYS["VMS")!(HLOSYS["UNIX")) D  Q
  . W !,$C(7),"This LLP is a multi-threaded server. It is controlled by external service, i.e. TCPIP/UCX. You must use the external service to disable this LLP."
  . Q
  ;
@@ -152,7 +160,12 @@ S ;
  ; patch HL*1.6*122 start
  ; I ^%ZOSF("OS")["OpenM",(($P(HLPARM4,U,3)="M"&($$OS^%ZOSV'["VMS"))!($P(HLPARM4,U,3)="S")) D
  ; I ^%ZOSF("OS")'["DSM",(($P(HLPARM4,U,3)="M"&($$OS^%ZOSV'["VMS"))!($P(HLPARM4,U,3)="S")) D
- I ($P(HLPARM4,U,3)="S")!(($P(HLPARM4,U,3)="M")&($S(^%ZOSF("OS")'["OpenM":0,1:$$OS^%ZOSV'["VMS"))) D
+ ; patch HL*1.6*157, for Cache/UNIX for Linux
+ N HLOSYS
+ S HLOSYS=$$OS^%ZOSV
+ ; I ($P(HLPARM4,U,3)="S")!(($P(HLPARM4,U,3)="M")&($S(^%ZOSF("OS")'["OpenM":0,1:$$OS^%ZOSV'["VMS"))) D
+ I ($P(HLPARM4,U,3)="S")!(($P(HLPARM4,U,3)="M")&($S(^%ZOSF("OS")'["OpenM":0,1:((HLOSYS'["VMS")&(HLOSYS'["UNIX"))))) D
+ . ; patch HL*1.6*157 end
  . ;pass task number to stop listener
  . S:$P(HLPARM0,U,12) X=$$ASKSTOP^%ZTLOAD(+$P(HLPARM0,U,12))
  . ; D CALL^%ZISTCP($P(HLPARM4,U),$P(HLPARM4,U,2),10)

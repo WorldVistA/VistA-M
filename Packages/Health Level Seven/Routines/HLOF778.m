@@ -1,5 +1,5 @@
-HLOF778 ;ALB/CJM-HL7 - Saving messages to file 778 ;07/31/2008
- ;;1.6;HEALTH LEVEL SEVEN;**126,134,137,138**;Oct 13, 1995;Build 34
+HLOF778 ;ALB/CJM-HL7 - Saving messages to file 778 ;03/07/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**126,134,137,138,158**;Oct 13, 1995;Build 14
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -86,9 +86,10 @@ SAVEMSG(HLMSTATE) ;
  .K HLMSTATE("BATCH","ACK TO")
  ;
  ;if the msg is an app ack, update the original if not done already
- I $G(HLMSTATE("ACK TO","IEN"))]"",'$G(HLMSTATE("ACK TO","DONE")) D
+ I $G(HLMSTATE("ACK TO IEN"))]"",'$G(HLMSTATE("ACK TO","DONE")) D
  .N ACKTO
  .M ACKTO=HLMSTATE("ACK TO")
+ .S ACKTO("IEN")=HLMSTATE("ACK TO IEN")
  .S ACKTO("ACK BY")=$S(HLMSTATE("BATCH"):HLMSTATE("HDR","BATCH CONTROL ID"),1:HLMSTATE("HDR","MESSAGE CONTROL ID"))
  .D ACKTO(.HLMSTATE,.ACKTO)
  .S HLMSTATE("ACK TO","DONE")=1 ;so the update isn't done again
@@ -121,7 +122,7 @@ NEXTMSG(HLMSTATE,MSG) ;
  ;
 ACKTO(HLMSTATE,ACKTO) ;if this is an application ack, update the original message - but do not overlay if already valued
  ;ACKTO = (msgid of msg being ack'd)
- ;        uses these subscripts ("IEN"=ien^subien),("ACK BY"=msgid of acking msg),("STATUS"=status for the initial msg determined by the ack)
+ ;        uses these subscripts ("IEN")=ien^subien,("ACK BY")=msgid of acking msg,("STATUS")=status for the initial msg determined by the ack)
  ;
  N STATUS,IEN,SUBIEN,NODE,SKIP
  S SKIP=0
@@ -132,11 +133,10 @@ ACKTO(HLMSTATE,ACKTO) ;if this is an application ack, update the original messag
  .;ack is to a message NOT in a batch
  .I $P(NODE,"^",7)'="",$P(NODE,"^",7)'=ACKTO("ACK BY") S SKIP=1 Q
  .I STATUS="" S STATUS="SU"
- .S $P(NODE,"^",7)=ACKTO("ACK BY")
- .S $P(NODE,"^",18)=1
- .S $P(NODE,"^",20)=STATUS
- .S $P(NODE,"^",21)=$G(ACKTO("ERROR TEXT"))
- .S ^HLB(IEN,0)=NODE
+ .S $P(^HLB(IEN,0),"^",7)=ACKTO("ACK BY")
+ .S $P(^HLB(IEN,0),"^",18)=1
+ .S $P(^HLB(IEN,0),"^",20)=STATUS
+ .S $P(^HLB(IEN,0),"^",21)=$G(ACKTO("ERROR TEXT"))
  E  D
  .;ack is to a message that IS in a batch
  .S $P(^HLB(IEN,3,SUBIEN,0),"^",4)=$G(ACKTO("ACK BY"))

@@ -1,5 +1,5 @@
 DID ;SFISC/XAK-LIST DD'S ;8SEP2004
- ;;22.0;VA FileMan;**24,105,157**;Mar 30, 1999;Build 7
+ ;;22.0;VA FileMan;**24,105,157**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  D KL,L^DICRW1 I $D(DIC) S (DUB,DIB,DFF)=+Y G O:Y'=+DIB(1),SUB
 KL K DIS,DIJS,DHIT,DIB,DINM,DIDX,DIGR,DIDH,BY,DICMX,DIOEND,FLDS

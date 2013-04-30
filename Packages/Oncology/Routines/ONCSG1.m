@@ -1,5 +1,5 @@
 ONCSG1 ;Hines OIFO/GWB - Automatic Staging Tables ;10/28/10
- ;;2.11;ONCOLOGY;**35,51,52,54**;Mar 07, 1995;Build 10
+ ;;2.11;ONCOLOGY;**35,51,52,54,56,57**;Mar 07, 1995;Build 6
  ;
  ;DIGESTIVE SYSTEM
  ;
@@ -28,23 +28,45 @@ ESO56 ;Esophagus - 5th and 6th editions
  .I M="1A" S SG="4A" Q         ;IVA  Any T Any N M1a
  .I M="1B" S SG="4B" Q         ;IVB  Any T Any N M1b
  ;
-ESO7 ;Esophagus - 7th edition
+ESO7 ;Esophagus - 7th edition  (+ some Stomach/GE Junction cases)
+ N VAR I (TX=67160)!(TX=67161)!(TX=67162) D  G:VAR="S" ESO7A G:VAR="A" ESO7B
+ .S VAR="A"
+ .I ($E(HT,1,4)>7999)&($E(HT,1,4)<8047) S VAR="S" Q
+ .I ($E(HT,1,4)>8050)&($E(HT,1,4)<8032) S VAR="S" Q
+ .I ($E(HT,1,4)>8147)&($E(HT,1,4)<8153) S VAR="S" Q
+ .I ($E(HT,1,4)>8153)&($E(HT,1,4)<8158) S VAR="S" Q
+ .I ($E(HT,1,4)>8169)&($E(HT,1,4)<8176) S VAR="S" Q
+ .I ($E(HT,1,4)>8229)&($E(HT,1,4)<8232) S VAR="S" Q
+ .I ($E(HT,1,4)>8244)&($E(HT,1,4)<8246) S VAR="S" Q
+ .I ($E(HT,1,4)>8246)&($E(HT,1,4)<8249) S VAR="S" Q
+ .I ($E(HT,1,4)>8507)&($E(HT,1,4)<8514) S VAR="S" Q
+ .I ($E(HT,1,4)>8559)&($E(HT,1,4)<8571) S VAR="S" Q
+ .I ($E(HT,1,4)=8575)!($E(HT,1,4)=8950) S VAR="S" Q
+ .I ($E(HT,1,4)>8979)&($E(HT,1,4)<8982) S VAR="S" Q
+ .I ($E(HT,1,4)=8050)!($E(HT,1,4)=8576) S VAR="A" Q
+ .I ($E(HT,1,4)>8139)&($E(HT,1,4)<8148) S VAR="A" Q
+ .I ($E(HT,1,4)>8159)&($E(HT,1,4)<8163) S VAR="A" Q
+ .I ($E(HT,1,4)>8179)&($E(HT,1,4)<8222) S VAR="A" Q
+ .I ($E(HT,1,4)>8249)&($E(HT,1,4)<8508) S VAR="A" Q
+ .I ($E(HT,1,4)>8513)&($E(HT,1,4)<8552) S VAR="A" Q
+ .I ($E(HT,1,4)>8570)&($E(HT,1,4)<8575) S VAR="A" Q
+ .I ($E(HT,1,4)>8939)&($E(HT,1,4)<8942) S VAR="A" Q
  I ($E(HT,1,3)>804)&($E(HT,1,3)<808) G ESO7A
  E  G ESO7B
 ESO7A ;Squamous Cell Carcinoma
  I T="IS" S TNM=T_N_M
  E  S TNM=$E(T,1)_N_M
  D  K TNM Q
- .I (TNM="IS00")&(G=1) S SG=0 Q
+ .I TNM="IS00" S SG=0 Q
  .I (TNM=100)&(G=1) S SG="1A" Q
  .I (TNM=100)&((G=2)!(G=3)) S SG="1B" Q
  .I TNM=100 S SG="1A" Q
- .I ((TNM=200)!(TNM=300))&(G=1)&((TX=67152)!(TX=67155)) S SG="1B" Q
+ .I ((TNM=200)!(TNM=300))&(G=1)&((TX=67152)!(TX=67155)!(TX=67160)!(TX=67161)!(TX=67162)) S SG="1B" Q
  .I ((TNM=200)!(TNM=300))&(G=1)&((TX=67150)!(TX=67151)!(TX=67153)!(TX=67154)) S SG="2A" Q
- .I ((TNM=200)!(TNM=300))&((G=2)!(G=3))&((TX=67152)!(TX=67155)) S SG="2A" Q
+ .I ((TNM=200)!(TNM=300))&((G=2)!(G=3))&((TX=67152)!(TX=67155)!(TX=67160)!(TX=67161)!(TX=67162)) S SG="2A" Q
  .I ((TNM=200)!(TNM=300))&((G=2)!(G=3))&((TX=67150)!(TX=67151)!(TX=67153)!(TX=67154)) S SG="2B" Q
  .I ((TNM=200)!(TNM=300))&(G=1) S SG="1B" Q
- .I ((TNM=200)!(TNM=300))&((TX=67152)!(TX=67155)) S SG="1B" Q
+ .I ((TNM=200)!(TNM=300))&((TX=67152)!(TX=67155)!(TX=67160)!(TX=67161)!(TX=67162)) S SG="1B" Q
  .I ((TNM=200)!(TNM=300))&((TX=67150)!(TX=67151)!(TX=67153)!(TX=67154)) S SG="2A" Q
  .I ((TNM=200)!(TNM=300))&((G=2)!(G=3)) S SG="2A" Q
  .I (TNM=200)!(TNM=300) S SG="1B" Q
@@ -62,7 +84,7 @@ ESO7B ;Adenocarcinoma
  I T="IS" S TNM=T_N_M
  E  S TNM=$E(T,1)_N_M
  D  K TNM Q
- .I (TNM="IS00")&(G=1) S SG=0 Q
+ .I TNM="IS00" S SG=0 Q
  .I (TNM=100)&((G=1)!(G=2)) S SG="1A" Q
  .I (TNM=100)&(G=3) S SG="1B" Q
  .I (TNM=200)&((G=1)!(G=2)) S SG="1B" Q

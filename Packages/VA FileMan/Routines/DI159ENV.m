@@ -1,5 +1,5 @@
 DI159ENV ;IRMFO-SF/FM STAFF-ENVIRONMENT CHECK ROUTINE ;5:33 AM  18 Oct 2007
- ;;22.0;VA FileMan;**159**;Mar 30, 1999;Build 8
+ ;;22.0;VA FileMan;**159**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Check XPDENV 0 = Loading; 1 = Installing

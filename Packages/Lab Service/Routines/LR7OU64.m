@@ -1,5 +1,5 @@
-LR7OU64 ;SLC/DCM/FHS/DALISC - RESULT CODE NLT LINKING UTILITY AUTO ; 12/3/1997
- ;;5.2;LAB SERVICE;**153,201**;Sep 27, 1994
+LR7OU64 ;SLC/DCM/FHS/DALISC - RESULT CODE NLT LINKING UTILITY AUTO ; 6/12/12 2:00
+ ;;5.2;LAB SERVICE;**153,201,350**;Sep 27, 1994;Build 230
 EN ;
  ;Find matches between file 64 and 60
  D MSG
@@ -79,5 +79,5 @@ MSG W !,$$CJ^XLFSTR("This option will Auto Link NLT RESULT CODE to Laboratory te
  W !,$$CJ^XLFSTR("NLT RESULT CODE is used by the LEDI software to identify",80)
  W !,$$CJ^XLFSTR("test results returned by Host Laboratories.",80)
  W !,$$CJ^XLFSTR("ONLY GENERIC NLT CODES CAN BE LINKED TO LAB TEST ",80),!!
- W !,$$CJ^XLFSTR("Only ATOMIC lab tests can have an NLT RESUTL CODE.",80),!
+ W !,$$CJ^XLFSTR("Only ATOMIC lab tests can have an NLT RESULT CODE.",80),!   ;[ccr-8218]
  Q

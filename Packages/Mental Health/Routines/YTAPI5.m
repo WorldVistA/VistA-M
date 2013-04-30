@@ -63,7 +63,7 @@ MC ;mumps executable setting P
  Q
 GAFURL(YSDATA) ;returns MH GAF horizontal sheet
  S YSDATA(1)="[DATA]"
- S YSDATA(2)="http://vaww.mentalhealth.DOMAIN.EXT/gafsheet" ;ASF 10/13/11
+ S YSDATA(2)="http://vaww.mentalhealth.domain.ext/gafsheet" ;ASF 10/13/11
  Q
 PRIVL(YSDATA,YS) ;check privileges
  N YSCODE,YSET

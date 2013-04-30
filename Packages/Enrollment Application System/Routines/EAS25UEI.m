@@ -142,7 +142,7 @@ MAIL ;
  N MSG,XMDUZ,XMSUB,XMTEXT,XMY,SITE,STATN,SITENM
  S SITE=$$SITE^VASITE,STATN=$P($G(SITE),"^",3),SITENM=$P($G(SITE),"^",2)
  S (XMDUZ,XMSUB)="GMTII - USER ENROLLEE INITIAL DETERMINATION PROCESS"
- S (XMY(DUZ),XMY(.5))="",XMY("NAIK.CHINTAN@FORUM.DOMAIN.EXT")=""
+ S (XMY(DUZ),XMY(.5))="",XMY("NAIK.CHINTAN@FORUM.domain.ext")=""
  S XMTEXT="MSG("
  S MSG(1)="User Enrollee initial determination process is completed successfully."
  S MSG(1.5)="Task: "_$G(^XTMP("EAS*1*25","TASK"))

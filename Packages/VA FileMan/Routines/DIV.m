@@ -1,5 +1,5 @@
 DIV ;SFISC/GFT-VERIFY FLDS ;10:06 AM  28 Jun 1999
- ;;22.0;VA FileMan;**7**;Mar 30, 1999
+ ;;22.0;VA FileMan;**7**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  N DIUTIL,DIVDAT,DIVFIL,DIVMODE,DIVPG,POP S DIUTIL="VERIFY FIELDS"
  K J

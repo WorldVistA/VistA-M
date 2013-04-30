@@ -1,11 +1,12 @@
-PRCSP12 ;WISC/SAW-CONTROL POINT ACTIVITY 2237 PRINTOUT (FREE FORM) ;7/17/00  15:02
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCSP12 ;WISC/SAW-CONTROL POINT ACTIVITY 2237 PRINTOUT (FREE FORM) ;6/22/12  17:04
+V ;;5.1;IFCAP;**167**;Oct 20, 2000;Build 17
+ ;Per VHA Directive 2004-38, this routine should not be modified.
  H 2 G P
 QUE I $D(ZTQUEUED) S DA=D0
  S DA=D0
 P U IO W:$Y>0 @IOF S U="^",P(1)=0,PRCS("P")=1,L="",$P(L,"_",90)="_" D NOW^%DTC S Y=% D DD^%DT
  S P=$S($D(^PRCS(410,DA,1)):$P(^(1),U,3),1:""),P=$S(P="EM":"***EMERGENCY***",P="SP":"*SPECIAL*",1:"STANDARD") W ?36,"PRIORITY: ",P
+ W:$$ECMS2237^PRCHJUTL(DA) ?64,"Sent to eCMS"
  W !,Y,?36,$P(^PRCS(410,DA,0),U),?83,"PAGE ",PRCS("P"),!,L
  W !,?16,"REQUEST, TURN-IN, AND RECEIPT FOR PROPERTY OR SERVICES",! I $D(ZTSAVE("NOPRINT")) W ?37,"**REPRINT**",!
  W !,L

@@ -1,6 +1,8 @@
 FHWTRN ; HISC/REL - Process Transfers ;3/17/92  14:39
- ;;5.5;DIETETICS;**4**;Jan 28, 2005;Build 32
+ ;;5.5;DIETETICS;**4,27,33**;Jan 28, 2005;Build 1
  ;patch 4 - added alert if pt is transferred
+ ;patch 27 - discontinues use of obsolete CLNICIAN field (#1) in NUTRITION PERSON file (#119.6)
+ ;patch 33 - addressed tickler filing problem
  S (FHWRNEW,FHWROLD)=""
  S FHZ115="P"_DFN,FHWROLD="" D CHECK^FHOMDPA I FHDFN'="" D
  .S:ADM FHWROLD=$P($G(^FHPT(FHDFN,"A",ADM,0)),U,8)
@@ -42,8 +44,6 @@ XQAL ; Check a patient
  D NOW^%DTC S NOW=%,FHEDT=$P(NOW,".")
  S Y=^DPT(DFN,0),NAM=$P(Y,"^",1),SEX=$P(Y,"^",2),DOB=$P(Y,"^",3)
  S AGE="" I DOB'="" S AGE=$E(NOW,1,3)-$E(DOB,1,3)-($E(NOW,4,7)<$E(DOB,4,7))
- S FHDUZ=$P($G(^FH(119.6,FHWRNEW,0)),U,2)
- S:FHDUZ FHCLIN=$P($G(^VA(200,FHDUZ,0)),U,1)
 P0 ; Calculate BMI
  S GMRVSTR="WT" D EN6^GMRVUTL S WT=$P(X,"^",8),FHWTDT=$P(X,"^",1)
  S GMRVSTR="HT" D EN6^GMRVUTL S HT=$P(X,"^",8),FHHTDT=$P(X,"^",1)
@@ -119,23 +119,33 @@ FIL ; File Monitor
  Q:(MONTX["Hyperals")&($P($G(^FH(119.6,FHWRNEW,1)),"^",7)'="Y")
  Q:(MONTX["Albumin")&($P($G(^FH(119.6,FHWRNEW,1)),"^",8)'="Y")
  Q:(MONTX["NPO+Clr")&($P($G(^FH(119.6,FHWRNEW,1)),"^",9)'="Y")
- K XQA,XQAMSG,XQAOPT,XQAROU
+ K XQAID,XQAOPT,XQAROU
  S XQAID="FH,"_$J_","_$H
- S XQAMSG=$E(FHPTNM,1,9)_" ("_$E(FHPTNM,1,1)_$P(FHSSN,"-",3)_"): "
- S XQAOPT="FHCTF2",XQAMSG=XQAMSG_"  "_MONTX_" "_$E(DTE,4,5)_"/"_$E(DTE,6,7)_"/"_$E(DTE,2,3)_"    Clinician: "_FHCLIN
- F A=0:0 S A=$O(^FH(119.6,FHWRNEW,2,A)) Q:A'>0  S TK=$P($G(^FH(119.6,FHWRNEW,2,A,0)),U,1),XQA(TK)=""
- I '$D(XQA(FHDUZ)) S XQA(FHDUZ)=""
- D SETUP^XQALERT
+ S XQAOPT="FHCTF2"
+ F A=0:0 S A=$O(^FH(119.6,FHWRNEW,2,A)) Q:A'>0  D
+ . K XQA,XQAMSG
+ . S FHDUZ=$P($G(^FH(119.6,FHWRNEW,2,A,0)),U,1)
+ . I FHDUZ="" Q
+ . S (XQA(FHDUZ),XQAMSG)=""
+ . S FHCLIN=$P($$GET1^DIQ(200,FHDUZ_",",.01),",")
+ . S XQAMSG=$E(FHPTNM,1,9)_"("_$E(FHPTNM,1,1)_$P(FHSSN,"-",3)_"):"
+ . S XQAMSG=XQAMSG_" "_MONTX_" "_$E(DTE,4,5)_"/"_$E(DTE,6,7)_"/"_$E(DTE,2,3)_" Clinician:"_FHCLIN
+ . D SETUP^XQALERT
  Q
 TFIL ;File patient info
- L +^FHPT(FHDFN,"A",ADM,"MO",0)
+ L +^FHPT(FHDFN,"A",ADM,"MO",0):$S($G(DILOCKTM)>0:DILOCKTM,1:3)
  I '$D(^FHPT(FHDFN,"A",ADM,"MO",0)) S ^FHPT(FHDFN,"A",ADM,"MO",0)="^115.11^^"
  L -^FHPT(FHDFN,"A",ADM,"MO",0)
  K DIC,DD,DO,DINUM S DIC="^FHPT(FHDFN,""A"",ADM,""MO"",",DIC(0)="L",DA(1)=ADM,DA(2)=FHDFN,DLAYGO=115,X=MONTX D FILE^DICN K DIC,DLAYGO
  Q:Y<1  S MONIFN=+Y
  S $P(^FHPT(FHDFN,"A",ADM,"MO",MONIFN,0),"^",2)=DTE,^FHPT(FHDFN,"A",ADM,"MO","AC",DTE,MONIFN)=""
-TCK S FHTF=DTE_"^M^"_MONTX_"^"_DFN_"^"_ADM_"^"_MONIFN  ;set tickler for a clinician
- D:FHDUZ FILE^FHCTF2
+TCK ;File clinician(s) tickler
+ K FHDUZ
+ F A=0:0 S A=$O(^FH(119.6,FHWRNEW,2,A)) Q:A'>0  D
+ . S FHDUZ=$P($G(^FH(119.6,FHWRNEW,2,A,0)),U,1)
+ . I FHDUZ="" Q
+ . S FHTF=DTE_"^M^"_MONTX_"^"_DFN_"^"_ADM_"^"_MONIFN
+ . D FILE^FHCTF2
  Q
  ;
 KIL K %,A1,A2,COM,D1,D2,D4,FHDU,FHLD,FHOR,FHPV,FHX1,FHX2,FHX3,K,K9,KK,NOW,FHORD,TYP,X,X1,X2,X9

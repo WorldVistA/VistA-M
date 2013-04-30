@@ -17,8 +17,8 @@ DISP() ; -- display selection choices
  D HOME^%ZIS W @IOF,*13
  W $$LINE^SDAMO("Report Specifications")
  W !!,"   Encounter Dates: ",$$FDATE^VALM1(SDBEG)," to ",$$FDATE^VALM1(SDEND)
- W !,"  Encounter Status: " ; ,$P($T(SELECT+SDSEL^SDAMO2),";;",2)
- W:$D(SDSORT) !,"         Sorted By: " ; ,$P($T(SORT+SDSORT^SDAMO2),";;",2)
+ W !,"  Encounter Status: ",$P($T(SELECT+SDSEL^SDAMO2),";;",2)
+ W:$D(SDSORT) !,"         Sorted By: ",$P($T(SORT+SDSORT^SDAMO2),";;",2)
  W !!?15,"Divisions",?55,$S(SDSORT=1!(SDSORT=2)!(SDSORT=5):"Clinics",1:"Stop Codes")
  W !?15,"---------",?55,"----------"
  S (D,C)=0

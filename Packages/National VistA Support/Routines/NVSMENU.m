@@ -67,7 +67,7 @@ NOROU ; -- display info for missing routine(s) --
  I $G(ROUAXP)]"" D
  .W !!,"This routine is described in ",ROUAXP," and can be reviewed on FORUM in the"
  .W !,"Shared Mail AXP ",$S(ROUAXP["ALERT":"ALERT",1:"INFO")," MESSAGE mail basket or at the VSTS Technical Support Team"
- .W !,"web address at http://vaww.DOMAIN.EXT/custsvc/cssupp/axp/",!
+ .W !,"web address at http://vaww.domain.ext/custsvc/cssupp/axp/",!
  .Q
  K DIR S DIR(0)="E",DIR("A")="Press RETURN to continue"
  W ! D ^DIR
@@ -165,7 +165,7 @@ GLX K DIR,NVS,NVSCHAR,NVSFLAG,NVSG,NVSGU,NSP,X,Y
  S NVSG=Y,NVSGU=U_Y
  I '$D(@NVSGU) W !,"No such global.",! G GLX
  S NSP=$ZU(90,4)
- ;W !!,NVSG," in namespace ",NSP," is mapped to: ",$$getdest^%GXLINF1(NSP,NVSG) G GLX
+ W !!,NVSG," in namespace ",NSP," is mapped to: ",$$getdest^%GXLINF1(NSP,NVSG) G GLX
  Q
  ;
 CD W !,"<<< WARNING - This will switch to another namespace and exit this utility! >>>",!
@@ -173,7 +173,7 @@ CD W !,"<<< WARNING - This will switch to another namespace and exit this utilit
  H 2 W ! D ^DIR W !
  I Y=0!($D(DIRUT)) Q
  W !!,"To switch back use utility D ^%CD and enter ",$ZU(5),!
- K NVSKEEP D EXIT ; D ^%CD
+ K NVSKEEP D EXIT D ^%CD
  Q
  ;
 SHOW H 2 S NSP=$ZU(5) D SHOW^%NSP(NSP)
@@ -201,7 +201,7 @@ CHANGE K DIR,NVSDIR,X,Y
  ;
 SYSLOG ; -- show Cache System Error Log entries --
  H 2
- ;D SCREEN^|"%SYS"|SYSLOG K %ST
+ D SCREEN^|"%SYS"|SYSLOG K %ST
  Q
  ;
 QUEMGT ; -- call Carl's queue_management_menu.com in USER$:[AXP] --

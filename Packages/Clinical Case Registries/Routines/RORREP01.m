@@ -10,15 +10,14 @@ RORREP01 ;HOIFO/BH - REGISTRY COMPARISON REPORT ; 12/21/05 11:55am
 BEGIN ;
  I '$$VFILE^DILFD(158)  D  Q
  . W !,"ICR v2.1 is not installed in this account!",!
- ;I '$D(^XUSEC("IMRA",DUZ)) S IMRLOC="RORREP01" D ACESSERR^IMRERR,H^XUS K IMRLOC
- I '$D(^XUSEC("IMRA",DUZ)) S IMRLOC="RORREP01" D H^XUS K IMRLOC
+ I '$D(^XUSEC("IMRA",DUZ)) S IMRLOC="RORREP01" D ACESSERR^IMRERR,H^XUS K IMRLOC
  ;
  W !,?10,"####################################################"
  W !,?10,"#",?20,"Local ICR Version Comparison Report      #",?61
  W !,?10,"####################################################"
  ;
  ;
-DEV ; D IMRDEV^IMREDIT
+DEV D IMRDEV^IMREDIT
  G:POP KILL
  I '$D(IO("Q")) W @IOF D REP Q
  I $D(IO("Q")) D  G KILL

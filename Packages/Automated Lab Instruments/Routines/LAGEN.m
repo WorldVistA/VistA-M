@@ -1,5 +1,6 @@
-LAGEN ;DALOI/CJS - LAB AUTOMATED DATA ; 1 Feb 2005
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**1,17,22,27,47,46,64,67**;Sep 27, 1994
+LAGEN ;DALOI/STAFF - LAB AUTOMATED DATA ;11/18/11  15:03
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**1,17,22,27,47,46,64,67,74**;Sep 27, 1994;Build 229
+ ;
  Q
  ;
 LOG ; Run by accession number.
@@ -190,15 +191,18 @@ POI(LWL,ISQN,NODE,LAID) ; Set .1 node with patient/order info
  ;                 PID - "DFN","DOB","ICN","LRDFN","LRTDFN","PNM","SEX","SSN"
  ;                 OBR - "EOL","FID","ORCDT","ORDNLT","ORDP","PON","SID","PEB","PVB"
  ;
+ ; ^LAH(LWL,1,ISQN,.1,"OBR","ARI") = assistant result interpreter (DUZ or id^last name, first name, mi [id]) (OBR-33)
  ; ^LAH(LWL,1,ISQN,.1,"OBR","EOL") = enterer's ordering location
  ; ^LAH(LWL,1,ISQN,.1,"OBR","FID") = filler specimen id
  ; ^LAH(LWL,1,ISQN,.1,"OBR","ORCDT") = order date/time (FileMan d/t)
  ; ^LAH(LWL,1,ISQN,.1,"OBR","ORDNLT") = order NLT (multiple separated by "^")
- ; ^LAH(LWL,1,ISQN,.1,"OBR","ORDP") = ordering provider (DUZ or id^last name, first name, mi [id])
+ ; ^LAH(LWL,1,ISQN,.1,"OBR","ORDP") = ordering provider (DUZ or id^last name, first name, mi [id]) (OBR-16)
  ; ^LAH(LWL,1,ISQN,.1,"OBR","PEB") = placer entered by (DUZ or id^last name, first name, mi [id])
  ; ^LAH(LWL,1,ISQN,.1,"OBR","PON") = placer order number
+ ; ^LAH(LWL,1,ISQN,.1,"OBR","PRI") = principle result interpreter (DUZ or id^last name, first name, mi [id]) (OBR-32)
  ; ^LAH(LWL,1,ISQN,.1,"OBR","PVB") = placer verified by (DUZ or id^last name, first name, mi [id])
  ; ^LAH(LWL,1,ISQN,.1,"OBR","SID") = placer specimen id
+ ; ^LAH(LWL,1,ISQN,.1,"OBR","TECH") = technican (DUZ or id^last name, first name, mi [id]) (OBR-34)
  ; ^LAH(LWL,1,ISQN,.1,"PID","DFN") = patient's DFN in file #2
  ; ^LAH(LWL,1,ISQN,.1,"PID","DOB") = date of birth (FileMan d/t)
  ; ^LAH(LWL,1,ISQN,.1,"PID","ICN") = patient's ICN
@@ -231,7 +235,7 @@ LATYP(LWL,ISQN,LAX) ; Set type of interface for this entry
  ; Call with LWL = ien of load/list in LAH
  ;          ISQN = ien of sequence
  ;           LAX = type of interface
- ; 
+ ;
  S $P(^LAH(LWL,1,ISQN,0),"^",12)=LAX
  Q
  ;
@@ -240,7 +244,7 @@ LAMSGID(LWL,ISQN,LAX) ; Set pointer to file #62.49 for this entry.
  ; Call with LWL = ien of load/list in LAH
  ;          ISQN = ien of sequence
  ;           LAX = ien of entry in file #62.49 that is source of these results
- ; 
+ ;
  S $P(^LAH(LWL,1,ISQN,0),"^",13)=LAX
  S ^LAH(LWL,1,ISQN,.01,LAX)=""
  Q
@@ -254,4 +258,49 @@ METH(LWL,ISQN,LAX) ; Save instrument name/method for this entry
  N X
  S X=$P(^LAH(LWL,1,ISQN,0),"^",7)
  I X'[LAX S X=LAX_";"_X,$P(^LAH(LWL,1,ISQN,0),"^",7)=X
+ Q
+ ;
+ ;
+SUBID(LWL,ISQN,LRSS,NODE,SUBID) ; Set/lookup entry for a sub-id (isolate id)
+ ; Call with LWL = ien of load/list in LAH
+ ;          ISQN = ien of sequence
+ ;          LRSS = subscript in LAH
+ ;          NODE = data node in LAH
+ ;         SUBID = sub-id to lookup/use to link entry
+ ;
+ ; Returns ISQN2 = entry linked to sub-id
+ ;
+ N ISQN2
+ Q:SUBID="" -1
+ S ISQN2=$O(^LAH(LWL,1,ISQN,LRSS,NODE,"C",SUBID,0))
+ I 'ISQN2 D
+ . S ISQN2=$O(^LAH(LWL,1,ISQN,LRSS,NODE,"A"),-1)
+ . S ISQN2=ISQN2+1
+ . S ^LAH(LWL,1,ISQN,LRSS,NODE,"C",SUBID,ISQN2)=""
+ . S ^LAH(LWL,1,ISQN,LRSS,"C",SUBID,NODE,ISQN2)=""
+ Q ISQN2
+ ;
+LAH(LAWL,LADA,LASS,LASUB,LAP,LAVAL) ;
+ ; sets data into LAH
+ ; Inputs
+ ;   LAWL : WorkLoad List
+ ;   LADA :
+ ;   LASS : SubScript
+ ;  LASUB :
+ ;    LAP : Data position ($Piece of node)
+ ;        : if -1 will set the entire node=LAVAL (for WP type data)
+ ;  LAVAL : The VALue to set
+ N NODE
+ I LAVAL="@" S LAVAL=""
+ I LAVAL="""""" S LAVAL=""
+ I LAP'=-1 I LAVAL["^" S LAVAL=$TR(LAVAL,"^"," ")
+ S LAWL=+$G(LAWL)
+ S LADA=+$G(LADA)
+ S LASS=$G(LASS)
+ S LASUB=$G(LASUB)
+ S NODE="^LAH(LAWL,1,LADA,"""_LASS_""","
+ S NODE=NODE_LASUB
+ S:$E(NODE,$L(NODE),$L(NODE))'=")" NODE=NODE_")"
+ I LAP>0 S $P(@NODE,"^",+$G(LAP))=LAVAL
+ I LAP=-1 S @NODE=LAVAL
  Q

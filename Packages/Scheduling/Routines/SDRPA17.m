@@ -6,8 +6,8 @@ EN(ST) ;
  .S SA=$P(STR,";") Q:SA="E"
  .S SB=$P(STR,";"),SM=$P(STR,";",2) D
  ..F GG=1:1 S STE=$P($T(@ST+II+GG),";;",2) Q:$P(STE,";")'="E"  D
- ...S ER=$P(STE,";",2) S SQS=$P(STE,";",3) F SS=1:1 S SQ=$P(SQS,",",SS) Q:SQ=""  S SBE=ST_SB,SME=ST_SM ; D PR^SD376P(SBE,SME,ER,SQ)
- ..S ER="" S SQ=$O(^SDWL(409.6,"AMSG",SM,"")) Q:SQ=""  ; D PR^SD376P(SB,SM,ER,SQ)
+ ...S ER=$P(STE,";",2) S SQS=$P(STE,";",3) F SS=1:1 S SQ=$P(SQS,",",SS) Q:SQ=""  S SBE=ST_SB,SME=ST_SM D PR^SD376P(SBE,SME,ER,SQ)
+ ..S ER="" S SQ=$O(^SDWL(409.6,"AMSG",SM,"")) Q:SQ=""  D PR^SD376P(SB,SM,ER,SQ)
  Q
  ;batch;ms
  ;E;ere cd;seq1,seq2,

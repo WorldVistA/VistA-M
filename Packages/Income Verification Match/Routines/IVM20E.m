@@ -29,7 +29,7 @@ ENV ; Make sure required packages/patches are installed.
  I $G(^DG(43,1,"VERSION"))<5.3 K DIFQ W !,?3,"PIMS Version 5.3 must be installed first!"
  I +$G(^DD(350,0,"VR"))<2 K DIFQ W !?3,"Integrated Billing Version 2.0 must be installed first!"
  S X="IBCOIVM1" X ^%ZOSF("TEST") E  K DIFQ W !?3,"Integrated Billing patch IB*2*6 must be installed first!"
- I '$O(^DIC(4.2,"B","IVM.DOMAIN.EXT",0)) W !?3,*7,"Patches XM*DBA*51 and XM*DBA*52 are needed!" K DIFQ
+ I '$O(^DIC(4.2,"B","IVM.domain.ext",0)) W !?3,*7,"Patches XM*DBA*51 and XM*DBA*52 are needed!" K DIFQ
  I '$D(^ORD(100.99)) W !?3,*7,"You must install ORDER ENTRY/RESULTS REPORTING before continuing!" K DIFQ
  I $G(^DD(770,0,"VR"))<1.5 W !?3,*7,"You must be running version 1.5 or higher of the DHCP HL7 package",!?6,"prior to running this installation!" K DIFQ
  Q

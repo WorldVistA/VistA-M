@@ -1,30 +1,37 @@
-EDPRPT5 ;SLC/MKB - Shift Report
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPRPT5 ;SLC/MKB - Shift Report ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
-SFT(DAY) ; Get Shift Report for EDPSITE on DAY
+SFT(DAY,CSV) ; Get Shift Report for EDPSITE on DAY
  N BEG,END,IN,OUT,LOG,X,X0,X1,X3,X4,S,SOUT,SHIFT
  N CNT,VA,DX,OTH,HR6,TRG,OCB,MO,DIE,UNK,PREV,NEXT,SUB
  N ELAPSE,ADMDEC,STS,DISP,COL
  D INIT ;set counters to 0, SHIFT(#) = start time in seconds
  I 'SHIFT D ERR^EDPRPT(2300013) Q
- S BEG=$S(SHIFT(1)>0:$$FMADD^XLFDT(DAY,-1,,,SHIFT(SHIFT)),1:DAY)
- S END=$S(SHIFT(1)>0:$$FMADD^XLFDT(DAY,,,,SHIFT(SHIFT)),1:DAY_".2359")
+ S BEG=$S(SHIFT(1)>0:$$FMADD^XLFDT(DAY,-1,,,SHIFT(1)),1:DAY)
+ S END=$S(SHIFT(1)>0:$$FMADD^XLFDT(DAY,,,,SHIFT(1)),1:DAY_".2359")
+ ;S BEG=$S(SHIFT(1)>0:$$FMADD^XLFDT(DAY,-1,,,SHIFT(SHIFT)),1:DAY)
+ ;S END=$S(SHIFT(1)>0:$$FMADD^XLFDT(DAY,,,,SHIFT(SHIFT)),1:DAY_".2359")
  S IN=BEG-.000001 F  S IN=$O(^EDP(230,"ATI",EDPSITE,IN)) Q:'IN  Q:IN>END  D
  . S LOG=0 F  S LOG=+$O(^EDP(230,"ATI",EDPSITE,IN,LOG)) Q:LOG<1  D
  .. S X0=^EDP(230,LOG,0),X1=$G(^(1)),X3=$G(^(3)),X4=$G(^(4,1,0))
  .. S STS=$$ECODE^EDPRPT($P(X3,U,2))
- .. S DISP=$$ECODE^EDPRPT($P(X1,U,2)),DISP=$$UP^XLFSTR(DISP)
+ .. ;TDP - Patch 2 mod to catch all dispositions
+ .. S DISP=$$ECODE^EDPRPT($P(X1,U,2))
+ .. I DISP="" S DISP=$$DISP^EDPRPT($P(X1,U,2))
+ .. S DISP=$$UP^XLFSTR(DISP)
  .. S OUT=$P(X0,U,9) ;S:OUT="" OUT=NOW
  .. S ELAPSE=$S(OUT:($$FMDIFF^XLFDT(OUT,IN,2)\60),1:0) ;#min
  .. S ADMDEC=$$ADMIT^EDPRPT(LOG)
 D1 .. ; all visits
- .. S S=$$SHIFT(IN,1),SOUT=$$SHIFT(OUT,1)
+ .. S S=$$SHIFT(IN,1),SOUT=$$SHIFT(OUT,1) Q:S<1
  .. S CNT(S)=CNT(S)+1
  .. S:'$P(X3,U,3) TRG(S)=TRG(S)+1
  .. S:ELAPSE>359 HR6(S)=HR6(S)+1
  .. S:DISP="O"!(DISP="NVA") OTH(S)=OTH(S)+1
  .. S:DISP="D" DIE(S)=DIE(S)+1
- .. S:$$MISSEDOP^EDPRPT3(DISP) MO(S)=MO(S)+1
+ .. ;TDP - Patch 2, additional checks for Missed Opportunities added
+ .. ;S:$$MISSEDOP^EDPRPT3(DISP) MO(S)=MO(S)+1
+ .. I (($$MISSEDOP^EDPRPT3(DISP))!($$MISSOP1^EDPRPT3($P(X1,U,2)))) S MO(S)=MO(S)+1
  .. S:DISP="" UNK(S)=UNK(S)+1
  .. I $L(STS),$$UP^XLFSTR(STS)'="GONE",S'=SOUT S OCB(S)=OCB(S)+1
 D2 S OUT=BEG-.000001 F  S OUT=$O(^EDP(230,"ATO",EDPSITE,OUT)) Q:'OUT  Q:OUT>END  D
@@ -34,12 +41,18 @@ D2 S OUT=BEG-.000001 F  S OUT=$O(^EDP(230,"ATO",EDPSITE,OUT)) Q:'OUT  Q:OUT>END 
  .. S IN=$P(X0,U,8) S:IN<BEG PREV=PREV+1
  .. S DISP=$$ECODE^EDPRPT($P(X1,U,2))
  .. S ADMDEC=$$ADMIT^EDPRPT(LOG)
- .. I ADMDEC,ADMDEC>BEG,$$VADMIT^EDPRPT2(DISP) S S=$$SHIFT(ADMDEC,1),VA(S)=VA(S)+1
+ .. ;TDP - Patch 2, addition checks for VA Admissions added
+ .. I ADMDEC,ADMDEC>BEG,(($$VADMIT^EDPRPT2(DISP))!($$VADMIT1^EDPRPT2($P(X1,U,2)))) S S=$$SHIFT(ADMDEC,1),VA(S)=VA(S)+1
 D3 ; calculate #carried over
- S S=SUB(SHIFT),NEXT(S)=PREV+CNT(S)-DX(S)
- S PREV("one")=NEXT(S),PREV(S)=PREV
- F I=1:1:(SHIFT-1) S S=SUB(I),X=SUB($S(I>1:I-1,1:SHIFT)),NEXT(S)=NEXT(X)+CNT(S)-DX(S)
- F I=2:1:(SHIFT-1) S PREV(SUB(I))=NEXT(SUB(I-1))
+ S PREV("one")=PREV
+ F I=1:1:SHIFT D
+ . S S=SUB(I)
+ . S NEXT(S)=PREV(S)+CNT(S)-DX(S)
+ . I I<SHIFT S PREV(SUB(I+1))=NEXT(S)
+ ;S S=SUB(SHIFT),NEXT(S)=PREV+CNT(S)-DX(S)
+ ;S PREV("one")=NEXT(S),PREV(S)=PREV
+ ;F I=1:1:(SHIFT-1) S S=SUB(I),X=SUB($S(I>1:I-1,1:SHIFT)),NEXT(S)=NEXT(X)+CNT(S)-DX(S)
+ ;F I=2:1:(SHIFT-1) S PREV(SUB(I))=NEXT(SUB(I-1))
  ;S NEXT("three")=PREV+CNT("three")-DX("three")
  ;S NEXT("one")=NEXT("three")+CNT("one")-DX("one")
  ;S NEXT("two")=NEXT("one")+CNT("two")-DX("two")
@@ -78,8 +91,8 @@ D5 ; return counts and averages as XML
  ;
 CSV ; Return headers, counts and averages as CSV
  N X,TAB S TAB=$C(9)
- S X="Category"_TAB_COL(SHIFT,"name")
- F I=1:1:(SHIFT-1) S X=X_TAB_COL(I,"name")
+ S X="Category"
+ F I=1:1:(SHIFT) S X=X_TAB_COL(I,"name")
  D ADD^EDPCSV(X) ;headers
  D ROW("Carried over at Report Start",.PREV)
  D ROW("Number of New Patients",.CNT)
@@ -97,8 +110,8 @@ CSV ; Return headers, counts and averages as CSV
  ;
 ROW(NAME,LIST) ; add row
  N S,I
- S S=SUB(SHIFT),X=NAME_TAB_LIST(S)
- F I=1:1:(SHIFT-1) S S=SUB(I),X=X_TAB_LIST(S)
+ S X=NAME
+ F I=1:1:(SHIFT) S S=SUB(I),X=X_TAB_LIST(S)
  D ADD^EDPCSV(X)
  Q
  ;
@@ -122,23 +135,44 @@ INIT ; Initialize counters and sums
  Q
  ;
 WORD(X) ; Return name of number X
- N Y S Y=$S(X=1:"one",X=2:"two",X=3:"three",X=4:"four",X=5:"five",X=6:"six",X=7:"seven",X=8:"eight",X=9:"nine",X=10:"ten",X=11:"eleven",X=12:"twelve",1:"none")
+ N Y
+ S Y=$S(X=1:"one",X=2:"two",X=3:"three",X=4:"four",X=5:"five",X=6:"six",X=7:"seven",X=8:"eight",X=9:"nine",X=10:"ten",X=11:"eleven",X=12:"twelve",1:"none")
+ I Y="none" S Y=$S(X=13:"thirteen",X=14:"fourteen",X=15:"fifteen",X=16:"sixteen",X=17:"seventeen",X=18:"eighteen",X=19:"nineteen",X=20:"twenty",X=21:"twenty_one",X=22:"twenty_two",X=23:"twenty_three",X=24:"twenty_four",1:"none")
  Q Y
  ;
 SETUP ; Create SHIFT(#) list of shift times
- N TA,X1,X,DUR
+ N DUR,OVR,STOP,STRT,TA,X1,X
+ S (STOP,OVR)=0
  S TA=+$O(^EDPB(231.9,"C",EDPSITE,0)),X1=$G(^EDPB(231.9,TA,1))
- S X=$P(X1,U,6),DUR=$P(X1,U,7)*60 I DUR'>0 S SHIFT=0 Q
- S SHIFT=1,SHIFT(1)=X*60 ;seconds
- F  S X=SHIFT(SHIFT)+DUR Q:X>86340  S SHIFT=SHIFT+1,SHIFT(SHIFT)=X
+ S (STRT,X)=$P(X1,U,6),DUR=$P(X1,U,7)*60 I DUR'>0 S SHIFT=0 Q
+ S SHIFT=1,(STRT,SHIFT(1))=X*60 ;seconds
+ F  S X=SHIFT(SHIFT)+DUR D  Q:+STOP
+ . I +STRT=0,X>86340 S STOP=1 Q
+ . ;I +STRT>0,X>86400 S SHIFT=SHIFT+1,SHIFT(SHIFT)=X-(DUR+1) S STOP=1 Q
+ . I +STRT>0,X>86400 S STOP=1 D
+ .. S X=X-86400,OVR=1
+ . I +OVR,+X'<+STRT S STOP=1 Q
+ . S SHIFT=SHIFT+1,SHIFT(SHIFT)=X
  Q
- ;
 SHIFT(X,TXT) ; Return shift # for time X using SHIFT(#)
  I $G(X)="" Q 0
  N TM,Y
+ S Y=0
  S TM=$P($$FMTH^XLFDT(X),",",2) ;#seconds since midnight
- I TM<SHIFT(1)!(TM>=SHIFT(SHIFT)) S Y=SHIFT
- E  F I=2:1:SHIFT I TM<SHIFT(I) S Y=I-1 Q
+ ; bwf 2/15/2012: if there is only 1 shift, then this must be the shift given date range
+ I +SHIFT=1,TM>SHIFT(1) S Y=1 S:$G(TXT) Y=$$WORD(Y) Q Y
+ ; bwf - end changes
+ I +SHIFT(1)=0 D
+ . I TM<SHIFT(1)!(TM'<SHIFT(SHIFT)) S Y=SHIFT
+ I +SHIFT(1)>0 D
+ . I +SHIFT(SHIFT)<+SHIFT(1),TM<SHIFT(1),TM>SHIFT(SHIFT) S Y=SHIFT
+ . I +SHIFT(SHIFT)>+SHIFT(1),((TM<SHIFT(1))!(TM>SHIFT(SHIFT))) S Y=SHIFT
+ I +Y=0 F I=2:1:SHIFT D  Q:+Y>0
+ . I SHIFT(1)=0,TM<SHIFT(I) S Y=I-1 Q
+ . I SHIFT(1)>0 D
+ .. I SHIFT=I S Y=I-1 Q
+ .. I SHIFT(I)<SHIFT(I-1),TM>SHIFT(I-1) S Y=I-1 Q
+ .. I SHIFT(I)>SHIFT(I-1),TM<SHIFT(I),TM>SHIFT(I-1) S Y=I-1 Q
  S:$G(TXT) Y=$$WORD(Y)
  ;S Y=$S(TM<25200:"three",TM<54000:"one",TM<82800:"two",1:"three")
  Q Y

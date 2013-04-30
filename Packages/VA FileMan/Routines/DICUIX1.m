@@ -1,5 +1,5 @@
 DICUIX1 ;SF/TOAD/TKW-FileMan: Lookup Tools, Indexes (called by DICUIX) ;4/13/00  13:40
- ;;22.0;VA FileMan;**4,28,3**;Mar 30, 1999;
+ ;;22.0;VA FileMan;**4,28,3**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 GET(DITOP,DIFILE,DIFIELD,DIDEF,DICODE) ;

@@ -1,5 +1,5 @@
 DINIT41 ;SFISC/GFT-INITIALIZE VA FILEMAN ;4/14/93  1:15 PM
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 DD F I=1:1 S X=$E($T(DD+I),4,999) G ^DINIT42:X?.P S ^DD("FUNC",I+30,0)=$P(X,";",1),Y=1 F DU=1,2,3,9,10 S Y=Y+1 I $P(X,";",Y)]"" S ^(DU)=$P(X,";",Y)
  ;;BLANK;X "F I=1:1:X "_$S($D(^UTILITY($J,"W")):"S X="" |TAB|"" D L^DIWP",1:"W !") S X="";;;SKIP (ARG) NUMBER OF LINES;W

@@ -1,5 +1,5 @@
-EDPFLEX ;SLC/KCM - Lexicon Utilities
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPFLEX ;SLC/KCM - Lexicon Utilities ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
 ICD(TEXT) ; Return Lexicon hits for TEXT
  N LEX,X,Y,I,ICD,CPT,NAME,IEN

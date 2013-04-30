@@ -2,7 +2,7 @@ FHZDOC1 ; HISC/REL - First Line Listing ;8/2/90  15:19
  ;;5.5;DIETETICS;;Jan 28, 2005
  S X="N",%DT="XT" D ^%DT S DTP=Y D DTP^FH
  W !,"Routine First-line List",!!
-GET W ! D ^%ZIS Q:POP  K %UTILITY ; D ^%RSEL
+GET W ! D ^%ZIS Q:POP  K %UTILITY D ^%RSEL
  S NAM="" G:$O(%UTILITY(NAM))="" DONE
  U IO W @IOF,!?22,"First line list of DIETETIC Programs",!?31,DTP,!!
 GO S NAM=$O(%UTILITY(NAM)) G:NAM="" DONE

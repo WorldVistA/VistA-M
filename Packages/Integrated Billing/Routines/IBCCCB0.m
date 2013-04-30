@@ -77,7 +77,7 @@ CTCOPY1(IBIFN) ;  Copy a Reasonable Charges inst bill to create a prof bill:
  S IBV=0,IBAC=1
  ;
  ; DSS QuadraMed Interface: CPT Sequence and Diagnosis Linkage
- ;I +$G(IBHV("IBIFN1")),$$QMED^IBCU1("CTCOPY^VEJDIBE1",IBHV("IBIFN1")) D CTCOPY^VEJDIBE1(IBHV("IBIFN1"))
+ I +$G(IBHV("IBIFN1")),$$QMED^IBCU1("CTCOPY^VEJDIBE1",IBHV("IBIFN1")) D CTCOPY^VEJDIBE1(IBHV("IBIFN1"))
  Q
  ;
 CTCOPY2(IBIFN) ; Copy a Reasonable Charges prof bill to create another prof bill if user wants another:

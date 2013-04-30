@@ -1,7 +1,3 @@
 FAILED SIGNON ATTEMPTS
 ZWR
-^XUSEC(4,0)="FAILED SIGNON ATTEMPTS^3.084^2^2"
-^XUSEC(4,1,0)="isa-esposito-lt.vha.med.va.gov^1^60302,33026"
-^XUSEC(4,2,0)="10.222.162.26^2^62146,51836"
-^XUSEC(4,"B","10.222.162.26",2)=""
-^XUSEC(4,"B","isa-esposito-lt.vha.med.va.gov",1)=""
+^XUSEC(4,0)="FAILED SIGNON ATTEMPTS^3.084^^0"

@@ -1,5 +1,5 @@
 DICR ;SFISC/GFT-RECURSIVE CALL FOR X-REFS ON TRIGGERED FLDS ;6DEC2004
- ;;22.0;VA FileMan;**11,88,157**;Mar 30, 1999;Build 7
+ ;;22.0;VA FileMan;**11,88,157**;Mar 30, 1999;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;From a TRIGGER on field DIH,DIG

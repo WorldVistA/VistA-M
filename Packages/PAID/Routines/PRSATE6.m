@@ -1,5 +1,5 @@
 PRSATE6 ; WCIOFO/JAH-VALIDATE FIREFIGHTER TOURS OF DUTY (ToD);3/19/99
- ;;4.0;PAID;**45**;Sep 21, 1995
+ ;;4.0;PAID;**45,132**;Sep 21, 1995;Build 13
  Q
 FFTOUR(PPI,DFN,WHICHPP,ERROR) ; Validate a Firefighter ToD
  N WK1BTOT,WK2BTOT,BASEMAX,PMP
@@ -288,3 +288,10 @@ ASKTLWRK(TLE) ; ASK TIMEKEEP WHICH TLU ToD WILL BE WORKED
  S DIC("B")=TLE
  W ! D ^DIC
  Q +Y
+ ;
+ASKTWMF() ;ask telework tour for fixed monday/friday tour
+ N DIR,DIRUT,X,Y
+ S DIR("A")="Do you wish to schedule any telework tours"
+ S DIR(0)="Y",DIR("?")="Answer NO if there is no telework day for the pay period."
+ D ^DIR
+ QUIT $S(Y=0:"N",Y=1:"Y",1:"^")

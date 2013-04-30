@@ -1,6 +1,6 @@
 PSOCAN2 ;BHAM ISC/JMB - rx cancel with speed ability drug check ;10/23/06 11:30am
- ;;7.0;OUTPATIENT PHARMACY;**8,18,62,46,88,164,235,148,259,281,287,251,375,379**;DEC 1997;Build 28
- ;External reference to ^PSDRUG supported by DBIA 221
+ ;;7.0;OUTPATIENT PHARMACY;**8,18,62,46,88,164,235,148,259,281,287,251,375,379,396,390**;DEC 1997;Build 86
+ ;External reference to ^PSDRUG supported by dbia 221
  ;External reference to $$DS^PSSDSAPI supported by DBIA 5425
 REINS N DODR,ORN
  I $P(^PSRX(DA,2),"^",6)<DT D  Q
@@ -20,7 +20,7 @@ ACT W ! F I=1:1:80 W "="
  N RXIEN S RXIEN=DA
  ;Takes action on reinstated Rx's
  S RFCNT=0 F RF=0:0 S RF=$O(^PSRX(DA,1,RF)) Q:'RF  S RFCNT=RF
- S (LPRT,LREF)="" F LL=0:0 S LL=$O(^PSRX(DA,"L",LL)) Q:'LL  S LPRT=$P($G(^PSRX(DA,"L",LL,0)),"."),LREF=$P($G(^(0)),"^",2)
+ S (LPRT,LREF,XRELDT,XFDT)="" F LL=0:0 S LL=$O(^PSRX(DA,"L",LL)) Q:'LL  S LPRT=$P($G(^PSRX(DA,"L",LL,0)),"."),LREF=$P($G(^(0)),"^",2)
  I 'RFCNT S FDT=$S($P($G(^PSRX(DA,2)),"^",2)'="":$P($G(^PSRX(DA,2)),"^",2),1:$P($G(^PSRX(DA,2)),"^")) S RELDT=$P(^(2),"^",13),RELDT=$P(RELDT,".")
  I RFCNT S FDT=$P($G(^PSRX(DA,1,RFCNT,0)),"^"),RELDT=$P(^(0),"^",18),RELDT=$P(RELDT,".")
  S Y=FDT D DD^%DT S XFDT=Y I RELDT'="" S Y=RELDT D DD^%DT S XRELDT=Y
@@ -37,13 +37,15 @@ ACT W ! F I=1:1:80 W "="
  W !?3,"Prescription #",RX_": "
  W !?6,$S('RFCNT:"  Filled",1:"  Refilled # "_LREF)_": "_XFDT,"  Printed: "_$S(LREF=RFCNT:XLPDT,1:""),"  Released: "_$G(XRELDT),!
  I FDT<DT D
- .Q:$$FIND^PSOREJUT(RXIEN)  ;No label for Rx's with claims rejects
- .Q:PSOTRIC&($$STATUS^PSOBPSUT(RXIEN,RFCNT)'["PAYABLE")  ;No labels for Tricare non-payable/in progress Rx
+ .Q:$$FIND^PSOREJUT(RXIEN)  ;No label for Rx's with unresolved claims rejects
+ .Q:PSOTRIC&($$STATUS^PSOBPSUT(RXIEN,RFCNT)["IN PROGRESS")  ;No labels for TRICARE/CHAMPVA in progress Rx *396
+ .I PSOTRIC,$P($G(^PSRX(RXIEN,"STA")),"^")=12 Q  ;No label for TRICARE/CHAMPVA if discontinued via Reject Notification screen *396
  .S DIR("A")="     ** Do you want to print the label now",DIR("B")="N",DIR(0)="Y",DIR("?")="Enter 'Y' to print the label now.  If 'N' is entered, the label may be reprinted through reprint at a later date."
  .D ^DIR K DIR Q:$G(DIRUT)!('Y)  S PPL=RXIEN D Q^PSORXL Q
  I FDT=DT D
- . Q:$$FIND^PSOREJUT(RXIEN)
- . Q:PSOTRIC&($$STATUS^PSOBPSUT(RXIEN,RFCNT)'["PAYABLE")
+ . Q:$$FIND^PSOREJUT(RXIEN)  ;No label for Rx's with unresolved claims rejects
+ . Q:PSOTRIC&($$STATUS^PSOBPSUT(RXIEN,RFCNT)["IN PROGRESS")  ;No labels for TRICARE/CHAMPVA in progress Rx *396
+ . I PSOTRIC,$P($G(^PSRX(RXIEN,"STA")),"^")=12 Q  ;No label for TRICARE/CHAMPVA if discontinued via Reject Notification screen *396
  . W !?5,"Either print the label using the reprint option "
  . W !?7,"or check later to see if the label has been printed." D WAIT^PSODRG Q
  I FDT>DT&('$G(DODR)) W !?5,"Placing Rx on suspense.  Please wait..." D SUS
@@ -65,11 +67,16 @@ DRGDRG ;Checks for drug/drug interaction, duplicate drug and class
  K HOLD S NAME=$P(Y(0),"^") I +$G(PSOSD(STAT,NAME))=+PSCAN(RX) S HOLD(STAT,NAME)=$G(PSOSD(STAT,NAME)) K PSOSD(STAT,NAME)
  S:$G(PSONEW("OLD VAL"))=+Y PSODRG("QFLG")=1
  K PSOY,PSOTECCK S PSOY=Y,PSOY(0)=Y(0)
- I '$D(^XUSEC("PSORPH",DUZ)) S PSOTECCK=1
- S PSORENW("OIRXN")=DA D SET^PSODRG,POST^PSODRG Q:$G(PSOREINS)&$G(PSOQUIT)
+ I '$D(^XUSEC("PSORPH",DUZ)) S PSOTECCK=1 N ZRXN
+ S (ZRXN,PSORENW("OIRXN"))=DA D SET^PSODRG,POST^PSODRG Q:$G(PSOREINS)&$G(PSOQUIT)
  D:$$DS^PSSDSAPI&('$G(PSORX("DFLG"))) DOSCK^PSODOSUT("C")
  S REA=$P(PSCAN($P(^PSRX(PSORENW("OIRXN"),0),"^")),"^",2)
  W ! S:$G(HOLD(STAT,NAME))]"" PSOSD(STAT,NAME)=$G(HOLD(STAT,NAME)) K HOLD,STA,STAT,PSORENW("OIRXN")
+ ;saves drug allergy order chks pso*7*390
+ I +$G(^TMP("PSODAOC",$J,1,0)) D
+ .N RXN,PSODAOC S RXN=ZRXN,PSODAOC="Rx Reinstate Order Acceptance_OP"
+ .D DAOC^PSONEW
+ .K ^TMP("PSODAOC",$J),RET
  Q
 VERIFY ;Put in non-verify file
  S PSRXDA=DA,DIC="^PS(52.4,",DLAYGO=52.4,(X,DINUM)=PSRXDA,DIC(0)="ML",DIC("DR")="1////"_PSODFN_";2////"_DUZ_";4////"_DT
@@ -142,7 +149,8 @@ LOG K ACNT F SUB=0:0 S SUB=$O(^PSRX(DA,"A",SUB)) Q:'SUB  S ACNT=$G(ACNT)+1
  S ACNT=$G(ACNT)+1
  D NOW^%DTC S ^PSRX(DA,"A",0)="^52.3DA^"_ACNT_"^"_ACNT S ^PSRX(DA,"A",ACNT,0)=%_"^R^"_DUZ_"^"_RFCNT_"^"_ACOM
  K ^PSRX("APSOD",PSODFN,DA),ACNT,RFCNT,RF,%
- S $P(^PSRX(DA,3),"^")=$P(^PSRX(DA,3),"^",5),$P(^(3),"^",2)=$P(^(3),"^",8)
+ I $P(^PSRX(DA,3),"^",10) S $P(^PSRX(DA,3),"^")=$P(^PSRX(DA,3),"^",10) ;*396
+ S $P(^PSRX(DA,3),"^",2)=$P(^PSRX(DA,3),"^",8)
  S $P(^PSRX(DA,3),"^",5)="",$P(^(3),"^",8)=""
  Q
 NVER ;Called from PSOCAN3, needs DA defined

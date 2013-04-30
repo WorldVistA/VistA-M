@@ -1,5 +1,5 @@
 DIKD1 ;SFISC/MKO-DELETE XREF DATA ;1:03 PM  20 Aug 1999
- ;;22.0;VA FileMan;**12**;Mar 30, 1999
+ ;;22.0;VA FileMan;**12**;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 KILL(DIFIL,DIFLD,DIXR,DIFLG,DIKDMSG) ;Delete xref data

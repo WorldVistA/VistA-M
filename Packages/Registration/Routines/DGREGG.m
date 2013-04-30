@@ -11,7 +11,7 @@ DGREGG ;ALB/MRL,LBD - CONTINUATION OF REGISTRATION PROCESS ; 3/10/11 4:32pm
  .X ^DD("DD") W !,"Entered Service ",Y
  .W !,"Veteran must have completed at least 24 consecutive months of active"
  .W !,"military service. If veteran meets an exception to minimum duty requirements"
- .W !,"as listed on www.DOMAIN.EXT/elig, veteran is eligible for VA health care."
+ .W !,"as listed on www.domain.ext/elig, veteran is eligible for VA health care."
  .W !,"Otherwise, enter Ineligible Date and Reason on Screen 10 -- veteran is"
  .W !,"eligible for care of SC conditions only.",!
  .K A

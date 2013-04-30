@@ -1,5 +1,5 @@
-PSBO ;BIRMINGHAM/EFC - BCMA OUTPUTS ;3/1/11 5:42pm
- ;;3.0;BAR CODE MED ADMIN;**13,32,2,25,28,51,50,42,58**;Mar 2004;Build 37
+PSBO ;BIRMINGHAM/EFC - BCMA OUTPUTS ;1/9/12 8:23am
+ ;;3.0;BAR CODE MED ADMIN;**13,32,2,25,28,51,50,42,58,68**;Mar 2004;Build 26
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -7,11 +7,13 @@ PSBO ;BIRMINGHAM/EFC - BCMA OUTPUTS ;3/1/11 5:42pm
  ; ^ORD(101.24/3429
  ; ^PSDRUG(/221
  ;
+ ;*68-Add PSBSIFL as 19th parameter to RPC tag to control printing of
+ ;       special instruction/other print info.
  ;*58 - Tag WRAP previously wrapped on a max text limit of 250 char.
  ;       Since the use of Enhanced Order Checks, that limit has to 
  ;       be removed and the length of the input string will be used.
  ;
-RPC(RESULTS,PSBTYPE,PSBDFN,PSBSTRT,PSBSTOP,PSBINCL,PSBDEV,PSBSORT,PSBOI,PSBWLOC,PSBWSORT,PSBFUTR,PSBORDNM,PSBRCRI,PSBLIST,PSBPST,PSBTR,PSBDIV) ;
+RPC(RESULTS,PSBTYPE,PSBDFN,PSBSTRT,PSBSTOP,PSBINCL,PSBDEV,PSBSORT,PSBOI,PSBWLOC,PSBWSORT,PSBFUTR,PSBORDNM,PSBRCRI,PSBLIST,PSBPST,PSBTR,PSBDIV,PSBSIFL) ;
  ;
  ; RPC: PSB REPORT
  ;
@@ -62,6 +64,9 @@ RPC(RESULTS,PSBTYPE,PSBDFN,PSBSTRT,PSBSTOP,PSBINCL,PSBDEV,PSBSORT,PSBOI,PSBWLOC,
  .D VAL^DIE(53.69,PSBIENS,.27,"F",+$P(PSBFUTR,"^",3),"PSBRET","PSBFDA")
  .D VAL^DIE(53.69,PSBIENS,.41,"F",+$P(PSBFUTR,"^",4),"PSBRET","PSBFDA")
  .D VAL^DIE(53.69,PSBIENS,.61,"F",$TR(PSBFUTR,"^ ","~"),"PSBRET","PSBFDA")
+ ;*68 add SIOPI flag when present
+ D:$D(PSBSIFL)
+ .D VAL^DIE(53.69,PSBIENS,3,"F",PSBSIFL,"PSBRET","PSBFDA")
  D FILE^DIE("","PSBFDA")
  I "^SF"'[("^"_PSBTYPE) I $G(PSBLIST(0),"")]"" D LIST^PSBO1(.PSBLIST)
  I $G(PSBDEV)]"" D PRINT^PSBO1 S RESULTS=$NAME(^TMP("PSBO",$J)) Q
@@ -104,7 +109,7 @@ DQ(PSBRPT) ; Dequeue report from Taskman
  Q:'$D(^PSB(53.69,PSBRPT,0))  ; No Such Report
  S $P(^PSB(53.69,PSBRPT,0),U,8)=$G(ZTSK,"RPC")
  D:$$SETUP @("EN^PSBO"_$P(PSBRPT(0),U,5))
- K ^TMP("PSBO",$J)
+ K ^TMP("PSBO",$J),PSBSIFLG
  S ZTREQ="@"
  Q
  ;
@@ -146,7 +151,9 @@ SETUP() ; Setup parameters for the report in PSBRPT
  F X=0,.1,.2,.3,.4,.5,1 S PSBRPT(X)=$G(^PSB(53.69,PSBRPT,X))
  I $D(^PSB(53.69,PSBRPT,2)) M PSBRPT(2)=^PSB(53.69,PSBRPT,2)
  I $D(^PSB(53.69,PSBRPT,3)) M PSBRPT(3)=^PSB(53.69,PSBRPT,3)
+ I $D(^PSB(53.69,PSBRPT,4)) M PSBRPT(4)=^PSB(53.69,PSBRPT,4)      ;*68
  S PSBRPT(.52)=$P($G(^PSB(53.69,PSBRPT,.5)),U,2)
+ S PSBSIFLG=$P($G(PSBRPT(4)),U)                                   ;*68
  I $P(PSBRPT(0),"-")="ST",PSBRPT(3)]"" Q 1  ;Running a MSF report PSB*3*28
  I $P(PSBRPT(0),"-")="SF",PSBRPT(.52)]"" Q 1  ;Running a MSF report PSB*3*28
  I $P(PSBRPT(.1),U,1)="P" D  I 'PSBDFN Q 0

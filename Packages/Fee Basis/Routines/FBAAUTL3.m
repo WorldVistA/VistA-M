@@ -1,10 +1,12 @@
-FBAAUTL3 ;AISC/DMK-FEE BASIS UTILITY ROUTINE ;5/12/93  13:42
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAAUTL3 ;AISC/DMK - FEE BASIS UTILITY ROUTINE ;4/20/2012
+ ;;3.5;FEE BASIS;**132**;JAN 30, 1995;Build 17
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 HDR() ;this is a supported call to be used by IFCAP to determine
  ;the System Identifier for the 994 code sheets
  ;Q $S($P($G(^FBAA(161.4,1,1)),U,10)]"":$P(^(1),U,10),1:"FEN")
- Q $S($$VER5():"FEN",1:"FEE")
+ ; switch to FEE for the Subsystem Identifier FB*3.5*132
+ ;Q $S($$VER5():"FEN",1:"FEE")
+ Q "FEE"
  ;
 POV(X) ;determine ien of pov based on austin code
  ;INPUT:  X = pov code

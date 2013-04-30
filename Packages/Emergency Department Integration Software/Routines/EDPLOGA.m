@@ -1,12 +1,13 @@
-EDPLOGA ;SLC/KCM - Add Entry to ED Log
- ;;1.0;EMERGENCY DEPARTMENT;;Sep 30, 2009;Build 74
+EDPLOGA ;SLC/KCM - Add Entry to ED Log ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
  ;
  ;TODO:  add transaction processing
  ;
 ADD(NEWPT,AREA,TIME,CHOICES) ; Create a new ED Log record for a patient
  ; add the new record to the returned XML
  ; NEWPT = dfn \T name \T dob \T ssn
- N DFN,NAME,SSN,STATUS,BED,ARR,REC,AMB,CLINIC
+ N DFN,NAME,SSN,STATUS,BED,ARR,REC,AMB,CLINIC,EDPLOG,EDPFAIL
+ S EDPFAIL=0
  S AMB="(ambulance en route)"
  ;
  ; Set up the patient fields that were passed in
@@ -14,7 +15,7 @@ ADD(NEWPT,AREA,TIME,CHOICES) ; Create a new ED Log record for a patient
  S DFN=REC("dfn"),NAME=REC("name"),SSN="",CLINIC=$G(REC("clinic"))
  I DFN S REC("name")=$P(^DPT(DFN,0),U),REC("ssn")=$P(^DPT(DFN,0),U,9)
  ;S SSN=REC("ssn") S:SSN="*SENSITIVE*" SSN="" --NtoL
- I 'DFN,(NAME="") D FAIL^EDPLOG("add",2300014) Q
+ I 'DFN,(NAME="") S EDPFAIL=$$FAIL^EDPLOG("add",2300014) Q EDPFAIL
  ;
  ; Add default values to stub entry (should be based on config for area)
  S BED=$P(^EDPB(231.9,AREA,1),U,12)
@@ -23,9 +24,9 @@ ADD(NEWPT,AREA,TIME,CHOICES) ; Create a new ED Log record for a patient
  . S BED=$P(^EDPB(231.9,AREA,1),U,11)
  S STATUS="" I BED S STATUS=$P(^EDPB(231.8,BED,0),U,8)
  ;
- I +DFN,$D(^EDP(230,"AP",EDPSITE,AREA,DFN)) D FAIL^EDPLOG("add",2300002) Q
- I 'DFN,(NAME'=AMB),$D(^EDP(230,"AN",EDPSITE,AREA,NAME)) D FAIL^EDPLOG("add",2300002) Q
- N ERR S ERR=$$VALID^EDPLOG1(.REC) I $L(ERR) D FAIL^EDPLOG("add",ERR) Q
+ I +DFN,$D(^EDP(230,"AP",EDPSITE,AREA,DFN)) S EDPFAIL=$$FAIL^EDPLOG("add",2300002) Q EDPFAIL
+ I 'DFN,(NAME'=AMB),$D(^EDP(230,"AN",EDPSITE,AREA,NAME)) S EDPFAIL=$$FAIL^EDPLOG("add",2300002) Q EDPFAIL
+ N ERR S ERR=$$VALID^EDPLOG1(.REC) I $L(ERR) S EDPFAIL=$$FAIL^EDPLOG("add",ERR) Q EDPFAIL
  S ^EDPB(231.9,AREA,230)=$H  ; last update timestamp
  ;
  ; Create a current log record
@@ -46,7 +47,7 @@ ADD(NEWPT,AREA,TIME,CHOICES) ; Create a new ED Log record for a patient
  I $G(REC("create")) S FDA(230,"+1,",.13)=REC("create")
  M HIST(230.1)=FDA(230)
  D UPDATE^DIE("","FDA","FDAIEN","ERR")
- I $D(DIERR) D FAIL^EDPLOG("add",2300004) Q
+ I $D(DIERR) S EDPFAIL=$$FAIL^EDPLOG("add",2300004) Q EDPFAIL
  S LOGIEN=FDAIEN(1)
  ;
  ; Post new patient event
@@ -59,11 +60,11 @@ ADD(NEWPT,AREA,TIME,CHOICES) ; Create a new ED Log record for a patient
  K HIST(230.1,"+1,",.11) ; don't need last4
  K HIST(230.1,"+1,",.13) ; don't need creation source
  D UPDATE^DIE("","HIST","HISTIEN","ERR")
- I $D(DIERR) D FAIL^EDPLOG("add",2300004) Q
+ I $D(DIERR) S EDPFAIL=$$FAIL^EDPLOG("add",2300004) Q EDPFAIL
  ;
  D XML^EDPX("<add status='ok' id='"_FDAIEN(1)_"' />")
  D GET^EDPQLE(FDAIEN(1),CHOICES)
- Q
+ Q EDPFAIL
  ;
 DEL(AREA,LOGID) ; Delete Stub Log Entry
  N I,CNT,DIK,DA
@@ -91,4 +92,5 @@ EVT(LOG) ; -- post new patient event [expects EDPSITE]
  S EDPDATA=LOG_SDATA
  S X=+$O(^ORD(101,"B","EDP NEW PATIENT",0))_";ORD(101,"
  D EN^XQOR
+ K EDPDATA
  Q

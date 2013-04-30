@@ -1,5 +1,5 @@
 KMPDUTL4 ;OAK/RAK; Reverse Video Header/Footer ;2/17/04  10:54
- ;;2.0;CAPACITY MANAGEMENT TOOLS;;Mar 22, 2002
+ ;;3.0;KMPD;;Jan 22, 2009;Build 42
  ;
 CONTINUE(KMPDMSSG,KMPDLN,KMPDY) ;-- press return to continue
  ;---------------------------------------------------------------------

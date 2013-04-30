@@ -147,8 +147,7 @@ WP N %RGZ,%RGZ1
  .S ^(0)=U_U_%RGZ_U_%RGZ1_U_$G(DT),^(Y,0)=X
  Q:$P(^DD(+DIC("P"),.01,0),U,2)'["a"
  S %RGIEN=Y
- ;D DA,WPAUDIT^RGCODAUD(+DIC("P"),.DA,X,"")
- D DA
+ D DA,WPAUDIT^RGCODAUD(+DIC("P"),.DA,X,"")
  Q
  ; Trap unexpected error
 ERROR S $P(%RGDIC,U)=-3

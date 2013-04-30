@@ -1,5 +1,5 @@
 DIKKUTL2 ;SFISC/MKO-KEY DEFINITION, SOME UTILITIES ;1:25 PM  17 Jul 1998
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;==================

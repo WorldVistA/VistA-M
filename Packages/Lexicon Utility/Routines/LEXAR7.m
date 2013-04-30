@@ -4,7 +4,7 @@ LEXAR7 ;ISL/KER - Look-up Response (MAIL) ;01/03/2011
  Q
  ;  This routines sends a Mailman message containing the Unresolved
  ;  Narratives and Comments stored in file 757.06 to the Field Office
- ;  at G.LEXUNR@ISC-SLC.DOMAIN.EXT.  Once sent, the Unresolved Narratives
+ ;  at G.LEXUNR@ISC-SLC.domain.ext.  Once sent, the Unresolved Narratives
  ;  and comments are purged from file 757.06.  Both the Unresolved 
  ;  Narratives and comments are used to update the Lexicon Utility.
  ;

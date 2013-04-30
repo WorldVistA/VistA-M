@@ -1,0 +1,186 @@
+PSJBCMA5 ;BIR/JCH-RETRIEVE SPECIAL INSTRUCTIONS/OTHER PRINT INFO ; 1/9/12 11:12am
+ ;;5.0;INPATIENT MEDICATIONS;**267**;16 DEC 97;Build 158
+ ;
+ ;Reference to ^DPT is supported by DBIA 10035
+ ;Reference to ^PS(55 is supported by DBIA 2191
+ ;Reference to ^%DTC is supported by DBIA 10000
+ ;Reference to ^DIE is supported by DBIA 10018
+ ;Reference to ^DIQ is supported by DBIA 2056
+ ;
+GETSIOPI(DFN,ON,BCMA) ; Get appropriate field depending on order type
+ ; DFN - Patient IEN
+ ; ON - Inpatient Order number
+ ; BCMA - Flag indicating called from BCMA - return data in ^TMP("PSJBCMA",$J
+ ;
+ I 'ON!'DFN Q 0
+ K ^TMP("PSJBCMA5",$J,DFN,ON)
+ I $G(BCMA) D  Q +$G(^TMP("PSJBCMA5",$J,DFN,ON))
+ .N PSJSYSP S PSJSYSP=$J
+ .I ON["V"!((ON["P")&($D(^PS(53.1,+ON,"AD"))!$D(^PS(53.1,+ON,"SOL")))) D  Q
+ ..I $$GETOPI(DFN,ON,1) D MOVETMP(DFN,ON,"IV")
+ .I $$GETSI(DFN,ON,1) D MOVETMP(DFN,ON,"UD")
+ I ON["V"!((ON["P")&($D(^PS(53.1,+ON,"AD"))!$D(^PS(53.1,+ON,"SOL")))) Q $$GETOPI(DFN,ON)
+ Q $$GETSI(DFN,ON)
+ ;
+MOVETMP(DFN,ON,OTYP) ; Move text from PS(53.45 to ^TMP for BCMA
+ N LN,ND S ND=$S(OTYP="IV":6,1:5)
+ I $O(^PS(53.45,PSJSYSP,ND," "),-1)=1,$TR(^PS(53.45,PSJSYSP,ND,1,0)," ")="" K ^TMP("PSJBCMA5",$J) Q
+ S ^TMP("PSJBCMA5",$J,DFN,ON)=+$P(^PS(53.45,PSJSYSP,ND,0),"^",3) S LN=0 F  S LN=$O(^PS(53.45,PSJSYSP,ND,LN)) Q:'LN  D
+ .S ^TMP("PSJBCMA5",$J,DFN,ON,LN)=^PS(53.45,PSJSYSP,ND,LN,0)
+ K ^PS(53.45,PSJSYSP,ND)
+ Q
+ ;
+GETSI(DFN,ON,BC) ; Get Special Instructions for Unit Dose orders
+ N PSJTXT,TXTLN
+ I $G(DFN)=""!($G(ON)="") Q 0
+ I ON["P" D  Q +$P($G(^PS(53.45,+PSJSYSP,5,0)),"^",3)
+ .Q:($G(^PS(53.45,+PSJSYSP,5,0))="^^0^0")
+ .I $P($G(^PS(53.1,+ON,15,0)),"^",3) D  Q
+ ..S ^PS(53.45,+PSJSYSP,5,0)=^PS(53.1,+ON,15,0)
+ ..S LN=0 F  S LN=$O(^PS(53.1,+ON,15,LN)) Q:'LN  S ^PS(53.45,+PSJSYSP,5,LN,0)=^PS(53.1,+ON,15,LN,0)
+ .N OLDSI,MARX,TXTCNT S OLDSI=$P($G(^PS(53.1,+ON,6)),"^") I $L(OLDSI)>0 D  Q
+ ..I $G(BC),$L(OLDSI)>74 D TXT^PSGMUTL(OLDSI,74) S TXTCNT=$O(MARX(" "),-1) S ^PS(53.45,+PSJSYSP,5,0)="^^"_TXTCNT_"^"_TXTCNT D  Q
+ ...S TXTLN=0 F  S TXTLN=$O(MARX(TXTLN)) Q:'TXTLN  S ^PS(53.45,+PSJSYSP,5,TXTLN,0)=MARX(TXTLN)
+ ..S ^PS(53.45,+PSJSYSP,5,1,0)=$P(^PS(53.1,+ON,6),"^"),^PS(53.45,+PSJSYSP,5,0)="^^1^1"
+ I ON["U" D  Q $P($G(^PS(53.45,+PSJSYSP,5,0)),"^",3)
+ .Q:($G(^PS(53.45,+PSJSYSP,5,0))="^^0^0")
+ .I $P($G(^PS(55,+DFN,5,+ON,15,0)),"^",3) D  Q
+ ..S ^PS(53.45,+PSJSYSP,5,0)=$G(^PS(55,DFN,5,+ON,15,0))
+ ..S LN=0 F  S LN=$O(^PS(55,DFN,5,+ON,15,LN)) Q:'LN  S ^PS(53.45,+PSJSYSP,5,LN,0)=^PS(55,DFN,5,+ON,15,LN,0)
+ .N OLDSI,MARX,TXTCNT S OLDSI=$P($G(^PS(55,DFN,5,+ON,6)),"^") I $L(OLDSI)>0 D  Q
+ ..I $G(BC),$L(OLDSI)>74 D TXT^PSGMUTL(OLDSI,74) S TXTCNT=$O(MARX(" "),-1) S ^PS(53.45,+PSJSYSP,5,0)="^^"_TXTCNT_"^"_TXTCNT D  Q
+ ...S TXTLN=0 F  S TXTLN=$O(MARX(TXTLN)) Q:'TXTLN  S ^PS(53.45,+PSJSYSP,5,TXTLN,0)=MARX(TXTLN)
+ ..S ^PS(53.45,+PSJSYSP,5,1,0)=$P(^PS(55,DFN,5,+ON,6),"^"),^PS(53.45,+PSJSYSP,5,0)="^^1^1"
+ Q 0
+ ;
+GETOPI(DFN,ON,BC) ; Get Other Print Info for IV orders
+ N PSJTXT,LN
+ I $G(DFN)=""!($G(ON)="") Q 0
+ I ON["P" D  Q +$P($G(^PS(53.45,+PSJSYSP,6,0)),"^",3)
+ .Q:$P($G(^PS(53.45,+PSJSYSP,6,0)),"^",3)
+ .I $P($G(^PS(53.1,+ON,16,0)),"^",3) D  Q
+ ..S ^PS(53.45,+PSJSYSP,6,0)=^PS(53.1,+ON,16,0)
+ ..S LN=0 F  S LN=$O(^PS(53.1,+ON,16,LN)) Q:'LN  S ^PS(53.45,+PSJSYSP,6,LN,0)=^PS(53.1,+ON,16,LN,0)
+ .N OLDOPI,MARX,TXTCNT S OLDOPI=$P($G(^PS(53.1,+ON,9)),"^",2) I $L(OLDOPI)>0 D  Q
+ ..I $G(BC),$L(OLDOPI)>74 D TXT^PSGMUTL(OLDOPI,74) S TXTCNT=$O(MARX(" "),-1) S ^PS(53.45,+PSJSYSP,6,0)="^^"_TXTCNT_"^"_TXTCNT D  Q
+ ...S TXTLN=0 F  S TXTLN=$O(MARX(TXTLN)) Q:'TXTLN  S ^PS(53.45,+PSJSYSP,6,TXTLN,0)=MARX(TXTLN)
+ ..S ^PS(53.45,+PSJSYSP,6,1,0)=$P(^PS(53.1,+ON,9),"^",2),^PS(53.45,+PSJSYSP,6,0)="^^1^1"
+ I ON["V" D
+ .Q:$P($G(^PS(53.45,+PSJSYSP,6,0)),"^",3)
+ .I $P($G(^PS(55,+DFN,"IV",+ON,10,0)),"^",3) D  Q
+ ..S ^PS(53.45,+PSJSYSP,6,0)=$G(^PS(55,DFN,"IV",+ON,10,0))
+ ..S LN=0 F  S LN=$O(^PS(55,DFN,"IV",+ON,10,LN)) Q:'LN  S ^PS(53.45,+PSJSYSP,6,LN,0)=^PS(55,DFN,"IV",+ON,10,LN,0)
+ .N OLDOPI,MARX,TXTCNT S OLDOPI=$P($G(^PS(55,DFN,"IV",+ON,3)),"^") I $L(OLDOPI)>0 D  Q
+ ..I $G(BC),$L(OLDOPI)>74 D TXT^PSGMUTL(OLDOPI,74) S TXTCNT=$O(MARX(" "),-1) S ^PS(53.45,+PSJSYSP,6,0)="^^"_TXTCNT_"^"_TXTCNT D  Q
+ ...S TXTLN=0 F  S TXTLN=$O(MARX(TXTLN)) Q:'TXTLN  S ^PS(53.45,+PSJSYSP,6,TXTLN,0)=MARX(TXTLN)
+ ..S ^PS(53.45,+PSJSYSP,6,1,0)=$P(^PS(55,DFN,"IV",+ON,3),"^"),^PS(53.45,+PSJSYSP,6,0)="^^1^1"
+ I $O(^PS(53.45,+PSJSYSP,6," "),-1)=1,($TR(^PS(53.45,+PSJSYSP,6,1,0)," ")="") K ^PS(53.45,+PSJSYSP,6)
+ Q +$P($G(^PS(53.45,+PSJSYSP,6,0)),"^",3)
+ ;
+EDITSI(DFN,PSJORD) ; Edit Special Instructions in ^PS(53.45 via Word Processing
+ N PSJII,DIC,I,PSJVALID,DIWESUB,PSJTXTLN S PSJVALID=0,DIC="^PS(53.45,"_+$G(PSJSYSP)_",5,",DIWESUB="SPECIAL INSTRUCTIONS"
+ I $G(PSJORD) I '$P($G(^PS(53.45,+$G(PSJSYSP),5,0)),"^",5) S L=$$GETSI(DFN,PSJORD)
+ K ^TMP("PSJTMPSI",$J) M ^TMP("PSJTMPSI",$J)=^PS(53.45,+$G(PSJSYSP),5)
+ F PSJII=1:1 Q:$G(PSJVALID)  D
+ .N II,L,DIR,DIE,DA,TMPLN,DR S PSJTXTLN="",PSJVALID=1,DIWESUB="SPECIAL INSTRUCTIONS"
+ .I PSJII=1 S DA=PSJSYSP,DR=5,DIE="^PS(53.45," D ^DIE
+ .I PSJII>1 S DA=PSJSYSP,DR=5,DIC="^PS(53.45,"_+$G(PSJSYSP)_",5," D EN^DIWE
+ .S PSJTXTLN=+$P($G(^PS(53.45,+PSJSYSP,5,0)),"^",3)
+ .S II=0 F  S II=$O(^PS(53.45,+PSJSYSP,5,II)) Q:'II!'$G(PSJVALID)  S TMPLN=$G(^(II,0)) I (TMPLN["^") S PSJVALID=0
+ .I 'PSJVALID W !!!,$C(7),"SPECIAL INSTRUCTIONS must not contain embedded uparrow ""^"". " I PSJII=1 D PAUSE("SPECIAL INSTRUCTIONS")
+ .I 'PSJVALID I PSJII>1 W ! I $$DONE("SPECIAL INSTRUCTIONS") K ^PS(53.45,+PSJSYSP,5) M ^PS(53.45,+$G(PSJSYSP),5)=^TMP("PSJTMPSI",$J) S PSJVALID=1 Q
+ .I PSJVALID I 'PSJTXTLN K ^PS(53.45,+PSJSYSP,5,0) S ^PS(53.45,+PSJSYSP,5,0)="-1^^0^0",^PS(53.45,+PSJSYSP,5,1,0)=""
+ I $P($G(^PS(53.45,+$G(PSJSYSP),5,0)),"^",3) D ENSI^PSJUTL("^PS(53.45,+$G(PSJSYSP),5,") S PSJTXTLN=$O(^PS(53.45,+$G(PSJSYSP),5,""),-1)
+ K ^TMP("PSJTMPSI",$J)
+ Q PSJTXTLN
+ ;
+EDITOPI(PSJDPT,PSJORD) ; Edit Other Print Info in ^PS(53.45 via Word Processing
+ N DIC,I,PSJVALID,DIWESUB,PSJTXTLN S PSJVALID=0,DIC="^PS(53.45,"_+$G(PSJSYSP)_",6,",DIWESUB="OTHER PRINT INFO"
+ K ^TMP("PSJTMPSI",$J) M ^TMP("PSJTMPSI",$J)=^PS(53.45,+$G(PSJSYSP),6)
+ F PSJII=1:1 Q:$G(PSJVALID)  D
+ .N II,L,DIR,DA,DIE,TMPLN S DIR="",PSJTXTLN="",PSJVALID=1,DIWESUB="OTHER PRINT INFO"
+ .I PSJII=1 D OPIWARN(0)
+ .S PSJTXTLN=""
+ .I PSJII=1 S DA=PSJSYSP,DR=6,DIE="^PS(53.45," D ^DIE
+ .I PSJII>1 S DA=PSJSYSP,DR=6,DIC="^PS(53.45,"_+$G(PSJSYSP)_",6," D EN^DIWE
+ .S PSJTXTLN=$O(^PS(53.45,+PSJSYSP,6,""),-1)
+ .I PSJTXTLN="" K ^PS(53.45,+PSJSYSP,6) S ^PS(53.45,+PSJSYSP,6,0)="-1^^1^1",^PS(53.45,+PSJSYSP,6,1,0)=""
+ .S II=0 F  S II=$O(^PS(53.45,+PSJSYSP,6,II)) Q:'II!'$G(PSJVALID)  S TMPLN=$G(^(II,0)) I (TMPLN["^") S PSJVALID=0
+ .I 'PSJVALID W !!!,$C(7),"OTHER PRINT INFO must not contain embedded uparrow ""^""." I PSJII=1 D PAUSE("OTHER PRINT INFO")
+ .I 'PSJVALID I PSJII>1 W ! I $$DONE("OTHER PRINT INFO") K ^PS(53.45,+PSJSYSP,6) M ^PS(53.45,+$G(PSJSYSP),6)=^TMP("PSJTMPSI",$J) S PSJVALID=1 Q
+ .I PSJVALID D
+ ..I ($L($G(^PS(53.45,+PSJSYSP,6,1,0)))>60) D OPIWARN(1) S P("OPI")="Instructions too long. See Order View or BCMA for full text^"_$P(P("OPI"),"^",2) Q
+ ..I PSJTXTLN=1,($L($G(^PS(53.45,+PSJSYSP,6,1,0)))<61) S P("OPI")=^PS(53.45,+PSJSYSP,6,1,0)_"^"_$P(P("OPI"),"^",2) Q
+ ..N TXT,OPIMSG,PSJTMPTX,PSJOVRMX S OPIMSG="Instructions too long. See Order View or BCMA for full text."
+ ..S PSJTMPTX="",PSJOVRMX=0 S TMPLIN=0 F  S TMPLIN=$O(^PS(53.45,+PSJSYSP,6,TMPLIN)) Q:'TMPLIN!(PSJOVRMX)  D
+ ...S:($L(PSJTMPTX)+$L($G(^PS(53.45,+PSJSYSP,6,TMPLIN,0))))>60 PSJOVRMX=1 Q:$G(PSJOVRMX)  S PSJTMPTX=$G(PSJTMPTX)_$S($G(PSJTMPTX)]"":" ",1:"")_$G(^PS(53.45,+PSJSYSP,6,TMPLIN,0))
+ ..I '$G(PSJOVRMX),(PSJTMPTX]"") S P("OPI")=PSJTMPTX_"^"_$P(P("OPI"),"^",2)
+ K ^TMP("PSJTMPSI",$J)
+ Q PSJTXTLN
+ ;
+OPIWARN(AFTER) ; Warn user about OPI not printing on IV labels
+ D OPIWARN^PSJBCMA1(AFTER)
+ Q
+ ;
+FILESI(DFN,PSJORD) ; File Special instrctions from ^PS(53.45 to UD order
+ N LN,LNCNT,DA,DIE,X,Y,PSJTMPTX,TMPLIN,PSJOVRMX
+ D FILESI^PSJBCMA2(DFN,PSJORD)
+ K ^PS(53.45,+$G(PSJSYSP),5)
+ Q
+ ;
+FILEOPI(DFN,ORDER) ; File Other Print Info from ^PS(53.45 to IV order
+ N LN,LNCNT,PSJORD S PSJORD=ORDER
+ D FILEOPI^PSJBCMA2(DFN,ORDER)
+ K ^PS(53.45,+PSJSYSP,6)
+ Q
+ ;
+DIFFSI(DFN,PSJORD) ; Compare Special Instructions, pre and post edit
+ N LN,DIFF S DIFF=0
+ S LN=0 F  S LN=$O(^PS(53.45,PSJSYSP,5,LN)) Q:'LN!DIFF  D
+ .I PSJORD["U" D
+ ..I LN=1 N OTOT,NTOT S OTOT=+$O(^PS(55,DFN,5,+PSJORD,15,""),-1),NTOT=+$O(^PS(53.45,PSJSYSP,5,""),-1) I NTOT'=OTOT S DIFF=1 Q
+ ..I $G(^PS(53.45,PSJSYSP,5,LN,0))'=$G(^PS(55,DFN,5,+PSJORD,15,LN,0)) S DIFF=1
+ .I PSJORD["P" D
+ ..I LN=1 N OTOT,NTNT S OTOT=+$O(^PS(53.1,+PSJORD,15,""),-1),NTOT=+$O(^PS(53.45,PSJSYSP,5,""),-1) I NTOT'=OTOT S DIFF=1 Q
+ ..I $G(^PS(53.45,PSJSYSP,5,LN,0))'=$G(^PS(53.1,+PSJORD,15,LN,0)) S DIFF=1
+ Q $S(DIFF:1,1:0)
+ ;
+DIFFOPI(DFN,PSJORD) ; Compare Other Print Info, pre and post edit
+ N LN,DIFF S DIFF=0
+ S LN=0 F  S LN=$O(^PS(53.45,PSJSYSP,6,LN)) Q:'LN!DIFF  D
+ .I PSJORD["V" D
+ ..I LN=1 N OTOT,NTOT S OTOT=+$O(^PS(55,DFN,"IV",+PSJORD,10,""),-1),NTOT=+$O(^PS(53.45,PSJSYSP,6,""),-1) I NTOT'=OTOT S DIFF=1 Q
+ ..I $G(^PS(53.45,PSJSYSP,6,LN,0))'=$G(^PS(55,DFN,"IV",+PSJORD,10,LN,0)) S DIFF=1
+ .I PSJORD["P" D
+ ..I LN=1 N OTOT,NTOT S OTOT=+$O(^PS(53.1,+PSJORD,16,""),-1),NTOT=+$O(^PS(53.45,PSJSYSP,6,""),-1) I NTOT'=OTOT S DIFF=1 Q
+ ..I $G(^PS(53.45,PSJSYSP,6,LN,0))'=$G(^PS(53.1,+PSJORD,16,LN,0)) S DIFF=1
+ Q $S(DIFF:1,1:0)
+ ;
+DIFFAR(ARRAY1,ARRAY2) ; Compare two text arrays
+ N LN,DIFF,OTOT,NTOT S DIFF=0,OTOT=0,NTOT=0
+ S LN=0 F  S LN=$O(ARRAY1(LN)) Q:'LN!DIFF  I ARRAY1(LN,0)'=$G(ARRAY2(LN,0)) S DIFF=1
+ Q $S(DIFF:1,1:0)
+ ;
+MVOPI(DFN,PSJI1,PSJI2) ; Move OPI from Non-Verified order to Active order during Verify
+ Q:'$G(DFN)!'$G(PSJI1)!'$G(PSJI2)
+ I PSJI1["P",PSJI2["V" D GETOPI(DFN,PSJI1),FILEOPI(DFN,PSJI2)
+ Q
+ ;
+MVOPIAL(DFN,PSJI1,PSJI2) ; Move Other Print Info Activity log entries from NV order to Active order, during Verification
+ D MVOPIAL^PSJBCMA1(DFN,PSJI1,PSJI2)
+ Q
+ ;
+KILL(USR) ; Clean up ^PS(53.45
+ K ^PS(53.45,+$G(USR),5),^PS(53.45,+$G(USR),6)
+ Q
+ ;
+PAUSE(DEF) ;
+ K DIR W ! S DIR(0)="EA",DIR("A")="Press Return to continue editing "_$G(DEF)_"...",DIR("?")="Press Return to continue..." D ^DIR W !
+ Q
+ ;
+DONE(DEF) ; -- Done editing?
+ N DIR,X,Y
+ S DIR(0)="YA",DIR("A")="Do you want to quit and discard changes"_$S(($G(DEF)]""):" to "_DEF,1:"")_"? ",DIR("B")="NO"
+ S DIR("?",1)="    Enter YES to exit without saving changes, or ",DIR("?")="    enter NO to continue editing "_$S(($G(DEF)]""):DEF,1:"")_"."
+ D ^DIR
+ Q $S($E(Y)="^":1,1:+Y)

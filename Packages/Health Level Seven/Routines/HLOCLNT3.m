@@ -1,17 +1,17 @@
-HLOCLNT3 ;ALB/CJM- Updates messages missing application acks - 10/4/94 1pm ;07/10/2007
- ;;1.6;HEALTH LEVEL SEVEN;**126,130,134,137**;Oct 13, 1995;Build 21
+HLOCLNT3 ;ALB/CJM- Updates messages missing application acks - 10/4/94 1pm ;03/12/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**126,130,134,137,158**;Oct 13, 1995;Build 14
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 DOWORK(WORK) ;
  ;
- N CUTOFF,MSGIEN,QUIT,NOW,SYSTEM
+ N CUTOFF,MSGIEN,QUIT,NOW,SYSPURGE
  S NOW=$$NOW^XLFDT
  S QUIT=0
- D SYSPARMS^HLOSITE(.SYSTEM)
- S PURGE=$$FMADD^XLFDT($$NOW^XLFDT,,24*SYSTEM("ERROR PURGE"))
+ D SYSPURGE^HLOSITE(.SYSPURGE)
+ S PURGE=$$FMADD^XLFDT($$NOW^XLFDT,SYSPURGE("ERROR"))
  ;
  ;7 day wait for an application ack is more than reasonable
- S CUTOFF=$$FMADD^XLFDT(NOW,-3)
+ S CUTOFF=$$FMADD^XLFDT(NOW,-7)
  ;
  S MSGIEN=+$G(^HLTMP("LAST IEN CHECKED FOR MISSING APPLICATION ACK"))
  F  S MSGIEN=$O(^HLB(MSGIEN)) Q:'MSGIEN  Q:MSGIEN>99999999999  D  Q:QUIT
@@ -25,7 +25,7 @@ DOWORK(WORK) ;
  .Q:MSG("BATCH")
  .Q:MSG("STATUS","APP ACK'D")
  .;Q:MSG("STATUS","APP ACK RESPONSE")=""
- .;message has been in a non-complete status for a longtime, pending an application ack - set status to error and schedule for purging
+ .;message has been in a incomplete status for a longtime, pending an application ack - set status to error and schedule for purging
  .S $P(^HLB(MSGIEN,0),"^",9)=PURGE
  .S ^HLB("AD","OUT",PURGE,MSGIEN)=""
  .S $P(^HLB(MSGIEN,0),"^",20)="ER"

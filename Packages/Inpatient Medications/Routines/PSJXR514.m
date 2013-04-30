@@ -96,8 +96,7 @@ A S DA=$O(^PS(55,DA(1),5,DA)) I DA'>0 S DA=0 G END
  S X=$P(DIKZ(0),U,9)
  I X'="" I '$D(DIU(0)) D:$D(PSGAL(28))#2 KILL^PSGAL5:PSGAL(28)=X K PSGAL
  S X=$P(DIKZ(0),U,9)
- ;I X'="" I $P($G(^PS(55,DA(1),5,DA,0)),"^",21) S ORIFN=$P(^(0),"^",21),XX=X,X="ORX" X ^%ZOSF("TEST") I  S X=XX D ENSC^PSGORU K ORIFN,XX
- I X'="" I $P($G(^PS(55,DA(1),5,DA,0)),"^",21) S ORIFN=$P(^(0),"^",21),XX=X,X="ORX" X ^%ZOSF("TEST") I  S X=XX K ORIFN,XX
+ I X'="" I $P($G(^PS(55,DA(1),5,DA,0)),"^",21) S ORIFN=$P(^(0),"^",21),XX=X,X="ORX" X ^%ZOSF("TEST") I  S X=XX D ENSC^PSGORU K ORIFN,XX
  S X=$P(DIKZ(5),U,2)
  I X'="" I '$D(DIU(0)) D:$D(PSGAL(51))#2 KILL^PSGAL5:PSGAL(51)=X K PSGAL
  S X=$P(DIKZ(2),U,4)

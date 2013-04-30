@@ -1,5 +1,5 @@
 DIL2 ;SFISC/GFT,XAK,TKW-PROCESS HDRS AND TRAILERS ;9:50 AM  1 Oct 1998
- ;;22.0;VA FileMan;;Mar 30, 1999
+ ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  D T:$D(^UTILITY($J,"T")) S:DIPT $P(^DIPT(DIPT,0),U,7)=DT S:$D(DIBT) $P(^DIBT(DIBT,0),U,7)=DT S:$G(DISV) $P(^DIBT(DISV,0),U,7)=DT
  F X=0:0 S X=$O(R(X)) Q:X=""  I X<500,$O(^UTILITY($J,99,X))>499 S DX=X

@@ -1,12 +1,13 @@
-LA7VIN5A ;DALOI/JMC - Process Incoming UI Msgs, continued ;May 29, 2008
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,67,72,66**;Sep 27, 1994;Build 30
+LA7VIN5A ;DALOI/JMC - Process Incoming UI Msgs, continued ;Jun 24, 2008
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,67,72,66,74**;Sep 27, 1994;Build 229
+ ;
  ; This routine is a continuation of LA7VIN5.
- ; It is performs processing of fields in OBX segments.
+ ; It performs processing of fields in OBX segments.
  Q
  ;
+ ;
 XFORM ; Transform the result based on fields 12,13,14,16,17 in the Chem Test
- ; multiple in the Auto Instrument file (62.4), or set on the fly
- ; from PARAM 1
+ ; multiple in the Auto Instrument file (62.4), or set on the fly from PARAM 1
  N LA7I
  S LA7XFORM=LA76241(2)
  ;
@@ -27,9 +28,8 @@ XFORM ; Transform the result based on fields 12,13,14,16,17 in the Chem Test
  I $P(LA7XFORM,"^",3)=2,"CFUX"'[LA7ORS S LA7VAL="" Q
  ;
  ; Accept ordered tests only
- ; If LEDI interface (10) and message indicates a reflex ("G") or add-on
- ; test ("A") then process anyway in case it has not been added to
- ; accession.
+ ; If LEDI interface (10) and message indicates a reflex ("G") or add-on test ("A")
+ ;  then process anyway in case it has not been added to accession.
  I $P(LA7XFORM,"^",5) D
  . I LA7INTYP=10,LA7SAC?1(1"A",1"G") Q
  . S LA7LIMIT=1
@@ -54,14 +54,16 @@ XFORM ; Transform the result based on fields 12,13,14,16,17 in the Chem Test
 CHKDIE ; Check if value to be stored passes input transform of field in DD
  N LA7ERR,LA7Y
  ;
- ; If result is on a LEDI interface (type=10) then don't check result
- ; against FileMan input transform.
+ ; If result is on a LEDI interface (type=10) then don't check result against FileMan input transform.
  ; VistA sends "canc" as test result when test is cancelled.
  ; DoD sends "PL Canceled" --> change to "canc" for VistA storage.
  I LA7INTYP=10 D  Q
- . I LA7VAL="PL Cancelled" S LA7VAL="canc"
- . I LA7VAL="PL Canceled" S LA7VAL="canc"
- . I LA7VAL="PLCanceled" S LA7VAL="canc"
+ . I LA7VAL="PL Cancelled" S LA7VAL="canc" Q
+ . I LA7VAL="PL Canceled" S LA7VAL="canc" Q
+ . I LA7VAL="PLCanceled" S LA7VAL="canc" Q
+ ;
+ ; If canc or comment value received then pass as these are valid results on VistA.
+ I LA7VAL="canc"!(LA7VAL="comment") Q
  ;
  ; If value fails data checker then log error and suppress result.
  D CHK^DIE(LA7SUBFL,LA76304,"H",LA7VAL,.LA7Y,"LA7ERR")
@@ -113,28 +115,21 @@ PRDID(LA7PRDID,LA7SFAC,LA7CS) ; Process/Store Producer's ID
  ;            LA7SFAC = sending facility
  ;              LA7CS = component encoding character
  ;
- ; Remove units/reference ranges when Lab UI interface
- ; so file #60 settings always used
+ ; Remove units/reference ranges when Lab UI interface so file #60 settings always used
  I $G(LA7INTYP)=1 S $P(^LAH(LA7LWL,1,LA7ISQN,LA76304),"^",5)="" Q
  ;
  N LA74,LA7I,LA7X,LA7Y
  ;
- S LA7X=$P(LA7PRDID,LA7CS,2),LA74=""
- ;
- F LA7I=1,4 D  Q:LA74
- . I $P(LA7PRDID,LA7CS,LA7I+2)="99VA4" S LA74=$$LKUP^XUAF4($P(LA7PRDID,LA7CS,LA7I))
- . I 'LA74,$P(LA7PRDID,LA7CS,LA7I+2)?1(1"L-CL",1"CLIA",1"99VACLIA") S LA74=$$IDX^XUAF4("CLIA",$P(LA7PRDID,LA7CS,LA7I))
- . I 'LA74 S LA74=$$LKUP^XUAF4($P(LA7PRDID,LA7CS,LA7I+1))
- . I 'LA74 S LA74=$$FINDSITE^LA7VHLU2($P(LA7PRDID,LA7CS),1,1)
- . I 'LA74 S LA74=$$FINDSITE^LA7VHLU2($P(LA7SFAC,LA7CS),1,1)
- ;
  ; Store producer's id in LAH global with results.
+ ; LA7PRODID set with pointer to file #4 to be used by segments (NTE) that follow OBX's.
+ S (LA74,LA7PRODID)=$$RESFID^LA7VHLU2(LA7PRDID,LA7SFAC,LA7CS)
  I LA74 S $P(^LAH(LA7LWL,1,LA7ISQN,LA76304),"^",9)=LA74 Q
  ;
  ; Don't store producer's id as comment.
  I '$P(LA76241(2),"^",9) Q
- ; If unable to identify producer in file #4
- ;  then store as comment if field STORE PRODUCER'S ID (#20) enabled.
+ ;
+ ; If unable to identify producer in file #4 then store as comment if field STORE PRODUCER'S ID (#20) enabled.
+ S LA7X=$P(LA7PRDID,LA7CS,2)
  I LA7X="" Q
  S LA7Y=$P(LA7RMK(0,+LA76241(0)),"^",2)
  S LA7X=$S(LA7Y="":"P",1:"p")_"erformed by "_LA7X
@@ -198,17 +193,15 @@ ABFLAG(LA7X) ; Process/Store Abnormal Flags.
  S LA7Y=$S(LA7X="L":"L",LA7X="H":"H",LA7X="LL":"L*",LA7X="HH":"H*",1:"")
  S $P(^LAH(LA7LWL,1,LA7ISQN,LA76304),"^",2)=LA7Y
  ;
- ; Critical or designated abnormal tests generate bulletin/alert
- ; on LEDI (type=10) interfaces.
+ ; Critical or designated abnormal tests generate bulletin/alert on LEDI (type=10) interfaces.
  I LA7INTYP=10,LA7Y'="" D
  . I $E(LA7Y,2)'="*",'$P(LA76241(2),"^",11) Q
  . S LA7I=$O(^TMP("LA7 ABNORMAL RESULTS",$J,""),-1),LA7I=LA7I+1
  . S X=LA7LWL_"^"_LA7ISQN_"^"_LA76304_"^"_LA76248_"^"_LA76249_"^"_LA7ORS_"^"_LA7TEST_"^"_$S(LA7TEST(0)'="":LA7TEST(0),1:LA7TEST(2,0))_"^"_$$P^LA7VHLU(.LA7SEG,9,LA7FS)
  . S ^TMP("LA7 ABNORMAL RESULTS",$J,LA7I)=X
  ;
- ; If POC interface and abnormal flag is not handled by VistA above
- ;  then store as comment.
- I LA7INTYP>19,LA7INTYP<30,LA7Y="",LA7X'="" D
+ ; If LEDI/POC interface and abnormal flag is not handled by VistA above then store as comment.
+ I LA7INTYP>9,LA7INTYP<30,LA7Y="",LA7X'="",LA7X'="N" D
  . S X=" L^ H^LL^HH^ <^ >^ N^ A^AA^ U^ D^ B^ W^ S^ R^ I^MS^VS"
  . S I=$F(X,LA7X)\3
  . S LA7Y="normalcy status - "_$P($T(ABFLAGS+I^LA7VHLU1),";;",2)
@@ -227,53 +220,4 @@ EII ; Store equipment instance identifier in LAH global with results.
  . I X="" Q
  . S $P(LA7X,"!",I)=$TR(X,"!","~")
  I LA7X'="" S $P(^LAH(LA7LWL,1,LA7ISQN,LA76304),"^",11)=LA7X
- Q
- ;
- ;
-ORESULTS ; Process results that accompany order (ORM) messages
- ;
- N I,LA764,LA7DIE,LA7ERR,LA7I,LA7WP,LA7X,LA7Y,X
- S LA7WP(1,0)=" ",LA7I=2,X=""
- I LA7RLNC S X="[LOINC "_$$GET1^DIQ(95.3,LA7RLNC_",",.01)_"] "_$$GET1^DIQ(95.3,LA7RLNC_",",80)
- I 'LA7RLNC,LA7RNLT D
- . S LA764=$$FIND1^DIC(64,"","X",LA7RNLT,"E","","LA7ERR")
- . I 'LA764 S LA7RNLT="" Q
- . S X="[NLT "_$$GET1^DIQ(64,LA764_",",1)_"] "_$$GET1^DIQ(64,LA764_",",.01,"I")
- I 'LA7RLNC,'LA7RNLT D
- . I LA7TEST(0)]""!(LA7TEST]"") S X="["_LA7TEST(0,1)_" "_LA7TEST_"] "_LA7TEST(0) Q
- . S X="["_LA7TEST(2,1)_" "_LA7TEST(2)_"] "_LA7TEST(2,0)
- S LA7WP(LA7I,0)="Test result: "_X
- ; Date value
- I LA7VTYP="DT" D
- . S LA7X=$$P^LA7VHLU(.LA7SEG,6,LA7FS)
- . S LA7X=$$HL7TFM^XLFDT(LA7X,"L")
- . S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test value: "_LA7X
- ; Coded entry
- I "CECM"[LA7VTYP D
- . S LA7X=$P($$P^LA7VHLU(.LA7SEG,6,LA7FS),LA7CS,2)
- . S LA7X=$$UNESC^LA7VHLU3(LA7X,LA7FS_LA7ECH)
- . S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test value: "_LA7X_$S(LA7UNITS]"":" "_LA7UNITS,1:"")
- ; Numeric/ Structured Numeric value
- I "NMSN"[LA7VTYP D
- . S LA7X=$$P^LA7VHLU(.LA7SEG,6,LA7FS)
- . S LA7X=$$UNESC^LA7VHLU3(LA7X,LA7FS_LA7ECH)
- . S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test value: "_LA7X_$S(LA7UNITS]"":" "_LA7UNITS,1:"")
- ; String Data/ Formatted Text/ Text Data
- I "FTSTX"[LA7VTYP D
- . D PA^LA7VHLU(.LA7SEG,6,LA7FS,.LA7X)
- . D UNESCFT^LA7VHLU3(.LA7X,LA7FS_LA7ECH,.LA7Y)
- . I LA7Y=1,(($L(LA7Y(1,0))+$L(LA7UNITS))<225) S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test value: "_LA7Y(1,0)_$S(LA7UNITS]"":" "_LA7UNITS,1:"") Q
- . S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test value:"
- . F I=1:1:LA7Y S LA7I=LA7I+1,LA7WP(LA7I,0)=LA7Y(I,0)
- . I LA7UNITS'="" S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test units: "_LA7UNITS
- ; Normals/ Reference range
- S LA7X=$$P^LA7VHLU(.LA7SEG,8,LA7FS)
- I LA7X'="" S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test normals: "_LA7X
- ; Normalcy status
- S LA7X=$$P^LA7VHLU(.LA7SEG,9,LA7FS)
- I LA7X'="" D
- . S X=" L^ H^LL^HH^ <^ >^ N^ A^AA^ U^ D^ B^ W^ S^ R^ I^MS^VS"
- . S I=$F(X,LA7X)\3,LA7X=$P($T(ABFLAGS+I^LA7VHLU1),";;",2)
- . I LA7X'="" S LA7I=LA7I+1,LA7WP(LA7I,0)=" Test normalcy status: "_LA7X
- I $D(LA7WP) D WP^DIE(69.6,LA7696_",",99,"A","LA7WP","LA7DIE(99)")
  Q

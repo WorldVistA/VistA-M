@@ -1,11 +1,12 @@
-FBAAEPI ;AISC/GRR-EDIT PREVIOUSLY ENTERED PHARMACY INVOICE ;7/16/2003
- ;;3.5;FEE BASIS;**38,61**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAAEPI ;AISC/GRR - EDIT PREVIOUSLY ENTERED PHARMACY INVOICE ; 5/16/12 12:24pm
+ ;;3.5;FEE BASIS;**38,61,124,132**;JAN 30, 1995;Build 17
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 RD W ! S DIC="^FBAA(162.1,",DIC(0)="AEQM",DIC("A")="Select Invoice #: ",DIC("S")="I $P(^(0),U,5)'=4!($P(^(0),U,5)=4&$D(^XUSEC(""FBAASUPERVISOR"",DUZ)))" D ^DIC K DIC("S") G END:X=""!(X="^"),RD:Y<0
  S (DA,FBDA)=+Y,DIE=DIC
  ; save FPPS data prior to edit session
  S (FBFPPSC,FBFPPSC(0))=$P($G(^FBAA(162.1,FBDA,0)),U,13)
- S DR="1;Q;12;S FBX=$$FPPSC^FBUTL5(1,FBFPPSC);S:FBX=-1 Y=0;S:FBX="""" Y=""@10"";13///^S X=FBX;S FBFPPSC=X;S Y=""@15"";@10;13///@;S FBFPPSC="""";@15;3;5"
+ D LASTRXDT ;Look up last RX FILL DATE in selected invoice, for use in validating Invoice Received Date if it is edited.
+ S DR="@1;1;I $$BADDATE^FBAAEPI(LASTRXDT,X) S Y=""@1"";Q;12;S FBX=$$FPPSC^FBUTL5(1,FBFPPSC);S:FBX=-1 Y=0;S:FBX="""" Y=""@10"";13///^S X=FBX;S FBFPPSC=X;S Y=""@15"";@10;13///@;S FBFPPSC="""";@15;3;5"
  D ^DIE K DIC
  ; if FPPS CLAIM ID changed, then update Rx's
  I FBFPPSC'=FBFPPSC(0) D CKINVEDI^FBAAEPI1(FBFPPSC(0),FBFPPSC,FBDA)
@@ -16,8 +17,8 @@ RD W ! S DIC="^FBAA(162.1,",DIC(0)="AEQM",DIC("A")="Select Invoice #: ",DIC("S")
  .I '$D(^XUSEC("FBAASUPERVISOR",DUZ)) D
  .. I $S(FBSTAT="O":0,FBSTAT="C":0,1:1) D
  ... W !,*7,"You cannot edit a payment once released by a supervisor.",! S FBOUT=1 Q
- .I $S(FBSTAT="T":1,FBSTAT="V":1,1:0) D
- .. W !,*7,"You cannot edit an invoice when the batch has a status of transmitted",!,"or vouchered.",! S FBOUT=1
+ .I $S(FBSTAT="T":1,FBSTAT="F":1,FBSTAT="V":1,1:0) D
+ .. W !,*7,"You cannot edit an invoice when the batch has been sent to Austin",! S FBOUT=1
  I $G(FBOUT) D END G FBAAEPI
  S DIE="^FBAA(162.1,FBDA,""RX"","
  ; get current value of FPPS LINE ITEM to use as default
@@ -42,6 +43,22 @@ RD W ! S DIC="^FBAA(162.1,",DIC(0)="AEQM",DIC("A")="Select Invoice #: ",DIC("S")
  I $$ADJL^FBUTL2(.FBADJ)'=FBADJL(0) D FILEADJ^FBRXFA(DA_","_FBDA_",",.FBADJ)
  ; if remit remark data changed then file
  I $$RRL^FBUTL4(.FBRRMK)'=FBRRMKL(0) D FILERR^FBRXFR(DA_","_FBDA_",",.FBRRMK)
+ ;
+LASTRXDT ;Look up last RX FILL DATE in selected invoice, for use in validating Invoice Received Date if it is edited.
+ ;DA contains the selected INV#
+ N I
+ S LASTRXDT=0
+ F I=1:1 Q:'$D(^FBAA(162.1,DA,"RX",I))  D
+ .N RXDT S RXDT=$P(^FBAA(162.1,DA,"RX",I,0),"^",3)
+ .I RXDT>LASTRXDT S LASTRXDT=RXDT,RXNUM=$P(^FBAA(162.1,DA,"RX",I,0),"^",1)
+ Q
+ ;
+BADDATE(LASTRXDT,INVRCVDT) ;Reject entry if InvRcvDt is Prior to the last Rx Fill Date on the Invoice
+ I INVRCVDT<LASTRXDT D  Q 1 ;Reject entry
+ .N SHOWRXDT  S SHOWRXDT=$E(LASTRXDT,4,5)_"/"_$E(LASTRXDT,6,7)_"/"_$E(LASTRXDT,2,3) ;Convert RXDT into display format for error message
+ .W *7,!!?5,"*** Invoice Received Date cannot be prior to the last",!?8," Prescription Filled Date on the Invoice ("_SHOWRXDT_" for RX# "_RXNUM_") !!!"
+ Q 0 ;Accept entry
+ ;
 END K D,DA,DIC,DIE,DR,FBJ,FBK,FBDA,FBOUT,FBSTAT,FBHAP,X,Y,FBA,FB1725
- K FBADJ,FBADJD,FBADJL,FBFPPSC,FBFPPSL,FBRRMK,FBRRMKD,FBRRMKL
+ K FBADJ,FBADJD,FBADJL,FBFPPSC,FBFPPSL,FBRRMK,FBRRMKD,FBRRMKL,LASTRXDT,RXNUM
  Q

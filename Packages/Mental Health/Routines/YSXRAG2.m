@@ -1,7 +1,0 @@
-YSXRAG2 ; COMPILED XREF FOR FILE #605 ; 10/15/04
- ; 
- S DIKZK=1
- S DIKZ(0)=$G(^YTX(DA,0))
- S X=$P(DIKZ(0),U,1)
- I X'="" S ^YTX("B",$E(X,1,30),DA)=""
-END Q
