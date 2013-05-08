@@ -1,8 +1,8 @@
-.. title: OSEHRA VistA-FOIA
+.. title: OSEHRA VistA-M
 
-=================
-OSEHRA VistA-FOIA
-=================
+==============
+OSEHRA VistA-M
+==============
 
 This source tree holds a reference copy of M components for VistA, the
 Veterans Health Information Systems and Technology Architecture.  It
