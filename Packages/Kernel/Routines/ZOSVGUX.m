@@ -2,18 +2,15 @@
  ;;8.0;KERNEL;**275,425,499**;Jul 10, 1995;Build 14
  ;
 ACTJ() ; # active jobs
- I $G(^XUTL("XUSYS","CNT")) Q $G(^XUTL("XUSYS","CNT"))
- ;This would also work
- N %I,%FILE,Y
- S %FILE=$$TEMP_"zosv_actj_"_$J_".tmp"
- ZSYSTEM "ps cef -C mumps|wc>"_%FILE
- S %I=$I
- O %FILE
- U %FILE R Y:99 U %I
- C %FILE:DELETE
- F  Q:$E(Y)'=" "  S $E(Y)=""
- S Y=Y-1,^XUTL("XUSYS","CNT")=Y
- Q Y
+ D:'($D(^XUTL("XUSYS","CNT"))#10)
+ . N I,IO,LINE
+ . S IO=$IO
+ . O "FTOK":(SHELL="/bin/sh":COMMAND="$gtm_dist/mupip ftok "_$V("GVFILE","DEFAULT"):READONLY)::"PIPE" U "FTOK"
+ . F I=1:1:3 R LINE
+ . O "IPCS":(SHELL="/bin/sh":COMMAND="ipcs -mi "_$TR($P($P(LINE,"::",3),"[",1)," ",""):READONLY)::"PIPE" U "IPCS"
+ . F I=1:1 R LINE Q:$ZEO  I 1<$L(LINE,"nattch=") S ^XUTL("XUSYS","CNT")=+$P(LINE,"nattch=",2) Q
+ . U IO C "FTOK" C "IPCS"
+ Q +$G(^XUTL("XUSYS","CNT"))
  ;
 AVJ() ; # available jobs, Limit is in the OS.
  N V,J
@@ -21,8 +18,10 @@ AVJ() ; # available jobs, Limit is in the OS.
  Q J-$$ACTJ ;Use signon Max
  ;
 RTNDIR() ; primary routine source directory
- ;Assume /home/xxx/o(/home/xxx/r /home/xxx/w) /home/gtm()
- Q $P($S($ZRO["(":$P($P($ZRO,"(",2),")"),1:$ZRO)," ")_"/"
+ ; If $ZRO is a single directory, e.g., xxx, returns that directory, e.g., xxx/
+ ; If $ZRO is of the form xxx yyy ... returns xxx/
+ ; If $ZRO is of the form www(xxx) ... or www(xxx yyy) ... returns xxx/
+ Q $P($S(($F($ZRO_" "," ")>$F($ZRO,"("))&$F($ZRO,"("):$P($P($ZRO,")"),"(",2),1:$ZRO)," ")_"/"
  ;
 TEMP() ; Return path to temp directory
  ;N %TEMP S %TEMP=$P($$RTNDIR," "),%TEMP=$P(%TEMP,"/",1,$L(%TEMP,"/")-2)_"/t/"
@@ -59,15 +58,11 @@ UCICHECK(X) ;
  Q X
  ;
 JOBPAR ; <=====
- N %FILE,%I S %FILE=$$PWD^%ZISH_"zosv_jobpar_"_$J_".tmp"
- ZSYSTEM "ps c -p "_X_"|tail -1>"_%FILE
- S %I=$I
- O %FILE
- U %FILE R Y:99 U %I
- C %FILE:DELETE
- F  Q:$E(Y)'=" "  S $E(Y)=""
- I +Y=X,$E(Y,$L(Y)-4,$L(Y))="mumps" S Y=^%ZOSF("PROD")
- E  S Y=""
+ N CMD,COMM,IO
+ S IO=$IO
+ S COMM="/proc/"_X_"/comm"
+ O COMM:READONLY U COMM R CMD U IO C COMM
+ S Y=$S("mumps"=CMD:^%ZOSF("PROD"),1:"")
  Q
  ;
 SHARELIC(TYPE) ;Used by Cache implementations
@@ -96,7 +91,7 @@ DOLRO ;SAVE ENTIRE SYMBOL TABLE IN LOCATION SPECIFIED BY X
  ;S Y="%" F  S Y=$O(@Y) Q:Y=""  D
  ;. I $D(@Y)#2 S @(X_"Y)="_Y)
  ;. I $D(@Y)>9 S %X=Y_"(",%Y=X_"Y," D %XY^%RCR
- S Y="%" F  M:$D(@Y) @(X_"Y)="_Y) S Y=$O(@Y) Q:Y=""
+ S Y="%" F  M:$D(@Y) @(X_"Y="_Y) S Y=$O(@Y) Q:Y=""
  Q
  ;
 ORDER ;SAVE PART OF SYMBOL TABLE IN LOCATION SPECIFIED BY X
@@ -143,10 +138,12 @@ PRI() ;Check if a mixed OS enviroment.
  Q 1
  ;
 T0 ; start RT clock
- Q  ; we don't have $ZH on GT.M
+ S %ZH0=$S(""'=$T(ZHOROLOG^%POSIX):$$ZHOROLOG^%POSIX,1:$H)
+ Q
  ;
 T1 ; store RT datum w/ZHDIF
- Q  ; we don't have $ZH on GT.M
+ S %ZH1=$S(""'=$T(ZHOROLOG^%POSIX):$$ZHOROLOG^%POSIX,1:$H)
+ Q
  ;
 ZHDIF ;Display dif of two $ZH's
  W !," ET=",$J(($P(%ZH1,",")-$P(%ZH0,",")*86400)+($P(%ZH1,",",2)-$P(%ZH0,",",2)),6,2)
@@ -175,19 +172,6 @@ DEVOK ;
  S Y=0
  Q  ;Let ZIS deal with it.
  ;
- N %FILE S %FILE=$$TEMP_"zosv_devok_"_$J_".tmp"
- ZSYSTEM "/usr/sbin/lsof -F Pc "_X_" >"_%FILE
- N %I,%X,%Y S %I=$I
- O %FILE U %FILE
- F %Y=0:1 R %X:99 Q:%X=""  Q:%X["lsof: status error"  D
- . S %Y(%Y\2,$S($E(%X)="p":"PID",$E(%X)="c":"CMD",1:"?"))=$E(%X,2,$L(%X))
- U %I
- C %FILE:(DELETE)
- I %X["lsof: status error" S Y=-1 Q
- S %X="",Y=0
- F  S %X=$O(%Y(%X)) Q:%X=""  I %Y(%X,"CMD")="mumps" S Y=%Y(%X,"PID") Q
- Q
- ;
 DEVOPN ;List of Devices opened.  Linux only
  ;Returns variable Y. Y=Devices owned separated by a comma
  N %I,%X,%Y
@@ -196,15 +180,14 @@ DEVOPN ;List of Devices opened.  Linux only
  F  S %I=$O(%Y("D",%I)) Q:'%I  S Y=Y_%X_$P(%Y("D",%I)," "),%X=","
  Q
  ;
-RETURN(%COMMAND) ; ** Private Entry Point: execute a shell command & return the resulting value **
+RETURN(%COMMAND) ; ** Private Entry Point: execute a shell command & return the last line **
  ; %COMMAND is the string value of the Linux command
- N %VALUE S %VALUE="" ; value to return
- N %FILE S %FILE=$$TEMP_"RET"_$J_".txt" ; temporary results file
- ZSYSTEM %COMMAND_" > "_%FILE ; execute command & save result
- O %FILE:(REWIND) U %FILE R:'$ZEOF %VALUE:99 C %FILE:(DELETE) ; fetch value & delete file
- ;
- QUIT %VALUE ; return value
- ;
+ N IO,LINE,TMP
+ S IO=$IO
+ O "COMMAND":(SHELL="/bin/sh":COMMAND=%COMMAND:READONLY)::"PIPE" U "COMMAND"
+ F  R TMP Q:$ZEO  S LINE=TMP
+ U IO C "COMMAND"
+ Q LINE
  ;
 STRIPCR(%DIRECT) ; ** Private Entry Point: strip extraneous CR from end of lines of all
  ; routines in %DIRECTORY Linux directory
