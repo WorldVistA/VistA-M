@@ -1,5 +1,5 @@
 PSOORFI4 ;BIR/SAB-CPRS order checks and display con't ;6/17/09 1:11pm
- ;;7.0;OUTPATIENT PHARMACY;**46,74,78,99,117,131,207,258,274,300,308,251,384**;DEC 1997;Build 7
+ ;;7.0;OUTPATIENT PHARMACY;**46,74,78,99,117,131,207,258,274,300,308,251,384,391**;DEC 1997;Build 13
  ;External reference to ^PS(51.2 supported by DBIA 2226
  ;External reference to ^PS(50.607 supported by DBIA 2221
  ;External reference ^PS(55 supported by DBIA 2228
@@ -24,7 +24,6 @@ INST1 ;
  I $P($G(^PS(55,PSODFN,"LAN")),"^") S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=" Other Pat Instruct: "_$S($G(PSONEW("SINS"))]"":PSONEW("SINS"),1:"")
  Q
 PROVCOM ;
- I $G(PKI1)=1,'$G(PSORX("VERIFY")) D REA^PSOPKIV1 Q:$G(PSORX("DFLG"))
  I $O(PRC(0)),'$G(PSOPRC) D  D KV^PSOVER1
  .D EN^DDIOL("Provider Comments: ","","!")
  .F I=0:0 S I=$O(PRC(I)) Q:'I  D EN^DDIOL(PRC(I),"","!")
@@ -119,8 +118,9 @@ DO I '$G(PSONEW("DOSE ORDERED",I)),$P($G(^PS(55,PSODFN,"LAN")),"^") S IEN=IEN+1,
  Q
 OBX ;formats obx section
  N COM,II
+ S IEN=0
  D:$G(PKI1) L1^PSOPKIV1
- I $O(^PS(52.41,ORD,"OBX",0)) S (T,IEN)=0,IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="CPRS Order Checks:" F  S T=$O(^PS(52.41,ORD,"OBX",T)) Q:'T  D  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=" "
+ I $O(^PS(52.41,ORD,"OBX",0)) S T=0,IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="CPRS Order Checks:" F  S T=$O(^PS(52.41,ORD,"OBX",T)) Q:'T  D  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=" "
  .S COM=$G(^PS(52.41,ORD,"OBX",T,0))
  .S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="     " F II=1:1:$L(COM," ") D
  ..I $L(^TMP("PSOPO",$J,IEN,0)_" "_$P(COM," ",II))>80 S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="     "

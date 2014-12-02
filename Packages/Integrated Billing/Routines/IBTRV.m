@@ -1,6 +1,6 @@
 IBTRV ;ALB/AAS - CLAIMS TRACKING REVIEWS (UR) ; 27-JUN-1993
- ;;2.0;INTEGRATED BILLING;**40,121,124,250,277**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**40,121,124,250,277,458**;21-MAR-94;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % ;
 EN ; -- main entry point for IBT REVIEW EDITOR from menu's
@@ -19,8 +19,9 @@ ENQ K XQORS,VALMEVL,IBTRV,IBTRN,DFN,IBTRC,IBTRD,IBFASTXT,VALMQUIT,IBI,IBICD,IBTR
  Q
  ;
 HDR ; -- header code
- D PID^VADPT
- S VALMHDR(1)=" Hospital Review Entries for: "_$$PT^IBTUTL1(DFN)_"   ROI: "_$$EXPAND^IBTRE(356,.31,$P(^IBT(356,IBTRN,0),"^",31))
+ D PID^VADPT N IBXR
+ S VALMHDR(1)=" Hospital Review Entries for: "_$$PT^IBTUTL1(DFN)
+ S IBXR=$$ROIEVT^IBTRR1(IBTRN) I IBXR'="" S VALMHDR(1)=VALMHDR(1)_$J(" ",(60-$L(VALMHDR(1))))_"ROI: "_IBXR
  S VALMHDR(2)="                         for: "_$$EXPAND^IBTRE(356,.18,$P(IBTRND,"^",18))_" on "_$$DAT1^IBOUTL($P(IBTRND,"^",6),"2P")
  Q
  ;

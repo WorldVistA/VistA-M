@@ -1,7 +1,6 @@
-LREPI ;DALOI/SED-EMERGING PATHOGENS SEARCH ;5/1/98
- ;;5.2;LAB SERVICE;**132,175,260,281**;Sep 27, 1994
+LREPI ;DALOI/SED - EMERGING PATHOGENS SEARCH ;16 Jun 2013  6:03 PM
+ ;;5.2;LAB SERVICE;**132,175,260,281,421**;Sep 27, 1994;Build 48
  ; Reference to ^DGPT supported by IA #418
- ; Reference to ^ICD9 supported by IA #10082
  ; Reference to ^ORD(101 supported by IA #872
  ; Reference to PATS^PXRMXX supported by IA #3134
 TEST S LRRPS=3000501,LRRPE=3000531,LRRTYPE=1
@@ -17,6 +16,21 @@ EN ;
 INIT ;Set up search criteria
  ;Fix start and stop date problem CKA 6/2/2002
  S LRBEG=(9999999-LRRPE)_".0000001",LREND=9999999-LRRPS+.999999
+ ; Determine which Coding to system to activate:
+ ; If report beginning date and ending date are prior to ICDx effective date
+ ;  report will print patients with ICD diagnosis codes 
+ ;  and for summary report, count only ICD codes.
+ ; If report beginning date and ending date are on or after ICDx effective date
+ ;  report will print patients with ICDx diagnosis codes
+ ;  and for summary report, count only ICDx codes.
+ ; If report beginning date is prior to ICDx effective date and report ending date is on or after ICDx effective date
+ ;  report will print patients that have either ALL valid diagnosis codes
+ ;  and count both ALL valid diagnosis codes.
+ ;
+ N LRBEGSYS,LRENDSYS
+ S LRBEGSYS=+$$ICDSYS^LREPICD(LRRPS,"D"),LRENDSYS=+$$ICDSYS^LREPICD(LRRPE,"D")
+ K LREPISYS S:LRBEGSYS=0 LRBEGSYS=9 S:LRENDSYS=0 LRENDSYS=9 F LREPISYS=LRBEGSYS:1:LRENDSYS S LREPISYS(LREPISYS)=""
+ ;
  K ^TMP($J),^TMP("HLS",$J)
  S D0=0 F  S D0=$O(LREPI(D0)) Q:+D0'>0  D
  .S ^TMP($J,$P(^LAB(69.5,D0,0),U,7))=""
@@ -38,7 +52,9 @@ INIT ;Set up search criteria
  ...S ^TMP($J,$P(^LAB(60,TST,0),U,4),TST)=""
  .S D1=0 F  S D1=$O(^LAB(69.5,D0,2,D1)) Q:+D1'>0  S ^TMP($J,"E",$P(^LAB(69.5,D0,2,D1,0),U),D0)=""
  .S D1=0 F  S D1=$O(^LAB(69.5,D0,9,D1)) Q:+D1'>0  S ^TMP($J,"SNO",$P(^LAB(69.5,D0,9,D1,0),U),D0)=""
- .S D1=0 F  S D1=$O(^LAB(69.5,D0,3,D1)) Q:+D1'>0  S ^TMP($J,"ICD",$P(^LAB(69.5,D0,3,D1,0),U),D0)=""
+ .S D1=0 F  S D1=$O(^LAB(69.5,D0,3,D1)) Q:+D1'>0  D
+ ..S LREPISYS=$S(+$P(^LAB(69.5,D0,3,D1,0),U,2)=30:10,1:9)
+ ..S:$D(LREPISYS(LREPISYS))&($P(^LAB(69.5,D0,3,D1,0),U)]"") ^TMP($J,"ICD",$P(^LAB(69.5,D0,3,D1,0),U),D0)=""
  K D0,D1,TST,LRIND
  I $D(^TMP($J,"LREPI")) D SEARCH^LREPI4
  I $D(^TMP($J,"ICD")) D PTF^LREPI5
@@ -80,7 +96,7 @@ EXIT ;EXIT
  K LRNDC,LRNTE1,LRFIND,LRDRUG,LRCODE,LRDRSEQ,HLHDR,HLMTIEN,HLMTIENS
  K HLNEXT,HLNODE,HLQUIT,HLRESLT,HLRESLTA,LRANS,LRDRSQ1,LRPROTX,LRPTY
  K LRPVVV,LRSRGO,LRSRXX,LRTOLD,LRTRM,LRPREV,LRPRECYC,X1,X2,X3
- K LRANTIND,LRANTINV,LRREP,LRPV1NUM
+ K LRANTIND,LRANTINV,LRREP,LRPV1NUM,LREPISYS
  Q
 ENCT ;SET THE ENCOUNTER FOR PV1
  S LRPROT=$P(^LAB(69.5,LRPATH,0),U,7)

@@ -1,10 +1,10 @@
-PXRHS01 ; SLC/SBW - PCE Visit data extract main routine ;6/7/96
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**73**;Aug 12, 1996
- ; Extract returns visit data with associated ICD-9, CPT, and
+PXRHS01 ;SLC/SBW - PCE Visit data extract main routine ;6/7/96
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**73,199**;Aug 12, 1996;Build 51
+ ; Extract returns visit data with associated ICD code, CPT, and
  ; Provider data.
 VISIT(DFN,ENDDT,BEGDT,OCCLIM,CATCODE,EXTRCODE,TIMEORD) ; Control branching
  ;INPUT  : DFN      - Pointer to PATIENT file (#2)
- ;         ENDDT    - Ending date/time in in internal FileMan format
+ ;         ENDDT    - Ending date/time in internal FileMan format
  ;                  - Defaults to today's date at 11:59 pm
  ;         BEGDT    - Beginning date/time in internal FileMan format
  ;                  - Defaults to one year prior to today's date
@@ -29,8 +29,8 @@ VISIT(DFN,ENDDT,BEGDT,OCCLIM,CATCODE,EXTRCODE,TIMEORD) ; Control branching
  ;               C = return CPT (procedure) data
  ;               D = return ICD-9 (diagnosis) data
  ;         TIMEORD  - Order visits on same day are indexed
- ;                    Default is inverse cronological order
- ;               1 = Time order in regular cronological order
+ ;                    Default is inverse chronological order
+ ;               1 = Time order in regular chronological order
  ;
  ;OUTPUT : 
  ;  Data from VISIT (9000010) file except for hosp. loc. abbr.

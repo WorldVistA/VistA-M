@@ -1,5 +1,5 @@
-ECSCPT1 ;ALB/JAM - Event Code Screens with CPT Codes ; 8 Nov 07
- ;;2.0; EVENT CAPTURE ;**72,95**;8 May 96;Build 26
+ECSCPT1 ;ALB/JAM - Event Code Screens with CPT Codes ;10/29/12  12:45
+ ;;2.0;EVENT CAPTURE;**72,95,119**;8 May 96;Build 12
 EN ;entry point
  N UCNT,ECDO,ECCO,ECNT,ECINDT,ECP0
  S (ECMORE,ECNT,ECDO,ECCO)=0,ECPG=$G(ECPG,1),ECCPT=$G(ECCPT,"B")
@@ -12,7 +12,7 @@ EN ;entry point
  .I ECC="ALL" D CATS Q
  .I 'ECJLP S ECC=0,ECCN="None",ECCO=999
  .D PROC
-END I 'ECNT W !!!,"Nothing Found."
+END I 'ECNT,$G(ECPTYP)'="E" W !!!,"Nothing Found." ;119 Nothing to write if exporting
  S ECPG=$G(ECPG,1)
  Q
 SET ;set var
@@ -58,6 +58,7 @@ SETP ;set procs
  I +ECPI<1 Q
  I ECCPT="A",'ECINDT Q
  I ECCPT="I",ECINDT Q
+ I $G(ECPTYP)="E" D EXPORT Q  ;119 Nothing to write if exporting
  I ECD'=ECDO D HEADER S ECDO=ECD
  I ECC'=ECCO D  S ECCO=ECC I ECOUT Q
  .W !!,"Category:  "_ECCN D:$Y+4>IOSL CONTD
@@ -78,4 +79,9 @@ PAGE ;
  . S DIR(0)="E" W ! D ^DIR K DIR I 'Y S ECOUT=1
  Q
 MORE I ECMORE W !!,"Category:  "_ECCN
+ Q
+ ;
+EXPORT ;Section added in patch 119
+ S CNT=CNT+1
+ S ^TMP($J,"ECRPT",CNT)=ECLN_U_ECDN_U_ECCN_U_ECPT_$S('ECINDT:" **Inactive**",1:"")_U_NATN_U_$S(ECPSYN]"":ECPSYN,1:ECPN)_" ("_$S(ECFILE=81:"CPT",1:"EC")_")"
  Q

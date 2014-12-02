@@ -1,5 +1,5 @@
-XQ12 ;SEA/LUKE,ISD/HGW - MENU MANAGER UTILITIES ;05/02/12  16:11
- ;;8.0;KERNEL;**9,20,46,157,253,593**;Jul 10, 1995;Build 7
+XQ12 ;SEA/LUKE,ISD/HGW - MENU MANAGER UTILITIES ;01/10/13  15:09
+ ;;8.0;KERNEL;**9,20,46,157,253,593,614**;Jul 10, 1995;Build 11
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 DVARS ;Set up (or reset) necessary variables. From ^XQ1 and ^XQT1.
@@ -10,7 +10,9 @@ DVARS ;Set up (or reset) necessary variables. From ^XQ1 and ^XQT1.
  I '$D(IOS) S IOS=$S($D(^XUTL("XQ",$J,"IOS"))#2:^("IOS"),1:"")
  I '$D(DTIME) S DTIME=$$DTIME^XUP(DUZ,IOS)
  I '$D(DUZ("AUTO")) S I=$S($D(^VA(200,DUZ,200)):$P(^(200),U,6),1:"") S:'$L(I) I=$S($D(^%ZIS(1,$I,"XUS")):$P(^("XUS"),U,6),1:"") S:'$L(I) I=$S($D(^XTV(8989.3,1,"XUS")):$P(^("XUS"),U,6),1:"") S:'$L(I) I=1 S DUZ("AUTO")=I
- I '$D(DUZ("TEST"))&'$$PROD^XUPROD S DUZ("TEST")=1 ; p593 IA #4440
+ I '$D(DUZ("TEST"))&'$$PROD^XUPROD D
+ .S DUZ("TEST")=$$GET^XPAR("SYS","XQ MENUMANAGER PROMPT",1,"Q")
+ .I $L($G(DUZ("TEST")))<3 S DUZ("TEST")=" <TEST ACCOUNT>"
  Q
  ;
 INIT ;Entry for new logon, called from the top of ^XQ and ^XQ1
@@ -61,51 +63,44 @@ UI ;Entry for TaskMan (DUZ may =  0), from ZTSK^XQ1
  S XQCY=XQY D ^XQCHK I XQCY<1 D
  .S XQPRMN=1,XQL=0
  .D:'$D(ZTQUEUED) MES^XQCHK,PAUSE^XQ6
- .;G:'$D(ZTQUEUED) ^XUSCLEAN S XQY=-1
  .S XQY=-1
  .Q
  S XQM3="" I $P(XQY0,U,4)'="A",$P(XQY0,U,14),$D(^DIC(19,XQY,20)),$L(^(20)) X ^(20) ;W "  ==> XQ12+59"
- ;I $D(XQUIT),'$D(ZTQUEUED) S XQL=0 W !!,"The variable XQUIT was encountered in the Entry Action of your Primary Menu." D PAUSE^XQ6 S XQY=-1 G ^XUSCLEAN
  I $D(XQUIT),'$D(ZTQUEUED) D PM^XQUIT I $D(XQUIT) S XQY=-1 G ^XUSCLEAN
- ;I $P(XQY0,U,17),$D(^DIC(19,XQY,26)),$L(^(26)) X ^(26)
 ABT ;WARNING: XQXFLG is also used by OERR test sites.
  S U="^"
  S $P(XQXFLG,U)=$S($O(^XTV(8989.3,1,"ABPKG",0))>0:1,1:0)
 CMP S $P(XQXFLG,U,2)=$S('$D(^XTV(8989.3,1,"XUCP")):0,1:^("XUCP")="Y")
  K %,%Y,PGM,X,XQCY,XQPM,XQPXU,XQPW,XQSD
  Q
- ;
- ;
 MERGE ;Merge in the menu trees that this user needs, start with Primary Menu
  Q:'$D(^DIC(19,"AXQ",XQPSM))
- I $D(^XUTL("XQMERGED",XQPSM)) D OLDF(XQPSM)
- Q:$D(^XUTL("XQMERGED",XQPSM))  ;It's already being done
+ I $D(^XUTL("XQO","XQMERGED",XQPSM)) D OLDF(XQPSM)
+ Q:$D(^XUTL("XQO","XQMERGED",XQPSM))  ;It's already being done
  ;
- L +^XUTL("XQO",XQPSM):DILOCKTM Q:'$T  ;P593
- S ^XUTL("XQMERGED",XQPSM)=$H
+ L +^XUTL("XQO",XQPSM):DILOCKTM Q:'$T
+ S ^XUTL("XQO","XQMERGED",XQPSM)=$H
  ;
  K ^XUTL("XQO",XQPSM)
  M ^XUTL("XQO",XQPSM)=^DIC(19,"AXQ",XQPSM)
  ;
- ;L -^DIC(19,"AXQ",XQPSM) ;P593
- L -^XUTL("XQO",XQPSM) ;P593
- K ^XUTL("XQMERGED",XQPSM)
+ L -^XUTL("XQO",XQPSM)
+ K ^XUTL("XQO","XQMERGED",XQPSM)
  Q
  ;
 MGPXU ;Check for XUCOMMAND
  Q:'$D(^DIC(19,"AXQ","PXU"))
- I $D(^XUTL("XQMERGED","PXU")) D OLDF("PXU")
- Q:$D(^XUTL("XQMERGED","PXU"))  ;Already being merged
+ I $D(^XUTL("XQO","XQMERGED","PXU")) D OLDF("PXU")
+ Q:$D(^XUTL("XQO","XQMERGED","PXU"))  ;Already being merged
  ;
- L +^XUTL("XQO","PXU"):DILOCKTM Q:'$T  ;P593
- S ^XUTL("XQMERGED","PXU")=$H
+ L +^XUTL("XQO","PXU"):DILOCKTM Q:'$T
+ S ^XUTL("XQO","XQMERGED","PXU")=$H
  ;
  K ^XUTL("XQO","PXU")
  M ^XUTL("XQO","PXU")=^DIC(19,"AXQ","PXU")
  ;
- ;L -^DIC(19,"AXQ","PXU")
- L -^XUTL("XQO","PXU") ;P593
- K ^XUTL("XQMERGED","PXU")
+ L -^XUTL("XQO","PXU")
+ K ^XUTL("XQO","XQMERGED","PXU")
  Q
  ;
 MGSEC ;Now the Secondary Menu trees
@@ -113,17 +108,16 @@ MGSEC ;Now the Secondary Menu trees
  F %=0:0 S %=$O(^VA(200,DUZ,203,"B",%)) Q:%'=+%  D
  .S %1="P"_%
  .I '$D(^XUTL("XQO",%1)),$D(^DIC(19,"AXQ",%1)) D
- ..I $D(^XUTL("XQMERGED",%1)) D OLDF(%1)
- ..Q:$D(^XUTL("XQMERGED",%1))  ;Already merging as we speak
- ..S ^XUTL("XQMERGED",%1)=$H
- ..L +^XUTL("XQO",%1):DILOCKTM Q:'$T  ;P593
+ ..I $D(^XUTL("XQO","XQMERGED",%1)) D OLDF(%1)
+ ..Q:$D(^XUTL("XQO","XQMERGED",%1))  ;Already merging as we speak
+ ..S ^XUTL("XQO","XQMERGED",%1)=$H
+ ..L +^XUTL("XQO",%1):DILOCKTM Q:'$T
  ..I '$D(^XUTL("XQO",%1)) D
  ...K ^XUTL("XQO",%1)
  ...M ^XUTL("XQO",%1)=^DIC(19,"AXQ",%1)
  ...Q
- ..;L -^DIC(19,"AXQ",%1) ;P593
- ..L -^XUTL("XQO",%1) ;P593
- ..K ^XUTL("XQMERGED",%1)
+ ..L -^XUTL("XQO",%1)
+ ..K ^XUTL("XQO","XQMERGED",%1)
  ..Q
  .Q
  Q
@@ -133,9 +127,9 @@ OLDF(X) ;See if this flag is au current, if not KILL it
  S:'$D(XQPXU) XQPXU=$G(^DIC(19,"AXQ","PXU",0))
  I XQPXU="" S XQPXU=$H ;Assume it's rebuilding now
  N Y,Z
- S Y=$G(^XUTL("XQMERGED",X)) Q:Y=""  ;Flag's gone
+ S Y=$G(^XUTL("XQO","XQMERGED",X)) Q:Y=""  ;Flag's gone
  S Z=$$HDIFF^XLFDT(XQPXU,Y,2)
- I Z<3600 K ^XUTL("XQMERGED",X) ;Old Flag
+ I Z<3600 K ^XUTL("XQO","XQMERGED",X) ;Old Flag
  Q
  ;
 LOGOPT ;Option audit
@@ -148,21 +142,13 @@ LOGOPT ;Option audit
  K K1,K2
  Q
 XPRMP D CHK^XM W !!,"Do you really want to ",$S(XQUR="REST":"restart",1:"halt"),"? YES// " R X:10 S:'$L(X) X="Y"
- ;Modified - p593 to display <TEST ACCOUNT> if not a production VistA system
- S XQXQTEST=$S($D(DUZ("TEST")):" <TEST ACCOUNT>",1:"")
- I "Yy"'[$E(X) S Y=1 S:^XUTL("XQ",$J,"T")>1 Y=^("T")-1 S ^("T")=Y,Y=^(Y),XQY0=$P(Y,U,2,99),XQPSM=$P(Y,U,1),(XQY,XQDIC)=+XQPSM,XQPSM=$P(XQPSM,XQY,2,3),XQAA="Select "_$P(XQY0,U,2)_XQXQTEST_" Option: " W ! G ASK^XQ
- K XQXQTEST
- ;end of p593 modifications
+ I "Yy"'[$E(X) S Y=1 S:^XUTL("XQ",$J,"T")>1 Y=^("T")-1 S ^("T")=Y,Y=^(Y),XQY0=$P(Y,U,2,99),XQPSM=$P(Y,U,1),(XQY,XQDIC)=+XQPSM,XQPSM=$P(XQPSM,XQY,2,3),XQAA="Select "_$P(XQY0,U,2)_$G(DUZ("TEST"))_" Option: " W ! G ASK^XQ
  G REST:XQUR="REST",HALT:XQUR'="CON"
  ;
 CON ;Continue option logic.  Enter from ASK^XQ on timeout.
  W !!,"Do you want to halt and continue with this option later? YES// " R XQUR:20 S:(XQUR="")!('$T) XQUR="Y"
  I "YyNn"'[$E(XQUR,1) W !!,"   If you enter 'Y' or 'RETURN' you will halt and continue here next time",!,"    you logon to the computer.",!,"   If you enter 'N' you will resume processing where you were." G CON
- ;Modified - p593 to display <TEST ACCOUNT> if not a production VistA system
- S XQXQTEST=$S($D(DUZ("TEST")):" <TEST ACCOUNT>",1:"")
- I "Nn"[$E(XQUR,1) W ! S XQUR=0,Y=^XUTL("XQ",$J,"T"),Y=^(Y),XQY0=$P(Y,U,2,99),XQPSM=$P(Y,U,1),(XQY,XQDIC)=+XQPSM,XQPSM=$P(XQPSM,XQY,2,3),XQAA="Select "_$P(XQY0,U,2)_XQXQTEST_" Option: " G ASK^XQ
- K XQXQTEST
- ;end of p593 modifications
+ I "Nn"[$E(XQUR,1) W ! S XQUR=0,Y=^XUTL("XQ",$J,"T"),Y=^(Y),XQY0=$P(Y,U,2,99),XQPSM=$P(Y,U,1),(XQY,XQDIC)=+XQPSM,XQPSM=$P(XQPSM,XQY,2,3),XQAA="Select "_$P(XQY0,U,2)_$G(DUZ("TEST"))_" Option: " G ASK^XQ
  S X=^XUTL("XQ",$J,^XUTL("XQ",$J,"T")),Y=^("XQM") I (+X'=+Y) S XQM="P"_+Y S XQPSM=$S($D(^XUTL("XQO",XQM,"^",+X)):XQM,$D(^XUTL("XQO","PXU","^",+X)):"PXU",1:"") D:XQPSM="" SS S:XQPSM'="" ^VA(200,DUZ,202.1)=+X_XQPSM
  S X=$P($H,",",2),X=(X>41400&(X<46800))
  W !!,$P("HMM^OK^ALL RIGHT^WELL CERTAINLY^FINE","^",$R(5)+1),"... ",$P("SEE YOU LATER^I'LL BE READY WHEN YOU ARE.^HURRY BACK!^HAVE A GOOD LUNCH BREAK!","^",$R(3)+X+1)
@@ -181,9 +167,11 @@ ABLOG1 F %4=0:0 S %4=$O(^XTV(8989.3,1,"ABPKG",%2,1,%,1,%4)) Q:%4'>0  S %1=$P(^(%
  I %4'>0 S:'$D(^XTV(8989.3,1,"ABOPT",0)) ^(0)="^8989.333P^" S:'$D(^(XQY)) %4=+$P(^(0),U,3),$P(^(0),U,3,4)=$S(XQY>%4:XQY,1:%4)_U_($P(^(0),U,4)+1) S ^(0)=XQY_U_($S($D(^(XQY,0)):$P(^(0),U,2),1:0)+1),%2="A"
  Q
 STARTUP() ; P593 Run XU USER START-UP option
- N XUSER,XUSQUIT ;Protect ourself.
+ N XUSER,XUSQUIT,XUDISV ;Protect ourself.
  S DIC="^DIC(19,",X="XU USER START-UP",XUSQUIT=0
+ S XUDISV=$G(^DISV(DUZ,"^DIC(19,")) ;p614 Save OPTION value for <spacebar><return>
  D EN^XQOR
+ I $G(XUDISV)>0 S ^DISV(DUZ,"^DIC(19,")=XUDISV ;p614 Restore OPTION value for <spacebar><return>
  K X,DIC
  Q XUSQUIT ;If option set XUSQUIT will stop sign-on.
 SAMPLE ; P593 sample start-up option

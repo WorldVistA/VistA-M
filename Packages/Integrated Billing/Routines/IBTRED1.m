@@ -1,6 +1,6 @@
 IBTRED1 ;ALB/AAS - CLAIMS TRACKING EDIT ; 06-JUL-93
- ;;Version 2.0 ; INTEGRATED BILLING ;; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**458**;21-MAR-94;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % G ^IBTRE
  ;
@@ -23,7 +23,7 @@ EDIT(IBTEMP,BLD) ; -- edit entry point for claims tracking
  S DR=IBTEMP
  D ^DIE K DA,DR,DIC,DIE
  D COMP
- I IBDIF=1 D UPDATE,BLD^IBTRED:'$G(BLD)
+ I IBDIF=1 D UPDATE I '$G(BLD) D HDR^IBTRED,BLD^IBTRED
  L -^IBT(356,+IBTRN)
 EDITQ K ^TMP($J,"IBT")
  S VALMBCK="R"

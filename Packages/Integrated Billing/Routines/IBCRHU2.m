@@ -1,6 +1,6 @@
 IBCRHU2 ;ALB/ARH - RATES: UPLOAD UTILITIES (ADD CM ELEMENTS) ; 10-OCT-1998
- ;;2.0;INTEGRATED BILLING;**106,138,245,175,307**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**106,138,245,175,307,498**;21-MAR-94;Build 27
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 RG(NAME,DIV,ID,TY) ; add a new Billing Region for Reasonable Charges (363.31), input region name, MC division site #
  ; returns IFN of billing region (new or existing) ^ region name, null otherwise
@@ -113,16 +113,17 @@ RS(CSN) ; add new Reasonable Charges Charge Sets to Rate Schedules, input Charge
  . I CSN["PHYS",$O(^IBE(363.1,"B","RC-INPT ANC "_IBSITE,0)) S IBRSLST=IBRSLST_",RI-INPT,NF-INPT,WC-INPT"
  ;
  I IBVERS'<2 D
- . I CSN["INPT " S IBRSLST="RI-INPT,NF-INPT,WC-INPT,TF-INPT"
- . I CSN["SNF " S IBRSLST="RI-SNF,NF-SNF,WC-SNF,TF-SNF"
- . I CSN["OPT " S IBRSLST="RI-OPT,NF-OPT,WC-OPT,TF-OPT"
- . I CSN[" FS " S IBRSLST="RI-OPT,NF-OPT,WC-OPT,TF-OPT"
+ . I CSN["INPT " S IBRSLST="RI-INPT,NF-INPT,WC-INPT,TF-INPT,CVA-INPT,CVA RI-INPT"
+ . I CSN["SNF " S IBRSLST="RI-SNF,NF-SNF,WC-SNF,TF-SNF,CVA-SNF,CVA RI-SNF"
+ . I CSN["OPT " S IBRSLST="RI-OPT,NF-OPT,WC-OPT,TF-OPT,CVA-OPT,CVA RI-OPT"
+ . I CSN[" FS " S IBRSLST="RI-OPT,NF-OPT,WC-OPT,TF-OPT,CVA-OPT,CVA RI-OPT"
  I $G(IBRSLST)="" Q
  ;
  F IBI=1:1 S IBRSN=$P(IBRSLST,",",IBI) Q:IBRSN=""  D
  . S IBRS=0 F  S IBRS=$O(^IBE(363,"B",IBRSN,IBRS)) Q:'IBRS  D  Q:+IBFND
  .. S IBRS0=$G(^IBE(363,IBRS,0))
  .. I $E(IBRSN,1,3)="TF-",+$P(IBRS0,U,6),$P(IBRS0,U,6)<3040107 S IBFND=0 Q
+ .. I $E(IBRSN,1,3)="CVA",+$P(IBRS0,U,6),$P(IBRS0,U,6)<3100101 S IBFND=0 Q
  .. I +$P(IBRS0,U,6),$P(IBRS0,U,6)<IBVBEG S IBFND=0 Q
  .. I +IBVEND,+$P(IBRS0,U,5),$P(IBRS0,U,5)>IBVEND S IBFND=0 Q
  .. S IBFND=1 I $O(^IBE(363,+IBRS,11,"B",+IBCSFN,0)) Q

@@ -1,5 +1,5 @@
 ONCSG5A ;Hines OIFO/GWB - Automatic Staging Tables ;10/28/10
- ;;2.11;ONCOLOGY;**35,37,51,52**;Mar 07, 1995;Build 13
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 RPU3 ;Renal Pelvis and Ureter - 3rd edition
  S TNM=T_N_M D  K TNM Q

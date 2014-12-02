@@ -1,5 +1,5 @@
 PSSFILED ;BIR/CML3-VARIOUS FILED UPKEEP ;09/15/97
- ;;1.0;PHARMACY DATA MANAGEMENT;**38,47**;9/30/97
+ ;;1.0;PHARMACY DATA MANAGEMENT;**38,47,172**;9/30/97;Build 28
  ;Reference to ^PSGGAO supported by DBIA #2148
  ;Reference to ^PSGSET supported by DBIA #2152
  ;Reference to ^PSGSETU supported by DBIA 2153
@@ -8,10 +8,8 @@ PSSFILED ;BIR/CML3-VARIOUS FILED UPKEEP ;09/15/97
  ;Reference to ^PS(57.5 supported by DBIA 2112
  ;Reference to ^PS(53.2 supported by DBIA 2115
  ;
- ;This routine is no longer used, with the exception of the ENMI Line
- ;Tag. Quits were inserted at each sub-routine in Patch PSS*1*38. Later
- ;on, this routine should be deleted, and the code at ENMI needs to be
- ;moved somewhere, since that is being called by the PSSJU MI option.
+ ;This routine is no longer used, with the exception of the ENMI and ENII Line
+ ;Tags. Quits were inserted at each sub-routine in Patch PSS*1*38. 
 DONE ;S X="PSGSETU" X ^%ZOSF("TEST") I  D ENKV^PSGSETU K D0,D1,D2,PSGRBS Q
  Q
  ;
@@ -45,7 +43,8 @@ ENWG ; ward group file
  ;
 ENMI ; medication instruction file
  S PSSOTH=$S($P($G(^PS(59.7,1,40.2)),"^"):1,1:0)
- F  S DIC="^PS(51,",DIC(0)="QEAMIL",DLAYGO=51 W ! D ^DIC K DIC Q:+Y'>0  S DIE="^PS(51,",DA=+Y,DR=".01;.5;1;S:'$G(PSSOTH) Y=""@1"";1.1;@1;9;30;31" D ^DIE
+ F  S DIC="^PS(51,",DIC(0)="QEAMIL",DLAYGO=51 W ! D ^DIC K DIC Q:+Y'>0  D
+ .S DIE="^PS(51,",DA=+Y,DR=".01;.5;1;S:'$G(PSSOTH) Y=""@1"";1.1;@1;9;30;31" D ^DIE
  K DIC,DIE,DLAYGO,DA,DR,Y,PSSOTH
  Q
  ;
@@ -120,4 +119,10 @@ DF ; Add/edit Med route, instruction... to the Dosage form file.
  F  S DIC="^PS(50.606,",DIC(0)="QEAMI" D ^DIC Q:+Y'>0  S DFNO=+Y D
  . I $G(MR)]"",'$D(^PS(50.606,DFNO,"MR","B",MRNO)) S DIE="^PS(50.606,",DR="1",DA=DFNO D ^DIE
  . K DIE,DIC,DR,MR S DIE="^PS(50.606,",DR="1;2;3;5;6",DA=DFNO D ^DIE
+ Q
+ENII ; infusion instruction file
+ F  S DIC="^PS(53.47,",DIC(0)="QEAMIL",DLAYGO=53.47 W ! D ^DIC K DIC Q:+Y'>0  D
+ .Q:($P(Y,"^",3))
+ .S DIE="^PS(53.47,",DA=+Y,DR=".01;1" D ^DIE
+ K DIC,DIE,DLAYGO,DA,DR,Y
  Q

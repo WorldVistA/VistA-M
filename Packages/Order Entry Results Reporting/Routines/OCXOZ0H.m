@@ -1,4 +1,4 @@
-OCXOZ0H ;SLC/RJS,CLA - Order Check Scan ;MAR 8,2011 at 13:52
+OCXOZ0H ;SLC/RJS,CLA - Order Check Scan ;JUN 14,2013 at 09:03
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -8,6 +8,31 @@ OCXOZ0H ;SLC/RJS,CLA - Order Check Scan ;MAR 8,2011 at 13:52
  ; ** will be lost the next time the rule compiler executes.    **
  ; ***************************************************************
  ;
+ Q
+ ;
+EL130 ; Examine every rule that involves Element #130 [CONTRAST MEDIA ORDER]
+ ;  Called from SCAN+9^OCXOZ01.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ D R50R1A^OCXOZ0T   ; Check Relation #1 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
+ D R50R2A^OCXOZ0U   ; Check Relation #2 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
+ Q
+ ;
+EL133 ; Examine every rule that involves Element #133 [NO CREAT RESULTS W/IN X DAYS]
+ ;  Called from SCAN+9^OCXOZ01.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ D R50R2A^OCXOZ0U   ; Check Relation #2 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
+ Q
+ ;
+EL63 ; Examine every rule that involves Element #63 [PATIENT HAS RECENT CHOLECYSTOGRAM]
+ ;  Called from SCAN+9^OCXOZ01.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ D R51R1A^OCXOZ0U   ; Check Relation #1 in Rule #51 'RECENT CHOLECYSTOGRAM ORDER'
  Q
  ;
 EL64 ; Examine every rule that involves Element #64 [PHARMACY PATIENT OVER 65]
@@ -270,37 +295,5 @@ EL135 ; Examine every rule that involves Element #135 [DIET ORDER]
  Q:$G(OCXOERR)
  ;
  D R70R1A^OCXOZ11   ; Check Relation #1 in Rule #70 'NO ALLERGY ASSESSMENT'
- Q
- ;
-EL136 ; Examine every rule that involves Element #136 [NO ALLERGY ASSESSMENT]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R70R1A^OCXOZ11   ; Check Relation #1 in Rule #70 'NO ALLERGY ASSESSMENT'
- Q
- ;
-EL137 ; Examine every rule that involves Element #137 [PHARMACY ORDER]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R70R1A^OCXOZ11   ; Check Relation #1 in Rule #70 'NO ALLERGY ASSESSMENT'
- Q
- ;
-EL138 ; Examine every rule that involves Element #138 [DUP OPIOID MEDS]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R71R1A^OCXOZ12   ; Check Relation #1 in Rule #71 'OPIOID MEDICATIONS'
- Q
- ;
-EL139 ; Examine every rule that involves Element #139 [OPIOID MED ORDER]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R71R1A^OCXOZ12   ; Check Relation #1 in Rule #71 'OPIOID MEDICATIONS'
  Q
  ;

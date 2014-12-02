@@ -1,5 +1,5 @@
 MHVXPAT ;WAS/DLF - Patient extract ; 9/25/08 4:11pm
- ;;1.0;My HealtheVet;**6,9**;Aug 23, 2005;Build 24
+ ;;1.0;My HealtheVet;**6,9,10**;Aug 23, 2005;Build 50
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -34,12 +34,12 @@ PATCL(QRY,ERR,DATAROOT)             ;Patients for clinic
  ;             includes number of hits and timestamp
  ;       ERR - Errors during extraction, zero on success
  ;
- N DT,EXTIME,HIT,LOGND,FROMDT,TODT,RTN,U,X,ICN,SSN,CLINIEN
+ N EXTIME,HIT,LOGND,FROMDT,TODT,RTN,X,ICN,SSN,CLINIEN
  ;
  S RTN=$T(+0),LOGND=RTN_"^PTPCMP"  ; node for logging
  D LOG^MHVUL2(LOGND,"BEGIN","S","TRACE")
  ; needed vars.
- S U="^",DT=$$DT^XLFDT,ERR=0,EXTIME=$$NOW^XLFDT,HIT=0
+ S ERR=0,EXTIME=$$NOW^XLFDT,HIT=0
  ;
  K @DATAROOT,^TMP(RTN,$J)  ; clean up residue
  ;
@@ -63,7 +63,7 @@ PATCL(QRY,ERR,DATAROOT)             ;Patients for clinic
  ..S ERR="1^errors ("_SCER(0)_") returned by PTCL^SCAPMC"
  .; now save results
  .S J=0
- .F  S J=$O(^TMP(RTN,$J,"CLINIC",J))  Q:'J  S TM=$G(^(J))  D
+ .F  S J=$O(^TMP(RTN,$J,"CLINIC",J))  Q:'J  S TM=$G(^TMP(RTN,$J,"CLINIC",J))  D
  ..S PTIEN=$P(TM,U,1)
  ..S ICN=$$GET1^DIQ(2,PTIEN_",",991.01)
  ..S SSN=$$GET1^DIQ(2,PTIEN_",",.09)
@@ -89,12 +89,12 @@ PATTM(QRY,ERR,DATAROOT)             ;Patients for team
  ;             includes number of hits and timestamp
  ;       ERR - Errors during extraction, zero on success
  ;
- N DT,EXTIME,HIT,LOGND,TEAMIEN,RTN,U,X,ICN,SSN
+ N EXTIME,HIT,LOGND,TEAMIEN,RTN,X,ICN,SSN
  ;
  S RTN=$T(+0),LOGND=RTN_"^PATTM"  ; node for logging
  D LOG^MHVUL2(LOGND,"BEGIN","S","TRACE")
  ; needed vars.
- S U="^",DT=$$DT^XLFDT,ERR=0,EXTIME=$$NOW^XLFDT,HIT=0
+ S ERR=0,EXTIME=$$NOW^XLFDT,HIT=0
  ;
  K @DATAROOT,^TMP(RTN,$J)  ; clean up residue
  ;
@@ -108,7 +108,7 @@ PATTM(QRY,ERR,DATAROOT)             ;Patients for team
  Q:^TMP(RTN,$J,"PTTM",1)["No patients"
  ; now save results
  S J=0
- F  S J=$O(^TMP(RTN,$J,"PTTM",J))  Q:'J  S TM=$G(^(J))  D
+ F  S J=$O(^TMP(RTN,$J,"PTTM",J))  Q:'J  S TM=$G(^TMP(RTN,$J,"PTTM",J))  D
  .S PTIEN=$P(TM,U,1)
  .S ICN=$$GET1^DIQ(2,PTIEN_",",991.01)
  .S SSN=$$GET1^DIQ(2,PTIEN_",",.09)
@@ -133,12 +133,12 @@ PTPCMP(QRY,ERR,DATAROOT)           ; patients for PCMM provider
  ;             includes number of hits and timestamp
  ;       ERR - Errors during extraction, zero on success
  ;
- N DT,EXTIME,HIT,LOGND,PRVIEN,RTN,U,X,ICN,SSN
+ N EXTIME,HIT,LOGND,PRVIEN,RTN,X,ICN,SSN
  ;
  S RTN=$T(+0),LOGND=RTN_"^PTPCMP"  ; node for logging
  D LOG^MHVUL2(LOGND,"BEGIN","S","TRACE")
  ; needed vars.
- S U="^",DT=$$DT^XLFDT,ERR=0,EXTIME=$$NOW^XLFDT,HIT=0
+ S ERR=0,EXTIME=$$NOW^XLFDT,HIT=0
  ;
  K @DATAROOT,^TMP(RTN,$J)  ; clean up residue
  ;
@@ -157,7 +157,7 @@ PTPCMP(QRY,ERR,DATAROOT)           ; patients for PCMM provider
  ..S ERR="1^errors ("_SCER(0)_") returned by PTPR^SCAPMC"
  .; now save results
  .S J=0
- .F  S J=$O(^TMP(RTN,$J,"PRVDR",J))  Q:'J  S TM=$G(^(J))  D
+ .F  S J=$O(^TMP(RTN,$J,"PRVDR",J))  Q:'J  S TM=$G(^TMP(RTN,$J,"PRVDR",J))  D
  ..S PTIEN=$P(TM,U,1)
  ..S ICN=$$GET1^DIQ(2,PTIEN_",",991.01)
  ..S SSN=$$GET1^DIQ(2,PTIEN_",",.09)
@@ -185,14 +185,14 @@ PTREL(QRY,ERR,DATAROOT)                       ; patient relationships
  ;             includes number of hits and timestamp
  ;       ERR - Errors during extraction, zero on success
  ;
- N DT,EXTIME,HIT,THIT,LOGND,PRVIEN,RTN,U,X,MHVTEAMS,PATIEN,SCTEAMA
+ N EXTIME,HIT,THIT,LOGND,PRVIEN,RTN,X,MHVTEAMS,PATIEN,SCTEAMA
  N SCPOSA,SCUSRA,SCROLEA,SCPURPA,SCER,FROMDT,TODT
  N PPHONE,SSECTION,PTYPE,TYPE,REC
  ;
  S RTN=$T(+0),LOGND=RTN_"^PTREL"  ; node for logging
  D LOG^MHVUL2(LOGND,"BEGIN","S","TRACE")
  ; needed vars.
- S U="^",DT=$$DT^XLFDT,ERR=0,EXTIME=$$NOW^XLFDT,HIT=0
+ S ERR=0,EXTIME=$$NOW^XLFDT,HIT=0
  ;
  K @DATAROOT,^TMP(RTN,$J)  ; clean up residue
  ;
@@ -252,7 +252,7 @@ PTREL(QRY,ERR,DATAROOT)                       ; patient relationships
  F TYPE="CLINICS","PROVIDERS","TEAMS"  D
  .S J=0
  .S HIT=0
- .F  S J=$O(^TMP(RTN,$J,TYPE,J))  Q:'J  S TM=$G(^(J))  D
+ .F  S J=$O(^TMP(RTN,$J,TYPE,J))  Q:'J  S TM=$G(^TMP(RTN,$J,TYPE,J))  D
  ..S HIT=HIT+1,THIT=THIT+1,@DATAROOT@(TYPE,HIT)=$P(TM,U)_"^"_$P(TM,U,2)
  ..I TYPE="PROVIDERS"  D
  ...S PPHONE=$$GET1^DIQ(200,$P(TM,U)_",",.132)

@@ -1,5 +1,5 @@
 PSSDSAPD ;BIR/RTR-Main Dose Check API ;09/16/08
- ;;1.0;PHARMACY DATA MANAGEMENT;**117**;9/30/97;Build 101
+ ;;1.0;PHARMACY DATA MANAGEMENT;**117,160,173**;9/30/97;Build 9
  ;
  ;Dose Check API
  ;
@@ -10,8 +10,6 @@ PSSDSAPD ;BIR/RTR-Main Dose Check API ;09/16/08
  ;PSSDBFDB = Array where if the node exists, just set that data (even if null) directly into the corresponding API piece
  ;
 DOSE(PSSDBASX,PSSDBDFN,PSSDBDS,PSSDBFDB) ;
- ;PSSDBASE Arrays must NOT be in PSS namespace, just in case you pick the same one
- ;If a complex order, calling application must use different Order numbers
  I $G(PSSDBASX(1))="" Q
  N PSSDBASE,PSSDBASF,PSSDBASG,PSSDBASA,PSSDBASB S PSSDBASE=PSSDBASX(1),PSSDBASF=$G(PSSDBASX(2)),PSSDBASG=$G(PSSDBASX(3)) K ^TMP($J,PSSDBASE) K ^TMP($J,"PSSDOSGL") K ^TMP($J,"PSSCNX")
  S PSSDBASA=0 I $G(PSSDBASF)'="" K ^TMP($J,PSSDBASF) S PSSDBASA=1
@@ -19,18 +17,17 @@ DOSE(PSSDBASX,PSSDBDFN,PSSDBDS,PSSDBFDB) ;
  S ^TMP($J,PSSDBASE,"IN","PING")="" D IN^PSSHRQ2(PSSDBASE)
  I $P($G(^TMP($J,PSSDBASE,"OUT",0)),"^")=-1 D DOWN^PSSDSAPK Q
  K ^TMP($J,PSSDBASE)
- N PSSDBLP,PSSDBND1,PSSDBND3,PSSDBAR,PSSDBFST,PSSDBFLG,PSSDBCOT,PSSDBCAR,PSSDBFRC,PSSDBFRB,PSSDBIFL,PSSDBIFG,PSSDBCAX,PSSDBCAZ,PSSDBFTX,PSSDBADJ
+ N PSSDBLP,PSSDBND1,PSSDBND3,PSSDBAR,PSSDBFST,PSSDBFLG,PSSDBCOT,PSSDBCAR,PSSDBFRC,PSSDBFRB,PSSDBIFL,PSSDBIFG,PSSDBCAX,PSSDBCAZ,PSSDBFTX,PSSDBADJ,PSSDBCDP,PSSDSDPL,PSSDSWHE,PSSENHK,PSSENHKZ,PSSDSIVF,PSSENO
  I +$G(PSSDBDFN)'>0 Q
- S PSSDBFLG=0
- K ^TMP($J,PSSDBASE)
+ S PSSDBFLG=0 S PSSDSWHE=$S($E($G(PSSDBASE),1,2)="OR":1,1:0)
  F PSSDBLP=0:0 S PSSDBLP=$O(PSSDBFDB(PSSDBLP)) Q:'PSSDBLP  D
- .K PSSDBAR,PSSDBND1,PSSDBND3 S (PSSDBIFL,PSSDBIFG)=0
+ .K PSSDBAR,PSSDBND1,PSSDBND3 S (PSSDBIFL,PSSDBIFG,PSSDSIVF,PSSENO)=0
  .I $G(PSSDBFDB(PSSDBLP,"RX_NUM"))="" Q
  .I $G(PSSDBFDB(PSSDBLP,"DRUG_NM"))="" Q
- .S:$G(PSSDBFDB(PSSDBLP,"OI"))>0 PSSDBFDB("OI")=PSSDBFDB(PSSDBLP,"OI") I $G(PSSDBFDB(PSSDBLP,"DRUG_IEN"))'>0,$G(PSSDBFDB("OI"))'>0 Q
+ .S PSSDBFDB("OI")=$S($G(PSSDBFDB(PSSDBLP,"OI")):$G(PSSDBFDB(PSSDBLP,"OI")),1:$G(PSSDBFDB("OI"))) I $G(PSSDBFDB(PSSDBLP,"DRUG_IEN"))'>0,$G(PSSDBFDB("OI"))'>0 Q
  .I $G(PSSDBFDB(PSSDBLP,"DRUG_IEN"))>0,$$EXMT^PSSDSAPI($G(PSSDBFDB(PSSDBLP,"DRUG_IEN"))) Q
- .D INERR^PSSDSAPM I $G(PSSDBFDB(PSSDBLP,"DRUG_IEN"))'>0 I 'PSSDBIFL!($G(PSSDBFDB("PACKAGE"))="I") D FDRUG^PSSDSAPM
- .I PSSDBIFL,'PSSDBIFG Q
+ .D INERR^PSSDSAPM Q:PSSENO  I $G(PSSDBFDB(PSSDBLP,"DRUG_IEN"))'>0 D FDRUG^PSSDSAPM I PSSDBIFG D ONT^PSSDSAPA
+ .I PSSDBIFL,'PSSDBIFG D NXDRUG^PSSDSAPM Q
  .D NDINFO
  .I $G(PSSDBND1),$G(PSSDBND3) D
  ..S PSSDBAR("GCN")=$P($$PROD0^PSNAPIS(PSSDBND1,PSSDBND3),"^",7)
@@ -38,13 +35,12 @@ DOSE(PSSDBASX,PSSDBDFN,PSSDBDS,PSSDBFDB) ;
  .S PSSDBAR("NAME")=$G(PSSDBFDB(PSSDBLP,"DRUG_NM"))
  .D AMT I $G(PSSDBAR("AMN"))'="",$L(PSSDBAR("AMN"))>1,$E(PSSDBAR("AMN"),1)="0" S PSSDBAR("AMN")=$E(PSSDBAR("AMN"),2,$L(PSSDBAR("AMN")))
  .D DTYPE
- .;Dose Rate is always DAY for Outpatient and Unit Dose and Outpatient orders
  .S PSSDBAR("DSE")=$S($D(PSSDBFDB(PSSDBLP,"DOSE_RATE")):$G(PSSDBFDB(PSSDBLP,"DOSE_RATE")),1:"DAY")
  .D RTE
  .D SCHD
  .D DURR
  .D DURRAT
- .S PSSDBAR("SPFC")=""
+ .S PSSDBAR("SPFC")="" S:$G(PSSDBFDB(PSSDBLP,"ENH")) PSSENHK(PSSDBFDB(PSSDBLP,"RX_NUM"))=1
  .S PSSDBFST=$G(PSSDBAR("GCN"))_"^"_$S($P($G(PSSDBAR("VUID")),"^")'=0:$G(PSSDBAR("VUID")),1:"")_"^"_$S('PSSDBIFL:PSSDBFDB(PSSDBLP,"DRUG_IEN"),PSSDBIFL&(PSSDBIFG):PSSDBIFG,1:"")_"^"_PSSDBAR("NAME")
  .S PSSDBFLG=1
  .S ^TMP($J,PSSDBASE,"IN","PROSPECTIVE",PSSDBFDB(PSSDBLP,"RX_NUM"))=PSSDBFST
@@ -63,26 +59,25 @@ DOSE(PSSDBASX,PSSDBDFN,PSSDBDS,PSSDBFDB) ;
  S ^TMP($J,PSSDBASE,"IN","IEN")=PSSDBDFN
  S ^TMP($J,PSSDBASE,"IN","DOSE")=""
  D PAT^PSSDSAPM K ^TMP($J,"PSSCNX")
- N PSSDBDGO ; Only go to interace if you have at least one DOse Sequence that needs to go
+ N PSSDBDGO ; Only go to interface if you have at least one Dose Sequence that needs to go
  S PSSDBDGO=0 I $D(^TMP($J,PSSDBASE,"IN","EXCEPTIONS")) S PSSDBDGO=1
  D ERR ;Set up PSSDBCAX error array and default data
  I PSSDBDGO D:$D(PSSDBFTX) FTX^PSSDSAPK D IN^PSSHRQ2(PSSDBASE) D:$D(PSSDBFTX) FTXRS^PSSDSAPK
- I PSSDBASA!(PSSDBASB) D FMT^PSSDSEXC,ADDCT^PSSDSAPM
+ I PSSDBASA!(PSSDBASB) D FMT^PSSDSEXC I $P($G(^TMP($J,PSSDBASE,"OUT",0)),"^")'=-1 D ADDCT^PSSDSAPM,REM^PSSDSAPA
  Q
  ;
  ;
 AMT ;Set Dose Amount and Dose Unit
+ D DPL^PSSDSAPK
  I $D(PSSDBCAZ(PSSDBFDB(PSSDBLP,"RX_NUM"),"NO_DRUG")) D MLTS^PSSDSAPM Q
  N PSSDBUNT,PSSDBFAL,PSSDBXP,PSSDBNOD,PSSDBNT,PSSDSXTD,PSSDBUNA,PSSDBLPD,PSSDSLCL
- ;Account for leading zeros
  S (PSSDBFAL,PSSDBLPD)=0
  I 'PSSDBIFL,$D(PSSDBFDB(PSSDBLP,"DOSE_AMT")),$D(PSSDBFDB(PSSDBLP,"DOSE_UNIT")) S PSSDBAR("AMN")=PSSDBFDB(PSSDBLP,"DOSE_AMT"),PSSDBAR("UNIT")=PSSDBFDB(PSSDBLP,"DOSE_UNIT") D LDZ Q
  I 'PSSDBIFL,$G(PSSDBDS(PSSDBLP,"DRG_AMT")),$G(PSSDBDS(PSSDBLP,"DRG_UNIT"))'="" D
- .;What about Drug Units like MG/ML, can they be passed in like that, and if so, do we take first piece of"/"
+ .;For Drug Units like MG/ML, take first piece of"/"
  .S PSSDBUNT=$S(PSSDBDS(PSSDBLP,"DRG_UNIT")["/":$P(PSSDBDS(PSSDBLP,"DRG_UNIT"),"/"),1:PSSDBDS(PSSDBLP,"DRG_UNIT"))
  .S PSSDBUNT=$$UP^XLFSTR(PSSDBUNT)
  .S PSSDBUNA=$$UNIT^PSSDSAPI(PSSDBUNT)
- .;Add validation that dose is numeric?
  .I PSSDBUNA'="" S PSSDBAR("AMN")=PSSDBDS(PSSDBLP,"DRG_AMT"),PSSDBAR("UNIT")=PSSDBUNA,PSSDBFAL=1 D LDZ
  I PSSDBFAL Q
  ;"DOSE" Node should only come from CPRS, for selected Local Possible Dosage
@@ -92,7 +87,6 @@ AMT ;Set Dose Amount and Dose Unit
  .F PSSDBXP=0:0 S PSSDBXP=$O(^PSDRUG(PSSDBFDB(PSSDBLP,"DRUG_IEN"),"DOS2",PSSDBXP)) Q:'PSSDBXP!(PSSDBFAL)  D
  ..S PSSDBNOD=$G(^PSDRUG(PSSDBFDB(PSSDBLP,"DRUG_IEN"),"DOS2",PSSDBXP,0))
  ..;ignore package of the Local Possible Dose
- ..;
  ..I $$MTCH^PSSDSAPK S PSSDBLPD=1 I $P(PSSDBNOD,"^",5),$P(PSSDBNOD,"^",6)'="" D
  ...;XTID Screening out Inactive Dose Units
  ...S PSSDSXTD=+$P(PSSDBNOD,"^",5) I PSSDSXTD,$$SCREEN^XTID(51.24,.01,PSSDSXTD_",") Q
@@ -119,21 +113,11 @@ RTE ;Get First DataBank Med Route
  Q
  ;
  ;
-DFM() ;get Dose Form Indicator
- ;Go over this code again, you just default to 0, is that OK?
- ;N PSSDFDFK,PSSDFDFL
- ;I $G(PSSDBAR("UNIT"))="" Q 0
- ;S PSSDFDFL=0 F PSSDFDFK=0:0 S PSSDFDFK=$O(^PS(51.24,"C",PSSDBAR("UNIT"),PSSDFDFK)) Q:'PSSDFDFK!(PSSDFDFL)  I '$$SCREEN^XTID(51.24,.01,PSSDFDFK_",") S PSSDFDFL=PSSDFDFK
- ;I PSSDFDFL,$P($G(^PS(51.24,PSSDFDFL,0)),"^",3) Q 1
- ;Q 0
- ;
- ;
 SCHD ;
  N PSSDBSCD,PSSDBSCP,PSSDBSCF,PSSDBSCG,PSSDBSCH
  S PSSDBAR("FREQ")=""
  ;I $D(PSSDBFDB(PSSDBLP,"FREQ")) S PSSDBAR("FREQ")=PSSDBFDB(PSSDBLP,"FREQ") Q
  I PSSDBAR("TYPE")="SINGLE DOSE" S PSSDBAR("FREQ")="" Q
- ;Next Line,  srs 3.7.12.36, AND FOR Inpatient, but where does it apply in the heirarchy
  ;I $G(PSSDBDS(PSSDBLP,"DRATE"))'="",$$DRT(PSSDBDS(PSSDBLP,"DRATE"))<1440 S PSSDBSDR=1
  S PSSDBSCD=$G(PSSDBDS(PSSDBLP,"SCHEDULE"))
  I PSSDBSCD="",'$D(PSSDBFDB(PSSDBLP,"FREQ")) S PSSDBCAZ(PSSDBFDB(PSSDBLP,"RX_NUM"),"FRQ_ERROR")="" Q
@@ -143,7 +127,6 @@ SCHD ;
  .I $P($G(^PS(51.1,PSSDBSCG,0)),"^",5)="O"!($P($G(^PS(51.1,PSSDBSCG,0)),"^",5)="OC") S PSSDBSCH=1
  I PSSDBSCH,'$D(PSSDBFDB(PSSDBLP,"FREQ")) S PSSDBAR("FREQ")=1 Q
  I $G(PSSDBSCD)["@" S PSSDBSCF="D"
- ;Next line, setting to "O" for anything besides Inpatient (FRQ only accepts O or I), need to see what all the possible packahes can be, like can you get a "U" for Unit Dose? If so, code is wrong
  I $G(PSSDBSCD)'="" S PSSDBSCP=$S(PSSDBSCP="I":"I",1:"O") S PSSDBAR("FREQZZ")=$$FRQ^PSSDSAPI(PSSDBSCD,PSSDBSCF,PSSDBSCP,$G(PSSDBDS(PSSDBLP,"DRATE"))),PSSDBAR("FREQ")=$P(PSSDBAR("FREQZZ"),"^")
  I $D(PSSDBFDB(PSSDBLP,"FREQ")) S PSSDBAR("FREQ")=PSSDBFDB(PSSDBLP,"FREQ") Q
  S:PSSDBAR("FREQ")="" PSSDBCAZ(PSSDBFDB(PSSDBLP,"RX_NUM"),"FRQ_ERROR")=""
@@ -151,8 +134,6 @@ SCHD ;
  ;
  ;
 DTYPE ;Find Dose Type
- ;Inpatient - 'On Call' or 'One Time' = Single Dose, else Maintenance
- ;Outpatient - Same logic, validate with Requirements on the 'On Call', and validate Maintenance default if no Schedule
  N PSSDBST1,PSSDBST2,PSSDBST3,PSSDBST4
  I $D(PSSDBFDB(PSSDBLP,"DOSE_TYPE")) S PSSDBAR("TYPE")=PSSDBFDB(PSSDBLP,"DOSE_TYPE") Q
  S PSSDBST1=$G(PSSDBDS(PSSDBLP,"SCHEDULE"))
@@ -177,29 +158,18 @@ DURRAT ;Set Duration Rate
  Q
  ;
  ;
-COMP ;Possible set extra input nodes for complex order, and set array for all inputs, where
- ;PSSDBCAR  "S" - Only show Single
- ;PSSDBCAR  "D" - Only show Daily
- ;PSSDBCAR  "B" - Show Both
- ;You are assuming Drug is the same and it should be ; Do I need to set additional table flags in PSSDBCAR array
- ;If last entry has a conjunction of "AND", do NOT do Daily Dose, that may fix the PSOORED3, 4 and 5 issue
- ;
- ;
- ;if you have to add new entries, just add a piece 5 = 1 to the Pharmacy Order Number
- ;If Conjunction is AND, and Med Route and Dose Units and Schedule type are same, add up
- ;and interpret the schedule
- ;if all "ands" are not the same, don't do it.
- ;Requirement question, if THEN is the conjunction, do we care about duration
- N PSSDBKLP,PSSDBKUN,PSSDBKMR,PSSDBKND,PSSDBKRF,PSSDBKNW,PSSDBKFL,PSSDBKTM,PSSDBKFQ,PSSDBKGG,PSSCNX1
+COMP ;Handle complex order, set PSSDBCAR array, see routine PSSDSEXC for PSSBDCAR piece details
+ ;if you have to add new create input entry, just add a piece 5 = 1 to the Pharmacy Order Number
+ N PSSDBKLP,PSSDBKUN,PSSDBKMR,PSSDBKND,PSSDBKRF,PSSDBKNW,PSSDBKFL,PSSDBKTM,PSSDBKFQ,PSSDBKGG,PSSCNX1,PSSDBCDA,PSSDCLX
  S PSSDBKTM="PSSTTMP"
  K ^TMP($J,PSSDBKTM)
  S PSSDBKFL=0
  F PSSCNX1=0:0 S PSSCNX1=$O(^TMP($J,"PSSCNX","IN","DOSE",PSSCNX1)) Q:'PSSCNX1  S PSSDBKLP=$O(^TMP($J,"PSSCNX","IN","DOSE",PSSCNX1,"")) I PSSDBKLP'=""  D
  .S PSSDBKND=$G(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBKLP)) S PSSDBKFQ=$S($D(PSSDBCAZ(PSSDBKLP,"FRQ_ERROR")):0,1:1) S PSSDBKGG=$S($P(PSSDBKND,"^",12)="SINGLE DOSE":1,1:0)
- .;Review next line
+ .S PSSDBCDA($S($P(PSSDBKND,"^",3)="":"NULL",1:$P(PSSDBKND,"^",3)),$S($P(PSSDBKND,"^",11)="":"NULL",1:$P(PSSDBKND,"^",11)))=PSSDBKLP I $G(PSSDCLX)="",PSSDSWHE S PSSDCLX=PSSDBKLP
  .S PSSDBCAR(PSSDBKLP)="B"_"^"_$P(PSSDBKND,"^",4)_"^"_$P(PSSDBKND,"^",3)_"^"_PSSDBKFQ_"^"_$S($P(PSSDBKND,"^",12)="SINGLE DOSE":0,1:1) S:$G(PSSDBFRC(PSSDBKLP,"CONJ"))="A" $P(PSSDBCAR(PSSDBKLP),"^",7)=1
- .S $P(PSSDBCAR(PSSDBKLP),"^",9)=$P(PSSDBKND,"^",11) D MLTNO^PSSDSAPM
- .I $G(PSSDBFRC(PSSDBKLP,"CONJ"))'="A"!($O(^TMP($J,"PSSCNX","IN","DOSE",PSSCNX1))="") S PSSDBKNW($P(PSSDBKLP,";",4),PSSDBKLP)="" D CRT K PSSDBKNW S PSSDBKFL=0 Q
+ .S $P(PSSDBCAR(PSSDBKLP),"^",9)=$P(PSSDBKND,"^",11) D MLTNO^PSSDSAPM,SXCL^PSSDSAPA I PSSDSWHE S:$G(PSSDBFRC(PSSDBKLP,"CONJ"))'=""!($G(PSSDBFRC(PSSDCLX,"CONJ"))'="") $P(PSSDBCAR(PSSDBKLP),"^",16)=1 S PSSDCLX=PSSDBKLP
+ .I $G(PSSDBFRC(PSSDBKLP,"CONJ"))'="A"!($O(^TMP($J,"PSSCNX","IN","DOSE",PSSCNX1))="") S PSSDBKNW($P(PSSDBKLP,";",4),PSSDBKLP)="" D CRT K PSSDBKNW,PSSDBCDA S PSSDBKFL=0 Q
  .S PSSDBKFL=PSSDBKFL+1
  .S PSSDBKNW($P(PSSDBKLP,";",4),PSSDBKLP)=""
  .S $P(PSSDBCAR(PSSDBKLP),"^")="S",$P(PSSDBCAR(PSSDBKLP),"^",12)=1
@@ -210,8 +180,6 @@ COMP ;Possible set extra input nodes for complex order, and set array for all in
  ;
 DRT(PSSDBJV) ;Return number of minutes based on duration, API also called from Inpatient Medications
  ;If only a numeric is passed in, the API will assume Days
- ;Return -1 if API cannot resolve data passed in
- ;
  I $G(PSSDBJV)="" Q -1
  I PSSDBJV?.N1".".N1"D"!(PSSDBJV?.N1"D") Q (1440*+PSSDBJV)
  I PSSDBJV?.N1".".N!(PSSDBJV?.N) Q (1440*+PSSDBJV)
@@ -222,19 +190,17 @@ DRT(PSSDBJV) ;Return number of minutes based on duration, API also called from I
  Q -1
  ;
  ;
-CRT ;Create new Input Dose Node just for Daily Dose purposes
- ;Next Line, Then or Except conjunction, or last Dosing Sequence, and in either case nothing previous to add, how do I set exceptions
+CRT ;Possibly create new Input Dose Node just for Daily Dose purposes
  I 'PSSDBKFL!($G(PSSDBFRC(PSSDBKLP,"CONJ"))="A") S $P(PSSDBCAR(PSSDBKLP),"^")=$S($G(PSSDBFRC(PSSDBKLP,"CONJ"))="A":"S",$G(PSSDBKGG):"S",$G(PSSDBFRB(PSSDBKLP,"DRATE"))="":"B",1:"B") D S12 Q
  N PSSDBR1,PSSDBR2,PSSDBR3,PSSDBR4,PSSDBR5,PSSDBR6,PSSDBR7,PSSDBRCT,PSSDBRNO,PSSDBRLS,PSSDBR9,PSSDBR91,PSSDBEQ2,PSSDBEQ3,PSSDBEQ4,PSSDBR8,PSSDBXAX,PSSDBRLP,PSSDBRLA
  S (PSSDBRNO,PSSDBRCT,PSSDBR5)=0
- ;Then or Except, or last Dosing Sequence, with previous dosages to add
+ ;Then or Except Conjunction, or last Dosing Sequence in the series, with previous dosages to add up for Daily Dose
  ;PSSDBKNW array holds all previous dosing sequences and current one
  S PSSDBRLP="" F  S PSSDBRLP=$O(PSSDBKNW(PSSDBRLP)) Q:PSSDBRLP=""  S PSSDBR1=$O(PSSDBKNW(PSSDBRLP,"")) I PSSDBR1'=""  D
  .S PSSDBR2=$G(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBR1))
  .I $O(PSSDBKNW(PSSDBRLP))="" S $P(PSSDBCAR(PSSDBKLP),"^")="S",$P(PSSDBCAR(PSSDBKLP),"^",12)=1
  .I $P(PSSDBR2,"^",12)'="MAINTENANCE" D NX(4)
  .S PSSDBRCT=PSSDBRCT+1
- .;Check for Day of Week Schedule, From back Door Inpatinet,Make sure Schedule variable is always defined coming in, Also if I find just one Day of Week out of all the schedules, then it's invalid, is that OK?
  .I $G(PSSDBFRC(PSSDBR1,"SCHEDULE"))["@" D NX(10)
  .I '$D(PSSDBEQ2(10)),$G(PSSDBFRC(PSSDBR1,"SCHEDULE"))'="" F PSSDBEQ4=0:0 S PSSDBEQ4=$O(^PS(51.1,"APPSJ",$G(PSSDBFRC(PSSDBR1,"SCHEDULE")),PSSDBEQ4)) Q:'PSSDBEQ4!($D(PSSDBEQ2(10)))  D
  ..I $P($G(^PS(51.1,PSSDBEQ4,0)),"^",5)="D" D NX(10)
@@ -242,15 +208,9 @@ CRT ;Create new Input Dose Node just for Daily Dose purposes
  ..I '$P(PSSDBR2,"^",5) D NX(11)
  ..S PSSDBR91=$G(PSSDBFRB(PSSDBR1,"DRATE"))
  ..S PSSDBR3=$P(PSSDBR2,"^",6),PSSDBR4=$P(PSSDBR2,"^",11) I PSSDBR3=""!(PSSDBR4="") S PSSDBRNO=1 D:PSSDBR3="" NX(5) D:PSSDBR4="" NX(6)
- ..;Next line, check FRQ API, If you set Text (Q12h), this won't work, may need to do new one
- ..;May be OK, if number is set when always a day or less
- ..;
- ..;
  ..S PSSDBR5=$P(PSSDBR2,"^",8)
  ..I $D(PSSDBCAZ(PSSDBR1,"FRQ_ERROR")) D NX(7)
  ..I 'PSSDBRNO S PSSDBR8=$$FRCON^PSSDSAPK(PSSDBR5) S:PSSDBR8'<1 PSSDBR6=$P(PSSDBR2,"^",5)*PSSDBR8 I PSSDBR8<1 D NX(7)
- ..;
- ..;All durations must be the same, and that includes the last duration, not allowed to be null
  ..I $G(PSSDBFRB(PSSDBR1,"DRATE"))'="" S PSSDBR7=$$DRT(PSSDBFRB(PSSDBR1,"DRATE")) I PSSDBR7<1440 D NX(9)
  ..I '$O(PSSDBKNW(PSSDBRLP)) S PSSDBRLS=PSSDBR1 ; Get Last entry
  .I '$P(PSSDBR2,"^",5) D NX(11)
@@ -258,16 +218,14 @@ CRT ;Create new Input Dose Node just for Daily Dose purposes
  .I PSSDBR4'=$P(PSSDBR2,"^",11) D NX(6)
  .I $G(PSSDBFRB(PSSDBR1,"DRATE"))'=PSSDBR91 D NX(8)
  .S PSSDBR5=$P(PSSDBR2,"^",8) I $D(PSSDBCAZ(PSSDBR1,"FRQ_ERROR")) D NX(7)
- .;
  .I 'PSSDBRNO S PSSDBR8=$$FRCON^PSSDSAPK(PSSDBR5) S:PSSDBR8'<1 PSSDBR6=PSSDBR6+($P(PSSDBR2,"^",5)*PSSDBR8) I PSSDBR8<1 D NX(7)
  .I $G(PSSDBFRB(PSSDBR1,"DRATE"))'="" S PSSDBR7=$$DRT(PSSDBFRB(PSSDBR1,"DRATE")) I PSSDBR7<1440 D NX(9)
  .I '$O(PSSDBKNW(PSSDBRLP)) S PSSDBRLS=PSSDBR1 ; Get Last entry
- I PSSDBRNO D  S $P(PSSDBCAR(PSSDBRLS),"^",8)=1,$P(PSSDBCAR(PSSDBRLS),"^",7)="" D MLTNP^PSSDSAPM Q
- .S PSSDBRLA="" F  S PSSDBRAL=$O(PSSDBKNW(PSSDBRLA)) Q:PSSDBRLA=""  S PSSDBR9=$O(PSSDBKNW(PSSDBRLA,"")) I PSSDBR9'=""  S $P(PSSDBCAR(PSSDBR9),"^")="S",$P(PSSDBCAR(PSSDBR9),"^",12)=1
+ I PSSDBRNO D  S $P(PSSDBCAR(PSSDBRLS),"^",8)=1,$P(PSSDBCAR(PSSDBRLS),"^",7)="" D MLTNP^PSSDSAPM D RESET^PSSDSAPA Q
+ .S PSSDBRLA="" F  S PSSDBRLA=$O(PSSDBKNW(PSSDBRLA)) Q:PSSDBRLA=""  S PSSDBR9=$O(PSSDBKNW(PSSDBRLA,"")) I PSSDBR9'=""  S $P(PSSDBCAR(PSSDBR9),"^")="S",$P(PSSDBCAR(PSSDBR9),"^",12)=1
  .;Set error message only for last entry where Daily Dose should have been done
  .D ERST^PSSDSAPM
  S ^TMP($J,PSSDBKTM,"IN","DOSE",PSSDBRLS_";1")=^TMP($J,PSSDBASE,"IN","DOSE",PSSDBRLS)
- ;Change next line to not use pieces like that
  S ^TMP($J,PSSDBKTM,"IN","PROSPECTIVE",PSSDBRLS_";1")=$P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBRLS),"^",1,4)
  S $P(^TMP($J,PSSDBKTM,"IN","DOSE",PSSDBRLS_";1"),"^",8)=1
  S $P(^TMP($J,PSSDBKTM,"IN","DOSE",PSSDBRLS_";1"),"^",5)=PSSDBR6
@@ -281,16 +239,15 @@ NDINFO ;Set National Drug File information
  Q
  ;
  ;
-ERR ;Loop through PSSDBCAR, set PSSDBCAX error array, probably only need to set for 4 pirce RX Numbers, 5 pieces should be fine
+ERR ;Loop through PSSDBCAR, set PSSDBCAX error array
  N PSSDBEB1,PSSDBEB2,PSSDBEB3
- ;test what happens is age is not defined
  S PSSDBEB3=$S($G(^TMP($J,PSSDBASE,"IN","DOSE","AGE")):1,1:0)
- ;Skip AGE, WT and BSA and newly created Dosages  for complex additions
- ;Rx_NUM MUST contain a ";", or you will not set PSSDBGO *******
- S PSSDBEB1="" F  S PSSDBEB1=$O(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1)) Q:PSSDBEB1=""  D:'$P(PSSDBEB1,";",5)&(PSSDBEB1[";")
+ ;Skip AGE, WT and BSA and newly created Dosages for complex additions
+ ;Rx_NUM MUST contain a ";", or you will not set PSSDBDGO
+ S PSSDBEB1="" F  S PSSDBEB1=$O(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1)) Q:PSSDBEB1=""  S:'PSSDBEB3&(PSSDBEB1[";") $P(PSSDBCAR(PSSDBEB1),"^",13)=1 D:'$P(PSSDBEB1,";",5)&(PSSDBEB1[";")
  .S PSSDBEB2=$G(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1))
- .I $D(PSSDBCAZ(PSSDBEB1,"INF_ERROR")) D INRATE S PSSDBDGO=1 Q
- .I $P(PSSDBEB2,"^",5)=""!($P(PSSDBEB2,"^",6)="") D BDOSE^PSSDSAPK Q
+ .I $D(PSSDBCAZ(PSSDBEB1,"INF_ERROR")) D INRATE S PSSDBDGO=1 S $P(PSSDBCAR(PSSDBEB1),"^",13)=1 Q
+ .I $P(PSSDBEB2,"^",5)=""!($P(PSSDBEB2,"^",6)="") D BDOSE^PSSDSAPK S $P(PSSDBCAR(PSSDBEB1),"^",13)=1 Q
  .I $D(PSSDBCAZ(PSSDBEB1,"FRQ_ERROR")) D INFRQ S PSSDBDGO=1 Q
  .I '$P(PSSDBCAR(PSSDBEB1),"^",5) D SING^PSSDSAPK S PSSDBDGO=1 Q
  .S PSSDBDGO=1
@@ -303,10 +260,12 @@ EXCPS(PSSDBEQ1) ;Set errors
  Q
  ;
  ;
-INRATE ;Infusion Rate error takes care of 3b and 3c, default data already set in Inpatient
+INRATE ;Infusion Rate error, default data already set in Inpatient
  ;N PSSDBEC1
  I 'PSSDBEB3 Q
+ I $P(PSSDBEB2,"^",5)=""!($P(PSSDBEB2,"^",6)="") D EXCPS(1)
  ;S PSSDBEC1=$P(PSSDBEB2,"^",11) S PSSDBEC1=$$UP^XLFSTR(PSSDBEC1) I $E(PSSDBEC1,1,4)'="CONT" Q
+ S $P(PSSDBCAR(PSSDBEB1),"^",21)=1
  D EXCPS(3) D INFERRS^PSSDSAPK
  I $D(PSSDBCAZ(PSSDBEB1,"FRQ_ERROR")) D EXCPS(2)
  I $P(PSSDBCAR(PSSDBEB1),"^",5) S $P(PSSDBCAR(PSSDBEB1),"^",6)=1 S $P(PSSDBCAR(PSSDBEB1),"^",10)=1 Q  ;Maintenance Dose
@@ -316,14 +275,14 @@ INRATE ;Infusion Rate error takes care of 3b and 3c, default data already set in
  Q
  ;
  ;
-INFRQ ;Frequency error  WILL DO 4a
+INFRQ ;Frequency error
  I 'PSSDBEB3 Q
  I $P(PSSDBEB2,"^",11)="" Q
  ;I '$P(PSSDBCAR(PSSDBEB1),"^",5) Q
  D EXCPS(2)
  S $P(PSSDBCAR(PSSDBEB1),"^")="S"
  I $P(PSSDBCAR(PSSDBEB1),"^",5) S $P(PSSDBCAR(PSSDBEB1),"^",8)=1 S $P(PSSDBCAR(PSSDBEB1),"^",10)=1
- ;Inpatient may already se setting next 3, because this applies to Outpatient and IV
+ ;Inpatient may already be setting next 3, because this applies to Outpatient and IV
  S $P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",8)=1,$P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",9)=1
  ;S $P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",9)=1
  S $P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",10)=$P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",7)

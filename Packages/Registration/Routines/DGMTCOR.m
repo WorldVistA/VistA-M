@@ -1,5 +1,5 @@
 DGMTCOR ;ALB/CAW,SCG,LBD,TMK - Check Copay Test Requirements;07/28/08
- ;;5.3;Registration;**21,45,182,290,305,330,344,495,564,773,840**;Aug 13, 1993;Build 20
+ ;;5.3;Registration;**21,45,182,290,305,330,344,495,564,773,840,858**;Aug 13, 1993;Build 30
  ;
  ;A patient may apply for a copay test under the following conditions:
  ;  - Applicant is a veteran
@@ -78,7 +78,8 @@ CHK N STATUS,DGELIG,DGE,DGI,DGNODE,DGMDOD,DGMTDT,DGMTI,DGMTL
  N DGDOM,DGDOM1,VAHOW,VAROOT,VAINDT,VAIP,VAERR,NOW
  D DOM^DGMTR I $G(DGDOM) S DGMTCOR=0,DGRGAUTO=0,DGWRT=8 Q        ;DOM
  D IN5^VADPT I $G(VAIP(1))'="" S DGMTCOR=0,DGRGAUTO=0,DGWRT=9 Q  ;INP
- I DGMTI,'$$OLD^DGMTU4(DGMTDT) S STATUS=$P($G(^DGMT(408.31,+DGMTI,0)),U,3) I STATUS'="3" S DGMTCOR=0,DGWRT=4 G CHKQ
+ ;DG*5.3*858 MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ I DGMTI,'$$OLDMTPF^DGMTU4(DGMTDT) S STATUS=$P($G(^DGMT(408.31,+DGMTI,0)),U,3) I STATUS'="3" S DGMTCOR=0,DGWRT=4 G CHKQ
 CHKQ Q
  ;
 NLA ; Change Status to NO LONGER APPLICABLE - if appropriate

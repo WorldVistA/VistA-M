@@ -1,5 +1,5 @@
 IBTRCD1 ;ALB/AAS/BGA - CLAIMS TRACKING INS ACTION EDIT ;11/8/06 9:34am
- ;;2.0;INTEGRATED BILLING;**10,359,413**;21-MAR-94;Build 9
+ ;;2.0;INTEGRATED BILLING;**10,359,413,458**;21-MAR-94;Build 4
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % G ^IBTRC
@@ -43,6 +43,7 @@ SAVE ; -- Save the global before editing
  K ^TMP($J,"IBT")
  S ^TMP($J,"IBT",356.2,IBTRC,0)=$G(^IBT(356.2,IBTRC,0))
  S ^TMP($J,"IBT",356.2,IBTRC,1)=$G(^IBT(356.2,IBTRC,1))
+ S ^TMP($J,"IBT",356.2,IBTRC,2)=$G(^IBT(356.2,IBTRC,2))
  S ^TMP($J,"IBT",356.2,IBTRC,11,0)=$G(^IBT(356.2,IBTRC,11,0))
  S ^TMP($J,"IBT",356.2,IBTRC,12,0)=$G(^IBT(356.2,IBTRC,12,0))
  S ^TMP($J,"IBT",356.2,IBTRC,13,0)=$G(^IBT(356.2,IBTRC,13,0))
@@ -52,6 +53,7 @@ COMP ; -- Compare before editing with globals
  S IBDIF=0
  I $G(^IBT(356.2,IBTRC,0))'=$G(^TMP($J,"IBT",356.2,IBTRC,0)) S IBDIF=1 Q
  I $G(^IBT(356.2,IBTRC,1))'=$G(^TMP($J,"IBT",356.2,IBTRC,1)) S IBDIF=1 Q
+ I $G(^IBT(356.2,IBTRC,2))'=$G(^TMP($J,"IBT",356.2,IBTRC,2)) S IBDIF=1 Q
  I $G(^IBT(356.2,IBTRC,11,0))'=$G(^TMP($J,"IBT",356.2,IBTRC,11,0)) S IBDIF=1 Q
  I $G(^IBT(356.2,IBTRC,12,0))'=$G(^TMP($J,"IBT",356.2,IBTRC,12,0)) S IBDIF=1 Q
  I $G(^IBT(356.2,IBTRC,13,0))'=$G(^TMP($J,"IBT",356.2,IBTRC,13,0)) S IBDIF=1 Q
@@ -126,8 +128,8 @@ ASKDEL ; -- ask if okay to delete next review dates
  Q
  ;
 10 ;;1.07///@;.2///@;.21///@
-20 ;;.14///@;1.08///@;.2///@;21///@;.28///@
-30 ;;.14///@;1.07///@;1.08///@;.2///@;21///@;.28///@
-40 ;;.14///@;1.07///@;1.08///@;21///@;.28///@
-50 ;;.14///@;1.07///@;1.08///@;.2///@;.28///@
-99 ;;.14///@;1.07///@;1.08///@;.2///@;21///@;.28///@
+20 ;;.14///@;1.08///@;.2///@;21///@;2.02///@
+30 ;;.14///@;1.07///@;1.08///@;.2///@;21///@;2.02///@
+40 ;;.14///@;1.07///@;1.08///@;21///@;2.02///@
+50 ;;.14///@;1.07///@;1.08///@;.2///@;2.02///@
+99 ;;.14///@;1.07///@;1.08///@;.2///@;21///@;2.02///@

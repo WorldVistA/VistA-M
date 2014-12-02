@@ -1,7 +1,14 @@
-LEXDDSP ; ISL Display Defaults - Single User Parse ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
- ;
+LEXDDSP ;ISL/KER - Display Defaults - Single User Parse ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.41)        N/A
+ ;    ^TMP("LEXDIC")      SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    $$GET1^DIQ          ICR   2056
+ ;    $$LOW^XLFSTR        ICR  10104
+ ;               
 DISP ; Display single user defaults
  S:$D(ZTQUEUED) ZTREQ="@"
  G:+($G(LEXAP))=0 EXIT S LEXAP=+LEXAP G:'$L($G(^LEXT(757.2,LEXAP,0))) EXIT
@@ -11,7 +18,7 @@ EXIT ; Cleanup/quit
  K LEX,LEXV,LEXN,DIR,DIROUT,DIRUT,DTOUT,DUOUT,LEX,^TMP("LEXDIC",$J) Q
  ;
 NAME ; Name
- N LEXV,LEXN S LEXV=$P(^VA(200,DUZ,0),"^",1),LEXN=""
+ N LEXV,LEXN S LEXV=$$GET1^DIQ(200,+($G(DUZ)),.01),LEXN=""
  I LEXV["," S LEXN=$P(LEXV,",",2),LEXV=$P(LEXV,",",1)
  S:LEXN'="" LEXN=$$MIXED(LEXN) S:LEXV'="" LEXV=$$MIXED(LEXV)
  D NAME^LEXDDSS((LEXN_" "_LEXV)) Q
@@ -48,7 +55,8 @@ DICS(LEXV) ; Translate filter
  . I LEXV["SC^" D BLB^LEXDDSS("    Look-up filter will also include terms linked to:")
  . I LEXV["SO^" D LB^LEXDDSS("    Look-up filter will include terms linked to: ")
  . D CODES^LEXDDSD(LEXSHOW)
- K ^TMP("LEXDIC",$J) Q
+ K ^TMP("LEXDIC",$J)
+ Q
 PARSE ; Parse DIS("S") string into INCLUDE;EXCLUDE;LEXSHOW
  S (LEXIN,LEXEX)="" S:LEXS["," LEXS=$P(LEXS,",",2)
  S LEXS=$TR(LEXS,"()",""),LEXS=$TR(LEXS,"""","") Q

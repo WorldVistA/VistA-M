@@ -1,5 +1,5 @@
-ORQ12 ; slc/dcm - Get patient orders in context ;06/29/06
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**12,27,78,92,116,190,220,215,243**;Dec 17, 1997;Build 242
+ORQ12 ; slc/dcm - Get patient orders in context ; 11/1/11 11:39am
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**12,27,78,92,116,190,220,215,243,356**;Dec 17, 1997;Build 6
 GET(IFN,NEWD,DETAIL,ACTOR) ; -- Setup TMP array
  ; IFN=ifn of order
  ; NEWD=3rd subscript in ^TMP("ORR",$J, node (ORLIST)
@@ -91,6 +91,8 @@ EXPD ; -- loop through ^XTMP("ORAE" to get expired orders
  S NOW=+$E($$NOW^XLFDT,1,12),TO=0,SDATE=9999999-SDATE,EDATE=9999999-EDATE
  F  S TO=$O(^XTMP("ORAE",PAT,TO)) Q:'TO  I $D(ORGRP(TO)) S TM=EDATE F  S TM=$O(^XTMP("ORAE",PAT,TO,TM)) Q:'TM!(TM>SDATE)!(+TM<EDATE)  D
  . S IFN=0 F  S IFN=$O(^XTMP("ORAE",PAT,TO,TM,IFN)) Q:'IFN  I ('$D(^TMP("ORGOTIT",$J,IFN))!MULT) D
+ .. ;*356 Protect if x-ref dangles.
+ .. I '$D(^OR(100,IFN)) K ^XTMP("ORAE",PAT,TO,TM,IFN) Q
  .. S USTS=$P(^OR(100,IFN,3),U,3)
  .. Q:+$G(USTS)'=7  ;quit if order no longer expired
  .. S ORREP=$P(^OR(100,IFN,3),U,6)

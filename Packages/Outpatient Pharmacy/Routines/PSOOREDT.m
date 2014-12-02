@@ -1,5 +1,5 @@
-PSOOREDT ;BIR/SAB - edit orders from backdoor ;7/23/09 9:06am
- ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304,289,298,379,377**;DEC 1997;Build 1
+PSOOREDT ;BIR/SAB - edit orders from backdoor ;5/8/08 3:27pm
+ ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304,289,298,379,377,391,313**;DEC 1997;Build 76
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to PSSLOCK supported by DBIA 2789
  ;External reference to ^VA(200 supported by DBIA 10060
@@ -40,13 +40,13 @@ EX2 S VALMBCK=$S($G(PSOQUIT):"R",$G(PSORX("FN")):"Q",$G(ZONE):"Q",1:"R")
  Q
  ;
 EDT ; Rx Edit (Backdoor)
- K NCPDPFLG
+ K NCPDPFLG,PSOPKI,DEA
  S I=0 F  S I=$O(^PSRX($P(PSOLST(ORN),"^",2),1,I)) Q:'I  S PSORXED("RX1")=^PSRX($P(PSOLST(ORN),"^",2),1,I,0)
  ;*298 Track PI and Oth Lang PI
  S (RX0,PSORXED("RX0"))=^PSRX($P(PSOLST(ORN),"^",2),0),PSORXED("RX2")=$G(^(2)),PSORXED("RX3")=$G(^(3)),PSOSIG=$P(^("SIG"),"^"),PSOPINS=$G(^("INS")),PSOOINS=$G(^("INSS"))
  I '$D(PSODRUG) NEW PSOY S PSOY=$P(RX0,U,6),PSOY(0)=^PSDRUG(PSOY,0) D SET^PSODRG ; *298 moved this line from EDT+2  RX0 was not defined yet
  F FLD=1:1:$L(FST,",") Q:$P(FST,",",FLD)']""!($G(PSORXED("DFLG")))!($G(PSORX("DFLG")))  S FLN=+$P(FST,",",FLD) D
- .S PSORXED("DFLG")=0,(DA,PSORXED("IRXN"),PSORENW("OIRXN"))=$P(PSOLST(ORN),"^",2),RX0=^PSRX(PSORXED("IRXN"),0) S:$G(PSOSIG)="" PSOSIG=$P(^("SIG"),"^")
+ .S PSORXED("DFLG")=0,(DA,PSORXED("IRXN"),PSORENW("OIRXN"))=$P(PSOLST(ORN),"^",2),RX0=^PSRX(PSORXED("IRXN"),0),PSOPKI=$P($G(^PSRX(PSORXED("IRXN"),"PKI")),"^") S:$G(PSOSIG)="" PSOSIG=$P(^("SIG"),"^")
  .;*298 Track PI and Oth Lang PI
  .S:$G(PSOPINS)="" PSOPINS=$G(^PSRX(DA,"INS")) S:$G(PSOOINS)="" PSOOINS=$G(^PSRX(DA,"INSS"))
  .I '$G(PSOSIGFL) D
@@ -55,6 +55,11 @@ EDT ; Rx Edit (Backdoor)
  ..S:'$G(PSODRUG("IEN")) PSODRUG("IEN")=$P(RX0,"^",6),PSODRUG("NAME")=$P(^PSDRUG($P(RX0,"^",6),0),"^")
  ..S PSODRUG("OI")=PSOI
  .S PSORX("PROVIDER")=$P(RX0,"^",4),PSORX("PROVIDER NAME")=$P(^VA(200,$P(RX0,"^",4),0),"^"),PSOTRN=$G(^PSRX(DA,"TN"))
+ .D:'$G(CHK) POP^PSOSIGNO(DA),CHK Q:$G(PSORXED("DFLG"))
+ .S FDR="39.2^"_$S($P(PSOPAR,"^",3):"6",1:"")_";6.5^113^114^3^1^22R^24^8^7^9^4^11;"_$S($P(RX0,"^",11)="W"&($P(PSOPAR,"^",12)):"35;",1:"")_"^10.6^5^20^23^12^PSOCOU^RF^81"
+ .; Titration/Maintenance Rx check
+ .I $$REQFLDS(FST),$$TITRX^PSOUTL($P(PSOLST(ORN),"^",2))="t" D  S PSORXED("DFLG")=1 Q
+ .. S VALMSG="Cannot edit Drug/Dose fields (Titration Rx).",VALMBCK="R" W $C(7)
  .D:'$G(CHK) POP^PSOSIGNO(DA),CHK Q:$G(PSORXED("DFLG"))
  .S FDR="39.2^"_$S($P(PSOPAR,"^",3):"6",1:"")_";6.5^113^114^3^1^22R^24^8^7^9^4^11;"_$S($P(RX0,"^",11)="W"&($P(PSOPAR,"^",12)):"35;",1:"")_"^10.6^5^20^23^12^PSOCOU^RF^81"
  .I $G(ST)=11!($G(ST)=12)!($G(ST)=14)!($G(ST)=15) D NDCDAWDE^PSOORED7(ST,FLN,$G(RXN)) Q
@@ -70,6 +75,7 @@ EDT ; Rx Edit (Backdoor)
  .I FLN=4 D INS^PSOORED1 Q
  .I FLN=1 D PSOI^PSOORED6 N PSOX S PSORXED=1,PSOX("IRXN")=$S($D(DA):DA,$D(PSORXED("IRXN")):PSORXED("IRXN"),$D(PSORENW("OIRXN")):PSORENW("OIRXN")) D:'$G(PSORXED("DFLG")) EN^PSODIAG Q
  .I FLN=2 D DRG^PSOORED6 N PSOX S PSORXED=1,PSOX("IRXN")=PSORXED("IRXN") D:'$G(PSORXED("DFLG")) EN^PSODIAG S:$O(^PSRX(PSORXED("IRXN"),1,0)) REF=1 Q
+ .I FLN=12,PSOPKI W !!,"Digitally Signed Order - Provider can't be changed" D PAUSE Q
  .I FLN=12 D PROV Q
  .I FLN=6 D ISDT^PSOORED2 Q
  .I FLN=7 D FLDT^PSOORED2 Q
@@ -105,7 +111,9 @@ CHK S CHK=1 I $G(^PSDRUG($P(PSORXED("RX0"),"^",6),"I"))]"",^("I")<DT S VALMSG="T
  ..W $C(7) S DIR("A",1)="",DIR("A",2)="RX# "_$P(^PSRX(PSPRXN,0),"^")_" is from another division.",DIR("A")="Continue: (Y/N)",DIR(0)="Y",DIR("?",1)="'Y' FOR YES",DIR("?")="'N' FOR NO"
  ..S DIR("B")="N" D ^DIR I 'Y!($D(DIRUT)) S PSORXED("DFLG")=1 W !
  ;
- I $P(^PSRX(PSORXED("IRXN"),"STA"),"^")=16 S PSORXED("DFLG")=1 S VALMSG="Prescriptions on Provider Hold cannot be edited." Q
+ I $P(^PSRX(PSORXED("IRXN"),"STA"),"^")=16 D  Q
+ . S PSORXED("DFLG")=1 S VALMSG="Prescriptions on Provider Hold cannot be edited."
+ ;
 CHKX K PSPOP,DIR,DTOUT,DUOUT,Y,X Q
  Q
 PROV ;select provider
@@ -142,3 +150,12 @@ SVALO ;Set message for order lock
  S VALMSG=$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing this order.")
  Q
  ;
+PAUSE     ;
+ N DIR,X,Y
+ W ! S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR
+ Q
+REQFLDS(FIELDS) ; Checks if fields 1,2 or 3 are being edited
+ N REQFLDS,I
+ S REQFLDS=0
+ F I=1:1:$L(FIELDS) I ",1,2,3,"[(","_+$P(FIELDS,",",I)_",") S REQFLDS=1 Q
+ Q REQFLDS

@@ -1,5 +1,5 @@
-LRWLST12 ;DALOI/STAFF - ACCESSION SETUP ;Jan 5, 2009
- ;;5.2;LAB SERVICE;**153,201,350**;Sep 27, 1994;Build 230
+LRWLST12 ;DALOI/STAFF - ACCESSION SETUP ;8/19/2013
+ ;;5.2;LAB SERVICE;**153,201,350,427**;Sep 27, 1994;Build 33
  ;
  ;
 CAP ; from LRWLST11,LRTSTJAM
@@ -138,22 +138,30 @@ APMOVE ; Copy anatomic pathology data from file #69.6 to corresponding fields in
  I 'LRFILE Q
  S LRI=0
  F  S LRI=$O(^LRO(69.6,LR696,61,LRI)) Q:'LRI  D
+ . N LRCYWKLD
  . S LRY=$G(^LRO(69.6,LR696,61,LRI,0))
  . I $P(LRY,"^")="" Q
  . S FDA(1,LRFILE,"+1,"_LRIDT_","_LRDFN_",",.01)=$P(LRY,"^")
  . I $P(LRY,"^",2) S FDA(1,LRFILE,"+1,"_LRIDT_","_LRDFN_",",.06)=$P(LRY,"^",2)
  . I $P(LRY,"^",3) S FDA(1,LRFILE,"+1,"_LRIDT_","_LRDFN_",",.07)=$P(LRY,"^",3)
+ . I LRSS="CY" D
+ . . S LRCYWKLD=$$CYWKLD($P(LRY,"^"),$P(LRY,"^",2),$P(LRY,"^",3),LRAA)
+ . . I LRCYWKLD S FDA(1,LRFILE,"+1,"_LRIDT_","_LRDFN_",",.02)=LRCYWKLD
  . I $D(FDA(1)) D UPDATE^DIE("","FDA(1)","","LRDIE(1)")
  . K FDA(1),LRDIE(1)
  ;
  ; If no free text specimen and topography then create from top-level topography
  I '$D(^LRO(69.6,LR696,61)) D
+ . N LRCYWKLD
  . S LRX=$G(^LRO(69.6,LR696,0))
  . I '$P(LRX,"^",7) Q
  . S LRY=$$GET1^DIQ(61,$P(LRX,"^",7),.01),$P(LRY,"^",2,3)=$P(LRX,"^",7,8)
  . S FDA(2,LRFILE,"+1,"_LRIDT_","_LRDFN_",",.01)=$P(LRY,"^")
  . I $P(LRY,"^",2) S FDA(2,LRFILE,"+1,"_LRIDT_","_LRDFN_",",.06)=$P(LRY,"^",2)
  . I $P(LRY,"^",3) S FDA(2,LRFILE,"+1,"_LRIDT_","_LRDFN_",",.07)=$P(LRY,"^",3)
+ . I LRSS="CY" D
+ . . S LRCYWKLD=$$CYWKLD($P(LRY,"^"),$P(LRY,"^",2),$P(LRY,"^",3),LRAA)
+ . . I LRCYWKLD S FDA(2,LRFILE,"+1,"_LRIDT_","_LRDFN_",",.02)=LRCYWKLD
  . I $D(FDA(2)) D UPDATE^DIE("","FDA(2)","","LRDIE(2)")
  . K FDA(2),LRDIE(2)
  ;
@@ -199,3 +207,26 @@ MAILALRT(LRRNAME,LRFMERR) ;
  S XMTO("G.LMI")="",XMINSTR("FROM")=.5,XMINSTR("ADDR FLAGS")="R"
  D SENDMSG^XMXAPI(DUZ,XMSUB,"LRMTXT",.XMTO,.XMINSTR)
  Q
+CYWKLD(LR61NAME,LR61,LR62,LRAA) ;
+ ;
+ N LRCAPA,LRCYWKLD,DIR,DA,X,Y
+ ;
+ S LRCYWKLD=0
+ ;
+ S LRCAPA=$P(^LAB(69.9,1,0),"^",14)&($P(^LRO(68,LRAA,0),"^",16))
+ I 'LRCAPA Q LRCYWKLD
+ ;
+ W !
+ W !!,"CY Workload Profile For:"
+ W !
+ W !,"            SPECIMEN: ",LR61NAME
+ I LR61 W !," SPECIMEN TOPOGRAPHY: ",$$GET1^DIQ(61,LR61_",",.01)
+ I LR62 W !,"   COLLECTION SAMPLE: ",$$GET1^DIQ(62,LR62_",",.01)
+ W !
+ ;
+ S DIR(0)="63.902,.02"
+ D ^DIR
+ I $D(DIRUT) Q LRCYWKLD
+ S LRCYWKLD=+Y
+ ;
+ Q LRCYWKLD

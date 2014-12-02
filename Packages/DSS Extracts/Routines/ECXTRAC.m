@@ -1,5 +1,5 @@
-ECXTRAC ;ALB/GTS,JAP,BIR/DMA,CML-Package Extracts for DSS ; 7/29/07 12:51pm
- ;;3.0;DSS EXTRACTS;**9,8,14,24,30,33,49,84,105**;Dec 22, 1997;Build 70
+ECXTRAC ;ALB/GTS,JAP,BIR/DMA,CML-Package Extracts for DSS ;5/17/13  12:40
+ ;;3.0;DSS EXTRACTS;**9,8,14,24,30,33,49,84,105,144**;Dec 22, 1997;Build 9
  ;Date range, queuing and message sending for package extracts
  ;Input
  ;  ECPACK   printed name of package (e.g. Lab, Prescriptions)
@@ -17,12 +17,13 @@ ECXTRAC ;ALB/GTS,JAP,BIR/DMA,CML-Package Extracts for DSS ; 7/29/07 12:51pm
  ;  ECXLOGIC=Fiscal year extract logic to use
  ;
 EN ;entry point
- N OUT,CHKFLG
+ N OUT,CHKFLG,RUN ;144
  I '$D(ECNODE) S ECNODE=7
  I '$D(ECHEAD) S ECHEAD=" "
- I $P($G(^ECX(728,1,ECNODE+.1)),U,ECPIECE)]"" D  Q
- .W !!,$C(7),ECPACK," extract is already scheduled to run",!!
- .D PAUSE
+ I $P($G(^ECX(728,1,ECNODE+.1)),U,ECPIECE)]"" D  I '$G(RUN) Q  ;144
+ .W !!,$C(7),ECPACK," extract is already running or is scheduled to run.",!! ;144
+ .S RUN=$$RUSURE(1) ;144
+ .;D PAUSE
  W @IOF,!,"Extract ",ECPACK," Information for DSS",!!
  S:'$D(ECINST) ECINST=+$P(^ECX(728,1,0),U)
  S ECXINST=ECINST
@@ -62,8 +63,9 @@ EN ;entry point
  ..W !!,"Beginning and ending dates must be in the same month and year."
  ..W !,"Please try again.",!!
  .S ECED=Y
- .I ECLDT'<ECSD D  Q
- ..W !!,"The ",ECPACK," information has already been extracted through ",$$FMTE^XLFDT(ECLDT),"."
+ .I ECLDT'<ECSD D  I '$G(RUN) Q  ;144
+ ..W !!,"The ",ECPACK," information has already been extracted " W:$L(ECPACK)>10 ! W "through ",$$FMTE^XLFDT(ECLDT),"." ;144
+ ..S RUN=$$RUSURE(2) Q:$G(RUN)  W ! ;144
  ..W !,"Please enter a new date range.",!!
  .S OUT=1
  I ECED]"",ECSD]"" D QUE
@@ -92,6 +94,8 @@ QUE ;queue extract
  D ^%ZTLOAD
  I $D(ZTSK) D
  .S $P(^ECX(728,1,ECNODE+.1),U,ECPIECE)="R"
+ .S ^XTMP("ECX EXTRACT",0)=$$DT^XLFDT_"^"_$$FMADD^XLFDT(DT,365)_"^TASK INFORMATION FOR EXTRACTS" ;144 Update zero node for task information in XTMP
+ .S ^XTMP("ECX EXTRACT",ECHEAD)=ZTSK_"^"_$G(DUZ)_"^"_$G(ZTSK("D"))_"^"_ECSD_"^"_ECED ;144 Save data related to task
  .W !,"Request queued as Task #",ZTSK,".",!
  .D PAUSE
  Q
@@ -105,7 +109,7 @@ NOIVP ;cannot generate ivp message
  ;
 START ; entry when queued
  S QFLG=0
- L +^ECX(727,0) S EC=$P(^ECX(727,0),U,3)+1,$P(^(0),U,3,4)=EC_U_EC L -^ECX(727,0)
+ L +^ECX(727,0):3 Q:'$T  S EC=$P(^ECX(727,0),U,3)+1,$P(^(0),U,3,4)=EC_U_EC L -^ECX(727,0) ;144 Added time out to lock as required by standard
  S ^ECX(727,EC,0)=EC_U_DT_U_ECPACK_U_ECSD_U_$E(ECED,1,7)_U_U_DUZ
  S ^ECX(727,EC,"HEAD")=ECHEAD
  S:ECFILE=727.816 ECFILE=727.827 S ^ECX(727,EC,"FILE")=ECFILE
@@ -121,6 +125,7 @@ START ; entry when queued
  ;if task gets stop request, set ztstop and quit
  I QFLG D  Q
  .S $P(^ECX(728,1,ECNODE+.1),U,ECPIECE)="",ZTSTOP=1
+ .K ^XTMP("ECX EXTRACT",ECHEAD) ;144 Delete queued information if stopped by user
  .D QKILL
  .D QMSG
  .D ^ECXKILL
@@ -138,6 +143,7 @@ START ; entry when queued
  S ECLAST=$O(^ECX(ECFILE,99999999),-1),ECTOTAL=$P(^ECX(ECFILE,0),U,4)+ECRN,$P(^(0),U,3,4)=ECLAST_U_ECTOTAL K ECLAST,ECTOTAL
  D MSG
  S $P(^ECX(728,1,ECNODE+.1),U,ECPIECE)=""
+ K ^XTMP("ECX EXTRACT",ECHEAD) ;144 Delete queued information if processing completed normally
  I $D(ZTQUEUED) S ZTREQ="@"
  Q
  ;
@@ -202,3 +208,25 @@ PAUSE ;pause screen
  I 'Y S OUT=1
  W !!
  Q
+ ;API added in patch 144
+RUSURE(TYPE) ;Allow user to override running node or bypass last date run checks
+ N DIR,Y,ZTSK,USER,QUE,NODE,STDT,EDDT
+ I TYPE=1 D
+ .S NODE=$G(^XTMP("ECX EXTRACT",ECHEAD))
+ .S ZTSK=$P(NODE,U),USER=$$GET1^DIQ(200,$P(NODE,U,2),.01),QUE=$$HTE^XLFDT($P(NODE,U,3)),STDT=$$FMTE^XLFDT($P(NODE,U,4)),EDDT=$$FMTE^XLFDT($P(NODE,U,5))
+ .I ZTSK D STAT^%ZTLOAD D  W !
+ ..W "Task Information: ",!,$$REPEAT^XLFSTR("-",17),!,"Task #: ",ZTSK,!,"Queued by: ",USER,!,"Extract date range: ",STDT," to ",EDDT,!,"Status: "
+ ..I '$G(ZTSK(0))!(ZTSK(1)=0) W "Task deleted, no further information available."
+ ..I ZTSK(1)=1 W "ACTIVE - Task is scheduled to start on ",QUE
+ ..I ZTSK(1)=2 W "ACTIVE - Task is currently running and started on ",QUE
+ ..I ZTSK(1)=5 W "INACTIVE - Task ended abnormally"
+ ..I ZTSK(1)=1!(ZTSK(1)=2) W !!,"**Before continuing, the ",$G(ECHEAD)," extract should be ",$S(ZTSK(1)=1:"deleted",1:"stopped")," in TaskManager.",!,"Failure to do so may result in multiple ",$G(ECHEAD)," extracts running simultaneously**."
+ ..I ZTSK(1)=5 W !!,"Be sure any errors or issues have been addressed before overriding this status",!,"and starting another ",$G(ECHEAD)," extract."
+ S DIR(0)="Y",DIR("B")="NO",DIR("A")="Do you want to continue processing the "_$G(ECHEAD)_" extract"
+ D ^DIR
+ I '+Y Q 0
+ W !
+ S DIR("A")="Are you SURE you want to run the "_$G(ECHEAD)_" extract"
+ I TYPE=2 S DIR("A",1)="Make sure you have checked that your selected dates are correct",DIR("A",2)="before answering yes to the next question.",DIR("A",3)=""
+ D ^DIR
+ Q +Y

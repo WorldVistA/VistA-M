@@ -1,9 +1,19 @@
-HBHCUTL ; LR VAMC(IRMS)/MJT-HBHC Utility module, Entry points:  ACTION, STATUS, START, TODAY, HDRPAGE, HDRRANGE, HDR132, HDR132NR, HDRXPAGE ; Mar 2000
- ;;1.0;HOSPITAL BASED HOME CARE;**2,6,8,16,24**;NOV 01, 1993;Build 201
+HBHCUTL ;LR VAMC(IRMS)/MJT - HBHC Utility module, Entry points:  ACTION, STATUS, START, TODAY, HDRPAGE, HDRRANGE, HDR132, HDR132NR, HDRXPAGE ;Mar 2000
+ ;;1.0;HOSPITAL BASED HOME CARE;**2,6,8,16,24,25**;NOV 01, 1993;Build 45
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;HBH*1.0*25   APR  2012   K GUPTA      Support for ICD-10 Coding System
+ ;******************************************************************************
+ ;******************************************************************************
+ ;
 ACTION ; Set appropriate fields/variables for Admit/Reject Action
  K HBHCQ,HBHCKEEP
  S HBHCY0=^HBHC(631,HBHCDFN,0)
- S:X="" Y=$S($D(HBHCUPD):0,1:87) S:X=1 Y=18 S:X=2 HBHCQ=1
+ S:X="" Y=$S($D(HBHCUPD):0,1:87) S:X=1 Y="@2" S:X=2 HBHCQ=1  ;changed to placeholder @2 from field 18
  S HBHCAFLG=0 F HBHCI=19:1:37 Q:HBHCAFLG  S:$P(HBHCY0,U,HBHCI)]"" HBHCAFLG=1
  S HBHCRFLG=0 I ($P(HBHCY0,U,16)]"")!($P(HBHCY0,U,17)]"") S HBHCRFLG=1
  Q:(HBHCAFLG=0)&(HBHCRFLG=0)

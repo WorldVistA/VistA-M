@@ -1,5 +1,5 @@
-LRVRMI2A ;DALOI/STAFF - LAH/TMP TO FILE #63 ;03/24/11  17:12
- ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+LRVRMI2A ;DALOI/STAFF - LAH/TMP TO FILE #63 ;11/27/12  18:20
+ ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
  ;
  ; Continuation of LRVRMI4 and is used for extracting results from the LAH global and storing it into LAB DATA FILE (#63).
  ;
@@ -18,6 +18,7 @@ N9 ; Process Fungus/Yeast
  S LRFDA(9,63.05,LRIEN,18)=LRNOW
  S LRFDA(9,63.05,LRIEN,19.5)=$S($G(LRDUZ):LRDUZ,1:$G(DUZ))
  D FILE^DIE("","LRFDA(9)","LRMSG")
+ S LRRPTAPP=1
  Q
  ;
  ;
@@ -109,6 +110,7 @@ N11 ; Process Acid Fast
  . D BLDSTAT^LRVRMI4A(63.05,23,$P(LRX,"^"),.LRSTATUS)
  ;
  D FILE^DIE("","LRFDA(11)","LRMSG")
+ S LRRPTAPP=1
  ;
  ; Store code system references for AFB Stain
  S LRX=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,11,0,.01))
@@ -231,6 +233,7 @@ N17 ; Process Virology
  S LRFDA(17,63.05,LRIEN,33)=LRNOW
  S LRFDA(17,63.05,LRIEN,35)=$S($G(LRDUZ):LRDUZ,1:$G(DUZ))
  D FILE^DIE("","LRFDA(17)","LRMSG")
+ S LRRPTAPP=1
  Q
  ;
  ;

@@ -1,9 +1,10 @@
-MPIFEXT ;SFCIO/CMC-EXTENDED PDAT - RPC ;26 JUN 01
- ;;1.0; MASTER PATIENT INDEX VISTA ;**20**;30 Apr 99
+MPIFEXT ;SFCIO/CMC-EXTENDED PDAT - RPC ;9 Apr 2013  4:42 PM
+ ;;1.0;MASTER PATIENT INDEX VISTA;**20,57**;30 Apr 99;Build 2
  ;
  ;Integration Agreements Utilized:
  ;  ^DGCN(391.91 - #2751
  ;  EN1^XWB2HL7 - #3144
+ ;  RPCCHK^XWB2HL7 - #3144
  ;  RTNDATA^XEBDRPC - #3149
  ;
 PEXT(RETURN,ICN,SSN,LOCAL,ALL,SITE,RPC) ;get patient info array
@@ -34,16 +35,21 @@ SITE(RETS,ICN,SSN,SITE,RPC) ;
  .I $G(ICN)'="" S ^XTMP("MPIF EXT PDAT"_ICN,0)=$$FMADD^XLFDT($$NOW^XLFDT,2)_"^"_$$NOW^XLFDT_"^"_"Remote data from site",^XTMP("MPIF EXT PDAT"_ICN,SITE)=RETS(0)
  .I $G(SSN)'="" S ^XTMP("MPIF EXT PDAT"_SSN,0)=$$FMADD^XLFDT($$NOW^XLFDT,2)_"^"_$$NOW^XLFDT_"^"_"Remote data from site",^XTMP("MPIF EXT PDAT"_SSN,SITE)=RETS(0)
  ;
- N CNT,SUB
- S CNT=0
-AGAIN H 2 K RES D RTNDATA^XWBDRPC(.RES,RETS(0)) S CNT=CNT+1
- I +RES(0)=-1&(RES(0)["Not DONE") I CNT<10 G AGAIN
- I +RES(0)=-1&(RES(0)["Not DONE") I CNT>10 S RETS(SITE)="Unable to get data" Q
- I RES(0)="0^New" I CNT<10 G AGAIN
- I RES(0)="0^New" I CNT>10 S RETS(SITE)="Unable to get data" Q
+ ;**57,MVI_1414 (mko): Call RPCCHK^XWB2HL7 to check for results
+ N CNT
+ F CNT=1:1:10 K RES D RPCCHK^XWB2HL7(.RES,RETS(0)) Q:+RES(0)=1  Q:+RES(0)=-1  H 2
  I +RES(0)=-1 S RETS=RES(0) Q
- I RES'="" I CNT<10 G AGAIN
- I RES'="" I CNT>10 S RETS(SITE)="Unable to get data" Q
+ I +RES(0)'=1 S RETS(SITE)="Unable to get data" Q
+ K RES D RTNDATA^XWBDRPC(.RES,RETS(0))
+ ;S CNT=0
+ ;AGAIN H 2 K RES D RTNDATA^XWBDRPC(.RES,RETS(0)) S CNT=CNT+1
+ ;I +RES(0)=-1&(RES(0)["Not DONE") I CNT<10 G AGAIN
+ ;I +RES(0)=-1&(RES(0)["Not DONE") I CNT>10 S RETS(SITE)="Unable to get data" Q
+ ;I RES(0)="0^New" I CNT<10 G AGAIN
+ ;I RES(0)="0^New" I CNT>10 S RETS(SITE)="Unable to get data" Q
+ ;I +RES(0)=-1 S RETS=RES(0) Q
+ ;I RES'="" I CNT<10 G AGAIN
+ ;I RES'="" I CNT>10 S RETS(SITE)="Unable to get data" Q
  D REFORMAT(.RES)
  K RETS,EXIST
  M RETS(SITE)=RES
@@ -117,15 +123,21 @@ MPI K RETS1
  ;
 RET(REST,SITE,IEN) ;
  ; RETRIEVING DATA
- N RES1,CNT S CNT=0
-AGAIN1 H 2 K RES1,REST D RTNDATA^XWBDRPC(.RES1,IEN) S CNT=CNT+1
- I +RES1(0)=-1&(RES1(0)["Not DONE") I CNT<10 G AGAIN1
- I +RES1(0)=-1&(RES1(0)["Not DONE") I CNT>10 S REST(SITE)="Unable to get data" Q
- I RES1(0)="0^New" I CNT<10 G AGAIN1
- I RES1(0)="0^New" I CNT>10 S REST(SITE)="Unable to get data" Q
- I +RES1(0)=-1 S REST(SITE)=RES1(0) Q
- I RES1'="" I CNT<10 G AGAIN1
- I RES1'="" I CNT>10 S REST(SITE)="Unable to get data" Q
+ ;**57,MVI_1414 (mko): Call RPCCHK^XWB2HL7 to check for results
+ N RES1,CNT
+ F CNT=1:1:10 K RES1 D RPCCHK^XWB2HL7(.RES1,IEN) Q:+RES1(0)=1  Q:+RES1(0)=-1  H 2
+ I +RES1(0)=-1 S REST=RES1(0) Q
+ I +RES1(0)'=1 S REST(SITE)="Unable to get data" Q
+ K RES1 D RTNDATA^XWBDRPC(.RES1,IEN)
+ ;N RES1,CNT S CNT=0
+ ;AGAIN1 H 2 K RES1,REST D RTNDATA^XWBDRPC(.RES1,IEN) S CNT=CNT+1
+ ;I +RES1(0)=-1&(RES1(0)["Not DONE") I CNT<10 G AGAIN1
+ ;I +RES1(0)=-1&(RES1(0)["Not DONE") I CNT>10 S REST(SITE)="Unable to get data" Q
+ ;I RES1(0)="0^New" I CNT<10 G AGAIN1
+ ;I RES1(0)="0^New" I CNT>10 S REST(SITE)="Unable to get data" Q
+ ;I +RES1(0)=-1 S REST(SITE)=RES1(0) Q
+ ;I RES1'="" I CNT<10 G AGAIN1
+ ;I RES1'="" I CNT>10 S REST(SITE)="Unable to get data" Q
  D REFORMAT(.RES1)
  K REST
  M REST=RES1
@@ -159,7 +171,7 @@ REFORMAT(ARRAY) ; Reformat from RPC=1 format to RPC=0 format
  Q
  ;
 ASK(ICNSSN,SITE) ; Function to check if there has been a previous request
- ; made for this ICN/SSN. If so, ask the user if they wish to view if or 
+ ; made for this ICN/SSN. If so, ask the user if they wish to view if or
  ; create a new request.
  ;
  N DIR,X,Y,SITE1

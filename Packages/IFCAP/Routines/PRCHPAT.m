@@ -1,6 +1,6 @@
 PRCHPAT ;ID/RSD-CREATE ENTRY IN FILE 442 ;1/13/93  15:46
-V ;;5.1;IFCAP;**46**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**46,176**;Oct 20, 2000;Build 11
+ ;Per VHA Directive 2004-038, this routine should not be modified
  ;
 EN ;ENTER NEW PAT IN FILE 442;
  ;;**VERSION 1.52**;
@@ -26,11 +26,11 @@ ENPO1 K DIC("S") S PRCHP("NEW")="",DIC="^PRC(442,",DLAYGO=442 D ^DIC G ENPO:Y<0,
  D DOCID^PRCHUTL
  G ENPOQ
  ;
-NUM L ^PRC(442.6,+Y,0):1 G:'$T W1 S X=$P(Y,U,2),Z=$S(+$P(Y(0),U,4)<$P(Y(0),U,2):+$P(Y(0),U,2),1:+$P(Y(0),U,4)),L=$L(X)#2-3
+NUM L +^PRC(442.6,+Y,0):$G(DILOCKTM,3) G:'$T W1 S X=$P(Y,U,2),Z=$S(+$P(Y(0),U,4)<$P(Y(0),U,2):+$P(Y(0),U,2),1:+$P(Y(0),U,4)),L=$L(X)#2-3
  ;
 Z G:Z>$P(Y(0),U,3) W2 S Z="000"_Z,Z=$E(Z,$L(Z)+L,$L(Z)),X=X_Z I $D(^PRC(442,"B",X)) S Z=Z+1,X=$P(Y,U,2) G Z
- W !?3,"Are you adding '",X,"' as a new ",PRCHP("A"),$C(7) S %="" D YN^DICN I %'=1 L  G ENPO
- S $P(^PRC(442.6,+Y,0),U,4)=+Z,DIC(0)="L" L
+ W !?3,"Are you adding '",X,"' as a new ",PRCHP("A"),$C(7) S %="" D YN^DICN I %'=1 L -^PRC(442.6,+Y,0)  G ENPO
+ S $P(^PRC(442.6,+Y,0),U,4)=+Z,DIC(0)="L" L -^PRC(442.6,+Y,0)
  G ENPO1
  ;
 CHKCNS ;check common numbering series
@@ -56,10 +56,10 @@ CHKCNS ;check common numbering series
  S X=SAVEX
  Q
  ;
-W1 L  W !?3," Common numbering series is being edited by another user, try later",$C(7)
+W1 W !?3," Common numbering series is being edited by another user, try later",$C(7)
  G ENPO
  ;
-W2 L  W !?3,"UPPER BOUND HAS BEEN EXCEEDED FOR COMMON NUMBERING SERIES ",$P(Y,U,2),$C(7)
+W2 L -^PRC(442.6,+Y,0)  W !?3,"UPPER BOUND HAS BEEN EXCEEDED FOR COMMON NUMBERING SERIES ",$P(Y,U,2),$C(7)
  G ENPO
  ;
 W3 W "   PAT Number already exist, please try again ",$C(7)

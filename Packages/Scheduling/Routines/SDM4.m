@@ -1,10 +1,16 @@
 SDM4 ;ALB/BOK - MAKE APPOINTMENT ; 12 APR 1988 1100  ; Compiled April 9, 2007 14:26:51
- ;;5.3;Scheduling;**263,273,327,394,417,496**;Aug 13, 1993;Build 11
+ ;;5.3;Scheduling;**263,273,327,394,417,496,585**;Aug 13, 1993;Build 19
  ;
  ;09/15/2002 $N FUNCTION REMOVED AND REPLACED WITH $O - IOFO - BAY PINES - TEH
  ;
- ;DBIA - 1476 For reference to PRIMARY ELIG. ^DPT(IEN,.372).
- ;DBIA - 427  For reference to ^DIC(8).
+ ;ICR Agreements:
+ ;
+ ;ICR - 1476 For reference to PRIMARY ELIG. ^DPT(IEN,.372).
+ ;ICR - 427  For reference to ^DIC(8)
+ ;ICR - 10061 For reference to 2^VADPT
+ ;ICR - 2056 For reference to $$GET1^DIQ
+ ;ICR - 10116 for reference to $$UPPER^VALM1
+ ;ICR - 2516 For reference to ^DIC(8.1 - SD*585
  ;
  ;09/23/2005 Patch SD*5.3*417 Upper/Lower case useage.
  ;04/09/2007 Patch SD*5.3*496 Accept entry in file 44 without STOP CODE
@@ -20,7 +26,7 @@ RAT ;Display rated service connected disabilities patch SD*5.3*394
  IF $$GET1^DIQ(2,DFN_",",.301,"E")="NO"&($P(VAEL(3),"^",2)="") D
  .W !,"Service Connected: No"
  ;Rated Disabilities
- N SDSER,SDRAT,SDPER,SDREC,NN,NUM,ANS,SDELIG,SDATD,SDSCFLG S (ANS,NN,NUM)=0
+ N SDSER,SDRAT,SDPER,SDREC,NN,NUM,ANS,SDELIG,SDATD,SDSCFLG,SDVAEL S (ANS,NN,NUM)=0
  F  S NN=$O(^DPT(DFN,.372,NN)) Q:'NN  D
  .S SDREC=$G(^DPT(DFN,.372,NN,0)) IF SDREC'="" D
  ..S SDRAT="" S NUM=$P($G(SDREC),"^",1) IF NUM>0 S SDRAT=$$GET1^DIQ(31,NUM_",",.01)
@@ -33,11 +39,13 @@ RAT ;Display rated service connected disabilities patch SD*5.3*394
  S SDELIG=$$GET1^DIQ(2,DFN_",",.301,"E"),SDSCFLG=0
  IF SDELIG="" W !,"'SERVICE CONNECTED?' field is blank please update patient record." S SDSCFLG=1
  IF $P(VAEL(1),U,2)="" W !,"'PRIMARY ELIGIBILITY CODE' field is blank please update patient record." S SDSCFLG=1
- IF SDELIG="NO",($P(VAEL(3),U,2)>0)!($P(VAEL(1),U,2)="SC LESS THAN 50%")!($P(VAEL(1),U,2)="SERVICE CONNECTED 50% to 100%")!($P(VAEL(1),U,2)="") D
+ D GETMAS  ;SD*585 get MAS Eligibility Code (file #8.1) for each of patient's eligibilities returns array SDVAEL
+ ;SD*585 modified each out of sync check to use correct code from MAS Eligibility Code file (#8.1) - in array SDVAEL
+ IF SDELIG="NO",($P(VAEL(3),U,2)>0)!($P(SDVAEL(1),U,2)="SC LESS THAN 50%")!($P(SDVAEL(1),U,2)="SERVICE CONNECTED 50% to 100%")!($P(SDVAEL(1),U,2)="") D    ;SD*585
  .W !,"The 'SC Percent','Service Connected' and 'Primary Eligibility Codes' are OUT OF SYNC, Please CORRECT the problem." S SDSCFLG=1
- IF SDELIG="YES",($P(VAEL(3),"^",2)<50),($P(VAEL(1),"^",2)'="SC LESS THAN 50%") D
+ IF SDELIG="YES",($P(VAEL(3),"^",2)<50),($P(SDVAEL(1),U,2)'="SC LESS THAN 50%") D    ;SD*585
  .W !,"The 'SC Percent','Service Connected' and 'Primary Eligibility Codes' are OUT OF SYNC, Please CORRECT the problem." S SDSCFLG=1
- IF SDELIG="YES",($P(VAEL(3),"^",2)>49),($P(VAEL(1),"^",2)'="SERVICE CONNECTED 50% to 100%") D
+ IF SDELIG="YES",($P(VAEL(3),"^",2)>49),($P(SDVAEL(1),U,2)'="SERVICE CONNECTED 50% to 100%") D    ;SD*585
  .W !,"The 'SC Percent','Service Connected' and 'Primary Eligibility Codes' are OUT OF SYNC, Please CORRECT the problem." S SDSCFLG=1
  W !
  ;Ask about service connected appointment
@@ -50,7 +58,7 @@ RAT ;Display rated service connected disabilities patch SD*5.3*394
  S SDATD="",SDATD=$$GET1^DIQ(44,+SC_",",2502) IF SDATD="YES" S SDATD=$$GET1^DIQ(44,+SC_",",2507) W "          ***NON-COUNT CLINIC***" GOTO APT
  S SDATD="",SDATD=$$INP^SDAM2(DFN,DT) IF SDATD="I" S SDATD=$$GET1^DIQ(44,+SC_",",2507) W "          ***PATIENT IS CURRENTLY AN INPATIENT***" GOTO APT
  ;STOP EXCEPTION CODES
- S SDATD="",SDATD=$P(VAEL(1),"^",2)
+ S SDATD="",SDATD=$P(SDVAEL(1),U,2)   ;SD*585
  IF SDATD'="SC LESS THAN 50%"&(SDATD'="SERVICE CONNECTED 50% to 100%") S SDATD="" S SDATD=$S($D(SDAPTYP):SDAPTYP,$D(^SC(+SC,"AT")):$S($D(^SD(409.1,+^("AT"),0)):$P(^(0),U),1:"REGULAR"),1:"REGULAR") D
  .IF SDSCFLG&(SDATD="SERVICE CONNECTED") S SDATD="REGULAR"
  IF SDATD="SC LESS THAN 50%"!(SDATD="SERVICE CONNECTED 50% to 100%") D
@@ -85,6 +93,28 @@ SC ;SERVICE CONNECTED MESSAGE/IOFO - BAY PINES/TEH
  .W !,?7,"********** THIS PATIENT IS 50% OR GREATER SERVICE-CONNECTED **********",!
  ;I $D(SDWLLIST),SDWLLIST D ^SDWLR       ;Patch SD*5.3*327
  Q
+ ;
+GETMAS ;SD*585 get MAS Eligibility Code (file #8.1) for each of patient's
+ ;eligibilities passed back from Registration API VADPT in array VAEL.
+ ;Returns array SDVAEL.
+ S SDVAEL(1)=""
+ Q:'+$G(VAEL(1))
+ Q:'$D(^DIC(8,+VAEL(1),0))
+ S MASIEN=0,MASIEN=$P(^DIC(8,+VAEL(1),0),U,9)  ;pointer to file #8.1
+ Q:'MASIEN
+ Q:'$D(^DIC(8.1,MASIEN,0))
+ S SDVAEL(1)=MASIEN_"^"_$P(^DIC(8.1,MASIEN,0),U,1)  ;primary eligibility
+ ;check for additional eligibilities
+ S CT=0
+ F  S CT=$O(VAEL(1,CT)) Q:'CT  D
+ .Q:'$D(^DIC(8,+VAEL(1,CT),0))
+ .S MASIEN=0,MASIEN=$P(^DIC(8,+VAEL(1,CT),0),U,9)  ;pointer to file #8.1
+ .Q:'MASIEN
+ .Q:'$D(^DIC(8.1,MASIEN,0))
+ .S SDVAEL(1,MASIEN)=MASIEN_"^"_$P(^DIC(8.1,MASIEN,0),U,1)
+ K CT,MASIEN
+ Q
+ ;
 SBR S (ANS,SDANS)=""
  IF SDSCFLG S ANS="N" Q
  IF $D(^DPT(DFN,.3)) S SDANS=$$GET1^DIQ(2,DFN_",",.302) IF SDANS>49 S ANS="Y" Q

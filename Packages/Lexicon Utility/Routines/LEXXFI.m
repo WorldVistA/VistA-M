@@ -1,22 +1,27 @@
-LEXXFI ;ISL/KER - File Info ;01/03/2011
- ;;2.0;LEXICON UTILITY;**32,46,49,41,59,73**;Sep 23, 1996;Build 10
- Q
- ;
+LEXXFI ;ISL/KER - File Info ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**32,46,49,41,59,73,80**;Sep 23, 1996;Build 1
+ ;               
  ; Global Variables
- ;   ^LEXM(0
- ;   ^TMP("LEX*",$J    SACC 2.3.2.5.1
- ;
+ ;    ^LEXM(0)            N/A
+ ;    ^TMP("LEX*",$J)     SACC 2.3.2.5.1
+ ;    ^TMP("LEXCNT")      SACC 2.3.2.5.1
+ ;    ^TMP("LEXCS")       SACC 2.3.2.5.1
+ ;    ^TMP("LEXI")        SACC 2.3.2.5.1
+ ;    ^TMP("LEXINS")      SACC 2.3.2.5.1
+ ;    ^TMP("LEXKID")      SACC 2.3.2.5.1
+ ;    ^TMP("LEXMSG")      SACC 2.3.2.5.1
+ ;               
  ; External References
- ;   DBIA 10086  HOME^%ZIS
- ;   DBIA 10089  ^%ZISC
- ;   DBIA 10063  ^%ZTLOAD
- ;   DBIA  2056  $$GET1^DIQ (file #200)
- ;   DBIA 10103  $$DT^XLFDT
- ;   DBIA 10103  $$FMTE^XLFDT
- ;   DBIA 10103  $$NOW^XLFDT
- ;   DBIA 10070  ^XMD
- ;   DBIA  4409  $$DTIME^XUP
- ;
+ ;    $$DTIME^XUP         ICR   4409
+ ;    $$DT^XLFDT          ICR  10103
+ ;    $$FMTE^XLFDT        ICR  10103
+ ;    $$GET1^DIQ          ICR   2056
+ ;    $$NOW^XLFDT         ICR  10103
+ ;    HOME^%ZIS           ICR  10086
+ ;    ^%ZISC              ICR  10089
+ ;    ^%ZTLOAD            ICR  10063
+ ;    ^XMD                ICR  10070
+ ;               
  ; Newed by Post-Install LEX20nnP
  ;   LEXBUILD  Build
  ;   LEXCRE    Import Global Creation Date
@@ -25,9 +30,16 @@ LEXXFI ;ISL/KER - File Info ;01/03/2011
  ;   LEXREQP   Required Patches
  ;   LEXSHORT  Flag for Summary Install Message
  ;
- ; XPDA        Newed by KIDS during Install
- ; LEXCOUNT    Flag Checked $D() and not used
+ ; Newed by Post-Install LEXXGI
+ ;   LEXPROC   Protocol Name
+ ;   LEXRES    Install Results
+ ;   LEXSTART  Install Start Time
+ ;   
+ ; Other
+ ;   XPDA      Newed by KIDS during Install
+ ;   LEXCOUNT  Flag Checked $D() and not used
  ;
+ Q
  ; Checksums/Counts
 EN ;   For One or More File(s)
  N LEXENV,LEXMET,LEXID
@@ -83,6 +95,8 @@ SEND ; Send Message
  S:$D(LEXPROC)&($O(LEXPROC(0))>0) ZTSAVE("LEXPROC(")=""
  S:$D(LEXLREV) ZTSAVE("LEXLREV")=""
  S:$D(LEXREQP) ZTSAVE("LEXREQP")=""
+ S:$L($G(LEXSUBH)) ZTSAVE("LEXSUBH")=""
+ S:$D(LEXPTYPE) ZTSAVE("LEXPTYPE")=""
  S:$D(LEXBUILD) ZTSAVE("LEXBUILD")=""
  S:$D(LEXSHORT) ZTSAVE("LEXSHORT")=""
  S:$D(LEXIGHF) ZTSAVE("LEXIGHF")=""
@@ -93,8 +107,7 @@ SEND ; Send Message
  S:$D(XPDA) ZTSAVE("XPDA")=""
  S (LEXDESC,ZTDESC)="Post-Install File Counts "
  S:$D(LEXSHORT) (LEXDESC,ZTDESC)="Post-Install Summary"
- S ZTDTH=$H
- S ZTIO=""
+ S ZTDTH=$H,ZTIO=""
  D ^%ZTLOAD
  W:+($G(ZTSK))>0 !!,"  ",LEXDESC,!,"  Queued Task #",+($G(ZTSK)) W !
  D ^%ZISC
@@ -138,6 +151,7 @@ HDR ;   Header
  S LEXT="" S:$L(LEXD) LEXT="   As of:       "_LEXD
  I $L(LEXD) D:+LEXF'>0 BL^LEXXFI8 D TL^LEXXFI8(LEXT) S LEXF=1
  S LEXT="",LEXI=$S($L($P(LEXA,"^",1)):"[",1:"")_$P(LEXA,"^",1)_$S($L($P(LEXA,"^",2)):"]",1:"")
+ I $L($P(LEXA,",",1))>3,$L($P(LEXA,"^",2)) S LEXI="["_$P(LEXA,",",1)_"]"
  S:$L(LEXI)&($L($P(LEXA,"^",2))) LEXI=LEXI_"  "_$P(LEXA,"^",2)
  S LEXT="" S:$L(LEXI) LEXT="   In Account:  "_LEXI
  I $L(LEXT) D:+LEXF'>0 BL^LEXXFI8 D TL^LEXXFI8(LEXT) S LEXF=1
@@ -166,7 +180,9 @@ ENV(X) ;   Environment check
  S DTIME=$$DTIME^XUP(+($G(DUZ)))
  Q 1
 CLR ;   Clear ^TMP("LEXCS",$J)
- K ^TMP("LEXCS",$J) Q
+ K ^TMP("LEXCS",$J) N LEXBUILD,LEXCOUNT,LEXCRE,LEXIGHF,LEXLREV
+ N LEXPROC,LEXREQP,LEXRES,LEXSHORT,LEXSTART,XPDA
+ Q
 KILL ;   Kill all ^TMP("LEX**"
  K ^TMP("LEXCNT",$J),^TMP("LEXCS",$J),^TMP("LEXI",$J)
  K ^TMP("LEXINS",$J),^TMP("LEXMSG",$J),^TMP("LEXKID",$J)

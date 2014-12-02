@@ -72,7 +72,7 @@ ADD2(FDA2,FDA,IENSVALS) ; build data for sub-file entry
  ;
 DATA ;
  ;;MYHEALTHEVET^MWVS MEDICAL DOMAIN WEB SVCS^41-WAcN_=NSXJ+ok4g_J
- ;;^H^80^VAAACAPPL.AAC.DVA.domain.ext^/MDWS2/Web/Validate.aspx
+ ;;^H^80^VAAACAPPL.AAC.DVA.DOMAIN.EXT^/MDWS2/Web/Validate.aspx
  ;;^H^80^127.0.0.1^/MDWS2/Web/Validate.aspx
  ;;^H^80^VHAANNWEB2.V11.DOMAIN.EXT^/UserValidation/Validate.aspx
  ;;NATIONAL SUICIDE HOTLINE^MWVS MEDICAL DOMAIN WEB SVCS^$wq`WLq(0jWV2f`4xf*

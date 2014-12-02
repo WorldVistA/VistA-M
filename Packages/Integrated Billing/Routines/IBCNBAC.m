@@ -1,5 +1,5 @@
 IBCNBAC ;ALB/ARH/DAOU/WCW-Ins Buffer: Individually Accept Insurance Buffer Fields ; 28-APR-03
- ;;2.0;INTEGRATED BILLING;**184**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**184,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 INS(IBBUFDA,IBINSDA,SKPBLANK) ; display a buffer entry's insurance company fields and an existing insurance company fields for comparison
@@ -36,7 +36,7 @@ GRP(IBBUFDA,IBGRPDA,SKPBLANK) ; display a buffer entrys group insurance fields a
  ;
  Q
  ;
-POLICY(IBBUFDA,IBPOLDA,SKPBLANK) ; display a buffer entrys patient policy fields and an existing patient policy's fields for comparison
+POLICY(IBBUFDA,IBPOLDA,SKPBLANK) ; display a buffer entry's patient policy fields and an existing patient policy's fields for comparison
  N DFN,IBEXTDA,IBFLD1,IBFLD2,X,Y,DIR,DIRUT I '$G(IBBUFDA) Q
  S SKPBLANK=$G(SKPBLANK)
  S DFN=+$G(^IBA(355.33,IBBUFDA,60))
@@ -46,7 +46,7 @@ POLICY(IBBUFDA,IBPOLDA,SKPBLANK) ; display a buffer entrys patient policy fields
  W @IOF
  W ! D WRTFLD("     Policy Data:  Buffer Data                     Selected Policy              ",0,80,"BU")
  S IBFLD1=$$GET1^DIQ(355.33,IBBUFDA,20.01),IBFLD2=$S(+IBEXTDA:$$GET1^DIQ(2.312,IBEXTDA,.01),1:"<none selected>") D WRTLN("Company Name:",IBFLD1,IBFLD2,"","","")
- S IBFLD1=$$GET1^DIQ(355.33,IBBUFDA,40.03),IBFLD2=$S(+IBEXTDA:$$GET1^DIQ(2.312,IBEXTDA,21),1:"") D WRTLN("Group #:",IBFLD1,IBFLD2,"","","")
+ S IBFLD1=$$GET1^DIQ(355.33,IBBUFDA,90.02),IBFLD2=$S(+IBEXTDA:$$GET1^DIQ(2.312,IBEXTDA,21),1:"") D WRTLN("Group #:",IBFLD1,IBFLD2,"","","")
  S IBFLD1=$$GET1^DIQ(355.33,IBBUFDA,60.01),IBFLD2=$S(+IBEXTDA:$$GET1^DIQ(2,DFN,.01),1:"") D WRTLN("Patient Name:",IBFLD1,IBFLD2,"","","")
  S IBFLD1=$P($$GET1^DIQ(355.33,IBBUFDA,.1),"@"),IBFLD2=$S(+IBEXTDA:$P($$GET1^DIQ(2.312,IBEXTDA,1.03),"@"),1:"") D WRTLN("Last Verified:",IBFLD1,IBFLD2,"","","U")
  ;
@@ -100,7 +100,7 @@ FIELDS(SET,ESGHP,SKPBLANK) ; accept each field and set into temp array
  I IBFLDLST'="" S IBUSER=$$ACCEPTG Q:IBUSER<0  D
  . I +IBUSER F IBUSER=1:1 S IBBUFFLD=$P(IBFLDLST,U,IBUSER) Q:'IBBUFFLD  S ^TMP($J,"IB BUFFER SELECTED",IBBUFFLD)=""
  ;
- ; Display message if there were no changs to accept
+ ; Display message if there were no changes to accept
  I CHGCHK=0 W !!,"There are no changes to be accepted, based on the method of update chosen."
  I CHGCHK=1 W !!,"End of changes for "_$S(SET="INS":"INSURANCE",SET="GRP":"GROUP",(SET="POL"&'ESGHP):"POLICY",1:"EMPLOYEE SPONSORED GROUP HEALTH PLAN")_" related data."
  K DIR
@@ -148,7 +148,7 @@ DISPLAY(BFLD,IFILE,IFLD,LABEL) ; extract, compare, write the two corresponding f
  D WRTLN(LABEL,BUFDATA,EXTDATA,IBOVER,IBMERG,IBATTR)
  Q IBDATA
  ;
-WRTLN(LABEL,FLD1,FLD2,OVER,MERG,ATTR) ; write a line of formated data with label and two fields
+WRTLN(LABEL,FLD1,FLD2,OVER,MERG,ATTR) ; write a line of formatted data with label and two fields
  S ATTR=$G(ATTR),OVER=ATTR_$G(OVER),MERG=ATTR_$G(MERG)
  S LABEL=$J(LABEL,17)_"  ",FLD1=FLD1_$J("",29-$L(FLD1)),FLD2=FLD2_$J("",29-$L(FLD2))
  W !

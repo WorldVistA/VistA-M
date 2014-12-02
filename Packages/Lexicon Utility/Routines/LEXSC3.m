@@ -1,6 +1,15 @@
-LEXSC3 ; ISL Shortcuts Add/Delete                 ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXSC3 ;ISL/KER - Shortcuts Add/Delete ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.4)         N/A
+ ;               
+ ; External References
+ ;    $$UP^XLFSTR         ICR  10103
+ ;    FILE^DICN           ICR  10009
+ ;    ^DIK                ICR  10013
+ ;    ^XTLKKWL            ICR  10122
+ ;               
 ADD ; Add a shortcut
  N LEXADD,LEXERM
 ADD2 F  D  Q:$G(LEXRP)[U!(+($G(Y))>0)

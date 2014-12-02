@@ -18,7 +18,7 @@ NOTICE(XUT) ; Notify that the update is complete for the site.
  ;
  S XMDUZ=.5
  S XMY(DUZ)=""
- S XMY("G.XUPS IDENTITY MANAGEMENT@FORUM.domain.ext")=""
+ S XMY("G.XUPS IDENTITY MANAGEMENT@DOMAIN.EXT")=""
  S XMSUB="XUPS NPF CLEANUP UPDATE - "_XUPLACE_"("_XUNUM_")"
  ;
  S XUWHAT(1)=" NEW PERSON file cleanup (XU*8*309) is complete."

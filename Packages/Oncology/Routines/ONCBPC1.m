@@ -1,5 +1,5 @@
 ONCBPC1 ;Hines OIFO/GWB - PCE Study of Cancers of the Urinary Bladder ;5/30/00
- ;;2.11;ONCOLOGY;**6,26**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Table I
  K TABLE,HTABLE
  S TABLE("ACCESSION/SEQUENCE NUMBER")="ACC"

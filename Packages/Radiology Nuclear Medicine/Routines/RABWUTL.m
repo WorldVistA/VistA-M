@@ -1,5 +1,7 @@
 RABWUTL ;HISC/SM - Billing Aware utilities ;3/24/04
- ;;5.0;Radiology/Nuclear Medicine;**41,70**;Mar 16,1998;Build 7
+ ;;5.0;Radiology/Nuclear Medicine;**41,70,112**;Mar 16,1998;Build 4
+ ; BAY/KAM 03/02/2012 RA*5*112 Remedy Ticket 606685 Utilize ICD API
+ ;      Ext ref to $$ICDDX^ICDCODE sup DBIA 3990
  Q
 ODX(RA) ;ordering diagnosis
  ;RA = ien file 75.1
@@ -22,7 +24,8 @@ WRTDX ; write DX and Clin. Inds.
  W !,"Ordering Diagnoses:"
  S I=0
  F  S I=$O(RAX(I)) Q:'I  D
- . W !?2,$$GET1^DIQ(80,+RAX(I),.01),?10,$$GET1^DIQ(80,+RAX(I),3)
+ . ;*112 remedy ticket 606685 Changed next line to use ICD API
+ . W !?2,$P($$ICDDX^ICDCODE(+RAX(I)),U,2),?10,$P($$ICDDX^ICDCODE(+RAX(I)),U,4)
  . S X=$P(RAX(I),U,2,9)
  . Q:X'["1"
  . W !,?10,"Clinical Indicator(s):  "

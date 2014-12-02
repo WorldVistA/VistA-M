@@ -1,11 +1,13 @@
-PXRMEXU1 ; SLC/PKR/PJH - Reminder exchange repository utilities, #1.;07/14/2009
- ;;2.0;CLINICAL REMINDERS;**6,12,16**;Feb 04, 2005;Build 119
+PXRMEXU1 ; SLC/PKR/PJH - Reminder exchange repository utilities, #1.;01/22/2013
+ ;;2.0;CLINICAL REMINDERS;**6,12,16,26**;Feb 04, 2005;Build 404
  ;=====================================================
 DELETE(LIST) ;Delete the repository entries in LIST.
- N DA,DIK
+ N DA,DIK,IND,LNUM
  S DIK="^PXD(811.8,"
- S DA=""
- F  S DA=$O(LIST(DA)) Q:+DA=0  D ^DIK
+ F IND=1:1:$L(LIST,",")-1 D
+ . S LNUM=$P(LIST,",",IND)
+ . S DA=$$RIEN^PXRMEXU1(LNUM)
+ . D ^DIK
  Q
  ;
  ;=====================================================
@@ -39,9 +41,9 @@ DESC(RIEN,DESL,DESC,KEYWORD) ;Build the description.
  Q
  ;
  ;=====================================================
-RIEN(LIEN) ;Given the list ien return the repository ien.
+RIEN(LNUM) ;Given the list number return the repository ien.
  N RIEN
- S RIEN=$G(^TMP("PXRMEXLR",$J,"SEL",LIEN))
+ S RIEN=$G(^TMP("PXRMEXLR",$J,"SEL",LNUM))
  Q RIEN
  ;
  ;=====================================================

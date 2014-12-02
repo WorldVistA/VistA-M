@@ -1,5 +1,5 @@
-RORUTL11 ;HCIOFO/SG - ACCESS AND SECURITY UTILITIES ; 6/2/11 4:12pm
- ;;1.5;CLINICAL CASE REGISTRIES;**13,14,15,17,18**;Feb 17, 2006;Build 25
+RORUTL11 ;HCIOFO/SG - ACCESS AND SECURITY UTILITIES ;6/2/11 4:12pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**13,14,15,17,18,20,19**;Feb 17, 2006;Build 43
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -16,7 +16,11 @@ RORUTL11 ;HCIOFO/SG - ACCESS AND SECURITY UTILITIES ; 6/2/11 4:12pm
  ;
  ;ROR*1.5*17   DEC 2011    C RAY        Updated version 
  ;
- ;ROR*1.5*18   MAY 2012    C RAY        Updated version                                       
+ ;ROR*1.5*18   MAY 2012    C RAY        Updated version 
+ ;
+ ;ROR*1.5*20   DEC 2012    C RAY        Updated version
+ ;
+ ;ROR*1.5*19   APR 2012    K GUPTA      Updated version                                    
  ;******************************************************************************
  ; This routine uses the following IAs:
  ;
@@ -90,5 +94,5 @@ RPCHECK(RPCNAME,REGIEN,FLAGS) ;
  ;associated M changes needed for it.
  ;
 VERSRV(VAL) ;
- S VAL="1.5.18"
+ S VAL="1.5.19"
  Q

@@ -1,6 +1,6 @@
 IBCRHBS3 ;ALB/ARH - RATES: UPLOAD HOST FILES (RC 2+) PARSE ; 10-OCT-03
- ;;2.0;INTEGRATED BILLING;**245**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**245,458**;21-MAR-94;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; IBFILE, IBFLINE, COLUMNS required and VERS expected on entry
  ; Parse lines from the Host Files and place them in XTMP.  
@@ -73,7 +73,7 @@ F ; Zip Codes and Sites:  process a single line, parse out into individual field
  ;
  N LINE,IBSITE,IBZIP,IBNM,IBSTYPE,IBXTMP,IBXIFN S IBXTMP="IBCR RC F" I ('$G(COLUMNS))!($G(IBFLINE)="") Q
  ;
- S IBSITE=$$P(IBFLINE,1),IBSITE=$$STRIP(IBSITE) I IBSITE'?3N0.2UN Q  ; division number
+ S IBSITE=$$P(IBFLINE,1),IBSITE=$$STRIP(IBSITE) I IBSITE'?3N0.4UN Q  ; division number
  S IBNM=$$P(IBFLINE,2) ; facility name
  S IBZIP=$$P(IBFLINE,3),IBZIP=$$STRIP(IBZIP) I IBZIP'?3N Q  ; 3-digit zip code
  S IBSTYPE=$$P(IBFLINE,4),IBSTYPE=$$STRIP(IBSTYPE) I 'IBSTYPE Q  ; facility type

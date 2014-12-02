@@ -1,5 +1,5 @@
-GMRAFX3 ;SLC/DAN Update existing entries to new reactant ;03/16/10  08:35
- ;;4.0;Adverse Reaction Tracking;**17,19,23,20,45**;Mar 29, 1996;Build 5
+GMRAFX3 ;SLC/DAN Update existing entries to new reactant ;11/20/12  07:54
+ ;;4.0;Adverse Reaction Tracking;**17,19,23,20,45,47**;Mar 29, 1996;Build 21
  ;DBIA SECTION
  ;10018 - DIE
  ;2056  - DIQ
@@ -44,7 +44,8 @@ UIE ;Update individual entries
  S SUB=0 F  S SUB=$O(^TMP("ORR",$J,TIME,SUB)) Q:'+SUB  D
  .D BLD^ORCHECK(+^TMP("ORR",$J,TIME,SUB)) ;Get "order" information in order checking format
  M GMRAORX=ORX K ORX ;19
- D EN^ORKCHK(.GMRAOC,DFN,.GMRAORX,"ACCEPT")
+ N ORDODSG S ORDODSG=0
+ D EN^ORKCHK(.GMRAOC,DFN,.GMRAORX,"ACCEPT",,.ORDODSG)
  S GI=0,FND=0 F  S GI=$O(GMRAOC(GI)) Q:'+GI  D
  .Q:$P(GMRAOC(GI),U,2)'=3  ;Quit if not allergy related
  .;Q:$D(^OR(100,$P(GMRAOC(GI),U),9,"B",3))  ;23 If order check exists can't be for this data
@@ -75,7 +76,7 @@ WAIT ;Issues press enter to return prompt
  Q
  ;
 GETNUM(ACTION) ; -- Return numbers to act on, if action chosen first
- N X,Y,DIR,MAX
+ N X,Y,DIR,MAX,DTOUT
  S MAX=$S($D(^TMP($J,LTYPE,"IDX2")):$G(^TMP($J,LTYPE,"IDX2",0)),1:$G(VALMCNT)) Q:MAX'>0 ""
  I ACTION="DET" W !!,"Please choose only one entry for the detailed display."
  S DIR(0)="LAO^1:"_MAX,DIR("A")="Select Entries from list: "
@@ -114,7 +115,7 @@ AR ;Add/edit patient reactions
  Q
  ;
 DSPREACT ;Display detailed information about the reactant
- N DIC,DA,GMRAI,STOP,NUM2,DIR,Y
+ N DIC,DA,GMRAI,STOP,NUM2,DIR,Y,DIRUT
  S VALMBCK="R" D FULL^VALM1
  I '$G(NMBR2) S NMBR2=$$GETNUM("") Q:'+NMBR2
  F GMRAI=1:1:($L(NMBR2,",")-1) D  Q:$G(STOP)

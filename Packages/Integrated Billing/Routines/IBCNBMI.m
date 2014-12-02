@@ -1,5 +1,5 @@
 IBCNBMI ;ALB/ARH - Ins Buffer: move buffer data to insurance files ;09 Mar 2005  11:42 AM
- ;;2.0;INTEGRATED BILLING;**82,184,246,251,299,345,361,371,413,416,438,452**;21-MAR-94;Build 26
+ ;;2.0;INTEGRATED BILLING;**82,184,246,251,299,345,361,371,413,416,438,452,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 INS(IBBUFDA,IBINSDA,TYPE,RESULT) ;  move buffer insurance company data (file 355.33) to existing Insurance Company (file 36)
@@ -34,7 +34,7 @@ SET(SET,IBBUFDA,IBEXTDA,TYPE,RESULT) ; move buffer data to insurance files
  ;                   4 = Individually Accept (Skip Blanks) (user accepts
  ;  individual diffs b/w buffer data and existing file data (excl blanks)
  ;  to overwrite flds (or addr grp) in existing file)
- ; Output: RESULT - Passed array to return FM errror message if there are
+ ; Output: RESULT - Passed array to return FM error message if there are
  ;                  errors when filing the buffer data
  ;
  N IBX,IBFLDS,EXTFILE,DRBUF,DREXT,BUFARR,EXTARR,IBBUFFLD,IBEXTFLD,IBBUFVAL,IBEXTVAL,IBCHNG,IBCHNGN,IBERR
@@ -79,7 +79,7 @@ SET(SET,IBBUFDA,IBEXTDA,TYPE,RESULT) ; move buffer data to insurance files
 STUFF(SET,IBEXTDA,RESULT) ; update fields in insurance files that 
  ;should be automatically set when an entry is edited
  ; Input:  IBEXTDA - ifn of insurance entry to update (#36,356,2)
- ; Output: RESULT - Passed array to return FM errror message if there are
+ ; Output: RESULT - Passed array to return FM error message if there are
  ;                  errors when filing the data buffer data
  ;
  N IBX,IBFLDS,EXTFILE,IBEXTFLD,IBEXTVAL,IBCHNG,IBCHNGN,IBERR
@@ -126,11 +126,11 @@ INSFLD ; corresponding fields: Buffer File (355.33) & Insurance Company file (36
  ;;21.06^.116^Zip^1                   ; MM Zip Code
  ;
 GRPDR ;
- ;;355.3^40.01:40.09;40.1;40.11;^.02:.09;6.02;6.03;.12
+ ;;355.3^40.01;90.01;90.02;40.04:40.09;40.1;40.11;^.02;2.01;2.02;.05:.09;6.02;6.03;.12
 GRPFLD ;corresponding fields:  Buffer File (355.33) and Insurance Group Plan file (355.3)
  ;;40.01^.02^Is This a Group Policy?^ ; Is this a Group Policy?
- ;;40.02^.03^Group Name^              ; Group Name
- ;;40.03^.04^Group Number^            ; Group Number
+ ;;90.01^2.01^Group Name^              ; Group Name
+ ;;90.02^2.02^Group Number^            ; Group Number
  ;;40.1^6.02^BIN^                     ; BIN ;;Daou/EEN
  ;;40.11^6.03^PCN^                    ; PCN ;;Daou/EEN
  ;;40.04^.05^Require UR^              ; Utilization Review Required
@@ -145,14 +145,14 @@ GRPA ; auto set fields
  ;;1.06^DUZ^                          ; Last edited By
  ;
 POLDR ;
- ;;2.312^60.02:62.08^8;3;1;6;16;17;3.01;3.05:3.1;3.13;3.14;4.01;4.02;4.05;4.06;.2;3.12;2.1;2.015;2.11;2.12;2.01:2.08;5.01
+ ;;2.312^60.02;60.03;90.03;60.05;60.06;91.01;60.08:62.08^8;3;7.02;6;16;7.01;3.01;3.05:3.1;3.13;3.14;4.01;4.02;4.05;4.06;.2;3.12;2.1;2.015;2.11;2.12;2.01:2.08;5.01
 POLFLD ; corresponding fields:  Buffer File (355.33) and Insurance Patient Policy file (2.312)
  ;;60.02^8^Effective Date^            ; Effective Date
  ;;60.03^3^Expiration Date^           ; Expiration Date
- ;;60.04^1^Subscriber Id^             ; Subscriber Id
+ ;;90.03^7.02^Subscriber Id^             ; Subscriber Id
  ;;60.05^6^Whose Insurance^           ; Whose Insurance
  ;;60.06^16^Relationship^             ; Pt. Relationship to Insured
- ;;60.07^17^Name of Insured^          ; Name of Insured
+ ;;91.01^7.01^Name of Insured^          ; Name of Insured
  ;;60.08^3.01^Insured's DOB^          ; Insured's DOB
  ;;60.09^3.05^Insured's SSN^          ; Insured's SSN
  ;;60.1^4.01^Primary Provider^        ; Primary Care Provider
@@ -229,7 +229,7 @@ EHANDLE(SET,FMERR,RESULT) ;
  ;       Value = "POL" --> File 2.312 --> RESULT(3)
  ;   FMERR  - Array that is returned by FM with error messages
  ; OUTPUT:
- ;   RESULT - Passed array to return FM errror message if there are
+ ;   RESULT - Passed array to return FM error message if there are
  ;            errors when filing the data buffer data
  ;
  Q:$G(SET)']""!($D(FMERR)'>0)

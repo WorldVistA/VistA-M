@@ -1,5 +1,5 @@
-LA7UIO ;DALOI/JMC - Process Download Message for #62.48;May 21, 2008
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**66**;Sep 27, 1994;Build 30
+LA7UIO ;DALOI/JMC - Process Download Message for #62.48 ;05/30/13  15:59
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**66,80**;Sep 27, 1994;Build 19
  ;
  Q
  ;
@@ -35,7 +35,7 @@ EN ; Called from LA7UID
  ;
  ;
 CUP ; Process each cup on load list
- N LA76822,LA7QUIT
+ N LA761,LA76822,LA7QUIT,X
  ;
  S LA76822=LA7CUP-1,LA7QUIT=0
  F  S LA76822=$O(^LRO(68.2,LRLL,1,LA76821,1,LA76822))  Q:'LA76822  D  Q:LA7QUIT
@@ -49,6 +49,11 @@ CUP ; Process each cup on load list
  . S LRAA=+LA7ACC,LRAD=$P(LA7ACC,"^",2),LRAN=$P(LA7ACC,"^",3)
  . S LA768=LRAA,LA76801=LRAD,LA76802=LRAN
  . S LA7ACC0=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,0),0)
+ . ;
+ . S LA761=0
+ . S X=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,5,0))
+ . I X>0 S LA761=+$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,5,X,0)),"^")
+ . ;
  . ; Accession has been removed, skip.
  . I 'LA7ACC0 D  Q
  . . D CREATE^LA7LOG(24)

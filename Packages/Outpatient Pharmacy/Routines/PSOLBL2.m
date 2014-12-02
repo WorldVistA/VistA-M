@@ -1,5 +1,5 @@
 PSOLBL2 ;BIR/SAB-LABEL OUTPUT CONT. ;11/18/92 19:15
- ;;7.0;OUTPATIENT PHARMACY;**16,19,30,71,92,117,135,326,367**;DEC 1997;Build 62
+ ;;7.0;OUTPATIENT PHARMACY;**16,19,30,71,92,117,135,326,367,383**;DEC 1997;Build 6
  ;External reference to ^PS(51 supported by DBIA 2224
  ;External reference to ^PS(54 supported by DBIA 2227
  ;External reference to ^PSDRUG supported by DBIA 221
@@ -47,7 +47,7 @@ REP ;LEFT SIDE ONLY REPRINT FOR NEW LABEL STOCK
  W ! S PSDU=$P($G(^PSDRUG($P($G(^PSRX(RX,0)),"^",6),660)),"^",8) W $G(PHYS),!,"Qty: "_$G(QTY),"  ",$G(PSDU),$S($G(PSDU)="":"      ",1:" "),$S($G(NURSE):"Mfg______Exp______",1:"")
  I $G(PSOSTLK) W !,$S($G(PSOTALK)&('$G(PSOTREP)):ZTKDRUG,1:DRUG)
  I '$G(PSOSTLK) W !,DRUG
- K PSDU W !!,$P(PS,"^",2),!,$P(PS,"^",7),", ",STATE,"  ",$G(PSOHZIP),!!!!,"FORWARDING SERVICE REQUESTED",!
+ K PSDU W !!,$P(PS,"^",2),!,$P(PS,"^",7),", ",STATE,"  ",$G(PSOHZIP),!!!!,"ADDRESS SERVICE REQUESTED",!
  I "C"[$E(MW) W ?21,"CERTIFIED MAIL",!
  E  W !
  W !,$S($G(PS55)=2:"***DO NOT MAIL***",1:"***CRITICAL MEDICAL SHIPMENT***")

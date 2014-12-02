@@ -1,5 +1,5 @@
 ONCLPC0 ;Hines OIFO/GWB - 2001 2001 Lung (NSCLC) PCE Study ;05/04/01
- ;;2.11;ONCOLOGY;**29**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Check PCE eligibility
  ;
  ;ACCESSION YEAR (165.5,.07) = 2001

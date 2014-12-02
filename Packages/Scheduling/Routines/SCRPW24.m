@@ -1,5 +1,5 @@
 SCRPW24 ;RENO/KEITH - ACRP Ad Hoc Report (cont.) ;06/19/99
- ;;5.3;Scheduling;**144,163,180,254,243,295,329,351,510,530,562,576**;AUG 13, 1993;Build 5
+ ;;5.3;Scheduling;**144,163,180,254,243,295,329,351,510,530,562,576,593**;AUG 13, 1993;Build 13
  ;06/19/99 ACS - Added CPT modifier API calls
  ;11/26/03 RLC - 329 fixes primary/secondary dx problem with report
  ;
@@ -32,7 +32,8 @@ CLCS(SDX) ;Get clinic service
  D NX Q
  ;
 DXAD(SDX) ;Get all diagnoses
- K SDX N SDY,SDI D GETDX^SDOE(SDOE,"SDY") S SDI=0 F  S SDI=$O(SDY(SDI)) Q:'SDI  S SDX=$P(SDY(SDI),U) I SDX S SDX=SDX_U_$P($$ICDDX^ICDCODE(+SDX,+SDOE0),U,2) I $L($P(SDX,U,2)) D DXOTR S SDX(SDI)=SDX
+ K SDX N SDY,SDI D GETDX^SDOE(SDOE,"SDY") S SDI=0
+ F  S SDI=$O(SDY(SDI)) Q:'SDI  S SDX=$P(SDY(SDI),U) I SDX S SDX=SDX_U_$P($$ICDDX^SCRPWICD(+SDX,+SDOE0),U,2) I $L($P(SDX,U,2)) D DXOTR S SDX(SDI)=SDX
  D NX Q
  ;
 DXOTR ;Transform diagnosis external value
@@ -44,7 +45,7 @@ DXOTR ;Transform diagnosis external value
  .D GETGEN^SDOE(SDOE,"SDY")
  .S ENCDT=+$G(SDY(0))
  .K SDY
- S SDX=SDX_" "_$P($$ICDDX^ICDCODE(+SDX,ENCDT),U,4) Q
+ S SDX=SDX_" "_$P($$ICDDX^SCRPWICD(+SDX,ENCDT),U,4) Q
  ;
 DXGS(SDX,SDZ) ;Get GAF score
  K SDX N SDI,SDY S SDY=$S(SDZ="H":$P($P(SDOE0,U),"."),1:DT)_.9999,SDY=9999999-SDY,SDY=$O(^YSD(627.8,"AX5",$P(SDOE0,U,2),SDY))
@@ -59,12 +60,14 @@ DXGSQ(SDI) ;Set up GAF help text
  ;
 DXPD(SDX) ;Get primary diagnosis
  ;SD*5.3*329 fixes problem of report not working for primary dx
- K SDX N SDY,SDI D GETDX^SDOE(SDOE,"SDY") S SDI=0 F  S SDI=$O(SDY(SDI)) Q:'SDI  S SDX=$P(SDY(SDI),U) I SDX,$P(SDY(SDI),U,12)="P" S SDX=SDX_U_$P($$ICDDX^ICDCODE(+SDX,+SDOE0),U,2) I $L($P(SDX,U,2)) D DXOTR S SDX(SDI)=SDX
+ K SDX N SDY,SDI D GETDX^SDOE(SDOE,"SDY") S SDI=0
+ F  S SDI=$O(SDY(SDI)) Q:'SDI  S SDX=$P(SDY(SDI),U) I SDX,$P(SDY(SDI),U,12)="P" S SDX=SDX_U_$P($$ICDDX^SCRPWICD(+SDX,+SDOE0),U,2) I $L($P(SDX,U,2)) D DXOTR S SDX(SDI)=SDX
  D NX Q
  ;
 DXSD(SDX) ;Get secondary diagnoses
  ;SD*5.3*329 fixes problem of report not working for secondary dx
- K SDX N SDY,SDI D GETDX^SDOE(SDOE,"SDY") S SDI=0 F  S SDI=$O(SDY(SDI)) Q:'SDI  S SDX=$P(SDY(SDI),U) I SDX,$P(SDY(SDI),U,12)'="P" S SDX=SDX_U_$P($$ICDDX^ICDCODE(+SDX,+SDOE0),U,2) I $L($P(SDX,U,2)) D DXOTR S SDX(SDI)=SDX
+ K SDX N SDY,SDI D GETDX^SDOE(SDOE,"SDY") S SDI=0
+ F  S SDI=$O(SDY(SDI)) Q:'SDI  S SDX=$P(SDY(SDI),U) I SDX,$P(SDY(SDI),U,12)'="P" S SDX=SDX_U_$P($$ICDDX^SCRPWICD(+SDX,+SDOE0),U,2) I $L($P(SDX,U,2)) D DXOTR S SDX(SDI)=SDX
  D NX Q
  ;
 ENED(SDX,SDZ) ;Get enrollment date

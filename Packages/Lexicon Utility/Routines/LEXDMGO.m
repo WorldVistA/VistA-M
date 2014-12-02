@@ -1,6 +1,12 @@
-LEXDMGO ; ISL Defaults - Manager/Overwrite         ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDMGO ;ISL/KER - Defaults - Manager/Overwrite ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    ^DIR                ICR  10026
+ ;               
  ; LEXOVER     Flag - Overwrite user defaults (Y/N)
  ; LEXDNAM     Default name
  ; LEXDVAL     Default value

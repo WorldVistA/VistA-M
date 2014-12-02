@@ -1,5 +1,5 @@
-ORWDXM2 ; SLC/KCM - Quick Orders ;05/18/2009
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,116,132,158,187,195,215,243,280**;Dec 17, 1997;Build 85
+ORWDXM2 ; SLC/KCM - Quick Orders ; 11/1/11 11:30am
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,116,132,158,187,195,215,243,280,356**;Dec 17, 1997;Build 6
  ;
 ADMTIME(ORDLOC,PATLOC,ENCLOC,DELAY,ISIMO) ;
  N ADMLOC,INST,SCHLOC,SCHTYPE
@@ -49,7 +49,8 @@ VERTXT ; set verify text for order
  . . . S LST(ILST)=LST(ILST)_TEMP
  . . Q:'MULT  Q:'$O(ORDIALOG(PROMPT,INST))  ; done
  . . F  S INST=$O(ORDIALOG(PROMPT,INST)) Q:INST'>0  S ILST=ILST+1,LST(ILST)=SPACES_$$ITEM^ORCDLG(PROMPT,INST)
- D DISPLAY^ORWDBA3  ;for display of Billing Aware data from orig order
+ ;*356 Only display SC and TF for orders that are not new.
+ I $G(ORWMODE) D DISPLAY^ORWDBA3  ;for display of Billing Aware data from orig order
  Q
 RA ; setup environment for radiology
  ; -- get imaging types based on display group of quick order and

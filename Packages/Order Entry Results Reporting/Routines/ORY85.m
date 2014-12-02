@@ -152,7 +152,7 @@ MAIL ; send bulletin of installation time
  S COUNT=0
  S XMSUB="Version "_$P($T(VERSION),";;",2)_" Installed"
  S XMDUZ="CPRS PACKAGE"
- F I="G.CPRS GUI INSTALL@ISC-SLC.domain.ext",DUZ S XMY(I)=""
+ F I="G.CPRS GUI INSTALL@ISC-SLC.DOMAIN.EXT",DUZ S XMY(I)=""
  S XMTEXT="TEXT("
  ;
  S X=$P($T(VERSION),";;",2)

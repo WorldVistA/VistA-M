@@ -1,5 +1,5 @@
 ONCSG3 ;Hines OIFO/GWB - Automatic Staging Tables ;02/23/11
- ;;2.11;ONCOLOGY;**35,51,53**;Mar 07, 1995;Build 31
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  ;SKIN
  ;
@@ -49,6 +49,7 @@ MCCC ;Merkel Cell Carcinoma - 7th edition (Clinical Stage Grouping)
  .I TNM=200 S SG="2B" Q        ;IIB  T2    N0    M0
  .I TNM=300 S SG="2B" Q        ;     T3    N0    M0
  .I TNM=400 S SG="2C" Q        ;IIC  T4    N0    M0
+ .I N="1A",M=0 S SG="3A" Q     ;IIIA Any T N1a   M0
  .I N=1,M=0 S SG="3B" Q        ;IIIB Any T N1    M0
  .I N="1B",M=0 S SG="3B" Q     ;     Any T N1b   M0
  .I N=2,M=0 S SG="3B" Q        ;     Any T N2    M0

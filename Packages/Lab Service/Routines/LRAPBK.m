@@ -1,5 +1,5 @@
-LRAPBK ;DALOI/STAFF - AP LOG BOOK ;08/29/11  13:58
- ;;5.2;LAB SERVICE;**51,72,201,274,350**;Sep 27, 1994;Build 230
+LRAPBK ;DALOI/STAFF - AP LOG BOOK ;02/21/13  08:08
+ ;;5.2;LAB SERVICE;**51,72,201,274,350,427**;Sep 27, 1994;Build 33
  ;
  ; Reference to PXAPIOE supported by ICR #1541
  ;
@@ -244,7 +244,9 @@ SRCASE ; Print related surgery case info
  . I $P(LRSRTN,";",3)="" W !,"Related Surgery Case #"_$P(LRSRTN,";")
  . E  W !,$P(LRSRTN,";",3)
  ;
- ; Print soruce of surgical case info copied to Lab package.
+ I '$$GET^XPAR("DIV^PKG","LR AP SURGERY REFERENCE",1,"Q") Q
+ ;
+ ; Print source of surgical case info copied to Lab package.
  F LRJ=.2,.3,.4,.5 D  Q:LR("Q")
  . S LRIENS=LRDFN_","_LRSS_","_LRI_","_LRJ_",0"
  . I '$D(^LR(LRDFN,"EPR","AD",LRIENS,1)) Q

@@ -1,6 +1,5 @@
-LEXQHL4 ;ISL/KER - Query History - CPT Modifier Extract ;10/30/2008
- ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;;
+LEXQHL4 ;ISL/KER - Query History - CPT Modifier Extract ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**62,80**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492

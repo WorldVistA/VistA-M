@@ -1,5 +1,5 @@
 IBCU4 ;ALB/AAS - BILLING UTILITY ROUTINE (CONTINUED) ;12-FEB-90
- ;;2.0;INTEGRATED BILLING;**109,122,137,245,349,371,399**;21-MAR-94;Build 8
+ ;;2.0;INTEGRATED BILLING;**109,122,137,245,349,371,399,461**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRU4
@@ -16,6 +16,7 @@ DDAT1 ;Input transform for Statement covers to
  S IB00=$S($D(^DGCR(399,+DA,"U")):$P(^("U"),"^",1),1:"") I 'IB00 W !?4,"'Start Date' must be specified first!",*7 K X G DDAT4
  I +X>DT W !?4,"Cannot bill for future treatment!",*7 K X G DDAT4
  I +X<IB00 W !?4,"Cannot preceed the 'Start Date'!",*7 K X G DDAT4
+ I $P($G(^DGCR(399,+DA,0)),U,5)>2,$$ICD10S(+IB00,+X) W !?4,"Bill Statement dates cannot span ICD-10 activation date!",*7 K X G DDAT4
  ;I $S($E(IB00,4,5)<10:$E(IB00,2,3),1:$E(IB00,2,3)+1)'=$S($E(X,4,5)<10:$E(X,2,3),1:$E(X,2,3)+1) K X W !?4,"Must be in same fiscal year!",*7 G DDAT4
  ;I $$FY(+IB00)'=$$FY(X) K X W !?4,"Must be in same fiscal year!",*7 G DDAT4
  ;I $E(IB00,1,3)'=$E(X,1,3) K X W !?4,"Must be in same calendar year!",*7 G DDAT4
@@ -65,6 +66,7 @@ TO ;151 pseudo input x-form
 FROM ;152 pseudo input x-form
  I '$D(IBIDS(151)) W !?4,"'Start Date' must be specified first!",*7 K X Q
  I +X<IBIDS(151) W !?4,"Cannot preceed the 'Start Date'!",*7 K X Q
+ I IBIDS(.05)>2,$$ICD10S(+IBIDS(151),+X) W !?4,"Bill Statement dates cannot span ICD-10 activation date!",*7 K X Q
  ;I $S($E(IBIDS(151),4,5)<10:$E(IBIDS(151),2,3),1:$E(IBIDS(151),2,3)+1)'=$S($E(X,4,5)<10:$E(X,2,3),1:$E(X,2,3)+1) K X W !?4,"Must be in same fiscal year!",*7 Q
  ;I $$FY(IBIDS(151))'=$$FY(X) K X W !?4,"Must be in same fiscal year!",*7 Q
  ;I $E(IBIDS(151),1,3)'=$E(X,1,3) K X W !?4,"Must be in same calendar year!",*7 Q
@@ -93,6 +95,14 @@ PROCDT ;  - find first and last dates of procedures
  . I DGPRDTE=0!(DGPRDTE<DGPRDT) S DGPRDTE=DGPRDT
  . Q
  Q
+ ;
+ICD10S(BDT,EDT,IBIFN) ; return Code Version Date if bill dates span the ICD-10 activation date
+ ; enter either the bill to check or the dates to check
+ N IBS,IBV,IBU S IBS=""
+ S IBV=$$CSVDATE^IBACSV(30)
+ I +$G(IBIFN) S IBU=$G(^DGCR(399,+IBIFN,"U")) S:'$G(BDT) BDT=+IBU S:'$G(EDT) EDT=+$P(IBU,U,2)
+ I $G(BDT)<IBV,$G(EDT)'<IBV S IBS=IBV
+ Q IBS
  ;
 TOBIN(Y,DA) ; Screen for UB-04 bill classification based on UB-04 location of care
  ; Y = internal value of code for field .25 (UB-04 BILL CLASSIFICATION)

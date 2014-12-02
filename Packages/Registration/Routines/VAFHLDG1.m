@@ -1,5 +1,7 @@
-VAFHLDG1 ;ALB/CM/ESD HL7 DG1 SEGMENT BUILDING ; 3/24/05 5:05pm
- ;;5.3;Registration;**94,151,190,511,606,614**;Aug 13, 1993
+VAFHLDG1 ;ALB/CM/ESD HL7 DG1 SEGMENT BUILDING ;3/24/05 5:05pm
+ ;;5.3;Registration;**94,151,190,511,606,614,850**;Aug 13, 1993;Build 171
+ ; Reference to $$CSI^ICDEX supported by ICR #5747
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
  ;Routine currently being changed by GRR/EDS
  ;IN entry is being added
  ;
@@ -20,20 +22,13 @@ IN(DFN,VAFHMIEN,VAFSTR,VAOUT,VAFHMDT) ;
  N VAFHLREC,VAFHAIEN,VAFHICD
  S $P(VAFHLREC,HL("FS"))="DG1" ;Set the segment identifier
  S VAFHMDT=$$GET1^DIQ(405,VAFHMIEN,".01","I") ;Movement Date/Time
- S VAFHTT=$$GET1^DIQ(405,VAFHMIEN,".02","I") ;Get the movement transaction type (admit, transfer, disharge)
+ S VAFHTT=$$GET1^DIQ(405,VAFHMIEN,".02","I") ;Get the movement transaction type (admit, transfer, discharge)
  I VAFHTT=1 S VAFHAIEN=VAFHMIEN ;If 'admit' movement capture ien
  I VAFHTT'=1 S VAFHAIEN=$$GET1^DIQ(405,VAFHMIEN,".14","I") ;If not 'admit' movement, get ien of admission movement
  Q:VAFHAIEN=""  ;Quit if no admission movement
  S VAFHADT=$$GET1^DIQ(405,VAFHAIEN,".01","I") ;Get Admission date/time
  S VAFHPTF=$O(^DGPT("AAD",DFN,VAFHADT,"")) Q:VAFHPTF=""  ;Get pointer to ptf record and quit if none exists
  S VACNT=0 ;Initialize counter
- ;I VAFHTT'=3 D  ;If not a 'discharge' type, get Movement ICD codes and descriptions
- ;.S DGLMR=$P($G(^DGPT(VAFHPTF,"M",0)),"^",3) ;Get Last movement ien
- ;.Q:DGLMR=""  ;Quit if no movement entry
- ;.S DIQ="DGAM",DIQ(0)="I",DIC=45,DR=50,DA=VAFHPTF,DR(45.02)="5:15",DA(45.02)=DGLMR D EN^DIQ1 ;Retrieve the movement ICD fields
- ;.I $D(DGAM(45.02,DGLMR)) D  ;If ICD data exists
- ;..F VAFLD=5,6,7,8,9,11,12,13,14,15 I $G(DGAM(45.02,DGLMR,VAFLD,"I"))]"" S VACNT=VACNT+1,VAFHICD(VACNT)=DGAM(45.02,DGLMR,VAFLD,"I") ;Check each ICD field for data and store in array if data exists
- ;I VAFHTT=3 D  ;If movement 'discharge' type, get ICD codes and descriptions from discharge data
  F VAFLD=79,79.16:.01:79.19,79.201,79.21:.01:79.24,79.241,79.242,79.243,79.244 D
  . S VAFHICD=$$GET1^DIQ(45,VAFHPTF,VAFLD,"I")
  . I VAFHICD]"" S VACNT=VACNT+1,VAFHICD(VACNT)=VAFHICD ;Check each ICD field for data and store in array if data exists
@@ -42,7 +37,8 @@ IN(DFN,VAFHMIEN,VAFSTR,VAOUT,VAFHMDT) ;
  .S $P(VAFHLREC,HL("FS"))="DG1" ;Set segment type to DG1
  .S $P(VAFHLREC,HL("FS"),2)=VACNT ;Set Segment Set ID to next sequential number
  .I VAFSTR[",2," S $P(VAFHLREC,HL("FS"),3)="I9" ;Set 'Diagnosis Coding Method' to reflect ICD9
- .I VAFSTR[",3," S $P(VAFHLREC,HL("FS"),4)=$$GET1^DIQ(80,VAFHICD(VACNT),".01","I")_$E(HL("ECH"))_$P($$ICDDX^ICDCODE(VAFHICD(VACNT),VAFHMDT),"^",4) ;Icd Code and Description
+ .I VAFSTR[",3," D
+ .. S $P(VAFHLREC,HL("FS"),4)=$$GET1^DIQ(80,VAFHICD(VACNT),".01","I")_$E(HL("ECH"))_$P($$ICDDATA^ICDXCODE("DIAG",VAFHICD(VACNT),VAFHMDT),"^",4) ;Icd Code and Description
  .I VAFSTR[",5," S $P(VAFHLREC,HL("FS"),6)=$$HLDATE^HLFNC(VAFHMDT) ;Diagnosis Date/Time set to Movement Date/Time
  .S @VAOUT@(VACNT,0)=VAFHLREC ;Set next node of ICD output array to the newly created segment
  Q
@@ -55,7 +51,7 @@ OUT(DFN,EVT,EVDTS,VPTR,STRP,NUMP) ;
  ;VPTR - variable pointer
  ;STRP - string of fields
  ;(if null - required fields, if "A" - supported
- ;fields, or string of fields seperated by commas")
+ ;fields, or string of fields separated by commas")
  ;NUMP - ID # (optional)
  ;
  N ERR
@@ -82,7 +78,7 @@ EN(VAFENC,VAFSTR,VAFHLQ,VAFHLFS,VAFARRY) ; Entry point for Ambulatory Care Datab
  ; Output:  Array of HL7 DG1 segments
  ;
  ;
- N I,VAFDICDE,VAFIDX,VAFNODE,VAFDNODE,VAFY,VAXY,X,ICDVDT
+ N I,VAFIDX,VAFNODE,VAFDNODE,VAFY,VAXY,X,ICDVDT
  S VAFARRY=$G(VAFARRY),ICDVDT=$$SCE^DGSDU(VAFENC,1,0)
  ;
  ; - If VAFARRY not defined, use ^TMP("VAFHL",$J,"DIAGNOSIS")
@@ -125,14 +121,12 @@ ENQ Q
  ;
 BUILD ; - Build array of HL7 (DG1) segments
  S $P(VAFY,VAFHLFS,16)="",VAFIDX=VAFIDX+1
- S VAFDICDE="I9" ; Diagnosis Coding Method = I9 (ICD-9)
  ;
  ; - Sequential number (required field)
  S $P(VAFY,VAFHLFS,1)=VAFIDX
  ;
- I VAFSTR[",2," S $P(VAFY,VAFHLFS,2)=$S($G(VAFDICDE)]"":VAFDICDE,1:VAFHLQ) ; Diagnosis Coding Method = ICD-9
- ;I (VAFSTR[",3,")!(VAFSTR[",4,") S VAFDNODE=$G(^ICD9(+$G(VAFNODE),0)) ; Get node from ICD Diagnosis file
- I (VAFSTR[",3,")!(VAFSTR[",4,") S VAFDNODE=$$ICDDX^ICDCODE(+VAFNODE,$G(ICDVDT)) ; Get node from ICD Diagnosis file
+ I (VAFSTR[",2,")!(VAFSTR[",3,")!(VAFSTR[",4,") S VAFDNODE=$$ICDDX^ICDEX(+VAFNODE,$G(ICDVDT),$$CSI^ICDEX(80,+VAFNODE),"I")
+ I VAFSTR[",2," S X=$P($G(VAFDNODE),"^",20),$P(VAFY,VAFHLFS,2)=$S(X=30:"I10",1:"I9")
  I VAFSTR[",3," S X=$P($G(VAFDNODE),"^",2),$P(VAFY,VAFHLFS,3)=$S(X]"":X,1:VAFHLQ) ; Diagnosis Code
  I VAFSTR[",4," S X=$P($G(VAFDNODE),"^",4),$P(VAFY,VAFHLFS,4)=$S(X]"":X,1:VAFHLQ) ; Diagnosis Description
  I VAFSTR[",5," S X=$$HLDATE^HLFNC($$SCE^DGSDU(VAFENC,1,0)),$P(VAFY,VAFHLFS,5)=$S(X]"":X,1:VAFHLQ) ; Diagnosis Date/Time (Encounter Date/Time)

@@ -1,5 +1,5 @@
 IBCF2 ;ALB/ARH - HCFA 1500 19-90 DATA (gather demographics) ;12-JUN-93
- ;;2.0;INTEGRATED BILLING;**17,52,88,122,51,137**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**17,52,88,122,51,137,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 DEV ; IBIFN required
@@ -60,11 +60,11 @@ END ;set print status
  K DFN,IB,IBI,IBJ,IBK,IBX,IBY,IBSPE,IBFLD,IBFL,IBDXI,X,Y,VAERR
  Q
  ;
-ARRAY ;
+ARRAY ; Added "10D" for patch 488
  F IBI=1:1:6 S IBFLD(0,IBI)=""
  F IBI=1:1:21,23:1:26,28:1:33 S IBFLD(IBI)=""
  F IBI=10,16,18 F IBJ="A","B" S IBFLD(IBI_IBJ)=""
- F IBI="10BS","10C","11AX","11B","11C","11D","1A","3D","3X","5S","5T","8E","8M","9A","9BD","9BX","9C","9D","17A" S IBFLD(IBI)=""
+ F IBI="10BS","10C","10D","11AX","11B","11C","11D","1A","3D","3X","5S","5T","8E","8M","9A","9BD","9BX","9C","9D","17A" S IBFLD(IBI)=""
  Q
  ;
 DATE(X,Y2K,NULL) ; returns date in form format
@@ -110,3 +110,17 @@ DATE31(IBDT,IBIFN) ; Returns date to print in box 31 of HCFA 1500
  I IBDT="" S IBDT=DT
  Q $$FMTE^XLFDT(IBDT,"5D")
  ;
+ ; 
+ ; Start ->BAA *488*
+DXIND(IBIFN) ; Returns 0 for ICD10 codes and 9 for ICD9 codes.
+ ; This sets the diagnosis ind to a 9. If the diagnosis is ICD10
+ ; it is set to zero
+ N IBDXX,IBPOX,IBDXI,ICD,DATA
+ D SET^IBCSC4D(IBIFN,.IBDXX,.IBPOX)
+ S IBDXI=""
+ I $G(IBPOX(1)) D
+ .S ICD=$P(IBPOX(1),U,1)
+ .S IBDXI=9
+ .S DATA=$$ICD9^IBACSV(ICD) I $P(DATA,U,19)=30 S IBDXI=0
+ Q IBDXI
+ ; End ->BAA *488*

@@ -1,6 +1,13 @@
 ACKQUTL5 ;HCIOFO/BH-Quasar utilities routine ; 12/24/09 2:15pm
- ;;3.0;QUASAR;**1,4,6,8,18**;Feb 11, 2000;Build 1
- ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
+ ;;3.0;QUASAR;**1,4,6,8,18,22**;Feb 11, 2000;Build 5
+ ;Per VHA Directive 2004-038, this routine SHOULD NOT be modified.
+ ;
+ ;Reference/IA
+ ;
+ ;$$MOD^ICPTMOD - 1996
+ ;$$CPT^ICPTMOD - 1995
+ ;
+ ; 
 SETREF(X,ACKVIEN,ACKTYPE) ;
  ; Maintains APCE xRef When 3 of the 4 entries are present & the 4TH
  ; has been entered a new entry will be set up. If any of the 4 data 
@@ -120,14 +127,16 @@ MODW ; Called from x ref of Modfr field within 509850.6
  I X'["?" Q
  N ACKQDDD
  S ACKQDDD=$G(ACKVD)
- S DIC("W")="W ""  "",$$MODTXT^ACKQUTL8(Y,"_ACKQDDD_"),?48,$$GET1^DIQ(81.3,Y,.04)"
+ ;ACKQ*3.0*22 updated api
+ S DIC("W")="S ACKSRCE=$P($$MOD^ICPTMOD(Y,""I""),U,5) W ""  "",$$MODTXT^ACKQUTL8(Y,"_ACKQDDD_"),?48,$S(ACKSRCE=""C"":""CPT"",ACKSRCE=""H"":""HCPCS"",ACKSRCE=""V"":""VA NATIONAL"",1:"""")"
  Q
  ;
  ;
 MODS ; Screen for Modfrs input within Modifrs field of Modfrs File
- N ACKQDDD,ACKMOD,ACKMOD1
+ N ACKQDDD,ACKMOD
  S ACKQDDD=$G(ACKVD)
- S DIC("S")="D GETS^DIQ(81.3,Y,"".01"",""I"",""ACKARR"",""ACKMSG"") S ACKMOD=$G(ACKARR(81.3,Y_"","","".01"",""I"")),ACKMOD1=$$MOD^ICPTMOD(ACKMOD) I $P($G(ACKMOD1),""^"",5)=""C""!($P($G(ACKMOD1),""^"",5)=""H""),$P($G(ACKMOD1),""^"",7)=1"
+ ;ACKQ*3.0*22 updated api
+ S DIC("S")="S ACKMOD=$$MOD^ICPTMOD(Y,""I"") I $P($G(ACKMOD),""^"",5)=""C""!($P($G(ACKMOD),""^"",5)=""H""),$P($G(ACKMOD),""^"",7)=1"
  S DIC("W")="W ""  "",$$MODTXT^ACKQUTL8(Y,"_ACKQDDD_")"
  Q
  ;

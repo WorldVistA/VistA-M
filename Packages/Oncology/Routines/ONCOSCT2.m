@@ -1,5 +1,5 @@
 ONCOSCT2 ;WASH ISC/SRR,MLH-CROSS TABS 2 ;8/21/93  11:09
- ;;2.11;ONCOLOGY;**5,23**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;mda/ssb (originator);nci/ytm (first editor/rewriter)
 OUTPUT ;sum & write table
  ;in:  ^TMP($J,"CELL"),COLCUTS,COLDD,NPG,ROWCUTS,ROWDD,TOT,XCRT

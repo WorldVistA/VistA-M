@@ -1,20 +1,36 @@
 LRSPSICD ;AVAMC/REG - CY/EM/SP ICD SEARCH ;8/15/95  08:39
- ;;5.2;LAB SERVICE;**72,253,315**;Sep 27, 1994;Build 25
- W @IOF,!?20,LRO(68)," SEARCH BY ICD9CM CODE"
-ASK S DIC=80,DIC(0)="AEMOQZ" D ^DIC K DIC Q:Y<1
+ ;;5.2;LAB SERVICE;**72,253,315,422**;Sep 27, 1994;Build 29
+ ;
+ ; Reference to $$CSI^ICDEX supported by ICR #5747
+ ; Reference to $$SINFO^ICDEX supported by ICR #5747
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
+ ;
+ W @IOF,!?20,LRO(68)," SEARCH BY ICD CODE"
+ASK W ! D B^LRU Q:Y<0
+ N LR,VAR,ICDFMT,ICDSYS
+ S Y=$$IMP^ICDEX(30) S LR("I10DTI")=Y X ^DD("DD") S LR("I10DTE")=Y
+ I (LRSDT<LR("I10DTI")),(LRLDT'<LR("I10DTI")) D  G ASK
+ . W !!,$C(7),"Beginning and Ending dates must both be prior to "_LR("I10DTE")_"(ICD-9)"
+ . W !,"or both be on or after "_LR("I10DTE")_"(ICD-10)."
+ S ICDFMT=$S(LRSDT<LR("I10DTI"):1,1:2)
+ S ICDSYS=+$$SINFO^ICDEX("DIAG",LRLDT)
+ S LRSDT=LRSDT-.01,LRLDT=LRLDT+.99
+ S DIC("A")="Select ICD Diagnosis: "
+ S DIC=80,DIC(0)="AEMQZ" D ^DIC K DIC G:+Y<1 ASK
  N LRX
- S N=+Y,(LRX,I(1))=$P(Y(0),U),I=$P($$ICDDX^ICDCODE(LRX,,,1),U,4)
- W ! D B^LRU Q:Y<0  S LRSDT=LRSDT-.01,LRLDT=LRLDT+.99
+ S N=+Y,(LRX,I(1))=$P(Y(0),U),I=$P($$ICDDX^ICDEX(LRX,LRLDT,,"E"),U,4)
  S ZTRTN="QUE^LRSPSICD" D BEG^LRUTL Q:POP!($D(ZTSK))
 QUE U IO K ^TMP($J) D L^LRU,S^LRU,XR^LRU
- S ^TMP($J,0)=I(1)_"^"_I_"^"_LRO(68)_"^"_"ICD9CM CODE"
+ S ^TMP($J,0)=I(1)_"^"_I_"^"_LRO(68)_"^"_"ICD CODE"
  F X=0:0 S LRSDT=$O(^LR(LRXR,LRSDT)) Q:'LRSDT!(LRSDT>LRLDT)  D L
  D ^LRSPSICP K ^TMP($J) D K^LRU,END^LRUTL Q
 L F LRDFN=0:0 S LRDFN=$O(^LR(LRXR,LRSDT,LRDFN)) Q:'LRDFN  D I
  Q
 I F LRI=0:0 S LRI=$O(^LR(LRXR,LRSDT,LRDFN,LRI)) Q:'LRI  D TO
  Q
-TO Q:$P($P($G(^LR(LRDFN,LRSS,LRI,0)),U,6)," ")'=LRABV  Q:'$D(^(3,N,0))
+TO N FN
+ S FN=0
+ Q:$P($P($G(^LR(LRDFN,LRSS,LRI,0)),U,6)," ")'=LRABV  D DXS Q:'FN
  S LREP=^LR(LRDFN,LRSS,LRI,0),H(2)=$E($P(LREP,"^",10),1,3)
  S LRAC=$P(LREP,"^",6),LRAN=+$P(LRAC," ",3)
 PRT S LRPF=^DIC($P(^LR(LRDFN,0),"^",2),0,"GL"),LRFLN=+$P(@(LRPF_"0)"),"^",2),DFN=$P(^LR(LRDFN,0),"^",3),LRDPF=$P(^(0),U,2) Q:'$D(@(LRPF_DFN_",0)"))
@@ -22,3 +38,7 @@ PRT S LRPF=^DIC($P(^LR(LRDFN,0),"^",2),0,"GL"),LRFLN=+$P(@(LRPF_"0)"),"^",2),DFN
  S:AGE>110!(AGE<10) AGE="?"
  S ^TMP($J,H(2),LRAN)=LRAC_U_AGE_U_SEX_U_LRP_U_SSN(1)_U_+$E($P(LREP,U,10),4,5)_"/"_$E($P(LREP,U,10),6,7),^TMP($J,"B",LRP,H(2),LRAN)=""
 HERE Q
+ ;
+DXS N DX,DXS
+ S DX=0 F  S DX=$O(^LR(LRDFN,LRSS,LRI,3,DX)) Q:'DX  S DXS=+$G(^(DX,0)) I DXS=N S FN=1 Q
+ Q

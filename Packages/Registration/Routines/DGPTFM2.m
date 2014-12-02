@@ -1,5 +1,5 @@
 DGPTFM2 ;ALB/DWS - MASTER PROFESSIONAL SERVICE ENTER/EDIT ;6/16/05 8:33am
- ;;5.3;Registration;**517,590,606,635**;Aug 13, 1993
+ ;;5.3;Registration;**517,590,606,635,850**;Aug 13, 1993;Build 171
 ADD ;ADD CPT RECORD
  N DGZP S DGZP=0 S:'$D(^DGPT(PTF,"C",0)) ^(0)="^45.06D^^"
  S DIC="^DGPT("_PTF_",""C"",",DIC(0)="AELQMXZ",DA(1)=PTF,DLAYGO=45
@@ -10,7 +10,7 @@ ADD ;ADD CPT RECORD
  I $P(DGZPRF,U,3) F I=1:1:$P(DGZPRF,U,3) S:DGZPRF(I,0)=DGPSM DGZP=I
  K I G:'DGZP ^DGPTFM S X="A,B",DGPSM=0
 ED G HELP^DGPTUTL1:X'["A"&(X'["B")&(X'["a")&(X'["b") K DA
- S DGJUMP=X,DGPRD=+DGZPRF(DGZP)
+ S DGJUMP=X,DGPRD=+DGZPRF(DGZP),X1="^801"
  I X["A"!(X["a") D  L -^DGPT(PTF) I FLAG D MOB,REQ^DGPTFM3 G EXIT
  .S DA(1)=PTF,DIE="^DGPT("_PTF_",""C"",",(DA,REC)=DGZPRF(DGZP,0)
  .S DR=".01;.02;.03;.05;.09////0",DIC(0)="AELQZ" Q:'$$LOCK
@@ -20,6 +20,9 @@ ED G HELP^DGPTUTL1:X'["A"&(X'["B")&(X'["a")&(X'["b") K DA
  ..Q:+^DGCPT(46,DGI,1)'=+DGZPRF(DGZP)  Q:$D(^(9))
  ..S DR=".14////"_DGPRD,(DA,REC)=DGI,DIE="^DGCPT(46," D FMDIE
  ..I $D(Y)>9!'$D(DA) S FLAG=1
+ ..;ADD IMPDATE check to see if Edit on date changed coding system
+ . I $P(DGZPRF(DGZP),U)<IMPDATE,DGPRD'<IMPDATE D EN^DDIOL("Primary Diagnosis changing from ICD-9 to ICD-10. You must edit the Diagnosis.") S DGJUMP="B"
+ . I $P(DGZPRF(DGZP),U)'<IMPDATE,DGPRD<IMPDATE D EN^DDIOL("Primary Diagnosis changing from ICD-10 to ICD-9. You must edit the Diagnosis.") S DGJUMP="B"
  .S $P(DGZPRF(DGZP),U)=DGPRD
 JUMP I DGJUMP["B"!(DGJUMP["b") S DGI=0 D CL^SDCO21(DFN,DGPRD,"",.SDCLY) D
  .F  S DGI=$O(^DGCPT(46,"C",PTF,DGI)) Q:DGI'>0  I +^DGCPT(46,DGI,1)=+DGZPRF(DGZP),'$G(^(9)) D  I $D(DUOUT) Q:'DGDIAG  K DUOUT S DGI=0

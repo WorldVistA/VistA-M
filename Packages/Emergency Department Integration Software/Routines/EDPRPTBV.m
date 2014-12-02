@@ -1,5 +1,5 @@
-EDPRPTBV ;SLC/MKB - BVAC Report ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPRPTBV ;SLC/MKB - BVAC Report ;4/25/13 03:15pm
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;May 2, 2012;Build 200
  ;
 EN(BEG,END,CSV) ; Get Activity Report for EDPSITE by date range
  N LOG,X,X0,X1,X3,DX,IN,OUT,ROW,ICD,I
@@ -8,7 +8,10 @@ EN(BEG,END,CSV) ; Get Activity Report for EDPSITE by date range
  D:'$G(CSV) XML^EDPX("<logEntries>") I $G(CSV) D  ;headers
  . N TAB S TAB=$C(9)
  . S X="Patient"_TAB_"Time In"_TAB_"Time Out"_TAB_"Complaint"_TAB_"MD"_TAB_"Acuity"_TAB_"Elapsed"_TAB_"Triage"_TAB_"Dispo"_TAB_"Admit Dec"_TAB_"Admit Delay"_TAB_"Diagnosis"_TAB_"ICD9"
- . S X=X_TAB_"Viet Vet"_TAB_"Agent Orange"_TAB_"OEF/OIF"_TAB_"Pers Gulf"_TAB_"VA Pension"_TAB_"POW"_TAB_"Serv Conn %"_TAB_"Purp Hrt"_TAB_"Unemploy"_TAB_"Combat End"
+ . ;***pij 4/19/2013 removed Unemploy
+ . ;S X=X_TAB_"Viet Vet"_TAB_"Agent Orange"_TAB_"OEF/OIF"_TAB_"Pers Gulf"_TAB_"VA Pension"_TAB_"POW"_TAB_"Serv Conn %"_TAB_"Purp Hrt"_TAB_"Unemploy"_TAB_"Combat End"
+ . S X=X_TAB_"Viet Vet"_TAB_"Agent Orange"_TAB_"OEF/OIF"_TAB_"Pers Gulf"_TAB_"VA Pension"_TAB_"POW"_TAB_"Serv Conn %"_TAB_"Purp Hrt"_TAB_"Combat End"
+ . ;***
  . D ADD^EDPCSV(X)
  S IN=BEG-.000001
  F  S IN=$O(^EDP(230,"ATI",EDPSITE,IN)) Q:'IN  Q:IN>END  S LOG=0 F  S LOG=+$O(^EDP(230,"ATI",EDPSITE,IN,LOG)) Q:LOG<1  D
@@ -52,12 +55,19 @@ BV1 . ; add row to report
  .. S ROW("servConnPct")=+$P(VAEL(3),U,2)
  .. S ROW("purpleHeart")=$S(VASV(9):"Y",1:"N")
  .. ; ROW("unemployable")=$P($G(^DGEN(27.11,DFN,"E")),U,17) ;or VAPD(7)=3^NOT EMPLOYED ??
+ .. ;***pij 4/19/2013 VASV(10,1)=3011216^DEC 16,2001
  .. S ROW("combatEndDT")=$P($G(VASV(10,1)),U)
+ .. I CSV,ROW("combatEndDT") S ROW("combatEndDT")=$$FMTE^XLFDT(ROW("combatEndDT"),"2D")
+ .. ;S ROW("combatEndDT")=$P($G(VASV(10,1)),U,2)
+ .. ;***
 BV2 . ;
  . I '$G(CSV) S X=$$XMLA^EDPX("log",.ROW) D XML^EDPX(X) Q
  . S X=ROW("patient")
  . F I="inTS","outTS","complaint","md","acuity","elapsed","triage","disposition","admDec","admDel","dx","icd" S X=X_$C(9)_$G(ROW(I))
- . F I="vietnam","agentOrange","iraq","persGulf","vaPension","pow","servConn%","purpleHeart","unemployable","combatEndDT" S X=X_$C(9)_$G(ROW(I))
+ . ;***pij 4/19/2013 deleted unemployable
+ . ;F I="vietnam","agentOrange","iraq","persGulf","vaPension","pow","servConn%","purpleHeart","unemployable","combatEndDT" S X=X_$C(9)_$G(ROW(I))
+ . F I="vietnam","agentOrange","iraq","persGulf","vaPension","pow","servConn%","purpleHeart","combatEndDT" S X=X_$C(9)_$G(ROW(I))
+ . ;***
  . D ADD^EDPCSV(X)
  D:'$G(CSV) XML^EDPX("</logEntries>")
  ;
@@ -72,7 +82,10 @@ BV3 ; calculate & include averages
  I $G(CSV) D  Q  ;CSV format
  . N TAB,D S TAB=$C(9)
  . D BLANK^EDPCSV
- . S X=TAB_"Total Patients"_TAB_CNT_TAB_"Averages Per Patient"_TAB_TAB_TAB_ELAPSE_TAB_TRIAGE_TAB_ADMDEC_TAB_ADMDEL
+ . ;***pij 4/19/2013 added extra/needed TAB
+ . ;S X=TAB_"Total Patients"_TAB_CNT_TAB_"Averages Per Patient"_TAB_TAB_TAB_ELAPSE_TAB_TRIAGE_TAB_ADMDEC_TAB_ADMDEL
+ . S X=TAB_"Total Patients"_TAB_CNT_TAB_"Averages Per Patient"_TAB_TAB_TAB_ELAPSE_TAB_TRIAGE_TAB_TAB_ADMDEC_TAB_ADMDEL
+ . ;***
  . D ADD^EDPCSV(X),BLANK^EDPCSV
  D XML^EDPX("<averages>")
  S X=$$XMLA^EDPX("average",.AVG) D XML^EDPX(X)

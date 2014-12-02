@@ -1,5 +1,5 @@
 EDPBRM ;SLC/KCM - Room/Bed Configuration ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
 LOAD(AREA) ; Load the list of rooms/beds for this area
  N BED,SEQ,BEDS,X0,TOKEN
@@ -17,6 +17,8 @@ LOAD(AREA) ; Load the list of rooms/beds for this area
  S SEQ=0 F  S SEQ=$O(BEDS(SEQ)) Q:'SEQ  D
  . S BED=0 F  S BED=$O(BEDS(SEQ,BED)) Q:'BED  D
  . . S X0=^EDPB(231.8,BED,0)
+ . . ; Patch 6 (BWF) 4/24/2013 - do not display EDIS_DEFAULT bed
+ . . I $P(X0,U)="EDIS_DEFAULT" Q
  . . N X
  . . S X("id")=BED
  . . S X("name")=$P(X0,U)
@@ -89,9 +91,12 @@ UPD(FLD,ERRMSG) ; Add/Update Record
 DFLTRM(AREA) ; Load the multi-areas
  N BED,X,X0,ALPHA
  D XML^EDPX("<defaultRoomList>")
- D XML^EDPX($$XMLS^EDPX("item",-1,"(None Selected)"))   ;non-selected (-1 will delete)
+ ; bwf patch 6 4/26/2013 - removed following line, do not want "None Selected"
+ ;D XML^EDPX($$XMLS^EDPX("item",-1,"(None Selected)"))   ;non-selected (-1 will delete)
  S BED=0 F  S BED=$O(^EDPB(231.8,"C",EDPSITE,AREA,BED)) Q:'BED  D
  . S X0=^EDPB(231.8,BED,0)
+ . ; bwf patch 6 4/25/2013 - filter EDIS_DEFAULT
+ . I $P(X0,U)="EDIS_DEFAULT" Q
  . I $P(X0,U,4) Q  ; inactive
  . I ($P(X0,U,9)=1)!($P(X0,U,9)=2) S ALPHA($P(X0,U)_"  ("_$P(X0,U,6)_")")=BED
  S X="" F  S X=$O(ALPHA(X)) Q:X=""  D XML^EDPX($$XMLS^EDPX("item",ALPHA(X),X))

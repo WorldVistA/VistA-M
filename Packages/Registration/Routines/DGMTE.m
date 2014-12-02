@@ -1,5 +1,5 @@
-DGMTE ;ALB/RMO,CAW,LD,SCG - Edit an Existing Means Test ;03 APR 2002 2:00 pm
- ;;5.3;Registration;**33,45,182,344,332,433,624**;Aug 13, 1993
+DGMTE ;ALB/RMO,CAW,LD,SCG,BDB - Edit an Existing Means Test ;03 APR 2002 2:00 pm
+ ;;5.3;Registration;**33,45,182,344,332,433,624,858**;Aug 13, 1993;Build 30
  ;
 EN ;Entry point to edit an existing means test
  N DGMDOD S DGMDOD=""
@@ -17,9 +17,11 @@ EN ;Entry point to edit an existing means test
  I $$LOCK^DGMTUTL(DFN)
  ;
 DT S DIC("A")="Select DATE OF TEST: "
- N FUTFLG,VSITE S FUTFLG=0,VSITE=+$P($$SITE^VASITE(),U,3)
+ N FUTFLG,VSITE,DGLSTDT S FUTFLG=0,VSITE=+$P($$SITE^VASITE(),U,3)
  I $D(^DGMT(408.31,+$$FUT^DGMTU(DFN,"",DGMTYPT),0)),+$P($G(^(2)),U,5)=VSITE S DIC("B")=$P(^(0),"^"),FUTFLG=1
- I 'FUTFLG I $D(^DGMT(408.31,+$$LST^DGMTU(DFN,"",DGMTYPT),0)) S DIC("B")=$P(^(0),"^")
+ ;cannot edit a means test that is more than 1 year old DG*5.3*858
+ I 'FUTFLG I $D(^DGMT(408.31,+$$LST^DGMTU(DFN,"",DGMTYPT),0)) S (DIC("B"),DGLSTDT)=$P(^(0),"^") I $$OLD^DGMTU4(DGLSTDT),(DGMTYPT=1) D  K DIC G Q
+ . W !!,"Please use the Add a New Means Test Option.",!,"User may not edit a Means Test that is more than 1 year old."
  S DIC("S")="I $P(^(0),U,2)=DFN,$P(^(0),U,19)=DGMTYPT"
  S:DGMTYPT'=4 DIC("S")=DIC("S")_" I $G(^(""PRIM""))!($P(^(0),U,1)>DT)"
  S DIC="^DGMT(408.31,",DIC(0)="EQZ" W ! D EN^DGMTLK K DIC G Q:Y<0

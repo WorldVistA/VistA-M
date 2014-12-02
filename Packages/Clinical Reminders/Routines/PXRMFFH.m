@@ -1,56 +1,48 @@
-PXRMFFH ;SLC/PKR - Routines for function finding help. ;07/19/2010
- ;;2.0;CLINICAL REMINDERS;**12,18**;Feb 04, 2005;Build 152
+PXRMFFH ;SLC/PKR - Routines for function finding help. ;03/01/2013
+ ;;2.0;CLINICAL REMINDERS;**12,18,26**;Feb 04, 2005;Build 404
  ;
  ;======================================================
 FSXHELP ;Function finding function string executable help.
- N DONE,IND,TEXT
+ N DIR0,DONE,IND,TEXT
  S DONE=0
+ ;Load the general help text.
  F IND=1:1 Q:DONE  D
- . S TEXT=$P($T(TEXT+IND),";",3)
- . I TEXT="**End Text**" S DONE=1 Q
- . W !,TEXT
-LOOP ;
- K TEXT
- S FUN=$$SELECT("^PXRMD(802.4)")
- I FUN=0 Q
- D GFTEXT(1,FUN,.TEXT)
- D EN^DDIOL(.TEXT) G LOOP
+ . S TEXT(IND)=$P($T(GHTEXT+IND),";",3)
+ . I TEXT(IND)="**End Text**" K TEXT(IND) S DONE=1 Q
+ ;Load the help text for the functions.
+ D GFTEXT(IND-2,.TEXT)
+ D BROWSE^DDBR("TEXT","NR","Function Finding Help")
+ I $D(DDS) D REFRESH^DDSUTL S DY=IOSL-7,DX=0 X IOXY S $Y=DY,$X=DX
  Q
  ;
  ;======================================================
-GFTEXT(START,FUN,TEXT) ;Load descriptions of available function finding
+GFTEXT(START,TEXT) ;Load descriptions of available function finding
+ ;GFTEXT(START,FUN,TEXT) ;Load descriptions of available function finding
  ;functions into the TEXT array starting at line START.
- N IEN,IND,NDL,NL,PNAME
+ N IEN,IND,FUNCTION,NDL,NL,PNAME
  S NL=START
- S IEN=$O(^PXRMD(802.4,"B",FUN,""))
- S PNAME=$P(^PXRMD(802.4,IEN,0),U,4)
- S NL=NL+1,TEXT(NL)=" "
- S NL=NL+1,TEXT(NL)="Function: "_FUN
- S NL=NL+1,TEXT(NL)="Print Name: "_PNAME
- ;Load the description
- S NL=NL+1,TEXT(NL)="Description:"
- S NDL=+$P($G(^PXRMD(802.4,IEN,1,0)),U,4)
- F IND=1:1:NDL D
- . S NL=NL+1,TEXT(NL)=^PXRMD(802.4,IEN,1,IND,0)
+ S FUNCTION=""
+ F  S FUNCTION=$O(^PXRMD(802.4,"B",FUNCTION)) Q:FUNCTION=""  D
+ . S NL=NL+1,TEXT(NL)=" "_FUNCTION
+ S NL=NL+1,TEXT(NL)=""
+ S NL=NL+1,TEXT(NL)="Details for each function follow."
+ ;
+ S FUNCTION=""
+ F  S FUNCTION=$O(^PXRMD(802.4,"B",FUNCTION)) Q:FUNCTION=""  D
+ . S IEN=$O(^PXRMD(802.4,"B",FUNCTION,""))
+ . S PNAME=$P(^PXRMD(802.4,IEN,0),U,4)
+ . S NL=NL+1,TEXT(NL)=" "
+ . S NL=NL+1,TEXT(NL)="Function: "_FUNCTION
+ . S NL=NL+1,TEXT(NL)="Print Name: "_PNAME
+ .;Load the description
+ . S NL=NL+1,TEXT(NL)="Description:"
+ . S NDL=+$P($G(^PXRMD(802.4,IEN,1,0)),U,4)
+ . F IND=1:1:NDL S NL=NL+1,TEXT(NL)=^PXRMD(802.4,IEN,1,IND,0)
  Q
  ;
  ;======================================================
-SELECT(GBL) ;
- N CNT,DIR,DIROUT,DIRUT,DTOUT,DUOUT,FUN,X,Y
- S DIR("A")="For help on the functions select from the available function types"
- S DIR(0)="SO^"
- S CNT=1
- S FUN="" F  S FUN=$O(@GBL@("B",FUN)) Q:FUN=""  D
- . I CNT=1 S DIR(0)=DIR(0)_CNT_":"_FUN
- . I CNT>1 S DIR(0)=DIR(0)_";"_CNT_":"_FUN
- . S CNT=CNT+1
- D ^DIR
- I Y=""!(Y["^") Q +Y
- Q Y(0)
- ;
- ;======================================================
-TEXT ;Function finding help text.
- ;;The general form for a function finding is:
+GHTEXT ;Function finding general help text.
+ ;;The general form for a function finding string is:
  ;; FUN1(arg1,arg2,...argN) oper1 FUN2(arg1,arg2,...,argN) ...
  ;; where FUN1 stands for function 1, FUN2 function 2, and so on.
  ;; arg1,arg2,...,argN are the regular findings whose data are arguments
@@ -58,14 +50,25 @@ TEXT ;Function finding help text.
  ;; The operators can be any of the following MUMPS operators:
  ;; !&-+*/\#<>='][
  ;; 
- ;;When a function finding is evaluated the result will be treated as a logical
+ ;;When a function finding is evaluated, the result will be treated as a logical
  ;;true or false, where 0 is false and non-zero is true.
  ;;
- ;;An example of a function finding is: MRD(1,2)>MRD(5,6,7)
+ ;;An example of a function finding string is:
+ ;; MRD(1,2)>MRD(5,6,7)
+ ;;
  ;;This function finding will be true if the most recent date
  ;;of regular findings 1 and 2 is greater than the most recent
  ;;date of regular findings 5, 6, and 7.
  ;;
+ ;;Comparisons to fixed values can also be made. An example of this is:
+ ;;
+ ;; MRD(1,2)>0
+ ;;
+ ;;Some dates associated with findings include time. For those functions
+ ;;that have dates as arguments, if a date includes time, the full date
+ ;;and time will be used in the calculation.
+ ;;
+ ;;The function finding functions are:
  ;;**End Text**
  Q
  ;

@@ -1,5 +1,5 @@
-PSBML ;BIRMINGHAM/EFC-BCMA MED LOG FUNCTIONS ; 1/7/09 9:57am
- ;;3.0;BAR CODE MED ADMIN;**6,3,4,9,11,13,25,45,33,52**;Mar 2004;Build 28
+PSBML ;BIRMINGHAM/EFC-BCMA MED LOG FUNCTIONS ;10/23/12 12:14pm
+ ;;3.0;BAR CODE MED ADMIN;**6,3,4,9,11,13,25,45,33,52,70**;Mar 2004;Build 101
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference/IA
  ; ^DPT/10035
@@ -10,13 +10,26 @@ PSBML ;BIRMINGHAM/EFC-BCMA MED LOG FUNCTIONS ; 1/7/09 9:57am
  ; $$SITE^VASITE/10112
  ; ^XUSEC(/10076
  ;
+ ;*70 - store clinic name to admin location if exists.
+ ;    - add witness duz, dt/tm for high risk/alert drug, Order level
+ ;      HR code, and a witnesssed y/n flag to MEDLOG file.
+ ;
 RPC(RESULTS,PSBHDR,PSBREC) ;BCMA MedLog Filing
  S PSBEDTFL=0
  N PSBORD,PSBTRAN,PSBFDA,PSBMES ;Add PSBMES variable for PSB*3*52
+ N PSBCLIN,PSBWITN,PSBWITCM,PSBWITHR,PSBWITFL,LOC                 ;*70
  K PSBIEN,PSBHL7
  S PSBIEN=$P(PSBHDR,U,1)
  S PSBTRAN=$P(PSBHDR,U,2),PSBHL7=PSBTRAN
  S PSBINST=$P($G(PSBHDR),U,3)
+ ;*70 witness fields
+ S PSBWITN=+$P(PSBHDR,U,4)                   ;init witness duz var
+ S PSBWITCM=$P(PSBHDR,U,5)                   ;init witness comment
+ S PSBWITHR=+$P(PSBHDR,U,6)                  ;init witn HR order level
+ S PSBWITFL=$S(PSBWITN:1,1:0)             ;init witnessed?
+ I PSBWITN="",PSBWITHR=3 D  Q
+ .S RESULTS(0)=1
+ .S RESULTS(1)="-1^A Witness is required, however Witness information was null."
  ;PSB*3*45 We should be recording the first entry in the audit log.
  ;S PSBAUDIT=$S(PSBIEN="+1":0,1:1)
  S PSBAUDIT=1
@@ -26,16 +39,28 @@ RPC(RESULTS,PSBHDR,PSBREC) ;BCMA MedLog Filing
  S PSBINST(0)=$$GET1^DIQ(200,PSBINST_",",.01)
  I PSBTRAN="ADD COMMENT" D COMMENT^PSBML1 Q
  I PSBTRAN="PRN EFFECTIVENESS" D PRN^PSBML1 Q
- I PSBTRAN="UPDATE STATUS" D  Q
- .I '$D(^PSB(53.79,PSBIEN)) S RESULTS(0)=1,RESULTS(1)="-1^Administration is at an UNKNOWN STATUS" Q
+ ;
+ ;update medlog rec
+UPD I PSBTRAN="UPDATE STATUS" D  Q
+ .I '$D(^PSB(53.79,PSBIEN)) D  Q
+ ..S RESULTS(0)=1
+ ..S RESULTS(1)="-1^Administration is at an UNKNOWN STATUS"
  .D UPDATED^PSBML2
+ ;
+ ;edit Medlog rec
  I PSBTRAN="EDIT" D EDIT^PSBML2 Q
+ ;
  ;SAGG
  N PSBWARD S PSBWARD=$G(^DPT(+$G(PSBREC(0)),.1),"UNKNOWN"),^PSB("SAGG",PSBWARD,DT)=$G(^PSB("SAGG",PSBWARD,DT))+1
+ ;*70 save clinic name if exists before manipulating PSBREC(1) param
+ S PSBCLIN=$P(PSBREC(1),U,2) I PSBCLIN="" S PSBCLIN=$S($G(PSBCLIEN):$P($G(^SC(+PSBCLIEN,0)),"^"),($G(PSBCLORD)]""):PSBCLORD,1:"")
+ S PSBREC(1)=$P(PSBREC(1),U)
+ ;
+ ;pre-existing psbrec(1) manipulation logic to *70
  I PSBREC(1)?1U1";"1.6N S PSBREC(1)=$P(PSBREC(1),";",1)_$E(PSBREC(1))
  D PSJ1^PSBVT(PSBREC(0),$P(PSBREC(1),";",2)_$P(PSBREC(1),";",1))
  S PSBTAB=$P(PSBREC(9),U,1),PSBUID=$P(PSBREC(9),U,2)
- D:PSBTRAN="MEDPASS"
+MEDP D:PSBTRAN="MEDPASS"
  .I (PSBDOSEF["PATCH"),(PSBREC(3)="G") D  Q:+$G(RESULTS(1))<0
  ..S PSBXDT="" F  S PSBXDT=$O(^PSB(53.79,"AORDX",PSBDFN,PSBONX,PSBXDT)) Q:PSBXDT=""  D  Q:+$G(RESULTS(1))<0
  ...S PSBYZ="" F  S PSBYZ=$O(^PSB(53.79,"AORDX",PSBDFN,PSBONX,PSBXDT,PSBYZ)) Q:'PSBYZ  I ("G"[$$GET1^DIQ(53.79,PSBYZ,.09,"I")) D  Q
@@ -78,47 +103,57 @@ RPC(RESULTS,PSBHDR,PSBREC) ;BCMA MedLog Filing
  ...S RESULTS(2)="Continuous Administration Date/Time already on file."
  ...S RESULTS(3)="Administered by "_PSBADMBY_" at "_PSBADMAT_"."
  ...I $D(XWB) S RESULTS(0)=RESULTS(0)+2,RESULTS(4)="                                         ",RESULTS(5)="            VDL will now be updated."
- .;NonGvn
+ .;Non Given
  .I PSBREC(3)'="G",PSBREC(3)'="M",PSBUID'["V",PSBUID'["W" D
  ..I PSBREC(7)="",PSBTAB'="IVTAB" D ERR(1,"Comment needed if Not Marked Given")
  ..I PSBREC(7)="",PSBTAB="IVTAB" D ERR(1,"Comment needed if Not Marked Completed")
  .S:PSBREC(3)="H" PSBREC(7)="Held: "_PSBREC(7)    ;.3
  .S:PSBREC(3)="R" PSBREC(7)="Refused: "_PSBREC(7) ;.3
  .S:PSBREC(3)="S" PSBREC(7)="Stopped: "_PSBREC(7) ;.3
- .;Vald?
- .I $G(PSBSIEN)'="" I $D(^PSB(53.79,PSBSIEN,0)) I $P(^PSB(53.79,PSBSIEN,0),U,9)="N" S PSBIEN=+PSBSIEN_",",$P(PSBHDR,U)=PSBIEN,PSBTRAN="UPDATE STATUS",PSBAUDIT=1   ;do UPDATE
- .D:PSBIEN="+1"  ;New?
- ..D VAL(53.79,PSBIEN,.01,"`"_PSBREC(0)) ;Pt
- ..S X=$G(^DPT(PSBREC(0),.1))_" "_$G(^(.101)) ;WrdRmBd
- ..D VAL(53.79,PSBIEN,.02,X) ;PtLoc
+ .;Valid?
+ .I $G(PSBSIEN)'="" I $D(^PSB(53.79,PSBSIEN,0)) I $P(^PSB(53.79,PSBSIEN,0),U,9)="N" S PSBIEN=+PSBSIEN_",",$P(PSBHDR,U)=PSBIEN,PSBTRAN="UPDATE STATUS",PSBAUDIT=1                   ;do UPDATE
+ .D:PSBIEN="+1"                          ;New fields only?
+ ..D VAL(53.79,PSBIEN,.01,"`"_PSBREC(0))           ;Patn
+ ..S LOC=$G(^DPT(PSBREC(0),.1))_" "_$G(^(.101))    ;Ward Room/Bed LOC
+ ..S:PSBCLIN]"" LOC=PSBCLIN         ;If clinic order use clin name *70
+ ..D VAL(53.79,PSBIEN,.02,LOC)                     ;Patn Location LOC
  ..D:$G(^DPT(PSBREC(0),.1))'=""
  ...S Y=$O(^DIC(42,"B",$G(^DPT(PSBREC(0),.1)),"")),Y=$$GET1^DIQ(42,Y,.015,"I"),PSBDIV=$$SITE^VASITE(DT,Y)
- ...D VAL(53.79,PSBIEN,.03,"`"_$P(PSBDIV,U,1)) ;Div
- ..D VAL(53.79,PSBIEN,.04,PSBNOW)  ;EntDT
- ..D VAL(53.79,PSBIEN,.05,"`"_DUZ) ;Who
- ..D VAL(53.79,PSBIEN,.06,PSBNOW)  ;AdmDT
- ..D VAL(53.79,PSBIEN,.07,"`"_DUZ) ;AdmBy
- ..D VAL(53.79,PSBIEN,.08,"`"_PSBREC(4)) ;OrdblItm
- ..D VAL(53.79,PSBIEN,.11,PSBREC(1)) ;OrdTpeIEN
- ..D VAL(53.79,PSBIEN,.12,PSBREC(2)) ;OrdSchdTpe
- ..D VAL(53.79,PSBIEN,.13,PSBREC(5)) ;SchdAdmDT
- ..D:PSBTAB'="UDTAB" VAL(53.79,PSBIEN,.26,PSBUID) ;Bag
- ..D:PSBTAB="IVTAB" VAL(53.79,PSBIEN,.13,"") ;no SchdAdm - lvIV
- ..D:PSBREC(1)?.N1"U" VAL(53.79,PSBIEN,.15,PSBDOSE) ;UDDsage
- ..D:PSBREC(1)?.N1"V" VAL(53.79,PSBIEN,.35,PSBIFR)  ;IVInfRt
- .;Ovrwrt if exsts
- .I PSBREC(3)="G"!(PSBREC(3))="C" D  ;Gvn/Cmpltd?
- ..D VAL(53.79,PSBIEN,.06,PSBNOW)   ;AdmDT
- ..D VAL(53.79,PSBIEN,.07,"`"_DUZ)  ;AdmBy
- .D:PSBREC(8)]"" VAL(53.79,PSBIEN,.16,PSBREC(8)) ;InjctSte
- .D:'$G(PSBMMEN) VAL(53.79,PSBIEN,.09,PSBREC(3)) ;AStats
- .D:PSBREC(6)]"" VAL(53.79,PSBIEN,.21,$P(PSBREC(6),U)),VAL(53.79,PSBIEN,.27,$P(PSBREC(6),U,2)) ;PRNRsn
+ ...D VAL(53.79,PSBIEN,.03,"`"_$P(PSBDIV,U,1))     ;Div
+ ..D VAL(53.79,PSBIEN,.04,PSBNOW)                  ;Entered dt/tm
+ ..D VAL(53.79,PSBIEN,.05,"`"_DUZ)                 ;Entered by duz
+ ..D VAL(53.79,PSBIEN,.06,PSBNOW)                  ;Admin dt/tm
+ ..D VAL(53.79,PSBIEN,.07,"`"_DUZ)                 ;Admin By duz
+ ..D VAL(53.79,PSBIEN,.08,"`"_PSBREC(4))           ;Orderable Item
+ ..D VAL(53.79,PSBIEN,.11,PSBREC(1))               ;Ord file 55 IEN
+ ..D VAL(53.79,PSBIEN,.12,PSBREC(2))               ;Ord Schd Type
+ ..D VAL(53.79,PSBIEN,.13,PSBREC(5))               ;Schd Adm dt/tm
+ ..D:PSBTAB'="UDTAB" VAL(53.79,PSBIEN,.26,PSBUID)  ;IV Bag ID
+ ..D:PSBTAB="IVTAB" VAL(53.79,PSBIEN,.13,"")       ;Schd Admdt/tm null
+ ..D:PSBREC(1)?.N1"U" VAL(53.79,PSBIEN,.15,PSBDOSE)  ;UD Dosage
+ ..D:PSBREC(1)?.N1"V" VAL(53.79,PSBIEN,.35,PSBIFR)   ;IV Infuse Rate
+ ..I PSBWITHR>1,(PSBREC(3)="G")!(PSBREC(3)="I") D          ;Witness logic and Give?  *70
+ ...D:PSBWITN VAL(53.79,PSBIEN,.28,PSBNOW)        ;Witness dt/time
+ ...D:PSBWITN VAL(53.79,PSBIEN,.29,"`"_PSBWITN)   ;Witness duz
+ ...D:PSBWITCM]"" VAL(53.79,PSBIEN,.31,PSBWITCM)  ;Witness comment
+ ...D VAL(53.79,PSBIEN,.32,PSBWITHR)              ;Witness HR ord code
+ ...D VAL(53.79,PSBIEN,.33,PSBWITFL)              ;Witnessed? flag
+ .;
+ .;Overwrite fields below, rec already exsts
+ .I PSBREC(3)="G"!(PSBREC(3))="C" D                ;Gvn/Completed?
+ ..D VAL(53.79,PSBIEN,.06,PSBNOW)                    ;Admin dt/tm
+ ..D VAL(53.79,PSBIEN,.07,"`"_DUZ)                   ;Admin By duz
+ .D:PSBREC(8)]"" VAL(53.79,PSBIEN,.16,PSBREC(8))   ;InjctSte
+ .D:'$G(PSBMMEN) VAL(53.79,PSBIEN,.09,PSBREC(3))   ;AStats
+ .I PSBREC(6)]"" D                                 ;PRN reason?
+ ..D VAL(53.79,PSBIEN,.21,$P(PSBREC(6),U))           ;reason dt/tm
+ ..D VAL(53.79,PSBIEN,.27,$P(PSBREC(6),U,2))         ;PRN reason
  .D:PSBREC(7)]""
- ..D VAL(53.793,"+2,"_PSBIEN,.01,PSBREC(7)) ;Cmnt
- ..D VAL(53.793,"+2,"_PSBIEN,.02,"`"_DUZ)   ;Who
- ..D VAL(53.793,"+2,"_PSBIEN,.03,PSBNOW)
+ ..D VAL(53.793,"+2,"_PSBIEN,.01,PSBREC(7))        ;Comment
+ ..D VAL(53.793,"+2,"_PSBIEN,.02,"`"_DUZ)          ;comnt person duz
+ ..D VAL(53.793,"+2,"_PSBIEN,.03,PSBNOW)           ;comnt dt/time
  .;DD/SOL/ADD
- .I PSBREC(3)="G"!(PSBREC(3)="I")!(PSBREC(3)="H")!(PSBREC(3)="R")!(PSBREC(3)="M") D  ;gvn/infs?
+ .I PSBREC(3)="G"!(PSBREC(3)="I")!(PSBREC(3)="H")!(PSBREC(3)="R")!(PSBREC(3)="M") D     ;given/action stat codes?
  ..I PSBTRAN="UPDATE STATUS" K ^PSB(53.79,+PSBIEN,.5),^PSB(53.79,+PSBIEN,.6),^PSB(53.79,+PSBIEN,.7)
  ..F PSBCNT=10:1 Q:'$D(PSBREC(PSBCNT))  D
  ...S Y=$P(PSBREC(PSBCNT),U)
@@ -129,6 +164,7 @@ RPC(RESULTS,PSBHDR,PSBREC) ;BCMA MedLog Filing
  ...D VAL(PSBDD,PSBIENS,.02,$P(PSBREC(PSBCNT),U,3))
  ...D VAL(PSBDD,PSBIENS,.03,$P(PSBREC(PSBCNT),U,4))
  ...D:(PSBTAB="UDTAB")!(PSBTAB="PBTAB") VAL(PSBDD,PSBIENS,.04,$E($P(PSBREC(PSBCNT),U,5),1,40))
+ ...D VAL(PSBDD,PSBIENS,.05,$P(PSBREC(PSBCNT),U,7))        ;HR ind *70
  .;Modify Filing Transaction Medpass error message too inclde details - PSB*3*52
  .I $O(RESULTS("")) D  Q
  ..N PSBERR
@@ -138,7 +174,9 @@ RPC(RESULTS,PSBHDR,PSBREC) ;BCMA MedLog Filing
  ...S RESULTS(5)="Error(s) Filing Transaction MEDPASS"
  ..S PSBERR=0 F  S PSBERR=$O(PSBMES(PSBERR)) Q:PSBERR=""  D
  ...S RESULTS($O(RESULTS(""),-1)+1)=PSBMES(PSBERR),RESULTS(0)=$O(RESULTS(""),-1)
+ .;
  .D FILEIT
+ .;
  .;PSB*3*33
  .D:((PSBREC(2)="O")!($$ONE^PSJBCMA(PSBREC(0),PSBREC(1))="O"))&(PSBREC(3)="G") EXPIRE^PSBML1  ;1x exp?
  .D:(PSBREC(2)="O")&(PSBREC(3)="G") EXPIRE^PSBML1  ;1x exp?

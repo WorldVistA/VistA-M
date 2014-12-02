@@ -1,5 +1,5 @@
 RCDPUREC ;WISC/RFJ-receipt utilities ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,148,169,173,208,222**;Mar 20, 1995
+ ;;4.5;Accounts Receivable;**114,148,169,173,208,222,293**;Mar 20, 1995;Build 15
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -19,15 +19,39 @@ ADDRECT(TRANDATE,RCDEPTDA,PAYTYPDA) ;  add a receipt
  ;
 BLDRCPT(TRANDATE,RCDEPTDA,PAYTYPDA) ; Build a receipt with/without deposit
  ;
- N TYPE,RECEIPT
+ N TYPE,RECEIPT,PROD,TSTDUP,GOTONE,DONE
+ S PROD=$S($$PROD^XUPROD(1):"PROD",1:"TEST"),(TSTDUP,GOTONE,DONE)=0
  ;  build unique receipt number for date
  S TYPE=$E($G(^RC(341.1,PAYTYPDA,0))) I TYPE="" S TYPE="Z"
  I TYPE="C",$G(RCDEPTDA)["ERACHK" S RCDEPTDA=+RCDEPTDA,TYPE="E" ; ERA plus paper check EDI Lockbox receipt
- ;  lockbox receipt in the form of L980901A0, do not include century
- F  D  Q:RECEIPT'=""
- . S RECEIPT=$$NEXT(TYPE_$E(TRANDATE,2,7))  ;get last two digits from 00 to ZZ
- . L +^RCY(344,"B",RECEIPT):2 I '$T S RECEIPT=""
  ;
+ ;  this code is specific for "TEST" environments.
+ I PROD="TEST" D   ; Prompt to see if we need to find a duplicate receipt number for testing purposes.
+ . K DIR
+ . S DIR(0)="FAO^1:12",DIR("A")="ENTER A DUPLICATE RECEIPT #: "
+ . D ^DIR
+ . I Y'="" S TSTDUP=1 S RECEIPT=Y K DIR Q
+ . K DIR
+ . S DIR(0)="YA",DIR("A")="DO YOU WANT A DUPLICATE RECEIPT # TO TEST WITH?: ",DIR("B")="NO"
+ . W ! D ^DIR K DIR W ! S TSTDUP=Y   ; TSTDUP: 1=YES, 0=NO
+ . I TSTDUP=1 S RECEIPT="" D
+ .. F  S RECEIPT=$O(^PRCA(433,"AF",RECEIPT)) D  Q:DONE
+ ... I RECEIPT="" W !!,"NO MORE DUPLICATE RECEIPT NUMBER SCENARIOS FOUND!",! S DONE=1 H 2 Q
+ ... I '$D(^RCY(344,"B",RECEIPT)) D
+ .... W !!,"RECEIPT #: "_RECEIPT_" WAS FOUND & WE WILL ATTEMPT TO USE IT.",! S DONE=1 H 2
+ ... Q
+ ;  lockbox receipt in the form of L980901A0, do not include century
+ F  D  Q:+GOTONE
+ . ;If "testing", even though we have a receipt #...we want to prove we can't use and we must find a unique receipt #
+ . I 'TSTDUP S RECEIPT=$$NEXT(TYPE_$E(TRANDATE,2,7))  ;get last two digits from 00 to ZZ 
+ . S TSTDUP=0   ; This will allow testing of duplicate receipt without creating an infinite loop.
+ . I RECEIPT="" Q
+ . I $D(^RCY(344,"B",RECEIPT)) Q
+ . I $D(^PRCA(433,"AF",RECEIPT)) Q
+ . S GOTONE=1
+ . Q
+ ;
+ I RECEIPT'="" L +^RCY(344,"B",RECEIPT):2
  ;  add it
  N %,%DT,D0,DA,DD,DI,DIC,DIE,DLAYGO,DO,DQ,DR,X,Y
  S DIC="^RCY(344,",DIC(0)="L",DLAYGO=344

@@ -1,5 +1,5 @@
 IBCECOB1 ;ALB/CXW - IB COB MANAGEMENT SCREEN/REPORT ;14-JUN-99
- ;;2.0;INTEGRATED BILLING;**137,155,288,348,377,417,432,447**;21-MAR-94;Build 80
+ ;;2.0;INTEGRATED BILLING;**137,155,288,348,377,417,432,447,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; IBMRANOT = 1 when dealing with the COB Management Worklist.   
@@ -7,10 +7,10 @@ IBCECOB1 ;ALB/CXW - IB COB MANAGEMENT SCREEN/REPORT ;14-JUN-99
  ;
 BLD ; Build list entrypoint
  N I,IBFND,IBB,IBIFN,IB364,IBDA1,IBDTN,IBDA,IBDAY,IBHIS,IBNDS,IBEUT,IBAPY,IBOAM,IBDT,IBMUT,IBBPY,IBINS,IBNDM,IBQ,IBNDI1,IBNDI2,IBNDI3,Z,Z0,IBSEQ,IB3611,IBINS1,IBINS2,IBEXPY,IBNBAL,IBPTRSP,IBAMT,IBMRACNT,IBPTNM,IBSRVC,IBPY,IBB364
- N IBEOBREV,IBDENDUP,EOBTYPE
+ N IBEOBREV,IBDENDUP,EOBTYPE,MSEFLG
  K ^TMP("IBCECOB",$J),^TMP("IBCECOB1",$J),^TMP("IBCOBST",$J),^TMP("IBCOBSTX",$J)
  D CLEAN^VALM10      ; kill data and video control arrays
- S VALMCNT=0,IBHIS=""
+ S (VALMCNT,MSEFLG)=0,IBHIS=""
  ; IB*2.0*432 IF not MRA, use new CAP index on 399 file
  D:$G(IBMRANOT)=1 CAP^IBCAPP2
  ; since 0 is a valid Review Status, init w/null
@@ -24,7 +24,8 @@ BLD ; Build list entrypoint
  D SCRN
  Q
 BLD1 ;
- I '$$ELIG(IBDA) Q
+ ;;;I '$$ELIG(IBDA) Q
+ S MSEFLG=$$ELIG(IBDA) Q:'MSEFLG
  S IBDENDUP=$$DENDUP^IBCEMU4(IBDA,$G(IBMRANOT))
  I '$G(IBMRADUP),IBDENDUP Q     ; don't include denied MRAs/EOBs for Duplicate Claim/Service
  S IB3611=$G(^IBM(361.1,IBDA,0))
@@ -81,7 +82,9 @@ BLD1 ;
  S IBSRVC=$P($G(^DGCR(399,IBIFN,"U")),U)
  S Z0=$S(IBSRT="B":IBMUT,IBSRT="D":-IBDAY,IBSRT="I":$P(IBINS2,U,2)_"~"_$P(IBINS2,U),IBSRT="M":$$EXTERNAL^DILFD(361.1,.13,"",$P(IB3611,"^",13)),IBSRT="R":-IBPTRSP,IBSRT="P":IBPTNM,IBSRT="S":+IBSRVC,1:+IBDT)
  S:((IBSRT="M")&(Z0="")) Z0="UNKNOWN"   ;USE UNKNOWN IF NOT SET - BI;IB*2.0*432
- S ^TMP("IBCOBST",$J,Z0,IBIFN)=IBSRVC_U_IBOAM_U_IBAPY_U_$S(IBNBAL>0:IBNBAL,1:0)_U_$P(IBB,U,5)_U_$P(IBB,U,19)_U_IBBPY_U_$P(IBMUT,"~")_U_IBINS_U_IBDA_U_$$HIS(IBIFN)_U_IBDAY_U_IBDT_U_IBQ_U_IB364_U_IBSEQ_U_IBEXPY_U_IBPTRSP
+ I $D(^TMP("IBCOBST",$J,Z0,IBIFN)),$P(^TMP("IBCOBST",$J,Z0,IBIFN),U,19)=-1 S MSEFLG=-1   ; If a MSE was previously found for IBIFN, we want to insure that we don't ignore that by resetting the 19th piece to something else.
+ ;
+ S ^TMP("IBCOBST",$J,Z0,IBIFN)=IBSRVC_U_IBOAM_U_IBAPY_U_$S(IBNBAL>0:IBNBAL,1:0)_U_$P(IBB,U,5)_U_$P(IBB,U,19)_U_IBBPY_U_$P(IBMUT,"~")_U_IBINS_U_IBDA_U_$$HIS(IBIFN)_U_IBDAY_U_IBDT_U_IBQ_U_IB364_U_IBSEQ_U_IBEXPY_U_IBPTRSP_U_MSEFLG
  S ^TMP("IBCOBST",$J,Z0,IBIFN,1)=$$EXTERNAL^DILFD(361.1,.13,"",$P(IB3611,"^",13))_", "_$$FMTE^XLFDT($P($P(IB3611,"^",6),"."))_"^"_$P(IB3611,"^",16)
  S ^TMP("IBCOBSTX",$J,IBIFN)=IBDA  ;keep track of compiled IBIFN's
  ;
@@ -107,7 +110,7 @@ NMAT ;No COB list
  Q
  ;
 SCRN ;
- N IBX,IBCNT,IBIFN,IBDA,IB,X,IBS1,IBPAT,Z,IBK,IBFORM
+ N IBX,IBCNT,IBIFN,IBDA,IB,X,IBS1,IBPAT,Z,IBK,IBFORM,MSEFLG
  S IBCNT=0
  S IBS1=$S(IBSRT="B":"BILLER",IBSRT="D":"Days Since Last Transmission",IBSRT="L":"Date Last "_$S($G(IBMRANOT):"EOB",1:"MRA")_" Received",IBSRT="I":"SECONDARY INSURANCE COMPANY",IBSRT="M":$S($G(IBMRANOT):"EOB",1:"MRA")_" Status",1:"")
  S IBX="" F  S IBX=$O(^TMP("IBCOBST",$J,IBX)) Q:IBX=""  D
@@ -125,11 +128,13 @@ SCRN ;
  .. ;I +$P(IB,U,6)=2 S IBFORM=1500   ; for space reasons
  .. S IBFORM=$S(+$P(IB,U,6)=2:"P",1:"I")
  .. S IBPTRSP=$P(IB,U,18)
+ .. S MSEFLG=$P(IB,U,19)
  .. S IBAMT=$P(IB,U,2)
  .. S IBCNT=IBCNT+1
  .. S X=""
  .. S X=$$SETFLD^VALM1(IBCNT,X,"NUMBER")
- .. S X=$$SETFLD^VALM1($$BN1^PRCAFN(IBIFN)_$S($P($G(^DGCR(399,IBIFN,"TX")),U,10)=1:"*",1:""),X,"BILL")
+ .. ;;;S X=$$SETFLD^VALM1($$BN1^PRCAFN(IBIFN)_$S($P($G(^DGCR(399,IBIFN,"TX")),U,10)=1:"*",1:""),X,"BILL")
+ .. S X=$$SETFLD^VALM1($S(MSEFLG=-1:"!",1:" ")_$$BN1^PRCAFN(IBIFN)_$S($P($G(^DGCR(399,IBIFN,"TX")),U,10)=1:"*",1:""),X,"BILL")  ; per IB*2.0*488
  .. S X=$$SETFLD^VALM1($$DAT1^IBOUTL($P(IB,U)),X,"SERVICE")
  .. S X=$$SETFLD^VALM1(IBPAT,X,"PATNM")
  .. S X=$$SETFLD^VALM1($$RJ^XLFSTR($FN(IBPTRSP,"",2),9," "),X,"PTRESP")
@@ -198,6 +203,7 @@ ELIG(IBEOB) ; Function to determine if an EOB entry is eligible for
  ; IBEOB - ien into file 361.1 (required)
  ; Returns 1 if EOB should appear on the worklist
  ; Returns 0 if EOB should not appear on the worklist
+ ; Returns -1 if EOB contains Message Storage Errors
  ;
  NEW ELIG,IB3611,IBIFN
  S ELIG=0,IBEOB=+$G(IBEOB)
@@ -206,7 +212,7 @@ ELIG(IBEOB) ; Function to determine if an EOB entry is eligible for
  I $P(IB3611,U,16)>2 G ELIGX    ; review status must be <= 2
  S IBIFN=+IB3611
  I $P($G(^DGCR(399,IBIFN,0)),U,13)'=2 G ELIGX  ; Request MRA bill status
- I $D(^IBM(361.1,IBEOB,"ERR")) G ELIGX         ; filing errors
+ I $D(^IBM(361.1,IBEOB,"ERR")) S ELIG=$S('$G(IBMRANOT):-1,1:ELIG) G ELIGX         ; filing errors - contains Message Storage Errors
  ;
  S ELIG=1    ; this EOB is eligible for the worklist
  ;

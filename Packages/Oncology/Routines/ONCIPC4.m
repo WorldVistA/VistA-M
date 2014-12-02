@@ -1,6 +1,6 @@
 ONCIPC4 ;Hines OIFO/GWB - Primary Intracranial/CNS Tumors PCE Study ;03/10/00
- ;;2.11;ONCOLOGY;**26**;Mar 07, 1995
- ;Recurrence/Progession
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;Recurrence/Progression
  K TABLE,HTABLE
  S TABLE("70. DATE OF FIRST RECURRENCE")="DFR"
  S TABLE("71. TYPE OF FIRST RECURRENCE")="TFR"
@@ -19,7 +19,7 @@ ONCIPC4 ;Hines OIFO/GWB - Primary Intracranial/CNS Tumors PCE Study ;03/10/00
  S TFR=$$GET1^DIQ(165.5,IE,1372,"I")
  S TP=$$GET1^DIQ(165.5,IE,1369,"I")
  W @IOF D HEAD^ONCIPC0
- W !," RECURRENCE/PROGESSION"
+ W !," RECURRENCE/PROGRESSION"
  W !," ---------------------"
  S DIE="^ONCO(165.5,",DA=ONCONUM
 DFR S DR="70 70. DATE OF FIRST RECURRENCE......" D ^DIE G:$D(Y) JUMP
@@ -28,7 +28,7 @@ DP S DR="1368 72. DATE OF PROGRESSION..........." D ^DIE G:$D(Y) JUMP
 TP S DR="1369 73. TYPE OF PROGRESSION..........." D ^DIE G:$D(Y) JUMP
 RPD I (TFR=0)&((TP=0)!(TP=8)) D  G KRTRP
  .S $P(^ONCO(165.5,IE,"CNS2"),U,85)=0
- .W !," 74. RECURRENCE/PROGRESSION                                                           DOCUMENTATION................: No recurrence/progession"
+ .W !," 74. RECURRENCE/PROGRESSION                                                           DOCUMENTATION................: No recurrence/progression"
  I (TFR=9)&(TP=9) D  G KRTRP
  .S $P(^ONCO(165.5,IE,"CNS2"),U,85)=9
  .W !," 74. RECURRENCE/PROGRESSION                                                           DOCUMENTATION................: Unknown"

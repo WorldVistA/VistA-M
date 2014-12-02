@@ -1,5 +1,5 @@
-ECDSS1 ;BIR/RHK,JPW-Active/Inactive Procedure Report ; 03 JUL 2008
- ;;2.0; EVENT CAPTURE ;**4,25,95**;8 May 96;Build 26
+ECDSS1 ;BIR/RHK,JPW-Active/Inactive Procedure Report ;11/7/12  12:10
+ ;;2.0;EVENT CAPTURE;**4,25,95,119**;8 May 96;Build 12
  ; Routine to report active and inactive procedures
 START ; Routine execution
  N ECRAS S ECRAS=1  ;roll and scroll
@@ -23,6 +23,7 @@ SORT ;ask sort
  S DIR("??")="ECDSAC1^" D ^DIR K DIR I $D(DIRUT) G END
  S ECRD=Y
 PRT ;start prints
+ I $G(ECPTYP)="E" D EXPORT,^ECKILL Q  ;119
  I ECRN="N",ECRD="N" D LISTNN G END
  I ECRN="N",ECRD="P" D LISTNP G END
  I ECRN="L",ECRD="N" D LISTPN G END
@@ -33,6 +34,7 @@ END ;kills var and quit
  W @IOF D ^ECKILL
  Q
 LISTI ;all inact proc
+ I $G(ECPTYP)="E" D EXPORT,^ECKILL Q  ;119
  W ! K DIC S DIC="^EC(725,",FLDS=".01,1,4,2",BY=".01",(FR,TO)="",L=0,DHD="NATIONAL/LOCAL PROCEDURE REPORT - INACTIVE",DIS(0)="I +$P(^EC(725,D0,0),""^"",3)" D EN1^DIP
  D MSG
  Q
@@ -61,4 +63,18 @@ LISTBP ;both by proc
  D MSG
  Q
 MSG I $D(ECRAS) W !!,"Press <RET> to continue  " R X:DTIME
+ Q
+ ;
+EXPORT ;Section added in patch 119
+ N CNT,I,NM,DATA,IEN,INDEX
+ S CNT=1,^TMP($J,"ECRPT",CNT)=$S($G(ECRD)="N":"NATIONAL NUMBER^CPT^NAME",1:"NAME^NATIONAL NUMBER^CPT")_$S($G(ECRTN)="I":"^INACTIVE DATE",1:"")
+ S NM="",INDEX=$S($G(ECRD)="N":"E",1:"B") F  S NM=$O(^EC(725,INDEX,NM)) Q:NM=""  S I=0 F  S I=$O(^EC(725,INDEX,NM,I)) Q:'+I  D  K DATA
+ .S IEN=I_","
+ .D GETS^DIQ(725,IEN,".01;1;2;4",,"DATA")
+ .I $G(ECRTN)="I"&(DATA(725,IEN,2)'="") S CNT=CNT+1,^TMP($J,"ECRPT",CNT)=DATA(725,IEN,.01)_U_DATA(725,IEN,1)_U_DATA(725,IEN,4)_U_DATA(725,IEN,2) Q  ;If sort by inactive and entry is inactive, store record
+ .I $G(ECRTN)="A"&(DATA(725,IEN,2)="") D  ;If sort by active and entry is active, continue processing
+ ..I $G(ECRN)="N"&(I>89999) Q  ;If looking for nation entries and entry has a local number, quit
+ ..I $G(ECRN)="L"&(I<90000) Q  ;If looking for local entries and entry has a national number, quit
+ ..;assume record should be counted
+ ..S CNT=CNT+1,^TMP($J,"ECRPT",CNT)=$S($G(ECRD)="N":DATA(725,IEN,1)_U_DATA(725,IEN,4)_U_DATA(725,IEN,.01),1:DATA(725,IEN,.01)_U_DATA(725,IEN,1)_U_DATA(725,IEN,4))
  Q

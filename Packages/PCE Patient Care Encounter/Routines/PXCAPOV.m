@@ -1,15 +1,15 @@
 PXCAPOV ;ISL/dee & LEA/Chylton - Validates data from the PCE Device Interface into PCE's PXK format for POV ;3/20/97
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**24,27,33,121,130,124,168**;Aug 12, 1996;Build 14
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**24,27,33,121,130,124,168,199**;Aug 12, 1996;Build 51
  Q
  ; Variables
  ;   PXCADIAG  Copy of a Diagnosis node of the PXCA array
  ;   PXCAPRV   Pointer to the provider (200)
- ;   ;   PXCANPOV  Count of the number of POVs
- ;   PXCANUMB  Count of the number if POVs
+ ;   PXCANPOV  Count of the number of POVs
  ;   PXCAINDX  Count of the number of Diagnoses for one provider
  ;
 DIAG(PXCA,PXCABULD,PXCAERRS) ;Validation routine for POV
- N PXCADIAG,PXCAPRV,PXCAINDX
+ N PXCADIAG,PXCAINDX,PXCAPRV,PXDXDATE
+ S PXDXDATE=$S($D(PXCAVSIT)=1:$$CSDATE^PXDXUTL(PXCAVSIT),$D(PXCADT)=1:PXCADT,1:DT)
  S PXCAPRV=""
  F  S PXCAPRV=$O(PXCA("DIAGNOSIS",PXCAPRV)) Q:PXCAPRV']""  D
  . I PXCAPRV>0 D
@@ -24,21 +24,12 @@ DIAG(PXCA,PXCABULD,PXCAERRS) ;Validation routine for POV
  .. ;
  .. S PXCAITEM=$P(PXCADIAG,"^",1)
  .. D
- ... ;N DIC,DR,DA,DIQ,PXCADIQ1
- ... ;S DIC=80
- ... ;S DR=".01;102"
- ... ;S DA=$S(PXCAITEM'="":PXCAITEM,1:-1)
- ... ;S DIQ="PXCADIQ1("
- ... ;S DIQ(0)="I"
- ... ;D EN^DIQ1
- ... ;I $G(PXCADIQ1(80,DA,.01,"I"))="" S PXCA("ERROR","DIAGNOSIS",PXCAPRV,PXCAINDX,1)="ICD9 Code not in file 80^"_PXCAITEM
- ... ;E  I $G(PXCADIQ1(80,DA,102,"I")),PXCADIQ1(80,DA,102,"I")'>+PXCADT S PXCA("ERROR","DIAGNOSIS",PXCAPRV,PXCAINDX,1)="ICD9 Code is INACTIVE^"_PXCAITEM
  ... N ICDSTR,ICDCN,ICDID
- ... S ICDSTR=$$ICDDX^ICDCODE($S(PXCAITEM'="":PXCAITEM,1:-1),+PXCADT)
+ ... S ICDSTR=$$ICDDATA^ICDXCODE("DIAG",$S(PXCAITEM'="":PXCAITEM,1:-1),PXDXDATE,"I")
  ... S ICDCN=$P(ICDSTR,"^",2)
- ... S ICDID=$P(ICDSTR,"^",12)
- ... I +ICDSTR=-1 S PXCA("ERROR","DIAGNOSIS",PXCAPRV,PXCAINDX,1)="ICD9 Code not in file 80^"_PXCAITEM
- ... E  I '$P(ICDSTR,"^",10) S PXCA("ERROR","DIAGNOSIS",PXCAPRV,PXCAINDX,1)="ICD9 Code is INACTIVE^"_PXCAITEM
+ ... S ICDID=$P(ICDSTR,"^",12) I $L(ICDID) S ICDID=$$FMTE^XLFDT(ICDID,5)
+ ... I +ICDSTR=-1 S PXCA("ERROR","DIAGNOSIS",PXCAPRV,PXCAINDX,1)="Diagnosis Code pointer results in a '"_$P(ICDSTR,U,2)_"' error message.^"_PXCAITEM
+ ... E  I '$P(ICDSTR,"^",10) S PXCA("ERROR","DIAGNOSIS",PXCAPRV,PXCAINDX,1)="Diagnosis Code is INACTIVE"_$S($L(ICDID):" as of "_ICDID,1:"")_"^"_PXCAITEM
  ...;
  .. S PXCAITEM=$P(PXCADIAG,"^",2)
  .. I '(PXCAITEM=""!(PXCAITEM="P")!(PXCAITEM="S")) S PXCA("ERROR","DIAGNOSIS",PXCAPRV,PXCAINDX,2)="Diagnosis specification code must be P|S^"_PXCAITEM
@@ -87,13 +78,13 @@ DIAG(PXCA,PXCABULD,PXCAERRS) ;Validation routine for POV
  .. I PXCABULD&'$D(PXCA("ERROR","DIAGNOSIS",PXCAPRV,PXCAINDX))!PXCAERRS D POV^PXCADX(PXCADIAG,PXCANPOV,PXCAPRV,PXCAERRS)
  Q
  ;
-ANOTHPOV(PXCAAPOV) ; 
- ;Add the diagnosis to V POV if they are not there.
+ANOTHPOV(PXCAAPOV) ;
+ ;Add the diagnoses to V POV if they are not there.
  ;Quit if the provider subscript is zero
  ; Variables
- ;   PXCAAPOV  Pointer to the DIAGNOSIS (80)
+ ;   PXCAAPOV  Pointer to the ICD DIAGNOSIS file [#80]
  ;   PXCAINDX  Subscript of the diagnosis in the temp array used to
- ;               look to see if the above diagnosis is already know.
+ ;               look to see if the above diagnosis is already known.
  Q:PXCAAPOV'>0
  N PXCAINDX
  ;See if this diagnosis is in the ^TMP(PXCAGLB,$J,

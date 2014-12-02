@@ -1,6 +1,13 @@
-LEXSC ; ISL Shortcuts Add/Delete                 ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXSC ;ISL/KER - Shortcuts Add/Delete ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.4)         N/A
+ ;    ^LEX(757.41)        N/A
+ ;               
+ ; External References
+ ;    $$UP^XLFSTR         ICR  10103
+ ;               
 EN N LEXCX,LEXCXN,LEXDICS,LEXEDIT,LEXRP,LEXE
 CTX S LEXRP="",LEXEDIT=1,LEXE=$$CNT^LEXDCXS,LEXCX=$$EN^LEXDCXS
  S LEXCXN=$P(LEXCX,"^",2),LEXCX=+LEXCX Q:LEXCX=0

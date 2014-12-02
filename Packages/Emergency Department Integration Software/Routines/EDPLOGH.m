@@ -1,5 +1,5 @@
 EDPLOGH ;SLC/KCM - Add History Entry for ED Log ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
  ;TODO:  add transaction processing
  ;
@@ -14,7 +14,8 @@ SAVE(IEN,TIME,HIST) ; save a new history entry for changed fields
  Q
 COLLIDE(LOG,LOADTS) ; return true if new updates since load time
  N I,J,TS,IEN,FLDS,MODS
- S TS=LOADTS-0.000001
+ ;S TS=LOADTS-0.000001
+ S TS=LOADTS
  F  S TS=$O(^EDP(230.1,"ADF",LOG,TS)) Q:'TS  D
  . S IEN=0 F  S IEN=$O(^EDP(230.1,"ADF",LOG,TS,IEN)) Q:'IEN  D
  .. S MODS=$P($G(^EDP(230.1,IEN,9)),U)

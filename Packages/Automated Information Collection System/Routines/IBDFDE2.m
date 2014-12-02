@@ -1,5 +1,6 @@
-IBDFDE2 ;ALB/AAS - AICS Data Entry, process selection lists ; 24-FEB-96
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**4**;APR 24, 1997
+IBDFDE2 ;ALB/AAS - AICS Data Entry, process selection lists ;02/24/96
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**4,63**;APR 24, 1997;Build 80
+ ;
  ;
 % G ^IBDFDE
  ;
@@ -12,7 +13,7 @@ LIST(RESULT,IBDF,IBDASK) ; -- Procedure
  ;             IBDF("IEN")    := pointer to selection list (357.2)
  ;             IBDF("PI")     := pointer to input package interface
  ;             IBDF("DFN")    := pointer to patient (required for dynamic lists only)
- ;             IBDF("CLINIC") := pointer to hospital location (required for dyamic lists only)
+ ;             IBDF("CLINIC") := pointer to hospital location (required for dynamic lists only)
  ;
  ;    Output:  Selections for input in IBDFDE1 (and eventually IBDFRPC4)
  ;             RESULT(0)      := count of selections (including previous)
@@ -97,7 +98,7 @@ OVER ; -- ask or re-ask for selection(s) from list
  .; -- more than one code the same number
  .S SELECT=$$PARTLST^IBDFDE21(ARRAY," "_ANS," "_ANS)
  ;
- ; -- next check for paritial code answers
+ ; -- next check for partial code answers
  S ANS1=" "_ANS
  S NEXT=$O(@ARRAY@(ANS1)) D  I SELECT D SEL^IBDFDE21(SELECT),CHK^IBDFDE22 G VSTOVER
  .Q:NEXT=""!($E(NEXT,1,$L(ANS1))'=ANS1)
@@ -113,7 +114,7 @@ OVER ; -- ask or re-ask for selection(s) from list
  .; -- more than one description the same
  .S SELECT=$$PARTLST^IBDFDE21(ARRAY,ANS,ANS)
  ;
- ; -- next check for paritial text answers
+ ; -- next check for partial text answers
  S NEXT=$O(@ARRAY@(ANS)) D  I SELECT D SEL^IBDFDE21(SELECT),CHK^IBDFDE22 G VSTOVER
  .Q:NEXT=""!($E(NEXT,1,$L(ANS))'=ANS)
  .I $O(@ARRAY@(NEXT,1)) S SELECT=$$PARTLST^IBDFDE21(ARRAY,NEXT,ANS) Q

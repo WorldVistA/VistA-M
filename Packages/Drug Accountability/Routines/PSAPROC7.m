@@ -1,5 +1,5 @@
 PSAPROC7 ;BIR/JMB-Process Uploaded Prime Vendor Invoice Data - CONT'D ;9/6/97
- ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**3,12,27,21,42,61,64,67,68,71**; 10/24/97;Build 10
+ ;;3.0;DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**3,12,27,21,42,61,64,67,68,71,73**; 10/24/97;Build 3
  ;This routine takes the data in XTMP and moves it to DA ORDERS file.
  ;It deletes the data in XTMP after it is copies.
  ;
@@ -81,7 +81,7 @@ LINE ;Files line items.
  I +$P(PSADATA,"^",7)!(+$P(PSADATA,"^",20))!(+$P(PSADATA,"^",21))!(+$P(PSADATA,"^",27)) D
  .S ^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSAIEN2,2)=$P(PSADATA,"^",20)_"^"_$P(PSADATA,"^",21)_"^"_$S(+$P(PSADATA,"^",7):+$P(PSADATA,"^",7),1:0)_"^"_+$P(PSADATA,"^",27)
  ;Bgn 67
- I $P(PSADATA,"^",5)'="" S ^XTMP("PSAVSN",$P(PSADATA,"^",5))=$P(PSADATA,"^",28)_"^"_$P(PSADATA,"^",29)_"^"_$P(PSADATA,"^",30)_"^"_$P(PSADATA,"^",31)
+ I $P($P(PSADATA,"^",5),"~")'="" S ^XTMP("PSAVSN",$P($P(PSADATA,"^",5),"~"))=$P(PSADATA,"^",28)_"^"_$P(PSADATA,"^",29)_"^"_$P(PSADATA,"^",30)_"^"_$P(PSADATA,"^",31)
  ;End 67
  K ^XTMP("PSAPV",PSACTRL,"IT",PSALINE)
  Q

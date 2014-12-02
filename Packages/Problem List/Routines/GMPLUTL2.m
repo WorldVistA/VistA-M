@@ -1,8 +1,10 @@
-GMPLUTL2 ; SLC/MKB/KER -- PL Utilities (OE/TIU)             ; 04/15/2002
- ;;2.0;Problem List;**10,18,21,26,35**;Aug 25, 1994;Build 26
+GMPLUTL2 ; ISL/MKB,KER,JER,TC -- PL Utilities (OE/TIU) ;10/04/12  14:10
+ ;;2.0;Problem List;**10,18,21,26,35,36,42**;Aug 25, 1994;Build 46
+ ;
  ; External References
  ;   DBIA   348  ^DPT(  file #2
- ;   DBIA 10082  ^ICD9(  file #80
+ ;    ICR  5699  $$ICDDATA^ICDXCODE
+ ;    ICR  5747  $$SAB^ICDEX,$$CODECS^ICDEX,$$CSI^ICDEX
  ;   DBIA 10040  ^SC(  file #44
  ;   DBIA 10060  ^VA(200
  ;   DBIA  2716  $$GETSTAT^DGMSTAPI
@@ -12,65 +14,46 @@ GMPLUTL2 ; SLC/MKB/KER -- PL Utilities (OE/TIU)             ; 04/15/2002
  ;   DBIA 10118  EN^VALM
  ;   DBIA 10116  CLEAR^VALM1
  ;   DBIA 10103  $$HTFM^XLFDT
-LIST(GMPL,GMPDFN,GMPSTAT,GMPCOMM) ; Returns list of Prob for Pt.           
- ;   Input   GMPDFN  Pointer to Patient file #2
- ;           GMPCOMP Display Comments 1/0
- ;           GMTSTAT Status A/I/""
- ;   Output  GMPL    Array, passed by reference
- ;           GMPL(#)
- ;             Piece 1:  Pointer to Problem #9000011
- ;                   2:  Status 
- ;                   3:  Description
- ;                   4:  ICD-9 code
- ;                   5:  Date of Onset
- ;                   6:  Date Last Modified
- ;                   7:  Service Connected
- ;                   8:  Special Exposures
- ;           GMPL(#,C#)  Comments
- ;           GMPL(0)     Number of Problems Returned
- N I,IFN,CNT,GMPL0,GMPL1,SP,ST,NUM,ONSET,ICD,LASTMOD,SC,GMPLIST,GMPLVIEW,GMPARAM,GMPTOTAL
- Q:$G(GMPDFN)'>0  S CNT=0,SP=""
- S GMPARAM("QUIET")=1,GMPARAM("REV")=$P($G(^GMPL(125.99,1,0)),U,5)="R"
- S GMPLVIEW("ACT")=GMPSTAT,GMPLVIEW("PROV")=0,GMPLVIEW("VIEW")=""
- D GETPLIST^GMPLMGR1(.GMPLIST,.GMPTOTAL,.GMPLVIEW)
- F NUM=0:0 S NUM=$O(GMPLIST(NUM)) Q:NUM'>0  D
- . S IFN=+GMPLIST(NUM) Q:IFN'>0
- . S GMPL0=$G(^AUPNPROB(IFN,0)),GMPL1=$G(^(1)),CNT=CNT+1
- . S ICD=$P($G(^ICD9(+GMPL0,0)),U),LASTMOD=$P(GMPL0,U,3)
- . S ST=$P(GMPL0,U,12),ONSET=$P(GMPL0,U,13)
- . S SC=$S(+$P(GMPL1,U,10):"SC",$P(GMPL1,U,10)=0:"NSC",1:"")
- . N SCS D SCS^GMPLX1(IFN,.SCS) S SP=$G(SCS(3))
- . S GMPL(CNT)=IFN_U_ST_U_$$PROBTEXT^GMPLX(IFN)_U_ICD_U_ONSET_U_LASTMOD_U_SC_U_SP_U_$S($P(GMPL1,U,14)="A":"*",1:"")_U_$S('$P($G(^GMPL(125.99,1,0)),U,2):"",$P(GMPL1,U,2)'="T":"",1:"$")
- . I $G(GMPCOMM) D
- . . N FAC,NIFN,NOTE,NOTECNT
- . . S NOTECNT=0,FAC=0
- . . F  S FAC=$O(^AUPNPROB(IFN,11,FAC)) Q:+FAC'>0  D
- . . . S NIFN=0
- . . . F  S NIFN=$O(^AUPNPROB(IFN,11,FAC,11,NIFN)) Q:NIFN'>0  D
- . . . . S NOTE=$P($G(^AUPNPROB(IFN,11,FAC,11,NIFN,0)),U,3)
- . . . . S NOTECNT=NOTECNT+1,GMPL(CNT,NOTECNT)=NOTE
- S GMPL(0)=CNT
+ ;
+LIST(GMPL,GMPDFN,GMPSTAT,GMPCOMM) ; Returns list of Problems for Patient
+ D LIST^GMPLUTL3
  Q
  ;
 DETAIL(IFN,GMPL) ; Returns Detailed Data for Problem
- ;                
+ ;
  ; Input   IFN  Pointer to Problem file #9000011
- ;                
+ ;
  ; Output  GMPL Array, passed by reference
  ;         GMPL("DATA NAME") = External Format of Value
  ;
  ;         GMPL("DIAGNOSIS")  ICD Code
+ ;         GMPL("ICDD")       ICD Description
+ ;         GMPL("CSYS")       Coding System (#80202) [ex: 10D (ICD-10) & ICD (ICD-9)]
+ ;         GMPL("DTINTEREST") Date of Interest (#80201)
  ;         GMPL("PATIENT")    Patient Name
  ;         GMPL("MODIFIED")   Date Last Modified
- ;         GMPL("NARRATIVE")  Provider Narrative 
+ ;         GMPL("NARRATIVE")  Provider Narrative
  ;         GMPL("ENTERED")    Date Entered ^ Entered by
  ;         GMPL("STATUS")     Status
  ;         GMPL("PRIORITY")   Priority Acute/Chronic
  ;         GMPL("ONSET")      Date of Onset
  ;         GMPL("PROVIDER")   Responsible Provider
  ;         GMPL("RECORDED")   Date Recorded ^ Recorded by
+ ;         GMPL("CONDITION")  Patient Condition (#1.02)
+ ;         GMPL("RESOLVED")   Date Resolved (#1.07)
  ;         GMPL("CLINIC")     Hospital Location
+ ;         GMPL("SERVICE")    Service (#1.06)
+ ;         GMPL("FACILITY")   Facility ID ^ Facility Name (#.06)
  ;         GMPL("SC")         Service Connected SC/NSC/""
+ ;         GMPL("SCTC")       SNOMED-CT Concept Code
+ ;         GMPL("SCTD")       SNOMED-CT Designation Code
+ ;         GMPL("SCTT")       SNOMED-CT Preferred Text
+ ;         GMPL("VHATC")      VHAT Concept Code
+ ;         GMPL("VHATD")      VHAT Designation Code
+ ;         GMPL("VHATT")      VHAT Preferred Text
+ ;
+ ;         GMPL("ICD9MLTP") = #
+ ;         GMPL("ICD9MLTP",CNT) = ICD-9-CM/ICD-10-CM Code^ICD-9-CM/ICD-10-CM Description^ICD Coding System
  ;
  ;         GMPL("EXPOSURE") = #
  ;         GMPL("EXPOSURE",X)="AGENT ORANGE"
@@ -83,10 +66,14 @@ DETAIL(IFN,GMPL) ; Returns Detailed Data for Problem
  ;
  ;         GMPL("COMMENT") = #
  ;         GMPL("COMMENT",CNT) = Date ^ Author ^ Text of Note
- ;              
- N GMPL0,GMPL1,GMPLP,X,I,FAC,CNT,NIFN Q:'$D(^AUPNPROB(IFN,0))
- S GMPLP=+($$PTR^GMPLUTL4),GMPL0=$G(^AUPNPROB(IFN,0)),GMPL1=$G(^(1))
- S GMPL("DIAGNOSIS")=$P($G(^ICD9(+GMPL0,0)),U)
+ ;
+ N GMPL0,GMPL1,GMPL800,GMPL802,GMPL803,GMPLP,X,I,FAC,CNT,NIFN Q:'$D(^AUPNPROB(IFN,0))
+ S GMPLP=+($$PTR^GMPLUTL4)
+ S GMPL0=$G(^AUPNPROB(IFN,0)),GMPL1=$G(^(1)),GMPL800=$G(^(800)),GMPL802=$G(^(802)),GMPL803=$G(^(803,0))
+ S GMPL("DTINTEREST")=$S(+$P(GMPL802,U,1):$P(GMPL802,U,1),1:$P(GMPL0,U,8)),GMPL("CSYS")=$S($P(GMPL802,U,2)]"":$P(GMPL802,U,2),1:$$SAB^ICDEX($$CSI^ICDEX(80,+GMPL0),GMPL("DTINTEREST")))
+ S GMPL("DIAGNOSIS")=$P($$ICDDATA^ICDXCODE(GMPL("CSYS"),+GMPL0,GMPL("DTINTEREST"),"I"),U,2)
+ S GMPL("FACILITY")=$$RESOLVE(IFN,".06","IE")
+ S GMPL("ICDD")=$$ICDDESC(GMPL("DIAGNOSIS"),GMPL("DTINTEREST"),GMPL("CSYS"))
  S GMPL("PATIENT")=$P($G(^DPT(+$P(GMPL0,U,2),0)),U)
  S GMPL("MODIFIED")=$$EXTDT^GMPLX($P(GMPL0,U,3))
  S GMPL("NARRATIVE")=$$PROBTEXT^GMPLX(IFN)
@@ -94,9 +81,22 @@ DETAIL(IFN,GMPL) ; Returns Detailed Data for Problem
  S X=$P(GMPL0,U,12),GMPL("STATUS")=$S(X="A":"ACTIVE",1:"INACTIVE")
  S X=$S(X'="A":"",1:$P(GMPL1,U,14)),GMPL("PRIORITY")=$S(X="A":"ACUTE",X="C":"CHRONIC",1:"")
  S GMPL("ONSET")=$$EXTDT^GMPLX($P(GMPL0,U,13))
+ S GMPL("CONDITION")=$$RESOLVE(IFN,"1.02","E")
  S GMPL("PROVIDER")=$P($G(^VA(200,+$P(GMPL1,U,5),0)),U)
  S GMPL("RECORDED")=$$EXTDT^GMPLX($P(GMPL1,U,9))_U_$P($G(^VA(200,+$P(GMPL1,U,4),0)),U)
+ S GMPL("RESOLVED")=$$EXTDT^GMPLX($P(GMPL1,U,7))
  S GMPL("CLINIC")=$P($G(^SC(+$P(GMPL1,U,8),0)),U)
+ S GMPL("SERVICE")=$$RESOLVE(IFN,1.06,"E")
+ S GMPL("SCTC")=$P(GMPL800,U),GMPL("SCTD")=$P(GMPL800,U,2)
+ I $L($G(GMPL("SCTC"))) S GMPL("SCTT")=$P($$SCTTEXT(GMPL("SCTC"),$P(GMPL0,U,8),"SCT"),U)
+ S GMPL("VHATC")=$P(GMPL800,U,3),GMPL("VHATD")=$P(GMPL800,U,4)
+ I $L($G(GMPL("VHATC"))) S GMPL("VHATT")=$$SCTTEXT(GMPL("VHATC"),$P(GMPL0,U,8),"VHAT")
+ S GMPL("ICD9MLTP")=""
+ I $L($G(GMPL803))>0 D
+ . N DA,ICDDESC S (CNT,DA)=0,GMPL("ICD9MLTP")=0 F  S DA=$O(^AUPNPROB(IFN,803,DA)) Q:'+DA  D
+ . . S X=$G(^AUPNPROB(IFN,803,DA,0)),ICDDESC=$$ICDDESC($P(X,U),$P(X,U,3),$P(X,U,2))
+ . . S CNT=CNT+1,GMPL("ICD9MLTP",CNT)=$P(X,U)_U_$G(ICDDESC)_U_$P(X,U,2)
+ . S GMPL("ICD9MLTP")=CNT
  S GMPL("SC")=$S($P(GMPL1,U,10):"YES",$P(GMPL1,U,10)=0:"NO",1:"UNKNOWN")
  S GMPL("EXPOSURE")=0
  I $P(GMPL1,U,11) S X=GMPL("EXPOSURE")+1,GMPL("EXPOSURE",X)="AGENT ORANGE",GMPL("EXPOSURE")=X
@@ -114,6 +114,16 @@ DETAIL(IFN,GMPL) ; Returns Detailed Data for Problem
  S GMPL("COMMENT")=CNT D AUDIT
  Q
  ;
+RESOLVE(IEN,FIELD,FORMAT) ; Call GET1^DIQ to resolve field values
+ ;  Input:    IEN = Record #
+ ;          FIELD = Field # in PROBLEMS file #9000011
+ ;         FORMAT = "I"nternal, "E"xternal, or "IE" -> both
+ ; Output: GMPLY = value as specified by format
+ N GMPLY
+ S IEN=IEN_","
+ S GMPLY=$$GET1^DIQ(9000011,IEN,FIELD,FORMAT)
+ S:FORMAT="IE" GMPLY=GMPLY_U_$$GET1^DIQ(9000011,IEN,FIELD,"E")
+ Q GMPLY
 AUDIT ; 14 Sep 99 - MA - Add audit trail to OE Problem List.
  ; Called from DETAIL, requires IFN and sets GMPL("AUDIT")
  N IDT,AIFN,X0,X1,FLD,CNT
@@ -129,14 +139,15 @@ AUDIT ; 14 Sep 99 - MA - Add audit trail to OE Problem List.
  S GMPL("AUDIT")=CNT
  Q
  ;
-FLDNAME(NUM)    ; Returns field name for display
+FLDNAME(NUM) ; Returns field name for display
  N NAME,NM1,NM2,I,J S J=0,NAME=""
- S NM1=".01^.05^.12^.13^1.01^1.02^1.04^1.05^1.06^1.07^1.08^1.09^1.1^1.11^1.12^1.13^1.14^1.17^1.18^1101"
+ S NM1=".01^.05^.12^.13^1.01^1.02^1.04^1.05^1.06^1.07^1.08^1.09^1.1^1.11^1.12^1.13^1.14^1.15^1.16^1.17^1.18^80001^80002^80003^80004^80005^302^1101"
  F I=1:1:$L(NM1,U) I +$P(NM1,U,I)=+NUM S J=I Q
  G:J'>0 FNQ
  S NM2="DIAGNOSIS^PROVIDER NARRATIVE^STATUS^DATE OF ONSET^PROBLEM^CONDITION^RECORDING PROVIDER^RESPONSIBLE PROVIDER"
  S NM2=NM2_"^SERVICE^DATE RESOLVED^CLINIC^DATE RECORDED^SERVICE CONNECTED^AGENT ORANGE EXP^RADIATION EXP^ENV CONTAMINANTS EXP"
- S NM2=NM2_"^COMBAT VET^SHIPBOARD HAZARD EXP^PRIORITY^NOTE"
+ S NM2=NM2_"^IMMEDIACY^HEAD & NECK CANCER^MIL SEX TRAUMA^COMBAT VET^SHIPBOARD HAZARD EXP^SNOMED CT CONCEPT^SNOMED CT DESIGNATION"
+ S NM2=NM2_"^VHAT CONCEPT^VHAT DESIGNATION^SNOMED CT/ICD MAP STATUS^SECONDARY DIAGNOSIS^NOTE"
  S NAME=$P(NM2,U,J)
 FNQ Q NAME
  ;
@@ -200,3 +211,16 @@ VAF(DFN,SILENT) ; -- print PL VA Form chart copy
  . D DEVICE^GMPLPRNT Q:$G(GMPQUIT)  D CLEAR^VALM1
  D PRT^GMPLPRNT
  Q
+SCTTEXT(GMPLCODE,GMPDT,GMPSYS) ; Get Preferred Text for SCT Code
+ N %DT,GMPY,LEX,LEXY S GMPY="",GMPDT=$G(GMPDT,DT),GMPSYS=$G(GMPSYS,"SCT")
+ S LEXY=$$CODE^LEXTRAN(GMPLCODE,GMPSYS,GMPDT)
+ I '+LEXY G SCTTEXQ
+ S GMPY=$G(LEX("P"))
+SCTTEXQ Q GMPY
+ICDDESC(GMPLCODE,GMPDT,GMPLCSYS) ; Get description for ICD Code
+ N ICDD,GMPY,ICDY S GMPY="",GMPDT=$G(GMPDT,DT)
+ S:'$G(GMPLCSYS) GMPLCSYS=$$SAB^ICDEX($P($$CODECS^ICDEX(GMPLCODE,80,GMPDT),U),GMPDT)
+ S ICDY=$$ICDDESC^ICDXCODE(GMPLCSYS,GMPLCODE,GMPDT,.ICDD)
+ I 'ICDY G ICDDESQ
+ S GMPY=$G(ICDD(1))
+ICDDESQ Q GMPY

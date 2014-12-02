@@ -1,0 +1,134 @@
+IBDEI17Z ; ; 12-AUG-2014
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,21824,2)
+ ;;=^303401
+ ;;^UTILITY(U,$J,358.3,21825,0)
+ ;;=V12.59^^133^1320^28
+ ;;^UTILITY(U,$J,358.3,21825,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,21825,1,4,0)
+ ;;=4^V12.59
+ ;;^UTILITY(U,$J,358.3,21825,1,5,0)
+ ;;=5^Hx Of Congestive Heart Failure
+ ;;^UTILITY(U,$J,358.3,21825,2)
+ ;;=^303399
+ ;;^UTILITY(U,$J,358.3,21826,0)
+ ;;=V45.81^^133^1320^29
+ ;;^UTILITY(U,$J,358.3,21826,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,21826,1,4,0)
+ ;;=4^V45.81
+ ;;^UTILITY(U,$J,358.3,21826,1,5,0)
+ ;;=5^Hx Of Coronary Bypass
+ ;;^UTILITY(U,$J,358.3,21826,2)
+ ;;=^97129
+ ;;^UTILITY(U,$J,358.3,21827,0)
+ ;;=V15.84^^133^1320^26
+ ;;^UTILITY(U,$J,358.3,21827,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,21827,1,4,0)
+ ;;=4^V15.84
+ ;;^UTILITY(U,$J,358.3,21827,1,5,0)
+ ;;=5^Hx Of Asbestos Exposure
+ ;;^UTILITY(U,$J,358.3,21827,2)
+ ;;=^303406
+ ;;^UTILITY(U,$J,358.3,21828,0)
+ ;;=V15.85^^133^1320^47
+ ;;^UTILITY(U,$J,358.3,21828,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,21828,1,4,0)
+ ;;=4^V15.85
+ ;;^UTILITY(U,$J,358.3,21828,1,5,0)
+ ;;=5^Hx Of Potentially Hazardous Body Fluids
+ ;;^UTILITY(U,$J,358.3,21828,2)
+ ;;=^303407
+ ;;^UTILITY(U,$J,358.3,21829,0)
+ ;;=V10.72^^133^1320^32
+ ;;^UTILITY(U,$J,358.3,21829,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,21829,1,4,0)
+ ;;=4^V10.72
+ ;;^UTILITY(U,$J,358.3,21829,1,5,0)
+ ;;=5^Hx Of Hodgkin's Disease
+ ;;^UTILITY(U,$J,358.3,21829,2)
+ ;;=^295237
+ ;;^UTILITY(U,$J,358.3,21830,0)
+ ;;=V15.3^^133^1320^33
+ ;;^UTILITY(U,$J,358.3,21830,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,21830,1,4,0)
+ ;;=4^V15.3
+ ;;^UTILITY(U,$J,358.3,21830,1,5,0)
+ ;;=5^Hx Of Irradiation
+ ;;^UTILITY(U,$J,358.3,21830,2)
+ ;;=^295285
+ ;;^UTILITY(U,$J,358.3,21831,0)
+ ;;=V10.61^^133^1320^36
+ ;;^UTILITY(U,$J,358.3,21831,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,21831,1,4,0)
+ ;;=4^V10.61
+ ;;^UTILITY(U,$J,358.3,21831,1,5,0)
+ ;;=5^Hx Of Lymphoid Leukemia
+ ;;^UTILITY(U,$J,358.3,21831,2)
+ ;;=Hx of Lymphoid Leukemia^295232
+ ;;^UTILITY(U,$J,358.3,21832,0)
+ ;;=V12.03^^133^1320^38
+ ;;^UTILITY(U,$J,358.3,21832,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,21832,1,4,0)
+ ;;=4^V12.03
+ ;;^UTILITY(U,$J,358.3,21832,1,5,0)
+ ;;=5^Hx Of Malaria
+ ;;^UTILITY(U,$J,358.3,21832,2)
+ ;;=Hx of Malaria^303395
+ ;;^UTILITY(U,$J,358.3,21833,0)
+ ;;=V10.82^^133^1320^39
+ ;;^UTILITY(U,$J,358.3,21833,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,21833,1,4,0)
+ ;;=4^V10.82
+ ;;^UTILITY(U,$J,358.3,21833,1,5,0)
+ ;;=5^Hx Of Malignant Melanoma
+ ;;^UTILITY(U,$J,358.3,21833,2)
+ ;;=Hx of Malignant Melanoma^295240
+ ;;^UTILITY(U,$J,358.3,21834,0)
+ ;;=V10.62^^133^1320^42
+ ;;^UTILITY(U,$J,358.3,21834,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,21834,1,4,0)
+ ;;=4^V10.62
+ ;;^UTILITY(U,$J,358.3,21834,1,5,0)
+ ;;=5^Hx Of Myeloid Leukemia
+ ;;^UTILITY(U,$J,358.3,21834,2)
+ ;;=Hx of Myeloid Leukemia^295233
+ ;;^UTILITY(U,$J,358.3,21835,0)
+ ;;=V10.63^^133^1320^40
+ ;;^UTILITY(U,$J,358.3,21835,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,21835,1,4,0)
+ ;;=4^V10.63
+ ;;^UTILITY(U,$J,358.3,21835,1,5,0)
+ ;;=5^Hx Of Monocytic Leukemia
+ ;;^UTILITY(U,$J,358.3,21835,2)
+ ;;=Hx of Monocytic Leukemia^295234
+ ;;^UTILITY(U,$J,358.3,21836,0)
+ ;;=V11.2^^133^1320^30
+ ;;^UTILITY(U,$J,358.3,21836,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,21836,1,4,0)
+ ;;=4^V11.2
+ ;;^UTILITY(U,$J,358.3,21836,1,5,0)
+ ;;=5^Hx Of Dysthymia
+ ;;^UTILITY(U,$J,358.3,21836,2)
+ ;;=Hx of Dysthymia^295251
+ ;;^UTILITY(U,$J,358.3,21837,0)
+ ;;=V15.81^^133^1320^60
+ ;;^UTILITY(U,$J,358.3,21837,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,21837,1,4,0)
+ ;;=4^V15.81
+ ;;^UTILITY(U,$J,358.3,21837,1,5,0)
+ ;;=5^Noncompliance With Medical Treatment

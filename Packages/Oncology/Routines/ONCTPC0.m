@@ -1,5 +1,5 @@
 ONCTPC0 ;HIRMFO/GWB - PCE Study of Thyroid Cancer ;8/23/96
- ;;2.11;ONCOLOGY;**6,7,15**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Check PCE eligibility
  ;Check if ACCESSION YEAR = 1996
  I $P(^ONCO(165.5,ONCONUM,0),U,7)'=1996 S MSG="The Accession Year is not 1996." D ERRMSG G EXIT

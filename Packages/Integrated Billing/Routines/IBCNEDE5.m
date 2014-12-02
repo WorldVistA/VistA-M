@@ -1,5 +1,5 @@
 IBCNEDE5 ;DAOU/DAC - eIV DATA EXTRACTS ;15-OCT-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,271,416,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q    ; no direct calls allowed
@@ -29,7 +29,7 @@ SIDCHK(PIEN,DFN,BSID,SIDARRAY,FRESHDT) ; Checks the flag setting of
  ; NO         NO      4     1 Ver. TQ entry w/ blank Sub ID
  ;
  N SIDACT,SID,APPIEN,SIDSTR,SIDREQ
- N INSSTR,INSSTR1,SYMBOL,EXP,SUBID,SUBIDS,SIDCNT,INREC,MVER,VFLG,MCRTQ
+ N INSSTR,INSSTR1,INSSTR7,SYMBOL,EXP,SUBID,SUBIDS,SIDCNT,INREC,MVER,VFLG,MCRTQ
  ;
  S FRESHDT=$G(FRESHDT),VFLG=0
  ;
@@ -50,6 +50,7 @@ SIDCHK(PIEN,DFN,BSID,SIDARRAY,FRESHDT) ; Checks the flag setting of
  I $G(^DPT(DFN,.312,INREC,0)) F  D  Q:'INREC
  . S INSSTR=$G(^DPT(DFN,.312,INREC,0))
  . S INSSTR1=$G(^DPT(DFN,.312,INREC,1))
+ . S INSSTR7=$G(^DPT(DFN,.312,INREC,7))    ; IB*2.0*497 (vd)
  . S SYMBOL=$$INSERROR^IBCNEUT3("I",+INSSTR)
  . I $P(SYMBOL,U)="" D            ; no eIV related error w/ ins. company
  .. N MCRPYR
@@ -59,7 +60,7 @@ SIDCHK(PIEN,DFN,BSID,SIDARRAY,FRESHDT) ; Checks the flag setting of
  .. I PIEN=+$P($G(^IBE(350.9,1,51)),U,25) S MCRPYR=1     ; this is the Medicare payer
  .. I MCRPYR,MCRTQ Q      ; the Medicare payer is already in the array
  .. ;
- .. S SUBID=$P(INSSTR,U,2)
+ .. S SUBID=$P(INSSTR7,U,2)                ; IB*2.0*497 (vd)
  .. I SUBID="" Q                           ; missing Subscriber ID
  .. I $P(INSSTR,U,8)>DT Q                  ; future effective date
  .. S EXP=$P(INSSTR,U,4) I EXP,EXP<DT Q    ; expired
@@ -138,7 +139,7 @@ SIDCHK2(DFN,PIEN,SIDARRAY,FRESHDT) ;Checks the flag setting of
  ; NO        YES     5     1 Iden. TQ entry w/ blank Sub ID, & 1 Iden. TQ entry for each unique old Sub ID
  ; NO        NO      6     1 Iden. TQ entry w/ blank Sub ID
  ;
- N SIDACT,SID,APPIEN,SIDSTR,SIDREQ,INSSTR,INSSTR1,INREC
+ N SIDACT,SID,APPIEN,SIDSTR,SIDREQ,INSSTR,INSSTR1,INSSTR7,INREC
  N SYMBOL,SUBID,SUBIDS,SIDCNT,MVER,VFLG
  ;
  S FRESHDT=$G(FRESHDT),VFLG=0
@@ -150,10 +151,11 @@ SIDCHK2(DFN,PIEN,SIDARRAY,FRESHDT) ;Checks the flag setting of
  I $G(^DPT(DFN,.312,INREC,0)) F  D  Q:'INREC!VFLG
  . S INSSTR=$G(^DPT(DFN,.312,INREC,0))
  . S INSSTR1=$G(^DPT(DFN,.312,INREC,1))
+ . S INSSTR7=$G(^DPT(DFN,.312,INREC,7))    ; IB*2.0*497 (vd)
  . S SYMBOL=$$INSERROR^IBCNEUT3("I",+INSSTR)
  . I $P(SYMBOL,U)="" D            ; no eIV related error w/ ins. company
  .. I PIEN'=$P(SYMBOL,U,2) Q      ; wrong payer ien
- .. S SUBID=$P(INSSTR,U,2)
+ .. S SUBID=$P(INSSTR7,U,2)       ; IB*2.0*497 (vd)
  .. I SUBID="" Q                           ; missing Subscriber ID
  .. S MVER=$P(INSSTR1,U,3)                 ; last verified date
  .. I MVER'="",FRESHDT'="",MVER>FRESHDT S VFLG=1 Q    ; verified recently

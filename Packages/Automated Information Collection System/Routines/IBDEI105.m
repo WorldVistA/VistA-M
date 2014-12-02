@@ -1,0 +1,132 @@
+IBDEI105 ; ; 12-AUG-2014
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,17954,1,2,0)
+ ;;=2^295.34
+ ;;^UTILITY(U,$J,358.3,17954,1,5,0)
+ ;;=5^Paranoid, Schizophrenia Chr w/Exacerbation
+ ;;^UTILITY(U,$J,358.3,17954,2)
+ ;;=^268063
+ ;;^UTILITY(U,$J,358.3,17955,0)
+ ;;=295.62^^116^1115^23
+ ;;^UTILITY(U,$J,358.3,17955,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,17955,1,2,0)
+ ;;=2^295.62
+ ;;^UTILITY(U,$J,358.3,17955,1,5,0)
+ ;;=5^Undifferentiated Schizophrenia, Chr
+ ;;^UTILITY(U,$J,358.3,17955,2)
+ ;;=^268078
+ ;;^UTILITY(U,$J,358.3,17956,0)
+ ;;=295.72^^116^1115^11
+ ;;^UTILITY(U,$J,358.3,17956,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,17956,1,2,0)
+ ;;=2^295.72
+ ;;^UTILITY(U,$J,358.3,17956,1,5,0)
+ ;;=5^Schizoaffective Disorder, Chr
+ ;;^UTILITY(U,$J,358.3,17956,2)
+ ;;=^268083
+ ;;^UTILITY(U,$J,358.3,17957,0)
+ ;;=295.74^^116^1115^12
+ ;;^UTILITY(U,$J,358.3,17957,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,17957,1,2,0)
+ ;;=2^295.74
+ ;;^UTILITY(U,$J,358.3,17957,1,5,0)
+ ;;=5^Schizoaffective Disorder, w/Exacerb.
+ ;;^UTILITY(U,$J,358.3,17957,2)
+ ;;=^268085
+ ;;^UTILITY(U,$J,358.3,17958,0)
+ ;;=295.42^^116^1115^17
+ ;;^UTILITY(U,$J,358.3,17958,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,17958,1,2,0)
+ ;;=2^295.42
+ ;;^UTILITY(U,$J,358.3,17958,1,5,0)
+ ;;=5^Schizophreniform Disorder, Chr
+ ;;^UTILITY(U,$J,358.3,17958,2)
+ ;;=^268068
+ ;;^UTILITY(U,$J,358.3,17959,0)
+ ;;=295.44^^116^1115^18
+ ;;^UTILITY(U,$J,358.3,17959,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,17959,1,2,0)
+ ;;=2^295.44
+ ;;^UTILITY(U,$J,358.3,17959,1,5,0)
+ ;;=5^Schizophreniform Disorderw/Exacerb.
+ ;;^UTILITY(U,$J,358.3,17959,2)
+ ;;=^268070
+ ;;^UTILITY(U,$J,358.3,17960,0)
+ ;;=295.02^^116^1115^21
+ ;;^UTILITY(U,$J,358.3,17960,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,17960,1,2,0)
+ ;;=2^295.02
+ ;;^UTILITY(U,$J,358.3,17960,1,5,0)
+ ;;=5^Simple Schizophrenia, Chronic
+ ;;^UTILITY(U,$J,358.3,17960,2)
+ ;;=Simple Schizophrenia, Chronic^268046
+ ;;^UTILITY(U,$J,358.3,17961,0)
+ ;;=295.04^^116^1115^20
+ ;;^UTILITY(U,$J,358.3,17961,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,17961,1,2,0)
+ ;;=2^295.04
+ ;;^UTILITY(U,$J,358.3,17961,1,5,0)
+ ;;=5^Simple Schizophrenia,  Chr w/Exacerbation
+ ;;^UTILITY(U,$J,358.3,17961,2)
+ ;;=^268048
+ ;;^UTILITY(U,$J,358.3,17962,0)
+ ;;=295.92^^116^1115^14
+ ;;^UTILITY(U,$J,358.3,17962,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,17962,1,2,0)
+ ;;=2^295.92
+ ;;^UTILITY(U,$J,358.3,17962,1,5,0)
+ ;;=5^Schizophrenia, NOS, Chronic
+ ;;^UTILITY(U,$J,358.3,17962,2)
+ ;;=Schizophrenia, NOS, Chronic^268093
+ ;;^UTILITY(U,$J,358.3,17963,0)
+ ;;=295.94^^116^1115^15
+ ;;^UTILITY(U,$J,358.3,17963,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,17963,1,2,0)
+ ;;=2^295.94
+ ;;^UTILITY(U,$J,358.3,17963,1,5,0)
+ ;;=5^Schizophrenia, NOS, Chronic w/Exacerbation
+ ;;^UTILITY(U,$J,358.3,17963,2)
+ ;;=^268095
+ ;;^UTILITY(U,$J,358.3,17964,0)
+ ;;=295.00^^116^1115^19
+ ;;^UTILITY(U,$J,358.3,17964,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,17964,1,2,0)
+ ;;=2^295.00
+ ;;^UTILITY(U,$J,358.3,17964,1,5,0)
+ ;;=5^Simple Schizophrenia NOS
+ ;;^UTILITY(U,$J,358.3,17964,2)
+ ;;=^265175
+ ;;^UTILITY(U,$J,358.3,17965,0)
+ ;;=295.10^^116^1115^1
+ ;;^UTILITY(U,$J,358.3,17965,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,17965,1,2,0)
+ ;;=2^295.10
+ ;;^UTILITY(U,$J,358.3,17965,1,5,0)
+ ;;=5^Disorganized Schizophrenia NOS
+ ;;^UTILITY(U,$J,358.3,17965,2)
+ ;;=^108319
+ ;;^UTILITY(U,$J,358.3,17966,0)
+ ;;=295.30^^116^1115^7
+ ;;^UTILITY(U,$J,358.3,17966,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,17966,1,2,0)
+ ;;=2^295.30
+ ;;^UTILITY(U,$J,358.3,17966,1,5,0)
+ ;;=5^Paranoid Schizophrenia NOS
+ ;;^UTILITY(U,$J,358.3,17966,2)
+ ;;=^108330
+ ;;^UTILITY(U,$J,358.3,17967,0)
+ ;;=295.40^^116^1115^16

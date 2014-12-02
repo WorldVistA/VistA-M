@@ -1,5 +1,5 @@
 PSSHRQ2O ;WOIFO/AV,TS,SG - Handles parsing a PEPS Drug Check Response ;09/20/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136**;9/30/97;Build 89
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,160**;9/30/97;Build 76
  ;
  ; @authors - Chris Flegel, Alex Vazquez, Tim Sabat
  ; @date    - September 19, 2007
@@ -22,8 +22,8 @@ OUT(DOCHAND,BASE) ;
  . DO ERREAD(DOCHAND,.HASH)
  . ; Write hashed variable to output global
  . IF HASH("code")="FDBUPDATE" S MESSAGE="Vendor database updates are being processed."            ; HASH("message")
- . ELSE  IF $D(^TMP($J,BASE,"IN","DOSE"))>0 SET MESSAGE="Unexpected error has occurred."
- . ELSE  SET MESSAGE="Unexpected error has occurred."
+ . ELSE  IF $D(^TMP($J,BASE,"IN","DOSE"))>0 SET MESSAGE="An unexpected error has occurred."
+ . ELSE  SET MESSAGE="An unexpected error has occurred."
  . SET ^TMP($JOB,BASE,"OUT",0)="-1^"_MESSAGE
  . ;
  . ; Cleanup the out.exception global
@@ -165,3 +165,27 @@ ERREAD(DOCHAND,HASH) ;
  . SET:PSS("childName")="message" HASH("message")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
  QUIT
  ;
+ ;
+CLEXP ;Delete Profile drug exceptions for CPRS if all Prospective drugs have exceptions
+ N PSSPEX1,PSSPEX2,PSSPEXDL
+ I '$D(^TMP($J,PSSRBASE,"IN","DRUGDRUG")),'$D(^TMP($J,PSSRBASE,"IN","THERAPY")) Q
+ I '$D(^TMP($J,PSSRBASE,"OUT","EXCEPTIONS")) Q
+ S PSSPEXDL=0
+ S PSSPEX1="" F  S PSSPEX1=$O(^TMP($J,PSSRBASE,"IN","PROSPECTIVE",PSSPEX1)) Q:PSSPEX1=""!(PSSPEXDL)  D
+ .I '$D(^TMP($J,PSSRBASE,"OUT","EXCEPTIONS",PSSPEX1)) S PSSPEXDL=1
+ I PSSPEXDL D CLPAR Q
+ S PSSPEX2="" F  S PSSPEX2=$O(^TMP($J,PSSRBASE,"OUT","EXCEPTIONS",PSSPEX2)) Q:PSSPEX2=""  D
+ .I $P(PSSPEX2,";",3)="PROFILE" K ^TMP($J,PSSRBASE,"OUT","EXCEPTIONS",PSSPEX2)
+ Q
+ ;
+ ;
+CLPAR ;Some Exceptions exist, but not all prospective drugs have an exception
+ N PSSPEX3,PSSPEX4,PSSPEX5,PSSPEX6,PSSPEX7,PSSPEX8,PSSPEXAR
+ S PSSPEX3="" F  S PSSPEX3=$O(^TMP($J,PSSRBASE,"OUT","EXCEPTIONS",PSSPEX3)) Q:PSSPEX3=""  D:$P(PSSPEX3,";",3)="PROSPECTIVE"
+ .S PSSPEX4="" F  S PSSPEX4=$O(^TMP($J,PSSRBASE,"OUT","EXCEPTIONS",PSSPEX3,PSSPEX4)) Q:PSSPEX4=""  D
+ ..S PSSPEX5=$P($G(^TMP($J,PSSRBASE,"OUT","EXCEPTIONS",PSSPEX3,PSSPEX4)),"^",3) I PSSPEX5 S PSSPEXAR(PSSPEX5)=""
+ S PSSPEX6="" F  S PSSPEX6=$O(^TMP($J,PSSRBASE,"OUT","EXCEPTIONS",PSSPEX6)) Q:PSSPEX6=""  D:$P(PSSPEX6,";",3)="PROFILE"
+ .S PSSPEX7="" F  S PSSPEX7=$O(^TMP($J,PSSRBASE,"OUT","EXCEPTIONS",PSSPEX6,PSSPEX7)) Q:PSSPEX7=""  D
+ ..S PSSPEX8=$P($G(^TMP($J,PSSRBASE,"OUT","EXCEPTIONS",PSSPEX6,PSSPEX7)),"^",3) I PSSPEX8,$D(PSSPEXAR(PSSPEX8)) D
+ ...K ^TMP($J,PSSRBASE,"OUT","EXCEPTIONS",PSSPEX6)
+ Q

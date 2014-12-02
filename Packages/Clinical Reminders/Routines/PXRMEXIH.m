@@ -1,5 +1,5 @@
-PXRMEXIH ; SLC/PKR - Routines for installation history. ;06/08/2009
- ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
+PXRMEXIH ; SLC/PKR - Routines for installation history. ;01/25/2013
+ ;;2.0;CLINICAL REMINDERS;**6,12,26**;Feb 04, 2005;Build 404
  ;======================================================
 BLDLIST ;Build a list of install histories in ^TMP("PXRMEXIH",$J).
  N DATE,FMTSTR,IHIEN,IND,INDONE,JND,NAME,NL,NLINE,NSEL,OUTPUT
@@ -117,7 +117,7 @@ DDISP(ARRAY) ;Display details list
  . S ^TMP("PXRMEXID",$J,NLINE,0)="     Component                          Action  New Name"
  . S CMPNT=""
  . S JND=0
- . F  S JND=$O(^PXD(811.8,RIEN,130,IHIEN,1,JND)) Q:JND=""  D
+ . F  S JND=+$O(^PXD(811.8,RIEN,130,IHIEN,1,JND)) Q:JND=0  D
  .. S TEMP=^PXD(811.8,RIEN,130,IHIEN,1,JND,0)
  .. I $P(TEMP,U,2)'=CMPNT D
  ... S NLINE=NLINE+1

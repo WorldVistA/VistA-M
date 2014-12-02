@@ -1,5 +1,5 @@
 IBCNSM3 ;ALB/AAS - INSURANCE MANAGEMENT - OUTPUTS ; 4/7/03 9:56am
- ;;2.0;INTEGRATED BILLING;**6,28,85,211,251,399**;21-MAR-94;Build 8
+ ;;2.0;INTEGRATED BILLING;**6,28,85,211,251,399,506**;21-MAR-94;Build 74
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % G EN^IBCNSM
@@ -26,7 +26,9 @@ AD ; -- Add new insurance policy
  ; -- see if can use existing policy
  D SEL^IBCNSEH
  S IBCPOL=$$LK^IBCNSM31(IBCNSP)
- I IBCPOL<1 D NEW^IBCNSJ3(IBCNSP,.IBCPOL)
+ ;
+ ; IB*2.0*506 added IBKEY parameter (4th) to the NEW^IBCNSJ3 call (check user's security keys)
+ I IBCPOL<1 D NEW^IBCNSJ3(IBCNSP,.IBCPOL,,1)
  I IBCPOL<1 G ADQ
  ;
  ; -- file new patient policy

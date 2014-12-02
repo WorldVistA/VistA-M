@@ -1,10 +1,19 @@
-ORWTPL ; SLC/STAFF Personal Preference - Lists ; 3/11/08 6:36am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,109,173,243**;Oct 24, 2000;Build 242
+ORWTPL ; SLC/STAFF - Personal Preference Lists ; 4/2/12 3:35pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,109,173,243,273**;Oct 24, 2000;Build 17
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;DBIA reference section
+ ;4329  - ^VA(200
+ ;10013 - DIK
+ ;2263  - XPAR
  ;
 NEWLIST(VAL,LISTNAME,USER,ORVIZ) ; from ORWTPP
  ; set user's new personal list
+ N CAPNAME
  S LISTNAME=$G(LISTNAME)
  I '$L(LISTNAME) S VAL="^invalid list name" Q
+ S CAPNAME=$$UPPER^ORU(LISTNAME)
+ I $D(^OR(100.21,"D",CAPNAME)) S VAL="^invalid list name - duplicate of another name" Q
  I $O(^OR(100.21,"B",LISTNAME,0)) S VAL="^invalid list name - duplicate of another name" Q
  ;*** check input transform, duplicate name for same user
  N DA,DIK,NUM

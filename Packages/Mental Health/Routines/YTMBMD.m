@@ -1,16 +1,27 @@
-YTMBMD ;ALB/ASF-MBMD ; 2/6/04 9:09am
- ;;5.01;MENTAL HEALTH;**76,83**;Dec 30, 1994
+YTMBMD ;ALB/ASF,HIOFO/FT - MBMD ; 7/15/13 1:43pm
+ ;;5.01;MENTAL HEALTH;**76,83,105**;Dec 30, 1994;Build 76
+ ;No external references
 MAIN ;
  N A,B,G,I,L1,L2,N,X,YSANS,YSDAS,YSDAS1,YSIN,YSSID,YSTOUT,YSUOUT,YSVFLAG
  D PTVAR^YSLRP
  D RD
  D VALIDITY ;Q:YSVFLAG
  D RAW
- D PS1
- D RPA
- D HPA
- D HPA1
+ D PS1 ; general untransformed
+ D RPA ; general response adjustment
+ D HPA ; general high point coping
+ D HPA1 ; general high point AA-EE a-m
  D:YSTY["*" REPT
+ S R=R_U_$P(R,U,11,999)_U_$P(R,U,11,999)
+ D PSB^YTMBMD1 ; bariatric untransformed
+ D RPAB^YTMBMD1 ; bariatric response adjustment
+ D HPAB^YTMBMD1 ; bariatric high point coping
+ D HPA1B^YTMBMD1 ; bariatric high point AA-EE a-m
+ D:YSTY["*" REPTB^YTMBMD1
+ D PERCENT^YTMBMD2
+ D:YSTY["*" PAINREP^YTMBMD2
+ Q:$G(YSTOUT)!$G(YSUOUT)  S (YSTOUT,YSUOUT)=""
+ D:YSTY["*" NOTEWOR
  Q
 RD S X=^YTD(601.2,YSDFN,1,YSTEST,1,YSED,1)
  Q
@@ -22,17 +33,17 @@ VALIDITY ;check if ok to score
  Q
 RAW ; raw scores
  S R="0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0"
- S N=0 F  S N=$O(^YTT(601,YSTEST,"S",N)) Q:N'>0  D
+ F N=1:1:39 D
  . S G=^YTT(601,YSTEST,"S",N,"K",1,0),I=1
  . F  S YSIN=$P(G,U,I),YSANS=$E($P(G,U,I+1),1),YSWT=$P($P(G,U,I+1),";",2),I=I+2 Q:YSIN=""  S:$E(X,YSIN)=YSANS $P(R,U,N)=$P(R,U,N)+YSWT
  Q
-PS1 ; untransformed prevelence scores
- S S="0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0"
+PS1 ; untransformed prevalence scores
+ S S="0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0"
  F I=11:1:39 S $P(S,U,I)=$P(^YTT(601,YSTEST,"S",I,YSSEX),U,$P(R,U,I)+1)
  S X=$P(R,U,2) S $P(S,U,2)=$S(X<9:"L",X=9:"M",X=10:"H",1:0) ;scale X ASF 1/30/04
  S X=$P(R,U,3) S $P(S,U,3)=$S(X<10:"L",X<13:"M",X>12:"H",1:0) ;scale Y ASF 1/30/04
  S X=$P(R,U,4) S $P(S,U,4)=$S(X<5:"L",X=5:"M",X>5:"H",1:0) ;scale Z ASF 1/30/04
- F I=5:1:10 S X=$P(R,U,I) S $P(S,U,I)=$S(X=0:"L",X=1:"M",X>1:"H",1:0) ;indicators ASF 1/30/04
+ F I=5:1:10 S X=$P(R,U,I) S $P(S,U,I)=$S(X=0:"L",X<3:"M",X>2:"H",1:0) ;indicators ASF 1/30/04
  Q
 RPA ;Response Pattern Adjustment
  S YSDAS=0
@@ -62,6 +73,7 @@ REPT ;reports
  D DTA^YTREPT
  W !,?(72-$L(X)\2),X,!
  W !?50,$S(YSVFLAG:"*** Invalid Profile ***",1:"Valid Profile")
+ W !,"*** General Medical Norms ***"
  F I=2:1:10 D  D:IOST?1"C-".E&($Y>21) SCR^YTREPT Q:YSTOUT!YSUOUT
  . W:I=2 !,"Response Patterns" ;ASF 1/30/04 ABOVE LINE ALSO
  . W:I=5 !,"Negative Health Habits"
@@ -78,7 +90,7 @@ REPT ;reports
  . W ?5,$J($P(R,U,I),2),"  ",$S($P(S,U,I)'<0:$J($P(S,U,I),3),1:"  0")," "
  . D CHART
  . W ?52,$P(YSSID," ",2,99)
- D NOTEWOR
+ ;D NOTEWOR
  Q
 LIKELY ;
  N X
@@ -88,12 +100,13 @@ LIKELY ;
 CHART ;
  N X
  S X=$P(S,U,I)
- W $E("***************************************************************",1,$J(X/3,0,0))
+ ;W $E("***************************************************************",1,$J(X/3,0,0))
+ W $E("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",1,$J(X/3,0,0))
  Q
 NOTEWOR ;note worthy responses
  D RD
  W !!?10,"*** Noteworthy Responses ***"
- F I=1,14,28,66,6,117,131,157,3,20,41,62,5,10,103,116,143,49 D  D:IOST?1"C-".E&($Y>21) SCR^YTREPT Q:YSTOUT!YSUOUT
+ F I=1,14,28,66,6,117,131,157,3,20,41,62,5,10,103,116,49 D  D:IOST?1"C-".E&($Y>21) SCR^YTREPT Q:YSTOUT!YSUOUT
  .W:I=1 !!?4,"Panic Susceptibility"
  .W:I=6 !!?4,"Disorientation"
  .W:I=3 !!?4,"Medical Anxiety"

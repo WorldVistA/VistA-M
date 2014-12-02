@@ -1,20 +1,21 @@
-LEXRXG ;ISL/KER - Re-Index 757.33 B/C/G ;08/17/2011
- ;;2.0;LEXICON UTILITY;**81**;Sep 23, 1996;Build 1
+LEXRXG ;ISL/KER - Re-Index 757.33 B/C/G ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**81,80**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^LEX(               SACC 1.3
- ;    ^LEX(757.33,        SACC 1.3
- ;    ^LEX(757.32,        SACC 1.3
+ ;    ^LEX(757.32)        SACC 1.3
+ ;    ^LEX(757.33)        SACC 1.3
+ ;    ^TMP("LEXRX")       SACC 2.3.2.5.1
  ;               
  ; External References
- ;    FILE^DID            ICR  2052
- ;    IX1^DIK             ICR  10013
- ;    IX2^DIK             ICR  10013
  ;    $$DT^XLFDT          ICR  10103
  ;    $$FMADD^XLFDT       ICR  10103
  ;    $$FMDIFF^XLFDT      ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
  ;    $$NOW^XLFDT         ICR  10103
+ ;    FILE^DID            ICR   2052
+ ;    IX1^DIK             ICR  10013
+ ;    IX2^DIK             ICR  10013
  ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;     LEXFIX     Fix Index flag  NEWed/KILLed by LEXRXXT

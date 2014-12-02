@@ -1,5 +1,5 @@
 DVBAB3 ;ALB/KLB - CAPRI Amis Report ;05/01/00
- ;;2.7;AMIE;**35,42,149**;Apr 10, 1995;Build 16
+ ;;2.7;AMIE;**35,42,149,184**;Apr 10, 1995;Build 10
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;Input:  MSG    - Array with report contents/error message 
@@ -20,9 +20,8 @@ DVBAB3 ;ALB/KLB - CAPRI Amis Report ;05/01/00
  ;                    AO  - Agent Orange (A0)
  ;                    BDD - Benefits Delivery at Discharge (BDD)
  ;                          Quick Start (QS)
- ;                    DES - DES Claimed Condition by Service Memeber (DCS)
- ;                          DES Fit For Duty (DFD)
- ;                    ALL - All others (Excludes AO,BDD,DCS,DFD,QS)
+ ;                    IDES - Integrated Disability Evaluation System (IDES)
+ ;                    ALL - All others (Excludes AO,BDD,IDES,QS)
 STRT(MSG,BDATE,EDATE,RONUMB,SBULL,DUZ,DVBAPRTY) ;
  S BDATE=BDATE+".0000"
  S EDATE=EDATE+".2359"
@@ -36,7 +35,7 @@ SETUP S UPDATE="N",PREVMO=$P(^DVB(396.1,1,0),U,11)
  S DVBCDT(0)=$$FMTE^XLFDT(DT,"5DZ")
 INITCNTR ;initialize counter arrays
  N DVBAEXMP,DVBAP
- S DVBAEXMP=$S($G(DVBAPRTY)["BDD":"BDD,QS",($G(DVBAPRTY)["DES"):"DCS,DFD",($G(DVBAPRTY)["AO"):"AO",1:"ALL")
+ S DVBAEXMP=$S($G(DVBAPRTY)["BDD":"BDD,QS",($G(DVBAPRTY)["IDES"):"IDES",($G(DVBAPRTY)["AO"):"AO",1:"ALL")
  F JI="3DAYSCH","30DAYEX","PENDADJ" D
  .F DVBAP=1:1:$L(DVBAEXMP,",") S TOT($P(DVBAEXMP,",",DVBAP),JI)=0
  F JI="INSUFF","SENT","INCOMPLETE","DAYS","COMPLETED" D
@@ -66,7 +65,7 @@ EN ;
  D:(RONUMB']"")
  .S (RONUM,RONAME)="ALL"
  ;validate Priority of Exam (Null Allowed and will default to ALL)
- I ((";AO;BDD;DES;ALL;;")'[(";"_$G(DVBAPRTY)_";")) D  G EXIT
+ I ((";AO;BDD;IDES;ALL;;")'[(";"_$G(DVBAPRTY)_";")) D  G EXIT
  .S MSG(1)="Invalid Priority of Exam Code"
  S:'$D(SBULL) MSG(1)="You need to say if you want a Bulletin or not"
  G:'$D(SBULL) EXIT

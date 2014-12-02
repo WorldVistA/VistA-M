@@ -1,6 +1,6 @@
 IBAMTED2 ;ALB/GN - RX COPAY TEST EVENT DRIVER - Z06 EXEMPTION PROCESSING ; 6/5/04 2:32pm
- ;;2.0;INTEGRATED BILLING;**269**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**269,385**;21-MAR-94;Build 35
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;IB*2*269 add this new API to handle updating IVM converted RX Copay
  ;         Tests via Z06 transmissions.
@@ -53,8 +53,9 @@ DEL ; Converted Copay test deleted.  Now inactivate that exemption for
  S IBSTAT=$P($G(^IBE(354.2,+IBEXREA,0)),"^",4)
  ;
  ;if last date is older than 1 year, then cancel prior exemption
+ ; --- only if test is also not VFA ok
  ;cancel prior exemption with a no exemption
- I $$PLUS^IBARXEU0($P(IBEXREA,"^",2))<DT D  Q
+ I $$PLUS^IBARXEU0($P(IBEXREA,"^",2))<DT,'$$VFAOK^IBARXEU($$LST^IBARXEU0(DFN,$P(IBEXREA,"^",2))) D  Q
  . D ADDEX^IBAUTL6(+$O(^IBE(354.2,"ACODE",210,0)),+DGMTP)
  ;
  ;else, add correct exemption and update current status

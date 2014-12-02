@@ -1,5 +1,9 @@
-SRCUSS ;TAMPA/CFB - SCREEN SERVER ;  [ 03/11/02  13:33 PM ]
- ;;3.0; Surgery ;**66,108**;24 Jun 93
+SRCUSS ;TAMPA/CFB - SCREEN SERVER ;27 Sep 2013  1:22 PM
+ ;;3.0;Surgery;**66,108,177**;24 Jun 93;Build 89
+ ;
+ ; Reference to $$CSI^ICDEX supported by DBIA #5747
+ ; Reference to $$CODEN^ICDEX supported by DBIA #5747
+ ;
  K ^TMP("SRCUSS",$J)
  S SRCUSS("OUT")=1
  I '$D(IOF) S IOP="" D ^%ZIS K IOP
@@ -36,8 +40,27 @@ EN1 ;N
  S Q7="Q1",Q6=Y G 1
 F G OUT
 N G OUT
-OUT Q:$D(Q("BP"))  D:$D(Q("O")) XO:Q("O")["O" G:Q("ED")&('$D(Q(10))) OUTED^SRCUSS3 W Q("HI"),!,Q(1,Q)-1,?5,Q("LO"),$P(Q(3),U,1),": ",?30 I $D(Q(11)) K:'$D(Q(10)) Q(11)
- W Q("HI"),?30,Q(7),Q("LO") Q
+OUT ;
+ ; JAS - 3/18/14 - PATCH 177 - Added next line for display issues.
+ N SRDXHLD I $P(Q(3),U,2)["P80" S SRDXHLD=Q(7)
+ Q:$D(Q("BP"))  D:$D(Q("O")) XO:Q("O")["O" G:Q("ED")&('$D(Q(10))) OUTED^SRCUSS3
+ ; RBD/JAS - 3/11/14 - PATCH 177 - Code set labeling issue fixed
+ ;N SRICDV2 I $P(Q(3),U,2)["P80",$G(Q(7))'="" D
+ N SRICDV2 I $P(Q(3),U,2)["P80" D
+ . S SRICDV2=$$ICDSTR^SROICD(Q(8))
+ . I SRICDV2'=$G(SRICDV) S SRICDV=SRICDV2
+ ; End 177
+ W Q("HI"),!,Q(1,Q)-1,?5,Q("LO"),$P(Q(3),U,1),$S($P(Q(3),U,2)["P80":" "_$G(SRICDV),1:""),": ",?30 I $D(Q(11)) K:'$D(Q(10)) Q(11)
+ ; -- line below writes the value in the field
+ ; JAS - 3/11/14 - PATCH 177 - Add logic to display codeset versioning issues
+ I $P(Q(3),U,2)'["P80" W Q("HI"),?30,Q(7),Q("LO") Q
+ I Q(7)["Invalid"  W Q("HI"),?30,SRDXHLD," - ",Q(7) K SRDXHLD Q
+ W Q("HI"),?30,Q(7)
+ N SRDXOUT S SRDXOUT=$$OUT^SROICD(Q(7))
+ I SRDXOUT["Invalid" W " - "_SRDXOUT
+ K SRDXOUT,SRDXHLD
+ W Q("LO") Q
+ ; End 177
 P S Q8=Q(3) K:Q(7)="" Q(11) G:Q(7)="" OUT I $D(Q(11)),$D(@(U_$P(Q(3),U,3)_Q(7)_",0)")) S @("Q(7)=$P"_$P(Q(11),"$P",2)) G OUT
 P1 S Q7=U_$P(Q8,U,3),@("Q1=$D("_Q7_"Q("_7_")))"),Q(7)=$S(Q1:$P(^(Q(7),0),U,1),1:Q(7)),@("Q8=^DD("_+$P(@(Q7_"0)"),U,2)_",.01,0)") G P1:$P(Q8,U,2)["P"&(Q1),OUT
 S G:Q(7)="" OUT S Q7=$P(Q(3),U,3) F Q8=1:1 Q:Q(7)=$P($P(Q7,";",Q8),":",1)  Q:Q8=50

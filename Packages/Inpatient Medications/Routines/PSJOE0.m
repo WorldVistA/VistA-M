@@ -1,5 +1,5 @@
 PSJOE0 ;BIR/CML3-INPATIENT PROFILE AND ORDER ENTRY ; 4/15/10 2:45pm
- ;;5.0;INPATIENT MEDICATIONS;**47,56,110,133,162,241,267**;16 DEC 97;Build 158
+ ;;5.0;INPATIENT MEDICATIONS;**47,56,110,133,162,241,267,275,302**;16 DEC 97;Build 2
  ;
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
  ; Reference to ^PS(55 is supported by DBIA 2191.
@@ -23,12 +23,12 @@ LMNEW(PSGP,PSJPROT) ;Entry point for new order entry from listman.
  ; PSGP = DFN
  ; PSJPROT=1:UD ONLY; 2:IV ONLY; 3:BOTH
  ;
- D CKNEW N PSJUDPRF S PSJNEWOE=1
+ N PSJDEC D CKNEW Q:$G(PSJDEC)  N PSJUDPRF S PSJNEWOE=1
  S PSGPTS=PSJPTS,PSGOEAV=$P(PSJSYSP0,U,9)&PSJSYSU,PSGOEDMR=$O(^PS(51.2,"B","ORAL",0)),PSGOEPR=$S($D(^PS(55,PSGP,5.1)):$P(^(5.1),"^",2),1:0),PSJORQF=0,PSJOEPF=""
  I PSGOEPR>0,$D(^VA(200,+PSGOEPR,"PS")) S PSGOEPR=$S('$P(^("PS"),"^",4):PSGOEPR,($P(^("PS"),"^",4)<DT):0,1:PSGOEPR)
  S:'PSGOEPR PSGOEPR=PSJPTSP
- ; line below fixes bug in line above - infinite loop when selecting New Order in Unit Dose OE for Outpatient.
- F PSJOE=0:0 Q:PSJORQF!('(PSJPCAF&(PSJPROT'=2))&(PSJPROT'>1))  D KILL^PSJBCMA5(+$G(PSJSYSP)) D:PSJPCAF&(PSJPROT'=2) EN^PSJOE1 K PSGEFN,PSGOEF I PSJPROT>1 D ENIN^PSIVORE
+ S PSJPCAF=$S($G(PSJPCAF):PSJPCAF,1:"1")
+ F PSJOE=0:0 Q:PSJORQF!('$P(PSJPCAF,"^",2)&(PSJPROT'>1))!('(PSJPCAF&(PSJPROT'=2))&(PSJPROT'>1))  D KILL^PSJBCMA5(+$G(PSJSYSP)) D:PSJPCAF&($P(PSJPCAF,"^",2))&(PSJPROT'=2) EN^PSJOE1 K PSGEFN,PSGOEF I PSJPROT>1 D ENIN^PSIVORE
  Q
  ;
 DONE ;
@@ -38,7 +38,7 @@ DONE ;
  ;
 CKNEW ;
  K CF,CHK,OD,PSGLMT,PSGODDD,PSGOEA,PSGON,PSGONC,PSGONR,PSGONV,PSGORD,PSJCOM,PSJOE1,PSJOE2 Q:$D(PSJPRF)
- I $P(PSJPDD,"^",3) W !!?2,"Patient is shown as deceased.  You may not enter orders for this patient." D CONT Q
+ D DEM^VADPT I $G(VADM(6)) W !!?2,"Patient is shown as deceased.  You may not enter orders for this patient." S PSJDEC=1 D CONT Q
  I 'PSJPCAF W !!,"(NOTE: You cannot enter Unit Dose orders for this patient.)" D CONT
  Q
  ;

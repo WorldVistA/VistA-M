@@ -1,6 +1,6 @@
 IBTRE4 ;ALB/AAS - CLAIMS TRACKING EDIT PROCEDURE ;1-SEP-93
- ;;2.0;INTEGRATED BILLING;**10,210,266**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**10,210,266,461**;21-MAR-94;Build 58
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % G ^IBTRE
  ;
@@ -121,7 +121,7 @@ LIST(IBXY) ;List Diagnosis Array
  . S IBTNOD=$G(^IBT(356.91,+IBXY(I),0))
  . S IBDATE=$P($P(IBTNOD,U,3),".") ; Procedure date
  . S IBXD=$$ICD0^IBACSV(+$P(IBXY(I),U,2),IBDATE)
- . W !?2,I,"  ",$P(IBXD,U),?15,$E($P(IBXD,U,4),1,43),?60,$$DAT1^IBOUTL(IBDATE)
+ . W !?2,I,"  ",$P(IBXD,U),?15,$E($P(IBXD,U,4),1,43),?60,$$DAT1^IBOUTL(IBDATE),?72,"ICD-",$S($P(IBXD,U,14)=2:9,1:10)
  Q
  ;
 ASK(IBCNT,IBPAR,IBSELDF) ;Ask user to select from list

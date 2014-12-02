@@ -1,5 +1,5 @@
-LRVR0 ;DALOI/STAFF - LEDI MI/AP Data Verification ;03/24/11  15:17
- ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+LRVR0 ;DALOI/STAFF - LEDI MI/AP Data Verification ;08/12/13  11:08
+ ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
  ;
  ; LEDI MI/AP Auto-instrument verification
  ; Called from LRVR
@@ -25,23 +25,31 @@ EN ;
  ;
 UID ;UID driven look-up
  N DIR,DIRUT,DTOUT,DUOUT,X,Y
+ ;
  F  D  Q:$G(LREND)
+ . N LRMULTSQ
  . I $G(IOF)'="" W @IOF
  . K C5,DIC,DIR,DIRUT,DTOUT,DUOUT,LRAB,LRDEL,LRDL,LRFP,LRLDT,LRNG,LRNM,LRNOP,LRSET,LRTEST,LRVER,T,X,Y,Z
  . S X=DUZ D DUZ^LRX S LRTEC=LRUSI
  . D WLN^LRVRA I $G(LRNOP) D NEXT^LRVRA Q
- . S LRISQN=$O(^LAH(LRLL,1,"U",LRUID,0))
- . I 'LRISQN D NEXT^LRVRA Q
- . I '($D(^LAH(LRLL,1,LRISQN,0))#2) D ERR1,NEXT^LRVRA Q
- . S LRX=$G(^LAH(LRLL,1,LRISQN,0))
- . W !,?2,"Seq #: ",LRISQN,?13," Accession: ",$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,.2)),"^")
- . I $P(LRX,"^",10) W ?40," Results received: ",$$FMTE^XLFDT($P(LRX,"^",10),"1M")
- . W !,?20,"UID: ",$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,.3),"UNKNOWN"),"^")
- . I $P(LRX,"^",11) W ?44," Last updated: ",$$FMTE^XLFDT($P(LRX,"^",11),"1M")
- . D ACCSET
- . I $G(LRNOP) D UNLOCK Q
- . I "SPCYEM"[LRSS D ^LRVRAP4
- . I LRSS="MI" D PROC,ACCEPT
+ . ;
+ . F  Q:$G(LRNOP)  D
+ . . N LRSEQCNT
+ . . D ISQN
+ . . I $G(LRSEQCNT)>1 S LRMULTSQ=1
+ . . I $G(LRNOP) Q
+ . . D ACCSET
+ . . I $G(LRNOP) Q
+ . . I "SPCYEM"[LRSS D ^LRVRAP4
+ . . I LRSS="MI" D PROC,ACCEPT
+ . . I $G(LRNOP) Q
+ . . I $G(LRSEQCNT)<2 S LRNOP=1 Q
+ . . I $G(IOF)'="" W @IOF
+ . . W !,PNM,?30,SSN,"  Age: ",AGE(2)
+ . . W !,"ORDER #: ",LRCEN,"    ",LRACC,"    ["_LRUID,"]"
+ . . W !
+ . . S (ISQN,LRISQN)=0
+ . ;
  . D UNLOCK,NEXT^LRVRA
  D CLEAN
  Q
@@ -71,6 +79,7 @@ ACC ; Accession number look-up
  I LRAD<1 S LRNOP=1 Q
  S LRAN=0
  F  D  Q:$G(LRDBUG,$G(LREND))
+ . N LRMULTSQ
  . I $G(IOF)'="" W @IOF
  . K DIR,DIC,Y,LRNOP
  . S LRAN=$O(^LAH(LRLL,1,"C",LRAN)) I 'LRAN D ACCMSG Q
@@ -83,12 +92,21 @@ ACC ; Accession number look-up
  . D ^DIR
  . I $D(DIRUT) D STOP^LRVR S LRNOP=1 Q
  . S LRAN=+Y I Y<1 D ACCMSG Q
- . D ISQN I $G(LRNOP) Q
- . D ACCSET
- . S LRTM60=$$LRTM60^LRVR(LRCDT)
- . I $G(LRNOP) D UNLOCK Q
- . I "SPCYEM"[LRSS D ^LRVRAP4
- . I LRSS="MI" D PROC,ACCEPT
+ . ;
+ . F  Q:$G(LRNOP)  D
+ . . N LRSEQCNT
+ . . D ISQN
+ . . I $G(LRSEQCNT)>1 S LRMULTSQ=1
+ . . I $G(LRNOP) Q
+ . . D ACCSET
+ . . S LRTM60=$$LRTM60^LRVR(LRCDT)
+ . . I $G(LRNOP) Q
+ . . I "SPCYEM"[LRSS D ^LRVRAP4
+ . . I LRSS="MI" D PROC,ACCEPT
+ . . I $G(LRNOP) Q
+ . . I $G(LRSEQCNT)<2 S LRNOP=1 Q
+ . . I $G(IOF)'="" W @IOF
+ . . S (ISQN,LRISQN)=0
  . D UNLOCK
  ;
  D CLEAN
@@ -259,7 +277,7 @@ PURG ; Ask if the entry should be purged from ^LAH(
  S DIR("?")="Enter YES to remove these results from the list"
  D ^DIR
  I $D(DIRUT) S LRNOP=1 Q
- I Y=1 D ZAP S LRNOP=1
+ I Y=1 D ZAP
  Q
  ;
  ;
@@ -313,8 +331,8 @@ LEDINO ; LEDI HL7 message sending error message
  ;
  ;
 ISQN ; Find the entry associated with this accession area and accession number
- N LRI,LRN,LRSQ
- S (LRI,LRN)=0
+ N LRI,LRSQ
+ S (LRI,LRSEQCNT)=0
  F  S LRI=$O(^LAH(LRLL,1,"C",LRAN,LRI)) Q:LRI<1  D
  . N LRX
  . S LRX=$G(^LAH(LRLL,1,LRI,0))
@@ -322,22 +340,30 @@ ISQN ; Find the entry associated with this accession area and accession number
  . I $P(LRX,"^",3),$P(LRX,"^",3)'=LRAA Q
  . ; Quit if different accession date and not a rollover accession (same original accession date).
  . I $P(LRX,"^",4),$P(LRX,"^",4)'=LRAD,$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,0)),"^",3)'=$P($G(^LRO(68,LRAA,1,$P(LRX,"^",4),1,LRAN,0)),"^",3) Q
- . I LRN W !
- . S LRN=LRN+1,LRSQ(LRN)=LRI
+ . I LRSEQCNT W !
+ . S LRSEQCNT=LRSEQCNT+1,LRSQ=LRI,LRSQ(LRI)=""
  . W !,?2,"Seq #: ",LRI,?13," Accession: ",$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,.2)),"^")
  . I $P(LRX,"^",10) W ?40," Results received: ",$$FMTE^XLFDT($P(LRX,"^",10),"1M")
  . W !,?20,"UID: ",$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,.3),"UNKNOWN"),"^")
  . I $P(LRX,"^",11) W ?44," Last updated: ",$$FMTE^XLFDT($P(LRX,"^",11),"1M")
+ . I $G(^LAH(LRLL,1,LRI,.1,"OBR","ORDNLT"))'="" D
+ . . N LR64,LRNLT,LRNLTN,LRPIECE
+ . . W !,?13," Order NLT: "
+ . . F LRPIECE=1:1 S LRNLT=$P($G(^LAH(LRLL,1,LRI,.1,"OBR","ORDNLT")),"^",LRPIECE) Q:LRNLT=""  D
+ . . . S LR64=+$O(^LAM("E",LRNLT,0))
+ . . . S LRNLTN=$$GET1^DIQ(64,LR64_",",.01)
+ . . . W ?25,$S(LRNLTN'="":LRNLTN,1:LRNLT),!
  ;
- I LRN=0 W !,"No data for that accession" S LRNOP=1 Q
- I LRN=1 S (ISQN,LRISQN)=LRSQ(LRN) Q
+ I LRSEQCNT=0 W !,"No data for that accession" S LRNOP=1 Q
+ I LRSEQCNT=1,'$G(LRMULTSQ) S (ISQN,LRISQN)=LRSQ Q
  ;
  ; If multiple entries (sequence - overlay data=no) then ask user which one to use.
  N DIR,DIRUT,DIROUT,DTOUT,DUOUT
  S DIR(0)=""
- F I=1:1:LRN S DIR(0)=DIR(0)_$S(I=1:"",1:";")_I_":Seq #"_LRSQ(I)
+ S I=0 F  S I=$O(LRSQ(I)) Q:'I  S DIR(0)=DIR(0)_$S(I=1:"",1:";")_I_":Seq #"_I
  S DIR(0)="SO^"_DIR(0),DIR("A")="Choose sequence number"
+ I LRSEQCNT=1,$G(LRMULTSQ) S DIR("B")=LRSQ
  D ^DIR
- I $D(DIRUT) S LRNOP=1 Q
+ I $D(DIRUT)!(Y<1) S LRNOP=1 Q
  S (ISQN,LRISQN)=+Y Q
  Q

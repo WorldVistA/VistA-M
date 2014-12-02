@@ -1,5 +1,7 @@
 PSODGDG1 ;BHAM ISC/SAB - DRUG INTERACTION PROCESSOR ;02/25/94 9:14
- ;;7.0;OUTPATIENT PHARMACY;**251**;DEC 1997;Build 202
+ ;;7.0;OUTPATIENT PHARMACY;**251,372**;DEC 1997;Build 54
+ ;External reference ^PSDRUG( supported by DBIA 221
+ ;
  G PROC^PSODGDG2
 PROCESS ;verification
  Q:$P(^PSRX(PSONV,"STA"),"^")=13
@@ -20,7 +22,7 @@ CRI ;new interactions
  S DIR("A")="Rx #"_$P($G(^PSRX(DA,0)),"^")_"   "_"Drug: "_$P($G(^PSDRUG($P(^PSRX(DA,0),"^",6),0)),"^")_": "
  S DIR(0)="SA^1:PROCESS;0:CANCEL MEDICATION",DIR("B")="PROCESS"
  K ANSDIR
- S DIR("?",1)="Enter '1' or 'P' to Activate medication",DIR("?")="      '^' to EXIT Process",DIR("?",2)="      '0' or 'C' to Cancel Medication" D ^DIR K DIR
+ S DIR("?",1)="Enter '1' or 'P' to Process medication",DIR("?")="      '^' to EXIT",DIR("?",2)="      '0' or 'C' to Cancel Medication" D ^DIR K DIR
  I $D(DIRUT) S (PSORX("DFLG"),PSVERFLG)=1 Q
  S ANSDIR=Y,PSONV=DA
  D SIG^XUSESIG I X1="" S (PSORX("DFLG"),PSVERFLG)=1 K ANSDIR Q

@@ -1,5 +1,5 @@
 RORHL21 ;BPOIFO/ACS - HL7 PURCHASED CARE: ZIN,ZSV,ZRX ;8/23/10
- ;;1.5;CLINICAL CASE REGISTRIES;**14**;Feb 17, 2006;Build 24
+ ;;1.5;CLINICAL CASE REGISTRIES;**14,19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
@@ -8,6 +8,17 @@ RORHL21 ;BPOIFO/ACS - HL7 PURCHASED CARE: ZIN,ZSV,ZRX ;8/23/10
  ; #5104         File 162.4 (controlled)
  ; #4533         DATA^PSS50 (supported)
  ; #XXXX         File 162.5 (private - approval in progress)
+ ; #5747         $$CSI^ICDEX (controlled)
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*19   MAY  2012   K GUPTA      Support for ICD-10 Coding System
+ ;******************************************************************************
+ ;******************************************************************************
  ;
  Q
  ;
@@ -41,7 +52,7 @@ EN2(RORDFN,RORSTDT,RORENDT) ;
  ;
  ;GET INPATIENT DATA FROM FEE BASIS INVOICE FILE #162.5
  ;Date Finalized is used to determine inclusion for HL7 message
- N RORIP,IPIEN,IENS,RORDATA,RORERR,DATA7078,ERR7078,FINALDT,PREPTR
+ N RORIP,IPIEN,IENS,RORDATA,RORERR,DATA7078,ERR7078,FINALDT,PREPTR,RORICDFILE,RORICDVER,RORFLD
  S IPIEN=0
  F  S IPIEN=$O(^FBAAI("D",RORDFN,IPIEN)) Q:'IPIEN  D  ;DFN x-ref
  . K RORIP ;clean out previous data
@@ -75,6 +86,10 @@ EN2(RORDFN,RORSTDT,RORENDT) ;
  . S RORIP("PROC3")=$G(RORDATA(162.5,IENS,42,"E")) ;Procedure 3
  . S RORIP("PROC4")=$G(RORDATA(162.5,IENS,43,"E")) ;Procedure 4
  . S RORIP("PROC5")=$G(RORDATA(162.5,IENS,44,"E")) ;Procedure 5
+ . F RORFLD=30:1:34,40:1:44 D  Q:RORICDVER]""
+ . . S RORICDFILE=$S(RORFLD>39:80.1,1:80)
+ . . S RORICDVER=$$ICDVER(RORICDFILE,$G(RORDATA(162.5,IENS,RORFLD,"I")))
+ . S RORIP("ICDVERSION")=RORICDVER
  . D ZIN(.RORIP)
  ;
  ;---GET OUTPATIENT DATA FROM FEE BASIS PAYMENT FILE #162
@@ -101,6 +116,7 @@ EN2(RORDFN,RORSTDT,RORENDT) ;
  ... S ROROP("SVC")=$G(RORDATA(162.03,IENSVC,.01,"E")) ;service provided
  ... S ROROP("POV")=$G(RORDATA(162.03,IENSVC,16,"E")) ;purpose of visit
  ... S ROROP("PDIAG")=$G(RORDATA(162.03,IENSVC,28,"E")) ;primary diagnosis
+ ... S ROROP("ICDVERSION")=$$ICDVER(80,$G(RORDATA(162.03,IENSVC,28,"I"))) ;ICD version
  ... S ROROP("POS")=$G(RORDATA(162.03,IENSVC,30,"E")) ;place of service
  ... S ROROP("IEN")=RORDFN_"-"_RORVENDOR_"-"_RORITDT_"-"_RORSVC
  ... D ZSV(.ROROP)
@@ -180,6 +196,8 @@ ZIN(RORIP) ;
  S RORSEG(20)=$G(RORIP("PROC4"))
  ;ZIN-21: Procedure 5
  S RORSEG(21)=$G(RORIP("PROC5"))
+ ;ZIN-22: ICD Version
+ S RORSEG(22)=$G(RORIP("ICDVERSION"))
  ;
  ;--- Store the segment
  D ADDSEG^RORHL7(.RORSEG)
@@ -207,6 +225,8 @@ ZSV(ROROP) ;
  S RORSEG(6)=$G(ROROP("PDIAG"))
  ;ZSV-7: Place of Service
  S RORSEG(7)=$G(ROROP("POS"))
+ ;ZSV-8: ICD Version
+ S RORSEG(8)=$G(ROROP("ICDVERSION"))
  ;
  ;--- Store the segment
  D ADDSEG^RORHL7(.RORSEG)
@@ -238,3 +258,16 @@ ZRX(RORRX) ;
  ;--- Store the segment
  D ADDSEG^RORHL7(.RORSEG)
  Q
+ ;
+ ;***** ICD VERSION
+ ;
+ ;Input
+ ; RORICDFILE - 80 or 80.1
+ ; RORICDIEN  - ICD IEN
+ ;
+ICDVER(RORICDFILE,RORICDIEN) ;
+ N RORICDSYS
+ S RORICDSYS=$$CSI^ICDEX($G(RORICDFILE),$G(RORICDIEN))
+ I (RORICDSYS=1)!(RORICDSYS=2) Q "I9^ICD-9^99VA80_4"
+ I (RORICDSYS=30)!(RORICDSYS=31) Q "I10^ICD-10^99VA80_4"
+ Q ""

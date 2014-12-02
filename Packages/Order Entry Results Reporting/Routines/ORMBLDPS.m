@@ -1,5 +1,7 @@
 ORMBLDPS ;SLC/MKB-Build outgoing Pharmacy ORM msgs ;08/12/10  07:25
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,38,54,86,97,94,116,129,141,190,195,237,254,243,293,280**;Dec 17, 1997;Build 85
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,38,54,86,97,94,116,129,141,190,195,237,254,243,293,280,266**;Dec 17, 1997;Build 2
+ ;
+ ;
 PTR(NAME) ; -- Returns ptr value of prompt in Dialog file
  Q +$O(^ORD(101.41,"AB",$E("OR GTX "_NAME,1,63),0))
  ;
@@ -196,7 +198,7 @@ HL7UNIT(X) ; -- Return coded element for volume/strength units
  Q Y
  ;
 VER(IFN) ; -- Send msg for nurse-verified orders
- N OR0,ORMSG S OR0=$G(^OR(100,+IFN,0)) Q:$P(OR0,U,12)'="I"  ;Inpt only
+ N OR0,ORMSG S OR0=$G(^OR(100,+IFN,0))
  S ORMSG(1)=$$MSH^ORMBLD("ORM","PS"),ORMSG(2)=$$PID^ORMBLD($P(OR0,U,2))
  S ORMSG(3)=$$PV1^ORMBLD($P(OR0,U,2),$P(OR0,U,12),+$P(OR0,U,10))
  S ORMSG(4)="ORC|ZV|"_IFN_"^OR|"_$G(^OR(100,+IFN,4))_"^PS||||||||"_DUZ_"||||"_$$FMTHL7^XLFDT($$NOW^XLFDT)

@@ -1,5 +1,9 @@
-ECUMRPC2 ;ALB/JAM;Event Capture Management Broker Utils ; 23 Jul 2008
- ;;2.0; EVENT CAPTURE ;**25,30,42,46,47,49,75,72,95**;8 May 96;Build 26
+ECUMRPC2 ;ALB/JAM - Event Capture Management Broker Utils ;23 Jul 2008
+ ;;2.0;EVENT CAPTURE;**25,30,42,46,47,49,75,72,95,114**;8 May 96;Build 20
+ ;
+ ; Reference to $$SINFO^ICDEX supported by ICR #5747
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
+ ;
 GLOC(RESULTS,ECARY) ;
  ;
  ;This broker entry point returns all active Event Capture locations
@@ -130,30 +134,40 @@ LEX ; returns a list of ICD code from lexicon lookup; called from ECUMRPC1
  ;
  ;Output Variables:-
  ;  ^TMP($J,"ECFIND",1..n - returned array
- ;     ICD9 Code^LEX description^IEN of file 80^IEN of file 757.01
+ ;     ICD Code^LEX description^IEN of file 80^IEN of file 757.01
  ;
- N LEX,ILST,I,IEN,ECX,APP,ECDT,ICD9,ICDIEN,DIC,ECCD
- S APP=$P(ECSTR,"|"),ECX=$P(ECSTR,"|",2),ECDT=$P(ECSTR,"|",3)
+ N LEX,ILST,I,IEN,ECX,APP,ECDT,ICD,ICDIEN,DIC,ECCS,ECCD,IMP
+ S ECX=$P(ECSTR,"|",2),ECDT=$P(ECSTR,"|",3)
  S ECDT=$G(ECDT,DT),DIC="^ICD9("
+ ; Determine Active Coding System based on Date Of Interest 
+ S ECCS=$$SINFO^ICDEX("DIAG",ECDT) ; Supported by ICR #5747
  ;spacebar default for DUZ
  I ECX=" ",+($G(DUZ))>0 S IEN=$G(^DISV(DUZ,DIC)) I +IEN D
- .S ECCD=$$ICDDX^ICDCODE(IEN,ECDT) S:+ECCD>0 ECX=$P(ECCD,U,2)
+ .; Load the ICD code info - Supported by ICR 5747
+ .S ECCD=$$ICDDX^ICDEX(IEN,ECDT,+ECCS,"I") S:+ECCD>0 ECX=$P(ECCD,U,2)
+ S IMP=$$IMPDATE^LEXU("10D"),APP=$S(ECDT<IMP:"ICD",1:"10D") ; Supported by ICR 5679
+ K ^TMP("LEXSCH",$J)
  D CONFIG^LEXSET(APP,APP,ECDT)    ;LEX DBIA1577
  D LOOK^LEXA(ECX,APP,1,"",ECDT)   ;LEX DBIA2950
  I '$D(LEX("LIST",1)) S ^TMP($J,"ECFIND",1)="0^No matches found." Q
  ;LEX DBIA1573
  S ILST=1,IEN=+LEX("LIST",1)
  D ICD I ICDIEN<0 S ^TMP($J,"ECFIND",1)="0^No matches found." Q
- S ^TMP($J,"ECFIND",ILST)=ICD9_U_$P(LEX("LIST",1),U,2)_U_ICDIEN_U_LEX("LIST",1),I=""
- F  S I=$O(^TMP("LEXFND",$J,I)) Q:I'<0  D
- . S IEN=$O(^TMP("LEXFND",$J,I,0))
- . D ICD I ICDIEN<0 Q
- . S ILST=ILST+1
- . S ^TMP($J,"ECFIND",ILST)=ICD9_U_^TMP("LEXFND",$J,I,IEN)_U_ICDIEN_U_IEN
+ S ^TMP($J,"ECFIND",ILST)=ICD_U_$P(LEX("LIST",1),U,2)_U_ICDIEN_U_LEX("LIST",1),I=""
+ ; ICD10 Changed to maximum of 101 entries
+ F  S I=$O(^TMP("LEXFND",$J,I)) Q:I'<0!(ILST=101)  D
+ .; Loop through all the ICD codes
+ .S IEN=""
+ .F  S IEN=$O(^TMP("LEXFND",$J,I,IEN)) Q:'IEN  D
+ ..D ICD I ICDIEN<0 Q
+ ..S ILST=ILST+1
+ ..S ^TMP($J,"ECFIND",ILST)=ICD_U_^TMP("LEXFND",$J,I,IEN)_U_ICDIEN_U_IEN
  I $O(^TMP($J,"ECFIND",0))="" S ^TMP($J,"ECFIND",1)="0^No matches found."
  K ^TMP("LEXFND",$J),^TMP("LEXHIT",$J)
  Q
+ ;
 ICD ;ICD code
- S ICD9=$$ICDONE^LEXU(IEN,ECDT)
- S ICDIEN=+$$ICDDX^ICDCODE(ICD9,ECDT)
+ S ICD=$$ONE^LEXU(IEN,ECDT,APP) ; Supported by ICR 5679, ICD-9 and ICD-10
+ S ECCS=$$SINFO^ICDEX("DIAG",ECDT) ; Supported by ICR #5747
+ S ICDIEN=+$$ICDDX^ICDEX(ICD,ECDT,+ECCS,"E") ; Supported by ICR #5747
  Q

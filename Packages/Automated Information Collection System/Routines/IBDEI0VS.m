@@ -1,0 +1,136 @@
+IBDEI0VS ; ; 12-AUG-2014
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,15720,2)
+ ;;=Syringomyelia^116874
+ ;;^UTILITY(U,$J,358.3,15721,0)
+ ;;=335.20^^98^965^2
+ ;;^UTILITY(U,$J,358.3,15721,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15721,1,2,0)
+ ;;=2^335.20
+ ;;^UTILITY(U,$J,358.3,15721,1,3,0)
+ ;;=3^Amyotrophic Lateral Sclerosis
+ ;;^UTILITY(U,$J,358.3,15721,2)
+ ;;=Amyotrophic Lateral Sclerosis^6639
+ ;;^UTILITY(U,$J,358.3,15722,0)
+ ;;=335.10^^98^965^7.5
+ ;;^UTILITY(U,$J,358.3,15722,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15722,1,2,0)
+ ;;=2^335.10
+ ;;^UTILITY(U,$J,358.3,15722,1,3,0)
+ ;;=3^Spinal Musc Atrophy
+ ;;^UTILITY(U,$J,358.3,15722,2)
+ ;;=Spinal Musc Atrophy^80005
+ ;;^UTILITY(U,$J,358.3,15723,0)
+ ;;=358.00^^98^965^6
+ ;;^UTILITY(U,$J,358.3,15723,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15723,1,2,0)
+ ;;=2^358.00
+ ;;^UTILITY(U,$J,358.3,15723,1,3,0)
+ ;;=3^Myasthenia Gravis W/O
+ ;;^UTILITY(U,$J,358.3,15723,2)
+ ;;=^329920
+ ;;^UTILITY(U,$J,358.3,15724,0)
+ ;;=294.20^^98^965^3
+ ;;^UTILITY(U,$J,358.3,15724,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15724,1,2,0)
+ ;;=2^294.20
+ ;;^UTILITY(U,$J,358.3,15724,1,3,0)
+ ;;=3^Dementia
+ ;;^UTILITY(U,$J,358.3,15724,2)
+ ;;=^340607
+ ;;^UTILITY(U,$J,358.3,15725,0)
+ ;;=724.5^^98^966^1
+ ;;^UTILITY(U,$J,358.3,15725,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15725,1,2,0)
+ ;;=2^724.5
+ ;;^UTILITY(U,$J,358.3,15725,1,3,0)
+ ;;=3^Back Pain, NOS
+ ;;^UTILITY(U,$J,358.3,15725,2)
+ ;;=Back Pain, NOS^12250
+ ;;^UTILITY(U,$J,358.3,15726,0)
+ ;;=724.2^^98^966^3
+ ;;^UTILITY(U,$J,358.3,15726,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15726,1,2,0)
+ ;;=2^724.2
+ ;;^UTILITY(U,$J,358.3,15726,1,3,0)
+ ;;=3^Low Back Pain
+ ;;^UTILITY(U,$J,358.3,15726,2)
+ ;;=Low Back Pain^71885
+ ;;^UTILITY(U,$J,358.3,15727,0)
+ ;;=723.1^^98^966^4
+ ;;^UTILITY(U,$J,358.3,15727,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15727,1,2,0)
+ ;;=2^723.1
+ ;;^UTILITY(U,$J,358.3,15727,1,3,0)
+ ;;=3^Neck Pain
+ ;;^UTILITY(U,$J,358.3,15727,2)
+ ;;=Neck Pain^21917
+ ;;^UTILITY(U,$J,358.3,15728,0)
+ ;;=729.5^^98^966^2
+ ;;^UTILITY(U,$J,358.3,15728,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15728,1,2,0)
+ ;;=2^729.5
+ ;;^UTILITY(U,$J,358.3,15728,1,3,0)
+ ;;=3^Limb Pain
+ ;;^UTILITY(U,$J,358.3,15728,2)
+ ;;=Limb Pain^89086
+ ;;^UTILITY(U,$J,358.3,15729,0)
+ ;;=350.1^^98^966^6
+ ;;^UTILITY(U,$J,358.3,15729,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15729,1,2,0)
+ ;;=2^350.1
+ ;;^UTILITY(U,$J,358.3,15729,1,3,0)
+ ;;=3^Trigeminal Neuralgia
+ ;;^UTILITY(U,$J,358.3,15729,2)
+ ;;=Trigeminal Neuralgia^121978
+ ;;^UTILITY(U,$J,358.3,15730,0)
+ ;;=729.2^^98^966^5
+ ;;^UTILITY(U,$J,358.3,15730,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15730,1,2,0)
+ ;;=2^729.2
+ ;;^UTILITY(U,$J,358.3,15730,1,3,0)
+ ;;=3^Neuropathic Pain
+ ;;^UTILITY(U,$J,358.3,15730,2)
+ ;;=Neuropathic Pain^82605
+ ;;^UTILITY(U,$J,358.3,15731,0)
+ ;;=250.60^^98^967^6
+ ;;^UTILITY(U,$J,358.3,15731,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15731,1,2,0)
+ ;;=2^250.60
+ ;;^UTILITY(U,$J,358.3,15731,1,3,0)
+ ;;=3^Diabetes W/Neuropathy
+ ;;^UTILITY(U,$J,358.3,15731,2)
+ ;;=Diabetes w/Neuropathy^267841^357.2
+ ;;^UTILITY(U,$J,358.3,15732,0)
+ ;;=337.9^^98^967^1
+ ;;^UTILITY(U,$J,358.3,15732,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15732,1,2,0)
+ ;;=2^337.9
+ ;;^UTILITY(U,$J,358.3,15732,1,3,0)
+ ;;=3^Autonomic Neuropathy
+ ;;^UTILITY(U,$J,358.3,15732,2)
+ ;;=Autonomic Neuropathy^11827
+ ;;^UTILITY(U,$J,358.3,15733,0)
+ ;;=355.8^^98^967^5
+ ;;^UTILITY(U,$J,358.3,15733,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15733,1,2,0)
+ ;;=2^355.8
+ ;;^UTILITY(U,$J,358.3,15733,1,3,0)
+ ;;=3^Compression Neuropathy,Leg
+ ;;^UTILITY(U,$J,358.3,15733,2)
+ ;;=Compression Neuropathy, Leg^268511

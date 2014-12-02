@@ -1,5 +1,5 @@
 IBJPI ;DAOU/BHS - IBJP eIV SITE PARAMETERS SCREEN ;14-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,316,416,438**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**184,271,316,416,438,479,506**;21-MAR-94;Build 74
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; eIV - Electronic Insurance Verification Interface parameters
@@ -55,11 +55,6 @@ BLD ; build screen array
  S IBLN=$$SET("Send daily statistical report via MailMan:  ",$S($P(IBIIV,U,2):"YES",$P(IBIIV,U,2)=0:"NO",1:""),IBLN,IBWID)
  I $P(IBIIV,U,2) S IBLN=$$SET("Time of day for daily statistical report:  ",$P(IBIIV,U,3),IBLN,IBWID)
  S IBLN=$$SET("Mail Group for eIV messages:  ",$$MGRP^IBCNEUT5,IBLN,IBWID)
- S IBLN=$$SET("HL7 Response Processing Method:  ",$S($P(IBIIV,U,13)="B":"BATCH",$P(IBIIV,U,13)="I":"IMMEDIATE",1:""),IBLN,IBWID)
- I $P(IBIIV,U,13)="B" D
- . S IBLN=$$SET("HL7 Batch Start Time:  ",$P(IBIIV,U,14),IBLN,IBWID)
- . S IBLN=$$SET("HL7 Batch Stop Time:  ",$P(IBIIV,U,19),IBLN,IBWID)
- . Q
  ;
  S IBLN=$$SET("Contact Person:  ",$S($P(IBIIV,U,16)'="":$$GET1^DIQ(200,$P(IBIIV,U,16)_",",.01,"E"),1:""),IBLN,IBWID)
  S IBLN=$$SET("Send MailMan message if communication problem:  ",$S($P(IBIIV,U,20):"YES",$P(IBIIV,U,20)=0:"NO",1:""),IBLN,IBWID)
@@ -78,7 +73,7 @@ BLD ; build screen array
  . S IBIIVB=$G(^IBE(350.9,1,51.17,IEN,0))
  . S IBEX=+$P(IBIIVB,U,1)  ; Type
  . I '$F(".1.2.","."_IBEX_".") Q
- . S IBST=$$FO^IBCNEUT1($S($P(IBIIVB,U,1)'="":$$GET1^DIQ(350.9002,$P(IBIIVB,U,1)_",1,",.01,"E"),1:""),14)
+ . S IBST=$$FO^IBCNEUT1($S($P(IBIIVB,U,1)'="":$$GET1^DIQ(350.9002,IEN_",1,",.01,"E"),1:""),14)
  . S IBST=IBST_$$FO^IBCNEUT1($S(+$P(IBIIVB,U,2):"ON",1:"OFF"),8)
  . S IBEX1=$S(+$P(IBIIVB,U,3)'=0:+$P(IBIIVB,U,3),1:$P(IBIIVB,U,3))
  . S IBEX2=$S(+$P(IBIIVB,U,4)'=0:+$P(IBIIVB,U,4),1:$P(IBIIVB,U,4))

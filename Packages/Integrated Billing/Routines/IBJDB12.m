@@ -1,5 +1,6 @@
 IBJDB12 ;ALB/CPM - BILLING LAG TIME REPORT (OPT PRINT/SUMMARIES) ; 30-DEC-96
- ;;2.0;INTEGRATED BILLING;**69,100,118**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**69,100,118,524**;21-MAR-94;Build 24
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
 OPT ; - Print the outpatient report.
  F IBX=1,"2I",9,10,"3I","4I",11,2,3,4 I IBSEL[(","_IBX_",") D  Q:IBQ
@@ -13,12 +14,14 @@ OPT ; - Print the outpatient report.
  .K IBCT,IBTL S (IBCT(IBX),IBTL(IBX))=0,IBX1=""
  .F  S IBX1=$O(^TMP("IBJDB1",$J,IBDIV,"OP",IBX,IBX1)) Q:IBX1=""  D  Q:IBQ
  ..I $Y>(IOSL-2) D PAUSE Q:IBQ  D OPTH Q:IBQ
- ..D WPAT S (IBH,IBX2)=0
+ ..N IBWPT S IBWPT=1
+ ..S (IBH,IBX2)=0
  ..F  S IBX2=$O(^TMP("IBJDB1",$J,IBDIV,"OP",IBX,IBX1,IBX2)) Q:'IBX2  S IBX3=$G(^(IBX2)) D  Q:IBQ
- ...I $Y>(IOSL-4) D PAUSE Q:IBQ  D OPTH,WPAT Q:IBQ  S IBH=0
+ ...I $Y>(IOSL-4) D PAUSE Q:IBQ  D OPTH S IBWPT=1 Q:IBQ  S IBH=0
  ...;
  ...; - Write bill #, dates and total days.
  ...W:IBH ! I 'IBH S IBH=1
+ ...I IBWPT D WPAT S IBWPT=0
  ...W ?40,$P(IBX3,U),?50,$$DTE($P(IBX3,U,2)),$P(IBX3,U,5)
  ...W ?63,$$DTE($P(IBX3,U,3)),?76,$J($P(IBX3,U,4),4)
  ...S IBCT(IBX)=IBCT(IBX)+1,IBTL(IBX)=IBTL(IBX)+$P(IBX3,U,4)

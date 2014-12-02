@@ -1,5 +1,5 @@
-DICF4 ;SEA/TOAD,SF/TKW-VA FileMan: Finder, (pointer indexes) ;28JAN2011
- ;;22.0;VA FileMan;**4,31,165**;Mar 30, 1999;Build 1
+DICF4 ;SEA/TOAD,SF/TKW-VA FileMan: Finder, (pointer indexes) ;15NOV2012
+ ;;22.0;VA FileMan;**4,31,165,169**;Mar 30, 1999;Build 26
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 POINT(DIFILE,DIFLAGS,DINDEX,DIDENT,DIEN,DIFIEN,DISCREEN,DIVALUE,DIC,DIFORCE) ;
@@ -17,7 +17,7 @@ P1 ; Process regular pointer
  . M DIPVAL(1)=DIVALUE(1),DISCR(1)=DISCREEN(1)
  . I DIFLAGS["l" D DIC(.DIC,.DIEN,.DIFILE,.DINDEX,.DIVALUE,DITARGET)
  . I DIFLAGS'["l" D
-NUM ..I +$P(DIPVAL(1),"E")=DIPVAL(1),$G(DINDEX)'="B",DIFLAGS["M" Q  ;GFT  PATCH 165   DO NOT LOOK UP POINTERS
+NUM ..;I +$P(DIPVAL(1),"E")=DIPVAL(1),$G(DINDEX)'="B",DIFLAGS["M" Q  ;GFT  PATCH 165   DO NOT LOOK UP POINTERS; DI*22*169 (mko): Commented out this line to allow the use of indexes on the pointed-to file
  . . I $D(DIFORCE("PTRIX")) D SETIX(.DIFORCE,.DINDEX,.DIX,.DIF)
  . . N F S F=DIF N DIF S DIF=F K F M DIFL("CHAIN")=DIFILE("CHAIN")
  . . D BLDSCR(.DISCR,DINEW,DIPRV,.DIFL,.DINDEX,.DISCREEN,.DIFILE)

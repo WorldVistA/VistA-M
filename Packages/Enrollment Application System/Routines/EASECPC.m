@@ -1,11 +1,12 @@
-EASECPC ;ALB/PHH,CKN,LBD,AMA,SCK - LTC Copayment Report; 29-AUG-2001
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**5,7,19,24,34,40,79**;Mar 15, 2001;Build 3
+EASECPC ;ALB/PHH,CKN,LBD,AMA,SCK - LTC Copayment Report; 29-AUG-2001 ; 12/10/12 5:37pm
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**5,7,19,24,34,40,79,105**;Mar 15, 2001;Build 4
  ;
  ; This routine prints a report of calculated LTC copayments for a veteran.
  ; It is called by menu option EASEC LTC COPAY PRINT
  ;
 EN N DFN,EASRPT,EASADM,EASRDT,MAXRT,DGMTI,DGMTDT
  ; Select which report to print (1=Institutional (IP); 2=Non-Institutional (OP))
+ D DISCMSG
  S EASRPT=$$RPT Q:'EASRPT
  ; Select Patient
  S DFN=$$GETDFN Q:'DFN
@@ -103,4 +104,13 @@ QUE ; Get report device. Queue report if requested.
  . W !!,"Report "_$S($D(ZTSK):"Queued!",1:"Cancelled!")
  . D HOME^%ZIS
  D START^EASECPC1,^%ZISC
+ Q
+DISCMSG ;EAS*1*105 This is a disclaimer to remind users that this report
+        ; is only for estimates and that values can change.
+ W !!,"** This report is intended to provide a projected estimate of charges that"
+ W !,"should generate for a patient admitted for a LTC stay. These estimates are"
+ W !,"dependent on existing conditions with the projected estimate out to a year "
+ W !,"being presented in the report. Be advised that changing circumstances or newer"
+ W !,"LTC Copay tests within this timeframe could impact these projected estimates"
+ W !,"and a discrepancy can exist from the actual charges billing generates. **"
  Q

@@ -1,5 +1,15 @@
 ORLP3MGR ; SLC/AEB - Manager Options - Patient List Defaults ;9/22/97 [4/25/00 3:25pm]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,82**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,82,273**;Dec 17, 1997;Build 17
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;DBIA reference section
+ ;2992  - ^XTV(8989.51
+ ;10086 - %ZIS
+ ;10006 - DIC
+ ;2051  - FIND1^DIC
+ ;2054  - CLEAN^DILF
+ ;10026 - DIR
+ ;2336  - EDITPAR^XPAREDIT
  ;
 CLSTRTD ;
  N ORLPT,PARAM
@@ -118,7 +128,6 @@ DEFSRC ; default list source and value for user
  W !!,"The user's default list of patients is based on: ",$P(ORX,U,3),"  ",ORLPLNM,!
  I ORLPLNM="Combination" D
  .; Look for an existing record for this user:
- .S ORLPDUZ=DUZ
  .K ORLPERR
  .S ORLPRTN=$$FIND1^DIC(100.24,"","QX",ORLPDUZ,"","","ORLPERR")
  .K ORLPERR

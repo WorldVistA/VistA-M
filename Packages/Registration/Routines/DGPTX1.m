@@ -1,8 +1,8 @@
-DGPTX1 ; GENERATED FROM 'DG101' INPUT TEMPLATE(#426), FILE 45;07/14/09
+DGPTX1 ; GENERATED FROM 'DG101' INPUT TEMPLATE(#426), FILE 45;08/05/14
  D DE G BEGIN
 DE S DIE="^DGPT(",DIC=DIE,DP=45,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DGPT(DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,3) S:%]"" DE(4)=% S %=$P(%Z,U,5) S:%]"" DE(5)=%
- I $D(^(70)) S %Z=^(70) S %=$P(%Z,U,4) S:%]"" DE(26)=% S %=$P(%Z,U,5) S:%]"" DE(27)=% S %=$P(%Z,U,6) S:%]"" DE(22)=% S %=$P(%Z,U,12) S:%]"" DE(31)=%
+ I $D(^(70)) S %Z=^(70) S %=$P(%Z,U,4) S:%]"" DE(26)=% S %=$P(%Z,U,5) S:%]"" DE(27)=% S %=$P(%Z,U,6) S:%]"" DE(22)=% S %=$P(%Z,U,8) S:%]"" DE(34)=% S %=$P(%Z,U,9) S:%]"" DE(33)=% S %=$P(%Z,U,12) S:%]"" DE(31)=% S %=$P(%Z,U,13) S:%]"" DE(32)=%
  I $D(^(101)) S %Z=^(101) S %=$P(%Z,U,1) S:%]"" DE(6)=% S %=$P(%Z,U,3) S:%]"" DE(7)=% S %=$P(%Z,U,4) S:%]"" DE(12)=% S %=$P(%Z,U,5) S:%]"" DE(8)=% S %=$P(%Z,U,6) S:%]"" DE(9)=% S %=$P(%Z,U,8) S:%]"" DE(10)=%
  K %Z Q
  ;
@@ -176,4 +176,23 @@ X30 S DGJUMP=$P(DGJUMP,"7,",2)
 X31 S DIC="^DIC(4,",DIC(0)="ME" D ^DIC S DIC=$S($D(DIE):DIE,1:DIC) S X=$S($D(^DIC(4,+Y,99)):$E(^(99),1,3),1:"") K:Y'>0 X
  Q
  ;
-32 D:$D(DG)>9 F^DIE17 G ^DGPTX12
+32 S DW="70;13",DV="FX",DU="",DLB="RECEIVING SUFFIX",DIFLD=76.2
+ G RE
+X32 D UP^DGHELP S DIC(0)="EFC",DIC="^DIC(45.81,",D="D1" D IX^DIC S DIC=DIE I +Y'>0!(X=" ") K X
+ I $D(X),X'?.ANP K X
+ Q
+ ;
+33 S DW="70;9",DV="S",DU="",DLB="C&P STATUS",DIFLD=78
+ S DU="1:COMP/SC COND >10%;2:NON-COMP/SC COND<10%;3:COMP/SC (+10%) NO MED CARE;4:NON-COMP(-10%) SC NO MED CARE-VA PENSION;5:VA PENSION-NO SC COND;6:NON-COMP(-10%) SC NO MED CARE NO PENSION;7:NO PENSION-NO SC;8:NON-VET;"
+ G RE
+X33 Q
+34 S DW="70;8",DV="NJ6,0",DU="",DLB="ASIH DAYS",DIFLD=77
+ G RE
+X34 K:+X'=X!(X>999999)!(X<0)!(X?.E1"."1N.N) X
+ Q
+ ;
+35 S DQ=36 ;@99
+36 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=36 D X36 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X36 S:+DGJUMP Y="@"_+DGJUMP
+ Q
+37 G 0^DIE17

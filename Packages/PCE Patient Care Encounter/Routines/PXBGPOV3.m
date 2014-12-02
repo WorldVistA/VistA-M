@@ -1,10 +1,11 @@
 PXBGPOV3 ;ISL/JVS - DOUBLE ?? GATHERING OF CLINIC DIAGNOSES ;11/5/96  14:20
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**11**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**11,199**;Aug 12, 1996;Build 51
  ;
  ;
  ;
  W !,"THIS IS NOT AN ENTRY POINT" Q
- ;  
+ ;
+ ;
  ;
 DOUBLE1(FROM) ;--Entry point
  ;
@@ -35,14 +36,14 @@ START1 ;--RECYCLE POINT
  ;
  ;
  ;----DISPLAY LIST TO THE SCREEN
- S HEADING="W !,""ITEM"",?6,""NAME"",?14,""DESCRIPTION"",IOINHI,TOTAL,"" MATCHES"",IOINLOW"
+ S HEADING="W !,""ITEM"",?6,""NAME"",?16,""DESCRIPTION"",IOINHI,TOTAL,"" MATCHES"",IOINLOW"
 LIST ;-DISPLAY LIST TO THE SCREEN
  D LOC W !
  X HEADING
  S SUB=SUB-1
  S NUM=0 F  S SUB=$O(^TMP("PXBTOTAL",$J,"DILIST","ID",SUB)) S NUM=NUM+1 Q:NUM=11  Q:SUB'>0  S SUB2=SUB2+1 D
  .S NAME=$G(^TMP("PXBTOTAL",$J,"DILIST","ID",SUB,.01))
- .W !,SUB,?6,$P(NAME,"--",1),?14,$P(NAME,"--",2,$L(NAME," "))
+ .W !,SUB,?6,$P(NAME,"--",1),?16,$E($P(NAME,"--",2,$L(NAME," ")),1,60)
  ;
  ;----If There is only one selection go to proper prompting
  I TOTAL=1 G PRMPT2
@@ -92,10 +93,10 @@ SUB ;--DISPLAY LIST TO THE SCREEN
  .W !,SUB,?6,NAME
  Q
 SETUP ;-SETP VARIABLES
- S FILE=200,FIELD=.01 D
+ S FILE=200,FIELD=.01
  S HEADING="W !,""ITEM"",?6,""NAME"""
  Q
-PRMPT2 ;-----Yes and No prompt if onlyi choice
+PRMPT2 ;-----Yes and No prompt if only choice
  D WIN17^PXBCC(PXBCNT)
  D LOC^PXBCC(15,1)
  S DIR("A")="Is this the correct entry "

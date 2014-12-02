@@ -1,5 +1,5 @@
-ALPBHL1U ;OIFO-DALLAS MW,SED,KC -HL7 MESSAGE SEGMENT PARSER AND UPDATE ; 7/23/12 9:42am
- ;;3.0;BAR CODE MED ADMIN;**7,69**;May 2002;Build 16
+ALPBHL1U ;OIFO-DALLAS MW,SED,KC -HL7 MESSAGE SEGMENT PARSER AND UPDATE ;1/22/13 11:22pm
+ ;;3.0;BAR CODE MED ADMIN;**7,69,59,73**;May 2002;Build 31
  ;
  ; passed parameters common to all functions:
  ;   IEN   = patient's internal entry number in file 53.7
@@ -15,10 +15,12 @@ ALPBHL1U ;OIFO-DALLAS MW,SED,KC -HL7 MESSAGE SEGMENT PARSER AND UPDATE ; 7/23/12
  ;      text will also contain formatted text escape character \.br\
  ;      NTE tag will now rebuild work arrays honoring the line break
  ;      escape character prior to storing into BCMA BACKUP DATA #53.7.
+ ;**73- Add Clinic name to Order multiple for orders that were placed
+ ;       in a clinic vs. a Ward.
  ;
 AL1(IEN,DATA,FS,CS,ERR) ; process AL1 (allergies) segment...
  I +$G(IEN)'>0!($G(DATA)="")!($G(FS)="")!($G(CS)="") D ERRBLD^ALPBUTL1("AL1","",.ERR) Q
- N ALPBALG,ALPBALGN,ALPBFILE,ALPBNEXT
+ N ALPBALG,ALPBALGN,ALPBFILE,ALPBNEXT,ALPBSCHD,ALPBX,SCS,ALPBXX,ALPBSCHDLE1,ALPBX2,ALPBYY
  S ALPBALG=+$P(DATA,FS,4)
  I ALPBALG'>0 D ERRBLD^ALPBUTL1("AL1","Undefined allergy "_DATA,.ERR) Q
  S ALPBALGN=$P($P(DATA,FS,4),CS,2)
@@ -48,6 +50,8 @@ ORC(IEN,OIEN,DATA,MLOG,FS,CS,ERR) ; process ORC (common order) segment...
  .S ALPBFILE(53.702,ALPBFIEN,5.1)=$P($P(DATA,FS,11),CS,2)
  .; verified by...
  .S ALPBFILE(53.702,ALPBFIEN,5.2)=$P($P(DATA,FS,12),CS,2)
+ .; set clinic name in new DD field 3.5 if a clinic order         ;*73
+ .S ALPBFILE(53.702,ALPBFIEN,3.5)=$P(DATA,FS,22)
  .D UPDATE^DIE("","ALPBFILE","","ERR")
  .; if this is a pending order, add special instructions...
  .I $P($P(DATA,FS,6),CS,1)="IP" D
@@ -145,6 +149,10 @@ RXE(IEN,OIEN,DATA,FS,CS,ECH,ERR) ; process RXE (order detail) segment...
  S ALPBFILE(53.702,ALPBFIEN,7)=$P(ALPBX,CS,8)
  ; schedule...
  S ALPBSCHD=$P(ALPBX,CS,2)
+ ; the following three lines remove the additional ampersand symbol (&) and admin. time(s) that are added to the schedule by variable ALPBSCHD
+ S ALPBXX=$L(ALPBSCHD,SCS),ALPBSCHDLE1="",ALPBX2=$P(ALPBSCHD,SCS,ALPBXX)
+ F ALPBYY=1:1:(ALPBXX-1) S ALPBSCHDLE1=ALPBSCHDLE1_$P(ALPBSCHD,SCS,ALPBYY) Q:ALPBYY=(ALPBXX-1)  S ALPBSCHDLE1=ALPBSCHDLE1_SCS
+ S ALPBSCHD=ALPBSCHDLE1
  I $P(DATA,FS,24)'="" S ALPBSCHD=ALPBSCHD_" "_$P(DATA,FS,24)
  I $P($P(DATA,FS,25),CS,5)'="" S ALPBSCHD=ALPBSCHD_" "_$P($P(DATA,FS,25),CS,5)
  S ALPBFILE(53.702,ALPBFIEN,7.2)=ALPBSCHD

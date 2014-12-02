@@ -1,5 +1,5 @@
-PSBMLLKU ;BIRMINGHAM/TEJ - BCMA RPC LOOKUP UTLILITIES ;10/5/10 9:16am
- ;;3.0;BAR CODE MED ADMIN;**3,9,11,20,13,38,32,56,42**;Mar 2004;Build 23
+PSBMLLKU ;BIRMINGHAM/TEJ - BCMA RPC LOOKUP UTLILITIES ;9/18/12 1:24am
+ ;;3.0;BAR CODE MED ADMIN;**3,9,11,20,13,38,32,56,42,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -13,7 +13,16 @@ PSBMLLKU ;BIRMINGHAM/TEJ - BCMA RPC LOOKUP UTLILITIES ;10/5/10 9:16am
  ; File 50/221
  ; File 211.4/1409
  ;
+ ;*70 - create a lookup for Clinics that returns all patients per 
+ ;      clinic selected for Client to then pass one at a time for
+ ;      coversheet reports and enable the NEXT button for user
+ ;      selection to process the next DFN for a coversheet report.
+ ;
 RPC(RESULTS,PSBREC) ; Remote Procedure Call Entry Point.
+ ;
+ ;*70 piece out mode if exists & reset 0 node for bkwds compatability
+ N PSBCLINORD
+ S PSBCLINORD=$P(PSBREC(0),U,2),PSBREC(0)=$P(PSBREC(0),U)
  ;
  S RESULTS="" D @(PSBREC(0)_"(.RESULTS,.PSBREC)") Q
  Q
@@ -67,24 +76,47 @@ PTLKUP(RESULTS,PSBREC) ; Patient lookup handled separately for security
  ;          (Person(s) in PATIENT File (#2) meeting search criteria)
  ;
  ;
- K RESULTS
- N PSBNRSWD
- S PSBDATA=$E(PSBREC(1),1,60)
- I PSBDATA?12N!(PSBDATA?1.6N)&(DUZ("AG")="I") D  Q  ; HRN/ASUFAC code
- .N X
- .S X=$$HRCNF^APSPFUNC($S($L(PSBDATA)=12:PSBDATA,1:$$PAD($$GET1^DIQ(9999999.06,+DUZ(2),.12))_$$PAD(PSBDATA)))
- .I X<0 D  Q
- ..S RESULTS(0)=1,RESULTS(1)="-1^No patients matching '"_PSBDATA_"'."
- .S RESULTS(0)=1
- .S RESULTS(1)=$$PTREC(X)
- S PSBDATA1=PSBDATA
- N PSBINDX S PSBINDX="" K ^TMP("DILIST",$J)
- I $E(PSBDATA,$L(PSBDATA)-10,60)=" [MAS WARD]" S PSBINDX="CN" S PSBDATA=$P(PSBDATA," [MAS WARD]")
- I $E(PSBDATA,$L(PSBDATA)-11,60)=" [NURS UNIT]" S PSBINDX="CN" S PSBDATA=$P(PSBDATA," [NURS UNIT]") D
- .K PSBPT S PSBPT(0)=0
- .S PSBZ=0 F  S PSBZ=$O(^NURSF(211.4,PSBZ)) Q:PSBZ'?.N  S PSBNRSWD=$$GET1^DIQ(211.4,PSBZ_",",.01) I $$UCASE^XUSG(PSBNRSWD)=PSBDATA S PSBY=PSBZ Q
- .K PSBDATA S PSBDATA=""
- .S PSBX=0 F  S PSBX=$O(^NURSF(211.4,PSBY,3,PSBX)) Q:PSBX=""  S PSBDATA(PSBX)=$$GET1^DIQ(42,$P(^NURSF(211.4,PSBY,3,PSBX,0),U)_",",.01)
+ N PSBNRSWD,PSBINDX,PSBRPT
+ K RESULTS,PSBDATA
+ K PSBPT S PSBPT(0)=0
+ S PSBINDX="" K ^TMP("DILIST",$J)
+ I PSBCLINORD'="C" D
+ .S PSBDATA=$E(PSBREC(1),1,60)
+ .I PSBDATA?12N!(PSBDATA?1.6N)&(DUZ("AG")="I") D  Q  ; HRN/ASUFAC code
+ ..N X
+ ..S X=$$HRCNF^APSPFUNC($S($L(PSBDATA)=12:PSBDATA,1:$$PAD($$GET1^DIQ(9999999.06,+DUZ(2),.12))_$$PAD(PSBDATA)))
+ ..I X<0 D  Q
+ ...S RESULTS(0)=1,RESULTS(1)="-1^No patients matching '"_PSBDATA_"'."
+ ..S RESULTS(0)=1
+ ..S RESULTS(1)=$$PTREC(X)
+ .S PSBDATA1=PSBDATA
+ .I $E(PSBDATA,$L(PSBDATA)-10,60)=" [MAS WARD]" S PSBINDX="CN" S PSBDATA=$P(PSBDATA," [MAS WARD]")
+ .I $E(PSBDATA,$L(PSBDATA)-11,60)=" [NURS UNIT]" S PSBINDX="CN" S PSBDATA=$P(PSBDATA," [NURS UNIT]") D
+ ..K PSBPT S PSBPT(0)=0
+ ..S PSBZ=0 F  S PSBZ=$O(^NURSF(211.4,PSBZ)) Q:PSBZ'?.N  S PSBNRSWD=$$GET1^DIQ(211.4,PSBZ_",",.01) I $$UCASE^XUSG(PSBNRSWD)=PSBDATA S PSBY=PSBZ Q
+ ..K PSBDATA S PSBDATA=""
+ ..S PSBX=0 F  S PSBX=$O(^NURSF(211.4,PSBY,3,PSBX)) Q:PSBX=""  S PSBDATA(PSBX)=$$GET1^DIQ(42,$P(^NURSF(211.4,PSBY,3,PSBX,0),U)_",",.01)
+ ;
+ I PSBCLINORD="C" D
+ .;Clinic mode report - get and return array of all DFN's that belong
+ .;  to clinics passed in by user.
+ .F QQ=0:0 S QQ=$O(PSBREC(QQ)) Q:'QQ  D
+ ..S PSBRPT(2,QQ,0)=PSBREC(QQ)
+ ..S PSBRPT(2,"B",PSBREC(QQ),QQ)=""
+ .S PSBDATA=1 D CLIN^PSBO(.PSBRPT,.PSBDATA)
+ .I $D(PSBDATA)=11 D
+ ..N DFNXX S PSBCNT=0
+ ..F DFNXX=0:0 S DFNXX=$O(PSBDATA(DFNXX)) Q:'DFNXX  D
+ ...S PSBCNT=PSBCNT+1,RESULTS(PSBCNT)=$$PTREC(DFNXX)
+ .; check if any data found
+ .I '$D(RESULTS) D
+ ..S RESULTS(0)=1
+ ..S RESULTS(1)="-1^No patients matching Clinic Search List"
+ .E  D
+ ..S RESULTS(0)=+$O(RESULTS(""),-1)
+ ..S PSBINDX="CN"
+ I PSBCLINORD="C",+RESULTS(1)=-1 Q
+ ;
  I PSBINDX="" S PSBINDX=$S(PSBDATA?9N.1P:"SSN",PSBDATA?4N.1P:"BS5^BS",1:PSBINDX)
  I ($O(PSBDATA(""))'>0) D FIND^DIC(2,"","@;.01;.02;.03;.09","MP",PSBDATA,200,PSBINDX)
  I ($O(PSBDATA(""))>0) D

@@ -1,5 +1,5 @@
 PSJOCDS ;BIR/MV - SET INPUT DATA FOR DOSING ORDER CHECKS ;6 Jun 07 / 3:37 PM
- ;;5.0; INPATIENT MEDICATIONS ;**181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS ;**181,252,257**;16 DEC 97;Build 105
  ;
  ; Reference to ^PS(55 is supported by DBIA #2191.
  ; Reference to ^PSSORPH is supported by DBIA #3234.
@@ -16,16 +16,18 @@ IN(PSJPON,PSJTYPE,PSJDD) ;
  ;
  ;PSJOVR array is defined when OVERLAP^PSGOEF2 is called.
  ;
- Q:'$$DS^PSSDSAPI()
- NEW PSJOCDS,PSJFDB,PSJBASE,PSJOVR,PSJOVRLP
- K PSJOCDS,PSJFDB
+ NEW PSJDSOFF,PSJCNT
  D FULL^VALM1
- I '$$PING^PSJOC("No dosing checks can be performed") Q
+ S PSJDSOFF=$$DS^PSSDSAPI()
+ I '+PSJDSOFF D DOSEOFF^PSJOCDSD($P(PSJDSOFF,U,2)) Q
+ NEW PSJOCDS,PSJFDB,PSJBASE,PSJOVR,PSJOVRLP,PSJX
+ K PSJOCDS,PSJFDB
+ I '$$PING^PSJOC("Maximum Single Dose Check could not be performed") Q
  K ^TMP($J,"PSJPRE"),^TMP($J,"PSJPRE1")
  S PSJBASE(1)="PSJPRE",PSJBASE(3)="PSJPRE1"
  ;
- ;;**** Commmented out complex dosing
- ;;PSJOCDSC("CX","PSJCOM") is to flag if dosing checks needs to handle comlex orders.
+ ;;**** Commented out complex dosing
+ ;;PSJOCDSC("CX","PSJCOM") is to flag if dosing checks needs to handle complex orders.
  ;;*I '$D(PSJOCDSC("CX","PSJCOM")) D
  ;;*. I $G(PSJCOM),$$CONJ^PSJOCDSC() S PSJOCDSC("CX","PSJCOM")=1
  ;;*I $G(PSJOCDSC("CX","PSJCOM")),'$D(PSJOCDSC("CX","ACX")) D SETLST^PSJOCDSC(PSJPON)
@@ -39,9 +41,12 @@ IN(PSJPON,PSJTYPE,PSJDD) ;
  ;;****END
  ;
  I '$D(PSJFDB) Q
+ ;;*If complex order then set conjunction to "Then" so low dose warning is screened out.
+ ;;*I $G(PSJCOM),$$ALLTHEN^PSJOCDSC() D
+ ;;*. F PSJX=0:0 S PSJX=$O(PSJOCDS(PSJX)) Q:'PSJX  S PSJOCDS(PSJX,"CONJ")="T"
  D DOSE^PSSDSAPD(.PSJBASE,DFN,.PSJOCDS,.PSJFDB)
  D DISPLAY^PSJOCDSD
- ;;*I '$G(PSGORQF),(PSJTYPE="IV"),$G(PSJOCDSC("CX","PSJCOM")) D NODAILY^PSJOCDSP(PSJPON)
+ ;I '$G(PSGORQF),(PSJTYPE="IV"),$G(PSJOCDSC("CX","PSJCOM")) D NODAILY^PSJOCDSP(PSJPON)
  K ^TMP($J,"PSJPRE"),^TMP($J,"PSJPRE1")
  Q
 UD ;Process data from a UD order
@@ -68,7 +73,7 @@ UD ;Process data from a UD order
  S PSJOCDS(PSJCNT,"MR_IEN")=$G(PSGMR)
  S PSJOCDS(PSJCNT,"SCHEDULE")=$G(PSGSCH)
  D FDBDATA
- D LITTER
+ ;D LITER
  Q
 FDBDATA ;Set data needed by FDB's Dose API
  ;Use the OI + Dosage form when display drug name.  If OI IEN doesn't exist, use DD name
@@ -106,7 +111,8 @@ FDBDATA ;Set data needed by FDB's Dose API
  . S PSJFDB(PSJCNT,"FREQ")=1
  I +PSJOCDS(PSJCNT,"DRATE") D UND24HRS(+PSJOCDS(PSJCNT,"DRATE"),$G(PSGAT),$G(PSGS0XT),PSGSD,PSGFD,PSGSCH)
  Q
-LITTER ;FDB requires "L" instead of ML for the particular conditions below
+LITER ;FDB requires "L" instead of ML for the particular conditions below
+ ;PSJ*5*252 (6/29/11)- This module is longer called since FDB handles either "ML" or "L" now.
  NEW PSJXDO
  Q:'$G(PSJDD)
  Q:$G(PSJFDB(1,"ROUTE"))'="INTRAVENOUS"
@@ -124,18 +130,21 @@ UND24HRS(PSJDUR,PSGAT,PSGS0XT,PSGSD,PSGFD,PSGSCH) ;
  ;PSJDUR - order duration in minutes
  ;PSGAT - admin times
  ;PSGS0XT - Order Frequency
- NEW PSJNDOSE,PSJFRQ1,PSJFRQ2,PSJFRQX
+ NEW PSJNDOSE,PSJFRQ1,PSJFRQ2,PSJFRQX,PSJX
  Q:'+$G(PSJDUR)
  ; Set frequency to # of amdin times
  I ($G(PSGAT)]"") D  Q
- . S PSJNDOSE=$$CNTDOSE(PSGSD,PSGFD)
+ . S PSJX=$$DATES(PSJPON)
+ . S PSJNDOSE=$$CNTDOSE($P(PSJX,U),$P(PSJX,U,2))
  . I PSJNDOSE S PSJFDB(PSJCNT,"FREQ")=PSJNDOSE Q
  ; Set frequency based on frequency(51.1)
  S PSJFRQ2=+$P($$FRQ^PSSDSAPI($G(PSGSCH),$G(PSGS0XT),"I"),U)
- I +$G(PSGS0XT)!PSJFRQ2 D  Q
- . S PSJFRQX=$S(+$G(PSGS0XT):+PSGS0XT,1:(PSJFRQ2*60))
- . S PSJFRQ1=(+PSJDUR)/PSJFRQX
- . S PSJFDB(PSJCNT,"FREQ")=$J(PSJFRQ1,"",0)
+ ; If frequency is there then set freq = duration in min / freq in min
+ I +$G(PSGS0XT) S PSJFRQ1=(+PSJDUR)/PSGS0XT
+ ; Calculate freq from number of dose admin per day
+ I '+$G(PSGS0XT),PSJFRQ2 S PSJFRQ1=(PSJFRQ2/24)*(+PSJDUR/60)
+ S PSJFDB(PSJCNT,"FREQ")=$J($G(PSJFRQ1),"",0)
+ I PSJFDB(PSJCNT,"FREQ")'=0 Q
  ; If no admin times or frequency(51.1) set error
  S PSJFDB(PSJCNT,"FREQ")=1
  S PSJFDB(PSJCNT,"FRQ_ERROR")=""
@@ -171,9 +180,9 @@ DOSE() ;Figure out the dose, unit, & dosage Ordered
  NEW PSJDS,PSJND0,PSJND2,X,PSJX,PSJXDOX,PSJNDS,PSJALLGY
  S PSJDS=""
  ;Subsequence orders in the Complex order has the PSGDO from the first order. Get new PSGDO
- I $G(PSJCOM),$G(PSJPON)["U" S PSGDO=$P($G(^PS(55,DFN,5,+PSJPON,.2)),U,2)
+ I $G(PSJPON)["U",$S($G(PSJCOM):1,$G(PSGRENEW):1,1:0) S PSGDO=$P($G(^PS(55,DFN,5,+PSJPON,.2)),U,2)
  ;If the dose & unit exist use them
- I $G(PSJDOSE("DO")) Q PSJDOSE("DO")_U_$G(PSGDO)
+ I +$G(PSJDOSE("DO"))_$P($G(PSJDOSE("DO")),U,2)=$G(PSGDO) Q PSJDOSE("DO")_U_$G(PSGDO)
  ;Get dd, dose, unit from the order
  I $G(PSGORD)]"",'+$G(PSJDD) D
  . I PSGORD["P" S PSJND2=$G(^PS(53.1,+PSGORD,.2)),PSJDD=$O(^PS(53.1,+PSGORD,1,"B",0))
@@ -213,12 +222,12 @@ DOSE1(PSJDUP) ;
  Q PSJDS
 DATES(PSJPON) ;Check the correct Start, Stop dates to use
  ;PSJOCDSC("CX",PSGsd/PSGfd,on)=default PSGsd/PSGfd date _^_ PSGsd/PSGfd _^_PSJFLG
- ; PSJFLG=1 if start or stop date has changed.
- ;For some reaons, PSGSD redefined to cal start date for Complex order (one with duration),
+ ;PSJP1 = Start date; PSJP2 = Stop date; PSJFLG = 1 if start or stop date has changed.
+ ;For some reasons, PSGSD redefined to cal start date for Complex order (one with duration),
  ; PSGFD redefined to cal stop date.  These 2 fields reflect the default start, stop dates if they
  ; were edited.
  ;
- NEW PSJXSD,PSJXFD,PSJP1,PSJP2,PSJFLG
+ NEW PSJXSD,PSJXFD,PSJP1,PSJP2,PSJFLG,X
  I '+$G(PSJPON) Q $G(PSGSD)_U_$G(PSGFD)_U_0
  S PSJFLG=0
  S PSJP1=$G(PSGSD),PSJP2=$G(PSGFD)
@@ -234,4 +243,8 @@ DATES(PSJPON) ;Check the correct Start, Stop dates to use
  .; I PSGFD=$P(PSJXFD,U,2) S PSJP2=$P(PSJXFD,U)
  . I (PSJXSD]"")!(PSJXFD]"") D
  .. I $S($G(PSGSD)'=$P(PSJXSD,U,2):1,$G(PSGFD)'=$P(PSJXFD,U,2):1,1:0) S PSJFLG=1
+ . S X=$G(^PS(53.1,+PSJPON,2.5))
+ . ;Reset PSJP1 & PSJP2 from the order is needed when complex order defaulted to IV but FN as UD,
+ . ; the calc Start/stop dates were used therefore the duration was not considered.
+ . I (PSJPON["P"),(PSJFLG=0),($P(X,U,2)]"") S PSJP1=$P(X,U,1),PSJP2=$P(X,U,3)
  Q PSJP1_U_PSJP2_U_PSJFLG

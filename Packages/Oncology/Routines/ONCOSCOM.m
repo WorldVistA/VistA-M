@@ -1,5 +1,5 @@
 ONCOSCOM ;WASH ISC/SRR-COMPUTATIONAL SUBROUTINES ;4/16/92  18:25
- ;;2.11;ONCOLOGY;;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;This module contains entry points for the following computations:
  ; EXP     - compute the exponential
  ; LOG10   - compute log to base 10

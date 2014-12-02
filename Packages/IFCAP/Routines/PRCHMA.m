@@ -1,11 +1,18 @@
 PRCHMA ;WISC/AKS-Amend to PO, req ;6/10/96  14:07
- ;;5.1;IFCAP;**21,79,100,113,157**;Oct 20, 2000;Build 2
+ ;;5.1;IFCAP;**21,79,100,113,157,183**;Oct 20, 2000;Build 4
  ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*183 Audit all discount nodes in order to insure the item 
+ ;            referred to is still defined.  Also, check each item
+ ;            array defined in the discounts nodes (piece 1) to  
+ ;            determine if each item still has the same contract  
+ ;            if contract noted in the discount info.
+ ;
 REQ N PRCHREQ
  S PRCHREQ=1
 PO N PRCF,RETURN,PRCHAM,PRCHPO,PRCHNEW,OUT,CAN,PRCHAU,PRCHER,PRCHON,A,B,ER,FL,FIS,DELIVER,PRCHAMDA,PRCHAV,PRCHL1,PRCHLN,PRCHRET,LCNT
  N PRCHL2,ROU,DIC,I,PRCHAMT,PRCHAREC,PRCHEDI,X,Y,PRCHN,PRCHO,SFUND,PRCHX,PRCHIMP,PRCHNRQ,PRCHP,REPO,PRCHNORE,%,%A,%B,D0,D1,J
- N PRCFL,MSG
+ N PRCFL,MSG,PRCDCERR         ;PRC*5.1*183
 LOOP D KILL^PRCHMA1 S PRCHNEW="",PRCHNORE=1,CAN=0
  ; See routine PRCHAMXA for information on variable PRCHNORE and undefined DIK, var PRCHPO is the basic premise of locks applied to amendments
  S PRCF("X")="S" D ^PRCFSITE Q:'$D(PRC("SITE"))
@@ -48,6 +55,7 @@ CAN1 S BFLAG=0
  ..S:$P($G(^PRC(442,PRCHPO,2,THISHLD,2)),U,2)'="" BFLAG=1
  W:BFLAG=0 !,"This is now a contract order.  You must add a contract to this orders item(s)",!,"before approving the amendment.",!
  G:BFLAG=0 EXIT
+ S PRCDCERR=0 D CHKDISC G:PRCDCERR ASK    ;PRC*5.1*183
  D:BFLAG=1 UPDATE^PRCHAMU G:$D(Y) EXIT
 CHK I '$$VERIFY^PRCHES5(PRCHPO) W !!,?5,"This purchase order has been tampered with.",!,?5,"Please notify IFCAP APPLICATION COORDINATOR." G EXIT
  I $P($G(^PRC(443.6,PRCHPO,6,PRCHAM,1)),U,4)']"" W !!,?5,"There is no Amendment Status." D
@@ -154,6 +162,7 @@ ENC S ER=0
 APP S %A="   Approve Amendment number "_PRCHAM_": ",%B="",%=$S($G(PRCPROST):1,1:2) D ^PRCFYN
  Q
 REV N PRCH
+ S PRCDCERR=0 D CHKDISC Q:PRCDCERR       ;** PRC*5.1*183 Skip disc calc call to prevent item/disc sync errors due to erroneous previous amendment 
  S %=1,%B="",%A="   Review Amendment " D ^PRCHSF3 W ! D ^PRCFYN
  I %=1 S D0=PRCHPO,D1=PRCHAM,PRCH="^PRC(443.6," D ^PRCHDAM
  Q
@@ -172,4 +181,40 @@ TOP ;PAUSE AT BOTTOM OF SCREEN
  N DIR S DIR(0)="E"
  D ^DIR
  S LCNT=1
+ Q
+CHKDISC ;CHECK DISCOUNTS MATCH ITEMS        ;PRC*5.1*183
+ N PRCHDSC,PRCRDIS,PRCRITEM,PRCRCONT,PRCDERRS,PRCTT,PRCRERR,PRCRTYP,PRCRITM,PRCITEM,PRCIT,PRCII,PRCJJ
+ S PRCHDSC=0,PRCTT=0
+D1 F  S PRCHDSC=$O(^PRC(443.6,PRCHPO,3,PRCHDSC)) Q:'PRCHDSC  D
+ . S PRCRDIS=$G(^PRC(443.6,PRCHPO,3,PRCHDSC,0)) Q:PRCRDIS=""
+ . S PRCRITEM=$P(PRCRDIS,U),PRCRCONT=$P(PRCRDIS,U,5)
+ . I PRCRITEM[":" D
+ .. F PRCII=$P(PRCRITEM,":"):1:$P(PRCRITEM,":",2) D
+ ... S PRCIT=0 I $D(^PRC(443.6,PRCHPO,2,"B",PRCII)) S PRCIT=$O(^PRC(443.6,PRCHPO,2,"B",PRCII,0))
+ ... I 'PRCIT S PRCTT=PRCTT+1,PRCDERRS(PRCHDSC,PRCII,PRCTT)=PRCIT_";UNDF;"_PRCRDIS Q
+ ... I $P(^PRC(443.6,PRCHPO,2,PRCIT,2),U,2)'=$P(PRCRDIS,U,5) S PRCTT=PRCTT+1,PRCDERRS(PRCHDSC,PRCII,PRCTT)=PRCIT_";CONT;"_PRCRDIS
+ . I PRCRITEM'[":" D
+ .. F PRCJJ=1:1 S PRCII=$P(PRCRITEM,",",PRCJJ) Q:'PRCII  D
+ ... S PRCIT=0 I $D(^PRC(443.6,PRCHPO,2,"B",PRCII)) S PRCIT=$O(^PRC(443.6,PRCHPO,2,"B",PRCII,0))
+ ... I 'PRCIT S PRCTT=PRCTT+1,PRCDERRS(PRCHDSC,PRCII,PRCTT)=PRCIT_";UNDF;"_PRCRDIS Q
+ ... I $P(^PRC(443.6,PRCHPO,2,PRCIT,2),U,2)'=$P(PRCRDIS,U,5) S PRCTT=PRCTT+1,PRCDERRS(PRCHDSC,PRCII,PRCTT)=PRCIT_";CONT;"_PRCRDIS
+ . Q
+ ;
+D2 ;LIST ANY DISCOUNT ERRORS FOUND IN RELATION TO ITEMS
+ Q:PRCTT=0  S PRCDCERR=1
+ W !!,"Discounts/Items discrepancies found... MUST fix either item or discount listed"
+ W !!,"DC-IT ITEM(s) %/AMT DISC/ITEM CONTRACT#     REASON",!
+ S PRCHDSC=0
+ F  S PRCHDSC=$O(PRCDERRS(PRCHDSC)) Q:'PRCHDSC  D
+ . S PRCRITM=0
+ . F  S PRCRITM=$O(PRCDERRS(PRCHDSC,PRCRITM)) Q:'PRCRITM  D
+ .. S PRCRERR=0
+ .. F  S PRCRERR=$O(PRCDERRS(PRCHDSC,PRCRITM,PRCRERR)) Q:'PRCRERR  D
+ ... S PRCRITEM=PRCDERRS(PRCHDSC,PRCRITM,PRCRERR),PRCIT=$P(PRCRITEM,";"),PRCRTYP=$P(PRCRITEM,";",2),PRCRITEM=$P(PRCRITEM,";",3)
+ ... S PRCITEM=$G(^PRC(443.6,PRCHPO,2,PRCIT,2))
+ ... W !,PRCHDSC,"-",PRCRITM,?6,$P(PRCRITEM,U),?15,$P(PRCRITEM,U,2),?20,$S($P(PRCRITEM,U,5)'="":$P(PRCRITEM,U,5),1:"NONE"),"/",$S($P(PRCITEM,U,2)'="":$P(PRCITEM,U,2),1:"NONE")
+ ... W ?44,$S(PRCRTYP="UNDF":"Tampering, item has been removed",PRCRTYP="CONT":"Item/Disc contract numbers mismatch",1:"")
+ ... Q
+ ;
+ W !!,"Error(s) MUST be fixed to approve/review the amendment.....",! S DIR(0)="EAO",DIR("A")="Press <Enter> to return to Amendment Processing..." D ^DIR K DIR
  Q

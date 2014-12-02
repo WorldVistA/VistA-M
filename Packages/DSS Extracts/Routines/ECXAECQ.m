@@ -1,8 +1,8 @@
-ECXAECQ ;ALB/JAP - ECQ Extract Audit Report ; 5/22/02 3:47pm
- ;;3.0;DSS EXTRACTS;**8,33,35,43,44,123**;Dec 22, 1997;Build 8
+ECXAECQ ;ALB/JAP - ECQ Extract Audit Report ;3/3/14  14:51
+ ;;3.0;DSS EXTRACTS;**8,33,35,43,44,123,149**;Dec 22, 1997;Build 27
  ;
 EN ;entry point for ECQ extract audit report
- N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,ECXQV,ECXPOS,ECXYR,ECXMTH,ECXPFLG,ECXOPT,QFLG,Q2FLG
+ N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,ECXQV,ECXPOS,ECXYR,ECXMTH,ECXPFLG,ECXOPT,QFLG,Q2FLG,ECXPORT,RCNT,ECCL ;149
  S (ECXERR,QFLG)=0
  ;ecxaud=0 for 'extract' audit
  S ECXHEAD="ECQ",ECXAUD=0
@@ -36,6 +36,12 @@ EN ;entry point for ECQ extract audit report
  .W !!,?5,"Try again later... exiting.",!
  .D AUDIT^ECXKILL
  ;determine output device and queue if requested
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I $G(ECXPORT) D  Q  ;149 Section added
+ .K ^TMP($J,"ECXPORT")
+ .S ^TMP($J,"ECXPORT",0)="EXTRACT LOG #^QUASAR SITE^DIVISION^DSS UNIT^PROCEDURE^PROCEDURE DESCRIPTION^VOLUME",RCNT=1
+ .D PROCESS
+ .D EXPDISP^ECXUTL1
+ .D AUDIT^ECXKILL
  W !
  S ECXPGM="PROCESS^ECXAECQ",ECXDESC="ECQ Extract Audit Report"
  S ECXSAVE("ECXHEAD")="",ECXSAVE("ECXALL")="",ECXSAVE("ECXDIV(")="",ECXSAVE("ECXARRAY(")="",ECXSAVE("ECXPOS")=""
@@ -53,7 +59,7 @@ EN ;entry point for ECQ extract audit report
  Q
  ;
 PROCESS ;process data in file #727.825
- N X,Y,W,ADIV,DATA,DATE,DIV,DIVACK,IEN,LOC,ECNIEN
+ N X,Y,W,ADIV,DATA,DATE,DIV,DIVACK,IEN,LOC,ECNIEN,ECXLINK
  N UNIT,UNITN,VOL,PROC,PROCN,SDIV,QQFLG,CNT
  K ^TMP($J,"ECXAUD"),^TMP($J,"ECXPROC")
  S (CNT,QQFLG)=0,ECXEXT=ECXARRAY("EXTRACT"),ECXDEF=ECXARRAY("DEF")
@@ -93,6 +99,7 @@ PROCESS ;process data in file #727.825
  ..I $D(ZTQUEUED),(CNT>499),'(CNT#500),$$S^%ZTLOAD S QQFLG=1,ZTSTOP=1 K ZTREQ
  ;print the report
  D PRINT
+ I $G(ECXPORT) Q  ;149 Stop processing if exporting
  D AUDIT^ECXKILL
  Q
  ;
@@ -104,31 +111,39 @@ PRINT ;print quasar data by site and dss unit order
  S (QFLG,PG)=0,$P(LN,"-",80)="",DIV=""
  F  S DIV=$O(ECXDIV(DIV)) Q:DIV=""  D  Q:QFLG
  .S DIVNM=$P(ECXDIV(DIV),U,2)_" ("_$P(ECXDIV(DIV),U,3)_")"
- .D HEADER Q:QFLG
+ .I '$G(ECXPORT) D HEADER Q:QFLG  ;149
  .S GTOT=0,STOT("A")=0,STOT("S")=0,STOT("XX")=0
  .I '$D(^TMP($J,"ECXAUD",DIV)) D  Q
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=ECXARRAY("EXTRACT")_"^"_$P(ECXDIV(DIV),U,2)_" ("_$P(ECXDIV(DIV),U,3)_")"_"^No data available for this QUASAR site" Q  ;149
  ..W !!,?5,"No data available for this QUASAR site.",!!
  .I $D(^TMP($J,"ECXAUD",DIV)) S ADIV="" D
  ..F  S ADIV=$O(^TMP($J,"ECXAUD",DIV,ADIV)) Q:ADIV=""  S LOC="" D  Q:QFLG
  ...F  S LOC=$O(^TMP($J,"ECXAUD",DIV,ADIV,LOC)) Q:LOC=""  D  Q:QFLG
  ....;write the unit name
  ....S UNITN=$S(LOC="A":"Audiology",LOC="S":"Speech Pathology",1:"Unknown"),PROC=""
- ....D:($Y+2>IOSL) HEADER Q:QFLG  W !,"Division: ("_ADIV_")",!?20,UNITN
+ ....I '$G(ECXPORT) D:($Y+2>IOSL) HEADER Q:QFLG  W !,"Division: ("_ADIV_")",!?20,UNITN ;149
  ....F  S PROC=$O(^TMP($J,"ECXAUD",DIV,ADIV,LOC,PROC)) Q:PROC=""  D  Q:QFLG
  .....S TOT=+^TMP($J,"ECXAUD",DIV,ADIV,LOC,PROC),PROCN=$P(^(PROC),U,2),P=$E(PROC,2,99)
  .....S SDIV(ADIV,LOC)=$G(SDIV(ADIV,LOC))+TOT
  .....S STOT(LOC)=STOT(LOC)+TOT,GTOT=GTOT+TOT
+ .....I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=ECXARRAY("EXTRACT")_U_$P(ECXDIV(DIV),U,2)_" ("_$P(ECXDIV(DIV),U,3)_")"_U_ADIV_U_UNITN_U_P_U_PROCN_U_TOT,RCNT=RCNT+1 Q  ;149
  .....D:($Y+3>IOSL) HEADER Q:QFLG  W !,?25,P,?35,$E(PROCN,1,30),?68,$$RJ^XLFSTR(TOT,5," ")
  ....;write the unit subtotal
+ ....I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^^^^Volume for "_UNITN_"^^"_+$G(SDIV(ADIV,LOC)),RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1 Q  ;149
  ....D:($Y+4>IOSL) HEADER Q:QFLG
  ....W !,?25,$E(LN,1,54)
  ....W !,"Volume for "_UNITN_":",?68,$$RJ^XLFSTR(+$G(SDIV(ADIV,LOC)),5," "),!!
  .;write the division grandtotal
+ .I $G(ECXPORT) D  Q  ;149 section added
+ ..S ^TMP($J,"ECXPORT",RCNT)="^^^^Total Volume for Audiology^^"_STOT("A"),RCNT=RCNT+1
+ ..S ^TMP($J,"ECXPORT",RCNT)="^^^^Total Volume for Speech Pathology^^"_STOT("S"),RCNT=RCNT+1
+ ..S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^^^^Grand Total for Site "_DIVNM_"^^"_GTOT,RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1
  .D:($Y+5>IOSL) HEADER Q:QFLG
  .W !!,"Total Volume for Audiology:",?68,$$RJ^XLFSTR(STOT("A"),5," ")
  .W !,"Total Volume for Speech Pathology:",?68,$$RJ^XLFSTR(STOT("S"),5," ")
  .W !!,"Grand Total for Site "_DIVNM_":",?68,$$RJ^XLFSTR(GTOT,5," ")
  ;print the audit descriptive narrative
+ I $G(ECXPORT) Q  ;149
  I $E(IOST)'="C" D
  .W @IOF S PG=PG+1
  .W !,ECXARRAY("TYPE")_" ("_ECXHEAD_") Extract Audit Report"
@@ -153,7 +168,7 @@ HEADER ;header and page control
  W !,"DSS Extract Log #:    "_ECXARRAY("EXTRACT")
  W !,"Date Range of Audit:  "_ECXARRAY("START")_" to "_ECXARRAY("END")
  W !,"Report Run Date/Time: "_ECXRUN
- W !,"QUASAR Site:         "_$P(ECXDIV(DIV),U,2)_"("_$P(ECXDIV(DIV),U,3)_")",?68,"Page: "_PG
+ W !,"QUASAR Site:          "_$P(ECXDIV(DIV),U,2)_"("_$P(ECXDIV(DIV),U,3)_")",?68,"Page: "_PG ;149 Added space to line up data with other headers
  W !!,"DSS Unit",?25,"Procedure",?68,"Volume"
  W !,LN
  Q

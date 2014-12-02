@@ -1,7 +1,8 @@
 PSSHRIT ;WOIFO/SG,PO - Transmits a "ping" to determine if FDB server is down and record the down time ;7/30/2008
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,168,164**;9/30/97;Build 9
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,168,164,173,180**;9/30/97;Build 2
  ;
  ;External reference to IN^PSSHRQ2 supported by DBIA 5369
+ ;External reference to File 18.12 supported by DBIA 5891
  ;
  Q
 PINGCHK ; do ping test, if not passed record it and send a message.
@@ -77,6 +78,7 @@ SMSGDWN ; send a bulletin that Interface connection is down.
  .S PSFDB(2)="Therapy Order Checks will be performed until the connection is reestablished!!!"
  S XMY("G.PSS ORDER CHECKS")=""
  D ^XMB
+ S DIE="^PS(59.74,",DR="3///1" D ^DIE K DIE,DR,DA
  Q
  ;
 SMSGRST ; send a bulletin that Interface connection is restored
@@ -349,8 +351,11 @@ CUSTOM() ; check custom drug-drug interaction
  ;
 INTACT ; check vendor data base link
  ; Called from CHECK VENDOR DATABASE LINK  option
- N STATUS,PSFIN,BASE,STATUS,Y
+ N STATUS,PSFIN,BASE,Y,PSSCKWER,PSSCKW1,PSSCKW2,PSSCKW3
  S BASE="PSPRE"
+ S PSSCKW1=$$FIND1^DIC(18.12,"","X","PEPS","B",,"PSSCKWER") K PSSCKWER
+ I PSSCKW1 S PSSCKW2=$$GET1^DIQ(18.12,PSSCKW1_",",.04,"I",,"PSSCKWER") K PSSCKWER
+ S:$G(PSSCKW2)="" PSSCKW2="Unknown Database" S PSSCKW3=$L(PSSCKW2)
  K ^TMP($J,BASE)
  S ^TMP($J,BASE,"IN","PING")=""
  D IN^PSSHRQ2(BASE)
@@ -371,9 +376,9 @@ INTACT ; check vendor data base link
  .;
  .S Y=$$NOW^XLFDT()
  .D DD^%DT                       ; convert current time in Y to external format.
- .W !,"Connected to Vendor database successfully @",$E(Y,1,18)
+ .W !,"Connected to "_$G(PSSCKW2),!,"successfully @",$E(Y,1,18)
  E  D
- .W !,"Connection could not be made to Vendor database."
+ .W !,"Connection could not be made to " W:PSSCKW3>46 ! W PSSCKW2_"."
  .S Y=$$GLASTRUN()
  .IF Y D
  ..D DD^%DT                      ; convert last reached time in Y to external format.

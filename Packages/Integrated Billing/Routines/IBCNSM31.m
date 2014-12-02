@@ -1,5 +1,5 @@
 IBCNSM31 ;ALB/AAS - INSURANCE MANAGEMENT - OUTPUTS ;28-MAY-93
- ;;2.0;INTEGRATED BILLING;**6,28,68,413**;21-MAR-94;Build 9
+ ;;2.0;INTEGRATED BILLING;**6,28,68,413,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % G EN^IBCNSM
@@ -94,13 +94,13 @@ COVERED(DFN,IBCOVP) ; -- update covered by insurance in background
 3 ; -- display group name as uneditable
  ;    called by die, expects da = entry in 355.3
  N X
- S X=$P($G(^IBA(355.3,DA,0)),"^",3)
+ S X=$P($G(^IBA(355.3,DA,2)),"^",1)      ; IB*2.0*497 (vd)
  W !,"GROUP NAME: ",X,$S(X'="":"// ",1:""),"  (No Editing)"
  Q
  ;
 4 ; -- display group number as uneditable
  ;    called by die, expects da = entry in 355.3
  N X
- S X=$P($G(^IBA(355.3,DA,0)),"^",4)
+ S X=$P($G(^IBA(355.3,DA,2)),"^",2)      ; IB*2.0*497 (vd)
  W !,"GROUP NUMBER: ",X,$S(X'="":"// ",1:""),"  (No Editing)"
  Q

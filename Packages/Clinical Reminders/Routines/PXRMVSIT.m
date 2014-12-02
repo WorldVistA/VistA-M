@@ -1,5 +1,5 @@
-PXRMVSIT ;SLC/PKR - Visit related info for reminders. ;10/28/2011
- ;;2.0;CLINICAL REMINDERS;**4,6,18**;Feb 04, 2005;Build 152
+PXRMVSIT ;SLC/PKR - Visit related info for reminders. ;03/02/2012
+ ;;2.0;CLINICAL REMINDERS;**4,6,18,24**;Feb 04, 2005;Build 193
  ;
  ;======================================================
 GETDATA(DA,DATA,SVALUE) ;Return data for a specific Visit file entry.
@@ -26,7 +26,7 @@ GETDATA(DA,DATA,SVALUE) ;Return data for a specific Visit file entry.
  ;DBIA #557
  I DATA("DSS ID")'="" S DATA("STOP CODE")=$P(^DIC(40.7,DATA("DSS ID"),0),U,2)
  S DATA("OUTSIDE LOCATION")=$G(^AUPNVSIT(DA,21))
- S DATA("COMMENTS")=$G(^AUPNVSIT(DA,811))
+ S DATA("VISIT COMMENTS")=$G(^AUPNVSIT(DA,811))
  ;DBIA #4850
  S DATA("STATUS")=$$STATUS^SDPCE(DA)
  ;Get the primary provider.

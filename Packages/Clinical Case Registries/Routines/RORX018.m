@@ -1,5 +1,5 @@
 RORX018 ;BPOIFO/ACS - BMI BY RANGE REPORT ;11/1/09
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13**;Feb 17, 2006;Build 27
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,19**;Feb 17, 2006;Build 43
  ;
  ;
  ; This routine uses the following IAs:
@@ -18,6 +18,7 @@ RORX018 ;BPOIFO/ACS - BMI BY RANGE REPORT ;11/1/09
  ;ROR*1.5*13   DEC  2010   A SAUNDERS   User can select specific patients,
  ;                                      clinics, or divisions for the report.
  ;                                      Modified XML tags for sort.
+ ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
  ;                                      
  ;******************************************************************************
  ;******************************************************************************
@@ -135,7 +136,7 @@ BMIRANGE(RORTSK) ;
  ;
  ;--- Get registry records
  S (CNT,RORPTIEN,RC)=0
- S FLAG=$G(RORTSK("PARAMS","ICD9FILT","A","FILTER"))
+ S FLAG=$G(RORTSK("PARAMS","ICDFILT","A","FILTER"))
  F  S RORPTIEN=$O(^RORDATA(798,"AC",RORREG,RORPTIEN))  Q:RORPTIEN'>0  D  Q:RC<0
  . ;--- Calculate 'progress' for the GUI display
  . S TMP=$S(RORPTN>0:CNT/RORPTN,1:"")
@@ -147,10 +148,10 @@ BMIRANGE(RORTSK) ;
  . I $D(RORTSK("PARAMS","PATIENTS","C")),'$D(RORTSK("PARAMS","PATIENTS","C",DFN)) Q
  . ;--- Check if the patient should be skipped
  . Q:$$SKIP^RORXU005(RORPTIEN,SFLAGS,SKIPSDT,SKIPEDT)
- . ;--- Check if patient has passed the ICD9 filter
+ . ;--- Check if patient has passed the ICD filter
  . S RCC=0
  . I FLAG'="ALL" D
- . . S RCC=$$ICD^RORXU010(DFN,RORREG)
+ . . S RCC=$$ICD^RORXU010(DFN)
  . I (FLAG="INCLUDE")&(RCC=0) Q
  . I (FLAG="EXCLUDE")&(RCC=1) Q
  . ;

@@ -1,5 +1,5 @@
-DGPTTS1 ;ALB/AS/ADL - FACILITY TREATING SPECIALTY AND 501 MOVEMENTS, cont. ; 11/28/89 @12
- ;;5.3;Registration;**26,64,418,510,478**;Aug 13, 1993
+DGPTTS1 ;ALB/AS/ADL - FACILITY TREATING SPECIALTY AND 501 MOVEMENTS, cont. ;11/28/89 @12
+ ;;5.3;Registration;**26,64,418,510,478,850**;Aug 13, 1993;Build 171
  ;;ADL;Update for CSV Project;;Mar 28, 2003
  ;
  ;build DGA array w/patient's last treat spec of the day as of 11:59 pm
@@ -18,7 +18,6 @@ LOOP1 ; -- compare specs between mvts ; sort out xfr if spec did't change
  I DGPREV<+DGPMAN!($P(DGPREV,".")'<$S(DGDT:$P(+DGDT,"."),1:9999999)) S (DG1,DG2)=+$P(DGA(DGPREV),"^",2) D DEL:$S('$D(^DGPM(DG1,"PTF")):0,1:$P(^("PTF"),"^",2)]"") G LOOPQ
  ;
  ; build ^UTILITY for mvts whose spec changed
- ;I X=70!(X=71) S X2=DGPREV,X1=$S(DGNEXT]"":DGNEXT,DGDT]"":DGDT,1:DT) D ^%DTC S $P(DGA(DGPREV),"^",1)=$S(X>45:71,1:70)
  S X=$S($D(^DGPM($P(DGA(DGPREV),"^",2),"PTF")):^("PTF"),1:""),^UTILITY($J,"T",DGPREV)=$P(DGA(DGPREV),"^",2)_"^"_+DGA(DGPREV)_"^"_$P(X,"^",2)_"^"_$P(X,"^",3)_"^"_$S($D(^DGPM($P(DGA(DGPREV),"^",2),0)):$P(^(0),"^",8),1:"")
 LOOPQ I $O(DGA(DGPREV)) G LOOP1
  ;
@@ -46,7 +45,10 @@ LOOPQ I $O(DGA(DGPREV)) G LOOP1
 DEL Q:$D(^UTILITY($J,"T",(9999999.999999-$E(DGPREV,1,14))))
  S DG1=$P(^DGPM(DG1,"PTF"),"^",2),DGREC=$S($D(^DGPT(PTF,"M",+DG1,0)):^(0),1:"") Q:DGREC']""  D MSG K DA S DIK="^DGPT("_PTF_",""M"",",DA(1)=PTF,DA=DG1 D ^DIK K DA
  S DA=DG2,DR="52///@;53///@",DIE="^DGPM(" D ^DIE Q
-MSG S DGMSG="" F X=5:1:15 I X'=10 S DGPTTMP=$$ICDDX^ICDCODE(+$P(DGREC,U,X),$$GETDATE^ICDGTDRG(PTF)),DGMSG=DGMSG_$S(+DGPTTMP>0:$P(DGPTTMP,U,2)_", ",1:"")
+MSG ;
+ N EFFDATE,IMPDATE,DGPTDAT
+ D EFFDATE^DGPTIC10(PTF)
+ S DGMSG="" F X=5:1:15 I X'=10 S DGPTTMP=$$ICDDATA^ICDXCODE("DIAG",+$P(DGREC,U,X),EFFDATE),DGMSG=DGMSG_$S(+DGPTTMP>0:$P(DGPTTMP,U,2)_", ",1:"")
  Q:DGMSG']""  S ^UTILITY($J,"DEL",DG1)=DGMSG
  ;-- save expanded codes 
  S DGMSG1=""

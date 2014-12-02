@@ -1,5 +1,5 @@
-LEXRXXT3 ;ISL/KER - Repair/Re-Index - Task (cont) ;08/17/2011
- ;;2.0;LEXICON UTILITY;**81**;Sep 23, 1996;Build 1
+LEXRXXT3 ;ISL/KER - Repair/Re-Index - Task (cont) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**81,80**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^XTMP("LEXRX")      SACC 2.3.2.5.2
@@ -23,15 +23,15 @@ UPD(X,LEXDES,LEXUPD) ; Update Task ^XTMP and ^%ZTSK
  I $L(LEXNAM),'$L(LEXDES),'$L(LEXUPD) K ^XTMP(LEXNAM) Q 0
  I $L(LEXNAM) I '$D(^XTMP(LEXNAM,0)) D
  . S ^XTMP(LEXNAM,0)=LEXPRG_"^"_LEXCRE I $L(LEXDES) D
- . S $P(^XTMP(LEXNAM,0),"^",3)=$$NOW^XLFDT
- . S $P(^XTMP(LEXNAM,0),"^",4)=LEXDES
+ . . S $P(^XTMP(LEXNAM,0),"^",3)=$$NOW^XLFDT
+ . . S $P(^XTMP(LEXNAM,0),"^",4)=LEXDES
  . S:+($G(ZTSK))>0 ^XTMP(LEXNAM,1)=+($G(ZTSK))
  I $L(LEXNAM),$L(LEXUPD) I $D(^XTMP(LEXNAM,0)) D
  . S ^XTMP(LEXNAM,2)=$$NOW^XLFDT_"^"_LEXUPD
  I $D(ZTQUEUED) D
  . S:$L(LEXDES)&('$L(LEXUPD)) LEXTC=$$S^%ZTLOAD(LEXDES)
  . S:$L(LEXUPD) LEXTC=$$S^%ZTLOAD(LEXUPD)
- . S:+($G(ZTSK))>0 ^XTMP(LEXNAM,1)=+($G(ZTSK))
+ . S:+($G(ZTSK))>0&($L(LEXNAM)) ^XTMP(LEXNAM,1)=+($G(ZTSK))
  S X=LEXTC
  Q X
  ;              

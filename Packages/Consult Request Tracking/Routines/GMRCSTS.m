@@ -1,5 +1,5 @@
 GMRCSTS ;SLC/DLT,JFR,MA - Group update status of consult and order; 11/25/2000
- ;;3.0;CONSULT/REQUEST TRACKING;**8,18,21**;DEC 27, 1997
+ ;;3.0;CONSULT/REQUEST TRACKING;**8,18,21,76**;DEC 27, 1997;Build 7
  ; Patch 18 - Change UPDCMT to use Editor to add comment and
  ; Added Scheduled consults to selection list.
  ; Patch 21 - Added warning message in line tag WARNING().
@@ -110,6 +110,7 @@ UPD1() ;Determine update status
  W !!,"If orders in the date range still have the selected status, this option"
  W !,"will change their status in consults, and update the order."
  W !!,"You may change the status to COMPLETE or DISCONTINUED."
+ W !!,"Ordering provider will not receive notification of Group Update."
  W !
  S DIR(0)="SAM^D:Discontinued;C:Complete"
  S DIR("A")="Change their status to: "

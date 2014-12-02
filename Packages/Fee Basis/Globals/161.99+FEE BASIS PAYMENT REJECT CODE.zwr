@@ -1,6 +1,6 @@
 FEE BASIS PAYMENT REJECT CODE
 ZWR
-^FBAA(161.99,0)="FEE BASIS PAYMENT REJECT CODE^161.99^121^121"
+^FBAA(161.99,0)="FEE BASIS PAYMENT REJECT CODE^161.99^122^122"
 ^FBAA(161.99,1,0)="C001"
 ^FBAA(161.99,1,1,0)="^^2^2^3120420"
 ^FBAA(161.99,1,1,1,0)="Treatment code on Veteran MRA or medical payment is"
@@ -376,6 +376,9 @@ ZWR
 ^FBAA(161.99,121,0)="C152"
 ^FBAA(161.99,121,1,0)="^161.991^1^1^3120912^^"
 ^FBAA(161.99,121,1,1,0)="Batch total amount not equal to sum of detail line amounts."
+^FBAA(161.99,122,0)="C166"
+^FBAA(161.99,122,1,0)="^161.991^1^1^3130425^^"
+^FBAA(161.99,122,1,1,0)="Newborn claim outside of 7 day coverage"
 ^FBAA(161.99,"B","C001",1)=""
 ^FBAA(161.99,"B","C002",2)=""
 ^FBAA(161.99,"B","C003",3)=""
@@ -475,6 +478,7 @@ ZWR
 ^FBAA(161.99,"B","C151",97)=""
 ^FBAA(161.99,"B","C152",121)=""
 ^FBAA(161.99,"B","C165",98)=""
+^FBAA(161.99,"B","C166",122)=""
 ^FBAA(161.99,"B","C200",99)=""
 ^FBAA(161.99,"B","C201",100)=""
 ^FBAA(161.99,"B","C202",101)=""

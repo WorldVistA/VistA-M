@@ -1,5 +1,5 @@
 IBCNEDE6 ;DAOU/DAC - eIV DATA EXTRACTS ;15-OCT-2002
- ;;2.0;INTEGRATED BILLING;**184,271,345,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,271,345,416,497,506**;21-MAR-94;Build 74
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q    ; no direct calls allowed
@@ -111,27 +111,24 @@ UPDDTS(PIEN,SVDT,FRDT) ;  Update service date and freshness date per payer
  S DATA=$G(^IBE(365.12,PIEN,1,AIEN,0))
  I DATA="" Q  ; Quit without changing if node is not defined
  S FDAYS=$P(DATA,U,14),PDAYS=$P(DATA,U,15)
- ; DAOU/WCW - Overriding this to allow service date of only today
- ;            for the time being - setting params to 0
- S FDAYS=0,PDAYS=0
  ; Process past service days if not null
  I PDAYS'="" D
- . ; If zero, reset to today
- . I PDAYS=0 S SVDT=$$DT^XLFDT,EDTFLG=1
+ . ; If zero and Service Date is less than today, reset to today
+ . I PDAYS=0&(SVDT<DT) S SVDT=$$DT^XLFDT,EDTFLG=1
  . ; If non-zero and service date is earlier than the allowed
  . ;  payer service date range, reset service date to earliest allowed
  . ;  date for the payer
- . I PDAYS,SVDT<$$FMADD^XLFDT($$DT^XLFDT,-PDAYS+1) D
- . . S SVDT=$$FMADD^XLFDT($$DT^XLFDT,-PDAYS+1),EDTFLG=1
+ . I PDAYS,(SVDT<$$FMADD^XLFDT($$DT^XLFDT,-PDAYS)) D
+ . . S SVDT=$$FMADD^XLFDT($$DT^XLFDT,-PDAYS),EDTFLG=1
  ; Process future service days if not edited and if not null
  I EDTFLG=0,FDAYS'="" D
- . ; If zero, reset to today
- . I FDAYS=0 S SVDT=$$DT^XLFDT,EDTFLG=1
+ . ; If zero and Service Date is greater than today, reset to today
+ . I FDAYS=0&(SVDT>DT) S SVDT=$$DT^XLFDT,EDTFLG=1
  . ; If non-zero and service date is later than the allowed
  . ;  payer service date range, reset service date to latest allowed
  . ;  date for the payer
- . I FDAYS,SVDT>$$FMADD^XLFDT($$DT^XLFDT,FDAYS-1) D
- . . S SVDT=$$FMADD^XLFDT($$DT^XLFDT,FDAYS-1),EDTFLG=1
+ . I FDAYS,(SVDT>$$FMADD^XLFDT($$DT^XLFDT,FDAYS)) D
+ . . S SVDT=$$FMADD^XLFDT($$DT^XLFDT,FDAYS),EDTFLG=1
  ;
  ; Determine if difference exists
  I EDTFLG,$G(FRDT)'="" S FRDT=$$FMADD^XLFDT(FRDT,$$FMDIFF^XLFDT(SVDT,OSVDT))

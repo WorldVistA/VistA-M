@@ -1,5 +1,5 @@
 SROACOM1 ;BIR/MAM - COMPLETE ASSESSMENT ;05/05/10
- ;;3.0; Surgery ;**166,174**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**166,174,177**;24 Jun 93;Build 89
  I '$D(SRTN) Q
  S (SRSFLG,SRSOUT,SROVER)=0,SRA=$G(^SRF(SRTN,"RA")),Y=$P(SRA,"^") I Y'="I" W !!,"This assessment has a "_$S(Y="C":"'COMPLETE'",1:"'TRANSMITTED'")_" status.",!!,"No action taken." G END
  I $P(SRA,"^",2)="C" D CHK^SROAUTLC
@@ -40,8 +40,10 @@ PRT S SRSOUT=0,(SRMD,SRMDD,SRMD1)="",SRCNT=0 F  S SRMDD=$O(SRX(SRMDD)) Q:SRMDD="
  Q
 CHCK ; cardiac checks added by SR*3*93
  N SRADM,SRDIS,SRISCH,SRCPB,SRRET S SRRET=0,X=$G(^SRF(SRTN,208)),SRADM=$P(X,"^",14),SRDIS=$P(X,"^",15),X=$G(^SRF(SRTN,206)),SRISCH=$P(X,"^",36),SRCPB=$P(X,"^",37)
- I SRADM,SRDIS,SRADM'<SRDIS W !!,"  ***  NOTE: Discharge Date precedes Admission Date!!  Please check.  ***" S SRRET=1,SRZZ(418)="",SRX($P(SRZZ(418),"^",2))=""
- I SRISCH,SRCPB,SRISCH>SRCPB W !!,"  ***  NOTE: Ischemic Time is greater than CPB Time!!  Please check.  ***",! S SRRET=1,SRZZ(450)="",SRX($P(SRZZ(450),"^",2))=""
+ I SRADM,SRDIS,SRADM'<SRDIS W !!,"  ***  NOTE: Discharge Date precedes Admission Date!!  Please check.  ***" D
+ . S SRRET=1 S:$P($G(SRZZ(418)),U,2)'="" SRX($P(SRZZ(418),"^",2))="" S SRZZ(418)=""
+ I SRISCH,SRCPB,SRISCH>SRCPB W !!,"  ***  NOTE: Ischemic Time is greater than CPB Time!!  Please check.  ***",! D
+ . S SRRET=1 S:$P($G(SRZZ(450)),U,2)'="" SRX($P(SRZZ(450),"^",2))="" S SRZZ(450)=""
  I SRRET W ! K DIR S DIR(0)="E" D ^DIR K DIR S:$D(DTOUT)!$D(DUOUT) SRSOUT=1 W !
  Q
 RET W !! K DIR S DIR(0)="E" D ^DIR K DIR W @IOF I $D(DTOUT)!$D(DUOUT) S SRSOUT=1

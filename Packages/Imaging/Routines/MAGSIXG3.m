@@ -1,5 +1,5 @@
 MAGSIXG3 ;WOIFO/SG/NST - LIST OF IMAGES RPCS (CALLBACK) ; 15 Nov 2010 8:18 AM
- ;;3.0;IMAGING;**93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+ ;;3.0;IMAGING;**93,117,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -155,6 +155,8 @@ QRYCBK(IMGIEN,FLAGS,MAGDATA) ;
  S STATUS=$P(X100,U,8)    ; STATUS(113)
  S CAPTAPP=$P(X2,U,12)    ; CAPTURE APPLICATION (8.1)
  ;
+ ;=== Patch 140-  Status 13 is a Non Existant Image. Don't list anytime.
+ I STATUS=13 Q 0  ;
  ;=== Patch 59.  Treat Class as a computed field.
  ;=== Arrange with Mike to change DB.
  S CLASS=$S(TYPE:$P($G(^MAG(2005.83,+TYPE,0)),U,2),1:"")

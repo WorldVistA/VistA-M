@@ -1,6 +1,6 @@
 IBCNSU2 ;ALB/NLR - INSURANCE PLAN LOOK-UP UTILITY ; 18-NOV-94
- ;;Version 2.0 ; INTEGRATED BILLING ;**28,62**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,62,497**;21-MAR-94;Build 120
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 LKP(IBCNS,IBIND,IBMULT,IBSEL,IBALR,IBW) ; Look-up Utility for Insurance Plans
  ;  Input:    IBCNS  --  Pointer to the ins. company in file #36
@@ -23,20 +23,21 @@ LKP(IBCNS,IBIND,IBMULT,IBSEL,IBALR,IBW) ; Look-up Utility for Insurance Plans
 LKPQ Q
  ;
 INIT ; Build the list of plans.
- N IBP,IBCPOLD,X
+ N IBP,IBCPOLD,X,IBCPOLD2  ;WCJ;IB*2*497
  K ^TMP("IBCNSJ",$J)
  S VALMCNT=0,VALMBG=1
  S IBP=0 F  S IBP=$O(^IBA(355.3,"B",+IBCNS,IBP)) Q:'IBP  D
  .S IBCPOLD=$G(^IBA(355.3,+IBP,0))
+ .S IBCPOLD2=$G(^IBA(355.3,+IBP,2))  ;WCJ;IB*2.0*497
  .I 'IBIND,'$P(IBCPOLD,"^",2) Q  ;    exclude individual plans
  .I 'IBW,$P(IBCPOLD,"^",11) Q  ;      plan is inactive
  .;
  .S VALMCNT=VALMCNT+1
  .S X=$$SETFLD^VALM1(VALMCNT,"","NUMBER")
  .I '$P(IBCPOLD,"^",2) S $E(X,4)="+"
- .S X=$$SETFLD^VALM1($P(IBCPOLD,"^",3),X,"GNAME")
+ .S X=$$SETFLD^VALM1($P(IBCPOLD2,"^",1),X,"GNAME")  ;WCJ;IB*2.0*497
  .I $P(IBCPOLD,"^",11) S $E(X,24)="*"
- .S X=$$SETFLD^VALM1($P(IBCPOLD,"^",4),X,"GNUM")
+ .S X=$$SETFLD^VALM1($P(IBCPOLD2,"^",2),X,"GNUM")  ;WCJ;IB*2.0*497
  .S X=$$SETFLD^VALM1($$EXPAND^IBTRE(355.3,.09,$P(IBCPOLD,"^",9)),X,"TYPE")
  .S X=$$SETFLD^VALM1($$YN^IBCNSM($P(IBCPOLD,"^",5)),X,"UR")
  .S X=$$SETFLD^VALM1($$YN^IBCNSM($P(IBCPOLD,"^",6)),X,"PREC")

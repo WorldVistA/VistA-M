@@ -1,5 +1,5 @@
-DIC ;SFISC/XAK,TKW,SEA/TOAD-VA FileMan: Lookup, Part 1 ;6/28/2009
- ;;22.0;VA FileMan;**4,17,20,78,164**;Mar 30, 1999;Build 1
+DIC ;SFISC/XAK,TKW,SEA/TOAD-VA FileMan: Lookup, Part 1 ;2:48 PM  11 Jun 2013
+ ;;22.0;VA FileMan;**4,17,20,78,164,170**;Mar 30, 1999;Build 10
  ;Per VHA Directive 2004-038, this routine should not be modified.
  N %,D,DF,DIFILEI,DIENS,DINDEX,DS,DIASKOK K DO S U="^",DIC(0)=$G(DIC(0))
  D GETFILE^DIC0(.DIC,.DIFILEI,.DIENS) I DIFILEI="" S Y=-1 Q
@@ -51,7 +51,7 @@ F ; Start regular lookup
 F1 S (DD,DS,DS(0),DS("DD"))=0
  D SEARCH^DIC3
  I $G(DTOUT)!(Y'<0) D Q^DIC2 Q
- I $P(DS(0),U,2)="?",(DIC(0)_$G(DICR(1,0)))'["A" D K G F1
+ I $P(DS(0),U,2)="?",(DIC(0)_$G(DICR(1,0)))'["A" D K,INDEX^DICUIX(.DIFILEI,"4l",.DINDEX,"",.DIVAL) G F1 ;**170
  I +DS(0)=2 S X=$P(DS(0),U,2) D K D  G A1
  . K DIVAL,DIALLVAL S DIVAL(0)=0,Y=-1,DIALLVAL=1
  . D CHKVAL^DIC0,CHKVAL2^DIC0(DINDEX("#"),.DIVAL,DIC(0),.DDS)

@@ -1,5 +1,5 @@
 IBCU7 ;ALB/AAS - INTERCEPT SCREEN INPUT OF PROCEDURE CODES ;29-OCT-91
- ;;2.0;INTEGRATED BILLING;**62,52,106,125,51,137,210,245,228,260,348,371,432,447**;21-MAR-94;Build 80
+ ;;2.0;INTEGRATED BILLING;**62,52,106,125,51,137,210,245,228,260,348,371,432,447,488,461**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRU7
@@ -42,6 +42,7 @@ ASKCOD N Z,Z0,DA,IBACT,IBQUIT,IBLNPRV  ;WCJ;2.0*432
  ;
  F  S IBQUIT=0 D  Q:IBQUIT
  . S IBPOPOUT=0
+ . D DICV ; restrict code type to PCM
  . S DIC("A")="   Select PROCEDURE: "
  . S DIC="^DGCR(399,"_IBIFN_",""CP"","
  . S DIC(0)="AEQMNL"
@@ -52,7 +53,7 @@ ASKCOD N Z,Z0,DA,IBACT,IBQUIT,IBLNPRV  ;WCJ;2.0*432
  . S IBPROCP=+Y
  . ; If we just added inactive code - it must be deleted.
  . S IBACT=0 ; Active flag
- . I Y["ICD0" S IBACT=$$ICD0ACT^IBACSV(+$P(Y,U,2),DGPROCDT)
+ . I Y["ICD0" S IBACT=$$ICD0ACT^IBACSV(+$P(Y,U,2),$$BDATE^IBACSV(IBIFN))
  . I Y["ICPT" S IBACT=$$CPTACT^IBACSV(+$P(Y,U,2),DGPROCDT)
  . S DGCPTNEW=$P(Y,"^",3) ;Was the procedure just added?
  . I DGCPTNEW,'IBACT D DELPROC Q
@@ -83,10 +84,10 @@ ASKCOD N Z,Z0,DA,IBACT,IBQUIT,IBLNPRV  ;WCJ;2.0*432
  . N IBPROCSV  ; DEM;432 - Variable IBPROCSV is variable to preserve value of 'Y', which is procedure code info returned by call to ^DIC.
  . S IBPROCSV=Y  ; DEM;432 - Preserve value of Y for after calls to FileMan (Y = procedure code info returned by call to ^DIC).
  . K DR   ;WCJ;IB*2.0*432
- . ; START IB*2.0*447 BI
- . ;I Y["ICPT" S DR=".01;16",DIE=DIC,(IBPROCP,DA)=+Y D ^DIE Q:'$D(DA)!($E($G(Y))=U)  K DR ;
- . I Y["ICPT" S DR=".01;16",DIE=DIC,(IBPROCP,DA)=+Y D ^DIE Q:'$D(DA)!($D(Y))  K DR ;
- . ; END IB*2.0*447 BI
+ . ; 
+ . I IBPROCSV["ICD0" S DR=".01",DIE=DIC,(IBPROCP,DA)=+Y D ^DIE Q:'$D(DA)!($D(Y))  K DR ; IB*2.0*461
+ . I IBPROCSV["ICPT" S DR=".01;16",DIE=DIC,(IBPROCP,DA)=+Y D ^DIE Q:'$D(DA)!($D(Y))  K DR ; IB*2.0*447 BI
+ . ;
  . S DR=""
  . D EN^IBCU7B ; DEM;432 - Call to line level provider user input.
  . S Y=IBPROCSV  ; DEM;432 - Restore value of Y after calls to FileMan
@@ -145,12 +146,13 @@ DTMESQ K DGNODUU Q
 CODHLP ;Display Additional Procedure codes
  N I,J,Y,IBMOD
  I '$O(^DGCR(399,IBIFN,"CP",0)) W !!?5,"No Codes Entered!",! Q
- F I=0:0 S I=$O(^DGCR(399,IBIFN,"CP",I)) Q:'I  S Y=$G(^(I,0)) S Z=$$PRCNM^IBCSCH1($P(Y,"^",1),$P(Y,"^",2)) W !?5,$E($P(Z,"^",2),1,28),?35,"- ",$P(Z,"^") D
+ W ! F I=0:0 S I=$O(^DGCR(399,IBIFN,"CP",I)) Q:'I  S Y=$G(^(I,0)) S Z=$$PRCNM^IBCSCH1($P(Y,"^",1),$P(Y,"^",2)) W !?5,$E($P(Z,"^",2),1,33),?40,"- ",$P(Z,"^") D
  . N IBY
  . S IBY=$P(Y,U,2)
  . S IBMOD=$$GETMOD^IBEFUNC(IBIFN,I,1)
  . I IBMOD'="" S IBMOD="/"_IBMOD W IBMOD
  . W ?60,"Date: " S Y=IBY D DT^DIQ
+ W !
  ;
  K Z Q
  ;
@@ -163,16 +165,19 @@ DEFDIV(IBIFN) ; Find default division for bill IBIFN
 ADDTNL(IBIFN,DA) ;
  N DR,IBOK,X,Y,DIR
  S IBOK=1
- S DR="19;50.09;50.08" D ^DIE
+ S DR="19T;50.09T;50.08T" D ^DIE  ; WCJ;IB*2.0*488 Added Ts
  ;I '($$FT^IBCEF(IBIFN)'=3&($$INPAT^IBCEF(IBIFN))) D ATTACH  ; DEM;432 - Prompt for Attachment Control Number.
  I '($$FT^IBCEF(IBIFN)=3&($$INPAT^IBCEF(IBIFN))) D ATTACH  ; DEM;432 - Prompt for Attachment Control Number.
  I $D(Y) S IBOK=0 G ADDTNLQ
- S DIR("B")="NO",DIR("A")="EDIT CMS-1500 SPECIAL PROGRAM FIELDS and BOX 19?: ",DIR("A",1)=" ",DIR(0)="YA"
- S DIR("?",1)="Respond YES only if you need to add/edit data for chiropractic visits,"
- S DIR("?")="EPSDT care, or if billing for HOSPICE and attending is not a hospice employee."
- D ^DIR K DIR
- I Y'=1 S IBOK=0 G ADDTNLQ
- S DR="W !,""  <<EPSDT>>"";50.07;W !!,""  <<HOSPICE>>"";50.03"
+ ;/Beginning of IB*2.0*488 (vd)
+ ;S DIR("B")="NO",DIR("A")="EDIT CMS-1500 SPECIAL PROGRAM FIELDS and BOX 19?: ",DIR("A",1)=" ",DIR(0)="YA"
+ ;S DIR("?",1)="Respond YES only if you need to add/edit data for chiropractic visits,"
+ ;S DIR("?")="EPSDT care, or if billing for HOSPICE and attending is not a hospice employee."
+ ;D ^DIR K DIR
+ ;I Y'=1 S IBOK=0 G ADDTNLQ
+ ;S DR="W !,""  <<EPSDT>>"";50.07;W !!,""  <<HOSPICE>>"";50.03"
+ S DR="50.07T;50.03T"   ;WCJ;IB*2.0*488 added Ts
+ ;/End of IB*2.0*488 (vd)
  D ^DIE
  W !
 ADDTNLQ Q IBOK

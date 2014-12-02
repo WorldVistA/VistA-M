@@ -1,5 +1,5 @@
 ECXUTL ;ALB/JAP - Utilities for DSS Extracts ; 11/23/10 1:58pm
- ;;3.0;DSS EXTRACTS;**1,5,8,84,90,127**;Dec 22, 1997;Build 36
+ ;;3.0;DSS EXTRACTS;**1,5,8,84,90,127,144**;Dec 22, 1997;Build 9
  ;
 ECXYM(ECXFMDT) ;extrinsic function
  ;converts any FM internal format date or date/time to a 6-character string
@@ -126,11 +126,11 @@ ECXDOB(ECXFMDT) ;extrinsic function
  ;only consider date portion
  S ECXFMDT=$P(ECXFMDT,".",1)
  ;special case where ecxfmdt is null
- I ECXFMDT="" S ECXDOB="19420101" Q ECXDOB
- ;error checks - return default
- I +ECXFMDT'=ECXFMDT S ECXDOB="19420101" Q ECXDOB
- I $L(ECXFMDT)<7 S ECXDOB="19420101" Q ECXDOB
- I +ECXFMDT>DT S ECXDOB="19420101" Q ECXDOB
+ I ECXFMDT="" S ECXDOB="17760704" Q ECXDOB
+ ;error checks - return default 144 - change def from 19420101 to 17760704
+ I +ECXFMDT'=ECXFMDT S ECXDOB="17760704" Q ECXDOB
+ I $L(ECXFMDT)<7 S ECXDOB="17760704" Q ECXDOB
+ I +ECXFMDT>DT S ECXDOB="17760704" Q ECXDOB
  ;default to 1st day of month
  S DAY=$E(ECXFMDT,6,7) S:DAY="00"!(+DAY>31) DAY="01"
  ;default to 1st month of year

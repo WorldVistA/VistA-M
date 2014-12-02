@@ -1,5 +1,5 @@
 PSONFI ;BIR/MHA - dispense drug/orderable item text display ;09/13/00
- ;;7.0;OUTPATIENT PHARMACY;**46,94,131,225**;DEC 1997;Build 29
+ ;;7.0;OUTPATIENT PHARMACY;**46,94,131,225,391**;DEC 1997;Build 13
  ;External reference to PSSDIN is supported by DBIA 3166
  ;External reference to ^PS(50.606 is supported by DBIA 2174
  ;External reference to ^PS(50.7 is supported by DBIA 2223
@@ -37,9 +37,7 @@ DIN(OI,DD) ;Setup DIN indicator
  K ^TMP("PSSDIN",$J) Q
  Q
 RV ;reverse video
- I $G(PKID),$G(PKIE)]"" D
- .I $O(^PS(52.41,ORD,"OBX",0)) D CNTRL^VALM10(1,1,13,IORVON,IORVOFF,0),RV^PSOPKIV1 Q
- .D CNTRL^VALM10(1,1,$L(PKIE),IORVON,IORVOFF,0)
+ I $G(PKID),$G(PKIE)]"" D CNTRL^VALM10(1,1,$L(PKIE),IORVON,IORVOFF,0)
  D:$G(NFIO) CNTRL^VALM10(+NFIO,$P(NFIO,",",2),5,IORVON,IORVOFF,0)
  D:$G(NFID) CNTRL^VALM10(+NFID,$P(NFID,",",2),5,IORVON,IORVOFF,0)
  K NFIO,NFID,PKID

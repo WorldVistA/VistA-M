@@ -12,7 +12,7 @@ ZWR
 ^ONCO(165.3,9,0)="22^Dx elsewhere AND all tx done at reporting facility"
 ^ONCO(165.3,10,0)="30^Dx and all tx elsewhere AND reporting facility participated in dx"
 ^ONCO(165.3,11,0)="31^Dx and all tx elsewhere AND rpt facility provided in-transit care"
-^ONCO(165.3,12,0)="32^Dx AND all tx elsewhere AND pt at reporting facility w recurrence"
+^ONCO(165.3,12,0)="32^Dx AND all tx elsewhere AND pt at reporting facility w recurrence or persistence"
 ^ONCO(165.3,13,0)="33^Dx AND all tx elsewhere AND pt at rpt facility w disease hist only"
 ^ONCO(165.3,14,0)="34^Rpt-by-agreement w dx AND part or all tx by rpt facility"
 ^ONCO(165.3,15,0)="35^Dx before Ref Date, dx AND part or all of tx by rpt facility"

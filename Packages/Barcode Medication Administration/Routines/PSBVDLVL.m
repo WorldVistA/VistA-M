@@ -1,11 +1,14 @@
-PSBVDLVL ;BIRMINGHAM/EFC-BCMA VIRTUAL DUE LIST FUNCTIONS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**6,3,12,11,13,32,25,61**;Mar 2004;Build 11
+PSBVDLVL ;BIRMINGHAM/EFC-BCMA VIRTUAL DUE LIST FUNCTIONS ;11/27/12 3:52pm
+ ;;3.0;BAR CODE MED ADMIN;**6,3,12,11,13,32,25,61,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ;
  ; Reference/IA
  ; $$GET^XPAR/2263
  ; 
+ ;*70 - Clinic Orders will use an Admin Early/Late calc of any day
+ ;      before or After TODAY instead of minutes as in IM meds.
+ ;
 EN(RESULTS,DFN,PSBXOR,PSBTYPE,PSBADMIN,PSBTAB,PSBUID,PSBASTS,PSBORSTS,PSBRMV) ;
  ;
  ; RPC: PSB VALIDATE ORDER
@@ -43,8 +46,10 @@ EN(RESULTS,DFN,PSBXOR,PSBTYPE,PSBADMIN,PSBTAB,PSBUID,PSBASTS,PSBORSTS,PSBRMV) ;
  ;
  D NOW^%DTC
  I PSBOSTS="H" S PSB=PSB+1,RESULTS(0)=PSB,RESULTS(PSB)="0^Order is on Provider Hold" Q
+ ;test for non-one time orders   admin prior to start date of order
  I PSBSCHT'="O"&(%<($$FMADD^XLFDT(PSBOST,"","",$$GET^XPAR("ALL","PSB ADMIN BEFORE")*-1))) S PSB=PSB+1,RESULTS(0)=PSB,RESULTS(PSB)="-1^Order Not Active" Q
  I (%>PSBOSP) S PSB=PSB+1,RESULTS(0)=PSB,RESULTS(PSB)="-1^Order Not Active" Q
+ ;tests sched types of continuous or prns that are patches
  I (PSBSCHT="C")!((PSBSCHT="P")&(PSBDOSEF="PATCH")) D
  .S PSBOKAY="0^Okay to administer"
  .I PSBASTS["*UNKNOWN*" S PSBOKAY="-1^This administration has *UNKNOWN* status" Q
@@ -62,15 +67,26 @@ EN(RESULTS,DFN,PSBXOR,PSBTYPE,PSBADMIN,PSBTAB,PSBUID,PSBASTS,PSBORSTS,PSBRMV) ;
  ..I $G(PSBASTS)]"" D  Q:+PSBOKAY<0
  ...I $P($G(^PSB(53.79,+X,0)),U,9)="" Q
  ...I $P($G(^PSB(53.79,+X,0)),U,9)'=PSBASTS S PSBOKAY="-2^Admin status mismatch" Q
- .; Minutes before
- .S PSBWIN1=$$GET^XPAR("DIV","PSB ADMIN BEFORE")*-1
- .; Minutes After
- .S PSBWIN2=$$GET^XPAR("DIV","PSB ADMIN AFTER")
- .D NOW^%DTC S PSBMIN=$$DIFF^PSBUTL(PSBADMIN,%)
- .; PENDING A PC SOLUTION!
- .I PSBMIN<PSBWIN1 S PSBOKAY="1^Admin is "_(PSBMIN*-1)_" minutes before the scheduled administration time" Q
- .I PSBMIN>PSBWIN2 S PSBOKAY="1^Admin is "_(PSBMIN)_" minutes after the scheduled administration time" Q
- .S PSBOKAY="0^Okay to administer"
+ .;*70 perform early/late admin testing of for IM & CO orders
+ .D:($G(PSBCLORD)="")  ;IM order orig logic
+ ..; Minutes before
+ ..S PSBWIN1=$$GET^XPAR("DIV","PSB ADMIN BEFORE")*-1
+ ..; Minutes After
+ ..S PSBWIN2=$$GET^XPAR("DIV","PSB ADMIN AFTER")
+ ..D NOW^%DTC S PSBMIN=$$DIFF^PSBUTL(PSBADMIN,%)
+ ..I PSBMIN<PSBWIN1 S PSBOKAY="1^Admin is "_(PSBMIN*-1)_" minutes before the scheduled administration time" Q
+ ..I PSBMIN>PSBWIN2 S PSBOKAY="1^Admin is "_(PSBMIN)_" minutes after the scheduled administration time" Q
+ ..S PSBOKAY="0^Okay to administer"
+ .D:($G(PSBCLORD)]"")  ;CO order new logic
+ ..N ADMINDT S ADMINDT=$P(PSBADMIN,".")
+ ..S PSBOKAY="1^You are about to give a medication that "
+ ..I ADMINDT>DT D  Q
+ ...S PSBOKAY=PSBOKAY_"is scheduled for "_$$DOW^XLFDT(ADMINDT)_", "_$$FMTE^XLFDT(ADMINDT,5)_"."
+ ..I ADMINDT<DT D  Q
+ ...S PSBOKAY=PSBOKAY_"was scheduled for "_$$DOW^XLFDT(ADMINDT)_", "_$$FMTE^XLFDT(ADMINDT,5)_"."
+ ..S PSBOKAY="0^Okay to administer"
+ .;*70 end early/late logic
+ ;
  ; Validate a PRN Order
  D:(PSBSCHT="P")
  .I PSBOSTS'="A",PSBOSTS'="R",PSBOSTS'="O" S PSBOKAY="-1^Order Not Active" Q
@@ -149,4 +165,3 @@ EN(RESULTS,DFN,PSBXOR,PSBTYPE,PSBADMIN,PSBTAB,PSBUID,PSBASTS,PSBORSTS,PSBRMV) ;
  S PSB=PSB+1,RESULTS(0)=PSB,RESULTS(PSB)=PSBOKAY
  F X=1:1 Q:'$D(PSBOKAY(X))  S PSB=PSB+1,RESULTS(0)=PSB,RESULTS(PSB)=PSBOKAY(X)
  Q
- ;

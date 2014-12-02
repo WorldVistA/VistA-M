@@ -1,5 +1,5 @@
 IBCF23 ;ALB/ARH - HCFA 1500 19-90 DATA (block 24, procs and charges) ;12-JUN-93
- ;;2.0;INTEGRATED BILLING;**52,80,106,122,51,152,137,402,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**52,80,106,122,51,152,137,402,432,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;requires IBIFN,IB(0),IB("U"),IB("U1"), returns # of line items in IBFLD(24)
@@ -79,10 +79,12 @@ PO ; print order array w/chrgs
  . F  S Z=$O(IBSS(IBSS1,Z)) Q:'Z  I $G(IBSS(IBSS1,Z)) D  Q
  .. I $D(IBCP(IBSS(IBSS1,Z))),$P(IBCP(IBSS(IBSS1,Z)),U,9)=$P(IBSS1,U,8) D
  ... N Q,Q0
- ... S Q=$O(IBCP(""),-1)+1,Q0=$P(IBCP(IBSS(IBSS1,Z)),U,12)
- ... M IBPO(Q,$P(IBCP(IBSS(IBSS1,Z)),U,12),Q)=IBPO(IBSS(IBSS1,Z),$P(IBCP(IBSS(IBSS1,Z)),U,12),IBSS(IBSS1,Z)),IBCP(Q)=IBCP(IBSS(IBSS1,Z))
- ... S $P(IBCP(Q),U,9)=$P(IBRV,U,6)
- ... F Z0=1:1:(IBRC(IBRV)-1) S IBPO(Q,Q0,Q+(Z0*.01))=IBPO(Q,Q0,Q) I Z0=99,(IBRC(IBRV)'=100) S IBPO(Q,Q0,Q_".991")=(IBRC(IBRV)-1)_"^99" Q  ; Only put first 99 in array
+ ... ; S Q=$O(IBCP(""),-1)+1,Q0=$P(IBCP(IBSS(IBSS1,Z)),U,12) ; WCJ;IB*488
+ ... S Q=IBSS(IBSS1,Z),Q0=$P(IBCP(IBSS(IBSS1,Z)),U,12) ; WCJ;IB*488
+ ... ;M IBPO(Q,$P(IBCP(IBSS(IBSS1,Z)),U,12),Q)=IBPO(IBSS(IBSS1,Z),$P(IBCP(IBSS(IBSS1,Z)),U,12),IBSS(IBSS1,Z)),IBCP(Q)=IBCP(IBSS(IBSS1,Z))  ; WCJ;IB*488
+ ... ;S $P(IBCP(Q),U,9)=$P(IBRV,U,6) ; WCJ;IB*488
+ ... ;F Z0=1:1:(IBRC(IBRV)-1) S IBPO(Q,Q0,Q+(Z0*.01))=IBPO(Q,Q0,Q)  I Z0=99,(IBRC(IBRV)'=100) S IBPO(Q,Q0,Q_".991")=(IBRC(IBRV)-1)_"^99" Q  ; Only put first 99 in array
+ ... F Z0=1:1:(IBRC(IBRV)) S IBPO(Q,Q0,Q+(Z0*.001))=IBPO(Q,Q0,Q)  ; changing to .001 allows us up to 999 and the units field only allows 800. ; WCJ;IB*488
  ... S IBRC(IBRV)=0
  ;
 PRTARR ;print proc array
@@ -100,7 +102,8 @@ PRTARR ;print proc array
  ... I $D(IBCP(IBPO1)) S IBPO11=IBPO1
  ... S IBPO2A=$S($D(IBCP(IBPO2\1)):IBPO2\1,'$D(IBCP(IBPO2)):IBPO11,1:IBPO2)
  ... S IBCHARG=$P(IBCP(IBPO2A),U,9),IBPCHG=$P(IBCP(IBPO2A),U,10)
- ... I IBCHARG<10000,IBCHARG*(IBUNIT+1)'<10000 D  Q  ;$9,999 limit per line
+ ... ; I IBCHARG<10000,IBCHARG*(IBUNIT+1)'<10000 D  Q  ;$9,999 limit per line ;WCJ IB*488
+ ... I IBCHARG<10000000,IBCHARG*(IBUNIT+1)'<10000000 D  Q  ; increased to $9,999,999 charge limit per line since that is printed form space limit ;WCJ IB*488
  .... N Z S Z=$O(IBPO(IBPO1\1+1),-1),Z=Z+$S(IBPO1+.001'=Z:.001,1:0) M IBPO(Z,IBEMG,IBPO2)=IBPO(IBPO1,IBEMG,IBPO2) K IBPO(IBPO1,IBEMG,IBPO2)
  ... S IBUNIT=IBUNIT+1,IBSS=IBCP(IBPO2A),IBMIN=IBMIN+$P(IBSS,U,11)
  ... S IBSS=$G(IBSS)_U_$G(IBCP(IBPO2A,"LNK"))

@@ -1,5 +1,5 @@
-DGPTSCAN ;ALB/MTC - SPECIAL ACTION SCAN PROCESS ; 1 MAR 91
- ;;5.3;Registration;**29,64,114,189,729**;Aug 13, 1993;Build 59
+DGPTSCAN ;ALB/MTC - SPECIAL ACTION SCAN PROCESS ;1 MAR 91
+ ;;5.3;Registration;**29,64,114,189,729,850**;Aug 13, 1993;Build 171
  ;;MAS 5.1
 CHK501 ;--
  D INIT G ENQ:DGOUT
@@ -127,7 +127,10 @@ ISPSY ;-- check if losing specialty is in psych range set flag.
  ;-- if psych then $D(DGSPEC)
  K DGSPEC
  I '$D(DGMOV) S DGSPEC="" G ISPSYQ
- I $D(DGMOV) S DGSPEC=$P(^DGPT(DGPTF,"M",DGMOV,0),U,2) I '$P($G(^DIC(42.4,+DGSPEC,0)),U,4) K DGSPEC
+ ; -- 850 Fix (BELOW), problem in fee basis when DGMOV is defined but no global ref.
+ I $D(DGMOV) D
+ . S DGSPEC=$P($G(^DGPT(DGPTF,"M",+$G(DGMOV),0)),U,2)
+ . I '$P($G(^DIC(42.4,+$G(DGSPEC),0)),U,4) K DGSPEC
 ISPSYQ Q
  ;
 FLGFIL ;-- fill DGBPC with correct flag.

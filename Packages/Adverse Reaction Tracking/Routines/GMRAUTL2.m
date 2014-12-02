@@ -1,5 +1,5 @@
-GMRAUTL2 ;SLC/DAN - New style index utilities, update utility for 120.8 ;06/01/10  07:32
- ;;4.0;Adverse Reaction Tracking;**23,36,41,45**;Mar 29, 1996;Build 5
+GMRAUTL2 ;SLC/DAN - New style index utilities, update utility for 120.8 ;11/20/12  08:09
+ ;;4.0;Adverse Reaction Tracking;**23,36,41,45,47**;Mar 29, 1996;Build 21
  ;DBIA Section
  ;%ZTLOAD    - 10063
  ;DIE        - 10018
@@ -15,7 +15,7 @@ GMRAUTL2 ;SLC/DAN - New style index utilities, update utility for 120.8 ;06/01/1
  ;XLFDT      - 10103
  ;XTID       - 4631
  ;
- N GMRAI,GMRAC,ENTRY,UPDATED
+ N GMRAI,GMRAC,ENTRY
  Q:$G(X1(1))=$G(X2(1))  ;Entry unchanged
  S ENTRY=DA(1)_";GMRD(120.82,"_"^"_$P(^GMRD(120.82,DA(1),0),"^")
  I $G(X1(1))>0,$G(X2(1))>0 S:$G(GMRAT)="ING" GMRAI("D",X1(1))="",GMRAI("A",X2(1))="" S:$G(GMRAT)="CLASS" GMRAC("D",X1(1))="",GMRAC("A",X2(1))="" ;Edited existing entry
@@ -25,6 +25,7 @@ GMRAUTL2 ;SLC/DAN - New style index utilities, update utility for 120.8 ;06/01/1
  Q
  ;
 QUP ;Queue the update
+ N ZTRTN,ZTIO,ZTDTH,ZTDESC,ZTSAVE
  S ZTRTN="UPDATE^GMRAUTL2(ENTRY,.GMRAI,.GMRAC)",ZTIO="GMRA UPDATE RESOURCE",ZTDTH=$H,ZTDESC="Update existing allergies",ZTSAVE("*")="" D ^%ZTLOAD Q
  ;
 UPDATE(ENTRY,ING,CLASS) ;Update existing entries in 120.8 with new information.
@@ -32,7 +33,7 @@ UPDATE(ENTRY,ING,CLASS) ;Update existing entries in 120.8 with new information.
  ;ING - Array of ingredients - "A",IEN for those to be added and "D",IEN for those to be deleted
  ;CLASS - Array of drug classes - "A",IEN for those to be added and "D",IEN for those to be deleted
  ;
- N ALLERGY,POINTER,ACTION,SUB,SUBI,SUBC,DFN,GMRAS,GMRACOM
+ N ALLERGY,POINTER,ACTION,SUB,SUBI,SUBC,DFN,GMRAS,GMRACOM,UPDATED
  S ALLERGY=$P(ENTRY,"^",2) Q:ALLERGY=""
  S POINTER=$P(ENTRY,"^") Q:POINTER=""
  S SUB=0 F  S SUB=$O(^GMR(120.8,"C",ALLERGY,SUB)) Q:'+SUB  D
@@ -86,7 +87,8 @@ CHKORD ;Check for orders that are now in conflict with existing allergy data
  .S SUB=0 F  S SUB=$O(^TMP("ORR",$J,TIME,SUB)) Q:'+SUB  D
  ..D BLD^ORCHECK(+^TMP("ORR",$J,TIME,SUB)) ;Get "order" information in order checking format
  .M GMRAORX=ORX K ORX,GMRAOC
- .D EN^ORKCHK(.GMRAOC,DFN,.GMRAORX,"ACCEPT")
+ .N ORDODSG S ORDODSG=0
+ .D EN^ORKCHK(.GMRAOC,DFN,.GMRAORX,"ACCEPT",,.ORDODSG)
  .S GI=0,CNT=0 F  S GI=$O(GMRAOC(GI)) Q:'+GI  D
  ..Q:$P(GMRAOC(GI),U,2)'=3  ;Quit if not allergy related
  ..;Q:$D(^OR(100,$P(GMRAOC(GI),U),9,"B",3))  ;Quit if existing allergy order check, can't be for this new information
@@ -183,7 +185,7 @@ REACT ;Update REACTANT field with name from 120.82.  Section added with patch 23
  Q
  ;
 QTYPE ;Queue allergy type updates, section added in 36
- N ENTRY
+ N ENTRY,ZTRTN,ZTIO,ZTDTH,ZTDESC,ZTSAVE
  S ENTRY=DA_";GMRD(120.82,"_"^"_$P(^GMRD(120.82,DA,0),"^")
  Q:X1(1)=""!(X2(1)="")
  Q:X1(1)=X2(1)
@@ -191,7 +193,7 @@ QTYPE ;Queue allergy type updates, section added in 36
  Q
  ;
 TYPE ;Find related entries in 120.8 and update, section added in 36
- N ALLERGY,POINTER,DFN,SUB
+ N ALLERGY,POINTER,DFN,SUB,DR,DIE,DA
  S ALLERGY=$P(ENTRY,"^",2) Q:ALLERGY=""
  S POINTER=$P(ENTRY,"^") Q:POINTER=""
  S SUB=0 F  S SUB=$O(^GMR(120.8,"C",ALLERGY,SUB)) Q:'+SUB  D

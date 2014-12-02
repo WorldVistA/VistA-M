@@ -1,5 +1,5 @@
-DGBTUTL1 ;PAV - BENEFICIARY/TRAVEL UTILITY ROUTINES; 1/6/93@1130 ;11/14/11  09:58
- ;;1.0;Beneficiary Travel;**20**;September 25, 2001;Build 185
+DGBTUTL1 ;PAV - BENEFICIARY/TRAVEL UTILITY ROUTINES;11/14/11
+ ;;1.0;Beneficiary Travel;**20,24**;September 25, 2001;Build 13
 ELIG(DFN) ;***PAVEL
  ;IBARXEU1 = DBIA1046
  ;DFN - Patient IEN
@@ -141,3 +141,49 @@ QUALQUES ;this will ask if the appointment was a qualified appointment if the pa
  I %=-1 S DGBTELL=14
  ;
  Q
+ ;
+MTCHK(DFN,DGBTDTI) ;
+ N VFADT,RESULT,MTIEN,MTDATA,ERR,DGBTMT,VFADAYS,MTDAYS,DGDONE,DGMTST,DGIEN
+ ;
+ S (DGDONE,RESULT)=0
+ ;
+ S MTIEN=+$$LST^DGMTCOU1(DFN,$P(DGBTDTI,".",1),1)
+ I '$G(MTIEN) Q 0
+ D GETS^DIQ(408.31,MTIEN_",",".01;.03;.27;.11;.14;.12;.07","IE","MTDATA","ERR")
+ M DGBTMT=MTDATA(408.31,MTIEN_",")
+ ;
+ S VFADT=$$GET1^DIQ(43,"1,",1205,"I",,"ERR")
+ I '$G(VFADT) Q -1
+ ;
+ ; Decision Rule 6
+ I +DGBTMT(.01,"I")>DT G MTQ
+ ;
+ ; Decision Rule 1
+ S MTDAYS=$$FMADD^XLFDT(+DGBTMT(.01,"I"),365,0,0,0)
+ I MTDAYS'<VFADT D  I +$G(DGDONE) G MTQ ; Quit on meeting conditions
+ . I +DGBTMT(.07,"I")>0 S (DGDONE,RESULT)=1
+ ;
+ ; Decision Rule 2
+ I +DGBTMT(.01,"I")>VFADT D  I +$G(DGDONE) G MTQ ; Quit on meeting conditions
+ . I +DGBTMT(.07,"I")>0 S (DGDONE,RESULT)=1
+ ;
+ S DGMTST=$O(^DG(408.32,"B","MT COPAY REQUIRED",0))
+ ; Decision Rule 3
+ I +DGBTMT(.03,"I")=DGMTST D  I +$G(DGDONE) G MTQ ; Quit on meeting conditions
+ . I DGBTMT(.07,"I")'<2991006 D
+ ..  I +DGBTMT(.11,"I") S (DGDONE,RESULT)=1
+ ;
+ ; Decision Rule 4
+ I +DGBTMT(.03,"I")=DGMTST D  I +$G(DGDONE) G MTQ ; Quit on meeting conditions
+ . I +DGBTMT(.11,"I") D
+ .. I +DGBTMT(.14,"I") S (DGDONE,RESULT)=1
+ ;
+ ; Decision Rule 5
+ I DGBTMT(.03,"E")["PENDING" D
+ . I +DGBTMT(.27,"I")'>+DGBTMT(.12,"I") D
+ .. I DGBTMT(.07,"I")'<2991006 D
+ ... I +DGBTMT(.11,"I") D
+ .... I DGBTMT(.14,"I")=0 S RESULT=1
+ ;
+MTQ ;
+ Q RESULT

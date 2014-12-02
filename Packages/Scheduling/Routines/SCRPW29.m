@@ -1,5 +1,5 @@
-SCRPW29 ;RENO/KEITH - ACRP Ad Hoc Report (cont.) ; 03 Aug 98  8:56 PM
- ;;5.3;Scheduling;**144**;AUG 13, 1993
+SCRPW29 ;RENO/KEITH - ACRP Ad Hoc Report (cont.) ;03 Aug 98  8:56 PM
+ ;;5.3;Scheduling;**144,593**;AUG 13, 1993;Build 13
  ;
 XY(X) ;Maintain $X, $Y
  ;Required input: X=screen handling
@@ -52,7 +52,13 @@ APF(S1) ;Addl. print field
  S S2=0 F  S S2=$O(SDPAR("PF",S1,S2)) Q:SDOUT!'S2  S SDY=SDPAR("PF",S1,S2),SDACT=^TMP("SCRPW",$J,"ACT",$P(SDY,U)) D:$Y>(IOSL-4) HDR1 Q:SDOUT  W:SDII ! W ?(SDC),$P(SDACT,T),": " S SDII=SDII+1 D APF1
  Q
  ;
-APF1 K SDX S SDOE0=$$OE0() X $P(SDACT,T,7) S SDIII=0,SDX="",SDC1=SDC+2+$L($P(SDACT,T)) F  S SDX=$O(SDX(SDX)) Q:SDOUT!(SDX="")  D:$Y>(IOSL-2) HDR1 Q:SDOUT  W:SDIII ! W ?(SDC1),$E($P(SDX(SDX),U,2),1,(51-(SDC1-SDC)+(81-SDC))) S SDIII=SDIII+1
+APF1 N DIWL,DIWF,SDL2
+ K SDX S SDOE0=$$OE0() X $P(SDACT,T,7) S SDIII=0,SDX="",SDC1=SDC+2+$L($P(SDACT,T))
+ S DIWL=1 S DIWF="C"_(51-(SDC1-SDC)+(81-SDC))_"|"
+ F  S SDX=$O(SDX(SDX)) Q:SDOUT!(SDX="")  D:$Y>(IOSL-2) HDR1 Q:SDOUT  D
+ . K ^UTILITY($J,"W") S X=$P(SDX(SDX),U,2) D ^DIWP
+ . F SDL2=1:1:^UTILITY($J,"W",DIWL) D  S SDIII=SDIII+1
+ . . W:SDIII ! W ?(SDC1),$E(^UTILITY($J,"W",DIWL,SDL2,0),1,(51-(SDC1-SDC)+(81-SDC)))
  Q
  ;
 OE0() ;Get encounter node
@@ -96,12 +102,54 @@ VQ ;Prompt for re-edit
  N DIR S DIR(0)="Y",DIR("A")=SDV_" parameters are incomplete.  Re-edit",DIR("B")="YES" D ^DIR I $D(DTOUT)!$D(DUOUT)!'$G(Y) S SDOUT=1 Q 0
  Q 1
  ;
+ ; Verify diagnoses specified as Report Perspective or Report Limitations have a valid / common
+ ; code set (ICD-9-CM / ICD-10-CM) that matches the Report Limitation date range.
+VERICD(ICDERR) ;
+ N SDX,SDI,SDV,I10DTI,I10DTE,CSYS
+ ;
+ ; Retrieve the ICD-10 implementation date.
+ S Y=$$IMP^SCRPWICD(30) S I10DTI=Y X ^DD("DD") S I10DTE=Y
+ ; 
+ ; Find the expected diagnosis code set given the Report Limitation date range.
+ S CSYS=$S($P(SDPAR("L",1),U,1)<I10DTI:1,1:30)
+ ;
+ ; If diagnoses are specified for the Report Perspective, find the code set of the first diagnosis.
+ ; (All the diagnoses should / must always be of the same code set.)
+ ; Throw an error if the code set does not match the expected code set.
+ ; The error is described as a Report Limitation date range error simply because the Report Perspective is entered first.
+ D
+ . S SDX=$P($G(SDPAR("P",1)),U,1) Q:SDX'="DX"
+ . S SDX=$P($G(SDPAR("P",1,1)),U,1) Q:(SDX'="PD")&(SDX'="SD")&(SDX'="AD")
+ . S SDX=$P($G(SDPAR("P",1,2)),U,1) Q:(SDX="N")
+ . S SDX=$O(SDPAR("P",1,5,"")) Q:SDX=""
+ . S SDX=$$CSI^SCRPWICD(80,SDX) Q:SDX=""  Q:SDX=CSYS
+ . S:SDX=1 ICDERR="The Report Limitation dates must be before "_I10DTE_" to match the (ICD-9-CM) diagnoses specified in the Report Perspective."
+ . S:SDX=30 ICDERR="The Report Limitation dates must be on or after "_I10DTE_" to match the (ICD-10-CM) diagnoses specified in the Report Perspective."
+ ;
+ Q:$G(ICDERR)]"" 1
+ ;
+ ; If diagnoses are specified for the Report Limitations, find the code set of the first diagnosis in each set of diagnoses.
+ ; (All the diagnoses in a set should / must always be of the same code set.) 
+ ; Throw an error if the code set does not match the expected code set.
+ S SDI=2
+ F  S SDI=$O(SDPAR("L",SDI)) Q:SDI=""  D  Q:$G(SDV)]""
+ . S SDX=$P(SDPAR("L",SDI),U,1) Q:SDX'="DX"
+ . S SDX=$P(SDPAR("L",SDI,1),U,1) Q:(SDX'="PD")&(SDX'="SD")&(SDX'="AD")
+ . S SDX=$P(SDPAR("L",SDI,2),U,1) Q:(SDX="N")
+ . S SDX=$O(SDPAR("L",SDI,5,"")) Q:SDX=""
+ . S SDX=$$CSI^SCRPWICD(80,SDX) Q:SDX=""  Q:SDX=CSYS
+ . S ICDERR="All Report Limitation diagnoses must be ("_$S(CSYS=30:"ICD-10-CM",1:"ICD-9-CM")_") to match the report dates."
+ ;
+ Q:$G(ICDERR)]"" 1
+ ;
+ Q 0
+ ;
 DDPH(SDI) ;Detail dx/procedure header
  Q:SDOUT  N SDX S SDX=$E(SDF(5)) I $L(SDF(5))>1 F SDII=2:1:$L(SDF(5)) S SDX=SDX_" "_$E(SDF(5),SDII)
  S SDX="D E T A I L   O F   T O P   "_SDX_$S(SDI="D":"   D I A G N O S I S E S",1:"   P R O C E D U R E S")
  W !?(IOM-$L(SDX)\2),SDX,!?(IOM-$L(SDX)\2),$E(SDLINE,1,$L(SDX))
- I SDI="D" W !?(SDCOL),"Diagnosis",?(SDCOL+43),"Primary",?(SDCOL+56),"Secondary",?(SDCOL+75),"Total"
- I SDI="D" W !?(SDCOL),"------------------------------------",?(SDCOL+40),"----------",?(SDCOL+55),"----------",?(SDCOL+70),"----------"
+ I SDI="D" W !?(SDCOL),"Diagnosis",?(SDCOL+49),"Primary",?(SDCOL+62),"Secondary",?(SDCOL+81),"Total"
+ I SDI="D" W !?(SDCOL),"------------------------------------------",?(SDCOL+46),"----------",?(SDCOL+61),"----------",?(SDCOL+76),"----------"
  I SDI="P" W !?(SDCOL+13),"Procedures",?(SDCOL+61),"Total",!?(SDCOL+13),"--------------------------------------",?(SDCOL+56),"----------"
  Q
  ;

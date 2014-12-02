@@ -1,4 +1,4 @@
-OCXOZ0F ;SLC/RJS,CLA - Order Check Scan ;MAR 8,2011 at 13:52
+OCXOZ0F ;SLC/RJS,CLA - Order Check Scan ;JUN 14,2013 at 09:03
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -102,6 +102,23 @@ CHK506 ; Look through the current environment for valid Event/Elements for this 
  S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,140,"130") Q:OCXOERR 
  Q
  ;
+CHK508 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK1+36^OCXOZ02.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ;    Local CHK508 Variables
+ ; OCXDF(2) ----> Data Field: FILLER (FREE TEXT)
+ ; OCXDF(160) --> Data Field: CONTROL REASON (FREE TEXT)
+ ;
+ ;      Local Extrinsic Functions
+ ; FILE(DFN,141, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: HL7 DEA CERT REVOKED)
+ ; FILE(DFN,143, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: HL7 PHARMACY HASH MISMATCH)
+ ;
+ I (OCXDF(160)[17),$L(OCXDF(2)),(OCXDF(2)="PS") S OCXOERR=$$FILE(DFN,141,"") Q:OCXOERR 
+ I (OCXDF(160)[16),$L(OCXDF(2)),(OCXDF(2)="PS") S OCXOERR=$$FILE(DFN,143,"") Q:OCXOERR 
+ Q
+ ;
 EL24 ; Examine every rule that involves Element #24 [HL7 LAB TEST RESULTS CRITICAL]
  ;  Called from SCAN+9^OCXOZ01.
  ;
@@ -123,7 +140,7 @@ EL44 ; Examine every rule that involves Element #44 [ORDER FLAGGED]
  ;
  Q:$G(OCXOERR)
  ;
- D R5R1A^OCXOZ0I   ; Check Relation #1 in Rule #5 'ORDER FLAGGED FOR CLARIFICATION'
+ D R5R1A^OCXOZ0J   ; Check Relation #1 in Rule #5 'ORDER FLAGGED FOR CLARIFICATION'
  Q
  ;
 EL134 ; Examine every rule that involves Element #134 [ORDER UNFLAGGED]
@@ -132,30 +149,6 @@ EL134 ; Examine every rule that involves Element #134 [ORDER UNFLAGGED]
  Q:$G(OCXOERR)
  ;
  D R5R2A^OCXOZ0J   ; Check Relation #2 in Rule #5 'ORDER FLAGGED FOR CLARIFICATION'
- Q
- ;
-EL45 ; Examine every rule that involves Element #45 [ORDER REQUIRES CHART SIGNATURE]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R6R1A^OCXOZ0J   ; Check Relation #1 in Rule #6 'ORDER REQUIRES CHART SIGNATURE'
- Q
- ;
-EL21 ; Examine every rule that involves Element #21 [PATIENT ADMISSION]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R7R1A^OCXOZ0J   ; Check Relation #1 in Rule #7 'PATIENT ADMISSION'
- Q
- ;
-EL31 ; Examine every rule that involves Element #31 [RADIOLOGY ORDER CANCELLED]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R11R1A^OCXOZ0K   ; Check Relation #1 in Rule #11 'IMAGING REQUEST CANCELLED/HELD'
  Q
  ;
 ABREN(DFN) ;  Compiler Function: DETERMINE IF RENAL LAB RESULTS ARE ABNORMAL HIGH OR LOW

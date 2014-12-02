@@ -1,5 +1,19 @@
-HBHCRP2 ; LR VAMC(IRMS)/MJT-HBHC report on file 631, individual patient evaluation/admission data, includes all fields, plus Case Manager ;2/5/98  15:18
- ;;1.0;HOSPITAL BASED HOME CARE;**1,2,5,6,9,19,22**;NOV 01, 1993;Build 2
+HBHCRP2 ;LR VAMC(IRMS)/MJT - HBHC report on file 631, individual patient evaluation/admission data, includes all fields, plus Case Manager ;2/5/98  15:18
+ ;;1.0;HOSPITAL BASED HOME CARE;**1,2,5,6,9,19,22,25**;NOV 01, 1993;Build 45
+ ;
+ ; This routine references the following supported ICRs:
+ ; 5747    $$CODEC^ICDEX
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;HBH*1.0*25   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;******************************************************************************
+ ;******************************************************************************
+ ;
 PROMPT ; Prompt user for patient name
  K DIC S DIC="^HBHC(631,",DIC(0)="AEMQZ" D ^DIC
  G:Y=-1 EXIT
@@ -14,7 +28,7 @@ PROCESS ; Process record
  S HBHCDPT0=^DPT(+(HBHCY0),0),HBHCNOD1=$G(^HBHC(631,HBHCDFN,1))
  W !,"Patient Name:  ",$P(HBHCDPT0,U),?46,"Last Four:",?58,$E($P(HBHCDPT0,U,9),6,9),!,HBHCZ
  W !," 1.  Hospital Number:",?29,$J($S($P(^HBHC(631.9,1,0),U,5)]"":$E($P($G(^DIC(4,$P(^HBHC(631.9,1,0),U,5),99)),U),1,7),1:""),7)
- W ?38,"|",?41,"20.  Primary Diagnosis @ Adm:",?74,$J($S($P(HBHCY0,U,19)]"":$P(^ICD9($P(HBHCY0,U,19),0),U),1:""),6),!,HBHCY
+ W ?38,"|",?41,"20.  Primary Diagnosis @ Adm:",?72,$J($S($P(HBHCY0,U,19)]"":$$CODEC^ICDEX(80,$P(HBHCY0,U,19)),1:""),8),!,HBHCY
  W !," 2.  Date:",?28,$S($P(HBHCY0,U,18)]"":$E($P(HBHCY0,U,18),4,5)_"-"_$E($P(HBHCY0,U,18),6,7)_"-"_$E($P(HBHCY0,U,18),2,3),$P(HBHCY0,U,2)]"":$E($P(HBHCY0,U,2),4,5)_"-"_$E($P(HBHCY0,U,2),6,7)_"-"_$E($P(HBHCY0,U,2),2,3),1:"")
  W ?38,"|",?41,"21.  Secondary Diagnoses @ Adm:" I HBHCNOD1]"" W:$P(HBHCNOD1,U,14)]"" !?38,"|",?46,$P(HBHCNOD1,U,14)
  W !,HBHCY

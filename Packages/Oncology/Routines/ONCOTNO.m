@@ -1,5 +1,5 @@
 ONCOTNO ;Hines OIFO/GWB - TNM output formatting ;09/22/11
- ;;2.11;ONCOLOGY;**1,6,7,11,15,27,32,35,47,49,50,51,52,53,54**;Mar 07, 1995;Build 10
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 SGOUT(IEN) ;AJCC stage formatted for display
  N G,SG,XX,XXX

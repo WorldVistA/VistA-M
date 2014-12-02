@@ -1,8 +1,10 @@
-IBDFU1B ;ALB/CJM - ENCOUNTER FORM ;NOV 16,1992
- ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+IBDFU1B ;ALB/CJM - ENCOUNTER FORM ;11/16/92
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**63**;APR 24, 1997;Build 80
+ ;
+ ;
  ;utilities
 BLKDESCR(IBBLK) ;parses the block record pointed to by IBBLK and puts the
- ;descripition in IBBLK array - should be called by reference
+ ;description in IBBLK array - should be called by reference
  ;returns 1 if block description is too incomplete to print block
  Q:'$G(IBBLK) 1
  N NODE0
@@ -107,10 +109,14 @@ MINY() ;the smallest Y a block element can begin at
 MAXY() ;the largest Y a block element can begin at
  Q (IBBLK("H")-(1+$S((IBBLK("BOX")=1):1,1:0)))
  ;
-DORTN(IBRTN) ;calls the rtn specified by the pkg interface if ok
+DORTN(IBRTN,IBDSERCH) ;calls the rtn specified by the pkg interface if ok
  ;IBRTN is an array containing data from the package interface in format returned by RTNDESCR and MUST be passed by reference
  ;returns 0 if not successful, 1 otherwise
+ ;IBDSERCH:  1 = Wildcard search for ICD codes 
+ ;           2 = Lexicon search for ICD codes.
+ ;Wildcard and Lexicon ICD searches done with the @IBRTN("RTN")
  N QUIT,VARIABLE,VARIEN,IBARY
+ I '$D(IBDSERCH) S IBDSERCH=1  ;Set up Wildcard search as the default search.
  S QUIT=0
  ;
  ;set IBARY to node where the interface should return the data

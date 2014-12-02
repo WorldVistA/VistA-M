@@ -1,9 +1,12 @@
 PRCAREPT ;SF-ISC/YJK-AR LIST,REPORT ;8/26/93  8:43 AM
-V ;;4.5;Accounts Receivable;**68,63,108**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**68,63,108,299**;Mar 20, 1995;Build 6
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;MAS,Agent Cashier, 3rd party,RC/DOJ reports.
 PRINT ;ask if the report will be queued.
- K PRCAQUE S PRCA("MESS")="Do you wish to queue this report " D QUE^PRCAQUE Q:'$D(PRCAQUE)  D DIP Q
+ K PRCAQUE S PRCA("MESS")="Do you wish to queue this report "
+QUE S %=2 W !,PRCA("MESS") D YN^DICN Q:%<0  W " "
+ I %=0 W !,"Answer <YES> or <NO>" G QUE
+ K IO("Q") S %ZIS("B")="",%ZIS="M",PRCA("DEV")="" S:%=1 %ZIS="MQ",PRCA("DEV")="Q;",IOP="Q"
  ;
 DIP S L=0,FLDS=PRCATEMP,BY=PRCASORT,FR=PRCAFT,TO=PRCALAST,DHD=PRCAHDR
  D EN1^DIP K L,FLDS,BY,FR,TO,DHD,DIC,DIS,IOP

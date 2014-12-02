@@ -1,5 +1,5 @@
 DVBAB82 ;ALB/DJS - CAPRI DVBA REPORTS ; 01/24/12
- ;;2.7;AMIE;**42,90,100,119,156,149,179,181**;Apr 10, 1995;Build 38
+ ;;2.7;AMIE;**42,90,100,119,156,149,179,181,184,185**;Apr 10, 1995;Build 18
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -35,6 +35,8 @@ START(MSG,RPID,PARM) ; CALLED BY REMOTE PROCEDURE DVBAB REPORTS
 END D HFSCLOSE("DVBRP",DVBHFS)
  I ($G(DVBADLMTD)&('+DVBERR)) D  Q  ;Create delimited output if no errors
  .D DLMTRPT^DVBAB82D(RPID)
+ .S I=0 F  S I=$O(^TMP("DVBADLMTD",$J,I)) Q:I=""  D
+ ..I $G(^TMP("DVBADLMTD",$J,I))["##FFFF##" S ^TMP("DVBADLMTD",$J,I)=$TR(^TMP("DVBADLMTD",$J,I),"##FFFF##","")
  .S MSG=$NA(^TMP("DVBADLMTD",$J))
  ;Replace "##FFFF##" with Form Feeds - code needed for LINUX environments
  S I=0 F  S I=$O(^TMP("DVBA",$J,1,I)) Q:'I  D
@@ -42,6 +44,7 @@ END D HFSCLOSE("DVBRP",DVBHFS)
  .S ^TMP("DVBA",$J,1,I)=^TMP("DVBA",$J,1,I)_$C(13)
  .S:^TMP("DVBA",$J,1,I)["$END" ^TMP("DVBA",$J,1,I)=""
  S MSG=$NA(^TMP("DVBA",$J))
+ I ($G(RPID)=5)&($G(DVBADLMTR)=",") S MSG=$NA(^TMP("INSUFF",$J))
  Q
 CHECK ; VALIDATE INPUT PARAMETERS
  I $G(PARM)="" S DVBERR=1,^TMP("DVBA",$J,1)="0^Undefined Input Parameters"
@@ -193,13 +196,15 @@ CIRPT ; Report # 5 - Insufficient Exam Report
  ; DVBAPRTY : Priority of Exam Code
  ;    AO  : Agent Orange
  ;    BDD : Benefits Delivery at Discharge / Quick Start
- ;    DES : DES Claimed Condition by Service Member / Fit for Duty
+ ;    IDES : Integrated Disability Evaluation System
  ;    ALL : All Others (Original Report w/ all codes except the above)
+ ; DVBADLMTR: 0=non-delimted format, ","=delimiter for .csv file for EXCEL
  ;
  N DVBAPRTY,RPTTYPE,BEGDT,ENDDT,RESANS
  U IO
  S RPTTYPE=$P(PARM,"^",1),BEGDT=$P(PARM,"^",2),ENDDT=$P(PARM,"^",3),RESANS=$P(PARM,"^",4)
  S DVBAPRTY=$P(PARM,"^",5)
+ S DVBADLMTR=$P(PARM,"^",6),DVBADLMTR=$S(DVBADLMTR=1:",",1:0)
  S ENDDT=ENDDT_".2359"
  I RPTTYPE="S" D SUM^DVBCIRPT Q
  I RPTTYPE="D" D
@@ -343,7 +348,8 @@ HFSOPEN(HANDLE,DVBHFS,DVBMODE) ; Open File
 HFSCLOSE(HANDLE,DVBHFS) ;Close HFS and unload data
  N DVBDEL,X,%ZIS
  D CLOSE^%ZISH(HANDLE)
- S ROOT=$NA(^TMP("DVBA",$J,1)),DVBDEL(DVBHFS)=""
+ S DVBDEL(DVBHFS)=""
+ S ROOT=$NA(^TMP("DVBA",$J,1))
  K:('+DVBERR) @ROOT
  S X=$$FTG^%ZISH(,DVBHFS,$NA(@ROOT@(1)),4)
  S X=$$DEL^%ZISH(,$NA(DVBDEL))

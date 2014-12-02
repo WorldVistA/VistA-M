@@ -1,8 +1,8 @@
 ORQPTQ2 ; slc/CLA - Functions which return patient lists and list sources pt 2 ;3/14/05  10:50
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,10,85,187,190,195,215**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,10,85,187,190,195,215,320**;Dec 17, 1997;Build 16
  ;
  ; Ref. to ^UTILITY via IA 10061
- ; DBIA 3869   GETPLIST^SDAMA202   ^TMP($J,"SDAMA202")
+ ; DBIA 4433   SDAPI^SDAMA301   ^TMP($J,"SDAMA301")
  ; 
 CLIN(Y) ; RETURN LIST OF CLINICS
  N ORLST,IEN,I
@@ -12,15 +12,31 @@ CLIN(Y) ; RETURN LIST OF CLINICS
  .. S Y(I)=IEN_U_$P(^SC(IEN,0),U,1)
  Q
  ;
-CLINPTS(Y,CLIN,ORBDATE,OREDATE) ; RETURN LIST OF PTS W/CLINIC APPT W/IN BEGINNING AND END DATES
+ ;The appointment list date range is designed to query for full dates, 
+ ;so when the search result exceeds 200 appointments, 
+ ;the display will end with the last appointment of the last day before the maximum was reached. 
+CLINPTS2(Y,CLIN,ORBDATE,OREDATE) ; WRAPPER FUNCTION FOR USE BY RPC CALL ORQPT CLINIC PATIENTS
+ N MAXAPPTS,APPTBGN,APPTEND,NUMAPPTS
+ S MAXAPPTS=200 I ORBDATE=OREDATE S MAXAPPTS=0  ; if we only want one day, don't limit answer.
+ D CLINPTS(.Y,CLIN,ORBDATE,OREDATE,MAXAPPTS,.APPTBGN,.APPTEND)
+ S NUMAPPTS=$O(Y(""),-1)
+ I MAXAPPTS,NUMAPPTS'<MAXAPPTS D
+ . N ORI
+ . S ORI=0 S APPTEND=$P(APPTEND,".")
+ . F  S ORI=$O(Y(ORI)) Q:'ORI  D  ;erase last day's appts since we assume it to be partial
+ .. I APPTEND<$P(Y(ORI),U,4) K Y(ORI) S NUMAPPTS=NUMAPPTS-1 ;erase an appointment
+ . S Y(MAXAPPTS+1)="^ *** UNABLE TO SHOW ALL APPOINTMENTS ***"
+ . S Y(MAXAPPTS+2)="^ Showing the first "_NUMAPPTS_" appointments from "_$$FMTE^XLFDT(APPTBGN,"D")_" to "_$$FMTE^XLFDT(APPTEND-1,"D")
+ . S Y(MAXAPPTS+3)="^"_$C(160)_" Modify the appointment list date range to start on "_$$FMTE^XLFDT(APPTEND,"D")_" to see additional appointments." ;add blank line
+ . S Y(MAXAPPTS+4)="^"_$C(160)_$C(160) ;add blank line
+ ;
+CLINPTS(Y,CLIN,ORBDATE,OREDATE,MAXAPPTS,APPTBGN,APPTEND) ; RETURN LIST OF PTS W/CLINIC APPT W/IN BEGINNING AND END DATES
  ; PKS-8/2003: Modified for new scheduling pkg APIs.
  I +$G(CLIN)<1 S Y(1)="^No clinic identified" Q 
  I $$ACTLOC^ORWU(CLIN)'=1 S Y(1)="^Clinic is inactive or Occasion Of Service" Q
- N DFN,NAME,I,J,X,ORJ,ORSRV,ORNOWDT,CHKX,CHKIN,MAXAPPTS,ORC,CLNAM,ORFLDS,ORCLIN,ORRESULT,ORSTART,OREND,ORSTAT,ORASTAT,ORERR,ORI,ORPT,ORPTSTAT,ORMAX,ORHOLD
- S MAXAPPTS=200
- S ORNOWDT=$$NOW^XLFDT
+ N ORSRV,ORRESULT,ORERR,ORI,ORPT,ORPTSTAT,ORAPPT,ORCLIN,SDARRAY,NODE
+ I $L($G(MAXAPPTS))=0 S MAXAPPTS=200
  S ORSRV=$G(^VA(200,DUZ,5)) I +ORSRV>0 S ORSRV=$P(ORSRV,U)
- S DFN=0,I=1
  I ORBDATE="" S ORBDATE=$$UP^XLFSTR($$GET^XPAR("USR^SRV.`"_+$G(ORSRV)_"^DIV^SYS^PKG","ORLP DEFAULT CLINIC START DATE",1,"E"))
  I OREDATE="" S OREDATE=$$UP^XLFSTR($$GET^XPAR("USR^SRV.`"_+$G(ORSRV)_"^DIV^SYS^PKG","ORLP DEFAULT CLINIC STOP DATE",1,"E"))
  ;
@@ -29,32 +45,72 @@ CLINPTS(Y,CLIN,ORBDATE,OREDATE) ; RETURN LIST OF PTS W/CLINIC APPT W/IN BEGINNIN
  D DT^DILF("T",OREDATE,.OREDATE,"","")
  I (ORBDATE=-1)!(OREDATE=-1) S Y(1)="^Error in date range." Q 
  S OREDATE=$P(OREDATE,".")_.5 ; Add 1/2 day to end date.
- ; IA# 3869:
- K ^TMP($J,"SDAMA202","GETPLIST") ; Clean house before starting.
+ ;
+ ; *320 - use dbia 4433 instead of 3869.
+ ;
+ ;; IA# 3869:
+ ;K ^TMP($J,"SDAMA202","GETPLIST") ; Clean house before starting.
+ ;S ORRESULT=""
+ ;S ORCLIN=+CLIN,ORFLDS="1;3;4;12",ORASTAT="R;NT",ORSTART=ORBDATE,OREND=OREDATE,ORSTAT="" ; Assign parameters.
+ ;; ORFLDS: 1;3;4;12 = ApptDateTime;ApptStatus;IEN^PtName;PtStatus.
+ ;D GETPLIST^SDAMA202(ORCLIN,ORFLDS,ORASTAT,ORSTART,OREND,.ORRESULT,ORSTAT) ; DBIA 3869.
+ ;;
+ ;; Deal with server errors:
+ ;S ORERR=$$CLINERR^ORQRY01
+ ;I $L(ORERR) S Y(1)=U_ORERR Q
+ ;;
+ ;; Reassign ^TMP array to local array:
+ ;S (ORPT,ORI)=0,ORMAX=MAXAPPTS
+ ;I ORRESULT'>0 S Y(1)="^No appointments." Q
+ ;F  S ORPT=$O(^TMP($J,"SDAMA202","GETPLIST",ORPT)) Q:ORPT=""!(ORI>ORMAX)  D   ;DBIA 3869
+ ;.S ORI=ORI+1
+ ;.S Y(ORI)=$G(^TMP($J,"SDAMA202","GETPLIST",ORPT,4)) ; IEN^Name.
+ ;.S Y(ORI)=Y(ORI)_U_ORCLIN ; ^Clinic IEN.
+ ;.S Y(ORI)=Y(ORI)_U_$G(^TMP($J,"SDAMA202","GETPLIST",ORPT,1)) ; App't.
+ ;.S ORPTSTAT=$G(^TMP($J,"SDAMA202","GETPLIST",ORPT,12)) ; Pt Status.
+ ;.S ORPTSTAT=$S(ORPTSTAT="I":"IPT",ORPTSTAT="O":"OPT",1:"")
+ ;.S ORHOLD=$G(^TMP($J,"SDAMA202","GETPLIST",ORPT,3)) ; Appt Status.
+ ;.I ORPTSTAT=""&(ORHOLD="NT") S ORPTSTAT="NT" ; "No Action Taken."
+ ;.S Y(ORI)=Y(ORI)_U_U_U_U_U_ORPTSTAT ; Pt I or O status (or "NT").
+ ;;
+ ;K ^TMP($J,"SDAMA202","GETPLIST") ; Clean house after finishing.
+ ;
+ K ^TMP($J,"SDAMA301") ; Clean house before starting.
  S ORRESULT=""
- S ORCLIN=+CLIN,ORFLDS="1;3;4;12",ORASTAT="R;NT",ORSTART=ORBDATE,OREND=OREDATE,ORSTAT="" ; Assign parameters.
- ; ORFLDS: 1;3;4;12 = ApptDateTime;ApptStatus;IEN^PtName;PtStatus.
- D GETPLIST^SDAMA202(ORCLIN,ORFLDS,ORASTAT,ORSTART,OREND,.ORRESULT,ORSTAT) ; DBIA 3869.
+ S ORCLIN=+CLIN
+ S SDARRAY(1)=ORBDATE_";"_OREDATE
+ S SDARRAY(2)=+CLIN
+ S SDARRAY(3)="R;I;NT"
+ S SDARRAY("SORT")="P" ;no clinic index
+ S SDARRAY("FLDS")="3;4"  ;ApptStatus^IEN;PtName
+ I MAXAPPTS S SDARRAY("MAX")=MAXAPPTS
+ ;
+ S ORRESULT=$$SDAPI^SDAMA301(.SDARRAY) ; DBIA 4433
  ;
  ; Deal with server errors:
- S ORERR=$$CLINERR^ORQRY01
- I $L(ORERR) S Y(1)=U_ORERR Q
+ I ORRESULT<0 D  S Y(1)=U_ORERR Q
+ .S ORERR=""
+ .N IDXERR S IDXERR=$O(^TMP($J,"SDAMA301","")) Q:IDXERR'>0
+ .S ORERR=^TMP($J,"SDAMA301",IDXERR)
  ;
  ; Reassign ^TMP array to local array:
- S (ORPT,ORI)=0,ORMAX=MAXAPPTS
+ S (ORPT,ORI)=0
  I ORRESULT'>0 S Y(1)="^No appointments." Q
- F  S ORPT=$O(^TMP($J,"SDAMA202","GETPLIST",ORPT)) Q:ORPT=""!(ORI>ORMAX)  D   ;DBIA 3869
- .S ORI=ORI+1
- .S Y(ORI)=$G(^TMP($J,"SDAMA202","GETPLIST",ORPT,4)) ; IEN^Name.
- .S Y(ORI)=Y(ORI)_U_ORCLIN ; ^Clinic IEN.
- .S Y(ORI)=Y(ORI)_U_$G(^TMP($J,"SDAMA202","GETPLIST",ORPT,1)) ; App't.
- .S ORPTSTAT=$G(^TMP($J,"SDAMA202","GETPLIST",ORPT,12)) ; Pt Status.
- .S ORPTSTAT=$S(ORPTSTAT="I":"IPT",ORPTSTAT="O":"OPT",1:"")
- .S ORHOLD=$G(^TMP($J,"SDAMA202","GETPLIST",ORPT,3)) ; Appt Status.
- .I ORPTSTAT=""&(ORHOLD="NT") S ORPTSTAT="NT" ; "No Action Taken."
- .S Y(ORI)=Y(ORI)_U_U_U_U_U_ORPTSTAT ; Pt I or O status (or "NT").
- ;
- K ^TMP($J,"SDAMA202","GETPLIST") ; Clean house after finishing.
+ F  S ORPT=$O(^TMP($J,"SDAMA301",ORPT)) Q:ORPT=""  D
+ .S ORAPPT=""
+ .F  S ORAPPT=$O(^TMP($J,"SDAMA301",ORPT,ORAPPT)) Q:ORAPPT=""  D
+ ..S ORI=ORI+1
+ ..S NODE=^TMP($J,"SDAMA301",ORPT,ORAPPT)
+ ..S Y(ORI)=$TR($P(NODE,U,4),";","^") ; IEN^Name.
+ ..S Y(ORI)=Y(ORI)_U_ORCLIN ; ^Clinic IEN.
+ ..S Y(ORI)=Y(ORI)_U_ORAPPT ; App't.
+ ..I $L($G(APPTEND))=0 S APPTEND=ORAPPT,APPTBGN=ORAPPT
+ ..I ORAPPT>APPTEND S APPTEND=ORAPPT
+ ..I ORAPPT<APPTBGN S APPTBGN=ORAPPT
+ ..S ORPTSTAT=$P($P(NODE,U,3),";",1) ;appt status, will be transformed to pt status.
+ ..S ORPTSTAT=$S(ORPTSTAT="I":"IPT",ORPTSTAT="R":"OPT",ORPTSTAT="NT":"OPT",1:"") ; Pt Status.
+ ..S Y(ORI)=Y(ORI)_U_U_U_U_U_ORPTSTAT ; Pt I or O status (or "NT").
+ K ^TMP($J,"SDAMA301") ; Clean house after finishing.
  ;
  Q
  ;

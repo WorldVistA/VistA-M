@@ -1,5 +1,5 @@
-LREPI2 ;DALOI/SED-EMERGING PATHOGENS HL7 BUILD ;5/1/98
- ;;5.2;LAB SERVICE;**132,157,175,242,260,281,320**;Sep 27, 1994
+LREPI2 ;DALOI/SED - EMERGING PATHOGENS HL7 BUILD ;23 Apr 2013  4:22 PM
+ ;;5.2;LAB SERVICE;**132,157,175,242,260,281,320,421**;Sep 27, 1994;Build 48
  ;
  ;Reference to ^DPT(DFN,0),U,9) supported by IA # 10035
 START ;START WITH THE PROTOCOL USED
@@ -92,7 +92,7 @@ TOTAL ;Report the total counts  ->    "ETI" or "TST" or "HEP"
  ..I LRITN=4 S LRTNM="4-Risk Factors for Hepatitis C"
  ..I LRITN=5 S LRTNM="5-Positive Test for Hepatitis C antibody"
  ..I LRITN=6 S LRTNM="6-Negative Test for Hepatitis C antibody"
- ..I LRITN=7 S LRTNM="7- Hepatitis C diagnosis (ICD-9 based)"
+ ..I LRITN=7 S LRTNM="7- Hepatitis C diagnosis (ICD based)"
  .K LRDATA
  .I '$G(LRTNM) D NAME
  .S LRDATA="NTE"_HLFS_HLFS_"T"_LRCS_LRNLT_LRCS_LRTNM_LRCS_+^TMP($J,LRTND,LRITN)

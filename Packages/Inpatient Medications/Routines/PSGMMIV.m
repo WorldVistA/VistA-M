@@ -1,5 +1,5 @@
 PSGMMIV ;BIR/MV-IV ORDER FOR THE 7/14 DAY MAR. ;25 Nov 98 / 9:24 AM
- ;;5.0;INPATIENT MEDICATIONS;**20,21,58,111,131,145,267**;16 DEC 97;Build 158
+ ;;5.0;INPATIENT MEDICATIONS;**20,21,58,111,131,145,267,275**;16 DEC 97;Build 157
  ;
  ; Reference to ^PS(52.7 supported by DBIA #2173.
  ; Reference to ^PS(55 supported by DBIA #2191.
@@ -52,7 +52,7 @@ IV ;*** Sort IV orders for 24 Hrs, 7/14 Day MAR.
  S:PSGMARWN'=PSGMARWC PSGMARWN=PSGMARWC
  Q
 IVPRN ;*** Set ^tmp to store IV orders that have schedule of PRN.
- K P,DRG NEW ON55,CHEMO,TXT,PSJLABEL
+ K P,DRG NEW ON55,CHEMO,TXT,PSJLABEL,PSIVOPFL,PSIVOPIA
  S ON=$P(DAOO,U,2),DFN=$P(PN,U,2),PSJLABEL=1
  D:ON["V" GT55^PSIVORFB
  D:ON["P" GT531^PSIVORFA(DFN,ON)
@@ -73,14 +73,26 @@ IVPRN ;*** Set ^tmp to store IV orders that have schedule of PRN.
  . S PSJPRT2=$P(^PS(52.7,+DRG("SOL",X),0),U,4) I PSJPRT2]"" S TXT=TXT_"   "_PSJPRT2 S:LN=3 TXT=TXT_$$SP(47-$L(TXT))_PSGST,PSGST="" D CHK(.TXT) S TXT="   "
  S TXT=$P(P("MR"),U,2)_" "_P(9)_" "_P(8) D CHK(.TXT)
  I P(4)="C" S CHEMO="*CAUTION-CHEMOTHERAPY*" D:P("OPI")]"" CHK(CHEMO)
- I '$$OPI^PSGMIV(PSGP,ON55) S Y1="" F Y=1:1:$L($P(P("OPI"),"^")," ") S Y1=Y1_$P($P(P("OPI"),"^")," ",Y)_" " I $L(Y1)>47 D CHK(Y1) S Y1=""
- I $L(Y1)>28 D CHK(Y1) S Y1=""
- I Y1<29,'(LN#6) S TXT=$S((P("OPI")=""&$D(CHEMO)):CHEMO,1:Y1),X=29-$L(TXT),TXT=TXT_$$SP(X)_INIT
- E  D  S TXT=$$SP(29)_INIT,LN=LN+1
- . ;the following three naked references below refer to the full references to the right of the = sign
- .  I LN=5 S ^(LN)=$G(^TMP($J,"1PRN",PG,LAB,LN))_UP_Y1
- .  E  D:$L(Y1) CHK(Y1) F LN=LN:1:5 S ^(LN)=$G(^TMP($J,"1PRN",PG,LAB,LN))_UP_""
- S ^(LN)=$G(^TMP($J,"1PRN",PG,LAB,LN))_UP_TXT
+ S PSIVLOPI="",PSIVOPIA=1 S PSIVOPFL=$$OPI^PSGMIV(PSGP,ON55,.PSIVOPIA)
+ S Y1="" I '$G(PSIVOPFL) D
+ .F Y=1:1:$L($P(P("OPI"),"^")," ") S Y1=Y1_$P($P(P("OPI"),"^")," ",Y)_" " I $L(Y1)>47 D CHK(Y1) S Y1=""
+ .I $L(Y1)>28 D CHK(Y1) S Y1=""
+ .I $L(Y1)<29,'(LN#6) S TXT=$S((P("OPI")=""&$D(CHEMO)):CHEMO,1:Y1),X=29-$L(TXT),TXT=TXT_$$SP(X)_INIT
+ .E  D  S TXT=$$SP(29)_INIT,LN=LN+1
+ ..;the following three naked references below refer to the full references to the right of the = sign
+ ..I LN=5 S ^(LN)=$G(^TMP($J,"1PRN",PG,LAB,LN))_UP_Y1
+ ..E  D:$L(Y1) CHK(Y1) F LN=LN:1:5 S ^(LN)=$G(^TMP($J,"1PRN",PG,LAB,LN))_UP_""
+ .S ^(LN)=$G(^TMP($J,"1PRN",PG,LAB,LN))_UP_TXT
+ N POPI,YL S (POPI,YL,Y1,Y)="" I $G(PSIVOPFL) D
+ .F YL=1:1:+$O(PSIVOPIA(""),-1) S POPI=PSIVOPIA(YL) D
+ ..I $O(PSIVOPIA(YL)) D CHK(POPI) S POPI="" Q
+ ..I $L(POPI)>28 D CHK(POPI) S POPI=""
+ ..I $L(POPI)<29,'(LN#6) S TXT=$S((POPI=""&$D(CHEMO)):CHEMO,1:POPI),X=29-$L(TXT),TXT=TXT_$$SP(X)_INIT
+ ..E  D  S TXT=$$SP(29)_INIT,LN=LN+1
+ ...;the following three naked references below refer to the full references to the right of the = sign
+ ...I LN=5 S ^(LN)=$G(^TMP($J,"1PRN",PG,LAB,LN))_UP_POPI
+ ...E  D:$L(POPI) CHK(POPI) F LN=LN:1:5 S ^(LN)=$G(^TMP($J,"1PRN",PG,LAB,LN))_UP_""
+ ..S ^(LN)=$G(^TMP($J,"1PRN",PG,LAB,LN))_UP_TXT
  Q
 SETVAR ;***Initialize variables.
  NEW TMSTR

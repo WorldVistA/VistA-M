@@ -1,5 +1,5 @@
 RMPOPST1 ;EDS/JAM,RVD - HOME OXYGEN BILLING TRANSACTIONS/POSTING,Part 2 ;7/24/98
- ;;3.0;PROSTHETICS;**29,44,55,154**;Feb 09, 1996;Build 6
+ ;;3.0;PROSTHETICS;**29,44,55,154,166**;Feb 09, 1996;Build 2
  ; RVD #55  - corrected the typo (missing '^' on TMP global).
  ;
  ;Processing of 1358 and Purchase Cards to IFCAP
@@ -38,7 +38,8 @@ PRHCARD ;Processing IFCAP Purchase Card
  . ;W "  ",$P(^TMP($J,FCP),U,3)
  S PSTFLG=0,DFN=""
  F I=1:1 S DFN=$O(^TMP($J,FCP,DFN)) Q:DFN=""  D
- . S PATOT=+^TMP($J,FCP,DFN),PATINF="PAT ID "_DFN,PATINFW=$P(^TMP($J,FCP,DFN),U,2)
+ . ;RMPR166 change identifier from PAT ID to PID to reduce num of chars ticket 786903 
+ . S PATOT=+^TMP($J,FCP,DFN),PATINF="PID "_DFN,PATINFW=$P(^TMP($J,FCP,DFN),U,2)
  . ;authorize amount to be posted
  . D NOW^%DTC S CURDT=%
  . S X=SRVORD_"^"_CURDT_"^"_PATOT_"^^"_PATINF,Y=$$AUTH(X)

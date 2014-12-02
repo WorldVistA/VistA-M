@@ -1,18 +1,34 @@
 ECXPURG ;BIR/CML-Driver for Purge of DSS Data from Local Extract & Holding Files ; 10/8/08 4:25pm
- ;;3.0;DSS EXTRACTS;**9,24,33,35,49,102,112**;Dec 22, 1997;Build 26
-EN ;entry point from option
- W @IOF,!!,"This option will allow you to purge:"
- W !,"1. individual or a range of DSS extracts, or"
- W !,"2. data that resides in the ""holding files"" for the IVP and UDP extracts."
- W !,"3. data that resides in the ""holding file"" for the VBECS extract"
+ ;;3.0;DSS EXTRACTS;**9,24,33,35,49,102,112,144**;Dec 22, 1997;Build 9
+ENDEL ;entry point from delete extract files option 144 CVW
+ W @IOF,!!,"This option will allow you to delete an"
+ W !,"individual or a range of DSS extracts files."
  W !!,"Care must be taken for several reasons:"
- W !!,"-  You can purge ANY existing extract.  This includes transmitted and non-"
+ W !!,"-  You can delete ANY existing extract.  This includes transmitted and non-"
  W !,"   transmitted extracts as well as extracts that did not run to completion"
  W !,"   due to errors or system problems."
- W !,"-  Choosing a range of extracts (or a broad date range for the ""holding"
- W !,"   files"") could mean an excessively large number of records and be very"
- W !,"   CPU intensive.  Please be sure to queue this purge for off-hours and"
- W !,"   limit the number of extracts to be purged per a single queued session."
+ W !,"-  Choosing a range of extracts could mean an excessively large number "
+ W !,"   of records and be very CPU intensive.  "
+ W !,"   Please be sure to queue this deletion for off-hours and"
+ W !,"   limit the number of extracts to be deleted per a single queued session."
+ ;
+ K DIR W !
+ W !! K DIR S DIR(0)="Y",DIR("A")="Delete Extract Files?",DIR("B")="NO"
+ ;S DIR(0)="SAM^E:Extract Files"
+ ;S DIR("A")="Delete Extract files? E"
+ ;D ^DIR K DIR G:$D(DIRUT) QUIT S ECY=Y
+ D ^DIR K DIR G:$D(DIRUT) QUIT S ECY=Y
+ I Y D ^ECXPURG1 I $D(ECLOC) S ZTSAVE("ECLOC(")="",ZTIO="",ZTRTN="PUR1^ECXPURG",ZTDESC="DSS - Deletion of Extract Files" D QUE
+ ;I ECY="E" D ^ECXPURG1 I $D(ECLOC) S ZTSAVE("ECLOC(")="",ZTIO="",ZTRTN="PUR1^ECXPURG",ZTDESC="DSS - Deletion of Extract Files" D QUE
+ ;I ECY="I" D DATES^ECXPURG1 I $D(ECBDT)&($D(ECEDT)) S (ZTSAVE("ECBDT"),ZTSAVE("ECEDT"))="",ZTIO="",ZTRTN="PUR2^ECXPURG",ZTDESC="DSS - Purge of IVP Holding File" D QUE
+ ;I ECY="U" D DATES^ECXPURG1 I $D(ECBDT)&($D(ECEDT)) S (ZTSAVE("ECBDT"),ZTSAVE("ECEDT"))="",ZTIO="",ZTRTN="PUR3^ECXPURG",ZTDESC="DSS - Purge of UDP Holding File" D QUE
+ ;I ECY="V" D DATES^ECXPURG1 I $D(ECBDT)&($D(ECEDT)) S (ZTSAVE("ECBDT"),ZTSAVE("ECEDT"))="",ZTIO="",ZTRTN="PUR4^ECXPURG",ZTDESC="DSS - Purge of VBECS Holding File" D QUE
+ Q
+EN ;entry point from the purge option
+ W @IOF,!!,"This option will allow you to purge:"
+ W !,"1. data that resides in the ""holding files"" for the IVP and UDP extracts."
+ W !,"2. data that resides in the ""holding file"" for the VBECS extract"
+ W !!,"Care must be taken for several reasons:"
  W !,"-  The IVP, UDP and VBECS ""holding"" files are intermediate files that"
  W !,"   are populated ""realtime"" by inpatient pharmacy and VBECS activity. "
  W !,"   These files are then used to generate the IVP, UDP and VBECS extracts."
@@ -21,10 +37,10 @@ EN ;entry point from option
  W !,"   generated for that time period."
  ;
  K DIR W !
- S DIR(0)="SAM^E:Extract Files;I:IVP Holding File;U:UDP Holding File;V:VBECS Holding File"
- S DIR("A")="Purge (E)xtract files, (I)VP data, (U)DP data or (V)BECS data? "
+ S DIR(0)="SAM^I:IVP Holding File;U:UDP Holding File;V:VBECS Holding File"
+ S DIR("A")="Purge (I)VP data, (U)DP data or (V)BECS data? "
  D ^DIR K DIR G:$D(DIRUT) QUIT S ECY=Y
- I ECY="E" D ^ECXPURG1 I $D(ECLOC) S ZTSAVE("ECLOC(")="",ZTIO="",ZTRTN="PUR1^ECXPURG",ZTDESC="DSS - Purge of Extract Files" D QUE
+ ;I ECY="E" D ^ECXPURG1 I $D(ECLOC) S ZTSAVE("ECLOC(")="",ZTIO="",ZTRTN="PUR1^ECXPURG",ZTDESC="DSS - Purge of Extract Files" D QUE
  I ECY="I" D DATES^ECXPURG1 I $D(ECBDT)&($D(ECEDT)) S (ZTSAVE("ECBDT"),ZTSAVE("ECEDT"))="",ZTIO="",ZTRTN="PUR2^ECXPURG",ZTDESC="DSS - Purge of IVP Holding File" D QUE
  I ECY="U" D DATES^ECXPURG1 I $D(ECBDT)&($D(ECEDT)) S (ZTSAVE("ECBDT"),ZTSAVE("ECEDT"))="",ZTIO="",ZTRTN="PUR3^ECXPURG",ZTDESC="DSS - Purge of UDP Holding File" D QUE
  I ECY="V" D DATES^ECXPURG1 I $D(ECBDT)&($D(ECEDT)) S (ZTSAVE("ECBDT"),ZTSAVE("ECEDT"))="",ZTIO="",ZTRTN="PUR4^ECXPURG",ZTDESC="DSS - Purge of VBECS Holding File" D QUE
@@ -33,7 +49,7 @@ QUIT ;
  K ECXDIV
  S:$D(ZTQUEUED) ZTREQ="@"
  Q
-QUE W $C(7),$C(7),!!?3,"<<This purge should be queued to run during non-peak hours.>>",!
+QUE W $C(7),$C(7),!!?3,"<<This deletion should be queued to run during non-peak hours.>>",!
  D ^%ZTLOAD
  I $D(ZTSK) W !,"Request queued as Task #",ZTSK,".",!
  Q
@@ -76,7 +92,7 @@ MAIL ;send mail message
  N XMSUB,XMDUZ,ECMSG,XMTEXT
  S XMSUB=ZTDESC
  S XMDUZ="DSS SYSTEM"
- S ECMSG(1,0)="The information has been successfully PURGED"
+ S ECMSG(1,0)="The information has been successfully DELETED"
  S ECMSG(2,0)="from "_$$FMTE^XLFDT(ECBDT)_" to "_$$FMTE^XLFDT(ECEDT)
  S ECMSG(3,0)=" "
  S XMTEXT="ECMSG("

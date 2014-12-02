@@ -1,4 +1,4 @@
-SDBT2 ; ;12/14/10
+SDBT2 ; ;08/05/14
  D DE G BEGIN
 DE S DIE="^SC(D0,""DX"",",DIC=DIE,DP=44.11,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^SC(D0,"DX",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=% S %=$P(%Z,U,2) S:%]"" DE(2)=%
@@ -49,7 +49,7 @@ SAVEVALS S @DIEZTMP@("V",DP,DIIENS,DIFLD,"O")=$G(DE(DQ)) S:$D(^("F"))[0 ^("F")=$
 NKEY W:'$D(ZTQUEUED) "??  Required key field" S X="?BAD" G QS
 KEYCHK() Q:$G(DE(DW,"KEY"))="" 1 Q @DE(DW,"KEY")
 BEGIN S DNM="SDBT2",DQ=1+D G B
-1 S DW="0;1",DV="M*P80'",DU="",DLB="DIAGNOSIS",DIFLD=.01
+1 S DW="0;1",DV="M*P80'X",DU="",DLB="DIAGNOSIS",DIFLD=.01
  S DE(DW)="C1^SDBT2"
  S DU="ICD9("
  G RE:'D S DQ=2 G 2
@@ -60,7 +60,7 @@ C1S S X="" G:DG(DQ)=X C1F1 K DB
  S X=DG(DQ),DIC=DIE
  S ^SC(DA(1),"DX","B",$E(X,1,30),DA)=""
 C1F1 Q
-X1 S DIC("S")="I '$P(^(0),U,9)" D ^DIC K DIC S DIC=DIE,X=+Y K:Y<0 X
+X1 S DIC("S")="I $$F44SCRN1^SDAMICD(Y)" D ^DIC K DIC S DIC=DIE,X=+Y K:Y<0 X
  Q
  ;
 2 D:$D(DG)>9 F^DIE17,DE S DQ=2,DW="0;2",DV="SX",DU="",DLB="DEFAULT DIAGNOSIS",DIFLD=.02
@@ -74,7 +74,7 @@ C2S S X="" G:DG(DQ)=X C2F1 K DB
  S X=DG(DQ),DIC=DIE
  S:X ^SC("ADDX",DA(1),DA)=""
 C2F1 Q
-X2 I X,$D(^SC("ADDX",DA(1))),'$D(^(DA(1),DA)) W !?5,"A default diagnosis has already been assigned for this clinic." K X
+X2 I X,$$F44SCRN2^SDAMICD(DA(1),DA) D EN^DDIOL("A default diagnosis ("_$$DEFLTICD^SDAMICD(DA(1),DA)_") has already been assigned to this clinic for this ICD version.","","!?5") K X
  Q
  ;
 3 G 1^DIE17

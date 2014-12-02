@@ -1,5 +1,5 @@
 VBECRPCH ; HOIFO/BNT - VBECS HCPCS Codes lookup;19 May 2004
- ;;1.0;VBECS;**3**;Apr 14, 2005;Build 21
+ ;;1.0;VBECS;**3,56**;Apr 14, 2005;Build 1
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without
@@ -25,11 +25,13 @@ HCPCS(RESULTS) ; Get active HCPCS codes from the CPT file for Path/Lab CPT Categ
  S RESULTS=$NA(^TMP("VBECHCPCS",$J))
  K @RESULTS,^TMP("DILIST",$J)
  D BEGROOT^VBECRPC("Root")
- S VBHPC=$$FIND1^DIC(81.1,,,"PATHOLOGY AND LABORATORY SERVICES",,,"VBERR")
- I 'VBHPC!($D(VBERR)) D  Q
- . D ERROR^VBECRPC("Error collecting HCPCS data")
- . D ENDROOT^VBECRPC("Root")
- . Q
+ S VBHPC=194
+ ;The following lines were commented out to remove the lookup and switch to a hard coded variable.
+ ;S VBHPC=$$FIND1^DIC(81.1,,,"PATHOLOGY AND LABORATORY SERVICES",,,"VBERR")
+ ;I 'VBHPC!($D(VBERR)) D  Q
+ ;. D ERROR^VBECRPC("Error collecting HCPCS data")
+ ;. D ENDROOT^VBECRPC("Root")
+ ;. Q
  S VBSCRN="N CPT S CPT=$$CPT^ICPTCOD(Y) I $P(CPT,U,4)="_VBHPC_",$P(CPT,U,7),$P(CPT,U,5)=""H"""
  D LIST^DIC(81,,.01,,,,,"D",VBSCRN,,.OUT,"VBERR")
  I $D(VBERR) D  Q

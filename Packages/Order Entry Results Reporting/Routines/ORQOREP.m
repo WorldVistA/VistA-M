@@ -1,0 +1,268 @@
+ORQOREP ;ISP/JMH,RFR - REPORT FOR QUICK ORDERS ;03/28/2013  09:32
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**366**;Dec 17, 1997;Build 9
+ Q
+DIFF ;
+ W !!,"This report identifies Medication Quick orders that have a free text dosage",!
+ W "that does not match exactly one of the Local Dosages from Pharmacy.",!
+ N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT,TYPE,SAVE
+ S DIR(0)="S"_U_"S:System Quick Orders;P:Personal Quick Orders;PS:Personal and System Quick Orders"
+ S DIR("A")="SELECT THE TYPE OF QUICK ORDER",DIR("B")="PS" D ^DIR
+ Q:"PS"'[$G(Y)
+ S TYPE="I $P($G(^ORD(101.41,ORI,0)),U,4)=""Q"""
+ I Y="P" S TYPE=TYPE_",($E($P($G(^ORD(101.41,ORI,0)),U,1),1,6)=""ORWDQ "")"
+ I Y="S" S TYPE=TYPE_",($E($P($G(^ORD(101.41,ORI,0)),U,1),1,6)'=""ORWDQ "")"
+ K DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
+ S DIR(0)="S"_U_"L:Local Possible Dosages;P:Possible Dosages;N:No Local Possible and No Possible Dosages"
+ S DIR("A")="SELECT THE TYPE OF DOSAGE",DIR("B")="L" D ^DIR
+ Q:"^L^P^N^"'[(U_$G(Y)_U)
+ S ORY=Y
+ S SAVE("TYPE")="",SAVE("ORY")=""
+ I $T(DEVICE^ORUTL)'="" D DEVICE^ORUTL("DIFFQ^ORQOREP","OR QUICK ORDER FREE-TEXT","Q",.SAVE)
+ I $T(DEVICE^ORUTL)="" D DEVICE("DIFFQ^ORQOREP","OR QUICK ORDER FREE-TEXT","Q",.SAVE)
+ Q
+DIFFQ ;TASKMAN ENTRY POINT
+ ;return list of quick orders in a reminder dialog
+ K ^TMP($J,"OR REMDLG")
+ D FQOIRDLG^ORINQIV
+ N ORI,ORPT,ORCNT,DATA,EXIT,STOP,HEADER,PGNUM,OUT,DOSAGE
+ S HEADER="S STOP=$$HEADER"_$S($T(HEADER^ORUTL)'="":"^ORUTL",1:"")_"(""QUICK ORDER FREE-TEXT REPORT"",.PGNUM)"
+ S ORPT=$O(^DPT(0)),ORCNT=0,DATA=$NA(^TMP($J,"ORQOREP")) K @DATA
+ S OUT(1)="This report identifies medication quick orders that have a free text dosage"
+ S OUT(2)="that does not exactly match one of the local possible dosages from pharmacy.",OUT=3
+ I ORY'="N" D
+ .S DOSAGE="I $L($P(ORDOSE(ORDLI),U))>0,($L($P(ORDOSE(ORDLI),U,3))>0)"
+ .S OUT(OUT)="When at least one active dispense drug linked to the orderable item has a",OUT=OUT+1
+ .S OUT(OUT)="possible dosage then only possible dosages will be available in CPRS and",OUT=OUT+1
+ .S OUT(OUT)="for dose checks for the package (I/O) of the quick order. "
+ .I ORY="L" D
+ ..S DOSAGE=$TR(DOSAGE,">","=")
+ ..S OUT(OUT)=OUT(OUT)_"Thus, no possible",OUT=OUT+1
+ ..S OUT(OUT)="dosages have been created and only local possible dosages are listed below."
+ .I ORY="P" D
+ ..S OUT(OUT)=OUT(OUT)_"Thus, local",OUT=OUT+1
+ ..S OUT(OUT)="possible dosages for a dispense drug will not be listed below, only possible",OUT=OUT+1
+ ..S OUT(OUT)="dosages are listed.",OUT=OUT+1
+ I ORY="N" D
+ .S OUT(OUT)="It shows when all of the active dispense drugs linked to the orderable",OUT=OUT+1
+ .S OUT(OUT)="item have NO possible dosages and NO local possible dosages for the",OUT=OUT+1
+ .S OUT(OUT)="package (I/O) of the quick order."
+ S ORI=0 F  S ORI=$O(^ORD(101.41,ORI)) Q:'ORI  D
+ .X TYPE Q:'$T
+ .N CONT,USER
+ .S CONT=$S($O(^ORD(101.41,"AD",ORI,0)):1,$D(^TMP($J,"OR REMDLG",ORI)):1,$D(^ORD(101.44,"C",ORI)):1,1:0)
+ .Q:'CONT
+ .;FOR PERSONAL QUICK ORDERS, STOP EXAMINING IF ALL ASSOCIATED USERS ARE INACTIVE
+ .S EXIT=0
+ .I $E($P($G(^ORD(101.41,ORI,0)),U,1),1,6)="ORWDQ " D
+ ..N OQVIEN S OQVIEN=0,EXIT=1
+ ..F  S OQVIEN=$O(^ORD(101.44,"C",ORI,OQVIEN)) Q:+$G(OQVIEN)=0  D
+ ...S USER=$P($P($G(^ORD(101.44,OQVIEN,0)),U,1)," ",2),USER=$E(USER,4,$L(USER))
+ ...S USER(USER)=+$$ACTIVE^XUSER(USER)
+ ...S:EXIT EXIT='USER(USER)
+ ...I 'USER(USER) K USER(USER)
+ ...I $D(USER(USER)) S USER(USER)=$$GET1^DIQ(200,USER_",",.01)
+ .Q:+EXIT
+ .N ORINSDLG,ORINSIEN,ORDRDLG,ORDRIEN,ORINS,ORDR,OROIDLG,OROIIEN,OROI,ORDREXT,ORFLAG,ORDG,ORPTYPE,ORDOSE,ORPSOI
+ .S OROIDLG=$O(^ORD(101.41,"B","OR GTX ORDERABLE ITEM",0))
+ .Q:'OROIDLG
+ .S OROIIEN=$O(^ORD(101.41,ORI,6,"D",OROIDLG,0))
+ .Q:'OROIIEN
+ .S OROI=$G(^ORD(101.41,ORI,6,OROIIEN,1))
+ .Q:'OROI
+ .Q:$P($P($G(^ORD(101.43,OROI,0)),U,2),";",2)'="99PSP"
+ .S ORPSOI=$P($P($G(^ORD(101.43,OROI,0)),U,2),";")
+ .S ORINSDLG=$O(^ORD(101.41,"B","OR GTX INSTRUCTIONS",0))
+ .Q:'ORINSDLG
+ .S ORINSIEN=$O(^ORD(101.41,ORI,6,"D",ORINSDLG,0))
+ .Q:'ORINSIEN
+ .S ORINS=$G(^ORD(101.41,ORI,6,ORINSIEN,1))
+ .Q:$L(ORINS)=0
+ .;GET DISPLAY GROUP
+ .S ORDG=$P($G(^ORD(101.41,ORI,0)),U,5)
+ .S ORDG=$P($G(^ORD(100.98,ORDG,0)),U)
+ .S ORPTYPE=$S(ORDG="UNIT DOSE MEDICATIONS":"U",ORDG="NON-VA MEDICATIONS":"X",ORDG="IV MEDICATIONS":"I",1:"O")
+ .N ORDOSE2,ORDISP D ALLDOSES(OROI,ORPTYPE,ORPT,.ORDOSE2,.ORDISP)
+ .N ORDOSE D DOSE^PSSOPKI1(.ORDOSE,ORPSOI,ORPTYPE)
+ .I $D(DOSAGE),('$D(ORDOSE(1))) Q
+ .I '$D(DOSAGE),($D(ORDOSE(1))) Q
+ .I $D(DOSAGE) D
+ ..N ORDLI S ORDLI=0,EXIT=1
+ ..F  S ORDLI=$O(ORDOSE(ORDLI)) Q:'ORDLI!('EXIT)  D
+ ...X DOSAGE S EXIT='$T
+ .Q:+$G(EXIT)
+ .Q:$D(ORDOSE2(ORINS))
+ .N OREXMPT,OREI
+ .S OREXMPT=1,OREI=0 F  S OREI=$O(ORDOSE("DD",OREI)) Q:'OREI  I '$$EXMT^PSSDSAPI(OREI) S OREXMPT=0
+ .S:'$D(DOSAGE) OREXMPT=0
+ .Q:OREXMPT
+ .N SUBSCRIPT
+ .S SUBSCRIPT=$S($E($P($G(^ORD(101.41,ORI,0)),U,1),1,6)="ORWDQ ":"PERSONAL",1:"SYSTEM")
+ .D ADD(DATA,SUBSCRIPT,$$LJ^XLFSTR("QUICK ORDER (IEN):",24," ")_$P(^ORD(101.41,ORI,0),U)_" ("_ORI_")")
+ .D ADD(DATA,SUBSCRIPT,$$LJ^XLFSTR("QO DISPLAY NAME:",24," ")_$P(^ORD(101.41,ORI,0),U,2))
+ .I $D(USER)>9 D
+ ..N HEADER S HEADER="  OWNER(S): "
+ ..S USER=0 F  S USER=$O(USER(USER)) Q:+$G(USER)=0  D
+ ...D ADD(DATA,SUBSCRIPT,$$LJ^XLFSTR(HEADER,24," ")_USER(USER))
+ ...S:HEADER'=" " HEADER=" "
+ .D ADD(DATA,SUBSCRIPT,"  "_$$LJ^XLFSTR("DISPLAY GROUP:",22," ")_ORDG)
+ .D ADD(DATA,SUBSCRIPT,"  "_$$LJ^XLFSTR("ORDERABLE ITEM IEN:",22," ")_OROI)
+ .D ADD(DATA,SUBSCRIPT,"  "_$$LJ^XLFSTR("ORDERABLE ITEM NAME:",22," ")_$P(^ORD(101.43,OROI,0),U))
+ .D ADD(DATA,SUBSCRIPT,"  "_$$LJ^XLFSTR("QO INSTRUCTIONS:",22," ")_$E(ORINS,1,50))
+ .D ADD(DATA,SUBSCRIPT,"  "_$$LJ^XLFSTR("DISPENSE:",22," ")_$P(ORDISP,U,4))
+ .I $L(ORINS)>50 D ADD(DATA,SUBSCRIPT,"  "_$$REPEAT^XLFSTR(" ",22)_$E(ORINS,50,$L(ORINS)))
+ .D ADD(DATA,SUBSCRIPT,"  CPRS DOSAGE LIST:")
+ .N ORDI S ORDI="" F  S ORDI=$O(ORDOSE2(ORDI)) Q:ORDI=""  D ADD(DATA,SUBSCRIPT,"    "_ORDI)
+ .S ORCNT=ORCNT+1
+ .D ADD(DATA,SUBSCRIPT,"")
+ X HEADER
+ Q:STOP
+ S OUT=0 F  S OUT=$O(OUT(OUT)) Q:'OUT  W OUT(OUT),!
+ W !
+ N COUNT,LINE
+ F SUBSCRIPT="SYSTEM","PERSONAL" Q:STOP  D
+ .F COUNT=1:1:+$G(@DATA@("COUNT",SUBSCRIPT)) Q:STOP  D
+ ..I ($Y+CBUFFER+$O(@DATA@(SUBSCRIPT,COUNT,"?"),-1)-1)>IOSL X HEADER
+ ..Q:STOP
+ ..S LINE=0 F  S LINE=$O(@DATA@(SUBSCRIPT,COUNT,LINE)) Q:+$G(LINE)=0!(STOP)  D
+ ...I ($Y+CBUFFER)>IOSL X HEADER
+ ...Q:STOP
+ ...W @DATA@(SUBSCRIPT,COUNT,LINE),!
+ I 'STOP D
+ .I ($Y+CBUFFER+1)>IOSL X HEADER
+ .Q:STOP
+ .W !,$$CJ^XLFSTR(ORCNT_" Quick Orders Found",$S(+$G(IOM)>0:(IOM-1),1:79)," "),!
+ K ^TMP($J,"OR REMDLG"),@DATA
+ Q
+ADD(ARRAY,SUBSCRIPT,VALUE) ;ADD A LINE TO THE OUTPUT ARRAY
+ ;PARAMETERS: ARRAY => NODE ADDRESS OF ARRAY TO STORE VALUE IN
+ ;            SUBSCRIPT => THE SUBSCRIPT DESCENDANT FROM ARRAY IN WHICH TO STORE VALUE IN
+ ;            VALUE => DATA TO STORE IN THE OUTPUT ARRAY
+ I VALUE["QUICK ORDER (IEN):" S @ARRAY@("COUNT",SUBSCRIPT)=1+$G(@ARRAY@("COUNT",SUBSCRIPT))
+ N LNUM
+ S LNUM=+$O(@ARRAY@(SUBSCRIPT,@ARRAY@("COUNT",SUBSCRIPT),"?"),-1)+1
+ S @ARRAY@(SUBSCRIPT,@ARRAY@("COUNT",SUBSCRIPT),LNUM)=VALUE
+ Q
+ALLDOSES(OROI,ORTYPE,ORPT,OROUT,ORDISP) ;return all doses for an orderable item
+ N ORY
+ S ORDISP="NA"
+ D OISLCT^ORWDPS2(.ORY,OROI,ORTYPE,ORPT,"Y","Y")
+ N I S I=0 F  S I=$O(ORY(I)) Q:'I  D
+ .I ORY(I)="~AllDoses" D
+ ..F  S I=$O(ORY(I)) Q:'I  Q:$E(ORY(I),1,1)="~"  D
+ ...S OROUT($E(ORY(I),2,$L($P(ORY(I),U))))=""
+ .I ORY(I)="~Dispense" D
+ ..F  S I=$O(ORY(I)) Q:'I  Q:$E(ORY(I),1,1)="~"  D
+ ...S ORDISP=ORY(I)
+ Q
+CASE ;
+ W !!,"This report identifies quick orders that have potentially had the DRUG name",!
+ W "edited such that when the quick order is loaded in CPRS the dosage that is",!
+ W "saved with the quick order does not match any of the dosages available for",!
+ W "selection in the list. This causes the dosage checks not to be able to be",!
+ W "performed correctly.  The edit to the drug that this specifically looks for",!
+ W "is a case change to the DRUG name.  If the name is changed so that it",!
+ W "contains different characters that are not just case changes, this report",!
+ W "will not identify them.",!
+ I $T(DEVICE^ORUTL)'="" D DEVICE^ORUTL("CASEQ^ORQOREP","OR QUICK ORDER MIXED-CASE","Q")
+ I $T(DEVICE^ORUTL)="" D DEVICE("CASEQ^ORQOREP","OR QUICK ORDER MIXED-CASE","Q")
+ Q
+CASEQ ;TASKMAN ENTRY POINT
+ N ORI,ORPT,ORCNT,STOP,HEADER,PGNUM
+ S HEADER="S STOP=$$HEADER"_$S($T(HEADER^ORUTL)'="":"^ORUTL",1:"")_"(""QUICK ORDER MIXED-CASE REPORT"",.PGNUM)"
+ S ORPT=$O(^DPT(0)),ORCNT=0
+ S ORI=0 F  S ORI=$O(^ORD(101.41,ORI)) Q:'ORI!($G(STOP))  D
+ .Q:($P(^ORD(101.41,ORI,0),U,4)'="Q")
+ .N ORINSDLG,ORINSIEN,ORDRDLG,ORDRIEN,ORINS,ORDR,OROIDLG,OROIIEN,OROI,ORDREXT,ORFLAG,ORDG,ORPTYPE,ORDOSE,ORPSOI
+ .S OROIDLG=$O(^ORD(101.41,"B","OR GTX ORDERABLE ITEM",0))
+ .Q:'OROIDLG
+ .S OROIIEN=$O(^ORD(101.41,ORI,6,"D",OROIDLG,0))
+ .Q:'OROIIEN
+ .S OROI=$G(^ORD(101.41,ORI,6,OROIIEN,1))
+ .Q:'OROI
+ .Q:$P($P($G(^ORD(101.43,OROI,0)),U,2),";",2)'="99PSP"
+ .S ORPSOI=$P($P($G(^ORD(101.43,OROI,0)),U,2),";")
+ .S ORINSDLG=$O(^ORD(101.41,"B","OR GTX INSTRUCTIONS",0))
+ .Q:'ORINSDLG
+ .S ORINSIEN=$O(^ORD(101.41,ORI,6,"D",ORINSDLG,0))
+ .Q:'ORINSIEN
+ .S ORINS=$G(^ORD(101.41,ORI,6,ORINSIEN,1))
+ .Q:$L(ORINS)=0
+ .S ORDRDLG=$O(^ORD(101.41,"B","OR GTX DISPENSE DRUG",0))
+ .Q:'ORDRDLG
+ .S ORDRIEN=$O(^ORD(101.41,ORI,6,"D",ORDRDLG,0))
+ .Q:'ORDRIEN
+ .S ORDR=$G(^ORD(101.41,ORI,6,ORDRIEN,1))
+ .Q:'ORDR
+ .S ORDREXT=$$EXTVAL^ORWDX2(ORDR,ORDRDLG)
+ .;GET DISPLAY GROUP
+ .S ORDG=$P($G(^ORD(101.41,ORI,0)),U,5)
+ .S ORDG=$P($G(^ORD(100.98,ORDG,0)),U)
+ .S ORPTYPE="O"
+ .I ORDG="UNIT DOSE MEDICATIONS" S ORPTYPE="I"
+ .I '$L($T(DOSE^PSSOPKI1)) D DOSE^PSSORUTL(.ORDOSE,ORPSOI,ORPTYPE,ORPT)
+ .I $L($T(DOSE^PSSOPKI1)) D DOSE^PSSOPKI1(.ORDOSE,ORPSOI,ORPTYPE,ORPT)
+ .N ORFOUND,ORDOSEI S ORDOSEI=0,ORFOUND=0
+ .F  S ORDOSEI=$O(ORDOSE(ORDOSEI)) Q:'ORDOSEI  D
+ ..I ORINS[$P(ORDOSE(ORDOSEI),U,5) S ORFOUND=1
+ .I ORINS[$P($G(ORDOSE("DD",ORDR)),U) Q
+ .S ORFLAG=""
+ .Q:ORINS[ORDREXT
+ .Q:$$UPPER^ORU(ORINS)'[$$UPPER^ORU(ORDREXT)
+ .I ($Y+CBUFFER+8)>IOSL!($Y=0) X HEADER
+ .Q:$G(STOP)
+ .W "QUICK ORDER (IEN):",?24,$P(^ORD(101.41,ORI,0),U,2)," (",ORI,")"
+ .W !,?2,"DISPLAY GROUP: ",?24,ORDG
+ .W !,?2,"ORDERABLE ITEM IEN:",?24,OROI
+ .W !,?2,"ORDERABLE ITEM NAME:",?24,$P(^ORD(101.43,OROI,0),U)
+ .W !,?2,"DRUG IEN:",?24,ORDR
+ .W !,?2,"DRUG TEXT:",?24,ORDREXT
+ .W !,?2,"QO INSTRUCTIONS:",?24,ORINS
+ .W !
+ .S ORCNT=ORCNT+1
+ I '$G(STOP) D
+ .I ($Y+CBUFFER+2)>IOSL!($Y=0) X HEADER
+ .Q:STOP
+ .W !,$$CJ^XLFSTR(ORCNT_" Quick Orders Found",$S(+$G(IOM)>0:(IOM-1),1:79)," "),!
+ Q
+DEVICE(ZTRTN,ZTDESC,%ZIS,ZTSAVE) ;PROMPT THE USER FOR THE OUTPUT DEVICE
+ ;PARAMETERS: ZTRTN  => LINE TAG THAT STARTS PRINTING THE REPORT
+ ;            ZTDESC => TASKMAN TASK DESCRIPTION
+ ;            %ZIS   => FLAGS TO PASS TO ^%ZIS
+ ;            ZTSAVE => VARIABLES TO SAVE FOR TASKMAN
+ N POP,CBUFFER
+ S %ZIS("B")="",CBUFFER=0
+ D ^%ZIS
+ Q:+$G(POP)
+ I $D(IO("Q")) D  Q
+ .N ZTSK,ORTEXT
+ .S ORTEXT=$P(ZTDESC,"OR ",2)
+ .S ZTSAVE("CBUFFER")=""
+ .D ^%ZTLOAD,HOME^%ZIS
+ .K IO("Q")
+ .I +$G(ZTSK)>0 W !,"Successfully queued the "_ORTEXT_" report.",!,"Task Number: "_ZTSK,! H 2
+ I '$D(IO("Q")) D 
+ .U IO
+ .I $E(IOST,1,2)="C-" W @IOF S CBUFFER=3
+ .D @ZTRTN,^%ZISC
+ Q
+HEADER(TITLE,PAGE,HEADER) ;OUTPUT THE REPORT'S HEADER
+ ;PARAMETERS: TITLE  => THE TITLE OF THE REPORT
+ ;            PAGE   => (REFERENCE) PAGE NUMBER
+ ;            HEADER => (REFERENCE) COLUMN NAMES, FORMATTED AS:
+ ;                      COLUMN(LINE_NUMBER)=TEXT
+ ;                      NOTE: LINE_NUMBER STARTS AT ONE
+ ;RETURNS: 0 => USER WANTS TO CONTINUE PRINTING
+ ;         1 => USER DOES NOT WANT TO CONTINUE PRINTING
+ I $D(ZTQUEUED),($$S^%ZTLOAD) D  Q 1
+ .S ZTSTOP=$$S^%ZTLOAD("Received stop request"),ZTSTOP=1
+ N X,END
+ S PAGE=+$G(PAGE)+1
+ I PAGE>1 D  Q:$G(END) 1
+ .I $E(IOST,1,2)="C-" W !,"Press RETURN to continue or '^' to exit: " R X:DTIME S END='$T!(X="^") Q:$G(END)
+ .W @IOF
+ N NOW,INDEX
+ S NOW=$$UP^XLFSTR($$HTE^XLFDT($H)),NOW=$P(NOW,"@",1)_"  "_$P($P(NOW,"@",2),":",1,2)
+ W $$LJ^XLFSTR($E(TITLE,1,46),47," ")_NOW_"   PAGE "_PAGE,!
+ S INDEX=0 F  S INDEX=$O(HEADER(INDEX)) Q:'INDEX  W HEADER(INDEX),!
+ W $$REPEAT^XLFSTR("-",(IOM-1)),!
+ Q 0

@@ -1,5 +1,5 @@
 DVBCAMRO ;ALB ISC/THM-REGIONAL OFFICE 2507 AMIS REPORT ; 9/28/91  6:39 AM
- ;;2.7;AMIE;**17,149**;Apr 10, 1995;Build 16
+ ;;2.7;AMIE;**17,149,184**;Apr 10, 1995;Build 10
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 SETUP ;
@@ -11,8 +11,8 @@ SETUP ;
  S DVBAPRTY=$$EXMPRTY^DVBCIUTL("Select the Priority of Exam for the 2507 AMIS Report")
  G:('(DVBAPRTY?.A)!(DVBAPRTY']"")) EXIT  ;quit if no priority of exam selected
  ;
-INIT ;initialize counter arrys
- S DVBAEXMP=$S($G(DVBAPRTY)["BDD":"BDD,QS",($G(DVBAPRTY)["DES"):"DCS,DFD",($G(DVBAPRTY)["AO"):"AO",1:"ALL")
+INIT ;initialize counter arrays
+ S DVBAEXMP=$S($G(DVBAPRTY)["BDD":"BDD,QS",($G(DVBAPRTY)["IDES"):"IDES",($G(DVBAPRTY)["AO"):"AO",1:"ALL")
  F JI="3DAYSCH","30DAYEX","PENDADJ" D
  .F DVBAP=1:1:$L(DVBAEXMP,",") S TOT($P(DVBAEXMP,",",DVBAP),JI)=0
  F JI="INSUFF","SENT","INCOMPLETE","DAYS","COMPLETED" D

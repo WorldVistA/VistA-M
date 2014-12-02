@@ -1,5 +1,5 @@
 LRCE ;DALOI/JMC - LOOK-UP ON CENTRAL ENTRY # ;03/24/11  17:32
- ;;5.2;LAB SERVICE;**28,76,103,121,153,210,202,263,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**28,76,103,121,153,210,202,263,350,416**;Sep 27, 1994;Build 4
  ;
 EN ;
  S (LRSTOP,LRFLAG1,LRFLG,LRSN1,LRNOP)=0
@@ -136,6 +136,7 @@ TST D CHKPAGE
  Q:$G(LRSTOP)
  F  S I=$O(^LRO(69,LRODT,1,LRSN,2,I)) Q:I<1  D
  . D CHKPAGE Q:$G(LRSTOP)
+ . S LRNOPMSG=0
  . D TEST D CHKPAGE Q:$G(LRSTOP)
  D CHKPAGE
  Q:$G(LRSTOP)
@@ -145,8 +146,9 @@ TST D CHKPAGE
  F  S I=$O(^LRO(69,LRODT,1,LRSN,6,I)) Q:I<1  W !,?3,^(I,0) D CHKPAGE Q:$G(LRSTOP)
  Q:$G(LRSTOP)
 NXT S X=$P($G(^LRO(69,LRODT,1,LRSN,1)),U,4)
- I X="C"!($G(LRNOP)) W !,"Order has already been accessioned."
- I LRNOP,'$D(LRLABKY) W !,"Tests have been accessioned, call the lab to add tests to the same order." Q
+ I X="C"!($G(LRNOPMSG)) W !,"Order has already been accessioned."
+ I LRNOP,'$D(LRLABKY) D  Q
+ . I $G(LRNOPMSG) W !,"Tests have been accessioned, call the lab to add tests to the same order."
  I '$D(LRADDTST) Q
  I X="M" W !?5,"This Order was Merged " Q
  I '$G(LRRSTAT) S LRRSTAT=160
@@ -198,7 +200,7 @@ FSN ;
  ;
 TEST ;
  D CHKPAGE Q:$G(LRSTOP)
- S X=^LRO(69,LRODT,1,LRSN,2,I,0) S:$P(^(0),U,3) LRNOP=1
+ S X=^LRO(69,LRODT,1,LRSN,2,I,0) S:$P(^(0),U,3) (LRNOP,LRNOPMSG)=1
  W !,"  TEST: ",$S($D(^LAB(60,+X,0)):$P(^(0),"^"),1:"UNKNOWN"),?28,"  "
  S LRURG=+$P(X,U,2)
  W $E($S($D(^LAB(62.05,LRURG,0)):$P(^(0),U),1:"ROUTINE"),1,15)
@@ -243,5 +245,5 @@ END ;
  K LRPRAC,LRSN,LRSN1,LRSTOP,LRURG,LRW,LRWHOE,LRWRD,VA("BID"),VA("PID")
  K VAIN,VADM,VAERR,X,X1,X2,Y,Z
  Q:$G(LR2ORD)
- K LRNOP
+ K LRNOP,LRNOPMSG
  Q

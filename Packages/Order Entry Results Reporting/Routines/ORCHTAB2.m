@@ -1,5 +1,5 @@
-ORCHTAB2 ;SLC/MKB/REV-Add item to tab listing cont ;03/11/03 14:01
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**27,58,181**;Dec 17, 1997
+ORCHTAB2 ;SLC/MKB/REV-Add item to tab listing cont ;03/18/11  12:02
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**27,58,181,306**;Dec 17, 1997;Build 43
 GMRA ; -- allergies
  N ORY,ORI,ALLG,SEV,ID,SIGNS,J,ORIFN,DATA,X,ORTX
  D SUBHDR^ORCHTAB("Allergies/Adverse Reactions")
@@ -64,8 +64,7 @@ CWAD ; -- postings
 PROB ; -- problem
  N ID,DATA,X,ORTX,FIRST,ORJ,ORIFN
  S ID=$P(ORX,U),ORIFN=$P(ORX,U,2) ;problem ptr, status
- ;I $E(ORX,1,3)="   " S X=ORX D TXT^ORCHTAB Q  ;comment line only ??
- S X=$P(ORX,U,3)_$S($L($P(ORX,U,4)):" ("_$P(ORX,U,4)_")",1:"")
+ S X=$P(ORX,U,3)
  S:$L(X)'>ORMAX ORTX=1,ORTX(1)=X I $L(X)>ORMAX D TXT^ORCHTAB
  S DATA(1)=$$PAD^ORCHTAB($$DATE^ORCHTAB($P(ORX,U,5)),10)_$$PAD^ORCHTAB($$DATE^ORCHTAB($P(ORX,U,6)),10)_$S($P(ORX,U,2)="I":"inactive",1:"active "_$P(ORX,U,9)),DATA=1
  I COMM,$O(ORY(ORI,0)) S ORJ=0 F  S ORJ=$O(ORY(ORI,ORJ)) Q:ORJ'>0  S X=" "_ORY(ORI,ORJ) I $L(X)>1 S ORTX=ORTX+1,ORTX(ORTX)="" D TXT^ORCHTAB ;add comments

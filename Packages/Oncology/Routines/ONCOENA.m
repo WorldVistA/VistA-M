@@ -1,5 +1,5 @@
 ONCOENA ;WISC/MLH-ONCOLOGY INSTALL-ENVIRONMENT CHECK HELPER
- ;;2.11;ONCOLOGY;;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  ;  8/12/94 MLH ADDED this routine to bring ONCOENV into
  ;              compliance with SACC limit of 5000 bytes

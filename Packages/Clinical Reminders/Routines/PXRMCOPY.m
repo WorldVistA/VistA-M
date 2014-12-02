@@ -1,5 +1,5 @@
-PXRMCOPY ; SLC/PKR,PJH - Copy various reminder files. ;06/12/2009
- ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
+PXRMCOPY ; SLC/PKR,PJH - Copy various reminder files. ;01/28/2013
+ ;;2.0;CLINICAL REMINDERS;**6,12,26**;Feb 04, 2005;Build 404
  ;
  ;=====================================================
 COPY(PROMPT,ROOT,WHAT) ;Copy an entry of ROOT into a new entry.
@@ -145,7 +145,7 @@ MERGE(IENN,IENO,ROOT) ;Use MERGE to copy ROOT(IENO into ROOT(IENN.
  N DEST,SOURCE
  S DEST=ROOT_IENN_")"
  ;Lock the file before merging.
- L +@DEST:10
+ L +@DEST:DILOCKTM
  S SOURCE=ROOT_IENO_")"
  M @DEST=@SOURCE
  ;Unlock the file

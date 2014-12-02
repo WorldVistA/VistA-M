@@ -1,5 +1,5 @@
-MAGDRPCB ;WOIFO/PMK/MLS/SG - Imaging RPCs for Importer ; 27 Apr 2010 3:34 PM
- ;;3.0;IMAGING;**53**;Mar 19, 2002;Build 1719;Apr 28, 2010
+MAGDRPCB ;WOIFO/PMK/MLS/SG - Imaging RPCs for Importer ; 16 Jan 2013 4:41 PM
+ ;;3.0;IMAGING;**53,118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -40,9 +40,10 @@ CPTMOD(RESULTS,CPTMOD,MAGDT) ; RPC = MAG DICOM GET RAD CPT MOD
  . Q
  Q
  ;
-LOOKUP(RESULTS,SRCHVAL,FILE,XREF,FIELDS,SCREEN) ; search file
+LOOKUP(RESULTS,SRCHVAL,FILE,XREF,FIELDS,SCREEN,MAX) ; search file
  N CNT,I,MAGTMP,MAGMSG,MAXNR,X
- S MAXNR=100  ; Maximum number of records to return
+ S MAXNR=100
+ I $G(MAX)="1" S MAXNR=""  ; Remove 100 record maximum constraint if MAX = 1
  S SRCHVAL=$$UP^XLFSTR($TR(SRCHVAL,"*?"))
  S SRCHVAL=$E(SRCHVAL,1,30) ; limit of 30 characters for B or C cross reference
  S MAGTMP=$NA(^TMP($T(+0),$J))
@@ -57,7 +58,7 @@ LOOKUP(RESULTS,SRCHVAL,FILE,XREF,FIELDS,SCREEN) ; search file
  . S RESULTS(1)=RESULTS(1)_" more characters in the name."
  . Q
  ;
- ;--- Copy the records to the resut array
+ ;--- Copy the records to the result array
  S (RESULTS(1),I)=0
  F  S I=$O(@MAGTMP@("DILIST",I))  Q:'I  D
  . S RESULTS(1)=RESULTS(1)+1
@@ -141,14 +142,14 @@ SCRUSR(IEN) ;
  ;
 GETLOC(RESULTS,LOCATION) ; RPC = MAG DICOM GET HOSP LOCATION
  N I,INACTIVE,LIST,REACTIVE,TYPE
- D LOOKUP(.LIST,$G(LOCATION),44,"B",".01;2I;2505I;2506I") ; ICR 10040
+ D LOOKUP(.LIST,$G(LOCATION),44,"B",".01;2I;2505I;2506I",,1) ; ICR 10040
  K RESULTS
   ;--- Copy the records to the result array
  S (RESULTS(1),I)=0
  F I=2:1:LIST(1)+1 D
  . S TYPE=$P(LIST(I),"^",3)
  . ;
- . ; allow C=Clinc, M=Module, W=Ward, Z=Other Location
+ . ; allow C=Clinic, M=Module, W=Ward, Z=Other Location
  . ; allow N=Non-clinic stop, OR=Operating Room
  . ; ignore F=File area and I=Imaging
  . ;
@@ -156,7 +157,7 @@ GETLOC(RESULTS,LOCATION) ; RPC = MAG DICOM GET HOSP LOCATION
  . ;
  . ; check inactivate date and reactivate date
  . S INACTIVE=$P(LIST(I),"^",4),REACTIVE=$P(LIST(I),"^",5)
- . I INACTIVE,DT>INACTIVE Q:'REACTIVE  Q:DT<REACTIVE
+ . I INACTIVE,DT>INACTIVE Q:'REACTIVE  Q:INACTIVE>REACTIVE  Q:DT<REACTIVE
  . ;
  . S RESULTS(1)=RESULTS(1)+1
  . S RESULTS(I)=$P(LIST(I),"^",1,2)

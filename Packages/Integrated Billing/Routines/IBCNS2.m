@@ -1,5 +1,5 @@
 IBCNS2 ;ALB/AAS - INSURANCE POLICY CALLS FROM FILE 399 DD ;22-JULY-91
- ;;2.0;INTEGRATED BILLING;**28,43,80,51,137,155**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**28,43,80,51,137,155,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  Q
@@ -35,12 +35,45 @@ SEL(IBX,DFN,INSDT,ACTIVE) ; -- Select insurance policy
  D BLD
  ;
  ; -- call DIC to choose from list
+ ;WCJ*IB*2.0*488;Display COB on picklist when partial match on more than one entry
+ ;everything else should continue to work as before
+ N IBOUT,IBSEL2
+ S IBX=$$UP^XLFSTR(IBX)
+ I IBX?1A.E D  S IBX=$S($G(IBOUT):"^",$G(IBSEL2):IBSEL2,1:IBX)
+ . N X,Y,ERROR,TARGET
+ . D LIST^DIC(2.312,","_DFN_",",".01;.2;3;8;1;16;.18;21",,9999,,IBX,,"I $D(IBDD(+Y))",,"TARGET","ERROR")
+ . I $D(ERROR) S IBOUT=1 Q   ; should not hit this.  used more during test 
+ . I '$D(TARGET) S IBOUT=1 Q  ; no partial matches
+ . I +$G(TARGET("DILIST",0))<2 Q  ; only one match so work as before
+ . D DSPTHM   ; display them
+ . S DIR(0)="N^1:"_+$G(TARGET("DILIST",0))   ;allow select of 1 to as many matches
+ . D ^DIR
+ . I $G(DIRUT) S IBOUT=1 Q   ; user ^, timed out, or entered null
+ . S IBX="`"_$G(TARGET("DILIST",2,+Y))
+ . W !
+ . Q
+ ;WCJ*IB*2.0*488
+ ;
  S X=IBX
  S DIC="^DPT("_DFN_",.312,",DIC(0)="EQMN"
  S DIC("S")="I $D(IBDD(+Y))" ; add not other selection
  S DIC("W")="W $P(^DIC(36,+^(0),0),U)_""  Group: ""_$$GRP^IBCNS($P(^DPT(DFN,.312,+Y,0),U,18))"
  D ^DIC
 SELQ Q +Y
+ ;
+ ;WCJ*IB*2.0*488;
+DSPTHM ; display the insurance companies and useful information
+ W !,?4,"Insurance",?18,"COB",?23,"Subscriber ID",?37,"Group #",?49,"Eff Date",?62,"Exp Date"
+ N I
+ F I=1:1 Q:'$D(TARGET("DILIST","ID",I))  D
+ . W !,I,?4,$E($G(TARGET("DILIST","ID",I,.01)),1,12)
+ . W ?18,"(",$$LOW^XLFSTR($E($G(TARGET("DILIST","ID",I,.2)),1)),")"
+ . W ?23,$E($G(TARGET("DILIST","ID",I,1)),1,12)
+ . W ?37,$E($G(TARGET("DILIST","ID",I,21)),1,10)
+ . W ?49,$G(TARGET("DILIST","ID",I,8))
+ . W ?62,$G(TARGET("DILIST","ID",I,3))
+ Q
+ ;WCJ*IB*2.0*488;
  ;
 BLD K IBD,IBDD
  S (IBDD,IBCDFN)=0 F  S IBCDFN=$O(^DPT(DFN,.312,IBCDFN)) Q:'IBCDFN  I $D(^DPT(DFN,.312,IBCDFN,0)) D CHK(IBCDFN,ACTIVE,INSDT)

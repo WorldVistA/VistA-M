@@ -1,5 +1,5 @@
-SDVSIT ;MJK/ALB - Visit Tracking Processing ; 3/28/01 2:12pm
- ;;5.3;Scheduling;**27,44,75,96,132,161,219**;Aug 13, 1993
+SDVSIT ;MJK/ALB - Visit Tracking Processing ; 12/19/12 10:13am
+ ;;5.3;Scheduling;**27,44,75,96,132,161,219,605**;Aug 13, 1993;Build 9
  ;
 AEUPD(SDVIEN,SDATYPE,SDOEP) ; -- update one entry in multiple
  ; input: SDVIEN := Visit file pointer
@@ -154,7 +154,7 @@ ARRAY(DFN,SDT,SDDA,SDIS,SDVSIT) ; -- setup sdvsit for disposition
  Q
  ;
 LOCK(SDLOCK) ; -- lock "ADFN" node
- L +^SCE("ADFN",+$G(SDLOCK("DFN")),+$G(SDLOCK("EVENT DATE/TIME")))
+ F  L +^SCE("ADFN",+$G(SDLOCK("DFN")),+$G(SDLOCK("EVENT DATE/TIME"))):$G(DILOCKTM,3) Q:$T  ;LLS - 28-MAR-14 - SD*5.3*605 added timeout on lock
  Q
  ;
 UNLOCK(SDLOCK) ; -- unlock "ADFN" node
@@ -169,6 +169,12 @@ DIVQ Q DIV
  ; -- see bottom of SDVSIT0 for additional doc
  ;
 SDOE(SDT,SDVSIT,SDVIEN,SDOEP) ; -- get visit & encounter
+ ;LLS 18-FEB-2014 - SD*5.3*605 This fix assumes there is only one visit for any exact D/T for any one patient
+ ;                             Parent-child visits are protected by check of SDVSIT("PAR")
+ N SDTR,SDI ;LLS 18-FEB-2014 - SD*5.3*605 added
+ S SDTR=9999999-$P(SDT,".") ;LLS 18-FEB-2014 - SD*5.3*605 added
+ I SDT["." S SDTR=SDTR_"."_$P(SDT,".",2) ;LLS 18-FEB-2014 - SD*5.3*605 added
+ I '$D(SDVSIT("PAR")) S SDVIEN=$O(^AUPNVSIT("AA",DFN,SDTR,"")) ;LLS 18-FEB-2014 - SD*5.3*605
  S SDVSIT("VST")=$G(SDVIEN)
  IF 'SDVSIT("VST") D VISIT^SDVSIT0(SDT,.SDVSIT)
  Q $$NEW^SDVSIT0(SDT,.SDVSIT)

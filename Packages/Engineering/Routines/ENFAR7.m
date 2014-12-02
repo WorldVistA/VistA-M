@@ -1,6 +1,7 @@
-ENFAR7 ;WIRMFO/SAB-FIXED ASSET RPT, FA DOCUMENTS FOR EXCESS EQUIP; 1.12.98
- ;;7.0;ENGINEERING;**29,33,46,48**;Aug 17, 1993
- ; FA Documents for Excess Equipment (SGL 1524) during Accounting Period
+ENFAR7 ;WIRMFO/SAB-FIXED ASSET RPT, FA DOCUMENTS FOR EXCESS EQUIP; 1.12.98 ; 4/15/13 11:51am
+ ;;7.0;ENGINEERING;**29,33,46,48,92**;Aug 17, 1993;Build 10
+ ; FA Documents for Excess Equipment (SGL 1995) during Accounting Period
+ ;patch 92 renamed sgl 1524 to 1995
 EN ;
  ; compute default start date (day of previous month)
  S ENDT("Y")=$E(DT,1,3),ENDT("M")=$E(DT,4,5),ENDT("D")=$E(DT,6,7)
@@ -33,7 +34,7 @@ QEN ; queued entry
  F  S ENDT=$O(^ENG(6915.2,"D",ENDT)) Q:ENDT=""!($P(ENDT,".")>ENDTE)  D
  . S ENDA=0 F  S ENDA=$O(^ENG(6915.2,"D",ENDT,ENDA)) Q:'ENDA  D
  . . S ENY3=$G(^ENG(6915.2,ENDA,3))
- . . Q:$P(ENY3,U,6)'="X"  ; FA TYPE not X (SGL 1524 excess)
+ . . Q:$P(ENY3,U,6)'="X"  ; FA TYPE not X (SGL 1995 excess)
  . . S ENSN=$TR($E($P(ENY3,U,5),1,5)," ","") ; station
  . . S ENFUND=$P(ENY3,U,10) ; fund
  . . S ^TMP($J,ENSN,ENFUND,ENDA)=""
@@ -41,7 +42,7 @@ QEN ; queued entry
  S (END,ENPG)=0 D NOW^%DTC S Y=% D DD^%DT S ENDTR=Y
  S ENL="",$P(ENL,"-",IOM)=""
  D HD
- I '$D(^TMP($J)) W !!,"No FA Documents for SGL 1524 in selected period",!
+ I '$D(^TMP($J)) W !!,"No FA Documents for SGL 1995 in selected period",!
  S ENSN="" F  S ENSN=$O(^TMP($J,ENSN)) Q:ENSN=""  D  Q:END
  . W !
  . S ENFUND="" F  S ENFUND=$O(^TMP($J,ENSN,ENFUND)) Q:ENFUND=""  D  Q:END
@@ -66,7 +67,7 @@ HD ; page header
  I $E(IOST,1,2)="C-",ENPG S DIR(0)="E" D ^DIR K DIR I 'Y S END=1 Q
  I $E(IOST,1,2)="C-"!ENPG W @IOF
  S ENPG=ENPG+1
- W !,"FA DOCUMENTS FOR EXCESS EQUIP. (SGL 1524)"
+ W !,"FA DOCUMENTS FOR EXCESS EQUIP. (SGL 1995)"
  W ?49,ENDTR,?72,"page ",ENPG
  W !,"  ACCOUNTING PERIOD FROM ",$$FMTE^XLFDT(ENDTS,"2D")
  W " TO ",$$FMTE^XLFDT(ENDTE,"2D")

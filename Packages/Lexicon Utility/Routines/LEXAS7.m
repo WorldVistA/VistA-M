@@ -1,5 +1,5 @@
-LEXAS7 ; ISL Look-up Check Input (LC,TC)          ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
+LEXAS7 ;ISL/KER - Look-up Check Input (LC,TC) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
  ;
 LC(LEXX) ; Leading characters
  ;

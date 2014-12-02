@@ -1,5 +1,5 @@
-PXRMETX ; SLC/PJH - Run Extract for QUERI ;07/10/2007
- ;;2.0;CLINICAL REMINDERS;**4,6**;Feb 04, 2005;Build 123
+PXRMETX ; SLC/PJH - Run Extract for QUERI ;01/28/2013
+ ;;2.0;CLINICAL REMINDERS;**4,6,26**;Feb 04, 2005;Build 404
  ;
 AUTO(ID,PURGE) ;Called from option scheduling (#19.2)
  N IEN,LIST,LUVALUE,MODE,NEXT
@@ -213,7 +213,7 @@ UPDEX(IEN) ;Update extract summary
  Q
  ;
  ;File locking
-LOCK(PXRMXIEN) L +^PXRMXT(810.3,PXRMXIEN):0
+LOCK(PXRMXIEN) L +^PXRMXT(810.3,PXRMXIEN):DILOCKTM
  I '$T W !!?5,"Another user is using this extract summary" S DUOUT=1
  Q
  ;

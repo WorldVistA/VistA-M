@@ -1,5 +1,5 @@
 ONCNPC8A ;HIRMFO/GWB - PCE Study of Non-Hodgkin's Lymphoma - Print (continued);5/13/97
- ;;2.11;ONCOLOGY;**11,16,18**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 II S TABLE="TABLE II - INITIAL DIAGNOSIS"
  I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HDR^ONCNPC8
  W !?4,TABLE,!?4,"----------------------------" D P Q:EX=U

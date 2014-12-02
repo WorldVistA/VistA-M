@@ -1,5 +1,5 @@
-PSBOCI ;BIRMINGHAM/TEJ-COVERSHEET IV OVERVIEW REPORT ;2/15/12 9:34pm
- ;;3.0;BAR CODE MED ADMIN;**32,62,68**;Mar 2004;Build 26
+PSBOCI ;BIRMINGHAM/TEJ-COVERSHEET IV OVERVIEW REPORT ;9/18/12 2:02am
+ ;;3.0;BAR CODE MED ADMIN;**32,62,68,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -7,9 +7,12 @@ PSBOCI ;BIRMINGHAM/TEJ-COVERSHEET IV OVERVIEW REPORT ;2/15/12 9:34pm
  ; GETSIOPI^PSJBCMA5/5763
  ; 
  ;*68 - allow SIOPI builder to accomodate more than 1 line in SI array
+ ;*70 - pass global var PSBCLINORD when Rpc Psbcsutl is called again.
+ ;    - add clinic name to new array PSBCLIN to track clinic name per 
+ ;       order for printed output.
  ;
 EN ;
- N PSBX1X,RESULTS,RESULT,PSBFUTR,QQ
+ N PSBX1X,RESULTS,RESULT,PSBFUTR,QQ,PSBCLIN,PSBSRCHL,PSBHDR
  S PSBFUTR=$TR(PSBRPT(1),"~","^")
  S (PSBOCRIT,PSBXFLG,PSBCFLG,PSBBGX)=""  ; srch crit - "A"ctive,"D"C ed,"E"xpired"
  S PSBOCRIT="DEA"
@@ -18,6 +21,12 @@ EN ;
  S:$P(PSBFUTR,U,13) PSBBGX=PSBBGX_"S"
  S:$P(PSBFUTR,U,14) PSBBGX=PSBBGX_"A"
  I $D(PSBRPT(.2)) I $P(PSBRPT(.2),U,8) S PSBCFLG=1
+ ;check Clinic search list                *70
+ S PSBSRCHL=$$SRCHLIST^PSBOHDR()
+ D:$P(PSBRPT(4),U,2)="C"
+ .S:PSBSRCHL="" PSBSRCHL="All Clinics"
+ .S PSBSRCHL="Clinic Search List: "_PSBSRCHL
+ ;
  K PSBSRTBY,PSBCMT,PSBADM,PSBDATA,PSBOUTP,PSBLGD
  S PSBSORT=1
  D NOW^%DTC S (Y,PSBNOWX)=% D DD^%DT S PSBDTTM=Y
@@ -31,8 +40,9 @@ EN ;
  S PSBXDFN=$P(PSBRPT(.1),U,2)
  S PSBLIST(PSBXDFN)=""
  S (PSBX1X,PSBTOT)=0
+ S PSBCLINORD=$S($P($G(PSBRPT(4)),U,2)="C":1,1:0)    ;*70
  F  S PSBX1X=$O(PSBLIST(PSBX1X)) Q:+PSBX1X=0  D
- .D RPC^PSBCSUTL(.PSBAREA,PSBX1X)
+ .D RPC^PSBCSUTL(.PSBAREA,PSBX1X,,,PSBCLINORD)       ;*70
  .M PSBDATA=@PSBAREA
  .S PSBX2X=1
  .S (PSBLIST2("All Other"),PSBLIST2("Infusing"),PSBLIST2("Stopped"),PSBLIST2(" * NO * "))=0
@@ -53,6 +63,7 @@ EN ;
  ....S PSBEND=0 I $P(PSBDATA(PSBX2X),U)="END" S PSBEND=PSBX2X
  ...Q:PSBEND>0
  ...S PSBORDN=$P(PSBDATA,U,3)
+ ...S PSBCLIN(PSBORDN)=$S($P(PSBDATA,U,32)]"":"Location: ",1:"")_$P(PSBDATA,U,32)                      ;*70
  ...S PSBORITX=$P(PSBDATA,U,9)
  ...S PSBSTS(PSBORDN,PSBSTS)=""
  ...S PSBOSTDT=$P(PSBDATA,U,22)
@@ -86,14 +97,17 @@ EN ;
  ...F PSBX3X=PSBX2X:1 S PSBDATA=PSBDATA(PSBX3X) Q:($P(PSBDATA,U)'="ID")  D
  ....S PSBX2X=PSBX3X
  ....K X2
- ....S X2="A",PSBLIST2("All Other",PSBORITX,PSBORDN,$P(PSBDATA,U,2))=PSBBSO(PSBORDN) I $D(PSBLIST2("All Other",PSBORITX,PSBORDN,"*NA*")) K PSBLIST2("All Other",PSBORITX,PSBORDN,"*NA*")
+ ....S X2="A",PSBLIST2("All Other",PSBORITX,PSBORDN,$P(PSBDATA,U,2))=PSBBSO(PSBORDN)
+ ....I $D(PSBLIST2("All Other",PSBORITX,PSBORDN,"*NA*")) K PSBLIST2("All Other",PSBORITX,PSBORDN,"*NA*")
  ..Q:'$D(PSBORDN)
  ..I ($P(PSBDATA,U)="ADM")&($P(PSBDATA,U,4)]"") D  Q
  ...I $P(PSBDATA,U,3)]"" D
  ....K X2
  ....S PSBBID(PSBORDN,$P(PSBDATA,U,3))=""
- ....I $P(^PSB(53.79,$P(PSBDATA,U,4),0),U,9)="I" S X2="I",PSBLIST2("Infusing")=PSBLIST2("Infusing")+1,PSBLIST2("Infusing",PSBORITX,PSBORDN,$P(PSBDATA,U,3))="INFUSING"
- ....I $P(^PSB(53.79,$P(PSBDATA,U,4),0),U,9)="S" S X2="S",PSBLIST2("Stopped")=PSBLIST2("Stopped")+1,PSBLIST2("Stopped",PSBORITX,PSBORDN,$P(PSBDATA,U,3))="STOPPED"
+ ....I $P(^PSB(53.79,$P(PSBDATA,U,4),0),U,9)="I" D
+ .....S X2="I",PSBLIST2("Infusing")=PSBLIST2("Infusing")+1,PSBLIST2("Infusing",PSBORITX,PSBORDN,$P(PSBDATA,U,3))="INFUSING"
+ ....I $P(^PSB(53.79,$P(PSBDATA,U,4),0),U,9)="S" D
+ .....S X2="S",PSBLIST2("Stopped")=PSBLIST2("Stopped")+1,PSBLIST2("Stopped",PSBORITX,PSBORDN,$P(PSBDATA,U,3))="STOPPED"
  ....N PSBORIEN,PSBADIT,PSBCMTIT ;Include initials in the Legend for all entries in the audit log and comment subfile - PSB*3*62
  ....S PSBORIEN=$P(PSBDATA,U,4)
  ....S PSBADIT=0 F  S PSBADIT=$O(^PSB(53.79,PSBORIEN,.9,PSBADIT)) Q:'PSBADIT  I ^PSB(53.79,PSBORIEN,.9,PSBADIT,0)["ACTION STATUS"!(^PSB(53.79,PSBORIEN,.9,PSBADIT,0)["ADMINISTRATION STATUS") D
@@ -141,6 +155,8 @@ BLDRPT ; Bld RPT
  ..D BUILDLN^PSBOCI1,SIOPI^PSBOCM(.PSBSIDAT,PSBTAB7,"Other Print Info: ")
  ..I $D(PSBRPLN) S PSBMORE=$O(PSBRPLN(""),-1)+6 I $D(PSBSILN) S PSBMORE=PSBMORE+$O(PSBSILN(""),-1)
  ..K PSB1 I $D(PSBFLGD(PSBX2X)) S PSB="" F  S PSB=$O(PSBFLGD(PSBX2X,PSB)) Q:PSB=""  I ($P(PSB,":")'="NOX")&($P(PSB,":")'="STAT") S PSB1=$G(PSB1,"")_PSB
+ ..;*70 build write clinic stmt
+ ..S PSBOUTP($$PGTOT,PSBLNTOT)="W """_$G(PSBCLIN(PSBX2X))_""""_",!"
  ..S PSBCNT=PSBTOT1_"   "_$G(PSB1,"")
  ..S PSBOUTP($$PGTOT,PSBLNTOT)="W """_PSBCNT_""""
  ..S I="" F  S I=$O(PSBRPLN(I)) Q:+I=0  D
@@ -172,6 +188,7 @@ HDR ;  Hder
  .S PSBHDR(1)="Order Type(s): --"
  .F Y=12,13,18 I $P(PSBFUTR,U,Y) S $P(PSBHDR(1),": ",2)=$P(PSBHDR(1),": ",2)_$S(PSBHDR(1)["--":"",1:"/ ")_$P("^^^^^^^^^^^Infusing Bags^Stopped Bags^^^^^All Others",U,Y)_" " S PSBHDR(1)=$TR(PSBHDR(1),"-","")
  .I $P(PSBFUTR,U,11) S PSBHDR(2)="Include Action(s)"_$S(PSBCFLG:" & Comments/Reasons",1:"")
+ .S:$G(PSBSRCHL)]"" PSBHDR(3)="",PSBHDR(4)=PSBSRCHL          ;*70
  .D PT^PSBOHDR(PSBXDFN,.PSBHDR)
  Q
 SUBHDR ;

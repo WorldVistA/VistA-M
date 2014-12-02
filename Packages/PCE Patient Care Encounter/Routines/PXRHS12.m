@@ -1,6 +1,6 @@
 PXRHS12 ;ISL/SBW - PCE Visit Hospitalization data extract routine ;6/7/96
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**73**;Aug 12, 1996
- ; Extract returns Hospitalization visit data with associated ICD-9,
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**73,199**;Aug 12, 1996;Build 51
+ ; Extract returns Hospitalization visit data with associated ICD code,
  ; CPT, and Provider data.
 VISIT(DFN,ENDDT,BEGDT,OCCLIM) ; Control branching
  ;INPUT  : DFN      - Pointer to PATIENT file (#2)
@@ -44,7 +44,7 @@ VISIT(DFN,ENDDT,BEGDT,OCCLIM) ; Control branching
  Q:$G(DFN)']""!'$D(^AUPNVSIT("AAH",DFN))
  N PXCNT,PXIVD,PXVDF,PXBEG,CATCODE,IBEGDT,IENDDT,CHGIVD,PXSTOP
  S CATCODE="H" ;Get only Hospitalization visits
- S EXTRCODE="PCD" ;Get provider, CPT, and ICD-9 data
+ S EXTRCODE="PCD" ;Get provider, CPT, and ICD code data
  S:+$G(OCCLIM)'>0 OCCLIM=999
  S:+$G(BEGDT)'>0 BEGDT=DT-10000
  S:+$G(ENDDT)'>0 ENDDT=DT_".235959"

@@ -1,5 +1,5 @@
 EDPQLE ;SLC/KCM - Retrieve Log Entry ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
 GET(LOG,CHOICES) ; Get a log entry by request
  N CURBED,CURVAL,PERSON,CODED,CHTS,CHLOAD,CLINIC
@@ -134,6 +134,8 @@ BEDS ; add a list of available room/beds for this area
  N BED,X0,MULTI,SEQ,OCCUPIED,MYBED
  S BED=0 F  S BED=$O(^EDPB(231.8,"C",EDPSITE,AREA,BED)) Q:'BED  D
  . S SEQ=$P(^EDPB(231.8,BED,0),U,5) S:'SEQ SEQ=99999
+ . ; PATCH 6 (BWF - 4/24/2013) - Additional filter for EDIS_DEFAULT
+ . I $$GET1^DIQ(231.8,BED,.01,"E")="EDIS_DEFAULT" Q
  . S SEQ(SEQ,BED)=""
  S SEQ=0 F  S SEQ=$O(SEQ(SEQ)) Q:'SEQ  D
  . S BED=0 F  S BED=$O(SEQ(SEQ,BED)) Q:'BED  D
@@ -185,7 +187,10 @@ REQ(VAL) ; return the fields required to close this entry
  S PARAM=$G(^EDPB(231.9,AREA,1)),NEED=""
  I $P(PARAM,U,1) S $P(NEED,",",1)="diag"
  I $P(PARAM,U,3) S $P(NEED,",",2)="disp"
- I $$DLYREQ,$$NOTOBS,$$EXCEED S $P(NEED,",",3)="delay"
+ ; bwf - 4/26/13 - per Dr. Gelman, want delay reason no matter whether patient is in observation or not.
+ ;               - replaced line below with one that follows
+ ;I $$DLYREQ,$$NOTOBS,$$EXCEED S $P(NEED,",",3)="delay"
+ I $$DLYREQ,$$EXCEED S $P(NEED,",",3)="delay"
  Q NEED
  ;
 DLYREQ() ; return true if delay params set to required

@@ -1,5 +1,5 @@
-ECUNTRPT ;ALB/DHE DSS Units Errors Report ; 12/3/09 10:47am
- ;;2.0; EVENT CAPTURE ;**107**;8 May 96;Build 14
+ECUNTRPT ;ALB/DHE DSS Units Errors Report ;10/12/12  11:21
+ ;;2.0;EVENT CAPTURE;**107,119**;8 May 96;Build 12
  ;
  ;This report displays DSS Units with any Associated Stop Codes
  ;with any errors or warnings.
@@ -18,11 +18,12 @@ START ;
  U IO
 EN ;
  N I,CNTR,DATE,ECERR,ECNAME,ECOUT,ECRDT,ECSTOP,ECSTOP1,ERR,INACT,LN
- N PG,RTYPE,STR,UNITNM,UNT
+ N PG,RTYPE,STR,UNITNM,UNT,CNT ;119
  ;
  S %H=$H,ECRDT=$$HTE^XLFDT(%H,"5M"),ECOUT=0
  S CNTR=0,PG=1,UNT=0,$P(LN,"-",80)=""
- D HEAD
+ I $G(ECPTYP)'="E" D HEAD ;119
+ I $G(ECPTYP)="E" S CNT=1,^TMP($J,"ECRPT",CNT)="DSS UNIT #^DSS UNIT NAME^STOP CODE^STOP CODE NAME^ERROR #1^ERROR #2^ERROR #3" ;119
  F  S UNT=$O(^ECD(UNT)) Q:'UNT  D  I ECOUT Q
  .Q:'$D(^ECD(UNT,0))
  .;check to see if unit is inactive
@@ -37,12 +38,13 @@ EN ;
  .I $L(ECSTOP1)'=3 S ERR=ERR+1,ECERR(ERR)="CODE MUST BE 3 DIGITS"
  .I $G(INACT),((DT>INACT)!(DT=INACT)) S ERR=ERR+1,ECERR(ERR)="INACTIVE CODE"
  .I (RTYPE'=("P"))&(RTYPE'=("E")) S ERR=ERR+1,ECERR(ERR)="SECONDARY CODE"
- .I ($Y+4)>IOSL D PAGE Q:ECOUT  D HEAD
+ .I $G(ECPTYP)'="E" I ($Y+4)>IOSL D PAGE Q:ECOUT  D HEAD ;119
  .;if errors, loop through array, write, then kill
  .I ERR D  S ERR=0 K ECERR
+ ..I $G(ECPTYP)="E" D EXPORT Q  ;119
  ..W !!,"DSS Unit: ",?12,UNT,?19,UNITNM
  ..W !,"Stop Code: ",?12,ECSTOP1,?19,ECNAME
- ..F I=1:1:ERR W !,"Reason: ",ECERR(ERR)
+ ..F I=1:1:ERR W !,"Reason: ",ECERR(I) ;119
  Q
 EXIT ;
  K POP,QUIT,ZTQUEUED
@@ -63,4 +65,10 @@ PAGE ;
  ;
 STRTGUI ; if called from GUI, enter routine here
  D EN
+ Q
+ ;
+EXPORT ;Section added in 119, puts data in exportable format
+ N I
+ S CNT=CNT+1,^TMP($J,"ECRPT",CNT)=UNT_U_UNITNM_U_ECSTOP1_U_ECNAME
+ F I=1:1:ERR S ^TMP($J,"ECRPT",CNT)=^TMP($J,"ECRPT",CNT)_U_ECERR(I)
  Q

@@ -1,5 +1,5 @@
 PSGDL ;BIR/CML3-CALCULATE STOP DATE/TIME WITH DOSE LIMIT ;27 Aug 98 / 8:47 AM
- ;;5.0; INPATIENT MEDICATIONS ;**16,50,64,58,111,170**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**16,50,64,58,111,170,302**;16 DEC 97;Build 2
  ;
  ; Reference to ^PS(55 is supported by DBIA #2191.
  ;
@@ -37,14 +37,16 @@ ENGO ;
  S X=ST\1,C=0 F Q=Q:1 D:$P(TS,"-",Q)="" ADD S C=C+1 I C=PSGDL S X=X_"."_$P(TS,"-",Q) G DONE
  ;
 MWF ; if schedule is similar to monday-wednesday-friday
- S TS=$P(SCH,"@",2),SCH=$P(SCH,"@"),X=$P(ST,"."),C=0 D SCHK G:C=PSGDL DONE F Q=1:1 S X1=$P(ST,"."),X2=Q D C^%DTC S X1=X D DW^%DTC D CHK G:C=PSGDL DONE
+ ;*302 - PSGDL changed to (PSGDL+1)
+ S TS=$P(SCH,"@",2),SCH=$P(SCH,"@"),X=$P(ST,"."),C=0 D SCHK G:C=(PSGDL+1) DONE F Q=1:1 S X1=$P(ST,"."),X2=Q D C^%DTC S X1=X D DW^%DTC D CHK G:C=(PSGDL+1) DONE
 SCHK S X1=X D DW^%DTC F Q=1:1:$L(SCH,"-") S WKD=$P(SCH,"-",Q) I WKD=$E(X,1,$L(WKD)) Q
  E  Q
- S TM=$E(ST_"00000",9,8+$L($P(TS,"-"))) F Q=1:1:$L(TS,"-") I TM<$P(TS,"-",Q) S C=C+1 I C=PSGDL S X=X1_"."_$P(TS,"-",Q) Q
+ ;*302 - < changed to '>
+ S TM=$E(ST_"00000",9,8+$L($P(TS,"-"))) F Q=1:1:$L(TS,"-") I TM'>$P(TS,"-",Q) S C=C+1 I C=(PSGDL+1) S X=X1_"."_$P(TS,"-",Q) Q
  Q
 CHK F QQ=1:1:$L(SCH,"-") S WKD=$P(SCH,"-",QQ) I WKD=$E(X,1,$L(WKD)) D TS Q
  Q
-TS F Q1=1:1:$L(TS,"-") S C=C+1 I C=PSGDL S X=X1_"."_$P(TS,"-",Q1) Q
+TS F Q1=1:1:$L(TS,"-") S C=C+1 I C=(PSGDL+1) S X=X1_"."_$P(TS,"-",Q1) Q
  Q
  ;
 DONE ;

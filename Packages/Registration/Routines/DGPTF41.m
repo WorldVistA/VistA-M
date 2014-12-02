@@ -1,5 +1,5 @@
-DGPTF41 ;ALB/JDS - PTF ENTRY/EDIT-4 ; 11/15/06 8:37am
- ;;5.3;Registration;**64,635,729**;Aug 13, 1993;Build 59
+DGPTF41 ;ALB/JDS - PTF ENTRY/EDIT-4 ;11/15/06 8:37am
+ ;;5.3;Registration;**64,635,729,850**;Aug 13, 1993;Build 171
  ;
 ACT ; -- 701 actions
  G ACT1:DGST
@@ -21,7 +21,7 @@ ACT ; -- 701 actions
  I X'=1 D HELP G EN1^DGPTF4
  S DR="[DG701]",DIE="^DGPT(",(DGPTF,DA)=PTF D ^DIE
  F I=0,70 S B(I)="" S:$D(^DGPT(PTF,I)) B(I)=^(I)
- K DGPTF,DR
+ K DGPTF,DR,DGCODSYS,DGXX,DGTYPE
  G EN1^DGPTF4
  ;
 READ ; -- read X

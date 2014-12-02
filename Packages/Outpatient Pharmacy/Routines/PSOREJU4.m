@@ -1,15 +1,15 @@
 PSOREJU4 ;BIRM/LE - Pharmacy Reject Overrides ;06/26/08
- ;;7.0;OUTPATIENT PHARMACY;**289,290,358,359,385**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**289,290,358,359,385,421**;DEC 1997;Build 15
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
+ ;Reference to 9002313.93 supported by IA 4720
+ ;Reference to ELIG^BPSBUTL supported by IA 4719
  ;
 AUTOREJ(CODES,PSODIV) ;API to evaluate an array of reject codes to see if they are allowed to be passed to OP reject Worklist 
  ;Input:      CODES - required; array of codes to be validated for overrides.  
  ;           PSODIV - optional; Division for the Rx and Fill to be evaluated
  ;        
- ;Output:     CODES(0)=   1 for all reject codes are allowed to be passed to Pharmacy
- ;                         Reject Worklist or 0 (zero) means only default of 79/88/TRICARE/CHAMPVA and
- ;                         any individually override rejects can be passed to the worklist. 
- ;                        
+ ;Output:     CODES(0)=0 always - ALLOW ALL REJECTS flag was inactivated with patch 421
+ ;      
  ;            CODES(SEQ,REJECT)= 0 (zero) if the fill is not allowed to be passed to the Pharmacy
  ;                                Reject Worklist or 1 (one) for the reject code is allowed.
  ;                                
@@ -20,8 +20,8 @@ AUTOREJ(CODES,PSODIV) ;API to evaluate an array of reject codes to see if they a
  S SPDIV="",SPDIV=$O(^PS(52.86,"B",PSODIV,SPDIV))
  I SPDIV="" S CODES(0)="0^Division is not defined under ePharmacy Site Parameters option." Q
  ;
- ; - all rejects allowed to pass to Pharmacy Reject Worklist?
- S CODES(0)=$$GET1^DIQ(52.86,SPDIV,1,"I")
+ ; - all rejects allowed flag obsolete, set to 0 for parameter integrity 
+ S CODES(0)=0
  ;
  ; - check individual reject codes.  If defined, can be passed to Pharmacy Reject Worklist
  S (COD,SEQ)="" F  S SEQ=$O(CODES(SEQ)) Q:SEQ=""  F  S COD=$O(CODES(SEQ,COD)) Q:COD=""  D
@@ -53,12 +53,11 @@ WRKLST(RX,RFL,COMMTXT,USERID,DTTIME,OPECC,RXCOB,RESP) ;External API to store rej
  . F I=1:1:$L(TXT,",") D
  . . S CODE=$P(TXT,",",I)
  . . I CODE="" Q   ;BNT-2/15/11 Rare, but could happen that a code is null.
- . . I CODE'="79"&(CODE'="88")&('$G(PSOTRIC)) S AUTO=$$EVAL(PSODIV,CODE,OPECC,.AUTO) Q:'+AUTO
+ . . I CODE'="79"&(CODE'="88")&('$G(PSOTRIC)) S AUTO=$$EVAL(PSODIV,CODE,OPECC) Q:'+AUTO
  . . I PSOTRIC S AUTO=1  ;cnf, send all billable and non-billable rejects to worklist if TRICARE or CHAMPVA
  . . I $$DUP^PSOREJU1(RX,+$$CLEAN^PSOREJU1($G(REJ(IDX,"RESPONSE IEN"))),CLOSECHK) S AUTO="0^Rx is already on Pharmacy Reject Worklist."
  . . S REJS(IDX,CODE)=""
  I '$D(REJS) L -^PSRX("REJ",RX) S AUTO="0^No action taken" Q AUTO
- ;D SAVECOM^PSOREJP3(RX,PSREJIEN,COMMTXT,DTTIME,USER)
  G EXIT:'+AUTO
  ;
  D SYNC2^PSOREJUT
@@ -67,14 +66,21 @@ EXIT ;
  L -^PSRX("REJ",RX)
  Q AUTO
  ;
-EVAL(PSODIV,CODE,OPECC,AUTO) ;Evaluates whether the reject codes other than 79/88/TRICARE/CHAMPVA is allowed to be passed to OP Reject Worklist
+EVAL(PSODIV,CODE,OPECC,RX,RFNBR,COB,RRRDATA) ;Evaluates whether the reject codes other than 79/88/TRICARE/CHAMPVA is allowed to be passed to OP Reject Worklist
  ;Input:      PSODIV - required; Division for the Rx and Fill to be evaluated
- ;              CODE - required; reject code
- ;             OPECC - optional, 1 means manually passed by OPECC means not passed
- ;              AUTO - passed in value to be returned.
- ;Output:       AUTO - 1 means reject is allowed to be passed to Pharmacy Reject Worklist and zero
- ;                       means not allowed.
- ;                       
+ ;              CODE - required; external reject code
+ ;             OPECC - optional, 1 means manually passed by OPECC 0 or null means not passed
+ ;                RX - optional; IEN from prescription file
+ ;             RFNBR - optional; refill number
+ ;               COB - optional; coordination of benefits
+ ;Output:     $$EVAL - Return value - 1 means reject is allowed to be passed to Pharmacy Reject Worklist and 
+ ;                                    0 means not allowed.
+ ;           When doing a RRR check, RX, RFNBR & COB are required.
+ ;           RRRDATA - passed by reference.   
+ ;                     RRRDATA [1] 1/0 is this an RRR reject?
+ ;                             [2] gross amount due for the Rx/fill/cob
+ ;                             [3] $ dollar threshold amount from PSO site parameters
+ ;
  N ALLOWA,CIEN,ALLOW,ICOD,SPDIV
  I '$D(CODE)!(CODE="") Q 0
  I '$G(OPECC) S OPECC=0
@@ -84,7 +90,11 @@ EVAL(PSODIV,CODE,OPECC,AUTO) ;Evaluates whether the reject codes other than 79/8
  S:'$G(AUTO) AUTO=""
  S ICOD="",ICOD=$O(^BPSF(9002313.93,"B",CODE,ICOD))
  Q:ICOD="" 0
- S ALLOWA=$$GET1^DIQ(52.86,SPDIV,1,"I") I ALLOWA Q 1
+ ;
+ ; Check for Resolution Required Reject code if so, return a 1
+ I $G(RX),$D(RFNBR),$D(COB) S RRRDATA=$$RRRCHK(SPDIV,ICOD,RX,RFNBR,COB) I +RRRDATA Q 1
+ ;
+ ; Transfer reject processing
  Q:'$D(^PS(52.86,SPDIV,1,"B",ICOD)) "0^Reject Code is not allowed to be passed to Pharmacy Reject Worklist."
  S CIEN="",CIEN=$O(^PS(52.86,SPDIV,1,"B",ICOD,CIEN))
  I CIEN="" S AUTO="0^Code not defined."
@@ -94,31 +104,6 @@ EVAL(PSODIV,CODE,OPECC,AUTO) ;Evaluates whether the reject codes other than 79/8
  . I OPECC S AUTO=1
  . I 'OPECC S AUTO="0^Reject code "_CODE_" cannot be placed on the Pharmacy Reject Worklist"
  Q AUTO
- ;
-OVER ;due to size of PSOREJU1 this subroutine was needed. also used by OVERMSG
- ;The variables RX, RFL, CODE and CODES are expected to remain when exiting this subroutine
- ;
- N DCODE,AUTO,PSODIV,OCODES S (PSODIV,AUTO,DCODE,OCODES,OVRARR)=""
- S OCODES=CODES,CODES=""
- S PSODIV=$$RXSITE^PSOBPSUT(RX,RFL)
- F  S DCODE=$O(^PSRX(RX,"REJ","B",DCODE)) Q:DCODE=""  D
- . I DCODE[79!(DCODE[88) S CODES=CODES_","_DCODE Q
- . S AUTO=$$EVAL(PSODIV,DCODE,0,.AUTO)
- . Q:'+AUTO
- . S CODES=CODES_","_DCODE,OVRARR(DCODE)=""
- S CODES=$E(CODES,2,9999)
- S:CODES="" CODES=OCODES
- Q
- ;
-OVRMSG(RX,RFL,OVRMSG,REJDAT) ;
- N CODES,OVRARR,COD
- S CODES=""
- D OVER
- I '$D(REJDAT) D NOW^%DTC S REJDAT=%
- Q:'$D(OVRARR)
- F  S COD=$O(OVRARR(COD)) Q:COD=""  D
- . D SAVECOM^PSOREJP3(RX,COD,OVRMSG,REJDAT,$S($G(DUZ):DUZ,1:.5))
- Q
  ;
 INLIST(RX,RFL,RXCOB) ;Returns whether a prescription/fill contains UNRESOLVED rejects
  ;Input:
@@ -134,19 +119,76 @@ INLIST(RX,RFL,RXCOB) ;Returns whether a prescription/fill contains UNRESOLVED re
  I '$G(PSOX2) Q 0
  Q 1
  ;
-MULTI(RX,RFL,REJDATA,CODE,REJS) ;due to routine size, called from FIND^PSOREJUT
+MULTI(RX,RFL,REJDATA,CODE,REJS,RRRFLG) ;due to routine size, called from FIND^PSOREJUT
  ;returns REJS = 1 means reject code found on Rx, 0 (zero) means not found
- I $G(RFL) D
- . F I=1:1 S RCODE=$P(CODE,",",I) Q:RCODE=""!($G(REJS))  D GET^PSOREJU2(RX,RFL,.REJDATA,,,$G(RCODE)) I $D(REJDATA) S REJS=1
+ N RCODE,I
+ I $G(RFL)'="" D
+ . F I=1:1 S RCODE=$P(CODE,",",I) Q:RCODE=""!($G(REJS))  D GET^PSOREJU2(RX,RFL,.REJDATA,,,$G(RCODE),+$G(RRRFLG)) I $D(REJDATA) S REJS=1
  E  S RFL=0 D  I '$D(REJDATA) F  S RFL=$O(^PSRX(RX,1,RFL)) Q:'RFL  D  Q:$G(REJS)
- . F I=1:1 S RCODE=$P(CODE,",",I) Q:RCODE=""!($G(REJS))  D GET^PSOREJU2(RX,RFL,.REJDATA,,,$G(RCODE)) I $D(REJDATA) S REJS=1
+ . F I=1:1 S RCODE=$P(CODE,",",I) Q:RCODE=""!($G(REJS))  D GET^PSOREJU2(RX,RFL,.REJDATA,,,$G(RCODE),+$G(RRRFLG)) I $D(REJDATA) S REJS=1
  Q REJS
  ;
-SINGLE(RX,RFL,REJDATA,CODE,REJS) ;due to routine size, called from FIND^PSOREJUT
+SINGLE(RX,RFL,REJDATA,CODE,REJS,RRRFLG) ;due to routine size, called from FIND^PSOREJUT
  ;Returns REJS = 1 means reject code found on Rx, 0 (zero) means not found
- I $G(RFL) D
- . D GET^PSOREJU2(RX,RFL,.REJDATA,,,$G(CODE))
+ I $G(RFL)'="" D
+ . D GET^PSOREJU2(RX,RFL,.REJDATA,,,$G(CODE),+$G(RRRFLG))
  E  S RFL=0 D  I '$D(REJDATA) F  S RFL=$O(^PSRX(RX,1,RFL)) Q:'RFL  D
- . D GET^PSOREJU2(RX,RFL,.REJDATA,,,$G(CODE))
+ . D GET^PSOREJU2(RX,RFL,.REJDATA,,,$G(CODE),+$G(RRRFLG))
  S REJS=$S($D(REJDATA):1,1:0)
  Q REJS
+ ;
+RRRCHK(SPDIV,REJ,RX,RFNBR,COB) ; Test a reject for valid Resolution Required Reject code
+ ; INPUT
+ ; SPDIV  = required - IEN in site parameter file for the selected division
+ ; REJ    = required - IEN of the Reject code to test
+ ; RX     = required - IEN from prescription file
+ ; RFNBR  = required - prescription refill number
+ ; COB    = optional - coordination of benefits
+ ;
+ ; OUTPUT
+ ;  Function Value - Returns an "^" delimited string
+ ;                 [1] 1/0 is this an RRR reject?
+ ;                     1 = Valid resolution required reject code.
+ ;                     0 = Invalid resolution required reject code.
+ ;                 [2] If valid RRR then gross amount due for the Rx/fill/cob else null
+ ;                 [3] If valid RRR then dollar threshold amount from PSO site parameters else null
+ ;
+ ; For a reject code to be valid each of the following needs to be true:
+ ;    1 - Eligibility must be a veteran type
+ ;    2 - Must be the first fill on a prescription
+ ;    3 - Reject code must be defined in the pharmacy division's site parameters
+ ;        as a resolution required reject code.
+ ;    4 - Gross amount must be >= DOLLAR THRESHOLD in the pharmacy division's site
+ ;        parameters for the given resolution required reject code.
+ ;
+ ; Verify parameters
+ I '$G(SPDIV) Q 0
+ I '$D(^PS(52.86,SPDIV)) Q 0
+ I '$G(REJ) Q 0
+ I '$D(^BPSF(9002313.93,REJ,0)) Q 0                     ; DBIA 4720
+ I '$G(RX) Q 0
+ I '$D(^PSRX(RX)) Q 0
+ I '$D(RFNBR) Q 0
+ ;
+ N RRRC,AMT,THRSHLD
+ ; SPDIV   = IEN in site parameter file for the selected division
+ ; RRRC    = indicates the RESOLUTION REQUIRED REJECT CODE exists for the selected division
+ ;           it will be a null or an IEN in the 52.865 sub-file
+ ; AMT     = RX gross amount due
+ ; THRSHLD = DOLLAR THRESHOLD for RRR code
+ ;
+ ; Test for released status
+ I $$GET1^DIQ(52,RX_",",31,"I") Q 0
+ ;
+ ; Test Eligibility - IA 4719
+ I $$ELIG^BPSBUTL(RX,0,$G(COB))'="V" Q 0
+ ;
+ ; is this a Resolution Required Reject code?
+ S RRRC=0,RRRC=$O(^PS(52.86,SPDIV,5,"B",REJ,RRRC))
+ I RRRC="" Q 0
+ ;
+ ; Test gross amount against DOLLAR THRESHOLD
+ S AMT=$$AMT^BPSBUTL(RX,0,$G(COB))
+ S THRSHLD=$$GET1^DIQ(52.865,RRRC_","_SPDIV_",",.02)
+ I AMT<THRSHLD Q 0
+ Q 1_U_AMT_U_THRSHLD

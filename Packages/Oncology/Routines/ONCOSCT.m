@@ -1,5 +1,5 @@
 ONCOSCT ;Hines OIFO/GWB,RTK - CROSS TABULATE ;9/3/93
- ;;2.11;ONCOLOGY;**23,30,43**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 IN ;DIRECT CALL set ONCOS("D")=1
  ;in:  ^DIBT,^DIPT
  ;ONCOS - used to force responses to setup prompts

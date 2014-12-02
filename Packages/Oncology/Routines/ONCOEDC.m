@@ -1,5 +1,5 @@
 ONCOEDC ;Hines OIFO/GWB - ABSTRACT STATUS (165.5,91) Input Transform ;10/19/11
- ;;2.11;ONCOLOGY;**6,7,13,27,36,41,47,48,49,51,53,54,57**;Mar 07,1995;Build 6
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 CHECK ;Required field check
  ;CLASS OF CASE   = 00-22
@@ -118,7 +118,8 @@ EDITS ;Call to EDITS API
  .I Y=1 S EDIT="YES"
  .S X=$S(ABSTAT=3:0,1:ABSTAT)
  W !," No EDITS errors or warnings."
- S $P(^ONCO(165.5,D0,7),U,2)=3
+ S SAVEX=3,$P(^ONCO(165.5,D0,7),U,2)=3,^ONCO(165.5,"AS",3,D0)=""
+ ;S ONCEDC3=1,DIE="^ONCO(165.5,",DA=D0,DR="91///^S X=3" D ^DIE K ONCEDC3
  I DCC'="" D
  .I DCLC'="" K ^ONCO(165.5,"AAE",DCLC,PRM)
  .S $P(^ONCO(165.5,PRM,7),U,21)=DT
@@ -138,7 +139,8 @@ EDITS ;Call to EDITS API
  S EDITS="NO" D NAACCR^ONCGENED K EDITS
  D CHKSUM^ONCGENED
  W ! R "Enter RETURN to continue: ",PAUSE:30
- Q 
+ I $G(SAVEX)=3 S X=3
+ Q
  ;
 CLEANUP ;Cleanup
  K COC,D0,Y

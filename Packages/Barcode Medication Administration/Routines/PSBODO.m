@@ -1,5 +1,5 @@
-PSBODO ;BRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;1/30/12 1:13pm
- ;;3.0;BAR CODE MED ADMIN;**5,21,24,38,58,68**;Mar 2004;Build 26
+PSBODO ;BRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;10/18/12 7:58pm
+ ;;3.0;BAR CODE MED ADMIN;**5,21,24,38,58,68,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -12,6 +12,7 @@ PSBODO ;BRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;1/30/12 1:13pm
  ;*58 - add sections to display Prv Override comments and Rph
  ;      Interventions to this report for (critical drug/drug and all
  ;      adverse reactions/allergies)
+ ;*70 - print clinic name at top of detail section if exists.
 EN ;
  ;
  ; Description:
@@ -34,11 +35,12 @@ DISPORD ;
  S PSBHDR(1)="BCMA - Display Order" D PT^PSBOHDR(DFN,.PSBHDR) W !
  I '$G(PSBONX) W !,"Invalid Order"
  D:$G(PSBONX)
+ .W:$G(PSBCLORD)]"" "Clinic: "_PSBCLORD,!                         ;*70
  .W !,"Orderable Item: ",PSBOITX
  .I PSBONX["V" W !,"Infusion Rate:  ",PSBIFR
  .I PSBONX'["V" W !,"Dosage Ordered: ",PSBDOSE
  .W ?40,"Start:    ",PSBOSTX
- .W !?40,"Stop:     ",PSBOSPX
+ .W !?40,"Stop:     ",PSBOSPX,?70,PSBOSTSX                        ;*70
  .W !,"Med Route:      ",PSBMR
  .W !,"Schedule Type:  ",PSBSCHTX
  .I PSBONX'["V" W ?40,"Self Med: ",PSBSMX

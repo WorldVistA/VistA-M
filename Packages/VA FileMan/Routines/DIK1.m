@@ -1,5 +1,5 @@
-DIK1 ;SFISC/GFT-ACTUAL INDEXER ;9NOV2010
- ;;22.0;VA FileMan;**1,10,41,146,160,165**;Mar 30, 1999;Build 1
+DIK1 ;SFISC/GFT-ACTUAL INDEXER ;7SEP2011
+ ;;22.0;VA FileMan;**1,10,41,146,160,165,169**;Mar 30, 1999;Build 26
  ;Per VHA Directive 2004-038, this routine should not be modified.
 EN N DIC D DI
  D
@@ -30,7 +30,7 @@ DVA S DV=$O(DV(DH,DV)) I DV="" Q:$G(DIKSET)  S DV=.01 D R:$D(^UTILITY("DIK",DIKJ
  S DU(DU)=DIN,DIN=X_",",DH(DU)=DH,DH=DV(DH,DV,0),DV(DU)=DV,DU=DU+1 F X=DU:-1:1 I $D(DA(X)) S DA(X+1)=DA(X)
  S DA(1)=DA,DA=0
 DA I '$D(DV(DH(DU-1),DV,"NOLOOP")) F  S @("DA=$O("_DIN_"DA))") Q:DA'>0  D DIN
- D:$D(^UTILITY("DIK",DIKJ,"KW",DH)) KW(DH)
+ D:$D(^UTILITY("DIK",DIKJ,"KW",DH)) KW(DH,DIN)
  S DU=DU-1,DIN=DU(DU),DH=DH(DU),DV=DV(DU),DA=DA(1) K DA(1) F X=2:1 G DVA:'$D(DA(X)) S DA(X-1)=DA(X) K DA(X)
  ;EXECUTE CROSS-REFERENCES
 R S X=^UTILITY("DIK",DIKJ,DH,DV),%=^(DV,0) I @("$D("_DIN_DA_",X))[0") Q
@@ -64,12 +64,13 @@ SET N C S (%F,C)=$P(^DD(DH,DV,0),U,2),Y=X D:Y]"" S^DIQ S @(DIAU(DH,DV,DIKDA_DA)_
 CNT ;
  N DIKLK,DIKLAST S DIKLAST=$S(DA:DA,1:"")
  S DU=$E(DIK,1,$L(DIK)-1),DIKLK=$S(DIK[",":DU_")",1:DU) L +@DIKLK:10 K:'$T DIKLK
-C I @("$O("_DIK_"DA))'>0") S $P(@(DIK_"0)"),U,4)=DCNT D:$D(^UTILITY("DIK",DIKJ,"KW",DH(1))) KW(DH(1)) K DCNT L:$D(DIKLK) -@DIKLK G Q ;**DI*22*146
+C I @("$O("_DIK_"DA))'>0") S $P(@(DIK_"0)"),U,4)=DCNT D:'$P(^(0),U,3)  D:$D(^UTILITY("DIK",DIKJ,"KW",DH(1))) KW(DH(1),DIK) K DCNT L:$D(DIKLK) -@DIKLK G Q ;**DI*22*146
+ .S DCNT=$O(^(" "),-1) I DCNT S $P(^(0),U,3)=DCNT
  S DA=$O(^(DA)) G C:$P($G(^(DA,0)),U)']"" S DIKLAST=DA,DU=1,DCNT=DCNT+1 S:DA="" DA=-1 D:(DCNT#100=0)  D DI K DB(0) G C
  .I $D(IO)#2,$D(IO(0))#2,IO=IO(0),IO="" Q
  .I '$D(ZTQUEUED) W "."
  ;
-KW(FIL) ;Kill entire regular indexes
+KW(FIL,DIN) ;Kill entire regular indexes
  N NAM
  S NAM="" F  S NAM=$O(^UTILITY("DIK",DIKJ,"KW",FIL,NAM)) Q:NAM=""  K @(DIN_""""_NAM_""")")
  Q

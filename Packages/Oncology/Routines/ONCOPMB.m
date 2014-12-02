@@ -1,5 +1,5 @@
-ONCOPMB ;Himes OIFO/GWB - ONCOPMA continued ;12/14/99
- ;;2.11;ONCOLOGY;**11,23,25,44,46,47**;Mar 07, 1995;Build 19
+ONCOPMB ;Hines OIFO/GWB - ONCOPMA continued ;12/14/99
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 Y G @Y ;set from ONCOPMA
 4 ;[MA Print QA/Multiple Abstracts - 4 All abstracts, 1 year]
  S Y=3 D Y^ONCOST G EX:Y[U
@@ -91,7 +91,7 @@ TK5 S XDT=ONCOD(1)-1
  ;
 TK6 K ^TMP("ONCO",$J) S T=0,XDT=ONCOD(1)
  F  S XDT=$O(^ONCO(165.5,"AAD",XDT)) Q:XDT=""  Q:XDT>ONCOD(2)  D
- .S XD0=0 F  S XD0=$O(^ONCO(165.5,"AAD",XDT,XD0)) Q:XD0'>0  I $$DIV^ONCFUNC(XD0)=DUZ(2),$P($G(^ONCO(165.5,XD0,0)),U,4)<3 S N7=$G(^ONCO(165.5,XD0,7)) I $P(N7,U,2)=3 D
+ .S XD0=0 F  S XD0=$O(^ONCO(165.5,"AAD",XDT,XD0)) Q:XD0'>0  I $$DIV^ONCFUNC(XD0)=DUZ(2),$P($G(^ONCO(165.5,XD0,0)),U,4)<10 S N7=$G(^ONCO(165.5,XD0,7)) I $P(N7,U,2)=3 D
  ..S QA=+$P(N7,U,4) I QA="Y",$P(N7,U,9)'="" Q
  ..S T=T+1,^TMP("ONCO",$J,T)=XD0,ONCO(T)=XD0 Q
  G EX:T=0 S QA=(.1*T) I QA["." S QA=$J(QA,$L(QA)-2,0)

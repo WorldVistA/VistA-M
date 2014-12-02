@@ -71,7 +71,7 @@ CBOLIST ; list ^ delimited output to CBO exchange mail group.
  S COUNT=COUNT+1,@GLOBOUT@(COUNT)="--END"
  ; and generate mail message
  N XMTEXT,XMDUZ,XMY,XMSUB
- S XMTEXT=$E(GLOBOUT,1,$L(GLOBOUT)-1)_",",XMDUZ=0.5,XMY("VHACONPINPF@domain.ext")=""
+ S XMTEXT=$E(GLOBOUT,1,$L(GLOBOUT)-1)_",",XMDUZ=0.5,XMY("VHACONPINPF@DOMAIN.EXT")=""
  S XMSUB="NPI LIST "_DATE_" FOR "_ADDRESS_" ("_STATION_")"
  D ^XMD
  Q

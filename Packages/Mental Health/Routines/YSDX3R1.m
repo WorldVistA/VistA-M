@@ -1,5 +1,5 @@
-YSDX3R1 ;SLC/DJP/LJA-Print of DXLS History for the Mental Health Medical Record ;12/17/93 11:31
- ;;5.01;MENTAL HEALTH;;Dec 30, 1994
+YSDX3R1 ;SLC/DJP/LJA - Print of DXLS History for Mental Health Med Rec ;10 May 2013  4:05 PM
+ ;;5.01;MENTAL HEALTH;**107**;Dec 30, 1994;Build 23
  ;
  ; Called from the top by MENU option YSDIAGP-DXLS
  ;D RECORD^YSDX0001("YSDX3R1^YSDX3R1") ;Used for testing.  Inactivated in YSDX0001...
@@ -42,7 +42,8 @@ DXLS ;
  I $Y+YSSL+4>IOSL D CK^YSDX3RU Q:YSTOUT!YSUOUT!YSTOUT  ;->
  ;
  ;  J2=Diagnosis variable pointer  Y=Date/time of Diagnosis
- S J2=$P(^YSD(627.8,J1,1),U),Y=$P(^(0),U,3) D DD^%DT S YSDXLSD=Y
+ N YSDXLSD2,YSDXDATA
+ S J2=$P(^YSD(627.8,J1,1),U),(Y,YSDXLSD2)=$P(^(0),U,3) D DD^%DT S YSDXLSD=Y
  ;
  ;  J5=Full global reference to pointed to Diagnosis
  S J3=$P(J2,";",2),J4=$P(J2,";"),J5="^"_J3_J4_","_0_")"
@@ -50,15 +51,20 @@ DXLS ;
  ;  J50=0 node of pointed to Diagnosis
  S J50=@J5
  ;
- ;  If DSM...
- I J3="YSD" D
- S YSDXLSN=$G(^YSD(627.7,+J4,"D")) ;         Diagnosis name
- S YSDXLS=$P(J50,U) ;        ICD Code#
+ S YSDXCSTX=""
+ ;  If DSM table...
+ I J3["YSD" D
+ .  S YSDXLSN=$G(^YSD(627.7,+J4,"D")) ;        Diagnosis name
+ .  S YSDXLS=$P(J50,U)                ;        ICD Code#
+ .  S YSDXCSTX="(ICD-"_$S($P(J50,U,8)'="":$P(J50,U,8),1:"9")_")"
  ;
- ;  If ICD9...
+ ;  If ICD9 table...
  I J3["ICD9(" D
- .  S YSDXLSN=$P(J50,U,3) ;    Diagnosis (free text)
- .  S YSDXLS=$P(J50,U) ;       ICD Code#
+ .  S YSDXDATA=$$ICDDATA^ICDXCODE("DIAG",J4,YSDXLSD2,"I")
+ .  S YSDXLSN=$P(YSDXDATA,U,4)     ;        Diagnosis (free text)
+ .  S YSDXLS=$P(YSDXDATA,U,2)      ;        ICD Code#
+ .  S YSDXCSTX=$P($P($$SINFO^ICDEX($P(YSDXDATA,U,20)),U,2),"-",2)
+ .  S YSDXCSTX="(ICD-"_YSDXCSTX_")"
  ;
  ;  Do MODIFIERs exist?
  I $D(^YSD(627.8,J1,5)) D
@@ -76,7 +82,7 @@ AUTH ;
  S:J8]"" J8=$P(^DIC(3.1,J8,0),U) ;   Title file
  S YSAUTH=J7_"  "_J8
  QUIT:'$D(YSDXLS)  ;->
- W !!?3,YSDXLS_" "_$E(YSDXLSN,1,65)
+ W !!?3,YSDXCSTX,?12,YSDXLS_" "_$E(YSDXLSN,1,56)
  I $D(YSMOD) F YSDXI=1:1:YSML I $D(YSMOD(YSDXI)) W:$TR(YSMOD(YSDXI)," ","")]"" !?8,"---"_YSMOD(YSDXI)
 COMMENT ;
  ;D RECORD^YSDX0001("COMMENT^YSDX3R1") ;Used for testing.  Inactivated in YSDX0001...
@@ -90,6 +96,6 @@ COMMENT ;
  ;
 FINISH ;
  ;D RECORD^YSDX0001("FINISH^YSDX3R1") ;Used for testing.  Inactivated in YSDX0001...
- K J1,J2,J3,J4,J5,J6,YSDXLSN,YSDXLS,YSDXLSD,YSMOD
+ K J1,J2,J3,J4,J5,J6,YSDXCSTX,YSDXLSN,YSDXLS,YSDXLSD,YSMOD
  QUIT
  ;

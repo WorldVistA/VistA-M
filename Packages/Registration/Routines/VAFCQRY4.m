@@ -1,5 +1,5 @@
 VAFCQRY4 ;BIR/CMC-CONT TO BLD PID 2.4 SEGMENT ;1/23/06
- ;;5.3;Registration;**707**;Aug 13, 1993;Build 14
+ ;;5.3;Registration;**707,874**;Aug 13, 1993;Build 2
  ;
 CONT(DFN,APID,PID,HL,HLES,SARY,SEQ,ERROR,REP,COMP) ; continue to bld pid segment
  N X,LVL,LVL2,PDOD,NXT,LNGTH
@@ -34,7 +34,7 @@ CONT(DFN,APID,PID,HL,HLES,SARY,SEQ,ERROR,REP,COMP) ; continue to bld pid segment
  .I APID(30)="" S APID(30)=HL("Q")
  I $D(SARY(24))!(SEQ="ALL") S APID(25)=$P($G(^DPT(DFN,"MPIMB")),"^")  ;**575 multiple birth indicator
  ;list of fields not currently used or supported (# is 1 more than seq)
- I $D(SARY(4))!(SEQ="ALL") S APID(5)=""  ;Alternate Patient Identifier
+ ;I $D(SARY(4))!(SEQ="ALL") S APID(5)=""  ;Alternate Patient Identifier ;**874 MVI_3035 (elz)
  I $D(SARY(9))!(SEQ="ALL") S APID(10)=""  ;patient alias
  I $D(SARY(15))!(SEQ="ALL") S APID(16)=""  ;primary language
  I $D(SARY(18))!(SEQ="ALL") S APID(19)=""  ;patient account #

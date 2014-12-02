@@ -1,9 +1,10 @@
 PXRRMDR ;BP/WLC - PCE Missing Data Report ;11 Feb 04  10:10 AM
- ;;1.0;PCE;**124,174,168**;FEB 11, 2004;Build 14
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**124,174,168,199**;FEB 11, 2004;Build 51
  ; 04/11/05 WLC changed to check for AO, IR and EC, only if SC'=YES
  Q
  ;
-EN N PX,PXPAGE,PXLOC,PXPROV,SDDIV,ZTSAVE,%DT,DIR,DTOUT,DUOUT,X,Y,POP,PXDT,PXDS,RPTYP,EDT,PAT,SSN,DT,TY,CBU,VDT,LOC,PROV,SORT,SORTHDR,CNT,PRIO
+EN N DIR,%DT,DT,DTOUT,DUOUT,CBU,CNT,EDT,LOC,PAT,POP,PRIO,PROV,PX,PXDS,PXDT
+ N PXLOC,PXPAGE,PXPROV,RPTYP,SDDIV,SORT,SORTHDR,SSN,TY,VDT,X,Y,ZTSAVE
  S (POP,PXPAGE)=0
  K PXDS
  D HOME^%ZIS S:'$D(IOF) IOF=FF W @IOF,!!
@@ -15,7 +16,7 @@ EDT S %DT("A")="   Ending date: " W ! D ^%DT G:Y<1 EXIT
  I Y<PX("BDT") W !!,$C(7),"End date cannot be before begin date!",! G EDT
  S PX("EDT")=Y_.999999
  W @IOF,!! S X=$$CTR("*** Report Sort Selection ***")
- W !!! K DIR S SORTHDR="DATA SOURCE^CPT^ICD9^PATIENT^ELIGIBILITY"
+ W !!! K DIR S SORTHDR="DATA SOURCE^CPT^DIAGNOSIS^PATIENT^ELIGIBILITY"
  F LOOP=1:1:$L(SORTHDR,U) S DESC=$P(SORTHDR,U,LOOP) W !,"("_LOOP_")  "_DESC
  W ! S DIR(0)="N^^I X<1!(X>5) K X",DIR("A")="Enter number between 1 and 5" D ^DIR Q:$D(DIRUT)  S PXSRT=+X
  S DIR(0)="S^D:DETAILED REPORT;S:STATISTICS ONLY",DIR("A")="Select report type",DIR("B")="DETAILED REPORT" D ^DIR Q:$D(DIRUT)
@@ -57,17 +58,17 @@ RUN ;
  . . . I $$HNC^SDCO22(DFN) S CLASSIF(6)=""
  . . . I +$P($$CVEDT^DGCV(DFN,PXDT),"^",3) S CLASSIF(7)=""
  . . . I $$SHAD^SDCO22(DFN) S CLASSIF(8)=""
- . . . I $D(CLASSIF),'$D(^TMP("PXKENC",$J,VSN,"POV",I,800)) D SET("Diagnosis: "_$$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing SC/EI",1) Q
+ . . . I $D(CLASSIF),'$D(^TMP("PXKENC",$J,VSN,"POV",I,800)) D SET($$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing SC/EI",1) Q
  . . . S J="" F  S J=$O(CLASSIF(J)) Q:'J  D
  . . . . N SCEIREC S SCEIREC=$G(^TMP("PXKENC",$J,VSN,"POV",I,800))
- . . . . I J=3&($P(SCEIREC,U,1)="") D SET("Diagnosis: "_$$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing Service Connect.",1)
- . . . . I J=1&($P(SCEIREC,U,2)="")&($P(SCEIREC,U,1)'=1) D SET("Diagnosis: "_$$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing Agent Orange",3)
- . . . . I J=2&($P(SCEIREC,U,3)="")&($P(SCEIREC,U,1)'=1) D SET("Diagnosis: "_$$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing Ion. Rad.",4)
- . . . . I J=4&($P(SCEIREC,U,4)="")&($P(SCEIREC,U,1)'=1) D SET("Diagnosis: "_$$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing Env. Contam.",5)
- . . . . I J=5&($P(SCEIREC,U,5)="") D SET("Diagnosis: "_$$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing MST",6)
- . . . . I J=6&($P(SCEIREC,U,6)="") D SET("Diagnosis: "_$$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing Head/Neck Cancer",6)
- . . . . I J=7&($P(SCEIREC,U,7)="") D SET("Diagnosis: "_$$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing Combat Vet",2)
- . . . . I J=8&($P(SCEIREC,U,8)="") D SET("Diagnosis: "_$$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing Project 112/SHAD",6)
+ . . . . I J=3&($P(SCEIREC,U,1)="") D SET($$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing Service Connect.",1)
+ . . . . I J=1&($P(SCEIREC,U,2)="")&($P(SCEIREC,U,1)'=1) D SET($$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing Agent Orange",3)
+ . . . . I J=2&($P(SCEIREC,U,3)="")&($P(SCEIREC,U,1)'=1) D SET($$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing Ion. Rad.",4)
+ . . . . I J=4&($P(SCEIREC,U,4)="")&($P(SCEIREC,U,1)'=1) D SET($$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing Env. Contam.",5)
+ . . . . I J=5&($P(SCEIREC,U,5)="") D SET($$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing MST",6)
+ . . . . I J=6&($P(SCEIREC,U,6)="") D SET($$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing Head/Neck Cancer",6)
+ . . . . I J=7&($P(SCEIREC,U,7)="") D SET($$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing Combat Vet",2)
+ . . . . I J=8&($P(SCEIREC,U,8)="") D SET($$DISPLYDX($P(^TMP("PXKENC",$J,VSN,"POV",I,0),U))_" missing Project 112/SHAD",6)
  U IO D PRINT^PXRRMDR1,^%ZISC
  K ^TMP("PXCRPW",$J)
 EXIT Q
@@ -84,10 +85,10 @@ EVAL ;
  S:$G(PRPRV)="" PXPRV="Unknown"
  Q
  ;
-DISPLYDX(PXCEPOV)       ;
+DISPLYDX(PXCEPOV) ;
  N ICDSTR
- S ICDSTR=$$ICDDX^ICDCODE($P(PXCEPOV,"^"),$P(^AUPNVSIT(VSN,0),"^"))
- Q $P(ICDSTR,"^",2) ;code
+ S ICDSTR=$$ICDDATA^ICDXCODE("DIAG",$P(PXCEPOV,"^"),$$CSDATE^PXDXUTL(VSN),"I")
+ Q $S($P(ICDSTR,"^",20)="30":"ICD10",1:"ICD9")_": "_$P(ICDSTR,"^",2) ;code
  ;
 DISPLYP(PXCECPT) ;
  N CPTSTR
@@ -115,11 +116,13 @@ SET(SDX,PRIO) ;
  S A1=$G(CPT1) D SET1(PRIO)
  Q
  ;
-3 ; ICD-9
- N ICD,ICD9 S ICD="",ICD9="Unknown"
+3 ; ICD
+ N ICD,ICDCD,ICDDATA S ICD="",ICDCD="Unknown"
  F  S ICD=$O(^AUPNVPOV("AD",VSN,ICD)) Q:'ICD  D
- . S ICD9=$$GET1^DIQ(9000010.07,ICD,.01)
- S A1=ICD9 D SET1(PRIO)
+ . S ICDCD=$$GET1^DIQ(9000010.07,ICD,.01)
+ . S ICDDATA=$$ICDDATA^ICDXCODE("DIAG",ICDCD,$$CSDATE^PXDXUTL(VSN),"E")
+ S A1=$S(ICDCD="Unknown":ICDCD,1:$P(ICDDATA,U,2)_"_"_$P(ICDDATA,U,20))
+ D SET1(PRIO)
  Q
  ;
 4 S A1=$$GET1^DIQ(9000010,VSN_",",.05)

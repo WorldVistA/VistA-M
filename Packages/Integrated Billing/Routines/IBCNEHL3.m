@@ -1,5 +1,5 @@
 IBCNEHL3 ;DAOU/ALA - HL7 Process Incoming RPI Continued ;03-JUL-2002  ; Compiled June 2, 2005 14:20:19
- ;;2.0;INTEGRATED BILLING;**300,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**300,416,497,506**;21-MAR-94;Build 74
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
@@ -23,44 +23,55 @@ ERROR(TQN,ERACT,ERCON,TRCN) ; Entry point
  ;
  I $G(TQN)="" G ERRORX
  ;
+ ;/Removed the following lines of code as part of IB*2.0*506 but wanted to
+ ;/leave this code available if it should be needed in the future.
  ; Scenarios:
  ; #1 - If error message = "Resubmission Allowed" OR "Please Resubmit
- ;  Original Transaction" - set TQ
- ;  Fut Trans Dt to T + Comm Failure Days and Status to "Hold"
- I ERACT="R"!(ERACT="P") D  G ERRORX
- . I $P($G(^IBCN(365.1,TQN,0)),U,9)="" D  Q    ; first time payer asked us to resubmit
- . . ; Update IIV TQ fields: "Hold" (4), IIV Site Param Comm Failure Days
- . . D UPDATE(TQN,4,+$P($G(^IBE(350.9,1,51)),U,5),ERACT)
- . . ;
- . ; payer asked us to resubmit for the 2nd time for this inquiry
- . ; Update IIV TQ fields: "Response Received" (3), n/a ("")
- . D UPDATE(TQN,3,"",ERACT,ERCON)
- . ; clear future transmission date so it won't display in the buffer
- . S DA=TQN,DIE="^IBCN(365.1,",DR=".09///@" D ^DIE
+ ; Original Transaction" - set TQ
+ ; Fut Trans Dt to T + Comm Failure Days and Status to "Hold"
+ ;I ERACT="R"!(ERACT="P") D G ERRORX
+ ;. I $P($G(^IBCN(365.1,TQN,0)),U,9)="" D Q ; first time payer asked us to resubmit
+ ;. . ; Update IIV TQ fields: "Hold" (4), IIV Site Param Comm Failure Days
+ ;. . D UPDATE(TQN,4,+$P($G(^IBE(350.9,1,51)),U,5),ERACT)
+ ;. . ;
+ ;. ; payer asked us to resubmit for the 2nd time for this inquiry
+ ;. ; Update IIV TQ fields: "Response Received" (3), n/a ("")
+ ;. D UPDATE(TQN,3,"",ERACT,ERCON)
+ ;. ; clear future transmission date so it won't display in the buffer
+ ;. S DA=TQN,DIE="^IBCN(365.1,",DR=".09///@" D ^DIE
  ;
  ; #2 - If error message = "Please Wait 30 Days and Resubmit" - set TQ
- ;  Fut Trans Dt to T + 30 and Status to "Hold"
- I ERACT="W" D  G ERRORX
- . ; Update IIV TQ fields: "Hold" (4), 30
- . D UPDATE(TQN,4,30,ERACT)
+ ; Fut Trans Dt to T + 30 and Status to "Hold"
+ ;I ERACT="W" D G ERRORX
+ ;. ; Update IIV TQ fields: "Hold" (4), 30
+ ;. D UPDATE(TQN,4,30,ERACT)
  ;
  ; #3 - If error message = "Please Wait 10 Days and Resubmit" - set TQ
- ;  Fut Trans Dt to T + 10 and Status to "Hold"
- I ERACT="X" D  G ERRORX
- . ; Update IIV TQ fields: "Hold" (4), 10
- . D UPDATE(TQN,4,10,ERACT)
+ ; Fut Trans Dt to T + 10 and Status to "Hold"
+ ;I ERACT="X" D G ERRORX
+ ;. ; Update IIV TQ fields: "Hold" (4), 10
+ ;. D UPDATE(TQN,4,10,ERACT)
  ;
  ; #4 - If error message = "Resubmission Not Allowed" or
- ;  "Do not resubmit ...." OR "Please correct and resubmit"
- ;  - set TQ Status to "Response Received"
+ ; "Do not resubmit ...." OR "Please correct and resubmit"
+ ; - set TQ Status to "Response Received"
  ; If we receive error txt, treat as an "N"
- I ERACT="" S ERACT="N"
- I ERACT="N"!(ERACT="Y")!(ERACT="S")!(ERACT="C") D  G ERRORX
- . ; Update IIV TQ fields: "Response Received" (3), n/a ("")
- . D UPDATE(TQN,3,"",ERACT,ERCON)
+ ;I ERACT="" S ERACT="N"
+ ;I ERACT="N"!(ERACT="Y")!(ERACT="S")!(ERACT="C") D G ERRORX
+ ;. ; Update IIV TQ fields: "Response Received" (3), n/a ("")
+ ;. D UPDATE(TQN,3,"",ERACT,ERCON)
  ;
  ; #5 - Error message is unfamiliar - new Error Action Code
  ; *** Currently processed in IBCNEHL1 ***
+ ;/End of removed code for IB*2.0*506
+ ;
+ ; /IB*2.0*506 Beginning
+ ; For all Scenarios 1 thru 5, set TQ Status to "Response Received"
+ I ERACT="" S ERACT="N"
+ I ",R,P,W,X,N,Y,S,C,"[(","_ERACT_",") D  G ERRORX
+ . ; Update IIV TQ fields: "Response Received" (3), n/a ("")
+ . D UPDATE(TQN,3,"",ERACT,ERCON)
+ ; /IB*2.0*506 End
  ;
 ERRORX ; ERROR exit pt
  Q
@@ -276,3 +287,127 @@ GIN1() ;Get IN1 segment
  F  S IPCT=$O(^TMP($J,"IBCNEHLI",IPCT)) Q:IPCT=""  D
  . I $E(^TMP($J,"IBCNEHLI",IPCT,0),1,3)="IN1" S SEGMT=^TMP($J,"IBCNEHLI",IPCT,0)
  Q SEGMT
+ ;
+ ; =================================================================
+WARN ;  Create and send a response processing error warning message
+ ;
+ ; Input Variables
+ ; ERROR, TRACE
+ ;
+ ; Output Variables
+ ; ERFLG=1
+ ;
+ N MCT,MSG,SUBCNT,VEN,XMY
+ S VEN=0,MCT=9,ERFLG=1,SUBCNT=""
+ S MSG(1)="IMPORTANT: Error While Processing Response Message from the EC"
+ S MSG(2)="-------------------------------------------------------------"
+ S MSG(3)="*** IRM *** Please contact Help Desk because the"
+ S MSG(4)="response message received from the Eligibility Communicator"
+ S MSG(5)="could not be processed.  Programming changes may be necessary"
+ S MSG(6)="to properly handle the response."
+ S MSG(7)="The associated Trace # is "_$S($G(TRACE)="":"Unknown",1:TRACE)_". If applicable,"
+ S MSG(8)="please review the response with the eIV Response Report by Trace#."
+ S MSG(9)=" "
+ F  S VEN=$O(ERROR("DIERR",VEN)) Q:'VEN  D
+ .S MCT=MCT+1,MSG(MCT)="Error:"
+ .F  S SUBCNT=$O(ERROR("DIERR",VEN,"TEXT",SUBCNT)) Q:'SUBCNT  S MCT=MCT+1,MSG(MCT)=ERROR("DIERR",VEN,"TEXT",SUBCNT)
+ .S MCT=MCT+1,MSG(MCT)=" "
+ .I $G(ERROR("DIERR",VEN,"PARAM","FILE"))'="" S MCT=MCT+1,MSG(MCT)="File: "_ERROR("DIERR",VEN,"PARAM","FILE")
+ .I $G(ERROR("DIERR",VEN,"PARAM","IENS"))'="" S MCT=MCT+1,MSG(MCT)="IENS: "_ERROR("DIERR",VEN,"PARAM","IENS")
+ .I $G(ERROR("DIERR",VEN,"PARAM","FIELD"))'="" S MCT=MCT+1,MSG(MCT)="Field: "_ERROR("DIERR",VEN,"PARAM","FIELD")
+ .S MCT=MCT+1,MSG(MCT)=" "
+ .Q
+ D MSG^IBCNEUT5(MGRP,MSG(1),"MSG(",,.XMY)
+ Q
+ ;
+ ; =================================================================
+UEACT ; Send warning msg if Unknown Error Action Code was received or
+ ; encountered problem filing date
+ ;
+ ; Input Variables
+ ; ERROR, IBIEN, IBQFL, RIEN, RSTYPE, TQDATA, TRACE
+ ;
+ ; Output Variables
+ ; ERFLG=1 (SET IN WARN TAG)
+ ;
+ N DFN,SYMBOL
+ D WARN  ; send warning msg
+ ;
+ ; If the response could not be created or there is no associated TQ entry, stop processing
+ I '$G(RIEN)!(TQDATA="") Q
+ ;
+ ;  For an original response, set the Transmission Queue Status to 'Response Received' &
+ ;  update remaining retries to comm failure (5)
+ I $G(RSTYPE)="O" D SST^IBCNEUT2(TQN,3),RSTA^IBCNEUT7(TQN)
+ ;
+ ; If it is an identification and policy is not active don't
+ ; create buffer entry
+ I IBQFL="I",IIVSTAT'=1 Q
+ ;
+ ; If unsolicited message or no buffer in TQ, create new buffer entry
+ I RSTYPE="U" S IBIEN=""
+ I IBIEN="" D  Q
+ .  S DFN=$P(TQDATA,U,2)        ; Determine Patient DFN
+ .  S SYMBOL=22 D BUF^IBCNEHL3  ; Create a new buffer entry
+ ;
+ ;Update buffer symbol
+ D BUFF^IBCNEUT2(IBIEN,22)
+ ;
+ Q
+ ;
+CHK1() ; check auto-update criteria for patient who is the subscriber
+ ; called from tag AUTOUPD, uses variables defined there
+ ;
+ ; returns 1 if given policy satisfies auto-update criteria, returns 0 otherwise
+ N RES
+ S RES=0
+ I $P(RDATA13,U,2)'=$P(IDATA7,U,2) G CHK1X  ; Subscriber ID doesn't match   ; IB*2.0*497 compare subscriber ID data at their new locations
+ I $P(RDATA1,U,2)'=$P(IDATA3,U) G CHK1X  ; DOB doesn't match
+ I '$$NAMECMP^IBCNEHLU($P(RDATA13,U),$P(IDATA7,U)) G CHK1X  ; Insured's name doesn't match  ; IB*2.0*497 compare name of insured data at their new locations
+ S RES=1
+CHK1X ;
+ Q RES
+ ;
+CHK2(MWNRTYP) ; check auto-update criteria for patient who is not the subscriber
+ ; called from tag AUTOUPD, uses variables defined there
+ ;
+ ; returns 1 if policy satisfies auto-update criteria, returns 0 otherwise
+ N DOB,ID,IDATA5,IENS,NAME,PDOB,PNAME,RES
+ S RES=0
+ S IDATA5=$G(^DPT(IEN2,.312,IEN312,5))
+ S IENS=IEN2_","
+ S ID=$P(RDATA13,U,2)    ; IB*2.0*497 Subscriber ID needs to be retrieved from its new location
+ I ID'=$P(IDATA7,U,2),ID'=$P(IDATA5,U) G CHK2X  ; both Subscriber ID and Patient ID don't match ; IB*2.0*497 compare subscriber ID at new locations
+ S DOB=$P(RDATA1,U,2),PDOB=$$GET1^DIQ(2,IENS,.03,"I")
+ I DOB'=$P(IDATA3,U),DOB'=PDOB G CHK2X  ; both Subscriber and Patient DOB don't match
+ S NAME=$P(RDATA13,U),PNAME=$$GET1^DIQ(2,IENS,.01)   ; IB*2.0*497 get name of insured at its new location
+ I '+MWNRTYP,'$$NAMECMP^IBCNEHLU(NAME,$P(IDATA7,U)),'$$NAMECMP^IBCNEHLU(NAME,PNAME) G CHK2X  ; non-Medicare, both Subscriber and Patient name don't match ; IB*2*497
+ I +MWNRTYP,'$$NAMECMP^IBCNEHLU(NAME,PNAME) G CHK2X  ; Medicare, Patient name doesn't match
+ S RES=1
+CHK2X ;
+ Q RES
+ ;
+UPDIREC(RIEN,IEN312) ; update insurance record field in transmission queue (365.1/.13)
+ ; RIEN - ien in eIV Response file (365)
+ ; IEN312 - ien in pat. insurance multiple (2.312)
+ ;
+ N DATA,ERROR,IENS
+ I RIEN'>0!(IEN312'>0) Q
+ S IENS=$P($G(^IBCN(365,RIEN,0)),U,5)_"," I IENS="," Q
+ S DATA(365.1,IENS,.13)=IEN312
+ D FILE^DIE("ET","DATA","ERROR")
+ Q
+ ;
+LCKERR ; send locking error message
+ N MSG,XMY
+ S MSG(1)="WARNING: Unable to Auto-file Response Message from the EC"
+ S MSG(2)="---------------------------------------------------------"
+ S MSG(3)="Failed to lock patient insurance entry:"
+ S MSG(4)="  Patient name - "_$$GET1^DIQ(2,DFN_",",.01)
+ S MSG(5)="  Insurance - "_$$GET1^DIQ(2.312,IENS,.01)
+ S MSG(6)="  IENS - "_$S($G(IENS)="":"Unknown",1:IENS)
+ S MSG(7)=" "
+ S MSG(8)="The response will be filed into Insurance Buffer instead."
+ S MSG(9)=" "
+ D MSG^IBCNEUT5(MGRP,MSG(1),"MSG(",,.XMY)
+ Q

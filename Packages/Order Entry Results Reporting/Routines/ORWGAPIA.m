@@ -1,5 +1,12 @@
-ORWGAPIA ; SLC/STAFF - Graph Application Calls ;2/22/07  11:16
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,251,260,243**;Dec 17, 1997;Build 242
+ORWGAPIA ; SLC/STAFF - Graph Application Calls ;07/16/13  13:20
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,251,260,243,372,361**;Dec 17, 1997;Build 39
+ ;
+ ;  External References:
+ ;  $$ICDDATA^ICDXCODE      ICR #5699
+ ;  $$CPT^ICPTCOD           ICR #1995
+ ;  $$DOCCLASS^TIULC1       ICR #3548
+ ;  $$HASDOCMT^TIULX        ICR #4315
+ ;  $$ISA^USRLM             ICR #1544
  ;
 ADMITX(DFN) ; $$(dfn) -> 1 if patient has data else 0
  Q $O(^DGPM("C",+$G(DFN),0))>0
@@ -47,10 +54,16 @@ HF(NODE,ORVALUE,VALUES) ; from ORWGAPI4
  Q
  ;
 ICD0(IEN) ; $$(ien) -> external display of IDC0
- Q $P($G(^ICD0(IEN,0)),U)_" "_$P($G(^ICD0(IEN,0)),U,4)
+ N INFO
+ S INFO=$$ICDDATA^ICDXCODE("PROCEDURE",IEN,DT)
+ I INFO<0 Q ""
+ Q $P(INFO,U,2)_" "_$P(INFO,U,5)
  ;
 ICD9(IEN) ; $$(ien) -> external display of IDC9
- Q $P($G(^ICD9(IEN,0)),U)_" "_$P($G(^ICD9(IEN,0)),U,3)
+ N INFO
+ S INFO=$$ICDDATA^ICDXCODE("DIAGNOSIS",IEN,DT)
+ I INFO<0 Q ""
+ Q $P(INFO,U,2)_" "_$P(INFO,U,4)
  ;
 ICPT(IEN,CSD) ; $$(ien) -> external display of CPT
  N X S X=$$CPT^ICPTCOD($G(IEN),$G(CSD))

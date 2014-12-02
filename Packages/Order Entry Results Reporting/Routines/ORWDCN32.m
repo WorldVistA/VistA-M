@@ -1,7 +1,7 @@
-ORWDCN32 ; SLC/KCM/REV - Consults calls [ 12/16/97  12:47 PM ] ;14:50 PM 01 MAR 2001
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85**;Dec 17, 1997
+ORWDCN32 ; SLC/KCM/REV - Consults calls [ 12/16/97  12:47 PM ] ;01/25/12  09:38
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,306**;Dec 17, 1997;Build 43
  ;
-DEF(LST,WHY)         ; load consult info    
+DEF(LST,WHY)         ; load consult info
  N ILST,NAM,IEN,X
  S ILST=0
  S LST($$NXT)="~ShortList" D SHORT
@@ -12,6 +12,13 @@ DEF(LST,WHY)         ; load consult info
  S LST($$NXT)="~Outpt Urgencies" D OUTURG
  S LST($$NXT)="~Inpt Place" D INPLACE
  S LST($$NXT)="~Outpt Place" D OUTPLACE
+ S LST($$NXT)="~EarliestDate" D EAD
+ Q
+EAD ; get default value for Earliest Appropriate Date ;WAT V29
+ N DTDFLT,ENTITY
+ S ENTITY="PKG"
+ S DTDFLT=$$GET^XPAR(ENTITY,"ORCDGMRC EARLIEST DATE DEFAULT",1,"Q") ;ICR 2263
+ S LST($$NXT)="d^"_DTDFLT
  Q
 SHORT ;return list of Consults or Procedures quick orders
  N I,TMP
@@ -64,7 +71,7 @@ NXT() ; increments ILST
  S ILST=ILST+1
  Q ILST
 LOOK200(VAL,X)     ; Lookup a person in 200
- S VAL=$$FIND1^DIC(200,"","",X)
+ S VAL=$$FIND1^DIC(200,"","",X) ;ICR 2051
  Q
 ORDRMSG(Y,ORDITM) ;returns order message for this consult/procedure orderable
  N I
@@ -87,10 +94,10 @@ PROC(Y,FROM,DIR) ; Return a subset of orderable procedures
  F  Q:I'<CNT  S FROM=$O(^ORD(101.43,"S.PROC",FROM),DIR) Q:FROM=""  D
  . S IEN=0 F  S IEN=$O(^ORD(101.43,"S.PROC",FROM,IEN)) Q:'IEN  D
  . . S X=^ORD(101.43,"S.PROC",FROM,IEN)
- . . I +$P(X,U,3),$P(X,U,3)<$$NOW^XLFDT Q
+ . . I +$P(X,U,3),$P(X,U,3)<$$NOW^XLFDT Q  ;ICR 10103
  . . S ORID=$P($G(^ORD(101.43,IEN,0)),U,2)
  . . ;I $P($G(^ORD(101,ORIEN,0)),U,3)'="" Q   ; Removed for v14
- . . D GETSVC^GMRCPR0(.ORSVCCNT,ORID) Q:+ORSVCCNT=0
+ . . D GETSVC^GMRCPR0(.ORSVCCNT,ORID) Q:+ORSVCCNT=0  ;ICR 2982
  . . S I=I+1
  . . I 'X S Y(I)=IEN_U_$P(X,U,2)_U_$P(X,U,2)_U_ORID
  . . E  S Y(I)=IEN_U_$P(X,U,2)_$C(9)_"<"_$P(X,U,4)_">"_U_$P(X,U,4)_U_ORID
@@ -99,7 +106,7 @@ NEWDLG(Y,ORTYPE,ORLOC) ; Return order dialog info for New Consult OR PROCEDURE
  N DGRP,ID,IEN,TXT,TYP,X,X0,X5,ENT
  S ENT="ALL"
  I $G(ORLOC) S ORLOC=+ORLOC_";SC(",ENT=ENT_"^"_ORLOC
- I ORTYPE="C" S X=$$GET^XPAR(ENT,"ORWDX NEW CONSULT",1,"I")
+ I ORTYPE="C" S X=$$GET^XPAR(ENT,"ORWDX NEW CONSULT",1,"I") ;ICR 2263
  E  S X=$$GET^XPAR(ENT,"ORWDX NEW PROCEDURE",1,"I")
  S IEN=+X,X0=$G(^ORD(101.41,IEN,0)),X5=$G(^(5))
  S TYP=$P(X0,U,4),DGRP=+$P(X0,U,5),ID=+$P(X5,U,5),TXT=$P(X5,U,4)

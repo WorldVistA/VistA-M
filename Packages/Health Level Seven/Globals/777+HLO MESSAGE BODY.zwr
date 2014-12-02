@@ -1,3 +1,12 @@
 HLO MESSAGE BODY
 ZWR
 ^HLA(0)="HLO MESSAGE BODY^777D^^"
+^HLA(1,0)="3141001.095258^0^ZZZ^ZZZ^2.4^^^^^^^^^^^^^^^|^~\&"
+^HLA(1,1,1,0)="NTE|This is a PING message to test connectivity. Sender DUZ: .5"
+^HLA(2,0)="3141001.095315^0^ZZZ^ZZZ^2.4^^^^^^^^^^^^^^^|^~\&"
+^HLA(2,1,1,0)="NTE|This is a PING message to test connectivity. Sender DUZ: .5"
+^HLA(3,0)="3141001.103314^0^ZZZ^ZZZ^2.4^^^^^^^^^^^^^^^|^~\&"
+^HLA(3,1,1,0)="NTE|This is a PING message to test connectivity. Sender DUZ: .5"
+^HLA("B",3141001.095258,1)=""
+^HLA("B",3141001.095315,2)=""
+^HLA("B",3141001.103314,3)=""

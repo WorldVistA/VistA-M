@@ -1,8 +1,8 @@
-LEXQM ;ISL/KER - Query - Miscellaneous ;10/30/2008
- ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
+LEXQM ;ISL/KER - Query - Miscellaneous ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**62,80**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
- ;    ^UTILITY(           ICR  10011
+ ;    ^UTILITY($J)        ICR  10011
  ;               
  ; External References
  ;    HOME^%ZIS           ICR  10086
@@ -19,7 +19,7 @@ LEXQM ;ISL/KER - Query - Miscellaneous ;10/30/2008
  ;               
 AD(X) ; Assumed Date
  Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,DIRB,LEXPAS,LEXNOW,LEXFUT,Y
- S LEXNOW=$$UP^XLFSTR($$FMTE^XLFDT($$DT^XLFDT)),LEXPAS=2760101,LEXFUT=$$FMADD^XLFDT($$DT^XLFDT,(365*2))
+ S LEXNOW=$$UP^XLFSTR($$FMTE^XLFDT($$DT^XLFDT)),LEXPAS=2760101,LEXFUT=$$FMADD^XLFDT($$DT^XLFDT,(365*5))
  S DIRB=$$RET^LEXQD("LEXQM","AD",+($G(DUZ)),"Assumed Date") S:'$L(DIRB) DIRB=LEXNOW S:$L($G(LEXAD)) DIRB=""
  S:$L(DIRB) DIR("B")=DIRB S DIR("A")=" Assumed Date of Service:  "
  S DIR(0)="DAO^"_LEXPAS_":"_LEXFUT_":EX",(DIR("?"),DIR("??"))="^D ADH^LEXQM"

@@ -1,4 +1,4 @@
-OCXOZ0G ;SLC/RJS,CLA - Order Check Scan ;MAR 8,2011 at 13:52
+OCXOZ0G ;SLC/RJS,CLA - Order Check Scan ;JUN 14,2013 at 09:03
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -8,6 +8,30 @@ OCXOZ0G ;SLC/RJS,CLA - Order Check Scan ;MAR 8,2011 at 13:52
  ; ** will be lost the next time the rule compiler executes.    **
  ; ***************************************************************
  ;
+ Q
+ ;
+EL45 ; Examine every rule that involves Element #45 [ORDER REQUIRES CHART SIGNATURE]
+ ;  Called from SCAN+9^OCXOZ01.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ D R6R1A^OCXOZ0J   ; Check Relation #1 in Rule #6 'ORDER REQUIRES CHART SIGNATURE'
+ Q
+ ;
+EL21 ; Examine every rule that involves Element #21 [PATIENT ADMISSION]
+ ;  Called from SCAN+9^OCXOZ01.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ D R7R1A^OCXOZ0K   ; Check Relation #1 in Rule #7 'PATIENT ADMISSION'
+ Q
+ ;
+EL31 ; Examine every rule that involves Element #31 [RADIOLOGY ORDER CANCELLED]
+ ;  Called from SCAN+9^OCXOZ01.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ D R11R1A^OCXOZ0K   ; Check Relation #1 in Rule #11 'IMAGING REQUEST CANCELLED/HELD'
  Q
  ;
 EL100 ; Examine every rule that involves Element #100 [CANCELED BY NON-ORIG ORDERING PROVIDER]
@@ -259,30 +283,5 @@ EL129 ; Examine every rule that involves Element #129 [ABNORMAL RENAL RESULTS]
  Q:$G(OCXOERR)
  ;
  D R50R1A^OCXOZ0T   ; Check Relation #1 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
- Q
- ;
-EL130 ; Examine every rule that involves Element #130 [CONTRAST MEDIA ORDER]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R50R1A^OCXOZ0T   ; Check Relation #1 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
- D R50R2A^OCXOZ0U   ; Check Relation #2 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
- Q
- ;
-EL133 ; Examine every rule that involves Element #133 [NO CREAT RESULTS W/IN X DAYS]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R50R2A^OCXOZ0U   ; Check Relation #2 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
- Q
- ;
-EL63 ; Examine every rule that involves Element #63 [PATIENT HAS RECENT CHOLECYSTOGRAM]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R51R1A^OCXOZ0U   ; Check Relation #1 in Rule #51 'RECENT CHOLECYSTOGRAM ORDER'
  Q
  ;

@@ -1,11 +1,21 @@
-RORX015C ;HCIOFO/SG - OUTPATIENT PROCEDURES (STORE) ; 6/27/06 10:54am
- ;;1.5;CLINICAL CASE REGISTRIES;**1**;Feb 17, 2006;Build 24
+RORX015C ;HCIOFO/SG - OUTPATIENT PROCEDURES (STORE) ;6/27/06 10:54am
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
  ; #1995         $$CPT^ICPTCOD (supported)
- ; #3990         $$ICDOP^ICDCODE (supported)
+ ; #5747         $$ICDOP^ICDEX, $$CSI^ICDEX (controlled)
  ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ; --- ROUTINE MODIFICATION LOG ---
+ ; 
+ ;PKG/PATCH   DATE       DEVELOPER   MODIFICATION
+ ;----------- ---------- ----------- ----------------------------------------
+ ;ROR*1.5*19  FEB 2012   J SCOTT     Support for ICD-10 Coding System.
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
  Q
  ;
  ;***** STORES THE PROCEDURE CODE TABLE
@@ -20,7 +30,7 @@ RORX015C ;HCIOFO/SG - OUTPATIENT PROCEDURES (STORE) ; 6/27/06 10:54am
  ;       >0  Number of non-fatal errors
  ;
 CODES(PTAG,NODE) ;
- N IEN,ITEM,NAME,SRC,TABLE,TMP
+ N IEN,ITEM,NAME,SRC,TABLE,TMP,RORPROCSYS,RORPROCCODE
  S TABLE=$$ADDVAL^RORTSK11(RORTSK,"PROCLST",,PTAG)
  Q:TABLE<0 TABLE
  D ADDATTR^RORTSK11(RORTSK,TABLE,"TABLE","PROCLST")
@@ -32,7 +42,11 @@ CODES(PTAG,NODE) ;
  . . F  S IEN=$O(@NODE@("PROC","B",NAME,SRC,IEN))  Q:IEN'>0  D
  . . . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PROCEDURE",,TABLE)
  . . . S TMP=@NODE@("PROC",SRC,IEN)
- . . . D ADDVAL^RORTSK11(RORTSK,"PROCODE",$P(TMP,U,1),ITEM,2)
+ . . . S RORPROCCODE=$P(TMP,U,1)
+ . . . I SRC="I" D
+ . . . . S RORPROCSYS=+$$CSI^ICDEX(80.1,IEN)
+ . . . . S RORPROCCODE="("_$S(RORPROCSYS=2:"ICD-9",RORPROCSYS=31:"ICD-10",1:"UNKN")_") "_RORPROCCODE
+ . . . D ADDVAL^RORTSK11(RORTSK,"PROCODE",RORPROCCODE,ITEM,2)
  . . . D ADDVAL^RORTSK11(RORTSK,"PROCNAME",$P(TMP,U,2),ITEM,2)
  . . . S TMP=$G(@NODE@("PROC",SRC,IEN,"P"))
  . . . D ADDVAL^RORTSK11(RORTSK,"NP",TMP,ITEM,3)
@@ -53,7 +67,7 @@ CODES(PTAG,NODE) ;
  ;       >0  Number of non-fatal errors
  ;
 PATIENTS(PTAG,NODE) ;
- N DATE,DOD,IEN,ITEM,LAST4,PTIEN,PROCLST,PTCPTL,PTLST,PTNAME,SRC,TMP
+ N DATE,DOD,IEN,ITEM,LAST4,PTIEN,PROCLST,PTCPTL,PTLST,PTNAME,SRC,TMP,RORPROCSYS,RORPROCCODE
  S (PROCLST,PTLST)=-1
  ;--- Table for patients with procedures
  I RORPROC>0  D  Q:PROCLST<0 PROCLST
@@ -91,8 +105,10 @@ PATIENTS(PTAG,NODE) ;
  . . . . D ADDVAL^RORTSK11(RORTSK,"PROCODE",$P(TMP,U,2),ITEM,2)
  . . . . D ADDVAL^RORTSK11(RORTSK,"PROCNAME",$P(TMP,U,3),ITEM,2)
  . . . E  D
- . . . . S TMP=$$ICDOP^ICDCODE(IEN,DATE)  S:TMP<0 TMP=""
- . . . . D ADDVAL^RORTSK11(RORTSK,"PROCODE",$P(TMP,U,2),ITEM,2)
+ . . . . S RORPROCSYS=+$$CSI^ICDEX(80.1,IEN)
+ . . . . S TMP=$$ICDOP^ICDEX(IEN,DATE,,"I")  S:TMP<0 TMP=""
+ . . . . S RORPROCCODE="("_$S(RORPROCSYS=2:"ICD-9",RORPROCSYS=31:"ICD-10",1:"UNKN")_") "_$P(TMP,U,2)
+ . . . . D ADDVAL^RORTSK11(RORTSK,"PROCODE",RORPROCCODE,ITEM,2)
  . . . . D ADDVAL^RORTSK11(RORTSK,"PROCNAME",$P(TMP,U,5),ITEM,2)
  . . . D ADDVAL^RORTSK11(RORTSK,"DATE",$$DATE^RORXU002(DATE\1),ITEM,1)
  . . . D ADDVAL^RORTSK11(RORTSK,"SOURCE",SRC,ITEM,1)

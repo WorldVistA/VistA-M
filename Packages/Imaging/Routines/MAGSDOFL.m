@@ -1,5 +1,5 @@
-MAGSDOFL ;WOIFO/SF - Track Offline Images ; June 11, 2010 17:49
- ;;3.0;IMAGING;**18,98**;Mar 19, 2002;Build 1849;Sep 22, 2010
+MAGSDOFL ;WOIFO/SF - DEX & AA Track Offline Images ; 01/31/13
+ ;;3.0;IMAGING;**18,98,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -36,7 +36,7 @@ AGAIN ;
  . . S X=$P($T(OPTIONS+I),";",3,999) Q:X=""
  . . S N=N+1
  . Q
- W " ??? -- Invalid option.  Try agin." G AGAIN
+ W " ??? -- Invalid option.  Try again." G AGAIN
  ;
 SETUP ;
  I ^%ZOSF("OS")?1"MSM".E S IOF="#"
@@ -64,7 +64,7 @@ ASK1 I MAGIN="" R !!,"Enter file to read offline images from: ",X:DTIME
  S COUNT=0
  U IO(0) W !!,"Here goes nothing...",!
  D ^%ZIS
- F  U IO R LN:5 D
+ F  U IO R LN:5 Q:LN["Files Listed"  D
  . S COUNT=COUNT+1
  . S LN=$$TRIM(LN)
  . I LN["Media """ S MAGPLAT=$P(LN,"""",2) U IO(0) W !,MAGPLAT
@@ -180,10 +180,11 @@ HELP1 ;Help for offline
  W !,"Enter the name of the file created by the jukebox media file report"
  Q
 HELP2 ;Help for OPTION prompt
- W !,"Select option 1 if you are marking images offline"
+ W !,"Select option 1 if you are marking DEX images offline"
  W !,"Select option 2 if you are marking images online"
  W !,"Select option 3 if you want the listing of off-line platter(s)"
  W !,"Select option 4 if you are taking the group of platters off-line"
+ W !,"Select option 5 if you are marking Archive Appliance (AA) images offline"
  W !,"Type ""^"" to quit"
  Q
 HELP3 ;Help for GROUP platters TXT
@@ -201,7 +202,8 @@ ERROR ;Trap Errors Here
  D ^%ZISC
  Q
 OPTIONS ; Offline Image Menu
- ;;Take images offline (Remove Jukebox Platter);OFFLINE("")
+ ;;Take DEX images offline (Remove Jukebox Platter);OFFLINE("")
  ;;Put images back online (Insert Jukebox Platter);ONLINE("")
  ;;Take images offline (Group platters);GROUP
  ;;List current offline Jukebox Platter;LISTP
+ ;;Take 'AA' Archive Appliance images offline (Remove Jukebox Platter);EN^MAGSDOFF

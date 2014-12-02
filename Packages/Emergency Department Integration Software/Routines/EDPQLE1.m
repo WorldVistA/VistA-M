@@ -1,12 +1,16 @@
-EDPQLE1 ;SLC/KCM - Retrive Log Entry Supporting Info ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPQLE1 ;SLC/KCM - Retrive Log Entry - Supporting Info ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
 CHOICES(AREA) ; Add choice lists for editing log entry to XML
  ; called from EDPQLE
- ; 
- D STAFF("md","P")
- D STAFF("res","R")
- D STAFF("nurse","N")
+ ;
+ N ROLIEN,RNAME,RABBR,RXML,R0
+ S ROLEIEN=0 F  S ROLEIEN=$O(^EDPB(232.5,ROLEIEN)) Q:'ROLEIEN  D
+ .S R0=$G(^EDPB(232.5,ROLEIEN,0)),RNAME=$P(R0,U),RABBR=$P(R0,U,2),RXML=$P(R0,U,3)
+ .D STAFF($S(RXML="@rn":"nurse",1:$P(RXML,"@",2)),ROLEIEN,RABBR)
+ ;D STAFF("md","P")
+ ;D STAFF("res","R")
+ ;D STAFF("nurse","N")
  ;
  D CODES("arrival","arrival")
  D CODES("acuity","acuity")
@@ -14,14 +18,14 @@ CHOICES(AREA) ; Add choice lists for editing log entry to XML
  D CODES("disposition","disposition")
  D CODES("delay","delay")
  Q
-STAFF(LABEL,ROLE) ; add staff for this area to XML
+STAFF(LABEL,ROLEIEN,RABBR) ; add staff for this area to XML
  N IEN,X0,NM,PER,ALPHA,EDPNURS,ROW
- I ROLE="N" S EDPNURS=$$GET^XPAR("ALL","EDPF NURSE STAFF SCREEN")
+ I RABBR="N" S EDPNURS=$$GET^XPAR("ALL","EDPF NURSE STAFF SCREEN")
  D XML^EDPX("<"_LABEL_"List>")
  D XML^EDPX($$XMLS^EDPX(LABEL,0,"None"))   ;non-selected (-1 will delete)
- S IEN=0 F  S IEN=$O(^EDPB(231.7,"AC",EDPSITE,AREA,ROLE,IEN)) Q:'IEN  D
+ S IEN=0 F  S IEN=$O(^EDPB(231.7,"AC",EDPSITE,AREA,ROLEIEN,IEN)) Q:'IEN  D
  . S X0=^EDPB(231.7,IEN,0),PER=$P(X0,U)
- . I '$$ALLOW^EDPFPER(PER,ROLE) Q
+ . I '$$ALLOW^EDPFPER(PER,RABBR) Q
  . S ALPHA($P(^VA(200,PER,0),U),PER)=$P(^VA(200,PER,0),U,2)
  S NM="" F  S NM=$O(ALPHA(NM)) Q:NM=""  D
  . S PER=0 F  S PER=$O(ALPHA(NM,PER)) Q:'PER  D

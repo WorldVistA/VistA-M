@@ -1,6 +1,14 @@
-LEXAMD ; ISL/KER Look-up Modifiers ; 05/14/2003
- ;;2.0;LEXICON UTILITY;**6,25**;Sep 23, 1996
- ;
+LEXAMD ;ISL/KER - Look-up Modifiers ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**6,25,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^TMP("LEXFND"       SACC 2.3.2.5.1
+ ;    ^TMP("LEXHIT"       SACC 2.3.2.5.1
+ ;    ^TMP("LEXSCH"       SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    $$UP^XLFSTR         ICR  10104
+ ;               
  ; LEXX     IEN file 757.01 of an expression w/Modifiers
  ; LEXVDT   Date to screen against
  ;
@@ -35,11 +43,21 @@ FND ; Build List of Modifiers Found (LEXFND)
  . . S ^TMP("LEXSCH",$J,"NUM",0)=$G(^TMP("LEXSCH",$J,"NUM",0))+1
 HIT ; Build HIT list
  I $D(^TMP("LEXFND",$J)) D  Q
- . K LEX,^TMP("LEXHIT",$J) S LEX=+($G(LEXA(0))),LEX("LVL")=+($G(LEXLVL))+1 S:+LEX>0 (^TMP("LEXSCH",$J,"MAT",0),LEX("MAT"))=+LEX_" matches found for """_LEXXN_"""" D SCH,BEG,NAR
+ . K LEX,^TMP("LEXHIT",$J)
+ . S LEX=+($G(LEXA(0)))
+ . S LEX("LVL")=+($G(LEXLVL))+1
+ . I +LEX>0 D
+ . . N LEXMAT S LEXMAT=+LEX_" match"_$S(+LEX>1:"es",1:"")_" found for """_LEXXN_""""
+ . . S:$$UP^XLFSTR($G(LEXSUG))["SUGGEST" LEXMAT=+LEX_" suggestion"_$S(+LEX>1:"s",1:"")_" found for """_LEXXN_""""
+ . . S (^TMP("LEXSCH",$J,"MAT",0),LEX("MAT"))=LEXMAT D SCH,BEG,NAR N LEXSUG
  I '$D(^TMP("LEXFND",$J)) D NOM
  Q
 SCH ; Search Conditions/Results
- K ^TMP("LEXSCH",$J,"EXM") S ^TMP("LEXSCH",$J,"NAR",0)=$$UP(LEXXN),^TMP("LEXSCH",$J,"SCH",0)=$$UP(LEXXN),^TMP("LEXSCH",$J,"TOL",0)=1,^TMP("LEXSCH",$J,"NUM",0)=+($G(^TMP("LEXSCH",$J,"NUM",0)))
+ K ^TMP("LEXSCH",$J,"EXM")
+ S ^TMP("LEXSCH",$J,"NAR",0)=$$UP(LEXXN)
+ S ^TMP("LEXSCH",$J,"SCH",0)=$$UP(LEXXN)
+ S ^TMP("LEXSCH",$J,"TOL",0)=1
+ S ^TMP("LEXSCH",$J,"NUM",0)=+($G(^TMP("LEXSCH",$J,"NUM",0)))
  Q
 NOM ; No Modifiers
  K LEX,^TMP("LEXFND",$J),^TMP("LEXHIT",$J),^TMP("LEXSCH",$J,"EXM"),^TMP("LEXSCH",$J,"NAR"),^TMP("LEXSCH",$J,"SCH"),^TMP("LEXSCH",$J,"TOL")

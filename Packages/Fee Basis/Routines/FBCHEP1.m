@@ -1,6 +1,6 @@
-FBCHEP1 ;AISC/DMK-EDIT PAYMENT FOR CONTRACT HOSPITAL ; 5/16/12 3:31pm
- ;;3.5;FEE BASIS;**38,61,122,133,108,124,132**;JAN 30, 1995;Build 17
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBCHEP1 ;AISC/DMK - EDIT PAYMENT FOR CONTRACT HOSPITAL ;5/16/12 3:31pm
+ ;;3.5;FEE BASIS;**38,61,122,133,108,124,132,139**;JAN 30, 1995;Build 127
+ ;;Per VA Directive 6402, this routine should not be modified.
 EDIT ;ENTRY POINT TO EDIT PAYMENT
  N LASTDX,LASTPROC
  S IOP=$S($D(ION):ION,1:"HOME") D ^%ZIS K IOP
@@ -98,7 +98,8 @@ RMVGAP(FBDA,FBWRT) ;  Remove gaps in ICD diagnosis and procedure codes
  S FBMOVED=0
  S FBN=0
  F FBI=1:1:25 D
- . Q:$P(FBDX,U,FBI)=""
+ . ; JAS - 03/05/14 - Patch 139 (ICD-10 Project) - Modified next line to also quit if 0
+ . Q:(($P(FBDX,U,FBI)="")!($P(FBDX,U,FBI)=0))
  . S FBN=FBN+1 ; increment number of diagnosis codes
  . Q:FBI=FBN  ; no gap
  . ; move diagnosis and POA from slot FBI to slot FBN
@@ -119,7 +120,8 @@ RMVGAP(FBDA,FBWRT) ;  Remove gaps in ICD diagnosis and procedure codes
  S FBMOVED=0
  S FBN=0
  F FBI=1:1:25 D
- . Q:$P(FBPROC,U,FBI)=""
+ . ; JAS - 03/05/14 - Patch 139 (ICD-10 Project) - Modified next line to also quit if 0
+ . Q:(($P(FBPROC,U,FBI)="")!($P(FBPROC,U,FBI)=0))
  . S FBN=FBN+1 ; increment number of procedure codes
  . Q:FBI=FBN  ; no gap
  . ; move procedure from slot FBI to slot FBN

@@ -1,6 +1,12 @@
-LEXSET4 ; ISL Setup Functions                      ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXSET4 ;ISL/KER - Setup Functions ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    ^DIC                ICR  10006
+ ;               
 NS(LEX) ; Look-up application namespace
  N D,DIC,DTOUT,DUOUT D:'$D(LEXSAVE) SAVE K DIC S DIC("A")="Select APPLICATION:  "
  S DIC("W")="W ?35,$P($G(^LEXT(757.2,+Y,5)),U,5)"

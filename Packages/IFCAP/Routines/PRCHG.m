@@ -1,5 +1,5 @@
-PRCHG ;ID/RSD,SF-ISC/TKW/DAP-PROCESS 2237 ;6/18/12  13:07
-V ;;5.1;IFCAP;**81,167**;Oct 20, 2000;Build 17
+PRCHG ;ID/RSD,SF-ISC/TKW/DAP-PROCESS 2237 ;5/8/13  15:39
+V ;;5.1;IFCAP;**81,167,174**;Oct 20, 2000;Build 23
  ;Per VHA Directive 2004-38, this routine should not be modified.
  ;
 ES ;SIGN 2237 IN PPM
@@ -19,7 +19,6 @@ ES1 ;S PRCHG=$S($D(^PRCD(442.3,+$P(^PRC(443,DA,0),U,7),0)):$P(^(0),U,2),1:""),$P
  I $D(DA2237) L +^PRCS(410,DA2237):15 Q:'$T  D NOW^%DTC S $P(^PRCS(410,DA2237,7),"^",11)=P,$P(^PRCS(410,DA2237,7),"^",12)=% L -^PRCS(410,DA2237)
  ;
  ;if 2237 status is 'Sent to eCMS(P&C)', transmit to eCMS via HL7 msg OMN^O07 (PRC*5.1*167)
- N PRCERFLG ;2237 transmission error flag
  N PRCER    ;transmission error msg
  N PRCEVNT  ;event array for LOG^PRCHJTA
  I PRCHG=69 D
@@ -31,42 +30,41 @@ ES1 ;S PRCHG=$S($D(^PRCD(442.3,+$P(^PRC(443,DA,0),U,7),0)):$P(^(0),U,2),1:""),$P
  . ;was the transmission successful, ELSE did it fail?
  . I $G(PRCMSGID)>0 D
  . . W !?3,">>> 2237 transaction has been successfully transmitted to eCMS."
- . . W !?3,"    Transaction Number: "_$G(PRCTRANS)
- . . W !?3,"        HLO Message ID: "_$G(PRCMSGID)
+ . . W !?7,"Transaction Number: "_$G(PRCTRANS)
+ . . W !?11,"HLO Message ID: "_$G(PRCMSGID)
  . . W !!?3,">>> Updating transmission in IFCAP/ECMS Transaction file..."
  . . S PRCEVNT("MSGID")=$G(PRCMSGID)
  . . S PRCEVNT("IEN410")=$G(DA2237)
  . . S PRCEVNT("IFCAPU")=$G(DUZ)
  . . D LOG^PRCHJTA($G(PRCTRANS),,1,.PRCEVNT,.PRCLOGER)
- . . I +$G(PRCLOGER) W !?3,"    Error: "_$P($G(PRCLOGER),U,2)
+ . . I +$G(PRCLOGER) W !?7,"Error: "_$P($G(PRCLOGER),U,2)
  . E  D
  . . W !?3,">>> ERROR: 2237 was not transmitted to eCMS!"
- . . W !?3,"    Transaction Number: "_$G(PRCTRANS)
- . . W !?3,"    Error: "_$G(PRCER)
- . . S PRCERFLG=1 ;set flag for sending notification msg to Accountable Officer
- . . W !!?3,">>> Updating transmission error in IFCAP/ECMS Transaction file..."
+ . . W !?7,"Transaction Number: "_$G(PRCTRANS)
+ . . ;setup PRCEVNT array for call to LOG^PRCHJTA and output error(s)
  . . S PRCEVNT("MSGID")=""
  . . S PRCEVNT("IEN410")=$G(DA2237)
  . . S PRCEVNT("IFCAPU")=$G(DUZ)
  . . S PRCEVNT("ERROR",1)="An error occurred when transmitting the 2237 transaction to eCMS."
- . . S PRCEVNT("ERROR",2)="Error: "_$E($G(PRCER),1,60)
- . . I $D(XQY0) S PRCEVNT("ERROR",3)="Option: "_$P($G(XQY0),"^",2)
+ . . S PRCEVNT("ERROR",2)="Option: "_$S($P($G(XQY0),"^",2)]"":$P($G(XQY0),"^",2),1:"UNKNOWN")
+ . . N PRCIDX1,PRCIDX2
+ . . S PRCIDX1=0,PRCIDX2=2
+ . . ;output error(s)
+ . . F  S PRCIDX1=$O(PRCER(PRCIDX1)) Q:PRCIDX1=""  D
+ . . . W !?7,"Error #"_$G(PRCIDX1)_": "_$G(PRCER(PRCIDX1))
+ . . . S PRCIDX2=PRCIDX2+1 S PRCEVNT("ERROR",PRCIDX2)="Error #"_$G(PRCIDX1)_": "_$G(PRCER(PRCIDX1))
+ . . W !!?3,">>> Updating transmission error in IFCAP/ECMS Transaction file..."
  . . D LOG^PRCHJTA($G(PRCTRANS),,1,.PRCEVNT,.PRCLOGER)
- . . I +$G(PRCLOGER) W !?3,"    Error: "_$P($G(PRCLOGER),U,2)
- ;
- ;if 2237 transmission error occurred, send notification msg to AO (PRC*5.1*167)
- I PRCHG=69,($G(PRCERFLG)) D
- . W !!?3,">>> Sending error notification mail message to Accountable Officer..."
- . N PRCMSG1,PRCMSG2 ;input arrays for PHMSG^PRCHJMSG, pass by ref
- . S PRCMSG1(1)=$G(PRCTRANS) ;2237 transaction #
- . S PRCMSG1(2)=5 ;return to AO since failed transmission to eCMS
- . S PRCMSG1(3)=$$NOW^XLFDT ;action date/time
- . I $G(PRCER)["REQUESTING SERVICE" D
- . . S PRCMSG1(7)="Return 2237 to Control Point for edit and re-approval!"
- . E  D
+ . . I +$G(PRCLOGER) W !?7,"Error: "_$P($G(PRCLOGER),U,2)
+ . . ;send error(s) to AO
+ . . W !!?3,">>> Sending error notification mail message to Accountable Officer..."
+ . . N PRCMSG1,PRCMSG2 ;input arrays for PHMSG^PRCHJMSG, pass by ref
+ . . S PRCMSG1(1)=$G(PRCTRANS) ;2237 transaction #
+ . . S PRCMSG1(2)=5 ;return to AO since failed transmission to eCMS
+ . . S PRCMSG1(3)=$$NOW^XLFDT ;action date/time
  . . S PRCMSG1(7)="Please forward this message to appropriate OIT staff!"
- . M PRCMSG2=PRCEVNT("ERROR") ;merge error array into PRCMSG2 array
- . D PHMSG^PRCHJMSG(.PRCMSG1,.PRCMSG2) ;send msg
+ . . M PRCMSG2=PRCEVNT("ERROR") ;merge error array into PRCMSG2 array
+ . . D PHMSG^PRCHJMSG(.PRCMSG1,.PRCMSG2) ;send msg
  ;
  Q
  ;
@@ -151,4 +149,5 @@ STAT I $D(PRCFGPF) S DIC("S")="S Z=$P(^(0),U,2) I Z=10!(Z=60)!(Z=85)" Q
  I '$D(PRCHPPM) S DIC("S")="I $P(^(0),U,2)>69" Q
  K Z0 S (Z0(60),Z0(62),Z0(63),Z0(65),Z0(74))="" S:$P(^PRC(443,DA,0),U,10)=4 Z0(70)="",Z0(69)=""
  S DIC("S")="I $D(Z0(+$P(^(0),U,2)))"
+ S:$$ECMS2237^PRCHJUTL(DA) DIC("S")="I "";60;63;69;""[("";""_$P(^(0),U,2)_"";"")"
  Q

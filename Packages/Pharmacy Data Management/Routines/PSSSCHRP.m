@@ -1,6 +1,6 @@
 PSSSCHRP ;BIR/RTR-Schedule Report ;07/03/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**129**;9/30/07;Build 67
- ;Reference to DIC(42 supported by DBIA 10039
+ ;;1.0;PHARMACY DATA MANAGEMENT;**129,160**;9/30/07;Build 76
+ ;
  ;
  ;
 EN ;Prompts for Administration File Schedule Report
@@ -36,7 +36,7 @@ START ;Print Administration Schedule File report
  .F PSSAFQEN=0:0 S PSSAFQEN=$O(^PS(51.1,"B",PSSAFQ,PSSAFQEN)) Q:'PSSAFQEN!(PSSAFOUT)  D
  ..K PSSAFRA,PSSAFRAA,PSSAFROP,PSSAFQS,PSSAFROP,PSSAFROO,PSSAFQL,PSSWASX,PSSAFQC,PSSAFQQ
  ..S PSSAFRA=PSSAFQEN_","
- ..D GETS^DIQ(51.1,PSSAFRA,".01;1;2;4;8;8.1","E","PSSAFRAA")
+ ..D GETS^DIQ(51.1,PSSAFRA,".01;1;2;4;8;8.1;9;10","E","PSSAFRAA")
  ..I $G(PSSAFRAA(51.1,PSSAFRA,4,"E"))'="PSJ" Q
  ..I PSSAFRP="O",$G(PSSAFRAA(51.1,PSSAFRA,2,"E")) Q
  ..S PSSAFNOF=1
@@ -82,7 +82,7 @@ START ;Print Administration Schedule File report
  ..S PSSAFRFL=0 F PSSWAS=0:0 S PSSWAS=$O(^PS(51.1,PSSAFQEN,1,PSSWAS)) Q:'PSSWAS!(PSSAFOUT)  D
  ...S PSSWASEN=$P($G(^PS(51.1,PSSAFQEN,1,PSSWAS,0)),"^") Q:'PSSWASEN
  ...S PSSWASX=PSSWAS_","_PSSAFQEN_"," S PSSWASNM=$$GET1^DIQ(51.11,PSSWASX,".01") Q:PSSWASNM=""
- ...;PSSARFRL=0 if last Write ended in Line Feed, =1 if Last Write dod not end in line feed, for writing Wards
+ ...;PSSARFRL=0 if last Write ended in Line Feed, =1 if Last Write did not end in line feed, for writing Wards
  ...W:'PSSAFRFL ?30,"WARD: "_PSSWASNM W:PSSAFRFL !?30,"WARD: "_PSSWASNM S (PSSAFZZZ,PSSAFRFL)=1
  ...I ($Y+5)>IOSL D HD S (PSSAFZZZ,PSSAFRFL)=0 Q:PSSAFOUT
  ...W !?9,"WARD ADMINISTRATION TIMES: " S (PSSAFZZZ,PSSAFRFL)=1
@@ -111,6 +111,10 @@ START ;Print Administration Schedule File report
  ..W:'PSSAFZZZ ?21,"SCHEDULE TYPE: "_$G(PSSTPE) W:PSSAFZZZ !?21,"SCHEDULE TYPE: "_$G(PSSTPE)
  ..I ($Y+5)>IOSL D HD Q:PSSAFOUT
  ..W !?12,"FREQUENCY (IN MINUTES): "_$G(PSSAFRAA(51.1,PSSAFRA,2,"E"))
+ ..I ($Y+5)>IOSL D HD Q:PSSAFOUT
+ ..W !?6,"EXCLUDE FROM ALL DOSE CHECKS: "_$G(PSSAFRAA(51.1,PSSAFRA,9,"E"))
+ ..I ($Y+5)>IOSL D HD Q:PSSAFOUT
+ ..W !?5,"EXCLUDE FROM DAILY DOSE CHECK: "_$G(PSSAFRAA(51.1,PSSAFRA,10,"E"))
  ..I ($Y+5)>IOSL D HD Q:PSSAFOUT
  ;
 END ;
@@ -152,3 +156,58 @@ FORMAT(PSSAFQC,PSSAFQQ) ;Format print arrays, breaking on the "-" character
  .I $L(PSSAFAA(PSSAFAF))+$L(PSSAFAB(PSSAFAX))<PSSAFQQ S PSSAFAA(PSSAFAF)=PSSAFAA(PSSAFAF)_PSSAFAB(PSSAFAX) Q
  .S PSSAFAF=PSSAFAF+1 S PSSAFAA(PSSAFAF)=PSSAFAB(PSSAFAX)
  Q
+ ;
+ ;
+TRAIL ;Trailing spaces Report
+ W !!,"This report displays active, multi-ingredient entries from the DRUG (#50) File"
+ W !,"with Local Possible Dosages defined, with trailing spaces in the name. Entries"
+ W !,"not matched to National Drug File are also included if there are trailing"
+ W !,"spaces. Trailing spaces can potentially cause the Dose check to fail, and"
+ W !,"also possibly cause the conjunction and drug name to become part of the Dosage.",!
+ N DIR,Y,X,DTOUT,DUOUT,DIRUT,DIROUT,IOP,%ZIS,POP,ZTRTN,ZTDESC,ZTSAVE,ZTSK
+ K IOP,%ZIS,POP S %ZIS="QM" D ^%ZIS I $G(POP)>0 D MESS K DIR,Y S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR,IOP,%ZIS,POP Q
+ I $D(IO("Q")) S ZTRTN="STRAIL^PSSSCHRP",ZTDESC="Trailing Spaces Report" D ^%ZTLOAD K %ZIS W !!,"Report queued to print.",! K DIR,Y S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR Q
+ ;
+ ;
+STRAIL ;Print Trailing spaces report
+ U IO
+ N PSSTRSOT,PSSTRSLG,PSSTRSFL,PSSTRSDV,PSSTRSPG,PSSTRSAA,PSSTRSBB,PSSTRSNM,PSSTRSIN,PSSTRSST,PSSTRSUN,PSSTRSN1,PSSTRSN3,PSSTRSN9
+ S (PSSTRSOT,PSSTRSFL)=0,PSSTRSDV=$S($E(IOST,1,2)'="C-":"P",1:"C"),PSSTRSPG=1
+ K PSSTRSLG S $P(PSSTRSLG,"-",78)=""
+ D STHD
+ S PSSTRSAA="" F  S PSSTRSAA=$O(^PSDRUG("B",PSSTRSAA)) Q:PSSTRSAA=""!(PSSTRSOT)  D
+ .F PSSTRSBB=0:0 S PSSTRSBB=$O(^PSDRUG("B",PSSTRSAA,PSSTRSBB)) Q:'PSSTRSBB!(PSSTRSOT)  D:$O(^PSDRUG(PSSTRSBB,"DOS2",0))
+ ..S PSSTRSNM=$P($G(^PSDRUG(PSSTRSBB,0)),"^"),PSSTRSIN=$P($G(^PSDRUG(PSSTRSBB,"I")),"^")
+ ..I $E(PSSTRSNM,$L(PSSTRSNM))'=" " Q
+ ..I PSSTRSIN,PSSTRSIN<DT Q
+ ..S PSSTRSN1=$P($G(^PSDRUG(PSSTRSBB,"ND")),"^"),PSSTRSN3=$P($G(^PSDRUG(PSSTRSBB,"ND")),"^",3)
+ ..I 'PSSTRSN1!('PSSTRSN3) W !,PSSTRSNM_"   ("_PSSTRSBB_")" S PSSTRSFL=1 D:($Y+5)>IOSL STHD Q
+ ..S PSSTRSST=$P($G(^PSDRUG(PSSTRSBB,"DOS")),"^"),PSSTRSUN=$P($G(^PSDRUG(PSSTRSBB,"DOS")),"^",2)
+ ..I PSSTRSST'="" Q
+ ..K PSSTRSN9 I PSSTRSST=""!('PSSTRSUN) S PSSTRSN9=$$DFSU^PSNAPIS(PSSTRSN1,PSSTRSN3)
+ ..S PSSTRSST=$P($G(PSSTRSN9),"^",4) I $$STST() Q
+ ..W !,PSSTRSNM_"   ("_PSSTRSBB_")" S PSSTRSFL=1 I ($Y+5)>IOSL D STHD
+ ;
+ ;
+STEND ;
+ I '$G(PSSTRSOT),'$G(PSSTRSFL) W !!,"No drug names found.",!
+ I $G(PSSTRSDV)="P"  W !!,"End of Report.",!
+ I '$G(PSSTRSOT),$G(PSSTRSDV)="C" W !!,"End of Report." K DIR S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR
+ I $G(PSSTRSDV)="C" W !
+ E  W @IOF
+ D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@"
+ Q
+ ;
+ ;
+STHD ;Report Header
+ I $G(PSSTRSDV)="C",$G(PSSTRSPG)'=1 W ! K DIR,Y S DIR(0)="E",DIR("A")="Press Return to continue, '^' to exit" D ^DIR K DIR I 'Y S PSSTRSOT=1 Q
+ W @IOF
+ W !,"DRUG NAME TRAILING SPACES REPORT"
+ W ?68,"PAGE: "_PSSTRSPG,!,PSSTRSLG,! S PSSTRSPG=PSSTRSPG+1
+ Q
+ ;
+ ;
+STST() ;Is strength numeric
+ I PSSTRSST="" Q 0 
+ I PSSTRSST'?.N&(PSSTRSST'?.N1".".N) Q 0
+ Q 1

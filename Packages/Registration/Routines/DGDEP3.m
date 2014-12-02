@@ -1,5 +1,5 @@
-DGDEP3 ;ALB/CAW,BAJ,ERC - Dependents display ; 11/22/2005
- ;;5.3;Registration;**45,624,653,688**;Aug 13, 1993;Build 29
+DGDEP3 ;ALB/CAW,BAJ,ERC - Dependents display ;11/22/2005
+ ;;5.3;Registration;**45,624,653,688,867**;Aug 13, 1993;Build 59
  ;
 SELF(INCPER,NAME,RELATE,ACT,DGMTI,CNT) ; Display information concerning veteran
  ;
@@ -23,6 +23,7 @@ SELF(INCPER,NAME,RELATE,ACT,DGMTI,CNT) ; Display information concerning veteran
  . D SET^DGDEP(DGX)
  ;
  Q:RELATE=2
+ D NEWB
  S INCPER=^DGMT(408.22,INCPER,0)
  S DGX="",DGX=$$SETSTR^VALM1("Married Last Year: ",DGX,18,19)
  S DGX=$$SETSTR^VALM1($S($P(INCPER,U,5):"Yes",$P(INCPER,U,5)="":"Unanswered",1:"No"),DGX,38,10)
@@ -134,3 +135,13 @@ ADDCHK(INCPER) ; Indicates existence of any dependent address
  . I $P($G(^DGPR(408.13,IPIEN,1)),"^",7)]"" S $P(ADDCKVAL,U,1,2)="1^1"
  . I $P($G(^DGPR(408.13,IPIEN,1)),"^",8)]"" S $P(ADDCKVAL,U,3)="1"
  Q ADDCKVAL
+ ;
+NEWB ; check dob and if newborn, default "married last year" to be no
+ N DOB,NOW
+ S XY=""
+ S DOB=$P(^DPT(DFN,0),"^",3)
+ D NOW^%DTC S NOW=X
+ I $$FMDIFF^XLFDT(NOW,DOB,1)>365 Q  ;patient not a newborn
+ S XY=$O(^DGMT(408.22,"B",DFN,XY))
+ S $P(^DGMT(408.22,XY,0),"^",5)=0
+ Q

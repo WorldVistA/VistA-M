@@ -1,5 +1,5 @@
-QANDELE ;HISC/GJC-Auto E-Mail for locally deleted cases ;8/6/93  10:03
- ;;2.0;Incident Reporting;**1,18,20**;08/07/1992
+QANDELE ;HISC/GJC-Auto E-Mail for locally deleted cases ; 5/30/12 2:05pm
+ ;;2.0;Incident Reporting;**1,18,20,33**;08/07/1992;Build 12
  ;
  S QANZERO=$S($D(^QA(740,1,0))#2:^(0),1:0) I +QANZERO'>0 S QANERROR=1 D ERROR G EXIT
  S QANSITE=$S($D(^DIC(4,+QANZERO,0))#2:$P(^(0),"^"),1:"") I QANSITE="" S QANERROR=2 D ERROR G EXIT
@@ -32,7 +32,8 @@ INC ;Choose the incident, check 'ACS' x-ref for deleted.
 INC1 ;If 'DELETED' and not xmitted, continue
  S QAN7424=$G(^QA(742.4,QAN0,0)) Q:QAN7424']""
  Q:+$P(QAN7424,U,18)'=0  ;Been xmitted
- S QANDATE=$P(QAN7424,U,3),QANCASE=$P(QAN7424,U),QANNCDNT=$P(QAN7424,U,2)
+ S QANDATE=$P(QAN7424,U,3),QANCASE=$P(QAN7424,U),QANNCDNT=+$P(QAN7424,U,2)
+ Q:QANNCDNT'>0  ;check for null incident
  S QANINCD=$S($D(^QA(742.1,QANNCDNT,0)):$P(^(0),U),1:"") Q:QANINCD']""
  S QANINCD=$TR(QANINCD,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
  S QANTYDTH=$S(QANINCD="DEATH":$P(QAN7424,U,14),1:""),QANPROV=$P(QAN7424,U,16)

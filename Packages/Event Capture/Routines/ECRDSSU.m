@@ -1,5 +1,5 @@
-ECRDSSU ;ALB/ESD - DSS Unit Workload Summary Report ; 1 Jul 2008
- ;;2.0; EVENT CAPTURE ;**5,8,10,14,18,47,63,72,95**;8 May 96;Build 26
+ECRDSSU ;ALB/ESD - DSS Unit Workload Summary Report ;11/7/12  12:00
+ ;;2.0;EVENT CAPTURE;**5,8,10,14,18,47,63,72,95,119**;8 May 96;Build 12
  ;
 EN ;- Get location(s), DSS Unit(s), start & end dates, device
  ;
@@ -14,8 +14,9 @@ ENQ Q
  ;
 STRPT ;- Main entry point
  ;
- N ECCRT,ECDSSNM,ECDSSTOT,ECLOCNM,ECQUIT,ECPAGE
+ N ECCRT,ECDSSNM,ECDSSTOT,ECLOCNM,ECQUIT,ECPAGE,ECTMP ;119
  S (ECDSSTOT,ECPAGE,ECQUIT)=0,(ECDSSNM,ECLOCNM)=""
+ I $G(ECPTYP)="E" D EXPORT^ECRDSSU2,^ECKILL Q  ;119
  ; Determine if device is CRT
  S ECCRT=$S($E(IOST,1,2)="C-":1,1:0)
  U IO
@@ -29,7 +30,7 @@ STRPT ;- Main entry point
  I $D(ECGUI) G STRPTQ
  I $D(ZTQUEUED) S ZTREQ="@"
  D ^%ZISC
-STRPTQ K ^TMP("ECRPT")
+STRPTQ K ^TMP("ECRPT") D ^ECKILL ;119
  Q
  ;
  ;

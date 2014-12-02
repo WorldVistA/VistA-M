@@ -1,6 +1,6 @@
-DICF1 ;SEA/TOAD,SF/TKW-VA FileMan: Finder, Part 2 (Transform) ;1:36 PM  6 May 2004
- ;;22.0;VA FileMan;**15,51,70,135**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICF1 ;SEA/TOAD,SF/TKW-VA FileMan: Finder, Part 2 (Transform) ;1:48 PM  17 Jun 2013
+ ;;22.0;VA FileMan;**15,51,70,135,170**;Mar 30, 1999;Build 10
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 XFORM(DIFLAGS,DIVALUE,DISCREEN,DINDEX) ;
  ; FIND--produce array of values and screens by transforming input
@@ -24,7 +24,8 @@ LOWER ;
  . Q
  ;
 CHK ; Quit if data type not free-text, pointer or vp, or if lookup value is numeric or a date.
- I "PVF"'[$G(DINDEX(DISUB,"TYPE"))!(DIVALUE(DISUB)?.NP) Q
+ Q:"PVF"'[$G(DINDEX(DISUB,"TYPE"))
+ I DIVALUE(DISUB)?.NP D LONG Q  ;**170
  N Y D  Q:Y>0
  . N X S X=DIVALUE(DISUB) N %DT,DIFLAGS,DIVALUE,DISCREEN,DINDEX,DISUB
  . S %DT="T" D ^%DT Q

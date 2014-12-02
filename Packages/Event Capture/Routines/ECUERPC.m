@@ -1,5 +1,8 @@
 ECUERPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ;29 Oct 07
- ;;2.0; EVENT CAPTURE ;**25,32,33,46,47,59,72,95**;8 May 96;Build 26
+ ;;2.0;EVENT CAPTURE;**25,32,33,46,47,59,72,95,114**;8 May 96;Build 20
+ ;
+ ; Reference to $$SINFO^ICDEX supported by ICR #5747
+ ; Reference to $$ICDDX^ICDEX supported by ICR5747
  ;
 USRUNT(RESULTS,ECARY) ;
  ;This broker call returns an array of DSS units for a user & location
@@ -196,22 +199,25 @@ PRDEFS(RESULTS,ECARY) ;
 PATPROC(RESULTS,ECARY) ;
  ;
  ;Broker call returns the entries from EVENT CAPTURE PATIENT FILE #721
- ;        RPC: EC GETPATPROCS
- ;INPUTS   ECARY - Contains the following values separated by "^"
- ;          ECLOC - Location ien
- ;          ECPAT - Patient DFN ien
- ;          ECUNT - DSS unit ien
- ;          ECSD  - Start Date
- ;          ECED  - End Date
  ;
+ ;RPC: EC GETPATPROCS
+ ;
+ ;INPUTS   ECARY - Contains the following values separated by "^"
+ ;         ECLOC - Location ien
+ ;         ECPAT - Patient DFN ien
+ ;         ECUNT - DSS unit ien
+ ;         ECSD  - Start Date
+ ;         ECED  - End Date
+ ;                                                                         
  ;OUTPUTS  RESULTS - Array of Event Capture Patient entries contain
  ;          721 IEN^Procedure date/time^Category^Procedure^Volume^
- ;          Provider^ordering section^associated clinic^primary dx
+ ;          Provider^ordering section^associated clinic^
+ ;          (ICD Coding system) primary dx code primary dx code description
  ;          ^Provider IEN
  ;
- N IEN,CNT,ECV,ECLOC,ECUNT,ECPAT,PX,NODE,DATA,PDT,PDX,PND,PDXD,CAT,ECI
+ N IEN,CNT,ECCS,ECV,ECLOC,ECUNT,ECPAT,PX,NODE,DATA,PDT,PDX,PND,PDXD,CAT,ECI
  N ORS,PRV,PRO,PROV,ECU
- D SETENV^ECUMRPC
+ D SETENV^ECUMRPC ;set environment variables for RPC broker
  S ECV="ECLOC^ECPAT^ECUNT^ECSD^ECED"
  D PARSE(ECV,ECARY) I (ECLOC="")!(ECPAT="")!(ECUNT="") Q
  K ^TMP($J,"ECPATPX")
@@ -231,7 +237,12 @@ PATPROC(RESULTS,ECARY) ;
  . . K PROV S ECU=$$GETPPRV^ECPRVMUT(IEN,.PROV),PRV=$S(ECU:"UNKNOWN",1:$P(PROV,"^",2)),ECU=$S('ECU:+PROV,1:"")
  . . S:$P(NODE,U,12) ORS=$$GET1^DIQ(723,$P(NODE,U,12),.01,"I")
  . . S:$P(NODE,U,19) ASC=$$GET1^DIQ(44,$P(NODE,U,19),.01,"I")
- . . S:PDX PDXD=$$ICDDX^ICDCODE(PDX,PDT),PDXD=$P(PDXD,U,2)_" "_$P(PDXD,U,4)
+ . . I PDX D
+ . . . ; ICD10 Changes
+ . . . S ECCS=$$SINFO^ICDEX("DIAG",PDT) ; Supported by ICR 5747
+ . . . S PDXD=$$ICDDX^ICDEX(PDX,PDT,+ECCS,"I") ; Supported by ICR 5747
+ . . . S ECCS=$P(ECCS,U,2),ECCS=" ("_$P(ECCS,"-",1)_$P(ECCS,"-",2)_")"
+ . . . S PDXD=$P(PDXD,U,2)_" "_$P(PDXD,U,4)_ECCS
  . . S DATA=$P(NODE,U)_U_$$FMTE^XLFDT($P(NODE,U,3),"2F")_U_CAT_U_PX
  . . S DATA=DATA_U_$P(NODE,U,10)_U_PRV_U_ORS_U_ASC_U_PDXD_U_ECU
  . . S CNT=CNT+1,^TMP($J,"ECPATPX",CNT)=DATA

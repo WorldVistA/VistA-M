@@ -1,11 +1,12 @@
 SDAMQ ;ALB/MJK - AM Background Job ; 12/1/91
- ;;5.3;Scheduling;**44,132,153,578**;Aug 13, 1993;Build 32
+ ;;5.3;Scheduling;**44,132,153,578,588**;Aug 13,1993;Build 53
  ;
 EN ; -- manual entry point
  I '$$SWITCH D MES G ENQ
- N SDBEG,SDEND,SDAMETH
+ N SDBEG,SDEND,SDAMETH,Y
  S (SDBEG,SDEND)="",SDAMETH=2 G ENQ:'$$RANGE(.SDBEG,.SDEND,.SDAMETH)
  ;D START G ENQ ; line for testing
+ N ZTDESC,ZTIO,ZTRTN,ZTSAVE
  S ZTIO="",ZTRTN="START^SDAMQ",ZTDESC="ReCalc Appointment Status"
  F X="SDBEG","SDEND","SDAMETH" S ZTSAVE(X)=""
  K ZTSK D ^%ZTLOAD W:$D(ZTSK) "  (Task: #",ZTSK,")"
@@ -20,8 +21,6 @@ START ;
  D EN^SDAMQ3(SDBEG,SDEND)  ; appointments
  D EN^SDAMQ4(SDBEG,SDEND)  ; add/edits
  D EN^SDAMQ5(SDBEG,SDEND)  ; dispositions
- ;D EN^SDMHNS  ;High Risk Mental Health NO Show report 
- ;D ^SDMHPRO   ;High Risk Mental Health Proactive report.
  S SDFIN=$$NOW^SDAMU D UPD^SDAMQ1(SDBEG,SDEND,SDFIN,.05)
  D BULL^SDAMQ1
 STARTQ K SDBEG,SDEND,SDAMETH,^TMP("SDSTATS",$J) Q
@@ -30,7 +29,9 @@ AUTO ; -- nightly job entry point
  G:'$$SWITCH AUTOQ
  ; -- do yesterday's first
  S X1=DT,X2=-1 D C^%DTC
- S (SDOPCDT,SDBEG)=X,SDEND=X+.24,SDAMETH=1 D START,^SDMHNS
+ S (SDOPCDT,SDBEG)=X,SDEND=X+.24,SDAMETH=1 D START
+ D EN^SDMHNS
+ D EN^SDMHPRO
  ; -- check previous 30 days starting with the day before yesterday
  F SDBACK=2:1:31 S X1=DT,X2=-SDBACK D C^%DTC Q:X<$$SWITCH^SDAMU  I '$P($G(^SDD(409.65,+$O(^SDD(409.65,"B",X,0)),0)),U,5) S SDBEG=X,SDEND=X+.24,SDAMETH=1 D START
 AUTOQ K SDOPCDT,SDBEG,SDEND,SDAMETH,SDBACK,X,X1,X2 Q

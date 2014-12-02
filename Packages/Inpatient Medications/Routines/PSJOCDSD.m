@@ -1,10 +1,10 @@
 PSJOCDSD ;BIR/MV - PROCESS DOSING ORDER CHECKS ;6 Jun 07 / 3:37 PM
- ;;5.0; INPATIENT MEDICATIONS ;**181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS ;**181,252**;16 DEC 97;Build 69
  ;
 DISPLAY ;Display dose checks
- NEW PSJPON,PSJDSPFG,PSJCNT0
+ NEW PSJPON,PSJDSPFG,PSJCNT0,DR
  D FULL^VALM1
- Q:'$$DSPSERR^PSJOC("No dosing checks can be performed")
+ Q:'$$DSPSERR^PSJOC("Maximum Single Dose Check could not be performed")
  D EXCEPTN2
  K PSJDSPFG
  F PSJCNT0=0:0 S PSJCNT0=$O(^TMP($J,"PSJPRE1","OUT",PSJCNT0)) Q:'PSJCNT0  Q:$G(PSGORQF)  D
@@ -13,11 +13,18 @@ DISPLAY ;Display dose checks
  .. D ERROR
  .. D EXCEPTN
  .. D WARNING
- .. I +$G(PSJDSPFG) D PAUSE^PSJLMUT1 W @IOF
  K PSJDSPFG
+ Q
+DOSEOFF(PSJMSG) ;
+ ;Display message if dosing had turned off (once per patient session)
+ Q:$D(PSJEXCPT("DOSE",0))
+ S PSJEXCPT("DOSE",0)=""
+ W !!,$G(PSJMSG),!
+ D PAUSE^PSJLMUT1
  Q
 WARNING ;Display warning messages
  NEW PSJSGLE,PSJRNGE,PSJMSG,PSJDD,PSJTYPE
+ W @IOF
  S PSJMSG=""
  S (PSJSGLE,PSJRNGE)=0
  I '$O(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"EXCEPTIONS",0)),'$O(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"ERROR",0)) W !
@@ -37,7 +44,7 @@ WARNING ;Display warning messages
 INTERV ;Process intervention for dosing check
  NEW PSJDD
  S PSJDD=$S(+PSJSGLE:$P(PSJSGLE,U,2),1:$P(PSJRNGE,U,2))
- I 'PSJDD S PSJDSPFG=1 Q
+ I 'PSJDD,'$D(PSJOCFG) Q
  K PSJDSPFG
  W !
  I +PSJSGLE,+PSJRNGE D RINTERV^PSJGMRA("MAX SINGLE DOSE & DAILY DOSE RANGE") Q
@@ -51,24 +58,27 @@ ERROR ; Process errors
  S PSJDSPFG=0
  I $O(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"ERROR",0)) W !!
  F PSJCNT=0:0 S PSJCNT=$O(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"ERROR",PSJCNT)) Q:'PSJCNT  D
- . S PSJDSPFG=1
  . W !
  . S PSJNV=$G(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"ERROR",PSJCNT,"MSG"))
- . D:PSJNV]"" WRITE^PSJMISC(PSJNV,1)
+ . I PSJNV]"" D WRITE^PSJMISC(PSJNV,1) S PSJDSPFG=1
  . S PSJNV=$G(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"ERROR",PSJCNT,"TEXT"))
- . D:PSJNV]"" WRITE^PSJMISC(PSJNV,3)
+ . I PSJNV]"" D WRITE^PSJMISC(PSJNV,1) S PSJDSPFG=1
+ D:$G(PSJDSPFG) PAUSE^PSJLMUT1
  Q
 EXCEPTN ; Process exceptions
  NEW PSJCNT,PSJNV,PSJSPACE,PSJQFLG1
  ;PSJDSPFG - Display pause if there were errors
  ;Check for system error one more time.
+ ;PSJOCFG - flag when order is Renew, Copy or New OE
  S PSJDSPFG=0,PSJSPACE=0
  I $O(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"EXCEPTIONS",0)) W !!
  F PSJCNT=0:0 S PSJCNT=$O(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"EXCEPTIONS",PSJCNT)) Q:'PSJCNT  D
  . S PSJQFLG1=0
- . I $G(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"EXCEPTIONS",PSJCNT))["Dosing Checks could not be performed",($G(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"EXCEPTIONS",PSJCNT+1))["Drug not matched to NDF") Q
- . I $G(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"EXCEPTIONS",PSJCNT))["Drug not matched to NDF" Q
- . I $G(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"EXCEPTIONS",PSJCNT))["Order Checks could not be done" Q
+ . ;I $D(PSJOCFG),$G(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"EXCEPTIONS",PSJCNT))["Dosing Checks could not be performed",($G(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"EXCEPTIONS",PSJCNT+1))["Drug not matched to NDF") Q
+ . I $D(PSJOCFG),($G(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"EXCEPTIONS",PSJCNT+1))["Drug not matched to NDF") Q
+ . I $D(PSJOCFG),$G(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"EXCEPTIONS",PSJCNT))["Drug not matched to NDF" Q
+ . I $D(PSJOCFG),$G(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"EXCEPTIONS",PSJCNT))["Order Checks could not be done" Q
+ . I $D(PSJOCFG),$G(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"EXCEPTIONS",PSJCNT))["Maximum Single Dose Check could not be done" Q
  . S PSJDSPFG=1
  . S PSJNV=$G(^TMP($J,"PSJPRE1","OUT",PSJCNT0,PSJPON,"EXCEPTIONS",PSJCNT))
  . I PSJNV]"" D
@@ -76,6 +86,7 @@ EXCEPTN ; Process exceptions
  .. ;If the output has 13 leading spaces, strip it off so the display is indenting correctly
  .. I $E(PSJNV,1,13)="             " S PSJSPACE=13,PSJNV=$P(PSJNV,"             ",2)
  .. D WRITE^PSJMISC(PSJNV,PSJSPACE+3)
+ D:$G(PSJDSPFG) PAUSE^PSJLMUT1
  Q
 EXCEPTN2 ; Process exceptions on prospective drug
  NEW PSJPON,PSJN,PSJNV
@@ -85,6 +96,7 @@ EXCEPTN2 ; Process exceptions on prospective drug
  .. S PSJNV=$G(^TMP($J,"PSJPRE","OUT","EXCEPTIONS",PSJPON,PSJN))
  .. I $P(PSJPON,";",3)="PROFILE" Q
  .. I '$$ERRCHK^PSJOC("PROSPECTIVE",$P(PSJNV,U,3)_$P(PSJNV,U,10)) Q
+ .. Q:'$D(PSJOCFG)
  .. W !
  .. D DSPDRGER^PSJOC(1)
  I $G(PSJDSPFG) D PAUSE^PSJLMUT1 W @IOF

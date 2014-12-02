@@ -1,5 +1,5 @@
 PRSLIB01 ;JAH/WCIOFO-PAID UTILITIES AND LIBRARY 01 ;Mar 25, 2005
- ;;4.0;PAID;**45,93**;Sep 21, 1995;Build 7
+ ;;4.0;PAID;**45,93,137**;Sep 21, 1995;Build 4
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 MAIN ;DISPLAY MONTHLY CALENDAR FOR ANY DATE
@@ -36,7 +36,7 @@ CALENDAR(OUT) ;
  ;
  ;Get the day #s of pay periods in this month
  N PPS
- I FIRSTDAY<3130000 D GETPPS(FIRSTDAY,LASTDAY)
+ I FIRSTDAY<3180000 D GETPPS(FIRSTDAY,LASTDAY)
  ;
  S DAY1=$$WEEKDAY1(ZFMDATE) ;             Weekday of the 1st.
  ;
@@ -59,11 +59,11 @@ CALENDAR(OUT) ;
  S FIRSTDAY=$E(FIRSTDAY,1,5)_"00"
  S HOLIDAY=FIRSTDAY
  S COUNT=0
- I FIRSTDAY<3140000 D
+ I FIRSTDAY<3190000 D
  .F  S HOLIDAY=$O(HD(HOLIDAY)) Q:HOLIDAY>LASTDAY!(HOLIDAY="")  D
  .. W !,?2,$P(HD(HOLIDAY),"^",2)," ",+$E(HOLIDAY,6,7),?15,$P(HD(HOLIDAY),"^")
  .. S COUNT=COUNT+1
- E  W "  Sorry, Can't find holidays past 2013." S COUNT=COUNT+1
+ E  W "  Sorry, Can't find holidays past 2018." S COUNT=COUNT+1
  I COUNT<1 W !,"  No Holidays this month."
  W !,"-----------------------------------",!
  S OUT=0
@@ -84,7 +84,7 @@ SILMO(PRSDT) ;SILENT CALL TO DISPLAY MONTH
  ;
  ;Get day #s of pps in month
  N PPS
- I FIRSTDAY<3130000 D GETPPS(FIRSTDAY,LASTDAY)
+ I FIRSTDAY<3180000 D GETPPS(FIRSTDAY,LASTDAY)
  S DAY1=$$WEEKDAY1(PRSDT)
  S HDR=$$GETHEAD(Y)
  W @IOF,!,"---------------",HDR,"------------"
@@ -97,11 +97,11 @@ SILMO(PRSDT) ;SILENT CALL TO DISPLAY MONTH
  S FIRSTDAY=$E(FIRSTDAY,1,5)_"00"
  S HOLIDAY=FIRSTDAY
  S COUNT=0
- I FIRSTDAY<3140000 D
+ I FIRSTDAY<3190000 D
  .F  S HOLIDAY=$O(HD(HOLIDAY)) Q:HOLIDAY>LASTDAY!(HOLIDAY="")  D
  .. W !,?2,$P(HD(HOLIDAY),"^",2)," ",+$E(HOLIDAY,6,7),?15,$P(HD(HOLIDAY),"^")
  .. S COUNT=COUNT+1
- E  W "  Sorry, Can't find holidays past 2013." S COUNT=COUNT+1
+ E  W "  Sorry, Can't find holidays past 2018." S COUNT=COUNT+1
  I COUNT<1 W !,"  No Holidays this month."
  W !,"-----------------------------------",!
  Q

@@ -1,6 +1,6 @@
 ONCACDU2 ;Hines OIFO/GWB - Utility routine ;05/03/12
- ;;2.11;Oncology;**12,18,20,21,22,24,26,27,29,30,31,32,34,36,37,38,39,41,46,47,49,50,51,52,53,56,57**;Mar 07, 1995;Build 6
- ;rvd - 05/03/12 p56.  Use ICD API (#3990) instead of direct global read.
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;
  ;
 VAFLD(ACDANS) ;Convert data to NAACCR format
  I ACDANS="N" S ACDANS=0
@@ -225,14 +225,19 @@ ADDCTRY(IEN,ITEM) ;
  ;Followup Contact--Country [1847] 447-449
  ; Value derived from:
  ;    ITEM #102 - STATE AT DX (#165.5,16) pointer to File #5
- ;    ITEM #1832 - STATE (#160,.115 --> #2,.115) pointer to File #5
+ ;    ITEM #1832 - COUNTRY FILE (#2,.1173) pointer to File #779.004 or State File (#2,.115) to File #5
  ;    ITEM #1847 - ZIP CODE (#165,.119 --> #5.11,3) pointer to File #5
+ ;
+ ; IF VALUE IS NOT FILLED IN OR NOT FOUND, DEFAULT TO "ZZU" (UNKNOWN)
+ ;
  N XX
- I ITEM=102 S XX=$S($$GET1^DIQ(165.5,IEN,16,"I")'="":$$GET1^DIQ(5,$$GET1^DIQ(165.5,IEN,16,"I"),1,"I"),1:"")
- I ITEM=1832 S XX=$$GET1^DIQ(160,ACD160,.115,"E")
- I ITEM=1847 S XX="",VICPNT=$$FCNODE^ONCACDU2(ACD160,.119,"I") S:$G(VICPNT) STATE=$P($G(^VIC(5.11,VICPNT,0)),U,4) S:$G(STATE)'="" XX=$$GET1^DIQ(5,STATE,1,"I") K STATE,VICPNT
- I XX="" Q XX
  S ACDANS="USA"
+ I ITEM=102 S XX=$S($$GET1^DIQ(165.5,IEN,16,"I")'="":$$GET1^DIQ(5,$$GET1^DIQ(165.5,IEN,16,"I"),1,"I"),1:"")
+ I ITEM=1832 D
+ .S (X,XX)="" S PT=$P($G(^ONCO(160,ACD160,0)),";",1)
+ .I $$DPTLRT(ACD160)="LRT" S X=$$GET1^DIQ(67,PT,.115,"I") S:$G(X) XX=$$GET1^DIQ(5,X,1,"E")
+ .I $$DPTLRT(ACD160)="DPT" S X=$$GET1^DIQ(2,PT,.1173,"I") S:$G(X) (XX,ACDANS)=$$GET1^DIQ(779.004,X,.01,"E")
+ I ITEM=1847 S XX="",VICPNT=$$FCNODE^ONCACDU2(ACD160,.119,"I") S:$G(VICPNT) STATE=$P($G(^VIC(5.11,VICPNT,0)),U,4) S:$G(STATE)'="" XX=$$GET1^DIQ(5,STATE,1,"I") K STATE,VICPNT
  I XX="QC"!(XX="AB")!(XX="ZZMB")!(XX="NB")!(XX="NF")!(XX="NS")!(XX="NT")!(XX="ON")!(XX="PE")!(XX="SK")!(XX="YT")!(XX="CANAD")!(XX="MB")!(XX="NU")!(XX="BC") S ACDANS="CAN"
  I XX="FM" S ACDANS="FSM"
  I XX="GU" S ACDANS="GUM"
@@ -250,10 +255,18 @@ ADDCTRY(IEN,ITEM) ;
  I XX="ZZEQ" S ACDANS="KIR"
  I XX="ZZIQ" S ACDANS="ZZP"
  I XX="ZZYQ" S ACDANS="JPN"
- I XX="UN" S ACDANS="ZZU"
+ I XX="UN"!(XX="") S ACDANS="ZZU"
  Q ACDANS
  ;
+DPTLRT(ACD160) ;check if pt from Patient or Referral file
+ N DPTLRT
+ S DPTLRT=""
+ I $P($G(^ONCO(160,ACD160,0)),U,1)["LRT" S DPTLRT="LRT"
+ I $P($G(^ONCO(160,ACD160,0)),U,1)["DPT" S DPTLRT="DPT"
+ Q DPTLRT
+ ;
 ICD(ICD) ;ICD Code
+ ;Use ICD API (IA #3990) instead of direct global read.
  N X
  S ICD=$S(ICD'="":$P($$ICDDX^ICDCODE(ICD),U,2),1:"0000")
  I ICD["." S ICD=$P(ICD,".")_$P(ICD,".",2)
@@ -293,6 +306,18 @@ STRIP ;Replace punctuation marks with spaces
  ;
 STRIP1 ;Strip out punctuation marks
  S ACDANS=$$STRIP^XLFSTR(ACDANS,"!""""#$%&'()*+,-./:;<=>?[>]^_\{|}~`")
+ Q
+ ;
+STNUM ;get 3-digit state number for state extract. reporting facility must be the same w/ 160.1 entry.
+ ;if no 3-digit number, use the initial from file #200
+ N ONC3DIG,ONC1601,ONC3IEN,ONC16019
+ S ONC3DIG=""
+ S ONC16019=$$GET1^DIQ(165.5,IEN,.03,"I"),ONC1601=0
+ F  S ONC1601=$O(^ONCO(160.1,"D",ACDANS,ONC1601)) Q:ONC1601'>0  D
+ .I $D(^ONCO(160.1,ONC1601,1)),$P(^(1),U,4)'=ONC16019 Q
+ .S ONC3IEN=$O(^ONCO(160.1,"D",ACDANS,ONC1601,0)) S:$G(ONC3IEN) ONC3DIG=$P(^ONCO(160.1,ONC1601,"REG",ONC3IEN,0),U,2)
+ S:ONC3DIG="" ACDANS=$E($$GET1^DIQ(200,ACDANS,1,"I"),1,3)
+ I ONC3DIG'="" S ACDANS=$S($L(ONC3DIG)=1:"00"_ONC3DIG,$L(ONC3DIG)=2:"0"_ONC3DIG,1:ONC3DIG)
  Q
  ;
 CLEANUP ;Cleanup

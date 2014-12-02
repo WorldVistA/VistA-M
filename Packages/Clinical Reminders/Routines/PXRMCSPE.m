@@ -1,5 +1,5 @@
-PXRMCSPE ; SLC/PKR - Entry points for CSV protocol event point. ;11/03/2003
- ;;2.0;CLINICAL REMINDERS;;Feb 04, 2005
+PXRMCSPE ; SLC/PKR - Entry points for CSV protocol event point. ;07/27/2012
+ ;;2.0;CLINICAL REMINDERS;**26**;Feb 04, 2005;Build 404
  ;
  Q
  ;==================================================
@@ -15,7 +15,6 @@ CPTPE ;CPT code set update
  ;==================================================
 CPT ;Do the CPT update.
  D CSU^PXRMCSTX("CPT")
- D DLG^PXRMCSD("ICPT")
  S ZTREQ="@"
  Q
  ;
@@ -32,7 +31,6 @@ ICDPE ;ICD code set update.
  ;==================================================
 ICD ;Do the ICD update.
  D CSU^PXRMCSTX("ICD")
- D DLG^PXRMCSD("ICD9")
  S ZTREQ="@"
  Q
  ;

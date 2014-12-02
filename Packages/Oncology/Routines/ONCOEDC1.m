@@ -1,5 +1,5 @@
 ONCOEDC1 ;Hines OIFO/GWB - "Required" data item check ;06/23/10
- ;;2.11;ONCOLOGY;**27,28,29,34,36,39,41,42,47,51,57**;Mar 07,1995;Build 6
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 F1655 ;If data item blank, S CMPLT=0 and add field to list
  I (DTDX>3091231),($$GET1^DIQ(165.5,PRM,234,"I")="") S FDNUM=234 D CMPLT

@@ -1,5 +1,5 @@
 ONCOTM ;HINES IRMFO/WAA-ONCO TUMOR MARKER PROMPT  1/7/98  10:33
- ;;2.11;ONCOLOGY;**15,24,28**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 TM(IEN,TUM) ;
  ; This routine will set the prompt base on the primary site

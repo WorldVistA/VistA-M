@@ -1,6 +1,12 @@
-LEXDDT1 ; ISL Display Defaults - Translate String  ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDDT1 ;ISL/KER - Display Defaults - Translate String ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    None
+ ;               
 EN ; String Type
  K LEX,LEXTSTR I '$D(LEXSTLN) S LEXSTLN=56
  I $L($G(LEXDICS)),'$L($G(LEXSHOW)),'$L($G(LEXSUB)) D DICS G EXIT

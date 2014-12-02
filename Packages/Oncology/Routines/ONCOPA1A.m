@@ -1,5 +1,5 @@
 ONCOPA1A ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;10/05/11
- ;;2.11;ONCOLOGY;**15,19,27,33,34,36,40,44,45,46,47,49,51,52,54**;Mar 07, 1995;Build 10
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  I (COC=10)!(COC=11)!(COC=12)!(COC=13)!(COC=14),$E(TOP,3,4)=34 D
  .W !,"     Blood in Sputum Per Pt: ",ONCAB(165.5,IEN,174.1)," ",ONCAB(165.5,IEN,174) D P Q:EX=U
@@ -37,8 +37,8 @@ ONCOPA1A ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;10/05/11
  W !,"   Clinical M:  ",$E(ONCAB(165.5,IEN,37.3),1,48),?67,"Pathologic M:  ",$E(ONCAB(165.5,IEN,87),1,48) D P Q:EX=U
  W !,"   Stage Group Clinical:  ",ONCAB(165.5,IEN,38),$P(ONCAB(165.5,IEN,241,"E"),"(",1),?67,"Stage Group Pathologic:  ",ONCAB(165.5,IEN,88),$P(ONCAB(165.5,IEN,242,"E"),"(",1) D P Q:EX=U
  W !,"   Staged By (Clin):  ",ONCAB(165.5,IEN,19),?67,"Staged By (Path):  ",ONCAB(165.5,IEN,89) D P Q:EX=U
- W !,"   Lymphatic Vessel Invasion (L):  ",ONCAB(165.5,IEN,149) D P Q:EX=U
- W !,"   Venous Invasion (V):  ",ONCAB(165.5,IEN,151) D P Q:EX=U
+ W !,"   Lymph-Vascular Invasion (L):  ",ONCAB(165.5,IEN,149) D P Q:EX=U
+ ;W !,"   Venous Invasion (V):  ",ONCAB(165.5,IEN,151) D P Q:EX=U
  W !,"   Other Staging System:  ",ONCAB(165.5,IEN,39) D P Q:EX=U
  W !,"   Physician's Stage:  ",ONCAB(165.5,IEN,65),?67,"Physician Staging:  ",ONCAB(165.5,IEN,66) D P Q:EX=U
  W !,"   TNM Form Assigned:  ",ONCAB(165.5,IEN,25,"E"),?67,"TNM Form Completed:  ",ONCAB(165.5,IEN,44,"E") D P Q:EX=U

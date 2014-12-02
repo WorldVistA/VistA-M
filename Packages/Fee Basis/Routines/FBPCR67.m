@@ -1,6 +1,6 @@
-FBPCR67 ;AISC/DMK,TET-CH/CNH POTENTIAL COST RECOVERY SORT ;07/01/2006
- ;;3.5;FEE BASIS;**4,48,55,69,98,122,108**;JAN 30, 1995;Build 115
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBPCR67 ;AISC/DMK,TET-CH/CNH POTENTIAL COST RECOVERY SORT ; 7/5/13 10:10am
+ ;;3.5;FEE BASIS;**4,48,55,69,98,122,108,148**;JAN 30, 1995;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 EN ;entry point for sort
  S (FBCATC,FBINS,FBPSF)=0
 SORT ;sort by date finalized, ien
@@ -77,11 +77,13 @@ SETTMP ;sort data by primary service facility, patient, fee program, vendor, dat
  ;I FBPROC]"" M ^TMP($J,"FB",FBPSF,FBPAT,+$P(FBIN,U,12),FBVEN,FBM,FBI,"RPROV")=FB5010 K FB5010   ; FB*3.5*122 
  Q
 ANC ;ancillary payments
- N J,K,L,M,Y,FBDT1,FBVID I FBPI=67 N FBPI S FBPI=+$P(FBIN,U,12)
+ ;Patch FB*3.5*148 saves off any previous values and then cleans up variable FBAACPTC
+ N J,K,L,M,Y,FBDT1,FBVID,FBAACPTC I FBPI=67 N FBPI S FBPI=+$P(FBIN,U,12)
  S J=DFN,FBCNT=0 I J,+FBIN(5),$D(^FBAAC("AM",FBIN(5),J)) D
  .F K=0:0 S K=$O(^FBAAC("AM",FBIN(5),J,K)) Q:'K  S L=0 F  S L=$O(^FBAAC("AM",FBIN(5),J,K,L)) Q:'L  D
  ..S FBDT1=$P($G(^FBAAC(J,1,K,1,L,0)),U) I FBDT1]"" S FBDT1=$$DATX^FBAAUTL(FBDT1)
  ..S M=0 F  S M=$O(^FBAAC("AM",FBIN(5),J,K,L,M)) Q:'M  S Y=$G(^FBAAC(J,1,K,1,L,1,M,0)) I Y]"" D
+ ...K FBAACPTC
  ...D EN1^FBPCR2 Q:'$D(FBAACPTC)  S FBCNT=FBCNT+1
  ...Q:$$FILTER^FBPCR4()=0
  ...S ^TMP($J,"FB",FBPSF,FBPAT,FBPI,FBVEN,FBM,FBI,"A",FBCNT)=FBDT1_U_FBAACPTC_FBCP_$S($G(FBMODLE)]"":"-"_FBMODLE,1:"")_U_A1_U_A2_U_FBBN_U_FBIN_U_D2_U_FBSC_U_FBPDX_U_FBOB_U_FBVNAME_U_FBVID_U_FBPI_U_FBCATC_U_FBINS

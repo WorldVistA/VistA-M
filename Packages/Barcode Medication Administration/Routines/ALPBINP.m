@@ -1,5 +1,5 @@
 ALPBINP ;OIFO-DALLAS/SED/KC/MW  BCMA - BCBU INPT TO HL7 ;5/2/2002
- ;;3.0;BAR CODE MED ADMIN;**8,37**;May 2007;Build 10
+ ;;3.0;BAR CODE MED ADMIN;**8,37,73**;May 2007;Build 31
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;This routine will intercept the HL7 message that it sent from Pharmacy
  ;to CPRS to update order information. The message is then parsed and 
@@ -66,6 +66,7 @@ SEED ;Entry point for ^ALPBIND
  D RXE
  ;Get the Division that the patient is associated with
  D PDIV
+ I ALPDIV="",$G(ALPORD) S ALPDIV=$$CDIVOR(ALPDFN,ALPORD)
  I ALPDIV="DOM",+$$GET^XPAR("PKG.BAR CODE MED ADMIN","PSB BKUP DOM FILTER",1,"Q")>0 Q "0^^Screen of DOMICILIARY"
  I '$D(HLL("LINKS")) Q "0^HL7^Missing HLL Links Array Division # "_ALPDIV
  ;SET NEW PV1
@@ -160,6 +161,7 @@ MEDL(ALPML) ;Use this entry to send MedLog messages
  I +ALPDFN'>0 Q "0^"_ALPML_"^Invalid or Missing Patient - Med-Log"
  ;Get the Division that the patient is associated with
  D PDIV
+ I ALPDIV="",$G(ALPML) S ALPDIV=$$CDIV(ALPML)
  I ALPDIV="DOM",+$$GET^XPAR("PKG.BAR CODE MED ADMIN","PSB BKUP DOM FILTER",1,"Q")>0 Q "0^^Screen of DOMICILIARY"
  I '$D(HLL("LINKS")) Q "0^"_ALPML_"^Missing HLL Links Array Med-Log"
  S ALPST=$P($G(^PSB(53.79,ALPML,0)),U,9)
@@ -221,3 +223,21 @@ PMOV(ALPDFN,ALPTYP,ALPTT,ALPBMDT) ;Entry Point to send patient movement
  .S $P(HLA("HLS",2),HLFS,37)="ASIH"
  .D SEND
  Q ALPRSLT
+ ;
+CDIV(ML) ; Return DIVISION associated with input CLINIC
+ Q:'$G(ML) ""
+ N MLDATA,CLINICE,CLINICI,DIVE,DIVI S MLDATA=$G(^PSB(53.79,+ML,0))
+ S CLINICE=$P(MLDATA,"^",2),CLINICI=$O(^SC("B",CLINICE,0))
+ I 'CLINICI Q "" I '$D(^SC(CLINICI,0)) Q ""
+ S DIVI=$P($G(^SC(CLINICI,0)),"^",15),DIVE=$P($G(^DG(40.8,+DIVI,0)),"^")
+ D GET^ALPBPARM(.HLL,DIVE)
+ Q $P(^SC(CLINICI,0),"^",15)
+ ;
+CDIVOR(DFN,ORDER) ; Return DIVISION associated with input ORDER
+ Q:'$G(ORDER) "" Q:'$G(DFN) ""
+ N CLINICI,DIVI,DIVE
+ S CLINICI=$S(ORDER["P":+$G(^PS(53.1,+ORDER,"DSS")),ORDER["U":+$G(^PS(55,DFN,5,+ORDER,8)),ORDER["V":+$G(^PS(55,DFN,"IV",+ORDER,"DSS")),1:"")
+ I 'CLINICI Q "" I '$D(^SC(CLINICI,0)) Q ""
+ S DIVI=$P($G(^SC(CLINICI,0)),"^",15),DIVE=$P($G(^DG(40.8,+DIVI,0)),"^")
+ D GET^ALPBPARM(.HLL,DIVE)
+ Q $P(^SC(CLINICI,0),"^",15)

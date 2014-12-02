@@ -1,5 +1,5 @@
 PRCPUSEL ;WISC/RFJ/DAP-utilities: setup inventory variables ;14 Feb 91
-V ;;5.1;IFCAP;**1,83,110,118**;Oct 20, 2000;Build 7
+V ;;5.1;IFCAP;**1,83,110,118,185**;Oct 20, 2000;Build 3
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;  enter distribution point--input variables:
  ;  prcp("dptype")=distribution point type code [W,P,S]
@@ -8,6 +8,10 @@ V ;;5.1;IFCAP;**1,83,110,118**;Oct 20, 2000;Build 7
  ;  prcp("inv")=keep perpetual inventory flag
  ;  prcp("his")=keep detailed history flag,
  ;  prcp("i")=da of inv pt
+ ;
+ ;PRC*5.1*185 Modified look up parameters for Inventory Point from
+ ;            'AEQMOZ' to 'AEQMZ' to show matches for both Inventory
+ ;            Point name and abbreviation.
  ;
  ;*83 Routine PRCPLO1 associated with PRC*5.1*83 is a modified copy of
  ;this routine and any changes made to this routine should also be
@@ -41,7 +45,7 @@ V ;;5.1;IFCAP;**1,83,110,118**;Oct 20, 2000;Build 7
  I $G(PRCHAUTH) Q:'$G(PRCP("I"))  D  G V1
  .   S Y=PRCP("I")_"^"_$P($G(^PRCP(445,PRCP("I"),0)),U)
  ;
- S DIC="^PRCP(445,",DIC(0)="AEQMOZ"
+ S DIC="^PRCP(445,",DIC(0)="AEQMZ"   ;PRC*5.1*185 Modified look up parameters
  S DIC("S")="I +^(0)=PRC(""SITE""),$P(^(0),U,2)=""Y"",$D(^PRCP(445,+Y,4,DUZ,0))"
  I $D(PRCP("DPTYPE")) S DIC("S")=DIC("S")_",PRCP(""DPTYPE"")[$P(^PRCP(445,+Y,0),U,3)"
  S DIC("A")="Select "_$S('$D(PRCP("DPTYPE")):"",PRCP("DPTYPE")="W":"Supply Warehouse ",PRCP("DPTYPE")="P":"Primary ",PRCP("DPTYPE")="S":"Secondary ",1:"")_"Inventory Point: "

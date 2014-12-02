@@ -1,5 +1,5 @@
 IB3PSOU ;WOIFO/PLT-Outpatient Pharmacy Administrative Fee Change Update ;8/17/10  10:24
- ;;2.0;INTEGRATED BILLING;**437**;21-MAR-94;Build 11
+ ;;2.0;INTEGRATED BILLING;**437,510**;21-MAR-94;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  QUIT  ;invalid entry
  ; Procedure updates rate schedules for default rate types or types
@@ -62,11 +62,14 @@ ENT(IBRATY,IBEFFDT,IBADFE,IBDISP,IBADJUST) ;update admin/disp fee and adjustment
 COPY(IBIEN,IBC) ;extrinsic function ="" or 1
  N IBD,IBE,IBNIEN,IBRS0,IBRS1,IBRS10,IBRS11,IBRSCS
  ;copy-to a new entry from ibien containing charge set iba
- S IBRS0=^IBE(363,IBIEN,0),IBRS1=$G(^(1)),IBRS10=$G(^(10)),IBRS11=$G(^(11)) D  QUIT:'$G(IBNIEN)
+ N IBNRX S IBNRX=""
+ S IBRS0=$G(^IBE(363,IBIEN,0)),IBRS1=$G(^(1)),IBRS10=$G(^(10)),IBRS11=$G(^(11)) D  QUIT:'$G(IBNIEN)
+ . ;add new charge set hmn/inelig-rx *510
+ . I 'IBC,'$O(^IBE(363,"B",$P($P(IBRS0,U),"-")_"-RX",0)) S IBNRX=$P($P(IBRS0,U),"-")_"-RX"
  . ;add new entry of file #363
  . N DO,DIC,DA,X,DINUM,Y,DTOUT,DUOUT
  . N DIE,DA,DR
- . S DIC="^IBE(363,",DIC(0)="F",X=$P(IBRS0,U)
+ . S DIC="^IBE(363,",DIC(0)="F",X=$S(IBNRX="":$P(IBRS0,U),1:IBNRX)
  . ;copy data fields with new administration fee
  . S DIC("DR")=".02////"_$P(IBRS0,U,2)_";.03////"_$P(IBRS0,U,3)_";.04////"_$P(IBRS0,U,4)_";.05////"_IBEFFDT
  . ;reserve adm, disp values
@@ -86,9 +89,9 @@ COPY(IBIEN,IBC) ;extrinsic function ="" or 1
  . I 'IBC,IBRFRC'[("^"_$P(IBD,U)_"^") S IBE=1 QUIT
  . ;change charge set 'tr-rf fill' to 'rx cost'
  . I 'IBC,IBRCOST'[("^"_$P(IBD,U)_"^") S $P(IBD,U)=$P(IBRCOST,U,2),$P(IBD,U,2)=1
- . ;not 'rx cost' the auto add is null
- . S:IBC $P(IBD,U,2)=""
- . S DIC="^IBE(363,"_IBNIEN_",11,",DIC(0)="F",DA(1)=IBNIEN,X=$P(IBD,U),DINUM=IBRSCS,DIC("DR")=".02////"_$P(IBD,U,2)
+ . ;not 'rx cost' the auto add is null - comment out *510
+ . ;S:IBC $P(IBD,U,2)=""
+ . S DIC="^IBE(363,"_IBNIEN_",11,",DIC(0)="F",DA(1)=IBNIEN,X=$P(IBD,U),DINUM=$S(IBNRX="":IBRSCS,1:1),DIC("DR")=".02////"_$P(IBD,U,2)
  . D FILE^DICN I Y<0 D MES^XPDUTL("The Rate Schedule "_$P(IBRS0,U)_"'s Charge Set "_X_" update failed")
  . QUIT
  QUIT $G(IBE)

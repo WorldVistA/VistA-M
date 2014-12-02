@@ -1,5 +1,15 @@
-HBHCXMV ; LR VAMC(IRMS)/MJT-HBHC populate ^HBHC(634 with Visit Data, or ^HBHC(634.5, file of recs in ^HBHC(632 w/pseudo SSNs, called by ^HBHCFILE, calls HBHCXMV1 ; Oct 2000
- ;;1.0;HOSPITAL BASED HOME CARE;**2,5,6,9,12,15,17,14,19,24**;NOV 01, 1993;Build 201
+HBHCXMV ;LR VAMC(IRMS)/MJT - HBHC populate ^HBHC(634 with Visit Data, or ^HBHC(634.5, file of recs in ^HBHC(632 w/pseudo SSNs, called by ^HBHCFILE, calls HBHCXMV1 ;Oct 2000
+ ;;1.0;HOSPITAL BASED HOME CARE;**2,5,6,9,12,15,17,14,19,24,25**;NOV 01, 1993;Build 45
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;HBH*1.0*25   APR  2012   K GUPTA      Support for ICD-10 Coding System
+ ;******************************************************************************
+ ;******************************************************************************
+ ;
  D START^HBHCXMV1
 LOOP ; Loop thru ^HBHC(632) "AC","N" cross-ref to create nodes in ^HBHC(634) => transmit
  S HBHCDFN="" F  S HBHCDFN=$O(^HBHC(632,"AC","N",HBHCDFN)) Q:HBHCDFN=""  D SETNODE
@@ -19,7 +29,11 @@ SETNODE ; Set node in ^HBHC(634) (Transmit)
  S HBHCQAI=$S(($L($P(HBHCINFO,U,16))=1)&($E(HBHCINFO,U,16)=""):HBHCSP1_$P(HBHCINFO,U,16),($L($P(HBHCINFO,U,16))=1)&($E(HBHCINFO,U,16)]""):$P(HBHCINFO,U,16)_HBHCSP1,$L($P(HBHCINFO,U,16))=2:$P(HBHCINFO,U,16),1:HBHCSP2)
 DX ; Dx
  D INIT,DX^HBHCUTL3
- S HBHCL=0 F  S HBHCL=$O(HBHCDX(HBHCL)) Q:HBHCL'>0  S HBHCDX=$P(HBHCDX(HBHCL),"  "),HBHCDX=$P(HBHCDX,".")_$P(HBHCDX,".",2) S HBHCDX(HBHCL)=$S($L(HBHCDX)'=6:HBHCDX_$E(HBHCSP6,1,6-$L(HBHCDX)),1:HBHCDX)
+ S HBHCL=0
+ F  S HBHCL=$O(HBHCDX(HBHCL)) Q:HBHCL'>0  D
+ . S HBHCDX=$P(HBHCDX(HBHCL),"  ")
+ . S HBHCDX=$P(HBHCDX,".")_$P(HBHCDX,".",2)
+ . S HBHCDX(HBHCL)=$S($L(HBHCDX)'=8:HBHCDX_$E(HBHCSP8,1,8-$L(HBHCDX)),1:HBHCDX)
  ; Note:  HBHCI initialized here vs in CPT loop, since need HBHCI to continue for each 10 CPT code iteration
  S (HBHCFLAG,HBHCI,HBHCL)=0 F  S HBHCL=$O(HBHCDX(HBHCL)) Q:HBHCL'>0  S HBHCCNT1=HBHCCNT1+1,@("HBHCDX"_HBHCCNT1)=HBHCDX(HBHCL) D:(HBHCCNT1=5)&('HBHCFLAG) CPT D:HBHCCNT1=5 WRITE
  F  D:'HBHCFLAG CPT D WRITE Q:HBHCFLAG
@@ -33,17 +47,17 @@ SET ; Set CPT variables
  I HBHCCNT=10 S HBHCCP10=$S($P(HBHCNOD2,U)]"":$E($P($G(^ICPT($P(HBHCNOD2,U),0)),U),1,5),1:HBHCSP5) S:$L(HBHCCP10)'=5 HBHCCP10=HBHCCP10_$E(HBHCSP5,1,5-$L(HBHCCP10))
  Q
 WRITE ; Write transmit record, separate records containing max 5 DX & 10 CPTs each are generated for same visit if > 5 DX or > 10 CPTs exist
- Q:(HBHCDX1=HBHCSP6)&(HBHCCPT1=HBHCSP5)
+ Q:(HBHCDX1=HBHCSP8)&(HBHCCPT1=HBHCSP5)
  L +^HBHC(634,0):$S($D(DILOCKTM):DILOCKTM,1:3) Q:'$T  S HBHCNDX1=$P(^HBHC(634,0),U,3)+1 F  Q:'$D(^HBHC(634,HBHCNDX1))  S HBHCNDX1=HBHCNDX1+1
  S $P(^HBHC(634,0),U,3)=HBHCNDX1,$P(^HBHC(634,0),U,4)=$P(^HBHC(634,0),U,4)+1 L -^HBHC(634,0)
- S HBHCREC=HBHCFORM_HBHCHOSP_HBHCSSN_HBHCDATE_HBHCPRV_HBHCLNME_HBHCQAI_HBHCDX1_HBHCDX2_HBHCDX3_HBHCDX4_HBHCDX5_HBHCCPT1_HBHCCPT2_HBHCCPT3_HBHCCPT4_HBHCCPT5_HBHCCPT6_HBHCCPT7_HBHCCPT8_HBHCCPT9_HBHCCP10_HBHCSP74
+ S HBHCREC=HBHCFORM_HBHCHOSP_HBHCSSN_HBHCDATE_HBHCPRV_HBHCLNME_HBHCQAI_HBHCDX1_HBHCDX2_HBHCDX3_HBHCDX4_HBHCDX5_HBHCCPT1_HBHCCPT2_HBHCCPT3_HBHCCPT4_HBHCCPT5_HBHCCPT6_HBHCCPT7_HBHCCPT8_HBHCCPT9_HBHCCP10_HBHCSP64
  S ^HBHC(634,HBHCNDX1,0)=HBHCREC,^HBHC(634,"B",$E(HBHCREC,1,30),HBHCNDX1)=""
  ; Flag record as filed
  L +^HBHC(632,HBHCDFN,0):$S($D(DILOCKTM):DILOCKTM,1:3) Q:'$T  K:HBHCXMT4]"" ^HBHC(632,"AC",HBHCXMT4,HBHCDFN) S $P(^HBHC(632,HBHCDFN,0),U,8)="F",^HBHC(632,"AC","F",HBHCDFN)="",$P(^HBHC(632,HBHCDFN,0),U,9)=HBHCTDY L -^HBHC(632,HBHCDFN,0)
  ; Initialize QAI, DX & CPT fields to spaces after 1st record written to avoid multiple count(s) of same data when > 5 DX or > 10 CPTs exist
  S HBHCQAI=HBHCSP2
 INIT ; Initialize variables
- F HBHCK=1:1:5 S @("HBHCDX"_HBHCK)=HBHCSP6
+ F HBHCK=1:1:5 S @("HBHCDX"_HBHCK)=HBHCSP8
  S (HBHCCNT,HBHCCNT1)=0,HBHCCP10=HBHCSP5
  F HBHCJ=1:1:9 S @("HBHCCPT"_HBHCJ)=HBHCSP5
  Q

@@ -1,3 +1,7 @@
 TRACKING AREA
 ZWR
-^EDPB(231.9,0)="TRACKING AREA^231.9^^"
+^EDPB(231.9,0)="TRACKING AREA^231.9^1^1"
+^EDPB(231.9,1,0)="Emergency Department^1"
+^EDPB(231.9,1,1)="1^1^1^1^240^0^480^1^1"
+^EDPB(231.9,"B","Emergency Department",1)=""
+^EDPB(231.9,"C",1,1)=""

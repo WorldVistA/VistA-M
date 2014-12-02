@@ -1,5 +1,5 @@
 ONCOTNMC ;WISC/MLH - HELP/VALIDATION for TNM CODES ;6/16/93  09:10
- ;;2.11;ONCOLOGY;;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 VALID(TYP,COD) ;    VALIDATE a T, N, or M code - COD should be a call by reference (.COD)
  N VALID S VALID=0 ;    flag - assume invalid

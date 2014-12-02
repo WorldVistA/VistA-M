@@ -1,12 +1,12 @@
-LRVRMI4 ;DALOI/STAFF - LAH/TMP TO FILE 63 ;09/06/11  11:11
- ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+LRVRMI4 ;DALOI/STAFF - LAH/TMP TO FILE 63 ;11/28/12  14:03
+ ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
  ;
  ; Extracts the information in the ^TMP("LRMI",$J) global and stores it into the Lab Data micro subfile.
  ;
  Q
  ;
 EN ;
- N LRNODE,LRNOW,LRSTATUS,LR63539,X,I
+ N LRNODE,LRNOW,LRRPTAPP,LRSTATUS,LR63539,X,I
  Q:'$D(^TMP("LRMI",$J,LRDFN,"MI",LRIDT))
  S LRNOW=$$NOW^XLFDT
  ; Get IEN of last Micro Audit on file
@@ -39,6 +39,8 @@ EN ;
  ;
  D SETSTAT^LRVRMI4A(.LRSTATUS)
  I (LRSTATUS(0)="C")!(LRSTATUS(0)="F") D FIN  ; ccr_5439n - Added IF statement to only Do FIN if overall status is final or corrected. LMT 9/6/11
+ ;
+ I $G(LRRPTAPP) D VT1^LRMIUT1
  ;
  ; Update MICRO AUDIT to reflect corrected status
  ;  If audit doesn't exist then create instead of updating.
@@ -94,6 +96,7 @@ N2 ; Process gram stain comments
  S LRFDA(2,63.05,LRIEN,11)=LRNOW
  S LRFDA(2,63.05,LRIEN,11.55)=$S($G(LRDUZ):LRDUZ,1:$G(DUZ))
  D FILE^DIE("","LRFDA(2)","LRMSG")
+ S LRRPTAPP=1
  Q
  ;
  ;
@@ -129,6 +132,7 @@ N4 ; Bact report remarks
  S LRFDA(4,63.05,LRIEN,11.5)=$P($G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,4,0)),U,4)
  S LRFDA(4,63.05,LRIEN,11.55)=$S($G(LRDUZ):LRDUZ,1:$G(DUZ))
  D FILE^DIE("","LRFDA(4)","LRMSG")
+ S LRRPTAPP=1
  Q
  ;
  ;

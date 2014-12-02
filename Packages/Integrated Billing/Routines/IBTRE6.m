@@ -1,6 +1,6 @@
 IBTRE6 ;ALB/AAS - CLAIMS TRACKING OUTPUT CLIN DATA ;2-SEP-1993
- ;;2.0;INTEGRATED BILLING;**210**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**210,461**;21-MAR-94;Build 58
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 ADMDIAG(IBTRN) ; -- output admitting diagnosis (inpatient)
  ;
@@ -126,3 +126,30 @@ DTCHK(DA,X) ; -- input transform for 356.94;.01.  date not before admission or a
  I X>$$FMADD^XLFDT(DT,7) S IBOK=0 G DTCHKQ
  ;
 DTCHKQ Q IBOK
+ ;
+SETSDX(IBOE,IBSDX) ; get the list of Outpatient Encounter Diagnosis
+ ; Output: IBSDX = count Dx's found, IBSDX(count) = V POV IEN ^ Dx IEN
+ N IBARR,IBI K IBSDX S IBSDX=0
+ Q:'$G(IBOE)
+ D GETDX^SDOE(+IBOE,"IBARR")
+ S IBI=0 F  S IBI=$O(IBARR(IBI)) Q:'IBI  S IBSDX=IBSDX+1,IBSDX(IBSDX)=IBI_U_+IBARR(IBI)
+ Q
+ ;
+LSTSDX(IBSDX) ; Print list of Outpatient Encounter Diagnosis
+ ; Input: IBSDX = count Dx's found, IBSDX(count) = V POV pointer ^ Dx IEN
+ N IBI,IBDX W !
+ S IBI=0 F  S IBI=$O(IBSDX(IBI)) Q:'IBI  S IBDX=$$ICD9^IBACSV(+$P(IBSDX(IBI),U,2)) I IBDX'="" W !,?2,IBI,?5,$P(IBDX,U,1),?15,$E($P(IBDX,U,3),1,55)," (ICD-",$S($P(IBDX,U,19)=1:9,1:10),")"
+ Q
+ ;
+SETSDV(IBOE,IBSDV) ; get list of Outpatient Encounter Providers
+ ; Output: IBSDV = count of Providers found, IBSDV(count) = V PROVIDER IEN ^ DX IEN
+ N IBARR,IBI K IBSDV S IBSDV=0
+ Q:'$G(IBOE)
+ D GETPRV^SDOE(+IBOE,"IBARR")
+ S IBI=0 F  S IBI=$O(IBARR(IBI)) Q:'IBI  S IBSDV=IBSDV+1,IBSDV(IBSDV)=IBI_U_+IBARR(IBI)
+ Q
+ ;
+LSTSDV(IBSDV) ; Print list of Outpatient Encounter Providers
+ ; Input:  IBSDV = count of Providers found, IBSDV(count) = V PROVIDER IEN ^ PROVIDER IEN
+ N IBI W ! S IBI=0 F  S IBI=$O(IBSDV(IBI)) Q:'IBI  W !,?2,IBI,?5,$P($G(^VA(200,+$P(IBSDV(IBI),U,2),0)),U)
+ Q

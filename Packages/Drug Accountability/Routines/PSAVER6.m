@@ -1,5 +1,5 @@
 PSAVER6 ;BIR/JMB-Verify Invoices - CONT'D ;10/3/97
- ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**1,3,21,42,53,57,61,64**; 10/24/97;Build 4
+ ;;3.0;DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**1,3,21,42,53,57,61,64,76**; 10/24/97;Build 1
  ;Background Job:
  ;References to ^PSDRUG( are covered by IA #2095
  ;This routine increments pharmacy location and master vault balances
@@ -38,7 +38,7 @@ EXIT ;Kills variables
  Q
  ;
 GETDATA ;Gets invoice data to help file the data
- S PSAVDUZ=$P(PSADATA,"^",9),PSASUP=0
+ S PSAVDUZ=$P(PSADATA,"^",9),PSASUP=0 K PSA0QTY  ;; <<RJS-3*76??
  S PSADJ=+$O(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,1,"B","D",0))
  I '$G(PSADJ) S PSADRG=$S(+$P(PSADATA,"^",2):+$P(PSADATA,"^",2),1:0) G CS
  I $G(PSADJ) D

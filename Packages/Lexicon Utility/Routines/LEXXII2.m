@@ -1,15 +1,16 @@
-LEXXII2 ;ISL/KER - Lexicon Status (Data Status) ;07/16/2008
- ;;2.0;LEXICON UTILITY;**59**;Sep 23, 1996;Build 6
- ;
- ; Variables NEWed or KILLed Elsewhere
- ;   LEXSUB  NEWed by LEXXII and LEXXFI sending message
- ;   
+LEXXII2 ;ISL/KER - Lexicon Status (Data Status) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**59,80**;Sep 23, 1996;Build 1
+ ;               
  ; Global Variables
  ;    ^LEXM(              N/A
- ;    ^TMP("LEXVER",$J)   SACC 2.3.2.5.1
+ ;    ^LEXM(0)            N/A
+ ;    ^TMP("LEXVER")      SACC 2.3.2.5.1
  ;               
  ; External References
  ;    ^DIM                ICR  10016
+ ;               
+ ; Variables NEWed or KILLed Elsewhere
+ ;   LEXSUB  NEWed by LEXXII and LEXXFI sending message
  ;               
  Q
 RESULTS(X) ; Get Results of Install

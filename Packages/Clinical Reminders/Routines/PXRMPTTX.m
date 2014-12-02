@@ -1,5 +1,5 @@
-PXRMPTTX ; SLC/PKR - Routines for taxonomy print templates ;02/27/2009
- ;;2.0;CLINICAL REMINDERS;**12**;Feb 04, 2005;Build 73
+PXRMPTTX ; SLC/PKR - Routines for taxonomy print templates ;05/07/2014
+ ;;2.0;CLINICAL REMINDERS;**12,26**;Feb 04, 2005;Build 404
  ;References to ICDAPIU DBIA #3991.
  ;References to ICPTAPIU DBIA #1997.
  ;References to ICDCODE DBIA #3990.
@@ -60,7 +60,7 @@ CHKEXP ;Check the expansion
  .. K OEXTRA
  .. S PTR=""
  .. F  S PTR=$O(EXTRA(TYPE,PTR)) Q:PTR=""  D
- ... S CODE=$S(FNUM=81:$$CPT^ICPTCOD(PTR,DT),1:$$ICDDX^ICDCODE(PTR,DT))
+ ... S CODE=$S(FNUM=81:$$CPT^ICPTCOD(PTR,DT),FNUM=80:$$ICDDX^ICDCODE(PTR,DT),FNUM=80.1:$$ICDOP^ICDCODE(PTR,DT))
  ... S OEXTRA($P(CODE,U,2)_" ")=$P(CODE,U,4)_" (IEN="_PTR_")"
  .. S CODE=""
  .. F  S CODE=$O(OEXTRA(CODE)) Q:CODE=""  D

@@ -1,5 +1,5 @@
-MAGDRPC8 ;WOIFO/EdM - RPCs for Master Files ; 24 Jul 2008 4:26 PM
- ;;3.0;IMAGING;**11,30,51,54**;03-July-2009;;Build 1424
+MAGDRPC8 ;WOIFO/EdM/BT - RPCs for Master Files ; 22 Mar 2013 9:52 AM
+ ;;3.0;IMAGING;**11,30,51,54,118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -178,12 +178,18 @@ HIGHHL7(OUT) ; RPC = MAG DICOM GET HIGHEST HL7
  Q
  ;
 FINDLOC(OUT,NAME) ; RPC = MAG DICOM FIND LOCATION
- N I,MAGM,P1,MAGR,X
+ ; NAME is the location to find in either Institution Name or Station Number
+ ;         fields of the Institution File (#4)
+ ;
+ N MAGM,MAGR,I
  S OUT="-1,Invalid location """_NAME_"""."
- D FIND^DIC(4,"",.01,"BXA",NAME,"*","","","","MAGR","MAGM")
- S I=0 F  S I=$O(MAGR("DILIST",2,I)) Q:'I  D
- . S P1=MAGR("DILIST",2,I) I P1 K MAGR S OUT=P1
- . Q
+ ;
+ ; Find NAME in either Institution Name or Station Number fields
+ D FIND^DIC(4,"",.01,"BXA",NAME,"*","B^D","","","MAGR","MAGM")
+ ;
+ I MAGR("DILIST",0) D
+ . S I=$O(MAGR("DILIST",2,"")) ; If multiple found, return the first IEN
+ . S OUT=MAGR("DILIST",2,I)
  Q
  ;
 VALIMGT(OUT) ; RPC = MAG DICOM GET IMAGING TYPES
@@ -192,6 +198,7 @@ VALIMGT(OUT) ; RPC = MAG DICOM GET IMAGING TYPES
  ; Lists of valid imaging types
  S X="" F  S X=$O(^RA(79.2,"C",X)) Q:X=""  S N=N+1,OUT(N)="RAD^"_X
  S X="" F  S X=$O(^MAG(2005.84,"C",X)) Q:X=""  S N=N+1,OUT(N)="CON^"_X
+ S X="" F  S X=$O(^MAG(2005.85,"C",X)) Q:X=""  S N=N+1,OUT(N)="CON PROC^"_X
  S OUT(1)=N-1
  Q
  ;

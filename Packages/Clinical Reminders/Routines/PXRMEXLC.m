@@ -1,5 +1,5 @@
-PXRMEXLC ; SLC/PKR/PJH - Routines to display repository entry components. ;06/10/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMEXLC ; SLC/PKR/PJH - Routines to display repository entry components. ;08/01/2013
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,26**;Feb 04, 2005;Build 404
  ;======================================================
 BLDLIST(FORCE) ;Build a list of all repository entries.
  ;If FORCE is true then force rebuilding of the list.
@@ -44,7 +44,7 @@ CDISP(IEN) ;Format component list for display.
  .. S TEMP=^PXD(811.8,IEN,120,IND,1,JND,0)
  ..;If items from this file can be installed make sure the individual
  ..;item is installable.
- .. S IOKTI=$S('FOKTT:0,1:$$IOKTI^PXRMEXFI(FILENUM,TEMP))
+ .. S IOKTI=$S('FOKTT:0,1:$$IOKTI^PXRMEXFI(IEN,FILENUM,TEMP))
  .. S PT01=$P(TEMP,U,1)
  .. S EXISTS=$S(FILENUM=0:$$EXISTS^PXRMEXCF(PT01),1:$$EXISTS^PXRMEXIU(FILENUM,PT01,"W"))
  ..;If this is a health factor see if it is a category.

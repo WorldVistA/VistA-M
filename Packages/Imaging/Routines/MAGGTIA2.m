@@ -1,5 +1,6 @@
-MAGGTIA2 ;WOIFO/GEK - Imaging Utilities for Add/Modify Image entry ; 11/10/2005  15:07
- ;;3.0;IMAGING;**10,50**;26-May-2006
+MAGGTIA2 ;WOIFO/GEK/PMK - Imaging Utilities for Add/Modify Image entry ; 08 Jul 2013 2:57 PM
+ ;;3.0;IMAGING;**10,50,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -7,7 +8,6 @@ MAGGTIA2 ;WOIFO/GEK - Imaging Utilities for Add/Modify Image entry ; 11/10/2005 
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -87,6 +87,11 @@ QACHK(MAGY,MAGDFN,MAGPK,MAGPKDA) ; Check Patient of Parent Report against patien
  ; Temporary DICOM GMRC list (waiting for TIU notes for the association)
  I MAGPK=2006.5839 D  Q
  . I MAGDFN'=$$GET1^DIQ(123,MAGPKDA,.02,"I") S MAGY="0^Patient Mismatch (2006.5839)" Q
+ . S MAGY="1^Image and Report Package Patients are the same."
+ . Q
+ ; Temporary DICOM Lab list (waiting for TIU notes for the association)
+ I MAGPK=2006.5838 D  Q
+ . I MAGDFN'=$$GET1^DIQ(63,MAGPKDA,.03,"I") S MAGY="0^Patient Mismatch (2006.5838)" Q
  . S MAGY="1^Image and Report Package Patients are the same."
  . Q
  S MAGY="0^Invalid Parent Package Pointer: "_MAGPK

@@ -1,55 +1,157 @@
-LEXU ;ISL/KER - Miscellaneous Lexicon Utilities ; 25 Aug 2011  10:41 AM
- ;;2.0;LEXICON UTILITY;**2,6,9,15,25,36,73,51**;Sep 23, 1996;Build 77
- ;
+LEXU ;ISL/KER - Miscellaneous Lexicon Utilities ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**2,6,9,15,25,36,73,51,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
  ; External References
- ;   DBIA 10103  $$DT^XLFDT
- ;   DBIA  3990  $$ICDDX^ICDCODE
- ;   DBIA  1995  $$CPT^ICPTCOD
- ;                         
+ ;    $$ICDDX^ICDEX       ICR   5747
+ ;    $$ICDOP^ICDEX       ICR   5747
+ ;    $$CPT^ICPTCOD       ICR   1995
+ ;               
+HELP ; API Help
+ D EN^LEXUH
+ Q
 SC(LEX,LEXS,LEXVDT) ; Filter by Semantic Class
+ ;
+ ; Input
+ ;
  ;    LEX      IEN of file 757.01
  ;    LEXS     Filter
  ;    LEXVDT   Date to use for screening by codes
- N LEXINC,LEXEXC,LEXIC,LEXEC,LEXRREC
+ ;
+ ; Output
+ ;
+ ;    $$SC     1/0
+ ;
+ N LEXINC,LEXEXC,LEXIC,LEXEC,LEXRREC,X D VDT
  S LEXRREC=LEX Q:'$D(^LEX(757.01,LEXRREC,0)) 0
- I $L(LEXS,";")=3,$P(LEXS,";",3)'="" D  I LEXINC K LEXIC,LEXEXC,LEXS,LEXEC Q LEXINC
+ I $L(LEXS,";")=3,$P(LEXS,";",3)'="" D  Q:+LEXINC>0 LEXINC
  . S LEXINC=0 S LEXINC=$$SO(LEXRREC,$P(LEXS,";",3),$G(LEXVDT))
  S LEXRREC=$P(^LEX(757.01,LEXRREC,1),U,1)
  S LEXINC=0 F LEXIC=1:1:$L($P(LEXS,";",1),"/") D
- . I $D(^LEX(757.1,"AMCC",LEXRREC,$P($P(LEXS,";",1),"/",LEXIC)))!($D(^LEX(757.1,"AMCT",LEXRREC,$P($P(LEXS,";",1),"/",LEXIC)))) S LEXINC=1,LEXIC=$L($P(LEXS,";",1),"/")+1
+ . N LEXP,LEX1,LEX2 S LEXP=$P($P(LEXS,";",1),"/",LEXIC)
+ . S LEX1=$D(^LEX(757.1,"AMCC",LEXRREC,LEXP))
+ . S LEX2=$D(^LEX(757.1,"AMCT",LEXRREC,LEXP))
+ . I LEX1!(LEX2) D
+ . . S LEXINC=1,LEXIC=$L($P(LEXS,";",1),"/")+1
  I LEXINC=0!($P(LEXS,";",2)="") K LEXIC,LEXS,LEXEC Q LEXINC
  S LEXEXC=0 F LEXEC=1:1:$L($P(LEXS,";",2),"/") D
- . I $D(^LEX(757.1,"AMCC",LEXRREC,$P($P(LEXS,";",2),"/",LEXEC)))!($D(^LEX(757.1,"AMCT",LEXRREC,$P($P(LEXS,";",2),"/",LEXEC)))) S LEXEXC=1,LEXEC=$L($P(LEXS,";",2),"/")+1
+ . N LEXP,LEX1,LEX2 S LEXP=$P($P(LEXS,";",2),"/",LEXEC)
+ . S LEX1=$D(^LEX(757.1,"AMCC",LEXRREC,LEXP))
+ . S LEX2=$D(^LEX(757.1,"AMCT",LEXRREC,LEXP))
+ . I LEX1!(LEX2) D
+ . . S LEXEXC=1,LEXEC=$L($P(LEXS,";",2),"/")+1
  I LEXINC,'LEXEXC K LEXIC,LEXS,LEXEC Q 1
- K LEXIC,LEXS,LEXEC Q 0
+ K LEXIC,LEXS,LEXEC
+ Q 0
+ICDDP(LEX,LEXT,LEXVDT) ; Filter by ICD Diagnosis/Procedure System
+ ;
+ ; Input
+ ;
+ ;    LEX      IEN of file 757.01 (required)
+ ;    LEXT     ICD Type (optional)
+ ;                 1  ICD Diagnosis (default)
+ ;                 2  ICD Procedures
+ ;    LEXVDT   Date to use for screening by codes
+ ;                 Date before Oct 1, 2013, ICD-9 assumed
+ ;                 Date after Sep 30, 2013, ICD-10 assumed
+ ; Output
+ ;
+ ;    $$ICDDP  1/0
+ ;
+ N LEXEI,LEXF,LEXMC,LEXMCE,LEXSRC,LEXSRI,ICD10 S (LEXSRC,LEXSRI)=""
+ S LEXEI=+LEX Q:'$D(^LEX(757.01,LEXEI,0)) 0  S ICD10=$$IMPDATE("10D")
+ S LEXT=$G(LEXT) S:+LEXT<0!(LEXT>2) LEXT=1 D VDT
+ S:LEXT=1&(LEXVDT<ICD10) LEXSRC="ICD",LEXSRI=1
+ S:LEXT=1&(LEXVDT'<ICD10) LEXSRC="10D",LEXSRI=30
+ S:LEXT=2&(LEXVDT<ICD10) LEXSRC="ICP",LEXSRI=2
+ S:LEXT=2&(LEXVDT'<ICD10) LEXSRC="10P",LEXSRI=31
+ Q:'$L(LEXSRC) 0  Q:LEXSRI'>0 0
+ S LEXF=0,LEXMC=+($P(^LEX(757.01,LEXEI,1),U,1)) Q:LEXMC'>0 0
+ S LEXMCE=+(^LEX(757,+($P(^LEX(757.01,LEXEI,1),U,1)),0)) Q:LEXMCE'>0 0
+ S LEXF=0 I LEXEI+LEXMCE>0 D
+ . N LEXSI S LEXSI=0
+ . F  S LEXSI=$O(^LEX(757.02,"AMC",LEXMC,LEXSI)) Q:+LEXSI=0!(LEXF)  D  Q:LEXF
+ . . N LEXN0,LEXSAB,LEXSO,LEXSTA
+ . . S LEXN0=$G(^LEX(757.02,LEXSI,0)),LEXSAB=+($P(LEXN0,U,3))
+ . . Q:LEXSAB'=LEXSRI  Q:"^1^2^30^31^"'[("^"_LEXSAB_"^")
+ . . S LEXSO=$P(LEXN0,U,2)
+ . . S LEXSTA=$$STATCHK^LEXSRC2(LEXSO,LEXVDT,,LEXSAB)
+ . . Q:+LEXSTA'>0  S LEXF=1
+ S LEX=$G(LEXF)
+ Q LEX
+DX(LEX,LEXVDT) ; Filter by Diagnosis System
+ ; 
+ ; Input
+ ; 
+ ;    LEX      IEN of file 757.01
+ ;    LEXVDT   Date to use for screening by codes
+ ;
+ ; Output
+ ;
+ ;    $$DX     1/0
+ ;
+ N LEXEI,LEXF,LEXMC,LEXMCE,LEXSRC,LEXSRI,ICD10
+ S LEXEI=+LEX Q:'$D(^LEX(757.01,LEXEI,0)) 0
+ D VDT S LEXSRC="ICD",LEXSRI=1 S ICD10=$$IMPDATE("10D")
+ S:+($G(LEXVDT))'<ICD10 LEXSRC="10D",LEXSRI=30
+ S LEXF=0,LEXMC=+($P(^LEX(757.01,LEXEI,1),U,1)) Q:LEXMC'>0 0
+ S LEXMCE=+(^LEX(757,+($P(^LEX(757.01,LEXEI,1),U,1)),0)) Q:LEXMCE'>0 0
+ S LEXF=0 I LEXEI+LEXMCE>0 D
+ . N LEXSI S LEXSI=0
+ . F  S LEXSI=$O(^LEX(757.02,"AMC",LEXMC,LEXSI)) Q:+LEXSI=0!(LEXF)  D
+ . . N LEXN0,LEXSAB,LEXSO,LEXSTA
+ . . S LEXN0=$G(^LEX(757.02,LEXSI,0)),LEXSAB=+($P(LEXN0,U,3))
+ . . Q:LEXSAB'=LEXSRI  Q:"^1^30^"'[("^"_LEXSAB_"^")
+ . . S LEXSO=$P(LEXN0,U,2)
+ . . S LEXSTA=$$STATCHK^LEXSRC2(LEXSO,LEXVDT,,LEXSAB)
+ . . Q:+LEXSTA'>0  S LEXF=1
+ K LEX S LEX=$G(LEXF)
+ Q LEX
 SO(LEX,LEXS,LEXVDT) ; Filter by Source
+ ;
+ ; Input
+ ; 
  ;    LEX      IEN of file 757.01
  ;    LEXS     Filter
  ;    LEXVDT   Date to use for screening by codes
- N LEXTREC S LEXTREC=+LEX Q:'$D(^LEX(757.01,LEXTREC,0)) 0
- N LEXFND S LEXFND=0,LEXTREC=+LEXTREC Q:'$D(^LEX(757.01,LEXTREC)) LEXFND
- N LEXCODE,LEXSOID,LEXCREC,LEXSAB,LEXMC,LEXN0,LEXSO,LEXSTA
- S LEXMC=$P(^LEX(757.01,LEXTREC,1),U,1)
- S LEXMCE=+(^LEX(757,+($P(^LEX(757.01,LEXTREC,1),U,1)),0))
- I LEXTREC=LEXMCE D  G SOQ
- . S LEXFND=0 F LEXSOID=1:1:$L(LEXS,"/") Q:LEXFND  D
- . . S LEXCODE=$P(LEXS,"/",LEXSOID),LEXCREC=0
- . . F  S LEXCREC=$O(^LEX(757.02,"AMC",LEXMC,LEXCREC)) Q:+LEXCREC=0!(LEXFND)  D
- . . . S LEXN0=$G(^LEX(757.02,LEXCREC,0))
+ ;
+ ; Output
+ ;
+ ;    $$SO     1/0
+ ;
+ N LEXABR,LEXCR,LEXF,LEXMC,LEXMCE,LEXN0,LEXSAB,LEXSO,LEXSR,LEXSTA,LEXTR
+ S LEXTR=+LEX,LEXF=0 Q:'$D(^LEX(757.01,LEXTR,0)) LEXF
+ Q:'$D(^LEX(757.01,LEXTR)) LEXF
+ S LEXMC=$P(^LEX(757.01,LEXTR,1),U,1)
+ S LEXMCE=+(^LEX(757,+($P(^LEX(757.01,LEXTR,1),U,1)),0))
+ D VDT I LEXTR>0,LEXMCE>0,LEXTR=LEXMCE D  G SOQ
+ . S LEXF=0 F LEXSR=1:1:$L(LEXS,"/") D  Q:LEXF>0
+ . . S LEXABR=$P(LEXS,"/",LEXSR),LEXCR=0
+ . . F  S LEXCR=$O(^LEX(757.02,"AMC",LEXMC,LEXCR)) Q:+LEXCR=0  D  Q:LEXF>0
+ . . . N LEXN0,LEXSAB,LEXQ S LEXQ=0
+ . . . S LEXN0=$G(^LEX(757.02,LEXCR,0))
  . . . S LEXSAB=+($P(LEXN0,U,3)),LEXSO=$P(LEXN0,U,2)
- . . . S LEXSTA=$$STATCHK^LEXSRC2(LEXSO,$G(LEXVDT),,LEXSAB) Q:+LEXSTA'>0  Q:$P(LEXSTA,U,2)'=LEXCREC
+ . . . I $G(LEXLKT)["BC" D  Q:LEXQ
+ . . . . N LEXNAR S LEXNAR=$G(^TMP("LEXSCH",$J,"NAR",0))
+ . . . . I $L($G(LEXNAR)) S:$E(LEXSO,1,$L($G(LEXNAR)))'=$G(LEXNAR) LEXQ=1
+ . . . S LEXSTA=$$STATCHK^LEXSRC2(LEXSO,$G(LEXVDT),,LEXSAB)
+ . . . Q:+LEXSTA'>0  Q:$P(LEXSTA,U,2)'=LEXCR
  . . . Q:'$D(^LEX(757.03,LEXSAB,0))
  . . . S LEXSAB=$E(^LEX(757.03,LEXSAB,0),1,3)
- . . . I LEXSAB=LEXCODE S LEXFND=1
+ . . . I LEXSAB=LEXABR S LEXF=1
 SOQ ; Quit Source Filter
- K LEX,LEXTREC,LEXMC,LEXS,LEXCODE,LEXMCE,LEXSOID Q LEXFND
+ K LEXCR,LEXMC,LEXMCE,LEXN0,LEXSAB,LEXABR,LEXSO,LEXSR,LEXSTA,LEXTR
+ Q LEXF
 SRC(LEX,LEXS) ; Filter by Expression Source
- ;    LEX      IEN of file 757.01
- ;    LEXS     Filter
- S LEX=+($G(LEX)),LEXS=+($G(LEXS))
- Q:LEX=0 0 Q:LEXS=0 0 Q:'$D(^LEX(757.01,LEX,0)) 0 Q:'$D(^LEX(757.14,LEXS,0)) 0
+ ;    LEX      Expression  IEN of file 757.01
+ ;    LEXS     Source      IEN of 757.14
+ S LEX=+($G(LEX)),LEXS=+($G(LEXS)) Q:LEX=0 0  Q:LEXS=0 0
+ Q:'$D(^LEX(757.01,LEX,0)) 0 Q:'$D(^LEX(757.14,LEXS,0)) 0
  S LEXSR=$P($G(^LEX(757.01,LEX,1)),U,12) Q:LEXSR=LEXS 1
- N LEXSR,LEXMC,LEXMCE S LEXMC=+($G(^LEX(757.01,LEX,1))),LEXMCE=+($G(^LEX(757,+LEXMC,0)))
+ N LEXSR,LEXMC,LEXMCE S LEXMC=+($G(^LEX(757.01,LEX,1)))
+ S LEXMCE=+($G(^LEX(757,+LEXMC,0)))
  S LEXSR=$P($G(^LEX(757.01,LEXMCE,1)),U,12) Q:LEXSR=LEXS 1
  Q 0
 DEF(LEX) ; Display expression definition
@@ -61,63 +163,256 @@ DEF(LEX) ; Display expression definition
  Q
 ID(LEX) ; ICD Diagnosis retained - ICD procedures ignored
  ;    LEX      Code
- Q:'$L($G(LEX)) "" Q:$L($P(LEX,".",1))<3 "" Q:'$D(^LEX(757.02,"AVA",(LEX_" "))) ""
- N LEXO,LEXR S (LEXO,LEXR)=0 F  S LEXR=$O(^LEX(757.02,"AVA",(LEX_" "),LEXR)) Q:+LEXR=0  D  Q:LEXO=1
+ Q:'$L($G(LEX)) ""  Q:$L($P(LEX,".",1))<3 ""
+ Q:'$D(^LEX(757.02,"AVA",(LEX_" "))) ""
+ N LEXO,LEXR S (LEXO,LEXR)=0
+ F  S LEXR=$O(^LEX(757.02,"AVA",(LEX_" "),LEXR)) Q:+LEXR=0  D  Q:LEXO=1
  . I $D(^LEX(757.02,"AVA",(LEX_" "),LEXR,"ICD")) S LEXO=1
  Q:'LEXO "" Q LEX
-ICDONE(LEX,LEXVDT) ; Return one ICD code for an expression
+ICDONE(LEX,LEXVDT) ; Get One ICD-9 Diagnosis Code for a Term
+ ; 
+ ; Input
+ ; 
  ;    LEX      IEN of file 757.01
  ;    LEXVDT   Date to use for screening by codes
- N LEXICD
- S LEXVDT=$S(+$G(LEXVDT)>0:LEXVDT,1:$$DT^XLFDT)
- S LEX=$$ONE^LEXSRC(LEX,"ICD",LEXVDT) Q:LEX="" ""
- S LEXICD=$$ICDDX^ICDCODE(LEX,LEXVDT)
- Q:$P(LEXICD,"^",2)="INVALID CODE" ""
+ ;
+ ; Output
+ ;
+ ;    $$ICDONE ICD-9 Code
+ ;
+ N LEXICD D VDT S LEXICD=$$ONE($G(LEX),$G(LEXVDT),"ICD")
+ Q:'$L($P(LEXICD,"^",1)) ""  S LEX=LEXICD
  Q LEX
-ICD(LEX,LEXVDT) ; Return all ICD codes for an expression
+D10ONE(LEX,LEXVDT) ; Get One ICD-10 Diagosis Code for a Term
+ ; 
+ ; Input
+ ; 
  ;    LEX      IEN of file 757.01
  ;    LEXVDT   Date to use for screening by codes
- S LEXVDT=$S(+$G(LEXVDT)>0:LEXVDT,1:$$DT^XLFDT)
- N LEXSRC,LEXICD
- D ALL^LEXSRC(LEX,"ICD",LEXVDT) Q:+$G(LEXSRC(0))'>0 ""
- N LEXI,LEXT,LEXS S LEXI=0,LEXT=""
+ ;
+ ; Output
+ ;
+ ;    $$D10ONE ICD-10-CM Diagnosis Code or Null
+ ;
+ N LEXICD D VDT S LEXICD=$$ONE($G(LEX),$G(LEXVDT),"10D")
+ Q:'$L($P(LEXICD,"^",1)) ""  S LEX=LEXICD
+ Q LEX
+P10ONE(LEX,LEXVDT) ; Get One ICD-10 Procedure Code for a Term
+ ; 
+ ; Input
+ ; 
+ ;    LEX      IEN of file 757.01
+ ;    LEXVDT   Date to use for screening by codes
+ ;
+ ; Output
+ ;
+ ;    $$P10ONE ICD-10-PCS Procedure Code or Null
+ ;
+ N LEXICD D VDT S LEXICD=$$ONE($G(LEX),$G(LEXVDT),"10P")
+ Q:'$L($P(LEXICD,"^",1)) ""  S LEX=LEXICD
+ Q LEX
+CPTONE(LEX,LEXVDT) ; Get One CPT Code for a Term
+ ; 
+ ; Input
+ ; 
+ ;    LEX      IEN of file 757.01
+ ;    LEXVDT   Date to use for screening by codes
+ ;
+ ; Output
+ ;
+ ;    $$CPTONE CPT Code or Null
+ ;
+ N LEXCPT D VDT S LEXCPT=$$ONE($G(LEX),$G(LEXVDT),"CPT")
+ Q:'$L($P(LEXCPT,"^",1)) ""  S LEX=LEXCPT
+ Q LEX
+CPCONE(LEX,LEXVDT) ; Get One HCPCS Code for a Term
+ ; 
+ ; Input
+ ; 
+ ;    LEX      IEN of file 757.01
+ ;    LEXVDT   Date to use for screening by codes
+ ;
+ ; Output
+ ;
+ ;    $$CPCONE HCPCS Code or Null
+ ;
+ N LEXCPT D VDT S LEXCPT=$$ONE($G(LEX),$G(LEXVDT),"CPC")
+ Q:'$L($P(LEXCPT,"^",1)) ""  S LEX=LEXCPT
+ Q LEX
+DSMONE(LEX,LEXVDT) ; Get One DSM Code for a Term
+ ; 
+ ; Input
+ ; 
+ ;    LEX      IEN of file 757.01
+ ;    LEXVDT   Date to use for screening by codes
+ ;
+ ; Output
+ ;
+ ;    $$DSMONE DSM-IV Code or Null
+ ;
+ N LEXDSM D VDT S LEXDSM=$$ONE^LEXSRC(LEX,"DS4")
+ I LEXDSM'="" D  Q LEX
+ . S LEX=LEXDSM N LEXDAT S LEXDAT=$$ICDDX^ICDEX(LEXDSM,$G(LEXVDT),1,"E")
+ . S:$P(LEXDAT,"^",10)'>0 LEX=""
+ S LEXDSM=$$ONE^LEXSRC(LEX,"DS3") I LEXDSM'="" D  Q LEX
+ . S LEX=LEXDSM N LEXDAT S LEXDAT=$$ICDDX^ICDEX(LEXDSM,$G(LEXVDT),1,"E")
+ . S:$P(LEXDAT,"^",10)'>0 LEX=""
+ Q ""
+ ;
+SCT(X,LEXVDT) ;   Filter by SNOMED CT (SCT) (Human only)
+ ; 
+ ; Input
+ ; 
+ ;    X        IEN of file 757.01
+ ;    LEXVDT   Date to use for screening by codes
+ ;
+ ; Output
+ ;
+ ;    $$SCT    Human SNOMED Code or Null
+ ;             Excludes Veterinary SNOMED codes
+ ;
+ N LEXEX,LEXMC,LEXD,LEXC,LEXI,LEXO,LEXPL,LEXVT S LEXEX=+($G(X)),LEXD=$G(LEXVDT) Q:LEXEX'>0 0
+ S LEXC=$S(LEXD?7N:$$ONE^LEXU(+LEXEX,LEXD,"SCT"),1:$$ONE^LEXU(+LEXEX,,"SCT"))
+ Q:'$L(LEXC) 0  S LEXMC=+($G(^LEX(757.01,+LEXEX,1))) Q:LEXMC'>0 0  Q:'$D(^LEX(757.1,"B",LEXMC)) 0
+ S LEXVT=0,LEXI=0 F  S LEXI=$O(^LEX(757.1,"B",LEXMC,LEXI)) Q:+LEXI'>0  D  Q:LEXVT>0
+ . N LEXT,LEXN S LEXT=$P($G(^LEX(757.1,LEXI,0)),"^",3),LEXN=$$UP^XLFSTR($P($G(^LEX(757.12,+LEXT,0)),"^",2)) S:LEXN["VETERINARY" LEXVT=1
+ S LEXPL=0,LEXI=0 F  S LEXI=$O(^LEX(757.21,"B",LEXEX,LEXI)) Q:+LEXI'>0  D  Q:LEXPL>0
+ . N LEXT,LEXN S LEXT=$P($G(^LEX(757.21,LEXI,0)),"^",2),LEXN=$P($G(^LEXT(757.2,+LEXT,0)),"^",2) S:LEXN="PLS" LEXPL=1
+ S LEXO=1 S:LEXVT=1 LEXO=0 S:LEXPL'>0 LEXO=0
+ S X=LEXO
+ Q X
+ONE(LEX,LEXVDT,LEXSAB) ; Get One Code for a Term by Source
+ ; 
+ ; Input
+ ;    LEX      IEN of file 757.01
+ ;    LEXVDT   Date to use for screening by codes
+ ;    LEXSAB   Source Abbreviation
+ ;
+ ; Output
+ ;
+ ;    $$ONE    Code or Null
+ ;
+ N LEXDAT,LEXIEN D VDT S LEXIEN=$G(LEX) Q:+($G(LEXIEN))'>0 ""
+ S LEXSAB=$G(LEXSAB) Q:'$L(LEXSAB) ""
+ I LEXSAB?1N.N,'$D(^LEX(757.03,"ASAB",LEXSAB)),$D(^LEX(757.03,+LEXSAB,0)) D
+ . S LEXSAB=$P($G(^LEX(757.03,+LEXSAB,0)),"^",1)
+ S LEXSAB=$E($G(LEXSAB),1,3) Q:$L(LEXSAB)'=3 ""
+ S LEX=$$ONE^LEXSRC(LEXIEN,LEXSAB,LEXVDT),LEXDAT=""
+ S:LEXSAB="ICD"!(LEXSAB="DS4") LEXDAT=$$ICDDX^ICDEX(LEX,LEXVDT,1,"E")
+ S:LEXSAB="10D" LEXDAT=$$ICDDX^ICDEX(LEX,LEXVDT,30,"E")
+ S:LEXSAB="ICP" LEXDAT=$$ICDOP^ICDEX(LEX,LEXVDT,2,"E")
+ S:LEXSAB="10P" LEXDAT=$$ICDOP^ICDEX(LEX,LEXVDT,31,"E")
+ S:LEXSAB="CPT" LEXDAT=$$CPT^ICPTCOD(LEX,LEXVDT)
+ S:LEXSAB="CPC" LEXDAT=$$CPT^ICPTCOD(LEX,LEXVDT)
+ Q:"^CPT^CPC"[("^"_LEXSAB_"^")&($P(LEXDAT,"^",7)'>0) ""
+ Q:"^ICD^ICP^10D^10P^"[("^"_LEXSAB_"^")&($P(LEXDAT,"^",10)'>0) ""
+ S LEX="" I +LEXDAT'>0 D
+ . N LEXSIEN S LEXSIEN=0
+ . F  S LEXSIEN=$O(^LEX(757.02,"B",LEXIEN,LEXSIEN)) Q:+LEXSIEN'>0  D  Q:+LEXDAT>0
+ . . Q:'$D(^LEX(757.02,"ASRC",LEXSAB,LEXSIEN))  N LEXEF,LEXHI,LEXST,LEXCD
+ . . S LEXEF=$O(^LEX(757.02,LEXSIEN,4,"B",(LEXVDT+.001)),-1) Q:'$L(LEXEF)
+ . . S LEXHI=$O(^LEX(757.02,LEXSIEN,4,"B",+LEXEF," "),-1)
+ . . S LEXST=$P($G(^LEX(757.02,LEXSIEN,4,+LEXHI,0)),"^",2) Q:LEXST'>0
+ . . S LEXCD=$P($G(^LEX(757.02,+LEXSIEN,0)),"^",2)
+ . . S:$L(LEXCD)&(+LEXIEN>0) LEXDAT=LEXIEN_"^"_LEXCD
+ Q:+LEXDAT'>0 "" S LEX=$P(LEXDAT,"^",2)
+ I $G(LEXLKT)["BC" D
+ . N LEXNAR S LEXNAR=$$UP^XLFSTR($G(^TMP("LEXSCH",$J,"NAR",0)))
+ . I $L($G(LEXNAR)) S:$E(LEX,1,$L($G(LEXNAR)))'=$G(LEXNAR) LEX=""
+ Q LEX
+ICD(LEX,LEXVDT) ; Get All ICD-9 Diagnosis Codes for a Term
+ ; 
+ ;   Input  
+ ;   
+ ;     LEX       IEN of file 757.01
+ ;     LEXVDT    Date to use for screening by codes
+ ;          
+ ;   Output 
+ ;   
+ ;     $$ICD     <ICD-9 code>;<ICD-9 code>;<etc>
+ ; 
+ D VDT S LEX=$$ALL^LEXU($G(LEX),$G(LEXVDT),"ICD")
+ Q LEX
+D10(LEX,LEXVDT) ; Get All ICD-10 Diagnosis Codes for a Term
+ ;
+ ;   Input  
+ ;   
+ ;      LEX       IEN of file 757.01
+ ;      LEXVDT    Date to use for screening by codes
+ ;          
+ ;   Output 
+ ;   
+ ;      $$D10     <ICD-10 code>;<ICD-10 code>;<etc>
+ ;          
+ D VDT S LEX=$$ALL^LEXU($G(LEX),$G(LEXVDT),"10D")
+ Q LEX
+ ;
+ALL(LEX,LEXVDT,LEXSAB) ; Get All Codes for a Term by Source
+ ; 
+ ; Input
+ ; 
+ ;    LEX      IEN of file 757.01
+ ;    LEXVDT   Date to use for screening by codes
+ ;    LEXSAB   Source Abbreviation
+ ;    
+ ; Output
+ ; 
+ ;    $$ALL    A ";" delimited string of codes
+ ;             of the specified coding system
+ ;             for the term
+ ;             
+ N LEXDAT,LEXIEN,LEXSRC,LEXI,LEXT,LEXS D VDT
+ S LEXIEN=+($G(LEX)) Q:+($G(LEXIEN))'>0 ""
+ S LEXSAB=$E($G(LEXSAB),1,3) Q:$L(LEXSAB)'=3 ""
+ D ALL^LEXSRC(LEX,LEXSAB,LEXVDT)
+ Q:+$G(LEXSRC(0))'>0 ""  S LEXI=0,LEXT=""
  F  S LEXI=$O(LEXSRC(LEXI)) Q:+LEXI=0  D
  . S LEXS=LEXSRC(LEXI)
- . S LEXICD=$$ICDDX^ICDCODE(LEXS,LEXVDT)
- . Q:$P(LEXICD,"^",2)="INVALID CODE"
+ . S:LEXSAB="ICD" LEXDAT=$$ICDDX^ICDEX(LEXS,$G(LEXVDT),1,"E")
+ . S:LEXSAB="10D" LEXDAT=$$ICDDX^ICDEX(LEXS,$G(LEXVDT),30,"E")
+ . S:LEXSAB="10P" LEXDAT=$$ICDOP^ICDEX(LEXS,$G(LEXVDT),31,"E")
+ . S:LEXSAB="CPT" LEXDAT=$$CPT^ICPTCOD(LEXS,LEXVDT)
+ . S:LEXSAB="CPC" LEXDAT=$$CPT^ICPTCOD(LEXS,LEXVDT)
+ . Q:+($G(LEXDAT))'>0
+ . Q:"^CPT^CPT"[("^"_LEXSAB_"^")&($P($G(LEXDAT),"^",7)'>0)
+ . Q:"^ICD^ICP^10D^10P^"[("^"_LEXSAB_"^")&($P($G(LEXDAT),"^",10)'>0)
  . Q:(LEXT_";")[(";"_LEXS_";")  S LEXT=LEXT_";"_LEXS
- S:$E(LEXT,1)=";" LEXT=$E(LEXT,2,$L(LEXT)) S LEX=LEXT Q LEX
-CPTONE(LEX,LEXVDT) ; Return one CPT code for an expression
- ;    LEX      IEN of file 757.01
- ;    LEXVDT   Date to use for screening by codes
- S LEXVDT=$S(+$G(LEXVDT)>0:LEXVDT,1:$$DT^XLFDT)
- N LEXCPT
- S LEX=$$ONE^LEXSRC(LEX,"CPT",LEXVDT)
- Q:LEX="" ""
- S LEXCPT=$$CPT^ICPTCOD(LEX,LEXVDT)
- Q:$P(LEXCPT,"^",2)="NO SUCH ENTRY" ""
- I +$P(LEXCPT,"^",7)=0 S LEX=""
+ S LEX="" S:$E(LEXT,1)=";" LEXT=$E(LEXT,2,$L(LEXT)) S LEX=LEXT
  Q LEX
-CPCONE(LEX,LEXVDT) ; Return one HCPCS code for an expression
- ;    LEX      IEN of file 757.01
- ;    LEXVDT   Date to use for screening by codes
- S LEXVDT=$S(+$G(LEXVDT)>0:LEXVDT,1:$$DT^XLFDT)
- N LEXCPT
- S LEX=$$ONE^LEXSRC(LEX,"CPC",LEXVDT)
- Q:LEX="" ""
- S LEXCPT=$$CPT^ICPTCOD(LEX,LEXVDT)
- Q:$P(LEXCPT,"^",2)="NO SUCH ENTRY" ""
- I +$P(LEXCPT,"^",7)=0 S LEX=""
- I LEX'?1U.4N S LEX=""
- Q LEX
-DSMONE(LEX) ; Return one DSM code for an expression
- ;    LEX      IEN of file 757.01
- ;    LEXVDT   Date to use for screening by codes
- ; Check for DSM-IV first
- S LEX=$$ONE^LEXSRC(LEX,"DS4") I LEX'="" Q LEX
- ; If not DSM-IV, then check for DSM-III
- S LEX=$$ONE^LEXSRC(LEX,"DS3") Q LEX
+HIST(CODE,SYS,ARY) ; Activation History
+ Q $$HIST^LEXU4($G(CODE),$G(SYS),.ARY)
+PERIOD(CODE,SYS,ARY) ; Return Activation Periods
+ Q $$PERIOD^LEXU4($G(CODE),$G(SYS),.ARY)
+CSDATA(CODE,CSYS,CDT,ARY) ; Code Data
+ N X S X=$$CSDATA^LEXU2($G(CODE),$G(CSYS),$G(CDT),.ARY) Q X
 ADR(LEX) ; Mailing Address
- N DIC,DTOUT,DUOUT,X,Y S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
- S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="ISC-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
- Q "ISC-SLC.domain.ext"
+ Q $$ADR^LEXU3($G(LEX))
+VDT ; Resolve LEXVDT
+ D VDT^LEXU3 Q
+IMPDATE(CSYS) ; Return the implementation date for a coding system
+ Q $$IMPDATE^LEXU3($G(CSYS))
+CSYS(SYS) ; Coding System Info
+ Q $$CSYS^LEXU3($G(SYS))
+FREQ(TXT) ; Frequency of text - ICR 5679
+ Q $$FREQ^LEXU3($G(TXT))
+MAX(SYS) ; Coding System search Threshold - ICR 5679
+ Q $$MAX^LEXU3($G(SYS))
+PAR(TXT,ARY) ; Parse Text into Words (for indexing)
+ Q $$PAR^LEXU3(TXT,.ARY)
+CAT(CODE) ; Get Category of Dx Code - ICR 5679
+ Q $$CAT^LEX10DU($G(CODE))
+ISCAT(CODE) ; Get Category of Dx Code - ICR 5679
+ Q $$ISCAT^LEX10DU($G(CODE))
+PFI(FRAG,CDT,ARY) ; ICD-10 Procedure Code Fragment Information - ICR 5679
+ Q $$PFI^LEXU4($G(FRAG),$G(CDT),.ARY)
+NXSAB(X,Y) ; Next Source Abbreviation
+ Q $$NXSAB^LEXU3($G(X),$G(Y))
+INC(X) ; Increment Concept Usage for a term (by subscription only)
+ D INC^LEXU3($G(X))
+ Q
+RECENT(X) ; Recently Updated (90 day window)
+ Q $$RECENT^LEXU3($G(X))
+RUPD(X) ; Recent Update Date
+ Q $$RUPD^LEXU3($G(X))
+LUPD(X,Y) ; Last Update
+ Q $$LUPD^LEXU3($G(X),$G(Y))

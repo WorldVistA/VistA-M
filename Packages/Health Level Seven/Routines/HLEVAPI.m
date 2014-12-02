@@ -1,5 +1,5 @@
 HLEVAPI ;O-OIFO/LJA - Event Monitor APIs ;02/04/2004 14:42
- ;;1.6;HEALTH LEVEL SEVEN;**109**;Oct 13, 1995
+ ;;1.6;HEALTH LEVEL SEVEN;**109,161**;Oct 13, 1995;Build 6
  ;
  ; Routine   Supported APIs...
  ; -----------------------------------------------------------------
@@ -260,8 +260,8 @@ SENDMAIL(HLEVIENE,HLEVIENJ,XMY) ; Mail info in 776 event monitor's ^(51)...
 NEWEVENT(HLEVIENE,QTIME) ; Create a new EVENT and pass back IEN...
  N DIC,DD,DO,X,Y
  ;
- ; Check STATUS-EVENT...
- QUIT:$P($G(^HLEV(776.999,1,0)),U,6)'="A"  ;->
+ ; Check STATUS-EVENT...return null("") if inactive HL*161
+ QUIT:$P($G(^HLEV(776.999,1,0)),U,6)'="A" "" ;->
  ;
  S X=$$NOW^XLFDT,DIC="^HLEV(776,",DIC(0)="L"
  S DIC("DR")="3////"_HLEVIENE_";4///Q"

@@ -1,5 +1,5 @@
 PSGOT ;BIR/CML3-TRANSFERS DATA FROM 53.1 TO 55 ;24 SEP 97 / 7:54 AM
- ;;5.0;INPATIENT MEDICATIONS;**13,68,90,110,173,134,161,254,267**;16 DEC 97;Build 158
+ ;;5.0;INPATIENT MEDICATIONS;**13,68,90,110,173,134,161,254,267,257**;16 DEC 97;Build 105
  ;
  ; Reference to ^PS(55 supported by DBIA 2191.
  ; Reference to ^PSUHL supported by DBIA 4803.
@@ -12,7 +12,7 @@ START ; get internal record number, lock record, and write
  S X=^PS(55,PSGP,0) I $P(X,"^",7)="" S $P(X,"^",7)=$P($P(ND0,"^",16),"."),$P(X,"^",8)="A",^(0)=X D LOGDFN^PSUHL(PSGP)
  I $P($G(^PS(55,PSGP,5,DA,2)),"^",6)="" S $P(^PS(55,PSGP,5,DA,2),"^",6)=$S($G(PSGS0XT)'="":PSGS0XT,$P($G(ZZND),"^",3)'="":$P(ZZND,"^",3),1:""),$P(^PS(53.1,ODA,2),"^",6)=$P(^PS(55,PSGP,5,DA,2),"^",6)
  F X=6,7,13 I $D(^PS(53.1,ODA,X)) S ^PS(55,PSGP,5,DA,X)=^(X)
- I $D(^PS(53.1,ODA,"DSS")) S ^PS(55,PSGP,5,DA,8)=^("DSS")
+ I $D(^PS(53.1,ODA,"DSS")) S ^PS(55,PSGP,5,DA,8)=^("DSS") D CIMOU^PSJIMO1(PSGP,DA,"",ODA)
  I $O(^PS(53.1,ODA,1,0)) S (C,X)=0 F  S X=$O(^PS(53.1,ODA,1,X)) Q:'X  S:$D(^(X,0)) C=C+1,^PS(55,PSGP,5,DA,1,C,0)=^(0),^PS(55,PSGP,5,DA,1,"B",+$P($G(^(0)),U),C)=""
  I $O(^PS(53.1,ODA,1,0)) S ^PS(55,PSGP,5,DA,1,0)="^55.07P^"_C_"^"_C
  F X=3,12 D  S ^PS(55,PSGP,5,DA,X,0)="^55.0"_$S(X=3:8,1:612)_U_CNT_U_CNT
@@ -49,4 +49,6 @@ DONE I $D(PSGOE2),PSGOE2]"",$D(^TMP("PSJON",$J,PSGOE2)) S ^(PSGOE2)=DA_"U"
  .S:($TR(TXT,"^ ")="")!'($D(^PS(55,PSGP,5,DA,15,1))) TXT="" S ^PS(55,PSGP,5,DA,6)=TXT S $P(^PS(55,PSGP,5,DA,6),"^",2)=$P(^PS(53.1,+ODA,6),"^",2)
  .N LSTLNUM,LSTLNTXT S LSTLNUM=$O(^PS(55,+PSGP,5,+DA,15,""),-1) I LSTLNUM>1 S LSTLNTXT=$G(^PS(55,+PSGP,5,+DA,15,LSTLNUM,0)) I $TR(LSTLNTXT," ")="" D
  ..K ^PS(55,+PSGP,5,+DA,15,LSTLNUM,0)
- L -^PS(53.1,+ODA) L -^PS(55,PSGP,5,+DA) K CNT,ND,ODA,XX,ZND Q
+ L -^PS(53.1,+ODA) L -^PS(55,PSGP,5,+DA) K CNT,ND,ODA,XX,ZND
+ Q
+ ;

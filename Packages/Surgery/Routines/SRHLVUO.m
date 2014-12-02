@@ -1,6 +1,6 @@
 SRHLVUO ;B'HAM ISC/DLR - Surgery Interface Utilities for building Outgoing HL7 Segment ; [ 05/06/98   7:14 AM ]
- ;;3.0; Surgery ;**41,127**;24 Jun 93
- ; Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
+ ;;3.0;Surgery;**41,127,177**;24 Jun 93;Build 89
+ ;
  ; ** ASSUMMED variable list
  ; all - INIT^HLTRANS
  ; DFN - IEN file #2
@@ -22,14 +22,14 @@ AL1(SRI) ;AL1 segment(s) builder returns allergy information from the generic ca
  Q
 DG1(SRI) ;DG1 segment(s) builder returns surgery diagnosis information
  Q:'$D(CASE)
- N DG1,I9,X,X1
+ N DG1,I9,X,X1,SRSYS
  I $D(^SRF(CASE,34)),$P(^SRF(CASE,34),U,2) D
- .S I9=$$ICDDX^ICDCODE($P(^SRF(CASE,34),U,2),$P($G(^SRF(CASE,0)),"^",9))
- .S DG1="DG1"_HLFS_"0001"_HLFS_"I9"_HLFS_$P(I9,U,2)_HLFS_$P(I9,U,4)_HLFS_HLFS_"P" D
+ .S SRSYS=$$ICDSYS^SROICD($P(^SRF(CASE,0),"^",9)),I9=$$ICD^SROICD(CASE,$P(^SRF(CASE,34),U,2))
+ .S DG1="DG1"_HLFS_"0001"_HLFS_$S(SRSYS["9":"I9",1:"I0")_HLFS_$P(I9,U,2)_HLFS_$E($P(I9,U,4),1,40)_HLFS_HLFS_"P" D
  ..S ^TMP("HLS",$J,HLSDT,SRI)=DG1,SRI=SRI+1,DG1=""
  ..I $D(^SRF(CASE,14,0)) S X1=2 F X=0:0 S X=$O(^SRF(CASE,14,X)) Q:X'>0  D
- ...I $P(^(0),U,3) S I9=$$ICDDX^ICDCODE($P(^SRF(CASE,14,0),U,3),$P($G(^SRF(CASE,0)),"^",9)) D
- ....S ^TMP("HLS",$J,HLSDT,SRI)="DG1"_HLFS_$E("0000",$L(X1)+1,4)_X1_HLFS_"I9"_HLFS_$P(I9,U,2)_HLFS_$P(I9,U,4)_HLFS_HLFS_"PR",X1=X1+1,SRI=SRI+1
+ ...I $P(^(0),U,3) S I9=$$ICD^SROICD(CASE,$P(^SRF(CASE,14,0),U,3)) D
+ ....S ^TMP("HLS",$J,HLSDT,SRI)="DG1"_HLFS_$E("0000",$L(X1)+1,4)_X1_HLFS_$S(SRSYS["9":"I9",1:"I0")_HLFS_$P(I9,U,2)_HLFS_$E($P(I9,U,4),1,40)_HLFS_HLFS_"PR",X1=X1+1,SRI=SRI+1
  Q
 ERR(SRI,SRERR)     ;ERR segment builder
  ; SRERR = error code and location (segment^sequence #^field^error) 

@@ -1,5 +1,5 @@
-MAGQBUT1 ;WOIFO/RP - Utilities for Background ; 18 Jan 2011 5:13 PM
- ;;3.0;IMAGING;**7,8,20,81,39**;Mar 19, 2002;Build 2010;Mar 08, 2011
+MAGQBUT1 ;WOIFO/RP/PTW - Utilities for Background ; 23 May 2013 10:50 AM
+ ;;3.0;IMAGING;**7,8,20,81,39,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -100,6 +100,12 @@ MAILSHR(PLACE,APP,XMSUB) ;Shared Mail server code
  S:$G(MAGDUZ) XMY(MAGDUZ)=""
  S XMID=$G(DUZ) S:'XMID XMID=.5
  S XMY(XMID)=""
+ N L1,L2,L3
+ S L2=$L($P(XMSUB,"^",2))
+ S L3=60-L2
+ S L1=$L($P(XMSUB,"^"))
+ I L2=0 S XMSUB=$E(XMSUB,1,60)
+ E  S XMSUB=$E($P(XMSUB,"^"),1,L3-1)_"^"_$P(XMSUB,"^",2)
  D SENDMSG^XMXAPI(XMID,XMSUB,XMTEXT,.XMY,,.XMZ,)
  K ^TMP($J,"MAGQ",PLACE,APP)
  I $G(XMERR) M XMERR=^TMP("XMERR",$J) K XMERR
@@ -140,7 +146,7 @@ ALLSERV(RESULT,GRP) ; BP Queue Processor
  . I CWG,'$$GMEM(CWG,INDX) Q  ;screen on Current Write Group also validate group member reference
  . S VALUE=SHARE_U_INDX_U_+$P(DATA,U,5)_U_+$P(DATA,U,3)_U_$P(DATA,U)
  . S VALUE=VALUE_U_$S($L($$GET1^DIQ(2005.2,INDX,31,"E","","")):$$GET1^DIQ(2005.2,INDX,31,"E","",""),1:"")
- . S VALUE=VALUE_U_$$GET1^DIQ(2005.2,INDX,6,"I","","")
+ . S VALUE=VALUE_U_$$GET1^DIQ(2005.2,INDX,6,"E","","")
  . I INDX=CWL D  Q  ;ELSE CONTINUE 
  . . S RESULT(0)=VALUE_U_$G(^TMP("MAGQ","WSUD"))
  . . S ^TMP("MAGQAS",0)=VALUE ;1ST SHARE=CWL
@@ -219,7 +225,6 @@ QUEUER(QUE,FROM,TO) ;
  . I "^DELETE^"[QUE D  Q
  . . N MAGXX S MAGXX=INC D VSTNOCP^MAGFILEB I $E(MAGFILE,1,2)="-1" W !,"Image # "_INC Q 
  . . S MAGXX=INC D ABSNOCP^MAGFILEB I $E(MAGFILE,1,2)="-1" W !,"Image # "_INC Q
- . . S MAGXX=INC D BIGNOCP^MAGFILEB I $E(MAGFILE,1,2)="-1" W !,"Image # "_INC Q
  . . D IMAGEDEL^MAGGTID(.MAGFILE,INC,"","TESTING")
  . . Q
  . I "^ABSTRACT^"[QUE D  Q

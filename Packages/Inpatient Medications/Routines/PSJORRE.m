@@ -1,5 +1,5 @@
 PSJORRE ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ; 2/28/11 3:11pm
- ;;5.0; INPATIENT MEDICATIONS ;**22,51,50,58,81,110,111,112,134,225**;16 DEC 97;Build 16
+ ;;5.0;INPATIENT MEDICATIONS;**22,51,50,58,81,110,111,112,134,225,275**;16 DEC 97;Build 157
  ;
  ;Reference to ^PS(52.6 is supported by DBIA 1231.
  ;Reference to ^PS(52.7 is supported by DBIA 2173.
@@ -33,6 +33,7 @@ UDTMP ;*** Set ^TMP for Unit dose orders.
  S ND0=$G(@(F_ON_",0)")) I 'EDTCMPLX I F["53.1",($P(ND0,U,16)>EDT) Q
  S STAT=$$CODES^PSIVUTL($P(ND0,U,9),$S(FON["P":53.1,1:55.06),28)
  S ND6=$P($G(@(F_ON_",6)")),"^"),INST=$G(@(F_+ON_",.3)"))
+ S:ND6["Instructions too long. See Order View or BCMA for full text" ND6="Instructions too long. See order details for full text."
  S FON=+ON_$S(F["53.1":"P",1:"U"),DO=$P($G(@(F_ON_",.2)")),"^",2)
  D DRGDISP^PSJLMUT1(DFN,FON,40,0,.DN,1)
  ;*225 Don't allow 0 Units
@@ -65,6 +66,7 @@ IVTMP ;*** Set ^TMP for IV orders.
  S TYPE=$P(ND0,U,4),(MR,SCH,INST,INFUS)=""
  I FON["P" S ND2=$G(^PS(53.1,+ON,2)),SCH=$P(ND2,U),START=$P(ND2,U,2),STOP=$P(ND2,U,4),MR=$P(ND0,U,3),INFUS=$P($G(^PS(53.1,+ON,8)),U,5),STAT=$$CODES^PSIVUTL($P(ND0,U,9),53.1,28),ADM=$P(ND2,U,5),SIO=$P($G(@(F_+ON_",6)")),"^")
  I FON'["P" S START=$P(ND0,U,2),STOP=$P(ND0,U,3),SCH=$P(ND0,U,9),INFUS=$P(ND0,U,8),MR=$P($G(^PS(55,DFN,"IV",+ON,.2)),U,3),STAT=$$CODES^PSIVUTL($P(ND0,U,17),55.01,100),ADM=$P(ND0,U,11),SIO=$P($G(@(F_+ON_",3)")),"^")
+ S:($G(SIO)["Instructions too long. See Order View or BCMA for full text") SIO="Instructions too long. See order details for full text."
  S DN=$G(@(F_+ON_",.2)")),DO=$P(DN,U,2)
  S DN=$S(+$P(DN,U):$$OIDF^PSJLMUT1($P(DN,U)),1:"")
  S:MR MR=$$MR^PSJORRE1(+MR),INST=$G(@(F_+ON_",.3)"))

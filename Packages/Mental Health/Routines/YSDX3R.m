@@ -1,5 +1,5 @@
-YSDX3R ;SLC/DJP-Print of Diagnosis for the Mental Health Medical Record ;12/13/93 16:02
- ;;5.01;MENTAL HEALTH;;Dec 30, 1994
+YSDX3R ;SLC/DJP - Print of Diagnosis for the Mental Health Medical Record ;12/13/93 16:02
+ ;;5.01;MENTAL HEALTH;**107**;Dec 30, 1994;Build 23
  ;
  ; Called from the top by MENU option YSDIAGP-DX
  ;D RECORD^YSDX0001("YSDX3R^YSDX3R") ;Used for testing.  Inactivated in YSDX0001...
@@ -25,7 +25,7 @@ DEVICE ;
  I $D(IO("Q")) S ZTRTN="ENPR^YSDX3R",(ZTSAVE("A"),ZTSAVE("YS*"))="",ZTDESC="YS DX PT" D ^%ZTLOAD G END
 ENPR ;Entry to core of print program.
  ;D RECORD^YSDX0001("ENPR^YSDX3R") ;Used for testing.  Inactivated in YSDX0001...
- S YSFHDR="DIAGNOSIS LIST",YSFHDR(1)="W !!,""DSM/ICD9 TITLE"" X YSFHDR(2),YSFHDR(3)",YSFHDR(2)="I YSTY=""ACT"" W ?25,""**** Only Active Diagnosis ****""",YSFHDR(3)="W !,""STATUS"",?10,""DATE""" S YSPP=0
+ S YSFHDR="DIAGNOSIS LIST",YSFHDR(1)="W !!,""DSM/ICD TITLE"" X YSFHDR(2),YSFHDR(3)",YSFHDR(2)="I YSTY=""ACT"" W ?25,""**** Only Active Diagnosis ****""",YSFHDR(3)="W !,""STATUS"",?10,""DATE""" S YSPP=0
 PR ;  Called from YSDX3RU
  ;D RECORD^YSDX0001("PR^YSDX3R") ;Used for testing.  Inactivated in YSDX0001...
  U IO D:'$D(YSNOFORM) ENHD^YSFORM S Y1=0,YST=$S(IOST?1"P".E:1,1:0),YSSL=$S(YST:8,1:3),YSLFT=0

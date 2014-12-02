@@ -1,5 +1,5 @@
 PSDOPTI ;BIR/LTL - Review OP Transactions by Inventory Type ; 29 Aug 94
- ;;3.0; CONTROLLED SUBSTANCES ;**18,55**;13 Feb 97
+ ;;3.0;CONTROLLED SUBSTANCES;**18,55,72**;13 Feb 97;Build 8
  ;
  ;References to ^PSD(58.8, covered by DBIA2711
  ;References to DD(58.81 and ^PSD(58.81 are covered by DBIA2808
@@ -41,7 +41,7 @@ DEV ;asks device and queuing info
 START ;compiles and prints output
  U IO N LN,PSDR,PG S (PG,PSDOUT)=0 D HEADER S (PSD,PSDU)=0
  F  S PSD=$O(^TMP("PSD",$J,PSD)) Q:PSD']""  F  S PSDU=$O(^TMP("PSD",$J,PSD,PSDU)) Q:PSDU']""  S PSDU(1)=$O(^TMP("PSD",$J,PSD,PSDU,0)) D  G:PSDOUT END S PSDT=PSDTB,PSDT(1)=0
-LOOP .F  S PSDT=$O(^PSD(58.81,"ACT",PSDT)) W:$E(IOST)="C" "." Q:'PSDT!(PSDT>PSDTB(1))  D:$O(^PSD(58.81,"ACT",PSDT,0))=PSDLOC&($O(^PSD(58.81,"ACT",PSDT,PSDLOC,0))=PSDU(1))&($O(^PSD(58.81,"ACT",PSDT,PSDLOC,+PSDU(1),6,0)))  Q:PSDOUT
+LOOP .F  S PSDT=$O(^PSD(58.81,"ACT",PSDT)) W:$E(IOST)="C" "." Q:'PSDT!(PSDT>PSDTB(1))  D:$D(^PSD(58.81,"ACT",PSDT,PSDLOC))&($O(^PSD(58.81,"ACT",PSDT,PSDLOC,0))=PSDU(1))&($O(^PSD(58.81,"ACT",PSDT,PSDLOC,+PSDU(1),6,0)))  Q:PSDOUT
  ..S PSDR(3)=+$O(^PSD(58.81,"ACT",PSDT,PSDLOC,+PSDU(1),6,0))
  ..S PSDR(2)=$G(^PSD(58.81,PSDR(3),0))
  ..S PSDR(4)=$G(^PSD(58.81,PSDR(3),6))

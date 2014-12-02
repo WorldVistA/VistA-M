@@ -1,5 +1,5 @@
 ONCOU55B ;WISC/MLH-UTILITY ROUTINE #3 for ONCOLOGY PRIMARY File (#165.5) ;9/10/93  10:08
- ;;2.11;ONCOLOGY;;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 RXTS ;    reindex TUMOR STATUS (#73) on ONCOLOGY PRIMARY (#165.5) - called by RXTS^ONCOU55
  ;    should only be run after re-indexing follow-up (RXFU^ONCOU0)

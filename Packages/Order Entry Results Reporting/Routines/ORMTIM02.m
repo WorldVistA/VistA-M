@@ -1,5 +1,5 @@
-ORMTIM02 ; JM/SLC-ISC - PERFORM MISC TIME BASED ACTIVITIES ;05/02/06
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**253,243**;Dec 17, 1997;Build 242
+ORMTIM02 ; JM/SLC-ISC - PERFORM MISC TIME BASED ACTIVITIES ;04/30/13  05:29
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**253,243,371**;Dec 17, 1997;Build 9
  ;
  Q
 MISC ; Perform misc time based activities
@@ -12,7 +12,7 @@ MISC ; Perform misc time based activities
 UNSIGNED ; Generate alerts for unsigned orders that were not alerted by CPRS
  ; This happens when CPRS crashes - through network connection drops or other causes
  N ORZPAT,ORZDATE,ORZIEN,ORZSUB,ORZSDATE,%DT,X,Y,ORZTIME,ORZNOW,ORZPURGE
- N ORN,ORBDFN,ORNUM,ORBADUZ,ORBPMSG,ORBPDATA,ORZREC8,ORZSIGDT,ORZSTS,ORZWHEN,ORMARKID
+ N ORN,ORBDFN,ORNUM,ORBADUZ,ORBPMSG,ORBPDATA,ORZREC8,ORZSIGDT,ORZSTS,ORZWHEN,ORMARKID,ORMINTIM
  N MINTIME,XTMPDAYS,XTMPHOUR,MINDAYS
  S ORN=12,ORMARKID="ORMTIME_UNSGNORD"
  ;
@@ -23,11 +23,11 @@ UNSIGNED ; Generate alerts for unsigned orders that were not alerted by CPRS
  S XTMPHOUR=48 ; Each order that's verified as having generated an alert has a flag set in
  ;               ^XTMP that's kept for 48 hours.  When flag is gone, must recheck alert status
  ;
+ S ORMINTIM=MINTIME
  S X="T-"_MINDAYS
  D ^%DT S ORZSDATE=9999999-Y
  S %DT="ST",X="NOW" D ^%DT
  S ORZNOW=Y
- S ORZTIME=$$FMADD^XLFDT(ORZNOW,0,0,-MINTIME,0) ; Order must have existed for ORZTIME minutes
  S ORZPURGE=$$FMADD^XLFDT(ORZNOW,XTMPDAYS,0,0,0) ; Purge all marked flags if not run in XTMPDAYS days
  S ^XTMP(ORMARKID,0)=ORZPURGE_U_ORZNOW_U_"Unsigned Orders Reviewed by ORMTIME"
  S ORZPURGE=$$FMADD^XLFDT(ORZNOW,0,XTMPHOUR,0,0) ; Purge each marked flag XTMPHOUR hours after creation
@@ -41,6 +41,11 @@ UNSIGNED ; Generate alerts for unsigned orders that were not alerted by CPRS
  . . . . . S ORZREC8=^OR(100,ORZIEN,8,ORZSUB,0)
  . . . . . S ORZSIGDT=$P(ORZREC8,U,6) I $L(ORZSIGDT)>0 Q  ; Can't have a sign date/time
  . . . . . S ORZSTS=$P(ORZREC8,U,4) I ORZSTS'=2 Q  ; must be in an unsigned state
+ . . . . . N ORMINT,ORCSVAL
+ . . . . . D CSVALUE^ORDEA(.ORCSVAL,ORZIEN)
+ . . . . . S ORMINT=ORMINTIM
+ . . . . . I +ORCSVAL S ORMINT=5 ;ONLY WAIT 5 MINUTES FOR CS ORDERS
+ . . . . . S ORZTIME=$$FMADD^XLFDT(ORZNOW,0,0,-ORMINT,0) ; Order must have existed for ORZTIME minutes
  . . . . . S ORZWHEN=$P(ORZREC8,U) I ORZWHEN>ORZTIME Q  ; must have been unsigned for MINTIME
  . . . . . S ORBDFN=+ORZPAT
  . . . . . S ORNUM=ORZIEN_";"_ORZSUB
@@ -75,7 +80,7 @@ HASALERT(USER,PATIENT) ; Returns true if alert exists for user and patient
 MARKED(ORNUM) ; Returns true if the order has been marked as not needing an alert
  I $D(^XTMP(ORMARKID,"A",ORNUM))>0 Q 1
  Q 0
- ; 
+ ;
 MARK(ORNUM) ; Marks an order as already having been alerted
  S ^XTMP(ORMARKID,"A",ORNUM)=""
  S ^XTMP(ORMARKID,"B",ORZPURGE,ORNUM)=""

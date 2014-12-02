@@ -1,5 +1,5 @@
-PRCHJR03 ;OI&T/LKG - PROCESS 2237 RETURN OR CANCEL FROM ECMS CONT. ;9/14/12  17:35
- ;;5.1;IFCAP;**167**;Oct 20, 2000;Build 17
+PRCHJR03 ;OI&T/LKG - PROCESS 2237 RETURN OR CANCEL FROM ECMS CONT. ;7/10/13  12:07
+ ;;5.1;IFCAP;**167,174**;Oct 20, 2000;Build 23
  ;Per VHA Directive 2004-38, this routine should not be modified.
 LOGOMN ;Log incoming OMN^O07 message
  N PRCVAR1,PRCVAR2,PRCVAR3,PRCVAR4,PRCVAR5,X,Y
@@ -43,3 +43,22 @@ XECMSIDS(PRCIEN) ;Removes eCMS identifiers
  . D FILE^DIE("K","PRCDATA","PRCERR") S:$D(PRCERR) PRCERROR=1
  . K PRCDATA,PRCERR
  Q PRCERROR
+ ;
+ECMSRETN(PRCDA) ;Processes eCMS return of 2237 already returned by IFCAP
+ ; Ordering Officer or PPM Accountable Officer
+ ; Input parameter PRCDA contains the IEN of the 2237 entry in
+ ; file #410.
+ ; This extrinsic function returns '0' if error or '1' if successful.
+ ; As the 2237 was already returned, e-signatures were already stripped,
+ ; dollars were already uncommitted and due-ins were already reversed.
+ Q:$G(PRCDA)'>0 0
+ N PRCDATA,PRCERR,PRCERROR,PRCIEN S PRCERROR=0,PRCIEN=PRCDA_","
+ S PRCDATA(410,PRCIEN,56)=77 D FILE^DIE("K","PRCDATA","PRCERR")
+ S:$D(PRCERR) PRCERROR=1 K PRCDATA,PRCERR
+ S PRCDATA(443,PRCIEN,1.5)=77 D FILE^DIE("K","PRCDATA","PRCERR")
+ S:$D(PRCERR) PRCERROR=1 K PRCDATA,PRCERR
+ S PRCDATA(1)=^XTMP(PRCHJIND,"RETURN REASON")
+ S PRCDATA(2)=^XTMP(PRCHJIND,"RETURN COMMENT")
+ D WP^DIE(410,PRCIEN,61,"K","PRCDATA","PRCERR")
+ S:$D(PRCERR) PRCERROR=1 K PRCDATA,PRCERR
+ Q $S(PRCERROR:0,1:1)

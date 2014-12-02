@@ -1,5 +1,5 @@
 ONCPPC9B ;HIRMFO/GWB - PCE Studies of Prostate Cancer -Print ;8/15/96
- ;;2.11;ONCOLOGY;**6,16,24**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 VI S TABLE="TABLE VI - SUBSEQUENT TREATMENT"
  I IOST'?1"C".E W ! D P Q:EX=U  W ! D P Q:EX=U
  W !?25,TABLE,! D P Q:EX=U

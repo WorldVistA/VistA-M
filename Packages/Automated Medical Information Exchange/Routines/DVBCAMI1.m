@@ -1,5 +1,5 @@
 DVBCAMI1 ;ALB/GTS-557/THM-AMIS REPORT/BULLETIN TEXT ; 10/4/91  8:48 AM
- ;;2.7;AMIE;**17,149**;Apr 10, 1995;Build 16
+ ;;2.7;AMIE;**17,149,184**;Apr 10, 1995;Build 10
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;Input : DVBACDE - Priority of Exam code to get Totals for
@@ -8,8 +8,8 @@ BULLTXT(DVBACDE) ;
  S TOTRECV=TOT("RECEIVED")+TOT("INSUFF"),TOTRVTN=TOTRECV+TOT("TRANSIN")
  S DVBATXT=$$PRHD^DVBCIUTL(DVBACDE)
  S DVBATXT=$S(DVBATXT["Excludes":"Report "_DVBATXT,1:"Report for "_DVBATXT)
- ;DES Type exams required to be completed in 45 days, all others 30
- S DVBADTS=$S(((";DCS;DFD;")[(";"_DVBACDE_";")):45,1:30)
+ ;IDES Type exams required to be completed in 45 days, all others 30
+ S DVBADTS=$S(((";IDES;")[(";"_DVBACDE_";")):45,1:30)
  ;.01,.02 printed only in bulletin (if generated)
  S ^TMP($J,.01,0)=DVBATXT
  S ^TMP($J,.02,0)=" "

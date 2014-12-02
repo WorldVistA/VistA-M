@@ -1,6 +1,6 @@
-FBAACO0 ;AISC/GRR-DISPLAY PATIENT ADDRESS DATA AND EDIT ;7/13/2003
- ;;3.5;FEE BASIS;**4,38,52,57,61,75,70**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAACO0 ;AISC/GRR-DISPLAY PATIENT ADDRESS DATA AND EDIT ; 10/31/12 2:58pm
+ ;;3.5;FEE BASIS;**4,38,52,57,61,75,70,143**;JAN 30, 1995;Build 20
+ ;;Per VA Directive 6402, this routine should not be modified.
  S FBMST=$S(FBTT=1:"Y",1:""),FBTTYPE="A",FBFDC=""
  N FBEDPTAD S (FBEDPTAD(1),FBEDPTAD(2))=0
  W @IOF,"Patient:  ",$P(^DPT(DFN,0),"^") S (Y(0),HY(0))=$G(^DPT(DFN,.11)) I Y(0)="" W !,*7,"No Address information for this patient!" G EDIT
@@ -28,7 +28,9 @@ FEE ;calculates amount paid based on fee schedule
  ; if amount not passed then use fee schedule
  I '$G(FBAMTPD) D
  . N FBX
- . S FBX=$$GET^FBAAFS($$CPT^FBAAUTL4(FBAACP),$$MODL^FBAAUTL4("FBMODA","E"),FBAADT,$G(FBZIP),$$FAC^FBAAFS($G(FBHCFA(30))),$G(FBTIME))
+ .; FB*3.5*143 Adding FB1725 as a parameter to prevent incorrect
+ .; reductions in local fee schedule pricing.
+ . S FBX=$$GET^FBAAFS($$CPT^FBAAUTL4(FBAACP),$$MODL^FBAAUTL4("FBMODA","E"),FBAADT,$G(FBZIP),$$FAC^FBAAFS($G(FBHCFA(30))),$G(FBTIME),$G(FB1725))
  . ;
  . I '$G(FBAAMM1) D
  . . S FBFSAMT=$P(FBX,U),FBFSUSD=$P(FBX,U,2)
@@ -41,7 +43,8 @@ FEE ;calculates amount paid based on fee schedule
  . . W:$P(FBX,U,2)]"" $$EXTERNAL^DILFD(162.03,45,"",$P(FBX,U,2))
  . E  W !?2,"Unable to determine a FEE schedule amount."
  . ;
- . I FB1725 D
+ . ; FB*3.5*143 - Preventing 70% reduction of 75th percentile rates
+ . I FB1725,FBFSUSD'="F" D
  . . W !!?2,"**Payment is for emergency treatment under 38 U.S.C. 1725."
  . . I FBFSAMT D
  . . . S FBFSAMT=$J(FBFSAMT*.7,0,2)
@@ -51,7 +54,7 @@ FEE ;calculates amount paid based on fee schedule
  . . W !!?2,"Units Paid = ",FBUNITS
  . . Q:FBFSAMT'>0
  . . N FBFSUNIT
- . . ; determine if fee schedule can be multipled by units
+ . . ; determine if fee schedule can be multiplied by units
  . . S FBFSUNIT=$S(FBFSUSD="R":1,FBFSUSD="F"&(FBAADT>3040930):1,1:0)
  . . I FBFSUNIT D
  . . . S FBFSAMT=$J(FBFSAMT*FBUNITS,0,2)
@@ -65,7 +68,7 @@ FEE ;calculates amount paid based on fee schedule
  . ;
  . W !
  ;
-AMTPD W !,"AMOUNT PAID: "_$S(FBAMTPD]"":FBAMTPD_"//",1:"") R X:DTIME S:X="" X=FBAMTPD G KILL:$E(X)="^",HELP1:$E(X)="?" S:X["$" X=$P(X,"$",2) I +X'=X&(X'?.N.1".".2N)!(+X>+J)!(+X<0) G HELPPD
+AMTPD W !,"AMOUNT PAID: "_$S(FBAMTPD]"":FBAMTPD_"//",1:"") R X:DTIME S:X="" X=FBAMTPD G KILL:$E(X)="^",HELP1:$E(X)="?" S:X["$" X=$P(X,"$",2) I +X'=X&(X'?.N.1".".2N)!(+X<0) G HELPPD
  I FBAMTPD]"",X>FBAMTPD&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) D  G AMTPD
  .W !!,*7,"You must be a holder of the 'FBAASUPERVISOR' key to",!,"exceed the Fee Schedule. Entering an up-arrow ('^') will",!,"delete the payment or you can accept the default.",!
  S FBAMTPD=X Q

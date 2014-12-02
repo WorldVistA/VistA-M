@@ -1,5 +1,5 @@
 RORX016A ;HOIFO/BH,SG,VAC - OUTPATIENT UTILIZATION (QUERY) ;4/7/09 2:10pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13**;Feb 17, 2006;Build 27
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
@@ -13,9 +13,10 @@ RORX016A ;HOIFO/BH,SG,VAC - OUTPATIENT UTILIZATION (QUERY) ;4/7/09 2:10pm
  ;        
  ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
  ;-----------  ----------  -----------  ----------------------------------------
- ;ROR*1.5*8    MAR  2010   V CARR       Modified to handle ICD9 filter for
+ ;ROR*1.5*8    MAR 2010    V CARR       Modified to handle ICD9 filter for
  ;                                      'include' or 'exclude'.
- ;ROR*1.5*13   DEC  2010   A SAUNDERS   User can select specific patients
+ ;ROR*1.5*13   DEC 2010    A SAUNDERS   User can select specific patients
+ ;ROR*1.5*19   FEB 2012    J SCOTT      Support for ICD-10 Coding System
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -66,7 +67,7 @@ QUERY(FLAGS) ;
  S (CNT,ECNT,RC)=0
  ;--- Browse through the registry records
  S IEN=0
- S FLAG=$G(RORTSK("PARAMS","ICD9FILT","A","FILTER"))
+ S FLAG=$G(RORTSK("PARAMS","ICDFILT","A","FILTER"))
  F  S IEN=$O(@XREFNODE@(IEN))  Q:IEN'>0  D  Q:RC<0
  . S TMP=$S(RORPTN>0:CNT/RORPTN,1:"")
  . S RC=$$LOOP^RORTSK01(TMP)  Q:RC<0
@@ -77,13 +78,13 @@ QUERY(FLAGS) ;
  . I $D(RORTSK("PARAMS","PATIENTS","C")),'$D(RORTSK("PARAMS","PATIENTS","C",PATIEN)) Q
  . ;--- Check if the patient should be skipped
  . Q:$$SKIP^RORXU005(IEN,FLAGS,RORSDT,ROREDT)
- . ;--- Check the patient against the ICD9 Filter
+ . ;--- Check the patient against the ICD Filter
  . S RCC=0
  . I FLAG'="ALL" D
- . . S RCC=$$ICD^RORXU010(PATIEN,RORREG)
+ . . S RCC=$$ICD^RORXU010(PATIEN)
  . I (FLAG="INCLUDE")&(RCC=0) Q
  . I (FLAG="EXCLUDE")&(RCC=1) Q
- . ;--- End of ICD9 Filter check
+ . ;--- End of ICD Filter check
  . ;
  . ;--- Get the patient's data
  . D VADEM^RORUTL05(PATIEN,1)

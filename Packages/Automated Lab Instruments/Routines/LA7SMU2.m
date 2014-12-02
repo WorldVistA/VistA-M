@@ -1,5 +1,5 @@
-LA7SMU2 ;DALOI/JMC - Shipping Manifest Utility (Cont'd) ;11/17/11  08:50
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74**;Sep 27, 1994;Build 229
+LA7SMU2 ;DALOI/JMC - Shipping Manifest Utility (Cont'd) ;01/07/13  17:10
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74,80**;Sep 27, 1994;Build 19
  ;
  Q
  ;
@@ -64,22 +64,22 @@ DTTO(LA7SCFG,LA7VNLT,LA7HLSC,LA7HLPRI,LA7HLCSC) ; Determine test to order
  . I X S LA7X=X
  ;
  ; If SCT specimen from message does not match SCT assigned to specimen from above
- ;  then use SCT specimen from message to insure correct specimen on order.
+ ;  then set specimen to 0.
  I $P(LA7X,"^"),$P(LA7X,"^",2) D
  . F J=1,4 I $G(LA7HLSC(J+2))="SCT" D  Q
- . . I LA7HLSC(J)=$P($G(^LAB(61,$P(LA7X,"^",2),"SCT")),"^") Q
- . . S X=$O(^LAB(61,"F",LA7HLSC(J),""))
- . . I X<1 S X=+$$FINDSCT(61,LA7HLSC(J),LA7HLSC(J+1))
- . . I X>0 S $P(LA7X,"^",2)=X
+ . . N LA7SCTID
+ . . S LA7SCTID=$$GET1^DIQ(61,$P(LA7X,"^",2)_",",20,"I")
+ . . I LA7SCTID'="",LA7SCTID'=LA7HLSC(J) D
+ . . . S $P(LA7X,"^",2)=0
  ;
  ; If SCT collection sample from message does not match SCT assigned to collection sample from above
- ;  then use SCT collection sample from message to insure correct collection sample on order.
+ ;  then set collection sample to 0.
  I $P(LA7X,"^"),$P(LA7X,"^",3) D
  . F J=1,4 I $G(LA7HLCSC(J+2))="SCT" D  Q
- . . I LA7HLCSC(J)=$P($G(^LAB(62,$P(LA7X,"^",3),"SCT")),"^") Q
- . . S X=$O(^LAB(62,"F",LA7HLCSC(J),""))
- . . I X<1 S X=+$$FINDSCT(62,LA7HLCSC(J),LA7HLCSC(J+1))
- . . I X>0 S $P(LA7X,"^",3)=X
+ . . N LA7SCTID
+ . . S LA7SCTID=$$GET1^DIQ(62,$P(LA7X,"^",3)_",",20,"I")
+ . . I LA7SCTID'="",LA7SCTID'=LA7HLCSC(J) D
+ . . . S $P(LA7X,"^",3)=0
  ;
  ; For MI, SP, CY and EM find first specimen when collection sample is not mapped to a specific topography.
  ; For SP, CY and EM if no specimen then find first specimen mapped to HL7 0070 "XXX".

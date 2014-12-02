@@ -1,5 +1,5 @@
 LRHYAFT ;DALOI/HOAK - HOWDY MAIN DRIVER WITH PPOC ADDON ;08/28/2005  ;12/13/10 11:19am
- ;;5.2;LAB SERVICE;**405**;Sep 27, 1994;Build 93
+ ;;5.2;LAB SERVICE;**405,417,435**;Sep 27, 1994;Build 1
  ;
  ; TAKEN FROM LRHY0
 PICK ;
@@ -82,17 +82,20 @@ V2 ;
  R X:9999999 W !
  I X=U D SCROLOFF^LRHYBC9 QUIT
  ; Code is set to read all types of VIC card as of 9/05/2005
- I $E(X,1,9)["-" D
- .  S X=$P(X,"-")_$P(X,"-",2)_$P(X,"-",3)
- I $E(X,1,1)'=0 I '$E(X,1,1) S X=$E(X,2,10)
- I $L(X)>10 S X=$E(X,2,10)
- I $L(X)'=9 S LR3CNT=LR3CNT+1
- I $L(X)'=9 W !,"Didn't read that Partner. " W:LRHYCT'=2 "Try again." H 2 S LRHYCT=LRHYCT+1 G VET1
+ ;I $E(X,1,9)["-" D
+ ;.  S X=$P(X,"-")_$P(X,"-",2)_$P(X,"-",3)
+ ;I $E(X,1,1)'=0 I '$E(X,1,1) S X=$E(X,2,10)
+ ;I $L(X)>10 S X=$E(X,2,10)
+ ;I $L(X)'=9 S LR3CNT=LR3CNT+1
+ ;I $L(X)'=9 W !,"Didn't read that Partner. " W:LRHYCT'=2 "Try again." H 2 S LRHYCT=LRHYCT+1 G VET1
 NSCN ;
  K DFN,LRDFN,LRDPA,LRDPF,PNM,LRHYCT
  ; 
- S DFN=$O(^DPT("SSN",X,0))
- I 'DFN W !,"No record for this person." R X:15 G VET
+ ;S DFN=$O(^DPT("SSN",X,0))
+ ;
+ ; NEW CODE FOR VHIC 4.0
+ D RPCVIC^DPTLK(.DFN,X)
+ I DFN<1 W !,"No record for this person." R X:15 G VET
  S LRDFN=$G(^DPT(DFN,"LR"))
  ;
  I LRDFN D PT^LRX
@@ -150,9 +153,9 @@ PX ;
  ..  S LRXCNT(CNT)=LRX_U_LRY
  ..  S X=62,Y=5
  ..  S LRAD=$G(LRY1)
- ..  W !,CNT,")",$P(LRLBL(LRX,LRY),U,6)
+ ..  W !,CNT,") ",$P(LRLBL(LRX,LRY),U,6)
  ..  I '$G(LRAD) S LRAD=DT
- ..  W $P(^LAB(62,$P(^LRO(68,LRX,1,LRAD,1,LRY,5,1,0),U,2),0),U,3)
+ ..  W ?21,$P(^LAB(62,$P(^LRO(68,LRX,1,LRAD,1,LRY,5,1,0),U,2),0),U,3)
  S LRX=0
  S LRX=0
  S DY=5
@@ -182,7 +185,7 @@ QQQ ;
  .  S LRAD=DT
  .  I $P(^LRO(68,LRX,0),U,3)="Y" S LRAD=$E(DT,1,3)_"0000"
  .  I $P(^LRO(68,LRX,0),U,3)="M" S LRAD=$E(DT,1,5)_"00"
- .  W !,"Sending to print: ",$P($G(^LRO(68,LRX,1,LRAD,1,LRY,.3)),U) W !,"  ",$P(^LAB(62,$P(^LRO(68,LRX,1,LRAD,1,LRY,5,1,0),U,2),0),U,3)
+ .  W !,"Sending to print: ",$P($G(^LRO(68,LRX,1,LRAD,1,LRY,.3)),U),"  ",$P(^LAB(62,$P(^LRO(68,LRX,1,LRAD,1,LRY,5,1,0),U,2),0),U,3)
  .  S LRORD=$G(^LRO(68,LRX,1,LRAD,1,LRY,.1))
  .  I $P($G(LRXCNT(I)),U,2)="" QUIT
  .  S LRLBL(LRX,$P(LRXCNT(I),U,2))=LABCNT(I)_$G(LRORD)
@@ -195,11 +198,12 @@ QQQ ;
  .  S LRAD=DT
  .  I $P(^LRO(68,LRX,0),U,3)="M" S LRAD=$E(DT,1,5)_"00"
  .  I $P(^LRO(68,LRX,0),U,3)="Y" S LRAD=$E(DT,1,3)_"0000"
- .  W !,"Sending to print: ",$P($G(^LRO(68,LRX,1,LRAD,1,LRY,.3)),U) W !,"  ",$P(^LAB(62,$P(^LRO(68,LRX,1,LRAD,1,LRY,5,1,0),U,2),0),U,3)
+ .  W !,"Sending to print: ",$P($G(^LRO(68,LRX,1,LRAD,1,LRY,.3)),U),"  ",$P(^LAB(62,$P(^LRO(68,LRX,1,LRAD,1,LRY,5,1,0),U,2),0),U,3)
  .  S LR3UID=$P($G(^LRO(68,LRX,1,LRAD,1,LRY,.3)),U)
  .  S LRORD=$G(^LRO(68,LRX,1,LRAD,1,LRY,.1))
  .  S LRLBL(LRX,$P(LRXCNT(LRS),U,2))=LABCNT(LRS)_$G(LRORD)
  .  W !,"REMOVING ",LR3UID H 2
+ .  D BCE^LRHYPH0
  .  S LRSCAN=$G(LRLABTIM)
  .  K ^XTMP("LRHY LABELS",LRDFN,LRLABTIM,LR3UID)
  H 4

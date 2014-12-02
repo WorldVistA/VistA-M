@@ -1,5 +1,5 @@
 SCAPMCU2 ;ALB/REW - TEAM API UTILITIES ;6/29/99  19:40  ; Compiled May 29, 2007 15:16:13
- ;;5.3;Scheduling;**41,177,205,458**;AUG 13, 1993;Build 14
+ ;;5.3;Scheduling;**41,177,205,458,564**;AUG 13, 1993;Build 8
  ;;1.0
 DTAFTER(FILE,IEN,STATUS,DATE) ;return next date after given one
  N SCX
@@ -143,6 +143,8 @@ GETPCTP(DFN,DATE,PCROLE) ;return pc position for a date
  ; returns pointer to 404.57, if exists, 0 if not
  S ACTDT=+$O(^SCPT(404.43,"APCPOS",+DFN,+PCROLE,(DATE+.000001)),-1)
  F TPLP=0:0 S TPLP=$O(^SCPT(404.43,"APCPOS",+DFN,+PCROLE,+ACTDT,TPLP)) Q:TPLP=""!(SCTP=-1)  F TPDALP=0:0 S TPDALP=$O(^SCPT(404.43,"APCPOS",+DFN,+PCROLE,+ACTDT,TPLP,TPDALP)) Q:TPDALP=""  DO  Q:SCTP=-1
+ .;if "APCPOS" is hanging cross-reference eliminate it- SD/564
+ .I '$D(^SCPT(404.43,TPDALP,0)) K ^SCPT(404.43,"APCPOS",+DFN,+PCROLE,+ACTDT,TPLP,TPDALP) Q
  .S INACTDT=$P($G(^SCPT(404.43,+TPDALP,0)),U,4)
  .;if already an active date then an error
  .I 'INACTDT S SCTP=$S(SCTP>0:-1,1:TPLP) Q

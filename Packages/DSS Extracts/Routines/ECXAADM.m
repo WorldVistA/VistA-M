@@ -1,7 +1,7 @@
-ECXAADM ;ALB/JAP - ADM Extract Audit Report ;Oct 08, 1997
- ;;3.0;DSS EXTRACTS;**8,33**;Dec 22, 1997
+ECXAADM ;ALB/JAP - ADM Extract Audit Report ;3/27/14  16:09
+ ;;3.0;DSS EXTRACTS;**8,33,149**;Dec 22, 1997;Build 27
 EN ;entry point for ADM extract audit report
- N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,DIRUT,DTOUT,DUOUT
+ N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,DIRUT,DTOUT,DUOUT,ECXPORT,RCNT ;149
  S ECXERR=0
  ;ecxaud=0 for 'extract' audit
  S ECXHEAD="ADM",ECXAUD=0
@@ -32,6 +32,12 @@ EN ;entry point for ADM extract audit report
  ;determine output device and queue if requested
  S ECXPGM="PROCESS^ECXAADM",ECXDESC="ADM Extract Audit Report"
  S ECXSAVE("ECXHEAD")="",ECXSAVE("ECXALL")="",ECXSAVE("ECXDIV(")="",ECXSAVE("ECXARRAY(")=""
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I $G(ECXPORT) D  Q  ;149 Section added
+ .K ^TMP($J,"ECXPORT")
+ .S ^TMP($J,"ECXPORT",0)="EXTRACT LOG #^MEDICAL CENTER DIVISION^DATE RANGE OF AUDIT^WARD <DSS DEPT.>^# OF ADMISSIONS",RCNT=1
+ .D PROCESS
+ .D EXPDISP^ECXUTL1
+ .D AUDIT^ECXKILL
  W !
  D DEVICE^ECXUTLA(ECXPGM,ECXDESC,.ECXSAVE)
  I ECXSAVE("POP")=1 D  Q
@@ -82,18 +88,20 @@ PROCESS ;process data in file #727.802
  ..S TOT=$P(^TMP($J,"ECXORDER",DIV,ORDER),U,3),STOT=STOT+TOT,GTOT(DIV)=GTOT(DIV)+TOT
  ..I $D(^TMP($J,"ECXORDER",DIV,ORDER,1)) S $P(^(1),U,3)=STOT,STOT=0
  D PRINT
- D AUDIT^ECXKILL
+ I '$G(ECXPORT) D AUDIT^ECXKILL ;149
  Q
  ;
 PRINT ;print the admission data by division and ward order
- N JJ,SS,LN,PG,QFLG,WRDNM,WRDTOT,GRPNM,GRPTOT,DATA,DATA1,DIC,DA,DR,DIR
+ N JJ,SS,LN,PG,QFLG,WRDNM,WRDTOT,GRPNM,GRPTOT,DATA,DATA1,DIC,DA,DR,DIR,DIVNM ;149
  N DIRUT,DTOUT,DUOUT,IEN,FAC,ADMDT
  U IO
  I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ Q
  S (QFLG,PG)=0,$P(LN,"-",80)="",DIV=""
  F  S DIV=$O(GTOT(DIV)) Q:DIV=""  D  Q:QFLG
- .D HEADER Q:QFLG
+ .S DIVNM=$P(ECXDIV(DIV),U,2)_" ("_$P(ECXDIV(DIV),U,3)_")"_$S($P(ECXDIV(DIV),U,6)'="":(" <"_$P(ECXDIV(DIV),U,6)_">"),1:"") ;149
+ .I '$G(ECXPORT) D HEADER Q:QFLG  ;149
  .I GTOT(DIV)=0 D  Q
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=DIVNM_U_ECXARRAY("START")_" to "_ECXARRAY("END")_U_"No admission data extracted for this medical center division",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1 Q  ;149
  ..W !!,?5,"No admission data extracted for this medical center division.",!
  .S ORDER="" F  S ORDER=$O(^TMP($J,"ECXORDER",DIV,ORDER)) Q:ORDER=""  D  Q:QFLG
  ..S DATA=^TMP($J,"ECXORDER",DIV,ORDER) K DATA1 I $D(^(ORDER,1)) S DATA1=^(1)
@@ -101,31 +109,38 @@ PRINT ;print the admission data by division and ward order
  ..;don't display inactive wards unless there is admission data
  ..;don't attempt to group inactive/unordered wards
  ..I ORDER>999990 K DATA1 I WRDTOT=0 Q
- ..D:($Y+3>IOSL) HEADER Q:QFLG
- ..W !,?5,WRDNM,?45,$$RJ^XLFSTR(WRDTOT,5," ")
+ ..I '$G(ECXPORT) D:($Y+3>IOSL) HEADER Q:QFLG  ;149
+ ..I '$G(ECXPORT) W !,?5,WRDNM,?45,$$RJ^XLFSTR(WRDTOT,5," ") ;149
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=ECXEXT_U_DIVNM_U_ECXARRAY("START")_" to "_ECXARRAY("END")_U_WRDNM_U_WRDTOT,RCNT=RCNT+1 ;149
  ..;if data1 exists, then this is the end of a ward group so print group total
  ..I $G(DATA1) D  Q:QFLG
  ...S GRPNM=$P(DATA1,U,2),GRPTOT=$P(DATA1,U,3)
+ ...I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^^Ward group "_GRPNM_" subtotal:"_U_GRPTOT,RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1 Q  ;149
  ...D:($Y+3>IOSL) HEADER Q:QFLG
  ...W !,?40,"----------"
  ...W !,"Ward group "_GRPNM_" subtotal:",?45,$$RJ^XLFSTR(GRPTOT,5," ")
  ...D:($Y+3>IOSL) HEADER Q:QFLG
  ...W !!
- .D:($Y+3>IOSL) HEADER Q:QFLG
+ .I '$G(ECXPORT) D:($Y+3>IOSL) HEADER Q:QFLG  ;149
+ .I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^^Division "_$P(ECXDIV(DIV),U,2)_U_"Grand Total:"_U_GTOT(DIV),RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1 Q  ;149
  .W !!,"Division "_$P(ECXDIV(DIV),U,2)_" Grand Total:",?45,$$RJ^XLFSTR(GTOT(DIV),5," ")
  ;print patients with missing wards
+ Q:QFLG  ;149 Stop if user entered "^"
  I $D(^TMP($J,"MISWRD")) D
- .S DIV="MISWRD",ECXDIV(DIV)="^^^^^*** MISSING WARDS ***^" D HEADER
+ .S DIV="MISWRD",ECXDIV(DIV)="^^^^^*** MISSING WARDS ***^" D:'$G(ECXPORT) HEADER ;149
  .S WRDTOT=$G(^TMP($J,"MISWRD"))
- .W !,?5,"MISSING WARD",?45,$$RJ^XLFSTR(WRDTOT,5," "),!!
- .D HEAD
+ .I '$G(ECXPORT) W !,?5,"MISSING WARD",?45,$$RJ^XLFSTR(WRDTOT,5," "),!! ;149
+ .I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^^MISSING WARD"_U_WRDTOT,RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^NAME^PATIENT DFN^FACILITY^ADMISSION DATE",RCNT=RCNT+1 ;149
+ .I '$G(ECXPORT) D HEAD ;149
  .S IEN="" F  S IEN=$O(^TMP($J,"MISWRD",IEN)) Q:'IEN  D  I QFLG Q
  ..S DATA=$G(^ECX(727.802,IEN,0)),ADMDT=$P(DATA,U,9) Q:DATA=""
  ..S FAC=$P(DATA,U,4) S:FAC'="" FAC=$$GET1^DIQ(40.8,FAC,.01,"E")
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^"_$P(DATA,U,7)_U_$P(DATA,U,5)_U_FAC_U_$E(ADMDT,5,6)_"/"_$E(ADMDT,7,8)_"/"_$E(ADMDT,1,4)_" "_$E($P(DATA,U,34),1,2)_":"_$E($P(DATA,U,34),3,4),RCNT=RCNT+1 Q  ;149
  ..W !?2,$P(DATA,U,7),?8,$P(DATA,U,5),?25,$E(FAC,1,14),?45
  ..W $E(ADMDT,5,6)_"/"_$E(ADMDT,7,8)_"/"_$E(ADMDT,1,4)," "
  ..W $E($P(DATA,U,34),1,2)_":"_$E($P(DATA,U,34),3,4)
  ..D:($Y+3>IOSL) HEADER,HEAD Q:QFLG
+ I $G(ECXPORT) Q  ;149
  I $E(IOST)'="C" D
  .W @IOF S PG=PG+1
  .W !,ECXARRAY("TYPE")_" ("_ECXHEAD_") Extract Audit Report"
@@ -147,7 +162,7 @@ HEAD ;header for missing wards
  ;
 HEADER ;header and page control
  N JJ,SS,DIR,DIRUT,DTOUT,DUOUT,DSSID
- I $E(IOST)="C" D
+ I $E(IOST)="C",'QFLG D  ;149 Stop if user entered "^"
  .S SS=22-$Y F JJ=1:1:SS W !
  .I PG>0 S DIR(0)="E" W ! D ^DIR K DIR S:'Y QFLG=1
  Q:QFLG

@@ -1,6 +1,6 @@
 PRCPEILM ;WISC/RFJ-edit inventory items (list manager)              ;01 Dec 93
-V ;;5.1;IFCAP;**1**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**1,171**;Oct 20, 2000;Build 3
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  D ^PRCPUSEL Q:'$G(PRCP("I"))
 EN ;  called from protocol file from within another protocol
  N CLREND,COLUMN,ITEMDA,LINE,PRCPINPT,PRCPDATA,PRCPTYPE
@@ -8,7 +8,7 @@ EN ;  called from protocol file from within another protocol
  F  W !! S ITEMDA=$$ITEM^PRCPUITM(PRCP("I"),1,"","") Q:'ITEMDA  D
  .   L +^PRCP(445,PRCPINPT,1,ITEMDA):1 I '$T D SHOWWHO^PRCPULOC(445,PRCPINPT_"-1",0) Q
  .   D ADD^PRCPULOC(445,PRCPINPT_"-1",0,"Enter/Edit Inventory Item Data")
- .   D EN^VALM("PRCP EDIT ITEMS")
+ .   D FULL^VALM1,EN^VALM("PRCP EDIT ITEMS"),FULL^VALM1   ;PRC*5.1*171 Clear screen protect area from PRCP EDIT ITEMS Listman call
  .   I $D(^PRCP(445,PRCPINPT,1,ITEMDA)) D BLDSEG^PRCPHLFM(3,ITEMDA,PRCPINPT) ; send supply station an update of any changes to the item
  .   D CLEAR^PRCPULOC(445,PRCPINPT_"-1",0)
  .   L -^PRCP(445,PRCPINPT,1,ITEMDA)

@@ -1,6 +1,6 @@
 IBCNSOK1 ;ALB/AAS - Insurance consisitency stuff ; 2/22/93
- ;;Version 2.0 ; INTEGRATED BILLING ;; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**497**;21-MAR-94;Build 120
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 DUPCO(DFN,IBCNS,IBCDFN,IBTALK) ; -- is this a duplicate company for this patient
  ; -- make this call after selecting a company
@@ -48,12 +48,12 @@ DUPCO(DFN,IBCNS,IBCDFN,IBTALK) ; -- is this a duplicate company for this patient
 DUPCOQ Q IBDUP
  ;
 DUPPOL(IBCPOL,IBTALK) ; -- is this a duplicate policy for this company
- N I,J,X,Y,Z,IBDUP,IBCNS
- S (I,IBDUP)=0,J=$G(^IBA(355.3,IBCPOL,0)),IBCNS=+J
- F  S I=$O(^IBA(355.3,"B",IBCNS,I)) Q:'I  I I'=IBCPOL S X=$G(^IBA(355.3,I,0)) D
+ N I,J,J2,X,X2,Y,Z,IBDUP,IBCNS     ; IB*2.0*497 (vd)
+ S (I,IBDUP)=0,J=$G(^IBA(366.3,IBCPOL,0)),J2=$G(^(2)),IBCNS=+J    ; IB*2.0*497 (vd)
+ F  S I=$O(^IBA(355.3,"B",IBCNS,I)) Q:'I  I I'=IBCPOL S X=$G(^IBA(355.3,I,0)),X2=$G(^(2)) D    ; IB*2.0*497 (vd)
  .Q:'$P(X,"^",2)  ;skip individual policies
- .I $P(J,"^",3)'="",$P(J,"^",3)=$P(X,"^",3) S $P(IBDUP,"^")=1
- .I $P(J,"^",4)'="",$P(J,"^",4)=$P(X,"^",4) S $P(IBDUP,"^",2)=1
+ .I $P(J2,"^",1)'="",$P(J2,"^",1)=$P(X2,"^",1) S $P(IBDUP,"^")=1      ; IB*2.0*497 (vd)
+ .I $P(J2,"^",2)'="",$P(J2,"^",2)=$P(X2,"^",2) S $P(IBDUP,"^",2)=1    ; IB*2.0*497 (vd)
  I IBDUP,$G(IBTALK),'$D(ZTQUEUED) D
  .I $P(IBDUP,"^",1) W !!,"Warning:  There is another policy with the same Group Name."
  .I $P(IBDUP,"^",2) W !!,"Warning:  There is another policy with the same Group Number."

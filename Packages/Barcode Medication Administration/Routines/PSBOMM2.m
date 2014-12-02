@@ -1,5 +1,5 @@
 PSBOMM2 ;BIRMINGHAM/EFC-MISSED MEDS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**26,32,51,62**;Mar 2004;Build 7
+ ;;3.0;BAR CODE MED ADMIN;**26,32,51,62,74**;Mar 2004;Build 5
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
 MISSED(PSBADMN,PSBEDIT,PSBXDT) ;
@@ -102,7 +102,7 @@ LN1 ;
 DEFLT ;
  S PSBFUTR=$TR(PSBRPT(1),"~","^")
  Q:PSBRPT(1)]""
- S PSBFUTR="^^^^1^^1^1^^^^^^^^1"  ;default MM Report settings Per GUI MM report...
+ S PSBFUTR="^^^^1^^1^1^^^^^^^^1^1^1"  ;default MM Report settings Per GUI MM report...
  S X01=""
  D RPC^PSBPAR(.X01,"GETPAR","ALL","PSB RPT INCL COMMENTS")
  S $P(PSBRPT(.2),U,8)=+X01(0)

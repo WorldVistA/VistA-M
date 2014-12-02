@@ -1,5 +1,5 @@
-LRSPRPTA ;DALOI/STAFF - CY/EM/SP PATIENT RPT (cont'd) ;11/14/11  13:00
- ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+LRSPRPTA ;DALOI/STAFF - CY/EM/SP PATIENT RPT (cont'd) ;03/21/13  15:29
+ ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
  ;
  ; Continuation of LRSPRPT.
  ;
@@ -21,11 +21,12 @@ EN ; from LRSPRPT
  . W !?14,"*+* SUPPLEMENTARY REPORT HAS BEEN ADDED *+*"
  . W !?19,"*+* REFER TO BOTTOM OF REPORT *+*",!
  ;
- I $O(^LR(LRDFN,LRSS,LRI,99,0)) W !,"Comment:"
- S LRB=0
- F  S LRB=$O(^LR(LRDFN,LRSS,LRI,99,LRB)) Q:'LRB!(LR("Q"))  D
- . W !,^LR(LRDFN,LRSS,LRI,99,LRB,0)
- . I $G(LRSF515),$Y>(IOSL-11) D F^LRAPF,^LRAPF
+ ; DALOI/LMT - LR,427 - Removed comments from report to restore pre-LR,350 behavior
+ ;I $O(^LR(LRDFN,LRSS,LRI,99,0)) W !,"Comment:"
+ ;S LRB=0
+ ;F  S LRB=$O(^LR(LRDFN,LRSS,LRI,99,LRB)) Q:'LRB!(LR("Q"))  D
+ ;. W !,^LR(LRDFN,LRSS,LRI,99,LRB,0)
+ ;. I $G(LRSF515),$Y>(IOSL-11) D F^LRAPF,^LRAPF
  ;
  D:LRA W^LRSPRPT W !,"Brief Clinical History:" S LRV=.2 D F^LRSPRPT Q:LR("Q")
  D:LRA W^LRSPRPT W !,"Preoperative Diagnosis:" S LRV=.3 D F^LRSPRPT Q:LR("Q")

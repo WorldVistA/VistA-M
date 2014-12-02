@@ -1,12 +1,12 @@
-PXBDPOV ;ISL/JVS - DISPLAY POV (DIAGNOSIS) ;3/10/04 12:12pm
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**124,168**;Aug 12, 1996;Build 14
+PXBDPOV ;ISL/JVS - DISPLAY POV (DIAGNOSIS) ;24 May 2013  7:02 AM
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**124,168,199**;Aug 12, 1996;Build 51
  ;
  ;
 EN0 ;---Main entry point
  I '$D(IOCUU) D TERM^PXBCC
  ;
 HEAD ;--HEADER ON LIST
- S HEAD="- - E N C O U N T E R  D I A G N O S I S  (ICD9 CODES) - -"
+ S HEAD="- - E N C O U N T E R  D I A G N O S I S  (ICD CODES) - -"
  W !,IOCUU,?(IOM-$L(HEAD))\2,IOINHI,HEAD
  W IOINLOW,IOELEOL K HEAD
  ;
@@ -21,7 +21,7 @@ HEAD ;--HEADER ON LIST
 DPOV1 ;--Display the POV Data
  N ENTRY,K
  D UNDON^PXBCC
- W !,"No.",?5,"ICD",?13,"DESCRIPTION",?64,"PROBLEM LIST"
+ W !,"No.",?5,"ICD",?14,"DESCRIPTION",?65,"PROBLEM LIST"
  W IOEDEOP
  D UNDOFF^PXBCC
  ;
@@ -30,11 +30,12 @@ DPOV1 ;--Display the POV Data
  .S ENTRY=$G(PXBSAM(J)) I $D(PXBNPOV($P(ENTRY,"^",1))) S $P(ENTRY,"^",1)=$P(ENTRY,"^",1)_"*"
  .I $P(ENTRY,U)=0 D CIA($P(ENTRY,U,2,16)) Q
  .S K=K+1
- .W !,K,?4,$J($P($P(ENTRY,"^",1),".",1),4),".",$P($P(ENTRY,"^",1),".",2),?13,$E($P(ENTRY,"^",3),1,30),?44 W:$P(ENTRY,"^",4)["PRI" $P(ENTRY,"^",4)
+ .W !,K,?4,$J($P($P(ENTRY,"^",1),".",1),4),".",$P($P(ENTRY,"^",1),".",2),?14,$E($P(ENTRY,"^",3),1,30),?45
+ .W:$P(ENTRY,"^",4)["PRI" $P(ENTRY,"^",4)
  .I $P(ENTRY,"^",4)["PRI" W ?71,$P(ENTRY,"^",5)
- .E  W ?74,$P(ENTRY,"^",5)
+ .E  W ?75,$P(ENTRY,"^",5)
  .D DIS
- ;---Write no entries if none exsist
+ ;---Write no entries if none exist
  I '$D(PXBSAM) D NONE^PXBUTL(3)
  ;-------------UNCOMMENT TO LIST CLINIC POV TO SCREEN-----
  ;D DEF^PXBDPOV("A")
@@ -48,7 +49,7 @@ DPOV4(SIGN) ;--Display the PROVIDER Data
  ;
  ;SIGN=
  ; '+' add 10 to the starting point in ^TMP("PXBDPOV",$J)
- ; '-' subtract 10 from the starting point but not less that 0
+ ; '-' subtract 10 from the starting point but not less than 0
  ; 'BEGIN' start at the beginning
  ; 'SAME' start stays where it's at
  ; '3'--any number set start to that number
@@ -65,13 +66,13 @@ DPOV4(SIGN) ;--Display the PROVIDER Data
  I SIGN'="BEGIN" D LOC^PXBCC(3,0) W IOEDEOP
  ;
 HEAD4 ;--HEADER ON LIST
- S HEAD="- - E N C O U N T E R  D I A G N O S I S  (ICD9 CODES) - -"
+ S HEAD="- - E N C O U N T E R  D I A G N O S I S  (ICD CODES) - -"
  W !,IOCUU,?(IOM-$L(HEAD))\2,IOINHI,HEAD ;----F  W $C(32) Q:$X=(IOM-(1))
  W IOINLOW,IOELEOL K HEAD
  ;
  N ENTRY,J,K
  D UNDON^PXBCC
- W !,"No.",?5,"ICD",?13,"DESCRIPTION",?64,"PROBLEM LIST"
+ W !,"No.",?5,"ICD",?14,"DESCRIPTION",?64,"PROBLEM LIST"
  W IOEDEOP
  D UNDOFF^PXBCC
  D ARRAY
@@ -80,22 +81,23 @@ HEAD4 ;--HEADER ON LIST
  F  S J=$O(@PXTMP@(J)) Q:J=""  Q:K=(PXBSTART+11)  D
  .S ENTRY=$G(@PXTMP@(J,0)),K=K+1
  .I $P(ENTRY,U)=0 D CIA($P(ENTRY,U,2,16)) Q
+ .N PXNUMBR S PXNUMBR=$P(ENTRY,U)
  .S ENTRY=$P(ENTRY,U,2,15)
- .I $D(PXBNCPT($P(ENTRY,"^",1))) S $P(ENTRY,"^",1)=$P(ENTRY,"^",1)_"*"
- .W !,J+1\2,?4,$J($P($P(ENTRY,"^",1),".",1),4),".",$P($P(ENTRY,"^",1),".",2),?13,$E($P(ENTRY,"^",3),1,30),?44
+ .I $P(ENTRY,"^",1)'="",$D(PXBNCPT($P(ENTRY,"^",1))) S $P(ENTRY,"^",1)=$P(ENTRY,"^",1)_"*"
+ .W !,PXNUMBR,?4,$J($P($P(ENTRY,"^",1),".",1),4),$S($P(ENTRY,"^",1)'="":".",1:""),$P($P(ENTRY,"^",1),".",2),?14,$E($P(ENTRY,"^",3),1,30),?45
  .W:$P(ENTRY,"^",4)["PRI" IOINHI,$P(ENTRY,"^",4),IOINLOW
  .W ?$P(ENTRY,"^",4)["PRI"*7+53,$P(ENTRY,"^",7)
  .I $P(ENTRY,"^",4)["PRI" W ?71,$P(ENTRY,"^",5)
  .D DIS
  I SIGN'="BEGIN" W !!
- ;------------UNCOMMENT TO LIST PORVIDERS TO SCREEN--------
+ ;------------UNCOMMENT TO LIST PROVIDERS TO SCREEN--------
  ;D DEF^PXBDPOV("A")
  ;---------------------------------------------------------
  D DEF^PXBDPOV("D") I '$D(FIRST) K PXBDPOV
  Q
  ;
  ;
-DEF(CODE) ;---PROCESS DEFAULT LIST OF DIAGNOSIS
+DEF(CODE) ;---PROCESS DEFAULT LIST OF DIAGNOSES
  ; I CODE="D" JUST SEND DEFAULT
  ; I CODE="A" JUST SEND THE ARRAY OF PROVIDERS
  D POV^PXBUTL2(CLINIC,3)
@@ -133,7 +135,14 @@ ARRAY ;Set POV entries into ^TMP("PXBDPOV",$J,"DSP" for display
  F  S PX124=$O(PXBSAM(PX124)) Q:'PX124  D
  .S PXTLNS=PXTLNS+1,ENTRY=PXBSAM(PX124)
  .S PXBSAM(PX124,"LINE")=PXTLNS
- .S @PXTMP@(PXTLNS,0)=PX124_U_ENTRY
+ .N PXCODSET S PXCODSET=$P($$ICDDATA^ICDXCODE("DIAG",$P(ENTRY,U),$$CSDATE^PXDXUTL(PXBVST),"E"),U,20) I PXCODSET=30 D
+ ..N PXENTRY S PXENTRY(1)=$P(ENTRY,U,6) D PR^PXSELDS(.PXENTRY,30)
+ ..S $P(ENTRY,U,3)=$$SENTENCE^XLFSTR(PXENTRY(1))
+ ..S @PXTMP@(PXTLNS,0)=PX124_U_ENTRY
+ ..N PXENTNUM F PXENTNUM=2:1:PXENTRY D
+ ...S ENTRY=U_U_$$SENTENCE^XLFSTR(PXENTRY(PXENTNUM)),PXTLNS=PXTLNS+1
+ ...S @PXTMP@(PXTLNS,0)=U_ENTRY
+ .I PXCODSET'=30 S @PXTMP@(PXTLNS,0)=PX124_U_ENTRY
  .S PXTLNS=PXTLNS+1
  .S @PXTMP@(PXTLNS,0)=0_U_PXBSAM(PX124,"I")
  S PXBCNT=PXTLNS

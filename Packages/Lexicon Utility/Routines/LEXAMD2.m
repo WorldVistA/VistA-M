@@ -1,5 +1,5 @@
-LEXAMD2 ; ISL Look-up Check Modifiers              ; 10-15-97
- ;;2.0;LEXICON UTILITY;**6**;Sep 23, 1996
+LEXAMD2 ;ISL/KER - Look-up Check Modifiers ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**6,80**;Sep 23, 1996;Build 1
  Q
 CHKMOD ; Check Modifiers
  S LEXE=+($G(LEXE)) Q:'$D(^LEX(757.01,LEXE,0))

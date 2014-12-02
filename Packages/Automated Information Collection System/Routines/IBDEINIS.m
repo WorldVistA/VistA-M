@@ -1,5 +1,5 @@
-IBDEINIS ; ; 20-FEB-2013
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 20, 2013
+IBDEINIS ; ; 12-AUG-2014
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
 PAC(PKG,VER) ; called from package init (DIFROM7 created this routine)
  ; PKG = $T(IXF) of the INIT routine.
  ; VER is an array that is contained in DIFROM from the INIT routine
@@ -8,11 +8,11 @@ PAC(PKG,VER) ; called from package init (DIFROM7 created this routine)
  ;
  ; Site tracking updates only occur if run in a VA production primary domain
  ; account.
- I $G(^XMB("NETNAME"))'[".domain.ext" Q
+ I $G(^XMB("NETNAME"))'[".DOMAIN.EXT" Q
  Q:'$D(^%ZOSF("UCI"))  Q:'$D(^%ZOSF("PROD"))
  X ^%ZOSF("UCI") I Y'=^%ZOSF("PROD") Q
  ;
- S SERVER="S.A5CSTS@FORUM.domain.ext"
+ S SERVER="S.A5CSTS@DOMAIN.EXT"
  S PACKAGE=$P($P(PKG,";",3),U)
  S SITE=$G(^XMB("NETNAME"))
  S START=$P($G(^DIC(9.4,VER(0),"PRE")),U,2) I '$L(START) S START="Unknown"

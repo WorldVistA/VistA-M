@@ -1,5 +1,5 @@
-PXRMTERM ;SLC/PKR - Handle reminder terms. ;12/15/2010
- ;;2.0;CLINICAL REMINDERS;**4,6,11,18**;Feb 04, 2005;Build 152
+PXRMTERM ;SLC/PKR - Handle reminder terms. ;01/08/2014
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,18,26**;Feb 04, 2005;Build 404
  ;
  ;=============================================
 COPY(NOCC,SDIR,TFIEVAL,DATEORDR,FINDING,FIEVAL,STF) ;Copy the NOCC date ordered
@@ -83,7 +83,7 @@ EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;Evaluate all reminder terms in a
  ;=============================================
 EVALTERM(DFN,FINDPA,TERMARR,TFIEVAL) ;Evaluate all the findings in
  ;a term. Use the "E" cross-reference just like the finding evaluation.
- N ENODE
+ N ENODE,PXRMDEFS
  S ENODE=""
  F  S ENODE=$O(TERMARR("E",ENODE)) Q:ENODE=""  D
  . I ENODE="AUTTEDT(" D EVALTERM^PXRMEDU(DFN,.FINDPA,ENODE,.TERMARR,.TFIEVAL) Q

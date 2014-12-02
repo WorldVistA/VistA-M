@@ -1,5 +1,5 @@
 PSOHLDS2 ;BHAM ISC/PWC,SAB-Build HL7 Segments for automated interface ;11/22/06 3:24pm
- ;;7.0;OUTPATIENT PHARMACY;**156,198,255,200,268,305,336**;DEC 1997;Build 1
+ ;;7.0;OUTPATIENT PHARMACY;**156,198,255,200,268,305,336,434**;DEC 1997;Build 2
  ;DIWP supported by DBIA 10011
  ;^PS(50.606 supported by DBIA 2174
  ;^PS(50.7 supported by DBIA #2223
@@ -149,7 +149,8 @@ NTE3(PSI) ;Drug Warning Narrative
  .S WARN=$$DRUG^PSSWRNA(IDGN,DFN)
  I WARN="" Q
  S NTE3="NTE"_FS_3_FS_FS,^TMP("PSO",$J,PSI)=NTE3,CNT=1
- F J=1:1:5 S W=$P(WARN,",",J) Q:W=""  D
+ F J=1:1 S W=$P(WARN,",",J) Q:W=""  D
+ . S:CNT>1 ^TMP("PSO",$J,PSI,CNT-1)=^TMP("PSO",$J,PSI,CNT-1)_"\.sp\"
  . S TEXT=$$WTEXT^PSSWRNA(W,$G(OLAN)) I TEXT'="" S FLDX=1 D
  . . I $L(TEXT)<245 S ^TMP("PSO",$J,PSI,CNT)=TEXT,CNT=CNT+1 Q
  . . N LTH,ST,EN,TXT,WW

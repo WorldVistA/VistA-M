@@ -1,6 +1,6 @@
 IBARXEL1 ;ALB/CPM - RX COPAY EXEMPTION REMINDER REPRINT ;14-APR-95
- ;;2.0;INTEGRATED BILLING;**34,199,217**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**34,199,217,385**;21-MAR-94;Build 35
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 REPR ; Reprint a single income test reminder letter.
  S IBLET=$O(^IBE(354.6,"B","IB INCOME TEST REMINDER",0))
@@ -16,6 +16,9 @@ REPR ; Reprint a single income test reminder letter.
  I 'IBEXD W !!,"This veteran has never had an active copayment exemption status!" G REPR
  ;
  I $G(^DPT(DFN,.35)) W !!,*7,"Please note that this veteran died on ",$$DAT1^IBOUTL(+^(.35)),"."
+ ;
+ ; - VFA exemption - print not allowed
+ I $$VFAOK^IBARXEU(IBEXD) W !!,"This veteran's current exemption is based on a Means Test and a new test is not required." G REPR
  ;
  ; - display the veteran's current exemption status
  S IBEXREA=$$ACODE^IBARXEU0(IBEXD)

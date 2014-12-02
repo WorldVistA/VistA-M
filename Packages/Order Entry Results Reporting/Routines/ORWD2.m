@@ -1,5 +1,5 @@
 ORWD2 ; SLC/KCM/REV - GUI Prints; 28-JAN-1999 12:51 ;1/9/06  00:35
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,215**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,215,286**;Dec 17, 1997;Build 9
  ;
  ; PUBLIC CALLS
  ;
@@ -36,7 +36,7 @@ DEVINFO(LST,LOC,NATR,ORDERS)       ; Return device info when signing/releasing o
  . .S NPWC=+$P(NODE,U,5)
  . ; skip chart copy if nature doesn't print, no match to 'print when',
  . ; prompt parameter says don't print, or is lab child of blood bank 
- . I NPCC,NATCHT,($P(ORDERS(I),U,2)[WHENCHT),(PRMTCHT'="*"),$$NOTBB(+ORDERS(I)) S $P(LST(J),U,2)=1,DOCHT=1
+ . I NPCC,NATCHT,($P(ORDERS(I),U,2)[WHENCHT),(PRMTCHT'="*"),$$HASFMTC,$$NOTBB(+ORDERS(I)) S $P(LST(J),U,2)=1,DOCHT=1
  . ; skip label if not released, no label format, or prompt parameter
  . ; says don't print
  . I RELEASE,(PRMTLBL'="*"),$$HASFMTL S $P(LST(J),U,3)=1,DOLBL=1
@@ -53,11 +53,12 @@ DEVINFO(LST,LOC,NATR,ORDERS)       ; Return device info when signing/releasing o
 MANUAL(REC,LOC,ORDERS)   ; return device info for manual prints
  N DOCHT,DOLBL,DOREQ,DOWRK,ORDERID,I
  N PRMTCHT,PRMTLBL,PRMTREQ,PRMTWRK  ; (so undefined for DEFDEV call)
- S (DOLBL,DOREQ,DOWRK,I,J)=0,DOCHT=1,LOC=+LOC_";SC("
+ S (DOCHT,DOLBL,DOREQ,DOWRK,I,J)=0,LOC=+LOC_";SC("
  N BBPKG S BBPKG=+$O(^DIC(9.4,"B","VBECS",0))
  D INSRTBB(.ORDERS) ; insert any blood bank child lab orders into ORDERS array
  F  S I=$O(ORDERS(I)) Q:'I  D  Q:DOCHT&DOLBL&DOREQ&DOWRK
  . S ORDERID=$P(ORDERS(I),U)
+ . I $$HASFMTC,$$NOTBB(+ORDERS(I)) S DOCHT=1
  . I $$HASFMTL S DOLBL=1
  . I $$HASFMTR S DOREQ=1
  . I $$HASFMTW,$$NOTBB(+ORDERS(I)) S DOWRK=1
@@ -88,6 +89,12 @@ DEFDEV()        ; returns string of prompt flags & default devices
  . S $P(X,U,8)=$TR($$GET^XPAR("ALL^"_LOC,"ORPF WORK COPY PRINT DEVICE",1,"B"),U,";")
  E  S $P(X,U,4)="*"
  Q X
+ ;
+HASFMTC()       ; returns 1 if a chart copy format is available
+ ; called from DEVINFO & MANUAL, expects ORDERID & DOLBL to be defined
+ I DOCHT=1 Q 1  ; already know we're doing at least 1 label
+ Q ''$$GET^XPAR("SYS","ORPF CHART COPY FORMAT",1,"I")
+ ;
 HASFMTL()       ; returns 1 if a label format is available
  ; called from DEVINFO & MANUAL, expects ORDERID & DOLBL to be defined
  I DOLBL=1 Q 1  ; already know we're doing at least 1 label

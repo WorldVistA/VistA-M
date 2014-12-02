@@ -1,6 +1,12 @@
-LEXDCCS ; ISL Default Display - Select             ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDCCS ;ISL/KER - Default Display - Select ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.31)        N/A
+ ;               
+ ; External References
+ ;    ^DIR                ICR  10026
+ ;               
  ; Special Look-up in file 757.31 Display formats
  ; Entry:  S X=$$EN^LEXDCCS
  ;

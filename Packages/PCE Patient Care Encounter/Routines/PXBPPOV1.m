@@ -1,5 +1,5 @@
 PXBPPOV1 ;ISL/JVS,ESW - PROMPT POV ;4/6/05 2:41pm
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**11,112,121,124**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**11,112,121,124,199**;Aug 12, 1996;Build 51
  ;
  ;
  ;
@@ -9,19 +9,22 @@ ADDM ;--------If Multiple POV entries have been entered.
  ;
  ;
  ;
- N OK,PXBLEN,BDATA
+ N BDATA,OK,PXBLEN,PXDXDATE
+ S PXDXDATE=$$CSDATE^PXDXUTL(PXBVST)
  D WIN17^PXBCC(PXBCNT)
  S NF=0,PXBLEN=0
  I DATA[",",$E(DATA,1)'["@" S NF=1 D
  .S PXBLEN=$L(DATA,",") F PXI=1:1:PXBLEN S PXBPIECE=$P(DATA,",",PXI) D
- ..S X=PXBPIECE,DIC=80,DIC(0)="IMZ",DIC("S")="I $P($$ICDDX^ICDCODE(Y,IDATE),U,10)" D ^DIC
- ..I Y=-1 S BAD(+$G(PXBPIECE))="" Q
+ ..S Y=$$ICDDATA^ICDXCODE("DIAG",PXBPIECE,PXDXDATE,"E")
+ ..I $P(Y,U)=-1!($P(Y,U,10)'=1) S BAD($G(PXBPIECE))="" Q
  ..S $P(REQI,"^",5)=+Y
  ..S PXBNPOV(PXBPIECE)=""
  ..;
  ..;--Prompt for Primary or Secondary DIAGNOSIS
+ ..; ICD-10 Remediation note:  the next two lines display code--code (ex. 369.65--369.65)
+ ..; we think this is wrong but do not have specs to fix it.
  ..W !,"For the DIAGNOSIS: ",PXBPIECE,"--"
- ..W $P($$ICDDX^ICDCODE(PXBPIECE,IDATE),U,2),!
+ ..W $P(Y,U,2),!
  ..D WIN17^PXBCC(PXBCNT)
  ..D PRI^PXBPPOV1
  ..I $D(DIRUT) D RSET^PXBDREQ("POV") Q
@@ -44,7 +47,7 @@ ADDM ;--------If Multiple POV entries have been entered.
  Q
  ;
 DELM ;--------If Multiple deleting
- N DELM,PXBJ,BAD,PXBLEN,BDATA
+ N BAD,BDATA,DELM,PXBJ,PXBLEN
  S NF=0,PXBLEN=0 S $P(DELM,"^",3)=1
  I $E(DATA,1)="@" S DATA=$P(DATA,"@",2),NF=1 D
  .S PXBLEN=$L(DATA,",") F PXI=1:1:PXBLEN S PXBPIECE=$P(DATA,",",PXI) D
@@ -53,21 +56,23 @@ DELM ;--------If Multiple deleting
  ...I $D(GONE(PXBPIECE)) Q
  ...Q:PXBPIECE'?.N
  ...S $P(REQI,"^",9)=$O(PXBSKY(PXBPIECE,0)) ;-IEN
- ...S X=$P(PXBSAM(PXBPIECE),"^",1),DIC=80,DIC(0)="IZM",DIC("S")="I $P($$ICDDX^ICDCODE(Y,IDATE),U,10)" D ^DIC
- ...S $P(REQI,"^",5)=+Y K Y
- ...S GONE(PXBPIECE)=""
- ...D EN0^PXBSTOR(PXBVST,PATIENT,REQI)
- ...D EN1^PXKMAIN
+ ...S X=$P(PXBSAM(PXBPIECE),U,1),Y=$$ICDDATA^ICDXCODE("DIAG",X,PXDXDATE,"E")
+ ...I $P(Y,U)'=-1&($P(Y,U,10)=1) D
+ ....S $P(REQI,"^",5)=+Y K Y
+ ....S GONE(PXBPIECE)=""
+ ....D EN0^PXBSTOR(PXBVST,PATIENT,REQI)
+ ....D EN1^PXKMAIN
  ..I PXBPIECE["-" D
  ...F PXBJ=$P(PXBPIECE,"-",1):1:$P(PXBPIECE,"-",2) D
  ....I $D(GONE(PXBJ)) Q
  ....I PXBJ'>0!(PXBJ'<(PXBCNT+1)) S BAD(PXBJ)="" Q
  ....S $P(REQI,"^",9)=$O(PXBSKY(PXBJ,0)) ;-IEN
- ....S X=$P(PXBSAM(PXBJ),"^",1),DIC=80,DIC(0)="IZM",DIC("S")="I $P($$ICDDX^ICDCODE(Y,IDATE),U,10)" D ^DIC
- ....S $P(REQI,"^",5)=+Y K Y
- ....S GONE(PXBJ)=""
- ....D EN0^PXBSTOR(PXBVST,PATIENT,REQI)
- ....D EN1^PXKMAIN
+ ....S X=$P(PXBSAM(PXBJ),U,1),Y=$$ICDDATA^ICDXCODE("DIAG",X,PXDXDATE,"E")
+ ....I $P(Y,U)'=-1&($P(Y,U,10)=1) D
+ .....S $P(REQI,"^",5)=+Y K Y
+ .....S GONE(PXBJ)=""
+ .....D EN0^PXBSTOR(PXBVST,PATIENT,REQI)
+ .....D EN1^PXKMAIN
  K GONE
  I $G(NF)&($D(BAD)) D  Q
  .S (BDATA,EDATA)="" F  S BDATA=$O(BAD(BDATA)) Q:BDATA=""  S EDATA=EDATA_BDATA_"  "

@@ -1,6 +1,6 @@
 FBNHEDAT ;AISC/GRR - ENTER/EDIT AUTHORIZATION ;6/5/2009
- ;;3.5;FEE BASIS;**103,108**;JAN 30, 1995;Build 115
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.5;FEE BASIS;**103,108,139**;JAN 30, 1995;Build 127
+ ;;Per VA Directive 6402, this routine should not be modified.
  D SITEP^FBAAUTL
 RD1 S U="^" D GETVET^FBAAUTL1 G:DFN="" END
  S FBPROG="I $P(^(0),U,3)=7" D GETAUTH^FBAAUTL1 G RD1:'CNT!(FTP']"")!($D(DIRUT)) S (FBOLD,FBNEW,FBERR)=""
@@ -8,7 +8,10 @@ RD1 S U="^" D GETVET^FBAAUTL1 G:DFN="" END
  S FBPROG=7 D DATES^FBAAUTL2 S FBAA(1)=$S($G(FBBEGDT):FBBEGDT,1:FBO),FBAA(2)=$S($G(FBENDDT):FBENDDT,1:FB1)
 DR S DR=".01////^S X=FBAA(1);.02////^S X=FBAA(2)"
  ; fb*3.5*103  add REFERRING PROVIDER (161.01,104) to DR string
- S DR(1,161.01,1)="@2;.065;.07;.021;.08;S:X="""" Y=101;.085;S:X="""" Y=101;.086;101;104;.097" D ^DIE
+ ; FB*3.5*139-ICD10 REMEDIATION-jlg - modify original code to process diagnosis code based on ICD version in DR string
+ S DR(1,161.01,1)="@2;.065;.07;.021;S:FBAA(1)'<$$IMPDATE^FBCSV1(""10D"") Y=""@10"";.08;S:X="""" Y=101;.085;S:X="""" Y=101;.086;S Y=101;"
+ S DR(1,161.01,2)="@10;N XX1;S XX1=-1;S FBDFN=DFN;S EDATE=FBAA(1);S XX1=$$ASKICD10^FBASF(""ICD DIAGNOSIS"","""","""",""Y"");S:XX1<1 Y=""@10"";.087////^S X=XX1;101;104;.097" D ^DIE
+ ; End 139
  S FBNEW=$S('$D(DA):"",'$D(^FBAAA(DFN,1,DA,0)):"",1:^(0)) K DR
  I $D(Y)>0,FBNEW=""!(FBNEW=FBOLD) G RD1
  I FBNEW'=FBOLD,$P(FBNEW,"^")>$P(FBNEW,"^",2) S DR=".01////^S X=FBO;.02////^S X=FB1" D ^DIE K DR D ER G DR

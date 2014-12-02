@@ -1,5 +1,5 @@
 PSOPRVW ;BIR/SAB,MHA-enter/edit/view provider ; 2/9/07 10:39am
- ;;7.0;OUTPATIENT PHARMACY;**11,146,153,263,268,264,398**;DEC 1997;Build 10
+ ;;7.0;OUTPATIENT PHARMACY;**11,146,153,263,268,264,398,391**;DEC 1997;Build 13
  ;
  ;Ref. to ^VA(200 supp. by IA 224
  ;Ref. to ^DIC(7 supp. by IA 491
@@ -20,10 +20,12 @@ START W ! S DIC("A")="Select Provider: ",DIC("S")="I $D(^VA(200,+Y,""PS""))",DIC
  W !,"Exclusionary Checked By: "
  I $P($G(^VA(200,PRNO,"TPB")),"^",6) W $P($G(^VA(200,$P(^("TPB"),"^",6),0)),"^")
  W !,"Authorized to Write Orders: "_$S($P(^VA(200,PRNO,"PS"),"^"):"Yes",1:"No")
- W !,"Requires Cosigner: "_$S($P(^("PS"),"^",7):"Yes",1:"No"),?40,"DEA# "_$P(^VA(200,PRNO,"PS"),"^",2) I $P(^("PS"),"^",7),$D(^VA(200,+$P(^("PS"),"^",8),0)) W !,"Usual Cosigner: "_$P(^(0),"^")
- W !,"Class: " S PRCLS=+$P(^VA(200,PRNO,"PS"),"^",5),PRCLS=$S(PRCLS>0&$D(^DIC(7,PRCLS,0)):$P(^(0),"^"),1:"") W PRCLS,?40,"VA#  "_$P(^VA(200,PRNO,"PS"),"^",3)
+ W !,"Requires Cosigner: "_$S($P(^("PS"),"^",7):"Yes",1:"No"),?40,"DEA#: "_$P(^VA(200,PRNO,"PS"),"^",2) I $P(^("PS"),"^",7),$D(^VA(200,+$P(^("PS"),"^",8),0)) W !,"Usual Cosigner: "_$P(^(0),"^")
+ W !,"Detox/Maintenance ID#: "_$P(^VA(200,PRNO,"PS"),"^",11)
+ I $P($G(^VA(200,PRNO,"PS")),"^",2)]"" W ?40,"DEA Expiration Date: " S T=+$P($G(^VA(200,PRNO,"QAR")),"^",9) I T W $$FMTE^XLFDT(T)
+ W !,"Class: " S PRCLS=+$P(^VA(200,PRNO,"PS"),"^",5),PRCLS=$S(PRCLS>0&$D(^DIC(7,PRCLS,0)):$P(^(0),"^"),1:"") W PRCLS,?40,"VA#:  "_$P(^VA(200,PRNO,"PS"),"^",3)
  W !," Type: " S T=+$P(^("PS"),"^",6),L=$P(^DD(200,53.6,0),"^",3)_";"_T_":Unknown" F I=1:1 I $P($P(L,";",I),":",1)=T W $P($P(L,";",I),":",2) Q
- N NPI S NPI=$P($$NPI^XUSNPI("Individual_ID",PRNO),"^") W ?40,"NPI# "_$S(NPI>0:+NPI,1:"")
+ N NPI S NPI=$P($$NPI^XUSNPI("Individual_ID",PRNO),"^") W ?40,"NPI#: "_$S(NPI>0:+NPI,1:"")
  W !,"Remarks: "_$P(^VA(200,PRNO,"PS"),"^",9),!,"Synonym(s):  "_$S($P($G(^VA(200,PRNO,.1)),"^",4)]"":$P(^(.1),"^",4)_",",1:"")_$S($P(^(0),"^",2)]"":" "_$P(^(0),"^",2),1:"")
  W !,"Service/Section: " S PSOSSDA=$G(DA) I $P($G(^VA(200,PRNO,5)),"^") K DIQ S DIC="^DIC(49,",DA=$P(^VA(200,PRNO,5),"^"),DR=.01,DIQ="PSOSECT",DIQ(0)="E" D EN^DIQ1 W $G(PSOSECT(49,DA,.01,"E")) S DA=$G(PSOSSDA) K DR,DIC,DIQ,PSOSSDA,PSOSECT
  I $TR($G(^VA(200,PRNO,.11)),"^","")="" G NUM
@@ -42,7 +44,7 @@ ASK ;edit providers
  K DIR,DTOUT,DUOUT,DIROUT,DIRUT
  W !! S DIC("A")="Select Provider: ",(DIC,DIE)=200,DIC(0)="AEQMZ" D ^DIC G:"^"[X EX G:Y<0 ASK S (FADA,DA)=+Y
  I '$D(^VA(200,DA,"PS")) G NPRV
-ASK1 W @IOF,?25,"Provider: "_$P(^VA(200,DA,0),"^"),! F DR="TPB","PS",".11",".13",".14" D EN^DIQ
+ASK1 W @IOF,?25,"Provider: "_$P(^VA(200,DA,0),"^"),! F DR="TPB","PS","QAR",".11",".13",".14" D EN^DIQ
  K DIC,Y
 EDT W ! L +^VA(200,DA):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3)
  I '$T W $C(7),!!,"Provider Data is Being Edited by Another User!",! G QX
@@ -61,14 +63,14 @@ EDT W ! L +^VA(200,DA):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3)
  I $P(PSORTPB,"^",4)'=$P(RTPB,"^",4)!($P(PSORTPB,"^",5)'=$P(RTPB,"^",5)) D
  .S DR="53.96////"_DUZ D ^DIE
  G:$G(PSOTPBFG) QX
-ED1 S DR="53.1:53.6;I X'=4 S Y=""@1"";29;8932.1;@1;53.7;I 'X S Y=""@2"";53.8;@2;53.9;.111:.116;.131:.134;.136;.137;.138;.141",DR(2,200.05)=".01;2;3"
+ED1 S DR="53.1;53.2;53.11;53.3:53.6;I X'=4 S Y=""@1"";747.44;29;8932.1;@1;53.7;I 'X S Y=""@2"";53.8;@2;53.9;.111:.116;.131:.134;.136;.137;.138;.141",DR(2,200.05)=".01;2;3"
  D ^DIE S FADA=DA D:'$D(Y) KEY
 QX K FADA,RTPB,PSORTPB L -^VA(200,DA) Q:$G(PSOTPBFG)  G:+$G(VADA) ADD G ASK
  Q
  G:'$D(^VA(200,DA,"TPB")) ED1
 ADD ;add new providers (kernel 7)
  W !
- S VADA=$$ADD^XUSERNEW("53.91;S:'X Y=""@2"";53.92R;53.93R;53.94R;53.95R;D:X MS^PSOPRVW;@2;53.1;53.2;53.3;53.4;53.5;53.6;53.7;S:'X Y=""@1"";53.8;@1;53.9;.111:.116;.131:.134;.136;.141")
+ S VADA=$$ADD^XUSERNEW("53.91;S:'X Y=""@2"";53.92R;53.93R;53.94R;53.95R;D:X MS^PSOPRVW;@2;53.1;53.2;53.3;53.4;53.5;53.6;S:X'=4 Y=""@4"";747.44;@4;53.7;S:'X Y=""@1"";53.8;@1;53.9;.111:.116;.131:.134;.136;.141")
  S (FADA,DA)=+VADA,(DIC,DIE)="^VA(200,"
  I VADA>0,$P(VADA,"^",3),$P($G(^VA(200,DA,"TPB")),"^") D
  .S DR="53.96////"_DUZ D ^DIE

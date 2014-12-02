@@ -1,5 +1,5 @@
 BPSOSH2 ;BHAM ISC/SD/lwj/DLF - Assemble formatted claim ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Changes for NCPDP 5.1
@@ -26,7 +26,7 @@ BPSOSH2 ;BHAM ISC/SD/lwj/DLF - Assemble formatted claim ;06/01/2004
  ;Put together ascii formatted record via NCPDP Record definition
  ;
  ; Input:  
- ;   NODES  = "100^110^120" or "130^140^150^160^170^180^190^200^210^220^230^240^250^260"
+ ;   NODES  = "100^110^120" or "130^140^150^160^170^180^190^200^210^220^230^240^250^260^270^280"
  ; passed by Ref:
  ;  .IEN = Internal Entry Number array
  ;  .BPS = Formatted Data Array with claim and transaction data
@@ -51,12 +51,12 @@ XLOOP(NODES,IEN,BPS,REC) ;EP - from BPSECA1
  . Q:'$D(^BPSF(9002313.92,+IEN(9002313.92),NODE,0))
  . ;
  . ; Per NCPDP standard, reversals do not support segments listed below
- . I TYPE="B2",",260,250,240,230,220,210,200,170,150,140,"[NODE Q
+ . I TYPE="B2",",280,270,260,250,240,230,220,210,200,170,150,140,"[NODE Q
  . I TYPE="B2",VER=51,NODE=160 Q  ;COB segment not supported in a 51 reversal
  . I TYPE="B2",VER="D0",NODE=110 Q  ;Patient segment not supported in a D0 reversal
  . ;
  . ; Per NCPDP standard, eligibility does not support segments listed below
- . I TYPE="E1",",260,250,230,220,210,200,190,180,170,160,130,"[NODE Q
+ . I TYPE="E1",",280,270,260,250,230,220,210,200,190,180,170,160,130,"[NODE Q
  . ;
  . S DATAFND=0  ; indicates if data is on the segment for us to send
  . S SEGREC=""  ; segment's information
@@ -87,6 +87,8 @@ XLOOP(NODES,IEN,BPS,REC) ;EP - from BPSECA1
  .. Q:FDATA=""
  .. S FLDNUM=$P(FDATA,U,1)
  .. Q:FLDNUM=""
+ .. ;Check for alphanumeric NCPDP numbers - BPS*1*15
+ .. I $P(FLDNUM,".")'?3N S FLDNUM=$$VNUM^BPSECMPS(FLDNUM) Q:'FLDNUM
  .. ;
  .. S FLDID=$P($G(^BPSF(9002313.91,FLDIEN,5)),U)  ; BPS NCPDP FIELD DEFS, (#.06) ID
  .. ;
@@ -95,8 +97,7 @@ XLOOP(NODES,IEN,BPS,REC) ;EP - from BPSECA1
  .. ;
  .. ;transaction data
  .. S:NODE>120 FLDDATA=$G(BPS(9002313.0201,IEN(9002313.0201),FLDNUM,"I"))
- .. ;
- .. I FLDID'=$TR(FLDDATA,"0 {}") S DATAFND=1 ;fld chk-is the field empty?
+ .. I $TR($E(FLDDATA,3,999),"0 {}")'="" S DATAFND=1 ;BPS*1*15 - allow for zero in NCPDP ID
  .. ;
  .. ;check if this is the seg id - call this after fld chk since
  .. ;we don't want to send the segment if this is all there is
@@ -133,11 +134,11 @@ SEGID(ND) ; function, returns Segment ID
  ;    07 = Claim     08 = DUR/PPS              09 = Coupon
  ;    10 = Compound  11 = Pricing              12 = Prior Auth
  ;    13 = Clinical  14 = Additional Doc       15 = Facility
- ;    16 = Narrative
+ ;    16 = Narrative 17 = Purchaser            18 = Service Provider
  ;
  N FLD
  ;
- S FLD=$S(ND=110:"01",ND=120:"04",ND=130:"07",ND=140:"02",ND=150:"03",ND=160:"05",ND=170:"06",ND=180:"08",ND=190:11,ND=200:"09",ND=210:10,ND=220:12,ND=230:13,ND=240:14,ND=250:15,ND=260:16,1:"00")
+ S FLD=$S(ND=110:"01",ND=120:"04",ND=130:"07",ND=140:"02",ND=150:"03",ND=160:"05",ND=170:"06",ND=180:"08",ND=190:11,ND=200:"09",ND=210:10,ND=220:12,ND=230:13,ND=240:14,ND=250:15,ND=260:16,ND=270:17,ND=280:18,1:"00")
  S FLD="AM"_$$NFF^BPSECFM(FLD,2)
  ;
  Q FLD

@@ -1,5 +1,5 @@
 PSSSXRD ; BIR/PKR - Build indexes for drug files. ;08/30/2004
- ;;1.0;PHARMACY DATA MANAGEMENT;**62,89**;9/30/97
+ ;;1.0;PHARMACY DATA MANAGEMENT;**62,89,170**;9/30/97;Build 5
  ;
  ;Reference to ^PXRMINDX supported by DBIA #4114
  ;Reference to ADDERROR^PXRMSXRM supported by DBIA #4113
@@ -104,7 +104,7 @@ PSPA ;Build the index for the Pharmacy Patient File.
  ... S IDEN="DFN="_DFN_" D1="_DA_" NVA missing start date"
  ... D ADDERROR^PXRMSXRM(GLOBAL,IDEN,.NERROR)
  .. S SDATE=$P(TEMP,U,7)
- .. I SDATE="" S SDATE="U"_DFN_DA
+ .. I SDATE="" S SDATE="U"_DFN ;; << RJS*170
  .. S DAS=DFN_";NVA;"_DA_";0"
  .. S POI=$P(TEMP,U,1)
  .. S ^PXRMINDX("55NVA","IP",POI,DFN,STARTD,SDATE,DAS)=""

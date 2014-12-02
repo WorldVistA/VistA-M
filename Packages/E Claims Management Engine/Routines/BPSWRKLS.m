@@ -1,5 +1,5 @@
 BPSWRKLS ;ALB/SS - SEND CLAIMS TO PHARMACY WORKLIST ;12/26/07
- ;;1.0;E CLAIMS MGMT ENGINE;**7,8,11**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,8,11,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; -- main entry point for BPS PRTCL USRSCR PHARM WRKLST protocol (ECME User Screen option)
@@ -82,8 +82,7 @@ CHCKSEL(BPSARR59,BP59SENT) ;
  . ;IA 5063
  . S BPSDIV59=$P($G(^BPST(BP59,1)),U,4)
  . D AUTOREJ^PSOREJU4(.BPREJS,BPSDIV59)
- . S BPALLREJ=+$G(BPREJS(0)) ;if 1 then claims with All kind of reject codes can be sent to Pharmacy Worklist
- . I BPALLREJ=0 I $$CHCKREJ(BP59,BPSDIV59)=0 W !,"doesn't have eligible reject code to be sent to the Pharmacy Work List." Q
+ . I $$CHCKREJ(BP59,BPSDIV59)=0 W !,"doesn't have eligible reject code to be sent to the Pharmacy Work List." Q
  . S BPCNT=BPCNT+1 ;count eligible claims
  . S BP59SENT(BP59)="" ;put them in the output array
  . S BP59SENT=BPCNT
@@ -128,7 +127,6 @@ CHCKREJ(BP59,BPSDIV59) ;
  ;IA 5063
  D AUTOREJ^PSOREJU4(.BPRJS,BPSDIV59)
  ;check result
- I $G(BPRJS(0))=1 Q 1  ;any reject can be sent
  S BPRJCODE="",BPFLG=0
  F  S BPRJCODE=$O(BPRJS(1,BPRJCODE)) Q:BPRJCODE=""  I BPRJS(1,BPRJCODE)=1 S BPFLG=1 Q
  ;return 1 if the claim has at least one reject code that matches site parameter reject codes

@@ -1,5 +1,5 @@
 ONCOSUR1 ;Hines OIFO/RTK - ONCOSUR continued ;06/23/10
- ;;2.11;ONCOLOGY;**15,18,19,22,36,38,40,41,51**;Mar 07, 1995;Build 65
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 COCIT ;CLASS OF CASE (165.5,.04) INPUT TRANSFORM
  ;If CLASS OF CASE is changed, delete the existing @FAC fields

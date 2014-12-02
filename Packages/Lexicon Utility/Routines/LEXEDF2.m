@@ -1,6 +1,13 @@
-LEXEDF2 ; ISL Edit/Display a Definition (Part 2)   ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXEDF2 ;ISL/KER - Edit/Display a Definition (Part 2) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^TMP("LEXE")        SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    YN^DICN             ICR  10009
+ ;    ^DIR                ICR  10026
+ ;               
 EXP(LEXX) ; Select an expression
  N Y,LEXS,LEXC,LEXMC,LEXE,LEXI,LEXME S Y=LEXX,(LEXS,LEXC)=0
  S LEXMC=$P($G(^LEX(757.01,+Y,1)),U,1),LEXME=$P(^LEX(757,LEXMC,0),U,1)

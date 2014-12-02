@@ -1,13 +1,20 @@
-ECXWRD ;BIR/CML,ALB/JAP  Print Active Wards for Fiscal Year ;9/17/10  15:10
- ;;3.0;DSS EXTRACTS;**2,8,127**;Dec 22, 1997;Build 36
+ECXWRD ;BIR/CML,ALB/JAP  Print Active Wards for Fiscal Year ;2/19/14  12:24
+ ;;3.0;DSS EXTRACTS;**2,8,127,149**;Dec 22, 1997;Build 27
  ;
 EN ;entry point from option
- N DATE,YR,MON,FY,POP,ZTSK
+ N DATE,YR,MON,FY,POP,ZTSK,ECXPORT,CNT ;149
  D NOW^%DTC S DATE=$$FMTE^XLFDT(%,"5D"),YR=+$P(DATE,"/",3),MON=+$P(DATE,"/",1),FY=$S(MON<10:YR,1:YR+1)
  W !!,"This option prints a list of all MAS wards that were active at any time"
  W !,"during FY",FY,".  The list is sorted by Medical Center Division and displays"
  W !,"the pointer to the Hospital Location file (#44) and DSS Department data"
  W !,"if available."
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  ;149
+ I ECXPORT D  Q  ;149 Section added
+ .K ^TMP($J)
+ .S ^TMP($J,"ECXPORT",0)="DIVISION^WARD^DSS DEPT^POINTER TO FILE 44^WARD SERVICE^WARD SPECIALTY",CNT=1
+ .D START
+ .D EXPDISP^ECXUTL1
+ .K ^TMP($J),^TMP("ECXWRD",$J)
  W !!,"This report requires a print width of 132 characters.",!!
  S ECXPGM="START^ECXWRD",ECXDESC="DSS-Print Active Wards for Fiscal Year",ECXSAVE("FY")=""
  W ! D DEVICE^ECXUTLA(ECXPGM,ECXDESC,.ECXSAVE)
@@ -20,7 +27,7 @@ EN ;entry point from option
  K ECXDIVN,ECFYB,ECFYE,ECXWD,ECXWDN,ECXDEPT,ECXDESC,FY,^TMP("ECXWRD",$J)
  Q
 START ;
- N QFLG,%,%H,%I,JJ,SS,HDT,DATA
+ N QFLG,%,%H,%I,JJ,SS,HDT,DATA,ECXFY,EC,DR,DIQ,DA,DIC,ECX,PG,LN,Y ;149 adding vars to new line
  K ^TMP("ECXWRD",$J)
  S ECXFY=FY-1700
  S ECFYB=ECXFY-1_"1000",ECFYE=ECXFY_"1001"
@@ -38,21 +45,22 @@ START ;
  ..S ^TMP("ECXWRD",$J,ECXDIVN,ECXWDN)=^TMP("ECXWRD",$J,ECXDIVN,ECXWDN)_ECXDEPT_U_ECXDESC
  ;print the report
  S (PG,QFLG)=0,$P(LN,"-",130)="" D NOW^%DTC S Y=$E(%,1,12) X ^DD("DD") S HDT=Y
- D HDR
- I '$D(^TMP("ECXWRD",$J)) W !!,"NO DATA FOUND FOR THIS REPORT" Q
+ I '$G(ECXPORT) D HDR ;149
+ I '$G(ECXPORT) I '$D(^TMP("ECXWRD",$J)) W !!,"NO DATA FOUND FOR THIS REPORT" Q  ;149
  S ECXDIVN=""
  F  S ECXDIVN=$O(^TMP("ECXWRD",$J,ECXDIVN)) Q:ECXDIVN=""  Q:QFLG  D
- .D:$Y+4>IOSL HDR Q:QFLG
- .W !!,"DIVISION: ",ECXDIVN S ECXWDN="" D
+ .I '$G(ECXPORT) D:$Y+4>IOSL HDR Q:QFLG  ;149
+ .W:'$G(ECXPORT) !!,"DIVISION: ",ECXDIVN S ECXWDN="" D  ;149
  ..F  S ECXWDN=$O(^TMP("ECXWRD",$J,ECXDIVN,ECXWDN)) Q:ECXWDN=""  Q:QFLG  D
  ...S DATA=^TMP("ECXWRD",$J,ECXDIVN,ECXWDN),ECXDEPT=$P(DATA,U,4)
+ ...I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=ECXDIVN_U_ECXWDN_U_ECXDEPT_U_$P(DATA,U,1,3),CNT=CNT+1 Q  ;149
  ...D:$Y+4>IOSL HDR Q:QFLG  W !?5,$E(ECXWDN,1,20),?30,ECXDEPT,?45,$P(DATA,U,1),?60,$E($P(DATA,U,2),1,18),?80,$P(DATA,U,3)
  ...Q:ECXDEPT=""
- ...D:$Y+4>IOSL HDR Q:QFLG
+ ...I '$G(ECXPORT) D:$Y+4>IOSL HDR Q:QFLG  ;149
  ...;W !?30,"[Svc: "_$E($P(DATA,U,5),1,20)_"   "_"Prod. Unit: "_$E($P(DATA,U,6),1,40)_"   "_"Div: "_$P(DATA,U,7)_"]",!
- I $E(IOST)="C"&('QFLG) S DIR(0)="E" D  D ^DIR K DIR
+ I '$G(ECXPORT) I $E(IOST)="C"&('QFLG) S DIR(0)="E" D  D ^DIR K DIR ;149
  .S SS=22-$Y F JJ=1:1:SS W !
- W:$E(IOST)'="C" @IOF D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@"
+ I '$G(ECXPORT) W:$E(IOST)'="C" @IOF D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@" ;149
  K ECXDIVN,ECFYB,ECFYE,ECXWD,ECXWDN,ECXDEPT,ECXDESC,FY,^TMP("ECXWRD",$J)
  Q
  ;

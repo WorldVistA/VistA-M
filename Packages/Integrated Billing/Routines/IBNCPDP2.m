@@ -1,6 +1,6 @@
 IBNCPDP2 ;OAK/ELZ - PROCESSING FOR ECME RESP ;11/15/07  09:43
- ;;2.0;INTEGRATED BILLING;**223,276,342,347,363,383,405,384,411,435,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**223,276,342,347,363,383,405,384,411,435,452,526**;21-MAR-94;Build 17
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; Reference to DEC^PRCASER1 supported by IA# 593
  ; Reference to REL^PRCASVC supported by IA# 385
@@ -169,6 +169,8 @@ BILL(DFN,IBD) ; create bills
  S DIE="^DGCR(399,",DA=IBIFN
  S DR="9////1;12////"_DT D ^DIE
  ;
+ ; *526 set approving official
+ S:'$D(^VA(200,IBDUZ,0)) IBDUZ=.5
  ; pass the claim to AR
  D GVAR^IBCBB,ARRAY^IBCBB1 S PRCASV("APR")=IBDUZ D ^PRCASVC6
  I 'PRCASV("OKAY") S IBY="-1^"_$$ARERR($G(PRCAERR),1) G BILLQ

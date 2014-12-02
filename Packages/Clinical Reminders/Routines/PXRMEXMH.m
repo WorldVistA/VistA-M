@@ -1,5 +1,5 @@
-PXRMEXMH ; SLC/PKR - Clinical Reminder Exchange main help. ;05/14/2001
- ;;2.0;CLINICAL REMINDERS;;Feb 04, 2005
+PXRMEXMH ; SLC/PKR - Clinical Reminder Exchange main help. ;12/20/2013
+ ;;2.0;CLINICAL REMINDERS;**26**;Feb 04, 2005;Build 404
  ;======================================================================
 LOAD ;If necessary load the help text into the ^TMP array.
  ;Check if the help text has already been loaded.
@@ -56,6 +56,10 @@ TEXT ;Help text
  ;;LMM Load MailMan Message
  ;;    Load a MailMan message containing packed reminders
  ;;    into the Exchange File.
+ ;;
+ ;;LWH Load Web Host File
+ ;;    Load a host file containing packed reminder definitions
+ ;;    from a web site into the Exchange File.
  ;;
  ;;LR  List Reminder Definitions
  ;;    Display a list of all the reminders that are defined in the

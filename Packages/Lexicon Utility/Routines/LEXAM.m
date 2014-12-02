@@ -1,6 +1,17 @@
-LEXAM ; ISL Look-up Misc (Setup/Parse)           ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXAM ;ISL/KER - Look-up Misc (Setup/Parse) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^DD(                ICR   345
+ ;    ^DIC(               ICR   916
+ ;    ^TMP("LEXFND"       SACC 2.3.2.5.1
+ ;    ^TMP("LEXHIT"       SACC 2.3.2.5.1
+ ;    ^TMP("LEXSCH"       SACC 2.3.2.5.1
+ ;    ^TMP("LEXTKN")      SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    None
+ ;               
 SETUP(LEXSUB) ; Set up search variables
  I '$L($G(LEXSUB)) D  Q
  . S LEX("ERR",0)=+($G(LEX("ERR",0)))+1
@@ -36,7 +47,7 @@ SETUP(LEXSUB) ; Set up search variables
  ; LEXTKN(   Array by frequency
  ; LEXTKNS(  Array by input
  ;
- ; LEXLOOK   Flag for PTX^LEXTOLKN indicating parse for look-up
+ ; LEXLOOK   Flag for PTX^LEXTOKN indicating parse for look-up
  ; LEXI      Incremental counter
  ; LEXF      Frequency of occurance
  ; LEXKEY    Key for spell check
@@ -44,10 +55,10 @@ SETUP(LEXSUB) ; Set up search variables
  ; LEXKF     Tolken found
  ; LEXNK     Next tolken
  ;
-TOLKEN(LEXX) ; Return list of tolkens in ascending order of usage
+TOKEN(LEXX) ; Return list of tokens in ascending order of usage
  Q:'$L($G(LEXX))  D PARSE,ORD K ^TMP("LEXTKN",$J) Q
 PARSE ; Parse user input into tolkens
- K ^TMP("LEXTKN",$J) N X,LEXLOOK S X=LEXX,LEXLOOK="" D PTX^LEXTOLKN Q
+ K ^TMP("LEXTKN",$J) N X,LEXLOOK S X=LEXX,LEXLOOK="" D PTX^LEXTOKN Q
 ORD ; tolken list in frequency order
  Q:'$D(^TMP("LEXTKN",$J,0))  K LEXFOC,LEXTKN N LEXKEY,LEXI,LEXF,LEXK,LEXCT
  ; Get possible key

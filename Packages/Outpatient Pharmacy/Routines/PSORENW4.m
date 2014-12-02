@@ -1,5 +1,5 @@
-PSORENW4 ;BIR/SAB - rx speed renew ; 11/13/08 8:50am
- ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,37,64,46,75,71,100,130,117,152,148,264,225,301,390**;DEC 1997;Build 86
+PSORENW4 ;BIR/SAB - rx speed renew ;03/06/95
+ ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,37,64,46,75,71,100,130,117,152,148,264,225,301,390,313**;DEC 1997;Build 76
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External references L, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
@@ -20,7 +20,11 @@ SELQ K PSORNSPD,RTE,DRET,PRC,PHI S X=PSODFN_";DPT(" D ULK^ORX2,UL^PSSLOCK(PSODFN
  Q
  ;
 PROCESS ; Process one order at a time
- I $$LMREJ^PSOREJU1($P(PSOLST(ORN),"^",2)) W $C(7),!!,"Rx "_$$GET1^DIQ(52,$P(PSOLST(ORN),"^",2),.01)_" has OPEN/UNRESOLVED 3rd Party Payer Rejects!" K DIR,PSOMSG D PAUSE^VALM1 Q
+ W !!,"Now Renewing Rx # "_$$GET1^DIQ(52,$P(PSOLST(ORN),"^",2),.01)_"   Drug: "_$$GET1^DIQ(52,$P(PSOLST(ORN),"^",2),6),!
+ I $$LMREJ^PSOREJU1($P(PSOLST(ORN),"^",2)) D  K DIR,PSOMSG D PAUSE^VALM1 Q
+ . W $C(7),!,"Rx "_$$GET1^DIQ(52,$P(PSOLST(ORN),"^",2),.01)_" has OPEN/UNRESOLVED 3rd Party Payer Rejects!"
+ I $$TITRX^PSOUTL($P(PSOLST(ORN),"^",2))="t" D  K DIR,PSOMSG D PAUSE^VALM1 Q
+ . W $C(7),!,"Rx# "_$$GET1^DIQ(52,$P(PSOLST(ORN),"^",2),.01)_" is marked as 'Titration Rx' and cannot be renewed."
  D PSOL^PSSLOCK($P(PSOLST(ORN),"^",2)) I '$G(PSOMSG) W $C(7),!!,$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing Rx "_$P(^PSRX($P(PSOLST(ORN),"^",2),0),"^")),! K DIR,PSOMSG D PAUSE^VALM1 Q
  K RET,DRET,PRC,PHI S PSORENW("OIRXN")=$P(PSOLST(ORN),"^",2),PSOFROM="NEW"
  S PSORENW("RX0")=^PSRX(PSORENW("OIRXN"),0),PSORENW("RX2")=^(2),PSORENW("RX3")=^(3),PSORENW("STA")=^("STA"),PSORENW("TN")=$G(^("TN")),SIGOK=$P($G(^PSRX(PSORENW("OIRXN"),"SIG")),"^",2)

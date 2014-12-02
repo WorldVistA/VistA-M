@@ -1,5 +1,5 @@
 IBCBB0 ;ALB/ESG - IB edit check routine continuation ;12-Mar-2008
- ;;2.0;INTEGRATED BILLING;**377,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**377,400,461**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -94,3 +94,25 @@ PAYERADD(IBIFN) ; check to make sure payer address is present for all payers on 
 PAYERAX ;
  Q
  ;
+ICD10V(IBIFN) ; ICD-10 Edit Check:
+ ; Check that all bill Diagnosis and Procedures match the ICD Coding Version determined by the Statement To Date
+ N IBI,IB0,IBU2,IBU3,IBCL,IBFT,IBTDT,IBDXA,IBDX,IBPR,IBP0,IBICD10,IBERROR S IBERROR=0 I '$G(IBIFN) Q
+ ;
+ S IB0=$G(^DGCR(399,IBIFN,0)),IBCL=$P(IB0,U,5),IBFT=$P(IB0,U,19)
+ S IBU2=$G(^DGCR(399,IBIFN,"U2")),IBU3=$G(^DGCR(399,IBIFN,"U3"))
+ S IBTDT=$P($G(^DGCR(399,IBIFN,"U")),U,2)
+ ;
+ S IBICD10=$$ICD9SYS^IBACSV(IBTDT) ; ICD Diagnosis Version active for Bill
+ ; 
+ D SET^IBCSC4D(IBIFN,.IBDXA)
+ S IBDX=0 F  S IBDX=$O(IBDXA(IBDX)) Q:'IBDX  I $$ICD9VER^IBACSV(IBDX)'=IBICD10 S IBERROR=1  ; Bill Dx
+ I IBCL<3 S IBDX=+$P(IBU2,U,1) I IBDX,$$ICD9VER^IBACSV(IBDX)'=IBICD10 S IBERROR=1 ; Inpt Admitting Dx
+ I IBCL>2,IBFT=3 F IBI=8,9,10 S IBDX=+$P(IBU3,U,IBI) I IBDX,$$ICD9VER^IBACSV(IBDX)'=IBICD10 S IBERROR=1 ; OptUB PRV
+ ;
+ S IBICD10=$$ICD0SYS^IBACSV(IBTDT) ; ICD Procedure Version active for Bill
+ ;
+ S IBPR=0 F  S IBPR=$O(^DGCR(399,IBIFN,"CP",IBPR)) Q:'IBPR  D  ; Bill Procedures
+ . S IBP0=$G(^DGCR(399,IBIFN,"CP",IBPR,0)) I IBP0["ICD0(",$$ICD0VER^IBACSV(+IBP0)'=IBICD10 S IBERROR=1
+ ;
+ICD10VX I IBERROR S IBER=$G(IBER)_"IB356;"
+ Q

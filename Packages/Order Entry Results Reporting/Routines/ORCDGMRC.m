@@ -1,5 +1,5 @@
-ORCDGMRC ;SLC/MKB-Utility functions for GMRC dialogs ;3/10/03  07:34
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,26,68,100,181**;Dec 17, 1997
+ORCDGMRC ;SLC/MKB-Utility functions for GMRC dialogs ; 5/15/13 11:32am
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,26,68,100,181,361**;Dec 17, 1997;Build 39
  ; External References
  ;    DBIA 10006 Call to ^DIC
  ;    DBIA 10026 Call to ^DIR
@@ -108,7 +108,7 @@ ENPDX ; -- setup Prov Dx field
  S:$G(ORTYPE)'="Z" REQD=$S($P(ORPDX,U)="R":1,1:0)
  K:$P(ORPDX,U,2)'="L" ORDIALOG(CODE,INST)
  I $P(ORPDX,U,2)="L" S ORDIALOG(PROMPT,"?")="Select a preliminary diagnosis from the Lexicon, as text or an ICD code." K:'$L($G(ORDIALOG(CODE,INST))) ORDIALOG(PROMPT,INST)
- I $L($G(ORDIALOG(CODE,INST))),'$$STATCHK^ICDAPIU(ORDIALOG(CODE,INST),DT)  D  ;csv
+ I $L($G(ORDIALOG(CODE,INST))),'$$STATCHK^ICDXCODE("DIAGNOSIS",ORDIALOG(CODE,INST),DT)  D  ;csv
  . D EN^DDIOL("The existing diagnosis is associated with an inactive ICD-9 code.")
  . I $G(REQD) D EN^DDIOL("Another code must be selected before proceeding.")
  . I '$G(REQD) D EN^DDIOL("If another code is not selected, no code will be saved with the new order.")
@@ -121,8 +121,10 @@ LEX ; -- search Lexicon for Prov Dx
  I $L($G(ORESET)),ORESET=Y Q  ;no change
  I Y?1." " K DONE W !!,$C(7),"Use of only spaces not allowed!",! Q
  Q:$P(ORPDX,U,2)'="L"  ;free text only, no ICD code
- N DIC,DUOUT,DTOUT
- D CONFIG^LEXSET("ICD","ICD",DT)
+ N DIC,DUOUT,DTOUT,ORCS
+ S ORCS="ICD"
+ I DT>=$$IMPDATE^LEXU("10D") S ORCS="10D"
+ D CONFIG^LEXSET(ORCS,ORCS,DT)
  S DIC="^LEX(757.01,",DIC(0)="EQM",DIC("A")="Provisional Diagnosis: "
  S:$L($G(ORESET)) DIC("B")=ORESET
  D ^DIC I Y'>0 D  Q
@@ -131,7 +133,8 @@ LEX ; -- search Lexicon for Prov Dx
  . I $D(DTOUT)!$D(DUOUT) S ORQUIT=1 Q
  . I REQD,'$D(ORDIALOG(PROMPT,ORI)) K DONE W !!,$C(7),$$REQUIRED^ORCDLG1,!
  S ORDIALOG(PROMPT,ORI)=$P(Y,U,2)
- S ORDIALOG($$PTR^ORCD("OR GTX CODE"),ORI)=$G(Y(1)) K Y(1)
+ I ORCS="ICD" S ORDIALOG($$PTR^ORCD("OR GTX CODE"),ORI)=$G(Y(1)) K Y(1)
+ I ORCS="10D" S ORDIALOG($$PTR^ORCD("OR GTX CODE"),ORI)=$G(Y(30)) K Y(30)
  Q
  ;
 SERVMSG ; -- Get, display text message for service ORSERV

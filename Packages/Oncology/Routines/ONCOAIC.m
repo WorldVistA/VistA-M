@@ -1,5 +1,5 @@
 ONCOAIC ;Hines OIFO/GWB - Create first primary for a patient ;03/08/11
- ;;2.11;ONCOLOGY;**1,24,25,27,32,42,44,45,51,53**;Mar 07, 1995;Build 31
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 EN ;Create first ONCOLOGY PRINMARY (165.5) record
  D KILL

@@ -1,7 +1,9 @@
-GMRCHL7A ;SLC/DCM,MA - Receive HL-7 Message from OERR ;10/28/10  09:43
- ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,15,21,22,33,68,66**;DEC 27, 1997;Build 30
+GMRCHL7A ;SLC/DCM,MA - Receive HL-7 Message from OERR ;08/01/13  06:38
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,15,21,22,33,68,66,73**;DEC 27, 1997;Build 22
  ;
- ; This routine invokes IA #872(FILE 101 ^ORD(100)), #2053(DIE)
+ ;ICRs
+ ;;GLOBALS/FILES  #872(FILE 101 ^ORD(101))
+ ;;ROUTINES  #2053(DIE)
  ;
 URG(X) ;Return Urgency give Z-code from HL-7 segment; see ORC+9
  S X=$S(X="S":"STAT",X="R":"ROUTINE",X="ZT":"TODAY",X="Z24":"WITHIN 24 HOURS",X="Z48":"WITHIN 48 HOURS",X="Z72":"WITHIN 72 HOURS",X="ZW":"WITHIN 1 WEEK",X="ZM":"WITHIN 1 MONTH",X="ZNA":"NEXT AVAILABLE",1:X)
@@ -71,7 +73,7 @@ OBX(GMRCOBX) ;Get fields from OBX segment and set into GMRC variables
  .. S GMRCPRDG=$TR(GMRCPRDG,$C(9,10,13)," ") Q
  . I GMRCVTYP="CE" D  Q
  .. N PRDXSEG S PRDXSEG=$P(GMRCMSG,SEP1,6)
- .. S GMRCPRDG=$TR($P(PRDXSEG,"^",2),$C(9,10,13),"")_"("_$P(PRDXSEG,"^")_")"
+ .. S GMRCPRDG=$TR($P(PRDXSEG,"^",2),$C(9,10,13),"") ;_"("_$P(PRDXSEG,"^")_")" WAT/73 no longer appending (code number) to end of diagnosis text
  .. S GMRCPRCD=$P(PRDXSEG,"^")
  I GMRCOID["COMMENT" D
  .S GMRCCMT(1)=$P(GMRCMSG,SEP1,6)

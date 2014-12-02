@@ -1,5 +1,5 @@
 IBCEF22 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS ;06-FEB-96
- ;;2.0;INTEGRATED BILLING;**51,137,135,155,309,349,389,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**51,137,135,155,309,349,389,432,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;  OVERFLOW FROM ROUTINE IBCEF2
@@ -93,6 +93,8 @@ HOS(IBIFN) ; Extract rev codes for episode billed on a UB-04 into IBXDATA
  .. S IBX1(IBS,IBPO,Z,"IEN")=IBX1(IBS,IBPO,Z,"IEN")_";"_IBX1(IBS,Q,Z,"IEN")
  .. K IBX1(IBS,Q,Z)
  ;
+ D SPLIT  ; 488 ; baa
+ ;
  S IBS="",IBLN=0
  F  S IBS=$O(IBX1(IBS)) Q:IBS=""  S IBPO=0 F  S IBPO=$O(IBX1(IBS,IBPO)) Q:'IBPO  S IBSS="" F  S IBSS=$O(IBX1(IBS,IBPO,IBSS)) Q:IBSS=""  D
  . S IBX=$G(IBX1(IBS,IBPO,IBSS,1)),IBZ=$G(IBX1(IBS,IBPO,IBSS,2))
@@ -155,3 +157,39 @@ RC2CP(IBIFN,IBRCIEN) ; returns "CP" multiple pointer that corresponds to a given
  ... I OK="" S OK=1,IBCPIEN=Z
  I IBCPIEN,'$D(^DGCR(399,IBIFN,"CP",IBCPIEN)) S IBCPIEN=0
  Q IBCPIEN
+ ;
+SPLIT    ; Split codes into multiple lines as needed => baa ; 488
+ ; The max line $ amount for a printed claim is less than the max line $ amount for an electronically transmitted claim.
+ ; However, since the clearinghouse can drop to print for a myriad of reasons at any time, the lines may need to be split
+ ; so they can all fit on a printed claim line just in case. In addition, since some claims are sent to primary payers as 
+ ; electronic claims but printed for secondary claims, the lines numbers need to be the same going out to ensure the 
+ ; COB data is correct applied (previous payments adj, etc are applied to the correct line.)
+ N IBS,IBSS,DATA,CHRG,UNTS,TOT,LNS,MOD,CPT,LNK,RLNK,IBSS1,LTOT,LUNT,REC,LST,FST
+ S IBS="",IBLN=0
+ F  S IBS=$O(IBX1(IBS)) Q:IBS=""  D
+ . S LST=$O(IBX1(IBS,""),-1)  ;we have to go through each level so must reset for each
+ . S LNK=0
+ . F  S LNK=$O(IBX1(IBS,LNK)) Q:('LNK!(LNK>LST))  S IBSS="" F  S IBSS=$O(IBX1(IBS,LNK,IBSS)) Q:IBSS=""  D
+ .. S DATA=IBX1(IBS,LNK,IBSS,2)
+ .. S CHRG=$P(DATA,U,2)
+ .. S UNTS=$P(DATA,U,3)
+ .. I UNTS=1 Q  ; if only one unit can't split
+ .. S TOT=UNTS*CHRG
+ .. I TOT<=9999999.99 Q  ; if the total is less tham max we don't need to split
+ .. S LNS=TOT\9999999.99
+ .. S MOD=TOT#9999999.99
+ .. I MOD S LNS=LNS+1
+ .. I CHRG>4999999.995 S LNS=UNTS  ; if the charge is greater than half the mas can't put more than one on a line.
+ .. S LUNT=UNTS\LNS
+ .. S MOD=UNTS#LNS
+ .. I MOD S LUNT=LUNT+1
+ .. F L=1:1:LNS D
+ ... N Q
+ ... S Q=$O(IBX1(IBS,""),-1)+1
+ ... I L=1 S Q=LNK
+ ... M IBX1(IBS,Q,IBSS)=IBX1(IBS,LNK,IBSS)
+ ... S $P(IBX1(IBS,Q,IBSS,2),U,3)=LUNT,$P(IBX1(IBS,Q,IBSS,2),U,4)=LUNT*CHRG
+ ... S $P(IBX1(IBS,Q,IBSS),U,1)=LUNT,$P(IBX1(IBS,Q,IBSS),U,2)=LUNT*CHRG
+ ... I L>1 S $P(IBX1(IBS,Q,IBSS,2),U,9)=""
+ ... S UNTS=UNTS-LUNT,LUNT=$S(UNTS>LUNT:LUNT,1:UNTS)
+ Q

@@ -1,5 +1,5 @@
 ONCIPC2A ;HINES OIFO/GWB - Primary Intracranial/CNS Tumors PCE Study ;01/18/00
- ;;2.11;ONCOLOGY;**26,27**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Tumor Identification (continued)
 PTDS W !," 20. PRE-THERAPY DIAGNOSTIC STUDIES:"
  S DR="1274      ANGIOGRAPHY.................." D ^DIE G:$D(Y) JUMP

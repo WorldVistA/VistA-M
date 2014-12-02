@@ -1,6 +1,6 @@
-DINIT11 ;SFISC/GFT,XAK-INITIALIZE VA FILEMAN ;7/22/94  08:07
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT11 ;SFISC/GFT,XAK-INITIALIZE VA FILEMAN ;20DEC2010
+ ;;22.0;VA FileMan;**167**;Mar 30, 1999;Build 18
+ ;Per VHA Directive 2004-038, this routine should not be modified.
 DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G ^DINIT11A:X?.P S @("^DD("_$E($P(X," ",2),3,99)_")=Y")
  ;;0,23,0 TECHNICAL DESCRIPTION^.001^^23;0
  ;;0,50,0 DATE FIELD LAST EDITED^D^^DT;1^Q
@@ -46,6 +46,14 @@ DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G ^DINIT11A:X?.P S @("^DD("_$E($P(X," "
  ;;.1,4,0 DATE UPDATED^D^^DT;1^S %DT="ET" D ^%DT S X=Y K:Y<1 X
  ;;.1,10,0 DESCRIPTION^.101^^%D;0
  ;;.1,"IX",.01
+ ;;.1,666,0 RE-INDEXING^SI^1:NO RE-INDEXING ALLOWED;0:ALLOW REINDEXING^NOREINDEX;1
+ ;;.1,666,3 Should the re-indexing of this cross reference be prohibited?
+ ;;.1,666,21,0 ^^5^5
+ ;;.1,666,21,1,0 If you answer '1', this cross reference will not be re-indexed during a
+ ;;.1,666,21,2,0 general re-indexing of this file, whether it's done via API or
+ ;;.1,666,21,3,0 interactively. If you answer '0', which is the default, it will. A cross
+ ;;.1,666,21,4,0 reference will be re-indexed if it is specifically named in an API call.
+ ;;.1,666,21,5,0 For those APIs which re-index a single record, this restriction is ignored.
  ;;.101,0 DESCRIPTION SUB-FIELD^^.01^1
  ;;.101,0,"UP" .1
  ;;.101,.01,0 DESCRIPTION^W^^0;1^Q

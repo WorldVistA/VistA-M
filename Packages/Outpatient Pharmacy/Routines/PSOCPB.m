@@ -1,5 +1,5 @@
 PSOCPB ;BIR/BaB - pharmacy co-pay application cont'd ;1/30/07 9:08am
- ;;7.0;OUTPATIENT PHARMACY;**72,71,85,185,143,219,239,201,263,303**;DEC 1997;Build 19
+ ;;7.0;OUTPATIENT PHARMACY;**72,71,85,185,143,219,239,201,263,303,431**;DEC 1997;Build 5
  ;
  ;REF/IA
  ;DIS^SDROUT2/112
@@ -16,7 +16,7 @@ COPAY ;
  D FULL^VALM1
  I $G(PSOMESOI)=1,$G(PSORXED) W !!,"The Pharmacy Orderable Item has changed for this order. Please review any",!,"existing SC or Environmental Indicator defaults carefully for appropriateness.",! S PSOMESOI=2
  I $G(PSOMESFI)=1 W !!,"The Pharmacy Orderable Item has changed for this order. Please review any",!,"existing SC or Environmental Indicator defaults carefully for appropriateness.",! S PSOMESFI=2
- S DFN=+$G(PSODFN) D DIS^SDROUT2
+ S DFN=+$G(PSODFN) D CHKPAG^PSOMLLD2,DIS^SDROUT2
 ASK ;
  N PSOUFLAG S PSOUFLAG=0
  K PSOCPZ("DFLG"),PSONEW("NEWCOPAY")

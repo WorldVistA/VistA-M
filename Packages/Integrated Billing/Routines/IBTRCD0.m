@@ -1,6 +1,6 @@
 IBTRCD0 ;ALB/AAS - CLAIMS TRACKING - EXPAND CONTACTS SCREEN - CONT ; 02-JUL-1993
- ;;Version 2.0 ; INTEGRATED BILLING ;; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**458**;21-MAR-94;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % ;
 EN D CONT,APPEAL,INS,COMM,USER
@@ -13,7 +13,7 @@ CON1 D SET^IBCNSP(START,OFFSET," Contact Information ",IORVON,IORVOFF)
  D SET^IBCNSP(START+1,OFFSET,"    Contact Date: "_$$DAT1^IBOUTL(+IBTRCD,"2P"))
  D SET^IBCNSP(START+2,OFFSET,"Person Contacted: "_$E($P(IBTRCD,"^",6),1,20))
  D SET^IBCNSP(START+3,OFFSET,"  Contact Method: "_$$EXPAND^IBTRE(356.2,.17,$P(IBTRCD,"^",17)))
- D SET^IBCNSP(START+4,OFFSET,"Call Ref. Number: "_$E($P(IBTRCD,"^",9),1,20))
+ D SET^IBCNSP(START+4,OFFSET,"Call Ref. Number: "_$$CREFN^IBTRC(+$G(IBTRC),18))
  D SET^IBCNSP(START+5,OFFSET,"     Review Date: "_$$DAT1^IBOUTL($P(IBTRCD,"^",24)))
  I '$P(IBTRCD,"^",2) D SET^IBCNSP(START+2,OFFSET,"Patient Contacted: "_$P($G(^DPT(+$P(IBTRCD,"^",5),0)),"^"))
  Q

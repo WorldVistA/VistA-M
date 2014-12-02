@@ -1,5 +1,5 @@
 ONCOCFL1 ;Hines OIFO/GWB - [CF Automatic Casefinding-Lab Search] ;10/21/11
- ;;2.11;ONCOLOGY;**25,26,27,28,29,32,33,43,44,46,49,51,53,54,56**;Mar 07, 1995;Build 10
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 EN ;Start Date default
  S SDDEF=$P(^ONCO(160.1,OSP,0),U,5)

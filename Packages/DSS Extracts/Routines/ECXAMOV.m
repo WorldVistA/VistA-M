@@ -1,8 +1,8 @@
-ECXAMOV ;ALB/JAP - MOV Extract Audit Report ;Oct 10, 1997
- ;;3.0;DSS EXTRACTS;**8,33**;Dec 22, 1997
+ECXAMOV ;ALB/JAP - MOV Extract Audit Report ;4/2/14  13:45
+ ;;3.0;DSS EXTRACTS;**8,33,149**;Dec 22, 1997;Build 27
  ;
 EN ;entry point for MOV extract audit report
- N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR
+ N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,ECXPORT,RCNT ;149
  S ECXERR=0
  ;ecxaud=0 for 'extract' audit
  S ECXHEAD="MOV",ECXAUD=0
@@ -30,6 +30,12 @@ EN ;entry point for MOV extract audit report
  .W !!,?5,"Try again later... exiting.",!
  .D AUDIT^ECXKILL
  ;determine output device and queue if requested
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I $G(ECXPORT) D  Q  ;149 Section added
+ .K ^TMP($J,"ECXPORT")
+ .S RCNT=0
+ .D PROCESS
+ .D EXPDISP^ECXUTL1
+ .D AUDIT^ECXKILL
  W !
  S ECXPGM="PROCESS^ECXAMOV",ECXDESC="MOV Extract Audit Report"
  S ECXSAVE("ECXHEAD")="",ECXSAVE("ECXALL")="",ECXSAVE("ECXDIV(")="",ECXSAVE("ECXARRAY(")=""
@@ -95,6 +101,7 @@ PROCESS ;process data in file #727.808
  ..I ORDER>999990 K ^TMP($J,"ECXORDER",DIV,ORDER,1) Q
  ..F JJ=1:1:MOV S $P(^TMP($J,"ECXORDER",DIV,ORDER,1),U,JJ+2)=$P(STOT(DIV,ORDER),U,JJ)
  D PRINT
+ I $G(ECXPORT) Q  ;149
  D AUDIT^ECXKILL
  Q
  ;
@@ -106,8 +113,14 @@ PRINT ;print the movement data by division and ward order
  S (QFLG,PG)=0,$P(LN,"-",132)="",DIV=""
  F  S DIV=$O(GTOT(DIV)) Q:DIV=""  D  Q:QFLG
  .F TYPE=2,3 S TNM=$S(TYPE=2:"Transfer",TYPE=3:"Discharge",1:"") D HEADER Q:QFLG  S MOV="",DIVTOT=0 D  Q:QFLG
+ ..I $G(ECXPORT) D  ;149 Section added
+ ...I TYPE=2 S ^TMP($J,"ECXPORT",RCNT)="EXTRACT LOG #^DIVISION^WARD <DSS DEPT>^1^2^3^4^13^14^22^23^24^25^26^43^44^45^TRANSFER TOTALS",RCNT=RCNT+1
+ ...I TYPE=3 S ^TMP($J,"ECXPORT",RCNT)="EXTRACT LOG #^DIVISION^WARD^10^11^12^16^17^21^27^31^32^33^34^35^37^38^41^42^46^47^DISCHARGE TOTALS",RCNT=RCNT+1 ;149
  ..F  S MOV=$O(^TMP($J,"MOV",TYPE,MOV)) Q:MOV=""  S DIVTOT=DIVTOT+$P(GTOT(DIV),U,MOV)
  ..I DIVTOT=0 D  Q
+ ...I $G(ECXPORT) D  Q  ;149 Section added
+ ....S ^TMP($J,"ECXPORT",RCNT)=ECXEXT_U_$P(ECXDIV(DIV),U,2)_" ("_$P(ECXDIV(DIV),U,3)_")"_U_"No "_TNM_" data extracted for this medical center division",RCNT=RCNT+1
+ ....S ^TMP($J,"ECXPORT",RCNT)=$$REPEAT^XLFSTR("*",80),RCNT=RCNT+1
  ...W !!,"No "_TNM_" data extracted for this medical center division.",!
  ..S ORDER="" F  S ORDER=$O(^TMP($J,"ECXORDER",DIV,ORDER)) Q:ORDER=""  D  Q:QFLG
  ...S DATA=^TMP($J,"ECXORDER",DIV,ORDER) K DATA1 I $D(^(ORDER,1)) S DATA1=^(1)
@@ -117,43 +130,55 @@ PRINT ;print the movement data by division and ward order
  ....S W1=$P(WRDNM,"<",1),W2=$P(WRDNM,"<",2)
  ....S:W2="" WRDNM=$E(W1,1,14) S:W2]"" WRDNM=$$LJ^XLFSTR($E(W1,1,12),12," ")_" <"_W2
  ...D:($Y+3>IOSL) HEADER Q:QFLG
- ...W !,WRDNM S TAB=$S(TYPE=2:20,1:10),LINETOT=0
+ ...W:'$G(ECXPORT) !,WRDNM S TAB=$S(TYPE=2:20,1:10),LINETOT=0 ;149
+ ...I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=ECXEXT_U_$P(ECXDIV(DIV),U,2)_" ("_$P(ECXDIV(DIV),U,3)_")"_U_$P(DATA,U,2) ;149
  ...F  S MOV=$O(^TMP($J,"MOV",TYPE,MOV)) Q:MOV=""  D
- ....S WRDTOT=$P(DATA,U,2+MOV),TAB=TAB+6 W ?TAB,$$RJ^XLFSTR(WRDTOT,5," ") S LINETOT=LINETOT+WRDTOT
- ...S TAB=TAB+8 W ?TAB,$$RJ^XLFSTR(LINETOT,5," ")
+ ....S WRDTOT=$P(DATA,U,2+MOV),TAB=TAB+6 W:'$G(ECXPORT) ?TAB,$$RJ^XLFSTR(WRDTOT,5," ") S LINETOT=LINETOT+WRDTOT ;149
+ ....I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=^TMP($J,"ECXPORT",RCNT)_U_WRDTOT ;149
+ ...I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=^TMP($J,"ECXPORT",RCNT)_U_LINETOT,RCNT=RCNT+1 ;149
+ ...S TAB=TAB+8 W:'$G(ECXPORT) ?TAB,$$RJ^XLFSTR(LINETOT,5," ") ;149
  ...;if data1 exists, then this is the end of a ward group so print group totals
  ...I $G(DATA1) D  Q:QFLG
  ....S GRPNM=$P(DATA1,U,2) D:($Y+3>IOSL) HEADER Q:QFLG
- ....W !,?18,$E(LN,1,113)
- ....D:($Y+3>IOSL) HEADER Q:QFLG  W !,"Ward group "_GRPNM_" subtotals:",!
+ ....I '$G(ECXPORT) W !,?18,$E(LN,1,113) ;149
+ ....I '$G(ECXPORT) D:($Y+3>IOSL) HEADER Q:QFLG  W !,"Ward group "_GRPNM_" subtotals:",! ;149
+ ....I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^^"_"Ward Group "_GRPNM_$S(TYPE=2:" transfer",1:" discharge")_" subtotals" ;149
  ....D:($Y+3>IOSL) HEADER Q:QFLG
  ....S TAB=$S(TYPE=2:20,1:10),LINETOT=0
  ....F  S MOV=$O(^TMP($J,"MOV",TYPE,MOV)) Q:MOV=""  D
- .....S GRPTOT=$P(DATA1,U,2+MOV),TAB=TAB+6 W ?TAB,$$RJ^XLFSTR(GRPTOT,5," ") S LINETOT=LINETOT+GRPTOT
- ....S TAB=TAB+8 W ?TAB,$$RJ^XLFSTR(LINETOT,5," ")
+ .....S GRPTOT=$P(DATA1,U,2+MOV),TAB=TAB+6 W:'$G(ECXPORT) ?TAB,$$RJ^XLFSTR(GRPTOT,5," ") S LINETOT=LINETOT+GRPTOT ;149
+ .....I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=^TMP($J,"ECXPORT",RCNT)_U_GRPTOT ;149
+ ....I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=^TMP($J,"ECXPORT",RCNT)_U_LINETOT,RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1 ;149
+ ....S TAB=TAB+8 W:'$G(ECXPORT) ?TAB,$$RJ^XLFSTR(LINETOT,5," ") ;149
  ....D:($Y+3>IOSL) HEADER Q:QFLG
- ....W !!
+ ....I '$G(ECXPORT) W !! ;149
  ..Q:QFLG
- ..D:($Y+3>IOSL) HEADER Q:QFLG  W !!,"Division "_$P(ECXDIV(DIV),U,2)_" Grand Totals:",!
+ ..I '$G(ECXPORT) D:($Y+3>IOSL) HEADER Q:QFLG  W !!,"Division "_$P(ECXDIV(DIV),U,2)_" Grand Totals:",! ;149
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1 S ^TMP($J,"ECXPORT",RCNT)="^"_"Division "_$P(ECXDIV(DIV),U,2)_" Grand Totals^" ;149
  ..D:($Y+3>IOSL) HEADER Q:QFLG
  ..S TAB=$S(TYPE=2:20,1:10),LINETOT=0
  ..F  S MOV=$O(^TMP($J,"MOV",TYPE,MOV)) Q:MOV=""  D
- ...S GTOT=$P(GTOT(DIV),U,MOV),TAB=TAB+6 W ?TAB,$$RJ^XLFSTR(GTOT,5," ") S LINETOT=LINETOT+GTOT
+ ...S GTOT=$P(GTOT(DIV),U,MOV),TAB=TAB+6 W:'$G(ECXPORT) ?TAB,$$RJ^XLFSTR(GTOT,5," ") S LINETOT=LINETOT+GTOT ;149
+ ...I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=^TMP($J,"ECXPORT",RCNT)_U_GTOT ;149
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=^TMP($J,"ECXPORT",RCNT)_U_LINETOT,RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)=$$REPEAT^XLFSTR("*",80),RCNT=RCNT+1 Q  ;149
  ..S TAB=TAB+8 W ?TAB,$$RJ^XLFSTR(LINETOT,5," ")
  ..I $E(IOST)'="C" D LEGEND
  ;print patients with missing wards
  I $D(^TMP($J,"MISWRD")) D
  .S DIV="MISWRD",ECXDIV(DIV)="^^^^^*** MISSING WARDS ***^",TYPE=0
  .D HEADER S WRDTOT=$G(^TMP($J,"MISWRD"))
- .W !,?5,"MISSING WARD",?45,$$RJ^XLFSTR(WRDTOT,5," "),!!
- .D HEAD S IEN=""
+ .I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^^MISSING WARD"_U_WRDTOT,RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^NAME^PATIENT DFN^FACILITY^ADMISSION DATE",RCNT=RCNT+1 ;149
+ .I '$G(ECXPORT) W !,?5,"MISSING WARD",?45,$$RJ^XLFSTR(WRDTOT,5," "),!! ;149
+ .D:'$G(ECXPORT) HEAD S IEN="" ;149
  .F  S IEN=$O(^TMP($J,"MISWRD",IEN)) Q:'IEN  D  I QFLG Q
  ..S DATA=$G(^ECX(727.808,IEN,0)),ADMDT=$P(DATA,U,11) Q:DATA=""
  ..S FAC=$P(DATA,U,4) S:FAC'="" FAC=$$GET1^DIQ(42,FAC,.01,"E")
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^"_$P(DATA,U,7)_U_$P(DATA,U,5)_U_FAC_U_$E(ADMDT,5,6)_"/"_$E(ADMDT,7,8)_"/"_$E(ADMDT,1,4)_" "_$E($P(DATA,U,22),1,2)_":"_$E($P(DATA,U,22),3,4),RCNT=RCNT+1 Q  ;149
  ..W !?2,$P(DATA,U,7),?8,$P(DATA,U,5),?25,$E(FAC,1,14),?45
  ..W $E(ADMDT,5,6)_"/"_$E(ADMDT,7,8)_"/"_$E(ADMDT,1,4)," "
  ..W $E($P(DATA,U,22),1,2)_":"_$E($P(DATA,U,22),3,4)
- ..D:($Y+3>IOSL) HEADER,HEAD Q:QFLG
+ ..I '$G(ECXPORT) D:($Y+3>IOSL) HEADER,HEAD Q:QFLG  ;149
+ I $G(ECXPORT) Q  ;149
  I $E(IOST)'="C" D
  .W @IOF S PG=PG+1
  .W !,ECXARRAY("TYPE")_" ("_ECXHEAD_") Extract Audit Report"
@@ -174,6 +199,7 @@ HEAD ;header for missing wards
  ;
 HEADER ;header and page control
  N JJ,SS,TAB,DSSID
+ I $G(QFLG)!($G(ECXPORT)) Q  ;149
  I $E(IOST)="C" D
  .S SS=22-$Y F JJ=1:1:SS W !
  .I PG>0 S DIR(0)="E" W ! D ^DIR K DIR S:'Y QFLG=1

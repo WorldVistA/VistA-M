@@ -1,5 +1,5 @@
 IBCNBLP ;ALB/ARH-Ins Buffer: LM buffer process screen ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**82,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 EN ; - main entry point for screen
@@ -8,9 +8,12 @@ EN ; - main entry point for screen
  ;
 HDR ;  header code for list manager display
  N IBX,IB0,IBY,VADM,VA,VAERR S IBX=""
- I +DFN D DEM^VADPT S IBX=$E(VADM(1),1,28),IBX=IBX_$J("",35-$L(IBX))_$P(VADM(2),U,2)_"    DOB: "_$P(VADM(3),U,2)_"    AGE: "_VADM(4)
+ ;I +DFN D DEM^VADPT S IBX=$E(VADM(1),1,28),IBX=IBX_$J("",35-$L(IBX))_$P(VADM(2),U,2)_"    DOB: "_$P(VADM(3),U,2)_"    AGE: "_VADM(4)
+ ;S VALMHDR(1)=IBX
+ ;S VALMHDR(2)=" "
+ I +DFN D DEM^VADPT S IBX=$E(VADM(1),1,28)
  S VALMHDR(1)=IBX
- S VALMHDR(2)=" "
+ S VALMHDR(2)=$P(VADM(2),U,2)_"    DOB: "_$P(VADM(3),U,2)_"    AGE: "_VADM(4)
  S IB0=$G(^IBA(355.33,IBBUFDA,21))
  S IBY=$E($P(IB0,U,4),1,13),IBX=$P($G(^DIC(5,+$P(IB0,U,5),0)),U,2),IBY=IBY_$S(IBY'=""&(IBX'=""):", ",1:"")_IBX
  S IBY=$E($P(IB0,U,1),1,20)_$S(IBY'="":", ",1:"")_IBY,IBY=$S(IBY'="":"   ("_IBY_")",1:"")
@@ -86,10 +89,15 @@ GRPHDR(IBBUFDA) ; additional header lines:  display buffer entry for display of 
  S IB40=$G(^IBA(355.33,IBBUFDA,40))
  ;
  S IBX="" I 'IB40 S IBY="-" S IBX=$$SETSTR^VALM1(IBY,IBX,5,1)
- S IBY=$P(IB40,U,2) S IBX=$$SETSTR^VALM1(IBY,IBX,6,20)
- S IBY=$P(IB40,U,3) S IBX=$$SETSTR^VALM1(IBY,IBX,30,17)
- S IBY=$P(IB40,U,9) I +IBY S IBY=$P($G(^IBE(355.1,+IBY,0)),U,1) S IBX=$$SETSTR^VALM1(IBY,IBX,50,30)
+ ;S IBY=$P(IB40,U,2) S IBX=$$SETSTR^VALM1(IBY,IBX,6,20)
+ ;S IBY=$P(IB40,U,3) S IBX=$$SETSTR^VALM1(IBY,IBX,30,17)
+ S IBY=$P(IB40,U,2) S IBX=$$SETSTR^VALM1(IBY,IBX,6,80)
  S VALMHDR(4)=IBX
+ S IBY=$P(IB40,U,3) S IBX=$$SETSTR^VALM1(IBY,IBX,6,55)
+ S VALMHDR(5)=IBX
+ ;S IBY=$P(IB40,U,9) I +IBY S IBY=$P($G(^IBE(355.1,+IBY,0)),U,1) S IBX=$$SETSTR^VALM1(IBY,IBX,50,30)
+ S IBY=$P(IB40,U,9) I +IBY S IBY=$P($G(^IBE(355.1,+IBY,0)),U,1) S IBX=$$SETSTR^VALM1(IBY,IBX,6,30)
+ S VALMHDR(6)=IBX
  Q
  ;
 PATDATA(IBBUFDA) ; create string of data from buffer entry to compare with data in existing insurance entries

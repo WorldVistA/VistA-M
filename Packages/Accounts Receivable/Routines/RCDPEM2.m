@@ -1,12 +1,21 @@
 RCDPEM2 ;ALB/TMK/PJH - MANUAL ERA AND EFT MATCHING ;05-NOV-02
- ;;4.5;Accounts Receivable;**173,208,276,284**;Mar 20, 1995;Build 35
+ ;;4.5;Accounts Receivable;**173,208,276,284,293**;Mar 20, 1995;Build 15
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 MATCH1 ; Manually 'match' an ERA to an EFT
  N DA,DR,DIE,DIC,DIR,X,Y,RCEFT,RCERA,RCNAME,RCMATCH,RCQUIT,DUOUT,DTOUT
  W !,"THIS OPTION WILL ALLOW YOU TO MANUALLY MATCH AN EFT DETAIL RECORD",!,"WITH AN ERA RECORD"
 M1 S DIR("A")="SELECT THE UNMATCHED EFT TO MATCH TO AN ERA: "
- S DIR(0)="PAO^RCY(344.31,:AEMQ",DIR("S")="I '$P(^(0),U,8)"
+ ;
+ ; ** start PRCA*4.5*293 Add extra checks to filter out EFTs that have 
+ ;      a payment amount of zero or EFTs that have been removed.
+ ;      Only UNMATCHED EFTs with payment amt >0 and not removed should
+ ;      be selectable by the user.
+ ;
+ ;S DIR(0)="PAO^RCY(344.31,:AEMQ",DIR("S")="I '$P(^(0),U,8)"
+ S DIR(0)="PAO^RCY(344.31,:AEMQ",DIR("S")="I ('$P(^(0),U,8))&($P($G(^(0)),U,7))&('$P($G(^(3)),U))"
+ ; ** end PRCA*4.5*293
+ ;
  W ! D ^DIR K DIR
  I $D(DUOUT)!$D(DTOUT)!(Y<0) G M1Q
  S RCEFT=+Y,RCEFT(0)=$G(^RCY(344.31,+Y,0))

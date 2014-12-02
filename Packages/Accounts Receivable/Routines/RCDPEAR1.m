@@ -1,5 +1,5 @@
 RCDPEAR1 ;ALB/TMK/PJH - ELECTRONIC ERA AGING REPORT - FILE 344.4 ;31-OCT-02
- ;;4.5;Accounts Receivable;**173,269,276,284**;Mar 20, 1995;Build 35
+ ;;4.5;Accounts Receivable;**173,269,276,284,293**;Mar 20, 1995;Build 15
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -56,6 +56,7 @@ RPTOUT(RCPRT) ; Entrypoint for queued job, nightly job
  S RCNP=+RCNP
  I RCPRT'="" K ^TMP($J,RCPRT)
  S RCZ0=0 F  S RCZ0=$O(^RCY(344.4,"AMATCH",0,RCZ0)) Q:'RCZ0  D
+ .Q:$P($G(RCY(344.4,RCZ0,6)),U)           ; who removed the ERA - PRCA*4.5*293
  .S RC7=$P($G(^RCY(344.4,RCZ0,0)),U,7)\1  ; era file date/time
  .; Check Station/Division
  .;I '$$CHKDIV^RCDPEDAR(RCZ0,1,.VAUTD) Q

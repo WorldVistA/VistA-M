@@ -1,5 +1,5 @@
 DGROUT ;DJH/AMA - ROM UTILITIES ; 28 Apr 2004  12:24 PM
- ;;5.3;Registration;**533,572**;Aug 13, 1993
+ ;;5.3;Registration;**533,572,857**;Aug 13, 1993;Build 8
  ;
  Q   ;no direct entry
  ;
@@ -48,6 +48,14 @@ MPIOK(DGDFN,DGICN,DGLST) ;return non-local LST and ICN
  . ;
  . ;Get LST from Treating Facility List
  . S DGLST=$$TFL(DGDFN)
+ . ;
+ . ; - Adding delay for TFL to complete if MPI card scan/swipe
+ . I $G(DGNEW),DGLST'>0  D
+ . . N DGHANG
+ . . W !,"Attempting to connect to the Master Patient Index in Austin..."
+ . . W !,"Looking for other treating facilities may take some time,"
+ . . W !,"please be patient..."
+ . . F DGHANG=1:1:30 H 1 S DGLST=$$TFL(DGDFN) Q:DGLST>0
  . ;
  . I (DGLST'>0) D  Q
  . . S DGMSG(1)=" "

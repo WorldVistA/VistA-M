@@ -1,5 +1,5 @@
 YSDX3 ;SLC/DJP,HIOFO/FT - Entry of Axis 1 & 2 Diagnoses for the Mental Health Medical Record ;9/20/11 16:58
- ;;5.01;MENTAL HEALTH;**33,60**;Dec 30, 1994;Build 47
+ ;;5.01;MENTAL HEALTH;**33,60,107**;Dec 30, 1994;Build 23
  ;
  ; Called from the top by MENU option YSDIAGE
  ;
@@ -13,6 +13,8 @@ ENTRY ;Initial entry of DSM diagnosis
  ;D RECORD^YSDX0001("ENTRY^YSDX3") ;Used for testing.  Inactivated in YSDX0001...
  S:'$D(YSDUZ) YSDUZ=$P(^VA(200,DUZ,0),U) W @IOF,!!?IOM-$L("ENTRY OF DIAGNOSIS")\2,"ENTRY OF DIAGNOSIS",!! K YSQT D ^YSLRP Q:$D(YSPLIC)  I YSTOUT!YSUOUT!(YSDFN'>0) Q
  ;
+DXDATE S %DT="AER",%DT("A")="DATE/TIME OF DIAGNOSIS: ",%DT("B")="NOW" D ^%DT I Y=-1 S YSQT=1 Q
+ S YSDXDAT=Y K %DT
  ;OLD ;  Called by routine YSCEN1
  ;Check for diagnosis formulated under DSM-III (File ^MR)
  ;D RECORD^YSDX0001("OLD^YSDX3") ;Used for testing.  Inactivated in YSDX0001
@@ -31,12 +33,21 @@ QUES1 ;Subroutine presents questions for Axes 1&2
  ;
 DUPLCK ;Checks for and displays possible duplicate entries
  ;D RECORD^YSDX0001("DUPLCK^YSDX3") ;Used for testing.  Inactivated in YSDX0001...
- S:'$D(YSDXDA) YSDXDA=+Y S:'$D(S2) S2=+Y S W2="",W1=S2_";"_"YSD(627.7," F  S W2=$O(^YSD(627.8,"AG","D",YSDFN,W1,W2)) Q:W2=""  S YSDUPDA=W2 D DUPL^YSDX3UA
+ S:'$D(YSDXDA) YSDXDA=+Y S:'$D(S2) S2=+Y
+ N YSACSREC,YSICDVSN S YSACSREC=$$ACTDT^YSDXUTL(YSDXDAT),YSICDVSN=$P(^YSD(627.7,S2,0),U,8)
+ S:YSICDVSN="" YSICDVSN="9"
+ I YSICDVSN="9",$P(YSACSREC,U,1)'="ICD" D  G QUES1
+ . W !!,"DSM DIAGNOSIS is associated with ICD-9 ICD VERSION but should be associated"
+ . W !,"with the ICD-10 ICD VERSION for the entered DATE/TIME OF DIAGNOSIS."
+ I YSICDVSN="10",$P(YSACSREC,U,1)="ICD" D  G QUES1
+ . W !!,"DSM DIAGNOSIS is associated with ICD-10 ICD VERSION but should be associated"
+ . W !,"with the ICD-9 ICD VERSION for the entered DATE/TIME OF DIAGNOSIS."
+ S W2="",W1=S2_";"_"YSD(627.7," F  S W2=$O(^YSD(627.8,"AG","D",YSDFN,W1,W2)) Q:W2=""  S YSDUPDA=W2 D DUPL^YSDX3UA
 CORR ;
  ;D RECORD^YSDX0001("CORR^YSDX3") ;Used for testing.  Inactivated in YSDX0001...
  S YSWN=$P(^YSD(627.7,+YSDXDA,0),U),YSW=$G(^YSD(627.7,+YSDXDA,"D"))
  S %=0 F  Q:$G(%)  W !!?10,YSWN_" "_YSW,!!,"Is this the DSM Dx you wish to select" S %=2 D
- .D YN^DICN S YSTOUT=$D(DTOUT),YSUOUT=$D(DUOUT) I YSTOUT!YSUOUT Q 
+ .D YN^DICN S YSTOUT=$D(DTOUT),YSUOUT=$D(DUOUT) I YSTOUT!YSUOUT Q
  .I '% W !!,"""YES"" indicates the diagnosis entered applies to ",YSNM,"."
  I %=2 K YSDXDA,X1,YSDXST,YSLC,YSLCN,YSW,YSWN,YSY,S1,S2,S3,YSDXD,YSDXDA1,YSDXDT,YSDXND,YSDTY,W1,W2,W3,W4,W5 G QUES1
  I %=-1 Q
@@ -48,9 +59,7 @@ FILE ;
  S DIC="^YSD(627.8,",DIC(0)="L",DLAYGO=627.8 D FILE^DICN D:Y<0 END^YSDX3U S YSDA=+Y,YSDXDA=YSDXDA_";YSD(627.7,"
  S YSDXDA1=$P(YSDXDA,";") D MODIF^YSDX3UB G:$D(YSQT) QUES1
  D FILE^YSDX3UA
- K DO,F1,F2,F3,K1,K2,K3,K4,K5,K6,L2,L3,L4,L5,L7,P2,P3,P4,P5,S2,W1,W2,W3,W4,W5,W6,X,X1,YSDA,YSDTY,YSDXDA,YSDXDA1,YSDXDT,YSDXN,YSDXNN,YSDXST,YSMOD,YSW,YSWN,YSY
- G QUES1
- ;
+ K YSDXDA,YSDA,YSDTY,YSDXDA1,YSDXDT,YSDXN,YSDXNN,YSDXST,YSMOD,YSW,YSWN,YSY,F1,F2,F3,K1,K2,K3,K4,K5,K6,L2,L3,L4,L5,L7,P2,P3,P4,P5,S2,W1,W2,W3,W4,W5,W6,X,X1 G QUES1
  ;OLDP ;
  ;D RECORD^YSDX0001("OLDP^YSDX3") ;Used for testing.  Inactivated in YSDX0001...
  ;S %=0 F  Q:$G(%)  W !!,"This patient has diagnoses formulated under DSM-III criteria.",!,"Do you wish to review" S %=2 D

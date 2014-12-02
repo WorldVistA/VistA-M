@@ -1,5 +1,5 @@
-LA7SMU2A ;DALOI/JMC - Shipping Manifest Utility (Cont'd) ;11/17/11  09:07
- ;;5.2;AUTOMATED LAB INSTRUMENTS;*74**;Sep 27, 1994;Build 229
+LA7SMU2A ;DALOI/JMC - Shipping Manifest Utility (Cont'd) ;10/23/12  11:08
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**74,80**;Sep 27, 1994;Build 19
  ;
  Q
  ;

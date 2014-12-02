@@ -1,10 +1,10 @@
 IBCNEDE1 ;DAOU/DAC - eIV INSURANCE BUFFER EXTRACT ;04-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,438,435,467**;21-MAR-94;Build 11
+ ;;2.0;INTEGRATED BILLING;**184,271,416,438,435,467,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
  ; This routine loops through the insurance buffer and 
- ; creates eIV transaction queue entries when approriate.
+ ; creates eIV transaction queue entries when appropriate.
  ; Periodically check for stop request for background task
  ;
  Q   ; no direct calls allowed
@@ -30,7 +30,7 @@ EN ; Loop through designated cross-references for updates
  S CNT=0       ; Initialize count of TQ entries created
  S IBCNETOT=0  ; Initialize count for periodic TaskMan check
  ;
- S LOOPDT="" ; Date used to loop throught the IB global
+ S LOOPDT="" ; Date used to loop through the IB global
  F  S LOOPDT=$O(^IBA(355.33,"AEST","E",LOOPDT)) Q:LOOPDT=""!(CNT=MAXCNT)  D  Q:$G(ZTSTOP)
  . S IEN=""
  . F  S IEN=$O(^IBA(355.33,"AEST","E",LOOPDT,IEN)) Q:IEN=""!(CNT=MAXCNT)  D  Q:$G(ZTSTOP)
@@ -56,7 +56,8 @@ EN ; Loop through designated cross-references for updates
  .. I $P($G(^DPT(DFN,0)),U,21) Q           ; Exclude if test patient
  .. ;
  .. S PDOD=$P($G(^DPT(DFN,.35)),U,1)\1     ; Patient's date of death
- .. S SRVICEDT=DT I PDOD S SRVICEDT=PDOD             ; Service Date
+ .. S SRVICEDT=+$P($G(^IBA(355.33,IEN,0)),U,18) S:'SRVICEDT SRVICEDT=DT ; Service Date
+ .. I PDOD,PDOD<SRVICEDT S SRVICEDT=PDOD
  .. S FRESHDT=$$FMADD^XLFDT(SRVICEDT,-FRESHDAY)
  .. S PAYERSTR=$$INSERROR^IBCNEUT3("B",IEN)          ; Payer String
  .. S PAYERID=$P(PAYERSTR,U,3),PIEN=$P(PAYERSTR,U,2) ; Payer ID
@@ -104,7 +105,7 @@ EN ; Loop through designated cross-references for updates
 TQ ; Determine how many entries to create in the TQ file and set entries
  ;
  K SIDARRAY
- S BSID=$P($G(^IBA(355.33,IEN,60)),U,4)   ; Subscriber ID from buffer
+ S BSID=$P($G(^IBA(355.33,IEN,90)),U,3)   ; Subscriber ID from buffer (IB*2.0*497 - vd)
  S PATID=$P($G(^IBA(355.33,IEN,62)),U)    ; Patient ID from buffer
  S PREL=$P($G(^IBA(355.33,IEN,60)),U,14)  ; Pat. relationship from buffer
  S SIDDATA=$$SIDCHK^IBCNEDE5(PIEN,DFN,BSID,.SIDARRAY,FRESHDT) ;determine rules to follow
@@ -125,10 +126,10 @@ TQ ; Determine how many entries to create in the TQ file and set entries
 RET ; Record Retrieval - Insurance Buffer
  ;
  S ORIGINSR=$P($G(^IBA(355.33,IEN,20)),U,1) ;Original ins. co.
- S ORGRPSTR=$G(^IBA(355.33,IEN,40)) ; Original group string
- S ORGRPNUM=$P(ORGRPSTR,U,3) ;Original group number
- S ORGRPNAM=$P(ORGRPSTR,U,2) ;Original group name
- S ORGSUBCR=$P($G(^IBA(355.33,IEN,60)),U,4) ; Original subscriber
+ S ORGRPSTR=$G(^IBA(355.33,IEN,90)) ; Original group string (IB*2.0*497 - vd)
+ S ORGRPNUM=$P(ORGRPSTR,U,2) ;Original group number (IB*2.0*497 - vd)
+ S ORGRPNAM=$P(ORGRPSTR,U,1) ;Original group name (IB*2.0*497 - vd)
+ S ORGSUBCR=$P(ORGRPSTR,U,3) ; Original subscriber (IB*2.0*497 - vd)
  ;
  Q
  ;

@@ -1,5 +1,5 @@
 DVBCAMR1 ;ALB/GTS-557/THM-REGIONAL OFFICE AMIS REPORT BULLETIN TEXT ; 9/28/91  6:39 AM
- ;;2.7;AMIE;**149**;Apr 10, 1995;Build 16
+ ;;2.7;AMIE;**149,184**;Apr 10, 1995;Build 10
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;Input: DVBACDE - Priority of Exam code to get Totals for
@@ -8,7 +8,7 @@ BULLTXT(DVBACDE) ;
  S DVBATXT=$$PRHD^DVBCIUTL(DVBACDE)
  S DVBATXT=$S(DVBATXT["Excludes":"Report "_DVBATXT,1:"Report for "_DVBATXT)
  ;DES Type exams required to be completed in 45 days, all others 30
- S DVBADTS=$S(((";DCS;DFD;")[(";"_DVBACDE_";")):45,1:30)
+ S DVBADTS=$S(((";IDES;")[(";"_DVBACDE_";")):45,1:30)
  ;.01,.02 printed only in bulletin (if generated)
  S ^TMP($J,.01,0)=DVBATXT
  S ^TMP($J,.02,0)=" "

@@ -1,15 +1,18 @@
-PRCESOE1 ;WISC/SJG-1358 OBLIGATION UTILITIES ;7/24/00  23:22
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCESOE1 ;WISC/SJG-1358 OBLIGATION UTILITIES ; 
+V ;;5.1;IFCAP;**176**;Oct 20, 2000;Build 11
+ ;Per VHA Directive 2004-038, this routine should not be modified
  ;
  QUIT
  ; No top level entry
  ;
 LOOKUP ; Lookup 1358 transaction which is pending fiscal action.
- N DIC,FSO,TN
- S:'$D(TT) TT="O"
- S DIC=410,DIC(0)="AEMNZ",FSO=$O(^PRCD(442.3,"AC",10,0)),DIC("S")="S TN=^(0) I $P($P(TN,U),""-"",1,2)=PRCF(""SIFY""),TT[$P(TN,U,2),$P(TN,""^"",4)=1,$D(^(10)),$P(^(10),U,4)=FSO"
- D ^PRCSDIC
+ N DIC,FSO,TN,PRCLOCK
+ F  D  Q:$G(PRCLOCK)  W !!,"***The Transaction Number you are attempting to access is being accessed by another user***",!! ;Only allow one user to access 410 record at a time, PRC*5.1*176
+ .S:'$D(TT) TT="O"
+ .S DIC=410,DIC(0)="AEMNZ",FSO=$O(^PRCD(442.3,"AC",10,0)),DIC("S")="S TN=^(0) I $P($P(TN,U),""-"",1,2)=PRCF(""SIFY""),TT[$P(TN,U,2),$P(TN,""^"",4)=1,$D(^(10)),$P(^(10),U,4)=FSO"
+ .D ^PRCSDIC
+ .I Y>0 L +^PRCS(410,+Y):$G(DILOCKTM,3) S PRCLOCK=$T
+ .I Y<1 S PRCLOCK=$T
  QUIT
 POST ; Post data in file 424
  N X,Z,DAR,DIC,Y,DA,DIE,DR,TIME

@@ -1,13 +1,13 @@
-QANUTL ;;HISC/GJC-Utilities for Incident Reporting ;10/6/92
- ;;2.0;Incident Reporting;**1,3,32**;08/07/1992;Build 3
+QANUTL ;;HISC/GJC-Utilities for Incident Reporting ; 5/11/12 2:55pm
+ ;;2.0;Incident Reporting;**1,3,32,33**;08/07/1992;Build 12
 EN0 ;Sets up and builds the patients ID.
  S QANDFN(0)=X,QANZERO(3)=^DPT(QANDFN(0),0),QANAME=$P(QANZERO(3),U),QANSSN=$P(QANZERO(3),U,9)
  S QANPID=$$QANPID^QANCDNT(QANAME)
  K QANDFN(0),QANZERO(3),QANAME,QANSSN
  Q
 EN1 ;Used for DIC("W") used in QANMAIL and QANVAL.
- I QANTYPE=1 S QANTEMP=Y,Y=$P(^QA(742.4,+Y,0),U,3) X ^DD("DD") W " "_Y_" " S Y=QANTEMP W $P(^QA(742.1,$P(^QA(742.4,+Y,0),U,2),0),U) K QANTEMP Q
- I QANTYPE=2 W " "_$P(^QA(742.1,$P(^QA(742.4,+Y,0),U,2),0),U) Q
+ I QANTYPE=1 S QANTEMP=Y,Y=$P(^QA(742.4,+Y,0),U,3) X ^DD("DD") W " "_Y_" " S Y=QANTEMP Q:'$P(^QA(742.4,+Y,0),U,2)  W $P(^QA(742.1,$P(^QA(742.4,+Y,0),U,2),0),U) K QANTEMP Q
+ I QANTYPE=2 Q:'$P(^QA(742.4,+Y,0),U,2)  W " "_$P(^QA(742.1,$P(^QA(742.4,+Y,0),U,2),0),U) Q
  I QANTYPE=4 S QANTEMP=Y,Y=$P(^QA(742.4,+QANTEMP,0),U,3) X ^DD("DD") W " "_Y S Y=QANTEMP K QANTEMP
  Q
 EN10 ;Medication Errors (Other).

@@ -1,5 +1,5 @@
-LRAPBR1 ;DALOI/STAFF - AP Browser Print Cont. ;12/04/09  18:27
- ;;5.2;LAB SERVICE;**259,317,363,350**;Sep 27, 1994;Build 230
+LRAPBR1 ;DALOI/STAFF - AP Browser Print Cont. ;03/21/13  15:28
+ ;;5.2;LAB SERVICE;**259,317,363,350,427**;Sep 27, 1994;Build 33
  ;
  ;
 ENTER ; from LRAPBR
@@ -30,13 +30,13 @@ MAIN ;
  D SPEC
  D MODCHK
  D SUPBNNR
- D COMMENT
+ ; DALOI/LMT - LR,427 - Removed comments from report to restore pre-LR,350 behavior
+ ;D COMMENT
  D DIAG
  D DOC
  D WPFLD
  D SUPRPT
  D SSJR
- D PPL
  Q
  ;
  ;
@@ -205,10 +205,14 @@ PPL ; Print performing laboratories.
  D RETLST^LRRPL(.LRPL,LRDFN,LRSS,LRI,0)
  I $G(LRPL)<1 Q
  ;
- D GLENTRY($$REPEAT^XLFSTR("=",IOM),"",1)
+ D GLENTRY("","",1)
+ D GLENTRY("","",1)
+ ;
  D GLENTRY("Performing Laboratory:","",1)
  S LRJ=0
  F  S LRJ=$O(LRPL(LRJ)) Q:'LRJ  D GLENTRY(LRPL(LRJ),"",1)
+ ;
+ D GLENTRY("","",1)
  ;
  Q
  ;

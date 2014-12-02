@@ -1,5 +1,5 @@
 PRCB8B ;WISC/PLT-AUTO GENERATE FMS VT-DOCUMENTS ;11/12/96  15:42
-V ;;5.1;IFCAP;**71,142**;Oct 20, 2000;Build 5
+V ;;5.1;IFCAP;**71,142,173**;Oct 20, 2000;Build 9
  ;Per VHA Directive 2004-038, this routine should not be modified.
  QUIT  ;invalid entry
  ;
@@ -58,7 +58,7 @@ LINE(PRCA) ;assemble line
  S A=$O(^PRCD(420.14,"UNQ",$P(PRCA,"/"),$P(PRCA,"/",2),1))
  D PIECE($E($P(PRCA,"/",2),3,4),4,2) D:$P(PRCA,"/",2)'=A PIECE($E(A,3,4),5,2)
  D PIECE($P(PRCA,"/"),6,6),PIECE(PRCSITE,8,7)
- I $G(PRCREQ("CC"))'="N" D PIECE($P(PRCA,"/",5),10,7),PIECE($E($P(PRCA,"/",5),5,6),11,2)
+ I $G(PRCREQ("CC"))'="N" D PIECE($P(PRCA,"/",5),10,7),PIECE("00",11,2)  ;PRC*5.1*173 set sub CC to '00'
  D PIECE($P(PRCA,"/",4),12,9),PIECE($P(PRCA,"/",6),13,4)
  D PIECE(220,23,4)
  S PRCSVA=PRCDATA

@@ -1,5 +1,5 @@
 RCCPCPS ;WASH-ISC@ALTOONA,PA/NYB-Build Patient Statement File ;12/19/96  4:14 PM
-V ;;4.5;Accounts Receivable;**34,70,80,48,104,116,149,170,181,190,223,237,219**;Mar 20, 1995;Build 18
+V ;;4.5;Accounts Receivable;**34,70,80,48,104,116,149,170,181,190,223,237,219,265**;Mar 20,1995;Build 5
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SVINT,SVOTH,SITE,TXT,VAR,X,%
  N RCINFULL,RCINPART S COMM=0
@@ -45,7 +45,7 @@ EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SV
  .   S ST=$P(ADDR,"^",5)
  .   S ^RCPS(349.2,DEB,7)=$P(^RCD(340,DEB,0),U,7) ;large print
  .   I $G(ST)'="" S ST=$O(^DIC(5,"C",ST,0))
- .   I $G(ST)>90 S FC=$P($G(^DIC(5,ST,0)),"^")
+ .   I $G(ST)>90,'$P($G(^DIC(5,ST,0)),"^",6) S FC=$P($G(^DIC(5,ST,0)),"^")
  .   S $P(^RCPS(349.2,DEB,1),"^",7)=$G(FC) S:$G(FC)]"" $P(^RCPS(349.2,DEB,1),"^",5)="FX"
  .   S:$G(FC)]"" $P(^RCPS(349.2,DEB,1),"^",6)=$P(ADDR,"^",8)
  .   D NOW^%DTC S $P(^RCPS(349.2,DEB,0),"^",10)=%

@@ -1,12 +1,13 @@
 EDPFPER ;SLC/KCM - Lookup Persons at Facility ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
 MATCH(MATCH,PTYP) ; Return a matching list of providers
  S MATCH=$$UP^XLFSTR(MATCH)
  S MATCH=$TR(MATCH,"_"," ")  ; underscore replaces space in flex widget
  D XML^EDPX("<personType>"_PTYP_"</personType>")
- I PTYP="N" D NURS
- I PTYP'="N" D PROV
+ I PTYP="C" D CLERK Q
+ I PTYP="N" D NURS Q
+ I "PR"[PTYP D PROV Q
  Q
 PROV ; match providers
  N NM,PRV
@@ -22,6 +23,13 @@ NURS ; match nurses
  F  S NM=$O(^VA(200,"B",NM)) Q:$E(NM,1,$L(MATCH))'=MATCH  D
  . S NRS=0 F  S NRS=$O(^VA(200,"B",NM,NRS)) Q:'NRS  D
  .. I $$ALLOW(NRS,"N") D ADD(NRS,NM)
+ Q
+CLERK ;
+ N NM,CLRK
+ S NM=$O(^VA(200,"B",MATCH),-1)
+ F  S NM=$O(^VA(200,"B",NM)) Q:$E(NM,1,$L(MATCH))'=MATCH  D
+ .S CLRK=0 F  S CLRK=$O(^VA(200,"B",NM,CLRK)) Q:'CLRK  D
+ ..I $$ALLOW(CLRK,"C") D ADD(CLRK,NM)
  Q
 ADD(PER,NM) ; Add the person to the list of staff
  N X,X0,TITLE

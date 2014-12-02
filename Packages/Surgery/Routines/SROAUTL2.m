@@ -1,5 +1,5 @@
 SROAUTL2 ;BIR/ADM - RISK ASSESSMENT UTILITY ;08/25/2011
- ;;3.0;Surgery;**38,47,63,88,125,153,160,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,47,63,88,125,153,160,176,177**;24 Jun 93;Build 89
  S SRZ=0 F  S SRZ=$O(SRY(130,SRTN,SRZ)) Q:'SRZ  D
  .I SRY(130,SRTN,SRZ,"I")="" D TR S X=$T(@SRP),SRFLD=$P(X,";;",2),SRX(SRZ)=$P(SRFLD,"^",2)
  .I SRY(130,SRTN,SRZ,"I")="NS" D TR S X=$T(@SRP),SRFLD=$P(X,";;",2),SRDT=$P(SRFLD,"^",4) S:SRDT'="" SRLR(SRDT)=""
@@ -87,7 +87,7 @@ PBCB ;;.232^Time Patient Out of the O.R.^Time Patient Out of the O.R.^
 CDJ ;;340^Number of RBC Units Transfused^RBC Units Transfused^
 DDC ;;443^Intraoperative Disseminated Cancer (Y/N)^Intraoperative Disseminated Cancer^
 DDF ;;446^Intraoperative Ascites (Y/N)^Intraoperative Ascites
-FF ;;66^Principal Diagnosis Code (ICD9)^Postop Diagnosis Code (ICD9)^
+FF ;;66^Principal Diagnosis Code (ICD)^Postop Diagnosis Code (ICD)^
 BDG ;;247^Length of Postoperative Stay^Length of Postoperative Hospital Stay^
 AJB ;;102^Reason for not Creating an Assessment^Exclusion Criteria^
 PJAA ;;.011^In/Out-Patient Status^Hospital Admission Status^

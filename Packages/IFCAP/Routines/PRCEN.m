@@ -1,6 +1,10 @@
 PRCEN ;WISC/CLH - ENTER/EDIT 1358 ;9/2/2010
-V ;;5.1;IFCAP;**23,148**;Oct 20, 2000;Build 5
+V ;;5.1;IFCAP;**23,148,150**;Oct 20, 2000;Build 24
  ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*150 RGB 4/23/12  Control the node 0 counter for file 410
+ ;kill call since DIK call does not handle descending file logic
+ ;
 EN ;new 1358 request
  N PRC,X,X1,DIC,DIE,DR,PRCS2,PRCSL,PRCSIP,DIR,DIRUT,PRCS,PRCSCP,PRCSN
  N PRCST,PRCST1,PRCSTT,PRC410,PRCUA,PRCAUTH,PRCAUTHS,PRCQ,PRCVEN,PRCONT
@@ -32,7 +36,10 @@ EN0 K PRC,X,X1,DIC,DIE,DR,PRCS2,PRCSL,PRCSIP,DIR,DIRUT,PRCS,PRCSCP,PRCSN
  S PRCVEN=^PRCS(410.9,$S($G(PRCAUTHS):PRCAUTHS,1:PRCAUTH),0),PRCONT=$P(PRCVEN,"^",6),PRCVEN=$P(PRCVEN,"^",5)
  S DR="[PRCE NEW 1358]" D ^DIE
  I $D(Y)#10 S PRCUA=1 D YN^PRC0A(.X,.Y,"Delete this NEW entry","","No") I Y=1 D
+ . S PRCIENCT=$P(^PRCS(410,0),"^",3)+1      ;PRC*5.1*150
  . D DELETE^PRC0B1(.X,"410;^PRCS(410,;"_DA) S:X=1 PRCAED=-1
+ . I X=1 S $P(^PRCS(410,0),"^",3)=PRCIENCT     ;PRC*5.1*150
+ . K PRCIENCT     ;PRC*5.1*150
  . D EN^DDIOL(" **** NEW ENTRY IS "_$S(X=1:"",1:"NOT ")_"DELETED ****")
  . QUIT
  I PRCAED'=-1 D

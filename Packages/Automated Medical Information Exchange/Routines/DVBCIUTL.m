@@ -1,5 +1,5 @@
 DVBCIUTL ;ALB/GTS-AMIE INSUFFICIENT RPT UTILITY RTN ; 11/14/94  9:15 AM
- ;;2.7;AMIE;**13,17,19,149**;Apr 10, 1995;Build 16
+ ;;2.7;AMIE;**13,17,19,149,184,185**;Apr 10, 1995;Build 18
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;** Version Changes
@@ -7,6 +7,11 @@ DVBCIUTL ;ALB/GTS-AMIE INSUFFICIENT RPT UTILITY RTN ; 11/14/94  9:15 AM
  ;
 DETHD ;** Detailed Report header
  N DVBAI,DVBATXT S DVBAI=2
+ ;I DVBADLMTR="," S:DVBAPRTY'["QS" MSGCNT=1 S:$G(DVBAP)="QS" ^TMP("INSUFF",$J,MSGCNT)=$C(13)_$C(13),MSGCNT=MSGCNT+1 D DETHDLIM Q 
+ I DVBADLMTR="," D  Q
+ . S MSGCNT=MSGCNT+1
+ . S:$G(DVBAP)="QS" ^TMP("INSUFF",$J,MSGCNT)=$C(13)_$C(13),MSGCNT=MSGCNT+1 D DETHDLIM Q
+ . I MSGCNT=1!(MSGCNT=2) D DETHDLIM Q
  S:'$D(DVBAPG1) TVAR(1,0)="0,15,0,1,0^Detailed Insufficient Exam Report"
  S:$D(DVBAPG1) TVAR(1,0)="0,15,0,1,1^Detailed Insufficient Exam Report"
  S DVBATXT=$$PRHD(DVBAPRTY)
@@ -17,15 +22,22 @@ DETHD ;** Detailed Report header
  K TVAR
  Q
  ;
+DETHDLIM ;Print Report Header in delimited format
+ S ^TMP("INSUFF",$J,MSGCNT)="Detailed Insufficient Exam Report"_$C(13),MSGCNT=MSGCNT+1
+ S DVBATXT=$$PRHD(DVBAPRTY),^TMP("INSUFF",$J,MSGCNT)=""""_DVBATXT_""""_$C(13),MSGCNT=MSGCNT+1
+ S ^TMP("INSUFF",$J,MSGCNT)="FOR DATE RANGE: "_STRTDT_" TO "_LSTDT_$C(13)_$C(13),MSGCNT=MSGCNT+1
+ S ^TMP("INSUFF",$J,MSGCNT)="Reason"_DVBADLMTR_"Exam"_DVBADLMTR_"Provider"_DVBADLMTR_"Exam Date"_DVBADLMTR_"Patient Name"_DVBADLMTR_"SSN"_DVBADLMTR
+ S ^TMP("INSUFF",$J,MSGCNT)=^TMP("INSUFF",$J,MSGCNT)_"Claim #"_DVBADLMTR_"Cancellation Information"_DVBADLMTR_"Cancellation Reason"_$C(13),MSGCNT=MSGCNT+1
+ Q
+ ;
  ;Input : DVBAPRTY - Priority Exam Code (File #396.3 Fld #9)
  ;Output: Description for Priority Exam Code
 PRHD(DVBAPRTY) ;priority exam type header info
  N DVBATXT
  S DVBATXT=$S((DVBAPRTY["BDD"):"Benefits Delivery at Discharge",1:"X")
  S:(DVBATXT="X") DVBATXT=$S((DVBAPRTY["QS"):"Quick Start",1:"X")
- S:(DVBATXT="X") DVBATXT=$S((DVBAPRTY["DCS"):"DES Claimed Condition by Service Member",1:"X")
- S:(DVBATXT="X") DVBATXT=$S((DVBAPRTY["DFD"):"DES Fit for Duty",1:"X")
- S:(DVBATXT="X") DVBATXT=$S((DVBAPRTY["AO"):"Agent Orange",1:"Excludes Exam Priorities: AO,BDD,DCS,DFD,QS")
+ S:(DVBATXT="X") DVBATXT=$S((DVBAPRTY["IDES"):"Integrated Disability Evaluation System",1:"X")
+ S:(DVBATXT="X") DVBATXT=$S((DVBAPRTY["AO"):"Agent Orange",1:"Excludes Exam Priorities: AO,BDD,IDES,QS")
  S:(DVBATXT'["Excludes") DVBATXT="Priority of Exam: "_DVBATXT
  Q $G(DVBATXT)
  ;
@@ -33,7 +45,7 @@ EXMOUT ;** Output exam information for reason/type
  I $Y>(IOSL-9) DO
  .I IOST?1"C-".E D TERM^DVBCUTL3
  .I '$D(GETOUT) DO
- ..D DETHD
+ ..;D DETHD
  ..D RESOUT
  ..W !
  ..D TYPEOUT
@@ -62,7 +74,7 @@ EXMOUT ;** Output exam information for reason/type
  ..S DVBACMND="F  S DVBAORXM=$O(^DVB(396.4,""ARQ"_REQDA_""","_DVBAXMTP_",DVBAORXM)) Q:DVBAORXM=""""  Q:$D(^DVB(396.4,""APS"","_DFN_","_DVBAXMTP_",""C"",DVBAORXM))"
  ..X DVBACMND ;**Return DA of original, insuff exam
  .S DVBANAME=$P(^DPT(DFN,0),U,1)
- .S DVBASSN=$P(^DPT(DFN,0),U,9)
+ .D DEM^VADPT I $G(VADM(1))'="" S DVBASSN=$S(DVBADLMTR=",":$P($G(VADM(2)),U,2),1:$P($G(VADM(2)),U,1))
  .S DVBACNUM="" S:$D(^DPT(DFN,.31)) DVBACNUM=$P(^DPT(DFN,.31),U,3)
  .I DVBAORXM'="",($D(^DVB(396.4,DVBAORXM,0))) S DVBAORDT=$P(^DVB(396.4,DVBAORXM,0),U,6)
  .I DVBAORXM'="",('$D(^DVB(396.4,DVBAORXM,0))) S (DVBAORDT,DVBADTE)=""
@@ -71,6 +83,7 @@ EXMOUT ;** Output exam information for reason/type
  ..S DVBADTWK=$P(DVBAORDT,".",1)
  ..S DVBADTE=$$FMTE^XLFDT(DVBADTWK,"5DZ")
  .S DVBAORPV=$P(^DVB(396.4,XMDA,0),U,12)
+ .I DVBADLMTR="," D DETDELIM D:DVBAXDT]"" DETITEMS S ^TMP("INSUFF",$J,MSGCNT)=^TMP("INSUFF",$J,MSGCNT)_$C(13),MSGCNT=MSGCNT+1 Q
  .S DVBAORP1=$E(DVBAORPV,1,15)
  .S DVBANAM1=$E(DVBANAME,1,15)
  .W !,DVBAORP1
@@ -83,14 +96,31 @@ EXMOUT ;** Output exam information for reason/type
  ..W !,"Reason: "_DVBAXRS_"."
  Q
  ;
+DETDELIM ; Print details of Insufficient Exams
+ ; Reason,Exam,Provider,Exam Date,Patient Name,SSN,Claim #
+ I $D(^TMP("INSUFF",$J,MSGCNT)) S ^TMP("INSUFF",$J,MSGCNT)=^TMP("INSUFF",$J,MSGCNT)_""""_DVBAORPV_""""_DVBADLMTR_DVBADTE_DVBADLMTR_""""_DVBANAME_""""_DVBADLMTR_DVBASSN_DVBADLMTR_$C(160)_DVBACNUM_"" Q
+ I '$D(^TMP("INSUFF",$J,MSGCNT)) S ^TMP("INSUFF",$J,MSGCNT)=DVBADLMTR_DVBADLMTR_""""_DVBAORPV_""""_DVBADLMTR_DVBADTE_DVBADLMTR_""""_DVBANAME_""""_DVBADLMTR_DVBASSN_DVBADLMTR_$C(160)_DVBACNUM_""
+ Q
+ ;
+DETITEMS ; Print final exam details
+ S ^TMP("INSUFF",$J,MSGCNT)=^TMP("INSUFF",$J,MSGCNT)_DVBADLMTR_"Exam request of "_DVBARQDT_" to correct insufficiency was cancelled on "_DVBAXDT_"."_DVBADLMTR
+ S ^TMP("INSUFF",$J,MSGCNT)=^TMP("INSUFF",$J,MSGCNT)_DVBAXRS_"."
+ Q
+ ;
 RESOUT ;** Output the Reason
+ I DVBADLMTR="," S ^TMP("INSUFF",$J,MSGCNT)=$P(^DVB(396.94,$P(^DVB(396.4,XMDA,0),U,11),0),U,3)_DVBADLMTR Q
  W !!!!!,"Reason: ",$P(^DVB(396.94,$P(^DVB(396.4,XMDA,0),U,11),0),U,3)
  Q
  ;
 TYPEOUT ;** Output the Exam
+ I DVBADLMTR="," D TYPEDLIM Q 
  W !,"Exam: ",$P(^DVB(396.6,$P(^DVB(396.4,XMDA,0),U,3),0),U,2)
  W !,"Provider",?20,"Exam Dt",?32,"Patient Name",?52,"SSN",?66,"Claim #"
  Q
+ ;
+TYPEDLIM ; ** Output the delimited Exam 
+ I $D(^TMP("INSUFF",$J,MSGCNT)) S ^TMP("INSUFF",$J,MSGCNT)=^TMP("INSUFF",$J,MSGCNT)_""""_$P(^DVB(396.6,$P(^DVB(396.4,XMDA,0),U,3),0),U,2)_""""_DVBADLMTR Q
+ I '$D(^TMP("INSUFF",$J,MSGCNT)) S ^TMP("INSUFF",$J,MSGCNT)=$P(^DVB(396.94,$P(^DVB(396.4,XMDA,0),U,11),0),U,3)_DVBADLMTR_""""_$P(^DVB(396.6,$P(^DVB(396.4,XMDA,0),U,3),0),U,2)_""""_DVBADLMTR Q
  ;
 RSEL ;** Select Reasons
  ;** The selection prompt is defaulted to ALL.  If the user selects
@@ -156,12 +186,12 @@ XMSEL ;** Select Exams
 EXMPRTY(DVBADIRA) ;** Select Priority of Exam
  N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
  S DIR(0)="S^AO:Agent Orange;BDD:Benefits Delivery at Discharge / Quick Start;"
- S DIR(0)=DIR(0)_"DES:DES Claimed Condition by Service Member / Fit for Duty;"
+ S DIR(0)=DIR(0)_"IDES:Integrated Disability Evaluation System;"
  S DIR(0)=DIR(0)_"ALL:All Others"
  S DIR("A")=$S($G(DVBADIRA)]"":DVBADIRA,1:"Select Priority of Exam for the Report")
  S DIR("B")="All Others"
  S DIR("T")=DTIME  ;time-out value specified by system
  S DIR("?",1)="Select the priority of exam(s) to report on or ALL for the original report,"
- S DIR("?")="which excludes the AO, BDD and DES exam priorities."
+ S DIR("?")="which excludes the AO, BDD and IDES exam priorities."
  D ^DIR
  Q Y

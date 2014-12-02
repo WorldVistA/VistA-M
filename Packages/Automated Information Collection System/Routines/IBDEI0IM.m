@@ -1,48 +1,142 @@
-IBDEI0IM ; ; 20-FEB-2013
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 20, 2013
- Q:'DIFQ(358.8)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0IM ; ; 12-AUG-2014
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.8,0,"GL")
- ;;=^IBE(358.8,
- ;;^DIC("B","IMP/EXP TEXT AREA",358.8)
- ;;=
- ;;^DIC(358.8,"%D",0)
- ;;=^^3^3^2940217^
- ;;^DIC(358.8,"%D",1,0)
- ;;=This file is nearly identical to file #357.8. It is used by the
- ;;^DIC(358.8,"%D",2,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.8,"%D",3,0)
- ;;=that is being imported or exported.
- ;;^DD(358.8,0)
- ;;=FIELD^^1^7
- ;;^DD(358.8,0,"DDA")
- ;;=N
- ;;^DD(358.8,0,"DT")
- ;;=2930802
- ;;^DD(358.8,0,"IX","B",358.8,.01)
- ;;=
- ;;^DD(358.8,0,"IX","C",358.8,.02)
- ;;=
- ;;^DD(358.8,0,"NM","IMP/EXP TEXT AREA")
- ;;=
- ;;^DD(358.8,0,"VRPK")
- ;;=IBD
- ;;^DD(358.8,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.8,.01,1,0)
- ;;=^.1
- ;;^DD(358.8,.01,1,1,0)
- ;;=358.8^B
- ;;^DD(358.8,.01,1,1,1)
- ;;=S ^IBE(358.8,"B",$E(X,1,30),DA)=""
- ;;^DD(358.8,.01,1,1,2)
- ;;=K ^IBE(358.8,"B",$E(X,1,30),DA)
- ;;^DD(358.8,.01,3)
- ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
- ;;^DD(358.8,.01,21,0)
- ;;=^^2^2^2930528^
- ;;^DD(358.8,.01,21,1,0)
- ;;= 
- ;;^DD(358.8,.01,21,2,0)
- ;;=The name of the text area.
+ ;;^UTILITY(U,$J,358.3,9069,1,4,0)
+ ;;=4^CA of Pancreatic Body
+ ;;^UTILITY(U,$J,358.3,9069,1,5,0)
+ ;;=5^157.1
+ ;;^UTILITY(U,$J,358.3,9069,2)
+ ;;=^267105
+ ;;^UTILITY(U,$J,358.3,9070,0)
+ ;;=157.3^^61^636^23
+ ;;^UTILITY(U,$J,358.3,9070,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9070,1,4,0)
+ ;;=4^CA of Pancreatic Duct
+ ;;^UTILITY(U,$J,358.3,9070,1,5,0)
+ ;;=5^157.3
+ ;;^UTILITY(U,$J,358.3,9070,2)
+ ;;=CA of Pancreatic Duct^267107
+ ;;^UTILITY(U,$J,358.3,9071,0)
+ ;;=157.0^^61^636^24
+ ;;^UTILITY(U,$J,358.3,9071,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9071,1,4,0)
+ ;;=4^CA of Pancreatic Head
+ ;;^UTILITY(U,$J,358.3,9071,1,5,0)
+ ;;=5^157.0
+ ;;^UTILITY(U,$J,358.3,9071,2)
+ ;;=CA of Pancreatic Head^267104
+ ;;^UTILITY(U,$J,358.3,9072,0)
+ ;;=157.4^^61^636^19
+ ;;^UTILITY(U,$J,358.3,9072,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9072,1,4,0)
+ ;;=4^CA of Islet of Langerhans
+ ;;^UTILITY(U,$J,358.3,9072,1,5,0)
+ ;;=5^157.4
+ ;;^UTILITY(U,$J,358.3,9072,2)
+ ;;=CA of Islet of Langerhans^267108
+ ;;^UTILITY(U,$J,358.3,9073,0)
+ ;;=157.8^^61^636^21
+ ;;^UTILITY(U,$J,358.3,9073,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9073,1,4,0)
+ ;;=4^CA of Pancreas, Oth
+ ;;^UTILITY(U,$J,358.3,9073,1,5,0)
+ ;;=5^157.8
+ ;;^UTILITY(U,$J,358.3,9073,2)
+ ;;=CA of Pancreas, Oth^267109
+ ;;^UTILITY(U,$J,358.3,9074,0)
+ ;;=157.2^^61^636^25
+ ;;^UTILITY(U,$J,358.3,9074,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9074,1,4,0)
+ ;;=4^CA of Pancreatic Tail
+ ;;^UTILITY(U,$J,358.3,9074,1,5,0)
+ ;;=5^157.2
+ ;;^UTILITY(U,$J,358.3,9074,2)
+ ;;=CA of Pancreatic Tail^267106
+ ;;^UTILITY(U,$J,358.3,9075,0)
+ ;;=789.1^^61^636^57
+ ;;^UTILITY(U,$J,358.3,9075,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9075,1,4,0)
+ ;;=4^Hepatomegaly
+ ;;^UTILITY(U,$J,358.3,9075,1,5,0)
+ ;;=5^789.1
+ ;;^UTILITY(U,$J,358.3,9075,2)
+ ;;=^56494
+ ;;^UTILITY(U,$J,358.3,9076,0)
+ ;;=211.3^^61^636^77
+ ;;^UTILITY(U,$J,358.3,9076,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9076,1,4,0)
+ ;;=4^Polyp,Colon
+ ;;^UTILITY(U,$J,358.3,9076,1,5,0)
+ ;;=5^211.3
+ ;;^UTILITY(U,$J,358.3,9076,2)
+ ;;=^13295
+ ;;^UTILITY(U,$J,358.3,9077,0)
+ ;;=792.1^^61^636^74
+ ;;^UTILITY(U,$J,358.3,9077,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9077,1,4,0)
+ ;;=4^Occult Blood In Stool
+ ;;^UTILITY(U,$J,358.3,9077,1,5,0)
+ ;;=5^792.1
+ ;;^UTILITY(U,$J,358.3,9077,2)
+ ;;=^273412
+ ;;^UTILITY(U,$J,358.3,9078,0)
+ ;;=564.00^^61^636^43
+ ;;^UTILITY(U,$J,358.3,9078,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9078,1,4,0)
+ ;;=4^Constipation
+ ;;^UTILITY(U,$J,358.3,9078,1,5,0)
+ ;;=5^564.00
+ ;;^UTILITY(U,$J,358.3,9078,2)
+ ;;=^323537
+ ;;^UTILITY(U,$J,358.3,9079,0)
+ ;;=560.39^^61^636^64
+ ;;^UTILITY(U,$J,358.3,9079,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9079,1,4,0)
+ ;;=4^Impaction,Fecal
+ ;;^UTILITY(U,$J,358.3,9079,1,5,0)
+ ;;=5^560.39
+ ;;^UTILITY(U,$J,358.3,9079,2)
+ ;;=^87650
+ ;;^UTILITY(U,$J,358.3,9080,0)
+ ;;=455.3^^61^636^54
+ ;;^UTILITY(U,$J,358.3,9080,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9080,1,4,0)
+ ;;=4^Hemorrhoid,External
+ ;;^UTILITY(U,$J,358.3,9080,1,5,0)
+ ;;=5^455.3
+ ;;^UTILITY(U,$J,358.3,9080,2)
+ ;;=^269827
+ ;;^UTILITY(U,$J,358.3,9081,0)
+ ;;=571.5^^61^636^41
+ ;;^UTILITY(U,$J,358.3,9081,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9081,1,4,0)
+ ;;=4^Cirrhosis,Nonalcoholic
+ ;;^UTILITY(U,$J,358.3,9081,1,5,0)
+ ;;=5^571.5
+ ;;^UTILITY(U,$J,358.3,9081,2)
+ ;;=^24731
+ ;;^UTILITY(U,$J,358.3,9082,0)
+ ;;=553.21^^61^636^59
+ ;;^UTILITY(U,$J,358.3,9082,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9082,1,4,0)
+ ;;=4^Hernia,Incisional
+ ;;^UTILITY(U,$J,358.3,9082,1,5,0)
+ ;;=5^553.21
+ ;;^UTILITY(U,$J,358.3,9082,2)
+ ;;=^270246
+ ;;^UTILITY(U,$J,358.3,9083,0)
+ ;;=530.20^^61^636^78

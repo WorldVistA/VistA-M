@@ -1,5 +1,5 @@
 DGPTFJC ;ALB/ADL - CLOSED PTF ;7/28/05 1:08pm
- ;;5.3;Registration;**158,510,517,590,636,635,701,729,785**;Aug 13, 1993;Build 7
+ ;;5.3;Registration;**158,510,517,590,636,635,701,729,785,850**;Aug 13, 1993;Build 171
  ;;ADL;;Update for CSV Project;;Mar 25, 2003
 101 W !,"Enter '^N' for Screen N, RETURN for <MAS>,'^' to Abort: <MAS>//"
  D READ G Q^DGPTF:X=U,^DGPTFM:X="",^DGPTFJ:X?1"^".E D H G 101
@@ -31,9 +31,12 @@ READ ; -- read X
  R X:DTIME S:'$T X="^",DGPTOUT=""
  Q
  ;
-EN ; DG*636
- ;;S K=$S($D(K):K,1:1),DGER=0 S DGPTDAT=$$GETDATE^ICDGTDRG(DA(1)),DGPTTMP=$$ICDDX^ICDCODE(+Y,DGPTDAT) I +DGPTTMP=-1!('$P(DGPTTMP,U,10)) S DGER=1 Q
- S K=$S($D(K):K,1:1),DGER=0 S DGPTDAT=$$GETDATE^ICDGTDRG(DA(1))
+EN ; DG*636 ; DG*5.3*850
+ ; Called from Diagnosis fields in 501 movements
+ N EFFDATE,DGTEMP,IMPDATE,DGINAC
+ D EFFDATE^DGPTIC10(DA(1))
+ S K=$S($D(K):K,1:1),DGER=0 ;S DGPTDAT=$$GETDATE^ICDGTDRG(DA(1))
+ ;
  ;if there is a disch and a previous movement, if disch
  ;is >Oct 1 (next FY) and movement <Oct 1, then use the movement date
  I $G(DGZM0)="" S DGZM0=1,M(DGZM0)="0^"  ; to prevent sys err from TD5^DGPTTS2 and ptf quick load (DG*701/729)
@@ -48,49 +51,150 @@ EN ; DG*636
  .I $E(DGPTMVDT,4,7)<1001 S DGPTDAT=DGPTMVDT Q
  .I $E(DGPTDAT,4,7)>0930 S DGPTDAT=DGPTMVDT Q
  I $G(DGPMT)!$G(DGQWK) K M(DGZM0),DGZM0  ; DG*701/729
- S DGPTTMP=$$ICDDX^ICDCODE(+Y,DGPTDAT) I +DGPTTMP=-1!('$P(DGPTTMP,U,10)) S DGER=1 Q
+ S DGPTTMP=$$ICDDATA^ICDXCODE("DIAG",+Y,EFFDATE)
+ I +DGPTTMP<0 D MSG("Can not use inactive codes.") S DGER=1 Q
+ I '$P(DGPTTMP,U,10) S DGINAC=$P(DGPTTMP,U,12) I DGINAC<EFFDATE D MSG("Can not use inactive codes.") S DGER=1 Q
  ;end DG*636
  ;===================================================================
- I $P(DGPTTMP,U,11)]""&($P(DGPTTMP,U,11)'=$S($D(^DPT(+^DGPT(DA(1),0),0)):$P(^(0),U,2),1:"M")) W:K<24 !,$P(DGPTTMP,U,2)," can only be used with ",$S($P(DGPTTMP,U,11)="F":"FEMALES",1:"MALES") S K=K+1,DGER=1 Q
- S %=$P(^DGPT(DA(1),"M",DA,0),U,DGI) I $D(^DGPT(DA(1),"M","AC",Y,DA)),%'=Y S DGER=1 Q
- F I=0:0 S I=$O(^ICD9(+Y,"N",I)) Q:I'>0  I $D(^DGPT(DA(1),"M","AC",I,DA)),%'=I W !,"Cannot use ",$S($D(^ICD9(+Y,0)):$P(^(0),U),1:""),"  with ",$S($D(^ICD9(I,0)):$P(^(0),U),1:"") S DGER=1 Q
- Q:DGER  S DG1=1 F I=0:0 S I=$O(^ICD9(+Y,"R",I)) Q:I'>0  S DG1=0 I $D(^DGPT(DA(1),"M","AC",I,DA)),%'=I S DG1=1 Q
- I 'DG1 W !,$S(+DGPTTMP>0&('$P(DGPTTMP,U,10)):$P(DGPTTMP,U,2),1:"")," requires additional code."
+ I $P(DGPTTMP,U,11)]""&($P(DGPTTMP,U,11)'=$S($D(^DPT(+^DGPT(DA(1),0),0)):$P(^(0),U,2),1:"M")) D:K<24 MSG($P(DGPTTMP,U,2)_" can only be used with "_$S($P(DGPTTMP,U,11)="F":"FEMALES",1:"MALES")) S K=K+1,DGER=1 Q
+ ;
+ ; -- can't enter a code already in the movement
+ S %=$P(^DGPT(DA(1),"M",DA,0),U,DGI) I $D(^DGPT(DA(1),"M","AC",+Y,DA)),%'=+Y W !,"Cannot enter the same code twice." S DGER=1 Q
+ ;
+ S %=U_$P(^DGPT(DA(1),"M",DA,0),U,5,15),$P(%,U,7)=U ;take movement date out of %
+ D NOT(+Y,%)
+ Q:DGER
+ D REQ(+Y,%)
  Q
-EN1 S K=$S($D(K):K,1:1),DGER=0,DGPTDAT=$$GETDATE^ICDGTDRG(DA(1)),DGICD0=$$ICDOP^ICDCODE(+Y,DGPTDAT) I +DGICD0,0!('$P(DGICD0,U,10)) S DGER=1 Q
- I $P(DGICD0,U,11)]""&($P(DGICD0,U,11)'=$S($D(^DPT(+^DGPT(DA(1),0),0)):$P(^(0),U,2),1:"M")) W:K<24 !,$P(DGICD0,U,2)," can only be used with ",$S($P(DGICD0,U,11)="F":"FEMALES",1:"MALES") S K=K+1,DGER=1 Q
- S %=$P(^DGPT(DA(1),DGSB,DA,0),U,DGI)
- ;I $D(^DGPT(DA(1),DGSB,DGCR,Y,DA)),%'=Y S DGER=1 W !,"Cannot enter the same code more than once within a ",$S(DGSB="S":"401",1:"601")," transaction" Q
- F I=0:0 S I=$O(^ICD0(+Y,"N",I)) Q:I'>0  I $D(^DGPT(DA(1),DGSB,DGCR,I,DA)),%'=I S DGPTTMP2=$$ICDOP^ICDCODE(I,DGPTDAT) W !,"Cannot use ",$P(DGICD0,U,2),"  with ",$S(+DGPTTMP2>0:$P(DGPTTMP2,U,2),1:"") S DGER=1 Q
- Q:DGER  S DG1=1 F I=0:0 S I=$O(^ICD0(+Y,"R",I)) Q:I'>0  S DG1=0 I $D(^DGPT(DA(1),DGSB,DGCR,I,DA)),%'=I S DG1=1 Q
- I 'DG1 W !,$P(DGICD0,U,2)," requires additional code."
+ ;
+EN1 ; called from 601 movement procedure codes and 401 Surgical operations
+ S K=$S($D(K):K,1:1),DGER=0
+ ;
+ N EFFDATE,DGTEMP,IMPDATE,DGPTDAT
+ S:$G(DGIT)=5 DGCR="AP6",DGSB="P"
+ S:$G(DGIT)=8 DGCR="AO",DGSB="S"
+ D EFFDATE^DGPTIC10(DA(1))
+ ;S DGICD0=$$ICDDATA^ICDXCODE("PROC",+Y,EFFDATE)
+ N DGPRDT S DGPRDT=$S(+$G(DGPROCD):+DGPROCD,1:+$G(DGPROCI))
+ S:'+$G(DGPRDT) DGICD0=$$ICDDATA^ICDXCODE("PROC",+Y,EFFDATE)
+ I +$G(DGPRDT) D
+ . ;if procedure before ICD-10 era but the effective date (discharge date) is after then use the eff date and quit
+ . I DGPRDT<IMPDATE,EFFDATE'<IMPDATE S DGICD0=$$ICDDATA^ICDXCODE("PROC",+Y,EFFDATE) Q
+ . ;otherwise use the procedure date
+ . S DGICD0=$$ICDDATA^ICDXCODE("PROC",+Y,DGPRDT)
+ ;
+ I +DGICD0,0!('$P(DGICD0,U,10)) S DGER=1 Q
+ I $P(DGICD0,U,11)]""&($P(DGICD0,U,11)'=$S($D(^DPT(+^DGPT(DA(1),0),0)):$P(^(0),U,2),1:"M")) D:K<24 MSG($P(DGICD0,U,2)_" can only be used with "_$S($P(DGICD0,U,11)="F":"FEMALES",1:"MALES")) S K=K+1,DGER=1 Q
+ S %=$P(^DGPT(DA(1),$G(DGSB),DA,0),U,DGI)
+ I $D(^DGPT(DA(1),$G(DGSB),$G(DGCR),Y,DA)),%'=Y S DGER=1 D MSG("Cannot enter the same code more than once within a "_$S(DGSB="S":"401",1:"601")_" transaction") Q
  Q
-EN2 S K=$S($D(K):K,1:1),DGER=0,DGPTTMP=$$ICDOP^ICDCODE(+Y,$$GETDATE^ICDGTDRG(DA)) I +DGPTTMP<0!('$P(DGPTTMP,U,10)) S DGER=1 Q
- I $P(DGPTTMP,U,11)]""&($P(DGPTTMP,U,11)'=$S($D(^DPT(+^DGPT(DA,0),0)):$P(^(0),U,2),1:"M")) W:K<24 !,$P(DGPTTMP,U,2)," can only be used with ",$S($P(DGPTTMP,U,11)="F":"FEMALES",1:"MALES") S K=K+1,DGER=1 Q
- S L=$P($S($D(^DGPT((DA),"401P")):^("401P"),1:0),U,1,5),%=$P(L,U,DGI),L=$P(L,U,1,DGI-1)_U_$P(L,U,DGI+1,5) I L[Y S DGER=1 Q
+EN2 ; Called from 701 movement procedure codes
+ S K=$S($D(K):K,1:1),DGER=0
+ N EFFDATE,DGTEMP,IMPDATE,DGPTDAT
+ D EFFDATE^DGPTIC10(DA)
+ S DGPTTMP=$$ICDDATA^ICDXCODE("PROC",+Y,EFFDATE)
+ ; 
+ I +DGPTTMP<0!('$P(DGPTTMP,U,10)) S DGER=1 Q
+ I $P(DGPTTMP,U,11)]""&($P(DGPTTMP,U,11)'=$S($D(^DPT(+^DGPT(DA,0),0)):$P(^(0),U,2),1:"M")) D:K<24 MSG($P(DGPTTMP,U,2)_" can only be used with "_$S($P(DGPTTMP,U,11)="F":"FEMALES",1:"MALES")) S K=K+1,DGER=1 Q
+ ;
+ S L=$P($S($D(^DGPT((DA),"401P")):^("401P"),1:0),U,1,5)
+ S %=$P(L,U,DGI)
+ S L=$P(L,U,1,DGI-1)_U_$P(L,U,DGI+1,5)
+ I L[+Y D MSG("Cannot enter the same code twice.") S DGER=1 Q
  Q
-EN3 S K=$S($D(K):K,1:1),DGER=0,DGPTTMP=$$ICDDX^ICDCODE(+Y,$$GETDATE^ICDGTDRG(DA)) I +DGPTTMP<0!('$P(DGPTTMP,U,10)) S DGER=1 Q
- I DGI=1,$P(DGPTTMP,U,5) S DGER=1 Q
- I $P(DGPTTMP,U,11)]""&($P(DGPTTMP,U,11)'=$S($D(^DPT(+^DGPT(DA,0),0)):$P(^(0),U,2),1:"M")) W:K<24 !,$P(DGPTTMP,U,2)," can only be used with ",$S($P(DGPTTMP,U,11)="F":"FEMALES",1:"MALES") S K=K+1,DGER=1 Q
+EN3 ;Called from 701 movement diagnosis fields (top level)
+ ; - EFFDATE := date of interest e.g. patient discharge date
+ ; - IMPDATE := ICD-10 implementation date
+ ; - DGTEMP  := temp variable to hold data from $$IMPDATE^DGPTIC10
+ ;
+ N EFFDATE,DGTEMP,IMPDATE,DGINAC
+ ;
+ D EFFDATE^DGPTIC10(DA)
+ ;
+ S K=$S($D(K):K,1:1),DGER=0,DGPTTMP=$$ICDDATA^ICDXCODE("DIAG",+Y,EFFDATE)
+ I +DGPTTMP<0 D MSG("Can not use inactive codes.") S DGER=1 Q
+ I '$P(DGPTTMP,U,10) S DGINAC=$P(DGPTTMP,U,12) I DGINAC<EFFDATE D MSG("Can not use inactive codes.") S DGER=1 Q
+ ; 
+ ; - unacceptable as primary DX
+ I DGI=1,$P(DGPTTMP,U,5) D MSG("Not acceptable as a primary Diagnosis.") S DGER=1 Q
+ ;
+ I $P(DGPTTMP,U,11)]""&($P(DGPTTMP,U,11)'=$S($D(^DPT(+^DGPT(DA,0),0)):$P(^(0),U,2),1:"M")) D
+ . D:K<24 MSG($P(DGPTTMP,U,2)_" can only be used with "_$S($P(DGPTTMP,U,11)="F":"FEMALES",1:"MALES")) S K=K+1,DGER=1 Q
+ ;
+ ; -- build string of 701 dx codes
  S %=$S($D(^DGPT(DA,70)):^(70),1:""),%=U_$P(%,U,10)_U_$P(%,U,16,24)_U
- S:$G(^DGPT(DA,71))'="" %=%_^(71)_U S $P(%,U,DGI+1)=U I %[(U_+Y_U) S DGER=1 Q
- F I=0:0 S I=$O(^ICD9(+Y,"N",I)) Q:I'>0  I %[(U_I_U) S DGPTTMP2=$$ICDDX^ICDCODE(I,DGPTDAT) W !,"Cannot use ",$P($G(DGPTTMP),U,2),"  with ",$S(+DGPTTMP2>0:$P(DGPTTMP2,U,2),1:"") S DGER=1 Q
- Q:DGER  S DG1=1 F I=0:0 S I=$O(^ICD9(+Y,"R",I)) Q:I'>0  S DG1=0 I %[(U_I_U) S DG1=1 Q
- I 'DG1 W !,$S(+DGPTTMP>0:$P(DGPTTMP,U,2),1:"")," requires additional code."
+ S:$G(^DGPT(DA,71))'="" %=%_^(71)_U
+ ;
+ ; -- can't enter the same entry twice
+ S $P(%,U,DGI+1)=U I %[(U_+Y_U) S DGER=1 D MSG("Cannot enter the same code twice.") Q
+ ;
+ D NOT(+Y,%)
+ Q:DGER
+ ;
+ D REQ(+Y,%)
  Q
-EN4 S K=$S($D(K):K,1:1),DGER=0,N=$$ICDDX^ICDCODE(+Y,$$GETDATE^ICDGTDRG(DA)) I N<0!'$P(N,U,10) S DGER=1 Q
+EN4 ; called from ??
+ S K=$S($D(K):K,1:1),DGER=0,N=$$ICDDATA^ICDXCODE("DIAG",+Y,$$GETDATE^ICDGTDRG(DA)) I N<0!'$P(N,U,10) S DGER=1 Q
  I DGI=1,$P(N,U,5) S DGER=1 Q
- I $P(N,U,11)]""&($P(N,U,11)'=$S($D(^DPT(+^DGPT(DA(2),0),0)):$P(^(0),U,2),1:"M")) W:K<24 !,$P(N,U,2)," can only be used with ",$S($P(N,U,11)="F":"FEMALES",1:"MALES") S K=K+1,DGER=1 Q
+ I $P(N,U,11)]""&($P(N,U,11)'=$S($D(^DPT(+^DGPT(DA(2),0),0)):$P(^(0),U,2),1:"M")) D:K<24 MSG($P(N,U,2)_" can only be used with "_$S($P(N,U,11)="F":"FEMALES",1:"MALES")) S K=K+1,DGER=1 Q
  S %=$S($D(^DGPT(DA(2),"C",DA(1),"CPT",DA,0)):^(0),1:""),%=U_$P(%,U,4,7)_U,$P(%,U,DGI+1)=U I %[(U_+Y_U) S DGER=1 Q
- F I=0:0 S I=$O(^ICD9(+Y,"N",I)) Q:I'>0  I %[(U_I_U) W !,"Cannot use ",$S($D(^ICD9(+Y,0)):$P(^(0),U),1:""),"  with ",$S($D(^ICD9(I,0)):$P(^(0),U),1:"") S DGER=1 Q
- Q:DGER  S DG1=1 F I=0:0 S I=$O(^ICD9(+Y,"R",I)) Q:I'>0  S DG1=0 I %[(U_I_U) S DG1=1 Q
- I 'DG1 W !,$P(N,U,2)," requires additional code."       Q
+ D NOT(+Y,%)
+ Q:DGER
+ D REQ(DA(2),+Y,%)
  Q
-EN5 S K=$S($D(K):K,1:1),DGER=0,DGPTTMP=$$ICDDX^ICDCODE(+Y,+DGZPRF(DGZP)) I +DGPTTMP<0!('$P(DGPTTMP,U,10)) S DGER=1 Q
- I $P(DGPTTMP,U,11)]""&($P(DGPTTMP,U,11)'=$S($D(^DPT(+^DGPT(PTF,0),0)):$P(^(0),U,2),1:"M")) W:K<24 !,$P(DGPTTMP,U,2)," can only be used with ",$S($P(DGPTTMP,U,11)="F":"FEMALES",1:"MALES") S K=K+1,DGER=1 Q
- S K=^DGCPT(46,DA,0) I $P(K,U,4,7)_U_$P(K,U,15,18)[Y S DGER=1 Q
+EN5 ; DG*5.3*850
+ ; called from the diagnosis input transforms in file 46
+ N EFFDATE,DGTEMP,IMPDATE
+ I $G(PTF) D EFFDATE^DGPTIC10($G(PTF))
+ S K=$S($D(K):K,1:1),DGER=0,DGPTTMP=$$ICDDATA^ICDXCODE("DIAG",+Y,EFFDATE)
+ I +DGPTTMP<0!('$P(DGPTTMP,U,10)) D MSG("Must be an active code.") S DGER=1 Q
+ ;
+ I $P(DGPTTMP,U,11)]""&($P(DGPTTMP,U,11)'=$S($D(^DPT(+^DGPT(PTF,0),0)):$P(^(0),U,2),1:"M")) D
+ . D:K<24 MSG($P(DGPTTMP,U,2)_" can only be used with "_$S($P(DGPTTMP,U,11)="F":"FEMALES",1:"MALES")) S K=K+1,DGER=1 Q
+ ;
+ S K=^DGCPT(46,DA,0) I $P(K,U,4,7)_U_$P(K,U,15,18)[Y D MSG("Cannot enter the same code twice.") S DGER=1 Q
  Q
-EN6 I $P($G(^(0)),U,2)?.N S DGER=1 Q
- S DGER=0,N=$$CPT^ICPTCOD(+Y,$$GETDATE^ICDGTDRG(DA)) I N<0!'$P(N,"^",7) S DGER=1 Q
- S L=0 F  S L=$O(^DGCPT(46,L)) Q:L'>0  I +$G(^(L,1))=DGPRD,$P(^(1),U,3)=PTF,+^(0)=Y,'$G(^(9)) S DGER=1 Q
+EN6 ; -- called from file 46; .01 field
+ I $P($G(^(0)),U,2)?.N S DGER=1 Q
+ S DGER=0,N=$$CPT^ICPTCOD(+Y,$$GETDATE^ICDGTDRG($G(DA))) I N<0!'$P(N,"^",7) S DGER=1 Q
+ S L=0 F  S L=$O(^DGCPT(46,L)) Q:L'>0  I +$G(^(L,1))=$G(DGPRD),$P(^(1),U,3)=$G(PTF),+^(0)=Y,'$G(^(9)) S DGER=1 Q
  K L Q
+ Q
+ ;
+REQ(DX,STRING) ; - is another ICD code required with this code
+ ; -- input     DX - code being entered
+ ;          STRING - string of code iens already entered for movement ("^123^456^789^")
+ ; -- output - writes message if another code is required
+ ;
+ N I,IEN,DGI,DZ
+ K ^TMP("DGPTF-R",$J)
+ Q:$G(DX)<1
+ Q:'$$REQ^ICDEX(DX,"DGPTF-R",1)
+ ;
+ S DGI=1 S DZ="" F I=0:0 S DZ=$O(^TMP("DGPTF-R",$J,"B",DZ)) Q:DZ=""  D  Q:DG1=1
+ . S IEN=$O(^TMP("DGPTF-R",$J,"B",DZ,0)) Q:IEN<1  S DG1=0 I STRING[(U_IEN_U) S DG1=1 Q
+ I DG1=0 D MSG($S(+DGPTTMP>0:$P(DGPTTMP,U,2),1:"")_" requires additional code.")
+ K ^TMP("DGPTF-R",$J)
+ Q
+ ;
+NOT(DX,STRING) ; - is icd code not to use with existing codes
+ ; -- input     DX - code being entered
+ ;          STRING - string of code iens already entered for movement ("^123^456^789^")
+ ; -- output  DGER :=1 if error
+ ;            writes message if not allowed
+ ;
+ N I,IEN,DGI,DZ
+ K ^TMP("DGPTF-N",$J)
+ S DGER=0
+ Q:$G(DX)<1
+ ;
+ Q:'$$NOT^ICDEX(DX,"DGPTF-N",1)
+ ;
+ S DGI=1 S DZ="" F I=0:0 S DZ=$O(^TMP("DGPTF-N",$J,"B",DZ)) Q:DZ=""  D  Q:DGER
+ . S IEN=$O(^TMP("DGPTF-N",$J,"B",DZ,0)) Q:IEN<1  I STRING[(U_IEN_U) S DGER=1 D  Q:DGER
+ .. D MSG("Cannot use "_$$CODEC^ICDEX(80,DX)_"  with "_$$CODEC^ICDEX(80,IEN)) Q
+ K ^TMP("DGPTF-N",$J)
+ Q
+MSG(TEXT) ;
+ D EN^DDIOL(TEXT)
+ Q

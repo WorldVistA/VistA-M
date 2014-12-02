@@ -1,5 +1,5 @@
 IBCNSJ12 ;ALB/CPM - INACTIVATE AN INSURANCE PLAN (CON'T) ; 18-JAN-95
- ;;2.0;INTEGRATED BILLING;**28,62,142**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**28,62,142,506**;21-MAR-94;Build 74
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 GETPL ; Select an active group plan or add a new one.
@@ -24,7 +24,8 @@ GETPL ; Select an active group plan or add a new one.
 ADD ; - propose to add a new plan to which the patient may subscribe
  I 'IBCPOL D
  .W !,"You may ",$S($G(IBREP):"repoint these policies",1:"change the policy plan")," to a newly-added plan."
- .D NEW^IBCNSJ3(IBCNS,.IBCPOL,+$G(IBFG)) W ! I IBCPOL S IBNEWP=1
+ .; IB*2.0*506 added IBKEY parameter (4th) to the NEW^IBCNSJ3 call (check user's security keys)
+ .D NEW^IBCNSJ3(IBCNS,.IBCPOL,+$G(IBFG),1) W ! I IBCPOL S IBNEWP=1
  I 'IBCPOL W !,"No Insurance Plan has been added or selected."
  Q
  ;

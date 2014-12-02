@@ -1,5 +1,5 @@
-MAGDQR00 ;WOIFO/EdM - Imaging RPCs for Query/Retrieve ; 04/05/2006 08:43
- ;;3.0;IMAGING;**51,54**;03-July-2009;;Build 1424
+MAGDQR00 ;WOIFO/EdM,BT - Imaging RPCs for Query/Retrieve ; 04/05/2006 08:43
+ ;;3.0;IMAGING;**51,54,118**;Mar 19, 2002;Build 4525;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -148,3 +148,27 @@ MAGDQR00 ;WOIFO/EdM - Imaging RPCs for Query/Retrieve ; 04/05/2006 08:43
  ; 0008,1080  O  Admitting Diagnoses Description
  ; 0010,4000  O  Patient Comments
  ;
+ ;
+HDRTAG() ; Result Header
+ Q "0000,0902"
+ ;
+STDESTAG() ; Study Description
+ Q "0008,1030"
+ ;
+STUIDTAG() ; Study UID 
+ Q "0020,000D"
+ ;
+ACCNTAG() ; Accession Number
+ Q "0008,0050"
+ ;
+MODTAG() ; Modality
+ Q "0008,0061"
+ ;
+NSRSTAG() ; Number of Study Related Series
+ Q "0020,1206"
+ ;
+NSRITAG() ; Number of Study Related Instances
+ Q "0020,1208"
+ ;
+PTNAMTAG() ; Patient Name
+ Q "0010,0010"

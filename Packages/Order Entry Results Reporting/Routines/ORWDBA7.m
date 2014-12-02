@@ -1,5 +1,13 @@
-ORWDBA7 ;;SLC/GSS Billing Awareness (CIDC-Clinical Indicators Data Capture)
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**195,215,243**;Dec 17, 1997;Build 242
+ORWDBA7 ;SLC/GSS Billing Awareness (CIDC-Clinical Indicators Data Capture) ;12/04/12  11:13
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**195,215,243,361**;Dec 17, 1997;Build 39
+ ;
+ ;  External References:
+ ;  $$CIDC^IBBAPI           ICR #4419
+ ;  $$ICDDATA^ICDXCODE      ICR #5699
+ ;  $$UPDOR^LRBEBA4         ICR #4775
+ ;  $$EN^PSOHLNE3           ICR #4666
+ ;  $$CPRSUPD^RABWORD1      ICR #4771
+ ;  $$REPEAT^XLFSTR         ICR #10104
  ;
 BDOEDIT ; Backdoor entered orders edit in CPRS - entry point
  ; Data Flow> Ancillary creates a back door order which is incomplete
@@ -102,13 +110,13 @@ ISWITCH(Y,DFN) ;Return 0 if don't ask (no ins) or 1 to ask CIDC quest (yes ins)
  Q
  ;
 GETIEN9(Y,ICD9) ;Return IEN for an ICD9 code (RPC: ORWDBA7 GETIEN9)
- S Y=$P($$CODEN^ICDCODE(ICD9,80),"~")
+ S Y=+$$ICDDATA^ICDXCODE("DIAGNOSIS",ICD9,DT)
  Q
  ;
 CONDTLD ;Consult Detailed Display Compile for CIDC/BA (called by GMRCSLM2)
  ; Input:  ORIFN and GMRCCT defined in GMRCSLM2
  ; Output: CIDCARY = array of CIDC display lines for GMRCSLM2 display
- N BGNRCCT,DXIEN,DXOF,DXV,EYE,ICD9,ICDR,LINE,OCT,ORFMDAT,TF
+ N BGNRCCT,DXIEN,DXOF,DXV,EYE,ICD9,ICDR,LINE,OCT,ORFMDAT,TF,CIDCARY
  S BGNRCCT=GMRCCT,OCT=0
  ; Get the date of the order for CSV/CTD usage
  S ORFMDAT=$$ORFMDAT^ORWDBA3(ORIFN)
@@ -118,7 +126,7 @@ CONDTLD ;Consult Detailed Display Compile for CIDC/BA (called by GMRCSLM2)
  . ; DXIEN=Dx IEN
  . S DXIEN=+^OR(100,ORIFN,5.1,OCT,0)
  . ; Get Dx record for date ORFMDAT
- . S ICDR=$$ICDDX^ICDCODE(DXIEN,ORFMDAT)
+ . S ICDR=$$ICDDATA^ICDXCODE("DIAGNOSIS",DXIEN,ORFMDAT)
  . ; Get Dx verbiage and ICD code
  . S DXV=$P(ICDR,U,4),ICD9=$P(ICDR,U,2)
  . I OCT=1 D

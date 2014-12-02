@@ -1,6 +1,7 @@
-PXBDCPT ;ISL/JVS,ESW - DISPLAY CPT ;3/5/04 10:39am
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**11,73,89,108,121,124**;Aug 12, 1996
+PXBDCPT ;ISL/JVS,ESW - DISPLAY CPT ;24 May 2013  10:44 AM
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**11,73,89,108,121,124,199**;Aug 12, 1996;Build 51
  ;
+ ; Reference to LD^ICDEX supported by ICR #5747
  ;
 EN0 ;---Main entry point
  ;
@@ -25,7 +26,7 @@ HEAD ;--HEADER ON LIST
 ARRAY ;Set all CPT codes and modifiers into ^TMP("PXBDCPT",$J,"DSP"
  ;for display
  ;
- N PXSQ,ENTRY,PXMD,PXDESC,PX124,PXC,PXD
+ N PXSQ,ENTRY,PXMD,PXDESC,PX124,PXC,PXD,PXDXDATE
  S PXTMP="^TMP(""PXBDCPT"""_","_$J_","_"""DSP"")"
  K @PXTMP
  S (PXTLNS,PXSQ)=0
@@ -46,11 +47,22 @@ ARRAY ;Set all CPT codes and modifiers into ^TMP("PXBDCPT",$J,"DSP"
  ..S @PXTMP@(PXTLNS,0)=0_U_PXMOD_U_$E(PXDESC,1,54)
  .S PXTLNS=PXTLNS+1
  .S @PXTMP@(PXTLNS,0)="-22^"_$P(ENTRY,U,22)
+ .S PXDXDATE=$$CSDATE^PXDXUTL(PXBVST)
  .F PX124=5:1:12 D
  ..S PXC=$P(ENTRY,U,PX124) Q:PXC=""
- ..S PXD=$$ICDDX^ICDCODE(PXC) Q:PXD<1
- ..S PXC=PXC_"    "_$P(PXD,U,4)
- ..S PXTLNS=PXTLNS+1,@PXTMP@(PXTLNS,0)=-PX124_U_PXC
+ ..S PXD=$$ICDDATA^ICDXCODE("DIAG",PXC,PXDXDATE,"E") Q:PXD<1
+ ..I $P(PXD,U,20)'=30 D
+ ...S PXC=PXC_"    "_$P(PXD,U,4)
+ ...S PXTLNS=PXTLNS+1,@PXTMP@(PXTLNS,0)=-PX124_U_PXC
+ ..I $P(PXD,U,20)=30 D
+ ...N PXENTRY S PXENTRY(1)=$$SENTENCE^XLFSTR($$LD^ICDEX(80,$P(PXD,U,1),PXDXDATE))
+ ...D PR^PXSELDS(.PXENTRY,50)
+ ...N PXLENGTH,PXLONG,PXSPACES S PXSPACES="     ",PXLENGTH=$L(PXC)-5
+ ...I PXLENGTH>0 S PXSPACES=$E(PXSPACES,1,5-PXLENGTH)
+ ...S PXLONG=PXC_PXSPACES_PXENTRY(1)
+ ...S PXTLNS=PXTLNS+1,@PXTMP@(PXTLNS,0)=-PX124_U_PXLONG
+ ...N PXNUMBR F PXNUMBR=2:1:PXENTRY D
+ ....S PXTLNS=PXTLNS+1,@PXTMP@(PXTLNS,0)=-PX124_U_PXENTRY(PXNUMBR)_U_"NEXTLONG"
  ..I $G(PXBREQ(+PXD,"I"))="" S PXBREQ(+PXD,"I")=$P($$XLATE^PXBGPOV(PXBVST,+PXD),U,4,20)
  ..S PXTLNS=PXTLNS+1,@PXTMP@(PXTLNS,0)="I^"_PXBREQ(+PXD,"I")
  Q
@@ -80,11 +92,11 @@ DISCPT1 ;--Display the CPT Data
  ...W:PXLN=1 !,?4,"CPT Modifier: "_PXMOD
  ...W:PXLN>1 !
  ...W ?22,PXWRAP(PXLN)
- ;---Write no entries if none exsist
+ ;---Write no entries if none exist
  I '$D(PXBSAM) D NONE^PXBUTL(2)
  Q
  ;
-DISCPT2 ;--display of cpt data two columns more that 10 entries.
+DISCPT2 ;--display of cpt data two columns if more than 10 entries.
  ;
  N ENTRY,J,PXA
  D GSET^%ZISS
@@ -107,7 +119,7 @@ DISCPT2 ;--display of cpt data two columns more that 10 entries.
  W IOG0
  Q
  ;
-DISCPT3 ;--display of cpt data three colums more that 20 entries.
+DISCPT3 ;--display of cpt data three columns if more than 20 entries.
  N ENTRY,J,PXA
  D GSET^%ZISS
  D UNDON^PXBCC W IOG1
@@ -122,7 +134,7 @@ DISCPT3 ;--display of cpt data three colums more that 20 entries.
  F J=1:1:10 D
  .W !,J,?4,$P(ENTRY(J),U,1),?11,$P(ENTRY(J),U,2),?14,$E($P(ENTRY(J),U,4),1,10)
  .D BAWRITE(ENTRY(J))
- .I $D(ENTRY(J+10)) D 
+ .I $D(ENTRY(J+10)) D
  ..W ?25,IOVL,(J+10),?30,$P(ENTRY(J+10),U,1),?37,$P(ENTRY(J+10),U,2),?40,$E($P(ENTRY(J+10),U,4),1,10)
  ..D BAWRITE(ENTRY(J+10))
  .I $D(ENTRY(J+20)) D
@@ -131,11 +143,11 @@ DISCPT3 ;--display of cpt data three colums more that 20 entries.
  W IOG0
  Q
  ;
-DISCPT4(SIGN)   ;--Display the CPT Data
+DISCPT4(SIGN) ;--Display the CPT Data
  ;
  ;SIGN=
  ; '+' add 10 to the starting point in ^TMP("PXBDCPT",$J)
- ; '-' subtract 10 from the starting point but not less that 0
+ ; '-' subtract 10 from the starting point but not less than 0
  ; 'BEGIN' start at the beginning
  ; 'SAME' start stays where it's at
  ; '3'--any number set start to that number
@@ -189,14 +201,15 @@ HEAD4 ;--HEADER ON LIST
  .I +@PXTMP@(J,0)<0 D  Q
  ..S PX=-$P(^(0),U,1)
  ..I PX=22 W !?4,"Ordering Provider:  ",$P(^(0),U,2) Q
- ..I PX<20 W !?4,"Diagnosis "_(PX-4)_":  ",$P(^(0),U,2) Q
+ ..I PX<20,$P(^(0),U,3)'="NEXTLONG" W !?4,"Diagnosis "_(PX-4)_":  ",$P(^(0),U,2) Q
+ ..I PX<20,$P(^(0),U,3)="NEXTLONG" W !?28,$P(^(0),U,2)
  .I $P(@PXTMP@(J,0),U)="I" D CIA^PXBDPOV($P(^(0),U,2,16)) Q
  .I $P(@PXTMP@(J,0),U)=0 D
  ..W !?4,"CPT Modifier: "_$P(^(0),U,2)_"  "_$P(^(0),U,3)
  I SIGN'="BEGIN" W !!
  Q
  ;
-BAWRITE(PXD)    ;WRITE BA INFO
+BAWRITE(PXD) ;WRITE BA INFO
  N PX,PD,PP
  W !?4,"Ordering Provider:  ",$P(PXD,U,22)
  F PX=1:1:8 D

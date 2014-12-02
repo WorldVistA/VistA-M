@@ -1,0 +1,306 @@
+LRJSML8 ;ALB/GTS - Lab Vista Hospital Location Utilities;04/23/2012 09:05
+ ;;5.2;LAB SERVICE;**425**;Sep 27, 1994;Build 30
+ ;
+ ;
+LISTHLMM(LRHLARY) ; Store Hospital Locations in display array
+ ; INPUT -
+ ;   LRHLARY - Array of raw extract data
+ ;
+ NEW LRFROM,LRTO,LRINIT
+ SET LRINIT=$$INITCK^LRJSML1()
+ IF LRINIT SET (LRFROM,LRTO)=""
+ IF 'LRINIT DO SETRNG^LRJSML1(.LRFROM,.LRTO)
+ DO KILL^VALM10()
+ DO CRTRPTAR(LRHLARY,LRFROM,LRTO,"DISPLAY","")
+ QUIT
+ ;
+CRTRPTAR(LRHLARY,LRFROM,LRTO,LROUTPT,LRMMARY) ; Store Hospital Locations in display array
+ ; INPUT -
+ ;   LRHLARY - Raw extract data Array
+ ;   LRFROM  - Report Start date
+ ;   LRTO    - Report End date
+ ;   LROUTPT - "DISPLAY" - Listman; "MAIL" - mail message
+ ;   LRMMARY - Mail msg output array
+ ;
+ NEW X,LRXN,LRXP,NODE,LRLOC,LRRM,LROBED,LRHD,LRCLOC,LRCRM,LRCBED,LRPLOC,LRPRM,LRPBED
+ NEW LRFSTLNE,LRPARAM,LRLNCTN,LRLNCNT,LRVALST,LRNEWLOC,LRINIT,LRNOTCHG
+ SET:$G(LRMMARY)="" LRMMARY=""
+ SET:$G(LROUTPT)="" LROUTPT="DISPLAY"
+ SET LRINIT=$$INITCK^LRJSML1()
+ SET LRNOTCHG=(LRINIT)
+ SET LRFSTLNE=0
+ SET LRNEWLOC=1
+ SET (LRLOC,LRRM,LROBED,LRCLOC,LRCRM,LRCBED,LRPLOC,LRPRM,LRPBED)=""
+ SET:('LRNOTCHG) LRHD="NEW LOCATION"
+ SET:(LRNOTCHG) LRHD="CURRENT LOCATION"
+ SET X=$$XSET(LRINIT,LRFROM,LRTO)
+ ;
+ I LROUTPT="MAIL" DO
+ .S LRLNCNT=0
+ .D LRADDNOD^LRJSML3(.LRLNCNT,X,"",LROUTPT,LRMMARY)
+ I LROUTPT="DISPLAY" DO
+ .S VALMCNT=0
+ .D LRADDNOD^LRJSML3(.VALMCNT,X,"",LROUTPT,LRMMARY)
+ .D CNTRL^VALM10(VALMCNT,2,$LENGTH(X)-1,IOUON,IOUOFF_IOINORM)
+ ;
+ ;Loop extract array
+ S NODE=0
+ F  S NODE=$ORDER(@LRHLARY@(NODE)) Q:NODE=""  DO
+ .S LRXN=@LRHLARY@(NODE)
+ .;
+ .;New Location
+ .I $P(LRXN,"^",1)'["CURRENT",$P(LRXN,"^",1)'["PREVIOUS" DO 
+ ..;
+ ..;Set Paramater array (New)
+ ..S LRVALST="^"_LRRM_"^"_LROBED_"^"_LRHD_"^"_LRFSTLNE_"^"_LRNOTCHG
+ ..D SETNPARM^LRJSML3(LRVALST,.LRPARAM)
+ ..S LRPARAM("XN")=LRXN
+ ..S LRPARAM("LRLOC")=LRLOC
+ ..;;
+ ..D:LROUTPT="DISPLAY" MMDISPN^LRJSML3(.VALMCNT,.LRPARAM,LROUTPT,LRMMARY)
+ ..D:LROUTPT="MAIL" MMDISPN^LRJSML3(.LRLNCNT,.LRPARAM,LROUTPT,LRMMARY)
+ ..;
+ ..;Reset array params
+ ..S LRLOC=LRPARAM("LRLOC")
+ ..S LRRM=LRPARAM("LRRM")
+ ..S LROBED=LRPARAM("LROBED")
+ ..S LRHD=LRPARAM("LRHD")
+ ..S LRFSTLNE=LRPARAM("LRFSTLNE")
+ .;
+ .;Edited location
+ .I $P(LRXN,"^",1)["CURRENT" DO
+ ..;
+ ..;Output last New rec
+ ..I LRLOC'="" DO
+ ...;
+ ...;Set Param array (New)
+ ...S LRVALST="^"_LRRM_"^"_LROBED_"^"_LRHD_"^"_LRFSTLNE_"^"_LRNOTCHG
+ ...D SETNPARM^LRJSML3(LRVALST,.LRPARAM)
+ ...S LRPARAM("LRLOC")=LRLOC
+ ...;;
+ ...D:LROUTPT="DISPLAY" LRNEWOUT^LRJSML3(.VALMCNT,.LRPARAM,LROUTPT,LRMMARY) ;OUTPUT LAST NEW LOC
+ ...D:LROUTPT="MAIL" LRNEWOUT^LRJSML3(.LRLNCNT,.LRPARAM,LROUTPT,LRMMARY) ;OUTPUT LAST NEW LOC
+ ...;
+ ...;Reset array param
+ ...S LRLOC=LRPARAM("LRLOC")
+ ...S LRRM=LRPARAM("LRRM")
+ ...S LROBED=LRPARAM("LROBED")
+ ...S LRHD=LRPARAM("LRHD")
+ ...S LRFSTLNE=LRPARAM("LRFSTLNE")
+ ..S LRLOC=""
+ ..S NODE=NODE+1
+ ..S LRXP=@LRHLARY@(NODE)
+ ..;
+ ..;Set Param array (Edited)
+ ..S LRVALST="^"_LRCRM_"^"_LRCBED_"^^"_LRPRM_"^"_LRPBED_"^"_LRFSTLNE_"^"_LRNOTCHG
+ ..D SETEPARM^LRJSML3(LRVALST,.LRPARAM)
+ ..;
+ ..I $P(LRXN,"^",2)="LOCATION" DO
+ ...S LRCLOC="^^"_$P(LRXN,"^",3,11)
+ ...S LRPLOC="^^"_$P(LRXP,"^",3,11)
+ ..S LRPARAM("XN")=LRXN
+ ..S LRPARAM("XP")=LRXP
+ ..S LRPARAM("LRCLOC")=LRCLOC
+ ..S LRPARAM("LRPLOC")=LRPLOC
+ ..S LRPARAM("LRNEWLOC")=LRNEWLOC
+ ..;;
+ ..D:LROUTPT="DISPLAY" MMDISPC^LRJSML3(.VALMCNT,.LRPARAM,LROUTPT,LRMMARY)
+ ..D:LROUTPT="MAIL" MMDISPC^LRJSML3(.LRLNCNT,.LRPARAM,LROUTPT,LRMMARY)
+ ..;
+ ..;Reset array param
+ ..S LRCLOC=LRPARAM("LRCLOC")
+ ..S LRCRM=LRPARAM("LRCRM")
+ ..S LRCBED=LRPARAM("LRCBED")
+ ..S LRPLOC=LRPARAM("LRPLOC")
+ ..S LRPRM=LRPARAM("LRPRM")
+ ..S LRPBED=LRPARAM("LRPBED")
+ ..S LRFSTLNE=LRPARAM("LRFSTLNE")
+ ..S LRNEWLOC=LRPARAM("LRNEWLOC")
+ I LRLOC'="" DO
+ .;
+ .;Set Param array (New)
+ .S LRVALST="^"_LRRM_"^"_LROBED_"^"_LRHD_"^"_LRFSTLNE_"^"_LRNOTCHG
+ .D SETNPARM^LRJSML3(LRVALST,.LRPARAM)
+ .S LRPARAM("LRLOC")=LRLOC
+ .;;
+ .D:LROUTPT="DISPLAY" LRNEWOUT^LRJSML3(.VALMCNT,.LRPARAM,LROUTPT,LRMMARY) ;OUTPUT LAST NEW LOC
+ .D:LROUTPT="MAIL" LRNEWOUT^LRJSML3(.LRLNCNT,.LRPARAM,LROUTPT,LRMMARY) ;OUTPUT LAST NEW LOC
+ .;
+ .;Reset array params
+ .S LRLOC=LRPARAM("LRLOC")
+ .S LRRM=LRPARAM("LRRM")
+ .S LROBED=LRPARAM("LROBED")
+ .S LRHD=LRPARAM("LRHD")
+ .S LRFSTLNE=LRPARAM("LRFSTLNE")
+ ;
+ QUIT
+ ;
+XSET(LRINIT,LRFROM,LRTO) ;Set report description (first line listed)
+ ;INPUT:
+ ; LRINIT  -
+ ;           1 : Init extract
+ ;           0 : Not Init extract [Default]
+ ; LRFROM  - Report Beginning date (Passed by Ref)
+ ; LRTO    - Report Ending date (Passed by Ref)
+ ;
+ NEW LRX
+ SET:('LRINIT) LRX=" VistA Hospital Location changes"_$S($D(LRFROM):" from "_$$FMTE^XLFDT(LRFROM),1:"")_$S($D(LRTO):" to "_$$FMTE^XLFDT(LRTO),1:"")
+ IF +$G(LRINIT)>0 DO
+ .SET LRX=" VistA Hospital Location Configurations on "_$$FMTE^XLFDT($P($G(^TMP($J,"LRJ SYS",1)),"^",11))
+ QUIT LRX
+ ;
+GETDATE(LRFROM,LRTO) ;Return Report dates from ^TMP("LRJ SYS MAP HL MANAGER",$JOB)
+ ;INPUT:
+ ; LRFROM - Report Beginning date (Passed by Ref)
+ ; LRTO   - Report Ending date (Passed by Ref)
+ ; 
+ ;OUTPUT (Passed by Ref):
+ ; LRFROM - Report Beginning date
+ ; LRTO   - Report Ending date
+ ; 
+ S LRFROM=$P(^TMP("LRJ SYS MAP HL INIT MGR",$JOB,1,0),"Hospital Location changes",2)
+ S LRFROM=$P(LRFROM," from ",2)
+ S LRFROM=$P(LRFROM," to ",1)
+ S LRTO=$P(^TMP("LRJ SYS MAP HL INIT MGR",$JOB,1,0)," to ",2)
+ Q
+ ;
+SNDMSG(LRMSUBJ,XQSND,LRMSGARY,LRTASK) ;Send HL changes to requestor
+ ;INPUT:
+ ;  LRMSUBJ  - Subject of msg generated 
+ ;  XQSND    - User's DUZ, Group Name, or S.server name
+ ;  LRMSGARY - Array containing msg text
+ ;  LRTASK   - If defined, indicates called from TASKMAN job
+ ;  
+ N LRINSTMM,LRTASKMM,LRTOMM,XMERR,XMZ,LRLPCNT,LRTYPE
+ ;
+ S:'$D(LRTASK) LRTASK=0
+ I 'LRTASK DO
+ . K XMERR
+ . S LRINSTMM("ADDR FLAGS")="R"  ;Do not Restrict addressing
+ . S LRTYPE="S"
+ . D TOWHOM^XMXAPIU(DUZ,,LRTYPE,.LRINSTMM)
+ . S LRLPCNT=""
+ . F  S LRLPCNT=$O(^TMP("XMY",$J,LRLPCNT)) Q:LRLPCNT=""  S LRTOMM(LRLPCNT)=""
+ ;
+ I +$G(XMERR)'>0 DO
+ . S LRTOMM(XQSND)=""
+ . S LRTOMM("G.LRJ SYS MAP HL TASK REPORT")=""
+ . S LRINSTMM("FROM")="LAB_HLCSM_USER_ACTION"
+ . S LRMSUBJ=$E(LRMSUBJ,1,65)
+ . D SENDMSG^XMXAPI(XQSND,LRMSUBJ,LRMSGARY,.LRTOMM,.LRINSTMM,.LRTASKMM)
+ ;
+ K @LRMSGARY,^TMP("XMY",$J),^TMP("XMY0",$J),^TMP($J,"LRNETMSG")
+ Q
+ ;
+SNDEXT(LRMSUBJ,XQSND,LREXTARY) ;Send HL changes Extract to requester
+ ;INPUT:
+ ;  LRMSUBJ  - Subject of message generated 
+ ;  XQSND    - User's DUZ, Group Name, or S.server name
+ ;  LREXTARY - Array containing msg text
+ ;  
+ N LRINSTMM,LRINSTVA,LRTASKMM,LRTASKVA,LRTOMM,LRTOVA,XMERR,XMZ,LRLPCNT,LRTYPE
+ ;
+ S LRINSTMM("ADDR FLAGS")="R"  ;Do not Restrict addressing
+ S LRTYPE="S"
+ K XMERR
+ D TOWHOM^XMXAPIU(DUZ,,LRTYPE,.LRINSTMM)
+ ;
+ ;Check Network addresses and mail attachmt
+ S LRINSTVA("ADDR FLAGS")="R"  ;Do not Restrict addressing
+ S LRINSTVA("FROM")="LAB_HLCSM_USER_ACTION"
+ S LRMSUBJ=$E(LRMSUBJ,1,65)
+ S LRLPCNT=""
+ F  S LRLPCNT=$O(^TMP("XMY",$J,LRLPCNT)) Q:LRLPCNT=""  S LRTOVA(LRLPCNT)=""
+ ;
+ I +$G(XMERR)'>0 DO
+ .W !,"                                        [Creating attachments..."
+ .D OUTLKARY(LREXTARY,"^TMP($J,""LRNETMSG"")",LRMSUBJ,1)
+ .D SENDMSG^XMXAPI(XQSND,LRMSUBJ,"^TMP($J,""LRNETMSG"")",.LRTOVA,.LRINSTVA,.LRTASKVA)
+ ;
+ K ^TMP("XMY",$J),^TMP("XMY0",$J),^TMP($J,"LRNETMSG")
+ Q
+ ;
+OUTLKARY(LRHLARY,LRHLOTLK,LRMSUBJ,LRRT) ;Create attachmts array
+ ;INPUT:
+ ;  LRHLARY  - Array containing raw message text
+ ;  LRHLOTLK - Array containing message text for network addresses
+ ;  LRMSUBJ  - Message subject
+ ;  LRRT     - Real Time processing from UI
+ ;
+ N LRFILNM1,LRFILNM2,LRDTTM,LRCRLF,LRSTR,LRNODE,LROUTNOD,LRNODATA,LRCHAR
+ S:+$G(LRRT)=0 LRRT=0
+ S:+$G(LRRT) LRCHAR=0
+ S LRSTR=""
+ S LRNODATA=0
+ S LRCRLF=$C(13,10)
+ K @LRHLOTLK
+ S @LRHLOTLK@(1)="Extract Message Generated......: "_$$FMTE^XLFDT($$NOW^XLFDT)_LRCRLF
+ S @LRHLOTLK@(2)=" "
+ S @LRHLOTLK@(3)="Extract Requested......: "_LRMSUBJ_LRCRLF
+ S @LRHLOTLK@(4)=" "
+ ;
+ S LRDTTM=$$NOW^XLFDT
+ S LRFILNM1="HLCSM_EXT_NEW_"_$P(LRDTTM,".",1)_"_"_$P(LRDTTM,".",2)_".TXT"
+ S LRFILNM2="HLCSM_EXT_MOD_"_$P(LRDTTM,".",1)_"_"_$P(LRDTTM,".",2)_".TXT"
+ S @LRHLOTLK@(5)="Attached LMOF NEW Hospital Locations file.....: "_LRFILNM1_LRCRLF
+ S @LRHLOTLK@(6)=" "
+ S @LRHLOTLK@(7)="Attached LMOF MODIFIED Hospital Locations file.....: "_LRFILNM2_LRCRLF
+ S:($O(@LRHLARY@(0))="") LRNODATA=1
+ S @LRHLOTLK@(8)=" "
+ S:(LRNODATA=0) @LRHLOTLK@(9)=" "
+ S:(LRNODATA=1) @LRHLOTLK@(9)="No data was extracted for date range!!"
+ ;
+ ;Begin NEW Hospital Locations file output
+ S @LRHLOTLK@(10)=$$UUBEGFN(LRFILNM1)
+ S LRNODE=0
+ S LROUTNOD=10
+ F  S LRNODE=$O(@LRHLARY@(LRNODE)) Q:(LRNODE="")  Q:($P($G(@LRHLARY@(LRNODE)),"^",1)="CURRENT")  DO
+ . I +$G(LRRT) D:LRNODE#100=0 HANGCHAR^LRJSMLU(.LRCHAR)
+ . S LRSTR=LRSTR_@LRHLARY@(LRNODE)_LRCRLF
+ . D ENCODE(.LRSTR,.LROUTNOD,LRHLOTLK)
+ ;
+ F  Q:$L(LRSTR<45)  D ENCODE(.LRSTR,.LROUTNOD,LRHLOTLK)
+ S:(LRSTR'="") @LRHLOTLK@(LROUTNOD+1)=$$UUEN^LRJSMLU(LRSTR)
+ S @LRHLOTLK@(LROUTNOD+2)=" "
+ S @LRHLOTLK@(LROUTNOD+3)="end"
+ ;
+ ;Begin MODIFIED Hospital Locations file output
+ S LRSTR=""
+ S LROUTNOD=LROUTNOD+4
+ S @LRHLOTLK@(LROUTNOD)=$$UUBEGFN(LRFILNM2)
+ I +LRNODE>0 DO
+ .S LRNODE=LRNODE-1
+ .F  S LRNODE=$O(@LRHLARY@(LRNODE)) Q:(LRNODE="")  DO
+ ..I +$G(LRRT) D:LRNODE#100=0 HANGCHAR^LRJSMLU(.LRCHAR)
+ ..S LRSTR=LRSTR_@LRHLARY@(LRNODE)_LRCRLF
+ ..D ENCODE(.LRSTR,.LROUTNOD,LRHLOTLK)
+ .;
+ .F  Q:$L(LRSTR<45)  D ENCODE(.LRSTR,.LROUTNOD,LRHLOTLK)
+ S:(LRSTR'="") @LRHLOTLK@(LROUTNOD+1)=$$UUEN^LRJSMLU(LRSTR)
+ S @LRHLOTLK@(LROUTNOD+2)=" "
+ S @LRHLOTLK@(LROUTNOD+3)="end"
+ Q
+ ;
+UUBEGFN(LRFILENM) ; Construct uuencode "begin" coding
+ ; Call with LRFILENM = name of uuencoded file attachmt
+ ; 
+ ; Returns LRX = string with "begin..."_file name
+ ;
+ N LRX
+ S LRX="begin 644 "_LRFILENM
+ Q LRX
+ ;
+ENCODE(LRSTR,LRDTANOD,LRHLOTLK) ;Encode a string, keep remainder for next line
+ ;INPUT:
+ ;  LRSTR     - String to send in msg; call by reference, Remainder returned in LRSTR
+ ;  LRDTANOD  - Number of next Node to store msg line in array
+ ;  LRHLOTLK  - Array containing msg text for network addresses
+ ;
+ N LRQUIT,LRLEN,LRX
+ S LRQUIT=0,LRLEN=$L(LRSTR)
+ F  D  Q:LRQUIT
+ . I $L(LRSTR)<45 S LRQUIT=1 Q
+ . S LRX=$E(LRSTR,1,45)
+ . S LRDTANOD=LRDTANOD+1,@LRHLOTLK@(LRDTANOD)=$$UUEN^LRJSMLU(LRX)
+ . S LRSTR=$E(LRSTR,46,LRLEN)
+ Q

@@ -1,3 +1,13 @@
 HLO SUBSCRIPTION REGISTRY
 ZWR
-^HLD(779.4,0)="HLO SUBSCRIPTION REGISTRY^779.4^^"
+^HLD(779.4,0)="HLO SUBSCRIPTION REGISTRY^779.4^2^2"
+^HLD(779.4,1,0)="MAGD ADT^MAGD (ADT)"
+^HLD(779.4,1,1)="ADT subscription list for clinical specialty systems"
+^HLD(779.4,2,0)="MAGD DEFAULT^MAGD (Imaging Default)"
+^HLD(779.4,2,1)="Default subscription list for CPRS consults & procedures"
+^HLD(779.4,"AH","MAGD (ADT)"," "," "," "," "," "," ")="1"
+^HLD(779.4,"AH","MAGD (Imaging Default)"," "," "," "," "," "," ")="2"
+^HLD(779.4,"B","MAGD ADT",1)=""
+^HLD(779.4,"B","MAGD DEFAULT",2)=""
+^HLD(779.4,"C","MAGD ADT",1)=""
+^HLD(779.4,"C","MAGD DEFAULT",2)=""

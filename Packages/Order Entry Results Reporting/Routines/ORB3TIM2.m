@@ -1,5 +1,5 @@
-ORB3TIM2 ; slc/CLA - Routine to trigger time-related notifications ;3/30/01  07:41 [1/3/05 8:21am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**102,215,251,265**;Dec 17, 1997;Build 17
+ORB3TIM2 ; slc/CLA - Routine to trigger time-related notifications ; 11/1/11 11:40am
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**102,215,251,265,356**;Dec 17, 1997;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EXPIR ;trigger expiring order notifs
@@ -36,6 +36,9 @@ EXPIR ;trigger expiring order notifs
  .Q:ORBRSLT<0
  .S EXORN="" F  S EXORN=$O(^OR(100,"AE",EXDT,EXORN)) Q:EXORN=""  D
  ..;
+ ..;*356 Protect, if x-ref dangles.
+ ..I '$D(^OR(100,EXORN)) K ^OR(100,"AE",EXDT,EXORN) Q
+ ..;
  ..;Quit if isn't at least next day after order's Date of Last Activity:
  ..S ORLDT=$P(^OR(100,EXORN,3),U)
  ..Q:$$FMDIFF^XLFDT(ORNOW,ORLDT)<1
@@ -70,6 +73,8 @@ EXPIR ;trigger expiring order notifs
  ...;
  ...I $L(PTLOC),PTLOC="OUTPT" D
  ....D ENVAL^XPAR(.ORBLST,"ORB OI EXPIRING - OUTPT","`"_EXOI,.ORBERR)
+ ....;*356 Add OUTPT PR 
+ ....I 'ORBERR,'$G(ORBLST) D ENVAL^XPAR(.ORBLST,"ORB OI EXPIRING - OUTPT PR","`"_EXOI,.ORBERR)
  ....I 'ORBERR,$G(ORBLST)>0 D
  .....S OITXT=$P(^ORD(101.43,EXOI,0),U)
  .....S ORSDT=$P(^OR(100,EXORN,0),U,8),ORSDT=$$FMTE^XLFDT(ORSDT,"2P")

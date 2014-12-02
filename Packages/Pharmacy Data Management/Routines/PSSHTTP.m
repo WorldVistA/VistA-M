@@ -1,5 +1,5 @@
 PSSHTTP ;WOIFO/AV - REENGINERING Sends XML Request to PEPS via HWSC ;09/20/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136**;9/30/97;Build 89
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,160**;9/30/97;Build 76
  ;
  ; @author  - Alex Vazquez, Chris Flegel, Timothy Sabat, S Gordon
  ; @date    - September 19, 2007
@@ -67,6 +67,7 @@ ERROR ;
  ;
  ; Parse out the error text and store in global
  SET ^TMP($JOB,"OUT","EXCEPTION")=$$GETTEXT(.ERRARRAY)
+ I $G(PSSFDBRT),$D(^TMP($JOB,"OUT","EXCEPTION")) S PSSOUT(0)="-1^"_^TMP($JOB,"OUT","EXCEPTION") K ^TMP($JOB,"OUT","EXCEPTION")
  ;
  ; Set ecode to empty to return to calling function
  SET $ECODE=""

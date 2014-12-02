@@ -1,5 +1,5 @@
 PRCSAPP1 ;WISC/KMB-CHECK 2237 BEFORE APPROVAL ;12/17/93
- ;;5.1;IFCAP;**148**;Oct 20, 2000;Build 5
+ ;;5.1;IFCAP;**148,174**;Oct 20, 2000;Build 23
  ;Per VHA Directive 2004-038, this routine should not be modified.
 CHEC ;
  I +$P(^PRCS(410,DA,0),"-")'=PRC("SITE") S SPENDCP=1 G EVAL
@@ -38,6 +38,22 @@ T2 ;
  I $P(PRCSN,"^",4)>1,'$D(^PRCS(410,DA,"IT",0)) S SPENDCP=7 D EVAL Q
  I +$P(^PRCS(410,DA,3),"^",3)=0 S SPENDCP=8 D EVAL Q
  I '$$CHECK^PRCEN(DA) S SPENDCP=11 D EVAL Q
+ ;*****PRC*5.1*174 start*****
+ N PRCHJFT,PRCFAIL
+ S PRCHJFT=$P(^PRCS(410,DA,0),"^",4) ;Form Type
+ ;if 2237 transaction (Form Type IEN 2,3, or 4) DO block
+ I $G(PRCHJFT)>1&($G(PRCHJFT)<5) D
+ . ;if 2237 required fields are missing DO block
+ . N PRCWARN
+ . I '$$REQCHECK^PRCHJUTL(DA,.PRCWARN) D
+ . . S PRCFAIL=1
+ . . N PRCIDX S PRCIDX=0
+ . . W !!,"WARNING - Transaction "_$$GET1^DIQ(410,DA,.01)_" is missing required data!",*7
+ . . F  S PRCIDX=$O(PRCWARN(PRCIDX)) Q:'PRCIDX  D
+ . . . W !?2,">>> "_$G(PRCWARN(PRCIDX))
+ ;if 2237 missing data, output msg to user and quit (don't allow approval)
+ I $G(PRCFAIL) S SPENDCP=12 D EVAL Q
+ ;*****PRC*5.1*174 end*****
  S OK=1 QUIT
 EVAL ;
  I SPENDCP'=0 W !,$P($T(MESSAGE+SPENDCP),";;",2) H 2 Q:$D(JUMP)  R !!,"Press return to continue: ",X:DTIME I X["^" D
@@ -57,3 +73,4 @@ MESSAGE ;
  ;;This request has a negative dollar amount
  ;;Committed Cost does not equal BOC $ Amount - Please re-edit.
  ;;Missing required data, request needs to be edited.
+ ;;Missing required data, 2237 request needs to be edited prior to approval.

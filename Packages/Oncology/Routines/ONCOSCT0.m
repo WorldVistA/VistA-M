@@ -1,5 +1,5 @@
 ONCOSCT0 ;WASH ISC/SRR-SETUP FOR CROSS-TABS ;9/22/92  15:55
- ;;2.11;ONCOLOGY;;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  ;ask all questions to enable quing report
  ;GET FILE # AND NAME

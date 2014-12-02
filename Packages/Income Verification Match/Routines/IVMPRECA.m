@@ -1,10 +1,10 @@
 IVMPRECA ;ALB/KCL/BRM/PJR/RGL/CKN,TDM - DEMOGRAPHICS MESSAGE CONSISTENCY CHECK ; 7/19/11 11:16am
- ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,34,58,56,115,144,121,151**;21-OCT-94;Build 10
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,34,58,56,115,144,121,151,145**;21-OCT-94;Build 6
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; This routine will perform data validation checks on uploadable
  ; demographic fields received from the IVM Center to ensure they
- ; are acurate prior to their upload into DHCP.
+ ; are accurate prior to their upload into DHCP.
  ;
  ;
  ; Called from routine IVMPREC6 before uploadable demographic fields
@@ -80,7 +80,7 @@ EN ; - Entry point to create temp array and perform msg consistency checks
  ;
  ; - perform field validation check for ZPD and ZGD segment
  ; - I X]"" was changed to I X below for IVM*2*56
- S X=$P(IVMSTR("ZPD"),HLFS,9) I X,($$FMDATE^HLFNC(X)<$P($G(^DPT(+DFN,0)),"^",3))!($$FMDATE^HLFNC(X)>$$DT^XLFDT) S HLERR="Invalid date of death" G ENQ
+ S X=$P(IVMSTR("ZPD"),HLFS,9) I X,($$FMDATE^HLFNC(X)<$P($G(^DPT(+DFN,0)),"^",3))!($$FMDATE^HLFNC(X)>$$NOW^XLFDT) S HLERR="Invalid date of death" G ENQ
  ; IVM*2*121 - Added new check for ZGD
  N ZGD3
  S ZGD3=$P(IVMSTR("ZGD"),HLFS,3)

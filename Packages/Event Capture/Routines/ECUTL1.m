@@ -1,5 +1,5 @@
-ECUTL1 ;ALB/ESD - Event Capture Classification Utilities ; 5/25/10 11:14am
- ;;2.0; EVENT CAPTURE ;**10,13,17,42,54,76,107**;8 May 96;Build 14
+ECUTL1 ;ALB/ESD - Event Capture Classification Utilities ;2/6/14  15:01
+ ;;2.0;EVENT CAPTURE;**10,13,17,42,54,76,107,122**;8 May 96;Build 2
  ;
 ASKCLASS(DFN,ECANS,ERR,ECTOPCE,ECPATST,ECHDA) ;  Ask classification questions
  ; (Agent Orange, Ionizing Radiation, Environmental Contaminants/South 
@@ -224,7 +224,7 @@ RCNTVST(RESULT,DFN) ;
  ;           non clinics visits from being included in API 1905
  ;           not needed in 3859 as it contains a filter for clinics
  ;
- N ARR,CNT,DATE,NUM,PARAMS,P1,P1DT,P2,PDT,VDT,VIEN,X,X1,X2,Y,SDRESULTS
+ N ARR,CNT,DATE,NUM,PARAMS,P1,P1DT,P2,PDT,VDT,VIEN,X,X1,X2,Y,SDRESULT ;122 Changed SDRESULTS to SDRESULT
  D NOW^%DTC S DATE=%,Y=DATE
  S VDT=3050101
  S X1=DT,X2=(-15) D C^%DTC S PDT=X    ;get appts within last 15 days
@@ -240,6 +240,7 @@ RCNTVST(RESULT,DFN) ;
  ..S PARAMS=$G(^TMP("VSIT",$J,VIEN,NUM))
  ..;make sure location is a clinic
  ..I $P(PARAMS,U,3)="H" Q
+ ..I $P(PARAMS,U,3)="E" Q  ;122 Don't include historical visits (marked as "E" for event) in list of recent visits
  ..I $$GET1^DIQ(44,$P($P(PARAMS,U,2),";"),2,"I")'="C" Q
  ..S P1DT=$P(PARAMS,U,1),P1=$$FMTE^XLFDT(P1DT,"9M"),P2=$P($P(PARAMS,U,2),";",2)
  ..I '$G(P1DT)!($G(P2)="") Q

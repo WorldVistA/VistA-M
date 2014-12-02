@@ -1,5 +1,5 @@
-LRUDEL ;DALOI/REG/CYM - DELETE AN AP ACCESSION NUMBER ;05/30/12  17:05
- ;;5.2;LAB SERVICE;**1,72,121,201,350**;Sep 27, 1994;Build 230
+LRUDEL ;DALOI/REG,CYM,PMK - DELETE AN AP ACCESSION NUMBER ;17 Sep 2013 7:30 AM
+ ;;5.2;LAB SERVICE;**1,72,121,201,350,427,433**;Sep 27, 1994;Build 4
  ;
  D END,^LRAP G:'$D(Y) END D XR^LRU
  W !?22,"Delete an Accession Number",!!
@@ -73,9 +73,14 @@ REST ;
  S %=2 D YN^LRU
  I %'=1 W $C(7),!?4,"NOT DELETED",!! Q
  ;
+ D DEL69AN
+ ;
  D ACC^LR7OB1(LRAA,LRAD,LRAN,"OC") ; Cancel order
  ;
  I $D(^LR(LRDFN,LRSS,LRI)) D
+ . ;
+ . I $T(CANCEL^MAGT7MA)'="" D CANCEL^MAGT7MA ; invoke Imaging HL7 routine - P433
+ . ;
  . K ^LR(LRDFN,LRSS,LRI)
  . I $D(^LR(LRDFN,LRSS,0)) S X=^LR(LRDFN,LRSS,0),X(1)=$O(^(0)),X(2)=$P(X,"^",4)-1,^(0)=$P(X,"^",1,2)_"^"_X(1)_"^"_X(2)
  ;
@@ -118,6 +123,27 @@ K ; also from LRAPED
  N A
  S A=0
  F  S A=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,A)) Q:'A  K ^LRO(68,"AA",LRAA_"|"_LRAD_"|"_LRAN_"|"_A)
+ Q
+ ;
+ ;
+DEL69AN ; Delete accession number out of file #69's reference
+ N LRODT,LRSN,LRI,DR,DIE,DA
+ S LRODT=+$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,0)),"^",4)
+ S LRSN=+$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,0)),"^",5)
+ ;
+ L +^LRO(69,LRODT,1,LRSN,2):DILOCKTM
+ I '$T W !!?10,$C(7),"Someone else is editing this entry ",! Q
+ ;
+ S DR="3///@;2///@;4///@;13///@;8///CA;9///L;10///^S X=DUZ"
+ S DIE="^LRO(69,"_LRODT_",1,"_LRSN_",2,",LRI=0
+ F  S LRI=$O(^LRO(69,LRODT,1,LRSN,2,LRI)) Q:'LRI  D
+ .Q:'$D(^LRO(69,LRODT,1,LRSN,2,LRI,0))
+ .Q:$P(^LRO(69,LRODT,1,LRSN,2,LRI,0),"^",5)'=LRAN
+ .Q:$P(^LRO(69,LRODT,1,LRSN,2,LRI,0),"^",4)'=LRAA
+ .Q:$P(^LRO(69,LRODT,1,LRSN,2,LRI,0),"^",3)'=LRAD
+ .S DA=LRI,DA(1)=LRSN,DA(2)=LRODT
+ .D ^DIE
+ L -^LRO(69,LRODT,1,LRSN,2)
  Q
  ;
  ;

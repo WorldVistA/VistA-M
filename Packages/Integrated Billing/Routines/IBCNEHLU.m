@@ -1,5 +1,5 @@
 IBCNEHLU ;DAOU/ALA - HL7 Utilities ;10-JUN-2002  ; Compiled December 16, 2004 15:36:12
- ;;2.0;INTEGRATED BILLING;**184,300,416,438**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**184,300,416,438,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 HLP(PROTOCOL) ;  Find the Protocol IEN
@@ -169,7 +169,7 @@ ISMCR(RIEN) ; check if response is for Medicare part A/B
  ;   piece 2 = "MA" if response is for Medicare Part A
  ;           = "MB" if response is for Medicare Part B
  ;           = "B" if response is for both Part A and Part B
- ;           = "" if respnse if not for Medicare
+ ;           = "" if response if not for Medicare
  ;   piece 3 = effective date for Medicare Part A if response if for Part A or both parts, "" otherwise
  ;   piece 4 = effective date for Medicare Part B if response if for Part B or both parts, "" otherwise
  ;
@@ -232,3 +232,57 @@ TRNCWARN(GNUM,TRACE) ; send group number truncation warning message
  S MSG(7)=" "
  D MSG^IBCNEUT5($G(MGRP),MSG(1),"MSG(")
  Q
+ ;
+CODECHK(RSUPDT) ;  IB*2*497
+ ; need to determine if codes and qualifiers sent in the 271 HL7 message
+ ; are new.  If code/qualifier does not exist in table then file new code into table 
+ ; input -
+ ; RSUPDT = FDA array that will be passed to the DBS filer to update the 
+ ;          entry/subentry into the IIV RESPONSE file
+ ; example: RSUPDT(365.02,IENS,".02") = data to be filed into 365.02 subfile at field .02
+ ; order through the RSUPDT array and determine if pointer to file
+ ; if pointer to file then pass file name and value of code/qualifier
+ N IENS,FLD,FILE,RES,TOFILE,NEWARRY,Z,ZIENS
+ S (IENS,FILE,FLD)="",Z=0
+ F  S FILE=$O(RSUPDT(FILE)) Q:FILE=""  F  S IENS=$O(RSUPDT(FILE,IENS))  Q:IENS=""  D
+ . F  S FLD=$O(RSUPDT(FILE,IENS,FLD)) Q:FLD=""  D
+ . . Q:RSUPDT(FILE,IENS,FLD)=""   ; value was not sent by payer; no need to continue
+ . . D FIELD^DID(FILE,FLD,"","POINTER","RES") ; get the name of the file that is pointed to (if any)
+ . . Q:RES("POINTER")=""  ; field is not defined as a pointer to a file
+ . . S TOFILE=$P($P(RES("POINTER"),","),"(",2)  ; example: RES("POINTER")="IBE(365.011,"
+ . . Q:+TOFILE=0
+ . . Q:$$FIND1^DIC(TOFILE,"","X",RSUPDT(FILE,IENS,FLD))  ; code is already in file.  No need to update the pointed-to-file
+ . . S Z=Z+1,ZIENS="+"_Z_","
+ . . S NEWARRY(TOFILE,ZIENS,.01)=RSUPDT(FILE,IENS,FLD) ; code passed into VistA from 271 message
+ . . S NEWARRY(TOFILE,ZIENS,.02)="OTHER"  ; Description of code
+ . . S NEWARRY(TOFILE,ZIENS,.03)=0   ; INACTIVE FLAG
+ I $D(NEWARRY) D UPDATE^DIE("","NEWARRY")
+ Q
+ ;
+PREL(FILE,FIELD,CODE) ; IB*2*497  code from x12 271 message may need to be converted to 'other' if there is no match.  Refer to tag SETLST 
+ ;
+ ;          INPUT - FILE = file # of the file that will be evaluated
+ ;                  FIELD = field # that is defined with the SET OF CODE values
+ ;                  CODE = patient relationship code sent by the X12 271 message
+ ;          OUTPUT - = converted or non-converted coded value
+ N STRING,CODESTR,ARRAY,VAL,I,DEF
+ S CODE=$G(CODE)
+ I CODE="" Q CODE   ; quit when code was not sent from payer
+ D FIELD^DID(FILE,FIELD,"","TYPE","DEF")
+ I DEF("TYPE")="SET" D
+ . S CODESTR=$P($G(^DD(FILE,FIELD,0)),U,3)
+ . F I=1:1 S VAL=$P($P(CODESTR,";",I),":") Q:VAL=""  S ARRAY(VAL)=$P($P(CODESTR,";",I),":",2)
+ Q $S($D(ARRAY(CODE)):CODE,1:"G8") ; if coded value does not exist in the array of codes then this is a new code sent by X12 271 message and will default to OTHER
+ ;
+SETLST ; SET OF CODES defined to 355.33,60.14 and 2.312,4.03; this tag is not referenced in any procedure.  It's here for documentation purposes.
+ ;;01^SPOUSE
+ ;;18^SELF 
+ ;;19^CHILD 
+ ;;20^EMPLOYEE 
+ ;;29^SIGNIFICANT OTHER 
+ ;;32^MOTHER 
+ ;;33^FATHER 
+ ;;39^ORGAN DONOR 
+ ;;41^INJURED PLAINTIFF 
+ ;;53^LIFE PARTNER 
+ ;;G8^OTHER RELATIONSHIP

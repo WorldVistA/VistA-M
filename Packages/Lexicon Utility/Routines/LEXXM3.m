@@ -1,0 +1,150 @@
+LEXXM3 ;ISL/KER - Convert Text to Mix Case (3) ;04/21/2014
+ ;;2.0;General Lexicon Utilities;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    None
+ ;               
+ ; Local Variables NEWed or KILLed Elsewhere
+ ;     LEXCTL,LEXIN,LEXPRE,UIN Newed in LEXXM
+ ;     Y set and returned to LEXXM
+ ;               
+T3 ; 3 Characters
+ N XU,CHR,REM,PRE,NUM,TRL,P1,P2 S PRE=$G(LEXPRE),UIN=$G(UIN) S XU=$$UP(X),CHR=$E(XU,1),REM=$E(XU,2,3),NUM=$E(XU,1),TRL=$E(XU,2,3)
+ ;   Exceptions
+ S P1=$E(XU,1,($L(XU)-2)),P2=$E(XU,($L(XU)-1),$L(XU)) I "^CC^ML^GM^"[("^"_P2_"^"),$E(P1,$L(P1))?1N S Y=$$LO(XU) Q
+ S:REM="ST"&($G(CHR)=1) Y="1st" S:REM="ND"&($G(CHR)=2) Y="2nd" S:REM="RD"&($G(CHR)=3) Y="3rd" S:REM="TH"&(+($G(CHR))>3) Y=CHR_"th" Q:$L($G(Y))
+ S:$E(XU,1)?1U&($E(XU,3)?1N) Y=XU Q:$L($G(Y))  S:$E(XU,1)?1U&($E(XU,2)?1N) Y=XU Q:$L($G(Y))  S:$E(XU,1)?1N&($E(XU,3)?1U) Y=XU Q:$L($G(Y))
+ S NUM=$E(XU,1),TRL=$E(XU,2,3) I +NUM=NUM,((TRL="TH")!(TRL="ST")!(TRL="RD")) S Y=$$LO(XU) Q:$L($G(Y))
+ S:XU="ADD"&(UIN["ADD-ON") Y=$$LO(XU) S:XU="ADD"&(UIN["ADD ON") Y=$$LO(XU) S:XU="ADD"&(UIN["DEFICIT") Y=XU Q:$L($G(Y))
+ S:XU="ALT"&((UIN["AMINOTRANSFERASE")!(UIN["FACTOR")!(UIN["PLATELET")!(UIN["PF4")!(UIN["SGPT")!(UIN["SERUM")!(UIN["ARGON LASER T")!(UIN["MEASUREMENT")) Y=XU Q:$L($G(Y))
+ S:XU="TAB"&((UIN["TYPHOID")!(UIN["TEMPORAL ARTERY")) Y=XU Q:$L($G(Y))
+ S:XU="RIG"&((UIN["FLEX")!(UIN["TEMPORAL ARTERY")) Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="HER"&(UIN["HER-") Y=XU Q:$L($G(Y))
+ S:XU="YAG"&(UIN["LASER") Y=XU Q:$L($G(Y))
+ S:XU="BUN"&(UIN["UREA NITRO") Y=XU Q:$L($G(Y))
+ S:XU="PAD"&((UIN["PERIPHERAL")!(UIN["ARTERIAL")) Y=XU Q:$L($G(Y))
+ S:XU="MEG"&((UIN["MAGNETOENCEPHALOGRAPHY")) Y=XU Q:$L($G(Y))
+ S:XU="ALT"&((PRE["NORMAL")!(PRE["ELEVATED")) Y=XU Q:$L($G(Y))
+ S:XU="TAG"&((UIN["GLYCOPROTIEN")!(UIN["72")!(UIN["TAG-")!(UIN["-TAG")!(UIN["(TAG")!(UIN["TAG 12")) Y=XU Q:$L($G(Y))
+ S:XU="HAI"&((UIN["INHIBITION")) Y=XU Q:$L($G(Y))
+ S:XU="AMP"&((UIN["ADENOSINE")!(UIN["MONOPHOSPHATE")!(UIN["CYCL")!(UIN["ACUTE")!(UIN["MASSIVE")!(UIN["PULMONARY")) Y=XU Q:$L($G(Y))
+ S:XU="AMP"&((UIN["PYROPHORYLASE")!(UIN["NUCLEOSIDASE")!(UIN["DEAMINASE")!(UIN["ACETYL")!(UIN["HEPTAMINOL")!(UIN["PROTEIN")) Y=XU Q:$L($G(Y))
+ S:XU="AMP"&((UIN["POLYPHOSPHATE")!(UIN["PHOSPHOTRANSFERASE")!(UIN["DIALDEHYDE")!(UIN["ETHYL")) Y=XU Q:$L($G(Y))
+ S:XU="AMP"&((UIN["-AMP")!(UIN["AMP-")!(PRE["PLASTIC")) Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="BAL"&((UIN["BAL DIL")!(UIN["BAL TIS")) Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="TIS"&((PRE["BAL")) Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="TEM"&((UIN["TEM W")) Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="ABL"&((PRE="")) Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="REP"&((UIN["REP DEV")) Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="DET"&((UIN["DET RET")) Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="ANA"&((PRE["SANTA")) Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="RET"&((PRE="C")) Y=XU Q:$L($G(Y))
+ S:XU="CAT"&((UIN["CRY")) Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="ASP"&((UIN["ANTI")) Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="DES"&((UIN["ANTI")) Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="EST"&((UIN["-EST")!(UIN["ELECTRO")) Y=XU Q:$L($G(Y))
+ S:XU="DES"&((UIN["SPHINCTER")!(UIN["DYSEQUIL")!(UIN["DIETHYLS")) Y=XU Q:$L($G(Y))
+ S:XU="DES"&((UIN["GAMMA")!(UIN["-DES")!(UIN["DES-")) Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="TAP"&((UIN["TAP-WATER")) Y="Tap" Q:$L($G(Y))
+ S:XU="TAP"&((UIN["TRYPSINOGEN")!(UIN["ACTIVATION")!(UIN["PEPTIDE")!(UIN[" COLI")!(UIN["CHEMO")!(UIN["TAP-")) Y=XU Q:$L($G(Y))
+ S:XU="TAP"&((UIN["TAP 0")!(UIN["TAP 2")!(UIN["PROTEIN")!(UIN["GENE")!(UIN["ANTIGEN")) Y=XU Q:$L($G(Y))
+ S:XU="PAD"&($G(LEXCTL)["(PAD)") Y=XU S:XU="CAT"&($G(LEXIN)["ANIMAL") Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="TWO"&($G(UIN)["DIMENSION") Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="CAP"&($G(LEXIN)["KNEE") Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="END"&(($G(LEXIN)["END-")!($G(LEXIN)["END BULBS")!($G(LEXIN)["END POINT")) Y=$$MX(XU) Q:$L($G(Y))
+ S:XU="FAM"&((UIN["PROTOCOL")!(UIN="FAM")!(UIN["FUNCTIONAL")) Y=XU Q:$L($G(Y))
+ I XU="WHO" D  Q:$L($G(Y))
+ . I $G(UIN)="WHO" S Y=XU Q
+ . S:$G(UIN)["WRIST"&($G(UIN)["ORTHO") Y=XU Q:$L($G(Y))
+ . I $G(UIN)["WHO CLASS"!($G(UIN)["WHO)")!($G(UIN)["GRADE")!($G(UIN)["WHO SYSTEM")!($G(UIN)["SCALE") S Y=XU Q
+ . I $G(UIN)["WHO ORAL"!($G(UIN)["FINDING)")!($G(UIN)["STATUS")!($G(UIN)["WHO TUMOR")!($G(UIN)["WHO TUMOUR")!($G(UIN)["WHO CNS") S Y=XU Q
+ . I $G(UIN)["WORLD HEALTH"!($G(UIN)["WHO-ART") S Y=XU Q
+ . S Y="who"
+ ;   Special Case
+ S:XU="PO2" Y="pO2" S:XU="DDI" Y="ddI" S:XU="BRZ" Y="BrZ" Q:$L($G(Y))
+ S:XU="COA" Y="CoA" S:XU="COM" Y="CoM" S:XU="EIF" Y="eIF" Q:$L($G(Y))
+ S:XU="HPR" Y="HPr" S:XU="IGA" Y="IgA" S:XU="IGD" Y="IgD" Q:$L($G(Y))
+ S:XU="IGE" Y="IgE" S:XU="IGG" Y="IgG" S:XU="IGM" Y="IgM" Q:$L($G(Y))
+ S:XU="KDA" Y="kDa" S:XU="MEC" Y="MeC" S:XU="MEO" Y="MeO" Q:$L($G(Y))
+ S:XU="NAC" Y="NAc" S:XU="NIA" Y="NIa" S:XU="OET" Y="OEt" Q:$L($G(Y))
+ S:XU="PNA" Y="pNA" S:XU="SMB" Y="SmB" S:XU="VPG" Y="VPg" Q:$L($G(Y))
+ S:XU="MCI" Y="mCi" S:XU="LPH" Y="LpH" Q:$L($G(Y))
+ S:XU="1ST" Y="1st" S:XU="2ND" Y="2nd" S:XU="3RD" Y="3rd" Q:$L($G(Y))
+ S:XU="4TH" Y="4th" S:XU="5TH" Y="6th" S:XU="7TH" Y="8th" Q:$L($G(Y))
+ S:XU="9TH" Y="9th" Q:$L($G(Y))
+ ;   Lower Case
+ I "^ALL^AMP^AND^ANY^ARE^BIS^BUT^CAN^CIS^DES^DID^DUE^END^"[("^"_XU_"^") S Y=$$LO(XU) Q
+ I "^ETC^FAR^FOR^GMS^HAD^HAS^HER^HIM^HIS^HOW^ITS^LOW^LPM^"[("^"_XU_"^") S Y=$$LO(XU) Q
+ I "^MAY^MCG^MED^MIN^NEW^NON^NOT^NOW^ONE^OUR^OUT^OWN^OXO^"[("^"_XU_"^") S Y=$$LO(XU) Q
+ I "^P53^PER^PRE^PRO^PSI^PUT^SET^SIX^TEN^THE^TOO^TWO^USE^"[("^"_XU_"^") S Y=$$LO(XU) Q
+ I "^VIA^W/O^WAS^WHO^"[("^"_XU_"^") S Y=$$LO(XU) Q
+ ;   Mixed Case
+ I "^APR^AUG^BAY^DIR^FAC^FEB^HOT^JAN^JCT^JUL^JUN^LAS^LOS^"[("^"_XU_"^") S Y=$$MX(XU) Q
+ I "^MAR^MAY^MED^MTN^NEW^NOV^OCT^OUT^SAN^SEP^SKY^"[("^"_XU_"^") S Y=$$MX(XU) Q
+ ;   Upper Case
+ I CHR?1N!("^A^B^C^"[("^"_CHR_"^")) D  Q:$L($G(Y))
+ . I "^AAA^AAC^AAF^AAT^ABA^ABC^ABI^ABL^ABO^ABP^ACE^ACP^ACS^"[("^"_XU_"^") S Y=XU Q
+ . I "^ADA^ADC^ADH^ADL^ADP^ADR^ADT^ADV^ADX^AFB^AFM^AFO^AFP^"[("^"_XU_"^") S Y=XU Q
+ . I "^AFX^AHG^AII^AKD^ALA^ALS^AMC^AMD^AMP^ANA^ANF^ANP^ANS^"[("^"_XU_"^") S Y=XU Q
+ . I "^AOE^APC^APP^APV^ARB^ARF^ASA^ASC^AST^ATF^ATP^ATX^AVP^"[("^"_XU_"^") S Y=XU Q
+ . I "^AVT^AZT^BAL^BAM^BCG^BCG^BCP^BCR^BDA^BDB^BDC^BDS^BIM^"[("^"_XU_"^") S Y=XU Q
+ . I "^BLO^BLS^BMI^BMP^BNP^BOC^BPH^BPN^BPV^BRL^BSA^BSP^BSR^"[("^"_XU_"^") S Y=XU Q
+ . I "^BTE^CAD^CAF^CAM^CAP^CAT^CAZ^CBC^CBD^CBF^CBZ^CCK^CCP^"[("^"_XU_"^") S Y=XU Q
+ . I "^CDC^CDP^CDR^CEA^CEF^CFA^CFS^CGP^CGS^CHF^CHO^CIC^CIN^CKD^"[("^"_XU_"^") S Y=XU Q
+ . I "^CMC^CMF^CMP^CMT^CMV^CNP^CNS^COS^CPD^CPE^CPK^CPR^CPT^"[("^"_XU_"^") S Y=XU Q
+ . I "^CRF^CRH^CRS^CRT^CSF^CSM^CTI^CTP^CVF^CVP^CWC^CWT^CYT^"[("^"_XU_"^") S Y=XU Q
+ I "^D^E^F^G^H^I^"[("^"_CHR_"^") D  Q:$L($G(Y))
+ . I "^DAB^DAP^DAT^DBP^DCP^DCS^DDD^DDE^DDT^DEM^DET^DFA^DHP^"[("^"_XU_"^") S Y=XU Q
+ . I "^DHT^DIC^DIK^DIP^DIR^DJD^DM3^DM4^DME^DNA^DNP^DPT^DRG^"[("^"_XU_"^") S Y=XU Q
+ . I "^DRT^DSM^DTP^DVB^DVC^DVT^DXA^EAP^EBP^EBV^ECE^ECG^ECT^"[("^"_XU_"^") S Y=XU Q
+ . I "^ECX^EDL^EDR^EEE^EEG^EEO^EES^EGF^EGO^EHR^EHV^EIA^EKG^"[("^"_XU_"^") S Y=XU Q
+ . I "^ELA^EMD^EMG^EMS^ENA^ENK^ENT^EOG^EPI^EPO^EPS^ERG^ESA^"[("^"_XU_"^") S Y=XU Q
+ . I "^ESW^ETO^ETS^FAD^FAP^FDA^FDG^FDP^FGF^FMN^FPD^FSH^FSP^"[("^"_XU_"^") S Y=XU Q
+ . I "^FTC^FUS^FVC^GAP^GDH^GDP^GEC^GGT^GII^GLC^GLP^GMP^GPC^"[("^"_XU_"^") S Y=XU Q
+ . I "^GPD^GRF^GRP^GSH^GTH^GTP^GTT^GVP^HBC^HBP^HCG^HCL^HCO^"[("^"_XU_"^") S Y=XU Q
+ . I "^HCS^HCT^HCV^HDL^HDR^HF1^HFO^HGB^HGH^HHA^HHV^HIB^HIV^"[("^"_XU_"^") S Y=XU Q
+ . I "^HLA^HLH^HMG^HNF^HNP^HOE^HPA^HPC^HPL^HPV^HRP^HSA^HSV^"[("^"_XU_"^") S Y=XU Q
+ . I "^HTN^HTP^HVA^IAA^IBD^IBJ^ICD^ICF^ICI^ICP^ICU^IDA^IDH^"[("^"_XU_"^") S Y=XU Q
+ . I "^IDL^IFN^IGF^IGK^IIA^IIB^IIC^IID^IIE^III^IIL^IIV^IIX^"[("^"_XU_"^") S Y=XU Q
+ . I "^IMD^IMP^IMR^IMT^INH^INR^IOL^IOP^IPD^IPV^IRF^IRM^ISC^"[("^"_XU_"^") S Y=XU Q
+ . I "^ISD^ITC^ITE^IUD^IVC^IVF^IVM^"[("^"_XU_"^") S Y=XU Q
+ I "^J^K^L^M^N^O^P^"[("^"_CHR_"^") D  Q:$L($G(Y))
+ . I "^JMV^KAP^KIA^KLH^KOH^KUB^LA7^LAI^LAP^LAT^LAV^LCR^LDH^"[("^"_XU_"^") S Y=XU Q
+ . I "^LDL^LEX^LHR^LIA^LPH^LRH^LRS^LRX^LSD^LSO^M1A^MAA^MAC^"[("^"_XU_"^") S Y=XU Q
+ . I "^MAG^MAM^MAP^MBC^MBP^MC2^MCA^MCI^MCP^MDA^MDD^MDD^MDL^"[("^"_XU_"^") S Y=XU Q
+ . I "^MDP^MDV^MEA^MEN^MEP^MHC^MIC^MIF^MIP^MLC^MLL^MM2^MMR^"[("^"_XU_"^") S Y=XU Q
+ . I "^MNP^MPA^MPO^MPP^MPR^MPS^MRA^MRC^MRI^MRP^MRT^MRV^MSA^"[("^"_XU_"^") S Y=XU Q
+ . I "^MSG^MSH^MTP^MVV^MYC^NAD^NAG^NAP^NBD^NCA^NCS^NDC^NEC^"[("^"_XU_"^") S Y=XU Q
+ . I "^NGF^NGU^NHE^NKA^NLM^NMA^NMN^NMP^NOS^NPH^NPY^NSC^NSD^"[("^"_XU_"^") S Y=XU Q
+ . I "^NSR^NTD^NTM^NUR^NYU^OER^OEX^OLA^OME^OMP^OMT^OPC^OPV^"[("^"_XU_"^") S Y=XU Q
+ . I "^ORA^ORB^ORC^ORF^OTC^OTF^OTW^OVA^PAF^PAG^PAL^PAP^PAS^"[("^"_XU_"^") S Y=XU Q
+ . I "^PBP^PCA^PCE^PCP^PCR^PCR^PEG^PEP^PET^PF4^PHA^PIP^PIV^"[("^"_XU_"^") S Y=XU Q
+ . I "^PKI^PKU^PLA^PLC^PLI^PLL^PLP^PML^POC^POW^PPD^PPI^PPP^"[("^"_XU_"^") S Y=XU Q
+ . I "^PRA^PRC^PRP^PRS^PRV^PSA^PSD^PSG^PSJ^PSN^PSO^PSP^PSS^"[("^"_XU_"^") S Y=XU Q
+ . I "^PSU^PSX^PT1^PT2^PT3^PT4^PTA^PTB^PTB^PTC^PTH^PTT^PTX^"[("^"_XU_"^") S Y=XU Q
+ . I "^PV1^PV2^PVC^PZA^"[("^"_XU_"^") S Y=XU Q
+ I "^Q^R^S^T^U^V^W^X^Y^Z^"[("^"_CHR_"^") D  Q:$L($G(Y))
+ . I "^QAC^QAM^QAN^QAO^QAP^QAQ^QAR^QHP^QIE^QIP^QST^R/O^RAB^RAG^"[("^"_XU_"^") S Y=XU Q
+ . I "^RAP^RAR^RAS^RBC^RBP^REM^REP^RGD^RIA^RIG^RII^RLS^RMI^"[("^"_XU_"^") S Y=XU Q
+ . I "^RNA^RNP^ROM^RSV^RTY^SAA^SAM^SAP^SCD^SCE^SCP^SCT^SDD^"[("^"_XU_"^") S Y=XU Q
+ . I "^SDS^SDX^SDZ^SEO^SER^SFN^SFV^SHF^SHV^SIV^SKF^SKN^SLC^"[("^"_XU_"^") S Y=XU Q
+ . I "^SLE^SLT^SMP^SNF^SOD^SOL^SOS^SPL^SPM^SPN^SPS^SRI^SRO^"[("^"_XU_"^") S Y=XU Q
+ . I "^SRS^SRV^SSI^STM^STP^STR^SUD^SVS^SYT^T1A^T1B^T1C^TBG^"[("^"_XU_"^") S Y=XU Q
+ . I "^TCF^TCP^TDD^TDF^TDP^TEE^TEF^TEL^TEM^TFA^TGF^TIG^TIS^"[("^"_XU_"^") S Y=XU Q
+ . I "^TIU^TLC^TMV^TNF^TNP^TPA^TPN^TRB^TRG^TRH^TRP^TRS^TSA^"[("^"_XU_"^") S Y=XU Q
+ . I "^TSH^TSI^TTP^TTR^TVL^UCB^UDP^UMP^UNB^URO^URR^USA^USF^"[("^"_XU_"^") S Y=XU Q
+ . I "^USP^USR^UTP^VAQ^VCA^VDD^VDR^VEE^VEP^VFW^VII^VIP^VLA^VMA^"[("^"_XU_"^") S Y=XU Q
+ . I "^VON^VRA^VRE^VSG^VSO^VTE^VWF^VZV^WBC^WBC^WGA^WHO^WT1^"[("^"_XU_"^") S Y=XU Q
+ . I "^WT2^XII^XIV^XIX^XLI^XLV^XMB^XPD^XUC^XVI^XWB^XXI^XXX^"[("^"_XU_"^") S Y=XU Q
+ . I "^YSA^ZDG^ZTA^"[("^"_XU_"^") S Y=XU Q
+ Q
+ ; 
+LO(X) ; Lower Case
+ Q $TR(X,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")
+UP(X) ; Uppercase
+ Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+MX(X) ; Mix Case
+ Q $TR($E(X,1),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")_$TR($E(X,2,$L(X)),"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")

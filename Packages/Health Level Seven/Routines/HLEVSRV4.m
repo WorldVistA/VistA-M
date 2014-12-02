@@ -28,7 +28,7 @@ LICUSER ; Enter new users now...
  W !,?POSX,"the remote requester is named 'John Doe' and will be sending"
  W !,?POSX,"requests from the Buffalo VAMC, you still might not know"
  W !,?POSX,"the exact email address to enter.  (E.g., Should you enter"
- W !,?POSX,"'JOHN.DOE@DOMAIN.EXT' or 'DOE.JOHN@BUFFALO.domain.ext'?)  And, this"
+ W !,?POSX,"'JOHN.DOE@DOMAIN.EXT' or 'DOE.JOHN@BUFFALO.DOMAIN.EXT'?)  And, this"
  W !,?POSX,"is why it is often advantageous to enter something like"
  W !,?POSX,"'DOE@BUFFALO' and also 'DOE@DOMAIN.EXT'.  When a remote "
  W !,?POSX,"request is received, as long as 'DOE' is in the sender's"

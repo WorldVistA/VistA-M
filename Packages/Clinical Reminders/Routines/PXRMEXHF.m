@@ -1,22 +1,25 @@
-PXRMEXHF ;SLC/PKR - Routines to select and deal with host files. ;09/20/2010
- ;;2.0;CLINICAL REMINDERS;**12,17,18**;Feb 04, 2005;Build 152
+PXRMEXHF ;SLC/PKR - Routines to select and deal with host files. ;09/27/2013
+ ;;2.0;CLINICAL REMINDERS;**12,17,18,26**;Feb 04, 2005;Build 404
  ;============================================
 CHF(SUCCESS,LIST,PATH,FILE) ;Put the repository entries in LIST into the
  ;host file specified by PATH and FILE.
- N GBL,LIEN,RIEN
+ N IND,GBL,LEN,LNUM,RIEN
  S SUCCESS=1
- S LIEN=$O(LIST(""))
- I LIEN="" Q
- S RIEN=$$RIEN^PXRMEXU1(LIEN)
+ S LNUM=$P(LIST,",",1)
+ I LNUM="" Q
+ S RIEN=$$RIEN^PXRMEXU1(LNUM)
  S GBL="^PXD(811.8,"_RIEN_",100,1,0)"
  ;Save the first entry.
- S SUCCESS(LIEN)=$$GTF^%ZISH(GBL,4,PATH,FILE)
- I SUCCESS(LIEN)=0 Q
+ S SUCCESS(LNUM)=$$GTF^%ZISH(GBL,4,PATH,FILE)
+ I SUCCESS(LNUM)=0 Q
+ S LEN=$L(LIST,",")-1
+ I LEN=1 Q
  ;Append any remaining entries.
- F  S LIEN=$O(LIST(LIEN)) Q:+LIEN=0  D
- . S RIEN=$$RIEN^PXRMEXU1(LIEN)
+ F IND=2:1:LEN D
+ . S LNUM=$P(LIST,",",IND)
+ . S RIEN=$$RIEN^PXRMEXU1(LNUM)
  . S GBL="^PXD(811.8,"_RIEN_",100,1,0)"
- . S SUCCESS(LIEN)=$$GATF^%ZISH(GBL,4,PATH,FILE)
+ . S SUCCESS(LNUM)=$$GATF^%ZISH(GBL,4,PATH,FILE)
  Q
  ;
  ;============================================
@@ -107,28 +110,35 @@ GETHF ;As a default set the path to the current directory.
  Q PATH_U_FILE
  ;
  ;============================================
-LHF(SUCCESS,PATH,FILE) ;Load a host file containing repository entries into
- ;the repository.
- N CURRL,CSUM,DATEP,DONE,EXTYPE,FDA,GBL,IENROOT,IND,LINE
- N MSG,NENTRY,NLINES,RETMP,RNAME,SITE,SOURCE,SSOURCE,US,USER,VRSN
+LHF(SUCCESS,PATH,FILE) ;Load a host file containing exchange entries into
+ ;the Exchange file.
+ N GBL
  K ^TMP($J,"EXHF")
- S GBL="^TMP($J,""EXHF"",1,0)"
+ S GBL="^TMP($J,""EXHF"",1,1)"
  S GBL=$NA(@GBL)
  S SUCCESS=$$FTG^%ZISH(PATH,FILE,GBL,3)
  I 'SUCCESS Q
  ;Make sure it has the correct format.
- I (^TMP($J,"EXHF",1,0)'["xml")!(^TMP($J,"EXHF",2,0)'="<REMINDER_EXCHANGE_FILE_ENTRY>") D  Q
+ I (^TMP($J,"EXHF",1,1)'["xml")!(^TMP($J,"EXHF",2,1)'="<REMINDER_EXCHANGE_FILE_ENTRY>") D  Q
  . W !,"This host file does not have the correct format!"
  . H 2
  . S SUCCESS=0
  . K ^TMP($J,"EXHF")
  W !,"Loading host file ",PATH,FILE
+ D LTMP(.SUCCESS,"EXHF")
+ Q
+ ;
+ ;============================================
+LTMP(SUCCESS,NODE) ;Load the contents of ^TMP($J,NODE) into the Exchange
+ ;file. The format is ^TMP($J,NODE,NUM,1)=data
+ N CURRL,CSUM,DATEP,DONE,EXTYPE,FDA,IENROOT,IND,LINE
+ N MSG,NENTRY,NLINES,RETMP,RNAME,SITE,SOURCE,SSOURCE,US,USER,VRSN
  S RETMP="^TMP($J,""EXLHF"")"
  S (CURRL,DONE,NENTRY,NLINES,SSOURCE)=0
  F  Q:DONE  D
  . S CURRL=CURRL+1
- . I '$D(^TMP($J,"EXHF",CURRL,0)) S DONE=1 Q
- . S LINE=^TMP($J,"EXHF",CURRL,0)
+ . I '$D(^TMP($J,NODE,CURRL,1)) S DONE=1 Q
+ . S LINE=^TMP($J,NODE,CURRL,1)
  . S NLINES=NLINES+1
  . S ^TMP($J,"EXLHF",NLINES,0)=LINE
  . I LINE["<PACKAGE_VERSION>" S VRSN=$$GETTAGV^PXRMEXU3(LINE,"<PACKAGE_VERSION>")
@@ -148,7 +158,7 @@ LHF(SUCCESS,PATH,FILE) ;Load a host file containing repository entries into
  .. S NENTRY=NENTRY+1
  ..;Make sure it has the correct format.
  .. I (^TMP($J,"EXLHF",1,0)'["xml")!(^TMP($J,"EXLHF",2,0)'="<REMINDER_EXCHANGE_FILE_ENTRY>") D  Q
- ... W !,"There is a problem reading this host file try a new copy of it."
+ ... W !,"There is a problem reading this .prd file, try a new copy of it."
  ... S SUCCESS=0
  ... H 2
  ..;Make sure this entry does not already exist.
@@ -179,6 +189,6 @@ LHF(SUCCESS,PATH,FILE) ;Load a host file containing repository entries into
  S IND=""
  F  S IND=$O(SUCCESS(IND)) Q:+IND=0  D
  . I 'SUCCESS(IND) S SUCCESS=0 Q
- K ^TMP($J,"EXHF"),^TMP($J,"EXLHF")
+ K ^TMP($J,NODE),^TMP($J,"EXLHF")
  Q
  ;

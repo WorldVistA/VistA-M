@@ -1,5 +1,5 @@
 IBCNSUR ;ALB/CPM/CMS - MOVE SUBSCRIBERS TO DIFFERENT PLAN ;09-SEP-96
- ;;2.0;INTEGRATED BILLING;**103,276**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**103,276,506**;21-MAR-94;Build 74
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -70,7 +70,8 @@ SEL(IBNP) ; Select a company and plan.
  ; - if a new plan may be added, allow adding
  I IBNP D  I (IBPLAN)!(IBQUIT) G SELQ
  .W !!,"You may add a new Plan at this time or select an existing Plan."
- .D NEW^IBCNSJ3(IBCNS,.IBPLAN,1)
+ .; IB*2.0*506 added IBKEY parameter (4th) to the NEW^IBCNSJ3 call (check user's security keys)
+ .D NEW^IBCNSJ3(IBCNS,.IBPLAN,1,1)
  .I 'IBPLAN,'$$ANYGP^IBCNSJ(+IBCNS,0,1) W !!,*7,"Insurance Company receiving subscribers must have a Plan." S IBQUIT=1
  ;
  ; - see if user wants to select the plan

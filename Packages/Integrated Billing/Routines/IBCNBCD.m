@@ -1,5 +1,5 @@
 IBCNBCD ;ALB/ARH - Ins Buffer: display/compare buffer and existing ins ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,251,361,371,416,438,452**;21-MAR-94;Build 26
+ ;;2.0;INTEGRATED BILLING;**82,251,361,371,416,438,452,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 INS(IBBUFDA,IBINSDA) ; display a buffer entry's insurance company fields and
@@ -38,8 +38,8 @@ GRP(IBBUFDA,IBGRPDA) ; display a buffer entry's group insurance fields and an ex
  S IBFLD1=$$GET1^DIQ(355.33,IBBUFDA,20.01),IBFLD2=$S(+IBEXTDA:$$GET1^DIQ(355.3,IBEXTDA,.01),1:"<none selected>") D WRTLN("Company Name:",IBFLD1,IBFLD2,"","","")
  S IBFLD1=$$GET1^DIQ(355.33,IBBUFDA,40.01),IBFLD2=$S(+IBEXTDA:$$GET1^DIQ(355.3,IBEXTDA,.02),1:"") D WRTLN("Is Group Plan?:",IBFLD1,IBFLD2,"","","U")
  ;
- D DISPLAY(40.02,355.3,.03,"Group Name:")
- D DISPLAY(40.03,355.3,.04,"Group Number:")
+ D DISPLAY(90.01,355.3,2.01,"Group Name:")
+ D DISPLAY(90.02,355.3,2.02,"Group Number:")
  D DISPLAY(40.1,355.3,6.02,"BIN:") ;;Daou/EEN - adding BIN and PCN
  D DISPLAY(40.11,355.3,6.03,"PCN:")
  D DISPLAY(40.04,355.3,.05,"Require UR:")
@@ -60,18 +60,18 @@ POLICY(IBBUFDA,IBPOLDA) ; display a buffer entry's patient policy fields and an 
  ;
  W ! D WRTFLD("     Policy Data:  Buffer Data                     Selected Policy              ",0,80,"BU")
  S IBFLD1=$$GET1^DIQ(355.33,IBBUFDA,20.01),IBFLD2=$S(+IBEXTDA:$$GET1^DIQ(2.312,IBEXTDA,.01),1:"<none selected>") D WRTLN("Company Name:",IBFLD1,IBFLD2,"","","")
- S IBFLD1=$$GET1^DIQ(355.33,IBBUFDA,40.03),IBFLD2=$S(+IBEXTDA:$$GET1^DIQ(2.312,IBEXTDA,21),1:"") D WRTLN("Group #:",IBFLD1,IBFLD2,"","","")
+ S IBFLD1=$$GET1^DIQ(355.33,IBBUFDA,90.02),IBFLD2=$S(+IBEXTDA:$$GET1^DIQ(2.312,IBEXTDA,21),1:"") D WRTLN("Group #:",IBFLD1,IBFLD2,"","","")
  S IBFLD1=$$GET1^DIQ(355.33,IBBUFDA,60.01),IBFLD2=$S(+IBEXTDA:$$GET1^DIQ(2,DFN,.01),1:"") D WRTLN("Patient Name:",IBFLD1,IBFLD2,"","","")
  S IBFLD1=$P($$GET1^DIQ(355.33,IBBUFDA,.1),"@"),IBFLD2=$S(+IBEXTDA:$P($$GET1^DIQ(2.312,IBEXTDA,1.03),"@"),1:"") D WRTLN("Last Verified:",IBFLD1,IBFLD2,"","","U")
  ;
  D DISPLAY(60.02,2.312,8,"Effective Date:")
  D DISPLAY(60.03,2.312,3,"Expiration Date:")
- D DISPLAY(60.04,2.312,1,"Subscriber Id:")
+ D DISPLAY(90.03,2.312,7.02,"Subscriber Id:")
  D DISPLAY(60.05,2.312,6,"Whose Insurance:")
  D DISPLAY(60.06,2.312,16,"Relationship:")
  D DISPLAY(60.15,2.312,4.05,"Rx Relationship:")
  D DISPLAY(60.16,2.312,4.06,"Rx Person Code:")
- D DISPLAY(60.07,2.312,17,"Name of Insured:")
+ D DISPLAY(91.01,2.312,7.01,"Name of Insured:")
  D DISPLAY(60.08,2.312,3.01,"Insured's DOB:")
  D DISPLAY(60.09,2.312,3.05,"Insured's SSN:")
  D DISPLAY(60.13,2.312,3.12,"Insured's SEX:")
@@ -111,9 +111,10 @@ ESGHP ; display employee sponsored group health plan
  ;
  Q
  ;
-ELIG(IBBUFDA,IBPOLDA) ; display eligibilty/benefit data
+ELIG(IBBUFDA,IBPOLDA) ; display eligibility/benefit data
  N ATTR,BRESTR,BRELEN,BRPSTR,BRPLEN,CMPSTR,CMPLEN,DFN,EBISTR,EBILEN,EX,HCSSTR,HCSLEN,I,I1,IBVEBCOL,LEN,RESPIEN
- N RDATA,IDATA,NODATA,NOIDATA,ENDSEC,NOHSTR,NOHLEN,NOCSTR,NOCLEN,NOBSTR,NOBLEN
+ N RDATA,IDATA,NODATA,NOIDATA,ENDSEC,NOHSTR,NOHLEN,NOCSTR,NOCLEN,NOBSTR,NOBLEN,GRPSTR,GRPLEN,SECEND
+ S GRPSTR="Eligibility/Group Plan Information",GRPLEN=$L(GRPSTR)  ;IB*2*497 
  S EBISTR="Eligibility/Benefit Information",EBILEN=$L(EBISTR)
  S CMPSTR="Composite Medical Procedure Information",CMPLEN=$L(CMPSTR)
  S HCSSTR="Health Care Service Delivery",HCSLEN=$L(HCSSTR)
@@ -123,7 +124,7 @@ ELIG(IBBUFDA,IBPOLDA) ; display eligibilty/benefit data
  S NOCSTR="   No Composite Medical Procedure Information data on file for this EB record.",NOCLEN=$L(NOCSTR)
  S NOBSTR="   No Benefit Related Entity data on file for this EB record.",NOBLEN=$L(NOBSTR)
  S NODATA=1,NOIDATA=0,EX=0
- ; get the last reponse and make sure it contains EB data
+ ; get the last response and make sure it contains EB data
  I $G(IBBUFDA) S RESPIEN=$O(^IBCN(365,"AF",IBBUFDA,""),-1) I RESPIEN S:$O(^IBCN(365,RESPIEN,2,""))'="" NODATA=0
  W ! D WRTFLD("        *** Non-editable Patient Eligibility/Benefit data from payer ***        ",0,80,"B")
  I NODATA W ! D WRTFLD("          *** No Patient Eligibility/Benefit data from payer found***           ",0,80,"B") G ELIGX
@@ -140,11 +141,10 @@ ELIG(IBBUFDA,IBPOLDA) ; display eligibilty/benefit data
  S (I,I1)="" F  S I=$O(^TMP("RESP. EB DATA",$J,"DISP",I)) Q:I=""!EX  D
  .I $Y+3>IOSL D PAUSE^VALM1 W @IOF I 'Y S EX=1 Q
  .S RDATA=^TMP("RESP. EB DATA",$J,"DISP",I,0)
- .; skip empty lines
- .I $TR(RDATA," ")="" Q
  .; if group title, display it and quit
  .I RDATA["                    eIV Eligibility/Benefit Data Group#" W ! D WRTFLD(RDATA,0,80,"B") S IDATA="" Q
  .; if section title, display it and quit
+ .I $E(RDATA,1,GRPLEN)=GRPSTR W !! D WRTFLD(RDATA,0,80,"U") S I1=$$FNDNXT(I1,GRPSTR,GRPLEN),SECEND=0 Q   ;IB*2*497
  .I $E(RDATA,1,EBILEN)=EBISTR W !! D WRTFLD(RDATA,0,80,"U") S I1=$$FNDNXT(I1,EBISTR,EBILEN),SECEND=0 Q
  .I $E(RDATA,1,CMPLEN)=CMPSTR W !! D WRTFLD(RDATA,0,80,"U") S I1=$$FNDNXT(I1,CMPSTR,CMPLEN),SECEND=0 Q
  .I $E(RDATA,1,HCSLEN)=HCSSTR W !! D WRTFLD(RDATA,0,80,"U") S I1=$$FNDNXT(I1,HCSSTR,HCSLEN),SECEND=0 Q
@@ -158,6 +158,7 @@ ELIG(IBBUFDA,IBPOLDA) ; display eligibilty/benefit data
  ..; if we run out of data for this section in pat. insurance
  ..I $E(IDATA,1,EBILEN)=EBISTR!($E(IDATA,1,CMPLEN)=CMPSTR)!($E(IDATA,1,HCSLEN)=HCSSTR) S SECEND=1,IDATA="" Q
  ..I $E(IDATA,1,BRELEN)=BRESTR!($E(IDATA,1,BRPLEN)=BRPSTR)!($E(IDATA,1,NOHLEN)=NOHSTR) S SECEND=1,IDATA="" Q
+ ..I $E(IDATA,1,GRPLEN)=GRPSTR S SECEND=1,IDATA="" Q  ;IB*2*497
  ..S I1=I1+1 I '$D(^TMP("INS. EB DATA",$J,"DISP",I1)) S NOIDATA=1
  ..Q
  .W ! D WRTFLD(RDATA,0,47,""),WRTFLD(" | ",48,3,""),WRTFLD(IDATA,51,29,"")
@@ -179,21 +180,45 @@ FNDNXT(IDX,STR,LEN) ; find next node in INS. EB DATA after one that starts with 
  Q I
  ;
 DISPLAY(BFLD,IFILE,IFLD,LABEL) ; extract, compare, write the two corresponding fields; one from buffer, one from ins files
- N BUFDATA,EXTDATA,IBOVER,IBMERG S EXTDATA=""
+ N BUFDATA,EXTDATA,IBOVER,IBMERG,IBITER,IBITER1,IBITER2 S EXTDATA=""
+ S (IBITER1,IBITER2)=0
+ S IBITER=1
  S BUFDATA=$$GET1^DIQ(355.33,IBBUFDA,BFLD)
- I +IBEXTDA S EXTDATA=$$GET1^DIQ(IFILE,IBEXTDA,IFLD)
+ ;S IBITER1=$L(BUFDATA)/29
+ ;I $P(IBITER1,".",2)>0 S IBITER1=$P(IBITER1,".",1)+1
+ S IBITER1=$L(BUFDATA)-1\29+1
+ I +IBEXTDA D
+ . S EXTDATA=$$GET1^DIQ(IFILE,IBEXTDA,IFLD)
+ .; S IBITER2=$L(EXTDATA)/29
+ .; I $P(IBITER2,".",2)>0 S IBITER2=$P(IBITER2,".",1)+1
+ . S IBITER2=$L(EXTDATA)-1\29+1
+ . Q
  ;
+ S IBITER=$S(IBITER2>IBITER1:IBITER2,IBITER1>IBITER2:IBITER1,IBITER1=IBITER2:IBITER1,1:1)
  S IBOVER=$S(BUFDATA'=""&(BUFDATA'=EXTDATA):"B",1:""),IBMERG=$S(EXTDATA="":"B",1:"")
  ;
  D WRTLN(LABEL,BUFDATA,EXTDATA,IBOVER,IBMERG)
  Q
  ;
 WRTLN(LABEL,FLD1,FLD2,OVER,MERG,ATTR) ; write a line of formatted data with label and two fields
+ N IBCTR,IBSV,IBEV,IBBUFV,IBSPV
+ S IBSV=1,IBEV=29
  S ATTR=$G(ATTR),OVER=ATTR_$G(OVER),MERG=ATTR_$G(MERG)
- S LABEL=$J(LABEL,17)_"  ",FLD1=FLD1_$J("",29-$L(FLD1)),FLD2=FLD2_$J("",29-$L(FLD2))
+ ;S LABEL=$J(LABEL,17)_"  ",FLD1=FLD1_$J("",29-$L(FLD1)),FLD2=FLD2_$J("",29-$L(FLD2))
+ S LABEL=$J(LABEL,17)_"  "
  W !
- D WRTFLD(LABEL,0,19,ATTR),WRTFLD(FLD1,19,29,MERG)
- D WRTFLD(" | ",48,3,ATTR),WRTFLD(FLD2,51,29,OVER)
+ I '$G(IBITER) S IBITER=1
+ F IBCTR=1:1:IBITER D
+ . S IBBUFV=$E(FLD1,IBSV,IBEV)
+ . S IBSPV=$E(FLD2,IBSV,IBEV)
+ . I $L(IBBUFV)<29 S IBBUFV=IBBUFV_$J("",29-$L(IBBUFV))
+ . I $L(IBSPV)<29 S IBSPV=IBSPV_$J("",29-$L(IBSPV))
+ . D:IBCTR=1 WRTFLD(LABEL,0,19,ATTR)
+ . D WRTFLD(IBBUFV,19,29,MERG)
+ . D WRTFLD(" | ",48,3,ATTR),WRTFLD(IBSPV,51,29,OVER)
+ . I IBITER>1,IBCTR'=IBITER W !
+ . S IBSV=IBSV+29
+ . S IBEV=IBEV+29
  Q
  ;
 WRTFLD(STRING,COL,WD,ATTR) ; write an individual field with display attributes

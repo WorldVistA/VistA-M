@@ -1,5 +1,16 @@
-LEXXFQ ;ISL/KER - Set Frequencies in 757.001 ;01/03/2011
- ;;2.0;LEXICON UTILITY;**4,25,73**;Sep 23, 1996;Build 10
+LEXXFQ ;ISL/KER - Set Frequencies in 757.001 ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**4,25,73,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.001)       N/A
+ ;               
+ ; External References
+ ;    $$FMDIFF^XLFDT      ICR  10103
+ ;    $$FMTE^XLFDT        ICR  10103
+ ;    HOME^%ZIS           ICR  10086
+ ;    NOW^%DTC            ICR  10000
+ ;    ^%ZTLOAD            ICR  10063
+ ;               
  Q
 EN ; Update term frequencies when not found  (at site)
  S ZTRTN="UP^LEXXFQ",ZTDESC="Update Term Frequency in file 757.001"

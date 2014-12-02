@@ -1,6 +1,7 @@
-DGPTFTR0 ;ALB/JDS/ADL - PTF TRANSMISSION ; 10/1/03 6:52pm
- ;;5.3;Registration;**247,510,524**;Aug 13, 1993
+DGPTFTR0 ;ALB/JDS/ADL/TJ - PTF TRANSMISSION ;10/1/03 6:52pm
+ ;;5.3;Registration;**247,510,524,850**;Aug 13, 1993;Build 171
  ;;ADL;Update for CSV Project;;Mar 26, 2003
+ K DGICD10
  S DGSSN=$P(DG10,U,9),DGHEAD=$S($E(DGSSN,10)="P":"P",1:" ")_$E(DGSSN,1,9)_" ",DGADM=$P(DG0,U,2)\1,DGHEAD=DGHEAD_$E(DGADM,4,5)_$E(DGADM,6,7)_$E(DGADM,2,3)
  S Y=DGHEAD,L=3,X=DG0,Z=3 D ENTER S Y=Y_$E($P(X,U,5)_"   ",1,3)
  S DGHEAD=Y,Y="    "_Y D HEAD^DGPTFTR1
@@ -28,8 +29,10 @@ DGPTFTR0 ;ALB/JDS/ADL - PTF TRANSMISSION ; 10/1/03 6:52pm
 P401 G 401:'$D(^DGPT(J,"401P"))!(T1) S DG41=^("401P"),Y=$S(T1:"C",1:"N")_"401"_DGHEAD_"P"_"           "
  S DG41=$S($D(^DGPT(J,"401P")):^("401P"),1:"")
  S L=1 F K=1:1:5 S:'$P(DG41,U,K) DG41=$P(DG41,U,1,K-1)_U_$P(DG41,U,K+1,99),K=K-1 S L=L+1 Q:L=5
- F I=1:1:5 S DGPTTMP=$$ICDOP^ICDCODE(+$P(DG41,U,I),$$GETDATE^ICDGTDRG(PTF)) S Y=Y_$S(+DGPTTMP>0&($P(DGPTTMP,U,10)):$J($P($P(DGPTTMP,U,2),".",1),2)_$E($P($P(DGPTTMP,U,2),".",2)_"   ",1,3),1:"     ")_"  "
+ N EFFDATE,IMPDATE,DGPTDAT D EFFDATE^DGPTIC10(J)
+ F I=1:1:5 S DGPTTMP=$$ICDDATA^ICDXCODE("PROC",+$P(DG41,U,I),EFFDATE,"I") S Y=Y_$S(+DGPTTMP>0&($P(DGPTTMP,U,10)):$J($P($P(DGPTTMP,U,2),".",1),2)_$E($P($P(DGPTTMP,U,2),".",2)_"   ",1,3),1:"     ")_"  "
  I $E(Y,40)'=" " S Y=Y_"      " D SAVE
+ K DGPTEDT
 401 G 501:'$D(^DGPT(J,"S")) K ^UTILITY($J,"S") S I=0
 SUR S I=$O(^DGPT(J,"S",I)) G 501:I'>0 S DGSUR=^(I,0) G SUR:'DGSUR
  G SUR:DGSUR<T1!(DGSUR>T2) S DGSUD=+^(0)\1,^UTILITY($J,"S",DGSUD)=$S($D(^UTILITY($J,"S",DGSUD)):^(DGSUD),1:0)+1,F=$S(DGSUD<2871000:0,1:1)
@@ -37,10 +40,13 @@ SUR S I=$O(^DGPT(J,"S",I)) G 501:I'>0 S DGSUR=^(I,0) G SUR:'DGSUR
  .W !!,"**There are more than ",$S(F:"three",1:"two")," surgeries on the same date**"
  .S DIR(0)="Y",DIR("B")="YES",DIR("A")="OK to continue?" D ^DIR K DIR
  S Y=$S(T1:"C",1:"N")_"40"_^(DGSUD)_DGHEAD_$E(DGSUD,4,5)_$E(DGSUD,6,7)_$E(DGSUD,2,3)_$S($D(^DIC(45.3,+$P(DGSUR,U,3),0)):$P(^(0),U,1),1:"  ")
+ N EFFDATE,IMPDATE,DGPTDAT D EFFDATE^DGPTIC10(J)
  S L=1,X=DGSUR F Z=4:1:7 D ENTER
  S L=1 F K=8:1:12 S:'$P(DGSUR,U,K) DGSUR=$P(DGSUR,U,1,K-1)_U_$P(DGSUR,U,K+1,99),K=K-1 S L=L+1 Q:L=5
- F K=8:1:12 S DGPTTMP=$$ICDOP^ICDCODE(+$P(DGSUR,U,I),$$GETDATE^ICDGTDRG(PTF)) S Y=Y_$S(+DGPTTMP>0&($P(DGPTTMP,U,10)):$J($P($P(DGPTTMP,U,2),".",1),2)_$E($P($P(DGPTTMP,U,2),".",2)_"   ",1,3),1:"     ")_"  "
- S Y=Y_"      " D SAVE G SUR
+ F K=8:1:12 S DGPTTMP=$$ICDDATA^ICDXCODE("PROC",+$P(DGSUR,U,I),EFFDATE,"I") S Y=Y_$S(+DGPTTMP>0&($P(DGPTTMP,U,10)):$J($P($P(DGPTTMP,U,2),".",1),2)_$E($P($P(DGPTTMP,U,2),".",2)_"   ",1,3),1:"     ")_"  "
+ S Y=Y_"      "
+ K DGPTEDT
+ D SAVE G SUR
 501 G 501^DGPTFTR2
  Q
 ENTER S Y=Y_$J($P(X,U,Z),L)
@@ -52,3 +58,4 @@ Q Q
 DGNAM S X=DGNAM I X?.E.P F I=1:1:$L(X) S Z=$E(X,I) Q:Z=","  S:Z?.P&(Z]"") X=$E(X,1,I-1)_$E(X,I+1,$L(X)),I=I-1 Q:X'?.E.P
  I X?.E.L D UP^DGHELP
  S DGNAM=X
+ Q

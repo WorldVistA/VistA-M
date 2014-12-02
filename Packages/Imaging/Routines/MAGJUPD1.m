@@ -1,5 +1,5 @@
-MAGJUPD1 ;WOIFO/JHC - VistARad Update Exam Status ; 9 Sep 2011  4:05 PM
- ;;3.0;IMAGING;**16,22,18,76,101,120**;Mar 19, 2002;Build 27;May 23, 2012
+MAGJUPD1 ;WOIFO/JHC - VistARad Update Exam Status ; 25 Mar 2013  5:22 PM
+ ;;3.0;IMAGING;**16,22,18,76,101,120,133**;Mar 19, 2002;Build 5393;Sep 09, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -59,7 +59,7 @@ STATUS(MAGGRY,PARAMS,DATA) ; rpc: MAGJ RADSTATUSUPDATE
  ;11  RAST    DAYCASE  RAELOC  RASTP   RASTORD
  ;16  RADTPRT
  S RADATA=$G(^TMP($J,"MAGRAEX",1,1))
- S RAEXT=$P(RADATA,U,12),RACNE=$P(RAEXT,"-",2),RADTE=$P(RADATA,U,7)
+ S RAEXT=$P(RADATA,U,12),RACNE=$P(RAEXT,"-",$L(RAEXT,"-")),RADTE=$P(RADATA,U,7) ; p133: $L for SSAN or old Acn
  S RAINT=RADTI_"-"_RACNI
  I UPDPSKEY=2 D  G STATUSZ ; P101 update annotations only, if authorized (Resident workflow, or Sec Key Override)
  . I +MAGJOB("USER",1),'UPDFLAG,($D(DATA)>9) S REPLY="0^1~Case #"_RAEXT_" Closed; No Status Update; annotation updates performed."
@@ -98,7 +98,8 @@ STATUS(MAGGRY,PARAMS,DATA) ; rpc: MAGJ RADSTATUSUPDATE
  . ; PRTSET note: if exam is part of Rad Print-Set, then update all exams of printset
  . I RAPRTSET D
  . . S ACNLST="",SAVRACNI=RACNI,X=0
- . . F I=0:1 S X=$O(MAGPSET(X)) Q:'X  S RACNILST=RACNILST_$S(I:U,1:"")_X S:RACNE'=+MAGPSET(X) ACNLST=ACNLST_", "_"-"_+MAGPSET(X)
+ . . N T  ; P133 mod for MAGPSET Data ex.--Old= 256^154^190^4  SSAN= 660-080504-256^154^190^4
+ . . F I=0:1 S X=$O(MAGPSET(X)) Q:'X  S RACNILST=RACNILST_$S(I:U,1:"")_X,T=$P(MAGPSET(X),U) S:RACNE'=$P(T,"-",($L(T,"-"))) ACNLST=ACNLST_", "_$S($L(T,"-")=1:"-",1:"")_T
  . E  S RACNILST=RACNI
  . F I=1:1:$L(RACNILST,U) S RACNI=$P(RACNILST,U,I) I RACNI D  I RACNILST="" Q
  . . S DA(2)=RADFN,DA(1)=RADTI,DA=RACNI
@@ -116,7 +117,7 @@ STATUSX ; Newly Interpreted exam:
  ; Log the Interpreted event; Printset logging includes all printset members
  S PSETLST=""
  I RAPRTSET S X="" D
- . F I=0:1 S X=$O(MAGPSET(X)) Q:'X  S PSETLST=PSETLST_$S(I:U,1:"")_+MAGPSET(X)
+ . F I=0:1 S X=$O(MAGPSET(X)) Q:'X  S PSETLST=PSETLST_$S(I:U,1:"")_$P(MAGPSET(X),U)
  D LOG^MAGJUTL3("VR-INT",LOGDATA,PSETLST)
  ; Update Recent Exams List
  G STATUSZ:'$P(^MAG(2006.69,1,0),U,8)  ; no bkgnd compile enabled

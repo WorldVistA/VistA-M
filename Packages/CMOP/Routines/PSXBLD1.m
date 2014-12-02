@@ -1,5 +1,5 @@
 PSXBLD1 ;BIR/BAB,HTW,WPB-Document Data for Transmission ;10/15/98  10:38 AM
- ;;2.0;CMOP;**3,18,19,42,41,49,57,64**;11 Apr 97;Build 1
+ ;;2.0;CMOP;**3,18,19,42,41,49,57,64,75**;11 Apr 97;Build 5
  ;Reference to  ^PSRX(     supported by DBIA #1977
  ;Reference to  ^PSDRUG(   supported by DBIA #1983
  ;Reference to  ^PS(55,    supported by DBIA #2228
@@ -8,7 +8,7 @@ PSXBLD1 ;BIR/BAB,HTW,WPB-Document Data for Transmission ;10/15/98  10:38 AM
  ;Reference to PROD2^PSNAPIS supported by DBIA #2531
 MRX ;Multi rx
  G:'$P(PSOPAR,"^",18) SUS
- F ZZ=0:0 S ZZ=$O(^PS(55,DFN,"P",ZZ)) Q:'ZZ  S NBR=0 D RZX
+ N RX F ZZ=0:0 S ZZ=$O(^PS(55,DFN,"P",ZZ)) Q:'ZZ  S NBR=0 D RZX
 BUILD ;
  F PSA=0:0 S PSA=$O(RX(PSA)) Q:'PSA  D SCRNEW
  K NAME,REFILL,PSDT2,NBR,PSRX,PSA,TN,AMC,PSRFL,X1,X2,PSRXX,RXNUM,ZZ

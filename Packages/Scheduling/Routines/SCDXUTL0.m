@@ -1,8 +1,15 @@
 SCDXUTL0 ;ALB/ESD - Generic functions for Amb Care HL7 Interface ; 5/31/05 11:23am
- ;;5.3;Scheduling;**44,55,69,77,85,110,122,94,66,132,180,235,256,258,325,451,441,562**;Aug 13, 1993;Build 7
+ ;;5.3;Scheduling;**44,55,69,77,85,110,122,94,66,132,180,235,256,258,325,451,441,562,585**;Aug 13, 1993;Build 19
  ;
  ; This routine contains functions used with the Ambulatory Care
  ; Reporting Project (ACRP).
+ ;
+ ;ICR Agreements:
+ ;
+ ;ICR - 3481 for reference to $$SC^DGMTR
+ ;ICR - 2463 for reference to $$LST^DGMTU
+ ;ICR - 3637 for reference to $$PA^DGMTUTL
+ ;
  ;
 MTI(DFN,DATE,EC,AT,SDOE) ;Calculate Means Test Indicator
  ;
@@ -18,9 +25,7 @@ MTI(DFN,DATE,EC,AT,SDOE) ;Calculate Means Test Indicator
  S MTI=""
  S DFN=$G(DFN),DATE=$G(DATE),EC=$G(EC),AT=$G(AT),SDOE=$G(SDOE)
  I (DFN="")!(DATE="")!(EC="")!(EC=0)!(AT="")!(SDOE="") G MTQ
- ;
- ;SD*562 check for other possible invalid Eligibility codes
- I $L(EC)>2!(EC="-1") G MTQ
+ I '$D(^DIC(8,+EC,0)) Q MTI   ;SD*585
  ;
  ;- VA Code (get from MAS Eligibility Code IEN)
  S X=$G(^DIC(8.1,$P($G(^DIC(8,+EC,0)),"^",9),0))

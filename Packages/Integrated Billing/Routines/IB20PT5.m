@@ -48,8 +48,8 @@ STAT ; Set new entries into the IB ACTION STATUS (#350.21) file.
  Q
  ;
 CCMG ; Update the central collection mailgroup in file #350.9
- W !!,">>> Updating the central collection mailgroup to G.MCCR DATA@FORUM.domain.ext ..."
- S IBX="G.MCCR DATA@FORUM.domain.ext"
+ W !!,">>> Updating the central collection mailgroup to G.MCCR DATA@DOMAIN.EXT ..."
+ S IBX="G.MCCR DATA@DOMAIN.EXT"
  S DA=1,DIE="^IBE(350.9,",DR="4.05///^S X=IBX" D ^DIE K DA,DR,DIE,IBX
  Q
  ;

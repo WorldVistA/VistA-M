@@ -1,5 +1,6 @@
-MAGDFCNV ;WOIFO/PMK - Read HL7 and generate DICOM ; 06/06/2005  09:14
- ;;3.0;IMAGING;**11,51**;26-August-2005
+MAGDFCNV ;WOIFO/PMK - Read HL7 and generate DICOM ; 03 Sep 2013 10:12 AM
+ ;;3.0;IMAGING;**11,51,141,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -7,7 +8,6 @@ MAGDFCNV ;WOIFO/PMK - Read HL7 and generate DICOM ; 06/06/2005  09:14
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -60,3 +60,28 @@ UP(X) ; special UPPER CASE function -- removes redundant blanks as well
  I $E(X)=" " S $E(X)=""  ; remove leading blank
  I $E(X,$L(X))=" " S $E(X,$L(X))=""  ; remove trailing blank
  Q $TR(X,"abcdefghijklmnopqrstuvwxyz^|","ABCDEFGHIJKLMNOPQRSTUVWXYZ~~")
+ ;
+STATNUMB() ; return numeric 3-digit station number for the VA
+ N STATNUMB
+ S STATNUMB=$$STA^XUAF4($$KSP^XUPARAM("INST")) ; station number
+ ; station number is 3 digits, exclusive of any modifiers or full station number for IHS
+ Q $S($$ISIHS^MAGSPID():STATNUMB,1:$E(STATNUMB,1,3))
+ ;
+GMRCACN(GMRCIEN) ; return a site-specific accession number for clinical specialties
+ ; GMRCIEN is the CPRS Consult Request Tracking GMRC IEN - REQUEST/CONSULTATION file(#123)
+ N ACNUMB ; accession number for a consult/procedure request
+ ; Format: <sss>-GMR-<gmrcien>, where <sss> is station number, and <gmrcien>
+ ;         is the internal entry number of the request, up to 8 digits (100 million) 
+ S ACNUMB=$$STATNUMB()_"-GMR-"_GMRCIEN
+ Q ACNUMB
+ ;
+GMRCIEN(ACNUMB) ; return the GMRC IEN, given a consult/procedure accession number
+ ; ACNUMB is the accession number for a consult/procedure request
+ ; OLD Format: GMRC-<gmrcien>, where <gmrcien>is the internal entry number of the request
+ ; New Format: <sss>-GMR-<gmrcien>, where <sss> is station number, and <gmrcien>
+ ;             is the internal entry number of the request, up to 8 digits (100 million)
+ N GMRCIEN ; CPRS Consult Request Tracking GMRC IEN - REQUEST/CONSULTATION file(#123)
+ I ACNUMB?1"GMRC-"1N.N S GMRCIEN=$P(ACNUMB,"-",2) ; return the second piece
+ E  I ACNUMB?1N.N1"-GMR-"1N.N S GMRCIEN=$P(ACNUMB,"-",3) ; return the third piece
+ E  S GMRCIEN="" ; invalid consult request tracking accession number format
+ Q GMRCIEN

@@ -1,7 +1,12 @@
-LEXAS5 ; ISL Look-up Check Input (SPLIT)          ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
- ;
+LEXAS5 ;ISL/KER - Look-up Check Input (SPLIT) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(               N/A
+ ;               
+ ; External References
+ ;    $$UP^XLFSTR         ICR  10103
+ ;               
 SPLIT(LEXX) ; 2 tolkens/no space
  ;
  ; LEXI    Incremental counter

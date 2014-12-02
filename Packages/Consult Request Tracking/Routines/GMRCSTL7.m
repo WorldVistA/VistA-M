@@ -1,5 +1,5 @@
 GMRCSTL7 ;SLC/JFR/WAT - DRIVER FOR CSLT PER MONITOR ;4/8/05 10:28
- ;;3.0;CONSULT/REQUEST TRACKING;**41,60**;DEC 27, 1997;Build 9
+ ;;3.0;CONSULT/REQUEST TRACKING;**41,60,76**;DEC 27, 1997;Build 7
  ;
  ;This routine invokes ICRs 
  ;1519(XUTMDEVQ,10103(XLFDT),10104(XLFSTR),3744(VADPT),10089(%ZISC),10026(DIR)
@@ -248,7 +248,11 @@ CAVEATS ; brief explanatory text
  W !," -Administrative requests flagged via the Administrative fields in the"
  W !,?2,"REQUEST SERVICES and REQUEST/CONSULTATION files. This is not retroactive"
  W !,?2,"and only applies to services/requests leveraging the Administrative-flagging"
- W !,?2,"capability included in GMRC*3.0*60, available on or about June 2008.",!!
+ W !,?2,"capability included in GMRC*3.0*60, available on or about June 2008."
+ W !," -The report utilizes the EARLIEST APPROPRIATE DATE field from the "
+ W !,?2,"REQUEST/CONSULTATION file to determine request totals for a given date"
+ W !,?2,"range.  This is true even for requests that have been re-submitted using"
+ W !,?2,"the Edit/Resubmit functionality.",!!
  Q
  ;
 EXIT F ARR="GMRCR","GMRCS","GMRCSLIST","GMRCT" K ^TMP(ARR,$J)

@@ -1,6 +1,6 @@
 IBTRC1 ;ALB/AAS - CLAIMS TRACKING -  INSURANCE ACTIONS ACTIONS ; 14-JUL-93
- ;;Version 2.0 ; INTEGRATED BILLING ;; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**458**;21-MAR-94;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % G EN^IBTRC
  ;
@@ -103,12 +103,13 @@ EDIT(IBTEMP) ; -- Edit entries
  D BLD^IBTRC
  Q
  ;
-PRECRT(IBTRN) ; -- find precert number for a tracking entry
+PRECRT(IBTRN,LNG) ; -- find precert number for a tracking entry
  ; -- input ibtrn = internal entry of tracking id.
  ;
  S PRECERT=""
  I '$G(IBTRN) G PRECQ
  S PRECERT=$O(^IBT(356.2,"APRE",IBTRN,0))
+ I +$G(LNG),$L(PRECERT)>LNG S PRECERT=$E(PRECERT,1,(LNG-1))_"*"
 PRECQ Q PRECERT
  ;
 SHOWSC ; -- display sc conditions
@@ -142,5 +143,6 @@ SCREEN(ACODE,CTYPE) ; -- screen for action field of file 356.2
  ;           CTYPE = type of review, pointer to 356.11
  ;
  S CTYPE=$P($G(^IBE(356.11,+CTYPE,0)),"^",2) I 'CTYPE Q 1
- Q $S(CTYPE=10:1,CTYPE=20:1,CTYPE=30:1,CTYPE=50&(ACODE<30):1,1:0)
+ Q $S(CTYPE=10:1,CTYPE=20:1,CTYPE=25:1,CTYPE=30:1,CTYPE=35:1,CTYPE=50&(ACODE<30):1,CTYPE=55&(ACODE<30):1,1:0)
+ ;Q $S(CTYPE=10:1,CTYPE=20:1,CTYPE=30:1,CTYPE=50&(ACODE<30):1,1:0)
  ;Q $S(CTYPE=1:1,CTYPE=2&(ACODE'=30):1,CTYPE=3:1,CTYPE=5&(ACODE<30):1,1:0)

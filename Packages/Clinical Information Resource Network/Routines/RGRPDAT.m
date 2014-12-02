@@ -1,5 +1,5 @@
 RGRPDAT ;BAY/ALS-ROUTINE TO CALL REMOTE PDAT ;09/14/01
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**23,27,31,55**;30 Apr 99;Build 11
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**23,27,31,55,60**;30 Apr 99;Build 2
  ;Reference to ^DGCN(391.91 supported by IA #2911
  ;Reference to EN1^XWB2HL7 supported by IA #3144
  ;Reference to RPCCHK^XWB2HL7 supported by IA #3144
@@ -47,7 +47,7 @@ CHKSTAT ;check on the status for a given ICN or SSN
  W !!,"Checking the status of remote patient data query.",!
  I '$D(^XTMP("RGPDAT"_ICN)) W !!,"No remote query sent for this patient." Q
  D GETTFL(ICN,.TFL)
- W !!,"-> For ICN ",$P(ICN,"V",1),!
+ N FULLICN S FULLICN=$$GETICN^MPIF001(DFN) W !!,"-> For ICN "_$S(+FULLICN>0:FULLICN,1:"") ;**60 - MVI_2389 (ptd)
  I $D(TFL(0)) D
  . S X=0 F  S X=$O(TFL(X)) Q:'X  I '$D(^XTMP("RGPDAT"_ICN,X)) K TFL(X)
  D SELTF
@@ -78,7 +78,7 @@ DISP    ;display returned PDAT queries
  N TFL,L,Y,ICNARR,STATUS
  I '$D(^XTMP("RGPDAT"_ICN)) W !!,"No remote query sent for this patient." Q
  D GETTFL(ICN,.TFL)
- W !!,"-> For ICN ",$P(ICN,"V",1),!
+ N FULLICN S FULLICN=$$GETICN^MPIF001(DFN) W !!,"-> For ICN "_$S(+FULLICN>0:FULLICN,1:"") ;**60 - MVI_2389 (ptd)
  I $D(TFL(0)) D
  . S X=0 F  S X=$O(TFL(X)) Q:'X  I '$D(^XTMP("RGPDAT"_ICN,X)) K TFL(X)
  D SELTF

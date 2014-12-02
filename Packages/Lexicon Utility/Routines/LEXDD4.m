@@ -1,25 +1,28 @@
-LEXDD4 ; ISL Display Defaults - List Elements     ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
+LEXDD4 ;ISL/KER - Display Defaults - List Elements ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^DIC(49)            ICR  10093
+ ;               
+ ; External References
+ ;    $$GET1^DIQ          ICR   2056
+ ;    $$LOW^XLFSTR        ICR  10103
+ ;    $$UP^XLFSTR         ICR  10103
+ ;               
  ;
  ; Create the Display for a user
 NAME ;     Name
  S:'$D(LEXD(0)) LEXD(0)=0
- N LEXDATA,LEXSPC S LEXSPC="",LEXDATA=$P(^VA(200,LEXDUZ,0),U,1)
+ N LEXDATA,LEXSPC S LEXSPC="",LEXDATA=$$GET1^DIQ(200,+($G(LEXDUZ)),.01)
  N LEXLN,LEXFN
  S LEXDATA=$$FL(LEXDATA)
  K LEXITL D STRING
  Q
 SEV ;     Service
- N LEXDATA S LEXDATA=$P($G(^VA(200,LEXDUZ,5)),U,1),LEXDATA=+LEXDATA
+ N LEXDATA S LEXDATA=$$GET1^DIQ(200,+($G(LEXDUZ)),29),LEXDATA=+LEXDATA
  Q:'LEXDATA  Q:$P($G(^DIC(49,LEXDATA,0)),U,1)=""
  S LEXDATA=$P($G(^DIC(49,LEXDATA,0)),U,1)
  I $L(LEXDATA) S LEXITL="    Service:   " D STRING
- Q
-LOC ;     Hospital Location
- N LEXDATA S LEXDATA=$P($G(^VA(200,LEXDUZ,100.1)),U,7)
- S LEXDATA=+LEXDATA Q:'LEXDATA  Q:$P($G(^SC(LEXDATA,0)),U,1)=""
- S LEXDATA=$P($G(^SC(LEXDATA,0)),U,1)
- I $L(LEXDATA) S LEXITL="    Location:  " D STRING
  Q
 APP ;     Application Name
  Q:+($G(LEXAP))<1  Q:'$D(^LEXT(757.2,+LEXAP,0))
@@ -47,9 +50,6 @@ DEFS(LEXV,LEXN,LEXO) ; Create local array
  D:$G(LEXO)=1 DICS^LEXDDT1 D:$G(LEXO)=2 SHOW^LEXDDT1
  D:$G(LEXO)=3 SUB^LEXDDT1 D:$G(LEXO)=4 CON^LEXDDT1
  D:$G(LEX(1))'="" ARRAY K LEX
- ;W !!
- ;ZW
- ;W !!
  Q
  ;
  D:$G(LEXO)=1 FV^LEXDDT1 D:$G(LEXO)=2 DV^LEXDDT1

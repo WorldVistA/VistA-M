@@ -1,5 +1,5 @@
-ORWDX ; SLC/KCM/REV/JLI - Order dialog utilities ;09/08/2008 [2/11/09 8:00am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,132,141,164,178,187,190,195,215,246,243,283,296,280**;Dec 17, 1997;Build 85
+ORWDX ; SLC/KCM/REV/JLI - Order dialog utilities ;12/14/12  09:24
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,132,141,164,178,187,190,195,215,246,243,283,296,280,306**;Dec 17, 1997;Build 43
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;Reference to DIC(9.4 supported by IA #2058
  ;
@@ -124,7 +124,7 @@ SENDED(ORWLST,ORIENS,TS,LOC) ; Release EDOs to svc
  . I OK,$G(LOCK) D
  .. S OR3=$G(^OR(100,+ORIFN,3)) I $P(OR3,"^",3)'=10!($P(OR3,"^",9)]"") D UNLK1^ORX2(ORIENS(ORIX)) Q  ;order already released or has a parent
  .. S:$G(LOC) $P(^OR(100,+ORIFN,0),U,10)=LOC ;set location
- .. S:$G(TS) $P(^OR(100,+ORIFN,0),U,13)=TS ;set specialty 
+ .. S:$G(TS) $P(^OR(100,+ORIFN,0),U,13)=TS ;set specialty
  .. D EN2^ORCSEND(ORIENS(ORIX),ORSIGST,ORNATURE,.ORWERR),UNLK1^ORX2(ORIENS(ORIX)) ;add ,LOCK to if statement for 195
  . I $L(ORWERR) S ORWLST(ORIX)=ORWLST(ORIX)_"^E^"_ORWERR Q
  . E  D

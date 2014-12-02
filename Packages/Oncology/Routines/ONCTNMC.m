@@ -1,5 +1,5 @@
 ONCTNMC ;Hines OIFO/GWB [TNM Compute percentage of TNM forms completed] ;03/17/11
- ;;2.11;ONCOLOGY;**46,49,53**;Mar 07, 1995;Build 31
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 TNMCA ;[TNM Compute percentage of TNM forms completed]
  N SDT,EDT,IEN,TNMA,TNMC,TNMACNT,TNMCCNT,TNMP,RPTDATE,DIVISION

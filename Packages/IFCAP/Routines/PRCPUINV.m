@@ -1,8 +1,10 @@
 PRCPUINV ;WISC/RFJ/DGL-inventory point selection ; 9/20/06 11:04am
-V ;;5.1;IFCAP;**1,98**;Oct 20, 2000;Build 37
+V ;;5.1;IFCAP;**1,98,179**;Oct 20, 2000;Build 6
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
+ ;PRC*5.1*179 Modify secondary delete process to prevent site overwrite
+ ;            when killing links to fund control points
  ;
 INVPT(PRCPSITE,PRCPTYPE,ADDNEW,PRCPUSER,DEFAULT) ;  select inventory point
  ;  prcptype=w or p or s
@@ -92,9 +94,11 @@ KILL(INVPT) ;  update all pointers when deleting an inventory point
  K ^PRCP(445,"AB",INVPT)
  ;
  W !?3,"Removing link to the following fund control points:"
+ S PRCPSTHH=PRC("SITE")       ;PRC*5.1*179  save original site
  S %=0 F  S %=$O(^PRC(420,"AE",%)) Q:'%  S PRC("SITE")=%,X=0 F  S X=$O(^PRC(420,"AE",%,INVPT,X)) Q:'X  W !?5,%,"-",X D DEL^PRCPUFCP(X,INVPT)
  I +$G(DQ) S DE(+$G(DQ))=NAME
  W !!
+ S PRC("SITE")=PRCPSTHH K PRCPSTHH     ;PRC*5.1*179  restore original site
  Q
  ;
  ;PRCPUINV

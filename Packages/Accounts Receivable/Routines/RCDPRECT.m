@@ -1,6 +1,6 @@
 RCDPRECT ;WISC/RFJ-print a receipt ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,148,217,244**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**114,148,217,244,260**;Mar 20, 1995;Build 2
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
  ;
@@ -49,7 +49,7 @@ QUEUEIT ;  queue printing receipt
  ;
 PRINT ;  print a receipt
  ;  requires variables rcrectda and rctranda
- N %,%H,%I,ADDRESS,DATA,LINE,RCTYPE,X,Y
+ N %,%H,%I,ADDRESS,DATA,LINE,RCTYPE,X,Y,MSG
  U IO
  ;
  ;  print address for station at top
@@ -111,6 +111,8 @@ PRINT ;  print a receipt
  W !,"A detailed listing of how your payment has been applied to your"
  W !,"account will be provided on your patient statement, which you"
  W !,"will receive in the mail at a later date."
+ S MSG="THANK YOU FOR YOUR PAYMENT"
+ W !!,?((80-$L(MSG))/2),MSG
  W !!,LINE
  D ^%ZISC
  Q

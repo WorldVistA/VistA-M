@@ -1,5 +1,5 @@
-PXRMPARS ; SLC/PJH - Edit PXRM(800 reminder parameters. ;04/02/2007
- ;;2.0;CLINICAL REMINDERS;**4,6**;Feb 04, 2005;Build 123
+PXRMPARS ; SLC/PJH - Edit PXRM(800 reminder parameters. ;01/28/2013
+ ;;2.0;CLINICAL REMINDERS;**4,6,26**;Feb 04, 2005;Build 404
  ;
  ;called by protocol PXRM EDIT SITE DISCLAIMER
  ;
@@ -65,7 +65,7 @@ WURL(IEN) ;Edit individual URL
  Q
  ;
 LOCK(DA) ;Lock the record
- L +^PXRM(800,DA):0 I  Q 1
+ L +^PXRM(800,DA):DILOCKTM I  Q 1
  E  W !!,?5,"Another user is editing this file, try later" H 2 Q 0
  ;
 UNLOCK(DA) ;Unlock the record

@@ -1,5 +1,5 @@
 DVBARSBD ;ALB/RPM - CAPRI 2507 REQUEST STATUS BY DT RANGE REPORT ; 01/24/12
- ;;2.7;AMIE;**179**;Apr 10, 1995;Build 15
+ ;;2.7;AMIE;**179,185**;Apr 10, 1995;Build 18
  ;
  Q  ;NO DIRECT ENTRY
  ;
@@ -19,32 +19,32 @@ REQSTAT(DVBSDAT,DVBEDAT,DVBRSTAT,DVBDELIM,DVBNODT) ;entry for request status by 
  N DVBERR  ;FM error msg
  N DVBCNT   ;returned record count
  ;
- K ^TMP("DVBREQ",$J)
- K ^TMP("DVBREQN",$J)
+ K ^TMP("DVBREQ",$J),^TMP("DVBREQN",$J)
  S EXSDAT=$$FMTE^XLFDT(DVBSDAT,"5DZ")
  S EXEDAT=$$FMTE^XLFDT(DVBEDAT,"5DZ")
  I DVBRSTAT="A" S EXSTAT="ALL"
  E  D
  . D CHK^DIE(396.3,17,"E",DVBRSTAT,.DVBARS,"DVBERR")
  . S EXSTAT=$G(DVBARS(0))
- S DVBCNT=0
+ S DVBCNT=1
+ S DVBADLMTR=$S(DVBDELIM=1:",",1:0)
  ;
  ;collect records matching search criteria
  I DVBNODT D
  . S EXSDAT="NO START DATE"
  . S EXEDAT="NO END DATE"
+ . I DVBDELIM D DELIMHDR(EXSDAT,EXEDAT,EXSTAT)
  . D GETRECSN(DVBRSTAT,.DVBCNT)
  E  D
+ . I DVBDELIM D DELIMHDR(EXSDAT,EXEDAT,EXSTAT)
  . D GETRECS(DVBSDAT,DVBEDAT,DVBRSTAT,.DVBCNT)
  ;
  ;output results
  I 'DVBCNT D
  . W "NO DATA FOUND"
  E  D
- . I DVBDELIM D DELIMHDR(EXSDAT,EXEDAT,EXSTAT),DELIM  ;delimited format
  . I 'DVBDELIM D PLAINHDR(EXSDAT,EXEDAT,EXSTAT),PLAIN  ;plain text format
- K ^TMP("DVBREQ",$J)
- K ^TMP("DVBREQN",$J)
+ . I DVBDELIM D DELIM  ;comma delimited format
  Q
  ;
 GETRECS(SDAT,EDAT,RSTAT,CNT) ;collect 2507 REQUEST record matches
@@ -60,8 +60,8 @@ GETRECS(SDAT,EDAT,RSTAT,CNT) ;collect 2507 REQUEST record matches
  ;
  N CHGDAT  ;change date
  N DVBIEN  ;2507 REQUEST IEN
- N DVBSTAT  ;2507 REQUEST STATUS
- N FLD  ;field array in external format
+ N DVBSTAT ;2507 REQUEST STATUS
+ N FLD     ;field array in external format
  ;
  S CHGDAT=SDAT-1
  F  S CHGDAT=$O(^DVB(396.3,"AH",CHGDAT)) Q:'CHGDAT!(CHGDAT>EDAT)  D
@@ -72,7 +72,10 @@ GETRECS(SDAT,EDAT,RSTAT,CNT) ;collect 2507 REQUEST record matches
  . . . K FLD
  . . . I $$SETFLDS(DVBIEN,.FLD) D
  . . . . S CNT=CNT+1
- . . . . S ^TMP("DVBREQ",$J,CNT)=FLD("SS")_U_FLD("NM")_U_FLD("REQDT")_U_FLD("RELDT")_U_FLD("PRTDT")_U_FLD("RS")_U_FLD("CANDT")_U_FLD("RO")
+ . . . . I $G(DVBADLMTR)'="," S ^TMP("DVBREQ",$J,CNT)=FLD("SS")_U_FLD("NM")_U_FLD("REQDT")_U_FLD("RELDT")_U_FLD("PRTDT")_U_FLD("RS")_U_FLD("CANDT")_U_FLD("RO") Q
+ . . . . I $G(DVBADLMTR)="," D
+ . . . . . S ^TMP("DVBREQ",$J,CNT)=FLD("SS")_DVBADLMTR_""""_FLD("NM")_""""_DVBADLMTR_FLD("REQDT")_DVBADLMTR_FLD("RELDT")_DVBADLMTR_FLD("PRTDT")_DVBADLMTR
+ . . . . . S ^TMP("DVBREQ",$J,CNT)=^TMP("DVBREQ",$J,CNT)_""""_FLD("RS")_""""_DVBADLMTR_FLD("CANDT")_DVBADLMTR_""""_FLD("RO")_""""
  Q
  ;
 SETFLDS(DVBIEN,DVBFLDS) ;build field array in external format
@@ -111,7 +114,7 @@ SETFLDS(DVBIEN,DVBFLDS) ;build field array in external format
  D DEM^VADPT
  I $G(VADM(1))'="" D  ;only return record when name is resolved
  . S DVBFLDS("NM")=$G(VADM(1))
- . S DVBFLDS("SS")=+$G(VADM(2))
+ . S DVBFLDS("SS")=$S(DVBDELIM:$P($G(VADM(2)),U,2),1:$P($G(VADM(2)),U,1))
  . S DVBFLDS("RS")=$G(DVBDAT(396.3,DVBIENS,17,"E"))
  . S DVBFLDS("REQDT")=$$FMTE^XLFDT($G(DVBDAT(396.3,DVBIENS,1,"I")),"5DZ")
  . S DVBFLDS("RELDT")=$$FMTE^XLFDT($G(DVBDAT(396.3,DVBIENS,13,"I")),"5DZ")
@@ -129,19 +132,22 @@ DELIMHDR(EXSDAT,EXEDAT,EXSTAT) ;output delimited format header
  ;    EXEDAT - end date (external format)
  ;    EXSTAT - request status (external format)
  ;
- W "Request Status by Date Range Report"
- W !,"Date Range: "_EXSDAT_" - "_EXEDAT
- W !,"Request Status: ",EXSTAT
- W !
- W !,"SSN^PatientName^RequestDT^DTReleased^DTPrinted^RequestStatus^DtCanceled^Station"
+ S ^TMP("DVBREQ",$J,DVBCNT)="Request Status by Date Range Report",DVBCNT=DVBCNT+1
+ S ^TMP("DVBREQ",$J,DVBCNT)="Date Range: "_EXSDAT_" - "_EXEDAT,DVBCNT=DVBCNT+1
+ S ^TMP("DVBREQ",$J,DVBCNT)=""""_"Request Status: "_EXSTAT_""""_$C(13),DVBCNT=DVBCNT+1
+ S ^TMP("DVBREQ",$J,DVBCNT)="SSN"_DVBADLMTR_"PatientName"_DVBADLMTR_"RequestDT"_DVBADLMTR_"DTReleased"_DVBADLMTR_"DTPrinted"_DVBADLMTR_"RequestStatus"_DVBADLMTR_"DtCanceled"_DVBADLMTR_"Station",DVBCNT=DVBCNT+1
  Q
  ;
 DELIM ;output delimited format
  ;
- N DVBI
+ N DVBI     ;generic counter
+ N DVBREQ   ;request record
+ ;
+ U IO
  S DVBI=0
  F  S DVBI=$O(^TMP("DVBREQ",$J,DVBI)) Q:'DVBI  D
- . W !,^TMP("DVBREQ",$J,DVBI)
+ . S DVBREQ=^TMP("DVBREQ",$J,DVBI)
+ . W !,DVBREQ
  Q
  ;
 PLAINHDR(EXSDAT,EXEDAT,EXSTAT)  ;output plain text header
@@ -159,6 +165,7 @@ PLAINHDR(EXSDAT,EXEDAT,EXSTAT)  ;output plain text header
  ;
  N DVBLINE  ;header separator
  ;
+ U IO
  S $P(DVBLINE,"-",131)=""
  W "Date Range: "_EXSDAT_" - "_EXEDAT
  W !,"Request Status: ",EXSTAT
@@ -175,6 +182,7 @@ PLAIN ;output plain text format
  N DVBI     ;generic counter
  N DVBREQ   ;request record
  ;
+ U IO
  S DVBI=0
  F  S DVBI=$O(^TMP("DVBREQ",$J,DVBI)) Q:'DVBI  D
  . S DVBREQ=^TMP("DVBREQ",$J,DVBI)
@@ -196,7 +204,7 @@ GETRECSN(RSTAT,CNT) ;collect 2507 REQUEST status matches and ignore date range
  N CHGDAT  ;change date
  N SRTDAT  ;sort date
  N DVBIEN  ;2507 REQUEST IEN
- N FLD  ;field array in external format
+ N FLD     ;field array in external format
  N DVBRO   ;regional office
  ;
  ;create list sorted by LAST STATUS CHANGE DATE
@@ -208,7 +216,10 @@ GETRECSN(RSTAT,CNT) ;collect 2507 REQUEST status matches and ignore date range
  . . I $$SETFLDS(DVBIEN,.FLD) D
  . . . ;use request date as sort for blank date
  . . . S SRTDAT=+$G(FLD("IREQDT"))
- . . . S ^TMP("DVBREQN",$J,SRTDAT,DVBIEN)=FLD("SS")_U_FLD("NM")_U_FLD("REQDT")_U_FLD("RELDT")_U_FLD("PRTDT")_U_FLD("RS")_U_FLD("CANDT")_U_FLD("RO")
+ . . . I $G(DVBADLMTR)'="," S ^TMP("DVBREQN",$J,SRTDAT,DVBIEN)=FLD("SS")_U_FLD("NM")_U_FLD("REQDT")_U_FLD("RELDT")_U_FLD("PRTDT")_U_FLD("RS")_U_FLD("CANDT")_U_FLD("RO")
+ . . . I $G(DVBADLMTR)="," D
+ . . . . S ^TMP("DVBREQN",$J,SRTDAT,DVBIEN)=FLD("SS")_DVBADLMTR_""""_FLD("NM")_""""_DVBADLMTR_FLD("REQDT")_DVBADLMTR_FLD("RELDT")_DVBADLMTR_FLD("PRTDT")_DVBADLMTR
+ . . . . S ^TMP("DVBREQN",$J,SRTDAT,DVBIEN)=^TMP("DVBREQN",$J,SRTDAT,DVBIEN)_""""_FLD("RS")_""""_DVBADLMTR_FLD("CANDT")_DVBADLMTR_""""_FLD("RO")_""""
  ;
  ;load output global with sorted list
  S CHGDAT=""  ;use "" because value could be zero ("0")

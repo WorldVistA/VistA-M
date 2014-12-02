@@ -1,5 +1,5 @@
 SDRRINQ ;10N20/MAH;-Recall Reminder PATIENT INQUIRY ;01/28/2008  11:32
- ;;5.3;Scheduling;**536,566**;Aug 13, 1993;Build 5
+ ;;5.3;Scheduling;**536,566,582**;Aug 13, 1993;Build 3
  ; Option: SDRR PATIENT INQUIRY
 EN ;Looping through both active recalls and archive entries
  N DFN
@@ -41,6 +41,7 @@ SEL I $D(^SD(403.5,"B",DFN)) S (RSENT,SSENT,PRDT,TYPE)="" S IEN=0 F  S IEN=$O(^S
  .S Y=$P(NODE,"^",12) I Y'="" D DD^%DT S PRDT=Y K Y,X
  .S Y=$P(NODE,"^",13) I Y'="" D DD^%DT S SSENT="*"_Y K Y,X
  .S ^TMP("SDRRINQ",$J,"ACT",IEN)=CLINIC_"^"_ACCINFOR_"^"_TYPE_"^"_PROVIDER_"^"_RDT_"^"_COMMENT_"^"_FAST_"^"_LOA_"^"_RSENT_"^"_USER_"^"_PRDT_"^"_SSENT
+ .S SSENT=""    ;SD*582
  Q
 SEL1 I $D(^SD(403.56,"B",DFN))  S (USER,RSENT,PRDTA,TYPE)="" S IENA=0 F  S IENA=$O(^SD(403.56,"B",DFN,IENA)) Q:'IENA  S NODEA=$G(^SD(403.56,IENA,0)) D
  .S CLINIC=$P($G(NODEA),"^",2),CLINIC=$$GET1^DIQ(44,CLINIC_",",.01),ACCINFOR=$P($G(NODEA),"^",3)
@@ -84,6 +85,7 @@ ACT I $D(^SD(403.5,"B",DFN)) S (RSENT,SSENT,IEN,PRDT,TYPE)="" F  S IEN=$O(^SD(40
  .S Y=$P(NODE,"^",12) I Y'="" D DD^%DT S PRDT=Y K Y,X
  .S Y=$P(NODE,"^",13) I Y'="" D DD^%DT S SSENT="*"_Y K Y,X
  .S ^TMP("SDRRINQ",$J,"ACT",IEN)=CLINIC_"^"_ACCINFOR_"^"_TYPE_"^"_PROVIDER_"^"_RDT_"^"_COMMENT_"^"_FAST_"^"_LOA_"^"_RSENT_"^"_USER_"^"_PRDT_"^"_SSENT
+ .S SSENT=""    ;SD*582
  Q
 ARC I $D(^SD(403.56,"B",DFN))  S (USER,RSENT,PRDTA,TYPE)="" S IENA=0 F  S IENA=$O(^SD(403.56,"B",DFN,IENA)) Q:'IENA  S NODEA=$G(^SD(403.56,IENA,0)) D
  .S CLINIC=$P($G(NODEA),"^",2),CLINIC=$$GET1^DIQ(44,CLINIC_",",.01),ACCINFOR=$P($G(NODEA),"^",3)

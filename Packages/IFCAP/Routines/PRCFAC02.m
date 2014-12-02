@@ -1,10 +1,17 @@
 PRCFAC02 ;WISC@ALTOONA/CTB/BGJ-CONTINUATION OF PRCFAC01 ;11/17/94  09:37
-V ;;5.1;IFCAP;**14**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**14,179**;Oct 20, 2000;Build 6
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*179 Rearrange processing path to insure 410 obligation 
+ ;            is done before print calls based on MOP.  Users 
+ ;            were capable of exiting MOP print call without
+ ;            returning to 410 obligating call.
+ ;
  S PRCFA("MOP")=$P(^PRC(442,PRCFA("PODA"),0),"^",2) I 123478'[PRCFA("MOP") Q
+ I '$D(PRCHDELV) S COPY=1,PRCF("DEST")="S8" S:PRCFA("MOP")=8 PRCF("DEST")="S" D OBD   ;PRC*179  410 obligation call moved
  I PRCFA("MOP") D @PRCFA("MOP")
- I $D(PRCHDELV) D:$P($G(^PRC(442,PRCFA("PODA"),0)),U,19)'=2 PRINT Q
- D OBD K COPY Q
+ I $D(PRCHDELV) I $P($G(^PRC(442,PRCFA("PODA"),0)),U,19)'=2 S COPY=1 D PRINT
+ K COPY Q
 1 ;INVOICE/RR
  D OBL
  I $P($G(^PRC(442,PRCFA("PODA"),0)),U,19)'=2 D

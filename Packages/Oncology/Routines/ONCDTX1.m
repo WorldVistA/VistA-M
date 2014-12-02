@@ -1,5 +1,5 @@
 ONCDTX1 ;Hines OIFO/RTK;DELETE @FAC TREATMENT FIELDS; 09/25/98
- ;;2.11;ONCOLOGY;**19,22,27,36,39,42**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 DELATF ;Delete all treatment @fac
  S $P(^ONCO(165.5,DA,3.1),U,7)="" D SPSATFR    ;50.2

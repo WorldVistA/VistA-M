@@ -1,11 +1,12 @@
 PSOREJP1 ;BIRM/MFR - Third Party Reject Display Screen ;04/29/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,290,358,359,385,403**;DEC 1997;Build 9
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,290,358,359,385,403,421**;DEC 1997;Build 15
  ;Reference to File 9002313.93 - BPS NCPDP REJECT CODES supported by IA 4720
  ;Reference to ^PS(59.7 supported by IA 694
  ;Reference to ^PSDRUG("AQ" supported by IA 3165
  ;Reference to File 9002313.25 supported by IA 5064
  ;Reference to BPSNCPD3 supported by IA 4560
  ;Reference to ^BPSVRX supported by IA 5723
+ ;Reference to $$BBILL^BPSBUTL supported by IA 4719
  ;
 EN(RX,REJ,CHANGE) ; Entry point
  ;
@@ -55,9 +56,12 @@ INIT ; Builds the Body section
  Q
  ;
 REJ ; - DUR Information
- N TYPE,PFLDT,TREJ,TDATA,PSOTRIC,PSOET S TDATA=""
+ N TYPE,PFLDT,TREJ,TDATA,PSOTRIC,PSOET,PSONAF,BBCOB,BBTXT S TDATA=""
  S PSOTRIC="",PSOTRIC=$$TRIC(RX,FILL,PSOTRIC)
- D SETLN("REJECT Information"_$S($G(PSOTRIC)=1:" (TRICARE)",$G(PSOTRIC)=2:" (CHAMPVA)",1:""),1,1)
+ ; Back Bill indicator - PSO*7*421
+ S BBTXT="",BBCOB=$G(DATA(REJ,"COB")),BBCOB=$S(BBCOB="SECONDARY":2,BBCOB="TERTIARY":3,1:1)
+ I $$BBILL^BPSBUTL(RX,FILL,BBCOB) S BBTXT=" BACK-BILL"
+ D SETLN("REJECT Information"_$S($G(PSOTRIC)=1:" (TRICARE)",$G(PSOTRIC)=2:" (CHAMPVA)",1:"")_BBTXT,1,1)
  S TYPE=$S($G(DATA(REJ,"CODE"))=79:"79 - REFILL TOO SOON",1:"")
  I TYPE="" S TYPE=DATA(REJ,"CODE")_" - "_$E($$EXP(DATA(REJ,"CODE")),1,23)_"-"
  D SETLN("Reject Type    : "_TYPE_" received on "_$$FMTE^XLFDT($G(DATA(REJ,"DATE/TIME"))),,,18)
@@ -65,6 +69,8 @@ REJ ; - DUR Information
  S PSOET=$$PSOET^PSOREJP3(RX,FILL)
  I PSOET D SETLN("Status         : NO CLAIM SUBMITTED")
  I 'PSOET D SETLN("Reject Status  : "_$G(DATA(REJ,"STATUS"))_" - "_$$STATUS^PSOBPSUT(RX,FILL),,,18)
+ S PSONAF=$$NFLDT^BPSBUTL(RX,FILL) ; IA 4719
+ I PSONAF'="" D SETLN("Next Avail Fill: "_$$FMTE^XLFDT(PSONAF),,,18) ; PSO*7*421
  D SET("PAYER MESSAGE",63)
  D SET("REASON",63)
  S PFLDT=$$FMTE^XLFDT($G(DATA(REJ,"PLAN PREVIOUS FILL DATE")))
@@ -276,7 +282,7 @@ OUT(RX) ; - Supported call by outside PROTOCOLs to act on specific REJECTs
  Q
  ;
 SMA ;Submit multiple actions
- N CLA,I,OVR,OVRSTR,PA,REJIEN,DUR,RSC,DURIEN
+ N CLA,I,OVR,OVRSTR,PA,REJIEN,DUR,RSC,DURIEN,REQ,RSUB
  I $$CLOSED(RX,REJ,1) Q
  S PSOET=$$PSOET^PSOREJP3(RX,FILL)
  I PSOET S VALMSG="SMA not allowed for "_$$ELIGDISP^PSOREJP1(RX,FILL)_" Non-Billable claim.",VALMBCK="R" Q
@@ -293,11 +299,15 @@ SMA ;Submit multiple actions
  S CLA=$$CLA^PSOREJU1
  I CLA="^" S VALMBCK="R" Q  ;User terminated or did not answer
  ;
- ; Prompt for DUR Overrides (up to three)
- S OVRSTR="",REJIEN=0 F I=1:1:3 D  Q:OVR="^"!(OVR="")  S $P(OVRSTR,"~",I)=OVR
+ ; Check if DUR Overrides required - PSO*7*421
+ S REQ=$$REQ I REQ="^" S VALMBCK="R" Q
+ ;
+ ; Prompt for DUR Overrides (up to 3) - option to delete default added - PSO*7*421
+ S OVRSTR="",OVR=""
+ I REQ S REJIEN=0 F RSUB=1:1:3 D  Q:OVR="^"!(OVR="")!(OVR="@")  S $P(OVRSTR,"~",RSUB)=OVR
  . I REJIEN]"" S REJIEN=$O(DUR(1,"DUR PPS",REJIEN))
  . S RSC="" I +REJIEN S RSC=$P($G(DUR(1,"DUR PPS",REJIEN,"REASON FOR SERVICE CODE"))," ",1)
- . S OVR=$$SMAOVR^PSOREJU1(RSC)
+ . S OVR=$$SMAOVR^PSOREJU1(RSC,RSUB)
  I OVR="^" S VALMBCK="R" Q  ;User exited or timed-out
  ;
  W !!,?6,"RECAP:"
@@ -347,3 +357,9 @@ VER ; View ePharmacy Prescription - invoked from the Rx view hidden action of Me
  K ^TMP("BPSVRX-PSO VIEW RX",$J)
  Q
  ;
+REQ() ;Prompt if DUR Rejects are required
+ N DIR,DTOUT,DTOUT,DIRUT,DIROUT,X,Y
+ S DIR("?")="Enter No if Reason Codes are not required. Enter Yes to proceed and enter up to 3 sets of override Reason Codes. To delete default Reason Codes, enter ""@""."
+ S DIR("A")="Enter DUR codes",DIR(0)="Y",DIR("B")="YES" W ! D ^DIR
+ I $D(DIRUT)!$D(DIROUT) Q "^" ;User exited or timed-out
+ Q Y

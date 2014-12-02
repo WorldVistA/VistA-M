@@ -1,5 +1,5 @@
 PSIVORAL ;BIR/MLM-ACTIVITY LOGGER FOR PHARMACY EDITS ;16 DEC 97 / 1:40 PM 
- ;;5.0;INPATIENT MEDICATIONS;**58,135,267**;16 DEC 97;Build 158
+ ;;5.0;INPATIENT MEDICATIONS;**58,135,267,279**;16 DEC 97;Build 150
  ;
  ; Reference to ^PS(52.7 is supported by DBIA 2173.
  ; Reference to ^PS(55 is supported by DBIA 2191.
@@ -48,6 +48,7 @@ GTFC ; Create field change entry in activity log.
  K ND
  Q
 LOG ; Update activity log (ask for comment.)
+ D SETNML55^PSIVORC1
  I $G(P("FC"))["OTHER PRINT INFO" Q:$G(^PS(53.45,+$G(PSJSYSP),6))
  N ON S ON=ON55
  ;PSJPINIT is defined in PSJUTL3.

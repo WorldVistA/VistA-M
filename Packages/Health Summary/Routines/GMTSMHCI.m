@@ -1,5 +1,5 @@
 GMTSMHCI ;SLC/WAT - HRMH PATIENT CONTACT INFO ;06/13/11  11:58
- ;;2.7;Health Summary;**99**;Oct 20, 1995;Build 45
+ ;;2.7;Health Summary;**99,110**;Oct 20, 1995;Build 2
  ;
  ;EXTERNAL CALLS
  ;ADD/OAD/KVA ^VADPT 10061
@@ -41,9 +41,11 @@ CELL ;GET CELL #
  Q
  ;
 WORK ;work ph #
- N VAOA,WORK S VAOA=("A")=5 D OAD^VADPT
+ ; KDM 1/28/2014 GMTS*2.7*110 
+ ;     Replaced OAD^VADPT call with OPD^VADPT to return correct patient work phone number
+ N VAPD,WORK D OPD^VADPT
  I $G(VAERR)=1 S ^TMP($J,"GMTS CONTACT INFO",CNT)="PATIENT NOT FOUND",CNT=CNT+1 Q
- S ^TMP($J,"GMTS CONTACT INFO",CNT)=TAB_"Work: "_$S($G(VAOA(8))'="":VAOA(8),1:NODATA),CNT=CNT+1
+ S ^TMP($J,"GMTS CONTACT INFO",CNT)=TAB_"Work: "_$S($G(VAPD(8))'="":VAPD(8),1:NODATA),CNT=CNT+1
  Q
  ;
 HOME ;home phone

@@ -1,5 +1,5 @@
 IBCU7A ;ALB/ARH - BILL PROCEDURE MANIPULATIONS ; 10-OCT-03
- ;;2.0;INTEGRATED BILLING;**245,287**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**245,287,483**;21-MAR-94;Build 19
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ; Based on Reasonable Charges v2.0+, certain CPT codes should be reported in a certain way
@@ -22,7 +22,10 @@ PROC(IBIFN,EDIT) ; manipulate bill procedures base on charges and the clinical d
  ;
  I 'EDIT,IBPBTYP<3 D DELCLN(IBIFN) ; delete TC/26 component clinical procedures from bills
  I 'EDIT,IBPBTYP<3 D ADDCLN(IBIFN) ; add 26 modified clinical procedures to bill
- I 'EDIT,IBPBTYP<3 D DELTC(IBIFN) ; delete all TC modifiers from institutional bills
+ ;
+ ; *483 - add TC modifier to procedures on a provider based facility bill if the only professional charge for the procedure is 26 modified
+ ;I 'EDIT,IBPBTYP<3 D DELTC(IBIFN) ; delete all TC modifiers from institutional bills
+ D MODTC(IBIFN)
  ;
  D MOD26(IBIFN) ; if only professional charge is a 26 charge then add or delete modifier 26 on procedure
  ;
@@ -106,13 +109,29 @@ MOD26(IBIFN) ; add/delete modifier 26 to procedure if that is the only professio
  . S IBMODS=","_$$GETMOD^IBEFUNC(IBIFN,IBBCPT)_","
  . ;
  . S IBCHGS=$$CHGMOD^IBCRCU1(IBIFN,+IBLN,IBEVDT,2) I (+IBCHGS'=1)!(+$P(IBCHGS,":",3)'=IB26) Q
- . ;
- . I IBBCT=1,IBMODS[IB26 D DELMOD^IBCU73(IBIFN,IBBCPT,IB26) S IBCHANGE=IBCHANGE+1
+ . ; *484
+ . I IBBCT=1,$F(IBMODS,","_IB26_",") D DELMOD^IBCU73(IBIFN,IBBCPT,IB26) S IBCHANGE=IBCHANGE+1
  . I IBBCT=2,IBMODS'[IB26 D ADDMOD^IBCU73(IBIFN,IBBCPT,IB26) S IBCHANGE=IBCHANGE+1
  ;
  I '$D(ZTQUEUED),'$G(IBAUTO),+IBCHANGE W !,"Modifier 26 "_$S(IBBCT=1:"Deleted from",1:"Added to")_" Procedures ("_IBCHANGE_")."
  Q
  ;
+MODTC(IBIFN) ; add TC modifier to procedures on the institutional bill
+ N IB0,IBBCT,IBCHGS,IBTC,IB26,IBBCPT,IBLN,IBEVDT,IBMODS,IBV2,IBCHANGE
+ S IBCHANGE=0,IBV2=$$VERSDT^IBCRU8(2)
+ S IB0=$G(^DGCR(399,+$G(IBIFN),0)) Q:IB0=""
+ S IBBCT=$P(IB0,U,27) Q:IBBCT'=1
+ S IBTC=+$$MOD^ICPTMOD("TC","E") Q:IBTC<1
+ S IB26=+$$MOD^ICPTMOD("26","E") Q:IB26<1
+ ;
+ S IBBCPT=0 F  S IBBCPT=$O(^DGCR(399,IBIFN,"CP",IBBCPT)) Q:'IBBCPT  D
+ . S IBLN=$G(^DGCR(399,IBIFN,"CP",IBBCPT,0)),IBEVDT=$P(IBLN,U,2) Q:IBLN'[";ICPT("
+ . I IBEVDT<IBV2 Q
+ . S IBMODS=","_$$GETMOD^IBEFUNC(IBIFN,IBBCPT)_","
+ . S IBCHGS=$$CHGMOD^IBCRCU1(IBIFN,+IBLN,IBEVDT,2) I (+IBCHGS'=1)!(+$P(IBCHGS,":",3)'=IB26) Q
+ . I $F(IBMODS,","_IB26_",") D ADDMOD^IBCU73(IBIFN,IBBCPT,IBTC) S IBCHANGE=IBCHANGE+1
+ I '$D(ZTQUEUED),'$G(IBAUTO),+IBCHANGE W !,"Modifier TC Added to Procedures ("_IBCHANGE_")."
+ Q
  ;
 ASK(IBIFN) ; ask if the bill procedure modifications should be executed
  N DIR,DIRUT,DUOUT,DTOUT,X,Y

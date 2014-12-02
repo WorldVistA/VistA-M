@@ -1,9 +1,9 @@
 PSOREJU2 ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,260,287,341,290,358,359,385,403**;DEC 1997;Build 9
- ;Reference to $$NABP^BPSBUTL supported by IA 4719
+ ;;7.0;OUTPATIENT PHARMACY;**148,260,287,341,290,358,359,385,403,421**;DEC 1997;Build 15
+ ;Reference to $$DIVNCPDP^BPSBUTL supported by IA 4719
  ;Reference to File 9002313.23 - BPS NCPDP REASON FOR SERVICE CODE supported by IA 4714
  ;
-GET(RX,RFL,REJDATA,REJID,OKCL,CODE) ;
+GET(RX,RFL,REJDATA,REJID,OKCL,CODE,RRRFLG) ; get reject data from subfile 52.25
  ; Input:  (r) RX  - Rx IEN (#52) 
  ;         (o) RFL - Refill # (Default: most recent)
  ;         (r) REJDATA(REJECT IEN,FIELD) - Array where these Reject fields will be returned:
@@ -35,6 +35,8 @@ GET(RX,RFL,REJDATA,REJID,OKCL,CODE) ;
  ;         (o) REJID - REJECT IEN in the PRESCRIPTION file for retrieve this REJECT
  ;         (o) OKCL - If set to 1, CLOSED REJECTs will also be returned
  ;         (o) CODE - Only REJECTs with this CODE should be returned
+ ;         (o) RRRFLG - If set to 1 with CODE present, also return Reject Resolution Required REJECTs
+ ;                      If set to 1 and CODE not passed, then only return RRR REJECTs
  ;
  N REJS,ARRAY,REJFLD,IDX,COM,Z
  ;
@@ -58,9 +60,17 @@ GET(RX,RFL,REJDATA,REJID,OKCL,CODE) ;
  ;
  S IDX=0
  F  S IDX=$O(REJS(IDX)) Q:'IDX  D
+ . N SKIP
  . K ARRAY D GETS^DIQ(52.25,IDX_","_RX_",","*","","ARRAY")
  . K REJFLD M REJFLD=ARRAY(52.25,IDX_","_RX_",")
- . I $G(CODE)'="",REJFLD(.01)'=CODE Q   ;cnf, PSO*7.0*358, add check for '=""
+ . ;
+ . ; check CODE and RRRFLG to see if we want this reject data
+ . S SKIP=0    ; default is to include it
+ . I $G(CODE)'="",REJFLD(.01)'=CODE S SKIP=1               ; CODE exists and doesn't match this reject
+ . I SKIP,$G(RRRFLG),$G(REJFLD(30))="YES" S SKIP=0         ;  but include these if RRRFLG is true and this is an RRR reject
+ . I $G(CODE)="",$G(RRRFLG),$G(REJFLD(30))'="YES" S SKIP=1 ; want only RRR rejects in this case
+ . I SKIP Q    ; get out if we're skipping this one
+ . ;
  . S REJDATA(IDX,"CODE")=$G(REJFLD(.01))
  . S REJDATA(IDX,"DATE/TIME")=$G(REJFLD(1))
  . S REJDATA(IDX,"PAYER MESSAGE")=$G(REJFLD(2))
@@ -80,6 +90,9 @@ GET(RX,RFL,REJDATA,REJID,OKCL,CODE) ;
  . S REJDATA(IDX,"DUR ADD MSG TEXT")=$G(REJFLD(28))
  . S REJDATA(IDX,"REASON SVC CODE")=$G(REJFLD(14))
  . S REJDATA(IDX,"RESPONSE IEN")=$G(REJFLD(16))
+ . S REJDATA(IDX,"RRR FLAG")=$G(REJFLD(30))  ;PSO*421
+ . S REJDATA(IDX,"RRR THRESHOLD AMT")=$G(REJFLD(31))  ;PSO*421
+ . S REJDATA(IDX,"RRR GROSS AMT DUE")=$G(REJFLD(32))  ;PSO*421
  . I '$G(OKCL) Q
  . S REJDATA(IDX,"CLOSED DATE/TIME")=$G(REJFLD(10))
  . S REJDATA(IDX,"CLOSED BY")=$G(REJFLD(11))
@@ -126,10 +139,13 @@ DVINFO(RX,RFL,LM) ; Returns header displayable Division Information
  ;Input: (r) RX   - Rx IEN (#52)
  ;       (o) RFL  - Refill # (Default: most recent)
  ;       (o) LM   - ListManager format? (1 - Yes / 0 - No) - Default: 0
- N TXT,DVINFO,NCPNPI
- S DVINFO="Division : "_$$GET1^DIQ(59,+$$RXSITE^PSOBPSUT(RX,RFL),.01)
- S NCPNPI=$P($$NABP^BPSBUTL(RX,RFL)," ")
- S $E(DVINFO,$S($G(LM):58,1:51))=$S($L(NCPNPI)=7:"NCPDP",1:"  NPI")_"#: "_NCPNPI
+ N TXT,DVINFO,NCPNPI,DVIEN
+ S DVIEN=+$$RXSITE^PSOBPSUT(RX,RFL)
+ S DVINFO="Division : "_$$GET1^DIQ(59,DVIEN,.01)
+ ;Display both NPI and NCPDP numbers - PSO*7.0*421
+ S NCPNPI=$$DIVNCPDP^BPSBUTL(DVIEN)
+ S $E(DVINFO,33)="NPI: "_$P(NCPNPI,U,2)
+ S $E(DVINFO,$S($G(LM):59,1:52))="NCPDP: "_$P(NCPNPI,U)
  Q DVINFO
  ;
 PTINFO(RX,LM) ; Returns header displayable Patient Information

@@ -1,5 +1,5 @@
-ORWDBA3 ; SLC/GSS Billing Awareness (CIDC) [8/20/03 9:19am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**190,195,243**;Dec 17, 1997;Build 242
+ORWDBA3 ; SLC/GSS Billing Awareness (CIDC) [8/20/03 9:19am] ;05/23/12  10:36
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**190,195,243,361**;Dec 17, 1997;Build 39
  ;
 ORFMDAT(ORDFN) ; Return date in FM format regarding order for CSV/CTD/HIPAA
  ; Pass in Order IEN
@@ -115,7 +115,7 @@ DG1(ORDFN,COUNTER,CTVALUE) ; Create DG1 segment(s) & make call for ZCL seg.
  . ;   was previously entered .. but just in case ...)
  . S (DXV,ICD9)=""
  . I DXIEN'="" D
- .. S DXR=$$ICDDX^ICDCODE(DXIEN,ORFMDAT) Q:+DXR=-1
+ .. S DXR=$$ICDDATA^ICDXCODE("DIAGNOSIS",DXIEN,ORFMDAT) Q:+DXR=-1
  .. ; Get diagnosis verbiage and ICD code
  .. S DXV=$P(DXR,U,4),ICD9=$P(DXR,U,2)
  . S FROMFILE=80

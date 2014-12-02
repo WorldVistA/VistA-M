@@ -1,18 +1,21 @@
 SCRPW40 ;RENO/KEITH - Diagnosis/Procedure Frequency Report ;06/22/99
- ;;5.3;Scheduling;**144,180,556**;AUG 13, 1993;Build 3
+ ;;5.3;Scheduling;**144,180,556,593**;AUG 13, 1993;Build 13
  ;06/22/99 ACS - Added CPT modifiers to the report
  ;06/22/99 ACS - Added CPT modifier API calls
  ;04/13/08 - Updating to replace calls to unsupported/deleted ICD9 fields with API calls
  ;
  N SDDIV,SD,%DT,X,Y,DIR,SDX,LINEFLAG
- D TITL^SCRPW50("Outpatient Diagnosis/Procedure Frequncy Report")
+ D TITL^SCRPW50("Outpatient Diagnosis/Procedure Frequency Report")
  I '$$DIVA^SCRPW17(.SDDIV) S SDOUT=1 G EXIT
  D SUBT^SCRPW50("**** Date Range Selection ****")
- W ! S %DT="AEPX",%DT(0)=2961001,%DT("A")="Beginning date: " D ^%DT I Y<1 S SDOUT=1 G EXIT
+ S Y=$$IMP^SCRPWICD(30) S SD("I10DTI")=Y X ^DD("DD") S SD("I10DTE")=Y
+BDT W ! S %DT="AEPX",%DT(0)=2961001,%DT("A")="Beginning date: " D ^%DT I Y<1 S SDOUT=1 G EXIT
  S SD("BDT")=Y
 EDT S %DT("A")="   Ending date: " W ! D ^%DT I Y<1 S SDOUT=1 G EXIT
  I Y<SD("BDT") W !!,$C(7),"End date cannot be before begin date!",! G EDT
  S SD("EDT")=Y_.999999
+ I (SD("BDT")<SD("I10DTI")),(SD("EDT")'<SD("I10DTI")) D  G BDT
+ . W !!,$C(7),"Beginning and Ending dates must both be prior to "_SD("I10DTE")_" (ICD-9) or both be on or after "_SD("I10DTE")_" (ICD-10)."
  D SUBT^SCRPW50("**** Report Format Selection ****")
  K DIR S DIR(0)="S^D:DIAGNOSIS FREQUENCY;P:PROCEDURE FREQUENCY;B:BOTH DIAGNOSIS AND PROCEDURE",DIR("A")="Specify the type of report to print",DIR("?")="This determines the type of lists returned by the report."
  D ^DIR I $D(DTOUT)!$D(DUOUT) S SDOUT=1 G EXIT
@@ -100,11 +103,17 @@ DXPRT ;Print diagnosis list
  W !?(C),"TOTAL:",?(C+46),$J(SDTOT("PRI"),9,0),?(C+58),$J(SDTOT("SEC"),9,0),?(C+70),$J(SDTOT("QTY"),9,0)
  Q
  ;
-DXP1 S SDI=0 F  S SDI=$O(^TMP("SCRPW",$J,SDIV,"DX",2,SDORD,SDI)) Q:'SDI!SDOUT!(SDCT>(SD("FREQ")-1))  S SDDX0=$$ICDDX^ICDCODE(SDI) I $L(SDDX0) S SDDXC=$P(SDDX0,U,2),SDDXN=$P(SDDX0,U,4) D DXP2
+DXP1 S SDI=0 F  S SDI=$O(^TMP("SCRPW",$J,SDIV,"DX",2,SDORD,SDI)) Q:'SDI!SDOUT!(SDCT>(SD("FREQ")-1))  S SDDX0=$$ICDDX^SCRPWICD(SDI) I $L(SDDX0) S SDDXC=$P(SDDX0,U,2),SDDXN=$P(SDDX0,U,4) D DXP2
  Q
  ;
-DXP2 F SDII="PRI","SEC","QTY" S SDDX(SDII)=+$G(^TMP("SCRPW",$J,SDIV,"DX",1,SDI,SDII))
- D:$Y>(IOSL-4) HDR,DXHD Q:SDOUT  S SDCT=SDCT+1 W !?(C),SDDXC,?(C+9),$E(SDDXN,1,35),?(C+46),$J(SDDX("PRI"),9,0),?(C+58),$J(SDDX("SEC"),9,0),?(C+70),$J(SDDX("QTY"),9,0)
+DXP2 N DIWL,DIWF,SDL2 S DIWL=1 S DIWF="C35|"
+ F SDII="PRI","SEC","QTY" S SDDX(SDII)=+$G(^TMP("SCRPW",$J,SDIV,"DX",1,SDI,SDII))
+ D:$Y>(IOSL-4) HDR,DXHD Q:SDOUT  S SDCT=SDCT+1
+ K ^UTILITY($J,"W") S X=SDDXN D ^DIWP
+ F SDL2=1:1:^UTILITY($J,"W",DIWL) D
+ . I SDL2=1 W !?(C),SDDXC,?(C+9),$E(^UTILITY($J,"W",DIWL,SDL2,0),1,35) I 1
+ . E  W !,?(C+9),$E(^UTILITY($J,"W",DIWL,SDL2,0),1,35)
+ W ?(C+46),$J(SDDX("PRI"),9,0),?(C+58),$J(SDDX("SEC"),9,0),?(C+70),$J(SDDX("QTY"),9,0)
  F SDII="PRI","SEC","QTY" S SDTOT(SDII)=$G(SDTOT(SDII))+SDDX(SDII)
  Q
  ;

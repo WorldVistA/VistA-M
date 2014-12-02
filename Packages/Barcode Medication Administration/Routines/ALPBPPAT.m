@@ -1,9 +1,12 @@
-ALPBPPAT ;OIFO-DALLAS MW,SED,KC-PRINT 3-DAY MAR BCBU BACKUP REPORT FOR A SELECTED PATIENT ;01/01/03
- ;;3.0;BAR CODE MED ADMIN;**8,48,59**;Mar 2004;Build 15
+ALPBPPAT ;OIFO-DALLAS MW,SED,KC-PRINT 3-DAY MAR BCBU BACKUP REPORT FOR A SELECTED PATIENT ;2/13/13 13:13pm
+ ;;3.0;BAR CODE MED ADMIN;**8,48,59,73**;Mar 2004;Build 31
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; 
  ; NOTE: this routine is designed for hard-copy output. 
  ;  Output is formatted for 132-column printing.
+ ;
+ ;*73 Add Clinic Order (CO) identification and clinic name print with 
+ ;    CO's sorting after IM meds.
  ;
  F  D  Q:$D(DIRUT)
  .W !!,"Inpatient Pharmacy Orders for a selected patient"
@@ -76,6 +79,7 @@ ALPBPPAT ;OIFO-DALLAS MW,SED,KC-PRINT 3-DAY MAR BCBU BACKUP REPORT FOR A SELECTE
  ;
 DQ ; output entry point...
  K ^TMP($J)
+ N ALPBCLIN                                                   ;*73
  ;
  ; set report date...
  S ALPBRDAT=$$NOW^XLFDT()
@@ -97,49 +101,52 @@ DQ ; output entry point...
  ..I $G(ALPBDATA(1))="" K ALPBDATA Q
  ..I $P(ALPBDATA(1),U,2)<ALPBRDAT K ALPBDATA
  .S ALPBNOMEDS1=0
+ .S ALPBCLIN=$P(ALPBDATA(0),U,5) S:ALPBCLIN="" ALPBCLIN=0       ;*73
  .S ALPBORDN=$P(ALPBDATA(0),U)
  .S ALPBOCT=$P($G(ALPBDATA(3)),U,1)
  .S:$P($G(ALPBDATA(4)),U,3)["PRN" ALPBOCT=ALPBOCT_"P"
  .;drug name being used for alpha-sorting medications within order types (unit dose, unit dose-PRN, intravenous, intravenous-PRN)
  .S ALPBDRGNAME=$P($G(ALPBDATA(7,1,0)),U,2)
  .; gets the medications order status based on the order status code
- .S ALPBOST=$$STAT2^ALPBUTL1($P($P($G(ALPBDATA(0),"XX"),U,3),"~",1))
- .S ^TMP($J,ALPBOCT,ALPBDRGNAME,ALPBOST,ALPBORDN)=ALPBOIEN
+ .S ALPBOST=$$STAT2^ALPBUTL1($P($P($G(ALPBDATA(0),"XX"),U,3),"~"))
+ .S ^TMP($J,ALPBCLIN,ALPBOCT,ALPBDRGNAME,ALPBOST,ALPBORDN)=ALPBOIEN
  .K ALPBDATA,ALPBOST,ALPBOCT,ALPBDRGNAME
  ;
  ; loop through the sorted orders...
- S ALPBOCT=""
- F  S ALPBOCT=$O(^TMP($J,ALPBOCT)) Q:ALPBOCT=""  D
- .S ALPBDRGNAME=""
- .F  S ALPBDRGNAME=$O(^TMP($J,ALPBOCT,ALPBDRGNAME)) Q:ALPBDRGNAME=""  D
- ..S ALPBOST=""
- ..F  S ALPBOST=$O(^TMP($J,ALPBOCT,ALPBDRGNAME,ALPBOST)) Q:ALPBOST=""  D
- ...S ALPBORDN=""
- ...F  S ALPBORDN=$O(^TMP($J,ALPBOCT,ALPBDRGNAME,ALPBOST,ALPBORDN)) Q:ALPBORDN=""  D
- ....S ALPBOIEN=^TMP($J,ALPBOCT,ALPBDRGNAME,ALPBOST,ALPBORDN)
- ....M ALPBDATA=^ALPB(53.7,ALPBIEN,2,ALPBOIEN)
- ....W !
- ....D F132^ALPBFRM1(.ALPBDATA,ALPBDAYS,ALPBMLOG,.ALPBFORM,ALPBIEN)
- ....; paginate?...
- ....I $Y+ALPBFORM(0)=IOSL!($Y+ALPBFORM(0)>IOSL) D
- .....W @IOF
- .....S ALPBPG=ALPBPG+1
- .....D HDR^ALPBFRMU(.ALPBPT,ALPBPG,.ALPBHDR)
- .....F I=1:1:ALPBHDR(0) W !,ALPBHDR(I)
+ S ALPBCLIN=""
+ F  S ALPBCLIN=$O(^TMP($J,ALPBCLIN)) Q:ALPBCLIN=""  D
+ .S ALPBOCT=""
+ .F  S ALPBOCT=$O(^TMP($J,ALPBCLIN,ALPBOCT)) Q:ALPBOCT=""  D
+ ..S ALPBDRGNAME=""
+ ..F  S ALPBDRGNAME=$O(^TMP($J,ALPBCLIN,ALPBOCT,ALPBDRGNAME)) Q:ALPBDRGNAME=""  D
+ ...S ALPBOST=""
+ ...F  S ALPBOST=$O(^TMP($J,ALPBCLIN,ALPBOCT,ALPBDRGNAME,ALPBOST)) Q:ALPBOST=""  D
+ ....S ALPBORDN=""
+ ....F  S ALPBORDN=$O(^TMP($J,ALPBCLIN,ALPBOCT,ALPBDRGNAME,ALPBOST,ALPBORDN)) Q:ALPBORDN=""  D
+ .....S ALPBOIEN=^TMP($J,ALPBCLIN,ALPBOCT,ALPBDRGNAME,ALPBOST,ALPBORDN)
+ .....M ALPBDATA=^ALPB(53.7,ALPBIEN,2,ALPBOIEN)
  .....W !
- .....K ALPBHDR
- ....F I=1:1:ALPBFORM(0) W !,ALPBFORM(I)
- ....K ALPBDATA,ALPBFORM
- ...K ALPBORDN
- ..K ALPBOST
- .K ALPBDRGNAME
- K ALPBOCT
- ; 
+ .....D F132^ALPBFRM1(.ALPBDATA,ALPBDAYS,ALPBMLOG,.ALPBFORM,ALPBIEN)
+ .....; paginate?...
+ .....I $Y+ALPBFORM(0)=IOSL!($Y+ALPBFORM(0)>IOSL) D
+ ......W @IOF
+ ......S ALPBPG=ALPBPG+1
+ ......D HDR^ALPBFRMU(.ALPBPT,ALPBPG,.ALPBHDR)
+ ......F I=1:1:ALPBHDR(0) W !,ALPBHDR(I)
+ ......W !
+ ......K ALPBHDR
+ .....F I=1:1:ALPBFORM(0) W !,ALPBFORM(I)
+ .....K ALPBDATA,ALPBFORM
+ ....K ALPBORDN
+ ...K ALPBOST
+ ..K ALPBDRGNAME
+ .K ALPBOCT
+ ;
  ;notification message displays one line below header info if patient has no med orders when the report is generated
  I ALPBNOMEDS1 D
- .W !!,"No Active Medication Orders were reported to the Contingency at the time the MAR was printed "
- .;additional blank lines added to seperate footer from header and allow room for notes
- .F  Q:$Y>=(IOSL-6)  W !
+ .W !!,"No Active Medication Orders were reported to the Contingency at the time the MAR was printed ",!!!
+ .;additional blank lines added to separate footer from header and allow room for notes
+ .I $E(IOST)="P" F  Q:$Y>=(IOSL-6)  W !
  ;
  ; print footer at end of this patient's record...
  D FOOT^ALPBFRMU

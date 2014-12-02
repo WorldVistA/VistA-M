@@ -1,5 +1,5 @@
-DGMTHL1 ;ALB/CJM/TDM - Hardship Determinations - Build List Area;13 JUN 1997 08:00 am ; 8/29/02 4:50pm
- ;;5.3;Registration;**182,456,536**;08/13/93;Build 3
+DGMTHL1 ;ALB/CJM/TDM,LBD - Hardship Determinations - Build List Area;13 JUN 1997 08:00 am ; 9/6/12 6:07pm
+ ;;5.3;Registration;**182,456,536,858**;08/13/93;Build 30
  ;
 EN(DGARY,HARDSHIP,DGCNT) ;Entry point to build list area
  ; Input;
@@ -65,6 +65,9 @@ CHKADD(HARDSHIP) ;
  ;  HARDSHIP - hardship array (pass by reference)
  ;Output:
  ;  Function Value - 1 if the hardship can be granted, 0 otherwise   
+ ;
+ ; Add check for MT more than a year old (DG*5.3*858)
+ I $G(HARDSHIP("TEST DATE")),$$OLD^DGMTU4(HARDSHIP("TEST DATE")) Q 0
  ;
  N CODE
  S CODE=""

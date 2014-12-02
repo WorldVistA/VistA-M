@@ -1,14 +1,14 @@
 PSOORAL1 ;BHAM ISC/SAB - Build Listman activity logs ; 12/4/07 12:25pm
- ;;7.0;OUTPATIENT PHARMACY;**71,156,148,247,240,287,354,367**;DEC 1997;Build 62
+ ;;7.0;OUTPATIENT PHARMACY;**71,156,148,247,240,287,354,367,408**;DEC 1997;Build 100
  N RX0,VALMCNT K DIR,DTOUT,DUOUT,DIRUT,^TMP("PSOAL",$J) S DA=$P(PSOLST(ORN),"^",2),RX0=^PSRX(DA,0),J=DA,RX2=$G(^(2)),R3=$G(^(3)),CMOP=$O(^PSRX(DA,4,0))
- S IEN=0,DIR(0)="LO^1:"_$S(CMOP:8,1:7),DIR("A",1)=" ",DIR("A",2)="Select Activity Log by  number",DIR("A",3)="1.  Refill      2.  Partial      3.  Activity     4.  Labels"
- S DIR("A")=$S(CMOP:"5.  Copay       6.  ECME         7.  CMOP Events  8.  All Logs",1:"5.  Copay       6.  ECME         7.  All Logs")
- S DIR("B")=$S(CMOP:8,1:7) D ^DIR S PSOELSE=+Y I +Y S Y=$S(CMOP&(Y[8):"1,2,3,4,5,6,7",'CMOP&(Y[7):"1,2,3,4,5,6",1:Y) S ACT=Y D FULL^VALM1 D
+ S IEN=0,DIR(0)="LO^1:"_$S(CMOP:9,1:8),DIR("A",1)=" ",DIR("A",2)="Select Activity Log by  number",DIR("A",3)="1.  Refill      2.  Partial      3.  Activity     4.  Labels     5.  Copay"
+ S DIR("A")=$S(CMOP:"6.  ECME        7.  SPMP        8.  CMOP Events  9.  All Logs",1:"6.  ECME        7.  SPMP         8.  All Logs")
+ S DIR("B")=$S(CMOP:9,1:8) D ^DIR S PSOELSE=+Y I +Y S Y=$S(CMOP&(Y[9):"1,2,3,4,5,6,7,8",'CMOP&(Y[8):"1,2,3,4,5,6,7",1:Y) S ACT=Y D FULL^VALM1 D
  .S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Rx #: "_$P(RX0,"^")_"   Original Fill Released: " I $P(RX2,"^",13) S DTT=$P(RX2,"^",13) D DAT S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_DAT K DAT,DTT
  .I $P(RX2,"^",15) S DTT=$P(RX2,"^",15) D DAT S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_"(Returned to Stock "_DAT_")" K DAT,DTT
  .S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Routing: "_$S($P(RX0,"^",11)="W":"Window",1:"Mail")_$S($P($G(^PSRX(DA,"OR1")),"^",5):"      Finished by: "_$P(^VA(200,$P(^PSRX(DA,"OR1"),"^",5),0),"^"),1:"")
  .D:$G(^PSRX(DA,"H"))]""&($P(PSOLST(ORN),"^",3)="HOLD") HLD^PSOORAL2
- .F LOG=1:1:$L(ACT,",") Q:$P(ACT,",",LOG)']""  S LBL=$P(ACT,",",LOG) D @$S(LBL=1:"RF^PSOORAL2",LBL=2:"PAR^PSOORAL2",LBL=3:"ACT",LBL=5:"COPAY",LBL=6:"ECME",LBL=7:"^PSORXVW2",1:"LBL")
+ .F LOG=1:1:$L(ACT,",") Q:$P(ACT,",",LOG)']""  S LBL=$P(ACT,",",LOG) D @$S(LBL=1:"RF^PSOORAL2",LBL=2:"PAR^PSOORAL2",LBL=3:"ACT",LBL=5:"COPAY",LBL=6:"ECME",LBL=7:"SPMP",LBL=8:"^PSORXVW2",1:"LBL")
  I 'PSOELSE S VALMBCK="" K PSOELSE Q 
  K ST0,RFL,RFLL,RFL1,II,J,N,PHYS,L1,DIRUT,PSDIV,PSEXDT,MED,M1,FFX,DTT,DAT,R3,RTN,SIG,STA,P1,PL,P0,Z0,Z1,EXDT,IFN,DIR,DUOUT,DTOUT,PSOELSE
  K LBL,I,RFDATE,%H,%I,RN,RFT
@@ -101,6 +101,26 @@ ECME ; ECME activity log
  K ^UTILITY($J,"W"),DIWR,DIWF,DIWL
  Q
  ;
+SPMP ; SPMP (State Prescription Monitoring Program) Log
+ N FILL,BAT,LOG,BAT0,LOG0
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" ",IEN=IEN+1
+ S ^TMP("PSOAL",$J,IEN,0)="SPMP (State Prescription Monitoring Program) Log:"
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Date/Time       Fill Type   Exp. Type Bat#  Filename"
+ S IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",80)="="
+ I '$D(^PS(58.42,"ARX",DA)) D  Q
+ . S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There's NO Export Log for this prescription."
+ S FILL=""
+ F  S FILL=$O(^PS(58.42,"ARX",DA,FILL)) Q:FILL=""  D
+ . S BAT=0 F  S BAT=$O(^PS(58.42,"ARX",DA,FILL,BAT)) Q:'BAT  D
+ . . S LOG=0 F  S LOG=$O(^PS(58.42,"ARX",DA,FILL,BAT,LOG)) Q:'LOG  D
+ . . . S BAT0=$G(^PS(58.42,BAT,0)),LOG0=$G(^PS(58.42,BAT,"RX",LOG,0))
+ . . . I '$P(BAT0,"^",10) Q
+ . . . S IEN=IEN+1,LINE=$$FMTE^XLFDT($P(BAT0,"^",10),2),$E(LINE,17)=$J($P(LOG0,"^",2),4)
+ . . . S $E(LINE,22)=$$GET1^DIQ(58.42001,LOG_","_BAT,2),$E(LINE,29)=$$GET1^DIQ(58.42,BAT,2)
+ . . . S $E(LINE,39)=BAT,$E(LINE,45)=$E($$GET1^DIQ(58.42,BAT,6),1,35)
+ . . . S ^TMP("PSOAL",$J,IEN,0)=LINE
+ Q
+ ;
 DISPREJ  ;
  N LN,SEQ,REJ,PRI,VAR,X,X1,X2,I,RFT
  I '$D(^PSRX(DA,"REJ")) Q
@@ -116,7 +136,6 @@ DISPREJ  ;
  . S $E(X,32)=$S(+VAR=79:"REFILL TOO SOON",+VAR=88:"DUR",1:$E($$EXP^PSOREJP1($P(VAR,"^",1)),1,15))  ;can't + default because values can be 07, 08, etc.
  . S $E(X,48)=$S($P(VAR,"^",5):"RESOLVED",1:"UNRESOLVED")
  . S:$P(VAR,"^",6) $E(X,59)=$$FMTE^XLFDT($P(VAR,"^",6),2)
- . ; S:$P(VAR,"^",14) $E(X,67)="(RE-OPENED)"
  . S IEN=IEN+1,^TMP(PRI,$J,IEN,0)=X
  . I $P(VAR,"^",5) D
  . . S IEN=IEN+1,X=$$GET1^DIQ(52.25,REJ_","_DA,12)

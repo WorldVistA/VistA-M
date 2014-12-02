@@ -1,9 +1,12 @@
-RAPROD ;HISC/FPT,GJC AISC/MJK-Detailed Exam View ;05/13/09  06:45
- ;;5.0;Radiology/Nuclear Medicine;**10,35,45,56,99,47**;Mar 16, 1998;Build 21
+RAPROD ;HISC/FPT,GJC AISC/MJK-Detailed Exam View ; 5/9/13 2:02pm
+ ;;5.0;Radiology/Nuclear Medicine;**10,35,45,56,99,47,110**;Mar 16, 1998;Build 2
  ;Supported IA #2056 GET1^DIQ
  ;Supported IA #2053 UPDATE^DIE
  ;Supported IA #10040 ^SC(
  ;Supported IA #10060 ^VA(200
+ ;
+ ;05/09/2013 Patch RA*5*110 Rem Ticket 321499 eliminate subscript err
+ ;
 START S RADI=^RADPT(RADFN,"DT",RADTI,0) S:$D(^("P",RACNI,"COMP")) RA("COMP")=^("COMP") S RA("REA")=$S($D(^("R")):^("R"),1:"")
  S RA("TECH")=$O(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"TC",0)) I RA("TECH") S RA("TECH")=$S($D(^VA(200,+^(RA("TECH"),0),0)):$P(^(0),"^"),1:"")
  S X=$P(Y(0),"^",4),RA("CAT")=$S(X="I":"INPATIENT",X="O":"OUTPATIENT",X="S":"SHARING",X="C":"CONTRACT",X="R":"RESEARCH",X="E":"EMPLOYEE",1:"UNKNOWN")
@@ -130,6 +133,9 @@ CDIS ; set up RACDIS array to store 1st non-duplicate proc+pmod+cptmod
  S N1=0
  F  S N1=$O(^RADPT(RADFN,"DT",RADTI,"P",N1)) Q:'N1  S R1=$G(^(N1,0)) D:R1]""
  . S RA71=$P(R1,U,2),RACNI=N1
+ . ; 05/09/2013 Patch RA*5*110 Rem Ticket 321499
+ . ; Added next line to emliminate a subscript error in CPRS
+ . Q:RA71=""
  . D MODS^RAUTL2
  . S RACDIS("B",RA71,Y,Y(1),N1)=""
  . S N2=$O(RACDIS("B",RA71,Y,Y(1),0))

@@ -1,5 +1,5 @@
 PRCESOE ;WISC/CLH/CTB/SJG/ASU - 1358 OBLIGATION ; 08/22/94  5:11 PM
-V ;;5.1;IFCAP;**148,153,161**;Oct 20, 2000;Build 19
+V ;;5.1;IFCAP;**148,153,161,176**;Oct 20, 2000;Build 11
  ;Per VHA Directive 2004-038, this routine should not be modified.
  K PRC,PRCF,Y
  N PRCFSC,PRCREVSW S PRCFSC=1    ;PRC*5.1*148  ENTERED FROM 1358 OBLIGATE
@@ -191,7 +191,8 @@ POBAL ; Enter Obligation Data into Purchase Order Record
  . I $D(PRCFA("RETRAN")),'PRCFA("RETRAN") D OLCSMSG^PRCFDO
  . D OUT
  ;
-OUT D K1B^PRCFFUZ
+OUT I $G(PRCFA("TRDA")) L -^PRCS(410,PRCFA("TRDA")) ;Unlock when exiting option, PRC*5.1*176
+ D K1B^PRCFFUZ
  D K1C^PRCFFUZ
  Q
  ;

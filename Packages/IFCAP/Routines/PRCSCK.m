@@ -1,5 +1,5 @@
-PRCSCK ;SF-ISC/KSS/TKW/SC-CP INPUT TEMPLATE CHECK RTN ; 3/31/05 3:12pm
-V ;;5.1;IFCAP;**81**;Oct 20, 2000
+PRCSCK ;SF-ISC/KSS/TKW/SC-CP INPUT TEMPLATE CHECK RTN ;7/9/13  16:00
+V ;;5.1;IFCAP;**81,174**;Oct 20, 2000;Build 23
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;PRC*5.1*81-SC-Adding a display of DM date needed by data, only if 
@@ -19,8 +19,11 @@ EX K PRCSI,PRCSF,PRCSQT,PRCSDA,PRCSDA1,PRCSDA2,PRCS Q
  N SPEC,PRCSIDA,PRCSBOC S SPEC=$P($G(^PRC(420,PRC("SITE"),1,+PRC("CP"),0)),"^",12)
  S PRCSERR=0,PRCSJ=DA S:'$D(PRCSF) PRCSI=DA,PRCSJ=DA(1)
  S:$D(^PRCS(410,PRCSJ,"IT",PRCSI,0)) PRCSVAR=^(0)
- D @$S(PRCSDR["2237":9,PRCSDR["IB":8,PRCSDR["NPR":8,1:7)
- I PRCSERR S PRCSL=$S(PRCSERR=2:"QUANTITY",PRCSERR=3:"UNIT OF PURCHASE",PRCSERR=4:"BOC",PRCSERR=5:"ITEM MASTER FILE NO.",PRCSERR=10:"INTERMEDIATE PRODUCT CODE",1:"ESTIMATED ITEM UNIT COST")
+ ;if a NON-REPETITIVE (2237) ORDER or  REPETITIVE AND NON-REP ORDER check for missing line item description (PRC*5.1*174)
+ I (PRCSDR="[PRCSEN2237B]")!(PRCSDR="[PRCSENR&NR]") D
+ . I $D(PRCSVAR)&('$$ITDES^PRCHJUTL($G(PRCSJ),$G(PRCSI))) S PRCSERR=11
+ I 'PRCSERR D @$S(PRCSDR["2237":9,PRCSDR["IB":8,PRCSDR["NPR":8,1:7)
+ I PRCSERR S PRCSL=$S(PRCSERR=2:"QUANTITY",PRCSERR=3:"UNIT OF PURCHASE",PRCSERR=4:"BOC",PRCSERR=5:"ITEM MASTER FILE NO.",PRCSERR=10:"INTERMEDIATE PRODUCT CODE",PRCSERR=11:"DESCRIPTION",1:"ESTIMATED ITEM UNIT COST")
  I PRCSERR W !,?3,$C(7),"ITEM # "_$P(^PRCS(410,PRCSJ,"IT",PRCSI,0),U,1)_" "_PRCSL_" MISSING!" S Y="@1"
  K PRCSJ,PRCSL,PRCSVAR K:'$D(PRCSF) PRCSI Q
 3 I $D(PRCSVAR) S PRCSERR=$S($P(PRCSVAR,U,2)="":2,$P(PRCSVAR,U,3)="":3,$P(PRCSVAR,U,7)="":7,1:0)
@@ -176,3 +179,35 @@ GETTXNCP(TRANSID,OUTIEN,OUTSTA) ;GET IEN AND CONTROL POINT # FOR TRANSACTION
  S OUTIEN=+$O(^PRCS(410,"B",TRANSID,""))
  S OUTSTA=$P($G(^PRCS(410,OUTIEN,0)),U,5)
  Q $P($G(^PRCS(410,OUTIEN,3)),U,1)
+ ;
+ ;
+CHKITDES(PRCDA) ;2237 input template - check all line items for a description
+ ;This procedure checks all line items on a 2237 to make sure they have a
+ ;description. Sets branching logic for input template if any line item
+ ;descriptions are not populated.
+ ;
+ ; Called from input templates:
+ ;  - PRCSEN2237B
+ ;  - PRCSENR&NR
+ ;
+ ;  Input:
+ ;   PRCDA - (required) IEN of record in CONTROL POINT ACTIVITY (#410) file
+ ;
+ ; Output: None (sets branching logic for input template)
+ ;
+ S PRCDA=+$G(PRCDA)
+ Q:'$G(PRCDA)
+ N PRCHJFT S PRCHJFT=$P(^PRCS(410,PRCDA,0),"^",4) ;Form Type
+ ;quit if not a 2237 transaction (Form Type IEN 2,3,or 4)
+ Q:$G(PRCHJFT)<2!($G(PRCHJFT)>4)
+ ;check if 2237 has any line items missing a description
+ N PRCWARN
+ I '$$ITDESALL^PRCHJUTL(PRCDA,.PRCWARN) D
+ . N PRCIDX S PRCIDX=0
+ . F  S PRCIDX=$O(PRCWARN(PRCIDX)) Q:'PRCIDX  D
+ . . W !?3,$$UP^XLFSTR($G(PRCWARN(PRCIDX)))
+ ;
+ ;if any line items missing a description set input template branch
+ I $D(PRCWARN) S Y="@1"
+ ;
+ Q

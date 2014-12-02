@@ -1,6 +1,18 @@
-LEXDM4 ; ISL Default Misc - Files/User/Svc/Loc    ; 02-02-96
- ;;2.0;LEXICON UTILITY;**4**;Sep 23, 1996
- ;
+LEXDM4 ;ISL/KER - Default Misc - Files/User/Service ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**4,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^DIC(49)            ICR  10093
+ ;    ^TMP("LEXIL")       SACC 2.3.2.5.1
+ ;    ^TMP("LEXMGR")      SACC 2.3.2.5.1
+ ;    ^TMP("LEXSERV")     SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    $$UP^XLFSTR         ICR  10103
+ ;    MIX^DIC1            ICR  10007
+ ;    ^DIC                ICR  10006
+ ;    ^DIR                ICR  10026
+ ;               
 DFI(LEXX) ; Select one application
  N D,DIC,DTOUT,DUOUT I $D(LEXX),LEXX'="" S X=LEXX,DIC(0)="QM"
  I '$D(LEXX) S DIC(0)="AQEM" W !
@@ -88,12 +100,6 @@ SERV(LEXX) ; Select a service
  I $D(^TMP("LEXSERV",$J,2)) S DIC("B")=$P(^DIC(49,^TMP("LEXSERV",$J,2),0),U,1)
  K ^TMP("LEXSERV",$J) D ^DIC S LEXX=Y W:+Y'>0 "  No Service Selected"
  S:X["^" LEXX="^" S:X["^^" LEXX="^^" K LEXI,Y,X,DIC,DIC("A"),DIC(0),DIC("B")
- S:LEXX'[U&(+LEXX'>0) LEXX=""
- Q LEXX
-LOC(LEXX) ; Select a Hospital Location
- S DIC="^SC(",DIC("A")="Select users by Hospital Location:  ",DIC(0)="AMEQ"
- D ^DIC S LEXX=Y W:+Y'>0 "  No Location Selected"
- S:X["^" LEXX="^" S:X["^^" LEXX="^^" K Y,X,DIC,DIC("A"),DIC(0),DIC("B")
  S:LEXX'[U&(+LEXX'>0) LEXX=""
  Q LEXX
 USER(LEXX) ; Select a single user

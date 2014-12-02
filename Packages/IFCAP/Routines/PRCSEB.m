@@ -1,5 +1,5 @@
 PRCSEB ;SF-ISC/LJP/SAW/DXH/DAP - CPA EDITS CON'T ;7.26.99
-V ;;5.1;IFCAP;**81**;Oct 20, 2000
+V ;;5.1;IFCAP;**81,174**;Oct 20, 2000;Build 23
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 ENRB ;ENTER CP CLERK REQUEST FROM OPTION PRCSENRB
  D ENF^PRCSUT(1) G W2:'$D(PRC("SITE")) G EXIT:'$D(PRC("QTR"))!(Y<0)
@@ -35,7 +35,20 @@ W51 S:'$D(^PRCS(410,DA,11)) ^(11)="" S $P(^(11),U,3)=1,(^PRCS(410,"F",PRC("SITE"
 W6 N JUMP,SKIPRNT,OK,TEST,TEST1,CURQTR,CURQTR1
 W61 ;
  N REPORT2 I $P($G(^PRC(420,PRC("SITE"),1,+PRC("CP"),1,DUZ,0)),"^",2)'=1 S REPORT2=1 D T1^PRCSAPP1
- I $P($G(^PRC(420,PRC("SITE"),1,+PRC("CP"),1,DUZ,0)),"^",2)'=1 S %=1 W !,"Is this request ready for approval" D YN^DICN D:%=1 W51 D:%=0 W61 D:%=2 W5 Q
+ ;*****PRC*5.1*174 start*****
+ ;if Level of Access is not Control Point Official DO block
+ I $P($G(^PRC(420,PRC("SITE"),1,+PRC("CP"),1,DUZ,0)),"^",2)'=1 D  Q
+ . N PRCFTYPE S PRCFTYPE=+$$GET1^DIQ(410,$G(DA)_",",3,"I") ;Form Type
+ . S %=1
+ . ;if request is a 2237 (Form Type IEN 2,3, or 4)
+ . I $G(PRCFTYPE)>1&($G(PRCFTYPE)<5) D
+ . . ;don't allow approval of 2237 if Requesting Service OR any line item description is missing
+ . . I '$$REQCHECK^PRCHJUTL($G(DA),,1) S %=2
+ . I $G(%)'=2 S %=1 W !,"Is this request ready for approval" D YN^DICN
+ . D:%=1 W51
+ . D:%=0 W61
+ . D:%=2 W5
+ ;*****PRC*5.1*174 end******
  S PRCSN=^PRCS(410,DA,0),PRCHQ=$P(PRCSN,"^",4),PRC("FY")=$P(PRCSN,"-",2),PRC("QTR")=$P(PRCSN,"-",3)
  S (CURQTR,CURQTR1)=PRC("QTR"),(JUMP,TEST,TEST1,OK)=0
  D T1^PRCSAPP1 I OK=1 S SKIPRNT=1 D FINAL^PRCSAPP2

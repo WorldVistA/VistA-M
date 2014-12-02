@@ -1,10 +1,10 @@
 IBCBB21 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE FOR UB-04 ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**51,137,210,232,155,291,348,349,403,400,432,447**;21-MAR-94;Build 80
+ ;;2.0;INTEGRATED BILLING;**51,137,210,232,155,291,348,349,403,400,432,447,461**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN(IBZPRC92) ;
  ;
- N ECODE,IBTXMT,IBXDATA,IBDXTYP,IBLPRT,IBI,Z,Z0,Z1,IBREQMRA
+ N ECODE,IBTXMT,IBXDATA,IBDXTYP,IBDXVER,IBLPRT,IBI,Z,Z0,Z1,IBREQMRA
  I '$D(IBZPRC92) D ALLPROC^IBCVA1(IBIFN,.IBZPRC92)
  S IBREQMRA=$$REQMRA^IBEFUNC(IBIFN)    ; MRA?
  K IBQUIT S IBQUIT=0
@@ -34,22 +34,27 @@ EN(IBZPRC92) ;
  ; Only 24 other dx's + 1 principal dx + 3 ecode dx's are allowed per claim
  S (Z,ECODE,IBI)=0 F  S Z=$O(IBXDATA(Z)) Q:'Z  D  Q:IBER["309;"!(ECODE>3)
  . S IBI=IBI+1
- . I $E($$ICD9^IBACSV(+$P(IBXDATA(Z),U),$$BDATE^IBACSV(IBIFN)))="E" D
- .. I ECODE>3 D WARN^IBCBB11("Claim contains more than 3 External Cause of Injury codes.") Q
+ . S IBDXTYP=$$ICD9^IBACSV(+$P(IBXDATA(Z),U),$$BDATE^IBACSV(IBIFN)) I $P(IBDXTYP,U,19)=1,$E(IBDXTYP)="E" D
  .. S:ECODE<=3 ECODE=ECODE+1,IBI=IBI-1
- .. Q
+ .. I ECODE>3 D WARN^IBCBB11("Claim contains more than 3 External Cause of Injury codes.")
+ . ;
  . ; max DX check does not apply to MRAs
  . I IBTXMT,IBI>25 D
  .. I 'IBREQMRA Q:$P(IBNDTX,U,8)  S IBER=IBER_"IB309;" Q
  .. I '$P(IBNDTX,U,9) S IBER=IBER_"IB326;"
  ;
  I '$O(IBXDATA(0)) S IBER=IBER_"IB071;"   ;Require Diag code NOIS:OKL-0304-72495
- I $O(IBXDATA(0)) D
- .S IBDXTYP=$E($$ICD9^IBACSV(+$P(IBXDATA(1),U),$$BDATE^IBACSV(IBIFN)))
- .S:IBDXTYP="E" IBER=IBER_"IB117;"
- .I $$INPAT^IBCEF(IBIFN),IBDXTYP="V" S Z="Principal Dx V-code may not be valid" D WARN^IBCBB11(Z)
- .Q
+ ;
+ ; Principle diagnosis - updated for ICD-10 **461
+ I $O(IBXDATA(0)) S IBDXTYP=$$ICD9^IBACSV(+$P(IBXDATA(1),U),$$BDATE^IBACSV(IBIFN)) D
+ . S IBDXVER=$P(IBDXTYP,U,19),IBDXTYP=$E(IBDXTYP)
+ . I IBDXVER=1,IBDXTYP="E" S IBER=IBER_"IB117;"
+ . I IBDXVER=1,$$INPAT^IBCEF(IBIFN),IBDXTYP="V" S Z="Principal Dx V-code may not be valid" D WARN^IBCBB11(Z)
+ . I IBDXVER=30,"VWXY"[IBDXTYP S IBER=IBER_"IB355;"
+ . I IBDXVER=30,$$INPAT^IBCEF(IBIFN),IBDXTYP="Z" S Z="Principal Dx Z-code may not be valid" D WARN^IBCBB11(Z)
+ ;
  I '$$OCC10^IBCBB2(IBIFN,.IBXDATA,3) S IBER=IBER_"IB093;"
+ ;
  ; At least one PRV diagnosis is required for outpatient UB-04 claim
  ; IB*2.0*447 BI This warning was removed and replaced with an Error Message in routine IBCBB1.
  ;I '$$INPAT^IBCEF(IBIFN),$$CHKPRV^IBCSC10B=3 D WARN^IBCBB11("Outpatient Institutional claims should contain a Patient Reason for Visit.")

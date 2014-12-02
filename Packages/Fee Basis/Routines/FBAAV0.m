@@ -1,6 +1,9 @@
 FBAAV0 ;AISC/GRR - ELECTRONICALLY TRANSMIT FEE DATA ;3/22/2012
- ;;3.5;FEE BASIS;**3,4,55,89,98,116,108,132**;JAN 30, 1995;Build 17
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.5;FEE BASIS;**3,4,55,89,98,116,108,132,139**;JAN 30, 1995;Build 127
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; References to API $$CODEABA^ICDEX supported by ICR #5747
+ ;
  K ^TMP($J,"FBAABATCH"),^TMP($J,"FBVADAT") D DT^DICRW
  I '$D(^FBAA(161.7,"AC","S")),'$D(^FBAA(161.7,"AC","R")),'$D(^FBAA(161.25,"AE")),$S('$D(^FBAA(161.26,"AC","P")):1,$O(^FBAA(161.26,"AC","P",0))'>0:1,1:0) W !,*7,"There are no transactions requiring transmission",*7 Q
  W !!,"This option will transmit all Batches and MRA's ready to be transmitted",!,"to Austin"
@@ -94,7 +97,13 @@ GOT ; process a B3 line item
  S FBPOS=+$P(Y(0),"^",25),FBPOS=$S(FBPOS:$P(^IBE(353.1,FBPOS,0),"^"),1:"  ")
  S FBHCFA=+$P(Y(0),"^",26),FBHCFA=$S(FBHCFA:$P(^IBE(353.2,FBHCFA,0),"^"),1:""),FBHCFA=$E(PAD,$L(FBHCFA)+1,2)_FBHCFA
  S FBVTOS=+$P(Y(0),"^",24),FBVTOS=$S(FBVTOS:$P(^FBAA(163.85,FBVTOS,0),"^",2),1:"  ")
- S FBPD=+$P(Y(0),"^",23),FBPD=$S(FBPD:$$ICD9^FBCSV1(FBPD,$G(FBDTSR1)),1:""),FBPD=$E(PAD,$L(FBPD)+1,7)_FBPD
+ ; FB*3.5*139-DEM-Modifications for ICD-10 remediation
+ S FBPD=+$P(Y(0),"^",23)
+ S FBPD=$S(FBPD:$$ICD9^FBCSV1(FBPD,$G(FBDTSR1)),1:"")
+ ; decimal is stripped only from ICD-10 diagnosis codes.
+ I FBPD'="",$$CODEABA^ICDEX(FBPD,80,30)>0 S:FBPD["." FBPD=$P(FBPD,".",1)_$P(FBPD,".",2)
+ S FBPD=$E(PAD,$L(FBPD)+1,7)_FBPD
+ ; End 139
  S FBINVN=$P(Y(0),"^",16)
  S FBINVN=$E("000000000",$L(FBINVN)+1,9)_FBINVN
  S FBAUTHF=$S($P(Y(0),U,13)["FB583":"U",1:"A") ; auth/unauth flag

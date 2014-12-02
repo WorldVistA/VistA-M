@@ -1,5 +1,5 @@
 LR7OSMZ5 ;DALOI/STAFF - Silent Micro rpt - BACTERIA, ANTIBIOTICS ;05/24/11  14:47
- ;;5.2;LAB SERVICE;**121,187,244,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**121,187,244,350,437**;Sep 27, 1994;Build 3
  ;
 BACT ;from LR7OSMZ2
  ;
@@ -175,7 +175,7 @@ AB ;
  ; If longer than comment window (GIOM-LRCOMTAB) then format to fit within window.
  I $L(LRDCOM)>(GIOM-LRCOMTAB(LRSECT)) D
  . N J,K,L
- . S J=$L(LRDCOM),K=0,L=GIOM-LRCOMTAB(LRSECT)-1
+ . S J=$L(LRDCOM),K=0,L=GIOM-LRCOMTAB(LRSECT)-1 S:L<1 L=1
  . F  Q:LRDCOM=""  S K=K+1,LRDCOM(0,K)=$E(LRDCOM,1,L),LRDCOM=$E(LRDCOM,L+1,J)
  ;
  D SIR

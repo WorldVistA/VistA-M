@@ -1,6 +1,9 @@
 IBCNSMM1 ;ALB/CMS -MEDICARE INSURANCE INTAKE (CONT) ; 11/8/06 9:32am
- ;;2.0;INTEGRATED BILLING;**103,359**;21-MAR-94;Build 9
+ ;;2.0;INTEGRATED BILLING;**103,359,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;(THIS ROUTINE WAS DEACTIVATED VIA PATCH 497...AND SHOULD BE RESEARCHED
+ ;;IF REACTIVATED...REFER TO FIELDS (40.02, 40.03, 60.04, 60.07 OF THE
+ ;;355.33 FILE.)
  Q
  ;
 SETP(IBP) ; -- Stuff data fields in patient policy
@@ -21,13 +24,13 @@ SETP(IBP) ; -- Stuff data fields in patient policy
  ; -- Stuff the pt. policy fields
  ;   #2  *Group Number              #.18  Group Plan
  ;   #6  Whose Ins.                 #.2   COB
- ;   #8  Effective Date of Policy   #1    Sub. ID
- ;   #15 *Group Name                #17   Name of Insured
+ ;   #8  Effective Date of Policy   #7.02    Sub. ID
+ ;   #15 *Group Name                #7.01   Name of Insured
  ;   #16 Pt. Relationship to Insured
  ;
  S DIE="^DPT("_DFN_",.312,",DA=+IBCDFN,DA(1)=DFN
  S DR="2///"_$S(IBP="A":$P(IBCNSP,U,4),IBP="B":$P(IBCNSP,U,6),1:"")
- S DR=DR_";17///"_IBNAME_";1///"_IBHICN
+ S DR=DR_";7.01///"_IBNAME_";7.02///"_IBHICN       ; IB*2.0*497 (vd)
  S DR=DR_";6///v;8///"_$S(IBP="A":$G(IBAEFF),IBP="B":$G(IBBEFF),1:"")
  S DR=DR_";.2////"_IBCOBI_";15///"_$S(IBP="A":"PART A",IBP="B":"PART B",1:"")
  S DR=DR_";16///01;.18////"_$S(IBP="A":+$P(IBCNSP,U,3),IBP="B":+$P(IBCNSP,U,5),1:"")
@@ -64,7 +67,7 @@ BUFF(IBP) ; -- Set IBBUF array with policy info for Buffer File
  ; Return: IBBUF array
  ;    IBBUF(355.33 field #s)=corresponding policy, plan and company data
  ;    i.e.  IBBUF(20.01)=Insurance Company Name
- ;          IBBUF(40.02)=Group Name
+ ;          IBBUF(90.01)=Group Name
  ;          IBBUF(60.01)=DFN
  ;
  ; Input: DFN, IBCNSP, IBNAME, IBHICN, IBAEFF, IBBEFF, IBCOBI
@@ -74,14 +77,14 @@ BUFF(IBP) ; -- Set IBBUF array with policy info for Buffer File
  N IBP0 K IBBUF S IBBUF=""
  S IBBUF(.03)=$G(IBSOUR)
  S IBBUF(20.01)=$P(IBCNSP,U,2)
- S IBBUF(40.02)=$S(IBP="A":$P(IBCNSP,U,4),IBP="B":$P(IBCNSP,U,6),1:"")
- S IBBUF(40.03)=IBBUF(40.02)
+ S IBBUF(90.01)=$S(IBP="A":$P(IBCNSP,U,4),IBP="B":$P(IBCNSP,U,6),1:"")   ; IB*2.0*497 (vd)
+ S IBBUF(90.02)=IBBUF(90.01)           ; IB*2.0*497 (vd)
  S IBBUF(60.01)=+DFN
  S IBBUF(60.02)=$S(IBP="A":IBAEFF,IBP="B":IBBEFF,1:"")
- S IBBUF(60.04)=IBHICN
+ S IBBUF(90.03)=IBHICN                 ; IB*2.0*497 (vd)
  S IBBUF(60.05)="v"
  S IBBUF(60.06)="01"
- S IBBUF(60.07)=IBNAME
+ S IBBUF(91.01)=IBNAME                 ; IB*2.0*497 (vd)
  S IBBUF(60.12)=IBCOBI
  S IBBDA=$$ADDSTF^IBCNBES(1,DFN,.IBBUF)
  I +IBBDA W !,?3,$P(IBCNSP,U,2)," PART "_IBP_" entry #"_+IBBDA_" added to Insurance Buffer File."

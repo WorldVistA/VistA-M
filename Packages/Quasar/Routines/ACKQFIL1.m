@@ -1,17 +1,23 @@
-ACKQFIL1 ;BIR/PTD-Update A&SP Files per CO Directive - CONTINUED ; 04/24/96 15:08
- ;;3.0;QUASAR;**1**;Feb 11, 2000
- ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
+ACKQFIL1 ;BIR/PTD - Update A&SP Files per CO Directive - CONTINUED ;20 Jun 2013  10:49 AM
+ ;;3.0;QUASAR;**1,21**;Feb 11, 2000;Build 40
+ ;
+ ; Reference/IA
+ ;  $$CSI^ICDEX - 5747
+ ;
  ;Variables defined upon entry: ACKFNAM (file name), ACKFNUM (file number).
  W !!,"All fields MUST be answered.  Otherwise a new entry",!,"is considered incomplete and will be deleted.",!
 ADD ;User wants to add new file entries.
- S (DIC,DIE)="^ACK("_ACKFNUM_",",DIC(0)="QEALM",DIC("A")="Enter "_$S(ACKFNUM=509850:"Account Number",1:"Code")_": ",ACKLAYGO="",DLAYGO=ACKFNUM D ^DIC K DIC I Y<0 D EXIT^ACKQFIL G FILE^ACKQFIL
- S (ACKIEN,DA)=+Y
+ S ICDFMT=2,^TMP("ACKQ_CO_DIRECTIVE",$J)=""
+ S (DIC,DIE)="^ACK("_ACKFNUM_",",DIC(0)="QEALM",DIC("A")="Enter "_$S(ACKFNUM=509850:"Account Number",1:"Code")_": ",ACKLAYGO="",DLAYGO=ACKFNUM D ^DIC K DIC,ICDFMT,^TMP("ACKQ_CO_DIRECTIVE",$J) I Y<0 D EXIT^ACKQFIL G FILE^ACKQFIL
+ N ACKICDCS S (ACKIEN,DA)=+Y,ACKICDCS=$$CSI^ICDEX(80,+Y)
  I ACKFNUM="509850.4" D LONG^ACKQUTL6(ACKIEN,"1")
  S ACKNEW=$P(Y,"^",3) L +^ACK(ACKFNUM,ACKIEN):5 I '$T W !,"Another user is editing this entry...try again later." D EXIT^ACKQFIL G FILE^ACKQFIL
 ORIG ; For an existing entry, get the original zero node field values.
  S:'ACKNEW ACKORIG=^ACK(ACKFNUM,ACKIEN,0)
 CDR I ACKFNUM=509850 S DR="1T;2T~d;3T~d;4T~d" D ^DIE K DA,DIE,DR G CHECK
 ICD I ACKFNUM=509850.1 S DR=".04///SA;.06T~d" D ^DIE D  G:$D(DIRUT) CHECK S DR=".05///^S X=ACKHRLOS" D ^DIE ;Logic falls down to MOD.
+ .I ACKICDCS=30 S ACKHRLOS=0 Q
+ .S ACKHRLOS=$P(^ACK(ACKFNUM,ACKIEN,0),"^",5) S:ACKHRLOS="" ACKHRLOS=0 Q
  .K DIR,X,Y S DIR(0)="Y",DIR("A")="Is this a hearing loss code which requires audiology data",DIR("?")="Enter YES to require audiology questions for this code."
  .S DIR("B")=$S($P(^ACK(ACKFNUM,ACKIEN,0),"^",5)=1:"YES",1:"NO")
  .S DIR("??")="^D HRLOS^ACKQHLP1" W ! D ^DIR K DIR Q:$D(DIRUT)  S ACKHRLOS=+Y

@@ -1,4 +1,4 @@
-IBXSAH2 ; ;02/21/12
+IBXSAH2 ; ;09/29/14
  D DE G BEGIN
 DE S DIE="^IBA(355.93,",DIC=DIE,DP=355.93,DL=2,DIEL=0,DU="" K DG,DE,DB Q:$O(^IBA(355.93,DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,5) S:%]"" DE(2)=% S %=$P(%Z,U,6) S:%]"" DE(4)=% S %=$P(%Z,U,7) S:%]"" DE(5)=% S %=$P(%Z,U,8) S:%]"" DE(6)=% S %=$P(%Z,U,9) S:%]"" DE(9)=% S %=$P(%Z,U,10) S:%]"" DE(3)=% S %=$P(%Z,U,11) S:%]"" DE(12)=%
@@ -52,9 +52,9 @@ BEGIN S DNM="IBXSAH2",DQ=1
 1 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=1 D X1 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X1 S DIPA("NVA_FC-0")=$G(^IBA(355.93,+DIPA("NVA_FC"),0)) S:$P(DIPA("NVA_FC-0"),U,5)'=""&($P(DIPA("NVA_FC-0"),U,6)'="")&($P(DIPA("NVA_FC-0"),U,7)'="") Y="@1041"
  Q
-2 S DW="0;5",DV="FX",DU="",DLB="STREET ADDRESS",DIFLD=.05
+2 S DW="0;5",DV="RFX",DU="",DLB="STREET ADDRESS",DIFLD=.05
  G RE
-X2 K:$L(X)>30!($L(X)<1) X I $D(X),$P($G(^IBA(355.93,DA,0)),U,2)'=1 K X
+X2 S X=$$UP^XLFSTR(X) K:$L(X)>30!($L(X)<1)!$$BADADD^IBCEP8B(X) X I $D(X),$P($G(^IBA(355.93,DA,0)),U,2)'=1 K X
  I $D(X),X'?.ANP K X
  Q
  ;
@@ -76,9 +76,9 @@ X4 K:$L(X)>20!($L(X)<1) X I $D(X),$P($G(^IBA(355.93,DA,0)),U,2)'=1 K X
 X5 I $D(X),$P($G(^IBA(355.93,DA,0)),U,2)'=1 K X
  Q
  ;
-6 S DW="0;8",DV="FX",DU="",DLB="ZIP CODE",DIFLD=.08
+6 S DW="0;8",DV="RFX",DU="",DLB="ZIP CODE",DIFLD=.08
  G RE
-X6 K:$L(X)>10!($L(X)<5)!'((X?5N)!(X?5N1"-"4N)) X I $D(X),$P($G(^IBA(355.93,DA,0)),U,2)'=1 K X
+X6 K:$L(X)>10!($L(X)<9)!'((X?9N)!(X?5N1"-"4N))!($E(X,$L(X)-3,$L(X))="0000") X I $D(X),$P($G(^IBA(355.93,DA,0)),U,2)'=1 K X
  I $D(X),X'?.ANP K X
  Q
  ;

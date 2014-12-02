@@ -1,8 +1,8 @@
-PRCHJR01 ;OI&T/LKG - PROCESS 2237 RETURN OR CANCEL FROM ECMS ;9/14/12  17:29
- ;;5.1;IFCAP;**167**;Oct 20, 2000;Build 17
+PRCHJR01 ;OI&T/LKG - PROCESS 2237 RETURN OR CANCEL FROM ECMS ;7/15/13  16:48
+ ;;5.1;IFCAP;**167,174**;Oct 20, 2000;Build 23
  ;Per VHA Directive 2004-38, this routine should not be modified.
 PARSE ;This module contains logic to parse the incoming OMN^O07 HL7 message
- N PRCHJMSG,PRCHJHDR,PRCHJSEG,PRCHJIND,PRCHJMID,PRCHJSTN,PRCHJTD,PRCHJVAL,PRCVALID,PRCHJMDT,PRCHJNOW,PRCHJCTR,PRCHJERR
+ N PRCHJMSG,PRCHJHDR,PRCHJSEG,PRCHJIND,PRCHJMID,PRCHJSTN,PRCHJTD,PRCHJVAL,PRCVALID,PRCHJMDT,PRCHJNOW,PRCHJCTR,PRCHJERR,PRCX
  ; HLMSGIEN is an HLO variable that will be defined when PARSE^PRCHJR01 is invoked.
  I '$$STARTMSG^HLOPRS(.PRCHJMSG,HLMSGIEN,.PRCHJHDR) Q
  I PRCHJMSG("BATCH") Q
@@ -21,7 +21,16 @@ PARSE ;This module contains logic to parse the incoming OMN^O07 HL7 message
  ;
  D:PRCVALID EMAIL
  I PRCVALID D
- . N PRCIEN,PRC2237 S PRC2237=^XTMP(PRCHJIND,"2237 TXN"),PRCIEN=$$FIND1^DIC(410,"","X",PRC2237,"B","","PRCERR")
+ . N PRCIEN,PRC2237,PRCSTAT,PRCERR S PRC2237=^XTMP(PRCHJIND,"2237 TXN"),PRCIEN=$$FIND1^DIC(410,"","X",PRC2237,"B","","PRCERR")
+ . S PRCSTAT=$$GET1^DIQ(410,PRCIEN_",",54,"","","PRCERR") K PRCERR
+ . I ";RETURNED TO SERVICE BY PPM;RETURNED TO SERVICE BY P&C;"[(";"_$$UP^XLFSTR(PRCSTAT)_";"),^XTMP(PRCHJIND,"ORDER STATUS")="HD" D  Q
+ . . N PRCX S PRCX=$$ECMSRETN^PRCHJR03(PRCIEN)
+ . . S:'PRCX PRCHJCTR=PRCHJCTR+1,PRCHJERR(PRCHJCTR)="14^Return to Control Point is incomplete."
+ . I ";RETURNED TO SERVICE BY PPM;RETURNED TO SERVICE BY P&C;"[(";"_$$UP^XLFSTR(PRCSTAT)_";"),^XTMP(PRCHJIND,"ORDER CONTROL")="CA" D  Q
+ . . N PRCX S PRCX=$$ECMSRETN^PRCHJR03(PRCIEN)
+ . . S:'PRCX PRCHJCTR=PRCHJCTR+1,PRCHJERR(PRCHJCTR)="14^Return to Control  Point is incomplete."
+ . . S PRCX=$$CANCEL(PRCIEN)
+ . . S:'PRCX PRCHJCTR=PRCHJCTR+1,PRCHJERR(PRCHJCTR)="15^Cancelation of 2237 is incomplete."
  . I ^XTMP(PRCHJIND,"ORDER CONTROL")="UA",^XTMP(PRCHJIND,"ORDER STATUS")="IP" D  Q
  . . S PRCX=$$RET2AO(PRCIEN) S:'PRCX PRCHJCTR=PRCHJCTR+1,PRCHJERR(PRCHJCTR)="13^Return to Accountable Officer is incomplete."
  . I ^XTMP(PRCHJIND,"ORDER CONTROL")="UA",^XTMP(PRCHJIND,"ORDER STATUS")="HD" D  Q
@@ -75,7 +84,11 @@ RET2AO(DA) ;This module contains logic to remove the AO signature and change sta
  S PRCDATA(1)=^XTMP(PRCHJIND,"RETURN REASON"),PRCDATA(2)=^XTMP(PRCHJIND,"RETURN COMMENT")
  D WP^DIE(410,PRCHJDA,61,"K","PRCDATA","PRCERR")
  S:$D(PRCERR) PRCERROR=1 K PRCDATA,PRCERR
- I ^XTMP(PRCHJIND,"ORDER STATUS")="IP" S:$$XECMSIDS^PRCHJR03($P(PRCHJDA,",")) PRCERROR=1
+ I ^XTMP(PRCHJIND,"ORDER STATUS")="IP" D
+ . S:$$XECMSIDS^PRCHJR03($P(PRCHJDA,",")) PRCERROR=1
+ . S PRCDATA(443,PRCHJDA,6)="@"
+ . D FILE^DIE("K","PRCDATA","PRCERR") S:$D(PRCERR) PRCERROR=1
+ . K PRCDATA,PRCERR
  Q $S(PRCERROR:0,1:1)
 RET2CP(DA) ;This module contains logic to remove the Control Point Official's signature, de-commit the funds and adjust due-ins as necessary. 
  N PRCHDA,PRCDATA,PRCERR,PRCHJDA,PRCERROR,PRCHJCPR,X S PRCHDA=DA,PRCERROR=0
@@ -169,7 +182,12 @@ VALIDATE() ;Validate the data and existence of the 2237 and return
  . S PRCSTAT=$$GET1^DIQ(410,PRCIEN_",",54,"","","PRCERR") K PRCERR
  . I PRCSTAT="",$$GET1^DIQ(410,PRCIEN_",",1,"","","PRCERR")="CANCELLED" S PRCSTAT="Cancelled"
  . K PRCERR
- . I PRCSTAT'="Sent to eCMS (P&C)" S PRCHJCTR=PRCHJCTR+1,PRCHJERR(PRCHJCTR)="7^2237 status is "_PRCSTAT_" not Sent to eCMS (P&C)."
+ . I ";SENT TO ECMS (P&C);ASSIGNED TO PURCHASING AGENT;RETURNED TO SERVICE BY P&C;RETURNED TO SERVICE BY PPM;"'[(";"_$$UP^XLFSTR(PRCSTAT)_";") D
+ . . S PRCHJCTR=PRCHJCTR+1
+ . . S PRCHJERR(PRCHJCTR)="7^2237 status is '"_$S(PRCSTAT'="":PRCSTAT,1:"null")_"' and not 'Sent to eCMS (P&C)', 'Assigned to Purchasing Agent', 'Returned To Service by P&C' or 'Returned to Service by PPM'."
+ . I ";RETURNED TO SERVICE BY PPM;RETURNED TO SERVICE BY P&C;"[(";"_$$UP^XLFSTR(PRCSTAT)_";"),^XTMP(PRCHJIND,"ORDER STATUS")="IP" D
+ . . S PRCHJCTR=PRCHJCTR+1
+ . . S PRCHJERR(PRCHJCTR)="21^2237 status is '"_PRCSTAT_"'. Thus 2237 cannot be returned to Accountable Officer as it is not CPO signed."
  . K PRCERR N PRCACTID S PRCACTID=$$GET1^DIQ(410,PRCIEN_",",103,"","","PRCERR") K PRCERR
  . I PRCACTID'=^XTMP(PRCHJIND,"ECMS ACTIONUID") D
  . . S PRCHJCTR=PRCHJCTR+1,PRCHJERR(PRCHJCTR)="18^eCMS ActionUID on 2237 is "_$S(PRCACTID'="":PRCACTID,1:"null")_" but "_$S(^XTMP(PRCHJIND,"ECMS ACTIONUID")'="":^XTMP(PRCHJIND,"ECMS ACTIONUID"),1:"null")_" in HL7 message."
@@ -181,7 +199,7 @@ VALIDATE() ;Validate the data and existence of the 2237 and return
  . S PRCHJCTR=PRCHJCTR+1,PRCHJERR(PRCHJCTR)="17^eCMS internal PR identifier ActionUID is missing."
  I $G(^XTMP(PRCHJIND,"REQUISITION LINE NBR"))'=9999 S PRCHJCTR=PRCHJCTR+1,PRCHJERR(PRCHJCTR)="12^RQD segment is not correctly populated."
  I ^XTMP(PRCHJIND,"ORDER CONTROL")="UA",";HD;IP;"'[(";"_^XTMP(PRCHJIND,"ORDER STATUS")_";") D
- . S PRCHJCTR=PRCHJCTR+1,PRCHJERR(PRCHJCTR)="20^Order Status "_^XTMP(PRCHJIND,"ORDER STATUS")_" is inappropriate for Order Control UA."
+ . S PRCHJCTR=PRCHJCTR+1,PRCHJERR(PRCHJCTR)="20^Order Status '"_^XTMP(PRCHJIND,"ORDER STATUS")_"' is inappropriate for Order Control UA."
  Q $S(PRCHJCTR:0,1:1)
  ;
  ;
@@ -203,7 +221,7 @@ ERRTABLE ;Table of Error data
  ;;4^ORC^14^4^^101^Required field missing^W^User's e-mail not populated
  ;;5^ORC^14^1^^101^Required field missing^W^User's telephone# not populated
  ;;6^ORC^2^1^^204^Unknown key identifier^E^2237 transaction not found
- ;;7^ORC^2^1^^207^Application internal error^E^Status not Sent to eCMS (P&C)
+ ;;7^ORC^2^1^^207^Application internal error^E^Status wrong for return or cancel
  ;;8^ORC^1^^^103^Table value not found^E^Order Control value is wrong
  ;;9^ORC^5^^^103^Table value not found^E^Order Status value is wrong
  ;;10^ORC^2^2^^103^Table value not found^E^Site not on VistA instance
@@ -217,3 +235,4 @@ ERRTABLE ;Table of Error data
  ;;18^ORC^3^1^^207^Application internal error^E^eCMS ActionUID mismatch
  ;;19^ORC^1^^^100^Segment sequence error^E^ORC segment missing
  ;;20^ORC^5^^^207^Application internal error^E^Mismatch Order Control/Status
+ ;;21^ORC^5^^^207^Application internal error^E^Cannot return to later status

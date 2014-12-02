@@ -1,5 +1,5 @@
 DVBCIRPT ;ALB/GTS-AMIE C&P INSUFF EXAM TRACKING RPT ; 11/9/94  2:00 PM
- ;;2.7;AMIE;**13,19,27,149**;Apr 10, 1995;Build 16
+ ;;2.7;AMIE;**13,19,27,149,184,185**;Apr 10, 1995;Build 18
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;** Version Changes
@@ -50,7 +50,7 @@ MAIN ;**Select Dte Rng & Rpt Type; call report routine
  ......I TSK="Y" W !!,"Detail Report Queued. Task number: ",ZTSK
  ......K ZTSK D CONTMES^DVBCUTL4
  ......D KVARS^DVBCIRP1
- .....I '$D(IO("Q")) W:IOST?1"C-".E @IOF D DETAIL^DVBCIRP1
+ .....I '$D(IO("Q")) W:IOST?1"C-".E @IOF S DVBADLMTR=0 D DETAIL^DVBCIRP1
  ....D ^%ZISC
  ...K DVBAQTSL
  ..D CLEANUP
@@ -58,7 +58,7 @@ MAIN ;**Select Dte Rng & Rpt Type; call report routine
  Q
  ;
 KVARS ;** Kill the variables used in report
- K DVBAOUT,ENDDT,BEGDT,DTOUT,DUOUT,RPTTYPE,DVBACAN,DVBASTAT,DVBAPRTY
+ K DVBAOUT,ENDDT,BEGDT,DTOUT,DUOUT,RPTTYPE,DVBACAN,DVBASTAT,DVBAPRTY,DVBADLMTR,NUMRPTS
  D CLEANUP
  Q
  ;
@@ -79,18 +79,22 @@ SUM ;** Set up reason counter array, count all 2507's received
  S (DVBARQCT,DVBAINRQ,DVBAXMCT,DVBAINXM)=0
  S DVBACAN("REQ")=0,DVBACAN("EXM")=0
  S DVBAENDL=ENDDT
- S DVBAEXMP=$S(($G(DVBAPRTY)["BDD"):";BDD;QS;",($G(DVBAPRTY)["DES"):";DCS;DFD;",($G(DVBAPRTY)["AO"):";AO;",1:"")
- S DVBAMCDES=((DVBAEXMP]"")&(DVBAPRTY'="AO"))
+ S DVBAEXMP=$S(($G(DVBAPRTY)["BDD"):";BDD;QS;",($G(DVBAPRTY)["IDES"):";IDES;",($G(DVBAPRTY)["AO"):";AO;",1:"")
+ ; S DVBAMCDES=((DVBAEXMP]"")&(DVBAPRTY'="AO"))
+ S NUMRPTS=$L(DVBAEXMP,";")
+ S DVBAMCDES=((DVBAEXMP]"")&(NUMRPTS>3))
  K ^TMP("DVBATOTALS",$J)  ;for multiple priority reporting
  ;
  ;** Initialize reason counter array(s)
  F DVBARIFN=0:0 S DVBARIFN=$O(^DVB(396.94,DVBARIFN)) Q:+DVBARIFN'>0  DO
  .D:(DVBAMCDES)
  ..F DVBAP=$P(DVBAEXMP,";",2),$P(DVBAEXMP,";",3)  D
+ ...Q:DVBAP=""
  ...S ^TMP("DVBATOTALS",$J,DVBAP,"DVBAINXM",DVBARIFN)=0
  .S DVBAINXM(DVBARIFN)=0
  D:(DVBAMCDES)
  .F DVBAP=$P(DVBAEXMP,";",2),$P(DVBAEXMP,";",3)  D
+ ..Q:DVBAP=""
  ..S ^TMP("DVBATOTALS",$J,DVBAP,"DVBAINXM","NO REASON")=0
  S DVBAINXM("NO REASON")=0
  ;
@@ -105,7 +109,7 @@ SUM ;** Set up reason counter array, count all 2507's received
  ...;check for Parent Request (retrieve current/parent Priority of Exam)
  ...S DVBAPREXM=$$CHKREQ^DVBCIRP1(DVBADALP)
  ...;original report run (Exclude new priorities)
- ...Q:((DVBAEXMP']"")&((";BDD;QS;DCS;DFD;AO;")[(";"_DVBAPREXM_";")))
+ ...Q:((DVBAEXMP']"")&((";BDD;QS;IDES;AO;")[(";"_DVBAPREXM_";")))
  ...;report for specific Priority of Exam
  ...Q:((DVBAEXMP]"")&(DVBAEXMP'[(";"_DVBAPREXM_";")))
  ...S:(DVBAMCDES) ^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBARQCT")=$G(^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBARQCT"))+1
@@ -133,7 +137,7 @@ SUM ;** Set up reason counter array, count all 2507's received
  ......S:(DVBAMCDES) ^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBACANEXM")=$G(^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBACANEXM"))+1
  ......S DVBACAN("EXM")=DVBACAN("EXM")+1
  ;
- S DVBAEXMP=$S(($G(DVBAPRTY)["BDD"):"BDD,QS",($G(DVBAPRTY)["DES"):"DCS,DFD",($G(DVBAPRTY)["AO"):"AO",1:"")
+ S DVBAEXMP=$S(($G(DVBAPRTY)["BDD"):"BDD,QS",($G(DVBAPRTY)["IDES"):"IDES",($G(DVBAPRTY)["AO"):"AO",1:"")
  F DVBAI=1:1:$L(DVBAEXMP,",")  D
  .S DVBAPRTY=$P(DVBAEXMP,",",DVBAI)  ;priority to report on
  .D:(DVBAI>1)  ;Form Feed between multiple Reports

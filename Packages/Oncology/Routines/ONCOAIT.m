@@ -1,5 +1,5 @@
-ONCOAIT ;Hines OIFO/GWB - Topography function; 7/20/93
- ;;2.11;ONCOLOGY;**15,19,36**;Mar 07, 1995
+ONCOAIT ;Hines OIFO/GWB - Topography function; 8/05/10
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 TOP() ;Called by ONCO ABSTRACT-I input template
  N ONCOFLD
  N ONCOED S ONCOED=$$TNMED^ONCOU55(D0)

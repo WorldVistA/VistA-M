@@ -1,5 +1,16 @@
-RORX013 ;HOIFO/SG - DIAGNOSIS CODES REPORT ; 6/21/06 3:05pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1**;Feb 17, 2006;Build 24
+RORX013 ;HOIFO/SG - DIAGNOSIS CODES REPORT ;6/21/06 3:05pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,19**;Feb 17, 2006;Build 43
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ; --- ROUTINE MODIFICATION LOG ---
+ ; 
+ ;PKG/PATCH   DATE       DEVELOPER   MODIFICATION
+ ;----------- ---------- ----------- ----------------------------------------
+ ;ROR*1.5*19  FEB 2012   J SCOTT     Support for ICD-10 Coding System.
+ ;ROR*1.5*19  FEB 2012   J SCOTT     Change entry point ICD9LST to ICDLST. 
+ ;******************************************************************************
+ ;******************************************************************************
  ;
  Q
  ;
@@ -12,7 +23,7 @@ RORX013 ;HOIFO/SG - DIAGNOSIS CODES REPORT ; 6/21/06 3:05pm
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;ICD9LST(#,CODE,DIAG,NP,NC)
+ ;;ICDLST(#,CODE,DIAG,NP,NC)
  ;;PATIENTS(#,NAME,LAST4,DOD,PTICDL(CODE,DIAG,DATE,SOURCE))
  ;
  N HEADER,RC
@@ -36,7 +47,7 @@ HEADER(PARTAG) ;
  ;                         ^01: Las 4 digits of SSN
  ;                         ^02: Name
  ;                         ^03: Date of Death
- ;       ICD9IEN,        Earliest Code Descriptor
+ ;       ICDIEN,         Earliest Code Descriptor
  ;                         ^01: Date
  ;                         ^02: Source ("I", "O", or "PB")
  ;         "C")          Quantity
@@ -45,9 +56,9 @@ HEADER(PARTAG) ;
  ;         "PB")         Problem List quantity
  ;
  ;   "ICD",              Totals
- ;                         ^01: Number of ICD-9 codes
+ ;                         ^01: Number of ICD codes
  ;                         ^02: Number of different codes
- ;     ICD9IEN,          ICD-9 Descriptor
+ ;     ICDIEN,           ICD Descriptor
  ;                         ^01: Code
  ;                         ^02: Diagnosis (current version)
  ;       "C")            Quantity
@@ -57,10 +68,10 @@ HEADER(PARTAG) ;
  ;       <0  Error code
  ;        0  Ok
  ;
-ICD9LST(RORTSK) ;
+ICDLST(RORTSK) ;
  N ROREDT        ; End date
- N RORICDL       ; Prepared list of ICD-9 codes
- N RORIGRP       ; List of ICD-9 groups
+ N RORICDL       ; Prepared list of ICD codes
+ N RORIGRP       ; List of ICD groups
  N RORREG        ; Registry IEN
  N RORSDT        ; Start date
  N RORTMP        ; Closed root of the temporary buffer
@@ -115,8 +126,8 @@ PARAMS(PARTAG,STDT,ENDT,FLAGS) ;
  N PARAMS,TMP
  S PARAMS=$$PARAMS^RORXU002(.RORTSK,PARTAG,.STDT,.ENDT,.FLAGS)
  Q:PARAMS<0 PARAMS
- ;--- Process the list of ICD9 codes
- S TMP=$$ICD9LST^RORXU008(.RORTSK,PARAMS,.RORICDL,.RORIGRP)
+ ;--- Process the list of ICD codes
+ S TMP=$$ICDLST^RORXU008(.RORTSK,PARAMS,.RORICDL,.RORIGRP)
  Q:TMP<0 TMP
  ;---
  Q PARAMS

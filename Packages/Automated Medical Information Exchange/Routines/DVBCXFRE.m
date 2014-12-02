@@ -1,5 +1,5 @@
-DVBCXFRE ;ALB/GTS-557/THM-SEND BACK TRANSFERS WHEN RELEASED ; 5/30/91  9:42 AM
- ;;2.7;AMIE;**10**;Apr 10, 1995
+DVBCXFRE ;ALB/GTS - 557/THM-SEND BACK TRANSFERS WHEN RELEASED ; 5/30/91  9:42 AM
+ ;;2.7;AMIE;**10,184**;Apr 10, 1995;Build 10
  ;
 EN W !!,*7,"This request was transferred in.",!,"Please wait while I return it.",!! H 2
  ;
@@ -12,10 +12,18 @@ EN1 W @FF,!! S SITE=$P(^DVB(396.3,REQDA,0),U,22),DTTRNSC=$P(^(0),U,12),SITE1=$S(
  F JJ=0:0 S JJ=$O(^DVB(396.4,"C",REQDA,JJ)) Q:JJ=""  S DIE="^DVB(396.4,",DA=JJ,DR="64///N" D ^DIE K DA,DIE,DR D RSLT,RSLT1
  S ^TMP("DVBCXFR",$J,L,0)="$USER "_$S($D(^VA(200,+DUZ,0)):$P(^(0),U,1),1:"POSTMASTER")_U_SITE_U_SITE1,L=L+1 W "."
  S ^TMP("DVBCXFR",$J,L,0)="$END ",L=L+1 W "."
+ S ^TMP("DVBCXFR",$J,L,0)="  ",L=L+1 W "."
+ S ^TMP("DVBCXFR",$J,L,0)="  DFN: `"_DFN_$E("                    ",1,20-$L(DFN))_"SITE: "_DVBCSITE,L=L+1 W "."
+ S ^TMP("DVBCXFR",$J,L,0)="  REQUEST DATE: "_DVBCRDAT,L=L+1 W "."
+ ;
+ S ^TMP("DVBCXFR",$J,L,0)="  ",L=L+1 W "."
+ S ^TMP("DVBCXFR",$J,L,0)="** NOTE: To view the patient using the DFN, paste the DFN number into the    **",L=L+1 W "."
+ S ^TMP("DVBCXFR",$J,L,0)="** CAPRI Patient Selector 'Patient ID' field to find the patient. Be sure to **",L=L+1 W "."
+ S ^TMP("DVBCXFR",$J,L,0)="** include the ' (backward-apostrophe) character.                            **",L=L+1 W "."
  S ^TMP("DVBCXFR",$J,L,0)=" ",L=L+1 W "."
- S ^TMP("DVBCXFR",$J,L,0)="Veteran name: "_$P(^DPT(DFN,0),U,1),L=L+1 W "."
- S ^TMP("DVBCXFR",$J,L,0)="         SSN: "_SSN,L=L+1 W "."
- S ^TMP("DVBCXFR",$J,L,0)=" " W "." H 1 W !!,"Message is now ready to send back ...",!! H 2
+ S ^TMP("DVBCXFR",$J,L,0)="** This is an auto-generated email.  Do not respond to this email address.   **",L=L+1 W "."
+ ;
+ H 1 W !!,"Message is now ready to send back ...",!! H 2
  ;
 SEND ;set status now for manual return if auto send fails; skip reopens
  I '$D(ALLROPN) S DIC(0)="QM",(DIC,DIE)="^DVB(396.3,",DA=REQDA,DR="17////CT" D ^DIE

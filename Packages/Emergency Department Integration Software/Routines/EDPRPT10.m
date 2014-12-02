@@ -1,5 +1,5 @@
-EDPRPT10 ;SLC/MKB - Admissions Report ;3/1/12 10:40am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPRPT10 ;SLC/MKB - Admissions Report ;4/25/13 3:15pm
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;May 2, 2012;Build 200
  ;
 ADM(BEG,END,CSV) ; Get Admissions Report for EDPSITE by date range
  N IN,OUT,LOG,X,X0,X1,X3,DX,DISP,ROW,TAB
@@ -7,7 +7,10 @@ ADM(BEG,END,CSV) ; Get Admissions Report for EDPSITE by date range
  D INIT ;set counters, sums to 0
  D:'$G(CSV) XML^EDPX("<logEntries>") I $G(CSV) D  ;headers
  . S TAB=$C(9)
- . S X="ED"_TAB_"Time Out"_TAB_"Complaint"_TAB_"MD"_TAB_"Acuity"_TAB_"Dispo"_TAB_"Adm Dec"_TAB_"Adm Delay"_TAB_"Diagnosis"_TAB_"ICD9" ;_TAB_"ER Spec Visit"
+ . ;***pij 4/19/2013 changed ED to IEN
+ . ;S X="ED"_TAB_"Time Out"_TAB_"Complaint"_TAB_"MD"_TAB_"Acuity"_TAB_"Dispo"_TAB_"Adm Dec"_TAB_"Adm Delay"_TAB_"Diagnosis"_TAB_"ICD9" ;_TAB_"ER Spec Visit"
+ . S X="IEN"_TAB_"Time Out"_TAB_"Complaint"_TAB_"MD"_TAB_"Acuity"_TAB_"Dispo"_TAB_"Adm Dec"_TAB_"Adm Delay"_TAB_"Diagnosis"_TAB_"ICD9" ;_TAB_"ER Spec Visit"
+ . ;***
  . D ADD^EDPCSV(X)
  S IN=BEG-.000001
  F  S IN=$O(^EDP(230,"ATI",EDPSITE,IN)) Q:'IN  Q:IN>END  S LOG=0 F  S LOG=+$O(^EDP(230,"ATI",EDPSITE,IN,LOG)) Q:LOG<1  D
@@ -63,7 +66,10 @@ A1 . ; calculate times
 A2 ; calculate & include averages
  Q:CNT("ALL")<1  ;no visits found
  I $G(CSV) D  Q  ;return as CSV
- . S X=TAB_TAB_TAB_"     Activity Summary"_TAB_"Total"_TAB_"Visit"_TAB_"Triage"_TAB_"Wait"_TAB_"Adm Dec"_TAB_"Adm Delay"
+ . ;***pij 4/19/2013 changed field to Elapsed from Visit
+ . ;S X=TAB_TAB_TAB_"     Activity Summary"_TAB_"Total"_TAB_"Visit"_TAB_"Triage"_TAB_"Wait"_TAB_"Adm Dec"_TAB_"Adm Delay"
+ . S X=TAB_TAB_TAB_"     Activity Summary"_TAB_"Total"_TAB_"Elapsed"_TAB_"Triage"_TAB_"Wait"_TAB_"Adm Dec"_TAB_"Adm Delay"
+ . ;***
  . D BLANK^EDPCSV,ADD^EDPCSV(X),BLANK^EDPCSV
  . S X=TAB_TAB_TAB_"Total Patients VA Admitted"_TAB_CNT("ALL")
  . F I="elapsed","triage","wait","admDec","admDel" D

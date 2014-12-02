@@ -1,5 +1,5 @@
-EASECMT ;ALB/LBD - Means Test for LTC Co-Pay exemption ; 27 DEC 2001
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**7,16,18,70,88**;Mar 15, 2001;Build 3
+EASECMT ;ALB/LBD,BDB - Means Test for LTC Co-Pay exemption ; 27 DEC 2001
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**7,16,18,70,88,106**;Mar 15, 2001;Build 28
  ;
 EN ; This is the entry point for the routine that will find the 
  ; financial test for a veteran that can be used to check if
@@ -19,7 +19,8 @@ EN ; This is the entry point for the routine that will find the
  ; to pay MT copay, new means test is not required
  I ((DGCS="C")!(DGCS="P")),$P($G(^DGMT(408.31,DGMTI,0)),U,11)=1,DGMTDT>2991005 S DGEXMPT=0 D LTC4(DGMTI,DGEXMPT) Q
  ; If means test is required or more than a year old, do new means test
- I (DGCS="R")!($$OLD^DGMTU4(DGMTDT)) D  Q:$G(DGOUT)!(DGMTYPT=4)
+ ; EAS*1.0*106 MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ I (DGCS="R")!($$OLDMTPF^DGMTU4(DGMTDT)) D  Q:$G(DGOUT)!(DGMTYPT=4)
  .S (DGADDF,DGMSGF)=1 D ^DGMTR S DGMTYPT=$S(DGREQF:1,1:4)
  .I '$$ASK(DGMTYPT) S DGOUT=1 Q
  .S DGMTACT="ADD" I DGMTYPT=1,$E(DGMTDT,1,3)=$E(DT,1,3) S DGMTACT="EDT"

@@ -1,5 +1,5 @@
 ECXAPRO3 ;ALB/JAP - PRO Extract Audit Report (cont) ; DEC 03,2008
- ;;3.0;DSS EXTRACTS;**21,31,76,94,116**;Dec 22, 1997;Build 4
+ ;;3.0;DSS EXTRACTS;**21,31,76,94,116,149**;Dec 22, 1997;Build 27
  ;
 TEXT ;description of line numbers as in des^rmprn62 plus summary headers
  ;;100;WHEELCHAIRS AND ACCESSORIES
@@ -59,6 +59,7 @@ TEXT ;description of line numbers as in des^rmprn62 plus summary headers
  ;;700 A;EYE
  ;;700 B;FACIAL
  ;;700 C;BODY, OTHER
+ ;;700 D;BREAST PROSTHESIS
  ;;800;OXYGEN AND RESPIRATORY
  ;;800 A;OXYGEN EQP
  ;;800 B;OXYGEN CONCEN
@@ -83,8 +84,11 @@ TEXT ;description of line numbers as in des^rmprn62 plus summary headers
  ;;900 L;EQP RENTAL
  ;;900 M;COMPUTER EQUIPMENT
  ;;900 N;TELEHEALTH
+ ;;900 O;EXERCISE EQUIPMENT
+ ;;900 P;WOMENS HEALTH
  ;;910;ALL OTHER SUPPLIES AND EQUIPMENT
  ;;910 A;MED SUP AL/OTH
+ ;;910 B;BATTERIES
  ;;920;HOME DIALYSIS PROGRAM
  ;;920 A;HOME DIAL EQP
  ;;920 B;HOME DIAL SUP
@@ -124,6 +128,8 @@ TEXT ;description of line numbers as in des^rmprn62 plus summary headers
  ;;970 A;BIOLOGICAL IMPLANTS
  ;;999;MISC
  ;;999 A;AL/OTH ITEMS
+ ;;999 P1;PEDS DME
+ ;;999 P2;ALL OTHER PEDS
  ;;999 X;HCPCS NOT GRP
  ;;999 Z;NO HCPCS
  ;;R07;HEARING AID, LOCAL REPAIRS
@@ -159,6 +165,7 @@ TEXT ;description of line numbers as in des^rmprn62 plus summary headers
  ;;R80 C;MED EQUIP A/O
  ;;R80 D;HME DELIVERY/PICKUP
  ;;R80 E;TELEHEALTH
+ ;;R80 F;COMPUTERS
  ;;R90;ALL OTHER
  ;;R90 ;ALL OTHER
  ;;R90 A;SHIPPING
@@ -173,6 +180,8 @@ TEXT ;description of line numbers as in des^rmprn62 plus summary headers
  ;;R91 G;LIQUID DEL SYS
  ;;R91 H;RESPIRATORY EQUIP
  ;;R99 A;SHIPPING
+ ;;R99 B;NONRESPONSE
+ ;;R99 P;MISC PEDS
  ;;R99 X;HCPCS NOT GRP
  ;;R99 Z;NO HCPCS
  ;;QUIT

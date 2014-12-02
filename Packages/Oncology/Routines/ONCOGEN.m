@@ -1,11 +1,12 @@
 ONCOGEN ;Hines OIFO/GWB - GENERAL REPORT DRIVER FOR SELECTED FORMATS ;10/26/11
- ;;2.11;ONCOLOGY;**6,7,11,13,16,17,18,22,24,25,26,29,44,47,49,54**;Mar 07, 1995;Build 10
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 SU ;IR Patient Summary [ONCO ABSTRACT-INCOMP RECORD]
+ ; look-ups for options IR, QA, EX and PA changed to look-up on 
+ ; file #165.5 to allow Accession Number look-up
  W !
- S DIC="^ONCO(160,",DIC(0)="AEMQZ" D ^DIC G SUEX:Y<0
- S X=+Y
- S D="C",DIC="^ONCO(165.5,",DIC(0)="EQ" D IX^DIC G SUEX:Y<0
+ S DIC="^ONCO(165.5,",DIC(0)="AEQZM"
+ S DIC("A")="Select primary or patient name: " D ^DIC G SUEX:Y<0
  S D0=+Y
  S BY="NUMBER",(FR,TO)=D0,FLDS="[ONCO XABSTRACT RECORD]",L=0
  S DIC="^ONCO(165.5,",L=0 D EN1^DIP
@@ -24,12 +25,9 @@ SER1 S ONCODA=DA
  ;
 ABSEO ;[EX Print Abstract-Extended (80c)]
  ;[PA Print Complete Abstract (132c)]
- S DIC="^ONCO(160,",DIC(0)="AEMQ" D ^DIC G:Y=-1 END
- S (HI,DA,I)=0
- I $D(^ONCO(165.5,"C",$P(Y,U,1))) W !,"Choose one:" F  S DA=$O(^ONCO(165.5,"C",$P(Y,U,1),DA)) Q:DA'>0  I $$DIV^ONCFUNC(DA)=DUZ(2) S I=I+1,SI=$P(^ONCO(165.5,DA,0),U,1) W:$D(^ONCO(164.2,SI,0)) !?10,I_". "_$P(^(0),U,1) D TEXT S ^TMP($J,I)=DA S HI=I
- I HI=0 W !,"No primaries for this patient" G EX
-ANS S ANS=$$ASKNUM^ONCOU("Enter your selection","1:"_HI,1) G EX:$D(DIRUT)
- S DA=$P(^TMP($J,ANS),U,1),(Y,DA,NUMBER,HDA)=DA
+ S DIC="^ONCO(165.5,",DIC(0)="AEQZM"
+ S DIC("A")="Select primary or patient name: " D ^DIC G SUEX:Y<0
+ S (DA,D0,NUMBER)=+Y
  S PRTPCE=0
  I $P($G(^ONCO(165.5,DA,7)),U,15)'="" W ! K DIR S DIR(0)="YA",DIR("A")=" Print PCE data attached to this primary? ",DIR("B")="NO" D ^DIR
  S PRTPCE=Y G EX:$D(DIRUT)

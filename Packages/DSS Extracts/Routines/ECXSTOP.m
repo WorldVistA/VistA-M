@@ -1,5 +1,5 @@
-ECXSTOP ;ALB/DHE Stop Codes/Clinic Stops ; 6/16/09 11:41am
- ;;3.0;DSS EXTRACTS;**120,126**;Dec 22, 1997;Build 7
+ECXSTOP ;ALB/DHE Stop Codes/Clinic Stops ;5/9/13  16:05
+ ;;3.0;DSS EXTRACTS;**120,126,144,149**;Dec 22, 1997;Build 27
  ;
 STOP(CODE,TYPE,CLIEN,DATE,IEN) ;api to return stop code information
  ;
@@ -20,6 +20,9 @@ STOP(CODE,TYPE,CLIEN,DATE,IEN) ;api to return stop code information
  I $G(DATE)="" S DATE=DT
  S ERR=$G(ERR)+1,WRN=$G(WRN)+1
  K:ERR=1 ECXERR K:WRN=1 WARNING
+ I TYPE="CHAR4 Code" D  Q  ;149 CVW
+ . I (CODE'="")&($$GET1^DIQ(728.441,CODE,3)'="") S ECXERR(ERR)=$$GET1^DIQ(728.441,CODE,.01)_" "_TYPE_" is inactive, please change to an active code." S ERR=ERR+1 ;144 CVW
+ . I (CODE'="")&($$GET1^DIQ(728.441,CODE,.01)="") S ECXERR(ERR)=CODE_" "_TYPE_" is invalid, please change to a legal value." S ERR=ERR+1 ;144 CVW
  D:$G(IEN)="" FINDCOD I +IEN'>0 S ECXERR(ERR)=CODE_" is Invalid for "_TYPE S ERR=ERR+1 Q
  I '$D(^DIC(40.7,IEN,0)) S ECXERR(ERR)=CODE_" is Invalid for "_TYPE S ERR=ERR+1 Q
  I (+CODE'=CODE),($L(CODE)>3) S ECXERR(ERR)=CODE_" is an Invalid "_TYPE S ERR=ERR+1 Q

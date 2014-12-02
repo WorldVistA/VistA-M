@@ -1,6 +1,12 @@
-LEXDDTC ; ISL Display Defaults - Shortcut Context  ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDDTC ;ISL/KER - Display Defaults - Shortcut Context ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.41)        N/A
+ ;               
+ ; External References
+ ;    None
+ ;               
 CON ; Shortcut Context
  ; Required LEXCTX
  N LEXTCTR,LEXTD,LEXTI,LEXTIC,LEXTL,LEXTN,LEXTSTR,LEXT,LEXTV

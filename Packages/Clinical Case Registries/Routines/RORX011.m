@@ -1,5 +1,5 @@
 RORX011 ;HOIFO/SG,VAC - PATIENT MEDICATION HISTORY ;4/17/09 10:45am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13**;Feb 17, 2006;Build 27
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13,19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
@@ -18,6 +18,7 @@ RORX011 ;HOIFO/SG,VAC - PATIENT MEDICATION HISTORY ;4/17/09 10:45am
  ;                                      NOTE: Patch 11 became patch 13.
  ;                                      Any references to patch 11 in the code
  ;                                      below is referring to path 13.
+ ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -156,20 +157,20 @@ PROCESS(REPORT,FLAGS) ;
  ;
  ;--- Browse through the list of selected patients
  S (CNT,PTIEN)=0
- S FLAG=$G(RORTSK("PARAMS","ICD9FILT","A","FILTER"))
+ S FLAG=$G(RORTSK("PARAMS","ICDFILT","A","FILTER"))
  ;
  F  S PTIEN=$O(@PTNODE@(PTIEN))  Q:PTIEN'>0  D  Q:RC<0
  . S RC=$$LOOP^RORTSK01(CNT/RORPTN)  Q:RC<0
  . S CNT=CNT+1,IEN798=$$PRRIEN^RORUTL01(PTIEN,RORREG)  Q:IEN798'>0
  . ;--- Check if the patient should be skipped
  . I RORALL  Q:$$SKIP^RORXU005(IEN798,FLAGS,RORSDT,ROREDT)
- . ;--- Check the patient against the ICD9 Filter
+ . ;--- Check the patient against the ICD Filter
  . S RCC=0
  . I FLAG'="ALL" D
- . . S RCC=$$ICD^RORXU010(PTIEN,RORREG)
+ . . S RCC=$$ICD^RORXU010(PTIEN)
  . I (FLAG="INCLUDE")&(RCC=0) Q
  . I (FLAG="EXCLUDE")&(RCC=1) Q
- . ;--- End of check for ICD9 Filter
+ . ;--- End of check for ICD Filter
  . ;--- Check for Clinic or Division list and quit if not in list
  . I RORCDLIST,'$$CDUTIL^RORXU001(.RORTSK,PTIEN,RORCDSTDT,RORCDENDT) Q
  . ;--- Search the pharmacy data

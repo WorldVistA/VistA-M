@@ -1,5 +1,5 @@
 GMTSPN2 ; SLC/KER - Progress Note Signatures           ; 8/1/06 4:24pm
- ;;2.7;Health Summary;**45,47,49,82**;Oct 20, 1995;Build 21
+ ;;2.7;Health Summary;**45,47,49,82,107**;Oct 20, 1995;Build 3
  Q
  ;                          
  ; External References
@@ -7,6 +7,8 @@ GMTSPN2 ; SLC/KER - Progress Note Signatures           ; 8/1/06 4:24pm
  ;   DBIA  2056  $$GET1^DIQ
  ;   DBIA 10060  ^VA(200, .137
  ;   DBIA 10060  ^VA(200, .138
+ ;   DBIA 4081   ^TIU(8925, 1606
+ ;   DBIA 4081   ^TIU(8925, 1613
  ;                     
 WS(X,I) ; Write Signatures 
  Q:$D(GMTSQIT)  N GMTSDIC,GMTSIEN,GMTSA,GMTSG S GMTSDIC=$G(X),GMTSIEN=$G(I)
@@ -14,8 +16,10 @@ WS(X,I) ; Write Signatures
  Q:'$D(@(GMTSDIC_GMTSIEN_")"))  S GMTSDIC=GMTSDIC_GMTSIEN_","
  D UNS,SOC,SIG,UNC,COC,COS,EXT
  Q
-UNS ;   Unsigned/Draft Copy
- Q:$D(GMTSQIT)  N GMTST S GMTST=$G(@(GMTSDIC_"1501,""I"")")) D:GMTST="" UNSIG
+UNS ; Unsigned/Draft Copy
+ Q:$D(GMTSQIT)  N GMTST S GMTST=$G(@(GMTSDIC_"1501,""I"")"))
+ I GMTST=""&($$GET1^DIQ(8925,GMTSIEN,1613,"I")="S") S GMTST=$$GET1^DIQ(8925,GMTSIEN,1606,"I") ; p.107 do not mark as unsigned if document has administrative closure date
+ D:GMTST="" UNSIG
  Q
 SOC ;   Signed on Chart
  Q:$D(GMTSQIT)  N GMTSP,GMTSB S GMTSP=$G(PN("SCHART"))

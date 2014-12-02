@@ -1,5 +1,5 @@
 PSOBBC ;IHS/DSD/JCM-BATCH BARCODE DRIVER ;3/30/06 10:10am
- ;;7.0;OUTPATIENT PHARMACY;**11,22,27,34,46,130,146,185,242,264,300,337**;DEC 1997;Build 1
+ ;;7.0;OUTPATIENT PHARMACY;**11,22,27,34,46,130,146,185,242,264,300,337,313**;DEC 1997;Build 76
  ;External reference to ^IBE(350.1,"ANEW" supported by DBIA 592
  ;External references CHPUS^IBACUS and TRI^IBACUS supported by DBIA 2030
  ;External references LK^ORX2 and ULK^ORX2 supported by DBIA 867
@@ -122,6 +122,8 @@ GETRXM ;
  I $P(X,"-")'=PSOINST W !?7,$C(7),$C(7),$C(7),"Not From this Institution" G GETRXM
  S (PSOBBC("IRXN"),PSOBBC("OIRXN"),BBRX)=$P(X,"-",2)
  I $G(^PSRX(PSOBBC("IRXN"),0))']"" W !,$C(7),"Rx data is not on file !",! G GETRXM
+ I $$TITRX^PSOUTL(PSOBBC("IRXN"))="t" D  G GETRXM
+ . W $C(7),!!,"Rx# "_$$GET1^DIQ(52,PSOBBC("IRXN"),.01)_" is marked as 'Titration Rx' and cannot be "_$S(PSOBBC1("FROM")="REFILL":"refilled.",1:"renewed."),!
  S PSOXDFN=+$P($G(^PSRX(PSOBBC("IRXN"),0)),"^",2) I PSOXDFN S PSOLOUD=1 D:$P($G(^PS(55,PSOXDFN,0)),"^",6)'=2 EN^PSOHLUP(PSOXDFN) K PSOLOUD
  K PSOXDFN I $P($G(^PSRX(PSOBBC("IRXN"),"STA")),"^")=13 W !,$C(7),"Rx has already been deleted." G GETRXM
  I $G(PSOBBC("DONE"))[PSOBBC("IRXN")_"," W !,$C(7),"Rx has already been entered" G GETRXM
@@ -161,6 +163,12 @@ PTX K PSOPTPST W:PSOBBC("DFLG") !!,$C(7),"Rx not filled"
  Q
  ;
 REFILL ;
+ ; Titration Rx refill request check from AudioFax/Internet
+ N PSORXIEN
+ S PSORXIEN=+$G(PSOBBC("IRXN"))
+ I PSORXIEN,$D(^PSRX(PSORXIEN,0)),$$TITRX^PSOUTL(PSORXIEN)="t" D  Q
+ . W !!,$C(7),"Rx# "_$$GET1^DIQ(52,PSORXIEN,.01)_" is marked as 'Titration Rx' and cannot be refilled.",!
+ . D PAUSE^VALM1
  N PSOFROM S PSOFROM="REFILL",XFROM="BATCH"
  D EN^PSOREF0(.PSOBBC)
  Q
@@ -168,6 +176,13 @@ REFILLX ;
  Q
  ;
 NEW ;
+ ; Titration Rx Renewal request check from AudioFax
+ N PSORXIEN
+ S PSORXIEN=+$G(PSOBBC("IRXN"))
+ I PSORXIEN,$D(^PSRX(PSORXIEN,0)),$$TITRX^PSOUTL(PSORXIEN)="t" D  Q
+ . W !!,$C(7),"Rx# "_$$GET1^DIQ(52,PSORXIEN,.01)_"    Drug: "_$$GET1^DIQ(52,PSORXIEN,6),!
+ . W !,"'Titration Rx' cannot be renewed."
+ . D PAUSE^VALM1
  N PSOFROM S (PSOFROM,XFROM)="BATCH"
  S PSOBBC("OIRXN")=PSOBBC("IRXN")
  S PSORNW("FILL DATE")=PSOBBC1("FILL DATE"),PSOOPT=3

@@ -1,7 +1,8 @@
 DPTLK ;ALB/RMO,RTK - MAS Patient Look-up Main Routine ; 3/22/05 4:19pm
- ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769**;Aug 13, 1993;Build 2
+ ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769,857**;Aug 13, 1993;Build 8
  ;
  ; mods made for magstripe read 12/96 - JFP
+ ; mods made for VIC 4.0 (barcode and magstripe) read 4/2012 - ELZ (*857)
  ;
  ;Optional input: DPTNOFZY='1' to suppress fuzzy lookups implemented
  ;                by patch DG*5.3*244
@@ -16,14 +17,18 @@ EN2 K DO,DUOUT,DTOUT S U="^",DIC="^DPT(",DIC(0)=$S($D(DIC(0)):DIC(0),1:"AELMQ") 
  ;
 ASKPAT ; -- Prompt for patient
  I DIC(0)["A" D   G QK:'$T!($E(DPTX)["^")!(DPTX="")
- .K DTOUT,DUOUT
+ .K DTOUT,DUOUT,DGNEW
  .W !,$S($D(DIC("A")):DIC("A"),1:"Select PATIENT NAME: ") W:$D(DIC("B")) DIC("B"),"// "
  .R X:DTIME
  .S DPTX=X S:'$T DTOUT=1 S:$T&(DPTX="")&($D(DIC("B"))) DPTX=DIC("B") S:DPTX["^"&($E(DPTX)'="%") DUOUT=1
  ; -- Check for the IATA magnetic stripe input
- N MAG,GCHK
- S MAG=0
+ N MAG,GCHK,BARCODE,DGVIC40,DGCAC
+ S (MAG,BARCODE,DGVIC40,DGCAC)=0
  I $E(DPTX)="%"!($E(DPTX)=";"),DPTX["?" S MAG=1,(X,DPTX)=$$IATA(DPTX)
+ I 'MAG,DPTX?1"%"1N13UNP.3UN S BARCODE=1,(X,DPTX)=$$BARCODE(DPTX)
+ ; - read other line but don't use dbia#10096 don't display input
+ I $G(DGVIC40),'BARCODE X ^%ZOSF("EOFF") R X(1):1 X ^%ZOSF("EON")
+ I 'MAG,'BARCODE,DPTX?1N6UN1U7UN1U2UN S DGCAC=1,(X,DPTX)=$$CACCARD(DPTX)
  ;
 CHKPAT ; -- Custom Patient Lookup
  D DO^DIC1
@@ -31,7 +36,7 @@ CHKPAT ; -- Custom Patient Lookup
  K DPTIFNS,DPTS,DPTSEL
  S DPTCNT=0
  ; -- Check input for format an length
- G CHKDFN:DPTX?1A!(DPTX'?.ANP)!($L(DPTX)>30)
+ G CHKDFN:DPTX?1A!(DPTX'?.ANP)!($L(DPTX)>30)&('$G(DGVIC40))
  ; -- Check for null response or abort
  I DPTX=""!(DPTX["^") G ASKPAT:DIC(0)["A",QK
  ; -- Check for question mark
@@ -61,10 +66,18 @@ CHKPAT1 .S X=DPTX
  G CHKDFN:DPTX=""
  ; -- Force new entry
  I $E(DPTX)="""",$E(DPTX,$L(DPTX))="""" G NOPAT
+ ; -- Check for EDIPI lookup
+ I DPTX?10N,DIC(0)["M" D  G:$G(DPTDFN)>0 CHKDFN
+ .N DGEDIPI
+ .S DGEDIPI=0 F  S DGEDIPI=$O(^DGCN(391.91,"AISS",DPTX,"USDOD","NI",+$$IEN^XUAF4("200DOD"),DGEDIPI)) Q:'DGEDIPI  I $P($G(^DGCN(391.91,DGEDIPI,2)),"^",3)'="H" Q
+ .Q:DGEDIPI<1
+ .S Y=$P($G(^DGCN(391.91,DGEDIPI,0)),"^")
+ .D SETDPT^DPTLK1:Y>0
+ .S DPTDFN=$S($D(DPTS(Y)):Y,1:-1)
  ; -- Check for index lookups
- D ^DPTLK1 G QK:$D(DTOUT)!($D(DUOUT)&(DIC(0)'["A")),ASKPAT:$D(DUOUT),CHKPAT:DPTDFN<0,CHKDFN:DPTDFN>0 I DIC(0)["N",$D(^DPT(DPTX,0)) S Y=X D SETDPT^DPTLK1 S DPTDFN=$S($D(DPTS(Y)):Y,1:-1) G CHKDFN
+ I '$G(DGVIC40)!(DPTX?9N) D ^DPTLK1 G QK:$D(DTOUT)!($D(DUOUT)&(DIC(0)'["A")),ASKPAT:$D(DUOUT),CHKPAT:DPTDFN<0,CHKDFN:DPTDFN>0 I DIC(0)["N",$D(^DPT(DPTX,0)) S Y=X D SETDPT^DPTLK1 S DPTDFN=$S($D(DPTS(Y)):Y,1:-1) G CHKDFN
 MAG ; -- No patient found, check for mag stripe input, create stub
- I 'MAG G NOPAT
+ I 'MAG,'BARCODE,'DGCAC G NOPAT
  ; -- Check for ADT option(s) only
  N DGOPT
  S DGOPT=$P($G(XQY0),"^",2)
@@ -77,12 +90,15 @@ MAG ; -- No patient found, check for mag stripe input, create stub
  K DIR
  I 'Y D Q1 G EN2
  ; -- Parse IATA fields
- D FIELDS(IATA)
- ; -- Check for Duplicates
- D EP2^DPTLK3
- I DPTDFN<0 D Q1 G EN2
+ D @$S(DGVIC40:"VIC40(.DGFLDS,DGVIC40,DGCAC)",1:"FIELDS(IATA)")
+ I '$D(@DGFLDS) W !,"Could not add patient to patient file" D Q1 G EN2
+ ; -- Check for Duplicates, no checking if VIC 4.0 card or CAC card
+ D:'$G(DGVIC40) EP2^DPTLK3
+ ; -- No check done on VIC 4.0 or CAC card, so skip DPTDFN value
+ ;    check, file record
+ I 'DGVIC40,DPTDFN<0 D Q1 G EN2
  ; -- Creates Stub entry in patient file
- S Y=$$FILE^DPTLK4(DGFLDS)
+ S Y=$$FILE^DPTLK4(DGFLDS,$G(DGVIC40))
  I $P(Y,"^",3)'=1 W !,"Could not add patient to patient file" D QK1 Q
  D QK1
  Q
@@ -151,10 +167,11 @@ IX ; --
  G DPTLK
  ;
 IATA(X) ; --
- ;This function pulls off ssn from the IATA track
+ ;This function pulls off ssn from the IATA track (old card)
+ ; - If new card, then use card number to look-up DFN, returned as `DFN
  ;
  ;Input:  X   -  what was read in
- ;Output: SSN -  social security number
+ ;Output: SSN -  social security number OR `DFN if new card
  ;          Q -  quit
  ;
  ; Track            Start Sent     End Sent      Field Separator
@@ -170,7 +187,9 @@ IATA(X) ; --
  S IATA=$$TRACK(X,"%","?")
  ; -- checks for no data
  I IATA="" Q "Q"
- ; -- Returns SSN
+ ; -- checks for new card, look-up DFN
+ I $E(X,1,29)?1"%"9NP1"^"17UNP1"?" S IATA=$$CARD(+$P($P(X,"%",2),"^"))
+ ; -- Returns SSN or `DFN value
  I IATA'="" Q $P(IATA,"^")
  Q "Q"
  ;
@@ -190,6 +209,64 @@ FIELDS(IATA) ; -- Sets fields
  S DPTX=$G(@DGFLDS@(2)) ;NAME
  S DPTIDS(.03)=$G(@DGFLDS@(3)) ;DOB
  S DPTIDS(.09)=$G(@DGFLDS@(1)) ;SSN
+ Q
+BARCODE(X) ;
+ ;This function pulls off card number from the barcode scan
+ ;  looks up the patient (locally)
+ ;  if not locally found, queries mpi 
+ ;
+ ;Input:  X   -  what was read in
+ ;Output: DFN -  `DFN
+ ;          Q -  quit
+ ;
+ ; Input       Start Data   VIC ver     DoD EDI_PIN     VA/VIC II   
+ ; --------    ----------   -------     -----------     ----------
+ ; alphanum        %           N         alphanum 7     alphanum 6
+ ;
+ N CARD
+ S CARD=$$B32TO10($E(X,10,15)) I 'CARD Q "Q"
+ Q $$CARD(CARD)
+ ;
+CACCARD(X) ;
+ ;This function pulls off EDIPI number from the CAC barcode scan
+ ;  looks up the patient (locally)
+ ;  if not locally found, queries mpi 
+ ;
+ ;Input:  X   -  what was read in
+ ;Output: DFN -  `DFN
+ ;          Q -  quit
+ ;
+ ; VC     PDI     PT       DoD EDI   PC     BC      CI
+ ; --     ---     --       -------   --     ---     ---
+ ; "1"    6UN     1U         7UN     1U     1UN     1UN
+ ;
+ N EDIPI
+ S EDIPI=$$B32TO10($E(X,9,15)) I 'EDIPI Q "Q"
+ Q $$EDIPI(EDIPI)
+ ;
+EDIPI(EDIPI) ; - returns `DFN from EDIPI number
+ N DFN,VICFAC
+ S VICFAC=+$$LKUP^XUAF4("200DOD") ; national DOD station number
+ S DFN=+$G(^DGCN(391.91,+$O(^DGCN(391.91,"ASID",EDIPI,VICFAC,0)),0))
+ S DGVIC40=EDIPI ; saving EDIPI number here so I don't have to look later
+ I DFN Q "`"_DFN
+ ; - not found locally, need to make sure we don't find anyone DGVIC40
+ Q "Q"
+CARD(CARD) ; - returns `DFN from card number
+ N DFN,VICFAC
+ S VICFAC=+$$LKUP^XUAF4("742V1") ; national vic facility number
+ S DFN=+$G(^DGCN(391.91,+$O(^DGCN(391.91,"ASID",CARD,VICFAC,0)),0))
+ S DGVIC40=CARD ; saving card number here so I don't have to look later
+ I DFN Q "`"_DFN
+ ; - not found locally, need to make sure we don't find anyone DGVIC40
+ Q "Q"
+VIC40(DGFLDS,DGVIC40,DGCAC) ; - returns the data used to create the
+ ;  patient file entry from mpi
+ N X,DGMPI
+ S DGFLDS="^TMP(""DGVIC"","_$J_")"
+ K @DGFLDS
+ I $T(CARDPV^MPIFXMLS)'="" D CARDPV^MPIFXMLS(.DGMPI,DGVIC40,DGCAC)
+ S X=0 F  S X=$O(DGMPI(X)) Q:'X  S @DGFLDS@(X)=DGMPI(X)
  Q
 ENR ;Display Enrollment information after patient selection
  N DGENCAT,DGENDFN,DGENR,DGEGTIEN,DGEGT
@@ -223,4 +300,43 @@ CV ;check for Combat Vet status
  I $P(DGCV,U)=1 D  Q
  . I '$$GET^DGENA($$FINDCUR^DGENA(+DPTDFN),.DGENR) W !
  . W ?3,"Combat Vet Status: "_$S($P(DGCV,U,3)=1:"ELIGIBLE",1:"EXPIRED"),?57,"End Date: "_$$FMTE^XLFDT($P(DGCV,U,2),"5DZ")
+ Q
+B32TO10(X) ; - convert from base 32 to base 10
+ N I,Y,S S Y=0,S="0123456789ABCDEFGHIJKLMNOPQRSTUV"
+ I X[" " S X=$E(X,1,$F(X," ")-2)
+ F I=1:1:$L(X) S Y=Y*32+($F(S,$E(X,I))-2)
+ Q Y
+RPCVIC(RETURN,DPTX) ; - patient lookup from VIC card, rpc/api
+ ; non-interactive
+ ; this function will return a patient's DFN based on input.  input must
+ ; be in the form of the FULL input from a VIC card (magstripe or bar
+ ; code), the patient must be locally known (FULL doesn't but can contain
+ ; additional card tracks)
+ ; RETURN input should be passed by reference
+ ;
+ ;  Input examples:
+ ;     Barcode possibilities:
+ ;            NNNNNNNNN (old VIC card, full 9 digit ssn)
+ ;            CCCCCCCCCCCCCCCCCC (new VIC 4.0 card, 18 characters with
+ ;                                10-15 being compressed card number)
+ ;     Magstripe possibilities:
+ ;            Must always start with %
+ ;            Must contain ?
+ ;            $E(X,2,10) = SSN (old card)
+ ;            %NNNNNNNNN^CCCCCCCCCCCCCCCCC? (first 29 characters) where
+ ;                                          N = card number (new card)
+ ;
+ ;  Return (pass by reference):  If patient known locally = DFN
+ ;                                   If not known locally = -1
+ ;
+ N MAG,BARCODE
+ S (RETURN,MAG,BARCODE)=0
+ I '$D(DPTX) Q -1
+ I DPTX["?" S DPTX=$E(DPTX,1,$F(DPTX,"?")-1)
+ I DPTX?9N S RETURN=$O(^DPT("SSN",DPTX,0))
+ I $E(DPTX)="%"!($E(DPTX)=";"),DPTX["?",'RETURN S MAG=1,DPTX=$$IATA(DPTX)
+ I 'MAG,DPTX?1"%"1N13UNP.3UN,'RETURN S BARCODE=1,DPTX=$$BARCODE(DPTX)
+ I 'MAG,'BARCODE,DPTX?1N6UN1U7UN1U2UN S DPTX=$$CACCARD(DPTX)
+ I 'RETURN,$E(DPTX,2,999) S RETURN=$S($E(DPTX)="`":$E(DPTX,2,999),1:$O(^DPT("SSN",DPTX,0)))
+ S RETURN=$S(RETURN:RETURN,1:-1)
  Q

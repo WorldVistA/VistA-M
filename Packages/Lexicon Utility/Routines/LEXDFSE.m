@@ -1,6 +1,13 @@
-LEXDFSE ; ISL Default Filter - Exclude Semantics   ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDFSE ;ISL/KER - Default Filter - Exclude Semantics ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    $$UP^XLFSTR         ICR  10103
+ ;    ^DIR                ICR  10026
+ ;               
  ; Called from LEXDFSI (set the EXCLUDE string)
  ;
  ; LEXC      Counter
@@ -83,7 +90,7 @@ REM ; Remove Semantic Type from the list (excluded)
  S LEXA(LEXC,2,0)=$S('$D(LEXA(LEXC,2,0)):1,1:LEXA(LEXC,2,0)+1)
  S LEXA(LEXC,2,LEXA(LEXC,2,0),0)=LEXCTR Q
 SAV ; Save the Semantic Type (included)
- Q:+($G(LEXA(0)))=0  S LEXCTOK=1 D 
+ Q:+($G(LEXA(0)))=0  S LEXCTOK=1
  N LEXC S LEXC=+($G(LEXA(0)))
  S LEXA(LEXC,1,0)=$S('$D(LEXA(LEXC,1,0)):1,1:LEXA(LEXC,1,0)+1)
  S LEXA(LEXC,1,LEXA(LEXC,1,0),0)=LEXCTR Q

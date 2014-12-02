@@ -1,5 +1,5 @@
-PSIVSP ;BIR/RGY,PR,CML3-DOSE PROCESSOR ;09 Feb 99 / 12:30 PM
- ;;5.0; INPATIENT MEDICATIONS ;**30,37,41,50,56,74,83,111,133,138,134,213**;16 DEC 97;Build 8
+PSIVSP ;BIR/RGY,PR,CML3-DOSE PROCESSOR ;1/3/12 3:36pm
+ ;;5.0;INPATIENT MEDICATIONS;**30,37,41,50,56,74,83,111,133,138,134,213,229,279,305**;16 DEC 97;Build 3
  ;
  ; Reference to ^PS(51.1 is supported by DBIA #2177
  ;
@@ -11,7 +11,7 @@ EN ;
  K ATZERO Q
 EN1 ;
  S (PSIVAT,PSIVWAT,Y)="",XT=-1,X0=X,X=$S(X="ON CALL":X,X="ONCALL":X,X="ON-CALL":X,X="ONETIME":X,X="ONE-TIME":X,X="ONE TIME":X,X="1TIME":X,X="1 TIME":X,X="1-TIME":X,$L(X," ")<3:$P(X," "),1:$P(X," ",1,2))
- S:$E(X)="^" X=$E(X,2,999) G:X="" Q S:X["@0" ATZERO=1 S X=$S(X["@0":$P(X,"@"),1:X),P(7)=$S($D(ATZERO):1,1:"") K ATZERO
+ S:$E(X)="^" X=$E(X,2,999) G:X="" Q S:(X["@0")&($$SCHREQ^PSJLIVFD(.P)) ATZERO=1 S X=$S(X["@0":$P(X,"@"),1:X),P(7)=$S($G(ATZERO):1,1:"") K ATZERO
  I $S($D(^PS(51.1,"AC","PSJ",X)):1,1:$E($O(^(X)),1,$L(X))=X) D DIC I Y'<0 G SH
 NS0 S Y=""
  I $E(X,1,2)="AD" S XT=-1 Q
@@ -25,10 +25,13 @@ Q Q:X="ONE TIME"
 NEWQ ;N I S X0=$P(X," ")_$S($L(X0," ")-1:" ",1:"")_$P(X0," ",2,99) K:XT<0!($L(X0)>22) X S:$D(X) X=X0 S:P(7) X=X0 K X0 K:XT>0&('P(7)) X Q
  Q
  ;
-ENDL W "   Dose limit ....  " S PSIVMIN=P(15)*X,PSIVSD=+P(2)
+ ;*229 Add Temp val for dose limit in IOE
+ENDL N PSIVLIMT W "   Dose limit ....  " S PSIVLIMT="a"_X,PSIVMIN=P(15)*X,PSIVSD=+P(2)
  I PSIVMIN<0 W !!," --- There is something wrong with this order !!",!,"     Call inpatient supervisor ....." S Y=-1 K PSIVMIN Q
- I P(4)="P"!(P(5))!(P(23)="P"),PSIVMIN=0,"^NOW^STAT^ONCE^ONE-TIME^ONE TIME^ON CALL^ONETIME^1TIME^1 TIME^1-TIME^"'[(U_P(9)_U) D DLP G QDL
- D ENT^PSIVWL
+ I P(15)'["D",P(4)="P"!(P(5))!(P(23)="P"),PSIVMIN=0,"^NOW^STAT^ONCE^ONE-TIME^ONE TIME^ON CALL^ONETIME^1TIME^1 TIME^1-TIME^"'[(U_P(9)_U) D DLP G QDL
+ ;*229 DOW Calc and dose lim should match CPRS, if it's vol limit, we leave old functionality
+ I $G(P(9))]"",$G(P(11))]"" D ENSTOP^PSIVCAL S Y=X I 1 ;*229 ENSTOP^PSIVCAL returns X, we wanted Y.
+ E  D ENT^PSIVWL
 QDL I $D(X) S X=Y X ^DD("DD") W $P(Y,"@")," ",$P(Y,"@",2) S Y=X
  Q
 DLP ;
@@ -44,13 +47,18 @@ QDLP K X1,X2 Q
  ;
 ENI ;
  K:$L(X)<1!($L(X)>30)!(X["""")!($A(X)=45) X I '$D(X)!'$D(P(4)) Q
+ ;*229 Reset ATZERO flag.
+ I $P(X,"@",2)'=0!'$$SCHREQ^PSJLIVFD(.P) S P(7)=""
  I P(4)="P"!(P(5))!(P(23)="P") Q:'X  S X="INFUSE OVER "_X_" MINUTE"_$S(X>1:"S",1:"") W "   ",X Q
  I $E(X)="." K X Q  ;Enforce leading zero.
  I X'=+X!(X'=0_+X),X["@",($P(X,"@",2,999)'=+$P(X,"@",2,999)!(+$P(X,"@",2,999)<0)) K X Q
  S SPSOL=$O(DRG("SOL",0)) I 'SPSOL K SPSOL,X W "  You must define at least one solution !!" Q
  I X=+X!(X=0_+X),X'["@" S X=X_" ml/hr" W " ml/hr" D SPSOL S P(15)=$S('X:0,1:SPSOL\X*60+(SPSOL#X/X*60+.5)\1) K SPSOL Q
- S SPSOL=$P(X,"@",2) S:$P(X,"@")=+X!($P(X,"@")=0_+X) $P(X,"@")=$P(X,"@")_" ml/hr" W "   ",+SPSOL," Label",$S(SPSOL'=1:"s",1:"")," per day",!?15,"at an infusion rate of: ",$P(X,"@") S P(15)=$S('SPSOL:0,1:1440/SPSOL\1) K SPSOL
- I X["@",$P(X,"@",2)=0 S P(7)=1  ; Set ATZERO flag
+ S SPSOL=$S(($P(X,"@",2)?1.N):$P(X,"@",2),1:$G(P("NUMLBL"))) I SPSOL S P("NUMLBL")=+SPSOL
+ S:$P(X,"@")=+X!($P(X,"@")=0_+X) $P(X,"@")=$P(X,"@")_" ml/hr" W "   ",+SPSOL," Label",$S(SPSOL'=1:"s",1:"")," per day",!?15,"at an infusion rate of: ",$P(X,"@") S P(15)=$S('SPSOL:0,1:1440/SPSOL\1) K SPSOL
+ I X["@",$P(X,"@",2)=0,$$SCHREQ^PSJLIVFD(.P) S P(7)=1  ; Set ATZERO flag
+ ;*305
+ I '$G(PSJEXMSG) D EXPINF^PSIVEDT1(.X)
  Q
 SPSOL S SPSOL=0 F XXX=0:0 S XXX=$O(DRG("SOL",XXX)) Q:'XXX  S SPSOL=SPSOL+$P(DRG("SOL",XXX),U,3)
  K XXX Q

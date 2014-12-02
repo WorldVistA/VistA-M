@@ -1,5 +1,5 @@
-PXRMREDF ; SLC/PJH - Edit PXRM reminder findings. ;06/05/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMREDF ; SLC/PJH - Edit PXRM reminder findings. ;05/08/2014
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,26**;Feb 04, 2005;Build 404
  ;
  ; Called by PXRMREDT which newes and initialized DEF, DEF1, DEF2.
  ;
@@ -47,12 +47,7 @@ FEDIT(IEN) ;
  S SDA(2)=DA(1),SDA(1)=DA
  ;Save term IEN
  S STATUS=0
- I TYPE="CF" S CFIEN=$P($P(Y,U,2),";",1) D
- .I $D(^PXRMD(811.4,CFIEN,1))>0 D
- ..W !!,"Computed Finding Description:" S WPIEN=0
- ..F  S WPIEN=$O(^PXRMD(811.4,CFIEN,1,WPIEN)) Q:+WPIEN'>0  D
- ...W !,$G(^PXRMD(811.4,CFIEN,1,WPIEN,0))
- .E  W !!,"No description defined for this computed finding"
+ I TYPE="CF" S CFIEN=$P($P(Y,U,2),";",1) D HELP^PXRMCF(CFIEN)
  I TYPE="MH" D WARN^PXRMMH
  I TYPE="RT" S TIEN=$P($P(Y,U,2),";",1)
  ;Finding record fields
@@ -60,7 +55,7 @@ FEDIT(IEN) ;
  S DR=".01;3;I X=""0Y"" S Y=6;1;2;6;7;8;9;12;17"
  ;Taxonomy - use inactive problems
  I TYPE="TX" D
- .S TERMSTAT=$$TAXNODE^PXRMSTA1($P($P(Y,U,2),";"),"H")
+ .S TERMSTAT=$$TAXNODE^PXRMSTA1($P($P(Y,U,2),";"))
  .I TERMSTAT="P" S DR=DR_";10" Q
  .I TERMSTAT'=0 S DR=DR_";10",STATUS=1
  I TYPE="RT" D

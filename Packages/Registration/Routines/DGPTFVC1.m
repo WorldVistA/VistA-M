@@ -1,5 +1,5 @@
-DGPTFVC1 ;ALB/AS/ADL - Expanded PTF Close-Out Edits ; 12/14/04 10:34am
- ;;5.3;Registration;**52,58,79,114,164,400,342,466,415,493,512,510,544,629,817**;Aug 13, 1993;Build 4
+DGPTFVC1 ;ALB/AS/ADL - Expanded PTF Close-Out Edits ;12/14/04 10:34am
+ ;;5.3;Registration;**52,58,79,114,164,400,342,466,415,493,512,510,544,629,817,850**;Aug 13, 1993;Build 171
  ;;ADL;Updated for CSV Project;;Mar 26, 2003
  ;Called from Q+2^DGPTFTR. Variable must be passed in: PTF
  ;Variable returned: DGERR.   DGERR <-- 1 if record fails to pass a check; DGERR <-- "" if record passes all checks
@@ -12,9 +12,13 @@ DGPTFVC1 ;ALB/AS/ADL - Expanded PTF Close-Out Edits ; 12/14/04 10:34am
  I DGRTY=1,DGV("FEE") D MT
  ;
  ; DG*512, sck/Remove 101-Means Test indicator = 'U' xmit block
- ;I 'DGV("FEE"),$P(DGV(101),"^",10)="U",'DGV(701)!(+DGV(701)>2890700) S DGERR=1 W !,"101 MEANS TEST",?23," value 'U' - not valid for discharges as of 7/1/1989",!?42,"per MAS VACO policy"
  ;
- I $D(^DPT(DFN,57)),$P(^(57),"^",4)>0 S S0=$P(^(57),"^",4),DGDX=$S(S0=1!(S0=3):"344.1",1:"344.0"),DGSCI="" F DGX=0:0 S DGX=$O(^DGPT(PTF,"M",DGX)) Q:DGX'>0  S DGNODE=^(DGX,0),DGSCI="" D SCI
+ ; 850 - aas - hard coded ICD codes, diagnosis values, different for ICD-9 and ICD-10
+ N SYS,EFFDATE,IMPDATE,DGPTDAT
+ D EFFDATE^DGPTIC10($G(PTF))
+ S SYS=$$SYS^ICDEX("DIAG",EFFDATE)
+ I $D(^DPT(DFN,57)),$P(^(57),"^",4)>0,SYS=1 S S0=$P(^(57),"^",4),DGDX=$S(S0=1!(S0=3):"344.1",1:"344.0"),DGSCI="" F DGX=0:0 S DGX=$O(^DGPT(PTF,"M",DGX)) Q:DGX'>0  S DGNODE=^(DGX,0),DGSCI="" D SCI
+ I $D(^DPT(DFN,57)),$P(^(57),"^",4)>0,SYS=30 S S0=$P(^(57),"^",4),DGDX=$S(S0=1!(S0=3):"G82.2",1:"G82.5"),DGSCI="" F DGX=0:0 S DGX=$O(^DGPT(PTF,"M",DGX)) Q:DGX'>0  S DGNODE=^(DGX,0),DGSCI="" D SCI
  ;
  S DGDP="",DGDISPO=$P(DGV(701),"^",6),DGRECSUF=$P(DGV(701),"^",13)
  I DGRTY=1 D
@@ -28,8 +32,6 @@ DGPTFVC1 ;ALB/AS/ADL - Expanded PTF Close-Out Edits ; 12/14/04 10:34am
  ;
  I DGRTY=1 S %=$P(DGV(701),"^",3) I %=4!(%=6)!(%=7) S DGDP="" D OP I $P(DGV(701),"^",5)=1 S DGERR=1 W !,"701 VA AUSPICES",?23," value inconsistent for discharge"
  ;
- ;I 'DGV("FEE") S %=$P(^DPT(DFN,0),"^",6),%=$S($D(^DIC(10,+%,0)):$P(^(0),"^",2),1:"") I '%!(%>7) S DGERR=1 W !,"701 RACE",?23," value " W:%']"" "blank" I %]"" W %," (invalid code)"
- ;
  ;If PRRTP treating specialty, must have valid PRRTP suffix
  ;Fee records would not contain PRRTP specialties
  I 'DGV("FEE"),"^25^26^27^28^29^38^39^"[(U_$P(DGV(701),U,2)_U) D
@@ -42,12 +44,15 @@ DGPTFVC1 ;ALB/AS/ADL - Expanded PTF Close-Out Edits ; 12/14/04 10:34am
  I DGERR H 4
  Q
  ;
-SCI F X=5:1:15 I X#10 S DGPTTMP=$$ICDDX^ICDCODE(+$P(DGNODE,"^",X),$$GETDATE^ICDGTDRG(PTF)) I +DGPTTMP>0&($P(DGPTTMP,U,10)) S:$E($P(DGPTTMP,"^",2),1,5)=DGDX DGSCI=1 Q:DGSCI
+SCI ;
+ N EFFDATE,IMPDATE
+ D EFFDATE^DGPTIC10(PTF)
+ F X=5:1:15 I X#10,$P(DGNODE,"^",X) S DGPTTMP=$$ICDDATA^ICDXCODE("DIAG",+$P(DGNODE,"^",X),EFFDATE) D
+ . I +DGPTTMP>0&($P(DGPTTMP,U,10)) S:$E($P(DGPTTMP,"^",2),1,5)=DGDX DGSCI=10 Q:DGSCI
  I 'DGSCI S DGERR=1,%=$P(DGNODE,"^",10),X=$TR($$FMTE^XLFDT(%,"5DF")," ","0") W !,"501 ",X," SCI of ",S0,?23," requires an ICD Diagnosis code beginning with",!?12," or equal to ",DGDX
  Q
  ;
 MT S DGVMT=$P(DGV(101),"^",10),DGX=999 G DGX:DGVMT']"" I +$P(DGV(101),"^",2)<2860700!(DGSUFFIX="BU") S DGX="X" G DGX
- ;S DGZEC=$S($D(^DPT(DFN,.36)):$P(^(.36),U,1),1:""),DGZEC=$S($D(^DIC(8,+DGZEC,0)):^(0),1:"") I $P(DGZEC,U,5)="N" S DGX="N" G DGX
  S DGZEC=$P($G(^DGPT(PTF,101)),U,8),DGZEC=$S($D(^DIC(8,+DGZEC,0)):^(0),1:"") I $P(DGZEC,U,5)="N" S DGX="N" G DGX
  S DGT=$P(DGV(701),".") G AS:'$O(^DGMT(408.31,"AD",1,DFN,0)) S DGZ1=$$LST^DGMTU(DFN,DGT) K:DGZ1']"" DGZ1
  I DGVMT="X" K DGX,DGVMT Q
@@ -56,9 +61,7 @@ MT S DGVMT=$P(DGV(101),"^",10),DGX=999 G DGX:DGVMT']"" I +$P(DGV(101),"^",2)<286
  I DGX="P" D  G DGX
  . I '+$P($G(DGZ1),U) S DGX="U" Q
  . S DGX=$$PA^DGMTUTL($P(DGZ1,U)),DGX=$S('$D(DGX):"U",DGX="MT":"C",DGX="GMT":"G",1:"U")
- ; sc < 50%, 0% non-comp, sc movements - DG*5.3*544
  I DGX="A",$P(DGZEC,U,4)=3,$$SC^DGMTR(DFN),$$ANYSC^DGPTSCAN(PTF) S DGX="AS" G DGX
- ;-- sc, >0%  - DG*5.3*544
  I DGX="A","^1^3^"[("^"_$P(DGZEC,U,4)_"^"),$P($G(^DPT(DFN,.3)),U,2)>0 S DGX="AS" G DGX
  S DGX=$S(DGX="A":"AN","BCGN"[DGX:DGX,1:"U") G AS:DGX="U" G DGX:DGX'="N"
 AS S DGZ=$S($D(^DPT(DFN,.321)):^(.321),1:0) I $P(DGZ,U,2)="Y"!($P(DGZ,U,3)="Y") S DGX="AS" G DGX
@@ -96,7 +99,7 @@ RACETHNC        ;Race and ethnicity check
  ;Ensure that a value for ethnicity and at least one race is on file.
  ;Ensure all active race/ethnicity values have a valid PTF value and an
  ;associated collection method.  Ensure all collection methods have a
- ;valid PTF value.  Ignore race/ethicity entries that are inactive or
+ ;valid PTF value.  Ignore race/ethnicity entries that are inactive or
  ;invalid pointers.  Note: PTF sends first active ethnicity and first
  ;six active races.
  N REF,IEN,TYPE,TEXT,PTRVAL,PTRMTHD,NUM,MAX

@@ -1,5 +1,5 @@
 IBCNERP9 ;DAOU/BHS - eIV STATISTICAL REPORT PRINT ;12-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,271,416,506**;21-MAR-94;Build 74
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
@@ -191,7 +191,7 @@ DATA(DISPDATA,LINECT,RTN,TYPE,MM) ; Format lines of data to be printed
  . ; *,+,#,! or -  symbol entries - User action required
  . S LINECT=LINECT+1
  . S DISPDATA(LINECT)=$$FO^IBCNEUT1("  User Action Required: ",46)_$$FO^IBCNEUT1(+$P(RPTDATA,U,6),9,"R")
- . F CT=7,8,13,10,11 D
+ . F CT=7,8,15,13,10,11 D
  . . S LINECT=LINECT+1
  . . ; Added # to report
  . . S TYPE="    # of "
@@ -200,6 +200,7 @@ DATA(DISPDATA,LINECT,RTN,TYPE,MM) ; Format lines of data to be printed
  . . I CT=10 S TXT="# entries (Policy status undetermined)"
  . . I CT=11 S TXT="! entries (eIV needs user assistance for entry)"
  . . I CT=13 S TXT="- entries (Payer indicated Inactive policy)"
+ . . I CT=15 S TXT="$ entries (Escalated, Active policy)"
  . . S TYPE=TYPE_TXT
  . . S DISPDATA(LINECT)=$$FO^IBCNEUT1(TYPE,56)_$$FO^IBCNEUT1(+$P(RPTDATA,U,CT),9,"R")
  . ;

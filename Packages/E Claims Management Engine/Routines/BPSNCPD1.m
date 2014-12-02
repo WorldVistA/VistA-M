@@ -1,8 +1,12 @@
 BPSNCPD1 ;BHAM ISC/LJE - Pharmacy API part 2 ;06/16/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8,9,10,11**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8,9,10,11,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Call to $$NCPDPQTY^PSSBPSUT supported by IA# 4992
+ ; Call to $$RXRLDT^PSOBPSUT supported by IA# 4701
+ ; Call to PSS^PSO59 supported by IA# 4827
+ ; Call to ^XMD supported by IA# 10070
+ ; Call to PRIORITY^XMXEDIT supported by IA# 2730
  ;
  ; Procedure STARRAY - Retrieve information for API call to IB and store in BPSARRY
  ; Incoming Parameters
@@ -104,8 +108,7 @@ STATUS(BRXIEN,BFILL,REBILL,REVONLY,BPSTART,BWHERE,BPREQIEN,BPSCOB,BPSELIG,IEN59,
  I WFLG=1 W !
  Q
  ;
- ; Bulletin to the OPECC
-BULL(RXI,RXR,SITE,DFN,PATNAME,BPST,BPSERTXT,BPSRESP) ;
+BULL(RXI,RXR,SITE,DFN,PATNAME,BPST,BPSERTXT,BPSRESP) ; Send a Bulletin to the OPECC
  ; Input:
  ;   RXI      -> IEN of the Rx
  ;   RXR      -> Refill #
@@ -117,10 +120,13 @@ BULL(RXI,RXR,SITE,DFN,PATNAME,BPST,BPSERTXT,BPSRESP) ;
  ;   BPSRESP  -> Response flag; used in BULL1 below to determine
  ;               whether to add addition text to the message.
  ;
+ ; If the Rx-fill has been released, then don't send a message (esg - 12/20/12 - BPS*1*15)
+ I $$RXRLDT^PSOBPSUT($G(RXI),$G(RXR)) G BULLX      ; DBIA# 4701
+ ;
  N BTXT,XMSUB,XMY,XMTEXT,XMDUZ,SSN,X,SITENM
  I $G(SITE) D
  . K ^TMP($J,"BPSARR")
- . D PSS^PSO59(SITE,,"BPSARR")
+ . D PSS^PSO59(SITE,,"BPSARR")               ; DBIA# 4827
  . S SITENM=$G(^TMP($J,"BPSARR",SITE,.01))
  I $G(DFN) D
  . S X=$P($G(^DPT(DFN,0)),U,9)
@@ -137,6 +143,7 @@ BULL(RXI,RXR,SITE,DFN,PATNAME,BPST,BPSERTXT,BPSRESP) ;
  S (ZTSAVE("SITENM"),ZTSAVE("PATNAME"),ZTSAVE("SSN"),ZTSAVE("BPST"))=""
  S ZTRTN="BULL1^BPSNCPD1"
  D ^%ZTLOAD
+BULLX ;
  Q
  ;
  ;
@@ -175,6 +182,6 @@ BULL1 ;
  S XMY(BPSUB)=""
  ;
  I $G(DUZ)'<1 S XMY(DUZ)=""
- D ^XMD
- I $G(BPST)]"",$G(XMZ) D PRIORITY^XMXEDIT(XMZ)
- Q 
+ D ^XMD       ; IA# 10070
+ I $G(BPST)]"",$G(XMZ) D PRIORITY^XMXEDIT(XMZ)    ; IA# 2730
+ Q

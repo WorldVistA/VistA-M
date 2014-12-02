@@ -1,6 +1,9 @@
-ECEFPAT ;ALB/JAM-Enter Event Capture Data Patient Filer ;11/18/11  13:30
- ;;2.0;EVENT CAPTURE;**25,32,39,42,47,49,54,65,72,95,76,112**;8 May 96;Build 18
+ECEFPAT ;ALB/JAM-Enter Event Capture Data Patient Filer ;11/21/12  16:29
+ ;;2.0;EVENT CAPTURE;**25,32,39,42,47,49,54,65,72,95,76,112,119,114**;8 May 96;Build 20
  ;
+ ; Reference to $$SINFO^ICDEX supported by ICR #5747
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
+ ; 
 FILE ;Used by the RPC broker to file patient encounter in file #721
  ;  Uses Supported IA 1995 - allow access to $$CPT^ICPTCOD
  ;
@@ -32,7 +35,11 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  ;       ^TMP($J,"ECMSG",n)=Success or failure to file in #721^Message
  ;
  N NODE,ECS,ECM,ECID,ECCPT,ECINT,ECPCE,ECX,ECERR,ECOUT,ECFLG,ECRES
- N ECFIL,ECPRV
+ N ECFIL,ECPRV,ECCS
+ ; Determine Active Coding System based on Date of Interest
+ S ECCS=$S($G(ECDT)'="":ECDT,1:DT)
+ S ECCS=$$SINFO^ICDEX("DIAG",ECCS) ; Supported by ICR 5747
+ ;
  S ECFLG=1,ECERR=0 D CHKDT(1) I ECERR Q
  F ECX=1:1 Q:'$D(@("ECU"_ECX))  D  I ECERR Q
  .I @("ECU"_ECX)="" Q
@@ -77,6 +84,7 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  D ^DIE I $D(DTOUT) D RECDEL,MSG Q
  S DA=ECFN,DR="11////"_ECMN_";13////"_ECDUZ_";2////"_ECDT
  ;S ECPXREAS=$G(ECPXREAS) ;112
+ D CVTREAS Q:$G(ECERR)  ;119 Convert reasons from entries in 720.4 to entries in 720.5 before storing.
  S DR=DR_";19////"_$S(+ECCPT:ECCPT,1:"@")_";20////"_ECDX
  S DR=DR_";26////"_$G(EC4)_";27////"_$G(ECID)_";29////"_ECPTSTAT
  S DR=DR_";34////"_$S($G(ECPXREAS)="":"@",1:ECPXREAS) ;112
@@ -111,7 +119,8 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  . S DXS="",DIC(0)="L",DA(1)=ECFN,DIC("P")=$P(^DD(721,38,0),U,2)
  . S DIC="^ECH("_DA(1)_","_"""DX"""_",",ECDXY=ECDX K ECDXX
  . F ECX=1:1:$L(ECDXS,"^") S DXSIEN=$P(ECDXS,U,ECX) I +DXSIEN>0 D
- . . S DXCDE=$$ICDDX^ICDCODE(DXSIEN,ECDT) Q:+DXCDE<0  I '$P(DXCDE,U,10) Q
+ . . ; Retrieve ICD data - Supported by ICR 5747
+ . . S DXCDE=$$ICDDX^ICDEX(DXSIEN,ECDT,+ECCS,"I") Q:+DXCDE<0  I '$P(DXCDE,U,10) Q
  . . K DD,DO S X=DXSIEN D FILE^DICN
  . . S DXCDE=$P(DXCDE,U,2),ECDXX(DXCDE)=DXSIEN
  . . S ^DISV(DUZ,"^ICD9(")=DXSIEN  ;last ICD9 code
@@ -198,3 +207,18 @@ VALDATA ;validate data
  I $G(EC4)'="" D CHK^DIE(721,26,,"`"_EC4,.ECRRX) I ECRRX'=EC4 D  Q
  .S ECERR=1,^TMP($J,"ECMSG",1)="0^Invalid Associated Clinic"
  Q
+ ;
+CVTREAS ;119 Section added to convert procedure reason IEN in 720.4 to EC Code Screen/Procedure reason link in file 720.5.
+ N SCREEN,SCREENID,I
+ S SCREEN=ECL_"-"_ECD_"-"_+$G(ECC,0)_"-"_ECP ;creates event code screen
+ S SCREENID=$O(^ECJ("B",SCREEN,0)) I '+SCREENID S ECERR=1,^TMP($J,"ECMSG",1)="0^Invalid Event Code Screen" Q  ;event code screen doesn't exist
+ F I="ECPXREAS","ECPXREA2","ECPXREA3" I $G(@I) S @I=$$GETVAL(SCREENID,@I)
+ Q
+GETVAL(SCREENO,REASNO) ;119 section added to get link from 720.5 or add it if necessary
+ N LINK,DIC,X,Y
+ S LINK=$O(^ECL("AD",SCREENO,REASNO,0))
+ I $G(LINK) Q LINK  ;Entry in 720.5 exists, return IEN
+ S DIC="^ECL(",DIC(0)="",X=REASNO,DIC("DR")=".02////"_SCREENO
+ K DD,DO D FILE^DICN
+ S LINK=$S(+Y:+Y,1:"") ;New IEN or null if not added
+ Q LINK

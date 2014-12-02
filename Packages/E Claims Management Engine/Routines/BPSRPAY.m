@@ -1,5 +1,5 @@
 BPSRPAY ;BHAM ISC/BEE - ECME REPORTS ;11/15/07  14:13
- ;;1.0;E CLAIMS MGMT ENGINE;**1,7,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,7,10,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -75,7 +75,7 @@ PSPRNT(BPFILE,EN) N BPSHDR,BPIEN,BPPAGE,BPQ,CD,L,N,N1,N2,NAME,NM,NUM,SEG,SP
  ;
  ; Field Detail Information
  ; Loop through Segments
- S SEG=99 F  S SEG=$O(^BPSF(BPFILE,EN,SEG)) Q:+SEG=0!(SEG>260)  D  I BPQ Q
+ S SEG=99 F  S SEG=$O(^BPSF(BPFILE,EN,SEG)) Q:+SEG=0!(SEG>280)  D  I BPQ Q
  . ;
  . ;Make sure there are entries for the segment
  . I $P($G(^BPSF(BPFILE,EN,SEG,0)),U,4)<1 Q
@@ -173,4 +173,7 @@ INIT ; Create local array of segment header names
  S NAME(220)="Prior Authorization Segment",NAME(230)="Clinical Segment"
  S NAME(240)="Additional Documentation Segment",NAME(250)="Facility Segment"
  S NAME(260)="Narrative Segment"
+ ; New segments addded - BPS*1*15
+ S NAME(270)="Purchaser Segment"
+ S NAME(280)="Service Provider Segment"
  Q

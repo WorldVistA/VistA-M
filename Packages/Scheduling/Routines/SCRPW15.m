@@ -1,5 +1,5 @@
 SCRPW15 ;RENO/KEITH - Encounter Activity Report (Cont.) ;06/19/99
- ;;5.3;Scheduling;**139,144,166,180,295**;AUG 13, 1993
+ ;;5.3;Scheduling;**139,144,166,180,295,593**;AUG 13, 1993;Build 13
  ;06/19/99 ACS - Added CPT modifiers to the report
  ;06/19/99 ACS - Added CPT modifier API calls
  ;
@@ -84,12 +84,17 @@ DX ;Print diagnosis information
  Q:SDOUT
  W !,"====================================",?40,"==========",?55,"==========",?70,"==========",!,"TOTAL:",?40,$J(SDTOT1,10),?55,$J(SDTOT2,10),?70,$J(SDTOT,10) Q
  ;
-DX1 ; 
- ;D:$Y>(IOSL-6) HDR(),DXHD Q:SDOUT  S SDD0=^ICD9(SDD,0),SDT1=+$G(^TMP("SCRPW",$J,SDIV,1,SDS,"DX",SDD,"PRI")),SDT2=+$G(^TMP("SCRPW",$J,SDIV,1,SDS,"DX",SDD,"SEC")),SDTOT1=SDTOT1+SDT1,SDTOT2=SDTOT2+SDT2,SDTOT=SDTOT+SDT1+SDT2
- ;W !,$P(SDD0,U),?7,$P(SDD0,U,3),?40,$J(SDT1,10),?55,$J(SDT2,10),?70,$J((SDT1+SDT2),10) Q
- ;
- D:$Y>(IOSL-6) HDR(),DXHD Q:SDOUT  S SDD0=$$ICDDX^ICDCODE(SDD),SDT1=+$G(^TMP("SCRPW",$J,SDIV,1,SDS,"DX",SDD,"PRI")),SDT2=+$G(^TMP("SCRPW",$J,SDIV,1,SDS,"DX",SDD,"SEC")),SDTOT1=SDTOT1+SDT1,SDTOT2=SDTOT2+SDT2,SDTOT=SDTOT+SDT1+SDT2
- W !,$P(SDD0,U,2),?7,$P(SDD0,U,4),?40,$J(SDT1,10),?55,$J(SDT2,10),?70,$J((SDT1+SDT2),10) Q
+DX1 ;
+ N SDDIAG,DIWL,DIWF,SDL2 S DIWL=1 S DIWF="C36|"
+ D:$Y>(IOSL-6) HDR(),DXHD Q:SDOUT
+ S SDD0=$$ICDDX^SCRPWICD(SDD) S SDDIAG=$P(SDD0,U,2)_"  "_$P(SDD0,U,4)
+ S SDT1=+$G(^TMP("SCRPW",$J,SDIV,1,SDS,"DX",SDD,"PRI"))
+ S SDT2=+$G(^TMP("SCRPW",$J,SDIV,1,SDS,"DX",SDD,"SEC"))
+ S SDTOT1=SDTOT1+SDT1 S SDTOT2=SDTOT2+SDT2 S SDTOT=SDTOT+SDT1+SDT2
+ K ^UTILITY($J,"W") S X=SDDIAG D ^DIWP
+ F SDL2=1:1:^UTILITY($J,"W",DIWL) W !,$E(^UTILITY($J,"W",DIWL,SDL2,0),1,36)
+ W ?40,$J(SDT1,10),?55,$J(SDT2,10),?70,$J((SDT1+SDT2),10)
+ Q
  ;
 DXHD ;Diagnosis sub-header
  Q:SDOUT  W !!,"Diagnosis",?43,"Primary",?56,"Secondary",?75,"Total",!,"------------------------------------",?40,"----------",?55,"----------",?70,"----------" Q

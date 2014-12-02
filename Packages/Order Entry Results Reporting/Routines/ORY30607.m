@@ -1,0 +1,107 @@
+ORY30607 ;SLC/RJS,CLA - OCX PACKAGE RULE TRANSPORT ROUTINE (Delete after Install of OR*3*306) ;MAR 13,2012 at 13:09
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**306**;Dec 17,1997;Build 43
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+S ;
+ ;
+ D DOT^ORY306ES
+ ;
+ ;
+ K REMOTE,LOCAL,OPCODE,REF
+ F LINE=1:1:500 S TEXT=$P($T(DATA+LINE),";",2,999) Q:TEXT  I $L(TEXT) D  Q:QUIT
+ .S ^TMP("OCXRULE",$J,$O(^TMP("OCXRULE",$J,"A"),-1)+1)=TEXT
+ ;
+ ;
+ ;
+ Q
+ ;
+DATA ;
+ ;
+ ;;EOR^
+ ;;KEY^860.3:^HL7 PHARMACY DCED ORDER
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 PHARMACY DCED ORDER
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^FILLER
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^PS
+ ;;R^"860.3:","860.31:2",.01,"E"
+ ;;D^2
+ ;;R^"860.3:","860.31:2",1,"E"
+ ;;D^CONTROL CODE
+ ;;R^"860.3:","860.31:2",2,"E"
+ ;;D^EQUALS ELEMENT IN SET
+ ;;R^"860.3:","860.31:2",3,"E"
+ ;;D^OC,OD
+ ;;EOR^
+ ;;KEY^860.3:^HL7 PHARMACY HASH MISMATCH
+ ;;R^"860.3:",.01,"E"
+ ;;D^HL7 PHARMACY HASH MISMATCH
+ ;;R^"860.3:",.02,"E"
+ ;;D^GENERIC HL7 MESSAGE ARRAY
+ ;;R^"860.3:","860.31:1",.01,"E"
+ ;;D^1
+ ;;R^"860.3:","860.31:1",1,"E"
+ ;;D^FILLER
+ ;;R^"860.3:","860.31:1",2,"E"
+ ;;D^EQ FREE TEXT
+ ;;R^"860.3:","860.31:1",3,"E"
+ ;;D^PS
+ ;;R^"860.3:","860.31:2",.01,"E"
+ ;;D^2
+ ;;R^"860.3:","860.31:2",1,"E"
+ ;;D^CONTROL REASON
+ ;;R^"860.3:","860.31:2",2,"E"
+ ;;D^CONTAINS
+ ;;R^"860.3:","860.31:2",3,"E"
+ ;;D^16
+ ;;EOR^
+ ;;EOF^OCXS(860.3)^1
+ ;;SOF^860.2  ORDER CHECK RULE
+ ;;KEY^860.2:^AUTO DCED CONTROLLED SUBSTANCE ORDERS
+ ;;R^"860.2:",.01,"E"
+ ;;D^AUTO DCED CONTROLLED SUBSTANCE ORDERS
+ ;;R^"860.2:","860.21:1",.01,"E"
+ ;;D^PHARM DCED
+ ;;R^"860.2:","860.21:1",.02,"E"
+ ;;D^SIMPLE DEFINITION
+ ;;R^"860.2:","860.21:1",1,"E"
+ ;;D^HL7 PHARMACY DCED ORDER
+ ;;R^"860.2:","860.21:2",.01,"E"
+ ;;D^PHARM HASH MISMATCH
+ ;;R^"860.2:","860.21:2",.02,"E"
+ ;;D^SIMPLE DEFINITION
+ ;;R^"860.2:","860.21:2",1,"E"
+ ;;D^HL7 PHARMACY HASH MISMATCH
+ ;;R^"860.2:","860.21:3",.01,"E"
+ ;;D^DEA CERT REVOKED
+ ;;R^"860.2:","860.21:3",.02,"E"
+ ;;D^SIMPLE DEFINITION
+ ;;R^"860.2:","860.21:3",1,"E"
+ ;;D^HL7 DEA CERT REVOKED
+ ;;R^"860.2:","860.22:1",.01,"E"
+ ;;D^1
+ ;;R^"860.2:","860.22:1",1,"E"
+ ;;D^PHARM DCED AND PHARM HASH MISMATCH
+ ;;R^"860.2:","860.22:1",3,"E"
+ ;;D^DEA AUTO DC CS MED ORDER
+ ;;R^"860.2:","860.22:1",5,"E"
+ ;;D^Med order(s) DCed. Resubmit or contact Pharmacy.
+ ;;R^"860.2:","860.22:2",.01,"E"
+ ;;D^2
+ ;;R^"860.2:","860.22:2",1,"E"
+ ;;D^PHARM DCED AND DEA CERT REVOKED
+ ;;R^"860.2:","860.22:2",3,"E"
+ ;;D^DEA CERTIFICATE REVOKED
+ ;;R^"860.2:","860.22:2",5,"E"
+ ;;D^Med orders(s) DCed. Cert revoked. Contact Pharm.
+ ;;EOR^
+ ;;EOF^OCXS(860.2)^1
+ ;1;
+ ;

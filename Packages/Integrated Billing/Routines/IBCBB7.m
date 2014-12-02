@@ -1,5 +1,5 @@
 IBCBB7 ;ALB/BGA - CONT. OF MEDICARE EDIT CHECKS ;09/10/98
- ;;2.0;INTEGRATED BILLING;**51,137,240,447**;21-MAR-94;Build 80
+ ;;2.0;INTEGRATED BILLING;**51,137,240,447,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ; Revenue Codes
@@ -61,12 +61,12 @@ IBCBB7 ;ALB/BGA - CONT. OF MEDICARE EDIT CHECKS ;09/10/98
  . . ; OUTPATIENT ANCILLARY only Rev Codes edit rec 61-04
  . . I IBREV1(IBREVC)="AO" D  Q
  . . . ;
- . . . ; Rev codes with different HCPCS codes can be duplicated
- . . . I $$FT^IBCEF(IBIFN)=3,$O(IBREV1(IBREVC,1))  D  Q:IBQUIT
- . . . . N IBMOD
- . . . . S IBMOD=$P(IBREVD,U,9)
- . . . . I IBI=1 K IBREVDUP S IBREVDUP(IBBCPT_" "_IBMOD)=""
- . . . . I '$$ISRX^IBCEF1(IBIFN),IBI>1,$D(IBREVDUP(IBBCPT_" "_IBMOD)),IBER'["IB192;" S IBQUIT=$$IBER^IBCBB3(.IBER,192)
+ . . . ; Rev codes with different HCPCS codes can be duplicated => baa ; 488 ; removed to allow splitting.
+ . . . ;I $$FT^IBCEF(IBIFN)=3,$O(IBREV1(IBREVC,1))  D  Q:IBQUIT
+ . . . ;. N IBMOD
+ . . . ;. S IBMOD=$P(IBREVD,U,9)
+ . . . ;. I IBI=1 K IBREVDUP S IBREVDUP(IBBCPT_" "_IBMOD)=""
+ . . . ;. I '$$ISRX^IBCEF1(IBIFN),IBI>1,$D(IBREVDUP(IBBCPT_" "_IBMOD)),IBER'["IB192;" S IBQUIT=$$IBER^IBCBB3(.IBER,192)
  . . . ;
  . . . ; Rev Code 49x can not be entered with 36x and 37x
  . . . I IBREVC12=49,$O(IBREV1(380),-1)'<360 S IBQUIT=$$IBER^IBCBB3(.IBER,195) Q:IBQUIT

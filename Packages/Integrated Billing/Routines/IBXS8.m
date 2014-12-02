@@ -1,6 +1,7 @@
-IBXS8 ; GENERATED FROM 'IB SCREEN8' INPUT TEMPLATE(#514), FILE 399;02/21/12
+IBXS8 ; GENERATED FROM 'IB SCREEN8' INPUT TEMPLATE(#514), FILE 399;09/29/14
  D DE G BEGIN
 DE S DIE="^DGCR(399,",DIC=DIE,DP=399,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DGCR(399,DA,""))=""
+ I $D(^("U2")) S %Z=^("U2") S %=$P(%Z,U,14) S:%]"" DE(36)=% S %=$P(%Z,U,15) S:%]"" DE(39)=% S %=$P(%Z,U,16) S:%]"" DE(32)=%,DE(33)=%
  I $D(^("U4")) S %Z=^("U4") S %=$P(%Z,U,1) S:%]"" DE(3)=% S %=$P(%Z,U,2) S:%]"" DE(6)=% S %=$P(%Z,U,3) S:%]"" DE(8)=% S %=$P(%Z,U,4) S:%]"" DE(23)=% S %=$P(%Z,U,5) S:%]"" DE(24)=% S %=$P(%Z,U,7) S:%]"" DE(14)=% S %=$P(%Z,U,8) S:%]"" DE(15)=%
  I  S %=$P(%Z,U,9) S:%]"" DE(9)=% S %=$P(%Z,U,10) S:%]"" DE(10)=% S %=$P(%Z,U,11) S:%]"" DE(11)=% S %=$P(%Z,U,13) S:%]"" DE(28)=% S %=$P(%Z,U,14) S:%]"" DE(29)=%
  I $D(^("U8")) S %Z=^("U8") S %=$P(%Z,U,1) S:%]"" DE(20)=% S %=$P(%Z,U,2) S:%]"" DE(18)=% S %=$P(%Z,U,3) S:%]"" DE(19)=%
@@ -67,9 +68,9 @@ X3 S:X["$" X=$P(X,"$",2) K:X'?.N.1".".2N!(X>999999999999999)!(X<0) X
 5 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=5 D X5 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X5 S:IBDR20'["82" Y="@83"
  Q
-6 S DW="U4;2",DV="F",DU="",DLB="Claim Number",DIFLD=261
+6 S DW="U4;2",DV="FX",DU="",DLB="Claim Number",DIFLD=261
  G RE
-X6 K:$L(X)>30!($L(X)<1) X
+X6 K:$L(X)>30!($L(X)<1)!($TR(X," ")="") X
  I $D(X),X'?.ANP K X
  Q
  ;
@@ -143,10 +144,10 @@ X24 S %DT="E" D ^%DT S X=Y K:DT<X X I $D(X),X<$P($G(^DGCR(399,DA,"U4")),U,4) K X
  ;
 25 S DQ=26 ;@86
 26 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=26 D X26 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X26 S:IBDR20'["86" Y="@899"
+X26 S:IBDR20'["86" Y="@87"
  Q
 27 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=27 D X27 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X27 S:$P($G(^DGCR(IBIFN,0)),U,19)=3 Y="@899"
+X27 S:$P($G(^DGCR(IBIFN,0)),U,19)=3 Y="@87"
  Q
 28 S DW="U4;13",DV="DX",DU="",DLB="Assumed Care Date",DIFLD=282
  G RE
@@ -158,5 +159,37 @@ X28 S %DT="E" D ^%DT S X=Y K:DT<X X I $D(X),$P($G(^DGCR(399,DA,"U4")),U,14)'="",
 X29 S %DT="E" D ^%DT S X=Y K:DT<X X I $D(X),X<$P($G(^DGCR(399,DA,"U4")),U,13) K X
  Q
  ;
-30 S DQ=31 ;@899
-31 G 0^DIE17
+30 S DQ=31 ;@87
+31 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=31 D X31 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X31 S:IBDR20'["87" Y="@88"
+ Q
+32 S DW="U2;16",DV="S",DU="",DLB="SPECIAL PROGRAM INDICATOR",DIFLD=238
+ S DU="01:EPSDT/CHAP;02:Phys Handicapped Children Program;03:Special Fed Funding;05:Disability;07:Induced Abortion - Danger to Life;08:Induced Abortion - Rape or Incest;09:2nd Opinion/Surgery;"
+ S X=$S($P($G(^DGCR(399,DA,"U2")),U,16)'="":$P($G(^DGCR(399,DA,"U2")),U,16),$$WNRBILL^IBEFUNC(DA):"31",1:"")
+ S Y=X
+ S X=Y,DB(DQ)=1,DE(DW,"4/")="" G:X="" N^DIE17:DV,A I $D(DE(DQ)),DV["I"!(DV["#") D E^DIE0 G A:'$D(X)
+ G RD:X="@",Z
+X32 Q
+33 S DW="U2;16",DV="S",DU="",DLB="Special Program",DIFLD=238
+ S DU="01:EPSDT/CHAP;02:Phys Handicapped Children Program;03:Special Fed Funding;05:Disability;07:Induced Abortion - Danger to Life;08:Induced Abortion - Rape or Incest;09:2nd Opinion/Surgery;"
+ G RE
+X33 Q
+34 S DQ=35 ;@88
+35 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=35 D X35 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X35 S:IBDR20'["88" Y="@89"
+ Q
+36 S DW="U2;14",DV="S",DU="",DLB="Homebound",DIFLD=236
+ S DU="0:NO;1:YES;"
+ G RE
+X36 Q
+37 S DQ=38 ;@89
+38 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=38 D X38 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X38 S:IBDR20'["89" Y="@899"
+ Q
+39 S DW="U2;15",DV="D",DU="",DLB="Date Last Seen",DIFLD=237
+ G RE
+X39 S %DT="EX" D ^%DT S X=Y K:Y<1 X
+ Q
+ ;
+40 S DQ=41 ;@899
+41 G 0^DIE17

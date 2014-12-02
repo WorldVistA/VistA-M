@@ -1,5 +1,5 @@
 LRWU ;SLC/RWF/MILW/J - UTILITY FUNTIONS ; 12/28/88  11:04 ;
- ;;5.2;LAB SERVICE;**42,138,153**;Sep 27, 1994
+ ;;5.2;LAB SERVICE;**42,138,153,432**;Sep 27, 1994;Build 2
 Z ;;set up 0th nodes for globals
  I '$D(@(LRZO_"0)")) S ^(0)="^"_LRZ1_"^^"
  S LRZI1=$S($P(@(LRZO_"0)"),"^",3)>LRZ3:$P(^(0),"^",3),1:LRZ3),LRZI2=$P(^(0),"^",4)+1,$P(^(0),"^",3,4)=LRZI1_"^"_LRZI2
@@ -15,7 +15,7 @@ LOC ;get pt. location, called by LRPDA1
  I $D(^LR(LRDFN,.1)) S LRLLOC=^(.1) G ASK
  S LRLLOC="UNKNOWN"
 ASK W !,"PATIENT LOCATION: ",LRLLOC,$S(LRLLOC]"":"// ",1:"") R X:DTIME G QUIT:'$T,QUIT:X[U I $L(X)>30!(X'?.ANP) W "  Enter 2 - 30 alpha-numeric name" G LOC
- K DIC S DIC("S")="I '$G(^(""OOS""))"
+ K DIC S DIC("S")="I '$G(^(""OOS""))&(""FI""'[$P($G(^(0)),""^"",3))"
  S LROLLOC="",DIC=44,DIC(0)="EMOQZ" S:X="" X=LRLLOC D ^DIC K DIC G LOC:X["?"
  S:Y>0 LROLLOC=+Y,LRLLOC=$P(Y(0),U,2),LRCAPLOC=$S($L($P(Y(0),U,3)):$P(Y(0),U,3),1:LRCAPLOC)
  I $L(LRLLOC) S ^LR(LRDFN,.1)=LRLLOC

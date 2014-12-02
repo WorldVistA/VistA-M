@@ -1,5 +1,5 @@
 ONCOU55 ;Hines OIFO/GWB - Utility routine # 1 ;06/23/10
- ;;2.11;ONCOLOGY;**6,7,15,19,22,28,35,41,43,44,51,56,57**;Mar 07, 1995;Build 6
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 LTS(DA,NOTTHIS) ;Sets LAST TUMOR STATUS field (165.5,95)
  ;Called by AC cross-reference of CANCER STATUS (165.573,.02)

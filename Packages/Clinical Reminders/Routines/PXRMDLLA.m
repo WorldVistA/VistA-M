@@ -1,15 +1,10 @@
-PXRMDLLA ;SLC/PJH - REMINDER DIALOG LOADER ;05/13/2011
- ;;2.0;CLINICAL REMINDERS;**6,12,18**;Feb 04, 2005;Build 152
+PXRMDLLA ;SLC/PJH - REMINDER DIALOG LOADER ;08/01/2013
+ ;;2.0;CLINICAL REMINDERS;**6,12,18,26**;Feb 04, 2005;Build 404
  ;
 FREC(DFIEN,DFTYP) ;Build type 3 record
  N CSARRAY,CSCNT
  ;Dialog type/text and resolution  
  S DNAM=$$NAME(DFIEN,DFTYP)
- D CODE^PXRMDLLB(DFIEN,DFTYP,.CSARRAY)
- I $D(CSARRAY)>0 D  Q
- . S CSCNT="" F  S CSCNT=$O(CSARRAY(CSCNT)) Q:CSCNT=""  D
- . . S OCNT=OCNT+1
- . . S ORY(OCNT)=3_U_DITEM_U_U_DPCE_U_DEXC_U_DFIEN_U_$G(CSARRAY(CSCNT))_U_DNAM_U_U_DVIT
  ;Translate vitals ien to PCE code - This will need a DBIA
  S DCOD=""
  I DPCE="VIT" D
@@ -39,7 +34,8 @@ GUI(IEN) ;Work out prompt type for PCE
  ;
 LOAD(DITEM,DCUR,DTTYP) ;Load dialog questions into array
  N DARRAY,DCOD,DEXC,DFIND,DFIEN,DFTYP,DNAM,DPCE,DRES,DSEQ,DSUB,DTYP,OCNT
- N DVIT,NODE,CNT,IDENT
+ N DVIT,NODE,CNT,IDENT,TAXBUILT,TAXNODE,TDX,TPR,TSEL
+ I +$G(DITEM)'>0 Q
  ;DBIA #3110    OR(101.41
  ;
  ;Build list of PCE codes
@@ -79,30 +75,34 @@ LOAD(DITEM,DCUR,DTTYP) ;Load dialog questions into array
  I DPCE'="T" D FREC(DFIEN,DFTYP)
  ;
  ;Taxonomy codes need expanding (3 - finding record)
- I DPCE="T" D EXP^PXRMDLLB(DFIEN,DCUR,DTTYP)
+ I DPCE="T" D
+ .S TAXBUILT=0
+ .I $G(DTTYP)="" D
+ ..S TAXNODE=$G(^PXRMD(801.41,DITEM,"TAX"))
+ ..S TSEL=$P(TAXNODE,U) I TSEL="N" Q
+ ..S TDX=$$TOK^PXRMDTAX(DFIEN,"POV")
+ ..S TPR=$$TOK^PXRMDTAX(DFIEN,"CPT")
+ ..I TSEL="D" S DTTYP="POV",TAXBUILT=1 Q
+ ..I TSEL="P" S DTTYP="CPT",TAXBUILT=1 Q
+ ..I TDX,TPR Q
+ ..I TDX S DTTYP="POV",TAXBUILT=1 Q
+ ..I TPR S DTTYP="CPT",TAXBUILT=1
+ .I $G(DTTYP)'="" D EXP^PXRMDLLB(DITEM,DFIEN,DCUR,DTTYP,5) I TAXBUILT=0 Q
+ .D EXPTAX^PXRMDLLB(DITEM,DFIEN,DCUR)
  ;
  ;Prompt details (4 - prompt records)
  N ARRAY,DTITLE,DREQ,DSEQ,DSSEQ,DSUB,DTYP
  ;If not a taxonomy get prompts from dialog file
- I DPCE'="T" D PROTH(DITEM)
+ I DPCE'="T" D PROTH(DITEM,"","")
  ;Check for MST findings
  I (DPCE'="T"),(DFTYP]"") D MST^PXRMDLLB(DFTYP,DFIEN)
  ;If taxonomy use finding parameters (CPT/POV)
  I DPCE="T" D
- .;Quit if finding type not passed
- .Q:DTTYP=""
+ .I $G(DTTYP)="",$G(^PXRMD(801.41,DITEM,"TAX"))'="N" Q
  .;
- .I $P($G(^PXRMD(801.41,DITEM,2)),U,5)="Y" Q
- .;if prompts are defined in the dialog use the prompts
- .I $D(^PXRMD(801.41,DITEM,10,"B"))>0 D PROTH(DITEM) Q
- .;
- .N RSUB,FNODE
- .;Get parameter file node for this finding type
- .S FNODE=$O(^PXRMD(801.45,"B",DTTYP,"")) Q:FNODE=""
- .;Derive resolution from line ien 1=done 2=done elsewhere
- .S RSUB=DCUR+1 I (RSUB<1)!(RSUB>2) Q
- .;Get details from 811.5
- .D PRTAX(FNODE,RSUB)
+ .I $D(^PXRMD(801.41,DITEM,10,"B"))>0 D  Q
+ ..I $G(DTTYP)'="",$G(DCUR)'="" D PROTH(DITEM,DTTYP,DCUR) Q
+ ..D PROTH(DITEM,"","")
  ;Return array of type 4 records
  S DSEQ=""
  F  S DSEQ=$O(ARRAY(DSEQ)) Q:'DSEQ  D
@@ -114,7 +114,11 @@ LOAD(DITEM,DCUR,DTTYP) ;Load dialog questions into array
  ..S ORY(OCNT)=4_U_DITEM_U_DSEQ_"."_DSSEQ_U_ARRAY(DSEQ,DSSEQ)
  ;
  ;Get progress note text if defined
- I DPCE'="T" D:'DEXC PTXT(DITEM)
+ ;I DPCE'="T" D:'DEXC PTXT(DITEM)
+ ;Build Alternate progress note text for taxonomies with more then one pick list.
+ I DTTYP="" D:'DEXC PTXT(DITEM)
+ ;Build Alternate progress note text for taxonomies with one pick list.
+ I DPCE="T",DTTYP'="" D:'DEXC PTXT(DITEM)
  ;Additional findings
  N FASUB
  S FASUB=0
@@ -122,7 +126,11 @@ LOAD(DITEM,DCUR,DTTYP) ;Load dialog questions into array
  .S DFIND=$P($G(^PXRMD(801.41,DITEM,3,FASUB,0)),U)
  .S DFIEN=$P(DFIND,";"),DFTYP=$P(DFIND,";",2) Q:DFTYP=""  Q:DFIEN=""
  .S DVIT="",DPCE=$G(DARRAY(DFTYP))
- .I DPCE'="" D FREC(DFIEN,DFTYP)
+ .I DPCE'="",DPCE'="T" D FREC(DFIEN,DFTYP)
+ .I DPCE'="",DPCE="T" D
+ ..D EXP^PXRMDLLB(DITEM,DFIEN,DCUR,"CPT",3)
+ ..D EXP^PXRMDLLB(DITEM,DFIEN,DCUR,"POV",3)
+ ;D EXPTAX^PXRMDLLB(DITEM,DFIEN,DCUR)
  Q
  ;
  ;
@@ -141,19 +149,21 @@ NAME(DFIEN,DFTYP) ;
  I NAME="" S NAME=DFIEN
  Q NAME
  ;
-PROTH(IEN) ; Additional prompts defined in 801.41
+PROTH(IEN,DTTYP,DCUR) ; Additional prompts defined in 801.41
  N DDATA,DDEF,DIEN,DEXC,DGUI,DNAME,DOVR,DREQ,DSEQ,DSNL,DSUB,DFTEXT
- N DTXT,DTYP,PRINT
+ N DTXT,DTYP,NODE,PRINT,TAX
  S DSEQ=0
  F  S DSEQ=$O(^PXRMD(801.41,IEN,10,"B",DSEQ)) Q:'DSEQ  D
  .;Get prompts in sequence
  .S DSUB=$O(^PXRMD(801.41,IEN,10,"B",DSEQ,"")) Q:'DSUB
+ .S NODE=$G(^PXRMD(801.41,IEN,10,DSUB,0))
  .;Prompt ien
  .S DIEN=$P($G(^PXRMD(801.41,IEN,10,DSUB,0)),U,2) Q:'DIEN
  .;Ignore disabled components, and those that are not prompts
- .;Q:($P($G(^PXRMD(801.41,DIEN,0)),U,3)]"")!("PF"'[$P($G(^(0)),U,4))
  .I $$ISDISAB^PXRMDLL(DIEN)=1 Q
  .Q:"PF"'[$P($G(^PXRMD(801.41,DIEN,0)),U,4)
+ .;check to make sure prompt is apporiate for the taxonomy encounter type
+ .I $G(DTTYP)'="",$G(DCUR)'="",$$TAXPRMPT(DIEN,DTTYP,DCUR)=0 Q
  .;Set defaults to null
  .S DDEF="",DEXC="",DREQ="",DSNL=""
  .;Prompt name and GUI process (quit if null)
@@ -237,11 +247,11 @@ PTXT(ITEM) ;Get progress note (WP) text for type 6 records
  .S OCNT=OCNT+1,ORY(OCNT)=6_U_ITEM_U_U_TEXT
  Q
  ;
-TOK(TIEN,TYPE) ;Check if selectable codes exist
- N DATA,FOUND,SUB
- S FOUND=0,SUB=0
- F  S SUB=$O(^PXD(811.2,TIEN,TYPE,SUB)) Q:'SUB  D  Q:FOUND
- .S DATA=$G(^PXD(811.2,TIEN,TYPE,SUB,0)) Q:DATA=""
- .;Ignore disabled codes
- .I '$P(DATA,U,3) S FOUND=1
- Q FOUND
+ ;function to determine if the prompt is valid for the taxonomy encounter type.
+TAXPRMPT(DIEN,DTTYP,DCUR) ;
+ N FIND,IEN
+ S IEN=$P($G(^PXRMD(801.41,DIEN,1)),U,4) I +IEN=0 Q 1
+ S FIND=$P($G(^PXRMD(801.45,IEN,0)),U) I FIND="" Q 1
+ I FIND=DTTYP Q 1
+ Q 0
+ ;

@@ -1,5 +1,5 @@
 GECSXBL1 ;WISC/RFJ-ask to mark code sheets for batching             ;01 Nov 93
- ;;2.0;GCS;**2**;MAR 14, 1995
+ ;;2.0;GCS;**2,37**;MAR 14, 1995;Build 3
  Q
  ;
  ;
@@ -32,5 +32,5 @@ ASKTOBAT(GECSDA) ;  ask to mark code sheet gecsda for batching
  .   I Y=5 D
  .   .   S %ZIS="Q" D ^%ZIS I POP Q
  .   .   I '$D(IO("Q")) U IO D PRINT^GECSUTIL(GECSDA) D ^%ZISC Q
- .   .   I $D(IO("Q")) K IO("Q") S ZTRTN="PRINTDQ^GECSUTIL",ZTDESC="Print Generic Code Sheet",ZTSAVE("GECSDA")="",ZTIO=IO_";"_IOST_";"_IOM_";"_IOSL D ^%ZTLOAD
+ .   .   I $D(IO("Q")) K IO("Q") S ZTRTN="PRINTDQ^GECSUTIL",ZTDESC="Print Generic Code Sheet",ZTSAVE("GECSDA")="",ZTIO=ION_";"_IOST_";"_IOM_";"_IOSL D ^%ZTLOAD
  Q

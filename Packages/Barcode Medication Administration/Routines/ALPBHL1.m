@@ -1,5 +1,5 @@
 ALPBHL1 ;OIFO-DALLAS MW,SED,KC - BCBU main HL7 message processor ;01/01/03
- ;;3.0;BAR CODE MED ADMIN;**7,8**;Mar 2004
+ ;;3.0;BAR CODE MED ADMIN;**7,8,73**;Mar 2004;Build 31
  ;
  S ALPBECH=HL("ECH")
  S ALPBCS=$E(ALPBECH)
@@ -131,7 +131,8 @@ ALPBHL1 ;OIFO-DALLAS MW,SED,KC - BCBU main HL7 message processor ;01/01/03
 PM ; process the message segments...
  S I=0
  F  S I=$O(ALPBMTXT(I)) Q:'I  D
- .S ALPBDATA=ALPBMTXT(I)
+ .S ALPBDATA=ALPBMTXT(I) I $O(ALPBMTXT(I,0)) D
+ ..N CONTLN S CONTLN=0 F  S CONTLN=$O(ALPBMTXT(I,CONTLN)) Q:'CONTLN  I $L($G(ALPBMTXT(I,CONTLN))) S ALPBDATA=ALPBDATA_ALPBMTXT(I,CONTLN)
  .S ALPBSEG=$P(ALPBDATA,ALPBFS)
  .; allergies segment...
  .I ALPBSEG="AL1" D
@@ -172,13 +173,13 @@ PM ; process the message segments...
  .I ALPBSEG="NTE" D
  ..; NTE segments can be multiple-lines.  set up an array (ALPBNTE(...)) to pass to the filer...
  ..; the first node will be the one that contains the NTE segment identifier
- ..S ALPBNTE(1)=ALPBDATA
+ ..N TMPI,TMPJ S TMPI=I S ALPBNTE(1)=$$UNESC^ALPBGEN(ALPBMTXT(I)) S I=TMPI
  ..S ALPBX=1
  ..; loop from ALPBMTXT(I) to retrieve any continuation lines...
- ..S J=0
- ..F  S J=$O(ALPBMTXT(I,J)) Q:'J  D
+ ..S TMPJ=0
+ ..F  S TMPJ=$O(ALPBMTXT(I,TMPJ)) Q:'TMPJ  D
  ...S ALPBX=ALPBX+1
- ...S ALPBNTE(ALPBX)=ALPBMTXT(I,J)
+ ...S ALPBNTE(ALPBX)=$$UNESC^ALPBGEN(ALPBMTXT(I,TMPJ)) S I=TMPI
  ..K ALPBX,J
  ..D NTE^ALPBHL1U(+$G(ALPBIEN),+$G(ALPBOIEN),.ALPBNTE,$G(ALPBFS),$G(ALPBCS),.ALPBFERR)
  ..I +$G(ALPBFERR("DIERR")) D ERRLOG^ALPBUTL1(+$G(ALPBIEN),+$G(ALPBOIEN),$G(ALPBHREC),"NTE",ALPBDATA,.ALPBFERR)

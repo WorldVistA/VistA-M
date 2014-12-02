@@ -1,5 +1,5 @@
-SDAPIER ;ALB/MJK - Outpatient API/Error Processing ; 22 FEB 1994 11:30 am
- ;;5.3;Scheduling;**27**;08/13/93
+SDAPIER ;ALB/MJK - Outpatient API/Error Processing ;22 FEB 1994 11:30 am
+ ;;5.3;Scheduling;**27,586**;08/13/93;Build 28
  ;
 ERRFILE(SDERROR,SDATA) ; -- file error
  N SDTEXT,SDTYPE,I,SDERDAT
@@ -89,8 +89,8 @@ ERRORS ; -- errors and warning messages
 1050 ;;W;PROV;"Provider #"_+SDATA_" is not a valid IEN. Data not added."
 1051 ;;W;PROV;"Provider #"_+SDATA_" is not a valid IEN. Data not processed."
 1052 ;;W;PROV;"Deleting provider #"_+SDATA_" was not attempted. At least one provider is required for 'checked-out'."
-1060 ;;W;DX;"Diagnosis code '"_+SDATA_"' is not a valid ICD9 code. Data not added."
-1061 ;;W;DX;"Diagnosis code '"_+SDATA_"' is not a valid ICD9 code. Data not processed."
+1060 ;;W;DX;"Diagnosis code '"_+SDATA_"' is not a valid ICD code. Data not added."
+1061 ;;W;DX;"Diagnosis code '"_+SDATA_"' is not a valid ICD code. Data not processed."
 1062 ;;W;DX;"Deleting diagnosis code '"_+SDATA_"' was not attempted. At least one dx code is required for 'checked-out'."
 1070 ;;W;STOPS;"Invalid stop code #"_+SDATA_". Code not added."
 1071 ;;W;STOPS;"No slots remain to file stop codes and CPT procedure codes."

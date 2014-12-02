@@ -1,5 +1,5 @@
 DGPFLMA3 ;ALB/KCL - PRF ASSIGNMENT LM PROTOCOL ACTIONS CONT. ; 6/2/05 3:24pm
- ;;5.3;Registration;**425,623,554,650**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**425,623,554,650,864**;Aug 13, 1993;Build 16
  ;
  ;no direct entry
  QUIT
@@ -68,6 +68,13 @@ EF ;Entry point for DGPF EDIT FLAG ASSIGNMENT action protocol.
  . ;get assignment into DGPFA array
  . I '$$GETASGN^DGPFAA(DGIEN,.DGPFA) D  Q
  . . W !!,"Unable to retrieve the record flag assignment selected."
+ . . D PAUSE^VALM1
+ . ;
+ . ;urgent address as female flag can't be edited dg*5.3*864
+ . I $P(DGPFA("FLAG"),",",2)="^URGENT    ADDRESS AS FEMALE" D  Q
+ . . W !!
+ . . W !!,"The URGENT    ADDRESS AS FEMALE Flag assignment cannot be edited."
+ . . W !!
  . . D PAUSE^VALM1
  . ;
  . ;is assignment edit allowed?

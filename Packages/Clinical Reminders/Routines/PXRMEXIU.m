@@ -1,5 +1,5 @@
-PXRMEXIU ;SLC/PKR/PJH - Utilities for installing repository entries. ;12/08/2011
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18**;Feb 04, 2005;Build 152
+PXRMEXIU ;SLC/PKR/PJH - Utilities for installing repository entries. ;01/18/2013
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,24,26**;Feb 04, 2005;Build 404
  ;===============================================
 DEF(FDA,NAMECHG) ;Check the reminder definition to make sure the related
  ;reminder exists and all the findings exist.
@@ -28,7 +28,7 @@ DEF(FDA,NAMECHG) ;Check the reminder definition to make sure the related
  ;Sponsor field 101.
  I $D(FDA(811.9,IENS,101)) D
  . S SPONSOR=FDA(811.9,IENS,101)
- . S IEN=$$FIND1^DIC(811.6,"","",SPONSOR)
+ . S IEN=$$FIND1^DIC(811.6,"","U",SPONSOR)
  . I IEN=0 D
  ..;Get replacement.
  .. N DIC,X,Y
@@ -72,29 +72,35 @@ EXISTS(FILENUM,NAME,FLAG) ;Check for existence of an entry with the
  .;it does.
  . S RESULT=$S($E(NAME,$L(NAME))'=" ":NAME_" ",1:NAME)
  . S FLAGS="MX"
- E  S FLAGS="BX"
- I FILENUM=811.6 S FLAGS=FLAGS_"U"
+ E  S FLAGS="BXU"
  ;File 8927.1 only allows upper case .01s.
  I FILENUM=8927.1 S RESULT=$$UP^XLFSTR(NAME)
  S IEN=$$FIND1^DIC(FILENUM,"",FLAGS,RESULT)
  I +IEN>0 Q IEN
  ;If IEN is null then there was an error try FIND^DIC.
- N FILENAME,LIST,MSG,NFOUND,TEXT
+ N IND,FILENAME,LIST,MLIST,MSG,NFOUND,NMATCH,TEXT
  D FIND^DIC(FILENUM,"","",FLAGS,NAME,"","","","","LIST","MSG")
  S NFOUND=+$P(LIST("DILIST",0),U,1)
  I NFOUND=0 Q 0
  I NFOUND=1 Q LIST("DILIST",2,1)
- ;Multiple entries with the same name found. If FLAG="W" display the
- ;warning message, return the first entry on the list and quit.
- I $G(FLAG)="W" D  Q LIST("DILIST",2,1)
+ ;Multiple entries with the same name found, search for a match with
+ ;the .01.
+ S NMATCH=0
+ F IND=1:1:NFOUND D
+ . I LIST("DILIST",1,IND)=NAME S NMATCH=NMATCH+1,MLIST(NMATCH)=IND
+ I NMATCH=1 Q LIST("DILIST",2,MLIST(1))
+ I NMATCH=0 Q 0
+ ;If FLAG="W" display the warning message, return the first entry on 
+ ;the list and quit.
+ I (NMATCH>1),$G(FLAG)="W" D  Q LIST("DILIST",2,1)
  . S FILENAME=$$GET1^DID(FILENUM,"","","NAME")
- . S TEXT(1)="Warning there are "_NFOUND_" "_FILENAME_" entries with the name "_NAME_"!"
+ . S TEXT(1)="Warning there are "_NMATCH_" "_FILENAME_" entries with the name "_NAME_"!"
  . S TEXT(2)="If this is used as a finding, and it is not resolved by FileMan during"
  . S TEXT(3)="installation, any component using this finding will not install."
  . D EN^DDIOL(.TEXT)
  . H 3
  ;If FLAG is not "W" prompt the user for the replacement.
- I NFOUND>1 S IEN=$$GETIEN^PXRMEXU0(NFOUND,.LIST)
+ I NMATCH>1 S IEN=$$GETIEN^PXRMEXU0(NMATCH,.LIST)
  Q IEN
  ;
  ;===============================================

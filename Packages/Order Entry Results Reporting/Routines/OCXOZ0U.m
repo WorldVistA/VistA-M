@@ -1,4 +1,4 @@
-OCXOZ0U ;SLC/RJS,CLA - Order Check Scan ;MAR 8,2011 at 13:52
+OCXOZ0U ;SLC/RJS,CLA - Order Check Scan ;JUN 14,2013 at 09:03
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -33,7 +33,7 @@ R50R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #50
  Q
  ;
 R50R2A ; Verify all Event/Elements of  Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHE...'  Relation #2 'CONTRAST MEDIA ORDER AND NO CREAT RESULTS W/IN X D...'
- ;  Called from EL130+6^OCXOZ0G, and EL133+5^OCXOZ0G.
+ ;  Called from EL130+6^OCXOZ0H, and EL133+5^OCXOZ0H.
  ;
  Q:$G(OCXOERR)
  ;
@@ -70,7 +70,7 @@ R50R2B ; Send Order Check, Notication messages and/or Execute code for  Rule #50
  Q
  ;
 R51R1A ; Verify all Event/Elements of  Rule #51 'RECENT CHOLECYSTOGRAM ORDER'  Relation #1 'RECENT CHOLECGRM'
- ;  Called from EL63+5^OCXOZ0G.
+ ;  Called from EL63+5^OCXOZ0H.
  ;
  Q:$G(OCXOERR)
  ;

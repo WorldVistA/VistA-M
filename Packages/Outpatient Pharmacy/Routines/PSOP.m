@@ -1,5 +1,5 @@
 PSOP ;BIR/SAB - Medication profile long or short ;02/25/94
- ;;7.0;OUTPATIENT PHARMACY;**2,15,98,132,148,326**;DEC 1997;Build 11
+ ;;7.0;OUTPATIENT PHARMACY;**2,15,98,132,148,326,313**;DEC 1997;Build 76
  ;External reference to PS(55 supported by DBIA 2228
  ;External reference to PS(59.7 supported by DBIA 694
  ;External reference to PSDRUG supported by DBIA 221
@@ -36,7 +36,7 @@ O S RX0=^PSRX(J,0),RX2=$G(^(2)),RX3=$G(^(3)),$P(RX0,"^",15)=$G(^("STA")),DRX="NO
  .W @IOF,!,$P(^DPT(DFN,0),"^"),?70,"Page: "_PAGE
  .W !?(80-$L("Medication Profile Sorted by "_HDR))/2,"Medication Profile Sorted by "_HDR W:$G(FR)]"" !?(80-$L(FR_" to "_TO))/2,FR_" to "_TO
  .W !,PSOPLINE
- W !!,"Rx #: "_CP_$P(RX0,"^"),$$ECME^PSOBPSUT(J),?32,"Drug: ",$G(DRX)
+ W !!,"Rx #: "_CP_$P(RX0,"^"),$$ECME^PSOBPSUT(J),$$TITRX^PSOUTL(J),?32,"Drug: ",$G(DRX)
  S PSOBRSIG=$P($G(^PSRX(J,"SIG")),"^",2) K FSIG,BSIG D
  .I PSOBRSIG D FSIG^PSOUTLA("R",J,70) Q
  .D EN2^PSOUTLA1(J,70) F IIII=0:0 S IIII=$O(BSIG(IIII)) Q:'IIII  S FSIG(IIII)=BSIG(IIII)

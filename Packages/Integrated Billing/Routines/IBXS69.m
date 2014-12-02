@@ -1,4 +1,4 @@
-IBXS69 ; ;02/21/12
+IBXS69 ; ;09/29/14
  D DE G BEGIN
 DE S DIE="^DGCR(399,D0,""RC"",",DIC=DIE,DP=399.042,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^DGCR(399,D0,"RC",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=% S %=$P(%Z,U,2) S:%]"" DE(3)=% S %=$P(%Z,U,3) S:%]"" DE(5)=% S %=$P(%Z,U,4) S:%]"" DE(6)=% S %=$P(%Z,U,5) S:%]"" DE(7)=% S %=$P(%Z,U,6) S:%]"" DE(9)=% S %=$P(%Z,U,7) S:%]"" DE(11)=%
@@ -110,7 +110,7 @@ C5S S X="" G:DG(DQ)=X C5F1 K DB
  S X=DG(DQ),DIC=DIE
  D 31^IBCU2
 C5F1 Q
-X5 K:X'?1.N X I $D(X) S:X=0 X=1
+X5 K:X'?1.3N X I $D(X) S:X=0 X=1 I X>800 K X
  Q
  ;
 6 D:$D(DG)>9 F^DIE17,DE S DQ=6,DW="0;4",DV="RNJ9,2XI",DU="",DLB="TOTAL",DIFLD=.04

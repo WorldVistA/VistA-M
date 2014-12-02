@@ -1,5 +1,5 @@
 PSOORNE3 ;ISC-BHAM/SAB - display pending orders from backdoor ;2/3/05 1:59pm
- ;;7.0;OUTPATIENT PHARMACY;**11,9,39,59,46,103,124,139,152,194**;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**11,9,39,59,46,103,124,139,152,194,391,313**;DEC 1997;Build 76
  ;Ext ref to ^SC (File #44) (DBIA 10040),^PSXOPUTL (DBIA 2200)
  ;^PS(50.606 (DBIA 2174),^PS(50.7 DBIA 2223),^PS(55,DBIA 2228)
  ;^PSDRUG (DBIA 221)
@@ -10,7 +10,9 @@ PSOORNE3 ;ISC-BHAM/SAB - display pending orders from backdoor ;2/3/05 1:59pm
  S PSONEW("# OF REFILLS")=$P(OR0,"^",11)
  S (Y,PSONEW("ISSUE DATE"))=$S($G(PSONEW("ISSUE DATE")):PSONEW("ISSUE DATE"),1:$E($P(OR0,"^",6),1,7)) X ^DD("DD")
  S PSONEW("CLERK CODE")=$P(OR0,"^",4),PSORX("CLERK CODE")=$P(^VA(200,$P(OR0,"^",4),0),"^")
- S (PSONEW("DFLG"),PSONEW("QFLG"))=0,PSODFN=$P(OR0,"^",2),PSONEW("QTY")=$P(OR0,"^",10),PSONEW("MAIL/WINDOW")=$S($P(OR0,"^",17)]"":$P(OR0,"^",17),1:"W")
+ S (PSONEW("DFLG"),PSONEW("QFLG"))=0,PSODFN=$P(OR0,"^",2)
+ I '$G(PSOMTFLG) S PSONEW("QTY")=$P(OR0,"^",10)
+ S PSONEW("MAIL/WINDOW")=$S($P(OR0,"^",17)]"":$P(OR0,"^",17),1:"W")
  S:$G(PSONEW("CLINIC"))']"" PSONEW("CLINIC")=$P(OR0,"^",13)
  S:$G(PSORX("CLINIC"))']"" PSORX("CLINIC")=$S($D(^SC(+$P(OR0,"^",13),0)):$P(^SC($P(OR0,"^",13),0),"^"),1:"")
  S PSONEW("CLERK CODE")=$P(OR0,"^",4),PSONEW("PROVIDER")=$P(OR0,"^",5),PSONEW("PROVIDER NAME")=$P(^VA(200,$P(OR0,"^",5),0),"^")
@@ -74,7 +76,7 @@ PST S:$G(PSODRUG("TRADE NAME"))]"" IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="          T
  .S X=PSONEW("SIG") D SIGONE^PSOHELP S SIG=$E($G(INS1),2,250)
  .F SG=1:1:$L(SIG) S:$L(^TMP("PSOPO",$J,IEN,0)_" "_$P(SIG," ",SG))>80 IEN=IEN+1,$P(^TMP("PSOPO",$J,IEN,0)," ",21)=" " S:$P(SIG," ",SG)'="" ^TMP("PSOPO",$J,IEN,0)=$G(^TMP("PSOPO",$J,IEN,0))_" "_$P(SIG," ",SG)
 DSP S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  (7)    Days Supply: "_PSONEW("DAYS SUPPLY")_$S($L(PSONEW("DAYS SUPPLY"))=1:" ",1:"")
- I '$D(PSONEW("FLD")),$D(RX0) S PSONEW("QTY")=$P(RX0,"^",7)
+ I '$D(PSONEW("FLD")),$D(RX0),'$G(PSOMTFLG) S PSONEW("QTY")=$P(RX0,"^",7)
  ;if sched PSONEW("FLD") not def. qty reset
  ;if qty PSONEW("FLD")=7, qty NOT reset
  S ^TMP("PSOPO",$J,IEN,0)=^TMP("PSOPO",$J,IEN,0)_"                     (8)   QTY"_$S($G(PSODRUG("UNIT"))]"":" ("_PSODRUG("UNIT")_")",1:" ( )")_": "_PSONEW("QTY")
@@ -84,6 +86,7 @@ DSP S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  (7)    Days Supply: "_PSONEW("DAYS SUP
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  (9)   # of Refills: "_PSONEW("# OF REFILLS")_$S($L(PSONEW("# OF REFILLS"))=1:" ",1:"")_"                     (10)  Routing: "_$S($G(PSONEW("MAIL/WINDOW"))="M":"MAIL",1:"WINDOW")
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=" (11)         Clinic: "_$S($G(PSONEW("CLINIC")):$P(^SC(PSONEW("CLINIC"),0),"^"),1:"")
  S $P(RN," ",31)=" ",IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=" (12)       Provider: "_PSONEW("PROVIDER NAME")_$E(RN,$L(PSONEW("PROVIDER NAME"))+1,31)_"(13)   Copies: "_$S($G(PSONEW("COPIES")):PSONEW("COPIES"),1:1) K RN
+ I $G(PKI),+$G(PSODRUG("DEA"))>1,+$G(PSODRUG("DEA"))<6 D PRV^PSOORFI5($G(PSONEW("PROVIDER")),$G(PSODRUG("IEN")),$P(OR0,"^"))
  I $G(PSONEW("COSIGNING PROVIDER"))]"" S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="        Cos-Provider: "_$P(^VA(200,PSONEW("COSIGNING PROVIDER"),0),"^")
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=" (14)        Remarks:"
  I $G(PSONEW("REMARKS"))]"" D

@@ -1,16 +1,13 @@
 PSSDSAPK ;BIR/RTR-Miscellaneous APIs for Dose Call ;09/02/09
- ;;1.0;PHARMACY DATA MANAGEMENT;**117,168**;9/30/97;Build 4
+ ;;1.0;PHARMACY DATA MANAGEMENT;**117,168,160**;9/30/97;Build 76
  ;
- ;USE PSSGT
  ;
- ;Disregard Package Use and Inactive Date in File 50, so you can still get General DOsing
- ;Guidelines, they are a priority dhen finding a Drug
- ;
+ ;Disregard Package Use and Inactive Date in File 50, so you can still get General Dosing Guidelines
  ;Return Dispense Drug for Orderable Item
  ;PSSGTOI = Orderable Item
  ;PSSGTPK = Package O for Outpatient, N for Non-VA Med, I for Inpatient
  ;PSSGTRTE = Med Route Internal Entry Number
- ;PSSGTAB = String containg A for Additive, B for Solution
+ ;PSSGTAB = String containing A for Additive, B for Solution
  ;PSSGTRES = result - 0 for No Drug found, or File 50 Internal Entry Number
 DRG(PSSGTOI,PSSGTPK,PSSGTRTE,PSSGTAB) ;
  I '$G(PSSGTOI) Q 0
@@ -18,7 +15,6 @@ DRG(PSSGTOI,PSSGTPK,PSSGTRTE,PSSGTAB) ;
  N PSSGTRES,PSSGTPM,PSSGT1,PSSGT2,PSSGT3,PSSGT4,PSSGT5,PSSGTHL1,PSSGTHL2
  S PSSGTPM=$S(PSSGTPK="I":"U",1:PSSGTPK)
  S (PSSGTRES,PSSGTHL1,PSSGTHL2)=0
- ;Next line, check with Lina, where you only go to DRGIMP if it's an Additive or Base
  I PSSGTPK="I",$G(PSSGTRTE),$P($G(^PS(51.2,PSSGTRTE,0)),"^",6)=1 I $G(PSSGTAB)["A"!($G(PSSGTAB)["B") G DRGINP
  F PSSGT1=0:0 S PSSGT1=$O(^PSDRUG("ASP",PSSGTOI,PSSGT1)) Q:'PSSGT1!(PSSGTHL2)  D
  .S PSSGT3=$P($G(^PSDRUG(PSSGT1,"ND")),"^"),PSSGT4=$P($G(^PSDRUG(PSSGT1,"ND")),"^",3)
@@ -34,6 +30,7 @@ DRG(PSSGTOI,PSSGTPK,PSSGTRTE,PSSGTAB) ;
  ;
  ;
 DRGINP ;Inpatient Order with IV Route
+ S PSSDSIVF=1  ;Added in 2.0 to set Input exception if no drug found
  N PSSGT6,PSSGT7,PSSGT8,PSSGTN1,PSSGTN3,PSSGTN4
  I PSSGTAB["A" D
  .F PSSGT6=0:0 S PSSGT6=$O(^PS(52.6,"AOI",PSSGTOI,PSSGT6)) Q:'PSSGT6!(PSSGTRES)  D
@@ -60,15 +57,21 @@ DRGINP ;Inpatient Order with IV Route
  Q PSSGTRES
  ;
  ;
-PRE(PSSLGTOI) ;Determine PreMix indication for CPRS for Orderable Item, 1 = PreMix, 0 = Not PreMix
+PRE(PSSLGTOI,PSSDIAG) ;Determine if CPRS needs to do order checks
  ;PSSLGTOI = File 50.7 Internal Entry Number
- N PSSLGT1,PSSLGT2,PSSLGT3
- I 'PSSLGTOI Q 0
- S PSSLGT2=0
- F PSSLGT1=0:0 S PSSLGT1=$O(^PS(52.7,"AOI",PSSLGTOI,PSSLGT1)) Q:'PSSLGT1!(PSSLGT2)  D
- .S PSSLGT3=$P($G(^PS(52.7,PSSLGT1,"I")),"^") I PSSLGT3,PSSLGT3'>DT Q
- .I $P($G(^PS(52.7,PSSLGT1,0)),"^",14)=1 S PSSLGT2=1
- Q PSSLGT2
+ ;PSSDIAG = CPRS order dialog (U:Inpatient; I:IV Fluids; O:Outpatient; N:Non-VA Meds)
+ ; If PSSDIAG is "I" then DO NOT use this call for additve entries.
+ ;If 1 is returned then CPRS needs to do enhanced order checks.  This means it is either a UD,
+ ; Outpatient, Non-VA, additive, or a premix solution.
+ ;If 0 is returned then enhanced order check is not needed to perform.
+ ;
+ I '+$G(PSSLGTOI) Q 0
+ I $G(PSSDIAG)="" Q 1
+ I PSSDIAG="O" Q 1
+ I PSSDIAG="N" Q 1
+ I PSSDIAG="I" Q +$$SOL^PSSDSAPA(PSSLGTOI)
+ I PSSDIAG="U" Q $$IPM^PSSDSAPA(PSSLGTOI)
+ Q 1
  ;
  ;
 CONV(PSSCVTVL) ;Convert hours into format for Dose API for Inpatient Medications
@@ -82,7 +85,6 @@ CONV(PSSCVTVL) ;Convert hours into format for Dose API for Inpatient Medications
  ;
  ;
 ITEM ;Only Orderable Item passed in, no Dispense Drug
- ;Test Unit containing "/", because that is dropped off in UNIT PSSDSAPI
  N PSSDBI1,PSSDBI2,PSSDBI3,PSSDBI4,PSSDBI5,PSSDBI6,PSSDBI7,PSSDBI8,PSSDBI9,PSSDBI91,PSSDBI92,PSSDBI93,PSSDBI94
  S PSSDBI1=$G(PSSDSLCL)
  I $L(PSSDBI1)'>0 Q
@@ -103,20 +105,12 @@ ITEM ;Only Orderable Item passed in, no Dispense Drug
  I PSSDBI4="" Q
  I PSSDBIFL S PSSDBI5=$$UNITD^PSSDSAPI(PSSDBI4)
  I 'PSSDBIFL S PSSDBI5=$$UNIT^PSSDSAPI(PSSDBI4)
- ;Clone UNit to UNITD in PSSDSAPI and only return if Dose Form indicator is set to No
  I PSSDBI5="" Q
  S PSSDBAR("AMN")=PSSDBI2,PSSDBAR("UNIT")=PSSDBI5,PSSDBFAL=1
  Q
  ;
  ;
-FRCON(PSSCFQ1) ;Convert frequency into a number for compleX Dose additions
- ;cODE FRO q#h, JUST IN CASE
- ;In PSSSDAPI, IF A SCHEDULE IS PASSED IN AN AS SAY Q3D, WE SAID WE CAN'T ASSUME THE SITE MEANS EVERY 3 DAYS, WE
- ; ONLY SET frq TO Q3D in this rouitne if we find a ftrequence in PSSDSAPI of 4320
- ;CHECK ROUNDING
- ;
- ;gIVE wARFARING 1MG Q12H, SHOW LINA FDB MESSAGE
- ;GIVE WARF 100MG Q12H AND 900NG ARON TEST (4320) SHOW HER ROUNDING
+FRCON(PSSCFQ1) ;Convert frequency into a number for complex dose additions
  N PSSCFQRS,PSSCFQ2,PSSCFQ3,PSSCFQ4
  S PSSCFQRS=0
  I PSSCFQ1?1N.N!(PSSCFQ1?1N.N1"."1N.N) S PSSCFQRS=PSSCFQ1 Q PSSCFQRS
@@ -153,7 +147,7 @@ FRCON(PSSCFQ1) ;Convert frequency into a number for compleX Dose additions
  Q 0
  ;
  ;
-SING ;4B AND 5
+SING ;
  S $P(PSSDBCAR(PSSDBEB1),"^")="S"
  S $P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",8)=1
  S $P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",9)=1
@@ -167,9 +161,9 @@ DOWN ;
  Q
  ;
  ;
-BDOSE ;Missing Numeric Dose or Dose Unit, Will do 3A and 3D
+BDOSE ;Missing Numeric Dose or Dose Unit
  I 'PSSDBEB3!($P(PSSDBEB2,"^",11)="") D EXCPS^PSSDSAPD(1) D:$D(PSSDBCAZ(PSSDBEB1,"FRQ_ERROR")) EXCPS^PSSDSAPD(2) S PSSDBDGO=1 Q
- I '$P(PSSDBCAR(PSSDBEB1),"^",5) D EXCPS^PSSDSAPD(1) D:$D(PSSDBCAZ(PSSDBEB1,"FRQ_ERROR")) EXCPS^PSSDSAPD(2) S PSSDBFTX(PSSDBEB1,"FTX_ERROR")="" Q
+ S $P(PSSDBCAR(PSSDBEB1),"^",20)=1 I '$P(PSSDBCAR(PSSDBEB1),"^",5) D EXCPS^PSSDSAPD(1) D:$D(PSSDBCAZ(PSSDBEB1,"FRQ_ERROR")) EXCPS^PSSDSAPD(2) S PSSDBFTX(PSSDBEB1,"FTX_ERROR")="" Q
  S PSSDBDGO=1
  D EXCPS^PSSDSAPD(1)
  I $D(PSSDBCAZ(PSSDBEB1,"FRQ_ERROR")) D EXCPS^PSSDSAPD(2)
@@ -204,18 +198,18 @@ FTXRS ;Reset input globals that were pulled because of invalid dosage
 ERR1() ;Screen out Daily Dose errors for Single Dose Sequences, unless New Daily Dose created based on previous Dosing sequences
  ;Called from PSSDSEXC
  N PSSERS,PSSERSU
- I $P($G(PSSDBCAR(PSSDWLP)),"^")'="S"!($P($G(PSSDBCAR(PSSDWLP)),"^",11)) Q 0
+ ;I $P($G(PSSDBCAR(PSSDWLP)),"^")'="S"!($P($G(PSSDBCAR(PSSDWLP)),"^",11)) Q 0  ;uncomment line for 2.1, for Daily Dose functionality
  S PSSERS=$G(^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"MSG"))
  S PSSERSU=$$UP^XLFSTR(PSSERS)
  I PSSERSU'["DAILY DOSE" Q 0
  Q 1
  ;
  ;
-ERR2() ;Screen out Frequency errors if Dosing Sequence flagged for Single Dose only 
+ERR2() ;Screen out Frequency errors if Dosing Sequence is flagged for Single Dose only 
  ;Called from PSSDSEXC
  N PSSERH,PSSERHU,PSSERHRS
  S PSSERHRS=0
- I $P($G(PSSDBCAR(PSSDWE1)),"^",12)!($P($G(PSSDBCAR(PSSDWE1)),"^",5)=0) D
+ D  ;I $P($G(PSSDBCAR(PSSDWE1)),"^",12)!($P($G(PSSDBCAR(PSSDWE1)),"^",5)=0) D  ;Remove 'D' and uncomment line for 2.1
  .S PSSERH=PSSDWEGC
  .S PSSERHU=$$UP^XLFSTR(PSSERH)
  .I PSSERHU["UNDEFINED FREQUENCY"!(PSSERHU["FREQUENCY GREATER") S PSSERHRS=1
@@ -239,9 +233,7 @@ INFERRS ;
 GENERRX ;Set General Dosing Guidelines exception
  ;This code, not being used, was moved from PSSDSEXC to have a record of old functionality, in case we need it again
  Q
- ;Since this is the last one, if no Exceptions exist for the RX_NUM, just set TMPs 1 and 2, like in third Exception
- ;paragraph above. If Exeptions do exist, just set the one entry after incrementing, because you are just
- ;adding to the REASON list
+ ;
  N PSSDWF1,PSSDWF2,PSSDWF3,PSSDWF4
  S PSSDWF2=0 F PSSDWF1=0:0 S PSSDWF1=$O(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE5,PSSDWF1)) Q:'PSSDWF1  S PSSDWF2=PSSDWF1
  I 'PSSDWF2 D  Q
@@ -249,7 +241,6 @@ GENERRX ;Set General Dosing Guidelines exception
  .I PSSDBASB S ^TMP($J,PSSDBASG,"OUT",PSSDWE5,"EXCEPTIONS",1)="Dosing Checks could not be performed for Drug: "_$P(PSSDBCAR(PSSDWE5),"^",2)
  .I PSSDBASA S ^TMP($J,PSSDBASF,"OUT","EXCEPTIONS","DOSE",PSSDWE5,2)="  General Dosing guidelines are not available"
  .I PSSDBASB S ^TMP($J,PSSDBASG,"OUT",PSSDWE5,"EXCEPTIONS",2)="  General Dosing guidelines are not available"
- .;Need to set exception documented in ICD-OTHER PIECES STILL NEED SET, WHAT IF A DOSE YOU CREATED)
  .S ^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE5,1)="^^^^^^Dosing Checks could not be performed for Drug: "_$P(PSSDBCAR(PSSDWE5),"^",2)_"^^^"_"General Dosing guidelines are not available"
  S PSSDWF2=PSSDWF2+1
  S ^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE5,PSSDWF2)="^^^^^^Dosing Checks could not be performed for Drug: "_$P(PSSDBCAR(PSSDWE5),"^",2)_"^^^"_"General Dosing guidelines are not available"
@@ -262,7 +253,7 @@ GENERRX ;Set General Dosing Guidelines exception
  .S PSSDWF3=0
  .F PSSDWF4=0:0 S PSSDWF4=$O(^TMP($J,PSSDBASG,"OUT",PSSDWE5,"EXCEPTIONS",PSSDWF4)) Q:'PSSDWF4  S PSSDWF3=PSSDWF4
  .S PSSDWF3=PSSDWF3+1
- .S ^TMP($J,PSSDBASG,"OUT",PSSDWE5,"EXCEPTIONS",PSSDWF3)="  General DOsing guidelines are not available"
+ .S ^TMP($J,PSSDBASG,"OUT",PSSDWE5,"EXCEPTIONS",PSSDWF3)="  General Dosing guidelines are not available"
  Q
  ;
  ;
@@ -302,13 +293,14 @@ FRDR ;Check if Duration exists, and is less than Duration of Schedule
  ;
 NOEXP ;Don't show any exceptions for a drug level error
  N PSSNOE1,PSSNOE2
- F PSSNOE1=0:0 S PSSNOE1=$O(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE1,PSSNOE1)) Q:'PSSNOE1!($D(PSSNOE9(PSSDWE1)))  D
- .S PSSNOE2=$P($G(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE1,PSSNOE1)),"^",10) I PSSNOE2="" S PSSNOE9(PSSDWE1)="" D NOEXPG Q
- .I PSSNOE2["GCNSEQNO"!(PSSNOE2["Drug not matched to NDF")!(PSSNOE2["No active IV Additive/Solution marked for IV fluid order entry") S PSSNOE9(PSSDWE1)="" D NOEXPS
+ F PSSNOE1=0:0 S PSSNOE1=$O(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE1,PSSNOE1)) Q:'PSSNOE1  D
+ .S PSSNOE2=$P($G(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE1,PSSNOE1)),"^",10) I PSSNOE2="" S PSSNOE9(PSSDWE1)=""!(PSSNOE2["GCNSEQNO") D NOEXPG Q
+ .I PSSNOE2["Drug not matched to NDF"!(PSSNOE2["No active IV Additive/Solution marked for IV fluid order entry") S PSSNOE9(PSSDWE1)="" D NOEXPS
  Q
  ;
  ;
 NOEXPS ;Set Drug level error
+ I PSSNOE2["Drug not matched to NDF" S PSSENHKZ(PSSDWE1)=1
  I PSSDBASA D
  .S ^TMP($J,PSSDBASF,"OUT","EXCEPTIONS","DOSE",PSSDWE1,1)=$P($G(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE1,PSSNOE1)),"^",7)
  .S ^TMP($J,PSSDBASF,"OUT","EXCEPTIONS","DOSE",PSSDWE1,2)="  Reason(s): "_$P($G(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE1,PSSNOE1)),"^",10)
@@ -319,8 +311,55 @@ NOEXPS ;Set Drug level error
  ;
  ;
 NOEXPG ;Set GCNSEQNO exception
+ S PSSENHKZ(PSSDWE1)=1
  I PSSDBASA D
  .S ^TMP($J,PSSDBASF,"OUT","EXCEPTIONS","DOSE",PSSDWE1,1)=$P($G(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE1,PSSNOE1)),"^",7)
  I PSSDBASB D
  .S ^TMP($J,PSSDBASG,"OUT",PSSDWE1,"EXCEPTIONS",1)=$P($G(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE1,PSSNOE1)),"^",7)
+ Q
+ ;
+ ;
+DPL ;Set Dose display text, called from PSSDSAPD
+ S PSSDSDPL(PSSDBFDB(PSSDBLP,"RX_NUM"))=""
+ I $D(PSSDBFDB(PSSDBLP,"DOSE_AMT")),$D(PSSDBFDB(PSSDBLP,"DOSE_UNIT")) S PSSDSDPL(PSSDBFDB(PSSDBLP,"RX_NUM"))=PSSDBFDB(PSSDBLP,"DOSE_AMT")_" "_PSSDBFDB(PSSDBLP,"DOSE_UNIT") D DPLZ Q
+ I $G(PSSDBDS(PSSDBLP,"DRG_AMT")),$G(PSSDBDS(PSSDBLP,"DRG_UNIT"))'="" S PSSDSDPL(PSSDBFDB(PSSDBLP,"RX_NUM"))=$G(PSSDBDS(PSSDBLP,"DRG_AMT"))_" "_$G(PSSDBDS(PSSDBLP,"DRG_UNIT")) D DPLZ Q
+ S PSSDSDPL(PSSDBFDB(PSSDBLP,"RX_NUM"))=$S($G(PSSDBDS(PSSDBLP,"DOSE"))'="":$P($G(PSSDBDS(PSSDBLP,"DOSE")),"&",5),1:$G(PSSDBDS(PSSDBLP,"DO")))
+ Q
+ ;
+ ;
+DPLZ ;
+ I $E(PSSDSDPL(PSSDBFDB(PSSDBLP,"RX_NUM")))="." S PSSDSDPL(PSSDBFDB(PSSDBLP,"RX_NUM"))="0"_PSSDSDPL(PSSDBFDB(PSSDBLP,"RX_NUM"))
+ Q
+ ;
+COMMENT ;
+ ;The following line at DRG+12 was commented out, but needed to uncomment for CCR 4971, but other changes seemed to
+ ;resolve this issue
+ ;.S:'PSSGTHL1 PSSGTHL1=PSSGT1
+ ;Original reason for comment:
+ ;Commented the Package Use and Inactive Date check out in 2.0 because of the logic failure of a Drug Level error from
+ ;CPRS, we check the Drug level error and don't return to error to CPRS if the enhanced order check was shown, to avoid
+ ;duplicate "dosing" error messages. But we need to restore in 2.1 to get General Dosing Guidelines, and look at another
+ ;way to handle the duplicate "dosing" drug level error messages.
+ Q
+ ;
+ ;
+CKWRN ;Set flag indicating a warning exists
+ N PSSWAF1,PSSWAF2,PSSWAF3
+ S PSSWAF3=0 F PSSWAF1=0:0 S PSSWAF1=$O(^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSWAF1)) Q:'PSSWAF1!(PSSWAF3)  D
+ .I $G(^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSWAF1,"TEXT"))'="" D
+ ..S PSSWAF2=$S($G(^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSWAF1,"SEV"))="Warning":0,1:1)
+ ..I 'PSSWAF2 S $P(PSSDBCAR(PSSDWLP),"^",22)=1,PSSWAF3=1
+ Q
+ ;
+ ;
+ADOSE ;Add DOSE subscript to any EXCEPTION from interface without DOSE subscript
+ I '$O(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS",PSSDWEX3,"")) Q
+ N PSSDWEZ4,PSSDWEZ5,PSSDWEZ6,PSSDWEZ7
+ S PSSDWEZ4=0 F PSSDWEZ7=0:0 S PSSDWEZ7=$O(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWEX3,PSSDWEZ7)) Q:'PSSDWEZ7  S PSSDWEZ4=PSSDWEZ7
+ S PSSDWEZ4=PSSDWEZ4+1
+ F PSSDWEZ5=0:0 S PSSDWEZ5=$O(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS",PSSDWEX3,PSSDWEZ5)) Q:'PSSDWEZ5  D
+ .S PSSDWEZ6=^TMP($J,PSSDBASE,"OUT","EXCEPTIONS",PSSDWEX3,PSSDWEZ5)
+ .S ^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWEX3,PSSDWEZ4)=PSSDWEZ6
+ .I $P(PSSDWEZ6,"^",10)'="" S $P(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWEX3,PSSDWEZ4),"^",7)="Maximum Single Dose Check could not be performed for Drug: "_$P(PSSDBCAR(PSSDWEX3),"^",2) ;Changed for 2.0
+ .S PSSDWEZ4=PSSDWEZ4+1
  Q

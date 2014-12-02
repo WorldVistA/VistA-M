@@ -1,6 +1,6 @@
 IBTOBI ;ALB/AAS - CLAIMS TRACKING BILLING INFORMATION PRINT ;27-OCT-93
- ;;2.0;INTEGRATED BILLING;**91,160,199,309,276**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**91,160,199,309,276,458**;21-MAR-94;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % I '$D(DT) D DT^DICRW
  W !!,"Bill Preparation Report for a Single Visit"
@@ -111,7 +111,7 @@ MBI ; -- Misc. billing info
  S IBD(1,2)=" Visit Billable: "_$S('$P(IBTRND,"^",19):"YES",1:"NO-"_$$EXPAND^IBTRE(356,.19,$P(IBTRND,"^",19)))
  S IBD(2,2)=" Second Opinion: "_$S('$P(IBTRND,"^",14):"NOT REQUIRED",1:$S('$P(IBTRND,"^",15):"REQUIRED-NOT OBTAINED",1:"OBTAINED"))
  S IBD(3,2)=" Auto Bill Date: "_$$FMTE^XLFDT($P(IBTRND,"^",17),1)
- S IBD(4,2)="Special Consent: ROI "_$S('$P(IBTRND,"^",31):"NOT DETERMINED",1:$$EXPAND^IBTRE(356,.31,$P(IBTRND,"^",31)))
+ S IBD(4,2)="Special Consent: ROI "_$S('$P(IBTRND,"^",31):"NOT DETERMINED",1:$$ROIEVT^IBTRR1(IBTRN))
  S IBD(5,2)="Special Billing: "_$$EXPAND^IBTRE(356,.12,$P(IBTRND,"^",12))
  Q
  ;

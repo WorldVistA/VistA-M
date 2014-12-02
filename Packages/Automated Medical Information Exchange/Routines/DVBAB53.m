@@ -1,5 +1,5 @@
 DVBAB53 ;ALB/SPH - CAPRI DISCHARGE REPORT ; 3/5/12 11:30am
- ;;2.7;AMIE;**35,99,100,149,179**;Apr 10, 1995;Build 15
+ ;;2.7;AMIE;**35,99,100,149,179,185**;Apr 10, 1995;Build 18
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;Input: ZMSG      - Output Array for discharge report (By Ref)
@@ -77,7 +77,7 @@ PRINTND ;create non-delimited discharge report
  Q
  ;
 PRINTD ;create delimited discharge report
- N ELIG,INCMP
+ N ELIG,INCMP,DVBATMP,X,X1,X2,X3
  D:('$D(^XTMP("DVBA_DISCHARGE_RPT"_$J,0))) COLHDR
  S ^TMP("DVBAR",$J,DVBABCNT)=PNAM_DVBADLMTR_CNUM_DVBADLMTR_CFLOC_DVBADLMTR_SSN_DVBADLMTR
  S ^TMP("DVBAR",$J,DVBABCNT)=^TMP("DVBAR",$J,DVBABCNT)_$$FMTE^XLFDT(DCHGDT,"5DZ")_DVBADLMTR_TDIS_DVBADLMTR
@@ -91,6 +91,19 @@ PRINTD ;create delimited discharge report
  I $D(^DPT(DA,.29)) S INCMP=$S($P(^(.29),U,12)=1:"Incompetent",1:"")
  ;
  S ^TMP("DVBAR",$J,DVBABCNT)=^TMP("DVBAR",$J,DVBABCNT)_ELIG_$S(((ELIG]"")&(INCMP]"")):", ",1:"")_INCMP
+ ;
+ S DVBATMP=^TMP("DVBAR",$J,DVBABCNT)
+ S X=$P(DVBATMP,DVBADLMTR,4)
+ I $L(X)'>9 S X=""""_$E("000000000",1,9-$L(X))_X_"""",X1=$E(X,1,4),X2=$E(X,5,6),X3=$E(X,7,11),X=X1_"-"_X2_"-"_X3
+ I $E(X,10,10)'?.N S X=""""_$E("0000000000",1,10-$L(X))_X_"""",X1=$E(X,1,4),X2=$E(X,5,6),X3=$E(X,7,12),X=X1_"-"_X2_"-"_X3
+ S $P(DVBATMP,DVBADLMTR,4)=X
+ S X=$P(DVBATMP,DVBADLMTR,2)
+ S X=$C(160)_X
+ S $P(DVBATMP,DVBADLMTR,2)=X
+ F I=1:1:$L(DVBATMP,DVBADLMTR) I $P(DVBATMP,DVBADLMTR,I)["," S $P(DVBATMP,DVBADLMTR,I)=""""_$P(DVBATMP,DVBADLMTR,I)_""""
+ S DVBATMP=$TR(DVBATMP,DVBADLMTR,",")
+ S ^TMP("DVBAR",$J,DVBABCNT)=DVBATMP
+ ;
  S DVBABCNT=DVBABCNT+1
  Q
  ;
@@ -140,6 +153,8 @@ KILL K:(DVBAFNLDTE=$P(EDATE,".")) ^XTMP("DVBA_DISCHARGE_RPT"_$J,0)
 DEQUE K ^TMP($J) G GO
  ;
 COLHDR ;Column header for delimited report
+ N DVBADLMTR
+ S DVBADLMTR=","
  S ^TMP("DVBAR",$J,DVBABCNT)="Patient Name"_DVBADLMTR_"Claim No"_DVBADLMTR_"Claim Folder Loc"_DVBADLMTR
  S ^TMP("DVBAR",$J,DVBABCNT)=(^TMP("DVBAR",$J,DVBABCNT))_"Social Sec No"_DVBADLMTR_"Discharge Date"_DVBADLMTR
  S ^TMP("DVBAR",$J,DVBABCNT)=(^TMP("DVBAR",$J,DVBABCNT))_"Type of Discharge"_DVBADLMTR_"Length of Stay"_DVBADLMTR

@@ -1,5 +1,5 @@
 SROPCE1 ;BIR/ADM - ASK SC/EI QUESTIONS FOR PCE AND CROSS REFERENCE LOGIC ;07/24/07
- ;;3.0; Surgery ;**58,105,119,150,152,159**;24 Jun 93;Build 4
+ ;;3.0;Surgery;**58,105,119,150,152,159,177**;24 Jun 93;Build 89
  ;
  ; Reference to CL^SDCO21 supported by DBIA #406
  ; Reference to DIS^DGRPDB supported by DBIA #700
@@ -44,7 +44,7 @@ UPDX I $D(SRTN),X,$D(^SRF(SRTN,15)) D
  .D:(Z["Y")!(Z["y") UPDSC
  .I Z["?" D  G UPDX
  ..W !!,"Associate all of the existing OTHER POSTOP DIAGNOSIS for this surgical case with the new Eligibility and Service Connected Conditions?"
- ..W !,"To edit diagnoses classification status individually, please use the Physician's Verification or the CPT/ICD9 Coding screens"
+ ..W !,"To edit diagnoses classification status individually, please use the Physician's Verification or the CPT/ICD Coding screens"
 END K DA,DIE,DR,SRZ,X,Y I 'SRQ,'$D(SRREQ),'$D(SRWLST) D PRESS
  Q
 SC S DIR("A")="Treatment related to Service Connected condition (Y/N)",DIR(0)=$S($D(SRWLST):"133.801,16",1:"130,.016") D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) S SRQ=1 Q

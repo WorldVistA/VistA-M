@@ -1,5 +1,5 @@
 ONCPPC0 ;HIRMFO/GWB - PCE Studies of Prostate Cancer ;3/18/96
- ;;2.11;ONCOLOGY;**6,15**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 CHECK ;Check PCE eligibility
 MENU ;Prostate PCE menu
  S $P(^ONCO(165.5,ONCONUM,7),U,15)="PRO"

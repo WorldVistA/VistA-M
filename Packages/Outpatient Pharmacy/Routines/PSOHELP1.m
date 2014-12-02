@@ -1,5 +1,5 @@
 PSOHELP1 ;BIR/SAB-OUTPATIENT HELP TEXT/UTILITY ROUTINE 2 ;11/09/92
- ;;7.0;OUTPATIENT PHARMACY;**23,36,88,146,227,222**;DEC 1997;Build 12
+ ;;7.0;OUTPATIENT PHARMACY;**23,36,88,146,227,222,408**;DEC 1997;Build 100
  ;External reference ^DIC(19.2 supported by DBIA 1472
  ;External reference ^PSDRUG( supported by DBIA 221
  ;External reference ^PS(55 supported by DBIA 2228
@@ -53,6 +53,7 @@ AUTOQ ;entry point to queue all background jobs
  D QUP,CLO ;ques amis compile
  D SETUP^PSOHLEXP ;ques exipration status update
  D AUTO^PSOSUDEL ;ques job to deleted rxs printed from 52.5
+ D AUTO^PSOSPML0 ;ques job to transmit CS Rx's to the states
 CLO K Y,C,D,D0,DI,DQ,DA,DIE,DR,DIC,Y,X,PSOTM,PSOOPTN,%DT,PSOPTN
  Q
 QUP K %DT,DIC,DTOUT S DIC(0)="XZM",DIC="^DIC(19.2,",X="PSO AMIS COMPILE" D ^DIC

@@ -1,5 +1,5 @@
-ECXAPRO1 ;ALB/JAP - PRO Extract Audit Report (cont) ;9/20/11  11:19
- ;;3.0;DSS EXTRACTS;**9,21,132**;Dec 22, 1997;Build 18
+ECXAPRO1 ;ALB/JAP - PRO Extract Audit Report (cont) ;3/14/13  14:50
+ ;;3.0;DSS EXTRACTS;**9,21,132,144**;Dec 22, 1997;Build 9
  ;
 DISP ;entry point
  N DIC,DA,DR,DIRUT,DTOUT,DUOUT,JJ,SS,LN,PG,QFLG,STN,TYPE
@@ -7,8 +7,9 @@ DISP ;entry point
  U IO
  S (QFLG,PG)=0,$P(LN,"-",80)=""
  F TYPE="N","R","RT" S STN="",STN=$O(^TMP($J,TYPE,STN)) D  Q:QFLG
- .D HEADER
+ .I '$G(ECXPORT) D HEADER ;144
  .D CDATA Q:QFLG
+ I $G(ECXPORT) Q  ;144 Stop processing if exporting
  I $E(IOST)'="C" D
  .W @IOF S PG=PG+1
  .W !,ECXARRAY("TYPE")_" ("_ECXHEAD_") Extract Audit Report"
@@ -27,6 +28,7 @@ CDATA ;accummulate data within each nppd group
  S (GCA,GCB,GCC)=0
  S (CA,CB,CC)=0
  I '$D(^TMP($J,TYPE)) D  Q
+ .I $G(ECXPORT) Q  ;144 Stop processing if exporting
  .W !,?26,"No data available.",!
  .I $E(IOST)="C",'QFLG D
  ..S SS=22-$Y F JJ=1:1:SS W !
@@ -36,24 +38,30 @@ CDATA ;accummulate data within each nppd group
  ..I TYPE="R",GRP["R9" S GRP="R90"
  ..S GRPHEAD=^TMP($J,"RMPRCODE",GRP)
  ..I LINEP="" D
+ ...I $G(ECXPORT) Q  ;144 Stop processing if exporting
  ...D:($Y+5>IOSL) HEADER Q:QFLG
  ...W !,GRPHEAD
  .I $E(LINE,0,3)'=$E(LINEP,0,3),LINEP'="" D  Q:QFLG
+ ..I $G(ECXPORT) Q  ;144 Stop processing if exporting
  ..D:($Y+5>IOSL) HEADER Q:QFLG 
  ..W !,LN,!
  ..W ?26,$J(CA,5,0),?34,$J(CB,5,0),?42,$J((CA+CB),5,0),?51,$J(CC,7,0),!
  ..S (CA,CB,CC)=0
  ..D:($Y+5>IOSL) HEADER Q:QFLG 
  ..W:LINE'["R99" !,GRPHEAD
- .D:($Y+3>IOSL) HEADER Q:QFLG 
- .W !,LINE,?6,$E($P(^TMP($J,TYPE,STN,LINE),U,15),1,15)
+ .I '$G(ECXPORT) D:($Y+3>IOSL) HEADER Q:QFLG   ;144 Don't display if exporting
+ .I '$G(ECXPORT) W !,LINE,?6,$E($P(^TMP($J,TYPE,STN,LINE),U,15),1,15) ;144 Don't display if exporting
  .S A1=+$P(^TMP($J,TYPE,STN,LINE),U,1),A2=+$P(^(LINE),U,2),A3=+$P(^(LINE),U,3)
+ .I $G(ECXPORT) D  Q  ;144
+ ..S ^TMP($J,"ECXPORT",CNT)=STN_U_ECXEXT_U_$S(TYPE="N":"NEW",TYPE="R":"REPAIR",1:"RENTAL")_U_GRPHEAD_U_LINE_U_A1_U_A2_U_(A1+A2)_U_$FN(A3,"",0)_U_$S(A2>0:$FN(A3/A2,"",0),1:""),CNT=CNT+1 ;144
+ ..S LINEP=LINE ;144
  .W ?26,$J(A1,5,0) S CA=CA+A1,GCA=GCA+A1
  .W ?34,$J(A2,5,0) S CB=CB+A2,GCB=GCB+A2
  .W ?42,$J(A1+A2,5,0)
  .W ?51,$J(A3,7,0) S CC=CC+A3,GCC=GCC+A3
  .W:A2>0 ?61,$J(A3/A2,6,0)
  .S LINEP=LINE
+ I $G(ECXPORT) Q  ;144 Stop processing if exporting
  Q:QFLG
  D SUM
  Q

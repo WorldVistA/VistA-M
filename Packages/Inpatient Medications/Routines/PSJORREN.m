@@ -1,5 +1,5 @@
 PSJORREN ;BIR/MV-RENEWAL FLAG ;6 DEC 00 / 3:11 PM 
- ;;5.0; INPATIENT MEDICATIONS ;**50,70,58,89,91,110,127,134**;16 DEC 97;Build 124
+ ;;5.0;INPATIENT MEDICATIONS ;**50,70,58,89,91,110,127,134,309**;16 DEC 97;Build 3
  ;
  ; Reference to ^PS(50.7 supported by DBIA #2180
  ; References to ^PS(52.6 supported by DBIA #1231
@@ -18,7 +18,8 @@ ACTIVE(DFN,ON) ;
  I '$D(^PS(53.1,+ON))&'$D(^PS(55,+DFN,5,+ON,0))&'$D(^PS(55,+DFN,"IV",+ON,0)) S PSJRT="0^Invalid Package Reference" Q $G(PSJRT)
  D:ON["U" UD
  D:ON["V" IV
- I (+$G(PSJRT)=1) S PSJEXP=$$EXPIRED^PSGOER(DFN,ON) I PSJEXP S PSJRT="0^Expired Time Limit Exceeded"
+ ;*309 - Changed error message
+ I (+$G(PSJRT)=1) S PSJEXP=$$EXPIRED^PSGOER(DFN,ON) I PSJEXP S PSJRT="0^Expired - Order Renewal Time Limit Exceeded.  New order required to continue therapy."
  Q $G(PSJRT)
 UD ;
  ;If both PSJRT(2) & (3) existed it meant order has multiple DDs and one

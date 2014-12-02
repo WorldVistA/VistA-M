@@ -1,5 +1,10 @@
 PXPXRM ;SLC/PKR - APIs for Clinical Reminder indexes. ;08/31/2004
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**119**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,199**;Aug 12, 1996;Build 51
+ ;
+ ; Reference to CODEC^ICDEX supported by ICR #5747
+ ; Reference to CSI^ICDEX supported by ICR #5747
+ ; Reference to SINFO^ICDEX supported by ICR #5747
+ ;
  Q
  ;===============================================================
 KVFILE(FILENUM,X,DA) ;Delete indexes for a regular V File.
@@ -13,13 +18,33 @@ KVFILE(FILENUM,X,DA) ;Delete indexes for a regular V File.
  ;
  ;===============================================================
 KVFILEC(FILENUM,X,DA) ;Delete indexes for V Files with coded entries.
- N CTYPE,VDATE,VISIT
- S VISIT=$G(^AUPNVSIT(X(3),0))
- I VISIT="" Q
- S CTYPE=$S(X(4)="":"U",1:X(4))
- S VDATE=$P(VISIT,U,1)
- K ^PXRMINDX(FILENUM,"IPP",X(1),CTYPE,X(2),VDATE,DA)
- K ^PXRMINDX(FILENUM,"PPI",X(2),CTYPE,X(1),VDATE,DA)
+ ; FILENUM = file number, e.g. 9000010.07
+ ;       X = Array of fields
+ ;           X(1) = Item pointer:  Dx for V POV, CPT for V CPT
+ ;           X(2) = PATIENT NAME (DFN)
+ ;           X(3) = VISIT (ptr to 9000010)
+ ;           X(4) = PRIMARY/SECONDARY for V POV
+ ;               or PRINCIPAL PROCEDURE FOR V CPT
+ ;      DA = IEN into FILENUM file
+ N CODE,CTYPE,PXCSYS,VDATE,VISIT
+ S VISIT=$G(^AUPNVSIT(X(3),0)) ; get Visit zero node
+ I VISIT="" Q  ; if Visit not found, bail out
+ S CTYPE=$S(X(4)="":"U",1:X(4)) ; U if blank otherwise use value passed in
+ S VDATE=$P(VISIT,U,1) ; get Visit Date/Time from 1st piece of zero node
+ S PXCSYS="ICD"
+ I FILENUM=9000010.07 D  ; if V POV get Coding System type
+ . S PXCSYS=$P($$SINFO^ICDEX($$CSI^ICDEX(80,X(1))),U,3) ; coding system abbreviation
+ I PXCSYS'="ICD" D KVFILEV Q  ; if not ICD-9, use alternate format and Quit
+ ; the following is the original format used for V CPT and ICD-9 diagnoses
+ K ^PXRMINDX(FILENUM,"IPP",X(1),CTYPE,X(2),VDATE,DA) ; Kill the "IPP" node
+ K ^PXRMINDX(FILENUM,"PPI",X(2),CTYPE,X(1),VDATE,DA) ; Kill the "PPI" node
+ Q
+ ;
+ ;===============================================================
+KVFILEV ; alternate index format for ICD-10 and higher, added with PX*1.0*199
+ S CODE=$$CODEC^ICDEX(80,X(1)) ; convert IEN to Dx code
+ K ^PXRMINDX(FILENUM,PXCSYS,"IPP",CODE,CTYPE,X(2),VDATE,DA)
+ K ^PXRMINDX(FILENUM,PXCSYS,"PPI",X(2),CTYPE,CODE,VDATE,DA)
  Q
  ;
  ;===============================================================
@@ -37,15 +62,27 @@ SVFILE(FILENUM,X,DA) ;Set indexes for a regular V File.
 SVFILEC(FILENUM,X,DA) ;Set indexes for V Files with coded entries. These
  ;are V CPT and VPOV
  ;X(1)=ITEM, X(2)=DFN, X(3)=VISIT,
- ;X(4)=PRINCIPAL PROCEDURE for V CPT
- ;X(4)=PRIMARY/SECONDARY for V POV
- N CTYPE,VDATE,VISIT
+ ; for V CPT X(4)=PRINCIPAL PROCEDURE
+ ; for V POV X(4)=PRIMARY/SECONDARY
+ N CODE,CTYPE,PXCSYS,VDATE,VISIT
  S VISIT=$G(^AUPNVSIT(X(3),0))
  I VISIT="" Q
  S CTYPE=$S(X(4)="":"U",1:X(4))
  S VDATE=$P(VISIT,U,1)
+ S PXCSYS="ICD"
+ I FILENUM=9000010.07 D  ; if V POV get Coding System type
+ . S PXCSYS=$P($$SINFO^ICDEX($$CSI^ICDEX(80,X(1))),U,3) ; coding system abbreviation
+ I PXCSYS'="ICD" D SVFILEV Q  ; if not ICD-9 use alternate format and Quit
+ ; the following is the original format used for V CPT and ICD-9 diagnoses
  S ^PXRMINDX(FILENUM,"IPP",X(1),CTYPE,X(2),VDATE,DA)=""
  S ^PXRMINDX(FILENUM,"PPI",X(2),CTYPE,X(1),VDATE,DA)=""
+ Q
+ ;
+ ;===============================================================
+SVFILEV ; alternate index format for ICD-10 and higher, added with PX*1.0*199
+ S CODE=$$CODEC^ICDEX(80,X(1)) ; convert IEN to Dx code
+ S ^PXRMINDX(FILENUM,PXCSYS,"IPP",CODE,CTYPE,X(2),VDATE,DA)=""
+ S ^PXRMINDX(FILENUM,PXCSYS,"PPI",X(2),CTYPE,CODE,VDATE,DA)=""
  Q
  ;
  ;===============================================================

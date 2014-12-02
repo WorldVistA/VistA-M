@@ -1,14 +1,20 @@
-LEXDD2 ; ISL Display Defaults - Build List        ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDD2 ;ISL/KER - Display Defaults - Build List ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    $$GET1^DIQ          ICR   2056
+ ;            
 BUILD ; Display defaults
- Q:+($G(LEXDUZ))<1  Q:'$D(^VA(200,LEXDUZ,0))
+ Q:+($G(LEXDUZ))<1  Q:'$L($$GET1^DIQ(200,+($G(LEXDUZ)),.01))
  I '$D(LEXLC) N LEXLC S LEXLC=0
  I '$D(LEXC) N LEXC S LEXC=""
 APPS ; Get applications authorizing user defaults
  K LEXD S LEXD(0)=0 N LEXA,LEXAP
  D BLANK^LEXDD4,BLANK^LEXDD4,NAME^LEXDD4,BLANK^LEXDD4
- D SEV^LEXDD4,LOC^LEXDD4
+ D SEV^LEXDD4
  S LEXA="" F  S LEXA=$O(^LEXT(757.2,"ADEF",LEXA)) Q:LEXA=""  D
  . N LEXAP S LEXAP=0
  . F  S LEXAP=$O(^LEXT(757.2,"ADEF",LEXA,LEXAP)) Q:+LEXAP=0  D

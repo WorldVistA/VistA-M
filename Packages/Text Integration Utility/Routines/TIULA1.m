@@ -1,5 +1,5 @@
 TIULA1 ; SLC/JER - More interactive functions ;4/18/03
- ;;1.0;TEXT INTEGRATION UTILITIES;**75,113,207**;Jun 20, 1997
+ ;;1.0;TEXT INTEGRATION UTILITIES;**75,113,207,276**;Jun 20, 1997;Build 3
 TRAVERSE(DA,RETURN,PARM,TYPE) ; Select Document Type(s)
  N C,I,XQORM,Y N:'$D(LEVEL) LEVEL S LEVEL=+$G(LEVEL)+1
  S:$G(TYPE)']"" TYPE="D"
@@ -90,7 +90,7 @@ SELCAT(Y,PARM,DFLT,TIUOVER) ; Get preferred documents for user
  F  S TIUI=$O(Y(TIUI)) Q:+TIUI'>0  D
  . S TIUDA=+$P(Y(TIUI),U,2)
  . S CATREC=$G(^TIU(8925.8,TIUDA,0))
- . S CATSCRN=$G(^TIU(8925.8,TIUDA,1))
+ . S CATSCRN=$S(TIUDA=3:"",1:$G(^TIU(8925.8,TIUDA,1)))  ;**276** - Search all users for expected cosigner
  . S CATLOOK=$G(^TIU(8925.8,TIUDA,2))
  . S CATVAL=-1 ;P75
  . I CATLOOK']"",+$P(CATREC,U,4) S CATVAL=$$DICLOOK(CATREC,CATSCRN)

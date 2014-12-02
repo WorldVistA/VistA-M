@@ -1,5 +1,9 @@
-HBHCDIS ; LR VAMC(IRMS)/MJT-HBHC Discharge data entry, calls STATUS^HBHCUTL from [HBHC DISCHARGE] template ;9202
- ;;1.0;HOSPITAL BASED HOME CARE;**2**;NOV 01, 1993
+HBHCDIS ;LR VAMC(IRMS)/MJT - HBHC Discharge data entry, calls STATUS^HBHCUTL from [HBHC DISCHARGE] template ;3/18/14
+ ;;1.0;HOSPITAL BASED HOME CARE;**2,25**;NOV 01, 1993;Build 45
+ ;
+ ; Reference to $$SINFO^ICDEX supported by ICR #5747
+ ; $$SINFO^ICDEX is called from the [HBHC DISCHARGE] input template
+ ;
 START ; Initialization
  S HBHCFORM=5
 PROMPT ; Prompt user for patient name

@@ -1,5 +1,5 @@
 PSSHRVL1 ;WOIFO/Alex Vasquez, Timothy Sabat, Steve Gordon - Continuation Data Validation routine for drug checks ;01/15/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,169**;9/30/97;Build 41
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,169,160,173**;9/30/97;Build 9
  ;
  ; Reference to ^PSNDF(50.68 GCNSEQNO field is supported by IA #3735 
  ; 
@@ -68,10 +68,6 @@ WDOSE(PSSHASH,PSS) ;
  ;
  NEW TYPE,I
  SET PSS("DoseValue")=$G(^TMP($JOB,PSSHASH("Base"),"IN","DOSE",PSS("PharmOrderNo")))
- D
- .Q:'$L(PSS("DoseValue"))  ;node was killed off if both fields 11 and 12 missing
- .IF $O(PSSHASH("DoseValue",":"),-1)>10 D  QUIT
- ..S PSSHASH("DoseValue","Demo")=""  ;to kill off Dose if more than one node
  ;Set the next exception
  D:$P(PSSHASH("Exception","PROSPECTIVE","DOSE",PSS("PharmOrderNo"),PSS("I")),U,11)'=1
  .S ^TMP($JOB,PSSHASH("Base"),"OUT","EXCEPTIONS","DOSE",PSS("PharmOrderNo"),$$NEXTEXD(.PSS,.PSSHASH))=PSSHASH("Exception","PROSPECTIVE","DOSE",PSS("PharmOrderNo"),PSS("I"))
@@ -138,18 +134,19 @@ GCNREASN(DRUGIEN,DRUGNM,ORDRNUM,BADGCN) ;
  ;ORDRNUM-PHARMACY ORDER NUM
  ;BADGCN-(OPTIONAL)FLAG IS SET to 1 IF DRUG RETURNED AS NOT FOUND BY SWRI/FDB
  ;        if set to -1 Missing or invalid GCNSEQNO  from Input node  
- N VAPROD1,NDNODE,REASON,MESSAGE,VAIEN,PSSVQPAC,PSSVQDOS,PSSVQNOM,PSSVQREM
+ N VAPROD1,NDNODE,REASON,MESSAGE,VAIEN,PSSVQPAC,PSSVQDOS,PSSVQNOM,PSSVQREM,PSSVQTY1,PSSVQTY2
  S MESSAGE=$$NOCHKMSG(DRUGNM,ORDRNUM),PSSVQDOS=0,PSSVQPAC=$S($E(PSSHASH("Base"),1,2)="PS":1,1:0) I $T(DS^PSSDSAPI)]"",$$DS^PSSDSAPI S PSSVQDOS=1
  S REASON="",PSSVQREM=$S($P(ORDRNUM,";")="R":1,1:0)
+ S PSSVQTY1=$P(ORDRNUM,";",3),PSSVQTY1=$$UP^XLFSTR(PSSVQTY1),PSSVQTY2=$S(PSSVQTY1["PROSPECTIVE":1,1:0)
  ;
  S VAPROD1=""
  D  ;Case statement
  .I $G(BADGCN)=1 S MESSAGE=$$NXCHKMSG(DRUGNM) S PSSVQNOM=$$GCMESS,REASON=$S(PSSVQNOM:"^1",1:"") Q
- .I '$G(DRUGIEN),'PSSVQREM S REASON="No active dispense drug found for Orderable Item" Q
+ .I '$G(DRUGIEN),'PSSVQREM S REASON="No dispense drug found for Orderable Item" Q
  .S NDNODE=$G(^PSDRUG(DRUGIEN,"ND"))
  .;if no ndnode or 3rd piece not populated 
  .I 'PSSVQREM,'$L(NDNODE)!('$P(NDNODE,U,3)) D  Q
- ..S REASON="Drug not matched to NDF" I 'PSSVQPAC S MESSAGE=$$NXCHKMSG(DRUGNM),REASON=""
+ ..S REASON="Drug not matched to NDF" D:PSSVQPAC&($D(^TMP($J,PSSHASH("Base"),"IN","DOSE"))) NZMSG I 'PSSVQPAC S MESSAGE=$$NXCHKMSG(DRUGNM),REASON=""
  .S VAIEN=$S('PSSVQREM:+$P(NDNODE,U,3),1:0)
  .S:VAIEN VAPROD1=$P($G(^PSNDF(50.68,VAIEN,1)),U,5)    ; Get the GCNSEQNO
  .I 'VAPROD1!($G(BADGCN)=-1) D
@@ -178,11 +175,19 @@ OUTPAT(ORDRNUM) ;
  .I $E(ORDRNUM)'="I",$E(ORDRNUM)'="R",ORDRNUM["PROFILE",$G(^TMP($J,PSSBASE,"IN","SOURCE"))="I" S OUTPAT=" Outpatient"
  Q OUTPAT
  ;
-OIMSG(OINAME) ;
+OIMSG(OINAME,PSSNOITN) ;
  ;INPUT: Orderable item name
+ ;       Order number
  ;RETURNS-ERROR MESSAGE
- N MESSAGE
- S MESSAGE="Enhanced Order Checks cannot be performed for Orderable Item:"_OINAME
+ N MESSAGE,PSSNOITP,PSSNOITD,PSSNOIT1,PSSNOIT2
+ S PSSNOITP=$S($E(PSSHASH("Base"),1,2)="PS":0,1:1)
+ S PSSNOITD=0 I $T(DS^PSSDSAPI)]"",$$DS^PSSDSAPI S PSSNOITD=1
+ S PSSNOIT1=$P(PSSNOITN,";",3),PSSNOIT1=$$UP^XLFSTR(PSSNOIT1),PSSNOIT2=$S(PSSNOIT1["PROSPECTIVE":1,1:0)
+ I PSSNOITP D  Q MESSAGE
+ .I $D(^TMP($J,PSSHASH("Base"),"IN","DOSE")) D  Q
+ ..S MESSAGE="Maximum Single Dose Check could not be done for Drug: "_OINAME_", please complete a manual check for appropriate Dosing."
+ .S MESSAGE="Order Checks could not be done for Drug: "_OINAME_", please complete a manual check for Drug Interactions"_$S(PSSNOITD&($G(PSSNOIT2)):", Duplicate Therapy and appropriate Dosing.",1:" and Duplicate Therapy.")
+ S MESSAGE="Enhanced Order Checks cannot be performed for Orderable Item: "_OINAME
  Q MESSAGE
  ;
 INRSON(ERRNUM,ORDERNUM) ;
@@ -196,8 +201,8 @@ INRSON(ERRNUM,ORDERNUM) ;
  I $E(ORDERNUM)="N" S NONVAFLG=1
  D
  .I ERRNUM=1 D  Q
- .. I 'NONVAFLG S REASON="No active Dispense Drug found." Q   ; No active Dispense Drug found for Pending order. 
- .. I NONVAFLG S REASON="No active Dispense Drug found."      ; No active Dispense Drug found for Non-VA med order.
+ .. I 'NONVAFLG S REASON="No Dispense Drug found." Q   ; No active Dispense Drug found for Pending order. 
+ .. I NONVAFLG S REASON="No Dispense Drug found."      ; No active Dispense Drug found for Non-VA med order.
  .I ERRNUM=2 S REASON="Free Text Dosage could not be evaluated." Q
  .I ERRNUM=3 S REASON="Free Text Infusion Rate could not be evaluated."
  .I ERRNUM=4 S REASON="No active IV Additive/Solution marked for IV fluid order entry could be found."
@@ -212,14 +217,7 @@ DEMOCHK(AGE,BSA,WEIGHT,PSDRUG) ;
  ;
  N PSMESSAGE,PSREASON,PSRESULT,TEXT
  S PSRESULT="",PSREASON="",TEXT=""
- D
- .I AGE'>0 S TEXT=" Age"
- .I (BSA<0)!(BSA'=+BSA) D
- ..I $L(TEXT) S TEXT=TEXT_","_" BSA" Q
- ..S TEXT="BSA"
- .I (WEIGHT<0)!(WEIGHT'=+WEIGHT) D
- ..I $L(TEXT) S TEXT=TEXT_","_" WT" Q
- ..S TEXT="WT"
+ I AGE'>0 S TEXT=" Age"
  I $L(TEXT) D
  .;PASSES IN NULL BECAUSE AT THE TIME OF CALL DO NOT HAVE DRUG NAME
  .S PSMESSAGE=$$DOSEMSG(PSDRUG)
@@ -347,7 +345,7 @@ DOSEMSG(DRUGNAME,TYPE) ;
  .I TYPE="D" D  Q
  ..S RETURN="Daily Dose Check could not be performed for Drug: "_DRUGNAME
  .;
- .S RETURN="Dosing Checks could not be performed for Drug: "_DRUGNAME
+ .S RETURN="Maximum Single Dose Check could not be performed for Drug: "_DRUGNAME  ;2.0 Code changed from Dosing Checks..
  Q RETURN
  ;
 GETUCI() ;
@@ -364,6 +362,7 @@ ERRMSG(TYPE,DRUGNAME,ORDRNUM,WARNING) ;
  ;DRUGNAME-NAME OF DRUG
  ;WARNING (OPTIONAL) 1 OR 0 IF SET CAME BACKF FROM FDB AS SEVERITY OF WARINING)
  ;CALLED BY MSGWRITE^PSSHRQ21
+ ;FDB Errors, Input Exceptions and Dose Screening prior to FDB call pass in Null Type
  N MSG,LOCORREM
  S WARNING=$G(WARNING)
  S MSG=""
@@ -372,7 +371,7 @@ ERRMSG(TYPE,DRUGNAME,ORDRNUM,WARNING) ;
  .I WARNING D  Q
  ..I TYPE="DRUGDRUG" S MSG="Drug Interaction Order Check for "_LOCORREM_" Drug: "
  ..I TYPE="THERAPY" S MSG="Duplicate Therapy Order Check for "_LOCORREM_" Drug: "
- ..I TYPE="DOSE" S MSG="Dosing Order Check Warning for "_DRUGNAME_":" Q    ; do not execute the next line
+ ..I TYPE="DOSE" S MSG="Maximum Single Dose Check Warning for "_DRUGNAME_":" Q    ; do not execute the next line - and 2.0 change from DOsing Order..
  ..S MSG=MSG_DRUGNAME_" Warning"
  .I TYPE="DRUGDRUG" S MSG="Drug Interaction Order Check could not be performed."
  .I TYPE="THERAPY" S MSG="Duplicate Therapy Order Check could not be performed for "_LOCORREM_" Drug: "_DRUGNAME
@@ -423,19 +422,27 @@ GCMESS() ;Get Exclude field
  ;
  ;
 GCNMESX ;
- N PSSVQDRG,PSSVQ1,PSSVQ3,PSSVQVUI,PSSVQAR,PSSVQ4
+ N PSSVQDRG,PSSVQ1,PSSVQ3,PSSVQVUI,PSSVQAR,PSSVQ4,PSSVQARR
  S PSSVQDRG=$P(PSSVQND,"^",3) I PSSVQDRG D  Q
  .S PSSVQ1=$P($G(^PSDRUG(PSSVQDRG,"ND")),"^"),PSSVQ3=$P($G(^PSDRUG(PSSVQDRG,"ND")),"^",3)
  .I PSSVQ1,PSSVQ3 S PSSVQEXC=$$DDIEX^PSNAPIS(PSSVQ1,PSSVQ3)
  S PSSVQVUI=$P(PSSVQND,"^",2) I 'PSSVQVUI Q
  S PSSVQAR="PSSVQARR"
  D GETIREF^XTID(50.68,.01,PSSVQVUI,PSSVQAR)
- S PSSVQ4=$O(PSSVQAR(50.68,.01,""))
+ S PSSVQ4=$O(PSSVQARR(50.68,.01,""))
  I PSSVQ4 S PSSVQEXC=$$DDIEX^PSNAPIS("",PSSVQ4)
  Q
  ;
  ;
 NXCHKMSG(DRUGNM) ;
  N MESSAGE
- S MESSAGE="Order Checks could not be done for"_$S(PSSVQREM:" Remote",2:"")_" Drug: "_DRUGNM_", please complete a manual check for Drug Interactions"_$S(PSSVQDOS:", Duplicate Therapy and appropriate Dosing.",1:" and Duplicate Therapy.")
+ I $D(^TMP($J,PSSHASH("Base"),"IN","DOSE")) D  Q MESSAGE
+ .S MESSAGE="Maximum Single Dose Check could not be done for"_$S(PSSVQREM:" Remote",2:"")_" Drug: "_DRUGNM_", please complete a manual check for appropriate Dosing."
+ S MESSAGE="Order Checks could not be done for"
+ S MESSAGE=MESSAGE_$S(PSSVQREM:" Remote",2:"")_" Drug: "_DRUGNM_", please complete a manual check for Drug Interactions"_$S(PSSVQDOS&($G(PSSVQTY2)):", Duplicate Therapy and appropriate Dosing.",1:" and Duplicate Therapy.")
  Q MESSAGE
+ ;
+ ;
+NZMSG ;Reset Message for Pharmacy Not matched to NDF error for Dosing
+ S MESSAGE="Maximum Single Dose Check could not be performed for Drug: "_DRUGNM
+ Q

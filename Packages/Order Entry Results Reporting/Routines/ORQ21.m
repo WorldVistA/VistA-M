@@ -1,9 +1,9 @@
-ORQ21 ; SLC/MKB/GSS - Detailed Order Report cont ; 12/28/2006
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,190,195,215,243**;Dec 17, 1997;Build 242
+ORQ21 ; SLC/MKB/GSS - Detailed Order Report cont ;05/23/12  10:30
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,190,195,215,243,361**;Dec 17, 1997;Build 39
  ;
  ; DBIA 2400   OEL^PSOORRL   ^TMP("PS",$J)
  ; DBIA 2266   EN30^RAO7PC1  ^TMP($J,"RAE2")
- ; 
+ ;
 RAD(TCOM) ; -- add RA data for 2.5 orders
  N RAIFN,CASE,PROC,ORD,ORI,X,ORTTL,ORB
  S RAIFN=$G(^OR(100,ORIFN,4)) Q:RAIFN'>0
@@ -82,7 +82,7 @@ BA ;Billing Aware data display
  . ; DXIEN=Dx IEN
  . S DXIEN=+^OR(100,ORIFN,5.1,OCT,0)
  . ; Get Dx record for date ORFMDAT
- . S ICDR=$$ICDDX^ICDCODE(DXIEN,ORFMDAT)
+ . S ICDR=$$ICDDATA^ICDXCODE("DIAGNOSIS",DXIEN,ORFMDAT)
  . ; Get Dx verbiage and ICD code
  . S DXV=$P(ICDR,U,4),ICD9=$P(ICDR,U,2)
  . S X="               "

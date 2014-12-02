@@ -1,5 +1,5 @@
 RORX008A ;HOIFO/BH,SG,VAC - VERA REIMBURSEMENT REPORT ;4/7/09 2:08pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13**;Feb 17, 2006;Build 27
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19**;Feb 17, 2006;Build 43
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -11,6 +11,7 @@ RORX008A ;HOIFO/BH,SG,VAC - VERA REIMBURSEMENT REPORT ;4/7/09 2:08pm
  ;                                      'include' or 'exclude'.
  ;ROR*1.5*13   DEC  2010   A SAUNDERS   User can select specific patients,
  ;                                      clinics, or divisions for the report.
+ ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
  ;                                      
  ;******************************************************************************
  ;******************************************************************************
@@ -48,7 +49,7 @@ QUERY(FLAGS) ;
  ;
  ;--- Browse through the registry records
  S RORIEN=0
- S FLAG=$G(RORTSK("PARAMS","ICD9FILT","A","FILTER"))
+ S FLAG=$G(RORTSK("PARAMS","ICDFILT","A","FILTER"))
  F  S RORIEN=$O(@XREFNODE@(RORIEN))  Q:RORIEN'>0  D  Q:RC<0
  . ;--- Start progress counter
  . S TMP=$S(RORPTN>0:CNT/RORPTN,1:"")
@@ -60,13 +61,13 @@ QUERY(FLAGS) ;
  . I $D(RORTSK("PARAMS","PATIENTS","C")),'$D(RORTSK("PARAMS","PATIENTS","C",PATIEN)) Q
  . ;--- Check if the patient should be skipped
  . Q:$$SKIP^RORXU005(RORIEN,FLAGS,RORSDT,ROREDT)
- . ;--- Check patient against ICD9 list
+ . ;--- Check patient against ICD list
  . S RCC=0
  . I FLAG'="ALL" D
- . . S RCC=$$ICD^RORXU010(PATIEN,RORREG)
+ . . S RCC=$$ICD^RORXU010(PATIEN)
  . I (FLAG="INCLUDE")&(RCC=0) Q
  . I (FLAG="EXCLUDE")&(RCC=1) Q
- . ; End of check of ICD9 list
+ . ; End of check of ICD list
  . ;
  . ;--- Check for Clinic or Division list and quit if not in list
  . I RORCDLIST,'$$CDUTIL^RORXU001(.RORTSK,PATIEN,RORCDSTDT,RORCDENDT) Q

@@ -1,12 +1,12 @@
-EDPFAA ;SLC/KCM - RPC Calls to Facility ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPFAA ;SLC/KCM - RPC Calls to Facility ;5/2/12 3:36pm
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
 BOOT(APP) ; bootstrap appliction
  D USER
  D APP(APP)
  Q
 USER ; set bootstrap USER node
- N X
+ N X,TSIEN,ROLEIEN,ROLE,ROLENM,DFLTBRD,DFLTWSHT
  S X("duz")=DUZ
  S X("userNm")=$P($G(^VA(200,DUZ,0)),U)
  S X("timeOut")=$$GET^XPAR("USR^DIV^SYS","ORWOR TIMEOUT CHART",1,"I")
@@ -16,6 +16,16 @@ USER ; set bootstrap USER node
  S X("countDown")=$$GET^XPAR("USR^SYS^PKG","ORWOR TIMEOUT COUNTDOWN",1,"I")
  S:'X("countDown") X("countDown")=10
  S X("countDown")=X("countDown")*1000    ; milliseconds
+ S TSIEN=$O(^EDPB(231.7,"B",DUZ,""))
+ I TSIEN S ROLEIEN=$O(^EDPB(231.7,"AC",EDPSITE,AREA,TSIEN,""))
+ I $G(ROLEIEN) D
+ .S X("roleID")=ROLEIEN
+ .S ROLENM=$$GET1^DIQ(232.5,ROLEIEN,.01,"E"),X("roleName")=ROLENM
+ .S ROLE=$$GET1^DIQ(232.5,ROLEIEN,.02,"E"),X("roleAbbr")=ROLE
+ .S DFLTWSHT=$$GET1^DIQ(232.5,ROLEIEN,.04,"E"),X("defaultWorksheet")=DFLTWSHT
+ .S DFLTBRD=$$GET1^DIQ(232.5,ROLEIEN,.05,"I"),X("defaultBoard")=DFLTBRD
+ .; Gather all available worksheets for this role
+ .D LDWSLIST^EDPBWS(EDPSITE,AREA,ROLEIEN)
  D XML^EDPX($$XMLA^EDPX("user",.X,""))
  I $D(^XUSEC("XUPROGMODE",DUZ))>0 D XML^EDPX("<auth name=""debug"" />")
  D XML^EDPX("</user>")
@@ -45,6 +55,7 @@ RPTS ; set auth nodes for reports
  I $D(^XUSEC("EDPR EXPORT",DUZ))>0 D XML^EDPX("<auth name=""rptExport"" />")
  I $D(^XUSEC("EDPR PROVIDER",DUZ))>0 D XML^EDPX("<auth name=""rptProvider"" />")
  I $D(^XUSEC("EDPR XREF",DUZ))>0 D XML^EDPX("<auth name=""rptXRef"" />")
+ I $D(^XUSEC("EDPR ADHOC",DUZ))>0 D XML^EDPX("<auth name=""rptAdhoc"" />")
  Q
 ROLES ; set up roles
  N ROLE S ROLE=0         ; TEMPORARY!!
@@ -74,18 +85,25 @@ ROLES ; set up roles
  . D XML^EDPX("<board defaultName='"_BRD_"' />")
  Q
 SESS ; set up session -- (OLD from version 1?)
- N X
+ N X,TSIEN,ROLEIEN,ROLENM,ROLE,DFLTWSHT,DFLTBRD,DFLTROOM
  S X("duz")=DUZ
  S X("userNm")=$P($G(^VA(200,DUZ,0)),U)
  S X("site")=DUZ(2)
  S X("siteNm")=$$NAME^XUAF4(X("site"))
  S X("station")=$$STA^XUAF4(DUZ(2))
  S X("time")=$$NOW^XLFDT
+ S X("worksheets")=($D(^XUSEC("EDPF WORKSHEETS",DUZ))>0)
  S X("rptExport")=($D(^XUSEC("EDPR EXPORT",DUZ))>0)
  S X("rptProvider")=($D(^XUSEC("EDPR PROVIDER",DUZ))>0)
  S X("rptXRef")=($D(^XUSEC("EDPR XREF",DUZ))>0)
+ S X("rptAdhoc")=($D(^XUSEC("EDPR ADHOC",DUZ))>0)
  S X("progMode")=($D(^XUSEC("XUPROGMODE",DUZ))>0)
  S X("version")=$$VERSRV^EDPQAR
+ ;
+ ;
+ ; PATCH 6 - BWF - Adding 'defaultRoom' = true/false to identify wheteher or not a default room has been set.
+ S DFLTROOM=$$GET1^DIQ(231.9,AREA,1.12,"I")
+ S X("defaultRoom")=$S(DFLTROOM:"true",1:"false")
  ;
  ; This code to enable VEHU training.
  ;N AREA
@@ -104,6 +122,14 @@ SESS ; set up session -- (OLD from version 1?)
  S X("countDown")=$$GET^XPAR("USR^SYS^PKG","EDP APP COUNTDOWN",1,"I")
  S:'X("countDown") X("countDown")=10
  S X("countDown")=X("countDown")*1000    ; milliseconds
+ S TSIEN=$O(^EDPB(231.7,"B",DUZ,""))
+ I TSIEN S ROLEIEN=$$GET1^DIQ(231.7,TSIEN,.06,"I")
+ I $G(ROLEIEN) D
+ .S X("roleID")=ROLEIEN
+ .S ROLENM=$$GET1^DIQ(232.5,ROLEIEN,.01,"E"),X("roleName")=ROLENM
+ .S ROLE=$$GET1^DIQ(232.5,ROLEIEN,.02,"E"),X("roleAbbr")=ROLE
+ .S DFLTWSHT=$$GET1^DIQ(232.5,ROLEIEN,.04,"E"),X("defaultWorksheet")=DFLTWSHT
+ .S DFLTBRD=$$GET1^DIQ(232.5,ROLEIEN,.05,"I"),X("defaultBoard")=DFLTBRD
  D XML^EDPX($$XMLA^EDPX("user",.X))
  Q
 SESSID() ; Return the next session identifier

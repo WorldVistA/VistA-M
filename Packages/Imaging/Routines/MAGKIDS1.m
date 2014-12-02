@@ -1,5 +1,5 @@
-MAGKIDS1 ;WOIFO/SG - INSTALLATION UTILITIES ; 3/9/09 12:52pm
- ;;3.0;IMAGING;**93**;Dec 02, 2009;Build 163
+MAGKIDS1 ;WOIFO/SG - INSTALLATION UTILITIES ; 21 Nov 2011  2:48pm
+ ;;3.0;IMAGING;**93,118**;Mar 19, 2002;Build 4525;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -8,7 +8,6 @@ MAGKIDS1 ;WOIFO/SG - INSTALLATION UTILITIES ; 3/9/09 12:52pm
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -80,7 +79,7 @@ ADDRPCS(RPCNAMES,OPTNAME,FLAGS) ;
  F  S NAME=$O(RPCNAMES(NAME))  Q:NAME=""  D  Q:MAGRC<0
  . D:'SILENT MES^MAGKIDS(NAME)
  . ;--- Check if the remote procedure exists
- . S RPCIEN=$$FIND1^DIC(8994,,,NAME,"B",,"MAGMSG")
+ . S RPCIEN=$$FIND1^DIC(8994,,"X",NAME,"B",,"MAGMSG")
  . I $G(DIERR)  S MAGRC=$$DBS^MAGUERR("MAGMSG",8994)  Q
  . I RPCIEN'>0  S MAGRC=$$ERROR^MAGUERR(-45,,NAME)  Q
  . ;--- Add the remote procedure to the multiple

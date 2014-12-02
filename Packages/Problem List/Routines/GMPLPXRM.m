@@ -1,13 +1,14 @@
-GMPLPXRM ; SLC/PKR - Build Clinical Reminder indexes for AUPNPROB. ;02/27/2004
-        ;;2.0;Problem List;**27**;Aug 25, 1994
- ;DBIA 4113 supports PXRMSXRM entry points. 
- ;DBIA 4114 supports setting and killing ^PXRMINDX(9000011)
- ;===============================================================
+GMPLPXRM ; SLC/PKR - Build Clinical Reminder Index for AUPNPROB. ;05/08/2014
+ ;;2.0;Problem List;**27,43,44**;Aug 25, 1994;Build 92
+ ;DBIA #4113 supports PXRMSXRM entry points.
+ ;DBIA #4114 supports setting and killing ^PXRMINDX(9000011)
+ ;DBIA #5747 covers references to ^ICDEX entry point.
+ ;===================================
 INDEX ;Build the indexes for PROBLEM LIST.
- N COND,DAS,DFN,DIFF,DLM,DONE,END,ENTRIES,ETEXT,GLOBAL,IND,NE,NERROR
- N PRIO,PROB,START,STATUS,TEMP,TENP,TEXT
+ N CODE,CODEP,CODESYS,COND,DAS,DAS803,DFN,DIFF,DLM,DONE
+ N END,ENTRIES,ETEXT,GLOBAL,IND,JND,NE,NERROR,PRIO,PROB
+ N START,STATUS,TEMP,TENP,TEXT
  ;Don't leave any old stuff around.
- ;DBIA 4114
  K ^PXRMINDX(9000011)
  S GLOBAL=$$GET1^DID(9000011,"","","GLOBAL NAME")
  S ENTRIES=$P(^AUPNPROB(0),U,4)
@@ -20,6 +21,7 @@ INDEX ;Build the indexes for PROBLEM LIST.
  S START=$H
  S (DAS,DONE,IND,NE,NERROR)=0
  F  S DAS=$O(^AUPNPROB(DAS)) Q:DONE  D
+ . N GMPDT,GMPCSYS
  . I +DAS=0 S DONE=1 Q
  . I +DAS'=DAS D  Q
  .. S DONE=1
@@ -38,12 +40,9 @@ INDEX ;Build the indexes for PROBLEM LIST.
  .;If there is no priority set it to "U" for undefined.
  . I PRIO="" S PRIO="U"
  . S TEMP=^AUPNPROB(DAS,0)
- . S PROB=$P(TEMP,U,1)
- . I PROB="" D  Q
+ . S CODEP=$P(TEMP,U,1)
+ . I CODEP="" D  Q
  .. S ETEXT=DAS_" missing problem"
- .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
- . I '$D(^ICD9(PROB)) D  Q
- .. S ETEXT=DAS_" invalid ICD9"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S DFN=$P(TEMP,U,2)
  . I DFN="" D  Q
@@ -51,15 +50,35 @@ INDEX ;Build the indexes for PROBLEM LIST.
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S DLM=$P(TEMP,U,3)
  . I DLM="" D  Q
- .. S ETEXT=DAS_" missing date laste modified"
+ .. S ETEXT=DAS_" missing date last modified"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S STATUS=$P(TEMP,U,12)
  . I STATUS="" D  Q
  .. S ETEXT=DAS_" missing status"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR) Q
+ . S CODESYS=$P($G(^AUPNPROB(DAS,802)),U,2)
+ . I CODESYS="" S CODESYS=$P($$SINFO^ICDEX($$CSI^ICDEX(80,CODEP)),U,3)
+ . S CODE=$$CODEC^ICDEX(80,CODEP)
+ . I +CODE=-1 D  Q
+ .. S ETEXT=DAS_" has the invalid code "_CODE
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S NE=NE+1
- . S ^PXRMINDX(9000011,"ISPP",PROB,STATUS,PRIO,DFN,DLM,DAS)=""
- . S ^PXRMINDX(9000011,"PSPI",DFN,STATUS,PRIO,PROB,DLM,DAS)=""
+ . S ^PXRMINDX(9000011,CODESYS,"ISPP",CODE,STATUS,PRIO,DFN,DLM,DAS)=""
+ . S ^PXRMINDX(9000011,CODESYS,"PSPI",DFN,STATUS,PRIO,CODE,DLM,DAS)=""
+ .;Check for a SNOMED CT code.
+ . S CODE=$P($G(^AUPNPROB(DAS,800)),U,1)
+ . I CODE="" Q
+ . S ^PXRMINDX(9000011,"SCT","ISPP",CODE,STATUS,PRIO,DFN,DLM,DAS)=""
+ . S ^PXRMINDX(9000011,"SCT","PSPI",DFN,STATUS,PRIO,CODE,DLM,DAS)=""
+ .;Check for entries in the Mapping Targets multiple.
+ . S JND=0
+ . F  S JND=+$O(^AUPNPROB(DAS,803,JND)) Q:JND=0  D
+ .. S TEMP=^AUPNPROB(DAS,803,JND,0)
+ .. S CODE=$P(TEMP,U,1)
+ .. S CODESYS=$P(TEMP,U,2)
+ .. S DAS803=DAS_";803;"_JND
+ .. S ^PXRMINDX(9000011,CODESYS,"ISPP",CODE,STATUS,PRIO,DFN,DLM,DAS803)=""
+ .. S ^PXRMINDX(9000011,CODESYS,"PSPI",DFN,STATUS,PRIO,CODE,DLM,DAS803)=""
  S END=$H
  S TEXT=NE_" PROBLEM LIST results indexed."
  D MES^XPDUTL(TEXT)
@@ -73,25 +92,113 @@ INDEX ;Build the indexes for PROBLEM LIST.
  S ^PXRMINDX(9000011,"DATE BUILT")=$$NOW^XLFDT
  Q
  ;
- ;===============================================================
-KPROB(X,DA) ;Delete index for Problem List.
- N PRIO
+ ;===================================
+KPROB01(X,DA) ;Delete Index entry for Problem List .01.
+ ;X(1)=DIAGNOSIS, X(2)=DFN, X(3)=DATE LAST MODIFIED, X(4)=STATUS
+ ;X(5)=PRIORITY, X(6)=CONDITION, X(7)=CODING SYSTEM
+ N CODE,CODESYS,PRIO
+ S CODE=$$CODEC^ICDEX(80,X(1))
+ I +CODE=-1 Q
+ S CODESYS=$G(X(7))
+ I CODESYS="" S CODESYS=$P($$SINFO^ICDEX($$CSI^ICDEX(80,X(1))),U,3)
  S PRIO=$S(X(5)="":"U",1:X(5))
- ;DBIA 4114
- K ^PXRMINDX(9000011,"ISPP",X(1),X(4),PRIO,X(2),X(3),DA)
- K ^PXRMINDX(9000011,"PSPI",X(2),X(4),PRIO,X(1),X(3),DA)
+ K ^PXRMINDX(9000011,CODESYS,"ISPP",CODE,X(4),PRIO,X(2),X(3),DA)
+ K ^PXRMINDX(9000011,CODESYS,"PSPI",X(2),X(4),PRIO,CODE,X(3),DA)
  Q
  ;
- ;===============================================================
-SPROB(X,DA) ;Set index for Problem List.
+ ;===================================
+KPROBMT(X,DA) ;Kill Index entry for Problem List Mapping Targets.
+ ;X(1)=CODE, X(2)=CODING SYSTEM
+ N DAS,DFN,DLM,PRIO,STATUS,TEMP
+ I X(2)="" Q
+ S TEMP=^AUPNPROB(DA(1),1)
+ S PRIO=$P(TEMP,U,14)
+ I PRIO="" S PRIO="U"
+ S TEMP=^AUPNPROB(DA(1),0)
+ S DFN=$P(TEMP,U,2),DLM=$P(TEMP,U,3),STATUS=$P(TEMP,U,12)
+ S DAS=DA(1)_";"_803_";"_DA
+ K ^PXRMINDX(9000011,X(2),"ISPP",X(1),STATUS,PRIO,DFN,DLM,DAS)
+ K ^PXRMINDX(9000011,X(2),"PSPI",DFN,STATUS,PRIO,X(1),DLM,DAS)
+ Q
+ ;
+ ;===================================
+KPROBSCT(X,DA) ;Delete Index entry for Problem List SNOMED CT.
+ ;X(1)=SNOMED CT CONCEPT CODE, X(2)=DFN, X(3)=DATE LAST MODIFIED,
+ ;X(4)=STATUS, X(5)=PRIORITY, X(6)=CONDITION
+ S PRIO=$S(X(5)="":"U",1:X(5))
+ K ^PXRMINDX(9000011,"SCT","ISPP",X(1),X(4),PRIO,X(2),X(3),DA)
+ K ^PXRMINDX(9000011,"SCT","PSPI",X(2),X(4),PRIO,X(1),X(3),DA)
+ Q
+ ;
+ ;===================================
+PROBDATA(DAS,DATA) ;Return data for a Problem List entry.
+ ;DBIA #5881
+ N EM,IEN,IND,TEMP
+ S IEN=$P(DAS,";",1)
+ S TEMP=^AUPNPROB(IEN,0)
+ S DATA("ICD DIAGNOSIS")=$P(TEMP,U,1)
+ S DATA("DATE LAST MODIFIED")=$P(TEMP,U,3)
+ S DATA("PROVIDER NARRATIVE")=$P(TEMP,U,5)
+ S DATA("DATE ENTERED")=$P(TEMP,U,8)
+ S DATA("STATUS")=$P(TEMP,U,12)
+ S DATA("DATE OF ONSET")=$P(TEMP,U,13)
+ S TEMP=^AUPNPROB(IEN,1)
+ S DATA("PROBLEM")=$P(TEMP,U,1)
+ S DATA("PROBLEM CONDITION")=$P(TEMP,U,2)
+ S DATA("RECORDING PROVIDER")=$P(TEMP,U,4)
+ S DATA("RESPONSIBLE PROVIDER")=$P(TEMP,U,5)
+ S DATA("DATE RESOLVED")=$P(TEMP,U,7)
+ S DATA("CLINIC")=$P(TEMP,U,8)
+ S DATA("PRIORITY")=$P(TEMP,U,14)
+ S DATA("DATE OF INTEREST")=$P($G(^AUPNPROB(IEN,802)),U,1)
+ I DAS'[";803;" Q
+ S IND=$P(DAS,";",3)
+ S TEMP=^AUPNPROB(IEN,803,IND,0)
+ S DATA("MT CODE")=$P(TEMP,U,1)
+ S DATA("MT CODING SYSTEM")=$P(TEMP,U,2)
+ S DATA("MT CODE DATE")=$P(TEMP,U,3)
+ Q
+ ;
+ ;===================================
+SPROB01(X,DA) ;Set Index entry for Problem List .01.
  ;X(1)=DIAGNOSIS, X(2)=DFN, X(3)=DATE LAST MODIFIED, X(4)=STATUS
- ;X(5)=PRIORITY, X(6)=CONDITION
+ ;X(5)=PRIORITY, X(6)=CONDITION, X(7)=CODING SYSTEM
  ;Don't index Hidden problems.
  I X(6)="H" Q
- N PRIO
+ N CODE,CODESYS,PRIO
+ S CODE=$$CODEC^ICDEX(80,X(1))
+ I +CODE=-1 Q
+ S CODESYS=$G(X(7))
+ I CODESYS="" S CODESYS=$P($$SINFO^ICDEX($$CSI^ICDEX(80,X(1))),U,3)
  S PRIO=$S(X(5)="":"U",1:X(5))
- ;DBIA 4114
- S ^PXRMINDX(9000011,"ISPP",X(1),X(4),PRIO,X(2),X(3),DA)=""
- S ^PXRMINDX(9000011,"PSPI",X(2),X(4),PRIO,X(1),X(3),DA)=""
+ S ^PXRMINDX(9000011,CODESYS,"ISPP",CODE,X(4),PRIO,X(2),X(3),DA)=""
+ S ^PXRMINDX(9000011,CODESYS,"PSPI",X(2),X(4),PRIO,CODE,X(3),DA)=""
+ Q
+ ;
+ ;===================================
+SPROBMT(X,DA) ;Set Index entry for Problem List Mapping Targets.
+ ;X(1)=CODE, X(2)=CODING SYSTEM
+ N DAS,DFN,DLM,PRIO,STATUS,TEMP
+ S TEMP=^AUPNPROB(DA(1),1)
+ ;Don't index Hidden problems.
+ I $P(TEMP,U,2)="H" Q
+ S PRIO=$P(TEMP,U,14)
+ I PRIO="" S PRIO="U"
+ S TEMP=^AUPNPROB(DA(1),0)
+ S DFN=$P(TEMP,U,2),DLM=$P(TEMP,U,3),STATUS=$P(TEMP,U,12)
+ S DAS=DA(1)_";"_803_";"_DA
+ S ^PXRMINDX(9000011,X(2),"ISPP",X(1),STATUS,PRIO,DFN,DLM,DAS)=""
+ S ^PXRMINDX(9000011,X(2),"PSPI",DFN,STATUS,PRIO,X(1),DLM,DAS)=""
+ Q
+ ;
+ ;===================================
+SPROBSCT(X,DA) ;Set Index entry for Problem List SNOMED CT.
+ ;X(1)=SNOMED CT CONCEPT CODE, X(2)=DFN, X(3)=DATE LAST MODIFIED,
+ ;X(4)=STATUS, X(5)=PRIORITY, X(6)=CONDITION
+ ;Don't index Hidden problems.
+ I X(6)="H" Q
+ S PRIO=$S(X(5)="":"U",1:X(5))
+ S ^PXRMINDX(9000011,"SCT","ISPP",X(1),X(4),PRIO,X(2),X(3),DA)=""
+ S ^PXRMINDX(9000011,"SCT","PSPI",X(2),X(4),PRIO,X(1),X(3),DA)=""
  Q
  ;

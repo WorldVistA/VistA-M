@@ -1,5 +1,6 @@
 PSBMLEN ;BIRMINGHAM/EFC-BCMA MEDICATION LOG FUNCTIONS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**4,9,19**;Mar 2004
+ ;;3.0;BAR CODE MED ADMIN;**4,9,19,75**;Mar 2004;Build 6
+ ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
  ; EN^PSJBCMA/2828
@@ -66,7 +67,7 @@ EN1 ;
  ..F  S X=$O(^PSB(53.79,"AOIP",DFN,PSBOIT,X),-1) Q:'X  D
  ...F  S Y=$O(^PSB(53.79,"AOIP",DFN,PSBOIT,X,Y),-1) Q:'Y  S:($P(^PSB(53.79,Y,.1),U)=PSBONX)&($P(^PSB(53.79,Y,0),U,9)'="N") PSBGVN=1,(X,Y)=0
  ..S PSBGVN=PSBGVN&('$$GET^XPAR("DIV","PSB ADMIN MULTIPLE ONCALL")) Q:PSBGVN
- ..I PSBOSTS'="A"&(PSBOSTS'="R") S PSBGVN=1 Q
+ ..I PSBOSTS'="A"&(PSBOSTS'="R")&(PSBOSTS'="O") S PSBGVN=1 Q  ;Add On Call pharmacy status, PSB*3*75
  ..I PSBNGF S PSBGVN=1 Q
  .S ^TMP("PSB",$J,PSBSCHT,PSBOITX,PSBX)=PSBONX_U_PSBADST_U_PSBOST_U_PSBOSP_U_PSBOSTS
  I PSBERR W ! K DIR S DIR(0)="E" D ^DIR Q:Y="^"

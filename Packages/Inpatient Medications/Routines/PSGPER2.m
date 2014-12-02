@@ -1,22 +1,27 @@
 PSGPER2 ;BIR/CML3-PRINTS PRE-EXCHANGE NEEDS REPORT ;18 MAR 03 / 5:14 PM
- ;;5.0; INPATIENT MEDICATIONS ;**80,115**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**80,115,279**;16 DEC 97;Build 150
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ;
-ENQ ;
- D ENP S DIK="^PS(53.4,",DA=PSGPXN D ^DIK K DA,DIK,PSGPXN Q
+ENQ ; Tasked entry point
+ D ENP
+ D TASKPRGE^PSGPER1(PSGPXN)
+ K DA,DIK,PSGPXN
+ Q
  ;
 ENP ;
- K ^TMP("PSGPERP",$J) U IO
+ N PSGPRSUB S PSGPRSUB=$S($G(PSGPRTYP)="PSGPERPC":"PSGPERPC",1:"PSGPERP")
+ K ^TMP("PSGPERP",$J),^TMP("PSGPERPC",$J) U IO
  F DFN=0:0 S DFN=$O(^PS(53.4,PSGPXN,1,DFN)) Q:'DFN  D PID^VADPT,GWR F ON=0:0 S ON=$O(^PS(53.4,PSGPXN,1,DFN,1,ON)) Q:'ON  D ONI F DD=0:0 S DD=$O(^PS(53.4,PSGPXN,1,DFN,1,ON,1,DD)) Q:'DD  I $D(^(DD,0)) S ND=^(0) D DDS
  D NOW^%DTC S %=$$ENDTC^PSGMI(%),(BORD,F,L)="",$P(L,"-",81)="",$P(BORD,"#",25)="",T=IO'=IO(0)!($E(IOST)'="C"),RF=$S(T:0,1:0) D:'RF HEADER S (DN,DDN,NP,WD)=""
- F  S WD=$O(^TMP("PSGPERP",$J,WD)) Q:WD=""  S PI="" F  S F=0,PI=$O(^TMP("PSGPERP",$J,WD,PI)) Q:PI=""  S RB=^(PI) D
- . D PPI F  S F=1,DN=$O(^TMP("PSGPERP",$J,WD,PI,DN)) Q:DN=""  S PX=^(DN) D OP F  S DDN=$O(^TMP("PSGPERP",$J,WD,PI,DN,DDN)) Q:DDN=""  S PX=^(DDN) D PRT
- . I $O(^TMP("PSGPERP",$J,WD,PI))]"" S F="" D NP
+ F  S WD=$O(^TMP(PSGPRSUB,$J,WD)) Q:WD=""  S PI="" F  S F=0,PI=$O(^TMP(PSGPRSUB,$J,WD,PI)) Q:PI=""  S RB=$G(^(PI)) D
+ .Q:'$$NSYNC(PSGPRSUB,WD,$G(PSGCURCL))
+ .D PPI F  S F=1,DN=$O(^TMP(PSGPRSUB,$J,WD,PI,DN)) Q:DN=""  S PX=^(DN) D OP F  S DDN=$O(^TMP(PSGPRSUB,$J,WD,PI,DN,DDN)) Q:DDN=""  S PX=^(DDN) D PRT
+ .I $O(^TMP(PSGPRSUB,$J,WD,PI))]"" S F="" D NP
  W:T&($Y) @IOF,@IOF D ^%ZISC
  ;
 DONE ;
- K ^TMP("PSGPERP",$J),BORD,DN,DD,DO,DRG,DRGS,F,L,MR,ND,ND0,ND2,ND4,NP,ON,PI,PDN,PN,PX,RB,RF,SCH,SDN,SN,SND1,SPN,STOP,STRT,T,UD,VD,VU,W,WD,X,XL,Y,DDN,I2,ND1,PSG25,PSG26,PSGEB,PSGEBN,PSGNODE,PSGOAT,PSGSTAT
+ K ^TMP(PSGPRSUB,$J),BORD,DN,DD,DO,DRG,DRGS,F,L,MR,ND,ND0,ND2,ND4,NP,ON,PI,PDN,PN,PX,RB,RF,SCH,SDN,SN,SND1,SPN,STOP,STRT,T,UD,VD,VU,W,WD,X,XL,Y,DDN,I2,ND1,PSG25,PSG26,PSGEB,PSGEBN,PSGNODE,PSGOAT,PSGSTAT
  K DONE,FIL,NF,PDM,PDRG,PSGACTO,PSGDA,PSGNEFDO,PSGNESDO,PSGPEN,PSGPENWS,PSGY,PSIVAC,PSIVCT,PSIVE,PSIVEXAM,PSIVUP,PSIVWAT,PSJH,PSJNOO,PSJNOON
  Q
  ;
@@ -25,22 +30,29 @@ NP ;
  ;
 HEADER ;
  W:$Y @IOF W !?20,"PRE-EXCHANGE UNITS REPORT - ",%
- W !!,"Ward",?32,"Room-bed",!,"Patient",!?5,"Order",!?20,"Dispense Drug",?64,"U/D",?72,"Needs",!,L
+ W !!,$S(($G(PSGCURCL)]""):"Clinic",1:"Ward"),?32,"Room-bed",!,"Patient",!?5,"Order",!?20,"Dispense Drug",?64,"U/D",?72,"Needs",!,L
  W:F !!,$S(WD'="zz":WD,1:"NOT FOUND"),?32,RB,!,PN_"  ("_SN_")" Q
  ;
 GWR ;
+ D PID^VADPT
  S WD=$G(^DPT(DFN,.1)),RB=$G(^(.101)),PN=$P($G(^(0)),"^") S:WD="" WD="zz" S:RB="" RB="NOT FOUND" S:PN="" PN=DFN_";DPT("
- S SPN=$E(PN,1,20)_"^"_DFN,^TMP("PSGPERP",$J,WD,SPN)=PN_"^"_RB_"^"_VA("BID") Q
+ S SPN=$E(PN,1,20)_"^"_DFN,^TMP(PSGPRSUB,$J,WD,SPN)=PN_"^"_RB_"^"_VA("BID") Q
  ;
 ONI ;
  S ND=$G(^PS(55,DFN,5,ON,0)),DN=$G(^(.2)),SCH=$P($G(^(2)),"^"),MR=$P(ND,"^",3),ND=$$ENNPN^PSGMI($P(ND,"^",2)),DO=$P(DN,"^",2),DN=$P(DN,"^") I DN="" S DN="zz"
  E  S DN=$$ENPDN^PSGMI(DN)
- S:MR]"" MR=$$ENMRN^PSGMI(MR) S SDN=$E(DN,1,20)_"^"_ON,^TMP("PSGPERP",$J,WD,SPN,SDN)=DN_"^"_DO_"^"_MR_"^"_SCH_"^"_$P(ND,"^",2) Q
+ I $G(^PS(55,DFN,5,+ON,8)) Q:(PSGPRSUB'="PSGPERPC")  N CLINIC S CLINIC=+^(8) I CLINIC S CLINIC=$P($G(^SC(+CLINIC,0)),"^") I (CLINIC]"") S WD=CLINIC,^TMP("PSGPERPC",$J,WD,SPN)=PN_"^^"_VA("BID") D
+ .I $D(^TMP(PSGPRSUB,$J,"zz",SPN)),($O(^TMP(PSGPRSUB,$J,"zz",SPN,""))="") K ^TMP(PSGPRSUB,$J,"zz",SPN)
+ S:MR]"" MR=$$ENMRN^PSGMI(MR) S SDN=$E(DN,1,20)_"^"_ON,^TMP(PSGPRSUB,$J,WD,SPN,SDN)=DN_"^"_DO_"^"_MR_"^"_SCH_"^"_$P(ND,"^",2)
+ S ^TMP($J,"PSGPRKILL",PSGPXN,DFN,ON)=""
+ Q
  ;
 DDS ;
+ Q:'$$NSYNC(PSGPRSUB,WD,$G(PSGCURCL))
+ I $G(^PS(55,DFN,5,+ON,8)) Q:(PSGPRSUB'="PSGPERPC")
  S ND1=$G(^PS(55,DFN,5,ON,1,+ND,0)),UD=$P(ND1,"^",2),ND1=$$ENDDN^PSGMI(+ND1),SND1=$E(ND1,1,20)_"^"_+ND,ND=$P(ND,"^",2)
  I ND#1 S ND=(ND\1)+1
- S ^TMP("PSGPERP",$J,WD,SPN,SDN,SND1)=ND1_"^"_UD_"^"_ND
+ S ^TMP(PSGPRSUB,$J,WD,SPN,SDN,SND1)=ND1_"^"_UD_"^"_ND
  Q
  ;
 PPI ;
@@ -60,10 +72,15 @@ PRT ; find order info and print same
  ;
  S SCH=$P(ND2,"^"),STRT=$P(ND2,"^",2),STOP=$P(ND2,"^",4),VU=$P(ND4,"^",3),VD=$P(ND4,"^",4),VU=$P($G(^VA(200,+VU,0)),"^",2) S:VU="" VU=$P(ND4,"^",3)
  F Q="STRT","STOP","VD" S @Q=$$ENDTC^PSGMI(@Q)
- W:$Y @IOF W !!?6,BORD_"  PRE-EXCHANGE MED  "_BORD,!?6,"#",?73,"#",!?6,"#  ",PN,?50,"Ward: ",WD,?73,"#",!?6,"#  ("_SN_")",?52,"RB: "_RB,?73,"#",!?6,"#",?73,"#"
+ W:$Y @IOF W !!?6,BORD_"  PRE-EXCHANGE MED  "_BORD,!?6,"#",?73,"#",!?6,"#  ",PN,?50,$S(($G(PSGCURCL)]""):"Clinic: ",1:"Ward: "),WD,?73,"#",!?6,"#  ("_SN_")",?52,"RB: "_RB,?73,"#",!?6,"#",?73,"#"
  W !?6,"#  "_DRG,?46,"START: "_STRT,?73,"#",!?6,"#  "_$S(DRGS]"":"("_DRGS_")",1:""),?47,"STOP: "_STOP,?73,"#",!?6,"#  GIVE: "_$S(DO]"":" "_DO,1:"")_$S(MR]"":" "_MR,1:"")_$S(SCH]"":" "_SCH,1:""),?73,"#"
  S XL=0 I Y="" W !?6,"#",?73,"#",!?6,"#  (NO SPECIAL INSTRUCTIONS)"
  E  W !?6,"#",?73,"#",!?6,"#    " S Y=$$ENSET^PSGSICHK(Y) F Q=1:1:$L(Y," ") S X=$P(Y," ",Q) S:$X+$L(X)>72 XL=XL+1 W:$X+$L(X)>72 ?73,"#",!?6,"#  " W X_" "
  W ?73,"#",!?6,"#",?73,"#",!,?6,"#",?43,"VERIFIED: "_VD,?73,"#",!?6,"#",?49,"BY: "_VU,?73,"#",!?6,"#",?38,"SEND TO FLOOR: "_PX,?73,"#"
  S XL=2-XL I XL>0 F Q=1:1:XL W !?6,"#",?73,"#"
  W !?6,"#",?73,"#",!?6,"#",?36,"_______________     _______________  #",!?6,"#",?36,"FILLED BY",?56,"CHECKED BY",?73,"#",!?6,BORD_BORD_$E(BORD,1,20) Q
+ ;
+NSYNC(PSGPRSUB,WD,PSGCURCL) ; Don't print ward orders and clinic orders together
+ Q:((PSGPRSUB="PSGPERPC")&(WD'=$G(PSGCURCL))) 0
+ Q:((PSGPRSUB'="PSGPERPC")&($G(PSGCURCL)]"")) 0
+ Q 1

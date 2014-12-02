@@ -1,18 +1,18 @@
-PSBVDLUD ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;2/1/12 10:27am
- ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58,68**;Mar 2004;Build 26
+PSBVDLUD ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;1/23/13 1:23pm
+ ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58,68,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
- ; EN^PSJBCMA/2828
  ; $$GET^XPAR/2263
  ; GETPROVL^PSGSICH1/5653
  ; INTRDIC^PSGSICH1/5654
  ;
  ;*58 - add 29th piece to Results for Override/Intervention flag 1/0
  ;*68 - add 30th piece to Results for Last Injection Site
+ ;*70 - add 32nd piece to Results for Clinic Order name for CO's
+ ;    - add 33rd piece to Results for Clinic ien ptr to file #44
  ;
 EN(DFN,PSBDT) ;
- ;
  ;
  ; Description:
  ; Returns the current unit dose order set for today to display
@@ -25,18 +25,20 @@ EN(DFN,PSBDT) ;
  ;
  G:$G(^TMP("PSJ",$J,1,0))=-1 1
  F PSBX=0:0 S PSBX=$O(^TMP("PSJ",$J,PSBX)) Q:('PSBX)!(PSBTBOUT)  D
+ .N PSBRTNOW S PSBRTNOW=$$NOW^XLFDT()
  .S:(PSBTAB'="UDTAB")&($G(^TMP("PSB",$J,"UDTAB",2))>0) PSBTBOUT=1
  .D CLEAN^PSBVT,PSJ^PSBVT(PSBX)
  .;
  .; << Standard checks for ALL orders >>
  .;
- .Q:PSBONX["V"  ;No IVs on UD tab
- .Q:PSBONX["P"  ;     No Pending Orders
- .Q:PSBOST>PSBWADM  ; Order Start Date/Time > admin window
- .Q:PSBOSP<PSBWBEG  ; For Non one-times Order Stop Date/Time < vdl window
- .Q:PSBOSTS["D"  ;     Is it DC'd
- .Q:PSBNGF  ;         Is it marked DO NOT GIVE!
- .Q:PSBIVPSH
+ .Q:PSBONX["V"              ;No IVs on UD tab
+ .Q:PSBONX["P"              ;No Pending Orders
+ .Q:PSBOST>PSBWADM          ;Order Start Date/Time > admin window
+ .Q:($G(PSBCLORD)]"")&(PSBOST>PSBRTNOW)     ;CO Order start date is in future   *70
+ .Q:PSBOSP<PSBWBEG  ;For Non one-times Order Stop Date/Time < vdl window
+ .Q:PSBOSTS["D"             ;Is it DC'd
+ .Q:PSBNGF                  ;Is it marked DO NOT GIVE!
+ .Q:PSBIVPSH                ;Is it IV push
  .;
  .; Non One-Times with stop date/time < now
  .;
@@ -127,6 +129,9 @@ EN(DFN,PSBDT) ;
  .;*68 add last injection site
  .K LI D RPC^PSBINJEC(.LI,DFN,PSBOIT,9999999,1)
  .S $P(PSBREC,U,30)=$P(LI(1),U,6)   ;if no inj's, 6th will be null
+ .;       piece 31 reserved by IVPB tab
+ .S $P(PSBREC,U,32)=$G(PSBCLORD)  ;clinic name          *70
+ .S $P(PSBREC,U,33)=$G(PSBCLIEN)  ;clinic ien ptr       *70
  .;
  .; Gather Dispense Drugs
  .D NOW^%DTC
@@ -140,7 +145,10 @@ EN(DFN,PSBDT) ;
  .;
  .; On-Call One Time PRN orders
  .S PSBQRR=0
- .I "^O^OC^P^"[(U_PSBSCHT_U) D ADD^PSBVDLU1(PSBREC,PSBOTXT,PSBNOW\1,PSBDDS,PSBSOLS,PSBADDS,"UDTAB") Q
+ .;*70 if Order start dates > than the day being viewed, don't show
+ .I "^O^OC^P^"[(U_PSBSCHT_U) D  Q
+ ..Q:PSBCLINORD&($P(PSBOST,".")>PSBDT)                ;*70
+ ..D ADD^PSBVDLU1(PSBREC,PSBOTXT,PSBNOW\1,PSBDDS,PSBSOLS,PSBADDS,"UDTAB")
  .;
  .; Now we deal with only continuous
  .; process admintimes

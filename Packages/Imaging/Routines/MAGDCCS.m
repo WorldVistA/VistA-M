@@ -1,5 +1,5 @@
 MAGDCCS ;WOIFO/MLH/JSL/SAF - DICOM Correct - Clinical Specialties ; 13 Feb 2012 1:13 PM
- ;;3.0;IMAGING;**10,11,85,54,123**;Mar 19, 2002;Build 67;Jul 24, 2012
+ ;;3.0;IMAGING;**10,11,85,54,123,118**;Mar 19, 2002;Build 4525;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |

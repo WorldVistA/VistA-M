@@ -1,5 +1,5 @@
-ORWOR ; SLC/KCM - Orders Calls ; 3/15/11 8:10am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,141,163,187,190,215,243,307,330,280,347**;Dec 17, 1997;Build 4
+ORWOR ; SLC/KCM - Orders Calls ;08/19/11  05:01
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,141,163,187,190,215,243,307,330,280,347,306**;Dec 17, 1997;Build 43
  ;
 CURRENT(LST,DFN) ; Get Current Orders for a Patient
  ; Returns two lists in ^TMP("ORW",$J), fields and text
@@ -114,7 +114,7 @@ EVENTS(LST,EVT) ; Return general delayed events categories for a patient
  S EVTI=EVTI+1,LST(EVTI)="D;0^Discharge"
  Q
 UNSIGN(LST,ORVP,HAVE)   ; Return Unsigned Orders that are not on client
- N DC,DEL,DG,IFN,ACT,X0,X3,X8,ENT,LVL,TM,ILST,ORELSE
+ N DC,DEL,DG,IFN,ACT,X0,X3,X8,ENT,LVL,TM,ILST,ORELSE,CS,PKG,ORCSPKG,OI
  S ILST=0
  Q:'$D(^XUSEC("ORES",DUZ))&('$D(^XUSEC("ORELSE",DUZ))&'$D(^ORAM(103,+ORVP)))
  S ORVP=ORVP_";DPT("
@@ -136,20 +136,36 @@ UNSIGN(LST,ORVP,HAVE)   ; Return Unsigned Orders that are not on client
  . . . S DC=$S($P(X8,U,2)="DC":1,1:0)
  . . . ;determine if Delay
  . . . S DEL=$$CHKORD^OREVNTX1(IFN)
+ . . . ;determine if controlled substance
+ . . . S PKG=$P(X0,"^",14)
+ . . . S ORCSPKG=""
+ . . . I PKG=$O(^DIC(9.4,"B","OUTPATIENT PHARMACY",0)) S ORCSPKG="O"
+ . . . I PKG=$O(^DIC(9.4,"B","UNIT DOSE MEDICATIONS",0)) S ORCSPKG="I"
+ . . . I PKG=$O(^DIC(9.4,"B","INPATIENT MEDICATIONS",0)) S ORCSPKG="I"
+ . . . I PKG=$O(^DIC(9.4,"B","IV MEDICATIONS",0)) S ORCSPKG="I"
+ . . . I ORCSPKG="" S CS="0^0"
+ . . . I ORCSPKG'="" D
+ . . . . S OI=+$O(^OR(100,IFN,4.5,"ID","ORDERABLE",0)),OI=+$G(^OR(100,IFN,4.5,OI,1))
+ . . . . D CSCHECK^ORDEA(.CS,OI,ORCSPKG)
  . . . I '$S(LVL=1&($P(X8,U,3)=DUZ):1,ORELSE&($P(X8,U,13)=DUZ):1,LVL=2:1,1:0) Q  ;chk user
  . . . ;if Nurse, and order is already released or held for signature, don't include in list
  . . . I ORELSE,$S((+$P(X8,U,16)>0):1,$D(^OR(100,IFN,5)):1,1:0) Q
- . . . S ILST=ILST+1,LST(ILST)=IFN_";"_ACT_U_$P(X8,U,3)_U_DG_U_DC_U_DEL
+ . . . S ILST=ILST+1,LST(ILST)=IFN_";"_ACT_U_$P(X8,U,3)_U_DG_U_DC_U_DEL_U_CS
  Q
 PKIUSE(RETURN) ; RPC determines user can use PKI Digital Signature
+ N ORPKIU
  S RETURN=0
- I $$GET^XPAR("ALL^USR.`"_DUZ,"ORWOR PKI USE",1,"Q") S RETURN=1
+ S ORPKIU=0 I $D(^ORD(100.7,"C",DUZ)) S ORPKIU=1
+ I ORPKIU S RETURN=1
  Q
 PKISITE(RETURN) ; RPC determines if PKI is turned on at the site
+ N ORPKIS,ORSITE,IEN
  S RETURN=0
  Q:'$L($T(STORESIG^XUSSPKI))  ;Check for Kernel piece
- Q:'$L($T(DOSE^PSSOPKI1))  ;Check for Pharmacy piece
- I $$GET^XPAR("ALL","ORWOR PKI SITE",1,"Q") S RETURN=1
+ Q:'$L($T(OIDEA^PSSOPKI))  ;Check for Pharmacy piece
+ S ORPKIS=0,ORSITE=+$$SITE^VASITE() I $D(^ORD(100.7,"B",ORSITE)) D
+ . S IEN=$O(^ORD(100.7,"B",ORSITE,"")),ORPKIS=$P(^ORD(100.7,IEN,0),"^",2)
+ I ORPKIS S RETURN=1
  Q
 ACTXT(ORY,ORIFN) ;Return detail action information
  N ORI,CNT,OR0,OR3,OR6,ACTION

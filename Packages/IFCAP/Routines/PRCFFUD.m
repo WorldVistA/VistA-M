@@ -1,6 +1,9 @@
 PRCFFUD ;WISC/SJG-UTILITY FOR CARRY FORWARD ;7/24/00  23:14
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**181**;Oct 20, 2000;Build 6
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*181 Added calc for regular POs to calc the correct amount
+ ;            between original PO and amended PO
  ;
  QUIT
  ; No top level entry
@@ -75,6 +78,8 @@ AMEND ; Create an entry in File 410 for each amendment to a purchase order
  .N AMDAMT,P410,NEW410 S AMDAMT=$$AMDAMT()
  .S P410=+PRCFA("REF")_U_+$P(PO(0),U,3)_U_"A"_U_2_U_PRCFA("OBLDATE")_U_AMDAMT_U_$P(PRCFA("REF"),"-",2)_AMDEXT_U_"ST"_U_+PO
  .S $P(P410,U,10,11)=PRC("FYQDT")_U_PRC("BBFY")
+ .I $G(PRCHAUTH)'=1,$P(^PRC(442,PRCHPO,0),U,2)'=25 D
+ ..S $P(P410,U,6)=$P(^PRC(442,PRCFA("PODA"),0),U,16)-$P(PO(0),U,16)    ;PRC*5.1*181 Fix for 410 adj between amend $$ and prior PO $$
  .D A410^PRC0F(.NEW410,P410) S PRCFA("NEW410")=NEW410
  .Q
  ; Case 2 - amendment types: vendor change, FCP change, PO number change

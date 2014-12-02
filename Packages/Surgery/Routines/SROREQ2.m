@@ -1,5 +1,5 @@
-SROREQ2 ;BIR/MAM - REQUEST FOR A DAY (CONT) ; [ 12/09/99  11:54 AM ]
- ;;3.0; Surgery ;**48,77,92,109**;24 Jun 93
+SROREQ2 ;BIR/MAM - REQUEST FOR A DAY (CONT) ;12/09/99
+ ;;3.0;Surgery;**48,77,92,109,178**;24 Jun 93;Build 6
  ;
  ; Reference to ^LAB(66 supported by DBIA #210
  ;
@@ -38,7 +38,7 @@ PRINT ; print requests
  W !!,"Principal Procedure:",?22,SROPS(1) I $D(SROPS(2)) W !,?22,SROPS(2) I $D(SROPS(3)) W !,?22,SROPS(3) I $D(SROPS(4)) W !,?22,SROPS(4) I $D(SROPS(5)) W !,?22,SROPS(5)
  I $O(SROP(0)) W !,"Other Procedures:",?22,SROP(1) S CNT=1 F I=0:0 S CNT=$O(SROP(CNT)) Q:'CNT  W !,?22,SROP(CNT)
  W !,"Estimated Case Length: "_SRLENGTH I SRPOS'="" W ?40,"Position: "_SRPOS
- I SRORDER W !,"Case Schedule Order: "_SRORDER
+ I SRORDER'="" W !,"Case Schedule Order: "_SRORDER
  W !!,"Req. Anesthesia Technique: "_SRANES
  I $O(BLOOD(0)) W !,"Blood Requested: ",?22,BLOOD(1) I $D(BLOOD(2)) W !,?22,BLOOD(2) I $D(BLOOD(3)) W !,?22,BLOOD(3)
  I SRSPER'="" W !,"Requested by: "_SRSPER W:SREQDAY'="" " on "_SREQDAY

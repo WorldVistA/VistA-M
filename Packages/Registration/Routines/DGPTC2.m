@@ -1,5 +1,5 @@
-DGPTC2 ;ALN/MJK - Census Record Processing; jAN 27,2005
- ;;5.3;Registration;**58,189,643**;Aug 13, 1993
+DGPTC2 ;ALN/MJK - Census Record Processing;JAN 27,2005
+ ;;5.3;Registration;**58,189,643,850**;Aug 13, 1993;Build 171
  ;
 SETP ; -- P node processing
  ;I DGCSUF="9AA"!(DGCSUF="BU") S I=999 G SETPQ
@@ -28,12 +28,14 @@ SETM ; -- M node processing
  I I=1 D ONE G SETMQ
  G SETMQ:($P(X,U,10)<DGBEG)!($P(X,U,10)>DGEND) S ^DGPT(DGCI,"M",I,0)=X
  S:'$D(^DGPT(DGCI,"M",0)) ^(0)="^45.02AI^^" S X=^(0),^(0)=$P(X,U,1,2)_"^"_I_"^"_($P(X,U,4)+1)
- S:$D(^DGPT(PTF,"M",I,"P")) ^DGPT(DGCI,"M",I,"P")=^("P")
+ S:$D(^DGPT(PTF,"M",I,"P")) ^DGPT(DGCI,"M",I,"P")=^DGPT(PTF,"M",I,"P")
+ S:$D(^DGPT(PTF,"M",I,82)) ^DGPT(DGCI,"M",I,82)=^DGPT(PTF,"M",I,82)
 SETMQ K DGSFLAG Q
  ;
 BSEC ; -- set bed sec in 1 mvt ; input X := one node of "M" ; output := same
  N Y
  S Y=+$O(^DGPM("ATS",DFN,DGPMCA,9999999.9999999-DGEND)),Y=+$O(^(Y,0))
+ I Y=0 S Y=+$O(^DGPM("ATS",DFN,DGPMCA,9999999.9999999-DGEND,0)) ;aas 850 fix
  S $P(X,U,2)=$S($D(^DIC(45.7,+Y,0)):$P(^(0),U,2),1:0)
  Q
  ;
@@ -58,6 +60,7 @@ ONE ; -- find last mvt before census date
  ;;Code added by EDS-GRR 6/4/1998
  ;;
  M ^DGPT(DGCI,"M",M,300)=^DGPT(PTF,"M",M,300)
+ M ^DGPT(DGCI,"M",M,82)=^DGPT(PTF,"M",M,82) ; move POA fields to Census
  ;;
  ;;End of GAF enhancement
  ;;

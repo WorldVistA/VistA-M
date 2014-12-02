@@ -1,5 +1,5 @@
 RCDPE8NZ ;ALB/TMK/KML - Unapplied EFT Deposits report ;19 MAR 2003
- ;;4.5;Accounts Receivable;**173,212,208,269,276,283**;Mar 20, 1995;Build 8
+ ;;4.5;Accounts Receivable;**173,212,208,269,276,283,293**;Mar 20, 1995;Build 15
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; entrypoint for stand-alone report option
@@ -47,6 +47,7 @@ PR ; Entrypoint for queued job
  . S RCEFT=0 F  S RCEFT=$O(^RCY(344.31,"B",RCDA,RCEFT)) Q:'RCEFT!RCSTOP  S RCDATA0=$G(^RCY(344.31,RCEFT,0)) D  Q:RCSTOP
  . . S RCCT=RCCT+1
  . . I '(RCCT#100),$D(ZTQUEUED),$$S^%ZTLOAD S (RCSTOP,ZTSTOP)=1 K ZTREQ Q
+ . . Q:$P($G(^RCY(344.31,RCEFT,3)),U)        ; EFT has been removed   PRCA*4.5*293
  . . S RCREC=$$GETREC(RCEFT,RCDATA0,.RECEXT)
  . . Q:RCREC="PURGED"  ; need to prevent processed EFTs that had receipts purged from being generated on the report
  . . ;; PRCA276 - need to add EFT entries without a receipt to the total number of unapplied deposits

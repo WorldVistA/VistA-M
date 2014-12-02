@@ -1,5 +1,5 @@
-PXRMEXPD ;SLC/PKR - General packing driver. ;10/28/2011
- ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22**;Feb 04, 2005;Build 160
+PXRMEXPD ;SLC/PKR - General packing driver. ;08/02/2013
+ ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,26**;Feb 04, 2005;Build 404
  ;==========================
 BLDDESC(USELLIST,TMPIND) ;If multiple entries have been selected
  ;then initialize the description with the selected list.
@@ -35,12 +35,17 @@ BLDTEXT(TMPIND) ;Combine the source information and the user's input into the
  ;==========================
 CLDIQOUT(FILENUM,IEN,FIELD,IENROOT,DIQOUT) ;Clean-up the DIQOUT returned by
  ;the GETS^DIQ call.
+ N NOSTUB
+ S NOSTUB=0
+ I (FILENUM=811.4),($P(^PXRMD(811.4,IEN,100),U,1)="N") S NOSTUB=1
  ;Remove edit history from all reminder files.
- D RMEH^PXRMEXPU(FILENUM,.DIQOUT)
+ D RMEH^PXRMEXPU(FILENUM,.DIQOUT,NOSTUB)
  ;Convert the iens to the FDA adding form.
  D CONTOFDA^PXRMEXPU(.DIQOUT,.IENROOT)
  ;Remove hospital locations from location lists
  I FILENUM=810.9 K DIQOUT(810.944)
+ ;Don't transport the obsolete taxonomy fields.
+ I FILENUM=811.2 K DIQOUT(811.22102),DIQOUT(811.22103),DIQOUT(811.22104),DIQOUT(811.23102),DIQOUT(811.23104)
  ;TIU conversion for TIU/HS objects
  I FILENUM=8925.1,FIELD="**" D TIUCONV(FILENUM,IEN,.DIQOUT)
  Q

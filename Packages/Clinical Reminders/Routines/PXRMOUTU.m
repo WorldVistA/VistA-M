@@ -1,5 +1,5 @@
-PXRMOUTU ;SLC/PKR - Utilites for preparing output. ;07/29/2010
- ;;2.0;CLINICAL REMINDERS;**17,18**;Feb 04, 2005;Build 152
+PXRMOUTU ;SLC/PKR - Utilities for preparing output. ;01/28/2013
+ ;;2.0;CLINICAL REMINDERS;**17,18,26**;Feb 04, 2005;Build 404
  ;
  ;==================================================
 ADDTXT(LM,RM,NTXT,TXT) ;
@@ -48,6 +48,14 @@ FERROR(NTXT) ; Check for a fatal error and output a message.
  . I ERROR="NOPAT" S TEXT=^TMP(PXRMPID,$J,PXRMITEM,"FERROR","PATIENT","NOPAT")
  . I ERROR="NO LOCK" S TEXT="Could not get a lock for patient "_PXRMPDEM("DFN")_", try again!"
  . D ADDTXT(1,PXRMRM,.NTXT,TEXT)
+ ;
+ ;Recursion
+ I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","RECURSION")) D
+ . K TEXT
+ . S TEXT(1)=""
+ . S TEXT(2)="This reminder definition is being called recursively, check CF.VA-REMINDER DEFINITION."
+ . D ADDTXTA(1,PXRMRM,.NTXT,2,.TEXT)
+ ;
  Q 1
  ;
  ;==================================================

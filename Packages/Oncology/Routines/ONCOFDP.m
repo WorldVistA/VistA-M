@@ -1,5 +1,5 @@
 ONCOFDP ;Hines OIFO/GWB - FOLLOW DEAD PATIENTS ;07/12/00
- ;;2.11;ONCOLOGY;**1,5,16,22,25,26,47**;Mar 07, 1995;Build 19
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 DEAD ;Death information
  K DXS,DIOT S D0=ONCOD0,DIR("A")=" Edit Data",DIR("B")="Y",DIR(0)="Y"
  D ^ONCOXDI,^DIR G ED:Y,RC:'Y,EX

@@ -1,6 +1,14 @@
-LEXEDF1 ; ISL Edit/Display a Definition (Part 1)   ; 05/14/2003
- ;;2.0;LEXICON UTILITY;**3,25**;Sep 23, 1996
- ;
+LEXEDF1 ;ISL/KER - Edit/Display a Definition (Part 1) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**3,25,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^TMP("LEXDEF")      SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    YN^DICN             ICR  10009
+ ;    ^DIE                ICR  10018
+ ;    ^XMD                ICR  10070
+ ;               
  N DIC,DIE,DIR,DIROUT,DIRUT,DLAYGO,DR,DTOUT,DUOUT,DA,X,Y
  N LEX,LEXAID,LEXC,LEXDIC0,LEXE,LEXI,LEXL,LEXLC
  N LEXMC,LEXME,LEXMP,LEXS,LEXSAV,LEXST,LEXTY,LEXX
@@ -80,6 +88,6 @@ SENDDEF ; Send edited definition to ISC
  S XMSUB=$P(LEX,U,2)_" in Expression File (#757.01)"
  S XMY(("G.LEXICON@"_LEXADR))=""
  S XMTEXT="^TMP(""LEXDEF"",$J,",XMDUZ=.5 D ^XMD
- K ^TMP("LEXDEF",$J),XCNP,XMDUZ,XMY("G.LEXICON@ISC-SLC.domain.ext"),XMZ
+ K ^TMP("LEXDEF",$J),XCNP,XMDUZ,XMY("G.LEXICON@ISC-SLC.DOMAIN.EXT"),XMZ
  K XMSUB,XMY,XMTEXT
  Q

@@ -1,5 +1,5 @@
 IBCEU4 ;ALB/TMP - EDI UTILITIES ;02-OCT-96
- ;;2.0;INTEGRATED BILLING;**51,137,210,155,290,403**;21-MAR-94;Build 24
+ ;;2.0;INTEGRATED BILLING;**51,137,210,155,290,403,461**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 TESTFLD ;  Entrypoint to call to test the output the formatter will
@@ -64,11 +64,11 @@ MCRSPEC(IBIFN,MCR,IBPIEN) ; Returns specialty code for a provider on bill
  I '$G(MCR) S IBZ="0"_IBZ
  Q IBZ
  ;
-ECODE(IBP,CD) ; Function returns 1 if procedure ien IBP is an E-code
+ECODE(IBP,CD) ; Function returns 1 if procedure ien IBP is an E-code (in ICD-9 only)
  ; CD = returned = the external code, if passed by reference
- N Q
- S CD=$P($$ICD9^IBACSV(+IBP),U)
- Q ($E(CD)="E")
+ N Q,Z,IBZ S IBZ=0
+ S Z=$$ICD9^IBACSV(+IBP),CD=$P(Z,U,1) I $E(Z)="E",$P(Z,U,19)'=30 S IBZ=1
+ Q IBZ
  ;
 BOX82NM(IBIFN,IBZSAVE) ; Returns the data to be printed in form locators 82
  ; and 83 on the UB92 for bill ien IBIFN, based on the providers on the

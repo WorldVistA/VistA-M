@@ -1,5 +1,5 @@
-LRMIEDZ2 ;DALIO/JMC - MICROBIOLOGY EDIT ROUTINE ;05/01/12  09:16
- ;;5.2;LAB SERVICE;**23,104,242,295,350**;Sep 27, 1994;Build 230
+LRMIEDZ2 ;DALIO/JMC - MICROBIOLOGY EDIT ROUTINE ;02/27/13  03:32
+ ;;5.2;LAB SERVICE;**23,104,242,295,350,427**;Sep 27, 1994;Build 33
  ;
  ; from LRFAST,LRMIEDZ,LRVER
  ;
@@ -7,14 +7,79 @@ LRMIEDZ2 ;DALIO/JMC - MICROBIOLOGY EDIT ROUTINE ;05/01/12  09:16
  ;
 PAT ;
  N LRUID
- S X=LRAN
- F  R:'$D(LRAN) !!,"Accession #: ",X:DTIME Q:X=""!(X[U)  D
- . S LRANOK=1,LRCAPOK=1 D LRANX^LRMIU4
- . I $G(LRANOK) D PAT1 L -^LR(LRDFN,"MI",LRIDT)
- . I $G(LRANOK) D LEDI^LRVR0
- . K LRTS I $G(LRANOK) D:LRCAPOK&($P(LRPARAM,U,14)) ^LRCAPV1
- . K:$G(LRANOK) LRAN
- . I '$G(LRANOK) W !,"Enter the accession number" K LRAN
+ ;
+ I '$D(LRAN) S LRAN=""
+ F  S:LRAN="" LRAN=$$ACCPRMPT(LRAA,LRAD) Q:LRAN<0  D
+ . I +LRAN=0 D  Q
+ . . D QUES
+ . . S LRAN=""
+ . ;
+ . S LRANOK=1
+ . S LRCAPOK=1
+ . D PAT1
+ . L -^LR(LRDFN,"MI",LRIDT)
+ . D LEDI^LRVR0
+ . K LRTS
+ . I LRCAPOK&($P(LRPARAM,U,14)) D ^LRCAPV1
+ . S LRAN=""
+ ;
+ ;
+ Q
+ ;
+ ;
+ACCPRMPT(LRAA,LRAD) ;Prompt for accession number or UID
+ ;
+ ; Call with LRAA = Accession Area
+ ;           LRAD = Accession Date
+ ; 
+ ; Accession number/UID entered must have the same accession
+ ; area and date as LRAA and LRAD
+ ; 
+ ;   Returns LRAN = 0  (not valid input)
+ ;                = -1 (user wants to exit - they entered up-arrow, pressed the Enter/Return key, or timed out)
+ ;                = >0 (valid accession number)
+ ;
+ N DIR,DIRUT,DTOUT,DUOUT,LRAN,LRANOK,LRX,LRY,X,Y
+ ;
+ S LRAN=0
+ ;
+ W !!
+ ;
+ S DIR(0)="FO^1:30",DIR("A")="Select MICROBIOLOGY Accession or UID"
+ S DIR("?")="^D QUES^LRMIEDZ2"
+ D ^DIR
+ I Y=""!$D(DIRUT) Q -1
+ S LRX=Y
+ ;
+ S:$L(LRX)>2 ^DISV(DUZ,"LRACC")=LRX
+ S:LRX=" " LRX=$S($D(^DISV(DUZ,"LRACC")):^("LRACC"),1:"?")
+ ;
+ I $D(^LRO(68,"C",LRX)) D  Q LRAN
+ . S LRY=$$CHECKUID^LRWU4(LRX,"MI")
+ . I 'LRY Q
+ . I $P(LRY,U,2)'=LRAA!($P(LRY,U,3)'=LRAD) Q
+ . S LRAN=$P(LRY,U,4)
+ . W " (",$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,.2)),"^"),")"
+ ;
+ S LRANOK=1
+ S X=LRX
+ D LRANX^LRMIU4
+ I 'LRANOK S LRAN=0
+ ;
+ Q LRAN
+ ;
+ ;
+QUES ;
+ ;
+ W $C(7),!,"Enter the accession number or the unique identifier (UID)."
+ W !,"If entering the accession number, enter just the number portion."
+ W !,?5," e.g., if the accession is MICRO 13 30173, enter 30173."
+ W !,?5," Only accessions from subscript MI are selectable."
+ W !,"If entering the UID, enter the entire 10-15 characters."
+ W !
+ W !,"The accession number/UID entered must have the same accession"
+ W !,"area and date as the first accession entered."
+ ;
  Q
  ;
  ;

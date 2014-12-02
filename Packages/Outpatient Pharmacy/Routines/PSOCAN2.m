@@ -1,8 +1,8 @@
-PSOCAN2 ;BHAM ISC/JMB - rx cancel with speed ability drug check ;10/23/06 11:30am
- ;;7.0;OUTPATIENT PHARMACY;**8,18,62,46,88,164,235,148,259,281,287,251,375,379,396,390**;DEC 1997;Build 86
- ;External reference to ^PSDRUG supported by dbia 221
- ;External reference to $$DS^PSSDSAPI supported by DBIA 5425
+PSOCAN2 ;BHAM ISC/JMB - rx cancel with speed ability drug check ; 2/16/12 3:40pm
+ ;;7.0;OUTPATIENT PHARMACY;**8,18,62,46,88,164,235,148,259,281,287,251,375,379,396,390,372,416**;DEC 1997;Build 32
+ ;External reference to ^PSDRUG supported by DBIA 221
 REINS N DODR,ORN
+ I $G(PSODFN)'=$G(PSOODOSP) K PSORX("DOSING OFF"),PSOREINF S PSOODOSP=PSODFN
  I $P(^PSRX(DA,2),"^",6)<DT D  Q
  .S Y=$P(^PSRX(DA,2),"^",6) X ^DD("DD")
  .W !!,"Rx: "_$P(^PSRX(DA,0),"^")_" Drug: "_$S($D(^PSDRUG($P(^PSRX(DA,0),"^",6),0)):$P(^(0),"^"),1:""),!,"Expired "_Y_" and cannot be Reinstated!",!
@@ -69,7 +69,7 @@ DRGDRG ;Checks for drug/drug interaction, duplicate drug and class
  K PSOY,PSOTECCK S PSOY=Y,PSOY(0)=Y(0)
  I '$D(^XUSEC("PSORPH",DUZ)) S PSOTECCK=1 N ZRXN
  S (ZRXN,PSORENW("OIRXN"))=DA D SET^PSODRG,POST^PSODRG Q:$G(PSOREINS)&$G(PSOQUIT)
- D:$$DS^PSSDSAPI&('$G(PSORX("DFLG"))) DOSCK^PSODOSUT("C")
+ D:'$G(PSORX("DFLG")) DOSCK^PSODOSUT("C")
  S REA=$P(PSCAN($P(^PSRX(PSORENW("OIRXN"),0),"^")),"^",2)
  W ! S:$G(HOLD(STAT,NAME))]"" PSOSD(STAT,NAME)=$G(HOLD(STAT,NAME)) K HOLD,STA,STAT,PSORENW("OIRXN")
  ;saves drug allergy order chks pso*7*390

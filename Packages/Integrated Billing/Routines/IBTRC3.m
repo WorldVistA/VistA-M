@@ -1,6 +1,6 @@
 IBTRC3 ;ALB/AAS - CLAIMS TRAINING INS. REV DEFAULTS ; 29-SEP-93
- ;;Version 2.0 ; INTEGRATED BILLING ;; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**458**;21-MAR-94;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 LAST(IBTRN,IBTRC) ; -- return last insurance review
  ; -- Input  IBTRN  = claims tracking id
@@ -70,13 +70,15 @@ CP(DA,IBTLST) ; -- compute default contact phone number from last review
  ;
  Q $P($G(^IBT(356.2,+$G(IBTLST),0)),"^",7)
  ;
-AN(DA,IBTLST) ; -- compute default authorization number policy
+AN(DA,IBTLST) ; -- compute default authorization number policy (call ref default removed with *458)
  ; -- called from input templates
  ;    input da     = current entry being edited
  ;          ibtlst = last entry for this review as determine by $$LAST
- N X
- S X=$P(^IBT(356.2,DA,0),"^",9)
- Q $E($S($L(X):X,1:$P($G(^IBT(356.2,+$G(IBTLST),0)),"^",28)),1,10)
+ ;
+ Q $P($G(^IBT(356.2,+$G(IBTLST),2)),"^",2)
+ ;N X
+ ;S X=$P(^IBT(356.2,DA,0),"^",9)
+ ;Q $E($S($L(X):X,1:$P($G(^IBT(356.2,+$G(IBTLST),0)),"^",28)),1,10)
  ;
 APPEAL ; -- called from IBTRC, needed more room to compute
  ;    info if an appeal

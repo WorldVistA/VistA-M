@@ -1,5 +1,5 @@
-LRSRVR6 ;DALOI/JMC - LAB DATA SERVER CONT'D SNOMED EXTRACT ;11/18/11  16:52
- ;;5.2;LAB SERVICE;**346,378,350**;Sep 27, 1994;Build 230
+LRSRVR6 ;DALOI/JMC,TMK - LAB DATA SERVER CONT'D SNOMED EXTRACT ; 17 Apr 2013  2:03 PM
+ ;;5.2;LAB SERVICE;**346,378,350,425**;Sep 27, 1994;Build 30
  ;
  ; Produces SNOMED extract via LRLABSERVER option
  ;
@@ -87,10 +87,10 @@ FILE ; Search file entry and build record.
  . I LRSNM'="",LRFN>60.9,LRFN<61.61 S LRX=((LRFN*10)#610)+1,LRSNM=$E("TMEFDPJ",LRX)_"-"_LRSNM
  . S LRSCT=$P($G(^LAB(LRFN,LRIEN,"SCT")),"^"),(LRSCTEC,LRSCTX,LRVUID)=""
  . I LRLEX,LRSCT'="" D
- . . K LRX
- . . S LRX=$$CODE^LEXTRAN(LRSCT,"SCT",DT,"LRX")
- . . S LRSCTX=$G(LRX("F")),LRSCTEC=$S(LRX<1:$P(LRX,"^",2),1:"")
- . . I LRSCTVER="",LRX>0 S LRSCTVER=$P($G(LRX(0)),"^",3)
+ . . N LRLEXARR
+ . . S LRLEXARR=$$CODE^LRSCT(LRSCT,"SCT",DT,"LRLEXARR")
+ . . S LRSCTX=$G(LRLEXARR("F")),LRSCTEC=$S(LRLEXARR<1:$P(LRLEXARR,"^",2),1:"")
+ . . I LRSCTVER="",LRLEXARR>0 S LRSCTVER=$P($G(LRLEXARR(0)),"^",3)
  . S LRSTR=LRSTR_LRST_"-"_LRFN_"-"_LRIEN_"|"_LRNAME_"|"_LRSNM_"|"_LRVUID_"|"_LRSCT_"|"_LRSCTX_"|"_LRSCTEC_"|"
  . S LRSPECN="|"
  . I LRFN=62,LRSPEC D
@@ -99,6 +99,10 @@ FILE ; Search file entry and build record.
  . S LRSTR=LRSTR_LRSPECN_"|1.2|"
  . I LRVFLD(21) S LRSTR=LRSTR_$$GET1^DIQ(LRFN,LRIEN_",",21,"I")
  . S LRSTR=LRSTR_"|"
+ . I LRFN=61!(LRFN=62) D  ; Inactive date
+ .. I LRFN=61 S LRSTR=LRSTR_$TR($$FMTE^XLFDT($$GET1^DIQ(LRFN,LRIEN_",",64.9103,"I"),"1D")," ,","/")
+ .. I LRFN=62 S LRSTR=LRSTR_$TR($$FMTE^XLFDT($$GET1^DIQ(LRFN,LRIEN_",",64.9101,"I"),"1D")," ,","/")
+ .. S LRSTR=LRSTR_"|"
  . S LRCNT=LRCNT+1,LRCNT(LRFN)=LRCNT(LRFN)+1
  . I LRSCT D
  . . S LRCNT("SCT")=LRCNT("SCT")+1,LRCNT(LRFN,"SCT")=LRCNT(LRFN,"SCT")+1
@@ -130,9 +134,9 @@ HDR ; Set the header information
  F I=5,15,16,18,23 S ^TMP($J,"LRDATA",I)=" "
  S ^TMP($J,"LRDATA",17)="Attached file..........: "_LRFILENM
  S ^TMP($J,"LRDATA",19)="Legend:"
- S X="Station #-File #-IEN|Entry Name|SNOMED I|VUID|SNOMED CT|SNOMED CT TERM|Mapping Exception|Related Specimen|Related Specimen ID|Extract Ver|Term Status|"
+ S X="Station #-File #-IEN|Entry Name|SNOMED I|VUID|SNOMED CT|SNOMED CT TERM|Mapping Exception|Related Specimen|Related Specimen ID|Extract Ver|Term Status|Inactive Date|"
  S ^TMP($J,"LRDATA",20)=X
- S X="           1        |     2    |   3    |  4 |    5    |       6      |        7        |        8       |        9          |    10     |     11    |"
+ S X="           1        |     2    |   3    |  4 |    5    |       6      |        7        |        8       |        9          |    10     |  11    |   12    |"
  S ^TMP($J,"LRDATA",21)=X
  S ^TMP($J,"LRDATA",22)=$$REPEAT^XLFSTR("-",$L(X))
  S ^TMP($J,"LRDATA",24)=$$UUBEGFN^LRSRVR2A(LRFILENM)

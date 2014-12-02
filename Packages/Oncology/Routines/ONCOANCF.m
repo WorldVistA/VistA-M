@@ -1,5 +1,5 @@
-ONCOANCF ;Hines OIFO/GWB -  ACOS Reporting Paramenters ;06/14/00
- ;;2.11;ONCOLOGY;**1,15,25,26**;Mar 07, 1995
+ONCOANCF ;Hines OIFO/GWB -  ACOS Reporting Parameters ;06/14/00
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 DATA ;
  ;;RECORD TYPE^1^1
  ;;Patient ID number^2^9

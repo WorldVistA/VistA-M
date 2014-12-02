@@ -1,6 +1,10 @@
-SDROUT2 ;BSN/GRR - PRINT ROUTING SLIPS HEADING ; 4/24/01 3:10pm
- ;;5.3;Scheduling;**28,377,441**;Aug 13, 1993;Build 14
+SDROUT2 ;BSN/GRR - PRINT ROUTING SLIPS HEADING ;4/24/01 3:10pm
+ ;;5.3;Scheduling;**28,377,441,586**;Aug 13, 1993;Build 28
+ ;
+ ; Reference to $$IMP^ICDEX supported by ICR #5747
+ ;
 HED N LL,NAME,SDX,SSN,Y,ADDR
+ N ICD10IMPDT ;SSA ICD-10
  W !,@IOF,"*** FACILITY: ",$S($D(^DG(40.8,+DIV,0)):$P(^(0),"^"),1:$P($$SITE^VASITE,U,2)) S P=P+1
  I ORDER=2 W !,"*** CLINIC: ",$P(^SC(+SC,0),"^")
  I ORDER=3 W !,"*** PHYSICAL LOCATION: "_I
@@ -43,7 +47,9 @@ HD W !,?11,"**CURRENT APPOINTMENTS**",!!,?3,"TIME",?11,"CLINIC",?45,"LOCATION",!
  Q
 SCCOND ;  - text on routing sheet for determining if care for sc condition.
  S SDSCCOND=""
- W !!?11,"List diagnosis ________________________________________________"
+ ;SSA ICD-10
+ N ICD10IMPDT S ICD10IMPDT=$$IMP^ICDEX(30)
+ W !!?11,"List diagnosis "_$S(SDATE<ICD10IMPDT:"(ICD9)",1:"(ICD10)")_" ________________________________________________"
  W !!?11,"List any procedures performed during this clinic visit ________",!!?11,"_______________________________________________________________"
  D CL(J)
  W ! Q

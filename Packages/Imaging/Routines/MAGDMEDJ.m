@@ -1,5 +1,6 @@
-MAGDMEDJ ;WOIFO/LB - Routine to fix failed DICOM entries ; [ 06/20/2001 08:56 ]
- ;;3.0;IMAGING;;Mar 01, 2002
+MAGDMEDJ ;WOIFO/LB,RRB,MLH - Routine to fix failed DICOM entries ; 11 Apr 2012 1:01 PM
+ ;;3.0;IMAGING;**118**;Mar 19, 2002;Build 4525;May 01, 2013
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -7,7 +8,6 @@ MAGDMEDJ ;WOIFO/LB - Routine to fix failed DICOM entries ; [ 06/20/2001 08:56 ]
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -36,7 +36,7 @@ L ;Loop thru the entire file for entries that need processing
  . ; Only Medicine images need to be fixed thru this program.
  . S DATA=^MAGD(2006.575,MAGIEN,0),FILE=$P(^(0),"^")
  . S DATA1=^MAGD(2006.575,MAGIEN,1)    ;Case no. info
- . S DATA2=^MAGD(2006.575,MAGIEN,"AMFG")    ;Modality info
+ . S DATA2=$G(^MAGD(2006.575,MAGIEN,"AMFG"))    ;Modality info
  . S PAT=$P(DATA,"^",4),PID=$P(DATA,"^",3),REASON=$P(DATA,"^",2)
  . S MOD=$P(DATA2,"^"),MODEL=$P(DATA2,"^",6)
  . S CASENO=$P(DATA1,"^",2),CASEDATE=$P(DATA1,"^",3)
@@ -51,11 +51,10 @@ L ;Loop thru the entire file for entries that need processing
  . K MAGDY W !," Lookup patient name",!
  . S MAGPAT=$$PATLK^MCARUTL2
  . I 'MAGPAT D  Q
- . . W !,"Can not update if patient can not be identified.",$C(7)
- . ; If patient name could not be determined then we can not correct.
+ . . W !,"Cannot update if patient cannot be identified.",$C(7)
+ . ; If patient name could not be determined then we cannot correct.
  . D PATSUB^MAGDMEDK(.MAGSUB,MAGPAT)
  . Q:'$D(MAGSUB)#10   ;No subspecialties found
- . ;Q:'$D(MAGMC)#10    ;No Medicine entries found
  . ; Select subspecialty
  . S SUB=$$DISPLAY^MAGDMEDL(.MAGSUB) I 'SUB D  Q
  . . W !,"No specialty selected"
@@ -64,19 +63,18 @@ L ;Loop thru the entire file for entries that need processing
  . I '$D(MAGMC)#10 D  Q
  . . W !,"No entries were found for the selected specialty."
  . D LOOP^MAGDMEDL(.XX,MAGPAT,SUB,CASEDATE)
- . ;S ITEM=$$DISPLAY^MAGDMEDL(.XX) I 'ITEM D
- . ;. W !,"No entry selected."
  . I $D(XX(0)),$P(XX(0),"^")=0 D  Q:MAGDOUT
  . . S MAGDOUT=0
  . . W !,"No Medicine file entries found for this patient"
  . . W !,"on the date/time the image was captured."
  . . S FOUND=$$ASKMORE^MAGDMEDL I 'FOUND S MAGDOUT=1
  . S ITEM=$$DISPLAY^MAGDMEDL(.XX) I 'ITEM D  Q
- . . W !,"Can not update if Medicine file entry can not be found.",$C(7)
+ . . W !,"Cannot update if Medicine file entry cannot be found.",$C(7)
  . D NEWCASE,CHK,NEWDIS S ANS=$$ASK^MAGDLB1 I ANS="D" D SETDEL Q
  . I ANS="Q"!(ANS["^") S (OOUT,OUT)=1 Q
  . I ANS="N" S OUT=1 Q
  . Q:OUT  D UPDT
+ . Q
  K OUT,OOUT,ANS,MAGDOUT,MAGMC,MAGSUB,SUB,XX
  Q
 DISPLAY ;
@@ -98,8 +96,10 @@ CHK ;remove any punctuation before doing comparison on SSN
  S OLD="" F I=1:1:$L(PID) I $E(PID,I)?1AN S OLD=OLD_$E(PID,I)
  I NEWSSN'=OLD D  Q
  . S MSG="Social Security numbers do not match. Update?"
+ . Q
  I NEWNME'=PAT D
  . S MSG="Patient names do not match. Update?"
+ . Q
  ;Finally the problem is with the case number/DICOM ID
  S MSG="DICOM ID number is different. Update?"
  Q
@@ -107,7 +107,7 @@ NEWDIS ;
  D NEWDIS^MAGDLB1
  Q
 UPDT ;
- ;S OUT=1 W !,"Will change the following: " D NEWDIS
+ N %,RLATEIEN ; utility variable for FM calls
  W !,"Are you sure you want to CORRECT?" S %=2 D YN^DICN
  I %=-1!(%=2) S OUT=1 Q
  W !,"Updating the file."
@@ -115,6 +115,13 @@ UPDT ;
  S ^MAGD(2006.575,MAGIEN,"FIXPR")=NEWPIEN_"^"_NEWPROC_"^"_$G(MAGDIMG)_"^"_MEDFILE W "."
  S MACHID=$S(MACHID="":"A",1:MACHID)  ;Server ID
  S ^MAGD(2006.575,"AFX",MACHID,MAGIEN)="" W "."
+ ; Update all related records with updated fields
+ S RLATEIEN=""
+ F  S RLATEIEN=$O(^MAGD(2006.575,MAGIEN,"RLATE","B",RLATEIEN)) Q:RLATEIEN=""  D
+ . S ^MAGD(2006.575,RLATEIEN,"FIXD")="1^"_NEWDFN_"^"_NEWNME_"^"_NEWSSN_"^"_NEWCAS_"^"_NEWDTI_"^"_NEWMUL_"^"_NEWDTIM W "."
+ . S ^MAGD(2006.575,RLATEIEN,"FIXPR")=NEWPIEN_"^"_NEWPROC W "."
+ . S ^MAGD(2006.575,"AFX",MACHID,RLATEIEN)="" W "."
+ . Q
  Q
 SETDEL ;Entry to be deleted
  D SETDEL^MAGDLB1

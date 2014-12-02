@@ -1,5 +1,5 @@
 DGBTCDSP ;;ALB/BLD-BENEFICIARY TRAVEL CLAIM DISPLAY - SPECIAL MODE;02/03/2012
- ;;1.0;Beneficiary Travel;**20**;FEBRUARY 4 2012;Build 185
+ ;;1.0;Beneficiary Travel;**20,21,22**;FEBRUARY 4 2012;Build 5
  Q
 SCREEN ;this will display the information screen at the end of a claim and 
  N TOSTATE,DPSTATE,Z,INFOLINE
@@ -32,7 +32,7 @@ ACCT W !!,"Account: ",$G(DGBTSP("ACCOUNT"))
  W ?45,"One Way/Round Trip: "
  S X=$S($G(DGBTSP("RT/ONE WAY"))="R":"ROUND TRIP",1:"ONE WAY") W ?67,$J(X,11)
  ;
- W !,"Carrier: ",DGBTSP("VENDOR")
+ W !,"Carrier: ",$$GET1^DIQ(392,DGBTDT_",",71) ;dbe patch DGBT*1*22 - modified to use vendor ien
  ;
  W ?45,"Total Miles Traveled: "
  S X=$G(DGBTSP("TOTAL MILES")),X2="2S" D COMMA^%DTC W ?67,X
@@ -58,7 +58,8 @@ ACCT W !!,"Account: ",$G(DGBTSP("ACCOUNT"))
  W ?45,"Wait Time Fee: "
  S X=$G(DGBTSP("WAIT TIME")),X2="2$" D COMMA^%DTC W ?67,X
  ;
- W !,"Auth. Person: ",$P(^VA(200,DUZ,0),"^",1)
+ ;;changing auth. person to field 12 of file 392 - dbe patch DGBT*1*21
+ W !,"Auth. Person: ",$$GET1^DIQ(392,DGBTDT_",",12)
  ;
  W ?45,"Extra Crew Fee: "
  S X=$G(DGBTSP("EXTRA CREW")),X2="2$" D COMMA^%DTC W ?67,X
@@ -98,7 +99,7 @@ BLDARRY(DGBTSP) ;
  S DGBTSP("TOTAL MILES")=$$GET1^DIQ(392,DGBTDT_",",68)
  S DGBTSP("OTHER TRANS REMARKS")=$$GET1^DIQ(392,DGBTDT_",",69)
  S DGBTSP("PRE-AUTHORIZED")=$$GET1^DIQ(392,DGBTDT_",",70)
- S DGBTSP("VENDOR")=$$GET1^DIQ(392,DGBTDT_",",71)
+ ;S DGBTSP("VENDOR")=$$GET1^DIQ(392,DGBTDT_",",71)
  S DGBTSP("SP MODE OTHER REMARKS")=$$GET1^DIQ(392,DGBTDT_",",72)
  S DGBTSP("PLACE OF DEPARTURE")=$$GET1^DIQ(392,DGBTDT_",",73)
  ;
@@ -123,14 +124,16 @@ BLDARRY(DGBTSP) ;
  Q
  ;
 END ;display menu prompt at bottom of screen
- N PROMPT
+ ;dbe patch DGBT*1*22 - added variable DGBTSPFG to replace DGANS as the exit flag when returning to the select patient prompt
+ N PROMPT,DGBTSPFG
  K DGANS
  S SPCOMPLETE=0
- F  Q:$G(DGANS)="Q"!($D(DIRUT))  D  Q:$G(DGANS)="Q"!($D(DIRUT))!('$D(DGBTSP)>1)
+ F  Q:$G(DGANS)="Q"!($D(DIRUT))  D  Q:$G(DGBTSPFG)!($D(DIRUT))!('$D(DGBTSP))
  .S Z="^INFORMATION^DISPLAY^EDIT",PROMPT="<I>nformation, <D>isplay claim, <E>dit claim,"
  .S DIR("A")=PROMPT_" or <Q>uit ",DIR("B")="Quit",DIR("?")="^D HELP^DGBTEND",DIR(0)="SA^Q:Quit;I:Information;D:Display;E:Edit;P:Print"
  .D ^DIR K DIR S DGANS=Y
  .S DGBTX1=$S(DGANS="I":"SCREEN^DGBTE",DGANS="D":"SCREEN^DGBTCDSP",DGANS="E":"SPMODE^DGBTE",DGANS="Q":"PATIENT^DGBTE",1:"QUIT^DGBTEND")
- .I $G(DGBTX1)]"" D @DGBTX1 ;D:DGBTX1="START^DGBTCR" PATIENT^DGBTE
+ .I $G(DGBTX1)]""&($G(DGANS)="Q") K DGANS S DGBTSPFG=1 G @DGBTX1 ;dbe patch DGBT*1*22 - modified to correctly return to select patient prompt
+ .I $G(DGBTX1)]""&($G(DGANS)'="Q") D @DGBTX1
  Q
  ;

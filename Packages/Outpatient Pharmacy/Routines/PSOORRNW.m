@@ -1,5 +1,5 @@
 PSOORRNW ;BIR/SAB-finish OP renew orders from OE/RR ; 4/26/11 2:20pm
- ;;7.0;OUTPATIENT PHARMACY;**11,27,51,46,71,94,130,131,146,206,225,384,386**;DEC 1997;Build 4
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,51,46,71,94,130,131,146,206,225,384,386,408**;DEC 1997;Build 100
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.607 supported by DBIA 2221
  ;External reference to ^PS(51.2 supported by DBIA 2226
@@ -19,6 +19,7 @@ PSOORRNW ;BIR/SAB-finish OP renew orders from OE/RR ; 4/26/11 2:20pm
  I '$G(PSOTPBFG) D DSPL^PSOTPCAN(ORD)
  S (PSORX("PROVIDER NAME"),PSORENW("PROVIDER NAME"))=$P(^VA(200,$P(OR0,"^",5),0),"^"),PSORENW("NOO")=$P(OR0,"^",7)
  S PSORENW("PROVIDER")=$P(OR0,"^",5),PSORENW("MAIL/WINDOW")=$S($P(OR0,"^",17)="M":"M",1:"W")
+ K PSORENW("ADMINCLINIC") S:$P(OR0,"^",17)="C" PSORENW("ADMINCLINIC")=1
  ;I $O(^PSRX($P(OR0,"^",21),"PRC",0)) F I=0:0 S I=$O(^PSRX($P(OR0,"^",21),"PRC",I)) Q:'I  S PRC(I)=^PSRX($P(OR0,"^",21),"PRC",I,0)
  K II F I=0:0 S I=$O(^PS(52.41,ORD,1,I)) Q:'I  S DOSE=$G(^PS(52.41,ORD,1,I,1)),DOSE1=$G(^(2)) D 
  .S II=$G(II)+1

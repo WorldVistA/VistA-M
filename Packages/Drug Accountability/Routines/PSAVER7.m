@@ -1,5 +1,5 @@
 PSAVER7 ;BIR/JMB-Verify Invoices - CONT'D ;7/23/97
- ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**12,21,42,56,64,66**; 10/24/97;Build 2
+ ;;3.0;DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**12,21,42,56,64,66,76**; 10/24/97;Build 1
  ;Background Job
  ;This routine increments pharmacy location and master vault balances
  ;in 58.8 after invoices have been verified. This routine is called
@@ -40,9 +40,9 @@ FIND S PSAT=$P(^PSD(58.81,0),"^",3)+1 I $D(^PSD(58.81,PSAT)) S $P(^PSD(58.81,0),
  S PSANODE=$G(^PSDRUG(PSADRG,660))
  F X=2,3,5,6 S DRUG(X)=$P($G(PSANODE),"^",X)
  ;
- S PSANPDU=$J(($G(PSAPOU)/$G(PSADUOU)),0,3) ;Price of Order Unit divide by Disp. Units per Order Unit
+ S PSANPDU=$J(($G(PSAPOU)/$G(PSADUOU)),0,4) ;Price of Order Unit divide by Disp. Units per Order Unit
  ;PSA*3*42 |>  (let changes happen and file, put changes into mail message)
- S DIE="^PSDRUG(",(DA,OLDDA)=PSADRG,DR="12////^S X=PSAOU;15////^S X=PSADUOU;Q;13////^S X=PSAPOU" ;*42;*56
+ S DIE="^PSDRUG(",(DA,OLDDA)=PSADRG,DR="12////^S X=PSAOU;15////^S X=PSADUOU;16///^S X=PSANPDU;13////^S X=PSAPOU" ;*42;*56;*76
  F  L +^PSDRUG(DA,0):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  Q
  D ^DIE K DIE,DA,DR
  ; <| PSA*42
@@ -67,7 +67,7 @@ SYNONYM ;Adds/edits the SYNONYM multiple in DRUG file  >>*66 RJS
  G:PSANDC="" END
  S DA(1)=PSADRG  ;;  << *66 RJS
  ;
- S PSANPDU=$J(($G(PSAPOU)/$G(PSADUOU)),0,3) ;Price of Order Unit divide by Disp. Units per Order Unit
+ S PSANPDU=$J(($G(PSAPOU)/$G(PSADUOU)),0,4) ;Price of Order Unit divide by Disp. Units per Order Unit ;*76
  S:'$D(^PSDRUG(PSADRG,1,0)) DIC("P")="50.1A"
  ; *56 Search for earliest best match of synonyms, start at bottom go up
  ; if VSN use it, if several VSNs use the first, IF VSN match NDCs must match also.

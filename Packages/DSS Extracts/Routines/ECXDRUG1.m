@@ -1,8 +1,8 @@
-ECXDRUG1 ;ALB/TMD-Pharmacy Extracts Incomplete Feeder Key Report ; 2/17/04 3:23pm
- ;;3.0;DSS EXTRACTS;**40,68**;Dec 22, 1997
+ECXDRUG1 ;ALB/TMD-Pharmacy Extracts Incomplete Feeder Key Report ;5/9/13  15:49
+ ;;3.0;DSS EXTRACTS;**40,68,144**;Dec 22, 1997;Build 9
  ;
 EN ; entry point
- N X,Y,DATE,ECRUN,ECXTL,ECSTART,ECEND,ECXDESC,ECXSAVE,ECXOPT,ECSD1,ECED,ECXERR,QFLG
+ N X,Y,DATE,ECRUN,ECXTL,ECSTART,ECEND,ECXDESC,ECXSAVE,ECXOPT,ECSD1,ECED,ECXERR,QFLG,ECXPORT,CNT ;144
  S QFLG=0
  ; get today's date
  D NOW^%DTC S DATE=X,Y=$E(%,1,12) D DD^%DT S ECRUN=$P(Y,"@") K %DT
@@ -10,6 +10,13 @@ EN ; entry point
  D SELECT Q:QFLG
  S ECXDESC=ECXTL_" Extract Incomplete Feeder Key Report"
  S ECXSAVE("EC*")=""
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I ECXPORT D  Q  ;144
+ .K ^TMP($J) ;144
+ .S ^TMP($J,"ECXPORT",0)="TYPE^DRUG ENTRY^GENERIC NAME^FEEDER KEY^NUMBER OF RECORDS^TOTAL QTY^UNIT PRICE^TOTAL COST^ERROR" ;144
+ .S CNT=1 ;144
+ .D PROCESS ;144
+ .D EXPDISP^ECXUTL1 ;144
+ .D ^ECXKILL ;144
  W !!,"This report requires 132 column format."
  D EN^XUTMDEVQ("PROCESS^ECXDRUG1",ECXDESC,.ECXSAVE)
  I POP W !!,"No device selected...exiting.",! Q
@@ -66,12 +73,12 @@ PROCESS ; entry point for queued report
  Q
  ;
 PRINT ; process temp file and print report
- N PG,GTOT,LN,S,COUNT,SUBTOT,DR,ECTYPE,REC,STATS,ECCOUNT,ECQTY,ECPRC,ECCOST
+ N PG,GTOT,LN,S,COUNT,SUBTOT,DR,ECTYPE,REC,STATS,ECCOUNT,ECQTY,ECPRC,ECCOST,MESS ;144
  U IO
  I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ Q
  S (PG,QFLG,GTOT)=0,$P(LN,"-",132)=""
- F S=1:1:3  Q:QFLG  D HEADER Q:QFLG  D
- .S (COUNT,SUBTOT)=0,DR="" F  S DR=$O(^TMP($J,DR)) Q:DR=""!QFLG  S ECTYPE=$P(^(DR),U,4) I ECTYPE=S D
+ F S=1:1:3  Q:QFLG  D:'$G(ECXPORT) HEADER Q:QFLG  D  ;144
+ .S (COUNT,SUBTOT)=0,DR=0 F  S DR=$O(^TMP($J,DR)) Q:'+DR!(QFLG)  S ECTYPE=$P(^(DR),U,4) I ECTYPE=S D  ;144
  ..S REC=^TMP($J,DR),STATS=^(DR,0)
  ..S COUNT=COUNT+1
  ..S ECCOUNT=$FNUMBER($P(STATS,U),",")
@@ -79,9 +86,14 @@ PRINT ; process temp file and print report
  ..S ECPRC="$"_$FNUMBER($P(REC,U,3),",",4)
  ..S ECCOST="$"_$FNUMBER($P(STATS,U,3),",",2)
  ..S SUBTOT=SUBTOT+$P(STATS,U,3)
+ ..I $G(ECXPORT) D  Q  ;144
+ ...S ^TMP($J,"ECXPORT",CNT)=ECXTL_U_DR_U_$P(REC,U)_U_$P(REC,U,2)_U_$P(STATS,U)_U_$P(STATS,U,2)_U_$FN($P(REC,U,3),"",4)_U_$FN($P(STATS,U,3),"",2) ;144
+ ...S MESS=$S(S=1:"No PSNDF VA Product Name Entry (Five leading zeros)",S=2:"No National Drug Code (NDC) (Last 12 zeros, 'N/A', or 'S' prefix)",1:"No PSNDF VA Product Name Entry or National Drug Code (NDC)") ;144
+ ...S ^TMP($J,"ECXPORT",CNT)=^TMP($J,"ECXPORT",CNT)_U_MESS ;144
+ ...S CNT=CNT+1 ;144
  ..W !,$$RJ^XLFSTR(DR,5),?8,$P(REC,U),?60,$P(REC,U,2),?79,$$RJ^XLFSTR(ECCOUNT,5),?87,$$RJ^XLFSTR(ECQTY,10),?99,$$RJ^XLFSTR(ECPRC,16),?117,$$RJ^XLFSTR(ECCOST,13)
  ..I $Y+2>IOSL D HEADER
- .Q:QFLG
+ .Q:QFLG!($G(ECXPORT))  ;144 Stop processing if exporting
  .I COUNT=0 W !!,?8,"No drugs to report for this section"
  .; print sub total
  .I COUNT D
@@ -90,6 +102,7 @@ PRINT ; process temp file and print report
  ..S SUBTOT="$"_$FNUMBER(SUBTOT,",",2)
  ..W !!,?110,"TOTAL",?116,$$RJ^XLFSTR(SUBTOT,14)
  ; print grand total
+ I $G(ECXPORT) Q  ;144 Nothing more to print if exporting
  I GTOT,'QFLG D
  .I $Y+3>IOSL D HEADER Q:QFLG
  .S GTOT="$"_$FNUMBER(GTOT,",",2)

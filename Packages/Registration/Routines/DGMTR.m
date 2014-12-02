@@ -1,5 +1,5 @@
-DGMTR ;ALB/RMO,CAW,SCG,AEG,SCG,AEG,LBD - Check Means Test Requirements;7/8/05 2:30pm
- ;;5.3;Registration;**45,93,114,137,141,147,177,182,146,305,326,314,344,402,426,456,495,672,688,773,840,841**;Aug 13, 1993;Build 7
+DGMTR ;ALB/RMO,CAW,SCG,AEG,SCG,AEG,LBD,BDB - Check Means Test Requirements;7/8/05 2:30pm
+ ;;5.3;Registration;**45,93,114,137,141,147,177,182,146,305,326,314,344,402,426,456,495,672,688,773,840,841,858**;Aug 13, 1993;Build 30
  ;A patient requires a means test under the following conditions:
  ;  - Primary Eligibility is NSC OR patient is SC 0% non-compensable
  ;  - who is NOT receiving disability retirement from the military
@@ -56,7 +56,8 @@ EN N DGCS,DGDOM,DGMT0,DGMTI,DGMTYPT,OLD,DGRGAUTO,DGQSENT,DGMTLTD,DGMDOD,DGMTDT
  S DGCS=$P(DGMT0,"^",3)
  S DGMTLTD=+DGMT0,DGNOCOPF=0
  I +$G(DGMDOD) S DGNOCOPF=1
- I DGCS S OLD=$$OLD^DGMTU4(+DGMT0)
+ ;DG*5.3*858 MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ I DGCS S OLD=$$OLDMTPF^DGMTU4(+DGMT0)
  ;Purple Heart Recipient ;brm 10/02/00 added 1 line below
  I $P($G(^DPT(DFN,.53)),U)="Y" S DGREQF=0
  ;Catastrophically disabled
@@ -64,7 +65,9 @@ EN N DGCS,DGDOM,DGMT0,DGMTI,DGMTYPT,OLD,DGRGAUTO,DGQSENT,DGMTLTD,DGMDOD,DGMTDT
  ;Medal of Honor DG*5.3*840.  Functionality removed with DG*5.3*841
  ;I $P($G(^DPT(DFN,.54)),U)="Y" S DGREQF=0
  D
- .I DGREQF,DGCS=3,'OLD D REQ Q
+ .;DG*5.3*858 for 1 yr old nol means tests, if not nol, set a mt required stub  
+ .I DGREQF,DGCS=3,$$OLD^DGMTU4(+DGMT0) D ADD Q
+ .I DGREQF,DGCS=3,'$$OLD^DGMTU4(+DGMT0) D REQ Q
  .I DGREQF,'$G(DGADDF),((DGCS=6)!(DGCS=2)),$P(DGMT0,U,11)=1,DGMTLTD>2991005 S DGREQF=0,DGNOCOPF=1 Q
  .; next line added 2/19/02 - DG*5.3*426
  .I DGREQF,'$G(DGADDF),$G(DGCS)=6,+$P(DGMT0,U,14),+$P(DGMT0,U,11) S DGREQF=0,DGNOCOPF=1 Q

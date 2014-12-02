@@ -1,5 +1,5 @@
 ONCOTNMB ;WISC/MLH - ONCOLOGY - HELPER for TNM codes ;8/21/93  11:55
- ;;2.11;ONCOLOGY;**6,7,15**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 MMEYELID ;Check stage indicator for PATHOLOGIC or OTHER
  I (STGIND="P")!(STGIND="O")!(STGIND="R") S SC=37

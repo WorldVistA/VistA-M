@@ -1,5 +1,5 @@
-PSJBCMA ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ;4/10/12 10:48am
- ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,69,58,81,91,104,111,112,186,159,173,190,113,225,253,267**;16 DEC 97;Build 158
+PSJBCMA ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ;1/23/13 1:23pm
+ ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,69,58,81,91,104,111,112,186,159,173,190,113,225,253,267,279,308**;16 DEC 97;Build 12
  ;
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
  ; Reference to ^PS(51 is supported by DBIA 2176.
@@ -9,10 +9,14 @@ PSJBCMA ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ;4/10/12 10:48am
  ; Reference to ^PS(52.7 is supported by DBIA 2173.
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ; Reference to ^PSDRUG is supported by DBIA 2192.
+ ; Reference to ^VADPT is supported by DBIA 10061.
+ ; Reference to ^XLFDT is supported by DBIA 10103
  ; Usage of this routine by BCMA is supported by DBIA 2828.
  ;
- ;*267 - add new piece of info to return TMP gloabl. Need the Med 
+ ;*267 - add new piece of info to return TMP global. Need the Med 
  ;       route IEN per each order.
+ ;*279 - add Clinic name, IEN to pieces 11, 12 of TMP("PSJ",$J,0)
+ ;     - add High Risk drug Witness indicator to Results 7th piece
  ;
 EN(DFN,BDT,OTDATE)         ; return condensed list of inpatient meds
  NEW CNT,DN,F,FON,ON,PST,WBDT,X,X1,X2,Y,%
@@ -56,7 +60,7 @@ ORDER ;Loop thru orders.
  Q
 UDVAR ;Set ^TMP for Unit dose & Pending orders
  N CLINIC
- D UDPEND Q:'$$CLINICS($G(CLINIC)) 
+ D UDPEND I '$$CLINICS($G(CLINIC)) Q
  D TMP
  ;Setup Dispense drug for ^TMP
  S CNT=0 D NOW^%DTC
@@ -66,16 +70,18 @@ UDVAR ;Set ^TMP for Unit dose & Pending orders
  . I +$P(PSJDD,"^",2)=0 S $P(PSJDD,"^",2)=1
  . S CNT=CNT+1
  . S ^TMP("PSJ",$J,PSJINX,700,CNT,0)=+PSJDD_U_$P($G(^PSDRUG(+PSJDD,0)),U)_U_$S((FON["U")&($P(PSJDD,U,2)=""):1,(FON["U")&($E($P(PSJDD,U,2))="."):"0"_$P(PSJDD,U,2),1:$P(PSJDD,U,2))_U_$P(PSJDD,U,3)
+ . ;add High Risk field to 6th piece of 700 (disp drug)          ;*279
+ . S $P(^TMP("PSJ",$J,PSJINX,700,CNT,0),U,6)=$$GET1^DIQ(50.7,PSJ("OI"),1,"I")
  S:CNT ^TMP("PSJ",$J,PSJINX,700,0)=CNT
  K PSJ,PSJDD
  Q
 IVVAR ;Set variables for IV and pending orders
  NEW ND,X,Y,CLINIC
- I FON["P" D UDPEND Q:'$$CLINICS(CLINIC)  S PSJ("INFRATE")=$P($G(^PS(53.1,ON,8)),U,5)
+ I FON["P" D UDPEND Q:'$$CLINICS(CLINIC)  S PSJ("INFRATE")=$P($P($G(^PS(53.1,ON,8)),U,5),"@")
  I FON["V" D  Q:'$$CLINICS(CLINIC)
  . S X=$G(^PS(55,DFN,"IV",ON,0)),CLINIC=$G(^("DSS")) Q:'$$CLINICS(CLINIC)
  . S PSJ("STARTDT")=$P(X,U,2),PSJ("STOPDT")=$P(X,U,3)
- . S PSJ("INFRATE")=$P(X,U,8),PSJ("SCHD")=$P(X,U,9)
+ . S PSJ("INFRATE")=$P($P(X,U,8),"@"),PSJ("SCHD")=$P(X,U,9)
  . S PSJ("ADM")=$P(X,U,11),PSJ("AUTO")=$P(X,U,12),PSJ("STATUS")=$P(X,U,17)
  . S PSJ("IVTYPE")=$P(X,U,4),PSJ("INSYR")=$P(X,U,5)
  . S PSJ("CPRS")=$P(X,U,21),PSJ("CHEMO")=$P(X,U,23)
@@ -101,19 +107,29 @@ IVVAR ;Set variables for IV and pending orders
  F X=0:0 S X=$O(@(F_ON_",""AD"","_X_")")) Q:'X  D
  . S ND=$G(@(F_ON_",""AD"","_X_",0)")),DN=$G(^PS(52.6,+ND,0))
  . S CNT=CNT+1,^TMP("PSJ",$J,PSJINX,850,CNT,0)=+ND_U_$P(DN,U)_U_$P(ND,U,2)_U_$P(ND,U,3)
+ . ;add High Risk field to 6th piece of 850 (additv)             ;*279
+ . S $P(^TMP("PSJ",$J,PSJINX,850,CNT,0),U,6)=$$HRFLG(+ND,"A")
  S:CNT ^TMP("PSJ",$J,PSJINX,850,0)=CNT,CNT=0
  F X=0:0 S X=$O(@(F_ON_",""SOL"","_X_")")) Q:'X  D
  . S ND=$G(@(F_ON_",""SOL"","_X_",0)")),DN=$G(^PS(52.7,+ND,0))
  . S CNT=CNT+1,^TMP("PSJ",$J,PSJINX,950,CNT,0)=+ND_U_$P(DN,U)_U_$P(ND,U,2)_U_$P(DN,U,4)
+ . ;add High Risk field to 6th piece of 950 (sol)                ;*279
+ . S $P(^TMP("PSJ",$J,PSJINX,950,CNT,0),U,6)=$$HRFLG(+ND,"S")
  S:CNT ^TMP("PSJ",$J,PSJINX,950,0)=CNT
  K PSJ
  S X1=0
  F  S X1=$O(^PS(55,DFN,"IVBCMA",X1)) Q:'X1  D
  . S XX=$G(^PS(55,DFN,"IVBCMA",X1,0)) Q:ON'=$P(XX,"^",2)  S PSJBCID=$P(XX,"^"),X2=0
- . F I=1:1 S X2=$O(^PS(55,DFN,"IVBCMA",X1,"AD",X2)) Q:'X2  S X=^(X2,0),^TMP("PSJ",$J,PSJINX,800,PSJBCID,I)=+X_"^"_$S($D(^PS(52.6,+X,0)):$P(^(0),"^"),1:"*****")_"^"_$P(X,"^",2,99)
+ . F I=1:1 S X2=$O(^PS(55,DFN,"IVBCMA",X1,"AD",X2)) Q:'X2  D
+ .. S X=^(X2,0),^TMP("PSJ",$J,PSJINX,800,PSJBCID,I)=+X_"^"_$S($D(^PS(52.6,+X,0)):$P(^(0),"^"),1:"*****")_"^"_$P(X,"^",2,99)
+ .. ;add High Risk field to 6th piece of 800 (additv)            ;*279
+ .. S $P(^TMP("PSJ",$J,PSJINX,800,PSJBCID,I),U,6)=$$HRFLG(+ND,"A")
  . I I>1 S ^TMP("PSJ",$J,PSJINX,800,PSJBCID,0)=I-1
  . S X2=0
- . F I=1:1 S X2=$O(^PS(55,DFN,"IVBCMA",X1,"SOL",X2)) Q:'X2  S X=^(X2,0),^TMP("PSJ",$J,PSJINX,900,PSJBCID,I)=$P(X,"^")_"^"_$S($D(^PS(52.7,$P(X,"^"),0)):$P(^(0),"^"),1:"*****")_"^"_$P(X,"^",2,99)
+ . F I=1:1 S X2=$O(^PS(55,DFN,"IVBCMA",X1,"SOL",X2)) Q:'X2  D
+ .. S X=^(X2,0),^TMP("PSJ",$J,PSJINX,900,PSJBCID,I)=$P(X,"^")_"^"_$S($D(^PS(52.7,$P(X,"^"),0)):$P(^(0),"^"),1:"*****")_"^"_$P(X,"^",2,99)
+ .. ;add High Risk field to 6th piece of 900 (sol)               ;*279
+ .. S $P(^TMP("PSJ",$J,PSJINX,900,PSJBCID,I),U,6)=$$HRFLG(+X,"S")
  . I I>1 S ^TMP("PSJ",$J,PSJINX,900,PSJBCID,0)=I-1
  Q
 UDPEND ;
@@ -144,16 +160,24 @@ UDPEND ;
  I PSJ("ST")="R"!(PSJ("ST")="C") S PSJ("STC")=$S(PSJ("SCHD")["PRN":"P",$$ONCALL(PSJ("SCHD")):"OC",$$ONE(DFN,FON,PSJ("SCHD"))="O":"O",1:"C")
  Q
 TMP ;Setup ^TMP that have common fields between IV and U/D
- N A
+ N A,CLNAME,CLNAMPTR                                             ;*279
  S PSJINX=PSJINX+1
  S PSJ("OINAME")=$$OIDF^PSJLMUT1(+PSJ("OI")) I PSJ("OINAME")["NOT FOUND" S PSJ("OINAME")=""
  S PSJ("OIDF")=$$GET1^DIQ(50.7,+PSJ("OI"),.02)
  I PSJ("OINAME")="" S PSJ("OIDF")=""
  S A=$G(^PS(51.2,+PSJ("MR"),0)),PSJ("MRABB")=$P(A,U,3),PSJ("MRNM")=$P(A,U)
  S ^TMP("PSJ",$J,PSJINX,0)=DFN_U_+ON_U_FON_U_PSJ("PREV")_U_PSJ("FOLLOW")_U_$G(PSJ("IVTYPE"))_U_$G(PSJ("INSYR"))_U_$G(PSJ("CHEMO"))_U_PSJ("CPRS")_U_$G(PSJ("RFO"))
+ ;add Clinic name & IEN ptr to TMP 0 node (pieces 11,12)          *279
+ ;piece 11 determines if order is a CO or IM for BCMA VDL's       *279
+ I +CLINIC,$$CLINIC(CLINIC) D           ;CL IEN & valid appt date *279
+ . S CLNAMPTR=$O(^PS(53.46,"B",+CLINIC,""))
+ . S CLNAME=$$GET1^DIQ(53.46,CLNAMPTR_",",.01)
+ . S $P(^TMP("PSJ",$J,PSJINX,0),U,11)=CLNAME      ;CO ind, CO NAME
+ . S $P(^TMP("PSJ",$J,PSJINX,0),U,12)=+CLINIC     ;IEN ptr to file 44
+ ;
  S ^TMP("PSJ",$J,PSJINX,1)=PSJ("MRABB")_U_PSJ("STC")_U_$G(PSJ("SCHD"))_U_PSJ("STARTDT")_U_PSJ("STOPDT")_U_PSJ("ADM")_U_PSJ("STATUS")_U_$G(PSJ("NGIVEN"))_U_$G(PSJ("ST"))_U_$G(PSJ("AUTO"))
- S ^TMP("PSJ",$J,PSJINX,1,0)=$P(A,U,8)_U_PSJ("MRNM")_U_$P(A,U,9)_U_+PSJ("MR")   ;*267 append file 51.2 ien
- S ^TMP("PSJ",$J,PSJINX,2)=PSJ("DO")_U_$G(PSJ("INFRATE"))_U_$G(PSJ("SM"))_U_$G(PSJ("HSM"))
+ S ^TMP("PSJ",$J,PSJINX,1,0)=$P(A,U,8)_U_PSJ("MRNM")_U_$P(A,U,9)_U_+PSJ("MR")   ;*267 append file 51.2 ien 
+ S ^TMP("PSJ",$J,PSJINX,2)=PSJ("DO")_U_$P($G(PSJ("INFRATE")),"@")_U_$G(PSJ("SM"))_U_$G(PSJ("HSM"))
  S ^TMP("PSJ",$J,PSJINX,3)=PSJ("OI")_U_PSJ("OINAME")_U_PSJ("OIDF")
  S ^TMP("PSJ",$J,PSJINX,4)=PSJ("SIOPI")
  S A=$$SNDTSTA^PSJHL4A(PSJ("PRI"),PSJ("SCHD"))
@@ -192,15 +216,37 @@ ONE(DFN,ORD,SCH,START,STOP) ;Determine if order is one-time, and return schedule
  I $G(START)]"",$G(STOP)]"",START=STOP Q "O"
  I $$DAY(SCH) Q "C"
  Q ""
-CLINIC(CL) ;
+ ;
+CLINIC(CL) ; is a valid appointment date present?  1=yes 0 =no
  I $P(CL,"^",2)?7N!($P(CL,"^",2)?7N1".".N) Q 1
  Q 0
-CLINICS(CL) ;
- Q:'$$CLINIC(CL) 1
- Q:'$D(^PS(53.46,"B",+CL)) 1
+ ;
+CLINICS(CL,IGNOSND) ;IM & CO order tests                                          *70
+ ; Send IM orders always.  Send Clinic orders as CO order, if it
+ ; meets below conditions, else send the order over as a IM order.
+ ;
+ ;   If CPRS sends the Clinic IEN and the appointment date when the
+ ;   order is signed in CPRS, then this is a Clinic order and can be
+ ;   sent to BCMA as a CO order, if it passes the 53.46 test as well.
+ ;
+ ; IGNOSND = Flag indicating the SEND TO BCMA parameter should be ignored.
+ ; PSJHYBR = Hybrid order - contains reference to CLINIC, but no appointment date time
+ ; Function Return values:   1 = Send order to BCMA
+ ;                           0 = Do Not send order to BCMA
+ ; * Orders with Clinic but no Appt should only be sent if patient is admitted or SEND TO BCMA flag set
+ I '$G(CL)!$G(IGNOSND) Q 1
+ N PSJVAIN4,X,PSJCNT,PSJSTRT,PSJSTOP,VAIP S PSJVAIN4=1 I $G(DFN) D
+ .N VAIN,PSGP S PSGP=DFN D INP^VADPT I '$G(VAIN(4)) S PSJVAIN4=0 I $G(PSBRPT(".1"))'="" D  ;add code check for historical data when running BCMA
+ ..S PSJSTOP=$P(PSBRPT(".1"),U,8),PSJSTRT=$P(PSBRPT(".1"),U,6) Q:'PSJSTOP!'(PSJSTRT)
+ ..S PSJCNT=PSJSTRT F  Q:PSJCNT>PSJSTOP  S VAIP("D")=PSJCNT D IN5^VADPT S:+VAIP("3") PSJVAIN4=1 S PSJCNT=$$FMADD^XLFDT(PSJCNT,1) Q:$G(PSJVAIN4)  ;check to see if patient was admitted during time frame of report
+ .I 'PSJVAIN4,$G(PSBREC(2)),$G(PSBREC(0))="ADMLKUP" S VAIP("D")=PSBREC(2) D IN5^VADPT S:+VAIP("3") PSJVAIN4=1 ;return patient data for Edit med log option if patient was admitted when med log entry was recorded
+ .I 'PSJVAIN4,$G(PSBPRNDT) S VAIP("D")=$P(PSBSTRT,".") D IN5^VADPT S:+VAIP("3") PSJVAIN4=1
+ I $G(PSJVAIN4) Q:'$$CLINIC(CL) 1                          ;no valid appt date
  N A
- S A=$O(^PS(53.46,"B",+CL,"")) Q:'A 1
- Q $P(^PS(53.46,A,0),"^",4)
+ S A=$O(^PS(53.46,"B",+CL,"")) Q:'A 0
+ Q:'$D(^PS(53.46,"B",+CL)) 0
+ Q $P(^PS(53.46,A,0),"^",4)                 ;send to bcma? flag
+ ;
 DAY(SCH) ;determine if this is a 'day of the week' schedule
  I $G(SCH)="" Q 0
  N D,DAY,DAYS,I,X
@@ -220,3 +266,9 @@ ONCALL(SCHD) ; Check if a schedule is type On Call (all "APPSJ" schedules with a
  I $O(SCHARR("OC"))]""!($O(SCHARR("OC"),-1)]"") S OCCHK=0 Q OCCHK
  I $D(SCHARR("OC")) S OCCHK=1
  Q OCCHK
+ ;
+HRFLG(IEN,ADDSOL) ;Get High Risk flag for this Orderable Item
+ N OIIEN
+ S:ADDSOL="A" OIIEN=+$$GET1^DIQ(52.6,IEN,15,"I")
+ S:ADDSOL="S" OIIEN=+$$GET1^DIQ(52.7,IEN,9,"I")
+ Q +$$GET1^DIQ(50.7,OIIEN,1,"I")

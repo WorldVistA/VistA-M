@@ -1,5 +1,6 @@
 MXMLPRS0 ;SAIC/DKM - XML Parser ;03/09/2005  12:57
- ;;7.3;TOOLKIT;**58,89**;Apr 25, 1995
+ ;;7.3;TOOLKIT;**58,89,136**;Apr 25, 1995;Build 5
+ ;Per VHA Directive 6402, this routine should not be modified
  ;=================================================================
  ; State 0: Prolog
 0 N ATTR
@@ -32,6 +33,7 @@ MXMLPRS0 ;SAIC/DKM - XML Parser ;03/09/2005  12:57
  F  S CHR=$E(XML,CPOS) Q:"<"[CHR!EOD  D
  .I $$NEXT("&") S TXT=TXT_$$ENTITY
  .E  S TXT=TXT_CHR,CPOS=CPOS+1
+ .D:(LLEN-CPOS)<50 READ ;P136
  S:CHR="<" ST=3
  I $L(TXT) D
  .I 'LVL D ERROR(6) Q

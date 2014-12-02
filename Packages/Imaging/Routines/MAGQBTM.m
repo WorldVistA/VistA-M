@@ -1,5 +1,5 @@
-MAGQBTM ;WOIFO/RMP/JL - REMOTE Task SERVER Program ; 18 Jan 2011 5:07 PM
- ;;3.0;IMAGING;**1,7,8,20,81,39**;Mar 19, 2002;Build 2010;Mar 08, 2011
+MAGQBTM ;WOIFO/RMP/JL - REMOTE Task SERVER Program ; 26 Dec 2012 1:41 PM
+ ;;3.0;IMAGING;**1,7,8,20,81,39,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -54,6 +54,10 @@ ENTRY(RESULT,WSTAT,PROCESS) ; RPC[MAGQ ABP]
  . . S QCNT=$P($G(^MAGQUEUE(2006.031,+QPTR,0)),U,3)
  . . S CNT=CNT+1
  . . S RESULT(CNT)=NAME_U_QCNT_U_(+$P($G(^MAGQUEUE(2006.031,+QPTR,0)),U,5)-QCNT)
+ . . I +$P(RESULT(CNT),U,3)<0 D  ; Refresh the queue count if negative
+ . . . D QCNT^MAGQBUT4("",PLACE,NAME)
+ . . . S RESULT(CNT)=NAME_U_QCNT_U_(+$P($G(^MAGQUEUE(2006.031,+QPTR,0)),U,5)-QCNT)
+ . . . Q
  . . Q
  . Q
  Q:$P(RESULT(0),U,1)="-1"
@@ -67,6 +71,7 @@ GETQUE(RESULT,ACTION) ; RPC[MAGQ GET]
  . N PLACE S PLACE=$$PLACE^MAGBAPI(+$G(DUZ(2)))
  . D QSTAT($P(RESULT,U,2),$P(RESULT,U,3),ACTION,.PLACE)
  . D QPTER(ACTION,$P(RESULT,U,2),.PLACE)
+ . Q
  Q
 ABSTRACT(RESULT) ;
  D DEQUEUE("ABSTRACT",.RESULT) Q
@@ -217,6 +222,7 @@ REQUE(RESULT,QPTR) ;
  S PROC=$P(NODE,U),STATUS=$P(NODE,U,5)
  I PROC'="IMPORT" D
  . D RQP(PROC,NODE,.PARAM)
+ . D DQUE^MAGQBUT2(INDX)
  . S @("RESULT=$$"_PROC_"^MAGBAPI(PARAM,PLACE)")
  . Q
  E  D  Q  ;IMPORT - Doesn't De-queue Import and Session file
@@ -227,7 +233,6 @@ REQUE(RESULT,QPTR) ;
  . S @("RESULT=$$"_PROC_"^MAGBAPI(PARAM,$P(NODE,U,10),TRACKID,PLACE)")
  . D DQUE^MAGQBUT2(INDX,"1")
  . Q
- D DQUE^MAGQBUT2(INDX)
  Q
 RQP(P,N,PAR) ;
  N P1,P2,P3,P4

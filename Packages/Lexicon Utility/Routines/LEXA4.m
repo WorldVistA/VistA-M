@@ -1,7 +1,13 @@
-LEXA4 ;ISA/CJE-Look-up (Loud) Unresolved Narrative ;01-13-00
- ;;2.0;LEXICON UTILITY;**3,6,15**;Sep 23, 1996
- ; JPK;Added more explanatory help text for display
- ;
+LEXA4 ;ISL/KER - Look-up (Loud) Unresolved Narrative ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**3,6,15,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^DISV(              ICR    510
+ ;    ^TMP("LEXSCH"       SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    YN^DICN             ICR  10009
+ ;               
 EN ; User input was not found
  ; PCH 6 first two lines deleted (Narrative/Exact Match)
  S LEX("UNR")=+($G(^TMP("LEXSCH",$J,"UNR",0)))

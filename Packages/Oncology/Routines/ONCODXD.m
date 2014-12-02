@@ -1,5 +1,5 @@
 ONCODXD ;Hines OIFO/RTK,GWB - DATE DX (165.5,3) INPUT TRANSFORM ;4/9/97
- ;;2.11;ONCOLOGY;**11,13,15,16,18,36,47**;Mar 07,1995;Build 19
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 DTDXIT ;Check that date entered is BEFORE or EQUAL to all other DATE fields
  S DTXFLAG=1,C=0,MULT="" K LIST,SBCT,SUBR,RADT D CHKDTS

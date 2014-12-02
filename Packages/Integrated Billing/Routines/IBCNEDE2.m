@@ -1,5 +1,5 @@
 IBCNEDE2 ;DAOU/DAC - eIV PRE REG EXTRACT (APPTS) ;18-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438,506**;21-MAR-94;Build 74
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
@@ -106,7 +106,12 @@ EN ; Loop through designated cross-references for updates
  ... . S SYMBOL=+PAYERSTR ; error symbol
  ... . S PAYERID=$P(PAYERSTR,U,3)               ; (National ID) payer id
  ... . S PIEN=$P(PAYERSTR,U,2)                  ; Payer ien
- ... . I '$$PYRACTV^IBCNEDE7(PIEN) Q            ; Payer is not nationally active
+ ... . ;
+ ... . ; If Payer is Nationally Inactive create an Insurance Buffer record w/blank SYMBOL & quit. - IB*2.0*506
+ ... . I '$$PYRACTV^IBCNEDE7(PIEN) D  Q
+ ... .. S SYMBOL=""
+ ... .. I 'SUPPBUFF,'$$BFEXIST^IBCNEUT5(DFN,INSNAME) D PT^IBCNEBF(DFN,INREC,SYMBOL,"",1)
+ ... .. Q
  ... . ;
  ... . ; If error symbol exists, set record in insurance buffer & quit
  ... . I SYMBOL D  Q

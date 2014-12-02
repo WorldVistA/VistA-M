@@ -1,5 +1,5 @@
-PXRMLIST ; SLC/PKR/PJH - Clinical Reminders list functions. ;07/17/2007
- ;;2.0;CLINICAL REMINDERS;**6**;Feb 04, 2005;Build 123
+PXRMLIST ; SLC/PKR/PJH - Clinical Reminders list functions. ;01/18/2013
+ ;;2.0;CLINICAL REMINDERS;**6,26**;Feb 04, 2005;Build 404
  ;Used in the reminder exchange utility for building lists of
  ;reminders, Exchange File entries, etc.
  ;=======================================================
@@ -91,6 +91,7 @@ REXL(RLIST) ;Build a list of exchange repository entries.
  ... S VALMCNT=VALMCNT+1,^TMP(RLIST,$J,VALMCNT,0)=OUTPUT(IND)
  ... S ^TMP(RLIST,$J,"IDX",VALMCNT,NUM)=""
  S ^TMP(RLIST,$J,"VALMCNT")=VALMCNT
+ S ^TMP(RLIST,$J,"NEXCHE")=NUM
  Q
  ;
  ;=======================================================

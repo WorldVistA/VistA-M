@@ -1,5 +1,5 @@
 ONCMPC4A ;HINES CIOFO/GWB - 1999 Melanoma Study - Table IV (continued); 1/22/99
- ;;2.11;ONCOLOGY;**22**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 SN W !," SENTINEL NODES",!
  W " --------------"
 PL I $E(TOPCOD,1,3)="C69" D  G SNDB

@@ -1,5 +1,5 @@
-MAGGTU6 ;WOIFO/GEK,MLH - Silent Utilities ; 6/3/11 3:20 PM
- ;;3.0;IMAGING;**24,8,48,45,20,46,59,72,93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+MAGGTU6 ;WOIFO/GEK,MLH,MAT,JSL - Silent Utilities ; 7/2/13 2:20 PM
+ ;;3.0;IMAGING;**24,8,48,45,20,46,59,72,93,117,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -51,7 +51,7 @@ LINKDT(MAGRY,MAGDA,DTTM) ; This is called when an Image is successfully
  ;
 TIMEOUT(MAGRY,APP) ;RPC [MAGG GET TIMEOUT]
  ; Call  Returns the timeout for the APP from IMAGING SITE PARAMETERS File
- ;  APP is either 'DISPLAY'  'CAPTURE' or   'VISTARAD'
+ ;  APP is either 'DISPLAY', 'CAPTURE', 'VISTARAD', 'TELEREADER', 'IMPORTER', or 'TELEPATHOLOGY'
  N I,MAGTIMES,MAGPLC
  S MAGRY=""
  S MAGPLC=$$PLACE^MAGBAPI(DUZ(2)) I 'MAGPLC Q  ; DBI - SEB 9/20/2002
@@ -60,6 +60,8 @@ TIMEOUT(MAGRY,APP) ;RPC [MAGG GET TIMEOUT]
  I APP="CAPTURE" S MAGRY=$P(MAGTIMES,U,3)
  I APP="VISTARAD" S MAGRY=$P(MAGTIMES,U,4)
  I APP="TELEREADER" S MAGRY=$P(MAGTIMES,U,6)  ;  MJK - 2006.01.25 - TeleReader
+ I APP="IMPORTER" S MAGRY=$P(MAGTIMES,U,8)    ;  MAT - *136
+ I APP="TELEPATHOLOGY" S MAGRY=+$P(MAGTIMES,U,9)  ; JSL - *138 (field#135) - Telepathology
  Q
  ;
 EXIST(EKGPLACE) ;Does an ekg server exist in 2005.2

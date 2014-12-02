@@ -1,5 +1,5 @@
 ONCOU0 ; WISC/MLH - UTILITIES for File 160 (ONCOLOGY PATIENT) ;6/25/93  09:51
- ;;2.11;ONCOLOGY;**24**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 RXFU ;    reindex FOLLOW-UP (#400)
  N DA S DA(1)=0
  W:'$D(ZTQUEUED) !!,"Re-indexing FOLLOW-UP"
@@ -15,5 +15,5 @@ RXFU ;    reindex FOLLOW-UP (#400)
  W:'$D(ZTQUEUED) !,"Done!",!! Q
  ;
 INAUTPSY ;    initialize AUTOPSY (#22.9) to 1 if performed
- N PI S PI=0 W:'$D(ZTQUEUED) !!,"Initializing AUTOPSY" F  S PI=$O(^ONCO(160,PI)) Q:'PI  L +^ONCO(160,PI) S:$P($G(^ONCO(160,PI,1)),U,9) $P(^(1),U,13)=1 L -^ONCO(160,PI) I '$D(ZTQUEUED) W:$R(100)=0 "."
+ N PI S PI=0 W:'$D(ZTQUEUED) !!,"Initializing AUTOPSY" F  S PI=$O(^ONCO(160,PI)) Q:'PI  L +^ONCO(160,PI):3 S:$P($G(^ONCO(160,PI,1)),U,9) $P(^(1),U,13)=1 L -^ONCO(160,PI):3 I '$D(ZTQUEUED) W:$R(100)=0 "."
  W:'$D(ZTQUEUED) !,"Done!",!! Q

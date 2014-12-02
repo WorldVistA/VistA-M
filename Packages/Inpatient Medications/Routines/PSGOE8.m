@@ -1,5 +1,5 @@
 PSGOE8 ;BIR/CML3-EDIT ORDERS IN 53.1 ; 7/6/11 9:44am
- ;;5.0;INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113,223,269**;16 DEC 97;Build 2
+ ;;5.0;INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113,223,269,287**;16 DEC 97;Build 1
  ;
  ; Reference to ^PS(50.7 is supported by DBIA# 2180
  ; Reference to ^PS(51.1 is supported by DBIA 2177
@@ -82,7 +82,7 @@ A26 I $$PNDREN($G(PSGORD)) D  Q
  .. S PSGSTN=$$ENSTN^PSGMI(PSGST)
  . I $G(PSJSYSW0),($P(PSJSYSW0,U,5)'=2),'$G(PSGEFN(8)) W !!,"NOTE: This may cause the Admin Times and the Start Time to be out of sync."
  . W !!,"NOTE: This change in schedule also changes the ADMIN TIMES and SCHEDULE TYPE.",!
- . S MSG=1,PSGOEEF(39)=1
+ . S MSG=1 S:'$G(PSGOEEF(39)) PSGOEEF(39)=1  ;*287 - Prevent infinite loop editing admin times
  . I $G(PSJNEWOE) D PAUSE^VALM1
  I PSGST="O" S PSGOEEF(7)=1
  G DONE

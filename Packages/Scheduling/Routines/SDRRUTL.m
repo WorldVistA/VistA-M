@@ -1,5 +1,5 @@
 SDRRUTL ;10N20/MAH;Recall Reminder-Clinic Utilities;01/18/2008  11:32
- ;;5.3;Scheduling;**536,571**;Aug 13, 1993;Build 3
+ ;;5.3;Scheduling;**536,571,582**;Aug 13, 1993;Build 3
 ASKDIV(SDRRDIV) ;
  N DIC,X,Y,I,DUOUT,DTOUT
  K SDRRDIV
@@ -205,3 +205,28 @@ FDA ;SD*571 insure original provider pointer is back in 403.5 record
  S SDFLAG=""   ;null indicates edit so ^DIK will not be called at exit
  Q
  ;
+SCREEN1() ; SD*582 screen clinic for add/edits - don't allow if clinic
+ ; already inactive OR
+ ; scheduled to be inactivated on OR
+ ; before recall date OR not being reactivated until after selected recall date.
+ ;
+ N SDNODE,SDRDT,SDIDT
+ ; Active if clinic is not inactive
+ I '$G(^SC(+X,"I")) Q 1
+ ; Get selected recall date
+ S SDRDT=$P(^SD(403.5,DA,0),U,6)
+ ; Check if clinic is inactive
+ S:$G(^SC(+X,"I")) SDNODE=$G(^("I"))
+ ; Active if inactivate date after recall date
+ I $P(SDNODE,U,2)="" I $P(SDNODE,U,1)>SDRDT Q 1
+ ; Inactive if inactivate date equal or prior to recall date
+ I $P(SDNODE,U,2)="" I $P(SDNODE,U,1)=SDRDT!($P(SDNODE,U,1)<SDRDT) D  Q 0
+ . S SDIDT=$P(SDNODE,U,1),SDIDT=$$FMTE^XLFDT(SDIDT)
+ . W *7,!!,?5,"Clinic Inactive effective "_SDIDT_".",!
+ ; Active if reactivate date equal or prior to recall date
+ I $P(SDNODE,U,2)'="" I $P(SDNODE,U,2)=SDRDT!($P(SDNODE,U,2)<SDRDT) Q 1
+ ; Inactive if reactivate date after recall date
+ I $P(SDNODE,U,2)'="" I $P(SDNODE,U,2)>SDRDT D  Q 0
+ . S SDIDT=$P(SDNODE,U,2),SDIDT=$$FMTE^XLFDT(SDIDT)
+ . W *7,!!,?5,"Clinic Inactive until "_SDIDT_".",!
+ Q 1

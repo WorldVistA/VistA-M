@@ -1,5 +1,5 @@
 PSSUTIL ;BIR/RTR-utility routine for NDF changes ;04/04/00
- ;;1.0;PHARMACY DATA MANAGEMENT;**34,38,147,155**;9/30/97;Build 36
+ ;;1.0;PHARMACY DATA MANAGEMENT;**34,38,147,155,170**;9/30/97;Build 5
  ;
  ;Reference to PS(50.607 supported by DBIA 2221
 EN(PSSDIEN) ;Receive Drug entries unmatched as a result of NDF changes
@@ -75,6 +75,7 @@ LOC ;Set local possible dosages
  W !!,"Setting Local Possible Dosages..",!
  K DIR S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR
 QUIET ;
+ Q:'$O(^PS(50.606,PSSOID,"DUPD",0))
  I $O(^PS(50.606,PSSOID,"DUPD",0)) D  S:PSSLTOT>1 PSSLTOTX=PSSLTOT-1,^PSDRUG(PSSDIEN,"DOS2",0)="^50.0904^"_$G(PSSLTOTX)_"^"_$G(PSSLTOTX) Q
  .S PSSLTOT=1
  .F PSNOUN=0:0 S PSNOUN=$O(^PS(50.606,PSSOID,"NOUN",PSNOUN)) Q:'PSNOUN  S PSNOUNPT=$P($G(^(PSNOUN,0)),"^"),PSNOUNPA=$P($G(^(0)),"^",2) D:PSNOUNPT'=""
@@ -94,7 +95,7 @@ QUIET ;
  Q
 LOCMRG ;Merge new Local Possible Dosages with existing ones
  N PSSLIEN,PSSLIENX,PSSPWZEX
- I '$G(PSSTALK) G QUIET1
+ I '$G(PSSTALK),'$G(PSSUPRAF) G QUIET1
  W !!,"This drug has the following Local Possible Dosages:",!
  S PSSPWZEX=0 F PSSLIEN=0:0 S PSSLIEN=$O(^PSDRUG(PSSDIEN,"DOS2",PSSLIEN)) Q:'PSSLIEN!(PSSPWZEX)  D
  .D:($Y+5)>IOSL XASK Q:PSSPWZEX  S PSSLIENX=$P($G(^PSDRUG(PSSDIEN,"DOS2",PSSLIEN,0)),"^")
@@ -107,6 +108,7 @@ LOCMRG ;Merge new Local Possible Dosages with existing ones
  W !!,"Setting Local Possible Dosages..",!
  K DIR S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR
 QUIET1 ;
+ Q:'$O(^PS(50.606,PSSOID,"DUPD",0))
  I $O(^PS(50.606,PSSOID,"DUPD",0)) D  Q
  .F PSNOUN=0:0 S PSNOUN=$O(^PS(50.606,PSSOID,"NOUN",PSNOUN)) Q:'PSNOUN  S PSNOUNPT=$P($G(^(PSNOUN,0)),"^"),PSNOUNPA=$P($G(^(0)),"^",2) D:PSNOUNPT'=""
  ..Q:PSNOUNPA=""

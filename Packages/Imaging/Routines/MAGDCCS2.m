@@ -1,5 +1,5 @@
-MAGDCCS2 ;WOIFO/MLH/JSL/SAF - DICOM Correct - Clinical Specialties - subroutines ; 13 Nov 2007 1:40 PM
- ;;3.0;IMAGING;**10,11,30,54,123**;Mar 19, 2002;Build 67;Jul 24, 2012
+MAGDCCS2 ;WOIFO/MLH - DICOM Correct - Clinical Specialties - subroutines ; 01 Apr 2013 10:49 AM
+ ;;3.0;IMAGING;**10,11,30,54,123,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -20,7 +20,7 @@ MAGDCCS2 ;WOIFO/MLH/JSL/SAF - DICOM Correct - Clinical Specialties - subroutines
  ; manually correcting DICOM FIX files. 
 EN ;
  ; MAGDY variable to be created during this execution.
- N D,DIC,DUOUT,DZ,MAGBEG,MAGEND,MAGDFN,MAGOUT,MAGX,MAGXX,INFO,MAGNME,MAGPID,Y
+ N D,DIC,DO,DUOUT,DZ,MAGBEG,MAGEND,MAGDFN,MAGOUT,MAGX,MAGXX,INFO,MAGNME,MAGPID,Y
  S MAGBEG=1070101,MAGEND=$$DT^XLFDT
  W !,"*** Select a request/consult with whose ***"
  W !,"***  TIU note to associate this image   ***"
@@ -46,7 +46,8 @@ PTINFO() ;
  N INFO,MAGOUT,MAGERR
  I '$D(MAGDFN) Q ""
  I $$ISIHS^MAGSPID() D  Q INFO  ;P123 - MOD for IHS patients with multiple chart numbers (i.e. Chawktaw)
- . N DFN S DFN=MAGDFN,INFO="" D DEM^VADPT
+ . N DFN,VA,VADM
+ . S DFN=MAGDFN,INFO="" D DEM^VADPT
  . I $G(VA("PID"))'="" S INFO=$G(VADM(1))_"^"_$TR(VA("PID"),"-")
  . Q
  D GETS^DIQ(2,MAGDFN,".01;.09","E","MAGOUT","MAGERR")
@@ -88,7 +89,7 @@ ONE ; Process the single entry that was selected.
  ;
 MAGDY ;
  K MAGDY
- S MAGDY=MAGDFN_"^"_MAGNME_"^"_MAGPID_"^"_"GMRC-"_MAGCASE_"^"_MAGPRC_"^"_MAGDTI
- S MAGDY=MAGDY_"^"_MAGCNI_"^"_MAGPIEN_"^"_$G(MAGPST)_"^"
+ S MAGDY=MAGDFN_"^"_MAGNME_"^"_MAGPID_"^"_$$GMRCACN^MAGDFCNV(MAGCASE)
+ S MAGDY=MAGDY_"^"_MAGPRC_"^"_MAGDTI_"^"_MAGCNI_"^"_MAGPIEN_"^"_$G(MAGPST)_"^"
  K MAGNME,MAGPID,MAGCASE,MAGPRC,MAGDTI,MAGCNI,MAGPIEN,MAPST
  Q

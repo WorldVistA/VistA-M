@@ -1,11 +1,6 @@
-IBXX18 ; COMPILED XREF FOR FILE #399 ; 02/21/12
+IBXX18 ; COMPILED XREF FOR FILE #399 ; 10/22/14
  ; 
  I X'="" S ^DGCR(399,"CAP",$E(X,1,30),DA)=""
- S DIKZ("C")=$G(^DGCR(399,DA,"C"))
- S X=$P($G(DIKZ("C")),U,14)
- I X'="" D
- .N DIK,DIV,DIU,DIN
- .X ^DD(399,64,1,1,1.3) I X S X=DIV S Y(1)=$S($D(^DGCR(399,D0,"C")):^("C"),1:"") S X=$P(Y(1),U,10),X=X S DIU=X K Y S X=DIV S X=$P(^ICD9(+X,0),"^",3) X ^DD(399,64,1,1,1.4)
  S DIKZ("M")=$G(^DGCR(399,DA,"M"))
  S X=$P($G(DIKZ("M")),U,1)
  I X'="" D

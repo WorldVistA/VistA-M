@@ -1,16 +1,31 @@
 RORRP016 ;HCIOFO/SG - RPC: LIST OF ICD-9 CODES ;6/16/06 2:16pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,10**;Feb 17, 2006;Build 32
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,10,23,19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
- ; #3990         $$ICDDX^ICDCODE, $$ICDOP^ICDCODE, and
- ;               $$ICDD^ICDCODE (supported)
- ; #2051         LIST^DIC (supported)
+ ; #2051,5388,5773         LIST^DIC (supported)
+ ; #5747         $$CSI^ICDEX (controlled)
+ ; #5747         $$VSTD^ICDEX (controlled)
+ ; #5747         $$VSEX^ICDEX (controlled)
+ ; #5747         $$UPDX^ICDEX (controlled)
+ ; #5747         $$VSTP^ICDEX (controlled)
+ ; #5699         $$ICDDATA^ICDXCODE (supported)
+ ; #5699         $$ICDDESC^ICDXCODE (supported)
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;******************************************************************************
+ ;******************************************************************************
  ;
  Q
  ;
- ;***** RETURNS THE LIST OF ICD-9 CODES (DIAGNOSES OR PROCEDURES)
- ; RPC: [ROR LIST ICD-9]
+ ;***** RETURNS THE LIST OF ICD CODES (DIAGNOSES OR PROCEDURES)
+ ; RPC: [ROR LIST ICD]
  ;
  ; .RORESULT     Reference to a local variable where the results
  ;               are returned to.
@@ -48,8 +63,10 @@ RORRP016 ;HCIOFO/SG - RPC: LIST OF ICD-9 CODES ;6/16/06 2:16pm
  ;               NOTE: The FROM value itself is not included in
  ;                     the resulting list.
  ;
- ; See description of the LIST^DIC for more details about the
- ; PART, NUMBER and FROM parameters.
+ ;               See description of the LIST^DIC for more details about the
+ ;               PART, NUMBER and FROM parameters.
+ ;
+ ; [ICDTYPE]     TYPE OF ICD SEARCH: ICD9 OR ICD10
  ;
  ; The ^TMP("RORRP016",$J) global node is used by this procedure.
  ;
@@ -69,7 +86,7 @@ RORRP016 ;HCIOFO/SG - RPC: LIST OF ICD-9 CODES ;6/16/06 2:16pm
  ;                         ^02: FromName
  ;                         ^03: FromIEN
  ;
- ; @RORESULT@(i)         ICD-9
+ ; @RORESULT@(i)         ICD
  ;                         ^01: IEN
  ;                         ^02: Diagnosis or operation/procedure
  ;                         ^03: Code
@@ -77,31 +94,36 @@ RORRP016 ;HCIOFO/SG - RPC: LIST OF ICD-9 CODES ;6/16/06 2:16pm
  ;                         ^05: Inactive {0|1}
  ;                         ^06: Inactivation Date (FileMan)
  ;
- ; @RORESULT@(i+1)       ICD-9 Description
+ ; @RORESULT@(i+1)       ICD Description
  ;
-ICD9LIST(RORESULT,DATE,PART,FLAGS,NUMBER,FROM) ;
- N BUF,RC,RORERRDL,TMP
- D CLEAR^RORERR("ICD9LIST^RORRP016",1)
+ICDLIST(RORESULT,DATE,PART,FLAGS,NUMBER,FROM,ICDTYPE) ;
+ N BUF,RC,RORERRDL,TMP,RORCODSYS
+ D CLEAR^RORERR("ICDLIST^RORRP016",1)
  K RORESULT  S RORESULT=$NA(^TMP("RORRP016",$J))  K @RORESULT
  ;--- Check the parameters
  S PART=$G(PART),FLAGS=$G(FLAGS)
  S NUMBER=$S($G(NUMBER)>0:+NUMBER,1:"*")
+ S ICDTYPE=$G(ICDTYPE)
  ;--- Setup the start point
  I $G(FROM)'=""  D  S FROM=$P(FROM,U)
  . S:$P(FROM,U,2)>0 FROM("IEN")=+$P(FROM,U,2)
  ;--- Compile the list
  I FLAGS["O"  D
+ . I ICDTYPE="ICD9" S RORCODSYS="2" I 1
+ . E  I ICDTYPE="ICD10" S RORCODSYS="31"
  . ;--- Get the list of operation/procedure codes
- . S RC=$$QUERY1(PART,FLAGS,NUMBER,.FROM)  Q:RC<0
+ . S RC=$$QUERY1(PART,FLAGS,NUMBER,.FROM,RORCODSYS)  Q:RC<0
  . S RORESULT=$NA(@RORESULT@("DILIST"))
  . ;--- Load remaining data and refine the list
- . D REFINE1(PART,FLAGS,$G(DATE))
+ . D REFINE1(PART,FLAGS,$G(DATE),RORCODSYS)
  E  D
+ . I ICDTYPE="ICD9" S RORCODSYS="1" I 1
+ . E  I ICDTYPE="ICD10" S RORCODSYS="30"
  . ;--- Get the list of diagnosis codes
- . S RC=$$QUERY(PART,FLAGS,NUMBER,.FROM)  Q:RC<0
+ . S RC=$$QUERY(PART,FLAGS,NUMBER,.FROM,RORCODSYS)  Q:RC<0
  . S RORESULT=$NA(@RORESULT@("DILIST"))
  . ;--- Load remaining data and refine the list
- . D REFINE(PART,FLAGS,$G(DATE))
+ . D REFINE(PART,FLAGS,$G(DATE),RORCODSYS)
  I RC<0  D RPCSTK^RORERR(.RORESULT,RC)  Q
  ;--- Success
  S TMP=$G(@RORESULT@(0)),BUF=+$P(TMP,U)
@@ -110,48 +132,61 @@ ICD9LIST(RORESULT,DATE,PART,FLAGS,NUMBER,FROM) ;
  Q
  ;
  ;***** QUERIES THE ICD DIAGNOSIS FILE (#80)
-QUERY(PART,FLAGS,NR,FROM) ;
+QUERY(PART,FLAGS,NR,FROM,CODSYS) ;
  N FLDS,RORMSG,SCR,TMP,XREF
  ;--- Compile the screen logic (be careful with naked references)
  S SCR=""
- I FLAGS["D"  S:PART'="" SCR=SCR_"I $P(D,U,3)["""_PART_""" ",PART=""
- S:FLAGS["F" SCR=SCR_"I $P(D,U,10)'=""F"" "
- S:FLAGS["M" SCR=SCR_"I $P(D,U,10)'=""M"" "
- S:FLAGS["P" SCR=SCR_"I '$P(D,U,4) "
- S:SCR'="" SCR="S D=$G(^(0)) "_SCR ;Naked Ref: ^ICD9(
+ ;I FLAGS["D"  S:PART'="" SCR=SCR_"I $P(D,U,3)["""_PART_""" ",PART=""
+ ;S:FLAGS["F" SCR=SCR_"I $P(D,U,10)'=""F"" "
+ ;S:FLAGS["M" SCR=SCR_"I $P(D,U,10)'=""M"" "
+ ;S:FLAGS["P" SCR=SCR_"I '$P(D,U,4) "
+ ;S:SCR'="" SCR="S D=$G(^(0)) "_SCR ;Naked Ref: ^ICD9(
+ S:CODSYS]"" SCR=SCR_"I $$CSI^ICDEX(80,Y)="""_CODSYS_""" "
+ I FLAGS["D" S:PART'="" SCR=SCR_"I $$UP^XLFSTR($$VSTD^ICDEX(Y))["""_PART_""" ",PART=""
+ S:FLAGS["F" SCR=SCR_"I $$VSEX^ICDEX(80,Y)'=""F"" "
+ S:FLAGS["M" SCR=SCR_"I $$VSEX^ICDEX(80,Y)'=""M"" "
+ S:FLAGS["P" SCR=SCR_"I '$$UPDX^ICDEX(Y) "
  ;--- Get the list of codes and some data
  ;S FLDS="@;3;.01;9.5I;IXI",TMP="P"_$S(FLAGS["B":"B",1:"")
- S FLDS="@;.01;9.5I;IXI",TMP="P"_$S(FLAGS["B":"B",1:"")
+ ;S FLDS="@;.01;9.5I;IXI"
+ S FLDS="@;.01;IXI"
+ S TMP="P"_$S(FLAGS["B":"B",1:"")
  S XREF=$S(FLAGS["D":"#",FLAGS["K":"D",1:"BA")
  D LIST^DIC(80,,FLDS,TMP,NR,.FROM,PART,XREF,SCR,,RORESULT,"RORMSG")
  I $G(DIERR)  K @RORESULT  Q $$DBS^RORERR("RORMSG",-9,,,80)
  ;--- Add Diagnosis code to RORESULT using API
- D GETDIAG
+ D GETDIAG(CODSYS)
  ;--- Success
  Q 0
  ;
  ;***** QUERIES THE ICD OPERATION/PROCEDURE FILE (#80.1)
-QUERY1(PART,FLAGS,NR,FROM) ;
+QUERY1(PART,FLAGS,NR,FROM,CODSYS) ;
  N FLDS,RORMSG,SCR,TMP,XREF
  ;--- Compile the screen logic (be careful with naked references)
  S SCR=""
- I FLAGS["D"  S:PART'="" SCR=SCR_"I $P(D,U,4)["""_PART_""" ",PART=""
- S:FLAGS["F" SCR=SCR_"I $P(D,U,10)'=""F"" "
- S:FLAGS["M" SCR=SCR_"I $P(D,U,10)'=""M"" "
- S:SCR'="" SCR="S D=$G(^(0)) "_SCR ;Naked Ref: ^ICD0(
+ ;I FLAGS["D"  S:PART'="" SCR=SCR_"I $P(D,U,4)["""_PART_""" ",PART=""
+ ;S:FLAGS["F" SCR=SCR_"I $P(D,U,10)'=""F"" "
+ ;S:FLAGS["M" SCR=SCR_"I $P(D,U,10)'=""M"" "
+ ;S:SCR'="" SCR="S D=$G(^(0)) "_SCR ;Naked Ref: ^ICD0(
+ S:CODSYS]"" SCR=SCR_"I $$CSI^ICDEX(80.1,Y)="""_CODSYS_""" "
+ I FLAGS["D" S:PART'="" SCR=SCR_"I $$UP^XLFSTR($$VSTP^ICDEX(Y))["""_PART_""" ",PART=""
+ S:FLAGS["F" SCR=SCR_"I $$VSEX^ICDEX(80.1,Y)'=""F"" "
+ S:FLAGS["M" SCR=SCR_"I $$VSEX^ICDEX(80.1,Y)'=""M"" "
  ;--- Get the list of codes and some data
  ;S FLDS="@;4;.01;9.5I;IXI",TMP="P"_$S(FLAGS["B":"B",1:"")
- S FLDS="@;.01;9.5I;IXI",TMP="P"_$S(FLAGS["B":"B",1:"")
+ ;S FLDS="@;.01;9.5I;IXI"
+ S FLDS="@;.01;IXI"
+ S TMP="P"_$S(FLAGS["B":"B",1:"")
  S XREF=$S(FLAGS["D":"#",FLAGS["K":"D",1:"BA")
  D LIST^DIC(80.1,,FLDS,TMP,NR,.FROM,PART,XREF,SCR,,RORESULT,"RORMSG")
  I $G(DIERR)  K @RORESULT  Q $$DBS^RORERR("RORMSG",-9,,,80.1)
  ;--- Add Operation/Procedure  to RORESULT using API
- D GETOPPR
+ D GETOPPR(CODSYS)
  ;--- Success
  Q 0
  ;
  ;***** REFINES THE LIST OF DIAGNOSES
-REFINE(PART,FLAGS,DATE) ;
+REFINE(PART,FLAGS,DATE,CODSYS) ;
  N BUF,CNT,ICDINFO,MODE,RORDESC,SUBS,TMP
  S MODE=($TR(FLAGS,"DK")=FLAGS)
  S (CNT,SUBS)=0
@@ -159,13 +194,14 @@ REFINE(PART,FLAGS,DATE) ;
  . S BUF=@RORESULT@(SUBS,0)
  . ;--- Remove duplicates created by the logic of the "BAA" xref
  . I MODE  D  I '(TMP?1.E1" ")  K @RORESULT@(SUBS)  Q
- . . S TMP=$P(BUF,U,5)
+ . . S TMP=$P(BUF,U,4)
  . ;--- Load the additional data
- . S ICDINFO=$$ICDDX^ICDCODE(+$P(BUF,U),DATE)
+ . S ICDINFO=$$ICDDATA^ICDXCODE(CODSYS,+$P(BUF,U),DATE,"I")
  . I ICDINFO<0  K @RORESULT@(SUBS)  Q
  . ;--- Screen active/inactive records
  . S TMP=+$P(ICDINFO,U,10)                      ; Status
  . I $S(TMP:FLAGS["A",1:FLAGS["I")  K @RORESULT@(SUBS)  Q
+ . S $P(BUF,U,4)=$P(ICDINFO,U,11)  ; Sex
  . S $P(BUF,U,5)=TMP
  . S $P(BUF,U,6)=$S(TMP:$P(ICDINFO,U,12),1:"")  ; Inactivation Date
  . ;--- Versioned diagnosis
@@ -173,7 +209,7 @@ REFINE(PART,FLAGS,DATE) ;
  . ;--- Store the data
  . S CNT=CNT+1,@RORESULT@(SUBS,0)=BUF
  . ;--- Versioned description
- . S TMP=$$ICDD^ICDCODE($P(BUF,U,3),"RORDESC")
+ . S TMP=$$ICDDESC^ICDXCODE(CODSYS,$P(BUF,U,3),DATE,.RORDESC)
  . S @RORESULT@(SUBS,1)=$S($G(RORDESC(1))'="":RORDESC(1),1:$P(BUF,U,2))
  . K RORDESC
  ;---
@@ -181,7 +217,7 @@ REFINE(PART,FLAGS,DATE) ;
  Q
  ;
  ;***** REFINES THE LIST OF OPERATION/PROCEDURES
-REFINE1(PART,FLAGS,DATE) ;
+REFINE1(PART,FLAGS,DATE,CODSYS) ;
  N BUF,CNT,ICDINFO,MODE,RORDESC,SUBS,TMP
  S MODE=($TR(FLAGS,"DK")=FLAGS)
  S (CNT,SUBS)=0
@@ -189,13 +225,14 @@ REFINE1(PART,FLAGS,DATE) ;
  . S BUF=@RORESULT@(SUBS,0)
  . ;--- Remove duplicates created by the logic of the "BAA" xref
  . I MODE  D  I '(TMP?1.E1" ")  K @RORESULT@(SUBS)  Q
- . . S TMP=$P(BUF,U,5)
+ . . S TMP=$P(BUF,U,4)
  . ;--- Load the additional data
- . S ICDINFO=$$ICDOP^ICDCODE(+$P(BUF,U),DATE)
+ . S ICDINFO=$$ICDDATA^ICDXCODE(CODSYS,+$P(BUF,U),DATE,"I")
  . I ICDINFO<0  K @RORESULT@(SUBS)  Q
  . ;--- Screen active/inactive records
  . S TMP=+$P(ICDINFO,U,10)                      ; Status
  . I $S(TMP:FLAGS["A",1:FLAGS["I")  K @RORESULT@(SUBS)  Q
+ . S $P(BUF,U,4)=$P(ICDINFO,U,11)  ; Sex
  . S $P(BUF,U,5)=TMP
  . S $P(BUF,U,6)=$S(TMP:$P(ICDINFO,U,12),1:"")  ; Inactivation Date
  . ;--- Versioned operation/procedure
@@ -203,7 +240,7 @@ REFINE1(PART,FLAGS,DATE) ;
  . ;--- Store the data
  . S CNT=CNT+1,@RORESULT@(SUBS,0)=BUF
  . ;--- Versioned description
- . S TMP=$$ICDD^ICDCODE($P(BUF,U,3),"RORDESC")
+ . S TMP=$$ICDDESC^ICDXCODE(CODSYS,$P(BUF,U,3),DATE,.RORDESC)
  . S @RORESULT@(SUBS,1)=$S($G(RORDESC(1))'="":RORDESC(1),1:$P(BUF,U,2))
  . K RORDESC
  ;---
@@ -211,11 +248,11 @@ REFINE1(PART,FLAGS,DATE) ;
  Q
  ;
  ;***** Get Diagnosis code and add to the @RORESULT@("DILIST") array
-GETDIAG ;
+GETDIAG(CODSYS) ;
  N RORI,RORIEN,RORDIAG,ROR1,RORALL,RORNUM S RORI=0
  F  S RORI=$O(@RORESULT@("DILIST",RORI)) Q:RORI=""  D
  . S RORIEN=$P(@RORESULT@("DILIST",RORI,0),U,1)
- . S RORDIAG=$P($$ICDDX^ICDCODE(RORIEN,,,0),U,4)
+ . S RORDIAG=$$VSTD^ICDEX(RORIEN)
  . ;get number of pieces in RORESULT
  . S RORNUM=$L(@RORESULT@("DILIST",RORI,0),U)
  . S ROR1=$P(@RORESULT@("DILIST",RORI,0),U,1) ;1st piece
@@ -228,11 +265,11 @@ GETDIAG ;
  S @RORESULT@("DILIST",0,"MAP")=$G(ROR1)_U_"3"_U_$G(RORALL)
  Q
  ;***** Get Operation/Procedure and add to the RORESULT("DILIST") array
-GETOPPR ;
+GETOPPR(CODSYS) ;
  N RORI,RORIEN,ROROPPR,ROR1,RORALL,RORNUM S RORI=0
  F  S RORI=$O(@RORESULT@("DILIST",RORI)) Q:RORI=""  D
  . S RORIEN=$P(@RORESULT@("DILIST",RORI,0),U,1)
- . S ROROPPR=$P($$ICDOP^ICDCODE(RORIEN,,,0),U,5)
+ . S ROROPPR=$$VSTP^ICDEX(RORIEN)
  . ;get number of pieces in RORESULT to reflect field #3
  . S RORNUM=$L(@RORESULT@("DILIST",RORI,0),U)
  . S ROR1=$P(@RORESULT@("DILIST",RORI,0),U,1) ;1st piece

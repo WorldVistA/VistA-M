@@ -1,5 +1,5 @@
 ONCCPC0 ;HIRMFO/GWB - PCE Study of Colorectal Cancer;2/7/97
- ;;2.11;ONCOLOGY;**11,15**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Check PCE eligibility
  ;Check if ACCESSION YEAR = 1997
  I $P(^ONCO(165.5,ONCONUM,0),U,7)'=1997 S MSG="The Accession Year is not 1997." D ERRMSG G EXIT

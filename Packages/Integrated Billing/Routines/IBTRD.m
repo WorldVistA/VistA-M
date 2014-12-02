@@ -1,6 +1,6 @@
 IBTRD ;ALB/AAS - CLAIMS TRACKING - DENIAL/ APPEALS ; 10-AUG-1993
- ;;2.0; INTEGRATED BILLING ;**1,199**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**1,199,458**;21-MAR-94;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % ;
 EN ; -- main entry point for IBT APPEAL/DENAIL EDITOR
@@ -27,8 +27,9 @@ HDRI ; -- header code for by ins. co.
  Q
  ;
 HDRP ; -- header code for by pat.
- D PID^VADPT
+ D PID^VADPT N IBXR
  S VALMHDR(1)="Denials and Appeals for: "_$$PT^IBTUTL1(DFN)
+ S IBXR=$$ROIPAT^IBTRR1(DFN,DT) I IBXR'="" S VALMHDR(1)=VALMHDR(1)_$J(" ",(70-$L(VALMHDR(1))))_"ROI: "_IBXR
  S VALMHDR(2)=" "
  Q
  ;
@@ -108,7 +109,7 @@ BLDP ; -- Build list of appeals/denials by patient
  S X=$$SETFLD^VALM1($$EXPAND^IBTRE(356,.31,$P(^IBT(356,IBTRN,0),"^",31)),X,"ROI")
  S X=$$SETFLD^VALM1($P(IBTRCD,"^",6),X,"CONTACT")
  S X=$$SETFLD^VALM1($P(IBTRCD,"^",7),X,"PHONE")
- S X=$$SETFLD^VALM1($P(IBTRCD,"^",9),X,"REF NO")
+ S X=$$SETFLD^VALM1($$CREFN^IBTRC(IBTRC,15),X,"REF NO")
  D SET(X)
  Q
  ;

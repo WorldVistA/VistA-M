@@ -1,5 +1,5 @@
 DGBTSP ;ALB/BLD-BENEFICIARY TRAVEL SPECIAL MODE OF TRANSPORTATION; 12/18/2011@1000; 12/23/2012
- ;;1.0;Beneficiary Travel;**20**;December 27, 2011;Build 185
+ ;;1.0;Beneficiary Travel;**20,22**;December 27, 2011;Build 5
  ;
  ;MUST ENTER AT EN^DGBTSP
  Q
@@ -129,7 +129,7 @@ VENDOR(DGBTSP) ;allows the user to select from a vendor already in the FMS syste
  S VENDOR=$S($G(VENDOR)'="":VENDOR,$G(DGBTSP("VENDOR"))'="":$G(DGBTSP("VENDOR")),1:"")
  I VENDOR'="" S DIR("B")=$S($G(VENDOR)'="":VENDOR,1:$G(DGBTSP("VENDOR")))
  D ^DIR K DIR S:$D(^DGBT(392,DGBTDTI,"SP")) SPCOMPLETE=1 I ($D(DTOUT))!($D(DUOUT)) K DGBTSP S DGBTSP=0,SPCOMPLETE=0 Q
- S DGBTSP("VENDOR")=$P($G(Y(0)),"^",1)
+ S DGBTSP("VENDOR")=$P($G(Y),"^",1) ;dbe patch DGBT*1*22 - modified to use vendor ien
  ;
  Q
  ;

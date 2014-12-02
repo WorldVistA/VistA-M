@@ -1,0 +1,146 @@
+PSJIBAG ;BIR/JCH-IV PARAMETER VALIDATION ; 08/10/12 12:26pm
+ ;;5.0;INPATIENT MEDICATIONS;**279**;16 DEC 97;Build 150
+ ;;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
+ ;
+ ; Reference to ^PSBPOIV is supported by DBIA #5434
+ ;
+PSBPOIV(DFN,ORDER,PSJQT,PSJINIV) ; Check BCMA IV Parameters, invalidate labels
+ ; DFN - Patient IEN
+ ; ORDER - Inpatient IV order
+ ; PSJQT - Quiet (no display) 
+ ;       - 100 = called from Label Log
+ ; PSJINIV - Were any labels invalidated? 
+ ;           0=NO, 1=YES
+ ;
+ Q:'$G(DFN)!'$G(ORDER)!'($G(ORDER)["V")
+ K ^TMP("PSBAR",$J),^TMP("PSJINBAG",$J,DFN,+ORDER)
+ I '$G(PSJQT) W !,"Checking IV Labels..."
+ D EN^PSBPOIV(DFN,ORDER)
+ N INVDT,PSJAVAIL,Y,COU,PSJDOLJ D NOW^%DTC S INVDT=%,PSJAVAIL=0,PSJDOLJ=$J
+ N LBLID S LBLID=0 F  S LBLID=$O(^TMP("PSBAR",$J,LBLID)) Q:'LBLID  D
+ .N LBLNUM,INVBCMA S INVBCMA=$P($G(^TMP("PSBAR",$J,LBLID)),"^")
+ .I (INVBCMA'="I"),'$G(PSJAVAIL) K ^TMP("PSJINBAG",$J),^TMP("PSBAR",$J,"I") S PSJAVAIL=1,INVDT=""
+ .S LBLNUM=$P(LBLID,"V",2) Q:'LBLNUM
+ .N INVIPM S INVIPM=$P($G(^PS(55,DFN,"IVBCMA",LBLNUM,0)),"^",9) Q:INVIPM
+ .S ^TMP("PSJINBAG",$J,DFN,ORDER,LBLID)=INVDT
+ I $D(^TMP("PSJINBAG",$J,DFN,ORDER)) D
+ .I ($G(PSJQT)) D DATA(DFN,+ORDER,,,$G(PSJAVAIL),,1),EXIT Q
+ .D VFY(DFN,ORDER,INVDT,$G(PSJAVAIL)),EXIT
+ Q
+ ;
+VFY(DFN,PSIVON55,INVDT,PSJAVAIL) ; If AUTO-VERIFY turned off, veryifying pharmacist needs to be reminded about invalidated labels before being prompted to print labels
+ N PSJIAL,PSJIACT,PSJBLN,PSJDNE,PSIVTMP,Y S PSJBLN=0,PSJDNE=0,PSJINIV="",PSJDOLJ=$J
+ N BCINVF S BCINVF=$G(^TMP("PSBAR",$J,"I")) I BCINVF]"" D
+ .N TMPINFLD S TMPINFLD=$P(BCINVF,"invalid",2) S TMPINFLD=$TR(TMPINFLD,".") I $E(TMPINFLD)=" " S TMPINFLD=$E(TMPINFLD,2,99)
+ .S BCINVF=TMPINFLD
+ I '$G(PSJAVAIL)&(BCINVF="") Q
+ D FULL^VALM1
+ I '$G(PSJAVAIL),($G(BCINVF)]"") W !!!?6,"**  Edit to ",BCINVF," has invalidated the following IV labels  **" D
+ .W !?4,"(Invalid IV labels cannot be reprinted or marked as Infusing in BCMA)"
+ I $G(PSJAVAIL) W !!!?12,"**  The following labels are available  **"
+ D DATA(DFN,+PSIVON55,,$S($G(PSJAVAIL):"",1:INVDT),$S($G(PSJAVAIL):PSJAVAIL,1:""),.PSJINIV)
+ I '$G(PSJAVAIL) D
+ .N DIR,DA S DIR(0)="SAO^P:PRINT",DIR("A")="Enter 'P' to print list of Invalidated Labels or RETURN to continue: " D ^DIR
+ .I '($G(Y)="P") K ^TMP("PSJINBAG",$J) Q
+ .D DEV(DFN,PSIVON55,INVDT)
+ I $G(PSJAVAIL) D CONT^PSJOE0 K ^TMP("PSJINBAG",$J)
+ Q
+ ;
+DATA(DFN,ON,PSJIPRNT,PSJIINV,PSJAVAIL,PSJINIV,PSJQT) ;Get the Information
+ N PSJINVDT
+EN2 ; Queued entry point
+ N TMPON55,PSJBLN,PSJD1,X,DA,DR,DIQ,DIC,PSJD2,LLCNT,PSJBLNL,TMPON,PSIVSCR,PSGP
+ K PSJDNE S PSIVSCR=$E(IOST)="C",COU=0,LLCNT=0
+ I ($G(ON)["P") S TMPON=ON N HDR531 S HDR531=$G(^PS(53.1,+ON,0)) S HDR531=$P(HDR531,"^",25) I HDR531["V" S ON=HDR531
+ S ON=+ON
+ S ^TMP("PSJINBAG",PSJDOLJ,DFN,ON_"V")=$S($G(PSJAVAIL):"AVAILABLE",1:"INVALID")
+ I $G(PSJIPRNT) D ENIV^PSJAC D
+ .N LOC,PN,AI,ADCNT,SOLCNT S LOC=$P($G(VAIN(4)),"^",2) I LOC="" S LOC=+$G(^PS(55,DFN,"IV",+ON,"DSS")) D
+ ..S LOC=$S($G(LOC):$P($G(^SC(+LOC,0)),"^"),1:"NOT FOUND")
+ .S PN=$S(($G(PSGP(0))]""):PSGP(0),1:$P($G(^DPT(DFN,0)),"^"))
+ .U IO W !!?23,"* Invalidated IV Labels *",!!?5,"Patient: ",PN,?50,"Location: ",LOC
+ .S ADCNT=0 F AI=1:1 S ADCNT=$O(^PS(55,DFN,"IV",+ON,"AD",ADCNT)) Q:'ADCNT  D
+ ..N IVND0,IVSTR S IVND0=$G(^PS(55,DFN,"IV",+ON,"AD",ADCNT,0)),IVSTR=$P(IVND0,"^",2)
+ ..I AI=1 W !?1,"Additive(s) (current order): ",?14,$P($G(^PS(52.6,+IVND0,0)),"^") Q
+ ..W !?14,$P($G(^PS(52.6,+IVND0,0)),"^")
+ .S SOLCNT=0 F AI=1:1 S SOLCNT=$O(^PS(55,DFN,"IV",+ON,"SOL",SOLCNT)) Q:'SOLCNT  D
+ ..N IVND0,IVOL S IVND0=$G(^PS(55,DFN,"IV",+ON,"SOL",SOLCNT,0)),IVOL=$P(IVND0,"^",2)
+ ..I AI=1 W !?1,"Solution(s) (current order): ",?14,$P($G(^PS(52.7,+IVND0,0)),"^") Q
+ ..W !?14,$P($G(^PS(52.6,+$G(^PS(55,DFN,"IV",+ON,"SOL",SOLCNT,0)),0)),"^")
+ I '$G(PSJQT) U IO W ! D H2 S PSJBLN=0,LLCNT=1
+ I $G(PSJIINV) D NOW^%DTC S (PSJIINV,PSJINVDT)=$S($G(PSJIINV)>200000:PSJIINV,1:%) D UPD(DFN,ON,PSJINVDT,.PSJINIV)
+ I '$G(PSJQT) S ON=ON_"V" S PSJBLNL=0 F  S PSJBLNL=$O(^TMP("PSJINBAG",PSJDOLJ,DFN,ON,PSJBLNL)) Q:'PSJBLNL  D DISPLAY
+ ;
+K ;
+ K NUMLAB,TRA,CD,DATE,DIR,DIC,%
+ Q
+ ;
+DISPLAY ; Display or Print labels 
+ K DA,DR,DIQ,DIC,PSJD2 N IVALID,LBST,BCST,LSTAT,PSJBLN
+ S PSJBLN=$P(PSJBLNL,"V",2)
+ S DIC="^PS(55,"_DFN_",""IVBCMA"",",DA=PSJBLN,DR=".01;.02;1;2;3;4;5;9",DIQ="PSJD2",DIQ(0)="IE" D EN^DIQ1
+ S BCST=$G(PSJD2(55.0105,PSJBLN,2,"E")) Q:(BCST="COMPLETED")!(BCST="GIVEN")
+ Q:($G(PSJD2(55.0105,PSJBLN,5,"E"))]"")
+ S IVALID=$P($G(^PS(55,DFN,"IVBCMA",+PSJBLN,0)),"^",9)
+ I IVALID Q:($G(PSJIINV))&(IVALID'=$G(PSJIINV))
+ I PSIVSCR,($Y#IOSL)>23 D PAUSE,H2 S LLCNT=$G(LLCNT)+3
+ W $$ENDTC1^PSGMI($G(PSJD2(55.0105,PSJBLN,4,"I"))),?17,$G(PSJD2(55.0105,PSJBLN,.01,"I")) S LLCNT=$G(LLCNT)+1 I $X>39 W ! S LLCNT=$G(LLCNT)+1
+ S LBST=$G(PSJD2(55.0105,PSJBLN,5,"E"))
+ W ?39,LBST S LLCNT=$G(LLCNT)+1
+ S X=$G(PSJD2(55.0105,PSJBLN,3,"I")) W ?51,$S(X:"YES",1:"NO")
+ W ?57,$G(PSJD2(55.0105,PSJBLN,2,"E")) S LLCNT=$G(LLCNT)+1
+ I $G(PSJD2(55.0105,PSJBLN,1,"I"))]"" W ?66,$$ENDTC1^PSGMI($G(PSJD2(55.0105,PSJBLN,1,"I"))) S LLCNT=$G(LLCNT)+1
+ W ! S LLCNT=$G(LLCNT)
+ I $G(LLCNT)>40 D PAUSE W !! S LLCNT=2
+ Q
+PAUSE ;
+ Q:'($E(IOST)="C")
+ N DIR S DIR(0)="E" D ^DIR S:$D(DTOUT)!($D(DUOUT)) PSJDNE=1
+ Q
+H ;Header
+ N I
+ W !!,"LABEL LOG:",!!,"#",?3,"DATE/TIME",?18,"ACTION",?32,"USER",?47,"#LABELS",?60,"TRACK",?75,"COUNT",! F I=1:1:80 W "=" W:I=80 !
+ Q
+H2 ;Header for Unique ID #s
+ W !,"Label Date/Time",?17,"Unique ID",?39,"Status",?51,"Count",?57,"BCMA Action-Date/Time"
+ W !,"---------------",?17,"--------",?39,"---------",?51,"-----",?57,"-----------------------",!
+ Q
+DEV(DFN,ON55,INVDT) ;Device
+ K %ZIS,IOP,POP,ZTSK,IO("Q") S PSJION=$I,%ZIS="QM"
+ N ZTDESC,ZTRTN,ZTSAVE,G
+ D ^%ZIS K %ZIS S PSJIPRNT=1,PSJIINV=""
+ I POP S IOP=PSJION S %ZIS("A")="Select DEVICE:" D ^%ZIS K IOP,PSJION W !,"Please try later!" G EXIT
+ K PSJION I $D(IO("Q")) D  G EXIT
+ .S ZTDESC="Invalidated IV Labels Report",ZTRTN="EN2^PSJIBAG"
+ .F G="DFN","ON55","PSJIPRNT","INVDT","PSJDOLJ" S:$D(@G) ZTSAVE(G)=""
+ .K IO("Q") D ^%ZTLOAD W:$D(ZTSK) !,"Report is Queued to print!" K ZTSK
+ D EN2 W ! D PAUSE^PSJLMUT1
+EXIT ;
+ W ! D ^%ZISC K DIR,DTOUT,DUOUT,DIROUT,DIRUT
+ K ^TMP("PSBAR",$J)
+ Q
+UPD(DFN,ON,PSJINVDT,PSJINIV) ; Go through labels, invalidate each
+ S ON=ON_"V"
+ N PSJBLN S PSJBLN=0 F  S PSJBLN=$O(^TMP("PSJINBAG",$J,DFN,ON,PSJBLN)) Q:'PSJBLN  D
+ .K DA,DR,DIQ,DIC,PSJD2 N IVALID,LBST,BCST
+ .S DIC="^PS(55,"_DFN_",""IVBCMA"",",DA=PSJBLN,DR=".01;.02;1;2;3;4;5",DIQ="PSJD2",DIQ(0)="IE" D EN^DIQ1
+ .Q:$P($G(^PS(55,DFN,"IVBCMA",+PSJBLN,0)),"^",9)
+ .S BCST=$G(PSJD2(55.0105,PSJBLN,2,"E")) Q:(BCST="COMPLETED")!(BCST="GIVEN")
+ .D UP1(DFN,ON,$P(PSJBLN,"V",2),PSJINVDT,.PSJINIV)
+ S ^TMP("PSJINBAG",$J,DFN,ON)=PSJINVDT
+ Q
+UP1(DFN,ON,PSJBLN,PSJINVDT,PSJINIV) ; invalidate one label
+ ;Input:  DFN     - patient's IEN
+ ;        ON      - Order number for this bar code ID
+ ;        PSJBLN  - Label index number from PS(55,DFN,"IVBCMA".
+ ;        PSJINVDT- Invalidation Date
+ ;
+ Q:'$G(PSJBLN)!'$G(DFN)!'$G(ON)
+ Q:'$G(^PS(55,DFN,"IVBCMA",+PSJBLN,0))
+ N PSJBCID,NOW S PSJBCID=DFN_"V"_PSJBLN
+ S DA(1)=DFN,X=PSJBCID,DIC="^PS(55,"_DA(1)_",""IVBCMA"","
+ K DA,DR,DIE S DIE=DIC,DA=PSJBLN,DA(1)=DFN D NOW^%DTC S NOW=$S($G(PSJINVDT):PSJINVDT,1:%)
+ S DR="9////"_+PSJINVDT D ^DIE
+ K DIC,DIE,D0,DA,DR
+ I '$G(PSJINIV) S PSJINIV=1
+ Q

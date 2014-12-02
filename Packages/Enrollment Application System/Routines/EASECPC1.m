@@ -1,5 +1,5 @@
-EASECPC1 ;ALB/LBD,CKN - LTC CoPayment Report continuation ; 6-FEB-2002
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**7,24,40**;Mar 15, 2001
+EASECPC1 ;ALB/LBD,CKN - LTC CoPayment Report continuation ; 12/10/12 5:29pm
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**7,24,40,105**;Mar 15, 2001;Build 4
  ;
  ; This routine is a continuation of EASECPC.
  ;
@@ -89,6 +89,7 @@ HEADER ; Print the header
  W @IOF
  W RPTDT,?71,"Page: ",$J(PAGE,3)
  W !!,HDR
+ W !!?6,"**This report contains projected estimates based on existing data**"
  W !!,NAME,?35,SSN,?62,"DOB: ",$$FMTE^XLFDT(DOB)
  Q
 PAUSE(RESP) ; Prompt user for next page or quit

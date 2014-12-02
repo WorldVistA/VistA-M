@@ -1,8 +1,9 @@
 PSOMLLD2 ;BIR/LE - Service Connection Check for SC>50% ;02/27/04
- ;;7.0;OUTPATIENT PHARMACY;**143,219,239,225**;DEC 1997;Build 29
+ ;;7.0;OUTPATIENT PHARMACY;**143,219,239,225,431**;DEC 1997;Build 5
  ;External reference SDC022 supported by DBIA 1579
  ;External reference DIS^SDROUT2 private by DBIA 112
  ;External reference $$GETSHAD^DGUTL3 supported by DBIA 4462
+ ;External reference ^DPT(DFN,.372 private by DBIA 1476
 SC ;This routine is used for SC>50% - OUTSIDE OF COPAY - DFN AND PSOSCP VARIABLES ARE EXPECTED TO BE PRESENT WHEN CALLED
  ; Requires: DFN, PSOSCP, PSOSCA 
  I '$G(DFN) N DFN S DFN=+$G(PSODFN)
@@ -10,7 +11,7 @@ SC ;This routine is used for SC>50% - OUTSIDE OF COPAY - DFN AND PSOSCP VARIABLE
  ;. K PSOANSQ("SC>50"),PSOANSQD("SC>50") I $G(PSOX("IRXN")) K PSOANSQ(PSOX("IRXN"),"SC>50")
 SC2 I $G(PSOMESOI)=1,$G(PSORXED) W !!,"The Pharmacy Orderable Item has changed for this order. Please review any",!,"existing SC or Environmental Indicator defaults carefully for appropriateness.",! S PSOMESOI=2
  I $G(PSOMESFI)=1 W !!,"The Pharmacy Orderable Item has changed for this order. Please review any",!,"existing SC or Environmental Indicator defaults carefully for appropriateness.",! S PSOMESFI=2
- D DIS^SDROUT2
+ D CHKPAG,DIS^SDROUT2
  N PSOUFLAG S PSOUFLAG=0 K DIR S DIR(0)="Y"
  S DIR("A")="Was treatment for a Service Connected condition"
  S DIR("?")=" ",DIR("?",1)="Enter 'Yes' if this prescription is being used to treat a condition related",DIR("?",2)="to Service Connected."
@@ -75,3 +76,8 @@ SHAD ; PROJ 112/SHAD Question
  E  S PSOANSQ("SHAD")=Y
  Q
  ;
+CHKPAG ;
+ N PSODISCT,PSOIIIII,PSOIIII1 S (PSOIIII,PSODISCT)=0,PSOIIII1=""
+ F PSOIIII=0:0 S PSOIIII=$O(^DPT(DFN,.372,PSOIIII)) Q:'PSOIIII  S PSOIIII1=$G(^DPT(DFN,.372,PSOIIII,0)) I $P(PSOIIII1,"^",3) S PSODISCT=PSODISCT+1
+ I PSODISCT>3&$G(PSOORNEW) D HD^PSODDPR2(1,1)
+ Q

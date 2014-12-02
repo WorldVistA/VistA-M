@@ -1,5 +1,5 @@
 MAGGNTI ;WOIFO/GEK/SG/NST/JSL - Imaging interface to TIU RPC Calls etc. ; 20 Jan 2010 10:08 AM
- ;;3.0;IMAGING;**10,8,59,93,108,122**;Mar 19, 2002;Build 92;Aug 02, 2012
+ ;;3.0;IMAGING;**10,8,59,93,108,122,129**;Mar 19, 2002;Build 4607;May 10, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -56,7 +56,9 @@ DATA(MAGRY,TIUDA) ;RPC [MAG3 TIU DATA FROM DA]
  S $P(MAGRY,U,5)=RES(8925,CDA,"1202","I") ;Author DUZ
  ; P122 Return Status  as 6th piece of Result String
  S $P(MAGRY,U,6)=RES(8925,CDA,".05","E") ; Status
- S $P(MAGRY,U,7)="" ; put's "^" on end of string.
+ S $P(MAGRY,U,7)="" ; future
+ S $P(MAGRY,U,8)=$$ISADDNDM^TIULC1(TIUDA) ;    NEW FOR 129T12
+ S $P(MAGRY,U,9)="" ;  put's "^" on end of string.
  Q
 IMAGES(MAGRY,TIUDA) ;RPC [MAG3 CPRS TIU NOTE]
  ; Call to get all images for a given TIU DA

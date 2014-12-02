@@ -1,5 +1,5 @@
 ONCOCRA ;Hines OIFO/RTK-CREATE/USE SPECIAL CROSS-REFERENCES ;05/30/00
- ;;2.11;ONCOLOGY;**26**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  Q  ;NOT A RUN ROUTINE
  ;TRIGGER mumps cross references for Followup attempts

@@ -1,5 +1,5 @@
 IBCNBAA ;ALB/ARH-Ins Buffer: process Accept set-up ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,184,246,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**82,184,246,416,506**;21-MAR-94;Build 74
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -34,7 +34,9 @@ ACINS ;
  W @IOF S IBHELP=",INS^IBCNBCD("_IBBUFDA_","_IBINSDA_")"
  D INS^IBCNBCD(IBBUFDA,IBINSDA)
  I +IBINSDA S IBACCPT=$$MATCH("INSURANCE COMPANY") S:'IBACCPT (IBINSDA,IBGRPDA,IBPOLDA)=0 I $D(DIRUT) G ACCPTQ
- I +IBINSDA S IBMVINS=$$MOVE("INSURANCE COMPANY",IBHELP) I $D(DIRUT)!(IBMVINS="") G ACCPTQ
+ I +IBINSDA D  I $D(DIRUT)!(IBMVINS="") G ACCPTQ
+ . I '$D(^XUSEC("IB INSURANCE COMPANY EDIT",DUZ)) S IBMVINS=0 Q
+ . S IBMVINS=$$MOVE("INSURANCE COMPANY",IBHELP)
  I 'IBINSDA S IBNEWINS=$$NEW("INSURANCE COMPANY"),IBMVINS=3,(IBGRPDA,IBPOLDA)=0 I 'IBNEWINS G ACCPTQ
  ;
  I +IBMVINS=4 D INS^IBCNBAC(IBBUFDA,IBINSDA,1) ; Ind. Accept-Skip Blanks
@@ -44,7 +46,9 @@ ACGRP ;
  I +IBGRPDA W !,?14,"Patient is "_$S(+IBPOLDA:"",1:"NOT ")_"a member of this Insurance Group/Plan",!
  D GRP^IBCNBCD(IBBUFDA,IBGRPDA)
  I +IBGRPDA S IBACCPT=$$MATCH("GROUP/PLAN") S:'IBACCPT (IBGRPDA,IBPOLDA)=0 I $D(DIRUT) G ACCPTQ
- I +IBGRPDA S IBMVGRP=$$MOVE("GROUP/PLAN",IBHELP) I $D(DIRUT)!(IBMVGRP="") G ACCPTQ
+ I +IBGRPDA D  I $D(DIRUT)!(IBMVGRP="") G ACCPTQ
+ . I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) S IBMVGRP=0 Q
+ . S IBMVGRP=$$MOVE("GROUP/PLAN",IBHELP)
  I 'IBGRPDA S IBNEWGRP=$$NEW("GROUP/PLAN"),IBMVGRP=3,IBPOLDA=0 I 'IBNEWGRP G ACCPTQ
  ;
  I +IBMVGRP=4 D GRP^IBCNBAC(IBBUFDA,IBGRPDA,1) ; Ind. Accept-Skip Blanks
@@ -126,13 +130,23 @@ MOVE(IBDESC,IBHELP) ; ask the user what method they want to use to transfer buff
 NEW(IBDESC) ; ask user if they want to add a new entry to the insurance files (36, 355.3, or 2.312)
  ; returns 1 if Yes create a new entry, 0 otherwise
  N DIR,X,Y,IBX S IBX=0
- I IBDESC="INSURANCE COMPANY",'$D(^XUSEC("IB INSURANCE COMPANY ADD",DUZ)) W !!,"Sorry, but you do not have the required privileges to add",!,"new Insurance Companies." D WAIT G NEWQ
  ;
+ ; The following was changed with patch IB*2.0*506
  S DIR("?")="Enter Yes to create a new "_IBDESC_". Enter No to stop this process."
  S DIR("?",1)="Enter Yes to create a new "_IBDESC_" in the Insurance files for"
  S DIR("?",2)="this Buffer entry only if no existing "_IBDESC_" could be found"
  S DIR("?",3)="that matches this buffer entry.",DIR("?",4)=""
- W ! S DIR(0)="YO",DIR("A")="No "_IBDESC_" Selected, Add a New "_IBDESC D ^DIR I +Y=1 S IBX=1
+ W ! S DIR(0)="YO",DIR("A")="NO "_IBDESC_" Selected, do you need a New "_IBDESC D ^DIR I +Y=1 S IBX=1
+ ;
+ ;I IBDESC="INSURANCE COMPANY",'$D(^XUSEC("IB INSURANCE COMPANY ADD",DUZ)) W !!,"Sorry, but you do not have the required privileges to add",!,"new Insurance Companies." D WAIT G NEWQ
+ I IBX=1 D  G NEWQ
+ . I IBDESC="INSURANCE COMPANY" D  Q
+ . . I '$D(^XUSEC("IB INSURANCE COMPANY EDIT",DUZ)) W !!,"A Supervisor will need to add the "_IBDESC_" before processing can",!,"continue." S IBX=0 D WAIT Q
+ . . W !!,"You must create an "_IBDESC_" first." S IBX=0 D WAIT
+ . I IBDESC="GROUP/PLAN" D  Q
+ . . I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) W !!,"A Supervisor will need to add the "_IBDESC_" before processing can continue." S IBX=0 D WAIT Q
+ . . W !!,"You must create a "_IBDESC_" first." S IBX=0 D WAIT
+ ;/IB*2.0*506 End
 NEWQ Q IBX
  ;
 REPL() ; ask user if they want to replace eligibility/benefits data in pt. insuarance

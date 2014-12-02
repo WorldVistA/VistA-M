@@ -1,5 +1,5 @@
-YSDX3RUA ;SLC/DJP-Print Utilities for Diagnoses Reporting in MH - Continued ;12/14/93 09:17
- ;;5.01;MENTAL HEALTH;**16**;Dec 30, 1994
+YSDX3RUA ;SLC/DJP - Print Utilities for Diagnoses Reporting in MH - Cont ;13 May 2013  9:21 AM
+ ;;5.01;MENTAL HEALTH;**16,107**;Dec 30, 1994;Build 23
  ;D RECORD^YSDX0001("^YSDX3RUA") ;Used for testing.  Inactivated in YSDX0001...
  ;
 AX4 ;  Called by routine YSDX3R
@@ -32,32 +32,37 @@ DXLS1 ;
  ;D RECORD^YSDX0001("DXLS1^YSDX3RUA") ;Used for testing.  Inactivated in YSDX0001...
  S J1=$O(^YSD(627.8,"AD",YSDFN,J,0)) ;       IEN
  S J2=$P(^YSD(627.8,+J1,1),U) ;               Diag variable pointer
- S Y=$P(^YSD(627.8,+J1,0),U,3) D DD^%DT S YSDXLSD=Y ; Diag Date/time
+ S (Y,YSDXLSD2)=$P(^YSD(627.8,+J1,0),U,3) D DD^%DT S YSDXLSD=Y ; Diag Date/time
  S J3=$P(J2,";",2) ;                  Global ref
  S J4=+$P(J2,";") ;                   IEN
  S J5="^"_J3_J4_","_0_")" ;           Global ref of 0 node
  S J50=@J5 ;                          Data for 0 node
  ;
+ S YSDXCSTX=""
  ;  DSM?
  I J3["YSD" D
- .  S YSDXLSN=^YSD(627.7,+J4,"D") ;   Diagnosis name       
- .  S YSDXLS=$P(J50,U,2) ;            ICD9 #
+ .  S YSDXLSN=^YSD(627.7,+J4,"D") ;   Diagnosis name
+ .  S YSDXLS=$P(J50,U,1) ;            ICD Code
+ .  S YSDXCSTX="(ICD-"_$S($P(J50,U,8)'="":$P(J50,U,8),1:"9")_")"
  ;
  ;  ICD9?
  I J3["ICD9(" D
- .  S YSDXLSN=$P(J50,U,3) ;           Diagnosis name
- .  S YSDXLS=$P(J50,U) ;              ICD9 #
+ .  N YSDXDATA S YSDXDATA=$$ICDDATA^ICDXCODE("DIAG",J4,YSDXLSD2,"I")
+ .  S YSDXLSN=$P(YSDXDATA,U,4) ;      Diagnosis name
+ .  S YSDXLS=$P(YSDXDATA,U,2) ;       ICD Code
+ .  S YSDXCSTX=$P($P($$SINFO^ICDEX($P(YSDXDATA,U,20)),U,2),"-",2)
+ .  S YSDXCSTX="(ICD-"_YSDXCSTX_")"
  ;
  I $D(YSDXLS) D
  .  W !!,"Principal Diagnosis (DXLS):  ",!!?3
- .  W YSDXLS_" "_$E(YSDXLSN,1,25),!?8," dated ",YSDXLSD
+ .  W YSDXCSTX_" "_YSDXLS_" "_$E(YSDXLSN,1,59),!?8," dated ",YSDXLSD
  ;
  ;  Modifiers?
  I $D(^YSD(627.8,+J1,5)) D
  .  S J6=$P(^YSD(627.8,+J1,5,0),U,3) ; Stands for
  .  F I=1:1:J6 W !?3,"--- ",$P(^YSD(627.8,+J1,5,I,0),U,3)
  ;
- K J1,J2,J3,J4,J5,J50,J6,YSDXLSN,YSDXLS,YSDXLSD,YSCON
+ K J1,J2,J3,J4,J5,J50,J6,YSDXCSTX,YSDXLSN,YSDXLS,YSDXLSD,YSCON
  QUIT
  ;
 EOR ;YSDX3RUA - Print Utilities for Diagnoses reporting - continued ;9/18/92 15:37

@@ -1,5 +1,5 @@
 ONCOAIM2 ;Hines OIFO/GWB - SEQUENCE NUMBER HELP FRAME ;1/22/96
- ;;2.11;ONCOLOGY;**1,36,44**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 HLP ;Help Frame to display existing primaries
  W !,$S($O(^TMP($J,"MAL",""))'="":"Existing malignant or in situ primaries",1:"No malignant or in situ primaries.")," for ",ONCONM,$S($O(^TMP($J,"MAL",""))'="":":",1:".")

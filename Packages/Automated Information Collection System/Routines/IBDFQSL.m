@@ -1,5 +1,7 @@
-IBDFQSL ;ALB/CJM/AAS/MAF - ENCOUNTER FORM - Quick selection edit ;12-Jun-95
- ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+IBDFQSL ;ALB/CJM/AAS/MAF - ENCOUNTER FORM - Quick selection edit ;06/12/95
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**63**;APR 24, 1997;Build 80
+ ;
+ ;
  ;allows user to select a form, then displays it for edit
  N IBFORM,ARY,DFN,IBAPPT,RTNLIST,IBPRINT
  S ARY="^TMP(""IBDF"",$J,""TEMPORARY CLINIC LIST"")"
@@ -14,7 +16,7 @@ IBDFQSL ;ALB/CJM/AAS/MAF - ENCOUNTER FORM - Quick selection edit ;12-Jun-95
 EDITBLK ;allows the user to edit everything about the block
  ;allows user to discard or save changes to the block
  ;
- ;If IBBLK and IBBLK2 are used to point to two copies, one copy for editing and the other incase 'undo' is needed
+ ;If IBBLK and IBBLK2 are used to point to two copies, one copy for editing and the other in case 'undo' is needed
  ; 
  N IBBLK,IBVALMBG,TOP1,TOP2,BOT1,BOT2,IBBLK2,IBTKODR,IBJUNK,IFSAVE
  ;
@@ -24,7 +26,7 @@ EDITBLK ;allows the user to edit everything about the block
  I IBBLK S IBLIST=$O(^IBE(357.2,"C",IBBLK,0)) D
  .I 'IBLIST W !!,"Block does not contain a list!  Try Again.",! D PAUSE^IBDFU5 Q
  .D KILL^IBDFUA
- .Q:$$BLKDESCR^IBDFU1B(.IBBLK) 1
+ .Q:$$BLKDESCR^IBDFU1B(.IBBLK)
  .S (IBBLK2,IBTKODR,IBJUNK)=""
  .D COPYBLK^IBDF5B(IBBLK,.IBBLK2,.IBBLK,.IBTKODR,.IBJUNK) I 'IBBLK S IBBLK=IBBLK2,IBBLK2="" Q  ;sets IBBLK to the work copy, IBBLK2 to the copy actually on the form
  .D TOPNBOT^IBDFU5(IBBLK,.TOP1,.BOT1)
@@ -38,6 +40,7 @@ EDITBLK ;allows the user to edit everything about the block
  ..S VALMBG=IBVALMBG
  ..D TOPNBOT^IBDFU5(IBBLK,.TOP2,.BOT2)
  ..S TOP1=$S(TOP1<TOP2:TOP1,1:TOP2),BOT1=$S(BOT1>BOT2:BOT1,1:BOT2)
+ K ^TMP("IBDF DELETE SELECTION OPTION",$J),^TMP("IBDF DELETED ALL SELECTIONS",$J),^TMP("IBDF ADDSLCTN",$J)
  S VALMBCK="R"
  Q
  ;

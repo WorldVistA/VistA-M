@@ -1,5 +1,5 @@
 XMLSWP0 ;(WASH ISC)/CAP-Sliding Window Protocol ;04/17/2002  10:59
- ;;8.0;MailMan;;Jun 28, 2002
+ ;;8.0;MailMan;**45**;Jun 28, 2002;Build 8
 REC ;SEE SEND
  S X=0 G I
 RL ;
@@ -29,9 +29,9 @@ E S F=F+1 S D="Errors ("_F_")" X P("I") Q
  Q
 SUM ;Calculate S=checksum
  I $D(XMOS(0)) X XMOS(0) S S=XMSUM Q
- I XMOS["VAX DSM" S S=$ZC(%LPC,X)+$L(X)*$L(X) Q
- I XMOS["DSM" S S=$ZC(LPC,X)+$L(X)*$L(X) Q
- I XMOS["M/11"!(XMOS["M/VX") S S=$ZC(X)+$L(X)*$L(X) Q
+ I XMOS["VAX DSM" X "S S=$ZC(%LPC,X)+$L(X)*$L(X)" Q
+ I XMOS["DSM" X "S S=$ZC(LPC,X)+$L(X)*$L(X)" Q
+ I XMOS["M/11"!(XMOS["M/VX") X "S S=$ZC(X)+$L(X)*$L(X)" Q
 ZSUM S S=$A(X) Q:$L(X)=1  N J S J=1
 A S J=J+1 I $L(X)<J K %,%0,%1 S S=S+$L(X)*$L(X) Q
  S Y=$A(X,J) F %=256:0 Q:%\4<Y  S %=%\2

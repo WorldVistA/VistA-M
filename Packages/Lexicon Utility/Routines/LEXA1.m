@@ -1,16 +1,98 @@
-LEXA1 ;ISL/KER - Lexicon Look-up (Loud) ;01/03/2011
- ;;2.0;LEXICON UTILITY;**3,4,6,11,15,38,55,73**;Sep 23, 1996;Build 10
- ;
+LEXA1 ;ISL/KER - Lexicon Look-up (Loud) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**3,4,6,11,15,38,55,73,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^DISV(              ICR    510
+ ;    ^TMP("LEXFND"       SACC 2.3.2.5.1
+ ;    ^TMP("LEXHIT"       SACC 2.3.2.5.1
+ ;    ^TMP("LEXSCH"       SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    ^DIR                ICR  10026
+ ;    $$DT^XLFDT          ICR  10103
+ ;               
  ; Local Variables NEWed or KILLed by calling application
  ; 
  ;     DIC,DTOUT,DUOUT,LEXCAT,LEXQUIET,LEXSRC
  ;     
-EN ; Initialize
- ; Fileman Inquire Option
+EN ; Fileman Special Lookup
+ ;
+ ; ^LEXA1 is the Lexicon's special lookup routine
+ ; established by Fileman Data Dictionary's node:
+ ;
+ ;   ^DD(757.01,0,"DIC")=LEXA1
+ ; 
+ ; Input    All input variables are optional
+ ;
+ ;    X     User's input, if X does not exist the user
+ ;          will be prompted for textto search for.
+ ;  
+ ;    Fileman Variables used:
+ ;    
+ ;          DIC       Global Root (default ^LEX(757.01,)
+ ;          DIC(0)    DIC response string (default AEQM)
+ ;          DIC("A")  Prompt (default "Enter Term/Concept:")
+ ;          DIC("B")  Default lookup value
+ ;          DIC("S")  Screen
+ ;          DIC("W")  Output string
+ ;    
+ ;    Special Input Variables:
+ ;    
+ ;          LEXVDT    Versioning Date - This is a date in
+ ;                    Fileman format.  If set it will force
+ ;                    the lookup to be date sensitive, 
+ ;                    inactive and pending codes and terms 
+ ;                    will not display on the selection 
+ ;                    list. 
+ ;                    
+ ;     Developer Input Variables
+ ;     
+ ;          LEXIGN    Ignore - This flag, if set will ignore
+ ;                    deactivation flags.  Deactivated terms
+ ;                    will appear on the selection list.  This
+ ;                    is used by developers in the mainteance
+ ;                    of the Code Sets.
+ ;                    
+ ;          LEXDISP   Display - Force overwrite of display default
+ ;                    parameter.
+ ;                    
+ ; Output
+ ;
+ ;    Fileman
+ ;
+ ;       Y       2 piece string containing IEN and 
+ ;               expression or -1 if X is not found
+ ;               or selection not made
+ ;
+ ;       Y(0)    If DIC(0) contains a Z this variable 
+ ;               will be equal to the entire zero node
+ ;               of the entry that was selected
+ ;
+ ;       Y(0,0)  If DIC(0) contains a Z this variable 
+ ;               will be equal to the external form of
+ ;               the .01 field of the entry that was
+ ;               selected
+ ; 
+ ;    Non-Fileman
+ ;
+ ;       Y(1)    This is the external form of the ICD-9
+ ;               diagnosis code when found
+ ; 
+ ;       Y(2)    This is the external form of the ICD-9
+ ;               procedure code when found
+ ; 
+ ;       Y(30)   This is the external form of the ICD-10
+ ;               diagnosis code when found
+ ; 
+ ;       Y(31)   This is the external form of the ICD-10
+ ;               procedure code when found
+ ; 
+ ;       Y(81)   This is the external form of the CPT-4
+ ;               or HCPCS code when found
+ ;               
  I $D(DIC(0)),$G(DIC(0))["A" K X
  ; Date Check
- N LEXQ S LEXQ=0 I $D(LEXVDT) I $L($G(^TMP("LEXSCH",$J,"VDT",0))) S LEXVDT=^TMP("LEXSCH",$J,"VDT",0)
- I '$D(LEXVDT) I $L($G(^TMP("LEXSCH",$J,"VDT",0))) N LEXVDT S LEXVDT=^TMP("LEXSCH",$J,"VDT",0)
+ N LEXTD,LEXQ S LEXQ=0 D VDT^LEXU
  ;
  ; LEXSUB  Special variable from version 1.0 specifying the
  ;         vocabulary subset to use during the search.  It is
@@ -66,7 +148,7 @@ LK ; Start Look-up
  ; X was null with a default provided
  S:$D(DIC("B"))&($G(X)="") X=DIC("B")
  ; Lookup X - LOOK(LEXX,LEXAP,LEXLL,LEXSUB,LEXVDT,LEXXSR,LEXXCT)
- D LOOK^LEXA(X,LEXAP,LEXLL,,,$G(LEXXSR),$G(LEXXCT))
+ D LOOK^LEXA(X,$G(LEXAP),$G(LEXLL),,$G(LEXVDT),$G(LEXXSR),$G(LEXXCT))
  K DIC("B")
  ;
 NOTFND ; If X was not found
@@ -81,7 +163,8 @@ NOTFND ; If X was not found
  ;      Display help, Re-prompt and Continue search
  ;
  I '$D(LEX("LIST")),+($G(LEX))=0,$L(X),X'["^",$E(X,1)'=" " D  K LEX S LEX=0 Q
- . K DIC("B"),LEX("SEL") I +($G(^TMP("LEXSCH",$J,"UNR",0)))=0 I +($G(X))'=757.01 W "  ??" D:$D(LEX("HLP")) DH^LEXA3 W ! Q
+ . K DIC("B"),LEX("SEL")
+ . I +($G(^TMP("LEXSCH",$J,"UNR",0)))=0 I +($G(X))'=757.01 W "  ??" D:$D(LEX("HLP")) DH^LEXA3 W ! Q
  . I +($G(^TMP("LEXSCH",$J,"UNR",0)))=1 W "  ??" D EN^LEXA4 W !
 FOUND ; If X was found
  ;
@@ -98,9 +181,9 @@ FOUND ; If X was found
  I $L($G(LEX)),'$D(LEX("SEL")),$D(^TMP("LEXSCH",$J)) D
  . D EN^LEXA4 S:'$D(LEX("SEL")) LEX=0
  Q
-EXIT ; Set/Kill variables Y, Y(0,0) Y(1) Y(81) from LEX("SEL")
- S:$L($G(LEXDICA)) DIC("A")=LEXDICA S:$L($G(LEXDICB)) DIC("B")=LEXDICB
- S:'$D(LEX("SEL","EXP",1)) Y=-1 K Y(1)
+EXIT ; Set/Kill variables Y, Y(0,0) from LEX("SEL")
+ S:$L($G(LEXDICA)) DIC("A")=LEXDICA S:$L($G(LEXDICB)) DIC("B")=LEXDICB K Y
+ I '$D(LEX("SEL","EXP",1)) K Y S Y=-1 D CL Q
  I $D(LEX("SEL","EXP",1)) S Y=LEX("SEL","EXP",1) D Y1,SSBR S:DIC(0)["Z" Y(0)=^LEX(757.01,+(LEX("SEL","EXP",1)),0),Y(0,0)=$P(^LEX(757.01,+(LEX("SEL","EXP",1)),0),"^",1)
  D CL
  Q
@@ -110,17 +193,16 @@ CL ; Clear LEX and Multi-Term Lookup XTLK
 CLR ; Clear ^TMP Global
  K ^TMP("LEXSCH",$J),^TMP("LEXHIT",$J),^TMP("LEXFND",$J)
  Q
-Y1 ; ICD in Y(1) and CPT in Y(81)
- N LEXVAS S LEXVAS=0,Y(1)=""
- F  S LEXVAS=$O(LEX("SEL","VAS","B",80,LEXVAS)) Q:+LEXVAS=0!(Y(1)'="")  D
- . S Y(1)=$P($G(LEX("SEL","VAS",LEXVAS)),"^",3)
- S LEXVAS=0,Y(81)="" F  S LEXVAS=$O(LEX("SEL","VAS","B",81,LEXVAS)) Q:+LEXVAS=0!(Y(81)'="")  D
- . S Y(81)=$P($G(LEX("SEL","VAS",LEXVAS)),"^",3)
- K:Y(1)="" Y(1) K:Y(81)="" Y(81)
- I $D(Y(1)) D
- .W:'$D(LEXQUIET) !!,">>>  Code  :  "
- .I $D(IOINHI)&($D(IOINORM)) W:'$D(LEXQUIET) IOINHI,Y(1),IOINORM,! Q 
- .W:'$D(LEXQUIET) Y(1),!
+Y1 ; ICD-9 DX in Y(1), ICD-10 DX in Y(30)
+ N LEXCT,LEXLC,LEXLDR,LEXSY,LEXB,LEXN S LEXB=$G(IOINHI),LEXN=$G(IOINORM)
+ S LEXLC=0,LEXLDR=" >>>  " I '$D(LEXQUIET) F LEXSY=1,2,30,31 D
+ . N LEXI S (LEXCT,LEXI)=0 F  S LEXI=$O(LEX("SEL","VAS","I",LEXSY,LEXI)) Q:+LEXI'>0  D
+ . . N LEXD,LEXC,LEXS,LEXT S LEXD=$G(LEX("SEL","VAS",LEXI)),LEXC=$P(LEXD,"^",3),LEXS=$P(LEXD,"^",6)
+ . . Q:'$L(LEXD)  Q:'$L(LEXS)  S LEXT=LEXLDR_LEXS_" Code:"
+ . . S LEXT=LEXT_$J(" ",(23-$L(LEXT)))_$G(LEXB)_LEXC_$G(LEXN)
+ . . S LEXCT=LEXCT+1,LEXLC=LEXLC+1 S:LEXLC>1 LEXLDR="      "
+ . . Q:LEXCT>1  W:LEXCT=1 ! W !,LEXT
+ . . S:'$L($G(Y(+LEXSY))) Y(+LEXSY)=LEXC
  Q
 ASK ; Get user input
  N DIR,DIRUT,DIROUT S:$L($G(LEXDICA)) DIC("A")=LEXDICA
@@ -137,20 +219,28 @@ ASK ; Get user input
  I $D(DTOUT)!(X="^") S X=""
  S:X[U DUOUT=1 K DIRUT,DIROUT Q
 INPHLP ; Look-up help
+ N IMP,CUT,FLG,LEXD S IMP=$$IMPDATE^LEXU(30) S CUR=$G(LEXVDT) S:CUR'?7N CUR=$$DT^XLFDT S FLG=$S(CUR<IMP:0,1:1)
+ S LEXD=$G(^TMP("LEXSCH",$J,"FIL",0))
+ I $G(X)["??",$L(LEXD),LEXD["LEXU(Y,""DS4""," K LEX("HLP") D  Q
+ . D QMH^LEXAR3(X) N LEXI S LEXI=0
+ . F  S LEXI=$O(LEX("HLP",LEXI)) Q:+LEXI'>0  W !,$G(LEX("HLP",LEXI))
+ . K LEX("HLP")
  W !,"      Enter a ""free text"" term.  Best results occur using one to "
  W !,"      three full or partial words without a suffix"
  W:$G(X)'["??" "."
  W:$G(X)["??" " (i.e., ""DIABETES"","
- W:$G(X)["??" !,"      ""DIAB MELL"",""DIAB MELL INSUL"")"
+ W:$G(X)["??" !,"      ""DIAB MELL"",""DIAB MELL "_$S(FLG:"NEO",1:"INSUL")_")"
  W !,"  or  "
- W !,"      Enter a classification code (ICD/CPT etc) to find the single "
+ W !,"      Enter a classification code (ICD/DSM/CPT etc) to find the single "
  W !,"      term associated with the code."
- W:$G(X)["??" "  Example, a lookup of code 239.0 "
- W:$G(X)["??" !,"      returns one and only one term, that is the preferred "
- W:$G(X)["??" !,"      term for the code 239.0, ""Neoplasm of unspecified nature "
- W:$G(X)["??" !,"      of digestive system"""
+ W:$G(X)["??" "  Example, a lookup of code "_$S(FLG:"P70.2",1:"239.0")_" "
+ W:$G(X)["??" !,"      returns one and only one term, that is the preferred term for"
+ W:$G(X)["??" !,"      the code "_$S(FLG:"P70.2",1:"239.0")_", "
+ W:$G(X)["??"&(FLG) """Neonatal Diabetes Mellitus"""
+ W:$G(X)["??"&('FLG) """Neoplasm of unspecified nature",!,"      of digestive system"""
+ Q:FLG
  W !,"  or  "
- W !,"      Enter a classification code (ICD/CPT etc) followed by a plus"
+ W !,"      Enter a classification code (ICD/DSM/CPT etc) followed by a plus"
  W !,"      sign (+) to retrieve all terms associated with the code."
  W:$G(X)["??" "  Example,"
  W:$G(X)["??" !,"      a lookup of 239.0+ returns all terms that are linked to the "

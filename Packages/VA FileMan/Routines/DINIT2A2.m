@@ -1,6 +1,6 @@
-DINIT2A2 ;SFISC/MKO-KEY AND INDEX FILES ;8:42 AM  4 Jun 1999
- ;;22.0;VA FileMan;**1**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT2A2 ;SFISC/MKO-KEY AND INDEX FILES ;11:29 AM  19 Nov 2012
+ ;;22.0;VA FileMan;**1,167**;Mar 30, 1999;Build 18
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
  G ^DINIT2A3
 Q Q
@@ -113,15 +113,29 @@ Q Q
  ;;^DD(.11,2.5,21,0)
  ;;=^^4^4^2980911^
  ;;^DD(.11,2.5,21,1,0)
- ;;=This is kill statement that can be executed to remove an entire index for
+ ;;=This is a kill statement that can be executed to remove an entire index for
  ;;^DD(.11,2.5,21,2,0)
  ;;=all records in a file. When an entire file is reindexed, FileMan executes
  ;;^DD(.11,2.5,21,3,0)
  ;;=this code instead of looping through all the entries in a file and
  ;;^DD(.11,2.5,21,4,0)
  ;;=executing the kill logic once for each entry.
- ;;^DD(.11,2.5,"DT")
- ;;=2970117
+ ;;^DD(.11,666,0)
+ ;;=RE-INDEXING^SI^1:NO RE-INDEXING ALLOWED;0:ALLOW REINDEXING^NOREINDEX;1
+ ;;^DD(.11,666,3)
+ ;;=Should the re-indexing of this cross reference be prohibited?
+ ;;^DD(.11,666,21,0)
+ ;;=^^5^5
+ ;;^DD(.11,666,21,1,0)
+ ;;=If you answer '1', this cross reference will not be re-indexed during a
+ ;;^DD(.11,666,21,2,0)
+ ;;=general re-indexing of this file, whether it's done via API or
+ ;;^DD(.11,666,21,3,0)
+ ;;=interactively. If you answer '0', which is the default, it will.
+ ;;^DD(.11,666,21,4,0)
+ ;;=A 'NO RE-INDEXING' cross-reference will ONLY be re-indexed
+ ;;^DD(.11,666,21,5,0)
+ ;;=if it is specifically named in an API call
  ;;^DD(.11,11.1,0)
  ;;=CROSS-REFERENCE VALUES^.114IA^^11.1;0
  ;;^DD(.11,11.1,"DT")

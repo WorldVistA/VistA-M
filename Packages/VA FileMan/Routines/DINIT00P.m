@@ -1,6 +1,6 @@
-DINIT00P ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ; 3/30/99  10:41:48
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT00P ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;11:33 AM  5 Dec 2012
+ ;;22.0;VA FileMan;**169**;Mar 30, 1999;Build 26
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q
  ;;^UTILITY(U,$J,.84,9117,3,1,0)
@@ -14,11 +14,11 @@ Q Q
  ;;^UTILITY(U,$J,.84,9201,1,1,0)
  ;;=Browser help
  ;;^UTILITY(U,$J,.84,9201,2,-1,"DATE")
- ;;=56914,38899
+ ;;=62796,32024
  ;;^UTILITY(U,$J,.84,9201,2,-1,"TITLE")
  ;;=9201
  ;;^UTILITY(U,$J,.84,9201,2,0)
- ;;=^^215^2152950515^
+ ;;=^^221^221^3121205^
  ;;^UTILITY(U,$J,.84,9201,2,1,0)
  ;;=
  ;;^UTILITY(U,$J,.84,9201,2,2,0)
@@ -92,98 +92,98 @@ Q Q
  ;;^UTILITY(U,$J,.84,9201,2,36,0)
  ;;=     Repaint screen                          <PF1>P
  ;;^UTILITY(U,$J,.84,9201,2,37,0)
- ;;=     Split screen                            <PF2>S
+ ;;=     Print document                          <PF1><PF1>P
  ;;^UTILITY(U,$J,.84,9201,2,38,0)
- ;;=     restore Full screen                     <PF2>F
+ ;;=     Split screen                            <PF2>S
  ;;^UTILITY(U,$J,.84,9201,2,39,0)
- ;;=
+ ;;=     restore Full screen                     <PF2>F
  ;;^UTILITY(U,$J,.84,9201,2,40,0)
- ;;=     Split Screen Mode Navigation:
+ ;;= 
  ;;^UTILITY(U,$J,.84,9201,2,41,0)
- ;;=     -----------------------------
+ ;;=     Split Screen Mode Navigation:
  ;;^UTILITY(U,$J,.84,9201,2,42,0)
- ;;=     Navigate to bottom screen              <PF2>ARROW DOWN
+ ;;=     -----------------------------
  ;;^UTILITY(U,$J,.84,9201,2,43,0)
- ;;=     Navigate to top screen                 <PF2>ARROW UP
+ ;;=     Navigate to bottom screen              <PF2>ARROW DOWN
  ;;^UTILITY(U,$J,.84,9201,2,44,0)
- ;;=
+ ;;=     Navigate to top screen                 <PF2>ARROW UP
  ;;^UTILITY(U,$J,.84,9201,2,45,0)
- ;;=     Resize Split Screen:
+ ;;= 
  ;;^UTILITY(U,$J,.84,9201,2,46,0)
- ;;=     --------------------
+ ;;=     Resize Split Screen:
  ;;^UTILITY(U,$J,.84,9201,2,47,0)
- ;;=     Top/Bottom screen larger/smaller       <PF2><PF2>ARROW DOWN
+ ;;=     --------------------
  ;;^UTILITY(U,$J,.84,9201,2,48,0)
- ;;=     Bottom/Top screen larger/smaller       <PF2><PF2>ARROW UP
+ ;;=     Top/Bottom screen larger/smaller       <PF2><PF2>ARROW DOWN
  ;;^UTILITY(U,$J,.84,9201,2,49,0)
- ;;=
+ ;;=     Bottom/Top screen larger/smaller       <PF2><PF2>ARROW UP
  ;;^UTILITY(U,$J,.84,9201,2,50,0)
- ;;=CLIPBOARD:
+ ;;= 
  ;;^UTILITY(U,$J,.84,9201,2,51,0)
- ;;===========
+ ;;=CLIPBOARD:
  ;;^UTILITY(U,$J,.84,9201,2,52,0)
- ;;=     Copy to VA FileMan's Clipboard         <PF1>C
- ;;^UTILITY(U,$J,.84,9201,2,53,0)
- ;;=     View VA FileMan's Clipboard            <PF1>V
- ;;^UTILITY(U,$J,.84,9201,2,54,0)
- ;;=
- ;;^UTILITY(U,$J,.84,9201,2,55,0)
- ;;=TITLE BAR:
- ;;^UTILITY(U,$J,.84,9201,2,56,0)
  ;;===========
+ ;;^UTILITY(U,$J,.84,9201,2,53,0)
+ ;;=     Copy to VA FileMan's Clipboard         <PF1>C
+ ;;^UTILITY(U,$J,.84,9201,2,54,0)
+ ;;=     View VA FileMan's Clipboard            <PF1>V
+ ;;^UTILITY(U,$J,.84,9201,2,55,0)
+ ;;= 
+ ;;^UTILITY(U,$J,.84,9201,2,56,0)
+ ;;=TITLE BAR:
  ;;^UTILITY(U,$J,.84,9201,2,57,0)
- ;;=     Change content of title bar,           <PF1><PF1>ARROW DOWN
+ ;;===========
  ;;^UTILITY(U,$J,.84,9201,2,58,0)
- ;;=     Or                                     <PF1><PF1>ARROW UP
+ ;;=     Change content of title bar,           <PF1><PF1>ARROW DOWN
  ;;^UTILITY(U,$J,.84,9201,2,59,0)
- ;;=
+ ;;=     Or                                     <PF1><PF1>ARROW UP
  ;;^UTILITY(U,$J,.84,9201,2,60,0)
- ;;=HELP:
+ ;;= 
  ;;^UTILITY(U,$J,.84,9201,2,61,0)
- ;;======
+ ;;=HELP:
  ;;^UTILITY(U,$J,.84,9201,2,62,0)
- ;;=     Browse Key Summary                     <PF1>H
- ;;^UTILITY(U,$J,.84,9201,2,63,0)
- ;;=     More Help                              <PF1><PF1>H
- ;;^UTILITY(U,$J,.84,9201,2,64,0)
- ;;=     Print this help text                   <PF1><PF1><PF1>H
- ;;^UTILITY(U,$J,.84,9201,2,65,0)
- ;;=     To Return to document from this help   R
- ;;^UTILITY(U,$J,.84,9201,2,66,0)
- ;;=
- ;;^UTILITY(U,$J,.84,9201,2,67,0)
- ;;=EXIT:
- ;;^UTILITY(U,$J,.84,9201,2,68,0)
  ;;======
+ ;;^UTILITY(U,$J,.84,9201,2,63,0)
+ ;;=     Browse Key Summary                     <PF1>H
+ ;;^UTILITY(U,$J,.84,9201,2,64,0)
+ ;;=     More Help                              <PF1><PF1>H
+ ;;^UTILITY(U,$J,.84,9201,2,65,0)
+ ;;=     Print this help text                   <PF1><PF1><PF1>H
+ ;;^UTILITY(U,$J,.84,9201,2,66,0)
+ ;;=     To Return to document from this help   R
+ ;;^UTILITY(U,$J,.84,9201,2,67,0)
+ ;;= 
+ ;;^UTILITY(U,$J,.84,9201,2,68,0)
+ ;;=EXIT:
  ;;^UTILITY(U,$J,.84,9201,2,69,0)
- ;;=     Exit Browser or help text              <PF1>E or "EXIT"
+ ;;======
  ;;^UTILITY(U,$J,.84,9201,2,70,0)
- ;;=     Quit                                   <PF1>Q
+ ;;=     Exit Browser or help text              <PF1>E or "EXIT"
  ;;^UTILITY(U,$J,.84,9201,2,71,0)
- ;;=
+ ;;=     Quit                                   <PF1>Q
  ;;^UTILITY(U,$J,.84,9201,2,72,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9201,2,73,0)
- ;;=                                  MORE HELP
+ ;;= 
  ;;^UTILITY(U,$J,.84,9201,2,74,0)
- ;;=                                  =========
+ ;;=                                  MORE HELP
  ;;^UTILITY(U,$J,.84,9201,2,75,0)
- ;;=
+ ;;=                                  =========
  ;;^UTILITY(U,$J,.84,9201,2,76,0)
- ;;=     To EXIT the VA FileMan Browser, press <PF1> followed by the letter
+ ;;= 
  ;;^UTILITY(U,$J,.84,9201,2,77,0)
- ;;=     'E'.  This is also true for this HELP document which is being
+ ;;=     To EXIT the VA FileMan Browser, press <PF1> followed by the letter
  ;;^UTILITY(U,$J,.84,9201,2,78,0)
- ;;=     presented by the Browser.
+ ;;=     'E'.  This is also true for this HELP document which is being
  ;;^UTILITY(U,$J,.84,9201,2,79,0)
- ;;=
+ ;;=     presented by the Browser.
  ;;^UTILITY(U,$J,.84,9201,2,80,0)
- ;;=     To SCROLL DOWN one line at a time, press the ARROW DOWN key.
+ ;;= 
  ;;^UTILITY(U,$J,.84,9201,2,81,0)
- ;;=
+ ;;=     To SCROLL DOWN one line at a time, press the ARROW DOWN key.
  ;;^UTILITY(U,$J,.84,9201,2,82,0)
- ;;=     To SCROLL UP one line at a time, press the ARROW UP key.
+ ;;= 
  ;;^UTILITY(U,$J,.84,9201,2,83,0)
- ;;=
+ ;;=     To SCROLL UP one line at a time, press the ARROW UP key.
  ;;^UTILITY(U,$J,.84,9201,2,84,0)
- ;;=     To SCROLL RIGHT, press the ARROW RIGHT key.
+ ;;=

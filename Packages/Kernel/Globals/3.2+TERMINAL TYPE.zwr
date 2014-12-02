@@ -1165,7 +1165,7 @@ ZWR
 ^%ZIS(2,196,9)="HFS for Windows printing"
 ^%ZIS(2,197,0)="P-IMAGING^0"
 ^%ZIS(2,197,1)="80^#^64^$C(8)"
-^%ZIS(2,197,3)="D CLOSE^MAGGTU5 X ""C IO:""""D"""""" K IO"
+^%ZIS(2,197,3)="D CLOSE^MAGGTU5 X ""C IO:""""D"""""" K IO(1,IO)"
 ^%ZIS(2,198,0)="P-MAIL"
 ^%ZIS(2,198,1)="132^#^66^$C(8)"
 ^%ZIS(2,199,0)="P-DEC80"

@@ -1,5 +1,5 @@
-EASMTCHK ;ALB/SCK,PJR -  MEANS TEST BLOCKING CHECK ; 11/13/03 11:13am
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**3,12,15,38,46**;MAR 15,2001
+EASMTCHK ;ALB/SCK,PJR,BDB -  MEANS TEST BLOCKING CHECK ; 11/13/03 11:13am
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**3,12,15,38,46,106**;MAR 15,2001;Build 28
  ; This routine provides an API, which when called from Appointment Management will allow 
  ; for the blocking of future appointments and appointment check-in/out if the patient 
  ; requires a Means Test or has a Means Test Status of Required. $$LST^DGMTU is used 
@@ -100,15 +100,18 @@ MTCHK(DFN,EASACT) ; Check Means Test Status
  . ;; Condition Check: MT Stat="P" AND GMT Threshold>Threshold A
  . ;;  AND MT Date is after 10/5/1999 AND Agrees to pay Deductible
  . ;;  AND MT Date is older than 365 days, THEN MT is required
- . I $P(EASTAT,U,4)="P",$$GET1^DIQ(408.31,+EASTAT,.27,"I")>$$GET1^DIQ(408.31,+EASTAT,.12,"I"),$P(EASTAT,U,2)>2991005,$$GET1^DIQ(408.31,+EASTAT,.11,"I"),$$OLD^DGMTU4($P(EASTAT,U,2)) S RSLT=1 Q
+ . ;; EAS*1.0*106  MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ . I $P(EASTAT,U,4)="P",$$GET1^DIQ(408.31,+EASTAT,.27,"I")>$$GET1^DIQ(408.31,+EASTAT,.12,"I"),$P(EASTAT,U,2)>2991005,$$GET1^DIQ(408.31,+EASTAT,.11,"I"),$$OLDMTPF^DGMTU4($P(EASTAT,U,2)) S RSLT=1 Q
  . ;; Condition Check: Cat C or Pending Adj.
  . ;;  AND Agrees to pay Deductible AND MT date after 10/5/1999
  . I "C,P"[$P(EASTAT,U,4),$$GET1^DIQ(408.31,+EASTAT,.11,"I"),$P(EASTAT,U,2)>2991005 Q
- . I $P(EASTAT,U,4)="P",$$GET1^DIQ(408.31,+EASTAT,.27,"I")>$$GET1^DIQ(408.31,+EASTAT,.12,"I"),$P(EASTAT,U,2)>2991005,$$GET1^DIQ(408.31,+EASTAT,.11,"I"),$$OLD^DGMTU4($P(EASTAT,U,2)) S RSLT=1 Q
+ . ;; EAS*1.0*106  MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ . I $P(EASTAT,U,4)="P",$$GET1^DIQ(408.31,+EASTAT,.27,"I")>$$GET1^DIQ(408.31,+EASTAT,.12,"I"),$P(EASTAT,U,2)>2991005,$$GET1^DIQ(408.31,+EASTAT,.11,"I"),$$OLDMTPF^DGMTU4($P(EASTAT,U,2)) S RSLT=1 Q
  . ;; Condition Check: Cat C AND Declines to give income information AND Agreed to pay deductible
  . I $P(EASTAT,U,4)="C",$$GET1^DIQ(408.31,+EASTAT,.14,"I"),$$GET1^DIQ(408.31,+EASTAT,.11,"I") Q
  . S EASDT=$P(EASTAT,U,2)
- . I ($$FMDIFF^XLFDT(DT,EASDT)>365) S RSLT=1
+ . ;; EAS*1.0*106  MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ . I $$OLDMTPF^DGMTU4(EASDT) S RSLT=1
  . I $G(EASACT)="L" D
  . . ;; For letters, need to check for letters past 60-day threshold
  . . I ($$FMDIFF^XLFDT(DT,EASDT)>304) S RSLT=1

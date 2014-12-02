@@ -1,8 +1,8 @@
-SDMHAD ;MAF/ALB - MENTAL HEALTH AD HOC NO SHOW REPORT ; JULY 14, 2010
- ;;5.3;Scheduling;**578**;Aug 13, 1993;Build 32
+SDMHAD ;MAF/ALB - MENTAL HEALTH AD HOC NO SHOW REPORT;JULY 14, 2010
+ ;;5.3;Scheduling;**578,588**;Aug 13,1993;Build 53
  ;
 EN ;entry point for the manual generation of the No Show Report
- N SDBEG,SDEND,VAUTD,Y,SDUP,SDXFLG,SDTL,SDALL,SDDAT,Y,X,SDDAT,VADAT,ZTRTN,ZTSAVE,VADATE,%ZIS,SDALL
+ N SDBEG,SDEND,VAUTD,Y,SDUP,SDXFLG,SDTL,SDALL,SDDAT,Y,X,SDDAT,VADAT,ZTRTN,ZTSAVE,VADATE,%ZIS,SDALL,%
  I '$$RANGE G QUIT
  I '$$DIV G QUIT
 SORT R !,"Sort report by (M)ental Health Clinic Quick List,(C)linic or (S)top Code: M//",X:DTIME G:X["^"!('$T) QUIT S X=$S(X="":"M",1:$E(X,1))
@@ -11,19 +11,18 @@ SORT R !,"Sort report by (M)ental Health Clinic Quick List,(C)linic or (S)top Co
  . W !,"Enter: 'C' to run the report by clinics which will then prompt",!,?7,"to refine the list of clinics to use."
  . W !,"Enter: 'S' to run the report by stop codes which will then prompt",!,?7,"to refine the list of stop codes to use.",!
  .Q
- ;I "CMScms"'[X W !,?10,"Enter:  ","'C' for clinic",!,?18,"'M' for Mental Health Clinics Quick List",!,?18,"'S' for stop codes" G SORT
  S SDTL=$S($G(X)="C":"CLIN",$G(X)="c":"CLIN",$G(X)="S":"STOP",$G(X)="s":"STOP",1:"MEN")
  I SDTL="MEN" S Y=0 S SDALL="M" D LIST Q:Y=1
  D @(SDTL) G:Y=-1 QUIT
 FUTNUM N SDFUTNUM
  R !,"Select Number of days to List Future Appointments: 30//",X:DTIME G:X["^"!('$T) QUIT S X=$S(X="":"30",1:X) S SDFUTNUM=X
  I X'?.N!(X=0)!(X>90) W !!,?10,"Enter a number of days from 1 to 90. Future scheduled appointments",!,?10,"for the patients will list that number of days in the future",!,?10,"on the No Show report.",! G FUTNUM
- ;S SDFUTNUM=X
  W !!,*7,"This output requires 80 column output",!
  D NOW^%DTC S Y=$E(%,1,12) S SDDAT=$$FMTE^XLFDT(Y,"5")
  S IOM=80 S %ZIS="QM",%ZIS("A")="Select Device: ",%ZIS("B")="" D ^%ZIS G:POP QUIT I $D(IO("Q")) S ZTRTN="START^SDMHAD",ZTSAVE("SD*")="",ZTSAVE("VA*")="" D ^%ZTLOAD K IO("Q"),ZTSK Q
  ;
 START ;
+ ;I '$G(IOST) N IOST S IOST="C"
  I $E(IOST)="C" D WAIT^DICD I $D(SDXFLG) D
  .W !!,?10,"This report option generates a mail message containing the"
  .W !,?10,"High Risk Mental Health No Show Nightly Report which is sent"
@@ -55,32 +54,31 @@ START ;
  ;
  ;
 PROCESS ;find patients in date range that had a no show appt for a MH clinic.
- N SDIV,SDC,SDR,SDS,SDHFL,SDUP,SDMHFLG
+ N SDIV,SDC,SDR,SDS,SDHFL,SDUP,SDMHFLG,SDMHNFLG,SDACT
  S (SDIV,SDC,SDR,SDS,SDUP)=0
  S SDMHFLG=$$GET^XPAR("PKG.REGISTRATION","DGPF SUICIDE FLAG",1,"E")
- S SDMHFLG=$$GETFLAG^DGPFAPIU(SDMHFLG)
+ S SDMHFLG("L")=$$GETFLAG^DGPFAPIU(SDMHFLG,"L")
+ S SDMHNFLG="HIGH RISK FOR SUICIDE" ; for increment 3
+ S SDMHFLG("N")=$$GETFLAG^DGPFAPIU(SDMHNFLG,"N") ; for increment 3
  F SDIV=0:0 S SDIV=$O(^TMP(NAMSPC,$J,SDIV)) Q:SDIV=""!(SDUP)  F SDC=SDC:0 S SDC=$O(^TMP(NAMSPC,$J,SDIV,SDC)) Q:SDC=""!(SDUP)  F SDS=SDS:0 S SDS=$O(^TMP(NAMSPC,$J,SDIV,SDC,SDS)) Q:SDS=""!(SDUP)  D
  .I SDTL="MEN" S SDR=$P($G(^TMP(NAMSPC,$J,SDIV,SDC,SDS)),"^",4)
  .N SDDT,SDNUM,SDNUM1,DFN,SDSTAT,ACT,SDRR
  .S (SDDT,SDNUM,SDNUM1,DFN,SDSTAT)=0
  .F SDDT=SDBEG:0 S SDDT=$O(^SC(SDC,"S",SDDT)) Q:'SDDT!(SDDT>SDEND)!(SDUP)  F SDNUM=0:0 S SDNUM=$O(^SC(SDC,"S",SDDT,SDNUM)) Q:'SDNUM!(SDUP)  F SDNUM1=0:0 S SDNUM1=$O(^SC(SDC,"S",SDDT,SDNUM,SDNUM1)) Q:'SDNUM1!(SDUP)  D
  ..Q:'$D(^SC(SDC,"S",SDDT,SDNUM,SDNUM1,0))
- ..S DFN=$P($G(^SC(SDC,"S",SDDT,SDNUM,SDNUM1,0)),"^",1) Q:$D(^SC(SDC,"S",SDDT,SDNUM,SDNUM1,"C"))  I $D(^DPT(DFN,0)),$D(^DPT(DFN,"S",SDDT)) S SDSTAT=$P($G(^DPT(DFN,"S",SDDT,0)),"^",2) I $$GETINF^DGPFAPIH(DFN,SDMHFLG,SDDT,SDDT,"ACT") D  Q:SDUP
+ ..S DFN=$P($G(^SC(SDC,"S",SDDT,SDNUM,SDNUM1,0)),"^",1) Q:'DFN  Q:$D(^SC(SDC,"S",SDDT,SDNUM,SDNUM1,"C"))
+ ..;I $D(^DPT(DFN,0)),$D(^DPT(DFN,"S",SDDT))S SDSTAT=$P($G(^DPT(DFN,"S",SDDT,0)),"^",2),SDDTNT=$P(SDDT,".",1) I $$GETINF^DGPFAPIH(DFN,SDMHFLG("L"),SDDTNT,SDDTNT,"ACT")!($$GETINF^DGPFAPIH(DFN,SDMHFLG("N"),SDDTNT,SDDTNT,"ACT")) D  Q:SDUP
+ .. I $D(^DPT(DFN,0)),$D(^DPT(DFN,"S",SDDT)) S SDSTAT=$P($G(^DPT(DFN,"S",SDDT,0)),"^",2) D ACT I SDACT D  Q:SDUP
  ...N PATNM,SDCLNM,SDDIVNM,SDSCNM,SDZERO
- ...;S SDXZERO=^DPT(DFN,"S",SDDT,0)
- ...;S SDDA=$$FIND^SDAM2(DFN,SDDT,SDC)
- ...;S SDSTAT=$$STATUS^SDAM1(DFN,SDDT,SDNUM,SDXZERO,SDDA)
- ... ;Q:SDSTAT=""
  ... S SDSTAT=$S(SDSTAT="N":"NS",SDSTAT="NT":"NAT",SDSTAT="NA":"NSA",SDSTAT="":"NAT",1:SDSTAT)
- ...;I '$D(SDXFLG) I SDSTAT="" S SDSTAT="NT" I "N^NA"'[SDSTAT Q  ;!(SDSTAT'="NA")
  ...I SDSTAT'["N" Q
  ...S SDDIVNM=$S($P(^DG(40.8,SDIV,0),"^",1)="NOT SPECIFIED":"NOT SPECIFIED",1:$P(^DG(40.8,SDIV,0),"^",1))
  ...S SDCLNM=$S($P($G(^SC(SDC,0)),"^",1)="NOT SPECIFIED":"NOT SPECIFIED",1:$P(^SC(SDC,0),"^",1))
  ...S SDSCNM=$S($P($G(^DIC(40.7,SDS,0)),"^",1)="NOT SPECIFIED":"NOT SPECIFIED",1:$P(^DIC(40.7,SDS,0),"^",1))
  ...S PATNM=$S($P($G(^DPT(DFN,0)),"^",1)="NOT SPECIFIED":"NOT SPECIFIED",1:$P(^DPT(DFN,0),"^",1))
- ...I SDTL="CLIN" S ^TMP(NAMSPC1,$J,SDDIVNM,SDCLNM,PATNM,SDS,SDDT)=DFN_"^"_SDDT_"^"_SDSTAT_"^"_$$PID(DFN)_"^"_SDC_"^"_SDS ;D TOTAL(SDDIVNM,SDCLNM)
- ...I SDTL="STOP" S ^TMP(NAMSPC1,$J,SDDIVNM,SDSCNM,PATNM,SDCLNM,SDDT)=DFN_"^"_SDDT_"^"_SDSTAT_"^"_$$PID(DFN)_"^"_SDC_"^"_SDS
- ...I SDTL="MEN" S SDRR=$P(^PXRMD(810.9,SDR,0),"^",1) S ^TMP(NAMSPC1,$J,SDDIVNM,SDRR,SDCLNM,PATNM,SDDT)=DFN_"^"_SDDT_"^"_SDSTAT_"^"_$$PID(DFN)_"^"_SDC_"^"_SDS
+ ...I SDTL="CLIN" S ^TMP(NAMSPC1,$J,SDDIVNM,SDCLNM,PATNM,SDS,SDDT)=DFN_"^"_SDDT_"^"_SDSTAT_"^"_$E(PATNM,1)_$$PID(DFN)_"^"_SDC_"^"_SDS ;D TOTAL(SDDIVNM,SDCLNM)
+ ...I SDTL="STOP" S ^TMP(NAMSPC1,$J,SDDIVNM,SDSCNM,PATNM,SDCLNM,SDDT)=DFN_"^"_SDDT_"^"_SDSTAT_"^"_$E(PATNM,1)_$$PID(DFN)_"^"_SDC_"^"_SDS
+ ...I SDTL="MEN" S SDRR=$P(^PXRMD(810.9,SDR,0),"^",1) S ^TMP(NAMSPC1,$J,SDDIVNM,SDRR,SDCLNM,PATNM,SDDT)=DFN_"^"_SDDT_"^"_SDSTAT_"^"_$E(PATNM,1)_$$PID(DFN)_"^"_SDC_"^"_SDS
  ...D TOTAL(SDDIVNM,SDCLNM)
 BGJ I $D(SDXFLG) D  Q
  .I '$D(^TMP(NAMSPC1,$J)) D HEAD^SDMHNS
@@ -108,22 +106,26 @@ CHK ;Check to see if Division/Clinic/Stop have been selected & if  Clinic and St
  S SDSCNM=$S($P($G(^DIC(40.7,SDSC,0)),"^",1)="":"NOT SPECIFIED",1:$P(^DIC(40.7,SDSC,0),"^",1))
  S ^TMP(NAMSPC,$J,SDDIV,SDCL,SDSC)=SDDIVNM_"^"_SDCLNM_"^"_SDSCNM_"^"_$S(SDRLL="NOT SPECIFIED":"NOT SPECIFIED",1:SDRLL)
  Q
+ACT ;Make sure patient has active flag
+ N SDDTNT
+ S SDDTNT=$P(SDDT,".",1)
+ I $$GETINF^DGPFAPIH(DFN,SDMHFLG("L"),SDDTNT,SDDTNT,"ACT") S SDACT=1 Q
+ I $$GETINF^DGPFAPIH(DFN,SDMHFLG("N"),SDDTNT,SDDTNT,"ACT") S SDACT=1 Q  ;For increment 3
+ S SDACT=0
+ Q
  ;
 HEAD ;Heading for the report
  W @IOF
  W "HIGH RISK MENTAL HEALTH NO SHOW ADHOC REPORT BY",?70,"PAGE " S SDPAG=SDPAG+1 W SDPAG,!
  W $S(SDTL="MEN":"MH CLINICS",SDTL="STOP":"STOP CODES",1:"CLINICS")_" for Appointments "_$$FMTE^XLFDT(SDBEG,"2")_"-"_$$FMTE^XLFDT($P(SDEND,".",1),"2"),?56,"Run: "_SDDAT
  I $D(SDTOTPG) W !!,"Totals Page"
- I '$D(SDTOTPG) W !!,"PATIENT",?23,"PT ID",?33,"APPT D/T",?53,"CLINIC",?73,"STATUS"
+ I '$D(SDTOTPG) W !!,"*STATUS: NS = No Show      NA = No Show Auto Rebook     NAT = No Action Taken"
+ I '$D(SDTOTPG) W !!,"#",?4,"PATIENT",?25,"PT ID",?31,"APPT D/T",?49,"CLINIC/STATUS/PROVIDER"
  W !,$$LINE(""),!
- ;W "*STATUS: NS = No Show      NSA = No Show Auto Rebook     NAT = No Action Taken",!!
 HEAD1 I $D(^TMP(NAMSPC1,$J)),'$D(SDTOTPG) D
  . N SDHEAD2
-B .I SDTL'="STOP" S SDHEAD2="DIVISION/CLINIC/STOP: "_$E(SDXDIV,1,24)_"/"_$E(SDXCLIN,1,26)_"/"_$E(SDXSTOP,1,4)
- .;I SDTL="CLIN" S SDHEAD2="DIVISION/CLINC/STOP CODE: "_SDXDIV_"/"_SDXCLIN_"/"_SDXSTOP
+ .I SDTL'="STOP" S SDHEAD2="DIVISION/CLINIC/STOP: "_$E(SDXDIV,1,24)_"/"_$E(SDXCLIN,1,26)_"/"_$E(SDXSTOP,1,4)
  .I SDTL="STOP" S SDHEAD2="DIVISION/STOP/CLINIC: "_$E(SDXDIV,1,24)_"/"_$E(SDXSTOPN,1,4)_"/"_$E(SDXCLIN,1,26)
- .;I SDTL="STOP" S SDHEAD2="DIVISION/STOP/CLINIC: "_$E(SDXDIV,1,24)_"/"_$E($P($G(^DIC(40.7,$O(^DIC(40.7,"B",SDXSTOP,0)),0)),"^",2),1,4)_"/"_$E(SDXCLIN,1,26)
- .;S SDHEAD2=$S(SDTL="MEN":"DIVISION/MH CLIN LIST/CLINIC: "_SDXDIV_"/"_SDXREM,SDTL="CLIN":"DIVISION/CLINIC: "_SDXDIV_"/"_SDXCLIN,1:"DIVISION/STOP CODE: "_SDXDIV_"/"_SDXSTOP_"-"_$P($G(^DIC(40.7,$O(^DIC(40.7,"B",SDXSTOP,0)),0)),"^",2)) W !
  .W SDHEAD2,!
  Q
  ;
@@ -146,12 +148,14 @@ LIST N X I '$D(^PXRMD(810.9,"B","VA-MH NO SHOW APPT CLINICS LL")) D  Q
  .S Y=1
 LINE(STR) ; Print display prompts
  N X
+ I '$G(IOM) S IOM=79
  S:STR]"" STR=" "_STR_" "
  S $P(X,"*",(IOM/2)-($L(STR)/2))=""
  Q X_STR_X
  ;
 LINE1(STR) ; Print display prompts
  N X
+ I '$G(IOM) S IOM=79
  S:STR]"" STR=" "_STR_" "
  S $P(X," ",(IOM/2)-($L(STR)/2))=""
  Q X_STR_X

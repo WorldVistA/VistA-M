@@ -1,5 +1,5 @@
-PXRMDEDI ; SLC/PJH - Edit PXRM reminder dialog. ;05/31/2006
- ;;2.0;CLINICAL REMINDERS;**4**;Feb 04, 2005;Build 21
+PXRMDEDI ; SLC/PJH - Edit PXRM reminder dialog. ;04/02/2013
+ ;;2.0;CLINICAL REMINDERS;**4,26**;Feb 04, 2005;Build 404
  ;
  ;Used by protocol PXRM DIALOG SELECTION ITEM
  ;
@@ -82,11 +82,16 @@ IND(DIEN,SEL) ;Edit individual element
  N FIND
  I ANS="R" S OIEN=DIEN,(IEN,DIEN)=$P($G(^PXRMD(801.41,DIEN,49)),U,3)
  S FIND=$P($G(^PXRMD(801.41,IEN,1)),U,5),VALMBCK="R"
- ;Edit taxomomy dialog
- I $P(FIND,";",2)="PXD(811.2," D EDIT^PXRMGEDT("DTAX",$P(FIND,";"),0) Q
  ;Option to change an element to a group
  I DTYP="E",'NATIONAL D NTYP^PXRMDEDT(.DTYP) Q:$D(DUOUT)!$D(DTOUT)  D:DTYP="G"
  .S $P(^PXRMD(801.41,DIEN,0),U,4)=DTYP
+ .I $P($G(^PXRMD(801.41,DIEN,"TAX")),U)="A" D
+ ..N FDA,MSG
+ ..S FDA(801.41,DIEN_",",.01)=$P($G(^PXRMD(801.41,DIEN,0)),U)
+ ..S FDA(801.41,DIEN_",",123)="N"
+ ..D UPDATE^DIE("","FDA","","MSG")
+ ..I '$D(MSG) W !,"Taxonomy selection set to 'No Pick List'. Review group structure before using in CPRS." Q
+ ..I $D(MSG) D AWRITE^PXRMUTIL("MSG")
  .W !,"Dialog element changed to a dialog group"
  ;Edit Element
  D EDIT^PXRMDEDT(DTYP,DIEN,OIEN)

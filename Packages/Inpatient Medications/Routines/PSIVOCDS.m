@@ -1,5 +1,5 @@
-PSIVOCDS ;BIR/MV - PROCESS DOSING ORDER CHECKS FOR IV;6 Jun 07 / 3:37 PM
- ;;5.0; INPATIENT MEDICATIONS ;**181**;16 DEC 97;Build 190
+PSIVOCDS ;BIR/MV - PROCESS DOSING ORDER CHECKS FOR IV ;6 Jun 07 / 3:37 PM
+ ;;5.0;INPATIENT MEDICATIONS ;**181,252,257**;16 DEC 97;Build 105
  ;
  ; Reference to ^PS(51.1 is supported by DBIA #2177
  ; Reference to ^PSDRUG is supported by DBIA #2192.
@@ -20,6 +20,7 @@ IN(PSJBASE) ;
  NEW ON,PSJCNT,PSJCNTX,PSJONEFG,PSJRT,PSIVAS,PSIVAS0,PSIVDDSV,PSPDRG,PSJALLGY,X,PSJP8,PSJP8NUM,PSJP8UNT,PSJP8TME,PSJOIX
  K PSJOCDS,PSJFDB,PSIVDDSV,PSPDRG,PSJALLGY
  S PSJCNT=0
+ ;PSJRT - FDB Route
  S PSJRT=$P($$MRT^PSSDSAPI(+P("MR")),U,2)
  ;Set Flag to indicate CPRS OI had no active AD/SOL.
  S PSJOIX="" F  S PSJOIX=$O(PSJIV("OI_ERROR",PSJOIX)) Q:PSJOIX=""  D
@@ -32,9 +33,10 @@ IN(PSJBASE) ;
  I ($G(PSIVDDSV("TOT_VOL"))=""),($G(PSJIV("TOT_VOL"))]"") S PSIVDDSV("TOT_VOL")=PSJIV("TOT_VOL")
  F PSIVAS="AD","SOL" F PSJCNTX=0:0 S PSJCNTX=$O(PSIVDDSV(PSIVAS,PSJCNTX)) Q:'PSJCNTX  D
  . S PSIVAS0=$G(PSIVDDSV(PSIVAS,PSJCNTX))
- . I PSIVAS="SOL" S X=$$LITER($P(PSIVAS0,U,8)) I X]"" D
- .. S $P(PSIVAS0,U,8)=$P(X,U)
- .. S $P(PSIVAS0,U,9)=$P(X,U,2)
+ .;PSJ*5*252 (6/29/11) - No longer need to convert "ML" to "L" now FDB handles both units for this drug.
+ .;I PSIVAS="SOL" S X=$$LITER($P(PSIVAS0,U,8)) I X]"" D
+ .;. S $P(PSIVAS0,U,8)=$P(X,U)
+ .;. S $P(PSIVAS0,U,9)=$P(X,U,2)
  . S PSJCNT=PSJCNT+1
  . D COMMON
  . I P("DTYP")=1 D IVPB
@@ -44,16 +46,15 @@ IV ;Setup input data for Continuous IV (admixture, hyperal)
  NEW PSJXRT,PSJP8ERR
  S PSJP8=$$P8^PSJMISC2(P(8))
  D BASIC
- ;I PSJP8="" D FREEDOSE Q
  S PSJP8NUM=+$P(PSJP8,U)
  S PSJP8UNT=$P(PSJP8,U,2)
  S PSJP8TME=$P(PSJP8,U,3)
  ;All premix are using the "Continuous Infusion" Route logic. This is so Potassium gets both single
  ;and max dosing checks.  Cisplatin premix won't work since FDB can't process as "Continuous Infusion"
  I PSIVAS="SOL" D PREMIX Q
+ S PSJXRT=$$RTESCRN($P($$MRT^PSSDSAPI(+P("MR")),U,1))
+ I $$ISONEAD(),$$ISALLBAG(),('$$CLASS(PSJFDB(PSJCNT,"DRUG_IEN"))),(PSJXRT'=0),$$FDBRT(PSJFDB(PSJCNT,"DRUG_IEN"),PSJXRT) D ONEAD(PSJXRT) Q
  I PSJP8="" D FREEDOSE Q
- S PSJXRT=$$RTESCRN(PSJRT)
- I $$ISONEAD(),('$$CLASS(PSJFDB(PSJCNT,"DRUG_IEN"))),(PSJXRT'=0),$$FDBRT(PSJFDB(PSJCNT,"DRUG_IEN"),PSJXRT) D ONEAD(PSJXRT) Q
  D CONTIV
  Q
 IVPB ;Setup input data for Schedule IV
@@ -97,10 +98,7 @@ SINGLE ;Set fields needed for Single Dose type
  Q
 COMMON ;Set common data for all IV types
  S PSJFDB(PSJCNT,"RX_NUM")="I;"_$G(PSJPON)_";PROSPECTIVE;"_PSJCNT
- ;Set Flag to indicate CPRS OI had no active AD/SOL.
- ;S PSJOIX="" F  S PSJOIX=$O(PSJIV("OI_ERROR",PSJOIX)) Q:PSJOIX=""  S PSJFDB("OI_ERROR",PSJOIX)=$P(PSJIV("OI_ERROR",PSJOIX),U)_U_PSJFDB(PSJCNT,"RX_NUM")
  S PSJFDB(PSJCNT,"DRUG_IEN")=$P(PSIVAS0,U)
- ;S PSJFDB(PSJCNT,"DRUG_IEN")=$$IVDDRG^PSJMISC(PSIVAS,$P(PSIVAS0,U))
  S PSJFDB(PSJCNT,"DRUG_NM")=$P(PSIVAS0,U,2)_" "_$P(PSIVAS0,U,3)
  S PSJFDB(PSJCNT,"DOSE_UNIT")=$P(PSIVAS0,U,9)
  S PSJFDB(PSJCNT,"ROUTE")=PSJRT
@@ -116,7 +114,6 @@ BASIC ;Set basic data for non schedule IVs
  S PSJFDB(PSJCNT,"DURATION_RT")="DAY"
  ; SDA is set to the additive strength or volume of the solution.
  S PSJFDB(PSJCNT,"DOSE_AMT")=$P(PSIVAS0,U,8)
- ;*I PSIVAS="SOL" S PSJFDB(PSJCNT,"DOSE_UNIT")=$$UNIT^PSSDSAPI("ML")
  Q
 FREEDOSE ;Set data for free text dose
  ;"GENERAL" info only needed to pass in Dose Route and Dose Type.
@@ -124,25 +121,18 @@ FREEDOSE ;Set data for free text dose
  S PSJFDB(PSJCNT,"FREQ")=1
  S PSJFDB(PSJCNT,"DURATION")=1
  S PSJFDB(PSJCNT,"DURATION_RT")=PSJFDB(PSJCNT,"DOSE_RATE")
- ;S:$G(PSJP8ERR)=1 PSJFDB(PSJCNT,"INF_ERROR")=""
  S PSJFDB(PSJCNT,"INF_ERROR")=""
  I $G(PSJP8ERR)=2!($G(PSJP8ERR)=4) S PSJFDB(PSJCNT,"WT_ERROR")=""
  I $G(PSJP8ERR)=3!($G(PSJP8ERR)=4) S PSJFDB(PSJCNT,"HT_ERROR")=""
  Q
 ONEAD(PSJRT) ;Setup data for 'Continuous Infusion' IV type
  NEW PSJCLASS,PSJX
- ;PSJRT - FDB converted routes from $$RTESCRN
- ;If the route is not specified in FDB for this drug then default to value set in BASIC^PSIVOCDS
- ;I '$$FDBRT(PSJFDB(PSJCNT,"DRUG_IEN"),PSJRT) Q
- ;S PSJRT=$$RTESCRN(PSJRT)
- ;
  I $G(PSJRT)=0!($G(PSJRT)="") Q
- ;I PSJP8UNT'="MILLILITERS" D FREEDOSE Q
- ;I PSJP8TME'="HOUR" D FREEDOSE Q
  ;Check to make sure the infusion rate is in form of "ml/hr" before applying the calculation
  S PSJFDB(PSJCNT,"FREQ")=1
  S PSJFDB(PSJCNT,"DURATION")=1
  S PSJFDB(PSJCNT,"ROUTE")=PSJRT
+ I PSJP8="" D FREEDOSE Q
  S PSJFDB(PSJCNT,"DOSE_RATE")=PSJP8TME
  S PSJFDB(PSJCNT,"DURATION_RT")=PSJP8TME
  I PSJP8UNT="MILLILITERS",(PSJP8TME="HOUR") D
@@ -154,9 +144,6 @@ ONEAD(PSJRT) ;Setup data for 'Continuous Infusion' IV type
  . S PSJFDB(PSJCNT,"DOSE_UNIT")=PSJP8UNT
  . S PSJFDB(PSJCNT,"DOSE_RATE")=PSJP8TME
  . S PSJFDB(PSJCNT,"DURATION_RT")=PSJP8TME
- . ;S PSJFDB(PSJCNT,"DOSE_AMT")=$P(PSIVAS0,U,8)
- . ;S PSJFDB(PSJCNT,"DOSE_UNIT")=PSJP8UNT
- ;S PSJFDB(PSJCNT,"FRQ_ERROR")=""
  Q
 CONTIV ;Set data needed for continuous IV with multiple drugs
  NEW PSJFREQ,PSJDIFF
@@ -178,28 +165,33 @@ ISONEAD() ;Return 1 if there's only one additive
  F X=0:0 S X=$O(PSIVDDSV("AD",X)) Q:'X  S PSJX=PSJX+1 Q:PSJX>1
  I PSJX>1 Q 0
  Q 1
+ISALLBAG() ;Return 1 if not additive not in all bags
+ ;***this call assuming only 1 additive entered in the order
+ NEW X,PSIVAS0
+ S X=$O(PSIVDDSV("AD",0))
+ S PSIVAS0=$G(PSIVDDSV("AD",X))
+ I $P(PSIVAS0,U,4)]"" Q 0
+ Q 1
 ISNOADD() ;Return 1 if there's no additives
  NEW X,PSJX
- ;I $D(PSIVDDSV("AD")),$D(PSIVDDSV("SOL")) Q 0
  I $O(PSIVDDSV("AD",0)) Q 0
- ;S PSJX=0
- ;F X=0:0 S X=$O(PSIVDDSV("SOL",X)) Q:'X  S PSJX=PSJX+1 Q:PSJX>1
- ;I PSJX>1 Q 0
  I $D(PSIVDDSV("SOL")) Q 1
  Q 0
 PREMIX ;The route is always set to "Continuous Infusion" & the FREQUENCY must set to 1
  NEW X
- S PSJFDB(PSJCNT,"ROUTE")="CONTINUOUS INFUSION"
+ S PSJFDB(PSJCNT,"ROUTE")=$$RTESCRN(PSJRT)
+ I PSJFDB(PSJCNT,"ROUTE")=0 S PSJFDB(PSJCNT,"ROUTE")=PSJRT
  I PSJP8="" D FREEDOSE Q
  S PSJFDB(PSJCNT,"FREQ")=1
  S PSJFDB(PSJCNT,"DOSE_AMT")=PSJP8NUM
  S PSJFDB(PSJCNT,"DOSE_UNIT")=PSJP8UNT
  S PSJFDB(PSJCNT,"DOSE_RATE")=PSJP8TME
  S PSJFDB(PSJCNT,"DURATION_RT")=PSJP8TME
+ ;PSJ*5*252 (6/29/11) - No longer need to convert "ML" to "L" now FDB handles both units for this drug.
  ;S PSJFDB(PSJCNT,"ROUTE")="CONTINUOUS INFUSION"
- I PSJP8UNT="MILLILITERS" S X=$$LITER(PSJP8NUM) I X]"" D
- . S PSJFDB(PSJCNT,"DOSE_AMT")=$P(X,U)
- . S PSJFDB(PSJCNT,"DOSE_UNIT")=$P(X,U,2)
+ ;I PSJP8UNT="MILLILITERS" S X=$$LITER(PSJP8NUM) I X]"" D
+ ;. S PSJFDB(PSJCNT,"DOSE_AMT")=$P(X,U)
+ ;. S PSJFDB(PSJCNT,"DOSE_UNIT")=$P(X,U,2)
  Q
 SDACI() ;Return Single Dose Amount for ad for 'CONTINUOUS INFUSION' FDB Route (Not classed at "VT" or "TN")
  ;Single Dose Amount(PSJSDA):
@@ -218,7 +210,8 @@ CLASS(PSJDD) ;Check if the Drug contains "VT" & "TN" classes
  Q:'+$G(PSJDD) 0
  NEW PSJCLASS
  S PSJCLASS=$P($G(^PSDRUG(+PSJDD,0)),U,2)
- I (PSJCLASS["TN")!(PSJCLASS["VT") Q 1
+ ;I (PSJCLASS["TN")!(PSJCLASS["VT") Q 1
+ I PSJCLASS["VT" Q 1
  Q 0
 IVFREQ() ;Return the frequency for an continuous IV
  ; Hours needed to run a bag is defined as: Total Volume / Infusion rate
@@ -229,30 +222,40 @@ IVFREQ() ;Return the frequency for an continuous IV
  S PSJTOTV=+$G(PSIVDDSV("TOT_VOL"))
  ;CONV^PSSDSAPK converts # of hours to run a bag to either Q#H or n for number of admin per day
  I +PSJTOTV,PSJP8NUM D
- . I $P(PSIVAS0,U,4)="",(+PSJTOTV#PSJP8NUM) D
- .. S PSJFDB(PSJCNT,"DOSE_AMT")=$$ADJSDA(+PSJTOTV,PSJP8NUM,+PSJFDB(PSJCNT,"DOSE_AMT"))
- .. ;S X=$J(+PSJTOTV/+P(8),"",0)
- .. ;S PSJFDB(PSJCNT,"DOSE_AMT")=((+P(8)*X)/(+PSJTOTV))*PSJFDB(PSJCNT,"DOSE_AMT")
+ . I +PSJTOTV#PSJP8NUM D
+ .. S PSJFDB(PSJCNT,"DOSE_AMT")=$$ADJSDA(+PSJTOTV,PSJP8NUM,+PSJFDB(PSJCNT,"DOSE_AMT"),1)
  . S PSJBAGX=PSJTOTV/PSJP8NUM
  . I PSJBAGX<1 S PSJFREQ="Q1H"
  . S:PSJBAGX'<1 PSJFREQ=$$CONV^PSSDSAPK(PSJTOTV/PSJP8NUM)
  . S PSJTOTBG=24/(+PSJTOTV/PSJP8NUM)
- I PSIVAS="AD" D BOTTLE(PSJTOTBG,$P(PSIVAS0,U,4))
+ I PSIVAS="AD" D BOTTLE(PSJTOTBG,$P(PSIVAS0,U,4)) D
+ . I PSJTOTBG<1,'(+PSJTOTV#PSJP8NUM) S PSJFDB(PSJCNT,"DOSE_AMT")=$$ADJSDA(+PSJTOTV,PSJP8NUM,+PSJFDB(PSJCNT,"DOSE_AMT"),0)
  I PSJFREQ=""!(PSJFREQ=0) S PSJFREQ=1 S PSJFDB(PSJCNT,"FRQ_ERROR")=""
  Q PSJFREQ
-ADJSDA(PSJTOTV,PSJINFRT,PSJSDA) ;Adjust SDA
- NEW PSJBAGX,X
- I $S(+PSJTOTV:0,+PSJINFRT:0,+PSJSDA:0,1:1) Q ""
- S PSJBAGX=+PSJTOTV/PSJP8NUM
- I PSJBAGX<1 S PSJSDA=PSJSDA/PSJBAGX
+ADJSDA(PSJTOTV,PSJINFRT,PSJSDA,PSJNOTE) ;Adjust SDA
+ NEW PSJBAGX,X,PSJNOTEV
+ I '+$G(PSJTOTV) Q ""
+ I '+$G(PSJINFRT) Q ""
+ I '+$G(PSJSDA) Q ""
+ S (PSJBAGX,X)=+PSJTOTV/PSJINFRT
+ ;**  Removed for MOCHA 2.0 When it takes < 1 hour to run a bag. May need to bring back for MOCHA 2.1 (Daily dose check).
+ ;I PSJBAGX<1 S PSJSDA=PSJSDA/PSJBAGX
+ I PSJBAGX<1 D
+ . S PSJFDB(PSJCNT,"FREQ")=1
+ . S PSJFDB(PSJCNT,"DURATION")=1
+ . S PSJFDB(PSJCNT,"DOSE_RATE")="DAY"
+ . S PSJFDB(PSJCNT,"DURATION_RT")="DAY"
  I PSJBAGX'<1 D
  . S X=$J(PSJBAGX,"",0)
- . S PSJSDA=((PSJP8NUM*X)/(+PSJTOTV))*PSJSDA
- . S PSJFDB(PSJCNT,"ADJ_MSG")="PLEASE NOTE: The single dose of the IV Additive has been adjusted to reflect the amount of drug infused over the nearest whole number of hours ("_(X*PSJINFRT)_" ML over "_X_" hours)."
+ . S PSJSDA=PSJSDA/(+PSJTOTV)*PSJINFRT*($S(X<24:X,1:24))
+ . S PSJNOTEV=($S(X<24:X,1:24)*PSJINFRT)_" ML over "_$S(X<24:X,1:24)_" hours)."
+ . I $G(PSJNOTE) D
+ .. S PSJFDB(PSJCNT,"ADJ_MSG")="PLEASE NOTE: The single dose of the IV Additive has been adjusted to reflect the amount of drug infused over the nearest whole number of hours ("_PSJNOTEV
+ . I '$G(PSJNOTE) D
+ .. S PSJFDB(PSJCNT,"ADJ_MSG")="PLEASE NOTE:  The single dose of the IV Additive has been adjusted to reflect the amount of drug infused over the duration of the order or 24 hours; whichever is less ("_PSJNOTEV
  Q PSJSDA
 UND24HRS ;Calculate freq for order <24 hrs
- NEW PSJTOTV,PSJBAG,PSJMNBAG,PSJTOTBG,PSJFREQ,PSJHRS
- ;PSJFREQ,PSJBOT,PSJX,X,PSJTOTBG,PSJTOTBT,PSJTOTV,PSJMNBAG,PSJDIFF
+ NEW PSJTOTV,PSJBAG,PSJMNBAG,PSJTOTBG,PSJFREQ,PSJHRS,X
  S (PSJFREQ,PSJBAG,PSJMNBAG)=0
  S PSJTOTV=+$G(PSIVDDSV("TOT_VOL"))
  I +PSJTOTV,PSJP8NUM D
@@ -265,6 +268,9 @@ UND24HRS ;Calculate freq for order <24 hrs
  S:+PSJMNBAG PSJBAG=PSJDIFF/PSJMNBAG
  ; If the order is for < 24 hrs & Freq < 1 then adjust the SDA & Freq set to 1
  I PSJBAG<1 D  Q
+ . S X=$J((PSJDIFF/60),"",0)
+ . S PSJNOTEV=($S(X<24:X,1:24)*PSJP8NUM)_" ML over "_$S(X<24:X,1:24)_" hours)."
+ . S PSJFDB(PSJCNT,"ADJ_MSG")="PLEASE NOTE:  The single dose of the IV Additive has been adjusted to reflect the amount of drug infused over the duration of the order or 24 hours; whichever is less ("_PSJNOTEV
  . S PSJFDB(PSJCNT,"FREQ")=1
  . S PSJFDB(PSJCNT,"DOSE_AMT")=PSJBAG*(PSJFDB(PSJCNT,"DOSE_AMT"))
  ;
@@ -277,18 +283,13 @@ BOTTLE(PSJTOTBG,PSJBOT) ;Set freq to either specified bottle or # needed for the
  NEW PSJTOTBT,X,PSJX
  Q:'+$G(PSJTOTBG)
  ;
- ;If a bag is run for >24 hours then set the freq=1 & adjust SDA
- I PSJTOTBG<1 D  Q
- . S PSJFREQ=1
- . S PSJFDB(PSJCNT,"DOSE_AMT")=$G(PSJFDB(PSJCNT,"DOSE_AMT"))*PSJTOTBG
- ;
+ ;PSJ*5*252 - ADJSDA already adjusted the SDA so recal SDA is not needed
+ I PSJTOTBG<1 S PSJFREQ=1 Q
  Q:$G(PSJBOT)=""
  S PSJTOTBT=0
  F X=1:1:$L(PSJBOT,",") S PSJX=$P(PSJBOT,",",X) S:+PSJX PSJTOTBT=PSJTOTBT+1
- ;S PSJFREQ=$$CONV^PSSDSAPK($S(PSJTOTBT>PSJTOTBG:PSJTOTBG,1:PSJTOTBT))
  S PSJFREQ=$S(PSJTOTBT>PSJTOTBG:PSJTOTBG,1:PSJTOTBT)
  I PSJTOTV#PSJP8NUM,(PSJTOTBT>PSJTOTBG) D
- . ;S PSJFDB(PSJCNT,"DOSE_AMT")=$$ADJSDA(+PSJTOTV,PSJP8NUM,+PSJFDB(PSJCNT,"DOSE_AMT"))
  . S PSJFREQ=$$CONV^PSSDSAPK(PSJTOTV/PSJP8NUM)
  I PSJFREQ=0 S PSJFREQ=1 S PSJFDB(PSJCNT,"FRQ_ERROR")=""
  Q
@@ -308,24 +309,30 @@ DURATION() ;
  Q X
 FDBRT(PSJDD,PSJRT) ;Check if the ordered route can be admin by FDB for this drug
  ;PSJDD = Drug IEN
- ;PSJRT = Route entered for the order that mapped to FDB route
+ ;PSJRT = FDB continuous dose route (ordered MR -> Standard RT ->FDB cont. Rt)
  ;Return 1 if the route can admin by FDB; 0 if this route is not specify for this drug
  NEW PSJFDBRT
  I '+$G(PSJDD)!$G(PSJRT)="" Q 0
  D GROUTE^PSSFDBRT(PSJDD,.PSJFDBRT)
+ I +$G(PSJFDBRT(0))=-1 Q 1
  I $D(PSJFDBRT(PSJRT)) Q 1
  Q 0
 RTESCRN(PSJRT) ; Screen routes for none "VT or "TN"
- ;Return 0 or FDB equivalent if the ordered route is one of the six below.
- ;PSJRT - Ordered route
+ ;Return 0 or FDB continuous dose route if the standard route(mapped to the ordered MR) is one of the six below.
+ ;PSJRT - standard route
+ I $G(PSJRT)="" Q 0
+ I PSJRT="EPIDURAL" Q "CONTINUOUS EPIDURAL"
  I PSJRT="INTRA-ARTERIAL" Q "CONT INTRAARTER INF"
- I PSJRT="INTERTHECAL"  Q "CONT INTRATHECAL INF"
+ I PSJRT="INFILTRATION" Q "CONTINUOUS INFILTRAT"
+ I PSJRT="INTRACAUDAL" Q "CONT CAUDAL INFUSION"
+ I PSJRT="INTRAOSSEOUS" Q "CONT INTRAOSSEOUS"
+ I PSJRT="INTRATHECAL" Q "CONT INTRATHECAL INF"
+ I PSJRT="INTRAVENOUS" Q "CONTINUOUS INFUSION"
  I PSJRT="NEBULIZATION" Q "CONT NEBULIZATION"
  I PSJRT="SUBCUTANEOUS" Q "CONT SUBCUTAN INFUSI"
- I PSJRT="EPIDURAL" Q "CONTINUOUS EPIDURAL"
- I PSJRT="INTRAVENOUS" Q "CONTINUOUS INFUSION"
  Q 0
 LITER(PSJVOLP8) ; Convert the unit from ML to L for premix contains potassium
+ ; PSJ*5*252 (6/29/11) - No longer need to convert "ML" to "L" for this drug now that FDB handles both units.
  ; FDB only accept Liter for this type for drug
  ; PSJVOLP8 - Either = volume or the infusion rate
  NEW PSJVAGEN,PSJSDA,PSJUNIT

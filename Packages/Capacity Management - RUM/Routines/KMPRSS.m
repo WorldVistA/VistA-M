@@ -1,9 +1,9 @@
-KMPRSS ;OAK/RAK - Resource Usage Monitor Status ;11/19/04  10:32
- ;;2.0;CAPACITY MANAGEMENT - RUM;**1**;May 28, 2003
+KMPRSS ;OAK/RAK - Resource Usage Monitor Status ;1/30/13  08:31
+ ;;2.0;CAPACITY MANAGEMENT - RUM;**1,2**;May 28, 2003;Build 12
  ;
 STAT ;--display rum environment
  ;
- D EN^KMPRSSB
+ D DISPLAY^KMPDSS1("R^RUM")
  ;
  Q
  ;

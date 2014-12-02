@@ -1,5 +1,5 @@
 PSDBALI ;BIR/JPW-Display/Print Drug Inv Sheet & Balance ; 29 Aug 94
- ;;3.0; CONTROLLED SUBSTANCES ;;13 Feb 97
+ ;;3.0;CONTROLLED SUBSTANCES;**73**;13 Feb 97;Build 8
  I '$D(PSDSITE) D ^PSDSET Q:'$D(PSDSITE)
 ASKD ;ask disp location
  S PSDS=$P(PSDSITE,U,3),PSDSN=$P(PSDSITE,U,4)
@@ -14,11 +14,19 @@ SORT ;asks sort
  W ! K DA,DIR,DIRUT S DIR(0)="YO",DIR("A")="Do you wish to sort by Inventory Type",DIR("B")="NO"
  S DIR("?")="Answer YES to sort drugs by Inventory Type, NO or <RET> to sort by drug."
  D ^DIR K DIR G:$D(DIRUT) END S ASKN=Y
- W !!,?5,"You may select a single drug, several drugs,",!,?5,"or enter ^ALL to select all drugs.",!!
-DRUG ;ask drug
+DRUG ;ask schedule/drug
+ W !,"Select Schedule/Drug"
+ N DIR,I,J,K
+ S DIR(0)="S^1:SCHEDULES I - II;2:SCHEDULES III - V;3:SCHEDULES I - V;4:INDIVIDUAL DRUG",DIR("A")="Select Schedule(s)",DIR("B")=3
+ D ^DIR
+ I $D(DIRUT) G END
+ S SCH=+Y I SCH<4 D  G DEV
+ .S I=$S(Y=2:3,1:1),J=$S(Y=1:2,1:5) F K=I:1:J S SCH(K)=""
+ W !!,?5,"You may select a single drug, several drugs,",!,?5,"or enter ^ALL to select all drugs.",!
  W ! K DA,DIC
  F  S DIC("W")="W:$P(^PSDRUG(Y,0),""^"",9) ""   N/F"" I $P(^PSD(58.8,PSDS,1,Y,0),""^"",14)]"""",$P(^(0),""^"",14)'>DT W $C(7),""   *** INACTIVE ***""",DA(1)=+PSDS,DIC(0)="QEAM",DIC="^PSD(58.8,"_PSDS_",1," D ^DIC K DIC Q:Y<0  D
  .S PSDR(+Y)=""
+ S X=$$UP^XLFSTR(X)
  I '$D(PSDR)&(X'="^ALL") G END
  I X="^ALL" S ALL=1
 DEV ;sel device
@@ -28,13 +36,16 @@ DEV ;sel device
  U IO
 START ;entry for compile
  K ^TMP("PSDBALI",$J)
- I $D(ALL) F PSD=0:0 S PSD=$O(^PSD(58.8,+PSDS,1,PSD)) Q:'PSD  I $D(^PSD(58.8,+PSDS,1,PSD,0)) S PSDR(+PSD)=""
+ I $D(ALL)!$G(SCH)<4 F PSD=0:0 S PSD=$O(^PSD(58.8,+PSDS,1,PSD)) Q:'PSD  I $D(^PSD(58.8,+PSDS,1,PSD,0)) D
+ .S DEA=+$P($G(^PSDRUG(PSD,0)),"^",3)
+ .I '$D(ALL) Q:'$D(SCH(DEA))
+ .S PSDR(+PSD)=""
  F PSD=0:0 S PSD=$O(PSDR(PSD)) Q:'PSD  I $D(^PSD(58.8,+PSDS,1,PSD,0)) S NODE=^(0) D
  .S PSDOK="" I +$P(NODE,"^",14),+$P(NODE,"^",14)'>DT Q:'+$P(NODE,"^",4)  S PSDOK="*"
  .S BAL=+$P(NODE,"^",4),DRUGN=$S($P($G(^PSDRUG(+PSD,0)),"^")]"":$P(^(0),"^"),1:"ZZ/"_PSD_" NAME MISSING"),SLVL=+$P(NODE,"^",3),EXP=$S(+$P(NODE,"^",12):+$P(NODE,"^",12),1:"")
  .I EXP S Y=EXP X ^DD("DD") S EXP=Y
  .I ASKN D LOOP Q
- .S ^TMP("PSDBALI",$J,DRUGN,PSD)=BAL_"^"_PSDOK_"^"_SLVL_"^"_EXP
+ .S ^TMP("PSDBALI",$J,DRUGN,PSD)=BAL_"^"_PSDOK_"^"_SLVL_"^"_EXP_"^"_$P($G(^PSDRUG(+PSD,0)),"^",3)
 PRINT ;prints data
  S (PG,PSDOUT)=0 D NOW^%DTC S Y=+$E(%,1,12) X ^DD("DD") S RPDT=Y
  K LN S $P(LN,"-",80)="" D HDR
@@ -43,7 +54,7 @@ PRINT ;prints data
  S PSDR="" F  S PSDR=$O(^TMP("PSDBALI",$J,PSDR)) Q:PSDR=""!(PSDOUT)  F PSD=0:0 S PSD=$O(^TMP("PSDBALI",$J,PSDR,PSD)) Q:'PSD  D  Q:PSDOUT
  .I $Y+6>IOSL W !,?10,"Inspector's Signature: ______________________________",! D HDR Q:PSDOUT
  .S NODE=^TMP("PSDBALI",$J,PSDR,PSD),BAL=+NODE,PSDOK=$P(NODE,"^",2),SLVL=$P(NODE,"^",3),EXP=$P(NODE,"^",4)
- .W !,PSDOK,?2,PSDR,?50,$J(BAL,6),?66,"___________",! W:SLVL ?5,"Stock Level: ",SLVL W:EXP]"" ?30,"Exp. Date: ",EXP W ! S LNUM=$Y
+ .W !,PSDOK,?2,PSDR,?45,$J(BAL,6),?61,$$SCH^PSDBAL(+$P(NODE,"^",5)),?67,"___________",! W:SLVL ?5,"Stock Level: ",SLVL W:EXP]"" ?30,"Exp. Date: ",EXP W ! S LNUM=$Y
 PRT ;
  I LNUM<IOSL-5 F JJ=LNUM:1:IOSL-5 W !
  W:'PSDOUT ?10,"Inspector's Signature: ______________________________",!
@@ -51,20 +62,20 @@ DONE I $E(IOST)'="C" W @IOF
  I $E(IOST,1,2)="C-",'PSDOUT W ! K DIR,DIRUT S DIR(0)="EA",DIR("A")="END OF REPORT!  Press <RET> to return to the menu" D ^DIR K DIR
 END ;
  K %,%H,%I,%ZIS,ALL,ASKN,BAL,C,DA,DIC,DRUGN,DTOUT,DUOUT,EXP,JJ,LN,LNUM,NODE,PG,POP,PSD,PSDEV,PSDOK,PSDOUT,PSDR,PSDRN,PSDS,PSDSN,RPDT,SLVL,TYP,TYPN,X,Y
- K ^TMP("PSDBALI",$J),ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,ZTSK
+ K ^TMP("PSDBALI",$J),ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,ZTSK,DEA,SCH
  D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@"
  Q
-SAVE S (ZTSAVE("PSDS"),ZTSAVE("PSDSN"),ZTSAVE("PSDSITE"),ZTSAVE("ASKN"))=""
+SAVE S (ZTSAVE("PSDS"),ZTSAVE("PSDSN"),ZTSAVE("PSDSITE"),ZTSAVE("ASKN"),ZTSAVE("SCH"),ZTSAVE("SCH("))=""
  S:$D(ALL) ZTSAVE("ALL")="" S:$D(PSDR) ZTSAVE("PSDR(")=""
  Q
 HDR ;header
  I $E(IOST,1,2)="C-",PG K DA,DIR S DIR(0)="E" D ^DIR K DIR I 'Y S PSDOUT=1 Q
- S PG=PG+1 W:$Y @IOF W !,?12,"Inventory Sheet for ",PSDSN,?72,"Page: ",PG,!,?20,RPDT,!!
- W ?5,"DRUG",?46,"CURRENT BALANCE",?68,"ON-HAND",!,LN,!!
+ S PG=PG+1 W:$Y @IOF W !,?12,"Inventory Sheet for ",PSDSN,?72,"Page: ",PG,!,?20,$S(SCH=1:"Schedules I - II",SCH=2:"Schedules III - V",SCH=3:"Schedules I - V",1:""),!?20,RPDT,!!
+ W ?5,"DRUG",?41,"CURRENT BALANCE",?58,"SCHEDULE",?69,"ON-HAND",!,LN,!!
  Q
 LOOP ;sets inv type
  I '$O(^PSD(58.8,+PSDS,1,+PSD,2,0)) S TYPN="ZZ** NO INVENTORY TYPE DATA **" D LOOP1
  F TYP=0:0 S TYP=$O(^PSD(58.8,+PSDS,1,+PSD,2,TYP)) Q:'TYP  S TYPN=$S($P($G(^PSI(58.16,+TYP,0)),"^")]"":$P(^(0),"^"),1:"TYPE NAME MISSING") D LOOP1
  Q
-LOOP1 S ^TMP("PSDBALI",$J,TYPN,DRUGN,PSD)=BAL_"^"_PSDOK_"^"_SLVL_"^"_EXP
+LOOP1 S ^TMP("PSDBALI",$J,TYPN,DRUGN,PSD)=BAL_"^"_PSDOK_"^"_SLVL_"^"_EXP_"^"_$P($G(^PSDRUG(+PSD,0)),"^",3)
  Q

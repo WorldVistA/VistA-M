@@ -1,5 +1,5 @@
 PSOREF ;BIR/SAB-refill data entry ;4/25/07 8:45am
- ;;7.0;OUTPATIENT PHARMACY;**1,23,27,36,46,78,130,131,148,206**;DEC 1997;Build 39
+ ;;7.0;OUTPATIENT PHARMACY;**1,23,27,36,46,78,130,131,148,206,313**;DEC 1997;Build 76
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
  ;
@@ -9,10 +9,11 @@ EOJ ;
  Q
 OERR ;single refil
  I $$LMREJ^PSOREJU1($P(PSOLST(ORN),"^",2),,.VALMSG,.VALMBCK) Q
- I $D(RXRP($P(PSOLST(ORN),"^",2))) S VALMBCK="",VALMSG="A Reprint Label has been requested!" Q
- I $D(RXPR($P(PSOLST(ORN),"^",2))) S VALMBCK="",VALMSG="A Partial has already been requested!" Q
- I $D(RXRS($P(PSOLST(ORN),"^",2))) S VALMBCK="",VALMSG="Rx is being pulled from suspense!" Q
+ I $D(RXRP($P(PSOLST(ORN),"^",2))) S VALMBCK="",VALMSG="A Reprint Label has been requested!" W $C(7) Q
+ I $D(RXPR($P(PSOLST(ORN),"^",2))) S VALMBCK="",VALMSG="A Partial has already been requested!" W $C(7) Q
+ I $D(RXRS($P(PSOLST(ORN),"^",2))) S VALMBCK="",VALMSG="Rx is being pulled from suspense!" W $C(7) Q
  I $D(RXFL($P(PSOLST(ORN),"^",2))) S PTRX=$P(PSOLST(ORN),"^",2) D ^PSOCMOPT I '$G(PSOXFLAG) K PSOXFLAG S VALMBCK="",VALMSG="Fill already requested for CMOP!" Q
+ I $$TITRX^PSOUTL($P(PSOLST(ORN),"^",2))="t" S VALMBCK="",VALMSG="Cannot refill 'Titration Rx'." W $C(7) Q
  K PSOXFLAG
  D PSOL^PSSLOCK($P(PSOLST(ORN),"^",2)) I '$G(PSOMSG) S VALMSG=$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing this order."),VALMBCK="" K PSOMSG Q
  N RXN K PSORX("FILL DATE") D FULL^VALM1 S:$G(PSOFROM)'="NEW" PSOFROM="REFILL" S PSOREF("DFLG")=0,PSOREF("IRXN")=$P(PSOLST(ORN),"^",2),PSOREF("QFLG")=0
@@ -29,6 +30,9 @@ SPEED ;speed refill
  K DIR,DIRUT,DTOUT,PSOOELSE,DTOUT I +Y S (ASK,SPEED,PSOOELSE)=1 D FULL^VALM1 S LST=Y D  G:$G(PSOREF("DFLG"))!($G(PSOREF("QFLG"))) SPEEDX
  .F ORD=1:1:$L(LST,",") Q:$P(LST,",",ORD)']""!($G(PSOREF("QFLG")))  S ORN=$P(LST,",",ORD) D:+PSOLST(ORN)=52
  ..I $$LMREJ^PSOREJU1($P(PSOLST(ORN),"^",2)) W $C(7),!!,"Rx "_$$GET1^DIQ(52,$P(PSOLST(ORN),"^",2),.01)_" has OPEN/UNRESOLVED 3rd Party Payer Reject!" K DIR D PAUSE^VALM1 Q
+ ..I $$TITRX^PSOUTL($P(PSOLST(ORN),"^",2))="t" D  Q
+ ...W $C(7),!!,"Rx# "_$$GET1^DIQ(52,$P(PSOLST(ORN),"^",2),.01)_" is marked as 'Titration Rx' and cannot be refilled."
+ ...K DIR D PAUSE^VALM1 Q
  ..D PSOL^PSSLOCK($P(PSOLST(ORN),"^",2)) I '$G(PSOMSG) W $C(7),!!,$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing Rx "_$P(^PSRX($P(PSOLST(ORN),"^",2),0),"^")),! D PAUSE^VALM1 K PSOMSG Q
  ..K PSOMSG I $D(RXRP($P(PSOLST(ORN),"^",2))) W $C(7),!!,"A Reprint Label has been requested!" D ULK D PAUSE^VALM1 Q
  ..I $D(RXPR($P(PSOLST(ORN),"^",2))) W $C(7),!!,"A Partial has already been requested!" D ULK D PAUSE^VALM1 Q
@@ -59,6 +63,9 @@ ASK S DIR(0)="FO^5:245^K:X'?3N1""-""1.N X",DIR("A")="WAND BARCODE"
  .S (BCREF,ASK,SPEED,PSOOELSE)=1 D FULL^VALM1 D
  ..F ORD=1:1:$L(LST,",") Q:$P(LST,",",ORD)']""!($G(PSOREF("QFLG")))  S ORN=$P(LST,",",ORD) D:+PSOLST(ORN)=52
  ...I $$LMREJ^PSOREJU1($P(PSOLST(ORN),"^",2)) W $C(7),!!,"Rx "_$$GET1^DIQ(52,$P(PSOLST(ORN),"^",2),.01)_" has OPEN/UNRESOLVED 3rd Party Payer Reject!" K DIR D PAUSE^VALM1 Q
+ ...I $$TITRX^PSOUTL($P(PSOLST(ORN),"^",2))="t" D  Q
+ ....W $C(7),!!,"Rx# "_$$GET1^DIQ(52,$P(PSOLST(ORN),"^",2),.01)_" is marked as 'Titration Rx' and cannot be refilled."
+ ....K DIR D PAUSE^VALM1 Q
  ...D PSOL^PSSLOCK($P(PSOLST(ORN),"^",2)) I '$G(PSOMSG) W $C(7),!!,$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing Rx "_$P(^PSRX($P(PSOLST(ORN),"^",2),0),"^")),! D PAUSE^VALM1 K PSOMSG Q
  ...K PSOMSG I $D(RXRP($P(PSOLST(ORN),"^",2))) W $C(7),!!,"A Reprint Label has been requested for Rx "_$P(^PSRX($P(PSOLST(ORN),"^",2),0),"^"),! D ULK D PAUSE^VALM1 Q
  ...I $D(RXPR($P(PSOLST(ORN),"^",2))) W $C(7),!!,"A Partial has already been requested for Rx "_$P(^PSRX($P(PSOLST(ORN),"^",2),0),"^"),! D ULK D PAUSE^VALM1 Q

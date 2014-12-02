@@ -1,5 +1,5 @@
 ORCDPSIV ;SLC/MKB-Pharmacy IV dialog utilities ;06/17/10
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,38,48,158,195,243,296,280**;Dec 17, 1997;Build 85
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,38,48,158,195,243,296,280,388**;Dec 17, 1997;Build 10
  ;Per VHA Directive 2004-038, this routine should not be modified.
 CKSCH ; -- validate schedule [Called from P-S Action]
  N ORX S ORX=ORDIALOG(PROMPT,ORI) Q:ORX=$G(ORESET)  K ORSD
@@ -183,7 +183,7 @@ ENRATE ; -- set display text, help based on IV TYPE
  N X,MSG S X=$G(ORIVTYPE),MSG=""
  S ORDIALOG(PROMPT,"A")=$S(X="I":"Infuse over time (min): ",1:"Infusion Rate (ml/hr): ")
  S MSG="Enter the "_$S(X="I":"number of minutes over which to infuse this medication.",1:"infusion rate, as the number of ml/hr or Text@Number of Labels per day. ")
- S ORDIALOG(PROMPT,"?")=MSG
+ S ORDIALOG(PROMPT,"?")=MSG,ORDIALOG(PROMPT,"??")=MSG ;p388
  I X="I" D
  .N RATEI,RATEV,TIME,UNIT
  .S RATEI=$P($G(ORDIALOG("B","INFUSION RATE")),U,2) Q:RATEI'>0

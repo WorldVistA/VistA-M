@@ -1,5 +1,5 @@
-IVMCQ ;ALB/KCL/AEG/GAH - API FOR FINANCIAL QUERIES ; 28-N0V-06
- ;;2.0;INCOME VERIFICATION MATCH;**17,30,55,120**;21-OCT-94;Build 8
+IVMCQ ;ALB/KCL/AEG/GAH,BDB - API FOR FINANCIAL QUERIES ; 28-N0V-06
+ ;;2.0;INCOME VERIFICATION MATCH;**17,30,55,120,154**;21-OCT-94;Build 28
  ;
  ;
 OPT ; Entry point for stand-alone financial query option.
@@ -151,7 +151,8 @@ NEED(DFN,IVMSENT,ERROR) ; Description: Used to determine if a financial query sh
  ;
  ; If current test is not incomplete and not required and is less than
  ; 365 days old, presume a current test exists, no query necessary.
- I ($P(IVML,U,4)'="I")&($P(IVML,U,4)'="R"),'$$OLD^DGMTU4($P(IVML,U,2)) D  G NEEDQ
+ ; IVM*2.0*154  MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ I ($P(IVML,U,4)'="I")&($P(IVML,U,4)'="R"),'$$OLDMTPF^DGMTU4($P(IVML,U,2)) D  G NEEDQ
  .S ERROR="PATIENT HAS A CURRENT "_$S($P(IVML,U,5)=1:"MEANS",$P(IVML,U,5)=2:"COPAY EXEMPTION",1:"MEANS")_" TEST ON FILE"
  .Q
  ;
@@ -163,7 +164,8 @@ NEED(DFN,IVMSENT,ERROR) ; Description: Used to determine if a financial query sh
  ;
  ; If current test is not REQUIRED and not NO LONGER REQUIRED and it is 
  ; older than 365 days, initiate query.
- I ($P(IVML,U,4)'="R")&($P(IVML,U,4)'="N"),$$OLD^DGMTU4($P(IVML,U,2)) S SUCCESS=1 G NEEDQ
+ ; IVM*2.0*154  MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ I ($P(IVML,U,4)'="R")&($P(IVML,U,4)'="N"),$$OLDMTPF^DGMTU4($P(IVML,U,2)) S SUCCESS=1 G NEEDQ
  ;
  ; If a query is pending, don't send another.
  I $$OPEN^IVMCQ2(DFN) S ERROR="A QUERY IS ALREADY PENDING FOR THIS PATIENT" G NEEDQ

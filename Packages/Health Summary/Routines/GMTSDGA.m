@@ -1,6 +1,6 @@
-GMTSDGA ; SLC/MKB,KER/NDBI - Admissions for HS ; 03/24/2004
- ;;2.7;Health Summary;**28,49,71**;Oct 20, 1995
- ;                   
+GMTSDGA ; SLC/MKB,KER/NDBI - Admissions for HS ;12/12/13  08:40
+ ;;2.7;Health Summary;**28,49,71,101**;Oct 20, 1995;Build 12
+ ;
  ; External Reference
  ;   DBIA  3390  $$ICDDX^ICDCODE
  ;   DBIA    17  ^DGPM("ATID"
@@ -11,8 +11,8 @@ GMTSDGA ; SLC/MKB,KER/NDBI - Admissions for HS ; 03/24/2004
  ;   DBIA   512  ^DGPMLOS
  ;   DBIA 10061  IN5^VADPT
  ;   DBIA 10061  KVAR^VADPT
- ;                    
-ENAD ; Gets Admission Information 
+ ;
+ENAD ; Gets Admission Information
  S TT=1,FLGDX=0,FLGDC=0
  D PATINFO Q
 ENDC ; Discharge Information
@@ -51,19 +51,23 @@ GET ; Admission Data
  Q
 CONTGET ; ICD and LOS info only needed for certain MAS components
  Q:TT=2  Q:TT=6  N ICDX,ICDI I DGPMIFN D ^DGPMLOS S LOS=+X
- S PTF=$S($D(VAIP(12)):VAIP(12),1:"") Q:'$D(^ICD9)  Q:PTF=""  Q:'$D(^DGPT(PTF,70))
+ N GMTSDATE S GMTSDATE=9999999.9999999-ADM
+ S PTF=$S($D(VAIP(12)):VAIP(12),1:"") Q:PTF=""  Q:'$D(^DGPT(PTF,70))
  S ICD=^DGPT(PTF,70)
  S ICDI=+$P(ICD,U,11) I ICDI>0 D
- . S ICDX=$$ICDDX^ICDCODE(ICDI)
- . S ICD(ADM,1,80,ICDI,.01)=$P(ICDX,"^",2)
+ . ;S ICDX=$$ICDDX^ICDCODE(ICDI)
+ . S ICDX=$$ICDDATA^ICDXCODE("DIAG",ICDI,GMTSDATE)
+ . S ICD(ADM,1,80,ICDI,.01)=$P(ICDX,"^",2)_"("_$$GETICDCD^GMTSPXU1(GMTSDATE,"DIAG")_")"
  . S ICD(ADM,1,80,ICDI,3)=$P(ICDX,"^",4)
  S ICDI=+$P(ICD,U,10) I ICDI>0 D
- . S ICDX=$$ICDDX^ICDCODE(ICDI)
- . S ICD(ADM,2,80,ICDI,.01)=$P(ICDX,"^",2)
+ . ;S ICDX=$$ICDDX^ICDCODE(ICDI)
+ . S ICDX=$$ICDDATA^ICDXCODE("DIAG",ICDI,GMTSDATE)
+ . S ICD(ADM,2,80,ICDI,.01)=$P(ICDX,"^",2)_"("_$$GETICDCD^GMTSPXU1(GMTSDATE,"DIAG")_")"
  . S ICD(ADM,2,80,ICDI,3)=$P(ICDX,"^",4)
  F GMTSI=16:1:24 S ICDI=+$P(ICD,U,GMTSI) I ICDI>0 D
- . S ICDX=$$ICDDX^ICDCODE(ICDI)
- . S ICD(ADM,(GMTSI-13),80,ICDI,.01)=$P(ICDX,"^",2)
+ . ;S ICDX=$$ICDDX^ICDCODE(ICDI)
+ . S ICDX=$$ICDDATA^ICDXCODE("DIAG",ICDI,GMTSDATE)
+ . S ICD(ADM,(GMTSI-13),80,ICDI,.01)=$P(ICDX,"^",2)_"("_$$GETICDCD^GMTSPXU1(GMTSDATE,"DIAG")_")"
  . S ICD(ADM,(GMTSI-13),80,ICDI,3)=$P(ICDX,"^",4)
  Q
 KILLADM ; Kill Admission variables

@@ -1,5 +1,5 @@
 OOPSGUIC ;WIOFO/LLH-RPC routine for GET/SET CA7 ;04/22/04
- ;;2.0;ASISTS;**8,7,23,24**;Jun 03, 2002;Build 1
+ ;;2.0;ASISTS;**8,7,23,24,25**;Jun 03, 2002;Build 4
  ;
 CA7LIST(RESULTS,PERSON,CALL) ; builds CA-7 selection list from existing
  ;                         cases - not an add
@@ -165,6 +165,8 @@ GETD ; get the data
  S FLDA=FIELD_"*"
  ; hate to hardwire, but need data back as entered, not canonical
  I FILE=2262.03,FIELD=15 D FLD15 Q
+ ;if Incident Outcome multiple, need to sort in chron order OOPS*25
+ I FILE=2260,FIELD=95 D FLD95 Q
  D GETS^DIQ(FILE,IENS,FLDA,,"ARR")
  I $D(ARR) S SIEN="",RESULTS(0)="" D
  .F  S SIEN=$O(ARR(SPEC,SIEN)) Q:SIEN=""  D
@@ -245,4 +247,24 @@ FLD15 ; retrieves OSHA 300A Summary data from file 2262
  .S Y=$P(STR,U,1) D DD^%DT
  .S RESULTS(CNT)=Y_U_$P(STR,U,2,3)
  .S CNT=CNT+1
+ Q
+FLD95 ; sort Incident Outcomes so they display in chron order OOPS*25
+ N OOPSCNT,OOPSSREC,OOPSIEN,OOPSSUB,OOPSFLD,OOPSDATA,OOPSARR
+ S OOPSCNT=0
+ D GETS^DIQ(FILE,IENS,FLDA,,"ARR")
+ ;rebuild array so when it $O's it goes through in chron order
+ I $D(ARR) S OOPSSUB="",RESULTS(0)="" D
+ .F  S OOPSSUB=$O(ARR(SPEC,OOPSSUB)) Q:OOPSSUB=""  D
+ ..S OOPSSREC=$P(OOPSSUB,","),OOPSIEN=$P(OOPSSUB,",",2),OOPSFLD=""
+ ..F  S OOPSFLD=$O(ARR(SPEC,OOPSSUB,OOPSFLD)) Q:OOPSFLD=""  D
+ ...S OOPSARR(OOPSSREC,OOPSFLD)=ARR(SPEC,OOPSSUB,OOPSFLD)
+ ;now go through the new subscripted array and process
+ S OOPSSREC=""
+ F  S OOPSSREC=$O(OOPSARR(OOPSSREC)) Q:OOPSSREC=""  D
+ .S OOPSFLD=""
+ .F  S OOPSFLD=$O(OOPSARR(OOPSSREC,OOPSFLD)) Q:OOPSFLD=""  D
+ ..S OOPSDATA=OOPSARR(OOPSSREC,OOPSFLD)_U
+ ..S:$D(RESULTS(OOPSCNT))=0 RESULTS(OOPSCNT)=""
+ ..S RESULTS(OOPSCNT)=RESULTS(OOPSCNT)_OOPSDATA
+ .S OOPSCNT=OOPSCNT+1
  Q

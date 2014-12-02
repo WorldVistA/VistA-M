@@ -1,6 +1,33 @@
 IBCBB1 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**27,52,80,93,106,51,151,148,153,137,232,280,155,320,343,349,363,371,395,384,432,447**;21-MAR-94;Build 80
+ ;;2.0;INTEGRATED BILLING;**27,52,80,93,106,51,151,148,153,137,232,280,155,320,343,349,363,371,395,384,432,447,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; *** Begin IB*2.0*488 VD  (Issue 46 RBN)
+ N I
+ S I=""
+ S X=+$G(^DGCR(399,IBIFN,"MP"))
+ I 'X,$$MCRWNR^IBEFUNC(+$$CURR^IBCEF2(IBIFN)) S X=+$$CURR^IBCEF2(IBIFN)
+ I X,+$G(^DIC(36,X,3)) S I=$P(^(3),U,$S($$FT^IBCEF(IBIFN)=2:2,1:4))
+ S I=$$UP^XLFSTR(I)
+ I (I'=""&(I["PRNT")&($G(IBER)'["IB488")) D 
+ . S IBER=$G(IBER)_"IB488;"
+ ;
+ ; Cause an error if FORCED TO PRINT TO CLEARINGHOUSE
+ I $P($G(^DGCR(399,IBIFN,"TX")),U,8)=2 D
+ . S IBER=$G(IBER)_"IB489;"
+ ;
+ ; Cause a fatal error if the claim has no procedures & is NOT a UB-04 Inpatient claim.
+ I +$O(^DGCR(399,IBIFN,"CP",0))=0 D
+ .I $$INPAT^IBCEF(IBIFN,1),$$INSPRF^IBCEF(IBIFN) Q   ; inpatient UB-04 check
+ .I '$$INPAT^IBCEF(IBIFN,1),$$INSPRF^IBCEF(IBIFN) D  Q      ; Outpatient Institutional Claim.
+ ..I IBER["IB352" Q
+ ..S IBER=IBER_"IB352;"
+ .;
+ .; Professional claim
+ .I IBER["IB353" Q
+ .S IBER=IBER_"IB353;"
+ .Q
+ ; *** End IB*2.0*488 -- VD
  ;
  ;MAP TO DGCRBB1
  ;
@@ -173,7 +200,9 @@ IBCBB1 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
  ;        Diagnosis Coding, if MT copay - check for other co-payments
  ;
  I $P(IBNDTX,U,8),$$REQMRA^IBEFUNC(IBIFN) S IBER=IBER_"IB121;"   ; can't force MRAs to print
- I $P(IBNDTX,U,8)!$P(IBNDTX,U,9) D WARN^IBCBB11($S($$REQMRA^IBEFUNC(IBIFN)&($P(IBNDTX,U,9)):"MRA Secondary ",1:"")_"Bill has been forced to print "_$S($P(IBNDTX,U,8)=1!($P(IBNDTX,U,9)=1):"locally",1:"at clearinghouse"))
+ I $P(IBNDTX,U,8)!$P(IBNDTX,U,9) D
+ . Q:$P(IBNDTX,U,8)=2    ; Don't want to do this for option 2 any more.
+ . D WARN^IBCBB11($S($$REQMRA^IBEFUNC(IBIFN)&($P(IBNDTX,U,9)):"MRA Secondary ",1:"")_"Bill has been forced to print "_$S($P(IBNDTX,U,8)=1!($P(IBNDTX,U,9)=1):"locally",1:"at clearinghouse"))
  N IBXZ,IBIZ F IBIZ=12,13,14 S IBXZ=$P(IBNDM,U,IBIZ) I +IBXZ S IBXZ=$P($G(^DPT(DFN,.312,IBXZ,0)),U,18) I +IBXZ S IBXZ=$G(^IBA(355.3,+IBXZ,0)) I +$P(IBXZ,U,12) D
  . D WARN^IBCBB11($P($G(^DIC(36,+IBXZ,0)),U,1)_" requires Amb Care Certification")
  ;

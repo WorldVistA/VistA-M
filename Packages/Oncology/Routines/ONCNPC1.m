@@ -1,5 +1,5 @@
 ONCNPC1 ;Hines OIFO/GWB - PCE Study of Non-Hodgkin's Lymphoma ;05/30/00
- ;;2.11;ONCOLOGY;**11,13,26**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Table I
  K TABLE,HTABLE
  S TABLE("ACCESSION NUMBER")="AN"

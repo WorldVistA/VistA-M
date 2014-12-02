@@ -1,11 +1,13 @@
-QANUTL1 ;HISC/GJC-UTILITIES FOR INCIDENT REPORTING (PATIENT DATA) ;7/12/93  09:07
- ;;2.0;Incident Reporting;**20,27,32**;08/07/1992;Build 3
+QANUTL1 ;HISC/GJC-UTILITIES FOR INCIDENT REPORTING (PATIENT DATA) ; 5/23/12 12:46pm
+ ;;2.0;Incident Reporting;**20,27,32,33**;08/07/1992;Build 12
  ;
 DICW ;Sets up output for patient lookup.
  S QANY=$P(^QA(742,+Y,0),U),QANYY=+$P(^QA(742,+Y,0),U,3)
  S QANSSN=$S($P(^DPT(QANY,0),U,9)]"":$P(^DPT(QANY,0),U,9),1:"")
  N Y S Y=$P(^QA(742.4,QANYY,0),U,3) X ^DD("DD")
- W " "_QANSSN_" "_Y_" "_$P(^QA(742.1,$P(^QA(742.4,QANYY,0),U,2),0),U)
+ W " "_QANSSN_" "_Y_" "
+ Q:'$P(^QA(742.4,QANYY,0),U,2)  ;;check for null incident
+ W $P(^QA(742.1,$P(^QA(742.4,QANYY,0),U,2),0),U)
  K QANY,QANYY
  Q
 HDH ;

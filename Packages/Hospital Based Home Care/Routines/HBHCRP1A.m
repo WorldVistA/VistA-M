@@ -1,5 +1,20 @@
-HBHCRP1A ; LR VAMC(IRMS)/MJT-HBHC report on files 634.1, 634.2, & 634.3, (Form 3/4/5 (A/V/D respectively) Error(s)), sorted by form, then by: clinic, date, patient & includes: pt name, last 4, form, & date, calls DQ^HBHCRP31 ; Apr 2000
- ;;1.0;HOSPITAL BASED HOME CARE;**6,8,10,13,16,24**;NOV 01, 1993;Build 201
+HBHCRP1A ;LR VAMC(IRMS)/MJT - HBHC report on files 634.1, 634.2, & 634.3, (Form 3/4/5 (A/V/D respectively) Error(s)), sorted by form, then by: clinic, date, patient & includes: pt name, last 4, form, & date, calls DQ^HBHCRP31 ;Apr 2000
+ ;;1.0;HOSPITAL BASED HOME CARE;**6,8,10,13,16,24,25**;NOV 01, 1993;Build 45
+ ;
+ ; This routine references the following supported ICRs:
+ ; 5747    $$CODEC^ICDEX
+ ; 5747    $$VSTD^ICDEX
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;HBH*1.0*25   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;******************************************************************************
+ ;******************************************************************************
+ ;
  ; visits display current outpatient encounter file data, allowing easier re-entry when cleaning up errors, includes: Pt file IEN, error, provider, Dx, CPT code with Modifiers & clinic name, calls HBHCRP1B & PSEUDO^HBHCUTL3
  I $P(^HBHC(631.9,1,0),U,8)]"" W $C(7),!,"File Update in progress.  Please try again later." H 3 Q
  S %ZIS="Q",HBHCCC=0 K IOP,ZTIO,ZTSAVE D ^%ZIS Q:POP
@@ -42,7 +57,9 @@ OE ; Process Outpatient Encounter data
  S HBHCDFN=0 F HBHCI=1:1  S HBHCDFN=$O(HBHCCPTL(HBHCDFN)) Q:HBHCDFN'>0  S HBHCJ=0 F  S HBHCJ=$O(HBHCCPTL(HBHCDFN,HBHCJ)) Q:HBHCJ'>0  S HBHCINFO=HBHCCPTL(HBHCDFN,0),HBHCCPT=$$CPT^ICPTCOD($P(HBHCINFO,U)) D SETCPT,MOD
  Q
 ICD ; Dx info
- S ^TMP("HBHC",$J,HBHCFORM,HBHCCLN,HBHCDAT,HBHCNAME,HBHCSSN,3,HBHCI)=HBHCDX1_$S(HBHCICDP]"":$P($$ICDDX^ICDCODE(HBHCICDP),U,2)_"  "_$P($$ICDDX^ICDCODE(HBHCICDP),U,4),1:"")_$S(HBHCDX1["*":"  *  Primary Dx",1:"")
+ N DXINFO
+ S:HBHCICDP]"" DXINFO=$$CODEC^ICDEX(80,HBHCICDP)_"  "_$$VSTD^ICDEX(HBHCICDP)
+ S ^TMP("HBHC",$J,HBHCFORM,HBHCCLN,HBHCDAT,HBHCNAME,HBHCSSN,3,HBHCI)=HBHCDX1_$G(DXINFO)_$S(HBHCDX1["*":"  *  Primary Dx",1:"")
  Q
 SETCPT ; Set TMP global with CPT info
  S ^TMP("HBHC",$J,HBHCFORM,HBHCCLN,HBHCDAT,HBHCNAME,HBHCSSN,4,HBHCI)=$P(HBHCCPT,U,2)_HBHCSP3_$P(HBHCCPT,U,3)_"$"_$P(HBHCINFO,U,16)_"$"_$S($D(HBHCCPTL(HBHCDFN,12)):$P(HBHCCPTL(HBHCDFN,12),U,4),1:"")

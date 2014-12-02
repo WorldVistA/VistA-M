@@ -1,5 +1,5 @@
 LRAUDA ;AVAMC/REG/WTY/KLL - AUTOPSY PATH DATA ENTRY ;08/20/01
- ;;5.2;LAB SERVICE;**72,248,259,322**;Sep 27, 1994
+ ;;5.2;LAB SERVICE;**72,248,259,322,422**;Sep 27, 1994;Build 29
  ;
 L ;Define AU Section
  S LRDICS="AU",LRQUIT=0,XPAD=""
@@ -55,7 +55,7 @@ BDR ;Entry for resetting DR string
  S DR(4,63.23)=".01",LRSOP="B"
  Q
  ;
-A ;Autopsy Report/ICD9CM Coding
+A ;Autopsy Report/ICDCM Coding
  D L
  I LRQUIT D END Q
  D ADR
@@ -63,7 +63,7 @@ A ;Autopsy Report/ICD9CM Coding
  D EDIT
  Q
 ADR ;Entry for resetting DR string
- K DR S DR="13;13.01///^S X=LRWHO;32.1;32.2;32.3;99;80"
+ K DR S DR="13;13.01///^S X=LRWHO;32.1;32.2;32.3;99;"_$S($G(LRCDSYS)=30:"D EN^LRAPICD(LRDXV)",1:80)
  Q
 R ;Autopsy Supplementary Report
  D L
@@ -72,11 +72,11 @@ R ;Autopsy Supplementary Report
  D EDIT
  K LRSFLG
  Q
-I ;ICD9CM coding
+I ;ICDCM coding
  D L
  I LRQUIT D END Q
  I '$D(Y) D END Q
- S DR=80,LRSOP="I"
+ S DR=$S($G(LRCDSYS)=30:"D EN^LRAPICD(LRDXV)",1:80),LRSOP="I"
  D EDIT
  Q
 F ;Final Anatomic DX Date

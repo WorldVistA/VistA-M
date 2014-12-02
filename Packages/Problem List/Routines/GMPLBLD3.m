@@ -1,12 +1,12 @@
-GMPLBLD3 ; SLC/MKB -- Bld PL Selection Lists cont ;3/12/03 13:40
- ;;2.0;Problem List;**28**;Aug 25, 1994
+GMPLBLD3 ; SLC/MKB,TC -- Bld PL Selection Lists cont ;11/27/12  08:16
+ ;;2.0;Problem List;**28,42**;Aug 25, 1994;Build 46
  ;
- ; This routine invokes IA #3991
+ ; This routine invokes ICR #5699, #5747
  ;
 ASSIGN ; Assign list to clinic, users: Expects GMPLSLST
- N DIE,DA,DR D FULL^VALM1 G:+$G(GMPLSLST)'>0 ASQ
+ N DIE,DA,DR,DTOUT D FULL^VALM1 G:+$G(GMPLSLST)'>0 ASQ
  I '$$VALLIST^GMPLBLD2(+GMPLSLST) D  G ASQ
- . W !!,$C(7),"This Selection List contains problems with inactive ICD9 codes associated with"
+ . W !!,$C(7),"This Selection List contains problems with inactive ICD codes associated with"
  . W !,"them. The codes must be edited and corrected before the list can be assigned",!,"to users or clinics."
  . W !!,"If you have edited the list during this session to correct inactive codes, "
  . W !,"save the list prior to attempting to assign it."
@@ -69,7 +69,7 @@ DEL1 S DIR(0)="Y",DIR("B")="NO"
  ;
 MENU ; -- init variables and list array for GMPL LIST MENU list template
  ;    Expects GMPLSLST=selection list
- N GSEQ,PSEQ,GCNT,PCNT,GROUP,HDR,IFN,LCNT,ITEM,TEXT,CODE
+ N GSEQ,PSEQ,GCNT,PCNT,GROUP,HDR,IFN,LCNT,ITEM,TEXT,CODE,GMPLCPTR
  S (GSEQ,GCNT,LCNT)=0 K ^TMP("GMPLMENU",$J)
  W !!,"Retrieving list of "_$P(GMPLSLST,U,2)_" problems ..."
  F  S GSEQ=$O(^GMPL(125.1,"C",+GMPLSLST,GSEQ)) Q:GSEQ'>0  D
@@ -79,7 +79,9 @@ MENU ; -- init variables and list array for GMPL LIST MENU list template
  . F  S PSEQ=$O(^GMPL(125.12,"C",+GROUP,PSEQ)) Q:PSEQ'>0  D
  . . S IFN=$O(^GMPL(125.12,"C",+GROUP,PSEQ,0)) Q:IFN'>0
  . . S ITEM=$G(^GMPL(125.12,IFN,0)),TEXT=$P(ITEM,U,4),CODE=$P(ITEM,U,5)
- . . I $L(CODE),'$$STATCHK^ICDAPIU(CODE,DT) Q  ; screen inactive codes
+ . . I $L(CODE) D
+ . . . N GMPLCPTR S GMPLCPTR=$P($$CODECS^ICDEX(CODE,80,DT),U)
+ . . . I '$$STATCHK^ICDXCODE(GMPLCPTR,CODE,DT) Q  ; screen inactive codes
  . . S PCNT=PCNT+1,^TMP("GMPLMENU",$J,GCNT,PCNT)=$P(ITEM,U,3,5)
  I '$D(^TMP("GMPLMENU",$J)) W !!,"No items available.  Returning to Problem List ..." H 2 S VALMBCK="Q",VALMQUIT=1 Q
  D BUILD^GMPLMENU

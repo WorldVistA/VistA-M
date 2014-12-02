@@ -1,5 +1,5 @@
 SROAOP1 ;BIR/MAM - SET OPERATION INFO ;02/28/07
- ;;3.0; Surgery ;**38,47,63,81,88,95,97,125,142,153,160**;24 Jun 93;Build 7
+ ;;3.0;Surgery;**38,47,63,81,88,95,97,125,142,153,160,177**;24 Jun 93;Build 89
  N SRCSTAT K SRA,SRAO F I=0,200,"OP" S SRA(I)=$G(^SRF(SRTN,I))
  S SRDOC="Surgeon: "_$P(^VA(200,$P(^SRF(SRTN,.1),"^",4),0),"^") F I=3,4,5 S SRAO(I)=""
  K SROPS S SROPER=$P(SRA("OP"),"^")
@@ -9,8 +9,8 @@ SROAOP1 ;BIR/MAM - SET OPERATION INFO ;02/28/07
  S SRHDR(.5)=SRDOC,SRPAGE="PAGE: 1 OF 2"
  S SRCSTAT=">> Coding "_$S($P($G(^SRO(136,SRTN,10)),"^"):"",1:"Not ")_"Complete <<"
  D HDR^SROAUTL
- S X=$P($G(^SRO(136,SRTN,0)),"^",3) S:X X=$$ICDDX^ICDCODE(X,$P($G(^SRF(SRTN,0)),"^",9)),X=$P(X,"^",2)_"   "_$P(X,"^",4)
- W "Postop Diagnosis Code (ICD9): ",$S(X'="":X,1:"NOT ENTERED"),!
+ S X=$P($G(^SRO(136,SRTN,0)),"^",3) S:X X=$$ICD^SROICD(SRTN,X),X=$P(X,"^",2)_"   "_$P(X,"^",4)
+ W "Postop Diagnosis Code "_$$ICDSTR^SROICD(SRTN)_": ",$S(X'="":X,1:"NOT ENTERED"),!
  W !," 1. Surgical Specialty: ",?33,$P(SRAO(1),"^"),!," 2. Principal Operation: ",?33,SROPS(1) I $D(SROPS(2)) W !,?33,SROPS(2) I $D(SROPS(3)) W !,?33,SROPS(3) I $D(SROPS(4)) W !,?33,SROPS(4)
  N SRPROC,SRL S SRL=49 D CPTS^SROAUTL0 W !," 3. CPT Codes (view only):" I SRPROC(1)="" S SRPROC(1)="NOT ENTERED"
  F I=1:1 Q:'$D(SRPROC(I))  W:I=1 ?33,SRPROC(I) W:I'=1 !,?33,SRPROC(I)

@@ -125,7 +125,7 @@ MESSAGE ;Send message to user if unable to change Care Unit pointer(s).
  S XMY(DUZ)="" ; send message to user
  S IBTST=".TEST.MIR.TST.MIRROR.TRAIN."     ; various test names
  S IBNETNM=$G(^XMB("NETNAME"))
- I IBNETNM'="",('$F(IBTST,"."_$P(IBNETNM,".",1)_".")) S XMY("PHELPS,TY@FORUM.domain.ext")=""
+ I IBNETNM'="",('$F(IBTST,"."_$P(IBNETNM,".",1)_".")) S XMY("PHELPS,TY@DOMAIN.EXT")=""
  S IBC=0
  S IBC=IBC+1,IBTXT(IBC)="This message has been sent by patch IB*2.0*279 at the completion of"
  S IBC=IBC+1,IBTXT(IBC)="the pre-init routine."

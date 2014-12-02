@@ -1,5 +1,5 @@
 IBCNSC01 ;ALB/NLR - INSURANCE COMPANY EDIT ;6/1/05 10:06am
- ;;2.0;INTEGRATED BILLING;**52,137,191,184,232,320,349,371,399,416,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**52,137,191,184,232,320,349,371,399,416,432,494**;21-MAR-94;Build 11
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 PARAM ; -- Insurance company parameters region
@@ -85,6 +85,7 @@ PAYER ; This procedure builds the display for the payer associated with
  ; this insurance company.
  ; ESG - 7/29/02 - IIV project
  ;     -  9/9/09 - eIV updated
+ ;     -  2/4/13 - remove ePharmacy references (IB*2*494)
  ;
  NEW PAYERIEN,PAYR,APPDATA,APP,DATA,APPNAME,A1,A2,A3,A4,A5,A6,A7,A8
  NEW START,TITLE,OFFSET,IBLINE
@@ -97,6 +98,7 @@ PAYER ; This procedure builds the display for the payer associated with
  .. S APPNAME=$$EXTERNAL^DILFD(365.121,.01,"",$P(DATA,U,1))
  .. I APPNAME="" Q
  .. I APPNAME="IIV" S APPNAME="eIV"   ; IB*2*416 - change external display to be eIV
+ .. I APPNAME="E-PHARM" Q             ; IB*2*494 - don't display ePharmacy application data
  .. I $D(APPDATA(APPNAME)) Q
  .. S (A1,A2,A3,A4,A5,A6,A7)="NO",A8=""
  .. I $P(DATA,U,2) S A1="YES"      ; national active
@@ -115,7 +117,7 @@ PAYER ; This procedure builds the display for the payer associated with
  ;
  S START=$O(^TMP("IBCNSC",$J,""),-1)+1
  S IB1ST("PAYER")=START
- S TITLE=" Payer Information:  e-IV, e-Pharmacy "
+ S TITLE=" Payer Information:  e-IV "     ; esg - IB*2*494 - remove ePharmacy reference
  S OFFSET=(40-($L(TITLE)/2))\1+1
  D SET^IBCNSP(START,OFFSET,TITLE,IORVON,IORVOFF)
  D SET^IBCNSP(START+1,9,"Payer Name: "_$P(PAYR,U,1))

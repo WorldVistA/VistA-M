@@ -11,7 +11,7 @@ GROUP ; Check to see if mail group has correct remote address. If not, correct i
  I 'XUGIEN D  Q
  . D BMES^XPDUTL("ERROR: Cannot find mail group 'XUOAA CLIN TRAINEE'")
  . S XPDABORT=1
- S XUOIEN=$$FIND1^DIC(3.812,","_XUGIEN_",","X","AIMCDATA@LRN.domain.ext")
+ S XUOIEN=$$FIND1^DIC(3.812,","_XUGIEN_",","X","AIMCDATA@LRN.DOMAIN.EXT")
  I $D(DIERR) D  Q
  . D BMES^XPDUTL("ERROR: Lookup of old remote address failed.")
  . S XPDABORT=1
@@ -22,20 +22,20 @@ GROUP ; Check to see if mail group has correct remote address. If not, correct i
  . D MES^XPDUTL("I've deleted the old remote address from the group.")
  E  D
  . D MES^XPDUTL("The old remote address was already deleted. No action taken.")
- S XUNIEN=$$FIND1^DIC(3.812,","_XUGIEN_",","X","AIMCDATA@domain.ext")
+ S XUNIEN=$$FIND1^DIC(3.812,","_XUGIEN_",","X","AIMCDATA@DOMAIN.EXT")
  I $D(DIERR) D  Q
  . D BMES^XPDUTL("ERROR: Lookup of new remote address failed.")
  . S XPDABORT=1
  I XUNIEN D
- . D MES^XPDUTL("The new remote address 'AIMCDATA@domain.ext' was already added. No action taken.")
+ . D MES^XPDUTL("The new remote address 'AIMCDATA@DOMAIN.EXT' was already added. No action taken.")
  E  D  ; Add the new remote address to the group.
  . N XUFDA
- . S XUFDA(3.812,"?+1,"_XUGIEN_",",.01)="AIMCDATA@domain.ext"
+ . S XUFDA(3.812,"?+1,"_XUGIEN_",",.01)="AIMCDATA@DOMAIN.EXT"
  . D UPDATE^DIE("","XUFDA")
  . I $D(DIERR) D  Q
  . . D BMES^XPDUTL("ERROR: Cannot add the new remote address to the group.")
  . . S XPDABORT=1
- . D MES^XPDUTL("I've added the new remote address 'AIMCDATA@domain.ext' to the group.")
+ . D MES^XPDUTL("I've added the new remote address 'AIMCDATA@DOMAIN.EXT' to the group.")
  D MES^XPDUTL("Finished Mail Group Check.")
  Q
  ;

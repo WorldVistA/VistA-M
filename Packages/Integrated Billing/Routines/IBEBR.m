@@ -1,6 +1,6 @@
 IBEBR ;ALB/AAS - Add/Edit IB ACTION CHARGE FILE ;3-MAR-92
- ;;2.0;INTEGRATED BILLING;**34,52,429**;21-MAR-94;Build 62
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**34,52,429,524**;21-MAR-94;Build 24
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % ; entry point
  D HOME^%ZIS W @IOF
@@ -91,10 +91,12 @@ END ;Kill vars
 COPAY ;;Co-pay Type
 NSC ;;RX1^RX3^RX4^^NSC RX CO-PAY (RX1)
 SC ;;RX2^RX5^RX6^^SC RX CO-PAY (RX2)
+FSNSC ;;FEE SERV RX1^FEE SERV RX3^FEE SERV RX4^^FEE SERV NSC RX CO-PAY (RX1)
  ;;
 PERDIEM ;;Per Diem
  ;;INPT PER DIEM
  ;;NHCU PER DIEM
+ ;;FEE SERV INPT PER DIEM
  ;;
 HCFA ;;HCFA Amb. Surg. Rate
  ;;MEDICARE 1^^^^AMB SURG RATE 1

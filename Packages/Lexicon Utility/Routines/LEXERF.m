@@ -1,13 +1,19 @@
-LEXERF ; ISL Functions for Exc/Rep Words          ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXERF ;ISL/KER - Functions for Exc/Rep Words ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^TMP("LEXTKN")      SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    $$UP^XLFSTR         ICR  10103
+ ;               
 EXIST(X) ; Boolean function returns:
  ;    0    If X will result in a unsuccessful search (not found)
  ;    1    If X will result in a successful search (found)
  ;   IFN   If X has an exact match (found)
  Q:'$D(X) 0 Q:X="" 0
  I $D(^LEX(757.01,"AB",$$UP^XLFSTR(X))) Q $O(^LEX(757.01,"AB",$$UP^XLFSTR(X),0))
- N LEXOK D PTX^LEXTOLKN S LEXOK=1
+ N LEXOK D PTX^LEXTOKN S LEXOK=1
  I '$D(^TMP("LEXTKN",$J,0)) K ^TMP("LEXTKN"),LEXOK Q 0
  I ^TMP("LEXTKN",$J,0)<1 K ^TMP("LEXTKN"),LEXOK Q 0
  I ^TMP("LEXTKN",$J,0)=1 D  K ^TMP("LEXTKN"),LEXKEY,LEXKEY2 Q LEXOK

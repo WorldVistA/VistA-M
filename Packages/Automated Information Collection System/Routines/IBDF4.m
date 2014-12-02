@@ -1,5 +1,6 @@
-IBDF4 ;ALB/CJM - ENCOUNTER FORM - BUILD FORM(editing group's selections) ;NOV 16,1992
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**19,38,56**;APR 24, 1997
+IBDF4 ;ALB/CJM - ENCOUNTER FORM - BUILD FORM(editing group's selections) ;11/16/92
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**19,38,56,63**;APR 24, 1997;Build 80
+ ;
  ;
 SLCTNS ;
  N IBRTN
@@ -19,6 +20,7 @@ ONEXIT ;exit code for the list manager
 IDXSLCTN ;build an array of selections in print order for the list processor
  N SLCTN,ODR,NODE
  K @VALMAR
+ I '$D(^TMP("IBDF DELETE SELECTION OPTION",$J)) S ^TMP("IBDF DELETE SELECTION OPTION",$J)=0
  S ODR="",VALMCNT=0
  F  S ODR=$O(^IBE(357.3,"APO",IBLIST,IBGRP,ODR)) Q:ODR=""  D
  .S SLCTN="" F  S SLCTN=$O(^IBE(357.3,"APO",IBLIST,IBGRP,ODR,SLCTN)) Q:'SLCTN  D
@@ -35,6 +37,8 @@ IDXSLCTN ;build an array of selections in print order for the list processor
  ..S VALMCNT=VALMCNT+1
  ..S @VALMAR@(VALMCNT,0)=$$DISPLAY(SLCTN,VALMCNT),@VALMAR@("IDX",VALMCNT,VALMCNT)=SLCTN
  ..D FLDCTRL^VALM10(VALMCNT,"ID") ;set video for ID column
+ I ^TMP("IBDF DELETE SELECTION OPTION",$J)=1,'$O(^IBE(357.3,"APO",IBLIST,IBGRP,"")) D  ;User deleted all selections. Update history files during save.
+ .S ^TMP("IBDF DELETED ALL SELECTIONS",$J)=1
  Q
 LMGRPHDR ;header for the screen
  S VALMHDR(1)="SELECTIONS CURRENTLY DEFINED FOR '"_$$GRPNAME_"' PRINT GROUP"
@@ -43,9 +47,9 @@ LMGRPHDR ;header for the screen
 GRPNAME() ;the name of the selection group
  Q $P($G(^IBE(357.4,IBGRP,0)),"^",1)
  ;
-DISPLAY(SLCTN,COUNT) ;returns a line to display to the list containing a selection - SLCTN is a ptr to the selectin, COUNT is the number of the selection on the list
+DISPLAY(SLCTN,COUNT) ;returns a line to display to the list containing a selection - SLCTN is a ptr to the selection, COUNT is the number of the selection on the list
  N SC,SCDA,VAL,RET,W,NODE,ORDER
- ;W - an array cotaining the widths of the subcolumns that contain text
+ ;W - an array containing the widths of the subcolumns that contain text
  S VAL=""
  S RET=$$PADRIGHT^IBDFU(COUNT,4)
  S NODE=$G(^IBE(357.3,SLCTN,0))
@@ -68,6 +72,7 @@ ADDSLCTN ;allows the user to add a selection to the selection group
  S VALMBCK="R"
  D FULL^VALM1
  I IBRTN("ACTION")'=3 D NOGOOD G ADDEXIT
+ S ^TMP("IBDF ADDSLCTN",$J)=1
  K @IBRTN("DATA_LOCATION")
  S QUIT=0 F  D  Q:QUIT  W !!!,"Now for another SELECTION LIST entry!"
  .I '$$DORTN^IBDFU1B(.IBRTN) S QUIT=1 D NOGOOD Q
@@ -77,7 +82,8 @@ ADDSLCTN ;allows the user to add a selection to the selection group
 ADDEXIT ;
  D IDXSLCTN
  Q
-ADDREC(QUIT,ORDER,SLCTN) ;allows the user to number the selection, edit the editable subcolumns, then adds the record - sets QUIT=1 if user quits
+ ;IBDEXCOD - the external code that we are adding to the group (optional)
+ADDREC(QUIT,ORDER,SLCTN,IBDEXCOD) ;allows the user to number the selection, edit the editable subcolumns, then adds the record - sets QUIT=1 if user quits
  N SUB,COUNT,NODE,VAL,DLAYGO,QTY,DTOUT,DUOUT,DIRUT
  I $P($G(^IBE(357.6,$P($G(^IBE(357.2,+IBLIST,0)),"^",11),16)),"^",8) S DIR(0)="NO",DIR("A")="Quantity",DIR("B")=1,DIR("?")="Enter the number of occurrences" D ^DIR K DIR S:$D(DTOUT)!$D(DUOUT) QUIT=1 Q:QUIT  S QTY=$G(Y)
  I '$G(ORDER) D  Q:QUIT
@@ -93,8 +99,10 @@ ADDREC(QUIT,ORDER,SLCTN) ;allows the user to number the selection, edit the edit
  I 'SLCTN W !,"Unable to create a new selection record!" D PAUSE^VALM1 S QUIT=1 Q
  S ^IBE(357.3,SLCTN,0)=NODE
  ;--- move codes and add modifiers
- D CODES^IBDF4A,ADD^IBDF4C
- ;---move the subcolum set up
+ D CODES^IBDF4A(.QUIT)
+ Q:QUIT
+ D ADD^IBDF4C
+ ;---move the subcolumn set up
  F SUB=1:1:8 D  Q:QUIT
  .I $G(IBLIST("SCTYPE",SUB))=1 I IBLIST("SCPIECE",SUB),IBLIST("SCW",SUB) D
  ..S NODE=$$DATANODE^IBDFU1B(IBRTN,IBLIST("SCPIECE",SUB))
@@ -104,32 +112,61 @@ ADDREC(QUIT,ORDER,SLCTN) ;allows the user to number the selection, edit the edit
  ..W !!,"Subcolumn Header: "_IBLIST("SCHDR",SUB) K DIR S DIR(0)="FO^0:"_(IBLIST("SCW",SUB)*(1+IBLIST("BTWN"))),DIR("A")="Edit Subcolumn "_SUB,DIR("B")=VAL(SUB)_$S($G(QTY)>1:" x "_QTY,1:"")
  ..I $P($G(^IBE(357.3,SLCTN,3,0)),"^",4)>0 D
  ...S:DIR("B")'["w/ mod" DIR("B")=DIR("B")_"w/ mod"
- ..D ^DIR K DIR S:$D(DTOUT)!$D(DUOUT) QUIT=1 Q:QUIT  S VAL(SUB)=Y I IBLIST("SCPIECE",SUB)=1,X="" S QUIT=1
+ ..D ^DIR K DIR S:$D(DTOUT)!($D(DUOUT)) QUIT=1 Q:QUIT  S VAL(SUB)=Y I IBLIST("SCPIECE",SUB)=1,X="" S QUIT=1 Q
+ Q:QUIT
  ;
  ;add the subcolumn value multiple
  S COUNT=0 F SUB=1:1:8 I $G(VAL(SUB))'="" S COUNT=COUNT+1,^IBE(357.3,SLCTN,1,COUNT,0)=SUB_"^"_VAL(SUB)
  S ^IBE(357.3,SLCTN,1,0)="^357.31IA^"_COUNT_"^"_COUNT
  K DA S DA=SLCTN,DIK="^IBE(357.3," D IX^DIK K DIK,DA
- D NARR,TERM
+ D NARR(.QUIT)
+ Q:QUIT
+ D TERM(.QUIT,$G(IBDEXCOD))
  Q
  ;
-NARR ; -- edit provider narrative, but only for selections where the
+NARR(IBDQUIT) ; -- edit provider narrative, but only for selections where the
  ;    interface allows editing
- N DIE,DA,DR
+ N DIE,DA,DR,Y
  I $P($G(^IBE(357.6,+$P($G(^IBE(357.2,+IBLIST,0)),U,11),0)),U,17) D
  .S DIE="^IBE(357.3,",DA=SLCTN,DR=2.01 D ^DIE K DIE,DA,DR
+ I $D(Y) S IBDQUIT=1
  Q
- ;
-TERM ; -- map selection to clinical lexicon, but only for selections where
+ ;IBDCODEX - the external code that we are adding to the group (optional)
+TERM(IBDQUIT,IBDCODEX) ; -- map selection to clinical lexicon, but only for selections where
  ;    the package interface allows editing
- N DIE,DA,DR,GMPTUN,GMPTSUB,GMPTSHOW,XTLKGLB,XTLKHLP,XTLKKSCH,XTLKSAY,IBDLEX
+ ;newed DIC to prevent bug in Lexicon
+ N DIE,DA,DR,GMPTUN,GMPTSUB,GMPTSHOW,XTLKGLB,XTLKHLP,XTLKKSCH,XTLKSAY,IBDLEX,DIC,IBDDT
+ N LEXQ,LEXVDT,Y,IBLEXNS,IBDLEXSS,IBD1STDT,IBDIMPDT
+ ;
+ S IBLEXNS="GMPL",IBDLEXSS="PL1"
+ ;if this is ICD package interface then if it is ICD-10 then used "10D" if anything else (ICD9 at the moment) - use "ICD"
+ I $G(IBRTN("NAME"))["ICD" S (IBLEXNS,IBDLEXSS)=$S($G(IBRTN("NAME"))["ICD-10":"10D",1:"ICD")
+ ;
+ S IBDDT="" ;keep using "" for ICD-9
+ ;for ICD-10 codes:
+ ;if IBDCODEX is not provided then use ICD-10 implementation date if it is prior to the ICD-10 implementation date
+ ; and default if it is on and after 
+ ;if IBDCODEX is defined we rely on the selection logic (see FILTER^IBDUTICD). To pass CONFIG^LEXSET we
+ ; use the latest ACTIVE status date of  the code 
+ I $G(IBRTN("NAME"))["ICD-10" D
+ . ; get the ICD-10 activation date
+ . S IBDIMPDT=$$IMPDATE^IBDUTICD("10D")
+ . ;if code value is NOT defined/not available then
+ . ; set the date to ICD-10 activation if the user adds the code prior to ICD-10 system activation
+ . ; and to default "" if in and after ICD-10 activation and quit
+ . I $G(IBDCODEX)="" S IBDDT=$S(DT<IBDIMPDT:IBDIMPDT,1:"") Q
+ . ;if code value is available then get the date of the last ACTIVE status and use it for CONFIG^LEXSET
+ . S IBDDT=$$LSTACTST^IBDUTICD(IBDCODEX)
+ . ;if not found for some reason then follow the logic "when the code is NOT available" above
+ . I IBDDT=0 S IBDDT=$S(DT<IBDIMPDT:IBDIMPDT,1:"")
  I $P($G(^IBE(357.6,+$P($G(^IBE(357.2,+IBLIST,0)),U,11),0)),U,18) D
- .I $D(^LEX)>1 S X="LEXSET" X ^%ZOSF("TEST") I $T D CONFIG^LEXSET("GMPL","PL1") S IBDLEX=1
- .I '$D(IBDLEX) S X="GMPTSET" X ^%ZOSF("TEST") I $T D CONFIG^GMPTSET("GMPL","PL1") S IBDLEX=1
+ .I $D(^LEX)>1 S X="LEXSET" X ^%ZOSF("TEST") I $T D CONFIG^LEXSET(IBLEXNS,IBDLEXSS,IBDDT) S IBDLEX=1
+ .I '$D(IBDLEX) S X="GMPTSET" X ^%ZOSF("TEST") I $T D CONFIG^GMPTSET(IBLEXNS,IBDLEXSS,IBDDT) S IBDLEX=1
  .;D CONFIG^GMPTSET("ICD","ICD") (this is an alternate filter)
  .Q:'$D(IBDLEX)
  .S DIE="^IBE(357.3,",DA=SLCTN,DR="2.02//"_$P($G(^IBE(357.3,DA,0)),"^") D ^DIE
  K DIC
+ I $D(Y) S IBDQUIT=1
  Q
  ;
 CODES ; -- allow selection of a second code to pass through for this entry
@@ -167,7 +204,7 @@ SEQUENCE ;allows the user to resequence all of the selections on the list
  Q:$D(DIRUT)!(Y=-1)
  K SUBCOL S SUBCOL=+Y
  ;
- ;sort aphabetically or numerically?
+ ;sort alphabetically or numerically?
  K DIR
  S DIR("A")="How should the list be sorted?",DIR(0)="SO^1:ALPHABETICALLY;2:NUMERICALLY;",DIR("B")="ALPHABETICALLY"
  D ^DIR

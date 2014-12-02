@@ -1,5 +1,5 @@
-MAGGSQI ;WOIFO/GEK/SG - Image Integrity Checker ; 3/9/09 12:51pm
- ;;3.0;IMAGING;**8,93**;Dec 02, 2009;Build 163
+MAGGSQI ;WOIFO/GEK/SG - Image Integrity Checker ; 18 Jul 2013 5:15 PM
+ ;;3.0;IMAGING;**8,93,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -8,7 +8,6 @@ MAGGSQI ;WOIFO/GEK/SG - Image Integrity Checker ; 3/9/09 12:51pm
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -165,6 +164,11 @@ CHK(MAGRY,MAGIEN) ;
  . ;I $P(^MAG(2005.03,MAGTMPRT,0),"^",4)=63
  . S MAGRY(0)="1^Lab image not checked "
  . ;D @$S(MAGTMPRT=63:"AU",MAGTMPRT=63.2:"AU",1:"LAB") Q
+ ;
+ ; DICOM temporary file for consults and anatomic pathology
+ I (MAGPK=2006.5838)!(MAGPK=2006.5839) D  Q
+ . S MAGRY(0)="1^DICOM temp image not checked "
+ . Q
  ;
  S MAGRY(0)="2^Images only point to Patient."
  Q

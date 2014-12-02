@@ -1,5 +1,5 @@
-PXRMINDL ; SLC/PKR - List building routines. ;01/27/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMINDL ; SLC/PKR - List building routines. ;01/07/2013
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,26**;Feb 04, 2005;Build 404
  ;================================================
 EVALPL(FINDPA,ENODE,TERMARR,PLIST) ;General patient list term evaluator.
  ;Return the list in ^TMP($J,PLIST)
@@ -108,7 +108,7 @@ GPLIST(FILENUM,SNODE,ITEM,PFINDPA,PLIST) ;Add to the patient list
  .. I PFINDPA(0)["YTT(601.71" S DAS=DAS_"S"_$P(PFINDPA(0),U,12)
  .. D GETDATA^PXRMDATA(FILENUM,DAS,.FIEVD)
  .. S VALUE=$G(FIEVD("VALUE"))
- .. I INVFD D GETDATA^PXRMVSIT(FIEVD("VISIT"),.FIEVD,0)
+ .. I INVFD,$D(FIEVD("VISIT")) D GETDATA^PXRMVSIT(FIEVD("VISIT"),.FIEVD,0)
  .. S FIEVD("DATE")=DATE
  ..;If there is a status list make sure the finding has a status on
  ..;the list.

@@ -1,13 +1,13 @@
-LEXXFI6 ; ISL/KER - File Info - DD Information      ; 07/28/2004
- ;;2.0;LEXICON UTILITY;**32**;Sep 23, 1996
- Q
- ;                        
+LEXXFI6 ;ISL/KER - File Info - DD Information ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**32,80**;Sep 23, 1996;Build 1
+ ;               
  ; Global Variables
- ;   ^TMP("LEXI",$J      SACC 2.3.2.5.1
- ;                       
+ ;    ^TMP("LEXI")        Suggest SACC 2.3.2.5.1
+ ;               
  ; External References
- ;   DBIA 10022  %XY^%RCR
- ;                            
+ ;    %XY^%RCR            ICR  10022
+ ;               
+ Q
 DDI(X,LEX) ; Data Dictionary Information
  N %X,%Y,LEXFI,LEXFLD,LEXLOC,LEXND,LEXNDD,LEXNM,LEXSF
  K ^TMP("LEXI",$J) S LEXFI=+($G(X)) Q:+LEXFI'>0

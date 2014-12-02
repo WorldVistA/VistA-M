@@ -40,7 +40,7 @@ LOCAL ;Send a message to local mail group
 TRACK() ;EF. Should VA track the installation of this patch at a national level?
  Q:$G(XPY)="" 0  ; No - National site tracking was not requested
  ;Quit if not VA production primary domain
- I $G(^XMB("NETNAME"))'[".domain.ext" D BMES^XPDUTL(" Not a VA primary domain") Q 0
+ I $G(^XMB("NETNAME"))'[".DOMAIN.EXT" D BMES^XPDUTL(" Not a VA primary domain") Q 0
  ;X ^%ZOSF("UCI") S %=^%ZOSF("PROD")
  ;S:%'["," Y=$P(Y,",")
  ;I Y'=% D BMES^XPDUTL(" Not a production UCI") Q ""
@@ -71,7 +71,7 @@ FORUM() ;EF. send to Server on FORUM
  Q:'XPDTRACK ""
  N XMY,XPDTEXT,XMTEXT,XMDUZ,XMSUB,XMZ
  K ^TMP($J)
- S:XPY XMY("S.A5CSTS@FORUM.domain.ext")=""
+ S:XPY XMY("S.A5CSTS@DOMAIN.EXT")=""
  S:$L($P(XPY,U,2)) XMY($P(XPY,U,2))=""
  ;Message for server
  S XPDTEXT(1,0)="PACKAGE INSTALL"

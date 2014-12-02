@@ -1,15 +1,15 @@
-DICOMPW ;SFISC/GFT-EVALUATE COMPUTED FLD EXPR ;5:56 AM  20 Dec 2001
- ;;22.0;VA FileMan;**6,76**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
-COLON N DICOMPW K DP,Y S DICOMPW=DICOMP
- I $D(DIC)#2,$P(X,":",2)="" S X=$P(X,":"),DIC(0)="FIZO",DIC("S")="N A S A=$P(^(0),U,2) I A[""P""!(A[""p""),'A" D ^DIC K DIC S X=X_":" D:Y>0 ARC I Y>0 S X="INTERNAL(#"_+Y_")",DP=+$P($P(Y(0),U,2),"P",2)_U_$P(Y(0),U,3)
- I  I $P(Y(0),U,2)["p" S X=$P(Y(0),U,5,99),DP=+$P($P(Y(0),U,2),"p",2),DP=DP_$G(^DIC(DP,0,"GL")),Y=0 G JUMP ;computed pointer
+DICOMPW ;SFISC/GFT-EVALUATE COMPUTED FLD EXPR 1/7/2004;8FEB2012
+ ;;22.0;VA FileMan;**6,76,169**;Mar 30, 1999;Build 26
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+COLON N DICOMPW K DP,Y S DICOMPW=DICOMP ;COME HERE WHEN INPUT ENDS IN COLON
+ I $D(DIC)#2,$P(X,":",2)="" S X=$P(X,":"),DIC(0)="FIZO",DIC("S")="N A S A=$P(^(0),U,2) I A[""P""!(A[""p""),'A" N DICR,DO,DIY D ^DIC K DIC S X=X_":" D:Y>0 ARC I Y>0 S X="INTERNAL(#"_+Y_")",DP=+$P($P(Y(0),U,2),"P",2)_U_$P(Y(0),U,3)
+ I  I $P(Y(0),U,2)["p" S X=$P(Y(0),U,5,99),DP=+$P($P(Y(0),U,2),"p",2),DP=DP_$G(^DIC(DP,0,"GL")),Y=0 G JUMP:$P(Y(0),U,2)'["m" S DICOMPW=DICOMP+100 D IJ S Y=D_"m" Q  ;computed pointer, possibly multiple
  I $G(Y)'>0 S X=$E(X,1,$L(X)-1),DICOMPX="",DICOMPX(0)="D("
  S DICOMP=DICOMP_"S"
  D EN^DICOMP G Q:'$D(X)
- I '$D(DP) S DP=+DICOMPX K:Y'>DICOMPW X S %=I(+Y),DP=DP_$S(%[U:%,1:U_$P(%,"""",1)_$P(%,"""",2)) G Q
+ I '$D(DP) K:Y'>DICOMPW X S %=I(+Y),DP=J(+Y)_$S(%[U:%,1:U_$P(%,"""",1)_$P(%,"""",2)) G Q
 JUMP S:$D(DIFG) DIFG=2 S DICOMP=DICOMPW D DRW^DICOMPX G Q:'$D(^DIC(+DP,0)) S D=Y,Y=+DP X DIC("S") S Y=D I '$T K X,DIC("S") G Q
- F D=DICOMPW\100*100:1 S X="S I("_D_",0)=D"_(D#100)_" "_X I +DICOMPW=D S X=X_" S D(0)=+X",D=Y\100+1*100,I(D)=U_$P(DP,U,2),J(D)=+DP,Y=D_U_Y Q
+IJ F D=DICOMPW\100*100:1 S X="S I("_D_",0)=D"_(D#100)_" "_X I +DICOMPW=D S X=X_"  S D(0)=+X",D=Y\100+1*100,I(D)=U_$P(DP,U,2),J(D)=+DP,Y=D_U_Y Q
 Q S:$D(DIFG)&$D(X) DIFG("DICOMP")=DICOMPX K DICOMP,DICOMPX,DICOMPW Q
  ;
  ;
@@ -17,9 +17,9 @@ M ;
  S (D,DS)=0,DZ="""",Y=J(DLV) I DICOMP["W" D ASKE,ASK:'D I D<0 K X Q
  S:DS DZ="E"""
  I D S DZ=$E("W",$D(DICO(3)))_"L"_DZ_$S(DLV=DLV0:"",1:",DIC(""P"")="""_$P(^DD(J(DLV-1),$O(^DD(J(DLV-1),"SB",J(DLV),0)),0),U,2)_"""") I D=2 S DZ=DZ_",X=""""""""_X_"""""""""
- S (%,%Y)=DLV#100,DZ=" K DIC S "_$P("Y=-1,",U,%>0)_"DIC="""_X_""",DIC(0)=""MF"_DZ,X=" D ^DIC"_$P(":D"_(%-1)_">0",U,%>0)_" S (D,D"_%_$S($D(DICOMPX(0)):","_DICOMPX(0)_%_")",1:"")_")=+Y"
+ S (%,%Y)=DLV#100,DZ="N DIC S DIC=X N X S X=DIC,"_$P("Y=-1,",U,%>0)_"DIC="""_X_""",DIC(0)=""MF"_DZ_" D ^DIC"_$P(":D"_(%-1)_">0",U,%>0),X=" S (D,D"_%_$S($D(DICOMPX(0)):","_DICOMPX(0)_%_")",1:"")_")=+Y"
  I D F %=%:-1:1 S X=X_",DA("_%_")=DIU("_%_")",DZ=DZ_",DIU("_%_")=$S($D(DA("_%_")):DA("_%_"),1:0),DA("_%_")=D"_(%Y-%)
- S X=DZ_X
+ S %=X D DIMP^DICOMPZ(DZ) S X=X_%
  I W=":" S M=M+1 Q
  S I="#.01"_$E(I,M,999),M=0 Q
  ;
@@ -40,7 +40,9 @@ ASK1 W !,"DO YOU WANT TO PERMIT ADDING A NEW '"_$O(^DD(Y,0,"NM",0))_"' ENTRY"
 NO S D=0 Q
  ;
 DPS ;
- S X=DPS(DPS),%=$O(DPS(DPS,"$")) S:$D(DPS(DPS,"BOOL")) DBOOL=DPS(DPS,"BOOL") I %["$" S X=X_"X)"_DPS(DPS,%)
+ S X=DPS(DPS),%=$O(DPS(DPS,"$")) S:$D(DPS(DPS,"BOOL")) DBOOL=DPS(DPS,"BOOL") I %["$" S X=X_"X)"_DPS(DPS,%) D
+ .N % S %=X N X S X=% F  Q:$E(X)'=" "  S X=$E(X,2,999)
+ .D ^DIM I '$D(X) S W(DPS)="BAD SYNTAX!"
  I $D(DPS(DPS,"DATE")) S DATE(K+1)=1
  S %=$D(DATE(K)) I $D(DPS(DPS,U)) S K=K+2,K(K-1)=X,K(K)=$E(DPS(DPS,U)),X=$E(DPS(DPS,U),2,99)
  I %&$D(DPS(DPS,"O"))!$D(DPS(DPS,"D"))!$D(DPS(DPS,"DATE")) S DATE(K+1)=1

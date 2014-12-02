@@ -1,6 +1,6 @@
-FBAAUTL2 ;AISC/GRR-FEE UTILITY ROUTINE ;19APR90
- ;;3.5;FEE BASIS;**8**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAAUTL2 ;AISC/GRR-FEE UTILITY ROUTINE ; 11/8/12 2:31pm
+ ;;3.5;FEE BASIS;**8,143**;JAN 30, 1995;Build 20
+ ;;Per VA Directive 6402, this routine should not be modified.
 CONDAT ;called from input transform in 161.21,.02-.03
  S (FBOUT,Z)=0
  F  S Z=$O(^FBAA(161.21,"C",+$G(FBVIEN),Z)) Q:'Z  I $P($G(^FBAA(161.21,Z,0)),U,2) S Z(0)=^(0),FBVCON($P(Z(0),U,2))=$P(Z(0),U,3)
@@ -65,6 +65,11 @@ XREF ;SET X-REF FOR PRINT AUTHORIZATION FIELD (161.01,1)
 ADD S ZZZ="" D XREF Q:ZZZ=""  S ^FBAAA("AF",$P(^FBAAA(DA(1),1,DA,0),"^",3),ZZZ,DA(1),DA)=""
  Q
 KILL S ZZZ="" D XREF Q:ZZZ=""  K ^FBAAA("AF",$P(^FBAAA(DA(1),1,DA,0),"^",3),ZZZ,DA(1),DA)
+ Q
+OPPS ;FB*3.5*143 Adds support for OPPS payment model to input transform of
+ ; Amount Paid field of the Fee Basis Payment (#162).
+ I $D(^XUSEC("FBAASUPERVISOR",DUZ)) Q
+ I $P(^FBAAC(DA(3),1,DA(2),1,DA(1),1,DA,0),"^",2)<X D EN^DDIOL("Amount Paid cannot be greater than Amount Claimed!","","$C(7),!") K X
  Q
  ;
 VER(X) ;determine version of a file based on DD node

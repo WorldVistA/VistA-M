@@ -1,5 +1,5 @@
-DGPTF2 ;ALB/JDS - PTF CORRECTIONS ; MAR 16, 2005
- ;;5.3;Registration;**37,342,643**;Aug 13, 1993
+DGPTF2 ;ALB/JDS - PTF CORRECTIONS ;MAR 16, 2005
+ ;;5.3;Registration;**37,342,643,861,850**;Aug 13, 1993;Build 171
 EN Q:'$D(^UTILITY("DG",$J))  S Q=0,DG2=""
  F DG9=101,401,501,701,601,"HEADER" D @DG9 F I1=0:0 S I1=$O(^UTILITY("DG",$J,DG9,I1)) Q:I1'>0!(Q)  S DG45="",DGJ=^(I1) F J=2:1 S K=$P(DGJ,U,J) Q:'K  D SET Q:Q  I '$P(DGJ,U,J+1) D @($S(DG9=401!(DG9=501)!(DG9=601):"D5",1:"DO1")) Q:Q
 Q D DO:'Q K DG9,I1,DR,DG45,DG2,DGJ,Q,M,L,^UTILITY("DG",$J) Q
@@ -28,7 +28,8 @@ DO1 I DG45]"" W !!,"Editing PTF information:" S DIE="^DGPT(",DR=DG45,DA=PTF D DI
  Q
 D5 G D5Q:DG45=""
  S DIE="^DGPT(PTF,"_$S(DG9=601:"""P""",DG9=401:"""S""",1:"""M""")_",",DA(1)=PTF,DA=I1,DR=DG45
- S Y=@(DIE_DA_",0)"),Y=$P(Y,U,$S(DG9=601!(DG9=401):1,1:10)) D D^DGPTUTL
+ I $G(@(DIE_DA_",0)"))="" G D5Q
+ S Y=$G(@(DIE_DA_",0)")),Y=$P(Y,U,$S(DG9=601!(DG9=401):1,1:10)) D D^DGPTUTL
  W !!,"Editing ",$S(DG9=601:"Procedure",DG9=401:"Surgery",1:"Movement")," of ",Y D DIE
 D5Q Q
  ;
@@ -50,17 +51,19 @@ CLS I $D(^DGM("PT",DFN)) W !!,"Not all messages have been cleared up for this pa
  S Y=1 D RTY^DGPTUTL
  S J=PTF,DGERR=-1 D LOG^DGPTFTR K DGLOGIC D LO^DGUTL K T1,T2 I DGERR>0 K DGERR H 4 D DGPTF2 G EN1
  ;
- ;-- new austin edit checks
+ ;-- new Austin edit checks
  D ^DGPTAE I DGERR>0 K DGERR D DGPTF2 G EN1
  ;
  K DGERR S DR=$S($P(^DGPT(PTF,0),U,7):"",1:";7////"_DUZ_";8///T"),DA=PTF,DIE="^DGPT(",DP=45 D ^DIE K DR
- S DIC(0)="LN",(DINUM,X)=PTF,DIC="^DGP(45.84," K DD,DO D FILE^DICN K DINUM
+ S DIC(0)="LN",(DINUM,X)=PTF,DIC="^DGP(45.84," K DD,DO D FILE^DICN K DINUM,DO,DIC
  I Y>0 S DA=+Y,DR="2///NOW;3////"_DUZ,DIE="^DGP(45.84," D ^DIE K DR
  K DIE,DIC
  I '$D(^DGP(45.84,PTF)) W !,"Cannot close without proper fileman access",*7 D HANG^DGPTUTL G EN1
  F I=0,.11,.52,.321,.32,.36,57,.3 S:$D(^DPT(DFN,I)) ^DGP(45.84,PTF,$S(I=0:10,1:I))=^DPT(DFN,I)
  S $P(^DGP(45.84,PTF,0),U,6)=DRG
  W !,"****** PTF CLOSED OUT ******" D HANG^DGPTUTL
- I DGREL S (DGN,DGST)=1 G EN1
+ ;DG*5.3*861 Added DGRELKEY variable to hold the value for DGREL that is killed in ^EASECU21
+ I '$G(DGREL) S DGREL=$S($D(^XUSEC("DG PTFREL",DUZ)):1,1:0)
+ I $G(DGREL) S (DGN,DGST)=1 G EN1
  K DGRTY,DGRTY0 G Q^DGPTF
 EN1 K DGRTY,DGRTY0 G EN1^DGPTF4

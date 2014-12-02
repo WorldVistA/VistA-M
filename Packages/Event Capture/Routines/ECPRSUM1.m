@@ -1,5 +1,10 @@
-ECPRSUM1 ;BIR/DMA,RHK,JPW - Provider Summary (1 to 7) ;1/4/12  12:04
- ;;2.0;EVENT CAPTURE;**5,18,33,47,62,63,61,72,88,95,112**;8 May 96;Build 18
+ECPRSUM1 ;BIR/DMA,RHK,JPW - Provider Summary (1 to 7) ;11/8/12  16:38
+ ;;2.0;EVENT CAPTURE;**5,18,33,47,62,63,61,72,88,95,112,119**;8 May 96;Build 12
+ ;In patch 119, temporary data storage for the report was moved from
+ ;^TMP($J to ^TMP("ECTMP",$J so that the exportable version of the
+ ;report, which is returned in ^TMP($J,"ECRPT", wouldn't be deleted upon
+ ;completion. That change occurred in many lines in this routine.
+ ;
  S DIC=200,DIC(0)="AQEMZ",DIC("A")="Select Provider: "
  D ^DIC K DIC G END:Y<0 S ECU=+Y,ECUN=$P(Y,"^",2)
  ;D REASON^ECRUTL ;* Prompt to include Procedure Reasons. 112, Remove reasons from report
@@ -17,10 +22,10 @@ DEV ;dev call
  I $D(IO("Q")) K ZTSAVE S (ZTSAVE("ECRY"),ZTSAVE("ECSD"),ZTSAVE("ECDATE"),ZTSAVE("ECED"),ZTSAVE("ECU"),ZTSAVE("ECUN"))="",ZTDESC="Event Capture Provider Summary",ZTRTN="EN^ECPRSUM1" D ^%ZTLOAD,HOME^%ZIS K ZTSK G END
  ;
 EN ;QUEUED ENTRY POINT
- N ECPG,ECGT,EC,ECCAT,ECPXD,MODI,ECI,ECPRV,RK,A,ECX,EC725
- U IO
+ N ECPG,ECGT,EC,ECCAT,ECPXD,MODI,ECI,ECPRV,RK,A,ECX,EC725,ECEPN ;119
+ I $G(ECPTYP)'="E" U IO ;119 Only need IO if not exporting
  S (ECOUT,ECPG)=0 F ECI=1:1:7 S ECGT(ECI)=0,A(ECI)=0
- K ^TMP($J) S ECOUT=0,ECSD=ECSD-.1,ECED=ECED+.3
+ K ^TMP("ECTMP",$J) S ECOUT=0,ECSD=ECSD-.1,ECED=ECED+.3
  F ECD=ECSD:0 S ECD=$O(^ECH("AC",ECD)) Q:'ECD  Q:ECD>ECED  F DA=0:0 S DA=$O(^ECH("AC",ECD,DA)) Q:'DA  I $D(^ECH("APRV",ECU,DA)) S EC=$G(^ECH(DA,0)) D 
  .K ECPRV S ECPRV=$$GETPRV^ECPRVMUT(DA,.ECPRV),ECX=0 I ECPRV Q
  .F ECI=1:1:7 S A(ECI)=0
@@ -40,6 +45,7 @@ EN ;QUEUED ENTRY POINT
  ..S ECPXD=$$CPT^ICPTCOD(ECCPT,$P(ECED,".")),ECCPT=$P(ECPXD,"^",2)_" "
  .I ECFILE=81 S ECPN=$S($P(ECPXD,"^",3)]"":$P(ECPXD,"^",3),1:"UNKNOWN")
  .I ECFILE=725 S EC725=$G(^EC(725,+ECP,0)),ECPN=$P(EC725,"^",2)_" "_$P(EC725,"^")
+ .S ECEPN=$S(ECFILE=81:ECPN,1:$P(EC725,U))_$S(ECPSYN]"":" ["_ECPSYN_"]",1:"") ;119
  .S ECPTDS=ECCPT_ECPN_$S(ECPSYN]"":" ["_ECPSYN_"] ",1:"")
  .;Get Procedure CPT modifiers
  . K ECMOD S ECMODF=0 I $O(^ECH(DA,"MOD",0))'="" D
@@ -57,33 +63,35 @@ EN ;QUEUED ENTRY POINT
  .;
  .;ALB/ESD - Add procedure reason to ^TMP array
  .S PRO=ECCPT_ECPN I PRO]"" S V=+$P(EC,"^",10) D
- ..F J=1:1:7 I A(J) S ^(J)=$G(^TMP($J,PRO,ECPRSN,PA_"^"_SS,J))+V D
- ...I $G(^TMP($J,PRO))="" S ^TMP($J,PRO)=ECPTDS
+ ..F J=1:1:7 I A(J) S ^(J)=$G(^TMP("ECTMP",$J,PRO,ECPRSN,PA_"^"_SS,J))+V D
+ ...I $G(^TMP("ECTMP",$J,PRO))="" S ^TMP("ECTMP",$J,PRO)=ECPTDS
  ..;ALB/JAM - Add Procedure CPT modifier to ^TMP array
  ..S MOD="" F  S MOD=$O(ECMOD(MOD)) Q:MOD=""  D
- ...S ^TMP($J,PRO,ECPRSN,PA_"^"_SS,"MOD",MOD)=$G(^TMP($J,PRO,ECPRSN,PA_"^"_SS,"MOD",MOD))+V
+ ...S ^TMP("ECTMP",$J,PRO,ECPRSN,PA_"^"_SS,"MOD",MOD)=$G(^TMP("ECTMP",$J,PRO,ECPRSN,PA_"^"_SS,"MOD",MOD))+V
+ .I $G(ECPTYP)="E" S ^TMP("ECTMP",$J,PRO,ECPRSN,PA_U_SS,"EXPORT")=$P($G(ECCPT)," ")_U_$S(ECFILE=725:$P(EC725,U,2),1:"")_U_$G(ECEPN) ;119 additional information needed for export
  K ECLNK,MOD,ECPTDS
+ I $G(ECPTYP)="E" D EXPORT,^ECKILL K ^TMP("ECTMP",$J) Q  ;119 If exporting, process and then quit
  ;
 PRINT ;print report
  S ECSD=$P(ECDATE,"^"),ECED=$P(ECDATE,"^",2)
- D HDR I '$D(^TMP($J)) W !!,?12,"No Event Capture Provider Summary for "_ECUN_" to report for the date range selected.",!! D PAGE G END
+ D HDR I '$D(^TMP("ECTMP",$J)) W !!,?12,"No Event Capture Provider Summary for "_ECUN_" to report for the date range selected.",!! D PAGE G END
  F ECI=1:1:7 S A(ECI)=0
  S (ECREAS,PA,PR)=""
- F  S PR=$O(^TMP($J,PR)),PA="" Q:PR=""  D  Q:ECOUT
- .W !,^TMP($J,PR)
- .F  S ECREAS=$O(^TMP($J,PR,ECREAS)) Q:ECREAS=""  D  Q:ECOUT
- ..F  S PA=$O(^TMP($J,PR,ECREAS,PA)) D:PA="" TOT Q:PA=""  D  Q:ECOUT
- ...S A=$G(^TMP($J,PR,ECREAS,PA,0))
+ F  S PR=$O(^TMP("ECTMP",$J,PR)),PA="" Q:PR=""  D  Q:ECOUT
+ .W !,^TMP("ECTMP",$J,PR)
+ .F  S ECREAS=$O(^TMP("ECTMP",$J,PR,ECREAS)) Q:ECREAS=""  D  Q:ECOUT
+ ..F  S PA=$O(^TMP("ECTMP",$J,PR,ECREAS,PA)) D:PA="" TOT Q:PA=""  D  Q:ECOUT
+ ...S A=$G(^TMP("ECTMP",$J,PR,ECREAS,PA,0))
  ...W ! W:$D(ECRY) $E(ECREAS,1,23)
  ...W ?25,$E($P(PA,"^"),1,24),?52,$E($P(PA,"^",2),6,9) ;112 only print last 4
- ...F J=1:1:7 S A=$G(^TMP($J,PR,ECREAS,PA,J)),A(J)=A(J)+A W ?10*J+50,$J(A,5,0) I J=7 I $Y+8>IOSL D PAGE Q:ECOUT  D HDR
+ ...F J=1:1:7 S A=$G(^TMP("ECTMP",$J,PR,ECREAS,PA,J)),A(J)=A(J)+A W ?10*J+50,$J(A,5,0) I J=7 I $Y+8>IOSL D PAGE Q:ECOUT  D HDR
  ...;print CPT procedure modifiers
  ...Q:ECOUT  S IEN=""
- ...F  S IEN=$O(^TMP($J,PR,ECREAS,PA,"MOD",IEN)) Q:IEN=""  D  I ECOUT Q
+ ...F  S IEN=$O(^TMP("ECTMP",$J,PR,ECREAS,PA,"MOD",IEN)) Q:IEN=""  D  I ECOUT Q
  ....S MODI=$$MOD^ICPTMOD(IEN,"I",$P(ECED,"."))
  ....S MOD=$P(MODI,U,2) I MOD="" Q
  ....S MODESC=$P(MODI,U,3)  I MODESC="" S MODESC="UNKNOWN"
- ....S MODAMT=^TMP($J,PR,ECREAS,PA,"MOD",IEN)
+ ....S MODAMT=^TMP("ECTMP",$J,PR,ECREAS,PA,"MOD",IEN)
  ....W !?5,"- ",MOD," ",MODESC," (",MODAMT,")"
  ....I ($Y+7)>IOSL D PAGE Q:ECOUT  D HDR
  ...K MODESC,MOD,MODAMT
@@ -116,8 +124,22 @@ FOOTER ;print page footer
  W !?4,"and/or a combination of these."
  Q
  ;
-END D ^ECKILL K ^TMP($J),ZTSK W @IOF
- K ^TMP($J) Q:$D(ECGUI)
+END D ^ECKILL K ^TMP("ECTMP",$J),ZTSK W @IOF
+ K ^TMP("ECTMP",$J) Q:$D(ECGUI)
  I $D(ZTQUEUED) S ZTREQ="@"
  D ^%ZISC
+ Q
+ ;
+EXPORT ;Section added in 119
+ N CNT,ECI,A,PA,PR,ECREAS,EXPORT
+ S CNT=1
+ S ^TMP($J,"ECRPT",CNT)="PROVIDER NAME^CPT CODE^PROCEDURE CODE^PROCEDURE NAME^PATIENT^SSN^TOTAL AS PROV #1^TOTAL AS PROV #2^TOTAL AS PROV #3^TOTAL AS PROV #4^TOTAL AS PROV #5^TOTAL AS PROV #6^TOTAL AS PROV #7"
+ S (ECREAS,PA,PR)=""
+ F  S PR=$O(^TMP("ECTMP",$J,PR)),PA="" Q:PR=""  D
+ .F  S ECREAS=$O(^TMP("ECTMP",$J,PR,ECREAS)) Q:ECREAS=""  D
+ ..F  S PA=$O(^TMP("ECTMP",$J,PR,ECREAS,PA)) Q:PA=""  D
+ ...S EXPORT=^TMP("ECTMP",$J,PR,ECREAS,PA,"EXPORT")
+ ...S CNT=CNT+1
+ ...S ^TMP($J,"ECRPT",CNT)=ECUN_U_$P(EXPORT,U)_U_$P(EXPORT,U,2)_U_$P(EXPORT,U,3)_U_$P(PA,U)_U_$E($P(PA,U,2),6,9)
+ ...F J=1:1:7 S $P(^TMP($J,"ECRPT",CNT),U,(J+6))=+$G(^TMP("ECTMP",$J,PR,ECREAS,PA,J))
  Q

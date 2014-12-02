@@ -1,5 +1,5 @@
-PXRMETH ; SLC/PJH - Reminder Extract History ;10/11/2007
- ;;2.0;CLINICAL REMINDERS;**4,6**;Feb 04, 2005;Build 123
+PXRMETH ; SLC/PJH - Reminder Extract History ;04/15/2014
+ ;;2.0;CLINICAL REMINDERS;**4,6,26**;Feb 04, 2005;Build 404
  ;
  ;Main entry point for PXRM EXTRACT HISTORY
 START(EDIEN) ;
@@ -47,6 +47,11 @@ EXTRACT(EDIEN) ;Run Extract/Transmission
  ;Refresh on exit
  S VALMBCK="R"
  ;
+ ;Check is evaluation is disabled.
+ I $D(^XTMP("PXRM_DISEV",0)) D  Q
+ . W !,"Reminder evaluation is disabled, cannot start an Extract."
+ . H 2
+ ;
  ;Get details from parameter file
  N ANS,DATA,DUOUT,DTOUT,EDATE,EXSUMPUG,FREQ,MODE
  N NAME,NAT,NEXT,PLISTPUG,RTN,REPL,STATUS,SNEXT,TEXT,XMIT
@@ -91,7 +96,7 @@ PLIST ;
  ;
  ;Extract/transmission run
  N ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE
- S ZTDESC="Reminder Extract "_NAME
+ S ZTDESC="Run Reminder Extract"
  S ZTRTN="RUN^PXRMETX(EDIEN,NEXT,MODE,EXSUMPUG)"
  S ZTSAVE("EDIEN")=""
  S ZTSAVE("MODE")=""
@@ -290,7 +295,6 @@ XSEL ;PXRM EXTRACT HISTORY SELECT ENTRY validation
  .S VALMBCK="R"
  ;
  ;Get the list ien.
- ;S PXRMSIEN=^TMP("PXRMETH",$J,"IDX",SEL,SEL)
  S PXRMSIEN=^TMP("PXRMETH",$J,"SEL",SEL)
  ;
  ;Full screen mode

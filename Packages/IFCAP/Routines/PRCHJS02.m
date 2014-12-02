@@ -1,5 +1,5 @@
 PRCHJS02 ;OI&T/KCL - IFCAP/ECMS INTERFACE RETRIEVE 2237 DATA;6/12/12
- ;;5.1;IFCAP;**167**;Oct 20, 2000;Build 17
+ ;;5.1;IFCAP;**167,174**;Oct 20, 2000;Build 23
  ;Per VHA Directive 2004-38, this routine should not be modified.
  ;
 GET410(PRC410R,PRCWRK,PRCER) ;Get CONTROL POINT ACTIVITY (#410) data
@@ -268,6 +268,7 @@ GETITEMS(PRC410R,PRCWRK,PRCER) ;Get 2237 line items
  . . S X=$G(^PRCS(410,$G(PRC410R),"IT",PRCITIEN,1,PRCI,0)) D ^DIWP
  . ;merge formatted text into work global
  . I $D(^UTILITY($J,"W")) M @PRCWRK@(PRCLINE,"ITDESC")=^UTILITY($J,"W",1)
+ . K ^UTILITY($J,"W")
  . ;
  . ;for each item, place DELIVERY SCHEDULE (#410.6) fields into work global
  . S (PRCSUB1,PRCSUB2)=""

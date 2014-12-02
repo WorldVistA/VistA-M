@@ -1,5 +1,5 @@
 IBCSC4 ;ALB/MJB - MCCR SCREEN 4 (INPT. EOC) ;27 MAY 88 10:17
- ;;2.0;INTEGRATED BILLING;**52,51,210,245,155,287,349,403,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**52,51,210,245,155,287,349,403,400,461**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRSC4
@@ -34,16 +34,16 @@ EN I $P(^DGCR(399,IBIFN,0),"^",5)>2 G EN^IBCSC5
  W !?4,"Status     : ",$S($P(IB("U"),U,12)]""&($D(^DGCR(399.1,(+$P(IB("U"),"^",12)),0))):$P(^(0),"^",1),1:IBU)
  N IBPOARR,IBDATE,NEEDPOA,POA
  D SET^IBCSC4D(IBIFN,"",.IBPOARR)
- S IBDATE=$$BDATE^IBACSV(+$G(IBIFN)) ; The EVENT DATE of the bill
+ S IBDATE=$$BDATE^IBACSV(+$G(IBIFN)) ; The STATEMENT TO DATE of the bill
  S NEEDPOA=$$INPAT^IBCEF(IBIFN)&($$FT^IBCEF(IBIFN)=3)
  S Z=3,IBW=1 X IBWW W " Prin. Diag.: " S Y=$$DX(0,IBDATE),POA="" S:NEEDPOA&(Y'="") POA=$P(IBPOARR(+Y),U,3)
- W $S(Y'="":$P(Y,U,4)_" - "_$P(Y,U,2)_$S(POA=""!(POA=1):"",1:" ("_POA_")"),$$DXREQ(IBIFN):IBU,1:IBUN)
+ W $S(Y'="":$E($P(Y,U,4),1,47)_" - "_$P(Y,U,2)_$S(POA=""!(POA=1):"",1:" ("_POA_")"),$$DXREQ(IBIFN):IBU,1:IBUN)
  F I=1:1:4 S Y=$$DX(+Y,IBDATE) Q:Y=""  D
  .S POA="" S:NEEDPOA POA=$P(IBPOARR(+Y),U,3)
- .W !?4,"Other Diag.: ",$P(Y,U,4)_" - "_$P(Y,U,2)_$S(POA=""!(POA=1):"",1:" ("_POA_")")
+ .W !?4,"Other Diag.: ",$E($P(Y,U,4),1,47)_" - "_$P(Y,U,2)_$S(POA=""!(POA=1):"",1:" ("_POA_")")
  .Q
  I +Y S Y=$$DX(+Y,IBDATE) I +Y W !?4,"***There are more diagnoses associated with this bill.***"
- S Z=4,IBW=1,DGPCM=$P(IB(0),U,9) X IBWW W " Cod. Method: ",$S(DGPCM="":IBUN,DGPCM=9:"ICD-9-CM",DGPCM=4:"CPT-4",1:"HCPCS")
+ S Z=4,IBW=1,DGPCM=$P(IB(0),U,9) X IBWW W " Cod. Method: ",$S(DGPCM="":IBUN,DGPCM=9:"ICD",DGPCM=4:"CPT-4",1:"HCPCS")
  D:$D(IBPROC) WRT^IBCSC5
 OCC ;
  S Z=$S($P(IB(0),U,5)<3:5,1:6)

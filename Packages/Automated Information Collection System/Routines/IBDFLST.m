@@ -1,17 +1,20 @@
-IBDFLST ;ALM/MAF - Maintenance Utility Invalid Codes List - MAY 17 1995
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**9,38,51**;APR 24, 1997
+IBDFLST ;ALM/MAF - Maintenance Utility Invalid Codes List ;05/17/95
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**9,38,51,63**;APR 24, 1997;Build 80
+ ;
  ;
  ;
 START ;  -- Ask what invalid code you want to display CPT/ ICD9/ Visit
  N IBDFDIS
  D FULL^VALM1
- S DIR("B")="CPT",DIR(0)="SBM^C:CPT;I:ICD9;V:VISIT",DIR("A")="Display invalid codes for [C]PT, [I]CD9, [V]ISIT" D ^DIR
+ S DIR("B")="CPT"
+ ;
+ S DIR(0)="SA^C:CPT;I:ICD9;D:ICD10;V:VISIT",DIR("A")="Display invalid codes for [C]PT, [I]CD9, IC[D]10, [V]ISIT: " D ^DIR
  K DIR I $D(DIRUT)!(Y<0) G QUIT
  ;W !!,"Display invalid codes for CPT// " D ZSET1^IBDFLST1 S X="" R X:DTIME G QUIT:X="^"!('$T) I X=""!("Cc"[X) S X="1"
- S X=$S("Ii"[X:2,"Vv"[X:3,1:1)
+ S X=$S("Ii"[X:2,"Dd"[X:3,"Vv"[X:4,1:1) ; 
  ;I X="?" D ZSET1^IBDFLST1,HELP1^IBDFLST1 G START
  S IBDFTYP=$E(X)  ; D IN^DGHELP W ! I %=-1 D ZSET1^IBDFLST1,HELP1^IBDFLST1 G START
- S IBDFDIS=$S(IBDFTYP=1:"CPT",IBDFTYP=2:"ICD9",IBDFTYP=3:"VISIT",1:"QUIT")
+ S IBDFDIS=$S(IBDFTYP=1:"CPT",IBDFTYP=2:"ICD9",IBDFTYP=3:"ICD10",IBDFTYP=4:"VISIT",1:"QUIT")
  D WAIT^DICD
  D EN^VALM("IBDF UTIL COMPLETE LIST TEMP")
  Q
@@ -32,7 +35,7 @@ SETSTR(S,V,X,L) ; -- insert text(S) into variable(V)
  ;
  ;
 INIT ;  -- Set up list for display
- N IBDFCODE,IBDFDESC,IBDFIFN,IBDFCAT
+ N IBDFCODE,IBDFDESC,IBDFIFN,IBDFCAT,IBDFNODE
  S (IBDCNT,VALMCNT,IBDCNT1)=0
  D @(IBDFDIS)
  Q
@@ -48,17 +51,27 @@ CPT D FULL^VALM1 F IBDFIFN=0:0 S IBDFIFN=$O(^ICPT(IBDFIFN)) Q:'IBDFIFN  D
  D LOOP
  Q
  ;
- ;  -- Gets ICD9 listing onf invalid codes
+ ;  -- Gets ICD9 listing of invalid codes
  ;  -- Use api for ICD9
 ICD9 ;;F IBDFIFN=0:0 S IBDFIFN=$O(^ICD9(IBDFIFN)) Q:'IBDFIFN  S IBDFNODE=$G(^ICD9(IBDFIFN,0)) I $P(IBDFNODE,"^",9)]"" D
  ;
  ;Use ICD API to check the status for CSV.  No date is passed so the
  ;default day is DT (today).  $P10 = status 0-inactive 1-active
- F IBDFIFN=0:0 S IBDFIFN=$O(^ICD9(IBDFIFN)) Q:'IBDFIFN  S IBDFNODE=$$ICDDX^ICDCODE(IBDFIFN) I '$P(IBDFNODE,U,10) D
+ D ICD9LST
+ ;F IBDFIFN=0:0 S IBDFIFN=$O(^ICD9(IBDFIFN)) Q:'IBDFIFN  S IBDFNODE=$$ICDDX^ICDCODE(IBDFIFN) I '$P(IBDFNODE,U,10) D
+ S IBDFIFN="" F  S IBDFIFN=$O(^TMP("IBDICD9",$J,"DILIST","ICD",IBDFIFN)) Q:IBDFIFN=""  S IBDFNODE=^TMP("IBDICD9",$J,"DILIST","ICD",IBDFIFN) D
  .S IBDFCODE=$P(IBDFNODE,"^",2),IBDFDESC=$P(IBDFNODE,"^",4),IBDFCAT=$S($P(IBDFNODE,"^",6)]""&($G(^ICM(+$P(IBDFNODE,"^",6),0))]""):$P(^ICM($P(IBDFNODE,"^",6),0),"^",1),1:"UNKNOWN") D ALPHA
  D LOOP
  Q
  ;
+ICD10 ;
+ ;Use ICD API to check the status for CSV. No date is passed so the
+ ;default day is DT (today). $P10 = status 0-inactive 1-active 2-inactive
+ D ICD10LST
+ S IBDFIFN=0 F  S IBDFIFN=$O(^TMP("IBDICD10",$J,"DILIST","ICD",IBDFIFN)) Q:IBDFIFN=""  S IBDFNODE=^TMP("IBDICD10",$J,"DILIST","ICD",IBDFIFN) D
+ .S IBDFCODE=$P(IBDFNODE,"^",2),IBDFDESC=$P(IBDFNODE,"^",4),IBDFCAT=$S($P(IBDFNODE,"^",6)]""&($G(^ICM(+$P(IBDFNODE,"^",6),0))]""):$P(^ICM($P(IBDFNODE,"^",6),0),"^",1),1:"UNKNOWN") D ALPHA
+ D LOOP
+ Q
  ;
 VISIT ;  -- Gets visit code listing of invalid codes
  N IEN
@@ -77,9 +90,14 @@ VISIT ;  -- Gets visit code listing of invalid codes
  Q
  ;
  ;
-LOOP ;  -- Loop thru global ^TMP("ALPHA",$J) alphabetic by category
+LOOP ;  -- Loop thru global ^TMP("IBDALPHA",$J) alphabetic by category
+ I '$D(^TMP("IBDALPHA",$J)),IBDFDIS="ICD10" D  Q  ;
+ .S X="There are no ICD10 invalid code lists on file."
+ .S IBDCNT1=IBDCNT1+1,VALMCNT=VALMCNT+1
+ .S ^TMP("IBDCODE",$J,2,0)=X
+ .S ^TMP("IBDCODE",$J,"IDX",VALMCNT,IBDCNT1)=""
  S IBDFCAT=0
- F IBDCAT=0:0 S IBDFCAT=$O(^TMP("ALPHA",$J,IBDFCAT)) Q:IBDFCAT']""  F IBDFIFN=0:0 S IBDFIFN=$O(^TMP("ALPHA",$J,IBDFCAT,IBDFIFN)) Q:'IBDFIFN  S IBDFNODE=$G(^TMP("ALPHA",$J,IBDFCAT,IBDFIFN)) D
+ F IBDCAT=0:0 S IBDFCAT=$O(^TMP("IBDALPHA",$J,IBDFCAT)) Q:IBDFCAT']""  F IBDFIFN=0:0 S IBDFIFN=$O(^TMP("IBDALPHA",$J,IBDFCAT,IBDFIFN)) Q:'IBDFIFN  S IBDFNODE=$G(^TMP("IBDALPHA",$J,IBDFCAT,IBDFIFN)) D
  .S IBDFIFN=$P(IBDFNODE,"^",1)
  .S IBDFCODE=$P(IBDFNODE,"^",2)
  .S IBDFCAT=$P(IBDFNODE,"^",3)
@@ -92,31 +110,33 @@ SET ;  -- Set up list array
  S IBDCNT1=IBDCNT1+1
  S IBDCNT=IBDCNT+1,VALMCNT=VALMCNT+1
  S X=""
- S IBDFVAL=$J(IBDCNT1_")",5)
- S X=$$SETSTR(IBDFVAL,X,1,5)
+ S IBDFVAL=$J(IBDCNT1_")",7)
+ S X=$$SETSTR(IBDFVAL,X,1,7)
  S IBDFVAL=IBDFCODE
- S X=$$SETSTR(IBDFVAL,X,7,8)
+ S X=$$SETSTR(IBDFVAL,X,9,8)
  S IBDFVAL=IBDFDESC
- S X=$$SETSTR(IBDFVAL,X,17,20)
+ S X=$$SETSTR(IBDFVAL,X,19,20)
  S IBDFVAL=IBDFCAT
- S X=$$SETSTR(IBDFVAL,X,39,20)
+ S X=$$SETSTR(IBDFVAL,X,41,20)
  ;
  ;
 TMP ; -- Set up Array
- S ^TMP("CODE",$J,IBDCNT,0)=$$LOWER^VALM1(X),^TMP("CODE",$J,"IDX",VALMCNT,IBDCNT1)=""
+ S ^TMP("IBDCODE",$J,IBDCNT,0)=$S($G(IBDFDIS)["ICD9":X,$G(IBDFDIS)["ICD10":X,1:$$LOWER^VALM1(X))
+ S ^TMP("IBDCODE",$J,"IDX",VALMCNT,IBDCNT1)=""
  S ^TMP("CODEIDX",$J,IBDCNT1)=VALMCNT_"^"_IBDFIFN_"^"_IBDFCODE_"^"_IBDFCAT_"^"_IBDFDESC
  Q
  ;
  ;
 ALPHA ;  - Alphabetize by category
- S ^TMP("ALPHA",$J,IBDFCAT,IBDFIFN)=IBDFIFN_"^"_IBDFCODE_"^"_IBDFCAT_"^"_IBDFDESC
+ S ^TMP("IBDALPHA",$J,IBDFCAT,IBDFIFN)=IBDFIFN_"^"_IBDFCODE_"^"_IBDFCAT_"^"_IBDFDESC
  Q
  ;
  ;
 QUIT ;  -- Kill variables and reset to last display if no change has been taken place.
  ;
  ;
-EXIT K ^TMP("CODE",$J),^TMP("CODEIDX",$J),^TMP("ALPHA",$J)
+EXIT K ^TMP("IBDCODE",$J),^TMP("CODEIDX",$J),^TMP("IBDALPHA",$J),^TMP("IBDICD9",$J),^TMP("IBDICD10",$J)
+ K ^TMP("IBDMSG9"),^TMP("IBDMSG10")
  K IBDFC,IBDFTYP,IBDFCNT1,IBDCAT
  Q
  ;
@@ -144,3 +164,21 @@ HLP ; -- help code
  S X="?" D DISP^XQORM1 W !!
  Q
  ;
+ ;NEW CODE
+ ; ICD-9 ICR 2051/5745 (by subscription) 
+ICD9LST ;
+ N IBDSCREN
+ K ^TMP("IBDICD9",$J)
+ S IBDSCREN="N ICD S ICD=$$ICDDX^ICDEX(+Y,$G(DT),1,""I"") I $P(ICD,U,10)=""0"",$P(ICD,U,12)?7N,$P(ICD,U,20)=1 S ^TMP(""IBDICD9"",$J,""DILIST"",""ICD"",+Y)=ICD"
+ D LIST^DIC(80,,,,,,,,IBDSCREN,,"^TMP(""IBDICD9"",$J)","^TMP(""IBDMSG9"",$J)")
+ Q
+ ;;
+ ; ICD-10 ICR 2051/5745 (by subscription) 
+ ;This returns no entries since there are no invalid ICD-10 codes
+ICD10LST ;
+ N IBDSCREN
+ K ^TMP("IBDICD10",$J)
+ S IBDSCREN="N STATUS S STATUS=$$STATCHK^IBDUTICD(""10D"",+Y,$G(DT)) I STATUS=0!(STATUS=2) N ICD S ICD=$$ICDDATA^ICDXCODE(""10D"",+Y,$G(DT)) I $P(ICD,U,20)=30 S ^TMP(""IBDICD10"",$J,""DILIST"",""ICD"",+Y)=ICD"
+ D LIST^DIC(80,,,,,,,,IBDSCREN,,"^TMP(""IBDICD10"",$J)","^TMP(""IBDMSG10"",$J)")
+ Q
+ ;IBDFLST

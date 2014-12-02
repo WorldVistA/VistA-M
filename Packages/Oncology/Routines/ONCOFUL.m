@@ -1,5 +1,5 @@
 ONCOFUL ;Hines OIFO/GWB - FOLLOWUP PROCEDURES ;07/12/00
- ;;2.11;ONCOLOGY;**22,23,25,26,29**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 PAT ;Select patient
  W !
  S DIC="^ONCO(160,",DIC("A")=" Select Patient: ",DIC(0)="AEMQZ" D ^DIC

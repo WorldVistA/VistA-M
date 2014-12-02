@@ -1,6 +1,12 @@
-LEXDDSS ; ISL Display Defaults - Single User Save  ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDDSS ;ISL/KER - Display Defaults - Single User Save ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    None
+ ;               
  ; Saves default elements into the local array LEX
  ;
 BLB(LEXX) ; General blank - line - blank
@@ -14,11 +20,11 @@ VOC(LEXX) ; Vocabulary name
 DIS(LEXX) ; Display name
  N LEXS S LEXS="2.  Display:  "_LEXX D TL,BL Q
 DISE(LEXX) ; Display element
- N LEXS,LEXCTL,LEXN S LEXCTL=LEXX
- F  S LEXCTL=$O(^LEX(757.03,"B",LEXCTL)) Q:LEXCTL=""!(LEXCTL'[LEXX)  D
- . S LEXN=$O(^LEX(757.03,"B",LEXCTL,0))
- . S LEXN=$E($P($G(^LEX(757.03,LEXN,0)),"^",3),1,63)
- . S LEXS="      "_LEXX_"  "_LEXN D TL
+ N LEXS,LEXCTL,LEXN S LEXCTL=LEXX Q:'$L(LEXCTL)
+ S LEXN=$O(^LEX(757.03,"B",LEXCTL,0))
+ S:+LEXN'>0 LEXN=$O(^LEX(757.03,"ASAB",$E(LEXCTL,1,3),0))
+ Q:LEXN'>0  S LEXN=$E($P($G(^LEX(757.03,LEXN,0)),"^",3),1,63)
+ S LEXS="      "_LEXX_"  "_LEXN D TL
  Q
 FIL(LEXX) ; Filter name
  N LEXS S LEXS="3.  Filter:  "_LEXX D TL,BL Q

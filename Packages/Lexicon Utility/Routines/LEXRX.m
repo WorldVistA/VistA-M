@@ -1,5 +1,21 @@
-LEXRX ;ISL/KER - Re-Index Lexicon ;08/17/2011
- ;;2.0;LEXICON UTILITY;**81**;Sep 23, 1996;Build 1
+LEXRX ;ISL/KER - Re-Index Lexicon ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**81,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(               SACC 1.3
+ ;    ^LEXT(              SACC 1.3
+ ;    ^TMP("LEXRX")       SACC 2.3.2.5.1
+ ;    ^XTMP("LEXRXALL")   SACC 2.3.2.5.2
+ ;    ^XTMP("LEXRXFIX")   SACC 2.3.2.5.2
+ ;    ^XTMP("LEXRXMAJ")   SACC 2.3.2.5.2
+ ;    ^XTMP("LEXRXONE")   SACC 2.3.2.5.2
+ ;    ^XTMP("LEXRXSET")   SACC 2.3.2.5.2
+ ;    ^XTMP("LEXRXSUP")   SACC 2.3.2.5.2
+ ;               
+ ; External References
+ ;    ^DIC                ICR  10006
+ ;    ^DIR                ICR  10026
+ ;               
  ;               
  ; Global Variables
  ;    ^LEX(               SACC 1.3

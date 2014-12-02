@@ -1,6 +1,10 @@
 PRCSEA1 ;WISC/KMB/DXH - REQUESTOR ENTER 1358 ;7.26.99
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**150**;Oct 20, 2000;Build 24
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;PRC*5.1*150 RGB 4/23/12 DO NOT allow the same temporary tx
+ ;number to be used at all.  Previously, the same temp tx #
+ ;could be used by different users, not same user.
+ ;
 EN ;
  N PRCAED,DIR,DIRUT,PRCS,PRCSCP,PRCSN,PRCSTT,PRC,X,X1,DIC,DIE,DR,PRCSL,PRCSIP,X3
  S PRCSK=1,X3="H"
@@ -8,9 +12,9 @@ EN ;
  D EN^DDIOL("Enter a 2-16 digit number with a leading alpha, as in 'ABC123'","","!!")
  D EN^DDIOL(" ") ; blank line
 EN1 ;
- S DLAYGO=410,DIC="^PRCS(410,",DIC(0)="AELQ",D="H"
+ S DLAYGO=410,DIC="^PRCS(410,",DIC(0)="ABELQX",D="H"
  S DIC("A")="Select TRANSACTION: "
- S DIC("S")="I '^(0),$P(^(0),U,3)'="""",$D(^PRCS(410,""H"",$P(^(0),U,3),+Y)),^(+Y)=DUZ!(^(+Y)="""")" ; request must be authored by user or unauthored
+ S DIC("S")="I '^(0),$P(^(0),U)'="""",$D(^PRCS(410,""B"",$P(^(0),U),+Y))" ; only temp tx number not defined will be allowed  ;PRC*5.1*150
  D ^PRCSDIC
  K DLAYGO,DIC("A"),DIC("S")
  Q:Y<0

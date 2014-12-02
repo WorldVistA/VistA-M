@@ -1,6 +1,13 @@
-LEXNDX3 ; ISL Set/kill indexes (Part 3) Link       ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXNDX3 ;ISL/KER - Set/kill indexes (Part 3) Link ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.011)       N/A
+ ;    ^TMP("LEXTKN")      SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    None
+ ;               
 S ; Set indexes for file 757.05
  Q:('$D(DA))!('$D(X))
  S DIC="^LEX(757.05,"
@@ -20,13 +27,13 @@ SREP ; Set indexes for Replacement Words
  I $D(^LEX(757.01,"B",LEXEX)) D
  . S LEXEXR=$O(^LEX(757.01,"B",LEXEX,0))
  . I +LEXEXR>0,$D(^LEX(757.01,LEXEXR)),+(^LEX(757,+(^LEX(757.01,LEXEXR,1)),0))'=LEXEXR D
- . . S X=LEXEX
- . . D PTX^LEXTOLKN
- . . I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 S LEXI="" F LEXJ=1:1:^TMP("LEXTKN",$J,0) D
- . . . S LEXI=$O(^TMP("LEXTKN",$J,LEXJ,"")) I '$D(^LEX(757.01,"AWRD",LEXI,LEXEXR)) D
- . . . . N LEXYPE,LEXT S LEXYPE=+($P($G(^LEX(757.01,LEXEXR,1)),U,2)) Q:LEXYPE'>0
- . . . . S LEXT=+($P($G(^LEX(757.011,LEXYPE,0)),"^",2)) Q:LEXT=0
- . . . . S ^LEX(757.01,"AWRD",LEXI,LEXEXR,"LINKED")=""
+ . . S X=LEXEX D PTX^LEXTOKN
+ . . I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 S LEXI="",LEXJ=0 D
+ . . . F  S LEXJ=$O(^TMP("LEXTKN",$J,LEXJ)) Q:+LEXJ'>0  D
+ . . . . S LEXI=$O(^TMP("LEXTKN",$J,LEXJ,"")) Q:'$L(LEXI)  I '$D(^LEX(757.01,"AWRD",LEXI,LEXEXR)) D
+ . . . . . N LEXYPE,LEXT S LEXYPE=+($P($G(^LEX(757.01,LEXEXR,1)),U,2)) Q:LEXYPE'>0
+ . . . . . S LEXT=+($P($G(^LEX(757.011,LEXYPE,0)),"^",2)) Q:LEXT=0
+ . . . . . S ^LEX(757.01,"AWRD",LEXI,LEXEXR,"LINKED")=""
  . . K LEXI,LEXJ,^TMP("LEXTKN",$J,0),^TMP("LEXTKN",$J)
  K LEXRE,LEXEX,LEXEXR
  Q
@@ -43,11 +50,11 @@ KREP ; Kill indexes for Replacement Words
  I $D(^LEX(757.01,"B",LEXEX)) D
  . S LEXEXR=$O(^LEX(757.01,"B",LEXEX,0))
  . I +LEXEXR>0,$D(^LEX(757.01,LEXEXR)),+(^LEX(757,+(^LEX(757.01,LEXEXR,1)),0))'=LEXEXR D
- . . S X=LEXEX
- . . D PTX^LEXTOLKN
- . . I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 S LEXI="" F LEXJ=1:1:^TMP("LEXTKN",$J,0) D
- . . . S LEXI=$O(^TMP("LEXTKN",$J,LEXJ,"")) I $D(^LEX(757.01,"AWRD",LEXI,LEXEXR)) D
- . . . . K ^LEX(757.01,"AWRD",LEXI,LEXEXR,"LINKED")
+ . . S X=LEXEX D PTX^LEXTOKN
+ . . I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 S LEXI="",LEXJ=0 D
+ . . . F  S LEXJ=$O(^TMP("LEXTKN",$J,LEXJ)) Q:+LEXJ'>0  D
+ . . . . S LEXI=$O(^TMP("LEXTKN",$J,LEXJ,"")) Q:'$L(LEXI)
+ . . . . I $D(^LEX(757.01,"AWRD",LEXI,LEXEXR)) K ^LEX(757.01,"AWRD",LEXI,LEXEXR,"LINKED")
  . . K LEXI,LEXJ,^TMP("LEXTKN",$J,0),^TMP("LEXTKN",$J)
  K LEXRE,LEXEX,LEXEXR
  Q

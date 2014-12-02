@@ -1,9 +1,9 @@
 GMTSRON ; SLC/JER,KER - Surgery Reports ; 06/24/2002 [7/27/04 9:00am]
- ;;2.7;Health Summary;**11,28,37,57**;Oct 20, 1995
+ ;;2.7;Health Summary;**11,28,37,57,106**;Oct 20, 1995;Build 11
  ;
  ; External References
  ;   DBIA  3590  HS^SROGMTS
- ;   DBIA  2056  $$GET1^DIQ (file #130)
+ ;   DBIA  2056/4872  $$GET1^DIQ (file #136)
  ;                     
 ENSR ; Entry point for component
  N REC,GMTSMX,GMCOUNT,GMIDT,GMJ,GMN,SURG,GMTSGL
@@ -94,6 +94,6 @@ DICT ;     Dictation
  ;--------------------------------------------------------------------
 CHK() ; For selected procedures see if you have a match
  N GMTSI,GMTSF,GMTSC
- S GMTSC=$$GET1^DIQ(130,+($G(GMN)),27,"I") Q:'$D(GMTSEG(GMTSEGN,81)) 1
+ S GMTSC=$$GET1^DIQ(136,+($G(GMN)),.02,"I") Q:'$D(GMTSEG(GMTSEGN,81)) 1 ; p.106 $$GET1^DIQ call changed to file 136 
  S GMTSF=0 F GMTSI=0:0 S GMTSI=$O(GMTSEG(GMTSEGN,81,GMTSI)) Q:'+GMTSI!GMTSF  S:GMTSEG(GMTSEGN,81,GMTSI)=GMTSC GMTSF=1 Q:GMTSF
  Q GMTSF

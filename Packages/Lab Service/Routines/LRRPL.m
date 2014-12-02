@@ -1,5 +1,5 @@
-LRRPL ;DALOI/JMC - Interim Report Performing Lab Utility ;04/30/12  09:46
- ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+LRRPL ;DALOI/JMC - Interim Report Performing Lab Utility ;03/12/13  09:46
+ ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
  ;
  ;
 RETLST(LRPL,LRDFN,LRSS,LRIDT,LROPT) ; Retreive list of Report sections and related performing labs.
@@ -78,7 +78,7 @@ MICHK ; Check and resolve MI subscript
  . . I LRSECT=0 S LRSECT=X
  . . E  S LRSECT=""
  . I LRSECT<1 Q
- . S X="Bacteriology^^^^Parasite^^^Mycology^^^Mycobacterium^^^^^Virology"
+ . S X="Bacteriology^^^^Parasitology^^^Mycology^^^Mycobacteriology^^^^^Virology"
  . S Y=$P(X,"^",LRSECT)
  . I Y'="" S LRREC(LRREC)=Y_" Report"
  ;
@@ -106,7 +106,7 @@ MICHK ; Check and resolve MI subscript
  . I $P(LRREF,",",5)=0 S LRREC(LRREC)="Bact Report Remark" Q
  . S LRREC(LRREC)="Bact Report Remark #"_$$CMTSEQ(LRREF)
  ;
- I $P(LRREF,",",4)=5 S LRREC(LRREC)="Parasite Report" Q
+ I $P(LRREF,",",4)=5 S LRREC(LRREC)="Parasitology Report" Q
  ;
  I $P(LRREF,",",4)=6 D  Q
  . I $P(LRREF,",",5)=0 S LRREC(LRREC)="Parasite Identification" Q
@@ -118,13 +118,13 @@ MICHK ; Check and resolve MI subscript
  . S LRREC(LRREC)=LRORG
  ;
  I $P(LRREF,",",4)=7 D  Q
- . I $P(LRREF,",",5)=0 S LRREC(LRREC)="Parasite Report Remark" Q
- . S LRREC(LRREC)="Parasite Report Remark #"_$P(LRREF,",",5)
+ . I $P(LRREF,",",5)=0 S LRREC(LRREC)="Parasitology Report Remark" Q
+ . S LRREC(LRREC)="Parasitology Report Remark #"_$P(LRREF,",",5)
  ;
  I $P(LRREF,",",4)=8 S LRREC(LRREC)="Mycology Report" Q
  ;
  I $P(LRREF,",",4)=9 D  Q
- . I $P(LRREF,",",5)=0 S LRREC(LRREC)="Mycology Identification" Q
+ . I $P(LRREF,",",5)=0 S LRREC(LRREC)="Fungal Identification" Q
  . S LRORG=$$GETORG(LRREF)
  . I $P(LRREF,",",6)=1 D  Q
  . . I $P(LRREF,",",7)>0 S LRREC(LRREC)=LRORG_" Comment #"_$$CMTSEQ(LRREF) Q
@@ -137,7 +137,7 @@ MICHK ; Check and resolve MI subscript
  ;
  I $P($P(LRREF,";"),",",4)=11 D  Q
  . I $P(LRREF,";",2)=3 S LRREC(LRREC)="Acid Fast Stain" Q
- . S LRREC(LRREC)="Mycobacterium Report"
+ . S LRREC(LRREC)="Mycobacteriology Report"
  ;
  I $P(LRREF,",",4)=12 D
  . N LRORG
@@ -150,8 +150,8 @@ MICHK ; Check and resolve MI subscript
  . S LRREC(LRREC)=LRORG
  ;
  I $P(LRREF,",",4)=13 D  Q
- . I $P(LRREF,",",5)=0 S LRREC(LRREC)="Mycobacterium Report Remark" Q
- . S LRREC(LRREC)="Mycobacterium Report Remark #"_$$CMTSEQ(LRREF)
+ . I $P(LRREF,",",5)=0 S LRREC(LRREC)="Mycobacteriology Report Remark" Q
+ . S LRREC(LRREC)="Mycobacteriology Report Remark #"_$$CMTSEQ(LRREF)
  ;
  I $P(LRREF,",",4)=14 D  Q
  . I $P(LRREF,",",5)=0 S LRREC(LRREC)="Antibiotic Serum Level" Q
@@ -175,9 +175,9 @@ MICHK ; Check and resolve MI subscript
  I $P(LRREF,",",4)>18,$P(LRREF,",",4)<31 D  Q
  . N LRI,LRX
  . S LRI=$P(LRREF,",",4)
- . I LRI>18,LRI<24 S LRX="Preliminary "_$S(LRI=19:"BACT",LRI=20:"VIROLOGY",LRI=21:"PARASITE",LRI=22:"MYCOLOGY",1:"TB")_" Comment"
+ . I LRI>18,LRI<24 S LRX="Preliminary "_$S(LRI=19:"BACT",LRI=20:"VIROLOGY",LRI=21:"PARASITOLOGY",LRI=22:"MYCOLOGY",1:"TB")_" Comment"
  . I LRI>23,LRI<26 S LRX=$S(LRI=24:"PARASITOLOGY",1:"BACTERIOLOGY")_" SMEAR/PREP"
- . I LRI>25,LRI<31 S LRX=$S(LRI=26:"BACTERIOLOGY",LRI=27:"PARASITE",LRI=28:"MYCOLOGY",LRI=29:"TB",1:"VIROLOGY")_" TESTS"
+ . I LRI>25,LRI<31 S LRX=$S(LRI=26:"BACTERIOLOGY",LRI=27:"PARASITOLOGY",LRI=28:"MYCOLOGY",LRI=29:"TB",1:"VIROLOGY")_" TESTS"
  . I $P(LRREF,",",5)=0 S LRREC(LRREC)=LRX Q
  . S LRREC(LRREC)=LRX_" #"_$$CMTSEQ(LRREF)
  ;

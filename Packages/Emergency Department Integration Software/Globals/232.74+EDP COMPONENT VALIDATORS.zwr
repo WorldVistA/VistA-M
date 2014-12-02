@@ -1,0 +1,9 @@
+EDP COMPONENT VALIDATORS
+ZWR
+^EDPB(232.74,0)="EDP COMPONENT VALIDATORS^232.74^3^3"
+^EDPB(232.74,1,0)="mx.validators.StringValidator"
+^EDPB(232.74,2,0)="mx.validators.NumberValidator"
+^EDPB(232.74,3,0)="gov.va.med.edp.view.worksheet.TimeInTimeOutValidator"
+^EDPB(232.74,"B","gov.va.med.edp.view.worksheet.",3)=""
+^EDPB(232.74,"B","mx.validators.NumberValidator",2)=""
+^EDPB(232.74,"B","mx.validators.StringValidator",1)=""

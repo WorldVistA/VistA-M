@@ -1,9 +1,10 @@
-IBDF18A ;ALB/CJM/AAS - ENCOUNTER FORM - utilities for PCE ;12-AUG-94
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**34,38,51**;APR 24, 1997
+IBDF18A ;ALB/CJM/AAS - ENCOUNTER FORM - utilities for PCE ;04/12/94
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**34,38,51,63**;APR 24, 1997;Build 80
+ ;
  ;                                       
 GLL(CLINIC,INTRFACE,ARY,FILTER,PAR5,PAR6,ENCDATE) ; -- get lots of lists in one call
  ; -- input see GETLST but pass interface by reference expects
- ;    intrface(n) = name of select list in package interface file
+ ;    INTRFACE(n) = name of select list in package interface file
  ;
  ; -- PAR5 => not currently used
  ; -- PAR6 => not currently used
@@ -54,19 +55,21 @@ GETLST(CLINIC,INTRFACE,ARY,FILTER,COUNT,MODIFIER,ENCDATE) ; -- returns any speci
  ;         second for filtered codes using regular cpt blocks.
  ;
  ;         if a diagnosis block it requested and none found will
- ;         automagically look for Clinic Common Problem List and
+ ;         automatically look for Clinic Common Problem List and
  ;         then convert it to look like a diagnosis list
  ;
  N I,J,X,Y,INUM,IBQUIT,FORM,SETUP,LIST,BLOCK,OLDARY,IBDTMP,ROW,COL,BLK
- N LIST1,PACKAGE
+ N LIST1,PACKAGE,IBDIMPDA,IBDCSYS
  K ^TMP("IBDUP",$J)
  S (IBQUIT,LIST)=0
  S PACKAGE=$E(INTRFACE,1,30)
  ;
  ;Setup array containing NAME of the Package Interface file
- ;This is the second paramenter passed by PCE, TIU, & CPRS
+ ;This is the second parameter passed by PCE, TIU, & CPRS
  S LIST1("DG SELECT CPT PROCEDURE CODES")=""
  S LIST1("DG SELECT ICD-9 DIAGNOSIS CODE")=""
+ S LIST1("DG SELECT ICD DIAGNOSIS CODES")=""
+ S LIST1("DG SELECT ICD-10 DIAGNOSIS COD")=""
  S LIST1("DG SELECT VISIT TYPE CPT PROCE")=""
  S LIST1("GMP INPUT CLINIC COMMON PROBLE")=""
  S LIST1("GMP PATIENT ACTIVE PROBLEMS")=""
@@ -78,7 +81,11 @@ GETLST(CLINIC,INTRFACE,ARY,FILTER,COUNT,MODIFIER,ENCDATE) ; -- returns any speci
  I $G(CLINIC)="" G GETLSTQ
  I $G(^SC(CLINIC,0))="" G GETLSTQ
  I $G(INTRFACE)="" G GETLSTQ
- S INUM=$O(^IBE(357.6,"B",$E(INTRFACE,1,30),0))
+ I INTRFACE["SELECT ICD",$D(LIST1(PACKAGE)) D
+ . S IBDIMPDA=$$IMPDATE^IBDUTICD("10D"),IBDCSYS=1 I ENCDATE'<IBDIMPDA S IBDCSYS=30
+ . I IBDCSYS=1 S INUM=$O(^IBE(357.6,"B","DG SELECT ICD-9 DIAGNOSIS CODE",0))
+ . I IBDCSYS=30 S INUM=$O(^IBE(357.6,"B","DG SELECT ICD-10 DIAGNOSIS COD",0))
+ E  S INUM=$O(^IBE(357.6,"B",$E(INTRFACE,1,30),0))
  ; 
  ; -- find forms defined for clinic
  ;    piece 2 = basic form
@@ -118,7 +125,7 @@ GETBLKS ; -- get the blocks for a form in row,column order
  N ROW,COL
  S BLK=0
  F  S BLK=$O(^IBE(357.1,"C",FORM,BLK)) Q:'BLK  D
- . S ROW=$P($G(^IBE(357.1,+BLK,0)),"^",4),COL=$P(^(0),"^",5)
+ . S ROW=$P($G(^IBE(357.1,+BLK,0)),"^",4),COL=$P(^IBE(357.1,+BLK,0),"^",5)
  . Q:ROW=""!(COL="")
  . S BLK(ROW,COL)=BLK
  Q

@@ -1,6 +1,10 @@
 PRCS58OB ;WISC/CLH-OBLIGATION PROCESSING ;07/21/93
-V ;;5.1;IFCAP;**148**;Oct 20, 2000;Build 5
+V ;;5.1;IFCAP;**148,150,176**;Oct 20, 2000;Build 11
  ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*150 RGB 4/23/12  Control the node 0 counter for file 410
+ ;kill call since DIK call does not handle descending file logic
+ ;
 OB(DA) ;Obligation edits
 SC N DIE,DR
  S DIE="^PRCS(410,",DIE("NO^")=""
@@ -37,7 +41,10 @@ ADJ2(PRC,X,DA) ;mark the transaction as an adjustment
  N X1,X2
 ENA2 S DIC(0)="AEMQ",DIE="^PRCS(410,",DR="[PRCE 1358 ADJUSTMENT]" D ^DIE
  I $D(Y)#10 D YN^PRC0A(.X,.Y,"Delete this NEW entry","","No") I Y=1 D  QUIT:X=1
+ . S PRCIENCT=$P(^PRCS(410,0),"^",3)+1      ;PRC*5.1*150
  . D DELETE^PRC0B1(.X,"410;^PRCS(410,;"_DA)
+ . I X=1 S $P(^PRCS(410,0),"^",3)=PRCIENCT     ;PRC*5.1*150
+ . K PRCIENCT     ;PRC*5.1*150
  . D EN^DDIOL(" **** NEW ENTRY IS "_$S(X=1:"",1:"NOT ")_"DELETED ****")
  . QUIT
  I DA S X=$P($G(^PRCS(410,DA,4)),U,6) D:X TRANK^PRCSEZ
@@ -53,9 +60,13 @@ NODE(DA,TRNODE) ;get transaction node information from 410
  Q
 LU(Y,PRC,PRCF) N DIC,FSO,PRCFA,PX
  ;look up transaction
- S DIC=410,DIC(0)="AEMNZ"
- S PRCFA(1358)="",FSO=$O(^PRCD(442.3,"AC",10,0)),DIC("S")="S PX=^(0) I $P($P(PX,U),""-"",1,2)=PRCF(""SIFY""),$P(PX,U,4)=1,$D(^(10)),$P(^(10),U,4)=FSO"
- D ^PRCSDIC
+ N PRCLOCK
+ F  D  Q:$G(PRCLOCK)  W !!,"***The Transaction Number you are attempting to access is being accessed by another user***",!! ;Only allow one user to access 410 record at a time, PRC*5.1*176
+ .S DIC=410,DIC(0)="AEMNZ"
+ .S PRCFA(1358)="",FSO=$O(^PRCD(442.3,"AC",10,0)),DIC("S")="S PX=^(0) I $P($P(PX,U),""-"",1,2)=PRCF(""SIFY""),$P(PX,U,4)=1,$D(^(10)),$P(^(10),U,4)=FSO"
+ .D ^PRCSDIC
+ .I Y>0 L +^PRCS(410,+Y):$G(DILOCKTM,3) S PRCLOCK=$T
+ .I Y<1 S PRCLOCK=$T
  Q
 SAEDIT(PO,DA) N DIE,DR
  I '$D(PRCFA("TRDA")),$G(DA)]"" S PRCFA("TRDA")=$G(DA)

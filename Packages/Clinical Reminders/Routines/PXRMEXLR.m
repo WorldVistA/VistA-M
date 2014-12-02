@@ -1,60 +1,64 @@
-PXRMEXLR ; SLC/PKR/PJH - List Manager routines for existing repository entries. ;12/02/2009
- ;;2.0;CLINICAL REMINDERS;**6,17**;Feb 04, 2005;Build 102
+PXRMEXLR ; SLC/PKR/PJH - List Manager routines for Exchange file actions. ;01/24/2013
+ ;;2.0;CLINICAL REMINDERS;**6,17,26**;Feb 04, 2005;Build 404
  ;==================================================
 CHF ;Create a host file containing repository entries.
- N IND,FILE,LENH2,PATH,SUCCESS,TEMP,VALMY
+ N IND,FILE,LIST,LENH2,NL,PATH,SUCCESS,TEMP
  ;Get the list to store.
- D EN^VALM2(XQORNOD(0))
+ S LIST=$$GETLIST()
  ;If there is no list quit.
- I '$D(VALMY) Q
+ I LIST="^" S VALMBCK="R" Q
  ;Get the host file to use.
  D CLEAR^VALM1
  S TEMP=$$GETHFN^PXRMEXHF("PRD")
  I TEMP=0 S VALMBCK="R" Q
  S PATH=$P(TEMP,U,1)
  S FILE=$P(TEMP,U,2)
- D CHF^PXRMEXHF(.SUCCESS,.VALMY,PATH,FILE)
- S VALMHDR(1)="Successfully stored entries"
- S VALMHDR(2)="Failed to store entries"
+ D CHF^PXRMEXHF(.SUCCESS,LIST,PATH,FILE)
+ S VALMHDR(1)="Successfully stored entries:"
+ S VALMHDR(2)="Failed to store entries:"
  S LENH2=$L(VALMHDR(2))
- S IND=""
+ S IND="",NL=0
  F  S IND=$O(SUCCESS(IND)) Q:+IND=0  D
- . I SUCCESS(IND) S VALMHDR(1)=VALMHDR(1)_" "_IND
- . E  S VALMHDR(2)=VALMHDR(2)_" "_IND
+ . S NL=NL+1
+ . S TEMP=$S(NL=1:" ",1:", ")
+ . I SUCCESS(IND) S VALMHDR(1)=VALMHDR(1)_TEMP_IND
+ . E  S VALMHDR(2)=VALMHDR(2)_TEMP_IND
  I $L(VALMHDR(2))=LENH2 K VALMHDR(2)
  S VALMBCK="R"
  Q
  ;
  ;==================================================
 CMM ;Create a MailMan message containing packed reminders.
- N SUCCESS,TEMP,VALMY
+ N LEN,LIST,SUCCESS,TEMP
  ;Get the list to store.
- D EN^VALM2(XQORNOD(0))
+ S LIST=$$GETLIST()
  ;If there is no list quit.
- I '$D(VALMY) Q
+ I LIST="^" S VALMBCK="R" Q
  ;Get a new message number to store the entries in.
- D CMM^PXRMEXMM(.SUCCESS,.VALMY)
- I $D(SUCCESS("XMZ")) S VALMHDR(1)="Successfully stored entries in message "_SUCCESS("XMZ")_"."
- E  S VALMHDR(1)="Failed to store entries"
+ D CMM^PXRMEXMM(.SUCCESS,LIST)
+ S LEN=$L(LIST)
+ S TEMP=$E(LIST,1,(LEN-1))
+ I $D(SUCCESS("XMZ")) S VALMHDR(1)="Successfully stored entries "_TEMP_" in message "_SUCCESS("XMZ")_"."
+ E  S VALMHDR(1)="Failed to store entries"_TEMP
  S VALMBCK="R"
  Q
  ;
  ;==================================================
 DELETE ;Get a list of repository entries and delete them.
- N COUNT,DELLIST,IEN,IND,RELIST,VALMY
+ N IND,LIST,NUM
  ;Get the list to delete.
- D MIENLIST(.DELLIST)
- S COUNT=+$G(DELLIST("COUNT"))
- I COUNT=0 Q
- D DELETE^PXRMEXU1(.DELLIST)
+ S LIST=$$GETLIST()
+ ;If there is no list quit.
+ I LIST="^" S VALMBCK="R" Q
+ S NUM=$L(LIST,",")-1
+ D DELETE^PXRMEXU1(LIST)
  ;Rebuild the list for List Manager to display.
  K ^TMP("PXRMEXLR",$J)
  D REXL^PXRMLIST("PXRMEXLR")
  ;
- S VALMHDR(1)="Deleted "_DELLIST("COUNT")_" Exchange File"
- I COUNT>1 S VALMHDR(1)=VALMHDR(1)_" entries."
- I COUNT=1 S VALMHDR(1)=VALMHDR(1)_" entry."
- I COUNT=0 S VALMHDR(1)="No entries selected."
+ S VALMHDR(1)="Deleted "_NUM_" Exchange File"
+ I NUM>1 S VALMHDR(1)=VALMHDR(1)_" entries."
+ I NUM=1 S VALMHDR(1)=VALMHDR(1)_" entry."
  S VALMHDR(2)=" "
  S VALMBCK="R"
  Q
@@ -68,17 +72,28 @@ EXIT ; Exit code
  Q
  ;
  ;==================================================
+GETLIST() ;Get a list of entries.
+ N DIR,NEXCHE,X,Y
+ S NEXCHE=+$G(^TMP("PXRMEXLR",$J,"NEXCHE"))
+ I NEXCHE=0 Q 0
+ S DIR(0)="L^1:NEXCHE"
+ S DIR(0)="L^1:"_NEXCHE
+ D ^DIR
+ Q Y
+ ;
+ ;==================================================
 INSTALL ;Get a list of repository entries and install them.
- N IND,PXRMRIEN,VALMY
- D EN^VALM2(XQORNOD(0))
+ N IND,LIST,LNUM,PXRMRIEN
+ ;Get the list to install.
+ S LIST=$$GETLIST()
  ;If there is no list quit.
- I '$D(VALMY) Q
+ I LIST="^" S VALMBCK="R" Q
  ;PXRMDONE is newed in PXRMEXLM
  S PXRMDONE=0
- S IND=""
- F  S IND=$O(VALMY(IND)) Q:(+IND=0)!(PXRMDONE)  D
+ F IND=1:1:$L(LIST,",")-1 Q:PXRMDONE  D
+ . S LNUM=$P(LIST,",",IND)
  .;Get the repository ien.
- . S PXRMRIEN=^TMP("PXRMEXLR",$J,"SEL",IND)
+ . S PXRMRIEN=$$RIEN^PXRMEXU1(LNUM)
  .;The list template calls INSTALL^PXRMEXLI
  . D EN^VALM("PXRM EX LIST COMPONENTS")
  . K ^TMP("PXRMEXLC",$J)
@@ -94,23 +109,6 @@ HDR ; Header code
  ;==================================================
 HELP ; Help code
  S X="?" D DISP^XQORM1 W !!
- Q
- ;
- ;==================================================
-MIENLIST(LIST) ;Get a list of List Manager repository entries and turn it
- ;into iens.
- N COUNT,IEN,VALMY
- D EN^VALM2(XQORNOD(0))
- ;If there is no list quit.
- I '$D(VALMY) Q
- S COUNT=0
- S IND=""
- F  S IND=$O(VALMY(IND)) Q:+IND=0  D
- . S COUNT=COUNT+1
- . ;S IEN=^TMP("PXRMEXLR",$J,"IDX",IND,IND)
- . S IEN=^TMP("PXRMEXLR",$J,"SEL",IND)
- . S LIST(IEN)=""
- S LIST("COUNT")=COUNT
  Q
  ;
  ;==================================================

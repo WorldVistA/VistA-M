@@ -1,14 +1,14 @@
 PSJLMHED ;BIR/MLM-BUILD LM HEADERS ;28 Jan 98 / 2:18 PM
- ;;5.0;INPATIENT MEDICATIONS;**4,58,85,110,148,181,260**;16 DEC 97;Build 94
+ ;;5.0;INPATIENT MEDICATIONS;**4,58,85,110,148,181,260,275**;16 DEC 97;Build 157
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ; Reference to CWAD^ORQPT2 is supported by DBIA 2831.
  ; Reference to ^SC is supported by DBIA 10040.
- ;External reference to $$BSA^PSSDSAPI supported by DBIA 5425.
- ;External reference to ^ORQQVI supported by DBIA 5770.
- ;External reference to ^ORQPTQ4 supported by DBIA 5785.
- ;External reference to ^ORB31 supported by DBIA 5140.
- ;External reference to ^ORQQLR1 supported by DBIA 5787.
+ ; External reference to $$BSA^PSSDSAPI supported by DBIA 5425.
+ ; External reference to ^ORQQVI supported by DBIA 5770.
+ ; External reference to ^ORQPTQ4 supported by DBIA 5785.
+ ; External reference to ^ORB31 supported by DBIA 5140.
+ ; External reference to ^ORQQLR1 supported by DBIA 5787.
  ;
 HDR(DFN) ; -- list screen header
  ;   input:       DFN := ifn of pat
@@ -31,7 +31,7 @@ HDR(DFN) ; -- list screen header
 HDRO(DFN) ; Standardized part of profile header.
  N PSJCLIN,PSJAPPT,PSJCLINN,RMORDT S (PSJCLIN,PSJAPPT)=0,(RMORDAT,PSJCLINN)="" I $G(PSJORD) D
  . S PSJCLIN=$S($G(PSJORD)["V":$G(^PS(55,DFN,"IV",+PSJORD,"DSS")),$G(PSJORD)["U":$G(^PS(55,DFN,5,+PSJORD,8)),$G(PSJORD)["P":$G(^PS(53.1,+PSJORD,"DSS")),1:"")
- . S:PSJCLIN PSJAPPT=$P($G(PSJCLIN),U,2) I PSJCLIN,PSJAPPT S PSJCLINN=$P($G(^SC(+PSJCLIN,0)),U)
+ . S:PSJCLIN PSJAPPT=$P($G(PSJCLIN),U,2) S:'PSJAPPT PSJCLIN="" I PSJCLIN,PSJAPPT S PSJCLINN=$P($G(^SC(+PSJCLIN,0)),U)
  K VALMHDR I PSJCLINN]"" S PSJ=VADM(1),PSJ=$$SETSTR^VALM1("   Clinic: "_PSJCLINN,PSJ,28,26)
  I PSJCLINN="" S PSJ=VADM(1),PSJ=$$SETSTR^VALM1($S('PSJPDD:"     ",1:"Last ")_"Ward: "_PSJPWDN,PSJ,30,18)
  S X=$$CWAD^ORQPT2(DFN)
@@ -49,11 +49,11 @@ INIT(PSJPROT) ; -- init bld vars
  S:PSJPROT=1 PSJUDPRF=1
  D KILL^VALM10(),EN^PSJO1(PSJPROT)
  I '$D(^TMP("PSJ",$J)) W !!,?22,"NO ORDERS FOUND FOR "_$S(PSJOL="S":"SHORT",1:"LONG")_" PROFILE." S VALMQUIT=1 D PAUSE^PSJLMUTL Q
- S PSJTF=0,PSJLN=1,PSJEN=1,PSJC="" F  S PSJC=$O(^TMP("PSJ",$J,PSJC)) Q:PSJC=""  D
+ S PSJTF=0,PSJLN=1,PSJEN=1,PSJC="" F  S PSJC=$O(^TMP("PSJ",$J,PSJC)) Q:PSJC=""!(PSJC["^")  D
  .S PSJF="^PS("_$S("AO"[PSJC:"55,"_PSGP_",5,",PSJC="DF":"55,"_PSGP_",5,",1:"53.1,")
  .I PSJTF'=$E(PSJC,1)!(PSJC="CC")!(PSJC="CD")!(PSJC="BD") Q:PSJC="CB"  Q:PSJC="O"  Q:PSJC="DF"  D TF S PSJTF=$E(PSJC,1)    ;DAM 8-29-07 Added Q:PSJC="CB"  Q:PSJC="O"
  .S PSJST="" F  S PSJST=$O(^TMP("PSJ",$J,PSJC,PSJST)) Q:PSJST=""  D
- .. S PSJS="" F  S PSJS=$O(^TMP("PSJ",$J,PSJC,PSJST,PSJS)) Q:PSJS=""  Q:PSJC="CB"  Q:PSJC="O"  Q:PSJC="DF"  D ON      ;DAM 8-29-07  Added Q:PSJC="CB"  Q:PSJC="O"
+ ..S PSJS="" F  S PSJS=$O(^TMP("PSJ",$J,PSJC,PSJST,PSJS)) Q:PSJS=""  Q:PSJC="CB"  Q:PSJC="O"  Q:PSJC="DF"  D ON      ;DAM 8-29-07  Added Q:PSJC="CB"  Q:PSJC="O"
  .;
  .;DAM 8-29-07   New code to place Pending Orders after Pending Renewal Orders on the roll and scroll display.  Non-Active Orders appear last.
  S PSJTF=0,PSJC="" F  S PSJC=$O(^TMP("PSJ",$J,PSJC)) Q:PSJC=""  D
@@ -61,6 +61,15 @@ INIT(PSJPROT) ; -- init bld vars
  . I PSJC="CB" D TF S PSJTF=$E(PSJC,1)                            ;These are Pending Orders
  . I PSJC="CB" S PSJST="" F  S PSJST=$O(^TMP("PSJ",$J,PSJC,PSJST)) Q:PSJST=""  D
  . . S PSJS="" F  S PSJS=$O(^TMP("PSJ",$J,PSJC,PSJST,PSJS)) Q:PSJS=""   D ON
+ . ;
+ . I PSJC["Cz" D
+ . . N PSJCLIN
+ . . S PSJF="^PS("_$S("AO"[$P(PSJC,"^",4):"55,"_PSGP_",5,",$P(PSJC,"^",4)="DF":"55,"_PSGP_",5,",1:"53.1,")
+ . . S PSJCLIN=$P(PSJC,"^",2) Q:PSJCLIN=""
+ . . I ($P(PSJTF,"^",2)'=$P(PSJC,"^",2)) D TF S PSJTF=PSJC
+ . . S PSJST="" F  S PSJST=$O(^TMP("PSJ",$J,PSJC,PSJST)) Q:PSJST=""  D
+ . . . S PSJS="" F  S PSJS=$O(^TMP("PSJ",$J,PSJC,PSJST,PSJS)) Q:PSJS=""  D ON      ;DAM 8-29-07  Added Q:PSJC="CB"  Q:PSJC="O"
+ . ;
  . I PSJC="DF" D TF S PSJTF=$E(PSJC,1)                              ;These are recently DC Orders (mv)
  . I PSJC="DF" S PSJST="" F  S PSJST=$O(^TMP("PSJ",$J,PSJC,PSJST)) Q:PSJST=""  D
  . . S PSJS="" F  S PSJS=$O(^TMP("PSJ",$J,PSJC,PSJST,PSJS)) Q:PSJS=""   D ON
@@ -71,14 +80,15 @@ INIT(PSJPROT) ; -- init bld vars
  .;
  S VALMCNT=PSJLN-1
 DONE ;
- K PSJC,PSJEN,PSJLN,PSJST,PSJS,CNT,PSJPRI
+ K PSJC,PSJEN,PSJLN,PSJST,PSJS,CNT,PSJPRI,PSJORD
  Q
  ;
 ON ;
  S PSJSCHT=$S(PSJOS:PSJS,1:PSJST)
  S PSJO="" F FQ=0:0 S PSJO=$O(^TMP("PSJ",$J,PSJC,PSJST,PSJS,PSJO)) Q:PSJO=""  S DN=^(PSJO)   D
  .N PRJPRI S PSJPRI=$S(PSJO["V":$P($G(^PS(55,PSGP,"IV",+PSJO,.2)),"^",4),PSJO["U":$P($G(^PS(55,PSGP,5,+PSJO,.2)),"^",4),1:$P($G(^PS(53.1,+PSJO,.2)),"^",4))
- .S ^TMP("PSJON",$J,PSJEN)=PSJO,PSJL=$J(PSJEN,4) D @$S(PSJO["V":"PIV^PSJLMPRI(PSGP,PSJO,PSJF,DN)",PSJO["U":"PUD^PSJLMPRU(PSGP,PSJO,PSJF,DN)",1:"PIV^PSJLMPRI(PSGP,PSJO,PSJF,DN)") S ^TMP("PSJPRO",$J,0)=PSJEN,PSJEN=PSJEN+1
+ .S ^TMP("PSJON",$J,PSJEN)=PSJO,PSJL=$J(PSJEN,4) I ($P(PSJC,"^")="Cz") N PSJTMPJC S PSJTMPJC=PSJC N PSJC S PSJC=$P(PSJTMPJC,"^",4)
+ .D @$S(PSJO["V":"PIV^PSJLMPRI(PSGP,PSJO,PSJF,DN)",PSJO["U":"PUD^PSJLMPRU(PSGP,PSJO,PSJF,DN)",1:"PIV^PSJLMPRI(PSGP,PSJO,PSJF,DN)") S ^TMP("PSJPRO",$J,0)=PSJEN,PSJEN=PSJEN+1
  Q
  ;
 TF ; Set up order type header
@@ -87,7 +97,7 @@ TF ; Set up order type header
  .S PSJDCEXP=$$RECDCEXP^PSJP()
  .S PSJDFHDR="RECENTLY DISCONTINUED/EXPIRED (LAST "_+$G(PSJDCEXP)_" HOURS)"
  .N C,X,Y S C=PSJC,Y="",$P(Y," -",40)=""
- .S X=$S(C="A":$$TXT^PSJO("A"),C["CC":$$TXT^PSJO("PR"),C["CD":$$TXT^PSJO("PC"),C["C":$$TXT^PSJO("P"),C["BD":$$TXT^PSJO("NC"),C["B":$$TXT^PSJO("N"),C["DF":PSJDFHDR,1:$$TXT^PSJO("NA"))
+ .S X=$S(($G(PSJCLIN)]""):$G(PSJCLIN),C="A":$$TXT^PSJO("A"),C["CC":$$TXT^PSJO("PR"),C["CD":$$TXT^PSJO("PC"),C["C":$$TXT^PSJO("P"),C["BD":$$TXT^PSJO("NC"),C["B":$$TXT^PSJO("N"),C["DF":PSJDFHDR,1:$$TXT^PSJO("NA"))
  .S ^TMP("PSJPRO",$J,PSJLN,0)=$E($E(Y,1,(80-$L(X))/2)_" "_X_$E(Y,1,(80-$L(X))/2),1,80),PSJLN=PSJLN+1
  Q
 TEST ;

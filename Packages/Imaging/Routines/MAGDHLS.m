@@ -1,5 +1,5 @@
-MAGDHLS ;WOIFO/MLH/JSL/SAF - IHE-based ADT interface for PACS - segments ; 23 Jul 2009 8:15 AM
- ;;3.0;IMAGING;**49,123**;Mar 19, 2002;Build 67;Jul 24, 2012
+MAGDHLS ;WOIFO/MLH/JSL/SAF - IHE-based ADT interface for PACS - segments ; 08 Jul 2013 11:23 AM
+ ;;3.0;IMAGING;**49,123,141,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -28,17 +28,18 @@ AL1(XDFN,XYMSG) ; patient allergies
  ;         function return   0 (success) always
  ; 
  N DFN ; ------ internal entry number on ^DPT
+ N GMRAL ;----- return allergy array from EN1^GMRADPT
  N IXAL ; ----- allergy index (on GMRAL array)
  N SETID ; ---- index of the AL1 segment on this message
  N ALDTA ; ---- allergy data
  N IXREAC ; --- reaction index
  N REPIX ; ---- field repetition index
- N VA,VADPT ; - Return arrays from DEM^VADPT containing patient demographics
+ N VA,VADPT ; - return arrays from DEM^VADPT containing patient demographics
  ;
  D DEM^VADPT
  ;
  K YSEGA
- S DFN=XDFN D ^GMRADPT ; get patient's allergies
+ S DFN=XDFN D EN1^GMRADPT ; get patient's allergies - ICR 10099
  S IXAL=0
  F SETID=1:1 S IXAL=$O(GMRAL(IXAL)) Q:'IXAL  D
  . S ALDTA=$G(GMRAL(IXAL))
@@ -149,14 +150,12 @@ PID(XDFN,XYMSG) ; FUNCTION - patient ID/demo
  N SEGIX ; ---- segment index on @XYMSG
  N NUL ; ------ null return from called function
  N MSGTREE ; -- tree of message elements to be returned by $$PARSE^MAG7UP
- N STATNUMB ; - station number
  N STAT ; ----- status return from function calls
  N PTICN ; ---- patient integration control number
- N DFN ; ---- patient internal entry number (needed for VADPT call)
+ N DFN ; ------ patient internal entry number (needed for VADPT call)
+ N VAFPID ; --- overflow array from $$EN^VAFHLPID() ; P141 PMK 5/6/2013
  ;
  S HL("ECH")=HLECH,HL("FS")=HLFS,HL("Q")=HLQ
- S STATNUMB=$P($$SITE^VASITE(),"^",3) ; station number
- ;S STATNUMB=$E($P($$NS^XUAF4($$KSP^XUPARAM("INST")),U,2),1,3) ; station number
  ; does pt have a national ICN?
  I $L($T(IFLOCAL^MPIF001)) I $$IFLOCAL^MPIF001(XDFN)'=1 D   ;p123 - ICN is local, not national
  . S PTICN=$$GETICN^MPIF001(XDFN) ; ICR #2701
@@ -165,13 +164,16 @@ PID(XDFN,XYMSG) ; FUNCTION - patient ID/demo
  ; build a dummy message including MSH, PID
  ; (MSH required for $$PARSE^MAG7UP to work)
  S MSGDMY(1)="MSH"_HLFS_HLECH
- S MSGDMY(2)=$$EN^VAFHLPID(XDFN,"5,7,8,10BN,11,19,22B"),IX=0 ; DBIA #263
+ S MSGDMY(2)=$$EN^VAFHLPID(XDFN,"5,7,8,10BN,11,13,19,22B"),IX=0 ; DBIA #263 - P141 PMK 5/6/2013
+ ; if the result string is longer than 245, the remaining characters are
+ ; returned in VAFPID(n), where n is a sequential number beginning with 1
+ F I=1:1 Q:'$D(VAFPID(I))  S MSGDMY(2)=MSGDMY(2)_VAFPID(I) ; P141 PMK 5/6/2013
  S NUL=$$PARSE^MAG7UP("MSGDMY","MSGTREE") ; parse the message
  S DFN=XDFN D PID^VADPT  ;Get patient Identifiers in VA array
  ; purge patient identifiers PID-2 thru PID-4
  F IX=2,3,4 K MSGTREE(2,IX)
  ; assign station number-dfn to PID-2
- S MSGTREE(2,2,1,1,1)=STATNUMB_"-"_XDFN
+ S MSGTREE(2,2,1,1,1)=$$STATNUMB^MAGDFCNV()_"-"_XDFN
  S MSGTREE(2,2,1,2,1)=""
  S MSGTREE(2,2,1,3,1)=""
  S MSGTREE(2,2,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA")  ;P123
@@ -181,7 +183,7 @@ PID(XDFN,XYMSG) ; FUNCTION - patient ID/demo
  S MSGTREE(2,3,1,2,1)=""
  S MSGTREE(2,3,1,3,1)=""
  S MSGTREE(2,3,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA")  ;P123
- S MSGTREE(2,3,1,5,1)="NI"
+ S MSGTREE(2,3,1,5,1)=$S($$ISIHS^MAGSPID():"MR",1:"NI")  ;P110
  D:$D(PTICN)  ; use nat'l ICN (if available) as the alternate pt id in PID-4
  . S MSGTREE(2,4,1,1,1)=PTICN
  . S MSGTREE(2,4,1,2,1)="" ; no checksum (included in ICN)
@@ -191,7 +193,9 @@ PID(XDFN,XYMSG) ; FUNCTION - patient ID/demo
  . Q
  ; strip suffix, if any, off race and ethnicity codes
  F IX1=10,22 D
- . S:$G(MSGTREE(2,IX1,1,1,1))["-" MSGTREE(2,IX1,1,1,1)=$P(MSGTREE(2,IX1,1,1,1),"-",1,2)
+ . S IX2="" F  S IX2=$O(MSGTREE(2,IX1,IX2)) Q:IX2=""  D
+ . . S:$G(MSGTREE(2,IX1,IX2,1,1))["-" MSGTREE(2,IX1,IX2,1,1)=$P(MSGTREE(2,IX1,IX2,1,1),"-",1,2)
+ . . Q
  . Q
  ; insert PID subtree into passed-in element array
  ; this code eliminates values on intermediate (i.e., non-leaf) nodes

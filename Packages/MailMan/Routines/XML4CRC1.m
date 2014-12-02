@@ -1,5 +1,5 @@
 XML4CRC1 ;(WASH ISC)/RFJ-Block Mode Protocol ;04/17/2002  10:57
- ;;8.0;MailMan;;Jun 28, 2002
+ ;;8.0;MailMan;**45**;Jun 28, 2002;Build 8
 OPEN D GET,OP
  S:'$D(XMESC) XMESC=$C(126) S:'$D(XMFS) XMFS=255 S:'$D(XM) XM="" S (XMSSQ,XMRSQ)=1 Q
 GET S X=XMCHAN,DIC="^DIC(3.4,",DIC(0)="Z" D ^DIC S XMCHAN=+Y
@@ -62,8 +62,8 @@ BUFLUSH ;Flush any characters out of the buffer
 SUM ;Calculate checksum, accounting also for the character's position
  I '$D(XMOS) D LPC^XMLSWP0
  I $D(XMOS(0)) X XMOS(0) Q
- I XMOS["VAX DSM" S XMSUM=$ZC(%LPC,X)+$L(X)*$L(X) Q
- I XMOS["DSM" S XMSUM=$ZC(LPC,X)+$L(X)*$L(X) Q
- I XMOS["M/11"!(XMOS["M/VX") S XMSUM=$ZC(X)+$L(X)*$L(X) Q
+ I XMOS["VAX DSM" X "S XMSUM=$ZC(%LPC,X)+$L(X)*$L(X)" Q
+ I XMOS["DSM" X "S XMSUM=$ZC(LPC,X)+$L(X)*$L(X)" Q
+ I XMOS["M/11"!(XMOS["M/VX") X "S XMSUM=$ZC(X)+$L(X)*$L(X)" Q
  S XMSUM=0 F %=1:1:$L(X) S XMSUM=XMSUM+($A(X,%)*%)
  Q

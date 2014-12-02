@@ -1,30 +1,32 @@
-LEXXGI ;ISL/KER - Global Import (Needs ^LEXM) ;01/03/2011
- ;;2.0;LEXICON UTILITY;**4,25,26,27,28,29,46,49,50,41,59,73**;Sep 23, 1996;Build 10
+LEXXGI ;ISL/KER - Global Import (^LEXM) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**4,25,26,27,28,29,46,49,50,41,59,73,80**;Sep 23, 1996;Build 1
  ;              
- ; NEWed by Lexicon Environment Check routine LEX20nn
- ;    LEXBUILD
- ;    LEXFY
- ;    LEXIGHF
- ;    LEXLREV
- ;    LEXPTYPE
- ;    LEXQTR
- ;    LEXREQP
  ;              
- ; NEWed by KIDS during the Install of a patch/build
- ;    XPDNM
- ;              
+ ;               
  ; Global Variables
  ;    ^LEXM
- ;              
+ ;               
  ; External References
- ;    DBIA 10086  HOME^%ZIS
- ;    DBIA 10016  ^DIM
- ;    DBIA  2056  $$GET1^DIQ (file 200)
- ;    DBIA 10103  $$DT^XLFDT
- ;    DBIA 10103  $$FMTE^XLFDT
- ;    DBIA 10141  BMES^XPDUTL 
- ;    DBIA 10141  MES^XPDUTL
+ ;    HOME^%ZIS           ICR  10086
+ ;    ^%ZTLOAD            ICR  10063
+ ;    $$GET1^DIQ          ICR   2056
+ ;    $$FMTE^XLFDT        ICR  10103
+ ;    $$NOW^XLFDT         ICR  10103
+ ;    BMES^XPDUTL         ICR  10141
+ ;    MES^XPDUTL          ICR  10141
+ ;               
+ ; NEWed or KILLed by Lexicon Environment Check routine LEX20nn
+ ;    LEXBUILD  Build
+ ;    LEXFY     Fiscal Year
+ ;    LEXIGHF   Global Host File
+ ;    LEXLREV   Revision
+ ;    LEXPTYPE  Patch Type
+ ;    LEXQTR    Quarter
+ ;    LEXREQP   Required Patches/Builds
  ;              
+ ; NEWed or KILLed by KIDS during the Install of a patch/build
+ ;    XPDNM     Intall Flag
+ ;     
 EN ; Main Entry Point for Installing LEXM in Post-Installs
  ;                
  ; Requires 
@@ -61,6 +63,9 @@ EN ; Main Entry Point for Installing LEXM in Post-Installs
  ;                   File Checksums
  ;                   File Record Counts
  ;              
+ ;   LEXNOPRO - If this variable exist, the protocol LEXICAL
+ ;              SERVICES UPDATE will not be invoked.
+ ;              
  ;   LEXPTYPE - Patch Type
  ;   LEXLREV  - Revision
  ;   LEXREQP  - Required Patches/Builds
@@ -78,16 +83,26 @@ TASK ; Queue Lexicon Update with Taskman
  S ZTRTN="EN^LEXXGI",ZTDESC="Importing Updated Lexicon Data" S ZTIO="",ZTDTH=$H D ^%ZTLOAD,HOME^%ZIS
  Q
 LEXM ; Force Install of LEXM w/o a Post-Install
- N LEXBUILD,LEXBLD,LEXB,LEXBO,LEXSHORT,LEXTYPE,LEXMSG,LEXPOST
- S LEXBO=$G(^LEXM(0,"BUILD")),(LEXBUILD,LEXBLD,LEXB,^LEXM(0,"BUILD"))="LEX*2.0*NN" S:$L($G(LEXBO)) (LEXBUILD,LEXBLD,LEXB,^LEXM(0,"BUILD"))=LEXBO
+ N LEXBUILD,LEXBLD,LEXB,LEXBO,LEXCHK,LEXSHORT,LEXTYPE,LEXMSG,LEXPOST,LEXNDS,LEXNOPRO,LEXVER
+ S LEXNOPRO="",LEXBO=$G(^LEXM(0,"BUILD")),(LEXBUILD,LEXBLD,LEXB,^LEXM(0,"BUILD"))="LEX*2.0*NN"
+ S:$L($G(LEXBO)) (LEXBUILD,LEXBLD,LEXB,^LEXM(0,"BUILD"))=LEXBO
  S LEXSHORT="",LEXTYPE=LEXB S:$L(LEXB) LEXTYPE=LEXTYPE_" (Forced)" S LEXMSG="",LEXPOST=""
+ S LEXCHK=+($G(^LEXM(0,"CHECKSUM"))) W !,"   Running checksum routine on the ^LEXM import global, please wait"
+ S LEXNDS=+($G(^LEXM(0,"NODES"))),LEXVER=+($$VC^LEXXGI2(LEXCHK,LEXNDS)) W !
+ W:LEXVER>0 !,"     Checksum is ok",!
+ I LEXVER=0 W !!,"   Import global ^LEXM is missing.  Please obtain a copy of ^LEXM before",!,"   continuing." Q
+ I LEXVER<0 D  Q
+ . I LEXVER'=-3 W !,"   Unable to verify checksum for import global ^LEXM (possibly corrupt)"
+ . I LEXVER=-3 W !,"   Import global ^LEXM failed checksum"
+ . W !!,"     Please KILL the existing import global ^LEXM from your system and"
+ . W !,"     obtain a new copy of ^LEXM before continuing with the installation."
  D EN
  Q
 IMPORT ; Import Data during a Patch Installation
  S:$D(ZTQUEUED) ZTREQ="@" S:$L($G(LEXPTYPE)) LEXPTYPE=$G(LEXPTYPE) S:$L($G(LEXLREV)) LEXLREV=$G(LEXLREV) S:$L($G(LEXREQP)) LEXREQP=$G(LEXREQP)
  S:$L($G(LEXBUILD)) LEXBUILD=$G(LEXBUILD) S:$L($G(LEXIGHF)) LEXIGHF=$G(LEXIGHF) S:$L($G(LEXFY)) LEXFY=$G(LEXFY)
  S:$L($G(LEXQTR)) LEXQTR=$G(LEXQTR) K LEXSCHG,LEXCHG
- N LEXB,LEXCD,LEXSTR,LEXLAST,LEXRES,LEXSTART,%,%DT,C,D,D0,D1,D2,DG,DIC,DICR,DILOCKTM,DIW,IREC,J,XMDUN,XMZ,ZTSK
+ N LEXB,LEXCD,LEXSTR,LEXLAST,LEXRES,LEXSTART,DG,DIC,DICR,DILOCKTM,DIW,XMDUN,XMZ,ZTSK
  S U="^",LEXSTR=$G(LEXPTYPE),LEXB=$G(^LEXM(0,"BUILD")),LEXSTART=$$NOW^XLFDT
  S:$L($G(LEXFY))&($L($G(LEXQTR)))&($L(LEXSTR)) LEXSTR=LEXSTR_" for "_$G(LEXFY)_" "_$G(LEXQTR)_" Quarter"
  S:$L(LEXB) LEXBLD=LEXB S:'$L(LEXBLD)&($L(LEXBUILD)) LEXBLD=LEXBUILD
@@ -101,7 +116,8 @@ IMPORT ; Import Data during a Patch Installation
  . K LEXSCHG S LEXCHG=0,LEXFI=0 F  S LEXFI=$O(^LEXM(LEXFI)) Q:+LEXFI'>0  D
  . . S LEXID=$S($P(LEXFI,".",1)=80:"ICD",$P(LEXFI,".",1)=81:"CPT",$P(LEXFI,".",1)=757:"LEX",1:"") S:$L(LEXID) LEXSCHG(LEXID)=0,LEXSCHG("LEX")=0
  . S:$D(LEXSCHG("CPT"))!($D(LEXSCHG("ICD"))) LEXSCHG("PRO")="",LEXCHG=1,LEXSCHG(0)=1
- . D LOAD K LEXPROC D NOTIFY^LEXXGI2 I +($G(DUZ))>0,$L($$GET1^DIQ(200,(+($G(DUZ))_","),.01)) D
+ . D LOAD K LEXPROC I '$D(LEXNOPRO) D NOTIFY^LEXXGI2
+ . I +($G(DUZ))>0,$L($$GET1^DIQ(200,(+($G(DUZ))_","),.01)) D
  . . D HOME^%ZIS N DIFROM,LEXPRO,LEXPRON,LEXLAST S LEXPRON="LEXICAL SERVICES UPDATE",LEXPRO=$G(^LEXM(0,"PRO"))
  . . D:$D(LEXMSG) POST^LEXXFI
  Q
@@ -121,13 +137,22 @@ LOAD ; Load Data from ^LEXM into IC*/LEX Files
  Q
  ;                     
 NOTIFY ; Notify by Protocol - LEXICAL SERVICES UPDATE
- D NOTIFY^LEXXGI2,KALL^LEXXGI2
+ I '$D(LEXNOPRO) D NOTIFY^LEXXGI2,KALL^LEXXGI2
+ Q
+AWRD ; Recalculate ASL Cross-Reference in 757.01
+ D:$L($T(AWRD^LEXXGI4)) AWRD^LEXXGI4
+ Q
+ASL ; Recalculate ASL Cross-Reference in 757.01
+ D:$L($T(ASL^LEXXGI4)) ASL^LEXXGI4
+ Q
+SUB ; Re-Index Subset file 757.21 (set logic only)
+ D:$L($T(SUB^LEXXGI4)) SUB^LEXXGI4
  Q
 SCHG ;   Save Change File Changes (for NOTIFY)
- N FI,ID K LEXSCHG S LEXCHG=0
- N FI S FI=0 F  S FI=$O(^LEXM(FI)) Q:+FI'>0  D
- . S ID=$S(FI=80!(FI=80.1):"ICD",FI=81!(FI=81.1)!(FI=81.2)!(FI=81.3):"CPT",$P(FI,".",1)=757:"LEX",1:"UNK")
- . S LEXSCHG(FI,0)=+($G(^LEXM(FI,0))),LEXSCHG("B",FI)="" S LEXSCHG("C",ID,FI)=""
+ N LEXFI,LEXID K LEXSCHG S LEXCHG=0
+ N LEXFI S LEXFI=0 F  S LEXFI=$O(^LEXM(LEXFI)) Q:+LEXFI'>0  D
+ . S LEXID=$S(LEXFI=80!(LEXFI=80.1):"ICD",LEXFI=81!(LEXFI=81.1)!(LEXFI=81.2)!(LEXFI=81.3):"CPT",$P(LEXFI,".",1)=757:"LEX",1:"UNK")
+ . S LEXSCHG(LEXFI,0)=+($G(^LEXM(LEXFI,0))),LEXSCHG("B",LEXFI)="" S LEXSCHG("C",LEXID,LEXFI)=""
  S:$D(LEXSCHG("C","CPT"))!($D(LEXSCHG("C","ICD"))) LEXSCHG("D","PRO")=""
  S:$D(^LEXM(80))!($D(^LEXM(80.1)))!($D(^LEXM(81)))!($D(^LEXM(81.2)))!($D(^LEXM(81.3)))!($D(LEXSCHG("D","PRO"))) LEXCHG=1,LEXSCHG(0)=1
  Q

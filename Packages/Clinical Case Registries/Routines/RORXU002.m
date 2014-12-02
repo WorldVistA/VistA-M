@@ -1,5 +1,5 @@
-RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ; 8/3/11 3:55pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,10,13,15,17**;Feb 17, 2006;Build 33
+RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;8/3/11 3:55pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,10,13,15,17,19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
@@ -11,6 +11,7 @@ RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ; 8/3/11 3:55pm
  ; #10104  $$TRIM^XLFSTR (supported)
  ; #417    Read access to .01 field of file #40.8 (controlled)
  ; #10040  Read access to file #44 (supported)
+ ; #5747   $$VLTD^ICDEX (controlled)
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -28,6 +29,7 @@ RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ; 8/3/11 3:55pm
  ;                                      PATIENTS,OPTIONS params to have other
  ;                                      values besides boolean
  ;                                      Modified to add DATE_RANGE_4
+ ;ROR*1.5*19   FEB  2012   J SCOTT      Support for ICD-10 Coding System.
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -256,32 +258,32 @@ PARAMS(RORTSK,PARTAG,STDT,ENDT,FLAGS) ;
  . . S RC=$$ITEMIEN^RORUTL09(TYPE,REGIEN,GRC,.TMP)
  . . S:RC'<0 @NODE@(GRC)=TMP
  ;
- ;=== ICD-9 filter/group/codes
- N LEV1FILT,LEV2GRP,LEV3ICD9,ICD9IEN,ICD9CODE,GRPNAME,FILTER,ICD9DESC
- S FILTER=$G(RORTSK("PARAMS","ICD9FILT","A","FILTER"))
- I $L(FILTER)>0 D  ;quit if no ICD9 filter exists
- . S LEV1FILT=$$ADDVAL^RORTSK11(RORTSK,"ICD9FILT",,PARAMS)
+ ;=== ICD filter/group/codes
+ N LEV1FILT,LEV2GRP,LEV3ICD,ICDIEN,ICDCODE,GRPNAME,FILTER,ICDDESC,RORXMLNODE,RORICDSYS
+ S FILTER=$G(RORTSK("PARAMS","ICDFILT","A","FILTER"))
+ I $L(FILTER)>0 D  ;quit if no ICD filter exists
+ . S LEV1FILT=$$ADDVAL^RORTSK11(RORTSK,"ICDFILT",,PARAMS)
  . I LEV1FILT<0 S RC=LEV1FILT Q
  . ;add filter value to the output
  . S RC=$$ADDATTR^RORTSK11(RORTSK,LEV1FILT,"FILTER",FILTER)
- . ;if there's an ICD9 group, process it
- . I $D(RORTSK("PARAMS","ICD9FILT","G"))>1 D  Q:RC<0
- .. S NODE=$NA(RORTSK("PARAMS","ICD9FILT","G"))
+ . ;if there's an ICD group, process it
+ . I $D(RORTSK("PARAMS","ICDFILT","G"))>1 D  Q:RC<0
+ .. S NODE=$NA(RORTSK("PARAMS","ICDFILT","G"))
  .. S GRPNAME=0,RC=0
  .. F  S GRPNAME=$O(@NODE@(GRPNAME)) Q:GRPNAME=""  D  Q:RC<0
  ... S LEV2GRP=$$ADDVAL^RORTSK11(RORTSK,"GROUP",,LEV1FILT)
  ... I LEV2GRP'>0  S RC=LEV2GRP Q 
  ... ;add group name to the output
  ... D ADDATTR^RORTSK11(RORTSK,LEV2GRP,"ID",GRPNAME)
- ... S ICD9IEN=0
- ... F  S ICD9IEN=$O(@NODE@(GRPNAME,"C",ICD9IEN)) Q:ICD9IEN'>0  D
- .... S ICD9CODE=+$G(@NODE@(GRPNAME,"C",ICD9IEN)) Q:ICD9CODE'>0
+ ... S ICDIEN=0
+ ... F  S ICDIEN=$O(@NODE@(GRPNAME,"C",ICDIEN)) Q:ICDIEN'>0  D
+ .... S ICDCODE=$P(@NODE@(GRPNAME,"C",ICDIEN),U,1) Q:ICDCODE=""
+ .... S RORICDSYS=$P(@NODE@(GRPNAME,"C",ICDIEN),U,2)
  .... ;get diagnosis description
- .... N RORDESC K RORDESC S TMP=$$ICDD^ICDCODE(ICD9CODE,"RORDESC")
- .... S ICD9DESC=$G(RORDESC(1))
- .... S LEV3ICD9=$$ADDVAL^RORTSK11(RORTSK,"ICD9",$G(ICD9DESC),LEV2GRP)
- .... D ADDATTR^RORTSK11(RORTSK,LEV3ICD9,"ID",$G(ICD9CODE))
- .... K RORDESC
+ .... S ICDDESC=$$VLTD^ICDEX(ICDIEN)
+ .... S RORXMLNODE=$S(RORICDSYS=1:"ICD9",1:"ICD10")
+ .... S LEV3ICD=$$ADDVAL^RORTSK11(RORTSK,RORXMLNODE,ICDDESC,LEV2GRP)
+ .... D ADDATTR^RORTSK11(RORTSK,LEV3ICD,"ID",ICDCODE)
  ;
  ;=== get Max Date
  N MAXDT S MAXDT=$$PARAM^RORTSK01("OPTIONS","MAX_DATE")

@@ -1,8 +1,9 @@
-PSBODL1 ;BIRMINGHAM/VRN-DUE LIST ;1/10/12 8:47pm
- ;;3.0;BAR CODE MED ADMIN;**5,9,32,28,68**;Mar 2004;Build 26
+PSBODL1 ;BIRMINGHAM/VRN-DUE LIST ;9/19/12 12:08am
+ ;;3.0;BAR CODE MED ADMIN;**5,9,32,28,68,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified. 
  ;
  ;*68 - print New unlimited Wp Special Instructions/OPI fields
+ ;*70 - add Psbsrchl to HDR
  ;
 EN ;
  N QQ
@@ -137,7 +138,7 @@ FTR() ; [Extrinsic] Page footer
  ;
 HDR() ; Page Header
  Q:'PSBFOHDR ""
- D PT^PSBOHDR(DFN,.PSBHDR)
+ D PT^PSBOHDR(DFN,.PSBHDR,,,PSBSRCHL)                            ;*70
  W !
  W !
  W !,?(IOM-28\2),"*****   FUTURE ORDERS   *****"

@@ -94,7 +94,7 @@ BULL ; Send notification to the IVM Center once the facility has installed v2.0.
  W !!,">>> Sending a 'completed installation' notice to the IVM Center... "
  S XMSUB="IVM VERSION 2.0 INSTALLATION"
  S XMDUZ="IVM PACKAGE"
- S XMY("WEATHERLY@IVM.domain.ext")="",XMY(DUZ)="",XMY(.5)=""
+ S XMY("WEATHERLY@IVM.DOMAIN.EXT")="",XMY(DUZ)="",XMY(.5)=""
  S XMTEXT="IVMTEXT("
  S IVMX=$$SITE^VASITE
  S IVMTEXT(1)="  Facility:                     "_$P(IVMX,"^",2)

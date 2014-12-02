@@ -1,16 +1,17 @@
 PSXBPSUT ;BIR/MFR - BPS (ECME) Utilities ;13 Mar 2002  10:31 AM
- ;;2.0;CMOP;**48,63,65,69**;11 Apr 97;Build 60
+ ;;2.0;CMOP;**48,63,65,69,76**;11 Apr 97;Build 5
  ;Reference to ^PS(52.5, supported by DBIA #1978
  ;Reference to ^PSOSULB1 supported by DBIA #2478
  ;
 XMIT(REC) ; Checks if the prescription will be transmitted to CMOP or not
  ; Input:  REC  - Pointer to SUSPENSE file (#52.5)
  ; Output: XMIT - 0 - NO  /  1 - YES 
- N VADM,DFN,RX,PSXOK,PSXBAOK
+ N VADM,DFN,RX,PSXOK,PSXBAOK,VAPA
  I '$D(^PS(52.5,REC,0)) Q 0
  I $P(^PS(52.5,REC,0),"^",7)="" Q 0
  S RX=$P($G(^PS(52.5,REC,0)),"^",1) I RX="" Q 0
  S DFN=$$GET1^DIQ(52,RX,2,"I") D DEM^VADPT I $G(VADM(6))'="" Q 0
+ D ADD^VADPT I (($G(VAPA(1))="")!($G(VAPA(4))="")!($P($G(VAPA(5)),"^",2)="")!($G(VAPA(6))'>0)!($P($G(VAPA(11)),"^",2)'>0)) Q 0
  I ($P(^PS(52.5,REC,0),"^",3)'=DFN) Q 0
  S PSXOK=0 D CHKDATA^PSXMISC1 I PSXOK Q 0
  I '$$ADDROK^PSXMISC1(RX) Q 0  ;for PSX*2*69

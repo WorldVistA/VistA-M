@@ -1,5 +1,5 @@
-ORWPT ; SLC/KCM/REV - Patient Lookup Functions ;04/14/10  10:37
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,149,206,187,190,215,243,280**;Dec 17, 1997;Build 85
+ORWPT ; SLC/KCM/REV - Patient Lookup Functions ;03/26/13  09:06
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,149,206,187,190,215,243,280,306,311**;Dec 17, 1997;Build 30
  ;
  ; Ref. to ^UTILITY via IA 10061
  ;
@@ -42,14 +42,14 @@ DIEDON(VAL,DFN) ; Check for a date of death
 SELECT(REC,DFN) ; Selects patient & returns key information
  ;  1    2   3   4    5      6    7    8       9       10      11  12
  ; NAME^SEX^DOB^SSN^LOCIEN^LOCNM^RMBD^CWAD^SENSITIVE^ADMITTED^CONV^SC^
- ; 13  14  15  16
- ; SC%^ICN^AGE^TS
+ ; 13  14  15  16  17
+ ; SC%^ICN^AGE^TS^TSSVC
  ;
  ; for CCOW (RV - 2/27/03)  name="-1", location=error message
  I '$D(^DPT(+DFN,0)) S REC="-1^^^^^Patient is unknown to CPRS." Q
  ;
  N X
- K ^TMP($J,"OC-OPOS") ; delete once per order session order checks
+ I $G(XWB("2","RPC"))="ORWPT SELECT" K ^TMP($J,"OC-OPOS") ; delete once per order session order checks
  K ^TMP("ORWPCE",$J) ; delete PCE 'cache' when switching patients
  S X=^DPT(DFN,0),REC=$P(X,U,1,3)_U_$P(X,U,9)_U_U_$G(^(.1))_U_$G(^(.101))
  S X=$P(REC,U,6) I $L(X) S $P(REC,U,5)=+$G(^DIC(42,+$O(^DIC(42,"B",X,0)),44))
@@ -62,6 +62,12 @@ SELECT(REC,DFN) ; Selects patient & returns key information
  I $L($T(GETICN^MPIF001)) S X=+$$GETICN^MPIF001(DFN) S:X>0 $P(REC,U,14)=X
  S $P(REC,U,15)=$$AGE(DFN,$P(REC,U,3))
  S $P(REC,U,16)=+$G(^DPT(DFN,.103)) ; treating specialty
+ I +$P(REC,U,16)>0 D
+ . N X,Y,Z
+ . S (X,Y)=""
+ . S X=$$TSDATA^DGACT(45.7,+$P(REC,U,16),.Y,"")
+ . I +X,+$P($G(Y(2)),U,1)>0 S (X,Z)="" S X=$$TSDATA^DGACT(42.4,+$P($G(Y(2)),U,1),.Z,"")
+ . I +X S $P(REC,U,17)=$P($G(Z(3)),U,1) ; treating  specialty service
  K VAEL,VAERR ;VADPT call to kill?
  S ^DISV(DUZ,"^DPT(")=DFN
  Q

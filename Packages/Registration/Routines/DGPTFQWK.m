@@ -1,9 +1,9 @@
 DGPTFQWK ;ALB/AS - QUICK/LOAD PTF DATA ;7/21/05 2:44pm
- ;;5.3;Registration;**517,594,635,729**;Aug 13, 1993;Build 59
+ ;;5.3;Registration;**517,594,635,729,850**;Aug 13, 1993;Build 171
  ;
  S (DGPTF,DA)=PTF,DIE="^DGPT(",DR="[DGQWK"_$S('DGPTFE:"]",1:"F]") W !,"* editing 101 & 701 transactions" D ^DIE S DR="[DG701]" D ^DIE W !,"* editing 501 transactions"
  F DGM=0:0 D S501 Q:Y'>0  K DA S (DGPTF,DA)=PTF S DGMOV=+Y,DGJUMP=$S('DGPTFE:"",1:"1-2"),DR=$S('DGPTFE:"[DG501]",1:"[DG501F]"),DIE="^DGPT(" D ^DIE,CHK501^DGPTSCAN K DGMOV
- K DIC,DA,DR,DIE
+ K DIC,DA,DR,DIE,DGCODSYS,DGXX,DGTYPE
  W !,"* editing 401 transactions"
  F DGM=0:0 D S401 Q:Y'>0  K DA S DGSUR=+Y,DGJUMP="1-2",DR="[DG401]",DIE="^DGPT(",(DA,DGPTF)=PTF D ^DIE,CHK401^DGPTSCAN K DGSUR
  I '$P(^DGPT(PTF,0),U,4) W !,"* editing 801 transactions" D S801
@@ -11,24 +11,31 @@ DGPTFQWK ;ALB/AS - QUICK/LOAD PTF DATA ;7/21/05 2:44pm
  W !,"* editing 601 transactions"
  F DGM=0:0 S DGZP=1 D S601 Q:Y'>0  K DA S P(DGZP,1)=+Y,DGJUMP="1-2",DR="[DG601]",DIE="^DGPT(",(DA,DGPTF)=PTF D ^DIE,CHK601^DGPTSCAN K P
  K DIC,DA,DR,DIE
- ;S DR="60",DR(2,45.05)=".01;2;S:'X Y=4;3;4:8",DIE="^DGPT(",DA=PTF D ^DIE
  I '$P(^DGPT(PTF,0),"^",4)&('DGST) W !,"  Updating TRANSFER DRGs" S DGADM=$P(^DGPT(PTF,0),U,2) D SUDO1^DGPTSUDO
  K DGM,DA,DGMOVENO,DIC,DIE,DR,Y,DGPTF,DGJUMP Q
 S501 ;-- set up 501 
+ ;set screen transaction identity
+ S X1="^501"
  S DA(1)=PTF,DIC("A")="Select 501 MOVEMENT NUMBER: ",DIC(0)="AEQ",DIC="^DGPT("_PTF_",""M""," S:'$D(^DGPT(PTF,"M",0)) ^(0)="^45.02AI^^" D ^DIC
  K DA,DIC
  Q
  ;
 S401 ;-- set up 401
+ ;set screen transaction identity
+ S X1="^401"
  S DA(1)=PTF,DIC("A")="Select 401 SURGERY DATE: ",DIC(0)="AEQL",DIC="^DGPT("_PTF_",""S""," S:'$D(^DGPT(PTF,"S",0)) ^(0)="^45.01DA^^" D ^DIC
  K DA,DIC
  Q
  ;
 S601 ;-- set up 601
+ ;set screen transaction identity
+ S X1="^601"
  S DA(1)=PTF,DIC("A")="Select 601 PROCEDURE DATE: ",DIC(0)="AEQL",DIC="^DGPT("_PTF_",""P""," S:'$D(^DGPT(PTF,"P",0)) ^(0)="^45.05DA^^" D ^DIC
  K DA,DIC
  Q
 S801 ;-- set up 801
+ ;set screen transaction identity
+ S X1="^801"
  F  D  D REQ:$D(PSIEN) Q:$G(RFL)=1!(Y<0)  D PCE
  .S DIC("A")="Select 801 CPT DATE/TIME: "
  .S DA(1)=PTF,DIC(0)="AEQLZ",DIC="^DGPT("_PTF_",""C"",",DLAYGO=45
@@ -39,6 +46,8 @@ S801 ;-- set up 801
  ..F  S DGI=$O(^DGCPT(46,"C",PTF,DGI)) Q:DGI'>0  I +^DGCPT(46,DGI,1)=+DGZPRF(DGZP)&'$D(^(9)) S (DA,REC)=DGI,DR=".01;",DIE="^DGCPT(46," D GETINFO^DGPTFM21
  ..F  S DA=PTF,DIC="^DGCPT(46,",DIC(0)="AELQMZ",DLAYGO=46,DIC("S")="D EN6^DGPTFJC I 'DGER" D ^DIC K DIC Q:Y'>0  D SED^DGPTFM2
  ..S Y=1
+ ..Q
+ .Q
  K DR,DIE,DIC,DA,DGI,DGJUMP,DGPRD,DLAYGO,RFL Q
 REQ ;CHECK FOR REQUIRED FIELDS IN CPT RECORDS.  RECORDS MISSING ONE OR MORE REQUIRED FIELDS ARE DELETED.
  S RFL=0 I '$P(^DGPT(PTF,"C",PSIEN,0),U,3) S DA(1)=PTF,DA=DGPSM,DIK="^DGPT("_PTF_",""C""," D  G REQQ
@@ -61,7 +70,6 @@ PCE S DIR("A")="Send record to PCE? ",DIR(0)="S^Y:YES;N:NO",DIR("B")="NO"
  D MOB^DGPTFM2 S RES=$$DATA2PCE^DGAPI1(DFN,PTF,DGZP)
  I RES=1 L -^DGPT(PTF) W !,"PTF Record sent to PCE" H 2 Q
  W @IOF
- ;F I=1:1 Q:'$D(^TMP("DGPAPI",$J,"DIERR",$J,1,"TEXT",I))  W !,^(I)
  W !,"The PTF Record may not have been filed in PCE due to errors."
  W !,"Press return to continue." R X:DTIME
  L -^DGPT(PTF) Q

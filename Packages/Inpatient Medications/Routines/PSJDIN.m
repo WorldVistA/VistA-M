@@ -1,5 +1,5 @@
 PSJDIN ;BIR/MV - National Formulary Indicator Utility ;4 MAR 2000/ 4:27 PM
- ;;5.0;INPATIENT MEDICATIONS;**50,56,76,227**;16 DEC 97;Build 1
+ ;;5.0;INPATIENT MEDICATIONS;**50,56,76,227,289**;16 DEC 97;Build 2
  ;
  ; Reference to ^PSSDIN is supported by DBIA# 3166.
  ; Reference to ^PS(52.6 is supported by DBIA# 1231.
@@ -110,15 +110,20 @@ IV ;
  ;I PSJORD["V" S ON55=PSJORD D GTDRG^PSIVORFB
  ;*Loop thru IV DRG array to find OI & DD IEN from each AD & SOL.
  ;
- NEW FIL,NAME,PSJDD,PSJNF,PSJOI,PSJX,Y,X,PSJXY
+ NEW FIL,NAME,PSJDD,PSJNF,PSJOI,PSJX,Y,X,PSJXY,STR,UNT,STRUN
  D FULL^VALM1 W @IOF
  W !,"Drug restriction/guideline info:"
  F FIL="AD","SOL" F PSJX=0:0 S PSJX=$O(DRG(FIL,PSJX)) Q:'PSJX  D
  . NEW X
  . S PSJXY=1
  . SET NAME=$P(DRG(FIL,PSJX),U,2)
+ . ;PSJ*5*289 - Add Additive Strength to display.
+ . S STR=$$GET1^DIQ(52.6,$P(DRG(FIL,PSJX),U,1)_",",19)  ; Get STRENGTH from IV Additives File
+ . S UNT=$$GET1^DIQ(52.6,$P(DRG(FIL,PSJX),U,1)_",",2)   ; Get DRUG UNIT from IV Additives File
+ . S STRUN=$G(STR)_" "_$G(UNT)  ; Append DRUG UNIT to STRENGTH
+ . I STR="" S STRUN="N/A"  ; Per Pharmacy User Group - put N/A if the STRENGTH field is not populated.
  . W !!,"IV "_$S(FIL="AD":"Additive",1:"Solution")_": "_NAME
- . D NFIV(FIL,+PSJX,.PSJNF) W $G(PSJNF("NF")),!
+ . D NFIV(FIL,+PSJX,.PSJNF) W $G(PSJNF("NF"))_$S(FIL="AD":"   Additive Strength: "_$G(STRUN),1:""),!  ;Put Additive Strength after *N/F*.
  . S X=$S(FIL="AD":$G(^PS(52.6,+DRG(FIL,PSJX),0)),1:$G(^PS(52.7,+DRG(FIL,PSJX),0)))
  . S PSJOI=$P(X,U,11),PSJDD=$P(X,U,2) D EN^PSSDIN(+PSJOI,+PSJDD)
  . D DINOI(PSJOI,3)

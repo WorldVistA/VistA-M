@@ -1,5 +1,5 @@
-LR7OB63D ;DALOI/JMC - Get Autopsy data ;05/10/12  15:11
- ;;5.2;LAB SERVICE;**121,187,315,350**;Sep 27, 1994;Build 230
+LR7OB63D ;DALOI/JMC,PMK - Get Autopsy data ;23 Jul 2013 1:52 PM
+ ;;5.2;LAB SERVICE;**121,187,315,350,433**;Sep 27, 1994;Build 4
  ;
  ;
 AU ;Process AU data
@@ -102,6 +102,9 @@ PTR(I,NAME,FILE,FIELD,SNMFILE,ID) ;Store ptr fields for ORGAN/TISSUE multiple
 OERR ;Call to OE/RR to setup/update order
  N X,DR
  Q:'$D(^LRO(68,LRAA,1,LRAD,1,LRAN,0))  S X=$P(^(0),"^",4),LRSN=$P(^(0),"^",5),X=$S($P($G(^LRO(69,+X,1,+LRSN,0)),"^",11):"SC",1:"SN") D ACC^LR7OB1(LRAA,LRAD,LRAN,X)
+ ;
+ I $T(EDIT^MAGT7MA)'="" D EDIT^MAGT7MA ; invoke Imaging HL7 routine - P433
+ ;
  Q
  ;
  ;

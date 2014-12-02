@@ -1,5 +1,5 @@
 PSIVORC1 ;BIR/MLM-PROCESS INCOMPLETE IV ORDER - CONT ;13 Jan 98 / 11:36 AM
- ;;5.0;INPATIENT MEDICATIONS ;**1,37,69,110,157,134,181,263,270**;16 DEC 97;Build 5
+ ;;5.0;INPATIENT MEDICATIONS ;**1,37,69,110,157,134,181,263,270,279**;16 DEC 97;Build 150
  ;
  ; Reference to ^DD("DD" is supported by DBIA 10017.
  ; Reference to ^DD( is supported by DBIA 2255.
@@ -40,6 +40,10 @@ PSIVORC1 ;BIR/MLM-PROCESS INCOMPLETE IV ORDER - CONT ;13 Jan 98 / 11:36 AM
  ..S $P(DRG("AD",ADCNT),U,4)=""
  I $G(PSG53) G 53
  ;*End PSJ*5*270
+ N PSGINFAT S PSGINFAT=0 I ((P(4)="P")!$G(P(5))!($G(P(23))="P")) I P(8)["@" D
+ .W !!,"Infusion Rate contains ""@"" (not allowed with an Intermittent IV order)",!
+ .D 59 S:'(P(8)["@") P("NUMLBL")="" I P(8)["@" S PSGINFAT=1
+ I $G(PSGINFAT) G 53
  I PSIVAC'="PN" D ENT^PSIVCAL K %DT S X=P(2),%DT="RTX" D ^%DT S P(2)=+Y D ENSTOP^PSIVCAL K %DT S X=P(3),%DT="RTX" D ^%DT S P(3)=+Y
 OTYP ; Get order type, display type.
  S P("DTYP")=$S(P(4)="":0,P(4)="P"!(P(23)="P")!(P(5)):1,P(4)="H":2,1:3) S:PSIVAC'="CF" P("OT")=$S(P(4)="A":"F",P(4)="H":"H",1:"I")
@@ -133,7 +137,44 @@ EDIT ;
 EDIT1 ;
  NEW XFLG,PSIVY S PSIVY=$G(Y)
  NEW X S X=$G(^TMP("PSJI",$J,0)),VALMBG=$S((X<17):1,1:(X-(X#16)))
+ N PSINVON S PSINVON=ON I PSINVON["P" N PRVON S PRVON=$P($G(^PS(53.1,+ON,0)),"^",25) I PRVON["V" S PSINVON=PRVON
  I PSIVY=0!'$G(PSIVFN1) S PSIVFN1=1 D EN^VALM("PSJ LM IV AC/EDIT") Q
- S PSIVCHG=0 D EDCHK^PSIVORC2 K PSIVCHG
+ S PSIVCHG=0 D EDCHK^PSIVORC2 K PSIVCHG I $G(PSJCOM) S ^TMP("PSJCOM",$J,+ON,17)=$G(P("NUMLBL")) K P("NUMLBL")
  S VALMBCK="Q",PSIVACEP=1
+ Q
+59 ; Infusion Rate
+ N P8BADDEF S P8BADDEF=0
+ I $G(P("RES"))="R" I $G(ON)["P",$P($G(^PS(53.1,+ON,0)),"^",24)="R" D  Q
+ . Q:'$G(PSIVRENW)  W !!?5,"This is a Renewal Order. Infusion Rate may not be edited at this point." D PAUSE^VALM1
+ W !,"INFUSION RATE: ",$G(P(8))_"//" R X:DTIME S:'$T X=U S:X=U DONE=1 I $S($E(X)=U:1,X]"":0,1:'(P(8)["@")) D:'$G(DONE) EXPINF^PSIVEDT1(.X) G:$G(P8BADDEF) 59 Q
+ I (("C^P"[P(4))!(("C^S"[P(4))&(P(5)=1)))&((X["@")!((X="")&(P(8)["@"))) D  G 59
+ .W $C(7),!!?2,"'@' is not permitted for Intermittent IV's",!
+ I (X["^") D  G 59
+ .W $C(7),!!?2,"'^' is not permitted",!
+ I X=""&(("C^P"[P(4))!(("C^S"[P(4))&(P(5)=1))) Q
+ I X="@" D DEL^PSIVEDRG S:%=1 P(8)="" G 59
+ I X["???",($E(P("OT"))="I"),(PSIVAC["C") D ORFLDS^PSIVEDT1 G 59
+ I X["?" S F1=53.1,F2=59 D ENHLP^PSIVORC1 G 59
+ D EXPINF^PSIVEDT1(.X)
+ I ($L(X)>30!($L(X)=1)),(X'?1N) D  G 59
+ .W $C(7),!!?3,"Free text entries must contain a minimum of 2 characters",!?3,"and a maximum of 30 characters",!
+ I X]"" D ENI^PSIVSP W:'$D(X) $C(7)," ??" G:'$D(X) 59 S P(8)=X
+ I P(8)="" W $C(7),!!,"An infusion rate must be entered!" G 59
+ Q
+PSBPOIV ; Invalid IV bags based on BCMA IV parameters
+ Q:'$G(DFN)  Q:'$G(ON55)  Q:'($G(ON55)["V")  Q:'$D(^PS(55,DFN,"IV",+ON55,0))
+ I $P($G(^PS(55,DFN,"IV",+ON55,2)),"^",5)!($G(P("RES"))="R")!($G(P("FRES"))="R") D PSBPOIV^PSJIBAG(DFN,ON55)
+ Q
+ ;
+SETNML55 ; Set NUMBER OF LABELS into ^PS(55,DFN,"IV",+ON55,0
+ ;          Added to PROTOCOL PSJI LM VERIFY after call to VF^PSJLIACT
+ ;          Made necessary by 11th hour code conflicts caused by MOCHA 2.0
+ Q:'$D(P("NUMLBL"))  Q:'$G(DFN)  Q:'($G(ON55)["V")  Q:'$G(^PS(55,DFN,"IV",+ON55,0))
+ S $P(^PS(55,DFN,"IV",+ON55,11),"^",1)=$G(P("NUMLBL"))
+ Q
+SETNL531 ;  Set NUMBER OF LABELS into ^PS(53.1,+PSGORD,8
+ ;          Added to PROTOCOL PSJI LM VERIFY after call to VF^PSJLIACT
+ ;          Made necessary by 11th hour code conflicts caused by MOCHA 2.0
+ Q:'$D(P("NUMLBL"))  Q:'$G(DFN)  Q:'$G(PSGORD)  Q:'$G(PS(53.1,+PSGORD,0))  ; $D is intentional - may edit from something to nothing
+ S $P(^PS(53.1,+PSGORD,17),"^",1)=$G(P("NUMLBL"))
  Q

@@ -1,5 +1,5 @@
 ORWU1 ;SLC/GRE - General Utilities for Windows Calls [2/25/04 11:10am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**149,187,195,215**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**149,187,195,215,394**;Dec 17, 1997;Build 5
  ;
  Q
  ;
@@ -73,7 +73,7 @@ NP2 ; Retrieve subset of data for dupes in NP1.
  .I $P(ORZ("DILIST",0),U)=0 Q           ; Division not listed.
  .I $P(ORZ("DILIST",0),U)=1 D  Q        ; Only one, so use it.
  ..S ORDD=$O(ORZ("DILIST",ORDD))        ; Get the node's entry.
- ..S ORDIV=$P(ORDD,U,2)                 ; Get actual name value.
+ ..S ORDIV=$P(ORZ("DILIST",ORDD,0),U,2) ; Get actual name value. p394
  .;
  .; More than one Division entry, so:
  .F  S ORDD=$O(ORZ("DILIST",ORDD)) Q:+ORDD=0!'($L(ORDD))  D  Q:ORGOOD
@@ -209,4 +209,4 @@ NEWLOC(Y,ORFROM,DIR) ; Return "CZ" locations from HOSPITAL LOCATION file.
  . . Q:("C"'[$P($G(^SC(IEN,0)),U,3)!('$$ACTLOC^ORWU(IEN)))
  . . S I=I+1,Y(I)=IEN_"^"_ORFROM
  Q
- ;        
+ ;

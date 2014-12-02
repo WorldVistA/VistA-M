@@ -1,5 +1,5 @@
 RORX013A ;HCIOFO/SG - DIAGNOSIS CODES (QUERY & SORT) ;6/21/06 2:24pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,13**;Feb 17, 2006;Build 27
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,13,19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
@@ -10,7 +10,7 @@ RORX013A ;HCIOFO/SG - DIAGNOSIS CODES (QUERY & SORT) ;6/21/06 2:24pm
  ; #3157         RPC^DGPTFAPI (supported)
  ; #3545         Access to the "AAD" cross-reference and the field 80 (private)
  ; #92           ^DGPT(IEN,0)  (controlled)
- ; #3990         $$CODEN^ICDCODE and $$ICDDX^ICDCODE (supported)
+ ; #5747         $$CODEN^ICDEX, $$CODEC^ICDEX, $$VSTD^ICDEX (controlled)
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -18,35 +18,36 @@ RORX013A ;HCIOFO/SG - DIAGNOSIS CODES (QUERY & SORT) ;6/21/06 2:24pm
  ;        
  ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
  ;-----------  ----------  -----------  ----------------------------------------
- ;ROR*1.5*13   DEC  2010   A SAUNDERS   User can select specific patients,
+ ;ROR*1.5*13   DEC 2010    A SAUNDERS   User can select specific patients,
  ;                                      clinics, or divisions for the report.
+ ;ROR*1.5*19   FEB 2012    J SCOTT      Support for ICD-10 Coding System.
  ;                                      
  ;******************************************************************************
  ;******************************************************************************
  Q
  ;
- ;**** STORES THE ICD-9 CODE
+ ;**** STORES THE ICD CODE
  ;
  ; PATIEN        Patient IEN (DFN)
- ; SOURCE        ICD-9 source code ("I", "O", "PB")
- ; [ICD9IEN]     IEN of the ICD-9 descriptor in file #80
+ ; SOURCE        ICD source code ("I", "O", "PB")
+ ; [ICDIEN]      IEN of the ICD descriptor in file #80
  ; DATE          Date when the code was entered
- ; [ICD9]        ICD-9 code
+ ; [ICD]         ICD code
  ;
- ; Either the ICD9IEN or the ICD9 parameter must be provided.
+ ; Either the ICDIEN or the ICD parameter must be provided.
  ;
-ICD9SET(PATIEN,SOURCE,ICD9IEN,DATE,ICD9) ;
+ICDSET(PATIEN,SOURCE,ICDIEN,DATE,ICD) ;
  Q:DATE'>0
  N TMP
- S ICD9IEN=+$G(ICD9IEN)
- I ICD9IEN'>0  Q:$G(ICD9)=""  D  Q:ICD9IEN'>0
- . S ICD9IEN=+$$CODEN^ICDCODE(ICD9,80)
+ S ICDIEN=+$G(ICDIEN)
+ I ICDIEN'>0  Q:$G(ICD)=""  D  Q:ICDIEN'>0
+ . S ICDIEN=+$$CODEN^ICDEX(ICD,80)
  ;---
- Q:$$ICDGRCHK^RORXU008(.RORPTGRP,ICD9IEN,RORICDL)
+ Q:$$ICDGRCHK^RORXU008(.RORPTGRP,ICDIEN,RORICDL)
  ;---
- S TMP=+$G(@RORTMP@("PAT",PATIEN,ICD9IEN))
- S:'TMP!(DATE<TMP) @RORTMP@("PAT",PATIEN,ICD9IEN)=DATE_U_SOURCE
- S ^(SOURCE)=$G(@RORTMP@("PAT",PATIEN,ICD9IEN,SOURCE))+1 ;naked reference: ^TMP($J,"RORTMP-n") from RORX013
+ S TMP=+$G(@RORTMP@("PAT",PATIEN,ICDIEN))
+ S:'TMP!(DATE<TMP) @RORTMP@("PAT",PATIEN,ICDIEN)=DATE_U_SOURCE
+ S ^(SOURCE)=$G(@RORTMP@("PAT",PATIEN,ICDIEN,SOURCE))+1 ;naked reference: ^TMP($J,"RORTMP-n") from RORX013
  Q
  ;
  ;***** SEARCHES FOR INPATIENT DIAGNOSES
@@ -80,13 +81,13 @@ INPAT(PATIEN) ;
  . . I $G(RORBUF(0))<0  D  Q
  . . . D ERROR^RORERR(-57,,,,RORBUF(0),"RPC^DGPTFAPI")
  . . S TMP=$P($G(RORBUF(1)),U,3)
- . . D:TMP'="" ICD9SET(PATIEN,"I",,DISDT,TMP)  ; ICD1
+ . . D:TMP'="" ICDSET(PATIEN,"I",,DISDT,TMP)   ; ICD1
  . . D:$G(RORBUF(2))'=""                       ; ICD2 - ICD10
  . . . F I=1:1:9  S TMP=$P(RORBUF(2),U,I)  D:TMP'=""
- . . . . D ICD9SET(PATIEN,"I",,DISDT,TMP)
+ . . . . D ICDSET(PATIEN,"I",,DISDT,TMP)
  . . S TMP=+$$GET1^DIQ(45,IEN,80,"I",,"RORMSG")
  . . D:$G(DIERR) DBS^RORERR("RORMSG",-9,,,45,IEN)
- . . D:TMP>0 ICD9SET(PATIEN,"I",TMP,DISDT)     ; PRINCIPAL DIAGNOSIS
+ . . D:TMP>0 ICDSET(PATIEN,"I",TMP,DISDT)     ; PRINCIPAL DIAGNOSIS
  ;---
  Q $S(RC<0:RC,1:0)
  ;
@@ -113,7 +114,7 @@ OUTPAT(PATIEN) ;
  . S (VPIEN,RC)=0
  . F  S VPIEN=$O(RORVPLST(VPIEN))  Q:VPIEN'>0  D  Q:RC
  . . S ICDIEN=+$P(RORVPLST(VPIEN),U)
- . . D:ICDIEN>0 ICD9SET(PATIEN,"O",ICDIEN,DATE)
+ . . D:ICDIEN>0 ICDSET(PATIEN,"O",ICDIEN,DATE)
  Q $S(RC<0:RC,1:0)
  ;
  ;***** SEARCHES FOR PROBLEMS
@@ -137,7 +138,7 @@ PROBLEM(PATIEN) ;
  . K GMPFLD,GMPORIG  D GETFLDS^GMPLEDT3(IEN)
  . S ICDIEN=+$G(GMPFLD(.01))  Q:ICDIEN'>0
  . S DATE=$P($G(GMPFLD(.08)),U)
- . D:(DATE'<RORSDT)&(DATE<ROREDT1) ICD9SET(PATIEN,"PB",ICDIEN,DATE)
+ . D:(DATE'<RORSDT)&(DATE<ROREDT1) ICDSET(PATIEN,"PB",ICDIEN,DATE)
  Q 0
  ;
  ;***** QUERIES THE REGISTRY
@@ -154,7 +155,7 @@ QUERY(FLAGS) ;
  N ROREDT1       ; Day after the end date
  N RORLAST4      ; Last 4 digits of the current patient's SSN
  N RORPNAME      ; Name of the current patient
- N RORPTGRP      ; Temporary list of ICD-9 groups
+ N RORPTGRP      ; Temporary list of ICD groups
  N RORPTN        ; Number of patients in the registry
  N RORCDLIST     ; Flag to indicate whether a clinic or division list exists
  N RORCDSTDT     ; Start date for clinic/division utilization search
@@ -201,7 +202,7 @@ QUERY(FLAGS) ;
  . ;
  . ;--- Skip the patient if no data has been found
  . Q:$D(@RORTMP@("PAT",PATIEN))<10
- . ;--- No ICD-9 from some groups
+ . ;--- No ICD from some groups
  . I $D(RORPTGRP)>1  K @RORTMP@("PAT",PATIEN)  Q
  . ;
  . ;--- Get the patient's data
@@ -242,21 +243,20 @@ SORT() ;
  ;       >0  Number of non-fatal errors
  ;
 TOTALS(PATIEN) ;
- N CNT,ICD9,ICDIEN,PNODE,RC,TMP
+ N CNT,ICD,ICDIEN,ICDVST,PNODE,RC,TMP
  S PNODE=$NA(@RORTMP@("PAT",PATIEN))
  S @PNODE=RORLAST4_U_RORPNAME_U_RORDOD
  S ^("PAT")=$G(@RORTMP@("PAT"))+1 ;naked reference: ^TMP($J,"RORTMP-n") from RORX013
  ;
  S ICDIEN=0
  F  S ICDIEN=$O(@PNODE@(ICDIEN))  Q:ICDIEN'>0  D
- . S ICD9=$P($G(@RORTMP@("ICD",ICDIEN)),U)
- . I ICD9=""  D
- . . S TMP=$$ICDDX^ICDCODE(ICDIEN)
- . . I TMP'<0  S ICD9=$P(TMP,U,2),TMP=$P(TMP,U,4)
- . . E  S TMP=""
- . . S:ICD9="" ICD9="UNKN"
- . . S:TMP="" TMP="Unknown ("_ICDIEN_")"
- . . S @RORTMP@("ICD",ICDIEN)=ICD9_U_TMP
+ . S ICD=$P($G(@RORTMP@("ICD",ICDIEN)),U)
+ . I ICD=""  D
+ . . S ICD=$$CODEC^ICDEX(80,ICDIEN)
+ . . S ICDVST=$$VSTD^ICDEX(ICDIEN)
+ . . S:ICD="" ICD="UNKN"
+ . . S:ICDVST="" ICDVST="Unknown ("_ICDIEN_")"
+ . . S @RORTMP@("ICD",ICDIEN)=ICD_U_ICDVST
  . ;---
  . S CNT=0
  . F TMP="I","O","PB"  S CNT=CNT+$G(@PNODE@(ICDIEN,TMP))

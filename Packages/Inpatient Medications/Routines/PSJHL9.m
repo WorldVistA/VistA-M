@@ -1,5 +1,5 @@
 PSJHL9 ;BIR/LDT-VALIDATE INCOMING HL7 DATA/CREATE NEW ORDER ; 2/14/12 7:14am
- ;;5.0;INPATIENT MEDICATIONS;**1,18,31,42,47,50,63,72,75,58,80,110,111,134,267**;16 DEC 97;Build 158
+ ;;5.0;INPATIENT MEDICATIONS;**1,18,31,42,47,50,63,72,75,58,80,110,111,134,267,279**;16 DEC 97;Build 150
  ;
  ; Reference to ^PSDRUG is supported by DBIA# 2192.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180.
@@ -62,6 +62,7 @@ NVO ; put new orders in non-verified orders file
  I $G(INFRT)]"" D
  .I INFRT S:(INFRT["Minutes"!(INFRT["Hours")) INFRT="INFUSE OVER "_INFRT
  .S ^PS(53.1,DA,8)=IVTYP_"^^^^"_INFRT
+ .I INFRT["@",($P(INFRT,"@",2)?1.N) S $P(^PS(53.1,DA,17),"^")=$P(INFRT,"@",2)
  S:$G(FREQ)]"" $P(^PS(53.1,DA,2),"^",6)=FREQ
  S:$G(SCHTYP)]"" $P(^PS(53.1,DA,0),"^",7)=SCHTYP
  I $G(APPL)'="I" I $G(INSTR)]"" N X S X=INSTR D STRIP I $S(X?.E1C.E:0,$L(X)>60:0,X="":0,X["^":0,X?1.P:1,1:1) S $P(^PS(53.1,DA,.2),"^",2)=X,$P(^PS(53.1,DA,.2),"^",5,6)=$G(DOSE)_"^"_$$UNESC^ORHLESC($G(UNIT))

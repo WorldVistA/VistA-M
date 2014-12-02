@@ -1,6 +1,6 @@
 IBCA ;ALB/MRL - ADD NEW BILLING RECORD ;01 JUN 88 12:00
- ;;2.0;INTEGRATED BILLING;**43,80,109,106,137,312**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**43,80,109,106,137,312,461**;21-MAR-94;Build 58
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRA
  ;
@@ -75,7 +75,9 @@ LASTDAY ;find last day of last month
  . ;I $E(DGX,4,5)>9 S Y=$E(DGX,1,3)_"1231" S:IBDSDT<Y Y=IBDSDT Q  ;don't cross cy's
  . S Y=IBDSDT
  ;
- I DGX>X S Y=DT Q  ;billing for this month
+ I DGX>X S X=DT ;billing for this month
+ ;
+ I IBIDS(.05)>2 N Z S Z=$$ICD10S^IBCU4(DGX,X) I +Z S X=$$FMADD^XLFDT(Z,-1)
  ;
  ;I $E(DGX,4,5)<10 S Y=$E(DGX,1,3)_"0930" S:X<Y Y=X G LDQ ; end of month, don't cross fy's
  ;I $E(DGX,4,5)>9 S Y=$E(DGX,1,3)_"1231" S:X<Y Y=X G LDQ ; end of month, don't cross cy's

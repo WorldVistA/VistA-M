@@ -1,5 +1,5 @@
-MAGGSIU4 ;WOIFO/NST/GEK - Utilities for Image Import API ; 22 Feb 2011 12:28 PM
- ;;3.0;IMAGING;**121**;Mar 19, 2002;Build 2340;Oct 20, 2011
+MAGGSIU4 ;WOIFO/NST/GEK - Utilities for Image Import API ; 16 Apr 2013 8:49 AM
+ ;;3.0;IMAGING;**121,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -61,7 +61,7 @@ RESCIND(MAGRY,TIUDA) ; Main entry point to rescind images attached to a TIU note
  I '$G(TIUDA) S MAGRY(0)="0^TIU Note is not valid: "_TIUDA Q
  I '$D(^TIU(8925,TIUDA)) S MAGRY(0)="0^TIU Note does not exist: "_TIUDA Q
  ;
- ; Does Note have any Images.  Quit if No.
+ ; Does Note have any Images?  Quit if No.
  D GETILST^TIUSRVPL(.MAGA,TIUDA)
  I '$D(MAGA) S MAGRY(0)="1^No images found for TIU Note: "_TIUDA  Q  ; no images found 
  ;
@@ -162,6 +162,8 @@ STATCB(STATARR) ; CALLBACK function for IAPI Status array for Rescinded Import.
  ;   
  N IDATA,TRKID,I,SESS,SDATA
  N MAGDUZ,MAGO,MAGDFN,MAGAD
+ N STATUS ;Status of the Rescinded Import
+ S STATUS=+$P($G(STATARR(0)),"^",1)
  S TRKID=$G(STATARR(1))
  I $L(TRKID) D
  . S SESS=$$SES4TRK^MAGGSIU3(TRKID)
@@ -180,7 +182,8 @@ STATCB(STATARR) ; CALLBACK function for IAPI Status array for Rescinded Import.
  . ;  In the Session File we saved the Place. Place is needed for the Delete function.
  . ;  So we get data from Session File (#2006.82) for the files to delete.
  . D GETIAPID^MAGGSIUI(.IDATA,TRKID) ; Data from (#2006.82) Session File.
- . S I=0 F  S I=$O(STATARR(I)) Q:'I  D  ;
+ . ;135T5 Topeka issue: Only Delete Images if Rescind is Successful.
+ . I STATUS S I=0 F  S I=$O(STATARR(I)) Q:'I  D  ;
  . . I $P(STATARR(I),"^",1)="RESCINDED IMAGE FILE" D DELFILES(.IDATA)
  . . Q
  . Q

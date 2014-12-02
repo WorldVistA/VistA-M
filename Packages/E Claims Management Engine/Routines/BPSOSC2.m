@@ -1,5 +1,5 @@
 BPSOSC2 ;BHAM ISC/FCS/DRS - Certification testing ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,11**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,11,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -205,5 +205,8 @@ TABLE ;;
  ;;484;"Insurer","Percent Sales Tax Basis Sub"
  ;;498;"RX",N,"Prescriber Phone #"
  ;;524;"Insurer","Plan ID"
+ ;;590;"Provider","Pharmacist Initials"
  ;;600;"RX",N,"Unit of Measure"
+ ;;678;"Claim","Time of Service"
+ ;;679;"Provider","Pharmacist ID"
  ;;*

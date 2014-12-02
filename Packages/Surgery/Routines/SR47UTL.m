@@ -28,6 +28,6 @@ MSG ; send mail message to national database
  K SRMSG S SRMSG(1)="Patch SR*3*47 has been installed at "_SRD_"."
  S SRMSG(2)="Start time: "_SRZ,SRMSG(3)="End time: "_SRY
  S XMSUB="SR*3*47 Installed",XMDUZ=DUZ
- S XMY("G.SRCOSERV@ISC-CHICAGO.domain.ext")=""
+ S XMY("G.SRCOSERV@ISC-CHICAGO.DOMAIN.EXT")=""
  S XMTEXT="SRMSG(" D ^XMD S ZTREQ="@"
  Q

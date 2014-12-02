@@ -1,5 +1,5 @@
-SCMCBK ;ALB/SCK - Broker Utilities for multiple patient assignments; 4/8/96 [1/8/99 7:53am]
- ;;5.3;Scheduling;**41,51,148,157,177,205**;AUG 13, 1993
+SCMCBK ;ALB/SCK - Broker Utilities for multiple patient assignments; 4/8/96 ; 11/30/11 4:23pm
+ ;;5.3;Scheduling;**41,51,148,157,177,205,564**;AUG 13, 1993;Build 8
  ;
  Q
  ;
@@ -128,6 +128,10 @@ PTPSBLD(SCOK,SC) ;
 PTAPBLD(SCOK,SC) ;  Build patient list for selected appointment range.
  ;     '  SC BLD PAT APT LIST '
  ;
+ ;SD/564-this build includes modification as follows:
+ ;- patients already assigned to another PC team then evaluated team SCTEAM are excluded
+ ;- patients previously assigned and unassigned to evaluated position are included
+ ;
  ;N SCCLN,SCTEAM,SCDTRNG,SCLOC,SCERMSG,SCNUM,SCCOUNT,SCMORE,SCOK1,SCER2,SCOUT,SCBLOCK
  ;
  D NEWVAR^SCMCBK1
@@ -146,12 +150,38 @@ PTAPBLD(SCOK,SC) ;  Build patient list for selected appointment range.
  IF 'SCOK1 S SCOK="0^0^0^0" G PTAPQ
  S SCOK=0
  S SCOK=$$PTAP^SCAPMC28(SCCLN,"SCDTRNG",SCNUM,.SCLOC,"SCERMSG",SCMORE)
+ ;
+ ;identify excluded to be included if unassigned from evaluated position-sd/564
+ N SCTMP S SCTMP=$G(^TMP("SC TMP LIST",$J,0))
+ N SS S SS=$G(^TMP("SCMC",$J,"EXCLUDE PT",0))
+ N SDFN,XX F XX=1:1:SS S SDFN=+$G(^TMP("SCMC",$J,"EXCLUDE PT",XX)) D
+ .N SCI S SCI=^TMP("SCMC",$J,"EXCLUDE PT",XX) D
+ ..N SCII S SCII=$P(SCI,U,5) I SCII>0&(SCII<(DT+1)) D
+ ...;PROCEED ONLY WITH THE CURRENT MONTH ASSIGNMENT
+ ...N SCAS S SCAS=$P(SCI,U,4) I SCAS>0 I $E(DT,1,5)'=$E(SCAS,1,5) Q
+ ...N SCPOS S SCPOS=$P(SCI,U,3) I SCPOS>0 I $P(^SCPT(404.43,SCPOS,0),U,2)'=$G(SC("POSITION")) Q
+ ...N SCN,SCS S SCN=$P(SCI,U,2),SCS=$P(SCI,U,6)
+ ...S SCTMP=SCTMP+1
+ ...S ^TMP("SC TMP LIST",$J,SCTMP)=SDFN_U_SCN_U_SC("CLINIC")_U_U_SCS
+ ...S ^TMP("SC TMP LIST",$J,"SCPTAP",SDFN,SCTMP)=""
+ S ^TMP("SC TMP LIST",$J,0)=SCTMP
+ ;
  K ^TMP("SCMC",$J,"EXCLUDE PT")
  ;
- M ^TMP($J,"SC PCMM IN")=@SCLOC
+ ;eliminate patients if assigned to another PC team-SD/564
+ N DFN S DFN="" F  S DFN=$O(^TMP("SC TMP LIST",$J,"SCPTAP",DFN)) Q:DFN=""  D
+ .N SCEX S SCEX=$$GETPC^SCAPMCU2(DFN) ;call to get patient's PC assignment
+ .N NSAS S NSAS=$P(SCEX,U,2) I +SCEX>0!(NSAS>0&(NSAS'=SCTEAM)) D
+ ..N SCN S SCN=$O(^TMP("SC TMP LIST",$J,"SCPTAP",DFN,""))
+ ..K ^TMP("SC TMP LIST",$J,"SCPTAP",DFN)
+ ..K ^TMP("SC TMP LIST",$J,SCN)
+ ..S ^TMP("SC TMP LIST",$J,0)=^TMP("SC TMP LIST",$J,0)-1
  ;
+ M ^TMP($J,"SC PCMM IN")=@SCLOC
  S I1=$G(^TMP($J,"SC PCMM IN",0))
- F I=1:1:I1 S ^TMP($J,"PCMM TMP",I)=$G(^TMP($J,"SC PCMM IN",I))
+ ;reindex entries in ^TMP global list - SD/564
+ N SCC S SCC=0 F I=1:1:I1 S SCC=$O(^TMP($J,"SC PCMM IN",SCC)) D
+ .S ^TMP($J,"PCMM TMP",I)=^TMP($J,"SC PCMM IN",SCC)
  ;
  D ALPHA^SCAPMCU2("^TMP($J,""PCMM TMP"")","^TMP($J,""SCAPP"")")
  S SCOK=$J_U_I1_U_SCOK

@@ -1,5 +1,20 @@
-RORHLUT1 ;HCIOFO/SG - HL7 UTILITIES (HIGH LEVEL) ; 8/24/05 1:55pm
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+RORHLUT1 ;HCIOFO/SG - HL7 UTILITIES (HIGH LEVEL) ;8/24/05 1:55pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**19**;Feb 17, 2006;Build 43
+ ;
+ ; This routine uses the following IAs:
+ ; #5747     $$CSI^ICDEX (controlled)
+ ; #5747     $$SNAM^ICDEX (controlled)
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ; --- ROUTINE MODIFICATION LOG ---
+ ; 
+ ;PKG/PATCH   DATE       DEVELOPER   MODIFICATION
+ ;----------- ---------- ----------- ----------------------------------------
+ ;ROR*1.5*19  MAY 2012   K GUPTA     Support for ICD-10 Coding System.
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
  ;
  Q
  ;
@@ -10,8 +25,8 @@ RORHLUT1 ;HCIOFO/SG - HL7 UTILITIES (HIGH LEVEL) ; 8/24/05 1:55pm
  ; CS            HL7 component separator
  ;
 ADREASON(RORIENS,CS) ;
- N CODE,ICD9,LAB,NAME,NODE,IEN,RORMSG,TMP
- S (CODE,ICD9,LAB)=0
+ N CODE,ICD,LAB,NAME,NODE,IEN,RORMSG,TMP,RORCODSYS,RORRULEIEN
+ S (CODE,ICD,LAB)=0
  S NODE=$$ROOT^DILFD(798.01,","_RORIENS,1)
  Q:NODE="" ""
  ;--- Check the names of selection rules
@@ -21,16 +36,23 @@ ADREASON(RORIENS,CS) ;
  . I $G(DIERR)  D  Q
  . . D DBS^RORERR("RORMSG",-9,,,798.2,IEN_",")
  . Q:$E(NAME,1,2)'="VA"
- . I NAME?1.E1" LAB"             S LAB=1   Q
- . I NAME?1.E1" PROBLEM"         S ICD9=1  Q
- . I NAME?1.E1" PTF".1" HIST"    S ICD9=1  Q
- . I NAME?1.E1" VISIT".1" HIST"  S ICD9=1  Q
- . I NAME?1.E1" VPOV"            S ICD9=1  Q
+ . I NAME?1.E1" LAB"                       S LAB=1  Q
+ . I NAME?1.E1" PROBLEM".1" (ICD10)"       S ICD=1,RORRULEIEN=IEN  Q
+ . I NAME?1.E1" PTF".1" HIST".1" (ICD10)"  S ICD=1,RORRULEIEN=IEN  Q
+ . I NAME?1.E1" VISIT".1" HIST"            S ICD=1,RORRULEIEN=IEN  Q
+ . I NAME?1.E1" VPOV".1" (ICD10)"          S ICD=1,RORRULEIEN=IEN  Q
  ;--- Check if the patient has been added automatically
  S NAME="Automatically Added - "
- I ICD9  S CODE=7,NAME=NAME_"ICD9"
- I LAB  S CODE=8  D:ICD9  S NAME=NAME_"Lab"
- . S CODE=9,NAME=NAME_" and "
+ I ICD D
+ . S RORCODSYS=+$$GET1^DIQ(798.2,RORRULEIEN_",",7,"I")
+ . S CODE=$S(RORCODSYS=30:10,1:7)
+ . S NAME=NAME_$S(RORCODSYS=30:"ICD10",1:"ICD9")
+ I LAB D
+ . S CODE=8
+ . I ICD D
+ . . S CODE=$S(RORCODSYS=30:11,1:9)
+ . . S NAME=NAME_" and "
+ . S NAME=NAME_"Lab"
  ;---
  Q $S(CODE:CODE_CS_$$ESCAPE^RORHL7(NAME)_CS_"99VA799_1",1:"")
  ;
@@ -89,3 +111,20 @@ SETOBXWP(NODE,OBX3) ;
  ;--- Store the segment
  D:$D(RORSEG(5)) ADDSEG^RORHL7(.RORSEG)
  Q
+ ;
+ ;***** RETURNS THE CODING SYSTEM NAME FOR A ICD OR PROCEDURE CODE
+ ;
+ ; RORFILE       FILE #80 or #80.1
+ ; RORICDIEN     IEN of the #80 or #80.1
+ ;
+ ; Return Values:
+ ;  "" if error Or not found
+ ;  coding system name
+ ;
+CSNAME(RORFILE,RORICDIEN) ;
+ Q:$G(RORICDIEN)="" ""
+ N RORICDSNAM,RORICDSYS
+ S RORICDSYS=$$CSI^ICDEX(RORFILE,RORICDIEN)
+ S RORICDSNAM=$$SNAM^ICDEX(RORICDSYS)
+ S:RORICDSNAM=-1 RORICDSNAM=""
+ Q RORICDSNAM

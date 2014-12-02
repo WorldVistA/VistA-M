@@ -1,5 +1,5 @@
 IBCNBLE ;ALB/ARH - Ins Buffer: LM buffer entry screen ;1-Jun-97
- ;;2.0;INTEGRATED BILLING;**82,231,184,251,371,416,435,452**;21-MAR-94;Build 26
+ ;;2.0;INTEGRATED BILLING;**82,231,184,251,371,416,435,452,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; - main entry point for list manager display
@@ -40,10 +40,11 @@ EXIT ; - exit list manager screen
  Q
  ;
 BLD ; display buffer entry
- N DFN,CLIEN,CLDT,IB0,IB20,IB40,IB60,IB61,IB62,IBL,IBLINE,ADDR,IBI,IBY
+ N DFN,CLIEN,CLDT,IB0,IB20,IB40,IB60,IB61,IB62,IB90,IB91,IBL,IBLINE,ADDR,IBI,IBY,SRVARRAY
  S VALMCNT=0
  S IB0=$G(^IBA(355.33,IBBUFDA,0)),IB20=$G(^IBA(355.33,IBBUFDA,20)),IB40=$G(^IBA(355.33,IBBUFDA,40))
  S IB60=$G(^IBA(355.33,IBBUFDA,60)),IB61=$G(^IBA(355.33,IBBUFDA,61)),IB62=$G(^IBA(355.33,IBBUFDA,62))
+ S IB90=$G(^IBA(355.33,IBBUFDA,90)),IB91=$G(^IBA(355.33,IBBUFDA,91))
  ; check if we are coming from appointments view
  I $G(AVIEW) D
  .D SET(" ") S IBY=$J("",26)_"Appointment Information" D SET(IBY,"B") S IBLINE=""
@@ -75,22 +76,24 @@ BLD ; display buffer entry
  S IBL="Address: ",IBY=ADDR(1) S IBLINE=$$SETL(IBLINE,IBY,IBL,10,69)
  D SET(IBLINE) S IBLINE=""
  F IBI=2:1:9 S IBL="",IBY=$G(ADDR(IBI)) Q:IBY=""  S IBLINE=$$SETL(IBLINE,IBY,IBL,10,69) D SET(IBLINE) S IBLINE=""
- ;
  D SET(" ") S IBY=$J("",29)_"Group/Plan Information" D SET(IBY,"B") S IBLINE=""
  S IBL="Group Plan?: ",IBY=$$YN($P(IB40,U,1)) S IBLINE=$$SETL("",IBY,IBL,16,3)
- S IBL="Require UR: ",IBY=$$YN($P(IB40,U,4)) S IBLINE=$$SETL(IBLINE,IBY,IBL,63,3)
  D SET(IBLINE) S IBLINE=""
- S IBL="Group Name: ",IBY=$P(IB40,U,2) S IBLINE=$$SETL("",IBY,IBL,16,20)
- S IBL="Require Amb Cert: ",IBY=$$YN($P(IB40,U,6)) S IBLINE=$$SETL(IBLINE,IBY,IBL,63,3)
- D SET(IBLINE) S IBLINE=""
- S IBL="Group Number: ",IBY=$P(IB40,U,3) S IBLINE=$$SETL("",IBY,IBL,16,17)
- S IBL="Require Pre-Cert: ",IBY=$$YN($P(IB40,U,5)) S IBLINE=$$SETL(IBLINE,IBY,IBL,63,3)
+ S IBL="Group Name: ",IBY=$P(IB90,U,1) S IBLINE=$$SETL("",IBY,IBL,16,58) D SET(IBLINE) S IBLINE=""
+ I $TR($E(IBY,59,80)," ","")'="" S IBLINE=$$SETL("",$E(IBY,59,80),"",16,22) D SET(IBLINE) S IBLINE=""
+ ;
+ S IBL="Group Number: ",IBY=$P(IB90,U,2) S IBLINE=$$SETL("",IBY,IBL,16,55)
  ;;Daou/EEN - Adding BIN and PCN
  D SET(IBLINE) S IBLINE=""
  S IBL="BIN: ",IBY=$P(IB40,U,10) S IBLINE=$$SETL("",IBY,IBL,16,10)
+ S IBL="Require UR: ",IBY=$$YN($P(IB40,U,4)) S IBLINE=$$SETL(IBLINE,IBY,IBL,63,3)
  D SET(IBLINE) S IBLINE=""
  S IBL="PCN: ",IBY=$P(IB40,U,11) S IBLINE=$$SETL("",IBY,IBL,16,20)
+ S IBL="Require Amb Cert: ",IBY=$$YN($P(IB40,U,6)) S IBLINE=$$SETL(IBLINE,IBY,IBL,63,3)
  D SET(IBLINE) S IBLINE=""
+ S IBL="Require Pre-Cert: ",IBY=$$YN($P(IB40,U,5)) S IBLINE=$$SETL(IBLINE,IBY,IBL,63,3)
+ D SET(IBLINE) S IBLINE=""
+ ;
  S IBL="Type of Plan: ",IBY=$P($G(^IBE(355.1,+$P(IB40,U,9),0)),U,1) S IBLINE=$$SETL("",IBY,IBL,16,25)
  S IBL="Exclude Pre-Cond: ",IBY=$$YN($P(IB40,U,7)) S IBLINE=$$SETL(IBLINE,IBY,IBL,63,3)
  D SET(IBLINE) S IBLINE=""
@@ -101,13 +104,17 @@ BLD ; display buffer entry
  S IBL="Whose Insurance: ",IBY=$$EXPAND^IBTRE(355.33,60.05,$P(IB60,U,5)) S IBLINE=$$SETL("",IBY,IBL,18,7)
  S IBL="Effective: ",IBY=$$DATE($P(IB60,U,2)) S IBLINE=$$SETL(IBLINE,IBY,IBL,62,8)
  D SET(IBLINE) S IBLINE=""
- S IBL="Insured's Name: ",IBY=$P(IB60,U,7) S IBLINE=$$SETL("",IBY,IBL,18,30)
  S IBL="Expiration: ",IBY=$$DATE($P(IB60,U,3)) S IBLINE=$$SETL(IBLINE,IBY,IBL,62,13)
  D SET(IBLINE) S IBLINE=""
- S IBL="Subscriber Id: ",IBY=$P(IB60,U,4) S IBLINE=$$SETL("",IBY,IBL,18,20)
+ S IBL="Insured's Name: ",IBY=$P(IB91,U,1) S IBLINE=$$SETL("",IBY,IBL,18,56) D SET(IBLINE) S IBLINE=""
+ I $TR($E(IBY,57,130)," ","")'="" S IBLINE=$$SETL("",$E(IBY,57,130),"",18,56) D SET(IBLINE) S IBLINE=""
+ I $TR($E(IBY,113,130)," ","")'="" S IBLINE=$$SETL("",$E(IBY,113,130),"",18,18) D SET(IBLINE) S IBLINE=""
+ S IBL="Subscriber Id: ",IBY=$P(IB90,U,3) S IBLINE=$$SETL("",IBY,IBL,18,56) D SET(IBLINE) S IBLINE=""
+ I $TR($E(IBY,57,80)," ","")'="" S IBLINE=$$SETL("",$E(IBY,57,80),"",18,24) D SET(IBLINE) S IBLINE=""
+ ;
+ S IBL="Relationship: ",IBY=$$EXPAND^IBTRE(355.33,60.06,$P(IB60,U,6)) S IBLINE=$$SETL("",IBY,IBL,18,16)
  S IBL="Primary Provider: ",IBY=$P(IB60,U,10) S IBLINE=$$SETL(IBLINE,IBY,IBL,62,17)
  D SET(IBLINE) S IBLINE=""
- S IBL="Relationship: ",IBY=$$EXPAND^IBTRE(355.33,60.06,$P(IB60,U,6)) S IBLINE=$$SETL("",IBY,IBL,18,16)
  S IBL="Provider Phone: ",IBY=$P(IB60,U,11) S IBLINE=$$SETL(IBLINE,IBY,IBL,62,16)
  D SET(IBLINE) S IBLINE=""
  I $P(IB60,U,6)'="01"!($P(IB60,U,8)'="") S IBL="Insured's DOB: ",IBY=$$DATE($P(IB60,U,8)) S IBLINE=$$SETL("",IBY,IBL,18,8)
@@ -151,10 +158,9 @@ NXT ;
  S IBL="Entered By: ",IBY=$$EXPAND^IBTRE(355.33,.02,$P(IB0,U,2)) S IBLINE=$$SETL("",IBY,IBL,18,40)
  S IBL="Verified By: ",IBY=$$EXPAND^IBTRE(355.33,.11,$P(IB0,U,11)) S IBLINE=$$SETL(IBLINE,IBY,IBL,62,17)
  D SET(IBLINE) S IBLINE=""
- ;
- ; esg - 6/25/02   SDD 5.1.2 - modifications to Expand Entry for IIV
- ; move source down one line, eIIV trace # to the left column and add
- ; eIIV processed date to the right column
+ ; service date / service code
+ D SERVLN(IBBUFDA,.SRVARRAY) I SRVARRAY F IBI=1:1:SRVARRAY D SET(SRVARRAY(IBI))
+ K SRVARRAY
  ;
  S IBLINE=$$TRACE(IBLINE,IBBUFDA)       ; eIIV trace #
  S IBL="eIV Processed Date: ",IBY=$S($P(IB0,U,15)="":"",1:$$FMTE^XLFDT($P(IB0,U,15),"2M"))
@@ -212,3 +218,19 @@ TRACE(IBLINE,IBBUFDA) ; Add the eIIV Trace Number to the display
 TRACEX ;
  Q IBLINE
  ;
+SERVLN(IBBUFDA,SRVARRAY) ; create a service date/service type line for the display
+ N NODE0,RIEN,SRVCODE,SRVDT,SRVSTR,TQIEN
+ S SRVSTR=""
+ I '$G(IBBUFDA) G SERVLNX
+ S TQIEN=+$O(^IBCN(365.1,"D",IBBUFDA,""),-1)
+ S (SRVDT,SRVCODE)="" I TQIEN D
+ .S NODE0=$G(^IBCN(365.1,TQIEN,0)),SRVCODE=$P(NODE0,U,20)
+ .S RIEN=+$O(^IBCN(365,"AF",IBBUFDA,""))
+ .I RIEN S SRVDT=$P($G(^IBCN(365,RIEN,1)),U,10) ; try to get service date from file 365
+ .I SRVDT="" S SRVDT=$P(NODE0,U,12) ; if unsuccessful, get it from file 365.1
+ .Q
+ S SRVSTR="** This response is based on service date "_$S(SRVDT:$$FMTE^XLFDT(SRVDT,"5Z"),1:"UNKNOWN")
+ S SRVSTR=SRVSTR_" and service type: "_$S(SRVCODE:$P($G(^IBE(365.013,SRVCODE,0)),U,2),1:"UNKNOWN")_" **"
+SERVLNX ;
+ D FSTRNG^IBJU1(SRVSTR,79,.SRVARRAY)
+ Q

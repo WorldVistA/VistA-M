@@ -1,5 +1,5 @@
 EDPQAR ;SLC/KCM - Log Area Information ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
 PARAM(AREA) ; return parameters for area
  N X,X1
@@ -37,12 +37,16 @@ LSTIENS(ROOT) ; list IEN's that should bypass remove-from-board checks
  .. D XML^EDPX("<ien>"_IEN_"</ien>")
  Q
 BRDUSER(AREA) ; set XML for anonymous board user
- N X
+ N X,DFLTROOM
  S X("area")=$$DFLTAREA(AREA)
  I X("area") S X("areaNm")=$P(^EDPB(231.9,X("area"),0),U)
  S X("version")=$$VERSRV
+ ; bwf patch 6 - 4/25/2013 adding defaultRoom to XML return
+ I X("area") D
+ .S DFLTROOM=$$GET1^DIQ(231.9,X("area"),1.12,"I")
+ .S X("defaultRoom")=$S(DFLTROOM:"true",1:"false")
  D XML^EDPX($$XMLA^EDPX("user",.X))
- Q 
+ Q
 DFLTAREA(AREA) ; return the default area for a site
  N X,DFLT
  I $L($G(AREA)),(+AREA'=AREA) D

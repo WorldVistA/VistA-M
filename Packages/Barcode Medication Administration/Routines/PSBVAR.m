@@ -1,10 +1,12 @@
-PSBVAR ;BIRMINGHAM/EFC-BCMA VARIANCE LOG FUNCTIONS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;*31*;Mar 2004;Build 1
+PSBVAR ;BIRMINGHAM/EFC-BCMA VARIANCE LOG FUNCTIONS ;9/19/12 5:44pm
+ ;;3.0;BAR CODE MED ADMIN;*31,70*;Mar 2004;Build 101
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
  ; ^DPT/10035
  ; ^DIC(42/10039
+ ;
+ ;*70 - alter DD trigger code so Clinic Orders do not update variances
  ;
 EN ;
  Q
@@ -15,7 +17,9 @@ CHKPRN(DFN,PSBMIN,PSBLOG) ;
  D ADD(.RESULTS,DFN,3,PSBMIN,"",PSBLOG)
  Q
  ;
- ;CHECK^PSBVAR() calling point is used to create a new variance entry.  Triggered by Order Administration Variance Field # 14 in the BCMA Medication Log File (#53.79).
+ ;CHECK^PSBVAR() calling point is used to create a new variance entry.
+ ;  Triggered by Order Administration Variance Field # .14 in the BCMA
+ ;  Medication Log File (#53.79).
  ;
 CHECK(DFN,PSBMIN,PSBLOG) ;
  Q:PSBMIN=""
@@ -33,8 +37,12 @@ ADD(RESULTS,DFN,PSBEVNT,PSBMIN,PSBDRUG,PSBLOG) ;
  ; PSBDRUG:  Drug File (#50) Pointer (Optional)
  ; PSBLOG:   BCMA Med Log IEN (Optional)
  ;
- ;Do not create variance for med order with missing dose status.
+ ;Do not create variance for below events:
+ ;   Med order with missing dose status.
+ ;   Clinic orders
+ ;
  I $G(PSBLOG),$P($G(^PSB(53.79,PSBLOG,0)),U,9)="M" Q
+ Q:($G(PSBCLIN)]"")!($G(PSBCLORD)]"")  ;Clin Flags defined - PSBML *70
  ;
  N PSBDT,PSBRB,PSBWRD,PSBXX
  ;

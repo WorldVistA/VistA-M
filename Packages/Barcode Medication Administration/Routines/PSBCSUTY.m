@@ -1,5 +1,5 @@
 PSBCSUTY ;BIRMINGHAM/TEJ- BCMA-HSC COVER SHEET UTILITIES 3 ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**16,32**;Mar 2004;Build 32
+ ;;3.0;BAR CODE MED ADMIN;**16,32,64**;Mar 2004;Build 14
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -59,6 +59,7 @@ LVIV ;
  Q
 QUT() ;
  S QUT=0
+ D NOW^%DTC ;Set % variable, PSB*3*64
  I PSBOST>($$FMADD^XLFDT($$NOW^XLFDT,,,$$GET^XPAR("DIV","PSB ADMIN BEFORE"))) S QUT=1 Q QUT
  I '(($F("ED",PSBOSTS)'>1)&(PSBOSP'<%)) S QUT=1 Q QUT
  Q QUT

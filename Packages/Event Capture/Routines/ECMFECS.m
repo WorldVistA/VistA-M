@@ -1,5 +1,5 @@
-ECMFECS ;ALB/JAM - Event Capture Management - Event Code Screen Filer ;1 Jul 08
- ;;2.0; EVENT CAPTURE ;**25,33,47,55,65,95,100**;8 May 96;Build 21
+ECMFECS ;ALB/JAM - Event Capture Management - Event Code Screen Filer ;11/6/12  09:56
+ ;;2.0;EVENT CAPTURE;**25,33,47,55,65,95,100,119**;8 May 96;Build 12
  ;
  I $G(ECL0)'="" D MULTLOC Q  ;multiple location filing
  ;
@@ -131,7 +131,7 @@ REASON ;Used by the RPC broker to file EC Reasons in file #720.4
  .S ECIEN=+Y
  S ECOST=$P($G(^ECR(ECIEN,0)),U,2)
  I ECST'=ECOST D
- .S DIE=DIC,DA=ECIEN,DR=".02////"_ECST D ^DIE
+ .S DIE="^ECR(",DA=ECIEN,DR=".02////"_ECST D ^DIE ;119
  S ^TMP($J,"ECMSG",1)="1^Reason Filed"_U_ECIEN K ECST
  Q
  ;

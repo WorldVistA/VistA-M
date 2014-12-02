@@ -1,5 +1,5 @@
 IBCNBES1 ;ALB/ARH-Ins Buffer: stuff new entries/data into buffer ;27 OCT 2000
- ;;2.0;INTEGRATED BILLING;**141**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**141,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;
@@ -13,7 +13,7 @@ BUFF(IBDATA) ;  add new entries to Insurance Buffer file (355.33) and stuff the 
  ;  IBDATA("M","PART A") = Medicare Part A Effective Date
  ;  IBDATA("M","PART B") = Medicare Part B Effective Date
  ;  IBDATA("M","HICN") = Medicare HICN
- ;  IBDATA("M","NAME") = Benficiary Name as Appears on Card
+ ;  IBDATA("M","NAME") = Beneficiary Name as Appears on Card
  ; 
  ;  IBDATA(X) level should contain any Insurance other than Medicare WNR
  ;  IBDATA(X,field #)   = array of data to file in Buffer, may contain data on multiple insurance companies
@@ -44,13 +44,13 @@ BUFF(IBDATA) ;  add new entries to Insurance Buffer file (355.33) and stuff the 
  . S IBSOURCE=$G(IBDATA(IBIX,"SOURCE")) I 'IBSOURCE S IBDATA(IBIX,"MESSAGE")="0^No Source",IBOUT=0 Q
  . ;
  . S IBARRAY(20.01)="MEDICARE"
- . S IBARRAY(40.02)=IBFLD
- . S IBARRAY(40.03)=IBFLD
+ . S IBARRAY(90.01)=IBFLD
+ . S IBARRAY(90.02)=IBFLD
  . S IBARRAY(60.02)=$G(IBDATA(IBIX,IBFLD))
- . S IBARRAY(60.04)=$G(IBDATA(IBIX,"HICN"))
+ . S IBARRAY(90.03)=$G(IBDATA(IBIX,"HICN"))
  . S IBARRAY(60.05)="v"
  . S IBARRAY(60.06)="01"
- . S IBARRAY(60.07)=$G(IBDATA(IBIX,"NAME"))
+ . S IBARRAY(91.01)=$G(IBDATA(IBIX,"NAME"))
  . ;
  . S IBY=$$ADDSTF^IBCNBES(IBSOURCE,DFN,.IBARRAY) K IBARRAY S IBDATA(IBIX,"MESSAGE")=IBY I 'IBY S IBOUT=0
  ;

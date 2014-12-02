@@ -1,5 +1,5 @@
 IBCSC4A ;ALB/MJB - MCCR PTF SCREEN  ;24 FEB 89 9:49
- ;;2.0;INTEGRATED BILLING;**106,228,339**;21-MAR-94;Build 2
+ ;;2.0;INTEGRATED BILLING;**106,228,339,479**;21-MAR-94;Build 29
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRSC4A
@@ -19,7 +19,8 @@ PRO S IBNC="NO PRO CODES ENTERED FOR THIS DATE",IBOPC=0 K ^UTILITY($J,"IB"),^TMP
  S IBP="" F I=1:1:13 S IBP=$O(^UTILITY($J,"IB",IBP)) Q:IBP=""  D ODDP S IBP=$O(^UTILITY($J,"IB",IBP)) D:IBP]"" EVENP D SETP^IBCSC4C Q:IBP=""
  Q
  ;
-T I IBCT>0 S IBDXC=IBDXC+1,^UTILITY($J,"IBDX",I,IBCT)=^UTILITY($J,"IBDX",I,IBCT)_U_$P($P(M,U,10),".",1)_U_$C(64+IBDXC)_U_$P(M,U,2)_"^"_$S(X'=1:"",'$D(^DGPT(IBPTF,70)):"",1:"D/C")_"^"_$$SC(M) Q
+ ; ibdxc=31 to skip '^'
+T I IBCT>0 S IBDXC=IBDXC+1 S:IBDXC=30 IBDXC=31 S ^UTILITY($J,"IBDX",I,IBCT)=^UTILITY($J,"IBDX",I,IBCT)_U_$P($P(M,U,10),".",1)_U_$C(64+IBDXC)_U_$P(M,U,2)_"^"_$S(X'=1:"",'$D(^DGPT(IBPTF,70)):"",1:"D/C")_"^"_$$SC(M) Q
  S ^UTILITY($J,"IBDX",I,1)=IBNC_U_$P($P(M,U,10),".",1)_"^^"_$P(^DGPT(IBPTF,"M",X,0),U,2)_"^^"_$$SC(M) Q
  ;
 ODD S X=^UTILITY($J,"IBDX",IBDIA,1),IBWO(0)=$P(X,U,3)_U_$P(X,U,2)_U_$P(X,U,4,6),IBWO(1)=$P(X,U,1) F M=2:1:5 S IBWO(M)=$S($D(^UTILITY($J,"IBDX",IBDIA,M)):^(M),1:"")
@@ -29,10 +30,10 @@ EVEN S X=^UTILITY($J,"IBDX",IBDIA,1),IBWE(0)=$P(X,U,3)_U_$P(X,U,2)_U_$P(X,U,4,6)
  I $P(IBWE(0),U,1)']"" F M=1:1:5 S IBWE(M)=""
  Q
  ;
-TP I IBCT>0 S IBOPC=IBOPC+1,^UTILITY($J,"IB",I,IBCT)=^UTILITY($J,"IB",I,IBCT)_U_$P(+M,".",1)_U_$C(64+IBOPC) Q
+TP I IBCT>0 S IBOPC=IBOPC+1 S:IBOPC=30 IBOPC=31 S ^UTILITY($J,"IB",I,IBCT)=^UTILITY($J,"IB",I,IBCT)_U_$P(+M,".",1)_U_$C(64+IBOPC) Q
  S ^UTILITY($J,"IB",I,1)=IBNC_U_$P(+M,".",1) Q
 T1 S ^UTILITY($J,"IB",I,IBCT)=$P(M,U,J) Q
-T2 I IBCT>0 S IBOPC=IBOPC+1,^UTILITY($J,"IB",I,IBCT)=^UTILITY($J,"IB",I,IBCT)_U_$P($P(M,U,1),".",1)_U_$C(64+IBOPC)_U_"*" Q
+T2 I IBCT>0 S IBOPC=IBOPC+1 S:IBOPC=30 IBOPC=31 S ^UTILITY($J,"IB",I,IBCT)=^UTILITY($J,"IB",I,IBCT)_U_$P($P(M,U,1),".",1)_U_$C(64+IBOPC)_U_"*" Q
  S ^UTILITY($J,"IB",I,1)=IBNC_U_$P($P(M,U,1),".",1)_"^^*" Q
  ;
 ODDP S X=^UTILITY($J,"IB",IBP,1),IBWO(0)=$P(X,U,3)_U_$P(X,U,2)_U_$S($P(X,U,4)="*":"*",$P(X,U,4)="+":"+",1:""),IBWO(1)=$P(X,U,1)_"^"_$P(X,"^",5,13) F M=2:1:5 S IBWO(M)=$S($D(^UTILITY($J,"IB",IBP,M)):^(M),1:"")
@@ -64,7 +65,7 @@ PTFPS(DFN,IBPTF,IBFDT,IBTDT) ; this will return a list of professional
  ;  return:  ^utility($j,"IB",count for event,count for procedures) =
  ;           pices: 1 = procedure
  ;                  2 = date (only if new date)
- ;                  3 = sequentual grouping letter (only if new date) 
+ ;                  3 = sequentual grouping letter (only if new date)  
  ;                  4 = "+" to flag as CPT 4 procedure
  ;                  5 = if exemption applicable, info for that
  ;                6-9 = assoc dx in order
@@ -93,11 +94,10 @@ PTFPS(DFN,IBPTF,IBFDT,IBTDT) ; this will return a list of professional
  D ICDINFO^DGAPI(DFN,IBPTF) ;get the dx's for the ptf
  ;
  S IBDT=0 F  S:'IBC!($D(^UTILITY($J,"IB",IBC))) IBC=IBC+1 S IBDT=$O(^TMP("IBPTFPS",$J,IBDT)) Q:IBDT<1  D
- . ;
- . S IBD=0
+ . ; ibc=31 to skip '^'
+ . S IBD=0 S:IBC=30 IBC=31
  . D CPTINFO^DGAPI(DFN,,IBDT) I '$D(^TMP("PTF",$J,46)) Q
  . S IB46=$P($G(^TMP("PTF",$J,46,0)),"^",2)_"^"_$P($G(^(0)),"^",4)
- . ;
  . S IBX=0 F  S IBX=$O(^TMP("PTF",$J,46,IBX)) Q:IBX<1  S IBY=^TMP("PTF",$J,46,IBX) D
  .. S IBRMARK=""
  .. F IBP=5:1:8,16:1:19 S IBDX=$P(IBY,"^",IBP),IBDXX=0 F  S IBDXX=$O(^TMP("PTF",$J,46.1,IBDXX)) Q:IBDXX<1!(IBRMARK)  I $P(^TMP("PTF",$J,46.1,IBDXX),"^",2)=IBDX D

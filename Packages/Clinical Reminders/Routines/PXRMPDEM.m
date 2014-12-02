@@ -1,5 +1,5 @@
-PXRMPDEM ;SLC/PKR - Computed findings for patient demographics. ;06/22/2011
- ;;2.0;CLINICAL REMINDERS;**5,4,11,12,17,18**;Feb 04, 2005;Build 152
+PXRMPDEM ;SLC/PKR - Computed findings for patient demographics. ;09/27/2012
+ ;;2.0;CLINICAL REMINDERS;**5,4,11,12,17,18,24**;Feb 04, 2005;Build 193
  ;
  ;======================================================
 AGE(DFN,TEST,DATE,VALUE,TEXT) ;Computed finding for returning a patient's
@@ -62,18 +62,24 @@ DOD(DFN,TEST,DATE,VALUE,TEXT)   ;Computed finding for a patient's
 EMPLOYE(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,VALUE,TEXT) ;This computed finding
  ;will return true if the patient is an employee.
  ;DBIA #10035, #10060
- N IEN,PAID,SSN
- S NFOUND=1,DATE(1)=$$NOW^PXRMDATE,TEST(1)=0
+ N EDATE,IEN,PAID,SSN,TDATE
+ S NFOUND=0,DATE(1)=$$NOW^PXRMDATE,TEST(1)=0
  S SSN=$P($G(^DPT(DFN,0)),U,9)
  I SSN="" Q
- ;Use SSN to make the link.
+ ;Use SSN to make the link to file #200.
  S IEN=+$O(^VA(200,"SSN",SSN,""))
  I IEN=0 Q
  S PAID=+$P($G(^VA(200,IEN,450)),U,1)
  I PAID=0 Q
+ ;Get the entered date.
+ S EDATE=+$P(^VA(200,IEN,1),U,7)
+ S VALUE(1,"DATE ENTERED")=EDATE
+ I (EDATE=0)!(EDATE>EDT) Q
  ;Check for a termination date.
- I +$P(^VA(200,IEN,0),U,11)<BDT Q
- S TEST(1)=1,TEXT(1)="Patient is an employee."
+ S TDATE=+$P(^VA(200,IEN,0),U,11)
+ S VALUE(1,"TERMINATION DATE")=TDATE
+ I (TDATE>0),(TDATE<BDT) Q
+ S NFOUND=1,TEST(1)=1,TEXT(1)="Patient is an employee."
  Q
  ;
  ;======================================================

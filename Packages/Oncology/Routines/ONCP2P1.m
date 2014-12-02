@@ -1,5 +1,5 @@
 ONCP2P1 ;Hines OIFO/GWB - 1998 Prostate Cancer Study ;05/30/00
- ;;2.11;ONCOLOGY;**18,24,26**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Table I
  K TABLE,HTABLE
  S TABLE("1. INSTITUTION ID NUMBER")="IIN"

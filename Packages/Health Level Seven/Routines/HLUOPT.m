@@ -1,5 +1,5 @@
 HLUOPT ;AISC/SAW-Main Menu for HL7 Module ;07/26/99  08:47
- ;;1.6;HEALTH LEVEL SEVEN;**57**;Oct 13, 1995
+ ;;1.6;HEALTH LEVEL SEVEN;**57,161,162**;Oct 13, 1995;Build 3
 AP ;Enter/Edit DHCP Application Parameters
  F  D  Q:Y<0
  . N DA,DIC,DDSFILE,DR
@@ -45,12 +45,16 @@ LOG ;Start/Stop HL7 Log of Transmissions
 EXIT K BY,DA,DHD,DIC,DIE,DIR,DR,FLDS,FR,L,HLDEV,TO,X,Y Q
  ;
 LLED ;Logical Link Edit, file 870
+ ;HL*161 add code to make sure the Logical Link is shutdown  RRA ticket 217900
  F  D  Q:Y<0
- . N DA,DIC,DDSFILE,DR
+ . N DA,DIC,DDSFILE,DR,HLIEN,HLNAME,HLLL0
  . S DIC="^HLCS(870,",DIC(0)="AEMQLZ"
  . W @IOF,! D ^DIC Q:Y<0
  . S DA=+Y,DR="[HL7 LOGICAL LINK]",DDSFILE=DIC
+ . S HLIEN=+Y,HLNAME=$P(Y,"^",2),HLLL0=$G(Y(0))
+ . I '$P(HLLL0,"^",15)&($L($P(HLLL0,"^",3)))&($P($G(^HLCS(870,HLIEN,400)),"^",3)'="M") W !!,HLNAME_" must be shutdown before it can be edited" H 2 Q
  . D ^DDS S Y=0
+ . W !!!,"If you shut down this link to edit, please remember to restart if appropriate" H 2
  Q
  ;
 INTED ;Interface edit, file 101
@@ -66,4 +70,3 @@ HOLD ;Hold Screen at End of Display
  N DIR
  S DIR(0)="E" D ^DIR
  Q
- 

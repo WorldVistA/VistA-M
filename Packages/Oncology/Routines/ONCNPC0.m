@@ -1,5 +1,5 @@
 ONCNPC0 ;HIRMFO/GWB - PCE Study of Non-Hodgkin's Lymphoma;4/11/97
- ;;2.11;ONCOLOGY;**11,15**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Check PCE eligibility
  ;Check if histologically or cytologically confirmed
  S DC=$P($G(^ONCO(165.5,ONCONUM,2)),U,6) I (DC'=1)&(DC'=2)&(DC'=4) S MSG="The Diagnostic Confirmation code is not 1, 2 or 4." D ERRMSG G EXIT

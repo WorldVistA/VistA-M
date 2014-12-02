@@ -1,5 +1,5 @@
-PXRMSTAC ;SLC/PKR - Stack routines for use by PXRM. ;11/08/2011
- ;;2.0;CLINICAL REMINDERS;**18**;Feb 04, 2005;Build 152
+PXRMSTAC ;SLC/PKR - Stack routines for use by PXRM. ;12/24/2013
+ ;;2.0;CLINICAL REMINDERS;**18,26**;Feb 04, 2005;Build 404
  ;
  ;=====================================================
 POP(STACK) ;Pop an element off of the stack.
@@ -34,11 +34,11 @@ POSTFIX(EXPR,OPERS,PFSTACK) ;Given an expression, EXPR, in infix notation
  . I (QF),(CHAR=QUOTE) S TEMP=TEMP_CHAR,QF=0 Q
  . I OPERP[CHAR D  Q
  .. I TEMP'="" S NSYM=NSYM+1,SYM(NSYM)=TEMP,TEMP=""
- ..;In MUMPS "'=", "'<", "'>", "'&", and "'!" must be treated as
- ..;a single operator.
+ ..;In MUMPS "'&", "'!", "'=", "'<", "'>", "'[", and "']" must be
+ ..;treated as a single operator.
  .. I CHAR="'" D
  ... S TEMP=$E(EXPR,IND+1)
- ... I (TEMP="=")!(TEMP="<")!(TEMP=">")!(TEMP="&")!(TEMP="!") S CHAR=CHAR_TEMP,IND=IND+1
+ ... I (TEMP="=")!(TEMP="<")!(TEMP=">")!(TEMP="&")!(TEMP="!")!(TEMP="[")!(TEMP="]") S CHAR=CHAR_TEMP,IND=IND+1
  .. S NSYM=NSYM+1,SYM(NSYM)=CHAR,TEMP=""
  . S TEMP=TEMP_CHAR
  I (IND=LEN),(TEMP'="") S NSYM=NSYM+1,SYM(NSYM)=TEMP

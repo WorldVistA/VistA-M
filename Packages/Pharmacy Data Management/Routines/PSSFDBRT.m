@@ -1,7 +1,7 @@
 PSSFDBRT ;WOIFO/Parviz Ostovari - Sends XML Request to PEPS via HWSC ;09/20/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136**;9/30/97;Build 89
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,160**;9/30/97;Build 76
  ;
- ;
+ ;Reference to PSNDF(50.68 supported by DBIA 3735
  ; this code is copied and modified from PSZZDI routine.
  ; this routine is responsible for performing drug information queries against a drug database.
  ; the architecture parses the XML stream into tokens
@@ -10,16 +10,21 @@ PSSFDBRT ;WOIFO/Parviz Ostovari - Sends XML Request to PEPS via HWSC ;09/20/07
 GROUTE(PSSIEN,PSSOUT) ; get the routes for given drug ien in drug file from PESPS via HWSC
  ;  input: drug IEN from drug file (#50)
  ; output: PSSOUT - array containing the list of route names for the given drug.
- ;             e.g. PSSOUT("CONTINUOUS INFUSION")=""
- ;                  PSSOUT("INTRAOSSEOUS")=""
+ ;             e.g.  error/exception:  PSSOUT(0)= (-1 for database cannot be reached, 0 for exceptions or 1 for successfull call) ^ error or exception message 
+ ;
+ ;                    e.g. successfull:  PSSOUT(0)=1
+ ;                                                PSSOUT("CONTINUOUS INFUSION")=""
+ ;                                                PSSOUT("INTRAOSSEOUS")=""
  ;  if for any reason can not get the route, it kills the PSSOUT
  ;
- N PSSXML,GCNSEQ
- K PSSOUT
+ N PSSXML,GCNSEQ,BASE,PSSRETR1
+ S BASE=$T(+0)_" GROUTE"
  S GCNSEQ=$$DRUGGCN(PSSIEN)    ; get the GCN sequence number.
- Q:GCNSEQ=0                  ; no GCN sequence number
+ I GCNSEQ=0 S PSSOUT(0)="-1^GCN sequence number is not defined." Q  ; no GCN sequence number
  S PSSXML=$$BLDXML(GCNSEQ)   ; build the xml request
+RETRY ;retry line tag
  D POST(PSSXML,.PSSOUT)    ; post the request and process the results
+ I '$G(PSSRETR1),$P($G(PSSOUT(0)),"^")=-1 K PSSOUT S PSSRETR1=1 H 3 G RETRY
  Q
  ;
 DRUGGCN(DRGIEN) ; for given drug ien return the GCN sequence number.
@@ -51,7 +56,7 @@ POST(XML,PSSOUT) ; post the XML request to PEPS server and return the routes
  ;  input: XML request
  ; output: PSSOUT - array containing the list of route names for the given drug.
  ;
- N PSS,PSSERR
+ N PSS,PSSERR,PSSFDBRT S PSSFDBRT=1
  N $ETRAP,$ESTACK
  ; Set error trap
  SET $ETRAP="DO ERROR^PSSHTTP"
@@ -65,23 +70,24 @@ POST(XML,PSSOUT) ; post the XML request to PEPS server and return the routes
  ;
  ; get instance of client REST request object
  SET PSS("restObject")=$$GETREST^XOBWLIB(PSS("webserviceName"),PSS("server"))
- IF $DATA(^TMP($JOB,"OUT","EXCEPTION"))>0 QUIT 0
+ IF $DATA(^TMP($JOB,"OUT","EXCEPTION"))>0 S PSSOUT(0)="-1^"_^TMP($JOB,"OUT","EXCEPTION") K ^TMP($JOB,"OUT","EXCEPTION") Q PSSOUT
  ;
  ; insert XML as parameter
  DO PSS("restObject").InsertFormData(PSS("parameterName"),PSS("parameterValue"))
- IF $DATA(^TMP($JOB,"OUT","EXCEPTION"))>0 QUIT 0
+ IF $DATA(^TMP($JOB,"OUT","EXCEPTION"))>0 S PSSOUT(0)="-1^"_^TMP($JOB,"OUT","EXCEPTION") K ^TMP($JOB,"OUT","EXCEPTION") QUIT PSSOUT
  ;
  ; execute HTTP Post method
  SET PSS("postResult")=$$POST^XOBWLIB(PSS("restObject"),PSS("path"),.PSSERR)
- IF $DATA(^TMP($JOB,"OUT","EXCEPTION"))>0 QUIT 0
+ IF $DATA(^TMP($JOB,"OUT","EXCEPTION"))>0 S PSSOUT(0)="-1^"_^TMP($JOB,"OUT","EXCEPTION") K ^TMP($JOB,"OUT","EXCEPTION") QUIT PSSOUT
  ;
+ ; error handling
  DO:'PSS("postResult")
- . SET ^TMP($JOB,"OUT","EXCEPTION")=-1_U_"Unable to make http request."
+ . SET PSSOUT(0)=-1_U_"Unable to make http request."
  . SET PSS("result")=0
  . QUIT
  ;
  ; if every thing is ok parse the returned xml result
- I PSS("postResult") S PSS("result")=1 D PRSSTRM(PSS("restObject"),.PSSOUT)
+ I PSS("postResult") S PSS("result")=1 D PRSSTRM(PSS("restObject"),.PSSOUT) S PSSOUT(0)=1
  Q PSS("result")
  ;
 PRSSTRM(RESTOBJ,PSSOUT) ;  parse the XML into token

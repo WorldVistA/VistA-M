@@ -1,5 +1,5 @@
 PSAOP2 ;BIR/LTL-Outpatient Dispensing (All Drugs) ;7/23/97
- ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**3,15**; 10/24/97
+ ;;3.0;DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**3,15,76**; 10/24/97;Build 1
  ;This routine gathers outpatient dispensing for all drugs in a location
  ;from the PRESCRIPTION file. If present, the last outpatient dispensing
  ;date is used as a starting point. Otherwise the user selected date is
@@ -90,5 +90,7 @@ Q D ^%ZISC K PNTDATA,PNTDATE,PNTPRICE,PNTQTY,POP,PRINTDT,PSA,PSADAILY,PSADATE,PD
  Q
 STOP W:$E(IOST)'="C" @IOF
  D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@" K IO("Q")
- I $O(^TMP("PSA",$J,0)) D ^PSAOP4
+ I $D(^TMP("PSA",$J)) D
+ .W !!,"Updating history and dispensing totals."
+ .D ^PSAOP4
  G Q

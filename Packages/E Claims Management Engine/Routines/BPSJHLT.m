@@ -1,5 +1,5 @@
 BPSJHLT ;BHAM ISC/LJF - HL7 Process Incoming MFN Messages ;05-NOV-2003
- ;;1.0;E CLAIMS MGMT ENGINE;**1,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,10,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
@@ -33,7 +33,7 @@ EN(HL) ;  Entry Point
  ;
  D INITZPRS^BPSJZPR(.ZPRS)
  S BPSFILE=9002313.92,BPSJROOT=$$ROOT^DILFD(BPSFILE)
- S RBSTART=100,RBEND=260,NCPDPCK=",51,D0,"
+ S RBSTART=100,RBEND=280,NCPDPCK=",51,D0,"
  S (ZPSNNAME,BPSJPROD,NCPDPVER,BPSJACT,BPSJADT,BPSJPKY)=""
  ;
  ; Initialize some Application Acknowledgement data

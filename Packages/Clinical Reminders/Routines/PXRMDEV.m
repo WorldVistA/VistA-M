@@ -1,10 +1,13 @@
-PXRMDEV ;SLC/PKR - This is a driver for testing Clinical Reminders. ;11/29/2011
- ;;2.0;CLINICAL REMINDERS;**4,6,11,16,18**;Feb 04, 2005;Build 152
+PXRMDEV ;SLC/PKR - This is a driver for testing Clinical Reminders. ;03/12/2013
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,16,18,24,26**;Feb 04, 2005;Build 404
  ;
  ;==================================================
-CMOUT ;Do formatted Clinical Maintenance output.
- N DUE,DUECOL,HIST,LAST,LASTCOL,LNUM,RIEN,RNAME,STATUS,STATCOL,TEMP,TYPE
- W !!,"Formatted Output:"
+CMOUT(PXRHM,NL,OUTPUT) ;Do formatted Clinical Maintenance output.
+ N DUE,DUECOL,HIST,LAST,LASTCOL,LNUM,RIEN,RNAME,STATUS,STATCOL
+ N TEMP,TEXT,TYPE
+ S TEXT=$S(PXRHM=0:"Due Now ",PXRHM=1:"Summary ",PXRHM=5:"Maintenance ",PXRHM=55:"Order Check ",1:"")
+ S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
+ S NL=NL+1,OUTPUT(NL)=TEXT_"Output:"
  S RIEN=$O(^TMP("PXRHM",$J,""))
  S RNAME=$O(^TMP("PXRHM",$J,RIEN,""))
  S TEMP=$G(^TMP("PXRHM",$J,RIEN,RNAME))
@@ -14,30 +17,37 @@ CMOUT ;Do formatted Clinical Maintenance output.
  S STATCOL=41-($L(STATUS)/2)
  S DUECOL=53-($L(DUE)/2)
  S LASTCOL=67-($L(LAST)/2)
- W !!,?36,"--STATUS--",?47,"--DUE DATE--",?61,"--LAST DONE--",!
- W !,RNAME,?STATCOL,STATUS,?DUECOL,DUE,?LASTCOL,LAST,!
+ S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
+ S TEXT=$$REPEAT^XLFSTR(" ",36)_"--STATUS-- --DUE DATE--  --LAST DONE--"
+ S NL=NL+1,OUTPUT(NL)=TEXT
+ S TEXT=RNAME_$$REPEAT^XLFSTR(" ",(STATCOL-$L(RNAME)))_STATUS
+ S TEXT=TEXT_$$REPEAT^XLFSTR(" ",(DUECOL-$L(TEXT)))_DUE
+ S TEXT=TEXT_$$REPEAT^XLFSTR(" ",(LASTCOL-$L(TEXT)))_LAST
+ S NL=NL+1,OUTPUT(NL)=TEXT
  S LNUM=0
  F  S LNUM=$O(^TMP("PXRHM",$J,RIEN,RNAME,"TXT",LNUM)) Q:LNUM=""  D
- . W !,^TMP("PXRHM",$J,RIEN,RNAME,"TXT",LNUM)
+ . S NL=NL+1,OUTPUT(NL)=^TMP("PXRHM",$J,RIEN,RNAME,"TXT",LNUM)
  Q
  ;
  ;==================================================
 DEB ;Prompt for patient and reminder by name input component.
- N DATE,DFN,DIC,DIR,DIROUT,DTOUT,DUOUT,PXRMITEM,PXRHM,PXRMTDEB,X,Y
+ N DATE,DFN,DIC,DIR,DIROUT,DTOUT,DUOUT,HASFF,HASTERM,IND
+ N PXRHM,PXRMFFSS,PXRMITEM,PXRMTDEB,X,Y
  S DIC=2,DIC("A")="Select Patient: "
  S DIC(0)="AEQMZ"
- D ^DIC
+GPAT1 D ^DIC
+ I $D(DIROUT)!$D(DIRUT) Q
  I $D(DTOUT)!$D(DUOUT) Q
  S DFN=+$P(Y,U,1)
- I DFN=-1 W !,"No patient selected!" Q
+ I DFN=-1 G GPAT1
  S DIC=811.9,DIC("A")="Select Reminder: "
- D ^DIC
+GREM1 D ^DIC
  I $D(DIROUT)!$D(DIRUT) Q
  I $D(DTOUT)!$D(DUOUT) Q
  S PXRMITEM=+$P(Y,U,1)
- I PXRMITEM=-1 W !,"No reminder selected!" Q
+ I PXRMITEM=-1 G GREM1
  S DIR(0)="LA"_U_"0"
- S DIR("A")="Enter component number 0, 1, 5, 10, 11, 12, 55: "
+ S DIR("A")="Enter component number 0, 1, 5, 12, 55: "
  D ^DIR
  I $D(DIROUT)!$D(DIRUT) Q
  I $D(DTOUT)!$D(DUOUT) Q
@@ -52,24 +62,35 @@ DEB ;Prompt for patient and reminder by name input component.
  I $D(DIROUT)!$D(DIRUT) Q
  I $D(DTOUT)!$D(DUOUT) Q
  S DATE=Y
- I $D(^PXD(811.9,PXRMITEM,20,"E","PXRMD(811.5,")) S PXRMTDEB=$$ASKYN^PXRMEUT("N","Display all term findings","","")
+ S (HASFF,HASTERM,PXRMFFSS,PXRMTDEB)=0
+ I $D(^PXD(811.9,PXRMITEM,25,"B")) S HASFF=1
+ I HASFF S PXRMFFSS=$$ASKYN^PXRMEUT("N","Display step-by-step function finding evaluation","","")
+ I $D(^PXD(811.9,PXRMITEM,20,"E","PXRMD(811.5,")) S HASTERM=1
+ I 'HASTERM D
+ . S IND=0
+ . F  S IND=+$O(^PXD(811.9,PXRMITEM,20,"EDEP",IND)) Q:IND=0  D
+ .. I $D(^PXD(811.9,PXRMITEM,20,"EDEP",IND,"PXRMD(811.5,")) S HASTERM=1
+ I HASTERM S PXRMTDEB=$$ASKYN^PXRMEUT("N","Display all term findings","","")
  D DOREM(DFN,PXRMITEM,PXRHM,DATE)
  Q
  ;
  ;==================================================
 DEV ;Prompt for patient and reminder by name and evaluation date.
- N DATE,DFN,DIC,DIROUT,DIRUT,DTOUT,DUOUT,PXRMITEM,PXRHM,PXRMTDEB,REF,X,Y
+ N DATE,DFN,DIC,DIROUT,DIRUT,DTOUT,DUOUT,HASFF,HASTERM,IND
+ N PXRHM,PXRMFFSS,PXRMITEM,PXRMTDEB,REF,X,Y
  S DIC=2,DIC("A")="Select Patient: "
  S DIC(0)="AEQMZ"
- D ^DIC
+GPAT2 D ^DIC
  I $D(DIROUT)!$D(DIRUT) Q
  I $D(DTOUT)!$D(DUOUT) Q
  S DFN=+$P(Y,U,1)
+ I DFN=-1 G GPAT2
  S DIC=811.9,DIC("A")="Select Reminder: "
- D ^DIC
+GREM2 D ^DIC
  I $D(DIROUT)!$D(DIRUT) Q
  I $D(DTOUT)!$D(DUOUT) Q
  S PXRMITEM=+$P(Y,U,1)
+ I PXRMITEM=-1 G GREM2
  S PXRHM=5
  S DIR(0)="DA^"_0_"::ETX"
  S DIR("A")="Enter date for reminder evaluation: "
@@ -80,51 +101,114 @@ DEV ;Prompt for patient and reminder by name and evaluation date.
  I $D(DIROUT)!$D(DIRUT) Q
  I $D(DTOUT)!$D(DUOUT) Q
  S DATE=Y
- I $D(^PXD(811.9,PXRMITEM,20,"E","PXRMD(811.5,")) S PXRMTDEB=$$ASKYN^PXRMEUT("N","Display all term findings","","")
+ S (HASFF,HASTERM,PXRMFFSS,PXRMTDEB)=0
+ I $D(^PXD(811.9,PXRMITEM,25,"B")) S HASFF=1
+ I HASFF S PXRMFFSS=$$ASKYN^PXRMEUT("N","Display step-by-step function finding evaluation","","")
+ I $D(^PXD(811.9,PXRMITEM,20,"E","PXRMD(811.5,")) S HASTERM=1
+ I 'HASTERM D
+ . S IND=0
+ . F  S IND=+$O(^PXD(811.9,PXRMITEM,20,"EDEP",IND)) Q:IND=0  D
+ .. I $D(^PXD(811.9,PXRMITEM,20,"EDEP",IND,"PXRMD(811.5,")) S HASTERM=1
+ I HASTERM S PXRMTDEB=$$ASKYN^PXRMEUT("N","Display all term findings","","")
  D DOREM(DFN,PXRMITEM,PXRHM,DATE)
  Q
  ;
  ;==================================================
 DOREM(DFN,PXRMITEM,PXRHM,DATE) ;Do the reminder
- N DEFARR,FIEVAL,FINDING,PXRMDEBG,PXRMID,REF,TFIEVAL
+ N BOP,DEFARR,FIEVAL,FINDING,IND,JND,NL,NOUT,OUTPUT,PNAME
+ N PXRMDEBG,PXRMDEFS,PXRMID
+ N REF,TEXTOUT,TFIEVAL,TTEXT,X
  ;This is a debugging run so set PXRMDEBG.
- S PXRMDEBG=1
+ S NL=0,PXRMDEBG=1
  D DEF^PXRMLDR(PXRMITEM,.DEFARR)
  I +$G(DATE)=0 D EVAL^PXRM(DFN,.DEFARR,PXRHM,1,.FIEVAL)
  I +$G(DATE)>0 D EVAL^PXRM(DFN,.DEFARR,PXRHM,1,.FIEVAL,DATE)
  ;
  I $D(^TMP(PXRMID,$J,"FFDEB")) M FIEVAL=^TMP(PXRMID,$J,"FFDEB") K ^TMP(PXRMID,$J,"FFDEB")
  ;
- W !!,"The elements of the FIEVAL array are:"
+ S TTEXT=^PXD(811.9,PXRMITEM,0)
+ S PNAME=$P(TTEXT,U,2)
+ I PNAME="" S PNAME=$P(TTEXT,U,1)
+ S NL=NL+1,OUTPUT(NL)="Reminder: "_PNAME
+ S NL=NL+1,OUTPUT(NL)="Patient: "_$$GET1^DIQ(2,DFN,.01)
+ S NL=NL+1,OUTPUT(NL)=" "
+ S NL=NL+1,OUTPUT(NL)="The elements of the FIEVAL array are:"
  S REF="FIEVAL"
- D AWRITE^PXRMUTIL(REF)
+ D ACOPY^PXRMUTIL(REF,"TTEXT()")
+ S IND=0
+ F  S IND=$O(TTEXT(IND)) Q:IND=""  D
+ . I $L(TTEXT(IND))<79 S NL=NL+1,OUTPUT(NL)=TTEXT(IND) Q
+ . D FORMATS^PXRMTEXT(1,79,TTEXT(IND),.NOUT,.TEXTOUT)
+ . F JND=1:1:NOUT S NL=NL+1,OUTPUT(NL)=TEXTOUT(JND)
  ;
+ I $G(PXRMFFSS) D
+ . N FFN,STEP
+ . S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
+ . S NL=NL+1,OUTPUT(NL)="Step-by-step function finding evaluation:"
+ . S FFN=""
+ . F  S FFN=$O(^TMP("PXRMFFSS",$J,FFN)) Q:FFN=""  D
+ .. S NL=NL+1,OUTPUT(NL)=""
+ .. S NL=NL+1,OUTPUT(NL)=" Function finding "_FFN_"="_FIEVAL(FFN)
+ .. D FORMATS^PXRMTEXT(1,79,$P(FIEVAL(FFN,"DETAIL"),U,2),.NOUT,.TEXTOUT)
+ .. F JND=1:1:NOUT S NL=NL+1,OUTPUT(NL)=TEXTOUT(JND)
+ .. S NL=NL+1,OUTPUT(NL)=" = "_^TMP("PXRMFFSS",$J,FFN,0)
+ .. S NL=NL+1,OUTPUT(NL)="Step  Result"
+ .. S STEP=0
+ .. F  S STEP=$O(^TMP("PXRMFFSS",$J,FFN,STEP)) Q:STEP=""  D
+ ... S NL=NL+1,OUTPUT(NL)=$$RJ^XLFSTR(STEP_".",4," ")_"  "_^TMP("PXRMFFSS",$J,FFN,STEP)
+ . K ^TMP("PXRMFFSS",$J)
  I $G(PXRMTDEB) D
- . W !!,"Term findings:"
+ . S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
+ . S NL=NL+1,OUTPUT(NL)="Term findings:"
  . S REF="TFIEVAL"
  . S FINDING=0
  . F  S FINDING=$O(^TMP("PXRMTDEB",$J,FINDING)) Q:FINDING=""  D
  .. K TFIEVAL M TFIEVAL(FINDING)=^TMP("PXRMTDEB",$J,FINDING)
- .. W !,"Finding ",FINDING,":"
- .. D AWRITE^PXRMUTIL(REF)
+ .. S NL=NL+1,OUTPUT(NL)="Finding "_FINDING_":"
+ .. K TTEXT
+ .. D ACOPY^PXRMUTIL(REF,"TTEXT()")
+ .. S IND=0
+ .. F  S IND=$O(TTEXT(IND)) Q:IND=""  S NL=NL+1,OUTPUT(NL)=TTEXT(IND)
  . K ^TMP("PXRMTDEB",$J)
  ;
- W !!,"The elements of the ^TMP(PXRMID,$J) array are:"
- I $D(PXRMID) S REF="^TMP(PXRMID,$J)" D AWRITE^PXRMUTIL(REF) K ^TMP(PXRMID,$J)
+ I $D(^TMP(PXRMID,$J)) D
+ . S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
+ . S NL=NL+1,OUTPUT(NL)="The elements of the ^TMP(PXRMID,$J) array are:"
+ . S REF="^TMP(PXRMID,$J)"
+ . K TTEXT
+ . D ACOPY^PXRMUTIL(REF,"TTEXT()")
+ . S IND=0
+ . F  S IND=$O(TTEXT(IND)) Q:IND=""  S NL=NL+1,OUTPUT(NL)=TTEXT(IND)
+ . K ^TMP(PXRMID,$J)
  ;
- W !!,"The elements of the ^TMP(""PXRHM"",$J) array are:"
- S REF="^TMP(""PXRHM"",$J)"
- D AWRITE^PXRMUTIL(REF)
+ I $D(^TMP("PXRHM",$J)) D
+ . S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
+ . S NL=NL+1,OUTPUT(NL)="The elements of the ^TMP(""PXRHM"",$J) array are:"
+ . S REF="^TMP(""PXRHM"",$J)"
+ . K TTEXT
+ . D ACOPY^PXRMUTIL(REF,"TTEXT()")
+ . S IND=0
+ . F  S IND=$O(TTEXT(IND)) Q:IND=""  S NL=NL+1,OUTPUT(NL)=TTEXT(IND)
  ;
- I $D(^TMP("PXRHM",$J)) D CMOUT
- I PXRHM=12 D MHVCOUT
+ I $D(^TMP("PXRHM",$J)) D CMOUT(PXRHM,.NL,.OUTPUT)
+ I $D(^TMP("PXRMMHVC",$J)) D MHVOUT(PXRHM,.NL,.OUTPUT)
  K ^TMP("PXRM",$J),^TMP("PXRHM",$J),^TMP("PXRMMHVC",$J)
+ S BOP=$$BORP^PXRMUTIL("P")
+ I BOP="B" D
+ . S X="IORESET"
+ . D ENDR^%ZISS
+ . D BROWSE^DDBR("OUTPUT","NR","Reminder Test")
+ . W IORESET
+ . D KILL^%ZISS
+ I BOP="P" D GPRINT^PXRMUTIL("OUTPUT")
  Q
  ;
  ;==================================================
-MHVCOUT ;Do formatted MHV combined output.
- N DUE,DUECOL,HIST,LAST,LASTCOL,LNUM,RIEN,RNAME,STATUS,STATCOL,TEMP,TYPE
- W !!,"Formatted Output:"
+MHVOUT(PXRHM,NL,OUTPUT) ;Do formatted MHV combined output.
+ N DUE,DUECOL,HIST,LAST,LASTCOL,LNUM,RIEN,RNAME
+ N STATUS,STATCOL,TEMP,TEXT,TYPE
+ S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
+ S NL=NL+1,OUTPUT(NL)="MHV Summary and Detailed Output:"
  S RIEN=$O(^TMP("PXRMMHVC",$J,""))
  S TEMP=^TMP("PXRMMHVC",$J,RIEN,"STATUS")
  S STATUS=$P(TEMP,U,1)
@@ -135,15 +219,24 @@ MHVCOUT ;Do formatted MHV combined output.
  S LASTCOL=67-($L(LAST)/2)
  S RNAME=$P(^PXD(811.9,RIEN,0),U,3)
  I RNAME="" S RNAME=$P(^PXD(811.9,RIEN,0),U,1)
- W !!,?36,"--STATUS--",?47,"--DUE DATE--",?61,"--LAST DONE--",!
- W !,RNAME,?STATCOL,STATUS,?DUECOL,DUE,?LASTCOL,LAST,!
- W !!,"---------- Detailed Output ----------"
- S LNUM=0
- F  S LNUM=$O(^TMP("PXRMMHVC",$J,RIEN,"DETAIL",LNUM)) Q:LNUM=""  D
- . W !,^TMP("PXRMMHVC",$J,RIEN,"DETAIL",LNUM)
- W !!,"---------- Summary Output ----------"
- S LNUM=0
- F  S LNUM=$O(^TMP("PXRMMHVC",$J,RIEN,"SUMMARY",LNUM)) Q:LNUM=""  D
- . W !,^TMP("PXRMMHVC",$J,RIEN,"SUMMARY",LNUM)
+ S TEXT=$$REPEAT^XLFSTR(" ",36)_"--STATUS-- --DUE DATE--  --LAST DONE--"
+ S NL=NL+1,OUTPUT(NL)=TEXT
+ S TEXT=RNAME_$$REPEAT^XLFSTR(" ",(STATCOL-$L(RNAME)))_STATUS
+ S TEXT=TEXT_$$REPEAT^XLFSTR(" ",(DUECOL-$L(TEXT)))_DUE
+ S TEXT=TEXT_$$REPEAT^XLFSTR(" ",(LASTCOL-$L(TEXT)))_LAST
+ S NL=NL+1,OUTPUT(NL)=TEXT
+ I '$D(^TMP("PXRMMHVC",$J)) Q
+ I (PXRHM=11)!(PXRHM=12) D
+ .; W !!,"---------- Detailed Output ----------"
+ . S NL=NL+1,OUTPUT(NL)="---------- Detailed Output ----------"
+ . S LNUM=0
+ . F  S LNUM=$O(^TMP("PXRMMHVC",$J,RIEN,"DETAIL",LNUM)) Q:LNUM=""  D
+ .. S NL=NL+1,OUTPUT(NL)=^TMP("PXRMMHVC",$J,RIEN,"DETAIL",LNUM)
+ I (PXRHM=10)!(PXRHM=12) D
+ . S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
+ . S NL=NL+1,OUTPUT(NL)="---------- Summary Output ----------"
+ . S LNUM=0
+ . F  S LNUM=$O(^TMP("PXRMMHVC",$J,RIEN,"SUMMARY",LNUM)) Q:LNUM=""  D
+ .. S NL=NL+1,OUTPUT(NL)=^TMP("PXRMMHVC",$J,RIEN,"SUMMARY",LNUM)
  Q
  ;

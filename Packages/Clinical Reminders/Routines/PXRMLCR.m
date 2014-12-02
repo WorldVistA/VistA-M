@@ -1,9 +1,14 @@
-PXRMLCR ; SLC/PJH - Create Patient List from individual finding rule; 06/08/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMLCR ; SLC/PJH - Create Patient List from individual finding rule; 04/15/2014
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,26**;Feb 04, 2005;Build 404
  ; 
  ; Called from PXRM PATIENT LIST CREATE protocol
  ;
 START N BEG,DUOUT,DTOUT,END,LIT,PXRMDPAT,PXRMLIST,PXRMNODE,PXRMRULE,PXRMTPAT
+ ;Check if evaluation is disabled.
+ I $D(^XTMP("PXRM_DISEV",0)) D  Q
+ . W !,"Reminder evaluation is disabled, cannot start patient list building."
+ . H 2
+ ;
  N TEXT
  ;Initialise
  K ^TMP("PXRMLCR",$J)
@@ -40,7 +45,7 @@ TPAT S PXRMTPAT=$$ASKYN^PXRMEUT("N","Include test patients on the list")
  I $G(PXRMDEBG) D RUN^PXRMLCR(PXRMRULE,PXRMLIST,PXRMNODE,BEG,END,PXRMDPAT,PXRMTPAT) Q
  ;Build patient list in background
  N ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE
- S ZTDESC="CREATE PATIENT LIST"
+ S ZTDESC="Build Reminder Patient List"
  S ZTRTN="RUN^PXRMLCR(PXRMRULE,PXRMLIST,PXRMNODE,BEG,END,PXRMDPAT,PXRMTPAT)"
  S ZTSAVE("BEG")=""
  S ZTSAVE("END")=""

@@ -1,5 +1,9 @@
 ORQQVI ; slc/STAFF - Functions which return patient vital and I/O data ;10/26/06  11:44
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,198,215,250,260,285**;Dec 17, 1997;Build 5
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,198,215,250,260,285,286**;Dec 17, 1997;Build 9
+ ;
+ ; DBIA 1446   ^GMRVUT0
+ ; DBIA 3647   ^GMVPXRM
+ ;
 VITALS(ORY,DFN,ORSDT,OREDT) ; return patient's vital measurements taken between start date/time and end date/time
  ;ORY: return variable, results are returned in the format:
  ;     vital measurement ien^vital type^date/time taken^rate
@@ -125,14 +129,14 @@ VITAL(VITAL,ABBREV,DFN,ORY,CNT,F1,F2) ;
  ...S ORY(CNT)=ORY(CNT)_"^"_VALUE_$S($E(VALUE):" in",1:"")
  ...S MVAL=+VALUE
  ...Q:'MVAL
- ...S MVAL=$J((MVAL*2.54),3,1)
+ ...S MVAL=$J((MVAL*2.54),3,2)
  ...S ORY(CNT)=ORY(CNT)_"^("_MVAL_" cm)"
  ..I $P(ORY(CNT),"^",2)="WT" D  ; Weight.
  ...S ORY(CNT)=ORY(CNT)_"^"_VALUE_$S($E(VALUE):" lb",1:"")
  ...S MVAL=+VALUE
  ...Q:'MVAL
  ...; changed 2.2 to 2.20462262 per CQ 10637
- ...S MVAL=$J((MVAL/2.20462262),3,1)
+ ...S MVAL=$J((MVAL/2.20462262),3,2)
  ...S ORY(CNT)=ORY(CNT)_"^("_MVAL_" kg)"
  ..I $P(ORY(CNT),"^",2)="PN" D   ; Pain
  ...S ORY(CNT)=ORY(CNT)_"^"_VALUE

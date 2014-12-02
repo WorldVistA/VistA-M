@@ -1,4 +1,4 @@
-OCXOZ02 ;SLC/RJS,CLA - Order Check Scan ;MAR 8,2011 at 13:52
+OCXOZ02 ;SLC/RJS,CLA - Order Check Scan ;JUN 14,2013 at 09:03
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -29,6 +29,7 @@ CHK1 ; Look through the current environment for valid Event/Elements for this pa
  ; OCXDF(113) --> Data Field: LAB TEST ID (NUMERIC)
  ; OCXDF(146) --> Data Field: INPT/OUTPT (FREE TEXT)
  ; OCXDF(152) --> Data Field: LAB SPECIMEN ID (NUMERIC)
+ ; OCXDF(160) --> Data Field: CONTROL REASON (FREE TEXT)
  ;
  ;      Local Extrinsic Functions
  ; FILE(DFN,16, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: HL7 OERR ORDER)
@@ -45,10 +46,11 @@ CHK1 ; Look through the current environment for valid Event/Elements for this pa
  I $L(OCXDF(21)),(OCXDF(21)="S") D CHK157^OCXOZ07
  I $L(OCXDF(37)) S OCXDF(146)=$P($$PATLOC(OCXDF(37)),"^",1) I $L(OCXDF(146)) D CHK436^OCXOZ0E
  I $L(OCXDF(12)),$L(OCXDF(152)),$L(OCXDF(113)) D CHK463^OCXOZ0E
+ I $L(OCXDF(160)) D CHK508^OCXOZ0F
  Q
  ;
 CHK2 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK1+25.
+ ;  Called from CHK1+26.
  ;
  Q:$G(OCXOERR)
  ;

@@ -1,5 +1,5 @@
-PXRMEXLM ; SLC/PKR/PJH - Clinical Reminder Exchange List Manager routines. ;12/02/2009
- ;;2.0;CLINICAL REMINDERS;**6,12,17**;Feb 04, 2005;Build 102
+PXRMEXLM ;SLC/PKR/PJH - Clinical Reminder Exchange List Manager routines. ;12/20/2013
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,24,26**;Feb 04, 2005;Build 404
  ;
  ;=====================================================
 CRE ;Create a packed reminder and store it in the repository.
@@ -64,6 +64,7 @@ INIT ;Init
 INITMPG ;Initialized all the ^TMP globals.
  K ^TMP("PXRMEXDH",$J)
  K ^TMP("PXRMEXDGH",$J)
+ K ^TMP("PXRMEXDL",$J)
  K ^TMP("PXRMEXHF",$J)
  K ^TMP("PXRMEXFND",$J)
  K ^TMP("PXRMEXIA",$J)
@@ -142,6 +143,20 @@ LDMM ;Load a MailMan message into the repository.
  Q
  ;
  ;=====================================================
+LDWEB ;Load a host file from a web site into the repository.
+ N SUCCESS,TEMP,URL
+ S SUCCESS=$$LWEB^PXRMEXWB(.URL)
+ I SUCCESS D
+ . S VALMHDR(1)=URL_" successfully loaded."
+ E  D
+ . S VALMHDR(1)="There were problems loading "_URL
+ . I URL="" S VALMHDR(1)="No URL specified."
+ ;Rebuild the list for display.
+ D BLDLIST^PXRMEXLC(SUCCESS)
+ S VALMBCK="R"
+ Q
+ ;
+ ;=====================================================
 LRDEF ;List the name and print name of all reminder definitions.
  N VALMCNT
  I $D(^TMP("PXRMEXLD",$J,"VALMCNT")) S VALMCNT=^TMP("PXRMEXLD",$J,"VALMCNT")
@@ -181,7 +196,10 @@ START ;Main entry point for PXRM EXCHANGE
  Q
  ;
  ;=====================================================
-XQORM S XQORM("#")=$O(^ORD(101,"B","PXRM EXCH SELECT ENTRY",0))_U_"1:"_VALMCNT
+XQORM ;Set the range for selection.
+ N NEXCHE
+ S NEXCHE=^TMP("PXRMEXLR",$J,"NEXCHE")
+ S XQORM("#")=$O(^ORD(101,"B","PXRM EXCH SELECT ENTRY",0))_U_"1:"_NEXCHE
  S XQORM("A")="Select Action: "
  Q
  ;

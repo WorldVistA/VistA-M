@@ -1,16 +1,17 @@
-LEXRXC ;ISL/KER - Re-Index 757.01 B/ADC/ADTERM ;08/17/2011
- ;;2.0;LEXICON UTILITY;**81**;Sep 23, 1996;Build 1
+LEXRXC ;ISL/KER - Re-Index 757.01 B/ADC/ADTERM ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**81,80**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^LEX(               SACC 1.3
- ;    ^LEX(757.01,        SACC 1.3
+ ;    ^LEX(757.01)        SACC 1.3
+ ;    ^TMP("LEXRX")       SACC 2.3.2.5.1
  ;               
  ; External References
- ;    FILE^DID            ICR  2052
- ;    IX1^DIK             ICR  10013
  ;    $$FMDIFF^XLFDT      ICR  10103
  ;    $$NOW^XLFDT         ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
+ ;    FILE^DID            ICR   2052
+ ;    IX1^DIK             ICR  10013
  ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;     LEXNAM     Task name       NEWed/KILLed by LEXRXXT

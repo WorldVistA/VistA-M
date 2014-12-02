@@ -1,10 +1,10 @@
-ECXALAB ;ALB/JAP - ECS Extract Audit Report ;Oct 23, 1997
- ;;3.0;DSS EXTRACTS;**1,8**;Dec 22, 1997
+ECXALAB ;ALB/JAP - ECS Extract Audit Report ;3/27/14  16:10
+ ;;3.0;DSS EXTRACTS;**1,8,149**;Dec 22, 1997;Build 27
  ;
 EN ;entry point for LAB extract audit report
  ;this audit report can be used for extracts done with
  ;either ECXLABN or ECXLABO
- N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR
+ N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,ECXPORT,RCNT ;149
  S ECXERR=0
  ;ecxaud=0 for 'extract' audit
  S ECXHEAD="LAB",ECXAUD=0
@@ -31,6 +31,12 @@ EN ;entry point for LAB extract audit report
  .W !!,?5,"Try again later... exiting.",!
  .D AUDIT^ECXKILL
  ;determine output device and queue if requested
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I $G(ECXPORT) D  Q  ;149 Section added
+ .K ^TMP($J,"ECXPORT")
+ .S ^TMP($J,"ECXPORT",0)="EXTRACT LOG #^DSS SITE^ACCESSION AREA (FEEDER LOCATION)^PROCEDURE^LMIP CODE^# OF TESTS (PATIENTS)^# OF TESTS (REFERRALS)",RCNT=1
+ .D PROCESS
+ .D EXPDISP^ECXUTL1
+ .D AUDIT^ECXKILL
  W !
  S ECXPGM="PROCESS^ECXALAB",ECXDESC="LAB Extract Audit Report"
  S ECXSAVE("ECXHEAD")="",ECXSAVE("ECXALL")="",ECXSAVE("ECXACC(")="",ECXSAVE("ECXDIV(")="",ECXSAVE("ECXARRAY(")=""
@@ -80,6 +86,7 @@ PROCESS ;process data in file #727.813
  .I $D(ZTQUEUED),(CNT>499),'(CNT#500),$$S^%ZTLOAD S QQFLG=1,ZTSTOP=1 K ZTREQ
  ;print the report
  D PRINT
+ I $G(ECXPORT) Q  ;149
  D AUDIT^ECXKILL
  Q
  ;
@@ -87,22 +94,26 @@ PRINT ;print the LAB audit report by accession area and test
  N SS,LN,PG,QFLG,TOTP,TOTR,GTOT,DIV,DIVNM,ACCAB,DIR,DR,DIRUT,DTOUT,DUOUT
  U IO
  I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ Q
- S (QFLG,PG)=0,$P(LN,"-",80)="",ACCAB="",DIV="",DIV=$O(ECXDIV(DIV)) D HEADER
+ S (QFLG,PG)=0,$P(LN,"-",80)="",ACCAB="",DIV="",DIV=$O(ECXDIV(DIV)) I '$G(ECXPORT) D HEADER ;149
  F  S ACCAB=$O(ACC(ACCAB)) Q:ACCAB=""  D  Q:QFLG
  .S ACCNM=ACC(ACCAB),GTOT("P")=0,GTOT("R")=0
  .;write the accession area name
- .D:($Y+3>IOSL) HEADER Q:QFLG  W !,ACCNM
+ .I '$G(ECXPORT) D:($Y+3>IOSL) HEADER Q:QFLG  W !,ACCNM ;149
  .I '$D(^TMP($J,"ECXAUD",ACCNM)) D  Q
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=ECXARRAY("EXTRACT")_U_$P(ECXDIV(DIV),U,2)_" ("_$P(ECXDIV(DIV),U,3)_")"_U_ACCNM_U_"No data available for this Accession Area",RCNT=RCNT+1 Q  ;149
  ..W !,?3,"No data available for this Accession Area.",!!
  .I $D(^TMP($J,"ECXAUD",ACCNM)) S WKLDNM="" F  S WKLDNM=$O(^TMP($J,"ECXAUD",ACCNM,WKLDNM)) Q:WKLDNM=""  D  Q:QFLG
  ..S TOTP=$P(^TMP($J,"ECXAUD",ACCNM,WKLDNM),U,1),TOTR=$P(^(WKLDNM),U,2),WKLD=$P(^(WKLDNM),U,3)
  ..S GTOT("P")=GTOT("P")+TOTP,GTOT("R")=GTOT("R")+TOTR
  ..;write the test data
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=ECXARRAY("EXTRACT")_U_$P(ECXDIV(DIV),U,2)_" ("_$P(ECXDIV(DIV),U,3)_")"_U_ACCNM_U_WKLDNM_U_WKLD_U_TOTP_U_TOTR,RCNT=RCNT+1 Q  ;149
  ..D:($Y+3>IOSL) HEADER Q:QFLG  W !,?3,$E(WKLDNM,1,36),?40,WKLD,?56,$$RJ^XLFSTR(TOTP,5," "),?68,$$RJ^XLFSTR(TOTR,5," ")
  .;write the accession area grandtotal
+ .I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^^^Total For "_ACCNM_"^^"_GTOT("P")_U_GTOT("R"),RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1 Q  ;149
  .D:($Y+3>IOSL) HEADER Q:QFLG  W !,?3,$E(LN,1,70)
  .D:($Y+3>IOSL) HEADER Q:QFLG  W !,"Total for "_ACCNM_":",?56,$$RJ^XLFSTR(GTOT("P"),5," "),?68,$$RJ^XLFSTR(GTOT("R"),5," "),!!
  ;print the audit descriptive narrative
+ I $G(ECXPORT) Q  ;149
  I $E(IOST)'="C" D
  .W @IOF S PG=PG+1
  .W !,ECXARRAY("TYPE")_" ("_ECXHEAD_") Extract Audit Report"

@@ -1,5 +1,5 @@
-IVMLINS2 ;ALB/KCL - IVM INSURANCE POLICY PURGE ; 3/23/01 4:36pm
- ;;2.0;INCOME VERIFICATION MATCH;**14,34,111**; 21-OCT-94
+IVMLINS2 ;ALB/KCL - IVM INSURANCE POLICY PURGE ; 14 Feb 2014  1:53 PM
+ ;;2.0;INCOME VERIFICATION MATCH;**14,34,111,156**; 21-OCT-94;Build 3
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;
@@ -76,6 +76,7 @@ HL7 ; - send HL7 message to HEC
  ;
  ; - initialize variables for HL7/IVM
  D INIT^IVMUFNC(HLEID,.HL) S HLMTN="ORU"
+ I $O(HL(""))="" QUIT  ; the protocol is disabled or could not be initialized
  ;
  ;
  ; - create PID,IN1,ZIV segments

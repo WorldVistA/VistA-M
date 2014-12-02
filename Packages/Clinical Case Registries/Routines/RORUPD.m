@@ -1,5 +1,16 @@
-RORUPD ;HCIOFO/SG - REGISTRY UPDATE ; 7/21/05 10:28am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+RORUPD ;HCIOFO/SG - REGISTRY UPDATE ;7/21/05 10:28am
+ ;;1.5;CLINICAL CASE REGISTRIES;**19**;Feb 17, 2006;Build 43
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System,
+ ;                                      no code changes, updated RORUPD structure
+ ;******************************************************************************
+ ;******************************************************************************
  ;
  ; RORLRC -------------- LIST OF LAB RESULT CODES TO CHECK
  ;
@@ -23,6 +34,9 @@ RORUPD ;HCIOFO/SG - REGISTRY UPDATE ; 7/21/05 10:28am
  ;
  ; RORUPD("FLAGS")       Flags to control processing (see the
  ;                       TASK^ROR for possible values).
+ ;
+ ; RORUPD("IMPDATE",     Stores the implementation date of coding system
+ ;    "ICD10")           Implementation date for ICD-10.
  ;
  ; RORUPD("JOB")         Job number of the main task. This node is
  ;                       defined only if the registry update is
@@ -79,6 +93,7 @@ RORUPD ;HCIOFO/SG - REGISTRY UPDATE ; 7/21/05 10:28am
  ;                             (top-level seelction rule)
  ;         1)            MUMPS expression that implements the rule
  ;         2,Registry#)  List of IENs of affected registries
+ ;         3)            Coding system
  ;
  ;     "F",              A list of data elements that should be loaded
  ;                       before applying selection rules is created

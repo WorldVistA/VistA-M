@@ -1,5 +1,5 @@
 ORQPTQ5 ; SLC/PKS - Functions for Patient Selection Lists. [4/23/04 4:49pm]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**82,85,187,190**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**82,85,187,190,320**;Dec 17, 1997;Build 16
  ;
  Q
  ;
@@ -94,11 +94,10 @@ COMBNM(ORQVAL) ; Returns name of "Combination" source entry, ^OR(100.24 file.
  ; Return value (null will be returned if nothing matched):
  Q ORQRTN
  ;
-PTSCOMBO(ORQTYP,ORQPTR) ; Write ^TMP("OR",$J,"PATIENTS","B") patient entries.
+PTSCOMBO(ORQTYP,ORQPTR,APPTEND) ; Write ^TMP("OR",$J,"PATIENTS","B") patient entries.
  ;
  ; Called from COMBPTS^ORQPTQ6.
- ; (ORQCNT,ORQPDAT,ORQPIEN,ORQPNM,ORQPSTAT,SORT new'd in calling tag.)
- ; (Array ORY new'd in calling routine ORQPTQ2.)
+ ; (ORQCNT,ORQPDAT,ORQPIEN,ORQPNM,ORQPSTAT,SORT,ORQLM,ORY,ORBDATE,OREDATE new'd in calling tag.)
  ;
  ; Variables used:
  ;
@@ -118,11 +117,11 @@ PTSCOMBO(ORQTYP,ORQPTR) ; Write ^TMP("OR",$J,"PATIENTS","B") patient entries.
  ;                T = Team List
  ;                C = Clinic
  ;
- N ORQDOB,ORQDONE,ORQIDT,ORQMORE,ORQSNM,ORQSNM4,ORQSSN
+ N ORQDOB,ORQDONE,ORQIDT,ORQMORE,ORQSNM,ORQSNM4,ORQSSN,OLDAPPTEND,DATEDIF
  ;
  ; Initialize variables:
  S ORQDONE=0
- S ORQCNT=1
+ S ORQCNT=0
  ;
  ; Get name data for source:
  S ORQSNM4=""                                     ; Default setting.
@@ -130,7 +129,19 @@ PTSCOMBO(ORQTYP,ORQPTR) ; Write ^TMP("OR",$J,"PATIENTS","B") patient entries.
  I ORQTYP="P" S ORQSNM4=$G(^VA(200,ORQPTR,0))     ; Providers.
  I ORQTYP="S" S ORQSNM4=$G(^DIC(45.7,ORQPTR,0))   ; Specialties.
  I ORQTYP="T" S ORQSNM4=$G(^OR(100.21,ORQPTR,0))  ; Team Lists.
- I ORQTYP="C" S ORQSNM4=$G(^SC(ORQPTR,0))         ; Clinics.
+ I ORQTYP="C" D                                   ; Clinics.
+ .S ORQSNM4=$G(^SC(ORQPTR,0))
+ .I ($O(ORY(""),-1)'<200),'ORQLM,(ORBDATE'=OREDATE) D
+ ..I '$G(APPTEND) Q
+ ..S ^TMP("OR",$J,"PATIENTS",-1)=" ^ *** UNABLE TO SHOW ALL APPOINTMENTS ***^ ^ ^ "
+ ..S APPTEND=$$FMTH^XLFDT(APPTEND,1)-1 ;set to MUMPS' $H format
+ ..S OLDAPPTEND=$S($D(^TMP("OR",$J,"PATIENTS",-2)):$O(^(-2,"")),1:9999999)
+ ..I APPTEND<OLDAPPTEND D
+ ...K ^TMP("OR",$J,"PATIENTS",-2)
+ ...S DATEDIF=$S(APPTEND=$H:"T",APPTEND<$H:"T-"_($H-APPTEND),APPTEND>$H:"T+"_(APPTEND-$H))
+ ...S ^TMP("OR",$J,"PATIENTS",-2,APPTEND)=" ^"_$C(160)_" Reduce the date range by changing the stop date of the Patient Selection Defaults to "_DATEDIF_".^ ^ ^ "
+ ..S ^TMP("OR",$J,"PATIENTS",-3)=" ^"_$C(160)_$C(160)_$C(160)_$C(160)_" ^ ^ ^ " ;add blank line
+ ..S ^TMP("OR",$J,"PATIENTS",$O(^TMP("OR",$J,"PATIENTS",""))-1)=" ^ Showing only the first 200 appointments from "_$P(ORQSNM4,U)_"^ ^ ^ "
  ;
  ; Assure use of first 4 letters of name:
  S ORQSNM4=$P(ORQSNM4,U)_"    "                   ; Add 4 for safety.
@@ -143,13 +154,17 @@ PTSCOMBO(ORQTYP,ORQPTR) ; Write ^TMP("OR",$J,"PATIENTS","B") patient entries.
  ;
  ; Order thru ORY array created by calls in calling routine:
  S ORQPDAT=""                                     ; Initialize.
- F  S ORQPDAT=$G(ORY(ORQCNT)) Q:((ORQPDAT="")!(ORQDONE))  D
+ F  S ORQCNT=$O(ORY(ORQCNT)) Q:'ORQCNT  S ORQPDAT=$G(ORY(ORQCNT)) Q:((ORQPDAT="")!(ORQDONE))  D
  .;
  .; Clear variables each time:
  .S (ORQPIEN,ORQPNM,ORQSSN,ORQDOB,ORQIDT,ORQMORE,ORQPSTAT)=""
  .;
  .S ORQPIEN=$P(ORQPDAT,U)                         ; Get patient IEN.
- .I ORQPIEN="" S ORQDONE=1 Q                      ; Punt if no IEN.
+ .I ORQPIEN="" D  Q                               ; Punt if no IEN.
+ ..I ORQPDAT="^No appointments." S ORQDONE=1 Q
+ ..I ORQTYP="C" D
+ ...S ^TMP("OR",$J,"PATIENTS","B",ORQSNM_ORQPDAT)=ORQPDAT
+ ..I ORQTYP'="C" S ORQDONE=1
  .S ORQPNM=$P(ORQPDAT,U,2)                        ; Get patient name.
  .;
  .; Get patient SSN suffix:
@@ -192,8 +207,6 @@ PTSCOMBO(ORQTYP,ORQPTR) ; Write ^TMP("OR",$J,"PATIENTS","B") patient entries.
  ..;
  ..; If not by source or source/app't, default to alpha ("A") sort:
  ..S ^TMP("OR",$J,"PATIENTS","B",ORQPNM_" "_ORQPIEN_" "_ORQSNM_" "_ORQIDT)=ORQPIEN_U_ORQPNM_U_ORQSSN_U_ORQDOB_U_ORQSNM_U_ORQMORE_U_ORQPTR_U_ORQIDT_U_ORQPSTAT
- .;
- .S ORQCNT=ORQCNT+1                               ; Increment counter.
  ;
  Q
  ;

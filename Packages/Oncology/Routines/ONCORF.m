@@ -1,9 +1,10 @@
 ONCORF ;HIRMFO/GWB - OVER-RIDE FLAG PRINT;11/30/00
- ;;2.11;ONCOLOGY;**27,30**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 PRT N DI,DIC,DR,DA,DIQ,ONC
  S DIC="^ONCO(165.5,"
  S DR="205:226"
  S DA=D0,DIQ="ONC" D EN^DIQ1
+ S:$G(ONC(165.5,D0,205))'="" ONC(165.5,D0,205)="Reviewed"
  W !," Over-ride Age/Site/Morph.: ",ONC(165.5,D0,205),?40,"Over-ride SS/NodesPos....: ",ONC(165.5,D0,218)
  W !," Over-ride SeqNo/DxConf...: ",ONC(165.5,D0,206),?40,"Over-ride SS/TNM-N.......: ",ONC(165.5,D0,219)
  W !," Over-ride Site/Lat/SeqNo.: ",ONC(165.5,D0,207),?40,"Over-ride SS/TNM-M.......: ",ONC(165.5,D0,220)

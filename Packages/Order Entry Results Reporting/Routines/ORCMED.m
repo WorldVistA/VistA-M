@@ -1,6 +1,6 @@
-ORCMED ;SLC/MKB-Medication actions ;03/19/07
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,7,38,48,94,141,178,190,195,243**;Dec 17, 1997;Build 242
-XFER ; -- transfer to in/outpt meds
+ORCMED ;SLC/MKB - MEDICATION ACTIONS ;11/07/13  11:07
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,7,38,48,94,141,178,190,195,243,306,371,380,383,311,381**;Dec 17, 1997;Build 8
+XFER ; -- transfer to in/outpt medsx
  N ORPTLK,ORTYPE,ORXFER,ORSRC,ORCAT,OREVENT,X,ORINPT,ORIDLG,ORODLG,ORIVDLG,ORNMSP,ORCNT,ORI,NMBR,ORIFN,OLDIFN,ORDIALOG,ORDG,ORCHECK,ORQUIT,ORDUZ,ORLOG,FIRST,ORDITM,ORD,ORERR
  S ORPTLK=$$LOCK^ORX2(+ORVP) I 'ORPTLK D  G XFQ ; lock pt chart
  . W !!,$C(7),$P(ORPTLK,U,2) H 2
@@ -49,18 +49,63 @@ XFQ D EXIT^ORCDPS1 ;X:$D(^ORD(101.41,ORDIALOG,4)) ^(4)
  Q
  ;
 IN ; -- Kill extra values, Reset ID's/DD from Inpt dialog
- N P F P="START DATE/TIME","NOW" K ORDIALOG($$PTR(P),1)
+ N ORD1,ORDLI,ORDFIN,ORDCNT,ORDORIG,ORDORIGF,P,ORDD,INSTR,ORDE
+ F P="START DATE/TIME","NOW" K ORDIALOG($$PTR(P),1)
+ S ORD1=$P($G(ORDIALOG($$PTR("DOSE"),1)),"&",5)
+ S ORDORIG=ORDIALOG($$PTR("INSTRUCTIONS"),1)
+ S ORDD=$G(ORDIALOG($$PTR("DISPENSE DRUG"),1))
+ S INSTR=$$PTR("INSTRUCTIONS"),ORDE=$D(ORDIALOG($$PTR("DOSE"),1))
  D DOSES("O")
+ I ORDE=1,($D(ORDIALOG($$PTR("DOSE"),0))'=1) D  Q
+ .;corresponding dosage deleted, wipe the instructions
+ .S ORDIALOG(INSTR,1)=""
+ S ORDFIN="",ORDCNT=0,ORDORIGF=0
+ ;look in the new instructions list for the original inpatient instructions and the dose
+ I $L(ORD1) D
+ .S ORDLI=0 F  S ORDLI=$O(ORDIALOG(INSTR,"LIST",ORDLI)) Q:'ORDLI  D
+ ..I $P(ORDIALOG(INSTR,"LIST",ORDLI),U)=ORDORIG S ORDORIGF=1
+ .;look in the returned doses for the local possible dose
+ I '$L(ORD1) D
+ .S ORDOSE=0 F  S ORDOSE=$O(ORDOSE(ORDOSE)) Q:'ORDOSE  D
+ ..I $P(ORDOSE(ORDOSE),U,5)=ORDORIG,($P(ORDOSE(ORDOSE),U,6)=ORDD) S ORDFIN=$P(ORDIALOG(INSTR,"LIST",ORDOSE),U),ORDCNT=ORDCNT+1
+ ;If there was a dose string and original instructions are not in the new instructions list then replace the instructions
+ I ORDE=1,(ORDORIGF=0) D
+ .I ORDCNT=1 S ORDIALOG(INSTR,1)=ORDFIN ;only one item in the list found containing the dose string - set the instructions to the item found
+ .I ORDCNT'=1 S ORDIALOG(INSTR,1)="" ;no items or more than one item in the list found containing the dose string - blank the instructions
  Q
  ;
 OUT ; -- Kill extra values, Reset ID's/DD from Outpt dialog
- N P I '$O(ORDIALOG($$PTR("INSTRUCTIONS"),0)) D  ;old sig in comments
- . N WP S WP=$$PTR("WORD PROCESSING 1") K ^TMP("ORSIG",$J)
- . M ^TMP("ORSIG",$J)=^TMP("ORWORD",$J,WP,1)
- . K ORDIALOG(WP,1),^TMP("ORWORD",$J,WP,1)
- F P="PATIENT INSTRUCTIONS","START DATE/TIME","DAYS SUPPLY","QUANTITY","REFILLS","ROUTING","SERVICE CONNECTED" K ORDIALOG($$PTR(P),1)
- I $G(ORDIALOG($$PTR("URGENCY"),1))=99 K ORDIALOG($$PTR("URGENCY"),1)
+ N ORD1,ORDLI,ORDFIN,ORDCNT,ORDORIG,ORDORIGF,INSTR,I,ORDD,ORDE
+ S ORDD=$G(ORDIALOG($$PTR("DISPENSE DRUG"),1))
+ S INSTR=$$PTR("INSTRUCTIONS"),I=0 F  S I=$O(ORDIALOG(INSTR,I)) Q:'I  S ORDE(I)=$D(ORDIALOG($$PTR("DOSE"),I))
  D DOSES("I")
+ ;quit if a complex order
+ I $D(ORDIALOG($$PTR^ORCMED("AND/THEN"),1)) Q
+ S I=0 F  S I=$O(ORDIALOG(INSTR,I)) Q:'I  D
+ .I ORDE(I)=1,($D(ORDIALOG($$PTR("DOSE"),I))'=1) D  Q
+ ..;corresponding dosage deleted, wipe the instructions
+ ..S ORDIALOG(INSTR,I)=""
+ .S ORD1=$P($G(ORDIALOG($$PTR("DOSE"),I)),"&",5)
+ .S ORDORIG=ORDIALOG(INSTR,I)
+ .N P I '$O(ORDIALOG(INSTR,0)) D  ;old sig in comments
+ .. N WP S WP=$$PTR("WORD PROCESSING 1") K ^TMP("ORSIG",$J)
+ .. M ^TMP("ORSIG",$J)=^TMP("ORWORD",$J,WP,1)
+ .. K ORDIALOG(WP,1),^TMP("ORWORD",$J,WP,1)
+ .F P="PATIENT INSTRUCTIONS","START DATE/TIME","DAYS SUPPLY","QUANTITY","REFILLS","ROUTING","SERVICE CONNECTED" K ORDIALOG($$PTR(P),I)
+ .I $G(ORDIALOG($$PTR("URGENCY"),I))=99 K ORDIALOG($$PTR("URGENCY"),I)
+ .S ORDFIN="",ORDCNT=0,ORDORIGF=0
+ .;look in the new instructions list for the original instructions and the possible dose
+ .I $L(ORD1) D
+ ..S ORDLI=0 F  S ORDLI=$O(ORDIALOG(INSTR,"LIST",ORDLI)) Q:'ORDLI  D
+ ...I $P(ORDIALOG(INSTR,"LIST",ORDLI),U)=ORDORIG S ORDORIGF=1
+ .;look in the returned doses for the local possible dose
+ .I '$L(ORD1) D
+ ..S ORDOSE=0 F  S ORDOSE=$O(ORDOSE(ORDOSE)) Q:'ORDOSE  D
+ ...I $P(ORDOSE(ORDOSE),U,5)=ORDORIG,($P(ORDOSE(ORDOSE),U,6)=ORDD) S ORDFIN=$P(ORDIALOG(INSTR,"LIST",ORDOSE),U),ORDCNT=ORDCNT+1
+ .;If there was a dose string and original instructions are not in the new instructions list then replace the instructions
+ .I ORDE(I)=1,(ORDORIGF=0) D
+ ..I ORDCNT=1 S ORDIALOG(INSTR,I)=ORDFIN ;only one item in the list found containing the dose string - set the instructions to the item found
+ ..I ORDCNT'=1 S ORDIALOG(INSTR,I)="" ;no items or more than one item in the list found containing the dose string - blank the instructions
  Q
  ;
 DOSES(TYPE)     ; -- Convert doses to new TYPE, reset ID strings
@@ -121,7 +166,7 @@ RETURN() ; -- press return to cont
  Q ""
  ;
 ROUTING() ; -- Routing for refill
- N X,Y,DIR S DIR(0)="SAM^W:WINDOW;M:MAIL;C:ADMINISTERED IN CLINIC;"
+ N X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT S DIR(0)="SAM^W:WINDOW;M:MAIL;C:ADMINISTERED IN CLINIC;"
  S DIR("A")="Routing: ",DIR("B")=$S($D(^PSX(550,"C")):"MAIL",1:"WINDOW")
  S DIR("?")="Select how the patient is to receive this refill, by mail or at the window or in the clinic"
  D ^DIR S:$D(DTOUT)!(X["^") Y="^"

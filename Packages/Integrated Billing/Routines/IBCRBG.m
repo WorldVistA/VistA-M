@@ -1,5 +1,5 @@
-IBCRBG ;ALB/ARH - RATES: BILL SOURCE EVENTS (INPT) ; 21 MAY 96
- ;;2.0;INTEGRATED BILLING;**52,80,106,51,142,159,210,245,382,389**;21-MAR-94;Build 6
+IBCRBG ;ALB/ARH - RATES: BILL SOURCE EVENTS (INPT) ;21 MAY 96
+ ;;2.0;INTEGRATED BILLING;**52,80,106,51,142,159,210,245,382,389,461**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 INPTPTF(IBIFN,CS) ; search PTF record for billable bedsections, transfer DRGs, and length of stay 
@@ -138,14 +138,24 @@ PTFFY(PTF,BEGDT,ENDDT) ; add movement for FY (10/1) if date range covers FY and 
  .. I IBMVDRG'=IBFYDRG S $P(IBMVLN,U,4)=IBFYDRG S ^TMP($J,"IBCRC-PTF",IBFY)=IBMVLN
  Q
  ;
+DXVER(DX,DATE) ; check the code version of the diagnosis matchs the code version on the date
+ ; with ICD-10, bills may span the activation date and Dx may be coded in either version (should be ICD-10)
+ ; returns null or if versions don't match then last ICD-9 date for ICD-9 Dx or first ICD-10 date for ICD-10 Dx
+ N DXVER,CSVDATE,VDATE S VDATE=""
+ S DXVER=$$ICD9VER^IBACSV(DX)
+ I DXVER'=$$ICD9SYS^IBACSV(DATE) S CSVDATE=$$CSVDATE^IBACSV(30) S VDATE=CSVDATE I DXVER=1 S VDATE=$$FMADD^XLFDT(CSVDATE,-1)
+ Q VDATE
+ ;
 MVDRG(PTF,M,CDATE) ; Return the DRG for a specific PTF Movememt (M=move ifn)
  ; CDATE is optional, used if need to calculate DRG for some day within the move, not at the end date
- N DPT0,PTF0,PTFM0,PTF70,IBBEG,IBEND,IBDSST,IBDX,IBPRC0,IBPRC,IBDRG,IBI,IBJ,IBP
- N SEX,AGE,ICDDX,ICDPRC,ICDEXP,ICDDMS,ICDTRS,ICDDRG,ICDMDC,ICDRTC,ICDDATE
+ N DPT0,PTF0,PTFM0,PTFM82,PTF70,IBBEG,IBEND,IBDSST,IBDX,IBPRC0,IBPRC,IBDRG,IBVDATE,IBI,IBJ,IBP
+ N SEX,AGE,ICDDX,ICDPOA,ICDPRC,ICDEXP,ICDDMS,ICDTRS,ICDDRG,ICDMDC,ICDRTC,ICDDATE
+ N ICDCSYS,ICD0,ICDCDSY,ICDEDT,ICDX,ICDTMP,ICDRG,ICD10ORNIT,ICD10ORT,X1,X2,ICDSEX,ICDY ; ICDDRG clean-up
  S IBDRG=""
  ;
  S PTF0=$G(^DGPT(+$G(PTF),0)),DPT0=$G(^DPT(+$P(PTF0,U,1),0)) I DPT0="" G MVDRGQ
  S PTFM0=$G(^DGPT(+PTF,"M",+$G(M),0)) I 'PTFM0 G MVDRGQ
+ S PTFM82=$G(^DGPT(+PTF,"M",+$G(M),82))
  S PTF70=$G(^DGPT(+PTF,70)),IBDSST=+$P(PTF70,U,3)
  ;
  S IBEND=+$P(PTFM0,U,10) I 'IBEND S IBEND=DT+.9
@@ -159,9 +169,10 @@ MVDRG(PTF,M,CDATE) ; Return the DRG for a specific PTF Movememt (M=move ifn)
  . I IBDSST=4 S ICDDMS=1 ;  patient left against medical advice
  . I IBDSST=5,+$P(PTF70,U,13) S ICDTRS=1 ; patient transfered to another facility
  ;
- S IBJ=0 F IBI=5:1:9 S IBDX=$P(PTFM0,U,IBI) I +IBDX,($$ICD9^IBACSV(+IBDX)'="") S IBJ=IBJ+1,ICDDX(IBJ)=IBDX
+ S IBJ=0 F IBI=5:1:9 S IBDX=$P(PTFM0,U,IBI) D  ; Diagnosis
+ . I +IBDX,($$ICD9^IBACSV(+IBDX)'="") S IBJ=IBJ+1,ICDDX(IBJ)=IBDX,ICDPOA(IBJ)=$P(PTFM82,U,(IBI-4))
  ;
- I '$O(ICDDX(0)) G MVDRGQ
+ I '$G(ICDDX(1)) G MVDRGQ
  ;
  S IBJ=0
  S IBP=0 F  S IBP=$O(^DGPT(+PTF,"S",IBP)) Q:'IBP  D  ; surguries
@@ -175,6 +186,8 @@ MVDRG(PTF,M,CDATE) ; Return the DRG for a specific PTF Movememt (M=move ifn)
  .. F IBI=5:1:9 S IBPRC=$P(IBPRC0,U,IBI) I +IBPRC,($$ICD0^IBACSV(+IBPRC)'="") S IBJ=IBJ+1,ICDPRC(IBJ)=+IBPRC
  ;
  S ICDDATE=$S(+$G(CDATE):CDATE,+$P(PTFM0,U,10):+$P(PTFM0,U,10),1:DT) ; date for the DRG Grouper versioning
+ S IBVDATE=$$DXVER(ICDDX(1),ICDDATE) I +IBVDATE S ICDDATE=IBVDATE ; reset date to within Dx code version
+ ;
  D ^ICDDRG S IBDRG=$G(ICDDRG)
  ;
 MVDRGQ Q IBDRG

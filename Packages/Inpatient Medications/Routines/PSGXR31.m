@@ -1,4 +1,4 @@
-PSGXR31 ; COMPILED XREF FOR FILE #53.1 ; 09/12/12
+PSGXR31 ; COMPILED XREF FOR FILE #53.1 ; 04/07/14
  ; 
  S DIKZK=2
  S DIKZ(0)=$G(^PS(53.1,DA,0))
@@ -41,5 +41,16 @@ CR1 S DIXR=502
  . K X1,X2 M X1=X,X2=X
  . S:$D(DIKIL) (X2,X2(1),X2(2))=""
  . K ^PS(53.1,"AD",$E(X(1),1,20),$E(X(2),1,20),DA)
-CR2 K X
+CR2 S DIXR=808
+ K X
+ S DIKZ(0)=$G(^PS(53.1,DA,0))
+ S X(1)=$P(DIKZ(0),U,15)
+ S DIKZ("DSS")=$G(^PS(53.1,DA,"DSS"))
+ S X(2)=$P(DIKZ("DSS"),U,1)
+ S X=$G(X(1))
+ I $G(X(1))]"",$G(X(2))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . S:$D(DIKIL) (X2,X2(1),X2(2))=""
+ . K ^PS(53.1,"CIMO",X(1),X(2),DA)
+CR3 K X
 END G ^PSGXR32

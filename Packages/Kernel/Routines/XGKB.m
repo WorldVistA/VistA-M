@@ -1,6 +1,6 @@
 XGKB ;SFISC/VYD - Read with Escape Processing ;10/23/2006
  ;;8.0;KERNEL;**34,244,365**;Jul 10, 1995;Build 5
- ;;Special thanks to MELDRUM.KEVIN@ISC-SLC.domain.ext
+ ;;Special thanks to MELDRUM.KEVIN@ISC-SLC.DOMAIN.EXT
  ;
 INIT(XGTRM) ;turn escape processing on and passed terminator string if any
  N %,%OS S %OS=^%ZOSF("OS")

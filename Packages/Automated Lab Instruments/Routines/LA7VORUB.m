@@ -1,5 +1,5 @@
-LA7VORUB ;DALOI/JMC - Builder of HL7 Lab Results cont'd ;10/18/11  16:52
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**68,74**;Sep 27, 1994;Build 229
+LA7VORUB ;DALOI/JMC - Builder of HL7 Lab Results cont'd ;08/16/13  17:02
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**68,74,80**;Sep 27, 1994;Build 19
  ;
  Q
  ;
@@ -84,7 +84,7 @@ OBR ;Observation Request segment for Lab Order
  . . S LA7X=$P(^LR(LA("LRDFN"),LA("SUB"),LA("LRIDT"),.1,LA7I,0),"^",6)
  . . I 'LA761,LA7X S LA761=LA7X
  . . I LA761,LA7X,(LA761'=LA7X) S (LA761,LA7I)=0
- . S LA762=$P(LA7NLT(63),"^",7)
+ . S LA762=$P(LA7NLT(63),"^",9)
  ;
  I LA7NVAF=1 S LA7SNM=2
  ;
@@ -179,9 +179,9 @@ OBR ;Observation Request segment for Lab Order
  ; If MI subscript then also check various sections and audit subfile for corrected report
  I LA("SUB")="MI" D
  . S LA7PRI=$P(LA763(0),"^",4)
- . S LA7X=$S(LRSB=11:1,LRSB=11.6:1,LRSB=12:1,LRSB=14:5,LRSB=16:5,LRSB=18:8,LRSB=20:8,LRSB=22:11,LRSB=26:11,LRSB=24:11,LRSB=33:16,LRSB=36:16,1:0)
+ . S LA7X=$S(LRSB=11:1,LRSB=11.52:1,LRSB=11.6:1,LRSB=12:1,LRSB=14:5,LRSB=16:5,LRSB=18:8,LRSB=20:8,LRSB=22:11,LRSB=26:11,LRSB=24:11,LRSB=33:16,LRSB=36:16,1:0)
  . S LA7Y=$G(^LR(LRDFN,"MI",LRIDT,LA7X),"^")
- . I $P(LA7Y,"^") S LA7RSDT=$P(LA7Y,"^"),LA7RS=$P(LA7Y,"^",2),LA7PRI=$P(LA7Y,"^",3)
+ . I $P(LA7Y,"^") S LA7RSDT=$P(LA7Y,"^"),LA7RS=$P(LA7Y,"^",2),LA7PRI=$P(LA7Y,"^",$S(LA7X=11:5,1:3))
  . I $P(LA763(0),"^",9)=1 S LA7RS="C" Q
  . I '$D(^LR(LRDFN,"MI",LRIDT,32)) Q
  . S I=0

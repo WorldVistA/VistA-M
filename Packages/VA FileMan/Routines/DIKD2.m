@@ -1,6 +1,6 @@
-DIKD2 ;SFISC/MKO-DELETE A NEW-STYLE INDEX ;10:28 AM  1 Nov 2002
- ;;22.0;VA FileMan;**12,95**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIKD2 ;SFISC/MKO-DELETE A NEW-STYLE INDEX ;4JAN2012
+ ;;22.0;VA FileMan;**12,95,169**;Mar 30, 1999;Build 26
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 DELIXN(DIFIL,DIXR,DIFLG,DIKDOUT,DIKDMSG) ;Delete new-style index
 DELIXNX ;Come here from DELIXN^DDMOD
@@ -42,9 +42,12 @@ DIEZ(DIFLIST,DIFLG,DIKDOUT) ;Recompile input templates containing field
  ;
 CHK ;Check input parameters
  I '$G(DIFIL) D:DIF["D" ERR^DIKCU2(202,"","","","FILE") D QUIT
+ I $G(DIXR)]"" D
+ .N I F I=0:0 S I=$O(^DD("IX","IX",DIXR,I)) Q:'I  I +$G(^DD("IX",I,0))=$G(DIFIL) Q
+ .I 'I K DIXR
  I $G(DIXR)="" D:DIF["D" ERR^DIKCU2(202,"","","","CROSS-REFERENCE") D QUIT
  D:'$$VFLAG^DIKCU1(DIFLG,"KWcd",DIF) QUIT
- ;
+ Q:$G(DIQUIT)
  S DIXR=$O(^DD("IX","BB",DIFIL,DIXR,0))
  D:'DIXR QUIT
  Q

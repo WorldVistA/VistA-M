@@ -1,5 +1,5 @@
-PXRMLOG ;SLC/PKR - Clinical Reminders logic routines. ;11/09/2011
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18**;Feb 04, 2005;Build 152
+PXRMLOG ;SLC/PKR - Clinical Reminders logic routines. ;11/06/2013
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,26**;Feb 04, 2005;Build 404
  ;==========================================================
 EVALPCL(DEFARR,PXRMPDEM,FREQ,PCLOGIC,FIEVAL) ;Evaluate the Patient Cohort
  ;Logic.
@@ -223,6 +223,7 @@ VALID(LOGSTR,DA,MINLEN,MAXLEN) ;Make sure that LOGSTR is a valid logic string.
  S (ELE1,VALID)=1
  F  Q:(ELE1="")!(VALID=0)  D
  . S ELE1=$$POP^PXRMSTAC(.STACK)
+ . I '$$VELEM(ELE1) S VALID=0 Q
  . I SEP[ELE1 Q
  .;If the element is FI or FF then the next element should be a number.
  . S MNUM=$S(ELE1="FI":20,ELE1="FF":25,1:"")
@@ -253,4 +254,15 @@ VALIDR(LOGSTR,DA,MINLEN,MAXLEN) ;Make sure that LOGSTR is a valid resolution
  . D EN^DDIOL(TEXT)
  ;Now call the regular logic string validator.
  Q $$VALID(LOGSTR,DA,MINLEN,MAXLEN)
+ ;
+ ;==========================================================
+VELEM(ELEMENT) ;Make sure that the element is valid.
+ I ELEMENT="AGE" Q 1
+ I ELEMENT="FI" Q 1
+ I ELEMENT="FF" Q 1
+ I ELEMENT="SEX" Q 1
+ I ELEMENT="^" Q 1
+ I ELEMENT?.N Q 1
+ D EN^DDIOL(ELEMENT_" is not a valid logic element.")
+ Q 0
  ;

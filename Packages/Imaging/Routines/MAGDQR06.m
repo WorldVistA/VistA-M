@@ -1,5 +1,5 @@
-MAGDQR06 ;WOIFO/EdM - Imaging RPCs for Query/Retrieve ; 17 Feb 2010 9:53 AM
- ;;3.0;IMAGING;**54,66**;Mar 19, 2002;Build 1836;Sep 02, 2010
+MAGDQR06 ;WOIFO/EdM,MLH - Imaging RPCs for Query/Retrieve ; 03 Apr 2012 11:26 AM
+ ;;3.0;IMAGING;**54,66,118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -17,7 +17,7 @@ MAGDQR06 ;WOIFO/EdM - Imaging RPCs for Query/Retrieve ; 17 Feb 2010 9:53 AM
  ;;
  Q
  ;
-Q0080050 ;R  Accession Number
+Q0080050(TYPE,REQ,V,T,MAGDFN,MAGIEN,MAGRORD,MAGINTERP,SENSEMP,OK) ;R  Accession Number
  ; sensitive/employee?
  I SENSEMP D  Q  ; yes, scrub
  . N WRKDT
@@ -25,161 +25,213 @@ Q0080050 ;R  Accession Number
  . S V(T)=$E(WRKDT,4,7)_$E(WRKDT,2,3)_"-0000"
  . Q
  ; no
- S V(T)=$G(ACCESSION)
+ S V(T)=$G(^TMP("MAG",$J,"ACCESSION"))
  Q
  ;
-Q0200010 ;R  Study ID
+Q0200010(TYPE,REQ,V,T,MAGDFN,MAGIEN,MAGRORD,MAGINTERP,SENSEMP,OK) ;R  Study ID
  ; sensitive/employee?
  I SENSEMP D  Q  ; yes, scrub
  . N I S I=$O(REQ(T,"")) S V(T)=$S(I:$S($G(REQ(T,I))]"":REQ(T,I),1:"0"),1:"0")
  . Q
  ; no
- D:TYPE="R"
- . S V(T)=$P($G(^RADPT(MAGDFN,"DT",MAGRORD,"P",MAGINTERP,0)),"^",1) ; IA # 1172
- . Q
- D:TYPE="C"
- . S V(T)=$P($G(ACCESSION),"-",2)
- . Q
+ S V(T)=$G(^TMP("MAG",$J,"ACCESSION"))
+ S V(T)=$P(V(T),"-",$L(V(T),"-")) ; case # or consult # only
  Q
  ;
-Q0080062 ;O  SOP Classes in Study
+Q0080062(TYPE,REQ,V,T,MAGDFN,MAGIEN,MAGRORD,MAGINTERP,SENSEMP,OK) ;O  SOP Classes in Study
  ; --- probably not supported --- ?
  ; ? ? ?
  ;;;S:'$$COMPARE^MAGDQR03(T,V(T)) OK=0
  Q
  ;
-Q0080090 ;O  Referring Physician's Name
+Q0080090(TYPE,REQ,V,T,MAGDFN,MAGIEN,MAGRORD,MAGINTERP,SENSEMP,OK) ;O  Referring Physician's Name
+ N IMGTYPE
  ; sensitive/employee?
  I SENSEMP D  Q  ; yes, scrub
  . S V(T)="IMAGPROVIDER,SENSITIVE"
  . Q
  ; no
- D:TYPE="R"
+ S IMGTYPE=TYPE
+ D:IMGTYPE="N" FINDTYP(.IMGTYPE,MAGDFN,MAGIEN,.MAGRORD,.MAGINTERP) ; will reset IMGTYPE if successful
+ D:IMGTYPE="R"
  . S X=$P($G(^RADPT(MAGDFN,"DT",MAGRORD,"P",MAGINTERP,0)),"^",14) ; IA # 1172
  . S V(T)=$$GET1^DIQ(200,(+X)_",",.01)
  . Q
- D:TYPE="C"
+ D:IMGTYPE="C"
  . N G0
- . I IMAGE="" S V(T)="" Q
- . S G0=$$GMRC($G(ACCESSION),MAGIEN) I 'G0 S V(T)="" Q
+ . I MAGIEN="" S V(T)="" Q
+ . S G0=$$GMRC($G(^TMP("MAG",$J,"ACCESSION")),MAGIEN) I 'G0 S V(T)="" Q
  . S V(T)=$$GET1^DIQ(123,G0,10,"E") ; IA # 4110
  . Q
  ; MLH: do not match per WP 3/25/09
  ;;;S:'$$COMPARE^MAGDQR03(T,V(T)) OK=0
- S V(T)=$$VA2DCM^MAGDQR01(V(T)) ; return w/commas
  Q
  ;
-Q0081030 ;O  Study Description
+Q0081030(TYPE,REQ,V,T,MAGDFN,MAGIEN,MAGRORD,MAGINTERP,SENSEMP,OK) ;O  Study Description
  ; sensitive/employee?
  I SENSEMP D  Q  ; yes, scrub
  . N I S I=$O(REQ(T,"")) S:I V(T)=$S($G(REQ(T,I))]"":REQ(T,I),1:"")
  . Q
  ; no
- S V(T)=$$STYDESC^MAGUE001(IMAGE)
+ S V(T)=$$STYDESC2^MAGUE001(TYPE,MAGIEN)
  S:'$$COMPARE^MAGDQR03(T,V(T)) OK=0
  Q
  ;
-Q0080100 ;O  >Code Value
- D:TYPE="R"
+Q0080100(TYPE,REQ,V,T,MAGDFN,MAGIEN,MAGRORD,MAGINTERP,SENSEMP,OK) ;O  >Code Value
+ N IMGTYPE
+ S IMGTYPE=TYPE
+ D:IMGTYPE="N" FINDTYP(.IMGTYPE,MAGDFN,MAGIEN,.MAGRORD,.MAGINTERP) ; will reset IMGTYPE if successful
+ D:IMGTYPE="R"
  . S X=$P($G(^RADPT(MAGDFN,"DT",MAGRORD,"P",MAGINTERP,0)),"^",2) ; IA # 1172
  . S X=$P($G(^RAMIS(71,+X,0)),"^",9) ; IA # 1174
  . S X=$$CPT^ICPTCOD(+X) ; IA # 1995, supported reference
  . S V("0008,1030",1,T)=$P(X,"^",2)
  . Q
- D:TYPE="C"
+ D:IMGTYPE="C"
  . N G0
- . I IMAGE="" S V(T)="" Q
- . S G0=$$GMRC($G(ACCESSION),IMAGE) I 'G0 S V(T)="" Q
+ . I MAGIEN="" S V(T)="" Q
+ . S G0=$$GMRC($G(^TMP("MAG",$J,"ACCESSION")),MAGIEN) I 'G0 S V(T)="" Q
  . S V(T)=$$GET1^DIQ(123,G0,4,"I") ; IA # 4110
  . Q
  Q
  ;
-Q0080104 ;O  >Code Meaning
- D:TYPE="R"
+Q0080104(TYPE,REQ,V,T,MAGDFN,MAGIEN,MAGRORD,MAGINTERP,SENSEMP,OK) ;O  >Code Meaning
+ N IMGTYPE
+ S IMGTYPE=TYPE
+ D:IMGTYPE="N" FINDTYP(.IMGTYPE,MAGDFN,MAGIEN,.MAGRORD,.MAGINTERP) ; will reset IMGTYPE if successful
+ D:IMGTYPE="R"
+ . N X
  . S X=$P($G(^RADPT(MAGDFN,"DT",MAGRORD,"P",MAGINTERP,0)),"^",2) ; IA # 1172
  . S X=$P($G(^RAMIS(71,+X,0)),"^",9) ; IA # 1174
  . S X=$$CPT^ICPTCOD(+X) ; IA # 1995, supported reference
  . S V("0008,1030",1,T)=$P(X,"^",3)
  . Q
- D:TYPE="C"
+ D:IMGTYPE="C"
  . N G0
- . I IMAGE="" S V(T)="" Q
- . S G0=$$GMRC($G(ACCESSION),IMAGE) I 'G0 S V(T)="" Q
+ . I MAGIEN="" S V(T)="" Q
+ . S G0=$$GMRC($G(^TMP("MAG",$J,"ACCESSION")),MAGIEN) I 'G0 S V(T)="" Q
  . S V(T)=$$GET1^DIQ(123,G0,4,"E") ; IA # 4110
  . Q
  Q
  ;
-Q0081060 ;O  Name of Physician(s) Reading Study
+Q0081060(TYPE,REQ,V,T,MAGDFN,MAGIEN,MAGRORD,MAGINTERP,SENSEMP,OK) ;O  Name of Physician(s) Reading Study
  I SENSEMP D  Q  ; yes, scrub
  . S V(T)="IMAGPROVIDER,SENSITIVE"
  . Q
  ; no
- D:TYPE="R"
+ N IMGTYPE
+ S IMGTYPE=TYPE
+ D:IMGTYPE="N" FINDTYP(.IMGTYPE,MAGDFN,MAGIEN,.MAGRORD,.MAGINTERP) ; will reset IMGTYPE if successful
+ D:IMGTYPE="R"
+ . N X
  . S X=$P($G(^RADPT(MAGDFN,"DT",MAGRORD,"P",MAGINTERP,0)),"^",17) ; IA # 1172
  . S X=$P($G(^RARPT(+X,0)),"^",9) ; IA # 1171
  . S V(T)=$$GET1^DIQ(200,(+X)_",",.01)
  . Q
- Q:TYPE="C"
+ Q:IMGTYPE="C"
  ; MLH:  do not match per WP 3/25/09
  ;;;S:'$$COMPARE^MAGDQR03(T,V(T)) OK=0
- S V(T)=$$VA2DCM^MAGDQR01(V(T)) ; return w/commas
  Q
  ;
-Q0081080 ;O  Admitting Diagnosis Description
+Q0081080(TYPE,REQ,V,T,MAGDFN,MAGIEN,MAGRORD,MAGINTERP,SENSEMP,OK) ;O  Admitting Diagnosis Description
  ; ? ? ?
  ;;;S:'$$COMPARE^MAGDQR03(T,V(T)) OK=0
  Q
  ;
-Q01021B0 ;O  Additional Patient History
+Q01021B0(TYPE,REQ,V,T,MAGDFN,MAGIEN,MAGRORD,MAGINTERP,SENSEMP,OK) ;O  Additional Patient History
  ; sensitive/employee?
  I SENSEMP D  Q  ; yes, scrub
  . N I S I=$O(REQ(T,"")) S:I V(T)=$S($G(REQ(T,I))]"":REQ(T,I),1:"")
  . Q
  ; no
- N D1,I,T0,X
- Q:TYPE="R"
- D:TYPE="C"
- . I IMAGE="" S V(T)="" Q
- . S X=$G(^MAG(2005,MAGIEN,2))
- . I $P(X,"^",6)'=8925 S V(T)="" Q
- . S X=$P($G(^TIU(8925,+$P(X,"^",7),15)),"^",2) ; Signed By field
- . S:X X=$$GET1^DIQ(200,(+X)_",",.01)
- . S V(T)=X
+ N D1,I,T0,X,IMGTYPE
+ N IMGTYPE
+ S IMGTYPE=TYPE
+ D:IMGTYPE="N" FINDTYP(.IMGTYPE,MAGDFN,MAGIEN,.MAGRORD,.MAGINTERP) ; will reset IMGTYPE if successful
+ Q:IMGTYPE="R"
+ D:IMGTYPE="C"
+ . S V(T)="",TIUIX=$$TIUIX(IMGTYPE,MAGIEN)
+ . D:TIUIX
+ . . S X=$P($G(^TIU(8925,TIUIX,15)),"^",2) ; Signed By field
+ . . S:X X=$$GET1^DIQ(200,(+X)_",",.01)
+ . . S V(T)=X
+ . . Q
  . Q
  S:'$$COMPARE^MAGDQR03(T,V(T)) OK=0
  Q
  ;
-Q0104000 ;O  Patient Comments
+Q0104000(TYPE,REQ,V,T,MAGDFN,MAGIEN,MAGRORD,MAGINTERP,SENSEMP,OK) ;O  Patient Comments
  ; ? ? ?
  ; (there is a modality that passes the accession number in this field)
  ;;;S:'$$COMPARE^MAGDQR03(T,V(T)) OK=0
  Q
  ;
-U008010C ;O  Interpretation Author
+U008010C(TYPE,REQ,V,T,MAGDFN,MAGIEN,MAGRORD,MAGINTERP,SENSEMP,OK) ;O  Interpretation Author
+ N X,IMGTYPE
  I SENSEMP D  Q  ; yes, scrub
  . S V(T)="IMAGPROVIDER,SENSITIVE"
  . Q
  ; no
- D:TYPE="R"
+ N IMGTYPE
+ S IMGTYPE=TYPE
+ D:IMGTYPE="N" FINDTYP(.IMGTYPE,MAGDFN,MAGIEN,.MAGRORD,.MAGINTERP) ; will reset IMGTYPE if successful
+ D:IMGTYPE="R"
  . S X=+$P($G(^RADPT(MAGDFN,"DT",MAGRORD,"P",MAGINTERP,0)),"^",12) ; IA # 1172
  . S V(T)=$$GET1^DIQ(200,(+X)_",",.01)
  . Q
- D:TYPE="C"
- . I MAGIEN="" S V(T)="" Q
- . S X=$G(^MAG(2005,MAGIEN,2))
- . I $P(X,"^",6)'=8925 S V(T)="" Q
- . S X=$P($G(^TIU(8925,+$P(X,"^",7),15)),"^",2) ; Signed By field
- . S:X X=$$GET1^DIQ(200,(+X)_",",.01)
- . S V(T)=X
+ D:IMGTYPE="C"
+ . N TIUIX
+ . S V(T)="",TIUIX=$$TIUIX(IMGTYPE,MAGIEN)
+ . D:TIUIX
+ . . S X=$P($G(^TIU(8925,TIUIX,15)),"^",2) ; Signed By field
+ . . S:X X=$$GET1^DIQ(200,(+X)_",",.01)
+ . . S V(T)=X
+ . . Q
  . Q
  ; MLH:  do not match per WP 3/25/09
  ;;;S:'$$COMPARE^MAGDQR03(T,V(T)) OK=0
  Q
  ;
 GMRC(ACCNUM,IMAGE) ; Return consult number for image
- N G0,P,T0,X
- S G0=+$TR($G(ACCNUM),"GMRCgmrc-") Q:G0 G0
- S X=$G(^MAG(2005,+IMAGE,2)),P=$P(X,"^",6) Q:P'=8925 0
- S T0=$P(X,"^",7) Q:'T0 0
- S X=$P($G(^TIU(8925,T0,14)),"^",5) Q:X'[";GMR(123," 0
+ N X
+ D  ; perform appropriate lookup for old / new database structure
+ . N G0,T0
+ . S G0=$$GMRCIEN^MAGDFCNV($G(ACCNUM)) I G0 S X=G0 Q
+ . S TIUIX=$$TIUIX(TYPE,IMAGE) I 'TIUIX S X=0 Q
+ . S X=$P($G(^TIU(8925,TIUIX,14)),"^",5) I X'[";GMR(123," S X=0 Q
+ . S X=0 ; unresolvable IEN
+ . Q
  Q +X
+ ;
+TIUIX(TYPE,STUDYIX) ; FUNCTION - find the TIU note index corresponding to a study's procedure
+ ; perform appropriate lookup for old / new database structure
+ D:TYPE'="N"  ; old structure
+ . N X
+ . S X=$G(^MAG(2005,STUDYIX,2))
+ . S:$P(X,"^",6)=8925 TIUIX=+$P(X,"^",7)
+ . Q
+ D:TYPE="N"  ; new structure
+ . N PROCIX
+ . S PROCIX=$P($G(^MAGV(2005.62,STUDYIX,6)),"^",1) Q:'PROCIX
+ . S:$P($G(^MAGV(2005.61,PROCIX,0)),"^",3)="TIU" TIUIX=$P(^(0),"^",1)
+ . Q
+ Q $G(TIUIX)
+ ;
+FINDTYP(IMGTYPE,MAGDFN,MAGIEN,MAGRORD,MAGINTERP) ; find type of image on new DB
+ ; if found, will reset IMGTYPE for further processing
+ N PROCIX,PROCREC,PROCTYP,PROCIDNT
+ S PROCIX=$$PROCIX^MAGUE005(MAGIEN) Q:'PROCIX
+ S PROCREC=$G(^MAGV(2005.61,PROCIX,0)) Q:PROCREC=""
+ S PROCTYP=$P(PROCREC,"^",3),PROCIDNT=$P(PROCREC,"^",1)
+ I PROCTYP="RAD" D  Q
+ . N ACCARY,I
+ . S I=$$ACCFIND^RAAPI(PROCIDNT,.ACCARY)
+ . S I=""
+ . F  S I=$O(ACCARY(I)) Q:'I  I $P(ACCARY(I),"^",1)=MAGDFN Q
+ . I I S MAGRORD=$P(ACCARY(I),"^",2),MAGINTERP=$P(ACCARY(I),"^",3)
+ . S IMGTYPE="R"
+ . Q
+ I PROCTYP="CON" D  Q
+ . S IMGTYPE="C"
+ . Q
+ Q

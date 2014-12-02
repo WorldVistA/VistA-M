@@ -1,21 +1,22 @@
-LRSCTF1 ;DAL01/JDB - SCT POPULATION/ERT ALERT ;12/22/10  16:08
- ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+LRSCTF1 ;DALOI/JDB - SCT POPULATION/ERT ALERT ;01/16/13  10:02
+ ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
  ;
  ; Reference to LABXCPT^HDISVAP1 supported by DBIA #5026
  Q
  ;
  ;
-NOTIFY(LRTXT,LRFILE,LRFIEN,LRSCT,EXCDATA) ;
+NOTIFY(LRTXT,LRFILE,LRFIEN,LRSCT,EXCDATA,LRDUPCHK) ;
  ;LABXCPT^HDISVAP1/5026
  ; Private helper method
  ; Handles ERT/Local notification for "Load Exception" errors.
  ; If an SCT load exception occurs and not in ^XTMP alert ERT.
  ; Inputs
- ;   LRTXT: Code text
- ;  LRFILE: Target file #
- ;  LRFIEN: Target file # IEN
- ;   LRSCT: SCT Code <opt>
- ; EXCDATA:<byref>
+ ;    LRTXT: Code text
+ ;   LRFILE: Target file #
+ ;   LRFIEN: Target file # IEN
+ ;    LRSCT: SCT Code <opt>
+ ;  EXCDATA:<byref>
+ ; LRDUPCHK: Check for duplicate alert <opt>
  ; Outputs
  ;  String indicating success or error.
  ;     On success returns the new ^XTMP IEN
@@ -27,7 +28,7 @@ NOTIFY(LRTXT,LRFILE,LRFIEN,LRSCT,EXCDATA) ;
  N TNUM,TMPNM,TEXT,I,II,X,Y,LRHDI,LRHDIERR
  S LRTXT=$G(LRTXT)
  I $TR(LRTXT," ","")="" Q "0^1^Term is null"
- S LRFILE=$G(LRFILE),LRFIEN=$G(LRFIEN),LRSCT=$G(LRSCT)
+ S LRFILE=$G(LRFILE),LRFIEN=$G(LRFIEN),LRSCT=$G(LRSCT),LRDUPCHK=$G(LRDUPCHK,1)
  S NOTIFY=1 ;status of this process
  S TMPNM="LRSCTF-STS"
  S NOW=$$NOW^XLFDT()
@@ -35,9 +36,9 @@ NOTIFY(LRTXT,LRFILE,LRFIEN,LRSCT,EXCDATA) ;
  S STR=$E(TEXT,1,200) ;some terms can be long and wont fit in a node
  ; check if this term has been sent already.
  K LRIN
- S LRIN("FILE")=LRFILE,LRIN("SCT")=LRSCT,LRIN("PREV","SCT")=""
+ S LRIN("FILE")=LRFILE,LRIN("SCT")=LRSCT,LRIN("PREV","SCT")=$$GET1^DIQ(LRFILE,LRFIEN_",",20)
  S X=$$OK2LOG^LRERT(.LRTXT,.LRIN,TMPNM)
- I 'X Q "0^2^Notification already sent."
+ I $G(LRDUPCHK),'X,$P(X,"^",2)'=2 Q "0^2^Notification already sent."
  K DATA,LRHDI,TEXT,STR
  ;
  S TNUM=$$TNUM^LRERT(LRFILE,LRFIEN,NOW,1)

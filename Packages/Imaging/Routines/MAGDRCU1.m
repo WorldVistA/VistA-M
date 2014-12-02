@@ -1,5 +1,5 @@
-MAGDRCU1 ;WOIFO/PMK - List entries in ^MAG(2006.5839) ; 05/18/2007 11:23
- ;;3.0;IMAGING;**10,30,54**;03-July-2009;;Build 1424
+MAGDRCU1 ;WOIFO/PMK - List entries in ^MAG(2006.5839) ; 07 Mar 2013 10:55 AM
+ ;;3.0;IMAGING;**10,30,54,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -30,15 +30,16 @@ MAGDRCU1 ;WOIFO/PMK - List entries in ^MAG(2006.5839) ; 05/18/2007 11:23
  ; Routine 1/2 for application
  ;
 ENTRY ; read the entries in file ^MAG(2006.5839)
- N COUNT,CUTOFF,DAYS,DIVISION,DONE,INDEX,SELECT,SERVICE,SORT,SUBTITLE,TITLE,X
+ N %ZIS,COUNT,CUTOFF,DAYS,DIVISION,DONE,IEN,INDEX,POP
+ N SELECT,SERVICE,SORT,SUBTITLE,TITLE,X,ZTDESC,ZTRTN,ZTSAVE
  ;
- S TITLE="UNREAD LIST FOR HEALTHCARE PROVIDERS"
+ S TITLE="UNREAD LIST FOR CLINICAL SPECIALTY DICOM & HL7"
  W !!,TITLE,!!
  ;
  ; get the division and service list
- S SERVICE=0 F  S SERVICE=$O(^MAG(2006.5831,SERVICE)) Q:'SERVICE  D
- . S X=^MAG(2006.5831,SERVICE,0)
- . S INDEX=$P(X,"^",2),DIVISION=$P(X,"^",3)
+ S IEN=0 F  S IEN=$O(^MAG(2006.5831,IEN)) Q:'IEN  D
+ . S X=^MAG(2006.5831,IEN,0)
+ . S SERVICE=$P(X,"^",1),INDEX=$P(X,"^",3),DIVISION=$P(X,"^",5)
  . S SERVICE(DIVISION)=$$GET1^DIQ(4,DIVISION,.01)
  . S SERVICE(DIVISION,INDEX)=$P(^MAG(2005.84,INDEX,0),"^",1)
  . S SERVICE(DIVISION,INDEX,SERVICE)=$$GET1^DIQ(123.5,SERVICE,.01)
@@ -136,7 +137,7 @@ ENTRY ; read the entries in file ^MAG(2006.5839)
  . S ZTSAVE("SUBTITLE(")=""
  . S ZTSAVE("TITLE")=""
  . S ZTRTN="REPORT^MAGDRCU2",ZTDESC=TITLE
- . D ^%ZTLOAD D HOME^%ZIS K IO("Q")
+ . D ^%ZTLOAD D HOME^%ZIS
  . Q
  E  D  ; immediate
  . D REPORT^MAGDRCU2

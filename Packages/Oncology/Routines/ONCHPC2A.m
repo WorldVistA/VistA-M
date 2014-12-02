@@ -1,5 +1,5 @@
 ONCHPC2A ;Hines OIFO/GWB - 2000 Hepatocellular Cancers PCE Study ;01/06/00
- ;;2.11;ONCOLOGY;**26**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 CTAP0 ;CT ARTERIAL PORTOGRAPHY not performed (0)
  S $P(^ONCO(165.5,ONCONUM,"HEP1"),U,22)=8
  S $P(^ONCO(165.5,ONCONUM,"HEP1"),U,23)=8

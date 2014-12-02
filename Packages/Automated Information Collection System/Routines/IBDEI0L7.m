@@ -1,0 +1,134 @@
+IBDEI0L7 ; ; 12-AUG-2014
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,10393,0)
+ ;;=V10.62^^67^675^43
+ ;;^UTILITY(U,$J,358.3,10393,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10393,1,4,0)
+ ;;=4^V10.62
+ ;;^UTILITY(U,$J,358.3,10393,1,5,0)
+ ;;=5^Hx of Myeloid Leukemia
+ ;;^UTILITY(U,$J,358.3,10393,2)
+ ;;=Hx of Myeloid Leukemia^295233
+ ;;^UTILITY(U,$J,358.3,10394,0)
+ ;;=V10.63^^67^675^41
+ ;;^UTILITY(U,$J,358.3,10394,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10394,1,4,0)
+ ;;=4^V10.63
+ ;;^UTILITY(U,$J,358.3,10394,1,5,0)
+ ;;=5^Hx of Monocytic Leukemia
+ ;;^UTILITY(U,$J,358.3,10394,2)
+ ;;=Hx of Monocytic Leukemia^295234
+ ;;^UTILITY(U,$J,358.3,10395,0)
+ ;;=V11.2^^67^675^32
+ ;;^UTILITY(U,$J,358.3,10395,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10395,1,4,0)
+ ;;=4^V11.2
+ ;;^UTILITY(U,$J,358.3,10395,1,5,0)
+ ;;=5^Hx of Dysthymia
+ ;;^UTILITY(U,$J,358.3,10395,2)
+ ;;=Hx of Dysthymia^295251
+ ;;^UTILITY(U,$J,358.3,10396,0)
+ ;;=V15.81^^67^675^60
+ ;;^UTILITY(U,$J,358.3,10396,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10396,1,4,0)
+ ;;=4^V15.81
+ ;;^UTILITY(U,$J,358.3,10396,1,5,0)
+ ;;=5^Noncompliance With Medical Treatment
+ ;;^UTILITY(U,$J,358.3,10396,2)
+ ;;=^295290
+ ;;^UTILITY(U,$J,358.3,10397,0)
+ ;;=V10.43^^67^675^44
+ ;;^UTILITY(U,$J,358.3,10397,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10397,1,4,0)
+ ;;=4^V10.43
+ ;;^UTILITY(U,$J,358.3,10397,1,5,0)
+ ;;=5^Hx of Ovarian CA
+ ;;^UTILITY(U,$J,358.3,10397,2)
+ ;;=Hx of Ovarian CA^295221
+ ;;^UTILITY(U,$J,358.3,10398,0)
+ ;;=V12.71^^67^675^45
+ ;;^UTILITY(U,$J,358.3,10398,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10398,1,4,0)
+ ;;=4^V12.71
+ ;;^UTILITY(U,$J,358.3,10398,1,5,0)
+ ;;=5^Hx of Peptic Ulcer Disease
+ ;;^UTILITY(U,$J,358.3,10398,2)
+ ;;=^303400
+ ;;^UTILITY(U,$J,358.3,10399,0)
+ ;;=V10.46^^67^675^48
+ ;;^UTILITY(U,$J,358.3,10399,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10399,1,4,0)
+ ;;=4^V10.46
+ ;;^UTILITY(U,$J,358.3,10399,1,5,0)
+ ;;=5^Hx of Prostate Cancer
+ ;;^UTILITY(U,$J,358.3,10399,2)
+ ;;=Hx of Prostate Cancer^295224
+ ;;^UTILITY(U,$J,358.3,10400,0)
+ ;;=V11.0^^67^675^50
+ ;;^UTILITY(U,$J,358.3,10400,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10400,1,4,0)
+ ;;=4^V11.0
+ ;;^UTILITY(U,$J,358.3,10400,1,5,0)
+ ;;=5^Hx of Schizophrenia
+ ;;^UTILITY(U,$J,358.3,10400,2)
+ ;;=Hx of Schizophrenia^295249
+ ;;^UTILITY(U,$J,358.3,10401,0)
+ ;;=V10.83^^67^675^51
+ ;;^UTILITY(U,$J,358.3,10401,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10401,1,4,0)
+ ;;=4^V10.83
+ ;;^UTILITY(U,$J,358.3,10401,1,5,0)
+ ;;=5^Hx of Skin Cancer (Non-Melanoma)
+ ;;^UTILITY(U,$J,358.3,10401,2)
+ ;;=^295241
+ ;;^UTILITY(U,$J,358.3,10402,0)
+ ;;=V15.1^^67^675^53
+ ;;^UTILITY(U,$J,358.3,10402,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10402,1,4,0)
+ ;;=4^V15.1
+ ;;^UTILITY(U,$J,358.3,10402,1,5,0)
+ ;;=5^Hx of Surgery To Heart And Great Vessels
+ ;;^UTILITY(U,$J,358.3,10402,2)
+ ;;=^295283
+ ;;^UTILITY(U,$J,358.3,10403,0)
+ ;;=V15.82^^67^675^57
+ ;;^UTILITY(U,$J,358.3,10403,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10403,1,4,0)
+ ;;=4^V15.82
+ ;;^UTILITY(U,$J,358.3,10403,1,5,0)
+ ;;=5^Hx of Tobacco Use (not current)
+ ;;^UTILITY(U,$J,358.3,10403,2)
+ ;;=Hx of Tobacco Use (not current)^303405
+ ;;^UTILITY(U,$J,358.3,10404,0)
+ ;;=V12.01^^67^675^54
+ ;;^UTILITY(U,$J,358.3,10404,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10404,1,4,0)
+ ;;=4^V12.01
+ ;;^UTILITY(U,$J,358.3,10404,1,5,0)
+ ;;=5^Hx of TB
+ ;;^UTILITY(U,$J,358.3,10404,2)
+ ;;=Hx of TB^303393
+ ;;^UTILITY(U,$J,358.3,10405,0)
+ ;;=V13.01^^67^675^36
+ ;;^UTILITY(U,$J,358.3,10405,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10405,1,4,0)
+ ;;=4^V13.01
+ ;;^UTILITY(U,$J,358.3,10405,1,5,0)
+ ;;=5^Hx of Kidney Stones
+ ;;^UTILITY(U,$J,358.3,10405,2)
+ ;;=Hx of Kidney Stones^303403

@@ -17,7 +17,7 @@ AGAIN . K DIC S DIC="^EEO(789.5,",DIC(0)="AELMNQ",DLAYGO=789.5
  E  G EXIT
  Q
 DOM W !!,"Setting up the UPLINK SERVER PARAMETERS Domain"
- S CHICAGO(0)="ISC-CHICAGO.domain.ext"
+ S CHICAGO(0)="ISC-CHICAGO.DOMAIN.EXT"
  S CHICAGO=+$O(^DIC(4.2,"B",CHICAGO(0),0))
  I $P($G(^DIC(4.2,CHICAGO,0)),"^")'=CHICAGO(0) D  G EXIT
  . W !!?5,"The ",CHICAGO(0)," domain was not found !!"

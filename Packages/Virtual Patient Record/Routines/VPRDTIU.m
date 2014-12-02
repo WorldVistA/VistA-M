@@ -1,5 +1,5 @@
 VPRDTIU ;SLC/MKB -- TIU extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2**;Sep 01, 2011;Build 317
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -238,10 +238,13 @@ SETUP ; -- convert FILTER("attribute") = value to TIU criteria
 MATCH(DOC) ; -- Return 1 or 0, if document DA matches search criteria
  N Y,DA,LOCAL,NATL,X0,OK S Y=0
  S DA=+$G(DOC) G:DA<1 MQ
- ; include addenda if pulling only unsigned items
+ ; include addenda if pulling only unsigned items:
  I $P(DOC,U,2)?1"Addendum ".E,STATUS'=2 G MQ
- ; TIU unsigned list can include completed parent notes
+ ; remove completed parent notes from TIU unsigned list:
  I CTXT=2,$P(DOC,U,7)'="unsigned" G MQ
+ ; remove Uncosigned notes from 'complete' view:
+ I STATUS=5,$P(DOC,U,7)="uncosigned" G MQ
+ ; Check title & attributes for a match ...
  S LOCAL=$$GET1^DIQ(8925,DA_",",.01,"I") ;local Title 8925.1 ien
  I $L(SUBCLASS) D  G:'OK MQ
  . N I,X S OK=0

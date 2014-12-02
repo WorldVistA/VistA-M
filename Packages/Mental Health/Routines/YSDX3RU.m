@@ -1,13 +1,13 @@
-YSDX3RU ;SLC/DJP/LJA-Print Utilities for Diagnoses Reporting in the MH Medical Record ;12/14/93 12:58
- ;;5.01;MENTAL HEALTH;;Dec 30, 1994
+YSDX3RU ;SLC/DJP/LJA - Print Utilities for Diagnoses Reporting in H Med Rec ;13 May 2013  9:54 AM
+ ;;5.01;MENTAL HEALTH;**107**;Dec 30, 1994;Build 23
  ;D RECORD^YSDX0001("YSDX3RU^YSDX3RU") ;Used for testing.  Inactivated in YSDX0001...
  ;
-DX ; Called from routins YSDX3R, YSPP6
+DX ; Called from routines YSDX3R, YSPP6
  ; Lists out diagnoses sequentially
  ;D RECORD^YSDX0001("DX^YSDX3RU") ;Used for testing.  Inactivated in YSDX0001...
  S L="" ; DFN
  F  S L=$O(^YSD(627.8,"AG",L)) QUIT:L=""  D
- .  S L1="" ; Global Reference to DSM or ICD9
+ .  S L1="" ; Global Reference to DSM or ICD DIAGNOSIS tables
  .  F  S L1=$O(^YSD(627.8,"AG",L,YSDFN,L1)) QUIT:L1=""  D
  .  .  S L2=0 ; IEN
  .  .  F  S L2=$O(^YSD(627.8,"AG",L,YSDFN,L1,L2)) QUIT:'L2  D COND Q:YSLFT  D DXVAR
@@ -35,6 +35,7 @@ DXVAR ;
  N YSDXI
  QUIT:$D(YSSTOP)  ;->
  ;
+ S YSDXCSTX=""
  ;  Points to ^YSD(627.7 ?
  I L1["YSD" D
  .  S YSD3FLG="DSM DIAGNOSES: "
@@ -43,17 +44,21 @@ DXVAR ;
  .  S L6="^"_L4_L5_","_0_")" ;      Global reference of 0 node
  .  S L60=@L6 ;                     0 node's data
  .  S YSDXN=^YSD(627.7,+L5,"D") ;   Diagnosis name
- .  S YSDXNN=$P(L60,U) ;            ICD9 #
+ .  S YSDXNN=$P(L60,U) ;            ICD Code
+ .  S YSDXCSTX="(ICD-"_$S($P(L60,U,8)'="":$P(L60,U,8),1:"9")_")"
  ;
  ;  Points to ^ICD9( ?
  I L1["ICD" D
- .  S YSDIFLG="ICD9 DIAGNOSES: "
+ .  S YSDIFLG="ICD DIAGNOSES: "
  .  S L4=$P(L1,";",2) ;             Global reference
  .  S L5=+$P(L1,";") ;              IEN
  .  S L6="^"_L4_L5_","_0_")" ;      Global reference of 0 node
  .  S L60=@L6 ;                     0 node's data
- .  S YSDXN=$P(L60,U,3) ;           Diagnosis (free text)
- .  S YSDXNN=$P(L60,U) ;            ICD9 #
+ .  N YSDXDATA S YSDXDATA=$$ICDDATA^ICDXCODE("DIAG",L5,$P(^YSD(627.8,+L2,0),U,3),"I")
+ .  S YSDXN=$P(YSDXDATA,U,4) ;      Diagnosis (free text)
+ .  S YSDXNN=$P(YSDXDATA,U,2) ;     ICD Code
+ .  S YSDXCSTX=$P($P($$SINFO^ICDEX($P(YSDXDATA,U,20)),U,2),"-",2)
+ .  S YSDXCSTX="(ICD-"_YSDXCSTX_")"
  ;
  ;  Modifiers?
  I $D(^YSD(627.8,+L2,5)) D
@@ -83,7 +88,7 @@ PRINTL ;
  I $Y+YSSL+4>IOSL D CK Q:YSTOUT!(YSUOUT)!(YSLFT)
  I $D(YSD3FLG)&'$D(YSTOP1) W !!,YSD3FLG S YSTOP1=1
  I $D(YSDIFLG)&'$D(YSTOP2) W !!,YSDIFLG S YSTOP2=1
- W !!,YSDXNN,!?3,$E(YSDXN,1,76),!?3,YSCOND
+ W !!,YSDXCSTX," ",YSDXNN,!?3,$E(YSDXN,1,76),!?3,YSCOND
  I $D(YSMOD) F I=1:1:YSML I $D(YSMOD(I)) W:$TR(YSMOD(I)," ","")]"" !?8,"--- "_YSMOD(I)
  W:YSDXS'=" " !?8,"--- "_YSDXS
  I $D(^YSD(627.8,L2,80,0)) W !?8,"Comments:  " S DIWL=20,DIWR=75,DIWF="W" K ^UTILITY($J,"W") S M=0 F  S M=$O(^YSD(627.8,L2,80,M)) Q:'M  S X=^(M,0) D ^DIWP
@@ -101,7 +106,7 @@ ENPP ;
  ;
 FINISH ; Called by routines YSDX3R, YSDX3RUA
  ;D RECORD^YSDX0001("FINISH^YSDX3RU") ;Used for testing.  Inactivated in YSDX0001...
- K YSFFS I $D(YSNOFORM) D ^%ZISC,KILL^%ZTLOAD Q
+ K YSDXCSTX,YSFFS I $D(YSNOFORM) D ^%ZISC,KILL^%ZTLOAD Q
  W !!?10,"*** LIST COMPLETE ***",! S YSFFS=1
  I YST=1 D ENFT^YSFORM,^%ZISC,KILL^%ZTLOAD Q
  D WAIT^YSUTL

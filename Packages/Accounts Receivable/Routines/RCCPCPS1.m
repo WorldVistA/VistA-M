@@ -1,6 +1,6 @@
 RCCPCPS1 ;WISC/RFJ-build description for patient statement ;08 Aug 2001
- ;;4.5;Accounts Receivable;**34,48,104,170,176,192**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**34,48,104,170,176,192,265**;Mar 20, 1995;Build 5
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
  ;
@@ -174,4 +174,5 @@ SETDESC(DESCRIPT) N LENGTH
  ;
 DATE(FMDT) ;  format date mm/dd/yyyy
  I 'FMDT Q ""
+ N X,Y,%DT S %DT="TX",X=FMDT D ^%DT Q:Y<0 ""
  Q $E(FMDT,4,5)_"/"_$E(FMDT,6,7)_"/"_(1700+$E(FMDT,1,3))

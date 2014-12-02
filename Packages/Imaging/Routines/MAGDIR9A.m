@@ -1,5 +1,5 @@
-MAGDIR9A ;WOIFO/PMK/RRB - Read a DICOM image file ; 06 Apr 2011 9:29 AM
- ;;3.0;IMAGING;**11,30,51,46,54,53,49,99**;Mar 19, 2002;Build 2057;Apr 19, 2011
+MAGDIR9A ;WOIFO/PMK/RRB - Read a DICOM image file ; 03 Jul 2013 9:15 AM
+ ;;3.0;IMAGING;**11,30,51,46,54,53,49,99,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -149,6 +149,11 @@ GROUP() ; entry point from ^MAGDIR81
  . S PROCEDUR="RAD "_FILEDATA("MODALITY")
  . S RADRPT=FILEDATA("RAD REPORT")
  . S RADPTR=FILEDATA("RAD PROC PTR")
+ . ;
+ . L +^RARPT(RARPT):$G(DILOCKTM,5)
+ . I '$T S ERRCODE="-399^radiology report locked - image processing blocked" Q
+ . L -^RARPT(RARPT)
+ . ;
  . D NEWGROUP(PROCEDUR,RADRPT,RADPTR) Q:ERRCODE
  . ;
  . ; store the cross-reference for the report
@@ -179,6 +184,7 @@ NEWGROUP(PROCEDUR,RADRPT,RADPTR) ; create an imaging group (called by ^MAGDIR9E)
  S I=I+1,GROUP(I)="15^"_DATETIME
  S I=I+1,GROUP(I)="16^"_FILEDATA("PARENT FILE")
  S I=I+1,GROUP(I)="17^"_FILEDATA("PARENT IEN")
+ S:$D(FILEDATA("PARENT FILE PTR")) I=I+1,GROUP(I)="18^"_FILEDATA("PARENT FILE PTR")
  S I=I+1,GROUP(I)="60^"_STUDYUID
  ;
  ; the following two fields are only for radiology

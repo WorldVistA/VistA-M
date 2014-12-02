@@ -1,5 +1,5 @@
-PXRMEXID ;SLC/PJH - Reminder Dialog Exchange Install Routine.;04/28/2009
- ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
+PXRMEXID ;SLC/PJH - Reminder Dialog Exchange Install Routine. ;01/28/2013
+ ;;2.0;CLINICAL REMINDERS;**6,12,24,26**;Feb 04, 2005;Build 404
  ;
  ;==================================================
  ;Install all dialog components in an exchange file entry
@@ -42,7 +42,7 @@ INSBLD(DIALNAM,NAME,INAME) ;
  .S DNAME=$P(IDATA,U) Q:DNAME=""
  .;
  .I $D(^TMP("PXRMEXTMP",$J,"DREPL"))>0 D
- ..S REPL=$$CHKREPL^PXRMEXDB(NAME) I REPL>0 D INSREPL(DIALNAM,NAME,REPL,.INAME)
+ ..S REPL=$$CHKREPL^PXRMEXDB(DIALNAM,NAME) I REPL>0 D INSREPL(DIALNAM,NAME,REPL,.INAME)
  .S INAME(DNAME)=""
  .;Check for descendants
  .I $D(^TMP("PXRMEXTMP",$J,"DMAP",DNAME)) D INSBLD(DIALNAM,DNAME,.INAME)
@@ -178,11 +178,8 @@ INSLNK(DNAME) ;
  ;Quit if already linked
  I $D(^PXD(811.9,"AG",DIEN)) Q
  ;
- S RNAME=""
- ;If reminder was renamed use as default
- I $D(PXRMNMCH(811.9)) D
- .S RNAME=$O(PXRMNMCH(811.9,"")) Q:RNAME=""
- .S RNAME=$G(PXRMNMCH(811.9,RNAME))
+ S RNAME=$O(^TMP("PXRMEXDL",$J,DNAME,""))
+ ;
  ;Otherwise use original reminder name as default
  I RNAME="" D
  .N DATA,FOUND,RIEN,SUB
@@ -192,9 +189,8 @@ INSLNK(DNAME) ;
  .S SUB="",FOUND=0
  .F  S SUB=$O(^TMP("PXRMEXLC",$J,"SEL",SUB),-1) Q:'SUB  Q:FOUND  D
  ..S DATA=$G(^TMP("PXRMEXLC",$J,"SEL",SUB)) Q:$P(DATA,U)'=811.9
- ..S RIEN=$P(DATA,U,4),FOUND=1 Q:'RIEN
- ..S RNAME=$P($G(^PXD(811.9,RIEN,0)),U)
  ;
+ I RNAME="" Q
 TAG W !!,"Reminder Dialog "_DNAME_" is not linked to a reminder.",!
  ;Select reminder to link
  S IEN=$$SELECT^PXRMINQ("^PXD(811.9,","Select Reminder to Link: ",RNAME)
@@ -272,7 +268,7 @@ PXRM(NAME) ;Validate prompts
  ;
  ;Lock the dialog file
 LOCK() ;
- L +^PXRMD(801.41):0 I  Q 1
+ L +^PXRMD(801.41):DILOCKTM I  Q 1
  E  W !,"Another user is editing this file, try later" H 2
  Q 0
  ;

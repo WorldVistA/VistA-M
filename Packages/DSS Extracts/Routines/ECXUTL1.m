@@ -1,5 +1,5 @@
-ECXUTL1 ;ALB/GTS - Utilities for DSS Extracts ;6/27/12  13:54
- ;;3.0;DSS EXTRACTS;**9,49,136**;Dec 22, 1997;Build 28
+ECXUTL1 ;ALB/GTS - Utilities for DSS Extracts ;2/11/14  13:09
+ ;;3.0;DSS EXTRACTS;**9,49,136,144,149**;Dec 22, 1997;Build 27
  ;
 CYFY(ECXFMDT) ;** Return the calandar and fiscal years for a FM date
  ;
@@ -150,3 +150,54 @@ ERR ;Send email when scheduling system reports an error.  API added in patch 136
  S XMTEXT="TEXT("
  D ^XMD
  Q
+ ;
+EXPORT() ;Function indicates if report output is going to a device or to the screen in exportable format - API added in patch 144
+ N DIR,DIRUT,DTOUT,DUOUT,DIROUT,X,Y,VAL
+ W !
+ S DIR("?",1)="Enter yes if you want the data to be displayed in an '^' delimited format",DIR("?")="that can be captured for exporting."
+ S DIR(0)="SA^Y:YES;N:NO",DIR("B")="NO",DIR("A")="Do you want the output in exportable format? "
+ D ^DIR
+ S VAL=$S($D(DIRUT):-1,Y="N":0,1:1)
+ I VAL=1 W !!,"Gathering data for export..."
+ Q VAL
+ ;
+EXPDISP ;Displays report in exportable format.  API added in patch 144
+ N I,%ZIS,POP,DIR,DTOUT,DIRUT,X,Y,DUOUT
+ I '+$O(^TMP($J,"ECXPORT",0)) W !,"No data found for this report." Q
+ W !!,"To ensure all data is captured during the export:"
+ W !!,"1. Select 'Logging...' from the File Menu. Select your file, and where to save."
+ W !,"2. On the Setup menu, select 'Display...',then 'screen' tab and modify 'columns'",!,"   setting to at least 225 characters."
+ W !,"3. The DEVICE input for the columns should also contain a large enough",!,"   parameter (e.g. 225).  The DEVICE prompt is defaulted to 0;225;99999 for you.",!,"   You may change it if need be."
+ W !,"Example: DEVICE: 0;225;99999 *Where 0 is your screen, 225 is the margin width",!?17,"and 99999 is the screen length."
+ W !!,"NOTE:  In order for all number fields, such as SSN and Feeder Key, to be",!,"displayed correctly in the spreadsheet, these fields must be formatted as Text",!,"when importing the data into the spreadsheet.",!
+ S %ZIS="",%ZIS("B")="0;225;99999" D ^%ZIS Q:POP
+ S I="" F  S I=$O(^TMP($J,"ECXPORT",I)) Q:I=""  W !,^TMP($J,"ECXPORT",I)
+ W !!,"Turn off your logging..."
+ W !,"...Then, pull your export text file into your spreadsheet.",!
+ S DIR(0)="E",DIR("A")="Press any key to continue" D ^DIR
+ D HOME^%ZIS ;set parameters back to normal
+ Q
+ ;
+REPORTFY(NAME) ;Function added in patch 144, determines which version of the report to run
+ ;For each report that has a previous fiscal year version, a line label
+ ;will be added for the report.  Following the ;; on the line label is the
+ ;name of the routine for the previous fiscal year.  This value will be
+ ;returned if the user selects previous fiscal year.  The function will
+ ;return null if current is selected or -1 if no selection is made
+ N DIR,DIRUT,DTOUT,DUOUT,Y,X,DIROUT
+ I $T(@NAME)="" Q ""  ;No previous FY version exists
+ W !
+ S DIR(0)="SA^C:Current Fiscal Year Report Logic;P:Previous Fiscal Year Report Logic",DIR("B")="C",DIR("A")="Use (C)urrent or (P)revious fiscal year logic for this report? "
+ S DIR("?",1)="This report has been modified for the current fiscal year and may",DIR("?",2)="include additional information or functionality not previously"
+ S DIR("?",3)="available.  If you desire the previous fiscal year logic",DIR("?",4)="to be used then select 'P'.  Otherwise, select 'C'"
+ S DIR("?")="to run the current version of the report."
+ D ^DIR
+ I Y="C" Q ""
+ I Y="P" Q $P($T(@NAME),";;",2)
+ Q -1  ;User didn't make a selection
+ ;
+ ;Reports available for previous fiscal year are listed below as line labels
+ ;The API^ROUTINE that's part of the line indicates the previous fiscal
+ ;year entry point and routine to run when "previous" is selected
+ ;149 updated list to remove previous year's entry
+SAMPLE ;;API^ROUTINE

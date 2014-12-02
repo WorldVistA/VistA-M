@@ -1,5 +1,5 @@
-PXRMDATE ;SLC/PKR - Clinical Reminders date utilities. ;10/27/2011
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18**;Feb 04, 2005;Build 152
+PXRMDATE ;SLC/PKR - Clinical Reminders date utilities. ;10/23/2013
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,24,26**;Feb 04, 2005;Build 404
  ;
  ;==================================================
 CEFD(FDA) ;Called by the Exchange Utility only if the input packed
@@ -60,11 +60,13 @@ CTD(MULT,NUM) ;Convert months or years to days.
  ;==================================================
 CTFMD(DATE) ;Convert DATE which may be in any of the FileMan acceptable
  ;forms with additional CR extensions to an internal FileMan date.
- N FMDATE,OFFSET,OP,SYM,SYMV,TDATE
+ N FMDATE,OFFSET,OP,SYM,SYMV,TDATE,TIME
  ;Already in internal FileMan date format?
  I DATE?7N Q DATE
  I DATE?7N1"."1.6N Q DATE
  S TDATE=$TR(DATE," ",""),TDATE=$$UP^XLFSTR(TDATE)
+ ;Check for T or TODAY with a time.
+ I $E(TDATE,1)="T" S TIME=$P(TDATE,"@",2),TDATE=$P(TDATE,"@",1)
  ;Check for dates in the form SYMBOL+IU,or SYMBOL-IU, where I is
  ;an integer and U is a unit.
  S OP=$S(TDATE["+":"+",TDATE["-":"-",1:"")
@@ -74,13 +76,19 @@ CTFMD(DATE) ;Convert DATE which may be in any of the FileMan acceptable
  I '$$VSYM(SYM) D DT^DILF("ST",DATE,.FMDATE) Q FMDATE
  ;Check for a valid offset.
  I OFFSET'="",'$$VOFFSET(OFFSET) Q -1
- I ((SYM="T")!(SYM="TODAY")),OFFSET["H" D  Q -1
+ I ((SYM="T")!(SYM="TODAY")),(OFFSET["H") D  Q -1
  . I $G(PXRMINTR)=1 D EN^DDIOL("Cannot use "_SYM_" with "_OFFSET)
  ;If this is being called by the input transform VDT^PXRMINTR we
  ;are done.
  I $G(PXRMINTR)=1 Q 1
- ;If the symbol does not equate to an internal FM date return -1
+ ;If the symbol is not one of the standard FM symbols then it is
+ ;one of the Clinical Reminder symbols.
  S SYMV=$S(SYM="T":$$TODAY,SYM="TODAY":$$TODAY,SYM="N":$$NOW,SYM="NOW":$$NOW,SYM="NOON":$$NOON,SYM="MID":$$MID,1:+$G(@SYM))
+ I $G(TIME)'="" D
+ . S SYMV=SYMV_"@"_TIME
+ . D DT^DILF("ST",SYMV,.FMDATE)
+ . S SYMV=FMDATE
+ ;If the symbol does not equate to an internal FM date return -1
  I '(SYMV?7N0.1"."0.6N) Q -1
  Q $$NEWDATE(SYMV,OP,OFFSET)
  ;
@@ -153,6 +161,7 @@ DURATION(START,STOP) ;Return the number days between the Start Date and
 EDATE(DATE) ;Check for an historical (event) date, format as appropriate,
  ;include time.
  I DATE=0 Q "00/00/0000"
+ I DATE=-1 Q "None"
  Q $$FMTE^XLFDT(DATE,"5Z")
  ;
  ;==================================================
@@ -228,11 +237,10 @@ NEWDATE(FMDATE,OP,OFFSET) ;Given an internal FileMan date, an operator of
  ;that is + or - ,and an offset of the form I, ID, IW, IM, IY 
  ;where I is a positive integer and H is hours, D is days, W is weeks,
  ;M is months, and Y is years calculate and return the new FM date.
- N DAYS,HOURS,MONTH,NUM,UNIT,YEAR
+ N DAYS,HOURS,NUM,UNIT
  I FMDATE=0 Q 0
  S NUM=+OFFSET
  I NUM<0 Q -1
- S YEAR=$E(FMDATE,1,3),MONTH=$E(FMDATE,4,5),DAY=$E(FMDATE,6,7)
  S UNIT=$E(OFFSET,$L(NUM)+1)
  I UNIT="" S UNIT="D"
  I UNIT="H" S HOURS=OP_NUM Q $$FMADD^XLFDT(FMDATE,0,HOURS,0,0)

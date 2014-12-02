@@ -1,5 +1,5 @@
 SDRR5 ;10N20/MAH; RECALL REMINDER Remove and Replace Providers and Clinics; 01/22/2008
- ;;5.3;Scheduling;**536**;Aug 13, 1993;Build 53
+ ;;5.3;Scheduling;**536,582**;Aug 13, 1993;Build 3
  ;This routine was written per requests from VISN20 sites
  ;^SD(403.5 -- RECALL REMINDERS FILE
  ;403.54 -- RECALL REMINDERS PROVIDERS FILE
@@ -19,8 +19,10 @@ SELDT S %DT="AEX",%DT("A")="Start with RECALL DATE: " D ^%DT Q:Y<0  S SDT=Y,%DT(
  W !!,?5,"****You will be converting all Clinic Recalls for****"
  W !!,?3,SDRROLD_" -They will be converted to- "_SDRRNEW
  I NEWC'="" W !,?3,OLDC_" Clinic will be converted to "_NEWC_" Clinic"
+ ;SD*582 following changed to check for selected old clinic
  I FLAG["C" S D0=0 F  S D0=$O(^SD(403.5,"C",OIEN,D0)) Q:D0'>0  D
- .S RD=$P($G(^SD(403.5,D0,0)),"^",6) Q:RD<SDT!(RD>EDT)  S DIE="^SD(403.5," S DA=D0,DR="4///^S X=""`""_NIEN;4.5///^S X=""`""_NHIEN" D ^DIE K DIE,DR,DA
+ .S RD=$P($G(^SD(403.5,D0,0)),U,6) Q:RD<SDT!(RD>EDT)  I $P($G(^(0)),U,2)=OHIEN D
+ ..S DIE="^SD(403.5," S DA=D0,DR="4///^S X=""`""_NIEN;4.5///^S X=""`""_NHIEN" D ^DIE K DIE,DR,DA
  I FLAG="" S D0=0 F  S D0=$O(^SD(403.5,"C",OIEN,D0)) Q:D0'>0  D
  .S RD=$P($G(^SD(403.5,D0,0)),"^",6) Q:RD<SDT!(RD>EDT)  S DIE="^SD(403.5," S DA=D0,DR="4///^S X=""`""_NIEN" D ^DIE K DIE,DR,DA
 QUIT K Y,OIEN,NIEN,FLAG,OPROV,SDT,RD,EDT,SDRRNEW,SDRROLD,D0,NEWC,NHIEN,OHIEN,OLDC,X,DIC,FLAG,%DT

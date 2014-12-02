@@ -1,6 +1,9 @@
-FBAAV5 ;AISC/GRR-CREATE TRANSACTIONS FOR CH/CNH PAYMENTS ;11 Apr 2006  2:54 PM
- ;;3.5;FEE BASIS;**3,55,89,98,116,108**;JAN 30, 1995;Build 115
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBAAV5 ;AISC/GRR - CREATE TRANSACTIONS FOR CH/CNH PAYMENTS ;11 Apr 2006  2:54 PM
+ ;;3.5;FEE BASIS;**3,55,89,98,116,108,139**;JAN 30, 1995;Build 127
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; Reference to API $$CODEABA^ICDEX supported by ICR #5747
+ ;
  D CKB9V^FBAAV01 I $G(FBERR) K FBERR Q
  G:FBSTAT="S"&(FBCHB="Y")&($P(Y(0),"^",18)'="Y") ^FBAAV6
 DETCH S FBTXT=0
@@ -59,6 +62,8 @@ GOT ; process an inpatient invoice
  . N FBX
  . S FBX=$$ICD9^FBCSV1(FBADMTDX,FBCSVDT)
  . Q:FBX=""
+ . ;DEM;139 ICD-10 Project - decimal is stripped only from ICD-10 diagnosis codes and not ICD-9 diagnosis codes.
+ . I $$CODEABA^ICDEX(FBX,80,30)>0 S:FBX["." FBX=$P(FBX,".",1)_$P(FBX,".",2)  ;DEM;139 ICD-10 Project
  . S FBDX(0)=FBX_$E("       ",$L(FBX)+1,7)
  S FBYDX=$G(^FBAAI(K,"DX")),FBYPOA=$G(^FBAAI(K,"POA"))
  F M=1:1:25 Q:$P(FBYDX,"^",M)=""  D
@@ -245,6 +250,8 @@ DX(FBDX,FBDATE,FBPOA) ; format diagnosis & POA for B9
  I FBDX D
  . S FBX=$$ICD9^FBCSV1(FBDX,FBDATE)
  . Q:FBX=""
+ . ;DEM;139 ICD-10 Project - decimal is stripped only from ICD-10 diagnosis codes and not ICD-9 diagnosis codes.
+ . I $$CODEABA^ICDEX(FBX,80,30)>0 S:FBX["." FBX=$P(FBX,".",1)_$P(FBX,".",2)  ;DEM;139 ICD-10 Project
  . S FBX=FBX_$E("       ",$L(FBX)+1,7)
  . S FBX2=$S($G(FBPOA):$P($G(^FB(161.94,FBPOA,0)),"^"),1:"")
  . S:FBX2="" FBX2=" "

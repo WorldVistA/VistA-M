@@ -1,5 +1,5 @@
-EDPRPT2 ;SLC/MKB - Delay Report ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPRPT2 ;SLC/MKB - Delay Report ;6/13/12 12:33pm
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
 DEL(BEG,END,CSV) ; Get Delay Report for EDPSITE by date range
  ;   CNT = counters
@@ -8,7 +8,7 @@ DEL(BEG,END,CSV) ; Get Delay Report for EDPSITE by date range
  D INIT ;set counters, sums to 0
  D:'$G(CSV) XML^EDPX("<logEntries>") I $G(CSV) D  ;headers
  . N TAB S TAB=$C(9)
- . S X="ED IEN"_TAB_"Time In"_TAB_"Elapsed"_TAB_"Dispo"_TAB_"Delay Reason"_TAB_"MD"_TAB_"Adm Dec"_TAB_"Adm Delay"_TAB_"Acuity"_TAB_"Diagnosis"
+ . S X="ED IEN"_TAB_"Patient Name"_TAB_"Time In"_TAB_"Elapsed"_TAB_"Dispo"_TAB_"Delay Reason"_TAB_"MD"_TAB_"Adm Dec"_TAB_"Adm Delay"_TAB_"Acuity"_TAB_"Diagnosis"
  . D ADD^EDPCSV(X)
  S IN=BEG-.000001
  F  S IN=$O(^EDP(230,"ATI",EDPSITE,IN)) Q:'IN  Q:IN>END  S LOG=0 F  S LOG=+$O(^EDP(230,"ATI",EDPSITE,IN,LOG)) Q:LOG<1  D
@@ -40,6 +40,7 @@ D3 . ; elapsed visit time >=6 hrs
  .. S:VADISP CNT("VA6")=CNT("VA6")+1
  .. S DX=$$DXPRI^EDPQPCE(+$P(X0,U,3),LOG)
  .. N ROW S ROW("id")=LOG
+ .. S ROW("patientName")=$S($P(X0,U,6)'="":$$GET1^DIQ(2,$P(X0,U,6),.01,"E"),1:$P(X0,U,4))
  .. S ROW("inTS")=$S($G(CSV):$$EDATE^EDPRPT(IN),1:IN)
  .. S ROW("elapsed")=$$ETIME^EDPRPT(ELAPSE)_" *"
  .. S ROW("disposition")=DISP
@@ -54,7 +55,8 @@ D3 . ; elapsed visit time >=6 hrs
  .. S ROW("timeOutED")=$$ETIME^EDPRPT(NOT)
  .. I '$G(CSV) S X=$$XMLA^EDPX("log",.ROW) D XML^EDPX(X) Q
  .. S X=ROW("id")
- .. F I="inTS","elapsed","timeInED","timeOutED","disposition","delayReason","md","admDec","admDel","acuity","dx" S X=X_$C(9)_$G(ROW(I))
+ .. ;F I="inTS","elapsed","timeInED","timeOutED","disposition","delayReason","md","admDec","admDel","acuity","dx" S X=X_$C(9)_$G(ROW(I))
+ .. F I="patientName","inTS","elapsed","disposition","delayReason","md","admDec","admDel","acuity","dx" S X=X_$C(9)_$G(ROW(I))
  .. D ADD^EDPCSV(X)
  D:'$G(CSV) XML^EDPX("</logEntries>")
  Q

@@ -1,5 +1,5 @@
-ECXLPRO1 ;ALB/JAP - PRO Extract YTD Lab Report (cont) ; 5/9/05 3:25pm
- ;;3.0;DSS EXTRACTS;**21,84**;Dec 22, 1997
+ECXLPRO1 ;ALB/JAP - PRO Extract YTD Lab Report (cont) ;3/4/13  16:29
+ ;;3.0;DSS EXTRACTS;**21,84,144**;Dec 22, 1997;Build 9
  ;
 PRINT ;print report
  N PG,LN,QFLG,NODE1,NODE2,DESC,AVE,JJ,SS,X1,X2
@@ -9,10 +9,11 @@ PRINT ;print report
  S Y=$S(LASTDAY:LASTDAY,ECXARRAY("END")>DT:DT,1:ECXARRAY("END")) D DD^%DT S ECXEND=Y
  D NOW^%DTC S Y=$E(%,1,12) D DD^%DT S ECXRUN=Y
  F ECXTYPE="N","X" D  Q:QFLG
- .S PG=0 D HEADER
+ .I '$G(ECXPORT) S PG=0 D HEADER ;144 No header if exporting
  .S ECXHCPC=""
  .;it's possible that no extract data was found
  .I '$D(^TMP($J,"ECXP",ECXTYPE)) D  Q
+ ..I $G(ECXPORT) Q  ;144 Don't print if exporting
  ..W !!,?37,"No extract data available."
  ..I $E(IOST)="C" D  Q:QFLG
  ...S SS=22-$Y F JJ=1:1:SS W !
@@ -25,12 +26,17 @@ PRINT ;print report
  ..S AVE("O")=0,AVE("S")=0,TOT("O")=0,TOT("S")=0
  ..S TOT("S")=X1(2)+X1(3),TOT("O")=X2(2)+X2(3)
  ..S:X1(1)>0 AVE("S")=TOT("S")/X1(1) S:X2(1)>0 AVE("O")=TOT("O")/X2(1)
- ..D:($Y+3>IOSL) HEADER Q:QFLG
+ ..I '$G(ECXPORT) D:($Y+3>IOSL) HEADER Q:QFLG  ;144 Don't print header if exporting
+ ..I $G(ECXPORT) D  Q  ;144 get data if exporting
+ ...S ^TMP($J,"ECXPORT",CNT)=$S(ECXTYPE="N":"NEW",1:"REPAIR") ;144
+ ...S ^TMP($J,"ECXPORT",CNT)=^TMP($J,"ECXPORT",CNT)_U_DESC_U_X1(1)_U_X1(2)_U_X1(3)_U_$FN(AVE("S"),"",2)_U_X2(1)_U_X2(2)_U_X2(3)_U_$FN(AVE("O"),"",2) ;144
+ ...S CNT=CNT+1 ;144
  ..W !,DESC,?33,$J(X1(1),8,0),?43,$J(X1(2),8,0),?54,$J(X1(3),8,0),?65,$J(AVE("S"),8,2),?82,$J(X2(1),8,0),?93,$J(X2(2),8,0),?104,$J(X2(3),8,0),?115,$J(AVE("O"),8,2)
+ .I $G(ECXPORT) Q  ;144 Stop if exporting
  .I 'QFLG,$E(IOST)="C" D
  ..S SS=22-$Y F JJ=1:1:SS W !
  ..S DIR(0)="E" D ^DIR K DIR S:'Y QFLG=1
- W @IOF
+ I '$G(ECXPORT) W @IOF ;144 Don't print if exporting
  Q
  ;
 HEADER ;header & page control

@@ -1,5 +1,5 @@
 PSOUTL ;BHAM ISC/SAB - pso utility routine ;4/28/09 4:14pm
- ;;7.0;OUTPATIENT PHARMACY;**1,21,126,174,218,259,324,390**;DEC 1997;Build 86
+ ;;7.0;OUTPATIENT PHARMACY;**1,21,126,174,218,259,324,390,313**;DEC 1997;Build 76
  ;External reference SERV^IBARX1 supported by DBIA 2245
  ;External reference ^PS(55,     supported by DBIA 2228
  ;External reference ^PSSDIUTL is supported by DBIA# 5737.
@@ -271,3 +271,22 @@ PRFLP ;ZB POST+18^PSODRG THE RUN D LOOP^ZZME3
  .K X,Y,DTOUT,DUOUT
  K DGCKSTA,DGCKDNM,PSODGCKF,X,Y,DTOUT,DUOUT
  Q
+ ;
+TITRX(RX) ; Returns the titration/maintenance flags
+ ;
+ I '$G(RX) Q ""
+ I '$D(^PSRX(RX,0)) Q ""
+ I $$GET1^DIQ(52,RX,45.1,"I") Q "m"
+ I $$GET1^DIQ(52,RX,45.2,"I")!$$GET1^DIQ(52,RX,45.3,"I") Q "t"
+ Q ""
+ ;
+LTHEN(RX) ; Looks for a THEN anywhere in the Complex Order.
+ ; Returns: 1 if found and 0 if not found.  Complex Order must contain at least one THEN conjunction
+ ; in order to mark it as a Titration Rx.
+ N PSOCOUNT,PSOTHEN,FNDTHEN
+ S (PSOCOUNT,PSOTHEN,FNDTHEN)=""
+ F  S PSOCOUNT=$O(^PSRX(RX,6,PSOCOUNT)) Q:PSOCOUNT=""!(FNDTHEN'="")  D
+ . S PSOTHEN=$P($G(^PSRX(RX,6,PSOCOUNT,0)),"^",6)
+ . I PSOTHEN="T" S FNDTHEN=1 Q
+ I $G(FNDTHEN)="" Q 0
+ Q 1

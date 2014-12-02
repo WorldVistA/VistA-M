@@ -1,6 +1,12 @@
-LEXLK ; ISL Demo Look Up                         ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXLK ;ISL/KER - Demo Look Up ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    YN^DICN             ICR  10009
+ ;               
 EN ; Initialize variables
  W @IOF N LEXSF,LEXCONT,LEXCLAS,LEXDEF,LEXDIS,LEXEXP,LEXFORM
  N LEXFM,LEXMC,LEXCODE,LEXSRC,LEXSO,LEXLINE,LEXSPC,LEXNOM

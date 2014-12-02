@@ -1,5 +1,15 @@
-RORUPR ;HCIOFO/SG - SELECTION RULES PREPARATION  ; 5/12/05 9:22am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+RORUPR ;HCIOFO/SG - SELECTION RULES PREPARATION ;5/12/05 9:22am
+ ;;1.5;CLINICAL CASE REGISTRIES;**19**;Feb 17, 2006;Build 43
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;******************************************************************************
+ ;******************************************************************************
  ;
  Q
  ;
@@ -136,6 +146,7 @@ PUTRULE(RULENAME,MODE,PARENT) ;
  . S @DSTNODE=RULENAME_U_+HDR_U_$P(HDR,U,4)
  . S @DSTNODE@(1)=@RORUPDPI@(3,RULENAME,1)
  . M @DSTNODE@(2)=@RORUPDPI@(3,RULENAME,2)
+ . S @DSTNODE@(3)=@RORUPDPI@(3,RULENAME,4) ;store coding system
  . S $P(@RORUPDPI@(3,RULENAME),U,3)=1
  . ;--- Try to remove the rule from the dependency list of
  . ;    the parent rule

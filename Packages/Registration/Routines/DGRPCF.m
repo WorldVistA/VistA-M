@@ -1,5 +1,5 @@
-DGRPCF ;ALB/MRL,BAJ,TDM - CONSISTENCY OF PATIENT DATA (FILE/EDIT) ; 6/17/09 12:28pm
- ;;5.3;Registration;**250,653,786,754**;Aug 13, 1993;Build 46
+DGRPCF ;ALB/MRL,BAJ,TDM - CONSISTENCY OF PATIENT DATA (FILE/EDIT) ;6/17/09 12:28pm
+ ;;5.3;Registration;**250,653,786,754,867**;Aug 13, 1993;Build 59
  ;
  ; file new inconsistencies or update file entries for patient
  ;
@@ -44,12 +44,18 @@ EDIT G:DGRPOUT BUL I DGCT1+DGCT3'=DGCT W !!,"DO YOU WANT TO UPDATE THESE INCONSI
  .S:Y>0 DGRETURN=$G(DGRETURN)+1
  I $S($G(Y)'>0:0,(DGRETURN>11):0,1:1) D ^DGRPV G ^DGRP9
  I DGCT1+DGCT3'=DGCT,'% W !!?4,"YES - To correct inconsistencies to unrestricted fields immediately.",!?4,"NO  - To abort this process immediately." G EDIT
+ I DGER[313 D
+ . N DIR
+ . S DIR(0)="Y",DIR("A")="Do you wish to return to Screen #15 to enter Sponsor information? ",DIR("B")="YES" D ^DIR
+ . S:Y>0 DGRPV=0
+ . S:Y>0 DGRETURN=$G(DGRETURN)+1
+ I $G(Y)>0&(DGER[313) D ^DGRPV G ^DGRP15
 BUL K DGRETURN,X,Y D ^DGRPCB G KVAR^DGRPCE
  ;
 WRIT ;S C=C+1 W:(C#2) ! S X1=$S((C#2):0,1:40) W ?X1,$E(J_"  ",1,3),"- ",X2 I DGKEY(+$E(DGEDIT,J)) W "*" S DGCT1=DGCT1+1
  S C=C+1 W:(C#2) ! S X1=$S((C#2):0,1:40) W ?X1,$E(J_"  ",1,3),"- "
  W X2 I DGKEY(+$E(DGEDIT,J))!(J=407) W "*" S DGCT1=DGCT1+1
- I "^17^55^"[("^"_+J_"^") W "**" S DGCT3=DGCT3+1
+ I "^17^55^313^314^"[("^"_+J_"^") W "**" S DGCT3=DGCT3+1
  I +$P(DGRPCOLD,",",2),DGRPCOLD'[(","_J_",") S DGCT2=DGCT2+1
  I $P($G(^DGIN(38.6,J,0)),"^",6) W "+" S DGCTZ7=DGCTZ7+1
  Q

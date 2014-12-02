@@ -1,6 +1,6 @@
-DIU ;SFISC/GFT-UTILITY FUNCTIONS ;1:01 PM  29 Dec 1998
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIU ;SFISC/GFT-UTILITY FUNCTIONS ; 07 Nov 2012  9:27 AM
+ ;;22.0;VA FileMan;**167**;Mar 30, 1999;Build 18
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  K DIU
 0 S DIC="^DOPT(""DIU"","
  G OPT:$D(^DOPT("DIU",11)) S ^(0)="UTILITY OPTION^1.01" K ^("B")
@@ -65,7 +65,7 @@ DI ;
  S DIC(0)="ZQEAI"
 D ;
  S DIC="^DD("_DI_",",DIC("W")="S %=$P(^(0),U,2) I % W $S($P(^DD(+%,.01,0),U,2)[""W"":""  (word-processing)"",1:""  (multiple)"")"
- S DIC("S")="S %=$P(^(0),U,2) I 1"_$P(",%'[""C""",U,X["C")_$P(",$P(^DD(+%,.01,0),U,2)'[""W""",9,X["W")_$P(",Y-.01",U,X[.01),DA=X
+ S DIC("S")="S %=$P(^(0),U,2) I 1"_$P(",$O(^(1,0))!%","Z",X["R")_$P(",%'[""C""",U,X["C")_$P(",$P(^DD(+%,.01,0),U,2)'[""W""",9,X["W")_$P(",Y-.01",U,X[.01),DA=X
  D ^DIC K DIC("S") I Y>0,$P(Y(0),U,2) S N=N+1,X=$P($P(Y(0),U,4),";",1),DI=$E("""",+X'=X),I(N)=DI_X_DI,(DI,J(N))=+$P(Y(0),U,2),X=DA G DI
  Q
 DIAX I '$D(^DD(DI,0,"DI"))!($P($G(^("DI")),U)'["Y")!($P($G(^("DI")),U)["Y"&'$P(@(^DIC(DI,0,"GL")_"0)"),U,4))

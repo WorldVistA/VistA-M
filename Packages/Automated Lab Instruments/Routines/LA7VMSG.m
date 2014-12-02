@@ -1,5 +1,5 @@
-LA7VMSG ;DALOI/JMC - LAB ORU (Observation Result) message builder ;06/19/12  16:18
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,50,56,46,64,74**;Sep 27, 1994;Build 229
+LA7VMSG ;DALOI/JMC - LAB ORU (Observation Result) message builder ;08/12/13  15:12
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,50,56,46,64,74,80**;Sep 27, 1994;Build 19
  ;
 ORU ; Bleed the ORU (Observation Result) message queue
  ; Tasked by LA7SRR, LRCAPV2, LRU
@@ -121,7 +121,7 @@ MIAP(LRAA,LRAD,LRAN,LR60,LRDFN,LRSS,LRIDT,LRODT) ; Makes MI/AP calls to send res
  ;
  ; Called by LRVR0, LRMIUT, LRVRAP4
  ;
- N LA764,LA7NLT,LA7NLTN,LA7SS,LA7VDB,LA7Y,LRORU3
+ N LA764,LA76248,LA76249,LA7NLT,LA7NLTN,LA7ONQUE,LA7SS,LA7VDB,LA7Y,LRORU3
  ;
  S LA764=$$GET1^DIQ(60,LR60_",",64,"I")
  S LA7NLT=$$GET1^DIQ(64,LA764_",",1)
@@ -132,6 +132,26 @@ MIAP(LRAA,LRAD,LRAN,LR60,LRDFN,LRSS,LRIDT,LRODT) ; Makes MI/AP calls to send res
  I LA7VDB'="" S LA7Y(LA7VDB)=""
  ;
  S LRORU3=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,.3))
+ ;
+ ; Check if this report is already in the queue
+ S LA7ONQUE=0
+ S LA76248=0 F  S LA76248=$O(^LAHM(62.49,"AC","ORU","P",LA76248)) Q:'LA76248  D
+ . S LA76249=0 F  S LA76249=$O(^LAHM(62.49,"AC","ORU","P",LA76248,LA76249)) Q:'LA76249  D
+ . . I $$GET1^DIQ(62.49,LA76249_",",2,"I")'="P" Q
+ . . ;
+ . . ; Check the following fields. If they all match, then it's the same report and don't add to the queue again
+ . . I $P(LRORU3,U,5)'=$$GET1^DIQ(62.49,LA76249_",",153,"I") Q  ; Check REMOTE UID
+ . . I $P(LRORU3,U,3)'=$$GET1^DIQ(62.49,LA76249_",",152,"I") Q  ; Check COLLECTING SITE
+ . . I LA7NLT'=$$GET1^DIQ(62.49,LA76249_",",155,"I") Q  ; Check NLT
+ . . I LRIDT'=$$GET1^DIQ(62.49,LA76249_",",156,"I") Q  ; Check LRIDT
+ . . I LRSS'=$$GET1^DIQ(62.49,LA76249_",",157,"I") Q  ; Check LRSS
+ . . I LRDFN'=$$GET1^DIQ(62.49,LA76249_",",158,"I") Q  ; Check LRDFN
+ . . ;
+ . . S LA7ONQUE=1 ; All fields match - report already in the queue
+ ;
+ I LA7ONQUE D  Q  ; Report already in queue, don't add again
+ . W !,$$CJ^XLFSTR("Report already in LEDI queue - no need to add again",IOM)
+ ;
  ;
  D SET^LA7VMSG($P(LRORU3,U,4),$P(LRORU3,U,2),$P(LRORU3,U,5),$P(LRORU3,U,3),LA7NLTN,LA7NLT,LRIDT,LRSS,LRDFN,LRODT,.LA7Y,"ORU")
  ;

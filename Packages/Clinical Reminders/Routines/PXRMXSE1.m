@@ -1,5 +1,5 @@
-PXRMXSE1 ; SLC/PJH - Build Patient lists for Reminder Due report; 06/08/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMXSE1 ; SLC/PJH - Build Patient lists for Reminder Due report; 01/28/2013
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,26**;Feb 04, 2005;Build 404
  ;
  ; Called/jobbed from PXRMXD
  ;
@@ -9,7 +9,7 @@ PXRMXSE1 ; SLC/PJH - Build Patient lists for Reminder Due report; 06/08/2009
  ;
  ;
 START ;  
- N LIT,TOTAL,TODAY,ZTSTOP,BUSY
+ N LIT,TOTAL,TODAY,ZTSTOP,BUSY,PXRMDEFS
  S DBDOWN=0
  S TOTAL=0,ZTSTOP="",TODAY=$$DT^XLFDT-.0001
  ;

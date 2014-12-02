@@ -1,5 +1,5 @@
 PSSDSAPI ;BIR/RTR-Dose Check APIs routine ;06/09/08
- ;;1.0;PHARMACY DATA MANAGEMENT;**117**;9/30/97;Build 101
+ ;;1.0;PHARMACY DATA MANAGEMENT;**117,160,173**;9/30/97;Build 9
  ;
 EXMT(PSSVLIEN) ;Test if Drug should have Dose Call performed on it
  ;PSSVLIEN=File 50 internal entry number 
@@ -29,21 +29,27 @@ SUP(PSSSPLIN) ;Screen for Drug Interaction and Duplicate Therapy
  ;
  ;
 MRT(PSSRS1) ;Return Standard Medication Route and First DataBank Route
- N PSSRS2,PSSRS3
- S PSSRS2=""
- I '$G(PSSRS1) G MRTX
- I $P($G(^PS(51.2,PSSRS1,0)),"^",4)'=1 G MRTX
- S PSSRS3=$P($G(^PS(51.2,PSSRS1,1)),"^") I '$G(PSSRS3) G MRTX
- I '$D(^PS(51.23,+PSSRS3,0)) G MRTX
- I $$SCREEN^XTID(51.23,.01,+PSSRS3_",") G MRTX
- S PSSRS2=$G(^PS(51.23,+PSSRS3,0))
+ N PSSRS2,PSSRS3,PSSRS4,PSSRTNAM,PSSRTIEN,PSSRTARR,PSSPKGU,PSSRS4SM I '$G(PSSRS1) S PSSRS2="" G MRTX
+ S (PSSRTNAM,PSSRTIEN,PSSRS2,PSSRS4,PSSRS4SM)="",PSSRTNAM=$$GET1^DIQ(51.2,PSSRS1,.01) I $G(PSSRTNAM)="" S PSSRS2="" G MRTX
+ F  S PSSRTIEN=$O(^PS(51.2,"B",PSSRTNAM,PSSRTIEN)) Q:PSSRTIEN=""  D  ;check for duplicate route names; if mapped, defined and has a valid effective date set array
+ .S PSSRS3="",PSSRS3=$P($G(^PS(51.2,PSSRTIEN,1)),"^")
+ .Q:'$G(PSSRS3)
+ .Q:'$D(^PS(51.23,+PSSRS3,0))
+ .Q:$$SCREEN^XTID(51.23,.01,+PSSRS3_",")
+ .S PSSPKGU="",PSSPKGU=$$GET1^DIQ(51.2,PSSRTIEN,3,"I") S:PSSPKGU="" PSSPKGU=0 S PSSRTARR(PSSPKGU,PSSRTIEN)=+PSSRS3
+ ;If duplicate route names, select 1st "ALL Package" route for PACKAGE USE field in file 51.2.  If no "ALL Package" route, select 1st "NDF Only" route.  Otherwise, return nothing to indicate "invalid or undefined" route.
+ ;If no duplicate route names, use the route passed in regardless of Packge Use value but only if mapped to route has valid effective date.
+ I $D(PSSRTARR) D
+ .I $D(PSSRTARR(1)) S PSSRS4=$O(PSSRTARR(1,PSSRS4)),PSSRS4SM=PSSRTARR(1,PSSRS4) Q
+ .S:$D(PSSRTARR(0)) PSSRS4=$O(PSSRTARR(0,PSSRS4)),PSSRS4SM=PSSRTARR(0,PSSRS4)
+ I PSSRS4="" G MRTX
+ S PSSRS2=$G(^PS(51.23,+PSSRS4SM,0))
 MRTX ;
  Q $P(PSSRS2,"^")_"^"_$P(PSSRS2,"^",2)
  ;
  ;
 UNIT(PSSVUTUN) ;Find First DataBank Unit, can't do DIC Lookup because of exact match check
  ;Returns Null or First DataBank Unit for text passed in
- ;Not a true conversion, because if Unit contains "/", we convert only piece 1
  N PSSVUTX,PSSVUTZ,PSSVUTAA,PSSVUTFL
  S PSSVUTFL=0 I $G(PSSVUTUN)="" S PSSVUTZ="" G UNITX
  S PSSVUTAA=$$UP^XLFSTR(PSSVUTUN)
@@ -63,9 +69,9 @@ FRQ(PSSFWSCC,PSSFWFR,PSSFWPK,PSSFWDRL) ;Return Daily Frequency for Daily Dose Ch
  ;PSSFWFR = Frequency in Minutes
  ;PSSFWPK = Package  "O" for Outpatient, "I" for Inpatient
  ;PSSFWDRL = Duration
- ;Output:
- ;Input for Frequency Field in API (can be numeric or text), or null
- ;
+ ;Output: 2 pieces (More information see Forum DBIA 5425)
+ ;piece 1 - Adjusted Daily Frequency, (May need adjusted if Duration is passed in)
+ ;piece 2 - Daily Frequency solely based on Schedule
  ;
  N PSSFWPR1,PSSFWPR2,PSSFWPR3,PSSFWPR4,PSSFWPR5,PSSFWPR6,PSSFWPR7
  S PSSFWPR1=0
@@ -122,13 +128,10 @@ DAY ;Day of week schedule
  I PSSFWRGH?1"Q"1N.N1"H" S PSSFWRST=PSSFWRGH,PSSFWPR1=1 Q
  I $G(PSSFWSC)'["@" S PSSFWRST=1 Q
  I $E(PSSFWSC,$L(PSSFWSC))="@" S PSSFWRST=1 Q
- ;Else quit null
  Q
  ;
  ;
 DAYOUT ;Day of week for Outpatient orders
- ;Ignore admin times in 51,different format
- ;START +8 PSSMIRPT for looping issue in File 51
  N PSSFWKZ6,PSSFWKZ7,PSSFWKZ8
  I PSSFWRGH'="" F PSSFWKZ6=0:0 S PSSFWKZ6=$O(^PS(51,"B",PSSFWRGH,PSSFWKZ6)) Q:'PSSFWKZ6!($G(PSSFWRST))  I '$G(^PS(51,"B",PSSFWRGH,PSSFWKZ6)) D
  .K PSSFWKZ7,PSSFWKZ8
@@ -199,7 +202,7 @@ STNO ;Standard Logic part 2, using File 51, For Outpatient Orders only
  ;
  ;
 DS() ; Return 1 if Dose Checks are enabled, return 0 if Dose Checks are not enabled
- Q 0
+ Q $S($P($G(^PS(59.7,1,81)),"^"):1,1:"0^Maximum Single Dose Order Check is not available; please complete a manual check for appropriate Dosing.")
  ;
  ;
 IV(PSSADFOI) ;Return Additive Frequency default to CPRS, Forum DBIA 5425
@@ -227,7 +230,7 @@ BSA(PSSBSADF) ;
  S PSSBSAW1=$P(X,"^",8) I PSSBSAW1 S PSSBSAW2=PSSBSAW1/2.2
  S DFN=PSSBSADF
  S GMRVSTR="HT" K X D EN6^GMRVUTL
- S PSSBSAH1=$P(X,"^",8) I PSSBSAH1 S PSSBSAH2=.0254*PSSBSAH1,PSSBSAH3=$J(PSSBSAH1*2.54,6,2)
+ S PSSBSAH1=$P(X,"^",8) I PSSBSAH1 S PSSBSAH2=.0254*PSSBSAH1,PSSBSAH3=$J(PSSBSAH1*2.54,0,2)
  ;Using DuBios formula for BSA calculation, and sending in 2 decimal places
  I $G(PSSBSAW2),$G(PSSBSAH2) S PSSBSAB2=.20247*(PSSBSAH2**.725)*(PSSBSAW2**.425)
  ;I $G(PSSBSAW2),$G(PSSBSAH2) S PSSBSAB2=$J((((PSSBSAW2*PSSBSAH2)/3600)**.5),0,2)    Mosteller BSA Formula
@@ -236,8 +239,6 @@ BSA(PSSBSADF) ;
  ;
 UNITD(PSSVUTUN) ;Find First DataBank Unit, can't do DIC Lookup because of exact match check
  ;Returns Null or First DataBank Unit for text passed in
- ;Not a true conversion, because if Unit contains "/", we convert only piece 1
- ;The difference between UNIT and UNITD tags is UNITD only returns data if DOse Form Infocator is Set to No
  N PSSVUTX,PSSVUTZ,PSSVUTAA,PSSVUTFL
  S PSSVUTFL=0 I $G(PSSVUTUN)="" S PSSVUTZ="" G UNITDX
  S PSSVUTAA=$$UP^XLFSTR(PSSVUTUN)
@@ -254,8 +255,6 @@ DURLS ;If Duration is less that 24 hours, make Frequency adjustments if applicab
  ;Only check Frequencies of a whole number or in the format of Q#H
  N PSSDK1,PSSDK2,PSSDK3,PSSDK4,PSSDK5,PSSDK6
  S (PSSDK4,PSSFWPR7)=PSSFWRST
- ;Re-adjust frequency if needed, leave PSSFWFLG flag set to 1
- ;If Frequency needs to be Killed, also reset PSSFWFLG Flag back to 0
  I $G(PSSFWDRL)="" Q
  S PSSDK1=$$DRT^PSSDSAPD(PSSFWDRL) I PSSDK1'<1440!(PSSDK1'>0) Q
  S PSSDK2=1440/PSSDK1
@@ -271,3 +270,25 @@ DURLS ;If Duration is less that 24 hours, make Frequency adjustments if applicab
  .S PSSDK6=$J(PSSDK5,0,0)
  .S PSSFWRST=PSSDK6
  Q
+ ;
+ ;
+DLTM(PSSNVTOI) ;Check if all drugs for a Non-VA Med order are exempt, if so, kill Input exceptions and Quit
+ N PSSNVT1,PSSNVTFL,PSSNVTIN
+ S PSSNVTFL=1
+ F PSSNVT1=0:0 S PSSNVT1=$O(^PSDRUG("ASP",PSSNVTOI,PSSNVT1)) Q:'PSSNVT1!('PSSNVTFL)  D
+ .I $P($G(^PSDRUG(PSSNVT1,2)),"^",3)'["X" Q
+ .S PSSNVTIN=$P($G(^PSDRUG(PSSNVT1,"I")),"^") I PSSNVTIN,PSSNVTIN<DT Q
+ .S PSSNVTFL=$$EXMT^PSSDSAPI(PSSNVT1)
+ Q PSSNVTFL
+ ;
+ ;
+EMSY() ;Return 1 if there are matched supplies, no active drugs, regardless of Package use
+ N PSSKST1,PSSKST2,PSSKST3,PSSKST4,PSSKST5,PSSKST6,PSSKST9
+ S (PSSKST9,PSSKST6)=0
+ F PSSKST1=0:0 S PSSKST1=$O(^PSDRUG("ASP",PSSNBOI,PSSKST1)) Q:'PSSKST1!(PSSKST9)  D
+ .S PSSKST4=0,PSSKST2=$P($G(^PSDRUG(PSSKST1,"I")),"^") I PSSKST2,PSSKST2'>DT S PSSKST4=1
+ .S PSSKST5=$$SUP(PSSKST1)
+ .I 'PSSKST5,'PSSKST4 S PSSKST9=1 Q
+ .I 'PSSKST4,PSSKST5 S PSSKST6=1
+ I 'PSSKST9,PSSKST6 S $P(PSSNBRS,";",5)=0 Q 0
+ Q 1

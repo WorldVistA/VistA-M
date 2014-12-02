@@ -1,5 +1,5 @@
-MAGDRCU2 ;WOIFO/PMK - List entries in ^MAG(2006.5839) ; 05/18/2007 11:23
- ;;3.0;IMAGING;**10,11,51,54**;03-July-2009;;Build 1424
+MAGDRCU2 ;WOIFO/PMK - List entries in ^MAG(2006.5839) ; 10 May 2013 9:41 AM
+ ;;3.0;IMAGING;**10,11,51,54,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -50,17 +50,17 @@ REPORT ; now scan the database and generate the report
  . . Q
  . E  D
  . . S GMRCIEN=$P(X,"^",2),MAGIEN=$P(X,"^",3)
- . . S DFN=$P(^MAG(2005,MAGIEN,0),"^",7)
+ . . S DFN=$P($G(^MAG(2005,MAGIEN,0)),"^",7)
  . . S GMRCDFN=$$GET1^DIQ(123,GMRCIEN,.02,"I")
  . . I DFN'=GMRCDFN D
  . . . N MSG
  . . . S MSG(1)="DICOM IMAGE PROCESSING ERROR - CONSULT/IMAGING PATIENT MISMATCH"
  . . . S MSG(2)="The image and the consult point to different patients."
  . . . S MSG(3)=""
- . . . S MSG(4)="The Image points to PATIENT file internal entry number "_DFN
+ . . . S MSG(4)="The Image points to PATIENT file internal entry number """_DFN_""""
  . . . S MSG(5)=$$PATDEMO^MAGDIRVE(DFN)
  . . . S MSG(6)=""
- . . . S MSG(7)="The Consult points to PATIENT file internal entry number "_GMRCDFN
+ . . . S MSG(7)="The Consult points to PATIENT file internal entry number """_GMRCDFN_""""
  . . . S MSG(8)=$$PATDEMO^MAGDIRVE(GMRCDFN)
  . . . S MSG(9)=""
  . . . D ERROR(.MSG)

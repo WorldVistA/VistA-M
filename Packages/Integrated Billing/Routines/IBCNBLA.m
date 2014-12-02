@@ -1,5 +1,5 @@
 IBCNBLA ;ALB/ARH - Ins Buffer: LM action calls ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,149,153,184,271,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**82,149,153,184,271,416,506**;21-MAR-94;Build 74
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 NEWSCRN(TEMPLAT,TMPARR,IBBUFDA) ; open a new screen for a specific buffer entry, pass in LM template and the array to select from
@@ -154,6 +154,7 @@ SELSORT ;  select the way to sort the list screen
  . ;
  . ; build the array of default sort order
  . S IBCNSORT(1,"+")=10
+ . S IBCNSORT(1,"$")=15 ; Added dollar sign to sort criteria
  . S IBCNSORT(1,"-")=20
  . S IBCNSORT(1,"#")=25 ; Added pound to sort criteria
  . S IBCNSORT(1,"!")=30
@@ -163,10 +164,10 @@ SELSORT ;  select the way to sort the list screen
  . ;
  . ; build the DIR array to ask the question
  . S DIR(0)="SO^"
- . F ST="1:+'A1","2:-'D1","3:#'U1","4:!'B1","5: '","6:?'Q1" D  ; removed blanks ; replaced tilde w/apostrophe and added pound as option 3
- .. I ST="5: '" S STDES="No Problems Identified, Awaiting Electronic Processing" ; removed blanks
+ . F ST="1:+'A1","2:$'E1","3:-'D1","4:#'U1","5:!'B1","6: '","7:?'Q1" D  ; removed blanks ; replaced tilde w/apostrophe and added pound as option 3, IB*506 added $ as option 2 and adjusted all following.
+ .. I ST="6: '" S STDES="No Problems Identified, Awaiting Electronic Processing" ; removed blanks
  .. E  S STDES=$$GET1^DIQ(365.15,$$FIND1^DIC(365.15,"","X",$P(ST,"'",2)),.01,"E")
- .. S DIR(0)=DIR(0)_$P(ST,"'")_"  "_STDES_$S(ST="6:?'Q1":"",1:";")
+ .. S DIR(0)=DIR(0)_$P(ST,"'")_"  "_STDES_$S(ST="7:?'Q1":"",1:";")
  . S DIR("A")="Which eIV Status do you want to appear first?"
  . S DIR("B")=1
  . S DIR("?",1)=" Please identify the eIV status that you want to appear first in the Insurance"

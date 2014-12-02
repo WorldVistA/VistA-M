@@ -1,21 +1,6 @@
-ORWDXC ; SLC/KCM - Utilities for Order Checking ;07/27/11  07:10
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,141,221,243,280,346**;Dec 17, 1997;Build 5
+ORWDXC ; SLC/KCM - Utilities for Order Checking ;06/28/13  07:53
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,141,221,243,280,346,345,311**;Dec 17, 1997;Build 30
  ;
-ORMOCHAT ;PARSE MOCHA METRICS
- ;N ORMDT
- ;S ORMDT=0 F  S ORMDT=$O(^XTMP("ORMOCHAT",ORMDT)) Q:'ORMDT  D
- ;.N ORMX
- ;.S ORMX="" F  S ORMX=$O(^XTMP("ORMOCHAT",ORMDT,ORMX)) Q:'ORMX  D
- ;..S $P(^XTMP("ORMOCHAT",ORMDT,ORMX),U,5)=$P(^XTMP("ORMOCHAT",ORMDT,ORMX,"TOTAL"),U,2)-$P(^XTMP("ORMOCHAT",ORMDT,ORMX,"TOTAL"),U)
- ;..N ORMENHT,ORMENHC,ORMENHX S ORMENHT=0,ORMENHC=0,ORMENHX=0
- ;..F  S ORMENHC=$O(^XTMP("ORMOCHAT",ORMDT,ORMX,"ENH",ORMENHC)) Q:'ORMENHC  S ORMENHT=ORMENHT+$P(^XTMP("ORMOCHAT",ORMDT,ORMX,"ENH",ORMENHC),U,2)-$P(^XTMP("ORMOCHAT",ORMDT,ORMX,"ENH",ORMENHC),U),ORMENHX=ORMENHC
- ;..S $P(^XTMP("ORMOCHAT",ORMDT,ORMX),U,6)=ORMENHT
- ;..S $P(^XTMP("ORMOCHAT",ORMDT,ORMX),U,7)=ORMENHX
- ;..N ORDIFF S ORDIFF=$ZH-ORMX
- ;..S $P(^XTMP("ORMOCHAT",ORMDT,ORMX),U,8)=$$FMADD^XLFDT($$NOW^XLFDT,"","","",-ORDIFF)
- ;..S $P(^XTMP("ORMOCHAT",ORMDT,ORMX),U,9)="||"
- ;..W !,^XTMP("ORMOCHAT",ORMDT,ORMX)
- Q
 ON(VAL) ; returns E if order checking enabled, otherwise D
  S VAL=$$GET^XPAR("DIV^SYS^PKG","ORK SYSTEM ENABLE/DISABLE")
  Q
@@ -36,40 +21,43 @@ DISPLAY(LST,DFN,FID) ; Return list of Order Checks for a FillerID (namespace)
  S I=0 F  S I=$O(ORY(I)) Q:I'>0  S LST(I)=$P(ORY(I),U,4)
  Q
 ACCEPT(LST,DFN,FID,STRT,ORL,OIL,ORIFN,ORREN)    ; Return list of Order Checks on Accept Order
+ K ^TMP($J,"OROCOUTO;"),^TMP($J,"OROCOUTI;"),^TMP($J,"ORDSGCHK_CACHE")
  ; OIL(n)=OIptr^PS|PSIV|LR^PkgInfo
  ; ORREN - IF ORREN IS SET TO 1 THEN ORIFN IS THE ORDER GETTING RENEWED
- ;S ^XTMP("ORMOCHAT",0)=$$FMADD^XLFDT($$NOW^XLFDT,2)_U_$$NOW^XLFDT N ORMOCHAT S ORMOCHAT=$NA(^XTMP("ORMOCHAT",$$NOW^XLFDT,$ZH)) S @ORMOCHAT="ORWDXC ACCEPT"_U_$J_U_DFN_U_DUZ,$P(@ORMOCHAT@("TOTAL"),U,1)=$ZH
- N X,Y,USID,ORCHECK,ORI,ORX,ORY
+ K ^TMP($J,"ORENHCHK")
+ N X,Y,USID,ORCHECK,ORI,ORX,ORY,%DT,ORDODSG
  ; convert relative start date to real start date
- S ORL=ORL_";SC(",X=STRT,STRT=""
+ S ORL=ORL_";SC(",X=STRT,STRT="",ORDODSG=0
  D:X="AM" AM^ORCSAVE2 D:X="NEXT" NEXT^ORCSAVE2
  I $L(X) S %DT="FTX" D ^%DT S:Y'>0 Y="" S STRT=Y
  ; do the SELECT order checks
- S ORI=0 F  S ORI=$O(OIL(ORI)) Q:'ORI  D
+ S (ORI,ORX)=0 F  S ORI=$O(OIL(ORI)) Q:'ORI  D
  . Q:'OIL(ORI)
  . S USID=$$USID(OIL(ORI))
  . S OIL(ORI,"USID")=USID
- . S ORX=1,ORX(1)=+OIL(ORI)_"|"_FID_"|"_USID
- . D EN^ORKCHK(.ORY,DFN,.ORX,"SELECT")
- . I $D(ORY) D RETURN^ORCHECK ; expects ORY, ORCHECK
- . K ORX,ORY
+ . S ORX=ORX+1,ORX(ORX)=+OIL(ORI)_"|"_FID_"|"_USID
+ . S:$P(OIL(ORI),U,2)="PSIV" $P(ORX(ORX),"|",7)=$P($P(OIL(ORI),U,3),";")
+ D EN^ORKCHK(.ORY,DFN,.ORX,"SELECT",.OIL,.ORDODSG)
+ I $D(ORY) D RETURN^ORCHECK ; expects ORY, ORCHECK
+ K ORX,ORY
  ; do the ACCEPT order checks
  S (ORI,ORX)=0 F  S ORI=$O(OIL(ORI)) Q:'ORI  D
  . Q:'OIL(ORI)
  . S ORX=ORX+1
  . S ORX(ORX)=+OIL(ORI)_"|"_FID_"|"_OIL(ORI,"USID")_"|"_STRT
- . I $P(OIL(ORI),U,2)="LR" S $P(ORX(ORX),"|",6)=$P(OIL(ORI),U,3)
- D EN^ORKCHK(.ORY,DFN,.ORX,"ACCEPT",.OIL)
+ . S:$P(OIL(ORI),U,2)="LR" $P(ORX(ORX),"|",6)=$P(OIL(ORI),U,3)
+ D EN^ORKCHK(.ORY,DFN,.ORX,"ACCEPT",.OIL,.ORDODSG)
  I $D(ORY) D RETURN^ORCHECK   ; expects ORY, ORCHECK
  ; return ORCHECK as 1 dimensional list
  D FDBDOWN^ORCHECK(0)
  D OPOS(DFN)
  D CHK2LST
- ;I $D(ORMOCHAT) S $P(@ORMOCHAT@("TOTAL"),U,2)=$ZH
+ K ^TMP($J,"OROCOUTO;"),^TMP($J,"OROCOUTI;"),^TMP($J,"DD"),^TMP($J,"ORDSGCHK_CACHE")
  Q
 DELAY(LST,DFN,FID,STRT,ORL,OIL) ; Return list of Order Checks on Accept Delayed
+ K ^TMP($J,"OROCOUTO;"),^TMP($J,"OROCOUTI;"),^TMP($J,"DD"),^TMP($J,"ORDSGCHK_CACHE")
  ; OIL(n)=OIptr^PS|PSIV|LR^PkgInfo
- N X,Y,ORCHECK,ORI,ORX,ORY
+ N X,Y,ORCHECK,ORI,ORX,ORY,%DT
  ; convert relative start date to real start date
  S ORL=ORL_";SC(",X=STRT,STRT=""
  D:X="AM" AM^ORCSAVE2 D:X="NEXT" NEXT^ORCSAVE2
@@ -79,14 +67,14 @@ DELAY(LST,DFN,FID,STRT,ORL,OIL) ; Return list of Order Checks on Accept Delayed
  . S ORX=ORX+1
  . S ORX(ORX)=+OIL(ORI)_"|"_FID_"|"_$$USID(OIL(ORI))_"|"_STRT
  . I $P(OIL(ORI),U,2)="LR" S $P(ORX(ORX),"|",6)=$P(OIL(ORI),U,3)
- D EN^ORKCHK(.ORY,DFN,.ORX,"ALL")
+ D EN^ORKCHK(.ORY,DFN,.ORX,"ALL",.OIL)
  I $D(ORY) D RETURN^ORCHECK   ; expects ORY, ORCHECK
  ; return ORCHECK as 1 dimensional list
  D CHK2LST
+ K ^TMP($J,"OROCOUTO;"),^TMP($J,"OROCOUTI;"),^TMP($J,"DD"),^TMP($J,"ORDSGCHK_CACHE")
  Q
-SESSION(LST,ORVP,ORLST)  ; Return list of Order Checks on Release Order
+SESSION(LST,ORVP,ORLST) ; Return list of Order Checks on Release Order
  K ^TMP($J,"OROCOUTO;"),^TMP($J,"OROCOUTI;"),^TMP($J,"DD")
- ;S ^XTMP("ORMOCHAT",0)=$$FMADD^XLFDT($$NOW^XLFDT,2)_U_$$NOW^XLFDT N ORMOCHAT S ORMOCHAT=$NA(^XTMP("ORMOCHAT",$$NOW^XLFDT,$ZH)) S @ORMOCHAT="ORWDXC SESSION"_U_$J_U_ORVP_U_DUZ,$P(@ORMOCHAT@("TOTAL"),U,1)=$ZH
  N ORES,ORCHECK
  S ORVP=+ORVP_";DPT("
  S I=0 F  S I=$O(ORLST(I)) Q:'I  D
@@ -97,7 +85,6 @@ SESSION(LST,ORVP,ORLST)  ; Return list of Order Checks on Release Order
  D OPOS(+ORVP)
  D CHK2LST
  D CHECKIT(.LST)
- ;I $D(ORMOCHAT) S $P(@ORMOCHAT@("TOTAL"),U,2)=$ZH
  K ^TMP($J,"OROCOUTO;"),^TMP($J,"OROCOUTI;"),^TMP($J,"DD")
  Q
 SAVECHK(OK,ORVP,RSN,LST)    ; Save order checks for session
@@ -174,10 +161,11 @@ CHECKIT(X) ;remove uncessesary duplication of Duplicate Therapy checks
  .S J=0 F  S J=J+1 Q:J>$L(STR,", ")  S Y(+X(I),I,J)=$P(STR,", ",J)
  S I=0 F  S I=$O(Y(I)) Q:'I  D
  .S J=0 F  S J=$O(Y(I,J)) Q:'J  D
- ..S K=J F  S K=$O(Y(I,K)) Q:'K  D
+ ..S K=J F  S K=$O(Y(I,K)) Q:'K!('$D(Y(I,J)))  D
  ...N A,B M A=Y(I,J),B=Y(I,K)
- ...I $$AINB(.A,.B) K X(J)
- ...I $$AINB(.B,.A) K X(K)
+ ...I $$AINB(.A,.B) K X(J),Y(I,J)
+ ...Q:'$D(Y(I,J))
+ ...I $$AINB(.B,.A) K X(K),Y(I,K)
  Q
 AINB(A,B) ;if array A is a subset of array B then return 1, else return 0
  N I,RET
@@ -189,7 +177,17 @@ XINA(X,A) ;if string X is an entry in array A then return 1, else return 0
  S RET=0
  S I=0 F  S I=$O(A(I)) Q:'I  I X=A(I) S RET=1 Q
  Q RET
-REMDUPS ;similar to REMDUPS^ORCHECK
+REMDUPS ;
+ N IFN,CDL,I,J,CDL2 S IFN="NEW"
+ S CDL=0 F  S CDL=$O(ORCHECK(IFN,CDL)) Q:'CDL  D
+ . S I=0 F  S I=$O(ORCHECK(IFN,CDL,I)) Q:'I  D
+ .. S CDL2=0 F  S CDL2=$O(ORCHECK(IFN,CDL2)) Q:'CDL2  D
+ ... S J=I F  S J=$O(ORCHECK(IFN,CDL2,J)) Q:'J  I $TR($P($G(ORCHECK(IFN,CDL,I)),U,3),";",",")=$TR($P($G(ORCHECK(IFN,CDL2,J)),U,3),";",",") D
+ .... I CDL2<=CDL K ORCHECK(IFN,CDL2,J) S ORCHECK=$G(ORCHECK)-1
+ .... I CDL2>CDL S $P(ORCHECK(IFN,CDL,I),U,7)="X"
+ .. I $P(ORCHECK(IFN,CDL,I),U,7)="X" K ORCHECK(IFN,CDL,I) S ORCHECK=$G(ORCHECK)-1
+ Q
+REMDUPSX ;similar to REMDUPS^ORCHECK
  N IFN,CDL,I S IFN="NEW"
  S CDL=0 F  S CDL=$O(ORCHECK(IFN,CDL)) Q:'CDL  D
  . S I=0 F  S I=$O(ORCHECK(IFN,CDL,I)) Q:'I  D
@@ -202,9 +200,13 @@ OPOS(DFN) ;handles saving and removing order checks that should only be displaye
  S I="" F  S I=$O(ORCHECK(I)) Q:'$L(I)  D
  .S J=0 F  S J=$O(ORCHECK(I,J)) Q:'J  D
  ..S K=0 F  S K=$O(ORCHECK(I,J,K)) Q:'K  D
- ...Q:(ORCHECK(I,J,K)'["These checks will NOT be performed for this patient")
- ...I $L(ORCHECK(I,J,K),"&")>1  I $D(^TMP($J,"OC-OPOS",DFN,$E($P(ORCHECK(I,J,K),"&",2),1,225))) K ORCHECK(I,J,K) Q
- ...I $D(^TMP($J,"OC-OPOS",DFN,$E(ORCHECK(I,J,K),1,225))) K ORCHECK(I,J,K) Q
- ...I $L(ORCHECK(I,J,K),"&")>1 S ^TMP($J,"OC-OPOS",DFN,$E($P(ORCHECK(I,J,K),"&",2),1,225))="" Q
- ...S ^TMP($J,"OC-OPOS",DFN,$E(ORCHECK(I,J,K),1,225))=""
+ ...N ORTXT,ORTXT0,ORTXTI,ORXTRAI
+ ...S ORTXTO="These checks could not be completed for this patient:"
+ ...Q:(ORCHECK(I,J,K)'[ORTXTO)
+ ...S ORTXT=ORTXTO
+ ...S ORXTRAI=$P($P(ORCHECK(I,J,K),"||",2),"&")
+ ...S ORTXTI=0 F  S ORTXTI=$O(^TMP($J,"ORK XTRA TXT",ORXTRAI,ORTXTO,ORTXTI))  Q:'ORTXTI  D
+ ....S ORTXT=ORTXT_$G(^TMP($J,"ORK XTRA TXT",ORXTRAI,ORTXTO,ORTXTI))
+ ...I $D(^TMP($J,"OC-OPOS",DFN,$E(ORTXT,1,225))) K ORCHECK(I,J,K) Q
+ ...S ^TMP($J,"OC-OPOS",DFN,$E(ORTXT,1,225))="" Q
  Q

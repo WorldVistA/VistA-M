@@ -1,6 +1,6 @@
-FBAAFS ;WCIOFO/dmk,SAB-OUTPATIENT FEE SCHEDULE ; 8/16/10 6:01pm
- ;;3.5;FEE BASIS;**4,53,71,92,99,111,115**;JAN 30, 1995;Build 9
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBAAFS ;WCIOFO/dmk,SAB-OUTPATIENT FEE SCHEDULE ; 10/31/12 3:04pm
+ ;;3.5;FEE BASIS;**4,53,71,92,99,111,115,143**;JAN 30, 1995;Build 20
+ ;;Per VA Directive 6402, this routine should not be modified.
 LOOKUP ; Entry point for option to get fee schedule amount
  ; without having to enter in a payment
  ;
@@ -52,7 +52,7 @@ LOOKUPX ; exit for lookup
  K FBRSLT,FBVEN,FBX,FBZIP
  Q
  ;
-GET(CPT,MODL,DOS,ZIP,FAC,TIME) ; call to calculate Fee Schedule amount
+GET(CPT,MODL,DOS,ZIP,FAC,TIME,FB1725) ; call to calculate Fee Schedule amount
  ; Input
  ;   CPT    - CPT/HCPCS code, external value, required
  ;   MODL   - list of optional CPT/HCPCS modifiers, external values
@@ -63,6 +63,7 @@ GET(CPT,MODL,DOS,ZIP,FAC,TIME) ; call to calculate Fee Schedule amount
  ;            indicates if procedure was performed in facility (1)
  ;            or non-facility (0)
  ;   TIME   - anesthesia time (minutes), reserved for future use
+ ;   FB1725 - Boolean, if Mill-Bill (1), or not Mill-Bill (0)
  ; Returns string
  ;   dollar amount^schedule used^schedule year (only when RBRVS)
  ;
@@ -75,6 +76,7 @@ GET(CPT,MODL,DOS,ZIP,FAC,TIME) ; call to calculate Fee Schedule amount
  S ZIP=$G(ZIP)
  S FAC=$G(FAC)
  S TIME=$G(TIME)
+ S FB1725=$G(FB1725)
  ;
  ; validate input parameters
  I CPT="" D ERR("Missing CPT")
@@ -86,8 +88,10 @@ GET(CPT,MODL,DOS,ZIP,FAC,TIME) ; call to calculate Fee Schedule amount
  . S:$P(FBX,U)]"" FBAMT=$P(FBX,U),FBSCH="R",FBSCHYR=$P(FBX,U,2)
  . K FBERR
  ;
- ; if not on RBRVS schedule try 75th percentile schedule
- I '$D(FBERR),FBAMT']"" D
+ ; If claim is not "Mill-Bill" and is not on the RBRVS schedule
+ ; try 75th percentile schedule. If claim is "Mill-Bill" then
+ ; quit and allow user to enter Amount Claimed.
+ I '$D(FBERR),FB1725'=1,FBAMT']"" D
  . S FBAMT=$$PRCTL^FBAAFSF(CPT,MODL,DOS)
  . S:FBAMT]"" FBSCH="F",FBSCHYR=""
  . K FBERR

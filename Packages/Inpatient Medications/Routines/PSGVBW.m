@@ -1,5 +1,5 @@
 PSGVBW ;BIR/CML3,MV - VERIFY ORDERS BY WARD, WARD GROUP, PATIENT, OR PRIORITY ;10/22/98 3:14 PM
- ;;5.0;INPATIENT MEDICATIONS;**5,16,39,59,62,67,58,81,80,110,111,133,139,155,241,243,265**;DEC 16, 1997;Build 4
+ ;;5.0;INPATIENT MEDICATIONS;**5,16,39,59,62,67,58,81,80,110,111,133,139,155,241,243,265,275**;DEC 16, 1997;Build 157
  ;
  ; Reference to ^PS(55 is supported by DBIA #2191
  ; Reference to ^PS(51.1 is supported by DBIA #2177
@@ -168,6 +168,7 @@ SETPN ; If searching for specific priority:
  ; If not searching for specific priority:
  ;            - set patient into ^TMP("PSGVBW2" sorted by 'Patient Name^IEN^SSN', then Priority
  ;            - set patient into ^TMP("PSGVBW3" sorted by Patient IEN
+ I $G(PSGP(0))="" D DEM^VADPT S PSGP(0)=VADM(1)
  S PN=$P(PSGP(0),"^")_U_PSGP_U_PSJPBID
  Q:PSGSS="P"
  I $G(PSGPRIF) S ^TMP("PSGVBW",$J,WDN,PTPRI,TM,PN)="" Q

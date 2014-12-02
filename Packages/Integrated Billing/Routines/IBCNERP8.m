@@ -1,5 +1,5 @@
 IBCNERP8 ;DAOU/BHS - IBCNE eIV STATISTICAL REPORT COMPILE ;11-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,345,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,271,345,416,506**;21-MAR-94;Build 74
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
@@ -29,9 +29,10 @@ IBCNERP8 ;DAOU/BHS - IBCNE eIV STATISTICAL REPORT COMPILE ;11-JUN-2002
  ; 1 OR contains 4 --> 
  ; ^TMP($J,RTN,"CUR")=TotPendingResponses^TotQueuedInquiries^...
  ;  TotDeferredInquiries(Hold)^TotInsCosw/oNationalID^...
- ;  ToteIVPyrsDisabldLocally^TotInsBufVerified^TotalManVerified...
+ ;  ToteIVPyrsDisabldLocally^TotUserActReq^TotInsBufVerified^TotalManVerified...
  ;  TotaleIVVerified^TotInsBufUnverified^! InsBufSubtotal^...
- ;  ? InsBufSubtotal^- InsBufSubtotal^Other InsBufSubtotal
+ ;  ? InsBufSubtotal^- InsBufSubtotal^Other InsBufSubtotal^...
+ ;  $ EscolatedBufSubtotal
  ; 1 OR contains 4 -->
  ; ^TMP($J,RTN,"PYR",PAYER,IEN)=""  (list of new payers)
  ;
@@ -162,6 +163,7 @@ CUR(RTN,BDT,EDT,TOT) ; Current Status - stats - timeframe independent
  ;  12=total Ins Buf entries w/symbol='?'
  ;  13=total Ins Buf entries w/symbol='-'
  ;  14=total Ins Buffer entries w/symbol not in ('*','#','!','?','-')
+ ;  15=total Ins Buffer entries w/symbol='$'
  ;  
  ;  ^TMP($J,RTN,"CUR","FLAGS","A",Payer name,N) = active flag timestamp ^ active flag setting
  ;  ^TMP($J,RTN,"CUR","FLAGS","T",Payer name,N) = trusted flag timestamp ^ trusted flag setting
@@ -195,7 +197,7 @@ CUR(RTN,BDT,EDT,TOT) ; Current Status - stats - timeframe independent
  ;
  ; Payer stats
  ; Ins cos w/o National ID
- S ICIEN=0
+ S ICIEN=0,$P(RPTDATA,U,4)=0
  F  S ICIEN=$O(^DIC(36,ICIEN)) Q:'ICIEN  D  Q:$G(ZTSTOP)
  .  S TOT=TOT+1
  .  I $D(ZTQUEUED),TOT#100=0,$$S^%ZTLOAD() S ZTSTOP=1 QUIT
@@ -203,13 +205,18 @@ CUR(RTN,BDT,EDT,TOT) ; Current Status - stats - timeframe independent
  .  S TMP=$$ACTIVE^IBCNEUT4(ICIEN) I 'TMP Q
  .  ; Exclude Medicaid, etc.
  .  I $$EXCLUDE^IBCNEUT4($P(TMP,U,2)) Q
+ .  ; Does a NATIONAL ID exist?
+ .  ; VA CBO defines 'No National ID' as lack of EDI IDs - fields (#36,3.02) & (#36,3.04) 3/4/14
+ .  ; This is *NOT* a check for the 'VA NATIONAL ID' associated with the linked payer
+ .  I ($$GET1^DIQ(36,ICIEN_",",3.02)="")&($$GET1^DIQ(36,ICIEN_",",3.04)="") S $P(RPTDATA,U,4)=$P(RPTDATA,U,4)+1 Q
+ .  Q
  .  ; Determine assoc Payer
- .  S PIEN=$P($G(^DIC(36,ICIEN,3)),U,10)
+ .  ;S PIEN=$P($G(^DIC(36,ICIEN,3)),U,10)
  .  ; Missing payer link
- .  I 'PIEN S $P(RPTDATA,U,4)=$P(RPTDATA,U,4)+1 Q
+ .  ;I 'PIEN S $P(RPTDATA,U,4)=$P(RPTDATA,U,4)+1 Q
  .  ; Does a VA NATIONAL ID exist?
- .  I $P($G(^IBE(365.12,PIEN,0)),U,2)'="" Q
- .  S $P(RPTDATA,U,4)=$P(RPTDATA,U,4)+1
+ .  ;I $P($G(^IBE(365.12,PIEN,0)),U,2)'="" Q
+ .  ;S $P(RPTDATA,U,4)=$P(RPTDATA,U,4)+1
  ;
  I $G(ZTSTOP) G CURX
  ;
@@ -247,8 +254,9 @@ CUR(RTN,BDT,EDT,TOT) ; Current Status - stats - timeframe independent
  . . S IBSYMBOL=$$SYMBOL^IBCNBLL(IBIEN)
  . . ; Determine piece to update based on symbol
  . . ; ('*') = Man. Verified,  ('#','!','-','?',blank/null) = eIV Processing
- . . ; ('+') = eIV Processed
- . . S PIECE=$S(IBSYMBOL="*":7,IBSYMBOL="+":8,IBSYMBOL="#":10,IBSYMBOL="!":11,IBSYMBOL="-":13,IBSYMBOL="?":12,1:14)
+ . . ; ('+') = eIV Processed, ('$') = Escalated, Active policy
+ . . ; IB*2.0*506/taz Node 15 added.
+ . . S PIECE=$S(IBSYMBOL="*":7,IBSYMBOL="+":8,IBSYMBOL="#":10,IBSYMBOL="!":11,IBSYMBOL="-":13,IBSYMBOL="?":12,IBSYMBOL="$":15,1:14)
  . . I PIECE=12!(PIECE=14) S $P(RPTDATA,U,9)=$P($G(RPTDATA),U,9)+1
  . . E  S $P(RPTDATA,U,6)=$P($G(RPTDATA),U,6)+1
  . . S $P(RPTDATA,U,PIECE)=$P($G(RPTDATA),U,PIECE)+1

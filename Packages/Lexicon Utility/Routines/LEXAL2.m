@@ -1,6 +1,14 @@
-LEXAL2 ; ISL Look-up List (Array)                 ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXAL2 ;ISL/KER - Look-up List (Array) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^TMP("LEXFND"       SACC 2.3.2.5.1
+ ;    ^TMP("LEXHIT"       SACC 2.3.2.5.1
+ ;    ^TMP("LEXSCH"       SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    None
+ ;               
  ;  LEXL        Last on List
  ;  LEXT/LEXF  List To/From
  ;  LEXA        List position asked for
@@ -8,7 +16,7 @@ LEXAL2 ; ISL Look-up List (Array)                 ; 09-23-96
  ;  "END"        Position at the end of List
  ;  "PGDN"       Position down the list by #LEXLL
  ;  "PGUP"       Position up the list by #LEXLL
- ;
+ ;               
 LIST(LEXA) ; Continue to build list
  N LEXC,LEXDSP,LEXF,LEXI,LEXIEN,LEXL,LEXLL,LEXO
  N LEXT

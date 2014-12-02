@@ -1,5 +1,5 @@
 SROALNO ;B'HAM ISC/MAM - SELECT CASE WITHOUT ASSESS ; 2 MAR 1992  3:35 pm
- ;;3.0; Surgery ;**104**;24 Jun 93
+ ;;3.0;Surgery;**104,177**;24 Jun 93;Build 89
  W ! S (SRDT,CNT)=0 F I=0:0 S SRDT=$O(^SRF("ADT",DFN,SRDT)) Q:'SRDT!(SRSOUT)  S SROP=0 F I=0:0 S SROP=$O(^SRF("ADT",DFN,SRDT,SROP)) Q:'SROP!($D(SRTN))!(SRSOUT)  D LIST
  I $D(SRTN) Q
 OPT W !!!,"Select Operation: " R X:DTIME I '$T!("^"[X) S SRSOUT=1 G END
@@ -8,6 +8,7 @@ OPT W !!!,"Select Operation: " R X:DTIME I '$T!("^"[X) S SRSOUT=1 G END
  S SRTN=+SRCASE(X)
 ENTER ; edit or delete
  W @IOF,!,?1,VADM(1)_"  "_VA("PID"),!!,?1 S SROP=SRTN,SRSDATE=$P(^SRF(SRTN,0),"^",9) D CASE
+ N SRICDV S SRICDV=$$ICDSTR^SROICD(SRTN)
  W !!,"1. Enter Information",!,"2. Review Information",!,"3. Delete Surgery Case",!!,"Select Number:  1//  " R X:DTIME I '$T!(X["^") S SRSOUT=1 G END
  S:X="" X=1 I X<1!(X>3)!(X'?.N) D HELP G ENTER
  I X=3 D ^SROPDEL G END

@@ -1,5 +1,5 @@
 VAQREQ06 ;ALB/JFP - REQUEST PDX RECORD,TRANSMIT;01MAR93
- ;;1.5;PATIENT DATA EXCHANGE;**4,20,26,32**;NOV 17, 1993
+ ;;1.5;PATIENT DATA EXCHANGE;**4,20,26,32,44**;NOV 17, 1993;Build 4
 EP ; -- Programmer entry point for sending PDX requests
  ; -- This code is used by both request and unsolicited request
  ;
@@ -105,11 +105,15 @@ LDUNS ; -- Sets DR string and non-constant variables, LOAD FOR UNSOLICITED
  S DIE="^VAT(394.61,"
  D ^DIE K DIE,DR
  QUIT
-MNOTI ; -- Loads the notify muliple
- S DIE="^VAT(394.61,",DLAYGO=394.61,NOTI=""
+MNOTI ; -- Loads the notify multiple
+ N VAQNOTI,VAQNTF,VAQMSG
+ S NOTI=""
  F  S NOTI=$O(^TMP("VAQNOTI",$J,NOTI))  Q:NOTI=""  D
- .S DR="71///"_NOTI
- .D ^DIE
+ .;RRA VAQ*1.5*44 TICKET 485092 pass "Notify" ien rather than name as string (dups)
+ .S VAQNOTI=$G(^TMP("VAQNOTI",$J,NOTI))
+ .S VAQNTF(394.6171,"+1,"_VAQPR_",",.01)=VAQNOTI
+ .D UPDATE^DIE("","VAQNTF",,"VAQMSG")
+ .K VAQNTF,VAQMSG
  K DIE,DR,DLAYGO
  QUIT
  ;

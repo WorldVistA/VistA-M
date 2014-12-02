@@ -1,5 +1,5 @@
 VPRDLRO ;SLC/MKB -- Laboratory extract by order/panel ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;;Sep 01, 2011;Build 12
+ ;;1.0;VIRTUAL PATIENT RECORD;**2**;Sep 01, 2011;Build 317
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -12,6 +12,7 @@ VPRDLRO ;SLC/MKB -- Laboratory extract by order/panel ;8/2/11  15:29
  ; DIQ                           2056
  ; LR7OR1,^TMP("LRRR",$J)        2503
  ; LR7OU1                        2955
+ ; LRPXAPIU                      4246
  ; ORX8                          3071
  ; XUAF4                         2171
  ;
@@ -60,8 +61,8 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's lab results
  ;
 SORT ; -- return VPRLRO(PANEL) = CPRS order# ^ panel/test name ^ Lab Order string
  ;               VPRLRO(PANEL,VPRN) = result node
- N X0,NUM,ORD,ODT,SN,T,T0,ORIFN,I,VPRY,VPRLRT K VPRLRO
- S VPRN=$O(^TMP("LRRR",$J,DFN,VPRSUB,VPRIDT,0)),X0=$G(^(VPRN)) ;first
+ N VPRP,X0,NUM,ORD,ODT,SN,T,T0,ORIFN,I,VPRY,VPRLRT K VPRLRO
+ S VPRP=$O(^TMP("LRRR",$J,DFN,VPRSUB,VPRIDT,0)),X0=$G(^(VPRP)) ;first
  S NUM=$P(X0,U,16),ORD=$P(X0,U,17),ODT=+$P(9999999-VPRIDT,".")
  ; - build VPRLRT list of result nodes for each test/panel
  I ORD S SN=0 F  S SN=$O(^LRO(69,"C",ORD,ODT,SN)) Q:SN<1  D  Q:$D(VPRLRT)
@@ -78,14 +79,15 @@ SORT ; -- return VPRLRO(PANEL) = CPRS order# ^ panel/test name ^ Lab Order strin
  .. S VPRLRO(+T0)=$P(T0,U,7)_U_$P($G(^LAB(60,+T0,0)),U)_U_ORD_";"_ODT_";"_SN_";"_T
  S:'$D(VPRLRO) VPRLRO(0)=$S(VPRSUB="MI":"^MICROBIOLOGY^MI;",1:"^ACCESSION^CH;")_VPRIDT ;no Lab Order
  ; - build VPRLRO(panel#,VPRN) = ^TMP node
- S VPRN=0 F  S VPRN=$O(^TMP("LRRR",$J,DFN,"CH",VPRIDT,VPRN)) Q:VPRN<1  S X0=$G(^(VPRN)) D
+ S VPRP=0 F  S VPRP=$O(^TMP("LRRR",$J,DFN,"CH",VPRIDT,VPRP)) Q:VPRP<1  S X0=$G(^(VPRP)) D
+ . S VPRN=$$LRDN^LRPXAPIU(+X0)
  . I '$D(VPRLRT(+X0)) S VPRLRO(0,VPRN)=X0 Q  ;no Lab Order
  . S T=0 F  S T=$O(VPRLRT(+X0,T)) Q:T<1  S VPRLRO(T,VPRN)=X0
  Q
  ;
 CH(X0) ; -- return a Chemistry result as:
  ;   id^test^result^interpretation^units^low^high^loinc^vuid
- ;   Expects X0=^TMP("LRRR",$J,DFN,"CH",VPRIDT,VPRN),LRDFN
+ ;   Expects X0=^TMP("LRRR",$J,DFN,"CH",VPRIDT,VPRP),VPRN,LRDFN
  N X,Y,NODE,LOINC
  S NODE=$G(^LR(LRDFN,"CH",VPRIDT,VPRN))
  S X=$P($G(^LAB(60,+X0,0)),U)
@@ -97,7 +99,7 @@ CH(X0) ; -- return a Chemistry result as:
  ;
 MI(X0) ; -- return a Microbiology result as:
  ;   id^test^result^interpretation^units
- ;   Expects X0=^TMP("LRRR",$J,DFN,"MI",VPRIDT,VPRN)
+ ;   Expects X0=^TMP("LRRR",$J,DFN,"MI",VPRIDT,VPRP)
  N Y S Y=""
  S:$L($P(X0,U))>1 Y="MI;"_VPRIDT_";"_VPRN_U_$P(X0,U,1,4)
  Q Y

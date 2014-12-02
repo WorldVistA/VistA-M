@@ -1,5 +1,5 @@
 ONCBRP5A ;HINES CIOFO/GWB - 1998 Breast Cancer Study - Table V (continued) ;6/1/98
- ;;2.11;ONCOLOGY;**18**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 RT W @IOF D HEAD^ONCBRP0
  W !," RADIATION THERAPY"
  W !," -----------------"

@@ -1,8 +1,11 @@
 RMPRPIY7 ;HINCIO/ODJ - PIP EDIT - PROMPTS ;9/18/02  15:17
- ;;3.0;PROSTHETICS;**61,118,139**;Feb 09, 1996;Build 4
+ ;;3.0;PROSTHETICS;**61,118,139,173**;Feb 09, 1996;Build 29
  ;
  ;DBIA # 800 - FILEMAN read of file #440.
  Q
+ ;
+ ;RMPR*3.0*173 Modify HCPCS item lookup code to reject if entry
+ ;             flagged as inactive in file 661.11
  ; The following subroutines are a series of prompts called
  ; by Edit LOCATION/HCPCS/ITEM option (EI^RMPRPIY6)
  ;
@@ -77,6 +80,7 @@ HCPCS1 K RMPR1N D ^DIR
  I RMPREXC'="" G HCPCS1
  I $G(RMPR1N("IEN"))'="",$G(RMPR1("REMOVE")) G HCPCSU
 CHECK I $G(RMPR1N("IEN")),$D(^RMPR(661.1,$G(RMPR1N("IEN")),0)),'($P(^RMPR(661.1,RMPR1N("IEN"),0),U,5)) W !,"** No HCPCS Selected or Unable to Select Inactive HCPCS..." G HCPCS1
+ I $G(RMPR11("IEN")),$D(^RMPR(661.11,$G(RMPR11("IEN")),0)),$P(^RMPR(661.11,$G(RMPR11("IEN")),0),U,9) W !,"** Unable to Select Inactive HCPCS item..." G HCPCS1   ;RMPR*3.0*173 If HCPCS item inactive in file 661.11 reject lookup as Inactive
  I $G(RMPR1N("IEN"))'="" G HCPCSU
  G HCPCS1
 HCPCSU K RMPR1 M RMPR1=RMPR1N

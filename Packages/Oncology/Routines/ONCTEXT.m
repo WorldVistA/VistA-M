@@ -1,5 +1,5 @@
 ONCTEXT ;Hines OIFO/GWB - ONCOLOGY TEXT EDITS ;09/29/00
- ;;2.11;ONCOLOGY;**27**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  ;Maximum NAACCR length text edit
  S FIELD=$P(^DD(165.5,FLDNUM,0),U,1)

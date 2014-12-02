@@ -1,5 +1,5 @@
-TIURS ; SLC/JER - Electronic signature actions ; 5/21/07 11:00am
- ;;1.0;TEXT INTEGRATION UTILITIES;**3,4,20,67,79,98,107,58,100,109,179,157,227**;Jun 20, 1997;Build 15
+TIURS ; SLC/JER - Electronic signature actions ; 11/21/12 2:32pm
+ ;;1.0;TEXT INTEGRATION UTILITIES;**3,4,20,67,79,98,107,58,100,109,179,157,227,274**;Jun 20, 1997;Build 6
 ACCEPT(TIUSLST,TIUI) ; Accept for signing
  N TIUSGN,TIUMSG,TIUPR,TIUFLAG
  I +$G(TIUDA),($G(TIUEVNT)]"") D  Q:'+$G(TIUSGN)
@@ -64,6 +64,8 @@ EDSIG(TIUDA,TIUADD,TIUPASK) ; interactive sign
  W ! I $G(TIUMSG)]"",$$READ^TIUU("YO",TIUMSG,"NO","^D SIG^TIUDIRH")'>0 S VALMBCK="R" Q
  L +^TIU(8925,+TIUDA):1
  E  W !?5,$C(7),"Another user is editing this entry.",! W:$$READ^TIUU("EA","Press RETURN to continue...") "" S TIUQUIT=2 Q
+ ; TIU*1.0*274 DJH Do not allow notes without any text to be signed
+ I $$EMPTYDOC^TIULF(+TIUDA) W !?5,$C(7),"This note contains no text and cannot be signed.",! W:$$READ^TIUU("EA","Press RETURN to continue...") "" Q
  S TIUES=$$ASKSIG^TIULA1 L -^TIU(8925,+TIUDA) I '+TIUES Q
  I $D(VALMAR) D FULL^VALM1
  I +$G(XTRASGNR) D ADDSIG^TIURS1(TIUDA,XTRASGNR)

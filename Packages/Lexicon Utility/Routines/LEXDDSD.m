@@ -1,6 +1,12 @@
-LEXDDSD ; ISL Display Defaults - Single User Disp  ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDDSD ;ISL/KER - Display Defaults - Single User Disp ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^TMP("LEXDIC")      SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    ^DIR                ICR  10026
+ ;               
 LEXSHOW ; Translate LEXSHOW
  D:$G(^LEXT(757.2,LEXAP,200,DUZ,2))'=""
  . D DIS^LEXDDSS($G(^LEXT(757.2,LEXAP,200,DUZ,2.5)))

@@ -1,9 +1,8 @@
-PSBVDLPB ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE ;4/10/12 12:33pm
- ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58,68**;Mar 2004;Build 26
+PSBVDLPB ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE ;1/32/13 1:23pm
+ ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58,68,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
- ; EN^PSJBCMA/2828
  ; $$GET^XPAR/2263
  ; File 200/10060
  ; GETPROVL^PSGSICH1/5653
@@ -13,6 +12,8 @@ PSBVDLPB ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE ;4/10/12 12:33pm
  ;*68 - add 30th piece to Results for Last Injection Site and
  ;    - add 31st piece to Results for Piggyback tab to know the IV
  ;      order is rotation type injectable.
+ ;*70 - add 32nd piece to Results for Clinic Order name
+ ;    - add 33rd piece to Results for Clinic ien ptr to file #44
  ;
 EN(DFN,PSBDT) ; Default Order List Return for Today
  ;
@@ -34,16 +35,18 @@ EN(DFN,PSBDT) ; Default Order List Return for Today
  N RTBL D BLDTBL^PSBINJEC(.RTBL)  ;build valid IV rotable inj *68
  ;
  F PSBX=0:0 S PSBX=$O(^TMP("PSJ",$J,PSBX)) Q:('PSBX)!(PSBTBOUT)  D
+ .N PSBRTNOW S PSBRTNOW=$$NOW^XLFDT()
  .D CLEAN^PSBVT,PSJ^PSBVT(PSBX)
  .;
  .; << Standard checks for ALL orders >>
  .;
- .Q:PSBONX["P"  ;     No Pending Orders
- .Q:'$$IVPTAB^PSBVDLU3(PSBOTYP,PSBIVT,PSBISYR,PSBCHEMT,PSBIVPSH)
- .Q:PSBOST>PSBWADM  ; Order Start Date/Time > admin window
- .Q:PSBOSP<PSBWBEG  ; For all Order Stop Date/Time < vdl window
- .Q:PSBOSTS["D"  ;     Is it DC'd
- .Q:PSBNGF  ;  Is it marked DO NOT GIVE!
+ .Q:PSBONX["P"              ;No Pending Orders
+ .Q:'$$IVPTAB^PSBVDLU3(PSBOTYP,PSBIVT,PSBISYR,PSBCHEMT,PSBIVPSH)  ;Is Piggyback
+ .Q:PSBOST>PSBWADM          ;Order Start Date/Time > admin window
+ .Q:($G(PSBCLORD)]"")&(PSBOST>PSBRTNOW)   ;CO Order start date is in future
+ .Q:PSBOSP<PSBWBEG          ;For all Order Stop Date/Time < vdl window
+ .Q:PSBOSTS["D"             ;Is it DC'd
+ .Q:PSBNGF                  ;Is it marked DO NOT GIVE!
  .; Non One-Times with stop date/time < now
  .;
  .D NOW^%DTC
@@ -143,6 +146,8 @@ EN(DFN,PSBDT) ; Default Order List Return for Today
  ..I $P(PSBREC,U,31)=1 D
  ...N LI D RPC^PSBINJEC(.LI,DFN,PSBOIT,9999999,1)
  ...S $P(PSBREC,U,30)=$P(LI(1),U,6)   ;if no inj's, 6th will be null
+ .S $P(PSBREC,U,32)=$G(PSBCLORD)  ;clinic name          *70
+ .S $P(PSBREC,U,33)=$G(PSBCLIEN)  ;clinic ien ptr       *70
  .;
  .; Gather Dispense Drugs
  .D NOW^%DTC
@@ -154,7 +159,9 @@ EN(DFN,PSBDT) ; Default Order List Return for Today
  ..S $P(PSBDDS,U,1)=PSBDDS+1
  .; On-Call One Time PRN orders
  .S PSBQRR=0
+ .;*70 if Order start dates > than the day being viewed, don't show
  .I "^O^OC^P^"[(U_PSBSCHT_U) D  Q
+ ..Q:PSBCLINORD&($P(PSBOST,".")>PSBDT)           ;*70
  ..I 'PSBDOADD S PSBTBOUT=1,^TMP("PSB",$J,"PBTAB",0)=2,^TMP("PSB",$J,"PBTAB",1)=1,^TMP("PSB",$J,"PBTAB",2)=1 Q
  ..D ADD^PSBVDLU1(PSBREC,PSBOTXT,PSBNOW\1,PSBDDS,PSBSOLS,PSBADDS,"PBTAB")
  .;

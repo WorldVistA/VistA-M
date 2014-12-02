@@ -1,5 +1,5 @@
-ECXBCM ;ALB/JAP-Bar Code Medical Administration Extract ;12/5/12  11:56
- ;;3.0;DSS EXTRACTS;**107,127,132,136,143**;Dec 22, 1997 ;Build 4
+ECXBCM ;ALB/JAP-Bar Code Medical Administration Extract ;11/6/13  16:31
+ ;;3.0;DSS EXTRACTS;**107,127,132,136,143,144,148,149**;Dec 22, 1997 ;Build 27
  ;
 BEG ;entry point from option
  ;ECFILE=^ECX(727.833,
@@ -21,20 +21,26 @@ START ; start package specific extract
  Q
  ;
 GET(ECSD,ECED) ;get extract data
- S (ACTDT,ECXADT,ECXAMED,ECXASTA,ECXATM,ECXORN,ECXORT,ECXOSC,ECPRO,PLACEHLD,ECXFAC,DRG)=""
+ N ECXESC,ECXECL,ECXCLST ;144
+ S (ACTDT,ECXADT,ECXAMED,ECXASTA,ECXATM,ECXORN,ECXORT,ECXOSC,ECPRO,PLACEHLD,ECXFAC,DRG,ECXESC,ECXECL,ECXCLST)="" ;144
  ; get needed YYYYDD variable
  I $G(ECXYM)="" S ECXYM=$$ECXYM^ECXUTL(DT)
  ;Get Facility
  I $G(ECXFAC)="" D
  .S ECXFAC=+$P(^ECX(728,1,0),U) K ECXDIC S DA=ECXFAC,DIC="^DIC(4,",DIQ(0)="I",DIQ="ECXDIC",DR=".01;99"
  .D EN^DIQ1 S ECXFAC=$G(ECXDIC(4,DA,99,"I")) K DIC,DIQ,DA,DR,ECXDIC
- ;get patient demographics
- S ECXERR=0 D PAT(ECXDFN,IDAT,.ECXERR) Q:ECXERR
  ;
  S ECXORN=$$GET1^DIQ(53.79,RIEN,.11)
+ ;get inpatient data
+ S (ECXA,ECXMN,ECXADM,ECXTS,ECXW)=""
+ S X=$$INP^ECXUTL2(ECXDFN,IDAT)
+ S ECXA=$P(X,U),ECXMN=$P(X,U,2),ECXTS=$P(X,U,3),ECXADM=$P(X,U,4)
+ S W=$P(X,U,9),ECXDOM=$P(X,U,10),ECXW=$P(W,";")
  ; Ordering Stop Code - based on Unit dose or IV
  I ECXORN["U" Q:$$CHKUD(ECXDFN,ECSD,ECED)  S:ECXA="O" ECXOSC=$$DOUDO^ECXUTL5(ECXDFN,+ECXORN)
  I ECXORN["V" Q:$$CHKIV(ECXDFN,ECSD,ECED)  S:ECXA="O" ECXOSC=$$DOIVPO^ECXUTL5(ECXDFN,+ECXORN)
+ ;get patient demographics
+ S ECXERR=0 D PAT(ECXDFN,IDAT,.ECXERR) Q:ECXERR
  S ECPRO=$$ORDPROV^ECXUTL(ECXDFN,ECXORN,"")
  S ACTDT=$$GET1^DIQ(53.79,RIEN,.06,"I")
  I ACTDT'=IDAT Q
@@ -52,12 +58,17 @@ GET(ECSD,ECED) ;get extract data
  D CCODE(RIEN)
  Q
  ;
-CMPT ; during component/sequence processing, retrieve rest of data record the file it. 
+CMPT ; during component/sequence processing, retrieve rest of data record then file it.
  S (ECXSCADT,ECXOS,ECXIVID,ECXIR,SCADT,ECXSCADT,ECXSCATM,DRUG,ECVNDC,ECINV,ECVACL,ECXVAP)="" ;143
  I $G(DRG) D
  .S DRUG=$$PHAAPI^ECXUTL5(DRG)
  .S ECVNDC=$P(DRUG,U,3)
- .S ECINV=$P(DRUG,U,4) S ECINV=$S(ECINV["I":"I",1:"")
+ .S ECINV=$P(DRUG,U,4)
+ .I ECXLOGIC<2014 D
+ ..S ECINV=$S(ECINV["I":"I",1:"")
+ .;New way to calculate cost dea spl hndlg **144
+ .I ECXLOGIC>2013 D
+ ..S ECINV=$S((+ECINV>0)&(+ECINV<6):+ECINV,ECINV["I":"I",1:"")
  .S ECVACL=$P(DRUG,U,2)
  .S ECXVAP=$P(DRUG,U,6) ;143 set ECXVAP to VA PRODUCT IEN
  S SCADT=$$GET1^DIQ(53.79,RIEN,.13,"I")
@@ -100,6 +111,9 @@ PAT(ECXDFN,ECXDATE,ECXERR)  ;get patient demographics, primary care, and inpatie
  S ECXENRL=ECXPAT("ENROLL LOC")
  S ECXMTST=ECXPAT("MEANS")
  S ECXEST=ECXPAT("EC STAT")
+ S ECXCLST=ECXPAT("CL STAT") ;144 Camp Lejeune status
+ S ECXSVCI=ECXPAT("COMBSVCI") ;149 COMBAT SVC IND
+ S ECXSVCL=ECXPAT("COMBSVCL") ;149 COMBAT SVC LOC
  S ECXCNHU=$$CNHSTAT^ECXUTL4(ECXDFN) S ECXCNHU=$S(ECXCNHU'="":$E(ECXCNHU,1),1:"") ;get CNHU status
  ;get enrollment data (category, status and priority)
  I $$ENROLLM^ECXUTL2(ECXDFN)
@@ -115,11 +129,6 @@ PAT(ECXDFN,ECXDATE,ECXERR)  ;get patient demographics, primary care, and inpatie
  ;get primary care data
  S X=$$PRIMARY^ECXUTL2(ECXDFN,$P(ECXDATE,"."))
  S ECPTTM=$P(X,U),ECPTPR=$P(X,U,2),ECCLAS=$P(X,U,3),ECPTNPI=$P(X,U,4)
- ;get inpatient data
- S (ECXA,ECXMN,ECXADM,ECXTS,ECXW)=""
- S X=$$INP^ECXUTL2(ECXDFN,ECXDATE)
- S ECXA=$P(X,U),ECXMN=$P(X,U,2),ECXTS=$P(X,U,3),ECXADM=$P(X,U,4)
- S W=$P(X,U,9),ECXDOM=$P(X,U,10),ECXW=$P(W,";")
  ;get national patient record flag, if it exists
  D NPRF^ECXUTL5     ; sets ECXNPRFI
  Q
@@ -138,12 +147,21 @@ CCODE(RIEN) ; get component information
  .I '$O(^PSB(53.79,RIEN,I,0)) Q
  .S J=0 F  S J=$O(^PSB(53.79,RIEN,I,J)) Q:'J  D
  ..S DATA=^PSB(53.79,RIEN,I,J,0)
- ..S CCIEN=$P(DATA,U),CCDORD=$P(DATA,U,2),CCDGVN=$P(DATA,U,3),CCUNIT=$P(DATA,U,4)
- ..I I=.5 S DRG=CCIEN
- ..I I=.6 S DRG=$$GET1^DIQ(52.6,CCIEN,1,"I")
- ..I I=.7 S DRG=$$GET1^DIQ(52.7,CCIEN,1,"I")
+ ..S (UNITCOST,ECXDRGC,ECXIVSC,ECXIVAC)=0 ;144 NEW COST FIELDS
+ ..S CCIEN=$P(DATA,U),CCDORD=$P(DATA,U,2),CCDGVN=$S(+($P(DATA,U,3))>0:+($P(DATA,U,3)),1:1),CCUNIT=$S(+($P(DATA,U,4))>0:+($P(DATA,U,4)),1:1)
+ ..I I=.5 D  ;144 New drug Cost Fields added
+ ...S DRG=CCIEN,UNITCOST=$$GET1^DIQ(50,DRG,16,"I")
+ ...S ECXDRGC=(CCDGVN*CCUNIT)*UNITCOST
+ ..I I=.6 D  ;144 New IV Additive Cost Fields added
+ ...S DRG=$$GET1^DIQ(52.6,CCIEN,1,"I"),UNITCOST=$$GET1^DIQ(52.6,CCIEN,7,"I")
+ ...S ECXIVAC=CCDGVN*UNITCOST
+ ..I I=.7 D  ;144 New IV Solution Cost Fields added
+ ...S DRG=$$GET1^DIQ(52.7,CCIEN,1,"I"),UNITCOST=$$GET1^DIQ(52.7,CCIEN,7,"I")
+ ...S ECXIVSC=CCDGVN*UNITCOST
  ..S CCTYPE=$S(I=.5:"D",I=.6:"A",I=.7:"S",1:"")
  ..S CCIEN=$S(I=.5:CCIEN_";PSDRUG(",I=.6:CCIEN_";PS(52.6,",I=.7:CCIEN_";PS(52.7,",1:"")
+ ..S CCDGVN=$P(DATA,U,3) ;148 Reset component dose given to original value
+ ..S CCUNIT=$P(DATA,U,4) ;148 Reset component unit to original value
  ..D CMPT
  Q
  ;
@@ -197,7 +215,7 @@ FILE ;file the extract record
  ;dfn (ECXDFN)^ssn (ECXSSN)^name (ECXPNM)^
  ;in/out (ECXA)^Day (ECXADT)^
  ;date of birth (ECDOB)^Gender (ECXSEX)^State (ECXSTATE)^County (ECXCNTY)^
- ;zip code (ECXZIP)^country (ECXCNTRY)^ward (ECXW)^treating speciality (ECXTS)^
+ ;zip code (ECXZIP)^country (ECXCNTRY)^ward (ECXW)^treating speciality (ECXTSC)^
  ;provider (ECPRO)^provider person class (ECPROPC)^provider npi (ECPRONPI)^
  ;primary care provider(ECPTPR)^pc provider person class (ECCLAS)^
  ;primary care provider NPI (ECPTNPI)^primary care team (ECPTTM)^ordering stop code (ECXOSC)^
@@ -226,12 +244,18 @@ FILE ;file the extract record
  ;CV Status Eligibility(ECXCVE)^CV Eligibility End Date(ECXCVEDT)^Encounter CV(ECXCVENC)^
  ;National Patient Record Flag(ECXNPRFI)^ERI(ECXERI)^SW Asia Conditions(ECXEST)^
  ;OEF/OIF(ECXOEF)^OEF/OIF Return Date(ECXOEFDT)^PATCAT(ECXPATCAT)
+ ;Encounter SC (ECXESC)^IV Additives Cost ECXIVAC^IV Solutions Cost ECXIVSC^Drug cost ECXDRGC^Camp Lejeune Status (ECXCLST)^Encounter Camp Lejeune (ECXECL)
+ ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
  ;
+ ;convert specialty to PTF Code for transmission
+ N ECXDATA,ECXTSC
+ S ECXDATA=$$TSDATA^DGACT(42.4,+ECXTS,.ECXDATA)
+ S ECXTSC=$G(ECXDATA(7))
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
  S ECODE(0)=EC7_U_EC23_U_ECXFAC_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U_ECXADT
  S ECODE(0)=ECODE(0)_U_ECXDOB_U_ECXSEX_U_ECXSTATE_U_ECXCNTY_U_ECXZIP_U_ECXCNTRY
- S ECODE(0)=ECODE(0)_U_ECXW_U_ECXTS_U_2_ECPRO_U_ECPROPC_U_ECPRONPI_U_ECPTPR_U_ECCLAS
+ S ECODE(0)=ECODE(0)_U_ECXW_U_ECXTSC_U_2_ECPRO_U_ECPROPC_U_ECPRONPI_U_ECPTPR_U_ECCLAS
  S ECODE(0)=ECODE(0)_U_ECPTNPI_U_ECPTTM_U_ECXOSC_U
  S ECODE(1)=RIEN_U_ECXORN_U_ECXORT_U_ECXATM_U_CCIEN_U_CCDORD_U_CCDGVN
  S ECODE(1)=ECODE(1)_U_CCUNIT_U_CCTYPE_U_ECXASTA_U_ECXAMED_U_ECXSCADT_U
@@ -241,6 +265,8 @@ FILE ;file the extract record
  S ECODE(2)=ECODE(2)_U_ECXRST_U_ECXAST_U_ECXAOL_U_ECXPHI_U_ECXMST_U_ECXCNHU_U_ECXHNCI_U_ECXSHADI_U
  S ECODE(3)=ECXPTYPE_U_ECXCVE_U_ECXCVEDT_U_ECXCVENC_U_ECXNPRFI_U_ECXERI_U_ECXEST_U_ECXOEF_U_ECXOEFDT
  S ECODE(3)=ECODE(3)_U_ECXPATCAT
+ I ECXLOGIC>2013 S ECODE(3)=ECODE(3)_U_ECXESC_U_ECXIVAC_U_ECXIVSC_U_ECXDRGC_U_ECXCLST_U_ECXECL ;144
+ I ECXLOGIC>2014 S ECODE(3)=ECODE(3)_U_ECXSVCI_U_ECXSVCL ;149
  ;
  N DA,DIK,X S X=""
  F X=0:1:3 S ^ECX(ECFILE,EC7,X)=ECODE(X)

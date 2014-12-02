@@ -1,5 +1,5 @@
 SRSRQST ;BIR/MAM,ADM - MAKE OPERATION REQUESTS ;11/01/01  9:40 AM
- ;;3.0;Surgery;**3,58,67,88,103,105,100,144,175**;24 Jun 93;Build 6
+ ;;3.0;Surgery;**3,58,67,88,103,105,100,144,175,177**;24 Jun 93;Build 89
 MUST S SRLINE="" F I=1:1:80 S SRLINE=SRLINE_"="
  W @IOF W:$D(SRCC) !,?29,$S(SRSCON=1:"FIRST",1:"SECOND")_" CONCURRENT CASE" W !,?20,"OPERATION REQUEST: REQUIRED INFORMATION",!!,SRNM_" ("_SRSSN_")",?65,SREQDT,!,SRLINE,!
 SURG ; surgeon
@@ -53,10 +53,18 @@ CON ; request concurrent case
  D MUST Q:SRSOUT  S SRSCON(SRSCON,"DOC")=$P(^VA(200,SRSDOC,0),"^"),SRSCON(SRSCON,"SS")=$P(^SRO(137.45,SRSS,0),"^"),SRSCON(SRSCON,"OP")=SRSOP,SRSCON(SRSCON)=SRTN K DA
  Q
 OTHDIR ; call to reader for site specific required fields
- K DIR,SREQ,SRY S FLD=$P(^SRO(133,SRSITE,4,SRFLD,0),"^") D FIELD^DID(130,FLD,"","TITLE","SRY") S DIR(0)="130,"_FLD,DIR("A")=SRY("TITLE") D ^DIR I $D(DTOUT)!(X="^") S SRSOUT=1 Q
- I Y=""!(X["^") W !!,"It is mandatory that you provide this information before proceeding with this",!,"request.",! D ASK Q:SRSOUT  G OTHDIR
+ ;JAS - 08/05/14 - SR*3*177 - Modified this section for ICD-10
+ K DIR,SREQ,SRY S FLD=$P(^SRO(133,SRSITE,4,SRFLD,0),"^") D FIELD^DID(130,FLD,"","TITLE","SRY") S DIR(0)="130,"_FLD,DIR("A")=SRY("TITLE") D DIRYN I $D(DTOUT)!($G(X)="^") S SRSOUT=1 Q
+ I "^32.5^66^253^286^343^344^392^489^"[("^"_FLD_"^") I $G(X)="@"!($G(X)="") S X="^"
+ I $G(Y)=""!(X["^") W !!,"It is mandatory that you provide this information before proceeding with this",!,"request.",! D ASK Q:SRSOUT  G OTHDIR
  S SREQ(130,SRTN_",",FLD)=$P(Y,"^") D FILE^DIE("","SREQ","^TMP(""SR"",$J)")
  Q
+DIRYN ; call ^DIR if not FILE 80 or ICD-9 FILE 80 (added for SR*3.0*177)
+ I "^32.5^66^253^286^343^344^392^489^"[("^"_FLD_"^") D  Q
+ . S SRPRMT=DIR("A")_" ",SRDEF=$$GET1^DIQ(130,SRTN,FLD)
+ . D ICDSRCH^SROICD
+ D ^DIR
+ Q 
 ASK K DIR S DIR(0)="Y",DIR("A")="Do you want to continue with this request ",DIR("B")="YES"
  S DIR("?")="Enter RETURN to continue with this request, or 'NO' to discontinue this request." D ^DIR S:'Y SRSOUT=1
  Q

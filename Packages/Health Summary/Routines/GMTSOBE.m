@@ -1,5 +1,5 @@
 GMTSOBE ; SLC/KER - HS Object - Export            ; 05/22/2008
- ;;2.7;Health Summary;**89**;Oct 20, 1995;Build 61
+ ;;2.7;Health Summary;**89,107**;Oct 20, 1995;Build 3
  ;                    
  ; External References
  ;
@@ -29,6 +29,20 @@ EN ; Main Entry Point to Export a HS Object
  . W !," Can not export a Health Summary Object using GMTS HS ADHOC OPTION",!," (Adhoc) Health Summary Type."
  S GMTSTNAT=+GMTSTNV I GMTSTNAT>0 D  Q
  . W !," Can not export a Health Summary Object using a nationally released",!," Remote Data View Health Summary Type."
+ ;p.107 added error msg for local components and components with selected Items
+ N GMTSCDA,GMTSCERR,GMTSERR S (GMTSCDA,GMTSCERR,GMTSERR)=0
+ F  S GMTSCDA=$O(^GMT(142,GMTST,1,GMTSCDA)) Q:'GMTSCDA  D
+ .I $P($G(^GMT(142,GMTST,1,GMTSCDA,0)),U,2)>1000 S GMTSCERR=1,GMTSCERR("LOC",$P($G(^GMT(142,GMTST,1,GMTSCDA,0)),U,2))=1
+ .I $O(^GMT(142,GMTST,1,GMTSCDA,0)) S GMTSCERR=1,GMTSCERR("SEL",$P($G(^GMT(142,GMTST,1,GMTSCDA,0)),U,2))=1
+ I GMTSCERR W ! D  W !!,"Object NOT Exported!!",!!,"Press any key...." N X R X:DTIME Q
+ .I $O(GMTSCERR("LOC",0)) D
+ ..W !!,"Cannot export a Health Summary Object using a Health Summary Type",!,"that contains Local Health Summary Components",!
+ ..S GMTSERR=0 F  S GMTSERR=$O(GMTSCERR("LOC",GMTSERR)) Q:'GMTSERR  D
+ ...W !,"Health Summary Type "_$P($G(^GMT(142,GMTST,0)),U)_" contains Local Health Summary",!,"Component "_$P($G(^GMT(142.1,GMTSERR,0)),U)
+ .I $O(GMTSCERR("SEL",0)) D
+ ..W !!,"Cannot export a Health Summary Object using a Health Summary Type",!,"that contains Health Summary Components with Selected Items",!
+ ..S GMTSERR=0 F  S GMTSERR=$O(GMTSCERR("SEL",GMTSERR)) Q:'GMTSERR  D
+ ...W !,"Health Summary Type "_$P($G(^GMT(142,GMTST,0)),U)_" contains Health Summary Component ",!,$P($G(^GMT(142.1,GMTSERR,0)),U)_" with Selected Items"
  S GMTSRTN="GMTSOBX" D INIT,TYPE,OBJ,MAIL
  K ^TMP($J,"GMTSOBXM")
  Q

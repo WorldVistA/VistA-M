@@ -1,5 +1,5 @@
 IBCEOB0 ;ALB/TMP/PJH - 835 EDI EOB MSG PROCESSING ; 8/24/10 7:23pm
- ;;2.0;INTEGRATED BILLING;**135,280,155,431**;21-MAR-94;Build 106
+ ;;2.0;INTEGRATED BILLING;**135,280,155,431,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -31,7 +31,7 @@ Q30 Q
  ;
  ; IBZDATA is also assumed to exist or if not, it is created in FINDLN
  ;
- N A,LEVEL,IBSEQ,IBDA,IBPC,IBLREF,IBIFN,Q,X,Y,DA,DD,DO,DIC,DLAYGO,PLREF
+ N A,LEVEL,IBSEQ,IBDA,IBPC,IBLREF,IBIFN,Q,X,Y,DA,DD,DO,DIC,DLAYGO,PLREF,ERRCOD
  K ^TMP($J,40) ; the entry # for corresponding 41, 42, and 45 records
  ;
  S IBIFN=+$G(^IBM(361.1,IBEOB,0))
@@ -45,11 +45,18 @@ Q30 Q
  ;
  ; Find the line item from original bill for this adjustment
  S PLREF=$S('HIPAA:$P(IB0,U,22),1:$$LINE()) ; old format from 40 record, new format from 42
- S IBLREF=+$$FINDLN^IBCEOB1(IB0,IBEOB,.IBZDATA,+PLREF)
+ S ERRCOD=0
+ S IBLREF=+$$FINDLN^IBCEOB1(IB0,IBEOB,.IBZDATA,+PLREF,.ERRCOD)
  I 'IBLREF D  G Q40
- . N Z,Z0,CT
- . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line detail could not be matched to a billed item"
- . D DET40^IBCEOB00(IB0,.Z0)
+ . N Z,Z0,CT,ETEXT
+ . S EFLAG=0,ETEXT=""
+ . ;;S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line detail could not be matched to a billed item"
+ . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)=" "
+ . S ETEXT=$P("Revenue Code^Procedure Code^Amount of Units^Charge Amount^Procedure Code Modifier",U,+ERRCOD)
+ . I ETEXT="" S ETEXT="Data"
+ . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Mismatched "_ETEXT_":"
+ . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)=" "
+ . D DET40^IBCEOB00(IB0,.Z0,ERRCOD)
  . S CT=+$O(^TMP(IBEGBL,$J,""),-1),Z=0 F  S Z=$O(Z0(Z)) Q:'Z  S CT=CT+1,^TMP(IBEGBL,$J,CT)=Z0(Z)
  ;
  S DIC="^IBM(361.1,"_IBEOB_",15,",DIC(0)="L",DLAYGO=361.115,DA(1)=IBEOB
@@ -80,7 +87,7 @@ Q40 Q
  ;
  N DA,DR,DIE,X,Y,Z,Z0,CT
  I '$G(^TMP($J,40)) D  G Q41
- . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line adjustment has no corresponding service line"
+ . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line adjustment (EEOB Record 41) has no matching service line"
  . D DET4X^IBCEOB00(41,IB0,.Z0)
  . S CT=+$O(^TMP(IBEGBL,$J,""),-1),Z=0 F  S Z=$O(Z0(Z)) Q:'Z  S CT=CT+1,^TMP(IBEGBL,$J,CT)=Z0(Z)
  ;
@@ -90,7 +97,7 @@ Q40 Q
  I +$P(IB0,U,3) S DR=".13///"_$$DOLLAR^IBCEOB($P(IB0,U,3))
  I +$P(IB0,U,4) S DR=DR_$S(DR="":"",1:";")_".14///"_$$DOLLAR^IBCEOB($P(IB0,U,4))
  I DR'="" D ^DIE S IBOK=($D(Y)=0)
- I '$G(IBOK) S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Bad data for service line adjustment-2"
+ I '$G(IBOK) S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Mismatched data for service line adjustment-2 (EEOB Record 41)"
  ;
  ; For Medicare MRA's only:
  ; If the Allowed Amount field is present, then we need to file an
@@ -118,7 +125,7 @@ Q41 Q
  N DO,DD,DLAYGO,DIC,DA,X,Y,Z,Z0,CT
  S IBOK=0
  I '$G(^TMP($J,40)) D  G Q42
- . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line adjustment has no corresponding service line"
+ . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line adjustment (EEOB Record 42) has no matching service line"
  . D DET4X^IBCEOB00(42,IB0,.Z0)
  . S CT=+$O(^TMP(IBEGBL,$J,""),-1),Z=0 F  S Z=$O(Z0(Z)) Q:'Z  S CT=CT+1,^TMP(IBEGBL,$J,CT)=Z0(Z)
  ;
@@ -130,7 +137,7 @@ Q41 Q
  I $P(IB0,U,4)'="" S:$L(DIC("DR")) DIC("DR")=DIC("DR")_";" S DIC("DR")=DIC("DR")_".03////"_$TR($P(IB0,U,4),";"," ")
  D FILE^DICN K DO,DD,DLAYGO
  I Y'>0 S IBOK=0
- I '$G(IBOK) S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Bad data for service line adjustment-3"
+ I '$G(IBOK) S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Mismatched data for service line adjustment-3 (EEOB Record 42)"
  ;
  ; For Medicare MRA's only:
  ; Process and store the line level remark code as an LQ kludge line
@@ -153,13 +160,13 @@ Q42 Q
  ;
  N IBDA,LEVEL,A,Z0,CT,Z
  I '$G(^TMP($J,40)) D  G Q45
- . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line adjustment has no corresponding service line"
+ . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line adjustment (EEOB Record 45) has no matching service line"
  . D DET4X^IBCEOB00(45,IB0,.Z0)
  . S CT=+$O(^TMP(IBEGBL,$J,""),-1),Z=0 F  S Z=$O(Z0(Z)) Q:'Z  S CT=CT+1,^TMP(IBEGBL,$J,CT)=Z0(Z)
  ;
  I $P(IB0,U,3)'="" S $P(^TMP($J,40),U,2)=$P(IB0,U,3)
  I $P(IB0,U,3)="" S $P(IB0,U,3)=$P(^TMP($J,40),U,2)
- I $P(IB0,U,3)="" S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line adjustment is missing its group code" G Q45
+ I $P(IB0,U,3)="" S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line adjustment (EEOB Record 45) is missing its group code" G Q45
  ;
  S IBDA(2)=+^TMP($J,40)
  S IBDA(1)=+$O(^IBM(361.1,IBEOB,15,IBDA(2),1,"B",$P(IB0,U,3),0))
@@ -187,7 +194,7 @@ Q42 Q
  . S LEVEL(0)=IBDA,LEVEL(1)=IBDA(1),LEVEL(2)=IBDA(2),LEVEL(3)=IBEOB
  . S A="5;.02;1;0;0^6;.03;0;1;1^7;.04;0;1;0"
  . S IBOK=$$STORE^IBCEOB1(A,IB0,IBEOB,.LEVEL)
- . I 'IBOK S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Bad data for reason code ("_$P(IB0,U,4)_"), adjustment group code ("_$P(IB0,U,3)_") at line adjustment "_+^TMP($J,40) Q
+ . I 'IBOK S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Mismatched data for reason code ("_$P(IB0,U,4)_"), adjustment group code ("_$P(IB0,U,3)_") at line adjustment "_+^TMP($J,40) Q
  ;
 Q45 Q
  ;
@@ -199,12 +206,12 @@ Q45 Q
  S IBOK=0
  N AGC,IBDA,LEVEL,A,Z0,CT,Z
  I '$G(^TMP($J,40)) D  G Q46
- . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line adjustment has no corresponding service line"
+ . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line adjustment (EEOB Record 46) has no matching service line"
  . D DET4X^IBCEOB00(46,IB0,.Z0)
  . ;S CT=+$O(^TMP(IBEGBL,$J,""),-1),Z=0 F  S Z=$O(Z0(Z)) Q:'Z  S CT=CT+1,^TMP(IBEGBL,$J,CT)=Z0(Z)
  ;
  S AGC=$P(^TMP($J,40),U,2)
- I AGC="" S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line adjustment is missing its group code" G Q46
+ I AGC="" S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Service line adjustment (EEOB Record 46) is missing its group code" G Q46
  ;
  S IBDA(2)=+^TMP($J,40)
  S IBDA(1)=+$O(^IBM(361.1,IBEOB,15,IBDA(2),1,"B",AGC,0))

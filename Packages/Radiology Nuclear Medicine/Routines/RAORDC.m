@@ -1,5 +1,5 @@
 RAORDC ;HISC/CAH,FPT,GJC,DAD AISC/RMO-Check Request Status against Exam Status ;4/9/97  12:06
- ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**113**;Mar 16, 1998;Build 6
  ;
  ;The variables RADFN, RADTI and RACNI must be defined. The variable
  ;RADELFLG is set when the exam is being deleted.  This routine is
@@ -9,6 +9,20 @@ RAORDC ;HISC/CAH,FPT,GJC,DAD AISC/RMO-Check Request Status against Exam Status ;
  ;updated successfully, and from RAUTL1 after exam status update.
  G Q:'$D(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)) S RAEXM0=^(0),RAEXOR=$S($D(RADELFLG):0,$D(^RA(72,+$P(RAEXM0,"^",3),0)):$P(^(0),"^",3),1:""),RAOIFN=+$P(RAEXM0,"^",11) G Q:'$D(^RAO(75.1,RAOIFN,0)) S (RAORD0,RAORDB4)=^(0)
  S RAOSTS=$S(RAEXOR=0:0,RAEXOR>0&(RAEXOR<9):6,RAEXOR=9:2,1:"") D EXMCAN:RAOSTS=0,EXMCOM:RAOSTS=2,^RAORDU:RAOSTS=6&(RAOSTS'=$P(RAORD0,"^",5))
+ ;
+ ;Check for studies that are COMPLETE (w/order=9). May be single studies,
+ ;multiple studies per patient event: examsets, printsets, add exams to 
+ ;last visit get radiation dose data if the proper conditions are met.
+ I RAOSTS=2!(RAOSTS=6) D  ; ACTIVE (6) or COMPLETE (2)
+ .N RAIT,RAY2,RAY3 S RAY2=$G(^RADPT(RADFN,"DT",RADTI,0))
+ .S RAIT=$P($G(^RA(79.2,+$P(RAY2,U,2),0)),U,3)
+ .I RAIT'="RAD",(RAIT'="CT") Q
+ .S RAIT=$S(RAIT="RAD":"FLUORO",1:"CT") ;MAG requires "FLUORO"
+ .S RAY3=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0))
+ .Q:$P($G(^RA(72,+$P(RAY3,U,3),0)),U,3)'=9  ;must be COMPLETE
+ .D GETDOSE^RADUTL ;RA*5.0*113 w/MAG*3.0*137
+ .Q
+ ;
  I $P($G(RAORDB4),"^",5)=2,(RAOSTS'=2) D
  . ; Prior request status complete ($P(RAORDB4,"^",5)=2), new request
  . ; status (RAOSTS) not complete & OE/RR version not less than 3 issue

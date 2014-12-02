@@ -1,6 +1,6 @@
 XGKB1 ;SFISC/VYD - Read with Escape Processing cont. ;11/06/08  15:08
  ;;8.0;KERNEL;**244,514**;Jul 10, 1995;Build 8
- ;;Special thanks to MELDRUM.KEVIN@ISC-SLC.domain.ext
+ ;;Special thanks to MELDRUM.KEVIN@ISC-SLC.DOMAIN.EXT
  ;
 VAXDSM ; $ZB ($KEY) values for VAX DSM
 MSM ; $ZB ($KEY) values for MSM

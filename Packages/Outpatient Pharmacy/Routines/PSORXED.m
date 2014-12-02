@@ -1,5 +1,5 @@
 PSORXED ;IHS/DSD/JCM - edit rx utility ;8/18/10 3:16pm
- ;;7.0;OUTPATIENT PHARMACY;**2,16,21,26,56,71,125,201,246,289,298,366,385,403**;DEC 1997;Build 9
+ ;;7.0;OUTPATIENT PHARMACY;**2,16,21,26,56,71,125,201,246,289,298,366,385,403,421**;DEC 1997;Build 15
  ;External reference to ^PSXEDIT supported by DBIA 2209
  ;External reference to ^DD(52 supported by DBIA 999
  ;External reference to ^PSDRUG supported by DBIA 221
@@ -63,7 +63,7 @@ LOG1 ;
  K D,OEXDT,NEXDT
  ; 
  ; Do not add RX to the label list when there are:
- ;   1) Unresolved DUR/Refill Too Soon rejects
+ ;   1) Unresolved DUR/Refill Too Soon/RRR rejects
  ;   2) Unresolved TRICARE/CHAMPVA rejects
  ;   3) TRICARE/CHAMPVA claims that are IN PROGRESS
  ; But if the Fill Date was modified then bypass these checks and allow to update the label list  - PSO*7*403
@@ -129,7 +129,7 @@ LBL ;
  S PSOEDITL=0 N PSOECMES S PSOECMES="",PSOECMES=$$STATUS^PSOBPSUT(PSORXED("IRXN"),PSOEDITF)
  I PSOTRIC D  Q:'PSOEDITL
  . I PSOECMES["IN PROGRESS"!(PSOECMES["REJECTED") S PSOEDITL=0 Q
- . I $$FIND^PSOREJUT(PSORXED("IRXN"),PSOEDITF) S PSOEDITL=0 Q
+ . I $$FIND^PSOREJUT(PSORXED("IRXN"),PSOEDITF,,,1) S PSOEDITL=0 Q
  . I ",12,14,15,"[(","_$P($G(^PSRX(PSORXED("IRXN"),"STA")),"^")_",") S PSOEDITL=0 Q
  . I COM="" S:'$G(PSOEDITF)&$G(PSOEDITR) PSOEDITL=2 Q
  Q:PSOEDITL=2&($G(PSOTRIC))&(COM="")

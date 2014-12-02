@@ -1,5 +1,5 @@
 PSJORRE1 ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (EXPANDED) ; 2/28/11 3:11pm
- ;;5.0; INPATIENT MEDICATIONS ;**22,51,50,58,81,91,110,111,134,225**;16 DEC 97;Build 16
+ ;;5.0;INPATIENT MEDICATIONS;**22,51,50,58,81,91,110,111,134,225,275**;16 DEC 97;Build 157
  ;
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
  ; Reference to ^PS(52.6 is supported by DBIA 1231.
@@ -26,7 +26,7 @@ UDTMP ;*** Set ^TMP for Unit dose orders.
  N DO,DN,INST,X,Y,PROVIDER,NOTGIVEN,RNWDT
  S (MR,SCH,INST)=""
  S ND2=$G(@(F_+ON_",2)")),ND0=$G(@(F_+ON_",0)"))
- S ND6=$P($G(@(F_+ON_",6)")),"^")
+ S ND6=$P($G(@(F_+ON_",6)")),"^") S:ND6["Instructions too long. See Order View or BCMA for full text." ND6="Instructions too long. See order details for full text."
  S RNWDT=$$LASTREN^PSJLMPRI(DFN,ON) I RNWDT S RNWDT=+RNWDT
  S STAT=$$CODES^PSIVUTL($P(ND0,U,9),$S(ON["P":53.1,1:55.06),28)
  S NDOI=$G(@(F_+ON_",.2)")),DO=$P(NDOI,U,2)
@@ -78,6 +78,7 @@ IVTMP ;*** Set ^TMP for IV orders.
  . S INFUS=$P($G(^PS(53.1,+ON,8)),U,5)
  . S ND2=$G(@(F_+ON_",2)")),START=$P(ND2,U,2),STOP=$P(ND2,U,4)
  . S ADM=$P(ND2,U,5),SIO=$P($G(@(F_+ON_",6)")),"^")
+ . S:($G(SIO)["Instructions too long. See Order View or BCMA for full text") SIO="Instructions too long. See order details for full text."
  . S ND2P5=$G(@(F_+ON_",2.5)")) S IVLIM=$P(ND2P5,U,4) I $E(IVLIM)="a" S IVLIM="doses"_$P(IVLIM,"a",2)
  . I IVLIM="" S IVLIM=$P(ND2P5,U,2) S:(IVLIM'["d")&(IVLIM'["h") IVLIM=""
  I ON'["P"  D
@@ -86,6 +87,7 @@ IVTMP ;*** Set ^TMP for IV orders.
  . S MR=$$MR(+$P($G(^PS(55,DFN,"IV",+ON,.2)),U,3))
  . S START=$P(ND0,U,2),STOP=$P(ND0,U,3)
  . S ADM=$P(ND0,U,11),SIO=$P($G(@(F_+ON_",3)")),"^")
+ . S:($G(SIO)["Instructions too long. See Order View or BCMA for full text") SIO="Instructions too long. See order details for full text."
  . NEW VERPHARM S VERPHARM=$P($G(^PS(55,DFN,"IV",+ON,4)),U,4)
  . S:+VERPHARM $P(^TMP("PS",$J,"RXN",0),U,5)=VERPHARM
  . S ND2P5=$G(@(F_+ON_",2.5)")) S IVLIM=$P(ND2P5,U,4) I IVLIM="" S IVLIM=$P(ND2P5,U,2) S:(IVLIM'["d")&(IVLIM'["h") IVLIM=""

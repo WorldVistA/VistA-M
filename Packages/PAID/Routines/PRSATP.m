@@ -1,5 +1,5 @@
 PRSATP ;HISC/REL,WIRMFO/MGD/PLT - Timekeeper Post Time ;4/13/2012
- ;;4.0;PAID;**22,57,69,92,102,93,112,126,132**;Sep 21, 1995;Build 13
+ ;;4.0;PAID;**22,57,69,92,102,93,112,126,132,137**;Sep 21, 1995;Build 4
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; input (from calling option)
  ;   PTPF - (optional) part-time physician flag, true (=1) when called
@@ -66,7 +66,7 @@ P1 R !!,"Was Employee Absent the Entire Tour? ",X:DTIME S:'$T X="^" Q:X["^"  S X
  ;
 P3 S ZENT=$S($E(ENT,2)="H"&('$G(PTPF)):"RG ",$E(ENT,1,2)="00":"RG ",1:"")
  I TC=1 D OT S:$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),"^",12)&(AC="M2E") ZENT=ZENT_"HW " S ZENT=ZENT_"NP CP " G P31
- I TC=3!(TC=4) D LV S:$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),"^",12)&($E(ENT,22)) ZENT=ZENT_"HW " G P31
+ I TC=3!(TC=4) D LV,OT S:$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),"^",12)&($E(ENT,22)) ZENT=ZENT_"HW " G P31 ;PRS*137
  D LV,OT S ZENT=ZENT_"TV TR " S:$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),"^",12) ZENT=ZENT_"HX HW "
 P31 S DDSFILE=458,DDSFILE(1)=458.02,DA(2)=PPI,DA(1)=DFN,DA=DAY
  S Z=$G(^PRST(458,PPI,"E",DFN,"D",DAY,2)) K ZS

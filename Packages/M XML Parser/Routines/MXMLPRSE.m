@@ -1,5 +1,6 @@
 MXMLPRSE ;SAIC/DKM - XML Parser ;09/08/08  11:50
- ;;7.3;TOOLKIT;**58,67,89,116**;Apr 25, 1995;Build 1
+ ;;7.3;TOOLKIT;**58,67,89,116,136**;Apr 25, 1995;Build 5
+ ;Per VHA Directive 6402, this routine should not be modified
  ;=================================================================
  ; Main entry point.
  ; DOC = Closed reference to global array containing document
@@ -107,7 +108,8 @@ VALUE(ERF,FLG) ;
  .I $$NEXT("&#") S RTN=RTN_$$CHENTITY
  .E  I 'FLG,$$NEXT("&") S RTN=RTN_$$ENTITY
  .E  S RTN=RTN_CHR,CPOS=CPOS+1
- .D:CPOS>LLEN READ
+ .;D:CPOS>LLEN READ
+ .D:(LLEN-CPOS)<50 READ ;P136
  I DLM=CHR S CPOS=CPOS+1
  E  D EPOS,ERROR($S('$L(CHR):12,EXC[CHR:13,1:12)) Q ""
  Q $$NMLWS(RTN)

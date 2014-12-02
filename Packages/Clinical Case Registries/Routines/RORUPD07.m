@@ -1,5 +1,5 @@
-RORUPD07 ;HCIOFO/SG - PROCESSING OF THE 'PROBLEM' FILE  ; 8/3/05 9:46am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+RORUPD07 ;HCIOFO/SG - PROCESSING OF THE 'PROBLEM' FILE ;8/3/05 9:46am
+ ;;1.5;CLINICAL CASE REGISTRIES;**19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
@@ -26,7 +26,8 @@ LOAD(IENS) ;
  . N DE,GMPFLD,GMPORIG,GMPROV,GMVAMC,IN,IP,VT
  . S (GMPVAMC,GMPROV)=0
  . D GETFLDS^GMPLEDT3(+IENS)
- . ;---
+ . ;--- load date of interest from PTF
+ . I +$G(GMPFLD(80201)) S RORVALS("DV",RORFILE,"DOI")=$P(GMPFLD(80201),"^")
  . S DE=""
  . F  S DE=$O(RORUPD("SR",RORFILE,"F",2,DE))  Q:DE=""  D
  . . S VT=""
@@ -50,7 +51,7 @@ PROBLEM(UPDSTART,PATIEN) ;
  N RORFILE       ; File number
  N RORPLST       ; List of patient problems
  ;
- N DATE,IS,LOCATION,PROBIENS,RC,TMP
+ N DATE,IS,LOCATION,PROBIENS,RC,TMP,DOI
  S RORFILE=9000011
  ;--- Check if the problem list has been modified in
  ;    the data scan period of the patient.
@@ -70,11 +71,13 @@ PROBLEM(UPDSTART,PATIEN) ;
  . ;--- Ignore problems entered not in the data scan period
  . S DATE=$$GETDE^RORUPDUT(RORFILE,118)
  . Q:(DATE<UPDSTART)!(DATE'<RORUPD("DSEND"))
+ . ; --- Apply rule using Date of Interest 
+ . S DOI=$G(RORVALS("DV",RORFILE,"DOI")) I DOI="" S DOI=DATE
  . ;--- Apply "before" rules
- . S RC=$$APLRULES^RORUPDUT(RORFILE,PROBIENS,"B",DATE,$G(LOCATION))
+ . S RC=$$APLRULES^RORUPDUT(RORFILE,PROBIENS,"B",DOI,$G(LOCATION))
  . I RC  D INCEC^RORUPDUT(.RC)  Q
  . ;--- Apply "after" rules
- . S RC=$$APLRULES^RORUPDUT(RORFILE,PROBIENS,"A",DATE,$G(LOCATION))
+ . S RC=$$APLRULES^RORUPDUT(RORFILE,PROBIENS,"A",DOI,$G(LOCATION))
  . I RC  D INCEC^RORUPDUT(.RC)  Q
  ;
  D CLRDES^RORUPDUT(RORFILE)

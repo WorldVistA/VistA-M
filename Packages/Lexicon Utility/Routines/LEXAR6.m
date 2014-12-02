@@ -1,6 +1,18 @@
-LEXAR6 ; ISL Look-up Response (Unresolved Narr)   ; 05/25/1998
- ;;2.0;LEXICON UTILITY;**3,9,11**;Sep 23, 1996
- ;
+LEXAR6 ;ISL/KER - Look-up Response (Unresolved Narr) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**3,9,11,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^TMP("LEXSCH")      SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    NOW^%DTC            ICR  10000
+ ;    HOME^%ZIS           ICR  10086
+ ;    ^%ZTLOAD            ICR  10063
+ ;    FILE^DICN           ICR  10009
+ ;    ^DIE                ICR  10018
+ ;    ^DIM                ICR  10016
+ ;    $$UP^XLFSTR         ICR  10103
+ ;               
  Q
  ;  This routines saves Unresolved Narratives (terms not found
  ;  in the Lexicon) in file 757.06.  It also saves comments about
@@ -8,6 +20,8 @@ LEXAR6 ; ISL Look-up Response (Unresolved Narr)   ; 05/25/1998
  ;  as a tool to update the Lexicon Utility.
  ;
 SAVE ; Save Unresolved Narrative
+ ; Quit saving Unresolved Narratives pch 80
+ G SAVEQ
  G:'$L($G(^TMP("LEXSCH",$J,"NAR",0))) SAVEQ
  N Y,DIC,DO,D0,DA,ZTQUEUED,ZTREQ,ZTSAVE,ZTSK,ZTDESC,ZTDTH,ZTIO,ZTRTN,%
  N LEXUNR S LEXUNR=$$UNR($G(^TMP("LEXSCH",$J,"NAR",0))) G:LEXUNR>0 SAVEQ
@@ -45,6 +59,8 @@ SAVEQ ; End of Save
  I $D(^TMP("LEXSCH",$J,"COM")) K ^TMP("LEXSCH",$J,"COM"),^TMP("LEXSCH",$J,"EXP"),^TMP("LEXSCH",$J,"IEN") K:+($G(LEX))=0 LEX
  Q
 SV ; Save an unresolved narrative (tasked) in file 757.06
+ ; Quit saving Unresolved Narratives pch 80
+ Q
  N X,Y,DA,DD,DO,D0,DIC,DLAYGO,DI,DIE,DIK,DQ,DR,LEXADD,LEXNAR,LEXDTG,LEXSCH,LEXNUM,LEXAPP,LEXCOM,LEXIEN,LEXSVC,LEXLOC,LEXFLN,LEXIDX,LEXSCT,LEXFIL
  S LEXDTG=$$DTG,LEXADD=0
  I '$D(^TMP("LEXSCH",$J,"COM",0)) D

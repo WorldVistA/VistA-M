@@ -1,5 +1,5 @@
-DGMTR1 ;ALB/CJM,SCG,LBD - Check Means Test Requirements Cont'd;3/25/92  09:51
- ;;5.3;Registration;**182,344,433,456,564,688,840**;Aug 13, 1993;Build 20
+DGMTR1 ;ALB/CJM,SCG,LBD,BDB - Check Means Test Requirements Cont'd;3/25/92  09:51
+ ;;5.3;Registration;**182,344,433,456,564,688,840,858**;Aug 13, 1993;Build 30
  ;
 COPYRX(DFN,MTIEN) ;
  ;Creates a Pharmacy Copay test based on the means test if the vet is
@@ -29,9 +29,9 @@ COPYRX(DFN,MTIEN) ;
  .I (CODE'=""),("ACGP01"[CODE) S QUIT=0
  .Q:QUIT
  .;
- .;must still be effective
- .Q:($$FMDIFF^XLFDT(DT,$P(NODE0,"^"))>365)
- .Q:$$OLD^DGMTU4($P(NODE0,"^"))
+ .;DG*5.3*858 MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ .;Q:($$FMDIFF^XLFDT(DT,$P(NODE0,"^"))>365)
+ .Q:$$OLDMTPF^DGMTU4($P(NODE0,"^"))
  .Q:($P(NODE0,"^",14))  ;declined to provide income information
  .Q:($P(NODE0,"^",26))  ;refused to sign the test
  .F TRIES=1:1 D  Q:(TRIES>3)

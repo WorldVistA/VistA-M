@@ -1,5 +1,5 @@
-SCRPW20 ;RENO/KEITH - ACRP Ad Hoc Report ; 15 Nov 98  4:31 PM
- ;;5.3;Scheduling;**144,171**;AUG 13, 1993
+SCRPW20 ;RENO/KEITH - ACRP Ad Hoc Report ;15 Nov 98  4:31 PM
+ ;;5.3;Scheduling;**144,171,593**;AUG 13, 1993;Build 13
  I $E(IOST)'="C" D  Q
  .N SDX S SDX="Your current terminal type is "_IOST_"." W !?(IOM-$L(SDX)\2),SDX
  .S SDX="This option requires a CRT terminal type!" W !!?(IOM-$L(SDX)\2),SDX,! Q
@@ -52,13 +52,17 @@ VERS ;Verify segments
  W ! F SDX="VF","VP","VL","VO" S SDX="$$"_SDX_"^SCRPW29(1)" I @(SDX)
  Q
  ;
-REV0 S SDREV=1,SDOUT=0 D PLIST^SCRPW22(0,15) S SDOUT=0
+REV0 N SDERR S SDREV=1,SDOUT=0 D PLIST^SCRPW22(0,15) S SDOUT=0
 REV1 D VERS W:SDOUT ! S SDOUT=0 W !?32,$$XY(IORVON)," Report action ",$$XY(IORVOFF)
  K DIR S DIR("A")="Select report action",DIR(0)="S^C:CONTINUE;E:EDIT PARAMETERS;R:RE-DISPLAY PARAMETERS;P:PRINT PARAMETERS;Q:QUIT",DIR("B")="CONTINUE",SDACT=$P($$DIR^SCRPW23(.DIR,0),U)
  I $D(DTOUT)!$D(DUOUT)!(SDACT="Q") S SDOUT=1 Q
  I SDACT="P" N ZTSAVE S ZTSAVE("SDPAR(")="" W ! D EN^XUTMDEVQ("PPAR^SCRPW27","ACRP Ad Hoc Report Parameters",.ZTSAVE) G REV1
- G:SDACT="R" REVIEW I SDACT="C" S SDOUT=0 D VERS D:SDOUT  Q
- .W !!,"Required information missing.  Unable to continue with queueing!" H 3 Q
+ G:SDACT="R" REVIEW
+ I SDACT="C" D  Q:'SDOUT  S SDOUT=0 S SDERR="" G REV1
+ . S SDOUT=0 D VERS
+ . I SDOUT W !!,"Required information missing. Unable to continue with queuing!" H 3 Q
+ . S SDOUT=$$VERICD^SCRPW29(.SDERR)
+ . I SDOUT W:$G(SDERR)]"" !!,SDERR W !!,"Unable to continue with queuing!" H 3 Q
  F  S (SDOUT,SDNUL)=0 W !!?31,$$XY(IORVON)," Re-edit actions ",$$XY(IORVOFF) D RDIR S SDACT=$P($$DIR^SCRPW23(.DIR,0),U) Q:SDOUT!SDNUL  D REV2,REVSCR Q:SDOUT!SDNUL
  S (SDOUT,SDNUL)=0 G REV1
  ;
@@ -91,12 +95,16 @@ F6 K DIR W ! D DIRB1^SCRPW23("F",6,"FORMATTED TEXT") S DIR("A")="Produce output 
 P1 K DIR,SDPAR("X") D DIRB1^SCRPW23("P",1) S DIR("A")="Select report perspective",DIR("?")="Specify the element to be used for report subtotals." S SDNUL=0,SDS1="P",SDS2=1 D CAT^SCRPW22($S(SDREV:"E",1:"A")) Q:SDOUT
  Q
  ;
-L1 N %DT,SDS1 D SUBT^SCRPW50("*** Date Range Selection ***")
+L1 N %DT,SDS1,I10DTI,I10DTE D SUBT^SCRPW50("*** Date Range Selection ***")
+ S Y=$$IMP^SCRPWICD(30) S I10DTI=Y X ^DD("DD") S I10DTE=Y
 FDT W ! S %DT="AEPX",%DT("A")="Beginning date: ",%DT(0)="-TODAY" D DIRB1^SCRPW23("L",1) S:$D(DIR("B")) %DT("B")=DIR("B") D ^%DT I X=U!($D(DTOUT)) S SDOUT=1 Q
  G:Y<1 FDT K:Y>$G(SDPAR("L",2)) SDPAR("L",2) S SDS1=Y X ^DD("DD") S SDPAR("L",1)=SDS1_U_Y
 LDT W ! S %DT("A")="   Ending date: " D DIRB1^SCRPW23("L",2) S:$D(DIR("B")) %DT("B")=DIR("B") D ^%DT I X=U!($D(DTOUT)) S SDOUT=1 Q
  I Y<$P(SDPAR("L",1),U) W !!,$C(7),"Ending date must be after beginning date!" G LDT
- S SDS1=Y X ^DD("DD") S SDPAR("L",2)=SDS1_U_Y Q
+ S SDS1=Y X ^DD("DD") S SDPAR("L",2)=SDS1_U_Y
+ I ($P(SDPAR("L",1),U,1)<I10DTI),($P(SDPAR("L",2),U,1)'<I10DTI) D  G FDT
+ . W !!,$C(7),"Beginning and Ending dates must both be prior to "_I10DTE_" (ICD-9) or both be on or after "_I10DTE_" (ICD-10)."
+ Q
  ;
 L2 I SDREV D AED^SCRPW22("L") Q
 L2A S SDS1="L",SDS2=$O(SDPAR(SDS1,""),-1),SDNUL=0 F  Q:SDOUT!SDNUL  S SDS2=SDS2+1 D:'$D(SDPAR(SDS1,SDS2)) L3

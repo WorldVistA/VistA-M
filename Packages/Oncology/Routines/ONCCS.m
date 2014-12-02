@@ -1,5 +1,5 @@
 ONCCS ;Hines OIFO/GWB - Collaborative Staging ;06/23/10
- ;;2.11;ONCOLOGY;**40,43,44,47,48,49,51,57**;Mar 07, 1995;Build 6
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  N DIR,IEN,LV,PS,RC,X
  W !
@@ -29,6 +29,7 @@ ONCCS ;Hines OIFO/GWB - Collaborative Staging ;06/23/10
  ;
  ;S INPUT("CSVER_ORIGINAL")=$P($$VERSION^ONCSAPIV,U,2)
  S INPUT("CSVER_ORIGINAL")=$$GET1^DIQ(165.5,IEN,169.1,"I")
+ S:INPUT("CSVER_ORIGINAL")="" INPUT("CSVER_ORIGINAL")=$P($$VERSION^ONCSAPIV,U,2)
  ;
  S INPUT("BEHAV")=$E($$GET1^DIQ(165.5,IEN,22.3,"I"),5)
  ;
@@ -131,6 +132,9 @@ INIT ;Initialize CS fields when HISTOLOGY (ICD-O-3) (165.5,22.3) changes
  ;Malignant Lymphoma is obsolete for ADX 2012 and up.
  I ($P($G(^ONCO(165.5,D0,0)),U,16)>3120000),(X=96703) D  Q
  .W !!,"96703 is obsolete for primaries starting 2012!!!"
+ .K X
+ I ($P($G(^ONCO(165.5,D0,0)),U,16)>3100000),(X=97511) D  Q
+ .W !!,"97511 is obsolete for primaries starting 2010!!!"
  .K X
  S LNS=$O(^ONCO(164.2,"B","LUNG NOS",0))
  S LSC=$O(^ONCO(164.2,"B","LUNG SMALL CELL",0))

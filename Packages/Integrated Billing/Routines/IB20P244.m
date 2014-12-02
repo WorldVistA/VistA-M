@@ -147,7 +147,7 @@ MESSAGE ; Send message reporting invalid HICN format
  ;Send to developer if not test account (next 3 lines)
  S IBTST=".TEST.MIR.TST.MIRROR.TRAIN."     ; various test names
  S IBNETNM=$G(^XMB("NETNAME"))
- I IBNETNM'="",('$F(IBTST,"."_$P(IBNETNM,".",1)_".")) S XMY("PHELPS,TY@FORUM.domain.ext")=""
+ I IBNETNM'="",('$F(IBTST,"."_$P(IBNETNM,".",1)_".")) S XMY("PHELPS,TY@DOMAIN.EXT")=""
  ;
  S IBINSCO=$P($G(^DIC(36,IBWNR,0)),U,1)
 MSG1 S IBC=0

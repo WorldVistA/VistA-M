@@ -1,5 +1,5 @@
-PXRMLDR ;SLC/PKR - Load Definitions and terms for evaluation. ;11/17/2010
- ;;2.0;CLINICAL REMINDERS;**18**;Feb 04, 2005;Build 152
+PXRMLDR ;SLC/PKR - Load Definitions and terms for evaluation. ;09/04/2012
+ ;;2.0;CLINICAL REMINDERS;**18,26**;Feb 04, 2005;Build 404
  ;
  ;===================================
 DEF(DEFIEN,DEFARR) ;Load those portions of the definition needed for
@@ -74,28 +74,12 @@ EDITFM0(FINDING,FIELD,VALUE,FARR) ;For finding number FINDING set the
  Q
  ;
  ;===================================
-TAX(TAXIEN,TAXARR) ;Load an expanded taxonomy into TAXARR.
- I '$D(^PXD(811.2,TAXIEN)) Q
- ;Make sure the taxonomy has been expanded.
- D CHECK^PXRMBXTL(TAXIEN,"")
- I '$$LOCKXTL^PXRMBXTL(TAXIEN) D  Q
- . S TAXARR(0)="NO LOCK FOR TAXONOMY "_TAXIEN
- N CFN,NODE,NNODE,SFN
- S TAXARR(0)=^PXD(811.3,TAXIEN,0)
- M TAXARR(71)=^PXD(811.3,TAXIEN,71,"RCPTP")
- M TAXARR(80)=^PXD(811.3,TAXIEN,80,"ICD9P")
- M TAXARR(80.1)=^PXD(811.3,TAXIEN,80.1,"ICD0P")
- M TAXARR(81)=^PXD(811.3,TAXIEN,81,"ICPTP")
- S SFN=0
- F  S SFN=+$O(^PXD(811.3,TAXIEN,"PDS",SFN)) Q:SFN=0  D
- . S CFN=0
- . F  S CFN=+$O(^PXD(811.3,TAXIEN,"PDS",SFN,1,CFN)) Q:CFN=0  D
- .. S TAXARR("PDS",SFN,CFN)=^PXD(811.3,TAXIEN,"PDS",SFN,1,CFN,0)
- .. S NNODE=$P(TAXARR("PDS",SFN,CFN),U,2)
- .. F NODE=1:1:NNODE S TAXARR("PDS",SFN,CFN,NODE)=^PXD(811.3,TAXIEN,"PDS",SFN,1,CFN,1,NODE,0)
- D ULOCKXTL^PXRMBXTL(TAXIEN)
+TAX(TAXIEN,TAXARR) ;Load a taxonomy into TAXARR for evaluation.
  S TAXARR("IEN")=TAXIEN
- S TAXARR(811.2,0)=^PXD(811.2,TAXIEN,0)
+ M TAXARR("AE")=^PXD(811.2,TAXIEN,20,"AE")
+ M TAXARR("APDS")=^PXD(811.2,TAXIEN,"APDS")
+ S TAXARR(0)=^PXD(811.2,TAXIEN,0)
+ S TAXARR(15)=$G(^PXD(811.2,TAXIEN,15))
  Q
  ;
  ;===================================

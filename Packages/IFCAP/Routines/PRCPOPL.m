@@ -1,6 +1,6 @@
 PRCPOPL ;WISC/RFJ/DGL-distribution order processing list manager ; 3/20/00 9:27am
-V ;;5.1;IFCAP;**1,41**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**1,41,171**;Oct 20, 2000;Build 3
+ ;Per VHA Directive 2004-028, this routine should not be modified.
  D ^PRCPUSEL Q:'$G(PRCP("I"))
  I "PS"'[PRCP("DPTYPE") W !,"THIS OPTION SHOULD ONLY BE USED BY A PRIMARY OR SECONDARY INVENTORY POINT." Q
  ;
@@ -78,13 +78,14 @@ EXIT ;  exit and clean up
 EEITEMS ;  called from protocol file to enter/edit invpt items
  N PRC,PRCP
  S PRCP("DPTYPE")="PS"
- D ^PRCPEILM
+ D FULL^VALM1    ;PRC*5.1*171 Insure screen write protect is cleared from current Listman run
+ D ^PRCPEILM,FULL^VALM1   ;PRC*5.1*171 Insure screen write protect is cleared from subsidiary Listman run when returning to original Listman call
  D INIT
  S VALMBCK="R"
  Q
  ;
  ;
-CHECK(TYPE)        ;  called when screen displays and when protocol selected
+CHECK(TYPE) ;  called when screen displays and when protocol selected
  ;  causes () to be display around inappropriate protocol selections
  ;  type="edit" or "delete" or "release" or "picktick" or "post"
  ;  returns 1 for sucess, 0 for no
@@ -110,7 +111,7 @@ CHECK(TYPE)        ;  called when screen displays and when protocol selected
  Q 1
  ;
  ;
-SET(STRING)        ;  set string in array
+SET(STRING) ;  set string in array
  N %
  S VALMCNT=VALMCNT+1
  D SET^VALM10(VALMCNT,STRING)

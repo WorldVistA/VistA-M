@@ -1,8 +1,8 @@
-PXRMFF ;SLC/PKR - Clinical Reminders function finding evaluation. ;04/03/2012
- ;;2.0;CLINICAL REMINDERS;**4,6,11,18,22**;Feb 04, 2005;Build 160
+PXRMFF ;SLC/PKR - Clinical Reminders function finding evaluation. ;03/12/2013
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,18,22,24,26**;Feb 04, 2005;Build 404
  ;===========================================
 EVAL(DFN,DEFARR,FIEVAL) ;Evaluate function findings.
- N FFIND,FFN,ARGLIST,FN,FUN,FUNIND,FUNN,FVALUE,JND
+ N ARGLIST,FFIND,FFN,FN,FUN,FUNIND,FUNN,FVALUE,JND
  N LOGIC,LOGVAL,NL,ROUTINE,TEMP
  I '$D(DEFARR(25)) Q
  S FFN="FF"
@@ -29,48 +29,49 @@ EVAL(DFN,DEFARR,FIEVAL) ;Evaluate function findings.
  . S FIEVAL(FFN,"NUMBER")=$P(FFN,"FF",2)
  . S FIEVAL(FFN,"FINDING")=$G(FUN)_";PXRMD(802.4,"
  . I $G(PXRMDEBG) D
- .. N IND,FSTRING
- .. S IND="",FSTRING=DEFARR(25,FFN,10)
- .. I $D(PXRMAGE) S FSTRING=$$STRREP^PXRMUTIL(FSTRING,"PXRMAGE",PXRMAGE)
- .. I $D(PXRMDOB) S FSTRING=$$STRREP^PXRMUTIL(FSTRING,"PXRMDOB",PXRMDOB)
- .. I $D(PXRMDOD) S FSTRING=$$STRREP^PXRMUTIL(FSTRING,"PXRMDOD",PXRMDOD)
- .. I $D(PXRMLAD) S FSTRING=$$STRREP^PXRMUTIL(FSTRING,"PXRMLAD",PXRMLAD)
- .. I $D(PXRMSEX) S FSTRING=$$STRREP^PXRMUTIL(FSTRING,"PXRMSEX",PXRMSEX)
- .. F  S IND=$O(FN(IND)) Q:IND=""  S FSTRING=$$STRREP^PXRMUTIL(FSTRING,"FN("_IND_")",FN(IND))
- .. S ^TMP(PXRMPID,$J,"FFDEB",FFN,"DETAIL")=FIEVAL(FFN)_U_DEFARR(25,FFN,3)_U_FSTRING
+ .. S ^TMP(PXRMPID,$J,"FFDEB",FFN,"DETAIL")=FIEVAL(FFN)_U_DEFARR(25,FFN,3)_U_$$NLOGIC(LOGIC,.FN)
+ .. I $G(PXRMFFSS) D SBSDISP(LOGIC,FFN,.FN)
  Q
  ;
  ;===========================================
 EVALLOG(LOGIC,FN) ;Evaluate the logic string.
- N DIVBY0,DIVOP,IND,OP1,OP2,OPER,OPERS,NULLSTR,NUMSTACK,PFSTACK
- N RES,TEMP,UNARY
+ N DIVBY0,DIVOP,IND,NLOGIC,NODIV,NULL,NUMSTACK,OP1,OP2,OPER,OPERS
+ N PFSTACK,RES,TEMP,UNARY
+ I LOGIC="" Q 0
+ S NULL="" ;REMOVE THIS WHEN DONE FIXING.
+ S NODIV=$S(LOGIC["/":0,LOGIC["\":0,LOGIC["#":0,1:1)
+ I NODIV Q @LOGIC
+ S NULL=""
  S DIVBY0=0,DIVOP="/\#"
- S NULLSTR=""
  S OPERS=$$GETOPERS^PXRMFFDB
- I LOGIC["$P" S LOGIC=$$PRP(LOGIC)
- D POSTFIX^PXRMSTAC(LOGIC,OPERS,.PFSTACK)
+ S NLOGIC=$$NLOGIC(LOGIC,.FN)
+ D POSTFIX^PXRMSTAC(NLOGIC,OPERS,.PFSTACK)
  F IND=1:1:PFSTACK(0) D
- . I PFSTACK(IND)="FN" S IND=IND+1,TEMP=FN(PFSTACK(IND))
- . E  S TEMP=PFSTACK(IND)
- . S TEMP=$S(TEMP="":"NULLSTR",1:TEMP)
- . S OPER=$P(TEMP,"U",1)
+ . S TEMP=PFSTACK(IND)
+ .;Check for a unary operator.
+ . S UNARY=$S(TEMP="+U":1,TEMP="-U":1,TEMP="'U":1,1:0)
+ . S OPER=$S(UNARY:$E(TEMP,1),1:TEMP)
  . I OPERS'[OPER D PUSH^PXRMSTAC(.NUMSTACK,TEMP) Q
  .;If control gets to here we have an operator.
- .;Check for a unary operator
- . S UNARY=$S($E(TEMP,2)="U":1,1:0)
  . S OP2=$$POP^PXRMSTAC(.NUMSTACK)
+ . S OP2=$$STRCLEAN(OP2)
  . I UNARY S TEMP="S RES="_OPER_"OP2"
  . I 'UNARY D
  .. S OP1=$$POP^PXRMSTAC(.NUMSTACK)
- .. I DIVOP[OPER,+OP2=0  S DIVBY0=1,IND=PFSTACK(0) Q
- .. S TEMP="S RES=OP1"_OPER_"OP2"
- . I DIVBY0 Q
- .;Do the math and put the result on the stack.
- . X TEMP
+ .. S OP1=$$STRCLEAN(OP1)
+ ..;Flag division by 0 with ~
+ .. I DIVOP[OPER,+OP2=0 S DIVBY0=1,TEMP="S RES=""~"""
+ .. E  S TEMP="S RES=OP1"_OPER_"OP2"
+ .;Do the math and put the result on the stack. The result of division
+ .;by 0 with any operator is 0.
+ . I ($G(OP1)="~")!(OP2="~") S RES=0
+ . E  X TEMP
  . D PUSH^PXRMSTAC(.NUMSTACK,RES)
- I DIVBY0 Q 0
- I @LOGIC
- Q $T
+ S RES=$$POP^PXRMSTAC(.NUMSTACK)
+ I PFSTACK(0)=1 D
+ . I @NLOGIC S RES=1
+ . E  S RES=0
+ Q RES
  ;
  ;===========================================
 EVALPL(DEFARR,FFIND,PLIST) ;Build a list of patients based on a function
@@ -169,6 +170,23 @@ MHVOUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the MHV output.
  Q
  ;
  ;===========================================
+NLOGIC(LOGIC,FN) ;Replace the symbols in the logic string with their values.
+ N IND,NLOGIC,TEMP
+ I LOGIC="" Q 0
+ S NLOGIC=LOGIC
+ I NLOGIC["$P" S NLOGIC=$$PRP(NLOGIC)
+ I $D(PXRMAGE) S NLOGIC=$$STRREP^PXRMUTIL(NLOGIC,"PXRMAGE",PXRMAGE)
+ I $D(PXRMDOB) S NLOGIC=$$STRREP^PXRMUTIL(NLOGIC,"PXRMDOB",PXRMDOB)
+ I $D(PXRMDOD) S NLOGIC=$$STRREP^PXRMUTIL(NLOGIC,"PXRMDOD",PXRMDOD)
+ I $D(PXRMLAD) S NLOGIC=$$STRREP^PXRMUTIL(NLOGIC,"PXRMLAD",PXRMLAD)
+ I $D(PXRMSEX) S NLOGIC=$$STRREP^PXRMUTIL(NLOGIC,"PXRMSEX",""""_PXRMSEX_"""")
+ S IND=""
+ F  S IND=$O(FN(IND)) Q:IND=""  D
+ . S TEMP=$S(FN(IND)="":"NULL",1:FN(IND))
+ . S NLOGIC=$$STRREP^PXRMUTIL(NLOGIC,"FN("_IND_")",TEMP)
+ Q NLOGIC
+ ;
+ ;===========================================
 OUTPUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the clinical
  ;maintenance output. None currently defined.
  Q
@@ -184,7 +202,59 @@ PRP(LOGIC) ;Process $P in logic.
  . S TEMP="$P("_T1_")"
  . S T1="S RES="_TEMP
  . X T1
- . I RES="" S RES="NULLSTR"
+ . I RES="" S RES="NULL"
  . S LOGIC=$$STRREP^PXRMUTIL(LOGIC,TEMP,RES)
  Q LOGIC
+ ;
+ ;===========================================
+SBSDISP(LOGIC,FFN,FN) ;Create a step-by-step display of the function finding
+ ;evaluation for reminder test.
+ N DIVOP,IND,NLOGIC,NUMSTACK,OP1,OP2,OPER,OPERS,PFSTACK
+ N RES,TEMP,TEXT,UNARY
+ N NSTEPS,REPL
+ I LOGIC="" Q 0
+ S NSTEPS=0
+ S DIVOP="/\#"
+ S OPERS=$$GETOPERS^PXRMFFDB
+ S NLOGIC=$$NLOGIC(LOGIC,.FN)
+ K ^TMP("PXRMFFSS",$J,FFN)
+ S ^TMP("PXRMFFSS",$J,FFN,0)=NLOGIC
+ D POSTFIX^PXRMSTAC(NLOGIC,OPERS,.PFSTACK)
+ F IND=1:1:PFSTACK(0) D
+ . S TEMP=PFSTACK(IND)
+ .;Check for a unary operator.
+ . S UNARY=$S(TEMP="+U":1,TEMP="-U":1,TEMP="'U":1,1:0)
+ . S OPER=$S(UNARY:$E(TEMP,1),1:TEMP)
+ . I OPERS'[OPER D PUSH^PXRMSTAC(.NUMSTACK,TEMP) Q
+ .;If control gets to here we have an operator.
+ . S OP2=$$POP^PXRMSTAC(.NUMSTACK)
+ . S OP2=$$STRCLEAN(OP2)
+ . I UNARY S TEMP="S RES="_OPER_"OP2",TEXT=OPER_OP2
+ . I 'UNARY D
+ .. S OP1=$$POP^PXRMSTAC(.NUMSTACK)
+ .. S OP1=$$STRCLEAN(OP1)
+ ..;Flag division by 0 with ~
+ .. I DIVOP[OPER,+OP2=0 S TEMP="S RES=""~""",TEXT="0/0"
+ .. E  S TEMP="S RES=OP1"_OPER_"OP2",TEXT=OP1_OPER_OP2
+ .;Do the math and put the result on the stack. The result of division
+ .;by 0 with any operator is 0.
+ . I ($G(OP1)="~")!(OP2="~") S RES=0
+ . E  X TEMP
+ . S NSTEPS=NSTEPS+1
+ . S ^TMP("PXRMFFSS",$J,FFN,NSTEPS)=TEXT_"="_RES
+ . D PUSH^PXRMSTAC(.NUMSTACK,RES)
+ S RES=$$POP^PXRMSTAC(.NUMSTACK)
+ I PFSTACK(0)=1 D
+ . S RES=$S(NLOGIC:1,1:0)
+ . S ^TMP("PXRMFFSS",$J,FFN,1)=PFSTACK(1)_"="_RES
+ Q
+ ;
+ ;===========================================
+STRCLEAN(STRING) ;Remove extra quotes from strings.
+ I +STRING=STRING Q STRING
+ N LEN,QUOTE
+ S QUOTE=$C(34)
+ S LEN=$L(STRING)
+ I ($E(STRING,1)=QUOTE),($E(STRING,LEN)=QUOTE) Q $E(STRING,2,LEN-1)
+ Q STRING
  ;

@@ -1,5 +1,5 @@
-PXRMEGED ; SLC/PJH - Extract Counting Group Editor ;08/03/2006
- ;;2.0;CLINICAL REMINDERS;**4**;Feb 04, 2005;Build 21
+PXRMEGED ; SLC/PJH - Extract Counting Group Editor ;01/28/2013
+ ;;2.0;CLINICAL REMINDERS;**4,26**;Feb 04, 2005;Build 404
  ;
  ;Main entry point for PXRM EXTRACT COUNTING GRP EDIT
 START(IEN) ;
@@ -108,7 +108,7 @@ EGEDIT ;Edit Rule
  Q
  ;
 LOCK(DA) ;Lock the record
- L +^PXRM(810.7,DA):0 I  Q 1
+ L +^PXRM(810.7,DA):DILOCKTM I  Q 1
  E  W !!,?5,"Another user is editing this file, try later" H 2 Q 0
  ;
 SCREEN ;validate rule type

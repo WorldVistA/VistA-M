@@ -1,13 +1,14 @@
-VAUTOMA ;ALB/MLI - GENERIC ONE, MANY, ALL ROUTINE ; 03/26/2004
- ;;5.3;Registration;**111,568**;Aug 13, 1993
+VAUTOMA ;ALB/MLI - GENERIC ONE, MANY, ALL ROUTINE ;03/26/2004
+ ;;5.3;Registration;**111,568,850**;Aug 13, 1993;Build 171
  ;;MAS VERSION 5.1;
 DIVISION S VAUTVB="VAUTD",DIC="^DG(40.8,",VAUTNI=2,VAUTSTR="division" G FIRST
 CLINIC S DIC="^SC(",DIC("S")="I $P(^(0),U,3)=""C""&'+$P($G(^(""OOS"")),U,1)&'+$P($G(^(""OOS"")),U,2)&$S(VAUTD:1,$D(VAUTD(+$P(^(0),U,15))):1,'+$P(^(0),U,15)&$D(VAUTD(+$O(^DG(40.8,0)))):1,1:0)",VAUTSTR="clinic",VAUTVB="VAUTC" G FIRST
  ;  DIC("S") modified in CLINIC call, to exclude Occasion of Service locations.  abr - 11/25/96
  ;
-PATIENT S DIC="^DPT(",VAUTSTR="patient",VAUTVB="VAUTN" G FIRST
+PATIENT S DIC="^DPT(",VAUTSTR="patient",VAUTVB="VAUTN" K DIC("IGNORE") G FIRST
 WARD S DIC="^DIC(42,",VAUTSTR="ward",VAUTVB="VAUTW",DIC("S")="I $S(VAUTD:1,$D(VAUTD(+$P(^(0),U,11))):1,'+$P(^(0),U,11)&$D(VAUTD(^DG(40.8,+$O(^DG(40.8,0)),0))):1,1:0)" G FIRST
 FIRST S DIC(0)="EQMNZ",DIC("A")="Select "_VAUTSTR_": " K @VAUTVB S (@VAUTVB,Y)=0
+ I $G(DIC("IGNORE"))=1 I DIC=80!(DIC=80.1)!(DIC="^ICD9(")!(DIC="^ICD0(") S DIC(0)=DIC(0)_"I" K DIC("IGNORE")
 REDO W !,DIC("A") W:'$D(VAUTNALL) "ALL// " R X:DTIME G ERR:(X="^")!'$T D:X["?" QQ I X="" G:$D(VAUTNALL) ERR S @VAUTVB=1 G QUIT
  S DIC("A")="Select another "_VAUTSTR_": " D ^DIC G:Y'>0 FIRST D SET
  F VAI=1:0:19 W !,DIC("A") R X:DTIME G ERR:(X="^")!'$T K Y Q:X=""  D QQ:X["?" S:$E(X)="-" VAUTX=X,X=$E(VAUTX,2,999) D ^DIC I Y>0 D SET G:VAX REDO S:'VAERR VAI=VAI+1

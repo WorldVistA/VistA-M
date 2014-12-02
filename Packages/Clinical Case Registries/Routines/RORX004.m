@@ -1,5 +1,5 @@
 RORX004 ;HOIFO/BH,SG,VAC - CLINIC FOLLOW UP ;4/7/09 2:06pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13**;Feb 17, 2006;Build 27
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
@@ -20,6 +20,7 @@ RORX004 ;HOIFO/BH,SG,VAC - CLINIC FOLLOW UP ;4/7/09 2:06pm
  ;                                      patient.
  ;ROR*1.5*13   DEC  2010   A SAUNDERS   User can now select specific patients or
  ;                                      divisions for the report.
+ ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -145,10 +146,10 @@ PATIENT(IENS,PARTAG) ;
  S RC=0
  S DFN=$$PTIEN^RORUTL01(+IENS)
  ;
- ;--- Evaluates patient if IDC9 filter is Include or Exclude
- S FLAG=$G(RORTSK("PARAMS","ICD9FILT","A","FILTER")),RCC=0
+ ;--- Evaluates patient if ICD filter is Include or Exclude
+ S FLAG=$G(RORTSK("PARAMS","ICDFILT","A","FILTER")),RCC=0
  I FLAG'="ALL" D
- .S RCC=$$ICD^RORXU010(DFN,RORREG)
+ .S RCC=$$ICD^RORXU010(DFN)
  I (FLAG="INCLUDE")&(RCC=0) Q 1
  I (FLAG="EXCLUDE")&(RCC=1) Q 1
  ;

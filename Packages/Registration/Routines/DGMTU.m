@@ -1,5 +1,5 @@
-DGMTU ;ALB/RMO,LBD,BRM,EG - Means Test Utilities ; 02/08/2005 07:10 AM
- ;;5.3;Registration;**4,33,182,277,290,374,358,420,426,411,332,433,456,476,519,451,630,783,799,834**;Aug 13, 1993;Build 4
+DGMTU ;ALB/RMO,LBD,BRM,EG,BDB - Means Test Utilities ; 02/08/2005 07:10 AM
+ ;;5.3;Registration;**4,33,182,277,290,374,358,420,426,411,332,433,456,476,519,451,630,783,799,834,858**;Aug 13, 1993;Build 30
  ;MT=Means Test
 LST(DFN,DGDT,DGMTYPT) ;Last MT for a patient
  ;         Input  -- DFN   Patient IEN
@@ -125,8 +125,8 @@ MFLG(DGMTDATA) ;Set up appropriate informational message flag for user's
  ;Input        -     DGMTDATA as defined by $$LST function.
  ;Output       -     DGRETV
  ;     1 = Current Test is REQUIRED
- ;     2 = Test is > 365 days old and is in a status of
- ;         other than REQUIRED or NO LONGER REQUIRED
+ ;     2 = Test is > 1 year older than January 1, 2013 and is in a
+ ;         status of other than REQUIRED or NO LONGER REQUIRED
  ;     2 = Pend Adj for GMT, test date is 10/6/99 or
  ;         greater and agreed to the deductible
  ;     0 = CAT C/Pend Adj for MT, test date is 10/6/99
@@ -138,7 +138,8 @@ MFLG(DGMTDATA) ;Set up appropriate informational message flag for user's
  S DGRETV=0 I '$G(DGMTDATA) Q DGRETV
  S DGMT0=$G(^DGMT(408.31,+DGMTDATA,0))
  I $P(DGMTDATA,U,4)="R" S DGRETV=1
- I $$OLD^DGMTU4($P(DGMTDATA,U,2)),($P(DGMTDATA,U,4)'="N")&($P(DGMTDATA,U,4)'="R") S DGRETV=2
+ ;DG*5.3*858 MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ I $$OLDMTPF^DGMTU4($P(DGMTDATA,U,2)),($P(DGMTDATA,U,4)'="N")&($P(DGMTDATA,U,4)'="R") S DGRETV=2
  I ($P(DGMTDATA,U,4)="C")!($P(DGMTDATA,U,4)="P"&($P(DGMT0,U,12)'<$P(DGMT0,U,27))),$P(DGMTDATA,U,2)>2991005,$P(DGMT0,U,11)=1 S DGRETV=0
  I ($P(DGMTDATA,U,4)="C"),+$P(DGMT0,U,14),+$P(DGMT0,U,11) S DGRETV=0
  D DOM^DGMTR I $G(DGDOM) S DGRETV=0
@@ -156,8 +157,9 @@ MSG2 ;Informational message 2
  N NODE0,Y
  S NODE0=$G(^DGMT(408.31,+DGMTDATA,0))
  W !!,$C(7),?17,"*** Patient Requires a Means Test ***",!
- S Y=$P(NODE0,U) X ^DD("DD") W !,?10,"Patient's Test dated "_Y_" is "_$P(DGMTDATA,U,3)_"."_" The test"
- W !,?10,"date is greater than 365 days old.  Please update."
+ S Y=$P(NODE0,U) X ^DD("DD") W !,?25,"*** Please update ***",! ;DG*5.3*858
+ ;S Y=$P(NODE0,U) X ^DD("DD") W !,?10,"Patient's Test dated "_Y_" is "_$P(DGMTDATA,U,3)_"."_" The test"
+ ;W !,?10,"date is greater than 1 year old.  Please update."
  I $G(IOST)["C-" R !!,"Enter <RETURN> to continue.",DGRET:DTIME
  Q
 QFLG(DGMTDATA) ;
@@ -168,10 +170,11 @@ QFLG(DGMTDATA) ;
  S DGMT0=$G(^DGMT(408.31,+DGMTDATA,0))
  ;Set flag to 1 if Means test is Required.
  I $P(DGMTDATA,U,4)="R" S IVMQFLG=1
- ;Set flag to 1 if Means test older than 365 days and status is not
+ ;Set flag to 1 if Means test older than 1 year from January 1, 2013 and status is not
  ;NO LONGER REQUIRED and not REQUIRED.
- I $$OLD^DGMTU4($P(DGMTDATA,U,2)),($P(DGMTDATA,U,4)'="N")&($P(DGMTDATA,U,4)'="R") S IVMQFLG=1
- ;If Cat C/Pend Adj for MT, older than 365 days, agreed to pay, test
+ ;DG*5.3*858 MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ I $$OLDMTPF^DGMTU4($P(DGMTDATA,U,2)),($P(DGMTDATA,U,4)'="N")&($P(DGMTDATA,U,4)'="R") S IVMQFLG=1
+ ;If Cat C/Pend Adj for MT, older than 1 year from January 1, 2013, agreed to pay, test
  ;date > 10/5/99 reset flag to 0 - no query is necessary.
  I ($P(DGMTDATA,U,4)="C")!($P(DGMTDATA,U,4)="P"&($P(DGMT0,U,12)'<$P(DGMT0,U,27))),$P(DGMTDATA,U,2)>2991005,$P(DGMT0,U,11)=1 S IVMQFLG=0
  ;If patient is Cat C, declined to provide income but has agreed to

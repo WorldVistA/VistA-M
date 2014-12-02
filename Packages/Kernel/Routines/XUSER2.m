@@ -1,5 +1,5 @@
-XUSER2 ;ISF/RWF - New Person File Utilities ;11/04/09  14:28
- ;;8.0;KERNEL;**267,251,344,534**;Jul 10, 1995;Build 6
+XUSER2 ;ISF/RWF - New Person File Utilities ;02/01/2012
+ ;;8.0;KERNEL;**267,251,344,534,580**;Jul 10, 1995;Build 46
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 VALDEA(X,F) ;Check for a valid DEA#
@@ -27,6 +27,16 @@ VANUM ;Check that the VA# is not Active for anybody else. Called from ^DD(200,53
  . F  S %=$O(^VA(200,"PS2",X,%)) Q:'%  I %'=DA,$S('$P($G(^VA(200,%,"PS")),"^",4):1,1:$P(^("PS"),"^",4)'<DT) K X Q
  . Q
  I '$D(X) D EN^DDIOL($C(7)_"That VA# is in active use.  ","","!,?5")
+ Q
+ ;
+GETUPN(RET) ;Get SUBJECT ALTERNATIVE NAME for PIV card check. -p580
+ S RET=$P($G(^VA(200,DUZ,501)),U,2)
+ Q
+ ;
+SETUPN(RET,V) ;Set the SUBJECT ALTERNATIVE NAME from the PIV card. -p580
+ N FDA,ERR
+ S RET=0,FDA(200,DUZ_",",501.2)=V
+ D FILE^DIE("KE","FDA","ERR") I '$D(ERR) S RET=1
  Q
  ;
 REQ(XUV,XUFLAG) ;Called from forms:

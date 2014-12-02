@@ -1,5 +1,5 @@
-DGENA5 ;ISA/Zoltan,ALB/CKN - Enrollment API - CD Processing ; 8/15/08 11:10am
- ;;5.3;Registration;**232,688**;Aug 13, 1993;Build 29
+DGENA5 ;ISA/Zoltan,ALB/CKN - Enrollment API - CD Processing ;8/15/08 11:10am
+ ;;5.3;Registration;**232,688,850**;Aug 13, 1993;Build 171
  ;Phase II API's Related to Catastrophic Disability.
  ;
  ; The following variable names are used consistently in this routine:
@@ -113,7 +113,7 @@ LSCREEN(LIMBCODE) ; Used to validate LIMB in screen.
  . S REASON=$G(DGCDREAS)
  . I REASON="",$G(ITEM)'="" S REASON=$G(DGCDIS("PROC",ITEM))
  E  S REASON=$P($G(^DPT(D0,.397,D1,0)),"^",1)
- I REASON="" Q ".RUE.LUE.RLE.LLE."[("."_LIMBCODE_".")
+ I REASON="" Q ".RUE.LUE.RLE.LLE.BLE.BLU."[("."_LIMBCODE_".")
  Q $$LIMBOK(REASON,LIMBCODE)
 LIMBOK(REASON,LIMBCODE) ; Return 1/0 Affected Extremity OK for this REASON.
  N LIMBIEN,VALID
@@ -166,15 +166,15 @@ HLTOLIMB(HLVAL,D2) ; Convert HL7 transmission value to Limb code.
  ; D2    = Secondary delimiter (for future expansion.)
  ; NOTE:  D2 Parameter is ignored at present, but may be
  ;        required in future if the sequence structure changes.
- Q $P("RUE-RLE-LUE-LLE","-",+HLVAL)
+ Q $P("RUE-RLE-LUE-LLE-BLE-BLU","-",+HLVAL)
 LIMBTOHL(LIMB,D2) ; Convert Limb code to HL7 transmission value.
  ; LIMB = Affected Extremity code: RUE = Right Upper Extremity;
  ;        LLE = Left Lower Extremity; also RLE and LUE.
  ; D2   = Secondary Delimiter to use in this HL7 sequence.
  S D2=$S(11[$D(D2):D2,11[$D(HLECH):$E(HLECH),1:"~")
  N NUMBER,HLVAL
- I "-RUE-RLE-LUE-LLE-"'[("-"_LIMB_"-")!(LIMB["-") Q ""
- S NUMBER=$L($P("-RUE-RLE-LUE-LLE-","-"_LIMB_"-"),"-")
+ I "-RUE-RLE-LUE-LLE-BLE-BLU-"'[("-"_LIMB_"-")!(LIMB["-") Q ""
+ S NUMBER=$L($P("-RUE-RLE-LUE-LLE-BLE-BLU","-"_LIMB_"-"),"-")
  S HLVAL=NUMBER_D2_LIMB_D2_"VA0042"
  Q HLVAL
 PERMTOHL(NUMBER,D2) ; Convert Permanent Status Indicator to HL7 sequence.
@@ -186,9 +186,39 @@ PERMTOHL(NUMBER,D2) ; Convert Permanent Status Indicator to HL7 sequence.
  I PERM="" Q ""
  S HLVAL=NUMBER_D2_PERM_D2_"VA0045"
  Q HLVAL
-METH2HL7(METHOD,D2) ; Comvert Method of Determination to HL7 Transmission Value.
+METH2HL7(METHOD,D2) ; Convert Method of Determination to HL7 Transmission Value.
  S D2=$S(11[$D(D2):D2,11[$D(HLECH):$E(HLECH),1:"~")
  N METHS
  S METHS="AUTOMATED RECORD REVIEW^MEDICAL RECORD REVIEW^PHYSICAL EXAMINATION"
  I ".1.2.3."'[("."_METHOD_".") Q ""
  Q METHOD_D2_$P(METHS,"^",METHOD)_D2_"VA0041"
+ ;
+ICDVER(CODESYS) ; DG*5.3*850
+ ; determine if ICD-9 or ICD-10 CD should be used
+ ; To be used in DIC(S) call from input transforms from 2.396;.01 
+ ; and 2.397;.01
+ ; Requires DA(1) be defined
+ ; output - the correct value in ICDIEN 9
+ ;  ^ICDS("C","10D",30)=""
+ ;  ^ICDS("C","ICD",1)=""
+ ;
+ ;  ^ICDS("C","10P",31)=""
+ ;  ^ICDS("C","ICP",2)=""
+ ; -- DDATE := date of decision
+ ;    DGar
+ ;    DDCDIS(DATE) := date of decision from Listman Screen, not saved yet
+ ;
+ N DFN1,ICDIEN,DDATE,IMPDATE
+ S CODESYS=$S($G(CODESYS)="D":"10D",$G(CODESYS)="P":"10P",1:"10D")
+ S DFN1=$S($G(DA(1))'="":DA(1),$G(DFN)'="":DFN,1:"")
+ S DDATE=$P($G(^DPT(DFN1,.39)),"^",2) ;Date of decision
+ I $G(DGCDIS("DATE")) S DDATE=DGCDIS("DATE") ;called from code, date not stored yet
+ I DDATE="" S DDATE=DT
+ S IMPDATE=$P($$IMPDATE^DGPTIC10($G(CODESYS)),"^",1)
+ I CODESYS="10D" D
+ . I DDATE<IMPDATE S ICDIEN=1
+ . I DDATE'<IMPDATE S ICDIEN=30
+ I CODESYS="10P" D
+ . I DDATE<IMPDATE S ICDIEN=2
+ . I DDATE'<IMPDATE S ICDIEN=31
+ Q ICDIEN

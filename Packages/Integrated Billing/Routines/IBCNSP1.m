@@ -1,5 +1,5 @@
 IBCNSP1 ;ALB/AAS - INSURANCE MANAGEMENT - policy actions ;22-OCT-92
- ;;2.0;INTEGRATED BILLING;**6,28,40,43,52,85,103,361,371,377**;21-MAR-94;Build 23
+ ;;2.0;INTEGRATED BILLING;**6,28,40,43,52,85,103,361,371,377,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;;ICR#5002 for read of ^DIE input template data
  ;
@@ -149,7 +149,7 @@ PIDEF(IBREL,FLD,IBDFN,SPDEF) ; Function to return patient file defaults
  . S VAHOW=2,DFN=IBDFN,VAPA("P")="" D ADD^VADPT
  . Q
  ;
- I FLD=17 S VAL=$P($G(^UTILITY("VADM",$J,1)),U,1) G PIDEFX                          ; Name
+ I FLD=7.01 S VAL=$P($G(^UTILITY("VADM",$J,1)),U,1) G PIDEFX                        ; Name    - IB*2.0*497 (vd)
  I FLD=3.01 S VAL=$$FMTE^XLFDT($P($G(^UTILITY("VADM",$J,3)),U,1),"5Z") G PIDEFX     ; Date of Birth
  I FLD=3.02 S VAL=$$EXTERNAL^DILFD(2,.325,,$P($G(^DPT(IBDFN,.32)),U,5)) G PIDEFX    ; Branch
  I FLD=3.05 S VAL=$P($G(^UTILITY("VADM",$J,2)),U,2) G PIDEFX                        ; SSN

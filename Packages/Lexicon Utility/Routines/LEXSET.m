@@ -1,19 +1,56 @@
-LEXSET ; ISL/KER Setup Appl/User Defaults for Look-up ; 05/14/2003
- ;;2.0;LEXICON UTILITY;**25**;Sep 23, 1996
- ;
+LEXSET ;ISL/KER - Setup Appl/User Defaults for Look-up ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**25,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^TMP("LEXSCH")      SACC 2.3.2.5.1
+ ;               
  ; External References
- ;   DBIA  10103  $$DT^XLFDT
- ;   DBIA  10103  $$FMTE^XLFDT
- ;                  
+ ;    $$DT^XLFDT          ICR  10103
+ ;    $$FMTE^XLFDT        ICR  10103
+ ;               
+ ; Local Variables NEWed or KILLed Elsewhere
+ ;     DIC,x              Killed by calling application
+ ;     LEXLL,LEXQ,LEXVDT  Killed by Speicial Lookup LEXA1
+ ;     XTLKGBL,XTLKHLP    Killed by MTLU
+ ;     XTLKKSCH,XTLKSAY   Killed by MTLU
+ ;               
 EN ; Namespace/subset are not known
  N DTOUT,DUOUT,LEXNS,LEXSS,LEXDS,LEXDW,LEXDR,LEXDP,LEXDA,LEXDB,LEXD0,LEXD,LEXDX
  S LEXNS=$$NS^LEXSET4 Q:LEXNS[U!($D(DTOUT))!($D(DUOUT))
  S LEXSS=$$SS^LEXSET4(LEXNS) Q:LEXSS[U!($D(DTOUT))!($D(DUOUT))
  D CONFIG(LEXNS,LEXSS)
  Q
-CONFIG(LEXNS,LEXSS,LEXVDT) ;  Namespace/subset are known
- K LEXD,LEXSUB,LEXAP,LEXSHOW,LEXSCT,LEXUN
- S LEXVDT=$S(+($G(LEXVDT))>0:+($G(LEXVDT)),1:$$DT^XLFDT)
+CONFIG(LEXNS,LEXSS,LEXCDT) ;  Namespace/subset are known
+ ;
+ ; Input
+ ; 
+ ;   LEXNS   Namespace from file 757.2 'AN' index
+ ;   LEXSS   Subset from file 757.2, 'AA' or 'AB' index
+ ;   LEXCDT  Date to used to configure lookp
+ ;   
+ ; Output
+ ; 
+ ;   ^TMP(LEXSCH,$J) 
+ ;   
+ ;           Global array containing the following parameters
+ ;              APP    Application (from LEXNS) 
+ ;              DIS    Display format 
+ ;              FIL    Filter 
+ ;              FLN    File Number 
+ ;              GBL    Global (Fileman DIC) 
+ ;              IDX    Index used during the search 
+ ;              LEN    Length of list to display 
+ ;              LOC    Hospital Location 
+ ;              OVR    Overwrite User Defaults flag 
+ ;              SCT    Shortcuts 
+ ;              SVC    Service 
+ ;              UNR    Unresolved Narrative flag 
+ ;              USR    User (DUZ) 
+ ;              VDT    Versioning Date
+ ;              VOC    Vocabulary 
+ ;
+ N LEXD,LEXSUB,LEXAP,LEXSHOW,LEXSCT,LEXUN,LEXQOK S LEXCDT=$P($G(LEXCDT),".",1)
+ S:LEXCDT?7N LEXVDT=LEXCDT D VDT^LEXU S LEXCDT=$G(LEXVDT),LEXQOK=$D(LEXQ)
  N LEXA,LEXL,LEXS,LEXM,LEXD S LEXNS=$G(LEXNS),LEXSS=$G(LEXSS)
  S LEXQ=$S($D(LEXQ):+LEXQ,1:1) S:LEXNS="" LEXNS="LEX" S:LEXSS="" LEXSS="WRD"
  S:'$D(^LEXT(757.2,"AN",LEXNS)) LEXNS=$$NS^LEXDFN2(LEXNS)
@@ -29,10 +66,11 @@ CONFIG(LEXNS,LEXSS,LEXVDT) ;  Namespace/subset are known
  D GEN^LEXSET2
  I +($G(LEXD("DF","OVR")))>0 D OVER^LEXSET3
  I +($G(LEXD("DF","OVR")))=0 D USER^LEXSET3
- S ^TMP("LEXSCH",$J,"VDT",0)=+($G(LEXVDT))
- S ^TMP("LEXSCH",$J,"VDT",1)="Version Date Check"_$S(+($G(LEXVDT))>0:(": "_$$FMTE^XLFDT(+($G(LEXVDT)))),1:"")
+ S:$G(LEXCDT)?7N ^TMP("LEXSCH",$J,"VDT",0)=+($G(LEXCDT))
+ S:$G(LEXCDT)?7N ^TMP("LEXSCH",$J,"VDT",1)="Version Date Check: "_$$FMTE^XLFDT($G(LEXCDT))
  D EN^LEXSET5 S:+($G(LEXQ))=1 ^TMP("LEXSCH",$J,"ADF",0)=1
 SET ; Quit Setting Defaults
+ I LEXQOK'>0 K LEXLL,LEXQ,LEXVDT
  Q
 DEF ; Defaults if LEXNS or LEXSS are invalid
  S LEXD("DF","DIS")="ICD/CPT",LEXD("DF","DSP")="XTLK^LEXPRNT"

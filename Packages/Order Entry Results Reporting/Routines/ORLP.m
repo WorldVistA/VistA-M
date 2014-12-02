@@ -1,5 +1,16 @@
-ORLP ; SLC/CLA - Manager for Team List options ; 5/30/08 6:28am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**47,90,98,243**;Dec 17, 1997;Build 242
+ORLP ; SLC/CLA - Manager for Team List options ; 2/9/11 3:17pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**47,90,98,243,273**;Dec 17, 1997;Build 17
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;DBIA reference section
+ ;10035 - ^DPT(
+ ;2160  - ^XUTL("OR"
+ ;10006 - DIC
+ ;10009 - DICN
+ ;10018 - DIE
+ ;10013 - DIK
+ ;10026 - DIR
+ ;3070  - PTCL^SCAPMC
  ;
 CLEAR ; From TM, MERG^ORLP1, END^ORLP0.
  K ^XUTL("OR",$J,"ORLP"),^("ORV"),^("ORU"),^("ORW") S ORCNT=0
@@ -26,19 +37,24 @@ AL N DLAYGO,DIC,DIE,DIK,DR,ORFLAG,ORLTNAM,OROWNER,ORROOT,ORDA,ORYY
  K DIR
  N DIC S X=$G(X),(ORROOT,DIC)="^OR(100.21,",DLAYGO=100.21,DIC(0)="LEFQZ" D ^DIC
  I '$D(X)!(+Y<0)!$D(DIRUT) K DIRUT Q   ; User aborted or problem.
- I +Y,'+$G(^OR(100.21,+Y,11)) S ^OR(100.21,+Y,11)="0^"
  ; Check for "Personal" lists (and not a new entry):
  I ORLTNAM>0,(+Y>0),$P($G(^OR(100.21,+Y,0)),U,2)="P" W !!,"     Personal lists cannot be edited here.",! G AL
  S (ORYY,TEAM)=Y,ORDA=+Y,TEAM(0)=Y(0),^TMP("ORLP",$J,"TLIST")=+Y K DIC
+ ;
+ ; Lock before allowing editing or creation
+ L +^OR(100.21,+TEAM):3 I '$T W !?5,"  Another user is editing this entry." Q
+ ;
  ; Check for entry of team type (new team entry):
  I $P(TEAM,U,3) D  Q
  .I $P(TEAM(0),U,2)="" D
  ..SET Y=TEAM,Y(0)=TEAM(0) ; Reassign in case DIE previously called.
  ..N DIE S DIE=ORROOT,DA=+Y,DR="1  Enter type:  ~R" D ^DIE I $O(Y(0)) S DIK=DIE D ^DIK Q
  .S (ORLTYP,OROWNER)=""
- .S ORLTYP=$P(^OR(100.21,+TEAM,0),U,2) Q:'$L(ORLTYP)
+ .S ORLTYP=$P($G(^OR(100.21,+TEAM,0)),U,2) Q:'$L(ORLTYP)
  .; Check for "P" type, ask for user/owner input:
- .I ORLTYP="P" D OWNER^ORLP1 ; Sets OROWNER variable.
+ .I ORLTYP="P" D 
+ ..D OWNER^ORLP1 ; Sets OROWNER variable.
+ ..I +TEAM,'+$G(^OR(100.21,+TEAM,11)) S ^OR(100.21,+TEAM,11)="0^"
  .I (ORLTYP="P")&(OROWNER="") S DIK=ORROOT,DA=ORDA D ^DIK Q
  .;
  .; Allow further editing of autolink type teams:
@@ -51,9 +67,6 @@ AL N DLAYGO,DIC,DIE,DIK,DR,ORFLAG,ORLTNAM,OROWNER,ORROOT,ORDA,ORYY
  ; For existing teams, display team type:
  W !,"  Type: "_$S($P(Y(0),U,2)="TM":"Manual Team List",$P(Y(0),U,2)="TA":"Autolinked Team List",$P(Y(0),U,2)="MRAL":"Manual Removal Autolinked Team List",1:"(Unknown)")
  ;
- ; Lock before allowing editing:
- I $O(^OR(100.21,+TEAM,10,0)) L +^OR(100.21,+TEAM):3 I '$T W !?5,"  Another user is editing this entry." Q
- ;
  ; Allow applicable editing for all types but "TM" teams:
  I $P(TEAM(0),U,2)'="TM" D
  . D ASKLINK,ASKUSER,ASKDEV
@@ -61,7 +74,6 @@ AL N DLAYGO,DIC,DIE,DIK,DR,ORFLAG,ORLTNAM,OROWNER,ORROOT,ORDA,ORYY
  . ; Editing of "subscription" attribute for "TA" and "MRAL" teams:
  . I $P(TEAM(0),U,2)["A" D
  . . D ASKSUB
- ;
  ; Proceed with editing for "TM" type teams:
  I $P(TEAM(0),U,2)="TM" D ASKPT^ORLP00(+TEAM),ASKUSER,ASKDEV
  Q
@@ -225,12 +237,12 @@ STOR ; From SEQ^ORLP0 - store list in 100.21.
  Q:'$D(DUZ)!('ORCNT)
  I '$D(TEAM),($D(Y)#2) S TEAM=Y
  S DLAYGO=100.21
- L +^OR(100.21,+TEAM)
+ L +^OR(100.21,+TEAM):$G(DILOCKTM,3) I '$T W !,"Another user is editing this entry." Q
  S (CNT,ORLI)=0 F ORLJ=1:1 S ORLI=$O(^XUTL("OR",$J,"ORLP",ORLI)) Q:ORLI<1  I $D(^(ORLI,0)) S X=^(0),X=$P(X,U,3) D ADDLOOP
  I $G(X)>0 S MSG=$S(CNT=0:"       Patient(s) already on list.",1:"       "_CNT_" patient(s) added.") W !?5,MSG
  E  W !?5,"       No patients found."
  I CNT>0 W !?5,"  Storing list " W:$D(TEAM) $P(TEAM,U,2)," " W "for future reference..."
- L -^OR(100.12,+TEAM)
+ L -^OR(100.21,+TEAM)
  Q
  ;
 ADDLOOP ; From STOR, LOOPTS - add patients.

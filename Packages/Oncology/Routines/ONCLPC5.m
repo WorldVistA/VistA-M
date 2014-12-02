@@ -1,5 +1,5 @@
 ONCLPC5 ;Hines OIFO/GWB - 2001 Lung (NSCLC) Cancers PCE Study ;03/08/01
- ;;2.11;ONCOLOGY;**29,30,33**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;First Course of Treatment 
  S SUR=$$GET1^DIQ(165.5,ONCONUM,58.2)
  S RAD=$$GET1^DIQ(165.5,ONCONUM,51.2,"I")

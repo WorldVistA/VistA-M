@@ -1,6 +1,14 @@
-LEXABC2 ; ISL Look-up by Code (part 2)             ; 01-25-97
- ;;2.0;LEXICON UTILITY;**4**;Sep 23, 1996
- ;
+LEXABC2 ;ISL/KER - Look-up by Code (part 2) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**4,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^TMP("LEXFND"       SACC 2.3.2.5.1
+ ;    ^TMP("LEXL"         SACC 2.3.2.5.1
+ ;    ^TMP("LEXSCH"       SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    None
+ ;               
 REO ; Reorder list
  Q:'$D(^TMP("LEXL",$J))  N LEXS,LEXT,LEXP,LEXE,LEXEX,LEXFT,LEXM,LEXX S LEXS="" F  S LEXS=$O(^TMP("LEXL",$J,LEXS)) Q:LEXS=""  S LEXT=0 F  S LEXT=$O(^TMP("LEXL",$J,LEXS,LEXT)) Q:+LEXT=0  D
  . S LEXP=0 F  S LEXP=$O(^TMP("LEXL",$J,LEXS,LEXT,LEXP)) Q:+LEXP=0  S LEXE=0 F  S LEXE=$O(^TMP("LEXL",$J,LEXS,LEXT,LEXP,LEXE)) Q:+LEXE=0  D
@@ -53,7 +61,7 @@ ADD ; Add codes expressions to the selection list
  ;   S ^TMP("LEXL",$J,<Code>,<Type>,<Preference>,<Form>,<IEN>)=
  ;  <IEN 757>^<IEN 757.01>^<Description>^<Display>^<Form Type>^<Form>
  ;
- N LEXS,LEXT,LEXP,LEXFT,LEXSIEN,LEXPM
+ N LEXS,LEXT,LEXP,LEXFT,LEXSIEN,LEXPM,LEXEXA
  S LEXS="" F  S LEXS=$O(^TMP("LEXL",$J,LEXS)) Q:LEXS=""  D
  . S LEXT=0 F  S LEXT=$O(^TMP("LEXL",$J,LEXS,LEXT)) Q:+LEXT=0  D
  . . S (LEXP,LEXPM)=0 F  S LEXP=$O(^TMP("LEXL",$J,LEXS,LEXT,LEXP)) Q:+LEXP=0  D
@@ -61,9 +69,11 @@ ADD ; Add codes expressions to the selection list
  . . . . S LEXSIEN=0 F  S LEXSIEN=$O(^TMP("LEXL",$J,LEXS,LEXT,LEXP,LEXFT,LEXSIEN)) Q:+LEXSIEN=0  D SAVE
  Q
 SAVE ; Save in ^TMP
- N LEXMI,LEXEI,LEXDF,LEXDS,LEXFM,LEXTP,LEXPX,LEXSX,LEXFQ,LEXSTR
- S LEXSTR="",LEXMI=$P(^TMP("LEXL",$J,LEXS,LEXT,LEXP,LEXFT,LEXSIEN),"^",1),LEXEI=$P(^TMP("LEXL",$J,LEXS,LEXT,LEXP,LEXFT,LEXSIEN),"^",2),LEXDF=$P(^TMP("LEXL",$J,LEXS,LEXT,LEXP,LEXFT,LEXSIEN),"^",3)
- S LEXDS=$P(^TMP("LEXL",$J,LEXS,LEXT,LEXP,LEXFT,LEXSIEN),"^",4),LEXFM=$P(^TMP("LEXL",$J,LEXS,LEXT,LEXP,LEXFT,LEXSIEN),"^",4),LEXTP=$P(^TMP("LEXL",$J,LEXS,LEXT,LEXP,LEXFT,LEXSIEN),"^",6),(LEXSX,LEXPX)="" S:LEXP=1 LEXPM=LEXMI
+ N LEXMI,LEXEI,LEXDF,LEXDS,LEXFM,LEXTP,LEXPX,LEXSX,LEXFQ,LEXSTR,LEXTMP
+ S LEXSTR="",LEXTMP=$G(^TMP("LEXL",$J,LEXS,LEXT,LEXP,LEXFT,LEXSIEN)),LEXMI=$P(LEXTMP,"^",1),LEXEI=$P(LEXTMP,"^",2),LEXDF=$P(LEXTMP,"^",3)
+ S LEXDS=$P(LEXTMP,"^",4),LEXFM=$P(LEXTMP,"^",4),LEXTP=$P(LEXTMP,"^",6),(LEXSX,LEXPX)="" S:LEXP=1 LEXPM=LEXMI
+ ; Remove the following line of code if Mental Health either begins to use ICD-10 or DSM-V
+ Q:$D(LEXEXA(+LEXEI))  S LEXEXA(+LEXEI)=""
  ; Prefix
  I LEXP>1 S LEXPX=LEXTP S:LEXPX["Concept" LEXPX="Synonym:  " S:LEXPX="" LEXPX="Other:    "
  ; Suffix

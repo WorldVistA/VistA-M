@@ -1,6 +1,13 @@
-LEXMTLU ; ISL Setup Appl/User Defaults for Look-up ; 05/25/1998
- ;;2.0;LEXICON UTILITY;**11**;Sep 23, 1996
- ;
+LEXMTLU ;ISL/KER - Setup Appl/User Defaults for Look-up ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**11,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^DISV(              ICR    510
+ ;               
+ ; External References
+ ;    ^DIR                ICR  10026
+ ;    ^XTLKKWL            ICR  10122
+ ;               
 EN ; X not set
  D MTLU^LEXSET5 S X=$$TERM Q:X=""!(X["^")
  I $D(X),$G(X)'[U,$G(X)'="",$G(X)'=" " D XTLK

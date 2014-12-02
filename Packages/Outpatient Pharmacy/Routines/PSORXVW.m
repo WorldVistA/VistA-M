@@ -1,5 +1,5 @@
-PSORXVW ;BHAM ISC/SAB - listman view of a prescription ; 6/7/12 7:00pm
- ;;7.0;OUTPATIENT PHARMACY;**14,35,46,96,103,88,117,131,146,156,185,210,148,233,260,264,281,359,385,400**;DEC 1997;Build 3
+PSORXVW ;BHAM ISC/SAB - listman view of a prescription ;6/7/12 7:00pm
+ ;;7.0;OUTPATIENT PHARMACY;**14,35,46,96,103,88,117,131,146,156,185,210,148,233,260,264,281,359,385,400,391,313**;DEC 1997;Build 76
  ;External reference to File ^PS(55 supported by DBIA 2228
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference ^PSDRUG( supported by DBIA 221
@@ -45,8 +45,13 @@ DP ; DBIA #4711 entry point from ECME
  S (DA,RXN)=PSOVDA K PSOVDA S RX0=^PSRX(RXN,0),RX2=$G(^(2)),RX3=$G(^(3)),ST=+$G(^("STA")),RXOR=$G(^("OR1"))
  I 'RXOR,$P(^PSDRUG($P(RX0,"^",6),2),"^") S $P(^PSRX(RXN,"OR1"),"^")=$P(^PSDRUG($P(RX0,"^",6),2),"^"),RXOR=$P(^PSDRUG($P(RX0,"^",6),2),"^")
  S IEN=0,$P(RN," ",12)=" "
- N APPND S APPND=$S($G(^PSRX(RXN,"IB")):"$",1:"")
- I $$ECMENUM^PSOBPSU2(RXN)'="" S APPND=APPND_$$ECME^PSOBPSUT(RXN)_"  (ECME#: "_$$ECMENUM^PSOBPSU2(RXN)_")"
+ N APPND,ECME,TITR
+ S APPND=$S($G(^PSRX(RXN,"IB")):"$",1:"")
+ S ECME=$$ECME^PSOBPSUT(RXN)  ; Returns "" (non-ECME), or "e" (ECME)
+ S TITR=$$TITRX^PSOUTL(RXN)  ; Returns "" (non-Titration), "m" (Maintenance) or "t" (titration)
+ S APPND=APPND_ECME_TITR
+ I ECME'="" S APPND=APPND_"  (ECME#: "_$$ECMENUM^PSOBPSU2(RXN)_")"
+ I TITR'="" S APPND=APPND_"  ("_$S(TITR="t":"Titration",1:"Maintenance")_")"
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$S($P($G(^PSRX(RXN,"TPB")),"^"):"            TPB Rx #: ",1:"                Rx #: ")_$P(RX0,"^")_APPND_$E(RN,$L($P(RX0,"^")_APPND)+1,12)
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="      Orderable Item: "_$S($D(^PS(50.7,$P(+RXOR,"^"),0)):$P(^PS(50.7,$P(+RXOR,"^"),0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^"),1:"No Pharmacy Orderable Item")
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$S($D(^PSDRUG("AQ",$P(RX0,"^",6))):"           CMOP ",1:"                ")_"Drug: "_$P(^PSDRUG($P(RX0,"^",6),0),"^")
@@ -94,6 +99,7 @@ PTST S $P(RN," ",25)=" ",PTST=$S($G(^PS(53,+$P(RX0,"^",3),0))]"":$P($G(^PS(53,+$
  .S ^TMP("PSOAL",$J,IEN,0)=$E(RN,$L("QTY DSP MSG: "_$P(^PSDRUG($P(RX0,"^",6),5),"^"))+1,79)_"QTY DSP MSG: "_$P(^PSDRUG($P(RX0,"^",6),5),"^") K RN
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="        # of Refills: "_$P(RX0,"^",9)_$S($L($P(RX0,"^",9))=1:" ",1:"")_"                       Remaining: "_REFL
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="            Provider: "_$S($D(^VA(200,$P(RX0,"^",4),0)):$P(^VA(200,$P(RX0,"^",4),0),"^"),1:"UNKNOWN")
+ N DEAV S DEAV=+$P($G(^PSDRUG(+$P(RX0,"^",6),0)),"^",3) I DEAV>1,DEAV<6 D PRV K DEAV
  I $P(RX3,"^",3) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="        Cos-Provider: "_$P(^VA(200,$P(RX3,"^",3),0),"^")
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="             Routing: "_$S($P(RX0,"^",11)="W":"Window",1:"Mail")
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="              Copies: "_$S($P(RX0,"^",18):$P(RX0,"^",18),1:1)
@@ -123,3 +129,17 @@ KILL K ^TMP("PSOAL",$J),PSOAL,IEN,^TMP("PSOHDR",$J) I $G(PS)="VIEW" K DA
  K LBL,I,RFDATE,%H,%I,RN,RFT,%,%I,DFN,GMRA,GMRAL,HDR,POERR,PTST,REFL,RF,RLD,RX3
  K RXN,RXOR,SG,VA,VADM,VAERR,VALMBCK,VAPA,X,DIC,REA,ZD,PSOHD,PSOBCK,PSODFN,QUIT
  Q
+ ;
+PRV       ;
+ N DETN,DEA,LBL,VADD,SPC,ORN S ORN=$P(^PSRX(RXN,"OR1"),"^",2)
+ S DEA=$$DEA^XUSER(0,$P(RX0,"^",4))
+ S LBL=$S(DEA["-":"  VA#: ",1:" DEA#: ")
+ S $P(SPC," ",(28-$L(DEA)))=" "
+ I $$DETOX^PSSOPKI($P(RX0,"^",6)) S DETN=$$DETOX^XUSER($P(RX0,"^",4))
+ I (DEA'="")!($G(DETN)'="") S IEN=IEN+1,$E(^TMP("PSOAL",$J,IEN,0),16)=LBL_DEA_$S($G(DETN)]"":SPC_"DETOX#: "_$G(DETN),1:"")
+ D PRVAD^PSOPKIV2
+ I $G(VADD(1))]"" D
+ .S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="        Site Address: "_VADD(1)
+ .S:VADD(2)]"" IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="                      "_VADD(2) S:VADD(3)]"" IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="                      "_VADD(3)
+ Q
+ ;

@@ -1,5 +1,5 @@
-DGPTR4 ;ALB/JDS/MJK/MTC/ADL - ALB/BOK  PTF TRANSMISSION ; 11 JUL 05 @0800
- ;;5.3;Registration;**338,423,415,510,565,645,729,664**;Aug 13, 1993;Build 15
+DGPTR4 ;ALB/JDS/MJK/MTC/ADL/TJ - ALB/BOK  PTF TRANSMISSION ;11 JUL 05 @0800
+ ;;5.3;Registration;**338,423,415,510,565,645,729,664,850**;Aug 13, 1993;Build 171
 701 ; -- setup 701 transaction
  S Y=$S(T1:"C",1:"N")_"701"_DGHEAD,DGDDX=$P(+DG70,".")_"       ",Y=Y_$E(DGDDX,4,5)_$E(DGDDX,6,7)_$E(DGDDX,2,3)_$E($P(+DG70,".",2)_"0000",1,4)
  S X=DG70
@@ -13,10 +13,11 @@ DGPTR4 ;ALB/JDS/MJK/MTC/ADL - ALB/BOK  PTF TRANSMISSION ; 11 JUL 05 @0800
  S Y=Y_$S($D(^DIC(45.6,+$P(X,U,6),0)):$P(^(0),U,2),1:" "),L=3,Z=12 D ENTER S Y=Y_$E($P(X,U,13)_"   ",1,3)
 J S L=3,Z=8 D ENTER0
  S Y=Y_"X"_$J($P(DG70,U,9),1)
- S DGPTDAT=$$GETDATE^ICDGTDRG(J)
- S DGPTTMP=$$ICDDX^ICDCODE(+$P(DG70,U,10),DGPTDAT) S DGXLS=$S(+DGPTTMP>0&($P(DGPTTMP,U,10)):$P(DGPTTMP,U,2),1:""),Y=Y_$S(DGXLS[".":$J($P(DGXLS,".",1),3)_$E($P(DGXLS,".",2)_"   ",1,3),1:$J(DGXLS,6))_" "
+ N EFFDATE,IMPDATE,DGPTDAT D EFFDATE^DGPTIC10(J)
+ S DGPTTMP=$$ICDDATA^ICDXCODE("DIAG",+$P(DG70,U,10),EFFDATE,"I")
+ S DGXLS=$S(+DGPTTMP>0&($P(DGPTTMP,U,10)):$P(DGPTTMP,U,2),1:""),Y=Y_$S(DGXLS[".":$J($P(DGXLS,".",1),3)_$E($P(DGXLS,".",2)_"   ",1,3),1:$J(DGXLS,6))_" "
  S L=$P(DG70,U,16,24)_U_DG71 S DG702=""
- F K=1:1:12 S DGPTTMP=$$ICDDX^ICDCODE(+$P(L,U,K),DGPTDAT) I +DGPTTMP>0&($P(DGPTTMP,U,10)) S DG702=DG702_$P(DGPTTMP,U,2)_U
+ F K=1:1:12 S DGPTTMP=$$ICDDATA^ICDXCODE("DIAG",+$P(L,U,K),EFFDATE,"I") I +DGPTTMP>0&($P(DGPTTMP,U,10)) S DG702=DG702_$P(DGPTTMP,U,2)_U
  S Y=Y_$S(DG702']"":"X",1:" ")
  ; -- get phy cdr @ d/c
  S X="",Z=+$O(^DGPT(J,535,"AM",DG70-.0000001)) I $D(^DGPT(J,535,+$O(^(Z,0)),0)) S X=^(0)
@@ -94,7 +95,7 @@ ADDQUES ;-- additional PTF questions load records for trans 501/701
  S DGT=0,X=$P(DGAUX,U,7) I X]"" S DGT=1,Z=1,L=2 D ENTER0
  I 'DGT S Y=Y_"  "
  Q
-RTEN(X) ; This function will round X to the nearest mulitple of ten.
+RTEN(X) ; This function will round X to the nearest multiple of ten.
  ; 0-4 ->DOWN; 5-9->UP
  Q (X\10)*10+$S(X#10>4:10,1:0)
 ETHNIC ;-- Ethnicity (use first active value)

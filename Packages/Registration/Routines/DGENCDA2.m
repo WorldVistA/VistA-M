@@ -1,5 +1,5 @@
-DGENCDA2 ;ALB/CJM,ISA/KWP,Zoltan,JAN,CKN - Catastrophic Disabilty API - File Data;May 24, 1999,Nov 14, 2001 ; 9/22/05 5:40pm
- ;;5.3;Registration;**232,387,653**;Aug 13,1993;Build 2
+DGENCDA2 ;ALB/CJM,ISA/KWP,Zoltan,JAN,CKN - Catastrophic Disability API - File Data;May 24, 1999
+ ;;5.3;Registration;**232,387,653,850**;Aug 13,1993;Build 171
  ;
 STORE(DFN,DGCDIS,ERROR) ;
  ;Description: Creates a catastrophic disability record for a patient.
@@ -11,7 +11,7 @@ STORE(DFN,DGCDIS,ERROR) ;
  ;  Function Value - returns 1 if successful, otherwise 0
  ;  ERROR - if not successful, an error message is returned,pass
  ;          by reference
- N SUCCESS,FDA,SUB,HIEN,HSUB,FDB,NIEN,EIEN
+ N SUCCESS,FDA,SUB,HIEN,HSUB,FDB,NIEN,EIEN,DIERR,DGCDERR
  S SUCCESS=1
  S ERROR=""
  D  ;drops out if invalid condition found

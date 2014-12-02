@@ -1,5 +1,5 @@
-PSBPOIV ;BIRMINGHAM/EFC-IV PARAMETER VALIDATION ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**2,66**;Mar 2004;Build 11
+PSBPOIV ;BIRMINGHAM/EFC-IV PARAMETER VALIDATION ;12/7/12 3:39pm
+ ;;3.0;BAR CODE MED ADMIN;**2,66,70**;Mar 2004;Build 101
  ;;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -8,32 +8,43 @@ PSBPOIV ;BIRMINGHAM/EFC-IV PARAMETER VALIDATION ;Mar 2004
  ; VADPT/10061
  ; $$GET^XPAR/2263
  ;
+ ;*70 - Change the way IV Bag parameters are retrieved slightly.
+ ;      If patient is admitted use the Ward to find DIVision IV params
+ ;      If not admitted find DIV associated with the Clinic order and
+ ;       get that DIV IV params.  Else use logged in User's DIV.
+ ;
 EN(PSBDFN,PSBORD) ;
  ;
  S DFN=PSBDFN,(PSBMI,PSBMW,PSBMWC,PSBMAUD)=0,(PSBMIDT,PSBMIM)="",PSBONXS=PSBORD_"^"
  K ^TMP("PSBAR",$J) S ^TMP("PSBAR",$J,"W",0)=0
- D CLEAN^PSBVT,PSJ1^PSBVT(DFN,PSBORD)
+ D CLEAN^PSBVT,PSJ1^PSBVT(DFN,PSBORD,1)
  ; get IV parameters for the current ward
  S PSBCSTR="^ADDITIVE^STRENGTH^BOTTLE^SOLUTION^VOLUME^INFUSION RATE^MED ROUTE^SCHEDULE^ADMIN TIME^REMARKS^OTHER PRINT INFO^PROVIDER^START DATE/TIME^STOP DATE/TIME^PROVIDER COMMENTS"
  D INP^VADPT S PSBWARD=$P(VAIN(4),"^"),PSBWDIV=PSBWARD D KVAR^VADPT
  I $G(PSBWARD)'="",$D(^PSB(53.66,"B",PSBWARD)) D  ; if IV paramaters defined for ward use them
  .S PSBWARD=$O(^PSB(53.66,"B",PSBWARD,""))
  .S:$D(^PSB(53.66,PSBWARD,1,"B",PSBIVT)) PSBIVPAR=^PSB(53.66,PSBWARD,1,$O(^PSB(53.66,PSBWARD,1,"B",PSBIVT,""),-1),0)
- N PSBFLAG,PSBDFLT
- I '$D(PSBIVPAR) S PSBIVPAR=PSBIVT D  ; if IV parameters not defined for ward get defaults for division
- .D:$D(PSBWDIV)  ; Get the appropriate DIV for ward and DIVISIONAL IV PARAMETERS
- ..S PSBWDIV=$$GET1^DIQ(42,PSBWDIV_",",.015,"I")
+ N PSBFLAG,PSBDFLT,PSBORLOC
+ I ($G(PSBCLORD)]"") D
+ .N DIC,X,Y S DIC="^SC(",DIC(0)="XZ" S X=PSBCLORD D ^DIC S:(Y>0) PSBORLOC=+Y
+ ;
+ ; If IV parameters not defined for Ward or Clinic, then get defaults for division
+ I '$D(PSBIVPAR) S PSBIVPAR=PSBIVT D
+ .D:$D(PSBWDIV)!$G(PSBORLOC)    ;Get the appropriate DIV for Ward or Clinic and DIVISIONAL IV PARAMETERS 
+ ..S PSBWDIV=$$GET1^DIQ(42,PSBWDIV_",",.015,"I")                                 ;Ward DIV  *70
+ ..I '$G(PSBWARD),$G(PSBORLOC) S PSBWDIV=$$GET1^DIQ(44,PSBORLOC_",",3.5,"I")     ;Clinic DIV  *70
  ..I $G(PSBWDIV)']"" S PSBWDIV="DIV"
  ..E  S PSBWDIV=$P($$SITE^VASITE(DT,PSBWDIV),U,1),PSBWDIV="DIV.`"_PSBWDIV
- ..S PSBDFLT="^I^I^I^I^I^W^I^I^I^I^W^I^I^I^I" ;Set default IV Bag Parameters variable
+ ..S PSBDFLT="^I^I^I^I^I^W^I^I^I^I^W^I^I^I^I"      ;Set default IV Bag Parameters variable
  ..F X=2:1 Q:$P(PSBCSTR,U,X)=""  S PSBIVPAR=PSBIVPAR_U_$P($P($$GET^XPAR(PSBWDIV,"PSBIV "_$P(PSBCSTR,U,X),PSBIVT,"B"),U,2),"-",1) I $P(PSBIVPAR,U,X)="" D  ;If null, set default - PSB*3*66
  ...S $P(PSBIVPAR,U,X)=$P(PSBDFLT,U,X),PSBFLAG=""  ;If null, set default - PSB*3*66
  ..K PSBWDIV ; Kill temp variable.
+ ;
  F PSBC1=1:1 Q:$P(PSBONXS,U,PSBC1)=""  D  ; process all orders
- .D CLEAN^PSBVT,PSJ1^PSBVT(DFN,$P(PSBONXS,U,PSBC1))
+ .D CLEAN^PSBVT,PSJ1^PSBVT(DFN,$P(PSBONXS,U,PSBC1),1)
  .K PSBPONX2 I $G(PSBPONX)]"",$G(PSBPONX)["P" S PSBPONX2=PSBPONX D  ; Must compare "active" orders for changes made - look beyond "pendings"
- ..F  D CLEAN^PSBVT,PSJ1^PSBVT(DFN,PSBPONX2) S PSBPONX2=PSBPONX Q:(PSBPONX2="")!(PSBPONX2'["P")  ;
- ..D CLEAN^PSBVT,PSJ1^PSBVT(DFN,$P(PSBONXS,U,PSBC1))  ; Refresh data
+ ..F  D CLEAN^PSBVT,PSJ1^PSBVT(DFN,PSBPONX2,1) S PSBPONX2=PSBPONX Q:(PSBPONX2="")!(PSBPONX2'["P")  ;
+ ..D CLEAN^PSBVT,PSJ1^PSBVT(DFN,$P(PSBONXS,U,PSBC1),1)  ; Refresh data
  ..S:$D(PSBPONX2) PSBPONX=PSBPONX2 K PSBPONX2
  .Q:($L(U_PSBONXS,U_PSBPONX_U)-1)>0
  .I $G(PSBPONX)]"" S PSBONXS=PSBONXS_PSBPONX_U
@@ -41,7 +52,7 @@ EN(PSBDFN,PSBORD) ;
  .I PSBMI=0 F X=1:1 Q:'$D(^TMP("PSJ2",$J,X))  S PSBCHKV=U_$P(^TMP("PSJ2",$J,X,1),U,3)_U I PSBCSTR[PSBCHKV D MSG(PSBCHKV,$P(^TMP("PSJ2",$J,X,1),U,1)) S PSBMAUD=1
  .K ^TMP("PSJ2",$J)
  .I PSBMI=0,$G(PSBPONX)]"" D SAVEPAR,CHKORD  ; check IV parameters against previous order when no "I"nvalid message
- .D CLEAN^PSBVT,PSJ1^PSBVT(DFN,$P(PSBONXS,U,PSBC1))  ; restore variable for this order
+ .D CLEAN^PSBVT,PSJ1^PSBVT(DFN,$P(PSBONXS,U,PSBC1),1)  ; restore variable for this order
  .; okay - we have invalids and warnings through this order so process bags for this order
  .I '$D(PSBUIDA) Q  ; got errors and warning but no bags printed for this order - go to the next
  .S PSBUID="" F  S PSBUID=$O(PSBUIDA(PSBUID),-1) Q:PSBUID=""  D
@@ -71,7 +82,7 @@ EN(PSBDFN,PSBORD) ;
  K PSBC1,PSBC2,PSBSCHV,PSBCSTR,PSBIVPAR,PSBMI,PSBMIDT,PSBMIM,PSBMONX,PSBMW,PSBSPAR,PSBUID,PSBWARD
  K PSBADA,PSBSOLA,PSBOTMP
  I ^TMP("PSBAR",$J,"W",0)=0 K ^TMP("PSBAR",$J,"W",0)
- D PSJ1^PSBVT(DFN,PSBORD)  ; restore variables for calling order
+ D PSJ1^PSBVT(DFN,PSBORD,1)  ; restore variables for calling order
  Q
  ;
 SAVEPAR ; save parameters from current order
@@ -84,7 +95,7 @@ SAVEPAR ; save parameters from current order
  S PSBOTMP("REMARKS")=$G(PSBRMRK),PSBOTMP("OTHER PRINT INFO")=$G(PSBOTXT)
  S PSBOTMP("PROVIDER")=PSBMD,PSBOTMP("START DATE/TIME")=PSBOST
  S PSBOTMP("STOP DATE/TIME")=PSBOSP
- D CLEAN^PSBVT,PSJ1^PSBVT(DFN,$P(PSBONXS,U,PSBC1+1))  ; setup previous order variables
+ D CLEAN^PSBVT,PSJ1^PSBVT(DFN,$P(PSBONXS,U,PSBC1+1),1)  ; setup previous order variables
  Q
  ;
 CHKORD ; check previous order against current order
@@ -97,7 +108,8 @@ CHKORD ; check previous order against current order
  I PSBRMRK'=PSBOTMP("REMARKS") D MSG("REMARKS",PSBOSP) Q:PSBMI=1
  I PSBOTXT'=PSBOTMP("OTHER PRINT INFO") D MSG("OTHER PRINT INFO",PSBOSP) Q:PSBMI=1
  I PSBMD'=PSBOTMP("PROVIDER") D MSG("PROVIDER",PSBOSP) Q:PSBMI=1
- I $E(PSBOST,1,10)'=$E(PSBOTMP("START DATE/TIME"),1,10) D MSG("START DATE/TIME",PSBOSP) Q:PSBMI=1
+ I PSBOTMP("START DATE/TIME")<$$FMADD^XLFDT(PSBOST,,,-1)!(PSBOTMP("START DATE/TIME")>$$FMADD^XLFDT(PSBOST,,,1)) D MSG("START DATE/TIME",PSBOSP) Q:PSBMI=1
+ ;I $E(PSBOST,1,10)'=$E(PSBOTMP("START DATE/TIME"),1,10) D MSG("START DATE/TIME",PSBOSP) Q:PSBMI=1
  I $E(PSBOSP,1,10)'=$E(PSBOTMP("STOP DATE/TIME"),1,10) D MSG("STOP DATE/TIME",PSBOSP)
  Q
 CHKADD ;

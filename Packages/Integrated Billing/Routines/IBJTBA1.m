@@ -1,5 +1,5 @@
 IBJTBA1 ;ALB/TMK/PJH - TPJI BILL CHARGE INFO SCREEN ;01-MAR-1995
- ;;2.0;INTEGRATED BILLING;**135,265,155,349,417,451**;21-MAR-94;Build 47
+ ;;2.0;INTEGRATED BILLING;**135,265,155,349,417,451,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 SHEOB(IBI,IBSPL,IBEOBCT,IBCTOF) ; Format EOB called from IBJTBA
@@ -160,7 +160,14 @@ MOVE    ;
  Q
  ;
 EOBERR ; Display information about any 361.1 message storage or filing errors
+ N ERRTXT,DASHES,Z
+ S DASHES="---------------------------------------------------------------------"
  I '$O(^IBM(361.1,IBI,"ERR",0)) Q
- S IBSTR=$$SETLN^IBJTBA(" ** MESSAGE STORAGE ERRORS  **","",1,79),IBLN=$$SET^IBJTBA(IBSTR,IBLN)
- S Z=0 F  S Z=$O(^IBM(361.1,IBI,"ERR",Z)) Q:'Z  S IBSTR=$$SETLN^IBJTBA($G(^(Z,0)),"",1,79),IBLN=$$SET^IBJTBA(IBSTR,IBLN)
+ S IBSTR=$$SETLN^IBJTBA("VistA could not match all of the Line Level data received in the EEOB","",1,79),IBLN=$$SET^IBJTBA(IBSTR,IBLN)
+ S IBSTR=$$SETLN^IBJTBA("(835 Record 40) to the claim in VistA.","",1,79),IBLN=$$SET^IBJTBA(IBSTR,IBLN)
+ S IBLN=$$SET^IBJTBA("",IBLN)
+ S Z=0 F  S Z=$O(^IBM(361.1,IBI,"ERR",Z)) Q:'Z  D
+ .S ERRTXT=$G(^IBM(361.1,IBI,"ERR",Z,0))
+ .I ERRTXT["##RAW DATA" S ERRTXT=DASHES
+ .S IBSTR=$$SETLN^IBJTBA(ERRTXT,"",1,79),IBLN=$$SET^IBJTBA(IBSTR,IBLN)
  Q

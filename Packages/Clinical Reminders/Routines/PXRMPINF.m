@@ -1,5 +1,5 @@
-PXRMPINF ; SLC/PKR - Routines relating to patient information. ;12/23/2009
- ;;2.0;CLINICAL REMINDERS;**12,17**;Feb 04, 2005;Build 102
+PXRMPINF ;SLC/PKR - Routines relating to patient information. ;04/17/2012
+ ;;2.0;CLINICAL REMINDERS;**12,17,24**;Feb 04, 2005;Build 193
  ;
  ;======================================================
 DATACHG ;This entry point is called whenever patient data has changed.
@@ -43,6 +43,7 @@ DATACHGR ;Process data from PXK VISIT DATA EVENT
  . S VFL(VF)=DGBL_U_VGBL
  ;Call the routines that need to process the data.
  D UPDPAT^PXRMMST(EVENT,DFN,VISIT,.VFL)
+ D SUICIDE^PXRMNTFY(EVENT,DFN,VISIT)
  L -^XTMP(EVENT)
  K ^XTMP(EVENT)
  Q

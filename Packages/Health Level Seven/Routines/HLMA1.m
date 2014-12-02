@@ -1,12 +1,12 @@
 HLMA1 ;AISC/SAW-Message Administration Module (Cont'd) ;09/13/2006
- ;;1.6;HEALTH LEVEL SEVEN;**19,43,91,109,108,133**;Oct 13, 1995;Build 13
+ ;;1.6;HEALTH LEVEL SEVEN;**19,43,91,109,108,133,161**;Oct 13, 1995;Build 6
  ;Per VHA Directive 2004-038, this routine should not be modified.
 GENACK(HLEID,HLMTIENS,HLEIDS,HLARYTYP,HLFORMAT,HLRESLTA,HLMTIENA,HLP) ;
  ;Entry point to generate an acknowledgement message
  ;
  ;This is a subroutine call with parameter passing.  It returns a value
- ;in the variable HLRESLTA of null if no error occurs, or the following
- ;two piece value if an error occurs:  error code^error description
+ ;in the variable HLRESLTA, however the format of the variable cannot be
+ ;relied on.  Please refer to the developer manual or ICR #2165 for more info.
  ;
  ;Required Input Parameters
  ;     HLEID = IEN of event driver protocol from the Protocol file
@@ -71,4 +71,6 @@ GENACK(HLEID,HLMTIENS,HLEIDS,HLARYTYP,HLFORMAT,HLRESLTA,HLMTIENA,HLP) ;
  ;Execute exit action for subscriber protocol
  X:HLEXROU]"" HLEXROU
 EXIT K HLDTA,HLDT1A,HLMIDA,HLENROU,HLEXROU
+ ;if HLRESLTA is undefined set to NULL ("") HL*1.6*161 RRA ticket #63271
+ I $G(HLRESLTA)="" S HLRESLTA=""
  Q

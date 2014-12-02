@@ -1,5 +1,5 @@
 GMTSXAB ; SLC/KER - List Parameters/Build List            ; 01/06/2003
- ;;2.7;Health Summary;**47,49,58,66**;Oct 20, 1995
+ ;;2.7;Health Summary;**47,49,58,66,105**;Oct 20, 1995;Build 5
  Q
  ;                                 
  ; External References
@@ -59,7 +59,7 @@ ENT ;   Add Entity Parameters (System/User) to the List
 VAL(GMTSV) ; Value
  S GMTSV=$G(GMTSV) N GMTST,GMTSI,GMTSVA,GMTSN,GMTSAD,GMTSNM S GMTSI=+GMTSV Q:+GMTSI=0 GMTSV
  S GMTST=$G(^GMT(142,+GMTSI,"T")),GMTSNM=$P($G(^GMT(142,+GMTSI,0)),"^",1)
- S GMTSVA=+($G(^GMT(142,+GMTSI,"VA"))) I +GMTSVA>0,$L(GMTSNM) S GMTSV=+GMTSI_"^"_GMTSNM Q GMTSV
+ S GMTSVA=+($G(^GMT(142,+GMTSI,"VA"))) I +GMTSVA>0,$L(GMTSNM) S GMTSV=+GMTSI_"^"_$S($L(GMTST):GMTST,1:GMTSNM) Q GMTSV
  S GMTSN=$P(GMTSV,"^",2) S:$L(GMTST) GMTSN=GMTST
  S GMTSV=+GMTSI_"^"_GMTSN,GMTSAD=$P($G(^GMT(142,+GMTSI,0)),"^",1)
  S:GMTSAD="GMTS HS ADHOC OPTION" GMTSV=+GMTSI_"^"_GMTSAD

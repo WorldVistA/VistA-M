@@ -1,20 +1,35 @@
-PSBOCE ;BIRMINGHAM/TEJ-Expired/DC'd/EXPIRING ORDERS REPORT ;1/10/12 8:40pm
- ;;3.0;BAR CODE MED ADMIN;**32,50,68**;Mar 2004;Build 26
+PSBOCE ;BIRMINGHAM/TEJ-Expired/DC'd/EXPIRING ORDERS REPORT ;2/20/13 20:13pm
+ ;;3.0;BAR CODE MED ADMIN;**32,50,68,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
  ; GETSIOPI^PSJBCMA5/5763
  ; 
- ;*68 - allow SIOPI builder to accomodate more than 1 line for SI array
+ ;*68 - allow SIOPI builder to accomodate more than 1 line in SI array
+ ;*70 - pass global var PSBCLINORD when Rpc Psbcsutl is called again
+ ;    - add clinic name to new array PSBCLIN to track clinic name per 
+ ;       order for printed output.
+ ;    - pass global var PSBCLINORD when RPC psbcsutl is called again
+ ;    - convert date/time fields to date only for CO and admin window 
+ ;       to 7 days +/-.
  ;
 EN ;
- N PSBX1X,RESULTS,RESULT,PSBFUTR,QQ
+ N PSBX1X,RESULTS,RESULT,PSBFUTR,X2,X3,QQ,PSBCLIN,PSBSRCHL,PSBHDR,EXPIREHDG,FUTUREHDG,FUTUREX      ;*70
+ S PSBCLINORD=$S($P($G(PSBRPT(4)),U,2)="C":1,1:0)                 ;*70
+ S EXPIREHDG=$S(PSBCLINORD:"Expired/DC'd within last 7 days",1:"Expired/DC'd")
+ S FUTUREHDG=$S(PSBCLINORD:"Expiring within next 7 days",1:"Expiring Tomorrow")
  S PSBFUTR=$TR(PSBRPT(1),"~",U)
  S (PSBOCRIT,PSBXFLG,PSBCFLG)=""   ; Ord Status srch crit - "A"ctve, "D"C ed, "E"xpred"
- S:$P(PSBFUTR,U,7) PSBOCRIT=PSBOCRIT_"Expired/DC'd" S:$P(PSBFUTR,U,8) PSBOCRIT=PSBOCRIT_"Expired/DC'd" S:$P(PSBFUTR,U,9) PSBOCRIT=PSBOCRIT_"Expiring Today"
- S:$P(PSBFUTR,U,10) PSBOCRIT=PSBOCRIT_"Expiring Tomorrow"
+ S:$P(PSBFUTR,U,7) PSBOCRIT=PSBOCRIT_EXPIREHDG S:$P(PSBFUTR,U,8) PSBOCRIT=PSBOCRIT_EXPIREHDG S:$P(PSBFUTR,U,9) PSBOCRIT=PSBOCRIT_"Expiring Today"
+ S:$P(PSBFUTR,U,10) PSBOCRIT=PSBOCRIT_FUTUREHDG
  S:$P(PSBFUTR,U,11) PSBXFLG=1
  I $D(PSBRPT(.2)) I $P(PSBRPT(.2),U,8) S PSBCFLG=1
+ ;check Clinic search list                *70
+ S PSBSRCHL=$$SRCHLIST^PSBOHDR()
+ D:$P(PSBRPT(4),U,2)="C"
+ .S:PSBSRCHL="" PSBSRCHL="All Clinics"
+ .S PSBSRCHL="Clinic Search List: "_PSBSRCHL
+ ;
  K PSBSRTBY,PSBCMT,PSBADM,PSBDATA,PSBOUTP,PSBLGD
  S PSBSORT=1
  D NOW^%DTC S (Y,PSBNOWX)=% D DD^%DT S PSBDTTM=Y
@@ -22,6 +37,7 @@ EN ;
  S PSBB4=0 S:RESULTS(0)>0 PSBB4=+RESULTS(0)
  D GETPAR^PSBPAR("ALL","PSB ADMIN AFTER")
  S PSBAFT=0 S:RESULTS(0)>0 PSBAFT=+RESULTS(0)
+ I PSBCLINORD S (PSBB4,PSBAFT)=7                                  ;*70
  K ^XTMP("PSBO",$J,"PSBLIST")
  S (PSBPGNUM,PSBLNTOT,PSBTOT,PSBX1X)=""
  K PSBLIST,PSBLIST2
@@ -29,23 +45,28 @@ EN ;
  S PSBLIST(PSBXDFN)=""
  S (PSBX1X,PSBTOT)=0
  F  S PSBX1X=$O(PSBLIST(PSBX1X)) Q:+PSBX1X=0  D
- .D RPC^PSBCSUTL(.PSBAREA,PSBX1X)
+ .D RPC^PSBCSUTL(.PSBAREA,PSBX1X,,,PSBCLINORD)                    ;*70
  .M PSBDATA=@PSBAREA
  .S PSBX2X=1
- .S (PSBLIST2("Expiring Tomorrow"),PSBLIST2("Expiring Today"),PSBLIST2("Expired/DC'd"),PSBLIST2(" * NO * "))=0
+ .S (PSBLIST2(FUTUREHDG),PSBLIST2("Expiring Today"),PSBLIST2(EXPIREHDG),PSBLIST2(" * NO * "))=0
  .F  S PSBX2X=$O(PSBDATA(PSBX2X)) Q:+PSBX2X=0  D
  ..S PSBDATA=PSBDATA(PSBX2X)
  ..I $P(PSBDATA,U)="ORD" D  Q
  ...K PSBDRUGN
  ...S PSBORDN=$P(PSBDATA,U,3)
+ ...S PSBCLIN(PSBORDN)=$S($P(PSBDATA,U,32)]"":"Location: ",1:"")_$P(PSBDATA,U,32)                      ;*70
  ...S PSBTB=$P(PSBDATA,U,29) S PSBTB=$S(PSBTB=1:"UD",PSBTB=2:"IVPB",PSBTB=3:"IV",1:" * ERROR * ")
  ...S PSBTB(PSBORDN,PSBTB)=""
  ...S PSBSTS=$P(PSBDATA,U,23) S PSBSTS=$S((PSBSTS="A")&(($P(PSBDATA,U,27)>PSBNOWX)):"Active",PSBSTS="H":"On Hold",PSBSTS="D":"Discontinued",PSBSTS="DE":"Discontinued (Edit)",(PSBSTS="E")!($P(PSBDATA,U,27)'>PSBNOWX):"Expired",1:" * ERROR * ")
  ...S PSBSTS(PSBORDN,PSBSTS)=""
  ...S X2=$P(PSBDATA,U,27),X3=$P(PSBNOWX,".")
- ...S PSBSTSX=$S((X2<PSBNOWX):"Expired/DC'd",(X3'>X2)&($$FMADD^XLFDT(X3,1)>X2):"Expiring Today",($$FMADD^XLFDT(X3,1)'>X2)&(X2'>$$FMADD^XLFDT(X3,2)):"Expiring Tomorrow",1:" * NO * ")
- ...I PSBSTS["Discontinued" S PSBSTSX="Expired/DC'd"
- ...S PSBLIST2(PSBSTSX,$P(PSBDATA,U,9),PSBORDN)="" S PSBLIST2(PSBSTSX)=PSBLIST2(PSBSTSX)+1
+ ...;add ability to use a different calculation and heading for future
+ ...;expired IM and CO meds
+ ...S FUTUREX=$S(PSBCLINORD:8,1:2)
+ ...S PSBSTSX=$S((X2<PSBNOWX):EXPIREHDG,(X3'>X2)&($$FMADD^XLFDT(X3,1)>X2):"Expiring Today",($$FMADD^XLFDT(X3,1)'>X2)&(X2'>$$FMADD^XLFDT(X3,FUTUREX)):FUTUREHDG,1:" * NO * ")   ;*70
+ ...;
+ ...I PSBSTS["Discontinued" S PSBSTSX=EXPIREHDG
+ ...S PSBLIST2(PSBSTSX,$P(PSBDATA,U,9),PSBORDN)=$P(PSBDATA,U,32) S PSBLIST2(PSBSTSX)=PSBLIST2(PSBSTSX)+1   ;*70 clin name
  ...S:PSBOCRIT[PSBSTSX PSBTOT=PSBTOT+1
  ...S PSBSCHTY=$P(PSBDATA,U,6)
  ...S PSBSCHTY(PSBORDN,PSBSCHTY)=""
@@ -109,7 +130,7 @@ BLDRPT ; Buld RPT DATA
  S PSBTOPHD=PSBLNTOT-2
  I '$D(PSBLIST2) D  Q
  .S PSBOUTP(0,PSBLNTOT)="W !!,""<<<< NO ORDERS TO DISPLAY >>>>"",!!"
- S PSBMORE=5 F PSBX1X="Expired/DC'd","Expiring Today","Expiring Tomorrow" D
+ S PSBMORE=5 F PSBX1X=EXPIREHDG,"Expiring Today",FUTUREHDG D
  .I PSBX1X'=" * ERROR * " S PSBSUM=PSBX1X_" ["_PSBLIST2(PSBX1X)_$S(PSBLIST2(PSBX1X)=1:" Order",1:" Orders")_"]" S PSBOUTP($$PGTOT,PSBLNTOT)="W !!,"""_PSBSUM_""""
  .Q:PSBLIST2(PSBX1X)=0
  .Q:PSBOCRIT'[PSBX1X
@@ -135,6 +156,8 @@ BLDRPT ; Buld RPT DATA
  ..D BUILDLN^PSBOCE1,SIOPI^PSBOCM(.PSBSIDAT,PSBTAB8,$S(PSBX2X["V":"Other Print Info: ",1:""))
  ..I $D(PSBRPLN) S PSBMORE=$O(PSBRPLN(""),-1)+6 I $D(PSBSILN) S PSBMORE=PSBMORE+$O(PSBSILN(""),-1)
  ..K PSB1 I $D(PSBFLGD(PSBX2X)) S PSB="" F  S PSB=$O(PSBFLGD(PSBX2X,PSB)) Q:PSB=""  I ($P(PSB,":")'="NOX")&($P(PSB,":")'="STAT") S PSB1=$G(PSB1,"")_PSB
+ ..;*70 build write clinic stmt      
+ ..S PSBOUTP($$PGTOT,PSBLNTOT)="W """_$G(PSBCLIN(PSBX2X))_""""_",!"
  ..S PSBCNT=PSBTOT1_"   "_$G(PSB1,"")
  ..S PSBOUTP($$PGTOT,PSBLNTOT)="W """_PSBCNT_""""
  ..S I="" F  S I=$O(PSBRPLN(I)) Q:+I=0  D
@@ -164,8 +187,9 @@ HDR ;  Hder
  D:$P(PSBRPT(.1),U,1)="P"
  .S PSBHDR(0)=PSBRPNM
  .S PSBHDR(1)="Order Status(es): --"
- .F Y=7,8,9,10 I $P(PSBFUTR,U,Y) S $P(PSBHDR(1),": ",2)=$P(PSBHDR(1),": ",2)_$S(PSBHDR(1)["--":"",1:"/ ")_$P("^^^^^^Expired^DC'd^Expiring Today^Expiring Tomorrow^^^^^^^^",U,Y)_" " S PSBHDR(1)=$TR(PSBHDR(1),"-","")
+ .F Y=7,8,9,10 I $P(PSBFUTR,U,Y) S $P(PSBHDR(1),": ",2)=$P(PSBHDR(1),": ",2)_$S(PSBHDR(1)["--":"",1:"/ ")_$P("^^^^^^Expired^DC'd^Expiring Today^"_FUTUREHDG_"^^^^^^^^",U,Y)_" " S PSBHDR(1)=$TR(PSBHDR(1),"-","")
  .I $P(PSBFUTR,U,11) S PSBHDR(2)="Include Action(s)"_$S(PSBCFLG:" & Comments/Reasons",1:"")
+ .S:$G(PSBSRCHL)]"" PSBHDR(3)="",PSBHDR(4)=PSBSRCHL          ;*70
  .D PT^PSBOHDR(PSBXDFN,.PSBHDR)
  Q
 SUBHDR ;

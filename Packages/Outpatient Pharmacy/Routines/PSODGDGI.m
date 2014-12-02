@@ -1,5 +1,5 @@
 PSODGDGI ;BIR/SAB - drug drug interaction checker ; 6/28/07 7:36am
- ;;7.0;OUTPATIENT PHARMACY;**10,27,48,130,144,132,188,207,243,274**;DEC 1997;Build 8
+ ;;7.0;OUTPATIENT PHARMACY;**10,27,48,130,144,132,188,207,243,274,372**;DEC 1997;Build 54
  ;External reference to ^PS(56 supported by DBIA 2229
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
@@ -63,7 +63,7 @@ PHARM ;pharmacist verification of drug interaction
  Q
 CRI ;process new drug interactions entered by pharmacist
  K DIR G:$P(PSOSD(STA,DRG),"^",9) CRITN S DIR("A",1)="",DIR("A",2)="Do you want to Process medication",DIR("A")=PSODRUG("NAME")_": ",DIR(0)="SA^1:PROCESS;0:ABORT ORDER ENTRY",DIR("B")="P"
- S DIR("?",1)="Enter '1' or 'P' to Activate medication",DIR("?")="      '0' or 'A' to Abort Order Entry process" D ^DIR K X1,DIR I 'Y S PSORX("DFLG")=1,DGI="" K DTOUT,DIRUT,DIROUT,DUOUT,PSORX("INTERVENE") D ULRX Q
+ S DIR("?",1)="Enter '1' or 'P' to Process medication",DIR("?")="      '^' to EXIT",DIR("?",2)="      '0' or 'A' to Abort Order Entry process" D ^DIR K X1,DIR I 'Y S PSORX("DFLG")=1,DGI="" K DTOUT,DIRUT,DIROUT,DUOUT,PSORX("INTERVENE") D ULRX Q
  I $P(SER,"^",4)=1 D
  .D SIG^XUSESIG I X1="" K PSORX("INTERVENE") S PSORX("DFLG")=1 Q
  .S PSORX("INTERVENE")=$P(SER,"^",4)

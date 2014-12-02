@@ -1,5 +1,5 @@
 IBARXEU1 ;AAS/ALB - RX EXEMPTION UTILITY ROUTINE (CONT.) ; 3/27/07 3:10pm
- ;;2.0;INTEGRATED BILLING;**26,112,74,275,367,449**;21-MAR-94;Build 15
+ ;;2.0;INTEGRATED BILLING;**26,112,74,275,367,449,385**;21-MAR-94;Build 35
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 STATUS(DFN,IBDT) ; -- Determine medication copayment exemption status
@@ -34,6 +34,11 @@ AUTOST(DFN,IBDT) ; -- Determine automatically exempt patients.
  S IBEXMT=$$AUTOINFO^DGMTCOU1(DFN) I IBEXMT="" G AUTOSTQ
  I IBEXMT[1 F I=1,2,3,4,6,8,9,10 I $P(IBEXMT,"^",I)=1 S IBEXREA=I*10 Q  ;lookup code is piece position time 10
  ;
+ ; -- need to move CD patinet's to 70 which is ignored by IB, used to
+ ;    keep other stuff working, auto-exempt stuff relies on a 2 digit
+ ;    code to work properly
+ I IBEXREA=100 S IBEXREA=70 ;not used above
+ ;
 AUTOSTQ I IBEXREA="" Q IBEXREA
  Q $O(^IBE(354.2,"ACODE",+IBEXREA,0))_"^"_IBDT
  ;
@@ -45,7 +50,10 @@ INCST(DFN,IBDT) ; -- return medication copayment exemption reason/date
  ;
  N IBDATA,X,DGMT,CLN,CONV
  S IBDATA=$G(^DGMT(408.31,+$$LST^DGMTCOU1(DFN,IBDT,3),0)) ;get any test
- I $$PLUS^IBARXEU0(+IBDATA)<IBDT S X=$O(^IBE(354.2,"ACODE",210,0))_"^"_IBDT G INCSTQ ; means test too old -no data
+ ;
+ ; -- is the mt too old even under VFA rules - no data
+ I $$PLUS^IBARXEU0(+IBDATA)<IBDT,'$$VFAOK^IBARXEU($$LST^IBARXEU0(DFN,+IBDATA)) S X=$O(^IBE(354.2,"ACODE",210,0))_"^"_IBDT G INCSTQ
+ ;
  I $P(IBDATA,U,23)=2 D  G:CONV INCSTQ ;skip Edb conv. tests
  .;Loop through the MT comments, Check for EDB converted test
  .;No comments to check
@@ -54,8 +62,8 @@ INCST(DFN,IBDT) ; -- return medication copayment exemption reason/date
  ..;If most recent test is a converted test use current info from IBA(354
  ..I $G(^DGMT(408.31,+DGMT,"C",CLN,0))["Z06 MT via Edb" S CONV=1,X=$P($G(^IBA(354,DFN,0)),"^",5)_"^"_$P($G(^IBA(354,DFN,0)),"^",3)
  ;
- I $$NETW^IBARXEU1 S X=$$MTCOMP^IBARXEU5($$INCDT(IBDATA),IBDATA)
- I '$$NETW^IBARXEU1 S X=$$INCDT(IBDATA),X=$P(X,"^",3)_"^"_$P(X,"^",2)
+ I $$NETW S X=$$MTCOMP^IBARXEU5($$INCDT(IBDATA),IBDATA)
+ I '$$NETW S X=$$INCDT(IBDATA),X=$P(X,"^",3)_"^"_$P(X,"^",2)
 INCSTQ Q X
  ;
 INCDT(IBDATA) ; -- calcualtes copay exemption status based on income

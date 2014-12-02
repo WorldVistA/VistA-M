@@ -1,7 +1,8 @@
-ECXSARXS ;BIR/DMA-SAS Report from Prescription Extract; 22 Sep 95 / 10:27 AM
- ;;3.0;DSS EXTRACTS;**8**;Dec 22, 1997
+ECXSARXS ;BIR/DMA-SAS Report from Prescription Extract; 22 Sep 95 / 10:27 AM ;3/27/14  16:11
+ ;;3.0;DSS EXTRACTS;**8,149**;Dec 22, 1997;Build 27
  ;
 EN ;entry point from menu option
+ N ECXPORT,CNT ;149
  W @IOF,!!,"Prescription Extract SAS Report",!!
  ;ecxaud=1 for 'sas' audit
  S ECXHEAD="PRE",ECXAUD=1
@@ -11,13 +12,19 @@ EN ;entry point from menu option
  ;select all pharmacy sites/divisions
  S ECXALL=1 D PRE^ECXDVSN1(.ECXDIV,ECXALL,.ECXERR)
  I ECXERR D AUDIT^ECXKILL Q
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I $G(ECXPORT) D  Q  ;149 Secition added
+ .K ^TMP($J,"ECXPORT")
+ .S ^TMP($J,"ECXPORT",0)="EXTRACT LOG #^DIVISION/SITE^FEEDER LOCATION^FEEDER KEY^QUANTITY",CNT=1
+ .D PROCESS
+ .D EXPDISP^ECXUTL1
+ .D AUDIT^ECXKILL
  W !!
  S ECXPGM="PROCESS^ECXSARXS",ECXDESC="Prescription Extract SAS Report"
  S ECXSAVE("ECXHEAD")="",ECXSAVE("ECXDIV(")="",ECXSAVE("ECXARRAY(")=""
  W !
  D DEVICE^ECXUTLA(ECXPGM,ECXDESC,.ECXSAVE)
  I ECXSAVE("POP")=1 D  Q
- .W !!,?5,"Try agian later... exiting.",!
+ .W !!,?5,"Try again later... exiting.",! ;149 Fixed spelling of "again"
  .D AUDIT^ECXKILL
  I ECXSAVE("ZTSK")=0 D
  .K ECXSAVE,ECXPGM,ECXDESC
@@ -70,12 +77,14 @@ PROCESS ;queued entry
  ;print the report
  U IO
  S DIV="" F  S DIV=$O(^TMP($J,"ECXAUD",DIV)) Q:DIV=""  D  Q:QFLG
- .D HEADER
+ .I '$G(ECXPORT) D HEADER ;149
  .S ECFL="" F  S ECFL=$O(^TMP($J,"ECXAUD",DIV,ECFL)) Q:ECFL=""  D  Q:QFLG
- ..D:($Y+3>IOSL) HEADER Q:QFLG  W !,?3,ECFL
+ ..I '$G(ECXPORT) D:($Y+3>IOSL) HEADER Q:QFLG  W !,?3,ECFL ;149
  ..S ECFK="" F  S ECFK=$O(^TMP($J,"ECXAUD",DIV,ECFL,ECFK)) Q:ECFK=""  S TOT=^(ECFK) D  Q:QFLG
+ ...I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=ECXEXT_U_$P($G(ECXDIV(DIV)),U,2)_"("_$P($G(ECXDIV(DIV)),U)_")"_U_ECFL_U_ECFK_U_TOT,CNT=CNT+1 Q  ;149
  ...D:($Y+3>IOSL) HEADER Q:QFLG  W ?40,ECFK,?68,$$RJ^XLFSTR(TOT,5," "),!
  ;close
+ I $G(ECXPORT) Q  ;149
  I $E(IOST)'="C" W @IOF
  I $E(IOST)="C",'QFLG D
  .S SS=22-$Y F JJ=1:1:SS W !

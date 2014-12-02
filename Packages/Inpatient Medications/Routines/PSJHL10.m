@@ -1,5 +1,5 @@
 PSJHL10  ;BIR/LDT,BSJ-VALIDATE INCOMING HL7 DATA/CREATE NEW ORDER ;30 MAY 07
- ;;5.0; INPATIENT MEDICATIONS ;**58,78,91,109,110,195**;16 DEC 97;Build 3
+ ;;5.0;INPATIENT MEDICATIONS;**58,78,91,109,110,195,257**;16 DEC 97;Build 105
  ;
  ; Reference to ^PSDRUG is supported by DBIA# 2192.
  ; Reference to ^PS(51.2 is supported by DBIA# 2178.
@@ -65,6 +65,7 @@ UDSET ;Set up UD variables
  .I '$D(@(F_"12,0)")) S ^(0)=U_55.0612_U_0_U_0
  .S JJ=0 F  S JJ=$O(PROCOM(JJ)) Q:'JJ  S $P(@(F_"12,0)"),"^",3,4)=JJ_"^"_JJ,@(F_"12,"_JJ_",0)")=PROCOM(JJ)
  S @(F_"6)")=$$ENPC^PSJHL11("U",180)
+ D CIMOU^PSJIMO1(PSGP,DA)
  D CRA^PSGOETO
  L -^PS(55,DFN,5,DA)
  S PSGORD=DA_"U"
@@ -112,7 +113,7 @@ IVSET ;
  S $P(ND(0),U,17)="E",ND(1)=P("REM"),ND(3)=P("OPI"),ND(.2)=$P($G(P("PD")),U)_U_$G(P("DO"))_U_+P("MR")_U_$G(P("PRY"))_U_$G(ORDCON) F X=0,1,3,.2,.3 S ^PS(55,DFN,"IV",+ON55,X)=ND(X)
  S $P(^PS(55,DFN,"IV",+ON55,2),U,1,4)=P("LOG")_U_P("IVRM")_U_U_P("SYRS"),$P(^(2),U,8,10)=P("RES")_U_$G(P("FRES"))_U_$S($G(VAIN(4)):+VAIN(4),1:"")
  S $P(^PS(55,DFN,"IV",+ON55,2),U,11)=+P("CLRK")
- S:+$G(P("CLIN")) $P(^PS(55,DFN,"IV",+ON55,"DSS"),"^")=P("CLIN")
+ I +$G(P("CLIN")) S $P(^PS(55,DFN,"IV",+ON55,"DSS"),"^")=P("CLIN") D:$P(P("CLIN"),"^")'="" CIMOI^PSJIMO1(DFN,ON55)
  S:+$G(P("NINIT")) ^PS(55,DFN,"IV",+ON55,4)=P("NINIT")_U_P("NINITDT")_"^^^^^^^^"_"1"
  S ^PS(55,"APIV",DFN,+ON55)=""
  I $D(PROCOM) D

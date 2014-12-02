@@ -1,6 +1,10 @@
 PRCELIQ ;WISC/CLH/CTB-LIQUIDATE 1358 ;9/14/95  11:40 [1/27/99 3:19pm]
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**180**;Oct 20, 2000;Build 5
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*180 RGB 10/22/12  Added switch PRCE424 coming from 1358 processing
+ ;to insure new entry check (EN1^PRCSUT3) uses file 424, not file 410.
+ ;
 EN K PO,PRCFA,PRC,X,X1,%,ER,Y,Z,CNT,IOINHI,IOINLOW,IOINORM,LD,LAMT,DIC,DIE,DR,DA
  S PRCF("X")="AS" D ^PRCFSITE Q:'%
  D LIQ^PRCH58LQ(.PRCFA,.Y,.ER,.PO)
@@ -9,7 +13,8 @@ EN1 ;entry point when obligation number defined
  K ^TMP($J,"PRCE","LIQ")
 EN2 D SCREEN G EXIT:$D(OUT) S DIR("A")="Ok to post liquidation",DIR("B")="Yes",DIR(0)="YO" D ^DIR K DIR G:'Y EXIT
  S (X,Z)=$P(PO(0),"^") I '$D(^PRC(424,"C",PRCFA("PODA"))) W $C(7),!!,"This obligation has not yet established in the 1358 file." H 2 G EXIT
- D EN1^PRCSUT3 S X1=X,DLAYGO=424,DIC="^PRC(424,",DIC(0)="LXZ" D ^DIC K DLAYGO I Y<0 W !!,"YOU DO NOT HAVE THE RIGHT SECURITY ACCESS CODE FOR THIS FILE!!",$C(7) H 3 G EXIT
+ S PRCE424=1 D EN1^PRCSUT3 K PRCE424 I $D(MSG),MSG'="" W !!,MSG K MSG G EXIT   ;PRC*5.1*180
+ S X1=X,DLAYGO=424,DIC="^PRC(424,",DIC(0)="LXZ" D ^DIC K DLAYGO I Y<0 W !!,"YOU DO NOT HAVE THE RIGHT SECURITY ACCESS CODE FOR THIS FILE!!",$C(7) H 3 G EXIT
  W !!,"This 1358 Liquidation entry is assigned entry number ",X1,"."
  S ZX1=X1,DA=+Y
  S DIR(0)="D^"_$E($P($G(PO(12)),U,5),1,7)_":"_DT_".235959"_":EST",DIR("A")="LIQUIDATION DATE",DIR("?")="Enter liquidation date or '^' to quit "

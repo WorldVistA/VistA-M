@@ -1,6 +1,6 @@
 RCDPXFIM ;WISC/RFJ-generate mail message for removing duplicate deposit ;22 Mar 02
- ;;4.5;Accounts Receivable;**177**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**177,306**;Mar 20, 1995;Build 3
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -16,15 +16,28 @@ MAIL(RCDPOSIT,RCTRANDT,RCMESSAG) ;  generate mail message to users
  K ^TMP($J,"RCRJRCORMM")
  S ^TMP($J,"RCRJRCORMM",1)=RCMESSAG
  S ^TMP($J,"RCRJRCORMM",2)=" "
- S ^TMP($J,"RCRJRCORMM",3)="The following bills need to be reviewed.  Payments for deposit"
- S ^TMP($J,"RCRJRCORMM",4)=RCDPOSIT_" were mailed from Austin to Accounts Receivable twice."
- S ^TMP($J,"RCRJRCORMM",5)="AR has removed the duplicate deposit with a transmission date of"
- S ^TMP($J,"RCRJRCORMM",6)=$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_"."
- S ^TMP($J,"RCRJRCORMM",7)=" "
- S ^TMP($J,"RCRJRCORMM",8)="This mailman message shows those bills where payments were"
- S ^TMP($J,"RCRJRCORMM",9)="removed for the duplicate deposit.  The payment transactions"
- S ^TMP($J,"RCRJRCORMM",10)="listed below have been marked incomplete.  You may want to"
- S ^TMP($J,"RCRJRCORMM",11)="review the bills and verify the balances."
+ ;
+ ;**306 replacing this text with more generic text
+ ;S ^TMP($J,"RCRJRCORMM",3)="The following bills need to be reviewed.  Payments for deposit"
+ ;S ^TMP($J,"RCRJRCORMM",4)=RCDPOSIT_" were mailed from Austin to Accounts Receivable twice."
+ ;S ^TMP($J,"RCRJRCORMM",5)="AR has removed the duplicate deposit with a transmission date of"
+ ;S ^TMP($J,"RCRJRCORMM",6)=$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_"."
+ ;S ^TMP($J,"RCRJRCORMM",7)=" "
+ ;S ^TMP($J,"RCRJRCORMM",8)="This mailman message shows those bills where payments were"
+ ;S ^TMP($J,"RCRJRCORMM",9)="removed for the duplicate deposit.  The payment transactions"
+ ;S ^TMP($J,"RCRJRCORMM",10)="listed below have been marked incomplete.  You may want to"
+ ;S ^TMP($J,"RCRJRCORMM",11)="review the bills and verify the balances."
+ ;
+ ; **306 new text
+ S ^TMP($J,"RCRJRCORMM",3)="The following bills need to be reviewed.  Payments for"
+ S ^TMP($J,"RCRJRCORMM",4)="deposit "_RCDPOSIT_" were sent from Austin to Accounts"
+ S ^TMP($J,"RCRJRCORMM",5)="Receivable.  AR has removed the deposit."
+ S ^TMP($J,"RCRJRCORMM",6)=""
+ S ^TMP($J,"RCRJRCORMM",7)="This mailman message shows those bills where payments were"
+ S ^TMP($J,"RCRJRCORMM",8)="removed from the deposit.  The payment transactions listed"
+ S ^TMP($J,"RCRJRCORMM",9)="below have been marked incomplete.  You may want to review"
+ S ^TMP($J,"RCRJRCORMM",10)="the bills and verify the balances."
+ S ^TMP($J,"RCRJRCORMM",11)=" "
  S ^TMP($J,"RCRJRCORMM",12)=" "
  ;
  S ^TMP($J,"RCRJRCORMM",13)="BILL                               PAYMENT     TRANS     "_$J("PAYMENT",10)_$J("NEW BILL",10)
@@ -100,6 +113,8 @@ MAIL(RCDPOSIT,RCTRANDT,RCMESSAG) ;  generate mail message to users
  S XMY("G.RCDP PAYMENTS")=""
  S XMY(.5)=""
  S XMY(DUZ)=""
- S XMZ=$$SENDMSG^RCRJRCOR("AR Duplicate Deposit "_RCDPOSIT_" removed",.XMY)
+ ; **306 removing "duplicate" to make more generic
+ ;S XMZ=$$SENDMSG^RCRJRCOR("AR Duplicate Deposit "_RCDPOSIT_" removed",.XMY)
+ S XMZ=$$SENDMSG^RCRJRCOR("AR Deposit "_RCDPOSIT_" removed",.XMY)
  K ^TMP($J,"RCRJRCORMM")
  Q

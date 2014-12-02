@@ -1,5 +1,7 @@
-IBDF5 ;ALB/CJM - ENCOUNTER FORM (edit a form);NOV 16,1992
- ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+IBDF5 ;ALB/CJM - ENCOUNTER FORM (edit a form) ;11/16/92
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**63**;APR 24, 1997;Build 80
+ ;
+ ;
  ;displays the form for editing using the list processor
  ;
  ;these variables should always be defined while editing a form
@@ -17,7 +19,7 @@ HDR ;the screen header, a ruler
  F I=1:1:16 S VALMHDR(1)=VALMHDR(1)_$J(I,10)
  Q
 DELETE  ;allows user to select a block for deletion
- N IBBLK,IBVALMBG,TOP,BOT
+ N IBBLK,IBVALMBG,TOP,BOT,IBD9,IBD10,IBDN,IBDX
  S VALMBCK="R",IBVALMBG=$G(VALMBG)
  S VALMBG=IBVALMBG
  D FULL^VALM1
@@ -25,7 +27,17 @@ DELETE  ;allows user to select a block for deletion
  Q:'IBBLK
  Q:'$$RUSURE^IBDFU5($P($G(^IBE(357.1,IBBLK,0)),"^"))
  D TOPNBOT^IBDFU5(IBBLK,.TOP,.BOT)
+ S (IBD9,IBD10)=0
+ ;Check to see if block is an ICD-9 or ICD-10 code block.
+ S IBDN="" F  S IBDN=$O(^IBE(357.2,"C",IBBLK,IBDN)) Q:IBDN=""  S IBDX=$P($G(^IBE(357.2,IBDN,0)),U,11) I IBDX?1.N S IBDX=$E($P($G(^IBE(357.6,IBDX,0)),U,1),1,30) D
+ .I '$O(^IBE(357.3,"C",IBDN,"")) Q  ;Only log history fields if ICD-9 or ICD-10 codes are contained in block.
+ .I IBDX="DG SELECT ICD-9 DIAGNOSIS CODE",$O(^IBE(357.3,"C",IBDN,"")) S IBD9=1
+ .I IBDX="DG SELECT ICD-10 DIAGNOSIS COD",$O(^IBE(357.3,"C",IBDN,"")) S IBD10=1
  D DLTBLK^IBDFU3(IBBLK,IBFORM,357.1)
+ ;Now update history if block was an ICD-9 or ICD-10 block before block was deleted.
+ N IBDX
+ I IBD9 S IBDX=$$CSUPD357^IBDUTICD(IBFORM,1,"",$$NOW^XLFDT(),DUZ)
+ I IBD10 S IBDX=$$CSUPD357^IBDUTICD(IBFORM,30,"",$$NOW^XLFDT(),DUZ)
  S VALMBCK="R"
  D IDXFORM^IBDF5A(TOP,BOT)
  Q

@@ -1,5 +1,5 @@
 DVBCUTIL ;ALB/GTS-557/THM;C&P UTILITY ROUTINE ; 11/3/2010
- ;;2.7;AMIE;**17,126,143,149**;Apr 10, 1995;Build 16
+ ;;2.7;AMIE;**17,126,143,149,184**;Apr 10, 1995;Build 10
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 KILL ;common exit
@@ -35,8 +35,7 @@ VARS S DTA=^DVB(396.3,DA,0),DFN=$P(DTA,U,1),(NAME,PNAM)=$P(^DPT(DFN,0),U,1),DOB=
  . I ZPR="E" S PRIO="Inadequate exam" Q
  . I ZPR="AO" S PRIO="Agent Orange" Q
  . I ZPR="BDD" S PRIO="Ben Deliv at Disch" Q
- . I ZPR="DCS" S PRIO="DES Claimed Cond By Svcmbr" Q
- . I ZPR="DFD" S PRIO="DES Fit-For-Duty" Q
+ . I ZPR="IDES" S PRIO="IDES" Q
  . I ZPR="QS" S PRIO="Quick Start"
  K DVBAINSF S:ZPR="E" DVBAINSF=""
  S (ADR1,ADR2,ADR3,CITY,STATE,ZIP)=""

@@ -1,12 +1,12 @@
-ECXEC ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ; 10/2/07 2:33pm
- ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132,136**;Dec 22, 1997;Build 28
+ECXEC ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ;8/13/13  15:54
+ ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132,136,144,149**;Dec 22, 1997;Build 27
 BEG ;entry point from option
  I '$D(^ECH) W !,"Event Capture is not initialized",!! Q
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
  Q
 START ;begin EC extract
- N X,Y,ECDCM,ECXNPRFI
+ N X,Y,ECDCM,ECXNPRFI,ECXVIET,ECX4CHAR ; 144 national 4char code
  N ECXICD10P,ECXICD101,ECXICD102,ECXICD103,ECXICD104
  S ECED=ECED+.3,ECLL=0
  K ^TMP("EC",$J)
@@ -16,6 +16,8 @@ START ;begin EC extract
  Q
  ;
 UPDATE ;sets record and updates counters
+ N ECXESC,ECXECL,ECXCLST,ECXRES1,ECXRES2,ECXRES3 ;149
+ S (ECXESC,ECXECL,ECXCLST,ECXRES1,ECXRES2,ECXRES3)="" ;144
  S ECCH=^ECH(ECDA,0),ECL=$P(ECCH,U,4),ECXDFN=$P(ECCH,U,2)
  S ECXPDIV=$$RADDIV^ECXDEPT(ECL)  ;Get production division from file 4
  S ECDT=$P(ECCH,U,3),ECM=$P(ECCH,U,6),ECC=$P(ECCH,U,8)
@@ -26,7 +28,7 @@ UPDATE ;sets record and updates counters
  S ECXUNIT=$G(^ECD(ECDU,0)),ECCS=+$P(ECXUNIT,U,4),ECDCM=$P(ECXUNIT,U,5)
  S ECXDSSP="",ECXDSSD=$E(ECDCM,1,10),ECUSTOP=$P(ECXUNIT,U,10),ECUPCE=$P(ECXUNIT,U,14)
  S ICD9=$P($G(^ECH(ECDA,"P")),U,2) S:ICD9="" ICD9=" "
- S ECXICD9=$P($G(^ICD9(ICD9,0)),U),ECXICD10P=""
+ S ECXICD9=$P($G(^ICD9(ICD9,0)),U),ECXICD10P="",ECX4CHAR="" ;144
  F I=1:1:4 S @("ECXICD9"_I)=""
  F I=1:1:4 S @("ECXICD10"_I)=""
  S (CNT,I)=0
@@ -35,7 +37,8 @@ UPDATE ;sets record and updates counters
  ..S I=I+1,@("ECXICD9"_I)=$P($G(^ICD9(ICD9,0)),U)
  ;derivation of dss identifier depends on whether dss unit is 
  ;set to send data to pce
- S ECAC=$P($G(ECCH),U,19)
+ S ECAC=$P($G(ECCH),U,19) S:ECAC=0 ECAC="" ;144 Change value to null if value from event capture patient file is 0
+ S ECX4CHAR=$$GET1^DIQ(728.44,+ECAC,7,"E") ; 144 use the assoc clinic to get 4char code
  ;if this is a record that 'goes to pce', then get the dss identifier
  ;from the clinic stop codes
  S (ECAC1S,ECAC2S)="000"
@@ -63,10 +66,10 @@ UPDATE ;sets record and updates counters
  ;- Ord Div, Contrct St/End Dates, Contrct Type placeholders for FY2002
  S (ECXODIV,ECXCSDT,ECXCEDT,ECXCTYP)=""
  ;setup provider(s) as'2'_ien
- S (ECU1A,ECU2A,ECU3A,ECU1NPI,ECU2NPI,ECU3NPI,ECXPPC1,ECXPPC2,ECXPPC3)=""
- S (ECU1,ECU2,ECU3,ECU4,ECU5,ECU4A,ECU5A,ECU4NPI,ECU5NPI,ECXPPC4,ECXPPC5)=""
+ S (ECU1A,ECU2A,ECU3A,ECU1NPI,ECU2NPI,ECU3NPI,ECXPPC1,ECXPPC2,ECXPPC3,ECU1,ECU2,ECU3,ECU4,ECU5,ECU6,ECU7)="" ;144 CVW
+ S (ECU4A,ECU5A,ECU6A,ECU7A,ECU4NPI,ECU5NPI,ECU6NPI,ECU7NPI,ECXPPC4,ECXPPC5,ECXPPC6,ECXPPC7)="" ;144
  K ECXPRV S ECXPROV=$$GETPRV^ECPRVMUT(ECDA,.ECXPRV) I ECXPROV Q
- F I=1:1:5 S Y=$O(ECXPRV("")) I Y'="" S @("ECU"_I)=+ECXPRV(Y) K ECXPRV(Y)
+ F I=1:1:7 S Y=$O(ECXPRV("")) I Y'="" S @("ECU"_I)=+ECXPRV(Y) K ECXPRV(Y)
  S:$L(ECU1) ECXPPC1=$$PRVCLASS^ECXUTL(ECU1,ECDT),ECU1A="2"_$P(ECU1,";")
  S ECXUSRTN=$$NPI^XUSNPI("Individual_ID",ECU1,ECDT)
  S:+ECXUSRTN'>0 ECXUSRTN="" S ECU1NPI=$P(ECXUSRTN,U)
@@ -82,6 +85,13 @@ UPDATE ;sets record and updates counters
  S:$L(ECU5) ECXPPC5=$$PRVCLASS^ECXUTL(ECU5,ECDT),ECU5A="2"_$P(ECU5,";")
  S ECXUSRTN=$$NPI^XUSNPI("Individual_ID",ECU5,ECDT)
  S:+ECXUSRTN'>0 ECXUSRTN="" S ECU5NPI=$P(ECXUSRTN,U)
+ ;144 add 2 more providers, prov per class, prov npi cvw
+ S:$L(ECU6) ECXPPC6=$$PRVCLASS^ECXUTL(ECU6,ECDT),ECU6A="2"_$P(ECU6,";")
+ S ECXUSRTN=$$NPI^XUSNPI("Individual_ID",ECU6,ECDT)
+ S:+ECXUSRTN'>0 ECXUSRTN="" S ECU6NPI=$P(ECXUSRTN,U)
+ S:$L(ECU7) ECXPPC7=$$PRVCLASS^ECXUTL(ECU7,ECDT),ECU7A="2"_$P(ECU7,";")
+ S ECXUSRTN=$$NPI^XUSNPI("Individual_ID",ECU7,ECDT)
+ S:+ECXUSRTN'>0 ECXUSRTN="" S ECU7NPI=$P(ECXUSRTN,U)
  ;change for version 2 where ECP is a variable pointer and we want to
  ;expand it category = category or null if stored as 0
  D:ECP[";"
@@ -89,6 +99,9 @@ UPDATE ;sets record and updates counters
  ;pick up EC to PCE data from "P" in File 721
  S ECPCE=$G(^ECH(ECDA,"P")),ECPCE1=$P(ECPCE,U),ECPCE2=$P(ECPCE,U,2)
  S ECPCE7=$S($P(ECPCE,U,7)=1:"Y",1:"N")
+ S ECXRES1=$$GET1^DIQ(720.5,$P($G(^ECH(ECDA,0)),U,23),.01,"E") ;149 Proc Reason 1
+ S ECXRES2=$$GET1^DIQ(720.5,$P($G(^ECH(ECDA,0)),U,24),.01,"E") ;149 Proc Reason 2
+ S ECXRES3=$$GET1^DIQ(720.5,$P($G(^ECH(ECDA,1)),U,1),.01,"E")  ;149 Proc Reason 3
  S ECXCMOD=""
  I $D(^ECH(ECDA,"MOD")) D
  .S MOD=0,M=""
@@ -110,6 +123,7 @@ UPDATE ;sets record and updates counters
  .D VISIT^ECXSCX1(ECXDFN,ECXVISIT,.ECXVIST,.ECXERR) I ECXERR K ECXERR Q
  .S ECXAO=$G(ECXVIST("AO")),ECXECE=$G(ECXVIST("PGE")),ECXSHAD=$G(ECXVIST("SHAD"))
  .S ECXHNC=$G(ECXVIST("HNC")),ECXMIL=$G(ECXVIST("MST")),ECXIR=$G(ECXVIST("IR"))
+ .S ECXECL=$G(ECXVIST("ENCCL")),ECXESC=$G(ECXVIST("ENCSC")) ;144
  ; - Head and Neck Cancer Indicator
  S ECXHNCI=$$HNCI^ECXUTL4(ECXDFN)
  ; - PROJ 112/SHAD Indicator
@@ -154,8 +168,10 @@ FILE ;file record in #727.815
  ;head & neck cancer ind. ECXHNCI^ethnicity ECXETH^race1 ECXRAC1
  ;enrollment location ECXENRL^^enrollment priority
  ;ECXPRIOR_enrollment subgroup ECXSBGRP^user enrollee ECXUESTA^patient
- ;type ECXPTYPE^combat vet elig ECXCVE^combat vet elig end date
- ;ECXCVEDT^enc cv eligible ECXCVENC^national patient record flag
+ ;type ECXPTYPE^combat vet elig ECXCVE
+ ;NODE 2
+ ;combat vet elig end date ECXCVEDT
+ ;enc cv eligible ECXCVENC^national patient record flag
  ;ECXNPRFI^emerg response indic(FEMA) ECXERI^agent orange indic ECXAO^
  ;environ contam ECXECE^head/neck cancer ECXHNC^encntr mst ECXMIL
  ;^radiation ECXIR^OEF/OIF ECXOEF^OEF/OIF return date ECXOEFDT
@@ -166,7 +182,12 @@ FILE ;file record in #727.815
  ;prov #5 pc ECXPPC5^prov #5 ECXU5NPI^
  ;primary ICD-10 code (currently null) ECXICD10P^Secondary ICD-10 Code #1 (currently null) ECXICD101^
  ;Secondary ICD-10 Code #2 (currently null) ECXICD102^Secondary ICD-10 Code #3 (currently null) ECXICD103^
- ;Secondary ICD-10 Code #4 (currently null) ECXICD104  
+ ;Secondary ICD-10 Code #4 (currently null) ECXICD104
+ ;NODE 3
+ ;Encounter SC ECXESC^Vietnam Status ECXVIET^
+ ;Provider #6 ECU6A^ Prov #6 PC ECXPPC6^Prov #6 NPI ECU6NPI^Provider #7 ECU7A^ Prov #7 PC ECXPPC7^Prov #7 NPI ECU7NPI
+ ;National 4CHAR code ECX4CHAR^Clinic IEN ECAC^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL
+ ;Reason #1 (ECXRES1) ^ Reason #2 (ECXRES2) ^ Reason #3 (ECXRES3) ^ Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
  ;
  ;convert specialty to PTF Code for transmission
  N ECXDATA
@@ -198,8 +219,10 @@ FILE ;file record in #727.815
  ; PATCAT added
  I ECXLOGIC>2010 S ECODE2=ECODE2_U_ECXSHADI_U_ECXSHAD_U_ECXPATCAT
  I ECXLOGIC>2011 S ECODE2=ECODE2_U_ECU4A_U_ECXPPC4_U_ECU4NPI_U_ECU5A_U_ECXPPC5_U_ECU5NPI
- I ECXLOGIC>2012 S ECODE2=ECODE2_U_ECXICD10P_U_ECXICD101_U_ECXICD102_U_ECXICD103_U_ECXICD104
- S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),ECRN=ECRN+1
+ I ECXLOGIC>2012 S ECODE2=ECODE2_U_ECXICD10P_U_ECXICD101_U_ECXICD102_U_ECXICD103_U_ECXICD104_U
+ I ECXLOGIC>2013 S ECODE3=ECXESC_U_ECXVIET_U_ECU6A_U_ECXPPC6_U_ECU6NPI_U_ECU7A_U_ECXPPC7_U_ECU7NPI_U_ECX4CHAR_U_ECAC_U_ECXCLST_U_ECXECL ; 144
+ I ECXLOGIC>2014 S ECODE3=ECODE3_U_ECXRES1_U_ECXRES2_U_ECXRES3_U_ECXSVCI_U_ECXSVCL ;149
+ S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),^ECX(ECFILE,EC7,3)=$G(ECODE3),ECRN=ECRN+1 ;144
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD
  Q

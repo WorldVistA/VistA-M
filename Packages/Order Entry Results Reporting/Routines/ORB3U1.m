@@ -1,5 +1,5 @@
 ORB3U1 ; slc/CLA - Utilities which support OE/RR 3 Notifications ;12/15/97
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,74,88,91,105,179,220,250**;Dec 17, 1997;Build 1
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,74,88,91,105,179,220,250,379**;Dec 17, 1997;Build 13
  Q
 LIST(Y) ;return list of notifications from Notification File [#100.9]
  ; RETURN IEN^NAME^URGENCY
@@ -88,8 +88,8 @@ LMENTRY ; entry code for List Mgr display
  ...S ORNUM=""
  ...I ORDATA["@" S ORNUM=$P(ORDATA,"@")
  ...S ORNUM=$S(+$G(ORNUM)>0:"["_+ORNUM_"]",1:"")
- ...S ORBMSG=$P(ORBMSG,"): ",2)
- ...S ORBMSGP1=$P(ORBMSG,":",1)   ;jeh
+ ...S ORBMSG=$S($F(ORBMSG,": "):$E(ORBMSG,$F(ORBMSG,": "),$L(ORBMSG)),1:"") ;p379
+ ...S ORBMSGP1=$P(ORBMSG,":",1) ;jeh
  ...S ORBMSGP2=$P(ORBMSG,":",2,3)   ;jeh 
  ...I $G(ORBMSGP1)="Order(s) needing clarification" D    ;jeh Shorten output to make room for OR IEN 
  ....S ORBMSGP1="Order needs clarifying"  ;jeh

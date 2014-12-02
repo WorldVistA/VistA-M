@@ -1,5 +1,5 @@
 RORTSK13 ;HIOFO/SG,VAC - PARSER FOR REPORT PARAMETERS ;4/7/09 2:05pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,8**;Feb 17, 2006;Build 8
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,8,19**;Feb 17, 2006;Build 43
  ;
  ; Modified March 2009 to support ICD9FILT parameter passed in
  ;
@@ -7,6 +7,7 @@ RORTSK13 ;HIOFO/SG,VAC - PARSER FOR REPORT PARAMETERS ;4/7/09 2:05pm
  ;
  ; #1995         $$CODEN^ICPTCOD (supported)
  ; #3990         $$CODEN^ICDCODE (supported)
+ ; #5747         $$CODEABA^ICDEX (controlled)
  ; #4149         EN^MXMLPRSE (supported)
  ;
  ; RORXML -------------- DESCRIPTOR FOR THE XML PARSING
@@ -21,6 +22,16 @@ RORTSK13 ;HIOFO/SG,VAC - PARSER FOR REPORT PARAMETERS ;4/7/09 2:05pm
  ;
  ;   "TI")               Number of the current text line of
  ;                       the current tag value
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;******************************************************************************
+ ;******************************************************************************
  ;
  Q
  ;
@@ -41,9 +52,9 @@ DUMMY1 Q
 ELEND(ELMT) ;
  ;--- Reset the drug group name in the end of the group
  K:RORXML("PATH")="PARAMS,DRUGS,GROUP" RORXML("RXGRP")
- ;--- Reset the ICD-9 group name in the end of the group
- K:RORXML("PATH")="PARAMS,ICD9LST,GROUP" RORXML("ICD9GRP")
- K:RORXML("PATH")="PARAMS,ICD9FILT,GROUP" RORXML("ICD9GRP")
+ ;--- Reset the ICD group name in the end of the group
+ K:RORXML("PATH")="PARAMS,ICDLST,GROUP" RORXML("ICDGRP")
+ K:RORXML("PATH")="PARAMS,ICDFILT,GROUP" RORXML("ICDGRP")
  ;--- Update the current element path
  S RORXML("PATH")=$P(RORXML("PATH"),",",1,$L(RORXML("PATH"),",")-1)
  Q
@@ -54,7 +65,7 @@ ELEND(ELMT) ;
  ; .ATTR         List of attributes and their values
  ;
 ELSTART(ELMT,ATTR) ;
- N GROUP,ID,IEN,ITEM,LIST,LVL,RC,SECTION,TMP
+ N GROUP,ID,IEN,ITEM,LIST,LVL,RC,SECTION,TMP,RORICDTYPE,RORCODSYS,RORPROCMODE,RORROOTFILE
  ;--- Update the current element path
  S RORXML("PATH")=RORXML("PATH")_$S(RORXML("PATH")'="":",",1:"")_ELMT
  S RORXML("TI")=1
@@ -75,24 +86,31 @@ ELSTART(ELMT,ATTR) ;
  ;=== Store 2-level lists
  I LVL=4  D  Q
  . S LIST=$P(RORXML("PATH"),",",LVL-2,LVL-1)
- . ;--- ICD-9 diagnosis or procedure codes
- . I LIST="ICD9LST,GROUP"  D  Q
- . . S GROUP=$G(RORXML("ICD9GRP"))  Q:GROUP=""
- . . S ID=$G(ATTR("ID"))            Q:ID=""
- . . S TMP=$S($G(RORTSK("PARAMS","ICD9LST","A","PROCMODE")):80.1,1:80)
- . . S IEN=+$$CODEN^ICDCODE(ID,TMP)
- . . S:IEN>0 RORTSK("PARAMS","ICD9LST","G",GROUP,"C",IEN)=ID
- .;--- ICD9 codes
- . I LIST="ICD9FILT,GROUP" D  Q
- . . S GROUP=$G(RORXML("ICD9GRP"))  Q:GROUP=""
- . . S ID=$G(ATTR("ID"))            Q:ID=""
- . . S IEN=+$$CODEN^ICDCODE(ID,80)
- . . S:IEN>0 RORTSK("PARAMS","ICD9FILT","G",GROUP,"C",IEN)=ID
+ . ;--- ICD diagnosis or procedure codes
+ . I LIST="ICDLST,GROUP"  D  Q
+ . . S GROUP=$G(RORXML("ICDGRP"))  Q:GROUP=""
+ . . S ID=$G(ATTR("ID"))           Q:ID=""
+ . . S RORICDTYPE=$G(ATTR("VERSION"))
+ . . S RORPROCMODE=$G(RORTSK("PARAMS","ICDLST","A","PROCMODE"))
+ . . S RORCODSYS=$S(RORICDTYPE="ICD-10":$S(RORPROCMODE:"31",1:"30"),RORICDTYPE="ICD-9":$S(RORPROCMODE:"2",1:"1"),1:"")
+ . . Q:RORCODSYS=""
+ . . S RORROOTFILE=$S(RORPROCMODE:"80.1",1:"80")
+ . . S IEN=$$CODEABA^ICDEX(ID,RORROOTFILE,RORCODSYS)
+ . . S:IEN>0 RORTSK("PARAMS","ICDLST","G",GROUP,"C",IEN)=ID_U_RORCODSYS
+ .;--- ICD codes
+ . I LIST="ICDFILT,GROUP" D  Q
+ . . S GROUP=$G(RORXML("ICDGRP"))  Q:GROUP=""
+ . . S ID=$G(ATTR("ID"))           Q:ID=""
+ . . S RORICDTYPE=$G(ATTR("VERSION"))
+ . . S RORCODSYS=$S(RORICDTYPE="ICD-10":"30",RORICDTYPE="ICD-9":"1",1:"")
+ . . Q:RORCODSYS=""
+ . . S IEN=$$CODEABA^ICDEX(ID,"80",RORCODSYS)
+ . . S:IEN>0 RORTSK("PARAMS","ICDFILT","G",GROUP,"C",IEN)=ID_U_RORCODSYS
  ;
  ;=== Store the lists
  I LVL=3  D  Q
  . S LIST=$P(RORXML("PATH"),",",LVL-1)
- . ;--- List of ICD-9 codes
+ . ;--- List of CPT codes
  . I LIST="CPTLST"  D:ELMT="CPT"  Q
  . . S ID=$G(ATTR("ID"))  Q:ID=""
  . . S IEN=+$$CODEN^ICPTCOD(ID)
@@ -102,9 +120,9 @@ ELSTART(ELMT,ATTR) ;
  . . S (RORXML("RXGRP"),ID)=$G(ATTR("ID"))  Q:ID=""
  . . M RORTSK("PARAMS","DRUGS","G",ID,"A")=ATTR
  . . K RORTSK("PARAMS","DRUGS","G",ID,"A","ID")
- . ;--- Name of the current ICD-9 group
- . I (LIST="ICD9LST")!(LIST="ICD9FILT")  D:ELMT="GROUP"  Q
- . . S RORXML("ICD9GRP")=$G(ATTR("ID"))
+ . ;--- Name of the current ICD group
+ . I (LIST="ICDLST")!(LIST="ICDFILT")  D:ELMT="GROUP"  Q
+ . . S RORXML("ICDGRP")=$G(ATTR("ID"))
  . ;--- List of ICD-9 codes
  . ;I LIST="ICD9LST"  D:ELMT="ICD9"  Q
  . ;. S ID=$G(ATTR("ID"))  Q:ID=""

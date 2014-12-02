@@ -1,5 +1,5 @@
 DGPMDDCN ;ALB/MRL - DETERMINE INPATIENT X-REF'S ;3/04/08 8:54am
- ;;5.3;Registration;**54,498,671**;Aug 13, 1993;Build 27
+ ;;5.3;Registration;**54,498,671,812**;Aug 13, 1993;Build 19
  ;
 1 ; 
  I $S($D(DGPMT):1,('$D(DA)#2):1,'$D(DGPMDDF):1,'$D(DGPMDDT):1,1:0) G KX
@@ -51,10 +51,12 @@ CHK ;
  Q
  ;
 S8 ; -- doc x-ref
- I $D(^DPT(DFN,.104)) S DGPMX=+^(.104) D KILL
+ S DGFLD=.104 I $D(^DPT(DFN,.104)) S DGPMX=+^(.104) D KILL
  S DGPMX=+VAPP I DGPMX D
- . N DA,DR,DIE,DIC,D,%H,%T,D0,DIK,DK,DL,X,DQ,Y
- . S DIE="^DPT(",DA=DFN,DR=".104////"_DGPMX D ^DIE
+ . ;DG*5.3*812 changing ^DIE to UPDATE^DIE to avoid recursive error
+ . N DGFDA,ERR
+ . S DGFDA(2,DFN_",",.104)=DGPMX
+ . D UPDATE^DIE("","DGFDA","")
  Q
  ;
 K8 ;

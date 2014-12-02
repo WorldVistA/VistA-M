@@ -1,5 +1,5 @@
 IBTRED ;ALB/AAS - EXPAND/EDIT CLAIMS TRACKING ENTRY ;01-JUL-1993
- ;;2.0;INTEGRATED BILLING;**71,91,160,247,309,276,339,363**;21-MAR-94;Build 35
+ ;;2.0;INTEGRATED BILLING;**71,91,160,247,309,276,339,363,458**;21-MAR-94;Build 4
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % ;
@@ -12,8 +12,9 @@ EN ; -- main entry point for IBT EXPAND/EDIT TRACKING
  Q
  ;
 HDR ; -- header code
- D PID^VADPT
- S VALMHDR(1)="Expanded Claims Tracking Info for: "_$E($P($G(^DPT(DFN,0)),"^"),1,20)_" "_$E($G(^(0)),1)_VA("BID")_"   ROI: "_$$EXPAND^IBTRE(356,.31,$P(^IBT(356,IBTRN,0),"^",31))
+ D PID^VADPT N IBXR
+ S VALMHDR(1)="Expanded Claims Tracking Info for: "_$E($P($G(^DPT(DFN,0)),"^"),1,20)_" "_$E($G(^(0)),1)_VA("BID")
+ S IBXR=$$ROIEVT^IBTRR1(IBTRN) I IBXR'="" S VALMHDR(1)=VALMHDR(1)_$J(" ",(60-$L(VALMHDR(1))))_"ROI: "_IBXR
  S VALMHDR(2)="                              For: "_$$ETYP(IBTRN)
  Q
  ;

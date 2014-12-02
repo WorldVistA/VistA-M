@@ -1,5 +1,5 @@
-MAGQBPG2 ;WCIOFO - TS RMP Magnetic Server Purge processes ; 18 Jan 2011 5:03 PM
- ;;3.0;IMAGING;**8,20,39**;Mar 19, 2002;Build 2010;Mar 08, 2011
+MAGQBPG2 ;WCIOFO/RMP - Magnetic Server Purge processes ; 07 Jun 2013 9:55 AM
+ ;;3.0;IMAGING;**8,20,39,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -84,10 +84,11 @@ PGEUD(RESULT,FILENAME,EXT,IEN,DEVICE) ; RPC[MAGQBP UPDATE]
  N FTYPE,NODE,PIECE,PLACE,X
  S X="ERR^MAGQBTM",@^%ZOSF("TRAP")
  S PLACE=$$PLACE^MAGBAPI(+$G(DUZ(2)))
+ S EXT=$$UPPER^MAGQE4(EXT)
  S RESULT="0",FTYPE=$$FTYPE^MAGQBPRG(EXT,IEN)
  S NODE=$S(FTYPE="BIG":"FBIG",1:0)
- S:DEVICE="JB" PIECE=$S(FTYPE="ABS":5,FTYPE="BIG":2,FTYPE="FULL":5,FTYPE="PHOTOID":5,1:0)
- S:DEVICE="NET" PIECE=$S(FTYPE="ABS":4,FTYPE="BIG":1,FTYPE="FULL":3,FTYPE="PHOTOID":3,1:0)
+ S:DEVICE="JB" PIECE=$S(FTYPE="ABS":5,FTYPE="BIG":2,FTYPE="FULL":5,FTYPE="PHOTOID":5,FTYPE="ADIRECT":5,1:0)
+ S:DEVICE="NET" PIECE=$S(EXT="ABS":4,FTYPE="BIG":1,FTYPE="FULL":3,FTYPE="PHOTOID":3,FTYPE="ADIRECT":3,1:0)
  I PIECE=0 D ELOG^MAGQBPRG(NODE,FTYPE,"RAID pointer indeterminate") Q
  S RESULT="1"
  S:$D(^MAG(2005,IEN,NODE)) $P(^MAG(2005,IEN,NODE),U,PIECE)=""

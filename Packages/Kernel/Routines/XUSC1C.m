@@ -1,5 +1,6 @@
-XUSC1C ;ISCSF/RWF - Client Interface to Server services. ;10/09/2002  17:03
- ;;8.0;KERNEL;**283**;Jul 10, 1995
+XUSC1C ;ISCSF/RWF - Client Interface to Server services. ;04/06/12  09:01
+ ;;8.0;KERNEL;**283,580**;Jul 10, 1995;Build 46
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;Return 0 = OK, else -1^msg
 EN(INPUT,OUTPUT,TYPE) ;Call to connect to Server
  N X,Y,XUSCCMD,XUSCDAT,XUSCER,XUSCTIME,XUSCTRC,XUSCEXIT
@@ -32,7 +33,7 @@ OPEN ;Open connection
  . D TRACE("Call IP "_IPA)
  . F XUSCCNT=0:1:5 D  Q:'POP
  . . D CALL^%ZISTCP(IPA,XUSC("SOCK"),1)
- I POP S XUSC("STAT")="-1^Inital Connection Failed" Q
+ I POP S XUSC("STAT")="-1^Initial Connection Failed" Q
  D TRACE("Got Connection")
  U IO
  Q
@@ -75,7 +76,7 @@ TRACE(S1) ;
  I S1=-1 K ^TMP("XUSC1",$J) Q
  Q:'$G(XUSCDBUG)
  S H=$P($H,",",2),H=(H\3600)_":"_(H#3600\60)_":"_(H#60)_" "
- L +^TMP("XUSC1",$J)
+ L +^TMP("XUSC1",$J):1
  S %=$G(^TMP("XUSC1",$J,0))+1,^(0)=%,^(%)=H_XUSCTRC_S1
  L -^TMP("XUSC1",$J)
  Q

@@ -1,7 +1,7 @@
-PXRMPCMM ;SLC/PKR - Computed findings for PCMM. ;06/22/2011
- ;;2.0;CLINICAL REMINDERS;**18**;Feb 04, 2005;Build 152
+PXRMPCMM ;SLC/PKR - Computed findings for PCMM. ;07/01/2012
+ ;;2.0;CLINICAL REMINDERS;**18,24**;Feb 04, 2005;Build 193
  ;References to SCAPMC supported by DBIA #1916.
- ;======================================================
+ ;====================================
 INSTPCTM(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;VA-PCMM PC TEAM
  ;INSTITUTION computed finding. Return the institution and team for
  ;the patient's primary care team as of the evaluation date. 
@@ -15,7 +15,24 @@ INSTPCTM(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;VA-PCMM PC TEAM
  S TEXT(1)="Primary care team is "_DATA(1,"PCMM TEAM")_", Institution is "_DATA(1,"INSTITUTION")_"."
  Q
  ;
- ;======================================================
+ ;====================================
+MHTC(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;VA-PCMM MHTC computed
+ ;finding. MHTC stands for Mental Health Treatment Coordinator.
+ N RESULT
+ ;DBIA #5697
+ S RESULT=$$START^SCMCMHTC(DFN)
+ I RESULT="" S NFOUND=0 Q
+ ;S NFOUND=1,DATE(1)=$$NOW^PXRMDATE,TEST(1)=1
+ ;The API does not currently take a date.
+ S NFOUND=1,DATE(1)=$$NOW^XLFDT,TEST(1)=1
+ S (DATA(1,"MHTC"),DATA(1,"VALUE"))=$P(RESULT,U,2)
+ S DATA(1,"TEAM POSITION")=$P(RESULT,U,3)
+ S DATA(1,"ROLE")=$P(RESULT,U,4)
+ S DATA(1,"TEAM")=$P(RESULT,U,5)
+ S TEXT(1)="Team Position is "_DATA(1,"TEAM POSITION")_", Role is "_DATA(1,"ROLE")_", Team is "_DATA(1,"TEAM")_"."
+ Q
+ ;
+ ;====================================
 PRPT(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;VA-PCMM PRACTITIONERS
  ;ASSIGNED TO A PATIENT computed finding. Return a list of
  ;practitioners assigned to a patient.
@@ -34,7 +51,7 @@ PRPT(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;VA-PCMM PRACTITIONERS
  . S TEXT(IND)="Provider: "_DATA(IND,"PROVIDER")_"; Position: "_DATA(IND,"POSITION")
  Q
  ;
- ;======================================================
+ ;====================================
 PTPR(NGET,BDT,EDT,PLIST,PARAM) ;VA-PCMM PATIENTS ASSIGNED TO A PRACTITIONER.
  ;List type computed finding that returns a list of patients
  ;assigned to a list of practitioners within a time period.
@@ -57,7 +74,7 @@ PTPR(NGET,BDT,EDT,PLIST,PARAM) ;VA-PCMM PATIENTS ASSIGNED TO A PRACTITIONER.
  .. S ^TMP($J,PLIST,DFN,1,"VALUE")=DFN
  Q
  ;
- ;======================================================
+ ;====================================
 PTTM(NGET,BDT,EDT,PLIST,PARAM) ;VA-PCMM PATIENTS ASSIGNED TO A TEAM
  ;List type computed finding that returns a list of patients
  ;assigned to a team for a time period.

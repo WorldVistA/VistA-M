@@ -1,8 +1,11 @@
-RGMTAUD ;BIR/CML-MPI/PD AUDIT FILE PRINT FOR A SPECIFIED PATIENT ;01/06/99
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**3,19,20,30**;30 Apr 99
+RGMTAUD ;BIR/CML-MPI/PD AUDIT FILE PRINT FOR A SPECIFIED PATIENT ;20 May 2013  2:06 PM
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**3,19,20,30,60**;30 Apr 99;Build 2
  ;Reference to ^DIA(2 and data derived from the AUDIT file (#1.1)
  ;is supported by IA #2097 and #2602.
  ;Reference to ^ORD(101 supported by IA #2596
+ ;
+ ;**60 MVI_1901 (cml) made extensive changes to accommodate the audit data for multiple subfields within the PATIENT file.
+ ;
  S QFLG=1
 BEGIN ;
  W !!,"This option prints information from the AUDIT file (#1.1) for a"
@@ -15,7 +18,23 @@ BEGIN ;
 ASK1 ;Ask for PATIENT
  W !
  S DIC="^DPT(",DIC(0)="QEAM",DIC("A")="Select PATIENT: " D ^DIC K DIC G:Y<0 QUIT S RGDFN=+Y
- I '$O(^DIA(2,"B",RGDFN,0)) W !!,"This patient has no audit data available for any date." G ASK1
+ ;
+DSP ;Display if audit data is available - **60 MVI_1901 (cml) new subroutine added to pick up audit data for multiple subfields
+ S (GOT,EARLY,EARLYM)=0,EARLYDT=""
+ S PTNM=$P(^DPT(RGDFN,0),"^")
+ ;check top level audits
+ S IEN=0 F  S IEN=$O(^DIA(2,"B",RGDFN,IEN)) Q:'IEN  D
+ .I $D(^DIA(2,IEN,0)) S EDITDT=$P(^(0),"^",2),GOT=1 S:EARLY=0 EARLY=EDITDT S:EDITDT<EARLY EARLY=EDITDT
+ ;check multiple level
+ S DFNMULT=RGDFN_",0" F  S DFNMULT=$O(^DIA(2,"B",DFNMULT)) Q:DFNMULT=""  Q:$P(DFNMULT,",")'=RGDFN  I $D(^DIA(2,"B",DFNMULT)) D
+ .S IEN=0 F  S IEN=$O(^DIA(2,"B",DFNMULT,IEN)) Q:'IEN  I $D(^DIA(2,IEN,0)) S EDITDT=$P(^(0),"^",2),GOT=1 S:EARLYM=0 EARLYM=EDITDT S:EDITDT<EARLYM EARLYM=EDITDT
+ ;
+ I 'GOT W !!,"There is no audit data available for any date for ",PTNM,"." G ASK1
+ I EARLYM=0,EARLY>0 S EARLYDT=EARLY
+ I EARLY=0,EARLYM>0 S EARLYDT=EARLYM
+ I EARLY>0,EARLYM>EARLY S EARLYDT=EARLY
+ I EARLYM>0,EARLY>EARLYM S EARLYDT=EARLYM
+ W !!,"The earliest audit data is "_$$FMTE^XLFDT(EARLYDT)_"."
  ;
 ASK2 ;Ask for Date Range
  I '$D(RGDFN)&($D(DFN)) S RGDFN=DFN
@@ -38,6 +57,12 @@ LOOP ;Loop on "B" xref of the AUDIT file
  .I $D(^DIA(2,IEN,0)) S EDITDT=$P(^(0),U,2) I EDITDT>RGBDT,EDITDT<STOP D
  ..S ^TMP("RGMTAUD",$J,EDITDT,IEN)=""
  ;
+ ;find any audit data for audited fields that are multiples  - **60 MVI_1901 (cml)
+ S DFNMULT=RGDFN_",0" F  S DFNMULT=$O(^DIA(2,"B",DFNMULT)) Q:DFNMULT=""  Q:$P(DFNMULT,",")'=RGDFN  I $D(^DIA(2,"B",DFNMULT)) D
+ .S IEN=0 F  S IEN=$O(^DIA(2,"B",DFNMULT,IEN)) Q:'IEN  D
+ ..I $D(^DIA(2,IEN,0)) S EDITDT=$P(^(0),"^",2) I EDITDT>RGBDT,EDITDT<STOP S ^TMP("RGMTAUD",$J,EDITDT,IEN)=""
+ ; **60 MVI_1901 (cml) changes stop here
+ ;
 PRT ;Print report
  S (PG,QFLG)=0,U="^",$P(LN,"-",81)="",SITE=$P($$SITE^VASITE(),U,2)
  S PRGBDT=$$FMTE^XLFDT(RGBDT),PRGEDT=$$FMTE^XLFDT(RGEDT)
@@ -48,8 +73,11 @@ PRT ;Print report
  .S IEN=0 F  S IEN=$O(^TMP("RGMTAUD",$J,EDITDT,IEN)) Q:QFLG  Q:'IEN  D
  ..S PRTDT=$$FMTE^XLFDT($E(EDITDT,1,12))
  ..S IEN0=^DIA(2,IEN,0)
- ..K RGARR D FIELD^DID(2,$P(IEN0,U,3),"","LABEL","RGARR")
- ..S FLD=$G(RGARR("LABEL"))  Q:FLD=""
+ .. ;**60 MVI_1901 (cml) modified to pick up audit data for multiple subfields and check for bad DD references
+ ..S FILE=2,FIELD=$P(IEN0,"^",3) I FIELD["," S FILE=+$P($G(^DD(2,$P(FIELD,","),0)),"^",2) Q:'FILE  S FIELD=$P(FIELD,",",2)
+ ..K RGARR D FIELD^DID(FILE,FIELD,"","LABEL","RGARR")
+ ..S FLD=$G(RGARR("LABEL")) Q:FLD=""
+ .. ; **60 MVI_1901 (cml) changes stop here
  ..S USER=$P(IEN0,U,4)
  ..I 'USER S USER="UNKNOWN"
  ..I USER'="UNKNOWN" S DIC="^VA(200,",DIC(0)="MZO",X="`"_USER D ^DIC S USER=$P(Y,"^",2)
@@ -69,7 +97,8 @@ QUIT ;
  I $E(IOST,1,2)="C-"&('QFLG) S DIR(0)="E" D  D ^DIR K DIR
  .S SS=22-$Y F JJ=1:1:SS W !
  K ^TMP("RGMTAUD",$J)
- K %,%I,DFN,C,RGDFN,EDITDT,FLD,HDT,IEN,IEN0,JJ,LN,NEW,OLD,OPTDA1,OPTDA2,RGOPTN,OPTNM,PG,PRGBDT,PRGEDT,PRTDT
+ K %,%I,DFN,RGDFN,EDITDT,FLD,HDT,IEN,IEN0,JJ,LN,NEW,OLD,OPTDA1,OPTDA2,RGOPTN,OPTNM,PG,PRGBDT,PRGEDT,PRTDT
+ K DFNMULT,EARLY,EARLYDT,EARLYM,FIELD,FILE,GOT,PTNM,QQ,SUB   ;**60 MVI_1901 (cml)
  K QFLG,RGARR,RGBDT,RGEDT,SITE,SS,STOP,USER,X,Y,ZTSK
  D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@" Q
  ;

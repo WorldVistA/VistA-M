@@ -1,5 +1,5 @@
-ORWDXR ;SLC/KCM/JDL - Utilites for Order Actions ;12/16/10 3:50pm
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,134,141,149,187,190,213,243,331**;Dec 17, 1997;Build 30
+ORWDXR ;SLC/KCM/JDL - Utilites for Order Actions ;05/06/14  16:06
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,134,141,149,187,190,213,243,331,306,349,374**;Dec 17, 1997;Build 9
  ;
 ACTDCREA(DCIEN) ; Valid DC Reason
  N X
@@ -18,6 +18,8 @@ RENEW(REC,ORIFN,ORVP,ORNP,ORL,FLDS,CPLX,ORAPPT) ; Renew an order
  N ORDUZ,ORSTS,OREVENT,ORCAT,ORDA,ORTS,ORNEW,ORCHECK,ORLOG,ORPKG
  N ORDIALOG,PRMT,X0
  N FSTDOSE,FST
+ ;*349 Allow for ORDUZ to come in through FLDS. Allow renewer to be specified by the caller.
+ S ORDUZ=$G(FLDS("ORDUZ"))
  S (FSTDOSE,FST)=0
  I '$D(CPLX) S CPLX=0
  I '$G(ORAPPT) S ORAPPT=""
@@ -76,7 +78,15 @@ RNWFLDS(LST,ORIFN) ; Return fields for renew action
  S PKG=$E($P(^DIC(9.4,PKG,0),U,2),1,2),DG=$P(^ORD(100.98,DG,0),U,3)
  S LST(0)=$S(PKG="OR":999,PKG="PS"&(DG="O RX"):140,PKG="PS"&(DG="UD RX"):130,PKG="PS"&(DG="NV RX"):145,1:0)
  I +LST(0)=140 D
- . S LST(0)=LST(0)_U_U_U_+$$VAL(ORIFN,"REFILLS")_U_$$VAL(ORIFN,"PICKUP")
+ . N ORPICK,ORPREV
+ . S ORPICK=$$DEFPICK^ORWDPS1("")
+ . I ORPICK="" D
+ .. N D3
+ .. S D3=$G(^OR(100,ORIFN,3))
+ .. I $P(D3,"^",3)=11,$P(D3,"^",11)=2 S ORPREV=$P(D3,"^",5) I ORPREV]"" S ORPICK=$$VAL(ORPREV,"PICKUP")
+ .. I $P(D3,"^",3)'=11 S ORPICK=$$VAL(ORIFN,"PICKUP")
+ .. I ORPICK="" S ORPICK="M^by Mail"
+ . S LST(0)=LST(0)_U_U_U_+$$VAL(ORIFN,"REFILLS")_U_ORPICK
  . ;D WPVAL(.LST,ORIFN,"COMMENT")
  I +LST(0)=999 S LST(0)=LST(0)_U_$$VAL(ORIFN,"START")_U_$$VAL(ORIFN,"STOP")
  ; make sure start/stop times are relative times, otherwise use NOW, no Stop

@@ -1,5 +1,6 @@
 RCXVUTIL ;DAOU/ALA-AR Data Extract Utility Program ;29-JUL-03
- ;;4.5;Accounts Receivable;**201**;Mar 20, 1995
+ ;;4.5;Accounts Receivable;**201,299**;Mar 20, 1995;Build 6
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 SPAR(REF) ;  HL7 Segment Parsing
  ;  Input Parameter
@@ -113,41 +114,63 @@ CARE(RCXVIEN) ;  Is bill VA or NON-VA care?
  ;    RCXVCFL = Care Flag
  ;    0 = Non-VA Care
  ;    1 = VA Care
- ;
+ ; 
+ ; *299 criteria for inpatient and outpatient
+ ; -Non-VA care if bill classification is inpt/(med. part A) & no ptf #.
+ ; -Non-VA care if ptf # & discharge dt are not null and ward is null.
+ ; -VA care if ptf # & discharge dt are not null and ward is not null.
+ ; -Non-VA care if ptf # & fee basis are not null, otherwise VA care.
+ ; -VA care if at least one assoc. opt encounter is not a NON-COUNT (12)
+ ;  encounter, otherwise Non-VA care.
+ ; -VA care or Non-VA care in the final indicator is determined based on
+ ;  the opt encounter criteria if the flow reaches it.
+ ;  
  NEW RCXVCARE,RCXVRATE,RCXVODT,RPTF
- S RCXVCFL=0
  ;
- ;  If not Reimbursable Insurance, it's VA CARE
+ ; If not Reimbursable Insurance, it's VA CARE
  S RCXVRATE=$O(^DGCR(399.3,"B","REIMBURSABLE INS.",""))
  I $P($G(^DGCR(399,RCXVIEN,0)),U,7)'=RCXVRATE S RCXVCFL=1 Q
  ;
+ ; non-va discharge date
+ I $P($G(^DGCR(399,RCXVIEN,0)),U,16)'="" S RCXVCFL=0 Q
+ ;
+ ; non-va facility, non-va care type, non-va care id
+ S RCXVCARE=$G(^DGCR(399,RCXVIEN,"U2"))
+ I $P(RCXVCARE,U,10)'="" S RCXVCFL=0 Q
+ I $P(RCXVCARE,U,11)'="" S RCXVCFL=0 Q
+ I $P(RCXVCARE,U,12)'="" S RCXVCFL=0 Q
+ ;
  ; If prescription, it's VA Care
  I $D(^IBA(362.4,"C",RCXVIEN))>0 S RCXVCFL=1 Q
+ ; 
+ ; Check inpatient
+ ; -ptf entry number (#399/.08) and bill classification (#399/.05)
+ S RPTF=$P($G(^DGCR(399,RCXVIEN,0)),U,8)
+ I $P($G(^DGCR(399,RCXVIEN,0)),U,5)=1,RPTF="" S RCXVCFL=0 Q
  ;
- I $P($G(^DGCR(399,RCXVIEN,0)),U,16)'="" Q
- ;
- S RCXVCARE=$G(^DGCR(399,RCXVIEN,"U2"))
- I $P(RCXVCARE,U,10)'="" Q
- I $P(RCXVCARE,U,11)'="" Q
- I $P(RCXVCARE,U,12)'="" Q
- I $P(RCXVCARE,U,13)'="" Q
- I $P(RCXVCARE,U,14)'="" Q
- I $P(RCXVCARE,U,15)'="" Q
- ;
- ;  Check inpatient
- I $P($G(^DGCR(399,RCXVIEN,0)),U,5)<3 D  Q:RCXVCFL
- . S RPTF=$P($G(^DGCR(399,RCXVIEN,0)),U,8)
- . I RPTF="" Q
- . I $P($G(^DGPT(RPTF,0)),U,4)=1 Q
+ ; -discharge date (#45/70) and ward at discharge (#45/2.2)
+ I RPTF'="" D  Q
+ . I $P($G(^DGPT(RPTF,70)),U,1)'="" D  Q
+ .. N X S X="" D PTF^DGPMUTL(RPTF)
+ .. I X="" S RCXVCFL=0 Q
+ .. S RCXVCFL=1
+ . I $P($G(^DGPT(RPTF,0)),U,4)=1 S RCXVCFL=0 Q
  . S RCXVCFL=1
  ;
- ;  Check outpatient encounter
+ ; Check outpatient encounter
  NEW IBCBK,IBVAL
+ S RCXVCFL=0
  S IBCBK="I '$P(Y0,U,6) S ^TMP(""RCXVOE"",$J,+$P(Y0,U,8),Y)=Y0"
  S IBVAL("DFN")=$P(^DGCR(399,RCXVIEN,0),U,2)
  S RCXVODT=0 K ^TMP("RCXVOE",$J)
+ ; DBIA# 2351 for call to scan^ibsdu
  F  S RCXVODT=$O(^DGCR(399,RCXVIEN,"OP",RCXVODT)) Q:'RCXVODT  D
  . S IBVAL("BDT")=RCXVODT,IBVAL("EDT")=RCXVODT+.9999
  . D SCAN^IBSDU("PATIENT/DATE",.IBVAL,"",IBCBK,1)
- I $O(^TMP("RCXVOE",$J,""))'="" S RCXVCFL=1 K ^TMP("RCXVOE",$J) Q
+ ; status (#409.68/.12)
+ N IBPT1,IBPT2 S IBPT1=""
+ F IBPT1=$O(^TMP("RCXVOE",$J,IBPT1)) Q:(IBPT1="")!(RCXVCFL)  D
+ . S IBPT2=0 F  S IBPT2=$O(^TMP("RCXVOE",$J,IBPT1,IBPT2)) Q:'IBPT2!(RCXVCFL)  D
+ .. I $P(^TMP("RCXVOE",$J,IBPT1,IBPT2),U,12)'=12 S RCXVCFL=1
+ K ^TMP("RCXVOE",$J)
  Q

@@ -1,5 +1,5 @@
 IBJTRX ;ALB/ESG - TPJI ePharmacy ECME claim information ;22-Oct-2010
- ;;2.0;INTEGRATED BILLING;**435,452**;21-MAR-94;Build 26
+ ;;2.0;INTEGRATED BILLING;**435,452,494**;21-MAR-94;Build 11
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference to $$CLAIM^BPSBUTL supported by IA# 4719
@@ -28,12 +28,12 @@ EX ;
  Q
  ;
 HDR ; -- header code
- D HDR^IBJTU1(+IBIFN,+DFN,1)
+ D HDR^IBJTU1(+IBIFN,+DFN,13)
  Q
  ;
 INIT ; -- init variables and list array
  N IBM1,ECME,ECMEAP,RXORG,DOCIEN,PHARMNPI,DOCNPI,RESPIEN,ZR,RSPSUB,ZM,BPSM,BPSMCOB,IBLINE,ZC,ZCTOT,ZCN
- N IBZ,IBRXDATA,IBRXIEN,IBRXFILL,IBCOBN,IBBPS
+ N IBZ,IBRXDATA,IBRXIEN,IBRXFILL,IBCOBN,IBBPS,IB0,IBS
  K ^TMP("IBJTRX",$J)
  S VALMCNT=0
  ;
@@ -45,6 +45,8 @@ INIT ; -- init variables and list array
  S IBBPS=$$CLAIM^BPSBUTL(IBRXIEN,IBRXFILL,IBCOBN)    ; DBIA 4719
  ;
  S IBM1=$G(^DGCR(399,IBIFN,"M1"))
+ S IB0=$G(^DGCR(399,IBIFN,0))
+ S IBS=$G(^DGCR(399,IBIFN,"S"))
  S ECME=$P($P(IBM1,U,8),";",1)               ; ECME#
  S ECMEAP=$P(IBM1,U,9)                       ; ECME approval number
  S RXORG=$$RXSITE^IBCEF73A(IBIFN)            ; pharmacy file 4 ien
@@ -88,6 +90,13 @@ INIT ; -- init variables and list array
  D SET(IBLINE)
  ;
  D SET(" ")
+ ;
+ ; For cancelled bills only, display the IB cancel status, date, and reason (IB*2*494)
+ I $P(IB0,U,13)=7 D
+ . S IBLINE=$$SETL("","CANCELLED ("_$$FMTE^XLFDT($P(IBS,U,17),"2DZ")_")","IB Status",20,11,1)
+ . S IBLINE=$$SETL(IBLINE,$P(IBS,U,19),"Reason",100,6,36)
+ . D SET(IBLINE),SET(" ")
+ . Q
  ;
  ; if response data is not available, get out here
  ;

@@ -1,5 +1,5 @@
-PXRMXTA ; SLC/PJH - Reminder Reports Template Edit ;07/30/2009
- ;;2.0;CLINICAL REMINDERS;**4,12**;Feb 04, 2005;Build 73
+PXRMXTA ; SLC/PJH - Reminder Reports Template Edit ;01/28/2013
+ ;;2.0;CLINICAL REMINDERS;**4,12,26**;Feb 04, 2005;Build 404
  ; 
  ; Called from PXRMYD,PXRMXD
  ;
@@ -143,7 +143,7 @@ EXIT Q
  ;File locking
  ;------------
 UNLOCK L -^PXRMPT(810.1,$P(PXRMTMP,U)) Q
-LOCK L +^PXRMPT(810.1,$P(PXRMTMP,U)):0
+LOCK L +^PXRMPT(810.1,$P(PXRMTMP,U)):DILOCKTM
  E  W !!?5,"Another user is editing this entry" S DUOUT=1
  Q
  ;

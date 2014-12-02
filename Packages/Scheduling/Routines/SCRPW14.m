@@ -1,15 +1,18 @@
 SCRPW14 ;RENO/KEITH - Encounter Activity Report ;06/10/99
- ;;5.3;Scheduling;**139,144,180**;AUG 13, 1993
+ ;;5.3;Scheduling;**139,144,180,593**;AUG 13, 1993;Build 13
  ;06/10/99 ACS Added cpt modifiers to the report
  ;
  N DIC,DIR,DTOUT,DUOUT,X,Y,SD,ZTSAVE,%DT,SDDIV,SDI
  D TITL^SCRPW50("Encounter Activity Report") G:'$$DIVA^SCRPW17(.SDDIV) EXIT
  D SUBT^SCRPW50("*** Date Range Selection ***")
+ S Y=$$IMP^SCRPWICD(30) S SD("I10DTI")=Y X ^DD("DD") S SD("I10DTE")=Y
 FDT W ! S %DT="AEPX",%DT("A")="Beginning date: ",%DT(0)="-TODAY" D ^%DT G:X=U!$D(DTOUT)!(X="") EXIT
  G:Y<1 FDT S SD("BDT")=Y X ^DD("DD") S SD("PBDT")=Y W !
 LDT S %DT("A")="Ending date: " D ^%DT G:X=U!$D(DTOUT)!(X="") EXIT
  I Y<SD("BDT") W !!,$C(7),"Ending date must be after beginning date!",! G LDT
  G:Y<1 LDT S SD("EDT")=Y X ^DD("DD") S SD("PEDT")=Y,SD("EDT")=SD("EDT")_".999999"
+ I (SD("BDT")<SD("I10DTI")),(SD("EDT")'<SD("I10DTI")) D  G FDT
+ . W !!,$C(7),"Beginning and Ending dates must both be prior to "_SD("I10DTE")_" (ICD-9) or both be on or after "_SD("I10DTE")_" (ICD-10)."
 CATE D SUBT^SCRPW50("*** Report Category Selection ***")
  W ! S DIR(0)="S^C:CLINIC;P:PROVIDER;S:STOP CODE",DIR("A")="Select category for report output" D ^DIR G:$D(DTOUT)!$D(DUOUT) EXIT S SD("CAT")=Y D STAT G:'$D(SD("STAT")) EXIT
  D SUBT^SCRPW50("*** Report Format Selection ***")

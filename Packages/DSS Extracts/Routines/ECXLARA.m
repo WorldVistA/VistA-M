@@ -1,10 +1,10 @@
-ECXLARA ;ALB/JRC - LAR Extract Audit Report ; 9/24/08 3:35pm
- ;;3.0;DSS EXTRACTS;**105,112,120,136**;Dec 22, 1997;Build 28
+ECXLARA ;ALB/JRC - LAR Extract Audit Report ;3/27/14  16:10
+ ;;3.0;DSS EXTRACTS;**105,112,120,136,149**;Dec 22, 1997;Build 27
  Q
 EN ;entry point for NUT extract audit report
  N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,DIRUT,DTOUT,DUOUT,SCRNARR,REPORT
  N SCRNARR,ECXERR,ECXHEAD,ECXAUD,ECXARRAY,STATUS,FLAG,ECXALL,TMP
- N ZTQUEUED,ZTSTOP
+ N ZTQUEUED,ZTSTOP,ECXPORT,CNT ;149
  S SCRNARR="^TMP(""ECX"",$J,""SCRNARR"")"
  K @SCRNARR@("DIVISION")
  S (ECXERR,FLAG)=0
@@ -22,6 +22,12 @@ EN ;entry point for NUT extract audit report
  .K @SCRNARR@("DIVISION")
  .D AUDIT^ECXKILL
  S X=ECXARRAY("START") D ^%DT S ECXSTART=Y S X=ECXARRAY("END") D ^%DT S ECXEND=Y
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I $G(ECXPORT) D  Q  ;149 Section added
+ .K ^TMP($J,"ECXPORT")
+ .S ^TMP($J,"ECXPORT",0)="EXTRACT LOG #^DIVISION^TEST CODE^DSS TEST NAME^MONTH YEAR^TOTAL COUNT",CNT=1
+ .D PROCESS
+ .D EXPDISP^ECXUTL1
+ .D AUDIT^ECXKILL
  W !
  ;determine output device and queue if requested
  S ECXPGM="PROCESS^ECXLARA",ECXDESC="LAR Extract Audit Report"
@@ -66,17 +72,19 @@ PROCESS ;process data in file #727.824 and store in ^tmp global
  .;S $P(^TMP($J,"ECXDSS",DIV,TEST),U,2)=$S(RESULT["NEG":"NEG",MIN']"":RESULT,+RESULT'=0&RESULT<MIN:RESULT,1:MIN),$P(^(TEST),U,3)=$S(RESULT["POS":"POS",MAX']""&RESULT'=0:RESULT,RESULT>MAX:RESULT,1:MAX)
  I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ Q
  D PRINT
+ I $G(ECXPORT) Q  ;149
  D AUDIT^ECXKILL
  Q
  ;
 PRINT ;print report
- N PG,NODE,ECN,ECXTSTNM
+ N PG,NODE,ECN,ECXTSTNM,DSSID ;149
  U IO
  I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ Q
  S PG=0,ECXTSTNM=""
  I '$D(^TMP($J,"ECXDSS")) D  Q
  .S DIV=0 F  S DIV=$O(@SCRNARR@("DIVISION",DIV)) Q:'DIV  D  Q:FLAG
  ..D HEADER Q:FLAG
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=ECXEXT_U_DSSID_U_"No data available for this division",CNT=CNT+1 Q  ;149
  ..W !
  ..W !,"**************************************************"
  ..W !,"*  No data available for this division.          *"
@@ -89,24 +97,25 @@ PRINT ;print report
  ..;S NODE=^TMP($J,"ECXDSS",DIV,TEST)
  ..;S MIN=$P(^TMP($J,"ECXDSS",DIV,TEST),U,2)
  ..;S MAX=$P(^TMP($J,"ECXDSS",DIV,TEST),U,3)
- ..D:($Y+3>IOSL) HEADER Q:FLAG
+ ..I '$G(ECXPORT) D:($Y+3>IOSL) HEADER Q:FLAG  ;149
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=ECXEXT_U_DSSID_U_TEST_U_ECXTSTNM_U_$$ECXYMX^ECXUTL($$ECXYM^ECXUTL(DATE))_U_$S(NODE:$P(NODE,U),1:"Not in Extract"),CNT=CNT+1 Q  ;149
  ..W !,?1,TEST,?13,ECXTSTNM,?55,$$ECXYMX^ECXUTL($$ECXYM^ECXUTL(DATE)),?65,$S(NODE:$J($P(NODE,U,1),15),1:$J("Not in Extract",15))
  ..;;W !,?4,TEST,?14,$$ECXYMX^ECXUTL($$ECXYM^ECXUTL(DATE)),?27,$S(MIN["NEG":$J("NEG",15),1:$J(MIN,15,4)),?44,$S(MAX["POS":$J("POS",15),MAX>0:$J(MAX,15,4),1:""),?60,$J($P(NODE,U,1),15)
  Q
  ;
 HEADER ;header and page control
- N JJ,SS,DIR,DIRUT,DTOUT,DUOUT,DSSID
- I $E(IOST)="C" D
+ N JJ,SS,DIR,DIRUT,DTOUT,DUOUT ;149 Moved DSSID to be NEW in print section
+ I '$G(ECXPORT) I $E(IOST)="C" D  ;149
  .S SS=22-$Y F JJ=1:1:SS W !
  .I PG>0 S DIR(0)="E" W ! D ^DIR K DIR S:'Y FLAG=1
  Q:FLAG
- S DSSID=$S($G(DIV):$$NNT^XUAF4(DIV),1:"UNKNOWN^^")
+ S DSSID=$S($G(DIV):$$NNT^XUAF4(DIV),1:"UNKNOWN^^"),DSSID=$P(DSSID,U)_$S($P(DSSID,U,2)'="":" ("_$P(DSSID,U,2)_")",1:"") I $G(ECXPORT) Q  ;149
  W:$Y!($E(IOST)="C") @IOF S PG=PG+1
  W !,ECXARRAY("TYPE")_" ("_ECXHEAD_") Extract Audit Report"
  W !,"DSS Extract Log #:       "_ECXEXT
  W !,"Date Range of Audit:     "_ECXARRAY("START")_" to "_ECXARRAY("END")
  W !,"Report Run Date/Time:    "_ECXRUN
- W !,"Division: "_$P(DSSID,U)_$S($P(DSSID,U,2)'="":" ("_$P(DSSID,U,2)_")",1:""),?68,"Page: "_PG
+ W !,"Division: "_DSSID,?68,"Page: "_PG ;149
  ;Detailed report sub-header
  Q:'$D(^TMP($J))
  W !!,?1,"Test Code",?13,"DSS TEST NAME",?53,"Month Year",?69,"Total Count"

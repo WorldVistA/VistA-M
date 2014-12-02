@@ -1,5 +1,17 @@
-HBHCADM ; LR VAMC(IRMS)/MJT-HBHC eval/adm data entry, obtain demographic info from ^DPT, verify patient D/C from last episode/care before creating episode, calls ACTION^HBHCUTL, BIRTHYR^HBHCUTL1, SEXRACE^HBHCUTL1, MFHS^HBHCUTL3 ; May 2000
- ;;1.0;HOSPITAL BASED HOME CARE;**2,6,8,16,24**;NOV 01, 1993;Build 201
+HBHCADM ;LR VAMC(IRMS)/MJT - HBHC eval/adm data entry, obtain demographic info from ^DPT, verify patient D/C from last episode/care before creating episode, calls ACTION^HBHCUTL, BIRTHYR^HBHCUTL1, SEXRACE^HBHCUTL1, MFHS^HBHCUTL3 ;May 2000
+ ;;1.0;HOSPITAL BASED HOME CARE;**2,6,8,16,24,25**;NOV 01, 1993;Build 45
+ ;
+ ; Reference to $$SINFO^ICDEX supported by ICR #5747
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;HBH*1.0*25   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;******************************************************************************
+ ;******************************************************************************
+ ;
 START ; Initialization
  S HBHCFORM=3
  D MFHS^HBHCUTL3
@@ -15,9 +27,24 @@ PROMPT ; Prompt user for patient name
  G:$D(HBHCFLG) PROMPT
  D DEMO
  K DIE S DIE="^HBHC(631,",DA=HBHCDFN,DIE("NO^")="OUTOK"
- S:'$D(HBHCMFHS) DR="K HBHCQ;17;2:5;D BIRTHYR^HBHCUTL1;7;D SEXRACE^HBHCUTL1;10:13;14;D ACTION^HBHCUTL;15;16;I $D(HBHCQ) K HBHCQ S Y=37;18;68;19:36;37:38;67"
- S:$D(HBHCMFHS) DR(2,631.01)=1,DR="K HBHCQ;88;S:X'=""Y"" Y=""@1"";89;90;@1;17;2:5;D BIRTHYR^HBHCUTL1;7;D SEXRACE^HBHCUTL1;10:13;14;D ACTION^HBHCUTL;15;16;I $D(HBHCQ) K HBHCQ S Y=37;18;68;19:36;37:38;67"
- L +^HBHC(631,HBHCDFN):0 I $T D ^DIE L -^HBHC(631,HBHCDFN) G PROMPT
+ ;added M code for Dx validation based on admission date
+ ;added M code for Dx lookup instead of field 18
+ I '$D(HBHCMFHS) D
+ .S DR="K HBHCQ;17;2:5;D BIRTHYR^HBHCUTL1;7;D SEXRACE^HBHCUTL1;10:13;14;D ACTION^HBHCUTL;15;16"
+ I $D(HBHCMFHS) D
+ .S DR(2,631.01)=1,DR="K HBHCQ;88;S:X'=""Y"" Y=""@1"";89;90;@1;17;2:5;D BIRTHYR^HBHCUTL1;7;D SEXRACE^HBHCUTL1;10:13;14;D ACTION^HBHCUTL;15;16"
+ L +^HBHC(631,HBHCDFN):0 I $T D ^DIE
+ I $D(Y)>0 G PROMPT
+ ; For ICD-9 lookups, set key variables used by special lookup routine
+ S ICDVDT=$P(^HBHC(631,DA,0),U,18)
+ S ICDSYS=+$$SINFO^ICDEX("DIAG",ICDVDT)
+ I ICDSYS=1 S ICDFMT=1
+ I '$D(HBHCMFHS) D
+ .S DR=$S(ICDSYS=1:"I $D(HBHCQ) K HBHCQ S Y=37;18;68;19:36;37:38;67",1:"I $D(HBHCQ) K HBHCQ S Y=37;D ADMDX^HBHCLKU1;68;19:36;37:38;67")
+ I $D(HBHCMFHS) D
+ .S DR=$S(ICDSYS=1:"I $D(HBHCQ) K HBHCQ S Y=37;18;68;19:36;37:38;67",1:"I $D(HBHCQ) K HBHCQ S Y=37;D ADMDX^HBHCLKU1;68;19:36;37:38;67")
+ D ^DIE
+ L -^HBHC(631,HBHCDFN) K ICDVDT,ICDSYS,ICDFMT G PROMPT
  W $C(7),!!,"Another user is editing this entry.",!! G PROMPT
 EXIT ; Exit module
  K DA,DIC,DIE,DIK,DR,HBHCAFLG,HBHCBXRF,HBHCCNTY,HBHCDFN,HBHCDPT,HBHCDPT0,HBHCEL,HBHCELGE,HBHCFLG,HBHCFORM,HBHCI,HBHCIEN,HBHCINFO,HBHCJ,HBHCMARE,HBHCMFHS,HBHCMS,HBHCNHSP,HBHCNOD0,HBHCPRCT,HBHCPS,HBHCPSRV,HBHCQ,HBHCRFLG,HBHCST

@@ -1,5 +1,5 @@
 IBCNEUT1 ;DAOU/ESG - IIV MISC. UTILITIES ;03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**184,497,506**;21-MAR-94;Build 74
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ; Can't be called from the top
@@ -18,7 +18,7 @@ FO(VALUE,LENGTH,JUSTIFY,FILL,TRUNC) ; Formatted output function
  ;               Default is Yes, to truncate if not passed
  ;
  NEW PAD,Z
- I LENGTH>200 S LENGTH=200               ; reasonable length
+ I LENGTH>245 S LENGTH=245
  S JUSTIFY=$G(JUSTIFY,"L")               ; default Left
  S FILL=$E($G(FILL)_" ")                 ; default space
  S TRUNC=$G(TRUNC,1)                     ; default true
@@ -208,4 +208,30 @@ AMSEL(AMARRAY) ; Select an insurance company name from an Auto Match hit list
  S SEL=$$TRIM^XLFSTR($E(Y(0),1,30),"R")    ; strip trailing spaces
 AMSELX ;
  Q SEL
+ ;
+LENCHK(VAL,MAX,NUMFLG) ; check value length, called from input transforms on eIV fields
+ ; VAL - value to check
+ ; MAX - max. allowed length for free text field, or max. value for numeric field
+ ; NUMFLG - 1 if field is numeric, 0 if free text
+ ;
+ ; returns 1 if length is acceptable, 0 otherwise
+ N RES
+ S RES=1
+ ; check IB site parameter
+ I '+$P($G(^IBE(350.9,1,62)),U) G LENCHKX
+ I $S(NUMFLG:VAL,1:$L(VAL))>MAX S RES=0
+LENCHKX ;
+ Q RES
+ ;
+CODECK(VAL) ; validate the response for the output transforms on the CODE (.01) field in the IIV Status Table (#365.15) file.
+ ; VAL - value to translate
+ ; OUT - output value based up the value entered.
+ ;
+ N IN,OUT,STR1,STR2
+ S IN=$E(VAL)
+ S STR1="Response Received"
+ S STR2="Problem Identified"
+ S OUT=$S(IN="D":STR1_", Inactive Policy",IN="B":STR2,IN="A":STR1_", Active Policy",IN="E":STR1_", Active Policy (Escalated)",IN="Q":"Inquiry Sent, Awaiting Response",IN="U":STR1_", Ambiguous Answer",IN="C":STR2_", Communication Failure",1:"")
+CODECKX ;
+ Q OUT
  ;

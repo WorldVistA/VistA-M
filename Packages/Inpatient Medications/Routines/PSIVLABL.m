@@ -1,5 +1,5 @@
 PSIVLABL ;BIR/PR-PRINT OUT LABELS ; 8/19/09 3:00pm
- ;;5.0;INPATIENT MEDICATIONS ;**58,82,104,127,178,184,273**;16 DEC 97;Build 1
+ ;;5.0;INPATIENT MEDICATIONS;**58,82,104,127,178,184,273,279**;16 DEC 97;Build 150
  ;
  ; Reference to ^%ZIS(2 is supported by DBIA 3435.
  ; Reference to ^PS(52.6 is supported by DBIA 1231.
@@ -14,10 +14,14 @@ PSIVLABL ;BIR/PR-PRINT OUT LABELS ; 8/19/09 3:00pm
  ;list, or if printing individual labels and they do not count.
  ;
 DEM ;Get demographics and see if label is example only
- N X0,PSJIO,I
+ N X0,PSJIO,I,PSIVCLIN,PSIVCLDT,PSIVCLAB
  S I=0 F  S I=$O(^%ZIS(2,IOST(0),55,I)) Q:'I  S X0=$G(^(I,0)) I X0]"" S PSJIO($P(X0,"^"))=^(1)
  S PSJIO=$S('$D(PSJIO):0,1:1)
- D ENIV^PSJAC,NOW^%DTC S PSIVNOW=$$ENDTC^PSGMI(%),VADM(2)=$E(VADM(2),6,9),PSIVWD=$S(+VAIN(4):$P(VAIN(4),U,2),1:"Opt. IV") I $D(PSIVEXAM) G ENX
+ S PSIVCLIN=+$G(^PS(55,DFN,"IV",+ON,"DSS")) S:'(PSIVCLIN>0) PSIVCLIN="" I PSIVCLIN D
+ .S PSIVCLDT=$P(PSIVCLIN,"^",2) S $P(PSIVCLIN,"^",2)=$P($G(^SC(+PSIVCLIN,0)),"^")
+ I $G(PSIVCLIN) S PSIVCLAB=$P($G(^SC(+PSIVCLIN,0)),"^",2)
+ D ENIV^PSJAC,NOW^%DTC S PSIVNOW=$$ENDTC^PSGMI(%),VADM(2)=$E(VADM(2),6,9)
+ S PSIVWD=$S((+VAIN(4)&'$G(PSIVCLDT)):$P(VAIN(4),U,2),$G(PSIVCLIN)&($G(PSIVCLAB)]""):PSIVCLAB,$G(PSIVCLIN)&($P($G(PSIVCLIN),"^",2)]""):$P(PSIVCLIN,"^",2),1:"Opt. IV") I $D(PSIVEXAM) G ENX
  ;
  G:PSIVNOL<1 Q D SETP S PSIVRM=$P(PSIVSITE,U,13),P16=$P($G(^PS(55,DFN,"IV",+ON,9)),U,3) S:PSIVRM<1 PSIVRM=30 I $D(PSIVCT),PSIVCT'=1 K PSIVCT
  I PSJIO,$G(PSJIO("FI"))]"" X PSJIO("FI")
@@ -58,7 +62,10 @@ RE ;
  I PSIV1,$G(PSIVWMFL) S PSIVID($P(PSJBCID,"V",2))=""
  I PSJIO,$G(PSJIO("SL"))]"" X PSJIO("SL")
  I PSIV1 D BARCODE
- S X="["_$P(^PS(55,DFN,"IV",+ON,0),U)_"]"_" "_VADM(2)_"  "_PSIVWD_"  "_$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3) D P
+ S X="["_$P(^PS(55,DFN,"IV",+ON,0),U)_"]"_" "_VADM(2)_"  "_PSIVWD_"  "_$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3)
+ I ($G(PSIVCLIN)>0),$L($G(PSIVRM)),'$G(VAIN(4)) N PSJTRNC S PSJTRNC=$L(X)-+$G(PSIVRM) I PSJTRNC>0,($L(PSIVWD)>PSJTRNC) D
+ . S X="["_$P(^PS(55,DFN,"IV",+ON,0),U)_"]"_" "_VADM(2)_"  "_$E(PSIVWD,1,$L(PSIVWD)-PSJTRNC)_"  "_$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3)
+ D P
  S X=VADM(1) S:$P(PSIVSITE,U,9) X=X_"  "_$S(VAIN(5)]"":VAIN(5),1:"NF") D P S X=" " D P
  I $D(PSIVFLAG) F PSIV=0:0 S PSIV=$O(^PS(55,DFN,"IV",+ON,"AD",PSIV)) Q:'PSIV  S Y=^(PSIV,0),X=$S($D(^PS(52.6,+Y,0)):$P(^(0),"^"),1:"*********")_" "_$P(Y,U,2)_" " S:$P(Y,U,3)]"" X=X_" ("_$P(Y,U,3)_")" D
  . D P

@@ -1,6 +1,8 @@
-PSBOCM1 ;BIRMINGHAM/TEJ-COVERSHEET MEDICATION OVERVIEW REPORT ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**32,50**;Mar 2004;Build 78
+PSBOCM1 ;BIRMINGHAM/TEJ-COVERSHEET MEDICATION OVERVIEW REPORT ;9/18/12 1:53am
+ ;;3.0;BAR CODE MED ADMIN;**32,50,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
+ ;
+ ;*70 - add new header line for clinic search list
  ;
 BUILDLN ; Constr recs
  K J S J(0)="" F PSBFLD=1:1:8 S J=1 D FORMDAT(PSBFLD) S J($O(PSBRPLN(""),-1))=""
@@ -84,6 +86,7 @@ HDR ;  Header
  .S PSBHDR(1)="Order Status(es): --"
  .F Y=4,5,7,8 I $P(PSBFUTR,U,Y) S $P(PSBHDR(1),": ",2)=$P(PSBHDR(1),": ",2)_$S(PSBHDR(1)["--":"",1:"/ ")_$P("^^^Future^Active^^Expired^DC'd^^^^^^^^^^",U,Y)_" " S PSBHDR(1)=$TR(PSBHDR(1),"-","")
  .I $P(PSBFUTR,U,11) S PSBHDR(2)="Include Action(s)"_$S(PSBCFLG:" & Comments/Reasons",1:"")
+ .S:$G(PSBSRCHL)]"" PSBHDR(3)="",PSBHDR(4)=PSBSRCHL           ;*70
  .D PT^PSBOHDR(PSBXDFN,.PSBHDR)
  Q
 FTR ;  Fter

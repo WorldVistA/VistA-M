@@ -1,5 +1,5 @@
 ONCP2P4A ;HINES CIOFO/GWB - 1998 Prostate Cancer Study - Table IV (continued) ;03/07/00
- ;;2.11;ONCOLOGY;**18,25**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 RT W @IOF D HEAD^ONCP2P0
  W !," RADIATION THERAPY"
  W !," -----------------"

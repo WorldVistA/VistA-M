@@ -1,5 +1,5 @@
-MAGDIR8A ;WOIFO/PMK/JSL/SAF - Read a DICOM image file ; 03/08/2005  07:02
- ;;3.0;IMAGING;**11,51,49,123**;Mar 19, 2002;Build 67;Jul 24, 2012
+MAGDIR8A ;WOIFO/PMK - Read a DICOM image file ; 03 Jul 2013 12:35 PM
+ ;;3.0;IMAGING;**11,51,49,123,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -72,15 +72,34 @@ RADLKUP1 ; not an entry point
 CONLKUP ; CPRS Consult/Procedure patient/study lookup -- called by ^MAGDIR81
  N EXAMSTS ;-- Exam status (don't post images to CANCELLED exams)
  N CONPROC,Z
- I ACNUMB'?1"GMRC-".1N.N Q
- S GMRCIEN=$P(ACNUMB,"-",2)
+ S GMRCIEN=$$GMRCIEN^MAGDFCNV(ACNUMB) I 'GMRCIEN Q  ; check for legal consult accession number
  S DFN=$$GET1^DIQ(123,GMRCIEN,.02,"I")
  I DFN="" Q  ; no patient demographics file pointer
  S EXAMSTS=$$GET1^DIQ(123,GMRCIEN,8) ; check for cancelled exam
- I EXAMSTS="CANCELLED" S RADATA("EXAMSTS")=EXAMSTS Q
+ I "^CANCELLED^DISCONTINUED^DISCONTINUED/EDIT^EXPIRED^"[("^"_EXAMSTS_"^") D  Q
+ . S RADATA("EXAMSTS")="CANCELLED" ; value needed in PIDCHECK
+ . Q
  S PROCDESC=$$GET1^DIQ(123,GMRCIEN,1)
  S Z=$$GET1^DIQ(123,GMRCIEN,13,"I") ; request type
  S CONPROC=$S(Z="C":"CONSULT",Z="P":"PROCEDURE",1:"UNKNOWN")
+ Q
+ ;
+LABLKUP ; Lab patient/study lookup -- called by ^MAGDIR81
+ N CASE,FMYEAR,LRAA,IENS,YEAR
+ S LRSS=$P(ACNUMB," ",1),YEAR=$P(ACNUMB," ",2),CASE=$P(ACNUMB," ",3)
+ S LRAA=$$FIND1^DIC(68,"","BX",LRSS,"","","ERR") ; get lab area index
+ S PROCDESC=$$GET1^DIQ(68,LRAA,.01)
+ S FMYEAR="3"_YEAR_"0000"
+ S IENS=CASE_","_FMYEAR_","_LRAA
+ ; lookup in ACCESSION file (#68)
+ S LRDFN=$$GET1^DIQ(68.02,IENS,.01)
+ I LRDFN="" Q  ; no AP study
+ I $$GET1^DIQ(68.02,IENS,1)'="PATIENT" Q  ; patient not in PATIENT file (#2)
+ I $$GET1^DIQ(68.02,IENS,15)'=ACNUMB Q  ; not right specimen
+ S LRI=$$GET1^DIQ(68.02,IENS,13.5,"I")
+ ; lookup in LAB DATA file (#63)
+ I $$GET1^DIQ(63,LRDFN,.02)'="PATIENT" Q  ; patient not in PATIENT file (#2)
+ S DFN=$$GET1^DIQ(63,LRDFN,.03,"I")
  Q
  ;
 PIDCHECK() ; compare VistA patient ID with DICOM patient ID

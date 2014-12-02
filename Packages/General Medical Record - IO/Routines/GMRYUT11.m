@@ -1,5 +1,5 @@
-GMRYUT11 ;HIRMFO/YH-IV FLUSH ;10/18/96
- ;;4.0;Intake/Output;;Apr 25, 1997
+GMRYUT11 ;HIRMFO/YH-IV FLUSH ; 10/3/13 3:48pm
+ ;;4.0;Intake/Output;**8**;;Build 19
 PATIENT ;SEARCH PATIENT BY WARD AND ROOM
  I '$D(^NURSF(214,"AF","A",GMRWARD)) S GMROUT=1 Q
  S GNURWRD=GMRWARD,GNURWRD(1)=GMRWARD(1) F DFN=0:0 S DFN=$O(^NURSF(214,"AF","A",GNURWRD,DFN)) Q:DFN'>0!GMROUT  D WARDPT
@@ -25,7 +25,7 @@ WRITE ;PRINT I/O RECORDS FOR SELECTION
  S Y=GY X ^DD("DD") W ?5,GN_".",?10,$P(Y,":",1,2)
  I GNANS="OUT" D
  . N GI S GI=$P($G(^GMR(126,DA,GNANS,GY(1),0)),"^",4)
- . I GI'="",GI?1.3N W ?40,GI_" mls"
+ . I GI'="",GI?1.4N W ?40,GI_" mls"
  . E   S GI(1)=$E(GI) S:GI(1)'="*" GI(1)=$$UP^XLFSTR(GI(1)) W ?40,$S(GI(1)="*":"*",GI(1)="S":"Small",GI(1)="M":"Medium",GI(1)="L":"Large",1:"")
  . S GSTYP=$P($G(^GMR(126,DA,GNANS,GY(1),0)),"^",3)
  .Q

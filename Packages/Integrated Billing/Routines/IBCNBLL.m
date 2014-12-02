@@ -1,13 +1,13 @@
 IBCNBLL ;ALB/ARH - Ins Buffer: LM main screen, list buffer entries ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435**;21-MAR-94;Build 27
+ ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435,506**;21-MAR-94;Build 74
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; DBIA# 642 for call to $$LST^DGMTU
  ; DBIA# 4433 for call to $$SDAPI^SDAMA301
  ;
 EN ; - main entry point for screen
- N VIEW,AVIEW,DFLG
- S VIEW=1,AVIEW=0 ; default to positive view
+ N VIEW,AVIEW,DFLG,IBKEYS
+ S VIEW=6,AVIEW=0 ; default to complete view ;IB*2*506/taz changed
  K ^TMP("IBCNERTQ",$J) ; clear temp. global for eIV real time inquiries
  D EN^VALM("IBCNB INSURANCE BUFFER LIST")
  Q
@@ -21,16 +21,18 @@ EN1(V) ; entry point from view changing actions
 HDR ;  header code for list manager display
  S VALMHDR(1)="Sorted by: "_$P(IBCNSORT,U,2)
  I $P(IBCNSORT,U,3)'="" S VALMHDR(1)=VALMHDR(1)_", """_$P(IBCNSORT,U,3)_""" first"
- I VIEW=1 S VALM("TITLE")="Positive Insurance Buffer",VALMSG="*Verified    +Active  ?Await/Reply"
- I VIEW=2 S VALM("TITLE")="Negative Insurance Buffer",VALMSG="*Verified    -N/Active  #Unclear  !Unable/Send"
+ I VIEW=1 S VALM("TITLE")="Positive Insurance Buffer",VALMSG="*Verified    +Active" ;IB*2*506/taz Only shows Verified and Active records.
+ I VIEW=2 S VALM("TITLE")="Negative Insurance Buffer",VALMSG="*Verified    -N/Active"  ;IB*2*506/taz Only shows Verified and N/Active records.
  I VIEW=3 S VALM("TITLE")="Medicare(WNR) Insurance Buffer",VALMSG="*Verified +Act -N/Act ?Await/R #Unclr !Unable/Send"
- I VIEW=4 S VALM("TITLE")="Future Appointments Buffer",VALMSG="!Unable/Send"
+ I VIEW=4 S VALM("TITLE")="Failure Buffer",VALMSG="!Unable/Send"  ;IB*2*506/taz changed
  I VIEW=5 S VALM("TITLE")="e-Pharmacy Buffer",VALMSG="*Verified"     ; IB*2*435
+ I VIEW=6 S VALM("TITLE")="Complete Buffer",VALMSG=""     ; IB*2*506/taz added
  Q
  ;
 INIT ;  initialization for list manager list
  K ^TMP("IBCNBLL",$J),^TMP("IBCNBLLX",$J),^TMP("IBCNBLLY",$J),^TMP($J,"IBCNBLLS"),^TMP($J,"IBCNAPPTS")
  S:$G(IBCNSORT)="" IBCNSORT=$S(VIEW=1:"10^Positive Response",1:"1^Patient Name")
+ S IBKEYS=$$GETKEYS(DUZ) ;IB*2*506/taz user must have either IB INSURANCE EDIT or IB GROUP/PLAN EDIT in order to view entries without defined insurance company entries
  D BLD
  Q
  ;
@@ -45,7 +47,8 @@ HELP ;  list manager help
  W !,"   Y - Means Test Copay Patient"
  W !,"   H - Patient has Bills On Hold"
  W !,"   * - Buffer entry Verified by User"
- D PAUSE^VALM1 I 'Y Q
+ W !
+ ;D PAUSE^VALM1 I 'Y Q
  W !,"Sources displayed on the screen if they apply to the Buffer entry:"
  W !,"   I - Interview"
  W !,"   P - Pre-registration"
@@ -66,19 +69,18 @@ HELP ;  list manager help
  ;
  I VIEW=1 D
  .W !,"      + - eIV payer response indicates this is an active policy."
- .W !,"      ? - Awaiting electronic reply from eIV Payer."
- .W !,"<Blank> - Entry added through manual process."
+ .W !,"      $ - Escalated active policy."
+ .W !,"      * - Previously an active policy."
  .Q
  I VIEW=2 D
- .W !,"- - eIV payer response indicates this is NOT an active policy."
- .W !,"# - Can not determine from eIV response if coverage is Active."
- .W !,"    Review Response Report. Manual verification required."
- .W !,"! - eIV was unable to send an inquiry for this entry."
- .W !,"    Corrections  required before eIV can send inquiry."
+ .W !,"      - - eIV payer response indicates this is NOT an active policy."
+ .W !,"      * - Previously an not active policy."
  .Q
- I VIEW=3 D
+ I $F(",3,6,",VIEW) D
  .W !,"      + - eIV payer response indicates this is an active policy."
  .W !,"      ? - Awaiting electronic reply from eIV Payer."
+ .W !,"      $ - Escalated Active policy."
+ .W !,"      * - Previously either an active or not active policy."
  .W !,"      # - Can not determine from eIV response if coverage is Active."
  .W !,"          Review Response Report. Manual verification required."
  .W !,"      ! - eIV was unable to send an inquiry for this entry."
@@ -87,12 +89,12 @@ HELP ;  list manager help
  .W !,"<Blank> - Entry added through manual process."
  .Q
  I VIEW=4 D
- .W !,"! - eIV was unable to send an inquiry for this entry."
- .W !,"    Corrections required or payer not Active."
+ .W !,"      ! - eIV was unable to send an inquiry for this entry."
+ .W !,"          Corrections required or payer not Active."
  .Q
  ;
  I VIEW=5 D      ; IB*2*435
- . W !,"e-Pharmacy buffer entries are not applicable for e-IV processing."
+ . W !,"      e-Pharmacy buffer entries are not applicable for e-IV processing."
  . Q
  ;
  D PAUSE^VALM1 I 'Y Q
@@ -126,7 +128,7 @@ BLD ;  build screen display
  ..S IBBUFDA=0 F  S IBBUFDA=$O(^TMP($J,"IBCNBLLS",IBCNS1,IBCNS2,IBBUFDA)) Q:'IBBUFDA  D
  ...S DFLG=^TMP($J,"IBCNBLLS",IBCNS1,IBCNS2,IBBUFDA)
  ...S IBCNT=IBCNT+1 I '$D(ZTQUEUED),'(IBCNT#15) W "."
- ...S IBLINE=$$BLDLN(IBBUFDA,IBCNT,DFLG)
+ ...S IBLINE=$$BLDLN(IBBUFDA,IBCNT,DFLG) I IBLINE="" S IBCNT=IBCNT-1 Q  ; IB*2*506/taz If line is null stop processing this entry.
  ...D SET(IBLINE,IBCNT)
  ;
  I VALMCNT=0 D SET("",0),SET("There are no Buffer entries that have not been processed.",0)
@@ -136,6 +138,8 @@ BLDLN(IBBUFDA,IBCNT,DFLG) ; build line to display on List screen for one Buffer 
  N DFN,IB0,IB20,IB60,IBLINE,IBY,VAIN,VADM,VA,VAERR,X,Y,IBMTS S IBLINE="",IBBUFDA=+$G(IBBUFDA)
  S IB0=$G(^IBA(355.33,IBBUFDA,0)),IB20=$G(^IBA(355.33,IBBUFDA,20)),IB60=$G(^IBA(355.33,IBBUFDA,60))
  S DFN=+IB60 I +DFN D DEM^VADPT,INP^VADPT
+ ;
+ I 'IBKEYS,'$$ACTIVE(DFN) G BLDLNQ  ;IB*2*506/taz Only allow active insurance for users not holding IB INSURANCE EDIT or IB GROUP/PLAN EDIT keys
  ;
  S IBY=$G(IBCNT),IBLINE=$$SETSTR^VALM1(IBY,"",1,4)
  ;
@@ -157,6 +161,7 @@ BLDLN(IBBUFDA,IBCNT,DFLG) ; build line to display on List screen for one Buffer 
  . S IBMTS=$P($$LST^DGMTU(DFN),U,4)
  . S IBY=IBY_$S(IBMTS="C":"Y",IBMTS="G":"Y",1:" ")
  . S IBY=IBY_$S(+$$HOLD(DFN):"H",1:" ")
+BLDLNQ ; IB*2*506/taz Tag added
  Q IBLINE
  ;
 SET(LINE,CNT) ;  set up list manager screen display array
@@ -201,20 +206,38 @@ SORT ;  set up sort for list screen
  ..S IBCSORT1=$S($G(IBCSORT1)="":"~UNKNOWN",1:IBCSORT1),IBCSORT2=$S(IBCNPAT="":"~UNKNOWN",1:IBCNPAT)
  ..; get future appointments
  ..S IBSDA(1)=DT,IBSDA(3)="R;I;NT",IBSDA(4)=IBCNDFN,IBSDA("FLDS")="1;2"
- ..S DFLG="",APPTNUM=$$SDAPI^SDAMA301(.IBSDA) I APPTNUM>0,SYM="!" S DFLG="d" ; duplicate flag
+ ..S DFLG="" ;,APPTNUM=$$SDAPI^SDAMA301(.IBSDA) I APPTNUM>0,SYM="!" S DFLG="d" ; duplicate flag ;IB*2*506 appointment data removed.
  ..S MWNRFLG=0 I MWNRIEN'="",$P($$INSERROR^IBCNEUT3("B",IBBUFDA),U,2)=MWNRIEN S MWNRFLG=1
- ..I VIEW=1 Q:MWNRFLG=1  Q:SYM'="*"&(SYM'="+")&(SYM'="?")&(SYM'=" ")
- ..I VIEW=2 Q:MWNRFLG=1  Q:SYM'="*"&(SYM'="-")&(SYM'="#")&(SYM'="!")
- ..I VIEW=3 Q:MWNRFLG=0
- ..I VIEW=4 Q:SYM'="!"  Q:APPTNUM<1  M ^TMP($J,"IBCNAPPTS")=^TMP($J,"SDAMA301")
- ..I VIEW=5 Q:'$P(IB0,U,17)     ; IB*2*435 e-Pharmacy view only
- ..I VIEW'=5 Q:$P(IB0,U,17)     ; IB*2*435
- ..S ^TMP($J,"IBCNBLLS",IBCSORT1,IBCSORT2,IBBUFDA)=DFLG
+ ..I $$INCL(VIEW,MWNRFLG,SYM,IB0) S ^TMP($J,"IBCNBLLS",IBCSORT1,IBCSORT2,IBBUFDA)=DFLG
  ..K VAIN,IBCSORT1,IBCSORT2
  ..Q
  .Q
  I IBCNT,'$D(ZTQUEUED) W "|"
  Q
+ ;
+INCL(VIEW,MCFLAG,SYM,IB0) ;
+ N INCL,IENS,IBEBI
+ S INCL=0
+ I 'IBKEYS,(SYM'="+") G INCLQ ; If users don't have the required keys, they can only see current Positive Entries
+ I VIEW=6 S INCL=1 G INCLQ  ;Include Everything  (Complete view)
+ I VIEW=5,$P(IB0,U,17) S INCL=1 G INCLQ  ;Only e-Pharmacy on e-Pharmacy view (IB*2*435)
+ I $P(IB0,U,17) G INCLQ  ;Exclude e-Pharmacy (IB*2*435)
+ I VIEW=3,MCFLAG S INCL=1 G INCLQ ;Only Medicare View
+ I MCFLAG G INCLQ  ;Exclude Medicare from Positive, Negative and Failure Views
+ I VIEW=4,(SYM="!") S INCL=1 G INCLQ  ;Only failures on Failure view
+ I VIEW=1,((SYM="+")!(SYM="$")) S INCL=1 G INCLQ  ;Positive View
+ I VIEW=2,(SYM="-") S INCL=1 G INCLQ  ;Negative View
+ I SYM="*" D  G INCLQ
+ . ;find history in Response file for verified entries.
+ . I $$GET1^DIQ(355.33,IBBUFDA,.15)="" S:(VIEW=1) INCL=1 Q  ;IIV PROCESSED DATE field is empty entry is positive
+ . S IENS="1,"_$O(^IBCN(365,"AF",IBBUFDA,""))_","
+ . ;the following line of code is necessary to check for both "eIV Eligibility Determination" and "IIV Eligibility Determination" (IB*2.0*506)
+ . I $$GET1^DIQ(365.02,IENS,.06)["IV Eligibility Determination" Q
+ . S IBEBI=$$GET1^DIQ(365.02,IENS,.02)  ;Eligibility/Benefits Info
+ . I IBEBI=1 S:(VIEW=1) INCL=1 Q
+ . I VIEW=2 S INCL=1 Q
+INCLQ ;
+ Q INCL
  ;
 DATE(X) ;
  Q $E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3)
@@ -259,3 +282,16 @@ SRCCNV(SRC) ; convert Source of Info acronym from field 355.12/.03 into 1 char c
  S CODE=""
  I $G(SRC)'="" F I=1:1:10 S:SRC=$P(SRCSTR,U,I) CODE=$P(CODSTR,U,I) Q:CODE'=""
  Q CODE
+ ;
+GETKEYS(DUZ) ; 
+ ;Make sure that user has the INSURANCE EDIT key and/or the GROUP/PLAN EDIT key.  User
+ ;must have either key in order to see non_Positive Entries.
+ N KEY1,KEY2
+ S KEY1=$O(^DIC(19.1,"B","IB INSURANCE COMPANY EDIT","")) I KEY1 S KEY1=$D(^VA(200,DUZ,51,KEY1))
+ S KEY2=$O(^DIC(19.1,"B","IB GROUP PLAN EDIT","")) I KEY2 S KEY2=$D(^VA(200,DUZ,51,KEY2))
+ Q KEY1!KEY2
+ ;
+ACTIVE(DFN) ;Check for active insurance
+ N IBINSCO
+ D ALL^IBCNS1(DFN,"IBINSCO",1,DT,0)
+ Q +$G(IBINSCO(0))

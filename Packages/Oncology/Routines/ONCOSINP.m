@@ -1,5 +1,5 @@
 ONCOSINP ;WASH ISC/SRR,MLH-INPUT SUBROUTINES FOR ONCOS ;11/1/93  12:16
- ;;2.11;ONCOLOGY;;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;These entry points perform miscellaneous input functions:
  ;GETFILE  get a FileMan file
  ;GETYES   get a yes/no response

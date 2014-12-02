@@ -1,5 +1,7 @@
-IBDF5B ;ALB/CJM - ENCOUNTER FORM (edit a form - CONTINUED);JUL 27,1993
- ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+IBDF5B ;ALB/CJM - ENCOUNTER FORM (edit a form - CONTINUED) ;07/27/93
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**63**;APR 24, 1997;Build 80
+ ;
+ ;
 EDITBLK ;allows the user to edit everything about the block
  ;allows user to discard or save changes to the block
  ;
@@ -29,6 +31,7 @@ EDITBLK ;allows the user to edit everything about the block
  ..D TOPNBOT^IBDFU5(IBBLK,.TOP2,.BOT2)
  ..S TOP1=$S(TOP1<TOP2:TOP1,1:TOP2),BOT1=$S(BOT1>BOT2:BOT1,1:BOT2)
  ..D IDXFORM^IBDF5A(TOP1,BOT1)
+ K ^TMP("IBDF DELETE SELECTION OPTION",$J),^TMP("IBDF DELETED ALL SELECTIONS",$J),^TMP("IBDF ADDSLCTN",$J)
  S VALMBCK="R"
  Q
 DLTCOPY(WORKCOPY) ;deletes the block=WORKCOPY and unlocks it
@@ -38,19 +41,55 @@ DLTCOPY(WORKCOPY) ;deletes the block=WORKCOPY and unlocks it
  Q
 SAVECOPY(WORKCOPY,FORMCOPY,IBTKODR) ;deletes the block=FORMCOPY,adds WORKCOPY to IBFORM
  ;NOTE: upon completion WORKCOPY="",FORMCOPY points to what WORKCOPY initially did
+ N IBDN,IBDX,IBD9,IBD10,IBDBL
  Q:('FORMCOPY)!('WORKCOPY)  ;something wrong!
  ;
  K DIE,DA,DR S DIE="^IBE(357.1,",DA=WORKCOPY,DR=".02////"_IBFORM
  I IBTKODR S DR=DR_";.14////"_IBTKODR
  D ^DIE K DIE,DR,DA
  ;
+ ;In order to be able to update history, first check to see if there is any Selection List which is either ICD-9 or ICD-10
+ S (IBD9,IBD10)=0
+ ;FORMCOPY at this time is actually the Work Copy block, WORKCOPY is the new block
+ ;Check to see if any List contains ICD-9 or ICD-10 existed prior this change
+ S IBDN="" F  S IBDN=$O(^IBE(357.2,"C",FORMCOPY,IBDN)) Q:IBDN=""  S IBDX=$P($G(^IBE(357.2,IBDN,0)),U,11) I IBDX?1.N S IBDX=$E($P($G(^IBE(357.6,IBDX,0)),U,1),1,30) D
+ .I '$D(^TMP("IBDF DELETED ALL SELECTIONS",$J)),'$O(^IBE(357.3,"C",IBDN,"")) Q  ;Only log history fields if ICD-9 or ICD-10 codes are contained in block.
+ .I IBDX="DG SELECT ICD-9 DIAGNOSIS CODE" S IBD9=1
+ .I IBDX="DG SELECT ICD-10 DIAGNOSIS COD" S IBD10=1
+ ;
+ ;Now check for any Data Fields with ICD-9 or ICD-10 inputs
+ S IBDN=0 F  S IBDN=$O(^IBE(357.1,FORMCOPY,"B",IBDN)) Q:IBDN'?1.N  D
+ .S IBDX=$P(^IBE(357.1,FORMCOPY,"B",IBDN,0),U,3) I IBDX?1.N S IBDX=$E($P($G(^IBE(357.6,IBDX,0)),U,1),1,30) D
+ ..I IBDX="INPUT DIAGNOSIS CODE (ICD9)" S IBD9=1
+ ..I IBDX="INPUT DIAGNOSIS CODE (ICD10)" S IBD10=1
+ ;
  D DLTBLK^IBDFU3(FORMCOPY,IBFORM,357.1)
  D UNCMPL^IBDF19(IBFORM,0)
  L -^IBE(357.1,FORMCOPY)
  S FORMCOPY=WORKCOPY,WORKCOPY=""
+ ;
+ ;Check to see if any List contains ICD-9 or ICD-10 existed after the change
+ S IBDQUIT=0
+ S IBDN="" F  S IBDN=$O(^IBE(357.2,"C",FORMCOPY,IBDN)) Q:IBDN=""!(IBDQUIT)  S IBDX=$P($G(^IBE(357.2,IBDN,0)),U,11) I IBDX?1.N S IBDX=$E($P($G(^IBE(357.6,IBDX,0)),U,1),1,30) D
+ .I '$D(^TMP("IBDF DELETED ALL SELECTIONS",$J)),'$O(^IBE(357.3,"C",IBDN,"")) S IBDQUIT=1 Q  ;Only log history fields if ICD-9 or ICD-10 codes are contained in block.
+ .I IBDX="DG SELECT ICD-9 DIAGNOSIS CODE" S IBD9=1
+ .I IBDX="DG SELECT ICD-10 DIAGNOSIS COD" S IBD10=1
+ ;
+ Q:IBDQUIT  ;Do not update history fields if ICD-9 or ICD-10 codes are not contained within the block.
+ ;
+ ;Now check for any Data Fields with ICD-9 or ICD-10 inputs
+ S IBDN=0 F  S IBDN=$O(^IBE(357.1,FORMCOPY,"B",IBDN)) Q:IBDN'?1.N  D
+ .S IBDX=$P(^IBE(357.1,FORMCOPY,"B",IBDN,0),U,3) I IBDX?1.N S IBDX=$E($P($G(^IBE(357.6,IBDX,0)),U,1),1,30) D
+ ..I IBDX="INPUT DIAGNOSIS CODE (ICD9)" S IBD9=1
+ ..I IBDX="INPUT DIAGNOSIS CODE (ICD10)" S IBD10=1
+ ;
+ ;Now update history if ICD-9 or ICD-10 was present before or after the change
+ N IBDX
+ I IBD9 S IBDX=$$CSUPD357^IBDUTICD(IBFORM,1,"",$$NOW^XLFDT(),DUZ)
+ I IBD10 S IBDX=$$CSUPD357^IBDUTICD(IBFORM,30,"",$$NOW^XLFDT(),DUZ)
  Q
  ;
-COPYBLK(IBBLK,FORMCOPY,WORKCOPY,IBTKODR,IBJUNK) ;copys the IBBLK to the WORKCOPY, then puts sets FORMCOPY=IBBLK
+COPYBLK(IBBLK,FORMCOPY,WORKCOPY,IBTKODR,IBJUNK) ;copies the IBBLK to the WORKCOPY, then puts sets FORMCOPY=IBBLK
  ;IBJUNK set to the form="WORKCOPY", IBTKODR set to the original value of the field TOOL KIT ORDER
  ;
  N NODE

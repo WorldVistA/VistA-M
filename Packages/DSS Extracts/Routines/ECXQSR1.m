@@ -1,5 +1,5 @@
-ECXQSR1 ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ;10/14/10  18:04
- ;;3.0;DSS EXTRACTS;**105,120,127,132,136**;Dec 22, 1997;Build 28
+ECXQSR1 ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ;5/22/13  13:01
+ ;;3.0;DSS EXTRACTS;**105,120,127,132,136,144,149**;Dec 22, 1997;Build 27
 FILE ;file record in #727.825
  ;node0
  ;inst^dfn ECXDFN^ssn ECXSSN^name ECXPNM^i/o status ECXA^day ECDAY^
@@ -23,7 +23,9 @@ FILE ;file record in #727.825
  ;production division ECXPDIV^eligibility ECXELIG^ethnicity ECXETH^
  ;race1 ECXRC1^enrollment location ECXENRL^^enrollment priority 
  ;ECXPRIOR_enrollment subgroup ECXSBGRP^user enrollee ECXUESTA^patient 
- ;type ECXPTYPE^combat vet elig ECXCVE^combat vet elig end date ECXCVEDT^
+ ;type ECXPTYPE^combat vet elig ECXCVE
+ ;NODE 2
+ ;^combat vet elig end date ECXCVEDT^
  ;enc cv eligible ECXCVENC^national patient record flag ECXNPRFI^
  ;emergency response indicator(FEMA) ECXERI^agent orange indicator 
  ;ECXAO^environ contam ECXECE^head/neck ECXHNC^military sexual trauma 
@@ -36,10 +38,14 @@ FILE ;file record in #727.825
  ;provider #5 pc ECXPPC5^provider #5 npi ECPR5NPI^
  ;primary ICD-10 code (currently null) ECXICD10P^Secondary ICD-10 Code #1 (currently null) ECXICD101^
  ;Secondary ICD-10 Code #2 (currently null) ECXICD102^Secondary ICD-10 Code #3 (currently null) ECXICD103^
- ;Secondary ICD-10 Code #4 (currently null) ECXICD104 
- ;
+ ;NODE 3
+ ;Secondary ICD-10 Code #4 (currently null) ECXICD104^Encounter SC ECXESC^Vietnam Status ECXVNS
+ ;Provider #6 ECXPRV6^ Prov #6 PC ECXPPC6^Prov #6 NPI ECPR6NPI^Provider #7 ECXPRV7^ Prov #7 PC ECXPPC7^Prov #7 NPI ECPR7NPI^4CHAR ECX4CHAR^Clinic IEN ECAC^Camp Lejeune status ECXCLST^Encounter Camp Lejeune ECXECL
+ ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
  ;convert specialty to PTF Code for transmission
  N ECXDATA,ECXTSC
+ N ECXRES1,ECXRES2,ECXRES3,ECXSVCI,ECXSVCL ;149
+ S (ECXRES1,ECXRES2,ECXRES3,ECXSVCI,ECXSVCL)="" ;149
  S ECXDATA=$$TSDATA^DGACT(42.4,+ECXTS,.ECXDATA)
  S ECXTSC=$G(ECXDATA(7))
  ;done
@@ -68,6 +74,8 @@ FILE ;file record in #727.825
  I ECXLOGIC>2011 S ECODE2=ECODE2_U_$G(ECXPRV4)_U_$G(ECXPPC4)_U_$G(ECPR4NPI)_U_$G(ECXPRV5)_U_$G(ECXPPC5)_U_$G(ECPR5NPI)
  I ECXLOGIC>2012 S ECODE2=ECODE2_U_ECXICD10P_U_ECXICD101_U_ECXICD102_U_ECXICD103_U
  I ECXLOGIC>2012 S ECODE3=ECXICD104
+ I ECXLOGIC>2013 S ECODE3=ECODE3_U_ECXESC_U_ECXVNS_U_ECXPRV6_U_ECXPPC6_U_ECPR6NPI_U_ECXPRV7_U_ECXPPC7_U_ECPR7NPI_U_ECX4CHAR_U_ECAC_U_ECXCLST_U_ECXECL ;144
+ I ECXLOGIC>2014 S ECODE3=ECODE3_U_ECXRES1_U_ECXRES2_U_ECXRES3_U_ECXSVCI_U_ECXSVCL ;149
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),^ECX(ECFILE,EC7,3)=$G(ECODE3),ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD

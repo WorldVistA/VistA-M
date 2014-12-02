@@ -1,5 +1,5 @@
 PXQUTL3A ;ISL/JVS CLEAN OUT BAD XREF #2 ;4/16/97  14:30
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**29**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**29,199**;Aug 12, 1996;Build 51
  ;
  ;
  Q
@@ -101,14 +101,14 @@ AAH ;-----------------AAH-LEVEL 3------------------------------
 S ;++--SCREEN FOR POSSIBLE BROKEN X REFERENCES
  ;--V PROVIDER FILE
  S (VSTCNT,CPTCNT,PRVCNT,POVCNT)=0
- W !!,"Screening the V provider file",!
+ W !!,"Screening the V PROVIDER file",!
  S I="" F  S I=$O(^AUPNVPRV("B",I)) Q:I=""  D  G:Y="^" EXIT
  . S IEN="" F  S IEN=$O(^AUPNVPRV("B",I,IEN)) W:IEN#10000=22 "." Q:IEN=""  D
  ..S ARRAY="^AUPNVPRV(""B"",I,IEN)" S PRVCNT=PRVCNT+1 I PRVCNT#1000=2 D MON^PXQUTL3
  ..I '$D(^AUPNVPRV(IEN)) W !,"Entry "_IEN," IS NOT THERE! BAD REFERENCE IS ^AUPNVPRV(""B"","_I_",",IEN_")"
  ;
  ;--V POV FILE (DIAGNOSIS)
- W !!,"Screening the V POV file (IDAGNOSIS)",!
+ W !!,"Screening the V POV file (DIAGNOSIS)",!
  S I="" F  S I=$O(^AUPNVPOV("B",I)) Q:I=""  D  G:Y="^" EXIT
  . S IEN="" F  S IEN=$O(^AUPNVPOV("B",I,IEN)) W:IEN#10000=22 "." Q:IEN=""  D
  ..S ARRAY="^AUPNVPOV(""B"",I,IEN)" S POVCNT=POVCNT+1 I POVCNT#1000=2 D MON^PXQUTL3

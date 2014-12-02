@@ -1,5 +1,5 @@
-DGRPDD1 ;ALB/JDS,LBD - INPUT SYNTAX CHECKS - FORMERLY DGINP ; 3/3/09 4:23pm
- ;;5.3;Registration;**72,136,244,621,797**;AUG 13, 1993;Build 24
+DGRPDD1 ;ALB/JDS,LBD - INPUT SYNTAX CHECKS - FORMERLY DGINP ; 1/28/13 9:50am
+ ;;5.3;Registration;**72,136,244,621,797,866**;AUG 13, 1993;Build 9
  ;
  ;  NOTE: THIS USED TO BE NAMED 'DGINP'
  ;                               -----
@@ -29,7 +29,11 @@ PSEU I $D(DPTIDS(.03)),$D(DPTX) S NAM=DPTX,DOB=DPTIDS(.03)
  I DOB="" S DOB=2000000
  S L1=$E($P(NAM," ",2),1),L3=$E(NAM,1),NAM=$P(NAM,",",2),L2=$E(NAM,1)
  S Z=L1 D CON S L1=Z,Z=L2 D CON S L2=Z,Z=L3 D CON S L3=Z S L=L2_L1_L3_$E(DOB,4,7)_$E(DOB,2,3)_"P"
+ I $D(^DPT("SSN",L)) S L=$$CHECK(L)
  K L1,L2,L3,Z,DOB,NAM Q
+CHECK(PSSN) ;patch DG*5.3*866 no duplicate pseudo ssn's
+ F  Q:'$D(^DPT("SSN",PSSN))  S PSSN=(PSSN+1)_"P"
+ Q PSSN
 COL S Y=$O(^DPT("SSN",Y)) Q:$E(Y,1,9)'=L  I $L(Y)=11,$E(Y,1,9)=L S Z=$O(^(Y,0)) I $D(^DPT(Z,0)) W:'$D(ZTQUEUED) !,"Has collateral ",$P(^(0),U,1)," be sure to change SSN" K Z G COL
  Q
 CON S Z=$A(Z)-65\3+1 S:Z<0 Z=0 Q

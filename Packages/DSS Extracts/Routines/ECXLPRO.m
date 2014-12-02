@@ -1,5 +1,5 @@
-ECXLPRO ;ALB/JAP - PRO Extract YTD Lab Report ; 8/23/05 1:40pm
- ;;3.0;DSS EXTRACTS;**21,24,36,84**;Dec 22, 1997
+ECXLPRO ;ALB/JAP - PRO Extract YTD Lab Report ;3/4/13  15:29
+ ;;3.0;DSS EXTRACTS;**21,24,36,84,144**;Dec 22, 1997;Build 9
  ;for data associated with prosthetic items produced by facility laboratory
  ;accumulates extract data by hcpcs code for all extracts in fiscal year date range
  ;if an extract has been purged, then totals will be falsely low
@@ -10,7 +10,7 @@ ECXLPRO ;ALB/JAP - PRO Extract YTD Lab Report ; 8/23/05 1:40pm
  ;if site is non-divisional, then data stored under facility station#
  ;
 EN ;setup & queue
- N DIC,DA,DR,DIQ,DIR,DIRUT,DTOUT,DUOUT,DIV,LAST,OUT
+ N DIC,DA,DR,DIQ,DIR,DIRUT,DTOUT,DUOUT,DIV,LAST,OUT,ECXPORT,CNT
  S ECXERR=0
  S ECXHEAD="PRO"
  W !!,"Setup for PRO Extract YTD Laboratory Report --",!
@@ -41,6 +41,13 @@ EN ;setup & queue
  S ECXPGM="PROCESS^ECXLPRO",ECXDESC="PRO Extract YTD HCPCS Report"
  S ECXSAVE("ECXHEAD")="",ECXSAVE("ECXDIV(")="",ECXSAVE("ECXARRAY(")="",ECXSAVE("ECXPRIME")="",ECXSAVE("ECXALL")=""
  ;determine output device and queue if requested
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I ECXPORT D  Q  ;144
+ .K ^TMP($J,"ECXPORT") ;144
+ .S ^TMP($J,"ECXPORT",0)="REPORT TYPE^PSAS HCPCS^LOCAL QTY^LOCAL LABOR COST^LOCAL MATERIAL COST^LOCAL AVE COST^ALL OTHER QTY^ALL OTHER LABOR COST^ALL OTHER MATERIAL COST^ALL OTHER AVE COST" ;144
+ .S CNT=1 ;144
+ .D PROCESS ;144
+ .D EXPDISP^ECXUTL1 ;144
+ .D ^ECXKILL ;144
  W !!,"Please note: The PRO Extract YTD Laboratory Report requires 132 columns."
  W !,"             Select an appropriate device for output."
  W ! D DEVICE^ECXUTLA(ECXPGM,ECXDESC,.ECXSAVE)
@@ -94,7 +101,7 @@ PROCESS ;begin processing
  ;print report
  D PRINT^ECXLPRO1
  ;cleanup
- D AUDIT^ECXKILL
+ I '$G(ECXPORT) D AUDIT^ECXKILL ;144
  Q
  ;
 HCPCS ;setup hcpcs cross-reference

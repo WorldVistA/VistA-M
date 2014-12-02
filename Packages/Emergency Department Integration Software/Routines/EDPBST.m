@@ -1,26 +1,30 @@
-EDPBST ;SLC/KCM - Staff Configuration ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPBST ;SLC/KCM - Staff Configuration ;5/2/12 3:36pm
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
 MATCH(X) ; Return matching providers
  Q
 LOAD(AREA) ; Return nurse and provider sources, staff config
- N TOKEN
+ N TOKEN,RIEN,RXMLNM,X0,RABBR
  D READL^EDPBLK(AREA,"staff",.TOKEN)  ; read staff config -- LOCK
  D XML^EDPX("<staffToken>"_TOKEN_"</staffToken>")
- D XML^EDPX("<providers>"),ACTIVE(AREA,"P"),XML^EDPX("</providers>")
- D XML^EDPX("<residents>"),ACTIVE(AREA,"R"),XML^EDPX("</residents>")
- D XML^EDPX("<nurses>"),ACTIVE(AREA,"N"),XML^EDPX("</nurses>")
+ S RIEN=0 F  S RIEN=$O(^EDPB(232.5,RIEN)) Q:'RIEN  D
+ .S X0=$G(^EDPB(232.5,RIEN,0)),RABBR=$P(X0,U,2),RXMLNM=$P(X0,U,7)
+ .D XML^EDPX("<"_RXMLNM_">"),ACTIVE(AREA,RIEN,RABBR),XML^EDPX("</"_RXMLNM_">")
+ ;D XML^EDPX("<providers>"),ACTIVE(AREA,"P"),XML^EDPX("</providers>")
+ ;D XML^EDPX("<residents>"),ACTIVE(AREA,"R"),XML^EDPX("</residents>")
+ ;D XML^EDPX("<nurses>"),ACTIVE(AREA,"N"),XML^EDPX("</nurses>")
  D READU^EDPBLK(AREA,"staff",.TOKEN)  ; read staff config -- UNLOCK
  Q
-ACTIVE(AREA,ROLE) ; build list of active for a role
+ACTIVE(AREA,ROLE,ABBR) ; build list of active for a role
  N IEN,X0,X,EDPNURS
- I ROLE="N" S EDPNURS=$$GET^XPAR("ALL","EDPF NURSE STAFF SCREEN")
+ I ABBR="N" S EDPNURS=$$GET^XPAR("ALL","EDPF NURSE STAFF SCREEN")
  S IEN=0 F  S IEN=$O(^EDPB(231.7,"AC",EDPSITE,AREA,ROLE,IEN)) Q:'IEN  D
  . S X0=^EDPB(231.7,IEN,0)
- . I '$$ALLOW^EDPFPER(+X0,ROLE) Q
+ . I '$$ALLOW^EDPFPER(+X0,ABBR) Q
+ . ;I '$$ALLOW^EDPFPER(+X0,ROLE) Q
  . S X("duz")=$P(X0,U)
  . S X("nm")=$P(^VA(200,X("duz"),0),U)
- . S X("role")=$P(X0,U,6)
+ . S X("role")=$P(X0,U,6) I $G(X("role")) S X("role")=$$GET1^DIQ(232.5,X("role"),.02,"E")
  . S X("itl")=$P(^VA(200,X("duz"),0),U,2)
  . S X("clr")=$P(X0,U,8)
  . D XML^EDPX($$XMLA^EDPX("staff",.X))
@@ -57,7 +61,7 @@ UPD(FLD,ERRMSG) ; Add/Update Record (expects EDPAREA, EDPSITE to be defined)
  S FDA(231.7,EDPIEN,.02)=EDPSITE
  S FDA(231.7,EDPIEN,.03)=EDPAREA
  S FDA(231.7,EDPIEN,.04)=FLD("inact")
- S FDA(231.7,EDPIEN,.06)=FLD("role")
+ S FDA(231.7,EDPIEN,.06)=$S(FLD("role")="":"",1:$O(^EDPB(232.5,"C",FLD("role"),"")))
  ;S FDA(231.7,EDPIEN,.07)=FLD("itl") --NtoL
  S FDA(231.7,EDPIEN,.08)=FLD("clr")
  I EDPIEN="+1," D

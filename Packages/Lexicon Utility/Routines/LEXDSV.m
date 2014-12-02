@@ -1,19 +1,26 @@
-LEXDSV ; ISL Defaults - Save                      ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- Q
- ;
+LEXDSV ;ISL/KER - Defaults - Save ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    FILE^DICN           ICR  10009
+ ;    ^DIE                ICR  10018
+ ;    ^DIK                ICR  10013
+ ;               
  ; Needs
  ;
  ;   Application      File DA, Subfile DA(1)  LEXAP
  ;   User DUZ         Sub-file .01 DINUM      LEXDUZ
  ;   Default value                            LEXDVAL
  ;   Defualt name                             LEXDNAM
- ;   Default location Sub-file field          LEXFLD
+ ;   Default field    Sub-file field          LEXFLD
  ;         
  ; Sets ^LEXT(757.2,LEXAP,200,LEXDUZ,LEXFLD)=LEXDVAL
  ; and  ^LEXT(757.2,LEXAP,200,LEXDUZ,(LEXFLD+.5))=LEXDNAM
  ;
- ;
+ Q
 SET(LEXDUZ,LEXAP,LEXDVAL,LEXDNAM,LEXFLD) ; 
  ;
  Q:'$L($G(LEXDVAL))  S:LEXDVAL["@" LEXDVAL="@",LEXDNAM="@" S DIC("P")="757.201PA"

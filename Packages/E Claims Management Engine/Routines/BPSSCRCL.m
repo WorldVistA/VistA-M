@@ -1,5 +1,5 @@
 BPSSCRCL ;BHAM ISC/SS - ECME SCREEN CLOSE CLAIMS ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,11**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,11,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -52,17 +52,9 @@ CLOSE(BP59ARR) ;
  I +BPRETV=0 Q $$QUITCL()
  I BPQ="^" Q $$QUITCL()
  ;
- W !!,"ALL Selected Rxs will be CLOSED using the same information gathered in the",!,"following prompts.",!
- S BPQ=$$YESNO^BPSSCRRS("Are you sure?(Y/N)")
- I BPQ'=1 Q $$QUITCL()
- ;
- ; ask questions for all of them
- W !!
- I $$ASKQUEST(+$P(BPRETV,U,2),.BPREAS,.BPCOMM,.BP90ANSW,.BPRCOPAY)'=1 Q $$QUITCL()
- ;
  ; check 2nd insurance, but only if closing a Primary claim.
  S BPQ=""
- I BP90ANSW'="D",'BPSECOND D
+ I 'BPSECOND D
  . S BPDFN="" F  S BPDFN=$O(BPINS(BPDFN)) Q:BPDFN=""  D  Q:BPQ="^"
  . . S BPINSNM="" F  S BPINSNM=$O(BPINS(BPDFN,BPINSNM)) Q:BPINSNM=""  D  Q:BPQ="^"
  . . . S BP59FRST=0
@@ -81,6 +73,13 @@ CLOSE(BP59ARR) ;
  . . . D:BP59FRST>0 CH2NDINS^BPSSCRU5(BP59FRST,$E($$PATNAME^BPSSCRU2(BPDFN),1,13),BPINSNM,.BPRXINFO)
  ;
  I BPQ="^" Q $$QUITCL()
+ ;
+ W !!,"ALL Selected Rxs will be CLOSED using the same information gathered in the",!,"following prompts.",!
+ S BPQ=$$YESNO^BPSSCRRS("Are you sure?(Y/N)")
+ I BPQ'=1 Q $$QUITCL() ; 
+ ; ask questions for all of them
+ W !!
+ I $$ASKQUEST(+$P(BPRETV,U,2),.BPREAS,.BPCOMM,.BP90ANSW,.BPRCOPAY)'=1 Q $$QUITCL()
  ;
  W @IOF
  ;and finally close all

@@ -1,9 +1,9 @@
-GMRCEDT4 ;SLC/DCM,JFR - UTILITIES FOR EDITING FIELDS ;04/23/09  12:48
- ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,15,22,33,66**;DEC 27, 1997;Build 30
+GMRCEDT4 ;SLC/DCM,JFR - UTILITIES FOR EDITING FIELDS ;03/27/13  09:21
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,15,22,33,66,73**;DEC 27, 1997;Build 22
  ;
- ; This routine invokes IA #3991 (ICDAPIU), #872 (ORD(101)), #10142 (DDIOL), #10006 (DIC)
+ ; This routine invokes IA #5699 (ICDXCODE), #872 (ORD(101)), #10142 (DDIOL), #10006 (DIC)
  ;                         #2051 (FIND1^DIC), #2056 (GET1^DIQ), #10026 (DIR), #10028 (DIWE)
- ;                         #1609 (CONFIG^LEXSET), #10103 (XLFDT), #10104 (XLFSTR), #10140 (XQORM)
+ ;                         #1572 (LEX(757.01), #1609 (CONFIG^LEXSET), #10103 (XLFDT), #10104 (XLFSTR), #10140 (XQORM)
  ;
  Q
 EDITFLD(GMRCO)    ;edit field in file 123.
@@ -136,7 +136,7 @@ SETUP   ;get info needed for edit (save global reads)
  N X,Y,DIC,DIR,PRMPT
  S PRMPT=$$PROVDX^GMRCUTL1(+$P(^GMR(123,+GMRCO,0),U,5))
  I $P(PRMPT,U,2)="F" D
- . S DIR(0)="FA^2:180",DIR("A")="Provisional Diagnosis: "
+ . S DIR(0)="FA^2:245",DIR("A")="Provisional Diagnosis: "
  . I $P(PRMPT,U)'="R" S $P(DIR(0),U)="FAO"
  . S:$D(GMRCED(7)) DIR("B")=$P(GMRCED(7),U)
  . I '$D(DIR("B")) S DIR("B")=$G(^GMR(123,+GMRCO,30))
@@ -153,7 +153,7 @@ SETUP   ;get info needed for edit (save global reads)
  . K:'$L(DIR("B")) DIR("B")
  . S DIR("?")="Enter a code or term for the provisional diagnosis."
  . S DIR("A")="Provisional Diagnosis: "
- . S DIR(0)="FA"_$S($P(PRMPT,U)'="R":"O",1:"")_"^1:180"
+ . S DIR(0)="FA"_$S($P(PRMPT,U)'="R":"O",1:"")_"^1:245"
  . D ^DIR
  . I $D(DTOUT)!($D(DUOUT)) Q
  . I '$L(Y) W !,?5,"<DELETED>",! S GMRCED(7)="" Q
@@ -170,12 +170,13 @@ SETUP   ;get info needed for edit (save global reads)
  ;
 LEXLKUP(GMRCX)  ; run input through the Lexicon
  ;
- N DIC,X,Y,DUOUT,DTOUT
- D CONFIG^LEXSET("ICD","ICD",DT)
+ N DIC,X,Y,DUOUT,DTOUT,GMRCSYS
+ S GMRCSYS="ICD" I DT>=$$IMPDATE^LEXU("10D") S GMRCSYS="10D"
+ D CONFIG^LEXSET(GMRCSYS,GMRCSYS,DT)
  S DIC="^LEX(757.01,",DIC(0)="EQM",DIC("B")=GMRCX,X=GMRCX
  D ^DIC
  I $D(DTOUT)!($D(DUOUT))!($G(Y)<1) Q ""
- Q $P(Y,U,2)_U_Y(1)
+ Q $P(Y,U,2)_U_$S(GMRCSYS="ICD":$G(Y(1)),1:$G(Y(30)))
  ;
 8 ;edit Reason for Request
  N DIC,DIWESUB,DWLW,DWPK
@@ -234,9 +235,12 @@ VALIDUR(URG,REND,PROC) ;urgency still valid?
 NOCHG() ;no changes made
  Q "No Changes made!"
 PDOK(GMRCDA) ;check validity of Prov. DX code for active status
- N MSG
+ N MSG,GMRCCPTR,GMRCCSYS,GMRCCODE
  I '$L($G(^GMR(123,GMRCDA,30.1))) Q 1
- I +$$STATCHK^ICDAPIU(^GMR(123,GMRCDA,30.1),DT) Q 1 ;code still active
+ S GMRCCODE=$P($G(^GMR(123,+GMRCO,30.1)),"^",1)
+ S GMRCCSYS=$P($G(^GMR(123,+GMRCO,30.1)),"^",3)
+ S GMRCCPTR=$S(GMRCCSYS="ICD":1,1:30)
+ I +$$STATCHK^ICDXCODE(GMRCCPTR,GMRCCODE,DT) Q 1 ;code still active
  S MSG="The provisional DX code must be edited before this request"
  S MSG=MSG_" may be resubmitted."
  D EN^DDIOL(MSG,,"!!")

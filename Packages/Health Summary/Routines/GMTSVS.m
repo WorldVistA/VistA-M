@@ -1,5 +1,5 @@
 GMTSVS ; SLC/KER - Vital Signs Component          ; 02/27/2002
- ;;2.7;Health Summary;**8,20,28,35,49,78**;Oct 20, 1995
+ ;;2.7;Health Summary;**8,20,28,35,49,78,107**;Oct 20, 1995;Build 3
  ;                          
  ; External References
  ;   DBIA  4791  EN1^GMVHS
@@ -23,7 +23,7 @@ OUTPAT ; Outpatient Vital Signs Main Control
  I '$D(^UTILITY($J,"GMRVD")) D  Q
  . D CKP^GMTSUP Q:$D(GMTSQIT)  W "*** No Outpatient measurements ***",!!
  . S CNTR=1 D ENVS
- D FIRST,SECOND:GMTSVMVR>3,KILLVS Q
+ D FIRST,SECOND:GMTSVMVR>3,THIRD:GMTSVMVR>3,KILLVS Q  ;p.107 moved pain to a third line and changed 99 to "Unable to respond"
  ;                          
 ENVS ; Set up for Vitals Extraction Routine
  S CNTR=$S(+($G(CNTR))>0:+($G(CNTR)),+($G(CNTR))'>0&(+($G(GMTSNDM))>0):+($G(GMTSNDM)),1:100)
@@ -33,7 +33,7 @@ ENVS ; Set up for Vitals Extraction Routine
  S GMRVSTR(0)=T2_"^"_T1_"^"_CNTR_"^"_1
  ;D EN1^GMRVUT0 I '$D(^UTILITY($J,"GMRVD")) D KILLVS Q
  D EN1^GMVHS I '$D(^UTILITY($J,"GMRVD")) D KILLVS Q
- D FIRST,SECOND:GMTSVMVR>3,KILLVS Q
+ D FIRST,SECOND:GMTSVMVR>3,THIRD:GMTSVMVR>3,KILLVS Q  ;p.107 moved pain to a third line and changed 99 to "Unable to respond"
  ;                          
 FIRST ; First Set of Vitals
  ;  1     2      3     4   5     6       7         8
@@ -80,12 +80,12 @@ FWRT ;   Write first set of vitals by date
  Q
  ;                          
 SECOND ; Second Set of Vitals
- ;  1    2   3     4     5      6
- ; Date^CVP^POx^Cir/Gir^Pain^Control
+ ;  1    2   3     4       5
+ ; Date^CVP^POx^Cir/Gir^Control
  N GMW,GMTSCCNT,GMTSCTL S (GMTSCCNT,END)=0,CNTR=CNTR("HOLDER")
  D CKP^GMTSUP Q:$D(GMTSQIT)
  W !,"Measurement DT",?18,"CVP",?32,"POx",?45,"CG"
- W !,?18,"CMH20(MMHG)",?32,"(L/MIN)(%)",?45,"IN(CM)",?73,"Pain",!,?18,"-----------",?32,"----------",?45,"------",?73,"----",!!
+ W !,?18,"CMH20(MMHG)",?32,"(L/MIN)(%)",?45,"IN(CM)",!,?18,"-----------",?32,"----------",?45,"------",!!
  S GMT="" F  S GMT=$O(^UTILITY($J,"GMRVD",GMT)) Q:GMT<0!(GMT="")!(END=1)  D SLOOP,SWRT
  W:GMTSCCNT=0 "No data",!
  Q
@@ -95,26 +95,59 @@ SLOOP ;   Loop through second set of vitals by date
 SFMT ;   Extract and format second set of vitals
  S GMTSVS=^UTILITY($J,"GMRVD",GMT,GMTSVT,IEN)
  S X=$P(GMTSVS,U,1) D REGDT4^GMTSU S TDT=X S X=$P(GMTSVS,U,1) D MTIM^GMTSU S TI=X S TDT=TDT_" "_TI,$P(ARRAY,U,1)=TDT
- S GMTAB=$S(GMTSVT="CVP":2,GMTSVT="PO2":3,GMTSVT="CG":4,GMTSVT="PN":5,1:0)
+ S GMTAB=$S(GMTSVT="CVP":2,GMTSVT="PO2":3,GMTSVT="CG":4,1:0)
  S $P(ARRAY,U,GMTAB)=$P(GMTSVS,U,8)
  I GMTAB=2 S $P(ARRAY,U,GMTAB)=$P(ARRAY,U,GMTAB)_$S($P(ARRAY,U,GMTAB)?1A.E:"",1:"("_$P(GMTSVS,U,13)_")")
  I GMTAB=3 S $P(ARRAY,U,GMTAB)=$P(ARRAY,U,GMTAB)_$S($P(ARRAY,U,GMTAB)?1A.E:"",($P($G(GMTSVS),U,15)="")&($P($G(GMTSVS),U,16)=""):"",1:"("_$P(GMTSVS,U,15)_")("_$P(GMTSVS,U,16)_")")
  I GMTAB=4 S $P(ARRAY,U,GMTAB)=$P(ARRAY,U,GMTAB)_$S($P(ARRAY,U,GMTAB)?1A.E:"",1:"("_$$FN($P(GMTSVS,U,13),0)_")"_$S($P(GMTSVS,U,17)]"":"["_$P(GMTSVS,U,17)_"]",1:""))
- I GMTAB=5 S $P(ARRAY,U,GMTAB)=$S($L($P(ARRAY,U,GMTAB))&(+($P(ARRAY,U,GMTAB))=0):$P(ARRAY,U,GMTAB),$L($P(ARRAY,U,GMTAB))&(+($P(ARRAY,U,GMTAB))'=99):$$FN($P(ARRAY,U,GMTAB),0),$L($P(ARRAY,U,GMTAB))&(+($P(ARRAY,U,GMTAB))=99):"No Response",1:"")
- S:GMTAB>1 GMTSCTL=$G(GMTSCTL)_$P($G(ARRAY),U,GMTAB),$P(ARRAY,U,6)=GMTSCTL
+ S:GMTAB>1 GMTSCTL=$G(GMTSCTL)_$P($G(ARRAY),U,GMTAB),$P(ARRAY,U,5)=GMTSCTL
  Q
 SWRT ;   Write second set of vitals by date
- Q:$P($G(ARRAY),U,6)=""
+ Q:$P($G(ARRAY),U,5)=""
  D CKP^GMTSUP Q:$D(GMTSQIT)
  I GMTSNPG=1 D
  . W !,"Measurement DT",?18,"CVP",?34,"POx",?46,"CG"
- . W !,?18,"CMH20(MMHG)",?32,"(L/MIN)(%)",?45,"IN(CM)",?73,"Pain",!,?18,"-----------",?32,"----------",?45,"------",?73,"----",!!
+ . W !,?18,"CMH20(MMHG)",?32,"(L/MIN)(%)",?45,"IN(CM)",!,?18,"-----------",?32,"----------",?45,"------",!!
  S GMTSCCNT=$G(GMTSCCNT)+1
- W $P(ARRAY,U,1),?18,$P(ARRAY,U,2),?32,$P(ARRAY,U,3),?45,$P(ARRAY,U,4),?73,$S($P(ARRAY,U,5)?1A.E:$E($P(ARRAY,U,5),1,7),1:$P(ARRAY,U,5)),!
+ W $P(ARRAY,U,1),?18,$P(ARRAY,U,2),?32,$P(ARRAY,U,3),?45,$P(ARRAY,U,4),!
  S CNTR=CNTR-1 I CNTR=0 S END=1
  K ARRAY
  Q
- ;                          
+THIRD ; Third Set of Vitals 
+ ;p.107 moved pain to a third line and changed 99 to "Unable to respond"
+ ;  1     2     3
+ ; Date^Pain^Control
+ N GMW,GMTSCCNT,GMTSCTL S (GMTSCCNT,END)=0,CNTR=CNTR("HOLDER")
+ D CKP^GMTSUP Q:$D(GMTSQIT)
+ W !,"Measurement DT",?18,"Pain"
+ W !,?18,"----",!!
+ S GMT="" F  S GMT=$O(^UTILITY($J,"GMRVD",GMT)) Q:GMT<0!(GMT="")!(END=1)  D TLOOP,TWRT
+ W:GMTSCCNT=0 "No data",!
+ Q
+TLOOP ; Loop through third set of vitals by date
+ S (GMTSCTL,GMTSVT)="" F  S GMTSVT=$O(^UTILITY($J,"GMRVD",GMT,GMTSVT)) Q:GMTSVT=""  S IEN=$O(^UTILITY($J,"GMRVD",GMT,GMTSVT,0)) D TFMT
+ Q
+TFMT ; Extract and format third set of vitals
+ S GMTSVS=^UTILITY($J,"GMRVD",GMT,GMTSVT,IEN)
+ S X=$P(GMTSVS,U,1) D REGDT4^GMTSU S TDT=X S X=$P(GMTSVS,U,1) D MTIM^GMTSU S TI=X S TDT=TDT_" "_TI,$P(ARRAY,U,1)=TDT
+ S GMTAB=$S(GMTSVT="PN":2,1:0)
+ S $P(ARRAY,U,GMTAB)=$P(GMTSVS,U,8)
+ I GMTAB=2 D
+ .S $P(ARRAY,U,GMTAB)=$S($L($P(ARRAY,U,GMTAB))&(+($P(ARRAY,U,GMTAB))=0):$P(ARRAY,U,GMTAB),$L($P(ARRAY,U,GMTAB))&(+($P(ARRAY,U,GMTAB))'=99):$$FN($P(ARRAY,U,GMTAB),0),$L($P(ARRAY,U,GMTAB))&(+($P(ARRAY,U,GMTAB))=99):"Unable to Respond",1:"")
+ S:GMTAB>1 GMTSCTL=$G(GMTSCTL)_$P($G(ARRAY),U,GMTAB),$P(ARRAY,U,3)=GMTSCTL
+ Q
+TWRT ; Write third set of vitals by date
+ Q:$P($G(ARRAY),U,3)=""
+ D CKP^GMTSUP Q:$D(GMTSQIT)
+ I GMTSNPG=1 D
+ . W !,"Measurement DT",?18,"Pain"
+ . W !,?18,"----",!!
+ S GMTSCCNT=$G(GMTSCCNT)+1
+ W $P(ARRAY,U,1),?18,$P(ARRAY,U,2),!
+ S CNTR=CNTR-1 I CNTR=0 S END=1
+ K ARRAY
+ Q
+ ;
 KILLVS ; Kill Variables
  K CNTR,T1,T2,TDT,TI,END,TN,IEN,LF,GMTSVMVR,GMTSVS,GMTSVT,GMT,ARRAY,GMTAB,X
  K ^UTILITY($J,"GMRVD")

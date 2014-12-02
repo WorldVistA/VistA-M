@@ -1,5 +1,5 @@
-LEXAS4 ; ISL Look-up Check Input (DBL,REM)        ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
+LEXAS4 ;ISL/KER - Look-up Check Input (DBL,REM) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
  ;
 DBL(LEXX) ; Excessive Double Characters
  ;

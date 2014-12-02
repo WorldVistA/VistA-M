@@ -1,9 +1,11 @@
-ALPBFRM1 ;OIFO-DALLAS MW,SED,KC -STANDARD PRINT FORMATTING UTIL;2/24/12 12:11am
- ;;3.0;BAR CODE MED ADMIN;**8,48,69**;Mar 2004;Build 16
+ALPBFRM1 ;OIFO-DALLAS MW,SED,KC -STANDARD PRINT FORMATTING UTIL;2/24/12 12:11am ;1/22/13 11:22pm
+ ;;3.0;BAR CODE MED ADMIN;**8,48,69,59,73**;Mar 2004;Build 31
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;*69 move code to print Long Wp special istructions lines near end of
  ;    a grid boundary
+ ;*73 - add code to print Clinc Name above meds in detail lines and
+ ;      Location in heading.
  ;
 F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  ; output array...
@@ -44,6 +46,7 @@ F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  ..S ALPBADM=ALPBADM+1
  ; line 1...
  S RESULTS(1)=""
+ S RESULTS(1)=$$PAD^ALPBUTL(RESULTS(1),2)_"Location"      ;*73
  S RESULTS(1)=$$PAD^ALPBUTL(RESULTS(1),66)_"Admin"
  ; line 2...
  S RESULTS(2)="Start"
@@ -53,13 +56,15 @@ F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  I DAYS=3 S RESULTS(2)=RESULTS(2)_"   Notes"
  ; line 3...
  S RESULTS(3)=$$REPEAT^XLFSTR("-",132)
- ; line 4...
+ ; line 4...Clinic Name or INPATIENT                             ;*73
+ S RESULTS(4)=$S($P(DATA(0),U,5)="":"   INPATIENT",1:"   "_$P(DATA(0),U,5))       ;*73
+ ; line 5...                                                     ;*73
  ; start and stop date/times...
- S RESULTS(4)=$S($P($G(DATA(1)),"^")'="":$$FMTE^XLFDT($P(DATA(1),"^")),1:"Not on file")
- S RESULTS(4)=$$PAD^ALPBUTL(RESULTS(4),25)_$S($P($G(DATA(1)),"^",2)'="":$$FMTE^XLFDT($P(DATA(1),"^",2)),1:"Not on file")
+ S RESULTS(5)=$S($P($G(DATA(1)),"^")'="":$$FMTE^XLFDT($P(DATA(1),"^")),1:"Not on file")       ;*73
+ S RESULTS(5)=$$PAD^ALPBUTL(RESULTS(5),25)_$S($P($G(DATA(1)),"^",2)'="":$$FMTE^XLFDT($P(DATA(1),"^",2)),1:"Not on file")       ;73
  ;
  ; end of fixed line format, continue...
- S LINE=4
+ S LINE=5                                                        ;*73
  ; get drug(s)...
  I +$O(DATA(7,0)) D
  .S LINE=LINE+1
@@ -194,13 +199,13 @@ F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  .S RESULTS(I+3)=RESULTS(I+3)_$S($L(ALPBADMT)=2:ALPBADMT_"00",1:ALPBADMT)
  .S RESULTS(I+3)=$$PAD^ALPBUTL(RESULTS(I+3),74)_"|"
  .F J=1:1:DAYS D
+ ..I ALPBADMT="    " S ALPBTSTART=$P($P($G(DATA(1)),"^",1),".",1),ALPBSTOP=$P($P($G(DATA(1)),"^",2),".",1)
  ..S ALPBDAY=ALPBDAYS(J)_"."_ALPBADMT
  ..S ALPBPBOX=ALPBIBOX
  ..;prints asterisks in boxes if start date is in the future
  ..;and if the stop date has already expired
  ..I ALPBDAY<ALPBTSTART S ALPBPBOX=ALPBNBOX
- ..I ALPBDAY>ALPBSTOP S ALPBPBOX=ALPBNBOX
- ..;I ALPBDAY=ALPBSTOP!(ALPBDAY>ALPBSTOP) S ALPBPBOX=ALPBNBOX
+ ..I ALPBDAY>ALPBSTOP!(ALPBDAY=ALPBSTOP) S ALPBPBOX=ALPBNBOX
  ..S RESULTS(I+3)=RESULTS(I+3)_ALPBPBOX
  .K ALPBADMT,ALPBPBOX,ALPBDAY
  K ALPBIBOX,ALPBNBOX

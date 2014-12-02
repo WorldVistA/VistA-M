@@ -1,0 +1,17 @@
+EDP WORKSHEET COMPONENT TYPE
+ZWR
+^EDPB(232.73,0)="EDP WORKSHEET COMPONENT TYPE^232.73^7^7"
+^EDPB(232.73,1,0)="gov.va.med.edp.view.worksheet.WorkSheetTextInput"
+^EDPB(232.73,2,0)="gov.va.med.edp.view.worksheet.WorkSheetValueComboBox"
+^EDPB(232.73,3,0)="gov.va.med.edp.widget.DateTimeChooser"
+^EDPB(232.73,4,0)="gov.va.med.edp.cpe.view.log.DiagnosesCoded"
+^EDPB(232.73,5,0)="gov.va.med.edp.cpe.view.log.DiagnosesFreeText"
+^EDPB(232.73,6,0)="gov.va.med.edp.view.worksheet.WorkSheetDataGridWidget"
+^EDPB(232.73,7,0)="gov.va.med.edp.view.worksheet.VitalsSaveWidget"
+^EDPB(232.73,"B","gov.va.med.edp.cpe.view.log.Di",4)=""
+^EDPB(232.73,"B","gov.va.med.edp.cpe.view.log.Di",5)=""
+^EDPB(232.73,"B","gov.va.med.edp.view.worksheet.",1)=""
+^EDPB(232.73,"B","gov.va.med.edp.view.worksheet.",2)=""
+^EDPB(232.73,"B","gov.va.med.edp.view.worksheet.",6)=""
+^EDPB(232.73,"B","gov.va.med.edp.view.worksheet.",7)=""
+^EDPB(232.73,"B","gov.va.med.edp.widget.DateTime",3)=""

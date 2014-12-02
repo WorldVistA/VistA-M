@@ -1,12 +1,12 @@
-GMTSPXOP ; SLC/SBW,KER - PCE Outpatient Encounter comp ; 02/27/2002
- ;;2.7;Health Summary;**8,10,28,37,47,49,76**;Oct 20, 1995
+GMTSPXOP ; SLC/SBW,KER - PCE Outpatient Encounter comp ;07/19/13  11:48
+ ;;2.7;Health Summary;**8,10,28,37,47,49,76,101**;Oct 20, 1995;Build 12
  ;
  ; External References
  ;    DBIA  1238  VISIT^PXRHS01
  ;    DBIA  1996  $$MOD^ICPTMOD
  ;    DBIA 10103  $$DT^XLFDT
  ;    DBIA 10011  ^DIWP
- ;                      
+ ;
 PURPOSE ; Encounters with ICD9 and providers
  N DTYPE S DTYPE="DP" D MAIN Q
 OUTPT ; Encounters with ICD9, CPT, and providers
@@ -15,7 +15,7 @@ MAIN ; Entry for Purpose of Visit and Outpatient Encounters
  N GMTSIVD,GMTSDAT,GMTSDTU,GMTSOVT,GMTSLOC,DIWL,GMTAB,GMTSN,GMCKP,GMTSX
  N GMTSITE,GMTSINS,GMTSEVT,GMTSHIS,GMTSICL,GMTSLOC,GMTSELIG,X,GMTSVDF
  N GMTSCPTM,GMICL
- ;                     
+ ;
  ; GMTSCPTM    Component uses CPT Modifiers 1 yes 0 no
  S GMTSCPTM=+($$CPT^GMTSU(+($G(GMTSEGN)))) S:$G(GMPXCMOD)="N" GMTSCPTM=0
  ; GMTSICL     # of blank left columns for support data of a visit
@@ -25,7 +25,7 @@ MAIN ; Entry for Purpose of Visit and Outpatient Encounters
  ; GMTAB       Used to offset data from TXTFMT call after 1st line
  S GMTAB=2
  ; GMTSOVT     This is the set of Service Categories for AICTSORE
- ;                     
+ ;
  ;                A  Ambulatory
  ;                I  Inpatient
  ;                C  Chart Review
@@ -34,8 +34,8 @@ MAIN ; Entry for Purpose of Visit and Outpatient Encounters
  ;                O  Observation
  ;                R  Nursing Home Encounters
  ;                E  Event (Historical)
- ;                  
- ;            Note:  Hospitalization and Ancillary 
+ ;
+ ;            Note:  Hospitalization and Ancillary
  ;                   encounters are not included
  S GMTSOVT="AICTSORE"
  ;
@@ -63,21 +63,23 @@ MAIN ; Entry for Purpose of Visit and Outpatient Encounters
  . . D DSPPOV Q:$D(GMTSQIT)  D DSPCPT W !
  K ^TMP("PXHSV",$J)
  Q
- ;                     
+ ;
 DSPPOV ; Display Purpose of visit
  Q:$O(^TMP("PXHSV",$J,GMTSIVD,GMTSVDF,"D",""))=""
  Q:$G(GMPXICDF)="N"&($G(GMPXNARR)="N")
- N GMTSN,GMTSMOD,GMTSICD,GMTSNARR,GMTSPDN,GMTS,GMTSQTY,GMTSPRI,COMMENT
+ N GMTSN,GMTSMOD,GMTSICD,GMTSNARR,GMTSPDN,GMTS,GMTSQTY,GMTSPRI,COMMENT,GMTSICDT
  D CKP^GMTSUP Q:$D(GMTSQIT)  D DSPVIS W ?3,"Diagnosis:"
  S GMCKP=0,GMTSPDN="",GMTSQTY=""
  F  S GMTSPDN=$O(^TMP("PXHSV",$J,GMTSIVD,GMTSVDF,"D",GMTSPDN)) Q:GMTSPDN'>0  D  Q:$D(GMTSQIT)
+ . S GMTSICDT=$P(^TMP("PXHSV",$J,GMTSIVD,GMTSVDF,0),U)
  . S GMTSN=$G(^TMP("PXHSV",$J,GMTSIVD,GMTSVDF,"D",GMTSPDN))
  . S GMTSMOD=$P(GMTSN,U,2)
- . S GMTSICD=$P(GMTSN,U) D GETICDDX^GMTSPXU1(.GMTSICD,$G(GMPXICDF),GMTSMOD)
+ . S GMTSICD=$P(GMTSN,U) D GETICDDX^GMTSPXU1(.GMTSICD,$G(GMPXICDF),GMTSMOD,GMTSICDT,"DIAG")
  . S GMTSNARR=""
  . S:$G(GMPXNARR)'="N" GMTSNARR=$G(^TMP("PXHSV",$J,GMTSIVD,GMTSVDF,"D",GMTSPDN,"N"))
  . I $P(GMTSICD,"-",2,10)=$G(GMTSNARR) S GMTSNARR=""
  . S GMTSPRI="" I $P(GMTSN,U,5)]"",$E($P(GMTSN,U,5),1)="P" S GMTSPRI=" (P)"
+ . S GMTSICD=$P(GMTSICD,"-",2,10)_" ("_$$GETICDCD^GMTSPXU1(GMTSICDT,"DIAG")_"-CM "_$P(GMTSICD,"-",1)_")"
  . D TXTFMT^GMTSPXU1(GMTSICD,$G(GMTSNARR),GMTSICL,GMTAB,DIWL,GMTSQTY,GMTSPRI)
  . I '$D(^UTILITY($J,"W")) Q
  . S GMTSX=0
@@ -91,10 +93,11 @@ DSPPOV ; Display Purpose of visit
  Q
 DSPCPT ; Display Procedures performed during the visit
  Q:$O(^TMP("PXHSV",$J,GMTSIVD,GMTSVDF,"C",""))=""
- N GMTSNARR,GMTSPDN,GMTSN,GMTSICD,GMTSNARR,GMTSCPT,GMTSQTY,GMTSPRIM,GMTSPRI,GMTSFLG
+ N GMTSNARR,GMTSPDN,GMTSN,GMTSICD,GMTSNARR,GMTSCPT,GMTSQTY,GMTSPRIM,GMTSPRI,GMTSFLG,GMTSICDT
  D CKP^GMTSUP Q:$D(GMTSQIT)  D DSPVIS W ?3,"Procedure:"
  S GMCKP=0,GMTSPDN="",GMTSPRI=""
  F  S GMTSPDN=$O(^TMP("PXHSV",$J,GMTSIVD,GMTSVDF,"C",GMTSPDN)) Q:GMTSPDN'>0  D  Q:$D(GMTSQIT)
+ . S GMTSICDT=$P(^TMP("PXHSV",$J,GMTSIVD,GMTSVDF,0),U)
  . S GMTSN=$G(^TMP("PXHSV",$J,GMTSIVD,GMTSVDF,"C",GMTSPDN))
  . S GMTSNARR=$P(GMTSN,U,2),GMTSQTY=$P(GMTSN,U,3),GMTSPRIM=$P(GMTSN,U,4)
  . S GMTSCPT=$$GETCPT^GMTSPXU1($P(GMTSN,U)) I $P(GMTSCPT,"-",2,10)=GMTSNARR S GMTSNARR=""

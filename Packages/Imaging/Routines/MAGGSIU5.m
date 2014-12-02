@@ -1,5 +1,5 @@
-MAGGSIU5 ;WOIFO/GEK - Utilities for Image Import API ; 22 Feb 2011 12:28 PM
- ;;3.0;IMAGING;**121**;Mar 19, 2002;Build 2340;Oct 20, 2011
+MAGGSIU5 ;WOIFO/GEK - Utilities for Image Import API ; 11 Jun 2013 5:37 PM
+ ;;3.0;IMAGING;**121,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -53,7 +53,7 @@ RSND1(MAGRY,MAGIEN,TIUDA,DELREAS) ; Main entry point to rescind an Image
  N RSLT,REASON,REASDA,MAGTDAT
  N I,QCT,N0,N2,N40,N100,MAGLT
  N IMGSPLCS,MAGRQA
- N MAGTMP
+ N MAGTMP,X
  N $ETRAP,$ESTACK S $ETRAP="D ERRA^"_$T(+0)
  ;
  S MAGIEN=$G(MAGIEN),TIUDA=$G(TIUDA)
@@ -132,9 +132,16 @@ RSND1(MAGRY,MAGIEN,TIUDA,DELREAS) ; Main entry point to rescind an Image
  ;  the same as all imports.
  ;
  S QCT=QCT+1,QARR(QCT)="PXPKG^8925"
- S QCT=QCT+1,QARR(QCT)="PXDT^"_$P(MAGTDAT,"^",3)
+ ;;;S QCT=QCT+1,QARR(QCT)="PXDT^"_$P(MAGTDAT,"^",3) ;135 T6
+ S QCT=QCT+1,QARR(QCT)="PXDT^"_$P(N2,"^",5) ;135 T6 
+ ; 135 T6 Remedy INC000000795508   instead of MAGTDAT^3   (Entry Date) we use Procedure Date/Time
+ ;  from the Exiting Image Entry, which is the Reference Date of the TIU Note. 
  S QCT=QCT+1,QARR(QCT)="IDFN^"_$P(N0,"^",7)
- S QCT=QCT+1,QARR(QCT)="ACQS^"_DUZ(2)
+ ; P135T6  Set Acquisition Site the same as existing Image
+ ; if existing Acq Site is null,  use DUZ(2)
+ S X=$P(N100,"^",3)
+ I X]"" S QCT=QCT+1,QARR(QCT)="ACQS^"_X
+ E  S QCT=QCT+1,QARR(QCT)="ACQS^"_DUZ(2)
  S QCT=QCT+1,QARR(QCT)="ACQD^"_"IAPI" ; This is the acquisition device. Import API.
  S QCT=QCT+1,QARR(QCT)="GDESC^"_$E("RESCINDED "_$p(N2,"^",4),1,60)
  ;gek/p121t2  Force IXTYPE to be ADVANCE DIRECTIVE to fix IMED issue of 

@@ -1,5 +1,5 @@
 IBCNEDEP ;DAOU/ALA - Process Transaction Records ;17-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,438**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,506**;21-MAR-94;Build 74
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;  This program finds records needing HL7 msg creation
@@ -7,6 +7,7 @@ IBCNEDEP ;DAOU/ALA - Process Transaction Records ;17-JUN-2002
  ;
  ;  Variables
  ;    RETR = # retries allowed
+ ;    RETRYFLG = determines if a Transmitted message can be resent
  ;    MGRP = Msg Mailgroup
  ;    FAIL = # of days before failure
  ;    FMSG = Failure Mailman flag
@@ -34,11 +35,13 @@ EN ;  Entry point
  ; Initialize count for periodic TaskMan check
  S IBCNETOT=0
  ;
+ S C1CODE=$O(^IBE(365.15,"B","C1",""))
  ;  Get IB Site Parameters
  S IBCNEP=$G(^IBE(350.9,1,51))
  S RETR=+$P(IBCNEP,U,6),BNDL=$P(IBCNEP,U,23)
  S MGRP=$$MGRP^IBCNEUT5()
  S FAIL=$P(IBCNEP,U,5),TMSG=$P(IBCNEP,U,7),FMSG=$P(IBCNEP,U,20)
+ S RETRYFLG=$P(IBCNEP,U,26)        ;set value to (#350.9, 51.26) - IB*2.0*506
  S FLDT=$$FMADD^XLFDT(DT,-FAIL)
  ; Statuses
  ;   1 = Ready To Transmit
@@ -46,22 +49,9 @@ EN ;  Entry point
  ;   4 = Hold
  ;   6 = Retry
  ;
-HLD ;  Go through the 'Hold' statuses, see if ready to be 'retried'
- S IEN=""
- F  S IEN=$O(^IBCN(365.1,"AC",4,IEN)) Q:IEN=""  D  Q:$G(ZTSTOP)
- . ; Update count for periodic check
- . S IBCNETOT=IBCNETOT+1
- . ; Check for request to stop background job, periodically
- . I $D(ZTQUEUED),IBCNETOT#100=0,$$S^%ZTLOAD() S ZTSTOP=1 Q
- . ;
- . S FUTDT=$P($G(^IBCN(365.1,IEN,0)),U,9)
- . ;
- . ;  If the future date is today, set status to 'Retry',
- . ;  DON'T clear future transmission date. (Need date to see if this is the first
- . ;  time that the payer asked us to resubmit this inquiry.)
- . I FUTDT'>DT D SST^IBCNEUT2(IEN,6) ;D
- . ;. NEW DA,DIE,DR
- . ;. S DA=IEN,DIE="^IBCN(365.1,",DR=".09///@" D ^DIE
+ ; If the status is 'HOLD' is this a 'Retry'?   -  IB*2.0*506
+ ;  DO HLD   ; this is not to be called unless the status of HOLD is reinstated...see HLD tag
+ ;  below and the code within ERROR^IBCNEHL3
  ;
  ; Exit based on stop request
  I $G(ZTSTOP) G EXIT
@@ -85,21 +75,21 @@ TMT ;  If the status is 'Transmitted' - is this a 'Retry' or
  . I DTCRT>FLDT Q
  . ;
  . ;  If retries are defined
- . I RETR>0 D  Q
+ . I RETRYFLG="Y" D  Q     ; IB*2.0*506
  .. ;
- .. ;  Send timeout mail msg
- .. I PAYR'=$$FIND1^DIC(365.12,"","X","~NO PAYER") D TMRR^IBCNEDEQ
- .. D SST^IBCNEUT2(IEN,6)
+ .. I '$$PYRACTV^IBCNEDE7(PAYR) Q    ; If Payer is not Nationally Active skip record  -  IB*2.0*506
+ .. ;
+ .. D SST^IBCNEUT2(IEN,6)    ; mark TQ entry status as 'retry'
+ .. Q
  . ;
- . ; If no retries defined, set to fail
- . D SST^IBCNEUT2(IEN,5)
+ . D SST^IBCNEUT2(IEN,5)     ; if RETRYFLG=NO set TQ record to 'communication faliure'
  . ;
  . ;  For msg in the Response file set the status to
  . ; 'Comm Failure'
  . D RSTA^IBCNEUT7(IEN)
  . ;
- . ;  Set Buffer symbol to 'B12' (Comm Failure)
- . I BUFF'="" D BUFF^IBCNEUT2(BUFF,15)
+ . ;  Set Buffer symbol to 'C1' (Comm Failure)    ; used to be 'B12' - ien of 15
+ . I BUFF'="" D BUFF^IBCNEUT2(BUFF,C1CODE)        ; set to "#" communication failure - IB*2.0*506
  . ;
  . I PAYR=$$FIND1^DIC(365.12,"","X","~NO PAYER") Q
  . ;
@@ -109,7 +99,7 @@ TMT ;  If the status is 'Transmitted' - is this a 'Retry' or
  ; Exit for stop request
  I $G(ZTSTOP) G EXIT
  ;
-RET ;  If status is 'Retry'
+RET ;  If status is 'Retry'     ; retries only exist if the RETRYFLG=YES - IB*2.0*506
  S IEN=""
  F  S IEN=$O(^IBCN(365.1,"AC",6,IEN)) Q:IEN=""  D  Q:$G(ZTSTOP)
  . ; Update count for periodic check
@@ -124,19 +114,19 @@ RET ;  If status is 'Retry'
  . S VERID=$P(TDATA,U,11)
  . S NRETR=NRETR+1
  . ;
- . ;  If retries are finished, set to fail
+ . ;  If retries are finished, set to communication failure  - IB*2.0*506
  . I NRETR>RETR D  Q
  .. D SST^IBCNEUT2(IEN,5)
  .. ;
- .. ;  Set Buffer symbol to 'B12' (Comm Failure)
- .. I BUFF'="" D BUFF^IBCNEUT2(BUFF,15)
+ .. ;  Set Buffer symbol to 'C1' (Comm Failure)    ; used to be 'B12' - ien of 15
+ .. I BUFF'="" D BUFF^IBCNEUT2(BUFF,C1CODE)        ; set to "#" communication failure - IB*2.0*506
  .. ;
  .. ;  For msg in the Response file set the status to
  .. ; 'Comm Failure'
  .. D RSTA^IBCNEUT7(IEN)
  .. I PAYR=$$FIND1^DIC(365.12,"","X","~NO PAYER") Q
  .. ;
- .. I VERID="V" D CERE^IBCNEDEQ
+ .. ;I VERID="V" D CERE^IBCNEDEQ      ; removed IB*2.0*506
  . ; If generating retry, set eIV status to comm failure (5) for
  . ; remaining related responses
  . D RSTA^IBCNEUT7(IEN)
@@ -175,9 +165,9 @@ EXIT ;  Finish
  K FRDT,FMSG,GT1,HCT,HIEN,HL,HLCDOM,HLCINS,HLCS,HLCSTCP,HLDOM,HLECH,%I,%H
  K HLEID,HLFS,HLHDR,HLINST,HLIP,HLN,HLPARAM,HLPROD,HLQ,HLRESLT,XMSUB
  K HLSAN,HLTYPE,HLX,IBCNEP,IBCNHLP,IEN,IHCNT,IN1,IRIEN,MDTM,MGRP,MSGID,TOT
- K NRETR,NTRAN,OVRIDE,PAYR,PID,QFL,QUERY,RETR,RSIEN,SRVDT,STA,TRANSR,X
+ K NRETR,NTRAN,OVRIDE,PAYR,PID,QFL,QUERY,RETR,RETRYFLG,RSIEN,SRVDT,STA,TRANSR,X
  K ZMID,^TMP("IBQUERY",$J),Y,DOD,DGREL,TMSG,RSTYPE,OMSGID,QFL
- K IBCNETOT,HLP,SUBID,VNUM,BNDL,IBDATA,PATID
+ K IBCNETOT,HLP,SUBID,VNUM,BNDL,IBDATA,PATID,C1CODE
  Q
  ;
 VER ;  Initialize HL7 variables protocol for Verifications
@@ -280,4 +270,30 @@ PROC ;  Process TQ record
  ;  If build successful
  I NTE'="",$E(NTE,1)'="*" S HCT=HCT+1,^TMP("HLS",$J,HCT)=$TR(NTE,"*","")
  K NTE
+ Q
+ ;
+ ; The tag HLD was found at the top of this routine.  It was moved
+ ; to its own procedure because it isn't needed anymore at this time.
+ ; Responses will not have the status of HOLD starting with patch IB*2.0*506.
+ ; If HOLD is reinstated, then the logic below must be rewritten for the
+ ; appropriate retry logic at that time.
+HLD ;  Go through the 'Hold' statuses, see if ready to be 'retried'
+ Q  ; Quit added as safety valve
+ ;S IEN=""
+ ;F  S IEN=$O(^IBCN(365.1,"AC",4,IEN)) Q:IEN=""  D  Q:$G(ZTSTOP)
+ ;. ; Update count for periodic check
+ ;. S IBCNETOT=IBCNETOT+1
+ ;. ; Check for request to stop background job, periodically
+ ;. I $D(ZTQUEUED),IBCNETOT#100=0,$$S^%ZTLOAD() S ZTSTOP=1 Q
+ ;. ;
+ ;. S FUTDT=$P($G(^IBCN(365.1,IEN,0)),U,9)
+ ;. ;
+ ;. ;  If the future date is today, set status to 'Retry',
+ ;. ;  DON'T clear future transmission date. (Need date to see if this is the first
+ ;. ;  time that the payer asked us to resubmit this inquiry.)
+ ;. I FUTDT'>DT D SST^IBCNEUT2(IEN,6) ;D
+ ;. ;. NEW DA,DIE,DR
+ ;. ;. S DA=IEN,DIE="^IBCN(365.1,",DR=".09///@" D ^DIE
+ ;.. ;
+ ;.. D SST^IBCNEUT2(IEN,6)     ; set TQ status to 'retry'
  Q

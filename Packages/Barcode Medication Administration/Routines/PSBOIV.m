@@ -1,5 +1,5 @@
-PSBOIV ;BIRMINGHAM/TEJ-IV BAG STATUS REPORT ;1/10/12 10:59am
- ;;3.0;BAR CODE MED ADMIN;**32,68**;Mar 2004;Build 26
+PSBOIV ;BIRMINGHAM/TEJ-IV BAG STATUS REPORT ;8/30/12 10:56am
+ ;;3.0;BAR CODE MED ADMIN;**32,68,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -10,9 +10,10 @@ PSBOIV ;BIRMINGHAM/TEJ-IV BAG STATUS REPORT ;1/10/12 10:59am
  ; GETSIOPI^PSJBCMA5/5763
  ; 
  ;*68 - change to accomodate unlimited lines for SIOPI array
+ ;*70 - reset PSBCLINORD = 2 to signify combined orders report
  ;
 EN ; Entry
- N PSB1,PSBFUTR,PSBSI,QQ
+ N PSB1,PSBFUTR,PSBSI,QQ,PSBHDR               ;*70 add psbhdr
  K PSBSRTBY,PSBOCRIT,PSBACRIT,NO S PSBCFLG=0
  S PSBFUTR=$TR(PSBRPT(1),"~","^")
  I $D(PSBRPT(.2)) I $P(PSBRPT(.2),U,8) S PSBCFLG=1
@@ -176,6 +177,7 @@ HDR ;
  .S LN=LN+1,PSBHDR(LN)="Bag Status(es): --"
  .F Y=12:1:18 I $P(PSBFUTR,U,Y) S $P(PSBHDR(LN),": ",2)=$P(PSBHDR(LN),": ",2)_$S(PSBHDR(LN)["--":"",1:"/ ")_$P("^^^^^^^^^^^Infusing^Stopped^Completed^No Action Taken^Missing Dose^Held^Refused",U,Y)_" " S PSBHDR(LN)=$TR(PSBHDR(LN),"-","")
  .I PSBCFLG S LN=LN+1,PSBHDR(LN)="Include Comments/Reasons"
+ .N PSBCLINORD S PSBCLINORD=2     ;set psbclinord to both ord type *70
  .D PT^PSBOHDR(PSBXDFN,.PSBHDR) W !
  Q
 FTR ;

@@ -1,5 +1,5 @@
-MAGJRPT ;WIRMFO/JHC - Display Rad reports ; 9 Sep 2011  4:05 PM
- ;;3.0;IMAGING;**18,101,120**;Mar 19, 2002;Build 27;May 23, 2012
+MAGJRPT ;WIRMFO/JHC - Display Rad reports ; 3 Jul 2013  10:48 AM
+ ;;3.0;IMAGING;**18,101,120,133**;Mar 19, 2002;Build 5393;Sep 09, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -28,11 +28,12 @@ ORD(MAGRPTY,DATA) ; Radiology Order Display
  N $ETRAP,$ESTACK S $ETRAP="D ERR^MAGJRPT"
  N RARPT,RADFN,RADTI,RACNI,RAPGE,RAX,RAOIFN
  N REPLY,POP,DFN,COMPLIC,XX,HDR,MAGRET,REQONLY,TMPDATA
+ N MEDS,RDIOPHARM
  S REPLY="0^4~Attempting to display order info"
  D OPENDEV
  I POP S REPLY="0^4~Unable to open device 'IMAGING WORKSTATION'" G ORDZ
  S RADFN=$P(DATA,U),RADTI=$P(DATA,U,2),RACNI=$P(DATA,U,3)
- S RARPT=+$P(DATA,U,4),REQONLY=+$P(DATA,U,1,5)
+ S RARPT=+$P(DATA,U,4),REQONLY=+$P(DATA,U,5)
  I RADFN,RADTI,RACNI
  E  S REPLY="0^4~Request Contains Invalid Case Pointer ("_RADFN_" "_RADTI_" "_RACNI_" "_RARPT_")." G ORDZ
  S RAOIFN=$P($G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)),U,11)
@@ -43,6 +44,7 @@ ORD(MAGRPTY,DATA) ; Radiology Order Display
  D GETEXAM2^MAGJUTL1(RADFN,RADTI,RACNI,"",.MAGRET)
  S RADATA=$G(^TMP($J,"MAGRAEX",1,1)),XX=$G(^(2)),HDR=""
  S COMPLIC=$P(XX,U,4)      ;  Complications text
+ S MEDS=$P(XX,U,14),RDIOPHARM=$P(XX,U,15)      ;  Medications & RadioPharm indicators
  F I=4,12,9 S HDR=HDR_$P(RADATA,U,I)_"   " ; PtName, Case #, Procedure
  I REQONLY D CKINTEG(.REPLY,RADFN,RADTI,RACNI,RARPT,RADATA) I REPLY]"" S REPLY="0^7~"_REPLY G ORDZ  ; Database integrity problems
  S TMPDATA=MAGRPTY_"~"_RADTI_"~"_RACNI
@@ -50,18 +52,21 @@ ORD(MAGRPTY,DATA) ; Radiology Order Display
  S MAGRPTY=$P(TMPDATA,"~"),RADTI=$P(TMPDATA,"~",2),RACNI=$P(TMPDATA,"~",3)
  D:IO'=IO(0) ^%ZISC
  S @MAGRPTY@(1)="REQ: "_HDR
- D COMMENTS(RADFN,RADTI,RACNI,MAGRPTY,2,COMPLIC)
+ D COMMENTS(RADFN,RADTI,RACNI,MAGRPTY,2,COMPLIC,MEDS,RDIOPHARM)
  D TIUNOTE(RARPT,MAGRPTY,10000) ; append TIU note to reply at node 10000
  S REPLY="1^OK"
  K ^TMP($J,"MAGRAEX")
 ORDZ S @MAGRPTY@(0)=REPLY
  Q
  ;
-COMMENTS(RADFN,RADTI,RACNI,MAGRPTY,DNODE,COMPLIC) ; add Complications & Tech Comments to output report
+COMMENTS(RADFN,RADTI,RACNI,MAGRPTY,DNODE,COMPLIC,MEDS,RDIOPHARM) ; add Complications & Tech Comments to output report
+ ;  Add Medications and Radiopharmaceuticals information to output
  ;  RADFN, RADTI, & RACNI identify exam
  ;  MAGRPTY is indirect reference wher output lines are to be stored
  ;  DNODE holds reference for starting node for lines of output
  ;  COMPLIC passes in complications data reference
+ ;  MEDS passes in Medications indicator
+ ;  RDIOPHARM passes in Radiopharmaceuticals reference
  ;
  I +MAGJOB("USER",1)  ; Radiologist
  E  I $D(^VA(200,"ARC","T",+DUZ))  ; Rad Tech
@@ -79,6 +84,36 @@ COMMENTS(RADFN,RADTI,RACNI,MAGRPTY,DNODE,COMPLIC) ; add Complications & Tech Com
  . . I XX]"" F I=1:1:999 I $E(XX,I)'=" " S XX=$E(XX,I,999) Q
  . . S CT=CT+.01,@MAGRPTY@(DNODE+CT)=TXT
  K ^TMP($J,"RAE2")
+ I +$G(MEDS) D
+ . N REF,RAUTOE,RAACNT
+ . K ^TMP($J,"RA AUTOE")
+ . S REF=RACNI_","_RADTI_","_RADFN_","
+ . S RAUTOE=""    ; if defined, directs output to ^TMP
+ . S RAACNT=1000  ; init counter for output to ^TMP
+ . D PHARM^RARTUTL(REF)  ; get Medications data  ; ICR #5946 (Private)
+ . D PHARMAS("Medications",1001)
+ I +$G(RDIOPHARM) D
+ . N RAUTOE,RAACNT
+ . K ^TMP($J,"RA AUTOE")
+ . S RAUTOE=""    ; if defined, directs output to ^TMP
+ . S RAACNT=1000  ; init counter for output to ^TMP
+ . D RDIO^RARTUTL(RDIOPHARM)  ; get Radiopharm data  ; ICR #5946 (Private)
+ . D PHARMAS("Radiopharmaceuticals",1001)
+ I +$G(MEDS)!+$G(RDIOPHARM) D
+ . S CT=CT+.001,@MAGRPTY@(DNODE+CT)="  "_$TR($J(" ",66)," ","_")
+ . S CT=CT+.001,@MAGRPTY@(DNODE+CT)=" "
+ K ^TMP($J,"RA AUTOE")
+ Q
+ ;
+PHARMAS(TITLE,NODE) ; output lines of pharma data
+ N LINE
+ I $D(^TMP($J,"RA AUTOE",NODE)) D
+ . S CT=CT+.001,@MAGRPTY@(DNODE+CT)=" "
+ . S CT=CT+.001,@MAGRPTY@(DNODE+CT)=" ------------ "_TITLE_" ------------"
+ . S CT=CT+.001,@MAGRPTY@(DNODE+CT)=" "
+ . F  S LINE=^TMP($J,"RA AUTOE",NODE) D  S NODE=$O(^TMP($J,"RA AUTOE",NODE)) Q:'NODE
+ . . S CT=CT+.001,@MAGRPTY@(DNODE+CT)=LINE
+ . Q
  Q
  ;
 TIUNOTE(RARPT,MAGRPTY,DNODE) ; FUT-70/IHS append Rad TIU Notes to report
@@ -113,18 +148,20 @@ RADRPT(MAGRPTY,DATA) ; Display rad report; 1st must pass integrity checks
  S MAGRPTY=$NA(^TMP($J,"MAGJRADRPT")) K @MAGRPTY
  N $ETRAP,$ESTACK S $ETRAP="D ERR^MAGJRPT"
  N RARPT,RADATA,MAGDFN,MAGDTI,MAGCNI,X,MAGRET,HDR,REPLY,MAGPRC,COMPLIC,DNODE
+ N MEDS,RDIOPHARM
  S MAGDFN=$P(DATA,U),MAGDTI=$P(DATA,U,2),MAGCNI=$P(DATA,U,3),RARPT=+$P(DATA,U,4)
  I '(MAGDFN&MAGDTI&MAGCNI) D  G RPTZ
  . S REPLY="0^4~Request Contains Invalid Case Pointer ("_MAGDFN_" "_MAGDTI_" "_MAGCNI_")."
  D GETEXAM2^MAGJUTL1(MAGDFN,MAGDTI,MAGCNI,"",.MAGRET)
  S RADATA=$G(^TMP($J,"MAGRAEX",1,1)),XX=$G(^(2)),HDR=""
  S COMPLIC=$P(XX,U,4)  ;  Complications text
+ S MEDS=$P(XX,U,14),RDIOPHARM=$P(XX,U,15)      ;  Medications & RadioPharm indicators
  F I=4,12,9 S HDR=HDR_$P(RADATA,U,I)_"   "
  D CKINTEG(.REPLY,MAGDFN,MAGDTI,MAGCNI,RARPT,RADATA)
  I REPLY]"" S REPLY="0^7~"_REPLY G RPTZ  ; DB integ problem
  D EN3^RAO7PC3(MAGDFN_"^"_MAGDTI_"^"_MAGCNI)
  I '$D(^TMP($J,"RAE3")) S REPLY="0^4~No report on file." G RPTZ
- D COMMENTS(MAGDFN,MAGDTI,MAGCNI,MAGRPTY,2,COMPLIC)
+ D COMMENTS(MAGDFN,MAGDTI,MAGCNI,MAGRPTY,2,COMPLIC,MEDS,RDIOPHARM)
  S MAGPRC=$O(^TMP($J,"RAE3",MAGDFN,MAGCNI,"")),I=0,DNODE=2
  F  S I=$O(^TMP($J,"RAE3",MAGDFN,MAGCNI,MAGPRC,I)) Q:'I  D
  . S DNODE=DNODE+1
@@ -149,7 +186,8 @@ CKINTEG(REPLY,RADFN,RADTI,RACNI,RARPT,RADATA) ; check integrity between Exam, Re
  . . I $P(RADATA,U,8)'=CKACN D
  . . . N MAGPSET,RAPRTSET,ACN,OK S OK=0
  . . . S RAPRTSET=0 D EN2^RAUTL20(.MAGPSET) I RAPRTSET D
- . . . . N I S I=0 F  S I=$O(MAGPSET(I)) Q:'I  I +MAGPSET(I)=CKACN S OK=1 Q
+ . . . . N I,T  ; P133 mod for MAGPSET Data ex.--Old= 256^154^190^4  SSAN= 660-080504-256^154^190^4
+ . . . . S I=0 F  S I=$O(MAGPSET(I)) Q:'I  S T=$P(MAGPSET(I),U) I $P(T,"-",$L(T,"-"))=CKACN S OK=1 Q
  . . . I 'OK S MIXEDUP=5_U_CKACN_U_$P(RADATA,U,8)
  I $D(^RARPT(+RARPT,2005)) S IEN=0 D  G CK2:MIXEDUP
  . F  S IEN=$O(^RARPT(RARPT,2005,IEN)) Q:'IEN  S MAGIEN=+$G(^(IEN,0)) D  Q:MIXEDUP

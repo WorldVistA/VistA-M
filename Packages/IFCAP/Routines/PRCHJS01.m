@@ -1,5 +1,5 @@
 PRCHJS01 ;OI&T/KCL - IFCAP/ECMS INTERFACE TRANSMIT 2237 TO ECMS;6/12/12
- ;;5.1;IFCAP;**167**;Oct 20, 2000;Build 17
+ ;;5.1;IFCAP;**167,174**;Oct 20, 2000;Build 23
  ;Per VHA Directive 2004-38, this routine should not be modified.
  ;
 SEND2237(PRC410R,PRCERR) ;Send 2237 to eCMS via HL7 messaging
@@ -16,8 +16,11 @@ SEND2237(PRC410R,PRCERR) ;Send 2237 to eCMS via HL7 messaging
  ;
  ;  Output:
  ;   Function value - ien of msg in HLO MESSAGES (#778) file on success, 0 on failure
- ;           PRCERR - (optional) on failure, an error message is returned,
- ;                    pass by ref
+ ;           PRCERR - (optional) on failure, an error msg array is returned, pass by ref
+ ;                     Error msg array format:
+ ;                      PRCERR(1)
+ ;                      PRCERR(2)
+ ;                      PRCERR(3), etc.
  ;
  N PRCWORK ;name of work global containing the 2237 data elements
  N PRCRSLT ;function result
@@ -31,13 +34,14 @@ SEND2237(PRC410R,PRCERR) ;Send 2237 to eCMS via HL7 messaging
  D  ;drops out of DO block on failure
  . ;
  . ;get 2237 data elements and place into work global
- . I '$$GET2237(PRC410R,PRCWORK,.PRCERR) Q
+ . I '$$GET2237(PRC410R,PRCWORK,.PRCERR) S PRCERR(1)=$G(PRCERR) Q
  . ;
  . ;perform 2237 pre-validation checks on 2237 data elements
  . I '$$PRE2237(PRCWORK,.PRCERR) Q
  . ;
  . ;build and transmit 2237 data via OMN^O07 message
  . S PRCRSLT=$$OMNO07^PRCHJS04(PRCWORK,.PRCERR)
+ . I $G(PRCERR)]"" S PRCERR(1)=$G(PRCERR)
  ;
  ;cleanup work global
  K @PRCWORK
@@ -58,8 +62,7 @@ GET2237(PRC410R,PRCWRK,PRCERR) ;Retrieve 2237 data elements
  ;
  ;  Output:
  ;   Function value - 1 on success, 0 on failure
- ;           PRCERR - (optional) on failure, an error message is returned,
- ;                    pass by ref
+ ;           PRCERR - (optional) on failure, an error message is returned, pass by ref
  ;
  N PRCRSLT ;function result
  ;
@@ -99,45 +102,50 @@ PRE2237(PRCWRK,PRCER) ;Pre-validate 2237 data elements
  ;
  ; Output:
  ;   Function value - returns 1 if all validation checks passed, 0 otherwise
- ;            PRCER - (optional) on failure, an error message is returned,
- ;                    pass by ref
+ ;            PRCER - (optional) on failure, an error msg array is returned, pass by ref
+ ;                     Error msg array format:
+ ;                      PRCER(1)
+ ;                      PRCER(2)
+ ;                      PRCER(3), etc.
  ;
  N PRCSUB   ;array subscript
  N PRCLINE  ;array subscript for items
  N PRCITEML ;Line Item #
  N PRCNUM   ;array subscript for item description
+ N PRCIDX   ;error array index
  N PRCRSLT  ;function result
  ;
- S PRCRSLT=0
- S PRCER=""
+ S (PRCIDX,PRCRSLT)=0
  ;
- D  ;drops out of block if invalid condition found
- . ;
+ D
  . ;make sure this is a 2237
- . I ($P($G(@PRCWRK@("FRMTYP")),U)<2)!($P($G(@PRCWRK@("FRMTYP")),U)>4) D
- . . S PRCER="This is not a 2237 transaction"
- . Q:$G(PRCER)'=""
+ . I ($P($G(@PRCWRK@("FRMTYP")),U)<2)!($P($G(@PRCWRK@("FRMTYP")),U)>4) S PRCER(PRCIDX+1)="This is not a 2237 transaction" Q
  . ;
- . ;check for null field values (eCMS required fields)
- . F PRCSUB="TRANUM","STANUM","RQSTDT","REQ","DTREQ","APOF","RQSRV","CTRLPT","COMMIT","ACTDATA" D  Q:PRCER'=""
- . . I $P($G(@PRCWRK@(PRCSUB)),U)="" S PRCER="Field "_$$GET1^DID(410,$$FIELD(PRCSUB),"","LABEL")_" is missing"
- . Q:$G(PRCER)'=""
+ . ;check for 2237 null field values (eCMS required fields)
+ . F PRCSUB="TRANUM","STANUM","RQSTDT","REQ","DTREQ","APOF","RQSRV","CTRLPT","COMMIT","ACTDATA" D
+ . . I $P($G(@PRCWRK@(PRCSUB)),U)="" D
+ . . . S PRCIDX=PRCIDX+1
+ . . . S PRCER(PRCIDX)="Field "_$$GET1^DID(410,$$FIELD(PRCSUB),"","LABEL")_" is missing"
  . ;
- . ;loop thru Line Items and check for null field values (eCMS required fields)
+ . ;loop thru Line Items on 2237 and check for null field values (eCMS required fields)
  . S PRCLINE=0
- . F  S PRCLINE=$O(@PRCWRK@(PRCLINE)) Q:'PRCLINE  D  Q:PRCER'=""
- . . ;
+ . F  S PRCLINE=$O(@PRCWRK@(PRCLINE)) Q:'PRCLINE  D
  . . S PRCITEML=+$G(@PRCWRK@(PRCLINE,"ITLINE")) ;line item #
+ . . ;check for null fields
+ . . F PRCSUB="ITLINE","ITQTY","ITUOP","ITBOC","ITCOST" D
+ . . . I $P($G(@PRCWRK@(PRCLINE,PRCSUB)),U)="" D
+ . . . . S PRCIDX=PRCIDX+1
+ . . . . S PRCER(PRCIDX)="Line item ("_PRCITEML_") field "_$$GET1^DID(410.02,$$FIELD(PRCSUB),"","LABEL")_" is missing."
  . . ;
- . . F PRCSUB="ITLINE","ITQTY","ITUOP","ITBOC","ITCOST" D  Q:PRCER'=""
- . . . I $P($G(@PRCWRK@(PRCLINE,PRCSUB)),U)="" S PRCER="Line Item #"_PRCITEML_" field "_$$GET1^DID(410.02,$$FIELD(PRCSUB),"","LABEL")_" is missing"
- . . Q:$G(PRCER)'=""
- . . ;
- . . S PRCNUM=$O(@PRCWRK@(PRCLINE,"ITDESC",0))
- . . I $G(@PRCWRK@(PRCLINE,"ITDESC",PRCNUM,0))="" S PRCER="Line Item #"_PRCITEML_" field "_$$GET1^DID(410.02,$$FIELD("ITDESC"),"","LABEL")_" is missing"
- . Q:$G(PRCER)'=""
+ . . ;check for line item description
+ . . I +$G(@PRCWRK@(PRCLINE,"ITDESC"))'>0 D
+ . . . S PRCIDX=PRCIDX+1
+ . . . S PRCER(PRCIDX)="Line item ("_PRCITEML_") field "_$$GET1^DID(410.02,$$FIELD("ITDESC"),"","LABEL")_" is missing."
  . ;
- . ;success
+ . ;quit if error(s)
+ . Q:$G(PRCIDX)
+ . ;
+ . ;otherwise success
  . S PRCRSLT=1
  ;
  Q PRCRSLT

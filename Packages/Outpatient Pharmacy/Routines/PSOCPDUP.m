@@ -1,5 +1,5 @@
 PSOCPDUP ;BIR/SAB - Dup drug and class checker for copy orders ;1/3/05 11:34am
- ;;7.0;OUTPATIENT PHARMACY;**11,27,32,130,132,192,207,222,243,305**;DEC 1997;Build 8
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,32,130,132,192,207,222,243,305,313**;DEC 1997;Build 76
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
  ;External references to ^ORRDI1 supported by DBIA 4659
  ;External references to ^XTMP("ORRDI" supported by DBIA 4660
@@ -17,7 +17,8 @@ PSOCPDUP ;BIR/SAB - Dup drug and class checker for copy orders ;1/3/05 11:34am
  D REMOTE
 EXIT D ^PSOBUILD K CAN,DA,DIR,DNM,DUPRX0,ISSD,J,LSTFL,MSG,PHYS,PSOCLC,PSONULN,REA,RFLS,RX0,RX2,RXREC,ST,Y,ZZ,ACT,PSOCLOZ,PSOLR,PSOLDT,PSOCD,SIG
  Q
-DUP S:$P(PSOSD(STA,DNM),"^",2)<10!($P(PSOSD(STA,DNM),"^",2)=16) DUP=1 W !,PSONULN,!,$C(7),"DUPLICATE DRUG "_$P(DNM,"^")_" in Prescription: ",$P(^PSRX(+PSOSD(STA,DNM),0),"^")
+DUP ; Duplicate Drug Check
+ S:$P(PSOSD(STA,DNM),"^",2)<10!($P(PSOSD(STA,DNM),"^",2)=16) DUP=1 W !,PSONULN,!,$C(7),"DUPLICATE DRUG "_$P(DNM,"^")_" in Prescription: ",$P(^PSRX(+PSOSD(STA,DNM),0),"^"),$$TITRX^PSOUTL(+PSOSD(STA,DNM))
  S RXREC=+PSOSD(STA,DNM),MSG="Discontinued During Prescription Entry COPY - Duplicate Drug"
 DATA S DUPRX0=^PSRX(RXREC,0),RFLS=$P(DUPRX0,"^",9),ISSD=$P(^PSRX(RXREC,0),"^",13),RX0=DUPRX0,RX2=^PSRX(RXREC,2),SIG=$P($G(^PSRX(RXREC,"SIG")),"^"),$P(RX0,"^",15)=+$G(^PSRX(RXREC,"STA"))
  W !!,$J("Status: ",24) S J=RXREC D STAT^PSOFUNC W ST K RX0,RX2 W ?40,$J("Issued: ",24),$E(ISSD,4,5)_"/"_$E(ISSD,6,7)_"/"_$E(ISSD,2,3)
@@ -49,7 +50,9 @@ ASKCAN I $P(PSOSD(STA,DNM),"^",2)>10,$P(PSOSD(STA,DNM),"^",2)'=16 Q
  W !!,"Duplicate "_$S($G(CLS):"Class",1:"Drug")_" will be discontinued after the acceptance of the new order.",!
  S ^TMP("PSORXDC",$J,RXREC,0)="52^"_DA_"^"_MSG_"^"_REA_"^"_ACT_"^"_STA_"^"_DNM,PSONOOR="D"
  K CLS,DUP,PSOCPCLS Q
-CLS K DUP S CLS=1,MSG="Discontinued During New Prescription Entry - Duplicate Class" W !,PSONULN
+ ;
+CLS ; - Duplicate Drug Class Check
+ K DUP S CLS=1,MSG="Discontinued During New Prescription Entry - Duplicate Class" W !,PSONULN
  W !?5,$C(7),"*** SAME CLASS *** OF DRUG IN RX #"_$P(^PSRX(+PSOSD(STA,DNM),0),"^")_" FOR "_$P(DNM,"^"),!,"CLASS: "_PSODRUG("VA CLASS")
  S CAN=$P(PSOSD(STA,DNM),"^",2)'<11!($P(PSOSD(STA,DNM),"^",2)=1) S (RXREC,RXRECCOP)=+PSOSD(STA,DNM) S PSOELSE=$P(PSOPAR,"^",10) I PSOELSE D DATA
  I 'PSOELSE S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR,DTOUT,DUOUT,DIRUT
@@ -71,4 +74,3 @@ REMOTE ;
 REMOTE2 ;
  K ^TMP($J,"DD"),^TMP($J,"DC"),^TMP($J,"DI")
  Q
- ;

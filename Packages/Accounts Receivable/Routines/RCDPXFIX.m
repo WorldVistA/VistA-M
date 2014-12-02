@@ -1,6 +1,6 @@
 RCDPXFIX ;WISC/RFJ -fix duplicate deposits (! be careful using this !) ;22 Mar 02
- ;;4.5;Accounts Receivable;**177**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**177,306**;Mar 20, 1995;Build 3
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  this routine is used to back out a duplicate deposit that has
  ;  been posted to first party bills.  do not use this routine
@@ -21,8 +21,10 @@ REVERSE(RCDPOSIT,RCTRANDT) ;  back out deposit RCDPOSIT
  ;S RCFTEST=0   ;  NO, do not make updates to the database
  S RCFTEST=1  ;  YES, make changes to the database
  ;
+ ; **306 removing text that says "duplicate"
  ;  set default message to send to user
- S RCMESSAG="Duplicate deposit "_RCDPOSIT_" with a transmission date of "_$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_" was not found."
+ ;S RCMESSAG="Duplicate deposit "_RCDPOSIT_" with a transmission date of "_$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_" was not found."
+ S RCMESSAG="Deposit "_RCDPOSIT_" with a transmission date of "_$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_" was not found."
  ;
  ;  find deposit which was posted erroneously, if no date then it is not found
  S RCDPDT=$O(^RCY(344.1,"B",RCDPOSIT,0)) I 'RCDPDT D MAIL^RCDPXFIM(RCDPOSIT,RCTRANDT,RCMESSAG) Q
@@ -33,11 +35,14 @@ REVERSE(RCDPOSIT,RCTRANDT) ;  back out deposit RCDPOSIT
  .   ;  check to see if the date opened is equal to the transmission date
  .   I $P(RCDATA0,"^",3)'=RCTRANDT Q
  .   ;
+ .   ; ** 306, removing "duplicate"
  .   ;  deposit already backed out (the *end date is set once backed out)
- .   I $P(RCDATA0,"^",10) S RCMESSAG="Duplicate Deposit "_RCDPOSIT_" was previously backed out on "_$E($P(RCDATA0,"^",10),4,5)_"/"_$E($P(RCDATA0,"^",10),6,7)_"/"_$E($P(RCDATA0,"^",10),2,3)_"." Q
+ .   ;I $P(RCDATA0,"^",10) S RCMESSAG="Duplicate Deposit "_RCDPOSIT_" was previously backed out on "_$E($P(RCDATA0,"^",10),4,5)_"/"_$E($P(RCDATA0,"^",10),6,7)_"/"_$E($P(RCDATA0,"^",10),2,3)_"." Q
+ .   I $P(RCDATA0,"^",10) S RCMESSAG="Deposit "_RCDPOSIT_" was previously backed out on "_$E($P(RCDATA0,"^",10),4,5)_"/"_$E($P(RCDATA0,"^",10),6,7)_"/"_$E($P(RCDATA0,"^",10),2,3)_"." Q
  .   ;
  .   ;  found deposit/receipt and it needs to be backed out
- .   S RCMESSAG="Duplicate deposit "_RCDPOSIT_" with a transmission date of "_$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_" has been removed."
+ .   ;S RCMESSAG="Duplicate deposit "_RCDPOSIT_" with a transmission date of "_$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_" has been removed."
+ .   S RCMESSAG="Deposit "_RCDPOSIT_" with a transmission date of "_$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_" has been removed."
  .   ;
  .   ;  loop payments made in transaction 433 file
  .   S RCTRANDA=0 F  S RCTRANDA=$O(^PRCA(433,"AF",$P(RCDATA0,"^"),RCTRANDA)) Q:'RCTRANDA  D
@@ -116,8 +121,10 @@ PAYMENT(RCTRANDA,RCFREPRT) ;  mark payment transaction as incomplete and adjust 
  ;  set the payment transaction to incomplete
  I RCFTEST S $P(^PRCA(433,RCTRANDA,0),"^",4)=1
  ;
+ ; **306, removing "dupicate"
  ;  add comment to transaction
- S RCCOMMNT(1)="Duplicate deposit "_RCDPOSIT_" with transmission date "_$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_" removed."
+ ;S RCCOMMNT(1)="Duplicate deposit "_RCDPOSIT_" with transmission date "_$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_" removed."
+ S RCCOMMNT(1)="Deposit "_RCDPOSIT_" with transmission date "_$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_" removed."
  I RCFTEST D ADDCOMM^RCBEUTRA(RCTRANDA,.RCCOMMNT)
  ;
  ;  build mailman message
@@ -196,8 +203,10 @@ PREPAYAD(RCTRANDA) ;  get rid of a transaction on a prepayment bill
  ;  set the payment transaction to incomplete
  I RCFTEST S $P(^PRCA(433,RCTRANDA,0),"^",4)=1
  ;
+ ; **306, removing "duplicate" to make more generic
  ;  add comment to transaction
- S RCCOMMNT(1)="Duplicate deposit "_RCDPOSIT_" with transmission date "_$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_" removed."
+ ;S RCCOMMNT(1)="Duplicate deposit "_RCDPOSIT_" with transmission date "_$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_" removed."
+ S RCCOMMNT(1)="Deposit "_RCDPOSIT_" with transmission date "_$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_" removed."
  I RCFTEST D ADDCOMM^RCBEUTRA(RCTRANDA,.RCCOMMNT)
  ;
  ;  build for mailman report
@@ -209,7 +218,9 @@ RECEIPT(RCDPOSIT,RCTRANDT,RCRCPT) ;  make changes to receipt file
  N RCACCT,RCBILLDA,RCDEBTDA,RCPAYDA
  S RCPAYDA=0 F  S RCPAYDA=$O(^RCY(344,RCRCPT,1,RCPAYDA)) Q:'RCPAYDA  D
  .   ;  add comment to payment in receipt file
- .   I RCFTEST S $P(^RCY(344,RCRCPT,1,RCPAYDA,1),"^",2)="Duplicate deposit "_RCDPOSIT_" with transmission date "_$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_" removed."
+ .   ;**306, removing "duplicate"
+ .   ;I RCFTEST S $P(^RCY(344,RCRCPT,1,RCPAYDA,1),"^",2)="Duplicate deposit "_RCDPOSIT_" with transmission date "_$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_" removed."
+ .   I RCFTEST S $P(^RCY(344,RCRCPT,1,RCPAYDA,1),"^",2)="Deposit "_RCDPOSIT_" with transmission date "_$E(RCTRANDT,4,5)_"/"_$E(RCTRANDT,6,7)_"/"_$E(RCTRANDT,2,3)_" removed."
  .   ;
  .   ;  if the account is missing on the payment, then zero out the dollar amount
  .   ;  to prevent it from showing as an unlinked payment

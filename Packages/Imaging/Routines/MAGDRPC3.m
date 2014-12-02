@@ -1,5 +1,5 @@
-MAGDRPC3 ;WOIFO/EdM,SAF - Imaging RPCs ; 04 Jan 2011 8:37 AM
- ;;3.0;IMAGING;**11,30,51,50,85,54,49,123**;Mar 19, 2002;Build 67;Jul 24, 2012
+MAGDRPC3 ;WOIFO/EdM,SAF - Imaging RPCs ; 01 Jul 2013 11:09 AM
+ ;;3.0;IMAGING;**11,30,51,50,85,54,49,123,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -95,7 +95,7 @@ RADLKUP(OUT,CASENUMB,STUDYDAT) ; RPC = MAG DICOM LOOKUP RAD STUDY
  . Q
  S OUT(13)=X ; List of Modality-codes
  S X="" I $G(RADPT1),$G(RADPT2) S X=$G(^RADPT(RADPT1,"DT",RADPT2,0))
- S DIVISION=$P(X,"^",3) ; pointer to INSTITUION file (#4) for division
+ S DIVISION=$P(X,"^",3) ; pointer to INSTITUTION file (#4) for division
  S OUT(14)=$S($$ISIHS^MAGSPID():$P($$SITE^VASITE(),"^",3),1:$E($$GET1^DIQ(4,DIVISION,99),1,3)) ; station number, exclusive of any modifiers
  ; Patient's pregnancy status at the time of the exam
  S X="" I $G(DFN),$G(RADPT2),$G(RADPT3) S X=$G(^RADPT(DFN,"DT",RADPT2,"P",RADPT3,0))
@@ -106,8 +106,9 @@ RADLKUP(OUT,CASENUMB,STUDYDAT) ; RPC = MAG DICOM LOOKUP RAD STUDY
  ;
 QUEUE(OUT,IMAGE,APPNAM,LOCATION,ACCNUM,REASON,EMAIL,PRIOR,JBTOHD) ; RPC = MAG DICOM QUEUE IMAGE
  ; Add the DICOM study send image request to the queue
- N COUNT,D0,D1,DFN,LOG,OK,PROBLEM,TYPE,X
+ N COUNT,D0,D1,DFN,LOG,OK,P,PROBLEM,REQUESTDATETIME,STUID,TYPE,X
  ;
+ K OUT ; RPC return variable
  I '$G(IMAGE) S OUT="-1,No Image specified" Q
  I $G(APPNAM)="" S OUT="-2,No Destination specified" Q
  I '$G(LOCATION) S OUT="-3,No Origin specified" Q
@@ -129,18 +130,27 @@ QUEUE(OUT,IMAGE,APPNAM,LOCATION,ACCNUM,REASON,EMAIL,PRIOR,JBTOHD) ; RPC = MAG DI
  . S OK=D0
  . Q
  S D0=OK D:'D0
+ . I $G(ACCNUM)="" D  Q:$D(OUT)  ; get the accession number (it's sometimes not passed)
+ . . N RESULT
+ . . D LOOKUP^MAGDRPCA(.RESULT,P)
+ . . I RESULT<0 S OUT="-4,Accession Number Lookup Problem: "_RESULT
+ . . E  S ACCNUM=$P(RESULT,"^",8)
+ . . Q
  . S X=$G(^MAGDOUTP(2006.574,0))
- . S $P(X,"^",1,2)="DICOM IMAGE OUTPUT FILE^2006.574"
+ . S $P(X,"^",1,2)="DICOM OBJECT EXPORT^2006.574"
  . S D0=$O(^MAGDOUTP(2006.574," "),-1)+1 ; Next number
  . S $P(X,"^",3)=D0
  . S $P(X,"^",4)=$P(X,"^",4)+1 ; Total count
  . S ^MAGDOUTP(2006.574,0)=X
  . ;
- . S ^MAGDOUTP(2006.574,D0,0)=APPNAM_"^"_P_"^"_$G(ACCNUM)_"^"_LOCATION_"^"_PRIOR_"^"_JBTOHD
+ . S REQUESTDATETIME=$$NOW^XLFDT
+ . S ^MAGDOUTP(2006.574,D0,0)=APPNAM_"^"_P_"^"_ACCNUM_"^"_LOCATION_"^"_PRIOR_"^"_JBTOHD_"^"_REQUESTDATETIME
+ . S ^MAGDOUTP(2006.574,"C",REQUESTDATETIME,D0)="" ; cross reference to delete old studies
  . S ^MAGDOUTP(2006.574,D0,2)=STUID
  . S ^MAGDOUTP(2006.574,"STUDY",STUID,D0)=""
  . Q
  L -^MAGDOUTP(2006.574,0)
+ Q:$D(OUT)  ; problem with accesion number lookup
  ;
  S COUNT=0,PROBLEM=3
  I (TYPE=3)!(TYPE=100) D  ; Single XRAY or DICOM image

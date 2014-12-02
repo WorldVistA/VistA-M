@@ -1,5 +1,5 @@
-EDPFPTC ;SLC/MKB - Patient look-up Utilities at Facility ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPFPTC ;SLC/MKB - Patient look-up Utilities at Facility ;4/16/13 12:24pm
+ ;;2.0;EMERGENCY DEPARTMENT;**5**;May 2, 2012;Build 18
  ;
 CHK(AREA,DFN,NAME) ; perform patient select checks
  ;
@@ -80,9 +80,15 @@ PRF(DFN) ; get Patient Record Flags
  . S PRF("ownerSite")=$P($G(EDPY(EDI,"OWNER")),U,2)
  . S PRF("originatingSite")=$P($G(EDPY(EDI,"ORIGSITE")),U,2)
  . D XML^EDPX($$XMLA^EDPX("flag",.PRF,""))
+ . D XML^EDPX("<text>")
  . S N=1,X=$G(EDPY(EDI,"NARR",1,0))
- . F  S N=$O(EDPY(EDI,"NARR",N)) Q:N<1  S X=X_$C(13,10)_$G(EDPY(EDI,"NARR",N,0))
- . D XML^EDPX("<text>"_$$ESC^EDPX(X)_"</text>")
+ . ;bwf - 4/16/2013 - replaced next line with one that follows to fix multiple flag/multiple line issues
+ . ;F  S N=$O(EDPY(EDI,"NARR",N)) Q:N<1  S X=X_$C(13,10)_$G(EDPY(EDI,"NARR",N,0))
+ . F  S N=$O(EDPY(EDI,"NARR",N)) Q:N<1  S X=$G(EDPY(EDI,"NARR",N,0)) D XML^EDPX($$ESC^EDPX(X))
+ . ;bwf - 4/16/2013 - removed line due to multiple flag issues
+ . ;D XML^EDPX("<text>"_$$ESC^EDPX(X)_"</text>")
+ . ;bwf 4/16/2013 - added following line to build footer for patient record flag issues.
+ . D XML^EDPX("</text>")
  . D XML^EDPX("</flag>")
  D XML^EDPX("</patientRecordFlags>")
  Q

@@ -1,5 +1,5 @@
 ONCSG1A ;Hines OIFO/GWB - Automatic Staging Tables ;06/23/10
- ;;2.11;ONCOLOGY;**35,51**;Mar 07, 1995;Build 65
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  ;DIGESTIVE SYSTEM (continued)
  ;
@@ -161,7 +161,7 @@ DBD ;Distal Bile Duct - 7th edition
  .I TNM=300 S SG="2A" Q     ;IIA  T3    N0    M0
  .I TNM=110 S SG="2B" Q     ;IIB  T1    N1    M0
  .I TNM=210 S SG="2B" Q     ;     T2    N1    M0
- .I TNM=310 S SG="SB" Q     ;     T3    N1    M0
+ .I TNM=310 S SG="2B" Q     ;     T3    N1    M0
  .I T=4,M=0 S SG=4 Q        ;III  T4    Any N M0
  .I M=1 S SG=4 Q            ;IV   Any T Any N M1
  ;

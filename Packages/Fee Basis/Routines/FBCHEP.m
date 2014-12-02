@@ -1,6 +1,6 @@
-FBCHEP ;AISC/DMK-ENTER PAYMENT FOR CONTRACT HOSPITAL ;8/18/2004
- ;;3.5;FEE BASIS;**4,61,77,82,122,108,124,135**;JAN 30, 1995;Build 3
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBCHEP ;AISC/DMK - ENTER PAYMENT FOR CONTRACT HOSPITAL ;8/18/2004
+ ;;3.5;FEE BASIS;**4,61,77,82,122,108,124,135,139**;JAN 30, 1995;Build 127
+ ;;Per VA Directive 6402, this routine should not be modified.
  S FBAAPTC="V",FBAAOUT=0
 RD K FBAAID,FBAAVID S FBRESUB="" D GETVET^FBAAUTL1 G:DFN']"" Q
  S FBPROG="I $P(^(0),U,3)=6,($P(^(0),U,9)'[""FB583"")" D GETAUTH^FBAAUTL1 G RD:$D(DUOUT),RD:FTP']""
@@ -45,7 +45,11 @@ RIN S CALLERID="FBCHEP" D GETINDT^FBAACO1 K CALLERID G Q:$G(FBAAOUT)
 DIC S DIC="^FBAAI(",DIC(0)="LQ",DLAYGO=162.5,X=FBAAIN D ^DIC G Q:Y<0
  S DA=+Y,DIE=DIC,DR="[FBCH ENTER PAYMENT]",DIE("NO^")=""
  D
- . N ICDVDT S ICDVDT=$G(FBAABDT) D ^DIE
+ . ; JAS - 12/18/13 - PATCH 139 - Modified original code for ICD-10--date of interest must be Auth. To date, if available.
+ . N ICDVDT S ICDVDT=$G(FBAAEDT)
+ . I ICDVDT="" S ICDVDT=$G(FBAABDT)
+ . D ^DIE
+ . ; End 139
  ; file adjustment reasons
  D FILEADJ^FBCHFA(DA_",",.FBADJ)
  ; file remittance remarks

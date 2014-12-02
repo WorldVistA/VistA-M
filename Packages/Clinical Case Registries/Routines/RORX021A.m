@@ -1,5 +1,5 @@
-RORX021A ;BPOIFO/CLR - HCV DAA CANDIDATES(QUERY & STORE) ; 7/15/11 3:37pm
- ;;1.5;CLINICAL CASE REGISTRIES;**17**;;Build 33
+RORX021A ;BPOIFO/CLR - HCV DAA CANDIDATES(QUERY & STORE) ;7/15/11 3:37pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**17,19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
@@ -11,7 +11,11 @@ RORX021A ;BPOIFO/CLR - HCV DAA CANDIDATES(QUERY & STORE) ; 7/15/11 3:37pm
  ;   
  ;******************************************************************************
  ;******************************************************************************
- ; 
+ ;                 --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*19   JUN  2012   K GUPTA      Support for ICD-10 Coding System
  ;                                      
  ;******************************************************************************
  ;******************************************************************************
@@ -121,8 +125,8 @@ QUERY(REPORT,FLAGS,NSPT) ;
  S RORXEDT=$$FMADD^XLFDT(RORXEDT\1,1)
  ;--- Set up Clinic/Division list parameters date_range_3
  S RORCDLIST=$$CDPARMS^RORXU001(.RORTSK,.RORCDSTDT,.RORCDENDT,1)
- ;--- Set up ICD9 parameters
- S FLAG=$G(RORTSK("PARAMS","ICD9FILT","A","FILTER"))
+ ;--- Set up ICD parameters
+ S FLAG=$G(RORTSK("PARAMS","ICDFILT","A","FILTER"))
  ;=== Browse through the registry records
  S IEN=0
  F  S IEN=$O(@XREFNODE@(IEN))  Q:IEN'>0  D  Q:RC<0
@@ -134,10 +138,10 @@ QUERY(REPORT,FLAGS,NSPT) ;
  . I +$P($G(^DPT(PATIEN,.35)),U)>0 Q  ;patient has died
  . ;--- Check if the patient should be skipped based on standard filters
  . Q:$$SKIP^RORXU005(IEN,FLAGS,UTSDT,UTEDT)
- . ;--- Check if patient should be skipped because of ICD9 codes
+ . ;--- Check if patient should be skipped because of ICD codes
  . S RCC=0
  . I FLAG'="ALL" D
- . . S RCC=$$ICD^RORXU010(PATIEN,RORREG)
+ . . S RCC=$$ICD^RORXU010(PATIEN)
  . I (FLAG="INCLUDE")&(RCC=0) Q
  . I (FLAG="EXCLUDE")&(RCC=1) Q
  . ;

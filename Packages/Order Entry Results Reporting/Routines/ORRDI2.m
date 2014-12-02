@@ -1,5 +1,5 @@
-ORRDI2 ; SLC/JMH - RDI routine for user interface and data cleanup; 3/24/05 2:31 ;6/30/08  11:06
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,294**;Dec 17, 1997;Build 27
+ORRDI2 ; SLC/JMH - RDI routine for user interface and data cleanup; 3/24/05 2:31 ;02/08/12  08:36
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,294,345**;Dec 17, 1997;Build 32
  ;
 SET ;utility to set RDI related parameters
  I '$$PATCH^XPDUTL("OR*3.0*238") D  Q
@@ -90,11 +90,12 @@ SPAWN ;subroutine to spawn the DOWNTSK task
  N ZTDESC,ZTRTN,ZTSAVE,ZTIO,ZTSK,ZTDTH
  S ZTDESC="RDI TASK TO CHECK IF HDR IS UP"
  S ZTRTN="DOWNTSK^ORRDI2"
- S ZTIO=""
+ S ZTIO="NULL"
  S ZTDTH=$$NOW^XLFDT+.000001
  D ^%ZTLOAD
  Q
 DOWNTSK ;subroutine to check if HDR is back up
+ N ORLE S ORLE=0
  S ^XTMP("ORRDI","OUTAGE LOG",$$NOW^XLFDT)="GOING DOWN"
  F  Q:(($$SUCCXVAL'<$$SUCCPVAL)!('$$DOWNXVAL))  D
  .N WAIT,RSLT
@@ -106,30 +107,38 @@ DOWNTSK ;subroutine to check if HDR is back up
  .;send dummy message
  .S RSLT=$$TESTCALL
  .;if successful increment success counter
- .I RSLT S ^XTMP("ORRDI","OUTAGE INFO","SUCCEEDS")=1+$$SUCCXVAL
+ .I RSLT=1 S ^XTMP("ORRDI","OUTAGE INFO","SUCCEEDS")=1+$$SUCCXVAL
  .;if failure set success counter to 0
- .I 'RSLT S ^XTMP("ORRDI","OUTAGE INFO","SUCCEEDS")=0
+ .I RSLT'=1 S ^XTMP("ORRDI","OUTAGE INFO","SUCCEEDS")=0
  K ^XTMP("ORRDI","OUTAGE INFO")
  S ^XTMP("ORRDI","OUTAGE LOG",$$NOW^XLFDT)="BACK UP"
  Q
-TCOLD() ;call to send a test call to CDS...returns 1 if successful, 0 if not
- N ORREQ,ORXML,ORRET,XML
+TCOLD() ;call to send a test call to CDS...returns 1 if successful, 0 OR -9 if not
+ N ORREQ,ORXML,ORRET,XML,ORERR
  S ORREQ="/isAlive"
  S ORXML=$$GETREST^XOBWLIB("CDS WEB SERVICE","CDS SERVER")
- S ORRET=$$GET^XOBWLIB(ORXML,ORREQ,.ORERR,0)
+ S ORRET=$$GET^XOBWLIB(ORXML,ORREQ,.ORERR,1)
  I 'ORRET Q 0
  While (ORXML.HttpResponse.Data.AtEnd = 0) {S XML=ORXML.HttpResponse.Data.Read(100)}
  Q:XML="true" 1
  Q 0
-TESTCALL() ;call to send a test call to CDS...returns 1 if successful, 0 if not
- N ORREQ,ORXML,ORRET
+TESTCALL() ;call to send a test call to CDS...returns 1 if successful, 0 or -9 if not
+ N ORREQ,ORXML,ORRET,ORERR ;;CHANGE add ORERR to NEW list
+ N $ETRAP,$ESTACK SET $ETRAP="DO ERRH^ORRDI2" ;;CHANGE set error trap
  I $L($G(^XTMP("ORRDI","TESTREQ")))'>0 Q $$TCOLD() ;USES isAlive IF NO TEST REQUEST IS PRESENT
  S ORREQ=$G(^XTMP("ORRDI","TESTREQ"))
  S ORXML=$$GETREST^XOBWLIB("CDS WEB SERVICE","CDS SERVER")
- S ORRET=$$GET^XOBWLIB(ORXML,ORREQ,.ORERR,0)
+ S ORRET=$$GET^XOBWLIB(ORXML,ORREQ,.ORERR,1) ;;CHANGE change force error to 1
  I 'ORRET Q 0
  K ^TMP($J,"ORRDI")
  D PARSE^ORRDI1(ORXML.HttpResponse.Data)
  I $L($$MSGERR^ORRDI1)>0 K ^TMP($J,"ORRDI") Q 0
  K ^TMP($J,"ORRDI")
  Q 1
+ERRH  ; error handler for TESTCALL/TCOLD
+ SET:'$DATA(ORERR) ORERR=$$EOFAC^XOBWLIB() ; create error object if needed
+ IF '+$GET(ZTSK) DO ERRDISP^XOBWLIB(.ORERR) W !! ;non-task: interactive error display
+ ;ELSE  I $G(ORLE)#15=0 DO ZTER^XOBWLIB(ORERR) ; tasked: expand into XOBEOARR, store in error log
+ S ORLE=$G(ORLE)+1
+ DO UNWIND^%ZTER ; throw to MenuMan, TaskMan or next higher error handler
+ QUIT

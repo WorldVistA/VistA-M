@@ -1,5 +1,5 @@
 ONCNPI ;Hines OIFO/GWB - National Provider Identifier ;02/16/07
- ;;2.11;ONCOLOGY;**48,49,50**;Mar 07, 1995;Build 29
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 FNPI ;Check FACILITY (160.19) for NPI (National Provider Identifier)
  N Y

@@ -1,9 +1,9 @@
 ECXLBBC ;ALB/MRY - LBB Extract Audit Comparative Report ; 6/15/09 3:19pm
- ;;3.0;DSS EXTRACTS;**120**;Dec 22, 1997;Build 43
+ ;;3.0;DSS EXTRACTS;**120,149**;Dec 22, 1997;Build 27
  ;
 EN ;entry point for LBB extract audit comparative report
- N ECSD,ECED,ECSDN,ECEDN
- D SETUP^ECXLBB I ECFILE="" Q
+ N ECSD,ECED
+ D SETUP^ECXLBB1 I ECFILE="" Q  ;149
  N %X,%Y,%DT,X,Y,DIC,DA,DR,DIQ,DIR,DIRUT,DTOUT,DUOUT,SCRNARR,REPORT
  N SCRNARR,ECXERR,ECXHEAD,ECXAUD,ECXARRAY,STATUS,FLAG,ECXALL,TMP
  N ZTQUEUED,ZTSTOP
@@ -12,7 +12,7 @@ EN ;entry point for LBB extract audit comparative report
  S (ECXERR,FLAG)=0
  ;ecxaud=0 for 'extract' audit
  S ECXHEAD="LBB",ECXAUD=0
- W !!,"Setup for ",ECXHEAD," Extract Comparative Report --",!!
+ W !!,"Setup for ",ECXHEAD," Extract Audit Comparative Report --",!!
  ;select extract
  D AUDIT^ECXUTLA(ECXHEAD,.ECXERR,.ECXARRAY,ECXAUD)
  Q:ECXERR
@@ -29,7 +29,7 @@ EN ;entry point for LBB extract audit comparative report
  K ECXDIC S DA=ECINST,DIC="^DIC(4,",DIQ(0)="I",DIQ="ECXDIC",DR=".01;99"
  D EN^DIQ1 S ECINST=$G(ECXDIC(4,DA,99,"I")) K DIC,DIQ,DA,DR,ECXDIC
  ;sort by COMP
- S DIR(0)="Y",DIR("A")="Do you want the "_ECXHEAD_" extract comparative report to sort by COMP"
+ S DIR(0)="Y",DIR("A")="Do you want the "_ECXHEAD_" extract comparative audit report to sort by COMP"
  S DIR("B")="NO" D ^DIR K DIR
  I $G(DIRUT) S ECXERR=1 Q
  ;if y=0 i.e., 'no', then ecxcomp=0 i.e., 'selected'
@@ -48,12 +48,12 @@ START ; entry point from tasked job
  K ^TMP("ECXLBBC",ECXJOB)
  U IO
  I $E(IOST,1,2)="C-" W !,"Retrieving records... "
- S (ECXRPT,ECXCRPT)=1 D AUDRPT^ECXLBB ;build source tmp
+ S (ECXRPT,ECXCRPT)=1 D AUDRPT^ECXLBB1 ;build source tmp
  D EXTRACT ;build extract tmp
  ;
 OUTPUT ; entry point called by EN tag
- N ECDATE,ECXTOT,ECXSTOT,ECXSTRX,ECXSTRS,ECRDT,ECQUIT,ECPG,ECLINE,ECLINE1,ECXCLAST
  I '$D(^TMP("ECXLBBC",ECXJOB)) W !,"There were no records that met the date range criteria" Q
+ N ECLINE,ECLINE1,ECXTOT,ECXSTOT,ECXSTRS,ECXSTRX,ECXCLAST
  S (ECPG,ECDATE,ECQUIT,ECXCOMP,ECXTOT,ECXSTOT)=0
  S ECXCOMP("TOTAL","S")=0,ECXCOMP("TOTAL","X")=0,ECXCLAST=0
  S ECLINE="",$P(ECLINE,"=",132)="=",ECLINE1="",$P(ECLINE1,"-",132)="-"
@@ -67,15 +67,14 @@ OUTPUT ; entry point called by EN tag
  . S ECXCOMP(ECXCOMP,"S")=0,ECXCOMP(ECXCOMP,"X")=0
  . S ECXDFN=0 F  S ECXDFN=$O(^TMP("ECXLBBC",ECXJOB,ECXCOMP,ECXDFN)) Q:'ECXDFN  D  Q:ECQUIT
  .. S ECDATE=0 F  S ECDATE=$O(^TMP("ECXLBBC",ECXJOB,ECXCOMP,ECXDFN,ECDATE))  Q:'ECDATE  D  Q:ECQUIT
- ... S ECXSTRS=$G(^TMP("ECXLBBC",ECXJOB,ECXCOMP,ECXDFN,ECDATE,"S"))
- ... S ECXSTRX=$G(^TMP("ECXLBBC",ECXJOB,ECXCOMP,ECXDFN,ECDATE,"X"))
- ... I ECXSTRS'="" D
+ ... S ECTIME=0 F  S ECTIME=$O(^TMP("ECXLBBC",ECXJOB,ECXCOMP,ECXDFN,ECDATE,ECTIME)) Q:'ECTIME  D  Q:ECQUIT
+ .... S ECXSTRS=$G(^TMP("ECXLBBC",ECXJOB,ECXCOMP,ECXDFN,ECDATE,ECTIME,"S"))
+ .... S ECXSTRX=$G(^TMP("ECXLBBC",ECXJOB,ECXCOMP,ECXDFN,ECDATE,ECTIME,"X"))
  .... S ECXCOMP(ECXCOMP,"S")=ECXCOMP(ECXCOMP,"S")+(+$P(ECXSTRS,"^",12))
- .... S ECXCOMP("TOTAL","S")=ECXCOMP("TOTAL","S")+(+$P(ECXSTRS,"^",12))
- ... I ECXSTRX'="" D
  .... S ECXCOMP(ECXCOMP,"X")=ECXCOMP(ECXCOMP,"X")+(+$P(ECXSTRX,"^",12))
+ .... S ECXCOMP("TOTAL","S")=ECXCOMP("TOTAL","S")+(+$P(ECXSTRS,"^",12))
  .... S ECXCOMP("TOTAL","X")=ECXCOMP("TOTAL","X")+(+$P(ECXSTRX,"^",12))
- ... D PRINT
+ .... D PRINT
  S ECXTOT=1 D TOTAL S ECXTOT=0
  D ^ECXKILL
  Q
@@ -106,10 +105,10 @@ TOTAL ;
  ;
 HED ;
  S ECPG=ECPG+1
- W !,"LBB Extract Comparative Report",?124,"Page",$J(ECPG,3)
+ W !,"LBB Extract Comparative Audit Report",?124,"Page",$J(ECPG,3)
  W !,ECSDN," - ",ECEDN,?111,"Run Date:",$J(ECRDT,12)
  W !!,"------------------ LOCAL BLOOD BANK SOURCE ----------------------"
- W ?80,"------------- LBB EXTRACT (#"_ECXARRAY("EXTRACT")_") ---------------"
+ W ?80,"------------- LAB EXTRACT (#"_ECXARRAY("EXTRACT")_") ---------------"
  W !,?37,"Transf",?57,"Number",?92,"Transf",?113,"Number"
  W !,"Name",?14,"SSN",?25,"FDR LOC",?37,"Date",?49,"COMP",?57,"of Units",?80,"SSN",?92,"Date",?102,"COMP",?113,"of Units"
  W !,ECLINE
@@ -125,7 +124,7 @@ QUE ;
  F X="ECFILE","ECHEAD","ECVER","ECINST","ECXINST","ECXCFLG" S ECXSAVE(X)=""
  ;S ECXSAVE("ECXDIV(")=""
  S ECXSAVE("ECXARRAY(")="",ECXSAVE("SCRNARR")="",TMP=$$OREF^DILF(SCRNARR),ECXSAVE(TMP)=""
- S ECXPGM="START^ECXLBBC",ECXDESC="LBB Extract Audit Comparative Report"
+ S ECXPGM="START^ECXLBBC",ECXDESC="LAR Extract Audit Comparative Report"
  W !!,"This report requires a print width of 132 characters.",!!
  D DEVICE^ECXUTLA(ECXPGM,ECXDESC,.ECXSAVE)
  I ECXSAVE("POP")=1 D  S ECXPOP=1 Q
@@ -148,7 +147,5 @@ EXTRACT ;build extract tmp
  . I ($E(ECXTDT,1)+1_$E(ECXTDT,3,8))>ECED Q
  . I ($E(ECXTDT,1)+1_$E(ECXTDT,3,8))<ECSD Q
  . S ECXTTM=$P(NODE0,"^",11),ECXCOMP=$P(NODE0,"^",13)
- . N ECCOUNT S ECCOUNT=0
- . F  S ECCOUNT=ECCOUNT+1 Q:'$D(^TMP("ECXLBBC",$J,$S($G(ECXCFLG)=1:ECXCOMP,1:"ZZNOZZ"),ECXDFN,ECXTDT_"."_ECXTTM_"."_ECCOUNT,"X"))
- . S ^TMP("ECXLBBC",$J,$S($G(ECXCFLG)=1:ECXCOMP,1:"ZZNOZZ"),ECXDFN,ECXTDT_"."_ECXTTM_"."_ECCOUNT,"X")="^"_$P(NODE0,"^",4,99)
+ . S ^TMP("ECXLBBC",$J,$S($G(ECXCFLG)=1:ECXCOMP,1:"ZZNOZZ"),ECXDFN,ECXTDT,ECXTTM,"X")="^"_$P(NODE0,"^",4,99)
  Q

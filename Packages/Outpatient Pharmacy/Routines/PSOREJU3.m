@@ -1,5 +1,5 @@
 PSOREJU3 ;BIRM/LJE - BPS (ECME) - Clinical Rejects Utilities (3) ;04/25/08
- ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359,385**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359,385,421**;DEC 1997;Build 15
  ;References to 9002313.99 supported by IA 4305
  ;Reference to $$CLAIM^BPSBUTL supported by IA 4719
  ;
@@ -76,10 +76,12 @@ TACT ;
  D RXACT^PSOBPSU2(RX,RFL,ACT,"M",DUZ)
  Q
  ;
-DISPLAY(RX,REJ,KEY) ; - Displays REJECT information
+DISPLAY(RX,REJ,KEY,RRR) ; - Displays REJECT information
  ; Input:  (r) RX  - Rx IEN (#52) 
  ;         (r) REJ - REJECT ID (IEN)
  ;         (o) KEY - Display "Press any KEY to continue..." (1-YES/0-NO) (Default: 0)
+ ;         (o) RRR - Reject Resolution Required information  Flag(0/1)^Threshold Amt^Gross Amt Due  (Default: 0)
+ ;                   If Flag = 0, there is no Reject Resolution Required reject code.  Parameter added with PSO*421
  ;         
  Q:$G(NFROM)
  I '$G(RX)!'$G(REJ) Q
@@ -104,6 +106,11 @@ DISPLAY(RX,REJ,KEY) ; - Displays REJECT information
  I DATA(REJ,"PLAN PREVIOUS FILL DATE")'="" D
  . W !?3,"Last Fill Dt.: ",DATA(REJ,"PLAN PREVIOUS FILL DATE")
  . W:DATA(REJ,"PLAN PREVIOUS FILL DATE")'="" "   (from payer)"
+ I $G(RRR) D   ;added with PSO*421
+ . W !!?3,"Reject Resolution Required"
+ . W !?3,"Gross Amount Due ($"_$J($P(RRR,U,3)*100\1/100,0,2)_") is greater than or equal to"
+ . W !?3,"Threshold Dollar Amount ($"_$P(RRR,U,2)_")"
+ . W !?3,"Please select Quit to resolve this reject on the Reject Worklist."
 DISP2 ;
  W !?3,LINE,$C(7) I $G(KEY) W !?3,"Press <RETURN> to continue..." R %:DTIME W !
  Q
@@ -131,12 +138,14 @@ W1 S:$L(PSOTXT)<PSOMARG PSOWRAP(PSOWRAP)=PSOTXT I $L(PSOTXT)'<PSOMARG F I=PSOMAR
  F K=1:1:PSOWRAP W ?INDENT,PSOWRAP(K),!
  Q
  ;
-HDR ;
- I $G(PSONBILL) W !!?24,"*** "_$$ELIGDISP^PSOREJP1(RX,RFL)_" - NON-BILLABLE ***" Q
- I $G(PSONPROG) W !!?18,"*** "_$$ELIGDISP^PSOREJP1(RX,RFL)_" - 'IN PROGRESS' ECME status ***" Q
- I $G(PSOTRIC) W !!?12,"*** "_$$ELIGDISP^PSOREJP1(RX,RFL)_" - "
- E  W !!?16
- W "REJECT RECEIVED FROM THIRD PARTY PAYER ***" Q
+HDR ; Display the reject notification screen header
+ N ELDSP,TAB
+ S ELDSP=$$ELIGDISP^PSOREJP1(RX,RFL)   ; returns CHAMPVA or TRICARE or "" (Veteran)
+ I $L(ELDSP) S ELDSP=ELDSP_" - "       ; Add the " - " for CVA/TRI only
+ ;
+ I $G(PSONBILL) S TAB=$S($L(ELDSP):24,1:29) W !!?TAB,"*** "_ELDSP_"NON-BILLABLE ***" Q
+ I $G(PSONPROG) S TAB=$S($L(ELDSP):18,1:23) W !!?TAB,"*** "_ELDSP_"'IN PROGRESS' ECME status ***" Q
+ S TAB=$S($L(ELDSP):11,1:16) W !!?TAB,"*** "_ELDSP_"REJECT RECEIVED FROM THIRD PARTY PAYER ***"
  Q
  ;
 SUBMIT(RXIEN,RFCNT,PSOTRIC) ;called from PSOCAN2 (routine size exceeded)
@@ -196,6 +205,7 @@ TRIAUD(RXIEN,RXFILL) ;is RXIEN in the TRICARE/CHAMPVA audit and no open rejects 
 ECMECHK(RX,FILL) ;
  ; This function returns a '1' if any of the conditions below are met:
  ;    - RX has an unresolved DUR or Refill Too Soon reject
+ ;    - RX has an unresolved Reject Resolution Required (RRR) reject (only for Veteran and original fill)
  ;    - RX is TRICARE/CHAMPVA and has any unresolved reject
  ;    - RX is TRICARE/CHAMPVA and IN PROGRESS
  ; This is used by functions such as PPLADD^PSOSUPOE to determine if
@@ -211,15 +221,15 @@ ECMECHK(RX,FILL) ;
  I '$G(RX) Q 0
  I $G(FILL)="" S FILL=$$LSTRFL^PSOBPSU1(RX)
  ;
- ; DUR or Refill Too Soon rejects
- I $$FIND^PSOREJUT(RX,FILL,"","79,88") Q 1
+ ; DUR or Refill Too Soon or RRR rejects
+ I $$FIND^PSOREJUT(RX,FILL,"","79,88",,1) Q 1
  ;
  ; If not TRICARE/CHAMPVA, quit with 0 as the rest of the checks
  ;   are all TRICARE/CHAMPVA dependent
  I '$$TRIC^PSOREJP1(RX,FILL) Q 0
  ;
  ; No label for TRICARE/CHAMPVA with unresolved rejects
- I $$FIND^PSOREJUT(RX,FILL) Q 1
+ I $$FIND^PSOREJUT(RX,FILL,,,1) Q 1   ; 5th parameter to $$FIND also finds non-billable TRI/CVA rejects
  ;
  ;No label for TRICARE/CHAMPVA claims that are IN PROGRESS
  I $P($$STATUS^PSOBPSUT(RX,FILL),U)="IN PROGRESS" Q 1

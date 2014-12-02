@@ -1,5 +1,5 @@
-LEXA3 ; ISL Look-up (Loud) Functions             ; 01-13-97
- ;;2.0;LEXICON UTILITY;**1,4**;Sep 23, 1996
+LEXA3 ;ISL/KER - Look-up (Loud) Functions ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**1,4,80**;Sep 23, 1996;Build 1
  ;
 DH ; Display Help                 LEX("HLP")
  Q:'$D(LEX("HLP"))  N LEXI S LEXI=0

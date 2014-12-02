@@ -1,5 +1,5 @@
 VPRDVSIT ;SLC/MKB -- Visit/Encounter extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2**;Sep 01, 2011;Build 317
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -195,7 +195,7 @@ INPT ; -- return current admission in ADM("attribute")=value [from ADM]
  S ADM("reason")=ICD_U_$G(VAIN(9)) ;ICD code^description^Dx text
  S HLOC=+$G(^DIC(42,+$G(VAIN(4)),44))
  S:HLOC ADM("location")=$P($G(^SC(HLOC,0)),U)
- S ADM("facility")=$$FAC^VPRD(+HLOC),ADM("roomBed")=$P(VAIN(5),U,2)
+ S ADM("facility")=$$FAC^VPRD(+HLOC),ADM("roomBed")=VAIN(5)
  S ADM("serviceCategory")="H^HOSPITALIZATION"
  S X=$$CPT(IEN),ADM("type")=$S(X:$P($$CPT^ICPTCOD(X),U,2,3),1:U_$$CATG("H"))
  ; ADM("visitString")=HLOC_";"_DATE_";H"

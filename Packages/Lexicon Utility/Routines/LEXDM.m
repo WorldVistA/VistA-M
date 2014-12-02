@@ -1,6 +1,12 @@
-LEXDM ;ISL Default Misc - Mod/Del Sel/Create ;08/17/2011
- ;;2.0;LEXICON UTILITY;**81**;Sep 23, 1996;Build 1
- ;
+LEXDM ;ISL/KER - Default Misc - Mod/Del Sel/Create ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**81,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    ^DIR                ICR  10026
+ ;               
  ; Entry:  S X=$$MOD^LEXDM(X)
  ; Input   X  1=Filter, 2=Display, 3=Vocabulary or 4=Context
  ; Returns  "^^" Double up-arrow, 0 no action taken, 1 Modify

@@ -1,5 +1,5 @@
 ONCCPC4A ;HIRMFO/GWB - PCE Study of Colorectal Cancer - Table IV (continued);2/20/97
- ;;2.11;ONCOLOGY;**11,16**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 R W !,"RADIATION THERAPY"
  W !,"-----------------"
  S RADDT=$P($G(^ONCO(165.5,ONCONUM,3)),U,4)

@@ -1,5 +1,5 @@
 GMTSPXFP ; SLC/SBW,KER - PCE Health Factors Component ; 2/22/07 1:52pm
- ;;2.7;Health Summary;**8,10,28,56,58,62,69,82**;Oct 20, 1995;Build 21
+ ;;2.7;Health Summary;**8,10,28,56,58,62,69,82,110**;Oct 20, 1995;Build 2
  ;
  ; External References
  ;   DBIA   1243  HF^PXRHS07
@@ -58,9 +58,11 @@ BYDT ; Display Health Factors by Date
  . . D HFDSP Q:$D(GMTSQIT)
  Q
 HDR ; Display Header
+ ; KDM 1/28/2014 GMTS*2.7*110 
+ ;     Change header from "Visit Date" to "Event/Visit Date" to reduce ambiguity as it can be either date.
  N GMTSRN Q:$D(GMTSOBJ)  Q:$D(GMTSQIT)
  D CKP^GMTSUP Q:$D(GMTSQIT)  W "Category",!
- D CKP^GMTSUP Q:$D(GMTSQIT)  W "  Health Factor ",?50,"Visit Date",! W:GMTSFRST=1 !
+ D CKP^GMTSUP Q:$D(GMTSQIT)  W "  Health Factor ",?50,"Event/Visit Date",! W:GMTSFRST=1 !
  Q
 HFDSP ; Display Data
  N GMTSRN,GMTSIEN

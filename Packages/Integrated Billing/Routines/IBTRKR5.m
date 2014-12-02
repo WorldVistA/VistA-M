@@ -1,5 +1,5 @@
 IBTRKR5 ;ALB/AAS - CLAIMS TRACKING - ADD/TRACK PROSTHETICS ;13-JAN-94
- ;;2.0;INTEGRATED BILLING;**13,260,312,339,389,474**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**13,260,312,339,389,474,498**;21-MAR-94;Build 27
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % ; -- entry point for nightly background job
@@ -115,7 +115,7 @@ IBPHP(IBDA) ; non billable PSAS HCPCS codes
  ; input-patient item in #660
  ; output-value if the code with the first 2 chars in the string is found
  N IBPSAS,IBPIN S IBPIN=""
- S IBPSAS=",DI,DL,EC,EV,FE,HN,HS,NR,RE,SB,SI,TH,TR,VA,"
+ S IBPSAS=",BA,DI,DL,EC,EV,FE,HI,HN,HS,NR,RE,SB,SI,TH,TM,TR,VA,"
  ; return the pointer^description^the code (#661.1,.01)
  S IBPIN=$$PIN^IBATUTL(+IBDA)
  S IBPIN=$P(IBPIN,U,3)

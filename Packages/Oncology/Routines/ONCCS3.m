@@ -1,111 +1,138 @@
 ONCCS3 ;Hines OIFO/GWB - Collaborative Staging v2 Stuffing ;06/16/11
- ;;2.11;ONCOLOGY;**51,53**;Mar 07, 1995;Build 31
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  I $G(SCHEMA)="MelanomaIris" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,5)="" 1
  .D 15,16,17,18,19,20,21,22,23,24
  .D:$P($G(^ONCO(165.5,D0,"CS1")),U,10)="" TS
+ .I DATEDX>3131231 D 2,8,14    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaLarynxGlottic" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaLarynxOther" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaLarynxSubglottic" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaLarynxSupraglottic" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaLipLower" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaLipOther" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaLipUpper" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaMouthOther" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaNasalCavity" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaNasopharynx" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaOropharynx" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaPalateHard" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaPalateSoft" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaPharynxOther" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaSinusEthmoid" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaSinusMaxillary" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaSinusOther" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
  .D EVAL
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaSkin" D  Q
  .D 10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 8,9    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaTongueAnterior" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MelanomaTongueBase" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MerkelCellPenis" D  Q
  .D 2,4,5,6,7,8,9,10,11,12,13,14,15,23,24,25
+ .I DATEDX>3131231 D 19,20,21    ;CS V02.05
  ;
  I $G(SCHEMA)="MerkelCellScrotum" D  Q
  .D 2,4,5,6,7,8,9,10,11,12,13,14,15,23,24,25
+ .I DATEDX>3131231 D 19,20,21    ;CS V02.05
  ;
  I $G(SCHEMA)="MerkelCellSkin" D  Q
  .D 2,4,5,6,7,8,9,10,11,12,13,14,15,23,24,25
+ .I DATEDX>3131231 D 19,20,21    ;CS V02.05
  ;
  I $G(SCHEMA)="MerkelCellVulva" D  Q
  .D 2,4,5,6,7,8,9,10,11,12,13,14,15,23,24,25
+ .I DATEDX>3131231 D 19,20,21    ;CS V02.05
  ;
  I $G(SCHEMA)="MiddleEar" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
  .D EVAL
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MouthOther" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="MycosisFungoides" D  Q
  .D 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
@@ -120,27 +147,34 @@ ONCCS3 ;Hines OIFO/GWB - Collaborative Staging v2 Stuffing ;06/16/11
  I $G(SCHEMA)="NasalCavity" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="Nasopharynx" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 11,12,13,14,15,16,17,18,19,20,21,22,23,24
+ .I DATEDX>3131231 D 7,8    ;CS V02.05
  ;
  I $G(SCHEMA)="NETAmpulla" D  Q
  .D 1,2,3,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 4    ;CS V02.05
  ;
  I $G(SCHEMA)="NETColon" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,5)="" 1
  .D 3,4,5,6,7,8,9,10,12,13,14,15,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 11    ;CS V02.05
  ;
  I $G(SCHEMA)="NETRectum" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,5)="" 1
  .D 3,4,5,7,8,9,10,12,13,14,15,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 11    ;CS V02.05
  ;
  I $G(SCHEMA)="NETSmallIntestine" D  Q
  .D 1,2,3,4,5,7,8,9,10,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 6    ;CS V02.05
  ;
  I $G(SCHEMA)="NETStomach" D  Q
  .D 2,3,4,5,7,8,9,10,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 6    ;CS V02.05
  ;
  I $G(SCHEMA)="Orbit" D  Q
  .D 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
@@ -148,49 +182,62 @@ ONCCS3 ;Hines OIFO/GWB - Collaborative Staging v2 Stuffing ;06/16/11
  I $G(SCHEMA)="Oropharynx" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8    ;CS V02.05
  ;
  I $G(SCHEMA)="Ovary" D  Q
  .D 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 4,5    ;CS V02.05
  ;
  I $G(SCHEMA)="PalateHard" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="PalateSoft" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8    ;CS V02.05
  ;
  I $G(SCHEMA)="PancreasBodyTail" D  Q
  .D 4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 1,2,3    ;CS V02.05
  ;
  I $G(SCHEMA)="PancreasHead" D  Q
  .D 4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 1,2,3    ;CS V02.05
  ;
  I $G(SCHEMA)="PancreasOther" D  Q
  .D 4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 1,2,3    ;CS V02.05
  ;
  I $G(SCHEMA)="ParotidGland" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8    ;CS V02.05
  ;
  I $G(SCHEMA)="Penis" D  Q
  .D 1,2,3,4,5,6,7,8,9,13,14,15,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 11,12,16    ;CS V02.05
  ;
  I $G(SCHEMA)="Peritoneum" D  Q
  .D 5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24
  .D SSF25
+ .I DATEDX>3131231 D 2,3,4    ;CS V02.05
  ;
  I $G(SCHEMA)="PeritoneumFemaleGen" D  Q
  .D 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24
+ .I DATEDX>3131231 D 4,5    ;CS V02.05
  ;
  I $G(SCHEMA)="PharyngealTonsil" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 11,12,13,14,15,16,17,18,19,20,21,22,23,24
+ .I DATEDX>3131231 D 7,8    ;CS V02.05
  ;
  I $G(SCHEMA)="PharynxOther" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
  .D EVAL
+ .I DATEDX>3131231 D 7,8    ;CS V02.05
  ;
  I $G(SCHEMA)="Placenta" D  Q
  .D 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
@@ -198,14 +245,17 @@ ONCCS3 ;Hines OIFO/GWB - Collaborative Staging v2 Stuffing ;06/16/11
  ;
  I $G(SCHEMA)="Pleura" D  Q
  .D 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 3,4,5    ;CS V02.05
  ;
  I $G(SCHEMA)="Prostate" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,9)="" 5
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,10)="" 6
  .D 16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 14,15    ;CS V02.05
  ;
  I $G(SCHEMA)="Rectum" D  Q
  .D 11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 5,7,10    ;CS V02.05
  ;
  I $G(SCHEMA)="RespiratoryOther" D  Q
  .D 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
@@ -213,54 +263,69 @@ ONCCS3 ;Hines OIFO/GWB - Collaborative Staging v2 Stuffing ;06/16/11
  ;
  I $G(SCHEMA)="Retinoblastoma" D  Q
  .D 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 2,3,4,5,6    ;CS V02.05
  ;
  I $G(SCHEMA)="Retroperitoneum" D  Q
  .D 5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 2,3,4    ;CS V02.05
  ;
  I $G(SCHEMA)="SalivaryGlandOther" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8    ;CS V02.05
  ;
  I $G(SCHEMA)="Scrotum" D  Q
  .D 2,3,4,5,6,7,8,9,13,14,15,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 10,11    ;CS V02.05
  ;
  I $G(SCHEMA)="SinusEthmoid" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="SinusMaxillary" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="SinusOther" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
  .D EVAL
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="Skin" D  Q
  .D 2,3,4,5,6,7,8,9,13,14,15,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 10    ;CS V02.05
  ;
  I $G(SCHEMA)="SkinEyelid" D  Q
  .D 17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 1,2,4,5,7,9,11,12,13,14,15,16    ;CS V02.05
  ;
  I $G(SCHEMA)="SmallIntestine" D  Q
  .D 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 4,5    ;CS V02.05
  ;
  I $G(SCHEMA)="SoftTissue" D  Q
  .D 5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 2,4    ;CS V02.05
  ;
  I $G(SCHEMA)="Stomach" D  Q
  .D 3,4,5,6,7,8,9,10,11,12,16,17,18,19,20,21,22,23,24
+ .I DATEDX>3131231 D 2,13,14,15    ;CS V02.05
  ;
  I $G(SCHEMA)="SubmandibularGland" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 10,11,12,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8    ;CS V02.05
  ;
  I $G(SCHEMA)="Testis" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,5)="" 1
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,7)="" 3
- .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .;D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .D 11,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 12,14    ;CS V02.05
  ;
  I $G(SCHEMA)="Thyroid" D  Q
  .D 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
@@ -268,10 +333,12 @@ ONCCS3 ;Hines OIFO/GWB - Collaborative Staging v2 Stuffing ;06/16/11
  I $G(SCHEMA)="TongueAnterior" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="TongueBase" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
  .D 11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 7,8    ;CS V02.05
  ;
  I $G(SCHEMA)="Trachea" D  Q
  .D 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
@@ -289,6 +356,7 @@ ONCCS3 ;Hines OIFO/GWB - Collaborative Staging v2 Stuffing ;06/16/11
  ;
  I $G(SCHEMA)="Vulva" D  Q
  .D 1,2,3,4,5,6,7,8,9,16,17,18,19,20,21,22,23,24,25
+ .I DATEDX>3131231 D 12,13,14,15    ;CS V02.05
  ;
  Q
  ;

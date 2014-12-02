@@ -1,5 +1,5 @@
-ECINCPT ;ALB/JAM-Procedure Codes with Inactive CPTs Report ; 08/01/05
- ;;2.0; EVENT CAPTURE ;**72**;8 May 96
+ECINCPT ;ALB/JAM-Procedure Codes with Inactive CPTs Report ;10/12/12  11:18
+ ;;2.0;EVENT CAPTURE;**72,119**;8 May 96;Build 12
  ; Routine to report National/Local Procedure Codes with Inactive CPT 
  ; Codes Report
 EN ;entry point
@@ -13,19 +13,21 @@ EN ;entry point
  D HOME^%ZIS
  Q
 START ; Routine execution
- N ECI,EC0,ECPT,ECN,ECD,ECPI,ECDT,ECPG,ECOUT,ECRDT
- S (ECI,ECOUT)=0,ECPG=1
+ N ECI,EC0,ECPT,ECN,ECD,ECPI,ECDT,ECPG,ECOUT,ECRDT,CNT ;119
+ S (ECI,ECOUT)=0,ECPG=1,CNT=1 ;119
  S %H=$H S ECRDT=$$HTE^XLFDT(%H,1)
- D HEADER
+ I $G(ECPTYP)="E" S ^TMP($J,"ECRPT",CNT)="NATIONAL NUMBER^NATIONAL NAME^CPT CODE^INACTIVE DATE" ;119
+ I $G(ECPTYP)'="E" D HEADER ;119
  F  S ECI=$O(^EC(725,ECI)) Q:'ECI  D  I ECOUT Q
  .S EC0=$G(^EC(725,ECI,0)),ECPT=$P(EC0,"^",5)
  .Q:EC0=""  Q:ECPT=""
  .S ECN=$P(EC0,"^",2),ECD=$P(EC0,"^"),ECPI=$$CPT^ICPTCOD(ECPT)
  .Q:+ECPI<1  Q:$P(ECPI,"^",7)
  .S ECDT=$TR($$FMTE^XLFDT($P(ECPI,"^",8),"2F")," ","0")
- .I ($Y+3)>IOSL D PAGE Q:ECOUT  D HEADER
+ .I $G(ECPTYP)'="E" I ($Y+3)>IOSL D PAGE Q:ECOUT  D HEADER ;119
+ .I $G(ECPTYP)="E" S CNT=CNT+1,^TMP($J,"ECRPT",CNT)=ECN_U_ECD_U_$P(ECPI,U,2)_U_ECDT Q  ;119
  .W !,ECN,?10,ECD,?60,$P(ECPI,"^",2),?68,ECDT
- I 'ECOUT D PAGE
+ I $G(ECPTYP)'="E" I 'ECOUT D PAGE ;119
  Q
 HEADER ;
  W:$E(IOST,1,2)="C-"!(ECPG>1) @IOF

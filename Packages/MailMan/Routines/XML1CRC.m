@@ -1,5 +1,5 @@
 XML1CRC ;(WASH ISC)/RJ-OS Check Sum ;04/17/2002  10:58
- ;;8.0;MailMan;;Jun 28, 2002
+ ;;8.0;MailMan;**45**;Jun 28, 2002;Build 8
 OPEN D GET,OP
  S:'$D(XMESC) XMESC="~" S:'$D(XMFS) XMFS=255 S:'$D(XM) XM="" S (XMSSQ,XMRSQ)=1 Q
 GET S X=XMCHAN,DIC="^DIC(3.4,",DIC(0)="Z" D ^DIC S XMCHAN=+Y
@@ -63,9 +63,9 @@ BUFLUSH ;Flush any characters out of the buffer
 SUM ;Calculate checksum
  I '$D(XMOS) D LPC^XMLSWP0
  I $D(XMOS(0)) X XMOS(0) S XMSUM=Y Q
- I XMOS["VAX DSM" S XMSUM=$ZC(%LPC,X) Q
- I XMOS["DSM" S XMSUM=$ZC(LPC,X) Q
- I XMOS["M/11"!(XMOS["M/VX") S XMSUM=$ZC(X) Q
+ I XMOS["VAX DSM" X "S XMSUM=$ZC(%LPC,X)" Q
+ I XMOS["DSM" X "S XMSUM=$ZC(LPC,X)" Q
+ I XMOS["M/11"!(XMOS["M/VX") X "S XMSUM=$ZC(X)" Q
  S XMSUM=$A(X) Q:$L(X)=1  S I=1
 A S I=I+1 I $L(X)<I K %,%0,%1 S XMSUM=XMSUM+$L(X)*$L(X) Q
  S Y=$A(X,I) F %=256:0 Q:%\4<Y  S %=%\2

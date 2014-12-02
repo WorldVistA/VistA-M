@@ -1,5 +1,5 @@
 GMTSVSD ; SLC/KER - Vital Signs (Detailed)           ; 01/06/2003
- ;;2.7;Health Summary;**35,49,58,78**;Oct 20, 1995
+ ;;2.7;Health Summary;**35,49,58,78,107**;Oct 20, 1995;Build 3
  ;                          
  ; External References
  ;   DBIA  4791  EN1^GMVHS
@@ -124,7 +124,7 @@ VM(X,Y) ;   Vital Type Measurement
  ;     POx - Pulse Oximetry
  I X="PO2" S GMTSMEAS=$P(Y,"^",8) S:$L($P(Y,"^",15))!($L($P(Y,"^",16))) GMTSMEAS=GMTSMEAS_" ("_$P(Y,"^",15)_")("_$P(Y,"^",16)_")"
  ;     PN - Pain
- S:X="PN" GMTSMEAS=$P(Y,"^",8) S:X="PN"&(GMTSMEAS=99) GMTSMEAS="No Response"
+ S:X="PN" GMTSMEAS=$P(Y,"^",8) S:X="PN"&(GMTSMEAS=99) GMTSMEAS="Unable to Respond" ;p.107 changed from "No Response" to "Unable to Respond"
  S X=GMTSMEAS Q X
 VQ(X) ;   Vital Qualifiers
  S X=$G(X),X=$P(X,"^",17) S:$L(X) X=$$AQ(X) Q X

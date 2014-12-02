@@ -1,5 +1,5 @@
 ONCSPC8A ;HIRMFO/GWB -PCE Study of Soft Tissue Sarcoma - Print (continued) ;8/15/96
- ;;2.11;ONCOLOGY;**6,15,16**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  I IOST'?1"C".E W ! D P Q:EX=U  W ! D P Q:EX=U
  S TABLE="TABLE IV - FIRST COURSE OF TREATMENT"
  W !?15,TABLE,! D P Q:EX=U

@@ -1,7 +1,8 @@
-IBDF18A2 ;WISC/TN - ENCOUNTER FORM - utilities for PCE ;30-APR-03
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**51,55**;APR 30, 2003
+IBDF18A2 ;WISC/TN - ENCOUNTER FORM - utilities for PCE ;04/30/03
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**51,55,63**;APR 30, 2003;Build 80
  ;
- QUIT  ;CAll at CHKLST
+ ;
+ QUIT  ;Call at CHKLST
  ;
 CHKLST ;Create a new list to pass to calling packages.
  ;The new array will have CPT or ICD codes which
@@ -12,12 +13,14 @@ CHKLST ;Create a new list to pass to calling packages.
  ;Quit if no date is passed.
  S ENCDATE=$G(ENCDATE) I ENCDATE="" Q
  ;
- NEW AA,CNT,CNT1,CNT2,MOD,TYPE,NODE
- K ^TMP("IBDCSV",$J)
+ NEW AA,CNT,CNT1,CNT2,MOD,TYPE,NODE,IBDCSYS,IBDIMPDA,IBDX
+ K ^TMP("IBDCSV",$J) S U="^"
  ;
  S CNT=0,AA=0,TYPE="",NODE="MODIFIER"
  S:PACKAGE="DG SELECT CPT PROCEDURE CODES" TYPE="CPT"
  S:PACKAGE="DG SELECT ICD-9 DIAGNOSIS CODE" TYPE="ICD"
+ S:PACKAGE="DG SELECT ICD DIAGNOSIS CODES" TYPE="ICD"
+ S:PACKAGE="DG SELECT ICD-10 DIAGNOSIS COD" TYPE="ICD10"
  S:PACKAGE="DG SELECT VISIT TYPE CPT PROCE" TYPE="CPT"
  S:PACKAGE="GMP INPUT CLINIC COMMON PROBLE" TYPE="ICD"
  S:PACKAGE="GMP PATIENT ACTIVE PROBLEMS" TYPE="ICD"
@@ -27,7 +30,7 @@ CHKLST ;Create a new list to pass to calling packages.
  . S @ARY@(0)=1
  . S @ARY@(1)="^AICS ERROR - Missing code type for "_PACKAGE
  ;
- ;Make copy of arry and kill the original
+ ;Make copy of array and kill the original
  M ^TMP("IBDCSV",$J)=@ARY KILL @ARY
  ;
  S CNT=0,AA=0
@@ -53,9 +56,15 @@ CHKLST ;Create a new list to pass to calling packages.
  . . . . . S @ARY@(CNT,NODE,CNT2)=^TMP("IBDCSV",$J,AA,NODE,CNT2)
  . . . . . S @ARY@(CNT,NODE,0)=CNT2
  . . . . ;
- . ;Validate the ICD code for the date passed  
- . I $P($$ICDDX^ICDCODE(CODE,ENCDATE),U,10)=1 D
- . . S CNT=CNT+1,@ARY@(CNT)=^TMP("IBDCSV",$J,AA)
+ . ;Validate the ICD code for the date passed
+ . S IBDIMPDA=$$IMPDATE^IBDUTICD("10D")
+ . I TYPE="ICD10",ENCDATE'<IBDIMPDA D  Q
+ . . S IBDX=$$STATCHK^IBDUTICD(30,CODE,ENCDATE) I $P(IBDX,U,1)>0 D  ;Active
+ . . . S CNT=CNT+1,@ARY@(CNT)=^TMP("IBDCSV",$J,AA)
+ . I TYPE="ICD" D  ;This includes BOTH DG SELECT ICD-9 DIAGNOSIS CODES and DG SELECT ICD DIAGNOSIS CODES dependent upon ENCDATE
+ . . S IBDCSYS=$S(ENCDATE<IBDIMPDA:1,1:30)
+ . . S IBDX=$$STATCHK^IBDUTICD(IBDCSYS,CODE,ENCDATE) I $P(IBDX,U,1)>0 D  ;Active
+ . . . S CNT=CNT+1,@ARY@(CNT)=^TMP("IBDCSV",$J,AA)
  ;
  S @ARY@(0)=CNT
  K ^TMP("IBDCSV",$J)

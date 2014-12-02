@@ -1,5 +1,5 @@
 ONCSAPID ;Hines OIFO/SG - COLLABORATIVE STAGING (DEMO) ; 12/7/06 9:33am
- ;;2.11;ONCOLOGY;**40,47**;Mar 07, 1995;Build 19
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  Q
  ;
@@ -56,9 +56,9 @@ INPUT(ONCINP) ;
  ;;GRADE    ^1   ^1^Grade
  ;;AGE      ^043 ^3^Age at Diagnosis
  ;;SIZE     ^010 ^3^CS Tumor Size^1
- ;;EXT      ^20  ^2^CS Extension^2
+ ;;EXT      ^200 ^3^CS Extension^2
  ;;EXTEVAL  ^0   ^1^CS Size/Ext Eval^3
- ;;NODES    ^11  ^2^CS Lymph Nodes^4
+ ;;NODES    ^100 ^3^CS Lymph Nodes^4
  ;;NODESEVAL^0   ^1^CS Reg Nodes Eval^5
  ;;LNPOS    ^98  ^2^Regional Nodes Positive^6
  ;;LNEXAM   ^00  ^2^Regional Nodes Examined^7

@@ -1,5 +1,5 @@
-PSSMARK ;BIR/WRT-Review single NDF matches for CMOP ; 10/27/98 13:44
- ;;1.0;PHARMACY DATA MANAGEMENT;**15,17,20,28,57,82,124**;9/30/97;Build 2
+PSSMARK ;BIR/WRT-Review single NDF matches for CMOP ; 9/14/11 11:29am
+ ;;1.0;PHARMACY DATA MANAGEMENT;**15,17,20,28,57,82,124,170**;9/30/97;Build 5
  ;
  ;Reference to ^PS(59 supported by DBIA #1976
  ;Reference to ^PS(50.605 supported by DBIA #2138
@@ -20,14 +20,14 @@ DISPLAY W @IOF W !!?3,"Local Drug Generic Name: ",PSXLOC W !!,?16,"ORDER UNIT: "
 CHECK I $D(^PSDRUG("AQ",PSXUM)),$P(^PSDRUG(PSXUM,3),"^",1)=1 D UNMARK
  Q:PSXBT=1  I '$D(^PSDRUG("AQ",PSXUM)) D MARK
  Q
-MARK Q:PSXBT=1  W !!,"Do you wish to mark this drug to transmit to CMOP? " K DIR S DIR(0)="Y" D ^DIR D OUT I "Nn^"[X K X,Y,DIRUT S PSXBT=1,PSXF=1 Q:PSXF=1  Q:PSXBT=1
- I "Yy"[X S $P(^PSDRUG(PSXUM,660),"^",8)=PSXDP,^PSDRUG(PSXUM,3)=1,^PSDRUG("AQ",PSXUM)="",DA=PSXUM D ^PSSREF,IDENT K DA D QDM,QUEST,QUES2 S PSXF=1
+MARK Q:PSXBT=1  W !!,"Do you wish to mark this drug to transmit to CMOP? " K DIR S DIR(0)="Y" D ^DIR D OUT I (Y=0)!($D(DUOUT)) K X,Y,DIRUT S PSXBT=1,PSXF=1 Q:PSXF=1  Q:PSXBT=1
+ I Y=1 S $P(^PSDRUG(PSXUM,660),"^",8)=PSXDP,^PSDRUG(PSXUM,3)=1,^PSDRUG("AQ",PSXUM)="",DA=PSXUM D ^PSSREF,IDENT K DA D QDM,QUEST,QUES2 S PSXF=1  ;;<RJS*170
  Q
-UNMARK Q:PSXF=1  W !!,"Do you wish to UNmark this drug to transmit to CMOP? " K DIR S DIR(0)="Y" D ^DIR D OUT I "Nn^"[X K X,Y,DIRUT S PSXF=1 Q
- I "Yy"[X S $P(^PSDRUG(PSXUM,3),"^",1)=0 K ^PSDRUG("AQ",PSXUM) S DA=PSXUM D ^PSSREF K DA S PSXF=1,PSXBT=1 Q:PSXBT=1
+UNMARK Q:PSXF=1  W !!,"Do you wish to UNmark this drug to transmit to CMOP? " K DIR S DIR(0)="Y" D ^DIR D OUT I (Y=0)!($D(DUOUT)) K X,Y,DIRUT S PSXF=1 Q
+ I Y=1 S $P(^PSDRUG(PSXUM,3),"^",1)=0 K ^PSDRUG("AQ",PSXUM) S DA=PSXUM D ^PSSREF K DA S PSXF=1,PSXBT=1 Q:PSXBT=1  ;;<RJS*170
  Q
-QUES2 W !!,"Do you wish to overwrite your local name? " K DIR S DIR(0)="Y",DIR("?")="If you answer ""yes"", you will overwrite GENERIC NAME with the VA Print Name." D ^DIR D OUT I "Nn^"[X D SYN K X,Y,DIRUT S PSXG=1 Q:PSXG=1
- I "Yy"[X D DUP I '$D(^PSDRUG("B",PSXVAP)) S $P(^PSDRUG(PSXUM,0),"^",1)=PSXVAP D XREF,OLDNM S PSXF=1,PSXG=1
+QUES2 W !!,"Do you wish to overwrite your local name? " K DIR S DIR(0)="Y",DIR("?")="If you answer ""yes"", you will overwrite GENERIC NAME with the VA Print Name." D ^DIR D OUT I (Y=0)!($D(DUOUT)) D SYN K X,Y,DIRUT S PSXG=1 Q:PSXG=1
+ I Y=1 D DUP I '$D(^PSDRUG("B",PSXVAP)) S $P(^PSDRUG(PSXUM,0),"^",1)=PSXVAP D XREF,OLDNM S PSXF=1,PSXG=1  ;;<RJS*170
  Q
 DUP I PSXVAP'=PSXLOC,$D(^PSDRUG("B",PSXVAP)) W !,"You cannot write over the GENERIC NAME because one already has that",!,"VA Print Name. You cannot have duplicate names.",!
  Q

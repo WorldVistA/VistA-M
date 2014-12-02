@@ -1,5 +1,5 @@
 IBCEOB00 ;ALB/ESG/PJH - 835 EDI EOB MSG PROCESSING CONT ;30-JUN-2003
- ;;2.0;INTEGRATED BILLING;**155,349,377,431**;21-MAR-94;Build 106
+ ;;2.0;INTEGRATED BILLING;**155,349,377,431,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -187,18 +187,37 @@ Q37 S ^TMP($J,37)=$G(^TMP($J,37))+1 ; Saves the # of entries for 37 records
  Q $G(IBOK)
  ;
  ;
-DET40(IB0,ARRAY) ; Format important details of record 40 for error
+DET40(IB0,ARRAY,ERRCOD) ; Format important details of record 40 for error
  ; IB0 = data on 40 record (some pieces pre-formatted)
  ;  ARRAY(n)=formatted line is returned if passed by ref
- N Q
- S ARRAY(1)="Payer reported the following was billed to them:"
- S ARRAY(2)=" "_$S($P(IB0,U,21)="NU":"Rev Cd",1:"Proc")_": "_$S($P(IB0,U,10)'="":$P(IB0,U,10),1:"Same as adjudicated")_"  Chg: "_$J($P(IB0,U,15)/100,"",2)_"  Units: "_$S($P(IB0,U,16):$P(IB0,U,16),1:1)
- S ARRAY(3)="  Svc Date(s): "_$S($P(IB0,U,19)'="":$$FDT($P(IB0,U,19)),1:"??")_$S($P(IB0,U,20)'="":"-"_$$FDT($P(IB0,U,20)),1:"")
- I $P(IB0,U,11)'="" S ARRAY(3)=ARRAY(3)_"  Mods: " F Q=11:1:14 I $P(IB0,U,Q)'="" S ARRAY(3)=ARRAY(3)_$P(IB0,U,Q)_$S(Q=14:"",$P(IB0,U,Q+1)'="":",",1:"")
- S ARRAY(4)="Payer reported adjudication on:"
- S ARRAY(5)=" "_$S($P(IB0,U,21)="NU":"Rev Cd",1:"Proc")_": "_$S($P(IB0,U,3)'="":$P(IB0,U,3),1:$P(IB0,U,4))
- S ARRAY(5)=ARRAY(5)_"  Type: "_$P(IB0,U,21)_$S($P(IB0,U,21)'="NU":"  Rev Cd: "_$P(IB0,U,4),1:"")_"  Units: "_$S($P(IB0,U,18):$P(IB0,U,18)/100,1:1)_"  Amt: "_$J($P(IB0,U,17)/100,"",2)
- I $P(IB0,U,5)'="" S ARRAY(5)=ARRAY(5)_"  Mods: " F Q=5:1:8 I $P(IB0,U,Q)'="" S ARRAY(5)=ARRAY(5)_$P(IB0,U,Q)_$S(Q=8:"",$P(IB0,U,Q+1)'="":",",1:"")
+ N Q,IBBNDL
+ S IBBNDL=$S($P(IB0,U,10)'="":1,1:0)   ; Determine if Bundled or Not Bundled.
+ ;
+ S ARRAY(1)="Payer reported the following was billed to them via the Claim (837):"
+ S ARRAY(2)="Proc/Rev CD: "
+ ; If this is a Procedure Code mismatch and there is nothing in piece 10 show "UNK" otherwise show the mismatched Procedure Code.
+ S ARRAY(2)=ARRAY(2)_$S(+ERRCOD=2:$S($P(IB0,U,10)'="":$P(IB0,U,10),1:"UNK  "),1:$S($P(IB0,U,10)'="":$P(IB0,U,10),1:$P(IB0,U,3)))
+ S ARRAY(2)=ARRAY(2)_" Mods:"
+ I $P(IB0,U,11)="" D
+ . ; If there is nothing in piece 11 and this is a modified mismatch, show the value from the comparison checking that occurred.
+ . I +ERRCOD=5 S ARRAY(2)=ARRAY(2)_$P(ERRCOD,U,2) Q
+ . ; If there is nothing in piece 11 and this is not a modifier mismatch, show what is in piece 5-8 
+ . F Q=5:1:8 I $P(IB0,U,Q)'="" S ARRAY(2)=ARRAY(2)_$P(IB0,U,Q)_$S(Q=8:"",$P(IB0,U,Q+1)'="":",",1:"")
+ I $P(IB0,U,11)'="" D
+ . F Q=11:1:14 I $P(IB0,U,Q)'="" S ARRAY(2)=ARRAY(2)_$P(IB0,U,Q)_$S(Q=14:"",$P(IB0,U,Q+1)'="":",",1:"")
+ S $E(ARRAY(2),37)="Chg: "_$J($P(IB0,U,15)/100,"",2)
+ S $E(ARRAY(2),64)="Units:"_$S($P(IB0,U,16):$P(IB0,U,16),1:"")
+ S ARRAY(3)="Payer reported the following was used for adjudication via the EEOB (835):"
+ S ARRAY(4)="Proc/Rev CD: "_$P(IB0,U,3)_" Mods:"
+ I 'IBBNDL D     ; If not bundled.
+ . I $P(IB0,U,5)="" S ARRAY(4)=ARRAY(4)_"UNK" Q   ; If no modifiers found, show "UNK" for Unknown.
+ . F Q=5:1:8 I $P(IB0,U,Q)'="" S ARRAY(4)=ARRAY(4)_$P(IB0,U,Q)_$S(Q=8:"",$P(IB0,U,Q+1)'="":",",1:"")
+ I IBBNDL D      ; If bundled.
+ . I $P(IB0,U,11)="" S ARRAY(4)=ARRAY(4)_"UNK" Q   ; If no modifiers found, show "UNK" for Unknown.
+ . F Q=11:1:14 I $P(IB0,U,Q)'="" S ARRAY(4)=ARRAY(4)_$P(IB0,U,Q)_$S(Q=14:"",$P(IB0,U,Q+1)'="":",",1:"")
+ S $E(ARRAY(4),37)="Amt Pd: "_$J($P(IB0,U,17)/100,"",2)
+ S $E(ARRAY(4),64)="Cov Units:"_$S($P(IB0,U,18):$P(IB0,U,18)/100,1:1)
+ S ARRAY(5)="  "
  Q
  ;
 DET4X(RECID,IB0,ARRAY) ; Format important details of record 41-46 for error
@@ -207,18 +226,18 @@ DET4X(RECID,IB0,ARRAY) ; Format important details of record 41-46 for error
  ;  ARRAY(n)=formatted line is returned if passed by ref
  N CT,Q
  I RECID=41 D  Q
- . S ARRAY(1)="Allowed Amt: "_$J($P(IB0,U,3)/100,"",2)_"  Per Diem Amt: "_$J($P(IB0,U,4)/100,"",2)
+ . S ARRAY(1)="    Allowed Amt: "_$J($P(IB0,U,3)/100,"",2)_"  Per Diem Amt: "_$J($P(IB0,U,4)/100,"",2)
  ;
  I RECID=42 D  Q
- . S ARRAY(1)="Line Item Remark Code: "_$P(IB0,U,3)
+ . S ARRAY(1)="    Line Item Remark Code: "_$P(IB0,U,3)
  . I $P(IB0,U,4)'="" S CT=1 F Q=0:80:190 I $E($P(IB0,U,4),Q+1,Q+80)'="" S CT=CT+1,ARRAY(CT)=$E($P(IB0,U,4),Q+1,Q+80)
  ;
  I RECID=45 D
- . S ARRAY(1)="Adj Group Cd: "_$P(IB0,U,3)_"  Reason Cd: "_$P(IB0,U,4)_"  Amt: "_$J($P(IB0,U,5)/100,"",2)_"  Quantity: "_+$P(IB0,U,6)
+ . S ARRAY(1)="    Adj Group Cd: "_$P(IB0,U,3)_"  Reason Cd: "_$P(IB0,U,4)_"  Amt: "_$J($P(IB0,U,5)/100,"",2)_"  Quantity: "_+$P(IB0,U,6)
  . I $P(IB0,U,7)'="" S CT=1 F Q=0:80:190 I $E($P(IB0,U,7),Q+1,Q+80)'="" S CT=CT+1,ARRAY(CT)=$E($P(IB0,U,7),Q+1,Q+80)
  ;
  I RECID=46 D
- . S ARRAY(1)="Payer Policy Reference: "_$P(IB0,U,3)
+ . S ARRAY(1)="    Payer Policy Reference: "_$P(IB0,U,3)
  Q
  ; 
 FDT(X) ; Format date in X (YYYYMMDD) to MM/DD/YYYY

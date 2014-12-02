@@ -1,10 +1,10 @@
 DVBCAMI3 ;ALB/GTS-557/THM-HOSPITAL AMIS 290 PRINTING, BULLETIN SEND ; 7/16/91  8:55 AM
- ;;2.7;AMIE;**149**;Apr 10, 1995;Build 16
+ ;;2.7;AMIE;**149,184**;Apr 10, 1995;Build 10
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;Input: DVBALRPT - boolean value indicating if this is the last report
  ;       DVBACDE  - Priority of Exam code for report
- ;                   [ALL (Original Report),AO,BDD,QS,DCS,DFD]
+ ;                   [ALL (Original Report),AO,BDD,QS,IDES]
 EN(DVBALRPT,DVBACDE) ;
  U IO D HDR F JI=0.9:0 S JI=$O(^TMP($J,JI)) Q:JI=""  W ^(JI,0),! I IOST?1"C-".E,$Y>19 D PAUSE G:$D(OUT) EXIT D HDR
  D PAUSE I $D(OUT)!(ANS=U) W:SBULL="Y" !!,*7,"Bulletin will NOT be sent!!",*7,! H 2 G EXIT

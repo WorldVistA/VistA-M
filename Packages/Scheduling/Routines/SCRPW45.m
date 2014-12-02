@@ -1,13 +1,18 @@
-SCRPW45 ;RENO/KEITH - Outpatient Diagnosis/Procedure Search ; 15 Jul 98  02:38PM
- ;;5.3;Scheduling;**144,351,409**;AUG 13, 1993
+SCRPW45 ;RENO/KEITH - Outpatient Diagnosis/Procedure Search ;15 Jul 98  02:38PM
+ ;;5.3;Scheduling;**144,351,409,593**;AUG 13, 1993;Build 13
  N SD,SDDIV,SDPAR,SDCRI,DIR,%DT
  D TITL^SCRPW50("Outpatient Diagnosis/Procedure Search ")
  G:'$$DIVA^SCRPW17(.SDDIV) EXIT
  D SUBT^SCRPW50("**** Date Range Selection ****")
- W ! S %DT="AEPX",%DT(0)=2961001,%DT("A")="Beginning date: " D ^%DT G:Y<1 EXIT S SD("BDT")=Y X ^DD("DD") S SD("PBDT")=Y
+ S Y=$$IMP^SCRPWICD(30) S SD("I10DTI")=Y X ^DD("DD") S SD("I10DTE")=Y
+BDT W ! S %DT="AEPX",%DT(0)=2961001,%DT("A")="Beginning date: " D ^%DT G:Y<1 EXIT S SD("BDT")=Y X ^DD("DD") S SD("PBDT")=Y
 EDT S %DT("A")="   Ending date: " W ! D ^%DT G:Y<1 EXIT
  I Y<SD("BDT") W !!,$C(7),"End date cannot be before begin date!",! G EDT
- S SD("EDT")=Y_.999999 X ^DD("DD") S SD("PEDT")=Y,(SDOUT,SDNUL)=0 F SDI=1:1:26 D PAR Q:SDOUT!SDNUL
+ ;S SD("EDT")=Y_.999999 X ^DD("DD") S SD("PEDT")=Y,(SDOUT,SDNUL)=0 F SDI=1:1:26 D PAR Q:SDOUT!SDNUL
+ S SD("EDT")=Y_.999999 X ^DD("DD") S SD("PEDT")=Y
+ I (SD("BDT")<SD("I10DTI")),(SD("EDT")'<SD("I10DTI")) D  G BDT
+ . W !!,$C(7),"Beginning and Ending dates must both be prior to "_SD("I10DTE")_" (ICD-9) or both be on or after "_SD("I10DTE")_" (ICD-10)."
+ S (SDOUT,SDNUL)=0 F SDI=1:1:26 D PAR Q:SDOUT!SDNUL
  G:SDOUT!'$D(SDPAR) EXIT S SDNUL=0 F  D CRI Q:SDOUT!SDNUL
  G:SDOUT!'$D(SDCRI) EXIT
  D SUBT^SCRPW50("**** Report Detail Format Selection ****")
@@ -26,7 +31,9 @@ PAR ;Select report search criteria
  K DIR S DIR(0)="SO^DL:DIAGNOSIS LIST;DR:DIAGNOSIS RANGE;PL:PROCEDURE LIST;PR:PROCEDURE RANGE",DIR("A")="Specify criteria type for search element '"_SDVAR_"'"
  S DIR("?")="Select the type of data to search for with element '"_SDVAR_"'." W ! D ^DIR I $D(DTOUT)!$D(DUOUT) S SDOUT=1 Q
  I X="" S SDNUL=1 Q
- S SDSEL=Y,SDSEL(0)=Y(0) N DIC S DIC(0)="AEMQZ",DIC=$S(SDSEL["D":"^ICD9(",1:"^ICPT(") D:SDSEL["L" LIST D:SDSEL["R" RANGE S SDNUL=0
+ S SDSEL=Y,SDSEL(0)=Y(0) N DIC S DIC(0)="AEMQZ",DIC=$S(SDSEL["D":"^ICD9(",1:"^ICPT(")
+ S:DIC="^ICD9(" DIC("S")="I $$CSI^SCRPWICD(80,Y)="_$S(SD("BDT")<SD("I10DTI"):1,1:30)
+ D:SDSEL["L" LIST D:SDSEL["R" RANGE S SDNUL=0
  G:'$D(SDPAR(SDVAR)) PAR S SDPAR(SDVAR)=SDSEL_U_SDSEL(0),SD("LIST",$E(SDSEL),$E(SDSEL,2))=""
  Q
  ;
@@ -34,7 +41,7 @@ LIST W ! F  D  Q:SDNUL!SDOUT
  .D ^DIC I $D(DUOUT)!$D(DTOUT) S SDOUT=1 Q
  .I X="" S SDNUL=1 Q
  .I Y>0 D
- ..S Y(0)=$S(SDSEL["D":$P($$ICDDX^ICDCODE(+Y),"^",2,99),1:$P($$CPT^ICPTCOD(+Y,,1),"^",2,99))
+ ..S Y(0)=$S(SDSEL["D":$P($$ICDDX^SCRPWICD(+Y),"^",2,99),1:$P($$CPT^ICPTCOD(+Y,,1),"^",2,99))
  ..S SDPAR(SDVAR,$P(Y,U))=$P(Y(0),U)_" "_$P(Y(0),U,$S(SDSEL["D":3,1:2))
  Q
  ;
@@ -42,11 +49,11 @@ RANGE W ! S DIC("A")="From "_$S(SDSEL["D":"ICD DIAGNOSIS: ",1:"CPT CODE: ")
  D ^DIC I $D(DUOUT)!$D(DTOUT) S SDOUT=1 Q
  I X="" S SDNUL=1 Q
  Q:Y<1
- S Y(0)=$S(SDSEL["D":$P($$ICDDX^ICDCODE(+Y),"^",2,99),1:$P($$CPT^ICPTCOD(+Y,,1),"^",2,99))
+ S Y(0)=$S(SDSEL["D":$P($$ICDDX^SCRPWICD(+Y),"^",2,99),1:$P($$CPT^ICPTCOD(+Y,,1),"^",2,99))
  S S1=$P(Y(0),U)_" "_$P(Y(0),U,$S(SDSEL["D":3,1:2)),SDPAR(SDVAR,S1)=$P(Y,U),DIC("A")="To "_$P(DIC("A")," ",2,99)
 R2 W ! D ^DIC I $D(DUOUT)!$D(DTOUT) S SDOUT=1 Q
  I X=""!(Y<1) S SDNUL=1 K SDPAR(SDVAR) Q
- S Y(0)=$S(SDSEL["D":$P($$ICDDX^ICDCODE(+Y),"^",2,99),1:$P($$CPT^ICPTCOD(+Y,,1),"^",2,99))
+ S Y(0)=$S(SDSEL["D":$P($$ICDDX^SCRPWICD(+Y),"^",2,99),1:$P($$CPT^ICPTCOD(+Y,,1),"^",2,99))
  S S2=$P(Y(0),U)_" "_$P(Y(0),U,$S(SDSEL["D":3,1:2))
  I S1]S2 W !!,$C(7),"Ending value must collate after beginning value!",! G R2
  S SDPAR(SDVAR,S2)=$P(Y,U) Q

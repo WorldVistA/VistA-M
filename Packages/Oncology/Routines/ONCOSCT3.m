@@ -1,5 +1,5 @@
 ONCOSCT3 ;WASH ISC/SRR,MLH-ASCII OUTPUT ;8/21/93  11:17
- ;;2.11;ONCOLOGY;**1**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 OUTPUT ;IN ^TMP($J,"CLAB",'Column Alpha Order')=COLUMN LABEL
  ;   ^TMP($J,"RLAB", Row Number)= ROW LABEL

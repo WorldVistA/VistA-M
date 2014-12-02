@@ -1,13 +1,18 @@
-LEXAR4 ;ISL/KER - Look-up Response (Select Entry) ;11/30/2008
- ;;2.0;LEXICON UTILITY;**4,5,6,25,55**;Sep 23, 1996;Build 11
- ;
+LEXAR4 ;ISL/KER - Look-up Response (Select Entry) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**4,5,6,25,55,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.001)       N/A
+ ;    ^TMP("LEXHIT")      SACC 2.3.2.5.1
+ ;    ^TMP("LEXSCH")      SACC 2.3.2.5.1
+ ;               
  ; External References
- ;   DBIA 10086  HOME^%ZIS
- ;   DBIA 10063  ^%ZTLOAD
- ;   DBIA 10018  ^DIE
- ;                    
+ ;    HOME^%ZIS           ICR  10086
+ ;    ^%ZTLOAD            ICR  10063
+ ;    ^DIE                ICR  10018
+ ;               
 SEL(LEXUR,LEXVDT) ; Select # on list
- K LEX("SEL") N LEXLVL,LEXMAX,LEXLF S LEXLF=1,LEXMAX=+($G(^TMP("LEXSCH",$J,"LST",0)))
+ K LEX("SEL") D VDT^LEXU N LEXLVL,LEXMAX,LEXLF S LEXLF=1,LEXMAX=+($G(^TMP("LEXSCH",$J,"LST",0)))
  S LEX=+($G(LEX)),LEXUR=+($G(LEXUR))
  I LEXMAX=0!(LEX=0) D EDA^LEXAR G SELQ
  K LEX("ERR"),LEX("SEL") I LEXUR'>0!(LEXUR>LEXMAX) D  G SELQ
@@ -27,10 +32,11 @@ SEL(LEXUR,LEXVDT) ; Select # on list
  D SET(LEXEXP,$G(LEXVDT)),EDU^LEXAR
  G SELQ
 SET(LEXEXP,LEXVDT) ; Set LEX("SEL") Nodes
- K LEX("SEL") D SETEXP^LEXAR5(LEXEXP)
+ K LEX("SEL") D VDT^LEXU D SETEXP^LEXAR5(LEXEXP)
  N LEXMC S LEXMC=+($P(^LEX(757.01,LEXEXP,1),"^",1))
  ; If selected from the list increment frequency
- D:+($G(^TMP("LEXSCH",$J,"LST",0)))>0&(+($G(^TMP("LEXSCH",$J,"APP",0)))>1) INC(LEXMC)
+ ; Temporarily deactivated until after Oct 1, 2013
+ ; D:+($G(^TMP("LEXSCH",$J,"LST",0)))>0&(+($G(^TMP("LEXSCH",$J,"APP",0)))>1) INC(LEXMC)
  N LEXMCE S LEXMCE=+(^LEX(757,LEXMC,0))
  D SETSRC^LEXAR5(LEXEXP,$G(LEXVDT))
  D:'$D(LEX("SEL","SRC","D",LEXMCE))&(LEXMCE'=LEXEXP) SETSRC^LEXAR5(LEXMCE,$G(LEXVDT))

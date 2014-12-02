@@ -1,5 +1,5 @@
 SRONP2 ;BIR/ADM - PROCEDURE REPORT (NON-OR) ;07/26/04  9:45 AM
- ;;3.0; Surgery ;**132,142**;24 Jun 93
+ ;;3.0;Surgery;**132,142,177**;24 Jun 93;Build 89
  Q
 OPTOP(SRTN) ; send op-top to ^TMP
  ; SRTN   - case number in file 130
@@ -33,7 +33,8 @@ OPTOP(SRTN) ; send op-top to ^TMP
  D ^SRONP0
  Q
 DIAG D LINE(1) S X=$G(^SRF(SRTN,15,OTH,0)),@SRG@(SRI)=$S(CNT=1:" Other: ",1:"        ")_$P(X,"^"),ICD=$P(X,"^",3)
- S ICD=$S(ICD:$P(^ICD9(ICD,0),"^"),1:"NOT ENTERED"),@SRG@(SRI)=@SRG@(SRI)_$$SPACE(50)_"ICD9 Code: "_ICD
+ S:ICD ICD=$P($$ICD^SROICD(SRTN,ICD),"^",2)
+ S ICD=$S(ICD:ICD,1:"NOT ENTERED"),@SRG@(SRI)=@SRG@(SRI)_$$SPACE(50)_"ICD"_$$ICD910^SROICD(SRTN)_" Code: "_ICD
  Q
 N(SRL) N SRNM I $L(Y)>SRL S SRNM=$P(Y,",")_","_$E($P(Y,",",2))_".",Y=SRNM
  Q

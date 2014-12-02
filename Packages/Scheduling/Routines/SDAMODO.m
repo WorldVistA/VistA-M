@@ -1,10 +1,15 @@
-SDAMODO ;ALB/SCK - PROVIDER DIAGNOSTICS REPORT; 4/21/93 ; 05 Oct 98  8:39 PM
- ;;5.3;Scheduling;**25,132,159**;Aug 13, 1993
+SDAMODO ;ALB/SCK - PROVIDER DIAGNOSTICS REPORT ;05 Oct 98  8:39 PM
+ ;;5.3;Scheduling;**25,132,159,586**;Aug 13, 1993;Build 28
+ ;
+ ; Reference to $$IMP^ICDEX supported by ICR #5747
+ ;
 START ;
  N SORT1,SORT2,SDBEG,SDEND,VAUTD,CLINIC,PATN,PROVDR,STOPC,PDIAG
+ N ICD10IMPDT S ICD10IMPDT=$$IMP^ICDEX(30) ;SSA ICD-10
  D HOME^%ZIS
 SORTS ;
  I '$$RANGE G EXIT
+ I (SDBEG<ICD10IMPDT)&(SDEND>=ICD10IMPDT) W !!,$$LINE("Ending Date must be prior to "_$$FMTE^XLFDT(ICD10IMPDT,"5Z")_" for ICD9 diagnosis codes.") G SORTS ;SSA ICD-10
  I '$$DIV G EXIT
  I '$$SORT1 G EXIT
  I '$$SORT2 G EXIT
@@ -56,8 +61,8 @@ PROV() ;   select provider
  Q $D(PROVDR)>0
  ;
 DIAG() ;
- W !!,$$LINE("Select Diagnosis Code")
- S DIC="^ICD9(",VAUTSTR="Diagnosis",VAUTVB="PDIAG",VAUTNI=2
+ ; SSA ICD-10
+ W !!,$$LINE("Select Diagnosis Code") S DIC="^ICD9(",VAUTSTR="Diagnosis "_$S(SDBEG<ICD10IMPDT:"(ICD9)",1:"(ICD10)"),VAUTVB="PDIAG",VAUTNI=2
  D FIRST^VAUTOMA
  I Y<0 K PDIAG
  Q $D(PDIAG)>0
@@ -97,7 +102,9 @@ LINE(STR) ;  print display line
 OPTIONS(CHECK) ;  display options for sorting reports
  S X="S^"
  S X=X_$S(CHECK=1:":[Selected];",1:"1:Provider;")
- S X=X_$S(CHECK=2:":[Selected];",1:"2:Diagnosis [DX];")
+ ; SSA ICD-10
+ I SDBEG<ICD10IMPDT S X=X_$S(CHECK=2:":[Selected];",1:"2:Diagnosis (ICD9) [DX];")
+ I SDBEG>=ICD10IMPDT S X=X_$S(CHECK=2:":[Selected];",1:"2:Diagnosis (ICD10) [DX];")
  S X=X_$S(CHECK=3:":[Selected];",1:"3:Patient;")
  S X=X_$S(CHECK=4:":[Selected];",1:"4:Clinic;")
  S X=X_$S(CHECK=5:":[Selected]",1:"5:Primary Stop Code")
@@ -107,7 +114,7 @@ OPTIONS(CHECK) ;  display options for sorting reports
  ;
 QUE ;
  S ZTRTN="^SDAMODO2",ZTDESC="PROVIDER DX REPORT"
- F X="SORT1","SORT2","SDBEG","SDEND","VAUTD(","CLINIC(","PATN(","PROVDR(","STOPC(","PDIAG(","VAUTD","CLINIC","PATN","PROVDR","STOPC","PDIAG" S ZTSAVE(X)=""
+ F X="SORT1","SORT2","SDBEG","SDEND","VAUTD(","CLINIC(","PATN(","PROVDR(","STOPC(","PDIAG(","VAUTD","CLINIC","PATN","PROVDR","STOPC","PDIAG","ICD10IMPDT" S ZTSAVE(X)=""
  D ^%ZTLOAD W:$D(ZTSK) !,"TASK #: ",ZTSK
  D HOME^%ZIS K IO("Q")
  Q
@@ -115,3 +122,4 @@ QUE ;
 ERR ;
  W !!,"NOT AVAILABLE"
  Q
+ ;

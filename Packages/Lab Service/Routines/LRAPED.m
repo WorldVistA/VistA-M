@@ -1,5 +1,13 @@
-LRAPED ;DALOI/STAFF - ANATOMIC PATH EDIT LOG-IN ;Feb 2, 2009
- ;;5.2;LAB SERVICE;**1,31,72,115,259,350**;Sep 27, 1994;Build 230
+LRAPED ;DALOI/STAFF,PMK - ANATOMIC PATH EDIT LOG-IN ;17 Sep 2013 7:31 AM
+ ;;5.2;LAB SERVICE;**1,31,72,115,259,350,427,433,428**;Sep 27, 1994;Build 16
+ ;
+ ;RB LR*5.2*428 Added code to insure a defined site hospital location
+ ;              can be entered when editing the patient location field.
+ ;              This insures the correct location and patient type will
+ ;              be propagated to corresponding fields in file #68 and
+ ;              #69. This insures the log book reflects the correct
+ ;              patient location and CPT data transfer to PCE will be
+ ;              based on an accurate patient type.
  ;
  N LRTMP,LRREL,LRCOMP,LRMSG
  D ^LRAP Q:'$D(Y)
@@ -18,7 +26,10 @@ G ;
  G:LRAN=""!(LRAN[U) END
  I LRAN'?1N.N!($E(LRAN)=0) D  G G
  .W $C(7),!," ENTER NUMBERS ONLY, No leading zero's"
- D EDIT
+ D EDIT I $G(END)=1 K END    ;LR*5.2*428 quit if not valid location
+ ;
+ I $T(EDIT^MAGT7MA)'="" D EDIT^MAGT7MA ; invoke Imaging HL7 routine - P433
+ ;
  G G
  ;
  ;
@@ -34,6 +45,7 @@ EDIT ;
  ;
  ;
 I ;Non-autopsy sections (SP,CY,EM)
+ D GETDEF^LRAP
  S LRI=+$O(^LR(LRXREF,LRC,LRABV,LRAN,LRDFN,0))
  I '$D(^LR(LRDFN,LRSS,LRI,0)) D  Q
  . W $C(7),!,"Entry in x-ref but not in file ! X-ref deleted."
@@ -53,6 +65,17 @@ DIE ;
  ;
  S LRDIWESUB="["_LRACC_"]"
  ;
+ ;LR*5.2*428 START: ASK LOCATION PER FILE 44 DEFINED
+ S LRLLOC=$P($G(^LR(LRDFN,LRSS,LRI,0)),"^",8)
+ D ASK I $G(END)=1 Q
+ ;
+ S DA=LRI,DA(1)=LRDFN,DIE="^LR("_LRDFN_","""_LRSS_""","
+ S DR=".08///^S X=LRLLOC" D ^DIE K DR
+ ;SET Associated files 68 & 69 LOCATION & TYPE fields
+ D UIDEX      ;propagate LOCATION/TYPE info to files 68 & 69 fields
+ ;LR*5.2*428 END: ASK LOCATION PER FILE 44 DEFINED
+ ;
+ S DA=LRI,DA(1)=LRDFN,DIE="^LR("_LRDFN_","""_LRSS_""","  ;LR*5.1*428 restore previous DIE setup
  D SET,^DIE
  I $D(Y) D HELP G DIE
  D CK
@@ -68,15 +91,21 @@ SET ; Setup fields for SP, CY and EM subscripts to edit.
  ;F LRFIELD=.013,.014,.015,.016 S LRDIWESUB(LRFILE,LRFIELD)=$$SET2(LRFILE,LRFIELD,LRACC)
  ;
  S (LRJ,LRE,LRF)=""
- S DR=".08;S LRE=X;.07;S LRJ=X;S:LRJ LRJ=$P(^VA(200,LRJ,0),U);"
+ S DR=".07;S LRJ=X;S:LRJ LRJ=$P(^VA(200,LRJ,0),U);"     ;LR*5.2*428 Remove .08 field edit
  S DR=DR_".011//^S X=LRJ;.012;.013;.014;.015;.016;.1;S LRG=X;.02;.021;"
  S DR=DR_".99;S LRF=X"
  ;
- I LRSS="SP" S DR(2,63.812)=".01;.06R;.07R"
+ I LRSS="SP" D
+ . S DR(2,63.812)=".01;.06R//^S X=LRSPTOP(0);S:X LRSPTOP=X,LRSPTOP(0)=$P(^LAB(61,LRSPTOP,0),U)"
+ . S DR(2,63.812)=DR(2,63.812)_";.07R//^S X=LRSAMP(0);S:X LRSAMP=X,LRSAMP(0)=$P(^LAB(62,LRSAMP,0),U)"
  ;
- I LRSS="CY" S DR(2,63.902)=".01;.02;.06R;.07R"
+ I LRSS="CY" D
+ . S DR(2,63.902)=".01;S LR(63.902)=X;.06R//^S X=LRSPTOP(0);S:X LRSPTOP=X,LRSPTOP(0)=$P(^LAB(61,LRSPTOP,0),U)"
+ . S DR(2,63.902)=DR(2,63.902)_";.07R//^S X=LRSAMP(0);S:X LRSAMP=X,LRSAMP(0)=$P(^LAB(62,LRSAMP,0),U);S:'LRCAPA Y=""@2"";.02;@2"
  ;
- I LRSS="EM" S DR(2,63.202)=".01;.06R;.07R"
+ I LRSS="EM" D
+ . S DR(2,63.202)=".01;.06R//^S X=LRSPTOP(0);S:X LRSPTOP=X,LRSPTOP(0)=$P(^LAB(61,LRSPTOP,0),U)"
+ . S DR(2,63.202)=DR(2,63.202)_";.07R//^S X=LRSAMP(0);S:X LRSAMP=X,LRSAMP(0)=$P(^LAB(62,LRSAMP,0),U)"
  Q
  ;
  ;
@@ -169,7 +198,37 @@ HELP ;
  W !,"Press RETURN key repeatedly to complete the edit.",!!
  Q
  ;
+ ;LR*5.2*428 Added location query to insure location defined in file 44
+ASK W !,"PATIENT LOCATION: ",LRLLOC,$S(LRLLOC]"":"// ",1:"") R X:DTIME G:X[U ASKOUT I '$T&(LRLLOC="") W "   Must enter defined location" G ASK
+ I $L(X)>30!(X'?.ANP) W "  Enter 2 - 30 alpha-numeric name" G ASK
+ K DIC S DIC("S")="I '$G(^(""OOS""))"
+ S LROLLOC="",DIC=44,DIC(0)="EMOQZ" S:X="" X=LRLLOC D ^DIC K DIC G ASK:X["?"
+ I $D(DIROUT)!$D(DTOUT)!$D(DUOUT) G ASKOUT
+ I Y<0 W "  You must select a standard location." G ASK
+ S (LRE,LROLLOC)=+Y,LRLLOC=$P(Y(0),U),LRLOCTYP=$P(Y(0),U,3)
+ S:'$L(LRLLOC) LRLLOC="NO ABRV"
+INACT K LRIA,LRRA I $D(^SC(+Y,"I")) S LRIA=+^("I"),LRRA=$P(^("I"),U,2)
+ I $S('$D(LRIA):0,'LRIA:0,LRIA>DT:0,LRRA'>DT&(LRRA):0,1:1) W $C(7),"  Location is inactive, Not allowed." G ASK
+ASKQ K DIC,LRIA,LRRA,% Q
+ASKOUT W !,"  VALID LOCATION REQUIRED TO CONTINUE, EXITING SELECTED ACCESSION" S END=1 G ASKQ
  ;
 END ;
- D V^LRU
+ D V^LRU K DUOUT,DIRUT,DTOUT
+ Q
+ ;
+UIDEX ;LR*5.2*428 Propagate location/type to file 68 & 69 associated fields
+ ;Find 68 link using UID from file 63 accession
+ N X1,X2,X3,X4,X5 S (X1,X2,X3)=0
+ S LRUID=$P($G(^LR(LRDFN,LRSS,LRI,"ORU")),U) G:LRUID="" UIDEXQ
+ S X1=$O(^LRO(68,"C",LRUID,X1)) G:'X1 UIDEXQ
+ S X2=$O(^LRO(68,"C",LRUID,X1,X2)) G:'X2 UIDEXQ
+ S X3=$O(^LRO(68,"C",LRUID,X1,X2,X3)) G:'X3 UIDEXQ
+ S DIE="^LRO(68,X1,1,X2,1,",DA=X3,DR="6////^S X=LRLLOC;92///^S X=LRLOCTYP"
+ D ^DIE K DR,DIE,DA,LRUID
+ ;Find 69 link using date/accession number in file 68
+ S X4=$P(^LRO(68,X1,1,X2,1,X3,0),U,4),X5=$P(^LRO(68,X1,1,X2,1,X3,0),U,5)
+ I X4&X5&$D(^LRO(69,X4,1,X5,0)) D
+ . S DIE="^LRO(69,X4,1,",DA=X5,DA(1)=X4,DR="8////^S X=LROLLOC"
+ D ^DIE
+UIDEXQ K DR,DIE,DA,LRLLOC,LRLOCTYP,LROLLOC
  Q

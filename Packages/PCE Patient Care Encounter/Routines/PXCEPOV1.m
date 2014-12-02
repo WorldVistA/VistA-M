@@ -1,24 +1,20 @@
 PXCEPOV1 ;ISL/dee - Used to edit and display V POV ;8/31/05
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**134,149,124,170**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**134,149,124,170,203,199**;Aug 12, 1996;Build 51
  ;; ;
  Q
  ;
  ;********************************
  ;Special cases for display.
  ;
-DNARRAT(PNAR) ;Provider Narrative for ICD-9
- N PXCEPNAR,SNARR
+DNARRAT(PNAR) ;Provider Narrative for ICD-9 / ICD-10
+ N PXCEPNAR,PXDXDATE,SNARR
  I PNAR<0 Q ""
  S PXCEPNAR=$P(^AUTNPOV(PNAR,0),"^")
  I $G(VIEW)="B",$D(ENTRY)>0 D
  . N DIC,DR,DA,DIQ,PXCEDIQ1
- . ;S DIC=80
- . ;S DR="3"
  . S DA=$P(ENTRY(0),"^",1)
- . ;S DIQ="PXCEDIQ1("
- . ;S DIQ(0)="E"
- . ;D EN^DIQ1
- . S SNARR=$P($$ICDDX^ICDCODE(DA,$G(IDATE)),"^",4)
+ . S PXDXDATE=$S($D(PXCEVIEN)=1:$$CSDATE^PXDXUTL(PXCEVIEN),$D(PXCEAPDT)=1:PXCEAPDT,1:DT)
+ . S SNARR=$P($$ICDDATA^ICDXCODE("DIAG",DA,PXDXDATE,"I"),"^",4)
  . ;S:$G(PXCEDIQ1(80,DA,3,"E"))=PXCEPNAR PXCEPNAR=""
  . S:SNARR=PXCEPNAR PXCEPNAR=""
  Q PXCEPNAR
@@ -58,7 +54,7 @@ ENARRAT1 ;
  I $P(PXCETEXT,"~",8)]"" S DIR("?")=$P(PXCETEXT,"~",8)
  E  D
  . S DIR("?",1)="This response must have at least 2 characters and no more than 245"
- . S DIR("?",2)="characters and must not contain embedded uparrow."
+ . S DIR("?",2)="characters and must not contain embedded uparrows."
  . I REQUIRED S DIR("?")="This field is required."
  . E  S DIR("?")="This field is optional."
  I ASK=2,(Y]"") S ASKING=1
@@ -69,7 +65,22 @@ ENARRAT1 ;
  N PXCEX,PXCEY
  I $E(Y,1)="=" S PXCEX=$E(PXCEIN01_" "_$E($P(Y,"^"),2,245),1,245)
  E  S PXCEX=Y
- I DEFAULT,PXCEX="" S PXCEX=$$EXTTEXT^PXUTL1($P(PXCEAFTR(0),"^",1),REQUIRED,$G(FILE),$G(FIELD1),$G(FIELD2))
+ ; ***
+ ; PX*1.0*199 - ICD-10 Remediation note.  
+ ; Fields 5 and 10 in file #80 have been modified by STS for ICD-10.
+ ; In the following lines of code these two field numbers are intercepted
+ ; and an appropriate, alternative data retrieval is implemented.
+ ; Other file and field numbers will behave as they previously did.
+ ; ***
+ N DXCATIEN,PXDXDATE
+ S PXDXDATE=$S($D(PXCEVIEN)=1:$$CSDATE^PXDXUTL(PXCEVIEN),$D(PXCEAPDT)=1:PXCEAPDT,1:DT)
+ I DEFAULT,PXCEX="" D
+ . I $G(FILE)=80,$G(FIELD1)=10 D  Q
+ .. S PXCEX=$$DXNARR^PXUTL1($P(PXCEAFTR(0),"^",1),PXDXDATE)
+ . I $G(FILE)=80,$G(FIELD1)=5 D  Q
+ .. S DXCATIEN=$P($$ICDDATA^ICDXCODE("DIAG",$P(PXCEAFTR(0),"^",1),PXDXDATE,"I"),"^",6)
+ .. I $L(DXCATIEN) S PXCEX=$$GET1^DIQ(80.3,DXCATIEN,.01)
+ . S PXCEX=$$EXTTEXT^PXUTL1($P(PXCEAFTR(0),"^",1),REQUIRED,$G(FILE),$G(FIELD1),$G(FIELD2))
  I ASKING D
  . W !,PXCEX
  I $L(PXCEX)=1,PXCEX'="@" W !,"Must be 2 to 245 characters." G ENARRAT1
@@ -82,15 +93,17 @@ ENARRAT1 ;
  Q
  ;
 EINJURY ;Date/Time of Injury
- ;I not an injury code Q
- N DIC,DR,DA,DIQ,PXCEDIQ1
+ ;If not an injury code Q
+ N DIC,DR,DA,DASV,DIQ,PXCEDIQ1
  S DIC=80
  S DR=".01"
- S DA=$P(PXCEAFTR(0),"^",1)
+ S (DA,DASV)=$P(PXCEAFTR(0),"^",1)
  S DIQ="PXCEDIQ1("
  S DIQ(0)="E"
  D EN^DIQ1
- I PXCEDIQ1(80,DA,.01,"E")'<800,PXCEDIQ1(80,DA,.01,"E")'>999.999 D E1201^PXCEPOV1(-1,-1,0)
+ I PXCEDIQ1(80,DASV,.01,"E")'<800,PXCEDIQ1(80,DASV,.01,"E")'>999.999 D E1201^PXCEPOV1(-1,-1,0)
+ ; ICD-10 Injury Code logic immediately below -- codes beginning with S or T will be considered Injury codes.
+ I "^S^T^"[("^"_$E(PXCEDIQ1(80,DASV,.01,"E"))_"^") D E1201^PXCEPOV1(-1,-1,0)
  Q
  ;
  ;********************************
@@ -105,8 +118,8 @@ E1201(REQTIME,BEFORE,AFTER,DEFAULT) ;
  ;        not be before or -1 for any amount before.
  ;AFTER   is the number of days after the visit that the date can
  ;        not be after or -1 for any amount.  In any case the date
- ;        can not be later than today.
- ;DEFAULT is the default date/time is there is not one in the file.
+ ;        cannot be later than today.
+ ;DEFAULT is the default date/time if there is not one in the file.
  ;        If it is -1 then NOW will be used as the default.
  ;        If it is 0 then TODAY will be used as the default.
  N X1,X2,X,%Y,%H,%I,%
@@ -150,19 +163,27 @@ E1201(REQTIME,BEFORE,AFTER,DEFAULT) ;
  S $P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))=$P(Y,"^")
  Q
  ;
-ICDCODE ;enter ICD9 code using lexicon
+ICDCODE ;enter ICD9/ICD10 code using lexicon
  ; DBIA # 1571 AND 1609
- N CODE
+ N CODE,PXACS,PXACSREC,PXDXDATE,PXDEF
+ S PXDXDATE=$S($D(PXCEVIEN)=1:$$CSDATE^PXDXUTL(PXCEVIEN),$D(PXCEAPDT)=1:PXCEAPDT,1:DT)
+ S PXACSREC=$$ACTDT^PXDXUTL(PXDXDATE),PXACS=$P(PXACSREC,"^",3)
+ I PXACS["-" S PXACS=$P(PXACS,"-",1,2)
  K X
  I +$G(PXCEAFTR(0))>0 D
  . S CODE=$P(PXCEAFTR(0),"^")
- . S X=$P($$ICDDX^ICDCODE(CODE,$G(PXCEAPDT)),"^",2)
- D CONFIG^LEXSET("ICD",,$G(PXCEAPDT))
- S DIC("A")="Select Diagnosis: "
- S DIC="^LEX(757.01,",DIC(0)=$S('$L($G(X)):"A",1:"")_"EQM"
- D ^DIC
- I X="@" Q
+ . S X=$P($$ICDDATA^ICDXCODE("DIAG",CODE,PXDXDATE,"I"),"^",2)
+ I $P(PXACSREC,U,1)'="ICD" D
+ . S PXDEF=$G(X),PXAGAIN=0,PXDATE=PXDXDATE D ^PXDSLK I PXXX=-1 S Y=-1 Q
+ . S Y($P(PXACSREC,U,2))=$P($P(PXXX,U,1),";",2)
+ . S Y=$P(PXXX,";",1)_U_$P(PXXX,U,2)
+ I $P(PXACSREC,U,1)="ICD" D
+ . D CONFIG^LEXSET($P(PXACSREC,"^",1),,PXDXDATE)
+ . S DIC("A")="Select "_PXACS_" Diagnosis: "
+ . S DIC="^LEX(757.01,",DIC(0)=$S('$L($G(X)):"A",1:"")_"EQM"
+ . D ^DIC
+ I $G(X)="@" Q
  I Y=-1 S DIRUT=-1 Q
- S CODE=Y(1)
- S Y=+$$ICDDX^ICDCODE(CODE)
+ S CODE=Y($P(PXACSREC,"^",2))
+ S Y=+$$ICDDATA^ICDXCODE("DIAG",CODE,PXDXDATE,"E")
  Q

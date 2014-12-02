@@ -1,7 +1,8 @@
-GMPLEDT4 ; SLC/MKB -- Problem List Edit actions cont ;3-7-96 2:00pm
- ;;2.0;Problem List;**5**;Aug 25, 1994
+GMPLEDT4 ; SLC/MKB/TC -- Problem List Edit actions cont ;09/12/13  15:09
+ ;;2.0;Problem List;**5,43,42**;Aug 25, 1994;Build 46
 TERM ; edit field 1.01
- N PROB,TERM,ICD,DUP,Y
+ N DTOUT,PROB,TERM,ICD,DUP,Y,GMPLCSYS,GMPL0,GMPL802,GMPIMPDT
+ S GMPIMPDT=$$IMPDATE^LEXU("10D")
 T1 W !,"PROBLEM: "_$P(GMPFLD(.05),U,2)_"//"
  R PROB:DTIME S:'$T DTOUT=1 I $D(DTOUT)!(PROB="^") S GMPQUIT=1 Q
  I PROB?1"^".E D JUMP^GMPLEDT3(PROB) Q:$D(GMPQUIT)!($G(GMPLJUMP))  K:$G(GMPIFN) GMPLJUMP G T1
@@ -17,16 +18,35 @@ T1 W !,"PROBLEM: "_$P(GMPFLD(.05),U,2)_"//"
 T2 ; new text -- pass to look-up
  I '$D(GMPLUSER)!($D(GMPLUSER)&('GMPARAM("CLU"))) S GMPFLD(1.01)="",GMPFLD(.05)=U_PROB Q
  D SEARCH^GMPLX(.PROB,.Y,"PROBLEM: ","1") ; pass to CLU
- S TERM=$G(Y),ICD=$G(Y(1)) I +TERM'>0 S GMPQUIT=1 Q
- S DUP=$$DUPL^GMPLX(+GMPDFN,+TERM,PROB)
- I DUP,'$$DUPLOK^GMPLX(DUP) W ! G T1
- S GMPFLD(1.01)=$S(+TERM>1:TERM,1:""),GMPFLD(.05)=U_PROB
- S GMPFLD(.01)=$S($L(ICD):$O(^ICD9("AB",ICD_" ",0))_U_ICD,1:"")
- S:'GMPFLD(.01) GMPFLD(.01)=$$NOS^GMPLX
+ I +Y'>0 S GMPQUIT=1 Q
+ S DUP=$$DUPL^GMPLX(+GMPDFN,+Y,PROB)
+ I DUP,'$$DUPLOK^GMPLX(DUP) S (Y,GMPROB)="" W ! G T1
+ S TERM=$S(+$G(Y)>1:Y,1:""),ICD=$G(Y(1))
+ S:'$L(ICD) ICD=$S(DT<GMPIMPDT:"799.9",1:"R69.")
+ N I,GMPSTAT,GMPCSREC,GMPCSPTR,GMPCSNME,GMPSCTC,GMPSCTD,GMPTXT
+ I ICD["/" F I=1:1:$L(ICD,"/") D  Q:GMPSTAT
+ . N GMPCODE S GMPCODE=$P(ICD,"/",I),GMPSTAT=0
+ . S GMPCSREC=$$CODECS^ICDEX(GMPCODE,80,DT),GMPCSPTR=$P(GMPCSREC,U),GMPCSNME=$P(GMPCSREC,U,2)
+ . S:'+$$STATCHK^ICDXCODE(GMPCSPTR,GMPCODE,DT) GMPSTAT=1
+ E  D
+ . S GMPSTAT=0,GMPCSREC=$$CODECS^ICDEX(ICD,80,DT),GMPCSPTR=$P(GMPCSREC,U),GMPCSNME=$P(GMPCSREC,U,2)
+ . S:'+$$STATCHK^ICDXCODE(GMPCSPTR,ICD,DT) GMPSTAT=1
+ I GMPSTAT W !,PROB,!,"has an inactive ICD code.  Please enter another search term." H 3 Q
+ I (PROB["(SCT"),(PROB[")") D
+ . S GMPSCTC=$$ONE^LEXU(+TERM,DT,"SCT")
+ . S GMPTXT=$$TRIM^XLFSTR($RE($P($RE(PROB),"(",2,99)))
+ . S GMPSCTD=$$GETDES^LEXTRAN1("SCT",GMPTXT),GMPSCTD=$S(+GMPSCTD=1:$P(GMPSCTD,U,2),1:"")
+ S GMPLCSYS=$$SAB^ICDEX(GMPCSPTR,DT)
+ S GMPFLD(1.01)=TERM,GMPFLD(.05)=U_PROB
+ S GMPFLD(.01)=$S($L(ICD):$P($$ICDDATA^ICDXCODE(GMPCSPTR,$P(ICD,"/"),DT,"E"),U)_U_$P(ICD,"/"),1:"")
+ S:'GMPFLD(.01)!($P(GMPFLD(.01),U)<0) GMPFLD(.01)=$$NOS^GMPLX(GMPLCSYS,DT)
+ S (GMPFLD(.03),GMPFLD(80201),GMPFLD(1.09))=DT_U_$$EXTDT^GMPLX(DT)
+ S GMPFLD(80202)=GMPLCSYS_U_$G(GMPCSNME)
+ S GMPFLD(80001)=GMPSCTC_U_GMPSCTC,GMPFLD(80002)=GMPSCTD_U_GMPSCTD
  Q
  ;
 TEXT(DFLT) ; Enter/edit provider narrative text (no lookup)
- N DIR,X,Y
+ N DIR,X,Y,DTOUT
  S DIR(0)="FAO^2:80",DIR("A")="PROBLEM: " S:$L(DFLT) DIR("B")=DFLT
  S DIR("?")="Enter a description of this problem, up to 80 characters."
  D ^DIR S:$D(DTOUT)!(X="^") Y="^" S:'$L(DFLT)&(X="") Y="^"
@@ -43,14 +63,14 @@ NTES ; Edit existing note, display # in XQORNOD(0)
  Q
  ;
 EDNOTE ; Edit note text given PROMPT,DEFAULT (returns X,Y)
- N DIR S DIR(0)="FAO^1:100",DIR("A")=PROMPT
+ N DIR,DTOUT S DIR(0)="FAO^1:100",DIR("A")=PROMPT
  S:$L(DEFAULT) DIR("B")=DEFAULT
  S DIR("?",1)="Enter any text you wish appended to this problem, up to 60 characters"
  S DIR("?")="in length.  You may append as many comments to a problem as you wish."
 ED1 D ^DIR I $D(DTOUT)!(Y="^") S GMPQUIT=1,Y="" Q
  I Y?1"^".E D JUMP^GMPLEDT3(Y) Q:$D(GMPQUIT)!($G(GMPLJUMP))  K:$G(GMPIFN) GMPLJUMP G ED1
  Q:Y=DEFAULT  I X="@" D  Q:$D(GMPQUIT)!(Y="")  G ED1
- . N DIR,X S DIR(0)="YAO",DIR("B")="NO"
+ . N DIR,X,DTOUT,DUOUT S DIR(0)="YAO",DIR("B")="NO"
  . S DIR("A")="   Are you sure you want to delete this comment? "
  . S DIR("?")="   Enter YES to completely remove this comment from this patient's problem."
  . W $C(7) D ^DIR I $D(DUOUT)!($D(DTOUT)) S GMPQUIT=1,Y="" Q
@@ -69,7 +89,7 @@ R1 D DATE^GMPLEDT2 Q:$D(GMPQUIT)!($G(GMPLJUMP))
  Q
  ;
 PRIORITY ; edit field 1.14
- N DIR,X,Y
+ N DIR,X,Y,DTOUT
  S DIR(0)="SAO^A:ACUTE;C:CHRONIC;",DIR("A")="  (A)cute or (C)hronic? "
  S:$L($G(GMPFLD(1.14))) DIR("B")=$P(GMPFLD(1.14),U,2)
  S DIR("?",1)="  You may further refine the status of this problem by designating it",DIR("?",2)="  as ACUTE or CHRONIC; problems marked as ACUTE will be flagged on the",DIR("?")="  list display with a '*'."

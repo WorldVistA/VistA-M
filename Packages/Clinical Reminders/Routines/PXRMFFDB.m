@@ -1,5 +1,5 @@
-PXRMFFDB ;SLC/PKR - Function finding data structure builder. ;06/09/2011
- ;;2.0;CLINICAL REMINDERS;**4,6,12,18**;Feb 04, 2005;Build 152
+PXRMFFDB ;SLC/PKR - Function finding data structure builder. ;12/24/2013
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26**;Feb 04, 2005;Build 404
  ;
  ;===========================================
 BASE2(NUM) ;Convert a base 10 integer to base 2.
@@ -114,7 +114,7 @@ FFKILL(X,DA) ;This is the kill logic for the function string.
  ;
  ;===========================================
 GETOPERS() ;Return the list of operators that can be used in a function string.
- Q "!&-+*/\#<>=']['='<'>"
+ Q "!&-+*/\#<>=']['='<'>'[']"
  ;
  ;===========================================
 ISGRV(VAR) ;VAR can be a global reminder variable by itself or used in a

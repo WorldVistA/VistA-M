@@ -1,6 +1,6 @@
-IBCSCH1 ;ALB/MRL - BILLING HELPS (CONTINUED) ; 01 JUN 88 12:00
- ;;2.0;INTEGRATED BILLING;**106,125,51,245,266,395**;21-MAR-94;Build 3
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+IBCSCH1 ;ALB/MRL - BILLING HELPS (CONTINUED) ;01 JUN 88 12:00
+ ;;2.0;INTEGRATED BILLING;**106,125,51,245,266,395,458,461**;21-MAR-94;Build 58
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRSCH1
  ;
@@ -47,7 +47,7 @@ DISPPRC(IBIFN) ; display procedures
  ... I +$P(IBLN,U,21) S IBSUS=$P(IBLN,U,21)_"ml"
  ... I +$P(IBLN,U,22) S IBSUS=$P(IBLN,U,22)_"hr"
  ... ;
- ... W !,$E(IBPR,1,6),?7,$E(IBPRD,1,20),?29,IBSUS,?35,$P(IBLN,U,4),?38,IBDT,?48,IBDV,?55,$E(IBCL,1,11),?68,$E(IBPV,1,12)
+ ... W !,$E(IBPR,1,7),?8,$E(IBPRD,1,19),?29,IBSUS,?35,$P(IBLN,U,4),?38,IBDT,?48,IBDV,?55,$E(IBCL,1,11),?68,$E(IBPV,1,12)
  ... S IBX=$$MODLST^IBEFUNC2($$GETMOD^IBEFUNC(IBIFN,IBI),1,.IBX,IBD)
  ... I IBX'="" F IBMOD=1:1:$L(IBX,",") W !,?10,$P(IBX,",",IBMOD),?15,$P($G(IBX(1)),",",IBMOD) S IBLC=IBLC+1
  I 'IBI,'IBQ S IBQ=$$PAUSE(IBLC)
@@ -101,3 +101,13 @@ DISPRX(IBIFN) ; display prescriptions
  ;
  Q
  ;
+EDITRNB(IBIFN) ; add/edit RNB and Comments for CT entries associated with bill,  ?RNB Help function
+ ; sets IBNOCANC indicating bill not cancelled, function sets it to number of associated CT entries
+ N IBNOCANC S IBNOCANC=0 I '$G(IBIFN) Q
+ W @IOF,!,"Reason Not Billable for Claims Tracking Entries associated with this Bill:",!,$TR($J(" ",74)," ","-")
+ W !!,"Episodes not fully billed may have a Reason Not Billable entered on the Claims",!,"Tracking entry.  Only enter an RNB if the episode is not fully billed.",!
+ ;
+ D ^IBCC1 I '$G(IBNOCANC) W !!,"No associated Claims Tracking entries found.",!!
+ ;
+ D PAUSE(19)
+ Q

@@ -1,15 +1,11 @@
-LRVRMI1A ;DALOI/STAFF - LAB MICRO HL7 INTERFACE ;05/12/09  18:26
- ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+LRVRMI1A ;DALOI/STAFF - LAB MICRO HL7 INTERFACE ;08/16/13  17:53
+ ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
  ;
  Q
  ;
 SRCHEN2 ;
  ; Continued from SRCHEN^LRVRMI1
- N IEN,IEN2
- ; mycology prep/smear
- I $D(^LAH(LWL,1,ISQN,"MI",15)) D
- . D USERDT(8)
- . M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,15)=^LAH(LWL,1,ISQN,"MI",15)
+ N IEN,IEN2,LRND,LRNDINFO
  ;
  ; virus
  I $D(^LAH(LWL,1,ISQN,"MI",16)) D
@@ -30,44 +26,43 @@ SRCHEN2 ;
  . S STAT=$P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,18,0),U,4)
  . D BLDSTAT(34,STAT),USERDT(16,$G(LRSTATUS(63.05,34)))
  ;
- ; preliminary bacteria comment
- I $D(^LAH(LWL,1,ISQN,"MI",19)) M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,19)=^LAH(LWL,1,ISQN,"MI",19)
  ;
- ; preliminary virus comment
- I $D(^LAH(LWL,1,ISQN,"MI",20)) M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,20)=^LAH(LWL,1,ISQN,"MI",20)
+ ; Process similar multiples - nodes 15,19-31
  ;
- ; preliminary parasite comment
- I $D(^LAH(LWL,1,ISQN,"MI",21)) M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,21)=^LAH(LWL,1,ISQN,"MI",21)
+ ; LRNDINFO(NODE)= Status Node ^ Status field
+ S LRNDINFO(15)="8^19" ; mycology prep/smear
+ S LRNDINFO(19)="1^11.5" ; preliminary bacteria comment
+ S LRNDINFO(20)="16^34" ; preliminary virus comment
+ S LRNDINFO(21)="5^15" ; preliminary parasite comment
+ S LRNDINFO(22)="8^19" ; preliminary mycology comment
+ S LRNDINFO(23)="11^23" ; preliminary TB comment
+ S LRNDINFO(24)="5^15" ; parasite prep/smear
+ S LRNDINFO(25)="1^11.5" ; bacteriology prep/smear
+ S LRNDINFO(26)="1^11.5" ; bacteria tests
+ S LRNDINFO(27)="5^15" ; parasitology tests
+ S LRNDINFO(28)="8^19" ; mycology tests
+ S LRNDINFO(29)="11^23" ; TB tests
+ S LRNDINFO(30)="16^34" ; virology tests
+ S LRNDINFO(31)="1^11.5" ; sterility tests
  ;
- ; preliminary mycology comment
- I $D(^LAH(LWL,1,ISQN,"MI",22)) M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,22)=^LAH(LWL,1,ISQN,"MI",22)
+ F LRND=15,19:1:31 D
+ . I $D(^LAH(LWL,1,ISQN,"MI",LRND)) D
+ . . N LRIEN,LRSTAT,LRSTATND,LRSTATFLD
+ . . M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,LRND)=^LAH(LWL,1,ISQN,"MI",LRND)
+ . . S LRSTAT=$P($G(^LAH(LWL,1,ISQN,"MI",LRND,0)),U,4)
+ . . S LRSTATND=$P($G(LRNDINFO(LRND)),U,1)
+ . . S LRSTATFLD=$P($G(LRNDINFO(LRND)),U,2)
+ . . D BLDSTAT(LRSTATFLD,LRSTAT),USERDT(LRSTATND,$G(LRSTATUS(63.05,LRSTATFLD)))
+ . . ;
+ . . S LRIEN=0
+ . . F  S LRIEN=$O(^LAH(LWL,1,ISQN,"MI",LRND,LRIEN)) Q:LRIEN<1  D
+ . . . I $D(^LAH(LWL,1,ISQN,"MI",LRND,LRIEN,0,0)) D
+ . . . . S LRSTAT=$P($G(^LAH(LWL,1,ISQN,"MI",LRND,LRIEN,0,0)),U,4)
+ . . . . S LRSTATND=$P($G(LRNDINFO(LRND)),U,1)
+ . . . . S LRSTATFLD=$P($G(LRNDINFO(LRND)),U,2)
+ . . . . D BLDSTAT(LRSTATFLD,LRSTAT),USERDT(LRSTATND,$G(LRSTATUS(63.05,LRSTATFLD)))
  ;
- ; preliminary TB comment
- I $D(^LAH(LWL,1,ISQN,"MI",23)) M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,23)=^LAH(LWL,1,ISQN,"MI",23)
  ;
- ; parasite prep/smear
- I $D(^LAH(LWL,1,ISQN,"MI",24)) M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,24)=^LAH(LWL,1,ISQN,"MI",24)
- ;
- ; bacteriology prep/smear
- I $D(^LAH(LWL,1,ISQN,"MI",25)) M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,25)=^LAH(LWL,1,ISQN,"MI",25)
- ;
- ; bacteria tests
- I $D(^LAH(LWL,1,ISQN,"MI",26)) M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,26)=^LAH(LWL,1,ISQN,"MI",26)
- ;
- ; parasitology tests
- I $D(^LAH(LWL,1,ISQN,"MI",27)) M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,27)=^LAH(LWL,1,ISQN,"MI",27)
- ;
- ; mycology tests
- I $D(^LAH(LWL,1,ISQN,"MI",28)) M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,28)=^LAH(LWL,1,ISQN,"MI",28)
- ;
- ; TB tests
- I $D(^LAH(LWL,1,ISQN,"MI",29)) M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,29)=^LAH(LWL,1,ISQN,"MI",29)
- ;
- ; virology tests
- I $D(^LAH(LWL,1,ISQN,"MI",30)) M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,30)=^LAH(LWL,1,ISQN,"MI",30)
- ;
- ; sterility tests
- I $D(^LAH(LWL,1,ISQN,"MI",31)) M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,31)=^LAH(LWL,1,ISQN,"MI",31)
  Q
  ;
  ;

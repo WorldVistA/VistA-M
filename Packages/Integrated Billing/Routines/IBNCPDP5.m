@@ -1,6 +1,6 @@
 IBNCPDP5 ;ALB/BDB - PROCESSING FOR ECME RESP FOR SECONDARY ;11/15/07 09:43
- ;;2.0;INTEGRATED BILLING;**411,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**411,452,526**;21-MAR-94;Build 17
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
 BILLSEC(DFN,IBD) ; Create secondary bill
  ;
@@ -156,6 +156,8 @@ END ;
  S DIE="^DGCR(399,",DA=IBIFN
  S DR="9////1;12////"_DT D ^DIE
  ;
+ ; *526 set approving official
+ S:'$D(^VA(200,IBDUZ,0)) IBDUZ=.5
  ; pass the claim to AR
  D GVAR^IBCBB,ARRAY^IBCBB1 S PRCASV("APR")=IBDUZ D ^PRCASVC6    ; perform AR checks
  I 'PRCASV("OKAY") S IBY="-1^"_$$ARERR^IBNCPDP2($G(PRCAERR),2) G BILLQ

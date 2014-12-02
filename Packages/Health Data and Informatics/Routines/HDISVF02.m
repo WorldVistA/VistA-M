@@ -59,9 +59,9 @@ GETVLOC(SYSPTR) ;Get value of VUID SERVER LOCATION field (#12)
  ; Notes : If no value found, domain for FORUM returned
  N FAC,XTRNL
  S FAC=$$GETPTR^HDISVF10($G(SYSPTR))
- I 'FAC Q "FORUM.domain.ext"
+ I 'FAC Q "DOMAIN.EXT"
  S XTRNL=$$GET(7118.29,12,(FAC_","),"E")
- I XTRNL="" Q "FORUM.domain.ext"
+ I XTRNL="" Q "DOMAIN.EXT"
  Q XTRNL
  ;
 SETVLOC(VALUE,SYSPTR) ;Set value of VUID SERVER LOCATION field (#12)

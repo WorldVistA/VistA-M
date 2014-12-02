@@ -1,5 +1,5 @@
 BPSECMPS ;BHAM ISC/FCS/DRS - Parse Claim Response ;3/10/08  12:31
- ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,6,7,10,11**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,6,7,10,11,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; References to UPDATE^DIE and WP^DIE supported by DBIA 2053
@@ -130,7 +130,7 @@ PARSETN ; parse the transaction level segments
  ;  26 = Response Prior Authorization Segment
  ;  28 = Response Coordination of Benefits/Other Payers Segment
  ;
- N CKRPT,FIELD,FLDNUM,PC,REPEAT,RPTFLD,SEGFID,SEGID,GRPCNT,GRPFLDS
+ N CKRPT,FIELD,FLDNUM,PC,REPEAT,RPTFLD,SEGFID,SEGID,GRPCNT,GRPFLDS,VNUM
  ;
  S RPTFLD=""
  S SEGID=$P(SEGMENT,FS,2)  ; this should be the segment id
@@ -173,15 +173,18 @@ PARSETN ; parse the transaction level segments
  . Q:FIELD=""                  ;stop - we hit the end
  . S FLDNUM=$$GETNUM(FIELD)    ;get the field number used for storage
  . Q:FLDNUM=""                 ;shouldn't happen - but let's skip
+ . S VNUM=FLDNUM
+ . ;Convert to VistA field number for non-numeric NCPDP numbers - BPS*1*15
+ . I $P(FLDNUM,".")'?3N S VNUM=$$VNUM(FLDNUM) Q:'VNUM
  . S REPEAT=0                  ;for this segment, let's figure
  . S CKRPT=","_FLDNUM_","      ;out if the field is a repeating
  . S:RPTFLD[CKRPT REPEAT=1     ;field
  . ; Increment the group counter if first field of group.
  . S:GRPFLDS[CKRPT GRPCNT=GRPCNT+1
  . ; if rptg, store with a group counter
- . S:REPEAT FDATA(MEDN,FLDNUM,GRPCNT)=$E(FIELD,3,$L(FIELD))
+ . S:REPEAT FDATA(MEDN,VNUM,GRPCNT)=$E(FIELD,3,$L(FIELD))
  . ; not rptg, store without counter
- . S:'REPEAT FDATA(MEDN,FLDNUM)=$E(FIELD,3,$L(FIELD))
+ . S:'REPEAT FDATA(MEDN,VNUM)=$E(FIELD,3,$L(FIELD))
  ;
  Q
  ;
@@ -195,6 +198,12 @@ GETNUM(FIELD) ; function, return field number for a field I
  ; 
  S FLDIEN=$O(^BPSF(9002313.91,"D",FLDID,0))  ; ien for fld #
  S:FLDIEN FLDNUM=$P($G(^BPSF(9002313.91,FLDIEN,0)),U) ;fld number
+ Q FLDNUM
+ ;
+VNUM(FLDNUM) ;function, returns VistA FileMan field number
+ N FLDIEN
+ S FLDIEN=$O(^BPSF(9002313.91,"B",FLDNUM,0)) Q:'FLDIEN ""
+ S FLDNUM=$P($G(^BPSF(9002313.91,FLDIEN,5)),U,3) ;fld number
  Q FLDNUM
  ;
 PROCRESP ; add data to RESPONSES SUB-FIELD (#9002313.0301)

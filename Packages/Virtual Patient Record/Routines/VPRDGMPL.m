@@ -1,5 +1,5 @@
 VPRDGMPL ;SLC/MKB -- Problem extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2**;Sep 01, 2011;Build 317
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -21,7 +21,7 @@ EN(DFN,BEG,END,MAX,IFN) ; -- find patient's problems
  N VPRSTS,VPRPROB,VPRN,VPRITM,VPRCNT,X
  ;
  ; get one problem
- I $G(IFN)="WV" D WV(.VPRITM,1),XML(.VPRITM):$D(VPRITM) Q
+ I $G(IFN)="790.05" D WV(.VPRITM,1),XML(.VPRITM):$D(VPRITM) Q
  I $G(IFN) D EN1(IFN,.VPRITM),XML(.VPRITM) Q
  ;
  ; get all patient problems
@@ -82,7 +82,7 @@ WV(PROB,UPD) ; -- return a pregnancy log entry in PROB("attribute")=value
  I $P(X0,U,3),$P(X0,U,4)'<$$FMADD^XLFDT(DT,-14) S Y=1
  I 'Y,'$G(UPD) Q
  ; continue if pregnant, or update requested
- S PROB("id")="WV",PROB("entered")=+X0
+ S PROB("id")="790.05",PROB("entered")=+X0
  S PROB("name")="Pregnancy",PROB("icd")="V22.2"
  ; PROB("problemType")=64572001            ;HITSP/Condition
  S PROB("status")=$S(Y:"A^ACTIVE",1:"I^INACTIVE")

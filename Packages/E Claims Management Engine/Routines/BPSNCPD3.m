@@ -1,5 +1,5 @@
 BPSNCPD3 ;BHAM ISC/LJE - Continuation of BPSNCPDP - DUR HANDLING ;06/16/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Due to space considerations, these comments were moved from BPSNPCPD
@@ -239,7 +239,10 @@ DURRESP(DURIEN,DUR,BPRXCOB) ;
  D GETS^DIQ(9002313.0301,"1,"_DURIEN_",","511*","I","DUR1","ERROR") ;get DUR codes and descriptions
  S DUR(BPRXCOB,"REJ CODE LST")=""
  F I=1:1 Q:'$D(DUR1(9002313.03511,I_",1,"_DURIEN_","))  D
- . S DUR(BPRXCOB,"REJ CODES",I,DUR1(9002313.03511,I_",1,"_DURIEN_",",.01,"I"))=$$GET1^DIQ(9002313.93,DUR1(9002313.03511,I_",1,"_DURIEN_",",.01,"I"),".02")
- . S DUR(BPRXCOB,"REJ CODE LST")=DUR(BPRXCOB,"REJ CODE LST")_","_DUR1(9002313.03511,I_",1,"_DURIEN_",",.01,"I")
+ . N REJX,REJN
+ . S REJX=$G(DUR1(9002313.03511,I_",1,"_DURIEN_",",.01,"I")) Q:REJX=""     ; external reject code
+ . S REJN=+$O(^BPSF(9002313.93,"B",REJX,0)) Q:'REJN                        ; internal reject code ien
+ . S DUR(BPRXCOB,"REJ CODES",I,REJX)=$P($G(^BPSF(9002313.93,REJN,0)),U,2)  ; reject code description
+ . S DUR(BPRXCOB,"REJ CODE LST")=DUR(BPRXCOB,"REJ CODE LST")_","_REJX
  S DUR(BPRXCOB,"REJ CODE LST")=$E(DUR(BPRXCOB,"REJ CODE LST"),2,9999)
  Q

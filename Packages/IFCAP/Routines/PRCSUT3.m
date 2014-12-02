@@ -1,6 +1,13 @@
 PRCSUT3 ;WISC/SAW/PLT/BGJ-TRANSACTION UTILITY PROGRAM ; 21 Apr 93  10:18 AM
-V ;;5.1;IFCAP;**115,123,149**;Oct 20, 2000;Build 5
+V ;;5.1;IFCAP;**115,123,149,150,180**;Oct 20, 2000;Build 5
  ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*150 RGB 4/23/12  Control the node 0 counter for file 410
+ ;kill (DIK) since DIK call does not handle descending file logic
+ ;
+ ;PRC*5.1*180 RGB 10/22/12  Added switch coming from IFCAP 1358 
+ ;processing to insure new entry check uses file 424, not file 410.
+ ;
 EN ;CREATE NEW TRANSACTION NUMBER
  D EN1^PRCSUT K DA,DIC G W5:'$D(PRC("SITE")) Q
 EN1 G:'$D(X) OUT1 S NODE=0,PIECE=2 I $D(PRCS("TYPE")) G:'X OUT1 S T(1)=$O(^DD(410.1,"B",PRCS("TYPE"),0)) G:'T(1)!('$D(^DD(410.1,+T(1),0))) OUT1
@@ -10,9 +17,9 @@ EN1 G:'$D(X) OUT1 S NODE=0,PIECE=2 I $D(PRCS("TYPE")) G:'X OUT1 S T(1)=$O(^DD(41
  I '$D(^PRCS(410.1,"B",X)) S T=1,DLAYGO=410.1,DIC="^PRCS(410.1,",DIC(0)="FLXZ" D ^DIC K DLAYGO G:Y<0 W4 S DA=+Y
  S HDA=DA
 T S T="000"_T,T=$E(T,$L(T)-3,$L(T))
-T1 I $D(REP) S X=X_"-"_T I $D(^PRCS(410,"B",X)) S T=+T+1,X=$P(X,"-",1,4) G:T>9999 CANCK G T
- I '$D(REP),'$D(PRCS("TYPE")) S X=Z,X=X_"-"_T I $D(^PRCS(410,"B",X)) S T=+T+1 G:T>9999 CANCK G T
- I '$D(REP),$D(PRCS("TYPE")) S Z=X,X=X_"-"_T I $D(^PRC(424,"B",X)) S T=+T+1,X=Z G T
+T1 I $D(REP),$G(PRCE424)'=1 S X=X_"-"_T I $D(^PRCS(410,"B",X)) S T=+T+1,X=$P(X,"-",1,4) G:T>9999 CANCK G T    ;PRC*5.1*180
+ I '$D(REP),'$D(PRCS("TYPE")),$G(PRCE424)'=1 S X=Z,X=X_"-"_T I $D(^PRCS(410,"B",X)) S T=+T+1 G:T>9999 CANCK G T    ;PRC*5.1*180
+ I ('$D(REP)&$D(PRCS("TYPE")))!($G(PRCE424)=1) S Z=X,X=X_"-"_T I $D(^PRC(424,"B",X)) S T=+T+1,X=Z G:T>9999 CER G T   ;PRC*5.1*180
 TEX S DA=HDA L +^PRCS(410.1,DA):15 S $P(^PRCS(410.1,DA,NODE),U,PIECE)=+T,$P(^(0),U,3)=DT L -^PRCS(410.1,DA)
 OUT K DA,DIC,N,NODE,PIECE,PRCS("TYPE"),PRCSL,T,Z,HDA Q
 OUT1 S X="",Y=-1 D OUT Q
@@ -49,11 +56,13 @@ CK0 S ZZH=Z,ZHOLD=Z
 CK1 S ZZH=$O(^PRCS(410,"B",ZZH)),IEN410=0 G CER:ZZH](Z_"-9999")
 CK2 S IEN410=$O(^PRCS(410,"B",ZZH,IEN410)) G CK1:IEN410=""
  I $P($G(^PRCS(410,IEN410,0)),U,2)'="CA" G CK2
+ S PRCIENCT=$P(^PRCS(410,0),"^",3)+1      ;PRC*5.1*150
  S DA=IEN410,DIK="^PRCS(410," D ^DIK
+ S $P(^PRCS(410,0),"^",3)=PRCIENCT K PRCIENCT     ;PRC*5.1*150
  S T=$P(ZZH,"-",5)
 CKQ S Z=ZHOLD K DA,DIK,ZZH,ZHOLD,IEN410
  G T1
-CER S MSG="No open sequence number found for "_Z_" for adjustment transaction"
+CER S MSG="No open sequence number found for "_Z_" for transaction"
  I $G(PRCRMPR)=1 S X="#"
  K DA,DIK,ZZH,IEN410
  G OUT

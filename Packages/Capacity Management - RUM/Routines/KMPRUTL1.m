@@ -1,5 +1,5 @@
-KMPRUTL1 ;OAK/KAK/RAK - Resource Usage Monitor Utility ;11/19/04  10:32
- ;;2.0;CAPACITY MANAGEMENT - RUM;**1**;May 28, 2003
+KMPRUTL1 ;OAK/KAK/RAK - Resource Usage Monitor Utility ;1/30/13  08:32
+ ;;2.0;CAPACITY MANAGEMENT - RUM;**1,2**;May 28, 2003;Build 12
  ;
 DATERNG(KMPUY,KMPUSTR,KMPUEND) ;-- date range
  ;---------------------------------------------------------------------
@@ -29,7 +29,7 @@ DATERNG(KMPUY,KMPUSTR,KMPUEND) ;-- date range
  S KMPUY="",KMPUSTR=$G(KMPUSTR),KMPUEND=$G(KMPUEND)
  ;
 RANGE ;-- Ask date ranges
- S DIR(0)="DOA^"_$S(KMPUSTR:KMPUSTR,1:"")_":"_$S(KMPUEND:KMPUEND,1:"")_":E)"
+ S DIR(0)="DOA^"_$S(KMPUSTR:KMPUSTR,1:"")_":"_$S(KMPUEND:KMPUEND,1:"")_":E"
  S DIR("A")="Start with Date: "
  S:KMPUSTR DIR("B")=$$FMTE^XLFDT(KMPUSTR,2)
  S DIR("?")=" "

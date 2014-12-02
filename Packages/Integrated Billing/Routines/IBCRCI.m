@@ -1,6 +1,6 @@
 IBCRCI ;ALB/ARH - RATES: CALCULATION ITEM/EVENT COST FNCTNS ; 22-MAY-96
- ;;2.0;INTEGRATED BILLING;**52,106,245**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified
+ ;;2.0;INTEGRATED BILLING;**52,106,245,458**;21-MAR-94;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;       standard callable functions to get item charge/cost
  ;
@@ -53,7 +53,7 @@ ITCOST(RS,CS,ITEM,EVDT,MOD,DIV,UNIT) ; returns total adjusted unit cost/charge f
  ;
 ITCOSTQ Q IBCOST
  ;
-BICOST(RT,BT,EVDT,BE,ITEM,MOD,DIV,UNIT,CT) ; returns the total unit cost of a particular item/event for a specific Rate Type and Bill Type, i.e. payer
+BICOST(RT,BT,EVDT,BE,ITEM,MOD,DIV,UNIT,CT,BLBS) ; returns the total unit cost of a particular item/event for a specific Rate Type and Bill Type, i.e. payer
  ; this includes all cost for the item and payer, which may include more than one charge set or rate schedule
  ; ITEM is not required if it is an Event CS, BE is required only as a screen for a specific event, if desired
  ;
@@ -62,6 +62,7 @@ BICOST(RT,BT,EVDT,BE,ITEM,MOD,DIV,UNIT,CT) ; returns the total unit cost of a pa
  ;
  S IBRS=0 F  S IBRS=$O(IBARR(IBRS)) Q:'IBRS  D
  . S IBCS=0 F  S IBCS=$O(IBARR(IBRS,IBCS)) Q:'IBCS  I +IBARR(IBRS,IBCS) D
+ .. I $G(BE)="INPATIENT DRG",'$$CHGICU^IBCRBC2(IBCS,+$G(BLBS)) Q
  .. S IBY=$$ITCOST(IBRS,IBCS,$G(ITEM),$G(EVDT),$G(MOD),$G(DIV),$G(UNIT)) I +$P(IBY,U,2)>IBDT S IBDT=+$P(IBY,U,2)
  .. S IBCOST=+IBCOST+IBY
  S IBX=IBCOST_U_IBDT

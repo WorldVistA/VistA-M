@@ -1,5 +1,5 @@
 PSORENW ;BIR/SAB-renew main driver ;4/25/07 8:42am
- ;;7.0;OUTPATIENT PHARMACY;**11,27,30,46,71,96,100,130,148,206,388,390,417**;DEC 1997;Build 7
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,30,46,71,96,100,130,148,206,388,390,417,313**;DEC 1997;Build 76
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External references L, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to LK^ORX2 and ULK^ORX2 supported by DBIA 867
@@ -33,7 +33,9 @@ EOJ ;
  K PSONOTE
  Q
 OERR ;entry for renew backdoor
- I $$LMREJ^PSOREJU1($P(PSOLST(ORN),"^",2),,.VALMSG,.VALMBCK) Q
+ I $$TITRX^PSOUTL($P(PSOLST(ORN),"^",2))="t" D  Q
+ . S VALMSG="Cannot Renew a 'Titration Rx'.",VALMBCK="R" W $C(7)
+ I $$LMREJ^PSOREJU1($P(PSOLST(ORN),"^",2),,.VALMSG,.VALMBCK) Q  ; Internally setting VALMSG and VALMBCK
  S PSOPLCK=$$L^PSSLOCK(PSODFN,0) I '$G(PSOPLCK) D LOCK^PSOORCPY S VALMSG=$S($P($G(PSOPLCK),"^",2)'="":$P($G(PSOPLCK),"^",2)_" is working on this patient.",1:"Another person is entering orders for this patient.") K PSOPLCK S VALMBCK="" Q
  K PSOPLCK S X=PSODFN_";DPT(" D LK^ORX2 I 'Y S VALMSG="Another person is entering orders for this patient.",VALMBCK="" D UL^PSSLOCK(PSODFN) Q
  K PSOID,PSOFDMX,PSORX("FILL DATE"),PSORENW("FILL DATE"),PSORX("QS"),PSORENW("QS"),PSOBARCD,COPY
@@ -69,7 +71,13 @@ RENEW(PLACER,PSOCPDRG) ;passes flag to CPRS for front door renews
  I ST,ST'=2,ST'=5,ST'=6,ST'=11,ST'=12,ST'=14 Q "0^Prescription is in a Non-Renewable Status."
  I $P($G(^PSRX(RXN,"OR1")),"^",4) Q "0^Duplicate Rx Renewal Request."
  I $O(^PS(52.41,"AQ",RXN,0)) Q "0^Duplicate Rx Renewal Request."
- K PSORFRM,PSOLC,PSODRG,PSODRUG0,RXN,ST
+ N TITMSG
+ I $$TITRX^PSOUTL(RXN)="t" D  Q TITMSG
+ . S TITMSG="0^Prescription was marked as 'Titration to Maintenance Dose' by Pharmacy and cannot be renewed."
+ . S TITMSG=TITMSG_" To repeat the titration, enter a new prescription or copy the prior titration order."
+ . S TITMSG=TITMSG_" To continue the maintenance dose, refill this prescription if refills are available"
+ . S TITMSG=TITMSG_" or enter a new prescription for the maintenance dose."
+ K PSORFRM,PSOLC,PSODRG,PSODRUG0,RXN,ST,TITMSG
  Q 1_$S($G(PSOIFLAG):"^"_$G(PSONEWOI),1:"")
  ;
 INST1 ;Set Pharmacy Instructions array

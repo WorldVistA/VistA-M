@@ -1,5 +1,5 @@
 IBCSC1 ;ALB/MJB - MCCR SCREEN 1 (DEMOGRAPHICS) ;27 MAY 88 10:13
- ;;2.0;INTEGRATED BILLING;**51,161,349,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**51,161,349,400,464**;21-MAR-94;Build 16
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; DBIA for reference to DG ELIGIBILITY key: DBIA3109
  ;
@@ -40,7 +40,7 @@ BEN S IBSR=1,IBSR1="",IBV1=$S($D(^XUSEC("DG ELIGIBILITY",DUZ)):"000000",1:101100
 5 W ! S Z=5,IBW=1 X IBWW W " Address: ",$S($D(IBA(1)):IBA(1),1:"NONE ON FILE"),?46,"Temporary: ",$S($D(IBA(2)):IBA(2),1:"NO TEMPORARY ADDRESS")
  S I=2 F I1=0:0 S I=$O(IBA(I)) Q:I=""  W:I#2!($X>50) !?13 W:'(I#2) ?57 W IBA(I)
  ;
-6 W ! S Z=6,IBW=1 X IBWW W " SC Care: " S X=$P(IB(0),"^",18) W $S(X="":"UNSPECIFIED",X:"YES",1:"NO") I X W "  (Enter '6' to list disabilites)"
+6 W ! S Z=6,IBW=1 X IBWW W " SC Care: " S X=$P(IB(0),"^",18) W $S(X="":"UNSPECIFIED",X:"YES",1:"NO") I X W "  (Enter '6' to list disabilities)"
  G ^IBCSCP
  Q
  ;IBCSC1

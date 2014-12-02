@@ -1,5 +1,5 @@
-PSBOMH ;BIRMINGHAM/EFC-MAH ;2/17/12 8:19am
- ;;3.0;BAR CODE MED ADMIN;**5,9,38,57,67,68**;Mar 2004;Build 26
+PSBOMH ;BIRMINGHAM/EFC-MAH ;9/11/12 12:16am
+ ;;3.0;BAR CODE MED ADMIN;**5,9,38,57,67,68,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -9,6 +9,8 @@ PSBOMH ;BIRMINGHAM/EFC-MAH ;2/17/12 8:19am
  ; ^DIWP/10011
  ;
  ;*68 - remove old special instruction text encoding, defer to PSBOMH2
+ ;*70 - add Clinic name to PSBO array for printing on grid via PSBOMH2
+ ;       in ^TMP(""PSB",$J,"ORDERS",PSBX,"INST") global
  ;
 EN ; Called from DQ^PSBO
  N PSBGBL,DFN
@@ -21,24 +23,28 @@ EN ; Called from DQ^PSBO
  .D EN1
  K PSBCNT,PSBAR Q
 EN1 ; Expects DFN,STRT,STOP
- N PSBGBL,PSBHDR,PSBX,PSBFLAG,PSBHLDFL,PSBADST1,PSBOST1
+ N PSBGBL,PSBHDR,PSBX,PSBFLAG,PSBHLDFL,PSBADST1,PSBOST1,PSBCLINIC ;*70
  K ^TMP("PSJ",$J),^TMP("PSB",$J)
  S PSBEVDT=PSBSTRT
  D EN^PSJBCMA(DFN,PSBSTRT)
- I $G(^TMP("PSJ",$J,1,0))=-1 D PT^PSBOHDR(DFN,.PSBHDR) W !!,"****NO MEDICATIONS FOUND****" Q  ; No Ord
+ N PSBCLINORD S PSBCLINORD=2                 ;*70 Combind mode headers
+ I $G(^TMP("PSJ",$J,1,0))=-1 D  Q  ; No Ord
+ .D PT^PSBOHDR(DFN,.PSBHDR) W !!,"****NO MEDICATIONS FOUND****"
  S PSBX=""
  F  S PSBX=$O(^TMP("PSJ",$J,PSBX)) Q:PSBX=""  D
  .Q:$P(^TMP("PSJ",$J,PSBX,0),U,3)?.N1"P"  ; No Pnd
  .Q:$P(^TMP("PSJ",$J,PSBX,1),U,5)<PSBSTRT!($P(^TMP("PSJ",$J,PSBX,1),U,4)>PSBSTOP)  ;display orders active in date range of report
  .S X=$P(^TMP("PSJ",$J,PSBX,1),U,2)
  .S ^TMP("PSB",$J,"ORDERS",$P(^TMP("PSJ",$J,PSBX,0),U,3))=X
- I '$D(^TMP("PSB",$J,"ORDERS")) D PT^PSBOHDR(DFN,.PSBHDR) W !!,"****NO MEDICATIONS FOUND****" Q    ; No Orders
+ I '$D(^TMP("PSB",$J,"ORDERS")) D  Q        ;No Orders
+ .D PT^PSBOHDR(DFN,.PSBHDR) W !!,"****NO MEDICATIONS FOUND****"
  S PSBMHND="PSBOMH"
  ; Act on Orders
  S PSBX="" F  S PSBX=$O(^TMP("PSB",$J,"ORDERS",PSBX)) Q:PSBX=""  S PSBTYPE=^(PSBX) D
  .S:PSBTYPE'="C" PSBTYPE="P"
  .D CLEAN^PSBVT
  .D PSJ1^PSBVT(DFN,PSBX)
+ .S PSBCLINIC=PSBCLORD
  .S X1=((PSBEVDT)\1)  S X2=-1  D C^%DTC  S PSBCNTST=X
  .S X1=((PSBSTOP)\1)  S X2=1  D C^%DTC  S PSBXSTOP=X
  .S PSBVALB=""
@@ -135,6 +141,9 @@ EN1 ; Expects DFN,STRT,STOP
  ...S PSBO(X+1)=""
  ...S PSBO(X+2)="NOTE - ODD SCHEDULE NO LONGER",PSBO(X+3)="       ALLOWS ADMIN TIMES."
  .K ^UTILITY($J)
+ . ;*70 If no location, and not inpatient, and Manual Med Entry, relay this information
+ .S PSBO(0)=$S(PSBCLINIC]"":PSBCLINIC,1:"INPATIENT")   ;clinic nam *70
+ .S XORDERS=$S(PSBO(0)="INPATIENT":1,1:2)              ;IM or CO   *70
  .M ^TMP("PSB",$J,"ORDERS",PSBX,"INST")=PSBO
  .D:PSBTYPE="C"
  ..F  D  Q:PSBDT>PSBSTOP
@@ -163,8 +172,9 @@ EN1 ; Expects DFN,STRT,STOP
  ....S PSBADST2=$G(^TMP("PSB",$J,"GETADMIN",PSBXX))
  ....F Y=1:1:$L(PSBADST2,"-") D
  .....Q:($P(PSBADST2,"-",Y)'?2N)&($P(PSBADST2,"-",Y)'?4N)  S PSBATCNT=PSBATCNT+1,^TMP("PSB",$J,"ORDERS",PSBONX,"AT",PSBATCNT)=$P(PSBADST2,"-",Y)
+ ...;*70   Insert Xorders IM or CO flag (1 or 2) into Sort control
  ...I PSBADST'="",PSBFREQ>44 S ^TMP("PSB",$J,"ORDERS",PSBONX,"AT",0)=PSBATCNT
- ...S ^TMP("PSB",$J,PSBWEEK,"SORT",PSBTYPE,PSBOITX,PSBX)=""
+ ...S ^TMP("PSB",$J,PSBWEEK,"SORT",XORDERS,PSBTYPE,PSBOITX,PSBX)=""
  ...F PSBDOW=0:1:6 D  Q:X>(PSBSTOP-1)
  ....S %H=PSBWEEK+PSBDOW D YMD^%DTC
  ....S ^TMP("PSB",$J,PSBWEEK,PSBONX,X,0)=0
@@ -172,10 +182,11 @@ EN1 ; Expects DFN,STRT,STOP
  ...S %H=PSBWEEK+7 D YMD^%DTC S PSBDT=X
  .D:PSBTYPE'="C"
  ..S X=PSBDT D H^%DTC S PSBWEEK=%H
- ..S (^TMP("PSB",$J,PSBWEEK,PSBONX),^TMP("PSB",$J,PSBWEEK,PSBONX,"AT",0))="",^TMP("PSB",$J,PSBWEEK,"SORT",PSBTYPE,PSBOITX,PSBX)=""
+ ..S (^TMP("PSB",$J,PSBWEEK,PSBONX),^TMP("PSB",$J,PSBWEEK,PSBONX,"AT",0))=""
+ ..;*70   Insert Xorders IM or CO flag (1 or 2) into Sort control
+ ..S ^TMP("PSB",$J,PSBWEEK,"SORT",XORDERS,PSBTYPE,PSBOITX,PSBX)=""
  D EN^PSBOMH1,EN^PSBOMH2
  Q
 INSTR S PSBINIT=PSBINIT_"*"
  S PSBNAME=PSBNAME_"/"_$P(^PSB(53.79,PSBIEN,.9,$P(PSBDT,"."),0),U,3)_"  "_$$GET1^DIQ(53.79,PSBIEN_",",.06)
  Q
- ;

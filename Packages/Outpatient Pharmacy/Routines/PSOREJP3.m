@@ -1,5 +1,6 @@
 PSOREJP3 ;ALB/SS - Third Party Reject Display Screen - Comments ;10/27/06
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403**;DEC 1997;Build 9
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403,421**;DEC 1997;Build 15
+ ;Reference to GETDAT^BPSBUTL supported by IA 4719
  ;
 COM ; Builds the Comments section in the Reject Display Screen
  I +$O(^PSRX(RX,"REJ",REJ,"COM",0))=0 Q
@@ -155,11 +156,12 @@ PRINT(RX,RFL) ; Print Label for specific Rx/Fill
 RXINFO(RX,FILL,LINE,REJ) ; Returns header displayable Rx Information
  N TXT,RXINFO,LBL,CMOP,DRG,PSOET
  I LINE=1 D
+ . N RXDOS D GETDAT^BPSBUTL(RX,FILL,,.RXDOS) ; Get Date of Service from BPS CLAIM field 401 - PSO*7*421
  . S RXINFO="Rx#      : "_$$GET1^DIQ(52,RX,.01)_"/"_FILL
  . ;cnf, PSO*7*358, add PSOET logic for TRICARE/CHAMPVA non-billable
  . S PSOET=$$PSOET(RX,FILL)
  . S $E(RXINFO,27)="ECME#: "_$S(PSOET:"",1:$$ECMENUM^PSOBPSU2(RX,FILL))
- . S $E(RXINFO,49)="Date of Service: "_$S(PSOET:"",1:$$FMTE^XLFDT($$DOS^PSOBPSU1(RX,FILL)))
+ . S $E(RXINFO,49)="Date of Service: "_$S(PSOET:"",1:$$FMTE^XLFDT(RXDOS)) ; Use DOS from BPS Claims field 401 - PSO*7*421
  I LINE=2 D
  . S DRG=$$GET1^DIQ(52,RX,6,"I"),CMOP=$S($D(^PSDRUG("AQ",DRG)):1,1:0)
  . S RXINFO=$S(CMOP:"CMOP ",1:"")_"Drug",$E(RXINFO,10)=": "_$E($$GET1^DIQ(52,RX,6),1,43)
@@ -195,7 +197,7 @@ FILL ;Fill payable TRICARE or CHAMPVA Rx
  F I=1:1 S OPNREJ2=$P(OPNREJ,",",I) Q:OPNREJ2=""  D
  . S OPNREJ3="",OPNREJ3=$$GET1^DIQ(52.25,OPNREJ2_","_RX,".01")
  . W !?25,OPNREJ3_" - "_$$GET1^DIQ(9002313.93,OPNREJ3,".02")_"..."
- . D CLOSE^PSOREJUT(RX,FILL,OPNREJ2,DUZ,6,COM) W "OK]",!,$C(7) H 1
+ . D CLOSE^PSOREJUT(RX,FILL,OPNREJ2,DUZ,6,COM,"","","","","",1) W "OK]",!,$C(7) H 1  ; pso*7*421 Use 12th param to ignore
  I $$PTLBL^PSOREJP2(RX,FILL) D PRINT(RX,FILL)
  S CHANGE=1   ;cnf, PSO*7*358, remove S VALMBCK="R" so user goes back to selection list
  Q
@@ -255,7 +257,7 @@ PSOET(RX,FILL) ; Returns flag for TRICARE or CHAMPVA non-billable and no claim s
  N X,TRIREJCD
  S X=0
  S TRIREJCD=$T(TRIREJCD+1),TRIREJCD=$P(TRIREJCD,";;",2)
- S X=$$FIND^PSOREJUT(RX,$G(FILL),,TRIREJCD)
+ S X=$$FIND^PSOREJUT(RX,$G(FILL),,TRIREJCD,1) ; PSO*7*421 - Pass indicator to ignore ECME status
  Q X
  ;
 TRIREJCD ;TRICARE or CHAMPVA Reject Code, non-billable Rx   ;cnf, PSO*7*358

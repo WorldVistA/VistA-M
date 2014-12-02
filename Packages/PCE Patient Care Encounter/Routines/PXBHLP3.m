@@ -1,9 +1,9 @@
 PXBHLP3 ;ISL/JVS,ALB/Zoltan - HELP FOR DIAGNOSIS ;10/30/98
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**11,19,62**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**11,19,62,199**;Aug 12, 1996;Build 51
  ;
  ;
  ; If you edit the text be sure to change the length next to the TAG
- ;   eg===  ;;4
+ ;   e.g.===  ;;4
  ;  you can put a line feed '!' at the end of the last line if necessary.
  ;
  ;
@@ -32,17 +32,19 @@ BODY ;;12
  W !,"  ",IOINHI,"4",IOINLOW,"   to get a list of ENCOUNTER FORM diagnoses."
  Q
 A ;;5
+ N PXACSREC S PXACSREC=$$ACTDT^PXDXUTL($S($G(IDATE)'="":IDATE,1:DT))
  W !,"To ",IOINHI,"ADD",IOINLOW," a DIAGNOSIS enter one of the following:"
- W !,"  DIAGNOSIS NAME (eg. GASTROPARESIS)"
- W !,"  PARTIAL NAME of the DIAGNOSIS at least 3 letters in length(eg. GAS or GASTRO)"
- W !,"  ICD CODE number (eg 536.3)"
- W !,"  Several ICD CODE numbers at once (eg 536.3,250.61)"
+ W !,"  DIAGNOSIS NAME (e.g. ",$S($P(PXACSREC,"^",1)="ICD":"GASTROPARESIS",1:"SALMONELLA MENINGITIS"),")"
+ W !,"  PARTIAL NAME of the DIAGNOSIS at least 3 letters in length(e.g. ",$S($P(PXACSREC,"^",1)="ICD":"GAS or GASTRO",1:"SAL or SALMON"),")"
+ W !,"  ICD CODE number (e.g. ",$S($P(PXACSREC,"^",1)="ICD":"536.3",1:"A02.21"),")"
+ W !,"  Several ICD CODE numbers at once (e.g. ",$S($P(PXACSREC,"^",1)="ICD":"536.3,250.61",1:"A02.21,C92.01"),")"
  Q
 E ;;10
+ N PXACSREC S PXACSREC=$$ACTDT^PXDXUTL($S($G(IDATE)'="":IDATE,1:DT))
  W !,"To ",IOINHI,"EDIT",IOINLOW," a DIAGNOSIS enter one of the following:"
- W !,"  DIAGNOSIS NAME (eg. GASTROPARESIS)"
- W !,"  ICD CODE (eg 536.3)"
- W !,"  ITEM NUMBER on the left side of the list of the DIAGNOSES (eg. 7)"
+ W !,"  DIAGNOSIS NAME (e.g. ",$S($P(PXACSREC,"^",1)="ICD":"GASTROPARESIS",1:"SALMONELLA MENINGITIS"),")"
+ W !,"  ICD CODE (e.g. ",$S($P(PXACSREC,"^",1)="ICD":"536.3",1:"A02.21"),")"
+ W !,"  ITEM NUMBER on the left side of the list of the DIAGNOSES (e.g. 7)"
  W !
  W !,"To move the PRIMARY designation from one diagnosis to another do the following:"
  W !,"  select the current primary diagnosis"
@@ -52,8 +54,8 @@ E ;;10
  Q
 D ;;3
  W !,"To ",IOINHI,"DELETE",IOINLOW," a DIAGNOSIS enter one of the following:"
- W !,"  an '@' followed by the ITEM NUMBER (eg. @1 or @3)"
- W !,"  Multiple ITEM NUMBERS can be selected (eg. @1,3,5 or @1-3,6,9)"
+ W !,"  an '@' followed by the ITEM NUMBER (e.g. @1 or @3)"
+ W !,"  Multiple ITEM NUMBERS can be selected (e.g. @1,3,5 or @1-3,6,9)"
  Q
 PROMPT ;---Prompt for the help prompt
  N DIR,OK,POSS

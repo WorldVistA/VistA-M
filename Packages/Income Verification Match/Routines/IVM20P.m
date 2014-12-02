@@ -50,7 +50,7 @@ MG ; Add mailgroup for IVM transmissions
  S DIC="^XMB(3.8,",DIC(0)="L",DLAYGO=3.8
  D ^DIC S (DA,IVMMIEN)=+Y I '$P(Y,U,3) G MGQ
  W !!,">>> Adding IVM TRANSMISSIONS mailgroup for network transmissions..."
- S DIE=DIC,DR="4////PU;5////^S X=DUZ;7////n;3///^S X=""Contains members to receive IVM HL7 transmissions"";12///^S X=""S.HL SERVER@""_$S(IVMPROD:"""",1:""B"")_""IVM.domain.ext"";"
+ S DIE=DIC,DR="4////PU;5////^S X=DUZ;7////n;3///^S X=""Contains members to receive IVM HL7 transmissions"";12///^S X=""S.HL SERVER@""_$S(IVMPROD:"""",1:""B"")_""IVM.DOMAIN.EXT"";"
  D ^DIE
 MGQ K DA,DIC,DIE,DLAYGO,X,Y
  Q

@@ -1,5 +1,5 @@
-ECXSURG1 ;ALB/JA,BIR/DMA,PTD-Surgery Extract for DSS ;10/14/10  18:10
- ;;3.0;DSS EXTRACTS;**105,112,120,127,132**;Dec 22, 1997;Build 18
+ECXSURG1 ;ALB/JA,BIR/DMA,PTD-Surgery Extract for DSS ;5/9/14  13:12
+ ;;3.0;DSS EXTRACTS;**105,112,120,127,132,144,149**;Dec 22, 1997;Build 27
  ;
 FILE ;file record
  ;node0
@@ -42,11 +42,15 @@ FILE ;file record
  ;agent orange status ECXAST^
  ;environmental contaminants ECXEST^radiation status ECXRST^
  ;mst status ECXMST^shad indicator ECXSHADI^encounter shad ECXSHAD^
+ ;NODE3
  ;1st assist EC1A^1st assist pc EC1APC^1st assist npi EC1ANPI^
  ;2nd assist EC2A^2nd assist pc EC2APC^2nd assist npi EC2ANPI^
  ;perfusionist ECPQ^perfusionist pc ECPQPC^perfusionist npi ECQANPI^
  ;anesthesia severity ECASA^patcat PATCAT^date of birth ECXDOB
- ;
+ ;Vietnam Status ECXVNS^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL^
+ ;Concurrent Case ECXCONC^post op icd-10 ECICD10^post op icd-10 code #1 ECICD101^post op icd-10 code #2 ECICD102^
+ ;post op icd-10 code #3 ECICD103^post op icd-10 code #4 ECICD104^post op icd-10 code #5 ECICD105^
+ ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
  ;convert specialty to PTF Code for transmission
  N ECXDATA,ECXTSC
  S ECXDATA=$$TSDATA^DGACT(42.4,+ECXTS,.ECXDATA)
@@ -73,7 +77,10 @@ FILE ;file record
  I ECXLOGIC>2010 S ECODE2=ECODE2_U_$G(ECXSHADI)_U_$G(ECXSHAD)_U,ECODE3=$G(EC1A)_U_$G(EC1APC)_U_$G(EC1ANPI)
  I ECXLOGIC>2010 S ECODE3=ECODE3_U_$G(EC2A)_U_$G(EC2APC)_U_(EC2ANPI)_U_$G(ECPQ)_U_$G(ECPQPC)_U_$G(ECPQNPI)_U_$G(ECQA)_U_$G(ECQAPC)_U_$G(ECQANPI)_U_$G(ECASA)_U_ECXPATCAT
  I ECXLOGIC>2011 S ECODE3=ECODE3_U_$G(ECXDOB)
- S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=ECODE2,^ECX(ECFILE,EC7,3)=ECODE3,ECRN=ECRN+1
+ I ECXLOGIC>2013 S ECODE3=ECODE3_U_ECXVNS_U_ECXCLST_U_ECXECL ;144
+ I ECXLOGIC>2013 S ECODE3=ECODE3_U_ECXCONC_U_ECICD10_U_ECICD101_U_ECICD102_U_ECICD103_U_ECICD104_U_ECICD105 ;144 Concurrent case ICD-10
+ I ECXLOGIC>2014 S ECODE3=ECODE3_U_ECXSVCI_U_ECXSVCL ;149
+ S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),^ECX(ECFILE,EC7,3)=$G(ECODE3),ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1
  ;

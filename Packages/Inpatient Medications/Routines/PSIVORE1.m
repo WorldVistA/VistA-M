@@ -1,10 +1,12 @@
 PSIVORE1 ;BIR/RGY,PR,MLM-ACT,NEW ORDER ;07 AUG 97 / 2:45 PM
- ;;5.0; INPATIENT MEDICATIONS ;**58,110,127,133**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**58,110,127,133,279,305**;16 DEC 97;Build 3
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ;
 S ;
  Q:+PSJSYSU'=3
+ D PSBPOIV^PSIVORC1
+ I $G(PSJCOM) D SETNML55^PSIVORC1
  I $G(ON),$G(DFN) N RNDT,OP2 S RNDT=+$$LASTREN^PSJLMPRI(DFN,ON) I RNDT D
  .N PSGSA,CD S OD=P(2),CD=P(3) D ENP3^PSIVWL
  .N NEXTX,DL,NXTLBL,DAY,LBLPC,BEG,OLDX S NXTLBL=0 S DAY=0,BEG=$P(+PSGSA,".") F LBLPC=1:1:$L(PSGSA," ") S OLDX=$G(NEXTX) S NEXTX=$P(PSGSA," ",LBLPC) D
@@ -24,11 +26,11 @@ EC ;
  I $O(PSI("S",PSIVEC))="" S X1=$O(PSI("S",0)),X2=1 D C^%DTC S X=$P(X,".") S PSI("S",+(X_"."_$P($O(PSI("S",0)),".",2)))=PSI("S",$O(PSI("S",0)))
  I $P(^PS(59.5,+PSIVSN,2,PSI("S",$O(PSI("S",PSIVEC))),0),U,6)=$O(PSI("S",PSIVEC)) S Y=PSIVEC G EC
  I PSIVEC'<P(2) S CD=$S(P(3)>PSIVEC:PSIVEC,1:P(3)) S:OD=CD CD=CD+.0001 D ENP3^PSIVWL
-P ;
+P ;*305
  S:'$D(PSGSA) PSGSA=""
  D FULL^VALM1
  W:PSGCNT !!,PSGCNT," Label",$E("s",PSGCNT>1)," needed for dose",$E("s",PSGCNT>1)," due at ...",!!
- F Y=1:1 S X=$P(PSGSA," ",Y) S:$E(X)="." X=$$CONVER^PSIVORE2(X,Y) Q:X=""  W $E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3)_" "_$E(X#1_"000",2,5)_" : "
+ F Y=1:1 S X=$P(PSGSA," ",Y) S:$E(X)="." X=$$CONVER^PSIVORE2(X,Y) Q:X=""  W:PSGCNT $E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3)_" "_$E(X#1_"000",2,5)_" : "
  W ! D:$P(PSIVSITE,U,8) TL^PSIVORE2 D NOW^%DTC S Y=% S PNOW=Y I $D(^PS(59.5,PSIVSN,3,"AT")) W !!,"Next delivery time is " S X=$O(^PS(59.5,PSIVSN,3,"AT",PNOW#1)) S:X="" X=$O(^(X)) S X=$P(X,".",2)_$E("000",1,5-$L(X)) W X," ***" G B1
 ACT ; Prompt and process label action.
 B I PSGCNT<1 S:($G(RNDT)&$G(OP2)) P(2)=OP2 G K^PSIVORE2

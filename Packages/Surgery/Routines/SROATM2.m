@@ -1,5 +1,5 @@
 SROATM2 ;BIR/MAM - NON CARDIAC TRANSMISSION (CONT) ;09/15/2011
- ;;3.0;Surgery;**38,39,45,47,57,60,62,68,81,88,97,129,125,142,153,160,174,175,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,39,45,47,57,60,62,68,81,88,97,129,125,142,153,160,174,175,176,177**;24 Jun 93;Build 89
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -8,7 +8,7 @@ SROATM2 ;BIR/MAM - NON CARDIAC TRANSMISSION (CONT) ;09/15/2011
  S SRA("CON")=$P($G(^SRF(SRTN,"CON")),"^") I SRA("CON"),$P($G(^SRF(SRA("CON"),30)),"^")!($P($G(^SRF(SRA("CON"),31)),"^",8)) S SRA("CON")=""
  D RS
  S SHEMP=SHEMP_$J($E($P(SRA(.2),"^",2),1,12),12)_$J($E($P(SRA(.2),"^",3),1,12),12)_$J(SRATT,2)_$J($P(SRA(200.1),"^",4),2)_$J($P($G(^SRF(SRTN,200)),"^",54),2)
- S SRICD=$P($G(^SRO(136,SRTN,0)),"^",3) S:SRICD SRICD=$P(^ICD9(SRICD,0),"^") S SHEMP=SHEMP_$J(SRICD,6)_$J($P(SRA(205),"^"),4)_"        "
+ S SRICD=$P($G(^SRO(136,SRTN,0)),"^",3) S:SRICD SRICD=$P($$ICD^SROICD(SRTN,SRICD),"^",2) S SHEMP=SHEMP_$J(SRICD,8)_$J($P(SRA(205),"^"),4)_"      "
  S NYUK="N",SRET=0 F  S SRET=$O(^SRF(SRTN,29,SRET)) Q:'SRET  S CASE=$P(^SRF(SRTN,29,SRET,0),"^") I $P($G(^SRF(CASE,.2)),"^",10) S NYUK="Y" Q
  S SHEMP=SHEMP_NYUK_$J($P($G(^SRF(SRTN,.4)),"^",7),1)_$J($E($P($G(^SRF(SRTN,0)),"^",12)),1)_$J($P($G(^SRF(SRTN,0)),"^",3),1)
  S (SRADMIT,SRADMT)=0 I '$P(SRA(208),"^",14) D ADM^SROQ0A S SRADMIT=$S(SRADMT=0:"0",1:"1")
@@ -61,8 +61,8 @@ SROATM2 ;BIR/MAM - NON CARDIAC TRANSMISSION (CONT) ;09/15/2011
  Q
 ONE S MOE=$S(NYUK="NS":"S",NYUK="":" ",1:NYUK)
  Q
-IFELSE I NYUK["NO ICD9" S SHEMP=SHEMP_$J(" ",6)
- E  S SHEMP=SHEMP_$J(NYUK,6)
+IFELSE I NYUK["NO ICD" S SHEMP=SHEMP_$J(" ",8)
+ E  S SHEMP=SHEMP_$J(NYUK,8)
  Q
 CVA S X=$P(SRA(205),"^",21),SRCVA=$S(X="Y":"Y",1:1) I SRCVA=1 Q
  N SROCC S SROCC=0 F  S SROCC=$O(^SRF(SRTN,16,SROCC)) Q:'SROCC  I $P(^SRF(SRTN,16,SROCC,0),"^",2)=12 S X=$P(^SRF(SRTN,16,SROCC,0),"^",8) S:X'="" SRCVA=X Q

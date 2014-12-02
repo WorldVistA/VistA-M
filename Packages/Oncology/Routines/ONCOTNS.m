@@ -1,5 +1,5 @@
 ONCOTNS ;Hines OIFO/GWB - AJCC TNM STAGING ;07/29/05
- ;;2.11;ONCOLOGY;**6,7,11,13,28,36,37,44**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;CLINICAL STAGE GROUP   (165.5,38)
  ;PATHOLOGIC STAGE GROUP (165.5,88)
  ;OTHER STAGE GROUP      (165.5,117)
@@ -19,13 +19,13 @@ IN1 S DIC="^ONCO(164.45,",DIC(0)="EMQ",DIC("S")="I $P(^(0),U,3)[STGIND"
  S X=$P(^ONCO(164.45,+Y,0),U,2)
  Q
  ;
-INNUM S X=$S(X["NA":88,X["Unk":99,X["Occ":"0C",X="0a":"0A",X="0is":"0S",1:X)
+INNUM S X=$S(X["NA":88,X["Unk":99,X["Occ":"OC",X="0a":"0A",X="0is":"0IS",1:X)
  I X="IIIE+S" S X="3ES" Q
  I X="V" S X=5 Q
- I $E(X,1,2)="IV" S X=4_$E(X,3) Q
- I $E(X,1,3)="III" S X=3_$E(X,4) Q
- I $E(X,1,2)="II" S X=2_$E(X,3) Q
- I $E(X,1)="I" S X=1_$E(X,2) Q
+ I $E(X,1,2)="IV" S X=4_$E(X,3,99) Q
+ I $E(X,1,3)="III" S X=3_$E(X,4,99) Q
+ I $E(X,1,2)="II" S X=2_$E(X,3,99) Q
+ I $E(X,1)="I" S X=1_$E(X,2,99) Q
  Q
  ;
 HP ;HELP

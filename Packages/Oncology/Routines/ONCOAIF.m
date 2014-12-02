@@ -1,5 +1,5 @@
 ONCOAIF ;Hines OIFO/GWB - [PF Post/Edit Follow-up] ;11/08/10
- ;;2.11;ONCOLOGY;**11,15,16,24,25,26,27,28,37,45,47,48,49,52,54**;Mar 07, 1995;Build 10
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 BEG W @IOF,!," Post/Edit Follow-up"
  W !," -------------------",!
@@ -53,7 +53,7 @@ UPDAT S D0=ONCOD0 K DXS,DIOT W ! D LST^ONCODLF,UPD^ONCOCRF
  D SUM
 C K DIR S DIR("A")="DATA OK",DIR("B")="Yes",DIR(0)="Y"
  D ^DIR Q:(Y=U)!(Y="")  G DIE:'Y
- I ONCOVS G KILL:$D(PRESEL) G PAT:'$D(REC),REC
+ I ONCOVS G KILL:$G(ONCRFOPT)=1 S ONCFRMPF=1 G REC  ;G KILL:$D(PRESEL) G PAT:'$D(REC),REC
  W !! D DEAD^ONCOFDP
  Q:$D(ONCOAI)  G REC:$D(REC) D KILL K ONCONM S ONCOD=1 Q
  ;
@@ -128,12 +128,13 @@ REC ;[RF Recurrence/Sub Tx Follow-up]
  S ONCDUZ=DUZ,ONCDT=DT
  S XR=1,REC="" W @IOF,!," Recurrence/Sub Tx Follow-up"
  W !," ---------------------------",!
- S DIC("A")="Select Patient for Recurrence: "
+ I $G(ONCFRMPF)=1 G RECPF ;if pt pre-selected from ^PF skip pt select
+ S ONCRFOPT=1,DIC("A")="Select Patient for Recurrence: "
  S DIC="^ONCO(160,",DIC(0)="AEQMZ" D ^DIC K DIC
  G KILL:Y<0
  S (D0,ONCOD0)=+Y,ONCONM=Y(0,0)
  N Y
- K DIQ,ONC S DIC="^ONCO(160,",DR=".01;2;3;8;10;15",DA=ONCOD0,DIQ="ONC"
+RECPF K DIQ,ONC S DIC="^ONCO(160,",DR=".01;2;3;8;10;15",DA=ONCOD0,DIQ="ONC"
  D EN^DIQ1 W !
  W !?2,"Name.........: ",ONC(160,ONCOD0,.01)
  W ?35,"Race.........: ",ONC(160,ONCOD0,8)
@@ -143,13 +144,31 @@ REC ;[RF Recurrence/Sub Tx Follow-up]
  W ?35,"Status.......: ",ONC(160,ONCOD0,15)
  D SUM
  K DIC W !?1,"Select Primary for Recurrence: ",!
- S D="C",DIC="^ONCO(165.5,",X=ONCOD0,DIC(0)="EFZ" D IX^DIC G:Y<0 REC
- I Y'=" " S (ONCOD0P,DA)=+Y,DR="[ONCO RECURRENCE FOLLOWUP]",DIE="^ONCO(165.5,",DATEDX=$P(^ONCO(165.5,DA,0),U,16),TX=$P($G(^ONCO(165.5,DA,2)),U,1) D ^DIE D CHKCHG S AB=2,ONCOD0P=D0 G EN
+ ;S D="C",DIC="^ONCO(165.5,",X=ONCOD0,DIC(0)="EFZ" D IX^DIC G:Y<0 REC
+ S D="C",DIC="^ONCO(165.5,",X=ONCOD0,DIC(0)="EFZ" D IX^DIC G:Y<0 KILL
+ I Y'=" " S (ONCOD0P,DA)=+Y,DR="[ONCO RECURRENCE FOLLOWUP]",DIE="^ONCO(165.5,",DATEDX=$P(^ONCO(165.5,DA,0),U,16),TX=$P($G(^ONCO(165.5,DA,2)),U,1) D ^DIE D CHKCHG S AB=2,ONCOD0P=D0 G EN:$D(ONCRFOPT)
+ G KILL Q
  ;
 RE ;Recurrence
- W !!," Recurrence"
- W !," ----------"
- Q
+ W !!," Recurrence"," ----------"
+ ; If Type of First Recurrence is not set yet, then check the
+ ; Cancer Status field of Tumor Status multiple to set defaults for
+ ; Type of First Rec, Rec Date 1st-Flag & Distant Sites 1-3 fields
+ ;  -- Called from [ONCO RECURRENCE FOLLOWUP] template --
+ S ONCTOFR=$P($G(^ONCO(165.5,ONCOD0P,5)),"^",2) I ONCTOFR'="" K ONCTOFR Q
+ S ONCTSDAT=$O(^ONCO(165.5,ONCOD0P,"TS","AA",0)) Q:ONCTSDAT=""
+ S ONCTSIEN=$O(^ONCO(165.5,ONCOD0P,"TS","AA",ONCTSDAT,0)) Q:ONCTSIEN=""
+ S ONCTSCS=$P($G(^ONCO(165.5,ONCOD0P,"TS",ONCTSIEN,0)),"^",2)
+ S ONCTOFRV=""
+ I ONCTSCS=1 S ONCTOFRV=$O(^ONCO(160.12,"B","00","")),ONCRD1F=11
+ I ONCTSCS=2 S ONCTOFRV=$O(^ONCO(160.12,"B",70,"")),ONCRD1F=11
+ I ONCTSCS=9 S ONCTOFRV=$O(^ONCO(160.12,"B",99,"")),ONCRD1F=10
+ ;Hard set the nodes since we are within an Input Template when called
+ ;so ^DIE not working - there are no X-refs to set
+ S $P(^ONCO(165.5,ONCOD0P,5),U,2,5)=ONCTOFRV_"^0^0^0"
+ S $P(^ONCO(165.5,ONCOD0P,27),U,26)=ONCRD1F
+ ;
+ K ONCRD1F,ONCTOFR,ONCTOFRV,ONCTSDAT,ONCTSIEN,ONCTSCS Q
  ;
 STX ;Subsequent Course of Treatment
  W !!," Subsequent Course of Treatment"
@@ -159,7 +178,7 @@ STX ;Subsequent Course of Treatment
 KILL ;Kill variables
  K ONCOSTAT,XR,DA,DIC,DIE,DIK,DIOT,DIR,DO,DR,DXS,F,FG,FOLINP
  K ONCOD1,ONCOLC,X,XD1,XD0,LC,ONCOVS,REC
- K AB,DATEDX,PRESEL
+ K AB,DATEDX,PRESEL,ONCFRMPF,ONCRFOPT
  Q
  ;
 DD ;Date format

@@ -1,5 +1,5 @@
 VPRDMC ;SLC/MKB -- Clinical Procedures (Medicine) ;3/14/12  09:03
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2**;Sep 01, 2011;Build 317
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -154,7 +154,7 @@ RPT1(DFN,ID,RPT) ; -- return report as a TIU document
  Q
  ;
 TEXT(DFN,ID,NAME) ; -- Get report text, return temp array name
- N MCARGDA,MCPRO,MDALL,I,X
+ N MCARGDA,MCPRO,MDALL,I,X,Y
  S MCARGDA=+$G(ID),MCPRO=NAME,MDALL=1 D PR690^MDPS1
  K ^TMP("VPRTEXT",$J,ID)
  S I=0 F  S I=$O(^TMP("MDPTXT",$J,MCARGDA,MCPRO,I)) Q:I<1  S X=$G(^(I,0)),^TMP("VPRTEXT",$J,ID,I)=X

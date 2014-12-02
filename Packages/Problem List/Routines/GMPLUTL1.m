@@ -1,5 +1,5 @@
-GMPLUTL1 ; SLC/MKB/KER -- PL Utilities (cont)               ; 04/15/2002
- ;;2.0;Problem List;**3,8,7,9,26,35,39**;Aug 25, 1994;Build 7
+GMPLUTL1 ; SLC/MKB/KER/TC -- PL Utilities (cont) ;01/15/14  11:13
+ ;;2.0;Problem List;**3,8,7,9,26,35,39,36,42**;Aug 25, 1994;Build 46
  ;
  ; External References
  ;   DBIA   446  ^AUTNPOV(
@@ -9,10 +9,11 @@ GMPLUTL1 ; SLC/MKB/KER -- PL Utilities (cont)               ; 04/15/2002
  ;   DBIA 10060  ^VA(200
  ;   DBIA 10003  ^%DT
  ;   DBIA 10104  $$UP^XLFSTR
- ;                   
- ; All entry points in this routine expect the 
+ ;    ICR  5699  $$ICDDATA^ICDXCODE
+ ;
+ ; All entry points in this routine expect the
  ; PL("data item") array from routine ^GMPLUTL.
- ;                   
+ ;
  ;   Entry     Expected Variable
  ;   Point     From VADPT^GMPLX1
  ;    AO           GMPAGTOR
@@ -22,11 +23,12 @@ GMPLUTL1 ; SLC/MKB/KER -- PL Utilities (cont)               ; 04/15/2002
  ;    MST          GMPMST
  ;    CV           GMPCV
  ;    SHD          GMPSHD
- ;                   
+ ;
  Q
 DIAGNOSI ; ICD Diagnosis Pointer
+ N GMPICDSY S GMPICDSY=$S($L($G(PL("CODESYS"))):PL("CODESYS"),1:"DIAG")
  S:'$L($G(PL("DIAGNOSIS"))) PL("DIAGNOSIS")=$$NOS^GMPLX
- Q:$D(^ICD9(+PL("DIAGNOSIS"),0))
+ Q:$P($$ICDDATA^ICDXCODE(GMPICDSY,+PL("DIAGNOSIS"),PL("DX_DATE_OF_INTEREST"),"I"),U)>0
  S GMPQUIT=1,PLY(0)="Invalid ICD Diagnosis"
  Q
  ;
@@ -35,8 +37,8 @@ LEXICON ; Clinical Lexicon Pointer
  Q:$D(^LEX(757.01,+PL("LEXICON"),0))
  S GMPQUIT=1,PLY(0)="Invalid Lexicon term"
  Q
-DUPLICAT ; Problem Already on the List 
- N DUPL
+DUPLICAT ; Problem Already on the List
+ N DUPL,NODE0,NODE1
  Q:$P($G(^GMPL(125.99,1,0)),U,6)'=1
  S:'$L($G(PL("DIAGNOSIS"))) PL("DIAGNOSIS")=$$NOS^GMPLX
  I '$D(^AUPNPROB("B",+PL("DIAGNOSIS")))!('$D(^AUPNPROB("AC",GMPDFN))) Q
@@ -44,13 +46,13 @@ DUPLICAT ; Problem Already on the List
  . S (DUPL(1),DUPL(2))=0
  . S NODE0=$G(^AUPNPROB(IFN,0)),NODE1=$G(^(1)) Q:$P(NODE1,U,2)="H"
  . I +PL("DIAGNOSIS")=+NODE0 S DUPL(1)=IFN
- . S:PL("NARRATIVE")=$$UP^XLFSTR($P(^AUTNPOV($P(NODE0,U,5),0),U)) DUPL(2)=IFN
+ . S:$$UP^XLFSTR(PL("NARRATIVE"))=$$UP^XLFSTR($P(^AUTNPOV($P(NODE0,U,5),0),U)) DUPL(2)=IFN
  . I DUPL(1)>0&DUPL(2)>0 S GMPQUIT=1,PLY(0)="Duplicate problem"
  Q
  ;
 LOCATION ; Hospital Location (Clinic) Pointer
  S:'$D(PL("LOCATION")) PL("LOCATION")="" Q:'$L(PL("LOCATION"))
- I $D(^SC(+PL("LOCATION"),0)) S:$P(^(0),U,3)'="C" PL("LOCAATION")="" Q
+ I $D(^SC(+PL("LOCATION"),0)) S:$P(^(0),U,3)'="C" PL("LOCATION")="" Q
  S GMPQUIT=1,PLY(0)="Invalid hospital location"
  Q
  ;
@@ -135,4 +137,82 @@ SHD ; SHD exposure flag (Requires GMPSHD)
  S:'$D(PL("SHD")) PL("SHD")=""
  I "^^1^0^"'[(U_PL("SHD")_U) S GMPQUIT=1,PLY(0)="Invalid SHD flag" Q
  I 'GMPSHD,+PL("SHD") S GMPQUIT=1,PLY(0)="Invalid SHD flag"
+ Q
+CENTER(X) ; Center X
+ N SP
+ S $P(SP," ",((IOM-$L(X))\2))=""
+ Q $G(SP)_X
+READ(TYPE,PROMPT,DEFAULT,HELP,SCREEN) ; Calls reader, returns response
+ N DIR,X,Y
+ S DIR(0)=TYPE
+ I $D(SCREEN) S DIR("S")=SCREEN
+ I $G(PROMPT)]"" S DIR("A")=PROMPT
+ I $G(DEFAULT)]"" S DIR("B")=DEFAULT
+ I $D(HELP) S DIR("?")=HELP
+ D ^DIR
+ I $G(X)="@" S Y="@" G READX
+ I Y]"",($L($G(Y),U)'=2) S Y=Y_U_$G(Y(0),Y)
+READX Q Y
+EDATE(PRMPT,STATUS,DFLT) ; Get early date
+ N X,Y,GMPLPRMT,GMPLDFLT
+ I $G(STATUS)=4 S Y=1 Q Y
+ S GMPLPRMT=" Start "_$S($L($G(PRMPT)):PRMPT_" ",1:"")_"Date [Time]: "
+ S GMPLDFLT=$S($L($G(DFLT)):DFLT,1:"T-30")
+ S Y=$$READ("DOA^::AET",GMPLPRMT,GMPLDFLT)
+ Q Y
+LDATE(PRMPT,STATUS,DFLT) ; Get late date
+ N X,Y,GMPLPRMT,GMPLDFLT
+ I $G(STATUS)=4 S Y=9999999 Q Y
+ S GMPLPRMT="Ending "_$S($L($G(PRMPT)):PRMPT_" ",1:"")_"Date [Time]: "
+ S GMPLDFLT=$S($L($G(DFLT)):DFLT,1:"NOW")
+ S Y=$$READ("DOA^::AET",GMPLPRMT,GMPLDFLT)
+ Q Y
+STOP(PROMPT,SCROLL) ; Call DIR at bottom of screen
+ N DIR,X,Y,DTOUT
+ I $E(IOST)'="C" S Y="" G STOPX
+ I +$G(SCROLL),(IOSL>($Y+5)) F  W ! Q:IOSL<($Y+6)
+ S DIR(0)="FO^1:1",DIR("A")=$S($G(PROMPT)]"":PROMPT,1:"Press RETURN to continue or '^' to exit")
+ S DIR("?")="Enter '^' to quit present action or '^^' to quit to menu"
+ D ^DIR I $D(DIRUT),(Y="") K DIRUT
+ S Y=$S(Y="^":0,Y="^^":0,$D(DTOUT):"",Y="":1,1:1_U_Y)
+STOPX Q Y
+DATE(X,FMT) ; Call with X=2910419.01 and FMT=Return Format of date ("MM/DD")
+ N AMTH,MM,CC,DD,YY,GMPLI,GMPLTMP
+ I +X'>0 S $P(GMPLTMP," ",$L($G(FMT))+1)="",FMT=GMPLTMP G QDATE
+ I $S('$D(FMT):1,'$L(FMT):1,1:0) S FMT="MM/DD/YY"
+ S MM=$E(X,4,5),DD=$E(X,6,7),YY=$E(X,2,3),CC=17+$E(X)
+ S:FMT["AMTH" AMTH=$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",+MM)
+ F GMPLI="AMTH","MM","DD","CC","YY" S:FMT[GMPLI FMT=$P(FMT,GMPLI)_@GMPLI_$P(FMT,GMPLI,2)
+ I FMT["HR" S FMT=$$TIME(X,FMT)
+QDATE Q FMT
+TIME(X,FMT) ; Recieves X as 2910419.01 and FMT=Return Format of time (HH:MM:SS).
+ N HR,MIN,SEC,GMPLI
+ I $S('$D(FMT):1,'$L(FMT):1,1:0) S FMT="HR:MIN"
+ S X=$P(X,".",2),HR=$E(X,1,2)_$E("00",0,2-$L($E(X,1,2))),MIN=$E(X,3,4)_$E("00",0,2-$L($E(X,3,4))),SEC=$E(X,5,6)_$E("00",0,2-$L($E(X,5,6)))
+ F GMPLI="HR","MIN","SEC" S:FMT[GMPLI FMT=$P(FMT,GMPLI)_@GMPLI_$P(FMT,GMPLI,2)
+ Q FMT
+NAME(X,FMT) ; Call with X="LAST,FIRST MI", FMT=Return Format ("LAST, FI")
+ N GMPLLAST,GMPLLI,GMPFIRST,GMPLFI,GMPLMI,GMPLI
+ I X']"" S FMT="" G NAMEX
+ I $S('$D(FMT):1,'$L(FMT):1,1:0) S FMT="LAST,FIRST"
+ S FMT=$$LOW^XLFSTR(FMT)
+ S GMPLLAST=$P(X,","),GMPLLI=$E(GMPLLAST),GMPFIRST=$P(X,",",2)
+ S GMPLFI=$E(GMPFIRST)
+ S GMPLMI=$S($P(GMPFIRST," ",2)'="NMI":$E($P(GMPFIRST," ",2)),1:"")
+ S GMPFIRST=$P(GMPFIRST," ")
+ F GMPLI="last","li","first","fi","mi" I FMT[GMPLI S FMT=$P(FMT,GMPLI)_@("GMPL"_$$UP^XLFSTR(GMPLI))_$P(FMT,GMPLI,2)
+NAMEX Q FMT
+TITLE(X) ; Pads titles
+ ; Recieves:    X=title to be padded
+ N I,TITLE
+ S TITLE="" F I=1:1:$L(X) S TITLE=TITLE_" "_$E(X,I)
+ Q TITLE
+JUSTIFY(X,JUST) ; Justifies Text
+ ; Receives:    X=text to be justified
+ ;           JUST="L" --> left, "C" --> center, "R" --> right,
+ ;                "J" --> justified to WIDTH
+ ;           WIDTH=justification width (when JUST="j"
+ I "Cc"[JUST W ?((80-$L(X))/2),X
+ I "Ll"[JUST W X,!!
+ I "Rr"[JUST W ?(80-$L(X)),X
  Q

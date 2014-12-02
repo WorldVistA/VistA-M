@@ -1,5 +1,5 @@
-PXRMDLRP ;SLC/AGP - Dialog reporting routine ;09/8/2010
- ;;2.0;CLINICAL REMINDERS;**12,18**;Feb 04, 2005;Build 152
+PXRMDLRP ;SLC/AGP - Dialog reporting routine ;04/02/2012
+ ;;2.0;CLINICAL REMINDERS;**12,18,26**;Feb 04, 2005;Build 404
  Q
  ;
 ALL ;
@@ -15,9 +15,9 @@ ALL ;
  W !!,"**DONE**"
  Q
  ;
-BUILDMSG(TEXTIN,CNT,MESS) ;
+BUILDMSG(TEXTIN,CNT,MESS,NIN) ;
  N LINE,NOUT,TEXTOUT
- D FORMAT^PXRMTEXT(1,75,1,.TEXTIN,.NOUT,.TEXTOUT)
+ D FORMAT^PXRMTEXT(1,75,NIN,.TEXTIN,.NOUT,.TEXTOUT)
  S CNT=CNT+1,MESS(CNT)=""
  F LINE=1:1:NOUT D
  .S CNT=CNT+1,MESS(CNT)=TEXTOUT(LINE)
@@ -32,7 +32,7 @@ DITEMAR(DIEN,ARRAY,ERRCNT,ERRMSG,FAIL) ;
  ..S NAME=$P($G(^PXRMD(801.41,DIEN,0)),U)
  ..S TYPE=$$EXTERNAL^DILFD(801.41,4,"",$P($G(^PXRMD(801.41,DIEN,0)),U,4))
  ..S TEXT(1)="The "_TYPE_" "_NAME_" contains an incomplete sequence"
- ..D BUILDMSG(.TEXT,.ERRCNT,.ERRMSG)
+ ..D BUILDMSG(.TEXT,.ERRCNT,.ERRMSG,1)
  ..S FAIL="F"
  .;
  .S TYPE=$P($G(^PXRMD(801.41,IEN,0)),U,4)
@@ -89,7 +89,7 @@ ODDPIPES(DIEN,NAME,EXT,TYPE,CNT,MESS,FAIL) ;
  .S RESULT=1
  .S FLDNAM=$S(NODE=25:"Dialog/Progress Note Text",1:"Alternate Progress Note Text")
  .S TEXT(1)="The "_EXT_" "_DNAME_" contains an odd number of pipes (|) in the "_FLDNAM_" field. TIU Objects cannot be evaluated."
- .D BUILDMSG(.TEXT,.CNT,.MESS)
+ .D BUILDMSG(.TEXT,.CNT,.MESS,1)
  .S FAIL="F"
  Q RESULT
  ;
@@ -124,7 +124,7 @@ SELECT ;
  Q
  ;
 VALIDFND(IEN,DNAME,EXT,TYPE,CNT,MESS,FAIL) ;
- N FIND,NODE,MHTEST,TEXT
+ N FIND,NIN,NODE,MHTEST,OUTPUT,TEXT
  ;S DNAME=$P($G(^PXRMD(801.41,IEN,0)),U)
  ;
  ;disregard Reminder Dialogs and Result Elements
@@ -135,52 +135,56 @@ VALIDFND(IEN,DNAME,EXT,TYPE,CNT,MESS,FAIL) ;
  .S NODE=$G(^PXRMD(801.41,IEN,50))
  .I +$P(NODE,U)'>0 D
  ..S TEXT(1)="The result group "_DNAME_" does not contain a valid MH Test."
- ..D BUILDMSG(.TEXT,.CNT,.MESS)
+ ..D BUILDMSG(.TEXT,.CNT,.MESS,1)
  ..S FAIL="F"
  .I +$P(NODE,U,2)'>0 D
  ..S TEXT(1)="The result group "_DNAME_" does not contain a valid MH Scale."
- ..D BUILDMSG(.TEXT,.CNT,.MESS)
+ ..D BUILDMSG(.TEXT,.CNT,.MESS,1)
  ..S FAIL="F"
  .I +$P(NODE,U)>0,$$VALIDENT($P(NODE,U)_";YTT(601.71,")=0 D
  ..S TEXT(1)="The result group "_DNAME_" does not contain a valid MH Test."
- ..D BUILDMSG(.TEXT,.CNT,.MESS)
+ ..D BUILDMSG(.TEXT,.CNT,.MESS,1)
  ..S FAIL="F"
  ;
  S NODE=$G(^PXRMD(801.41,IEN,1))
  ;check Orderable items
  I +$P(NODE,U,7)>0,$$VALIDENT(+$P(NODE,U,7)_";ORD(101.43,")=0 D
  .S TEXT(1)="The "_EXT_" "_DNAME_" contains a pointer to an Orderable Item that does not exist on the system."
- .D BUILDMSG(.TEXT,.CNT,.MESS)
+ .D BUILDMSG(.TEXT,.CNT,.MESS,1)
  .S FAIL="F"
  ;
  ;check finding item
- I $P(NODE,U,5)'="",$$VALIDENT($P(NODE,U,5))=0 D
- .S TEXT(1)="The "_EXT_" "_DNAME_" contains an a pointer to the finding item that does not exist on the system."
- .D BUILDMSG(.TEXT,.CNT,.MESS)
- .S FAIL="F"
+ I $P(NODE,U,5)'="" D
+ .S FIND=$P(NODE,U,5)
+ .I $$VALIDENT(FIND)=0 D  Q
+ ..S TEXT(1)="The "_EXT_" "_DNAME_" contains an a pointer to the finding item that does not exist on the system."
+ ..D BUILDMSG(.TEXT,.CNT,.MESS,1)
+ ..S FAIL="F"
+ .I FIND[811.2 S FAIL=$$CHECKER^PXRMDTAX(IEN,+FIND,"F",.OUTPUT) I $D(OUTPUT) S NIN=$O(OUTPUT(""),-1) D BUILDMSG(.OUTPUT,.CNT,.MESS,NIN)
  ;
  ;check additional findings
  S FIND=0 F  S FIND=$O(^PXRMD(801.41,IEN,3,"B",FIND)) Q:FIND=""  D
- .I $$VALIDENT(FIND)=0 D
+ .I $$VALIDENT(FIND)=0 D  Q
  ..S TEXT(1)="The "_EXT_" "_DNAME_" contains a pointer to an additional finding item that does not exist on the system."
- ..D BUILDMSG(.TEXT,.CNT,.MESS)
+ ..D BUILDMSG(.TEXT,.CNT,.MESS,1)
  ..S FAIL="F"
+ .I FIND[811.2 S FAIL=$$CHECKER^PXRMDTAX(IEN,+FIND,"A",.OUTPUT) I $D(OUTPUT) S NIN=$O(OUTPUT(""),-1) D BUILDMSG(.OUTPUT,.CNT,.MESS,NIN)
  Q
  ;
 VALIDENT(FIND) ;
  N FILENUM,IEN
  S FILENUM=$$FNFR^PXRMUTIL(U_$P(FIND,";",2))
- Q $$FIND1^DIC(FILENUM,"","Q","`"_$P(FIND,";"))
+ Q $$FIND1^DIC(FILENUM,"","QU","`"_$P(FIND,";"))
  ;
 VALIDITM(IEN,NAME,EXT,CNT,MESS,FAIL) ;
  N TEXT
  I '$D(^PXRMD(801.41,IEN)) D  Q
  .S TEXT(1)=NAME_" contains a pointer to an invalid dialog item."
- .D BUILDMSG(.TEXT,.CNT,.MESS)
+ .D BUILDMSG(.TEXT,.CNT,.MESS,1)
  .S FAIL="F"
  I +$P(^PXRMD(801.41,IEN,0),U,3)>0 D
  .S TEXT(1)="The "_EXT_" "_NAME_" is disabled."
- .D BUILDMSG(.TEXT,.CNT,.MESS)
+ .D BUILDMSG(.TEXT,.CNT,.MESS,1)
  .I $G(FAIL)'="F" S FAIL="W"
  Q
  ;
@@ -199,11 +203,11 @@ VALIDNAM(DIEN,DNAME,FIELD,EXT,TYPE,CNT,MESS,OLIST,TLIST,RETFAIL) ;
  ..S FAIL=$$OBJSTAT^TIUCHECK(NAME)
  ..I FAIL=-1 D  Q
  ...S TEXT(1)="The "_EXT_" "_DNAME_" contains a reference to a TIU Object "_NAME_" in the "_FLDNAM_" field. This TIU Object does not exist on the system."
- ...D BUILDMSG(.TEXT,.CNT,.MESS)
+ ...D BUILDMSG(.TEXT,.CNT,.MESS,1)
  ...S RETFAIL="F"
  ..I FAIL=0 D  Q
  ...S TEXT(1)="The "_EXT_" "_DNAME_" contains a reference to a TIU Object "_NAME_" in the "_FLDNAM_" field. This TIU Object is inactive."
- ...D BUILDMSG(.TEXT,.CNT,.MESS)
+ ...D BUILDMSG(.TEXT,.CNT,.MESS,1)
  ...I $G(RETFAIL)'="F" S RETFAIL="W"
  ;
  I $D(TLIST)>0 D
@@ -213,11 +217,11 @@ VALIDNAM(DIEN,DNAME,FIELD,EXT,TYPE,CNT,MESS,OLIST,TLIST,RETFAIL) ;
  ..S FAIL=$$TEMPSTAT^TIUCHECK(NAME)
  ..I FAIL=-1 D  Q
  ...S TEXT(1)="The "_EXT_" "_DNAME_" contains a reference to a TIU Template field "_NAME_" in the "_FLDNAM_" field. This TIU Template field does not exist on the system."
- ...D BUILDMSG(.TEXT,.CNT,.MESS)
+ ...D BUILDMSG(.TEXT,.CNT,.MESS,1)
  ...S RETFAIL="F"
  ..I FAIL=0 D  Q
  ...S TEXT(1)="The "_EXT_" "_DNAME_" contains a reference to a TIU Template field "_NAME_" in the "_FLDNAM_" field. This TIU Template field is inactive."
- ...D BUILDMSG(.TEXT,.CNT,.MESS)
+ ...D BUILDMSG(.TEXT,.CNT,.MESS,1)
  ...I $G(RETFAIL)'="F" S RETFAIL="W"
  Q
  ;

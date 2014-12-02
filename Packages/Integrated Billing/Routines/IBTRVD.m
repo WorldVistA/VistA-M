@@ -1,6 +1,6 @@
 IBTRVD ;ALB/AAS - CLAIMS TRACKING - EXPANDED REVIEW SCREEN;02-JUL-1993
- ;;2.0;INTEGRATED BILLING;**266**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**266,458**;21-MAR-94;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 % ;
 EN ; -- main entry point for IBT EXPAND/EDIT REVIEW from menus
  K XQORS,VALMEVL,IBTRV,IBTRN,DFN,IBTRC,IBTRD
@@ -9,8 +9,9 @@ EN ; -- main entry point for IBT EXPAND/EDIT REVIEW from menus
  Q
  ;
 HDR ; -- header code
- D PID^VADPT
- S VALMHDR(1)="Expanded Review for: "_$$PT^IBTUTL1(DFN)_"   ROI:"_$$EXPAND^IBTRE(356,.31,$P(^IBT(356,IBTRN,0),"^",31))
+ D PID^VADPT N IBXR
+ S VALMHDR(1)="Expanded Review for: "_$$PT^IBTUTL1(DFN)
+ S IBXR=$$ROIEVT^IBTRR1(IBTRN) I IBXR'="" S VALMHDR(1)=VALMHDR(1)_$J(" ",(60-$L(VALMHDR(1))))_"ROI: "_IBXR
  S VALMHDR(2)="                for: "_$P($G(^IBE(356.11,+$P(IBTRVD,"^",22),0)),"^")_" on "_$$DAT1^IBOUTL(+IBTRVD)
  Q
  ;

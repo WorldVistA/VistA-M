@@ -1,5 +1,5 @@
-DGPTAEE ;ALB/MTC - Austin Edit Checks Error Driver ; 23 NOV 92
- ;;5.3;Registration;**64,338,678**;Aug 13, 1993
+DGPTAEE ;ALB/MTC - Austin Edit Checks Error Driver ;23 NOV 92
+ ;;5.3;Registration;**64,338,678,850**;Aug 13, 1993;Build 171
  ;
 EN ;-- entry point for list manager
  D BUILD
@@ -11,7 +11,7 @@ HDR ;-- header function for Editing List.
  S VALMHDR(3)="Discharge Date : "_$$FTIME^VALM1($P(^DGPT(PTF,70),U))
  Q
  ;
-BUILD ;-- this fuction will build the display array - similar to Austin's EAL
+BUILD ;-- this function will build the display array - similar to Austin's EAL
  ;
  Q:'$D(^TMP("AERROR",$J))!'($D(^TMP("AEDIT",$J)))
  K ^TMP("AD",$J)
@@ -34,7 +34,7 @@ LOADER ;-- This function will load the array DGER
  K DGER
  S DGER=""
  S Y="",J=0 F  S J=$O(^TMP("AERROR",$J,SEQ,NODE,J)) Q:'J  S X2=$G(^(J)) D
- . S X1=$O(^DGP(45.64,"B",X2,0)),Y=$G(^DGP(45.64,X1,0))
+ . S X1=$O(^DGP(45.64,"B",$G(X2),0)),Y=$G(^DGP(45.64,+$G(X1),0))
  . S DGER(J)=Y,DGER=DGER_$P(ERSTR,U,$P(Y,U,3))_","
  S DGER=$E(DGER,1,$L(DGER)-1)
  Q

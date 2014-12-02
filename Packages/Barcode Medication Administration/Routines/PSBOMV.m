@@ -1,5 +1,5 @@
 PSBOMV ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**60**;Mar 2004;Build 12
+ ;;3.0;BAR CODE MED ADMIN;**60,78**;Mar 2004;Build 8
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -103,8 +103,11 @@ BYDFN ;Print by Patient.
  Q
  ;
 WRDHDR() ;
+ N PSBSRCHL ;Add PSBSRCHL variable and additional PSBHDR array spacers for PSBOHDR call, PSB*3*78
  S PSBHDR(1)="MEDICATION VARIANCE LOG"
- D WARD^PSBOHDR(PSBWRD,.PSBHDR)
+ S PSBSRCHL=$$SRCHLIST^PSBOHDR()
+ S PSBHDR(2)="",PSBHDR(3)="",PSBHDR(4)="Ward Location: "
+ D WARD^PSBOHDR(PSBWRD,.PSBHDR,,,PSBSRCHL)
  W !,"Rm-Bed",?20,"Patient Name",?48,"Event Date/Time",?75,"Event",?95,"Var",?102,"Medication",!,$TR($J("",IOM)," ","-")
  Q ""
  ;

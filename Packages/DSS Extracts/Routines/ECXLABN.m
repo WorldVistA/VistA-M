@@ -1,5 +1,5 @@
-ECXLABN ;ALB/JAP,BIR/CML-Lab Extract for DSS (New Format - With LMIP Codes) ;10/4/10  16:56
- ;;3.0;DSS EXTRACTS;**1,11,8,13,28,24,30,31,32,33,39,42,46,70,71,80,92,107,105,112,127,132**;Dec 22, 1997;Build 18
+ECXLABN ;ALB/JAP,BIR/CML-Lab Extract for DSS (New Format - With LMIP Codes) ;5/1/14  17:36
+ ;;3.0;DSS EXTRACTS;**1,11,8,13,28,24,30,31,32,33,39,42,46,70,71,80,92,107,105,112,127,132,144,149**;Dec 22, 1997;Build 27
 BEG ;entry point
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -31,7 +31,8 @@ START ; entry when queued
  Q
  ;
 GET ;get data
- N X,ECXSTN,QFLAG,ECXDFN
+ N X,ECXSTN,QFLAG,ECXDFN,ECXESC,ECXCLST ;144
+ S (ECXESC,ECXCLST)="" ;144
  S ECF=$S($P(EC,";",2)="DPT(":2,$P(EC,";",2)="LRT(67,":67,1:0) Q:'ECF
  S ECIFN=$P(EC,";"),QFLAG=0
  ;resolve ecloc
@@ -79,11 +80,14 @@ GET ;get data
  ; ******* - PATCH 127, ADD PATCAT CODE ********
  S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
  ;
- ;- get  lab billable procedure, dss feeder key, data name, and data location
- N ECXLEX
+ ;- get lab billable procedure, dss feeder key, data name, data location, and pathologist information
+ N ECXLEX,ECXPATH,ECXPATHP,ECXPATHN ;149
  S ECXLEX="" I $D(^LRO(64.03,ECLRN,2)) S ECXLEX=^(2)
  S ECLRBILL=$P(ECXLEX,U),ECDSSFK=$P(ECXLEX,U,2)
  S ECLRTNM=$P(ECXLEX,U,3),ECLRDTNM=$P(ECXLEX,U,4)
+ S ECXPATH=$P(ECXLEX,U,5) ;149 Pathologist
+ S ECXPATHP=$$PRVCLASS^ECXUTL(ECXPATH,$P(EC1,U,4)) ;149 Pathologist provider class
+ S ECXPATHN=$$NPI^XUSNPI("Individual_ID",ECXPATH,$P(EC1,U,4)) S:+ECXPATHN'>0 ECXPATHN="" S ECXPATHN=$P(ECXPATHN,U) ;149 Pathologist NPI
  ;- If no encounter number don't file record
  S ECXENC=$$ENCNUM^ECXUTL4(ECA,ECSN,ECXADMDT,ECD,ECTREAT,ECXOBS,ECHEAD,,) Q:ECXENC=""
  ;create extract record only if patient name and accession area exist
@@ -116,14 +120,15 @@ PAT(ECXDFN,ECXDATE,ECXERR) ;get/set patient data
  ;get data
  I $D(^TMP($J,"ECXP",ECXDFN)) D
  .S PT=^TMP($J,"ECXP",ECXDFN),ECNA=$P(PT,U)
- .S ECSN=$P(PT,U,2),ECXMPI=$P(PT,U,3),ECXERI=$P(PT,U,4)
+ .S ECSN=$P(PT,U,2),ECXMPI=$P(PT,U,3),ECXERI=$P(PT,U,4),ECXCLST=$P(PT,U,5) ;144
  ;set data and save for later
  I '$D(^TMP($J,"ECXP",ECXDFN)) D  Q:'OK
  .K ECXPAT S OK=$$PAT^ECXUTL3(ECXDFN,$P(ECSD,"."),"1;3",.ECXPAT)
  .I 'OK S ECXERR=1 Q
  .S ECNA=ECXPAT("NAME"),ECSN=ECXPAT("SSN"),ECXMPI=ECXPAT("MPI")
  .S ECXERI=ECXPAT("ERI")
- .S ^TMP($J,"ECXP",ECXDFN)=ECNA_U_ECSN_U_ECXMPI_U_ECXERI
+ .S ECXCLST=ECXPAT("CL STAT") ;144
+ .S ^TMP($J,"ECXP",ECXDFN)=ECNA_U_ECSN_U_ECXMPI_U_ECXERI_U_ECXCLST ;144
  ;get date specific data
  S X=$$INP^ECXUTL2(ECXDFN,ECXDATE),ECA=$P(X,U),ECMN=$P(X,U,2),ECTREAT=$P(X,U,3),ECXADMDT=$P(X,U,4)
  S X=$$PRIMARY^ECXUTL2(ECXDFN,$P(ECXDATE,"."),ECPROF)
@@ -147,7 +152,7 @@ FILE ;file record
  ;(FEMA) ECXERI^associate pc provider npi ECASNPI^primary care provider
  ;npi ECPTNPI^provider npi ECDOCNPI^LOINC code ECLNC^lab billable procedure^dss feeder key
  ;node2
- ;data name^data location^PATCAT
+ ;data name^data location^PATCAT^Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Pathologist ECXPATH^Pathologist Person Class ECXPATHP^Pathologist NPI ECXPATHN
  ;ECDOCPC
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
@@ -172,6 +177,8 @@ FILE ;file record
  I ECXLOGIC>2007 S ECODE1=ECODE1_U_ECASNPI_U_ECPTNPI_U_ECDOCNPI
  I ECXLOGIC>2008 S ECODE1=ECODE1_U_$G(ECXLNC)
  I ECXLOGIC>2010 S ECODE1=ECODE1_U_ECLRBILL_U_ECDSSFK_U,ECODE2=ECLRTNM_U_ECLRDTNM_U_ECXPATCAT
+ I ECXLOGIC>2013 S ECODE2=ECODE2_U_ECXESC_U_ECXCLST ;144
+ I ECXLOGIC>2014 S ECODE2=ECODE2_U_$S(ECXPATH:2_ECXPATH,1:ECXPATH)_U_ECXPATHP_U_ECXPATHN ;149
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1

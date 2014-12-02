@@ -1,5 +1,5 @@
 IBJTCA1 ;ALB/ARH - TPI CLAIMS INFO BUILD ;10/31/07  14:17
- ;;2.0;INTEGRATED BILLING;**39,80,106,137,223,276,363,384,432,452,473**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**39,80,106,137,223,276,363,384,432,452,473,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 BLD ; build array for Third Party Joint Inquiry Claims Info screen, IBIFN must be defined
@@ -16,7 +16,7 @@ BLD ; build array for Third Party Joint Inquiry Claims Info screen, IBIFN must b
  ;IB*2.0*432/TAZ - Added IBTW(6) and IBSW(6)
  S (IBNC(1),IBTC(1),IBTC(4),IBTC(6))=2,IBTC(5)=78,(IBNC(2),IBTC(2))=42,IBNC(3)=35,IBTW(1)=15,IBTW(2)=16,IBTW(4)=12,IBTW(5)=1,IBTW(6)=20,IBSW(1)=23,IBSW(2)=21,IBSW(4)=60,IBSW(5)=1,IBSW(6)=49
  ;
- S IBGRPB=IBLN,IBLR=1
+ S IBLR=1
  ;
  S IBT="Insurance Demographics" S IBLN=$$SETN(IBT,IBLN,IBLR,1)
  S IBWNR=$$WNRBILL^IBEFUNC(IBIFN)
@@ -28,8 +28,7 @@ BLD ; build array for Third Party Joint Inquiry Claims Info screen, IBIFN must b
  I $P(IBDM1,U,1)'="" S IBT="",IBD=$P(IBDM1,U,1) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
  S IBT="",IBD=$P(IBDM,U,7),IBD=IBD_$S(IBD'="":", ",1:"")_$P($G(^DIC(5,+$P(IBDM,U,8),0)),U,2)_" "_$P(IBDM,U,9),IBLN=$$SET(IBT,IBD,IBLN,IBLR)
  S IBT="Claim Phone: ",IBD=$P($$BADD^IBJTU3(+IBIFN),U,2) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
- ;
- S IBGRPE=IBLN,IBLN=IBGRPB,IBLR=2
+ S IBLN=$$SET("","",IBLN,5)
  ;
  S IBT="Subscriber Demographics" S IBLN=$$SETN(IBT,IBLN,IBLR,1)
  S IBT="Group Number: ",IBD=$P(IBDI1,U,3) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
@@ -39,7 +38,6 @@ BLD ; build array for Third Party Joint Inquiry Claims Info screen, IBIFN must b
  S IBT="Insured's Name: ",IBD=$P(IBDI1,U,17) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
  S IBT="Relationship: ",IBD=$$EXSET^IBJU1($P(IBDI1,U,16),2.312,16) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
  ;
- S (IBLN,VALMCNT)=$S(IBLN>IBGRPE:IBLN,1:IBGRPE)
  S (IBNC(1),IBTC(1))=2,(IBNC(2),IBTC(2))=42,IBNC(3)=29,IBTW(1)=12,IBTW(2)=16,IBSW(1)=26,IBSW(2)=22
  S (IBT,IBD)="" S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
  ;

@@ -1,5 +1,5 @@
 PSOSIGDS ;BIR/RTR-Utility to calculate Days Supply ;6/04/00
- ;;7.0;OUTPATIENT PHARMACY;**46,222**;DEC 1997;Build 12
+ ;;7.0;OUTPATIENT PHARMACY;**46,222,391**;DEC 1997;Build 13
  ;External reference to PS(51 supported by DBIA 2224
  ;External reference to PS(51.1 supported by DBIA 2225
  ;External reference to PS(55 supported by DBIA 2228
@@ -163,7 +163,15 @@ QTYX(PSOQX) ;
 DSUP(PSOQX) ;Max Days Supply for CPRS, without QTY (just patient and drug)
  ;Should we add to accept # of refills?
  ;If no Drug, should we base on Orderable Item
- S PSOQX("DAYS SUPPLY")=90
+ N CS,DR,OI S CS=0,DR=$G(PSOQX("DRUG"))
+ I DR S CS=$$CSDS(DR)
+ I 'DR S OI=$G(PSOQX("OI")) D:OI
+ .N IDT,PAC S DR=0 F  S DR=$O(^PSDRUG("ASP",OI,DR)) Q:'DR!(CS)  D
+ ..S IDT=$P($G(^PSDRUG(DR,"I")),"^"),PAC=$P($G(^(2)),"^",3)
+ ..I IDT,IDT<DT Q
+ ..I PAC'["O" Q
+ ..S CS=$$CSDS(DR)
+ S PSOQX("DAYS SUPPLY")=$S(CS:30,1:90)
  Q:'$G(PSOQX("PATIENT"))
  N PSO55,PSO553
  S PSO55=$P($G(^PS(55,PSOQX("PATIENT"),"PS")),"^") I 'PSO55 G DSUPDG
@@ -171,8 +179,8 @@ DSUP(PSOQX) ;Max Days Supply for CPRS, without QTY (just patient and drug)
  I PSO553<$G(PSOQX("DAYS SUPPLY")) S PSOQX("DAYS SUPPLY")=PSO553
 DSUPDG ;
  N PSOCLPAT,PSOCLMAX
- Q:'$G(PSOQX("DRUG"))
- I $P($G(^PSDRUG(PSOQX("DRUG"),"CLOZ1")),"^")="PSOCLO1" D
+ Q:'DR
+ I $P($G(^PSDRUG(DR,"CLOZ1")),"^")="PSOCLO1" D
  .S PSOCLPAT=$O(^YSCL(603.01,"C",PSOQX("PATIENT"),0)) Q:'PSOCLPAT
  .S PSOCLPAT=$P($G(^YSCL(603.01,PSOCLPAT,0)),"^",3)
  .S PSOCLMAX=$S(PSOCLPAT="M":28,PSOCLPAT="B":14,$P($G(^(0)),"^",3)="W":7,1:0)
@@ -181,3 +189,11 @@ DSUPDG ;
 MAX(PSOQX) ;
  G EN^PSOSIGMX
  Q
+ ;
+CSDS(DR) ;
+ Q:'DR 0
+ I $P($G(^PSDRUG(DR,"ND")),"^",3) S CS=+$P($G(^PSNDF(50.68,$P(^("ND"),"^",3),7)),"^")
+ E  S CS=$P($G(^PSDRUG(DR,0)),"^",3),CS=$S(CS[1:1,CS[2:2,CS[3:3,CS[4:4,CS[5:5,1:0)
+ I CS=1!(CS=2)!(CS=3)!(CS=4)!(CS=5) Q 1
+ Q 0
+ ;

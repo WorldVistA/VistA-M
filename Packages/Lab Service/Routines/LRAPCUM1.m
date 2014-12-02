@@ -1,5 +1,8 @@
-LRAPCUM1 ;AVAMC/REG - AP PATIENT CUM ;7/15/93  10:36 ;
- ;;5.2;LAB SERVICE;**315**;Sep 27, 1994;Build 25
+LRAPCUM1 ;AVAMC/REG - AP PATIENT CUM ;7/15/93  10:36
+ ;;5.2;LAB SERVICE;**315,422**;Sep 27, 1994;Build 29
+ ;
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
+ ;
  D:$Y>LRA(1)!'$Y MORE Q:LRA(2)?1P
  W !,LR("%"),!,"SNOMED/ICD codes:" F C=0:0 S C=$O(^LR(LRDFN,LRSS,LRI,2,C)) Q:'C  S T=+^(C,0),T=^LAB(61,T,0) D:$Y>LRA(1)!'$Y MORE Q:LRA(2)?1P  W !,"T-",$P(T,"^",2),": " S X=$P(T,"^") D:LR(69.2,.05) C^LRUA W X D M
  Q:LRA(2)?1P
@@ -8,7 +11,7 @@ LRAPCUM1 ;AVAMC/REG - AP PATIENT CUM ;7/15/93  10:36 ;
  F C=0:0 S C=$O(^LR(LRDFN,LRSS,LRI,3,C)) Q:'C  D  Q:LRA(2)?1P
  . D:$Y>LRA(1)!'$T MORE
  . Q:LRA(2)?1P
- . S LRX=+^LR(LRDFN,LRSS,LRI,3,C,0),LRX=$$ICDDX^ICDCODE(LRX,,,1)
+ . S LRX=+^LR(LRDFN,LRSS,LRI,3,C,0),LRX=$$ICDDX^ICDEX(LRX,,,"I")
  . S X=$P(LRX,"^",4)
  . W !,"ICD code: ",$P(LRX,"^",2),?20
  . D:LR(69.2,.05) C^LRUA

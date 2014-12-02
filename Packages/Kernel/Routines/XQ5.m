@@ -1,6 +1,6 @@
-XQ5 ;SF/GFT,MJM,KLD - Menu edit utilities [XUEDITOPT] ;01/30/2008
- ;;8.0;KERNEL;**44,130,484**;Jul 10, 1995;Build 2
- ; Per VHA Directive 2004-038, this routine should not be modified.
+XQ5 ;SF/GFT,MJM,KLD,TK - Menu edit utilities [XUEDITOPT] ;01/30/2008
+ ;;8.0;KERNEL;**44,130,484,627**;Jul 10, 1995;Build 3
+ ;Per VHA Directive 6402, this routine should not be modified.
  ; Option & Input Template: XUEDITOPT
 DIP ;
  K DIC S DIC=.4,DIC(0)="AEQMZ" I $D(^DIC(19,DA,63)),^(63)?1"[".E1"]" S DIC("B")=$E(^(63),2,$L(^(63))-1)
@@ -52,8 +52,9 @@ DIQ1 ;
  D PUT G Q1
  ;
 NAME ;
- I $E(X,1)="A"!($E(X,1)="Z") S %=1,%1="Local" Q
+ I $E(X,1)="Z" S %=1,%1="Local" Q
  F %=4:-1:2 G:$D(^DIC(9.4,"C",$E(X,1,%))) NAMEOK
+ I $E(X,1)="A" S %=1,%1="Local" Q
  I 0
  Q
 NAMEOK S %1=$O(^DIC(9.4,"C",$E(X,1,%),0)) S:%1="" %1=-1 S:$D(^DIC(9.4,%1,0)) %1=$P(^(0),U,1),XQPK=%1 I 1 Q

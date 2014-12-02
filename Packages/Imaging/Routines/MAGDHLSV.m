@@ -1,5 +1,5 @@
-MAGDHLSV ;WOIFO/MLH - IHE-based ADT interface for PACS - PV1 segment ; 13 Aug 2009 9:15 AM
- ;;3.0;IMAGING;**49**;Mar 19, 2002;Build 2033;Apr 07, 2011
+MAGDHLSV ;WOIFO/MLH - IHE-based ADT interface for PACS - PV1 segment ; 08 Jul 2013 11:24 AM
+ ;;3.0;IMAGING;**49,141,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -25,9 +25,9 @@ PV1 ; GOTO entry point from MAGDHLS - patient visit - NOT FOR DIRECT ENTRY
  ; output: @XYMSG    input array plus new subtree containing PV1 elts
  ;         function return   0 (success) always
  ;
- N SEGIX ; ----- segment index on array @XYMSG
- N MAGNME ; ---- array for HL7-formatted name lookup info
- N I ; --------- loop index for $Piece calls
+ N SEGIX ; --- segment index on array @XYMSG
+ N MAGNME ; -- array for HL7-formatted name lookup info
+ N I ; ------- loop index for $Piece calls
  N BDT ; ----- beginning date for call to EN1^RAO7PC1
  N EDT ; ----- ending date for call to EN1^RAO7PC1
  N EXN ; ----- max # of exams for call to EN1^RAO7PC1
@@ -46,6 +46,7 @@ PV1 ; GOTO entry point from MAGDHLS - patient visit - NOT FOR DIRECT ENTRY
  N VAIN ; ---- inpatient data array from call to INP^VADPT
  N RESULT ; -- return array from entry point PTSEG^DGSEC4
  N VISNO ; --- visit number
+ N DFN ; ----- temporary value for ^VADPT call
  ;
  ; set up the PV1 segment
  S SEGIX=$O(@XYMSG@(" "),-1)+1 ; segment index
@@ -100,7 +101,7 @@ IN ; SUBROUTINE - patient is now an inpatient
  S @XYMSG@(SEGIX,3,1,1,1)=WARDNAM ; patient location - ward
  S @XYMSG@(SEGIX,3,1,2,1)=$P(ROOMBED,"-",1) ; patient location - room
  S @XYMSG@(SEGIX,3,1,3,1)=$P(ROOMBED,"-",2) ; patient location - bed
- S:WARDNAM'="" @XYMSG@(SEGIX,3,1,4,1)=$$FACILIX(WARDIX) ; pt loc - facility
+ S:WARDNAM'="" @XYMSG@(SEGIX,3,1,4,1)=$$FACILIX(WARDIX,"W") ; pt loc - facility
  I XEVN="A02" D  ; transfer -> get previous location
  . S TMP=$G(VAIP(15)) Q:'TMP  K VAIP
  . S VAIP("E")=TMP D IN5^VADPT
@@ -109,7 +110,7 @@ IN ; SUBROUTINE - patient is now an inpatient
  . S @XYMSG@(SEGIX,6,1,1,1)=WARDNAM ; previous location - ward
  . S @XYMSG@(SEGIX,6,1,2,1)=$P(ROOMBED,"-",1) ; previous location - room
  . S @XYMSG@(SEGIX,6,1,3,1)=$P(ROOMBED,"-",2) ; previous location - bed
- . S:WARDNAM'="" @XYMSG@(SEGIX,6,1,4,1)=$$FACILIX(WARDIX) ; prev loc - facility
+ . S:WARDNAM'="" @XYMSG@(SEGIX,6,1,4,1)=$$FACILIX(WARDIX,"W") ; prev loc - facility
  . Q
  F I=1:1:$L(ATTPHY,U) S @XYMSG@(SEGIX,7,1,I,1)=$P(ATTPHY,U,I) ; attending physician
  S @XYMSG@(SEGIX,10,1,1,1)=$P(VAIP(8),"^",2) ; hospital service <- treating specialty
@@ -118,32 +119,51 @@ IN ; SUBROUTINE - patient is now an inpatient
  Q
  ;
 OUT ; SUBROUTINE - patient is now an outpatient
- ;
- N REFPHYIX ; -- referring/requesting physician index on NEW PERSON
- N REFPHY ; ---- referring/requesting physician information
+ N CLINICIX ; -- outpatient clinic index on HOSPITAL LOCATION
+ N CLINIC ; ---- outpatient clinic
  ;
  S @XYMSG@(SEGIX,2,1,1,1)="O" ; patient class
  S:XEVN="A03" @XYMSG@(SEGIX,45,1,1,1)=$$FMTHL7^XLFDT(XEVNDT) ; discharge date/time
  ; insert admit date/time as appropriate
+ ; 
+ I $G(RADFN) D  ; outpatient radiology order
+ . I $G(RADTI),$G(RACNI) D
+ . . N SUBSCRIPT ; -- working variable
+ . . S SUBSCRIPT=RACNI_","_RADTI_","_RADFN
+ . . S CLINICIX=$$GET1^DIQ(70.03,SUBSCRIPT,8,"I")
+ . . Q
+ . Q
+ E  I $G(GMRCIEN) D  ; outpatient consult/procedure order
+ . S CLINICIX=$$GET1^DIQ(123,GMRCIEN,.04,"I")
+ . Q
+ ;
+ I $G(CLINICIX) D  ; outpatient clinic goes on PV1-11 Temporary Location
+ . S CLINIC=$$GET1^DIQ(44,CLINICIX,.01)
+ . S @XYMSG@(SEGIX,11,1,1,1)=CLINIC ; patient location - clinic
+ . S:CLINIC'="" @XYMSG@(SEGIX,11,1,4,1)=$$FACILIX(CLINICIX,"C") ; pt loc - facility
+ . Q
+ ;
  Q
  ;
-FACILIX(XWARDIX) ; FUNCTION - return the facility associated with a ward, if any,
- ;   otherwise return user's default facility
+FACILIX(LOCATIONIX,LOCTYPE) ; FUNCTION - return the facility associated with a ward
+ ;    or clinic, if any, otherwise return user's default facility
  ;   
- ; input:      XWARDIX = IEN of the ward in WARD LOCATION File (#42))
+ ; input:      LOCATIONIX = IEN of the ward in WARD LOCATION File (#42), or
+ ;             LOCATIONIX = IEN of the clinic in HOSPITAL LOCATION File (#44)
+ ;             LOCTYPE = "W" for Ward (#42) or "C" for Clinic (#44)
  ;
  ; function return:    <facility code>_"_"_<facility name>
  ;   
- N DA,DIC,DR,X ;  FileMan work variables
- N WARDIX ; ----- IEN of ward in WARD LOCATION File (#42)
+ N DA,DIC,DIQ,DR,X ;  FileMan work variables
  N HOSPLOCIX ; -- IEN of hospital location in HOSPITAL LOCATION File (#44)
  N FACILIX ; ---- IEN of facility on INSTITUTION File (#4)
  N FACILNAM ; --- name of facility on INSTITUTION File (#4)
  N MAGLOC ; ----- work array for FileMan search results
  ;
- D:$G(XWARDIX)
- . Q:XWARDIX'=+XWARDIX
- . S HOSPLOCIX=$P($G(^DIC(42,XWARDIX,44)),U,1) ; look up hospital location - ICR 10039
+ D:$G(LOCATIONIX)
+ . Q:LOCATIONIX'=+LOCATIONIX
+ . I $G(LOCTYPE)="C" S HOSPLOCIX=LOCATIONIX ; hospital location passed as LOCATIONIX
+ . E  S HOSPLOCIX=$P($G(^DIC(42,LOCATIONIX,44)),U,1) ; look up hospital location - ICR 10039
  . Q:HOSPLOCIX'>0  Q:'$D(^SC(HOSPLOCIX))  ; hospital location not on file
  . S FACILIX=$P($G(^SC(HOSPLOCIX,0)),"^",4) ; look up facility - ICR 10040
  . Q

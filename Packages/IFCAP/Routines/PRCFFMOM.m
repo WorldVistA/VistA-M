@@ -1,6 +1,10 @@
 PRCFFMOM ;WOIFO/SJG/AS-ROUTINE TO PROCESS AMENDMENT OBLIGATIONS ;3/8/05
-V ;;5.1;IFCAP;**81**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**81,180**;Oct 20, 2000;Build 5
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*180 Added check for Delivery Date change to send document
+ ;            to FMS
+ ;
  D ^PRCFSITE Q:'%  ; ask station
  D OUT1 ; kill variables
  ;
@@ -58,7 +62,7 @@ DESC ; verify amendment is complete
  D ^PRCHSF3 ; sets up PRCH("AM") array
  D ^PRCHDAM ; display amendment info
  D DT442^PRCFFUD1(PRCFPODA,PO(0),443.6,PRCFA("AMEND#")) ; set up PRC array
-RETRAN    ; Entry point for rebuild/transmit
+RETRAN ; Entry point for rebuild/transmit
  S PRCFA("MOD")="M^1^Modification Entry"
  ;
  ; check amendment record for availability
@@ -197,9 +201,11 @@ TRANS1 D DT442^PRCFFUD1(PRCFA("PODA"),"",442,PRCFA("AMEND#"))
  S PRCFA("OLDREF")=PRCFA("REF")
  I PRCFA("RETRAN")>0 I XRBLD=1!(XRBLD=2) D GO^PRCFFUB H 3 Q  ; if rebuilding a 'dependent' transaction, finish work here
  D LIST^PRCFFU7(PRCFA("PODA"),PRCFA("AMEND#"))
+ I $P(^PRC(442,PRCFA("PODA"),0),U,20),($P(^PRC(442,PRCFA("PODA"),0),U,10)'=$P(^PRC(442,PRCFA("PODA"),0),U,20)) D       ;PRC*5.1*180 Check for Del Date change, if so, send doc to FMS
+ . S PRCFA("MOMREQ")=1,PRCFA("MOMNOTREQ")=0,PRCFA("ZERO")=""                      ;PRC*5.1*180 reset flag to send doc
  I $G(PRCFA("RETRAN"))<1 D AMEND^PRCFFUD ; create entry in 410
  I PRCFA("AUTHE") D FCP^PRCFFU11,PRINT G START
- I 'PRCFA("MOMREQ") D MSG^PRCFFU8 G PRINT ; skip FMS transmit,fiscal upadtes
+ I 'PRCFA("MOMREQ") D MSG^PRCFFU8 G PRINT ; skip FMS transmit,fiscal updates
  I $D(PRCFA("RETRAN")),PRCFA("RETRAN")=1 D SETPO^PRCFFERT
  I $G(PRCFA("ACCEDIT"))=1 D TAG33^PRCFFU9
 TRANS2 K PO

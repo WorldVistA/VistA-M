@@ -1,6 +1,12 @@
 ACKQR2 ;AUG/JLTP BIR/PTD HCIOFO/AG -Statistics by Procedure ; [ 12/07/95   9:52 AM ]
- ;;3.0;QUASAR;**1,8**;Feb 11, 2000
- ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
+ ;;3.0;QUASAR;**1,8,22**;Feb 11, 2000;Build 5
+ ;Per VHA Directive 2004-038, this routine SHOULD NOT be modified.
+ ;
+ ;
+ ;
+ ;  Reference/ICR
+ ;  $$CPT^ICPTMOD - 1995
+ ;
  ;
 OPTN W @IOF,!,"This option produces a report listing clinic visits for a date range"
  W !,"sorted by CPT-4 procedure codes.",!
@@ -95,8 +101,9 @@ STORE ;
  . S ACKT2(ACKSORT)=$G(ACKT2(ACKSORT))+ACKVOL,ACKT2=ACKT2+ACKVOL
  Q
 GETCPT(ACKCPTN) ; Get Proc code data & put in ^TMP
- N ACKTMP,ACKCPT S ACKTMP=$NA(^TMP("ACKQR2",$J,"CPT",1))
- D GETS^DIQ(81,ACKCPTN_",",".01","",ACKTMP,"ACKMSG")
+ N ACKCPT
+ ;ACKQ*3.0*22 updated api
+ S ^TMP("ACKQR2",$J,"CPT",1,81,ACKCPTN_",",.01)=$P($$CPT^ICPTCOD(ACKCPTN),U,2)
  S ACKCPT=^TMP("ACKQR2",$J,"CPT",1,81,ACKCPTN_",",.01)
  S ^TMP("ACKQR2",$J,"CPT",1,81,ACKCPTN_",",2)=$$PROCTXT^ACKQUTL8(ACKCPTN,"")
  S ^TMP("ACKQR2",$J,"CPT",2,ACKCPT)=ACKCPTN

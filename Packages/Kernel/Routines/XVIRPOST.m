@@ -8,12 +8,12 @@ A W !,"Post init for virgin install"
  I $O(^DIC(4,0))'>0 D INST
  I $O(^DIC(49,0))'>0 D SERV
  Q
-DOMAIN W !,"We are adding FORUM.domain.ext to the domain file."
- S DIC=4.2,DLAYGO=4,X="FORUM.domain.ext",DIC(0)="LM" D ^DIC
+DOMAIN W !,"We are adding DOMAIN.EXT to the domain file."
+ S DIC=4.2,DLAYGO=4,X="DOMAIN.EXT",DIC(0)="LM" D ^DIC
  W !,"Now you need to enter the NETWORK MailMan domain name for this"
  W !,"system to use both on the network and for the name of the"
  W !,"Kernel site parameter entry."
- W !,"Use the format 'xxx.domain.ext' in the VA."
+ W !,"Use the format 'xxx.DOMAIN.EXT' in the VA."
  S DIC=4.2,DLAYGO=4,DIC(0)="AEMQL" D ^DIC I '$P(Y,U,3) W !,"You must enter the name of your local network mail node ",!,"so you may enter your KERNEL SITE PARAMITERS." G DOMAIN
  S ^XTV(8989.3,1,0)=+Y,^XMB(1,1,0)=+Y
  S DIK="^XTV(8989.3," D IXALL^DIK S DIK="^XMB(1," D IXALL^DIK

@@ -1,5 +1,5 @@
-LRRPLU ;DALOI/JMC - Lab Report Performing Lab Utility ;10/28/11  14:29
- ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+LRRPLU ;DALOI/JMC - Lab Report Performing Lab Utility ;02/22/13  10:11
+ ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
  ;
  Q
  ;
@@ -305,7 +305,7 @@ MICHK ; Check MI for sections to link to a performing lab
  . I LRI=17 D BUGCHK
  ;
  ; Various preliminary comment sections
- F LRI=19:1:30 I $D(^LR(LRDFN,LRSS,LRIDT,LRI)) S LRREF=LRROOT_LRI,LRREC=LRREC+1 D MICHK^LRRPL S $P(LRREC(LRREC),"^",2)=LRI
+ F LRI=19:1:30 I $O(^LR(LRDFN,LRSS,LRIDT,LRI,0)) D MICHK2
  ;
  ; Sterility Results
  S LRI=31
@@ -450,7 +450,7 @@ GETMULTI ; Build array of existing items in multiple
 MIMULTI ; Build array for MI subscript results.
  ;
  N LRX,X
- S LRX="^1^^1^^^1^^^1^^^^1^1^^^^1^"
+ S LRX="^1^^1^^^1^^^1^^^1^1^1^^^1^1^1^1^1^1^1^1^1^1^1^1^1"
  I $P(LRX,"^",LRSECT) D  Q
  . F  S LRI=$O(^LR(LRDFN,LRSS,LRIDT,LRSECT,LRI)) Q:'LRI  D
  . . S X=^LR(LRDFN,LRSS,LRIDT,LRSECT,LRI,0)

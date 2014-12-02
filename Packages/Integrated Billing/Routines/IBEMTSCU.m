@@ -1,6 +1,6 @@
 IBEMTSCU ;ALB/RFJ-print billable types for visit copay ;23 Nov 01
- ;;2.0;INTEGRATED BILLING;**167,177,187**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**167,177,187,502**;21-MAR-94;Build 1
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
 EFFDT() ;effect date Visit Copay 2
@@ -66,7 +66,9 @@ INACTIVE(IBSTCODE) ;  return 1 if inactive in file 40.7
  ;
  S DA=0 F  S DA=$O(^DIC(40.7,"C",IBSTCODE,DA)) Q:'DA  D
  . D DIQ407(DA,2)
- . I 'IBSCDATA(40.7,DA,2,"I") S RESULT=0
+ . I 'IBSCDATA(40.7,DA,2,"I") S RESULT=0 Q
+ . ;IB*502 ticket 862861 only prevent selection if visit date is after the inactive date
+ . I IBFR<+$G(IBSCDATA(40.7,DA,2,"I")) S RESULT=0
  ;
  Q RESULT
  ;
@@ -252,7 +254,8 @@ OPT ;  perform outpatient copay edits for visits after 11/29/01
  I IBSTOPDA>0,'$P($G(^IBE(352.5,IBSTOPDA,0)),"^",3) W !?5,"********** This is a NON-BILLABLE Clinic Stop **********",!?5,"Select an active billable clinic stop or press RETURN to exit." G OPT
  ;  user selected an inactive stop code
  I IBSTOPDA>0,$$ISINACT($P($G(^IBE(352.5,IBSTOPDA,0)),"^")) W !?5,"********** This is a INACTIVE Clinic Stop in file #40.7 **********",!?5,"Select an active billable clinic stop or press RETURN to exit." G OPT
- ;
+ ;  IB*502 prevent selection of Secondary stop codes
+ I IBSTOPDA>0,$$ISSEC($P($G(^IBE(352.5,IBSTOPDA,0)),"^")) W !?5,"********** This is a SECONDARY Clinic Stop in file #40.7 **********",!?5,"Select an active billable clinic stop or press RETURN to exit." G OPT
  ;  *** get the charge ***
  ;  return IBTO, IBUNIT, IBEVDA, IBCHG for processing in IBECEAU3
  N IBDT,IBTYPE,IBX
@@ -284,4 +287,17 @@ GETCODE(IB407) ;
  . S IBCODE=+$G(IBSCDATA(40.7,IB407,1,"E"))
  . S:$L(+IBCODE)'=3!(IBCODE<0) IBCODE=0
  Q IBCODE
+ ;
+ISSEC(IBCODE) ;check if the code has secondary restriction type in DSS IB*502
+ N DA,IBSCDATA,IBRESULT
+ ;
+ ;  default OK
+ S IBRESULT=0
+ ;
+ S DA=0 F  S DA=$O(^DIC(40.7,"C",IBCODE,DA)) Q:'DA  D
+ . D DIQ407(DA,"5:6;")
+ . I $G(IBSCDATA(40.7,DA,5,"I"))="S" D
+ .. I $G(IBSCDATA(40.7,DA,6,"I"))<=IBFR S IBRESULT=1
+ ;
+ Q IBRESULT
  ;

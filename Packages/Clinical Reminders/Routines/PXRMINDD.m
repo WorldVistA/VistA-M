@@ -1,5 +1,5 @@
-PXRMINDD ; SLC/PKR - Index string date checking routines. ;11/02/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,17**;Feb 04, 2005;Build 102
+PXRMINDD ; SLC/PKR - Index string date checking routines. ;09/27/2012
+ ;;2.0;CLINICAL REMINDERS;**4,6,17,26**;Feb 04, 2005;Build 404
  ;
  ;========================================================
 CNT5(FILENUM,NSD) ;Check for string dates for indexes where the date
@@ -28,10 +28,9 @@ CNT5(FILENUM,NSD) ;Check for string dates for indexes where the date
 CNT6(FILENUM,NSD) ;Check for string dates for indexes where the date
  ;is at subscript 6. Works for file numbers:
  ;9000010.07, 9000010.18
- N DAS,DATE,DFN,IND,ITEM,TYPE
+ N CODESYS,DAS,DATE,DFN,IND,ITEM,TYPE
  I '$D(ZTQUEUED) W !,"Checking file number "_FILENUM
- S IND=0
- S DFN=""
+ S DFN="",IND=0
  F  S DFN=$O(^PXRMINDX(FILENUM,"PPI",DFN)) Q:DFN=""  D
  . S IND=IND+1
  . I '$D(ZTQUEUED),(IND#10000=0) W "."
@@ -46,57 +45,77 @@ CNT6(FILENUM,NSD) ;Check for string dates for indexes where the date
  .... F  S DAS=$O(^PXRMINDX(FILENUM,"PPI",DFN,TYPE,ITEM,DATE,DAS)) Q:DAS=""  D
  ..... S NSD=NSD+1
  ..... S ^TMP($J,"SDATE",NSD)="^PXRMINDX("_FILENUM_",""PPI"","_DFN_","_TYPE_","_ITEM_","""_DATE_""","_DAS_")"
+ I FILENUM'=9000010.07 Q
+ S CODESYS=""
+ F  S CODESYS=$O(^PXRMINDX(FILENUM,CODESYS)) Q:CODESYS=""  D
+ . I (CODESYS="PPI")!(CODESYS="IPP") Q
+ . S DFN=""
+ . F  S DFN=$O(^PXRMINDX(FILENUM,CODESYS,"PPI",DFN)) Q:DFN=""  D
+ .. S IND=IND+1
+ .. I '$D(ZTQUEUED),(IND#10000=0) W "."
+ .. S TYPE=""
+ .. F  S TYPE=$O(^PXRMINDX(FILENUM,CODESYS,"PPI",DFN,TYPE)) Q:TYPE=""  D
+ ... S ITEM=""
+ ... F  S ITEM=$O(^PXRMINDX(FILENUM,CODESYS,"PPI",DFN,TYPE,ITEM)) Q:ITEM=""  D
+ .... S DATE=""
+ .... F  S DATE=$O(^PXRMINDX(FILENUM,CODESYS,"PPI",DFN,TYPE,ITEM,DATE)) Q:DATE=""  D
+ ..... I +DATE=DATE Q
+ ..... S DAS=""
+ ..... F  S DAS=$O(^PXRMINDX(FILENUM,CODESYS,"PPI",DFN,TYPE,ITEM,DATE,DAS)) Q:DAS=""  D
+ ...... S NSD=NSD+1
+ ...... S ^TMP($J,"SDATE",NSD)="^PXRMINDX("_FILENUM_","_CODESYS_",""PPI"","_DFN_","_TYPE_","_ITEM_","""_DATE_""","_DAS_")"
  Q
  ;
  ;========================================================
 CNTPL(FILENUM,NSD) ;Check for string date for Problem List indexes where the
- ;date is at subscript 7. Works for file numbers:
+ ;date is at subscript 8. Works for file numbers:
  ;9000011
- N DAS,DATE,DFN,IND,ITEM,PRIORITY,STATUS,TYPE
+ N CODESYS,DAS,DATE,DFN,IND,ITEM,PRIORITY,STATUS,TYPE
  I '$D(ZTQUEUED) W !,"Checking file number "_FILENUM
- S IND=0
- S DFN=""
- F  S DFN=$O(^PXRMINDX(FILENUM,"PSPI",DFN)) Q:DFN=""  D
- . S IND=IND+1
- . I '$D(ZTQUEUED),(IND#10000=0) W "."
- . S STATUS=""
- . F  S STATUS=$O(^PXRMINDX(FILENUM,"PSPI",DFN,STATUS)) Q:STATUS=""  D
- .. S PRIORITY=""
- .. F  S PRIORITY=$O(^PXRMINDX(FILENUM,"PSPI",DFN,STATUS,PRIORITY)) Q:PRIORITY=""  D
- ... S ITEM=""
- ... F  S ITEM=$O(^PXRMINDX(FILENUM,"PSPI",DFN,STATUS,PRIORITY,ITEM)) Q:ITEM=""  D
- .... S DATE=""
- .... F  S DATE=$O(^PXRMINDX(FILENUM,"PSPI",DFN,STATUS,PRIORITY,ITEM,DATE)) Q:DATE=""  D
- ..... I +DATE=DATE Q
- ..... S DAS=""
- ..... F  S DAS=$O(^PXRMINDX(FILENUM,"PSPI",DFN,STATUS,PRIORITY,ITEM,DATE,DAS)) Q:DAS=""  D
- ...... S NSD=NSD+1
- ...... S ^TMP($J,"SDATE",NSD)="^PXRMINDX("_FILENUM_",""PSPI"","_DFN_","_STATUS_","_PRIORITY_","_ITEM_","""_DATE_""","_DAS_")"
+ S CODESYS=""
+ F  S CODESYS=$O(^PXRMINDX(9000011,CODESYS)) Q:CODESYS=""  D
+ . S DFN="",IND=0
+ . F  S DFN=$O(^PXRMINDX(FILENUM,CODESYS,"PSPI",DFN)) Q:DFN=""  D
+ .. S IND=IND+1
+ .. I '$D(ZTQUEUED),(IND#10000=0) W "."
+ .. S STATUS=""
+ .. F  S STATUS=$O(^PXRMINDX(FILENUM,CODESYS,"PSPI",DFN,STATUS)) Q:STATUS=""  D
+ ... S PRIORITY=""
+ ... F  S PRIORITY=$O(^PXRMINDX(FILENUM,CODESYS,"PSPI",DFN,STATUS,PRIORITY)) Q:PRIORITY=""  D
+ .... S ITEM=""
+ .... F  S ITEM=$O(^PXRMINDX(FILENUM,CODESYS,"PSPI",DFN,STATUS,PRIORITY,ITEM)) Q:ITEM=""  D
+ ..... S DATE=""
+ ..... F  S DATE=$O(^PXRMINDX(FILENUM,CODESYS,"PSPI",DFN,STATUS,PRIORITY,ITEM,DATE)) Q:DATE=""  D
+ ...... I +DATE=DATE Q
+ ...... S DAS=""
+ ...... F  S DAS=$O(^PXRMINDX(FILENUM,CODESYS,"PSPI",DFN,STATUS,PRIORITY,ITEM,DATE,DAS)) Q:DAS=""  D
+ ....... S NSD=NSD+1
+ ....... S ^TMP($J,"SDATE",NSD)="^PXRMINDX("_FILENUM_","_CODESYS_",""PSPI"","_DFN_","_STATUS_","_PRIORITY_","_ITEM_","""_DATE_""","_DAS_")"
  Q
  ;
  ;========================================================
 CNTPTF(FILENUM,NSD) ;Check for string dates for PTF indexes where the
  ;date is at subscript 7. Works for file numbers:
  ;45
- N DAS,DATE,DFN,IND,ITEM,NODE,TYPE
+ N CODESYS,DAS,DATE,DFN,IND,ITEM,NODE
  I '$D(ZTQUEUED) W !,"Checking file number "_FILENUM
- S IND=0
- F TYPE="ICD0","ICD9" D
+ S CODESYS="",IND=0
+ F  S CODESYS=$O(^PXRMINDX(FILENUM,CODESYS)) Q:CODESYS=""  D
  . S DFN=""
- . F  S DFN=$O(^PXRMINDX(FILENUM,TYPE,"PNI",DFN)) Q:DFN=""  D
+ . F  S DFN=$O(^PXRMINDX(FILENUM,CODESYS,"PNI",DFN)) Q:DFN=""  D
  .. S IND=IND+1
  .. I '$D(ZTQUEUED),(IND#10000=0) W "."
  .. S NODE=""
- .. F  S NODE=$O(^PXRMINDX(FILENUM,TYPE,"PNI",DFN,NODE)) Q:NODE=""  D
+ .. F  S NODE=$O(^PXRMINDX(FILENUM,CODESYS,"PNI",DFN,NODE)) Q:NODE=""  D
  ... S ITEM=""
- ... F  S ITEM=$O(^PXRMINDX(FILENUM,TYPE,"PNI",DFN,NODE,ITEM)) Q:ITEM=""  D
+ ... F  S ITEM=$O(^PXRMINDX(FILENUM,CODESYS,"PNI",DFN,NODE,ITEM)) Q:ITEM=""  D
  .... S DATE=""
- .... F  S DATE=$O(^PXRMINDX(FILENUM,TYPE,"PNI",DFN,NODE,ITEM,DATE)) Q:DATE=""  D
+ .... F  S DATE=$O(^PXRMINDX(FILENUM,CODESYS,"PNI",DFN,NODE,ITEM,DATE)) Q:DATE=""  D
  ..... I +DATE=DATE Q
  ..... S DAS=""
- ..... F  S DAS=$O(^PXRMINDX(FILENUM,TYPE,"PNI",DFN,NODE,ITEM,DATE,DAS)) Q:DAS=""  D
+ ..... F  S DAS=$O(^PXRMINDX(FILENUM,CODESYS,"PNI",DFN,NODE,ITEM,DATE,DAS)) Q:DAS=""  D
  ...... S NSD=NSD+1
- ...... S ^TMP($J,"SDATE",NSD)="^PXRMINDX("_FILENUM_","_TYPE_",""PNI"","_DFN_","_NODE_","_ITEM_","""_DATE_""","_DAS_")"
+ ...... S ^TMP($J,"SDATE",NSD)="^PXRMINDX("_FILENUM_","_CODESYS_",""PNI"","_DFN_","_NODE_","_ITEM_","""_DATE_""","_DAS_")"
  Q
  ;
  ;========================================================

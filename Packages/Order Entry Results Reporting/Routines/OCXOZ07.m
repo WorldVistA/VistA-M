@@ -1,4 +1,4 @@
-OCXOZ07 ;SLC/RJS,CLA - Order Check Scan ;MAR 8,2011 at 13:52
+OCXOZ07 ;SLC/RJS,CLA - Order Check Scan ;JUN 14,2013 at 09:03
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -30,7 +30,7 @@ CHK121 ; Look through the current environment for valid Event/Elements for this 
  Q
  ;
 CHK131 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK12+33^OCXOZ03.
+ ;  Called from CHK12+34^OCXOZ03.
  ;
  Q:$G(OCXOERR)
  ;
@@ -92,7 +92,7 @@ CHK149 ; Look through the current environment for valid Event/Elements for this 
  Q
  ;
 CHK151 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK1+31^OCXOZ02.
+ ;  Called from CHK1+32^OCXOZ02.
  ;
  Q:$G(OCXOERR)
  ;
@@ -113,7 +113,7 @@ CHK151 ; Look through the current environment for valid Event/Elements for this 
  Q
  ;
 CHK157 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK1+32^OCXOZ02.
+ ;  Called from CHK1+33^OCXOZ02.
  ;
  Q:$G(OCXOERR)
  ;

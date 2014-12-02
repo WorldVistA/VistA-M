@@ -1,5 +1,5 @@
 SRCUSS1 ;TAMPA/CFB - SCREEN SERVER ; [ 03/11/02  13:40 PM ]
- ;;3.0; Surgery ;**14,31,48,66,108**;24 Jun 93
+ ;;3.0;Surgery;**14,31,48,66,108,177**;24 Jun 93;Build 89
 B G BQ:Q(13)=2 Q:$D(Q("X"))  S DR="" W:'Q("ED") !! I Q(1)="Q" S Q(1)="" Q
  I '$D(Q(12,12)),Q(1,Q)=3,Q(7)["(MULTIPLE)" S Q7=1 G BP2
  I Q=1,$D(Q3("DIVE")) S Q7=$P(Q3("DIVE"),"P",2) K Q3("DIVE") G BP10
@@ -31,7 +31,8 @@ BM I $D(Q(2,Q,Q6)),$P(@("^DD("_+$P(Q(2,Q,Q6),U,2)_",.01,0)"),U,2)'["W" S Q2(Q)=Q
 BQ W:Q=1 @IOF W:$D(Q("NOR")) Q("NOR") K:$D(Q0(0,Q)) Q("S",Q,Q0(0,Q)) K:Q=1 Q,Q0,Q1,DE,DP,DQ,Q2,Q3,Q4,Q5,Q6,Q7,Q8,QQ,QQQ,DX,DY,SRCUSS K ^TMP("SRCUSS",$J) Q  ;WITH NEW K:Q=1  Q
 CNG W Q("HI") S (DIE,DIC)=Q(8,Q),DA=Q(9,Q) I $D(Q3("VIEW")) Q:Q3("VIEW")=""  S DR=Q3("VIEW") D EN^DIQ R !!,"Press <RET> to continue  ",Q8:DTIME Q
  I $D(Q("S",Q,"IX")) D IX Q
- I 'Q("ED") D SET,^DIE S SRCUSS("OUT")=1 D RET Q
+ I 'Q("ED") D SET,ICD
+ I 'Q("ED") D ^DIE S SRCUSS("OUT")=1 D RET Q
  G ^SRCUSS2
 ID Q:'$D(^DD(+Q(4)))  Q:('(+Q(4)\1=80!(+Q(4)=45.3)))&'($P(^DD(+Q(4),.01,0),U,2)["N"&($D(^DD(+Q(4),0,"ID"))))  S Q(11)=$O(@("^DD("_$S(+Q(4)'="":+Q(4),1:+Q(0,Q))_",0,""ID"","_Q(11)_")")) Q:Q(11)=""  I ^(Q(11))["^(""0"")" S Q(11)=^(Q(11)) Q
  G ID
@@ -46,4 +47,13 @@ QUES ;
  S Q7="?" Q
 RET ; pause for display
  I ($D(DR(1,130))&($E(DR,$L(DR)-6,$L(DR)-4)="27T"))!($D(DR(1,130.16))&($E(DR,$L(DR)-5,$L(DR)-4)="3T")) W Q("NOR"),!!,"Press <RET> to continue  " R Q8:DTIME
+ Q
+ICD I $G(DIE)["^SRF(" D
+ . N SRALAN,SRALAN1,SRALAN2
+ .I DIE'="^SRF(",$G(DR) I $P($G(^DD(+Q("0","2"),+DR,0)),U,2)["P80" S DR=+DR_$G(^DD(+Q("0","2"),+DR,.1))_" "_$G(SRICDV)_";Q;"
+ . I DIE="^SRF(",$G(DR) F SRALAN=1:2 S SRALAN1=$P(DR,";",SRALAN,SRALAN+1) Q:SRALAN1=""  D
+ .. I $P($G(^DD(130,+SRALAN1,0)),U,2)["P80" D
+ ... S (SRALAN2,SRALAN2(1,130))=+SRALAN1_$G(^DD(130,+SRALAN1,.1))_" "_$G(SRICDV)_";Q"
+ ... S $P(DR,";",SRALAN,SRALAN+1)=SRALAN2
+ ... S $P(DR(1,130),";",SRALAN,SRALAN+1)=SRALAN2
  Q

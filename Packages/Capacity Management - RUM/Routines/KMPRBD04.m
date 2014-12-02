@@ -1,5 +1,5 @@
-KMPRBD04 ;OAK/RAK - RUM Data Compression ;5/28/03  08:45
- ;;2.0;CAPACITY MANAGEMENT - RUM;;May 28, 2003
+KMPRBD04 ;OAK/RAK - RUM Data Compression ;1/30/13  08:30
+ ;;2.0;CAPACITY MANAGEMENT - RUM;**2**;May 28, 2003;Build 12
  ;
  ; Background Driver (cont.)
  ;
@@ -120,7 +120,7 @@ TRANSMIT ;-- format ^TMP($J) data, put into e-mail and send to cm.
  ;
  Q:'$D(^TMP($J))
  ;
- N HRSDAYS,I,IEN,LN,N,O,S,XMSUB,X,XMTEXT,XMY,XMZ,Y,Z
+ N HRSDAYS,I,IEN,LN,N,O,S,TL,XMSUB,X,XMTEXT,XMY,XMZ,Y,Z
  ;
  K ^TMP("KMPRBD04-3",$J)
  ;
@@ -161,9 +161,10 @@ TRANSMIT ;-- format ^TMP($J) data, put into e-mail and send to cm.
  ;
  ; quit if no data to transmit.
  Q:'$D(^TMP("KMPRBD04-3",$J))
+ S TL=$$TESTLAB^KMPDUT1
  ; send packman message.
  S XMTEXT="^TMP(""KMPRBD04-3"","_$J_","
- S XMSUB="RUM DATA~"_$P(SITE,U,2)_" ("_$P(SITE,U,3)_")~"_$$FMTE^XLFDT(START)_"~"_$P($$VERSION^KMPRUTL,U)
+ S XMSUB="RUM DATA~"_$P(TL,U,2)_$P(SITE,U,2)_" ("_$P(SITE,U,3)_")~"_$$FMTE^XLFDT(START)_"~"_$P($$VERSION^KMPRUTL,U)
  S XMY("S.KMP2-RUM-SERVER@FO-ALBANY.DOMAIN.EXT")=""
  S XMY("CAPACITY,MANAGEMENT@FO-ALBANY.DOMAIN.EXT")=""
  D ^XMD

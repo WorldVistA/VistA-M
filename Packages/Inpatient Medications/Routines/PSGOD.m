@@ -1,8 +1,10 @@
 PSGOD ;BIR/CML3-CREATES NEW ORDER FROM OLD ONE ;22 SEP 97 / 2:56 PM 
- ;;5.0; INPATIENT MEDICATIONS ;**67,58,111,133,181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS;**67,58,111,133,181,286**;16 DEC 97;Build 1
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ;
+ ;*286 - Do not allow copied Unit Dose orders for outpatients
+ D INP^VADPT I 'VAIN(4) W !,"You cannot copy Unit Dose orders for this patient!" H 2 Q
  I $P($G(^PS(55,PSGP,5,+PSJORD,0)),"^",22) D  Q
  .W !,"This order is marked 'Not To Be Given' and can't be copied!" H 2
  F  W !!,"Do you want to copy this order" S %=2 D YN^DICN Q:%  D CH
@@ -62,8 +64,9 @@ WH ;
  ;
 OC ;Perform order checks
  NEW PSJDD,X,PSJALLGY
- F X=0:0 S X=$O(PSGODN(1,X)) Q:'X  D
- . S PSJDD=$G(PSGODN(1,X))
+ ;*286 - Order checks on current dispense drugs
+ F X=0:0 S X=$O(^PS(53.45,PSJSYSP,2,X)) Q:'X  D
+ . S PSJDD=$G(^PS(53.45,PSJSYSP,2,X,0))
  . I +PSJDD S PSJALLGY(+PSJDD)=""
  ;S X=+$O(PSGODN(1,0)) Q:'X  S PSJDD=+$G(PSGODN(1,X)) Q:'PSJDD
  S PSJDD=+$O(PSJALLGY(0)) Q:'PSJDD

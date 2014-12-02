@@ -1,5 +1,5 @@
 VAFCQRY1 ;BIR/DLR-Query for patient demographics ;22 Dec 2011  12:11 PM
- ;;5.3;Registration;**428,474,477,575,627,648,698,711,707,837**;Aug 13, 1993;Build 5
+ ;;5.3;Registration;**428,474,477,575,627,648,698,711,707,837,874**;Aug 13, 1993;Build 2
  ;
  ;Reference to $$GETDFNS^MPIF002 supported by IA #3634.
  ;
@@ -39,7 +39,7 @@ BLDPID(DFN,CNT,SEQ,PID,HL,ERR) ;build PID from File #2
  S APID(2)=CNT
  ;list of fields used for backwards compatibility with HDR
  I $D(SARY(2))!(SEQ="ALL") I VAFCMN'="" S APID(3)=$P(VAFCMN,"^")_"V"_$P(VAFCMN,"^",2)  ;Patient ID
- ;repeat patient ID list including ICN (NI),SSN (SS),CLAIM# (PN) AND DFN (PI)
+ ;repeat patient ID list including ICN (NI),SSN (SS),CLAIM# (PN) and DFN (PI)
  I $D(SARY(3))!(SEQ="ALL") D
  .S APID(4)=""
  .;National Identifier (ICN)
@@ -89,6 +89,19 @@ BLDPID(DFN,CNT,SEQ,PID,HL,ERR) ;build PID from File #2
  ...I $E($P(VAFCHMN,"^"),1,3)=STN S SITA=STN
  ...I $E($P(VAFCHMN,"^"),1,3)'=STN S SITA="200M"
  ...S APID(4)=$P(VAFCHMN,"^")_COMP_COMP_COMP_"USVHA"_SUBCOMP_SUBCOMP_"0363"_COMP_"NI"_COMP_"VA FACILITY ID"_SUBCOMP_SITA_SUBCOMP_"L"_COMP_COMP_$$HLDATE^HLFNC(HISTDT,"DT") ;**707 ONLY DATE NOT TIME
+ ;
+ALTID ;**874 MVI_3035 (elz) alternate ID
+ I $D(SARY(4))!(SEQ="ALL") D
+ . S REF=$NA(APID(5)),@REF="",LVL=0
+ . I $G(DFN) D
+ .. ;VIC card number, station 742V1
+ .. N VAVICF,VAVICX,VAVIC,X
+ .. S VAVICF=+$$LKUP^XUAF4("742V1")
+ .. S VAVICX=0 F  S VAVICX=$O(^DGCN(391.91,"APAT",DFN,VAVICF,VAVICX)) Q:'VAVICX  D
+ ... F X=0,2 S VAVIC(X)=$G(^DGCN(391.91,VAVICX,X))
+ ... I $P(VAVIC(2),"^",2),$P(VAVIC(2),"^",3)'="H",$L($P(VAVIC(2),"^")),$L($P(VAVIC(0),"^",9)) D
+ .... D ADDLINE($P(VAVIC(2),"^",2)_COMP_COMP_COMP_$P(VAVIC(2),"^")_SUBCOMP_SUBCOMP_"0363"_COMP_$P(VAVIC(0),"^",9)_COMP_"VA FACILITY ID"_SUBCOMP_"742V1"_SUBCOMP_"L",.LVL,REF,REP)
+ ;
 NAMEPID ;patient name (last^first^middle^suffix^prefix^^"L" for legal)
  I $D(SARY(5))!(SEQ="ALL") D
  .;**711 code REMOVED PREFIX due to issues with existing PATIENT Name Standardization functionality

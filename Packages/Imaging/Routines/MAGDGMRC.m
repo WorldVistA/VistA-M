@@ -1,5 +1,5 @@
-MAGDGMRC ;WOIFO/PMK - Read a DICOM image file ; 12/15/2006 13:50
- ;;3.0;IMAGING;**10,51,50,85**;16-March-2007;;Build 1039
+MAGDGMRC ;WOIFO/PMK,EdM,MLH - Read a DICOM image file ; 07 Feb 2013 5:14 PM
+ ;;3.0;IMAGING;**10,51,50,85,118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -75,7 +75,17 @@ TIUALL(GMRCIEN,RESULT) ; find all IENs for the TIU notes for this request
  . . S Y=$G(^TIU(8925.91,TIUXIEN,0)) Q:'Y
  . . S MAGIEN=$P(Y,"^",2)
  . . S RESULT=RESULT+1
- . . S RESULT(RESULT)=TIUIEN_"^GMRC-"_GMRCIEN_"^"_MAGIEN
+ . . S RESULT(RESULT)=TIUIEN_"^"_$$GMRCACN^MAGDFCNV(GMRCIEN)_"^"_MAGIEN
+ . . Q
+ . ; new database structure
+ . S TIUXIEN=""
+ . F  S TIUXIEN=$O(^MAG(2005.61,"B",TIUIEN,TIUXIEN)) Q:'TIUXIEN  D
+ . . S Y=$G(^MAG(2005.61,TIUXIEN,0)) Q:$P(Y,"^",3)'="TIU"
+ . . S MAGIEN=""
+ . . F  S MAGIEN=$O(^MAG(2005.62,"C",TIUXIEN,MAGIEN)) Q:'MAGIEN  D
+ . . . S RESULT=RESULT+1
+ . . . S RESULT(RESULT)=TIUIEN_"^"_$$GMRCACN^MAGDFCNV(GMRCIEN)_"^N"_MAGIEN
+ . . . Q
  . . Q
  . Q
  K @WRK
@@ -117,57 +127,3 @@ UNSIGNED(GMRCIEN) ; check if there are any unsigned TIU notes for the request
  . Q
  K @WRK
  Q UNSIGNED
- ;
-SEARCH(DFN,CUTOFF,CLINIC,REQUEST) ; search for requests for a given clinic
- ;
- ; It is a bit of a trick to determine if a given appointment is for
- ; an existing GMRC request.  This determination is performed by using
- ; an association between the SERVICE for the request and the CLINIC
- ; where the request is to be performed.
- ;
- ; This subroutine passes all of the (recent) requests for a patient and
- ; builds a list of those that can be performed in the designated clinic.
- ;
- ; Maybe the replacement for Appointment Management and future versions
- ; of CPRS Order Entry and Consult Request Tracking will capable of
- ; correctly maintaining this essential association.
- ;
- N GMRIDX,GMRC0,GMRCDATE,GMRCIEN,SERVICE,STATUS
- N WRK ; --- root of results global
- N ADFN ; -- array for DFNs to look up
- K REQUEST S REQUEST=0
- I 'DFN Q  ; no patient number provided
- ; build the array of results
- ; Note the use of the "Q[uick]" flag to allow lookup by *internal* DFN.
- ; However, even though we define ADFN(1) to force lookup on the *first*
- ; level subscript of the F index only, FileMan also looks up on the IEN
- ; directly (because there is a .001 field defined in the DD of File
- ; #123).  So we grab the DFN in the .02 field for later double-
- ; checking.
- ;
- S ADFN(1)=DFN
- S WRK=$NA(^TMP("MAG",$J,$T(+0))) K @WRK
- D FIND^DIC(123,,"@;.02I;1I;3I;5I;8I","QX",.ADFN,,"F",,,WRK,WRK)
- ; traverse the results
- S GMRIDX=""
- F  S GMRIDX=$O(@WRK@("DILIST","ID",GMRIDX)) Q:'GMRIDX  D
- . S GMRCIEN=+$G(@WRK@("DILIST",2,GMRIDX))
- . I $G(@WRK@("DILIST","ID",GMRIDX,.02))'=DFN Q  ; not for this patient!
- . I $G(@WRK@("DILIST","ID",GMRIDX,3))<CUTOFF Q  ; too far back
- . S SERVICE=$G(@WRK@("DILIST","ID",GMRIDX,1)) Q:SERVICE=""
- . I '$$ISCLINIC^MAGDGMRC(SERVICE,CLINIC) Q  ; not a service or clinic
- . S STATUS=$G(@WRK@("DILIST","ID",GMRIDX,8)) ; CPRS status
- . I STATUS S STATUS=$$GET1^DIQ(100.01,STATUS,.1) ; CPRS status abbrev
- . S REQUEST=$G(REQUEST)+1
- . S REQUEST(REQUEST)=GMRCIEN_"^"_SERVICE_"^"_STATUS
- . Q
- K @WRK
- Q
- ;
-ISCLINIC(SERVICE,CLINIC) ; is a particular clinic defined for a given service?
- ; this entry point is called by ^MAGDGMRC as well as below
- N ISCLINIC
- S ISCLINIC=0
- I SERVICE,CLINIC,$D(^MAG(2006.5831,SERVICE,1,"B",CLINIC)) S ISCLINIC=1
- Q ISCLINIC
- ;

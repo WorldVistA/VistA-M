@@ -1,5 +1,5 @@
 ONCOFTS ;Hines OIFO/GWB - TUMOR STATUS/CANCER STATUS OF PRIMARY ;02/02/00
- ;;2.11;ONCOLOGY;**24,25,47**;Mar 07, 1995;Build 19
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 STSM ;CREATE TUMOR STATUS MULTIPLE IN 165.5
  ;called from "AE" cross-reference of DATE OF LAST CONTACT OR DEATH
@@ -27,7 +27,7 @@ STSMSET ;Patient has primaries, so set
 STSMONE ;Look for a corresponding tumor status for this primary, set up if none there
  I '$D(^ONCO(165.5,PRIMARY,"TS","B",CURFOLDT)) D  ;not defined, set up
  .N TUMSTAT
- .L +^ONCO(165.5,PRIMARY,"TS")
+ .L +^ONCO(165.5,PRIMARY,"TS"):DILOCKTM
  .S:'$D(^ONCO(165.5,PRIMARY,"TS",0)) ^(0)="^165.573DA" ;set header if undefined
  .F TUMSTAT=$P(^ONCO(165.5,PRIMARY,"TS",0),U,3)+1:1 Q:'$D(^(TUMSTAT))  ;get index
  .S ^ONCO(165.5,PRIMARY,"TS",TUMSTAT,0)=CURFOLDT ;set data

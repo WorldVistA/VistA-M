@@ -1,18 +1,18 @@
-PSUDEM2 ;BIR/DAM - Outpatient Visits Extract ; 1/23/09 3:10pm
- ;;4.0;PHARMACY BENEFITS MANAGEMENT;**15**;MARCH, 2005;Build 2
+PSUDEM2 ;BIR/DAM - Outpatient Visits Extract ;1/23/09 3:10pm
+ ;;4.0;PHARMACY BENEFITS MANAGEMENT;**15,19**;MARCH, 2005;Build 28
  ;
  ;DBIA's
  ; Reference to file 2            supported by DBIA 10035
  ; Reference to file 9000010.07   supported by DBIA 3094
  ; Reference to file 9000010      supported by DBIA 3512
  ; Reference to file 4.3          supported by DBIA 2496
- ; Reference to file 80           supported by DBIA 10082
  ; Reference to file 9000010.18   supported by DBIA 3560
  ; Reference to file 81           supported by DBIA 2815
+ ; Reference to ICDEX Utility     supported by DBIA 5747
 EN ;EN Called from PSUCP
  K ^XTMP("PSU_"_PSUJOB,"PSUOPV"),^XTMP("PSU_"_PSUJOB,"PSUTMP")
  K NONE
- NEW CPTDA,CPTNM,ICD9DA,ICD9NM,PSUICN,PSUSSN,PSUSUB,PSUTEDT
+ NEW CPTDA,CPTNM,ICDXDA,ICDXNM,PSUICN,PSUSSN,PSUSUB,PSUTEDT
  NEW PSUVSTDT,PSUX,PSUY,PTSTAT,SEG,VCPTDA,XX,J
  D DAT1
  I '$D(^XTMP("PSU_"_PSUJOB,"PSUTMP")) D NODATA
@@ -46,29 +46,38 @@ DAT2 ;
  .I PSUICN[-1 S PSUICN=""
  .;PSU*4*15 Protect from empty 150 nodes
  .S PTSTAT=$P($G(^AUPNVSIT(PSUVIEN,150)),U,2),PTSTAT=$S(+PTSTAT:"I",1:"O")
- . D SET
+ .D SET
  Q
-POVS ;severl POVs can have same visit, work all when the first is found
- N PSUPOV
+POVS ;several POVs can have same visit, work all when the first is found
+ ;N PSUPOV
+ N PSUPOV,ICDDATA
  ;PSU*4*15 move kills out of loop.
- K ALLICD9,ALLCPT
+ K ALLICD,ALLICDX,ALLCPT,PSUCSYS
  S PSUPOV=0 F  S PSUPOV=$O(^AUPNVPOV("AD",PSUVIEN,PSUPOV)) Q:PSUPOV'>0  D
  .;LOOP CPTs linked by visit
- . S VCPTDA=0 F  S VCPTDA=$O(^AUPNVCPT("AD",PSUVIEN,VCPTDA)) Q:VCPTDA'>0  D
- .. ; get/gather cpts
+ .S VCPTDA=0 F  S VCPTDA=$O(^AUPNVCPT("AD",PSUVIEN,VCPTDA)) Q:VCPTDA'>0  D
+ ..; get/gather cpts
  ..S CPTDA=$P($G(^AUPNVCPT(VCPTDA,0)),U),CPTNM=$P($G(^ICPT(CPTDA,0)),U) S:$L(CPTNM) ALLCPT(CPTNM)=""
- .. ;get/gather icd9s 
- ..S ICD9DA=$P($G(^AUPNVCPT(VCPTDA,0)),U,5) I ICD9DA S ICD9NM=$P($G(^ICD9(ICD9DA,0)),U) S:$L(ICD9NM) ALLICD9(ICD9NM)=""
- . ;get orig ICD9
- .S ICD9DA=$P($G(^AUPNVPOV(PSUPOV,0)),U) I ICD9DA S ICD9NM=$P($G(^ICD9(ICD9DA,0)),U) S:$L(ICD9NM) ALLICD9(ICD9NM)=""
+ ..;get/gather icds 
+ ..S PSUXDA=$P($G(^AUPNVCPT(VCPTDA,0)),U,5) I PSUXDA S ICDDATA=$$ICDDX^ICDEX(PSUXDA,,,"I"),ICDXNM=$P(ICDDATA,U,2)
+ ..I $G(ICDXNM)]"" S ALLICDX($S($P(ICDDATA,U,20)=1:"9",$P(ICDDATA,U,20)=30:"10",1:"-null-"),ICDXNM)=""
+ .;get original icd
+ .S PSUXDA=$P($G(^AUPNVPOV(PSUPOV,0)),U) I PSUXDA S ICDDATA=$$ICDDX^ICDEX(PSUXDA,,,"I"),ICDXNM=$P(ICDDATA,U,2)
+ .I $G(ICDXNM)]"" S ALLICDX($S($P(ICDDATA,U,20)=1:"9",$P(ICDDATA,U,20)=30:"10",1:"-null-"),ICDXNM)=""
  Q
 SET ; Set segment
- I '$D(ALLICD9),'$D(ALLCPT) Q  ;insure visit has either CPT or ICD9
+ ;Figure Code System for SEG
+ I $D(ALLICDX("9")),($D(ALLICDX("10"))) S PSUCSYS="U"
+ I '$D(ALLICDX("9")),($D(ALLICDX("10"))) S PSUCSYS="10"
+ I $D(ALLICDX("9")),('$D(ALLICDX("10"))) S PSUCSYS="9"
+ F I="9","10","-null-"  S J="" F  S J=$O(ALLICDX(I,J)) Q:J=""  S ALLICD(J)=""
+ I '$D(ALLICD),'$D(ALLCPT) Q  ;ensure visit has either CPT or ICD
  ;assemble elements and set
  S SEG=U_PSUSNDR_U_PTSTAT_U_PSUVSTDT_U_PSUSSN_U_PSUICN_U
- I $D(ALLICD9) S ICD9NM="" F I=7:1:16 S ICD9NM=$O(ALLICD9(ICD9NM)) Q:ICD9NM=""  S $P(SEG,U,I)=ICD9NM
+ I $D(ALLICD) S ICDXNM="" F I=7:1:16 S ICDXNM=$O(ALLICD(ICDXNM)) Q:ICDXNM=""  S $P(SEG,U,I)=ICDXNM
  I $D(ALLCPT) S CPTNM="" F J=17:1:26 S CPTNM=$O(ALLCPT(CPTNM)) Q:CPTNM=""  S $P(SEG,U,J)=CPTNM
- S $P(SEG,U,27)=""
+ S ($P(SEG,U,27),ICDXNM,CPTNM)=""
+ S $P(SEG,U,$L(SEG,U))=$G(PSUCSYS,"")
  S ^XTMP("PSU_"_PSUJOB,"PSUTMP",PSUVIEN)=SEG
  Q
  ;

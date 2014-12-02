@@ -1,13 +1,22 @@
-LEXAR7 ;ISL/KER - Look-up Response (MAIL) ;01/03/2011
- ;;2.0;LEXICON UTILITY;**9,25,73**;Sep 23, 1996;Build 10
- ;
- Q
+LEXAR7 ;ISL/KER - Look-up Response (MAIL) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**9,25,73,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^TMP("LEXMSG")      SACC 2.3.2.5.1
+ ;    ^TMP("LEXSEND")     SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    HOME^%ZIS           ICR  10086
+ ;    ^%ZTLOAD            ICR  10063
+ ;    ^DIK                ICR  10013
+ ;               
  ;  This routines sends a Mailman message containing the Unresolved
  ;  Narratives and Comments stored in file 757.06 to the Field Office
- ;  at G.LEXUNR@ISC-SLC.domain.ext.  Once sent, the Unresolved Narratives
+ ;  at G.LEXUNR@ISC-SLC.DOMAIN.EXT.  Once sent, the Unresolved Narratives
  ;  and comments are purged from file 757.06.  Both the Unresolved 
  ;  Narratives and comments are used to update the Lexicon Utility.
  ;
+ Q
 SEND ; Task MAILMAN to Send Unresolved Narratives to the ISC
  I +($$TOT^LEXAR6)'>49!('$L($G(^LEX(757.06,0))))!(+($P($G(^LEX(757.06,0)),"^",4))<1) G SENDQ
  G:$D(^TMP("LEXSEND")) SENDQ S ^TMP("LEXSEND",$J)=""

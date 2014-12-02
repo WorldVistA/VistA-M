@@ -1,5 +1,5 @@
-MAGQBPG1 ;WOIFO/RMP - REMOTE Task SERVER Program ; 18 Jan 2011 5:00 PM
- ;;3.0;IMAGING;**7,8,20,81,39**;Mar 19, 2002;Build 2010;Mar 08, 2011
+MAGQBPG1 ;WOIFO/RMP - REMOTE Task SERVER Program ; 02 Apr 2013 4:12 PM
+ ;;3.0;IMAGING;**7,8,20,81,39,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -72,10 +72,10 @@ SHR(RESULT) ; RPC[MAGQ SHARES]
  Q
 CNP2(RESULT,IEN,START,STOP,AUTO) ;[MAGQ JBSCN]
  S X="ERR^MAGQBTM",@^%ZOSF("TRAP")
- N FNAME,PIECE,ZNODE,NODE2,BNODE,BNAME,PTR,HASH,TEMP,ORDER,RDATE,PLACE,OFFLINE,PLACEOK,GL,END,ACQSITE
- S (RESULT,GL)="",PLACE=$$PLACE^MAGBAPI(+$G(DUZ(2))),(OFFLINE,PLACEOK)=0
+ N FNAME,PIECE,ZNODE,NODE2,BNODE,BNAME,PTR,HASH,TEMP,ORDER,RDATE,PLACE,OFFLINE,PLACEOK,GL,END,ACQSITE,MAGDA,SCANCNT,OFFCNT,ALTPLACE,CORREC
+ S (RESULT,GL)="",PLACE=$$PLACE^MAGBAPI(+$G(DUZ(2))),(OFFLINE,PLACEOK,SCANCNT,ALTPLACE,OFFCNT)=0,CORREC=""
  I AUTO D
- . S IEN=+IEN
+ . S (IEN,MAGDA)=+IEN
  . S ORDER="R"
  . I START="" S START=$S(IEN>0:IEN,1:$O(^MAG(2005,"A"),-1))
  . S STOP=$O(^MAG(2005,0))
@@ -87,20 +87,25 @@ CNP2(RESULT,IEN,START,STOP,AUTO) ;[MAGQ JBSCN]
  . I ORDER="R" D
  . . S I1=+$O(^MAG(2005," "),-1),I2=+$O(^MAG(2005.1," "),-1),END=$S(I1>I2:I1,1:I2)
  . . S IEN=$S(START>END:START,1:START+1) Q
- . E  S IEN=START-1
+ . E  S (IEN,MAGDA)=START-1
  . Q
- S IEN=+IEN
- F  D SCAN^MAGQBPG1(.IEN,ORDER,.GL) D  Q:((('OFFLINE)&PLACEOK)!('IEN)!($P(RESULT,U,21)="DUPE")!'$G(ACQSITE))
+ S (IEN,MAGDA)=+IEN
+ F  D SCAN^MAGQBPG1(.IEN,ORDER,.GL) D  Q:(((ORDER="R")&(IEN<STOP))!((ORDER="F")&(IEN>STOP))!(('OFFLINE)&PLACEOK)!(CORREC]"")!('IEN)!(SCANCNT>249)!($P(RESULT,U,21)="DUPE")!'$G(ACQSITE))
  . Q:'IEN
+ . S SCANCNT=SCANCNT+1,OFFLINE=0
  . S ZNODE=$G(@(GL_IEN_",0)")),ACQSITE=$P($G(@(GL_IEN_",100)")),U,3)
+ . S NODE2=$G(@(GL_IEN_",2)"))
+ . I ((ZNODE']"")!($P(ZNODE,U,1,2)="^^"))!(NODE2']"")!(($P(NODE2,U,1,8)="^^^^^^^")&(($G(@(GL_IEN_",1)"))']""))) D KLOG(GL,IEN,.CORREC) Q 
  . I AUTO,$P(ZNODE,U,11)'="" D  Q
  . . S $P(RESULT,U,1)=0
  . . S IEN=0
  . . Q
  . S PLACEOK=$S($$PLACE^MAGBAPI(+ACQSITE)=$$PLACE^MAGBAPI($G(DUZ(2))):1,1:"")
  . I $P(ZNODE,U,2)'="" S OFFLINE=$$IMOFFLN^MAGFILEB($P(ZNODE,U,2))  ; Only check the offline status of image files
+ . I OFFLINE S OFFCNT=OFFCNT+1 Q
+ . I 'PLACEOK S ALTPLACE=ALTPLACE+1 Q
  . I ($D(^MAG(2005.1,IEN,0))&$D(^MAG(2005,IEN,0))) D  Q  ; Image is duplicated in the Archive file
- . . I $P(^MAG(2005,IEN,0),U,1,8)="^^^^^^^",+$P(^MAG(2005,IEN,0),U,9) K ^MAG(2005,IEN,0) Q
+ . . I $P(^MAG(2005,IEN,0),U,1,8)="^^^^^^^",+$P(^MAG(2005,IEN,0),U,9) D KLOG(GL,IEN,.CORREC) Q
  . . S FDA(2005,IEN_",",13.5)="1" ; Set Dupe field in the Image File 
  . . S FDA(2005,IEN_",",13)="1" ; Set IQ field in the Image File  
  . . D FILE^DIE("I","FDA","MSG") K FDA,MSG
@@ -118,8 +123,15 @@ CNP2(RESULT,IEN,START,STOP,AUTO) ;[MAGQ JBSCN]
  . . Q
  . E  I $P(ZNODE,U,2)'="" S $P(@(GL_IEN_",0)"),U,12)="0"
  . Q
- ;  The next statement will stop the BP Verifier cycle because the ien is out of range
- I $S('IEN:1,((ORDER="F")&(IEN>STOP)):1,((ORDER="R")&(IEN<STOP)):1,1:0) D  Q
+ S $P(RESULT,U,25)=OFFCNT
+ S $P(RESULT,U,26)=ALTPLACE
+ I CORREC]"" D  Q
+ . S $P(RESULT,U,27)=CORREC
+ . D SCAN^MAGQBPG1(.IEN,ORDER,.GL)
+ . S $P(RESULT,U,24)=IEN
+ . Q
+ I $S('IEN:1,((ORDER="F")&(IEN>STOP)):1,(SCANCNT>249):1,((ORDER="R")&(IEN<STOP)):1,1:0) D  Q
+ . S:SCANCNT>249 $P(RESULT,U,24)=IEN
  . S $P(RESULT,U,1)=0
  . Q
  S FNAME=$P(ZNODE,U,2)
@@ -138,7 +150,7 @@ CNP2(RESULT,IEN,START,STOP,AUTO) ;[MAGQ JBSCN]
  . I $D(@(GL_IEN_",""FBIG"")")),'$P(BNODE,U),'$P(BNODE,U,2) S $P(RESULT,U,22)="EMPTY_FBIG"
  . Q
  I '$P($G(@(GL_IEN_",100)")),U,3) S $P(RESULT,U,23)=-1 ;"NO ACQ SITE VALUE"
- I GL[("^MAG(2005.1,") S $P(RESULT,U,21)="ARCH"
+ I GL[("^MAG(2005.1,") S $P(RESULT,U,21)=$S($P($G(^MAG(2005.1,IEN,100)),U,8)=13:"NE",1:"ARCH")
  E  S $P(RESULT,U,12,17)=$$CHKIMG^MAGQBUT2(IEN)
  Q
 JPUD(RESULT,JPTR,EXT,IEN) ; RPC[MAGQ JPUD]
@@ -222,5 +234,45 @@ SCAN(IEN,ORDER,GB) ; Find the next image spanning the Image and the Image Archiv
  . S GB=$S(I1<I2:"^MAG(2005.1,",1:"^MAG(2005,")
  . S IEN=$S(I1<I2:I2,1:I1)
  . Q
- S IEN=$S('IEN:"",1:IEN)
+ S (IEN,MAGDA)=$S('IEN:"",1:IEN)
+ Q
+KLOG(GL,IEN,CORREC) ;
+ S CORREC=$P($P(GL,","),"^MAG(",2)_"~"_IEN
+ D LOGKILL(GL_IEN_")") ;Journal the nodes and content being killed
+ K @(GL_IEN_")")
+ Q
+LOGKILL(REC) ; Log the content into the ^TMP global error log rpc
+ N NODE,NODE1,NODE2,NODE3,TMP,TMP1
+ S NODE=""
+ F  S NODE=$O(@REC@(NODE)) Q:NODE=""  D
+ . S TMP=$G(@REC@(NODE)) I TMP]"" S TMP1=$P(REC,")")_","_NODE_")="_TMP D ELOGV(TMP1)
+ . S NODE1="" F  S NODE1=$O(@REC@(NODE,NODE1)) Q:NODE1=""  D
+ . . S TMP=$G(@REC@(NODE,NODE1))  I TMP]"" S TMP1=$P(REC,")")_","_NODE_","_NODE1_")="_TMP D ELOGV(TMP1)
+ . . S NODE2="" F  S NODE2=$O(@REC@(NODE,NODE1,NODE2)) Q:NODE2=""  D
+ . . . S TMP=$G(@REC@(NODE,NODE1,NODE2)) I TMP]"" S TMP1=$P(REC,")")_","_NODE_","_NODE1_","_NODE2_")"_"="_TMP D ELOGV(TMP1)
+ . . . S NODE3="" F  S NODE3=$O(@REC@(NODE,NODE1,NODE2,NODE3)) Q:NODE3=""  D
+ . . . . S TMP=$G(@REC@(NODE,NODE1,NODE2,NODE3)) S TMP1=$P(REC,")")_","_NODE_","_NODE1_","_NODE2_","_NODE3_")="_TMP D ELOGV(TMP1)
+ . . . . Q
+ . . . Q
+ . . Q
+ . Q
+ Q
+ELOGV(MESG,LIMIT) ;TMP Log 
+ N INDX
+ N X S X="ERR^MAGQBTM",@^%ZOSF("TRAP")
+ S INDX=+$O(^TMP("MAGQ",$J,"BPV",""),-1)+1
+ S ^TMP("MAGQ",$J,"BPV",INDX)=MESG
+ Q
+ELOGRV(RESULT,LIMIT) ; [MAGQ LOGV] Error log report and purge
+ ; Please test this
+ N FN,INDX,CNT
+ N X S X="ERR^MAGQBTM",@^%ZOSF("TRAP")
+ S CNT=0,INDX=""
+ F  S INDX=$O(^TMP("MAGQ",$J,"BPV",INDX)) Q:INDX'?1N.N  Q:CNT=LIMIT  D
+ . S CNT=CNT+1,RESULT(CNT)=^TMP("MAGQ",$J,"BPV",INDX)
+ . K ^TMP("MAGQ",$J,"BPV",INDX)
+ . Q
+ S RESULT(0)=CNT
+ S INDX=$O(^TMP("MAGQ",$J,"BPV",""))
+ I INDX?1N.N S RESULT(0)=RESULT(0)_U_"MORE"
  Q

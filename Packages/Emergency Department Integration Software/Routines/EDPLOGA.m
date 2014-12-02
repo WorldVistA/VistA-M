@@ -1,5 +1,5 @@
 EDPLOGA ;SLC/KCM - Add Entry to ED Log ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
  ;TODO:  add transaction processing
  ;
@@ -18,7 +18,7 @@ ADD(NEWPT,AREA,TIME,CHOICES) ; Create a new ED Log record for a patient
  I 'DFN,(NAME="") S EDPFAIL=$$FAIL^EDPLOG("add",2300014) Q EDPFAIL
  ;
  ; Add default values to stub entry (should be based on config for area)
- S BED=$P(^EDPB(231.9,AREA,1),U,12)
+ S BED=$P(^EDPB(231.9,AREA,1),U,12) I 'BED S BED=$O(^EDPB(231.8,"B","EDIS_DEFAULT",0)) I 'BED S EDPFAIL=$$FAIL^EDPLOG("add",2300019) Q EDPFAIL
  I $G(REC("name"))=AMB D
  . S ARR=$O(^EDPB(233.1,"B","edp.arrival.ambulance",0))
  . S BED=$P(^EDPB(231.9,AREA,1),U,11)

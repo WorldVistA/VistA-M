@@ -1,14 +1,14 @@
 IBCNERTQ ;ALB/BI - Real-time Insurance Verification ;27-AUG-2010
- ;;2.0;INTEGRATED BILLING;**438,467**;21-MAR-94;Build 11
+ ;;2.0;INTEGRATED BILLING;**438,467,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
 TRIG(N2) ; Called by triggers in the INSURANCE BUFFER FILE Dictionary (355.33)
  ; Fields:  20.01 - INSURANCE COMPANY NAME
- ;          40.02 - GROUP NAME
- ;          40.03 - GROUP NUMBER
+ ;          90.01 - GROUP NAME
+ ;          90.02 - GROUP NUMBER
  ;          60.01 - PATIENT NAME
- ;          60.04 - SUBSCRIBER ID
+ ;          90.03 - SUBSCRIBER ID
  ;          60.08 - INSURED'S DOB
  ;          62.01 - PATIENT ID
  ;
@@ -16,24 +16,24 @@ TRIG(N2) ; Called by triggers in the INSURANCE BUFFER FILE Dictionary (355.33)
  ; The following fields must contain data.
  ;          20.01 - INSURANCE COMPANY NAME
  ;          60.01 - PATIENT NAME
- ;          60.04 - SUBSCRIBER ID (if patient is the subscriber)
+ ;          90.03 - SUBSCRIBER ID (if patient is the subscriber)
  ;          60.08 - INSURED'S DOB (if patient is not the subscriber)
  ;          62.01 - PATIENT ID (if patient is not the subscriber)
  ;
- N TQIEN,TQN0,NODE20,NODE40,NODE60,QF,N4,PTID,SUBID,MGRP,DFN,PREL
+ N TQIEN,TQN0,NODE20,NODE60,NODE90,QF,N4,PTID,SUBID,MGRP,DFN,PREL
  N RESPONSE S RESPONSE=0
  ; Protect the FileMan variables.
- N DA,DC,DH,DI,DK,DL,DM,DP,DQ,DR,INI,MR,NX,UP
+ N DA,DB,DC,DH,DI,DK,DL,DM,DP,DQ,DR,INI,MR,NX,UP
  ;
  I N2="" Q RESPONSE
  S MGRP=$$MGRP^IBCNEUT5()
  S NODE20=$G(^IBA(355.33,N2,20))
- S NODE40=$G(^IBA(355.33,N2,40))
  S NODE60=$G(^IBA(355.33,N2,60))
+ S NODE90=$G(^IBA(355.33,N2,90))
  S PREL=$P(NODE60,U,14)
  I $P(NODE20,U,1)="" Q RESPONSE                       ;INSURANCE COMPANY NAME
  I $P(NODE60,U,1)="" Q RESPONSE                       ;PATIENT NAME
- I $P(NODE60,U,4)="" Q RESPONSE                       ;SUBSCRIBER ID
+ I $P(NODE90,U,3)="" Q RESPONSE                       ;SUBSCRIBER ID
  ; exclude dependent inquiries w/o patient id or DOB
  I PREL'=18,PREL'="",($P($G(^IBA(355.33,N2,62)),U)=""!($P(NODE60,U,8)="")) Q RESPONSE
  ; exclude ePharmacy buffer entries
@@ -46,11 +46,11 @@ TRIG(N2) ; Called by triggers in the INSURANCE BUFFER FILE Dictionary (355.33)
  ;
  ; Quit if a waiting transaction exists in file #365.1
  S PTID=$P(NODE60,U,1)
- S SUBID=$P(NODE60,U,4)
+ S SUBID=$P(NODE90,U,3)
  S QF=0,N4=""
  F  S N4=$O(^IBCN(365.1,"E",PTID,N4)) Q:N4=""  Q:QF=1  D
  .S TQN0=$G(^IBCN(365.1,N4,0))
- .; don't send again if there's an entry in the queue with the same subsciber id, same buffer entry, and
+ .; don't send again if there's an entry in the queue with the same subscriber id, same buffer entry, and
  .; transmission status other than "response received" or "cancelled" 
  .I $P(TQN0,U,5)=N2,".3.7."'[("."_$P(TQN0,U,4)_"."),$P(TQN0,U,16)=SUBID S QF=1 Q
  .Q
@@ -59,8 +59,8 @@ TRIG(N2) ; Called by triggers in the INSURANCE BUFFER FILE Dictionary (355.33)
  ; Quit if there is a lock on patient and policy in file #355.33
  L +^IBA(355.33,N2):1 I '$T Q RESPONSE                ; RECORD LOCKED By Another Process
  ;
- ;Store Service Type Codes in BUFFER file #355.33 just before sending to EIV TRANSMISSION QUEUE
- D SETSTC(N2)
+ ;Store Service Type Code in BUFFER file #355.33 just before sending to EIV TRANSMISSION QUEUE
+ I +$G(^IBA(355.33,N2,80))'>0 D SETSTC(N2)
  ;
  ; Save and clear the dictionary 355.33 temporary error global, ^TMP("DIERR",$J)
  K ^TMP("IBCNERTQ","DIERR",$J)
@@ -84,7 +84,6 @@ ENDTRIG ; Final Clean Up.
  ;
  ; Remove Dictionary Entry Lock.
  L -^IBA(355.33,N2)
- ;
  Q RESPONSE
  ;
 IBE(IEN) ; Insurance Buffer Extract
@@ -117,7 +116,8 @@ IBE(IEN) ; Insurance Buffer Extract
  I $P($G(^DPT(DFN,0)),U,21) Q QUEUED              ;Exclude if test patient
  ;
  S PDOD=$P($G(^DPT(DFN,.35)),U,1)\1               ;Patient's date of death
- S SRVICEDT=DT I PDOD S SRVICEDT=PDOD             ;Service Date
+ S SRVICEDT=+$P($G(^IBA(355.33,IEN,0)),U,18) S:'SRVICEDT SRVICEDT=DT ; Service Date
+ I PDOD,PDOD<SRVICEDT S SRVICEDT=PDOD
  S FRESHDT=$$FMADD^XLFDT(SRVICEDT,-FRESHDAY)
  S PAYERSTR=$$INSERROR^IBCNEUT3("B",IEN)          ;Payer String
  S PAYERID=$P(PAYERSTR,U,3),PIEN=$P(PAYERSTR,U,2) ;Payer ID
@@ -145,7 +145,7 @@ IBE(IEN) ; Insurance Buffer Extract
  ; make sure that entries have pat. relationship set to "self"
  D SETREL^IBCNEDE1(IEN)
  ;
- ; If freshness overide flag is set, file to TQ and quit
+ ; If freshness override flag is set, file to TQ and quit
  I OVRFRESH=1 D  Q $G(TQIEN)
  . NEW DIE,X,Y,DISYS
  . S FDA(355.33,IEN_",",.13)="" D FILE^DIE("","FDA") K FDA
@@ -190,16 +190,11 @@ PROCSEND(TQIEN) ; Make call to PROC^IBCNEDEP to build the HL7 message.  Then sen
  ;
  Q 1
  ;
-SETSTC(BUFF) ; set service type codes
- N DIE,DA,DR,K,X,Y
+SETSTC(BUFF) ; set service type code
+ N DIE,DA,DR,X,Y
  I '+$G(BUFF) Q
- S DR=""
- ; Define Service Type Codes (STC) to be sent with Insurance Inquiry
+ ; Define Service Type Code (STC) to be sent with Insurance Inquiry
  S DIE="^IBA(355.33,",DA=BUFF
- ; Store 11 DEFAULT STCs
- F K=80.01:.01:80.11 S DR=DR_K_"////"_$P($G(^IBE(350.9,1,60)),U,K-80*100)_";"
- ; Store up to 9 SITE SELECTED STCs, otherwise NULLs
- F K=80.12:.01:80.2 S DR=DR_K_"////"_$P($G(^IBE(350.9,1,61)),U,K-80*100-11)_";"
- S DR=$E(DR,1,$L(DR)-1)
+ S DR="80.01////"_$P($G(^IBE(350.9,1,60)),U)
  D ^DIE
  Q

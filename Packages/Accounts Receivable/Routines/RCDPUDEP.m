@@ -1,5 +1,5 @@
 RCDPUDEP ;WISC/RFJ-deposit utilities ;29/MAY/2008
- ;;4.5;Accounts Receivable;**114,173,257,283**;Mar 20, 1995;Build 8
+ ;;4.5;Accounts Receivable;**114,173,257,283,297**;Mar 20, 1995;Build 5
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -66,9 +66,9 @@ LOOKUP ;  special lookup on deposits, called from ^dd(344.1,.01,7.5)
  ;  deposit ticket # manually added is for electronic ticket only
  ;  PRCA*283 - remove the restriction.
  ;I $G(DIC(0))["L",$$AUTODEP(X) D EN^DDIOL(" ** Deposit #'s starting with "_$E(X,1,3)_" can only be used by automatic deposits",,"!") S X="" Q
- ; Do not allow for 7-, 8-, or 9-digit electronic ticket to be added.
- I $G(DIC(0))["L",'$D(^RCY(344.1,"B",X)),$L(X)>6,$L(X)<10 D EN^DDIOL(" ** Deposit # of "_$L(X)_" digits not allowed. "_$S($L(X)=9:"9 digits limited to automatic deposits.",1:""),,"!") S X="" Q
- K DIC("S")
+ ; PRCA*297 - change format of ticket #.
+ I $G(DIC(0))["L",'$D(^RCY(344.1,"B",X)),X'?1A6N D MSG,EN^DDIOL(.MSG) S X="" Q
+ K DIC("S"),MSG(1),MSG(2),MSG(3),MSG
  Q
  ;
  ;
@@ -119,3 +119,17 @@ AUTODEP(X) ; Function returns 1 if the deposit ticket # in X is in the auto
  I $L(X)=6,$E(X,2,3)="69","23456"[$E(X),'$D(^RCY(344.1,"B",X)) S Y=1
  Q Y
  ;
+CHK ; Check if a valid input
+ D MSG
+ I '$D(X) D EN^DDIOL(.MSG) Q
+ I X?6N!(X?9N) Q
+ I X?1A6N Q
+ D EN^DDIOL(.MSG)
+ K X,MSG(1),MSG(2),MSG(3),MSG
+ Q
+ ;
+MSG ;
+ S MSG(1)=" * Ticket numbers must have one alpha character followed by six digits or"
+ S MSG(2)="   any 6 or 9 digits existing deposit ticket #."
+ S MSG(3,"F")="!"
+ Q

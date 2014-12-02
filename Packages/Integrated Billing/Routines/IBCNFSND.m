@@ -74,7 +74,7 @@ SENDEII ; send HMS extract files and check status of files transfers.
  . . . S IBTO=IBMSGNUM*IBCNFPAR(13.07)
  . . . S:IBTO>IBNUMREC IBTO=IBNUMREC
  . . . S IBXMSUB="HMS eII Extracted file "_IBFILE_" MSG("_IBMSGNUM_"/"_IBNUMMSG_")"
- . . . S IBXMY($P(IBEXTNOD,U,4))=""                 ; send it to associated ATIC queue address e.g. XXX@Q-IBN.domain.ext
+ . . . S IBXMY($P(IBEXTNOD,U,4))=""                 ; send it to associated ATIC queue address e.g. XXX@Q-IBN.DOMAIN.EXT
  . . . S IBXMZ=$$MSGSEND(.IBXMY,IBXMSUB,IBTEXT,IBFROM,IBTO,IBMAXREC)
  . . . ;
  . . . ; set the purge date for the message in message(#3.9) file

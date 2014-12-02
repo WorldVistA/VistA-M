@@ -1,5 +1,5 @@
-VPSRPC1  ;BPOIFO/EL - Patient Demographic and Appointment RPC;11/20/11 15:30
- ;;1.0;VA POINT OF SERVICE (KIOSKS);**1**;Oct 21, 2011;Build 12
+VPSRPC1  ;BPOIFO/EL,WOIFO/BT - Patient Demographic and Appointment RPC;11/20/11 15:30
+ ;;1.0;VA POINT OF SERVICE (KIOSKS);**1,2**;Oct 21, 2011;Build 41
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External Reference DBIA#
@@ -20,12 +20,13 @@ VPSRPC1  ;BPOIFO/EL - Patient Demographic and Appointment RPC;11/20/11 15:30
  ; #10104 - XLFSTR call           (Supported)
  ; #4289 - PRCAHV call            (Controlled Sub)
  ; #3860 - DGPFAPI call           (Controlled Sub)
+ ; #2701 - MPIF001                (Supported)
+ ; #5888 - RPCVIC^DPTLK           (Controlled Sub)
  Q
 GETCLN(VPSARR,CLNAM) ; VPS GET CLINIC - RPC CLINIC NAME ENTRY
  ; VPSARR - passed in by reference; return array of clinics that matched input string (CLNAM)
  ; CLNAM - partial or full name of clinic; 
- ; Called by the MDWS web service Get Clinic operation which is an operation 
- ; triggered by the KIOSK (point of service) system.    
+ ; Called by Vetlink Kiosk system.     
  ; The RPC will accept 2 parameters.  The first parameter represents the 
  ; return value as required by RPC Broker, and the 2nd parameter is
  ; single input value representing the name of the clinic (full or partial 
@@ -47,34 +48,80 @@ GETCLN(VPSARR,CLNAM) ; VPS GET CLINIC - RPC CLINIC NAME ENTRY
  Q
  ;
 GETDATA(VPSARR,SSN) ; VPS GET PATIENT DEMOGRAPHIC - RPC SSN ENTRY
- ; VPSARR - passed in by reference; return array of patient demographics,appts
- ; SSN - patient SSN
- ; Called by the MDWS web service Get Patient Demographic operation.  The 
- ; operation is triggered by the Vecna Kiosk (point of service) system.  
- ; The RPC will accept 2 parameters.  The first parameter represents the 
- ; return value as required by RPC Broker, the 2nd parameter is an input 
- ; value which is the patient SSN.  The RPC returns the patient 
- ; demographics, insurance, and up-coming appointments.
- N CNT,DFN,I,ICN,TMP,TODAY,X,Y,VPSAPT,VPSCL,VPSCLN,VPSCNAM,VPSDA,VPSDFN
- N VPSDS,VPSDT,VPSFL,VPSFLD,VPSFR,VPSIBB,VPSIBFLD,VPSICN,VPSIEN,VPSOUT
- N VPSREC,VPSSD,VPSSSN,VPSTO,VADM,VAEL,VAOA,VAPA,VAPD,VACNTRY,VAERR
- N DGOPT,DGMSG,DGRES,ACTION
+ ; This RPC is called  by the Vetlink Kiosk (point of service) system.  
+ ; Given Patient SSN, this RPC returns the patient demographics,insurance,and up-coming appointments.
  ;
- S CNT=0,TODAY=$$DT^XLFDT() K VPSARR
+ ; INPUT
+ ;   SSN    - patient SSN 
+ ; OUTPUT
+ ;   VPSARR - passed in by reference; return array of patient demographics,appts
+ ;
+ K VPSARR
+ N X
+ N CNT S CNT=0
  ; 
- I $G(SSN)="" S X="-1"_U_"SSN NOT SENT." D WR G QUIT
+ I $G(SSN)="" S X="-1"_U_"SSN NOT SENT." D WR Q
  S VPSSSN=$TR(SSN,"- ")
- I +$G(VPSSSN)'>0 S X="-1"_U_"SSN SHOULD BE NUMERIC: "_SSN D WR G QUIT
- S VPSDFN=""
- S VPSDFN=$O(^DPT("SSN",VPSSSN,0))
- I +$G(VPSDFN)'>0 S X="-1"_U_"NO PATIENT FOUND WITH SSN: "_SSN D WR G QUIT
- S DFN=VPSDFN
+ I VPSSSN'?1.N S X="-1"_U_"SSN SHOULD BE NUMERIC: "_SSN D WR Q
+ N DFN S DFN=$O(^DPT("SSN",VPSSSN,0))
+ I +DFN'>0 S X="-1"_U_"NO PATIENT FOUND WITH SSN: "_SSN D WR Q
+ D GETPAT(.VPSARR,DFN)
+ Q
+ ;
+GETDATA2(VPSARR,VPSNUM,VPSTYP) ; VPS GET2 PATIENT DEMOGRAPHIC - RPC SSN/DFN/ICN/VIC/CAC ENTRY
+ ; This RPC is called  by the Vetlink Kiosk (point of service) system.  
+ ; Given Patient SSN or DFN or ICN or VIC/CAC, this RPC returns the patient demographics,insurance,and up-coming appointments.
+ ;
+ ; OUTPUT
+ ;   VPSARR  - passed in by reference; return array of patient demographics,appts
+ ; INPUT
+ ;   VPSNUM  - Parameter Value - patient SSN OR DFN OR ICN OR VIC/CAC (REQUIRED)
+ ;   VPSTYP  - Parameter TYPE - SSN or DFN OR ICN OR VIC/CAC (REQUIRED)
+ ;
+ K VPSARR
+ N CM S CM=","
+ N DFN,ER S ER=""
+ ;
+ I $G(VPSNUM)="" S VPSARR(1)="-1^SSN, DFN, ICN OR VIC/CAC IS REQUIRED" Q
+ I $G(VPSTYP)="" S VPSARR(1)="-1^TYPE IS REQUIRED (VALID TYPE: SSN, DFN, ICN OR VIC/CAC)" Q
+ I '$F(",SSN,DFN,ICN,VIC/CAC,",CM_VPSTYP_CM) S VPSARR(1)="-1^INVALID TYPE (VALID TYPE: SSN, DFN, ICN OR VIC/CAC)" Q
+ ;
+ I VPSTYP="SSN" D GETDATA(.VPSARR,VPSNUM) Q  ; get data based on SSN
+ ; 
+ I VPSTYP="DFN" D
+ . S DFN=VPSNUM
+ I VPSTYP="VIC/CAC" D
+ . D RPCVIC^DPTLK(.DFN,VPSNUM) ; get DFN given VIC/CAC number - IA 5888
+ . S:DFN=-1 ER="-1^NO DFN FOR VIC/CAC NUMBER"
+ I VPSTYP="ICN" D
+ . S DFN=$$GETDFN^MPIF001(VPSNUM) ; get DFN given ICN in the Patient file  - IA 2701
+ . S:+DFN=-1 ER=DFN
+ ;
+ I ER="" D GETPAT(.VPSARR,DFN) ; get data based on DFN
+ I ER'="" S VPSARR(1)=ER
+ Q
+ ;
+GETPAT(VPSARR,DFN) ;given DFN, returns the patient demographics, insurance, and up-coming appointments.
+ ; INPUT
+ ;   DFN    - patient DFN
+ ; OUTPUT
+ ;   VPSARR - passed in by reference; return array of patient demographics,appts
+ ;
+ I '$D(^DPT(DFN)) S VPSARR(1)="-1"_U_"NO PATIENT FOUND WITH DFN: "_DFN Q
+ ;
+ N I,ICN,TMP,X,Y,VPSAPT,VPSCL,VPSCLN,VPSCNAM,VPSDA
+ N VPSDS,VPSDT,VPSFL,VPSFLD,VPSFR,VPSIBB,VPSIBFLD,VPSICN,VPSIEN,VPSOUT
+ N VPSREC,VPSSD,VPSTO,VADM,VAEL,VAOA,VAPA,VAPD,VACNTRY,VAERR
+ N DGOPT,DGMSG,DGRES,ACTION
+ N CNT S CNT=0
+ N TODAY S TODAY=$$DT^XLFDT()
+ ;
  S X=$$SET(2,DFN,".001",DFN,"DFN") D WR
  S VPSICN=$$GETICN^MPIF001(DFN),ICN=$P(VPSICN,"V")
  I $G(ICN)'="" S X=$$SET(2,DFN,"991.01",ICN) D WR
  D DEM,SENLOG,ELIG,ENR,ADD,OAD,IBB,APT,REC,DGS,BAL
  K ^TMP($J,"SDAMA301")
- G QUIT
+ Q
  ;
 DEM ; Patient Demographic Data
  K VADM D DEM^VADPT
@@ -317,13 +364,26 @@ SD30 ;
  G SD30
  ;
 REC ; Patient Record Flag
- S TMP=$$GETACT^DGPFAPI(DFN,"VPSREC") I $G(TMP)'=1 Q
- S Y=$P(VPSREC(1,"FLAGTYPE"),U,2) I $G(Y)'="" S X=$$SET("26.13",DFN,".02",Y) D WR
- S TMP=""
-R10 ;
- S TMP=$O(VPSREC(1,"NARR",TMP)) Q:$G(TMP)=""
- S Y=$G(VPSREC(1,"NARR",TMP,0)) I $G(Y)'="" S X=$$SET("26.132",DFN,".01",Y) D WR
- G R10
+ N PRF,NPRF,PRFFIL,PRFLAG
+ S NPRF=$$GETACT^DGPFAPI(DFN,"VPSREC") ;Retrieve all ACTIVE Patient record flag assignments
+ ; Store all Patient Record Flags and Assigment Narratives into result array (VPSARR)
+ F PRF=1:1:NPRF D
+ . ;store flag type
+ . S Y=$P(VPSREC(PRF,"FLAGTYPE"),U,2)
+ . S PRFLAG=$P(VPSREC(PRF,"FLAG"),U)
+ . I Y'="",PRFLAG'="" D
+ . . S PRFFIL=$P($P(PRFLAG,"DGPF(",2),",")
+ . . I PRFFIL'="" S X=$$SET(PRFFIL,DFN,".03",Y,"FLAG TYPE") D WR
+ . ;store flag name
+ . S Y=$P(VPSREC(PRF,"FLAG"),U,2) I Y'="" S X=$$SET("26.13",DFN,".02",Y) D WR
+ . D STNARR(PRF) ; Store ASSIGNMENT NARRATIVE (word-processing) for this counter
+ Q
+ ;
+STNARR(PRF) ; Store ASSIGNMENT NARRATIVE (word-processing) into result array (VPSARR)
+ N NARRCNT S NARRCNT=""
+ F  S NARRCNT=$O(VPSREC(PRF,"NARR",NARRCNT)) Q:NARRCNT=""  D
+ . S Y=$G(VPSREC(PRF,"NARR",NARRCNT,0)) I $G(Y)'="" S X=$$SET("26.132",DFN,".01",Y) D WR
+ Q
  ;
 DGS ; Pre-Registration Audit
  S VPSFL="41.41"

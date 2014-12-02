@@ -1,5 +1,5 @@
 IBCEP8B ;ALB/CJS - Functions for NON-VA PROVIDER cont'd ;06-06-08
- ;;2.0;INTEGRATED BILLING;**391,432,476**;21-MAR-94;Build 2
+ ;;2.0;INTEGRATED BILLING;**391,432,476,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 BLD(IBNPRV) ; Build/Rebuild display
@@ -8,9 +8,14 @@ BLD(IBNPRV) ; Build/Rebuild display
  K @VALMAR
  ;S (IBLCT,IBCT)=0,Z=$G(^IBA(355.93,IBNPRV,0))
  S (IBLCT,IBCT)=0,Z=$G(^IBA(355.93,IBNPRV,0)),IB1=$G(^IBA(355.93,IBNPRV,1))
- S IBCT=IBCT+1
- S Z1=$J("Name: ",15)_$P(Z,U) D SET1(.IBLCT,Z1,IBCT)
- I $P(Z,U,2)=2 D
+ ;
+ ;  Moved IBCT & NAME into each section as the tabbing is different for each type  IB*2*488
+ ;S IBCT=IBCT+1
+ ;S Z1=$J("Name: ",15)_$P(Z,U) D SET1(.IBLCT,Z1,IBCT)
+ ;
+ I $P(Z,U,2)=2 D                 ; Individual provider (not a facility)
+ . S IBCT=IBCT+1
+ . S Z1=$J("Name: ",15)_$P(Z,U) D SET1(.IBLCT,Z1,IBCT)
  . S IBCT=IBCT+1
  . S Z1=$J("Type: ",15)_$S($P(Z,U,2)=2:"INDIVIDUAL PROVIDER",1:"OUTSIDE OR OTHER VA FACILITY") D SET1(.IBLCT,Z1,IBCT)
  . S IBCT=IBCT+1
@@ -43,18 +48,51 @@ BLD(IBNPRV) ; Build/Rebuild display
  I $P(Z,U,2)'=2 D
  .;IB*2.0*476 - END added prompt to allow OPTION FB PAID TO IB to make updates or not
  . S IBCT=IBCT+1
- . S Z1=$J("Address: ",15)_$P(Z,U,5) D SET1(.IBLCT,Z1,IBCT)
+ . S Z1=$J("Name: ",19)_$P(Z,U) D SET1(.IBLCT,Z1,IBCT)
+ . ;;
+ . ;; Begin IB*2.0*488 -RBN
+ . ;;
+ . N XX,BADADD,BADZIP,MSG
+ . S MSG="     "
+ . S (BADADD,BADZIP)=0
+ . S XX=$P(Z,U,5)
+ . I $L(XX)>30!($L(XX)<1) S BADADD=1
+ . S BADADD=$$BADADD(XX)
+ . S XX=$P(Z,U,8)
+ . I $L(XX)>10!($L(XX)<9)!'((XX?9N)!(XX?5N1"-"4N))!($E(XX,$L(XX)-3,$L(XX))="0000") S BADZIP=1
+ . ;;
+ . ;; End IB*2.0*488
+ . ;;
+ . S IBCT=IBCT+1
+ . S Z1=$J("Address: ",19)_$P(Z,U,5) D SET1(.IBLCT,Z1,IBCT)
  . I $P(Z,U,10) D
  .. S IBCT=IBCT+1
- .. S Z1=$J("",15)_$P(Z,U,10)
+ .. S Z1=$J("",19)_$P(Z,U,10)  ; This is the street2 of the address - NOT displayed
  . S IBCT=IBCT+1
- . S Z1=$J("",15)_$P(Z,U,6)_$S($P(Z,U,6)'="":", ",1:"")_$S($P(Z,U,7):$$EXTERNAL^DILFD(355.93,.07,"",$P(Z,U,7))_"  ",1:"")_$P(Z,U,8)
+ . S Z1=$J("",19)_$P(Z,U,6)_$S($P(Z,U,6)'="":", ",1:"")_$S($P(Z,U,7):$$EXTERNAL^DILFD(355.93,.07,"",$P(Z,U,7))_"  ",1:"")_$P(Z,U,8)
  . D SET1(.IBLCT,Z1,IBCT)
+ . ;;
+ . ;; Begin IB*2.0*488 - RBN
+ . ;;
+ . I BADADD S MSG=MSG_"Address cannot be a PO BOX"
+ . I BADZIP S MSG=$S(MSG'="     ":MSG_" & ",1:MSG) S MSG=MSG_"ZIP must be 9-10 digits not ending in 0000"
+ . I BADADD!BADZIP D
+ . . S IBCT=IBCT+1
+ . . S Z1=" "
+ . . D SET1(.IBLCT,Z1,IBCT)
+ . . S IBCT=IBCT+1
+ . . D SET1(.IBLCT,MSG,IBCT)
+ . . S IBCT=IBCT+1
+ . . S Z1=" "
+ . . D SET1(.IBLCT,Z1,IBCT)
+ . ;;
+ . ;; End IB*2.0*488
+ . ;;
  . ; start contact changes here
  . S IBCT=IBCT+1
- . S Z1=$J("Contact Name: ",15)_$P(IB1,U,1) D SET1(.IBLCT,Z1,IBCT)
+ . S Z1=$J("P&C Contact Name: ",19)_$P(IB1,U,1) D SET1(.IBLCT,Z1,IBCT)
  . S IBCT=IBCT+1
- . S Z1=$J("Contact Phone: ",15)_$P(IB1,U,2)_"  "_$P(IB1,U,3) D SET1(.IBLCT,Z1,IBCT)
+ . S Z1=$J("P&C Contact Phone: ",19)_$P(IB1,U,2)_"  "_$P(IB1,U,3) D SET1(.IBLCT,Z1,IBCT)
  . S IBCT=IBCT+1
  . S Z1=" " D SET1(.IBLCT,Z1,IBCT)
  . S IBCT=IBCT+1
@@ -99,3 +137,21 @@ BLD(IBNPRV) ; Build/Rebuild display
 SET1(IBLCT,TEXT,IBCT) ;
  S IBLCT=IBLCT+1 D SET^VALM10(IBLCT,TEXT,$G(IBCT))
  Q
+ ;
+ ; This checks for a post office box.  baa *488*
+ ; Called by the input transform for file 355.93 field .05 Street Address.
+ ;
+BADADD(XX) ;
+ N NOK,BADADD
+ S NOK=0
+ S XX=$$UP^XLFSTR(XX) ;make lower case upper
+ I XX[" BOX #" S NOK=1
+ I XX?.E1"BOX"." "."#"." "1N.E S NOK=1
+ S XX=$$STRIP^XLFSTR(XX,". ") ; strip out punctuation
+ I XX="BOX" S NOK=1
+ I XX="BOX#" S NOK=1
+ I XX="PO" S NOK=1
+ I XX="POB" S NOK=1
+ I XX="POBOX" S NOK=1
+ I XX="POSTALBOX" S NOK=1
+ Q NOK

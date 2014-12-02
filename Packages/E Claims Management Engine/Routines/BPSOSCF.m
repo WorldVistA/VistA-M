@@ -1,5 +1,5 @@
 BPSOSCF ;BHAM ISC/FCS/DRS/DLF - Low-level format of .02 ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -20,6 +20,8 @@ BPSOSCF ;BHAM ISC/FCS/DRS/DLF - Low-level format of .02 ;06/01/2004
  ; 240  (Additional Documentation Segment)
  ; 250  (Facility Segment)
  ; 260  (Narrative Segment)
+ ; 270  (Purchaser Segment)
+ ; 280  (Provider Segment)
  ;
  ; FORMAT = IEN in BPS NCPDP FORMATS (#9002313.92)
  ; NODE = Segment Node
@@ -36,7 +38,7 @@ XLOOP(FORMAT,NODE,MEDN) ; format claim record
  I ",260,250,240,230,220,210,200,170,140,"[(","_NODE_",") Q
  ;
  ; Per NCPDP standard, eligibility doesn't support segments listed below
- I BPS("Transaction Code")="E1",",260,250,230,220,210,200,190,180,170,160,130,"[(","_NODE_",") Q
+ I BPS("Transaction Code")="E1",",280,270,260,250,230,220,210,200,190,180,170,160,130,"[(","_NODE_",") Q
  ;
  ; For COB, if the payer sequence is primary, then quit and don't output the COB fields
  I NODE=160,$$COB59^BPSUTIL2(+$G(BPS("RX",BPS(9002313.0201),"IEN59")))=1 Q

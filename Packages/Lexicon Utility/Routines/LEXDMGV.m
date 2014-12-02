@@ -1,6 +1,12 @@
-LEXDMGV ; ISL Defaults - Manager/Verify            ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDMGV ;ISL/KER - Defaults - Manager/Verify ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    ^DIR                ICR  10026
+ ;               
  ; LEXDICS     Filter
  ; LEXDICS(0)  Filter name
  ; LEXDICS(1)  Filter - Add, Delete, No Change
@@ -17,8 +23,7 @@ LEXDMGV ; ISL Defaults - Manager/Verify            ; 09-23-96
  ; LEXUSER     User (text, not pointer)
  ; LEXX        Returned value
  ; LEXLIM      Limits (parameter for LEXMETH)
- ; LEXMETH     Method, singel user, by service, by location,
- ;              by both service and location, or all users
+ ; LEXMETH     Method, singel user, by service or all users
  ;
 VER(LEXX) ; Verify defaults before commiting to the global
  W @IOF
@@ -76,7 +81,5 @@ DEFCK ; Check defaults
 USERCK ; Check user
  I LEXMETH="ONE",+LEXLIM>0 S $P(LEXMETH,U,2)="user:  "_$P(LEXLIM,U,2)
  I LEXMETH="SEV",+LEXLIM>0 S $P(LEXMETH,U,2)="users in Service/Section:  "_$P(LEXLIM,U,2)
- I LEXMETH="LOC",+LEXLIM>0 S $P(LEXMETH,U,2)="users in Hospital Location:  "_$P(LEXLIM,U,2)
- I LEXMETH="SAL",+LEXLIM>0 S $P(LEXMETH,U,2)="users in Service/Location:  "_$P($P(LEXLIM,";",1),U,2)_"/"_$P($P(LEXLIM,";",2),U,2)
  I LEXMETH="ALL",+LEXLIM>0 S $P(LEXMETH,U,2)="users:  All Users"
  Q

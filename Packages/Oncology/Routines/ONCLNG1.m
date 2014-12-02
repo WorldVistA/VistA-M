@@ -1,5 +1,5 @@
-ONCLNG1 ;Hines OIFOGWB - Lung histology exclusion table (continued); 061406
- ;;2.11;ONCOLOGY;**46**;Mar 07) 1995;Build 39
+ONCLNG1 ;Hines OIFO/GWB - Lung histology exclusion table (continued); 061406
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  S ONCLUNG(90000)=""
  S ONCLUNG(90001)=""

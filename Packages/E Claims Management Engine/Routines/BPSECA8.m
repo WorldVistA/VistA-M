@@ -1,5 +1,5 @@
 BPSECA8 ;BHAM ISC/FCS/DRS/VA/DLF - construct a claim reversal ;05/17/04
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10,12,11**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10,12,11,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;External reference to $$PLANEPS^IBNCPDPU supported by IA 5572
@@ -94,6 +94,10 @@ R4 S DIC="^BPSC("_REVIEN_",400,",DIC(0)="LX"
  F I=.03,.04,1.01,1.04,101,104,110,201,202,301,302,304,305,310,311,331,332,359,401 D
  .S C=C+1,$P(DR,";",C)=I_"////"_$G(TMP(CLAIM,CLAIMIEN,I,"I"))
  ;
+ ; Update claim with new A22, A43 and A45 values but only if these fields were on original B1 Payer Sheet- BPS*1*15
+ F I=1022,1043,1045 D
+ .I $G(TMP(CLAIM,CLAIMIEN,I,"I"))]"" S C=C+1,$P(DR,";",C)=I_"////"_TMP(CLAIM,CLAIMIEN,I,"I")
+ ;
  ; Add fields that do not come from the claim
  ;   Payer sheet is the reversal sheet, Created On is current date/time
  ;   Transaction Code is B2 and Transaction Count is 1
@@ -108,6 +112,12 @@ R4 S DIC="^BPSC("_REVIEN_",400,",DIC(0)="LX"
  S DIE="^BPSC("_REVIEN_",400,",DA(1)=REVIEN,DA=1,DR="",C=0
  F I=.04,.05,147,308,337,402,403,407,418,430,436,438,455 D
  .S C=C+1,$P(DR,";",C)=I_"////"_$G(TMP(RXMULT,POS_","_CLAIMIEN,I,"I"))
+ D ^DIE
+ ;
+ ; Update transaction multiple with new D.1 through D.9 values but only if these fields were on the original B1 Payer Sheet- BPS*1*15
+ S DIE="^BPSC("_REVIEN_",400,",DA(1)=REVIEN,DA=1,DR="",C=0
+ F I=579:1:681,1023:1:1027,1029:1:1032 D
+ .I $G(TMP(RXMULT,POS_","_CLAIMIEN,I,"I"))]"" S C=C+1,$P(DR,";",C)=I_"////"_TMP(RXMULT,POS_","_CLAIMIEN,I,"I")
  D ^DIE
  ;
  ; Add Submission Clarification Code to the reversal record

@@ -1,5 +1,5 @@
 ONCRPC ;Hines OIFO/GWB - Extract VACCR data via ONC VACCR RPC ;09/22/11
- ;;2.11;Oncology;**53,54**;Mar 07, 1995;Build 10
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;;
 EN1(RESULT,DATEUSED,START,END) ;Entry point
  K ^TMP("ONCRPC")

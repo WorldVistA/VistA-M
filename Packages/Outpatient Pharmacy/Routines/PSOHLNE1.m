@@ -1,5 +1,5 @@
 PSOHLNE1 ;BIR/RTR-Parsing out segments from OERR ;01/20/95
- ;;7.0;OUTPATIENT PHARMACY;**1,9,46,71,98,111,117,131,157,181,143,235,239,225**;DEC 1997;Build 29
+ ;;7.0;OUTPATIENT PHARMACY;**1,9,46,71,98,111,117,131,157,181,143,235,239,225,391**;DEC 1997;Build 13
  ;External reference to EN^ORERR supported by DBIA 2187
  ;External reference to PS(50.607 supported by DBIA 2221
  ;External reference to OR(100 supported by DBIA 2219
@@ -19,6 +19,7 @@ EN ;ORC segment
  I '$O(MSG(ZZ,0)) D  Q
  .F JJJ=1:1:QCOUNT S QQQ=$P(ORCSEG,"~",JJJ) D:QQQ'=""
  ..S PSOPOSSD=$S($P($P(QQQ,"^"),"&"):1,1:0) ;PSOPOSSD=1 if possible dose
+ ..S Q9(JJJ)=$P(QQQ,"^")
  ..S Q1I(JJJ)=$S(PSOPOSSD:$P(QQQ,"^"),1:$P(QQQ,"^",8)),PSOLQ1IX(JJJ)=$P($P(QQQ,"^"),"&",5) S PSOLQ1I(JJJ)=$P(QQQ,"^",8),PSOLQ1II(JJJ)=PSOPOSSD ;ORC piece 1 if Possible Dosage, ORC piece 8 if Local Possible Dosage
  ..S Q1(JJJ)=$P(QQQ,"^",2) ;schedule
  ..S Q2(JJJ)=$P(QQQ,"^",3) ;duration
@@ -45,6 +46,7 @@ END ;16 OF ORC?
  S QCOUNT=0 F JJJ=0:0 S JJJ=$O(QTVAR(JJJ)) Q:'JJJ  I $L($G(QTVAR(JJJ))) S QCOUNT=QCOUNT+1 D
  .S PSOPOSSD=$S($P($P(QTVAR(JJJ),"^"),"&"):1,1:0) ;PSOPOSSD =1 if possible dose
  .S Q1I(JJJ)=$S(PSOPOSSD:$P(QTVAR(JJJ),"^"),1:$P(QTVAR(JJJ),"^",8)),PSOLQ1IX(JJJ)=$P($P(QTVAR(JJJ),"^"),"&",5) S PSOLQ1I(JJJ)=$P(QTVAR(JJJ),"^",8),PSOLQ1II(JJJ)=PSOPOSSD ;piece 1 if possible dose, piece 8 if not
+ .S Q9(JJJ)=$P(QTVAR(JJJ),"^")
  .S Q1(JJJ)=$P(QTVAR(JJJ),"^",2)
  .S Q2(JJJ)=$P(QTVAR(JJJ),"^",3)
  .;S Q2(JJJ)=$S($E($P(QTVAR(JJJ),"^",3)):"D"_$P(QTVAR(JJJ),"^",3),$E($P(QTVAR(JJJ),"^",3))=0:"D"_$P(QTVAR(JJJ),"^",3),1:$P(QTVAR(JJJ),"^",3))

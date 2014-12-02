@@ -1,6 +1,6 @@
-DICE ;SFISC/GFT-CREATE AN XREF ;8JUN2010
- ;;22.0;VA FileMan;**26,58,165**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICE ;SFISC/GFT-CREATE AN XREF ;17DEC2010
+ ;;22.0;VA FileMan;**26,58,165,167**;Mar 30, 1999;Build 18
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  S %=2,DCOND="CROSS-REFERENCE" W !,"WANT TO CREATE A NEW ",DCOND," FOR THIS FIELD" D YN^DICN G Q:%-1
 N F DQ=1:1 Q:'$D(^DD(DI,DA,1,DQ))
  W !,"CROSS-REFERENCE NUMBER: "_DQ_"// " R X:DTIME S:'$T DTOUT=1 G Q:'$T S:X="" X=DQ G NQ:X'?.N!'X,X:$D(^(X)) S DQ=X
@@ -42,7 +42,7 @@ EDT ;
  I DH(DQ,4) D R^DICD Q:'$D(DICD)  S DQ=DICD
  I $D(DDA) S DDA="E" D XS^DICATTA
  W ! F A0=1:1:2 S A1(A0)=^DD(J(N),DA,1,DQ,A0)
- S A0=DI,DR=$S(DUZ(0)="@"&($P(DH(DQ),U,3)["MUMPS"):"1:3;10",1:"3;10") D ED
+ S A0=DI,DR=$S(DUZ(0)="@"&($P(DH(DQ),U,3)["MUMPS"):"1:3;10;666",DUZ(0)="@"&($P(DH(DQ),U,3)]""):"3;10;666",1:"3;10") D ED ;NOREINDEX  PATCH 167
  F A0=1:1:2 I A1(A0)'=^DD(J(N),DA,1,DQ,A0) S ^("DT")=DT,DREF=4 D DIEZ^DIU0,KOLD^DICD,F,D^DICD Q
  K A0,A1 I $D(DDA) D XA^DICATTA
  Q
@@ -65,5 +65,5 @@ HLP ; Traditional Cross Reference Help - Called From NQ
  W !,?5,"cross-reference is in.  If you are not the custodian of the file, you"
  W !,?5,"should select a number that corresponds with a numberspace for which you"
  W !,?5,"have custody.  Questions regarding numberspace custody may be referred"
- W !,?5,"to:  DBA@FORUM.domain.ext",!
+ W !,?5,"to:  DBA@DOMAIN.EXT",!
  Q

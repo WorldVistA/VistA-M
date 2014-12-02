@@ -1,5 +1,5 @@
-EDPRPT7C ;SLC/MKB - Exposure Report (CSV format) ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPRPT7C ;SLC/MKB - Exposure Report (CSV format) ;4/25/13 3:15pm
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;May 2, 2012;Build 200
  ;
 EXP(IEN) ; Get Exposure Report for IEN at EDPSITE
  S IEN=+$G(IEN)  Q:IEN<1  Q:'$D(^EDP(230,IEN,0))
@@ -10,7 +10,10 @@ EXP(IEN) ; Get Exposure Report for IEN at EDPSITE
  S:'BEG BEG=$P(X0,U) S:'END END=$$NOW^EDPRPT
  D ROOMS(IEN,END)
  ; put IEN info into CSV
- S X="ED"_TAB_"Room"_TAB_"Shift - Time In"_TAB_"Shift - Time Out"_TAB_"Diagnosis"_TAB_"Dispo"_TAB_"Arr Mode"_TAB_"Notes"
+ ;***pij 4/19/2013 changed ED to IEN
+ ;S X="ED"_TAB_"Room"_TAB_"Shift - Time In"_TAB_"Shift - Time Out"_TAB_"Diagnosis"_TAB_"Dispo"_TAB_"Arr Mode"_TAB_"Notes"
+ S X="IEN"_TAB_"Room"_TAB_"Shift - Time In"_TAB_"Shift - Time Out"_TAB_"Diagnosis"_TAB_"Dispo"_TAB_"Arr Mode"_TAB_"Notes"
+ ;***
  D ADD^EDPCSV(X),BLANK^EDPCSV ;headers
  S X=TAB_TAB_"Contagious Patient Information"
  D ADD^EDPCSV(X),BLANK^EDPCSV
@@ -32,7 +35,10 @@ E1 ; look for patients also in ED between BEG and END
  ... S TREAT(LOG)=""
  . I '$D(TREAT(LOG)) S OTHER(LOG)=""
 E2 ; return treatment room patients
- D ADD^EDPCSV(TAB_TAB_"Exposed in Treatment Room"),BLANK^EDPCSV
+ ;***pij 4/19/2013
+ ;D ADD^EDPCSV(TAB_TAB_"Exposed in Treatment Room"),BLANK^EDPCSV
+ D ADD^EDPCSV(TAB_TAB_"Patients Directly Exposed in Different Treatment Rooms"),BLANK^EDPCSV
+ ;***
  I '$O(TREAT(0)) D ADD^EDPCSV(TAB_TAB_"  None")
  E  S LOG=0 F  S LOG=$O(TREAT(LOG)) Q:LOG<1  D ADD(LOG),STAFF(LOG)
  D BLANK^EDPCSV

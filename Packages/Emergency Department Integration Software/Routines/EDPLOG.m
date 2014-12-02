@@ -1,5 +1,5 @@
-EDPLOG ;SLC/KCM - Update ED Log Update ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPLOG ;SLC/KCM - Update ED Log - Update ;2/28/12 08:33am
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
  ;TODO:  add transaction processing
  ;
@@ -30,6 +30,8 @@ UPD(REQ,REMOVE,RESTORE) ; Update a record
  ; and set the bed to the waiting room
  I RESTORE D
  .S REC("closed")="",REC("bed")=$P(^EDPB(231.9,AREA,1),U,12),REC("restoredBy")=$G(DUZ),REC("restorePatient")=1,REC("outTS")=""
+ .; if a bed is not defined at this point, use the EDIS_DEFAULT bed
+ .I 'REC("bed") S REC("bed")=$O(^EDPB(231.8,"B","EDIS_DEFAULT",0))
  ;
  N NAME,DFN,SSN,PCE
  S NAME=$$VAL("name"),DFN=$$VAL("dfn"),SSN=""
@@ -152,7 +154,10 @@ RDY2RMV ; check required fields & set up so ready to remove
  I $P(X1,U,1),'$$HAVEDIAG S MISSING=MISSING_"Diagnosis "
  I $P(X1,U,3),$$NOVAL("disposition") S MISSING=MISSING_"Disposition "
  ; (client parses for string "Delay Reason" to know whether to enable delay reason control)
- I $P(X1,U,4),(MIN>$P(X1,U,5)),$$NOVAL("delay"),'$$OBS(STS) S MISSING=MISSING_"Delay Reason "
+ ; bwf 4/26/13 - per Dr. Gelman, want delay reason no matter whether patient is in observation or not.
+ ;               replaced line below with the one that follows
+ ;I $P(X1,U,4),(MIN>$P(X1,U,5)),$$NOVAL("delay"),'$$OBS(STS) S MISSING=MISSING_"Delay Reason "
+ I $P(X1,U,4),(MIN>$P(X1,U,5)),$$NOVAL("delay") S MISSING=MISSING_"Delay Reason "
  I $L(MISSING) D FAIL("upd","Fields required for removal are missing:  "_MISSING) Q
  S:'$$VAL("outTS") REC("outTS")=TIME S REC("closed")=1
  Q

@@ -1,5 +1,5 @@
-ECXPIVD2 ;ALB/JAP,BIR/DMA,CML,PTD-Extract from IV EXTRACT DATA File (#728.113) ;9/8/10  15:48
- ;;3.0;DSS EXTRACTS;**105,120,127**;Dec 22, 1997;Build 36
+ECXPIVD2 ;ALB/JAP,BIR/DMA,CML,PTD-Extract from IV EXTRACT DATA File (#728.113) ;4/16/13  15:25
+ ;;3.0;DSS EXTRACTS;**105,120,127,144,149**;Dec 22, 1997;Build 27
 FILE ;file record
  ;node0
  ;fac^dfn^ssn^name^i/o^day^va class^qty^ward^cost^movement #^treat spec^ndc^investigational^iv dispensing fee^new feeder key^total doses^
@@ -15,7 +15,8 @@ FILE ;file record
  ;environ contamin ECXEST
  ;^oef/oif ECXOEF^ oef/oif return date ECXOEFDT^assoc pc prov npi ECASNPI
  ;^ordering provider npi ECXOPNPI^primary care provider npi ECPTNPI
- ;^country ECXCNTRY
+ ;^country ECXCNTRY^PATCAT^Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL ;144
+ ;^Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
  N DA,DIK
  S ECPLACE=""
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
@@ -43,6 +44,8 @@ FILE ;file record
  I ECXLOGIC>2007 S ECODE2=ECODE2_U_ECXOEF_U_ECXOEFDT_U_ECASNPI_U_ECXOPNPI_U_ECPTNPI
  I ECXLOGIC>2009 S ECODE2=ECODE2_U_ECXCNTRY
  I ECXLOGIC>2010 S ECODE2=ECODE2_U_ECXPATCAT
+ I ECXLOGIC>2013 S ECODE2=ECODE2_U_ECXESC_U_ECXCLST_U_ECXECL ;144
+ I ECXLOGIC>2014 S ECODE2=ECODE2_U_ECXSVCI_U_ECXSVCL ;149
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1
  S ^ECX(ECFILE,EC7,2)=ECODE2,ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX^DIK K DIK,DA

@@ -1,5 +1,5 @@
-PSDPLOG3 ;BIR/JPW,LTL-Inspector's Log (cont'd) ; 31 May 95
- ;;3.0; CONTROLLED SUBSTANCES ;;13 Feb 97
+PSDPLOG3 ;BIR/JPW,LTL - Inspector's Log (cont'd) ;31 May 95
+ ;;3.0;CONTROLLED SUBSTANCES;**73**;13 Feb 97;Build 8
 PRINT ;print inspector's log by naou, drug and green sheet #
  S (PG,PSDOUT,NAOU)=0 D NOW^%DTC S Y=+$E(%,1,12) X ^DD("DD") S RPDT=Y
  K LN S $P(LN,"-",132)="" I '$D(^TMP("PSDLOG",$J)) D HDR W !!,?45,"****  NO PENDING NARCOTIC ORDERS FOR INSPECTION  ****",! G DONE
@@ -16,8 +16,8 @@ END K %,%DT,%H,%I,%ZIS,ALL,ANS,ASK,ASKN,CNT,COMM,DA,DIC,DIE,DIR,DIROUT,DIRUT,DIW
 HDR ;header for log
  I $E(IOST,1,2)="C-",PG W ! K DA,DIR S DIR(0)="E" D ^DIR K DIR I 'Y S PSDOUT=1 Q
  S PG=PG+1 W:$Y @IOF W !,?42,"Inspector's Log for Controlled Substances",?120,"Page: ",PG,!,?52,RPDT,!
- W !,?57,"DATE",?71,"QTY"
- W !,"DISP #",?13,"DRUG",?55,"DISPENSED",?68,"DISPENSED",?85,"EXP DATE",?100,"QTY ON HAND",?118,"NAME/DATE"
+ W !,?67,"DATE",?80,"QTY"
+ W !,"DISP #",?13,"DRUG",?65,"DISPENSED",?78,"DISPENSED",?91,"EXP DATE",?104,"QTY ON HAND",?118,"NAME/DATE"
  W !,LN,!
  Q
 LOOP2 ;print inv typ loop
@@ -32,14 +32,14 @@ LOOP2 ;print inv typ loop
  ...F  S PSDR=$O(^TMP("PSDLOG",$J,NAOU(1),TYPN(1),NUM,PSDR)) Q:'PSDR!(PSDOUT)  S PSDCNT=0 F  S PSDCNT=$O(^TMP("PSDLOG",$J,NAOU(1),TYPN(1),NUM,PSDR,PSDCNT)) Q:'PSDCNT!(PSDOUT)  D  Q:PSDOUT
  ....I $Y+8>IOSL D PRT,HDR Q:PSDOUT  W !,?2,"=> NAOU: ",NAOU,!!?4,"=> INVENTORY TYPE: ",$S($E(TYPN,1,2)="ZZ":$E(TYPN,3,99),1:TYPN),! S LNUM=$Y
  ....S NODE=$G(^TMP("PSDLOG",$J,NAOU(1),TYPN(1),NUM,PSDR,PSDCNT))
- ....W !,$P(NODE,U,4),?2,NUM,?13,$P(NODE,U,5),?55,$P(NODE,U,2),?70,$J($P(NODE,U),6),?85,$P(NODE,U,3),?100,"____________",?118,"____________",! S LNUM=$Y
+ ....W !,$P(NODE,U,4),?2,NUM,?13,$P(NODE,U,5)_$$SCH^PSDPLOG2(PSDR),?65,$P(NODE,U,2),?72,$J($P(NODE,U),6),?91,$P(NODE,U,3),?104,"____________",?118,"____________",! S LNUM=$Y
  .S PSDRN="" F  S PSDRN=$O(^TMP("PSDLOG",$J,NAOU(1),TYPN(1),"B",PSDRN)) Q:PSDRN=""!(PSDOUT)  D  Q:PSDOUT
  ..I $Y+8>IOSL D PRT,HDR Q:PSDOUT  W !,?2,"=> NAOU: ",NAOU,! W:ASKN !,?4,"=> INVENTORY TYPE: ",$S($E(TYPN,1,2)="ZZ":$E(TYPN,3,99),1:TYPN),! S LNUM=$Y
  ..S PSDRN(1)=$O(^TMP("PSDLOG",$J,NAOU(1),TYPN(1),"B",PSDRN,0))
  ..S NUM="" F  S NUM=$O(^TMP("PSDLOG",$J,NAOU(1),TYPN(1),PSDRN(1),NUM)) Q:NUM=""!(PSDOUT)  F PSDCNT=0:0 S PSDCNT=$O(^TMP("PSDLOG",$J,NAOU(1),TYPN(1),PSDRN(1),NUM,PSDCNT)) Q:'PSDCNT!(PSDOUT)  D  Q:PSDOUT
  ...I $Y+8>IOSL D PRT,HDR Q:PSDOUT  W !,?2,"=> NAOU: ",NAOU,! W:ASKN !,?4,"=> INVENTORY TYPE: ",TYPN,! S LNUM=$Y
  ...S NODE=$G(^TMP("PSDLOG",$J,NAOU(1),TYPN(1),PSDRN(1),NUM,PSDCNT))
- ...W !,$P(NODE,"^",4),?2,$S(ASK="N":PSDRN,1:NUM),?13,$S(ASK="D":PSDRN,1:NUM),?55,$P(NODE,"^",2),?70,$J($P(NODE,"^"),6),?85,$P(NODE,"^",3),?100,"____________",?118,"____________",!
+ ...W !,$P(NODE,"^",4),?2,$S(ASK="N":PSDRN,1:NUM),?13,$S(ASK="D":PSDRN,1:NUM),$$SCH^PSDPLOG2(PSDRN(1)),?65,$P(NODE,"^",2),?72,$J($P(NODE,"^"),6),?91,$P(NODE,"^",3),?104,"____________",?118,"____________",!
  ...S LNUM=$Y
  Q
 PRT ;

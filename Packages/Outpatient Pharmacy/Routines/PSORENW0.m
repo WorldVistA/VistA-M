@@ -1,9 +1,8 @@
 PSORENW0 ;IHS/DSD/JCM-renew main driver continuation ;2/8/06 8:40am
- ;;7.0;OUTPATIENT PHARMACY;**11,27,32,59,64,46,71,96,100,130,237,206,251,375,379**;DEC 1997;Build 28
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,32,59,64,46,71,96,100,130,237,206,251,375,379,372**;DEC 1997;Build 54
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
- ;External reference to $$DS^PSSDSAPI supported by DBIA 5425
  ;
  ;PSO*237 was not adding to Clozapine Override file, fix
 PROCESS ;
@@ -100,16 +99,16 @@ CHKDIVX Q
  ;
 DRUG ;
  K PSOY
- S PSOY=PSORENW("DRUG IEN"),PSOY(0)=^PSDRUG(PSOY,0)
+ S PSOY=PSORENW("DRUG IEN"),PSOY(0)=^PSDRUG(PSOY,0),PSORENWD=1
  I '$P($G(^PSDRUG(PSOY,2)),"^") D  Q:$G(PSORX("DFLG"))
  .I $P($G(^PSRX(PSORENW("OIRXN"),"OR1")),"^") S PSODRUG("OI")=$P(^PSRX(PSORENW("OIRXN"),"OR1"),"^"),PSODRUG("OIN")=$P(^PS(50.7,+^("OR1"),0),"^") Q
  .W !!,"Cannot Renew!!  No Pharmacy Orderable Item!" S VALMSG="Cannot Renew!!  No Pharmacy Orderable Item!",PSORX("DFLG")=1
  D SET^PSODRG
- D POST^PSODRG D:$$DS^PSSDSAPI&('PSORX("DFLG")) DOSCK^PSODOSUT("R") S:$G(PSORX("DFLG")) PSORENW("DFLG")=1 ;remove order checks for v7. do allergy checks only
+ D POST^PSODRG D:'PSORX("DFLG") DOSCK^PSODOSUT("R") S:$G(PSORX("DFLG")) PSORENW("DFLG")=1 ;remove order checks for v7. do allergy checks only
  S PSONOOR=PSORENW("NOO")
  K PSORX("INTERVENE")
  S:$D(PSONEW("STATUS")) PSORENW("STATUS")=PSONEW("STATUS")
- K PSOY,PSONEW("STATUS")
+ K PSOY,PSONEW("STATUS"),PSORENWD
  Q
  ;
 RXN ;

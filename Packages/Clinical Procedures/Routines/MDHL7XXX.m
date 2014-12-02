@@ -1,5 +1,8 @@
 MDHL7XXX ; HOIFO/DP - Loopback device for CP ;4/10/09  09:20
- ;;1.0;CLINICAL PROCEDURES;**21**;Apr 01, 2004;Build 30
+ ;;1.0;CLINICAL PROCEDURES;**21,34**;Apr 01, 2004;Build 1
+ ; 06/19/13 KAM/BP Remedy Ticket 442635/MD*1*34  Modified the Process
+ ;          subroutine to look back 365 days instead of 5 days for 
+ ;          auto-complete of procedures
  ; IA#  2263 [Supported] XPAR Call
  ;      2693 [Subscription] TIU Extractions.
  ;      2980 [Subscription] Calls to GMRCGUIB.
@@ -80,7 +83,10 @@ PROCESS ; Process Device Results
  S MDAPU="CLINICAL,DEVICE PROXY SERVICE"
  S MDFD=$$FIND1^DIC(200,,"X",MDAPU,"B")
  F MDKK=0:0 S MDKK=$O(MDHVL(MDKK)) Q:MDKK<1  S:+$P($G(MDHVL(MDKK)),"^") MDHR(+$P($G(MDHVL(MDKK)),"^"))=$P($G(MDHVL(MDKK)),"^",2)
- S MDL=$$FMADD^XLFDT(DT,-5,0,0)  F  S MDL=$O(^MDD(702,"ASD",MDL)) Q:MDL<1!(MDL>MDMAXD)  F MDL1=0:0 S MDL1=$O(^MDD(702,"ASD",MDL,MDL1)) Q:MDL1<1  S MDX=$G(^MDD(702,MDL1,0)) D
+ ;
+ ;06/19/13 KAM/BP 442635/MD*1*34 Changed next line from -5 to -365
+ ;
+ S MDL=$$FMADD^XLFDT(DT,-365,0,0)  F  S MDL=$O(^MDD(702,"ASD",MDL)) Q:MDL<1!(MDL>MDMAXD)  F MDL1=0:0 S MDL1=$O(^MDD(702,"ASD",MDL,MDL1)) Q:MDL1<1  S MDX=$G(^MDD(702,MDL1,0)) D
  .Q:$G(MDHR(+$P(MDX,"^",4)))=""  S MDCX=$G(MDHR(+$P(MDX,"^",4)))
  .Q:$P($G(^MDS(702.01,+$P(MDX,U,4),0)),U,6)=2
  .S MDCST=$P(MDX,"^",5) Q:'+MDCST

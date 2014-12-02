@@ -1,5 +1,5 @@
 ONCOSCG ;WASH ISC/SRR,MLH-CROSS TABS: STAGE & TREATMENT ;12/15/99
- ;;2.11;ONCOLOGY;**5,25,28**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 TS ;individual stage group/treatment,Treatment by Stage
  W !?10,"This option will print cross-tabs for ALL ANALYTIC",!?10,"cases for TREATMENT by STAGE groups (I,II,III,IV)",!
  ;call to ONCOST for time frame

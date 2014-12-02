@@ -1,5 +1,5 @@
-RAMAGU08 ;HCIOFO/SG - ORDERS/EXAMS API (RAMISC VALID. #70) ; 3/6/09 4:16pm
- ;;5.0;Radiology/Nuclear Medicine;**90**;Mar 16, 1998;Build 20
+RAMAGU08 ;HCIOFO/SG,GJC - ORDERS/EXAMS API (RAMISC VALID. #70) ; 4/12/13 6:25pm
+ ;;5.0;Radiology/Nuclear Medicine;**90,116**;Mar 16, 1998;Build 1
  ;
  Q
  ;
@@ -202,6 +202,15 @@ VEXAMND(RAIENS,RACTION,RAMISC,RAFDA) ;
  ;
  ;=== Primary diagnostic code
  S:$$VALPRM^RAMAGU09("PRIMDXCODE",,RAIENS)<0 ECNT=ECNT+1
+ ;
+ ;=== Secondary diagnostic code(s)
+ S NAME="SECDXCODE"
+ S RC=$$VALPRM^RAMAGU09(NAME)
+ I RC>0  D
+ . S RAI=0
+ . F  S RAI=$O(RAMISC(NAME,RAI))  Q:RAI'>0  D
+ . . S:$$VALPRM^RAMAGU09(NAME,RAI)<0 ECNT=ECNT+1
+ E  S:RC<0 ECNT=ECNT+1
  ;
  ;=== Primary interpreting resident and staff
  S RC=0

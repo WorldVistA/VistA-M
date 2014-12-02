@@ -1,5 +1,5 @@
 ORWDXM4 ; SLC/KCM - Order Dialogs, Menus;10:42 AM  6 Sep 1998
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,215,296,280**;Dec 17, 1997;Build 85
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,215,296,280,394**;Dec 17, 1997;Build 5
  ;
 SETUP ; -- setup dialog (continued from ORWDXM1)
  ;    if xfer med order, setup ORDIALOG differently
@@ -26,7 +26,15 @@ SETUPS ; -- setup for specific types of dialogs (continued from ORWDXM1)
  . S ORCAT="I"
  I ORCAT="O",$D(OREVENT("EFFECTIVE")),(ORDG=+$O(^ORD(100.98,"B","O RX",0))) D
  . S ORDIALOG($O(^ORD(101.41,"B",X,0)),1)=OREVENT("EFFECTIVE")
- I ORDIALOG=$O(^ORD(101.41,"B","RA OERR EXAM",0))         D RA^ORWDXM2 G XENV
+ ;p394 force interactive dialog for imaging QO for female of child-bearing age. 
+ N ORRAORD S ORRAORD=0 ;set is radiology flag to false (0)
+ I ORDIALOG=$O(^ORD(101.41,"B","RA OERR EXAM",0)) D
+ . N ORPRMPT1,ORPRMPT2,ORCODE S ORRAORD=1
+ . Q:($G(ORTYPE)'="Q")!($G(ORSEX)'="F") 
+ . S ORPRMPT1=$O(^ORD(101.41,"B","OR GTX PREGNANT",0)),ORPRMPT2=$P($G(ORDIALOG(ORPRMPT1)),"^")
+ . S ORCODE=$G(^ORD(101.41,ORDIALOG,10,ORPRMPT2,7)) N Y S Y="Y" X ORCODE K ORCODE
+ . S:Y="Y" ORWPSWRG="" ;
+ I ORRAORD D RA^ORWDXM2 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","LR OTHER LAB TESTS",0))   D LR^ORWDXM2 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","FHW1",0))                 D DO^ORWDXM2 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","FHW2",0))                 D EL^ORWDXM2 G XENV

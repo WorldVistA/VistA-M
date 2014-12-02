@@ -1,5 +1,5 @@
-ONCOU ;Hines OIFO/GWB - ONCOLOGY UTILITY CALLS ;06/06/00
- ;;2.11;ONCOLOGY;**5,25,26,43**;Mar 07, 1995
+ONCOU ;Hines OIFO/GWB ONCOTRAX utilities ;06/06/00
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 ASKNUM(TXT,RNG,DFLT) ;ask for a number - expects RNG as NNN:NNN
  N DIR,Y S DIR(0)="N^"_RNG,DIR("A")=TXT S:$D(DFLT) DIR("B")=DFLT D ^DIR Q Y
@@ -46,24 +46,24 @@ CLNNOSUS ;Delete ONCOLOGY PATIENT (160) entries with no primaries/no suspense
  N TOTKT,CLNKT
  W @IOF
  W !
- W !,"   This option will purge ONCOLOGY PATIENT records"
+ W !,"   This option will delete ONCOTRAX PATIENT records"
  W !,"   with no suspense records and no primaries."
  W !
  L +^ONCO(160):5
  I  D
  .K ^TMP($J,"NOSUS")
  .D COUNT
- .I CLNKT=0 W "   No records to purge" W ! K DIR S DIR(0)="E" D ^DIR
+ .I CLNKT=0 W "   No records to delete" W ! K DIR S DIR(0)="E" D ^DIR
  .I CLNKT>0,$$CLNOK D PURGE
  .L -^ONCO(160)
- E  W !!,"The ONCOLOGY PATIENT file is in use... try again later!",*7,!!
+ E  W !!,"The ONCOTRAX PATIENT file is in use... try again later!",*7,!!
  Q
  ;
 COUNT ;Count the number of entries to delete
  N OI S OI=0
  S (TOTKT,CLNKT)=0
  F  S OI=$O(^ONCO(160,OI)) Q:OI'=+OI  D CHK
- W !,"   Total ONCOLOGY PATIENT records:    ",TOTKT
+ W !,"   Total ONCOTRAX PATIENT records:    ",TOTKT
  W !,"   Total records marked for deletion: ",CLNKT,!
  I CLNKT>0 W !,"   Patients to be deleted:" S IEN=0 F  S IEN=$O(^TMP($J,"NOSUS",IEN)) Q:IEN'>0  D
  .W !,?3,$$GET1^DIQ(160,IEN,60,"E"),"  ",$$GET1^DIQ(160,IEN,.01,"E")
@@ -72,15 +72,16 @@ COUNT ;Count the number of entries to delete
  ;
 CHK S TOTKT=TOTKT+1
  S SUSDT=$O(^ONCO(160,OI,"SUS","B","")) I SUSDT'="" Q
- I $D(^ONCO(165.5,"C",OI)) Q
+ Q:$D(^ONCO(165.5,"C",OI))
+ Q:$O(^ONCO(160,OI,"SUSNR",0))
  I '$D(^ONCO(160,OI,0)) K ^ONCO(160,OI) Q
  S CLNKT=CLNKT+1
  S ^TMP($J,"NOSUS",OI)=""
  Q
  ;
-CLNOK() ;Confirm that it's OK to purge
+CLNOK() ;Confirm deletion
  N DIR
- S DIR("A")="   Proceed with purge",DIR("B")="No",DIR(0)="Y"
+ S DIR("A")="   Proceed with deletion",DIR("B")="No",DIR(0)="Y"
  D ^DIR
  Q Y
  ;

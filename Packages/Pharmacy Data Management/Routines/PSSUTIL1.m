@@ -1,5 +1,5 @@
 PSSUTIL1 ;BIR/RTR-Utility routine ;08/21/00
- ;;1.0;PHARMACY DATA MANAGEMENT;**38,66,69**;9/30/97
+ ;;1.0;PHARMACY DATA MANAGEMENT;**38,66,69,166**;9/30/97;Build 9
  ;Reference to ^PS(50.607 supported by DBIA #2221
  ;Reference to ^PSNAPIS supported by DBIA 2531
  ;
@@ -90,31 +90,57 @@ SCHQT ;
  S SCH=SCHEX
  Q
  ;
-IVDEA(PSSIVOI,PSSIVOIP) ;DEA Special Handling to CPRS for IV Fluids dialogue
+IVDEA(PSSIVOI,PSSIVOIP) ;CS Federal Schedule/DEA Special Handling to CPRS for IV Fluids dialogue
  ;parameter 1 is Orderable Item
  ;parameter 2 is "A" for Additive, "S" for Solution
- ;Return variables:  1 -  DEA contains a 1 or a 2
- ;2 - DEA contains a 3, 4, or 5
- ;0 - first 2 conditions not met, but active additive/solutions exist
- ;null - no active additive/solution for the Orderable Item
- N PSSIVDO,PSSIVDD,PSSIVL,PSSIVLP,PSSIVDEA,PSSIVLPX
+ ;Return the CS Federal Schedule code in the VA PRODUCT file (#50.68)
+ ;or the DEA Special Hndl code depending on the "ND" node of the 
+ ;drugs associated to the Orderable Item.
+ ;1;1  Sch. I Nar.
+ ;1;2  II
+ ;1;2n II Non-Nar.
+ ;2;3  III
+ ;2;3n III Non-Nar.
+ ;2;4  IV
+ ;2;5  V
+ ;0  there are other active drugs
+ ;"" no active drugs
+ N PSSIVDO,PSSIVDD,PSSIVL,PSSIVLP,PSSIVDEA,PSSIVLPX,PSSK,PSSI,PSSGD
  S (PSSIVDO,PSSIVDD)=0
  I $G(PSSIVOIP)'="S" S PSSIVOIP="A"
- I '$G(PSSIVOI) G IVQ
- S PSSIVL="" F  S PSSIVL=$O(^PSDRUG("ASP",PSSIVOI,PSSIVL)) Q:PSSIVL=""!(PSSIVDO=1)  D
+ I '$G(PSSIVOI) G IVQ1
+ S PSSIVL="" F  S PSSIVL=$O(^PSDRUG("ASP",PSSIVOI,PSSIVL)) Q:'PSSIVL  D
  .I $P($G(^PSDRUG(PSSIVL,"I")),"^"),$P($G(^("I")),"^")<DT Q
  .I $P($G(^PSDRUG(PSSIVL,2)),"^",3)'["I",$P($G(^(2)),"^",3)'["U" Q
+ .S PSSIVDD=1
  .I PSSIVOIP="A" D  Q
- ..S PSSIVLP="",PSSIVLPX=0 F  S PSSIVLP=$O(^PSDRUG("A526",PSSIVL,PSSIVLP)) Q:PSSIVLP=""!(PSSIVDO=1)!(PSSIVLPX)  D
- ...I $D(^PS(52.6,PSSIVLP,0)) I '$P($G(^("I")),"^")!($P($G(^("I")),"^")>DT) S (PSSIVDD,PSSIVLPX)=1 D IVX
- .S PSSIVLP="",PSSIVLPX=0 F  S PSSIVLP=$O(^PSDRUG("A527",PSSIVL,PSSIVLP)) Q:PSSIVLP=""!(PSSIVDO=1)!(PSSIVLPX)  D
- ..I $D(^PS(52.7,PSSIVLP,0)) I '$P($G(^("I")),"^")!($P($G(^("I")),"^")>DT) S (PSSIVDD,PSSIVLPX)=1 D IVX
+ ..S (PSSIVLP,PSSIVLPX)=0 F  S PSSIVLP=$O(^PSDRUG("A526",PSSIVL,PSSIVLP)) Q:'PSSIVLP!(PSSIVLPX)  D
+ ...I $D(^PS(52.6,PSSIVLP,0)) I '$P($G(^("I")),"^")!($P($G(^("I")),"^")>DT) D IVX
+ .S (PSSIVLP,PSSIVLPX)=0 F  S PSSIVLP=$O(^PSDRUG("A527",PSSIVL,PSSIVLP)) Q:'PSSIVLP!(PSSIVLPX)  D
+ ..I $D(^PS(52.7,PSSIVLP,0)) I '$P($G(^("I")),"^")!($P($G(^("I")),"^")>DT) D IVX
 IVQ ;
+ G:$O(PSSI(""))]"" CSS
+ S PSSIVLPX="" F  S PSSIVLPX=$O(PSSGD(PSSIVLPX)) Q:PSSIVLPX=""  D
+ .I PSSIVLPX[1 S PSSI(1)="" Q
+ .I PSSIVLPX[2,PSSIVLPX'["C" S PSSI(2)="" Q
+ .I PSSIVLPX[2,PSSIVLPX["C" S PSSI(2.5)="" Q
+ .I PSSIVLPX[3,PSSIVLPX'["C" S PSSI(3)="" Q
+ .I PSSIVLPX[3,PSSIVLPX["C" S PSSI(3.5)="" Q
+ .I PSSIVLPX[4 S PSSI(4)="" Q
+ .I PSSIVLPX[5 S PSSI(5)=""
+CSS S PSSK=0 S PSSK=$O(PSSI(PSSK)) I PSSK S PSSIVDO=$E(PSSK)_$S($L(PSSK)>1:"n",1:"")
+OIQ I PSSIVDO=0 S:'PSSIVDD PSSIVDO=""
+ I +PSSIVDO=1!(+PSSIVDO=2) S PSSIVDO=1_";"_PSSIVDO
+ I +PSSIVDO=3!(+PSSIVDO=4)!(+PSSIVDO=5) S PSSIVDO=2_";"_PSSIVDO
+ Q PSSIVDO
+IVQ1 ;
  I PSSIVDO=0,'PSSIVDD S PSSIVDO=""
  Q PSSIVDO
  ;
 IVX ;
- S PSSIVDEA=$P($G(^PSDRUG(PSSIVL,0)),"^",3)
- I PSSIVDEA[1!(PSSIVDEA[2) S PSSIVDO=1 Q
- I PSSIVDEA[3!(PSSIVDEA[4)!(PSSIVDEA[5) S PSSIVDO=2
+ S (PSSIVDD,PSSIVLPX)=1
+ S PSSIVDEA=$P($G(^PSDRUG(PSSIVL,0)),"^",3) S:PSSIVDEA]"" PSSGD(PSSIVDEA)=""
+ I +$P($G(^PSDRUG(PSSIVL,"ND")),"^",3) S PSSK=$P(^("ND"),"^",3) D
+ .I +$P($G(^PSNDF(50.68,PSSK,7)),"^") S PSSK=$P(^(7),"^"),PSSI($S($E(PSSK,2)="n":$E(PSSK)_".5",1:PSSK))=""
  Q
+ ;

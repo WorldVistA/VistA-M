@@ -1,5 +1,5 @@
 EDPRPT3 ;SLC/MKB - Missed Opportunity Report ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
 MO(BEG,END,CSV) ; Get Missed Opp Report for EDPSITE by date range
  ;   CNT = counters

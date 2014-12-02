@@ -1,6 +1,7 @@
-ENFADEL ;WASHINGTON IRMFO/KLD/DH/SAB; Equipment Disposition ;10/23/97
- ;;7.0;ENGINEERING;**29,33,38,39,46**;Aug 17, 1993
+ENFADEL ;WASHINGTON IRMFO/KLD/DH/SAB; Equipment Disposition ; 4/15/13 11:52am
+ ;;7.0;ENGINEERING;**29,33,38,39,46,92**;Aug 17, 1993;Build 10
  ;This routine should not be modified.
+ ;patch 92 renamed gl 1524 to 1995
 ST D GETEQ^ENUTL G K:Y'>0
  S (DA,ENEQ("DA"))=+Y
  L +^ENG(6914,DA):5 I '$T W !!,$C(7),"Another user is editing this Equipment Record. Please try again later." G K
@@ -22,8 +23,8 @@ ST D GETEQ^ENUTL G K:Y'>0
  . W !!,$C(7),"The type of FD Document is required. No action taken."
  . S DIK=DIE D ^DIK K DIK
  S ENFD("TYPE")=$P($G(^ENG(6915.5,ENFD("DA"),100)),U)
- I ENFD("TYPE")="T",$$GET1^DIQ(6914,ENEQ("DA"),38)="1524" D  I 'Y W !!,"No action taken." S DIK=DIE D ^DIK K DIK G EXIT
- . W !,"This equipment item is already on SGL 1524 (Excess)."
+ I ENFD("TYPE")="T",$$GET1^DIQ(6914,ENEQ("DA"),38)="1995" D  I 'Y W !!,"No action taken." S DIK=DIE D ^DIK K DIK G EXIT
+ . W !,"This equipment item is already on SGL 1995 (Excess)."
  . S DIR(0)="Y",DIR("A")="Are you sure you want to process a Turn-In"
  . S DIR("B")="NO" D ^DIR K DIR
 DIE ;Enter data for FD DOC
@@ -96,12 +97,12 @@ EQ ; update
  I ENFD("TYPE")="T" D
  . W !!,"Editing Equipment Data"
  . S DA=ENEQ("DA"),DIE="^ENG(6914,"
- . S DR="20;19//996;38//1524"
+ . S DR="20;19//996;38//1995"
  . D ^DIE Q:$D(DTOUT)
- . Q:$$GET1^DIQ(6914,ENEQ("DA"),38)'=1524
+ . Q:$$GET1^DIQ(6914,ENEQ("DA"),38)'=1995
  . S DIR(0)="Y",DIR("A")="Should a FA Document also be sent"
  . S DIR("?",1)="The FD Document removed the asset from Fixed Assets."
- . S DIR("?",2)="Since the asset was placed in the Excess (1524) account"
+ . S DIR("?",2)="Since the asset was placed in the Excess (1995) account"
  . S DIR("?",3)="a FA Document should be sent adding it to Fixed Assets"
  . S DIR("?",4)="as excess equipment."
  . S DIR("?")="Enter YES to send a FA Document"

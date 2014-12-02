@@ -1,7 +1,14 @@
-LEXDCC ; ISL Default Display                      ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
- ; Entry:  D EN^LEXDCC             LEXAP is unknown
+LEXDCC ;ISL/KER - Default Display ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    $$GET1^DIQ          ICR   2056
+ ;    $$UP^XLFSTR         ICR  10103
+ ;               
+ ; Entry:  D EN^LEXDCC            LEXAP is unknown
  ;
  ; Entry:  D EN1^LEXDCC(LEXAP)    LEXAP is known
  ;
@@ -17,7 +24,7 @@ LEXDCC ; ISL Default Display                      ; 09-23-96
 EN ; Single user, LEXAP is unknown
  N LEXAP S LEXAP=$$DFI^LEXDM4 Q:+LEXAP=0  W ! D EN1(LEXAP) Q
 EN1(LEXAP) ; Single user, LEXAP is known
- N LEXUSER,LEXX S LEXUSER=$G(DUZ) Q:+LEXUSER'>0  Q:'$D(^VA(200,+LEXUSER))
+ N LEXUSER,LEXX S LEXUSER=$G(DUZ) Q:+LEXUSER'>0  Q:'$L($$GET1^DIQ(200,+($G(DUZ)),.01))
  ;
  S LEXAP=$G(LEXAP) Q:LEXAP=""
  I '$D(^LEXT(757.2,+LEXAP,0))&('$D(^LEXT(757.2,"B",LEXAP)))&('$D(^LEXT(757.2,"C",$$UP^XLFSTR(LEXAP))))&('$D(^LEXT(757.2,"AN",LEXAP))) Q

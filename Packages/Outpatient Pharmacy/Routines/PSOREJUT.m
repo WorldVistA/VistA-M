@@ -1,5 +1,5 @@
 PSOREJUT ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities ;06/07/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359,385,403**;DEC 1997;Build 9
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359,385,403,421**;DEC 1997;Build 15
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;Reference to $$ADDCOMM^BPSBUTL supported by IA 4719
  ;
@@ -27,13 +27,17 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
  ;                   "RESPONSE IEN" - Pointer to the RESPONSE file in ECME
  ;                   "REASON SVC CODE" - Reason for Service Code (pointer to BPS NCPDP REASON FOR SERVICE CODE)
  ;                   "RE-OPENED" - Re-Open Flag
+ ;                   "RRR FLAG" - Reject Resolution Required indicator
+ ;                   "RRR THRESHOLD AMT" - Reject Resolution Required Dollar Threshold
+ ;                   "RRR GROSS AMT DUE" - Reject Resolution Required Gross Amount Due
  ;Output: REJ("REJECT IEN")
- N %,DIC,DR,DA,X,DINUM,DD,DO,DLAYGO
+ N %,DIC,DR,DA,X,DINUM,DD,DO,DLAYGO,ERR
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  I '$G(PSODIV) S PSODIV=$$RXSITE^PSOBPSUT(RX,RFL)
  S REJ("BIN")=$E($G(REJ("BIN")),1,6)
  S REJ("CODE")=$G(REJ("CODE"))
- I REJ("CODE")'=79&(REJ("CODE")'=88)&('$G(PSOTRIC))&('$G(REOPEN)) S ERR="",ERR=$$EVAL^PSOREJU4(PSODIV,REJ("CODE"),$G(OPECC),.ERR) Q:'+ERR
+ ;Ignore this additional Check if reject is Reject Resolution Required reject - PSO*7*421
+ I '$G(REJ("RRR FLAG")),REJ("CODE")'=79&(REJ("CODE")'=88)&('$G(PSOTRIC))&('$G(REOPEN)) S ERR=$$EVAL^PSOREJU4(PSODIV,REJ("CODE"),$G(OPECC)) Q:'+ERR
  S REJ("PAYER MESSAGE")=$E($G(REJ("PAYER MESSAGE")),1,140),REJ("REASON")=$E($G(REJ("REASON")),1,100)
  S REJ("DUR TEXT")=$E($G(REJ("DUR TEXT")),1,100),REJ("DUR ADD MSG TEXT")=$E($G(REJ("DUR ADD MSG TEXT")),1,100),REJ("GROUP NAME")=$E($G(REJ("GROUP NAME")),1,30)
  S REJ("INSURANCE NAME")=$E($G(REJ("INSURANCE NAME")),1,30),REJ("PLAN CONTACT")=$E($G(REJ("PLAN CONTACT")),1,30)
@@ -50,11 +54,26 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
  S DIC("DR")=DIC("DR")_";27///"_REJ("COB")
  S DIC("DR")=DIC("DR")_";28///"_REJ("DUR ADD MSG TEXT")
  S DIC("DR")=DIC("DR")_";29///"_REJ("BIN")
+ ;Update Reject Resolution Required fields - PSO*7*421
+ I $G(REJ("RRR FLAG")) D
+ .S DIC("DR")=DIC("DR")_";30///"_REJ("RRR FLAG")
+ .S DIC("DR")=DIC("DR")_";31///"_REJ("RRR THRESHOLD AMT")
+ .S DIC("DR")=DIC("DR")_";32///"_REJ("RRR GROSS AMT DUE")
  F  L +^PSRX(RX):5 Q:$T  H 15
  K DD,DO D FILE^DICN K DD,DO S REJ("REJECT IEN")=+Y
  S REJ("OVERRIDE MSG")=$G(DATA("OVERRIDE MSG"))
- I REJ("OVERRIDE MSG")'="" D SAVECOM^PSOREJP3(RX,REJ("REJECT IEN"),REJ("OVERRIDE MSG"),$G(REJ("DATE/TIME")),$G(DUZ))
- K ERR
+ ;Comments use POSTMASTER as user for auto transfers - PSO*7*421
+ I REJ("OVERRIDE MSG")'="" D
+ .N ORIGIN S ORIGIN=$G(DUZ)
+ .S:REJ("OVERRIDE MSG")["Automatically transferred" ORIGIN=.5
+ .D SAVECOM^PSOREJP3(RX,REJ("REJECT IEN"),REJ("OVERRIDE MSG"),$G(REJ("DATE/TIME")),ORIGIN)
+ .;Insert comment for Transfer and RRR Rejects - PSO*7*421
+ .I REJ("OVERRIDE MSG")["Automatically transferred" D
+ ..N X,TXT
+ ..S TXT="Auto Send to Pharmacy Worklist due to Transfer Reject Code"
+ ..I $G(REJ("RRR FLAG")) S TXT="Auto Send to Pharmacy Worklist due to Reject Resolution Required Code"
+ ..I $G(PSOTRIC) S TXT="Auto Send to Pharmacy Worklist & OPECC - CVA/TRI"
+ ..S X=$$ADDCOMM^BPSBUTL(RX,RFL,TXT,1) ; IA 4719
  L -^PSRX(RX)
  Q
  ; 
@@ -72,7 +91,7 @@ CLSALL(RX,RFL,USR,REA,COM,COD1,COD2,COD3,CLA,PA) ; Close/Resolve All Rejects
  N REJ,REJDATA,DIE,DR,DA
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  ; - Closing OPEN/UNRESOLVED rejects
- I $$FIND(RX,RFL,.REJDATA) D
+ I $$FIND(RX,RFL,.REJDATA,,1) D
  . S REJ="" F  S REJ=$O(REJDATA(REJ)) Q:'REJ  D
  . . D CLOSE(RX,RFL,REJ,USR,REA,$G(COM),$G(COD1),$G(COD2),$G(COD3),$G(CLA),$G(PA))
  Q
@@ -82,15 +101,15 @@ CLOSE(RX,RFL,REJ,USR,REA,COM,COD1,COD2,COD3,CLA,PA,IGNR) ; - Mark a DUR/REFILL T
  ;         (o) RFL - Refill # (Default: most recent)
  ;         (r) REJ - REJECT ID (IEN)
  ;         (o) USR - User (file #200 IEN) responsible for closing the REJECT
- ;         (r) REA - Reason for closing the REJECT:
+ ;         (r) REA - Reason for closing the REJECT  (52.25,12):
  ;                       1:CLAIM RE-SUBMITTED
  ;                       2:RX ON HOLD
  ;                       3:RX SUSPENDED
  ;                       4:RX RETURNED TO STOCK
  ;                       5:RX DELETED
- ;                       6:OVERRIDEN W/OUT RE-SUBMISSION
- ;                       7:DISCONTINUED
- ;                       8:RX EDIT
+ ;                       6:IGNORED - NO RESUBMISSION
+ ;                       7:RX DISCONTINUED
+ ;                       8:RX EDITED
  ;                      99:OTHER
  ;         (o) COM  - Close comments manually entered by the user
  ;         (o) COD1 - First set of DUR overrides (Reason Code^Professional Code^Result Code)
@@ -140,20 +159,27 @@ CLOSE(RX,RFL,REJ,USR,REA,COM,COD1,COD2,COD3,CLA,PA,IGNR) ; - Mark a DUR/REFILL T
  S X=$$ADDCOMM^BPSBUTL(RX,RFL,$S($G(IGNR):"IGNORED - ",1:"")_COM)
  Q
  ;
-FIND(RX,RFL,REJDATA,CODE) ; - Returns whether a Rx/fill contains UNRESOLVED rejects
+FIND(RX,RFL,REJDATA,CODE,BESC,RRRFLG) ; - Returns whether a Rx/fill contains UNRESOLVED rejects
  ; Input: (r) RX - Rx IEN (#52) 
  ; (o) RFL - Refill # (If not passed, look original and all refills)
  ; (o) CODE - Can be null, a specific Reject Code(s) to be checked or multiple codes separated by comma's
- ; Output: 1 - Rx contains unresolved Rejects 
- ; 0 - Rx does not contain unresolved Rejects
- ; .REJDATA - Array containing the Reject(s) data (see 
- ; GET^PSOREJU2 for fields documentation)
+ ; (o) BESC - Bypass ECME Status Check (default behavior is to do the check); pass 1 to skip the check below
+ ;            We need to skip this check when looking for non-ECME billable rejects (eT or eC for example)
+ ; (o) RRRFLG - Pass a 1 in this parameter to also look for any unresolved Reject Resolution Required (RRR)
+ ;              rejects when CODE is also passed.  If CODE is not passed in, then pass a 1 here to ONLY look for
+ ;              unresolved RRR rejects.
+ ;              The default here is 0 if not passed.
+ ;
+ ; Output: 1 - Rx contains unresolved Rejects
+ ;         0 - Rx does not contain unresolved Rejects
+ ;  .REJDATA - Array containing the Reject(s) data (see GET^PSOREJU2 for fields documentation)
+ ;
  N RCODE,I,REJS
  S REJS=0,RCODE=""
  K REJDATA
- I $G(RFL),$$STATUS^PSOBPSUT(RX,RFL)="" Q 0
- I $G(CODE)]"",CODE["," S REJS=$$MULTI^PSOREJU4(RX,$G(RFL),.REJDATA,$G(CODE),REJS) G FEND
- S REJS=$$SINGLE^PSOREJU4(RX,$G(RFL),.REJDATA,$G(CODE),REJS)
+ I '$G(BESC),$G(RFL),$$STATUS^PSOBPSUT(RX,RFL)="" Q 0
+ I $G(CODE)]"",CODE["," S REJS=$$MULTI^PSOREJU4(RX,$G(RFL),.REJDATA,$G(CODE),REJS,+$G(RRRFLG)) G FEND
+ S REJS=$$SINGLE^PSOREJU4(RX,$G(RFL),.REJDATA,$G(CODE),REJS,+$G(RRRFLG))
 FEND ;
  Q $S(REJS:1,1:0)
  ;
@@ -164,6 +190,7 @@ SYNC(RX,RFL,USR,RXCOB) ;
  ;         (o) RXCOB - Coordination of Benefits code
  I '$G(RXCOB) S RXCOB=1
  N REJ,REJS,REJLST,I,IDX,CODE,DATA,TXT,PSOTRIC,ERR,PSODIV,OPECC,OVREJ,ESH
+ N REJRRR,RRRVAL ; PSO*7*421
  L +^PSRX("REJ",RX):0 Q:'$T
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  S PSODIV=$$RXSITE^PSOBPSUT(RX,RFL)
@@ -174,15 +201,23 @@ SYNC(RX,RFL,USR,RXCOB) ;
  . F I=1:1:$L(TXT,",") S CODE=$P(TXT,",",I),OVREJ="" D
  . . I CODE="" Q
  . . I ",M6,M8,99,NN,"[(","_CODE_",") S ESH="",ESH=$$DUR^PSOBPSU2(RX,RFL) Q:'ESH&('PSOTRIC)
- . . I CODE'="79"&(CODE'="88")&('$G(PSOTRIC)) S ERR=$$EVAL^PSOREJU4(PSODIV,CODE,OPECC,.ERR) Q:'+ERR
- . . S:+$G(ERR) OVREJ=1
+ . . ;Additional check for Reject Resolution Required included - PSO*7*421
+ . . I CODE'="79"&(CODE'="88")&('$G(PSOTRIC)) S ERR=$$EVAL^PSOREJU4(PSODIV,CODE,OPECC,RX,RFL,RXCOB,.RRRVAL) Q:'+ERR
+ . . I +$G(ERR) S OVREJ=1 S:+$G(RRRVAL) REJRRR(IDX)=RRRVAL
  . . I $$DUP^PSOREJU1(RX,+$$CLEAN^PSOREJU1($G(REJ(IDX,"RESPONSE IEN")))) Q
  . . S REJS(IDX,CODE)=OVREJ
  I '$D(REJS) L -^PSRX("REJ",RX) Q
 SYNC2 ;
  S (IDX,CODE)="" F  S IDX=$O(REJS(IDX)) Q:IDX=""  D
  . F  S CODE=$O(REJS(IDX,CODE)) Q:CODE=""  K DATA D
- . . I 'OPECC&(CODE'[79)&(CODE'[88) S DATA("OVERRIDE MSG")="Automatically transferred due to override for reject code."
+ . . ;Additional check for Reject Resolution Required - PSO*7*421
+ . . I 'OPECC&(CODE'[79)&(CODE'[88) D
+ . . .I '+$G(REJRRR(IDX)) S DATA("OVERRIDE MSG")="Automatically transferred due to override for reject code." Q
+ . . .;Reject Resolution Required fields
+ . . .S DATA("RRR FLAG")=1
+ . . .S DATA("RRR GROSS AMT DUE")=$P(REJRRR(IDX),U,2)
+ . . .S DATA("RRR THRESHOLD AMT")=$P(REJRRR(IDX),U,3)
+ . . .S DATA("OVERRIDE MSG")="Automatically transferred due to Reject Resolution Required reject code"
  . . I OPECC&(CODE'[79)&(CODE'[88) S DATA("OVERRIDE MSG")="Transferred by "_$S(CODE["eT":"",CODE["eC":"",1:"OPECC.")   ;cnf,PSO*7.0*358
  . . I $D(COMMTXT) S:COMMTXT'="" DATA("OVERRIDE MSG")=DATA("OVERRIDE MSG")_" "_$$CLEAN^PSOREJU1($P(COMMTXT,":",2))
  . . S DATA("DUR TEXT")=$$CLEAN^PSOREJU1($G(REJ(IDX,"DUR FREE TEXT DESC")))

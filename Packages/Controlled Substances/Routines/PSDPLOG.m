@@ -1,5 +1,5 @@
-PSDPLOG ;BIR/BJW-CS Inspector's Log ; 11 Feb 98
- ;;3.0; CONTROLLED SUBSTANCES ;**8**;13 Feb 97
+PSDPLOG ;BIR/BJW - CS Inspector's Log ;11 Feb 98
+ ;;3.0;CONTROLLED SUBSTANCES;**8,73**;13 Feb 97;Build 8
  ;**Y2K compliance**,"P" added to date input string
  I '$D(PSDSITE) D ^PSDSET Q:'$D(PSDSITE)
  ;S OK=$S($D(^XUSEC("PSJ RPHARM",DUZ)):1,$D(^XUSEC("PSJ PHARM TECH",DUZ)):1,1:0) I 'OK W $C(7),!!,?9,"** Please contact your Pharmacy Coordinator for access to",!,?12,"print the CS Inspector's Log.",! K OK Q
@@ -17,11 +17,19 @@ ASKN ;ask naou or group
  K DA,DIR,DIRUT S DIR(0)="SOA^N:NAOU;G:Group of NAOUs",DIR("A")="Select Method: "
  S DIR("?",1)="Enter 'N' to select one, some or ^ALL NAOU(s),",DIR("?")="enter 'G' to select a group of NAOUs, or '^' to quit"
  D ^DIR K DIR G:$D(DIRUT) END S SEL=Y D NOW^%DTC S PSDT=X K DA,DIC S CNT=0
- I SEL="G" D GROUP G:'$D(PSDG) END G SORT
+ I SEL="G" D GROUP G:'$D(PSDG) END G SCH
  F  S DIC=58.8,DIC("A")="Select NAOU: ",DIC(0)="QEA",DIC("S")="I $P(^(0),""^"",3)=+PSDSITE,$P(^(0),""^"",2)=""N"",'$P(^(0),""^"",7)" D ^DIC K DIC Q:Y<0  D
  .S NAOU(+Y)="",CNT=CNT+1
  I '$D(NAOU)&(X'="^ALL") G END
  S:X="^ALL" ALL=1
+SCH ;ask schedule
+ W !!,"All Controlled Substances or Selected Schedules?"
+ K DIR
+ S DIR(0)="S^1:SCHEDULES I - II;2:SCHEDULES III - V;3:SCHEDULES I - V",DIR("A")="Select Schedule(s)",DIR("B")=3
+ D ^DIR
+ I $D(DIRUT) G END
+ K PSDSCH S I=$S(Y=2:3,1:1),J=$S(Y=1:2,1:5) F K=I:1:J S PSDSCH(K)=""
+ K I,J,K
 SORT ;asks sort
  W ! K DA,DIR,DIRUT S DIR(0)="YO",DIR("A")="Do you wish to sort by Inventory Type",DIR("B")="NO"
  S DIR("?")="Answer YES to sort drugs by Inventory Type, NO or <RET> to sort by drug."
@@ -35,7 +43,7 @@ DEV ;ask device and queue info
  K %ZIS,IOP,IO("Q"),POP S %ZIS="QM",%ZIS("B")="" D ^%ZIS I POP W !,"NO DEVICE SELECTED OR REPORT PRINTED!" G END
  I $D(IO("Q")) K IO("Q") S PSDIO=ION_";"_IOST_";"_IOM_";"_IOSL,ZTIO="" K ZTSAVE,ZTDTH,ZTSK S ZTRTN="START^PSDPLOG1",ZTDESC="Compile Narcotic Inspector Log" D SAVE,^%ZTLOAD,HOME^%ZIS K ZTSK G END
  U IO G START^PSDPLOG1
-END K %,%DT,%H,%I,%ZIS,ALL,ASK,ASKN,CNT,DA,DIC,DIE,DIR,DIROUT,DIRUT,DR,DTOUT,DUOUT,EXP,EXPD,JJ,NAOU,NODE,NODE3,NUM
+END K %,%DT,%H,%I,%ZIS,ALL,ASK,ASKN,CNT,DA,DIC,DIE,DIR,DIROUT,DIRUT,DR,DTOUT,DUOUT,EXP,EXPD,JJ,NAOU,NODE,NODE3,NUM,PSDSCH
  K OK,PSD,PSDA,PSDDT,PSDG,PSDIO,PSDOK,PSDOUT,PSDN,PSDNA,PSDPT,PSDR,PSDRN,PSDRD,PSDRDT,PSDRET,PSDSD,PSDST,PSDT,PSDTR
  K QTY,SEL,STAT,STATN,TYP,TYPN,X,Y,ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,ZTSK
  K ^TMP("PSDLOG",$J) D ^%ZISC
@@ -44,7 +52,7 @@ END K %,%DT,%H,%I,%ZIS,ALL,ASK,ASKN,CNT,DA,DIC,DIE,DIR,DIROUT,DIRUT,DR,DTOUT,DUO
 GROUP ;select group of naous
  K DA,DIC F  S DIC=58.2,DIC("A")="Select NAOU INVENTORY GROUP NAME: ",DIC(0)="QEA",DIC("S")="I $S($D(^PSI(58.2,""CS"",+Y)):1,1:0)" D ^DIC K DIC Q:Y<0  S PSDG(+Y)=""
  Q
-SAVE S (ZTSAVE("PSDIO"),ZTSAVE("PSDT"),ZTSAVE("CNT"),ZTSAVE("PSDSITE"),ZTSAVE("ASK"),ZTSAVE("ASKN"))=""
+SAVE S (ZTSAVE("PSDIO"),ZTSAVE("PSDT"),ZTSAVE("CNT"),ZTSAVE("PSDSITE"),ZTSAVE("ASK"),ZTSAVE("ASKN"))="",ZTSAVE("PSDSCH(")=""
  S:$D(PSDG) ZTSAVE("PSDG(")="" S:$D(NAOU) ZTSAVE("NAOU(")="" S:$D(ALL) ZTSAVE("ALL")=""
  S ZTSAVE("PSDRET")="" S:$D(PSDSD) ZTSAVE("PSDSD")=""
  Q

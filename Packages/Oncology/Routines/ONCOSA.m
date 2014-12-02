@@ -1,5 +1,5 @@
 ONCOSA ;Hines OIFO - ANNUAL CROSS TABS-CANNED REPORTS ;9/3/93
- ;;2.11;ONCOLOGY;**1,44**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 ACT ;ANNUAL CROSS TABS
  W @IOF,!!!?21,"CROSS TABS for ANNUAL Reports"
  W !?25,"requires definition of"

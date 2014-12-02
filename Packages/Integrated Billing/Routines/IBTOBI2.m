@@ -1,5 +1,5 @@
 IBTOBI2 ;ALB/AAS - CLAIMS TRACKING BILLING INFORMATION PRINT ;27-OCT-93
- ;;2.0;INTEGRATED BILLING;**210**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**210,458**;21-MAR-94;Build 4
  ;
 IR ; -- print insurance review information
  Q:'$O(^IBT(356.2,"C",+IBTRN,0))  ; -no reivews
@@ -25,7 +25,9 @@ IR1 ; -- print one review
 10 ; -- pre-cert contact
 15 ; -- admission review
 20 ; -- urgent/emergent ins. contact
+25 ; -- snf/nhcu review
 30 ; -- continued stay contact
+35 ; -- inpt retrospective review
  S IBD(2,1)="         Action: "_$$EXPAND^IBTRE(356.2,.11,$P(IBTRCD,"^",11))
  S IBACTION=$P($G(^IBE(356.7,+$P(IBTRCD,"^",11),0)),"^",3)
  S IBACTION=IBACTION+100 D @IBACTION
@@ -35,9 +37,10 @@ IR1 ; -- print one review
 100 ; -- No type of action
  Q
 50 ; -- outpatient treatment
+55 ; -- opt retrospective review
  S IBD(2,1)="  Opt Treatment: "_$$EXPAND^IBTRE(356.2,.26,$P(IBTRCD,"^",26))
  S IBD(3,1)="         Action: "_$$EXPAND^IBTRE(356.2,.11,$P(IBTRCD,"^",11))
- S IBD(4,1)="   Auth. Number: "_$P(IBTRCD,"^",28)
+ S IBD(4,1)="   Auth. Number: "_$$AUTHN^IBTRC(IBTRC,20)
  Q
 60 ; -- Appeal
 65 ; -- Nth appeal
@@ -56,7 +59,7 @@ IR1 ; -- print one review
  S IBD(3,1)="Authorized From: "_$S($P(IBTRCD1,"^",8):"ENTIRE VISIT",1:$$DAT1^IBOUTL($P(IBTRCD,"^",12)))
  S IBD(4,1)="  Authorized To: "_$S($P(IBTRCD1,"^",8):"ENTIRE VISIT",1:$$DAT1^IBOUTL($P(IBTRCD,"^",13)))
  S IBD(5,1)="Authorized Diag: "_$$DIAG^IBTRE6($P(IBTRCD,"^",14),1,$$TRNDATE^IBACSV($G(IBTRN)))
- S IBD(6,1)="   Auth. Number: "_$P(IBTRCD,"^",28)
+ S IBD(6,1)="   Auth. Number: "_$$AUTHN^IBTRC(IBTRC,20)
  Q
 120 ; -- denial actions
  S IBD(3,1)="    Denied From: "_$S($P(IBTRCD1,"^",7):"ENTIRE VISIT",1:$$DAT1^IBOUTL($P(IBTRCD,"^",15)))
@@ -84,7 +87,7 @@ IR2 ; -- contact information
  S IBD(2,2)="   Insurance Co.: "_$E($P($G(^DIC(36,+$G(^DPT(DFN,.312,+$P(IBTRCD1,"^",5),0)),0)),"^"),1,20)
  S IBD(3,2)="Person Contacted: "_$E($P(IBTRCD,"^",6),1,20)
  S IBD(4,2)="  Contact Method: "_$E($$EXPAND^IBTRE(356.2,.17,$P(IBTRCD,"^",17)),1,20)
- S IBD(5,2)="Call Ref. Number: "_$E($P(IBTRCD,"^",9),1,20)
+ S IBD(5,2)="Call Ref. Number: "_$$CREFN^IBTRC(IBTRC,20)
  S IBD(6,2)="          Status: "_$E($$EXPAND^IBTRE(356.2,.19,$P(IBTRCD,"^",19)),1,20)
  S IBD(7,2)="  Last Edited By: "_$E($$EXPAND^IBTRE(356.2,1.04,$P($G(^IBT(356.2,+$G(IBTRC),1)),"^",4)),1,20)
  I '$P(IBTRCD,"^",2) S IBD(2,2)="Patient Contacted: "_$E($P($G(^DPT(+$P(IBTRCD,"^",5),0)),"^"),1,20)

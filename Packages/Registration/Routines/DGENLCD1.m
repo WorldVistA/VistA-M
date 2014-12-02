@@ -1,5 +1,5 @@
-DGENLCD1 ;ALB/CJM,Zoltan,JAN - Enrollment Catastrophic Disability- Build List Area;13 JUN 1997 08:00 am,NOV 14 2001
- ;;5.3;Registration;**121,232,387**;Aug 13,1993
+DGENLCD1 ;ALB/CJM,Zoltan,JAN - Enrollment Catastrophic Disability- Build List Area;13 JUN 1997
+ ;;5.3;Registration;**121,232,387,850**;Aug 13,1993;Build 171
  ;
 EN(DGARY,DFN,DGCNT) ;Entry point to build list area
  ; Input  -- DGARY    Global array subscript
@@ -61,5 +61,23 @@ CD(DGARY,DFN,DGCDIS,DGLINE,DGCNT) ;
  . I '$$RANGEMET^DGENA5(DGCDIS("COND",ITEM),DGCDIS("SCORE",ITEM),1) S PERM="N/A"
  . E  S PERM=$$EXT^DGENCDU("PERM",DGCDIS("PERM",ITEM))
  . D SET^DGENL1(DGARY,DGLINE,$J("Permanent Indicator:   ",30)_PERM,1,,,,,,.DGCNT)
- ;
  Q
+ ;
+DISP(Y) ; Patch DG*5.3*850
+ ;called from 2.396 and 2.397 output transform, input y, output y
+ N DFN,NODE,TYPE,LONG,OUTPUT,DDATE,IMPDATE,ICDVER
+ S DFN=$S($G(DA(1))'="":DA(1),$G(DFN)'="":DFN,1:"")
+ S NODE=$G(^DGEN(27.17,+Y,0)),LONG=$G(^DGEN(27.17,+Y,5))
+ S TYPE=$P(NODE,U,2)
+ I DFN="" Q $P(NODE,U,1)
+ ;
+ S DDATE=$P($G(^DPT(DFN,.39)),"^",2) ;Date of decision
+ I $G(DGCDIS("DATE")) S DDATE=DGCDIS("DATE")
+ I DDATE="" S DDATE=DT
+ S IMPDATE=$P($$IMPDATE^DGPTIC10($G(CODESYS)),"^",1)
+ S ICDVER=$S(DDATE<IMPDATE:9,1:10)
+ I ICDVER=9 S OUTPUT=$P(NODE,U,4)_" "_$P(NODE,U,1)_$S($P(NODE,U,3)["CPT":" (CPT)",1:" (ICD-9-CM)")
+ I ICDVER=10 D
+ . I LONG'="" S OUTPUT=$P(NODE,U,4)_" "_LONG_$S(TYPE="D":" (ICD-10-CM)",1:" ICD-10-PCS")
+ . I LONG="" S OUTPUT=$P(NODE,U,4)_" "_$P(NODE,U,1)_$S(TYPE="D":" (ICD-10-CM)",1:" ICD-10-PCS")
+ Q OUTPUT

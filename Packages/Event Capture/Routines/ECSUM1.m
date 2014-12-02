@@ -1,15 +1,15 @@
-ECSUM1 ;BIR/JLP,RHK-Category and Procedure Summary (cont'd) ;7 Nov 2007
- ;;2.0; EVENT CAPTURE ;**4,19,23,33,47,95,100**;8 May 96;Build 21
+ECSUM1 ;BIR/JLP,RHK-Category and Procedure Summary (cont'd) ;1/22/14  16:47
+ ;;2.0;EVENT CAPTURE;**4,19,23,33,47,95,100,119,122**;8 May 96;Build 2
 ALLU ;
- N UCNT,ECDO,ECCO,ECNT
+ N UCNT,ECDO,ECCO,ECNT,ECD,ECMORE,ECEDN,ECEDNST,ECCPT ;119,122
  S (ECD,ECMORE,ECNT,ECDO,ECCO)=0,ECPG=$G(ECPG,1),ECSCN=$G(ECSCN,"B")
  F  S ECD=$O(^ECJ("AP",ECL,ECD)) Q:'ECD  D  Q:ECOUT
- .D SET,CATS,PAGE:'ECOUT&UCNT
-END I 'ECNT N ECNOCNT S ECNOCNT=1 D HEADER W !!!,"Nothing Found."
+ .D SET,CATS I $G(ECPTYP)'="E" D PAGE:'ECOUT&UCNT ;119
+END Q:$G(ECPTYP)="E"  I 'ECNT N ECNOCNT S ECNOCNT=1 D HEADER W !!!,"Nothing Found." ;119
  S ECPG=$G(ECPG,1)
  Q
 SUM2 ;Prints Categories and Procedures for a DSS Unit
- N UCNT,ECDO,ECCO,ECNT
+ N UCNT,ECDO,ECCO,ECNT,ECMORE,ECEDN,ECEDNST,ECCPT ;119,122
  S (ECDO,ECMORE,UCNT,ECNT,ECCO)=0,ECPG=$G(ECPG,1),ECSCN=$G(ECSCN,"B")
  I ECC="ALL" D CATS G END
  I 'ECJLP S ECC=0,ECCN="None",ECCO=999
@@ -17,8 +17,9 @@ SUM2 ;Prints Categories and Procedures for a DSS Unit
  D END
  Q
 SET ;set var
- S ECDN=$S($P($G(^ECD(+ECD,0)),"^")]"":$P(^(0),"^"),1:"UNKNOWN"),UCNT=0
+ S (ECDN,ECEDN)=$S($P($G(^ECD(+ECD,0)),"^")]"":$P(^(0),"^"),1:"UNKNOWN"),UCNT=0 ;119
  S ECDN=ECDN_$S($P($G(^ECD(+ECD,0)),"^",6):" **Inactive**",1:"")
+ S ECEDNST=$S($P($G(^ECD(+ECD,0)),U,6):"INACTIVE",1:"") ;119
  S ECS=+$P($G(^ECD(+ECD,0)),"^",2)
  S ECSN=$S($P($G(^DIC(49,ECS,0)),"^")]"":$P(^(0),"^"),1:"UNKNOWN")
  Q
@@ -48,23 +49,32 @@ PROC ;
  S ECMORE=0
  Q
 SETP ;set procs
+ N ECSC,ECSSC,EC4CHAR,NODE0 ;122
  S ECPSY=+$O(^ECJ("AP",ECL,ECD,ECC,ECP,""))
  S ECINDT=$P($G(^ECJ(ECPSY,0)),"^",2)
  I ECSCN="A",ECINDT'="" Q
  I ECSCN="I",ECINDT="" Q
- I ECD'=ECDO D HEADER S ECDO=ECD
+ I ECD'=ECDO D:$G(ECPTYP)'="E" HEADER S ECDO=ECD ;119
  I ECC'=ECCO D  S ECCO=ECC I ECOUT Q
- .W !!,?3,"Category:  "_ECCN D:$Y+4>IOSL PAGE,HEADER:ECPG,MORE:$D(ECCN)
+ .I $G(ECPTYP)="E" Q  ;119
+ .W !!,"Category:  "_ECCN D:$Y+4>IOSL PAGE,HEADER:ECPG,MORE:$D(ECCN) ;122 Removed white space from front of line
  S ECPSYN=$P($G(^ECJ(ECPSY,"PRO")),"^",2),EC4=+$P($G(^("PRO")),"^",4)
  S EC2="" I EC4 S EC2=$S($P($G(^SC(EC4,0)),"^")]"":$P(^(0),"^"),1:"NO ASSOCIATED CLINIC")
+ S (ECSC,ECSSC,EC4CHAR)="" ;122
+ I EC4 S NODE0=$G(^ECX(728.44,EC4,0)),ECSC=$P(NODE0,U,2),ECSSC=$S($P(NODE0,U,3)'="":$P(NODE0,U,3),$G(ECPTYP)="E":"",1:"000"),EC4CHAR=$P($G(^ECX(728.441,+$P(NODE0,U,8),0)),U) ;122 Get stop code, credit stop code, char4 code
  S ECFILE=$P(ECP,";",2),ECFILE=$S($E(ECFILE)="I":81,$E(ECFILE)="E":725,1:"UNKNOWN")
  I ECFILE="UNKNOWN" S ECPN="UNKNOWN",NATN="UNKNOWN"
  I ECFILE=81 S ECPI=$$CPT^ICPTCOD(+ECP) D
  .S ECPN=$S($P(ECPI,"^",3)]"":$P(ECPI,"^",3),1:"UNKNOWN"),NATN=$S($P(ECPI,"^",2)]"":$P(ECPI,"^",2),1:"NOT LISTED") K ECPI
  I ECFILE=725 S ECPN=$S($P($G(^EC(725,+ECP,0)),"^")]"":$P(^(0),"^"),1:"UNKNOWN"),NATN=$S($P($G(^EC(725,+ECP,0)),"^",2)]"":$P(^(0),"^",2),1:"NOT LISTED")
+ I ECFILE=725 S ECCPT=$$CPT^ICPTCOD(+$P($G(^EC(725,+ECP,0)),U,5)),ECCPT=$S($P(ECCPT,U)=-1:"",1:$P(ECCPT,U,2)) ;119
  S ECPN=$S(ECPSYN]"":ECPSYN,1:ECPN),ECNT=ECNT+1,UCNT=UCNT+1
- W !,?3,"Procedure: ",$E(ECPN,1,30),"   (",$S(ECFILE=81:"CPT",1:"EC"),")",?52,"Nat'l No.: ",NATN
- W:EC2]"" !,?14,"(Clinic: "_EC2_")"
+ I $G(ECPTYP)="E" D  Q  ;119
+ .D SET ; SET THE DSS UNIT AND UNIT STATUS VARIABLES 119
+ .S CNT=CNT+1 ;119
+ .S ^TMP($J,"ECRPT",CNT)=$S($P($G(^ECJ(+ECPSY,0)),U,2):"INACTIVE",1:"ACTIVE")_U_ECLN_U_ECSN_U_ECEDN_U_ECEDNST_U_ECCN_U_$S(ECFILE=81:NATN_U,1:ECCPT_U_NATN)_U_ECPN_U_EC2_U_ECSC_U_ECSSC_U_EC4CHAR ;119,122
+ W !,"Procedure: ",$E(ECPN,1,30),"   (",$S(ECFILE=81:"CPT",1:"EC"),")",?52,"Nat'l No.: ",NATN ;122 Removed white space from beginning of line
+ W:EC2]"" !,?2,"Clinic/Stop Code/Credit Stop/CHAR4: "_EC2_"/"_ECSC_"/"_ECSSC_"/"_EC4CHAR_"" ;122
  I $P($G(^ECJ(+ECPSY,0)),"^",2),ECSCN="B" W ?70,"*INACTIVE*"
  D:($Y+3)>IOSL PAGE,HEADER:ECPG,MORE:$D(ECCN) Q:ECOUT
  Q
@@ -74,5 +84,5 @@ PAGE ;
  . S SS=22-$Y F JJ=1:1:SS W !
  . S DIR(0)="E" W ! D ^DIR K DIR I 'Y S ECOUT=1
  Q
-MORE I ECMORE W !!,?3,"Category:  "_ECCN
+MORE I ECMORE W !!,"Category:  "_ECCN ;122 Removed white space from front of line
  Q

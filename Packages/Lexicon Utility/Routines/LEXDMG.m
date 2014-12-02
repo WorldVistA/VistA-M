@@ -1,6 +1,12 @@
-LEXDMG ; ISL Defaults - Manager Options           ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDMG ;ISL/KER - Defaults - Manager Options ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    ^DIR                ICR  10026
+ ;               
  ; LEXDICS     Filter
  ; LEXDICS(0)  Filter name
  ; LEXSHOW     Display

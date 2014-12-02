@@ -1,5 +1,5 @@
 IBCNSC4 ;ALB/TMP - INSURANCE PLAN DETAIL SCREEN UTILITIES ; 09-AUG-94
- ;;2.0;INTEGRATED BILLING;**43,85,103,251,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**43,85,103,251,416,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 INIT ; -- Load the plan detail segments
@@ -13,6 +13,7 @@ INIT ; -- Load the plan detail segments
  ;
  S IBCPOLD=$G(^IBA(355.3,IBCPOL,0)),IBCND1=$G(^(1)),$P(IBCDFND,U,18)=IBCPOL
  S IBCPOLD2=$G(^IBA(355.3,IBCPOL,6)) ;; Daou/EEN adding BIN and PCN
+ S IBCPOLDL=$G(^IBA(355.3,IBCPOL,2)) ;; Daou/EEN adding BIN and PCN
  D POLICY^IBCNSP0,UR,LIM,AB,VER,COMMENT
  Q
  ;

@@ -1,5 +1,5 @@
-QANFULL ;HISC/GJC-Auto E-Mail for locally closed cases. ;8/6/93  10:04
- ;;2.0;Incident Reporting;**1,13,18,20**;08/07/1992
+QANFULL ;HISC/GJC-Auto E-Mail for locally closed cases. ; 5/30/12 2:06pm
+ ;;2.0;Incident Reporting;**1,13,18,20,33**;08/07/1992;Build 12
  ;
  ;DON'T FORGET QAQDATE FOR AD HOC REPORTS!
  S QANZERO=$S($D(^QA(740,1,0))#2:^(0),1:0) I +QANZERO'>0 S QANERROR=1 D ERROR G EXIT
@@ -35,7 +35,8 @@ INC1 ;Incident data
  Q:+$P(QAN7424,U,18)'=0  ;has been xmitted
  K ^UTILITY($J,"W") ;Clean up for description
  S QANDATE=$P(QAN7424,U,3),QANCASE=$P(QAN7424,U)
- S QANNCDNT=$P(QAN7424,U,2),QANINLOC=$P(QAN7424,U,4)
+ S QANNCDNT=+$P(QAN7424,U,2),QANINLOC=$P(QAN7424,U,4)
+ Q:QANNCDNT'>0  ;check for null incident
  S:QANINLOC]"" QANINLOC=$P($G(^QA(742.5,QANINLOC,0)),U)
  S QANINCD=$S($D(^QA(742.1,QANNCDNT,0)):$P(^(0),U),1:"") Q:QANINCD']""
  S QANINCD=$TR(QANINCD,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")

@@ -1,5 +1,5 @@
 PSOORFI1 ;BIR/SAB - finish OP orders from OE/RR continued ;5/23/05 2:11pm
- ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,32,44,51,46,71,90,108,131,152,186,210,222,258,260,225**;DEC 1997;Build 29
+ ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,32,44,51,46,71,90,108,131,152,186,210,222,258,260,225,391,408**;DEC 1997;Build 100
  ;Ref. ^PS(50.7 supp. DBIA 2223
  ;Ref. ^PSDRUG( supp. DBIA 221
  ;Ref. L^PSSLOCK supp. DBIA 2789
@@ -40,7 +40,6 @@ DS S:$D(CLOZPAT) PSONEW("DAYS SUPPLY")=$S(CLOZPAT=2&(PSONEW("DAYS SUPPLY")>28):2
  S IEN=0 D OBX                ; Display Order Checks Information
  D LMDISP^PSOORFI5(+$G(ORD))  ; Display Flag/Unflag Information
  D DIN^PSONFI(PSODRUG("OI"),$S($D(PSODRUG("IEN")):PSODRUG("IEN"),1:"")) ;Setup for N/F & DIN indicator
- I $G(PKI1)!($G(PKI)=1) D L1^PSOPKIV1 K:$G(PKI)=1 PKI
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="*(1) Orderable Item: "_$P(^PS(50.7,PSODRUG("OI"),0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^")_NFIO
  S:NFIO["<DIN>" NFIO=IEN_","_($L(^TMP("PSOPO",$J,IEN,0))-4)
  D FULL^VALM1 K LST I $G(PSODRUG("NAME"))]"" D  G PST
@@ -66,7 +65,6 @@ PST D DOSE^PSOORFI4 K PSOINSFL
  .S PSONEW("# OF REFILLS")=$S(PSONEW("# OF REFILLS")>PSOMAX:PSOMAX,1:PSONEW("# OF REFILLS"))
  .S PSOMAX=$S(PSOMAX>+$P(^PS(53,RXPT,0),"^",4):+$P(^PS(53,RXPT,0),"^",4),1:PSOMAX) K RXPT
  .S MPSDY=PSONEW("DAYS SUPPLY")
- .;I PSOMAX=5 S MAXRF=$S(MPSDY<60:5,MPSDY'<60&(MPSDY'>89):2,1:1) I PSONEW("# OF REFILLS")>MAXRF S PSONEW("# OF REFILLS")=MAXRF K MAXRF,MPSDY Q
  .S MAXRF=$S(MPSDY<60:11,MPSDY'<60&(MPSDY'>89):5,MPSDY=90:3,1:0)
  .I PSONEW("# OF REFILLS")>MAXRF S PSONEW("# OF REFILLS")=MAXRF K MAXRF,MPSDY
  E  D
@@ -77,21 +75,29 @@ PST D DOSE^PSOORFI4 K PSOINSFL
  I $P($G(^PSDRUG(+$G(PSODRUG("IEN")),5)),"^")]"" D
  .S $P(RN," ",79)=" ",IEN=IEN+1
  .S ^TMP("PSOPO",$J,IEN,0)=$E(RN,$L("QTY DSP MSG: "_$P(^PSDRUG(PSODRUG("IEN"),5),"^"))+1,79)_"QTY DSP MSG: "_$P(^PSDRUG(PSODRUG("IEN"),5),"^") K RN
- S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="       Provider ordered "_+$P(OR0,"^",11)_" refills"
+ S IEN=IEN+1
+ I $P(OR0,"^",24) S ^TMP("PSOPO",$J,IEN,0)="   Provider ordered: days supply "_+$P(OR0,"^",22)_", quantity "_+$P(OR0,"^",10)_" & refills "_+$P(OR0,"^",11)
+ E  S ^TMP("PSOPO",$J,IEN,0)="       Provider ordered "_+$P(OR0,"^",11)_" refills"
  D:$D(CLOZPAT) PQTY^PSOORFI4
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(10)   # of Refills: "_PSONEW("# OF REFILLS")_$E("  ",$L(PSONEW("# OF REFILLS"))+1,2)_"               (11)   Routing: "_$S($G(PSONEW("MAIL/WINDOW"))="M":"MAIL",1:"WINDOW")
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(12)         Clinic: "_PSORX("CLINIC")
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(13)       Provider: "_PSONEW("PROVIDER NAME")
+ I $G(PKI),+$G(PSODRUG("DEA"))>1,+$G(PSODRUG("DEA"))<6 D PRV^PSOORFI5($P(OR0,"^",5),$P(OR0,"^",9),$P(OR0,"^"))
  I $P($G(^VA(200,$S($G(PSONEW("PROVIDER")):PSONEW("PROVIDER"),1:$P(OR0,"^",5)),"PS")),"^",7)&($P($G(^("PS")),"^",8)) S PSONEW("COSIGNING PROVIDER")=$P(^("PS"),"^",8) D
  .D USER^PSOORFI2(PSONEW("COSIGNING PROVIDER"))
  .S IEN=IEN+1 S ^TMP("PSOPO",$J,IEN,0)="        Cos-Provider: "_USER1
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(14)         Copies: 1"
  S PSONEW("REMARKS")=$S($P(OR0,"^",17)="C":"Administered in Clinic.",1:"")
+ K PSONEW("ADMINCLINIC") S:$P(OR0,"^",17)="C" PSONEW("ADMINCLINIC")=1
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(15)        Remarks: "_$S($G(PSONEW("REMARKS"))]"":PSONEW("REMARKS"),1:"")
  D USER^PSOORFI2($P(OR0,"^",4))
  S $P(RN," ",35)=" ",IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="   Entry By: "_USER1_$E(RN,$L(USER1)+1,35)
  S Y=$P(OR0,"^",12) X ^DD("DD") S ^TMP("PSOPO",$J,IEN,0)=^TMP("PSOPO",$J,IEN,0)_"Entry Date: "_$E($P(OR0,"^",12),4,5)_"/"_$E($P(OR0,"^",12),6,7)_"/"_$E($P(OR0,"^",12),2,3)_" "_$P(Y,"@",2) K RN
- S PSOACT=$S($D(^XUSEC("PSORPH",DUZ)):"DEFX",'$D(^XUSEC("PSORPH",DUZ))&($P($G(PSOPAR),"^",2)):"F",1:"")
+ I $P(OR0,"^",24) S PSOACT=$S($D(^XUSEC("PSDRPH",DUZ)):"DEFX",$D(^XUSEC("PSORPH",DUZ)):"F",$P($G(PSOPAR),"^",2):"F",1:"") D
+ .K PSOCSP S PSOCSP("NAME")=$G(PSODRUG("NAME")) M PSOCSP("DOSE")=PSONEW("DOSE"),PSOCSP("DOSE ORDERED")=PSONEW("DOSE ORDERED")
+ .S PSOCSP("# OF REFILLS")=PSONEW("# OF REFILLS") ;track original data for dig. orders
+ .S PSOCSP("ISSUE DATE")=$E($P(OR0,"^",6),1,7),PSOCSP("QTY")=PSONEW("QTY"),PSOCSP("DAYS SUPPLY")=PSONEW("DAYS SUPPLY")
+ E  S PSOACT=$S($D(^XUSEC("PSORPH",DUZ)):"DEFX",'$D(^XUSEC("PSORPH",DUZ))&($P($G(PSOPAR),"^",2)):"F",1:"")
  ; - PSOACTOV is used to force the Pending Order to be Read-Only (no updates) even if invoked by a Pharmacist
  I $G(PSOACTOV) S PSOACT=""
  D:'$G(ACP) EN^PSOLMPO S:$G(ACP) VALMBCK="Q" D:$G(PKI1)=2 DCP^PSOPKIV1
@@ -111,7 +117,7 @@ OBX ;formats obx section
  Q
 ST ;sort by route or patient
  W !!,"Enter 'PA' to process orders by patients",!,"      'RT' to process orders by route (mail/window)",!,"      'PR' to process orders by priority",!,"      'CL' to process orders by clinic"
- W !,"      'FL' to process flagged orders",!,"   or 'E' or '^' to exit" W ! Q
+ W !,"      'FL' to process flagged orders",!,"      'CS' to process digitally signed CS orders",!,"   or 'E' or '^' to exit" W ! Q
 RT ;which route to sort by
  W !!,"Enter 'W' to process window orders first",!,"      'M' to process mail orders first",!,"      'C' to process orders administered in clinic first",!,"   or 'E' or '^' to exit" Q
 PT ;process for all or one patient
@@ -123,10 +129,12 @@ LOCK S PSOPLCK=$$L^PSSLOCK(PAT,0) I '$G(PSOPLCK) D LOCK^PSOORCPY S POERR("QFLG")
  Q
 ULK S X=PAT_";DPT(" D ULK^ORX2 S:$G(PSOQUIT) POERR("QFLG")=1 ; not called anymore
  Q
-LOCK1 S PSOACT=$S($D(^XUSEC("PSORPH",DUZ)):"DEFX",'$D(^XUSEC("PSORPH",DUZ))&($P($G(PSOPAR),"^",2)):"F",1:"")
+LOCK1 ;
+ I $P($G(^PS(52.41,ORD,0)),"^",24) S PSOACT=$S($D(^XUSEC("PSDRPH",DUZ)):"DEFX",$D(^XUSEC("PSORPH",DUZ)):"F",'$D(^XUSEC("PSORPH",DUZ))&($P($G(PSOPAR),"^",2)):"F",1:"")
+ E  S PSOACT=$S($D(^XUSEC("PSORPH",DUZ)):"DEFX",'$D(^XUSEC("PSORPH",DUZ))&($P($G(PSOPAR),"^",2)):"F",1:"")
  Q
 EX K DRET,SIG,PSODRUG,PRC,PHI
- K DIR,DIRUT,DUOUT,DIRUT,X,Y,DIC,POERR,PSONEW,PSOSD,MAIL,CLI,WIN,OR0,OR1,OR2,ORD,SRT,PSRT,PSODFN,PSOFROM,T,OR3,PAT,%,%T,%Y,DI,DQ,DR,DRG,STA,I,T1,PSOSORT
+ K DIR,DIRUT,DUOUT,DIRUT,X,Y,DIC,POERR,PSONEW,PSOSD,MAIL,CLI,WIN,OR0,OR1,OR2,ORD,SRT,PSRT,PSODFN,PSOFROM,T,OR3,PAT,%,%T,%Y,DI,DQ,DR,DRG,STA,I,T1,PSOSORT,PSOCSP
  K TO,TC,TZ,PSOCPAY,PSOBILL,PSOIBQS,GROUPCNT,AGROUP,AGROUP1,OBX,%,%I,%H,D0,DFN,PSORX,PSOPTPST,PSOQFLG,PT,RTN,TM,TM1,DIPGM,PSOID,PSOCNT,PSOLK,PSZFIN,PSZFZZ D KVA^VADPT
  K PSOFDR,PSOQUIT,PSOFIN,^TMP("PSOAO",$J),^TMP("PSODA",$J),^TMP("PSOPO",$J),^TMP("PSOPF",$J),^TMP("PSOPI",$J),^TMP("PSOHDR",$J),MEDA,MEDP
  K C,CC,CNT,CRIT,D,DGI,DGS,DREN,IT,JJ,LG,MM,NIEN,PSOD,PATA,PSDAYS,PSOACT,PSOBM,PSOCOU,PSOCOUU,PSOFLAG,PSON,PSONOOR,PSOOPT,PSOPF,PSOPI,PSRF,RXFL,SDA,SEG1,SER,SERS,SLPPL,STAT,Z,Z4,ZDA

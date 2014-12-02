@@ -1,5 +1,5 @@
-PXRMMSER ;SLC/PKR,AJB - Computed findings for military service information. ;02/01/2012
- ;;2.0;CLINICAL REMINDERS;**11,12,21**;Feb 04, 2005;Build 152
+PXRMMSER ;SLC/PKR,AJB - Computed findings for military service information. ;12/11/2013
+ ;;2.0;CLINICAL REMINDERS;**11,12,21,24,26**;Feb 04, 2005;Build 404
  ;
  ;======================================================
 AORANGE(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
@@ -96,6 +96,7 @@ MSDATA(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT,SEPDTR) ;This computed
  . S SEPDT=MSDATA(IND,"SEPARATION DATE")
  .;Check for separation date required.
  . I SEPDTR,SEPDT="" Q
+ . I SEPDTR,(SEPDT>EDT) Q
  .;If there is no Separation Date use the evaluation date and time.
  . S SEPDTC=$S(SEPDT'="":SEPDT,1:NOW)
  . I $$OVERLAP^PXRMINDX(ENTRYDT,SEPDTC,BDT,EDT)'="O" Q
@@ -193,7 +194,7 @@ OIF(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  . I $$OVERLAP^PXRMINDX(FDATE,TDATE,BDT,EDT)'="O" Q
  . S TEMP(FDATE,"TEST")=1
  . S TEMP(FDATE,"DATA","LOCATION")=$P(^TMP($J,"SVC",DFN,11,IND,1),U,2)
- . S TEMP(FDATE,"TEXT")="OIFF service from "_$$FMTE^XLFDT(FDATE,"5Z")_" to "_$$FMTE^XLFDT(TDATE,"5Z")_"; location: "_TEMP(FDATE,"DATA","LOCATION")
+ . S TEMP(FDATE,"TEXT")="OIF service from "_$$FMTE^XLFDT(FDATE,"5Z")_" to "_$$FMTE^XLFDT(TDATE,"5Z")_"; location: "_TEMP(FDATE,"DATA","LOCATION")
  S FDATE=""
  F  S FDATE=$O(TEMP(FDATE),SDIR) Q:(FDATE="")!(NFOUND=NGET)  D
  . S NFOUND=NFOUND+1

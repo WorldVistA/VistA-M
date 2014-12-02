@@ -1,10 +1,13 @@
-ALPBPWRD ;OIFO-DALLAS MW,SED,KC-PRINT 3-DAY MAR BCMA BCBU REPORT FOR A SELECTED WARD ;01/01/03
- ;;3.0;BAR CODE MED ADMIN;**8,37,48,59**;Mar 2004;Build 15
+ALPBPWRD ;OIFO-DALLAS MW,SED,KC-PRINT 3-DAY MAR BCMA BCBU REPORT FOR A SELECTED WARD ; 2/27/13 2:24pm
+ ;;3.0;BAR CODE MED ADMIN;**8,37,48,59,73**;Mar 2004;Build 31
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; 
  ; NOTE: this routine is designed for hard-copy output.
  ;      Output is formatted for 132-column printing.
  ; 
+ ;*73 Add Clinic Order (CO) identification and clinic name print with 
+ ;    CO's sorting after IM meds.
+ ;
  F  D  Q:$D(DIRUT)
  .W !,"Inpatient Pharmacy Orders for a selected ward"
  .S DIR(0)="FAO^2:10"
@@ -120,6 +123,7 @@ ALPBPWRD ;OIFO-DALLAS MW,SED,KC-PRINT 3-DAY MAR BCMA BCBU REPORT FOR A SELECTED 
  ;
 DQ ; output entry point...
  K ^TMP($J)
+ N ALPBCLIN                                                       ;*73
  ;
  ; set report date...  SED 11/4/03
  S ALPBRDAT=$S(ALPBOTYP="C":$$NOW^XLFDT(),1:"")
@@ -138,18 +142,21 @@ DQ ; output entry point...
  ..S ALPBOIEN=0
  ..F  S ALPBOIEN=$O(ALPBORDS(ALPBOIEN)) Q:'ALPBOIEN  D
  ...S ALPBDATA=$G(^ALPB(53.7,ALPBIEN,2,ALPBOIEN,1))
+ ...S ALPBDAT0=$G(^ALPB(53.7,ALPBIEN,2,ALPBOIEN,0))               ;*73
+ ...S ALPBCLIN=$P(ALPBDAT0,U,5) S:ALPBCLIN="" ALPBCLIN=0          ;*73
  ...S ALPBOCT=$P($G(^ALPB(53.7,ALPBIEN,2,ALPBOIEN,3)),U,1)
  ...S:$P($G(^ALPB(53.7,ALPBIEN,2,ALPBOIEN,4)),U,3)["PRN" ALPBOCT=ALPBOCT_"P"
  ...;drug name being used for alpha-sorting medications within order types (unit dose, unit dose-PRN, intravenous, intravenous-PRN)
  ...S ALPBDRGNAME=$P($G(^ALPB(53.7,ALPBIEN,2,ALPBOIEN,7,1,0)),U,2)
+ ...S:ALPBDRGNAME="" ALPBDRGNAME="NOT FOUND"   ;*73
  ...; if report is for "C"urrent, check stop date and quit if
  ...; stop date is less than report date
  ...I ALPBOTYP="C"&($P(ALPBDATA,U,2)<ALPBRDAT) K ALPBDATA Q
  ...S ALPBORDN=ALPBORDS(ALPBOIEN)
  ...S ALPBOST=$$STAT2^ALPBUTL1(ALPBORDS(ALPBOIEN,2))
  ...I '$D(^TMP($J,ALPBPTN)) S ^TMP($J,ALPBPTN)=ALPBIEN
- ...S ^TMP($J,ALPBPTN,ALPBOCT,ALPBDRGNAME,ALPBOST,ALPBORDN)=ALPBOIEN
- ...K ALPBDATA,ALPBORDN,ALPBOST,ALPBDRGNAME
+ ...S ^TMP($J,ALPBPTN,ALPBCLIN,ALPBOCT,ALPBDRGNAME,ALPBOST,ALPBORDN)=ALPBOIEN  ;*73
+ ...K ALPBDATA,ALPBDAT0,ALPBORDN,ALPBOST,ALPBDRGNAME
  ..K ALPBOIEN,ALPBORDS,ALPBPDAT
  .K ALPBIEN
  K ALPBPTN
@@ -166,7 +173,7 @@ DQ ; output entry point...
  ..I ALPBPTN="BCBU" S ALPBPTN=$O(^TMP($J,ALPBPTN)) ;SKIP "BCBU" SUBSCRIBE
  ..I ALPBPTN="" Q  ;PSB*3*37 Stop null subscript when "BCBU" is the last entry in ^TMP
  ..S ALPBIEN=^TMP($J,ALPBPTN) S ALPRM=$P($G(^ALPB(53.7,ALPBIEN,0)),"^",6),ALPBD=$P($G(^ALPB(53.7,ALPBIEN,0)),"^",7)
- ..S:ALPBD="" ALPBD="NONE" S:ALPRM="" ALPRM="NONE" ;INCASE NO ROOM AND BED YET
+ ..S:$TR(ALPBD,"""","")="" ALPBD="NONE" S:$TR(ALPRM,"""","")="" ALPRM="NONE" ;INCASE NO ROOM AND BED YET
  ..S ^TMP($J,"BCBU",ALPRM,ALPRM,ALPBD,ALPBPTN)=ALPBIEN
  .S ALPRM1="" F  S ALPRM1=$O(^TMP($J,"BCBU",ALPRM1)) Q:ALPRM1=""  D
  ..S ALPRM="" F  S ALPRM=$O(^TMP($J,"BCBU",ALPRM1,ALPRM)) Q:ALPRM=""  D
@@ -181,33 +188,35 @@ PRT S ALPBPDAT(0)=$G(^ALPB(53.7,ALPBIEN,0))
  N ALPBNOMDS
  S ALPBNOMDS=""
  S:$D(^TMP($J,ALPBPTN))=1 ALPBNOMDS=1
- S ALPBOCT=""
- F  S ALPBOCT=$O(^TMP($J,ALPBPTN,ALPBOCT)) Q:ALPBOCT=""  D
- .S ALPBDRGNAME=""
- .F  S ALPBDRGNAME=$O(^TMP($J,ALPBPTN,ALPBOCT,ALPBDRGNAME)) Q:ALPBDRGNAME=""  D
- ..S ALPBOST=""
- ..F  S ALPBOST=$O(^TMP($J,ALPBPTN,ALPBOCT,ALPBDRGNAME,ALPBOST)) Q:ALPBOST=""  D
- ...S ALPBORDN=""
- ...F  S ALPBORDN=$O(^TMP($J,ALPBPTN,ALPBOCT,ALPBDRGNAME,ALPBOST,ALPBORDN)) Q:ALPBORDN=""  D
- ....S ALPBOIEN=^TMP($J,ALPBPTN,ALPBOCT,ALPBDRGNAME,ALPBOST,ALPBORDN)
- ....; get and print this order's data...
- ....M ALPBDATA=^ALPB(53.7,ALPBIEN,2,ALPBOIEN)
- ....D F132^ALPBFRM1(.ALPBDATA,ALPBDAYS,ALPBMLOG,.ALPBFORM,ALPBIEN)
- ....;D F132^ALPBFRM1(.ALPBDATA,ALPBDAYS,.ALPBFORM)
- ....I $Y+ALPBFORM(0)=IOSL!($Y+ALPBFORM(0)>IOSL) D PAGE
- ....F ALPBX=1:1:ALPBFORM(0) W !,ALPBFORM(ALPBX)
- ....K ALPBDATA,ALPBFORM,ALPBOIEN,ALPBX
- ...K ALPBORDN
- ..K ALPBOST
- .K ALPBDRGNAME
- K ALPBOCT
+ S ALPBCLIN=""     ;*73
+ F  S ALPBCLIN=$O(^TMP($J,ALPBPTN,ALPBCLIN)) Q:ALPBCLIN=""  D     ;*73
+ .S ALPBOCT=""
+ .F  S ALPBOCT=$O(^TMP($J,ALPBPTN,ALPBCLIN,ALPBOCT)) Q:ALPBOCT=""  D
+ ..S ALPBDRGNAME=""
+ ..F  S ALPBDRGNAME=$O(^TMP($J,ALPBPTN,ALPBCLIN,ALPBOCT,ALPBDRGNAME)) Q:ALPBDRGNAME=""  D
+ ...S ALPBOST=""
+ ...F  S ALPBOST=$O(^TMP($J,ALPBPTN,ALPBCLIN,ALPBOCT,ALPBDRGNAME,ALPBOST)) Q:ALPBOST=""  D
+ ....S ALPBORDN=""
+ ....F  S ALPBORDN=$O(^TMP($J,ALPBPTN,ALPBCLIN,ALPBOCT,ALPBDRGNAME,ALPBOST,ALPBORDN)) Q:ALPBORDN=""  D
+ .....S ALPBOIEN=^TMP($J,ALPBPTN,ALPBCLIN,ALPBOCT,ALPBDRGNAME,ALPBOST,ALPBORDN)
+ .....; get and print this order's data...
+ .....M ALPBDATA=^ALPB(53.7,ALPBIEN,2,ALPBOIEN)
+ .....D F132^ALPBFRM1(.ALPBDATA,ALPBDAYS,ALPBMLOG,.ALPBFORM,ALPBIEN)
+ .....;D F132^ALPBFRM1(.ALPBDATA,ALPBDAYS,.ALPBFORM)
+ .....I $Y+ALPBFORM(0)=IOSL!($Y+ALPBFORM(0)>IOSL) D PAGE
+ .....F ALPBX=1:1:ALPBFORM(0) W !,ALPBFORM(ALPBX)
+ .....K ALPBDATA,ALPBFORM,ALPBOIEN,ALPBX
+ ....K ALPBORDN
+ ...K ALPBOST
+ ..K ALPBDRGNAME
+ .K ALPBOCT
  ; print footer at end of this patient's record...
  I $Y+10>IOSL D PAGE
  ;notification message displays one line below header info if patient has no med orders when the report is generated
  I ALPBNOMDS D
- .W !!,"No Active Medication Orders were reported to the Contingency at the time the MAR was printed "
- .;additional blank lines added to seperate footer from header and allow room for notes
- .F  Q:$Y>=(IOSL-6)  W !
+ .W !!,"No Active Medication Orders were reported to the Contingency at the time the MAR was printed ",!!!
+ .;additional blank lines added to separate footer from header and allow room for notes
+ .I $E(IOST)="P" F  Q:$Y>=(IOSL-6)  W !
  ;
  D FOOT^ALPBFRMU
  ;Print a blank page between patient (this was removed by PSB*3*59 - the BCMA Workgroup agreed to condense the report)

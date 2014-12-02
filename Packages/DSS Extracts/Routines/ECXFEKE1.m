@@ -1,5 +1,5 @@
-ECXFEKE1 ;BIR/DMA,CML-Print Feeder Keys (CONTINUED); [ 03/28/96  5:44 PM ] ; 4/3/02 2:45pm
- ;;3.0;DSS EXTRACTS;**11,8,40**;Dec 22, 1997
+ECXFEKE1 ;BIR/DMA,CML-Print Feeder Keys (CONTINUED); [ 03/28/96  5:44 PM ] ;5/29/14  10:41
+ ;;3.0;DSS EXTRACTS;**11,8,40,149**;Dec 22, 1997;Build 27
  ;
 SELLABKE() ;** Function to prompt user selection of type of Lab Feeder Key
  ;
@@ -101,16 +101,20 @@ PRINT ;
  .I EC="CLI" S EC9=$P(EC9,";",2)
  .I EC="ECS",$G(ECECS)="N" S EC9=$P(EC9,";",2)
  .I EC="LAB",EC9[".8" S EC9=$$ADD0(EC9)
- .F  S EC2=$O(^TMP($J,EC,EC1,EC2)) Q:EC2=""  D
- ..D:($Y+3>IOSL) HEAD Q:QFLG
- ..I EC="PHA" W !,?2,$E(EC9,2,99),?24,$E($P(^TMP($J,EC,EC1,EC2),U),1,40),?67,$$RJ^XLFSTR($P(^(EC2),U,2),12) Q
- ..W !,?5,EC9,?27,^TMP($J,EC,EC1,EC2)
- I $E(IOST)="C"&('QFLG) S DIR(0)="E" D  D ^DIR K DIR
- .S SS=22-$Y F JJ=1:1:SS W !
- K EC,EC1,EC2,EC3,EC9,ECCSC,ECD,ECLIST,ECNDC,ECNDF,ECNFC,ECPHA,ECECS,ECLAB,ECSC,ECST,ECY,JJ,LN,P1,P2,P3,PG,POP,QFLG,SC,SS,X,Y,^TMP($J),DIR,DIRUT,DUOUT
- W:$E(IOST)'="C" @IOF D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@"
+ .F  S EC2=$O(^TMP($J,EC,EC1,EC2)) Q:EC2=""!QFLG  D  ;149 Added QFLG so loop stops if user enters "^"
+ ..I $G(ECXPORT) D  ;Section added in 149
+ ...S ^TMP("ECXPORT",$J,CNT)=$S($G(ECECS)="N"&(EC="ECS"):"Procedure-CPT^",$G(ECECS)="O"&(EC="ECS"):"Category-Procedure^",$G(ECLAB)="O"&(EC="LAB"):"Local Feeder Key^",$G(ECLAB)="N"&(EC="LAB"):"LMIP codes^",1:"")
+ ...S ^TMP("ECXPORT",$J,CNT)=^TMP("ECXPORT",$J,CNT)_EC_U_$S(EC="PHA":$E(EC9,2,99),1:EC9)_U_$P(^TMP($J,EC,EC1,EC2),U)_$S(EC="PHA":U_$P(^TMP($J,EC,EC1,EC2),U,2),1:""),CNT=CNT+1
+ ..I '$G(ECXPORT) D:($Y+3>IOSL) HEAD Q:QFLG  ;149
+ ..I '$G(ECXPORT) I EC="PHA" W !,?2,$E(EC9,2,99),?24,$E($P(^TMP($J,EC,EC1,EC2),U),1,40),?67,$$RJ^XLFSTR($P(^(EC2),U,2),12) Q  ;149
+ ..I '$G(ECXPORT) W !,?5,EC9,?27,^TMP($J,EC,EC1,EC2) ;149
+ I '$G(ECXPORT) I $E(IOST)="C"&('QFLG) S DIR(0)="E" D  D ^DIR K DIR ;149
+ .I '$G(ECXPORT) S SS=22-$Y F JJ=1:1:SS W ! ;149
+ K EC,EC1,EC2,EC3,EC9,ECCSC,ECD,ECLIST,ECNDC,ECNDF,ECNFC,ECPHA,ECECS,ECLAB,ECSC,ECST,ECY,JJ,LN,P1,P2,P3,PG,POP,QFLG,SC,SS,X,Y,DIR,DIRUT,DUOUT K:'$G(ECXPORT) ^TMP($J) ;149
+ I '$G(ECXPORT) W:$E(IOST)'="C" @IOF D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@" ;149
  Q
 HEAD ;
+ I $G(ECXPORT) S ^TMP("ECXPORT",$J,CNT)=$S(EC="LAB"!(EC="ECS"):LECOL,EC="PHA":PCOL,1:COL),CNT=CNT+1 Q  ;149 set up column headers for specific key systems
  I $E(IOST)="C" S SS=22-$Y F JJ=1:1:SS W !
  I $E(IOST)="C",PG>0 S DIR(0)="E" D ^DIR K DIR I 'Y S QFLG=1 Q
  W:$Y!($E(IOST)="C") @IOF

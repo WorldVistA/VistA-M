@@ -1,9 +1,12 @@
-GMRCSLM2 ;SLC/DCM,WAT - LM Detailed  display and printing ;04/22/09  11:51
- ;;3.0;CONSULT/REQUEST TRACKING;**1,4,18,15,17,23,22,65,66**;DEC 27,1997;Build 30
+GMRCSLM2 ;SLC/DCM,WAT - LM Detailed  display and printing ;08/04/14  13:28
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,4,18,15,17,23,22,65,66,73**;DEC 27,1997;Build 22
  ;
- ;This routine invokes IA #872 ^ORD(101   #875 ORDER STATUS file point   #2467 $$OI^ORX8   #2638 ORDER STATUS file access
- ;#2056 $$GET1^DIQ   #10104 XLFSTR   #4156 $$CVEDT^DGCV   #10117  ^VALM10   #2849 ORDERS file
- ;#10040 HOSPITAL LOCATION file   #10060 NEW PERSON file  #4807 RDIS^DGRPDB
+ ;ICRs
+ ;GLOBALS/FILES
+ ;#872 ^ORD(101  #875 ORDER STATUS file point(100.01)  #2638 ORDER STATUS file access  #2849 ORDERS file  #10060 NEW PERSON (file 200)  #10040 HOSPITAL LOCATION (^SC)
+ ;#10090 INSTITUTION
+ ;ROUTINES
+ ;#2467 $$OI^ORX8  #2056 $$GET1^DIQ   #10104 XLFSTR   #4156 $$CVEDT^DGCV   #10117  ^VALM10   #4807 RDIS^DGRPDB
  ;
 DT(GMRCO,GMRCIERR) ;;Entry point to set-up detailed display.
  ;;Pass in GMRCO as +GMRCO - a number only. GMRCO=IEN from of consult from file 123
@@ -81,19 +84,7 @@ DT(GMRCO,GMRCIERR) ;;Entry point to set-up detailed display.
  .. S ^TMP("GMRCR",$J,"DT",GMRCCT,0)=GMRCLN
  .. S GMRCCT=GMRCCT+1
  .Q
- S GMRCD=$G(^GMR(123,+GMRCO,30)) I $L(GMRCD) D
- . I $L(GMRCD)>54 D
- .. N SEG,I S I=2
- .. F  S SEG=$P(GMRCD," ",1,I) Q:$L(SEG)>54  S I=I+1
- .. S SEG=$P(GMRCD," ",1,(I-1))
- .. S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Provisional Diagnosis: "_SEG
- .. S GMRCCT=GMRCCT+1
- .. S SEG=$$REPEAT^XLFSTR(" ",22)_$E(GMRCD,$L(SEG)+1,80)
- .. S ^TMP("GMRCR",$J,"DT",GMRCCT,0)=SEG S GMRCD=""
- .. S GMRCCT=GMRCCT+1
- I GMRCD'="" D
- . S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Provisional Diagnosis: "_GMRCD
- . S GMRCCT=GMRCCT+1
+ D PROVDIAG(+GMRCO)
  I $D(^GMR(123,+GMRCO,20,0)) D
  .I $O(^GMR(123,+GMRCO,20,0)) S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Reason For Request:",GMRCCT=GMRCCT+1 D  Q
  .. S LN=0
@@ -115,7 +106,7 @@ DT(GMRCO,GMRCIERR) ;;Entry point to set-up detailed display.
  . S ^TMP("GMRCR",$J,"DT",GMRCCT,0)=$$REPEAT^XLFSTR("-",27)
  . S GMRCCT=GMRCCT+1
  . N GMRCOP
- . S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Remote Facility:"_$E(TAB,1,6)_$P($G(^DIC(4,+$P(GMRCO(0),"^",23),0)),"^"),GMRCCT=GMRCCT+1
+ . S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Remote Facility:"_$E(TAB,1,6)_$$GET1^DIQ(4,+$P(GMRCO(0),"^",23),.01),GMRCCT=GMRCCT+1 ;WAT/73
  . S GMRCO(12)=$G(^GMR(123,+GMRCO,12))
  . I $L($P(GMRCO(12),U,6)) D
  .. S GMRCOP=$P(GMRCO(12),U,6)
@@ -161,4 +152,36 @@ DT(GMRCO,GMRCIERR) ;;Entry point to set-up detailed display.
  S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="",$P(^(0),"=",80)="",^(0)=$E(^(0),1,36)_" END "_$E(^(0),43,80)
 DTQ K X,LN,PL,TO,WP,FLG,SEX,STS,URG,WRD,BKLN,DATA,WRD,PROC,LINE,GMRCD,GMRCDVDL,GMRCO,GMRCAR,GMRCRB,GMRCLA,GMRCSR,GMRCTO,MCFILE,MCPROC,DSPLINE,GMRCLA1,GMRCPRNM,GMRCPROC,GMRCTYPE,GMRCWARD
  I $D(GMRCOER),'GMRCOER D:$D(VALMEVL) KILL^VALM10() D:$D(VALMAR) CLEAN^VALM10
+ Q
+PROVDIAG(GMRCDA) ;test all prov diags
+ N GMRCD,GMRCCODE,PIECE,FLG,CODINTXT,BUFFER,REPEAT
+ S FLG=0
+ S REPEAT=22 ;spaces to repeat for formatting
+ S GMRCD=$G(^GMR(123,GMRCDA,30))
+ S GMRCCODE=$G(^GMR(123,GMRCDA,30.1)),CODINTXT="("_$P(GMRCCODE,U)_")"
+ ;icd-9 consults stored code in diagnosis text, icd-10 does not. Strip code from text and append to end for display
+ ;desired coding system and code display format (ICD-9-CM 123.45) or (ICD-10-CM S06.4X0S)
+ I GMRCD[$G(CODINTXT) D
+ .S GMRCD=$E(GMRCD,0,($L(GMRCD)-$L(CODINTXT)))
+ I $L($P(GMRCCODE,U))>0 D
+ .I $P(GMRCCODE,U,3)="ICD" S GMRCD=GMRCD_"(ICD-9-CM "_$P(GMRCCODE,U)_")"
+ .I $P(GMRCCODE,U,3)="10D" S GMRCD=GMRCD_"(ICD-10-CM "_$P(GMRCCODE,U)_")"
+ I $L($G(GMRCD))>54 D
+ .F  S PIECE=$L(GMRCD) Q:PIECE<54  D  ;$L of GMRCD will change below, so hold original length in PIECE
+ .. N SEG,I S I=2
+ .. F  S SEG=$P(GMRCD," ",1,I) Q:$L(SEG)>=54!($L(SEG," ")<I)  S I=I+1
+ .. I $L(SEG)=$L(GMRCD) S SEG=$E(GMRCD,1,54) ;means GMRCD doesn't contain spaces, e.g. v55,250.00,414.00,etc.
+ .. S BUFFER=SEG
+ .. S:SEG[" " SEG=$P(GMRCD," ",1,(I-1)) I $L(SEG)=0 S SEG=$E(BUFFER,1,54) ;$P only good when SEG contains a space, otherwise grab a SEG from BUFFER
+ .. S:FLG=0 ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Provisional Diagnosis: "_SEG
+ .. I FLG=1&($F(GMRCD," ")'=2) S REPEAT=23
+ .. S:FLG=1 ^TMP("GMRCR",$J,"DT",GMRCCT,0)=$$REPEAT^XLFSTR(" ",REPEAT)_SEG
+ .. S FLG=1,GMRCCT=GMRCCT+1
+ .. S GMRCD=$E(GMRCD,$L(SEG)+1,999)
+ . I $F(GMRCD," ")'=2 S REPEAT=23
+ . S ^TMP("GMRCR",$J,"DT",GMRCCT,0)=$$REPEAT^XLFSTR(" ",REPEAT)_GMRCD
+ . S GMRCCT=GMRCCT+1,GMRCD=""
+ I $G(GMRCD)'="" D
+ . S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Provisional Diagnosis: "_GMRCD
+ . S GMRCCT=GMRCCT+1
  Q

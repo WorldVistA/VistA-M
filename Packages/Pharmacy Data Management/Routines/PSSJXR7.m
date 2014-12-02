@@ -1,4 +1,4 @@
-PSSJXR7 ; COMPILED XREF FOR FILE #55.06 ; 09/12/12
+PSSJXR7 ; COMPILED XREF FOR FILE #55.06 ; 04/07/14
  ; 
  S DA=0
 A1 ;
@@ -238,6 +238,28 @@ CR4 S DIXR=501
  . K X1,X2 M X1=X,X2=X
  . S:$D(DIKIL) (X2,X2(1),X2(2))=""
  . K ^PS(55,DA(1),5,"AUN",X(1),X(2),DA)
-CR5 K X
+CR5 S DIXR=1120
+ K X
+ S DIKZ(8)=$G(^PS(55,DA(1),5,DA,8))
+ S X(1)=$P(DIKZ(8),U,1)
+ S X=$G(X(1))
+ I $G(X(1))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . S:$D(DIKIL) (X2,X2(1))=""
+ . K ^PS(55,"CIMOCLU",X,DA(1),DA)
+CR6 S DIXR=1121
+ K X
+ S DIKZ(0)=$G(^PS(55,DA(1),5,DA,0))
+ S X(1)=$P(DIKZ(0),U,15)
+ S DIKZ(8)=$G(^PS(55,DA(1),5,DA,8))
+ S X(2)=$P(DIKZ(8),U,1)
+ S DIKZ(2)=$G(^PS(55,DA(1),5,DA,2))
+ S X(3)=$P(DIKZ(2),U,4)
+ S X=$G(X(1))
+ I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . S:$D(DIKIL) (X2,X2(1),X2(2),X2(3))=""
+ . K ^PS(55,"CIMOU",X(1),X(2),X(3),DA(1),DA)
+CR7 K X
  G:'$D(DIKLM) A Q:$D(DIKILL)
 END G ^PSSJXR8

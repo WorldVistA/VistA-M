@@ -1,5 +1,5 @@
 ONCATF ;Hines OIFO/GWB - Treatment @FAC (at this facility) stuffing ;06/15/11
- ;;2.11;ONCOLOGY;**19,25,27,36,40,42,46,51,53,56**;Mar 07, 1995;Build 10
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 NCDS ;SURG DX/STAGING PROC @FAC (165.5,58.4) 
  N COC D CHKCOC I (COC="00")!(COC=10)!(COC=11)!(COC=12)!(COC=13)!(COC=14)!(COC=34)!(COC=35) D

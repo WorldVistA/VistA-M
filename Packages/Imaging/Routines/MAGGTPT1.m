@@ -1,5 +1,5 @@
 MAGGTPT1 ;WOIFO/GEK/SG/NST/JSL- Delphi-Broker calls for patient lookup and information ; 05 Oct 2010 9:15 AM
- ;;3.0;IMAGING;**16,8,92,46,59,93,117,122**;Mar 19, 2002;Build 92;Aug 02, 2012
+ ;;3.0;IMAGING;**16,8,92,46,59,93,117,122,131,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -110,7 +110,7 @@ FINDERR(XI) ;
  Q
 INFO(MAGRY,DATA) ;RPC [MAGG PAT INFO]  Call to  Return patient info.
  ; Input parameters 
- ;    DATA:  MAGDFN ^ NOLOG ^ ISICN
+ ;    DATA:  MAGDFN ^ NOLOG ^ ISICN ^ FLAGS ^ YYFORMAT
  ;       MAGDFN -- Patient DFN
  ;       NOLOG  -- 0/1; if 1, then do NOT update the Session log
  ;       ISICN  -- 0/1  if 1, then this is an ICN, if 0 (default) this is a DFN ; Patch 41
@@ -118,9 +118,9 @@ INFO(MAGRY,DATA) ;RPC [MAGG PAT INFO]  Call to  Return patient info.
  ;       YYFORMAT - 0/1; if 1, return DOB as MM/DD/YYYY not MM/DD/YY (MAG*3.0*118).
  ;  MAGRY is a string, we return the following :
  ; //$P     1        2      3     4     5     6     7     8        9                     10
- ; //    status ^   DFN ^ name ^ sex ^ DOB ^ SSN ^ S/C ^ TYPE ^ Veteran(y/n)  ^ Patient Image Count
- ; //$P    11            12              13
- ;        ICN       SITE Number   ^ Production Account 1/0
+ ; //    status ^   DFN ^ name ^ sex ^ DOB ^ PID ^ S/C ^ TYPE ^ Veteran(y/n)  ^ Patient Image Count
+ ; //$P    11            12              13                    14      15     16
+ ;        ICN       SITE Number   ^ Production Account 1/0 ^ Not use ^ Age ^ SSN (MUSE) ^
  ; VADM(1)=Patient's name
  ; VADM(5)=Patient's sex (M^MALE)
  ; VADM(3)=Patient's DOB (internal^external)
@@ -138,26 +138,28 @@ INFO(MAGRY,DATA) ;RPC [MAGG PAT INFO]  Call to  Return patient info.
  ;--- Format year as ..... YYYY or YY.
  S YYFORMAT=$S(YYFORMAT=1:"5DZ",1:"2DZ")
  S X=$$FMTE^XLFDT($P(VADM(3),"^"),YYFORMAT)
- ; //           status ^   DFN ^ name ^ sex ^ DOB ^ SSN    ^ S/C ^ TYPE ^ Veteran(y/n)  ^ Patient Image Count
- S $P(MAGRY,"^",1,2)="1^"_DFN
- ;          Fields:      NAME,           SEX,      DATE OF BIRTH,    PID/SSN
- S $P(MAGRY,"^",3,6)=$G(VADM(1))_"^"_$P(VADM(5),"^",2)_"^"_X_"^"_$S($$ISIHS^MAGSPID():VA("PID"),1:$P(VADM(2),"^"))  ;P122 $sel(IHS,VA)
- ;          Fields:  Service Connected?,       Type,                   Veteran Y/N?     
- S $P(MAGRY,"^",7,9)=$S(+VAEL(3):"YES",1:"")_"^"_$P(VAEL(6),"^",2)_"^"_$S(+VAEL(4):"YES",1:"")
- ;          Fields:  Patient Image Count   
- S $P(MAGRY,"^",10)=$$IMGCT(DFN,FLAGS)_"^"
- ;  Additions. for Patch 41
- ;          Fields :   Patient ICN
+ ;  140 Reformat for easy reading.
+ S $P(MAGRY,"^",1)="1"               ; Status
+ S $P(MAGRY,"^",2)=DFN               ; DFN
+ S $P(MAGRY,"^",3)=$G(VADM(1))       ; Patient Name
+ S $P(MAGRY,"^",4)=$P(VADM(5),"^",2) ; Sex
+ S $P(MAGRY,"^",5)=X                 ; DOB
+ S $P(MAGRY,"^",6)=$S($$ISIHS^MAGSPID():VA("PID"),1:$P(VADM(2),"^"))      ;P122 $sel(IHS,VA)
+ S $P(MAGRY,"^",7)=$S(+VAEL(3):"YES",1:"")  ; S/C
+ S $P(MAGRY,"^",8)=$P(VAEL(6),"^",2)        ; TYPE
+ S $P(MAGRY,"^",9)=$S(+VAEL(4):"YES",1:"")  ; Veteran(y/n)
+ S $P(MAGRY,"^",10)=$$IMGCT(DFN,FLAGS)      ; Patient Image Count
  S $P(MAGRY,"^",11)=$S($T(GETICN^MPIF001)'="":$$GETICN^MPIF001(DFN),1:"") ; P122 site may not implemented MPI
  S X=$$SITE^VASITE
- ;          Fields:   Site Number       Prod Acct
- S $P(MAGRY,"^",12)=$P($G(X),"^",3)_"^"_"1" ; We'll default to Production Account = Yes.
+ S $P(MAGRY,"^",12)=$P($G(X),"^",3)  ; Site Number
+ S $P(MAGRY,"^",13)="1"              ; We'll default to Production Account = Yes.
  ; NEED KERNEL PATCH XU*8.0*284 FOR PROD^XUPROD
- ;          Fields :   the Actual value for Prod Acct
  I $L($T(PROD^XUPROD)) S $P(MAGRY,"^",13)=+$$PROD^XUPROD
- S $P(MAGRY,"^",14)="^"
- ; AGE
- S $P(MAGRY,"^",15)=VADM(4)_"^"
+ S $P(MAGRY,"^",14)=""               ; Null
+ S $P(MAGRY,"^",15)=VADM(4)          ; Age
+ S $P(MAGRY,"^",16)=$P(VADM(2),U)    ; SSN (9N no dashes)  for MUSE(EKG) Patient ID
+ S MAGRY=MAGRY_"^"                   ; ALWAYS put '^' on end of '^' delimited string for Delphi Client.
+ ;
  D KVAR^VADPT,KVA^VADPT
  I NOLOG  ; Don't update session log
  ;  We'll track DFN:ICN
@@ -179,6 +181,7 @@ IMGCT(DFN,FLAGS) ; RETURN TOTAL NUMBER OF IMAGES FOR A PATIENT;
  . F  S MAG8DT=$$MAGORD^MAGGI13($NA(@MAG8XREF@(MAG8DT)),1,MAG8BOTH)  Q:MAG8DT=""  D
  . . F  S MAG8PRX=$$MAGORD^MAGGI13($NA(@MAG8XREF@(MAG8DT,MAG8PRX)),1,MAG8BOTH)  Q:MAG8PRX=""  D
  . . . F  S MAG8IEN=$$MAGORD^MAGGI13($NA(@MAG8XREF@(MAG8DT,MAG8PRX,MAG8IEN)),1,MAG8BOTH)  Q:MAG8IEN=""  D
+ . . . . I +$$IMGST^MAGGI11(MAG8IEN)=13 Q  ; Quit if STATUS in (2005|2005.1)=13 (Image never existed)
  . . . . I $$ISDEL^MAGGI11(MAG8IEN) S:MAG8BOTH CNT=CNT+1 Q  ; Include deleted images
  . . . . S CNT=CNT+1
  . . . . Q

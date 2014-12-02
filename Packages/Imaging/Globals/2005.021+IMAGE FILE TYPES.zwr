@@ -1,6 +1,6 @@
 IMAGE FILE TYPES
 ZWR
-^MAG(2005.021,0)="IMAGE FILE TYPES^2005.021^26^25"
+^MAG(2005.021,0)="IMAGE FILE TYPES^2005.021^27^26"
 ^MAG(2005.021,1,0)="TGA^Targa Image TGA^1^^1^1^1"
 ^MAG(2005.021,2,0)="TIF^Scanned Document TIF^1^^1^15^1"
 ^MAG(2005.021,3,0)="PAC^Xray image PAC^1^^1^3^1"
@@ -26,6 +26,7 @@ ZWR
 ^MAG(2005.021,24,0)="MP4^Motion Video MPEG-4^0^magavi.bmp^0^21^1"
 ^MAG(2005.021,25,0)="MHT^MIME HTML Document^1^maghtml.bmp^0^101^1"
 ^MAG(2005.021,26,0)="MHTML^MIME HTML Document^1^maghtml.bmp^0^101^1"
+^MAG(2005.021,27,0)="XML^Web Document XML^1^maghtml.bmp^0^107^1"
 ^MAG(2005.021,"B",756,7)=""
 ^MAG(2005.021,"B","ABS",5)=""
 ^MAG(2005.021,"B","ASC",10)=""
@@ -51,6 +52,7 @@ ZWR
 ^MAG(2005.021,"B","TIF",2)=""
 ^MAG(2005.021,"B","TXT",19)=""
 ^MAG(2005.021,"B","WAV",17)=""
+^MAG(2005.021,"B","XML",27)=""
 ^MAG(2005.021,"C","Abstract file ABS",5)=""
 ^MAG(2005.021,"C","Adobe PDF",15)=""
 ^MAG(2005.021,"C","Audio file WAV",17)=""
@@ -73,6 +75,7 @@ ZWR
 ^MAG(2005.021,"C","Text file import TXT",19)=""
 ^MAG(2005.021,"C","Web Document HTM",13)=""
 ^MAG(2005.021,"C","Web Document HTML",22)=""
+^MAG(2005.021,"C","Web Document XML",27)=""
 ^MAG(2005.021,"C","Word Document DOC",12)=""
 ^MAG(2005.021,"C","Xray big file 2000K BIG",4)=""
 ^MAG(2005.021,"C","Xray image PAC",3)=""
@@ -101,3 +104,4 @@ ZWR
 ^MAG(2005.021,"D",104,15)=""
 ^MAG(2005.021,"D",105,16)=""
 ^MAG(2005.021,"D",106,17)=""
+^MAG(2005.021,"D",107,27)=""

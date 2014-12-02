@@ -1,14 +1,15 @@
-IBDF4A ;ALB/CJM - ENCOUNTER FORM - BUILD FORM(editing group's selections - continued from IBDF4) ;NOV 16,1992
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**38**;APR 24, 1997
+IBDF4A ;ALB/CJM - ENCOUNTER FORM - BUILD FORM(editing group's selections - continued from IBDF4) ;11/16/92
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**38,63**;APR 24, 1997;Build 80
+ ;
  ;
 EDIT ;allows editing of an existing selection
- N SEL,SUB,SLCTN,SC,NODE,OQTY,NQTY
+ N SEL,SUB,SLCTN,SC,NODE,OQTY,NQTY,IBDQUIT
  D EN^VALM2($G(XQORNOD(0)),"S")
  S SEL="" F  S SEL=$O(VALMY(SEL)) Q:'SEL  D
  .W !,"Editing Entry #",SEL
  .S SLCTN=$G(@VALMAR@("IDX",SEL,SEL)) Q:'SLCTN
  .S NODE=$G(^IBE(357.3,SLCTN,0))
- .;re-index the record, to insure it is good                             
+ .;re-index the record, to insure it is good
  .K DIK,DA S DIK="^IBE(357.3,",DA=SLCTN D IX^DIK K DIK
  .;edit the order of the selection - also, for placeholders, the text, then quit
  .D FULL^VALM1
@@ -40,18 +41,27 @@ EDIT ;allows editing of an existing selection
  S VALMBCK="R"
 EDITEXIT ;
  Q
-CODES ; -- allow editing of 2nd & 3rd codes that are associated w/ original
+CODES(IBDQUIT) ; -- allow editing of 2nd & 3rd codes that are associated w/ original
+ S IBDQUIT=$G(IBDQUIT)
  N IBPI S IBPI=+$P($G(^IBE(357.2,+IBLIST,0)),U,11) Q:'IBPI
  Q:'$P($G(^IBE(357.6,IBPI,16)),U,9)!('$D(^IBE(357.6,IBPI,17)))
- N IBI,IBEXT,FLD
- F IBI=3,4 S FLD="2.0"_IBI D
+ N IBI,IBEXT,FLD,IBDICD,IBDSERCH
+ ;IBDSERCH 1=ICD Lexicon Search; 2=ICD Wildcard search.
+ ;If user chose Replace Code option, do ICD Lexicon search, else do Wildcard Search.
+ S IBDSERCH=$S($P($G(XQORNOD(0)),U,4)="RC":2,1:1)
+ F IBI=3,4 S FLD="2.0"_IBI D  Q:IBDQUIT
  .S IBEXT=$P($G(^IBE(357.3,SLCTN,2)),"^",IBI)
  .I $G(IBEXT)]"" D
  ..W !,$S(IBI=3:"SECOND",1:"THIRD")," CODE: ",IBEXT
  ..S DIR(0)="Y",DIR("A")="Delete?",DIR("B")="NO" D ^DIR K DIR
  ..I Y=1 S IBEXT="",DIE="^IBE(357.3,",DA=SLCTN,DR=FLD_"////@" D ^DIE K DIE,DA,DR
- .S DIC("A")="Select a "_$S(IBI=3:"SECOND",1:"THIRD")_" code to associate with the original:",DIC("B")=$S($G(IBEXT)]"":IBEXT,1:"")
- .I '$$DORTN^IBDFU1B(.IBRTN) Q
+ .; Change for ICD-10 project   
+ .S IBDICD=$S($G(IBRTN("NAME"))["ICD-9":"ICD-9",$G(IBRTN("NAME"))["ICD-10":"ICD-10",1:"")
+ .S DIC("A")="Select a "_$S(IBI=3:"SECOND "_IBDICD,1:"THIRD "_IBDICD)_" code to associate with the original: ",DIC("B")=$S($G(IBEXT)]"":IBEXT,1:"")
+ .I '$$DORTN^IBDFU1B(.IBRTN,IBDSERCH) K DIC Q
+ .K DIC
+ .I IBDQUIT'="",$D(DTOUT) S IBDQUIT=1 Q
+ .I IBDQUIT'="",$D(DUOUT) S IBDQUIT=1 Q
  .S IBEXT=$S(+$G(Y)>0:$P($G(Y(0)),"^"),1:"")
  .I $G(IBEXT)]"" D
  ..S DIE="^IBE(357.3,",DA=SLCTN,DR=FLD_"////^S X=IBEXT"
@@ -66,6 +76,7 @@ DELETE ;allows the user to select selections to delete
  .Q:'$$RUSURE^IBDFU5("Selection #"_SEL)
  .D ^DIK
  .D KILL^VALM10(SEL)
+ .I '$D(^TMP("IBDF ADDSLCTN",$J)) S ^TMP("IBDF DELETE SELECTION OPTION",$J)=1
  K DIK,DA
  D IDXSLCTN^IBDF4
  S VALMBCK="R"
@@ -112,7 +123,7 @@ ADD ;allows the user to add a dummy selection to the selection group
  Q
 EN ;  -- Resequence selection lists not taking into account the
  ;     the place holders.  Will put the selection list into alphabetic
- ;     or numeric order..... the place holders will be used as exta
+ ;     or numeric order..... the place holders will be used as extra
  ;     lines of description and not as separators or headers within
  ;     the group.
  N CNTR,COUNT,IBGROUP,IBORDER

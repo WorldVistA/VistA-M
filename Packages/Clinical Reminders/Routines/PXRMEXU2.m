@@ -1,5 +1,5 @@
-PXRMEXU2 ; SLC/PKR/PJH - Reminder exchange repository utilities, #2.;01/25/2008
- ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
+PXRMEXU2 ; SLC/PKR/PJH - Reminder exchange repository utilities, #2.;08/28/2013
+ ;;2.0;CLINICAL REMINDERS;**6,12,26**;Feb 04, 2005;Build 404
  ;=====================================================
 FDA(IND,LC,TMPIND,FILENAME) ;Build the XML FDA output.
  N FIELD,FILENUM,INDEX,INDEX0,JND,SIENS,WPC
@@ -41,13 +41,35 @@ IENROOT(IND,LC,TMPIND,FILENAME) ;Build the XML IEN_ROOT output.
  Q
  ;
  ;=====================================================
+MLWARN(FILENAME,PT01,IEN,LINE,MAXLEN) ;Issue a warning if the length of the
+ ;line exceeds the maximum allowed value.
+ N DATA,INDICES,FIELD,LEN,TEXT
+ S LEN=$L(LINE)
+ S INDICES=$P(LINE,"~",1)
+ S FIELD=$P(INDICES,";",3)
+ S DATA=$P(LINE,"~",2)
+ S TEXT(1)="Warning the following line exceeds the VistA maximum allowed length of "_MAXLEN_"."
+ S TEXT(2)="Therefore this Exchange entry will not transport correctly."
+ S TEXT(3)="Line: "_LINE
+ S TEXT(4)="Its length is: "_LEN
+ S TEXT(5)="Component: "_FILENAME
+ S TEXT(6)="Name: "_PT01
+ S TEXT(7)="IEN: "_IEN
+ S TEXT(8)="Field number: "_FIELD
+ S TEXT(9)="Value: "_DATA
+ S TEXT(10)=""
+ D EN^DDIOL(.TEXT)
+ H 2
+ Q
+ ;
+ ;=====================================================
 STOREPR(SUCCESS,EFNAME,TMPIND,SELLIST) ;^TMP(TMPIND,$J contains data to be
  ;stored in the repository. Routines will be found in
  ;^TMP(TMPIND,$J,"ROUTINE",ROUTINE NAME,n) where n is the line number.
  ;File entries will be found in ^TMP(TMPIND,$J,N,FILENAME,indexes).
  ;This is output from the GETS^DIQ call. There are NUMF file entries.
  ;Format and store it as XML in the repository.
- N DATE,DTEST,FDA,FILENAME,FILENUM
+ N DATE,DTEST,FDA,FILENAME,FILENUM,IEN
  N IENROOT,IND,JND,LC,LINE,NCMPNT,NEWFILE,NUMF,PT01,RNAME
  N SIENS,SOURCE,TEMP,VERSN
  ;If anything went wrong in the packing process then ^TMP(TMPIND,$J
@@ -170,6 +192,14 @@ STOREPR(SUCCESS,EFNAME,TMPIND,SELLIST) ;^TMP(TMPIND,$J contains data to be
  . S DESC="^TMP(TMPIND,$J,""DESC"")"
  . S KEYWORD="^TMP(TMPIND,$J,""KEYWORD"")"
  . D DESC^PXRMEXU1(IENROOT(1),.DESL,$NA(@DESC),$NA(@KEYWORD))
+ . F IND=1:1:LC D
+ .. S LINE=^TMP("PXRMEXRS",$J,IND,0)
+ .. I LINE["<FILE_NAME>" S FILENAME=$$GETTAGV^PXRMEXU3(LINE,"<FILE_NAME>",1)
+ .. I LINE["<POINT_01>" S PT01=$$GETTAGV^PXRMEXU3(LINE,"<POINT_01>",1)
+ .. I LINE["<INTERNAL_ENTRY_NUMBER>" S IEN=$$GETTAGV^PXRMEXU3(LINE,"<INTERNAL_ENTRY_NUMBER>",1)
+ ..;Use 245 to be conservative.
+ .. I $L(LINE)<246 Q
+ .. D MLWARN(FILENAME,PT01,IEN,LINE,245)
  K ^TMP($J,"CIND"),^TMP("PXRMEXRS",$J)
  K ^TMP(TMPIND,$J),^TMP("PXRMEXCS",$J)
  Q

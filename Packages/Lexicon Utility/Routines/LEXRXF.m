@@ -1,23 +1,25 @@
-LEXRXF ;ISL/KER - Re-Index 757.21 B/C/AA ;08/17/2011
- ;;2.0;LEXICON UTILITY;**81**;Sep 23, 1996;Build 1
+LEXRXF ;ISL/KER - Re-Index 757.21 B/C/AA ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**81,80**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^LEX(               SACC 1.3
- ;    ^LEX(757.21,        SACC 1.3
- ;    ^LEX(757,           SACC 1.3
- ;    ^LEX(757.01,        SACC 1.3
- ;    ^LEX(757.011,       SACC 1.3
- ;    ^LEXT(757.2,        SACC 1.3
+ ;    ^LEX(757)           SACC 1.3
+ ;    ^LEX(757.01)        SACC 1.3
+ ;    ^LEX(757.011)       SACC 1.3
+ ;    ^LEX(757.21)        SACC 1.3
+ ;    ^LEXT(757.2)        SACC 1.3
+ ;    ^TMP("LEXRX")       SACC 2.3.2.5.1
+ ;    ^TMP("LEXRXF")      SACC 2.3.2.5.1
  ;    ^TMP("LEXTKN")      SACC 2.3.2.5.1
  ;    ^TMP("LEXWRD")      SACC 2.3.2.5.1
  ;               
  ; External References
- ;    FILE^DID            ICR  2052
- ;    ^DIK                ICR  10013
- ;    IX1^DIK             ICR  10013
  ;    $$FMDIFF^XLFDT      ICR  10103
  ;    $$NOW^XLFDT         ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
+ ;    FILE^DID            ICR   2052
+ ;    IX1^DIK             ICR  10013
+ ;    IX1^DIK             ICR  10013
  ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;     LEXFIX     Fix Index flag  NEWed/KILLed by LEXRXXT
@@ -116,7 +118,7 @@ RAA ;   Index    ^LEX(757.21,("A"_SUBSET),WORD,IEN)
  . . . . N LEXTY,LEXT,LEXW,LEXJ,LEXEXP,LEXSIDX S LEXEXP=$G(^LEX(757.01,LEXEXI,0))
  . . . . S LEXTY=+($P($G(^LEX(757.01,LEXEXI,1)),U,2)) Q:LEXTY'>0
  . . . . S LEXT=+($P($G(^LEX(757.011,LEXTY,0)),"^",2)) Q:LEXT=0
- . . . . S LEXSIDX=LEXID K ^TMP("LEXTKN",$J) S X=LEXEXP,LEXIX=LEXIDX,LEXIDX="" D PTX^LEXTOLKN S LEXIDX=LEXIX
+ . . . . S LEXSIDX=LEXID K ^TMP("LEXTKN",$J) S X=LEXEXP,LEXIX=LEXIDX,LEXIDX="" D PTX^LEXTOKN S LEXIDX=LEXIX
  . . . . I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 D
  . . . . . N LEXI S LEXI=0 F  S LEXI=$O(^TMP("LEXTKN",$J,LEXI)) Q:+LEXI'>0  D
  . . . . . . N LEXW S LEXW=$O(^TMP("LEXTKN",$J,LEXI,"")) Q:'$L(LEXW)  S LEXEXPS(LEXID,LEXW,LEXIEN)=""
@@ -149,7 +151,7 @@ RAA ;   Index    ^LEX(757.21,("A"_SUBSET),WORD,IEN)
  . . N X,LEXIDX,LEXYPE,LEXT,LEXJ S X=$G(^LEX(757.01,LEXTEXP,0)),LEXIDX="" Q:'$L(X)
  . . S LEXYPE=+($P($G(^LEX(757.01,LEXTEXP,1)),U,2)) Q:LEXYPE'>0
  . . S LEXT=+($P($G(^LEX(757.011,LEXYPE,0)),"^",2)) Q:LEXT=0
- . . D PTX^LEXTOLKN I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 F LEXJ=1:1:^TMP("LEXTKN",$J,0) D
+ . . D PTX^LEXTOKN I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 F LEXJ=1:1:^TMP("LEXTKN",$J,0) D
  . . . N LEXW S LEXW=$O(^TMP("LEXTKN",$J,LEXJ,"")) S:$L(LEXW) ^TMP("LEXWRD",$J,LEXW)=""
  . . K ^TMP("LEXTKN",$J) Q
  . S LEXW="" F  S LEXW=$O(^TMP("LEXWRD",$J,LEXW)) Q:'$L(LEXW)  D

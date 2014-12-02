@@ -1,7 +1,7 @@
-EDPCTRL ;SLC/KCM - Controller for ED Tracking ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPCTRL ;SLC/KCM - Controller for ED Tracking ;5/23/13 11:19am
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
-RPC(EDPXML,PARAMS) ; Process request via RPC instead of CSP
+RPC(EDPXML,PARAMS,PARAMS2) ; Process request via RPC instead of CSP
  N X,REQ,EDPSITE,EDPUSER,EDPDBUG
  K EDPXML
  S EDPUSER=DUZ,EDPSITE=DUZ(2),EDPSTA=$$STA^XUAF4(DUZ(2))
@@ -17,14 +17,16 @@ COMMON ; Come here for both CSP and RPC Mode
  S CMD=$G(REQ("command",1))
  ;
  ; switch on command
- ; 
+ ;
  ; ---------------------------------
- ; 
+ ;
  ; initUser
  ; return <user />
  ;        <view />...
  I CMD="initUser" D  G OUT
+ . S AREA=$$VAL("area")
  . D SESS^EDPFAA,VIEWS^EDPFAA
+ . D GETROLES^EDPBWS(EDPSITE,AREA)
  ;
  ; ---------------------------------
  ;
@@ -34,7 +36,7 @@ COMMON ; Come here for both CSP and RPC Mode
  . D MATCH^EDPFPTL($$VAL("partial"))
  ;
  ; ---------------------------------
- ; 
+ ;
  ; getPatientChecks
  ; return <checks />
  ;        <similar />
@@ -42,14 +44,14 @@ COMMON ; Come here for both CSP and RPC Mode
  ;        <patientRecordFlags><flag> <text> </text></flag>...</patientRecordFlags>
  I CMD="getPatientChecks" D  G OUT
  . D CHK^EDPFPTC($$VAL("area"),$$VAL("patient"),$$VAL("name"))
- ; 
+ ;
  ; ---------------------------------
- ; 
+ ;
  ; saveSecurityLog
  ; return <save />
  I CMD="saveSecurityLog" D  G OUT
  . D LOG^EDPFPTC($$VAL("patient"))
- ; 
+ ;
  ; ---------------------------------
  ; 
  ; getLexiconMatches
@@ -89,6 +91,7 @@ COMMON ; Come here for both CSP and RPC Mode
  ;        <choices>choice lists...</choices>
  I CMD="switchLogEntry" D  G OUT
  . I $L($$VAL("logEntry")) S EDPFAIL=$$UPD^EDPLOG($$VAL("logEntry")) Q:$G(EDPFAIL)
+ . ;D GET^EDPQLE($S($$VAL("logID"):$$VAL("logID"),1:$$VAL("logEntry")),$$VAL("choiceTS"))
  . D GET^EDPQLE($$VAL("logID"),$$VAL("choiceTS"))
  ;
  ; ---------------------------------
@@ -97,6 +100,10 @@ COMMON ; Come here for both CSP and RPC Mode
  ; return <upd />
  I CMD="saveLogEntry" D  G OUT
  . S EDPFAIL=$$UPD^EDPLOG($$VAL("logEntry"),"",$$VAL("restorePatient")) Q:$G(EDPFAIL)
+ . ; get updated data after a save
+ . ;D GET^EDPQLE($$VAL("logID"),$$VAL("choiceTS"))
+ . N PAR,REC S PAR=$$VAL("logEntry") D NVPARSE^EDPX(.REC,PAR)
+ . D GET^EDPQLE($$VAL^EDPLOG("id"),$$VAL("choiceTS"))
  ;
  ; ---------------------------------
  ; 
@@ -326,22 +333,37 @@ COMMON ; Come here for both CSP and RPC Mode
  ;
  ; loadWorksheetConfig
  I CMD="loadWorksheetConfig" D  G OUT
- . D LOADALL^EDPBWS($$VAL("area"))
+ . D LOADALL^EDPBWS($$VAL("area"),$$VAL("role"))
  ;
  ; ---------------------------------
+ ; loadWorksheetList
+ I CMD="loadWorksheetList" D  G OUT
+ . D LDWSLIST^EDPBWS(EDPSITE,$$VAL("area"),$$VAL("roleID"))
  ;
+ ; ---------------------------------
+ ; getWorksheet
+ I CMD="getWorksheet" D  G OUT
+ . D GETWORKS^EDPBWS(EDPSITE,$$VAL("id"),.REQ,.EDPXML)
+ ;
+ ; ---------------------------------
+ ; getSectionList
+ I CMD="getSectionList" D  G OUT
+ . D GETSECTS^EDPBWS($$VAL("area"),.EDPXML,$$VAL("role"))
+ ;
+ ; ---------------------------------
+ ; getSection
+ ;I CMD="getSection" D  G OUT
+ ;. D GET1SEC^EDPBWS($$val("sectionID"))
+ ; ---------------------------------
+ ; getComponentList
+ I CMD="getComponentList" D  G OUT
+ . D GETCMPTS^EDPBWS($$VAL("area"),.EDPXML,$$VAL("componentID"),$$VAL("role"))
+ ; ---------------------------------
  ; saveWorksheetConfig
  I CMD="saveWorksheetConfig" D  G OUT
- . D SAVEALL^EDPBWS(.REQ)
- ;
+ . ;D SAVEALL^EDPBWS(.REQ)
+ . D SAVEWORK^EDPBWS(.PARAMS,.PARAMS2,EDPSITE,$$VAL("area"))
  ; ---------------------------------
- ;
- ; loadPreviewModels
- I CMD="loadPreviewModels" D  G OUT
- . D LOADPRVW^EDPBWS($$VAL("area"))
- ;
- ; ---------------------------------
- ;
  ; loadUserProfile
  I CMD="loadUserProfile" D  G OUT
  . D BOOT^EDPFAA($$VAL("appName"))

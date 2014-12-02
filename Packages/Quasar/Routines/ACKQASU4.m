@@ -1,7 +1,11 @@
-ACKQASU4 ;HCIOFO/AG - New/Edit Visit Utilities  ; 12/31/07 7:28am
- ;;3.0;QUASAR;**17**;Feb 11, 2000;Build 28
- ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
+ACKQASU4 ;HCIOFO/AG - New/Edit Visit Utilities ;18 Nov 2013  4:38 PM
+ ;;3.0;QUASAR;**17,22,21**;Feb 11, 2000;Build 40
+ ;Per VHA Directive 2004-038, this routine SHOULD NOT be modified.
  ;
+ ;  Reference/ICR
+ ;  $$CODEC^ICDEX - 5747
+ ;  $$MOD^ICPTMOD - 1996
+ ;  $$CPT^ICPTCOD - 1995
  ;
 COPYPCE(ACKVIEN,ACKPCENO) ; Copies the visit data from given PCE Visit
  ; inputs:- ACKVIEN - QUASAR Visit ien to receive data
@@ -32,7 +36,8 @@ COPYPCE(ACKVIEN,ACKPCENO) ; Copies the visit data from given PCE Visit
  . I ACKDPRIM S ACKDPRIM="0"
  . ; if error returned then file
  . I 'ACKE D  Q
- . . S ACKTMP="Diagnosis"_U_ACKICD_U_$$GET1^DIQ(80,ACKICD,.01,"E")_U_$P(ACKE,U,2)
+ . . ;ACKQ*3.0*22 updated api
+ . . S ACKTMP="Diagnosis"_U_ACKICD_U_$$CODEC^ICDEX(80,ACKICD)_U_$P(ACKE,U,2)
  . . D ADDERR
  . ; if successful then ensure Diagnosis is added to  Patient Diagnostic history
  . D DIAGHIST
@@ -65,7 +70,8 @@ COPYPCE(ACKVIEN,ACKPCENO) ; Copies the visit data from given PCE Visit
  . S ACKE=$$SETPROC^ACKQASU5(ACKVIEN,ACKCPT,ACKQTY,ACKQPRV)
  . ; if error returned then file
  . I 'ACKE D  Q
- . . S ACKTMP="Procedure"_U_ACKCPT_U_$$GET1^DIQ(81,ACKCPT,.01,"E")_U_$P(ACKE,U,2)
+ . . ;ACKQ*3.0*22 updated api
+ . . S ACKTMP="Procedure"_U_ACKCPT_U_$P($$CPT^ICPTCOD(ACKCPT),U,2)_U_$P(ACKE,U,2)
  . . D ADDERR
  . ; if successful then do the modifiers for this procedure
  . S ACKM=0,ACKPIEN=+ACKE   ; ACKPIEN=procedure ien from visit file
@@ -75,7 +81,8 @@ COPYPCE(ACKVIEN,ACKPCENO) ; Copies the visit data from given PCE Visit
  . . S ACKE=$$SETMDFR^ACKQASU5(ACKVIEN,ACKPIEN,ACKMOD)
  . . ; if error returned then file
  . . I '+ACKE D  Q
- . . . S ACKTMP="Modifier"_U_ACKMOD_U_$$GET1^DIQ(81.3,ACKMOD_",",.01,"E")_U_$P(ACKE,U,2)
+ . . . ;ACKQ*3.0*22 updated api
+ . . . S ACKTMP="Modifier"_U_ACKMOD_U_$P($$MOD^ICPTMOD(ACKMOD,"I"),U,2)_U_$P(ACKE,U,2)
  . . . D ADDERR
  ;
  ; now file header items

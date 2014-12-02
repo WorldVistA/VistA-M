@@ -1,5 +1,5 @@
 BPSJZQR ;BHAM ISC/LJF - HL7 Registration ZQR Message ;3/3/08  17:03
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,7**;JUN 2004;Build 46
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,7,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; ZQR is pharmacy site registration info
@@ -20,7 +20,7 @@ EN(HL) N BPSZQR,BPSFS,BPSCPS,BPSREP,BPSVA1,BPSVA2,BPSCNF,BPSI
  S BPSZQR=BPSZQR_BPSFS_$P(BPSVA1,"^",3)
  ;
  ; Port
- S BPSZQR=BPSZQR_BPSFS_$G(HL("EPPORT"))
+ S BPSZQR=BPSZQR_BPSFS_$$EPPORT^BPSJUTL ;modified to find multi threaded listener - BPS*1*15
  ;
  ; Load the Name and Means Fields
  ; Default the values to null

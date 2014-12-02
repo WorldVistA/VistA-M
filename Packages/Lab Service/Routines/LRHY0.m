@@ -1,5 +1,5 @@
 LRHY0 ;DALOI/HOAK - HOWDY MAIN DRIVER ;10/15/10 11:00am
- ;;5.2;LAB SERVICE;**405**;Sep 27, 1994;Build 93
+ ;;5.2;LAB SERVICE;**405,435**;Sep 27, 1994;Build 1
  ;
 PICK ;
  ;  pick the site from Howdy Site FILE 69.86
@@ -89,16 +89,20 @@ VET1 ; Code below executes to handle Patient episode.
  I X=U X ^%ZOSF("EON") D BAKUSER^LRHYU QUIT
  X ^%ZOSF("EON")
  ; Code is set to read all types of VIC card as of 9/05/2005
- I $E(X,1,9)["-" D
- .  S X=$P(X,"-")_$P(X,"-",2)_$P(X,"-",3)
- I $E(X,1,1)'=0 I '$E(X,1,1) S X=$E(X,2,10)
- I $L(X)>10 S X=$E(X,2,10)
- I $L(X)'=9 W !,"Didn't read that Partner. " W:LRHYCT'=2 "Try again." H 2 S LRHYCT=LRHYCT+1 G VET
+ ;I $E(X,1,9)["-" D
+ ;.  S X=$P(X,"-")_$P(X,"-",2)_$P(X,"-",3)
+ ;I $E(X,1,1)'=0 I '$E(X,1,1) S X=$E(X,2,10)
+ ;I $L(X)>10 S X=$E(X,2,10)
+ ;I $L(X)'=9 W !,"Didn't read that Partner. " W:LRHYCT'=2 "Try again." H 2 S LRHYCT=LRHYCT+1 G VET
  ;
  K DFN,LRDFN,LRDPA,LRDPF,PNM,LRHYCT
  ; 
- S DFN=$O(^DPT("SSN",X,0))
- I 'DFN W !,"No record for this person." R X:15 G VET
+ ;S DFN=$O(^DPT("SSN",X,0))
+ ;
+ ; NEW CODE FOR VIC 4.0
+ D RPCVIC^DPTLK(.DFN,X)
+ ;
+ I DFN<1 W !,"No record for this person." R X:15 G VET
  S LRDFN=$G(^DPT(DFN,"LR"))
  ;
  I LRDFN D PT^LRX

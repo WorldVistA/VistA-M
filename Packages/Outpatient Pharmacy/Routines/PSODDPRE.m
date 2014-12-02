@@ -1,5 +1,5 @@
 PSODDPRE ;BIR/SAB - Enhanced OP order checks ;09/20/06 3:38pm
- ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379,390**;DEC 1997;Build 86
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379,390,372,416**;DEC 1997;Build 32
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
  ;External references to ^PSSDSAPM supported by DBIA 5570
  ;External references to ^PSSHRQ2 supported by DBIA 5369
@@ -9,9 +9,10 @@ PSODDPRE ;BIR/SAB - Enhanced OP order checks ;09/20/06 3:38pm
  ;External reference to ^PS(50.606 supported by DBIA 2174
  ;External reference to $$SUP^PSSDSAPI supported by DBIA 5425
  ;
+ W @IOF
  K IT,^TMP("PSORXDC",$J),^TMP("PSORXDD",$J),CLS,^TMP($J,"PSONVADD"),^TMP($J,"PSONRVADD"),^TMP($J,"PSORDI"),^TMP($J,"PSORMDD")
  N PSONULN,PSODLQT,ZZPSODRG S LIST="PSOPEPS",$P(PSONULN,"-",79)="-",(STA,DNM)=""
- D HD^PSODDPR2():(($Y+5)'>IOSL) Q:$G(PSODLQT)
+ D HD^PSODDPR2():(($Y+5)>IOSL) Q:$G(PSODLQT)
  F  S STA=$O(PSOSD(STA)) Q:STA=""  F  S DNM=$O(PSOSD(STA,DNM)) Q:DNM=""!$G(PSORX("DFLG"))  I $P(PSOSD(STA,DNM),"^")'=$G(PSORENW("OIRXN")) D  Q:$G(PSORX("DFLG"))
  .I STA="PENDING" D ^PSODDPR1 Q
  .I STA="ZNONVA" D NVA^PSODDPR1 Q
@@ -56,7 +57,7 @@ DUP S:$P(PSOSD(STA,DNM),"^",2)<10!($P(PSOSD(STA,DNM),"^",2)=16) DUP=1 W !,PSONUL
 DATA S DUPRX0=^PSRX(RXREC,0),RFLS=$P(DUPRX0,"^",9),ISSD=$P(^PSRX(RXREC,0),"^",13),RX0=DUPRX0,RX2=^PSRX(RXREC,2),$P(RX0,"^",15)=+$G(^PSRX(RXREC,"STA"))
  S RXRECLOC=$G(RXREC)
  S DA=RXREC
- D HD^PSODDPR2():(($Y+5)'>IOSL) Q:$G(PSODLQT)
+ D HD^PSODDPR2():(($Y+5)>IOSL) Q:$G(PSODLQT)
  W !,$J("Rx: ",24)_$P(^PSRX(+PSOSD(STA,DNM),0),"^")
  W !,$J("Drug: ",24)_$P(DNM,"^")
  K FSIG,BSIG I $P($G(^PSRX(RXREC,"SIG")),"^",2) D FSIG^PSOUTLA("R",RXREC,54) F PSREV=1:1 Q:'$D(FSIG(PSREV))  S BSIG(PSREV)=FSIG(PSREV)
@@ -64,7 +65,7 @@ DATA S DUPRX0=^PSRX(RXREC,0),RFLS=$P(DUPRX0,"^",9),ISSD=$P(^PSRX(RXREC,0),"^",13
  W !,$J("SIG: ",24) W $G(BSIG(1))
  I $O(BSIG(1)) F PSREV=1:0 S PSREV=$O(BSIG(PSREV)) Q:'PSREV  W !?24,$G(BSIG(PSREV))
  K BSIG,PSREV
- D HD^PSODDPR2():(($Y+5)'>IOSL) Q:$G(PSODLQT)
+ D HD^PSODDPR2():(($Y+5)>IOSL) Q:$G(PSODLQT)
  W !,$J("QTY: ",24)_$P(DUPRX0,"^",7),?42,$J("Refills remaining: ",24),RFLS-$S($D(^PSRX(RXREC,1,0)):$P(^(0),"^",4),1:0)
  S PHYS=$S($D(^VA(200,+$P(DUPRX0,"^",4),0)):$P(^(0),"^"),1:"UNKNOWN")
  W !,$J("Provider: ",24)_PHYS,?42,$J("Issued: ",24),$E(ISSD,4,5)_"/"_$E(ISSD,6,7)_"/"_$E(ISSD,2,3)
@@ -74,7 +75,7 @@ DATA S DUPRX0=^PSRX(RXREC,0),RFLS=$P(DUPRX0,"^",9),ISSD=$P(^PSRX(RXREC,0),"^",13
  W !?42,$J("Days Supply: ",24)_$P(DUPRX0,"^",8)
  W !,PSONULN,! I $P($G(^PS(53,+$P($G(PSORX("PATIENT STATUS")),"^"),0)),"^")["AUTH ABS"!($G(PSORX("PATIENT STATUS"))["AUTH ABS")&'$P(PSOPAR,"^",5) W !,"PATIENT ON AUTHORIZED ABSENCE!" K RXRECLOC Q
 ASKCAN I $P(PSOSD(STA,DNM),"^",2)>10,$P(PSOSD(STA,DNM),"^",2)'=16 D  Q
- .K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue" D ^DIR S:($D(DTOUT))!($D(DUOUT)) PSODLQT=1,PSORX("DFLG")=1 K DIR,DTOUT,DUOUT,DIRUT,RXRECLOC
+ .K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue" D ^DIR S:($D(DTOUT))!($D(DUOUT)) PSODLQT=1,PSORX("DFLG")=1 K DIR,DTOUT,DUOUT,DIRUT,RXRECLOC W @IOF
  .S ^TMP("PSORXDD",$J,RXREC,0)=1
  I '$P(PSOPAR,"^",16),'$D(^XUSEC("PSORPH",DUZ)) D  Q
  .S PSORX("DFLG")=1 K RXRECLOC,DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue"
@@ -177,7 +178,7 @@ ULRX ;
  ;
 PRSTAT(DA) ;Displays the prescription's status
  N PSOTRANS,PSOREL,PSOCMOP,RXPSTA,PSOX,RFLZRO,PSOLRD,PSORTS,CMOP
- D HD^PSODDPR2():(($Y+5)'>IOSL) Q:$G(PSODLQT)  S RXPSTA="Processing Status: ",PSOLRD=$P($G(^PSRX(RXREC,2)),"^",13)
+ D HD^PSODDPR2():(($Y+5)>IOSL) Q:$G(PSODLQT)  S RXPSTA="Processing Status: ",PSOLRD=$P($G(^PSRX(RXREC,2)),"^",13)
  D ^PSOCMOPA I $G(PSOCMOP)]"" D  K CMOP,PSOTRANS,PSOREL
  .S PSOTRANS=$E($P(PSOCMOP,"^",2),4,5)_"/"_$E($P(PSOCMOP,"^",2),6,7)_"/"_$E($P(PSOCMOP,"^",2),2,3)
  .S PSOREL=$S(CMOP("L")=0:$P($G(^PSRX(DA,2)),"^",13),1:$P(^PSRX(DA,1,CMOP("L"),0),"^",18))
@@ -185,7 +186,7 @@ PRSTAT(DA) ;Displays the prescription's status
  .I '$D(IOINORM)!('$D(IOINHI)) S X="IORVOFF;IORVON;IOINHI;IOINORM" D ENDR^%ZISS
  .I $P($G(^PSRX(RXREC,"STA")),"^")=0 W:$$TRANCMOP^PSOUTL(RXREC) ?5,IORVON_IOINHI
  .S:$G(PSODUPF) PSODUPC(ZCT)=PSODUPC(ZCT)+1 W:'$G(PSODUPF) !,$J(RXPSTA,24)_$S($P(PSOCMOP,"^")=0!($P(PSOCMOP,"^")=2):"Transmitted to CMOP on "_PSOTRANS,$P(PSOCMOP,"^")=1:"Released by CMOP on "_PSOREL,1:"Not Dispensed"),IOINORM_IORVOFF
- D HD^PSODDPR2():(($Y+5)'>IOSL) Q:$G(PSODLQT)
+ D HD^PSODDPR2():(($Y+5)>IOSL) Q:$G(PSODLQT)
  I $G(PSOCMOP)']"" D
  .F PSOX=0:0 S PSOX=$O(^PSRX(RXREC,1,PSOX)) Q:'PSOX  D
  ..S RFLZRO=$G(^PSRX(RXREC,1,PSOX,0))

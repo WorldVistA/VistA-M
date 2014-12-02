@@ -1,5 +1,5 @@
-MAGGDEV ;WOIFO/LB - Routine to enter Imaging device entries ; 06 Dec 2008 3:40 PM
- ;;3.0;IMAGING;**98**;Mar 19, 2002;Build 1849;Sep 22, 2010
+MAGGDEV ;WOIFO/LB,NST - Routine to enter Imaging device entries ; 18 Mar 2013 1:40 PM
+ ;;3.0;IMAGING;**98,119**;Mar 19, 2002;Build 4396;Apr 19, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -22,13 +22,13 @@ TERM N A,DA,DD,DO,DIC,DIE,DR,ENTRY,X,Y
  W !,"I will check the 'P-IMAGING' entry in the Terminal Type file."
  S DA=$$FIND1^DIC(3.2,,,"P-IMAGING","B")
  I DA D  G DEV  ;update
- . S DIE="^%ZIS(2,",DR="7///D CLOSE^MAGGTU5 X "_$C(34)_"C IO:"_$C(34,34)_"D"_$C(34,34,34)_" K IO" D ^DIE
+ . S DIE="^%ZIS(2,",DR="7///D CLOSE^MAGGTU5 X "_$C(34)_"C IO:"_$C(34,34)_"D"_$C(34,34,34)_" K IO(1,IO)" D ^DIE
  . Q
  ;Set the entry
  S DIC="^%ZIS(2,"
  S X="P-IMAGING",DIC(0)="O" K DD,D0 D FILE^DICN
  S ENTRY=+Y G:'ENTRY ERRDEV
- S DR=".02///0;1///80;2///"_"#"_";4///"_"$C(8)"_";7///D CLOSE^MAGGTU5 X "_$C(34)_"C IO:"_$C(34,34)_"D"_$C(34,34,34)_" K IO;3///64"
+ S DR=".02///0;1///80;2///"_"#"_";4///"_"$C(8)"_";7///D CLOSE^MAGGTU5 X "_$C(34)_"C IO:"_$C(34,34)_"D"_$C(34,34,34)_" K IO(1,IO);3///64"
  S DA=ENTRY,DIE="^%ZIS(2," D ^DIE
  ;.02/SELECTABLE AT SIGNON;1/RIGHT MARGIN;2/FORM FEED;4/BACK SPACE
  ;7/CLOSE EXECUTE*P98 - added X "...";3/PAGE LENGTH

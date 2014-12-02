@@ -1,5 +1,5 @@
 PSOUTLA2 ;BHAM ISC/GSN-Pharmacy utility program cont. ;6/6/05 12:19pm
- ;;7.0;OUTPATIENT PHARMACY;**210**;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**210,410**;DEC 1997;Build 9
  Q
  ;
 WORDWRAP(STR,IEN,GL,LM) ;Wraps words at spaces normally and will breakup long
@@ -58,17 +58,28 @@ WORDWRAP(STR,IEN,GL,LM) ;Wraps words at spaces normally and will breakup long
  . S (LSTD,LL)=0,CURD=1 F TL=0:0 S CURD=$F(WORD,DLM,CURD) Q:'CURD  D
  . . S TL=TL+1
  . . S WD(TL)=CURD_"^"_$E(WORD,CURD-2,CURD)
- . . S:CURD<MAXLN LSTD=CURD,LL=TL
+ . . S:CURD'>MAXLN LSTD=CURD,LL=TL
  . ;special check of "," embedded in a number  e.g. 1,000
  . ;backup to previous delimiter if pattern match
  . I DLM="," F UL=LL:-1:0 Q:$P($G(WD(UL)),"^",2)'?1N1","1N
  . I DLM=",",+$G(WD(UL))<LSTD S LSTD=+$G(WD(UL))
  . ;
+ . ;*410
+ . ;if WORD is longer than 60 characters and a valid delimiter is 
+ . ;found after character position 57 (58 or later), ignore the 
+ . ;delimiter and break at end of line since entire word will not
+ . ;fit on one line
+ . N WORDLN S WORDLN=$L(WORD) I DLM]"",DLM'="," S WORDLN=$F(WORD,DLM,1)-1
+ . S WORD1=$E(WORD,1,WORDLN),WORD2=$E(WORD,WORDLN+1,$L(WORD))
+ . I (LM+1+$L(WORD1))>80 S WORD1=$E(WORD,1,MAXLN),WORD2=$E(WORD,MAXLN+1,$L(WORD))
+ . I DLM]"",($F(WORD,DLM,1)-1)>57,$L(WORD)'<60 D  Q
+ . . D ADDWORDS S WORD0=WORD2
+ . ;
  . ;'LSTD usually means no valid Dlm's found in Word, but if line
  . ;found to have some valid Dlm's later in the Word, then go ahead
  . ;defer entire string to next line via Addwords Api
  . I 'LSTD,TL>LL,$P($G(WD(TL)),"^",2)'?1N1","1N D  Q
- . . S WORD1="",WORD2=WORD D ADDWORDS S WORD0=WORD2
+ . . D ADDWORDS S WORD0=WORD2
  . ;
  . ;no valid Dlm's found in word, can't determine a word, break @EOL
  . I 'LSTD,$L(WORD)>(MAXLN) D  Q

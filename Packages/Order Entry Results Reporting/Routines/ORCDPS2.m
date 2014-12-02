@@ -1,5 +1,5 @@
-ORCDPS2 ;SLC/MKB-Pharmacy dialog utilities ;12/14/2006
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,125,131,243**;Dec 17, 1997;Build 242
+ORCDPS2 ;SLC/MKB-Pharmacy dialog utilities ;12/07/12  08:29
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,125,131,243,311**;Dec 17, 1997;Build 30
  ;
 COMPLEX() ; -- Single or complex?
  N X,Y,DIR,DUOUT,DTOUT,COMPLX
@@ -43,7 +43,7 @@ D1 ; -- Entry from ORCMED,NF^ORCDPS to build list
  ;
 CHDOSE ; -- Kill dependent values if inst ORI of dose changes
  N X,PROMPTS,P,NAME,DOSE,DD S X=$G(ORDIALOG(PROMPT,ORI))
- S X=$$UP^XLFSTR(X),ORDIALOG(PROMPT,ORI)=X ;force uppercase
+ ;S X=$$UP^XLFSTR(X),ORDIALOG(PROMPT,ORI)=X ;force uppercase
  I X,X'?1.N.E1.A.E K DONE W $C(7),!,"Enter the amount of this drug that the patient is to receive as a dose,",!,"NOT as the number of units per dose." Q
  I $L(X)>60,'$D(ORDIALOG(PROMPT,"LIST","B",X)) K DONE W $C(7),!,"Instructions may not be longer than 60 characters." Q
  I $G(ORESET)'=X D  ;kill dependent values if new/changed dose
@@ -56,6 +56,7 @@ CHDOSE ; -- Kill dependent values if inst ORI of dose changes
  . S:DD ORDIALOG(DOSE,ORI)=$TR($G(ORDOSE("DD",DD,X)),"^","&")
  S DD=+$P($G(ORDIALOG(DOSE,ORI)),"&",6)
  I DD,$P($G(ORDOSE("DD",DD)),U,3) D NF^ORCDPS(DD) ;look for FormAlt
+ I 'DD,(+$G(ORDOSE("LOCAL"))) W $C(7),!,"WARNING: Dosage check may not occur."
  Q
  ;
 EXDOSE ; -- Exit Action

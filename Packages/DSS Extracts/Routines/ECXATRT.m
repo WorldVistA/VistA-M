@@ -1,8 +1,8 @@
-ECXATRT ;ALB/JAP - TRT Extract Audit Report ;O4/12/2007
- ;;3.0;DSS EXTRACTS;**1,6,8,107,105**;Dec 22, 1997;Build 70
+ECXATRT ;ALB/JAP - TRT Extract Audit Report ;3/28/14  10:50
+ ;;3.0;DSS EXTRACTS;**1,6,8,107,105,149**;Dec 22, 1997;Build 27
  ;
 EN ;entry point for TRT extract audit report
- N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR
+ N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,ECXPORT,RCNT ;149
  S ECXERR=0
  ;ecxaud=0 for 'extract' audit
  S ECXHEAD="TRT",ECXAUD=0
@@ -20,6 +20,12 @@ EN ;entry point for TRT extract audit report
  W !
  S ECXPGM="PROCESS^ECXATRT",ECXDESC="TRT Extract Audit Report"
  S ECXSAVE("ECXHEAD")="",ECXSAVE("ECXALL")="",ECXSAVE("ECXDIV(")="",ECXSAVE("ECXARRAY(")=""
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I $G(ECXPORT) D  Q  ;149 Section added
+ .K ^TMP($J,"ECXPORT")
+ .S ^TMP($J,"ECXPORT",0)="EXTRACT LOG #^DSS SITE^SERVICE^SPECIALTY (DSS CODE)^FACILITY TREATING SPECIALTY^# OF LOSSES",RCNT=1
+ .D PROCESS
+ .D EXPDISP^ECXUTL1
+ .D AUDIT^ECXKILL
  W !
  D DEVICE^ECXUTLA(ECXPGM,ECXDESC,.ECXSAVE)
  I ECXSAVE("POP")=1 D  Q
@@ -85,7 +91,7 @@ PROCESS ;process data in file #727.817
  ..;convert 15th and 16th piece from PTF code back to Specialty
  ..;ECX*3.0*107
  ..;
- ..N ECXTS
+ ..N ECXTS,NEWTS
  ..S ECXTS=$P(DATA,U,15) I ECXTS'="" S ECXTS=$O(^DIC(42.4,"C",$G(ECXTS),0)),$P(DATA,U,15)=ECXTS
  ..S ECXTS=$P(DATA,U,16) I ECXTS'="" S ECXTS=$O(^DIC(42.4,"C",$G(ECXTS),0)),$P(DATA,U,16)=ECXTS
  ..S NEWTS=$P(DATA,U,15),TS=$P(DATA,U,16),LOS=$P(DATA,U,17)
@@ -105,36 +111,44 @@ PROCESS ;process data in file #727.817
  ...S ^TMP($J,"ECXAUD",DIV,SERV,SPEC)=TOT_U_TS
  ;print the report
  D PRINT
+ I $G(ECXPORT) Q  ;149
  D AUDIT^ECXKILL
  Q
  ;
 PRINT ;print trt data by site, by service, by specialty
- N JJ,SS,LN,P,DIV,DIVNM,GTOT,SVCTOT,PG,QFLG,DIR,DIRUT,DTOUT,DUOUT
+ N JJ,SS,LN,P,DIV,DIVNM,GTOT,SVCTOT,PG,QFLG,DIR,DIRUT,DTOUT,DUOUT,FIRST ;149
  U IO
  I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ Q
  S (QFLG,PG)=0,$P(LN,"-",80)=""
  ;division associated with the treat. spec. change is not actually known; division is dss site
  S DIV="" S DIV=$O(ECXDIV(DIV)) Q:DIV=""  S GTOT=0
- D HEADER
+ I '$G(ECXPORT) D HEADER ;149
  I '$D(^TMP($J,"ECXAUD",DIV)) D  Q
+ .I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=ECXEXT_U_$P(ECXDIV(DIV),U,2)_" ("_$P(ECXDIV(DIV),U,3)_")"_U_"No data available for this DSS Site",RCNT=RCNT+1 Q  ;149
  .W !!,?5,"No data available for this DSS Site.",!!
  I $D(^TMP($J,"ECXAUD",DIV)) S SERV="" F  S SERV=$O(^TMP($J,"ECXAUD",DIV,SERV)) Q:SERV=""  D  Q:QFLG
  .S SVCTOT=0
  .;write the service name
- .D:($Y+3>IOSL) HEADER Q:QFLG  W !,SERV
+ .I '$G(ECXPORT) D:($Y+3>IOSL) HEADER Q:QFLG  W !,SERV ;149
  .S SPEC="" F  S SPEC=$O(^TMP($J,"ECXAUD",DIV,SERV,SPEC)) Q:SPEC=""  D  Q:QFLG
  ..;write the specialty name and total
  ..S TOT=$P(^TMP($J,"ECXAUD",DIV,SERV,SPEC),U,1),TS=$P(^(SPEC),U,2)
- ..W ?22,$E(SPEC,1,30)_" ("_TS_")",?68,$$RJ^XLFSTR(TOT,5," "),!
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=ECXEXT_U_$P(ECXDIV(DIV),U,2)_" ("_$P(ECXDIV(DIV),U,3)_")"_U_SERV_U_SPEC_" ("_TS_")"_"^^"_TOT,RCNT=RCNT+1 ;149
+ ..I '$G(ECXPORT) W ?22,$E(SPEC,1,30)_" ("_TS_")",?68,$$RJ^XLFSTR(TOT,5," "),! ;149
  ..S SVCTOT=SVCTOT+TOT,GTOT=GTOT+TOT
+ ..S FIRST=1 ;149
  ..S FTS="" F  S FTS=$O(^TMP($J,"ECXTS",TS,FTS)) Q:FTS=""  D  Q:QFLG
  ...S FTSNM=^TMP($J,"ECXTS",TS,FTS)
+ ...I $G(ECXPORT),FIRST S $P(^TMP($J,"ECXPORT",(RCNT-1)),U,5)=FTSNM,FIRST=0 Q  ;149 For first treating specialty, put it on same line as the "total" line
+ ...I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=ECXEXT_U_$P(ECXDIV(DIV),U,2)_" ("_$P(ECXDIV(DIV),U,3)_")"_U_SERV_U_SPEC_" ("_TS_")"_U_FTSNM,RCNT=RCNT+1 Q  ;149
  ...D:($Y+3>IOSL) HEADER Q:QFLG  W ?25,$E(FTSNM,1,30),!
  .;write the service subtotal
  .Q:QFLG
+ .I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^^Total for "_SERV_"^^^"_SVCTOT,RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1 Q  ;149
  .W ?22,$E(LN,1,54),!
  .D:($Y+3>IOSL) HEADER Q:QFLG  W "Total for "_SERV_":",?68,$$RJ^XLFSTR(SVCTOT,5," "),!
  ;write the grandtotal for all services at facility
+ I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^^Grand Total for all Services^^^"_GTOT Q  ;149
  D:($Y+3>IOSL) HEADER Q:QFLG  W !!,"Grand Total for all Services:",?68,$$RJ^XLFSTR(GTOT,5," ")
  ;print the audit descriptive narrative
  I $E(IOST)'="C" D
@@ -152,7 +166,7 @@ PRINT ;print trt data by site, by service, by specialty
  ;
 HEADER ;header and page control
  N JJ,SS
- I $E(IOST)="C" D
+ I $E(IOST)="C",'QFLG D  ;149 Quit if user entered "^"
  .S SS=22-$Y F JJ=1:1:SS W !
  .I PG>0 S DIR(0)="E" W ! D ^DIR K DIR S:'Y QFLG=1
  Q:QFLG

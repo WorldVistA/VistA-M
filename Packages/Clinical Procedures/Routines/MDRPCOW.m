@@ -1,7 +1,8 @@
 MDRPCOW ; HOIFO/DP/NCA - Billing Widget ;10/3/05  12:17
- ;;1.0;CLINICAL PROCEDURES;**6**;Apr 01, 2004;Build 102
+ ;;1.0;CLINICAL PROCEDURES;**6,29**;Apr 01, 2004;Build 22
  ; Reference IA# 2240 [Supported] ENCRYP^XUSRB1 call
  ;               2241 [Supported] DECRYP^XUSRB1 call
+ ;               5679 [Supported] IMPDATE^LEXU call
  ;               10017 [Supported] ^DD("DD") reference
  ;               10040 [Supported] Hospital Location File Access
  ;               10045 [Supported] XUSHSHP call
@@ -150,4 +151,9 @@ STATUS ; [Procedure] Update transaction status
  S MDFDA(702,+P1_",",.09)=P2
  D FILE^DIE("","MDFDA")
  S @RESULTS@(0)="1^Done"
+ Q
+ ;
+MDICDDT ; ICD 10 IMPLEMENTATION DATE FOR CP
+ ; Call to retrieve ICD-10 Implementation Date
+ S @RESULTS@(0)=$$IMPDATE^LEXU("10D")
  Q

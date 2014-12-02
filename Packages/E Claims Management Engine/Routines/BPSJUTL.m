@@ -1,5 +1,5 @@
 BPSJUTL ;BHAM ISC/LJF - e-Pharmacy Utils ;4/17/08  16:13
- ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,7**;JUN 2004;Build 46
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,7,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 HLP(PROTOCOL) ;  Find the Protocol IEN
@@ -92,3 +92,26 @@ SPAR(HL,BPSJSEG,HCTS) ;  Segment Parsing
  . S IJ=$O(BPSJSEG(II,"")) Q:'IJ
  . S BPSJSEG(II)=BPSJSEG(II,IJ) K BPSJSEG(II,IJ)
  Q
+ ;
+EPPORT() ;Returns Port Number for HL7 multi-threaded listener
+ ;
+ ; IA #4241 allows read of Logical Link file #870
+ ;
+ N ACTIVE,LIEN,LINK,PORT,PTR
+ S LINK="",PORT=""
+ ;Search for links which are multi-threaded listeners
+ F  S LINK=$O(^HLCS(870,"B",LINK)) Q:LINK=""  D  Q:PORT
+ .;Check for all links with this name
+ .S LIEN="" F  S LIEN=$O(^HLCS(870,"B",LINK,LIEN)) Q:'LIEN  D  Q:PORT
+ ..;Ignore if link is not multi-threaded service type
+ ..I $P($G(^HLCS(870,LIEN,400)),U,3)'="M" Q
+ ..;If any pointer field is populated assume link is active
+ ..S ACTIVE=0 F PTR="IN QUEUE FRONT","IN QUEUE BACK","OUT QUEUE FRONT","OUT QUEUE BACK" D  Q:ACTIVE
+ ...S:+$G(^HLCS(870,LIEN,PTR_" POINTER")) ACTIVE=1
+ ..;Ignore inactive links
+ ..I 'ACTIVE Q
+ ..;Get Port number
+ ..S PORT=$P($G(^HLCS(870,LIEN,400)),U,2)
+ ;
+ ;Return listener port number
+ Q PORT

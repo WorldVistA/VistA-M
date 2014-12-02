@@ -1,354 +1,140 @@
-IBDEI07W ; ; 20-FEB-2013
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 20, 2013
+IBDEI07W ; ; 12-AUG-2014
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10385,2)
- ;;=Benign Neoplasm of Skin of Arm^267635
- ;;^UTILITY(U,$J,358.3,10386,0)
- ;;=216.7^^82^695^5
- ;;^UTILITY(U,$J,358.3,10386,1,0)
+ ;;^UTILITY(U,$J,358.3,3551,1,4,0)
+ ;;=4^197.0
+ ;;^UTILITY(U,$J,358.3,3551,1,5,0)
+ ;;=5^Mets To Lung
+ ;;^UTILITY(U,$J,358.3,3551,2)
+ ;;=Mets to Lung^267322
+ ;;^UTILITY(U,$J,358.3,3552,0)
+ ;;=196.2^^33^281^87
+ ;;^UTILITY(U,$J,358.3,3552,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10386,1,4,0)
- ;;=4^Benign Lesion, Lower Limb
- ;;^UTILITY(U,$J,358.3,10386,1,5,0)
- ;;=5^216.7
- ;;^UTILITY(U,$J,358.3,10386,2)
- ;;=Benign Neoplasm of of skin of leg^267636
- ;;^UTILITY(U,$J,358.3,10387,0)
- ;;=216.8^^82^695^7
- ;;^UTILITY(U,$J,358.3,10387,1,0)
+ ;;^UTILITY(U,$J,358.3,3552,1,4,0)
+ ;;=4^196.2
+ ;;^UTILITY(U,$J,358.3,3552,1,5,0)
+ ;;=5^Mets To Lymph Nodes, Abdominal
+ ;;^UTILITY(U,$J,358.3,3552,2)
+ ;;=^267316
+ ;;^UTILITY(U,$J,358.3,3553,0)
+ ;;=196.3^^33^281^88
+ ;;^UTILITY(U,$J,358.3,3553,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10387,1,4,0)
- ;;=4^Benign Lesion, Skin Other
- ;;^UTILITY(U,$J,358.3,10387,1,5,0)
- ;;=5^216.8
- ;;^UTILITY(U,$J,358.3,10387,2)
- ;;=Ben Neoplasm, Skin, Unspec^267637
- ;;^UTILITY(U,$J,358.3,10388,0)
- ;;=216.3^^82^695^3
- ;;^UTILITY(U,$J,358.3,10388,1,0)
+ ;;^UTILITY(U,$J,358.3,3553,1,4,0)
+ ;;=4^196.3
+ ;;^UTILITY(U,$J,358.3,3553,1,5,0)
+ ;;=5^Mets To Lymph Nodes, Axillary Or Brachial
+ ;;^UTILITY(U,$J,358.3,3553,2)
+ ;;=^267317
+ ;;^UTILITY(U,$J,358.3,3554,0)
+ ;;=196.0^^33^281^89
+ ;;^UTILITY(U,$J,358.3,3554,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10388,1,4,0)
- ;;=4^Benign Lesion, Face
- ;;^UTILITY(U,$J,358.3,10388,1,5,0)
- ;;=5^216.3
- ;;^UTILITY(U,$J,358.3,10388,2)
- ;;=^267632
- ;;^UTILITY(U,$J,358.3,10389,0)
- ;;=173.00^^82^696^4
- ;;^UTILITY(U,$J,358.3,10389,1,0)
+ ;;^UTILITY(U,$J,358.3,3554,1,4,0)
+ ;;=4^196.0
+ ;;^UTILITY(U,$J,358.3,3554,1,5,0)
+ ;;=5^Mets To Lymph Nodes, Cervical
+ ;;^UTILITY(U,$J,358.3,3554,2)
+ ;;=Lymph Nodes^267314
+ ;;^UTILITY(U,$J,358.3,3555,0)
+ ;;=196.1^^33^281^90
+ ;;^UTILITY(U,$J,358.3,3555,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10389,1,4,0)
- ;;=4^Ca Of Skin Of Lip
- ;;^UTILITY(U,$J,358.3,10389,1,5,0)
- ;;=5^173.00
- ;;^UTILITY(U,$J,358.3,10389,2)
- ;;=MALIG NEOPL SKIN LIP NOS^340596
- ;;^UTILITY(U,$J,358.3,10390,0)
- ;;=173.10^^82^696^2
- ;;^UTILITY(U,$J,358.3,10390,1,0)
+ ;;^UTILITY(U,$J,358.3,3555,1,4,0)
+ ;;=4^196.1
+ ;;^UTILITY(U,$J,358.3,3555,1,5,0)
+ ;;=5^Mets To Lymph Nodes, Mediastinal 
+ ;;^UTILITY(U,$J,358.3,3555,2)
+ ;;=Lymph Nodes^267315
+ ;;^UTILITY(U,$J,358.3,3556,0)
+ ;;=196.8^^33^281^91
+ ;;^UTILITY(U,$J,358.3,3556,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10390,1,4,0)
- ;;=4^Ca Of Skin Of Eyelid
- ;;^UTILITY(U,$J,358.3,10390,1,5,0)
- ;;=5^173.10
- ;;^UTILITY(U,$J,358.3,10390,2)
- ;;=MAL NEO EYELID/CANTH NOS^340597
- ;;^UTILITY(U,$J,358.3,10391,0)
- ;;=173.20^^82^696^1
- ;;^UTILITY(U,$J,358.3,10391,1,0)
+ ;;^UTILITY(U,$J,358.3,3556,1,4,0)
+ ;;=4^196.8
+ ;;^UTILITY(U,$J,358.3,3556,1,5,0)
+ ;;=5^Mets To Lymph Nodes, Multiple Sites
+ ;;^UTILITY(U,$J,358.3,3556,2)
+ ;;=^267320
+ ;;^UTILITY(U,$J,358.3,3557,0)
+ ;;=V10.51^^33^281^49
+ ;;^UTILITY(U,$J,358.3,3557,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10391,1,4,0)
- ;;=4^Ca Of Skin Of Ear
- ;;^UTILITY(U,$J,358.3,10391,1,5,0)
- ;;=5^173.20
- ;;^UTILITY(U,$J,358.3,10391,2)
- ;;=MALIG NEO SKIN EAR NOS^340598
- ;;^UTILITY(U,$J,358.3,10392,0)
- ;;=173.30^^82^696^3
- ;;^UTILITY(U,$J,358.3,10392,1,0)
+ ;;^UTILITY(U,$J,358.3,3557,1,4,0)
+ ;;=4^V10.51
+ ;;^UTILITY(U,$J,358.3,3557,1,5,0)
+ ;;=5^H/O Bladder Cancer
+ ;;^UTILITY(U,$J,358.3,3557,2)
+ ;;=^295228
+ ;;^UTILITY(U,$J,358.3,3558,0)
+ ;;=V10.3^^33^281^50
+ ;;^UTILITY(U,$J,358.3,3558,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10392,1,4,0)
- ;;=4^Ca Of Skin Of Face
- ;;^UTILITY(U,$J,358.3,10392,1,5,0)
- ;;=5^173.30
- ;;^UTILITY(U,$J,358.3,10392,2)
- ;;=MAL NEO SKN FACE NEC/NOS^340599
- ;;^UTILITY(U,$J,358.3,10393,0)
- ;;=173.40^^82^696^9
- ;;^UTILITY(U,$J,358.3,10393,1,0)
+ ;;^UTILITY(U,$J,358.3,3558,1,4,0)
+ ;;=4^V10.3
+ ;;^UTILITY(U,$J,358.3,3558,1,5,0)
+ ;;=5^H/O Breast Cancer
+ ;;^UTILITY(U,$J,358.3,3558,2)
+ ;;=^295217
+ ;;^UTILITY(U,$J,358.3,3559,0)
+ ;;=V10.41^^33^281^51
+ ;;^UTILITY(U,$J,358.3,3559,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10393,1,4,0)
- ;;=4^Ca of Skin Scalp/Neck
- ;;^UTILITY(U,$J,358.3,10393,1,5,0)
- ;;=5^173.40
- ;;^UTILITY(U,$J,358.3,10393,2)
- ;;=MAL NEO SCLP/SKN NCK NOS^340600
- ;;^UTILITY(U,$J,358.3,10394,0)
- ;;=173.50^^82^696^5
- ;;^UTILITY(U,$J,358.3,10394,1,0)
+ ;;^UTILITY(U,$J,358.3,3559,1,4,0)
+ ;;=4^V10.41
+ ;;^UTILITY(U,$J,358.3,3559,1,5,0)
+ ;;=5^H/O Cervical Cancer
+ ;;^UTILITY(U,$J,358.3,3559,2)
+ ;;=^295219
+ ;;^UTILITY(U,$J,358.3,3560,0)
+ ;;=V10.05^^33^281^52
+ ;;^UTILITY(U,$J,358.3,3560,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10394,1,4,0)
- ;;=4^Ca Of Skin Of Trunk
- ;;^UTILITY(U,$J,358.3,10394,1,5,0)
- ;;=5^173.50
- ;;^UTILITY(U,$J,358.3,10394,2)
- ;;=MALIG NEO SKIN TRUNK NOS^340601
- ;;^UTILITY(U,$J,358.3,10395,0)
- ;;=173.60^^82^696^7
- ;;^UTILITY(U,$J,358.3,10395,1,0)
+ ;;^UTILITY(U,$J,358.3,3560,1,4,0)
+ ;;=4^V10.05
+ ;;^UTILITY(U,$J,358.3,3560,1,5,0)
+ ;;=5^H/O Colon Cancer
+ ;;^UTILITY(U,$J,358.3,3560,2)
+ ;;=H/O Colon Cancer^295207
+ ;;^UTILITY(U,$J,358.3,3561,0)
+ ;;=V10.03^^33^281^53
+ ;;^UTILITY(U,$J,358.3,3561,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10395,1,4,0)
- ;;=4^Ca of Skin Arm/Shoulder
- ;;^UTILITY(U,$J,358.3,10395,1,5,0)
- ;;=5^173.60
- ;;^UTILITY(U,$J,358.3,10395,2)
- ;;=MAL NEO SKIN UP LIMB NOS^340602
- ;;^UTILITY(U,$J,358.3,10396,0)
- ;;=173.70^^82^696^8
- ;;^UTILITY(U,$J,358.3,10396,1,0)
+ ;;^UTILITY(U,$J,358.3,3561,1,4,0)
+ ;;=4^V10.03
+ ;;^UTILITY(U,$J,358.3,3561,1,5,0)
+ ;;=5^H/O Esophageal Cancer
+ ;;^UTILITY(U,$J,358.3,3561,2)
+ ;;=^295205
+ ;;^UTILITY(U,$J,358.3,3562,0)
+ ;;=V10.60^^33^281^55
+ ;;^UTILITY(U,$J,358.3,3562,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10396,1,4,0)
- ;;=4^Ca of Skin Leg/Hip
- ;;^UTILITY(U,$J,358.3,10396,1,5,0)
- ;;=5^173.70
- ;;^UTILITY(U,$J,358.3,10396,2)
- ;;=MAL NEO SKN LOW LIMB NOS^340603
- ;;^UTILITY(U,$J,358.3,10397,0)
- ;;=173.80^^82^696^6
- ;;^UTILITY(U,$J,358.3,10397,1,0)
+ ;;^UTILITY(U,$J,358.3,3562,1,4,0)
+ ;;=4^V10.60
+ ;;^UTILITY(U,$J,358.3,3562,1,5,0)
+ ;;=5^H/O Leukemia
+ ;;^UTILITY(U,$J,358.3,3562,2)
+ ;;=H/O Leukemia^295231
+ ;;^UTILITY(U,$J,358.3,3563,0)
+ ;;=V10.11^^33^281^56
+ ;;^UTILITY(U,$J,358.3,3563,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10397,1,4,0)
- ;;=4^Ca Of Skin, Other Part
- ;;^UTILITY(U,$J,358.3,10397,1,5,0)
- ;;=5^173.80
- ;;^UTILITY(U,$J,358.3,10397,2)
- ;;=MAL NEO SKN SITE NEC/NOS^340604
- ;;^UTILITY(U,$J,358.3,10398,0)
- ;;=172.0^^82^697^6
- ;;^UTILITY(U,$J,358.3,10398,1,0)
+ ;;^UTILITY(U,$J,358.3,3563,1,4,0)
+ ;;=4^V10.11
+ ;;^UTILITY(U,$J,358.3,3563,1,5,0)
+ ;;=5^H/O Lung Cancer
+ ;;^UTILITY(U,$J,358.3,3563,2)
+ ;;=H/O Lung Cancer^295211
+ ;;^UTILITY(U,$J,358.3,3564,0)
+ ;;=V10.79^^33^281^57
+ ;;^UTILITY(U,$J,358.3,3564,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10398,1,4,0)
- ;;=4^ Melanoma Of Lip
- ;;^UTILITY(U,$J,358.3,10398,1,5,0)
- ;;=5^172.0
- ;;^UTILITY(U,$J,358.3,10398,2)
- ;;=Malig Melanoma of Lip^267175
- ;;^UTILITY(U,$J,358.3,10399,0)
- ;;=172.1^^82^697^3
- ;;^UTILITY(U,$J,358.3,10399,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10399,1,4,0)
- ;;=4^ Melanoma Of Eyelid
- ;;^UTILITY(U,$J,358.3,10399,1,5,0)
- ;;=5^172.1
- ;;^UTILITY(U,$J,358.3,10399,2)
- ;;=Malig Melanoma of Eyelid^267176
- ;;^UTILITY(U,$J,358.3,10400,0)
- ;;=172.2^^82^697^2
- ;;^UTILITY(U,$J,358.3,10400,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10400,1,4,0)
- ;;=4^ Melanoma Of Ear
- ;;^UTILITY(U,$J,358.3,10400,1,5,0)
- ;;=5^172.2
- ;;^UTILITY(U,$J,358.3,10400,2)
- ;;=Malig Melanoma of Ear^267177
- ;;^UTILITY(U,$J,358.3,10401,0)
- ;;=172.3^^82^697^4
- ;;^UTILITY(U,$J,358.3,10401,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10401,1,4,0)
- ;;=4^ Melanoma Of Face
- ;;^UTILITY(U,$J,358.3,10401,1,5,0)
- ;;=5^172.3
- ;;^UTILITY(U,$J,358.3,10401,2)
- ;;=Malig Melanoma of Face^267178
- ;;^UTILITY(U,$J,358.3,10402,0)
- ;;=172.4^^82^697^7
- ;;^UTILITY(U,$J,358.3,10402,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10402,1,4,0)
- ;;=4^ Melanoma Of Neck/Scalp
- ;;^UTILITY(U,$J,358.3,10402,1,5,0)
- ;;=5^172.4
- ;;^UTILITY(U,$J,358.3,10402,2)
- ;;=Malignant Melanoma of Neck^267179
- ;;^UTILITY(U,$J,358.3,10403,0)
- ;;=172.5^^82^697^9
- ;;^UTILITY(U,$J,358.3,10403,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10403,1,4,0)
- ;;=4^ Melanoma Of Trunk
- ;;^UTILITY(U,$J,358.3,10403,1,5,0)
- ;;=5^172.5
- ;;^UTILITY(U,$J,358.3,10403,2)
- ;;=Malignant Melanoma of Trunk^267180
- ;;^UTILITY(U,$J,358.3,10404,0)
- ;;=172.6^^82^697^1
- ;;^UTILITY(U,$J,358.3,10404,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10404,1,4,0)
- ;;=4^ Melanoma Of Arm/Shoulder
- ;;^UTILITY(U,$J,358.3,10404,1,5,0)
- ;;=5^172.6
- ;;^UTILITY(U,$J,358.3,10404,2)
- ;;=Malignant Melanoma of Arm^267181
- ;;^UTILITY(U,$J,358.3,10405,0)
- ;;=172.7^^82^697^5
- ;;^UTILITY(U,$J,358.3,10405,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10405,1,4,0)
- ;;=4^ Melanoma Of Leg/Hip
- ;;^UTILITY(U,$J,358.3,10405,1,5,0)
- ;;=5^172.7
- ;;^UTILITY(U,$J,358.3,10405,2)
- ;;=Malignant Melanoma of Leg^267182
- ;;^UTILITY(U,$J,358.3,10406,0)
- ;;=172.8^^82^697^8
- ;;^UTILITY(U,$J,358.3,10406,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10406,1,4,0)
- ;;=4^ Melanoma Of Skin
- ;;^UTILITY(U,$J,358.3,10406,1,5,0)
- ;;=5^172.8
- ;;^UTILITY(U,$J,358.3,10406,2)
- ;;=Malignant Melanoma of Skin^267183
- ;;^UTILITY(U,$J,358.3,10407,0)
- ;;=172.9^^82^697^10
- ;;^UTILITY(U,$J,358.3,10407,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10407,1,4,0)
- ;;=4^Malig Melanoma Skin NOS
- ;;^UTILITY(U,$J,358.3,10407,1,5,0)
- ;;=5^172.9
- ;;^UTILITY(U,$J,358.3,10407,2)
- ;;=^75462
- ;;^UTILITY(U,$J,358.3,10408,0)
- ;;=873.8^^82^698^14
- ;;^UTILITY(U,$J,358.3,10408,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10408,1,4,0)
- ;;=4^Laceration, Head, Nec
- ;;^UTILITY(U,$J,358.3,10408,1,5,0)
- ;;=5^873.8
- ;;^UTILITY(U,$J,358.3,10408,2)
- ;;=Laceration, Head, NEC^274970
- ;;^UTILITY(U,$J,358.3,10409,0)
- ;;=872.01^^82^698^2
- ;;^UTILITY(U,$J,358.3,10409,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10409,1,4,0)
- ;;=4^Laceration, Auricle
- ;;^UTILITY(U,$J,358.3,10409,1,5,0)
- ;;=5^872.01
- ;;^UTILITY(U,$J,358.3,10409,2)
- ;;=Laceration, Auricle^274898
- ;;^UTILITY(U,$J,358.3,10410,0)
- ;;=873.42^^82^698^11
- ;;^UTILITY(U,$J,358.3,10410,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10410,1,4,0)
- ;;=4^Laceration, Forehead
- ;;^UTILITY(U,$J,358.3,10410,1,5,0)
- ;;=5^873.42
- ;;^UTILITY(U,$J,358.3,10410,2)
- ;;=Laceration, Forehead^274943
- ;;^UTILITY(U,$J,358.3,10411,0)
- ;;=873.41^^82^698^5
- ;;^UTILITY(U,$J,358.3,10411,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10411,1,4,0)
- ;;=4^Laceration, Cheek
- ;;^UTILITY(U,$J,358.3,10411,1,5,0)
- ;;=5^873.41
- ;;^UTILITY(U,$J,358.3,10411,2)
- ;;=Laceration, Cheek^274940
- ;;^UTILITY(U,$J,358.3,10412,0)
- ;;=873.44^^82^698^16
- ;;^UTILITY(U,$J,358.3,10412,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10412,1,4,0)
- ;;=4^Laceration, Jaw/Chin
- ;;^UTILITY(U,$J,358.3,10412,1,5,0)
- ;;=5^873.44
- ;;^UTILITY(U,$J,358.3,10412,2)
- ;;=Laceration, Jaw/Chin^274947
- ;;^UTILITY(U,$J,358.3,10413,0)
- ;;=872.8^^82^698^6
- ;;^UTILITY(U,$J,358.3,10413,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10413,1,4,0)
- ;;=4^Laceration, Ear
- ;;^UTILITY(U,$J,358.3,10413,1,5,0)
- ;;=5^872.8
- ;;^UTILITY(U,$J,358.3,10413,2)
- ;;=Laceration, Ear^274918
- ;;^UTILITY(U,$J,358.3,10414,0)
- ;;=873.40^^82^698^8
- ;;^UTILITY(U,$J,358.3,10414,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10414,1,4,0)
- ;;=4^Laceration, Face, Nos
- ;;^UTILITY(U,$J,358.3,10414,1,5,0)
- ;;=5^873.40
- ;;^UTILITY(U,$J,358.3,10414,2)
- ;;=Laceration, Face, NOS^274939
- ;;^UTILITY(U,$J,358.3,10415,0)
- ;;=874.8^^82^698^18
- ;;^UTILITY(U,$J,358.3,10415,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10415,1,4,0)
- ;;=4^Laceration, Neck
- ;;^UTILITY(U,$J,358.3,10415,1,5,0)
- ;;=5^874.8
- ;;^UTILITY(U,$J,358.3,10415,2)
- ;;=Laceration, Neck^274988
- ;;^UTILITY(U,$J,358.3,10416,0)
- ;;=873.20^^82^698^19
- ;;^UTILITY(U,$J,358.3,10416,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10416,1,4,0)
- ;;=4^Laceration, Nose
- ;;^UTILITY(U,$J,358.3,10416,1,5,0)
- ;;=5^873.20
- ;;^UTILITY(U,$J,358.3,10416,2)
- ;;=Laceration, Nose^274924
- ;;^UTILITY(U,$J,358.3,10417,0)
- ;;=873.0^^82^698^20
- ;;^UTILITY(U,$J,358.3,10417,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10417,1,4,0)
- ;;=4^Laceration, Scalp
- ;;^UTILITY(U,$J,358.3,10417,1,5,0)
- ;;=5^873.0
- ;;^UTILITY(U,$J,358.3,10417,2)
- ;;=Laceration, Scalp^274921
- ;;^UTILITY(U,$J,358.3,10418,0)
- ;;=880.02^^82^698^3
- ;;^UTILITY(U,$J,358.3,10418,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10418,1,4,0)
- ;;=4^Laceration, Axilla
- ;;^UTILITY(U,$J,358.3,10418,1,5,0)
- ;;=5^880.02
- ;;^UTILITY(U,$J,358.3,10418,2)
- ;;=Laceration, Axilla^275027
- ;;^UTILITY(U,$J,358.3,10419,0)
- ;;=877.0^^82^698^4
- ;;^UTILITY(U,$J,358.3,10419,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10419,1,4,0)
- ;;=4^Laceration, Buttock
- ;;^UTILITY(U,$J,358.3,10419,1,5,0)
- ;;=5^877.0
- ;;^UTILITY(U,$J,358.3,10419,2)
- ;;=Laceration, Buttock^274999
- ;;^UTILITY(U,$J,358.3,10420,0)
- ;;=879.4^^82^698^12
- ;;^UTILITY(U,$J,358.3,10420,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10420,1,4,0)
- ;;=4^Laceration, Groin/Inguinal
- ;;^UTILITY(U,$J,358.3,10420,1,5,0)
- ;;=5^879.4
+ ;;^UTILITY(U,$J,358.3,3564,1,4,0)
+ ;;=4^V10.79
+ ;;^UTILITY(U,$J,358.3,3564,1,5,0)
+ ;;=5^H/O Lymphoma
+ ;;^UTILITY(U,$J,358.3,3564,2)
+ ;;=H/O Lymphoma^295238

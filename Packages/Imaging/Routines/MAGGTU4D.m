@@ -1,5 +1,5 @@
-MAGGTU4D ;WOIFO/SG/NST/JSL - VERSION CONTROL (CLINICAL DISPLAY) ; 08 Mar 2011 2:52 PM
- ;;3.0;IMAGING;**93,94,106,117,122**;Mar 19, 2002;Build 92;Aug 02, 2012
+MAGGTU4D ;WOIFO/SG/NST/JSL - VERSION CONTROL (CLINICAL DISPLAY) ; 29 Aug 2013 3:58 PM
+ ;;3.0;IMAGING;**93,94,106,117,122,131,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -23,6 +23,8 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL DISPLAY CLIENTS
  ;;==================================================================
  ;;| Version |Build|Seq #|                Comment                   |
  ;;|---------+-----+------------------------------------------------|
+ ;;| 3.0.130 |  18 |  70 | Aug 2013                                 |
+ ;;| 3.0.131 |  21 |  65 | Aug 2013                                 |
  ;;| 3.0.122 |  15 |  55 | Jul 2012                                 |
  ;;| 3.0.117 |   8 |  45 | Jul 2011                                 |
  ;;| 3.0.106 |  13 |  40 | Feb 2011                                 |

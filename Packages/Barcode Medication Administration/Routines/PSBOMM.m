@@ -1,5 +1,5 @@
-PSBOMM ;BIRMINGHAM/EFC-MISSED MEDS ; 7/8/11 4:14pm
- ;;3.0;BAR CODE MED ADMIN;**26,32,56,52,58**;Mar 2004;Build 37
+PSBOMM ;BIRMINGHAM/EFC-MISSED MEDS ;9/20/12 2:08pm
+ ;;3.0;BAR CODE MED ADMIN;**26,32,56,52,58,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -8,6 +8,7 @@ PSBOMM ;BIRMINGHAM/EFC-MISSED MEDS ; 7/8/11 4:14pm
  ; EN^PSJBCMA2/2830
  ;
  ;*58 - insert Verified by Column with nurse initials else "***"
+ ;*70 - add test for PSBCLINORD flag and filter accordingly
  ;
 EN ;
  N PSBSTRT,PSBSTOP,DFN,PSBODATE,PSBFLAG,PSBCNT,PSBEDIT,PSBFUTR
@@ -29,6 +30,12 @@ EN1 ;
  N PSBGBL,PSBHDR,PSBX,PSBDFN,PSBDT,PSBEVDT,PSBH
  K ^TMP("PSJ",$J) S PSBEVDT=PSBSTRT
  D EN^PSJBCMA(DFN,PSBSTRT)
+ ;Filter in/out Clinic Orders               *70
+ D:PSBCLINORD
+ . I $D(PSBRPT(2)) D FILTERCO^PSBO Q
+ . D INCLUDCO^PSBVDLU1
+ D:'PSBCLINORD REMOVECO^PSBVDLU1
+ ;
  Q:^TMP("PSJ",$J,1,0)=-1
  S PSBX=""
  F  S PSBX=$O(^TMP("PSJ",$J,PSBX)) Q:PSBX=""  D
@@ -58,7 +65,7 @@ EN1 ;
  ..Q:PSBNGF
  ..Q:PSBOSTS="N"
  ..Q:PSBSM
- ..S PSBS(DFN,PSBONX,$S(PSBOSTS="A":"Active",PSBOSTS="H":"On Hold",PSBOSTS="D":"DC'd",PSBOSTS="DE":"DC'd (Edit)",PSBOSTS="E":"Expired",PSBOSTS="O":"On Call",1:" *Unknown* "))=""
+ ..S PSBS(DFN,PSBONX,$S(PSBOSTS="A":"Active",PSBOSTS="H":"On Hold",PSBOSTS="D":"DC'd",PSBOSTS="DE":"DC'd (Edit)",PSBOSTS="E":"Expired",PSBOSTS="O":"On Call",1:"*Unknown*"))=""
  ..S PSBSTXP(PSBONX,DFN,$$DTFMT^PSBOMM2(PSBOSP))="" ;DFN added to PSBSTXP array in PSB*3*52
  ..S PSBCADM=0
  ..I PSBADST="" D  Q:$G(PSBADST)=""  S PSBCADM=1
@@ -111,19 +118,27 @@ EN1 ;
  K PSBOACTL
  Q
 PRINT ;
- N PSBHDR,PSBDT,PSBOITX,PSBONX,DFN,PSBVNI
+ N PSBHDR,PSBDT,PSBOITX,PSBONX,DFN,PSBVNI,PSBSORT,PSBSRCHL,PSBSRT
  K PSBNPG
+ S PSBSRT=$P(PSBRPT(.1),U,1)                   ;init PSBSRT  ;*70
  S Y=$S($P(PSBRPT(.1),U,8)]"":$P(PSBRPT(.1),U,8),1:$P(PSBRPT(.1),U,6))
+ S PSBHDR(1)="MISSED MEDICATIONS REPORT for "_$$FMTE^XLFDT($P(PSBRPT(.1),U,6)+$P(PSBRPT(.1),U,7))_" to "_$$FMTE^XLFDT(Y+$P(PSBRPT(.1),U,9))
+ S PSBHDR(2)="Order Status(es): --"
+ F Y=5,8,7 I $P(PSBFUTR,U,Y) S $P(PSBHDR(2),": ",2)=$P(PSBHDR(2),": ",2)_$S(PSBHDR(2)["--":"",1:"/ ")_$P("^^^^Active^^Expired^DC'd^^^^^^^^^^",U,Y)_" " S PSBHDR(2)=$TR(PSBHDR(2),"-","")
+ S PSBHDR(3)="Admin Status(es): --"
+ F Y=16,17,18 I $P(PSBFUTR,U,Y) S $P(PSBHDR(3),": ",2)=$P(PSBHDR(3),": ",2)_$S(PSBHDR(3)["--":"",1:"/ ")_$P("^^^^^^^^^^^^^^^Missing Dose^Held^Refused",U,Y)_" " S PSBHDR(3)=$TR(PSBHDR(3),"-","")
+ I PSBINCC S PSBHDR(4)="Include Comments/Reasons"
+ ;check Clinic or Nurs Unit search list                *70
+ S PSBSRCHL=$$SRCHLIST^PSBOHDR()
+ D:PSBSRCHL]""
+ .S PSBHDR(5)=""
+ .S:$P(PSBRPT(4),U,2)="C" PSBHDR(6)="Clinic Search List: "
+ .S:$P(PSBRPT(4),U,2)="I" PSBHDR(6)="Ward Location: "
  ;
- ;Print by Patient
- D:$P(PSBRPT(.1),U,1)="P"
- .S PSBHDR(1)="MISSED MEDICATIONS REPORT for "_$$FMTE^XLFDT($P(PSBRPT(.1),U,6)+$P(PSBRPT(.1),U,7))_" to "_$$FMTE^XLFDT(Y+$P(PSBRPT(.1),U,9))
- .S PSBHDR(2)="Order Status(es): --"
- .F Y=5,8,7 I $P(PSBFUTR,U,Y) S $P(PSBHDR(2),": ",2)=$P(PSBHDR(2),": ",2)_$S(PSBHDR(2)["--":"",1:"/ ")_$P("^^^^Active^^Expired^DC'd^^^^^^^^^^",U,Y)_" " S PSBHDR(2)=$TR(PSBHDR(2),"-","")
- .S PSBHDR(3)="Admin Status(es): --"
- .F Y=16,17,18 I $P(PSBFUTR,U,Y) S $P(PSBHDR(3),": ",2)=$P(PSBHDR(3),": ",2)_$S(PSBHDR(3)["--":"",1:"/ ")_$P("^^^^^^^^^^^^^^^Missing Dose^Held^Refused",U,Y)_" " S PSBHDR(3)=$TR(PSBHDR(3),"-","")
- .I PSBINCC S PSBHDR(4)="Include Comments/Reasons"
+ ;* * *  Print by Patient  * * *
+ D:PSBSRT="P"
  .S DFN=$P(PSBRPT(.1),U,2)
+ .;
  .W $$PTHDR()
  .I $G(PSBEDIT) W !?7,"*Administration Times have been edited*"
  .I $O(^TMP("PSB",$J,DFN,""))="" W !,"No Missed Medications Found",$$PTFTR^PSBOHDR() Q
@@ -143,27 +158,22 @@ PRINT ;
  ....D PSJ1^PSBVT(DFN,PSBONX) S PSBVNI=$S(PSBVNI]"":PSBVNI,1:"***")
  ....I PSBDT["ONE-TIME" D  Q
  .....W !
- .....W !,$O(PSBS(DFN,PSBONX,"")),?15,PSBVNI,?22,PSBDT,?50,PSBOITX,!
- .....I VAR1]"" W ?50,VAR1 S SP=1
- .....I VAR2]"" W:$G(SP) ! W ?50,VAR2
- .....I VAR3]"" W !,$$WRAP^PSBO(50,87,VAR3)
+ .....W !,$O(PSBS(DFN,PSBONX,"")),?15,PSBVNI,?21,PSBDT,?38,PSBOITX,?103,PSBCLORD,!                       ;*70
+ .....I VAR1]"" W ?41,VAR1 S SP=1
+ .....I VAR2]"" W:$G(SP) ! W ?41,VAR2
+ .....I VAR3]"" W !,$$WRAP^PSBO(41,79,VAR3)
  .....W !?3,"Start Date/Time:  ",?22,$O(PSBSTXT(PSBONX,DFN,"")) ;DFN added to PSBSTXT array in PSB*3*52
  .....W !?3,"Stop Date/Time:  ",?22,$O(PSBSTXP(PSBONX,DFN,"")) ;DFN added to PSBSTXP array in PSB*3*52
- ....W !,$O(PSBS(DFN,PSBONX,"")),?15,PSBVNI,?22,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?50,PSBOITX,?102,$O(PSBSTXP(PSBONX,DFN,"")),! ;DFN added to PSBSTXP array in PSB*3*52
- ....I VAR1]"" W ?50,VAR1 S SP=1
- ....I VAR2]"" W:$G(SP) ! W ?50,VAR2
- ....I VAR3]"" W !,$$WRAP^PSBO(50,87,VAR3)
+ ....W !,$O(PSBS(DFN,PSBONX,"")),?15,PSBVNI,?21,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?38,PSBOITX,?85,$O(PSBSTXP(PSBONX,DFN,"")) ;DFN added to PSBSTXP array in PSB*3*52
+ ....W ?103,PSBCLORD,!                     ;*70 clinic name
+ ....I VAR1]"" W ?41,VAR1 S SP=1
+ ....I VAR2]"" W:$G(SP) ! W ?41,VAR2
+ ....I VAR3]"" W !,$$WRAP^PSBO(41,79,VAR3)
  .W $$PTFTR^PSBOHDR()
  .Q
  ;
- ;Print by Ward
- D:$P(PSBRPT(.1),U,1)="W"
- .S PSBHDR(1)="MISSED MEDICATIONS REPORT for "_$$FMTE^XLFDT($P(PSBRPT(.1),U,6)+$P(PSBRPT(.1),U,7))_" to "_$$FMTE^XLFDT(Y+$P(PSBRPT(.1),U,9))
- .S PSBHDR(2)="Order Status(es): --"
- .F Y=5,7,8 I $P(PSBFUTR,U,Y) S $P(PSBHDR(2),": ",2)=$P(PSBHDR(2),": ",2)_$S(PSBHDR(2)["--":"",1:"/ ")_$P("^^^^Active^^Expired^DC'd^^^^^^^^^^",U,Y)_" " S PSBHDR(2)=$TR(PSBHDR(2),"-","")
- .S PSBHDR(3)="Admin Status(es): --"
- .F Y=16,17,18 I $P(PSBFUTR,U,Y) S $P(PSBHDR(3),": ",2)=$P(PSBHDR(3),": ",2)_$S(PSBHDR(3)["--":"",1:"/ ")_$P("^^^^^^^^^^^^^^^Missing Dose^Held^Refused",U,Y)_" " S PSBHDR(3)=$TR(PSBHDR(3),"-","")
- .I PSBINCC S PSBHDR(4)="Include Comments/Reasons"
+ ;* * *  Print by Ward  * * *
+ D:PSBSRT="W"
  .S PSBWARD=$P(PSBRPT(.1),U,3)
  .W $$WRDHDR()
  .I '$O(^TMP("PSB",$J,0)) W !,"No Missed Medications Found" Q
@@ -206,14 +216,67 @@ PRINT ;
  ......I VAR1]"" W !,?57,VAR1 S SP=1
  ......I VAR2]"" W:$G(SP) ! W ?57,VAR2
  ......I VAR3]"" W !,$$WRAP^PSBO(57,82,VAR3)
+ ;
+ ;* * *  Print by Clinic  * * *
+ D:PSBSRT="C"
+ .W $$CLNHDR()
+ .I '$O(^TMP("PSB",$J,0)) W !,"No Missed Medications Found" Q
+ .S PSBSORT=$P(PSBRPT(.1),U,5)
+ .F DFN=0:0 S DFN=$O(^TMP("PSB",$J,DFN)) Q:'DFN  D
+ ..S PSBDX=$S(PSBSORT="P":$P(^DPT(DFN,0),U),1:$G(^DPT(DFN,.1))_" "_$G(^(.101)))
+ ..S:PSBDX="" PSBDX=$P(^DPT(DFN,0),U)
+ ..S ^TMP("PSB",$J,"B",PSBDX,DFN)=""
+ .S PSBDX=""
+ .F  S PSBDX=$O(^TMP("PSB",$J,"B",PSBDX)) Q:PSBDX=""  D
+ ..F DFN=0:0 S DFN=$O(^TMP("PSB",$J,"B",PSBDX,DFN)) Q:'DFN  D
+ ...W !
+ ...S PSBDT=""
+ ...F  S PSBDT=$O(^TMP("PSB",$J,DFN,PSBDT)) Q:PSBDT=""  D
+ ....W !
+ ....K VAR1,VAR2,VAR3    ;reset held/refused to prevent line feed
+ ....W:PSBDT["ONE-TIME" !
+ ....S PSBOITX=""
+ ....F  S PSBOITX=$O(^TMP("PSB",$J,DFN,PSBDT,PSBOITX)) Q:PSBOITX=""  D
+ .....S PSBONX=""
+ .....F  S PSBONX=$O(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX)) Q:PSBONX=""  D
+ ......;if previously held/refused lines printed, need line feed *58
+ ......I ($G(VAR1)]"")!($G(VAR2)]"")!($G(VAR3)]"") W !
+ ......K VAR1,VAR2,VAR3,SP I $Y>(IOSL-9) W $$CLNHDR()
+ ......D PSJ1^PSBVT(DFN,PSBONX)
+ ......S PSBVNI=$S(PSBVNI]"":PSBVNI,1:"***")
+ ......W !,$O(PSBS(DFN,PSBONX,"")),?11,PSBVNI,?17,$P(^DPT(DFN,0),U)
+ ......S VAR1=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX))
+ ......S VAR2=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,"X"))
+ ......S VAR3=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,.3))
+ ......I PSBDT["ONE-TIME" D  Q
+ .......W !,PSBDT,?37,PSBOITX S SP=1
+ .......I VAR1]"" W !,?37,$P(VAR1,U,1) S SP=1
+ .......I VAR2]"" W:$G(SP) ! W ?37,VAR2
+ .......I VAR3]"" W !,$$WRAP^PSBO(37,102,VAR3)
+ .......W !?3,"Start Date/Time:  ",?21,$O(PSBSTXT(PSBONX,DFN,"")) ;DFN added to PSBSTXT array in PSB*3*52
+ .......W !?3,"Stop Date/Time:  ",?21,$O(PSBSTXP(PSBONX,DFN,"")) ;DFN added to PSBSTXP array in PSB*3*52
+ .......W !
+ ......;detail line
+ ......W ?49,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?66,PSBOITX
+ ......W:PSBCLINORD ?103,PSBCLORD
+ ......S SP=1
+ ......I VAR1]"" W !,?57,VAR1 S SP=1
+ ......I VAR2]"" W:$G(SP) ! W ?57,VAR2
+ ......I VAR3]"" W !,$$WRAP^PSBO(57,82,VAR3)
  Q
 WRDHDR() ;
- D WARD^PSBOHDR(PSBWRD,.PSBHDR)
+ D WARD^PSBOHDR(PSBWRD,.PSBHDR,,,PSBSRCHL)
  W !,"Order Status",?15,"Ver",?22,"Room-Bed",?42,"Patient",?74,"Admin Date/Time",?92,"Medication"
  D LN1^PSBOMM2
  Q ""
+CLNHDR() ;
+ D CLINIC^PSBOHDR(.PSBRPT,.PSBHDR,,,PSBSRCHL)
+ W !,"Order Sts",?11,"Ver",?17,"Patient",?49,"Admin Date/Time",?66,"Medication",?103,"Location"
+ D LN1^PSBOMM2
+ Q ""
 PTHDR() ;
- D PT^PSBOHDR(DFN,.PSBHDR)
- W !,"Order Status",?15,"Ver",?22,"Administration Date/Time",?50,"Medication",?102,"Order Stop Date"
+ D PT^PSBOHDR(DFN,.PSBHDR,,,PSBSRCHL)
+ W !,"Order Status",?15,"Ver",?21,"Admin Date/Time",?38,"Medication",?85,"Order Stop Date"
+ W:PSBCLINORD ?103,"Location"
  D LN1^PSBOMM2
  Q ""

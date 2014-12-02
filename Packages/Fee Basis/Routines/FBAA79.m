@@ -1,6 +1,9 @@
 FBAA79 ;AISC/GRR - PRINT FORM 7079 REQUEST FOR OUTPATIENT MEDICAL SERVICES ;6/5/2009
- ;;3.5;FEE BASIS;**12,23,101,103,108**;JAN 30, 1995;Build 115
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.5;FEE BASIS;**12,23,101,103,108,139**;JAN 30, 1995;Build 127
+ ;;Per VA Directive 6402, this routine should not be modified. 
+ ;
+ ; Reference to API $$CODEC^ICDEX supported by ICR #5747
+ ;
  W !,"Print 7079's for: " D DT^DICRW,DATE^FBAAUTL G:FBPOP END D SITEP^FBAAUTL G:FBPOP END
  I '$D(^FBAAA("AF",2)) W !!,*7,"There are no 7079's to be printed!",! G END
  S FBAASCR=""
@@ -33,6 +36,12 @@ GOT Q:'$D(^DPT(DFN,0))
  Q:'$D(^FBAAA(DFN,1,FBK))  S Y(0)=^(FBK,0),VFROM=$P(Y(0),"^",1),VTO=$P(Y(0),"^",2),VFN=$P(Y(0),"^",4) I $S($P(Y(0),"^",3)=6:1,$P(Y(0),"^",3)=7:1,1:"") Q
  S VDX=$P(Y(0),"^",8),FBPATT=$P(Y(0),"^",18),POV=$$EXTPV^FBAAUTL5($P(Y(0),"^",7)),CODE=$P(Y(0),"^",13),PIDC=$P(Y(0),"^",12),REF=$P(Y(0),"^",21)
  S NOV=$P($G(^FBAAA(DFN,1,FBK,1)),"^")
+ ;DEM;139 ICD-10 Project - Set variable VDX=ICD DIAGNOSIS code from ICD DIAGNOSIS FILE (#80).
+ D:$P($G(^FBAAA(DFN,1,FBK,"C")),"^",2)  ;ICD DIAGNOSIS field (POINTER TO ICD DIAGNOSIS FILE (#80)).
+ . S VDX=$P($G(^FBAAA(DFN,1,FBK,"C")),"^",2)  ;ICD DIAGNOSIS field (POINTER TO ICD DIAGNOSIS FILE (#80)).
+ . S VDX=$$CODEC^ICDEX(80,VDX)  ;Diagnosis Code from an IEN.
+ . I +VDX<0 S VDX="" Q  ; -1 ^ message on error.
+ . Q
  S FBDX=$G(^FBAAA(DFN,1,FBK,3))
  S FBIDC=$P($G(^FBAAA(DFN,4)),"^")
  S STATCD=FBI(5),CC=FBI(7) F V=1:1:14 S V(V)=""

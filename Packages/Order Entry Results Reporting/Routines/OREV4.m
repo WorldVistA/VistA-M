@@ -1,5 +1,5 @@
 OREV4 ;SLC/DAN Event delayed orders cont ;10/25/02  13:54
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,367**;Dec 17, 1997;Build 2
  ;DBIA reference section
  ;10006 - DIC
  ;10018 - DIE
@@ -62,7 +62,7 @@ PARENTOK() ;This function determines if the event can be a parent
  S SUB="^ORE(100.2,""AE"")"
  F  S SUB=$Q(@SUB) Q:SUB'["AE"!('OK)  D
  .S RIEN=$P(SUB,",",4) ;Release event ID
- .S PIEN=$P(SUB,",",5) ;Patient event ID
+ .S PIEN=+$P(SUB,",",5) ;Patient event ID -- p.367 added "+" to prevent PIEN from containing ")" 
  .Q:$$LAPSED^OREVNTX(PIEN)  ;quit if event has lapsed
  .I RIEN=DA W !!,"You may not make ",$P($G(^ORD(100.5,DA,0)),U)," a parent",!,"at this time because there are unprocessed delayed orders assigned to it." H 3 S OK=0
  Q OK

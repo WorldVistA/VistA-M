@@ -1,5 +1,5 @@
-PSBOMH2 ;BIRMINGHAM/EFC-MAH ;4/12/12 9:46am
- ;;3.0;BAR CODE MED ADMIN;**6,20,27,26,67,68**;Mar 2004;Build 26
+PSBOMH2 ;BIRMINGHAM/EFC-MAH ;9/13/12 5:15pm
+ ;;3.0;BAR CODE MED ADMIN;**6,20,27,26,67,68,70**;Mar 2004;Build 101
  ;
  ; Reference/IA
  ; EN^PSJBCMA/2828
@@ -8,45 +8,66 @@ PSBOMH2 ;BIRMINGHAM/EFC-MAH ;4/12/12 9:46am
  ;*68 - Add ability to get special instructions at end of each orders
  ;      grid and print in free space before next orders grid, check
  ;      for page overflow each line of word processing text.
+ ;*70 - Print Clinic from ^TMP(""PSB",$J,"ORDERS",PSBORD,"INST") on
+ ;      the intruction/med cell of grid.  Add psbclinord=2 mode for 
+ ;      dual heading text.
  ;
-EN ;
- ; Okay, let's print this puppy
+EN ;     Add dual sections for MAH report - IM and then CO           *70
+ ;     only one Legend section after CO section
+ ;           sort 1 = IM   sort 2 = CO
+ ;
+ ;*70 MAH was missing report Title
+ S Y=$S($P(PSBRPT(.1),U,8)]"":$P(PSBRPT(.1),U,8),1:$P(PSBRPT(.1),U,6))
+ S PSBHDR(0)="MEDICATION ADMINISTRATION HISTORY for "_$$FMTE^XLFDT($P(PSBRPT(.1),U,6)+$P(PSBRPT(.1),U,7))_" to "_$$FMTE^XLFDT(Y+$P(PSBRPT(.1),U,9))
+ ;
+ ;**** INPATIENT ORDERS 1st ****                                   *70
+ N PSBSUBHD
+ S PSBSUBHD="** INPATIENT ORDERS **"
  S PSBWEEK=0
  F  S PSBWEEK=$O(^TMP("PSB",$J,PSBWEEK)) Q:'PSBWEEK  D
- .D:$D(^TMP("PSB",$J,PSBWEEK,"SORT","C"))
- ..D CONT
+ .D:$D(^TMP("PSB",$J,PSBWEEK,"SORT",1,"C"))
+ ..D CONT(1)
  ;
  ; Now the PRN/One Time/On-Call Sheets
  S PSBWEEK=0
  F  S PSBWEEK=$O(^TMP("PSB",$J,PSBWEEK)) Q:'PSBWEEK  D
- .D:$D(^TMP("PSB",$J,PSBWEEK,"SORT","P"))
- ..D PRN
+ .D:$D(^TMP("PSB",$J,PSBWEEK,"SORT",1,"P"))
+ ..D PRN(1)
  ;
+ ;**** CLINIC ORDERS 2nd ****                                      *70
+ S PSBSUBHD="** CLINIC ORDERS **"
+ S PSBWEEK=0
+ F  S PSBWEEK=$O(^TMP("PSB",$J,PSBWEEK)) Q:'PSBWEEK  D
+ .D:$D(^TMP("PSB",$J,PSBWEEK,"SORT",2,"C"))
+ ..D CONT(2)
+ ;
+ ; Now the PRN/One Time/On-Call Sheets
+ S PSBWEEK=0
+ F  S PSBWEEK=$O(^TMP("PSB",$J,PSBWEEK)) Q:'PSBWEEK  D
+ .D:$D(^TMP("PSB",$J,PSBWEEK,"SORT",2,"P"))
+ ..D PRN(2)
+ ;
+ S PSBSUBHD="** LEGEND **"
  D LEGEND
+ K ^TMP("PSB",$J)
  Q
  ;
-CONT ;
+CONT(XO) ;
  N SILN,SITXT
  S PSBHDR(1)="Continuing/PRN/Stat/One Time Medication/Treatment Record (VAF 10-2970 B, C, D)"
  W $$HDR()
  S PSBDRUG=""
- F  S PSBDRUG=$O(^TMP("PSB",$J,PSBWEEK,"SORT","C",PSBDRUG)) Q:PSBDRUG=""  D
+ F  S PSBDRUG=$O(^TMP("PSB",$J,PSBWEEK,"SORT",XO,"C",PSBDRUG)) Q:PSBDRUG=""  D
  .S PSBORD=""
- .F  S PSBORD=$O(^TMP("PSB",$J,PSBWEEK,"SORT","C",PSBDRUG,PSBORD)) Q:'PSBORD  D
- ..;S X="",PSBNAF=0 F  S X=$O(^TMP("PSB",$J,PSBWEEK,PSBORD,X)) Q:X=""  I ^TMP("PSB",$J,PSBWEEK,PSBORD,X,0)'=0 S PSBNAF=1  ; check for data
- ..;D CLEAN^PSBVT,PSJ1^PSBVT(DFN,PSBORD)
- ..;S X=PSBOST D H^%DTC S PSBOSTH=%H
- ..;S X=PSBOSP D H^%DTC S PSBOSPH=%H
- ..;I PSBNAF=0 Q
- ..;I PSBNAF=0,$G(PSBAR(PSBOSTH))'=PSBWEEK,$G(PSBAR(PSBOSPH))'=PSBWEEK Q  ; no data for this week and neither start or stop date is this week
+ .F  S PSBORD=$O(^TMP("PSB",$J,PSBWEEK,"SORT",XO,"C",PSBDRUG,PSBORD)) Q:'PSBORD  D
  ..S PSBCNT=8
  ..S:$O(^TMP("PSB",$J,"ORDERS",PSBORD,"INST",""),-1)>PSBCNT PSBCNT=$O(^(""),-1)
  ..S:$O(^TMP("PSB",$J,"ORDERS",PSBORD,"AT",""),-1)>PSBCNT PSBCNT=$O(^(""),-1)
  ..W:$Y>(IOSL-PSBCNT-4) $$HDR()
- ..F PSBLINE=1:1:PSBCNT D
+ ..F PSBLINE=0:1:PSBCNT D    ;*70 start at 0 for inserted Clinic name
  ...D CHKPAGE                ;*68 convert overflow logic to a tag call
  ...W !,$G(^TMP("PSB",$J,"ORDERS",PSBORD,"INST",PSBLINE))
- ...W ?32,"| ",$G(^TMP("PSB",$J,"ORDERS",PSBORD,"AT",PSBLINE))
+ ...W ?32,"| " W:PSBLINE>0 $G(^TMP("PSB",$J,"ORDERS",PSBORD,"AT",PSBLINE))
  ...S PSBDAY=0,PSBCOL=0
  ...F  S PSBDAY=$O(^TMP("PSB",$J,PSBWEEK,"HDR",PSBDAY)) Q:'PSBDAY  D
  ....W ?(40+(PSBCOL*13)),"|" ;Remove space, PSB*3*67
@@ -65,19 +86,19 @@ CONT ;
  ..W !,$TR($J("",IOM)," ","-")
  Q
  ;
-PRN ;
+PRN(XO) ;
  S PSBHDR(1)="Continuing/PRN/Stat/One Time Medication/Treatment Record (VAF 10-2970 B, C, D)"
  W $$HDR(1)
  S PSBDRUG=""
- F  S PSBDRUG=$O(^TMP("PSB",$J,PSBWEEK,"SORT","P",PSBDRUG)) Q:PSBDRUG=""  D
+ F  S PSBDRUG=$O(^TMP("PSB",$J,PSBWEEK,"SORT",XO,"P",PSBDRUG)) Q:PSBDRUG=""  D
  .S PSBORD=""
- .F  S PSBORD=$O(^TMP("PSB",$J,PSBWEEK,"SORT","P",PSBDRUG,PSBORD)) Q:'PSBORD  D
+ .F  S PSBORD=$O(^TMP("PSB",$J,PSBWEEK,"SORT",XO,"P",PSBDRUG,PSBORD)) Q:'PSBORD  D
  ..S PSBCNT=$O(^TMP("PSB",$J,PSBWEEK,PSBORD,"AT",""),-1)
  ..D:PSBCNT<$O(^TMP("PSB",$J,"ORDERS",PSBORD,"INST",""),-1)
  ...S PSBCNT=$O(^TMP("PSB",$J,"ORDERS",PSBORD,"INST",""),-1)
  ..S:PSBCNT<8 PSBCNT=8  ; Minimum space for order
  ..W:$Y>(IOSL-PSBCNT-4) $$HDR(1)
- ..F PSBLINE=1:1:PSBCNT D
+ ..F PSBLINE=0:1:PSBCNT D
  ...D CHKPAGE                  ;*68 move overflow page logic to a tag
  ...W !,$G(^TMP("PSB",$J,"ORDERS",PSBORD,"INST",PSBLINE))
  ...W ?32,"| ",$G(^TMP("PSB",$J,PSBWEEK,PSBORD,"AT",PSBLINE))
@@ -87,20 +108,23 @@ PRN ;
  ;
 LEGEND ;
  ;print the initials - name legend as an extra page  ;
- ;I '$D(^TMP("PSB",$J,"LEGEND")) K ^TMP("PSJ",$J),^TMP("PSB",$J) Q  ;
- D PT^PSBOHDR(DFN,.PSBHDR)  ;
+ N PSBCLINORD S PSBCLINORD=2                                    ;*70
+ D PT^PSBOHDR(DFN,.PSBHDR,,,,$G(PSBSUBHD))             ;*70
  W !!,"Initial - Name Legend",!  ;
  I $D(^TMP("PSB",$J,"LEGEND"))  D
  .S X=$Q(^TMP("PSB",$J,"LEGEND",""))
  .F  W $S($QS(X,4)[99:"",1:$QS(X,4)),?10,$QS(X,5),! S X=$Q(@X) Q:$QS(X,3)'="LEGEND"  ;
  W !!,"Status Codes",!,"C - Completed",!,"G - Given",!,"H - Held",!,"I - Infusing",!,"M - Missing Dose Requested",!,"R - Refused",!,"RM - Removed",!,"S - Stopped",!  ;
  W "> - Scheduled administration times for the order have been changed",!,"*** - Medication Not Due",! ;add changed Admin time message, PSB*3*67
- K ^TMP("PSJ",$J),^TMP("PSB",$J)
+ K ^TMP("PSJ",$J)
  Q
  ;
 HDR(PRN) ;
  ; PRN = TRUE IF DISPLAYING PRN MED (OPTIONAL)
- D PT^PSBOHDR(DFN,.PSBHDR)
+ N PSBCLINORD S PSBCLINORD=2                                      ;*70
+ D PT^PSBOHDR(DFN,.PSBHDR,,,,$G(PSBSUBHD))           ;*70
+ W !,"Location",?32,"| "                             ;*70
+ I '$G(PRN) F X=0:1:6 W ?(40+(X*13)),"|"             ;*70
  W !,"Start Date",?20,"Stop Date",?32,"| ",$S('$G(PRN):"Admin",1:"Action Status")
  I '$G(PRN) F X=0:1:6 W ?(40+(X*13)),"|"
  W !,"and Time",?20,"and Time",?32,"| ",$S('$G(PRN):"Times",1:"Action Date/Times")

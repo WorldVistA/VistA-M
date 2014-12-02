@@ -1,6 +1,10 @@
 PRCEAU ;WISC/CLH/LDB/BGJ-CREATE/EDIT AUTHORIZATIONS-CONTROL POINTS ; 15 Apr 93  1:20 PM
-V ;;5.1;IFCAP;**23**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**23,180**;Oct 20, 2000;Build 5
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*180 RGB 10/22/12  Added switch PRCE424 coming from 1358 processing
+ ;to insure new entry check (EN1^PRCSUT3) uses file 424, not file 410.
+ ;
  ;Enter new or edit old authorizations
  N AMT,PRC,PRCF,DIC,DIR,DLAYGO,DIE,DA,DR,Y,X,PODA,TRDA,ER,TIME,IN,ABAL,ACT,AUDA,BAL,BAL1,BAL2,Z,X,Y
  ;S PRCF("X")="S" D ^PRCFSITE Q:'%
@@ -33,7 +37,8 @@ EN ;when and poda and site variables are defined
     .. S DR="1.1" D ^DIE Q
     .. Q
  S (X,Z)=PRC("SITE")_"-"_$P($G(TRNODE(4)),U,5)
- D WAIT^PRCFYN,EN1^PRCSUT3 S DIC="^PRC(424,",DLAYGO=424,DIC(0)="LXZ" D ^DIC I Y<0 S X="Unable to create an new entry.  Contact Application Coordinator.*" D MSG^PRCFQ G EXIT
+ D WAIT^PRCFYN S PRCE424=1 K MSG D EN1^PRCSUT3 K PRCE424 I $D(MSG),MSG'="" S X=MSG D MSG^PRCFQ K MSG G EXIT   ;PRC*5.1*180
+ S DIC="^PRC(424,",DLAYGO=424,DIC(0)="LXZ" D ^DIC I Y<0 S X="Unable to create an new entry.  Contact Application Coordinator.*" D MSG^PRCFQ G EXIT   ;PRC*5.1*180
  W !,"This entry has been assigned transaction number: ",$P(X,"-",3),"."
  S DIE=DIC,(AUDA,DA)=+Y,AUDA0=Y(0)
  D NOW^%DTC S TIME=% K Y

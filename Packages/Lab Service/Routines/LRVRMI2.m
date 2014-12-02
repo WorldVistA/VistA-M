@@ -1,5 +1,5 @@
-LRVRMI2 ;DALOI/STAFF - LAH/TMP TO FILE #63 ;03/24/11  17:09
- ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+LRVRMI2 ;DALOI/STAFF - LAH/TMP TO FILE #63 ;11/27/12  18:19
+ ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
  ;
  ; Continuation of LRVRMI4 and is used for extracting results from the LAH global and storing it into LAB DATA FILE (#63).
  ;
@@ -29,6 +29,7 @@ N7 ; Process Parasite Remarks
  S LRFDA(7,63.05,LRIEN,14)=LRNOW
  S LRFDA(7,63.05,LRIEN,15.5)=$S($G(LRDUZ):LRDUZ,1:$G(DUZ))
  D FILE^DIE("","LRFDA(7)","LRMSG")
+ S LRRPTAPP=1
  Q
  ;
  ;
@@ -55,6 +56,7 @@ N10 ; Process Mycology Remarks
  S LRFDA(10,63.05,LRIEN,18)=LRNOW
  S LRFDA(10,63.05,LRIEN,19.5)=$S($G(LRDUZ):LRDUZ,1:$G(DUZ))
  D FILE^DIE("","LRFDA(10)","LRMSG")
+ S LRRPTAPP=1
  Q
  ;
  ;
@@ -81,6 +83,7 @@ N13 ; Process TB Rpt Remarks
  S LRFDA(13,63.05,LRIEN,22)=LRNOW
  S LRFDA(13,63.05,LRIEN,25.5)=$S($G(LRDUZ):LRDUZ,1:$G(DUZ))
  D FILE^DIE("","LRFDA(13)","LRMSG")
+ S LRRPTAPP=1
  Q
  ;
  ;
@@ -108,6 +111,7 @@ N15 ; Mycology smear/prep
  S LRFDA(15,63.05,LRIEN,18)=LRNOW
  S LRFDA(15,63.05,LRIEN,19.5)=$S($G(LRDUZ):LRDUZ,1:$G(DUZ))
  D FILE^DIE("","LRFDA(15)","LRMSG")
+ S LRRPTAPP=1
  Q
  ;
  ;
@@ -135,6 +139,7 @@ N18 ; Process Virology Rpt Remarks
  S LRFDA(18,63.05,LRIEN,33)=LRNOW
  S LRFDA(18,63.05,LRIEN,35)=$S($G(LRDUZ):LRDUZ,1:$G(DUZ))
  D FILE^DIE("","LRFDA(18)","LRMSG")
+ S LRRPTAPP=1
  Q
  ;
  ;

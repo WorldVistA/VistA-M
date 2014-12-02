@@ -1,5 +1,5 @@
 EASECDD ;ALB/LBD - Executable help for fields in file #408.21  ;4 SEP 2001
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**5,7,34,40,100**;Mar 15, 2001;Build 6
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**5,7,34,40,100,110**;Mar 15, 2001;Build 12
  ;
 8 ; Social Security
  W !,?8,"Enter in this field the annual amount of Social Security"
@@ -68,22 +68,42 @@ EASECDD ;ALB/LBD - Executable help for fields in file #408.21  ;4 SEP 2001
  S X="?"
  Q
 17 ; All Other Income
- ;  Display a different message for the revised 10-10EC form.
- ;  Modified for LTC IV (EAS*1*40)
+ ; Display a different message for the revised 10-10EC form.
+ ; Modified for LTC IV (EAS*1*40)
+ ; EAS*1*110
+ N DGAIA
  I $G(DGFORM) D
- .W !,?8,"Enter in this field the annual amount of All Other Income received"
- .W !,?8,"during the current calendar year, including retirement and pension"
- .W !,?8,"income, Social Security Retirement and Social Security Disability"
- .W !,?8,"income, compensation benefits such as unemployment, Workers and"
- .W !,?8,"Black Lung, or VA disability.  Also cash gifts, court mandated"
- .W !,?8,"payments, inheritance amounts, tort settlement payments, interest"
- .W !,?8,"and dividends, including tax exempt earnings and distributions from"
- .W !,?8,"Individual Retirement Accounts (IRAs) or annuities."
+ .S DGAIA(1)="Enter in this field the annual amount of All Other Income received"
+ .S DGAIA(1,"F")="!,?8"
+ .S DGAIA(2)="during the current calendar year, including retirement and pension"
+ .S DGAIA(2,"F")="!,?8"
+ .S DGAIA(3)="income, Social Security Retirement and Social Security Disability"
+ .S DGAIA(3,"F")="!,?8"
+ .S DGAIA(4)="income, compensation benefits such as unemployment, Workers and"
+ .S DGAIA(4,"F")="!,?8"
+ .S DGAIA(5)="Black Lung, or VA disability.  Also cash gifts, court mandated"
+ .S DGAIA(5,"F")="!,?8"
+ .S DGAIA(6)="payments, inheritance amounts, tort settlement payments, interest"
+ .S DGAIA(6,"F")="!,?8"
+ .S DGAIA(7)="and dividends, including tax exempt earnings and distributions from"
+ .S DGAIA(7,"F")="!,?8"
+ .S DGAIA(8)="Individual Retirement Accounts (IRAs) or annuities."
+ .S DGAIA(8,"F")="!,?8"
+ .S DGAIA(9)="A monthly amount can be entered with an '*' after it."
+ .S DGAIA(9,"F")="!!,?8"
+ .S DGAIA(10,"F")="!"
+ .D EN^DDIOL(.DGAIA)
  I '$G(DGFORM) D
- .W !,?8,"Enter in this field the annual amount of All Other Income"
- .W !,?8,"received during the current calendar year (i.e., inheritance amounts,"
- .W !,?8,"tort settlement payments)."
- ;W !!,?8,"A monthly amount can be entered with an '*' after it.",!
+ .S DGAIA(1)="Enter in this field the annual amount of All Other Income"
+ .S DGAIA(1,"F")="!,?8"
+ .S DGAIA(2)="received during the current calendar year (i.e., inheritance amounts,"
+ .S DGAIA(2,"F")="!,?8"
+ .S DGAIA(3)="tort settlement payments)."
+ .S DGAIA(3,"F")="!,?8"
+ .S DGAIA(4)="A monthly amount can be entered with an '*' after it."
+ .S DGAIA(4,"F")="!!,?8"
+ .S DGAIA(5,"F")="!"
+ .D EN^DDIOL(.DGAIA)
  S X="?"
  Q
 101 ; Medical Expenses

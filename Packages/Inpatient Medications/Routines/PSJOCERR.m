@@ -1,5 +1,5 @@
 PSJOCERR ;BIR/MV - ERROR HANDLING FOR ORDER CHECKS ;6 Jun 07 / 3:37 PM
- ;;5.0; INPATIENT MEDICATIONS ;**181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS ;**181,252**;16 DEC 97;Build 69
  ;
 SYS() ;
  ;If the system is down, pause and continue with Allergy and CPRS OC
@@ -38,7 +38,7 @@ DSPERR(PSJTYPE) ;Display drug level errors
  .. K PSJPAUSE
  .. I ($Y+6)>IOSL D PAUSE^PSJMISC(1,1) W @IOF
  .. I PSJMSG]"" W !! D WRITE^PSJMISC(PSJMSG)
- .. I PSJTXT]"" D WRITE^PSJMISC("  Reason: "_PSJTXT)
+ .. I PSJTXT]"" D WRITE^PSJMISC("  Reason(s): "_PSJTXT)
  I PSJDSPFG D PAUSE^PSJMISC(1,1) W @IOF
  Q
 ERRCHK(PSJX) ;

@@ -1,5 +1,5 @@
 ONCODSP ;Hines OIFO/GWB,RTK - MISCELLANEOUS OPTIONS ;05/05/10
- ;;2.11;ONCOLOGY;**1,5,6,13,18,22,23,25,26,39,40,44,48,51,53,56**;Mar 07, 1995;Build 10
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 TR ;[TR Define Tumor Registry Parameters]
  W ! S DIC="^ONCO(160.1,",DIC(0)="AEMLQ",DLAYGO=160.1 D ^DIC
@@ -28,9 +28,15 @@ TR ;[TR Define Tumor Registry Parameters]
  S DR(1,160.1,13)="8  AFFILIATED DIVISION."
  S DR(1,160.1,14)="W !"
  S DR(1,160.1,15)="5  AUTHORZIED QA USER.."
+ S DR(1,160.1,16)="W !"
+ S DR(1,160.1,17)="105  ABSTRATOR/REGISTRAR"
  D ^DIE
  W ! K DIR S DIR(0)="E" D ^DIR S:$D(DIRUT) OUT="Y"
  G EX
+ ;
+TDSNIT() ;Input Transform for 3 Digit State Number multiple (160.1,105)
+ I $D(^ONCO(160.1,"E",X,DA(1))) W !!,"That number has already been assigned!! " Q 1
+ W ! Q 0
  ;
 DIVID ;DIVISION (160.1,6) identifier
  S ONCDIV=""

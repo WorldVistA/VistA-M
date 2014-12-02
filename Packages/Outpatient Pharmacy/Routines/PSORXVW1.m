@@ -1,5 +1,5 @@
 PSORXVW1 ;BIR/SAB-view prescription con't ; 12/4/07 12:28pm
- ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281,359,354,367,386**;DEC 1997;Build 4
+ ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281,359,354,367,386,408**;DEC 1997;Build 100
  ;External reference to ^DD(52 supported by DBIA 999
  ;External reference to ^VA(200 supported by DBIA 10060
  ;PSO*210 add call to WORDWRAP api
@@ -19,7 +19,7 @@ PSORXVW1 ;BIR/SAB-view prescription con't ; 12/4/07 12:28pm
  I $P(RX2,"^",15) S DTT=$P(RX2,"^",15) D DAT S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_"(Returned to Stock "_DAT_")" K DAT,DTT
  S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_"      Routing: "_$S($P(RX0,"^",11)="W":"Window",1:"Mail")
  I $G(^PSRX(DA,"H"))]"",$P(^("STA"),"^")=3 D HLD
- D RF,PAR,ACT,COPAY^PSORXVW2,LBL,ECME^PSOORAL1,^PSORXVW2:$O(^PSRX(DA,4,0))
+ D RF,PAR,ACT,COPAY^PSORXVW2,LBL,ECME^PSOORAL1,SPMP^PSOORAL1,^PSORXVW2:$O(^PSRX(DA,4,0))
  Q
 ACT ;activity log
  N CNT

@@ -1,5 +1,5 @@
 IBJPS2 ;ALB/MAF,ARH - IBSP IB SITE PARAMETER BUILD (cont) ;22-DEC-1995
- ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377,384,400,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377,384,400,432,494,461**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 BLD2 ; - continue build screen array for IB parameters
@@ -37,7 +37,9 @@ BLD2 ; - continue build screen array for IB parameters
  S IBLN=$$SET("MRA Auto Prter",$$EXSET^IBJU1($P(IBPD8,U,19),350.9,8.19),IBLN,IBLR,IBSEL)
  ;
  D RIGHT(1,1,1)
- S IBLN=$$SET("Default RX DX Cd",$$EXSET^IBJU1($P(IBPD1,U,29),350.9,1.29),IBLN,IBLR,IBSEL)
+ S Z=$$ICD9SYS^IBACSV(DT)
+ I Z=1 S IBLN=$$SET("Default RX DX Cd",$$EXSET^IBJU1($P(IBPD1,U,29),350.9,1.29)_" (ICD-9)",IBLN,IBLR,IBSEL)
+ I Z'=1 S IBLN=$$SET("Default RX DX Cd",$$EXSET^IBJU1($P(IBPD7,U,5),350.9,7.05)_" (ICD-10)",IBLN,IBLR,IBSEL)
  S IBLN=$$SET("Default RX CPT Cd",$$EXSET^IBJU1($P(IBPD1,U,30),350.9,1.30),IBLN,IBLR,IBSEL)
  ;
  D LEFT(2)
@@ -63,10 +65,6 @@ BLD2 ; - continue build screen array for IB parameters
  ; ePharmacy parameters
  D RIGHT(7,1,1)
  S IBLN=$$SET("HIPPA NCPDP Active Flag",$S($P(IBPD11,U)=1:"Active",1:"Not Active"),IBLN,IBLR,IBSEL)
- S IBLN=$$SET("Drug Non Covered Recheck Period",$P(IBPD11,U,2)_" days(s)",IBLN,IBLR,IBSEL)
- S IBLN=$$SET("Non Covered Reject Codes","",IBLN,IBLR,IBSEL,1)
- S BPZZ=0 F  S BPZZ=$O(IBPD12(BPZZ)) Q:+BPZZ=0  D
- . S IBLN=$$SET(" ",$$GET1^DIQ(9002313.93,+$G(IBPD12(BPZZ)),.01,"E")_" "_$$GET1^DIQ(9002313.93,+$G(IBPD12(BPZZ)),.02,"E"),IBLN,IBLR,IBSEL)
  ;
  ; transfer pricing
  D RIGHT(1,1,1)

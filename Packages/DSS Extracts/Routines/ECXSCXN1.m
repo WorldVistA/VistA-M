@@ -1,8 +1,9 @@
-ECXSCXN1 ;ALB/JAP  Clinic Extract No Shows; 8/28/02 1:11pm ;5/16/12  16:33
- ;;3.0;DSS EXTRACTS;**71,105,127,132,136**;Dec 22, 1997;Build 28
+ECXSCXN1 ;ALB/JAP  Clinic Extract No Shows; 8/28/02 1:11pm ;4/16/13  11:32
+ ;;3.0;DSS EXTRACTS;**71,105,127,132,136,144**;Dec 22, 1997;Build 9
 NOSHOW(ECXSD,ECXED) ;get noshows from file #44
  ;      ECXSD  = start date, ECXED  = end date
  N ALEN,CLIN,JDATE,JJ,NODE,NOSHOW,PP,STAT,MDIV,ECXEDIS,CNT,ECXARR,ECXSDSC,ECXEDSC ;136
+ N ECXECL,ECXESC,ECXCLST ;144 Call to INTPAT^ECXSCX2 sets variables to null.  Call to PAT1^ECXSCX2 will set camp lejeune status when available.  Encounter values remain null as appt is a no-show
  S CLIN=0
  F  S CLIN=$O(^TMP($J,"ECXCL",CLIN)) Q:'CLIN!($G(QFLG))  D  ;136
  .Q:$P($G(^TMP($J,"ECXCL",CLIN)),U,3)'="C"
@@ -38,7 +39,7 @@ NOSHOW(ECXSD,ECXED) ;get noshows from file #44
  ..S:ECXCPT1="" ECXCPT1="9919901"
  ..S ECXCBOC=$S(MDIV'="":$$CBOC^ECXSCX2(.MDIV),1:"")
  ..S (ECXDSSD,ECXENEL,ECXIR,ECXAO,ECXMIL,ECXPROV,ECXPROVP,ECXPROVN)=""
- ..F I=1:1:5 S (@("ECSP"_I),@("ECSPPC"_I),@("ECSPNPI"_I))=""
+ ..F I=1:1:7 S (@("ECSP"_I),@("ECSPPC"_I),@("ECSPNPI"_I))="" ;144 2 new prov groups
  ..I TOSEND'=3 D
  ...S ECXKEY=P1_P2_ALEN_P3_NOSHOW,ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS,ECXKEY)
  ...S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADMDT,ECXDATE,ECXTS,ECXOBS,ECHEAD,ECXKEY,) D:ECXENC'="" FILE^ECXSCXN

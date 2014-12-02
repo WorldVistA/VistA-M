@@ -1,5 +1,5 @@
 VAFCTFU2 ;BHM/CMC,CKN-Utilities for the Treating Facility file 391.91, CONTINUED ; 5/23/12 6:25pm
- ;;5.3;Registration;**821,856**;Aug 13, 1993;Build 5
+ ;;5.3;Registration;**821,856,863**;Aug 13, 1993;Build 2
 TFL(LIST,PT) ;for this PT [patient] (either DFN, ICN or EDIPI) return the list of treating facilities
  ; CALLED FROM RPC VAFC LOCAL GET CORRESPONDINGIDS
  ; PT values -->
@@ -91,9 +91,9 @@ SET(TFIEN,ARY,CTR) ;This sets the array with the treating facility list.
  ;  Ex  ARY(1)=<ID> ^ <ID TYPE> ^ <Assigning Authority> ^ <Assigning Facility> ^ <ID Status>
  N DGCN,INSTIEN,LSTA,SOURCE,EN,NODE,SDFN,STATUS,SITEN,ID,IDTYPE,SITE,ASSAUTH,FOUND,NODE0,NODE2
  S DGCN(0)=$G(^DGCN(391.91,TFIEN,0)),SITEN=""
- ;** FROM DG*5.3*800 - (ckn) - Quit if IPP field is not set for 200MH record
+ ;** FROM DG*5.3*800 - (ckn) - Quit if IPP field is not set for 200MH record - removed in **863 MVI 2544
  S INSTIEN=$P($G(DGCN(0)),"^",2),LSTA=$$STA^XUAF4(INSTIEN)
- I $E(LSTA,1,5)="200MH",$P($G(DGCN(0)),"^",8)'=1 Q
+ ;I $E(LSTA,1,5)="200MH",$P($G(DGCN(0)),"^",8)'=1 Q  ;include all MHV records MVI 2544 **863
  S ID=$P(DGCN(0),"^"),SITE=$P(DGCN(0),"^",2) I SITE'="" S SITEN=$$STA^XUAF4(SITE)
  ;S IDTYPE="PI"
  ;I SITEN="200DOD"!(SITEN["200N") S IDTYPE="NI"

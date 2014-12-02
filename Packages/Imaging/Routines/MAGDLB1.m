@@ -1,5 +1,5 @@
-MAGDLB1 ;WOIFO/LB/JSL/SAF - Routine to fix failed DICOM entries ; 05/18/2007 11:23
- ;;3.0;IMAGING;**11,30,54,123**;Mar 19, 2002;Build 67;Jul 24, 2012
+MAGDLB1 ;WOIFO/LB/JSL/SAF/NST/DAC/MLH - Routine to fix failed DICOM entries ; 11 Apr 2012 1:09 PM
+ ;;3.0;IMAGING;**11,30,54,123,118**;Mar 19, 2002;Build 4525;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -112,7 +112,7 @@ LOGERR ;Need to record error
  S DIR("A",2)="For example: TEST PATIENT"
  D ^DIR
  I $D(DIRUT)!($D(DTOUT))!(Y="") D  S ANS="^" Q
- . W !,"Can not delete if a reason is not provided."
+ . W !,"Cannot delete if a reason is not provided."
  . Q
  S WHY=Y,WHO=$G(DUZ)
  I WHO D 

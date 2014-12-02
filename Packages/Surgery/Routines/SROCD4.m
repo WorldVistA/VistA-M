@@ -1,10 +1,9 @@
 SROCD4 ;BIR/ADM - MARK CASE CODING COMPLETE ;10/17/05
- ;;3.0; Surgery ;**142**;24 Jun 93
+ ;;3.0;Surgery;**142,177**;24 Jun 93;Build 89
  ;
  ; Reference to CL^SDCO21 supported by DBIA #406
  ;
- N SR,SRCHF,SRCL,SRDATA,SRDX,SRICD,SRK,SRMISS,SROTH,SRSDATE,SRTYPE
- D CHF I SRCHF=1 D ASKCHF I SRCHFNO Q
+ N SR,SRCL,SRDATA,SRDX,SRK,SRMISS,SROTH,SRSDATE,SRTYPE
  S SR(0)=^SRO(136,SRTN,0) S SRSOUT=0,SREDIT=1
  I $P(SR(0),"^",2)="" S SRMISS("PRINCIPAL PROCEDURE CODE")=""
  I $P(SR(0),"^",3)="" S SRMISS("PRINCIPAL POSTOP DIAGNOSIS CODE")=""
@@ -30,22 +29,6 @@ FILE D NOW^%DTC S SRNOW=$E(%,1,12) D
 CHKIN ; check for items in file 130 required by PCE
  N SR,SRAO,SRATT,SRCHK,SRCPT,SRCV,SRDATE,SRDEPC,SRDIAG,SRDXF,SREC,SRHNC,SRINOUT,SRIR,SRLOC,SRMST,SRNON,SRO,SRODIAG,SRPROV,SRRPROV,SRSC,SRUP,SRX
  D UTIL^SROPCEP
- Q
-CHF ; check diagnoses for CRIMEAN HEMORRHAGIC FEVER
- N SRY,X,Y S SRY="",SRCHF=0
- K DIC S DIC="^ICD9(",DIC(0)="XM",X="CHF" D ^DIC S:Y'=-1 SRY=+Y Q:'SRY
- S Y=$$ICDDX^ICDCODE("065.0",$P(^SRF(SRTN,0),"^",9)) I $P(Y,"^")'=SRY Q
- S SRICD=$P(Y,"^",2)_" "_$P(Y,"^",4),X=$P(^SRO(136,SRTN,0),"^",3) I X=SRY S SRCHF=1 Q
- S Y=0 F  S Y=$O(^SRO(136,SRTN,4,Y)) Q:'Y  I $P(^SRO(136,SRTN,4,Y,0),"^")=SRY S SRCHF=1 Q
- Q
-ASKCHF ; ask for confirmation of CRIMEAN HEMORRHAGIC FEVER diagnosis
- K DIR S DIR("A",1)="",DIR(0)="Y",SRCHFNO=0
- S DIR("A",2)="The ICD Diagnosis Code "_SRICD_" was entered as the"
- S DIR("A",3)="Principal or Other Diagnosis. It is possible that you entered ""CHF"" and"
- S DIR("A",4)="have the wrong code entered.",DIR("A",5)=""
- S DIR("A",6)="Are you sure that you want to submit this case to PCE with the case"
- S DIR("A")="coded using "_SRICD,DIR("B")="NO"
- D ^DIR K DIR I $D(DTOUT)!$D(DUOUT)!'Y S SRCHFNO=1
  Q
 MISS W !!,"Coding of this surgical case is not complete.",!,"The following items are missing:",!
  S SRDATA="" F  S SRDATA=$O(SRMISS(SRDATA)) Q:SRDATA=""  W ?5,SRDATA,!

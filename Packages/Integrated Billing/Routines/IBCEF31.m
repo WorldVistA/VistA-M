@@ -1,5 +1,5 @@
 IBCEF31 ;ALB/ESG - FORMATTER SPECIFIC BILL FLD FUNCTIONS - CONT ;14-NOV-03
- ;;2.0;INTEGRATED BILLING;**155,296,349,400,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**155,296,349,400,432,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -60,6 +60,7 @@ ALLPTYP(IBIFN) ; returns insurance policy type codes for ALL ins on a bill
 PGDX(DXCNT,IBX0,IBXDA,IBXLN,IBXCOL,IBXSIZE,IBXSAVE) ; Subroutine - Checks for Diagnosis Codes (Dx) beyond 
  ; the first four, that relate to the current Dx position passed in DXCNT.
  ; This subroutine stores the Diagnosis Codes in output global using display parameters (IBXLN,IBXCOL)
+ ;  THE PAGE IS ALWAYS 1 NOW SO WE DON'T NEED 4 LINES BELOW  BAA *488*
  ; If DXCNT is 1, check for Dx's 5,9,...etc & display on pages 2,3,...etc
  ; If DXCNT is 2, check for Dx's 6,10,...etc & display on pages 2,3,...etc
  ; If DXCNT is 3, check for Dx's 7,11,...etc & display on pages 2,3,...etc
@@ -72,13 +73,15 @@ PGDX(DXCNT,IBX0,IBXDA,IBXLN,IBXCOL,IBXSIZE,IBXSAVE) ; Subroutine - Checks for Di
  ;        IBXSIZE= size counter
  ;        IBXSAVE("DX")= local array with all Dx's on current bill
  ;
- N JUMP,IBPG,VAL
- F JUMP=DXCNT+4:4 Q:'$D(IBXSAVE("DX",JUMP))  D  ;
- . ;calculate page number where Dx number JUMP will print
- . S IBPG=JUMP\4+(JUMP#4>0)
- . S VAL=$P($$ICD9^IBACSV(+IBXSAVE("DX",JUMP)),U)   ; resolve Dx pointer
- . S VAL=$$FORMAT^IBCEF3(VAL,$G(IBX0),$G(IBXDA))  ;format Dx value
- . D SETGBL^IBCEFG(IBPG,IBXLN,IBXCOL,VAL,.IBXSIZE) ;store in output global
+ ;  For patch *488* 
+ ;  S DXNM = 12  This is the number of diagnosis on a 1500 form  
+ ;  S IBPG=1  This is the page number.  All 12 print on page 1
+ N IBPG,VAL
+ S IBPG=1
+ I '$D(IBXSAVE("DX",DXCNT)) Q
+ S VAL=$P($$ICD9^IBACSV(+IBXSAVE("DX",DXCNT)),U)   ; resolve Dx pointer
+ S VAL=$$FORMAT^IBCEF3(VAL,$G(IBX0),$G(IBXDA))  ;format Dx value
+ D SETGBL^IBCEFG(IBPG,IBXLN,IBXCOL,VAL,.IBXSIZE) ;store in output global
  Q  ;PGDX
  ;
 DXSV(IB,IBXSAVE) ; output formatter subroutine

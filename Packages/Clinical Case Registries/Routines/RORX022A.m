@@ -1,5 +1,5 @@
-RORX022A ;BPOIFO/CLR LAB DAA MONITOR (CONT.) ; 8/2/11 3:08pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,17,18**;Feb 17, 2006;Build 25
+RORX022A ;BPOIFO/CLR - LAB DAA MONITOR (CONT.) ;8/2/11 3:08pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,17,18,19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
@@ -12,6 +12,7 @@ RORX022A ;BPOIFO/CLR LAB DAA MONITOR (CONT.) ; 8/2/11 3:08pm
  ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*18   APR  2012   C RAY        Adds select patient panel
+ ;ROR*1.5*19   JUN  2012   K GUPTA      Support for ICD-10 Coding System
  ;******************************************************************************
  Q
  ;
@@ -104,8 +105,8 @@ QUERY(FLAGS,RORTSK,NSPT) ;
  ;--- Set up Clinic/Division list parameters
  I $D(RORTSK("PARAMS","CLINICS","C")) S RORCDLIST=1
  I $D(RORTSK("PARAMS","DIVISIONS","C")) S RORCDLIST=1
- ;--- Set up ICD9 parameters
- S FLAG=$G(RORTSK("PARAMS","ICD9FILT","A","FILTER"))
+ ;--- Set up ICD parameters
+ S FLAG=$G(RORTSK("PARAMS","ICDFILT","A","FILTER"))
  ;
  ;--- Browse through the registry records
  S IEN=0
@@ -120,10 +121,10 @@ QUERY(FLAGS,RORTSK,NSPT) ;
  . I $D(RORTSK("PARAMS","PATIENTS","C")),'$D(RORTSK("PARAMS","PATIENTS","C",PATIEN)) Q
  . ;--- Check if the patient should be skipped
  . Q:$$SKIP^RORXU005(IEN,FLAGS)
- . ;--- Check if patient should be skipped because of ICD9 codes
+ . ;--- Check if patient should be skipped because of ICD codes
  . S RCC=0
  . I FLAG'="ALL" D
- . . S RCC=$$ICD^RORXU010(PATIEN,RORREG)
+ . . S RCC=$$ICD^RORXU010(PATIEN)
  . I (FLAG="INCLUDE")&(RCC=0) Q
  . I (FLAG="EXCLUDE")&(RCC=1) Q
  . ;--- Check if patient should be skipped because not on Clinic or Division list

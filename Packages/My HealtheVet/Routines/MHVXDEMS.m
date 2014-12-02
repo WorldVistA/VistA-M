@@ -1,5 +1,5 @@
-MHVXDEMS ;WAS/GPM - Secure Messaging Demographics extract ; 12/1/05 6:58pm [3/23/08 8:17pm]
- ;;1.0;My HealtheVet;**5,9**;Aug 23, 2005;Build 24
+MHVXDEMS ;WAS/GPM/KUM - Secure Messaging Demographics extract ; 12/1/05 6:58pm [3/23/08 8:17pm]
+ ;;1.0;My HealtheVet;**5,9,10**;Aug 23, 2005;Build 50
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -28,9 +28,8 @@ EXTRACT(QRY,ERR,DATAROOT) ; Entry point to extract demographics data
  ;  DATAROOT - Populated data array
  ;       ERR - Errors during extraction
  ;
- N DFN,U,X,MHVPCP,MHVERR,EXTIME,VADM,VAPA,VAPD,VAOA
+ N DFN,X,MHVPCP,MHVERR,EXTIME,VADM,VAPA,VAPD,VAOA
  D LOG^MHVUL2("MHVXDEMS","BEGIN","S","TRACE")
- S U="^"
  S ERR=0
  S EXTIME=$$NOW^XLFDT
  K @DATAROOT

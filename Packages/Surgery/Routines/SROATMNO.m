@@ -1,5 +1,5 @@
 SROATMNO ;BIR/MAM - TRANSMIT NO ASSESSMENT ;09/12/2011
- ;;3.0;Surgery;**27,38,47,62,68,79,83,81,88,93,95,97,129,125,142,153,160,166,174,175,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**27,38,47,62,68,79,83,81,88,93,95,97,129,125,142,153,160,166,174,175,176,177**;24 Jun 93;Build 89
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -39,7 +39,8 @@ SET I $P($G(^SRF(SRTN,.4)),"^",2)="T"!(TDATE<SRLO) K ^SRF("AQ",TDATE,SRTN) Q
  S EXC=$P($G(^SRF(SRTN,"RA")),"^",7),SRWOUND=$P($G(^SRF(SRTN,"1.0")),"^",8)
  D OCC
  S SRNODE="  X" S:$P($G(^SRF(SRTN,"RA")),U,6)="N" SRNODE="  *" S:$P($G(^SRF(SRTN,"RA")),U,2)="C" SRNODE="  C"
- S SRTEMP="/"_$J(SRASITE,3)_$J(SRTN,7)_SRNODE_$J(DATE,7)_$J(SRTECH,3)_$J(EMERG,1)_$J(SPEC,3)_$J(CPT,5)_$J(EXC,1)_$J(SRPID,20)_$J(SRDIV,6)_$J(SRSEX,1)
+ ;JAS - 06/06/14 - PATCH 177 - Changed first character from "/" to "$" to denote new format for ICD-10
+ S SRTEMP="$"_$J(SRASITE,3)_$J(SRTN,7)_SRNODE_$J(DATE,7)_$J(SRTECH,3)_$J(EMERG,1)_$J(SPEC,3)_$J(CPT,5)_$J(EXC,1)_$J(SRPID,20)_$J(SRDIV,6)_$J(SRSEX,1)
  S SRTEMP=SRTEMP_$J(SRMAJMIN,1)_$J($E(SRDEATH,1,7),7)_$J(SRDTHUR,1)_$J(SRSTATUS,1)_$J(SRAGE,3)_$J(SRASA,2)_$J(SRADMIT,1)_SRTMP
  K CPT,SRMOD F SRZ=1:1:10 S (CPT(SRZ),SRMOD(SRZ))=""
  S (OPS,CNT)=0 F  S OPS=$O(^SRO(136,SRTN,3,OPS)) Q:'OPS!(CNT=10)  S CNT=CNT+1,X=$P($G(^SRO(136,SRTN,3,OPS,0)),"^") I X S CPT(CNT)=$P($$CPT^ICPTCOD(X),"^",2) D MOD
@@ -47,11 +48,11 @@ SET I $P($G(^SRF(SRTN,.4)),"^",2)="T"!(TDATE<SRLO) K ^SRF("AQ",TDATE,SRTN) Q
  I SRCC,$P($G(^SRF(SRCC,30)),"^")!($P($G(^SRF(SRCC,31)),"^",8)) S SRCC=""
  S SRTEMP=SRTEMP_$J(CPT(1),5)_$J(CPT(2),5)_$J(CPT(3),5)_$J(CPT(4),5)_$J(CPT(5),5)_$J(CPT(6),5)_$J(CPT(7),5)_$J(CPT(8),5)_$J(CPT(9),5)_$J(CPT(10),5)_$J(SRWOUND,2)_$J(SROCTYPE,1)_SRBLANK_$J(SRCC,10)_$J(SRDEATH,12)
  S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SRTEMP,SRACNT=SRACNT+1
- S SRICD=$P($G(^SRO(136,SRTN,0)),"^",3) S:SRICD SRICD=$P(^ICD9(SRICD,0),"^")
+ S SRICD=$P($G(^SRO(136,SRTN,0)),"^",3) S:SRICD SRICD=$P($$ICD^SROICD(SRTN,SRICD),"^",2)
  N SRCVA D CVA S SRA(.2)=$G(^SRF(SRTN,.2))
  S SRTEMP="/"_$J(SRASITE,3)_$J(SRTN,7)_"  B"_$J($E($P(SRA(.2),"^"),1,12),12)_$J($E($P(SRA(.2),"^",4),1,12),12)_$E(SRPMOD_SR10SP,1,10)
  F I=1:1:10 S SRTEMP=SRTEMP_$E(SRMOD(I)_SR10SP,1,10)
- S SRTEMP=SRTEMP_$J(SRINTUB,1)_SR95PO_$J(SRATT,2)_$J(SRDOB,7)_$J(SRICD,6)_$J(SROC(38),2)_$J(SROC(39),2)
+ S SRTEMP=SRTEMP_$J(SRINTUB,1)_SR95PO_$J(SRATT,2)_$J(SRDOB,7)_$J(SRICD,8)_$J(SROC(38),2)_$J(SROC(39),2)
  S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SRTEMP_$J($P(SRA(.2),"^",10),12)_$J($P(SRA(.2),"^",12),12)_$J($P(SRA(.2),"^",2),12)_$J($P(SRA(.2),"^",3),12)_$J(SRCVA,1),SRACNT=SRACNT+1
  S SRA(.9)=$G(^SRF(SRTN,.9)),SRA("VER")=$G(^SRF(SRTN,"VER")),SRA(52)=$G(^SRF(SRTN,52))
  S SRTEMP="/"_$J(SRASITE,3)_$J(SRTN,7)_"  D"_$J($P(SRA(.9),"^"),12)_$J($P(SRA(.9),"^",2),12)_$J($P(SRA(.9),"^",3),12)_$J($P(SRA(.9),"^",4),12)_$J($P(SRA(.9),"^",5),12)_$J($P(SRA(.9),"^",6),12)

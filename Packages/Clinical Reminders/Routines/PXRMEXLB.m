@@ -1,5 +1,5 @@
-PXRMEXLB ;SLC/PJH - Reminder Dialog Exchange. ;02/19/2009
- ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
+PXRMEXLB ;SLC/PJH - Reminder Dialog Exchange. ;06/27/2013
+ ;;2.0;CLINICAL REMINDERS;**6,12,26**;Feb 04, 2005;Build 404
  ;
  ;=====================================================================
  ;Build the DLOC array.
@@ -16,9 +16,9 @@ BDLOC(IEN,IND120) ;
  ;Build list of dialog components
  ;-------------------------------
 DBUILD(IEN,IND120,JND120) ;
- N CNT,DARRAY,DDATA,DDLG,DEND,DLOC,DMAP,DNAME,DNODE,DSEQ,DSTRT,DSUB
- N FDATA,FILE,FILENAM,FILENUM,FNAME,IND,JND,REPCNT,RESGRP,TEMPRESL
- N DIALNAM,LINE,REPARR,VERSN
+ N CNT,DARRAY,DATA,DDATA,DDLG,DEND,DIALNAM,DLOC,DMAP,DNAME,DNODE,DSEQ
+ N DSTRT,DSUB,FDATA,FILE,FILENAM,FILENUM,FNAME,IND,INDICES,JND,LINE
+ N REPARR,REPCNT,RESGRP,TEMPRESL,VERSN
  K ^TMP("PXRMEXTMP",$J,"DMAP")
  S LINE=^PXD(811.8,IEN,100,3,0)
  S VERSN=$$GETTAGV^PXRMEXU3(LINE,"<PACKAGE_VERSION>")
@@ -29,9 +29,6 @@ DBUILD(IEN,IND120,JND120) ;
  I $P($G(^PXD(811.8,IEN,100,DSUB,0)),";",3)["100~NATIONAL" S ^TMP("PXRMEXTMP",$J,"PXRMDNAT")=""
  I '$D(^TMP("PXRMEXTMP",$J,"DLOC")) D BDLOC(IEN,IND120)
  S (JND,REPCNT)=0
- ;S JND=$$FINDSTRT(IEN,IND120,JND120)
- ;D BDLOC(IEN,IND120,JND,JND120)
- ;D BDLOC(IEN,IND120)
  ;Scan the dialog components in 120 and save the name and type.
  F  S JND=$O(^PXD(811.8,IEN,120,IND120,1,JND)) Q:JND'>0!(JND>JND120)  D
  .S DDATA=$G(^PXD(811.8,IEN,120,IND120,1,JND,0)) Q:DDATA=""
@@ -41,33 +38,37 @@ DBUILD(IEN,IND120,JND120) ;
  .D DPARSE(IND120,JND,DNAME,DSTRT,DEND,.RESGRP,.TEMPRSEL)
  .;Scan dialog components in 120 and save dialog links
  .F  S DSUB=$O(^PXD(811.8,IEN,100,DSUB)) Q:DSUB>DEND  D
- ..S DNODE=$G(^PXD(811.8,IEN,100,DSUB,0))
- ..I ($P(DNODE,";")'="801.412")&($P(DNODE,";")'="801.41121")&($P(DNODE,";",3)'["118~") Q
- ..S FILE=$P(DNODE,";")
- ..S DNODE=$P(DNODE,";",3)
+ ..S LINE=$G(^PXD(811.8,IEN,100,DSUB,0))
+ .. S INDICES=$P(LINE,"~",1)
+ .. S DATA=$P(LINE,"~",2)
+ .. S FILE=$P(INDICES,";",1)
+ .. S FIELD=$P(INDICES,";",3)
+ .. I (FILE'=801.412)&(FILE'=801.41121)&(FIELD'=118) Q
  ..;Handle dialogs with replacement dialogs
- ..I $E(DNODE,1,4)="118~" D
- ...S DNAME=$P(DNODE,"~",2) Q:DNAME=""
+ ..I FIELD=118 D
+ ...S DNAME=DATA Q:DNAME=""
  ...S DLOC=^TMP("PXRMEXTMP",$J,"DLOC",DNAME)
  ...S REPCNT=REPCNT+1 D
  ....I +$P(VERSN,"P",2)>11 S ^TMP("PXRMEXTMP",$J,"DREPL",DIALNAM,REPCNT,DDLG)=DNAME_U_DLOC
  ....I +$P(VERSN,"P",2)<12 S REPARR(REPCNT,DDLG)=DNAME_U_DLOC
- ..I $E(DNODE,1,4)'=".01~" Q
- ..S DSEQ=$P(DNODE,"~",2) Q:DSEQ=""
+ ..I FIELD'=.01 Q
+ ..S DSEQ=DATA Q:DSEQ=""
  ..I FILE="801.41121" D  Q
- ...S DNAME=$P(DNODE,"~",2) Q:DNAME=""
- ...;Quit is DLOC for the item is not defined. This should fix a problem
+ ...S DNAME=DATA Q:DNAME=""
+ ...;Quit if DLOC for the item is not defined. This should fix a problem
  ...;pre-patch 12 entries not containing national prompts.
  ...I +$P(VERSN,"P",2)<12,'$D(^TMP("PXRMEXTMP",$J,"DLOC",DNAME)) Q
  ...S DLOC=^TMP("PXRMEXTMP",$J,"DLOC",DNAME)
  ...S CNT=0
  ...I $D(^TMP("PXRMEXTMP",$J,"DMAP",DDLG))>0 S CNT=$O(^TMP("PXRMEXTMP",$J,"DMAP",DDLG,""),-1)
  ...S ^TMP("PXRMEXTMP",$J,"DMAP",DDLG,CNT+1)=DNAME
- ..S DNODE=$G(^PXD(811.8,IEN,100,DSUB+1,0))
- ..I ($P(DNODE,";")'="801.412") Q
- ..S DNODE=$P(DNODE,";",3) I $E(DNODE,1,2)'="2~" Q
- ..S DNAME=$P(DNODE,"~",2) Q:DNAME=""
- ..;Quit is DLOC for the item is not defined. This should fix a problem
+ ..S LINE=$G(^PXD(811.8,IEN,100,DSUB+1,0))
+ ..I ($P(LINE,";")'="801.412") Q
+ .. S INDICES=$P(LINE,"~",1)
+ .. I $P(INDICES,";",3)'=2 Q
+ .. S DATA=$P(LINE,"~",2)
+ .. S DNAME=DATA Q:DNAME=""
+ ..;Quit if DLOC for the item is not defined. This should fix a problem
  ..;pre-patch 12 entries not containing national prompts.
  ..I +$P(VERSN,"P",2)<12,'$D(^TMP("PXRMEXTMP",$J,"DLOC",DNAME)) Q
  ..S DLOC=^TMP("PXRMEXTMP",$J,"DLOC",DNAME)
@@ -164,23 +165,21 @@ DPARSE(IND120,JND120,DNAME,DSTRT,DEND,RESGRP,TEMPRESL) ;
  ;
  I DTYP["result" D
  .S DSUB=$G(DARRAY(.01)) Q:'DSUB
- .S DTEXT=$P($G(^PXD(811.8,IEN,100,DSUB,0)),";",3) Q:DTEXT=""
- .S DTXT=$P(DTEXT,"~",2)
+ .S DDATA=^PXD(811.8,IEN,100,DSUB,0) Q:DDATA=""
+ .S DTXT=$P(DDATA,"~",2)
  .S RESGRP(DNAME)=DSTRT_U_DEND_U_IND120_U_JND120
  ;
  I DTYP="prompt" D
  .;search for prompt caption
  .S DSUB=$G(DARRAY(24)) Q:'DSUB
- .S DTEXT=$P($G(^PXD(811.8,IEN,100,DSUB,0)),";",3) Q:DTEXT=""
- .;S DTXT=$P(DTEXT,"~",2)
- .S DTXT="Prompt caption: "_$P(DTEXT,"~",2)
+ .S DDATA=^PXD(811.8,IEN,100,DSUB,0) Q:DDATA=""
+ .S DTXT="Prompt caption: "_$P(DDATA,"~",2)
  ;
  I DTYP="group" D
  .;search for group caption
  .S DSUB=$G(DARRAY(5)) Q:'DSUB
- .S DTEXT=$P($G(^PXD(811.8,IEN,100,DSUB,0)),";",3) Q:DTEXT=""
- .;S DTXT=$P(DTEXT,"~",2)
- .S DTXT="Group caption: "_$P(DTEXT,"~",2)
+ .S DDATA=^PXD(811.8,IEN,100,DSUB,0) Q:DDATA=""
+ .S DTXT="Group caption: "_$P(DDATA,"~",2)
  ;
  ;Save dialog type
  I DTYP["result" S DTYP=$$STRREP^PXRMUTIL(DTYP,"result ","rs.")
@@ -220,6 +219,7 @@ DWP(LM,RM,NIN,TEXT) ;
  M TEXT=TEXTOUT
  Q
  ;
+ ;-----------------
 FINDSTRT(IEN,IND120,END) ;
  I END=1 Q 0
  N START,TEMP,ISSEL

@@ -1,5 +1,5 @@
 PSAHIS ;BIR/LTL,JMB-Drug Transaction History ;7/23/97
- ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**3,15**; 10/24/97
+ ;;3.0;DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**3,15,73**; 10/24/97;Build 3
  ;This routine prints a report of all or specific drugs in a pharmacy
  ;location for a user-specified number of days.
  ;
@@ -30,7 +30,7 @@ DAYS G:$O(^TMP("PSADRG",$J,""))="" EXIT
  ;
 DEV ;Asks device & queueing info
  K IO("Q") N %ZIS,IOP,POP S %ZIS="Q" W !
- D ^%ZIS I POP W !,"NO DEVICE SELECTED OR OUTPUT PRINTED!" Q
+ D ^%ZIS I POP W !,"NO DEVICE SELECTED OR OUTPUT PRINTED!" G EXIT  ;;<*73 - RJS
  I $D(IO("Q")) D  G EXIT
  .N ZTDESC,ZTIO,ZTRTN,ZTSAVE,ZTDTH,ZTSK
  .S ZTRTN="START^PSAHIS",ZTDESC="Drug Acct.-Drug Transaction History"

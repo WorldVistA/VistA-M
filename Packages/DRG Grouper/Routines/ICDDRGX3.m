@@ -1,0 +1,60 @@
+ICDDRGX3 ;MKN - GROUPER PROCESS continued from ICDDRGX2;06/04/12 3:45pm
+ ;;18.0;DRG Grouper;**64**;Oct 20, 2000;Build 103
+ ;
+VARIABLS ;Apply Variables for MDC 1-22
+ ;
+ I $D(ICD10PD(92)),$D(ICD10OR),'$D(ICD10OR(81)) S ICDRG=$S(ICDMCC=2:823,ICDMCC=1:824,1:825),ICDFI=1 G EXIT ;92=Lymphoma and Non-Acute Leukemia with Other O.R. Procedure
+ I $D(ICD10PD(16)),'$D(ICD10OR(81)) S ICDRG=$S(ICDMCC=2:834,ICDMCC=1:835,1:836),ICDFI=1 G EXIT ;16=Acute Leukemia without Major O.R. Procedure
+ I $D(ICD10PD(91)) S ICDRG=$S(ICDMCC=2:840,ICDMCC=1:841,1:842),ICDFI=1 G EXIT ;Lymphoma and Non-Acute Leukemia
+ I $D(ICD10PD(181)) S ICDRG=849,ICDFI=1 G EXIT ;Radiotherapy
+ I $D(ICD10PD(134)),'$D(ICD10PD(35)) D  ;134=Myeloproliferative Disorders or Poorly Differentiated Neoplasms
+ . I $D(ICD10OR(81)) S ICDRG=$S(ICDMCC=2:826,ICDMCC=1:827,1:828),ICDFI=1 Q
+ . I $D(ICD10OR) S ICDRG=$S(ICDMCC>0:829,1:830),ICDFI=1 Q
+ I $D(ICD10OR(111)) S ICDRG=$S(ICDMCC=2:907,ICDMCC=1:908,1:909),ICDFI=1 G EXIT ;Other O.R. Procedures for Injuries
+ G:ICDFI EXIT
+ I ICDMDC=17,$D(ICD10PD(35)) D  ;134=Myeloproliferative Disorders or Poorly Differentiated Neoplasms  35=Chemotherapy Implant
+ . I $D(ICD10SD(15)),ICDMCC=2 S ICDRG=837,ICDFI=1 Q  ;15=SDX Acute Leukemia  56=High Dose Chemo Agent
+ . I $D(ICD10SD(15)),'$D(ICD10OR(56)) S ICDRGT=$S(ICDMCC=2:837,ICDMCC=1:838,ICDMCC=0:839,1:0) I ICDRGT>0 S ICDRG=ICDRGT,ICDFI=1 Q
+ . I '$D(ICD10SD(15)),$D(ICD10OR(56)),ICDMCC=2 S ICDRG=837,ICDFI=1 Q
+ . I '$D(ICD10SD(15)),$D(ICD10OR(56)),ICDMCC'=2 S ICDRG=838,ICDFI=1 Q
+ G:ICDFI EXIT
+ I $D(ICD10PD(165)) S ICDRG=$S(ICDMCC=2:843,ICDMCC=1:844,1:845),ICDFI=1 G EXIT ;165=Other Myeloproliferative Disorders or Poorly Differentiated Neoplasm Diagnoses
+ I $D(ICD10PD(36)) S ICDRG=$S(ICDMCC=2:846,ICDMCC=1:847,1:848),ICDFI=1 G EXIT ;36=Chemotherapy without Acute Leukemia as Secondary Diagnosis
+ I ICDMDC=18,$D(ICD10OR("O")) D  ;82=infectious & Parasitic Diseases, Systemic or Unspecified Sites
+ . S ICDX=$$ICDXEXPT^ICDRGAPI(ICDDX(1),"^K68.11^N98.0^T80.22XA^T80.29XA^T81.4XXA^T88.0XXA^")
+ . I ICDX=0 S ICDRG=$S(ICDMCC=2:853,ICDMCC=1:854,1:855),ICDFI=1 Q
+ . I ICDX S ICDRG=$S(ICDMCC=2:856,ICDMCC=1:857,1:858),ICDFI=1 Q
+ I ICDMDC=18,'$D(ICD10OR("O")) D
+ . S ICDX=$$ICDXEXPT^ICDRGAPI(ICDDX(1),"^K68.11^T81.4XXA^")
+ . I ICDX S ICDRG=$S(ICDMCC=2:862,1:863),ICDFI=1 Q 
+ G:ICDFI EXIT
+ ;I $D(ICD10PD(175)),$D(ICD10OR("O")) S ICDRG=$S(ICDMCC=2:856,ICDMCC=1:857,1:858),ICDFI=1 G EXIT ;175=Postoperative or Post-Traumatic Infections with O.R. Procedure
+ I $D(ICD10PD(190))!($D(ICD10PD("W"))) D  ;190=Septicemia or Severe Sepsis  "W"=Severe Sepsis
+ . I $D(ICD10OR(86)) S ICDRG=870,ICDFI=1 Q
+ . S ICDRG=$S(ICDMCC=2:871,1:872),ICDFI=1 Q
+ G:ICDFI EXIT
+ I ICDMDC=19,$D(ICD10OR("O")) S ICDRG=876,ICDFI=1 G EXIT ;Mental Illness
+ I ICDMDC=20 D
+ . I ICDDMS=1 S ICDRG=894,ICDFI=1 Q  ;Left against medical advice (AMA)
+ . I $D(ICD10PD(116)),$D(ICD10OR(132)) S ICDRG=895,ICDFI=1 Q  ;116=MDC 20 Alcohol/Drug Use & Alcohol/Drug Induced Organic Mental Disorders  132=Rehabilitation Therapy
+ . I $D(ICD10PD(116)),'$D(ICD10OR(132)) S ICDRG=$S(ICDMCC=2:896,1:897),ICDFI=1 Q  ;132=Rehabilitation Therapy
+ G:ICDFI EXIT
+ I $D(ICD10OR(166)),$D(ICD10OR("O")) S ICDRG=$S(ICDMCC=2:901,ICDMCC=1:902,1:903),ICDFI=1 G EXIT ;Wound Debridements for Injuries
+ I ICDMDC=21,$D(ICD10OR(139)) S ICDRG=$S(ICDMCC>0:904,1:905),ICDFI=1 G EXIT ;139=Skin Grafts for Injuries
+ I ICDMDC=21,$D(ICD10OR(52)) S ICDRG=906,ICDFI=1 G EXIT
+ I $D(ICD10PD(42)) S ICDRG=$S(ICDMCC=2:919,ICDMCC=1:920,1:921),ICDFI=1 G EXIT ;42=Complications of Treatment
+ I $D(ICD10PD("*"))!($D(ICD10PD("b"))&($D(ICD10OR(86)))) S ICDRG=$S($D(ICD10OR("k")):927,1:933),ICDFI=1 G EXIT ;*=Extensive Burns or b=Full Thickness Burns with 86=MV 96+Hours k=Skin Graft
+ I $D(ICD10PD("b")) D  ;Full Thickness Burns
+ . I $D(ICD10OR("k"))!($D(ICD10SD("j"))) S ICDRG=$S(ICDMCC>0:928,1:929),ICDFI=1 Q  ;k=Skin Graft  j=Inhalation Injury
+ . S ICDRG=934,ICDFI=1 Q
+ G:ICDFI EXIT
+ I ICDMDC=22,$D(ICD10PD(141)) S ICDRG=935,ICDFI=1 G EXIT ;141=Non-extensive Burns
+ I ICDMDC=23,$D(ICD10OR("O")),$D(ICD10PD(119)) S ICDRG=$S(ICDMCC=2:939,ICDMCC=1:940,1:941),ICDFI=1 G EXIT ;O.R. Procedures with 119=Diagnosis of Other Contact with Health Services
+ I $D(ICD10OR(131)) S ICDRG=$S(ICDMCC>0:945,1:946),ICDFI=1 G EXIT
+EXIT ;
+ I $D(ICD10OR("y")) D
+ . I $D(ICD10OR),ICDREL=0 S ICDRG=$S(ICDMCC=2:984,ICDMCC=1:985,1:986),ICDFI=1 Q
+ I $D(ICD10OR("z")) D
+ . I $D(ICD10OR),ICDREL=0 S ICDRG=$S(ICDMCC=2:987,ICDMCC=1:988,1:989),ICDFI=1 Q
+ I ICDFI S ICDFOUND=1
+ Q

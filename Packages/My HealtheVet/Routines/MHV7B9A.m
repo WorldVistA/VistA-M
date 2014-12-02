@@ -1,5 +1,5 @@
-MHV7B9A ;WAS/DLF - HL7 message builder secure messaging ; 9/25/08 4:08pm
- ;;1.0;My HealtheVet;**6**;Aug 23, 2005;Build 82
+MHV7B9A ;WAS/DLF/KUM - HL7 message builder secure messaging ; 9/25/08 4:08pm
+ ;;1.0;My HealtheVet;**6,10**;Aug 23, 2005;Build 50
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -152,6 +152,39 @@ ORG(MSGROOT,DATAROOT,CNT,LEN,HL) ;Build ORG segments for clinics
  . S ORG(0)="ORG"
  . S ORG(2,1,1)=$P(USR,"^",1)
  . S ORG(2,1,2)=$$ESCAPE^MHV7U($P(USR,"^",2),.HL)
+ . S CNT=CNT+1
+ . S @MSGROOT@(CNT)=$$BLDSEG^MHV7U(.ORG,.HL)
+ . S LEN=LEN+$L(@MSGROOT@(CNT))
+ . Q
+ D LOG^MHVUL2("MHV7B9A","END ORG","S","TRACE")
+ Q
+SMORG(MSGROOT,DATAROOT,CNT,LEN,HL) ;Build ORG segments for clinics
+ ;
+ ; Walks data in DATAROOT to populate MSGROOT with ORG segments
+ ; sequentially numbered starting at CNT
+ ;
+ ;  Input:
+ ;   MSGROOT - Root of array holding the message
+ ;  DATAROOT - Root of array to hold extract data
+ ;       CNT - Current message line counter
+ ;       LEN - Current message length
+ ;        HL - HL7 package array variable
+ ;
+ ;  Output:
+ ;           - Populated message array
+ ;           - Updated LEN and CNT
+ ;
+ N I,USR,ORG
+ D LOG^MHVUL2("MHV7B9A","BEGIN ORG","S","TRACE")
+ S DATAROOT=$P(DATAROOT,",",1,3)
+ F I=1:1 Q:'$D(@DATAROOT@(I))  D
+ . S USR=@DATAROOT@(I)
+ . S ORG(0)="ORG"
+ . S ORG(2,1,1)=$P(USR,"^",1)
+ . S ORG(2,1,2)=$$ESCAPE^MHV7U($P(USR,"^",2),.HL)
+ . I $P($G(USR),"^",3)'="" S ORG(3,1,1)=$$ESCAPE^MHV7U($P(USR,"^",3),.HL)
+ . I $P($G(USR),"^",4)'="" S ORG(3,1,2)=$$ESCAPE^MHV7U($P(USR,"^",4),.HL)
+ . I $P($G(USR),"^",5)'="" S ORG(3,1,5)=$$ESCAPE^MHV7U($P(USR,"^",5),.HL)
  . S CNT=CNT+1
  . S @MSGROOT@(CNT)=$$BLDSEG^MHV7U(.ORG,.HL)
  . S LEN=LEN+$L(@MSGROOT@(CNT))

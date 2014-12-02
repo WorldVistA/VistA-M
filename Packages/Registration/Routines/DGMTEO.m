@@ -1,14 +1,16 @@
-DGMTEO ;ALB/RMO,CAW,LD,TDM - Other Means Test Edit Options ; 8/2/02 11:14am
- ;;5.3;Registration;**33,45,182,456**;Aug 13, 1993
+DGMTEO ;ALB/RMO,CAW,LD,TDM,BDB - Other Means Test Edit Options ; 8/2/02 11:14am
+ ;;5.3;Registration;**33,45,182,456,858**;Aug 13, 1993;Build 30
  ;
 ADJ ;Entry point to adjudicate a means test
- N PADISP
+ N PADISP,DGLSTDT
  S DIC="^DPT(",DIC(0)="AEMQ"
  I DGMTYPT=1 S DIC("S")="I $P(^(0),U,14)=2"
  I DGMTYPT=2 S DIC("S")="I $D(^DGMT(408.31,""AID"",DGMTYPT,+Y))"
  W ! D ^DIC K DIC G ADJQ:Y<0 S DFN=+Y
  S DGMTI=+$$LST^DGMTU(DFN,"",DGMTYPT),DGMTS=$P($G(^DGMT(408.31,DGMTI,0)),"^",3)
  I "^2^11^"'[("^"_DGMTS_"^") W !?3,*7,"Last means test is not PENDING ADJUDICATION." G ADJ
+ ;DG*5.3*858 user may not adjudicate a means test that is more than 1 year old
+ S DGLSTDT=$P($G(^DGMT(408.31,DGMTI,0)),"^",1) I $$OLD^DGMTU4(DGLSTDT) W !!,"Please use the Add a New Means Test Option.",!,"User may not adjudicate a Means Test that is more than 1 year old." G ADJ
  ;
  S PADISP=$$PA^DGMTUTL(DGMTI) S:PADISP="" PADISP="UNKNOWN"
  W !!,"=============================================="
@@ -30,6 +32,8 @@ COM ;Entry point to complete a required means test
  S DIC="^DPT(",DIC(0)="AEMQ",DIC("S")="I $P(^(0),U,14)=1" W ! D ^DIC K DIC G COMQ:Y<0 S DFN=+Y
  S DGMTI=+$$LST^DGMTU(DFN),DGMT0=$G(^DGMT(408.31,DGMTI,0)),DGMTDT=$P(DGMT0,"^")
  I $P(DGMT0,"^",3)'=1 W !?3,*7,"Last means test is not REQUIRED." G COM
+ ;DG*5.3*858 user may not complete a means test that is more than 1 year old
+ I $$OLD^DGMTU4(DGMTDT) W !!,"Please use the Add a New Means Test Option.",!,"User may not complete a Means Test that is more than 1 year old." G COM
  S DGMTYPT=1,DGMTACT="COM",DGMTROU="COM^DGMTEO" G EN^DGMTSC
 COMQ K DFN,DGMT0,DGMTACT,DGMTDT,DGMTI,DGMTROU,DGMTYPT,Y
  Q

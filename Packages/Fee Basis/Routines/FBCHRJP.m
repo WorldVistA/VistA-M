@@ -1,6 +1,6 @@
-FBCHRJP ;AISC/DMK/CMR-PRINT REJECTED PAYMENTS FROM PRICER ;18APR90
- ;;3.5;FEE BASIS;**58,69**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBCHRJP ;AISC/DMK/CMR - PRINT REJECTED PAYMENTS FROM PRICER ;18APR90
+ ;;3.5;FEE BASIS;**58,69,139**;JAN 30, 1995;Build 127
+ ;;Per VA Directive 6402, this routine should not be modified.
  I '$D(^FBAAI("AH")) W !,*7,"No payments rejected!",! Q
  S (VAR,VAL)="",PGM="START^FBCHRJP" D ZIS^FBAAUTL G END:FBPOP
 START K ^TMP($J,"FB") S (FBAAOUT,FBLISTC)=0,Q="",$P(Q,"=",80)="=",QQ="-",$P(QQ,"-",39)="-" U IO W:$E(IOST,1,2)["C-" @IOF D HED
@@ -26,7 +26,8 @@ PRINT I $Y+5>IOSL,$E(IOST,1,2)["C-" S DIR(0)="E" D ^DIR K DIR I 'Y S FBAAOUT=1 Q
  ;If FPPS Claim ID exists then print it.
  I $P(FBINV,U,3)]"" D
  .W !?3,"FPPS Claim ID: ",$P(FBINV,U,3),"    FPPS Line Item: ",$P(FBINV,U,4)
- W !?3,"DX: ",+$G(^TMP($J,"FB",6,FBVEN,FBNAME,FBDT,FBI,"DX"))
+ ;FB*3.5*139-ICD10 REMEDIATION-jlg- fixed issue with zero being displayed in DX field. Modified next line.
+ W !?3,"DX: ",$P($P($G(^TMP($J,"FB",6,FBVEN,FBNAME,FBDT,FBI,"DX")),U,1),"/",1)
  W !?3,"Associated 7078: ",FB7078,!?3,$S(FBREJ(1)="P":"Rejects Pending!",FBREJ(1)="C":"Rejected!",1:""),?23,"Reject Reason: ",FBREJ(2),!?3,"Old Batch #: ",FBREJ(3)
  Q
 HED W !?18,"CIVIL HOSPITAL REJECTED PAYMENT HISTORY",!?18,QQ

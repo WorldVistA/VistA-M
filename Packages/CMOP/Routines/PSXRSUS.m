@@ -1,5 +1,5 @@
 PSXRSUS ;BIR/WPB,BAB,HTW-CMOP Transmission Handler ;15 Dec 2001
- ;;2.0;CMOP;**2,3,24,23,26,28,41,57,48,70**;11 Apr 97;Build 9
+ ;;2.0;CMOP;**2,3,24,23,26,28,41,57,48,70,75**;11 Apr 97;Build 5
  ;Reference to ^PS(52.5 supported by DBIA #1978
  ;Reference to ^PS(59   supported by DBIA #1976
  ;Reference to routine DEV1^PSOSULB1 supported by DBIA #2478
@@ -56,7 +56,7 @@ ASK2 W !
  S PSXSTAT="T" D PSXSTAT^PSXRSYU S PFLAG=0 I $G(PSXLOCK)>0 G EX1
  ;
 DRIV ;calls the remaining routines to build the data for transmission and
- S PSXDAYS=$P(PSOPAR,"^",27),X1=TPRTDT,X2=PSXDAYS D C^%DTC S PSXDTRG=X K X,X1,X2
+ S PSXDAYS=$S($G(PSXCS)=1:$P(PSOPAR,"^",9),1:$P(PSOPAR,"^",27)),X1=TPRTDT,X2=PSXDAYS D C^%DTC S PSXDTRG=X K X,X1,X2
  S PSXVENDR=$S($P(^PSX(550,+$G(PSXSYS),0),"^")["HINE":"SI BAKER",$P(^PSX(550,+$G(PSXSYS),0),"^")["MURF":"SI BAKER",1:"ELECTROCOM")
  ;set up queue device PSX or printer
  I PSXFLAG=2 D BEGIN^PSXRPPL G:$G(POP) EXIT ;select printer PSLION
@@ -90,7 +90,7 @@ LOCK ; >>>**** LOCK OF FILE 550.1 ****<<<
  .. I '$D(^XTMP("PSXAUTOERR")) N $ETRAP,$ESTACK S $ETRAP="D TRAPERR^PSXRSUS"
  .. D RESETVAR^PSXRSUS1 ;retrieve critical variables
  .. S PSOPAR=^PS(59,PSOSITE,1),PRTDT=TPRTDT
- .. S PSXDAYS=$P(PSOPAR,"^",27),X1=PRTDT,X2=PSXDAYS D C^%DTC S PSXDTRG=X K X,X1,X2 ;adjusts variables per divisional parameters.
+ .. S PSXDAYS=$S($G(PSXCS)=1:$P(PSOPAR,"^",9),1:$P(PSOPAR,"^",27)),X1=PRTDT,X2=PSXDAYS D C^%DTC S PSXDTRG=X K X,X1,X2 ;adjusts variables per divisional parameters.
  .. D TRANS
  ; process a single division
  D

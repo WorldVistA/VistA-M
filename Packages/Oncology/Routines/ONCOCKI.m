@@ -1,5 +1,5 @@
 ONCOCKI ;Hines OIFO/GWB - Edit checks/INPUT TRANSFORM edit checks ;06/23/10
- ;;2.11;ONCOLOGY;**1,6,16,25,37,42,51**;Mar 07, 1995;Build 65
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 11 S Y=$P(^ONCO(165.5,D0,0),U,2),Y=$S($D(^ONCO(160,+Y,1)):$P(^(1),U,2),1:"") Q:(Y=""!(X<Y)!(X=Y))
  S Y=$E(Y,4,5)_"/"_$E(Y,6,7)_"/"_($E(Y,1,3)+1700) W !!,"*****DATE DX is after LAST DATE CONTACT***** ",Y,! K X,Y

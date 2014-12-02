@@ -1,5 +1,5 @@
 ONCOFUM ;Hines OIFO/GWB -FOLLOW-UP CONTACT (160,420) ;06/23/10
- ;;2.11;ONCOLOGY;**11,45,51**;Mar 07, 1995;Build 65
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 AC ;Add patient to ONCOLOGY CONTACT file (165) using ^DPT(D0,.11) and
  ;^DPT(D0,.13) node data from PATIENT file (2)

@@ -1,5 +1,9 @@
 SDCNP0 ;ALB/LDB - CANCEL APPT. FOR A PATIENT ; 3/2/05 3:13pm
- ;;5.3;Scheduling;**132,167,478,517,572**;Aug 13, 1993;Build 13
+ ;;5.3;Scheduling;**132,167,478,517,572,592**;Aug 13, 1993;Build 4
+ ;
+ ; Reference/ICR
+ ; ^VALM1 - 10116
+ ;
 EN2 D WAIT^DICD S NDT=HDT/1,L=0 F J=1:1 S NDT=$O(^DPT(DFN,"S",NDT)) Q:NDT'>0!(SDPV&(NDT'<SDTM))  S SD0=^(NDT,0) I $P(SD0,"^",2)'["C" S SC=+SD0,L=L\1+1,APL="" D FLEN^SDCNP1A S ^UTILITY($J,"SDCNP",L)=NDT_"^"_SC_"^"_COV_"^"_APL_"^^"_APL D CHKSO
 WH1 G:L'>0 NO S (SDCTRL,SDCTR)=0,APP="" N SDITEM W:'SDERR @IOF
  W ! F Z=0:0 S Z=$O(^UTILITY($J,"SDCNP",Z)) Q:Z'>0  S SDITEM=$J($S(Z\1=Z:"("_$J(Z,2)_") ",1:""),5) D  Q:SDCTRL
@@ -20,22 +24,25 @@ BEGD S (SD,S)=$P(^UTILITY($J,"SDCNP",A1),"^",1),I=$P(^UTILITY($J,"SDCNP",A1),"^"
  I $$CODT^SDCOU(DFN,+^UTILITY($J,"SDCNP",A1),+$P(^(A1),U,2)) W !,*7,">>> Appointment #",A1," has a check out date and cannot be cancelled." Q
  D PROT^SDCNP1A Q:SDPRT=1  D CAN S $P(^UTILITY($J,"SDCNP",A1),"^",4)="*** JUST CANCELLED ***" Q
 CAN Q:$P(^UTILITY($J,"SDCNP",A1),"^",4)["JUST CANCELLED"  S CNT=CNT+1,DIV=$S($P(^SC(I,0),"^",15)]"":" "_$P(^(0),"^",15),1:" 1") I $D(^DPT("ASDPSD","C",DIV,I,S,DFN)) K ^(DFN)
- N SDATA,SDCPHDL S SDCPHDL=$$HANDLE^SDAMEVT(1) D BEFORE^SDAMEVT(.SDATA,DFN,S,I,"",SDCPHDL)
+ N SDATA,SDCPHDL,SDNOW,SDCLI S SDCPHDL=$$HANDLE^SDAMEVT(1) D BEFORE^SDAMEVT(.SDATA,DFN,S,I,"",SDCPHDL)
+ S SDCLI=I ;changed variable name I to SDCLI(Hospital location file IEN) as the value of I is manipulated by ^DIE SD*5.3*592
  S:'$D(^DPT(DFN,"S",0)) ^(0)="^2.98P^^" I $D(SDREM) S DIE="^DPT("_DFN_",""S"",",(DA,Y)=S,DA(1)=DFN,DR="17///^S X="_"""""_SDREM_""""" D ^DIE K DIE,DR
- S ^DPT("ASDCN",I,DA,DA(1))=$S(SDWH["P":1,1:"") K DA
- S $P(^DPT(DFN,"S",S,0),"^",2)=SDWH S:$D(DUZ) $P(^(0),"^",12)=DUZ D NOW^%DTC S SDT=$J(%,4,2),$P(^(0),"^",14)=SDT,$P(^(0),"^",15)=SDSCR,(DA,Y)=0 F X=0:0 S X=+$O(^SC(I,"S",S,1,X)) Q:'$D(^(X,0))  D C Q:Y&(DA)   ;SD*572 fixed $J func
+ S ^DPT("ASDCN",SDCLI,DA,DA(1))=$S(SDWH["P":1,1:"") K DA
+ ;removed rounding logic for time and changed direct global writes to fileman call SD*5.3*592
+ D NOW^%DTC S SDNOW=%,DIE="^DPT("_DFN_",""S"",",DA=S,DA(1)=DFN,DR="3///^S X=SDWH;14////^S X=DUZ;15///^S X=SDNOW;16////^S X=SDSCR" D ^DIE K DIE,DR,DA
+ S (DA,Y)=0 F X=0:0 S X=+$O(^SC(SDCLI,"S",S,1,X)) Q:'$D(^(X,0))  D C Q:Y&(DA) 
  I $D(^DPT("ASDPSD","B",DIV,S\1,DFN)) D CK1
- Q:'Y  S SL=$P(^SC(I,"S",S,1,Y,0),U,2) I DA,'$D(^("OB")) K ^SC(I,"S",S,1,DA,"OB")
- S SDDA=DA,SDTTM=S,SDRT="D",SDPL=Y,SDSC=I D RT^SDUTL D CANCEL^SDCNSLT S Y=SDPL,S=SDTTM,I=SDSC,DA=SDDA K SDDA ;SD/478
- S SDNODE=^SC(I,"S",S,1,Y,0),^SC("ARAD",I,S,DFN)="N",TLNK=$P($G(^SC(I,"S",S,1,Y,"CONS")),U) K ^SC(I,"S",S,1,Y) K:$O(^SC(I,"S",S,0))'>0 ^SC(I,"S",S,0) D CLRK^SDCNP1  ;SD/478
+ Q:'Y  S SL=$P(^SC(SDCLI,"S",S,1,Y,0),U,2) I DA,'$D(^("OB")) K ^SC(SDCLI,"S",S,1,DA,"OB")
+ S SDDA=DA,SDTTM=S,SDRT="D",SDPL=Y,SDSC=SDCLI D RT^SDUTL D CANCEL^SDCNSLT S Y=SDPL,S=SDTTM,SDCLI=SDSC,DA=SDDA K SDDA ;SD/478
+ S SDNODE=^SC(SDCLI,"S",S,1,Y,0),^SC("ARAD",SDCLI,S,DFN)="N",TLNK=$P($G(^SC(SDCLI,"S",S,1,Y,"CONS")),U) K ^SC(SDCLI,"S",S,1,Y) K:$O(^SC(SDCLI,"S",S,0))'>0 ^SC(SDCLI,"S",S,0) D CLRK^SDCNP1  ;SD/478
  K:TLNK'="" ^SC("AWAS1",TLNK),TLNK ;SD/478
  ;S SDNODE=^SC(I,"S",S,1,Y,0),^SC("ARAD",I,S,DFN)="N" S DA(2)=I,DA(1)=S,DA=Y,DIK="^SC("_DA(2)_",""S"","_DA(1)_",1," D ^DIK K:$O(^SC(I,"S",S,0))'>0 ^SC(I,"S",S,0) D CLRK^SDCNP1 ;SD/478
  D EVT
- Q:'$D(^SC(I,"ST",SD\1,1))
-EN01 S S=^SC(I,"ST",SD\1,1),Y=SD#1-SB*100,ST=Y#1*SI\.6+(Y\1*SI),SS=SL*HSI/60
+ Q:'$D(^SC(SDCLI,"ST",SD\1,1))
+EN01 S S=^SC(SDCLI,"ST",SD\1,1),Y=SD#1-SB*100,ST=Y#1*SI\.6+(Y\1*SI),SS=SL*HSI/60
  I Y'<1 F I=ST+ST:SDDIF S Y=$E(STR,$F(STR,$E(S,I+1))) Q:Y=""  S S=$E(S,1,I)_Y_$E(S,I+2,999),SS=SS-1 Q:SS'>0
  S ^(1)=S Q  ;NAKED REFERENCE - ^SC(IFN,"ST",Date,1)
-C I +^SC(I,"S",S,1,X,0)=DFN S Y=X Q
+C I +^SC(SDCLI,"S",S,1,X,0)=DFN S Y=X Q  ;changed variable name I to SDCLI SD*5.3*592
  Q:'$D(^("OB"))!DA  S:^("OB")?1"O".E DA=X Q
 NO W !,"NO ",$S('SDPV:"PENDING",1:"PREVIOUS")," APPOINTMENTS",*7,*7,*7
  D END^SDCNP G RD^SDCNP

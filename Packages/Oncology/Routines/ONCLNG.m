@@ -1,5 +1,5 @@
 ONCLNG ;Hines OIFO/GWB - Lung histology exclusion table ;03/09/11
- ;;2.11;ONCOLOGY;**46,52,53**;Mar 07, 1995;Build 31
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  K ONCLUNG
  S:ONCED<7 ONCLUNG(82401)=""

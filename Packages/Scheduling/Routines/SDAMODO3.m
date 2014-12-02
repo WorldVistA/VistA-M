@@ -1,5 +1,5 @@
-SDAMODO3 ;ALB/SCK - PROVIDER DIAGNOSTICS REPORT OUTPUT ; 05 Oct 98  8:44 PM
- ;;5.3;Scheduling;**11,25,46,49,159,529**;Aug 13, 1993;Build 3
+SDAMODO3 ;ALB/SCK - PROVIDER DIAGNOSTICS REPORT OUTPUT ;05 Oct 98  8:44 PM
+ ;;5.3;Scheduling;**11,25,46,49,159,529,586**;Aug 13, 1993;Build 28
  Q
 REPORT ;
  I '$D(^TMP("SDRPT",$J)) D NOREP G EXIT
@@ -73,8 +73,9 @@ HDR(SDIV) ;
  W ?(IOM-40),"Report Date: ",$P($$NOW^VALM1,"@"),?(IOM-10),"Page: ",PAGE
  W !,"Inclusion Dates: ",$P($$FMTE^XLFDT(SDBEG,1),"@")," to ",$P($$FMTE^XLFDT(SDEND,1),"@")
  W !,"Division: ",$P($G(^DG(40.8,SDIV,0)),U)
- W !!,"PATIENT",?32,"ENCOUNTER DATE",?55,"CLINIC/PRIMARY STOP CODE",?90,"PROVIDER",?117,"DX CODE"
- W !,"-------------------",?32,"------------------",?55,"------------------------",?90,"--------------",?117,"-------"
+ ; SSA ICD-10
+ W !!,"PATIENT",?32,"ENCOUNTER DATE",?55,"CLINIC/PRIMARY STOP CODE",?90,"PROVIDER",?117,"DX "_$S(SDBEG<ICD10IMPDT:"(ICD9)",1:"(ICD10)")_" CODE"
+ W !,"-------------------",?32,"------------------",?55,"------------------------",?90,"--------------",?117,"---------------"
  S Y=1
 HDRQ Q (Y)
  ;

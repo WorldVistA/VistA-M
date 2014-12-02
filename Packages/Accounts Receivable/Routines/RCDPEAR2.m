@@ -1,5 +1,5 @@
 RCDPEAR2 ;ALB/TMK/PJH - EFT Unmatched Aging Report - FILE 344.3 ;04-NOV-02
- ;;4.5;Accounts Receivable;**173,269,276,284,283**;Mar 20, 1995;Build 8
+ ;;4.5;Accounts Receivable;**173,269,276,284,283,293**;Mar 20, 1995;Build 15
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -54,9 +54,10 @@ RPTOUT(RCPRT) ; Entrypoint for queued job, nightly job
  S RCNP=+RCNP
  D SELPAY^RCDPEAR1(RCNP,RCJOB,.RCPAY)
  I RCPRT'="" K ^TMP($J,RCPRT)
- S RCZ0=0 F  S RCZ0=$O(^RCY(344.31,"AMATCH",0,RCZ0)) Q:'RCZ0  D
- .Q:$P($G(^RCY(344.31,RCZ0,3)),U)
- .Q:$P($G(^RCY(344.31,RCZ0,0)),U,7)=0
+ S RCZ0=0 F  S RCZ0=$O(^RCY(344.31,"AMATCH",0,RCZ0)) Q:'RCZ0  D   ;unmatched entries only
+ .Q:$P($G(^RCY(344.31,RCZ0,3)),U)        ; EFT has been removed
+ .Q:$P($G(^RCY(344.31,RCZ0,0)),U,7)=0    ; payment of zero
+ .;
  .S RC13=$P($G(^RCY(344.31,RCZ0,0)),U,13)  ;date received
  .; Check for payer match
  .I '$$CHKPYR^RCDPEDAR(RCZ0,0,RCJOB) Q

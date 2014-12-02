@@ -1,5 +1,5 @@
-MPIFSA2 ;SF/CMC-STAND ALONE QUERY PART 2 ;13 Aug 2010  6:13 PM
- ;;1.0; MASTER PATIENT INDEX VISTA ;**28,29,35,38,43,52,55**;30 Apr 99;Build 3
+MPIFSA2 ;SF/CMC-STAND ALONE QUERY PART 2 ;11 Apr 2013  3:38 PM
+ ;;1.0;MASTER PATIENT INDEX VISTA;**28,29,35,38,43,52,55,57**;30 Apr 99;Build 2
  ;
  ;Integration Agreements: $$EN^HLCSAC - #3471
  ;
@@ -53,7 +53,8 @@ VTQ(MPIVAR) ;
  S QUERY="VTQ"_HL("FS")_$G(MPIVAR("DFN"))_HL("FS")_"T"_HL("FS")_MPIQRYNM_HL("FS")_"ICN"_HL("FS")
  S MPI2NM=$P($G(MPIVAR("NM")),",",1),QUERY=QUERY_"@00108.1"_MPICS_"EQ"_MPICS_MPI2NM ; ^ sending last name
  I MPIVAR("SSN")'="" S QUERY=QUERY_MPICS_"AND"_MPIRS_"@00122"_MPICS_"EQ"_MPICS_$G(MPIVAR("SSN")) ; ^ sending SSN
- S MPI1NM=$P($G(MPIVAR("NM")),",",2),MPI1NM=$P(MPI1NM," ",1) I MPI1NM'="" S QUERY=QUERY_MPICS_"AND"_MPIRS_"@00108.2"_MPICS_"EQ"_MPICS_MPI1NM ; ^ sending first name
+ S MPI1NM=$P($G(MPIVAR("NM")),",",2),MPI1NM=$P(MPI1NM," ",1) I MPI1NM'="" S QUERY=QUERY_MPICS_"AND"_MPIRS_"@00108.2"_MPICS_"EQ"_MPICS_MPI1NM
+ ; ^ sending first name
  I $G(MPIVAR("DOB"))>0 D
  .S MPIHDOB=$$HLDATE^HLFNC(MPIVAR("DOB")) ; send date of birth (convert to hl7 date format)
  .S QUEDDOB=MPICS_"AND"_MPIRS_"@00110"_MPICS_"EQ"_MPICS_MPIHDOB,QUERY=QUERY_QUEDDOB ; ^ sending date of birth
@@ -95,7 +96,8 @@ LOOP1 ;
 DISPLAY ; display data found
  I INDEX>1 W !!,"Found potential matches"
  I INDEX=1 W !!,"Found One Match"
- N CNT1,CNT2,STOP,CNTR2,TTF,CNT3,DIR,X,Y,DATA,PREFIX,ANAME,APRE,ALN,AFN,NAME,SSN,BIRTHDAY,CMOR,TF,ICN,POBC,POBS,PAST,XXX,AMID,ASUF,MNAME,SUFFIX,SEX,IEN,CMOR2,TF2,CLAIM,CASE,NOIS,CUSER,TFN,CMOR3,POW,MBIRTH,TIEN,MIDDLE,SCORE,ALTRSHLD,TKTRSHLD,I
+ N CNT1,CNT2,STOP,CNTR2,TTF,CNT3,DIR,X,Y,DATA,PREFIX,ANAME,APRE,ALN,AFN,NAME,SSN,BIRTHDAY,CMOR,TF,ICN,POBC,POBS,PAST,XXX,AMID,ASUF
+ N MNAME,SUFFIX,SEX,IEN,CMOR2,TF2,CLAIM,CASE,NOIS,CUSER,TFN,CMOR3,POW,MBIRTH,TIEN,MIDDLE,SCORE,ALTRSHLD,TKTRSHLD,I,FULLICN
  S (CNT1)=0
  F  S CNT1=$O(^TMP("MPIFVQQ",$J,CNT1)) Q:CNT1'>0!($D(STOP))  D
  . S DATA=$G(^TMP("MPIFVQQ",$J,CNT1,"DATA"))
@@ -108,6 +110,7 @@ DISPLAY ; display data found
  . ;I SCORE<ALTRSHLD,(SCORE>=TKTRSHLD) S M="P"
  . S M=$S(SCORE>=ALTRSHLD:"E",1:"P")
  . ;Rearranging array for sectional view display
+ . S FULLICN=ICN   ;**57 - MVI_2350 (cml)
  . S ^TMP("MPIDOQ",$J,M,SCORE,+ICN)=NAME_"^"_SSN_"^"_BIRTHDAY_"^"_SEX
  . M ^TMP("MPIDOQ",$J,M,SCORE,+ICN,"TF")=^TMP("MPIFVQQ",$J,CNT1,"TF")
  I $D(STOP) Q  ;Quit if no score is returned
@@ -121,7 +124,7 @@ DISP2 ;
  . . . S ICNARR(ICN)="",COUNT=COUNT+1
  . . . S DATA=$G(^TMP("MPIDOQ",$J,I,SCORE,ICN))
  . . . D HDR1
- . . . W !,COUNT_") ",?4,ICN,?16,$P(DATA,"^"),?45,$P(DATA,"^",2),?57,$P(DATA,"^",3),?70,$P(DATA,"^",4)
+ . . . W !,COUNT_") ",?4,FULLICN,?22,$P(DATA,"^"),?54,$P(DATA,"^",2),?65,$P(DATA,"^",3),?76,$P(DATA,"^",4)  ;**57 - MVI_2350 (cml)
  . . . W ! N TMP S XXX=0 F  S XXX=$O(^TMP("MPIDOQ",$J,I,SCORE,ICN,"TF",XXX)) Q:XXX=""  S TMP=$G(^TMP("MPIDOQ",$J,I,SCORE,ICN,"TF",XXX)) Q:TMP=""  D
  . . . . S TMP=$P(TMP,"^",1) W !,?10,"Treating Facility: ",$P($$NS^XUAF4($$LKUP^XUAF4(TMP)),"^")," (",TMP,")"
  . . . W !
@@ -138,7 +141,7 @@ HDR(HDL) ;Header
  W !,"--- All ICNs Below meet the"_HDL_" Match criteria ---"
  Q
 HDR1 ;Repeating header
- W !,?4,"ICN",?16,"NAME",?45,"SSN",?57,"DOB",?70,"SEX"
+ W !,?4,"ICN",?22,"NAME",?54,"SSN",?65,"DOB",?76,"SEX"  ;**57 - MVI_2350 (cml)
  Q
 ASK ;
  N DIR,DA,DR,ND,SC,CNTR,BC,EC,ICN
@@ -153,20 +156,27 @@ ASK ;
  ...S CNTR=CNTR+1 I CNTR=+Y S QFLG=1,TMPICN=ICN
  Q
 ENRPC(ICN) ;RPC Call
- N LOC,HNDL,RETURN,DONE,I,ND
+ N LOC,HNDL,RETURN,I,ND
  S LOC="200M"
  D EN1^XWB2HL7(.RETURN,LOC,"MPIF EDAT REMOTE",1,ICN)
  S HNDL=$G(RETURN(0))
- S DONE=0
- F I=1:1:20 D  Q:DONE
- . H 5 W "."
- . D RTNDATA^XWBDRPC(.RETURN,HNDL)
- . Q:$P(RETURN(0),"^")=0
- . I $P(RETURN(0),"^")=-1 D  Q
- . . I RETURN(0)["Not DONE" Q
- . S DONE=1
- I 'DONE W !,"MPI system is unavailable to display the record, Try again later." Q
- I DONE,$G(^XTMP(HNDL,"D",1))'="" D
+ ;**57,MVI_1414: Check whether EN^XWB2HL7 call succeeded
+ I HNDL="" W:+$G(RETURN(1))=-1 !,$P(RETURN(1),"^",2) Q
+ I +HNDL=-1 W !,$P(HNDL,"^",2) Q
+ F I=1:1:20 K RETURN D RPCCHK^XWB2HL7(.RETURN,HNDL) Q:+RETURN(0)=1  Q:+RETURN(0)=-1  W "." H 5
+ I +RETURN(0)=-1 W !,$P(RETURN(0),"^",2) Q
+ I +RETURN(0)'=1 W !,"MPI system is unavailable to display the record, Try again later." Q
+ ;S DONE=0
+ ;F I=1:1:20 D  Q:DONE
+ ;. H 5 W "."
+ ;. D RTNDATA^XWBDRPC(.RETURN,HNDL)
+ ;. Q:$P(RETURN(0),"^")=0
+ ;. I $P(RETURN(0),"^")=-1 D  Q
+ ;. . I RETURN(0)["Not DONE" Q
+ ;. S DONE=1
+ ;I 'DONE W !,"MPI system is unavailable to display the record, Try again later." Q
+ ;I DONE,$G(^XTMP(HNDL,"D",1))'="" D
+ I $G(^XTMP(HNDL,"D",1))'="" D
  . W @IOF S $Y=1
  . S ND=0 F  S ND=$O(^XTMP(HNDL,"D",ND)) Q:ND=""  D
  ..W !,^XTMP(HNDL,"D",ND)

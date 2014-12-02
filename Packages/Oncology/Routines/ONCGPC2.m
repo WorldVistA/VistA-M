@@ -1,9 +1,9 @@
 ONCGPC2 ;Hines OIFO/GWB - 2001 Gastric Cancers PCE Study ;02/27/01
- ;;2.11;ONCOLOGY;**29**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Tumor Identification and Diagnosis 
  K DR S DIE="^ONCO(165.5,",DA=ONCONUM,DR=""
  W @IOF D HEAD^ONCGPC0
- W !," TUMOR INDENTIFICATION AND DIAGNOSIS"
+ W !," TUMOR IDENTIFICATION AND DIAGNOSIS"
  W !," -----------------------------------"
  S DR(1,165.5,1)="1521 13. PERFORMANCE STATUS AT INITIAL                                                    DIAGNOSIS...................."
  S DR(1,165.5,2)="W !"

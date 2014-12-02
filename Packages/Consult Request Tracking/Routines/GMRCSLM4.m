@@ -1,5 +1,5 @@
-GMRCSLM4 ;SLC/DCM - List Manager routine - Activity Log Detailed Display ;1/28/99 10:30
- ;;3.0;CONSULT/REQUEST TRACKING;**4,12,15,22,50,64,72**;DEC 27,1997;Build 10
+GMRCSLM4 ;SLC/DCM - List Manager routine - Activity Log Detailed Display ;08/05/14  13:06
+ ;;3.0;CONSULT/REQUEST TRACKING;**4,12,15,22,50,64,72,73**;DEC 27,1997;Build 22
  ;
 ACTLOG(GMRCO) ;Print activity log
  S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="",GMRCCT=GMRCCT+1
@@ -141,8 +141,19 @@ BLDCMTS ;Build lines for Comment activity.
 BLDCMT ;Build comment lines
  ;DASH is 1 or "" for print dash line after comment
  S LN=0
+ N GMRCLINE,SEG,BUFFER,PIECE
  F  S LN=$O(^GMR(123,+GMRCO,40,+GMRCDA,1,LN)) Q:'+LN  D
- . S ^TMP("GMRCR",$J,"DT",GMRCCT,0)=^GMR(123,+GMRCO,40,GMRCDA,1,LN,0) ;$P(^GMR(123,+GMRCO,40,GMRCDA,1,LN,0),"^",1)
+ . S GMRCLINE=^GMR(123,+GMRCO,40,GMRCDA,1,LN,0)
+ . I $E(GMRCLINE,1,22)="Provisional Diagnosis:"&($L($G(GMRCLINE))>80) D
+ .. F  S PIECE=$L(GMRCLINE) Q:PIECE<80  D  ;$L of GMRCLINE will change below, so hold original length in PIECE
+ ... N SEG,I S I=2
+ ... F  S SEG=$P(GMRCLINE," ",1,I) Q:$L(SEG)>=80!($L(SEG," ")<I)  S I=I+1
+ ... I $L(SEG)=$L(GMRCLINE) S SEG=$E(GMRCLINE,1,80) ;means GMRCLINE doesn't contain spaces, e.g. v55,250.00,414.00,etc.
+ ... S BUFFER=SEG
+ ... S:SEG[" " SEG=$P(GMRCLINE," ",1,(I-1)) I $L(SEG)=0 S SEG=$E(BUFFER,1,80) ;$P only good when SEG contains a space, otherwise grab a SEG from BUFFER
+ ... S ^TMP("GMRCR",$J,"DT",GMRCCT,0)=SEG,GMRCCT=GMRCCT+1
+ ... S GMRCLINE=$E(GMRCLINE,$L(SEG)+1,999)
+ . S ^TMP("GMRCR",$J,"DT",GMRCCT,0)=GMRCLINE ;$P(^GMR(123,+GMRCO,40,GMRCDA,1,LN,0),"^",1)
  . S GMRCCT=GMRCCT+1
  . Q
  ;D BLDASH

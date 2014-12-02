@@ -1,5 +1,5 @@
-LEXAS6 ; ISL/FJF Look-up Check Input (TRIM,EXP,TP,SCH); 12/07/2006
- ;;2.0;LEXICON UTILITY;**41**;Sep 23, 1996;Build 34
+LEXAS6 ;ISL/KER - Look-up Check Input (TRIM,EXP,TP,SCH) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**41,80**;Sep 23, 1996;Build 1
  ;
 TRIM(LEXX) ; Trim string
  ;

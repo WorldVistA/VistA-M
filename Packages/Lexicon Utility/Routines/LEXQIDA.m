@@ -1,38 +1,44 @@
-LEXQIDA ;ISL/KER - Query - ICD Diagnosis - Ask ;10/30/2008
- ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
+LEXQIDA ;ISL/KER - Query - ICD Diagnosis - Ask ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**62,80**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
- ;    ^ICD9(              ICR   4485
- ;    ^TMP("LEXQIDA")     SACC 2.3.2.5.1
+ ;    None
  ;               
  ; External References
  ;    ^DIC                ICR  10006
  ;    ^DIR                ICR  10026
- ;    $$ICDDX^ICDCODE     ICR   3990
+ ;    $$CODEC^ICDEX       ICR   5747
+ ;    $$ICDDX^ICDEX       ICR   5747
+ ;    $$NCC^ICDEX         ICR   5747
+ ;    $$NOT^ICDEX         ICR   5747
+ ;    $$REQ^ICDEX         ICR   5747
+ ;    $$ROOT^ICDEX        ICR   5747
+ ;    $$SYS^ICDEX         ICR   5747
  ;    $$DT^XLFDT          ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
  ;               
- ; Local Variables NEWed or KILLed Elsewhere
+ ; Local Variables NEWed or KILLed in LEXQID
  ;    LEXCDT              Code Set Date
  ;    LEXEXIT             Exit Flag
  ;               
  Q
 ICD(X) ; ICD DX Code
- Q:+($G(LEXEXIT))>0 "^^"  N DIC,DTOUT,DUOUT,LEXDX,LEXSO,LEXDTXT,LEXVTXT,LEXVDT,Y,ICDVDT S:$G(LEXCDT)?7N ICDVDT=$G(LEXCDT)
- S DIC(0)="AEQMZ",DIC="^ICD9(",DIC("A")=" Select an ICD Diagnosis code:  " W !
+ Q:+($G(LEXEXIT))>0 "^^"  N DIC,DTOUT,DUOUT,LEXDX,LEXSO,LEXVDT,LEXDTXT,LEXVTXT,Y,ICDVDT,ICDSYS,ICDFMT S ICDFMT=2
+ S DIC(0)="AEQMZ",DIC=$$ROOT^ICDEX(80),DIC("A")=" Select an ICD Diagnosis code:  " W !
  D ^DIC S:$G(X)["^^"!($D(DTOUT)) LEXEXIT=1 Q:$G(X)["^^"!(+($G(LEXEXIT))>0) "^^"
  Q:$G(X)="^" "^"  Q:$G(X)["^^" "^^"  Q:$D(DTOUT)!($D(DUOUT)) "^"  S LEXSO=$P($G(Y),"^",2) S X="" I +Y>0,$L(LEXSO) D
- . S LEXVDT=$G(LEXCDT) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S X=Y,LEXDTXT=$P($G(Y(0)),"^",2),LEXDX=$$ICDDX^ICDCODE(LEXSO,LEXVDT)
+ . N LEXSYS S LEXSYS=$$SYS^ICDEX(LEXSO) S:+LEXSYS'>0 LEXSYS="" S LEXVDT=$G(LEXCDT) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT
+ . S X=Y,LEXDTXT=$P($G(Y(0)),"^",2),LEXDX=$$ICDDX^ICDEX(LEXSO,LEXVDT,LEXSYS,"E")
  . S:$L($G(LEXDTXT)) LEXDTXT=LEXDTXT_" (Text not Versioned)" S LEXVTXT=$P(LEXDX,"^",4) S:'$L(LEXVTXT) LEXVTXT=LEXDTXT
  . S X=+Y_"^"_LEXSO S:$L(LEXVTXT) X=X_"^"_LEXVTXT
  S X=$$UP^XLFSTR(X) Q:'$L(X) "^"
  Q X
  ;          
 NOT(X) ; Include ICD Codes not to use with ***.**
- Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,Y,DIRB,LEXIEN,LEXLSO,LEXCT,LEXCTE,LEXI S LEXIEN=+($G(X)) Q:'$D(^ICD9(+LEXIEN,0)) 0  Q:+($O(^ICD9(+LEXIEN,"N",0)))'>0 0
- S LEXLSO=$P($G(^ICD9(+LEXIEN,0)),"^",1) Q:'$L(LEXLSO) 0  S LEXI="",LEXCT=0 F  S LEXI=$O(^ICD9(+LEXIEN,"N","B",LEXI)) Q:'$L(LEXI)  S LEXCT=LEXCT+1
- Q:+($G(LEXCT))'>0 0  S LEXCTE=$S(LEXCT=1:"one",LEXCT=2:"two",LEXCT=3:"three",LEXCT=4:"four",LEXCT=5:"five",LEXCT=6:"six",LEXCT=7:"seven",LEXCT=8:"eight",LEXCT=9:"nine",1:LEXCT)
+ Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,Y,DIRB,LEXIEN,LEXLSO,LEXCT,LEXCTE,LEXI S LEXIEN=+($G(X))
+ S LEXCT=$$NOT^ICDEX(+LEXIEN,,0) Q:LEXCT'>0 0  S LEXLSO=$$CODEC^ICDEX(80,+LEXIEN)
+ S LEXCTE=$S(LEXCT=1:"one",LEXCT=2:"two",LEXCT=3:"three",LEXCT=4:"four",LEXCT=5:"five",LEXCT=6:"six",LEXCT=7:"seven",LEXCT=8:"eight",LEXCT=9:"nine",1:LEXCT)
  S DIRB=$$RET^LEXQD("LEXQIDA","NOT",+($G(DUZ)),"Include ICD Codes not to use with") S:'$L(DIRB) DIRB="No"
  S DIR(0)="YAO" S:LEXCT=1 DIR("A")=" Include the single ICD Code that can not be used with "_LEXLSO_"?  (Y/N)  "
  S:LEXCT>1 DIR("A")=" Include the "_LEXCTE_" ICD Codes that can not be used with "_LEXLSO_"?  (Y/N)  "
@@ -47,9 +53,9 @@ NOTH ;   Include NOT Help
  Q
  ;          
 REQ(X) ; Include ICD Codes required with ***.**
- Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,Y,DIRB,LEXIEN,LEXLSO,LEXCT,LEXCTE,LEXI S LEXIEN=+($G(X)) Q:'$D(^ICD9(+LEXIEN,0)) 0  Q:+($O(^ICD9(+LEXIEN,"R",0)))'>0 0
- S LEXLSO=$P($G(^ICD9(+LEXIEN,0)),"^",1) Q:'$L(LEXLSO) 0  S LEXI="",LEXCT=0 F  S LEXI=$O(^ICD9(+LEXIEN,"R","B",LEXI)) Q:'$L(LEXI)  S LEXCT=LEXCT+1
- Q:+($G(LEXCT))'>0 0  S LEXCTE=$S(LEXCT=1:"one",LEXCT=2:"two",LEXCT=3:"three",LEXCT=4:"four",LEXCT=5:"five",LEXCT=6:"six",LEXCT=7:"seven",LEXCT=8:"eight",LEXCT=9:"nine",1:LEXCT)
+ Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,Y,DIRB,LEXIEN,LEXLSO,LEXCT,LEXCTE,LEXI S LEXIEN=+($G(X))
+ S LEXCT=$$REQ^ICDEX(+LEXIEN,,0) Q:LEXCT'>0 0  S LEXLSO=$$CODEC^ICDEX(80,+LEXIEN)
+ S LEXCTE=$S(LEXCT=1:"one",LEXCT=2:"two",LEXCT=3:"three",LEXCT=4:"four",LEXCT=5:"five",LEXCT=6:"six",LEXCT=7:"seven",LEXCT=8:"eight",LEXCT=9:"nine",1:LEXCT)
  S DIRB=$$RET^LEXQD("LEXQIDA","REQ",+($G(DUZ)),"Include ICD Required with") S:'$L(DIRB) DIRB="No"
  S DIR(0)="YAO" S:LEXCT=1 DIR("A")=" Include the one ICD Code that is required with "_LEXLSO_"?  (Y/N)  "
  S:LEXCT>1 DIR("A")=" Include the "_LEXCTE_" ICD Codes that are required with "_LEXLSO_"?  (Y/N)  "
@@ -65,10 +71,8 @@ REQH ;   Include REQ Help
  Q
  ;          
 NCC(X) ; Include the codes that ***.** is not CC with
- Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,Y,DIRB,LEXIEN,LEXLSO,LEXCT,LEXCTE,LEXI,LEXNCC S LEXIEN=+($G(X)) Q:'$D(^ICD9(+LEXIEN,0)) 0  Q:+($O(^ICD9(+LEXIEN,"2",0)))'>0 0
- S LEXLSO=$P($G(^ICD9(+LEXIEN,0)),"^",1) Q:'$L(LEXLSO) 0  K ^TMP("LEXQIDA",$J,"NCC") S (LEXI,LEXCT)=0 F  S LEXI=$O(^ICD9(+LEXIEN,"2",LEXI)) Q:+LEXI'>0  D
- . S LEXNCC=$G(^ICD9(+LEXIEN,"2",LEXI,0)) Q:'$L(LEXNCC)  S:'$D(^TMP("LEXQIDA",$J,"NCC",LEXNCC)) LEXCT=LEXCT+1 S ^TMP("LEXQIDA",$J,"NCC",LEXNCC)=""
- K ^TMP("LEXQIDA",$J,"NCC") Q:+($G(LEXCT))'>0 0
+ Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,Y,DIRB,LEXIEN,LEXLSO,LEXCT,LEXCTE,LEXI,LEXNCC S LEXIEN=+($G(X))
+ S LEXCT=$$NCC^ICDEX(+LEXIEN,,0) Q:LEXCT'>0 0  S LEXLSO=$$CODEC^ICDEX(80,+LEXIEN)
  S LEXCTE=$S(LEXCT=1:"one",LEXCT=2:"two",LEXCT=3:"three",LEXCT=4:"four",LEXCT=5:"five",LEXCT=6:"six",LEXCT=7:"seven",LEXCT=8:"eight",LEXCT=9:"nine",1:LEXCT)
  S DIRB=$$RET^LEXQD("LEXQIDA","NCC",+($G(DUZ)),"Include Codes not CC with") S:'$L(DIRB) DIRB="No"
  S DIR(0)="YAO" S:LEXCT=1 DIR("A")=" Include the one ICD Code that "_LEXLSO_" is not CC with?  (Y/N)  "
@@ -97,6 +101,3 @@ NCCH ;   Include NCC Help
  ;          
 SD(X) ; Short Date
  Q $TR($$FMTE^XLFDT(+($G(X)),"5DZ"),"@"," ")
-CLR ; Clear
- N LEXCDT,LEXEXIT
- Q

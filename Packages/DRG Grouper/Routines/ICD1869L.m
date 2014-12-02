@@ -1,0 +1,116 @@
+ICD1869L ;ALB/JDG - UPDATE DX & PX CODES ; 10/5/11 3:23pm
+ ;;18.0;DRG Grouper;**69**;Oct 20,2000;Build 4
+ ;
+ Q
+ ;
+ ; Update Dx code(s)
+ICDUPDDX ; update DX identifier(s)
+ D BMES^XPDUTL(">>> UPDATING DX CODE 482.42 IDENTIFIER...")
+ N LINE,LINEXX,ICDDXDA,DA,DIE,IDENT,DR
+ S DIE="^ICD9(",DR="2///^S X=IDENT"
+ F LINE=1:1 S LINEXX=$T(PROCUP1+LINE) S ICDDXDA=$P(LINEXX,";;",2) Q:ICDDXDA="EXIT"  D
+ .S DA=ICDDXDA
+ .S IDENT="k"
+ .D ^DIE
+ .Q
+ D BMES^XPDUTL(">>> UPDATING DX CODE 779.84 IDENTIFIER...")
+ N LINE,DXTXT,ICDDXDA1,DA,IDENT
+ F LINE=1:1 S DXTXT=$T(PROCUP3+LINE) S ICDDXDA1=$P(DXTXT,";;",2) Q:ICDDXDA1="EXIT"  D
+ .S DA=ICDDXDA1
+ .S IDENT="S"
+ .D ^DIE
+ .Q
+ D BMES^XPDUTL(">>> UPDATING DX CODE V64.06 IDENTIFIER...")
+ N LINE,DXTXT,ICDDXDA4,DA,IDENT
+ F LINE=1:1 S DXTXT=$T(PROCUP4+LINE) S ICDDXDA4=$P(DXTXT,";;",2) Q:ICDDXDA4="EXIT"  D
+ .S DA=ICDDXDA4
+ .S IDENT="S"
+ .D ^DIE
+ .Q
+ D BMES^XPDUTL(">>> UPDATING DX CODE V18.0 IDENTIFIER...")
+ N LINE,DXTXT,ICDDXDA2,DA,IDENT
+ F LINE=1:1 S DXTXT=$T(PROCUP5+LINE) S ICDDXDA2=$P(DXTXT,";;",2) Q:ICDDXDA2="EXIT"  D
+ .S DA=ICDDXDA2
+ .S IDENT="S"
+ .D ^DIE
+ .Q
+ Q
+ ;
+ ;
+ ; Update Px code(s)
+ICDUPDPX ; Update Px identifier(s)
+ D BMES^XPDUTL(">>> UPDATING PX CODE 32.20 IDENTIFIER...")
+ N LINE,LINEXX,ICDPXDA3,DA,IDENT,DR,DIE
+ F LINE=1:1 S LINEXX=$T(PROCUP2+LINE) S ICDPXDA3=$P(LINEXX,";;",2) Q:ICDPXDA3="EXIT"  D
+ .S DIE="^ICD0(",DR="2///^S X=IDENT"
+ .S DA=ICDPXDA3
+ .S IDENT="O"
+ .D ^DIE
+ Q
+ ;
+ ;
+ICDECUP1 ; Update PTF EXPANDED CODE (#45.89) file w/ Dx code 294.20
+ N ICDSAVXC,ICDXC,ICDDX
+ S ICDSAVXC=$P(^DD(45.89,.01,0),U,2) ;diagnosis/procedure code field
+ S ICDXC=$P(ICDSAVXC,"I",1)_$P(ICDSAVXC,"I",2,99) ;Remove the 'I'
+ S $P(^DD(45.89,.01,0),U,2)=ICDXC
+ F ICDDX=294.20 D
+ .S DIC="^ICD9(",DIC(0)="MX",X=ICDDX D ^DIC
+ .Q:+Y'>0
+ .I $D(^DIC(45.89,"ASPL",+Y_";ICD9(")) D  Q
+ ..D MES^XPDUTL(">>>>Entry "_$P(Y,U,2)_" already exists in the PTF EXPANDED CODE (#45.89) file. ")
+ .S DIC="^DIC(45.89,",DIC(0)=""
+ .S DIC("DR")=".01///5"_";.02///"_ICDDX,X="PSYCHIATRY AXIS CLASSIFICATION"
+ .K DO D FILE^DICN
+ .I +Y<0 D  Q
+ ..D MES^XPDUTL(">>>>Entry already exists, nothing added to the PTF EXPANDED CODE (#45.89) file. ")
+ .D MES^XPDUTL(">>>>Entry added to PTF EXPANDED CODE (#45.89) file. ")
+ S $P(^DD(45.89,.01,0),U,2)=ICDSAVXC
+ K DIC,DIE,DA,DR,Y,X
+ Q
+ ;
+ ;
+ICDECUP2 ; Update PTF EXPANDED CODE (#45.89) file w/ Dx code 294.21
+ N ICDSAVXC,ICDXC,ICDDX
+ S ICDSAVXC=$P(^DD(45.89,.01,0),U,2) ;diagnosis/procedure code field
+ S ICDXC=$P(ICDSAVXC,"I",1)_$P(ICDSAVXC,"I",2,99) ;Remove the 'I'
+ S $P(^DD(45.89,.01,0),U,2)=ICDXC
+ F ICDDX=294.21 D
+ .S DIC="^ICD9(",DIC(0)="MX",X=ICDDX D ^DIC
+ .Q:+Y'>0
+ .I $D(^DIC(45.89,"ASPL",+Y_";ICD9(")) D  Q
+ ..D MES^XPDUTL(">>>>Entry "_$P(Y,U,2)_" already exists in the PTF EXPANDED CODE (#45.89) file. ")
+ .S DIC="^DIC(45.89,",DIC(0)=""
+ .S DIC("DR")=".01///5"_";.02///"_ICDDX,X="PSYCHIATRY AXIS CLASSIFICATION"
+ .K DO D FILE^DICN
+ .I +Y<0 D  Q
+ ..D MES^XPDUTL(">>>>Entry already exists, nothing added to the PTF EXPANDED CODE (#45.89) file. ")
+ .D MES^XPDUTL(">>>>Entry added to PTF EXPANDED CODE (#45.89) file. ")
+ S $P(^DD(45.89,.01,0),U,2)=ICDSAVXC
+ K DIC,DIE,DA,DR,Y,X
+ Q
+ ;
+ ;
+PROCUP1 ;
+ ;;14734
+ ;;EXIT
+ ;
+ ;
+PROCUP2 ;
+ ;;4369
+ ;;EXIT
+ ;
+ ;
+PROCUP3 ;
+ ;;14156
+ ;;EXIT
+ ;
+ ;
+PROCUP4 ;
+ ;;14211
+ ;;EXIT
+ ;
+ ;
+PROCUP5 ;
+ ;;11396
+ ;;EXIT

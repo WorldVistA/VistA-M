@@ -33,9 +33,9 @@ GETSLOC(SYSPTR) ;Get value of STATUS SERVER LOCATION field (#32)
  ; Notes : If no value found, domain for FORUM returned
  N FAC,XTRNL
  S FAC=$$GETPTR^HDISVF10($G(SYSPTR))
- I 'FAC Q "FORUM.domain.ext"
+ I 'FAC Q "DOMAIN.EXT"
  S XTRNL=$$GET^HDISVF02(7118.29,32,(FAC_","),"E")
- I XTRNL="" Q "FORUM.domain.ext"
+ I XTRNL="" Q "DOMAIN.EXT"
  Q XTRNL
  ;
 SETSLOC(VALUE,SYSPTR) ;Set value of STATUS SERVER LOCATION field (#32)

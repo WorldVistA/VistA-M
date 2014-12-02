@@ -1,6 +1,6 @@
-DILIBF ;SFISC/STAFF-LIBRARY OF FUNCTIONS ;9:03 AM  9 Jan 2001
- ;;22.0;VA FileMan;**48,71**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DILIBF ;SFISC/STAFF-LIBRARY OF FUNCTIONS ;1:48 PM  20 Feb 2013
+ ;;22.0;VA FileMan;**48,71,169**;Mar 30, 1999;Build 26
+ ;Per VHA Directive 2004-038, this routine should not be modified.
 HTFM(%H,%F) ;$H to FM
  N X,%,%Y,%M,%D S:'$D(%F) %F=0
  S:%H[",0" %H=%H-1_",86400"
@@ -47,6 +47,7 @@ D2 S X=(X1-%H) S:X3>1 X=X*86400+(X1(1)-$P(%H,",",2))
  . S:%#86400 X=X_" "_(%#86400\3600)_":"_$E(%#3600\60+100,2,3)_":"_$E(%#60+100,2,3)
  . Q
  Q X
+ ;
 HDIFF(X1,X2,X3) ;$H diff in two dates, X3 same as FMDIFF.
  N X,%H,%T S:'$D(X3) X3=1 S X1(1)=$P(X1,",",2),X1=+X1,%H=X2
  G D2
@@ -55,18 +56,23 @@ HADD(X,D,H,M,S) ;Add to $H date
 A2 S %H=%H+$G(D),%T=%T+($G(H)*3600)+($G(M)*60)+$G(S)
  S:%T'<86400 %H=%H+(%T\86400),%T=%T#86400 S:%T<0 %H=%H+(%T\86400)-1,%T=%T#86400
  Q
+ ;
 FMADD(X,D,H,M,S) ;Add to FM date
  N %H,%T S %H=$$FMTH(X,0),%T=$P(%H,",",2) D A2 Q $$HTFM(%H_","_%T)
+ ;
 CONVQQ(X) ; CONVERT SINGLE TO DOUBLE QUOTES IN STRING X
  N Q,F S Q=""""
  F F=0:0 S F=$F(X,Q,F) Q:F=0  S X=$E(X,1,F-2)_Q_Q_$E(X,F,256),F=F+1
  Q X
+ ;
 CONVQ(X) ; CONVERT DOUBLE TO SINGLE QUOTES IN STRING X
  N Q,F,D S Q="""",D=""""""
  F F=0:0 S F=$F(X,D,F) Q:F=0  S X=$E(X,1,F-3)_Q_$E(X,F,256),F=F-1
  Q X
+ ;
 QUOTE(X) ; PUT QUOTES AROUND STRING
  S X=""""_$G(X)_"""" Q X
+ ;
 FNO(X) ; gets a subfile's top level file number
  N Y S X=+X
  I $G(^DIC(X,0))]"" Q X
@@ -75,21 +81,26 @@ FNO(X) ; gets a subfile's top level file number
  . S X=Y
  . Q
  Q Y
+ ;
 GLO(Z) ; gets the file number from a global root
  I '$D(@(Z_"0)"))#2 Q 0
  N Y
  S Y=+$P($G(@(Z_"0)")),U,2)
  Q $$FNO(+Y)
+ ;
 UP(X) ; convert string X to uppercase
  I X?.UNP Q X
- N A,B,C S C=""
- F A=1:1:$L(X) S B=$E(X,A) S C=C_$S(B?1L:$C($A(B)-32),1:B)
+ N A,L,B,C S C=""
+ F A=1:1:$L(X) S L=$E(X,A),B=$C($A(L)-32) S C=C_$S(L'?1L:L,B?1L:"Z",1:B) ;$C(255) matches lower-case, and so does $C(255-32), so lamely return "Z"
  Q C
+ ;
 ROUEXIST(X) ; Execute routine existence test
  G:X="" QRER I '$D(DISYS) N DISYS D OS^DII
  I $G(^%ZOSF("TEST"))]"" X ^("TEST") Q $T
  I $G(^DD("OS",DISYS,18))]"" X ^(18) Q $T
 QRER Q 0
+ ;
+ ;
 F5 ;
 F1 S %R=$P($S(%F'["U":$T(M),1:$T(MU))," ",$S($E(Y,4,5):$E(Y,4,5)+2,1:0))_$S($E(Y,4,5):" ",1:"")_$S($E(Y,6,7):$S((%F\1'=5):$E(Y,6,7),1:+$E(Y,6,7))_$E(", ",1,1+(%F\1'=5)),1:"")_($E(Y,1,3)+1700)
 TM Q:%T'>0!(%F["D")
@@ -118,36 +129,17 @@ HKERR(DIFILE,DIIENS,DIFLD,DIHOOK) ;
  D BLD^DIALOG(120,DIHOOK,.DIEXT)
  Q
  ;
-FILENUM(DIGREF) ; Return file/subfile number from open global reference
+FILENUM(DIGREF) ;Return file/subfile number from open global reference
  Q:$G(DIGREF)'?1"^".1"%"1U.UN1"(".E ""
- N DIGR,X,DIFILE S DIFILE=""
- S DIFILE=$$FNUM1(DIC) Q:DIFILE'="" DIFILE
  I $E(DIGREF,1,8)="^DIC(.2," Q .2
- S DIGREF=$$CREF^DILF(DIGREF),DIGREF=$NA(@DIGREF),DIGREF=$$OREF^DILF(DIGREF)
- S DIFILE="" D  I DIFILE="" Q ""
- . S DIGR=DIGREF N DISUBS S DISUBS=$QL($$CREF^DILF(DIGR)) Q:'DISUBS
- . F DISUBS=DISUBS-1:-1 Q:DISUBS'>-1  D  Q:DIFILE'=""
- . . I DISUBS S DIGR=$P(DIGR,",",1,DISUBS)_"," S DIFILE=$$FNUM1(DIGR) Q
- . . S DIGR=$P(DIGR,"(")_"(" Q:DIGR="^DIC("  S DIFILE=$$FNUM1(DIGR) Q
- . Q
- S X=$P(DIGREF,DIGR,2,99) I X="" Q DIFILE
- N I,J,K,Q S Q=""""
- F I=2:2 S J=$P(X,",",I) Q:J=""  D  Q:DIFILE=""
- . I $E(J)=Q S J=$P(J,Q,2)
- . S K=$O(^DD(DIFILE,"GL",J,0,0)) I 'K S DIFILE="" Q
- . S DIFILE=+$P($G(^DD(DIFILE,K,0)),U,2) Q
+ N F,X,DIFILE,S
+ S DIFILE=+$P($G(@(DIGREF_"0)")),U,2) I DIFILE Q DIFILE
+ S DIGREF=$$CREF^DILF(DIGREF)
+ F X=$QL($NA(@DIGREF)):-2:0 S X(X)=$QS(DIGREF,X),X(X,0)=$$CREF^DILF($NA(@DIGREF,X))
+ S X=$O(X("")) I X="" Q ""
+ I X(X)="^DIC" S F=1
+ E  I X(X)="^DD" S F=0
+ E  S S=$P($G(@X(X,0)@(0)),U,2),F=+S I S="" Q ""
+ F X=X:0 S X=$O(X(X)) Q:X=""  S DIFILE=$O(^DD(F,"GL",X(X),0,"")) Q:DIFILE=""  S (F,DIFILE)=+$P($G(^DD(F,DIFILE,0)),U,2) Q:'F
  Q DIFILE
- ;
-FNUM1(DIGR) ; Return file number for file 0, or from 0 node of data
- ; DIGR is the open global reference
- N DIFILE
- I $E(DIGR,1,4)="^DD(",$P(DIGR,"(",2) D  I $D(DIFILE) Q DIFILE
- . I $L(DIGR,",")=2 S DIFILE=0 Q
- . I $L(DIGR,",")'=4 Q
- . N % S %=$P(DIGR,",",3)
- . I %=11 S DIFILE=.2 Q
- . S:%=20 DIFILE=.3 Q
- S DIFILE=+$P($G(@(DIGR_"0)")),U,2)
- I DIFILE,$G(^DIC(DIFILE,0,"GL"))=DIGR Q DIFILE
- Q ""
  ;

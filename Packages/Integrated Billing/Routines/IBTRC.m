@@ -1,6 +1,6 @@
 IBTRC ;ALB/AAS - CLAIMS TRACKING INSURANCE REVIEWS ; 27-JUN-1993
- ;;Version 2.0 ; INTEGRATED BILLING ;; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**458**;21-MAR-94;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % ;
 EN ; -- main entry point for IBT COMMUNICATIONS EDITOR from menu's
@@ -18,8 +18,9 @@ ENQ K XQORS,VALMEVL,IBTRN,IBTRND,IBCNT,DFN,IBTRC,IBTRV,IBTRD,IBCNS,IBCDFN,IBFAST
  Q
  ;
 HDR ; -- header code
- D PID^VADPT
- S VALMHDR(1)="Insurance Review Entries for: "_$$PT^IBTUTL1(DFN)_"   ROI: "_$$EXPAND^IBTRE(356,.31,$P(^IBT(356,IBTRN,0),"^",31))
+ D PID^VADPT N IBXR
+ S VALMHDR(1)="Insurance Review Entries for: "_$$PT^IBTUTL1(DFN)
+ S IBXR=$$ROIEVT^IBTRR1(IBTRN) I IBXR'="" S VALMHDR(1)=VALMHDR(1)_$J(" ",(60-$L(VALMHDR(1))))_"ROI: "_IBXR
  S VALMHDR(2)="                         for: "_$$EXPAND^IBTRE(356,.18,$P(IBTRND,"^",18))_" on "_$$DAT1^IBOUTL($P(IBTRND,"^",6),"2P")
  Q
  ;
@@ -50,13 +51,13 @@ BLD ; -- Build list of Insurnace contacts
  .S X=$$SETFLD^VALM1($$EXPAND^IBTRE(356.2,.11,$P(IBTRCD,"^",11)),X,"ACTION")
  .;
  .S X=$$SETFLD^VALM1($P(IBETYP,"^",3),X,"TYPE")
- .S X=$$SETFLD^VALM1($P(IBTRCD,"^",28),X,"PRE-CERT")
+ .S X=$$SETFLD^VALM1($$AUTHN(IBTRC,10),X,"PRE-CERT")
  .I $P(IBTRCD,"^",13) S X=$$SETFLD^VALM1($J($$DAY^IBTUTL3($P(IBTRCD,"^",12),$P(IBTRCD,"^",13),IBTRN),3),X,"DAYS")
  .I $P($G(^IBE(356.7,+$P(IBTRCD,"^",11),0)),"^",3)=20 S X=$$SETFLD^VALM1($J($$DAY^IBTUTL3($P(IBTRCD,"^",15),$P(IBTRCD,"^",16),IBTRN),3),X,"DAYS")
  .I $P(IBTRCD1,"^",7)!($P(IBTRCD1,"^",8)) S X=$$SETFLD^VALM1("ALL",X,"DAYS")
  .S X=$$SETFLD^VALM1($P(IBTRCD,"^",6),X,"CONTACT")
  .S X=$$SETFLD^VALM1($P(IBTRCD,"^",7),X,"PHONE")
- .S X=$$SETFLD^VALM1($P(IBTRCD,"^",9),X,"REF NO")
+ .S X=$$SETFLD^VALM1($$CREFN(IBTRC,12),X,"REF NO")
  .I $P(IBETYP,"^",2)=60!($P(IBETYP,"^",2)=65) D APPEAL^IBTRC3
  .D SET(X)
  Q
@@ -76,6 +77,15 @@ EXIT ; -- exit code
  K IBTRC
  D CLEAN^VALM10
  Q
+ ;
+AUTHN(IBTRC,LNG) ; -- return autorization number (356.2, 2.02) - length and append *
+ N X S X=$P($G(^IBT(356.2,+$G(IBTRC),2)),"^",2) I +$G(LNG),$L(X)>LNG S X=$E(X,1,(LNG-1))_"*"
+ Q X
+ ;
+CREFN(IBTRC,LNG) ; -- return call reference number (356.2, 2.01) - length and append *
+ N X S X=$P($G(^IBT(356.2,+$G(IBTRC),2)),"^",1) I +$G(LNG),$L(X)>LNG S X=$E(X,1,(LNG-1))_"*"
+ Q X
+ ;
  ;
 TYPE(IBTRC) ; -- compute default type of contact
  N TYPE,IBTRTP,IBTRN,IBSCHED

@@ -1,6 +1,16 @@
-LEXDDS ; ISL Display Defaults - Single User       ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDDS ;ISL/KER - Display Defaults - Single User ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    $$GET1^DIQ          ICR   2056
+ ;    HOME^%ZIS           ICR  10086
+ ;    ^%ZIS               ICR  10086
+ ;    ^%ZISC              ICR  10089
+ ;    ^%ZTLOAD            ICR  10063
+ ;               
  ; Entry:  D EN^LEXDDS              LEXAP is unknown
  ;
  ; Entry:  D EN1^LEXDDS(LEXAP)     LEXAP is known
@@ -20,7 +30,7 @@ EN1(LEXAP) ; Display Single User Defaults, LEXAP is unknown
 DEV ; Select a device
  N %,%ZIS,IOP,ZTRTN,ZTSAVE,ZTDESC,ZTDTH,ZTIO,ZTSK
  S ZTRTN="DISP^LEXDDSP",(ZTSAVE("LEXAP"),ZTSAVE("DUZ"))=""
- S ZTDESC="LEXICON DEFAULTS FOR "_$P(^VA(200,DUZ,0),"^",1)
+ S ZTDESC="LEXICON DEFAULTS FOR "_$$GET1^DIQ(200,+($G(DUZ)),.01)
  S ZTIO=ION,ZTDTH=$H,%ZIS="PQ" D ^%ZIS Q:POP  S ZTIO=ION
  I $D(IO("Q")) D QUE,^%ZISC Q
  D NOQUE Q

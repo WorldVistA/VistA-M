@@ -1,19 +1,17 @@
-LEXXFI7 ; ISL/KER - File Info - Prompts and Header   ; 02/22/2007
- ;;2.0;LEXICON UTILITY;**32,49**;Sep 23, 1996;Build 3
- Q
- ;                    
+LEXXFI7 ;ISL/KER - File Info - Prompts and Header ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**32,49,80**;Sep 23, 1996;Build 1
+ ;               
  ; Global Variables
- ;   ^%ZOSF("UCI")       DBIA 10096
- ;   ^%ZOSF("PROD")      DBIA 10096
- ;
+ ;    ^%ZOSF("UCI")       ICR  10096
+ ;               
  ; External References
- ;   DBIA 10026  ^DIR
- ;   DBIA 10103  $$FMTE^XLFDT
- ;   DBIA 10103  $$NOW^XLFDT
- ;   DBIA  2056  $$GET1^DIQ (file #200)
- ;   DBIA 10096  ^%ZOSF("UCI")
- ;   DBIA 10096  ^%ZOSF("PROD")
- ;                    
+ ;    $$FMTE^XLFDT        ICR  10103
+ ;    $$GET1^DIQ          ICR   2056
+ ;    $$NOW^XLFDT         ICR  10103
+ ;    ^DIR                ICR  10026
+ ;    $$PROD^XUPROD       ICR   4440
+ ;               
+ Q
 MT(X) ; Method - One or All Files
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,Y
  S DIR(0)="SAO^O:Checksum for ONE file;A:Checksum for ALL files (LEX/ICD/CPT)"
@@ -106,8 +104,10 @@ ARY(X,LEX) ;   Build Array  of Files
  ;                          
  ; Miscellaneous
 U(X) ;   UCI where Lexicon is installed
- N LEXU,LEXP,LEXT,Y X ^%ZOSF("UCI") S LEXU=Y,LEXP="" S:LEXU=^%ZOSF("PROD")!($P(LEXU,",",1)=^%ZOSF("PROD")) LEXP=" (Production)"
- S:LEXU'=^%ZOSF("PROD")&($P(LEXU,",",1)'=^%ZOSF("PROD")) LEXP=" (Test)" S X="",$P(X,"^",1)=LEXU,$P(X,"^",2)=LEXP
+ N LEXU,LEXP,LEXT,Y X ^%ZOSF("UCI") S LEXU=Y,LEXP=""
+ S:LEXU[","&($L($P(LEXU,",",1))>3) LEXU=$P(LEXU,",",1)
+ S LEXP=$S($$PROD^XUPROD(1):" (Production)",1:" (Test)")
+ S X="",$P(X,"^",1)=LEXU,$P(X,"^",2)=LEXP
  Q X
 A(X) ;   As of date/time
  N LEXX S LEXX=$$NOW^XLFDT,LEXX=$$FMTE^XLFDT(LEXX,"1")

@@ -1,5 +1,5 @@
 PSOHLDS1 ;BIR/LC,PWC-Build HL7 Segments for Automated Interface ; 2/5/10 10:01am
- ;;7.0;OUTPATIENT PHARMACY;**156,232,255,200,305,336,351**;DEC 1997;Build 1
+ ;;7.0;OUTPATIENT PHARMACY;**156,232,255,200,305,336,351,434**;DEC 1997;Build 2
  ;HLFNC       supp. by DBIA 10106
  ;PSNAPIS     supp. by DBIA 2531
  ;VASITE      supp. by DBIA 10112
@@ -94,7 +94,7 @@ PID(PSI) ;patient ID segment
  Q:'$D(DFN)!$D(PAS)
  S HLFS=HL1("FS"),HLECH=HL1("ECH"),HLQ=HL1("Q"),HLVER=HL1("VER")
  K PSPID,PSPID1
- D BLDPID^VAFCQRY(DFN,"","3,5,7,8,11,13",.PSPID,.HL1,.ERR)
+ D BLDPID^VAFCQRY(DFN,"","3,4,5,7,8,11,13",.PSPID,.HL1,.ERR)
  ; put PID in format needed for segment parser
  S PSPID=PSPID(1) K PSPID(1)
  S (X,Y)=1 F  S X=+$O(PSPID(X)) Q:'X  S PSPID(Y)=PSPID(X),Y=Y+1 K PSPID(X)

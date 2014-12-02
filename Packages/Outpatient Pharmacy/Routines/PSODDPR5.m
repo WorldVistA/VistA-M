@@ -1,8 +1,9 @@
 PSODDPR5 ;BIR/SAB - displays OP/rdi/pending/nva orders ;09/320/06 11:33am
- ;;7.0;OUTPATIENT PHARMACY;**251,375,379,390**;DEC 1997;Build 86
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,379,390,372,416**;DEC 1997;Build 32
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.606 supported by DBIA 2174
  ;External reference to ^PS(50.7 supported by DBIA 2223
+ ;External reference to ^PS(55 supported by DBIA 2228 
  ;
 EXC ;displays order check exceptions
  N Q,CT,ONT,OT,ON,TD,ERRTY,OP,OPP,ZEXC,ZREA,X,DIWL,DIWR,DIWF,PSOWROTE
@@ -16,16 +17,16 @@ EXC ;displays order check exceptions
  .S Q=Q+1,ERRTY=$S(OT="R":"RDI",OT="N":"Non-VA",OT="P":"Pending",OT="O":"Rx",1:"")
  .K ^UTILITY($J,"W") S DIWL=1,DIWR=75,DIWF=""
  .W ! S X=$P(^TMP($J,LIST,"OUT","EXCEPTIONS",ONT,CT),"^",7) D ^DIWP
- .F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  W !,^UTILITY($J,"W",1,ZX,0)
+ .F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  W !,^UTILITY($J,"W",1,ZX,0) S PSOWROTE=1
  .I $D(PSODGCK)!$D(PSSDGCK) K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." W ! D ^DIR K DIR W @IOF
  .S:OT'="Z" ^TMP($J,"PSEXC","OUT",OPP)=1,PSOWROTE=1
  .Q:ZREA=""
  .K ^UTILITY($J,"W") S DIWL=1,DIWR=75,DIWF=""
- .S X="   Reason: "_ZREA D ^DIWP
- .F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  W !,^UTILITY($J,"W",1,ZX,0)
- .K ^UTILITY($J,"W"),X,DIWL,DIWR,DIWF S PSOWROTE=1
+ .S X="   Reason(s): "_ZREA D ^DIWP
+ .F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  W !,^UTILITY($J,"W",1,ZX,0) S PSOWROTE=1
+ .K ^UTILITY($J,"W"),X,DIWL,DIWR,DIWF
  .D:$O(^TMP($J,LIST,"OUT","EXCEPTIONS",ONT,CT)) HD^PSODDPR2() Q:$G(PSODLQT)
- I $G(PSOWROTE) W !! K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to Continue" D ^DIR S:($D(DTOUT))!($D(DUOUT)) PSODLQT=1,PSORX("DFLG")=1 K DIR,X,Y I ($Y+5)>IOSL W @IOF
+ W !! I $G(PSOWROTE) K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to Continue" D ^DIR S:($D(DTOUT))!($D(DUOUT)) PSODLQT=1,PSORX("DFLG")=1 W ! K DIR,X,Y I ($Y+5)>IOSL W @IOF
  Q
 NOCAN ;shows duplicate therapeutic when cancel duplicate class parameter is et to 'no'
  K ^UTILITY($J,"W"),DDTH,DOCPL S DIWL=1,DIWR=78,DIWF="",(CT,SUB)=0 K TCT,TCTP,TCTL,TCTI,ZZQ,ZHDR
@@ -95,6 +96,7 @@ REMOTE ;backdoor RDI
  .S ^TMP($J,LIST,"IN","PROFILE","R;"_PSORDI_";PROFILE;"_DO)=SEQN_"^"_RDIVUID_"^0^"_RDIDNAM_"^^"
  Q
 NSRT ;sort of drug interactions ; called by psoddpr2
+ ;Q:$G(PSODLQT)
  N SV,SEV,STOP,TYP,CNT,CHK,DRG,ON,CT,ZOT,PSOVAG,PSODD,COUNT,NSRT,NSRT2 S COUNT=0,(SV,DRG,ON,CT,PSOVAG)=""
  F  S SV=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV)) Q:SV=""!$G(PSODLQT)  D  Q:$G(PSORX("DFLG"))
  .F  S DRG=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG)) Q:DRG=""!$G(PSODLQT)  F  S ON=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON)) Q:ON=""!$G(PSODLQT)  F  S CT=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT)) Q:'CT!$G(PSODLQT)  D
@@ -121,8 +123,8 @@ NSRT ;sort of drug interactions ; called by psoddpr2
  Q
  ;print order sort
 S2(SEV,TYP,PSOVAG,CNT) ;
- N PSONAM S (PSONAM)=""
- F  S PSONAM=$O(ZDGDG(SEV,TYP,PSOVAG,PSONAM)) Q:PSONAM=""  D
+ N PSONAM,COUNT2 S (PSONAM)="",COUNT2=0
+ F  S PSONAM=$O(ZDGDG(SEV,TYP,PSOVAG,PSONAM)) Q:PSONAM=""  S COUNT2=COUNT2+1 D
  .S:$G(ZZDGDG2(SEV,PSOVAG)) ZZDGDG2(SEV,PSOVAG)=ZZDGDG2(SEV,PSOVAG)+1 S:'$G(ZZDGDG2(SEV,PSOVAG)) ZZDGDG2(SEV,PSOVAG)=1
  .S ZZDGDG(SEV,CNT,TYP,PSOVAG,PSONAM)=ZDGDG(SEV,TYP,PSOVAG,PSONAM)
  .S ZZDGCK(SEV,CNT,TYP,PSOVAG,PSONAM)=ZDGDG(SEV,TYP,PSOVAG,PSONAM)
@@ -166,11 +168,11 @@ DVAGEN ;va generic for non-va/pending meds
  Q
  ;
 INT ;
-  I $G(PSOVORD),$P(PSOINTV,"^")=1 D  Q
+ I $G(PSOVORD),$P(PSOINTV,"^")=1 D  Q
  .K DIR,DTOUT,DIRUT,DIROUT,DUOUT
  .W ! S DIR(0)="SA^1:YES;0:NO",DIR("A")="Do you want to Continue? ",DIR("B")="Y" D ^DIR S:($D(DTOUT))!($D(DUOUT))!($G(DIRUT)) PSODLQT=1,PSORX("DFLG")=1 Q:$G(PSODLQT)
  .K DIR,DTOUT,DIRUT,DIROUT,DUOUT
- .I 'Y S PSORX("DFLG")=1 Q
+ .I 'Y S PSODLQT=1,PSORX("DFLG")=1 Q
  .S DA=PSONV,RXREC=DA,RX=$G(^PSRX(RXREC,0)),PSORX("INTERVENE")=1
  .D:'$D(PSODGCK) CRI^PSODGDG1
  .I $G(OLDDA) S DA=OLDDA K OLDDA

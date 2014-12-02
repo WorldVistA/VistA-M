@@ -1,5 +1,5 @@
-FBAAUTL4 ;AISC/CMR,dmk,WCIOFO/SAB-UTILITY ROUTINE ;7/11/2001
- ;;3.5;FEE BASIS;**4,32,77,81**;JAN 30, 1995
+FBAAUTL4 ;AISC/CMR,dmk,WCIOFO/SAB-UTILITY ROUTINE ; 8/21/12 3:39pm
+ ;;3.5;FEE BASIS;**4,32,77,81,144**;JAN 30, 1995;Build 8
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 CPT(X,Y,FBSRVDT) ;return external format of CPT code
@@ -72,6 +72,10 @@ APS(FBJ,FBK,FBL,FBM) ; amount paid symbol
  S FBY2=$G(^FBAAC(FBJ,1,FBK,1,FBL,1,FBM,2))
  S FBAP=$P(FBY0,U,3)
  I FBAP>0 D
+ . ; FB*3.5*144 Changed order of evaluation, setting Mill-Bill first as 
+ . ; this coding takes precedence.
+ . ; Mill Bill payments
+ . I "^39^52^"[(U_$P($G(^FBAA(161.82,+$P(FBY0,U,18),0)),U,3)_U) S FBRET="M" Q
  . ; use fee schedule info for payment (if any)
  . I +FBAP=+$P(FBY2,U,12) S FBRET=$P(FBY2,U,13) Q:FBRET]""
  . ; if no fee schedule info then calc 75th percentile and check
@@ -82,10 +86,6 @@ APS(FBJ,FBK,FBL,FBM) ; amount paid symbol
  . . I +FBAP=+$$PRCTL^FBAAFSF(FBCPT,FBMODL,FBDOS) S FBRET="F"
  . ; since not paid by a fee schedule, check prompt pay type
  . I $P(FBY2,U,2) S FBRET="C" Q
- . ; since not fee schedule or contract check POV code to identify
- . ;   Mill Bill payments
- . S:"^39^52^"[(U_$P($G(^FBAA(161.82,+$P(FBY0,U,18),0)),U,3)_U) FBRET="M"
- . Q:FBRET]""
  . ; all other payments considered u&c
  . S FBRET="U"
  Q FBRET

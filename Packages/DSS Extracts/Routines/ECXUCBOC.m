@@ -1,14 +1,20 @@
-ECXUCBOC ;ALB/TJL-CBOC Activity Report ; 10/20/03 11:19am
- ;;3.0;DSS EXTRACTS;**49**;July 1, 2003
+ECXUCBOC ;ALB/TJL-CBOC Activity Report ;5/9/14  12:56
+ ;;3.0;DSS EXTRACTS;**49,148,149**;Dec 22, 1997;Build 27
  ;
 EN ; entry point
  N X,Y,DATE,PG,COUNT,ECRUN,ECXDESC,ECXSAVE,ECXTL,YYYYMM,ECXJOB
- N ECSD,ECSD1,ECSTART,ECED,ECEND,ECXERR,QFLG
+ N ECSD,ECSD1,ECSTART,ECED,ECEND,ECXERR,QFLG,ECXPORT,CNT ;149
  S (QFLG,COUNT,PG)=0
  ; get today's date
  D NOW^%DTC S DATE=X,Y=$E(%,1,12) D DD^%DT S ECRUN=$P(Y,"@") K %DT
  ;D BEGIN Q:QFLG
  D SELECT Q:QFLG
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I $G(ECXPORT) D  Q  ;149 Section added
+ .S CNT=1
+ .D PROCESS
+ .S ^TMP($J,"ECXPORT",0)="FEEDER KEY^DIVISION^CLINIC^PATIENT NAME^SSN^VISIT DATE/TIME"
+ .D EXPDISP^ECXUTL1
+ .D AUDIT^ECXKILL
  S ECXDESC="CBOC Activity Report"
  S ECXSAVE("EC*")=""
  W !!,"This report requires 80-column format."
@@ -32,7 +38,7 @@ BEGIN ; display report description
  Q
  ;
 SELECT ; user inputs for start date
- N OUT,DONE,LIST,IEN,ECXFROM,ECXEND,ECXRUN,ECXCNT,ECXDIV,LN
+ N OUT,DONE,LIST,IEN,ECXFROM,ECXEND,ECXRUN,ECXCNT,ECXDIV,LN,HDT ;149
  W @IOF
  S (PG,QFLG)=0,$P(LN,"-",80)=""
  D NOW^%DTC S Y=$E(%,1,12) X ^DD("DD") S HDT=Y D LISTHDR
@@ -51,12 +57,10 @@ SELECT ; user inputs for start date
  .D:$Y+3>IOSL LISTHDR Q:QFLG
  .W !?4,ECXJOB,?14,ECXRUN,?28,$J(ECXCNT,9),?41,ECXFROM," - ",ECXEND,?71,ECXDIV
  .S LIST(ECXJOB)=1
- S LO=$O(LIST(0)),HI=$O(LIST(" "),-1)
- S DIR(0)="L^"_LO_":"_HI_"",DIR("A")="Create the CBOC Activity Report for the following extract"
+ S QFLG=0 ;149 Reset QFLG so choice can be made if user "^" during list
+ S DIR(0)="NA^"_$O(LIST(0))_":"_$O(LIST(" "),-1)_":0"_"^I '$D(LIST(X)) K X",DIR("A")="Create the CBOC Activity Report for extract number: ",DIR("?")="Select the extract number to use to build the report." ;149
  W ! D ^DIR K DIR I $D(DIRUT) K LIST S QFLG=1 Q
- S JJ=0,Y=","_Y
- F  S JJ=$O(LIST(JJ)) Q:'JJ  S JZ=","_JJ_"," I Y'[JZ K LIST(JJ)
- I '$D(LIST) W !!,"Invalid choice.  Please try again." S DIR(0)="E" W ! D ^DIR K DIR D  Q:QFLG  G SELECT
+ I '$D(X) W !!,"Invalid choice.  Please try again." S DIR(0)="E" W ! D ^DIR K DIR D  Q:QFLG  G SELECT ;149
  .I 'Y S QFLG=1
  S ECXJOB=X
  S Y=$P(^ECX(727,ECXJOB,0),U,4) D DD^%DT
@@ -73,7 +77,7 @@ LISTHDR ;
 PROCESS ; entry point for queued report
  N ECXD,QFLG,PG,RECDA,LN,COUNT
  N FKEY,DIV,CLIN,SSN,DFN,VDATE,KEY
- N TSSN,FSSN,DSSN,CSSN,TVISIT,FVISIT,DVISIT,CVISIT
+ N TSSN,FSSN,DSSN,CSSN,TVISIT,FVISIT,DVISIT,CVISIT,DLAYGO
  N OLDFKEY,OLDDIV,OLDCLIN,OLDSSN,OLDDFN,OLDVDATE,OLDKEY,HEADKEY
  S (QFLG,COUNT,PG)=0,ZTREQ="@",ECXD="-",$P(LN,"-",80)=""
  K ^TMP($J)
@@ -88,22 +92,24 @@ PROCESS ; entry point for queued report
  .D FILE^DICN
  ;
  I $O(^ECX(727.827,"AC",ECXJOB,0))="" D  Q
- .W !,"No extract records exist for the selected extract."
+ .I '$G(ECXPORT) W !,"No extract records exist for the selected extract." ;149
  S RECDA=0
  F  S RECDA=$O(^ECX(727.827,"AC",ECXJOB,RECDA)) Q:'RECDA  D ISCBOC
  ;
- I '$D(^TMP($J)) W !,"No records were found with a CBOC Indicator value of ""Y""." S QFLG=1 Q
+ I '$D(^TMP($J)) W:'$G(ECXPORT) !,"No records were found with a CBOC Indicator value of ""Y""." S QFLG=1 Q  ;149
  ;
  S (TSSN,FSSN,DSSN,CSSN,TVISIT,FVISIT,DVISIT,CVISIT)=0
  S RECDA=$O(^TMP($J,"AKEY",""))
  S HEADKEY=RECDA
- D HEADER Q:QFLG  D DETAIL Q:QFLG  D INCVIS D INCSSN D SETOLD
+ I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=$P(RECDA,ECXD)_U_$P(RECDA,ECXD,2)_U_$$GET1^DIQ(44,$P(RECDA,ECXD,3),.01) ;149
+ D:'$G(ECXPORT) HEADER Q:QFLG  D DETAIL Q:QFLG  D INCVIS D INCSSN D SETOLD ;149
  ;
  ; process all CBOC records
  F  S RECDA=$O(^TMP($J,"AKEY",RECDA)) Q:RECDA=""  D  Q:QFLG
  .S HEADKEY=OLDKEY
  .; key fields match, so print detail record and increment total(s)
  .I $P(RECDA,ECXD,1,3)=OLDKEY D  Q
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=$P(RECDA,ECXD)_U_$P(RECDA,ECXD,2)_U_$$GET1^DIQ(44,$P(RECDA,ECXD,3),.01) ;149
  ..D DETAIL Q:QFLG
  ..D INCVIS
  ..S SSN=$P(RECDA,ECXD,4)
@@ -119,7 +125,8 @@ PROCESS ; entry point for queued report
  .;
  .; something changed, so print subheader and detail line
  .Q:QFLG  S HEADKEY=RECDA
- .D HEADER2 Q:QFLG
+ .I '$G(ECXPORT) D HEADER2 Q:QFLG  ;149
+ .I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=$P(RECDA,ECXD)_U_$P(RECDA,ECXD,2)_U_$$GET1^DIQ(44,$P(RECDA,ECXD,3),.01) ;149
  .D DETAIL Q:QFLG
  .D INCVIS
  .D INCSSN
@@ -131,7 +138,7 @@ PROCESS ; entry point for queued report
  D CLINTOT Q:QFLG
  D DIVTOT Q:QFLG
  D FKEYTOT Q:QFLG
- D GTOTAL Q:QFLG
+ D GTOTAL Q:QFLG 
  Q
  ;
 ISCBOC ;
@@ -183,7 +190,7 @@ DETAIL ; print detail line
  I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ Q
  S COUNT=COUNT+1
  ;S QFLG=0
- I $Y+3>IOSL D HEADER Q:QFLG
+ I '$G(ECXPORT) I $Y+3>IOSL D HEADER Q:QFLG  ;149
  ; get patient name using DFN
  S DFN=$P(RECDA,ECXD,5)
  S PTNAME=$S(DFN'="":$P(^DPT(DFN,0),U),1:"")
@@ -191,35 +198,40 @@ DETAIL ; print detail line
  S DISPTM=$E(DISPDT,9,14)
  S DISPDT=$E(DISPDT,1,4)-1700_$E(DISPDT,5,8)
  S DISPDT=DISPDT_DISPTM
+ I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=^TMP($J,"ECXPORT",CNT)_U_PTNAME_U_$P(RECDA,ECXD,4)_U_$$FMTE^XLFDT(DISPDT,1),CNT=CNT+1 Q  ;149
  W !,PTNAME,?36,$P(RECDA,ECXD,4),?51,$$FMTE^XLFDT(DISPDT,1)
  Q
  ;
 CLINTOT ;
  S COUNT=COUNT+2
- I $Y+3>IOSL D HEADER Q:QFLG
- W !!,?5,"Total Unique SSNs for Clinic:"
- W ?35,$J(CSSN,10),?50,$J(CVISIT,10),?61,"Clinic Visits"
+ I '$G(ECXPORT) I $Y+3>IOSL D HEADER Q:QFLG  ;149
+ I '$G(ECXPORT) W !!,?5,"Total Unique SSNs for Clinic:" ;149
+ I '$G(ECXPORT) W ?35,$J(CSSN,10),?50,$J(CVISIT,10),?61,"Clinic Visits" ;149
+ I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)="^",CNT=CNT+1 S ^TMP($J,"ECXPORT",CNT)="^^^Total Unique SSNs for Clinic"_U_CSSN_U_"Clinic Visits"_U_CVISIT,CNT=CNT+1 ;149
  S (CSSN,CVISIT)=0 S OLDCLIN=$P(RECDA,ECXD,3) K ^TMP($J,"C")
  Q
  ;
 DIVTOT ;
  S COUNT=COUNT+1
- I $Y+3>IOSL D HEADER Q:QFLG
- W !,?3,"Total Unique SSNs for Division:"
- W ?35,$J(DSSN,10),?50,$J(DVISIT,10),?61,"Division Visits"
+ I '$G(ECXPORT) I $Y+3>IOSL D HEADER Q:QFLG  ;149
+ I '$G(ECXPORT) W !,?3,"Total Unique SSNs for Division:" ;149
+ I '$G(ECXPORT) W ?35,$J(DSSN,10),?50,$J(DVISIT,10),?61,"Division Visits" ;149
+ I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)="^^^Total Unique SSNs for Division"_U_DSSN_U_"Division Visits"_U_DVISIT,CNT=CNT+1 ;149
  S (DSSN,DVISIT)=0 S OLDDIV=$P(RECDA,ECXD,2) K ^TMP($J,"D")
  Q
  ;
 FKEYTOT ;
  S COUNT=COUNT+1
- I $Y+3>IOSL D HEADER Q:QFLG
- W !,?1,"Total Unique SSNs for Feeder Key:"
- W ?35,$J(FSSN,10),?50,$J(FVISIT,10),?61,"Feeder Key Visits"
+ I '$G(ECXPORT) I $Y+3>IOSL D HEADER Q:QFLG  ;149
+ I '$G(ECXPORT) W !,?1,"Total Unique SSNs for Feeder Key:" ;149
+ I '$G(ECXPORT) W ?35,$J(FSSN,10),?50,$J(FVISIT,10),?61,"Feeder Key Visits" ;149
+ I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)="^^^Total Unique SSNs for Feeder Key"_U_FSSN_U_"Feeder Key Visits"_U_FVISIT,CNT=CNT+1,^TMP($J,"ECXPORT",CNT)="^",CNT=CNT+1 ;149
  S (FSSN,FVISIT)=0 S OLDFKEY=$P(RECDA,ECXD) K ^TMP($J,"F")
  Q
  ;
 GTOTAL ;
  S COUNT=COUNT+1
+ I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)="^^^Total Unique SSNs (entire report)"_U_TSSN_U_"Total Visits"_U_TVISIT Q  ;149
  I $Y+3>IOSL D HEADER Q:QFLG
  W !,"Total Unique SSNs (entire report):"
  W ?35,$J(TSSN,10),?50,$J(TVISIT,10),?61,"Total Visits"

@@ -29,10 +29,10 @@ XUSNPIX5 ;OAK_BP/CMW - NPI EXTRACT REPORT ;7/7/08  17:45
 EMAIL(XUSRTN) ; EMAIL THE MESSAGE
  ; Add domain name if it does not exist
  N XUSFOC,DLAYGO,DA,DIC,DIE,DR,X,Y
- I '$$FIND1^DIC(4.2,,"QX","Q-NPS.domain.ext","B") D
- . S XUSFOC=$O(^DIC(4.2,"B","FOC-AUSTIN.domain.ext",0)) I 'XUSFOC Q
- . I XUSFOC=$O(^DIC(4.2,"B","FOC-AUSTIN.domain.ext",""),-1) D
- . . S DIC="^DIC(4.2,",X="Q-NPS.domain.ext",DIC(0)="L",DLAYGO=4.2 D ^DIC K DLAYGO
+ I '$$FIND1^DIC(4.2,,"QX","Q-NPS.DOMAIN.EXT","B") D
+ . S XUSFOC=$O(^DIC(4.2,"B","FOC-AUSTIN.DOMAIN.EXT",0)) I 'XUSFOC Q
+ . I XUSFOC=$O(^DIC(4.2,"B","FOC-AUSTIN.DOMAIN.EXT",""),-1) D
+ . . S DIC="^DIC(4.2,",X="Q-NPS.DOMAIN.EXT",DIC(0)="L",DLAYGO=4.2 D ^DIC K DLAYGO
  . . S DIE=DIC,DA=+Y
  . . S DR="1///NS;2///^S X=XUSFOC;1.7///YES;6.2///NPS;"
  . . D ^DIE

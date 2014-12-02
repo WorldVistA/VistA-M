@@ -1,5 +1,5 @@
 PSGCAP0 ;BIR/CML3-ACTION PROFILE ;12 Mar 98 / 9:30 AM
- ;;5.0; INPATIENT MEDICATIONS ;**8,58,111,149**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**8,58,111,149,275,301**;16 DEC 97;Build 3
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191
  ; Reference to ^PSDRUG is supported by DBIA# 2192
@@ -13,10 +13,20 @@ GOD ; gather order data
  S ST=$S($P(ND,U,27)="R"&($P(ND,U,9)="A"):"R",1:$P(ND,U,9)),ND=$P(ND,"^",7)
  N DDRG S (X,DCU)=0 F  S X=$O(^PS(55,PSGP,5,PSJJORD,1,X)) Q:'X  S DDRG=^(X,0),DCU=DCU+($P($G(^PSDRUG(+DDRG,660)),"^",6)*($S($P(DDRG,"^",2):$P(DDRG,"^",2),1:1)))
  ;
+ ; PSJ*5*275 get clinic
+ ;S PSGAPWDN="zz"
+ N PSJCLN,CLINSORT S PSJCLN=$$CLINIC^PSJO1(PSGP,PSJJORD_"U")
+ ; When run by Clinic, if patient also has Inpatient orders, make sure those orders have a corresponding patient node in ^TMP
+ I PSJCLN="",($G(PSGSS)["C"),$G(PSJPWD),($G(PSJPWDN)]"") N PSGAPWDN,PSGAPWD S PSGAPWD=PSJPWD,PSGAPWDN=PSJPWDN D
+ .S ^TMP($J,S1,PSGAPWDN,PN)=$P(PSJPSEX,"^",2)_"^"_$E($P(PSJPDOB,"^",2),1,10)_";"_PSJPAGE_"^"_VA("PID")_"^"_PSJPDX_"^"_$S(PSJPRB]"":PSJPRB,1:"*NF*")_"^"_$E($P(PSJPAD,"^",2),1,10)_"^"_$E($P(PSJPTD,"^",2),1,10)
+ .S ^TMP($J,S1,PSGAPWDN,PN)=^(PN)_"^"_PSJPWT_"^"_PSJPWTD_"^"_PSJPHT_"^"_PSJPHTD_"^"_$P(PSGP(0),"^")
+ I (PSJCLN]"") S CLINSORT=$$CLINSORT^PSJO1($G(ST)) I CLINSORT N:($G(PSGSS)'["C") PSGAPWDN S PSGAPWDN="zz"_U_PSJCLN_U_CLINSORT_U_ST
  ;
  S SD=$P(ND2,"^",2),FD=$P(ND2,"^",4) F X="SD","FD" S @X=$E($$ENDTC^PSGMI(@X),1,5)
- ;S Y=SI S:Y]"" Y=$$ENSET^PSGSICHK(Y) S:'$G(PSGAPWDN) PSGAPWDN=PSJPWDN S ^TMP($J,S1,PSGAPWDN,PN,ND_"^"_DRG,PSJJORD)=ST_"^"_SD_"^"_FD_"^"_WS_"^"_SM_"^"_NF_"^"_DCU_"^"_DRG S:Y]"" ^(PSJJORD,1)=Y Q
- S Y=SI S:Y]"" Y=$$ENSET^PSGSICHK(Y) S PSGAPWDN=$S($G(PSGAPWD)="zz":"zz",$G(PSGAPWDN):PSGAPWDN,'$G(PSGAPWDN):PSJPWDN,1:"zz"),^TMP($J,S1,PSGAPWDN,PN,ND_"^"_DRG,PSJJORD)=ST_"^"_SD_"^"_FD_"^"_WS_"^"_SM_"^"_NF_"^"_DCU_"^"_DRG S:Y]"" ^(PSJJORD,1)=Y Q
+ ;
+ S Y=SI S:Y]"" Y=$$ENSET^PSGSICHK(Y)
+ S PSGAPWDN=$S($P($G(PSGAPWDN),"^")="zz"&($P($G(PSGAPWDN),"^",2)'=""):PSGAPWDN,$G(PSGAPWD)="zz":"zz",$G(PSGAPWDN):PSGAPWDN,'$G(PSGAPWDN)&($G(PSJPWDN)'=""):PSJPWDN,1:"zz")
+ S ^TMP($J,S1,PSGAPWDN,PN,ND_"^"_DRG,PSJJORD)=ST_"^"_SD_"^"_FD_"^"_WS_"^"_SM_"^"_NF_"^"_DCU_"^"_DRG S:Y]"" ^(PSJJORD,1)=Y Q
  ;
 PAT ;
  D PSJAC2^PSJAC(1),NOW^%DTC S PSGDT=%,PN=$E($P(PSGP(0),"^"),1,20)_"^"_PSGP
@@ -64,6 +74,10 @@ CLIN ;
  . S DFN=0 F  S DFN=$O(^PS(55,INDEX,APSTOP,CLIN,DFN)) Q:'DFN  I '$D(^TMP("PSGAP0",$J,"OUTPT",DFN)) S PSGP=DFN,Q=APSTOP,PSGAPWD="zz" D PAT
  Q
  ;
+SETPI(PSGP) ; Set Patient Information for clinic orders when run by Ward
+ N PSJCLPIN D PSJAC2^PSJAC(1)
+ S PSJCLPIN=$P($G(PSJPSEX),"^",2)_"^"_$E($P($G(PSJPDOB),"^",2),1,10)_";"_$G(PSJPAGE)_"^"_$G(VA("PID"))_"^"_$G(PSJPDX)_"^"_$S($G(PSJPRB)]"":$G(PSJPRB),1:"*NF*")
+ Q PSJCLPIN_"^"_$E($P($G(PSJPAD),"^",2),1,10)_"^"_$E($P(PSJPTD,"^",2),1,10)_"^"_PSJPWT_"^"_PSJPWTD_"^"_PSJPHT_"^"_PSJPHTD_"^"_$P(PSGP(0),"^")
 ENOR ;
  D ENCV^PSGSETU I $D(XQUIT) Q
  S (DFN,PSGP)=+ORVP D ^PSJAC S PSGPAT=PSGP,PSGPAT(DFN)="",(PSGAP,PSGAPWD,PSGAPWG)=0,(PSGAPWDN,PSGAPWGN)="",PSGSS="P" D ORS^PSGCAP S PSJNKF=1 D DONE^PSGCAP Q

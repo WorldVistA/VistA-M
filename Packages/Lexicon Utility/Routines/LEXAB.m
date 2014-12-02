@@ -1,9 +1,13 @@
-LEXAB ; ISL/KER Look-up Exact Match "B" index ; 05/14/2003
- ;;2.0;LEXICON UTILITY;**25**;Sep 23, 1996
- ;
+LEXAB ;ISL/KER - Look-up Exact Match "B" index ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**25,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^TMP("LEXFND"       SACC 2.3.2.5.1
+ ;    ^TMP("LEXSCH"       SACC 2.3.2.5.1
+ ;               
  ; External References
- ;   DBIA 10104  $$UP^XLFSTR
- ;                   
+ ;    $$UP^XLFSTR         ICR  10104
+ ;               
  ; Exact match  S X=$$EN^LEXAB("LEXSCH",LEXVDT)
  ;                   
  ;   INPUT
@@ -23,15 +27,15 @@ LEXAB ; ISL/KER Look-up Exact Match "B" index ; 05/14/2003
  ;                   
 EN(LEXSCH,LEXVDT) ; Check "B" index for exact match
  Q:'$L(LEXSCH) 0
- N LEXLKGL,LEXEM,LEXEMC S LEXLKGL=$G(^TMP("LEXSCH",$J,"GBL",0)),LEXEMC=0
+ N LEXLKGL,LEXEM,LEXEMC,LEXLKT S LEXLKT="AB",LEXLKGL=$G(^TMP("LEXSCH",$J,"GBL",0)),LEXEMC=0
  Q:$G(LEXLKGL)'["757.01" 0
- N LEXSHOW S LEXSHOW=$G(^TMP("LEXSCH",$J,"DIS",0))
+ D VDT^LEXU N LEXSHOW S LEXSHOW=$G(^TMP("LEXSCH",$J,"DIS",0))
  N LEXO,LEXE,LEXOK,LEXDES,LEXDSP
  S (LEXE,LEXOK)=0,LEXO=$$SCH(LEXSCH)
  F  S LEXO=$O(^LEX(757.01,"B",LEXO)) Q:LEXO=""!(LEXSCH'[LEXO)  D
  . S (LEXE,LEXOK)=0
  . F  S LEXE=$O(^LEX(757.01,"B",LEXO,LEXE)) Q:+LEXE=0  D
- . . Q:+($P($G(^LEX(757.01,LEXE,1)),"^",5))=1
+ . . Q:'$D(LEXIGN)&(+($P($G(^LEX(757.01,LEXE,1)),"^",5))=1)
  . . I $$UP^XLFSTR(LEXSCH)=$$UP^XLFSTR($G(^LEX(757.01,LEXE,0))) D
  . . . S LEXEMC=+($G(LEXEMC)),LEXEMC=LEXEMC+1,LEXEM=LEXE
  S:+($G(LEXEMC))=1 LEXOK=$G(LEXEM) S:+($G(LEXEMC))'=1 LEXOK=0
@@ -41,7 +45,7 @@ EN(LEXSCH,LEXVDT) ; Check "B" index for exact match
  . ; Filter
  . S LEXFILR=$$EN^LEXAFIL($G(LEXFIL),LEXE) Q:LEXFILR=0
  . ; Deactivated
- . Q:+($P($G(^LEX(757.01,LEXE,1)),"^",5))=1
+ . Q:'$D(LEXIGN)&(+($P($G(^LEX(757.01,LEXE,1)),"^",5))=1)
  . S LEXDES=$$DES(LEXE)
  . S LEXDSP="" S:$L($G(LEXSHOW)) LEXDSP=$$DSP(LEXE,$G(LEXSHOW),$G(LEXVDT))
  . D ADDE^LEXAL(LEXE,LEXDES,LEXDSP)
@@ -70,5 +74,5 @@ DSP(LEXX,LEXDSP,LEXVDT) ; Return displayable text
  I +LEXMCE>0,$D(^LEX(757.01,+LEXMCE,0)) S LEXX=$$SO^LEXASO(+LEXMCE,LEXDSP,1,$G(LEXVDT)) Q LEXX
  S LEXX=$$SO^LEXASO(LEXX,LEXDSP,1,$G(LEXVDT)) Q LEXX
 SCH(LEXX) ; Search for LEXX a $Orderable variable
- S LEXX=$$UP^XLFSTR($E(LEXX,1,63))
+ S LEXX=$$UP^XLFSTR($E(LEXX,1,63)) N LEXIGN
  S LEXX=$E(LEXX,1,($L(LEXX)-1))_$C($A($E(LEXX,$L(LEXX)))-1)_"~" Q LEXX

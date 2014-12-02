@@ -1,13 +1,22 @@
-MCRH2 ;WISC/TJK-RHEUMATOLOGY ICD CODE UPDATE FOR QMAN ;7/3/96  09:14
- ;;2.3;Medicine;;09/13/1996
+MCRH2 ;WISC/TJK - RHEUMATOLOGY ICD CODE UPDATE FOR QMAN ;7/3/96  09:14
+ ;;2.3;Medicine;**43**;09/13/1996;Build 8
+ ; Reference to $$IMP^ICDEX supported by ICR #5747
+ ; Reference to $$CSI^ICDEX supported by ICR #5747
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
+ ;
  ;CALLED FROM DIAGNOSIS FIELD OF RHEUMATOLOGY FILE
-SET N ICD
- S ICD=$G(^MCAR(697.5,X,2,1,0)) Q:'ICD
+SET N ICDSYS,ICDLN,ICD
+ S ICDSYS=$S($P(^MCAR(701,DA(1),0),U,1)<$$IMP^ICDEX(30):1,1:30),(ICD,ICDLN)=0
+ F  S ICDLN=$O(^MCAR(697.5,X,2,ICDLN)) Q:ICDLN=""  D  Q:ICD
+ . S ICD=$G(^MCAR(697.5,X,2,ICDLN,0)) Q:'ICD
+ . S:$$CSI^ICDEX(80,ICD)'=ICDSYS ICD=0
+ Q:'ICD
  S:'$D(^MCAR(701,DA(1),"ICD",0)) ^(0)="^701.01P^^"
  S $P(^MCAR(701,DA(1),"ICD",0),U,3)=DA,$P(^(0),U,4)=$P(^(0),U,4)+1
  S ^MCAR(701,DA(1),"ICD",DA,0)=ICD
  S ^MCAR(701,DA(1),"ICD","B",ICD,DA)=""
  Q
+ ;
 KILL N ICD,I,I1
  S ICD=$P($G(^MCAR(701,DA(1),"ICD",DA,0)),U) Q:'ICD
  K ^MCAR(701,DA(1),"ICD",DA),^MCAR(701,DA(1),"ICD","B",ICD,DA)
@@ -18,7 +27,7 @@ KILL N ICD,I,I1
 PRINT ;PRINTS OUT ICD CODE ON DIAGNOSIS PRINT-CALLED BY PRINT TEMPLATE
  N ICD
  S ICD=$P($G(^MCAR(701,D0,"ICD",D1,0)),U)
- S:ICD'="" ICD=$P(^ICD9(ICD,0),U)
+ S:ICD'="" ICD=$P($$ICDDX^ICDEX($G(ICD),"",$$CSI^ICDEX(80,$G(ICD)),"I"),U,2)
  W ?68,ICD
  Q
 TEXTHELP ; Display help text from the Data dictionary at the beginging of ever field for RHEUMATOLOGY
@@ -44,4 +53,5 @@ TEXT(STRING,LM,RM) ;Word warps a string of text and prints it out
  .E  S TEXT=TEMP
  .Q  ; end for
  W !,?RM,TEXT ; Write the text at the right margin
- I $D(DJJ($G(V))),$D(XY) S @$P(DJJ(V),U,2) X XY ;if using the screen handle routine move back to the field location. 
+ I $D(DJJ($G(V))),$D(XY) S @$P(DJJ(V),U,2) X XY ;if using the screen handle routine move back to the field location.
+ Q

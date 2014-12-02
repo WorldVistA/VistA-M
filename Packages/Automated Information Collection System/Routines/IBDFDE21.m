@@ -1,5 +1,6 @@
 IBDFDE21 ;ALB/AAS - AICS Data Entry, process selection lists ; 11/22/99 4:35pm
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**4,38,23**;APR 24, 1997
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**4,38,23,63**;APR 24, 1997;Build 80
+ ;
  ;
 % G ^IBDFDE
  ;
@@ -15,6 +16,10 @@ SEL(SEL) ; -- Build results array
  Q
  ;
 SEL1 ; -- build selections
+ N IBDIMP,IBDIBX
+ S IBDIMP=$$IMPDATE^IBDUTICD(30)
+ S IBDIBX=799.9
+ I DT'<IBDIMP S IBDIBX="R69."
  S IBDX=$G(RESULT(0))+1,RESULT(0)=IBDX
  I +SEL=SEL S CHOICE=$$CHOICE^IBDFDE2(SEL)
  I +SEL'=SEL S CHOICE=SEL
@@ -27,9 +32,9 @@ SEL1 ; -- build selections
  ; --validate code for active problem list
  I $P($G(^IBE(357.6,IBDF("PI"),0)),"^")="PX INPUT PATIENT ACTIVE PROBLEM" D
  .N X S X=$P(CHOICE,"^",2) Q:X=""
- .I X=799.9 W !,$C(7),IOINHI,"Warning: The ICD9 Diagnosis associated with this problem needs to be updated!",IOINORM Q
+ .I X=IBDIBX W !,$C(7),IOINHI,"Warning: The ICD",$S(DT'<IBDIMP:"10",1:"9")," Diagnosis associated with this problem needs to be updated!",IOINORM Q
  .D TESTICD^IBDFN7
- .I '$D(X) W !,$C(7),IOINHI,"Warning: The ICD9 code associated with this problem is inactive.",IOINORM
+ .I '$D(X) W !,$C(7),IOINHI,"Warning: The ICD",$S(DT'<IBDIMP:"10",1:"9")," code associated with this problem is inactive.",IOINORM
  .;I $D(X) W !,"This is a valid icd9 code"
  ;
  ; -- send second and third codes if applicable
@@ -42,10 +47,15 @@ SEL1 ; -- build selections
  .N X,Y S X=IBDXCD
  .D
  ..I $G(X)="" K X S Y="" Q
- ..S:$E(X,$L(X))'=" " X=X_" " ; use ba xref, add space to end for lookup.
- ..S X=$O(^ICD9("BA",X,0))
- ..I 'X S Y=""
- ..E  S Y=$P(^ICD9(X,0),"^",3)
+ ..;S:$E(X,$L(X))'=" " X=X_" " ; use ba xref, add space to end for lookup.
+ ..;S X=$O(^ICD9("BA",X,0))
+ ..;I 'X S Y=""
+ ..;E  S Y=$P(^ICD9(X,0),"^",3)
+ ..;S X=$$ICDDX^ICDCODE(X)
+ ..;get by external code using "DIAG"
+ ..S X=$$ICDDATA^ICDXCODE("DIAG",X,DT)
+ ..I +X<1 K X S Y="" Q
+ ..E  S Y=$P(X,U,4)
  .S DISPTXT=Y
  .S RESULT(IBDX)=IBDF("PI")_"^"_IBDXCD_"^"_DISPTXT_"^"_$P(CHOICE,"^",8)_"^"_$P(CHOICE,"^",6)_"^"_IBDQUAL_"^"_$G(IBDF("IEN"))_"^^"_$P(CHOICE,"^",9)
  .S IBDPI(IBDF("PI"),IBDX)=RESULT(IBDX)
@@ -170,7 +180,7 @@ HELP ; --
  Q
  ;
 OTHER(IBDX) ; -- allow input of an additional item
- N I,J,X,Y,DIR,DIRUT,DUOUT,SEL,SELX,NARR,DIC,DIE,DA,DR,GMPTUN,GMPTSUB,GMPTSHOW,XTLKGLB,XTLKHLP,XTLKKSCH,XTLKSAY,IBDLEX,IBDFILE
+ N I,J,X,Y,DIR,DIRUT,DUOUT,SEL,SELX,NARR,DIC,DIE,DA,DR,GMPTUN,GMPTSUB,GMPTSHOW,XTLKGLB,XTLKHLP,XTLKKSCH,XTLKSAY,IBDLEX,IBDFILE,IBDIMP,IBDCSYS,IBDX
  ;
  ; -- strip the cpt code if modifiers are added cpt-mod,mod,mod...
  ;
@@ -194,8 +204,8 @@ OTHER(IBDX) ; -- allow input of an additional item
  W "...Entry of Narrative Required!",!
  S IBDFILE=+IBDF("OTHER")
  S:IBDFILE=81 DIR("B")=$P(Y(0),"^",2)
- ;S:IBDFILE=80 DIR("B")=$P(Y(0),"^",3)
- S:IBDFILE=80 DIR("B")=$S($L($G(^ICD9(+Y,1)))<81:^ICD9(+Y,1),1:$P(Y(0),"^",3))
+ S:IBDFILE=80 IBDIMP=$$IMPDATE^IBDUTICD(30),IBDCSYS=$S(DT'<IBDIMP:30,1:1),IBDX=$P($$ICDDATA^ICDXCODE(IBDCSYS,+Y,DT),U,4)
+ S:IBDFILE=80 DIR("B")=$S($L(IBDX)<81:IBDX,1:$P(Y(0),"^",3))
  S:IBDFILE=357.69 DIR("B")=$P(Y(0),"^",3)
  I IBDFILE>9999999,IBDFILE<10000000 S DIR("B")=$P(Y(0),"^",1)
  S DIR(0)="FO^3:80",DIR("A")="Narrative" D ^DIR K DIR G:$G(DIRUT) OTHQ

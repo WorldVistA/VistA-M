@@ -1,5 +1,5 @@
 ONCOPA2A ;Hines OIFO/RTK [PA Print Complete Abstract (132c)]; 09/05/97
- ;;2.11;ONCOLOGY;**15,16,22,25,34,36,37,44,48**;Mar 07, 1995;Build 13
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ; ONCO PRINT ABSTRACT CONTINUED
  W !!,"   Text-Remarks:  " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,19,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,19,TX,0) D P Q:EX=U
  W !,"   Text Dx Proc-Phys.Exam:  " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,10,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,10,TX,0) D P Q:EX=U

@@ -1,5 +1,5 @@
-ORWDBA4 ; SLC/GU Billing Awareness - Phase II [11/26/04 15:44]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**195,243**;Dec 17, 1997;Build 242
+ORWDBA4 ; SLC/GU Billing Awareness - Phase II [11/26/04 15:44] ;05/23/12  10:37
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**195,243,361**;Dec 17, 1997;Build 39
  ;
  ;Miscellaneous CIDC functions utility.
  ;
@@ -104,13 +104,13 @@ GDCD(IEN) ;Get Diagnoses Codes / Description
  ... I ORRF(100.051,IENS,.01,"I")="" S DCD=DCD_U Q
  ... S DXIEN=ORRF(100.051,IENS,.01,"I")
  ... S ICD9=$$GET1^DIQ(80,DXIEN,.01,"")
- ... S DXD=$$SETDXD^ORWDBA2($P($$ICDDX^ICDCODE(ICD9,DT),U,4))
+ ... S DXD=$$SETDXD^ORWDBA2($P($$ICDDATA^ICDXCODE("DIAGNOSIS",ICD9,DT),U,4))
  ... S DCD=$S(DCD="":ICD9_U_DXD,1:DCD_U_ICD9_U_DXD)
  Q DCD
  ;
 GETBAUSR(Y,ORCIEN) ;GUI RPC CALL
  ;Get Billing Awareness By User parameter value
- ;Gets and returns the value of the Enabled Billing Awareness By User 
+ ;Gets and returns the value of the Enabled Billing Awareness By User
  ;parameter assigned to a provider.
  ;Input Variable:
  ;  ORCIEN    Ordering Clinician's Internal Entry Number

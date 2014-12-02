@@ -1,5 +1,24 @@
-PXRMCF ;SLC/PKR - Handle computed findings. ;03/15/2011
- ;;2.0;CLINICAL REMINDERS;**6,12,18**;Feb 04, 2005;Build 152
+PXRMCF ;SLC/PKR - Handle computed findings. ;02/07/2014
+ ;;2.0;CLINICAL REMINDERS;**6,12,18,26**;Feb 04, 2005;Build 404
+ ;
+ ;=======================================================
+HELP(IEN) ;Display help for a computed finding.
+ N ANS,IND,N,OUTPUT,TEMP,TEXT
+ S TEMP=^PXRMD(811.4,IEN,0)
+ S TEXT="Display help for CF."_$P(TEMP,U,1)
+ S ANS=$$ASKYN^PXRMEUT("N",TEXT)
+ I ANS=0 Q
+ S TITLE="Computed Finding Description"
+ S OUTPUT(1)="Computed finding: "_$P(TEMP,U,1)
+ S OUTPUT(2)="Type: "_$$EXTERNAL^DILFD(811.4,5,"",$P(TEMP,U,5),"")
+ S OUTPUT(3)="Class: "_$$EXTERNAL^DILFD(811.4,100,"",$P(^PXRMD(811.4,IEN,100),U,1),"")
+ S OUTPUT(4)=""
+ S IND=0,NL=4
+ F  S IND=+$O(^PXRMD(811.4,IEN,1,IND)) Q:IND=0  D
+ . S NL=NL+1,OUTPUT(NL)=^PXRMD(811.4,IEN,1,IND,0)
+ I NL=4 S OUTPUT(4)="There is no description for this computed finding."
+ D BROWSE^DDBR("OUTPUT","NR","Computed Finding Help")
+ Q
  ;
  ;=======================================================
 EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;Evaluate computed findings.

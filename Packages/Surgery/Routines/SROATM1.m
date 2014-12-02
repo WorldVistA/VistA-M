@@ -1,5 +1,5 @@
 SROATM1 ;BIR/MAM - NON CARDIAC TRANSMISSION ;09/15/2011
- ;;3.0;Surgery;**27,38,47,60,62,81,88,93,95,125,153,160,166,174,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**27,38,47,60,62,81,88,93,95,125,153,160,166,174,176,177**;24 Jun 93;Build 89
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -12,7 +12,8 @@ SROATM1 ;BIR/MAM - NON CARDIAC TRANSMISSION ;09/15/2011
  S X=$$SITE^SROUTL0(SRTN),SRDIV=$S(X:$P(^SRO(133,X,0),"^"),1:""),SRDIV=$S(SRDIV:$$GET1^DIQ(4,SRDIV,99),1:SRASITE)
  S X=$P($G(^SRF(SRTN,205)),"^",3),SRDTH=$S(X:X,1:$P(VADM(6),"^"))
  S SROR="",Y=$P(SRA(0),"^",2),C=$P(^DD(130,.02,0),"^",2) I Y'="" D Y^DIQ S SROR=Y
- S SHEMP=">"_$J(SRASITE,3)_$J(SRTN,7)_"  1"_DT_$J(AGE,3)_$J(SEX,1)_$J(SRSDATE,12)_$J(SRPID,20)_$J(SRDIV,6)_$J(SRDTH,12)_$J($E(SROR,1,30),30)
+ ;JAS - 06/06/14 - PATCH 177 - Changed first character from ">" to "$" to denote new format for ICD-10
+ S SHEMP="$"_$J(SRASITE,3)_$J(SRTN,7)_"  1"_DT_$J(AGE,3)_$J(SEX,1)_$J(SRSDATE,12)_$J(SRPID,20)_$J(SRDIV,6)_$J(SRDTH,12)_$J($E(SROR,1,30),30)
  F I=1:1:6 S SHEMP=SHEMP_$J($P(SRA(52),"^",I),2)
  S SHEMP=SHEMP_$J($P(SRA(200),"^",55),2) F I=9:1:14 S SHEMP=SHEMP_$J($P(SRA(200.1),"^",I),2)
  S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP,SHEMP=$E(SHEMP,1,11)_"  2",SRACNT=SRACNT+1

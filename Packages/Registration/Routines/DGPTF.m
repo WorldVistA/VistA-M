@@ -1,10 +1,12 @@
-DGPTF ;ALB/JDS/AS - PTF LOAD/EDIT DRIVER ; 5/17/05 12:13pm
- ;;5.3;Registration;**26,58,164,195,397,565,664**;Aug 13, 1993;Build 15
+DGPTF ;ALB/JDS/AS - PTF LOAD/EDIT DRIVER ;5/17/05 12:13pm
+ ;;5.3;Registration;**26,58,164,195,397,565,664,850**;Aug 13, 1993;Build 171
  ;
  D LO^DGUTL
  I $D(^DISV(DUZ,"^DPT(")),$D(^("^DGPT(")) S A=+^("^DGPT("),B=+^("^DPT(") I $D(^DGPT(A,0)),$D(^DPT(B,0)) S:(+^DGPT(A,0)'=B&$D(^DGPT("B",B))) ^DISV(DUZ,"^DGPT(")=""
+ ;
 ASK W !! K DIC S DIC="^DGPT(",DIC(0)="EQMZA",DGPR=0,DIC("S")="I '$P(^DGPT(+Y,0),U,6)!($P(^(0),U,6)=1),$P(^(0),U,11)=1"
- D ^DIC G Q1:Y'>0 S PTF=+Y,DGREL=$S($D(^XUSEC("DG PTFREL",DUZ)):1,1:0)
+ ;DG*5.3*861 Added DGRELKEY variable to hold the value for DGREL that is killed in ^EASECU21
+ N DGRELKEY D ^DIC G Q1:Y'>0 S PTF=+Y,(DGRELKEY,DGREL)=$S($D(^XUSEC("DG PTFREL",DUZ)):1,1:0)
  I '$D(^DGPT(PTF,"M",0))#2 S ^(0)="^45.02^^"
  K DIC S DFN=+Y(0),DGADM=+$P(Y(0),U,2),^DISV(DUZ,"^DPT(")=DFN,DGST=+$P(Y(0),U,6)
  N DGPMCA,DGPMAN D PM^DGPTUTL
@@ -20,7 +22,6 @@ GETD ;
  K A
  I $P(^DGPT(PTF,0),U,11)=1 D CEN^DGPTC1
  F I=0,.521,.11,.52,.321,.32,57,.3 S A(I)="" S:$D(^DPT(DFN,I))&('DGST) A(I)=^(I) I DGST S:$D(^DGP(45.84,PTF,$S('I:10,1:I))) A(I)=^($S('I:10,1:I))
- ;changed 6/17/98 for MST enhancement
  S A("MST")=$P($$GETSTAT^DGMSTAPI(DFN),U,2,5)
  K DGNTARR
  S A("NTR")=$S($$GETCUR^DGNTAPI(DFN,"DGNTARR")>0:DGNTARR("INTRP"),1:"")
@@ -46,8 +47,8 @@ Q1 ; -- housekeeping
  D KVAR^DGPTUTL1,KVAR^DGPTC1 K SDCLY
  Q
  ;
-SUF I $D(^DIC(42,+$P(DGPMAN,U,6),0)) D
- .S DGX=$P(^(0),U,3),DGX=$S(DGX="":"",DGX="D":"D NUMACT^DGPTSUF(30)",DGX="NH":"D NUMACT^DGPTSUF(40)",1:"")
+SUF I $D(^DIC(42,+$P(DGPMAN,U,6),0)) S DGX=$P(^(0),U,3) D
+ .S DGX=$S(DGX="":"",DGX="D":"D NUMACT^DGPTSUF(30)",DGX="NH":"D NUMACT^DGPTSUF(40)",1:"")
  .Q:DGX=""
  .X DGX Q:DGANUM'=1
  .N DGFDA,DGMSG
@@ -57,15 +58,20 @@ SUF I $D(^DIC(42,+$P(DGPMAN,U,6),0)) D
  Q
 ORDER ; -- order mvt ; I1 := #mvts+1 ; M() := mvt array
  N DGRT S DGRT=$S(I1<25:"MT",1:"^UTILITY(""DGPTMT"",$J)") K @DGRT
- F I=0:0 S I=$O(M(I)) Q:'I  S NU=+$P(M(I),U,10),NU=$S('NU:9999999+I,1:NU),NU=$S($D(@DGRT@(NU)):NU+(I*.1),1:NU) S @DGRT@(NU,I)=M(I)
- S K=0 F I=0:0 S I=$O(@DGRT@(I)) Q:'I  S K=K+1,J=$O(@DGRT@(I,0)) S M(K)=@DGRT@(I,J)
+ N DGRT82 S DGRT82=$S(I1<25:"MT82",1:"^UTILITY(""DGPTMT82"",$J)") K @DGRT82
+ F I=0:0 S I=$O(M(I)) Q:'I  D
+ . S NU=+$P(M(I),U,10),NU=$S('NU:9999999+I,1:NU)
+ . S NU=$S($D(@DGRT@(NU)):NU+(I*.1),1:NU) S @DGRT@(NU,I)=M(I),@DGRT82@(NU,I)=$G(M(I,82))
+ S K=0 F I=0:0 S I=$O(@DGRT@(I)) Q:'I  D
+ . S K=K+1,J=$O(@DGRT@(I,0)) S M(K)=@DGRT@(I,J),M(K,82)=@DGRT82@(I,J)
  K @DGRT Q
  ;
 ADM S DFN=+^DGPT(DA,0),%=$O(^("M","AM",0)) I %<X&(%>0) K X W !,"Not after first movement"
  Q:'$D(X)  I $D(^DGPT("AAD",DFN,X))&($P(^DGPT(DA,0),U,2)'=X) K X W !,"There is already a PTF entry at that time"
  Q
  ;
-WR Q:'$D(^(0))  S DGNODE=^(0),DGADM=$P(DGNODE,U,2) W "  Admitted: ",$TR($$FMTE^XLFDT(DGADM,"5DF")," ","0")," "
+WR ;Called from ^DD(45,0,"ID","WR")
+ Q:'$D(^DGPT(+$G(Y),0))  S DGNODE=^(0),DGADM=$P(DGNODE,U,2) W "  Admitted: ",$TR($$FMTE^XLFDT(DGADM,"5DF")," ","0")," "
  ; uses new FMTE parameter for XLFDT, Y2K in line WR
  ;
  F DGZ=6,4 S %=";"_$S($D(^DD(45,DGZ,0)):$P(^(0),U,3),1:"") W $P($P(%,";"_$P(DGNODE,U,DGZ)_":",2),";",1)_" "

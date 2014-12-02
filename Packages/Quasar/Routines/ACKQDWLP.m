@@ -1,9 +1,14 @@
-ACKQDWLP ;AUG/JLTP BIR/PTD HCIOFO/BH-Print A&SP Capitation Report ; [ 03/28/96   10:45 AM ]
- ;;3.0;QUASAR;**1**;Feb 11, 2000
- ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
+ACKQDWLP ;AUG/JLTP BIR/PTD HCIOFO/BH - Print A&SP Capitation Report ;19 Nov 2013  9:53 AM
+ ;;3.0;QUASAR;**1,22,21**;Feb 11, 2000;Build 40
+ ;Per VHA Directive 2004-038, this routine SHOULD NOT be modified.
  ;
  ;   Developed within V.3, works at Div level rather than site level -
  ;   - pre v.3
+ ;
+ ;
+ ;  Reference/ICR
+ ;  $$CODEC^ICDEX - 5747
+ ;
  ;
  K ^TMP("ACKQDWLP",$J)
 OPTN ; Introduce option
@@ -58,7 +63,8 @@ ICDSTAT ; ICD stats
  . S ACKREC=^ACK(509850.7,ACKDA,5,ACKVDVN,1,ACK6,0)
  . S ACKAUD=$P(ACKREC,U,2,4),ACKSPE=$P(ACKREC,U,5,7)
  . S ACKCODE=$P(ACKREC,U,1)
- . S ACKCODE=$$GET1^DIQ(80,ACKCODE,.01)
+ . ;ACKQ*3.0*22 updated api
+ . S ACKCODE=$$CODEC^ICDEX(80,ACKCODE)
  . S ACKCODE=($S(ACKCODE?.NP:+ACKCODE,1:ACKCODE))
  . I $TR(ACKAUD,"^","")'="" D
  . . S ^TMP("ACKQDWLP",$J,"R",ACKVDVN,1,"A",ACKCODE)=ACKAUD

@@ -1,5 +1,5 @@
-PSJBCMA1 ;BIR/MV-RETURN INFORMATION FOR AN ORDER ;2/27/12 4:51pm
- ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,58,81,91,104,186,159,173,253,267**;16 DEC 97;Build 158
+PSJBCMA1 ;BIR/MV-RETURN INFORMATION FOR AN ORDER ;1/23/13 1:23pm
+ ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,58,81,91,104,186,159,173,253,267,279**;16 DEC 97;Build 150
  ;
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
@@ -12,8 +12,11 @@ PSJBCMA1 ;BIR/MV-RETURN INFORMATION FOR AN ORDER ;2/27/12 4:51pm
  ; Usage of this routine by BCMA is supported by DBIA 2829.
  ;
  ;*267 add Standard Rtoue Name from file 51.2 field 10
+ ;*279 - return High Risk field form file #50 for Unit dose and IV's
+ ;        for the dispensed drug/additive/solution
+ ;     - add Clinic name, IEN to pieces 11, 12 of TMP("PSJ1",$J,0)
  ;
-EN(DFN,ON,PSJTMP)         ; return detail data for Inpatient Meds.
+EN(DFN,ON,PSJTMP,PSJIGS2B,PSJEXIST)         ; return detail data for Inpatient Meds.
  NEW F,A
  S PSJTMP=$S($G(PSJTMP)=1:"PSJ1",1:"PSJ")
  I $G(ON)["U" S F="^PS(55,+$G(DFN),5,+ON" D:$D(@(F_")")) UDVAR
@@ -23,8 +26,8 @@ EN(DFN,ON,PSJTMP)         ; return detail data for Inpatient Meds.
  Q
  ;
 UDVAR ;* Set ^TMP for Unit dose & Pending orders
- NEW CNT,X
- D UDPEND
+ N CNT,CLINIC
+ D UDPEND I '$$CLINICS^PSJBCMA($G(CLINIC),$G(PSJIGS2B)) Q              ;*279
  D TMP
  ;* Setup Dispense drug for ^TMP
  S CNT=0 D NOW^%DTC
@@ -32,17 +35,25 @@ UDVAR ;* Set ^TMP for Unit dose & Pending orders
  . S PSJDD=@(F_",1,"_X_",0)") I $P(PSJDD,"^",3)]"",$P(PSJDD,"^",3)'>% Q
  . S CNT=CNT+1
  . S ^TMP(PSJTMP,$J,700,CNT,0)=+PSJDD_U_$P($G(^PSDRUG(+PSJDD,0)),U)_U_$S((ON["U")&($P(PSJDD,U,2)=""):1,(ON["U")&($E($P(PSJDD,U,2))="."):"0"_$P(PSJDD,U,2),1:$P(PSJDD,U,2))_U_$P(PSJDD,U,3)
+ . ;add High Risk field to 6th piece of 700 (disp drug)          ;*279
+ . S $P(^TMP(PSJTMP,$J,700,CNT,0),U,6)=+$$GET1^DIQ(50.7,PSJ("OI"),1,"I")
  S:CNT ^TMP(PSJTMP,$J,700,0)=CNT
  K PSJ,PSJDD,PSJDN
  Q
 IVVAR ;* Set variables for IV and pending orders
- NEW CNT,DN,ND,X,Y
- I ON["P" D UDPEND S PSJ("INFRATE")=$P($G(^PS(53.1,ON,8)),U,5)
- I ON["V" D
+ N CNT,DN,ND,X,Y,CLINIC,OIIEN
+ ;don't send orders to BCMA that fail the Clinic test            ;*279
+ ;     Pending's
+ I ON["P" D  I '$$CLINICS^PSJBCMA($G(CLINIC),$G(PSJIGS2B)) Q           ;*279
+ . D UDPEND                                                      ;*279
+ . S PSJ("INFRATE")=$P($P($G(^PS(53.1,ON,8)),U,5),"@")           ;*279
+ ;     IV's
+ I ON["V" D  I '$$CLINICS^PSJBCMA($G(CLINIC),$G(PSJIGS2B)) Q           ;*279
  . S X=$G(^PS(55,DFN,"IV",+ON,0))
  . S PSJ("STARTDT")=$P(X,U,2),PSJ("STOPDT")=$P(X,U,3)
  . S PSJ("PROVIDER")=$P(X,U,6)
- . S PSJ("INFRATE")=$P(X,U,8),PSJ("SCHD")=$P(X,U,9)
+ . S PSJEXIST=$S((PSJ("PROVIDER")'=""):1,1:0)
+ . S PSJ("INFRATE")=$P($P(X,U,8),"@"),PSJ("SCHD")=$P(X,U,9)
  . S PSJ("ADM")=$P(X,U,11),PSJ("AUTO")=$P(X,U,12),PSJ("STATUS")=$P(X,U,17)
  . S PSJ("FREQ")=$P(X,U,15),PSJ("IVTYPE")=$P(X,U,4)
  . S PSJ("INSYR")=$P(X,U,5),PSJ("CPRS")=$P(X,U,21),PSJ("CHEMO")=$P(X,U,23)
@@ -67,31 +78,49 @@ IVVAR ;* Set variables for IV and pending orders
  . I PSJ("STC")=""!(PSJ("STC")="C") S PSJ("STC")=$S(SCHD["PRN":"P",1:"C")
  . I PSJ("STC")="C" S PSJ("STC")=$S($$ONCALL^PSJBCMA(PSJ("SCHD")):"OC",1:"C")
  . S PSJ("NURSE")=$P($G(^PS(55,DFN,"IV",+ON,4)),U)
+ . S CLINIC=$G(^PS(55,DFN,"IV",+ON,"DSS"))                       ;*279
+ ;
  D TMP
  S X=$P($G(^PS(55,DFN,"IV",+ON,1)),U) S:X]"" ^TMP(PSJTMP,$J,6)=X
  S CNT=0
  F X=0:0 S X=$O(@(F_",""AD"","_X_")")) Q:'X  D
  . S ND=$G(@(F_",""AD"","_X_",0)")),DN=$G(^PS(52.6,+ND,0)) ;,AOINAME=$$OIDF^PSJLMUT1(+$P(DN,U,11)) I AOINAME["NOTFOUND" S AOINAME=""
- . S CNT=CNT+1,^TMP(PSJTMP,$J,850,CNT,0)=+ND_U_$P(DN,U)_U_$P(ND,U,2)_U_$P(ND,U,3) ;_U_U_$P(DN,U,11)_U_AOINAME_U_AOIDF
+ . S CNT=CNT+1,^TMP(PSJTMP,$J,850,CNT,0)=+ND_U_$P(DN,U)_U_$P(ND,U,2)_U_$P(ND,U,3)        ;_U_U_$P(DN,U,11)_U_AOINAME_U_AOIDF
+ . ;add High Risk field to 6th piece of 800 (additv)             ;*279
+ . S $P(^TMP(PSJTMP,$J,850,CNT,0),U,6)=$$HRFLG^PSJBCMA(+ND,"A")
+ ;
  S:CNT ^TMP(PSJTMP,$J,850,0)=CNT,CNT=0
  F X=0:0 S X=$O(@(F_",""SOL"","_X_")")) Q:'X  D
  . S ND=$G(@(F_",""SOL"","_X_",0)")),DN=$G(^PS(52.7,+ND,0)) ;,SOINAME=$$OIDF^PSJLMUT1(+$P(DN,U,11)) I SOINAME["NOTFOUND" S SOINAME=""
- . S CNT=CNT+1,^TMP(PSJTMP,$J,950,CNT,0)=+ND_U_$P(DN,U)_U_$P(ND,U,2)_U_$P(DN,U,4) ;_U_U_$P(DN,U,11)_U_SOINAME_U_SOIDF
+ . S CNT=CNT+1,^TMP(PSJTMP,$J,950,CNT,0)=+ND_U_$P(DN,U)_U_$P(ND,U,2)_U_$P(DN,U,4)        ;_U_U_$P(DN,U,11)_U_SOINAME_U_SOIDF
+ . ;add High Risk field to 6th piece of 800 (additv)             ;*279
+ . S $P(^TMP(PSJTMP,$J,950,CNT,0),U,6)=$$HRFLG^PSJBCMA(+ND,"S")
  S:CNT ^TMP(PSJTMP,$J,950,0)=CNT
  K PSJ
  S X1=0
  F  S X1=$O(^PS(55,DFN,"IVBCMA",X1)) Q:'X1  D
  . S XX=$G(^PS(55,DFN,"IVBCMA",X1,0)) Q:$P(XX,"^",2)'=+ON  S PSJBCID=$P(XX,"^"),X2=0
- . F I=1:1 S X2=$O(^PS(55,DFN,"IVBCMA",X1,"AD",X2)) Q:'X2  S X=^(X2,0),^TMP(PSJTMP,$J,800,PSJBCID,I)=+X_"^"_$S($D(^PS(52.6,+X,0)):$P(^(0),"^"),1:"*****")_"^"_$P(X,"^",2,99)
+ . F I=1:1 S X2=$O(^PS(55,DFN,"IVBCMA",X1,"AD",X2)) Q:'X2  D
+ .. S X=^(X2,0),^TMP(PSJTMP,$J,800,PSJBCID,I)=+X_"^"_$S($D(^PS(52.6,+X,0)):$P(^(0),"^"),1:"*****")_"^"_$P(X,"^",2,99)
+ .. ;add High Risk field to 6th piece of 800 (additv)            ;*279
+ .. S $P(^TMP(PSJTMP,$J,800,PSJBCID,I),U,6)=$$HRFLG^PSJBCMA(+X,"A")
  . I I>1 S ^TMP(PSJTMP,$J,800,PSJBCID,0)=I-1
  . S X2=0
- . F I=1:1 S X2=$O(^PS(55,DFN,"IVBCMA",X1,"SOL",X2)) Q:'X2  S X=^(X2,0),^TMP(PSJTMP,$J,900,PSJBCID,I)=$P(X,"^")_"^"_$S($D(^PS(52.7,$P(X,"^"),0)):$P(^(0),"^"),1:"*****")_"^"_$P(X,"^",2,99)
+ . F I=1:1 S X2=$O(^PS(55,DFN,"IVBCMA",X1,"SOL",X2)) Q:'X2  D
+ .. S X=^(X2,0),^TMP(PSJTMP,$J,900,PSJBCID,I)=$P(X,"^")_"^"_$S($D(^PS(52.7,$P(X,"^"),0)):$P(^(0),"^"),1:"*****")_"^"_$P(X,"^",2,99)
+ .. ;add High Risk field to 6th piece of 900  (sol)              ;*279
+ .. S $P(^TMP(PSJTMP,$J,900,PSJBCID,I),U,6)=$$HRFLG^PSJBCMA(+X,"S")
  . I I>1 S ^TMP(PSJTMP,$J,900,PSJBCID,0)=I-1
  . S ^TMP(PSJTMP,$J,1000,PSJBCID)=$P(XX,"^",6)_"^"_$P(XX,"^",8)_"^"_$P(XX,"^",7)
  Q
 UDPEND ;
  S X=$G(@(F_",0)"))
+ ;get clinic node per F = global file                            ;*279
+ I $P(F,",")[53.1 S CLINIC=$G(@(F_",""DSS"")"))
+ I $P(F,",")[55 S CLINIC=$G(@(F_",8)"))
+ ;
  S PSJ("PROVIDER")=$P(X,U,2)
+ S PSJEXIST=$S((PSJ("PROVIDER")'=""):1,1:0)
  S PSJ("MR")=$P(X,U,3),PSJ("SM")=$P(X,U,5),PSJ("HSM")=$P(X,U,6)
  S PSJ("ST")=$P(X,U,7),PSJ("STATUS")=$P(X,U,9)
  S PSJ("LDT")=$P(X,U,16)
@@ -123,6 +152,7 @@ UDPEND ;
  Q 
  ;
 TMP ;* Setup ^TMP that have common fields between IV and U/D
+ N CLNAME,CLNAMPTR
  D NAME(PSJ("PROVIDER"),.PSJNAME,"","")
  S PSJ("PRONAME")=PSJNAME K PSJNAME
  I $D(PSJ("PHARM")) D
@@ -143,10 +173,18 @@ TMP ;* Setup ^TMP that have common fields between IV and U/D
  S PSJ("STNAME")=$S(X="C":"CONTINUOUS",X="O":"ONE TIME",X="P":"PRN",X="R":"FILL ON REQUEST",X="OC":"ON CALL",1:"NOT FOUND")
  ;
  S ^TMP(PSJTMP,$J,0)=DFN_U_+ON_U_ON_U_PSJ("PREV")_U_PSJ("FOLLOW")_U_$G(PSJ("IVTYPE"))_U_$G(PSJ("INSYR"))_U_$G(PSJ("CHEMO"))_U_PSJ("CPRS")
+ ;add Clinic name & IEN ptr to TMP 0 node (pieces 11,12)          *279
+ ;piece 11 determines if order is a CO or IM for BCMA VDL's       *279
+ I +CLINIC,$$CLINIC^PSJBCMA(CLINIC) D   ;CL IEN & valid appt date *279
+ . S CLNAMPTR=$O(^PS(53.46,"B",+CLINIC,""))
+ . S CLNAME=$$GET1^DIQ(53.46,CLNAMPTR_",",.01)
+ . S $P(^TMP(PSJTMP,$J,0),U,11)=CLNAME      ;CO ind, CO NAME
+ . S $P(^TMP(PSJTMP,$J,0),U,12)=+CLINIC     ;IEN ptr to file 44
+ ;
  S ^TMP(PSJTMP,$J,1)=PSJ("PROVIDER")_U_PSJ("PRONAME")_U_PSJ("MR")_U_PSJ("MRABB")_U_$G(PSJ("SM"))_U_$G(PSJ("SMYN"))_U_$G(PSJ("HSM"))_U_$G(PSJ("HSMYN"))_U_$G(PSJ("NGIVEN"))_U_PSJ("STATUS")
  S ^TMP(PSJTMP,$J,1)=^TMP(PSJTMP,$J,1)_U_$$STATUS(ON,PSJ("STATUS"))_U_$G(PSJ("AUTO"))_U_$G(PSJ("MRNM"))_U_PSJ("MRSTDRNM") ;*267 Std Rte nam
  S ^TMP(PSJTMP,$J,1,0)=PSJ("MRPIJ")_U_$G(PSJ("MRIVP"))
- S ^TMP(PSJTMP,$J,2)=PSJ("OI")_U_PSJ("OINAME")_U_PSJ("DO")_U_$G(PSJ("INFRATE"))_U_$G(PSJ("SCHD"))_U_PSJ("OIDF")
+ S ^TMP(PSJTMP,$J,2)=PSJ("OI")_U_PSJ("OINAME")_U_PSJ("DO")_U_$P($G(PSJ("INFRATE")),"@")_U_$G(PSJ("SCHD"))_U_PSJ("OIDF")
  S ^TMP(PSJTMP,$J,3)=PSJ("SIOPI")
  S ^TMP(PSJTMP,$J,4)=PSJ("STC")_U_$G(PSJ("STNAME"))_U_PSJ("LDT")_U_PSJ("LDTN")_U_PSJ("STARTDT")_U_PSJ("STARTDTN")_U_PSJ("STOPDT")_U_PSJ("STOPDTN")_U_$$ADMIN(PSJ("ADM"))_U_$G(PSJ("ST"))_U_$G(PSJ("FREQ"))
  S ^TMP(PSJTMP,$J,5)=$G(PSJ("NURSE"))_U_$G(PSJ("NNAME"))_U_$G(PSJ("NINIT"))_U_$G(PSJ("PHARM"))_U_$G(PSJ("PNAME"))_U_$G(PSJ("PINIT"))
@@ -201,7 +239,7 @@ MVOPIAL(DFN,PSJI1,PSJI2) ; Move Other Print Info Activity log entries from NV or
 OPIWARN(AFTER) ; Warn user about OPI not printing on IV labels
  N DIR S DIR=""
  N PSJSTARZ S $P(PSJSTARZ,"*",69)="*" W !!?5,$E(PSJSTARZ,1,29)," WARNING ",$E(PSJSTARZ,1,31)
- W !?5,"**",$S(AFTER:"       ",1:"      If "),"OTHER PRINT INFO exceeds one line of 60 characters"_$S(AFTER:"!       **",1:",     **")
+ W !?5,"**",$S(AFTER:"             ",1:"            If "),"OTHER PRINT INFO exceeds 60 characters"_$S(AFTER:"!             **",1:",           **")
  W !?5,"**  'Instructions too long. See Order View or BCMA for full text.' **"
  W !?5,"**      will print on the IV label instead of the full text.       **",!?5,PSJSTARZ
  W !! D PAUSE^VALM1

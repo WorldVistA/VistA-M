@@ -1,5 +1,5 @@
 IBCECOB ;ALB/CXW - IB COB MANAGEMENT SCREEN ;16-JUN-1999
- ;;2.0;INTEGRATED BILLING;**137,155,288,432**;21-MAR-1994;Build 192
+ ;;2.0;INTEGRATED BILLING;**137,155,288,432,488**;21-MAR-1994;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; -- main entry point for COB management
@@ -9,6 +9,7 @@ EN ; -- main entry point for COB management
  Q
  ;
 HDR ; -- header code
+ I '$G(IBMRANOT) S VALMSG="!=Data Mismatch/MSE      Enter ?? for more actions"
  Q
  ;
 INIT ; -- init variables and list array

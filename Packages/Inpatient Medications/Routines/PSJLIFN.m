@@ -1,5 +1,5 @@
 PSJLIFN ;BIR/MV-IV FINISH USING LM ;13 Jan 98 / 11:32 AM
- ;;5.0; INPATIENT MEDICATIONS ;**1,29,34,37,42,47,50,56,94,80,116,110,181,261**;16 DEC 97;Build 47
+ ;;5.0;INPATIENT MEDICATIONS ;**1,29,34,37,42,47,50,56,94,80,116,110,181,261,252**;16 DEC 97;Build 69
  ;
  ; Reference to ^PS(51.2 is supported by DBIA #2178.
  ; Reference to ^PS(52.6 supported by DBIA #1231.
@@ -13,7 +13,9 @@ PSJLIFN ;BIR/MV-IV FINISH USING LM ;13 Jan 98 / 11:32 AM
  ;
 EN ; Display order with numbers.
  L +^PS(53.1,+PSJORD):1 I '$T W !,$C(7),$C(7),"This order is being edited by another user. Try later." D PAUSE^VALM1 Q
- D PENDING K PSJREN
+ NEW PSJOCFG
+ S PSJOCFG="FN IV"
+ D PENDING K PSJREN,PSJOCFG
  L -^PS(53.1,+PSJORD)
  Q
 PENDING ; Process pending order.
@@ -23,7 +25,7 @@ PENDING ; Process pending order.
  ;* PSJLMX is defined in WRTDRG^PSIVUTL and it was being call in PSJLIVMD & PSJLIVFD
  ;*        to count # of AD/SOL 
  NEW PSIVFN1,PSIVACEP,PSJLMX,PSIVOI,PSJOCCHK,PSJFNDS
- K PSJIVBD ;This varable was left over from the new backdoor order entry.
+ K PSJIVBD ;This variable was left over from the new backdoor order entry.
  ; PSJOCCHK is set so if EDIT was use instead of FN to finish order the OC is triggered
  S PSJOCCHK=1
  ;* PSJFNDS is set so dosing is trigger during finishing without changes to the add/sol

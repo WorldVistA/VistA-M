@@ -1,5 +1,5 @@
 IBCSC4D ;ALB/ARH - ADD/ENTER DIAGNOSIS ;11/9/93
- ;;2.0;INTEGRATED BILLING;**55,62,91,106,124,51,210,403,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**55,62,91,106,124,51,210,403,400,461**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ;add/edit diagnosis for a bill, IBIFN required
@@ -27,24 +27,25 @@ EXIT K IBDIFN,IBDXA,IBPOA,IBDX,IBX
  Q
  ;
 ASKDX() ;
- N X,Y,IBDATE,IBDTTX
+ N X,Y,IBDATE,IBDTTX,ICDVDT
  ;S DIR("A")="Select ICD DIAGNOSIS",DIR(0)="362.3,.01O" D ^DIR K DIR
- S IBDATE=$$BDATE^IBACSV(IBIFN)
+ S IBDATE=$$BDATE^IBACSV(IBIFN),ICDVDT=IBDATE
  S IBDTTX=$$DAT1^IBOUTL(IBDATE)
  I $G(IBIFN),$$INPAT^IBCEF(IBIFN) D
  . N Z S Z=$$EXPAND^IBTRE(399,215,+$G(^DGCR(399,IBIFN,"U2")))
  . W !,$S(Z'="":"",1:"NO ")_"Admitting Diagnosis"_$S(Z'="":": "_Z,1:" found"),!
 AD S DIR("??")="^D HELP^IBCSC4D"
- S DIR("?",1)="Enter a diagnosis for this bill.  Duplicates are not allowed. Only codes active on "_IBDTTX_"."
+ S DIR("?",1)="Enter a diagnosis for this bill.  Duplicates are not allowed."
  S DIR("?")="Only diagnosis codes active on "_IBDTTX_", no duplicates for a bill, and bill must not be authorized or cancelled."
- S DIR(0)="PO^80:EAMQ"
+ S DIR("S")="I $$ICD9VER^IBACSV(+Y)="_$$ICD9SYS^IBACSV(IBDATE) ; inactive allowed but either ICD-9 or ICD-10 *461
+ S DIR(0)="PO^80:EAMQI"
  D ^DIR K DIR
  I Y>0,'$D(IBDXA(+Y)),'$$ICD9ACT^IBACSV(+Y,IBDATE) D  G AD
  . W !!,*7,"The Diagnosis code is inactive for the date of service ("_IBDTTX_").",!
  Q Y
  ;
 ADD(DX,IFN) ;
- I $E($$ICD9^IBACSV(DX,$$BDATE^IBACSV(IFN)))="E",$$MAXECODE^IBCSC4F(IFN) W !!,*7,"Only 3 External Cause of Injury diagnoses are allowed per claim.",! Q 0
+ I $$ICD9VER^IBACSV(DX)=1,$E($$ICD9^IBACSV(DX,$$BDATE^IBACSV(IFN)))="E",$$MAXECODE^IBCSC4F(IFN) W !!,*7,"Only 3 External Cause of Injury diagnoses are allowed per claim.",! Q 0
  S DIC="^IBA(362.3,",DIC(0)="AQL",DIC("DR")=".02////"_IFN,X=DX K DA,DO D FILE^DICN K DA,DO,DIC,X
  Q Y
  ;
@@ -88,7 +89,7 @@ DISP(POARR) ;screen display of existing dx's for a bill,
  W !!,?5,"-----------------  Existing Diagnoses for Bill  -----------------",!
  S IBX=0 F  S IBX=$O(POARR(IBX)) Q:'IBX  S IBZ=POARR(IBX),IBY=$$ICD9^IBACSV(+IBZ,IBDATE) D
  .S POA="" I $$INPAT^IBCEF(IBIFN),$$FT^IBCEF(IBIFN)=3 S POA=$P(IBZ,U,3) S:POA=1 POA="" S:POA'="" POA="("_POA_")"
- . W !,?12,$P(IBY,U),?20,POA,?26,$P(IBY,U,3),?60,$S($P(IBZ,U,2)<1000:"("_$P(IBZ,U,2)_")",1:"")
+ . W !,$P(IBY,U),?9,POA,?13,$P(IBY,U,3),?75,$S($P(IBZ,U,2)<1000:"("_$P(IBZ,U,2)_")",1:"")
  W !
  Q
  ;
@@ -163,7 +164,7 @@ DISPOE(OEARR,EXARR) ; display outpatient PCE diagnosis
  S IBCNT=0 F  S IBCNT=$O(OEARR(IBCNT)) Q:'IBCNT  D
  . S IBY=OEARR(IBCNT),IBDX=$$ICD9^IBACSV(+IBY,IBDATE)
  . S IBX="" I $D(EXARR(+OEARR(IBCNT))) S IBX="*"
- . W !,$J(IBCNT,2),")",?5,IBX,?6,$P(IBDX,U),?14,$E($P(IBDX,U,3),1,19)
+ . W !,$J(IBCNT,2),")",?4,IBX,?5,$P(IBDX,U),?14,$E($P(IBDX,U,3),1,19)
  . I +$P(IBY,U,7) W ?35,$E($P($G(^SC(+$P(IBY,U,7),0)),U,1),1,15)
  . I $P(IBY,U,2)'="" W ?52,$E($$EXPAND^IBTRE(9000010.07,.12,$P(IBY,U,2)),1,3)
  . I $P(IBY,U,4)'="" W ?57,$$FMTE^XLFDT($E($P(IBY,U,4),1,12),2)

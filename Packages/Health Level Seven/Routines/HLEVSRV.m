@@ -1,7 +1,7 @@
 HLEVSRV ;O-OIFO/LJA - Event Monitor SERVER ;02/04/2004 14:42
  ;;1.6;HEALTH LEVEL SEVEN;**109**;Oct 13, 1995
  ;
- ; Send email to S.XQSCHK@SITE.domain.ext to check server status.
+ ; Send email to S.XQSCHK@SITE.DOMAIN.EXT to check server status.
  ; (Include the name of server (w/o S.) in body of message.)
  ;
 SERVER ; Called to get information about local monitoring system

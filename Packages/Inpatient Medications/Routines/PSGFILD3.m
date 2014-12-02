@@ -1,5 +1,7 @@
 PSGFILD3 ;BIR/CML3-RETURN OF VARIOUS FILES' UPKEEP ;12 DEC 97 / 10:53 AM
- ;;5.0; INPATIENT MEDICATIONS ;;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS ;**279**;16 DEC 97;Build 150
+ ; ;
+ ;*279 - add fields #4, #5 to Clinic Def file maint (missing dose device and pre-exchange device)
  ;
 ENRBLU ;
  S Y=DA(2) N DA,DIC,DIE,DIX,DO,DR
@@ -41,3 +43,10 @@ ENIU ; mark/unmark drugs for Unit Dose use
 ENIUH ;
  W !!?2,"Enter 'M' to mark items for use by the Unit Dose Medications package.  (You",!,"will only be shown items that have not been marked for Unit Dose.)",!?2,"Enter 'U' to unmark items that have previously been marked for use with Unit"
  W !,"Dose.  (You will be shown only items that have already been marked for Unit",!,"Dose.)",!!,"Choose from:",!?3,"M  MARK ITEMS FOR UNIT DOSE",!?3,"U  UNMARK ITEMS FOR UNIT DOSE" Q
+ ;
+ENCD ;edit Clinic Definitions file
+ N CLINICS,CLINFLG S CLINICS=""
+ F  K DIC S DIC="^PS(53.46,",DIC(0)="AELMQ",DIC("A")="Select CLINIC: ",DLAYGO=53.46 D ^DIC K DIC Q:Y<0  D
+ . S DIE="^PS(53.46,",DA=+Y,CLINICS(DA)="",DR="1;2;3;4;5;6" D ^DIE K DIE,DA,DR Q
+ I ($T(IMO^PSJIMO1)]"") D IMO^PSJIMO1(.CLINICS)
+ Q

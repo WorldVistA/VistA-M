@@ -1,23 +1,29 @@
-PRCSEA ;WISC/SAW/DXH/BM/SC/DAP - CONTROL POINT ACTIVITY EDITS ; 3/31/05 2:59pm
-V ;;5.1;IFCAP;**81,147**;Oct 20, 2000;Build 3
+PRCSEA ;WISC/SAW/DXH/BM/SC/DAP - CONTROL POINT ACTIVITY EDITS ;5/8/13  15:31
+V ;;5.1;IFCAP;**81,147,150,174**;Oct 20, 2000;Build 23
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;PRC*5.1*81 BMM 3/23/05 when a 2237 is canceled, in CT1, add code 
  ;to update Audit file (#414.02), and send update message to 
  ;DynaMed thru a call to rtn PRCVTCA.
  ;
+ ;PRC*5.1*150 RGB 4/23/12 DO NOT allow the same temporary tx
+ ;number to be used at all.  Previously, the same temp tx #
+ ;could be used by different users, not same user.
+ ;Also, Control the node 0 counter for file 410 kill (DIK)
+ ;since DIK call does not handle descending file logic
+ ;
 ENRS ;ENTER REQ
  S PRCSK=1,X3="H"
  D EN1F^PRCSUT(1) ; ask site,FY,QRTR,CP & set up PRC array, PRCSIP variable ; prc*5*197
  G W2:'$D(PRC("SITE")),EXIT:Y<0 ; unauthorized user or '^' entered
  D W6 ; display help on transaction# format
-ENRS0 S DLAYGO=410,DIC="^PRCS(410,",DIC(0)="AELQ",D="H"
+ENRS0 S DLAYGO=410,DIC="^PRCS(410,",DIC(0)="ABELQX",D="H"   ;PRC*5.1*150
  S DIC("A")="Select TRANSACTION: "
- S DIC("S")="I '^(0),$P(^(0),U,3)'="""",$D(^PRCS(410,""H"",$P(^(0),U,3),+Y)),^(+Y)=DUZ!(^(+Y)="""")" ; only requests authored by user or unauthored will display on partial match
+ S DIC("S")="I '^(0),$P(^(0),U)'="""",$D(^PRCS(410,""B"",$P(^(0),U),+Y))" ; only temp tx number not defined will be allowed  ;PRC*5.1*150
  D ^PRCSDIC ; lookup & preliminary validity checking
  K DLAYGO,DIC("A"),DIC("S")
  G:Y<0 EXIT
- I $P(Y,U,3)'=1 W $C(7),"   Must be a new entry." G ENRS0
+ I $P(Y,U,3)'=1 W $C(7),"   Must be a new (unique) entry." G ENRS0     ;PRC*5.1*150
  ;*81 Check site parameter to see if issue books are allowed
  D CKPRM^PRCSEB
  W !!,PRCVY,!
@@ -113,7 +119,14 @@ CT ;CANCEL A (PERMANENT) TRANS
 CT1 W !,"Cancel this transaction" S %=2 D YN^DICN G CT1:%=0,EXIT:%'=1
  S DA=+Y
  L +^PRCS(410,DA):1 I $T=0 W !,"File is being accessed...please try later" G CT
- S T=$P(^PRCS(410,DA,0),"^"),$P(^(11),"^",3)="",$P(^(0),"^",2)="CA",$P(^(5),"^")=0,$P(^(6),"^")=0
+ S DIE="^PRCS(410,",DR="104////^S X=DUZ" D ^DIE K DIE,DR
+ S T=$P(^PRCS(410,DA,0),"^")
+ I T?1A.E D  G EXIT:%'=1 W !! G CT     ;PRC*5.1*150 Will DELETE entry if temporary transaction
+ . S DIK="^PRCS(410,",PRCIENCT=$P(^PRCS(410,0),"^",3)+1
+ . D ^DIK
+ . S $P(^PRCS(410,0),"^",3)=PRCIENCT K PRCIENCT,DIK
+ . S T="cancel" D W4
+ S $P(^PRCS(410,DA,11),"^",3)="",$P(^PRCS(410,DA,0),"^",2)="CA",$P(^PRCS(410,DA,5),"^")=0,$P(^PRCS(410,DA,6),"^")=0
  K ^PRCS(410,"F",+T_"-"_+PRC("CP")_"-"_$P(T,"-",5),DA),^PRCS(410,"F1",$P(T,"-",5)_"-"_+T_"-"_+PRC("CP"),DA),^PRCS(410,"AQ",1,DA)
  K ZX
  I $D(^PRCS(410,DA,4)) S ZX=^(4),X=$P(ZX,"^",8) F I=1,3,6,8 S $P(ZX,"^",I)=0
@@ -143,9 +156,11 @@ DT1 W !,"Delete this transaction" S %=2 D YN^DICN G DT1:%=0,EXIT:%'=1
  ;The following line was commented out in patch 182; should NOT manually
  ;change or reset last assigned IEN # in node zero.
  ;S PRCSDA=$P(^PRCS(410,0),U,3),DIK=DIC
+ S PRCIENCT=$P(^PRCS(410,0),"^",3)+1      ;PRC*5.1*150
  S DIK=DIC
  W !,"Okay....."
  D ^DIK K DIK
+ S $P(^PRCS(410,0),"^",3)=PRCIENCT K PRCIENCT     ;PRC*5.1*150
  L -^PRCS(410,DA)
  ;The following line was commented out in patch 182; should NOT manually
  ;change or reset last assigned IEN # in node zero.
@@ -183,7 +198,9 @@ BACKOUT(TRNNAME,TRNDA) ;
  I %=0 G BACKOUT
  I %=2 Q 0
  S DIK="^PRCS(410,",DA=TRNDA
+ S PRCIENCT=$P(^PRCS(410,0),"^",3)+1      ;PRC*5.1*150
  D ^DIK
+ S $P(^PRCS(410,0),"^",3)=PRCIENCT K PRCIENCT     ;PRC*5.1*150
  Q 1
  ;
 W2 W !!,"You are not an authorized control point user.",!,"Contact control point official" R X:5 G EXIT

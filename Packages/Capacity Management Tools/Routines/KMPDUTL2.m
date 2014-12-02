@@ -62,7 +62,7 @@ EMAIL(KMPDSUBJ,KMPDTEXT,KMPDTO) ; check and process errors.
  ; KMPDTO..... Address for email recipient:
  ;              G.KMP2-RUM@FO-ALBANY.DOMAIN.EXT
  ;              G.KMP4-CMTOOLS@FO-ALBANY.DOMAIN.EXT
- ;              G.CAPACITY,MANAGEMENT@FO-ALBANY.DOMAIN.EXT
+ ;              G.CAPACITY,MANAGEMENT@FO-ALBANY.MED.GOV
  ;             If no value is passed the default will be 
  ;              G.KMP4-CMTOOLS@FO-ALBANY.DOMAIN.EXT
  ;              

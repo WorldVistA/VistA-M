@@ -1,9 +1,16 @@
 PXUTL1 ;ISL/dee - Utility routines used by PCE ;4/3/97
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**25,134,149**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**25,134,149,199**;Aug 12, 1996;Build 51
  ;; ;
  Q
  ;
 EXTTEXT(IEN,REQUIRED,FILE,FIELD1,FIELD2) ;Returns the external form.
+ ;* 1/24/2012 - ICD-10 REMEDIATION note
+ ;* This function was being used mostly to retrieve the diagnosis description.
+ ;* The DESCRIPTION field in file #80 is now a multiple and does not work
+ ;* with this function so most of the routines that were using this have been
+ ;* recoded.  This function is still viable as a DIC wrapper but must be used
+ ;* for 'flat' fields and not multiples.
+ ;
  ;Parameters:
  ;  IEN       the ien in the file that the text is wanted for.
  ;  REQUIRED  if this is not zero and no text is found
@@ -54,11 +61,11 @@ PRIMSEC(PXUTVST,PXUTAUPN,PXUTNODE,PXUPIECE) ;Returns ien of the primary one
  F  S PXUTPRIM=$O(@(PXUTAUPN_"(""AD"",PXUTVST,PXUTPRIM)")) Q:PXUTPRIM'>0  I "P"=$P(@(PXUTAUPN_"(PXUTPRIM,PXUTNODE)"),"^",PXUPIECE) Q
  Q +PXUTPRIM
  ;
-DISPOSIT(PXUTLDFN,PXUTLDT,PXUTVIEN) ;Checks to see if a visit is a dispoition
+DISPOSIT(PXUTLDFN,PXUTLDT,PXUTVIEN) ;Checks to see if a visit is a disposition
  I PXUTVIEN=+$P($G(^SCE(+$P($G(^DPT(+PXUTLDFN,"DIS",9999999-PXUTLDT,0)),"^",18),0)),"^",5) Q +$P($G(^DPT(+PXUTLDFN,"DIS",9999999-PXUTLDT,0)),"^",18)
  Q 0
  ;
-APPOINT(PXUTLDFN,PXUTLDT,HLOC) ;Returns 1 if the patient has and appointment
+APPOINT(PXUTLDFN,PXUTLDT,HLOC) ;Returns 1 if the patient has an appointment
  ;at PXUTLDT for clinic HLOC.
  Q HLOC=+$G(^DPT(+PXUTLDFN,"S",+PXUTLDT,0))
  ;
@@ -66,7 +73,7 @@ VST2APPT(VISIT) ;Is this visit related to an appointment
  ;Returns
  ; 1 if the visit is being pointed to by an appointment
  ; 0 if the visit is NOT being pointed to by an appointment
- ;-1 if the visit is invalued
+ ;-1 if the visit is invalid
  ;
  N VISIT0
  S VISIT0=$G(^AUPNVSIT($G(VISIT),0))
@@ -83,10 +90,11 @@ APPT2VST(PXUTLPAT,PXUTLDT,HLOC) ;Returns ien of visit that the related
  I HLOC=+$G(^DPT(+PXUTLPAT,"S",+PXUTLDT,0)) Q +$P($G(^SCE(+$P($G(^DPT(PXUTLPAT,"S",PXUTLDT,0)),"^",20),0)),"^",5)
  Q 0
  ;
-DXNARR(PXDXCDE,PXUTLDT) ;Returns the versioned text of file #80, field #10
+DXNARR(PXDXCDE,PXUTLDT) ;Returns the versioned full text from file #80, field #68
  N PXLDX,PXNO,PXCOD
  I $G(PXDXCDE)="" Q ""
- S PXCOD=$P($$ICDDX^ICDCODE(PXDXCDE),"^",2) S:$G(PXUTLDT)="" PXUTLDT=DT
- S PXNO=$$ICDD^ICDCODE(PXCOD,"PXLDX",PXUTLDT)
+ S:$G(PXUTLDT)="" PXUTLDT=DT
+ S PXCOD=$P($$ICDDATA^ICDXCODE("DIAG",PXDXCDE,PXUTLDT,"I"),U,2)
+ S PXNO=$$ICDDESC^ICDXCODE("DIAG",PXCOD,PXUTLDT,.PXLDX)
  Q $S(PXNO>0:PXLDX(1),1:"")
  ;

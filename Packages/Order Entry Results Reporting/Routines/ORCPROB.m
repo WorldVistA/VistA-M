@@ -1,5 +1,5 @@
-ORCPROB ; SLC/MKB/REV - Problem List interface ;03/11/03  14:03
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**27,48,181**;Dec 17, 1997
+ORCPROB ; SLC/MKB/REV - Problem List interface ;03/27/14  09:57
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**27,48,181,385**;Dec 17, 1997;Build 12
 ADD ; -- add new problem
  N GMPLIST,ORPROV
  D FULL^VALM1 S VALMBCK="R",ORPROV=$$PROVIDER Q:ORPROV="^"
@@ -44,8 +44,6 @@ CMMT ; -- comment problem
  F PIECE=1:1:$L(ORNMBR,",") S NMBR=$P(ORNMBR,",",PIECE) I NMBR D  Q:$D(QUIT)
  . S IFN=+$G(^TMP("OR",$J,"CURRENT","IDX",NMBR))
  . I 'IFN W !,"Problem #"_NMBR_" has been removed!",! H 2 Q
- . I '$$CODESTS^GMPLX(IFN,DT) D  Q
- . . W !,"Problem #"_NMBR_" has an inactive code.  Please use the EDIT action instead",! H 2 S QUIT=1
  . S DIR(0)="FAO^1:60",DIR("A")="COMMENT (<60 char): "
  . S DIR("A",1)=$$UP^XLFSTR($$PROBTEXT^GMPLX(IFN))
  . S DIR("?")="Enter up to 60 characters of additional text to be appended to this problem" S:$D(TEXT) DIR("B")=TEXT

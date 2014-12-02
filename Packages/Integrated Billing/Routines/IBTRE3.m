@@ -1,6 +1,6 @@
 IBTRE3 ;ALB/AAS - CLAIMS TRACKING EDIT DIAGNOSIS ;1-SEP-93
- ;;2.0;INTEGRATED BILLING;**10,60,210,266**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**10,60,210,266,461**;21-MAR-94;Build 58
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % G ^IBTRE
  ;
@@ -8,7 +8,7 @@ EN(IBTRN) ; -- entry point for protocols
  ;    must do own rebuild actions
  ; -- Input - point to 356
  ;
- N IBETYP,IBTRND,IBXY,IBCNT,IBDGPM
+ N IBETYP,IBTRND,IBXY,IBCNT,IBDGPM,IBSEL
  D FULL^VALM1
  S VALMBCK=""
  S IBTRND=$G(^IBT(356,+IBTRN,0)),IBDGPM=$P(IBTRND,"^",5)
@@ -73,7 +73,7 @@ DIAG(IBTRN,IBETYP) ; -- add/edit diagnosis
  D SET(IBTRN) I $D(IBXY) D LIST(.IBXY) S IBSEL=$$ASK^IBTRE4(IBCNT,"A")
  I IBSEL["^"!(IBSEL["Return") S:IBSEL["^" IBQUIT=1 G DIAGQ
  I IBSEL="Add" D ADD(IBTRN)
- D:IBSEL EDT(+$G(IBXY(+IBSEL)),".01;.03;.04")
+ D:IBSEL EDT(+$G(IBXY(+IBSEL)),".01;.03;.04;.05")
 DIAGQ Q
  ;
 ADD(IBTRN,TYPE) ; -- Add a new diagnosis
@@ -86,9 +86,12 @@ ADD(IBTRN,TYPE) ; -- Add a new diagnosis
  ;
  I '$G(TYPE) S TYPE=""
 NXT S DIC("A")=$S(TYPE=3:"Admitting Diagnosis: ",IBCNT<1:"Select Diagnosis: ",1:"Next Diagnosis: ")
- ;All DX codes are visible - no screen ;S DIC("S")="I '$P(^(0),U,9)"
- S DIC="^ICD9(",DIC(0)="AEMQ",X=""
+ ;
+ ;All DX codes for a version are visible - screen on version (ICD9/ICD10) on date but allows inactive
+ S DIC("S")="I $$ICD9VER^IBACSV(+Y)="_$$ICD9SYS^IBACSV(IBDATE)
+ S DIC="^ICD9(",DIC(0)="AEMQI",X=""
  W:$G(IBCNT) ! D ^DIC K DIC G ADDQ:Y<0
+ ;
  I Y,'$$ICD9ACT^IBACSV(+Y,IBDATE) W !!,*7,$P(Y,U,2)," is not active for the service date ("_$$DAT3^IBOUTL(IBDATE),").",! G NXT
  I $D(^IBT(356.9,"ADGPM",$$DGPM(IBTRN),+Y)) W !!,*7,$P(Y,"^",2)," is already a diagnosis.",! G NXT
  S IBCNT=IBCNT+1
@@ -104,7 +107,7 @@ DGPM(IBTRN) ; -- return admission pointer
 NEW(ICDI,IBTRN,TYPE) ; -- file new entry
  ;
  N DA,DD,DO,DIC,DIK,DINUM,DLAYGO,X,Y,I,J
- S X=ICDI,(DIC,DIK)="^IBT(356.9,",DIC(0)="L",DLAYGO=356.9
+ S X=ICDI,(DIC,DIK)="^IBT(356.9,",DIC(0)="L",DLAYGO=356.9,DIC("DR")=".05////Y"
  D FILE^DICN S IBADG=+Y
  I IBADG>0 L +^IBT(356.9,IBADG) S $P(^IBT(356.9,IBADG,0),"^",2,4)=$$DGPM(IBTRN)_"^"_$P($P(^IBT(356,IBTRN,0),"^",6),".")_"^"_$G(TYPE),DA=IBADG D IX1^DIK L -^IBT(356.9,IBADG)
 NEWQ Q IBADG
@@ -112,7 +115,7 @@ NEWQ Q IBADG
 EDT(IBADG,IBDR) ; -- edit entry
  ;
  N DR,DIE,DA,DIDEL
- S DR=$G(IBDR),DIDEL=356.9 I DR="" S DR=".03;.04"
+ S DR=$G(IBDR),DIDEL=356.9 I DR="" S DR=".03;.04;.05"
  S DA=IBADG,DIE="^IBT(356.9,"
  Q:'$G(^IBT(356.9,DA,0))
  L +^IBT(356.9,+IBADG):5 I '$T D LOCKED^IBTRCD1 G EDTQ
@@ -139,5 +142,5 @@ LIST(IBXY) ;List Diagnosis Array
  . S IBTNOD=$G(^IBT(356.9,+IBXY(I),0))
  . S IBDATE=$P($P(IBTNOD,U,3),".")
  . S IBXD=$$ICD9^IBACSV(+$P(IBXY(I),U,2),IBDATE)
- . W !?2,I,"  ",$P(IBXD,U),?15,$E($P(IBXD,U,3),1,30),?48,$$DAT1^IBOUTL(IBDATE),?60,$$EXPAND^IBTRE(356.9,.04,$P(IBTNOD,U,4))
+ . W !?1,I,"  ",$P(IBXD,U),?14,$E($P(IBXD,U,3),1,30),?47,$$DAT1^IBOUTL(IBDATE),?58,$$EXPAND^IBTRE(356.9,.04,$P(IBTNOD,U,4)),?69,"ICD-",$S($P(IBXD,U,19)=1:9,1:10) I $P(IBTNOD,U,5)'="" W ?77,"(",$P(IBTNOD,U,5),")"
  Q

@@ -1,11 +1,10 @@
-DGPTUTL ;ALB/AS - PTF UTILITY ROUTINE ; 8/14/03 11:35am
- ;;5.3;Registration;**26,114,234,466,544**;Aug 13, 1993
+DGPTUTL ;ALB/AS - PTF UTILITY ROUTINE ;8/14/03 11:35am
+ ;;5.3;Registration;**26,114,234,466,544,850**;Aug 13, 1993;Build 171
 D I $L(Y)'<7 S %=$E(Y,4,5)*3,Y=$E("JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC",%-2,%)_" "_$S($E(Y,6,7):$J(+$E(Y,6,7),2)_",",1:"")_($E(Y,1,3)+1700)_$S(Y[".":" "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12),1:"") Q
  S Y="" Q
 PM ;sets variables from ^DGPM global
  S DGPMCA=$O(^DGPM("APTF",PTF,0)),DGPMAN=$S($D(^DGPM(+DGPMCA,0)):^(0),1:"") Q
 MT ;Determine and store Means Test Indicator
- ;S DGZEC=$S($D(^DPT(DFN,.36)):$P(^(.36),U,1),1:""),DGZEC=$S($D(^DIC(8,+DGZEC,0)):^(0),1:"") I $P(DGZEC,U,5)="N" S DGX="N" G DIE
  ;-- get eligibility code
  S DGZEC=$P($G(^DGPT(PTF,101)),U,8),DGZEC=$S($D(^DIC(8,+DGZEC,0)):^(0),1:"") I $P(DGZEC,U,5)="N" S DGX="N" G DIE
  ;-- admit prior to 7/1/86 is an X
@@ -41,6 +40,7 @@ AS S DGZ=$S($D(^DPT(DFN,.321)):^(.321),1:0) I $P(DGZ,U,2)="Y"!($P(DGZ,U,3)="Y") 
  I DGZEC]"" S DGX="AN" G DIE
  ;
  S DGX="U" I '$D(DGLN) W !,"===> this patient has a blank Eligibility Code"
+ ;
 DIE I '$D(DGBGJ) S DA=PTF,DR="10///"_DGX_$S('$P(^DGPT(PTF,0),U,3):";3///`"_$P($$SITE^VASITE,U),1:""),DIE="^DGPT(" D ^DIE K DGZEC,DGZ,DGZ1,DG1,DGX,DR,DGT,DA,DIE Q
  I DGX'=$P(^DGPT(PTF,0),"^",10) S DA=PTF,DR="10///"_DGX,DIE="^DGPT(" D ^DIE
  K DGZEC,DGZ,DGZ1,DG1,DGX,DGT,DR,DA,DIE Q
@@ -61,11 +61,15 @@ CEN ; -- find current active census ; return ifn and 0th node
  S DGCN=$O(^DG(45.86,"AC",1,0)),DGCN0=$S($D(^DG(45.86,+DGCN,0)):^(0),1:"")
  Q
  ;
-FMT ; -- determime PTF record format
+FMT ; -- determine PTF record format
  ;
- S Z=$S(Y:Y,1:DT)
+ N IMPDATE,EFFDATE,DGPTDAT
+ S Z=$S($G(Y):Y,1:DT)
  S DGPTFMT=1 D FDT
  I Z>Y S DGPTFMT=2
+ D EFFDATE^DGPTIC10($G(PTF))
+ Q:IMPDATE'?7N
+ I Z'<IMPDATE S DGPTFMT=3 ;(ICD-10)
  K Z
  Q
  ;

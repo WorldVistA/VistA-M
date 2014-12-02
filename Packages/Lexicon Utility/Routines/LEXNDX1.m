@@ -1,6 +1,16 @@
-LEXNDX1 ; ISL Set/kill indexes (Part 1)            ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXNDX1 ;ISL/KER - Set/kill indexes (Part 1) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.011)       N/A
+ ;    ^TMP("LEXSTOP")     SACC 2.3.2.5.1
+ ;    ^TMP("LEXTKN")      SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    $$UP^XLFSTR         ICR  10103
+ ;    HOME^%ZIS           ICR  10086
+ ;    ^%ZTLOAD            ICR  10063
+ ;               
 S ; Set Expression file (#757.01) word index node AWRD
  Q:'$D(X)!('$D(DA))  Q:$D(DIC)#2=0
  Q:'$D(@(DIC_DA_",0)"))  Q:'$D(@(DIC_DA_",1)"))  Q:+($P(@(DIC_DA_",1)"),U,1))=0
@@ -9,11 +19,11 @@ S ; Set Expression file (#757.01) word index node AWRD
  S LEXTYPE=$P($G(^LEX(757.011,LEXTYPE,0)),"^",1) D:LEXTYPE["DELETED" U
  S X=@(DIC_DA_",0)") S:X'="" ^LEX(757.01,"B",$$UP^XLFSTR($E(X,1,63)),DA)=""
  S LEXEX=$P(^LEX(757,$P(^LEX(757.01,DA,1),U,1),0),U,1),LEXIDX=""
- D PTX^LEXTOLKN
- I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 S LEXI="" F LEXJ=1:1:^TMP("LEXTKN",$J,0) D
- . S LEXI=$O(^TMP("LEXTKN",$J,LEXJ,""))
- . I '$D(^LEX(757.01,"AWRD",LEXI,LEXEX)) D
- . . S:'$D(^LEX(757.01,DA,4,"B",LEXI)) ^LEX(757.01,"AWRD",LEXI,LEXEX,DA)=""
+ D PTX^LEXTOKN I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 S LEXI="",LEXJ=0 D
+ . F  S LEXJ=$O(^TMP("LEXTKN",$J,LEXJ)) Q:+LEXJ'>0  D
+ . . S LEXI=$O(^TMP("LEXTKN",$J,LEXJ,"")) Q:'$L(LEXI)
+ . . I '$D(^LEX(757.01,"AWRD",LEXI,LEXEX)) D
+ . . . S:'$D(^LEX(757.01,DA,4,"B",LEXI)) ^LEX(757.01,"AWRD",LEXI,LEXEX,DA)=""
  D L K LEXIDX,LEXEX,LEXI,LEXTYPE,LEXT,LEXJ,^TMP("LEXTKN",$J,0),^TMP("LEXTKN",$J) Q
  ;
 K ; Kill Expression file (#757.01) word index node AWRD
@@ -22,9 +32,9 @@ K ; Kill Expression file (#757.01) word index node AWRD
  N LEXTYPE,LEXT S LEXTYPE=+X Q:LEXTYPE'>0
  S LEXT=$P($G(^LEX(757.011,LEXTYPE,0)),"^",2) Q:+LEXT=0
  N LEXIDX,LEXJ,LEXI S X=^LEX(757.01,DA,0),LEXIDX=""
- D PTX^LEXTOLKN I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 S LEXI="" F LEXJ=1:1:^TMP("LEXTKN",$J,0) D
- . S LEXI=$O(^TMP("LEXTKN",$J,LEXJ,""))
- . K ^LEX(757.01,"AWRD",LEXI,DA)
+ D PTX^LEXTOKN I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 S LEXI="",LEXJ=0 D
+ . F  S LEXJ=$O(^TMP("LEXTKN",$J,LEXJ)) Q:+LEXJ'>0  D 
+ . . S LEXI=$O(^TMP("LEXTKN",$J,LEXJ,"")) Q:'$L(LEXI)  K ^LEX(757.01,"AWRD",LEXI,DA)
  K LEXIDX,LEXTYPE,LEXI,LEXJ,^TMP("LEXTKN",$J,0),^TMP("LEXTKN",$J) Q
 L ; Link words
  N DIC,LEXDEXP D KILL^LEXNDX2 S LEXDEXP=DA

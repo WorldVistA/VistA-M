@@ -1,5 +1,5 @@
 PSOSULB1 ;BHAM ISC/RTR,SAB-Print suspended labels  cont. ;10/10/96
- ;;7.0;OUTPATIENT PHARMACY;**10,200,264,289,367**;DEC 1997;Build 62
+ ;;7.0;OUTPATIENT PHARMACY;**10,200,264,289,367,421**;DEC 1997;Build 15
  ;Reference to $$INSUR^IBBAPI supported by IA 4419
  ;Reference to $$DEA^IBNCPDP controlled subscription by IA 4299
  ;
@@ -40,7 +40,7 @@ QUE K %DT,PSOTIME,PSOOUT D NOW^%DTC S %DT="REAX",%DT(0)=%,%DT("B")="NOW",%DT("A"
  ;G:PSRT'="D" BEG^PSOSULBL
 MESS W $C(7),!!?3,"NOTHING QUEUED TO PRINT!",! Q
 MESSL W $C(7),!?3,"LABELS MUST BE SENT TO A PRINTER!",! Q
-BAIMAIL     ;Send mail message
+BAIMAIL ;Send mail message
  S:'$G(PDUZ) PDUZ=+$G(DUZ)
  K ^TMP("PSOM",$J)
  N SEQ,XMY,XMDUZ,XMSUB,XMTEXT,SEQ,NAME,PSSN,RX,FILL,FIRST
@@ -79,22 +79,21 @@ DSH(REC) ; ePharmacy - verify that 3/4 days supply has elapsed before printing f
  N DEA,DEAOK,ICD,SFN,SDT
  S DSHOLD=1,PS0=^PS(52.5,REC,0),RXIEN=$P(PS0,U,1),RFL=$P(PS0,U,13)
  S LSTFIL=$$LSTRFL^PSOBPSU1(RXIEN),PTDFN=$$GET1^DIQ(52,RXIEN,"2","I")
+ I RFL="" S RFL=LSTFIL
  S IBSTAT=$$INSUR^IBBAPI(PTDFN,,"E",.IBINS,"1"),DRG=$$GET1^DIQ(52,RXIEN,"6","I")
  S (DEA,ICD)="",DEA=$$GET1^DIQ(50,DRG,3)
  I $D(^PSRX(RXIEN,"ICD",1,0)) S ICD=^PSRX(RXIEN,"ICD",1,0)
  ;
  ; Don't hold Rx where the previous fill was not ebillable
- I $$STATUS^BPSOSRX(RXIEN,LSTFIL-1)="" Q DSHOLD
+ I LSTFIL>0,$$STATUS^BPSOSRX(RXIEN,LSTFIL-1)="" Q DSHOLD
  ; Don't hold when the Rx has SC/EI flagged
  I ICD[1 Q DSHOLD
  ; Don't hold rx if DEA special Handling code is non billable (i.e. has M or 0 (zero) or (I, S, N, and/or 9)) without an E
  S DEAOK=$$DEA^IBNCPDP(DEA) I 'DEAOK Q DSHOLD
- ; Don't hold for zero fill renewals
- I 'LSTFIL,$$GET1^DIQ(52,RXIEN_",","PRIOR FILL DATE",,,)="" Q DSHOLD
  ; Don't hold if no insurance
  I 'IBSTAT!(IBSTAT=-1) Q DSHOLD
  ;
- S DSHDT=$$DSHDT(RXIEN) ; 3/4 of days supply date
+ S DSHDT=$$DSHDT(RXIEN,RFL) ; 3/4 of days supply date
  I DSHDT>DT S DSHOLD=0 D
  . I DSHDT'=$P(PS0,U,14) D  ; Update Suspense Hold Date and Activity Log
  . . S COMM="3/4 of Days Supply SUSPENSE HOLD until "_$$FMTE^XLFDT(DSHDT,"2D")_"."
@@ -106,19 +105,22 @@ DSH(REC) ; ePharmacy - verify that 3/4 days supply has elapsed before printing f
  . . S SFN=REC,DEAD=0,INDT=DSHDT D CHANGE^PSOSUCH1(RXIEN,RFL)
  Q DSHOLD
  ;
- ;Description:
- ;This function determines the date that 3/4 of the days supply for the
- ;last refill will occur.
- ;Input: RXIEN = Prescription file #52 IEN
- ;Returns: DATE/TIME value
-DSHDT(RXIEN) ;
+DSHDT(RXIEN,RFL) ; ePharmacy function to determine the 3/4 of the days supply date
+ ; Input: RXIEN = Prescription file #52 ien
+ ;          RFL = fill#
+ ; Returns: DATE value of last date of service plus 3/4 of days supply
+ ;
  N FILLDT,DAYSSUP,DSH34
  I '$D(^PSRX(RXIEN,0)) Q -1
- S FILLDT=$$LDPFDT(RXIEN) ; Last Dispensed Date or Prior Fill Date for renewal
- S DAYSSUP=$$LFDS(RXIEN) ; Days Supply of Last Refill
+ I $G(RFL)="" Q -1
+ ;
+ D PREVRX^PSOREJP2(RXIEN,RFL,,.FILLDT,.DAYSSUP)
+ I FILLDT="" Q -1
+ ;
  S DSH34=DAYSSUP*.75 ; 3/4 of Days Supply
  S:DSH34["." DSH34=(DSH34+1)\1
- Q $$FMADD^XLFDT(FILLDT,DSH34) ; Return today plus 3/4 of Days Supply date
+ Q $$FMADD^XLFDT(FILLDT,DSH34) ; Return last date of service plus 3/4 of Days Supply date
+ ;
  ;
  ; Description: This function returns the DAYS SUPPLY for the Latest Fill
  ; for a Prescription
@@ -131,11 +133,3 @@ LFDS(RXIEN) ;
  S RXFIL=$$LSTRFL^PSOBPSU1(RXIEN)
  Q $S(RXFIL=0:$P(^PSRX(RXIEN,0),U,8),1:$P(^PSRX(RXIEN,1,RXFIL,0),U,10))
  ;
-LDPFDT(RXIEN) ; Returns PRIOR FILL DATE if renewal otherwise LAST DISPENSED DATE or -1 if not valid
- Q $S('$D(^PSRX(RXIEN)):-1,$$PRFDT(RXIEN):$$PRFDT(RXIEN),1:$$LDT(RXIEN))
- ;
-PRFDT(RXIEN) ; Returns PRIOR FILL DATE in internal format
- Q $$GET1^DIQ(52,RXIEN_",","PRIOR FILL DATE","I",,)
- ;
-LDT(RXIEN) ; Returns LAST DISPENSED DATE in internal format
- Q $$GET1^DIQ(52,RXIEN_",","LAST DISPENSED DATE","I",,)

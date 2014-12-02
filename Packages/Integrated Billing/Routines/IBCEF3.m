@@ -1,5 +1,5 @@
 IBCEF3 ;ALB/TMP - FORMATTER SPECIFIC BILL FLD FUNCTIONS ;17-JUNE-96
- ;;2.0;INTEGRATED BILLING;**52,84,121,51,152,210,155,348,349,389**;21-MAR-94;Build 6
+ ;;2.0;INTEGRATED BILLING;**52,84,121,51,152,210,155,348,349,389,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 MPG(PG,FLDS,FORM) ; Set static flds on pages after page 1
@@ -105,10 +105,15 @@ CKPGUB ; Check to see if multiple UB pages are needed then populate
  ; print totals on line 41 of the last page
  S (TOT1,TOT2)=0
  F Z=1:1 Q:'$D(^TMP($J,"IBC-RC",Z))  S Z0=^(Z) I +Z0=1 S TOT1=TOT1+$P(Z0,U,7),TOT2=TOT2+$P(Z0,U,8)
+ ; Make sure totals are only 9 digits => baa IB*2.0*488
+ S TOT1=$$DOL^IBCEF77(TOT1,9)
+ S TOT1=$E(TOT1,1,9)
+ S TOT2=$$DOL^IBCEF77(TOT2,9)
+ S TOT2=$E(TOT2,1,9)
  D MPGUB(IBPG,0,"0001",41,1,1)
- D MPGUB(IBPG,0,$$DOL^IBCEF77(TOT1,9),41,61,1)
- D MPGUB(IBPG,0,$$DOL^IBCEF77(TOT2,9),41,71,1)
- ;
+ D MPGUB(IBPG,0,TOT1,41,61,1)
+ D MPGUB(IBPG,0,TOT2,41,71,1)
+ ;End changes => baa IB*2.0*488
  Q
  ;
 HCPC(R) ;FORMAT HCPC fld FOR UB (returns formatted value)

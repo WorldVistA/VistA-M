@@ -1,5 +1,5 @@
 ONCODGR ;WASH ISC/SRR-DD for GRADE: #24;file 165.5 ;2/9/93  15:11
- ;;2.11;ONCOLOGY;;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 SS S S=$P(^ONCO(165.5,D0,0),U) S SS=$S(S=63:62,(S>65&(S<70)):68,S=40:62,S'=62:36,1:S)
  Q

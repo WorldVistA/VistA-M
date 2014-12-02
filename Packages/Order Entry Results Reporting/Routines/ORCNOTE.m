@@ -1,5 +1,6 @@
-ORCNOTE ; SLC/MKB - Progress Note actions ;12/03/09  11:34
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**22,48,65,104,280**;Dec 17, 1997;Build 85
+ORCNOTE ; SLC/MKB - Progress Note actions ; 5/17/13 8:53am
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**22,48,65,104,280,370**;Dec 17, 1997;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 ELSIG ; Sign rec
  N ASK,TIUEVNT,TIUDA,TIUES,TIUI,X,X1,Y,ORI,NMBR,ORPICK,ORQUIT,IDX,TIUPOP,TIUPRM0,TIUPRM1
  I '$D(TIUPRM0) D SETPARM^TIULE
@@ -35,6 +36,11 @@ ELSIG ; Sign rec
  . . . . W !!,"Item #",NMBR,": MUST have a cosigner, before you may sign."
  . . . . W !!,"Removed from signature list.",!
  . . . . I $$READ^TIUU("FOA","Press RETURN to continue...")
+ . . ; OR*3.0*370 DJH Do not allow notes without any text to be signed
+ . . I $$EMPTYDOC^TIULF(+TIUDA) D  Q
+ . . . W !!,"Item #",NMBR,": This note contains no text and cannot be signed."
+ . . . W !!,"Removed from signature list.",!
+ . . . I $$READ^TIUU("FOA","Press RETURN to continue...")
  . . N TIU,TIUY
  . . D EN^VALM("ORC TIU SIGN/COSIGN")
  I +$G(ORPICK)'>0 D  G ELSIGX

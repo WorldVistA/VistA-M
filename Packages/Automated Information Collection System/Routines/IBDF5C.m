@@ -1,5 +1,7 @@
-IBDF5C ;ALB/CJM - ENCOUNTER FORM (creating a new block) ;MARCH 22,1993
- ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+IBDF5C ;ALB/CJM - ENCOUNTER FORM (creating a new block) ;03/22/93
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**63**;APR 24, 1997;Build 80
+ ;
+ ;
 NEWBLOCK ;adds a new block, expects IBFORM to be defined
  N IBBLK,TOP,BOT
  S VALMBCK="R"
@@ -41,13 +43,19 @@ REDRAW ;redraws the ;entire form
  D IDXFORM^IBDF5A()
  Q
 COPYBLK ;copies a block from another form,whether in the toolkit or not, expects IBFORM=current work form  to be defined
- N IBBLK,TOP,BOT,NEWBLOCK
+ N IBBLK,TOP,BOT,NEWBLOCK,IBDLST,IBDCS,IBDX,IBDY
  S IBBLK=$$SELECT2^IBDF13("")
  I IBBLK S NEWBLOCK=$$COPYBLK^IBDFU2(IBBLK,IBFORM,357.1,357.1,$$CURY^IBDFU4,$$CURX^IBDFU4,0,"",1) I NEWBLOCK D
  .D RE^VALM4
  .D POS^IBDFU4(NEWBLOCK)
  .D TOPNBOT^IBDFU5(NEWBLOCK,.TOP,.BOT)
  .D IDXFORM^IBDF5A(TOP,BOT)
+ .;Now check if new block contains any selection lists that specify ICD-9 or ICD-10
+ .;if so, update history field at #357 .19 or .2 plus field .21
+ .S IBDLST=0 F  S IBDLST=$O(^IBE(357.2,"C",NEWBLOCK,IBDLST)) Q:IBDLST=""  S IBDX=$P(^IBE(357.2,IBDLST,0),U,11) D:IBDX?1.N
+ ..S IBDCS=$P(^IBE(357.6,IBDX,0),U,22) D:IBDCS=1!(IBDCS=30)  ;Coding System 1=ICD-9 30=ICD-10
+ ...I '$O(^IBE(357.3,"C",IBDLST,"")) Q  ;Only log history fields if ICD-9 or ICD-10 codes are contained in block.
+ ...S IBDY=$$CSUPD357^IBDUTICD(IBFORM,IBDCS,"",$$NOW^XLFDT(),DUZ)
  S VALMBCK="R"
  Q
  ;

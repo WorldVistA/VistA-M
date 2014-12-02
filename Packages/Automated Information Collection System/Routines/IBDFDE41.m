@@ -1,10 +1,14 @@
-IBDFDE41 ;ALB/AAS - AICS Data Entry, process selection lists ; 24-FEB-96 [ 11/13/96  3:58 PM ]
- ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+IBDFDE41 ;ALB/AAS - AICS Data Entry, process selection lists ;02/24/96 [ 11/13/96  3:58 PM ]
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**63**;APR 24, 1997;Build 80
+ ;
  ;
 % G ^IBDFDE
  ;
 SEL(SEL) ; -- Build results array
- N IBDX,DSPTXT,IBQUIT,IBDQL,QCNT,IBDQLFR
+ N IBDX,DSPTXT,IBQUIT,IBDQL,QCNT,IBDQLFR,IBDIMP,IBDIBX
+ S IBDIMP=$$IMPDATE^IBDUTICD(30)
+ S IBDIBX=799.9
+ I DT'<IBDIMP S IBDIBX="R69."
  S IBQUIT=0
  ;
  I +SEL=SEL S CHOICE=$G(^TMP("IBD-LST",$J,IBDFMIEN,IBDF("PI"),IBDF("IEN"),SEL))
@@ -21,9 +25,9 @@ SEL(SEL) ; -- Build results array
  ; --validate code for active problem list
  I $P($G(^IBE(357.6,IBDF("PI"),0)),"^")="PX INPUT PATIENT ACTIVE PROBLEM" D
  .N X S X=$P(CHOICE,"^",2) Q:X=""
- .I X=799.9 W !,$C(7),$G(IOINHI),"Warning: The ICD9 Diagnosis associated with this problem needs to be updated!",$G(IOINORM) Q
+ .I X=IBDIBX W !,$C(7),$G(IOINHI),"Warning: The ICD",$S(DT'<IBDIMP:"10",1:"9")," Diagnosis associated with this problem needs to be updated!",$G(IOINORM) Q
  .D TESTICD^IBDFN7
- .I '$D(X) W !,$C(7),$G(IOINHI),"Warning: The ICD9 code associated with this problem is inactive.",$G(IOINORM)
+ .I '$D(X) W !,$C(7),$G(IOINHI),"Warning: The ICD",$S(DT'<IBDIMP:"10",1:"9")," code associated with this problem is inactive.",$G(IOINORM)
  ;
  Q
  ;

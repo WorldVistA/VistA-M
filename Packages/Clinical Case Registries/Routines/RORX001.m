@@ -1,5 +1,5 @@
 RORX001 ;HOIFO/SG,VAC - LIST OF REGISTRY PATIENTS ;4/16/09 11:53am
- ;;1.5;CLINICAL CASE REGISTRIES;**8,10,14,17**;Feb 17, 2006;Build 33
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,10,14,17,19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
@@ -19,6 +19,7 @@ RORX001 ;HOIFO/SG,VAC - LIST OF REGISTRY PATIENTS ;4/16/09 11:53am
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*14   APR  2011   A SAUNDERS   Added column and data for 'FIRSTDIAG'.
  ;ROR*1.5*17   AUG  2011   C RAY        Added params 'CONFIRM_AFTER', 'CONFDT_AFTER' 
+ ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -154,7 +155,7 @@ REGPTLST(RORTSK) ;
  ;
  ;--- Browse through the registry records
  S PTNAME="",(CNT,RC)=0
- S FLAG=$G(RORTSK("PARAMS","ICD9FILT","A","FILTER"))
+ S FLAG=$G(RORTSK("PARAMS","ICDFILT","A","FILTER"))
  F  S PTNAME=$O(@XREFNODE@(PTNAME))  Q:PTNAME=""  D  Q:RC<0
  . S IEN=0
  . F  S IEN=$O(@XREFNODE@(PTNAME,IEN))  Q:IEN'>0  D  Q:RC<0
@@ -163,11 +164,11 @@ REGPTLST(RORTSK) ;
  . . S IENS=IEN_",",CNT=CNT+1
  . . ;--- Check if the patient should be skipped
  . . Q:$$SKIP^RORXU005(IEN,SFLAGS,RORCDT)
- . .;--- Check the patient against the ICD9 Filter
+ . .;--- Check the patient against the ICD Filter
  . . S DFN=$$PTIEN^RORUTL01(+IENS)
  . . S RCC=0
  . . I FLAG'="ALL" D
- . . . S RCC=$$ICD^RORXU010(DFN,RORREG)
+ . . . S RCC=$$ICD^RORXU010(DFN)
  . . I (FLAG="INCLUDE")&(RCC=0) Q
  . . I (FLAG="EXCLUDE")&(RCC=1) Q
  . .;--- End of filter check

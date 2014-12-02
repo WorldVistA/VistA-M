@@ -1,5 +1,5 @@
 IBCEOB ;ALB/TMP/PJH - 835 EDI EOB MESSAGE PROCESSING ; 8/19/10 6:33pm
- ;;2.0;INTEGRATED BILLING;**137,135,265,155,377,407,431,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**137,135,265,155,377,407,431,432,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -255,16 +255,18 @@ UPD3611(IBEOB,IBTDA,IBAR) ; From flat file 835 format, add EOB record
  ; IBEOB = the ien of the entry in file 361.1 being updated
  ; IBTDA = the ien in the source file
  ; IBAR = 1 if being called from AR
- N HIPAA,IBA1,IBFILE,IBEGBL,Z,IBREC,Q
+ N HIPAA,IBA1,IBFILE,IBEGBL,Z,IBREC,Q,DASHES
  S IBFILE=$S('$G(IBAR):"^IBA(364.2,"_IBTDA_",2)",1:"^TMP("_$J_",""RCDP-EOB"","_IBTDA_")")
  S IBEGBL=$S('$G(IBAR):"IBCERR-EOB",1:"RCDPERR-EOB")
+ S DASHES="---------------------------------------------------------------------"
  S HIPAA=0
  I $G(IBAR),'$$HDR^IBCEOB1($G(^TMP($J,"RCDPEOB","HDR")),IBEGBL,IBEOB,.HIPAA) Q
  S IBA1=0
  F  S IBA1=$O(@IBFILE@(IBA1)) Q:'IBA1  S IB0=$S('$G(IBAR):$P($G(^(IBA1,0)),"##RAW DATA: ",2),1:$G(@IBFILE@(IBA1,0))) I IB0'="" D
  . S IBREC=+IB0
  . I IBREC'=37 K ^TMP($J,37)
- . I IBREC S IB="S IBOK=$$"_IBREC_"(IB0,IBEGBL,IBEOB)",Q=IBREC_"^IBCEOB" I $T(@Q)'="" X IB S:'IBOK ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)=$S('$G(IBAR):"  ##RAW DATA: ",1:"")_IB0
+ . ;;;I IBREC S IB="S IBOK=$$"_IBREC_"(IB0,IBEGBL,IBEOB)",Q=IBREC_"^IBCEOB" I $T(@Q)'="" X IB S:'IBOK ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)=$S('$G(IBAR):"  ##RAW DATA: ",1:"")_IB0
+ . I IBREC S IB="S IBOK=$$"_IBREC_"(IB0,IBEGBL,IBEOB)",Q=IBREC_"^IBCEOB" I $T(@Q)'="" X IB S:'IBOK ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)=DASHES
  ; If a DENIED non MRA EOB with no filing errors is updated, put on the CBW worklist if the 
  ; claim isn't already COLLECTED/CLOSED and there is a subsequent payer (incl. Tricare & ChampVA)
  I IBEOB,'$O(^TMP(IBEGBL,$J,0)) D

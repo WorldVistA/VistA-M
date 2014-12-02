@@ -1,5 +1,5 @@
-PXRMRUL1 ; SLC/AGP,PKR - Patient list routines. ; 03/29/2007
- ;;2.0;CLINICAL REMINDERS;**4,6**;Feb 04, 2005;Build 123
+PXRMRUL1 ; SLC/AGP,PKR - Patient list routines. ; 01/28/2013
+ ;;2.0;CLINICAL REMINDERS;**4,6,26**;Feb 04, 2005;Build 404
  ; 
  ;
 ASK(PLIEN,OPT) ;Verify patient list name
@@ -152,7 +152,7 @@ INST(DFN) ;Get the PCMM Institution.
  S INST=$P($$INSTPCTM^SCAPMC(DFN,DATE),U,3,4)
  Q INST
  ;
-LOCK L +^PXRMXP(810.5,LIST):0
+LOCK L +^PXRMXP(810.5,LIST):DILOCKTM
  E  W !!?5,"Another user is using this patient list" S DUOUT=1
  Q
  ;

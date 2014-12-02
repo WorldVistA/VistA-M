@@ -1,11 +1,11 @@
 PRCHJS07 ;OI&T/KCL - IFCAP/ECMS INTERFACE RETRANSMIT 2237;6/6/12
- ;;5.1;IFCAP;**167**;Oct 20, 2000;Build 17
+ ;;5.1;IFCAP;**167,174**;Oct 20, 2000;Build 23
  ;Per VHA Directive 2004-38, this routine should not be modified.
  ;
 ENTACT(PRCDUZ) ;Option [PRCHJ RETRANS 2237] entry action 
  ;This function is called from the entry action of the
- ;[PRCHJ RETRANS 2237] option. If the user is not assigned
- ;as the PPM ACCOUNTABLE OFFICER, access will be denied.
+ ;option. If the user is not assigned as the PPM ACCOUNTABLE
+ ;OFFICER or MANAGER, access will be denied.
  ;
  ;  Input:
  ;   PRCDUZ - (required) IEN of user in the NEW PERSON (#200) file
@@ -21,22 +21,23 @@ ENTACT(PRCDUZ) ;Option [PRCHJ RETRANS 2237] entry action
  S PRCRSLT=0
  ;
  I +$G(DUZ)>0 D
- . ;is user assigned as PPM ACCOUNTABLE OFFICER?
+ . ;is user assigned as PPM ACCOUNTABLE OFFICER or MANAGER?
  . S PRCIENS=+$G(DUZ)_","
  . D GETS^DIQ(200,PRCIENS,"400","I","PRCFLDS","PRCERR")
  . Q:$D(PRCERR)
- . I $G(PRCFLDS(200,PRCIENS,400,"I"))=2 S PRCRSLT=1
+ . I $G(PRCFLDS(200,PRCIENS,400,"I"))=2!($G(PRCFLDS(200,PRCIENS,400,"I"))=4) S PRCRSLT=1
  ;
- I 'PRCRSLT W !!,">>> You are not authorized to use this option!",!
+ I 'PRCRSLT D
+ . W !!,">>> You are not authorized to use this option!"
+ . W !?4,"User is not setup as Manager or Accountable Officer."
  ;
  Q PRCRSLT
  ;
  ;
 RETRANS ;Option [PRCHJ RETRANS 2237] run routine 
  ;This procedure is the run routine for the [PRCHJ RETRANS 2237]
- ;option. The option allows an IFCAP user having the Accountable
- ;Officer role to retransmit a 2237 to the Electronic Contracting
- ;Management System (eCMS) via HL7 messaging.
+ ;option and allows retransmission of a 2237 to the Electronic
+ ;Contract Management System (eCMS) via HL7 messaging.
  ;
  ;  Input: None
  ; Output: None
@@ -101,11 +102,11 @@ RETRANS ;Option [PRCHJ RETRANS 2237] run routine
  . N PRCMSGID ;ien of msg in HLO MESSAGES (#778) file
  . S PRCMSGID=$$SEND2237^PRCHJS01(+$G(PRCSELCT),.PRCER)
  . ;
+ . ;was the transmission successful, ELSE did it fail?
  . I $G(PRCMSGID)>0 D
  . . W !?3,">>> 2237 transaction has been successfully retransmitted to eCMS."
- . . W !?3,"    Transaction Number: "_$P($G(PRCSELCT),U,2)
- . . W !?3,"        HLO Message ID: "_$G(PRCMSGID)
- . . ;
+ . . W !?7,"Transaction Number: "_$P($G(PRCSELCT),U,2)
+ . . W !?11,"HLO Message ID: "_$G(PRCMSGID)
  . . ;log transmission in IFCAP/ECMS TRANSACTION (#414.06) file
  . . W !!?3,">>> Updating retransmission in IFCAP/ECMS Transaction file..."
  . . N PRCEVNT ;event array for LOG^PRCHJTA
@@ -113,33 +114,33 @@ RETRANS ;Option [PRCHJ RETRANS 2237] run routine
  . . S PRCEVNT("IEN410")=+$G(PRCSELCT)
  . . S PRCEVNT("IFCAPU")=$G(DUZ)
  . . D LOG^PRCHJTA($P($G(PRCSELCT),U,2),,4,.PRCEVNT,.PRCLOGER)
- . . I +$G(PRCLOGER) W !?3,"    Error: "_$P($G(PRCLOGER),U,2)
+ . . I +$G(PRCLOGER) W !?7,"Error: "_$P($G(PRCLOGER),U,2)
  . E  D
  . . W !?3,">>> ERROR: 2237 was not retransmitted to eCMS!"
- . . W !?3,"    Transaction Number: "_$P($G(PRCSELCT),U,2)
- . . W !?3,"    Error: "_$G(PRCER)
- . . ;log transmission in IFCAP/ECMS TRANSACTION (#414.06) file
- . . W !!?3,">>> Updating transmission error in IFCAP/ECMS Transaction file..."
- . . N PRCEVNT ;event array for LOG^PRCHJTA
+ . . W !?7,"Transaction Number: "_$P($G(PRCSELCT),U,2)
+ . . ;setup PRCEVNT array for call to LOG^PRCHJTA and output error(s)
+ . . N PRCEVNT
  . . S PRCEVNT("MSGID")=""
  . . S PRCEVNT("IEN410")=+$G(PRCSELCT)
  . . S PRCEVNT("IFCAPU")=$G(DUZ)
  . . S PRCEVNT("ERROR",1)="An error occurred when retransmitting the 2237 transaction to eCMS."
- . . S PRCEVNT("ERROR",2)="Error: "_$E($G(PRCER),1,60)
- . . I $D(XQY0) S PRCEVNT("ERROR",3)="Option: "_$P($G(XQY0),"^",2)
+ . . S PRCEVNT("ERROR",2)="Option: "_$S($P($G(XQY0),"^",2)]"":$P($G(XQY0),"^",2),1:"UNKNOWN")
+ . . N PRCIDX1,PRCIDX2
+ . . S PRCIDX1=0,PRCIDX2=2
+ . . ;output error(s)
+ . . F  S PRCIDX1=$O(PRCER(PRCIDX1)) Q:PRCIDX1=""  D
+ . . . W !?7,"Error #"_$G(PRCIDX1)_": "_$G(PRCER(PRCIDX1))
+ . . . S PRCIDX2=PRCIDX2+1 S PRCEVNT("ERROR",PRCIDX2)="Error #"_$G(PRCIDX1)_": "_$G(PRCER(PRCIDX1))
+ . . W !!?3,">>> Updating transmission error in IFCAP/ECMS Transaction file..."
  . . D LOG^PRCHJTA($P($G(PRCSELCT),U,2),,4,.PRCEVNT,.PRCLOGER)
- . . I +$G(PRCLOGER) W !?3,"    Error: "_$P($G(PRCLOGER),U,2)
- . . ;
- . . ;send notification message with error to AO
+ . . I +$G(PRCLOGER) W !?7,"Error: "_$P($G(PRCLOGER),U,2)
+ . . ;send error(s) to AO
  . . W !!?3,">>> Sending error notification mail message to Accountable Officer..."
  . . N PRCMSG1,PRCMSG2 ;input arrays for PHMSG^PRCHJMSG, pass by ref
  . . S PRCMSG1(1)=$P($G(PRCSELCT),U,2)
- . . S PRCMSG1(2)=5
- . . S PRCMSG1(3)=$$NOW^XLFDT
- . . I $G(PRCER)["REQUESTING SERVICE" D
- . . . S PRCMSG1(7)="Return 2237 to Control Point for edit and re-approval!"
- . . E  D
- . . . S PRCMSG1(7)="Please forward this message to appropriate OIT staff!"
+ . . S PRCMSG1(2)=5 ;return to AO since failed transmission to eCMS
+ . . S PRCMSG1(3)=$$NOW^XLFDT ;action date/time
+ . . S PRCMSG1(7)="Please forward this message to appropriate OIT staff!"
  . . M PRCMSG2=PRCEVNT("ERROR") ;merge error array into PRCMSG2 array
  . . D PHMSG^PRCHJMSG(.PRCMSG1,.PRCMSG2) ;send msg
  . ;
@@ -158,7 +159,7 @@ RETRANS ;Option [PRCHJ RETRANS 2237] run routine
  ;
  ;
 DISP2237(DA) ;Display 2237 Utility
- ;This procedure calls ^PRCSD12 to disply a 2237 to the screen.
+ ;This procedure calls ^PRCSD12 to display a 2237 to the screen.
  ;
  ;  Input:
  ;   DA - (required var for ^PRCSD12) IEN of record in CONTROL POINT ACTIVITY (#410) file

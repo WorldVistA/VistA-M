@@ -1,5 +1,5 @@
-DVBCBULL ;ALB/GTS-557/THM-SEND CANCELLATION BULLETIN ; 6/25/91  11:01 AM
- ;;2.7;AMIE;**42**;Apr 10, 1995
+DVBCBULL ;ALB/GTS - 557/THM-SEND CANCELLATION BULLETIN ; 6/25/91  11:01 AM
+ ;;2.7;AMIE;**42,184**;Apr 10, 1995;Build 10
  ;
  K ^TMP("DVBC","BULL",$J),^TMP("DVBC","CMNT",$J) S DIC="^TMP(""DVBC"",""CMNT"",$J,99,",DWPK=1 W @IOF,!!,"Cancellation comments:",!! D EN^DIWE
  K DWPK I $O(^TMP("DVBC","CMNT",$J,99,0))]"" S ^TMP("DVBC","BULL",$J,98,0)=" ",^TMP("DVBC","BULL",$J,97,0)="==========================<  Additional comments  >=========================="
@@ -8,15 +8,25 @@ DVBCBULL ;ALB/GTS-557/THM-SEND CANCELLATION BULLETIN ; 6/25/91  11:01 AM
  ;
 GO S L=1,^TMP("DVBC","BULL",$J,L,0)="The following veteran had one or more 2507 exams cancelled:",L=L+1
  S ^TMP("DVBC","BULL",$J,L,0)="   ",L=L+1
- S ^TMP("DVBC","BULL",$J,L,0)="   Name: "_PNAM_"   SSN: "_"XXXXX"_$E(SSN,6,9)_"   "_"C-Number: "_CNUM,L=L+1
+ S ^TMP("DVBC","BULL",$J,L,0)="  DFN: `"_DFN_$E("                    ",1,20-$L(DFN))_"SITE: "_DVBCSITE,L=L+1
+ S ^TMP("DVBC","BULL",$J,L,0)="  REQUEST DATE: "_DVBCRDAT,L=L+1
  S ^TMP("DVBC","BULL",$J,L,0)="  ",L=L+1
  S ^TMP("DVBC","BULL",$J,L,0)="Exams cancelled                               Reason",L=L+1
  S ^TMP("DVBC","BULL",$J,L,0)="  ",L=L+1
  S EXAM="",RSTAT=$P(^DVB(396.3,REQDA,0),U,18)
  F JI=0:0 S EXAM=$O(CANC(EXAM)) Q:EXAM=""  I $P(CANC(EXAM),U,1)="X"!($P(CANC(EXAM),U,1)="RX") S REAS=+$P(CANC(EXAM),U,2) D EXAMS
  S ^TMP("DVBC","BULL",$J,L,0)=" ",L=L+1,COMP=1,CMPC=0
- S ^TMP("DVBC","BULL",$J,L,0)=" ",L=L+1 K ^TMP("DVBC","CMNT",$J)
- I RSTAT["X" S ^TMP("DVBC","BULL",$J,L,0)=" *** All exams on this request are now CANCELLED. ***",L=L+1,^TMP("DVBC","BULL",$J,L,0)=" ",L=L+1 G SEND
+ ;
+ S ^TMP("DVBC","BULL",$J,L,0)="  ",L=L+1
+ S ^TMP("DVBC","BULL",$J,L,0)="** NOTE: To view the patient using the DFN, paste the DFN number into the    **",L=L+1
+ S ^TMP("DVBC","BULL",$J,L,0)="** CAPRI Patient Selector 'Patient ID' field to find the patient. Be sure to **",L=L+1
+ S ^TMP("DVBC","BULL",$J,L,0)="** include the ' (backward-apostrophe) character.                            **",L=L+1
+ S ^TMP("DVBC","BULL",$J,L,0)="  ",L=L+1
+ ;
+ K ^TMP("DVBC","CMNT",$J)
+ I RSTAT["X" S ^TMP("DVBC","BULL",$J,L,0)=" *** All exams on this request are now CANCELLED. ***",L=L+1,^TMP("DVBC","BULL",$J,L,0)=" ",L=L+1
+ S ^TMP("DVBC","BULL",$J,L,0)="** This is an auto-generated email.  Do not respond to this email address.   **",L=L+1
+ G SEND
  S ECNT=0
  F JZ=0:0 S JZ=$O(^DVB(396.4,"C",REQDA,JZ)) Q:JZ=""  S STAT=$P(^DVB(396.4,JZ,0),U,4) S:STAT="C" CMPC=1 I STAT'="C"&(STAT'["X") S COMP=0,ECNT=ECNT+1
  ;CMPC=completed exam COMP=open exam

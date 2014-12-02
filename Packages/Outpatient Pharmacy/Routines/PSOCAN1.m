@@ -1,5 +1,5 @@
 PSOCAN1 ;BIR/BHW - modular rx cancel with speed cancel ability ;2/22/93
- ;;7.0;OUTPATIENT PHARMACY;**8,20,24,27,32,131,163,185,238**;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**8,20,24,27,32,131,163,185,238,372**;DEC 1997;Build 54
  ;External reference to File #55 supported by DBIA 2228
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^DPT supported by DBIA 10035
@@ -15,7 +15,10 @@ BC D KCAN1^PSOCAN3 S OUT=0 I BC="B" W ! S DIR("A")="Enter/wand barcode",DIR(0)="
  .I '$D(^PSRX(RX,0)) W !,$C(7),"No Prescription record for this barcode." S OUT=1
  G:OUT BC
 NAM D KCAN^PSOCAN3 S PSOCANRA=1 I BC="P" W ! S DIC(0)="AEMZQ",DIC="^DPT(" D ^DIC K DIC G:$D(DTOUT)!($D(DUOUT))!(Y<0) PAT S PSODFN=+Y S PSOLOUD=1 D:$P($G(^PS(55,PSODFN,0)),"^",6)'=2 EN^PSOHLUP(PSODFN) K PSOLOUD
+ I PSODFN'=$G(PSOODOSP) K PSORX("DOSING OFF"),PSOREINF S PSOODOSP=PSODFN
+ I $G(PSOREINF)!($G(PSORX("DOSING INFO"))) S PSOONOFO=1
  N PSONEW,PSORX S PSFROM="N" D CHK^PSOCAN G:DEAD NAM K PSOSD D ^PSOBUILD S PSOOPT=-1 D ^PSODSPL G:'$D(PSOSD) NAM
+ D ONOFF
  S PSOPLCK=$$L^PSSLOCK(PSODFN,0) I '$G(PSOPLCK) D LOCK^PSOORCPY K PSOPLCK G PAT
  W ! S DIR("A")="Discontinue all or specific Rx#'s?",DIR(0)="SBO^A:ALL Rx's;S:SPECIFIC Rx's"
  S DIR("?")="Enter the letter A for all listed Rx's OR the letter for specific Rx's." D ^DIR K DIR I $D(DIRUT) D ULP^PSOCAN G PAT
@@ -114,4 +117,8 @@ RTESTA ;
  .I $G(PFIN)'="PENDING" I $P($G(^PSRX(+$P($G(PSOSD(PFIN,PFINZ)),"^"),"STA")),"^")'=12,'$G(PFINFLAG) S PSOCANRD=+$P($G(^(0)),"^",4),PFINFLAG=1
  .I $G(PFIN)="PENDING",'$G(PFINFLAG) S PSOCANRD=+$P($G(^PS(52.41,+$P($G(PSOSD(PFIN,PFINZ)),"^",10),0)),"^",5) S PFINFLAG=1
  I '$G(PFINFLAG) S PSOCANRZ=1
+ Q
+ONOFF ;
+ I $G(PSOREINF) S PSORX("DOSING INFO")=1
+ I $G(PSORX("DOSING INFO"))&'$G(PSOREINF) S PSOREINF=1
  Q

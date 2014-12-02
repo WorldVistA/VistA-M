@@ -1,5 +1,5 @@
-ORWDBA2 ; SLC/GDU - Billing Awareness - Phase I [11/26/04 15:43]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**195**;Dec 17, 1997
+ORWDBA2 ; SLC/GDU - Billing Awareness - Phase I [11/26/04 15:43] ;05/23/12  10:35
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**195,361**;Dec 17, 1997;Build 39
  ;
  ;Clinician's Personal Diagnoses List
  ;The personal diagnoses list is stored in the NEW PERSON file # 200.
@@ -127,14 +127,14 @@ GETPDL(Y,ORCIEN) ;Get Personal Diagnosis List
  . F  S IEN=$O(RF(200.0351,IEN)) Q:IEN=""  D
  .. S ICD9=RF(200.0351,IEN,.01,"E")
  .. S DXC=$$SETDXC(ICD9)
- .. I $G(RF(200.0351,IEN,1,"I"))="" S DXD=$$SETDXD($P($$ICDDX^ICDCODE(ICD9,DXDT),U,4))
- .. I $G(RF(200.0351,IEN,1,"I"))=1 S DXD=$$SETDXD($P($$ICDDX^ICDCODE(ICD9,DXDT),U,4))
+ .. I $G(RF(200.0351,IEN,1,"I"))="" S DXD=$$SETDXD($P($$ICDDATA^ICDXCODE("DIAGNOSIS",ICD9,DXDT),U,4))
+ .. I $G(RF(200.0351,IEN,1,"I"))=1 S DXD=$$SETDXD($P($$ICDDATA^ICDXCODE("DIAGNOSIS",ICD9,DXDT),U,4))
  .. I $G(RF(200.0351,IEN,1,"I"))>1 S DXD=RF(200.0351,IEN,1,"E")
- .. S DXI=$$SETDXI($$STATCHK^ICDAPIU(ICD9,DXDT))
+ .. S DXI=$$SETDXI($$STATCHK^ICDXCODE("DIAGNOSIS",ICD9,DXDT))
  .. S Y(DXC)=ICD9_U_DXD_U_DXI
  E  S Y=0
  Q
- ;  
+ ;
 GETDUDC(Y,ORCIEN,ORPTIEN) ;Get Day's Unique Diagnoses Codes
  ;Gets all the unique ICD9 codes for the orders placed today by the
  ;clinician for this patient. Using the ICD9 codes it builds an array
@@ -182,12 +182,12 @@ GETDUDC(Y,ORCIEN,ORPTIEN) ;Get Day's Unique Diagnoses Codes
  ... S DXIEN=ORRF(100.051,IEN,.01,"I")
  ... S ICD9=$$GET1^DIQ(80,DXIEN,.01,"")
  ... S DXC=$$SETDXC(ICD9)
- ... S DXD=$$SETDXD($P($$ICDDX^ICDCODE(ICD9,ORDATE),U,4))
- ... S DXI=$$SETDXI($$STATCHK^ICDAPIU(ICD9,ORDATE))
+ ... S DXD=$$SETDXD($P($$ICDDATA^ICDXCODE("DIAGNOSIS",ICD9,ORDATE),U,4))
+ ... S DXI=$$SETDXI($$STATCHK^ICDXCODE("DIAGNOSIS",ICD9,ORDATE))
  ... S Y(DXC)=ICD9_U_DXD_U_DXI
  Q
  ;
-SETDXC(X) ;Set diagnosis code variable for sorting 
+SETDXC(X) ;Set diagnosis code variable for sorting
  S X=$S($E(X)?1A:X,1:+X) Q X
  ;
 SETDXD(X) ;Set upper case diagnosis discription to mixed case

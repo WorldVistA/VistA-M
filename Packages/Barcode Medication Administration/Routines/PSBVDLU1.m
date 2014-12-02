@@ -1,13 +1,16 @@
-PSBVDLU1 ;BIRMINGHAM/EFC-VIRTUAL DUE LIST (VDL) UTILITIES ;1/10/12 8:34pm
- ;;3.0;BAR CODE MED ADMIN;**13,32,68**;Mar 2004;Build 26
+PSBVDLU1 ;BIRMINGHAM/EFC-VIRTUAL DUE LIST (VDL) UTILITIES ;12/18/12 7:30pm
+ ;;3.0;BAR CODE MED ADMIN;**13,32,68,70**;Mar 2004;Build 101
  ;
  ; Reference/IA
+ ; EN^PSJBCMA/2828
  ; EN^PSJBCMA1/2829
  ; GETSIOPI^PSJBCMA5/5763
  ;
  ;*68 - add call to add special instructions (SI) entries to the
  ;      ^TMP("PSB")  global that ends up in the RESULTS ARRAY of
  ;      RPC PSB GETORDERTAB.
+ ;*70 - add tags to rebuild TMP array built by PSJBCMA to filter
+ ;      in or out Clinic Orders per request.
  ;
 ODDSCH(PSBTABX) ;
  I (PSBOST'<PSBWBEG)&(PSBOST'>PSBWEND) D ADD(PSBREC,PSBOTXT,PSBOST,PSBDDS,PSBSOLS,PSBADDS,PSBTABX)  ;Include start date/time as admin
@@ -204,3 +207,186 @@ GETSI(DFN,ORD,TAB) ;Get Special Instructions/Other Print Info from IM   ;*68
  .S ^TMP("PSB",$J,TAB,PSB)="SI^"_^TMP("PSJBCMA5",$J,DFN,ORD,QQ)
  K ^TMP("PSJBCMA5",$J,DFN,ORD)
  Q
+ ;
+INCLUDCO ;Rebuild TMP global from PSJBCMA, RETAIN CLINC ORDERS ONLY  *70
+ N QQ,IMCNT,COCNT
+ S (IMCNT,COCNT)=0 K ^TMP("PSJTMP",$J)
+ F QQ=0:0 S QQ=$O(^TMP("PSJ",$J,QQ)) Q:'QQ  D
+ . I $P($G(^TMP("PSJ",$J,QQ,0)),U,11)]"" D
+ .. S COCNT=COCNT+1
+ .. M ^TMP("PSJTMP",$J,COCNT)=^TMP("PSJ",$J,QQ)
+ K ^TMP("PSJ",$J) M ^TMP("PSJ",$J)=^TMP("PSJTMP",$J)
+ K ^TMP("PSJTMP",$J)
+ S:'$D(^TMP("PSJ",$J)) ^TMP("PSJ",$J,1,0)=-1
+ Q
+ ;
+REMOVECO ;Rebuild TMP global from PSJBCMA, RETAIN IM ORDERS ONLY         *70
+ N QQ,IMCNT
+ S IMCNT=0 K ^TMP("PSJTMP",$J)
+ F QQ=0:0 S QQ=$O(^TMP("PSJ",$J,QQ)) Q:'QQ  D
+ . I $P($G(^TMP("PSJ",$J,QQ,0)),U,11)="" D  Q
+ .. S IMCNT=IMCNT+1
+ .. M ^TMP("PSJTMP",$J,IMCNT)=^TMP("PSJ",$J,QQ)
+ K ^TMP("PSJ",$J) M ^TMP("PSJ",$J)=^TMP("PSJTMP",$J)
+ K ^TMP("PSJTMP",$J)
+ S:'$D(^TMP("PSJ",$J)) ^TMP("PSJ",$J,1,0)=-1
+ Q
+ ;
+MODELITE() ;
+ N ORDCNT,CLIN,ORDNO,STRT,STOP,STAT,PSBIMNOW,PSBIMDT
+ S ORDCNT=""
+ K ^TMP("PSJ",$J)
+ S PSBIMNOW=+$E($$NOW^XLFDT,1,10),PSBIMDT=$P(PSBIMNOW,".")
+ D EN^PSJBCMA(DFN,PSBIMNOW,PSBIMDT)
+ Q:^TMP("PSJ",$J,1,0)=-1 ""
+ F QQ=0:0 S QQ=$O(^TMP("PSJ",$J,QQ)) Q:'QQ  D
+ . S CLIN=$P(^TMP("PSJ",$J,QQ,0),U,11)
+ . S ORDNO=$P(^TMP("PSJ",$J,QQ,0),U,3)
+ . S STRT=$P($P(^TMP("PSJ",$J,QQ,1),U,4),".")
+ . S STOP=$P($P(^TMP("PSJ",$J,QQ,1),U,5),".")
+ . S STAT=$P(^TMP("PSJ",$J,QQ,1),U,7)
+ . D:CLIN]""
+ .. I ORDNO'["P",STAT="A",STRT'>DT,STOP'<DT S $P(ORDCNT,U,2)=1
+ . D:CLIN=""
+ .. I ORDNO'["P",STAT="A",STRT'>DT,STOP'<DT S $P(ORDCNT,U)=1
+ Q ORDCNT
+ ;
+INITTAB ;*70
+ K ^TMP("PSB",$J,PSBTAB)
+ S ^TMP("PSB",$J,PSBTAB,0)=1
+ S ^TMP("PSB",$J,PSBTAB,1)="-1^No Administration(s) due at this time."
+ Q
+ ;
+FINDORD(BWDFWD,DFN,PSBDT,PSBTAB) ;Search a patient's orders Bwd or Fwd    *70
+ ; Find the next day that contains an Active admin time not Given.
+ ;
+ N QQ,SPDT,STARTDT,STDT,STOPDT,STPDT
+ S PSBSIOPI="",PSBCLINORD=1
+ N NODE1,ENDDT,STRDT,STOPDT,STDT,SPDT,STARTDT,STOPDT,SDT,QUIT,REC,QQ
+ N PSBWBEG,PSBWEND,PSBWADM,FOUND,GIVE,PDT
+ K ^TMP("PSJ",$J)
+ D EN^PSJBCMA(DFN,PSBDT,PSBDT),INCLUDCO^PSBVDLU1
+ Q:^TMP("PSJ",$J,1,0)=-1 -1
+ ;
+ ;read thru psj tmp and create start date xref
+ F QQ=0:0 S QQ=$O(^TMP("PSJ",$J,QQ)) Q:'QQ  D
+ . S NODE1=$G(^TMP("PSJ",$J,QQ,1))
+ . Q:$P(NODE1,U,7)'="A"              ;not active sts
+ . S STRDT=$P($P(NODE1,U,4),"."),STDT(STRDT)=""
+ . S STPDT=$P($P(NODE1,U,5),"."),SPDT(STPDT)=""
+ S STARTDT=+$O(STDT(0))
+ Q:(BWDFWD=-1)&('STARTDT) -1
+ S STOPDT=+$O(SPDT(999999999),-1)
+ Q:(BWDFWD=1)&('STOPDT) -1
+ ;
+ D:BWDFWD=-1 LOOPBWD
+ D:BWDFWD=1 LOOPFWD
+ Q PDT
+ ;
+LOOPBWD ; Loop thru days backwards and quit when pass End date.    *70
+ S (REC,QUIT,FOUND)=0
+ F QQ=BWDFWD:BWDFWD S PDT=$$FMADD^XLFDT(PSBDT,QQ) Q:PDT<STARTDT  D  Q:FOUND!QUIT
+ . I PDT<STARTDT S QUIT=1 Q
+ . D INITTAB^PSBVDLU1
+ . S PSBWBEG=$P(PDT,".")_".0000"
+ . S PSBWEND=$P(PDT,".")_".2400"
+ . S PSBWADM=99999
+ . S PSBWADM=$$FMADD^XLFDT(PDT,"","",+PSBWADM)
+ . D:PSBTAB="UDTAB" EN^PSBVDLUD(DFN,PDT)
+ . D:PSBTAB="PBTAB" EN^PSBVDLPB(DFN,PDT)
+ . S FOUND=+$G(^TMP("PSB",$J,PSBTAB,2))          ;=dfn, if data found
+ . S GIVE=$P($G(^TMP("PSB",$J,PSBTAB,2)),U,13)   ;get give sts
+ . S:GIVE="G" FOUND=0                            ;skip, as was given
+ S:'FOUND PDT=-1
+ Q
+ ;
+LOOPFWD ; Loop thru days forwards and quit when pass End date.    *70
+ S (REC,QUIT,FOUND)=0
+ F QQ=BWDFWD:BWDFWD S PDT=$$FMADD^XLFDT(PSBDT,QQ) Q:PDT>STOPDT  D  Q:FOUND!QUIT
+ . I PDT>STOPDT S QUIT=1 Q
+ . D INITTAB^PSBVDLU1
+ . S PSBWBEG=$P(PDT,".")_".0000"
+ . S PSBWEND=$P(PDT,".")_".2400"
+ . S PSBWADM=99999
+ . S PSBWADM=$$FMADD^XLFDT(PDT,"","",+PSBWADM)
+ . D:PSBTAB="UDTAB" EN^PSBVDLUD(DFN,PDT)
+ . D:PSBTAB="PBTAB" EN^PSBVDLPB(DFN,PDT)
+ . S FOUND=+$G(^TMP("PSB",$J,PSBTAB,2))          ;=dfn, if data found
+ . S GIVE=$P($G(^TMP("PSB",$J,PSBTAB,2)),U,13)   ;get give sts
+ . S:GIVE="G" FOUND=0                            ;skip, as was given
+ S:'FOUND PDT=-1
+ Q
+ ;
+PATCHON(DFN,ORDR) ;check if any patches are still Given & Not Removed per this patient
+ ;  Return values:
+ ;    Func:   True/False (1/0) for patches do exist on a patient.
+ ;    ORDR(): array element "C"linic or "I"npatient order = 1 when
+ ;             at least 1 order of this type exists.
+ ;
+ N ON,DAYSBK,ORDNO,STOPDT,IMCL
+ S ON=0,ORDR("C")=0,ORDR("I")=0
+ Q:'$D(^PSB(53.79,"APATCH",DFN)) ON
+ F QQ=0:0 S QQ=$O(^PSB(53.79,"APATCH",DFN,QQ)) Q:'QQ  D
+ . F RR=0:0 S RR=$O(^PSB(53.79,"APATCH",DFN,QQ,RR)) Q:'RR  D
+ .. I $P(^PSB(53.79,RR,0),U,9)="G" D
+ ... S ORDNO=$P(^PSB(53.79,RR,.1),"^")
+ ... D CLEAN^PSBVT
+ ... D PSJ1^PSBVT(DFN,ORDNO) Q:'$G(PSBOSP)
+ ... S STOPDT=PSBOSP
+ ... S DAYSBK=+($$GET^XPAR("DIV","PSB VDL PATCH DAYS"))
+ ...; simulate PSBVDLPA logic to look back Kernel param days
+ ... I DAYSBK D NOW^%DTC I $$FMADD^XLFDT($P(STOPDT,"."),DAYSBK)<X Q
+ ... S ON=1
+ ... S IMCL=$S($G(PSBCLORD)]"":"C",1:"I"),ORDR(IMCL)=1
+ ... D CLEAN^PSBVT
+ Q ON
+ ;
+INFUSING(DFN,ORDR) ;check if any IV's have bags infusing per this patient
+ ;  Return values:
+ ;    Func:   True/False (1/0) for patches do exist on a patient.
+ ;    ORDR(): array element "C"linic or "I"npatient order = 1 when
+ ;             at least 1 order of this type exists.
+ ;
+ N ON,DAYSBK,ORDNO,STOPDT,IMCL,PSBCLIEN
+ S ON=0,ORDR("C")=0,ORDR("I")=0
+ Q:'$D(^PSB(53.79,"AINFUSING",DFN)) ON
+ F QQ=0:0 S QQ=$O(^PSB(53.79,"AINFUSING",DFN,QQ)) Q:'QQ  D
+ . F RR=0:0 S RR=$O(^PSB(53.79,"AINFUSING",DFN,QQ,RR)) Q:'RR  D
+ .. S ORDNO=$P(^PSB(53.79,RR,.1),"^")
+ .. D CLEAN^PSBVT
+ .. D PSJ1^PSBVT(DFN,ORDNO) Q:'$G(PSBOSP)
+ .. S STOPDT=PSBOSP
+ .. ; simulate IV VDL logic to look 3 days back for IM meds or 7 days
+ .. ; for CO med.
+ .. D NOW^%DTC
+ .. I '$G(PSBCLIEN),$$FMADD^XLFDT($P(STOPDT,"."),3)<X Q
+ .. I $G(PSBCLIEN),$$FMADD^XLFDT($P(STOPDT,"."),7)<X Q
+ .. S ON=1
+ .. S IMCL=$S($G(PSBCLORD)]"":"C",1:"I"),ORDR(IMCL)=1
+ .. D CLEAN^PSBVT
+ Q ON
+ ;
+STOPPED(DFN,ORDR) ;check if any IV's have bags infusing per this patient
+ ;  Return values:
+ ;    Func:   True/False (1/0) for patches do exist on a patient.
+ ;    ORDR(): array element "C"linic or "I"npatient order = 1 when
+ ;             at least 1 order of this type exists.
+ ;
+ N ON,DAYSBK,ORDNO,STOPDT,IMCL,PSBCLIEN
+ S ON=0,ORDR("C")=0,ORDR("I")=0
+ Q:'$D(^PSB(53.79,"ASTOPPED",DFN)) ON
+ F QQ=0:0 S QQ=$O(^PSB(53.79,"ASTOPPED",DFN,QQ)) Q:'QQ  D
+ . F RR=0:0 S RR=$O(^PSB(53.79,"ASTOPPED",DFN,QQ,RR)) Q:'RR  D
+ .. S ORDNO=$P(^PSB(53.79,RR,.1),"^")
+ .. D CLEAN^PSBVT
+ .. D PSJ1^PSBVT(DFN,ORDNO) Q:'$G(PSBOSP)
+ .. S STOPDT=PSBOSP
+ .. ; simulate IV VDL logic to look 3 days back for IM meds or 7 days
+ .. ; for CO med.
+ .. D NOW^%DTC
+ .. I 'PSBCLIEN,$$FMADD^XLFDT($P(STOPDT,"."),3)<X Q
+ .. I PSBCLIEN,$$FMADD^XLFDT($P(STOPDT,"."),7)<X Q
+ .. S ON=1
+ .. S IMCL=$S($G(PSBCLORD)]"":"C",1:"I"),ORDR(IMCL)=1
+ .. D CLEAN^PSBVT
+ Q ON

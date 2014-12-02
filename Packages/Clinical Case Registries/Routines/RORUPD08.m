@@ -1,12 +1,23 @@
-RORUPD08 ;HCIOFO/SG - PROCESSING OF 'VISIT' & 'V POV' FILES  ; 10/27/05 11:08am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+RORUPD08 ;HCIOFO/SG - PROCESSING OF 'VISIT' & 'V POV' FILES ;10/27/05 11:08am
+ ;;1.5;CLINICAL CASE REGISTRIES;**19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
  ; #1554         POV^PXAPIIB
  ; #1905         SELECTED^VSIT
  ; #1906         LOOKUP^VSIT
- ; #3990         $$CODEC^ICDCODE (supported)
+ ; #5747         $$CODEC^ICDEX (controlled)
+ ; #1907         $$HISTORIC^VSIT (CONTROLLED)
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;******************************************************************************
+ ;******************************************************************************
  ;
  Q
  ;
@@ -35,7 +46,7 @@ LOADVPOV(IENS) ;
  . ;--- External value of the POV field (.01)
  . I $D(RORUPD("SR",RORFILE,"F",2,112,"E"))  D  Q:RC<0
  . . S TMP=+$P(BUF,U)  Q:TMP'>0
- . . S TMP=$$CODEC^ICDCODE(TMP)
+ . . S TMP=$$CODEC^ICDEX(80,TMP)
  . . S RORVALS("DV",RORFILE,112,"E")=$S(TMP'<0:TMP,1:"")
  Q 0
  ;
@@ -97,7 +108,12 @@ VISIT(UPDSTART,PATIEN) ;
  S (IEN,RC)=0
  F  S IEN=$O(^TMP("VSIT",$J,IEN))  Q:IEN=""  D  Q:RC
  . S VISIENS=IEN_",",TMP=+$O(^TMP("VSIT",$J,IEN,""))
- . S DATE=$P($G(^TMP("VSIT",$J,IEN,TMP)),U)
+ . I $$HISTORIC^VSIT(IEN)=1 D  I 1  ;is visit historical?
+ . . N RORTMP,VSIT
+ . . S RORTMP=$$LOOKUP^VSIT(IEN,"I",0)
+ . . Q:RORTMP<0
+ . . S DATE=VSIT("CDT")  ;visit creation date
+ . E  S DATE=$P($G(^TMP("VSIT",$J,IEN,TMP)),U)  ;visit date
  . ;--- Load necessary data elements
  . I $D(RORUPD("SR",RORFILE,"F"))>1  D  I TMP<0 D INCEC^RORUPDUT() Q
  . . S TMP=$$LOADVSIT(VISIENS)  Q:TMP<0

@@ -1,11 +1,13 @@
-PXRMCDEF ;SLC/AGP - Computed findings for Reminder Definition. ;04/26/2011
- ;;2.0;CLINICAL REMINDERS;**4,18**;Feb 04, 2005;Build 152
+PXRMCDEF ;SLC/AGP - Computed findings for Reminder Definition. ;01/25/2013
+ ;;2.0;CLINICAL REMINDERS;**4,18,24,26**;Feb 04, 2005;Build 404
  ;
  ;======================================================
 RDEF(DFN,TEST,DATE,VALUE,TEXT) ;Computed finding for returing a Reminder
  ;definition evaluation status
  I TEST="" S TEST=0 Q
- N DEFARR,FIEVAL,NAME,PNAME,RIEN,TEMP,PARAM
+ ;New PXRMFFSS and PXRMTDEB so that reminder test function finding
+ ;and term output is not corrupted.
+ N DEFARR,FIEVAL,NAME,PNAME,RIEN,TEMP,PARAM,PXRMFFSS,PXRMTDEB
  S NAME=$P(TEST,U)
  S PARAM=$P(TEST,U,2),PARAM=$P($G(PARAM),"=",2),TEST=0,DATE=$$NOW^PXRMDATE
  S RIEN=$O(^PXD(811.9,"B",NAME,"")) Q:RIEN'>0
@@ -19,6 +21,7 @@ RDEF(DFN,TEST,DATE,VALUE,TEXT) ;Computed finding for returing a Reminder
  K ^TMP("PXRHM",$J,RIEN)
  S TEST=$S(TEMP="":0,TEMP["ERROR":0,TEMP["CNBD":0,1:1)
  Q:'TEST
+ S TEXT="Reminder: "_NAME
  S VALUE=$P(TEMP,U)
  S VALUE("STATUS")=VALUE
  S VALUE("DUEDATE")=$P(TEMP,U,2)

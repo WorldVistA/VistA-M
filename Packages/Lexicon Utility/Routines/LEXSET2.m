@@ -1,5 +1,5 @@
-LEXSET2 ; ISL Retrieve Appl/Sub/Mode/User Defaults ; 10-15-97
- ;;2.0;LEXICON UTILITY;**6**;Sep 23, 1996
+LEXSET2 ;ISL/KER - Retrieve Appl/Sub/Mode/User Defaults ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**6,80**;Sep 23, 1996;Build 1
  ;
 APP(LEXA) ; Application
  K LEXD("AP") N LEXT,LEXI S LEXA=+($G(LEXA))

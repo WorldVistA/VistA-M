@@ -1,6 +1,8 @@
-PSBO1 ;BIRMINGHAM/EFC-BCMA OUTPUTS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**4,13,32,2,43,28**;Mar 2004;Build 9
+PSBO1 ;BIRMINGHAM/EFC-BCMA OUTPUTS ;3/19/13 19:13pm
+ ;;3.0;BAR CODE MED ADMIN;**4,13,32,2,43,28,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
+ ;
+ ;*70 - add ablility to update List multiple for Clinic names
  ;
 NEW(RESULTS,PSBRTYP) ; Create a new report request
  ; Called interactively and via RPCBroker
@@ -47,10 +49,51 @@ PRINT ;
  ;
 LIST(XLIST) ;  Place List Criteria into subfile #53.692 (multiple)
  F XL1=$O(XLIST("")):1:$O(XLIST("B"),-1)  Q:+XL1=""  D
- .I $P(XLIST(XL1),U)=PSBTYPE D
+ .;*70 add"MM", "WA" rpts to accept array list of selected clinics
+ .;    build reports that use Clinic search list array
+ .N PSBCLN
+ .F CLN="WA","DL","MM","CM","CP","CI","CE" S PSBCLN(CLN)=""
+ .I ($P(XLIST(XL1),U)=PSBTYPE)!($D(PSBCLN(PSBTYPE))) D
  ..K PSBFDA,PSBRET,PSBIENX D CLEAN^DILF
  ..S PSBIENX="+"_(XL1+1)_","_PSBIENS
  ..D VAL^DIE(53.692,"+"_(XL1+1)_","_PSBIENS,.01,"F",$TR(XLIST(XL1),"^","~"),"PSBRET","PSBFDA")
  ..D UPDATE^DIE("","PSBFDA","PSBIENX","PSBRET")
+ Q
+ ;
+CHECK ;Beginning of PSB*1*10
+ K ^TMP("PSJ",$J),PSBCL                                   ;[*70-1459]
+ N PSBDFN,PSBBAR,PSBDRUG,PSBFLAG,PSBPNM,PSBNDX,PSBX
+ S PSBFLAG="",PSBBAR=$P($P($G(^PSB(53.69,DA,.3)),U,1),"~",2)
+ S PSBDRUG=$$GET1^DIQ(53.69,DA_",",.31)
+ S PSBDFN=$$GET1^DIQ(53.69,DA_",",.12,"I") S:$G(PSBDFN) PSBFLAG=1
+ D EN^PSJBCMA(PSBDFN)
+ ;
+ F PSBX=0:0 S PSBX=$O(^TMP("PSJ",$J,PSBX)) Q:'PSBX  D
+ .K Y,PSBORD,PSBPNM,PSBNDX
+ .S PSBCL=$P(^TMP("PSJ",$J,PSBX,0),U,11)                         ;[*70-1459]
+ .M PSBORD=^TMP("PSJ",$J,PSBX)
+ .F PSBNDX=700,850,950  D
+ ..F Y=0:0 S Y=$O(PSBORD(PSBNDX,Y)) Q:'Y  D
+ ...I $P($G(PSBORD(1)),U,7)'="A" Q
+ ...S PSBPNM=$P(PSBORD(PSBNDX,Y,0),U,1)
+ ...I PSBNDX=700,PSBPNM=PSBBAR D  Q                              ;[*70-1459]
+ ....S PSBFLAG=0                                                 ;[*70-1459]
+ ....I PSBCL]"" S PSBCL(PSBCL)=""                                ;[*70-1459]
+ ....E  S PSBCL($$GET1^DIQ(2,$P(PSBORD(0),U),.1)_" (Ward)")=""   ;[*70-1459]
+ ...I PSBNDX=850,$D(^PSDRUG("A526",PSBBAR,PSBPNM)) D  Q          ;[*70-1459]
+ ....S PSBFLAG=0                                                 ;[*70-1459]
+ ....I PSBCL]"" S PSBCL(PSBCL)=""                                ;[*70-1459]
+ ....E  S PSBCL($$GET1^DIQ(2,$P(PSBORD(0),U),.1)_" (Ward)")=""   ;[*70-1459]
+ ...I PSBNDX=950,$D(^PSDRUG("A527",PSBBAR,PSBPNM)) D  Q          ;[*70-1459]
+ ....S PSBFLAG=0                                                 ;[*70-1459]
+ ....I PSBCL]"" S PSBCL(PSBCL)=""                                ;[*70-1459]
+ ....E  S PSBCL($$GET1^DIQ(2,$P(PSBORD(0),U),.1)_" (Ward)")=""   ;[*70-1459]
+ I PSBFLAG=1 D
+ .W !,"Patient is not currently on medication: ",PSBDRUG
+ .K DIRUT,DIR
+ .S DIR("A")="Do you want to continue"
+ .S DIR(0)="Y"
+ .D ^DIR
+ .S PSBANS=+Y W !
  Q
  ;

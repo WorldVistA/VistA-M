@@ -1,6 +1,6 @@
 IBTRKR4 ;ALB/AAS - CLAIMS TRACKING - ADD/TRACK OUTPATIENT ENCOUNTERS ; 13-AUG-93
- ;;2.0;INTEGRATED BILLING;**91,142,292,312**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**91,142,292,312,489**;21-MAR-94;Build 31
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % ; -- entry point for nightly background job
  N IBTSBDT,IBTSEDT
@@ -13,7 +13,7 @@ EN ; -- entry point to ask date range
  N IBSWINFO S IBSWINFO=$$SWSTAT^IBBAPI()                     ;IB*2.0*312
  N IBBDT,IBEDT,IBTSBDT,IBTSEDT,IBTALK
  S IBTALK=1
- I '$P($G(^IBE(350.9,1,6)),"^",3) W !!,"I'm sorry, Tracking of Outpatient Encounters is currrently turned off." G ENQ
+ I '$P($G(^IBE(350.9,1,6)),"^",3) W !!,"I'm sorry, Tracking of Outpatient Encounters is currently turned off." G ENQ
  W !!!,"Select the Date Range of Opt. Encounters to Add to Claims Tracking.",!
  D DATE^IBOUTL
  I IBBDT<1!(IBEDT<1) G ENQ
@@ -38,6 +38,7 @@ ENQ K ZTSK,ZTIO,ZTSAVE,ZTDESC,ZTRTN
  Q
  ;
 EN1 ; -- add outpatient encounters to claims tracking file
+ L +^IBTRKR4:$S($G(DILOCKTM)>600:DILOCKTM,1:600) I '$T G FLKMG
  N I,J,X,Y,IBTRKR,IBDT,DFN,IBOETA,IBCNT,IBCNT1,IBCNT2
  ;
  ; -- check parameters
@@ -62,7 +63,21 @@ EN1 ; -- add outpatient encounters to claims tracking file
  ;S IBCBK="S IBCNT=IBCNT+1 I '$P(Y0,U,6),$P(Y0,U,12)=2,$P(Y0,U,7),'$O(^IBT(356,""AENC"",+$P(Y0,U,2),Y,0)),'$O(^IBT(356,""APTY"",+$P(Y0,U,2),IBOETYP,+Y0,0)) S IBDT=+Y0,IBOE=Y D OPCHK^IBTRKR41"
  S IBCBK="S IBCNT=IBCNT+1 I '$P(Y0,U,6),$P(Y0,U,12)=2,$P(Y0,U,7),'$O(^IBT(356,""AENC"",+$P(Y0,U,2),Y,0)),$S($D(^IBE(356.6,""ACODE"",2,IBOETYP)):1,1:'$O(^IBT(356,""APTY"",+$P(Y0,U,2),IBOETYP,+Y0,0))) S IBDT=+Y0,IBOE=Y D OPCHK^IBTRKR41"
  D SCAN^IBSDU("DATE/TIME",.IBVAL,IBFILTER,IBCBK,1) ;Scan,then close query
- ;
+MSG ;
  I $G(IBTALK) D BULL^IBTRKR41
 EN1Q I $D(ZTQUEUED) S ZTREQ="@"
+ L -^IBTRKR4
  Q
+ ;
+FLKMG ; send a message for interaction if lock failed
+ I '$G(IBTALK) G FLKMGQ
+ S XMSUB="Outpatient Encounters added to Claims Tracking Complete"
+ S IBT(1)="The process to automatically add Opt Encounters is currently locked by another user. Try again later."
+ S XMDUZ="INTEGRATED BILLING PACKAGE",XMTEXT="IBT("
+ K XMY S XMN=0
+ S XMY(DUZ)=""
+ D ^XMD
+ K X,Y,IBI,IBT,IBGRP,XMDUZ,XMTEXT,XMY,XMSUB
+FLKMGQ I $D(ZTQUEUED) S ZTREQ="@"
+ Q
+ ;

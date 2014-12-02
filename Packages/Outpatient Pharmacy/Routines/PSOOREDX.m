@@ -1,5 +1,5 @@
 PSOOREDX ;BIR/MHA-Rxs dosing common calls ;03/06/03
- ;;7.0;OUTPATIENT PHARMACY;**133**;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**133,362,313**;DEC 1997;Build 76
  ;External reference to PS(51.2 supported by DBIA 2226
  ;called from psoored4 & psoored5
 VER D KV S DIR(0)="52.0113,8"
@@ -18,8 +18,8 @@ NOU D KV S DIR(0)="52.0113,3"
  S DIR("B")=$S($G(NOUN)]"":NOUN,1:$G(PSORXED("NOUN",ENT))) K:DIR("B")="" DIR("B")
  S PSONDEF=$G(DIR("B"))
  D ^DIR Q
- ;
-DUR1 K:X="@" DUR,PSORXED("DURATION",ENT)
+ ;*313
+DUR1 I X="@" K DUR,PSORXED("DURATION",ENT) S:'$G(COPY) PSOSIGFL=1  ;*362 - create new order in CPRS
  I Y'="" S PSORXED("DURATION",ENT)=Y W " ("_$S(Y["L":"MONTHS",Y["W":"WEEKS",Y["H":"HOURS",Y["M":"MINUTES",1:"DAYS")_")"
  Q
  ;

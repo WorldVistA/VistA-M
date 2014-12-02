@@ -1,5 +1,5 @@
-PSOATRFC ;BIR/MHA - Automate CPRS Refill request ; 5/25/11 4:48pm
- ;;7.0;OUTPATIENT PHARMACY;**305,388**;DEC 1997;Build 6
+PSOATRFC ;BIR/MHA - Automate CPRS Refill request ;8/18/08 12:54pm
+ ;;7.0;OUTPATIENT PHARMACY;**305,388,313**;DEC 1997;Build 76
  ;Reference to ^PSSLOCK supported by DBIA 2789
  ;Reference ^PSDRUG supported by DBIA 221
  ;Reference ^PS(55 supported by DBIA 2228
@@ -53,6 +53,10 @@ REF(PSORXN,PSOITMG) ;process refill request
  I PSOCHECK=1 D ERR("Requested refill exceeds maximum allowable days supply for Rx.") Q  ;*388
  I PSOCHECK=2 D ERR("Current drug DEA/SPECIAL HANDLING code does not allow refills.") Q  ;*388
  D CHKDT Q:PSOITNF           ;Quit if not refillable
+ ;
+ ; Titration Marked Rx
+ I $$TITRX^PSOUTL(PSORXN)="t" D  Q
+ . D ERR("'Titration Rx' cannot be refilled.")
  ;
  ;ok to process refill
  D EN^PSOR52(.PSOX)
@@ -159,7 +163,7 @@ MAILMSG(DFN,RXN,ERRTXT) ;send alert via mailman msg to PSOAUTRF key holders
  S MDUZ=0
  F  S MDUZ=$O(^XUSEC("PSOAUTRF",MDUZ)) Q:MDUZ'>0  S XMY(MDUZ)=""
  S XMDUZ=.5,XMSUB=DIVN_" CPRS AUTO REFILL - Not Processed List"
- S ERRTXT(.1)="CPRS requested an Outpatient refill, but not allowed for the below reason:"
+ S ERRTXT(.1)="CPRS requested an Outpatient refill, but was not allowed for the below reason:"
  S ERRTXT(.2)=""
  S ERRTXT(.3)="   Patient: "_PTNAME_" ("_PTSSN_")"
  S ERRTXT(.4)="      Rx #: "_$$GET1^DIQ(52,RXN,.01)

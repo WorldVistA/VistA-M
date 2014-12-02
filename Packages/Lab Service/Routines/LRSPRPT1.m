@@ -1,9 +1,10 @@
 LRSPRPT1 ;AVAMC/REG/WTY - SURG PATH RPT PRINT CONT. ;10/16/01
- ;;5.2;LAB SERVICE;**1,259,315**;Sep 27, 1994;Build 25
+ ;;5.2;LAB SERVICE;**1,259,315,422**;Sep 27, 1994;Build 29
  ;
  ;25-Jul-01;WTY;In line tag L, if being called by LRAPT2, don't do
  ;              line tag F.  Do H1^LRAPT2 instead.
  ;21-Aug-01;WTY;Removed call to LRSPRPT2 which prints SNOMED codes.
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
  ;
  S A=0 F  S A=+$O(^LR(LRDFN,LRSS,LRI,2,A)) Q:'A!(LR("Q"))  D
  .S T=+^LR(LRDFN,LRSS,LRI,2,A,0),X=$S($D(^LAB(61,T,0)):^(0),1:"")
@@ -18,7 +19,7 @@ LRSPRPT1 ;AVAMC/REG/WTY - SURG PATH RPT PRINT CONT. ;10/16/01
  ..D:$Y>(IOSL-12) F Q:LR("Q")
  ..S X=+^LR(LRDFN,LRSS,LRI,3,A,0)
  ..N LRX
- ..S LRX=X,LRX=$$ICDDX^ICDCODE(LRX,,,1)
+ ..S LRX=X,LRX=$$ICDDX^ICDEX(LRX,,,"I")
  ..S X=$P(LRX,U,4)
  ..W !,"ICD code: ",$P(LRX,U,2),?20 D:LR(69.2,.05) C^LRUA W X
  Q

@@ -1,5 +1,7 @@
 SDM2A ;ALB/OG - MAKE APPOINTMENT - overflow routine  ;24 Jun 2008 11:57 AM
- ;;5.3;Scheduling;**446,528,567**;Aug 13 1993;Build 7
+ ;;5.3;Scheduling;**446,528,567,594**;Aug 13 1993;Build 3
+ ;
+ ;
 WL(SC) ;Wait List Hook/teh patch 263 ;SD/327 passed 'SC'
  N DA,DIE,DR,SBEG,SCSR,SDDIV,SDINST,SDPAR,SDWLDA,SDWLDFN,SDWLSCL
  Q:$G(SC)'>0
@@ -77,7 +79,7 @@ DELETE ; SD*567 delete bad record
  Q
  ;
 WLCL120A(SDWLAPDT,SDDATE1,SC) ;
- N %DT,DIR,X,X1,X2,Y
+ N %DT,DIR,X,X1,X2,Y,SDRET
  Q:$$GET1^DIQ(44,SC,2502,"I")="Y" 1  ; Non-count clinic. Allow > 120 days.
  S X=SDWLAPDT,%DT="TXF" D ^%DT
  Q:Y=-1 1
@@ -86,7 +88,11 @@ WLCL120A(SDWLAPDT,SDDATE1,SC) ;
  S DIR(0)="Y",DIR("B")="YES"
  S DIR("A")="Add to EWL",DIR("A",1)="The date is more than 120 days beyond the Desired Date"
  W ! D ^DIR
- I Y=1 D WL(SC)
+ ;SD*5.3*594 allow appointment creation for appointments that have an appointment date
+ ;that is greater than 120 days from the desired date.
+ S SDRET=Y
+ I SDRET=1 D WL(SC)
+ I SDRET=0 Q 1
  Q 0
  ;
 WLCLASK() ; No appointment availability warning. ; sd/446

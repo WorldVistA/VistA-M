@@ -1,11 +1,11 @@
 LRSPRPTM ;AVAMC/REG/WTY - MODIFIED PATH REPORT ;9/22/00
- ;;5.2;LAB SERVICE;**1,248**;Sep 27, 1994
+ ;;5.2;LAB SERVICE;**1,248,416**;Sep 27, 1994;Build 4
  ;
  ;Reference to ^VA(200 supported by IA #10060
  ;Reference to ^DIWP suppported by IA #10011
  ;Reference to ^DIWW suppported by IA #10029
  ;
- W !?28,"*** MODIFIED REPORT ***"
+ W !?28,"*+* MODIFIED REPORT *+*"
  W !,"(Last modified: "
  S B=0
  F A=0:0 S A=$O(^LR(LRDFN,LRSS,LRI,LR(0),A)) Q:'A!(LR("Q"))  S B=A

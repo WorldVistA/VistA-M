@@ -1,5 +1,5 @@
 IBCSC10H ;ALB/ARH - MCCR SCREEN 10 (BILL SPECIFIC INFO) CMS-1500 ;4/21/92
- ;;2.0;INTEGRATED BILLING;**432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**432,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; CMS-1500 screen 10
  ;
@@ -119,12 +119,14 @@ EN ;
  S Z=5,IBW=1 X IBWW
  W " Chiropractic Data  : " S Y=$P(IB("U3"),U,5) X ^DD("DD") W $S(Y'="":"INITIAL TREATMENT ON "_Y,1:IBUN)
  ;
- ; Section 6
+ ; Section 6  -> changed prompt for *488* : baa
  S Z=6,IBW=1 X IBWW
- W " Form Locator 19    : " S IBZ=$P($G(^DGCR(399,IBIFN,"UF31")),U,3) W $S(IBZ'="":IBZ,1:IBUN)
- I $P(IB("U2"),U,14)'="" W !,?4,"Homebound          : ",$$EXPAND^IBTRE(399,236,$P(IB("U2"),U,14))
- I $P(IB("U2"),U,15)'="" W !,?4,"Date Last Seen     : ",$$EXPAND^IBTRE(399,237,$P(IB("U2"),U,15))
- I $P(IB("U2"),U,16)'="" W !,?4,"Spec Prog Indicator: " S IBZ=$$EXPAND^IBTRE(399,238,$P(IB("U2"),U,16)) W $S(IBZ'="":IBZ,$$WNRBILL^IBEFUNC(IBIFN):"31",1:"")
+ W " CMS-1500 Box 19    : " S IBZ=$P($G(^DGCR(399,IBIFN,"UF31")),U,3) W $S(IBZ'="":IBZ,1:IBUN)
+ ;/ Beginning of IB*2.0*488 - Moved the following lines of code to IBCSC8 (vd)
+ ;I $P(IB("U2"),U,14)'="" W !,?4,"Homebound          : ",$$EXPAND^IBTRE(399,236,$P(IB("U2"),U,14))
+ ;I $P(IB("U2"),U,15)'="" W !,?4,"Date Last Seen     : ",$$EXPAND^IBTRE(399,237,$P(IB("U2"),U,15))
+ ;I $P(IB("U2"),U,16)'="" W !,?4,"Spec Prog Indicator: " S IBZ=$$EXPAND^IBTRE(399,238,$P(IB("U2"),U,16)) W $S(IBZ'="":IBZ,$$WNRBILL^IBEFUNC(IBIFN):"31",1:"")
+ ;/ End of IB*2.0*488 (vd)
  ;
  ; Section 7
  S Z=7,IBW=1 X IBWW

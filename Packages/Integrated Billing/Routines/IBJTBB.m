@@ -1,6 +1,6 @@
 IBJTBB ;ALB/ARH - TPI BILL DIAGNOSIS SCREEN ;01-MAR-1995
- ;;2.0;INTEGRATED BILLING;**39,210**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**39,210,461**;21-MAR-94;Build 58
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; -- main entry point for IBJ TP BILL DX
  D EN^VALM("IBJT BILL DX")
@@ -31,7 +31,7 @@ BLD ;
  D SET^IBCSC4D(IBIFN,"",.IBADX) I $D(IBADX)'>1 S IBLN=1 F IBSTR="","Bill contains no diagnosis." S IBLN=$$SET(IBSTR,IBLN,1,80)
  S IBI="",IBLN=1,IBCNT=0 F  S IBI=$O(IBADX(IBI)) Q:'IBI  D  S IBLN=$$SET(IBSTR,IBLN,1,80)
  . S IBCNT=IBCNT+1,IBX=$$ICD9^IBACSV(+IBADX(IBI),IBDATE)
- . S IBSTR=$J("",5)_$J(IBCNT,3)_")  "_$P(IBX,U,1)_$J("",(10-$L($P(IBX,U,1))))_$P(IBX,U,3)
+ . S IBSTR=$J("",1)_$J(IBCNT,3)_")  "_$P(IBX,U,1)_$J("",(10-$L($P(IBX,U,1))))_$P(IBX,U,3)
  ;
  S VALMCNT=IBLN-1
  Q

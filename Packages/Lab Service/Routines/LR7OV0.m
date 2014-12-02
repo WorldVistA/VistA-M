@@ -1,5 +1,5 @@
 LR7OV0 ;DALOI/STAFF - Update orderable items ;Oct 10, 2007
- ;;5.2;LAB SERVICE;**121,187,357,361,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**121,187,357,361,350,434**;Sep 27, 1994;Build 1
  ;
 TEST(TEST,ICNT) ;Process single test
  ;TEST=test ptr to file 60
@@ -58,6 +58,13 @@ SINGLE(TEST,MFICODE,MFECODE) ;Message for a single test
  S X=$$MFI(MFICODE),ORUPDMSG(2)=X
  D TEST(TEST,2)
  ;W !!,$P(^LAB(60,TEST,0),"^"),! I $D(ORUPDMSG(3)) ZW ORUPDMSG
+ ;
+ ; If test deleted then mark file 101.43 entry as "inactive"
+ I '$D(^LAB(60,TEST,0)) D
+ . N TESTID
+ . S MFECODE="MDC"
+ . S TESTID=$$UVID^LR7OU0(TEST,0,"","","","ORUPDMSG")
+ . S ORUPDMSG(3)=$$MFE(MFECODE,TESTID)
  I $D(ORUPDMSG(3)) S ORUPDMSG="ORUPDMSG" D MSG^XQOR("LR7O ORDERABLE OR",.ORUPDMSG) ;Send update message
  L -LR7OV0(TEST)
  Q

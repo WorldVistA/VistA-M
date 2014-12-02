@@ -1,7 +1,9 @@
-SDSCEDT ;ALB/JAM/RBS - ASCD Review and Edit SC value for encounters. ; 4/24/07 4:29pm
- ;;5.3;Scheduling;**495**;Aug 13, 1993;Build 50
+SDSCEDT ;ALB/JAM/RBS - ASCD Review and Edit SC value for encounters. ;4/24/07 4:29pm
+ ;;5.3;Scheduling;**495,586**;Aug 13, 1993;Build 28
  ;;MODIFIED FOR NATIONAL RELEASE from a Class III software product
  ;;known as Service Connected Automated Monitoring (SCAM).
+ ;
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
  ;
  Q
 START ; Called by option "SDSC EDIT BY DATE - Edit encounters by date range"
@@ -163,7 +165,7 @@ POV2S ; Compile all POV entries for the specified visit.
  . S SDPOV=$P($G(^AUPNVPOV(SDVPOV0,0)),U)
  . ; Added display if diagnosis is marked service connected (CIDC) - ALA 9/27/05
  . S SDPOVSC=$P($G(^AUPNVPOV(SDVPOV0,800)),U)
- . S SCDX=$$ICDDX^ICDCODE(SDPOV,+SDOEDAT)
+ . S SCDX=$$ICDDX^ICDEX(SDPOV,+SDOEDAT,+$$SYS^ICDEX("DIAG",+SDOEDAT,"I"),"I") ;SD*5.3*586
  . S SDPSC=$S(SDPDX=$P(SCDX,U):"*P* ",1:"")_$S(SDPOVSC=1:"*SC* ",1:"")
  . S SDTMP=$J(SDPSC,15)_$P(SCDX,U,2)_"          "
  . S SDTMP=$E(SDTMP,1,23)_$P(SCDX,U,4)

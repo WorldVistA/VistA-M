@@ -1,6 +1,13 @@
-LEXNDX5 ; ISL Set/kill indexes (Part 5) Link       ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXNDX5 ;ISL/KER - Set/kill indexes (Part 5) Link ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    YN^DICN             ICR  10009
+ ;    ^DIR                ICR  10026
+ ;               
 EXCL ; Is a term used with an "Exclusive" meaning?
  Q:'$D(LEXREP)!('$D(LEXBY))
  S LEXEXCL=1 I $D(^LEX(757.01,"AWRD",LEXREP)) D

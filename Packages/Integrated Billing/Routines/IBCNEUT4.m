@@ -1,5 +1,5 @@
 IBCNEUT4 ;DAOU/ESG - eIV MISC. UTILITIES ;17-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,345,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**184,271,345,416,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Can't be called from the top
@@ -82,21 +82,20 @@ INFO(IBBUFDA) ; Return original and current buffer data
  ;   [10]  Original buffer group name
  ;   [11]  Original buffer subscriber ID
  ;
- NEW IB0,IB20,IB40,IB60,DATA,RESPIEN,FOUND,TQIEN,TQDATA,TQDATA1,DISYS
+ NEW IB0,IB20,IB90,DATA,RESPIEN,FOUND,TQIEN,TQDATA,TQDATA1,DISYS
  S DATA=""
  I '$G(IBBUFDA) G INFOX
  I '$D(^IBA(355.33,IBBUFDA)) G INFOX
  S IB0=$G(^IBA(355.33,IBBUFDA,0))
  S IB20=$G(^IBA(355.33,IBBUFDA,20))
- S IB40=$G(^IBA(355.33,IBBUFDA,40))
- S IB60=$G(^IBA(355.33,IBBUFDA,60))
+ S IB90=$G(^IBA(355.33,IBBUFDA,90))    ; IB*2.0*497 (vd)
  S $P(DATA,U,1)=0    ; default to not been transmitted
  S $P(DATA,U,2)=$$EXTERNAL^DILFD(355.33,.03,"",$P(IB0,U,3))  ; source
  S $P(DATA,U,3)=$P(IB0,U,3)     ; internal source
  S $P(DATA,U,4)=$P(IB20,U,1)    ; insurance company name
- S $P(DATA,U,5)=$P(IB40,U,3)    ; group number
- S $P(DATA,U,6)=$P(IB40,U,2)    ; group name
- S $P(DATA,U,7)=$P(IB60,U,4)    ; subscriber id
+ S $P(DATA,U,5)=$P(IB90,U,2)    ; group number - IB*2.0*497 (vd)
+ S $P(DATA,U,6)=$P(IB90,U,1)    ; group name - IB*2.0*497 (vd)
+ S $P(DATA,U,7)=$P(IB90,U,3)    ; subscriber id - IB*2.0*497 (vd)
  ;
  ; Look at the response file and the transmission queue file.  Since
  ; we're trying to get the original data look at the oldest data first.

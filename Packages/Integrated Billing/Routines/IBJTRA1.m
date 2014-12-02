@@ -1,5 +1,5 @@
 IBJTRA1 ;ALB/AAS,ARH - TPI CT INSURANCE COMMUNICATIONS BUILD ; 4/1/95
- ;;2.0;INTEGRATED BILLING;**39,91,347,389**;21-MAR-94;Build 6
+ ;;2.0;INTEGRATED BILLING;**39,91,347,389,458**;21-MAR-94;Build 4
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; copyed from IBTRC with modifications to show reviews for multiple events
@@ -30,13 +30,13 @@ BLD ; -- Build list of Insurance contacts, including reviews, appeals, and denia
  ..S X=$$SETFLD^VALM1($$EXPAND^IBTRE(356.2,.11,$P(IBTRCD,"^",11)),X,"ACTION")
  ..;
  ..S X=$$SETFLD^VALM1($P(IBETYP,"^",3),X,"TYPE")
- ..S X=$$SETFLD^VALM1($P(IBTRCD,"^",28),X,"PRE-CERT")
+ ..S X=$$SETFLD^VALM1($$AUTHN^IBTRC(IBTRC,10),X,"PRE-CERT")
  ..I $P(IBTRCD,"^",13) S X=$$SETFLD^VALM1($J($$DAY^IBTUTL3($P(IBTRCD,"^",12),$P(IBTRCD,"^",13),IBTRN),3),X,"DAYS")
  ..I $P($G(^IBE(356.7,+$P(IBTRCD,"^",11),0)),"^",3)=20 S X=$$SETFLD^VALM1($J($$DAY^IBTUTL3($P(IBTRCD,"^",15),$P(IBTRCD,"^",16),IBTRN),3),X,"DAYS")
  ..I $P(IBTRCD1,"^",7)!($P(IBTRCD1,"^",8)) S X=$$SETFLD^VALM1("ALL",X,"DAYS")
  ..S X=$$SETFLD^VALM1($P(IBTRCD,"^",6),X,"CONTACT")
  ..S X=$$SETFLD^VALM1($P(IBTRCD,"^",7),X,"PHONE")
- ..S X=$$SETFLD^VALM1($P(IBTRCD,"^",9),X,"REF NO")
+ ..S X=$$SETFLD^VALM1($$CREFN^IBTRC(IBTRC,12),X,"REF NO")
  ..I $P(IBETYP,"^",2)=60!($P(IBETYP,"^",2)=65) D APPEAL^IBTRC3
  ..D SET(X,1)
  I 'IBCNT S IBCNT=1 D SET1(" ") S IBCNT=2 D SET1("No Insurance Reviews for Episodes on this Bill.") G BLDQ

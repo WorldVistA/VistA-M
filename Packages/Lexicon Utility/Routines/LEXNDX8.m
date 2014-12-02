@@ -1,7 +1,13 @@
-LEXNDX8 ;ISL/KER - Set/kill indexes 757.02 ;01/03/2011
- ;;2.0;LEXICON UTILITY;**25,73**;Sep 23, 1996;Build 10
- ;                    
- ; Set and Kill Activation History
+LEXNDX8 ;ISL/KER - Set/kill indexes 757.02 ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**25,73,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    None
+ ;               
+  ; Set and Kill Activation History
  ;   File 757.02, field 1
 SAHC ;     Set new value when Code is Edited
  ;          ^DD(757.02,1,1,D0,1) = D SAHC^LEXNDX8
@@ -119,6 +125,34 @@ KDHIS ;  Kill Default Index
  I +($G(LEXPRF))>0 D
  . K ^LEX(757.02,"ACT",(LEXCOD_" "),(+LEXSTA+2),LEXDDT,+LEXIEN,0)
  Q
+S10 ;  Set ICD-10 Index 
+ ;  ^LEX(757.02,"ADX",<dx code>,<date>,<status>,<ien>,<history>)
+ ;  ^LEX(757.02,"APR",<pr code>,<date>,<status>,<ien>,<history>)
+ N LEXEF,LEXIX,LEXND,LEXSB,LEXSO,LEXSR,LEXST
+ S LEXND=$G(^LEX(757.02,+($G(DA(1))),0)) Q:'$L(LEXND)
+ S LEXSR=$P(LEXND,"^",3) Q:+LEXSR'>0
+ S LEXSB=$E($G(^LEX(757.03,+LEXSR,0)),1,3) Q:"^10D^10P^"'[("^"_LEXSB_"^")
+ S LEXIX=$S(LEXSB="10D":"ADX",LEXSB="10P":"APR",1:"") Q:'$L(LEXIX)
+ S LEXSO=$P(LEXND,"^",2) Q:'$L(LEXSO)
+ S LEXND=$G(^LEX(757.02,+($G(DA(1))),4,+($G(DA)),0)) Q:'$L(LEXND)
+ S LEXEF=$P(LEXND,"^",1) Q:LEXEF'?7N
+ S LEXST=$P(LEXND,"^",2) Q:LEXST'?1N
+ S ^LEX(757.02,LEXIX,(LEXSO_" "),LEXEF,LEXST,+($G(DA(1))),+($G(DA)))=""
+ Q
+K10 ;  Kill ICD-10 Index
+ ;  ^LEX(757.02,"ADX",<dx code>,<date>,<status>,<ien>,<history>)
+ ;  ^LEX(757.02,"APR",<pr code>,<date>,<status>,<ien>,<history>)
+ N LEXEF,LEXIX,LEXND,LEXSB,LEXSO,LEXSR,LEXST
+ S LEXND=$G(^LEX(757.02,+($G(DA(1))),0)) Q:'$L(LEXND)
+ S LEXSR=$P(LEXND,"^",3) Q:+LEXSR'>0
+ S LEXSB=$E($G(^LEX(757.03,+LEXSR,0)),1,3) Q:"^10D^10P^"'[("^"_LEXSB_"^")
+ S LEXIX=$S(LEXSB="10D":"ADX",LEXSB="10P":"APR",1:"") Q:'$L(LEXIX)
+ S LEXSO=$P(LEXND,"^",2) Q:'$L(LEXSO)
+ S LEXND=$G(^LEX(757.02,+($G(DA(1))),4,+($G(DA)),0)) Q:'$L(LEXND)
+ S LEXEF=$P(LEXND,"^",1) Q:LEXEF'?7N
+ S LEXST=$P(LEXND,"^",2) Q:LEXST'?1N
+ K ^LEX(757.02,LEXIX,(LEXSO_" "),LEXEF,LEXST,+($G(DA(1))),+($G(DA)))
+ Q
 DF(X,CODE) ; Default Status
  N LEXI,LEXDF,LEXNF,LEXL,LEXEFF,LEXC,LEXO,LEXND,LEXSRC
  S LEXI=+($G(X)) Q:+LEXI'>0 ""
@@ -132,6 +166,24 @@ DF(X,CODE) ; Default Status
  S LEXNF=$S(+LEXL=1:"",1:LEXDF)
  S X=LEXNF
  Q X
+SAUPD ; Set Update Date
+ N LEXSRC,LEXSAB,LEXDT,LEXIEN,LEXHIS
+ S LEXDT=$G(X) Q:'$L(LEXDT)  Q:LEXDT'?7N  Q:LEXDT'>2770101
+ S LEXHIS=+($G(DA)) Q:+LEXHIS'>0
+ S LEXIEN=+($G(DA(1))) Q:+LEXIEN'>0
+ S LEXSRC=$P($G(^LEX(757.02,+LEXIEN,0)),"^",3) Q:LEXSRC'>0
+ S LEXSAB=$E($P($G(^LEX(757.03,+LEXSRC,0)),"^",1),1,3) Q:$L(LEXSAB)'=3
+ S ^LEX(757.02,"AUPD",LEXSAB,LEXDT,LEXIEN)=""
+ Q
+KAUPD ; Kill Update Date
+ N LEXSRC,LEXSAB,LEXDT,LEXIEN,LEXHIS
+ S LEXDT=$G(X) Q:'$L(LEXDT)  Q:LEXDT'?7N  Q:LEXDT'>2770101
+ S LEXHIS=+($G(DA)) Q:+LEXHIS'>0
+ S LEXIEN=+($G(DA(1))) Q:+LEXIEN'>0
+ S LEXSRC=$P($G(^LEX(757.02,+LEXIEN,0)),"^",3) Q:LEXSRC'>0
+ S LEXSAB=$E($P($G(^LEX(757.03,+LEXSRC,0)),"^",1),1,3) Q:$L(LEXSAB)'=3
+ K ^LEX(757.02,"AUPD",LEXSAB,LEXDT,LEXIEN)
+ Q
 DDTBR(SYS,STA) ; Default Date Business Rules
  ; Input:
  ;   SYS - System

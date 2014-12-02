@@ -1,5 +1,5 @@
-DIR ;SFISC/XAK-READER, HELP ;17NOV2009
- ;;22.0;VA FileMan;**30,163**;Mar 30, 1999;Build 1
+DIR ;SFISC/XAK-READER, HELP ;6:35 PM  12 Jul 2013
+ ;;22.0;VA FileMan;**30,163,170**;Mar 30, 1999;Build 10
  ;Per VHA Directive 2004-038, this routine should not be modified.
  N %,%A,%B,%B1,%B2,%B3,%BA,%C,%E,%G,%H,%I,%J,%N,%P,%S,%T,%W,%X,%Y,A0,C,D,DD,DDH,DDQ,DDSV,DG,DH,DIC,DIFLD,DIRO,DO,DP,DQ,DU,DZ,X1,XQH,DIX,DIY,DISYS,%BU,%J1,%A0,%W0,%D1,%D2,%DT,%K,%M
  S:$D(DDH)[0 DDH=0 Q:'$D(DIR(0))  D ^DIR2 G Q:%T=""
@@ -18,7 +18,7 @@ A I $D(DDM) K:DDM DDQ S:'DDM DDQ=IOSL-7
  . N %A,%B,%B1,%B2,%B3,%E,%N,%P,%T,%X,%W,%W0
  . X $P(DIR(0),U,3,99)
  I %A["V" K:%E Y G Q
- I X?1."?"!%E D QUES:%E'<0 S A0="" D MSG D:$G(DDH) LIST^DDSU G A
+ I X?1."?"!%E D QUES:%E'<0&'$G(DUOUT)&'$G(DTOUT) S A0="" D MSG D:$G(DDH) LIST^DDSU G A ;**170
  G Q
  ;
 W ; write the prompt and read the user's response

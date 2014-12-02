@@ -1,5 +1,5 @@
 ONCBPC4A ;HIRMFO/GWB - PCE Study of Cancers of the Urinary Bladder Table IV;6/19/96
- ;;2.11;ONCOLOGY;**6,16**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 RAD W !!,"RADIATION THERAPY:",!
  S RAD=ONC(165.5,ONCONUM,51.2,"I"),RADOT=ONC(165.5,ONCONUM,51.2,"E")
  W !,"  RADIATION THERAPY.................: ",RADOT

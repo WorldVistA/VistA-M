@@ -1,6 +1,12 @@
-LEXDDTV ; ISL Display Defaults - Vocabulary        ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDDTV ;ISL/KER - Display Defaults - Vocabulary ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    None
+ ;               
 SUB ; Select between Logical and Physical Subsets
  ; Required LEXSUB  Optional LEXDICS
  N LEXTCTR,LEXTD,LEXTI,LEXTIC,LEXTL,LEXTN,LEXTSTR,LEXT,LEXTV

@@ -1,11 +1,16 @@
-LEXSRC2 ;ISL/KER - Classification Code Source Util ;01/03/2011
- ;;2.0;LEXICON UTILITY;**25,28,73**;Sep 23, 1996;Build 10
- ;
+LEXSRC2 ;ISL/KER - Classification Code Source Util ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**25,28,73,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
  ; External References
- ;   DBIA  3992  $$STATCHK^ICDAPIU
- ;   DBIA  1997  $$STATCHK^ICPTAPIU
- ;   DBIA 10103  $$DT^XLFDT
- ;                      
+ ;    $$STATCHK^ICDEX     ICR   5747
+ ;    $$SYS^ICDEX         ICR   5747
+ ;    $$STATCHK^ICPTAPIU  ICR   1997
+ ;    $$DT^XLFDT          ICR  10103
+ ;    $$FMADD^XLFDT       ICR  10103
+ ;               
  Q
 CPT(LEXC,LEXVDT) ; Return Pointer to Active CPT
  ;                 
@@ -17,10 +22,11 @@ CPT(LEXC,LEXVDT) ; Return Pointer to Active CPT
  ;                
 ICD(LEXC,LEXVDT) ; Return Pointer to Active ICD/ICP
  ;                 
- ; Input ICD9 or ICD0 Code
+ ; Input ICD Diagnosis or Procedure
  ; Output IEN file 80 or 80.1 of Active Codes only
- S LEXC=$G(LEXC) Q:'$L(LEXC) ""  S LEXVDT=$G(LEXVDT) S:+LEXVDT'>0 LEXVDT=$$DT^XLFDT
- S LEXC=$$STATCHK^ICDAPIU(LEXC,LEXVDT) Q:+LEXC'>0 ""  S LEXC=$P(LEXC,"^",2) Q:+LEXC'>0 ""
+ N LEXS S LEXC=$G(LEXC) Q:'$L(LEXC) ""  S LEXVDT=$G(LEXVDT) S:+LEXVDT'>0 LEXVDT=$$DT^XLFDT
+ S LEXS=$$SYS^ICDEX(LEXC,LEXVDT),LEXC=$$STATCHK^ICDEX(LEXC,LEXVDT,$G(LEXS))
+ Q:+LEXC'>0 ""  S LEXC=$P(LEXC,"^",2) Q:+LEXC'>0 ""
  Q +LEXC
  ;                
 STATCHK(CODE,CDT,LEX,SAB) ; Check Status of a Code
@@ -33,16 +39,17 @@ STATCHK(CODE,CDT,LEX,SAB) ; Check Status of a Code
  ;                      
  ; Output:
  ;                      
- ;   2 or 3 Piece String containing the code's status,
+ ;   2, 3 or 4 Piece String containing the code's status,
  ;   the IEN, and if the status exist, the effective
  ;   date, else -1 in lieu of the IEN.
  ;           
  ;   The following are possible outputs:
  ;           
- ;       1 ^ IEN ^ Effective Date       Active Code
- ;       0 ^ IEN ^ Effective Date       Inactive Code
- ;       0 ^ IEN                        Not Active
- ;       0 ^ -1                         Code not Found
+ ;       1 ^ IEN ^ Active Date   ^ Initial Date    Active Code
+ ;       1 ^ IEN ^ Revision Date ^ Initial Date    Revised Code
+ ;       0 ^ IEN ^ Effective Date                  Inactive Code
+ ;       0 ^ IEN                                   Not Yet Active
+ ;       0 ^ -1                                    Code not Found
  ;                      
  ;   ASTM Triplet in array LEX passed by reference (optional)
  ;                      
@@ -109,9 +116,11 @@ STATCHK(CODE,CDT,LEX,SAB) ; Check Status of a Code
  ; Integration Agreement
  ;   4083     $$STATCHK^LEXSRC2()
  ;              
- N LEXAE,LEXAP,LEXC,LEXDT,LEXE,LEXED,LEXEE,LEXI,LEXIE,LEXIP,LEXMR,LEXMRI,LEXN,LEXO,LEXSAB,LEXSTAT,LEXTDT,X
+ N LEXAE,LEXAP,LEXC,LEXDT,LEXE,LEXED,LEXEE,LEXI,LEXIE,LEXIP,LEXMR
+ N LEXMRI,LEXN,LEXINIT,LEXO,LEXSAB,LEXSTAT,LEXTDT,X
  S LEXC=$G(CODE) I '$L(LEXC) S (LEX,X)="0^-1" D UPD Q X
- S LEXDT=$P($G(CDT),".",1),LEXDT=$S(+LEXDT>0:LEXDT,1:$$DT^XLFDT) S LEXSAB=$$SAB($G(SAB)),LEXTDT=LEXDT+.00001
+ S LEXDT=$P($G(CDT),".",1),LEXDT=$S(+LEXDT>0:LEXDT,1:$$DT^XLFDT)
+ S LEXSAB=$$SAB($G(SAB)),LEXTDT=LEXDT+.00001
  ; Find preceding active date/IEN for SAB           LEXAP/LEXAE
  ;   and earliest possible active date/IEN for SAB  LEXED/LEXEE
  S (LEXED,LEXEE,LEXAE,LEXAP)="",LEXO=LEXTDT F  S LEXO=$O(^LEX(757.02,"ACT",(LEXC_" "),3,LEXO),-1) D  Q:+LEXO'>0
@@ -137,17 +146,31 @@ STATCHK(CODE,CDT,LEX,SAB) ; Check Status of a Code
  S:LEXAP<LEXIP LEXMR=LEXIP,LEXMRI=LEXIE,LEXSTAT=0
  ; Check for difficulties from date errors for SAB
  D ADJ
+ S LEXINIT="" I LEXMR?7N,LEXSTAT>0 S LEXINIT=$$INIT(LEXC,LEXMR)
  ; Quit with status, code IEN and effective date
  S (LEX,X)=LEXSTAT_"^"_LEXMRI_"^"_LEXMR D UPD
+ S:(LEXMR?7N)&(LEXSTAT>0)&(LEXINIT?7N)&(LEXMR'=LEXINIT) $P(LEX,"^",4)=LEXINIT,X=LEX
  Q X
 SAB(X) ; Resolve SAB
  N Y S Y=$G(X) Q:'$L($G(Y)) ""  S X=+($O(^LEX(757.03,"ASAB",$E($G(Y),1,3),0))) Q:+X>0 X  S X=+Y Q:$D(^LEX(757.03,+Y,0)) X
  Q ""
 ADJ ; Do we have adjacent dates for SAB
- N LEXND,LEXNI,LEXNS,LEXNO,LEXN S LEXND=$$FMADD^XLFDT($G(LEXMR),1),LEXNO='LEXSTAT,LEXNS=2+LEXNO Q:LEXND'?7N
- S LEXNI=$O(^LEX(757.02,"ACT",LEXC_" ",LEXNS,LEXND," "),-1) Q:+LEXNI'>0  S LEXN=$G(^LEX(757.02,+LEXMRI,0))
+ N LEXND,LEXNI,LEXNS,LEXNO,LEXN S LEXND=$$FMADD^XLFDT($G(LEXMR),1)
+ S LEXNO='LEXSTAT,LEXNS=2+LEXNO Q:LEXND'?7N
+ S LEXNI=$O(^LEX(757.02,"ACT",(LEXC_" "),LEXNS,LEXND," "),-1)
+ Q:+LEXNI'>0  S LEXN=$G(^LEX(757.02,+LEXMRI,0))
  I +($G(LEXSAB))>0&($P(LEXN,"^",3)=+($G(LEXSAB))) S LEXSTAT=LEXNO,LEXMR=LEXND,LEXMRI=LEXNI
  Q
+INIT(X,Y) ; Inital Activation Dates (revised codes only)
+ N LEXA,LEXC,LEXI,LEXOFF,LEXMR S LEXC=$G(X),LEXMR=$G(Y),X="" Q:'$L($G(LEXC))  Q:$G(LEXMR)'?7N
+ I '$D(^LEX(757.02,"ACT",(LEXC_" "),1,LEXMR)) S LEXMR=$O(^LEX(757.02,"ACT",(LEXC_" "),1,LEXMR),-1)
+ Q:$G(LEXMR)'?7N  S LEXA=(LEXMR-.001)
+ S LEXOFF=$$FMADD^XLFDT(LEXMR,-1)
+ F  S LEXA=$O(^LEX(757.02,"ACT",(LEXC_" "),1,LEXA),-1) Q:LEXA'?7N  D
+ . S LEXI=$O(^LEX(757.02,"ACT",(LEXC_" "),0,LEXA))
+ . I LEXI>LEXA,LEXI?7N,LEXI'<LEXOFF S X=LEXA
+ S:'$L(X)&(LEXMR?7N) X=LEXMR
+ Q X
 UPD ; Update Array
  N LEXI,LEXC,LEXN,LEXM,LEXE,LEXS,LEXC S LEXI=+($P($G(X),"^",2)) Q:+LEXI'>0
  S LEXN=$G(^LEX(757.02,+LEXI,0)),LEXE=+LEXN,LEXC=$P(LEXN,"^",2)
@@ -174,25 +197,3 @@ PI(X) ; Preferred IEN for code X
  S X="" I $D(LEXPF(1)) S X=$O(LEXPF(1," "),-1),X=$O(LEXPF(1,+X," "),-1)
  I '$D(LEXPF(1)),$D(LEXPF(0)) S X=$O(LEXPF(0," "),-1),X=$O(LEXPF(0,+X," "),-1)
  Q X
- ;                      
-HIST(CODE,ARY) ; Activation History
- ;                      
- ; Input:
- ;    CODE - Code - REQUIRED
- ;    .ARY - Array, passed by Reference
- ;                      
- ; Output:
- ;    ARY(0) = Number of Activation History Entries
- ;    ARY(<date>) = status    where: 1 is Active
- ;    ARY("IEN") = <ien>
- ;
- N LEXC,LEXI,LEXN,LEXD,LEXF,LEXO S LEXC=$G(CODE) Q:'$L(LEXC) -1
- S LEXI=$$PI(LEXC),ARY("IEN")=LEXI,LEXO=""
- M LEXO=^LEX(757.02,+LEXI,4) K LEXO("B")
- S ARY(0)=+($P($G(LEXO(0)),U,4))
- S:+ARY(0)=0 ARY(0)=-1 K:ARY(0)=-1 ARY("IEN")
- S (LEXI,LEXC)=0 F  S LEXI=$O(LEXO(LEXI)) Q:+LEXI=0  D
- . S LEXD=$P($G(LEXO(LEXI,0)),U,1) Q:+LEXD=0
- . S LEXF=$P($G(LEXO(LEXI,0)),U,2) Q:'$L(LEXF)
- . S LEXC=LEXC+1,ARY(0)=LEXC,ARY(LEXD)=LEXF
- Q ARY(0)

@@ -1,5 +1,5 @@
 RORX003 ;HOIFO/SG,VAC - GENERAL UTILIZATION AND DEMOGRAPHICS ;4/7/09 2:06pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13**;Feb 17, 2006;Build 27
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13,19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
@@ -15,6 +15,7 @@ RORX003 ;HOIFO/SG,VAC - GENERAL UTILIZATION AND DEMOGRAPHICS ;4/7/09 2:06pm
  ;                                      'include' or 'exclude'.
  ;ROR*1.5*13   DEC  2010   A SAUNDERS   User can select specific patients,
  ;                                      clinics, or divisions for the report.
+ ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -113,7 +114,7 @@ UTLDMG(RORTSK) ;
  S RORAGEDT=$$FMADD^XLFDT(RORSDT,TMP\2)
  S RORDTE0=$P($$FMTE^XLFDT(DT,7),"/")-10  ; 10 year "sliding window"
  ;
- S FLAG=$G(RORTSK("PARAMS","ICD9FILT","A","FILTER"))
+ S FLAG=$G(RORTSK("PARAMS","ICDFILT","A","FILTER"))
  ;
  ;=== Set up Clinic/Division list parameters
  S RORCDLIST=$$CDPARMS^RORXU001(.RORTSK,.RORCDSTDT,.RORCDENDT)
@@ -139,13 +140,13 @@ UTLDMG(RORTSK) ;
  . . I $D(RORTSK("PARAMS","PATIENTS","C")),'$D(RORTSK("PARAMS","PATIENTS","C",DFN)) Q
  . . ;--- Check if the patient should be skipped
  . . Q:$$SKIP^RORXU005(IEN,SFLAGS,RORSDT,ROREDT)
- . . ;--- Check if the ICD9 Filter includes or excludes the patient
+ . . ;--- Check if the ICD Filter includes or excludes the patient
  . . S RCC=0
  . . I FLAG'="ALL" D
- . . . S RCC=$$ICD^RORXU010(DFN,RORREG)
+ . . . S RCC=$$ICD^RORXU010(DFN)
  . . I (FLAG="INCLUDE")&(RCC=0) Q
  . . I (FLAG="EXCLUDE")&(RCC=1) Q
- . . ;--- End of ICD9 check.
+ . . ;--- End of ICD check.
  . . ;--- Check for Clinic or Division list and quit if not in list
  . . I RORCDLIST,'$$CDUTIL^RORXU001(.RORTSK,DFN,RORCDSTDT,RORCDENDT) Q
  . . ;--- Process the registry record

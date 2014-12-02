@@ -1,5 +1,5 @@
 IBCBB ;ALB/AAS - EDIT CHECK ROUTINE TO BE INVOKED BEFORE ALL BILL APPROVAL ACTIONS ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**80,51,137,288,327,361,371,377,400,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**80,51,137,288,327,361,371,377,400,432,461**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRBB
@@ -59,6 +59,12 @@ EN ;Entry to check for errors
  . I $$COB^IBCEF(IBIFN)="S",$$MCRWNR^IBEFUNC(+$$CURR^IBCEF2(IBIFN))=1,$D(^DGCR(399,IBIFN,"I3")) Q
  . I $S('IBNDMP:1,1:$P(IBNDMP,U,2)'=$$BPP^IBCNS2(IBIFN,1)) S IBER=IBER_"IB054;"
  I IBWHO="o",'$P(IBNDM,"^",11) S IBER=IBER_"IB053;"
+ ;
+ ; Outpatient Statement dates can not span the ICD-10 activation date
+ I IBCL>2,$$ICD10S^IBCU4(IBFDT,IBTDT) S IBER=IBER_"IB354;"
+ ;
+ ; All bill ICD codes must match Code Version on Statement To Date IB356
+ D ICD10V^IBCBB0(IBIFN)
  ;
  ; Billing Provider check - IB*2*400
  D BP^IBCBB0(IBIFN)

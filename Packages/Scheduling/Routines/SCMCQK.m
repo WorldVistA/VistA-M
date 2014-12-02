@@ -1,5 +1,5 @@
 SCMCQK ;ALB/REW - Single Pt Tm/Pt Tm Pos Assign and Discharge ; 5/17/12 1:39pm
- ;;5.3;Scheduling;**148,177,297,563**;AUG 13, 1993;Build 45
+ ;;5.3;Scheduling;**148,177,297,563,598**;AUG 13, 1993;Build 12
  ;
  ;
  ; Reference/ICR
@@ -45,6 +45,10 @@ PAT ;process patient
  N DATA
  S DATA=$$IU^SCMCTSK1(DFN)
  I $E(DATA)=1 I $D(^XUSEC("SC PCMM SETUP",+$G(DUZ))) D
+ .;If patient is deceased do not allow reactivation SD*5.3*598
+ .I $P($G(^DPT(DFN,.35)),U)'="" Q
+ .;If the team or position are not currently active do not allow reactivation SD*5.3*598
+ .I '$$ACTHISTB^SCAPMCU2(404.58,$P(DATA,"~",3))!('$$ACTHISTB^SCAPMCU2(404.59,$P(DATA,"~",5))) Q
  .W !,"This patient was inactivated from "_$P(DATA,"~",2)_" TEAM"
  .W !,$P(DATA,"~",4)_" Position"
  .W !,"Do you wish to reactivate" S %=2 D YN^DICN

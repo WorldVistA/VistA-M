@@ -1,6 +1,6 @@
 PRCH442 ;WISC/KMB/DL/DXH - CREATE PURCHASE CARD ORDER FROM RIL ;12.1.99
- ;;5.1;IFCAP;**13,81**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;5.1;IFCAP;**13,81,165**;Oct 20, 2000;Build 12
+ ;Per VHA Directive 2004-038, this routine should not be modified.
 START ;  entry point for delivery orders
 S1 N RLFLAG S RLFLAG=1
 S2 ;  entry point for purchase card orders
@@ -75,6 +75,7 @@ PROCESS1 ;
  I VENDOR="" Q
  I VENDOR=WHSE,$G(SPEC)'=2 Q
  I OUTRL=1 Q
+ I $G(RLFLAG) N ITMCKER S ITMCKER=0 D ITMCK K % Q:ITMCKER     ;PRC*5.1*165 for item exclusion for no vendor contract# on Delivery Order
  S IB=0 F  S IB=$O(^TMP($J,410.3,XDA,1,"AC",VENDOR1,IB)) Q:IB=""  D ITEM Q:OUTRL
  Q:CNNT=0
  K PDA D SETUP^PRCH442A
@@ -133,4 +134,18 @@ DYNAMSG ; PRC*5.1*81 - Build message to user of items not in audit file
  . S PRCNT=PRCNT+1
  . S ^TMP($J,"PRCV442M",PRCNT)="ITEM# "_PRCVI_" placed on PO# "_$P(PRCDATA,"^",2)_" has DM DOC ID# "_$P(PRCDATA,"^",1)
  D DMERXMB^PRCVLIC("PRCV442M",+PRCRIL,$P(PRCRIL,"-",4))
+ Q
+ITMCK ;PRC*5.1*165 Checks to notify user of items with missing contract number that
+ ;            will be excluded from Delivery Order
+ N IB,CNT,ECNT,ITEMR
+ S IB=0,CNT=0,ECNT=0
+ F  S IB=$O(^TMP($J,410.3,XDA,1,"AC",VENDOR1,IB)) Q:IB=""  D
+ . S CNT=CNT+1
+ . S ITEMR=$G(^PRCS(410.3,XDA,1,IB,0)) Q:$P(ITEMR,"^",6)="Y"
+ . S ECNT=ECNT+1 I ECNT=1 W !!,"Excluded item(s) with no vendor contract#: "
+ . W !!,?5,+ITEMR,?13,$E($P($G(^PRC(441,+ITEMR,0)),"^",2),1,30),?47,"QTY= ",$P(ITEMR,"^",2),?60,"COST: ",$J($FN($P(ITEMR,"^",4),",",2),9)
+ Q:'ECNT
+ I ECNT=CNT W ! S DIR("A")=">> Cannot continue with delivery order as all items have no associated contract#  <Hit return to continue>",DIR(0)="EA" D ^DIR K DIR S ITMCKER=1 Q
+ S %=2 W !!,"Do you wish to continue with this order excluding the above item(s)" D YN^DICN Q:%=1
+ S ITMCKER=1
  Q

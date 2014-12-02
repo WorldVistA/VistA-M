@@ -1,6 +1,8 @@
-DGRP4 ;ALB/MRL - REGISTRATION SCREEN 4/EMPLOYMENT INFORMATION;06 JUN 88@2300
- ;;5.3;Registration;**624**;Aug 13, 1993
+DGRP4 ;ALB/MRL - REGISTRATION SCREEN 4/EMPLOYMENT INFORMATION ;06 JUN 88@2300
+ ;;5.3;Registration;**624,867**;Aug 13, 1993;Build 59
+ ;
  N DGMRD
+ D NEWB ;determine newborn status before building local array
  S DGRPS=4 D H^DGRPU S DGRPW=1 F I=0,.311,.25 S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
  S X=$P($G(^DIC(11,+$P(DGRP(0),"^",5),0)),"^",3) S DGMRD=$S("^M^S^"[("^"_X_"^"):1,1:0),DGRPVV(4)=$E(DGRPVV(4))_'DGMRD ; spouse's employer only editable if married or separated
  S DGAD=.311,DGA1=3,DGA2=1 D:$P(DGRP(.311),"^",1)]"" AL^DGRPU(26) S DGAD=.25,(DGA1,DGA2)=2 I $P(DGRP(.25),"^",1)]"",DGMRD D AL^DGRPU(26)
@@ -36,3 +38,12 @@ DGRP4 ;ALB/MRL - REGISTRATION SCREEN 4/EMPLOYMENT INFORMATION;06 JUN 88@2300
  . I +$P(DGRP(.25),"^",15)'=5 DO
  . . W "NOT APPLICABLE"
  G ^DGRPP
+ Q
+ ;
+NEWB ;-- check patient DOB, if DOB<365 days, set employment status to "not employed"
+ N DOB,NOW
+ S DOB=$P(^DPT(DFN,0),"^",3)
+ D NOW^%DTC S NOW=X
+ I $$FMDIFF^XLFDT(NOW,DOB,1)>365 Q  ;patient is not a newborn
+ S $P(^DPT(DFN,.311),"^",15)=3 ;patient is a newborn
+ Q

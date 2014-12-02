@@ -1,5 +1,5 @@
-EAS1071B ;ALB/PJH - EAS*1*71; ; 11/27/07 3:02pm
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**71**;15-MAR-01;Build 18
+EAS1071B ;ALB/PJH - EAS*1*71; ; 22 Jan 2014  12:46 PM
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**71,96**;15-MAR-01;Build 18
  Q
  ;
 EN(ARR) ;ENTRY POINT
@@ -14,8 +14,8 @@ EN(ARR) ;ENTRY POINT
  I $$SOR^EAS1071C(PREFIX,PREFIX) D  Q
  .S ARR="Unable to disable messaging, HEC is SOR"
  ;
- ;Remove HEC client subscriber protocols from shared servers
- F LCT=1:1 S LINE=$T(PROTDAT+LCT) Q:$P(LINE,";",3)="END"  D  Q:STOP
+ ;Remove HEC client subscriber protocols from shared servers.  Only quit processing if not EAS1096P
+ F LCT=1:1 S LINE=$T(PROTDAT+LCT) Q:$P(LINE,";",3)="END"  D  I '$G(EAS1096P) Q:STOP
  .S NAM=PREFIX_$P(LINE,";",3)_" CLIENT"
  .S SIEN101=$O(^ORD(101,"B",NAM,0))
  .I +SIEN101=0 D  Q
@@ -29,7 +29,7 @@ EN(ARR) ;ENTRY POINT
  F LCT=1:1 S LINE=$T(PROTDAT1+LCT) Q:$P(LINE,";",3)="END"  D
  .S NAM=PREFIX_$P(LINE,";",3)
  .;Insert disable text
- .S RESULT=$$EDP(NAM,"HEC Legacy to Site Messaging Inactivated")
+ .S RESULT=$$EDP(NAM,"Disable VistA to HEC Messaging")
  .I +RESULT<0 D ERROR(RESULT,"Event Driver:"_NAM)
  ;
  S:'STOP ARR="HEC messaging disabled"
@@ -59,7 +59,7 @@ REMOVE(CLIENT,CNAM) ;Remove clients from server
  ..S DA(1)=SERV,DA=SUB,DIK="^ORD(101,"_DA(1)_",775," D ^DIK
  Q
  ;
-PROTDAT ;Vista to HEC clients on shared Event Drivers
+PROTDAT ;VistA to HEC clients on shared Event Drivers
  ;;ORU-Z07
  ;;ORU-Z09
  ;;ORF-Z07
@@ -71,6 +71,7 @@ PROTDAT ;Vista to HEC clients on shared Event Drivers
  ;
 PROTDAT1 ;HEC to Vista Event Drivers to disable
  ;;ORU-Z04 SERVER H
+ ;;ORU-Z04 SERVER V
  ;;ORU-Z05 SERVER
  ;;ORU-Z10 SERVER
  ;;ORU-Z11 SERVER
@@ -81,6 +82,9 @@ PROTDAT1 ;HEC to Vista Event Drivers to disable
  ;;END
  ;
 RESET(ARR) ;Enable or Attach HEC protocols
+ ; Do not perform Reset for EAS1096P Project
+ I $G(EAS1096P) Q
+ ;
  N DA,DIK,ERROR,IEN101,LINE,LCT,NAM,PREFIX,SIEN101,SNAM,STOP
  ;
  S ARR="HEC messaging NOT re enabled"
@@ -88,7 +92,7 @@ RESET(ARR) ;Enable or Attach HEC protocols
  ; Get site's Station #
  S PREFIX="VAMC "_$P($$SITE^VASITE,"^",3)_" ",STOP=0
  ;
- ;Enable to Vista to HEC Legacy servers
+ ;Enable to VistA to HEC Legacy servers
  F LCT=1:1 S LINE=$T(PROTDAT1+LCT) Q:$P(LINE,";",3)="END"  D
  .S NAM=PREFIX_$P(LINE,";",3)
  .;Remove disable text
@@ -103,9 +107,11 @@ RESET(ARR) ;Enable or Attach HEC protocols
  .S NAM=PREFIX_$P(LINE,";",3)_" SERVER"
  .I NAM["Z04" S NAM=NAM_" V"
  .S IEN101=$O(^ORD(101,"B",NAM,0))
- .I 'IEN101 D  Q RETURN
+ .; Fix Error reporting
+ .I 'IEN101 D  Q  ;RETURN
  ..S ERROR="IEN OF RECORD TO BE UPDATED NOT FOUND"
  ..S RETURN=-1_"^"_ERROR
+ ..D ERROR(RETURN,"Server:"_NAM)
  .;
  .;Client protocol (subscriber)
  .S SNAM=PREFIX_$P(LINE,";",3)_" CLIENT"
@@ -127,6 +133,7 @@ RESET(ARR) ;Enable or Attach HEC protocols
  ;
  ;
 ERROR(ERRMSG,SUBJ) ;Display Install Error message and set STOP
+ N ARR
  ;
  S STOP=1
  ;
@@ -137,9 +144,12 @@ ERROR(ERRMSG,SUBJ) ;Display Install Error message and set STOP
  S ARR(5)="===================================================="
  S ARR(5)="**ERROR MSG: "_$P(ERRMSG,"^",2)
  ;
+ ;Display result of RPC and any warnings or errors for EAS1096P only
+ I $G(EAS1096P) D BMES^XPDUTL(.ARR)
  Q
  ;
 WARN(EDP,SP) ;Display Warning Message
+ N ARR
  ;
  S ARR(1)="===================================================="
  S ARR(2)="=                 WARNING                          ="
@@ -158,5 +168,3 @@ SUBSCR(IEN101,SIEN101) ;Add client to event driver as a subscriber
  S DATA(.01)=SIEN101
  S RETURN=$$ADD^DGENDBS(FILE,.DGENDA,.DATA,.ERROR)
  S:ERROR'=""!(+RETURN=0) RETURN=-1_"^"_ERROR
- ;
- Q RETURN

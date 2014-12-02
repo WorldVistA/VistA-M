@@ -1,6 +1,6 @@
 IBTRVD0 ;ALB/AAS - CLAIMS TRACKING - EXPANDED REVIEW SCREEN ; 02-JUL-1993
- ;;Version 2.0 ; INTEGRATED BILLING ;**58**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**58,458**;21-MAR-94;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % I '$G(IBTRV) G ^IBTRV
  D VISIT,REVIEW,STATUS,CRITER
@@ -61,7 +61,10 @@ CRITER ; -- Criteria information
 10 ; -- precert review
 15 ; -- admission review
 20 ; -- urgent adm. review
+25 ;
+35 ;
 50 ;
+55 ;
 60 ;
 65 ;
 70 ;

@@ -1,5 +1,5 @@
-XQ ; SEA/MJM - Menu driver (Part 1) ;04/19/12  08:27
- ;;8.0;KERNEL;**9,46,94,103,157,570,593**;Jul 10, 1995;Build 7
+XQ ; SEA/MJM - Menu driver (Part 1) ;01/10/13  13:41
+ ;;8.0;KERNEL;**9,46,94,103,157,570,593,614**;Jul 10, 1995;Build 11
  ;Per VHA Directive 2004-038, this routine should not be modified
  D LOGRSRC^%ZOSV("$XQ MENU DRIVER$",0,1)
  D INIT^XQ12 Q:'$D(XQY)
@@ -11,8 +11,7 @@ M I '$D(XQVOL) S XQVOL=$G(^XUTL("XQ",$J,"XQVOL")) I '$L(XQVOL) D GETENV^%ZOSV S 
  I $G(^%ZIS(14.5,"LOGON",XQVOL)) S XQNOLOG="" G H^XUS
  S:$S('$D(XQY0):1,'$L(XQY0):1,1:0) XQY0=^DIC(19,XQY,0) S XQT=$P(XQY0,U,4) G:XQT="" M3 K:'$D(XQJS) XQUR K X,XQNOGO,XQR,XQUIT,XQUEFLG ;,XQSV
  I $D(XQAUDIT),XQAUDIT D LOGOPT^XQ12
- ;I $P(XQY0,U,18) D CHKQUE^XQ92 I XQUEFLG S XQNOGO="" ;Removed - p570
- I $G(XQY)>0 D CHKQUE^XQ92 I XQUEFLG S XQNOGO="" ;Added - p570
+ I $G(XQY)>0 D CHKQUE^XQ92 I XQUEFLG S XQNOGO=""
  ;
  ;Execute the Entry Action and look for XQUIT
  D:'$D(XQM3)&("LOQX"'[XQT) LO K XQM3 I $D(XQUIT) D
@@ -22,22 +21,15 @@ M I '$D(XQVOL) S XQVOL=$G(^XUTL("XQ",$J,"XQVOL")) I '$L(XQVOL) D GETENV^%ZOSV S 
  ;
  G:$D(XQUR) ASK1 ;Jump start or continue
  I '$D(XQUIT),XQT'="A",$P(XQY0,U,17),$D(^DIC(19,XQY,26)),$L(^(26)) X ^(26)
- D:$D(XQXFLG)[0 ABT^XQ12 ;D:$P($G(XQXFLG),U,2) LOGRSRC^%ZOSV($P(XQY0,U))
+ D:$D(XQXFLG)[0 ABT^XQ12
  D:$P(XQY0,U)]"" LOGRSRC^%ZOSV($P(XQY0,U),0,1)
- ;A call to PRIO was removed from the following line D:$L($P(XQY0,U,8))
- ;Since Kernel no longer resets priority from the Option File
  I XQT'="M" W:'^XUTL("XQ",$J,"T") !,$P(XQY0,U,2) W:$D(DUZ("SAV")) !,"Not when testing another's menus." S %=^XUTL("XQ",$J,"T"),^("T")=%+1,^(%+1)=XQY_XQPSM_U_XQY0 G M3:XQT'?1U!$D(DUZ("SAV"))
  I XQT'="M" D:'$D(XQXFLG) ABT^XQ12 D:+XQXFLG ABLOG^XQ12 K %,X,XQTT G @(XQT_"^XQ1")
 M1 ;
  D LOGRSRC^%ZOSV("$XQ MENU DRIVER$",0,1)
  Q:XQY<1!'$D(^XUTL("XQ",$J,"T"))  D:'$D(XQXFLG) ABT^XQ12
- ;Modified - p593 to display <TEST ACCOUNT> if not a production VistA system
- ;D:'$D(XQABOLD)&(+XQXFLG) ABLOG^XQ12 K XQABOLD W ! S XQUR=0,XQTT=^XUTL("XQ",$J,"T"),XQDIC=XQY,XQAA="Select "_$S($D(DUZ("SAV")):$P(DUZ("SAV"),U,3)_"'s ",1:"")_$P(XQY0,U,2)_" Option: " S:$D(XQMM("B")) XQAA=XQAA_XQMM("B")_"//"
- S XQXQTEST=$S($D(DUZ("TEST")):" <TEST ACCOUNT>",1:"")
  D:'$D(XQABOLD)&(+XQXFLG) ABLOG^XQ12 K XQABOLD W ! S XQUR=0,XQTT=^XUTL("XQ",$J,"T"),XQDIC=XQY S XQAA="Select "_$S($D(DUZ("SAV")):$P(DUZ("SAV"),U,3)_"'s ",1:"")_$P(XQY0,U,2)
- S XQAA=XQAA_XQXQTEST_" Option: " S:$D(XQMM("B")) XQAA=XQAA_XQMM("B")_"//"
- K XQXQTEST
- ;end of p593 modifications
+ S XQAA=XQAA_$G(DUZ("TEST"))_" Option: " S:$D(XQMM("B")) XQAA=XQAA_XQMM("B")_"//"
  S:$S('XQTT:1,1:+$P(^XUTL("XQ",$J,XQTT),U,1)'=XQY) ^("T")=XQTT+1,^(XQTT+1)=XQY_XQPSM_U_XQY0 I $D(DUZ("AUTO")),DUZ("AUTO"),'$D(XQMM("J")),'$D(XQMM("N")) G EN^XQ2
  K:'$D(XQMM("J")) XQMM("N")
 M2 ;
@@ -57,9 +49,7 @@ ASK1 D SETSV ;Set XQSV to remember where we started from (XQY^XQDIC^XQY0)
  I XQUR["[" G:'$D(DUZ("SAV")) ^XQT W !,"Not when testing another's menus!" S %=^XUTL("XQ",$J,"T")+1,^("T")=%,^(%)=XQY_XQPSM_U_XQY0 G M3
  I XQUR="" S:$D(XQMM("B")) XQUR=XQMM("B") K XQMM("B") G:$L(XQUR) D S XQABOLD=1 G M3:^XUTL("XQ",$J,"T")>1,XPRMP^XQ12
  I XQUR=U G M3
- ;$C(34) is ", which is a shortcut to XUCOMMAND
  I $E(XQUR)=$C(34),$L(XQUR)>1 S XQUR=$P(XQUR,$C(34),2) D P^XQ75 G:XQY'>0 NOFIND K XQAA S XQY=+XQY,XQCH=XQUR G JUMP^XQ72
- ;,XQY=-1 G:$L(XQUR) M0 S XQUR=$C(34)
 D I XQUR["^^" G:XQUR="^^" R^XQ73 S XQRB=1 S XQUR=$P(XQUR,U,2,99)
  ;"^^" is GO HOME, return to the Primary Menu, "^^x" is a rubber band
  I XQUR[U S XQUR=$P(XQUR,U,2) G:'$L(XQUR) NOFIND D S^XQ75 G D:'XQY,NOFIND:XQY<0 K XQAA S XQY=+XQY,XQCH=XQUR G:$D(XQRB) ^XQ73 G JUMP^XQ72
@@ -77,12 +67,10 @@ M3 I $P(XQY0,U,15),$D(^DIC(19,+XQY,15)),$L(^(15)) X ^(15) ;W "  ==> XQ+47"
  G M
  ;
 LO I $P(XQY0,U,4)'="A",$P(XQY0,U,14),$D(^DIC(19,+XQY,20)),$L(^(20)) X ^(20) ;W " ==> LO^XQ"
- ;I $D(^XUTL("XQ",$J,"P")) S X=^("P") K ^("P") X ^%ZOSF("PRIORITY")
  Q
  ;
 SETSV ;Record where we are now for posterity in XQSV
- ; ZEXCEPT: XQSV - global variable recording current VistA menu
- ; ZEXCEPT: XQY  - global variable recording current VistA menu
+ ; ZEXCEPT: XQSV,XQY  - global variables recording current VistA menu
  N %
  S %=^XUTL("XQ",$J,^XUTL("XQ",$J,"T"))
  S XQSV=""

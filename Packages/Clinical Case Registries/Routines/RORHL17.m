@@ -1,13 +1,24 @@
 RORHL17 ;HOIFO/BH,SG - HL7 PROBLEM LIST: OBR,OBX ;1/23/06 2:22pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10**;Feb 17, 2006;Build 32
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
  ; #2308         ^AUPNPROB - PROBLEM file #9000011 (controlled)
  ; #2644         $$MOD^GMPLUTL3 (controlled)
- ; #3990         $$CODEC^ICDCODE (supported)
  ; #2056         $$GET1^DIQ
  ; #10103        FMTHL7^XLFDT (supported)
+ ; #5747         $$CODEC^ICDEX (controlled)
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ; --- ROUTINE MODIFICATION LOG ---
+ ; 
+ ;PKG/PATCH   DATE       DEVELOPER   MODIFICATION
+ ;----------- ---------- ----------- ----------------------------------------
+ ;ROR*1.5*19  MAY 2012   K GUPTA     Support for ICD-10 Coding System.
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
  ;
  Q
  ;
@@ -63,7 +74,7 @@ CHECK(DATE) ;
  ;
  ;*****
 LOAD(RORARR,PROBIEN) ;
- N CNT,ERRCNT,IENS,MDATE,NOTE,REC,REC1,SUB3,SUB5,STAT
+ N CNT,ERRCNT,IENS,MDATE,NOTE,REC,REC1,SUB3,SUB5,STAT,RORDIAG
  K RORARR,@RORTMP  S ERRCNT=0
  ;
  S REC=$G(^AUPNPROB(PROBIEN,0))
@@ -78,10 +89,11 @@ LOAD(RORARR,PROBIEN) ;
  S RORARR("OBR","DOO")=$$CHECK($P(REC,U,13))
  S RORARR("OBR","DRES")=$$CHECK($P(REC1,U,7)) ;date resolved
  ;
- S DIAG=$$CODEC^ICDCODE(+$P(REC,U))
- S:DIAG<0 DIAG=""
+ S RORDIAG=$$CODEC^ICDEX(80,+$P(REC,U))
+ S:+RORDIAG<0 RORDIAG=""
+ S:RORDIAG]"" RORDIAG=$$CSNAME^RORHLUT1(80,+$P(REC,U))_":"_RORDIAG
+ S RORARR("OBR","DIAG")=RORDIAG
  ;
- S RORARR("OBR","DIAG")=DIAG
  S RORARR("OBR","DREC")=$$FMTHL7^XLFDT($P(REC1,U,9)) ;date recorded
  S RORARR("OBR","RP")=$P(REC1,U,4)
  S RORARR("OBR","DLM")=$$FMTHL7^XLFDT(MDATE)

@@ -1,5 +1,5 @@
-ECRPCLS ;ALB/JAP - Event Capture Invalid Provider Report ; 13 Aug 97
- ;;2.0; EVENT CAPTURE ;**5,47**;8 May 96
+ECRPCLS ;ALB/JAP - Event Capture Invalid Provider Report ;12/10/12  16:10
+ ;;2.0;EVENT CAPTURE;**5,47,119**;8 May 96;Build 12
  ;
 EN ;entry point from menu option
  W !
@@ -21,6 +21,7 @@ EN ;entry point from menu option
  ;
 START ;queued entry point or continuation
  D PROCESS
+ I $G(ECPTYP)="E" D EXPORT,EXIT Q  ;119 Export to excel
  U IO D PRINT
  I $D(ECGUI) D EXIT Q
  I IO'=IO(0) D ^%ZISC
@@ -180,4 +181,18 @@ EXIT ;common exit point & clean-up
  K ^TMP("ECRPCLS",$J)
  K DIR,DIRUT,DTOUT,DUOUT,ECBEGIN,ECEND,ECSORT,ECLOOP
  K IO("Q"),POP,X,Y,ZTSK,ZTRTN,ZTDESC,ZTSAVE
+ Q
+ ;
+EXPORT ;119 Put data in excel format
+ N X1,X2,CNT,JJ,SS,ECDATA,ECDATE,ECERR,ECIEN,ECPRIEN,ECPRVN,ECPTN,ECSSN
+ S CNT=1
+ S ^TMP($J,"ECRPT",CNT)="PATIENT NAME^SSN^PROCEDURE DATE^PROVIDER NAME^PROVIDER IEN #^ERROR"
+ I '$D(^TMP("ECRPCLS",$J)) Q  ;no data to export
+ S X1="" F  S X1=$O(^TMP("ECRPCLS",$J,X1)) Q:X1=""  D
+ .S:ECSORT="P" ECPTN=X1 S:ECSORT="R" ECPRVN=X1
+ .S X2="" F  S X2=$O(^TMP("ECRPCLS",$J,X1,X2)) Q:X2=""  D
+ ..S:ECSORT="P" ECPRVN=X2 S:ECSORT="R" ECPTN=X2
+ ..S ECIEN="",ECIEN=$O(^TMP("ECRPCLS",$J,X1,X2,ECIEN)),ECDATA=^(ECIEN)
+ ..S ECERR=$P(ECDATA,"^",1),ECPRIEN=$P(ECDATA,"^",2),ECSSN=$P(ECDATA,"^",3),ECDATE=$P(ECDATA,"^",4)
+ ..S CNT=CNT+1,^TMP($J,"ECRPT",CNT)=ECPTN_U_ECSSN_U_ECDATE_U_ECPRVN_U_+$TR(ECPRIEN," ()","")_U_$S(ECERR=-1:"No Person Class",1:"Person class not active on procedure date")
  Q

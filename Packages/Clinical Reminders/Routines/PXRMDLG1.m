@@ -1,30 +1,6 @@
-PXRMDLG1 ; SLC/PJH - Reminder Dialog Edit/Inquiry (overflow) ;03/17/2009
- ;;2.0;CLINICAL REMINDERS;**12**;Feb 04, 2005;Build 73
+PXRMDLG1 ; SLC/PJH - Reminder Dialog Edit/Inquiry (overflow) ;08/20/2012
+ ;;2.0;CLINICAL REMINDERS;**12,26**;Feb 04, 2005;Build 404
  ;
- ;Get selectable codes for a taxonomy
- ;-----------------------------------
-CODES(FILE,TIEN,NLINE,HIST) ;
- N BDATE,CODES,CODE,DATES,DESC,DTEXT,EDATE,STR,SUB,TAB,TEXT
- ;Display text
- D CODES^PXRMDLLB(FILE,TIEN,.CODES)
- I '$D(CODES) Q
- S TEXT=$J("",15)_"Selectable codes:",TAB=18
- S STR=$$LJ^XLFSTR($G(TEXT),60)
- S STR=STR_"Activation Periods"
- S NLINE=NLINE+1
- S ^TMP(NODE,$J,NLINE,0)=STR
- S SUB=""
- F  S SUB=$O(CODES(SUB)) Q:SUB=""  D
- .S CODE=$P(CODES(SUB),U,2),DESC=$P(CODES(SUB),U,3)
- .S BDATE=$$FMTE^XLFDT($P($G(CODE),":",2))
- .I $P($G(CODE),":",3)'="" S EDATE=$$FMTE^XLFDT($P($G(CODE),":",3))
- .S DATE=BDATE I $G(EDATE)'="" S DATE=DATE_"-"_EDATE
- .S STR=$$LJ^XLFSTR($P($G(CODE),":"),8)
- .S STR=STR_$$LJ^XLFSTR(DESC,31)
- .S DTEXT=STR_DATE
- .S NLINE=NLINE+1
- .S ^TMP(NODE,$J,NLINE,0)=$J("",15)_DTEXT
- Q
  ;Either dialog text or P/N text
  ;------------------------------
 TSUB(IEN,VIEW) ;
@@ -68,13 +44,11 @@ PROMPT(IEN,TAB,TEXT,DGRP) ;
  Q
  ;
 FIND(FIEN,SEQ,DIEN,NLINE,NODE) ;
- N FNUM,TIEN,HIST,SUB,CODE,CODES,BDATE,EDATE,DATE,DESC,DTEXT
+ N FNUM,TIEN,HIST,SUB,CODE,CODES,CODESYS,BDATE,EDATE,DATE,DESC,DTEXT
  S HIST=0
  S TIEN=$P(FIEN,";")
- I FIEN["ICPT" S FNUM=81
- I FIEN["ICD9" S FNUM=80
- I FNUM=80 S CODE=$P($G(^ICD9(TIEN,0)),U) D PERIOD^ICDAPIU(CODE,.CODES)
- I FNUM=81 S CODE=$P($$CPT^ICPTCOD(TIEN),U,2) D PERIOD^ICPTAPIU(CODE,.CODES)
+ D BLDCODE^PXRMDTAX("ALL",.CODESYS)
+ D CODES^PXRMDLLB(TIEN,.CODESYS,.CODES)
  S TEXT=$J("",15)_"Selectable codes:",TAB=18
  S STR=$$LJ^XLFSTR($G(TEXT),60)
  S STR=STR_"Activation Periods"
@@ -92,48 +66,6 @@ FIND(FIEN,SEQ,DIEN,NLINE,NODE) ;
  .S DTEXT=STR_DATE
  .S NLINE=NLINE+1
  .S ^TMP(NODE,$J,NLINE,0)=$J("",15)_DTEXT
- S NLINE=NLINE+1
- S ^TMP(NODE,$J,NLINE,0)=$J("",79)
- Q
- ;
-TAX(FIEN,SEQ,DIEN,NLINE,NODE) ;
- N ARRAY,CNT,FILE,HIST,TIEN,TSEQ
- N CNT,DTXT,FNODE,RSUB,TDX,TNAME,TPAR,TPR,TYP
- N TCUR,TDTXT,TDHTXT,THIS,TPTXT,TPHTXT
- S TIEN=$P(FIEN,";") Q:TIEN=""
- S HIST=0,FILE=""
- ;Get associated codes
- ;
- ;Get taxonomy name
- S TNAME=$P($G(^PXD(811.2,TIEN,0)),U,1)
- ;
- ;Check what type of taxonomy codes exist
- S TDX=$$TOK^PXRMDLLA(TIEN,"SDX")
- S TPR=$$TOK^PXRMDLLA(TIEN,"SPR")
- ;
- ;Diagnoses
- I TDX D
- .;Diagnosis texts
- .S TPAR=$G(^PXD(811.2,TIEN,"SDZ"))
- .;Get parameter file node for this finding type
- .S FNODE=$O(^PXRMD(801.45,"B","POV","")) Q:FNODE=""
- .;check if finding parameters are disabled
- .S TCUR=$P($G(^PXRMD(801.45,FNODE,1,1,0)),U,2)
- .S THIS=$P($G(^PXRMD(801.45,FNODE,1,2,0)),U,2)
- .;get category text (diagnoses)
- .S FILE=80
- ;Procedures
- I TPR D
- .;Procedure texts
- .S TPAR=$G(^PXD(811.2,TIEN,"SPZ"))
- .;Get parameter file node for this finding type
- .S FNODE=$O(^PXRMD(801.45,"B","CPT","")) Q:FNODE=""
- .;check if finding parameters are disabled
- .S TCUR=$P($G(^PXRMD(801.45,FNODE,1,1,0)),U,2)
- .S THIS=$P($G(^PXRMD(801.45,FNODE,1,2,0)),U,2)
- .;get category text (procedures)
- .S FILE=81
- I FILE]"" D CODES(FILE,TIEN,.NLINE,HIST)
  S NLINE=NLINE+1
  S ^TMP(NODE,$J,NLINE,0)=$J("",79)
  Q

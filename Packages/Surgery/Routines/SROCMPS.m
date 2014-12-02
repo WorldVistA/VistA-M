@@ -1,5 +1,5 @@
 SROCMPS ;BIR/MAM - ENTER/EDIT OCCURRENCES ;06/17/04  6:55 AM
- ;;3.0; Surgery ;**14,32,38,95,102,116,125,142**;24 Jun 93
+ ;;3.0;Surgery;**14,32,38,95,102,116,125,142,177**;24 Jun 93;Build 89
 INTRA S SRTYPE=10,SRTY="INTRAOPERATIVE",SRTYPDD="130.13A"
 POST I '$D(SRTYPE) S SRTYPE=16,SRTY="POSTOPERATIVE",SRTYPDD="130.22A"
  W @IOF,! S SRSOUT=0 I '$D(SRTN) S SRTN1=1 D ^SROPS I '$D(SRTN) S SRSOUT=1 G END
@@ -25,14 +25,24 @@ NEW ; enter new occurrences
  D HDR^SROAUTL W ! I '$O(^SRF(SRTN,SRTYPE,0)) W !,"There are no "_$S(SRTYPE=10:"Intraoperative",1:"Postoperative")_" Occurrences entered for this case.",!!
  K DIR,X S SRDD=$S(SRTYPE=10:130.13,1:130.22),DIR(0)=SRDD_","_$S(SRTYPE=10:3,1:5)_"O",DIR("A")="Enter a New "_$S(SRTYPE=10:"Intraoperative",1:"Postoperative")_" Occurrence" D ^DIR I $D(DUOUT)!(Y="") S SRSOUT=1 Q
  K SRCOM,SRPOINT S SRPOINT=+Y,SRCOM=$P(Y,"^",2),SRNEW=1 D PRESS
- S SRICD="" I SRCOM["OTHER" D ICD I SRSOUT Q
+ ; JAS - 05/02/13 - PATCH 177 - Rewrote filing logic.
  I '$D(^SRF(SRTN,SRTYPE,0)) S ^SRF(SRTN,SRTYPE,0)="^"_SRTYPDD_"^^"
  K DD,DA,DO,DIC,DINUM S X=SRCOM,DIC(0)="L",DLAYGO=SRDD,DA(1)=SRTN,DIC="^SRF("_SRTN_","_SRTYPE_"," D FILE^DICN S SRENTRY=+Y
- S $P(^SRF(SRTN,SRTYPE,+Y,0),"^",2)=SRPOINT,$P(^SRF(SRTN,SRTYPE,+Y,0),"^",3)=SRICD
+ N SRDA S SRDA=+Y
+ S SRICD="" I SRCOM["OTHER" D ICD I SRSOUT Q
+ S $P(^SRF(SRTN,SRTYPE,SRDA,0),"^",2)=SRPOINT
+ I $D(SRICD) S $P(^SRF(SRTN,SRTYPE,SRDA,0),"^",3)=SRICD
+ K SRDA
+ ; END 177
  Q
-ICD W !!,"Since you have selected one of the 'OTHER' occurrence categories, an ICD",!,"Diagnosis Code should be entered for this occurrence."
- S DIR(0)=$S(SRTY="INTRAOPERATIVE":"130.13,4",1:"130.22,6"),DIR("A")="Select ICD Diagnosis Code" D ^DIR K DIR I $D(DUOUT) Q
- I +Y>0 S SRICD=+Y,SRCOM=$P($$ICDC^SROICD(+Y),"^",3)
+ICD I '$D(SRTN) Q
+ W !!,"Since you have selected one of the 'OTHER' occurrence categories, an ICD",!,"Diagnosis Code should be entered for this occurrence."
+ ; JAS - 05/02/13 - PATCH 177 - Replaced DIR call with DIE
+ N DIE,DA,DR,SRDA
+ S DA(1)=SRTN,DA=+Y,SRDA=+Y,DIE="^SRF("_SRTN_","_SRTYPE_","
+ S DR=$S(SRTY="INTRAOPERATIVE":4,1:6)_"Select ICD Diagnosis Code "_$$ICDSTR^SROICD(SRTN) D ^DIE K DR,DA I $D(DUOUT) Q
+ I +X>0 S SRICD=+X,SRCOM=$P($$ICDC^SROICD(+X),"^",3)
+ ; End 177
  Q
 DESC ; output occurrence category description when doing lookup
  N SRX,SRY,SRZ

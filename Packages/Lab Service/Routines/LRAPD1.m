@@ -1,5 +1,5 @@
 LRAPD1 ;AVAMC/REG/WTY/KLL - AP DATA ENTRY ;9/25/00
- ;;5.2;LAB SERVICE;**41,91,248,259,317,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**41,91,248,259,317,350,422**;Sep 27, 1994;Build 29
  ;
  ;WTY;17-AUG-01;Unwrapped text and add kills for DR string
  ;
@@ -24,10 +24,13 @@ BSP ;Micro Description/Snomed Coding
  S DR(3,63.16)=".01;I '$D(LR(1)) S Y=0;1"
  S DR(3,63.82)=".01;D R^LRAPD;.02"
  Q
-ASP ;Micro Description/ICD9CM Coding
+ASP ;Micro Description/ICDCM Coding
  S LRSOP="A",(LR(7),LR(6))=1
  K DR S DR=".09///^S X=LRWHO;S:'LR(""FS"") Y=1;1.3;1;1.1;"
- S DR=DR_"S:'LR(""DX"") Y=.02;1.4;.02;.03;S:'LRV Y=80;.14;80"
+ S DR=DR_"S:'LR(""DX"") Y=.02;1.4;.02;.03;D F80^LRAPD1;.14;@1;"_$S($G(LRCDSYS)=30:"D EN^LRAPICD(LRDXV)",1:80)
+ Q
+F80 ;
+ I 'LRV S Y="@1"
  Q
 SSP ;Supplementary Report, Surg Path
  S (LRSOP,LRSFLG)="S",(LR(2),LR(7),LR(6))=1
@@ -72,11 +75,11 @@ BCY ;Micro Desc/SNOMED Coding, Cytopath
  S DR(3,63.916)=".01;I '$D(LR(1)) S Y=0;1"
  S DR(3,63.982)=".01;D R^LRAPD;.02"
  Q
-ACY ;Micro Desc/ICD9CM Coding
+ACY ;Micro Desc/ICDCM Coding
  S LRSOP="A"
  S (LR(7),LR(6))=1
  K DR S DR=".09///^S X=LRWHO;1;1.1;S:'LR(""DX"") Y=.021;1.4;"
- S DR=DR_".021//^S X=LR(""TR"");.02;.03;.101;S:'LRV Y=80;.14;80"
+ S DR=DR_".021//^S X=LR(""TR"");.02;.03;.101;D F80^LRAPD1;.14;@1;"_$S($G(LRCDSYS)=30:"D EN^LRAPICD(LRDXV)",1:80)
  Q
 SCY ;Supplementary Report, Cyto
  S LRSFLG="S"
@@ -121,11 +124,11 @@ BEM ;Micro Desc/SNOMED Coding
  S DR(3,63.216)=".01;I '$D(LR(1)) S Y=0;1"
  S DR(3,63.282)=".01;D R^LRAPD;.02"
  Q
-AEM ;Micro Desc/ICD9CM Coding
+AEM ;Micro Desc/ICDCM Coding
  S LRSOP="A"
  S (LR(7),LR(6))=1
  K DR S DR=".09///^S X=LRWHO;1;1.1;S:'LR(""DX"") Y=.021;1.4;"
- S DR=DR_".021//^S X=LR(""TR"");.02;.03;S:'LRV Y=80;.14;80"
+ S DR=DR_".021//^S X=LR(""TR"");.02;.03;D F80^LRAPD1;.14;@1;"_$S($G(LRCDSYS)=30:"D EN^LRAPICD(LRDXV)",1:80)
  Q
 SEM ;Supplementary Report, EM
  S LRSFLG="S"

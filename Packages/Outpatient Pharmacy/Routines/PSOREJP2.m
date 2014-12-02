@@ -1,5 +1,5 @@
 PSOREJP2 ;BIRM/MFR - Third Party Rejects View/Process ;04/28/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,385,403**;DEC 1997;Build 9
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,385,403,421**;DEC 1997;Build 15
  ;Reference to ^PSSLOCK supported by IA #2789
  ;Reference to GETDAT^BPSBUTL supported by IA #4719
  ;Reference to ^PS(55 supported by IA #2228
@@ -58,7 +58,7 @@ SEL ; - Field Selection (Patient/Drug/Rx)
  ;
 EXIT Q
  ;
-CLO      ; - Ignore a REJECT hidden action
+CLO ; - Ignore a REJECT hidden action
  N PSOTRIC,X,PSOET
  ;
  I '$D(FILL) S FILL=$$LSTRFL^PSOBPSU1(RX)
@@ -287,29 +287,8 @@ CALCSD(RX,FIL,COB) ;
  I $G(FIL)="" Q 0
  I '$G(COB) S COB=1
  ;
- ; For the original fill, get the default DOS/Days Supply by getting most recent DOS from 
- ;   the other RXs within the last 120 days for the same patient and drug
- ; Reference to ^PS(55 supported by IA #2228
- S LDOS="",LDS=""
- I FIL=0 D
- . N PAT,DRUG,EXPDT,RX1,DRUG1,FL,X1,X2
- . S PAT=$P($G(^PSRX(RX,0)),U,2),DRUG=$P($G(^PSRX(RX,0)),U,6)
- . I 'PAT!'DRUG Q
- . S EXPDT=$$FMADD^XLFDT(DT,-121)
- . F  S EXPDT=$O(^PS(55,PAT,"P","A",EXPDT)) Q:'EXPDT  D
- .. S RX1="" F  S RX1=$O(^PS(55,PAT,"P","A",EXPDT,RX1)) Q:'RX1  I RX'=RX1 D
- ... S DRUG1=$P($G(^PSRX(+RX1,0)),U,6)
- ... I DRUG'=DRUG1 Q
- ... S FL=$$LSTRFL^PSOBPSU1(RX1),X1="",X2=""
- ... D GETDAT^BPSBUTL(RX1,FL,1,.X1,.X2) ;IA #4719
- ... I X1>LDOS S LDOS=X1,LDS=X2
- ;
- ; For a refill, get the default DOS and Days Supply from the earlier fill number
- I FIL>0 D 
- . N FL
- . S FL=+$O(^PSRX(RX,1,FIL),-1)
- . D GETDAT^BPSBUTL(RX,FL,COB,.LDOS,.LDS) ;IA #4719
- ;
+ D PREVRX(RX,FIL,COB,.LDOS,.LDS,1)   ; get the previous Rx last date of service and last days supply
+ ; Added a parameter at end (1) to identfy that this is not a suspense related call
  ; Prompt for Last DOS
  S DIR(0)="D",DIR("A")="LAST DATE OF SERVICE"
  I LDOS S DIR("B")=$$FMTE^XLFDT($G(LDOS))
@@ -317,8 +296,8 @@ CALCSD(RX,FIL,COB) ;
  I $D(DIRUT) W !,"ACTION NOT TAKEN!" Q 0
  S LDOS=Y W "  ("_$$FMTE^XLFDT($G(LDOS))_")"
  ;
- ; Convert Last Days Supply from NCPDP format to numeric and prompt
- S LDSUP=$E($G(LDS),3,5)
+ ; Prompt for Last Days Supply
+ S LDSUP=LDS
  K DIR
  S DIR(0)="N",DIR("A")="LAST DAYS SUPPLY"
  I LDSUP]"" S DIR("B")=+LDSUP
@@ -330,3 +309,97 @@ CALCSD(RX,FIL,COB) ;
  S LDSUP=Y*.75
  S:LDSUP["." LDSUP=(LDSUP+1)\1
  Q $$FMADD^XLFDT(LDOS,LDSUP)
+ ;
+PREVRX(RX,RFL,COB,LDOS,LDAYS,NONSUS) ; Gather last date of service and last days supply from previous rx
+ ;    input:  RX  - Current RX
+ ;            RFL - Refill
+ ;            COB - Coordination of benefits
+ ;            NONSUS - Not suspense processing
+ ;   output:  LDOS - (pass by reference). Last date of service in fileman format, or ""
+ ;            LDAYS - (pass by reference). Last days supply in numeric format, or ""
+ ;
+ S (LDOS,LDAYS)=""
+ I '$G(RX) G PREVRXQ
+ I $G(RFL)="" G PREVRXQ
+ I '$G(COB) S COB=1
+ S NONSUS=+$G(NONSUS) ; Non-suspense processing flag
+ ;
+ I RFL=0 D
+ . N X,Y
+ . I NONSUS D
+ . . S X=$$LAST120(RX,COB)   ; other Rx 120 day time window
+ . . S LDOS=$P(X,U,1)        ; last date of service (older rx)
+ . . S LDAYS=$P(X,U,2)       ; last days supply (older rx)
+ . . Q
+ . S Y=$$LASTRN(RX,COB)    ; check for a renewed prescription
+ . I $P(Y,U,1)'>LDOS Q     ; if DOS from old Rx is earlier than LDOS, then quit
+ . S LDOS=$P(Y,U,1)        ; last date of service (renewal)
+ . S LDAYS=$P(Y,U,2)       ; last day supply (renewal)
+ . Q
+ ;
+ ; refill - same RX. Get previous fill information
+ I RFL>0 D
+ . N FL
+ . F FL=(RFL-1):-1:0 D  Q:LDOS           ; start with the previous fill (RFL-1)
+ .. I $$STATUS^PSOBPSUT(RX,FL)="" Q      ; no ECME activity - skip
+ .. I $$FIND^PSOREJUT(RX,FL,,,1) Q       ; unresolved reject on worklist - skip
+ .. D GETDAT^BPSBUTL(RX,FL,COB,.LDOS,.LDAYS)    ; DBIA 4719
+ .. Q
+ . Q
+ ;
+PREVRXQ ;
+ Q
+ ;
+LAST120(RX,COB) ;new tag PSO*7*421, cnf
+ ; For the original fill, get the default DOS/Days Supply by getting most recent DOS from
+ ;   the other RXs within a time window for the same patient and drug and dosage
+ ;   Time window - Prescription has an expiration date that is in the future or within the last 120 days
+ ; Reference to ^PS(55 supported by IA #2228
+ ; Input
+ ;   RX - Prescription IEN
+ ;  COB - coordination of benefits indicator (defaults to 1 if not passed)
+ ; Output
+ ;   Last Date of Service ^ Last Days Supply
+ ;
+ N LDOS,LDS,PAT,DRUG,EXPDT,RX1,DRUG1,FL,X1,X2,RX0,QTY,DSUP,DOSAGE,QTY1,DSUP1,DOSAGE1
+ I '$G(COB) S COB=1
+ S LDOS="",LDS=""
+ S RX0=$G(^PSRX(RX,0))  ; main 0 node
+ S PAT=$P(RX0,U,2),DRUG=$P(RX0,U,6),QTY=+$P(RX0,U,7),DSUP=+$P(RX0,U,8),DOSAGE=""
+ I 'PAT!'DRUG Q LDOS_U_LDS
+ I QTY,DSUP S DOSAGE=QTY/DSUP    ; ratio of Qty to Days supply
+ S EXPDT=$$FMADD^XLFDT(DT,-121)
+ F  S EXPDT=$O(^PS(55,PAT,"P","A",EXPDT)) Q:'EXPDT  D
+ . S RX1="" F  S RX1=$O(^PS(55,PAT,"P","A",EXPDT,RX1)) Q:'RX1  I RX'=RX1 D
+ .. S DRUG1=$P($G(^PSRX(+RX1,0)),U,6)
+ .. I DRUG'=DRUG1 Q     ; not the same drug
+ .. S FL=$$LSTRFL^PSOBPSU1(RX1),X1="",X2=""
+ .. S QTY1=$S(FL=0:+$P($G(^PSRX(RX1,0)),U,7),1:+$P($G(^PSRX(RX1,1,FL,0)),U,4))    ; Quantity of other Rx
+ .. S DSUP1=$S(FL=0:+$P($G(^PSRX(RX1,0)),U,8),1:+$P($G(^PSRX(RX1,1,FL,0)),U,10))  ; Days supply of other Rx
+ .. S DOSAGE1=""
+ .. I QTY1,DSUP1 S DOSAGE1=QTY1/DSUP1     ; ratio of Qty to Days Supply for other Rx
+ .. I DOSAGE'=DOSAGE1 Q                   ; dosage must be a match also
+ .. ;
+ .. I $$STATUS^PSOBPSUT(RX1,FL)="" Q      ; no ECME activity - skip
+ .. I $$FIND^PSOREJUT(RX1,FL,,,1) Q       ; unresolved reject on worklist - skip
+ .. D GETDAT^BPSBUTL(RX1,FL,COB,.X1,.X2)  ;IA #4719
+ .. I X1>LDOS S LDOS=X1,LDS=X2
+ Q LDOS_U_LDS
+ ;
+LASTRN(RX,COB) ;new tag PSO*7*421, cnf
+ ; For a renew, get the default DOS and Days Supply from the earlier fill number of the previous prescription
+ N RX1,FL,LDOS,LDS,LSTFIL
+ I '$G(COB) S COB=1
+ S LDOS="",LDS=""
+ S RX1=$$GET1^DIQ(52,RX,39.4,"I")      ; 39.4 - previous order, rxien renewed from
+ I 'RX1 G LASTRNX                      ; not a renewed prescription
+ S LSTFIL=$$LSTRFL^PSOBPSU1(RX1)       ; start with last fill#
+ F FL=LSTFIL:-1:0 D  Q:LDOS            ; loop backwards until we find the last date of service
+ . I $$STATUS^PSOBPSUT(RX1,FL)="" Q    ; no ECME activity - skip
+ . I $$FIND^PSOREJUT(RX1,FL,,,1) Q     ; unresolved reject on worklist - skip
+ . D GETDAT^BPSBUTL(RX1,FL,COB,.LDOS,.LDS)   ; IA #4719
+ . Q
+ ;
+LASTRNX ;
+ Q LDOS_U_LDS
+ ;

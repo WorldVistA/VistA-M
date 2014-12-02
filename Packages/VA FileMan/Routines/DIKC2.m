@@ -1,6 +1,6 @@
-DIKC2 ;SFISC/MKO-CHECK INPUT PARAMETERS TO INDEX^DIKC ;8:25 AM  30 Jul 1999
- ;;22.0;VA FileMan;**11**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIKC2 ;SFISC/MKO-CHECK INPUT PARAMETERS TO INDEX^DIKC ;19DEC2010
+ ;;22.0;VA FileMan;**11,167**;Mar 30, 1999;Build 18
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;CHK:  Check input parameters to INDEX^DIKC
  ;Also set:
  ; DA     = DA array
@@ -17,8 +17,8 @@ CHK ;File is a required input param
  S:'$G(DA) DA=""
  I '$$VDA^DIKCU1(.DA,DIF) D ERR Q
  ;
- ;Check DICTRL parameter
- I $G(DICTRL)]"",'$$VFLAG^DIKCU1(DICTRL,"KSsDWiRIkCTrf",DIF) D ERR
+DICTRL ;Check DICTRL parameter
+ I $G(DICTRL)]"",'$$VFLAG^DIKCU1(DICTRL,"KSsDWiRIkCTrfx",DIF) D ERR
  I $G(DICTRL)["W",'$$VFNUM^DIKCU1(+$P(DICTRL,"W",2),DIF) D ERR
  I $G(DICTRL)["C",$G(DICTRL)["T" D
  . D:DIF["D" ERR^DIKCU2(301,"","","","C and T")

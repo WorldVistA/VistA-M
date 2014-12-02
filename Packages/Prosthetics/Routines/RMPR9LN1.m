@@ -1,5 +1,5 @@
 RMPR9LN1 ;HOIFO/HNC -  FLEX FIELD SORT;9/18/02 11:38
- ;;3.0;PROSTHETICS;**90,75,60,125**;Feb 09, 1996;Build 21
+ ;;3.0;PROSTHETICS;**90,75,60,125,168**;Feb 09, 1996;Build 43
  ;SPS - Patch 75 added DALC section at the end.
 EN(RESULT) ;
  ;RESULT passed to broker in ^TMP($J,
@@ -63,7 +63,7 @@ HLST ;pick list
  ;;8.6;Suspense Requestor
  ;;8.61;Consult Request Service
  ;;8.7;Provisional Diagnosis
- ;;8.8;Suspense ICD9
+ ;;8.8;Suspense ICD
  ;;8.9;Consult Date
  ;;0;*** RETURNED ITEMS ***
  ;;13;Action

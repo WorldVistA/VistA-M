@@ -1,5 +1,5 @@
 IBCC1 ;ALB/MJB - CANCEL THIRD PARTY BILL ;10-OCT-94
- ;;2.0;INTEGRATED BILLING;**19,95,160,159,320,347,377,399,452**;21-MAR-94;Build 26
+ ;;2.0;INTEGRATED BILLING;**19,95,160,159,320,347,377,399,452,458**;21-MAR-94;Build 4
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 RNB ; -- Add a reason not billable to claims tracking
@@ -52,7 +52,7 @@ PRO ; -- find prosthetics on bill
  F  S ZT=$O(^TMP($J,"IBCC1",ZT)) Q:ZT=""  S IBTRE=0 F  S IBTRE=$O(^TMP($J,"IBCC1",ZT,IBTRE)) Q:'IBTRE  S TCNT=TCNT+1
  ;
  ; loop thru all of the associated CT entries and call the RNBEDIT procedure for each one
- S ZT="",CNT=0
+ S ZT="",CNT=0 I $D(IBNOCANC) S IBNOCANC=TCNT
  F  S ZT=$O(^TMP($J,"IBCC1",ZT)) Q:ZT=""!IBQUIT  D  Q:IBQUIT
  . S IBTRE=0 F  S IBTRE=$O(^TMP($J,"IBCC1",ZT,IBTRE)) Q:'IBTRE!IBQUIT  S CNT=CNT+1 D RNBEDIT(IBTRE,ZT,TCNT,CNT)
  . Q
@@ -71,9 +71,10 @@ RNBEDIT(IBTRE,CTTYPE,TCNT,CNT) ; CT entry display and capture RNB data and addit
  Q:IBQUIT
  I '$D(IBTALK) D
  . N CTZ
- . W !!,"Since you have canceled this bill, you may enter a Reason Not Billable and"
- . W !,"an Additional Comment into Claims Tracking."
- . W !,"This will take the care off of the UNBILLED lists."
+ . I '$D(IBNOCANC) D
+ .. W !!,"Since you have canceled this bill, you may enter a Reason Not Billable and"
+ .. W !,"an Additional Comment into Claims Tracking."
+ .. W !,"This will take the care off of the UNBILLED lists."
  . I TCNT=1 S CTZ="Note:  There is 1 associated Claims Tracking entry."
  . E  S CTZ="Note:  There are "_TCNT_" associated Claims Tracking entries."
  . W !!,CTZ

@@ -1,5 +1,5 @@
 ONCOSSA2 ;WASH ISC/SRR-SURVIVAL ANALYSIS CONT-2  ;7/28/92  18:38
- ;;2.11;ONCOLOGY;;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 SETGRPS ;define group variables from ONCOS("G") input variable.
  G:'$D(ONCOS("G")) SET1

@@ -1,5 +1,5 @@
-PXRMSXRM ; SLC/PKR - Main driver for building indexes. ;11/02/2009
- ;;2.0;CLINICAL REMINDERS;**6,17**;Feb 04, 2005;Build 102
+PXRMSXRM ; SLC/PKR - Main driver for building indexes. ;05/10/2014
+ ;;2.0;CLINICAL REMINDERS;**6,17,26**;Feb 04, 2005;Build 404
  ;
  ;==========================================
 ADDERROR(GLOBAL,IDEN,NERROR) ;Add to the error list.
@@ -23,7 +23,7 @@ COMMSG(GLOBAL,START,END,NE,NERROR) ;Send a MailMan message providing
  ;notification that the indexing completed.
  N FROM,MGIEN,MGROUP,TO,XMSUB
  K ^TMP("PXRMXMZ",$J)
- S XMSUB="Index for global "_GLOBAL_" sucessfully built"
+ S XMSUB="Index for global "_GLOBAL_" successfully built"
  S ^TMP("PXRMXMZ",$J,1,0)="Build of Clinical Reminders index for global "_GLOBAL_" completed."
  S ^TMP("PXRMXMZ",$J,2,0)="Build finished at "_$$FMTE^XLFDT($$NOW^XLFDT,"5Z")
  S ^TMP("PXRMXMZ",$J,3,0)=NE_" entries were created."
@@ -83,7 +83,7 @@ ETIME(START,END) ;Calculate and format the elapsed time.
  ;
  ;==========================================
 INDEX ;Driver for building the various indexes.
- N GBL,LIST,ROUTINE,TASKIT
+ N ANS,GBL,LIST,ROUTINE,TASKIT
  S ROUTINE(45)="INDEX^DGPTDDCR" ;DBIA #4521
  S ROUTINE(52)="PSRX^PSOPXRMI"  ;DBIA #4522
  S ROUTINE(55)="PSPA^PSSSXRD"   ;DBIA #4172
@@ -101,6 +101,11 @@ INDEX ;Driver for building the various indexes.
  S ROUTINE(9000010.16)="VPED^PXPXRMI2" ;DBIA #4520
  S ROUTINE(9000010.18)="VCPT^PXPXRMI1" ;DBIA #4519
  S ROUTINE(9000010.23)="VHF^PXPXRMI1"  ;DBIA #4519
+ W !,"Rebuilding an index will stop all evaluation, dialogs,"
+ W !,"reminder order checks, and anything using reminder evaluation!"
+ W !,"Are you sure you want to proceed?"
+ S ANS=$$ASKYN^PXRMEUT("N","Rebuild index and disable reminder evaluation")
+ I 'ANS Q
  ;Get the list
  W !,"Which indexes do you want to (re)build?"
  D SEL(.LIST,.GBL)
@@ -108,6 +113,9 @@ INDEX ;Driver for building the various indexes.
  ;See if this should be tasked.
  S TASKIT=$$ASKTASK
  I TASKIT="" Q
+ ;Disable some PXRM options and protocols.
+ D OPTIONS^PXRMDIEV("index rebuild")
+ D PROTCOLS^PXRMDIEV("index rebuild")
  I TASKIT D
  . W !,"Queue the Clinical Reminders index job."
  . D TASKIT(LIST,.GBL,.ROUTINE)
@@ -122,6 +130,7 @@ RUNNOW(LIST,GBL,ROUTINE) ;Run the routines now.
  . S LI=$P(LIST,",",IND)
  . S RTN=ROUTINE(GBL(LI))
  . D @RTN
+ . D INDEXD^PXRMDIEV(GBL(LI))
  Q
  ;
  ;==========================================
@@ -191,5 +200,6 @@ TASKJOB ;Execute as tasked job. LIST, GBL, and ROUTINE come through
  . S LI=$P(LIST,",",IND)
  . S RTN=ROUTINE(GBL(LI))
  . D @RTN
+ . D INDEXD^PXRMDIEV(GBL(LI))
  Q
  ;

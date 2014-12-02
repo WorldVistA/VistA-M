@@ -1,6 +1,6 @@
 RCCPCML ;WASH-ISC@ALTOONA,PA/LDB-Send CCPC transmission ;12/19/96  4:16 PM
-V ;;4.5;Accounts Receivable;**34,80,93,118,133,140,160,165,187,195,206,223**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**34,80,93,118,133,140,160,165,187,195,206,223,260**;Mar 20, 1995;Build 2
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
 TRAN ;called from RCCPC TRANSMIT option to interactively allow transmission of CCPC mesages
  N %DT,DTOUT,SDT,X,Y,ZTRTN,ZTSAVE,ZTDESC,ZTIO
  I '$D(^XUSEC("RCCPC TRANSMIT",DUZ)) W *7,*7,!,"You do not have access to do this." Q
@@ -25,7 +25,7 @@ RETRAN N DA,DIK,ERROR,RCT,X
  K ^TMP($J)
  S X=0 F  S X=$O(^RCT(349,"B",X)) Q:X=""  I $P(X,".")="PS" S DA=$O(^RCT(349,"B",X,0)),DIK="^RCT(349," D ^DIK
  F X="PA","IS","IT" S RCT=$O(^RCT(349.1,"B",X,0)) I RCT K ^RCT(349.1,+RCT,4)
- N %,ADD,AMT,ERROR,L,LN,M,MSG,MCT,MPT1,MTOT,NM,P,PD,PD0,PSN,PT,PT0,PHCT,RCM,RTY,TAMT,TMSG,SZ
+ N %,ADD,AMT,ERROR,L,LN,M,MSG,MCT,MPT1,MTOT,NM,P,PD,PD0,PSN,PT,PT0,PHCT,RCM,RTY,TAMT,TMSG,SZ,TRDESC
  D DT^DICRW
  S (ERROR,RTY)=0
  S X=$O(^RCT(349.1,"B","PS",0))
@@ -75,7 +75,11 @@ PS ;Build PS,PH,PD segments and messages
  .S $P(^RCPS(349.2,+PT,0),"^",11)=+PSN
  .S PD=0 F  S PD=$O(^RCPS(349.2,+PT,2,PD)) Q:'PD  I $D(^(PD,0)) S PD0=^(0) D
  ..S AMT(0)=$$HEX^RCCPCFN($P(PD0,"^",3))
- ..S LN=LN+1,^TMP($J,"MSG",LN)="PD^"_$$DAT^RCCPCFN(+PD0)_"^"_$P(PD0,"^",2)_"^"_AMT(0)_"^"_$P(PD0,"^",4)_"^|"
+ ..;Replace special characters causing problem (PRCA*260)
+ ..S TRDESC=$P(PD0,"^",2)
+ ..I TRDESC["~" S TRDESC=$TR(TRDESC,"~"," ")  ;Replace tilde
+ ..I TRDESC["|" S TRDESC=$TR(TRDESC,"|"," ")  ;Replace the pipe symbol
+ ..S LN=LN+1,^TMP($J,"MSG",LN)="PD^"_$$DAT^RCCPCFN(+PD0)_"^"_TRDESC_"^"_AMT(0)_"^"_$P(PD0,"^",4)_"^|"
  S LN=LN+1,^TMP($J,"MSG",LN)="~"
  ;
 MAIL ;set up mail message

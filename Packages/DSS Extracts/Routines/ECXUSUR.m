@@ -1,14 +1,21 @@
-ECXUSUR ;ALB/TJL-Surgery Extract Unusual Volume Report ; 9/4/07 8:19am
- ;;3.0;DSS EXTRACTS;**49,71,84,93,105**;July 1, 2003;Build 70
+ECXUSUR ;ALB/TJL-Surgery Extract Unusual Volume Report ;2/20/14  17:01
+ ;;3.0;DSS EXTRACTS;**49,71,84,93,105,148,149**;Dec 22, 1997;Build 27
  ;
 EN ; entry point
- N X,Y,DATE,ECRUN,ECXDESC,ECXSAVE,ECXTL,ECTHLD
+ N X,Y,DATE,ECRUN,ECXDESC,ECXSAVE,ECXTL,ECTHLD,ECXPORT,CNT ;149
  N ECSD,ECSD1,ECSTART,ECED,ECEND,ECXERR,QFLG,ECXFLAG
  S QFLG=0,ECTHLD="",ECXFLAG=$G(FLAG)
  ; get today's date
  D NOW^%DTC S DATE=X,Y=$E(%,1,12) D DD^%DT S ECRUN=$P(Y,"@") K %DT
  I 'ECXFLAG D BEGIN Q:QFLG
  D SELECT Q:QFLG
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I $G(ECXPORT) D  Q  ;149 Section added
+ .K ^TMP($J,"ECXPORT"),^TMP("ECXPORT",$J)
+ .S ^TMP("ECXPORT",$J,0)="NAME^SSN^DAY^CASE #^ENCOUNTER #^PT HOLDING TIME^ANESTHESIA TIME^PATIENT TIME^OPERATION TIME^PACU TIME^OR CLEAN TIME^CANC/ABORT^PRINCIPAL PROCEDURE",CNT=1
+ .D PROCESS
+ .M ^TMP($J,"ECXPORT")=^TMP("ECXPORT",$J) ;149 Move results to TMP for printing
+ .D EXPDISP^ECXUTL1
+ .D AUDIT^ECXKILL K ^TMP("ECXPORT",$J)
  S ECXDESC=$S(ECXFLAG:"SUR Volume Report",1:"Surgery Extract Unusual Volume Report")
  S ECXSAVE("EC*")=""
  W !!,"This report requires 132-column format."
@@ -79,13 +86,15 @@ PROCESS ; entry point for queued report
  Q
  ;
 PRINT ; process temp file and print report
- N PG,QFLG,GTOT,LN,COUNT,VOL,SUB,REC
+ N PG,QFLG,GTOT,LN,COUNT,VOL,SUB,REC,PIECE ;149
  U IO
  I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ Q
  S (PG,QFLG,GTOT,COUNT)=0,$P(LN,"-",132)=""
- D HEADER Q:QFLG
+ I '$G(ECXPORT) D HEADER Q:QFLG  ;149
  S VOL=-999999 F  S VOL=$O(^TMP($J,VOL)) Q:VOL=""!QFLG  D
  .S SUB="" F  S SUB=$O(^TMP($J,VOL,SUB)) Q:SUB=""!QFLG  S REC=^(SUB)  D
+ ..I $G(ECXPORT) F PIECE=1:1:5,7,11,9,10,6,8,14,13 S ^TMP("ECXPORT",$J,CNT)=$G(^TMP("ECXPORT",$J,CNT))_$P(REC,U,PIECE)_$S(PIECE'=13:"^",1:"") S:PIECE=13 CNT=CNT+1 ;149
+ ..I $G(ECXPORT) Q  ;149
  ..S COUNT=COUNT+1
  ..I $Y+3>IOSL D HEADER Q:QFLG
  ..W !,?1,$P(REC,U),?7,$P(REC,U,2),?18,$P(REC,U,3),?27,$P(REC,U,4)
@@ -94,6 +103,7 @@ PRINT ; process temp file and print report
  ..W ?86,$$RJ^XLFSTR($P(REC,U,10),4),?93,$$RJ^XLFSTR($P(REC,U,6),4)
  ..W ?103,$$RJ^XLFSTR($P(REC,U,8),4),?113,$P(REC,U,14)
  ..W ?117,$P(REC,U,13)
+ I $G(ECXPORT) Q  ;149
  Q:QFLG
  I COUNT=0 W !!,?8,$S(ECXFLAG=1:"No surgery volumes to report for this extract",1:"No unusual volumes to report for this extract")
 CLOSE ;

@@ -1,6 +1,6 @@
 IBARXEPL ;ALB/AAS - PRINT EXEMPTION LETTER - 28-APR-93
- ;;2.0;INTEGRATED BILLING;**34,54,190,206**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**34,54,190,206,385**;21-MAR-94;Build 35
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % I '$D(DT) D DT^DICRW
  I '$D(IOF) D HOME^%ZIS
@@ -52,7 +52,7 @@ DELT ; -- delete search template
  S IBTEMP=""
  Q
  ;
-SCR ; -- don't send letters to deceased patients, non-vets
+SCR ; -- don't send letters to deceased patients, non-vets, vfa exempt
  ;    called by print template IB DO NOT USE
  S IBOK=0 N IBX
  I +$G(^DPT(D0,.35)) G SCRQ ; deceased
@@ -94,7 +94,8 @@ ONE ; -- print one letter
  W !?(IOM-28),"In Reply Refer To:" S IBCNT=IBCNT+1
  W !?(IOM-28),$E($P(IBDATA,"^")),$P($P(IBDATA,"^",2),"-",3),!
  S IBCNT=IBCNT+2
- S IBX=$$RXST^IBARXEU(DFN,DT) I $P($G(^IBE(354.6,IBLET,0)),"^",3)'=2,$P(IBX,"^",3)=120 S Y=$$PLUS^IBARXEU0($P(IBX,"^",5)) W ?(IOM-28),"Renewal Date: " D DT^DIQ
+ ; don't print renewal date if they are VFA OK
+ S IBX=$$RXST^IBARXEU(DFN,DT) I $P($G(^IBE(354.6,IBLET,0)),"^",3)'=2,$P(IBX,"^",3)=120 S Y=$$PLUS^IBARXEU0($P(IBX,"^",5)) I '$$VFAOK^IBARXEU($$LST^IBARXEU0(DFN,$P(IBX,"^",5))) W ?(IOM-28),"Renewal Date: " D DT^DIQ
  ;
  ; -- print pt. name and address
  F IBCNT=IBCNT:1:(IBALIN-1) W !

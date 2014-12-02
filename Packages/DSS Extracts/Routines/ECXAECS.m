@@ -1,8 +1,8 @@
-ECXAECS ;ALB/JAP - ECS Extract Audit Report ;Oct 15, 1997
- ;;3.0;DSS EXTRACTS;**8,33,123**;Dec 22, 1997;Build 8
+ECXAECS ;ALB/JAP - ECS Extract Audit Report ;3/13/13  11:42
+ ;;3.0;DSS EXTRACTS;**8,33,123,144**;Dec 22, 1997;Build 9
  ;
 EN ;entry point for ECS extract audit report
- N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,CNT
+ N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,COUNT,CNT,ECXPORT ;144
  S ECXERR=0
  ;ecxaud=0 for 'extract' audit
  S ECXHEAD="ECS",ECXAUD=0
@@ -11,9 +11,9 @@ EN ;entry point for ECS extract audit report
  D AUDIT^ECXUTLA(ECXHEAD,.ECXERR,.ECXARRAY,ECXAUD)
  Q:ECXERR
  ;determine if facility is multidivisional for event capture
- S CNT=0,ECXD="" F  S ECXD=$O(^DIC(4,"LOC",ECXD)) Q:ECXD=""  S CNT=CNT+1
+ S COUNT=0,ECXD="" F  S ECXD=$O(^DIC(4,"LOC",ECXD)) Q:ECXD=""  S COUNT=COUNT+1 ;144
  S ECXALL=1
- I CNT>1 D
+ I COUNT>1 D  ;144
  .W !!
  .S DIR(0)="Y",DIR("A")="Do you want the "_ECXHEAD_" extract audit report for all Locations"
  .S DIR("B")="NO" D ^DIR K DIR
@@ -33,6 +33,13 @@ EN ;entry point for ECS extract audit report
  W !
  S ECXPGM="PROCESS^ECXAECS",ECXDESC="ECS Extract Audit Report"
  S ECXSAVE("ECXHEAD")="",ECXSAVE("ECXALL")="",ECXSAVE("ECXDIV(")="",ECXSAVE("ECXARRAY(")=""
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I ECXPORT D  Q  ;144
+ .K ^TMP($J,"ECXPORT") ;144
+ .S ^TMP($J,"ECXPORT",0)="LOCATION^EXTRACT LOG #^DSS UNIT^CATEGORY^PROCEDURE^VOLUME" ;144
+ .S CNT=1 ;144
+ .D PROCESS ;144
+ .D EXPDISP^ECXUTL1 ;144
+ .D ^ECXKILL ;144
  W !
  D DEVICE^ECXUTLA(ECXPGM,ECXDESC,.ECXSAVE)
  I ECXSAVE("POP")=1 D  Q
@@ -47,9 +54,9 @@ EN ;entry point for ECS extract audit report
  Q
  ;
 PROCESS ;process data in file #727.815
- N X,Y,W,DATA,DATE,DIV,IEN,UNIT,UNITN,CAT,CATN,VOL,PROC,PROCN,PIEN,PRI,PRXF,PRSYN,QQFLG,CNT
+ N X,Y,W,DATA,DATE,DIV,IEN,UNIT,UNITN,CAT,CATN,VOL,PROC,PROCN,PIEN,PRI,PRXF,PRSYN,QQFLG,COUNT ;144
  K ^TMP($J,"ECXAUD")
- S (CNT,QQFLG)=0
+ S (COUNT,QQFLG)=0 ;144
  S ECXEXT=ECXARRAY("EXTRACT"),ECXDEF=ECXARRAY("DEF")
  S X=ECXARRAY("START") D ^%DT S ECXSTART=Y S X=ECXARRAY("END") D ^%DT S ECXEND=Y
  ;get run date in external format
@@ -67,8 +74,8 @@ PROCESS ;process data in file #727.815
  ..S CAT=+$P(DATA,U,11),CATN="" S:+CAT CATN=$P($G(^EC(726,CAT,0)),U,1) S:CATN="" CATN="Unknown"
  ..S VOL=$P(DATA,U,13) S:VOL="" VOL=1 S PROC=$E($P(DATA,U,12),1,5)
  ..I '$D(^TMP($J,"ECXAUD",DIV,UNITN,CATN,PROC)) S ^TMP($J,"ECXAUD",DIV,UNITN,CATN,PROC)=0
- ..S ^(PROC)=^TMP($J,"ECXAUD",DIV,UNITN,CATN,PROC)+VOL,CNT=CNT+1
- ..I $D(ZTQUEUED),(CNT>499),'(CNT#500),$$S^%ZTLOAD S QQFLG=1,ZTSTOP=1 K ZTREQ Q
+ ..S ^(PROC)=^TMP($J,"ECXAUD",DIV,UNITN,CATN,PROC)+VOL,COUNT=COUNT+1 ;144
+ ..I $D(ZTQUEUED),(COUNT>499),'(COUNT#500),$$S^%ZTLOAD S QQFLG=1,ZTSTOP=1 K ZTREQ Q  ;144
  ..;get the procedure name and setup in global array
  ..S PIEN=0,PROCN="" S:PROC'?5N PIEN=$O(^EC(725,"E",PROC,""))
  ..;procedures from file #725
@@ -87,6 +94,7 @@ PROCESS ;process data in file #727.815
  ..S ^TMP($J,"ECXPROC",PROC)=PROCN
  ;print the report
  D PRINT
+ I $G(ECXPORT) Q  ;144 Stop processing as ECXKILL kills ^TMP($J
  D AUDIT^ECXKILL
  Q
  ;
@@ -96,30 +104,35 @@ PRINT ;print event capture data by location/division and dss unit order
  I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ Q
  S (QFLG,PG)=0,$P(LN,"-",80)="",DIV=""
  F  S DIV=$O(ECXDIV(DIV)) Q:DIV=""  D  Q:QFLG
- .S DIVNM=$P(ECXDIV(DIV),U,2)_" ("_DIV_")",GTOT=0 D HEADER
+ .S DIVNM=$P(ECXDIV(DIV),U,2)_" ("_DIV_")",GTOT=0 I '$G(ECXPORT) D HEADER  ;144
  .I '$D(^TMP($J,"ECXAUD",DIV)) D  Q
+ ..I $G(ECXPORT) Q  ;144 Don't print if exporting
  ..W !!,?5,"No data available for this Event Capture Location.",!!
  .I $D(^TMP($J,"ECXAUD",DIV)) S UNITN="" F  S UNITN=$O(^TMP($J,"ECXAUD",DIV,UNITN)) Q:UNITN=""  D  Q:QFLG
  ..S STOT=0,UNIT=UNIT(UNITN),CATN=""
  ..;write the unit name
- ..D:($Y+3>IOSL) HEADER Q:QFLG  W !,UNITN_" ("_UNIT_")",!
+ ..I '$G(ECXPORT) D:($Y+3>IOSL) HEADER Q:QFLG  W !,UNITN_" ("_UNIT_")",! ;144 Don't print if exporting
  ..;initialize the proc array and set totals in array
  ..F  S CATN=$O(^TMP($J,"ECXAUD",DIV,UNITN,CATN)) Q:CATN=""  K PROC S PROC="" D  Q:QFLG
  ...;write the category name
- ...D:($Y+3>IOSL) HEADER Q:QFLG  W !,?5,$E(CATN,1,25)
+ ...I '$G(ECXPORT) D:($Y+3>IOSL) HEADER Q:QFLG  W !,?5,$E(CATN,1,25) ;144 Don't print if exporting
  ...F  S PROC=$O(^TMP($J,"ECXAUD",DIV,UNITN,CATN,PROC)) Q:PROC=""  S TOT=^(PROC) D
  ....S STOT=STOT+TOT,GTOT=GTOT+TOT,PROCN=""
  ....I $D(^TMP($J,"ECXPROC",PROC)) S PROCN=^(PROC)
  ....S PROC($$LJ^XLFSTR(PROC,6," ")_" "_PROCN)=TOT
  ...S PN="" F  S PN=$O(PROC(PN)) Q:PN=""  S TOT=PROC(PN) D  Q:QFLG
+ ....I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=DIVNM_U_ECXARRAY("EXTRACT")_U_UNITN_" ("_UNIT_")"_U_CATN_U_PN_U_TOT,CNT=CNT+1 Q  ;144
  ....;write procedure and total
  ....W ?35,$E(PN,1,30),?68,$$RJ^XLFSTR(TOT,5," "),!
+ ..I $G(ECXPORT) Q  ;144 Stop processing if exporting
  ..;write the unit subtotal
  ..D:($Y+3>IOSL) HEADER Q:QFLG  W !,?5,$E(LN,1,74)
  ..W !,"Total Volume for Unit "_UNITN_" ("_UNIT_"):",?68,$$RJ^XLFSTR(STOT,5," "),!
+ .I $G(ECXPORT) Q  ;144 Stop processing if exporting
  .;write the division grandtotal
  .D:($Y+3>IOSL) HEADER Q:QFLG  W !!,"Grand Total for Location "_DIVNM_":",?68,$$RJ^XLFSTR(GTOT,5," ")
  ;print the audit descriptive narrative
+ I $G(ECXPORT) Q  ;144 Stop processing if exporting
  I $E(IOST)'="C" D
  .W @IOF S PG=PG+1
  .W !,ECXARRAY("TYPE")_" ("_ECXHEAD_") Extract Audit Report"

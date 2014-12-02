@@ -1,5 +1,5 @@
 XMLSWP ;(WASH ISC)/CAP-Sliding Window Protocol ;04/17/2002  10:58
- ;;8.0;MailMan;;Jun 28, 2002
+ ;;8.0;MailMan;**45**;Jun 28, 2002;Build 8
 SEND ;
  S X=1 G I^XMLSWP0
 1 ;I $L(XMSG)>245 G E
@@ -43,9 +43,9 @@ U S B(1)=B(1)+1,D="Time-out ["_B(1)_"]" X P("I") I B(1)<$S(G:4,1:2) G:'$O(W(0)) 
 CHK N X S X=Q
 SUM ;Calculate S=checksum
  I $D(XMOS(0)) X XMOS(0) S S=XMSUM Q
- I XMOS["VAX DSM" S S=$ZC(%LPC,X)+$L(X)*$L(X) Q
- I XMOS["DSM" S S=$ZC(LPC,X)+$L(X)*$L(X) Q
- I XMOS["M/11"!(XMOS["M/VX") S S=$ZC(X)+$L(X)*$L(X) Q
+ I XMOS["VAX DSM" X "S S=$ZC(%LPC,X)+$L(X)*$L(X)" Q
+ I XMOS["DSM" X "S S=$ZC(LPC,X)+$L(X)*$L(X)" Q
+ I XMOS["M/11"!(XMOS["M/VX") X "S S=$ZC(X)+$L(X)*$L(X)" Q
  G ZSUM^XMLSWP0
  ;RE-SYNCH Sender
 G S (B,XMLSWPQ,M)=0 I M,'$O(W(0)) G W

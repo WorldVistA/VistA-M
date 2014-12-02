@@ -1,6 +1,12 @@
-LEXDDT2 ; ISL Display Defaults - Concatenate Text  ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDDT2 ;ISL/KER - Display Defaults - Concatenate Text ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    None
+ ;               
 CONCAT ; Concatenation of Data Elements
  N LEXTI,LEXTL,LEXTP
 PHRASE ; Get Phrase and Parse into Words

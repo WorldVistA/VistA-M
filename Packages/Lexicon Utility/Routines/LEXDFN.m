@@ -1,6 +1,14 @@
-LEXDFN ; ISL Default Names                        ; 10-15-97
- ;;2.0;LEXICON UTILITY;**6**;Sep 23, 1996
- ;
+LEXDFN ;ISL/KER - Default Names ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**6,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.31)        N/A
+ ;    ^LEX(757.41)        N/A
+ ;               
+ ; External References
+ ;    $$LOW^XLFSTR        ICR  10103
+ ;    $$UP^XLFSTR         ICR  10103
+ ;               
 APPN(X) ; Application Name
  N LEXT,LEXA S (LEXA,LEXT)="",X=$G(X)
  I +X>0,$D(^LEXT(757.2,+X,0)) D

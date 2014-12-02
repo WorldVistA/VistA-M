@@ -1,5 +1,5 @@
-EDPX ;SLC/KCM - Common Utilities ;4/25/12 12:51pm
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPX ;SLC/KCM - Common Utilities ;6/8/12 12:09pm
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;May 2, 2012;Build 200
  ;
 ESC(X) ; Escape for XML transmission
  ; Q $ZCONVERT(X,"O","HTML")  ; uncomment for fastest performance on Cache
@@ -37,7 +37,8 @@ XMLS(TAG,DATA,LBL) ; Return XML node as <TAG data="9" label="XXX" />
 XMLA(TAG,ATT,END) ; Return XML node as <TAG att1="a" att2="b"... />
  N NODE S NODE="<"_TAG_" "
  N X
- S X="" F  S X=$O(ATT(X)) Q:X=""  I $L(ATT(X)) S NODE=NODE_X_"="""_$$ESC(ATT(X))_""" "
+ ;S X="" F  S X=$O(ATT(X)) Q:X=""  I $L(ATT(X)) S NODE=NODE_X_"="""_$$ESC(ATT(X))_""" "
+ S X="" F  S X=$O(ATT(X)) Q:X=""  S NODE=NODE_X_"="""_$$ESC(ATT(X))_""" "
  S NODE=NODE_$G(END,"/")_">"
  Q NODE
  ;
@@ -51,11 +52,18 @@ XML(X) ; Add a line of XML to be returned
  S EDPXML=$G(EDPXML)+1
  S EDPXML(EDPXML)=X
  Q
+XMLG(X,EDPCNT,EDPXML) ; Add line of XML to global array
+ S EDPCNT=$G(EDPCNT)+1
+ S @EDPXML@(EDPCNT)=X
+ Q
 CODE(X) ; Return internal value for a code
  Q $O(^EDPB(233.1,"B",X,0))
  ;
 SAVERR(TYP,ERR) ; Output a save error
  D XML^EDPX("<save status='"_TYP_"' >"_ERR_"</save>")
+ Q
+SAVERRG(EDPXML,TYP,ERR) ;
+ D XMLG^EDPX("<save status='"_TYP_"' >"_ERR_"</save>",EDPCNT,EDPXML)
  Q
 MSG(MSG) ; Write out error message
  I MSG=1       S X="some error"
@@ -77,4 +85,5 @@ MSG(MSG) ; Write out error message
  I MSG=2300016 S X="The selected room/area is now occupied."
  I MSG=2300017 S X="Report too big, unable to task."
  I MSG=2300018 S X="Required parameters missing or invalid."
+ I MSG=2300019 S X="Default bed missing or invalid."
  Q $$ESC^EDPX(X)

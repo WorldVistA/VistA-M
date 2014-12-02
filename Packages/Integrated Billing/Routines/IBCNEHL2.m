@@ -1,5 +1,5 @@
 IBCNEHL2 ;DAOU/ALA - HL7 Process Incoming RPI Msgs (cont.) ;26-JUN-2002  ; Compiled December 16, 2004 15:29:37
- ;;2.0;INTEGRATED BILLING;**300,345,416,438**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**300,345,416,438,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
@@ -63,7 +63,7 @@ CTD(ERROR,IBSEG,RIEN) ; Process the CTD seg
  I 'FFL F II=2,4,6 I $P(DATA,U,II)="" S FLD=II Q
  ;
  S IENS=$$IENS^DILF(.DA)
- S RSUPDT(365.03,IENS,".0"_(FLD+1))=CTNUM
+ S RSUPDT(365.03,IENS,(FLD/2))=CTNUM   ;stuffs the communication # in the correct field ;IB*2.0*497
  S RSUPDT(365.03,IENS,".0"_FLD)=CTQIEN
  D FILE^DIE("I","RSUPDT","ERROR")
 CTDX ;
@@ -109,7 +109,7 @@ IN1(ERROR,IBSEG,RIEN,SUBID) ;  Process the IN1 Insurance seg
  S PAYRID=$G(IBSEG(4)),PYRNM=$G(IBSEG(5))
  S GNAME=$$DECHL7($G(IBSEG(10))),GNUMB=$$DECHL7($G(IBSEG(9)))
  ; make sure group number is not longer than 17 chars, send mailman notification
- ; if trucncation is necessary
+ ; if truncation is necessary
  I $L(GNUMB)>17 D TRNCWARN^IBCNEHLU(GNUMB,$G(TRACE)) S GNUMB=$E(GNUMB,1,17)
  S EFFDT=$G(IBSEG(13)),EXPDT=$G(IBSEG(14))
  S COB=$G(IBSEG(23)),SRVDT=$G(IBSEG(27))
@@ -121,14 +121,19 @@ IN1(ERROR,IBSEG,RIEN,SUBID) ;  Process the IN1 Insurance seg
  S EFFDT=$$FMDATE^HLFNC(EFFDT),EXPDT=$$FMDATE^HLFNC(EXPDT)
  S SRVDT=$$FMDATE^HLFNC(SRVDT),PYLEDT=$$FMDATE^HLFNC(PYLEDT)
  ;
- S RSUPDT(365,RIEN_",",1.05)=$S($G(SUBID)'="":SUBID,1:MBRID)
- S RSUPDT(365,RIEN_",",1.07)=GNUMB
- S RSUPDT(365,RIEN_",",1.06)=GNAME,RSUPDT(365,RIEN_",",1.11)=EFFDT
+ S RSUPDT(365,RIEN_",",1.11)=EFFDT
  S RSUPDT(365,RIEN_",",1.12)=EXPDT,RSUPDT(365,RIEN_",",1.1)=SRVDT
  S RSUPDT(365,RIEN_",",1.19)=PYLEDT
  S RSUPDT(365,RIEN_",",1.13)=COB,RSUPDT(365,RIEN_",",1.18)=MBRID
- S RSUPDT(365,RIEN_",",8.01)=RELTN
- D FILE^DIE("I","RSUPDT","ERROR")
+ D FILE^DIE("","RSUPDT","ERROR") Q:$D(ERROR)  ; data needs to filed as internal values
+ ; IB*2*497 - add the following lines
+ ; data at 365, 8.01,13.02,14.01, 14.02 needs to be validated before it can be filed; pass the 'E' flag to DBS filer
+ K RSUPDT
+ S RSUPDT(365,RIEN_",",8.01)=RELTN D CODECHK^IBCNEHLU(.RSUPDT)  ; IB*2*497  check for new coded values
+ S RSUPDT(365,RIEN_",",13.02)=$S($G(SUBID)'="":SUBID,1:MBRID)
+ S RSUPDT(365,RIEN_",",14.01)=GNAME
+ S RSUPDT(365,RIEN_",",14.02)=GNUMB
+ D FILE^DIE("E","RSUPDT","ERROR")
 IN1X ;
  Q
  ;
@@ -157,7 +162,7 @@ ZEB(EBDA,ERROR,IBSEG,RIEN) ;  Process the ZEB Elig/Benefit seg
  ; Output:
  ; EBDA,ERROR
  ;
- N D1,DA,DIC,DILN,DISYS,DLAYGO,EBN,IENS,II,MSG,PRMODS,RSUPDT,STC,STCSTR,SUBJECT,X,XMY,Y,MA
+ N D1,DA,DIC,DILN,DISYS,DLAYGO,EBN,IENS,II,MSG,PRMODS,RSUPDT,STC,STCSTR,SUBJECT,X,XMY,Y,MA,CODES
  ;
  ; Set a default eIV Status value of # ("V")
  I IIVSTAT="" D
@@ -197,15 +202,17 @@ ZEB(EBDA,ERROR,IBSEG,RIEN) ;  Process the ZEB Elig/Benefit seg
  S RSUPDT(365.02,IENS,"1.02")=$G(IBSEG(16)) ; Procedure code
  ; Procedure modifiers
  S PRMODS=$G(IBSEG(17)) F II=1:1:4 S RSUPDT(365.02,IENS,"1.0"_(II+2))=$TR($P(PRMODS,HLREP,II),HL("ECH"))
+ D CODECHK^IBCNEHLU(.RSUPDT)  ; IB*2*497  check for new coded values
  D FILE^DIE("ET","RSUPDT","ERROR") I $D(ERROR) Q
  ; service type codes
  K RSUPDT S STCSTR=$P($G(IBSEG(5)),HLCMP)
- F II=1:1 S STC=$P(STCSTR,HLREP,II) Q:STC=""  S RSUPDT(365.292,"+"_II_","_IENS,".01")=STC
+ F II=1:1 S STC=$P(STCSTR,HLREP,II) Q:STC=""  S RSUPDT(365.292,"+"_II_","_IENS,".01")=STC,CODES(365.292,II,.01)=STC  ; IB*2*497 set up CODES array
+ D CODECHK^IBCNEHLU(.CODES)  ;IB*2*497
  I $D(RSUPDT) D UPDATE^DIE("E","RSUPDT",,"ERROR")
 ZEBX ;
  Q
  ;
-NTE(EBDA,IBSEG,RIEN) ; Process NTE Notes seg
+EBNTE(EBDA,IBSEG,RIEN) ; Process NTE Benefit related entity Notes segment (in Eligibility/Benefit group)
  ;
  ; Input:
  ; EBDA,IBSEG,RIEN
@@ -214,12 +221,12 @@ NTE(EBDA,IBSEG,RIEN) ; Process NTE Notes seg
  ; ERROR
  ;
  N DA,IENS,NOTES
- I $G(EBDA)="" Q
+ I $G(EBDA)="" G EBNTEX
  S NOTES(1)=$$DECHL7($G(IBSEG(4)))
  S DA(1)=RIEN,DA=EBDA
  S IENS=$$IENS^DILF(.DA)
  D WP^DIE(365.02,IENS,2,"A","NOTES","ERROR")
-NTEX ;
+EBNTEX ;
  Q
  ;
 DECHL7(STR,HLSEP,ECHARS) ; Decode HL7 escape seqs in data fields

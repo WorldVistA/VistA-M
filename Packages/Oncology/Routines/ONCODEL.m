@@ -1,5 +1,5 @@
 ONCODEL ;Hines OIFO/GWB - EXTENSION and LYMPH NODES ;8/12/94
- ;;2.11;ONCOLOGY;**7,15,19,22,27,28,30,36,47,49**;Mar 07, 1995;Build 38
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 IN ;EXTENSION (165.5,30) and LYMPH NODES (165.5,31) INPUT TRANSFORM
  S ONCOT=$P($G(^ONCO(165.5,D0,2)),U,1)
@@ -73,5 +73,6 @@ GETLIST(ONCOIX,CODTYP,ONCOT,OUTFLAG) ;CODTYP (E=extension, L=lymph node)
  ..I '$G(OP),ONCOT=67619,$G(ONCFLD)=30.1,ED=3 S OP=250 ;Prostate Gland--Pathologic Extension
  ..I '$G(OP) S OP=$P($G(^ONCO(164,ONCOT,CODTYP)),U,ED) ;Topography
  ..I '$G(OP) S OP=$P($G(^ONCO(164.2,SCOD,CODTYP)),U,ED) ;Other site-groups
+ ..I '$G(OP),SCOD=77,HST=97613 S OP=$S(CODTYP="E":84,CODTYP="L":85,1:0) ;Waldenstrom macroglobulinemia
  I $D(ONCOER) Q ONCOER
  E  Q $S($G(OUTFLAG)'="OUT":OP,1:OP_" "_$P(^ONCO(164.5,OP,0),U,5)_" "_ED_" "_$P(^(0),U))

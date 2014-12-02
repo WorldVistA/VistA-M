@@ -1,5 +1,5 @@
 BPSECA1 ;BHAM ISC/FCS/DRS/VA/DLF - Assemble formatted claim ;05/14/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;----------------------------------------------------------------------
  ; Assemble ASCII formatted claim submission record
@@ -26,6 +26,9 @@ BPSECA1 ;BHAM ISC/FCS/DRS/VA/DLF - Assemble formatted claim ;05/14/2004
  ; NCPDP D.0 changes
  ;    D.0 added 3 new request segments (additional documentation,
  ;                                      facility, narrative)
+ ; BPS*1*15
+ ;    D.1 - D.9 Introduces Alphanumeric NCPDP numbers
+ ;    and new Purchase and Provider segment
  ;
 ASCII(CLAIMIEN,MSG) ;EP - from BPSOSQG
  N IEN,RECORD,BPS,UERETVAL,DET51,WP
@@ -56,9 +59,9 @@ ASCII(CLAIMIEN,MSG) ;EP - from BPSOSQG
  D XLOOP^BPSOSH2("100^110^120",.IEN,.BPS,.RECORD)
  ;
  ; Set list of repeating claim segments
- S DET51="130^140^150^160^170^180^190^200^210^220^230^240^250^260"
+ S DET51="130^140^150^160^170^180^190^200^210^220^230^240^250^260^270^280" ; BPS*1*15 new 270 and 280 segment nodes
  ;
- ; Loop through prescription multiple and get create repeation segments
+ ; Loop through prescription multiple and get create repeating segments
  S IEN(9002313.0201)=0
  F  S IEN(9002313.0201)=$O(^BPSC(IEN(9002313.02),400,IEN(9002313.0201))) Q:'IEN(9002313.0201)  D
  . ;

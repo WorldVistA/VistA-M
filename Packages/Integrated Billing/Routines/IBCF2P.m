@@ -1,5 +1,5 @@
 IBCF2P ;ALB/ARH - PRINT HCFA 1500 12-90 FORM ; 17-JUL-93
- ;;2.0;INTEGRATED BILLING;**8,52,133**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**8,52,133,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 PRINT ; print the form, IBFLD required
@@ -21,26 +21,32 @@ LINE20 ; other insured's policy number; condition related to employment?; insure
  W !!,$E(IBFLD("9A"),1,28),?($S(+IBFLD("10A"):34,1:40)),"X"
  W ?53,IBFLD("11AD") I IBFLD("11AX")'="" W ?($S(IBFLD("11AX")="M":67,1:74)),"X"
 LINE22 ; other insured's DOB, sex; patient auto accident & place; insured's employer
- W !!,?1,IBFLD("9BD") I IBFLD("9BX")'="" W ?($S(IBFLD("9BX")="M":17,1:23)),"X"
+ W !!  ;,?1,IBFLD("9BD") I IBFLD("9BX")'="" W ?($S(IBFLD("9BX")="M":17,1:23)),"X"  *488*
  W ?($S(+IBFLD("10B"):34,1:40)),"X",?44,IBFLD("10BS"),?49,$E(IBFLD("11B"),1,28)
 LINE24 ; other insured's employer; patient other accident; insured's insurance plan name
- W !!,$E(IBFLD("9C"),1,28),?($S(+IBFLD("10C"):34,1:40)),"X",?49,$E(IBFLD("11C"),1,28)
-LINE26 ; other insured's plan name; is there another benefit plan
- W !!,$E(IBFLD("9D"),1,28),?($S(+IBFLD("11D"):51,1:56)),"X"
+ ;remove box 9c *488*
+ ;W !!,$E(IBFLD("9C"),1,28),?($S(+IBFLD("10C"):34,1:40)),"X",?49,$E(IBFLD("11C"),1,28)
+ W !!,?($S(+IBFLD("10C"):34,1:40)),"X",?49,$E(IBFLD("11C"),1,28)
+LINE26 ; other insured's plan name; is there another benefit plan  *488* add box 10d
+ W !!,$E(IBFLD("9D"),1,28),?30,IBFLD("10D"),?($S(+IBFLD("11D"):51,1:56)),"X"
 LINE29 ; patient's signature; insured's signature (use PL 99-272, SECTION 1729 TITLE 38)
  W !!!,?3,IBFLD(12),?56,IBFLD(13)
-LINE32 ; date of current illness; date of similar illness; dates unable to work
- W !!!,?1,IBFLD(14),?36,IBFLD(15),?53,IBFLD("16A"),?67,IBFLD("16B")
+LINE32 ; date of current illness; date of similar illness; dates unable to work  *488*
+ W !!!,?1,IBFLD(14),?14,IBFLD(14.1),?26,IBFLD(15.1),?36,IBFLD(15),?53,IBFLD("16A"),?67,IBFLD("16B")
 LINE34 ; name of referring physician; ID# referring physician; hospitalization dates related to services
  W !!,?53,IBFLD("18A"),?67,IBFLD("18B")
 LINE35 ; "not for SC" note line 1
  W !,?14,$E(IBFLD(19),1,31)_"-"
 LINE36 ; "not for SC" note line 2; outside lab (now defaults to "no" in IBEHCFA)
- W !,$E(IBFLD(19),32,999),?56,"X"
-LINE38 ; diagnosis codes 1 and 2; field 22 (MEDICAID) left blank
- W !!,?2,IBFLD(21,1),?30,IBFLD(21,3)
-LINE40 ; diagnosis codes 3 and 4; field 23 (prior authorization #)
- W !!,?2,IBFLD(21,2),?30,IBFLD(21,4),?49,IBFLD(23)
+ W !,$E(IBFLD(19),32,83),?56,"X"
+LINE37 ; diagnosis code indicator  *488*
+ W !,?40,IBFLD("21A")
+LINE38 ; diagnosis codes 1-4 ; field 22 (MEDICAID) left blank  *488*
+ W !,?2,IBFLD(21,1),?15,IBFLD(21,2),?28,IBFLD(21,3),?40,IBFLD(21,4)
+LINE39 ;  diagnosis codes 5-8 *488*
+ W !,?2,IBFLD(21,5),?15,IBFLD(21,6),?28,IBFLD(21,7),?40,IBFLD(21,7)
+LINE40 ; diagnosis codes 9-12; field 23 (prior authorization #)  *488*
+ W !,?2,IBFLD(21,9),?15,IBFLD(21,10),?28,IBFLD(21,11),?40,IBFLD(21,12),?49,IBFLD(23)
 LINE44 ;lines 44,46,48,50,52,54 all the same
  W !! S IBI=+$P(IBFLD(24),U,2) F IBJ=1:1:6 S IBI=IBI+1 D
  . W ! I $D(IBFLD(24,IBI_"A")) W ?25,$E(IBFLD(24,IBI_"A"),1,15)
@@ -51,7 +57,7 @@ LINE44 ;lines 44,46,48,50,52,54 all the same
  S $P(IBFLD(24),U,2)=IBI
  ;
 LINE56 W !!,IBFLD(25),?18,"X",?22,IBFLD(26),?49,$J(IBFLD(28),10,2)
- W:IBFLD(29) ?62,$J(IBFLD(29),7,2),?71,$J(IBFLD(30),7,2)
+ W:IBFLD(29) ?62,$J(IBFLD(29),7,2)
 LINE58 W !!,?22,$E(IBFLD(32,1),1,26),?49,$E(IBFLD(33,1),1,26)
 LINE69 W !,$E(IBFLD(31),1,21),?22,$E(IBFLD(32,2),1,26),?49,$E(IBFLD(33,2),1,26)
 LINE60 W !,$E(IBFLD(31),22,42)

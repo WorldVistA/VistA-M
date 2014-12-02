@@ -1,5 +1,5 @@
-ECXSCX1 ;ALB/JAP,BIR/DMA-Clinic Extract Message ;9/29/10  17:26
- ;;3.0;DSS EXTRACTS;**8,28,24,27,29,30,31,33,84,92,105,127,132**;Dec 22, 1997;Build 18
+ECXSCX1 ;ALB/JAP,BIR/DMA-Clinic Extract Message ;3/10/14  13:03
+ ;;3.0;DSS EXTRACTS;**8,28,24,27,29,30,31,33,84,92,105,127,132,144,149**;Dec 22, 1997;Build 27
 EN ;entry point from ecxscx
  N ECX
  ;send missing clinic message
@@ -119,10 +119,10 @@ VISIT(ECXDFN,ECXVISIT,ECXVIST,ECXERR) ;get visit specific data
  ;output ECXVSIT = data array
  ;       ECXERR  = 1 indicates error; otherwise, 0
  N AO,ARRAY,CM,CNT,CPT,DA,DATE,DA,DIQ,ICD,ICD9,IR,LEN,M,MOD,MST,NUM,NOD1,NODE
- N PROV,PROVPC,REC,VAL,VISIT,X,Y,HNC,PGE,CV,SHAD
+ N PROV,PROVPC,REC,VAL,VISIT,X,Y,HNC,PGE,CV,SHAD,ENCSC,ENCCL ;144
  S ECXERR=0,VISIT=ECXVISIT
  S (ECXVIST("AO"),ECXVIST("IR"),ECXVIST("PGE"),ECXVIST("HNC"))=""
- S (ECXVIST("MST"),ECXVIST("CV"),ECXVIST("SHAD"))=""
+ S (ECXVIST("MST"),ECXVIST("CV"),ECXVIST("SHAD"),ECXVIST("ENCSC"),ECXVIST("ENCCL"))="" ;144
  ;MRY-2/4/2010, extracts don't seem to use encounter (visit) "CV".
  ;extracts use eligibility API for some reason.  Added "CV" anyway.
  S (ECXVIST("PROV"),ECXVIST("PROV CLASS"))=""
@@ -170,20 +170,21 @@ VISIT(ECXDFN,ECXVISIT,ECXVIST,ECXERR) ;get visit specific data
  .S:PROV]"" PROV="2"_PROV
  S ECXVIST("PROV")=PROV,ECXVIST("PROV CLASS")=PROVPC
  S ECXVIST("PROV NPI")=""
- ;get 1-5 secondary physicians
- F I=1:1:5 S ECXVIST("PROVS"_I)=""
+ ;get 1-7 secondary physicians
+ F I=1:1:7 S ECXVIST("PROVS"_I)="" ;144 two more providers cvw
  I $O(^TMP("PXKENC",$J,VISIT,"PRV",0)) D
  .S (REC,VAL,COUNTS)=0 D
  ..F  S REC=$O(^TMP("PXKENC",$J,VISIT,"PRV",REC)) Q:('REC)  D
  ...Q:$P(^(REC,0),U,4)'="S"
  ...S VAL=+^(0) I $E(PROV,2,99)=VAL Q  ;don't process, primary
- ...S COUNTS=COUNTS+1 Q:(COUNTS>5)
+ ...S COUNTS=COUNTS+1 Q:(COUNTS>7)  ;144 two more providers cvw
  ...S PROVS=VAL,PROVSPC=$$PRVCLASS^ECXUTL(PROVS,DATE)
  ...S PROVSNPI=$$NPI^XUSNPI("Individual_ID",PROVS,DATE)
  ...S:+PROVSNPI'>0 PROVSNPI="" S PROVSNPI=$P(PROVSNPI,U)
  ...S ECXVIST("PROVS"_COUNTS)="2"_PROVS_U_PROVSPC_U_PROVSNPI
  ;get cpt codes upto 8 & modifiers upto 5
  S CNT=1,PROV=$E(PROV,2,99)
+ S ECXVIST("PRIMPROC")="" ;149 Initialize primary procedure
  D:$O(^TMP("PXKENC",$J,VISIT,"CPT",0))
  .S REC=0 D:PROV]""
  ..F  S REC=$O(^TMP("PXKENC",$J,VISIT,"CPT",REC)) Q:'REC  D  Q:CNT>8
@@ -196,7 +197,7 @@ VISIT(ECXDFN,ECXVISIT,ECXVIST,ECXERR) ;get visit specific data
  ...F I=1:1:5 S M=$O(^TMP("PXKENC",$J,VISIT,"CPT",REC,1,M)) Q:'M  D
  ....S MOD=MOD_$S(MOD'="":";",1:"")
  ....S MOD=MOD_$P(^TMP("PXKENC",$J,VISIT,"CPT",REC,1,M,0),U)
- ...S ECXVIST("CPT"_CNT)=$$CPT^ECXUTL3(CPT,MOD,Q),CNT=CNT+1
+ ...S ECXVIST("CPT"_CNT)=$$CPT^ECXUTL3(CPT,MOD,Q) S:$P(NOD1,U,7)="Y" ECXVIST("PRIMPROC")=ECXVIST("CPT"_CNT) S CNT=CNT+1 ;149
  ...K ^TMP("PXKENC",$J,VISIT,"CPT",REC)
  ..Q:CNT>8
  .Q:CNT>8  S REC=0
@@ -208,17 +209,19 @@ VISIT(ECXDFN,ECXVISIT,ECXVIST,ECXERR) ;get visit specific data
  ..F I=1:1:5 S M=$O(^TMP("PXKENC",$J,VISIT,"CPT",REC,1,M)) Q:'M  D
  ...S MOD=MOD_$S(MOD'="":";",1:"")
  ...S MOD=MOD_$P(^TMP("PXKENC",$J,VISIT,"CPT",REC,1,M,0),U)
- ..S ECXVIST("CPT"_CNT)=$$CPT^ECXUTL3(CPT,MOD,Q),CNT=CNT+1
+ ..S ECXVIST("CPT"_CNT)=$$CPT^ECXUTL3(CPT,MOD,Q) S:$P(NOD1,U,7)="Y" ECXVIST("PRIMPROC")=ECXVIST("CPT"_CNT) S CNT=CNT+1 ;149
  ..K ^TMP("PXKENC",$J,VISIT,"CPT",REC)
  ..Q:CNT>8
  S:ECXVIST("CPT1")="" ECXVIST("CPT1")=9919901
  ;ao, ir, mst, pge, hnc, cv, shad
- S (AO,IR,MST,PGE,HNC,CV,SHAD)=""
+ S (AO,IR,MST,PGE,HNC,CV,SHAD,ENCSC,ENCCL)="" ;144
  I $D(^TMP("PXKENC",$J,VISIT,"VST",VISIT,800)) D
+ .S ENCSC=$P(^TMP("PXKENC",$J,VISIT,"VST",VISIT,800),U) ;144 Encounter Service Connected
  .S AO=$P(^TMP("PXKENC",$J,VISIT,"VST",VISIT,800),U,2)
  .S IR=$P(^TMP("PXKENC",$J,VISIT,"VST",VISIT,800),U,3),MST=$P(^(800),U,5)
  .S PGE=$P(^TMP("PXKENC",$J,VISIT,"VST",VISIT,800),U,4),HNC=$P(^(800),U,6)
  .S CV=$P(^TMP("PXKENC",$J,VISIT,"VST",VISIT,800),U,7),SHAD=$P(^(800),U,8)
+ .S ENCCL="" ;144 Encounter Camp Lejeune, will need to be updated once call to PXAPI adds this data
  .S ECXVIST("AO")=$S(AO=0:"N",AO=1:"Y",1:"")
  .S ECXVIST("IR")=$S(IR=0:"N",IR=1:"Y",1:"")
  .S ECXVIST("MST")=$S(MST=0:"N",MST=1:"Y",1:"")
@@ -226,4 +229,6 @@ VISIT(ECXDFN,ECXVISIT,ECXVIST,ECXERR) ;get visit specific data
  .S ECXVIST("HNC")=$S(HNC=0:"N",HNC=1:"Y",1:"")
  .S ECXVIST("CV")=$S(CV=0:"N",CV=1:"Y",1:"")
  .S ECXVIST("SHAD")=$S(SHAD=0:"N",SHAD=1:"Y",1:"")
+ .S ECXVIST("ENCSC")=$S(ENCSC=0:"N",ENCSC=1:"Y",1:"") ;144 Encounter Service Connected
+ .S ECXVIST("ENCCL")=$S(ENCCL=0:"N",ENCCL=1:"Y",1:"") ;144 Encounter Camp Lejeune.  Assumption made that Camp Lejeune data will be returned similiarly to other status data.
  Q

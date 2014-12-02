@@ -1,5 +1,5 @@
-ONCBPC8A ;HIRMFO/GWB -PCE Study of Cancers of the Urinary Bladder -Print (continued) ;8/15/96
- ;;2.11;ONCOLOGY;**6,11,16**;Mar 07, 1995
+ONCBPC8A ;HIRMFO/GWB - PCE Study of Cancers of the Urinary Bladder -Print (continued) ;8/15/96
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 IV S TABLE="TABLE IV - FIRST COURSE OF TREATMENT"
  I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HDR^ONCBPC8
  W !?15,TABLE,! D P Q:EX=U

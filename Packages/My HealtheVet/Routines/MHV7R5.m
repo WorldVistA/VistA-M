@@ -1,7 +1,9 @@
-MHV7R5 ;WAS/DLF - HL7 RECEIVER FOR ADMIN QUERIES ; 9/25/08 4:09pm
- ;;1.0;My HealtheVet;**6**;Aug 23, 2005;Build 82
+MHV7R5 ;WAS/DLF/MJK/KUM - HL7 RECEIVER FOR ADMIN QUERIES ; 6/7/10 10:34am
+ ;;1.0;My HealtheVet;**6,10**;Aug 23, 2005;Build 50
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
+ ;  Integration Agreements:
+ ;        10104 : $$UP^XLFSTR
  Q
  ;
 QBPQ11 ;Process QBP^Q11 messages from the MHVSM QBP-Q11 Subscriber protocol
@@ -80,9 +82,10 @@ VALIDMSG(MSGROOT,QRY,XMT,ERR)   ;Validate message
  ;        XMT - Transmission parameters
  ;        ERR - segment^sequence^field^code^ACK type^error text
  ;
- N MSH,PID,STF,QPD,RCP,REQFLDS,REQID,REQTYPE,FROMDT,TODT,PRI,QTAG,QNAME
+ N MSH,PID,STF,QPD,RCP,REQFLDS,REQID,REQTYPE,FROMDT,TODT,PRI,QTAG,QNAME,MHVCSIE
  N SEGTYPE,CNT,OCNT,RXNUM,QTY,UNIT,REQFLDS,CHKSEG
  K QRY,ERR
+ S MHVCSIE=""
  S ERR=""
  ;
  ; Set up basics for responding to message.
@@ -152,6 +155,14 @@ VALIDMSG(MSGROOT,QRY,XMT,ERR)   ;Validate message
  .S QRY("IEN")=$G(QPD(3,1,2))          ;ien
  .S QRY("LNAME")=$$UP^XLFSTR($G(QPD(3,1,3)))        ;Last Name
  .S QRY("FNAME")=$$UP^XLFSTR($G(QPD(3,1,4)))        ;First Name
+ ;Added for MHV*1.0*10 - Validations for SMClinicsByStopCode query Input parameters
+ I (REQTYPE="SMClinicsByStopCode")&($D(QPD))  D
+ . I $G(QRY("FNAME"))="" S ERR="QPD^1^6^101^AE^Clinic Secondary(Credit) Stop Code cannot be null" Q
+ . I ((+$G(QRY("FNAME"))<1)&(+$G(QRY("FNAME"))>999)) S ERR="QPD^1^6^102^AE^Clinic Secondary(Credit) Stop Code "_$G(QRY("FNAME"))_" should be a numeric value in the range 1 to 999." Q
+ . S MHVCSIE=$$SCIEN^MHVXCLN($G(QRY("FNAME")))
+ . I $G(MHVCSIE)="" S ERR="QPD^1^6^102^AE^Clinic Secondary(Credit) Stop Code "_$G(QRY("FNAME"))_" Unknown."
+ I ERR Q 0
+ ;
  S FROMDT=$G(QPD(3,1,5))        ;From Date
  S TODT=$G(QPD(3,1,6))          ;To Date
  ;
@@ -194,11 +205,11 @@ VALIDSTF        ;
  ; STF segments
  ;
  I $D(STF(2))  D  Q
- .S QRY("IEN")=STF(2,1,1)
+ .S QRY("IEN")=$G(STF(2,1,1))
  ;
  ; If no IEN, populate parameters for name
  ;
  I $G(STF(3))]"" S QRY("LNAME")=$$UP^XLFSTR($TR(STF(3),"^",""))
- S:$D(STF(3,1,1)) QRY("LNAME")=$$UP^XLFSTR(STF(3,1,1))
- S:$D(STF(3,1,2)) QRY("FNAME")=$$UP^XLFSTR(STF(3,1,2))
+ I $G(STF(3,1,1))'="" S QRY("LNAME")=$$UP^XLFSTR(STF(3,1,1))
+ I $G(STF(3,1,2))'="" S QRY("FNAME")=$$UP^XLFSTR(STF(3,1,2))
  Q

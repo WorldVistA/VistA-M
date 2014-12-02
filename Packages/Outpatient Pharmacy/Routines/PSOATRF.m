@@ -1,10 +1,11 @@
-PSOATRF ;BIR/MHA - Automate Internet Refill ; 5/23/11 5:00pm
- ;;7.0;OUTPATIENT PHARMACY;**264,322,388**;DEC 1997;Build 6
+PSOATRF ;BIR/MHA - Automate Internet Refill ;07/09/07
+ ;;7.0;OUTPATIENT PHARMACY;**264,322,388,313**;DEC 1997;Build 76
  ;Reference to ^PSSLOCK supported by DBIA 2789
  ;Reference ^PSDRUG supported by DBIA 221
  ;Reference ^PS(55 supported by DBIA 2228
  ;
 START ;
+ N PSOTITFL
  S PSOITMG="",U="^",PSOITNS="PSOATRF"  S:'$G(DT) DT=$$DT^XLFDT
  I '$D(^PS(52.43,"AINST")) S PSOITMG="There are no internet refills to process." G END
  S (SITE,DA)=$P(^XMB(1,1,"XUS"),U,17),DIC="4",DIQ(0)="IE",DR=".01;99",DIQ="PSOUTIL" D EN^DIQ1
@@ -44,7 +45,7 @@ PRORF ;
  S X1=DT,X2=-120 D C^%DTC S PSODTCUT=X
  S PSOITR="",PSOITC=0
  F  S PSOITR=$O(^PS(52.43,"AINST",PSOINST,PSOITR)) Q:'PSOITR  D  D:PSOITMG]"" FILE D ULK
- . S (PSOITF,PSOITNF)=0,PSOITMG="",PSOITRX=+PSOITR,PSOITP=$O(^PS(52.43,"AINST",PSOINST,PSOITRX,""))
+ . S (PSOITF,PSOITNF,PSOTITFL)=0,PSOITMG="",PSOITRX=+PSOITR,PSOITP=$O(^PS(52.43,"AINST",PSOINST,PSOITRX,""))
  . Q:'PSOITP
  . I '$D(^PS(52.43,PSOITP))!($P(^(PSOITP,0),U,5)'="") K ^PS(52.43,"AINST",PSOINST,PSOITRX,PSOITP) Q
  . I '$D(^PSRX(PSOITRX,0))!($P(^(0),U)="")!('$D(^(2)))!($P(^("STA"),U)=13) S PSOITNF=1,PSOITMG="Rx IEN "_PSOITRX_" not in file (#52)/Incomplete/Deleted" Q
@@ -84,6 +85,9 @@ PRORF ;
  . . I PSOCHECK=1 S PSOITMG="Requested refill exceeds maximum allowable days supply for Rx." Q  ;*388
  . . S PSOITMG="Current drug DEA/SPECIAL HANDLING code does not allow refills."  ;*388
  . D CHKDT Q:PSOITNF
+ . I $$TITRX^PSOUTL(PSOITRX)="t" D  Q
+ . . S PSOITNF=1,PSOITMG="'Titration Rx' cannot be refilled."
+ . . S PSOTITFL=1 D FILE
  . D EN^PSOR52(.PSOX) I PSOITF,$D(^PSRX(PSOITRX,1,PSOITF,0)) S PSOITC=PSOITC+1,PSOITMG=PSOITF_" Susp. until "_$$DSP($P(^(0),U))
  Q
  ;
@@ -116,7 +120,7 @@ CHKRF ;
   ;
 FILE ;
  K DIE S DA=PSOITP
- S DIE="^PS(52.43,",DR="5////"_DT_";6///"_$S(PSOITNF:"NOT ",1:"")_"FILLED;10////"_PSOITMG D ^DIE
+ S DIE="^PS(52.43,",DR="5////"_DT_";6///"_$S(PSOITNF&'$G(PSOTITFL):"NOT ",1:"")_"FILLED;10////"_PSOITMG D ^DIE
  K ^PS(52.43,"AINST",PSOINST,PSOITRX,DA) I PSOITNF  S ^XTMP(PSOITNS,$J,PSOSITE,DFN,PSOITRX)=PSOITMG
  Q
  ;

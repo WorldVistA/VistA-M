@@ -1,5 +1,5 @@
-PSBRPC ;BIRMINGHAM/EFC - BCMA RPC BROKER CALLS ;5/11/11 3:05pm
- ;;3.0;BAR CODE MED ADMIN;**6,3,4,13,32,28,42,58,66**;Mar 2004;Build 11
+PSBRPC ;BIRMINGHAM/EFC - BCMA RPC BROKER CALLS ; 19 Jul 2013  12:34 PM
+ ;;3.0;BAR CODE MED ADMIN;**6,3,4,13,32,28,42,58,66,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -13,6 +13,17 @@ PSBRPC ;BIRMINGHAM/EFC - BCMA RPC BROKER CALLS ;5/11/11 3:05pm
  ; $$GET^XPAR/2263
  ; $$GET1^DIQ/2056
  ; XMD/10070
+ ; RPCVIC^DPTLK/5888
+ ; File #42/1377
+ ;
+ ;*70 - remove restriction of allowing BCMA to view Discharged
+ ;      patients
+ ;    - add Tag GETLIST, RPC:PSB CLINICLIST (returns requested
+ ;                                           clinic names)
+ ;    - add to User load & User save 2 new varaibles, 1 for Last
+ ;      Order mode and other for Last Clinic name search text
+ ;    - 1489: Blended PSB*3*66 with PSB*3*70
+ ;    - Add Registration API call to support VIC 4.0 cards
  ;
 FMDATE(RESULTS,X) ;
  ; RPC: PSB FMDATE
@@ -75,9 +86,11 @@ USRLOAD(RESULTS,DUMMY) ;
  S RESULTS(25)=$$GET^XPAR("DIV","PSB 5 RIGHTS UNITDOSE")
  S RESULTS(26)=$$GET^XPAR("DIV","PSB 5 RIGHTS IV")
  S RESULTS(27)=$G(DUZ("AG"))  ;IHS/MSC/PLS
+ S RESULTS(28)=$$GET^XPAR("USR","PSB ORDER MODE")           ;*70
+ S RESULTS(29)=$$GET^XPAR("USR","PSB CLINIC SEARCH")        ;*70
  Q
  ;
-USRSAVE(RESULTS,PSBWIN,PSBVDL,PSBUDCW,PSBPBCW,PSBIVCW,PSBDEV,PSBCSRT,PSBCV1,PSBCV2,PSBCV3,PSBCV4) ;
+USRSAVE(RESULTS,PSBWIN,PSBVDL,PSBUDCW,PSBPBCW,PSBIVCW,PSBDEV,PSBCSRT,PSBCV1,PSBCV2,PSBCV3,PSBCV4,PSBORMODE,PSBCLSRCH) ;
  ;
  ; RPC: PSB USERSAVE
  ; Descr: Saves user settings.
@@ -104,6 +117,8 @@ USRSAVE(RESULTS,PSBWIN,PSBVDL,PSBUDCW,PSBPBCW,PSBIVCW,PSBDEV,PSBCSRT,PSBCV1,PSBC
  D EN^XPAR("USR","PSB COVERSHEET V2 COL WIDTHS",1,PSBCV2)
  D EN^XPAR("USR","PSB COVERSHEET V3 COL WIDTHS",1,PSBCV3)
  D EN^XPAR("USR","PSB COVERSHEET V4 COL WIDTHS",1,PSBCV4)
+ D EN^XPAR("USR","PSB ORDER MODE",1,PSBORMODE)            ;*70
+ D EN^XPAR("USR","PSB CLINIC SEARCH",1,PSBCLSRCH)         ;*70
  S RESULTS(0)="1^Parameters Saved"
  Q
  ;
@@ -143,7 +158,7 @@ SCANPT(RESULTS,PSBDATA) ; Lookup Pt by Full SSN
  ; returns -1 on error or patient data
  ; Check for Interleave 2 of 5 Check Digit on SSN and remove
  ; 
- N DFN,PSBWARD
+ N DFN,PSBWARD   ;[*70-1489]
  I "SS"[$P($G(PSBDATA),"^",3)  D  Q:RESULTS(1)<0
  .S:$P(PSBDATA,"^")?1"0"9N.U PSBDATA=$E(PSBDATA,2,99) N PSBCNT
  .;  IHS vs VA Agency check for Patient ID info
@@ -153,12 +168,14 @@ SCANPT(RESULTS,PSBDATA) ; Lookup Pt by Full SSN
  ..I $P(PSBDATA,U)?12N S X=$$HRCNF^APSPFUNC($P(PSBDATA,U))
  ..S:X'>0 RESULTS(0)=1,RESULTS(1)="-1^Patient not found or # not 12 digit"
  .E  D
- ..I $P(PSBDATA,U)'?9N.1U S RESULTS(0)=1,RESULTS(1)="-1^Invalid Patient Lookup" Q
- ..S X=$$FIND1^DIC(2,"","",$P(PSBDATA,U),"SSN")
- ..I X<1 S RESULTS(0)=1,RESULTS(1)="-1^Invalid Patient Lookup"
+ ..;*70 Implement VIC 4.0 cards. Old Bar code with SSN still accepted
+ ..S DPTDATA=$P(PSBDATA,U) ;,DPTDATA=$TR(DPTDATA,"|","^") ; ST - $TR not needed
+ ..D RPCVIC^DPTLK(.DFN,DPTDATA)
+ ..I DFN=""!(DFN<0) S DFN=$$FIND1^DIC(2,"","",DPTDATA,"SSN") S:'DFN DFN=-1 ;old SSN lookup
+ .I DFN=-1 S RESULTS(0)=1,RESULTS(1)="-1^Invalid Patient Lookup"
+ .;*End *70 Implement VIC 4.0 cards.
  .Q:$G(RESULTS(1))<0
- .;
- .S (DFN,RESULTS(1),PSBDFN)=X
+ .S (RESULTS(1),PSBDFN)=DFN
  .S PSBICN=$$GETICN^MPIF001(PSBDFN) I +PSBICN=-1 S PSBICN=""
  I $G(DFN)']"" D  Q:+PSBDFN'>0
  .; CCOW !
@@ -166,10 +183,19 @@ SCANPT(RESULTS,PSBDATA) ; Lookup Pt by Full SSN
  .I "IC"[$P($G(PSBDATA),"^",3) S PSBICN=$P($G(PSBDATA),"^"),PSBDFN=$$GETDFN^MPIF001(PSBICN) I +PSBDFN=-1 S PSBDFN="",RESULTS(0)=1,RESULTS(1)="-1^Cannot find DFN via ICN" Q
  .S (DFN,RESULTS(1))=PSBDFN
  .;
- K VADM,VAIN
- D DEM^VADPT,IN5^VADPT
- I ('$P(PSBDATA,U,2))&('VAIP(13)&'VADM(6)) S RESULTS(0)=1,RESULTS(1)="-1^Patient has been DISCHARGED" I ($P($G(PSBDATA),U,3)'["IC")&($P($G(PSBDATA),U,3)'["DF") K VAIP,VADM,VA Q
- I ('$P(PSBDATA,U,2))&(VADM(6)'="") S RESULTS(0)=1,RESULTS(1)="-1^"_"This patient died "_$TR($P(VADM(6),U,2),"@"," ") I ($P($G(PSBDATA),U,3)'["IC")&($P($G(PSBDATA),U,3)'["DF") K VAIP,VADM,VA Q
+ ;*70 get registration owned data for admit date or deceased date
+ N VADM,VA,VAIN,VAIP,VA D DEM^VADPT,IN5^VADPT
+ N QUIT                                                        ;*70
+ ; remove discharge test                                       ;*70
+ ; if patient is deceased                                      ;*70
+ S QUIT=0
+ I VADM(6)'="" D  Q:QUIT
+ .S RESULTS(0)=1
+ .S RESULTS(1)="-1^"_"This patient died "_$TR($P(VADM(6),U,2),"@"," ")
+ .D:'$P(PSBDATA,U,2)      ;not read only/limited mode
+ ..I ($P($G(PSBDATA),U,3)'["IC")&($P($G(PSBDATA),U,3)'["DF") S QUIT=1
+ ;
+ ; continue to load patient data
  S RESULTS(1)=PSBDFN
  F X=1,3,4,5 S RESULTS(X+1)=$G(VADM(X))
  ;  IHS/VA - use VA("PID") instead of VADM(2) for Pat ID
@@ -190,7 +216,7 @@ SCANPT(RESULTS,PSBDATA) ; Lookup Pt by Full SSN
  .S X=+$P(X,U,8) S X=$J(X/2.2,0,2) S PSBHDR("WEIGHT")=$S(X:X_"kg",1:"*")
  ;
  S $P(RESULTS(9),U,3)=$$GET1^DIQ(42,$P(RESULTS(9),U)_",",44,"I")_"^"_$$GET1^DIQ(42,$P(RESULTS(9),U)_",",44)
- S PSBWARD=$P($G(RESULTS(9)),U,2) D IVBAGPAR(PSBWARD)
+ S PSBWARD=$P($G(RESULTS(9)),U,2) D IVBAGPAR(PSBWARD)   ;[*70-1489]
  S RESULTS(16)=PSBHDR("HEIGHT")
  S RESULTS(17)=PSBHDR("WEIGHT")
  S GMRA="0^0^111" D EN1^GMRADPT
@@ -203,7 +229,7 @@ SCANPT(RESULTS,PSBDATA) ; Lookup Pt by Full SSN
  S RESULTS(20)=PSBICN
  S RESULTS(21)="",RESULTS(0)=21
  S:VADM(6)'="" RESULTS(21)="This patient died "_$TR($P(VADM(6),U,2),"@"," ")
- S:('VAIP(13))&('VADM(6)) RESULTS(21)="Patient has been DISCHARGED"
+ S:('VAIP(13))&('VADM(6)) RESULTS(21)="Patient not Admitted"  ;*70
  S (RESULTS(0),PSBCNT)=22
  S RESULTS(PSBCNT)=""
  F PSBINDX=1:1:($$GETACT^DGPFAPI(PSBDFN,.PSBPTFLG)) D
@@ -211,7 +237,6 @@ SCANPT(RESULTS,PSBDATA) ; Lookup Pt by Full SSN
  .S $P(PSBPFLAG,U,3)=PSBINDX,PSBCNT=21+PSBINDX,RESULTS(PSBCNT)=PSBPFLAG
  S RESULTS(0)=PSBCNT
  I $D(PSBPTFLG) K @PSBPTFLG
- K VAIP,VADM,VA
  Q
  ;
 MAX(RESULTS,PSBDAYS) ;
@@ -285,6 +310,7 @@ VITALS(RESULTS,DFN) ;Vitals API
  S RESULTS(0)=PSBCNT-1
  K ^UTILITY($J,"GMRVD"),GMRBSTR,PSBDFN,PSBTYPE,PSBDATA,PSBCNT
  Q
+ ;   ;[*70-1489]...start
 IVBAGPAR(PSBWARD) ; Send Mailman Message to owners of PSB Manager Key if IV Bag Parameters are not set for this Ward
  Q:PSBWARD=""
  N PSBCSTR,PSBWDIV,PSB,PSBIVT,PSBFLAG,PSBSTNMB,PSBINST,PSBIVPAR
@@ -326,4 +352,34 @@ IVBAGPAR(PSBWARD) ; Send Mailman Message to owners of PSB Manager Key if IV Bag 
  .S PSBERR(PSBCNT)="Please log a ticket with the ",PSBCNT=PSBCNT+1
  .S PSBERR(PSBCNT)="VA Service Desk if you need assistance.",PSBCNT=PSBCNT+1
  .D ^XMD
+ Q
+ ;   ;[*70-1489]...end
+GETLIST(RESULTS,PRE,CONTAIN) ; Get Clinics by name                     ;*70
+ N LIN
+ K ^TMP("PSBCLIN",$J)
+ S RESULTS=$NAME(^TMP("PSBCLIN",$J))
+ S LIN=0 D CLNLIST(PRE,CONTAIN,.LIN)
+ ;set total rec counter
+ I $D(^TMP("PSBCLIN",$J)) D
+ . S ^TMP("PSBCLIN",$J,0)=LIN
+ E  D
+ . S ^TMP("PSBCLIN",$J,0)=1
+ . S ^TMP("PSBCLIN",$J,1)="-1^Invalid Clinic Lookup"
+ Q
+ ;
+CLNLIST(PR,CON,LN) ;return Clinic list in TMP by name                                *70
+ N QQ,NODE0,INACTDT,NAME,REACTDT
+ F QQ=0:0 S QQ=$O(^SC(QQ)) Q:'QQ  D
+ . S NODE0=$G(^SC(QQ,0)) Q:NODE0=""
+ . Q:$P(NODE0,U,3)'="C"                     ;type Clinic
+ . S INACTDT=+$P($G(^SC(QQ,"I")),U)             ;inactive date
+ . S REACTDT=+$P($G(^SC(QQ,"I")),U,2)
+ . I INACTDT,INACTDT<DT I 'REACTDT!(REACTDT&((REACTDT<INACTDT)!(REACTDT>DT))) Q
+ . S NAME=$P(NODE0,U)
+ . I PR]"" D
+ .. I $E(NAME,1,$L(PR))=PR,NAME[CON D
+ ... S LN=LN+1,^TMP("PSBCLIN",$J,LN)=NAME
+ . E  D
+ .. I NAME[CON D
+ ... S LN=LN+1,^TMP("PSBCLIN",$J,LN)=NAME
  Q

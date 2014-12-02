@@ -1,5 +1,5 @@
 PSJO1 ;BIR/CML3,PR-GET UNIT DOSE/IV ORDERS FOR INPATIENT ;15 May 98 / 9:28 AM
- ;;5.0; INPATIENT MEDICATIONS ;**3,47,56,58,109,110,127,162,181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS;**3,47,56,58,109,110,127,162,181,275,292,299**;16 DEC 97;Build 11
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^%DTC is supported by DBIA# 10000.
@@ -16,10 +16,13 @@ ECHK ;
  ;
 SET ;
  I ON["P",($D(PRNTON)!($D(P("PRNTON")))) N PSJOK S PSJOK=$$COMCHK($S($G(P("PRNTON"))]"":P("PRNTON"),$G(PRNTON)]"":PRNTON,1:""),PSJPTYP) Q:'PSJOK
- NEW DRUGNAME D DRGDISP^PSJLMUT1(PSGP,ON,40,0,.DRUGNAME,1)
+ NEW DRUGNAME,CLINFLAG D DRGDISP^PSJLMUT1(PSGP,ON,40,0,.DRUGNAME,1)
  S DN=DRUGNAME(1),SUB=$S(PSJOS:START,1:$E(DN,1,40))
  I ON["P",$G(P("PRNTON"))]"",$G(PRNTON)=+P("PRNTON") Q
  I ON["P",$G(P("PRNTON"))]"" S PRNTON=+P("PRNTON"),ON=+P("PRNTON")
+ S CLINFLAG=$$CLINIC(PSGP,ON) I CLINFLAG]"" D
+ .N CLINSORT,SORT S CLINSORT=$$CLINSORT(C)
+ .S C="Cz^"_CLINFLAG_"^"_CLINSORT_"^"_C
  S ^TMP("PSJ",$J,C,$S(PSJOS:SUB,1:ST),$S(PSJOS:ST,1:SUB),ON)=DN_"^"_$G(NF),PSJOCNT=PSJOCNT+1 Q
  ;
 IVSET ;Set IV data in ^TMP("PSJ",$J,.
@@ -37,12 +40,16 @@ IVSET ;Set IV data in ^TMP("PSJ",$J,.
  ;
 IVSET1 ;
  ;* S TYP=$S(P(2)=P(3):"O",1:"C"),STAT=$S("ED"[P(17):"O",P(17)="P":"P",1:"A")
+ N PSJCLIN,CLINSORT
  S TYP=$$ONE^PSJBCMA(PSGP,ON,P(9),P(2),P(3)) I TYP'="O" S TYP=$S(ON["P":"z",1:"C")
  S STAT=$S($G(PSJPRI)="D":"A","ED"[P(17):"O",P(17)="P":"P",1:"A")
  I P(17)="P" S STAT="C"_$S($P($G(^PS(53.1,+ON,.2)),U,8)]"":"D",$P($G(^PS(53.1,+ON,.2)),U,4)="S":"A",$P($G(^(0)),U,24)="R":"C",1:"B")
  I PSJOL="S",(STAT="O"),(P(3)>$P($G(PSJDCEXP),U,2)) S STAT="DF"
  I ON["P",$G(P("PRNTON"))]"",PRNTON=+P("PRNTON") Q
  I ON["P",$G(P("PRNTON"))]"" S PRNTON=+P("PRNTON"),ON=+P("PRNTON")
+ S PSJCLIN=$$CLINIC(PSGP,ON) I PSJCLIN]"" D
+ .N STAT2 S STAT2=$S($P(STAT,"^",4)]"":$P(STAT,"^",4),1:STAT)
+ .N CLINSORT S CLINSORT=$$CLINSORT(STAT) S STAT="Cz^"_PSJCLIN_"^"_CLINSORT_"^"_STAT2
  S ^TMP("PSJ",$J,STAT,$S(PSJOS:-P(2),1:TYP),$S(PSJOS:TYP,1:ORTX),ON)="^F",PSJOCNT=PSJOCNT+1
  Q
  ;
@@ -50,8 +57,8 @@ ENU ; update status field to reflect expired orders, if necessary
  W !!,"...a few moments, I have some updating to do..."
 ENUNM ;
  F Q=+PSJPAD:0 S Q=$O(^PS(55,PSGP,5,"AUS",Q)) Q:'Q!(Q>PSGDT)  S UPD=Q F QQ=0:0 S QQ=$O(^PS(55,PSGP,5,"AUS",Q,QQ)) Q:'QQ  I $D(^PS(55,PSGP,5,QQ,0)),"DEH"'[$E($P(^(0),"^",9)) D
- .; naked ref below refers to line above
- .S $P(^(0),"^",9)="E",ORIFN=$P(^(0),"^",21) D EN1^PSJHL2(PSGP,"SC",QQ_"U")
+ .N DIE,DA,DR,X,Y,QQON S QQON=QQ,DIE="^PS(55,"_PSGP_",5,",DA(1)=PSGP,DA=+QQON,DR="28////E" D ^DIE
+ .S ORIFN=$P(^PS(55,PSGP,5,+QQON,0),"^",21) D EN1^PSJHL2(PSGP,"SC",QQON_"U")
  K UPD Q
  ;
 EN(PSJPTYP) ; enter here
@@ -69,13 +76,14 @@ EN(PSJPTYP) ; enter here
  .I $S($G(PSJPRI)="D":1,PSJY="P":0,PSJOL="L":1,$P(PSJX,U,3)>$P($G(PSJDCEXP),U,2):1,1:"DPE"'[PSJY) S ON=+PSJORD_"V" D IVSET K PSJPRI,ON
  D NOW^%DTC S PSJIVOF=PSJOCNT,PSGDT=%,(X1,DT)=$P(%,"."),X2=-2 D C^%DTC S PSGODT=X_(PSGDT#1),HDT=$$ENDTC^PSGMI(PSGDT)
  D ENUNM
- I PSJPTYP'=2 F ST="C","O","OC","P","R" F SD=+PSJPAD:0 S SD=$O(^PS(55,PSGP,5,"AU",ST,SD)) Q:'SD  F O=0:0 S O=$O(^PS(55,PSGP,5,"AU",ST,SD,O)) Q:'O  D ECHK
+ I PSJPTYP'=2 F ST="C","O","OC","P","R" F SD=+$P(PSJDCEXP,"^",2):0 S SD=$O(^PS(55,PSGP,5,"AU",ST,SD)) Q:'SD  F O=0:0 S O=$O(^PS(55,PSGP,5,"AU",ST,SD,O)) Q:'O  D ECHK
  Q:$D(PSGONNV)
  ;I PSJPTYP'=2 F SD="I","N" S O=0 F  S O=$O(^PS(53.1,"AS",SD,PSGP,O)) Q:'O  S ON=+O_"P",X=$P($G(^PS(53.1,+O,0)),U,4) I $S(PSJPTYP=3:1,PSJPTYP=1&("FI"[X):0,1:1) D NVSET
  N PRNTON F SD="I","N" S (PRNTON,O)=0 F  S O=$O(^PS(53.1,"AS",SD,PSGP,O)) Q:'O  S ON=+O_"P",X=$P($G(^PS(53.1,+O,0)),U,4) I $S(PSJPTYP=3:1,PSJPTYP=1&("FI"[X):0,1:1) D NVSET
  ;I $S(+PSJSYSU=3:1,1:$D(PSGLPF)) S O=0,SD="P" F  S O=$O(^PS(53.1,"AS",SD,PSGP,O)) Q:'O  S ON=O_"P",X=$P($G(^PS(53.1,+O,0)),U,4) I $S(PSJPTYP=3:1,PSJPTYP=1&("FI"[X):0,1:1) D @$S("FI"[X:"IVSET",1:"NVSET")
  N PRNTON S (PRNTON,O)=0,SD="P" F  S O=$O(^PS(53.1,"AS",SD,PSGP,O)) Q:'O  S ON=O_"P",X=$P($G(^PS(53.1,+O,0)),U,4) I $S(PSJPTYP=3:1,PSJPTYP=1&("FI"[X):0,1:1) D @$S("FI"[X:"IVSET",1:"NVSET")
  I PSJOL="L",$D(XRT0) S XRTN="PSJO1" D T1^%ZOSV
+ D CLEAN^PSJIMO1(PSGP)
  Q
  ;
 NVSET ; Set up orders from 53.1.
@@ -108,3 +116,18 @@ COMCHK(PSJCOM,PSJPTYP) ;Check complex orders for order type
  .I $P($G(^PS(53.1,PSJON,0)),"^",4)'="U",PSJPTYP=1 S OK=0 Q
  .I $P($G(^PS(53.1,PSJON,0)),"^",4)="U",PSJPTYP=2 S OK=0 Q
  Q OK
+ ;
+CLINIC(PSGP,ORDER) ; Return Clinic Name for a given patient/order combination
+ I '$G(ORDER) Q ""
+ N CLN S CLN=$S(ORDER["P":$G(^PS(53.1,+ORDER,"DSS")),ORDER["V":$G(^PS(55,PSGP,"IV",+ORDER,"DSS")),ORDER["U":$G(^PS(55,PSGP,5,+ORDER,8)),1:"")
+ I 'CLN,(ORDER=+ORDER) D
+ .I $D(^PS(53.1,"ACX",+ORDER)) N PSJORD S PSJORD=0 F  S PSJORD=$O(^PS(53.1,"ACX",+ORDER,PSJORD)) Q:'PSJORD!$G(CLN)  S CLN=$G(^PS(53.1,+PSJORD,"DSS"))
+ .I $D(^PS(55,"ACX",+ORDER)) N ACX2,PSJORD S ACX2="" F  S ACX2=$O(^PS(55,"ACX",+ORDER,ACX2)) Q:'ACX2!$G(CLN)  S PSJORD=0 F  S PSJORD=$O(^PS(55,"ACX",+ORDER,ACX2,PSJORD)) Q:'PSJORD!$G(CLN)  D
+ ..S CLN=$S(PSJORD["P":$G(^PS(53.1,+PSJORD,"DSS")),PSJORD["V":$G(^PS(55,PSGP,"IV",+PSJORD,"DSS")),ORDER["U":$G(^PS(55,PSGP,5,+PSJORD,8)),1:"")
+ S CLN=$S($P(CLN,"^",2):$$GET1^DIQ(44,+CLN,.01),1:"")
+ Q CLN
+ ;
+CLINSORT(C) ; Return integer sort value based on order status
+ I $P(C,"^")="Cz" N CTMP S CTMP=C N C S C=$P(CTMP,"^",4)
+ S SORT=$S($E(C)="A":3,$E(C)["C"!($E(C)["P"):1,($E(C)["B"):2,($E(C)["DF"):4,1:5)
+ Q SORT

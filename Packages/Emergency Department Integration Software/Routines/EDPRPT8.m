@@ -1,5 +1,5 @@
 EDPRPT8 ;SLC/MKB - Acuity Report ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
 ACU(BEG,END,CSV) ; Get Acuity Report for EDPSITE by date range
  ;   CNT = counters by acuity
@@ -42,7 +42,8 @@ A1 ; return counts and averages
  ; as CSV
  I $G(CSV) D  Q
  . N TAB S TAB=$C(9)
- . S X="Acuity->"_TAB_"0"_TAB_"1"_TAB_"2"_TAB_"3"_TAB_"4"_TAB_"5"_TAB_"Total/Average"
+ . ;S X="Acuity->"_TAB_"0"_TAB_"1"_TAB_"2"_TAB_"3"_TAB_"4"_TAB_"5"_TAB_"Total/Average"
+ . S X="Acuity->"_TAB_"None"_TAB_"1"_TAB_"2"_TAB_"3"_TAB_"4"_TAB_"5"_TAB_"Total/Average"
  . D ADD^EDPCSV(X)
  . D ROW("Number of Patients",.CNT)
  . D ROW("Number Admitted",.ADM)

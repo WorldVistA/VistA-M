@@ -1,5 +1,5 @@
 BPSOSQL ;BHAM ISC/FCS/DRS/FLS - Process responses ;12/7/07  15:28
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -62,12 +62,10 @@ RESP1(IEN59,TRANTYPE,CLAIMIEN,RESPIEN) ; called from ONE
  ; If the claims was rejected, log the reject reason
  I RESP="R" D  ; rejected, give rejection reasons
  . N J S J=0 F  S J=$O(^BPSR(RESPIEN,1000,POSITION,511,J)) Q:'J  D
- .. N R,X S R=$P($G(^BPSR(RESPIEN,1000,POSITION,511,J,0)),U)
+ .. N R,X S R=$P($G(^BPSR(RESPIEN,1000,POSITION,511,J,0)),U)    ; R = external reject code
  .. I R]"" D
- ... S X=$O(^BPSF(9002313.93,"B",R,0))
- ... ; Check if reject lists for non-covered drug needs to be updated IA# 5185
- ... I TRANTYPE="B1" D UPDLST^IBNCDNC(+($G(IEN59)\1),$P($G(^BPST(+$G(IEN59),1)),U,2),$P($G(^BPSC(+$G(CLAIMIEN),1)),U,4),X)
- ... I X]"" S X=$P($G(^BPSF(9002313.93,X,0)),U,2)
+ ... S X=$O(^BPSF(9002313.93,"B",R,0))              ; X = reject code ien
+ ... I X]"" S X=$P($G(^BPSF(9002313.93,X,0)),U,2)   ; X = reject code description
  .. E  S X=""
  .. D LOG^BPSOSL(IEN59,"Reject Code: "_R_" - "_X)
  . ;

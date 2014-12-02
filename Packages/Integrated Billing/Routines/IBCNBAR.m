@@ -1,5 +1,5 @@
 IBCNBAR ;ALB/ARH-Ins Buffer: process Accept and Reject ;15 Jan 2009
- ;;2.0;INTEGRATED BILLING;**82,240,345,413,416**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**82,240,345,413,416,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -54,7 +54,7 @@ PROCESS ; process all changes selected by user, add/edit insurance files based
  . . D FILE^DIE("","IBFLDS","IBERR")
  . W:$G(IBSUPRES)'>0 !,"Group/Plan "_IBGRPH_"..."
  I +IBINSDA,+IBMVPOL,+IBGRPDA,+IBPOLDA D POLICY^IBCNBMI(IBBUFDA,IBPOLDA,+IBMVPOL,.RESULT) W:$G(IBSUPRES)'>0 !,"Patient Policy "_IBPOLH_"..."
- I +IBELIG S RIEN=$O(^IBCN(365,"AF",IBBUFDA,""),-1) I RIEN D EBFILE^IBCNEHL1(DFN,IBPOLDA,RIEN,0) W:$G(IBSUPRES)'>0 !,"Eligibility/Benfits data Updated..."
+ I +IBELIG S RIEN=$O(^IBCN(365,"AF",IBBUFDA,""),-1) I RIEN D GRPFILE^IBCNEHL1(DFN,IBPOLDA,RIEN,0),EBFILE^IBCNEHL1(DFN,IBPOLDA,RIEN,0) W:$G(IBSUPRES)'>0 !,"Eligibility/Benfits data Updated..."
  ;
  ;Only do this update for ICB ACCEPAPI^IBCNICB interface
  I $G(IBSUPRES)>0,+IBMVPOL,+IBGRPDA,+IBPOLDA,'IBNEWPOL D UPDPOL^IBCNICB(.RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA)
@@ -90,7 +90,7 @@ CLEANUP ; general updates and checks done whenever insurance is added/edited and
  . I Y="V"!(Y="v") W !! D INS^IBCNBCD(IBBUFDA,IBINSDA),WAIT^IBCNBUH,GRP^IBCNBCD(IBBUFDA,IBGRPDA),WAIT^IBCNBUH,POLICY^IBCNBCD(IBBUFDA,IBPOLDA),WAIT^IBCNBUH
  ;
  ; if source is eIV, update insurance record field in transmission queue (365.1/.13)
- I $P(^IBA(355.33,IBBUFDA,0),U,3)=5 D UPDIREC^IBCNEHL1($O(^IBCN(365,"AF",IBBUFDA,"")),IBPOLDA)
+ I $P(^IBA(355.33,IBBUFDA,0),U,3)=5 D UPDIREC^IBCNEHL3($O(^IBCN(365,"AF",IBBUFDA,"")),IBPOLDA)
  ; update buffer file entry so only stub remains and status is changed
  D STATUS^IBCNBEE(IBBUFDA,"A",IBNEWINS,IBNEWGRP,IBNEWPOL) ; update buffer entry's status to accepted
  D DELDATA^IBCNBED(IBBUFDA) ; delete buffer's insurance/patient data
@@ -141,7 +141,7 @@ IVM(AR,IBBUFDA,IVMREPTR,IBSUPRES) ; IVM must be notified whenever a buffer entry
  N DFN,IBX,IBY I $P($G(^IBA(355.33,+IBBUFDA,0)),U,3)'=3 Q
  ;
  S DFN=+$G(^IBA(355.33,+IBBUFDA,60))
- S IBX=$P($G(^IBA(355.33,+IBBUFDA,20)),U,1)_U_$P($G(^IBA(355.33,+IBBUFDA,21)),U,1)_U_$P($G(^IBA(355.33,+IBBUFDA,40)),U,3)
+ S IBX=$P($G(^IBA(355.33,+IBBUFDA,20)),U,1)_U_$P($G(^IBA(355.33,+IBBUFDA,21)),U,1)_U_$P($G(^IBA(355.33,+IBBUFDA,90)),U,2)  ; IB*2.0*497 (vd)
  ;
  S IBY=$$UPDATE^IVMLINS4(DFN,AR,IBX,$G(IVMREPTR),$G(IBSUPRES))
  Q

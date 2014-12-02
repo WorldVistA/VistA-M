@@ -1,5 +1,5 @@
-MAGJEX1 ;WIRMFO/JHC - VistARad RPC calls ; 9 Sep 2011  4:05 PM
- ;;3.0;IMAGING;**16,22,18,65,101,115,104,120**;Mar 19, 2002;Build 27;May 23, 2012
+MAGJEX1 ;WIRMFO/JHC - VistARad RPC calls ; 25 Mar 2013  5:22 PM
+ ;;3.0;IMAGING;**16,22,18,65,101,115,104,120,133**;Mar 19, 2002;Build 5393;Sep 09, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -171,7 +171,7 @@ PSETLST(RADFN,RADTI,RACNI) ; Return list of Printset Case #'s for exam
  . D EN2^RAUTL20(.MAGPSET)
  . Q:'RAPRTSET  ; variable set by above call; stop if not a printset
  . S X=""
- . F I=0:1 S X=$O(MAGPSET(X)) Q:'X  S PSETLST=PSETLST_$S(I:U,1:"")_+MAGPSET(X)
+ . F I=0:1 S X=$O(MAGPSET(X)) Q:'X  S PSETLST=PSETLST_$S(I:U,1:"")_$P(MAGPSET(X),U)
  Q:$Q PSETLST Q
  ;
 PNAM(X) ; return pt name for input DFN

@@ -1,5 +1,5 @@
-SCRPW47 ;RENO/KEITH/MLR - Outpatient Diagnosis/Procedure Code Search (cont.) ; 9/29/00 12:34pm
- ;;5.3;Scheduling;**144,180,199**;AUG 13, 1993
+SCRPW47 ;RENO/KEITH/MLR - Outpatient Diagnosis/Procedure Code Search (cont.) ;9/29/00 12:34pm
+ ;;5.3;Scheduling;**144,180,199,593**;AUG 13, 1993;Build 13
  ;;07/22/99 ACS - Added CPT modifiers to the report
  ;  *199*
  ;   - Summary section correction (multiple divisions)
@@ -105,6 +105,7 @@ DPRT1 ;Prints name & ss# of line detail
  Q  ;DPRT1
  ;
 PATIENT ;Prints Patient Diagnosis/Procedures for all Types of Detail
+ N DIWL,DIWF,SDL2 S DIWL=1 S DIWF="C42|"
  F SDI="DR","PR" I $D(^TMP("SCRPW",$J,0,1,DFN,DIV0,SDI)) D  Q:SDOUT
  . S SDII="" F  S SDII=$O(^TMP("SCRPW",$J,0,1,DFN,DIV0,SDI,SDII)) Q:SDII=""!SDOUT  D
  .. D:$Y>(IOSL-4) HDR,HD1 Q:SDOUT
@@ -112,7 +113,8 @@ PATIENT ;Prints Patient Diagnosis/Procedures for all Types of Detail
  ... W:SDLF ! Q
  ... I DIV1'=DIV0 S DIV1=DIV0 W ! Q
  ... Q
- .. W ?(SDCOL+38),$E($S(SDI="DR":"Dx: ",1:"Proc.: ")_SDII,1,42) S SDLF=1
+ .. K ^UTILITY($J,"W") S X=$S(SDI="DR":"Dx: ",1:"Proc.: ")_SDII D ^DIWP S SDLF=1
+ .. F SDL2=1:1:^UTILITY($J,"W",DIWL) W:SDL2>1 ! W ?(SDCOL+38),$E(^UTILITY($J,"W",DIWL,SDL2,0),1,42)
  ..; print mod and desc for current CPT (SDII)
  ..; SDII2 = modifier and description
  .. I $D(^TMP("SCRPW",$J,0,1,DFN,DIV0,SDI,SDII)) D
@@ -188,10 +190,16 @@ PDP(SDT,SDX,SDP,SDL,SDL1) ;Print parameter display line
  ;Required input: SDP=$P of SDX to print
  ;Optional input: SDL=1 to suppress title and do line feed
  ;Optional input: SDL1=1 to do additional line feed
+ N DIWL,DIWF,SDL2 S DIWL=1 S DIWF="C"_(IOM\2+1)_"|"
  S SDLF=SDLF+1 I $E(IOST)="C",SDLF#18=0 D WAIT Q:SDOUT
  I $Y>(IOSL-3),$E(IOST)="P" D HDR Q:SDOUT
  I $G(SDL1) W ! S SDLF=SDLF+1 I $E(IOST)="C",SDLF#18=0 D WAIT Q:SDOUT
- W ! W:'$G(SDL) $J(SDT,(IOM-6\2)),":" W ?(IOM\2-1),$P(SDX,U,SDP) Q
+ W ! W:'$G(SDL) $J(SDT,(IOM-6\2)),":"
+ K ^UTILITY($J,"W") S X=$P(SDX,U,SDP) D ^DIWP
+ F SDL2=1:1:^UTILITY($J,"W",DIWL) D  S SDLF=SDLF+1 I $E(IOST)="C",SDLF#18=0 D WAIT Q:SDOUT
+ . I SDL2=1 W ?(IOM\2-1),$E(^UTILITY($J,"W",DIWL,SDL2,0),1,(IOM\2+1)) I 1
+ . E  W !,?(IOM\2-1),$E(^UTILITY($J,"W",DIWL,SDL2,0),1,(IOM\2+1))
+ Q
  ;
 WAIT ;Do CRT pause
  N DIR W ! S DIR(0)="E" D ^DIR S SDOUT=Y'=1 W ! Q

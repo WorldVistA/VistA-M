@@ -8,7 +8,7 @@ IBY5PT ;ALB/NLR - Post-init for Patch IB*2*6 ; 05-MAY-94
  ;
 POP ; Add the IVM Center domain to file #350.9
  W !!,">>> Updating the IVM Center domain in the IB SITE PARAMETERS (#350.9) file..."
- S $P(^IBE(350.9,1,4),"^",7)="G.IVM REPORTS@IVM.domain.ext"
+ S $P(^IBE(350.9,1,4),"^",7)="G.IVM REPORTS@IVM.DOMAIN.EXT"
  Q
  ;
 ADD ; Add the option IVM Billing Activity Report to the Mgmt reports menu

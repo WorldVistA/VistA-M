@@ -1,9 +1,9 @@
 PSSPOIMO ;BIR/RTR/WRT-Edit Orderable Item Name and Inactive date ; 4/28/09 4:39pm
- ;;1.0;PHARMACY DATA MANAGEMENT;**29,32,38,47,68,102,125,141,153,159**;9/30/97;Build 29
+ ;;1.0;PHARMACY DATA MANAGEMENT;**29,32,38,47,68,102,125,141,153,159,166,172**;9/30/97;Build 28
  S PSSITE=+$O(^PS(59.7,0)) I +$P($G(^PS(59.7,PSSITE,80)),"^",2)<2 W !!?3,"Orderable Item Auto-Create has not been completed yet!",! K PSSITE K DIR S DIR("A")="Press RETURN to continue",DIR(0)="E" D ^DIR K DIR Q
  K PSSITE W !!,"This option enables you to edit Orderable Item names, Formulary status,",!,"drug text, Inactive Dates, and Synonyms."
 EN I $D(PSOIEN) L -^PS(50.7,PSOIEN)
- K PSSCROSS
+ K PSSCROSS,DTOUT,DUOUT,DIRUT
  K DIC ; S PY=$P($G(^PS(59.7,1,31)),"^",2)
  S PSS1="W ""  ""_$P(^PS(50.606,$P(^PS(50.7,+Y,0),""^"",2),0),""^"")_""  ""_$S($P($G(^PS(50.7,+Y,0)),""^"",4):$E($P(^(0),""^"",4),4,5)_""-""_$E($P(^(0),""^"",4),6,7)_""-""_$E($P(^(0),""^"",4),2,3),1:"""")"
  S PSS2=" S NF=$P($G(^PS(50.7,+Y,0)),""^"",12) I NF S NF=""   N/F"" W NF"
@@ -12,10 +12,8 @@ EN I $D(PSOIEN) L -^PS(50.7,PSOIEN)
  S $P(PLINE,"-",79)="" W !! K PSOUT S DIC="^PS(50.7,",DIC(0)="QEAMZ",D="B^C" D MIX^DIC1 K DIC,PY,D G:Y<0!($D(DTOUT))!($D(DUOUT)) END
  S PSOIEN=+Y,PSOINAME=$P(Y,"^",2),PSDOSE=+$P(^PS(50.7,PSOIEN,0),"^",2) L +^PS(50.7,PSOIEN):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I '$T W !,$C(7),"Another person is editing this one." Q
  W !!!,?5,"Orderable Item -> ",PSOINAME,!?5,"Dosage Form    -> ",$P($G(^PS(50.606,PSDOSE,0)),"^"),!
- ;I $P($G(^PS(50.7,PSOIEN,0)),"^",3) W !?3,"*** This Orderable Item is flagged for IV use! ***",!
- ;G:$P($G(^PS(50.7,PSOIEN,0)),"^",3) ADDIT
  K DIR S DIR("?")=" ",DIR("?",1)="Enter 'Yes' to see all of the Dispense Drugs, IV Additives, and IV Solutions",DIR("?",2)="that are matched to this Orderable Item. IV Additives will be identified with"
-  S DIR("?",3)="an (A), and IV Solutions with an (S)."
+ S DIR("?",3)="an (A), and IV Solutions with an (S)."
  S DIR(0)="Y",DIR("B")="YES",DIR("A")="List all Drugs/Additives/Solutions tied to this Orderable Item" D ^DIR K DIR I Y["^"!($D(DTOUT))!($D(DUOUT)) G EN
  I Y D DISP
 EDIT K DIR W ! S DIR(0)="Y",DIR("A")="Are you sure you want to edit this Orderable Item",DIR("B")="NO",DIR("?")="Answer YES to edit the fields associated with this Orderable Item." D ^DIR K DIR I 'Y!($D(DTOUT))!($D(DUOUT)) G EN
@@ -25,14 +23,12 @@ DIR K DIR S DIR(0)="F^3:40",DIR("B")=PSOINAME,DIR("A")="Orderable Item Name" D ^
  I X[""""!($A(X)=45)!('(X'?1P.E))!(X?2"z".E) W $C(7),!!?5,"??" G DIR
  I X'=PSOINAME S ZZFLAG=0 D @$S('$P($G(^PS(50.7,PSOIEN,0)),"^",3):"CHECK",1:"ZCHECK") I ZZFLAG G DIR
  S PSONEW=X,DIE="^PS(50.7,",DA=PSOIEN,DR=".01////"_X D ^DIE I PSONEW'=PSOINAME W !!,"Name changed from  ",PSOINAME,!?15,"to  ",PSONEW
- ;I $P($G(^PS(59.7,1,20.4)),"^",16)=1,$P(^PS(50.7,PSOIEN,0),"^",3)=1,$P(^PS(50.7,PSOIEN,0),"^",11)="" D UDMSG K DIE S DIE="^PS(50.7,",DR="3",DA=PSOIEN D ^DIE
- ;I $P($G(^PS(59.7,1,20.4)),"^",16)=1,$P(^PS(50.7,PSOIEN,0),"^",3)'=1,$P(^PS(50.7,PSOIEN,0),"^",10)="" D IVMSG K DIE S DIE="^PS(50.7,",DR="4",DA=PSOIEN D ^DIE
  S PSSDTENT=0 W ! K DIE N MFLG S PSBEFORE=$P(^PS(50.7,PSOIEN,0),"^",4),PSAFTER=0,PSINORDE="" D
  .;If reactivate OI, prompt to reactivate DD's only if there are any, then always give message saying OI now Active. If Inactivate, prompt to inactivate any active DD's if there are any, and give message
  .;but if OI is reactivated, and there are no activities matched to it, and user does not want to activate the drugs, then inactivate the OI again, and give a clear message explaining this.
  .W !,"This Orderable Item is "_$S($P($G(^PS(50.7,PSOIEN,0)),"^",12):"Non-Formulary.",1:"Formulary."),!
  .I $P($G(^PS(50.7,PSOIEN,0)),"^",10) W !,"This Orderable Item is marked as a Non-VA Med.",!
- .S DIE="^PS(50.7,",DA=PSOIEN,DR=6 S PSCREATE=1 D ^DIE K DIE,PSCREATE I $D(DTOUT)!($D(Y)) Q
+ .S DIE="^PS(50.7,",DA=PSOIEN,DR=6 S PSCREATE=1 D ^DIE K DIE,PSCREATE I $D(DTOUT)!($D(Y)>10) Q
  .;PSS*1*102;ADD DRUG TEXT AS SYNONYM IS REQUESTED BY USER
  .D ADDSYN^PSSPOIMP
  .K DIR S DIR(0)="DO",DIR("A")="INACTIVE DATE" D  D ^DIR K DIR I $G(Y)["^"!($D(DTOUT))!($G(DUOUT)) Q
@@ -40,9 +36,10 @@ DIR K DIR S DIR(0)="F^3:40",DIR("B")=PSOINAME,DIR("A")="Orderable Item Name" D ^
  .I $G(PSBEFORE),'$G(Y) W ?40,"Inactive Date deleted!"
  .S PSSDTENT=$G(Y) I $G(Y) D DD^%DT W ?40,$G(Y)
  .S PSSOTH=$S($P($G(^PS(59.7,1,40.2)),"^"):1,1:0)
- .S DIE="^PS(50.7,",DA=PSOIEN,DIE("NO^")="BACK"
- .S DR=".05;@1;.06;D DFR^PSSPOIMO(PSDOSE),DFRL^PSSPOIMO;10//YES;I X=""Y"" S Y=""@2"";D PDCHK^PSSPOIMO;I $$DP^PSSPOIMO(PSOIEN) S Y=""@1"";@2;.07;.08;7;S:'$G(PSSOTH) Y=""@3"";7.1;@3"
- .S PSCREATE=1 D ^DIE K DIE,PSCREATE,PSSOTH
+ .S DIE="^PS(50.7,",DA=PSOIEN N PSSFG,PSSOU
+ .S DR=".05;@1;D SETF^PSSPOIMO;.06;D DFR^PSSPOIMO(PSDOSE);10//YES;I X=""Y"" S Y=""@2"";S:$G(DUOUT) Y=""@3"";" D
+ ..S DR=DR_"D PDCHK^PSSPOIMO S:PSSFG Y=""@1"";S:$G(DUOUT) Y=""@3"";@2;K DIE(""NO^""),DIRUT;D MRSEL^PSSPOIMO;.07;.08;1;7;S:'$G(PSSOTH) Y=""@3"";7.1;@3"
+ .S PSCREATE=1 D ^DIE K DIE,PSCREATE,PSSOTH,^TMP("PSJMR",$J),^TMP("PSSDMR",$J) I $D(PSSOU),'$G(PSSOU) D MRSEL K ^TMP("PSJMR",$J)
  .S $P(^PS(50.7,PSOIEN,0),"^",4)=PSSDTENT,PSAFTER=PSSDTENT
  S:PSBEFORE&('$P(^PS(50.7,PSOIEN,0),"^",4)) PSINORDE="D" S:$P(^PS(50.7,PSOIEN,0),"^",4) PSINORDE="I"
  I PSINORDE'="" D CHECK^PSSPOID2(PSOIEN) D
@@ -58,12 +55,13 @@ DIR K DIR S DIR(0)="F^3:40",DIR("B")=PSOINAME,DIR("A")="Orderable Item Name" D ^
 IMMUN ;PSS*1*141 FOR 'IMMUNIZATIONS DOCUMENTATION BY BCMA'
  I $O(^PSDRUG("AOC",PSOIEN,"IM000"))'["IM" G SYN ;ASK WHEN APPROPRIATE
  W ! S DIE="^PS(50.7,",DA=PSOIEN,DR=9 D ^DIE K DIE
-SYN W ! K DIC S:'$D(^PS(50.7,PSOIEN,2,0)) ^PS(50.7,PSOIEN,2,0)="^50.72^0^0" S DIC="^PS(50.7,"_PSOIEN_",2,",DA(1)=PSOIEN,DIC(0)="QEAMZL",DIC("A")="Select SYNONYM: ",DLAYGO=50.72 D ^DIC K DIC
+SYN I $G(Y)["^"!($G(DIRUT))!$D(DTOUT)!($D(Y)>10) G EN
+ W ! K DIC S:'$D(^PS(50.7,PSOIEN,2,0)) ^PS(50.7,PSOIEN,2,0)="^50.72^0^0" S DIC="^PS(50.7,"_PSOIEN_",2,",DA(1)=PSOIEN,DIC(0)="QEAMZL",DIC("A")="Select SYNONYM: ",DLAYGO=50.72 D ^DIC K DIC
  I Y<0!($D(DUOUT))!($D(DTOUT)) K:'$O(^PS(50.7,PSOIEN,2,0)) ^PS(50.7,PSOIEN,2,0) D EN^PSSPOIDT(PSOIEN),EN2^PSSHL1(PSOIEN,"MUP") G EN
  W ! S DA=+Y,DIE="^PS(50.7,"_PSOIEN_",2,",DA(1)=PSOIEN,DR=.01 D ^DIE K DIE G SYN
  D EN^PSSPOIDT(PSOIEN),EN2^PSSHL1(PSOIEN,"MUP")
  G EN
-END K ZZFLAG,DIC,DIR,DIE,DTOUT,DUOUT,FLAG,PSOINAME,PSOUT,PSDOSE,PSONEW,UPFLAG,VV,ZZ,AA,BB,Y,AAA,SSS,PSOARR,PSOARRAD,PLINE I $D(PSOIEN) L -^PS(50.7,PSOIEN) K PSOIEN
+END K ZZFLAG,DIC,DIR,DIE,DTOUT,DUOUT,DIRUT,FLAG,PSOINAME,PSOUT,PSDOSE,PSONEW,UPFLAG,VV,ZZ,AA,BB,Y,AAA,SSS,PSOARR,PSOARRAD,PLINE I $D(PSOIEN) L -^PS(50.7,PSOIEN) K PSOIEN
  Q
 DISP N PSSLFLAG,PSSLDATE S FLAG=1 D HEAD F ZZ=0:0 S ZZ=$O(^PSDRUG("ASP",PSOIEN,ZZ)) Q:'ZZ!($G(PSOUT))  S FLAG=0 D:($Y+5)>IOSL HEAD Q:$G(PSOUT)  I ZZ W !,$P($G(^PSDRUG(ZZ,0)),"^") W:$P($G(^PSDRUG(ZZ,0)),"^",9) "   N/F" D DTE
  Q:$G(PSOUT)
@@ -127,19 +125,21 @@ UDMSG ; display a message if the CORRESPONDING UD field is entered
  K PSSUDMSG,PSSUDFRM
  Q
 DFR(PSDOSE) ; dosage form med routes - called by DR string at DIR+20^PSSPOIMO
- N MCT,MR,MRNODE,XX K ^TMP("PSSMR",$J)
+ D SETF
+ N MR,MRNODE,XX K ^TMP("PSSDMR",$J)
  S (MCT,MR)=0 F  S MR=$O(^PS(50.606,PSDOSE,"MR",MR)) Q:'MR  D
  .S XX=+$G(^PS(50.606,PSDOSE,"MR",MR,0)) Q:'XX  S MRNODE=$G(^PS(51.2,XX,0)) I $P($G(MRNODE),"^",4)'=1 Q
- .S MCT=MCT+1,^TMP("PSSMR",$J,MCT)=$P(MRNODE,U),^TMP("PSSMR",$J,"B",XX)=""
+ .S MCT=MCT+1,^TMP("PSSDMR",$J,MCT)=$P(MRNODE,U),^TMP("PSSDMR",$J,"B",XX)=""
+ D DFRL
  Q
 DFRL W !!," List of med routes associated with the DOSAGE FORM of the orderable item:",!
- S MCT=0 I '$O(^TMP("PSSMR",$J,MCT)) W !,?3,"NO MED ROUTE DEFINED"
- F  S MCT=$O(^TMP("PSSMR",$J,MCT)) Q:'MCT  W !,?3,$G(^(MCT))
+ S MCT=0 I '$O(^TMP("PSSDMR",$J,MCT)) W !,?3,"NO MED ROUTE DEFINED"
+ F  S MCT=$O(^TMP("PSSDMR",$J,MCT)) Q:'MCT  W !,?3,$G(^(MCT))
  D EN^DDIOL(" If you answer YES to the next prompt, the DEFAULT MED ROUTE (if populated)",,"!!")
  D EN^DDIOL(" and this list (if populated) will be displayed as selectable med routes",,"!")
  D EN^DDIOL(" during medication ordering dialog. If you answer NO, the DEFAULT MED ROUTE",,"!")
  D EN^DDIOL(" (if populated) and POSSIBLE MED ROUTES list will be displayed instead.",,"!") W !
- K ^TMP("PSSMR",$J)
+ ;K ^TMP("PSSMR",$J)
  Q
 PDR ; possible med routes - called by DR string at DIR+20^PSSPOIMO
  N MCT,MR,MRNODE,XX K ^TMP("PSSMR",$J)
@@ -149,7 +149,7 @@ PDR ; possible med routes - called by DR string at DIR+20^PSSPOIMO
  .S MCT=0 F  S MCT=$O(^TMP("PSSMR",$J,MCT)) Q:'MCT  W !,?3,$G(^(MCT))
  W ! K ^TMP("PSSMR",$J)
  Q
-PDCHK ; called by called by DR string at DIR+20^PSSPOIMO
+PDCHK ; called by DR string at DIR+20^PSSPOIMO
  N ANS,D,DIC,DIE,DO,DICR,DR,DIR,PSOUT,PSSDA,PSSX,PSSXA,PSSY,Q,X,Y,Z
  S DIR(0)="PO^51.2:EMZ",DIR("A")="POSSIBLE MED ROUTES",DIR("S")="I $P(^(0),U,4)" S PSOUT=0
  S DIR("PRE")="I X=""?"" D MRTHLP^PSSPOIMO"
@@ -168,10 +168,11 @@ PDCHK ; called by called by DR string at DIR+20^PSSPOIMO
  .S PSSDA(50.711,"+1,"_DA_",",.01)=+PSSX
  .D UPDATE^DIE("","PSSDA")
  .K ^TMP("PSSMR",$J)
-  Q
+ D DP
+ Q
 ASK() ; confirm adding the new entry
  N DIR,X,Y W ! S DIR(0)="YO",DIR("B")="YES"
- I '$D(^TMP("PSSMR",$J,"B",PSSX)) S DIR("B")="NO",DIR("A",1)="The selected entry does not match any of the dosage form med routes."
+ I $D(^TMP("PSSDMR",$J)),'$D(^TMP("PSSDMR",$J,"B",PSSX)) S DIR("B")="NO",DIR("A",1)="The selected entry does not match to any of the dosage form med routes."
  W $C(7) S DIR("A")="  Are you adding '"_PSSXA_"' as a new POSSIBLE MED ROUTE" D ^DIR
  Q $S(Y=1:1,1:0)
 DASK() ; delete possible med route
@@ -184,9 +185,9 @@ MRTHLP ; help of possible med route
  W ! D EN^DDIOL("Enter the most common MED ROUTE associated with this Orderable Item.",,"!,?5")
  D EN^DDIOL("ONLY MED ROUTES MARKED FOR USE BY ALL PACKAGES ARE SELECTABLE.",,"!,?5")
  Q
-DP(PSOIEN) ; check the existence of Default Med Route & Possible Med Routes
- N D,DIC,DIE,DO,DICR,DR,DIR,PSSFG,Q,X,Y,Z S PSSFG=0
- I '$P($G(^PS(50.7,PSOIEN,0)),"^",6)&('$O(^PS(50.7,PSOIEN,3,0))) D
+DP ; check the existence of Default Med Route & Possible Med Routes
+ N D,DIC,DIE,DO,DICR,DR,DIR,Q,X,Y,Z
+ I '$P($G(^PS(50.7,$S($G(PSVAR):PSVAR,1:PSOIEN),0)),"^",6)&('$O(^PS(50.7,$S($G(PSVAR):PSVAR,1:PSOIEN),3,0))) D
  .S PSR(1)=" You have not selected ANY med routes to display during order entry. In"
  .S PSR(2)=" order to have med routes displayed during order entry, you must either"
  .S PSR(3)=" define a DEFAULT MED ROUTE and/or at least one POSSIBLE MED ROUTE, or"
@@ -197,6 +198,22 @@ DP(PSOIEN) ; check the existence of Default Med Route & Possible Med Routes
  .K DIR S DIR(0)="Y",DIR("?",1)="If you select NO, you will continue to loop back to the Default Med Route"
  .S DIR("?")="prompt until either a selection is made or you answer YES to this prompt to proceed."
  .S DIR("A",1)="",DIR("A",2)="The current setting is usually only appropriate for supply items."
- .S DIR("A")="Continue with no med routes displaying for selection during order entry",DIR("B")="NO"
+ .S DIR("A")="Continue with NO med route displaying for selection during order entry",DIR("B")="NO"
  .D ^DIR K DIR W ! I 'Y!($D(DTOUT))!($D(DUOUT)) S PSSFG=1
- Q PSSFG
+ .S:Y PSSFG=0
+ E  S PSSFG=0
+ Q
+ ;
+SETF ;
+ S PSSOU=0 K ^TMP("PSJMR",$J) D MEDRT^PSSJORDF($S($G(PSVAR):PSVAR,1:PSOIEN))
+ I '$D(^TMP("PSJMR",$J)) S DIE("NO^")="",PSSFG=1
+ E  S PSSFG=0 K DIE("NO^")
+ Q
+MRSEL ;
+ K ^TMP("PSJMR",$J) D MEDRT^PSSJORDF($S($G(PSVAR):PSVAR,1:PSOIEN))
+ W !,"The following Med Routes will now be displayed during order entry:"
+ N I S (PSSOU,I)=0 F  S I=$O(^TMP("PSJMR",$J,I)) Q:'I   W !,$P(^(I),"^",2) S PSSOU=1
+ W:'PSSOU !,"(None)"
+ W ! S PSSOU=1
+ Q
+ ;

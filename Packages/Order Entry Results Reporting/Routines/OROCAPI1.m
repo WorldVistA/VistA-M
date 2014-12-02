@@ -1,87 +1,94 @@
-OROCAPI1 ; JMH - ORDER CHECK INSTANCES File APIs;8/24/07 ;03/14/11  09:32
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**293,346**;Dec 17, 1997;Build 5
+OROCAPI1 ; JMH - ORDER CHECK INSTANCES File APIs;8/24/07 ;09/14/11  08:26
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**293,346,345**;Dec 17, 1997;Build 32
 SAVEOC(ORL,RET) ;SAVE A GROUP OF ORDER CHECKS
-         ;ORL=LIST OF ORDER CHECKS
-         ;(D0,1)=ORDER NUMBER (FILE 100)^
-         ;       OCCURANCE DESCRIPTOR^
-         ;       USER (FILE 200)^
-         ;       OCCURANCE D/T^
-         ;       ORDER CHECK NUMBER (FILE 100.8)^
-         ;       CLINICAL DANGER LEVEL
-         ;   (D0,2)=ORDER CHECK NARRATIVE
-         ;   (D0,3)=OVERRIDE REASON
-         ;RET=RETURN ARRAY OF IENS BY ORL(D0)
-         ;    RET(D0,IEN)=""
-         N I S I=0 F  S I=$O(ORL(I)) Q:'I  D
-         .N DA,DR,DIC,X,Y,DIE,ORSTATUS,ORN,ORDANG,DW,DV,%,D,DC,DE,DH,DI,DIEL,DIFLD,DIP,DK,DM,DP,DQ
-         .S ORN=+ORL(I,1)
-         .Q:'ORN!('$D(^OR(100,ORN)))
-         .Q:'$P(ORL(I,1),U,5)  ;QUIT IF NO ORDER CHECK NUMBER
-         .Q:'$L($G(ORL(I,2)))  ;QUIT IF NO ORDER CHECK TEXT
-         .S DIC="^ORD(100.05,",DIC(0)="F",X=ORN D FILE^DICN
-         .Q:'DA
-         .S RET(I,DA)=""
-         .S DIE=DIC,ORSTATUS=$P($G(^OR(100,ORN,3)),U,3),ORDANG=$S($P($G(ORL(I,1)),U,6):$P($G(ORL(I,1)),U,6),1:$$GET^XPAR("ALL","ORK CLINICAL DANGER LEVEL",$P($G(ORL(I,1)),U,5),"I"))
-         .S DR="1////"_ORSTATUS_";2////"_$P($G(ORL(I,1)),U,2)_";3////"_$P($G(ORL(I,1)),U,3)_";4////"_$P($G(ORL(I,1)),U,4)_";5////"_$P($G(ORL(I,1)),U,5)_";6////"_ORDANG_";8///"_$TR($G(ORL(I,2)),";",",")_";7///"_$TR($G(ORL(I,3)),";",",")
-         .D ^DIE
-         .;set ^ORD(100.05,DA,2) if ORL(DO,2,1) exists
-         .I $D(ORL(I,2))=11 N J S J=0 F  S J=$O(ORL(I,2,J)) Q:'J  S ^ORD(100.05,DA,2,J+1,0)=ORL(I,2,J)
-         Q
+ ;ORL=LIST OF ORDER CHECKS
+ ;(D0,1)=ORDER NUMBER (FILE 100)^
+ ;       OCCURANCE DESCRIPTOR^
+ ;       USER (FILE 200)^
+ ;       OCCURANCE D/T^
+ ;       ORDER CHECK NUMBER (FILE 100.8)^
+ ;       CLINICAL DANGER LEVEL
+ ;   (D0,2)=ORDER CHECK NARRATIVE
+ ;   (D0,3)=OVERRIDE REASON
+ ;RET=RETURN ARRAY OF IENS BY ORL(D0)
+ ;    RET(D0,IEN)=""
+ N I S I=0 F  S I=$O(ORL(I)) Q:'I  D
+ .N DA,DR,DIC,X,Y,DIE,ORSTATUS,ORN,ORDANG,DW,DV,%,D,DC,DE,DH,DI,DIEL,DIFLD,DIP,DK,DM,DP,DQ
+ .S ORN=+ORL(I,1)
+ .Q:'ORN!('$D(^OR(100,ORN)))
+ .Q:'$P(ORL(I,1),U,5)  ;QUIT IF NO ORDER CHECK NUMBER
+ .Q:'$L($G(ORL(I,2)))  ;QUIT IF NO ORDER CHECK TEXT
+ .N ORFDART,ORIENRT,ORMSGRT
+ .K ^TMP("DIERR",$J)
+ .S ORFDART(100.05,"+1,",.01)=ORN
+ .D UPDATE^DIE("","ORFDART","ORIENRT","ORMSGRT")
+ .I $D(ORIENRT(1)) S DA=ORIENRT(1)
+ .I $D(ORMSGRT) D
+ .K ^TMP("DIERR",$J)
+ .Q:'$G(DA)
+ .S RET(I,DA)=""
+ .S DIC="^ORD(100.05,",DIC(0)="F",X=ORN
+ .S DIE=DIC,ORSTATUS=$P($G(^OR(100,ORN,3)),U,3),ORDANG=$S($P($G(ORL(I,1)),U,6):$P($G(ORL(I,1)),U,6),1:$$GET^XPAR("ALL","ORK CLINICAL DANGER LEVEL",$P($G(ORL(I,1)),U,5),"I"))
+ .S DR="1////"_ORSTATUS_";2////"_$P($G(ORL(I,1)),U,2)_";3////"_$P($G(ORL(I,1)),U,3)_";4////"_$P($G(ORL(I,1)),U,4)_";5////"_$P($G(ORL(I,1)),U,5)_";6////"_ORDANG_";8///"_$TR($G(ORL(I,2)),";",",")_";7///"_$TR($G(ORL(I,3)),";",",")
+ .D ^DIE
+ .;set ^ORD(100.05,DA,2) if ORL(DO,2,1) exists
+ .I $D(ORL(I,2))=11 N J S J=0 F  S J=$O(ORL(I,2,J)) Q:'J  S ^ORD(100.05,DA,2,J+1,0)=ORL(I,2,J)
+ Q
 GETOC1(IEN,RET) ;GET A SINGLE ORDER CHECK
-         ;IEN = 100.05 IEN
-         ;RET = RETURNED 100.05 DATA FOR IEN
-         K RET
-         Q:'$G(IEN)
-         Q:'$D(^ORD(100.05,IEN))
-         S RET(IEN,0)=$G(^ORD(100.05,IEN,0))
-         S RET(IEN,1)=$G(^ORD(100.05,IEN,1))
-         M RET(IEN,"OC")=^ORD(100.05,IEN,2)
-         K RET(IEN,"OC",0)
-         M RET(IEN,"OR")=^ORD(100.05,IEN,3)
-         K RET(IEN,"OR",0)
-         Q
+    ;IEN = 100.05 IEN
+    ;RET = RETURNED 100.05 DATA FOR IEN
+    K RET
+    Q:'$G(IEN)
+    Q:'$D(^ORD(100.05,IEN))
+    S RET(IEN,0)=$G(^ORD(100.05,IEN,0))
+    S RET(IEN,1)=$G(^ORD(100.05,IEN,1))
+    M RET(IEN,"OC")=^ORD(100.05,IEN,2)
+    K RET(IEN,"OC",0)
+    M RET(IEN,"OR")=^ORD(100.05,IEN,3)
+    K RET(IEN,"OR",0)
+    Q
 GETOC2(ORD,RET) ;GET ALL 100.05 IENS FOR A SPECIFIC ORDER
-         ;ORD = 100 IEN
-         ;RET = LIST OF 100.05 IENS
-         K RET
-         Q:'$G(ORD)
-         N I S I=0 F  S I=$O(^ORD(100.05,"B",ORD,I)) Q:'I  S RET(ORD,I)=""
-         Q
+    ;ORD = 100 IEN
+    ;RET = LIST OF 100.05 IENS
+    K RET
+    Q:'$G(ORD)
+    N I S I=0 F  S I=$O(^ORD(100.05,"B",ORD,I)) Q:'I  S RET(ORD,I)=""
+    Q
 GETOC3(ORD,OCC,RET) ;GET ALL 100.05 IENS FOR A SPECIFIC ORDER/OCCURANCE PAIR
-         ;ORD = 100 IEN
-         ;OCC = OCCURANCE STRING
-         ;RET = LIST OF 100.05 IENS
-         K RET
-         Q:'$G(ORD)
-         Q:'$L(OCC)
-         N I S I=0 F  S I=$O(^ORD(100.05,"C",ORD,OCC,I)) Q:'I  S RET(ORD,I)=""
-         Q
+    ;ORD = 100 IEN
+    ;OCC = OCCURANCE STRING
+    ;RET = LIST OF 100.05 IENS
+    K RET
+    Q:'$G(ORD)
+    Q:'$L(OCC)
+    N I S I=0 F  S I=$O(^ORD(100.05,"C",ORD,OCC,I)) Q:'I  S RET(ORD,I)=""
+    Q
 GETOC4(ORD,RET) ;GET DATA FOR ALL 100.05 RECORDS OF A SPECIFIC ORDER
-         ;ORD = 100 IEN
-         ;RET = LIST OF 100.05 IENS
-         K RET
-         Q:'$G(ORD)
-         N RET2
-         D GETOC2(ORD,.RET)
-         Q:'$D(RET)
-         N I S I=0 F  S I=$O(RET(ORD,I)) Q:'I  D
-         .D GETOC1(I,.RET2)
-         .M RET(ORD,"DATA")=RET2
-         Q
+ ;ORD = 100 IEN
+ ;RET = LIST OF 100.05 IENS
+ K RET
+ Q:'$G(ORD)
+ N RET2
+ D GETOC2(ORD,.RET)
+ Q:'$D(RET)
+ N I S I=0 F  S I=$O(RET(ORD,I)) Q:'I  D
+ .D GETOC1(I,.RET2)
+ .M RET(ORD,"DATA")=RET2
+ Q
 GETOC5(ORD,OCC,RET) ;GET DATA FOR ALL 100.05 RECORDS OF A SPECIFIC ORDER/OCCURANCE PAIR
-         ;ORD = 100 IEN
-         ;OCC = OCCURANCE STRING
-         ;RET = LIST OF 100.05 IENS WITH DATA
-         K RET
-         Q:'$G(ORD)
-         Q:'$L(OCC)
-         N RET2
-         D GETOC3(ORD,OCC,.RET)
-         Q:'$D(RET)
-         N I S I=0 F  S I=$O(RET(ORD,I)) Q:'I  D
-         .D GETOC1(I,.RET2)
-         .M RET(ORD,"DATA")=RET2
-         Q
+ ;ORD = 100 IEN
+ ;OCC = OCCURANCE STRING
+ ;RET = LIST OF 100.05 IENS WITH DATA
+ K RET
+ Q:'$G(ORD)
+ Q:'$L(OCC)
+ N RET2
+ D GETOC3(ORD,OCC,.RET)
+ Q:'$D(RET)
+ N I S I=0 F  S I=$O(RET(ORD,I)) Q:'I  D
+ .D GETOC1(I,.RET2)
+ .M RET(ORD,"DATA")=RET2
+ Q
 CONVERT ;CONVERT EXISTING FILE 100 NODE 9 ENTRIES OVER TO FILE 100.05
  N I,J,ORK,DESC
  S I=0

@@ -1,17 +1,23 @@
 XMTDO ;ISC-SF/GMB-Deliver other (server,device) ;04/11/2002  07:05
- ;;8.0;MailMan;;Jun 28, 2002
+ ;;8.0;MailMan;**45**;Jun 28, 2002;Build 8
  ; Replaces ZSER^, ZDEV^XMS1 (ISC-WASH/THM/CAP)
+ ;
+ ; Patch mod to attempt to sync mail message arrival with processing
+ ; by building in 5 minute pause waiting for next mail msg line to
+ ; arrive, and, if not, then xm send error server msg 
+ ;
 SERVER ; S.server TASKMAN ENTRY
  ; Variables supplied by TaskMan:  XMZ,XMSERVER,XMSVIENS
  ; XMSERVER  Name of the server option (includes leading S.)
- N XMZREC,XMFROM,XMSERR,XMSUBJ
+ N XMZREC,XMFROM,XMSERR,XMSUBJ,XMZI
  D DUZ^XUP(.5)
- S XMZREC=$G(^XMB(3.9,XMZ,0)) I XMZREC="" D  Q
+ F XMZI=1:1 S XMZREC=$G(^XMB(3.9,XMZ,0)) Q:XMZREC'=""  H 1 I XMZI>300 D  Q   ;patch mod for timing lag with mail msg
  . N XMPARM,XMINSTR
  . S XMINSTR("FROM")=.5
  . S XMPARM(1)=XMSERVER
  . S XMPARM(2)=ZTSK
  . D TASKBULL^XMXBULL(.5,"XM SEND ERR SERVER MSG",.XMPARM,"",.5,.XMINSTR)
+ Q:XMZREC=""     ;patch mode to quit if mail msg lag check occurs in for loop waiting for next line
  S XMSUBJ=$P(XMZREC,U,1)
  S:XMSUBJ["~U~" XMSUB=$$DECODEUP^XMXUTIL1(XMSUBJ)
  S XMFROM=$P(XMZREC,U,2)

@@ -1,7 +1,7 @@
-GMPLBLDC ; SLC/MKB -- Build Problem Selection Categories ;3/12/03 9:22
- ;;2.0;Problem List;**3,7,28**;Aug 25, 1994
+GMPLBLDC ; SLC/MKB,TC -- Build Problem Selection Categories ;08/21/12  13:05
+ ;;2.0;Problem List;**3,7,28,36,42**;Aug 25, 1994;Build 46
  ;
- ; This routine invokes IA #3991
+ ; This routine invokes ICR #5699, #5747
  ;
 EN ; -- main entry point for GMPL SELECTION GROUP BUILD
  D EN^VALM("GMPL SELECTION GROUP BUILD")
@@ -27,7 +27,7 @@ GETLIST ; Build ^TMP("GMPLIST",$J,#) of problems
  W !,"Searching for the problems ..."
  F IFN=0:0 S IFN=$O(^GMPL(125.12,"B",+GMPLGRP,IFN)) Q:IFN'>0  D
  . S ITEM=$G(^GMPL(125.12,IFN,0)),SEQ=$P(ITEM,U,2),PROB=$P(ITEM,U,3)
- . S ^TMP("GMPLIST",$J,IFN)=$P(ITEM,U,2,5),CNT=CNT+1 ; seq ^ prob ^ text ^ code
+ . S ^TMP("GMPLIST",$J,IFN)=$P(ITEM,U,2,7),CNT=CNT+1 ; seq ^ prob ^ text ^ code ^ snomed ct concept ^ snomed ct designation
  . S (^TMP("GMPLIST",$J,"PROB",PROB),^TMP("GMPLIST",$J,"SEQ",SEQ))=IFN ; Xrefs
  S ^TMP("GMPLIST",$J,0)=CNT
  Q
@@ -37,13 +37,16 @@ BUILD(LIST,MODE) ; Build ^TMP("GMPLST",$J,) of current items in LIST for display
  I $P($G(^TMP("GMPLIST",$J,0)),U,1)'>0 S ^TMP("GMPLST",$J,1,0)="   ",^TMP("GMPLST",$J,2,0)="No items available.",^TMP("GMPLST",$J,0)="0^2",VALMCNT=2 Q
  S (LCNT,NUM,SEQ)=0
  F  S SEQ=$O(^TMP("GMPLIST",$J,"SEQ",SEQ)) Q:SEQ'>0  D
+ . N GMI,GMPLCSYS,GMPLCPTR
  . S IFN=^TMP("GMPLIST",$J,"SEQ",SEQ),LCNT=LCNT+1,NUM=NUM+1
  . S PROB=$P(^TMP("GMPLIST",$J,IFN),U,2),TEXT=$P(^TMP("GMPLIST",$J,IFN),U,3),CODE=$P(^TMP("GMPLIST",$J,IFN),U,4)
  . S ^TMP("GMPLST",$J,LCNT,0)=$S(MODE="I":$J("<"_SEQ_">",8),1:"        ")_$J(NUM,4)_" "_TEXT
  . I $L(CODE) D
- .. S ^TMP("GMPLST",$J,LCNT,0)=^TMP("GMPLST",$J,LCNT,0)_" ("_CODE_")"
- .. I $$STATCHK^ICDAPIU(CODE,DT) Q  ; OK - code is active
- .. S ^TMP("GMPLST",$J,LCNT,0)=^TMP("GMPLST",$J,LCNT,0)_"     <INACTIVE CODE>"
+ .. S ^TMP("GMPLST",$J,LCNT,0)=^TMP("GMPLST",$J,LCNT,0)_" ("_$P($$CODECS^ICDEX($P(CODE,"/"),80,DT),U,2)_" "_CODE_")"
+ .. F GMI=1:1:$L(CODE,"/") D
+ ... N GMPLCPTR S GMPLCPTR=$P($$CODECS^ICDEX($P(CODE,"/",GMI),80,DT),U)
+ ... I $$STATCHK^ICDXCODE(GMPLCPTR,$P(CODE,"/",GMI),DT) Q  ; OK - code is active
+ ... S ^TMP("GMPLST",$J,LCNT,0)=^TMP("GMPLST",$J,LCNT,0)_"     <INACTIVE CODE>"
  . D CNTRL^VALM10(LCNT,9,5,IOINHI,IOINORM)
  . S ^TMP("GMPLST",$J,"B",NUM)=IFN
  S ^TMP("GMPLST",$J,0)=NUM_U_LCNT,VALMCNT=LCNT
@@ -73,20 +76,27 @@ EXIT ; -- exit code
  Q
  ;
 ADD ; Add new problem(s)
- N X,Y,SEQ,CODE,IFN,GMPVOCAB,GMPQUIT,GMPREBLD S VALMBCK=""
- S GMPVOCAB=$$VOCAB^GMPLX1 Q:GMPVOCAB="^"
+ N GMPVOCAB,GMPQUIT,GMPREBLD S VALMBCK="" D FULL^VALM1
+ S GMPVOCAB="" ; $$VOCAB^GMPLX1 Q:GMPVOCAB="^"
  F  D  Q:$D(GMPQUIT)  W !!
- . S (X,Y)="" D SEARCH^GMPLX(.X,.Y,"PROBLEM: ","1",GMPVOCAB)
+ . N X,Y,SEQ,CODE,IFN,SCTS,SCTT,SCTC,SCTD
+ . S (X,Y,SCTS,SCTT,SCTC,SCTD)="" D SEARCH^GMPLX(.X,.Y,"PROBLEM: ","1",GMPVOCAB)
  . I +Y'>0 S GMPQUIT=1 Q
+ . I X["(SCT" D
+ . . S SCTS=X
+ . . S SCTT=$P(SCTS," (SCT ")
+ . . S SCTC=$P($P(SCTS,"SCT ",2),")")
+ . . S SCTD=$$GETDES^LEXTRAN1("SCT",SCTT)
+ . . S SCTD=$S(+SCTD=1:$P(SCTD,U,2),1:"")
  . S X=$$TEXT^GMPLBLD1(X) I X="^" S GMPQUIT=1 Q
- . S CODE=$$CODE^GMPLBLD1($G(Y(1))) I CODE="^" S GMPQUIT=1 Q
+ . S CODE=$$CODE^GMPLBLD1($G(SCTC),$G(Y(1))) I CODE']"" S GMPQUIT=1 Q
  . S RT1="^TMP(""GMPLIST"",$J,""SEQ"",",SEQ=+$$LAST^GMPLBLD2(RT1)+1 ; dflt = next #
  . S SEQ=$$SEQ^GMPLBLD1(SEQ) I SEQ="^" S GMPQUIT=1 Q
  . S IFN=$$TMPIFN^GMPLBLD1,^TMP("GMPLIST",$J,0)=^TMP("GMPLIST",$J,0)+1
- . S ^TMP("GMPLIST",$J,IFN)=SEQ_U_+Y_U_X_U_CODE ; seq ^ # ^ text ^ code
+ . S ^TMP("GMPLIST",$J,IFN)=SEQ_U_+Y_U_X_U_CODE_U_SCTC_U_SCTD ; seq ^ # ^ text ^ code ^ snomed ct concept ^ snomed ct designation
  . S (^TMP("GMPLIST",$J,"PROB",+Y),^TMP("GMPLIST",$J,"SEQ",SEQ))=IFN,GMPREBLD=1
  I $D(GMPREBLD) S VALMBCK="R",GMPLSAVE=1 D BUILD("^TMP(""GMPLIST"",$J)",GMPLMODE),HDR
- S:'VALMCC VALMBCK="R" S VALMSG=$$MSG^GMPLX
+ S VALMBCK="R" S VALMSG=$$MSG^GMPLX
  Q
  ;
 REMOVE ; Remove problem from group
@@ -101,7 +111,7 @@ RMQ S:'VALMCC VALMBCK="R" S VALMSG=$$MSG^GMPLX
  Q
  ;
 EDIT ; Edit problem text and code
- N NUM,SEL,IFN,PIECE,CODE,PROB,PROBLEM,GMPQUIT,GMPREBLD S VALMBCK=""
+ N NUM,SEL,IFN,PIECE,CODE,PROB,PROBLEM,GMPQUIT,GMPREBLD S VALMBCK="" D FULL^VALM1
  S SEL=$$SEL^GMPLBLD1 G:SEL="^" EDQ
  F PIECE=1:1:$L(SEL,",") D  Q:$D(GMPQUIT)  W !
  . S NUM=$P(SEL,",",PIECE) Q:NUM'>0
@@ -111,8 +121,8 @@ EDIT ; Edit problem text and code
  . W:$P(PROBLEM,U,2)>1 " = "_$G(^LEX(757.01,+$P(PROBLEM,U,2),0)) W ! ; KER
  . S PROB=$$TEXT^GMPLBLD1($P(PROBLEM,U,3)) I PROB="^" S GMPQUIT=1 Q
  . I PROB="@" D DELETE^GMPLBLD1(IFN) S GMPREBLD=1 Q
- . S CODE=$$CODE^GMPLBLD1($P(PROBLEM,U,4)) I CODE="^" S GMPQUIT=1 Q
- . S ^TMP("GMPLIST",$J,IFN)=$P(PROBLEM,U,1,2)_U_PROB_U_CODE,GMPREBLD=1
+ . S CODE=$$CODE^GMPLBLD1($P(PROBLEM,U,5),$P(PROBLEM,U,4)) I CODE="^" S GMPQUIT=1 Q
+ . S ^TMP("GMPLIST",$J,IFN)=$P(PROBLEM,U,1,2)_U_PROB_U_CODE_U_$P(PROBLEM,U,5,6),GMPREBLD=1
  I $D(GMPREBLD) S VALMBCK="R",GMPLSAVE=1 D BUILD("^TMP(""GMPLIST"",$J)",GMPLMODE)
 EDQ S:'VALMCC VALMBCK="R" S VALMSG=$$MSG^GMPLX
  Q

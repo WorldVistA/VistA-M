@@ -1,5 +1,5 @@
 SROAPRT7 ;BIR/MAM - PRINT OCCURRENCES ;08/16/2011
- ;;3.0;Surgery;**38,47,57,60,125,160,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,47,57,60,125,160,176,177**;24 Jun 93;Build 89
  K SRA,SRAO D EN^SROCCAT S SRA(205)=$G(^SRF(SRTN,205))
  S NYUK=$P(SRA(205),"^",5) D YN S SRAO(1)=SHEMP_"^403",NYUK=$P(SRA(205),"^",6) D YN S SRAO("1A")=SHEMP_"^248",NYUK=$P(SRA(205),"^",7) D YN S SRAO("1B")=SHEMP_"^249"
  S NYUK=$P(SRA(205),"^",37) D YN S SRAO("6E")=SHEMP_"^488",NYUK=$P(SRA(205),"^",8) D YN S SRAO("1C")=SHEMP_"^404",NYUK=$P(SRA(205),"^",39) D YN S SRAO("6F")=SHEMP_"^447"
@@ -61,7 +61,7 @@ DISP W:$E(IOST)'="C" ! W !,?21,"PERIOPERATIVE OCCURRENCE INFORMATION",!!,"WOUND 
  W !,"On Ventilator > 48 Hours:",?30,$P(SRAO("2D"),"^"),?41,"Organ/Space SSI:",?71,$P(SRAO("6E"),"^")
  W !,$P(SRAO("2E"),"^"),?41,"C. difficile Colitis:",?71,$P(SRAO("6F"),"^")
  W !,?41,$P(SRAO("6G"),"^")
- I $G(SRSTAR) W !,"* indicates Other (ICD)"
+ I $G(SRSTAR) W !,"* indicates Other "_$$ICDSTR^SROICD(SRTN)
  I $E(IOST)="C" W !! K DIR S DIR(0)="FOA",DIR("A")="Press RETURN to continue" D ^DIR K DIR
  Q
 YN S SHEMP=$S(NYUK="NS":"NS",NYUK="N":"NO",NYUK="Y":"YES",1:"")

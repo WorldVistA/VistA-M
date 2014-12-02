@@ -1,5 +1,5 @@
 IBDFLST1 ;ALM/MAF - Maintenance Utility Invalid Codes List - MAY 17 1995
- ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**63**;APR 24, 1997;Build 80
  ;
  ;
 HEADER ;  -- Set up header line for the display
@@ -28,7 +28,7 @@ SETSTR(S,V,X,L) ; -- insert text(S) into variable(V)
  ;
  ;
 TMP ; -- Set up Array
- S ^TMP("CODE",$J,IBDCNT,0)=$$LOWER^VALM1(X),^TMP("CODE",$J,"IDX",VALMCNT,IBDCNT1)=""
+ S ^TMP("IBDCODE",$J,IBDCNT,0)=$$LOWER^VALM1(X),^TMP("IBDCODE",$J,"IDX",VALMCNT,IBDCNT1)=""
  S ^TMP("CODEIDX",$J,IBDCNT1)=VALMCNT_"^"_IBDFIFN_"^"_IBDFCODE_"^"_IBDFCAT_"^"_IBDFDESC
  Q
  ;

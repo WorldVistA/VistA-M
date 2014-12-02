@@ -1,5 +1,5 @@
-KMPRBD02 ;OAK/RAK - RUM Data Compression ;5/28/03  08:36
- ;;2.0;CAPACITY MANAGEMENT - RUM;;May 28, 2003
+KMPRBD02 ;OAK/RAK - RUM Data Compression ;1/30/13  08:29
+ ;;2.0;CAPACITY MANAGEMENT - RUM;**2**;May 28, 2003;Build 12
  ;
  ; Background Driver (cont.)
  ;
@@ -14,6 +14,9 @@ DAILY(KMPRTDAY) ;-- daily data compression and storage
  ;----------------------------------------------------------------------
  ;
  Q:'$G(KMPRTDAY)
+ ;
+ ; if test lab
+ I $$TESTLAB^KMPDUT1 D DAILY^KMPRBD05(KMPRTDAY) Q
  ;
  N COUNT,CNT,CNT1,CNT2,DATA,FMHDATE,HDATE,HTIME,I,JOB,MESSAGE
  N NODE,NW,OKAY,OPTION,NP,PT,PTM,X,VAR,USERS,USRDATA,WD,WORKDAY,YSTRDAY

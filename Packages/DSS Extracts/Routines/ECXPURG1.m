@@ -1,27 +1,27 @@
-ECXPURG1 ;BIR/CML-Purge of DSS Extract Files (CONTINUED) ; 10/2/08 10:48am
- ;;3.0;DSS EXTRACTS;**2,9,8,24,49,102,112**;Dec 22, 1997;Build 26
-GET ;compile list of purgable extracts
+ECXPURG1 ;BIR/CML-Purge of DSS Extract Files (CONTINUED) ;8/20/13  11:04
+ ;;3.0;DSS EXTRACTS;**2,9,8,24,49,102,112,144**;Dec 22, 1997;Build 9
+GET ;compile list of deletable extracts 144
  K HI,LO,ECBDT,ECEDT,ECLOC,^TMP("ECXPURG",$J)
  S QFLG=1 W !!,"...one moment please"
  S ECEX=0 F  S ECEX=$O(^ECX(727,ECEX)) Q:'ECEX  I '$G(^ECX(727,ECEX,"PURG")),$D(^ECX(727,ECEX,0)) S EC=^(0) D
  .S ^TMP("ECXPURG",$J,$P(EC,U,3),ECEX)="",ECLOC(ECEX)=$P(EC,U,3)_U_$P(EC,U,4,5)
- I '$D(^TMP("ECXPURG",$J)) W !!,"There are no extracts that can be purged at this time." G DONE
+ I '$D(^TMP("ECXPURG",$J)) W !!,"There are no extracts that can be deleted at this time." G DONE ;144
 ASK1 ;ask for print
  W !
- K DIR S DIR(0)="Y",DIR("A")="Do you want to print a list of extracts that can be purged",DIR("B")="NO"
+ K DIR S DIR(0)="Y",DIR("A")="Do you want to print a list of extracts that can be deleted",DIR("B")="NO"
  D ^DIR K DIR I $D(DIRUT) K ECLOC G DONE
  G:'Y ASK2
  W !!,"The right margin for this report is 80.",!!
  K ZTSAVE S ZTSAVE("^TMP(""ECXPURG"",$J,")=""
- D EN^XUTMDEVQ("PRT^ECXPURG1","DSS - Print Purgable Extracts",.ZTSAVE) I 'POP G ASK2
+ D EN^XUTMDEVQ("PRT^ECXPURG1","DSS - Print Deletable Extracts",.ZTSAVE) I 'POP G ASK2
  W !,"NO DEVICE SELECTED OR REPORT PRINTED!!"
 ASK2 ;ask for extract range
  ;
- ;** Check divisions for purging
- N ECCHK,ECTMP
+ ;** Check divisions for deleting
+ N ECCHK,ECTMP,JZ ;144
  S ECCHK=$$DIV4^XUSER(.ECTMP,DUZ)
  I 'ECCHK DO
- .W !,"You do not have any divisions defined in your user set up and can not purge."
+ .W !,"You do not have any divisions defined in your user set up and can not delete."
  .S DIR(0)="FAO^1:1",DIR("A")="Hit Return to continue." D ^DIR K DIR,X,Y
  .K ECLOC
  ;
@@ -29,14 +29,15 @@ ASK2 ;ask for extract range
  ;
  W !,"You will not be able to select an extract that is not from your division.",!
  S LO=$O(ECLOC(0)),HI=$O(ECLOC(" "),-1)
- S DIR(0)="L^"_LO_":"_HI_"",DIR("A")="Select extracts to be purged"
- S DIR("?",1)="Choose the number(s) of the extract(s) you wish to purge,",DIR("?")="(e.g. 1-3,17,20 to choose 1 thru 3, 17, and 20)."
+ S DIR(0)="L^"_LO_":"_HI_"",DIR("A")="Select extracts to be deleted"
+ S DIR("?",1)="Choose the number(s) of the extract(s) you wish to delete,",DIR("?")="(e.g. 1-3,17,20 to choose 1 thru 3, 17, and 20)."
  W ! D ^DIR K DIR I $D(DIRUT) K ECLOC G DONE
  S JJ=0,Y=","_Y F  S JJ=$O(ECLOC(JJ)) Q:'JJ  S JZ=","_JJ_"," I Y'[JZ K ECLOC(JJ)
+ I '$D(ECLOC) W !!,"You have not chosen a valid extract number.  Try again." G GET ;144 Give message if no valid selection made
  D CBOCCHK(.ECLOC) I '$D(ECLOC) G GET
  D DIVCHK(.ECLOC,.ECTMP)
  I '$D(ECLOC) W !!,"You have not chosen a valid extract number.  Try again." G GET
-ASK3 W !!,"I will purge the following extract(s):"
+ASK3 W !!,"I will delete the following extract(s):"
  S JJ=0 F  S JJ=$O(ECLOC(JJ)) Q:'JJ  D
  .W !?5,"#",JJ," - ",$P(ECLOC(JJ),U)
  .W ?47,$TR($$FMTE^XLFDT($P(ECLOC(JJ),U,2),"5DF")," ","0")," to ",$TR($$FMTE^XLFDT($P(ECLOC(JJ),U,3),"5DF")," ","0")
@@ -72,7 +73,7 @@ PRT ;print list of extracts
 HDR ;HEADER
  I $E(IOST)="C" S SS=22-$Y F JJ=1:1:SS W !
  I $E(IOST)="C",PG>0 S DIR(0)="E" W ! D ^DIR K DIR I 'Y S QFLG=1 Q
- S PG=PG+1 W:$Y!($E(IOST)="C") @IOF W !,"PURGABLE EXTRACTS",?72,"Page: ",PG,!,"Printed on ",HDT,!
+ S PG=PG+1 W:$Y!($E(IOST)="C") @IOF W !,"DELETABLE EXTRACTS",?72,"Page: ",PG,!,"Printed on ",HDT,!
  W !,"FEEDER SYS",?12,"EXTRACT,",!,"EXTRACT #",?12,"DATE",?33,"FROM-TO",?48,"RECORD CNT",?60,"TRANSMIT DATE",?75,"DIV",!,LN
  Q
 DATES ;ask for date range for purge of holding files
@@ -110,7 +111,7 @@ DIVCHK(ECLOC,ECTMP) ;**Remove extracts from ECLOC that are for user's div.
  F  S ECLPDA=$O(ECLOC(ECLPDA)) Q:(+ECLPDA=0)  DO
  .I '$D(ECTMP($P(^ECX(727,ECLPDA,"DIV"),U,1))) KILL ECLOC(ECLPDA)
  Q
-CBOCCHK(ECLOC) ;**Check that CBOC report has been viewed prior to purging
+CBOCCHK(ECLOC) ;**Check that CBOC report has been viewed prior to deleting
  N LOOPDA,YYYMMDD
  S LOOPDA=0
  F  S LOOPDA=$O(ECLOC(LOOPDA)) Q:(+LOOPDA=0)  D
@@ -118,6 +119,6 @@ CBOCCHK(ECLOC) ;**Check that CBOC report has been viewed prior to purging
  ..S DA(1)=1
  ..S YYYMMDD=$P(^ECX(727,LOOPDA,0),U,4)
  ..I YYYMMDD>3030930 I '$D(^ECX(728,DA(1),"CBOC","B",LOOPDA)) D
- ...K DIR S DIR(0)="Y",DIR("A")="The CBOC Activity Report has not been viewed.  Purge anyway",DIR("B")="NO"
+ ...K DIR S DIR(0)="Y",DIR("A")="The CBOC Activity Report has not been viewed.  Delete anyway",DIR("B")="NO" ;144
  ...D ^DIR K DIR I 'Y K ECLOC(LOOPDA)
  Q

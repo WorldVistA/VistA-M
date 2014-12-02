@@ -116,7 +116,7 @@ SENDMSG(MSGTXT,SUBJ) ;Build/send message
  .SET SUBJ="LAB EXCEPTION DATA FROM "_FACNUM
  .QUIT
  ;Deliver to mail group on FORUM
- SET HDISVTO("G.HDIS LAB EXCEPTIONS@FORUM.domain.ext")=""
+ SET HDISVTO("G.HDIS LAB EXCEPTIONS@DOMAIN.EXT")=""
  ;If this is a non-production system send message to current user
  SET:('$$GETTYPE^HDISVF07(,.XTYPE)) XTYPE=$$PROD^XUPROD()
  IF ('XTYPE) DO

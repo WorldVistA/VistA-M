@@ -1,7 +1,8 @@
 PSGAPP ;BIR/CML3-PRINT DATA FOR ACTION PROFILE ;05 Oct 98 / 10:36 AM
- ;;5.0; INPATIENT MEDICATIONS ;**8,20,60,50,111,169**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**8,20,60,50,111,169,275**;16 DEC 97;Build 157
  ;
 LOOP ;
+ N PSJCLNM,PSJCLNM1,PSJCLN S (PSJCLN,PSJCLNM)=""
  D NOW^%DTC S PSGDT=%,DT=$$DT^XLFDT,PSGPDT=$$ENDTC2^PSGMI(PSGDT),CML=IO'=IO(0)!($E(IOST,1,2)'="C-")
  U IO I '$D(^TMP($J)) W:$Y @IOF W !?28,"UNIT DOSE ACTION PROFILE",?62,PSGPDT,!?10,"NO ACTIVE ORDERS FOUND FOR ",$S(PSGSS="G":"WARD GROUP: "_PSGAPWGN,PSGSS="W":"WARD: "_PSGAPWDN,1:"PATIENT(S) SELECTED"),"." G DONE
  S PSGVAMC=$$SITE^PSGMMAR2(80)
@@ -15,8 +16,9 @@ DONE ;
  ;
 H1 ;
  Q:$D(PSJDLW)
+ I ($P($G(WD),"^")="z") S PSJCLNM=$P(WD,"^",2) S ALN="" S $P(ALN," -",(80-$L(PSJCLNM))\4)="",ALN=ALN_" "_PSJCLNM_" "_ALN
  I $E(IOST,1)="C" K DIR S DIR(0)="E" D ^DIR K DIR S:$D(DTOUT)!$D(DUOUT) PSJDLW=1 I $D(DTOUT)!$D(DUOUT) Q
- S (N,DF)=0,PSEX=$P(PI,"^"),PDOB=$P(PI,"^",2),PID=$P(PI,"^",3),RB=$P(PI,"^",5),AD=$P(PI,"^",6),TD=$P(PI,"^",7),WT=$P(PI,"^",8),PI=$P(PI,"^",4),PPN=$P(PN,"^",2),(DFN,PSGP)=$P(PN,"^",3)
+ S (N,DF)=0,PSEX=$P(PI,"^"),PDOB=$P(PI,"^",2),PID=$P(PI,"^",3),RB=$P(PI,"^",5),AD=$P(PI,"^",6),TD=$P(PI,"^",7),WT=$P(PI,"^",8),PI=$P(PI,"^",4),PPN=$P(PN,"^",2),(DFN,PSGP)=$P(PN,"^",3) S:('DFN&($O(PSGPAT("")))) (DFN,PSGP)=$O(PSGPAT(""))
  S PAGE=$P(PDOB,";",2),PDOB=$P(PDOB,";"),PG=1 W:$Y @IOF W !?26,"UNIT DOSE ACTION PROFILE #1",?62,PSGPDT
  W !?+PSGVAMC,$P(PSGVAMC,U,2)
  W !?23,"(Continuation of VA FORM 10-1158)",?72,"Page: 1",!,LINE
@@ -26,7 +28,10 @@ H1 ;
  S PSJOPC="" D ENTRY^PSJHEAD(DFN,PSJOPC,PG,$G(PSJNARC),$G(PSJTEAM,1),1)
  W !,LINE,!," No. Action",?16,"Drug",?52,"ST Start Stop  Status/Info",!,ALN
 END ;
- S (ON,DRG)="" F  S DRG=$O(^TMP($J,WD,TM,PN,DRG)) Q:DRG=""  F  S ON=$O(^TMP($J,WD,TM,PN,DRG,ON)) Q:ON=""  S ND=^(ON),SI=$G(^(ON,1)) D NP:$Y+11>IOSL Q:$D(PSJDLW)  D ORDP
+ N ON S (ON,DRG)="" F  S DRG=$O(^TMP($J,WD,TM,PN,DRG)) Q:DRG=""  F  S ON=$O(^TMP($J,WD,TM,PN,DRG,ON)) Q:ON=""  D
+ .I ($P(DRG,"^")="zz") S PSJCLNM1=$G(PSJCLNM) S PSJCLN=+$G(^PS(55,PSGP,5,+ON,8)) I PSJCLN S PSJCLNM=$P($G(^SC(+PSJCLN,0)),"^") I PSJCLNM'=PSJCLNM1 D
+ ..S ALN="" S $P(ALN," -",(80-$L(PSJCLNM))\4)="",ALN=ALN_" "_PSJCLNM_" "_ALN W !,ALN
+ .S ND=^TMP($J,WD,TM,PN,DRG,ON),SI=$G(^(ON,1)) D NP:$Y+11>IOSL Q:$D(PSJDLW)  D ORDP
  Q:$D(PSJDLW)
  I $D(^PS(53.1,"AC",PSGP)) W !!?13,"******** THIS PATIENT HAS NON-VERIFIED ORDERS. ********"
  S DF=1 W:'$D(PSJDLW) !!?16,LN,?40,LN_LN,!?16,"Date AND Time",?40,"PROVIDER'S SIGNATURE"
@@ -51,13 +56,15 @@ END ;
  Q
  ;
 ORDP ;
+ N DRG2 I ($P(DRG,"^")="zz") S DRG2=DRG N DRG S DRG=$P(DRG2,"^",3)
  S N=N+1 I ND="" D PRT^PSGAPIV(ON) Q
  N X,PSG S PSGP=$P(PN,U,3)
  D DRGDISP^PSJLMUT1(+PSGP,+ON_"U",39,65,.PSG,0)
  S SM=$P(ND,"^",5),NF=$P(ND,"^",6) W !,$J(N,3) W $S($P(DRG,"^")="O":"   ",1:"  R")_" D N "  ;PSJ*5*169 Don't allow RENEW for one-time orders.
  W PSG(1),?52,$P(DRG,U),?55,$P(ND,U,2),?61,$P(ND,U,3),?67,$P(ND,U) I NF!SM!$P(ND,U,4) W ?71 W:NF "NF " W:$P(ND,U,4) "WS " W:SM $E("HSM",SM,3)
  N X F X=1:0 S X=$O(PSG(X)) Q:'X  W !?11,PSG(X)
- I SI]"" W !?11,"Special Instructions: " F X=1:1:$L(SI," ") S Y=$P(SI," ",X) W:$X+$L(Y)>78 !?35 W Y," "
+ I SI]"" W !?11,"Special Instructions: " D
+ .N Y F X=1:1:$L(SI," ") S Y=$P(SI," ",X) W:$X+$L(Y)>78 !?35 W Y," "
  W ! Q
  ;
 NP ;

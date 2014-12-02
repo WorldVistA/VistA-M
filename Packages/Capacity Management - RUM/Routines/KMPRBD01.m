@@ -1,11 +1,14 @@
 KMPRBD01 ;OAK/RAK - RUM Daily/Weekly Compression ;11/19/04  10:31
- ;;2.0;CAPACITY MANAGEMENT - RUM;**1**;May 28, 2003
+ ;;2.0;CAPACITY MANAGEMENT - RUM;**1,2**;May 28, 2003;Build 12
  ;
 EN ;-- entry point for Background Driver.
  ;
  S:'$G(DT) DT=$$DT^XLFDT
  ;
  N ENDT,STR
+ ;
+ ; quit if test lab
+ Q:$$TESTLAB^KMPDUT1
  ;
  S STR=$$NOW^XLFDT
  D DAILY^KMPRBD02(+$H)
@@ -68,7 +71,7 @@ ERRORS ; check and process errors.
  ...F I=0:0 S I=$O(^XTMP("KMPR","ERR",H,N,O,"MSG",I)) Q:'I  D 
  ....S TEXT(LN)=^XTMP("KMPR","ERR",H,N,O,"MSG",I),LN=LN+1
  S XMTEXT="TEXT("
- S XMY("G.KMP2-RUM@ISC-ALBANY.domain.ext")=""
+ S XMY("G.KMP2-RUM@ISC-ALBANY.DOMAIN.EXT")=""
  D ^XMD
  ;
  K ^KMPTMP("KMPR","ERR")

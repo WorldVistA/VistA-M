@@ -1,6 +1,12 @@
-LEXDFLT ; ISL Default Filter - Filter Type         ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDFLT ;ISL-KER - Default Filter - Filter Type ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    ^DIR                ICR  10026
+ ;               
  ; Entry:  S X=$$EN^LEXDFLT
  ;
  ; Function returns

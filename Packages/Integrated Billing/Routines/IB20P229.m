@@ -40,7 +40,7 @@ TMMSG ; Send message reporting any database issues found by FM during conversion
  S IBGROUP="IB EDI SUPERVISOR"
  I '$D(^XMB(3.8,"B",IBGROUP)) S IBGROUP=DUZ ; billing group not defined - send to the user
  E  S IBGROUP="G."_IBGROUP
- S XMY(IBGROUP)="",XMY("HOLLOWAY.THOMAS_J@FORUM.domain.ext")=""
+ S XMY(IBGROUP)="",XMY("HOLLOWAY.THOMAS_J@DOMAIN.EXT")=""
  ;
  S IBC=0
  S IBC=IBC+1,IBTXT(IBC)="This message has been sent by patch IB*2.0*229 at the completion of"

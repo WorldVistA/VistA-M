@@ -1,6 +1,6 @@
-ORWPCE2 ; ISL/JM/RV - wrap calls to PCE ;04/06/2006
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,116,173,195,243**;Dec 17, 1997;Build 242
-GETSET(ORWLST,ORWFILE,ORWFIELD,ORWNULL) ;gets set of codes 
+ORWPCE2 ; ISL/JM,RV,JER - wrap calls to PCE ;08/23/12  07:58
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,116,173,195,243,306,361**;Dec 17, 1997;Build 39
+GETSET(ORWLST,ORWFILE,ORWFIELD,ORWNULL) ;gets set of codes
  ; ORWLST(n)=code^text for code
  N ORWPCE,ORWPCEL,ORWPCEC,ORWPCELO,ORWPCEHI,ORWPCECD,ORWPCET
  S ORWPCELO="abcdefghijklmnopqrstuvwxyz"
@@ -22,7 +22,7 @@ IMMTYPE(ORWLST,ORDT) ;get the list of active immunizations
  . ;I $D(^AUTTIMM(IEN,0))#2,+$$SCREEN^XTID(9999999.14,,IEN,ORDT)=0 S CNT=CNT+1,ORWLST(CNT)=IEN_"^"_$P(^(0),"^")
  Q
  ;
-SKTYPE(ORWLST,ORDT) ;get the list of active skin test 
+SKTYPE(ORWLST,ORDT) ;get the list of active skin test
  N IEN,CNT,BINDEX S (IEN,CNT,BINDEX)=0
  S:'$G(ORDT) ORDT=DT
  F  S BINDEX=$O(^AUTTSK("B",BINDEX)) Q:BINDEX']""  F  S IEN=$O(^(BINDEX,IEN)) Q:'+IEN  D
@@ -175,12 +175,15 @@ HNCOK(ORY) ; Returns true if Head and/or Neck Cancer is enabled
 CODACTIV(ORY,ORCODE,ORAPP,ORDATE)       ; Is code active on the given date?
  ; Remote procedure:  ORWPCE ACTIVE CODE
  ; ORCODE = ICD or CPT code to be checked
- ; ORAPP  = "ICD" or "CHP"
+ ; ORAPP  = "ICD", "GMPX" or "CHP"
  ; ORDATE = Date to be checked (defaults to current date)
  S:'+$G(ORDATE) ORDATE=DT
  S ORY=1
- I ORAPP="ICD" D
- . S ORY=+$$STATCHK^ICDAPIU(ORCODE,ORDATE)
+ I ORAPP="ICD" D  I 1
+ . N ORI F ORI=1:1:$L(ORCODE,"/") S ORY=+$$STATCHK^ICDXCODE("DIAGNOSIS",$P(ORCODE,"/",ORI),ORDATE) Q:'ORY
+ I ORAPP="GMPX" D  I 1
+ . N LEX
+ . S ORY=+$$STATCHK^LEXSRC2(ORCODE,ORDATE,.LEX)
  E  I ORAPP="CHP" D
  . S ORY=+$$STATCHK^ICPTAPIU(ORCODE,ORDATE)
  Q

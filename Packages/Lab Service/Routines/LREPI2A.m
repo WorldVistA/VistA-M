@@ -1,5 +1,5 @@
-LREPI2A ;DALOI/CKA-EMERGING PATHOGENS HL7 BUILD ;5/14/03
- ;;5.2;LAB SERVICE;**281**;Sep 27, 1994
+LREPI2A ;DALOI/CKA - EMERGING PATHOGENS HL7 BUILD ;03 Jul 2013  4:27 PM
+ ;;5.2;LAB SERVICE;**281,421**;Sep 27, 1994;Build 48
  ;
 START ;START
  S LRPROT=0 F  S LRPROT=$O(^TMP($J,LRPROT)) Q:+LRPROT'>0  D
@@ -78,7 +78,7 @@ TOTAL ;Report the total counts  ->    "ETI" or "TST" or "HEP"
  ..I LRITN=4 S LRTNM="4-Risk Factors for Hepatitis C"
  ..I LRITN=5 S LRTNM="5-Positive Test for Hepatitis C antibody"
  ..I LRITN=6 S LRTNM="6-Negative Test for Hepatitis C antibody"
- ..I LRITN=7 S LRTNM="7- Hepatitis C diagnosis (ICD-9 based)"
+ ..I LRITN=7 S LRTNM="7- Hepatitis C diagnosis (ICD based)"
  .K LRDATA
  .I '$G(LRTNM) D NAME
  .S LRDATA="NTE"_HLFS_HLFS_"T"_LRCS_LRNLT_LRCS_LRTNM_LRCS_+^TMP($J,LRTND,LRITN)

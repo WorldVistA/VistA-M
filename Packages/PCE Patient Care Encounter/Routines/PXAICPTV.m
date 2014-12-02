@@ -1,18 +1,19 @@
-PXAICPTV ;ISL/JVS,ISA/KWP,SCK - VALADATE PROCEDURES(CPT) ;11/14/96  12:46
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,73,74,111,121,130,168,194**;Aug 12, 1996;Build 2
+PXAICPTV ;ISL/JVS,ISA/KWP,SCK - VALIDATE PROCEDURES(CPT) ;11/14/96  12:46
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,73,74,111,121,130,168,194,199**;Aug 12, 1996;Build 51
  ;
+ ; edited to allow Historical Encounters to use ICD-10 codes even though Visit Date is pre-ICD-10.
 VAL ;--VALIDATE ENOUGH DATA
  ;----Missing a pointer to PROCEDURE(CPT) name
  I $G(PXAA("PROCEDURE"))']"" D  Q:$G(STOP)
  .S STOP=1 ;--USED TO STOP DO LOOP
- .S PXAERRF=1 ;--FLAG INDICATES THERE IS AN ERR
+ .S PXAERRF=1 ;--FLAG INDICATES THERE IS AN ERROR
  .S PXADI("DIALOG")=8390001.001
  .S PXAERR(9)="PROCEDURE"
  .S PXAERR(11)=$G(PXAA("PROCEDURE"))
- .S PXAERR(12)="You are missing a pointer to the PROCEDURE CPT FILE#81 that represents the procedure's name"
+ .S PXAERR(12)="You are missing a pointer to the PROCEDURE CPT FILE #81 that represents the procedure's name"
  ;
  ;----NOT a pointer to PROCEDURE CPT FILE#81
- I +$$CPT^ICPTCOD($G(PXAA("PROCEDURE")))'>0 D  Q:$G(STOP) 
+ I +$$CPT^ICPTCOD($G(PXAA("PROCEDURE")))'>0 D  Q:$G(STOP)
  .S STOP=1
  .S PXAERRF=1
  .S PXADI("DIALOG")=8390001.001
@@ -51,6 +52,29 @@ VAL ;--VALIDATE ENOUGH DATA
  .S PXAERR(11)=$G(PXAA("QTY"))
  .S PXAERR(12)="If this node is empty we will assume it should be '1'. If it is a less than '1' we will delete any reference to it in the data base."
  ;
+ Q:$G(STOP)=1
+ N DIAGNUM,DIAGSTR,ICDDATA,PXDXDATE
+ S PXDXDATE=$$CSDATE^PXDXUTL(PXAVISIT)
+ ;
+ F DIAGNUM=1:1:8 D  Q:$G(STOP)=1
+ . S DIAGSTR="DIAGNOSIS"_$S(DIAGNUM>1:" "_DIAGNUM,1:"")
+ . I $G(PXAA(DIAGSTR))]"" D
+ .. S ICDDATA=$$ICDDATA^ICDXCODE("DIAG",$G(PXAA(DIAGSTR)),PXDXDATE,"I")
+ .. I $P(ICDDATA,"^",1)'>0 D  Q:$G(STOP)=1
+ ... S STOP=1
+ ... S PXAERRF=1
+ ... S PXADI("DIALOG")=8390001.001
+ ... S PXAERR(9)="PROCEDURE"
+ ... S PXAERR(11)=$G(PXAA(DIAGSTR))
+ ... S PXAERR(12)="PROCEDURE DIAGNOSIS #"_DIAGNUM_" ("_PXAERR(11)_") is NOT a valid pointer value to the ICD DIAGNOSIS FILE #80"
+ .. I $P(ICDDATA,"^",10)'=1 D  Q:$G(STOP)=1
+ ... S STOP=1
+ ... S PXAERRF=1
+ ... S PXADI("DIALOG")=8390001.001
+ ... S PXAERR(9)="PROCEDURE"
+ ... S PXAERR(11)=$G(PXAA(DIAGSTR))
+ ... S PXAERR(12)="PROCEDURE DIAGNOSIS #"_DIAGNUM_" ("_PXAERR(11)_") is NOT an Active ICD code"
+ ;
  ;
  Q
 VAL04 ;---PROVIDER NARRATIVE
@@ -59,7 +83,7 @@ VAL04 ;---PROVIDER NARRATIVE
  S PXADI("DIALOG")=8390001.001
  S PXAERR(9)="NARRATIVE"
  S PXAERR(11)=$G(PXAA("NARRATIVE"))
- S PXAERR(12)="We are unable to retrive a narrative from the PROVIDER NARRATIVE file #9999999.27"
+ S PXAERR(12)="We are unable to retrieve a narrative from the PROVIDER NARRATIVE file #9999999.27"
  Q
 VAL45 ;---PROVIDER NARRATIVE CATEGORY
  S STOP=0

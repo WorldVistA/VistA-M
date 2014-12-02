@@ -1,5 +1,5 @@
 GMTSADH2 ; SLC/JER,KER - Ad Hoc Summary Driver ; 02/27/2002
- ;;2.7;Health Summary;**12,37,49,63**;Oct 20, 1995
+ ;;2.7;Health Summary;**12,37,49,63,105**;Oct 20, 1995;Build 5
  ;                
  ; External Reference
  ;   DBIA    67  ^LAB(60,
@@ -54,7 +54,7 @@ GETSEL ; Updates GMTSEG array with Selections
  S DIC(0)="EMQ",DIC=$$FLOC^GMTSU(+SEL)
  I SEL=60 S DIC("S")="I $P(^(0),U,4)=""CH"",""BO""[$P(^(0),U,3)"
  I SEL=9999999.64 D
- . I $P($G(^GMT(142.1,$P($G(GMX),U,2),0)),U,4)="GECH" D
+ . I $P($G(^GMT(142.1,+$P($G(GMTSEG(SBS)),U,2),0)),U,4)="GECH" D
  . .S DIC("S")="I (($P(^(0),U,10)=""C"")&(+$P(^(0),U,11)'=1))&($P(^(0),"" "",1)=""GEC"")"
  . E  D
  ..S DIC("S")="I +$P(^(0),U,11)'=1"

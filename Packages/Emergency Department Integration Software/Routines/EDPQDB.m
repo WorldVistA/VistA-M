@@ -1,5 +1,5 @@
 EDPQDB ;SLC/KCM - Display Active Log Entries ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
 GET(AREA,BOARD,LAST) ; Get display board contents
  ;I $G(^EDPB(231.9,AREA,230))=TOKEN D XML^EDPX("<rows status='same' />") Q
@@ -80,6 +80,10 @@ OCCUPIED(LOG,DUP) ; add log entry row
  S ROW("emins")=$$HHMM($$MIN($P(X0,U,8)))
  S ROW("lmins")=$$HHMM($$LMIN(LOG))
  S ROW("similar")=$$SIM^EDPQLP(ROW("ptNm"),ROW("last4"),.DUP)
+ ;8/14/11 - Adding disposition to display board
+ ;4/23/13 - bwf - replacing line below with the one that follows
+ ;S ROW("disposition")=$$GET1^DIQ(233.1,$P(X1,U,2),.02,"E")
+ S ROW("disposition")=$$CAB(EDPSTA_".disposition",$P(X1,U,2))
  ;
  N STS D ORDSTS(LOG,.STS)
  ; ROW("lab")=STS("LP")_"/"_STS("LC")             ; lab pending / lab complete
@@ -96,14 +100,16 @@ OCCUPIED(LOG,DUP) ; add log entry row
  ;
  S ROW("num")=STS("LP")_"/"_STS("LC")             ; lab pending / lab complete
  D XML^EDPX($$XMLA^EDPX("labs",.ROW,""))
- I $O(STS("L",0)) D
- . N ORD M ORD=STS("L") D ADDORD(.ORD,"lab")
+ ;4/26/13 - BWF removed following two lines
+ ;I $O(STS("L",0)) D
+ ;. N ORD M ORD=STS("L") D ADDORD(.ORD,"lab")
  D XML^EDPX("</labs>") K ROW
  ;
  S ROW("num")=STS("RP")_"/"_STS("RC")             ; img pending / img complete
  D XML^EDPX($$XMLA^EDPX("rads",.ROW,""))
- I $O(STS("R",0)) D
- . N ORD M ORD=STS("R") D ADDORD(.ORD,"rad")
+ ;4/26/13 - BWF removed following two lines 
+ ;I $O(STS("R",0)) D
+ ;. N ORD M ORD=STS("R") D ADDORD(.ORD,"rad")
  D XML^EDPX("</rads>")
   ;
  I $P(X7,U,2) D                                   ; vitals due

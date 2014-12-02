@@ -1,5 +1,5 @@
 PSOCAN4 ;BIR/SAB - rx speed dc listman ;10/23/06 11:50am
- ;;7.0;OUTPATIENT PHARMACY;**20,24,27,63,88,117,131,259,268,225,358,385**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**20,24,27,63,88,117,131,259,268,225,358,385,391**;DEC 1997;Build 13
  ;External reference to File #200 supported by DBIA 224
  ;External reference NA^ORX1 supported by DBIA 2186
  ;External references to L, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
@@ -29,9 +29,9 @@ RX Q:'$D(^XUSEC("PSORPH",DUZ))
  D PSOL^PSSLOCK($P(PSOLST(ORN),"^",2)) I '$G(PSOMSG) D  D PAUSE^VALM1 K PSOMSG Q
  .I $P($G(PSOMSG),"^",2)'="" W $C(7),!!,$P($G(PSOMSG),"^",2),!,"Rx "_$P(^PSRX($P(PSOLST(ORN),"^",2),0),"^"),! Q
  .W $C(7),!!,"Another person is editing Rx "_$P(^PSRX($P(PSOLST(ORN),"^",2),0),"^"),!
+ I $P($G(^PSRX($P(PSOLST(ORN),"^",2),"PKI")),"^")=1,'$D(^XUSEC("PSDRPH",DUZ)) W $C(7),!!,"Digitally Signed Order - PSDRPH key required" D PAUSE^VALM1 Q
  S RXSP=1 K PSCAN S (EN,X)=$P(^PSRX($P(PSOLST(ORN),"^",2),0),"^") S Y=$P(PSOLST(ORN),"^",2)_"^"_X,Y(0,0)=X,Y(0)=$G(^PSRX($P(PSOLST(ORN),"^",2),0)) D
  .I $P(^PSRX(+Y,"STA"),"^")=1!($P(^("STA"),"^")=4) D  Q
- ..I $P($G(^PSRX(+Y,"PKI")),"^") N PKI,PKI1,PKIR,PKIE,DA S DA=+Y D CER^PSOPKIV1
  ..S:$G(PSONOOR)'="" PSONOORA=$G(PSONOOR) D DEL S:$G(PSONOORA)'="" PSONOOR=$G(PSONOORA) K PSONOORA Q
  .S YY=Y,YY(0,0)=Y(0,0),(PSODFN,DFN)=$P(Y(0),"^",2) D:$G(DFN) CHK^PSOCAN I DEAD!($P(^PSRX(+YY,"STA"),"^")>11),$P(^("STA"),"^")<16 S PSINV(EN)="" Q
  .S DA=+YY I $P($G(^PSRX(DA,"STA")),"^")=11!($P($G(^(2)),"^",6)<DT) D EXP^PSOCAN
@@ -48,6 +48,7 @@ PEN ;discontinue pending orders
  S ORD=$P(PSOLST(ORN),"^",2) D PSOL^PSSLOCK(+ORD_"S") I '$G(PSOMSG) D  D MEDDIS K PSOMSG G OK
  .I $P($G(PSOMSG),"^",2)'="" W $C(7),!!,$P($G(PSOMSG),"^",2)_"  (Pending order)",! Q
  .W $C(7),!!,"Another person is editing this Pending order.",!
+ I $P(^PS(52.41,ORD,0),"^",24),'$D(^XUSEC("PSDRPH",DUZ)) W $C(7),!!,"Digitally Signed Order - PSDRPH key required" D PAUSE^VALM1 G OK
  I $P(^PS(52.41,ORD,0),"^",3)="RF" S DA=ORD,DIK="^PS(52.41," D ^DIK K DA,DIK D PSOUL^PSSLOCK(ORD_"S") Q
  K ^PS(52.41,"AOR",$P(^PS(52.41,ORD,0),"^",2),+$P($G(^PS(52.41,ORD,"INI")),"^"),ORD) S $P(^PS(52.41,ORD,0),"^",3)="DC"
  D EN^PSOHLSN(+^PS(52.41,ORD,0),"OC",INCOM,PSONOOR)
@@ -75,7 +76,6 @@ DEL ;deletes non-verified Rxs
  .D NOOR I $D(DIRUT) S VALMSG="No Action Taken!",VALMBCK="R" Q
  .K DIR S DIR("A")="Comments",DIR("B")="Per Pharmacy Request",DIR(0)="F^5:100" D ^DIR K DIR I $D(DIRUT) S VALMSG="No Action Taken!" Q
  K PSDEL,PSORX("INTERVENE") S PSOZVER=1,DA=$P(PSOLST(ORN),"^",2)
- I $G(PKI1) N INCOM S INCOM=Y D DCV^PSOPKIV1 Q
  D ENQ^PSORXDL
 EX Q
 REQ ;prompt for requesting provider

@@ -1,5 +1,5 @@
 SROESNR2 ;BIR/ADM - NURSE REPORT E-SIG UTILITY ; [ 03/21/01  6:36 AM
- ;;3.0; Surgery ;**100,127**;24 Jun 93
+ ;;3.0;Surgery;**100,127,177**;24 Jun 93;Build 89
  ;
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure.  Local modifications to this routine
@@ -35,7 +35,7 @@ EXT ; get external value
  I SRFILE=130.16,SRNUM=3,SRX'="" S SRX=$E(SRX,1,5) D CPT Q
  I SRFILE=130.18,SRNUM=3 D DIAG
  Q
-DIAG S SRY=$$ICDDX^ICDCODE(SRY,$P($G(^SRF(SRTN,0)),"^",9)) S SRX=SRX_"  "_$P(SRY,"^",4) K SRY
+DIAG S SRY=$$ICD^SROICD(SRTN,SRY) S SRX=SRX_"  "_$P(SRY,"^",4) K SRY
  Q
 CPT S X=$$CPT^ICPTCOD(SRX,$P($G(^SRF(SRTN,0)),"^",9)),SRX=SRX_"  "_$P(X,"^",3)
  Q

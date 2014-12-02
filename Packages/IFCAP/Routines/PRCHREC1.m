@@ -1,9 +1,12 @@
 PRCHREC1 ;ID/RSD,SF/TKW/RHD-CONT. OF RECEIVING ;2/9/93  14:53
-V ;;5.1;IFCAP;**133**;Oct 20, 2000;Build 5
+V ;;5.1;IFCAP;**133,170**;Oct 20, 2000;Build 7
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
+ ;PRC*5.1*170 For receipt processing to insure the user is returned to 
+ ;            the quantity query after any erroneous quantity entry.
+ ;
 EN1 S PRCHRQ3="",DA=PRCHPO,D="C",DIC="^PRC(442,DA,2,",DIC(0)="QZXE" W !!?3,"Item: ",X D IX^DIC Q:Y<0
- S PRCHRDY=+$O(^PRC(442,DA,2,"AB",PRCHRD,+Y,0)) S:'$D(^PRC(442,DA,2,+Y,3,PRCHRDY,0)) PRCHRDY=0 S:PRCHRDY PRCHRQ3=$P(^(0),U,2),$P(^(0),U,2)=0
+ S PRCHRDY=+$O(^PRC(442,DA,2,"AB",PRCHRD,+Y,0)) S:'$D(^PRC(442,DA,2,+Y,3,PRCHRDY,0)) PRCHRDY=0 S:PRCHRDY PRCHRQ3=$P(^(0),U,2),$P(^(0),U,2)=0,$P(^(0),U,3)=0   ;PRC*5.1*170
  S PRCHRIT=Y,PRCHRQ1=$P(Y(0),U,2),$P(^PRC(442,DA,2,+Y,2),U,8)=$P(^PRC(442,DA,2,+Y,2),U,8)-PRCHRQ3,PRCHRQ2=$P(^(2),U,8),PRCHRAM=$P(^(2),U,1),PRCHRDA=+$P(^(2),U,6) D WP^PRCHREC2
  W !,"UNIT OF PRCH: ",$P($G(^PRCD(420.5,+$P(Y(0),U,3),0)),U,1),"        QTY ORDERED: ",PRCHRQ1,"        PREVIOUSLY RECEIVED: ",PRCHRQ2,!
  I $D(^TMP("PRCHREC4",$J)) W !
@@ -13,7 +16,8 @@ EN1 S PRCHRQ3="",DA=PRCHPO,D="C",DIC="^PRC(442,DA,2,",DIC(0)="QZXE" W !!?3,"Item
  S PRCHITCV=$P(^PRC(442,DA,2,+PRCHRIT,0),U,17),PRCHMULT=+$P(^PRC(442,DA,2,+PRCHRIT,0),U,12)
 ENQTY W !?3,"QTY BEING RECEIVED: ",PRCHRQ3 W:PRCHRQ3]"" "// "
  S PRCHRTP=0,PRCCKER=0 R PRCHRQ:DTIME I PRCHRDY G DEL1^PRCHREC2:PRCHRQ="@" S:PRCHRQ3&((PRCHRQ="")!(PRCHRQ["^")) PRCHRQ=PRCHRQ3
- Q:PRCHRQ=""!(PRCHRQ["^")  G:PRCHRQ'=+PRCHRQ!(PRCHRQ<0)!(PRCHRQ?.E1"."3N.N) HLP
+ I PRCHRQ=""!(PRCHRQ["^") Q   ;PRC*5.1*170
+ I PRCHRQ'=+PRCHRQ!(PRCHRQ<0)!(PRCHRQ?.E1"."3N.N) G HLP    ;PRC*5.1*170
  I $P(PRCHRQ,".",2)>0 D
  . I PRCHMULT>0 S PRCHCALC=PRCHRQ*PRCHMULT I +$P(PRCHCALC,".",2)=0 Q
  . I PRCHITCV>0 S PRCHCALC=PRCHRQ*PRCHITCV I +$P(PRCHCALC,".",2)=0 Q
@@ -22,8 +26,8 @@ ENQTY W !?3,"QTY BEING RECEIVED: ",PRCHRQ3 W:PRCHRQ3]"" "// "
  . W !,"be received into Inventory.  Please OK the fractional amount is for a non"
  . W !,"inventory receipt.",!
  . W $C(7) S %A="Receiving a fractional quantity, is this a non-inventory item receipt",%B="",%=2 D ^PRCFYN I %'=1 S PRCCKER=1
- I PRCCKER=1 G ENQTY
- I PRCHRQ>(PRCHRQ1-PRCHRQ2) W $C(7) S %A="  You are receiving an overage, do you want to continue",%B="",%=2 D ^PRCFYN Q:%'=1  S PRCHROV=""
+ I PRCCKER=1 G ENQTY  ;PRC*5.1*170
+ I PRCHRQ>(PRCHRQ1-PRCHRQ2) W $C(7) S %A="  You are receiving an overage, do you want to continue",%B="",%=2 D ^PRCFYN G ENQTY:%'=1  S PRCHROV=""   ;PRC*5.1*170
  ;
 EN3 I PRCHRQ'=PRCHRQ1 S PRCHRAM=$P(^PRC(442,PRCHPO,2,+PRCHRIT,0),U,9),PRCHRAM=$J(PRCHRAM*PRCHRQ,0,2),PRCHRDA=PRCHRDA/PRCHRQ1*PRCHRQ
  K DIC I 'PRCHRDY S DA(2)=PRCHPO,DA(1)=+PRCHRIT,DIC="^PRC(442,DA(2),2,DA(1),3,",DIC(0)="LX",DLAYGO=442,X=PRCHRD S:'$D(@(DIC_"0)")) ^(0)="^442.08DA^^0" D ^DIC K DIC,DA,DLAYGO Q:Y<0  S PRCHRDY=+Y
@@ -49,7 +53,7 @@ COM2 Q:$O(^PRC(442,PRCHPO,2,"AB",PRCHRD,+PRCHRIT,0))&($D(^PRC(442,PRCHPO,2,+PRCH
  Q
  ;
 HLP W !?3,"Enter a number between .01 and 99999" W:PRCHRDY " or '@' to delete" W "."
- Q
+ G ENQTY   ;PRC*5.1*170
  ;
 HLP1 W !?3,"Enter a Line Item number in the following format: 1,2,3,4 or 1:4 .",!?3,"You may also enter 'C' to complete P.O. as is, or 'A' to see all items."
  S X="??",D="C",DA=PRCHPO,DIC="^PRC(442,DA,2,",DIC(0)="QEM",DIC("S")="I '$D(^PRC(442,DA,2,""AB"",+Y))" D IX^DIC K DIC

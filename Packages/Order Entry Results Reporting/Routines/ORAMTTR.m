@@ -1,12 +1,16 @@
-ORAMTTR ; POR/RSF - Rosendaal Calculations, Individual & Group ;10/05/10  11:57
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**307,339**;Dec 17, 1997;Build 7
+ORAMTTR  ; POR/RSF - Rosendaal Calculations, Individual & Group ;10/05/10  11:57
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**307,339,354**;Dec 17, 1997;Build 12
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;needs testing in system with new file and parameters
  Q
  ;
 MAIN ; Rosendaal TTR Option
- N RESULT
- D NROSENT(.RESULT)
+ N RESULT,DIR,DIRUT,DUOUT,DTOUT,DIROUT,Y,X,TYPE
+ S DIR("B")="I",DIR(0)="SO^I:Include inactive patients and missed appointments;E:Exclude inactive patients and missed appointments"
+ D ^DIR
+ Q:$D(DIRUT)!$D(DUOUT)!$D(DTOUT)!$D(DIROUT)
+ S TYPE=$S($E(Y)="I":0,1:1)
+ D NROSENT(.RESULT,TYPE)
  Q
 SINGLE ; TTR for Individual
  N ORAMDFN,ORAMED,ORAMSD,DUOUT,DTOUT,DIRUT,RESULT
@@ -24,7 +28,9 @@ SINGLE ; TTR for Individual
  Q:$S(+ORAMDFN'>0:1,ORAMED'>0:1,ORAMSD'>0:1,1:0)
  D NRINDV(.RESULT,ORAMDFN,ORAMSD,ORAMED,1)
  Q
-NROSENT(RESULT) ;
+NROSENT(RESULT,TYPE) ;
+ ;*354 TYPE -> Optional, defaults to include all patients.
+ ;              > 0 Will drop inactive patients.
  N ORAMSD,ORAMED,ORAMDFN,ORAMFSD,ORAMCLIN,ORAMPT,ORAMDATE,LG,HG,V1,V2,D1,D2,ORAMDAYS
  N ORAMDIG,ORAMTD,ORAMCARR,TOTS,CNT,ORSITE
  K ^TMP("ORAM",$J)
@@ -58,10 +64,11 @@ SD1 ; Get date range for calculations
  F  S ORAMCLIN=$O(^TMP("ORAM",$J,ORAMCLIN)) Q:$G(ORAMCLIN)=""  D
  . N ORAMPT S ORAMPT=0
  . F  S ORAMPT=$O(^TMP("ORAM",$J,ORAMCLIN,ORAMPT)) Q:'+$G(ORAMPT)  D
- .. N ORAMDATE S ORAMDATE=0
+ .. ;*354 Add second report type (omit inactive patients)
+ .. N ORAMDATE S ORAMDATE=0 I ($G(TYPE)>0),$$DROP(ORAMPT,ORAMSD,ORAMED) K ^TMP("ORAM",$J,ORAMCLIN,ORAMPT) Q
  .. S (LG,HG,V1,V1,D1,D2)=""
  .. F  S ORAMDATE=$O(^TMP("ORAM",$J,ORAMCLIN,ORAMPT,ORAMDATE)) Q:'+$G(ORAMDATE)  D NGETFS(.ORAMCARR,ORAMCLIN,ORAMPT,ORAMDATE,.D1,.D2,.V1,.V2,.PGR,.LG,.HG,.ORAMDIG,.ORAMTD)
- I $G(ORAMDIG)<1 S RESULT="0^0" W !!?2,"Unable to calulate TTR (may be due to a short time frame with few repeat",!?2,"readings on the same patients)."  Q
+ I $G(ORAMDIG)<1 S RESULT="0^0" W !!?2,"Unable to calculate TTR (may be due to a short time frame with few repeat",!?2,"readings on the same patients)."  Q
  S TOTS=$TR($J((ORAMDIG/ORAMTD)*100,8,1)," ","")
  S ORSITE=$$NAME^VASITE
  S:ORSITE']"" ORSITE=$P($$SITE^VASITE,U,2)
@@ -104,7 +111,7 @@ NRINDV(RESULT,ORAMDFN,ORAMSD,ORAMED,ORAMWON) ; TTR for single patient
  N ORAMDATE,LG,HG,V1,V2,D1,D2,ORAMDAYS,ORAMDIG,ORAMTD
  N ORAMC2,ORAMPT,ORAMCARR S ORAMC2=ORAMCLIN,ORAMPT=ORAMDFN
  S ORAMDATE=0 F  S ORAMDATE=$O(^TMP("ORAM",$J,ORAMCLIN,ORAMDFN,ORAMDATE)) Q:'+$G(ORAMDATE)  D NGETFS(.ORAMCARR,ORAMCLIN,ORAMDFN,ORAMDATE,.D1,.D2,.V1,.V2,.PGR,.LG,.HG,.ORAMDIG,.ORAMTD)
- I $G(ORAMDIG)<1 S RESULT="0^0" W:+$G(ORAMWON) !!?2,"Unable to calulate TTR (may be due to a short time frame with few repeat",!?2,"readings on the same patient)."  Q
+ I $G(ORAMDIG)<1 S RESULT="0^0" W:+$G(ORAMWON) !!?2,"Unable to calculate TTR (may be due to a short time frame with few repeat",!?2,"readings on the same patient)."  Q
  N TOTS S TOTS=$TR($J((ORAMDIG/ORAMTD)*100,8,1)," ","")
  I +$G(ORAMWON) D
  . W !!,"Rosendaal method for percentage of INR scores in therapeutic range",!
@@ -160,4 +167,22 @@ NGETFS(ORAMCARR,ORAMCLIN,ORAMPT,ORAMDATE,D1,D2,V1,V2,PGR,LG,HG,ORAMDIG,ORAMTD) ;
  .. S $P(ORAMCARR(ORAMCLIN),U,2)=($P(ORAMCARR(ORAMCLIN),U,2)+$TR($J(NUMPC*ORAMDAYS,8.3)," ",""))
  S D1=D2,V1=V2
  Q
+ ;
+DROP(DPT,BDT,EDT) ;
+ ; Return if Patient should be dropped from calculation 1 (yes), 0 (no), -1 (err)
+ ; DPT -> PT DFN     (required)
+ ; BDT -> Begin Date (optional)
+ ; EDT -> End Date   (optional)
+ N FS,INR,PRE,ORAMISS,ORAMDROP,FSDT
+ S:'$G(BDT) BDT=0 ;No Input set 0
+ S:'$G(EDT) EDT=9999999 ;No input, set end of time.
+ Q:'$D(^ORAM(103,DPT)) -1
+ Q:(2=$$GET1^DIQ(103,DPT,15,"I")) 1 ;inactive patient
+ F FS=0:0 S FS=$O(^ORAM(103,DPT,3,FS)) Q:'FS  D
+ . S FSDT=$$GET1^DIQ(103.011,FS_","_DPT,.01,"I")
+ . S INR=$$GET1^DIQ(103.011,FS_","_DPT,20,"I")
+ . I '$G(INR) S ORAMISS(DPT,FSDT)=1 ;Mark Missed Appts
+ S FS=BDT-.01 F  S FS=$O(ORAMISS(DPT,FS)) S PRE=$O(ORAMISS(DPT,FS),-1) Q:('FS)!(FS>EDT)!$G(ORAMDROP(DPT))  D
+ . Q:'PRE  I ($$FMDIFF^XLFDT(FS,PRE)>56) S ORAMDROP(DPT)=1
+ Q $G(ORAMDROP(DPT),0)
  ;

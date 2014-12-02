@@ -1,5 +1,5 @@
-ORWORR ; SLC/KCM/JLI - Retrieve Orders for Broker ;8/24/09
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,92,116,110,132,141,163,189,195,215,243,280**;Dec 17, 1997;Build 85
+ORWORR ; SLC/KCM/JLI - Retrieve Orders for Broker ;08/19/11  05:02
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,92,116,110,132,141,163,189,195,215,243,280,306**;Dec 17, 1997;Build 43
  ;
 GET(LST,DFN,FILTER,GROUPS) ; procedure
  Q  ; don't call until using same treating specialty logic as AGET
@@ -22,7 +22,7 @@ GET(LST,DFN,FILTER,GROUPS) ; procedure
  . D GETFLDS
  K ^TMP("ORR",$J)
  G EXIT
-AGET(REF,DFN,FILTER,GROUPS,DTFROM,DTTHRU,EVENT,ORRECIP) ;Get abbrev. event delayed order list for patient 
+AGET(REF,DFN,FILTER,GROUPS,DTFROM,DTTHRU,EVENT,ORRECIP) ;Get abbrev. event delayed order list for patient
  ; returns ^TMP("ORR",$J,ORLIST,n)=IFN^DGrp^ActTm
  ; see input parameters above
  ; -- from ORWORR
@@ -76,7 +76,7 @@ EXIT I LST=0 D
  . N %,X,%I D NOW^%DTC
  . S LST(1)="~0^0^"_%_"^^^97",LST(2)="tNo Orders Found."
  Q
-DOGET ; Here to filter orders 
+DOGET ; Here to filter orders
  S TIME=0 F  S TIME=$O(^OR(100,"AO",DFN,TIME)) Q:'TIME  D
  . S DGRP=0 F  S DGRP=$O(^OR(100,"AO",DFN,TIME,DGRP)) Q:'DGRP  D
  . . I $D(GROUPS)>1 Q:'$D(GROUPS(DGRP))           ;filter by display grp
@@ -157,18 +157,19 @@ GETFLDS ; used by entry points to place order fields into list
  I $L($G(DEA)) S $P(LST(IDX),U,16)=DEA ;PKI
  I $P($G(^OR(100,IFN,8,ACT,2)),"^",5) S $P(LST(IDX),U,18)=$P(^(2),"^",4)
  I '$P($G(^OR(100,IFN,8,ACT,2)),"^",5),$P(X0,"^",5) D  ;Copy orders PKI fix
- . N OI,ORVP,ORCAT,PKG
+ . N OI,ORVP,ORCAT,PKG,ORPKIU
  . S OI=+$O(^OR(100,IFN,4.5,"ID","ORDERABLE",0)),OI=+$G(^OR(100,IFN,4.5,OI,1)) Q:'OI
  . S ORVP=$P(X0,"^",2),PKG=$P(X0,"^",14)
  . S ORCAT=$S($L($P($G(^DPT(+ORVP,.1)),U)):"I",1:"O")
  . I PKG'=$O(^DIC(9.4,"B","OUTPATIENT PHARMACY",0)) Q
- . D PKI^ORWDPS1(.ORY,OI,ORCAT,+ORVP,$$GET^XPAR("ALL^USR.`"_DUZ,"ORWOR PKI USE",1,"Q"))
+ . S ORPKIU=0 I $D(^ORD(100.7,"C",DUZ)) S ORPKIU=1
+ . D PKI^ORWDPS1(.ORY,OI,ORCAT,+ORVP,ORPKIU)
  . I $E($G(ORY))=2 S $P(LST(IDX),U,18)=ORY
  ; Change to display location for Clinic Orders, Inpatients, & IV infusion orders.
  N DGID,DGNAM
  S LOC=""
  S DGID=$P(X0,U,11)
- I $L(DGID) D 
+ I $L(DGID) D
  .S DGNAM=$P($G(^ORD(100.98,DGID,0)),U)
  .;I DGNAM="CLINIC ORDERS"!(DGNAM="INPATIENT MEDICATIONS")!(DGNAM="IV MEDICATIONS")!(DGNAM="UNIT DOSE MEDICATIONS") D
  .S LOC=$P(X0,U,10) ;IMO
@@ -177,6 +178,20 @@ GETFLDS ; used by entry points to place order fields into list
  ;need a way to determine if order is in an unsigned DC state.
  S $P(LST(IDX),U,21)=$S(ACTID="DC":1,1:0)
  S $P(LST(IDX),U,22)=$$CHKORD^OREVNTX1(IFN)
+ D
+ . N OI,ORVP,ORCAT,PKG,ORCONSUB,ORCSPKG,ORYD
+ . S ORCSPKG=""
+ . S OI=+$O(^OR(100,IFN,4.5,"ID","ORDERABLE",0)),OI=+$G(^OR(100,IFN,4.5,OI,1)) Q:'OI
+ . S ORVP=$P(X0,"^",2),PKG=$P(X0,"^",14)
+ . S ORCAT=$S($L($P($G(^DPT(+ORVP,.1)),U)):"I",1:"O")
+ . I PKG=$O(^DIC(9.4,"B","OUTPATIENT PHARMACY",0)) S ORCSPKG="O"
+ . I PKG=$O(^DIC(9.4,"B","UNIT DOSE MEDICATIONS",0)) S ORCSPKG="I"
+ . I PKG=$O(^DIC(9.4,"B","INPATIENT MEDICATIONS",0)) S ORCSPKG="I"
+ . I PKG=$O(^DIC(9.4,"B","IV MEDICATIONS",0)) S ORCSPKG="I"
+ . I ORCSPKG="" S $P(LST(IDX),U,23,24)="0^0" Q
+ . D CSCHECK^ORDEA(.ORCONSUB,OI,ORCSPKG)
+ . S $P(LST(IDX),U,23)=$P(ORCONSUB,U)
+ . S $P(LST(IDX),U,24)=$P(ORCONSUB,U,2)
  ;
  S ORIGVIEW=$S($G(TXTVW)=0:0,$G(TXTVW)=1:1,ORYD=-1:1,'ORYD:1,$P(X8,U)'<ORYD:0,1:1)
  K TXT D TEXT^ORQ12(.TXT,ID,255)                  ; optimize later

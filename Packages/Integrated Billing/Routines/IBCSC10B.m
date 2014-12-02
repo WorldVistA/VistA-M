@@ -1,5 +1,5 @@
 IBCSC10B ;BP/YMG - ADD/ENTER PATIENT REASON FOR VISIT DATA ;10/15/2008
- ;;2.0;INTEGRATED BILLING;**432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**432,461**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; DEM;432 - Moved IBCSC8* billing screen routines to IBCSC10* billing screen
@@ -55,7 +55,7 @@ DISP ; display PRV diagnoses
  S CNT=0 F  S CNT=$O(PRVS(CNT)) Q:'CNT  D
  .S IBDX=$$ICD9^IBACSV($P(PRVS(CNT),U),$$BDATE^IBACSV(IBIFN)),DXCODE=$P(IBDX,U)
  .F I=8:1:10 S PRV=$P($G(^DGCR(399,IBIFN,"U3")),U,I) I PRV=+PRVS(CNT) S DXCODE="*"_DXCODE Q
- .W !,$J(CNT,2),")",?4,DXCODE,?13,$E($P(IBDX,U,3),1,24),?37,$E($P(PRVS(CNT),U,2),1,24),?62,$P(PRVS(CNT),U,3)
+ .W !,$J(CNT,2),")",?4,DXCODE,?15,$E($P(IBDX,U,3),1,30),?46,$E($P(PRVS(CNT),U,2),1,14),?62,$P(PRVS(CNT),U,3)
  .Q
  Q
  ;
@@ -64,9 +64,9 @@ DISPEX(IBIFN) ; display existing PRV diagnoses for a bill
  W !!,?5,"------  Existing Pt. Reason for Visit Diagnoses for Bill  -------",!
  F I=8:1:10 S IBDX=$P($G(^DGCR(399,IBIFN,"U3")),U,I) I IBDX'="" D
  .S IBDXDT=$$ICD9^IBACSV(IBDX,$$BDATE^IBACSV(IBIFN))
- .W !,?12,$P(IBDXDT,U),?26,$P(IBDXDT,U,3)
- .Q
- W:'$G(IBDXDT) !,?13,"No existing Pt. Reason for Visit Diagnoses found."
+ .W !,?5,$P(IBDXDT,U),?17,$P(IBDXDT,U,3)
+ ;
+ W:$G(IBDXDT)="" !,?13,"No existing Pt. Reason for Visit Diagnoses found."
  W !
  Q
  ;
@@ -102,7 +102,7 @@ NEWDX1 S DIR("?",1)="Enter the number preceding the PRV diagnosis you want added
 NEWDXE Q
  ;
 ADD(DXIEN) ; add single PRV diagnosis with file 80 ien DXIEN to the bill
- Q:'DXIEN!$$PRVFLD(DXIEN)  ; quit if no dx ien of if such PRV already exists
+ Q:'DXIEN!$$PRVFLD(DXIEN)  ; quit if no dx ien or if such PRV already exists
  N FLD
  ; if there are already 3 PRVs on the claim, complain and bail out
  I '$$CHKPRV D ERR Q
@@ -117,12 +117,13 @@ ADDNEW ; add selected PRV diagnoses to the bill
  ;
 ASKDX() ; enter extra PRV diagnosis
  ; returns dx ien in file 80 ^ dx code
- N X,Y,IBDATE,IBDTTX
- S IBDATE=$$BDATE^IBACSV(IBIFN)
+ N X,Y,IBDATE,IBDTTX,ICDVDT
+ S IBDATE=$$BDATE^IBACSV(IBIFN),ICDVDT=IBDATE
  S IBDTTX=$$DAT1^IBOUTL(IBDATE)
 AD ;
  S DIR("?")="Enter a diagnosis for this bill. Only diagnosis codes active on "_IBDTTX_" are allowed."
- S DIR(0)="PO^80:EAMQ",DIR("A")="Enter Pt. Reason for Visit Diagnosis"
+ S DIR("S")="I $$ICD9VER^IBACSV(+Y)="_$$ICD9SYS^IBACSV(IBDATE) ; inactive allowed but either ICD-9 or ICD-10 *461
+ S DIR(0)="PO^80:EAMQI",DIR("A")="Enter Pt. Reason for Visit Diagnosis"
  D ^DIR K DIR
  I Y>0,'$$PRVFLD(+Y),'$$ICD9ACT^IBACSV(+Y,IBDATE) D  G AD
  . W !!,*7,"The Diagnosis code is inactive for the date of service ("_IBDTTX_").",!

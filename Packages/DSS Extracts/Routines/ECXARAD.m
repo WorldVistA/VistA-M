@@ -1,9 +1,9 @@
-ECXARAD ;ALB/JAP - RAD Extract Audit Report ;Oct 16, 1997
- ;;3.0;DSS EXTRACTS;**8,33,39**;Dec 22, 1997
+ECXARAD ;ALB/JAP - RAD Extract Audit Report ;3/11/14  12:58
+ ;;3.0;DSS EXTRACTS;**8,33,39,149**;Dec 22, 1997;Build 27
  ;
 EN ;entry point for RAD extract audit report
  ;select extract
- N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,SITES,ECX
+ N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,SITES,ECX,ECXPORT,RCNT ;149
  ;ecxaud=0 for 'extract' audit
  S ECXERR=0
  S ECXHEAD="RAD",ECXAUD=0
@@ -33,6 +33,12 @@ EN ;entry point for RAD extract audit report
  ;determine output device and queue if requested
  S ECXPGM="PROCESS^ECXARAD",ECXDESC="RAD Extract Audit Report"
  S ECXSAVE("ECXHEAD")="",ECXSAVE("ECXALL")="",ECXSAVE("ECXDIV(")="",ECXSAVE("ECXARRAY(")=""
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I $G(ECXPORT) D  Q  ;149 Section added
+ .K ^TMP($J,"ECXPORT")
+ .S ^TMP($J,"ECXPORT",0)="EXTRACT LOG #^RADIOLOGY DIVISION^IMAGING TYPE (FEEDER LOCATION)^CPT CODE^PROCEDURE^# OF INPT PROCEDURES^# OF OUTPT PROCEDURES",RCNT=1
+ .D PROCESS
+ .D EXPDISP^ECXUTL1
+ .D AUDIT^ECXKILL
  W !
  D DEVICE^ECXUTLA(ECXPGM,ECXDESC,.ECXSAVE)
  I ECXSAVE("POP")=1 D  Q
@@ -77,6 +83,7 @@ PROCESS ;process data in file #727.814
  .I $D(ZTQUEUED),(CNT>499),'(CNT#500),$$S^%ZTLOAD S QQFLG=1,ZTSTOP=1 K ZTREQ
  ;print the report
  D PRINT
+ I $G(ECXPORT) Q  ;149
  D AUDIT^ECXKILL
  Q
  ;
@@ -88,24 +95,29 @@ PRINT ;print the RAD audit report by radiology site
  ;arrange type array by name
  S T=0 F  S T=$O(TYPE(T)) Q:T=""  S IMNM=$P(TYPE(T),U,1),IMAG(IMNM)=T
  F  S DIV=$O(ECXDIV(DIV)) Q:DIV=""  D  Q:QFLG
- .S DIVNM=$P(ECXDIV(DIV),U,2)_" ("_DIV_")",GTOT(1)=0,GTOT(3)=0 D HEADER
+ .S DIVNM=$P(ECXDIV(DIV),U,2)_" ("_DIV_")",GTOT(1)=0,GTOT(3)=0 I '$G(ECXPORT) D HEADER ;149
  .I '$D(^TMP($J,"ECXAUD",DIV)) D  Q
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=ECXARRAY("EXTRACT")_U_DIVNM_U_"No data available for this Radiology Division",RCNT=RCNT+1 Q  ;149
  ..W !!,?5,"No data available for this Radiology Division.",!!
  .I $D(^TMP($J,"ECXAUD",DIV)) S IMNM="" F  S IMNM=$O(^TMP($J,"ECXAUD",DIV,IMNM)) Q:IMNM=""  D  Q:QFLG
  ..S STOT(1)=0,STOT(3)=0,IMTYPE=IMAG(IMNM),CPT=""
  ..;write the imaging type name
- ..D:($Y+3>IOSL) HEADER Q:QFLG  W !,IMNM_" ("_DIV_"-"_IMTYPE_")",!
+ ..I '$G(ECXPORT) D:($Y+3>IOSL) HEADER Q:QFLG  W !,IMNM_" ("_DIV_"-"_IMTYPE_")",! ;149
  ..F  S CPT=$O(^TMP($J,"ECXAUD",DIV,IMNM,CPT)) Q:CPT=""  S TOT(1)=$P(^(CPT),U,1),TOT(3)=$P(^(CPT),U,2),PROCN=$P(^(CPT),U,3) D  Q:QFLG
  ...S STOT(1)=STOT(1)+TOT(1),STOT(3)=STOT(3)+TOT(3)
  ...S GTOT(1)=GTOT(1)+TOT(1),GTOT(3)=GTOT(3)+TOT(3)
  ...;write procedure and total
+ ...I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=ECXARRAY("EXTRACT")_U_DIVNM_U_IMNM_" ("_DIV_"-"_IMTYPE_")"_U_$E(CPT,2,6)_U_PROCN_U_TOT(3)_U_TOT(1),RCNT=RCNT+1 Q  ;149
  ...D:($Y+3>IOSL) HEADER Q:QFLG  W ?3,$E(CPT,2,6),?14,$E(PROCN,1,38),?60,$$RJ^XLFSTR(TOT(3),5," "),?70,$$RJ^XLFSTR(TOT(1),5," "),!
  ..;write the unit subtotal
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^^Sub-totals for "_IMNM_" ("_DIV_"-"_IMTYPE_")"_"^^^"_STOT(3)_U_STOT(1)_U,RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1 Q  ;149
  ..D:($Y+3>IOSL) HEADER Q:QFLG  W !,?5,$E(LN,1,74)
  ..D:($Y+3>IOSL) HEADER Q:QFLG  W !,"Sub-totals for "_IMNM_" ("_DIV_"-"_IMTYPE_"):",?60,$$RJ^XLFSTR(STOT(3),5," "),?70,$$RJ^XLFSTR(STOT(1),5," "),!
  .;write the division grandtotal
+ .I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^^Grand Total for Divsion "_DIVNM_"^^^"_GTOT(3)_U_GTOT(1),RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1 Q  ;149
  .D:($Y+3>IOSL) HEADER Q:QFLG  W !!,"Grand Total for Division "_DIVNM_":",?60,$$RJ^XLFSTR(GTOT(3),5," "),?70,$$RJ^XLFSTR(GTOT(1),5," ")
  ;print the audit descriptive narrative
+ I $G(ECXPORT) Q  ;149
  I $E(IOST)'="C" D
  .W @IOF S PG=PG+1
  .W !,ECXARRAY("TYPE")_" ("_ECXHEAD_") Extract Audit Report"
@@ -121,7 +133,7 @@ PRINT ;print the RAD audit report by radiology site
  ;
 HEADER ;header and page control
  N JJ,SS
- I $E(IOST)="C" D
+ I $E(IOST)="C",'QFLG D  ;149 Fixed problem with report not stopping when user enters "^"
  .S SS=22-$Y F JJ=1:1:SS W !
  .I PG>0 S DIR(0)="E" W ! D ^DIR K DIR S:'Y QFLG=1
  Q:QFLG

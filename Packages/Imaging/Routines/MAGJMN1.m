@@ -1,5 +1,5 @@
-MAGJMN1 ;WIRMFO/JHC - VRad Maint functions ; 9 Sep 2011  4:05 PM
- ;;3.0;IMAGING;**16,9,22,18,65,76,101,90,115,120**;Mar 19, 2002;Build 27;May 23, 2012
+MAGJMN1 ;WIRMFO/JHC - VRad Maint functions ; 3 May 2013  12:14 PM
+ ;;3.0;IMAGING;**16,9,22,18,65,76,101,90,115,120,133**;Mar 19, 2002;Build 5393;Sep 09, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -140,7 +140,6 @@ BLDDEF2(X) ;
  Q
  ;
 POSTINST ; Patch installation inits, etc.
- D P120DD ; Patch 120 DD mods
  ; D BLDALL ; update list definitions  <*> Use any time fields are added
  D BGCSTRT ; re-start background compile
  D POST ; install message, etc.
@@ -160,23 +159,6 @@ BLDALL ; Create "DEF" nodes, Button labels List Def'ns
  ;
 POST ; Install msg
  D INS^MAGQBUT4(XPDNM,DUZ,$$NOW^XLFDT,XPDA)
- Q
- ;
-P120DD ; DD changes for MAG VISTARAD SITE PARAMETERS, deleting deprecated fields
- ;
- W !!,"Deleting deprecated fields from MAG VISTARAD SITE PARAMETERS file ... "
- ; First, delete the field entries
- N I,REC
- S REC=$G(^MAG(2006.69,1,0))
- I REC]"" D
- . F I=6,12,14,15 S $P(REC,U,I)=""
- . S ^MAG(2006.69,1,0)=REC
- ;
- ; Then, delete the field definitions
- S DIK="^DD(2006.69,",DA(1)=2006.69
- F DA=4,5.5,10,11 D ^DIK
- K DIK,DA
- W " done! ",!
  Q
  ;
 YN(MSG,DFLT) ; get Yes/No reply

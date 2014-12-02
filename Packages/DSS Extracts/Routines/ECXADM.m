@@ -1,5 +1,5 @@
-ECXADM ;ALB/JAP,BIR/DMA,CML,PTD-Admissions Extract ;4/20/12  10:04
- ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120,127,132,136**;Dec 22, 1997;Build 28
+ECXADM ;ALB/JAP,BIR/DMA,CML,PTD-Admissions Extract ;5/17/13  11:51
+ ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120,127,132,136,144,149**;Dec 22, 1997;Build 27
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -19,6 +19,7 @@ START ; start package specific extract
  ;
 GET ;gather extract data
  N ADM,W,X,ECXNPRFI,ECXATTPC,ECXPRVPC,ECXEST,ECXAOT,ECXEDIS,ECXICD10P ;136
+ N ECXESC,ECXECL,ECXCLST ;144 Encounter Service Connected, Encounter Camp Lejeune, Camp Lejeune Status
  ;patient demographics
  S ECXERR=0 D PAT(ECXDFN,ECD,.ECXERR)
  Q:ECXERR
@@ -30,12 +31,13 @@ GET ;gather extract data
  I ELGA S ELGA=$$ELIG^ECXUTL3(ELGA,ECXSVC)
  S (ECDRG,ECDIA,ECXSADM,ECXADMS,ECXAOT)="",ECPTF=+$P(EC,U,16) I ECPTF,$D(^DGPT(ECPTF,"M")) D PTF
  ;get encounter classification
- S (ECXAO,ECXECE,ECXIR,ECXMIL,ECXHNC,ECXSHAD)="",ECXVISIT=$P(EC,U,27)
+ S (ECXAO,ECXECE,ECXIR,ECXMIL,ECXHNC,ECXSHAD,ECXESC,ECXECL)="",ECXVISIT=$P(EC,U,27) ;144
  I ECXVISIT'="" D
  .D VISIT^ECXSCX1(ECXDFN,ECXVISIT,.ECXVIST,.ECXERR) I ECXERR K ECXERR Q
  .S ECXAO=$G(ECXVIST("AO")),ECXIR=$G(ECXVIST("IR"))
  .S ECXMIL=$G(ECXVIST("MST")),ECXHNC=$G(ECXVIST("HNC"))
  .S ECXECE=$G(ECXVIST("PGE")),ECXSHAD=$G(ECXVIST("SHAD"))
+ .S ECXESC=$G(ECXVIST("ENCSC")),ECXECL=$G(ECXVIST("ENCCL")) ;144 Encounter SC and Encounter Camp Lejeune
  ;use movement record date & time
  S ADM=$$INP^ECXUTL2(ECXDFN,ECD)
  S ECXA=$P(ADM,U),ECXMN=$P(ADM,U,2),ECXSPC=$P(ADM,U,3)
@@ -103,6 +105,9 @@ PAT(ECXDFN,ECXDATE,ECXERR) ;get patient demographic data
  S ECXPHI=ECXPAT("PHI")
  S ECXHI=+$$INSUR^IBBAPI(ECXDFN,ECXDATE)
  S ECXEST=ECXPAT("EC STAT")
+ S ECXCLST=ECXPAT("CL STAT") ;144 Camp Lejeune Status
+ S ECXSVCI=ECXPAT("COMBSVCI") ;149 COMBAT SVC IND
+ S ECXSVCL=ECXPAT("COMBSVCL") ;149 COMBAT SVC LOC
  ;
  ;-OEF/OIF Data
  S ECXOEF=ECXPAT("ECXOEF")
@@ -174,7 +179,8 @@ FILE ;file the extract record
  ;^associate pc provider npi ECASNPI^attending physician npi ECATNPI^
  ;primary care provider npi ECPTNPI^primary ward provider npi ECPWNPI^
  ;admit outpatient treatment ECXAOT^country ECXCNTRY^pat cat ECXPATCAT^
- ;admit source ECXADMS ^emergency dept disposition ECXEDIS^Primary ICD-10 code ECXICD10P
+ ;admit source ECXADMS ^emergency dept disposition ECXEDIS^Primary ICD-10 code ECXICD10P^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL^Encounter SC ECXESC
+ ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
  ;
  ;Convert specialty to PTF Code
  ;
@@ -206,6 +212,8 @@ FILE ;file the extract record
  I ECXLOGIC>2010 S ECODE2=ECODE2_U_ECXPATCAT
  I ECXLOGIC>2011 S ECODE2=ECODE2_U_ECXADMS
  I ECXLOGIC>2012 S ECODE2=ECODE2_U_ECXEDIS_U_ECXICD10P ;136
+ I ECXLOGIC>2013 S ECODE2=ECODE2_U_ECXCLST_U_ECXECL_U_ECXESC ;144 Add Camp Lejeune status, encounter Camp Lejeune and encounter service connected
+ I ECXLOGIC>2014 S ECODE2=ECODE2_U_ECXSVCI_U_ECXSVCL ;149
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2)
  S ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA

@@ -1,5 +1,5 @@
 GMVRPCP ;HOIFO/DP-RPC for GMV_PtSelect.pas ; 7/8/05 8:05am
- ;;5.0;GEN. MED. REC. - VITALS;**1,3,22**;Oct 31, 2002;Build 22
+ ;;5.0;GEN. MED. REC. - VITALS;**1,3,22,29**;Oct 31, 2002;Build 7
  ; Integration Agreements:
  ; IA# 510 [Controlled] Calls to set ^DISV
  ; IA# 3027 [Supported] Calls to DGSEC4
@@ -7,11 +7,14 @@ GMVRPCP ;HOIFO/DP-RPC for GMV_PtSelect.pas ; 7/8/05 8:05am
  ; IA# 3267 [Controlled] Calls to SSN^DPTLK1
  ; IA# 3593 [Supported] Calls to DPTLK6
  ; IA# 4440 [Supported] XUPROD calls
+ ; IA# 5888 [Controlled] Calls to VIC API
  ; IA# 10035 [Supported] Calls for FILE 2 references.
  ; IA# 10039 [Supported] Reads of ^DIC(42,#,44)
  ; IA# 10040 [Supported] Reads of ^SC(
  ; IA# 10061 [Supported] Calls to VADPT
  ; IA# 10112 [Supported] VASITE calls
+ ;
+ ; 01/28/2014 KAM GMRV*5*29 Add Call to VIC API during patient lookup
  ;
 ADD(X) ; [Procedure] Add line to @RESULTS@(...
  ; Input parameters
@@ -53,7 +56,14 @@ PTHDR ; [Procedure] Patient Info for Header Displays
  Q
  ;
 PTLKUP ; [Procedure] Patient lookup handled separately for security
- N GMVIDX
+ N GMVIDX,CARDRSLT
+ ;
+ ; 01/28/2014 KAM GMRV*5*29 Add Call to VIC API during patient lookup
+ ;(next two lines)
+ D RPCVIC^DPTLK(.CARDRSLT,DATA) ;SUPPLIED VHIC CARD API
+ I CARDRSLT>0 S DATA="`"_CARDRSLT
+ ; The Variable DATA is unchanged if CARDRSLT is < 0
+ ;
  S GMVIDX=$S(DATA?9N.1"P":"SSN",1:"B^BS^BS5")
  D FIND^DIC(2,"","@;.01;.02;.03;.09","MP",DATA,60,GMVIDX)
  I $P(^TMP("DILIST",$J,0),U,3) D  Q

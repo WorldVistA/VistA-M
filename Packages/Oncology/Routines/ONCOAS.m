@@ -1,5 +1,5 @@
 ONCOAS ;Hines OIFO/GWB - [SE Add/Edit/Delete 'Suspense' Case] ;05/30/00
- ;;2.11;ONCOLOGY;**25,26,27,41**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 PAT ;[SE Add/Edit/Delete 'Suspense' Case]
  W ! S DIC="^ONCO(160,",DIC(0)="AEZML",DLAYGO=160 D ^DIC G:Y<0 EX

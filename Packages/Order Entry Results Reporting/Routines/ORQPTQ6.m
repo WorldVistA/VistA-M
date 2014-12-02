@@ -1,5 +1,5 @@
 ORQPTQ6 ; SLC/PKS [8/27/03 11:20am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**82,85,187**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**82,85,187,320**;Dec 17, 1997;Build 16
  ;
  ; Called by BUILD^ORQPT (LM) and DEFLIST^ORQPTQ11 (GUI).
  ;
@@ -44,12 +44,13 @@ COMBPTS(ORQLM,ORQCPTR,ORBDATE,OREDATE) ; Build "Combination" pt. list.
  ;
  ; (NOTE: LCNT,LIST,MSG,NUM,SORT new'd in calling routines for LM.)
  ;
- N ORQCNT,ORQDUZ,ORQERR,ORQFILE,ORQPCNT,ORQPDAT,ORQPDOB,ORQPFMDT,ORQPIEN,ORQPNM,ORQPMOR,ORQPSNM,ORQPSSN,ORQPSTAT,ORQPTMP,ORQPTR,ORQRTN,ORQSPCH,ORQSRC,ORQSRCID,ORQTXT,ORY
+ N ORQCNT,ORQDUZ,ORQERR,ORQFILE,ORQPCNT,ORQPDAT,ORQPDOB,ORQPFMDT,ORQPIEN,ORQPNM,ORQPMOR,ORQPSNM,ORQPSSN,ORQPSTAT,ORQPTMP,ORQPTR,ORQRTN,ORQSPCH,ORQSRC,ORQSRCID,ORQTXT,ORY,MAXAPPTS
  ;
  K ^TMP("OR",$J,"PATIENTS")                     ; Safety cleanup.
  ;
  ; Do preliminary settings, cleanup, look for an existing user record:
  S MSG=""                                       ; Default.
+ S MAXAPPTS=$S(ORBDATE=OREDATE:0,1:200)         ; If date range is only one day then no max, otherwise 200
  I '$D(DUZ) D
  .S MSG="No user DUZ info."
  .I 'ORQLM D GUIABORT
@@ -88,19 +89,20 @@ COMBPTS(ORQLM,ORQCPTR,ORBDATE,OREDATE) ; Build "Combination" pt. list.
  .; Get info for each source entry and build ORY array accordingly.
  .I ORQFILE="^DIC(42," D  Q                     ; Wards.
  ..D WARDPTS^ORQPTQ2(.ORY,ORQPTR)
- ..I $D(ORY) D PTSCOMBO^ORQPTQ5("W",ORQPTR)     ; Process ORY array.
+ ..I $D(ORY) D PTSCOMBO^ORQPTQ5("W",ORQPTR) ; Process ORY array.
  .I ORQFILE="^VA(200," D  Q                     ; Providers.
  ..D PROVPTS^ORQPTQ2(.ORY,ORQPTR)
- ..I $D(ORY) D PTSCOMBO^ORQPTQ5("P",ORQPTR)     ; Process ORY array.
+ ..I $D(ORY) D PTSCOMBO^ORQPTQ5("P",ORQPTR) ; Process ORY array.
  .I ORQFILE="^DIC(45.7," D  Q                   ; Specialties.
  ..D SPECPTS^ORQPTQ2(.ORY,ORQPTR)
- ..I $D(ORY) D PTSCOMBO^ORQPTQ5("S",ORQPTR)     ; Process ORY array.
+ ..I $D(ORY) D PTSCOMBO^ORQPTQ5("S",ORQPTR) ; Process ORY array.
  .I ORQFILE="^OR(100.21," D  Q                  ; Team Lists
  ..D TEAMPTS^ORQPTQ1(.ORY,ORQPTR)
- ..I $D(ORY) D PTSCOMBO^ORQPTQ5("T",ORQPTR)     ; Process ORY array.
+ ..I $D(ORY) D PTSCOMBO^ORQPTQ5("T",ORQPTR) ; Process ORY array.
  .I ORQFILE="^SC(" D  Q                         ; Clinics.
- ..D CLINPTS^ORQPTQ2(.ORY,ORQPTR,ORBDATE,OREDATE)
- ..I $D(ORY) D PTSCOMBO^ORQPTQ5("C",ORQPTR)     ; Process ORY array.
+ ..N APPTBGN,APPTEND S (APPTBGN,APPTEND)=""
+ ..D CLINPTS^ORQPTQ2(.ORY,ORQPTR,ORBDATE,OREDATE,MAXAPPTS,.APPTBGN,.APPTEND)
+ ..I $D(ORY) D PTSCOMBO^ORQPTQ5("C",ORQPTR,APPTEND)     ; Process ORY array.
  ;
  ; Order thru ^TMP file "B" node entries returned by previous calls:
  S ORQCNT=0                                     ; Reset for final use.

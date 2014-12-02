@@ -1,9 +1,10 @@
 PSGAP0 ;BIR/CML3-ACTION PROFILE ;20 May 98 / 12:36 PM
- ;;5.0;INPATIENT MEDICATIONS ;**8,58,111,278**;16 DEC 97;Build 4
+ ;;5.0;INPATIENT MEDICATIONS;**8,58,111,278,275**;16 DEC 97;Build 157
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191
  ;
 GOD ; gather order data
+ N PSJCLN,CLINSORT
  S ND=$G(^PS(55,PSGP,5,PSJJORD,0)),ND2=$G(^(2)),SI=$P($G(^(6)),"^"),DRG=$G(^(.2)) ;WS=$S(DRG&PSGAPWD:$D(^PSI(58.1,"D",+DRG,PSGAPWD)),1:0),DRG=$G(^PS(50.7,+DRG,0))
  ;S NF=$P(DRG,"^",9)
  S X=$$NFWS^PSJUTL1(PSGP,PSJJORD_"U",PSGAPWD) S NF=$P(X,U),WS=$P(X,U,2),SM=$S('$P(X,U,3):0,$P(X,U,4):1,1:2)
@@ -14,11 +15,15 @@ GOD ; gather order data
  I STP'=9999999\1,(SD>STP) Q
  F X="SD","FD" S @X=$E($$ENDTC^PSGMI(@X),1,5)
  ;
- S Y=SI S:Y]"" Y=$$ENSET^PSGSICHK(Y) S X=ND_U_$E(DRG,1,20),^TMP($J,$E(PSGAPWDN,1,20),TM,PN,X,+PSJJORD)=ST_U_SD_U_FD_U_WS_U_SM_U_NF S:Y]"" ^(PSJJORD,1)=Y
+ S Y=SI S:Y]"" Y=$$ENSET^PSGSICHK(Y)
+ ; PSJ*5*275 get clinic
+ S PSJCLN=$$CLINIC^PSJO1(PSGP,+PSJJORD_"U") I (PSJCLN]"") S PSGAWPDN="zz" S CLINSORT=$$CLINSORT^PSJO1($P(ND,"^",9))
+ S X=$S(($G(PSJCLN)]""):"zz"_U_PSJCLN_U_CLINSORT_U_$E(DRG,1,20),1:ND_U_$E(DRG,1,20))
+ ;
+ S ^TMP($J,$E(PSGAPWDN,1,20),TM,PN,X,+PSJJORD)=ST_U_SD_U_FD_U_WS_U_SM_U_NF S:Y]"" ^(PSJJORD,1)=Y
  Q
  ;
 PAT ;
- ;;S RB=$G(^DPT(PSGP,.101)),TM="zz" S:RB]"" TM=$S('$D(PSGAPTM):"zz",1:$O(^PS(57.7,"AWRT",PSGAPWD,RB,0))) I PSGAPWDN="" S PSGAPWDN="* NF *"
  S RB=$G(^DPT(PSGP,.101)) S:RB]"" TM=$S('$D(PSGAPTM):"zz",1:$O(^PS(57.7,"AWRT",PSGAPWD,RB,0))) S:$G(TM)="" TM="zz" I PSGAPWDN="" S PSGAPWDN="* NF *"
  I $D(PSGAPTM) S ATM="",ATM=$O(PSGAPTM(ATM)) I ATM'="ALL" Q:'$D(PSGAPTM(+TM))
  S:TM'="zz" TM=^PS(57.7,PSGAPWD,1,TM,0)
@@ -31,8 +36,7 @@ PAT ;
  N XTYPE F XTYPE=3:1:6 I PSGMTYPE[XTYPE S PST=$S(XTYPE=3:"P",XTYPE=4:"A",XTYPE=5:"H",1:"C") D ^PSGAPIV
  I PSGMTYPE[3 S XTYPE=3,PST="S" D ^PSGAPIV ;* Find syringe type iv
  I $D(^TMP($J,$E(PSGAPWDN,1,20),TM,PN)) D
- . ;naked reference on line below refers to full global reference on line above
- . S ^(PN)=$P(PSJPSEX,"^",2)_"^"_$E($P(PSJPDOB,"^",2),1,10)_";"_PSJPAGE_"^"_VA("PID")_"^"_PSJPDX_"^"_$S(PSJPRB]"":PSJPRB,1:"*NF*")_"^"_$E($P(PSJPAD,"^",2),1,10)_"^"_$E($P(PSJPTD,"^",2),1,10)_"^"_+PSJPWT
+ . S ^TMP($J,$E(PSGAPWDN,1,20),TM,PN)=$P(PSJPSEX,"^",2)_"^"_$E($P(PSJPDOB,"^",2),1,10)_";"_PSJPAGE_"^"_VA("PID")_"^"_PSJPDX_"^"_$S(PSJPRB]"":PSJPRB,1:"*NF*")_"^"_$E($P(PSJPAD,"^",2),1,10)_"^"_$E($P(PSJPTD,"^",2),1,10)_"^"_+PSJPWT
  . S:($G(PSJSEL("WG"))="^OTHER") ^TMP("PSGAP0",$J,"OUTPT",PSGP)=""
  Q
  ;
@@ -43,6 +47,7 @@ GDT ;
  ;
 EN ; entry point
  K ^TMP($J)  ;PSJ*5*278
+ N CLIN,INDEX
  I PSGSS'="P" D NOW^%DTC S PSGDT=%,DT=$$DT^XLFDT F N="START","STOP" D GDT I X="^" S PSJSTOP=1 Q
  I PSGSS'="P" Q:X="^"  S:'$P(STP,".",2) $P(STP,".",2)=24 S:'$P(STT,".",2) $P(STT,".",2)="0001"
  S PSJSTOP=$$MEDTYPE^PSJMDIR($G(PSGWD)) Q:PSJSTOP  S PSGMTYPE=Y
@@ -77,6 +82,7 @@ PP ;
  Q
  ;
 DTM ;
+ N T
  S Y=%DT(0) D D^DIQ S T=$P(Y,"@",2),Y=$P(Y,",")
  W !!?2,"If a ",N," date is entered, an action profile will print for only those",!,"patients that have at least one active order with a ",$S(N["A":"STOP",1:"START")," DATE on or ",$S(N["A":"after",1:"before"),!,"the ",N," date entered."
  W !?2,"Entry is not required.  If neither date is entered, all patients with active",!,"orders will print (for the ward(s) chosen).  Enter an up-arrow (^) to exit."

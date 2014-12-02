@@ -152,7 +152,7 @@ ZWR
 ^XMB(4.6,31,2,30,0)=" 'C SWPKERNEL' ...  It will work for all of them."
 ^XMB(4.6,31,2,31,0)=" "
 ^XMB(4.6,31,2,32,0)="For example my script to Altoona looks like:"
-^XMB(4.6,31,2,33,0)="O H=ALTOONA.FORUM.VA.GOV,P=SWP"
+^XMB(4.6,31,2,33,0)="O H=ALTOONA.DOMAIN.EXT,P=SWP"
 ^XMB(4.6,31,2,34,0)="C MINIENGINE"
 ^XMB(4.6,31,2,35,0)="C MAILMAN"
 ^XMB(4.6,31,2,36,0)=" "

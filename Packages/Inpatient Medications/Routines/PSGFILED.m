@@ -1,5 +1,5 @@
 PSGFILED ;BIR/CML3-VARIOUS FILES' UPKEEP ;16 Mar 99 / 10:22 AM
- ;;5.0; INPATIENT MEDICATIONS ;**20,50,63,119,110,111,112,154,184,181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS ;**20,50,63,119,110,111,112,154,184,181,257**;16 DEC 97;Build 105
  ;
  ; Reference to ^PS(50.606 supported by DBIA# 2174.
  ; Reference to ^PSDRUG supported by DBIA# 2192.
@@ -91,9 +91,12 @@ DF ; Add/edit Med route, instruction... to the Dosage form file.
  ;. K DIE,DIC,DR,MR S DIE="^PS(50.606,",DR="1;2;3;4;5",DA=DFNO D ^DIE
  Q
 ENCD ;edit Clinic Definitions file
+ N CLINICS,CLINFLG S CLINICS=""
  F  K DIC S DIC="^PS(53.46,",DIC(0)="AELMQ",DIC("A")="Select CLINIC: ",DLAYGO=53.46 D ^DIC K DIC Q:Y<0  D
- . S DIE="^PS(53.46,",DA=+Y,DR="1;2;3" D ^DIE K DIE,DA,DR Q
+ . S DIE="^PS(53.46,",DA=+Y,CLINICS(DA)="",DR="1;2;3;6" D ^DIE K DIE,DA,DR
+ D IMO^PSJIMO1(.CLINICS)
  Q
+ ;
 ENCG ; ward group file0
  F  S DIC="^PS(57.8,",DIC(0)="QEAMIL",DLAYGO=57.8 W ! D ^DIC K DA,DIC,DR Q:+Y'>0  S DA=+Y,DIE="^PS(57.8,",DR=".01;1" D ^DIE
  G DONE

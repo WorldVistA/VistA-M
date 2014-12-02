@@ -166,7 +166,7 @@ ENVHDR(TYPE,SCHEMA) ; -- vistalink beg tag (header)
  SET X=X_" version="""_VLVER_""""
  SET X=X_" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"""
  SET X=X_" xsi:noNamespaceSchemaLocation="""_SCHEMA_""""
- ;SET X=X_" xmlns=""http://med.va.gov/Foundations"""
+ ;SET X=X_" xmlns=""http://domain.ext/Foundations"""
  SET X=X_">"
  QUIT X
  ;

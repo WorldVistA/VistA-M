@@ -1,5 +1,5 @@
 IBCECOB2 ;ALB/CXW - IB COB MANAGEMENT SCREEN ;16-JUN-1999
- ;;2.0;INTEGRATED BILLING;**137,155,433,432,447**;21-MAR-1994;Build 80
+ ;;2.0;INTEGRATED BILLING;**137,155,433,432,447,488**;21-MAR-1994;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EDI ;history detail display
@@ -80,10 +80,11 @@ PBOUT S VALMBCK="R"
  Q
  ;
 PMRA ;Print MRA
- N IBIFN,IBDA
+ N IBIFN,IBDA,IBDAX
  D SEL(.IBDA,1)
- S IBDA=$O(IBDA(0)),IBIFN=+$G(IBDA(+IBDA))
+ S IBDA=$O(IBDA(0)),IBIFN=+$G(IBDA(+IBDA)),IBDAX=$P(IBDA(+IBDA),U,3)
  G:'IBIFN PRMQ
+ I '$G(IBMRANOT),$D(^IBM(361.1,IBDAX,"ERR")),'$$WARNMSE G PRMQ        ; Claim contains Message Storage Errors
  D MRA^IBCEMRAA(.IBIFN)
 PRMQ S VALMBCK="R"
  Q
@@ -232,6 +233,7 @@ PRO ; Copy for secondary/tertiary bill
  S Z=$O(IBDA(0)),Z=$G(IBDA(+Z)) G:'Z PROQ
  S IBIFN=$P(Z,U),IB364=$P(Z,U,2),IBDA=$P(Z,U,3),IBIFNH=IBIFN
  I 'IBIFN G PROQ
+ I '$G(IBMRANOT),$D(^IBM(361.1,IBDA,"ERR")),'$$WARNMSE G PROQ        ; Claim contains Message Storage Errors
  I '$$LOCK^IBCEU0(361.1,IBDA) G PROQ
  D COBCOPY(IBIFN,IB364,2,IBDA,"BLD^IBCECOB1",.IBNCN)
  D UNLOCK^IBCEU0(361.1,IBDA)
@@ -406,4 +408,13 @@ DENCHK(IBIFN,IBCT) ; Make sure all EOBs from this claim are denied.
  ..S IBEOB(IBDA)="",IBCT=IBCT+1
  ..I $P($G(^IBM(361.1,IBDA,0)),U,13)=1 S IBPROC=1
  I IBCT,'IBPROC Q 1  ; there is at least one EOB and none of the EOBS are processed.
+ Q 0  ;
+ ;
+WARNMSE() ; Display MSE Warning and check if we should continue.
+ D FULL^VALM1
+ N DIR,X,Y
+ S DIR("A",1)="WARNING : The MRA for this claim caused a Data Mismatch/Message Storage Error."
+ S DIR("A",2)="If you continue, the secondary claim may not contain the correct data."
+ S DIR("A")="Do you wish to continue? ",DIR("B")="NO",DIR(0)="YA" D ^DIR
+ I Y>0 Q 1   ; Okay to continue.
  Q 0  ;

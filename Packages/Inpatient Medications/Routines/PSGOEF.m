@@ -1,5 +1,5 @@
 PSGOEF ;BIR/CML3-FINISH ORDERS ENTERED THROUGH OE/RR ;14 May 98 / 2:17 PM
- ;;5.0;INPATIENT MEDICATIONS;**7,30,29,35,39,47,50,56,80,116,110,111,133,153,134,222,113,181,260**;16 DEC 97;Build 94
+ ;;5.0;INPATIENT MEDICATIONS;**7,30,29,35,39,47,50,56,80,116,110,111,133,153,134,222,113,181,260,199**;16 DEC 97;Build 25
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191
  ; Reference to ^PSDRUG( is supported by DBIA 2192
@@ -54,7 +54,7 @@ START ;
  Q
 FINISH ;
  ; force display of second screen if CPRS order checks exist
- N NSFF,PSGOEF39,PSGEDTOI S NSFF=1 K PSJNSS,PSGEDTOI,PSGOEER
+ N NSFF,PSGOEF39,PSGEDTOI S NSFF=1 K PSJNSS,PSGEDTOI,PSGOEER,ZZND
  I $G(PSGORD),$D(PSGRDTX(+PSGORD)) D  K PSGRDTX
  . ;PSJOCDSC stores the default start & stop date ^ cal start & stop date (use in dosing calculation for duration)
  . ;for some reasons PSGSD & PSGFD are reset to the cal dates if order has duration defined
@@ -185,7 +185,7 @@ BYPASS ;
  S PSGCANFL=1
  ;
 DONE ;
- K CHK,DA,DIE,DR,DRG,MSG,Q1,Q2,PSGNSTAT,PSGEDTOI,PSGOEER
+ K CHK,DA,DIE,DR,DRG,MSG,Q1,Q2,PSGNSTAT,PSGEDTOI,PSGOEER,ZZND
  K PSJOVR
  Q
 ABORTACC ; Abort Accept process.

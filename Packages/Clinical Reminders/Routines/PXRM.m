@@ -1,5 +1,5 @@
-PXRM ;SLC/PKR - Clinical Reminders entry points. ;04/26/2011
- ;;2.0;CLINICAL REMINDERS;**4,11,12,16,18**;Feb 04, 2005;Build 152
+PXRM ;SLC/PKR - Clinical Reminders entry points. ;04/14/2014
+ ;;2.0;CLINICAL REMINDERS;**4,11,12,16,18,24,26**;Feb 04, 2005;Build 404
  ;Entry points in this routine are listed in DBIA #2182.
  ;==========================================================
 MAIN(DFN,PXRMITEM,OUTTYPE,DISC) ;Main driver for clinical reminders.
@@ -36,7 +36,7 @@ MAIN(DFN,PXRMITEM,OUTTYPE,DISC) ;Main driver for clinical reminders.
  ;        two ^TMP arrays as it chooses. The caller should also make
  ;        sure the ^TMP globals are killed before it exits.
  ;
- N DEFARR,EVALDT,FIEVAL
+ N DEFARR,EVALDT,FIEVAL,PXRMDEFS
  ;Load the definition into DEFARR.
  D DEF^PXRMLDR(PXRMITEM,.DEFARR)
  ;
@@ -44,6 +44,40 @@ MAIN(DFN,PXRMITEM,OUTTYPE,DISC) ;Main driver for clinical reminders.
  I $D(GMFLAG) S NODISC=0
  S EVALDT=$$NOW^XLFDT
  D EVAL(DFN,.DEFARR,OUTTYPE,NODISC,.FIEVAL,EVALDT)
+ Q
+ ;
+ ;==========================================================
+MAINDF(DFN,PXRMITEM,OUTTYPE,EVALDT) ;Alternate entry point that allows
+ ;evaluation date/time as input parameter and saves FIEVAL in
+ ;^TMP("PXRHM,$J,PXRMITEM,"FIEVAL").
+ N DEFARR,FIEVAL,PXRMDEFS
+ D DEF^PXRMLDR(PXRMITEM,.DEFARR)
+ D EVAL(DFN,.DEFARR,OUTTYPE,0,.FIEVAL,EVALDT)
+ M ^TMP("PXRHM",$J,PXRMITEM,"FIEVAL")=FIEVAL
+ Q
+ ;
+ ;==========================================================
+DISABLE(PXRMITEM,RNAME) ;
+ N MNAME,NTXT,RDATA,REASON
+ S ^TMP("PXRHM",$J,PXRMITEM,RNAME)="CNBD^DISABLED^DISABLED"
+ S ^TMP("PXRHM",$J,PXRMITEM,RNAME,"TXT",1)="Reminder evaluation is temporarily disabled."
+ S NTXT=1
+ S REASON=0
+ F  S REASON=$O(^XTMP("PXRM_DISEV",REASON)) Q:REASON=""  D
+ . I $D(^XTMP("PXRM_DISEV",REASON))=1 D  Q
+ .. S NTXT=NTXT+1
+ .. S ^TMP("PXRHM",$J,PXRMITEM,RNAME,"TXT",NTXT)="Reason: "_REASON_"."
+ . S RDATA=""
+ . F  S RDATA=$O(^XTMP("PXRM_DISEV",REASON,RDATA)) Q:RDATA=""  D
+ .. S NTXT=NTXT+1
+ .. I REASON["index" D
+ ... S TEXT="Reason: "_REASON_" of file #"_RDATA
+ ...;Check if the index has been rebuilt.
+ ... D INDXCHK^PXRMDIEV(REASON,RDATA)
+ .. I REASON["manager" D
+ ... S MNAME=$P(^VA(200,RDATA,0),U,1)
+ ... S TEXT="Reason: "_REASON_" - "_MNAME
+ .. S ^TMP("PXRHM",$J,PXRMITEM,RNAME,"TXT",NTXT)=TEXT_"."
  Q
  ;
  ;==========================================================
@@ -62,21 +96,23 @@ EVAL(DFN,DEFARR,OUTTYPE,NODISC,FIEVAL,DATE) ;Reminder evaluation entry
  S PXRMDATE=+$G(DATE)
  S PXRMITEM=DEFARR("IEN")
  S PXRMPID="PXRM"_PXRMITEM_$H
- N D00
+ N D00,RNAME,PID
  S D00=DEFARR(0)
  S PXRMRNAM=$P(D00,U,3)
  ;If the print name is null use the .01.
  I PXRMRNAM="" S PXRMRNAM=$P(D00,U,1)
+ ;
+ I $D(^XTMP("PXRM_DISEV",0)) D DISABLE(PXRMITEM,PXRMRNAM) G EXIT
  ;
  ;Set the error handler to the PXRMERRH routine. Use the new style of
  ;error trapping.
  N $ES,$ET
  S $ET="D ERRHDLR^PXRMERRH"
  ;
- ;Initialize the working array.
- K ^TMP(PXRMPID,$J)
+ ;Initialize the ^TMP arrays.
+ K ^TMP("PXRHM",$J,PXRMITEM),^TMP(PXRMPID,$J,PXRMITEM)
  ;
- N DUE,DUEDATE,FREQ,PCLOGIC,RESDATE,RESLOGIC
+ N DUE,DUEDATE,FREQ,IND,PCLOGIC,RESDATE,RESLOGIC
  ;Make sure the reminder is active.
  I $P(D00,U,6) D  G OUTPUT
  . S ^TMP(PXRMPID,$J,PXRMITEM,"N/A","INACTIVE")="The reminder "_PXRMRNAM_" was inactivated "_$$FMTE^XLFDT($P(D00,U,7),"5Z")
@@ -88,6 +124,16 @@ EVAL(DFN,DEFARR,OUTTYPE,NODISC,FIEVAL,DATE) ;Reminder evaluation entry
  . W !,"Reminder definition is corrupted, ENODE is missing cannot continue!"
  . S ^TMP("PXRHM",$J,PXRMITEM,PXRMRNAM)="ERROR"_U_"E NODE MISSING"
  . S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","NO ENODE")=""
+ ;
+ ;Set the definition stack.
+ S RNAME=$P(D00,U,1)
+ S LAST=+$O(PXRMDEFS(""),-1)
+ F IND=1:1:LAST D
+ . I $P(PXRMDEFS(IND),U,1)=RNAME D
+ .. S PID=$P(PXRMDEFS(IND),U,2)
+ .. S ^TMP(PID,$J,PXRMITEM,"FERROR","RECURSION")=RNAME
+ S LAST=LAST+1,PXRMDEFS(LAST)=RNAME_U_PXRMPID
+ I $D(PID),$D(^TMP(PID,$J,PXRMITEM,"FERROR","RECURSION")) G EXIT
  ;
  ;Establish the main findings evaluation variables.
  S (DUE,DUEDATE,FREQ,RESDATE)=0

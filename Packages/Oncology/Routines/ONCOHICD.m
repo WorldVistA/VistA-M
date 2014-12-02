@@ -1,5 +1,5 @@
 ONCOHICD ;Hines OIFO/GWB ICD-O HELP ;5/18/92
- ;;2.11;ONCOLOGY;**28,32,34,44**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 HP ;PRIMARY SITE (165.5,20) EXECUTABLE HELP
  ;HISTOLOGY (ICD-O-2) (165.5,22) EXECUTABLE HELP
@@ -16,7 +16,7 @@ ICDO3 ;ICD-O-3 MORPHOLOGY help
  I ICDTOP="" G ICDO3EX
  S ICDTOP=$E(ICDTOP,1,4)
  W:$X !
- S XI=0 F I=1:1 S XI=$O(^ONCO(169.3,"AC",ICDTOP,XI)) Q:XI'>0  S Y=^ONCO(169.3,XI,0) W:I=1 !,?3,"Common morpholgies for topography ","(C",$E(ICDTOP,3,4),"._)",! W !,?3,$P(Y,U,2),"  ",$P(Y,U,1) I I#20=0 K DIR S DIR(0)="E" D ^DIR Q:'Y  W @IOF
+ S XI=0 F I=1:1 S XI=$O(^ONCO(169.3,"AC",ICDTOP,XI)) Q:XI'>0  S Y=^ONCO(169.3,XI,0) W:I=1 !,?3,"Common morphologies for topography ","(C",$E(ICDTOP,3,4),"._)",! W !,?3,$P(Y,U,2),"  ",$P(Y,U,1) I I#20=0 K DIR S DIR(0)="E" D ^DIR Q:'Y
  W:$X !
 ICDO3EX K ICDTOP,XI,I
  Q

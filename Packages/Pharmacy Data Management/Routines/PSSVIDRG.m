@@ -1,5 +1,5 @@
 PSSVIDRG ;BIR/PR,WRT-ADD OR EDIT IV DRUGS ; 11/19/09 11:02am
- ;;1.0;PHARMACY DATA MANAGEMENT;**2,10,32,38,125,146**;9/30/97;Build 34
+ ;;1.0;PHARMACY DATA MANAGEMENT;**2,10,32,38,125,146,174**;9/30/97;Build 19
  ;
  ;Reference to ENIVKV^PSGSETU is supported by DBIA # 2153.
  ;Reference to ^PSIV is supported by DBIA # 2155.
@@ -13,14 +13,14 @@ ENS1 ;
  ; PSS*1*146 Compare and confirm SOLUTION Print name change
  N DA,DIC,DLAYGO,II,PSDA,PSI,PSSY,PSSDG,PSSEL1,PSSDRG
 NS2 S PSI=0 I $G(DISPDRG),$O(^PS(52.7,"AC",DISPDRG,0)) S PSSY=0 F  S PSSY=$O(^PS(52.7,"AC",DISPDRG,PSSY)) Q:'PSSY  S PSI=PSI+1,PSSY(PSI)=PSSY
- I PSI=1 S DIC("B")=$G(PSSY(1)) S DIC=FI,DIC(0)="AEQML",DLAYGO=52.7 D ^DIC I Y<0 K PSFLGA G K1
- I PSI=0 S DIC=FI,DIC(0)="AEQML",DLAYGO=52.7 D ^DIC I Y<0 K PSFLGA G K1
+ ;I PSI=1 S DIC("B")=$G(PSSY(1)) S DIC=FI,DIC(0)="QEALMNTV",DLAYGO=52.7,DIC("T")="" D ^DIC I Y<0 K PSFLGA G K1
+ I PSI=0 S DIC=FI,DIC(0)="QEALMNTV",DLAYGO=52.7 D ^DIC I Y<0 K PSFLGA G K1
  ;
 ENS2 ; IV Solutions Editing
  S PSSQUIT=0
- I '$G(PSFLGA)&(PSI>1) F  D  Q:$G(Y)
+ I '$G(PSFLGA)&(PSI>0) F  D  Q:$G(Y)
  . W !!," ",$$GET1^DIQ(50,DISPDRG,.01)," currently linked to IV Solutions:",!
- . S (PSDA,II)=0 F  S PSDA=$O(PSSY(PSDA)) Q:'PSDA  S II=II+1 W !,?3,II_". ",$P(^PS(52.7,$G(PSSY(PSDA)),0),"^")
+ . S (PSDA,II)=0 F  S PSDA=$O(PSSY(PSDA)) Q:'PSDA  S II=II+1 W !,?3,II_". ",$P(^PS(52.7,$G(PSSY(PSDA)),0),"^")_"   "_$P(^PS(52.7,$G(PSSY(PSDA)),0),"^",3)
  . W !!,"Select "_$S(PSI=1:1,1:"1-"_PSI)_" from list above or type 'NEW' to link to a new IV Solution: "
  . R X:DTIME I '$T!("^"[X) S Y=-1 Q
  . W ! I $$UP^XLFSTR(X)="NEW" D NEW(52.7) Q
@@ -42,14 +42,20 @@ ENA1 ;
 NA2 S PSI=0
  I $G(DISPDRG),$O(^PS(52.6,"AC",DISPDRG,0)) D
  . S PSSY=0 F  S PSSY=$O(^PS(52.6,"AC",DISPDRG,PSSY)) Q:'PSSY  S PSI=PSI+1,PSSY(PSI)=PSSY
- I PSI=1 S DIC("B")=$G(PSSY(1)) S DIC=FI,DIC(0)="AEQML",DLAYGO=52.6 D ^DIC I Y<0 K PSFLGA G K1
- I PSI=0 S DIC=FI,DIC(0)="AEQML",DLAYGO=52.6 D ^DIC I Y<0 K PSFLGA G K1
+ ;I PSI=1 S DIC("B")=$G(PSSY(1)) S DIC=FI,DIC(0)="QEALMNTV",DLAYGO=52.6,DIC("T")="" D ^DIC I Y<0 K PSFLGA G K1
+ I PSI=0 S DIC=FI,DIC(0)="QEALMNTV",DLAYGO=52.6 D ^DIC I Y<0 K PSFLGA G K1
  ;
 ENA2 ; IV Additives Editing
  S PSSQUIT=0
- I '$G(PSFLGA)&(PSI>1) F  D  Q:$G(Y)
+ I '$G(PSFLGA)&(PSI>0) F  D  Q:$G(Y)
  . W !!," ",$$GET1^DIQ(50,DISPDRG,.01)," currently linked to the following IV Additives:",!
- . S (PSDA,II)=0 F  S PSDA=$O(PSSY(PSDA)) Q:'PSDA  S II=II+1 W !,?3,II_". ",$P(^PS(52.6,$G(PSSY(PSDA)),0),"^")
+ . S (PSDA,II)=0 F  S PSDA=$O(PSSY(PSDA)) Q:'PSDA  D
+ .. S PSSY15=$P(^PS(52.6,$G(PSSY(PSDA)),0),"^",15) I $E($G(PSSY15))="." S PSSY15="0"_PSSY15
+ .. S II=II+1 W !,?3,II_". ",$P(^PS(52.6,$G(PSSY(PSDA)),0),"^"),?32,"Additive Strength: "_$S($G(PSSY15)="":"N/A",1:$G(PSSY15))_" "_$S($G(PSSY15)="":"",1:$$GET1^DIQ(52.6,$G(PSSY(PSDA)),2))
+ .. W:$D(^PSDRUG(+$P(^PS(52.6,$G(PSSY(PSDA)),0),"^",2),0)) !?15,$P(^(0),"^",10)
+ .. F PSIV=0:0 S PSIV=$O(^PS(52.6,$G(PSSY(PSDA)),1,PSIV)) Q:'PSIV  D
+ ... W !?7,"- ",$P(^(PSIV,0),"^")," -        Quick Code Strength: ",$S($P($G(^PS(52.6,$G(PSSY(PSDA)),1,PSIV,0)),"^",2)'="":$P($G(^PS(52.6,$G(PSSY(PSDA)),1,PSIV,0)),"^",2),1:"N/A")
+ ... W "     Schedule: ",$S($P($G(^PS(52.6,$G(PSSY(PSDA)),1,PSIV,0)),"^",5)'="":$P($G(^PS(52.6,$G(PSSY(PSDA)),1,PSIV,0)),"^",5),1:"N/A"),!
  . W !!,"Select "_$S(PSI=1:1,1:"1-"_PSI)_" from list above or type 'NEW' to link to a new IV Additive: "
  . R X:DTIME I '$T!("^"[X) S Y=-1 Q
  . W ! I $$UP^XLFSTR(X)="NEW" D NEW(52.6) Q
@@ -59,7 +65,7 @@ ENA2 ; IV Additives Editing
  K PSSEL1 S PSSASK="ADDITIVES",DRUG=+Y,DIE=FI,(DA,ENTRY)=+Y D EECK  G K1:$G(PSSEL1)="^" I $G(PSSEL1)=2 S Y=0 W ! G NA2
  S PSSDRG=$P($G(^PS(52.6,ENTRY,0)),"^",2),DIE="^PS(52.6,",DA=ENTRY,DR="[PSSIV ADD]"
  N PSSENTRY I '$G(PSSQUIT),$G(DA) S PSSENTRY=DA D ^DIE S ENTRY=PSSENTRY D MFA^PSSDEE
- K PSFLGA,PSSY
+ K PSFLGA,PSSY,PSSY15
  Q
 ENC ;Enter here to enter/edit IV Categories
  ;S X="PSIVXU" X ^%ZOSF("TEST") I  D ^PSIVXU Q:$D(XQUIT)  K DA,DIC,DIE,DR,DLAYGO S DIC="^PS(50.2,",DIC(0)="AEQL",DLAYGO=50.2 D ^DIC G:Y<0 K S DIE=DIC,DR=".01;1",DA=+Y D ^DIE G K
@@ -132,12 +138,12 @@ PRNM() ; PSS*1*146 compare and confirm Print name change
  N PRNMDONE,%,FI,PRNAME,DUP,DUPLIC S PRNMDONE=0
  S FI=DIC I FI'["^" S FI="^PS("_FI_","
  S FI=FI_DA_",0)",PRNAME=$P($G(@FI),"^")
- I PSPRNM'=PRNAME S DUPLIC=0 D  I DUPLIC Q PSPRNM
- . S DUP=DIC I DUP'["^" S DUP="^PS("_DUP_","
- . S DUP="$O("_DIC_"""B"","""_PRNAME_""","_DA_"))!$O("_DIC_"""B"","""_PRNAME_""","_DA_"),-1)"
- . I @DUP D
- . . W !,"PRINT NAME ALREADY ON FILE! PRINT NAME reset to "_PSPRNM,!,$C(7)
- . . S DUPLIC=1
+ ;I PSPRNM'=PRNAME S DUPLIC=0 D  I DUPLIC Q PSPRNM
+ ;. S DUP=DIC I DUP'["^" S DUP="^PS("_DUP_","
+ ;. S DUP="$O("_DIC_"""B"","""_PRNAME_""","_DA_"))!$O("_DIC_"""B"","""_PRNAME_""","_DA_"),-1)"
+ ;. I @DUP D
+ ;. . W !,"PRINT NAME ALREADY ON FILE! PRINT NAME reset to "_PSPRNM,!,$C(7)
+ ;. . S DUPLIC=1
  I (PSPRNM]"")&(PRNAME]"")&(PSPRNM'=PRNAME) F  Q:$G(PRNMDONE)  D
  . W !,"  ARE YOU SURE YOU WANT TO CHANGE THE PRINT NAME TO "_PRNAME
  . S %=2 D YN^DICN
@@ -153,17 +159,24 @@ GEND(CUR) ;PSS*1*146
  N DIC,%,PSSEL,Y,X
  S PSSEL=0,DIC=50,DIC("A")="GENERIC DRUG: ",DIC(0)="AEMQ",DIC("B")=$S($G(CUR):CUR,1:"")
  F  D  Q:PSSEL=1
- . D ^DIC W:(Y'>0)&($G(CUR)']"") " ??" I $G(CUR)]"",$G(DUOUT)!$G(DTOUT) S PSSEL=1,PSSQUIT=1 Q
+ . D ^DIC W:(Y>0)&($G(CUR)']"") " ??" I $G(CUR)]""!(Y'>0),$G(DUOUT)!$G(DTOUT) S PSSEL=1,PSSQUIT=1 Q
  . I +Y=+CUR D  I PSSEL=1 Q
  . . I PSSASK="ADDITIVES",$D(^PS(52.6,"AC",+Y,+$G(DA))) S PSSEL=1 Q
  . . I PSSASK="SOLUTIONS",$D(^PS(52.7,"AC",+Y,+$G(DA))) S PSSEL=1 Q
  . I Y>0 F  D  Q:$G(PSSEL)
- . . W !,"  ARE YOU SURE YOU WANT TO SELECT "_$$GET1^DIQ(50,+Y,.01,"E")
+ . . N CURADD,CURGEND
+ . . S CURADD=$S($G(PSSASK)="ADDITIVES":$$GET1^DIQ(52.6,$G(DA),.01,"E"),1:$$GET1^DIQ(52.7,$G(DA),.01,"E"))
+ . . S CURGEND=$$GET1^DIQ($S($G(PSSASK)="ADDITIVES":52.6,1:52.7),$G(DA),1,"E")
+ . . W !!,"  You are about to change the GENERIC DRUG linked to this "_$S($G(PSSASK)="ADDITIVES":"ADDITIVE.",1:"SOLUTION.")
+ . . W !,"  "_$S($G(PSSASK)="ADDITIVES":"ADDITIVE",1:"SOLUTION")_" "_$G(CURADD)_" is "_$S($G(CURGEND)="":"not ",1:"")_"currently linked to "_$S($G(CURGEND)="":"any",1:"")
+ . . W !,"  GENERIC DRUG "_$G(CURGEND)_"."
+ . . W !!,"  Are you sure you want to link "_$S($G(PSSASK)="ADDITIVES":"ADDITIVE",1:"SOLUTION")_" "_$G(CURADD)
+ . . W !,"  to GENERIC DRUG "_$$GET1^DIQ(50,+Y,.01,"E")
  . . S %=2 D YN^DICN S:% PSSEL=% I %Y="^" S PSSQUIT=1,DUOUT=1,PSSEL=1 Q
  . . I 'PSSEL W !,"   Answer with 'Yes' or 'No'.",$C(7),! Q
  Q $S($G(DUOUT)!$G(DTOUT)!(Y<0):"^",1:+Y)
  ;
 NEW(FI) ; add new additive/solution
  N DA,DIC,DIE,DR,DLAYGO
- S (DLAYGO,DIC)=FI,DIC(0)="AEQL" D ^DIC K DIC
+ S (DLAYGO,DIC)=FI,DIC(0)="QEALMNTV",DIC("T")="" D ^DIC K DIC
  Q

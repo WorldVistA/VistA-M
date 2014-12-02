@@ -1,5 +1,5 @@
-ORCXPND1 ; SLC/MKB - Expanded Display cont ;08/31/09  09:18
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,67,75,89,92,94,148,159,188,172,215,243,280,340**;Dec 17, 1997;Build 6
+ORCXPND1 ; SLC/MKB - Expanded Display cont ;09/21/12  05:58
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,67,75,89,92,94,148,159,188,172,215,243,280,340,306**;Dec 17, 1997;Build 43
  ;
  ; External References
  ;   DBIA  2387  ^LAB(60
@@ -156,7 +156,7 @@ DGINQ(DFN) ; Patient Inquiry
  D START^ORWRP(80,"DGINQB^ORCXPND1(DFN)")
  Q
 DGINQB(DFN) ; Build Patient Inquiry
- N CONTACT,ORDOC,ORTEAM,ORMHP,ORVP,XQORNOD,ORSSTRT,ORSSTOPT,VAOA,CPRSGUI
+ N CONTACT,ORDOC,ORTEAM,ORMHP,ORVP,XQORNOD,ORSSTRT,ORSSTOPT,VAOA,CPRSGUI,ORINP,ORATP,ORASS
  S ORVP=DFN_";DPT(",XQORNOD=1,CPRSGUI=1
  D EN^DGRPD ; MAS Patient Inquiry
  K CPRSGUI
@@ -164,10 +164,17 @@ DGINQB(DFN) ; Build Patient Inquiry
  S ORDOC=$$OUTPTPR^SDUTL3(DFN)
  S ORTEAM=$$OUTPTTM^SDUTL3(DFN)
  S ORMHP=$$START^SCMCMHTC(DFN) ;Retrieve Mental Health Provider
- I ORDOC!ORTEAM!ORMHP  D
+ S ORINP=$G(^DPT(DFN,.104))
+ S ORATP=$G(^DPT(DFN,.1041))
+ S ORASS=$P($$OUTPTAP^SDUTL3(DFN,DT),U,2)
+ I ORDOC!ORTEAM!ORMHP!ORINP!ORATP  D
  . W !!,"Primary Care Information:"
  . I ORDOC W !,"Primary Practitioner: ",$P(ORDOC,"^",2)
  . I ORTEAM W !,"Primary Care Team:    ",$P(ORTEAM,"^",2)
+ . I $$INPT^ORWPT1(DFN) D
+ . . I ORATP W !,"Attending Physician:  ",$P($G(^VA(200,+ORATP,0)),U)
+ . . I ORINP W !,"Inpatient Provider:   ",$P($G(^VA(200,+ORINP,0)),U)
+ . I $L(ORASS) W !,"Associate Provider:   ",ORASS
  . I ORMHP D
  .. W !!,"MH Treatment Information:"
  .. W !,"MH Treatment Coord:   ",$E($P(ORMHP,"^",2),1,28) D

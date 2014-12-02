@@ -1,5 +1,5 @@
 VPRDLRA ;SLC/MKB -- Laboratory extract by accession ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2**;Sep 01, 2011;Build 317
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -17,14 +17,14 @@ VPRDLRA ;SLC/MKB -- Laboratory extract by accession ;8/2/11  15:29
  ; LR7OR1,^TMP("LRRR",$J)        2503
  ; LR7OSUM,^TMP("LRC",$J),       2766
  ;  ^TMP("LRH",$J),^TMP("LRT",$J)
- ; ORX8                          2467
+ ; LRPXAPIU                      4246
  ; PXAPI                         1894
  ; XUAF4                         2171
  ;
  ; ------------ Get results from VistA ------------
  ;
 EN(DFN,BEG,END,MAX,ID) ; -- find patient's lab results
- N VPRSUB,VPRIDT,VPRN,VPRITM,LRDFN,LR0,ORD,X
+ N VPRSUB,VPRIDT,VPRP,VPRITM,LRDFN,LR0,ORD,X
  S DFN=+$G(DFN) Q:$G(DFN)<1
  S BEG=$G(BEG,1410101),END=$G(END,4141015),MAX=$G(MAX,9999)
  S LRDFN=$G(^DPT(DFN,"LR")),VPRSUB=$G(FILTER("type"))
@@ -54,9 +54,9 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's lab results
  .. I VPRSUB="MI" D  ;report
  ... S VPRITM("document",1)=VPRSUB_";"_VPRIDT_"^LR MICROBIOLOGY REPORT^LABORATORY NOTE"
  ... S:$G(VPRTEXT) VPRITM("document",1,"content")=$$TEXT(DFN,VPRSUB,VPRIDT)
- .. S VPRN=0 F  S VPRN=$O(^TMP("LRRR",$J,DFN,VPRSUB,VPRIDT,VPRN)) Q:VPRN<1  D
+ .. S VPRP=0 F  S VPRP=$O(^TMP("LRRR",$J,DFN,VPRSUB,VPRIDT,VPRP)) Q:VPRP<1  D
  ... S X=$S(VPRSUB="MI":$$MI,1:$$CH)
- ... S:$L(X) VPRITM("value",VPRN)=X
+ ... S:$L(X) VPRITM("value",VPRP)=X
  ... S:$G(ORD) VPRITM("labOrderID")=ORD
  .. I $D(^TMP("LRRR",$J,DFN,VPRSUB,VPRIDT,"N")) M CMMT=^("N") S VPRITM("comment")=$$STRING^VPRD(.CMMT)
  .. D XML(.VPRITM)
@@ -65,9 +65,10 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's lab results
  ;
 CH() ; -- return a Chemistry result as:
  ;   id^test^result^interpretation^units^low^high^localName^loinc^vuid^order
- ;   Expects ^TMP("LRRR",$J,DFN,"CH",VPRIDT,VPRN),LRDFN
- N X,Y,X0,NODE,CMMT,LOINC
- S X0=$G(^TMP("LRRR",$J,DFN,"CH",VPRIDT,VPRN)),NODE=$G(^LR(LRDFN,"CH",VPRIDT,VPRN))
+ ;   Expects ^TMP("LRRR",$J,DFN,"CH",VPRIDT,VPRP),LRDFN
+ N X,Y,X0,VPRN,NODE,CMMT,LOINC
+ S X0=$G(^TMP("LRRR",$J,DFN,"CH",VPRIDT,VPRP)),VPRN=$$LRDN^LRPXAPIU(+X0)
+ S NODE=$G(^LR(LRDFN,"CH",VPRIDT,VPRN))
  S X=$P($G(^LAB(60,+X0,0)),U)
  S Y="CH;"_VPRIDT_";"_VPRN_U_X_U_$P(X0,U,2,4)
  S X=$P(X0,U,5) I $L(X),X["-" S X=$TR(X,"- ","^"),$P(Y,U,6,7)=X
@@ -79,10 +80,10 @@ CH() ; -- return a Chemistry result as:
  ;
 MI() ; -- return a Microbiology result as:
  ;   id^test^result^interpretation^units
- ;   Expects ^TMP("LRRR",$J,DFN,"MI",VPRIDT,VPRN)
+ ;   Expects ^TMP("LRRR",$J,DFN,"MI",VPRIDT,VPRP)
  N Y,X0
- S X0=$G(^TMP("LRRR",$J,DFN,"MI",VPRIDT,VPRN)),Y=""
- S:$L($P(X0,U))>1 Y="MI;"_VPRIDT_";"_VPRN_U_$P(X0,U,1,4)
+ S X0=$G(^TMP("LRRR",$J,DFN,"MI",VPRIDT,VPRP)),Y=""
+ S:$L($P(X0,U))>1 Y="MI;"_VPRIDT_";"_VPRP_U_$P(X0,U,1,4)
  S ORD=+$P(X0,U,17)
  Q Y
  ;
@@ -107,12 +108,11 @@ AP(LAB) ; -- return a Pathology result in LAB("attribute")=value
  . S:$G(VPRTEXT) LAB("document",1,"content")=$$TEXT(DFN,VPRSUB,VPRIDT)
  Q
  ;
-ORDER(LABORD,TEST) ; -- return #100 order^name for Lab order# & Test
+ORDER(LABORD,TEST) ; -- return #100 order number for Lab order# & Test
  N Y,D,S,T
  S D=$P(9999999-VPRIDT,"."),Y=""
  S S=0 F  S S=$O(^LRO(69,"C",LABORD,D,S)) Q:S<1  D  Q:Y
  . S T=0 F  S T=$O(^LRO(69,D,1,S,2,T)) Q:T<1  I 'TEST!(+$G(^(T,0))=TEST) S Y=+$P(^(0),U,7)
- ;I Y S Y=Y_U_$P($$OI^ORX8(Y),U,2)
  Q Y
  ;
 NAME(X) ; -- Return name of subscript X
@@ -182,7 +182,7 @@ RPT1(DFN,ID,RPT) ; -- return report as a TIU document
 TEXT(DFN,SUB,IDT) ; -- Get report text, return temp array name
  N LRDFN,DATE,NAME,VPRS,VPRY,I,X,Y
  K ^TMP("LRC",$J),^TMP("LRH",$J),^TMP("LRT",$J)
- S DATE=9999999-+$G(IDT),NAME=$$NAME(SUB),VPRS(NAME)=""
+ S DATE=9999999-+$G(IDT),NAME=$S(SUB="EM":"EM",1:$$NAME(SUB)),VPRS(NAME)=""
  D EN^LR7OSUM(.VPRY,DFN,DATE,DATE,,,.VPRS)
  S Y=$NA(^TMP("VPRTEXT",$J,SUB_";"_IDT)) K @Y
  S I=+$G(^TMP("LRH",$J,NAME)) ;LRH=header

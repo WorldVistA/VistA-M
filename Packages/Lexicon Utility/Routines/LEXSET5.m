@@ -1,6 +1,17 @@
-LEXSET5 ; ISL Setup Appl/User Defaults for Look-up ; 05/25/1998
- ;;2.0;LEXICON UTILITY;**6,11**;Sep 23, 1996
- ;
+LEXSET5 ;ISL/KER - Setup Appl/User Defaults for Look-up ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**6,11,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^DIC(49)            ICR  10093
+ ;    ^DISV(              ICR    510
+ ;    ^SC(                ICR  10040
+ ;    ^TMP("LEXSCH")      SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    $$GET1^DIQ          ICR   2056
+ ;    ^DIR                ICR  10026
+ ;    ^XTLKKWL            ICR  10122
+ ;               
 EN ; Set variables
  D:+($G(LEXQ))=0 MTLU
  D:+($G(LEXQ))=1 QUIET
@@ -25,10 +36,10 @@ QUIET ;
  I +($G(LEXLL))'>0 S ^TMP("LEXSCH",$J,"LEN",0)=5
  S ^TMP("LEXSCH",$J,"LEN",1)="List Length"
  N LEXLOC,LEXSVC S (LEXLOC,LEXSVC)=""
- S DUZ=+($G(DUZ)) I DUZ>0,$D(^VA(200,DUZ)) D
- . S LEXLOC=$P($G(^VA(200,DUZ,100.1)),U,7) S:+($G(LEXLOC))=0 LEXLOC=""
+ I +($G(DUZ))>0,'$L($$GET1^DIQ(200,+($G(DUZ)),.01)) D
+ . S LEXLOC="" S:+($G(LEXLOC))=0 LEXLOC=""
  . S:$L($G(LEXLOC))&(+($G(LEXLOC))>0) LEXLOC=$P($G(^SC(LEXLOC,0)),U,1)
- . S LEXSVC=$P($G(^VA(200,DUZ,5)),U,1) S:+($G(LEXSVC))=0 LEXSVC=""
+ . S LEXSVC=$$GET1^DIQ(200,+($G(DUZ)),29) S:+($G(LEXSVC))=0 LEXSVC=""
  . S:$L($G(LEXSVC))&(+($G(LEXSVC))>0) LEXSVC=$P($G(^DIC(49,LEXSVC,0)),U,1)
  S ^TMP("LEXSCH",$J,"LOC",0)=$E(LEXLOC,1,40),^TMP("LEXSCH",$J,"LOC",1)="User Hospital Location"
  S ^TMP("LEXSCH",$J,"SVC",0)=$E(LEXSVC,1,40),^TMP("LEXSCH",$J,"SVC",1)="User Service"
@@ -72,7 +83,7 @@ TERM(X) ; Expression
  S DIR("?")="    "_$$SQ^LEXHLP  ; PCH 11
  S DIR("??")="^D TERMHLP^LEXSET5" N Y S DIR(0)="FAO^2:245" D ^DIR
  S DIC="^LEX(757.01," S:X[U&(X'["^^") X=U S:X["^^" X="^^" Q:X[U "^"
- I X=" ",+($G(^DISV(DUZ,DIC)))>0 S X=@(DIC_+($G(^DISV(DUZ,DIC)))_",0)") W " ",X
+ I X=" ",+($G(^DISV(+($G(DUZ)),DIC)))>0 S X=@(DIC_+($G(^DISV(+($G(DUZ)),DIC)))_",0)") W " ",X
  F  Q:$E(X,1)'=" "  S X=$E(X,2,$L(X))
  W:$D(DTOUT) !,"Try later.",! S:$D(DTOUT) X=""
  S:X[U DUOUT=1 K DIR,DIRUT,DIROUT Q X

@@ -1,6 +1,6 @@
 RCDPXPAP ;WISC/RFJ-automatically process the deposits  ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,150,206**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**114,150,206,296**;Mar 20, 1995;Build 24
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
  ;
@@ -15,6 +15,10 @@ PROCESS(RCDPDATE,RCPAYDA) ;  process the deposits
  ;               pay type(5)    ^ pay desc fields(6)
  S RCDEPOSI="" F  S RCDEPOSI=$O(^TMP($J,"RCDPXPAY","DEPOSIT",RCDEPOSI)) Q:RCDEPOSI=""  D
  .   S RCDEPDAT=$G(^TMP($J,"RCDPXPAY","DEPDATE",RCDEPOSI))
+ .   ; *296 - event type 'a' or 't' or 'p' based on the prefix deposit #
+ .   N RCDETY S RCDETY=+$E(RCDEPOSI,1,3)
+ .   S RCPAYDA=$S(RCDETY=168:15,RCDETY=169:13,RCDETY=170:16,1:$G(RCPAYDA))
+ .   ; 
  .   ;  add the deposit if not already in file
  .   ;  make sure deposit is 6 characters in length
  .   S X=$E("000000",1,6-$L(RCDEPOSI))_RCDEPOSI
@@ -128,7 +132,8 @@ PROCESS(RCDPDATE,RCPAYDA) ;  process the deposits
 FINDACCT(ACCT) ;  lookup the patient and return the dfn
  ;  if more than one patient matches acct, return null
  ;  acct in the form 123456789ABCDE
- I ACCT'?9N1.5A  D  Q DFN
+ ; *296 - punctuation added to not process the acct in 9n1.5ap
+ I ACCT'?9N1.5AP  D  Q DFN
  . S DFN=+ACCT I $G(^DPT(DFN,0))'="" Q
  . S DFN=$E(DFN,1,10)_"."_$E(DFN,11,99) I $G(^DPT(DFN,0))'="" Q 
  . S DFN=0
@@ -144,9 +149,12 @@ FINDACCT(ACCT) ;  lookup the patient and return the dfn
  I COUNT>1 Q 0
  ;  acct found, return dfn of account which matches
  I FOUND Q FOUND
- ;  try looking up the name without the apostrophe
- S NAME=$TR(NAME,"'")
- S DFN=0 F  S DFN=$O(^DPT("SSN",SSN,DFN)) Q:'DFN  I $E($TR($P($G(^DPT(DFN,0)),"^")," "),1,$L(NAME))=NAME S COUNT=COUNT+1,FOUND=DFN
+ ;
+ ;  *296 - remove spaces, periods, apostrophes, dashes from the name for treasury/c&p deposits
+ ;         lookup the first 3 chars in the last name for c&p
+ I $G(RCDETY)=168 S NAME=$E(NAME,3,5)
+ S NAME=$TR(NAME," .'-")
+ S DFN=0 F  S DFN=$O(^DPT("SSN",SSN,DFN)) Q:'DFN  I $E($TR($P($G(^DPT(DFN,0)),"^")," .'-"),1,$L(NAME))=NAME S COUNT=COUNT+1,FOUND=DFN
  ;  multiple acct matches, return null
  I COUNT>1 Q 0
  ;  return dfn of account which matches, or 0 if not found

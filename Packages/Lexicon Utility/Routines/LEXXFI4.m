@@ -1,13 +1,13 @@
-LEXXFI4 ; ISL/KER - File Info - Record Counts (2)      ; 07/28/2004
- ;;2.0;LEXICON UTILITY;**32**;Sep 23, 1996
- Q
- ;                    
+LEXXFI4 ;ISL/KER - File Info - Record Counts (2) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**32,80**;Sep 23, 1996;Build 1
+ ;               
  ; Global Variables
- ;   ^TMP("LEXCNT",$J   SACC 2.3.2.5.1  
- ;              
+ ;    ^TMP("LEXCNT")      SACC 2.3.2.5.1
+ ;               
  ; External References
- ;   DBIA 10103  $$FMDIFF^XLFDT
- ;                    
+ ;    $$FMDIFF^XLFDT      ICR  10103
+ ;               
+ Q
 DSP ; Display Results
  N LEXFP,LEXCT,LEXFI,LEXGTOT,LEXHSF,LEXJOB,LEXMD,LEXX,LEXLVL,LEXML
  N LEXNCFI,LEXNFI,LEXNPAR,LEXOPAR,LEXO,LEXPAR,LEXTAB,LEXTXT

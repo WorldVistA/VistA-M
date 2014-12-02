@@ -1,5 +1,5 @@
-LRAPBR ;DALOI/WTY - AP Browser Print/TIU TMP Global;04/03/01
- ;;5.2;LAB SERVICE;**259**;Sep 27, 1994
+LRAPBR ;DALOI/WTY - AP Browser Print/TIU TMP Global;11/21/12  15:12
+ ;;5.2;LAB SERVICE;**259,427**;Sep 27, 1994;Build 33
  ;
  ;Reference to ^DPT supported by IA #918
  ;
@@ -32,6 +32,7 @@ MAIN ;Main Subroutine
  .D POW,^LRAPBR2
  .I $D(^LR(LRDFN,"AU")),$P(^LR(LRDFN,"AU"),"^") D ^LRAPBR5
  I LRTIU,'LRAU D ESIGLN^LRAPBR1
+ D:'LRAU PPL^LRAPBR1
  D:'LRAU FOOTER^LRAPBR1
  D:'LRTIU BROWSER
  D END

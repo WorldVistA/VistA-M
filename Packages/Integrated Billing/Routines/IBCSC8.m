@@ -1,9 +1,9 @@
 IBCSC8 ;ALB/MJB/AAS - MCCR SCREEN 8 (BILLING - CLAIM INFORMATION SCREEN) ;27 MAY 88 10:15
- ;;2.0;INTEGRATED BILLING;**432,447**;21-MAR-94;Build 80
+ ;;2.0;INTEGRATED BILLING;**432,447,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
-EN D ^IBCSCU S IBSR=8,IBSR1="" S IB("U4")=$G(^DGCR(399,IBIFN,"U4")),IB("U5")=$G(^DGCR(399,IBIFN,"U5")),IB("U6")=$G(^DGCR(399,IBIFN,"U6")),IB("U8")=$G(^DGCR(399,IBIFN,"U8"))
+EN D ^IBCSCU S IBSR=8,IBSR1="" S IB("U2")=$G(^DGCR(399,IBIFN,"U2")),IB("U4")=$G(^DGCR(399,IBIFN,"U4")),IB("U5")=$G(^DGCR(399,IBIFN,"U5")),IB("U6")=$G(^DGCR(399,IBIFN,"U6")),IB("U8")=$G(^DGCR(399,IBIFN,"U8"))
  D H^IBCSCU
  ; DEM - IBV is set in EDI^IBCB => S IBAC=1,IBV=0 D EN G Q:'IBAC1,EDI
  ;       IBV=0, or IBV=1 as a flag if field on screen is required
@@ -11,7 +11,8 @@ EN D ^IBCSCU S IBSR=8,IBSR1="" S IB("U4")=$G(^DGCR(399,IBIFN,"U4")),IB("U5")=$G(
  ;       [Field #]
  ; Make some sections NOT available for UB04 form
  S IBT=$P($G(^DGCR(399,IBIFN,0)),U,19)
- S IBV1=$S(IBT=3:"001011",IBV:"111111",1:"000000")
+ ;S IBV1=$S(IBT=3:"001011",IBV:"111111",1:"000000")
+ S IBV1=$S(IBT=3:"001011111",IBV:"111111111",1:"000000000")   ; IB*2.0*488 (vd)
  ;
  S Z=1,IBW=1 X IBWW W " COB Non-Covered Charge Amt: " S X=$P(IB("U4"),U),X2="2$" I X'="" D COMMA^%DTC W X
  S Z=2 X IBWW W " Property Casualty Information"
@@ -38,6 +39,11 @@ EN D ^IBCSCU S IBSR=8,IBSR1="" S IB("U4")=$G(^DGCR(399,IBIFN,"U4")),IB("U5")=$G(
  S Z=5 X IBWW W " Disability Start Date:  ",$$FMTE^XLFDT($P(IB("U4"),U,4)),?41,"Disability End Date:  ",$$FMTE^XLFDT($P(IB("U4"),U,5))
  S Z=6 X IBWW W " Assumed Care Date:  ",$$FMTE^XLFDT($P(IB("U4"),U,13)),?41,"Relinquished Care Date:  ",$$FMTE^XLFDT($P(IB("U4"),U,14))
  ; End IB*2.0*447 BI
- W !
+ ;
+ ;/ Beginning of IB*2.0*488 - code moved from IBCSC10H (vd)
+ S Z=7 X IBWW W " Special Program:  " I $P(IB("U2"),U,16)'="" S IBZ=$$EXPAND^IBTRE(399,238,$P(IB("U2"),U,16)) W $S(IBZ'="":IBZ,$$WNRBILL^IBEFUNC(IBIFN):"31",1:"")
+ S Z=8 X IBWW W " Homebound:  ",$$EXPAND^IBTRE(399,236,$P(IB("U2"),U,14))
+ S Z=9 X IBWW W " Date Last Seen:  ",$$EXPAND^IBTRE(399,237,$P(IB("U2"),U,15))
+ ;/ End of IB*2.0*488 (vd)
 REV G ^IBCSCP
  ;IBCSC8

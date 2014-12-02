@@ -1,17 +1,21 @@
 VPRDMDC ;SLC/MKB,DP -- CLiO extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2**;Sep 01, 2011;Build 317
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
  ; ^MDC(704.101                 5748 (Private)
- ; ^MDC(704.102                 5748 (Private)
- ; ^MDC(704.117                 5748 (Private)
- ; ^MDC(704.118                 5748 (Private)
+ ; ^MDC(704.102                 5809 (Private)
+ ; ^MDC(704.1122                5999 (Private)
+ ; ^MDC(704.116                 5995 (Private)
+ ; ^MDC(704.1161                5996 (Private)
+ ; ^MDC(704.117                 5810 (Private)
+ ; ^MDC(704.118                 5811 (Private)
  ; DIC                          2051
  ; DIQ                          2056
  ; XLFDT                       10103
  ; XLFSTR                      10104
+ ; XPAR                         2263
  ;
  ; ------------ Get observations from VistA ------------
  ;
@@ -86,7 +90,7 @@ ADD(X) ; Add a line @VPR@(n)=X
 QRYPT(VPRRET,VPRDFN,VPRFR,VPRTO,VPRSTAT) ; List of observations by pt, datetime, status
  K @VPRRET
  N VPRDT,VPRIEN
- S VPRSTAT=$G(VPRSTAT,1) ; Default to Verfied
+ S VPRSTAT=$G(VPRSTAT,1) ; Default to Verified
  F VPRDT=VPRFR-.0000001:0 S VPRDT=$O(^MDC(704.117,"AS",VPRSTAT,VPRDFN,VPRDT)) Q:'VPRDT!(VPRDT>VPRTO)  D
  . F VPRIEN=0:0 S VPRIEN=$O(^MDC(704.117,"AS",VPRSTAT,VPRDFN,VPRDT,VPRIEN)) Q:'VPRIEN  D
  . . S:$P(^MDC(704.117,VPRIEN,0),U,9)=VPRSTAT @VPRRET@(VPRIEN)=$P(^MDC(704.117,VPRIEN,0),U)
@@ -108,6 +112,7 @@ QRYOBS(VPRRET,VPRID) ; Return a single observation
  . S @VPRRET@("SVALUE","E")=$$GET1^DIQ(704.101,VPRTMP_",",.02)
  D QRYQUAL(VPRRET,VPRIEN)
  D QRYCTX($NA(@VPRRET@("CONTEXT")),VPRID)
+ D QRYSET(VPRRET,VPRIEN)
  Q
  ;
 QRYQUAL(VPRRET,VPRIEN) ; Returns the qualifiers for obs in VPRIEN
@@ -150,6 +155,24 @@ QRYCTX(VPRRET,VPRID) ; We need a terminology based context observation relations
  . . D QRYQUAL($NA(@VPRRET@(VPRCNT)),VPROBS)
  Q
  ;
+QRYSET(VPRRET,VPRIEN) ; Return the Obs Set/View information
+ N VPRDFN,VPRSET,VPRDT,VPRPG,VPRVW,X
+ S VPRDFN=+$G(@VPRRET@("PATIENT_ID","I"))
+ S VPRSET=+$O(^MDC(704.1161,"AS",VPRIEN,0)) Q:VPRSET<1  ;not part of set
+ S @VPRRET@("SET_ID","GUID")=$$GET1^DIQ(704.116,VPRSET_",",".01")
+ S VPRDT=$$GET1^DIQ(704.116,VPRSET_",",".02","I")
+ ; loop backwards to find supplemental page for Obs_Set
+ F  S VPRDT=$O(^MDC(704.1122,"ADT",VPRDFN,VPRDT),-1) Q:VPRDT<1  D  Q:VPRPG  ;found
+ . S VPRPG=+$O(^MDC(704.1122,"ADT",VPRDFN,VPRDT,0))
+ . I $P($G(^MDC(704.1122,VPRPG,0)),U,10)'=VPRSET S VPRPG="" Q
+ . S @VPRRET@("SUPP_PAGE","GUID")=$$GET1^DIQ(704.1122,VPRPG_",",".01")
+ . S @VPRRET@("SUPP_PAGE","DISPLAY_NAME")=$$GET1^DIQ(704.1122,VPRPG_",",".08")
+ . S @VPRRET@("SUPP_PAGE","ACTIVATED_DATE_TIME")=$$GET1^DIQ(704.1122,VPRPG_",",".11","I")
+ . S @VPRRET@("SUPP_PAGE","DEACTIVATED_DATE_TIME")=$$GET1^DIQ(704.1122,VPRPG_",",".21","I")
+ . S VPRVW=$$GET1^DIQ(704.1122,VPRPG_",",".02"),X=$$GET^XPAR("ALL","VPR OBS VIEW TYPE",VPRVW,"E")
+ . I $L(X) S @VPRRET@("SUPP_PAGE","TYPE")=X
+ Q
+ ;
 QRYTYPES(VPRRET) ; Return the terminology Term Types
  K @VPRRET
  N X
@@ -158,4 +181,3 @@ QRYTYPES(VPRRET) ; Return the terminology Term Types
  . S @VPRRET@(X,"XML")=$P(^MDC(704.102,X,0),U,2)
  . S @VPRRET@("B",$P(^MDC(704.102,X,0),U,1),X)=""
  Q
- ;

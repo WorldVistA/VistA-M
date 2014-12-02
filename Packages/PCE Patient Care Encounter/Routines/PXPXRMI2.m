@@ -1,7 +1,10 @@
 PXPXRMI2 ; SLC/PKR,SCK - Build indexes for the V files (continued). ;06/17/2003
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,194**;Aug 12, 1996;Build 2
- ;DBIA 4113 supports PXRMSXRM entry points. 
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,194,199**;Aug 12, 1996;Build 51
+ ;DBIA 4113 supports PXRMSXRM entry points.
  ;DBIA 4114 supports setting and killing ^PXRMINDX
+ ; Reference to CODEC^ICDEX supported by ICR #5747
+ ; Reference to CSI^ICDEX supported by ICR #5747
+ ; Reference to SINFO^ICDEX supported by ICR #5747
  ;===============================================================
 VPED ;Build the indexes for V PATIENT ED.
  N DAS,DATE,DFN,DIFF,DONE,EDU,END,ENTRIES,ETEXT,GLOBAL,IND,NE,NERROR
@@ -70,8 +73,8 @@ VPED ;Build the indexes for V PATIENT ED.
  ;
  ;===============================================================
 VPOV ;Build the indexes for V POV.
- N DAS,DATE,DFN,DIFF,DONE,END,ENTRIES,ETEXT,GLOBAL,IND,NE,NERROR,POV,PS
- N START,TEMP,TENP,TEXT,VISIT
+ N CODE,DAS,DATE,DFN,DIFF,DONE,END,ENTRIES,ETEXT,GLOBAL,IND,NE
+ N NERROR,POV,PS,PXCSYS,PXDXDATE,START,TEMP,TENP,TEXT,VISIT
  ;Don't leave any old stuff around.
  K ^PXRMINDX(9000010.07)
  S GLOBAL=$$GET1^DID(9000010.07,"","","GLOBAL NAME")
@@ -98,11 +101,7 @@ VPOV ;Build the indexes for V POV.
  . S TEMP=^AUPNVPOV(DAS,0)
  . S POV=$P(TEMP,U,1)
  . I POV="" D  Q
- .. S ETEXT=DAS_" missing POV (ICD9)"
- .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
- . ;I '$D(^ICD9(POV)) D  Q
- . I $$ICDDX^ICDCODE(POV)<0 D  Q
- .. S ETEXT=DAS_" invalid ICD9"
+ .. S ETEXT=DAS_" missing POV (ICD)"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S DFN=$P(TEMP,U,2)
  . I DFN="" D  Q
@@ -118,12 +117,22 @@ VPOV ;Build the indexes for V POV.
  . S PS=$P(TEMP,U,12)
  . I PS="" S PS="U"
  . S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
+ . S PXDXDATE=$$CSDATE^PXDXUTL(VISIT)
  . I DATE="" D  Q
  .. S ETEXT=DAS_" missing visit date"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . I $P($$ICDDATA^ICDXCODE("DIAG",POV,PXDXDATE,"I"),U,1)<0 D  Q
+ .. S ETEXT=DAS_" invalid ICD"
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S NE=NE+1
- . S ^PXRMINDX(9000010.07,"IPP",POV,PS,DFN,DATE,DAS)=""
- . S ^PXRMINDX(9000010.07,"PPI",DFN,PS,POV,DATE,DAS)=""
+ . S PXCSYS=$P($$SINFO^ICDEX($$CSI^ICDEX(80,POV)),U,3)
+ . I PXCSYS="ICD" D  ; ICD-9 version
+ .. S ^PXRMINDX(9000010.07,"IPP",POV,PS,DFN,DATE,DAS)=""
+ .. S ^PXRMINDX(9000010.07,"PPI",DFN,PS,POV,DATE,DAS)=""
+ . E  D  ; ICD-10 and higher version
+ .. S CODE=$$CODEC^ICDEX(80,POV)
+ .. S ^PXRMINDX(9000010.07,PXCSYS,"IPP",CODE,PS,DFN,DATE,DAS)=""
+ .. S ^PXRMINDX(9000010.07,PXCSYS,"PPI",DFN,PS,CODE,DATE,DAS)=""
  S END=$H
  S TEXT=NE_" V POV results indexed."
  D MES^XPDUTL(TEXT)

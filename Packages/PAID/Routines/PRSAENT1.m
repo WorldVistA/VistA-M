@@ -1,5 +1,5 @@
 PRSAENT1 ;HISC/MGD-Entitlement String ;10/19/04
- ;;4.0;PAID;**96,130,135**;Sep 21, 1995;Build 2
+ ;;4.0;PAID;**96,130,135,138**;Sep 21, 1995;Build 8
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -49,7 +49,11 @@ HYBRID(IEN) ;
  . ; 6th position Alphas in the Title Code to its corresponding
  . ; numerical equivalent before making the final comparison.
  . ;
- . I "^0180^0185^0601^0620^0621^0630^0631^0633^0635^0636^"[$E(OCODE,1,4) D  ;PRS*4*130
+ . I "^0080^0081^0083^0085^0086^0301^0303^0350^3566^4805^7304^7305^"[$E(OCODE,1,4) D  ;PRS*4*138
+ . . S $E(OCODE,6)=$TR($E(OCODE,6),"ABCDEFGHIJKLMNOPQR","123456789123456789")
+ . I "^7404^7408^5406^4742^5415^5309^5402^5703^4801^5306^1046^1001^"[$E(OCODE,1,4) D  ;PRS*4*138
+ . . S $E(OCODE,6)=$TR($E(OCODE,6),"ABCDEFGHIJKLMNOPQR","123456789123456789")
+ . I "^0101^0180^0185^0601^0620^0621^0630^0631^0633^0635^0636^"[$E(OCODE,1,4) D  ;PRS*4*130 and PRS*4*138
  . . S $E(OCODE,6)=$TR($E(OCODE,6),"ABCDEFGHIJKLMNOPQR","123456789123456789")
  . I "^0640^0644^0647^0648^0649^0660^0661^0665^0667^"[$E(OCODE,1,4) D
  . . S $E(OCODE,6)=$TR($E(OCODE,6),"ABCDEFGHIJKLMNOPQR","123456789123456789")
@@ -58,6 +62,24 @@ HYBRID(IEN) ;
  . ;
  . ; Check individual OCC codes
  . ;
+ . I $E(OCODE,1,4)="0080" D       ; Security Officer
+ . . I "^02^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*138
+ . I $E(OCODE,1,4)="0081" D       ; Firefighter
+ . . I "^03^04^05^07^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*138
+ . I $E(OCODE,1,4)="0083" D       ; Detective
+ . . I "^02^03^05^"[(U_$E(OCODE,5,6)_U) S HYBRID=1  ;PRS*4*138
+ . I $E(OCODE,1,4)="0085" D       ; Security Guard
+ . . I "^04^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*138
+ . I $E(OCODE,1,4)="0086" D       ; Security Clerk
+ . . I "^01^02^04^"[(U_$E(OCODE,5,6)_U) S HYBRID=1  ;PRS*4*138
+ . I $E(OCODE,1,4)="0301" D       ; Patient Representative
+ . . I "^68^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*138
+ . I $E(OCODE,1,4)="0303" D       ; Medical Admin Assistant
+ . . I "^03^04^16^19^45^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*138
+ . I $E(OCODE,1,4)="0350" D       ; X-Ray Film Proc Equ
+ . . I "^09^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*138
+ . I $E(OCODE,1,4)="0101" D       ; Marriage Family Therapist, Licensed Mental Health Provider
+ . . I "^06^17^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*138
  . I $E(OCODE,1,4)="0180" D       ; Psychologist
  . . I "^02^03^04^05^07^10^11^26^85^86^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*130
  . . I "^87^92^95^96^97^98^"[(U_$E(OCODE,5,6)_U) S HYBRID=1
@@ -116,5 +138,35 @@ HYBRID(IEN) ;
  . . I "^02^"[(U_$E(OCODE,5,6)_U) S HYBRID=1
  . I $E(OCODE,1,4)="0858" D       ; Biomedical Engineer
  . . I "^02^03^04^"[(U_$E(OCODE,5,6)_U) S HYBRID=1
+ . I $E(OCODE,1,4)="3566" D       ; Housekeeping Aid
+ . . I "^10^30^40^60^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*138
+ . I $E(OCODE,1,4)="4805" D       ; Medical Equipment
+ . . I "^10^20^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*138
+ . I $E(OCODE,1,4)="7304" D       ; Laundry Worker
+ . . I "^10^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*138
+ . I $E(OCODE,1,4)="7305" D       ; Laundry Machine Operator
+ . . I "^50^60^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*138
+ . I $E(OCODE,1,4)="7404" D       ; Cook
+ . . I "^20^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*138
+ . I $E(OCODE,1,4)="7408" D       ; Food Service Worker
+ . . I "^10^20^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*138
+ . I $E(OCODE,1,4)="5406" D       ; Utility Systems Operator
+ . . I "^30^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*138
+ . I $E(OCODE,1,4)="4742" S HYBRID=1     ; Utility Systems Operator ; PRS*4*138
+ . I $E(OCODE,1,4)="5415" D       ; Air Conditioning Equipment Operator
+ . . I "^20^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ; PRS*4*138
+ . I $E(OCODE,1,4)="5309" D       ; Boiler Plant Equipment Mechanic
+ . . I "^20^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ; PRS*4*138
+ . I $E(OCODE,1,4)="5402" D       ; Boiler Plant Operator
+ . . I "^20^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ; PRS*4*138
+ . I $E(OCODE,1,4)="5703" D       ; Motor Vehicle Operator
+ . . I "^60^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ; PRS*4*138
+ . I $E(OCODE,1,4)="4801" S HYBRID=1     ; Lead Equipment Servicer ; PRS*4*138
+ . I $E(OCODE,1,4)="5306" D       ; Air Conditioning Equipment Mechanic
+ . . I "^20^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ; PRS*4*138
+ . I $E(OCODE,1,4)="1046" D       ; Clerk Translator
+ . . I "^02^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ; PRS*4*138
+ . I $E(OCODE,1,4)="1001" D       ; Interpreter
+ . . I "^11^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ; PRS*4*138
  ;
  Q HYBRID  ; Return whether or not the employee qualifies.

@@ -1,5 +1,5 @@
-PXRMORCH ; SLC/AGP - Reminder Order Checks API;06/3/2012
- ;;2.0;CLINICAL REMINDERS;**16,22**;Feb 04, 2005;Build 160
+PXRMORCH ;SLC/AGP - Reminder Order Checks API;05/14/2014
+ ;;2.0;CLINICAL REMINDERS;**16,22,26**;Feb 04, 2005;Build 404
  ;
  Q
  ;
@@ -89,6 +89,7 @@ ORDERCHK(DFN,OI,TEST,DRUG,TESTER) ;
  .I FLAG="I" Q
  .I TEST=1,FLAG="P" Q
  .I TEST=0,FLAG="T" Q
+ .;S PNAME=IEN_U_$P(NODE,U,2)
  .S PNAME=$P(NODE,U,2)
  .S SEV=$P(NODE,U,5)
  .S TIEN=$P($G(^PXD(801.1,IEN,2)),U)
@@ -97,9 +98,12 @@ ORDERCHK(DFN,OI,TEST,DRUG,TESTER) ;
  .I TIEN>0 D  Q
  ..S TSTAT=$$TERM^PXRMDLLB(TIEN,DFN,IEN,"O")
  ..S CNT=0
+ ..I $D(^XTMP("PXRM_DISEV",0)) D  Q
+ ...S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="Clinical Reminder evaluation is currently disabled; this order check cannot"
+ ...S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="be processed." Q
  ..I TESTER=1 D
  ...S TNAME=$P(^PXRMD(811.5,TIEN,0),U)
- ...S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="INTERNAL: Reminder Term: "_TNAME_" Status: "_$S(TSTAT=1:"True",1:"False")
+ ...S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="INTERNAL: Reminder Term: "_TNAME_" Status: "_$S(TSTAT=1:"True",1:"False")
  ...;S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)=" "
  ..I TSTAT'=$P(^PXD(801.1,IEN,2),U,2) D  Q
  ...I TESTER=1 D
@@ -132,8 +136,10 @@ REMEVAL(DFN,OI,RIEN,PNAME,IEN,RNAME,TEXTTYE,RSTAT,SEV,SUB,TESTER) ;
  I TESTER=1 D
  .S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="INTERNAL: Reminder Definition: "_RNAME_" Status: "_STATUS
  .;S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)=" "
- ;if not valid status quit
- I (STATUS="CNBD")!(STATUS="ERROR") Q
+ ;if not valid status return error message
+ I (STATUS="CNBD")!(STATUS="ERROR") D  Q
+ .S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="Clinical Reminder evaluation is currently disabled; this order check cannot"
+ .S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="be processed."
  ;if Reminder Status does not match status field quit.
  I $$STATMTCH(STATUS,RSTAT)=0 D  Q
  .I TESTER=1 D

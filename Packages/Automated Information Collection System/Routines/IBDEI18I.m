@@ -1,0 +1,132 @@
+IBDEI18I ; ; 12-AUG-2014
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,22080,2)
+ ;;=Fall on/from Sidewalk or Curb^303367
+ ;;^UTILITY(U,$J,358.3,22081,0)
+ ;;=E881.0^^133^1327^6
+ ;;^UTILITY(U,$J,358.3,22081,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,22081,1,4,0)
+ ;;=4^E881.0
+ ;;^UTILITY(U,$J,358.3,22081,1,5,0)
+ ;;=5^Fall From Ladder
+ ;;^UTILITY(U,$J,358.3,22081,2)
+ ;;=Fall From Ladder^294644
+ ;;^UTILITY(U,$J,358.3,22082,0)
+ ;;=E882.^^133^1327^3
+ ;;^UTILITY(U,$J,358.3,22082,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,22082,1,4,0)
+ ;;=4^E882.
+ ;;^UTILITY(U,$J,358.3,22082,1,5,0)
+ ;;=5^Fall From Building
+ ;;^UTILITY(U,$J,358.3,22082,2)
+ ;;=Fall From Building^294646
+ ;;^UTILITY(U,$J,358.3,22083,0)
+ ;;=E883.9^^133^1327^13
+ ;;^UTILITY(U,$J,358.3,22083,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,22083,1,4,0)
+ ;;=4^E883.9
+ ;;^UTILITY(U,$J,358.3,22083,1,5,0)
+ ;;=5^Fall Into Hole
+ ;;^UTILITY(U,$J,358.3,22083,2)
+ ;;=Fall Into Hole^294650
+ ;;^UTILITY(U,$J,358.3,22084,0)
+ ;;=E884.2^^133^1327^4
+ ;;^UTILITY(U,$J,358.3,22084,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,22084,1,4,0)
+ ;;=4^E884.2
+ ;;^UTILITY(U,$J,358.3,22084,1,5,0)
+ ;;=5^Fall From Chair
+ ;;^UTILITY(U,$J,358.3,22084,2)
+ ;;=Fall From Chair^294653
+ ;;^UTILITY(U,$J,358.3,22085,0)
+ ;;=E884.3^^133^1327^11
+ ;;^UTILITY(U,$J,358.3,22085,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,22085,1,4,0)
+ ;;=4^E884.3
+ ;;^UTILITY(U,$J,358.3,22085,1,5,0)
+ ;;=5^Fall From Wheelchair
+ ;;^UTILITY(U,$J,358.3,22085,2)
+ ;;=Fall From Wheelchair^303368
+ ;;^UTILITY(U,$J,358.3,22086,0)
+ ;;=E884.4^^133^1327^2
+ ;;^UTILITY(U,$J,358.3,22086,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,22086,1,4,0)
+ ;;=4^E884.4
+ ;;^UTILITY(U,$J,358.3,22086,1,5,0)
+ ;;=5^Fall From Bed
+ ;;^UTILITY(U,$J,358.3,22086,2)
+ ;;=Fall From Bed^303369
+ ;;^UTILITY(U,$J,358.3,22087,0)
+ ;;=E884.6^^133^1327^5
+ ;;^UTILITY(U,$J,358.3,22087,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,22087,1,4,0)
+ ;;=4^E884.6
+ ;;^UTILITY(U,$J,358.3,22087,1,5,0)
+ ;;=5^Fall From Commode
+ ;;^UTILITY(U,$J,358.3,22087,2)
+ ;;=Fall from Commode^303371
+ ;;^UTILITY(U,$J,358.3,22088,0)
+ ;;=E884.9^^133^1327^18
+ ;;^UTILITY(U,$J,358.3,22088,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,22088,1,4,0)
+ ;;=4^E884.9
+ ;;^UTILITY(U,$J,358.3,22088,1,5,0)
+ ;;=5^Other Fall, One Level To Another
+ ;;^UTILITY(U,$J,358.3,22088,2)
+ ;;=Other Fall^294654
+ ;;^UTILITY(U,$J,358.3,22089,0)
+ ;;=E885.1^^133^1327^7
+ ;;^UTILITY(U,$J,358.3,22089,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,22089,1,4,0)
+ ;;=4^E885.1
+ ;;^UTILITY(U,$J,358.3,22089,1,5,0)
+ ;;=5^Fall From Roller Skates
+ ;;^UTILITY(U,$J,358.3,22089,2)
+ ;;=Fall from Roller Skates^322100
+ ;;^UTILITY(U,$J,358.3,22090,0)
+ ;;=E885.2^^133^1327^8
+ ;;^UTILITY(U,$J,358.3,22090,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,22090,1,4,0)
+ ;;=4^E885.2
+ ;;^UTILITY(U,$J,358.3,22090,1,5,0)
+ ;;=5^Fall From Skateboard
+ ;;^UTILITY(U,$J,358.3,22090,2)
+ ;;=Fall from Skateboard^322102
+ ;;^UTILITY(U,$J,358.3,22091,0)
+ ;;=E885.3^^133^1327^9
+ ;;^UTILITY(U,$J,358.3,22091,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,22091,1,4,0)
+ ;;=4^E885.3
+ ;;^UTILITY(U,$J,358.3,22091,1,5,0)
+ ;;=5^Fall From Skis
+ ;;^UTILITY(U,$J,358.3,22091,2)
+ ;;=Fall from Skis^322103
+ ;;^UTILITY(U,$J,358.3,22092,0)
+ ;;=E885.4^^133^1327^10
+ ;;^UTILITY(U,$J,358.3,22092,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,22092,1,4,0)
+ ;;=4^E885.4
+ ;;^UTILITY(U,$J,358.3,22092,1,5,0)
+ ;;=5^Fall From Snowboard
+ ;;^UTILITY(U,$J,358.3,22092,2)
+ ;;=Fall from Snowboard^322104
+ ;;^UTILITY(U,$J,358.3,22093,0)
+ ;;=E885.9^^133^1327^1
+ ;;^UTILITY(U,$J,358.3,22093,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,22093,1,4,0)
+ ;;=4^E885.9

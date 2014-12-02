@@ -1,5 +1,5 @@
 PSIVLBL1 ;BIR/RGY-PRINT LABEL FROM WARD LIST ;24 Aug 2001  3:59 PM
- ;;5.0; INPATIENT MEDICATIONS ;**69,58,81,97,104**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**69,58,81,97,104,279**;16 DEC 97;Build 150
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ; Reference to ^%DT is supported by DBIA 10003.
@@ -60,8 +60,8 @@ MEOWRPT ;Reprint from man/ward list
 REPRT ; Reprint labels using existing bcma ID
  S PSIVOID(PSJID)=""
  NEW PSJLB S XX=$G(^PS(55,DFN,"IVBCMA",PSJID,0)) Q:XX=""
- F X=1:1:8 S PSJLB(X)=$P(XX,U,X)
- I $S(PSJLB(4)="C":1,PSJLB(4)="G":1,PSJLB(4)="I":1,PSJLB(7)'="":1,1:0) Q
+ F X=1:1:9 S PSJLB(X)=$P(XX,U,X)
+ I $S(PSJLB(4)="C":1,PSJLB(4)="G":1,PSJLB(4)="I":1,PSJLB(7)'="":1,PSJLB(9):1,1:0) Q
  S PSIVCTD=0,PSIVCT=1,PSIVNOL=1,P(4)=$P(^PS(55,DFN,"IV",+ON,0),"^",4)
  D REPRT^PSIVLBRP(DFN_"V"_PSJID)
  Q

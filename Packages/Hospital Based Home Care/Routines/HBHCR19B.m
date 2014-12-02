@@ -1,8 +1,19 @@
-HBHCR19B ;LR VAMC(IRMS)/MJT- HBHC rpt, called by HBHCR19A, entry points:  INITIAL, PRTLOOP, EXIT ; Aug 2000
- ;;1.0;HOSPITAL BASED HOME CARE;**8,14,22**;NOV 01, 1993;Build 2
+HBHCR19B ;LR VAMC(IRMS)/MJT - HBHC rpt, called by HBHCR19A, entry points:  INITIAL, PRTLOOP, EXIT ;Aug 2000
+ ;;1.0;HOSPITAL BASED HOME CARE;**8,14,22,25**;NOV 01, 1993;Build 45
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;HBH*1.0*25   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;******************************************************************************
+ ;******************************************************************************
+ ;
 INITIAL ; Initialize variables
  K ^TMP("HBHC",$J)
- S $P(HBHCSP2," ",3)="",(HBHCCNT,HBHCTOT)=0,$P(HBHCY,"-",81)="",HBHCHEAD="ICD9 Code/Diagnosis Text by Date Range",HBHCHDR="W !,""Patient Name"",?27,""Last Four"",?41,""ICD9 Code/Diagnosis Text"""
+ S $P(HBHCSP2," ",3)="",(HBHCCNT,HBHCTOT)=0,$P(HBHCY,"-",81)="",HBHCHEAD="ICD Code/Diagnosis Text by Date Range"
+ S HBHCHDR="W !,""Patient Name"",?27,""Last Four"",?41,"""_$$ICDTEXT^HBHCUTL3(HBHCBEG1,HBHCEND1)_" Code/Diagnosis Text"""
  S HBHCCOLM=(80-(20+$L(HBHCHEAD))\2) S:HBHCCOLM'>0 HBHCCOLM=1
  Q
 PRTLOOP ; Print loop

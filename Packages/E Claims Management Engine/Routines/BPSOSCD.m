@@ -1,5 +1,5 @@
 BPSOSCD ;BHAM ISC/FCS/DRS/DLF - Set BPS() "RX" nodes for current medication ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,10,11**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,10,11,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; reference to $$ACPHONE^IBNCPDPI supported by DBIA 4721
@@ -7,6 +7,7 @@ BPSOSCD ;BHAM ISC/FCS/DRS/DLF - Set BPS() "RX" nodes for current medication ;06/
  ; reference to $$GET1^DIQ(200,field) supported by DBIA 10060
  ; reference to $$GET1^DIQ(5,field) supported by DBIA 10056
  ; reference to PSS^PSO59 supported by DBIA 4827
+ ; reference to $$SITE^VASITE supported by DBIA 10112
  ;
  Q
  ;
@@ -91,6 +92,14 @@ MEDINFO(IEN59,IEN5902,MEDN) ;
  ; delay reason code not sent unless user specifies a code
  S BPS("Claim",MEDN,"Delay Reason Code")=""  ; 357-NV Delay Reason Code
  ;
+ ; Calculate date/time for Time of Service 678-Y6 - BPS*1*15
+ ; using SUBMIT REQUEST DATE TIME field #17 from earliest transmission log entry
+ N FDTIME,IEN57 S IEN57=$O(^BPSTL("B",IEN59,0)) I IEN57 S FDTIME=$P($G(^BPSTL(IEN57,0)),U,13)
+ ; Otherwise use current time
+ I $G(FDTIME)="" S FDTIME=$$NOW^XLFDT
+ ; Save time as HHMMSS
+ S BPS("Claim",MEDN,"Time of Service")=$$LJ^XLFSTR($P(FDTIME,".",2),6,0) ; 678-Y6 Time of Service
+ ;
  ; NDC = NDC number drug, try transaction 1st, if null get it from Rx/refill
  S BPS("RX",MEDN,"Product ID Qualifier")="03"
  S NDC=$P(^BPST(IEN59,1),U,2)
@@ -101,9 +110,15 @@ MEDINFO(IEN59,IEN5902,MEDN) ;
  D:'RXRFIEN  ; 1st fill
  .S BPS("RX",MEDN,"Days Supply")=$$RXAPI1^BPSUTIL1(RXIEN,8,"I")
  .S BPS("RX",MEDN,"DAW")=$$RXAPI1^BPSUTIL1(RXIEN,81,"I")
+ .;Use FINISHING PERSON field as pharmacist identifier for Initials and ID - BPS*1*15 - DBIA 10112 for $$SITE
+ .S BPS("Provider",MEDN,"Pharmacist Initials")=$$GET1^DIQ(200,+$$RXAPI1^BPSUTIL1(RXIEN,38,"I"),1)
+ .S BPS("Provider",MEDN,"Pharmacist ID")=$P($$SITE^VASITE,U,3)_$$RJ^XLFSTR(+$$RXAPI1^BPSUTIL1(RXIEN,38,"I"),15,0)
  D:RXRFIEN  ; refill
  .S BPS("RX",MEDN,"Days Supply")=$$RXSUBF1^BPSUTIL1(RXIEN,52,52.1,RXRFIEN,1.1,"I")
  .S BPS("RX",MEDN,"DAW")=$$RXSUBF1^BPSUTIL1(RXIEN,52,52.1,RXRFIEN,81,"I")
+ .;Use FILLING PERSON field as pharmacist identifier for Initials and ID - BPS*1*15 - DBIA 10112 for $$SITE
+ .S BPS("Provider",MEDN,"Pharmacist Initials")=$$GET1^DIQ(200,+$$RXSUBF1^BPSUTIL1(RXIEN,52,52.1,RXRFIEN,19,"I"),1)
+ .S BPS("Provider",MEDN,"Pharmacist ID")=$P($$SITE^VASITE,U,3)_$$RJ^XLFSTR(+$$RXSUBF1^BPSUTIL1(RXIEN,52,52.1,RXRFIEN,19,"I"),15,0)
  ;
  ; Origin Code, VAOIEN=PLACER ORDER # from file 52, VANATURE=NATURE OF ORDER in sub-file 100.008
  S VAOIEN=+$$RXAPI1^BPSUTIL1(RXIEN,39.3,"I"),VANATURE=$$GET1^DIQ(100.008,"1,"_VAOIEN_",","12")

@@ -1,5 +1,5 @@
 PSOPMP0 ;BIRM/MFR - Patient Medication Profile - Listmanager ;10/28/06
- ;;7.0;OUTPATIENT PHARMACY;**260,281,303,289,382**;DEC 1997;Build 9
+ ;;7.0;OUTPATIENT PHARMACY;**260,281,303,289,382,313**;DEC 1997;Build 76
  ;Reference to EN1^GMRADPT supported by IA #10099
  ;Reference to EN6^GMRVUTL supported by IA #1120
  ;Reference to ^PS(55 supported by DBIA 2228
@@ -112,7 +112,7 @@ SETSORT(FIELD) ;Sets the data sorted by the FIELD specified
  . S PSOBADR=$O(^PSRX(RX,"L",9999),-1)
  . I PSOBADR'="" S PSOBADR=$G(^PSRX(RX,"L",PSOBADR,0)) I PSOBADR["(BAD ADDRESS)" S PSOBADR="B"
  . I PSOBADR'="B" S PSOBADR=""
- . S Z="",$P(Z,"^")=RX,$P(Z,"^",2)=RXNUM_$$COPAY^PSOPMP1(RX)_$$ECME^PSOBPSUT(RX),$P(Z,"^",3)=$E(DRNAME,1,30)
+ . S Z="",$P(Z,"^")=RX,$P(Z,"^",2)=RXNUM_$$COPAY^PSOPMP1(RX)_$$ECME^PSOBPSUT(RX)_$$TITRX^PSOUTL(RX),$P(Z,"^",3)=$E(DRNAME,1,30)
  . S $P(Z,"^",4)=QTY,$P(Z,"^",5)=$P(STATUS,"^",3)_$$CMOP^PSOPMP1(DRUG,RX)_PSOBADR,$P(Z,"^",6)=$P(ISSDT,"^",2)
  . S $P(Z,"^",7)=$P(LSTFD,"^",2),$P(Z,"^",8)=REFREM,$P(Z,"^",9)=DAYSUP
  . S SORT=$S(FIELD="RX":RXNUM_" ",FIELD="DR":DRNAME_RXNUM,FIELD="ID":+ISSDT_RXNUM_" ",FIELD="LF":+LSTFD_RXNUM_" ")

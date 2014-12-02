@@ -1,6 +1,6 @@
 RCDPURE1 ;WISC/RFJ-process a receipt ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,148,153,169,204,173,214,217**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**114,148,153,169,204,173,214,217,296**;Mar 20, 1995;Build 24
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
  ;
@@ -8,6 +8,7 @@ PROCESS(RCRECTDA,RCSCREEN) ;  process a receipt, update ar, generate cr/tr docum
  ;  the receipt and deposit must be locked before calling this label
  ;  if $g(rcscreen) = 1 show messages during processing
  ;  if $g(rcscreen) = 2 store messages during processing
+ ; 
  N RCPAYDA,RCDPFPAY,RCERROR,RCMSG,RCEFT,RCERA
  K ^TMP($J,"RCDPEMSG")
  ;
@@ -58,6 +59,10 @@ PROCESS(RCRECTDA,RCSCREEN) ;  process a receipt, update ar, generate cr/tr docum
  ;  all payments processed correctly
  I RCERA D UPDERA(RCERA)
  I $G(RCSCREEN) D MSG(" Done.",RCSCREEN)
+ ;
+ ;  *296 - no cr document for event type 'a' or 'p' or 't'
+ N RCDPETY S RCDPETY=$P($G(^RCY(344,RCRECTDA,0)),"^",4)
+ I (RCDPETY=15)!(RCDPETY=16)!(RCDPETY=13) D 215 Q
  ;
  ;  if no deposit ticket and not related to EFT or is a HAC payment, do not send to fms
  I '$P(^RCY(344,RCRECTDA,0),"^",6),$S('RCEFT:1,1:$$HACEFT^RCDPEU(+$P(^RCY(344,RCRECTDA,0),U,17))) D  Q

@@ -1,13 +1,13 @@
 PSODOSUT ;BIR/RTR - PRE Dose Check Utility routine ;11/18/08
- ;;7.0;OUTPATIENT PHARMACY;**251,375**;DEC 1997;Build 17
- ;External reference to $$DS^PSSDSAPI supported by DBIA 5424
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,372,416,436**;DEC 1997;Build 5
+ ;External reference to ^PSSDSAPI supported by DBIA 5425
  ;
  ;DOSE expect PSODLQT to be defined prior to calling it.
  ; PSODLQT=1 means no data will be written to the screen, but a value will be returned.
  ; PSODLQT=0 means data will be written to the screen and a value is returned 
  ;
-EVAL(PSODLINS,PSODLINR) ;
- Q $S($G(PSODLINS)&($G(PSODLINR)):"MAX SINGLE DOSE & DAILY DOSE RANGE",$G(PSODLINS):"MAX SINGLE DOSE",$G(PSODLINR):"DAILY DOSE RANGE",1:"UNKNOWN")
+ ;EVAL(PSODLINS,PSODLINR) ;
+ ;Q $S($G(PSODLINS)&($G(PSODLINR)):"MAX SINGLE DOSE & DAILY DOSE RANGE",$G(PSODLINS):"MAX SINGLE DOSE",$G(PSODLINR):"DAILY DOSE RANGE",1:"UNKNOWN")
  ;
 SUMM ;
  I 'PSODLQT W !,"   DOSING CHECK SUMMARY:",!!
@@ -15,9 +15,8 @@ SUMM ;
  Q
  ;
 SUB ;Write sub header; called from PSODOSUN
- ;I $G(PSOCOPY)!($D(PSORENW)) Q:PSOCPXG=PSOCPXB&(PSODLPL="2_RANGE")
- D HD I 'PSODLQT,$G(PSODLEXR) W ! S PSODLEXR=0
- D HD
+ D HD^PSODOSU2 Q:$G(PSODLQTC)  I 'PSODLQT,'$G(PSODLEXR) W ! S PSODLEXR=0
+ D HD^PSODOSU2 Q:$G(PSODLQTC)
  I 'PSODLQT W "   DOSE SEQ "_PSOCPXG_":"
  S PSOCPXRR(PSOCPXG)=1
  Q
@@ -40,11 +39,10 @@ COMPLEX ;called from DOSEZ^PSODOSUN
  Q
  ;
 HD ;
- I $G(PSODLQT) Q
- I PSODLQT!(($Y+5)'>IOSL) Q
+ I $G(PSODLQT)!(($Y+5)<IOSL)!($G(PSORX("DFLG"))) Q
  N DIR,DTOUT,DUOUT,DIRUT,DIROUT,X,Y
- W ! K DIR,Y S DIR(0)="E",DIR("A")="Press Return to continue,'^' to exit" D ^DIR K DIR I 'Y S PSODLQT=1 Q
- W @IOF W !
+ W ! K DIR,Y S DIR(0)="E",DIR("A")="Press Return to continue,'^' to exit" D ^DIR K DIR I 'Y!($D(DTOUT))!($D(DUOUT))!($G(DIRUT)) S PSODLQT=1,PSONEW("DFLG")=1,PSORX("DFLG")=1 Q
+ W @IOF
  Q
  ;
 SFD ;
@@ -62,8 +60,8 @@ EXCEPT ;don't show "not matched to NDF" or "no GCNSEQNO" errors for dosing - whe
  N PSODLER1,PSODLER2
  F PSODLER1=0:0 S PSODLER1=$O(^TMP($J,"PSOPDOSN","OUT",PSODSEQ,PSODLNN1,"EXCEPTIONS",PSODLER1)) Q:'PSODLER1  D
  .S PSODLER2=$G(^TMP($J,"PSOPDOSN","OUT",PSODSEQ,PSODLNN1,"EXCEPTIONS",PSODLER1))
- .I PSODLER2["Drug not matched to NDF"!(PSODLER2["GCNSEQNO") K ^TMP($J,"PSOPDOSN","OUT",PSODSEQ,PSODLNN1,"EXCEPTIONS",PSODLER1)
- S PSODLER1=1 I '$O(^TMP($J,"PSOPDOSN","OUT",PSODSEQ,PSODLNN1,"EXCEPTIONS",PSODLER1)) K ^TMP($J,"PSOPDOSN","OUT",PSODSEQ,PSODLNN1,"EXCEPTIONS",1)
+ .I PSODLER2["Drug not matched to NDF"!(PSODLER2["GCNSEQNO") D
+ .. S PSODLER3="" F PSODLER3=PSODLER1-1:1:PSODLER1 K ^TMP($J,"PSOPDOSN","OUT",PSODSEQ,PSODLNN1,"EXCEPTIONS",PSODLER3)
  Q
  ;
 FEED() ; Write Line feed after Exceptions if no message globals follow, and next order has no errors or exceptions, only a message
@@ -75,21 +73,6 @@ FEED() ; Write Line feed after Exceptions if no message globals follow, and next
  I $D(^TMP($J,"PSOPDOSN","OUT",PSODSEQ,PSODLNN2,"ERROR")) Q 0
  I $D(^TMP($J,"PSOPDOSN","OUT",PSODSEQ,PSODLNN2,"EXCEPTIONS")) Q 0
  Q 1
- ;
-DCHKL(MSG) ;Dose check; called from PSOLLL8 and PSOLLLI ;returns dose value
- N PSODRUG,PSODOSF,PSOVERFL
- I '$D(PSODRUG("IEN")) S PSODRUG("IEN")=$$GET1^DIQ(52,RX,6,"I")
- Q:$$EXMT^PSSDSAPI(PSODRUG("IEN")) ""
- Q:$G(PSODRUG("BAD",PSODRUG("IEN"))) ""
- S PSOCPXB=0,PSOVERFL=1
- F PSOCPXA=0:0 S PSOCPXA=$O(^PSRX(RX,6,PSOCPXA)) Q:'PSOCPXA  I $P($G(^PSRX(RX,6,PSOCPXA,0)),"^")'="" S PSOCPXB=PSOCPXB+1
- D RX^PSODOSCL(.PSODLBS1,RX)
- S PSODLNNN=RX,PSODLQT=1  ;PSODLQT should be set to 1 so that nothing is displayed
- S PSODLNVL=$$DOSE^PSODOSUN K ^TMP($J,"PSOPDOSN"),^TMP($J,"PSOPDOSA") I $P($G(PSODLNVL),"^")=1 S PSORX("DFLG")=1 Q MSG
- I '$G(PSODLNVL) Q ""
- S PSODLNVT=$P(PSODLNVL,"^",2)
- S MSG=PSODLNVT
- Q MSG
  ;
 DCHKN ;Called from PSOORNEW, PSOORNE1 & PSOORNEW; Dose Check for Copying an Order
  F PSOCPXA=0:0 S PSOCPXA=$O(PSONEW("DOSE",PSOCPXA)) Q:'PSOCPXA  S PSOCPXB=PSOCPXB+1
@@ -114,10 +97,11 @@ DCHKR ;Renewal Dose Check; Called from PSORENW0
  Q
  ;
 DCHKC ;Dose Check on reinstate; Called from PSOCAN2
+ N PSODCAN
  I '$D(PSODRUG("IEN")) S:$D(PSORENW("OIRXN")) PSODRUG("IEN")=$$GET1^DIQ(52,PSORENW("OIRXN"),6,"I")
- F PSOCPXA=0:0 S PSOCPXA=$O(^PSRX(PSORENW("OIRXN"),6,PSOCPXA)) Q:'PSOCPXA  I $P($G(^PSRX(PSORENW("OIRXN"),6,PSOCPXA,0)),"^")'="" S PSOCPXB=PSOCPXB+1
+ S PSOCPXB=0 F PSOCPXA=0:0 S PSOCPXA=$O(^PSRX(PSORENW("OIRXN"),6,PSOCPXA)) Q:'PSOCPXA  I $P($G(^PSRX(PSORENW("OIRXN"),6,PSOCPXA,0)),"^")'="" S PSOCPXB=PSOCPXB+1
  D RX^PSODOSCL(.PSODLBS1,PSORENW("OIRXN"))
- S PSODLNNN=PSORENW("OIRXN")
+ S PSODLNNN=PSORENW("OIRXN"),PSODCAN=1
  S PSODLNVL=$$DOSE^PSODOSUN K ^TMP($J,"PSOPDOSN"),^TMP($J,"PSOPDOSA")
  I $P($G(PSODLNVL),"^")=1 S PSORX("DFLG")=1 Q
  D DOSIV
@@ -126,8 +110,9 @@ DCHKC ;Dose Check on reinstate; Called from PSOCAN2
  ;
 DCHK() ;Dose check after entering Null at the conjunction prompt
  ;For complex Dosing, they will eventually enter null too, so change to call if it was not a complex order, and null was entered
+ N PSODONOF S PSODONOF="" D DOSEOFF Q:'+PSODONOF 0
  Q:$G(PSORX("DFLG")) 0
- D HD^PSODDPR2():(($Y+5)>IOSL)
+ ;D HD:(($Y+5)>IOSL) Q:$G(PSORX("DFLG")) 0
  N PSODLNNN,PSODLENT,PSODLNVL,PSODLNVT,X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT,PSODLBS1,PSODLENT,PSOCPXA,PSOCPXV,PSOTOF,PSOCPXB
  ;Need to make sure Drug Name is what you set in the API
  ;Either pass in name here, or set in PSODOSCL to array name that PSSDSAPD uses, which is still the .01 of File 50
@@ -139,31 +124,31 @@ DCHK() ;Dose check after entering Null at the conjunction prompt
  K ^TMP($J,"PSOPDOSA") K ^TMP($J,"PSOPDOSN") S PSODLBS1(1)="PSOPDOSA",PSODLBS1(3)="PSOPDOSN"
  D FIN^PSODOSCL(.PSODLBS1,.PSORXED,.PSODRUG)
  S PSODLENT=ENT,PSOCPXV=1,PSOCPXB=0
- ;F PSOCPXA=0:0 S PSOCPXA=$O(PSONEW("DOSE",PSOCPXA)) Q:'PSOCPXA  S PSOCPXB=PSOCPXB+1
+ S PSOCPXB=0 F PSOCPXA=0:0 S PSOCPXA=$O(PSORXED("DOSE",PSOCPXA)) Q:'PSOCPXA  S PSOCPXB=PSOCPXB+1
  S PSODLNVL=$$DOSEX^PSODOSUN(PSODLENT) S PSOTOF=1 I '$D(^XUSEC("PSORPH",DUZ)) S:$P($G(PSODLNVL),"^") ^TMP("PSODOSF",$J,0)=1
- D HD^PSODDPR2():(($Y+5)>IOSL)
+ I $G(PSOEDDOS) D HD:(($Y+5)>IOSL) Q:$G(PSORX("DFLG")) 0
  I $P($G(PSODLNVL),"^")=1 K ^TMP($J,"PSOPDOSA") K ^TMP($J,"PSOPDOSN") Q 1
 DCHK2 ;Finishing of a complex order
- N PSOCPXC
+ N PSOCPXC,PSOCPXD
  K PSODLNVL
- S (PSOCPXA,PSOCPXB)=0
- F PSOCPXA=0:0 S PSOCPXA=$O(PSONEW("DOSE",PSOCPXA)) Q:'PSOCPXA  S PSOCPXB=PSOCPXB+1
+ S PSOCPXD=1 ;flag for MOCHA 2.0, used to not display enter to continue prompt after errors/exceptions list which displays just after last dose sequence.  MOCHA 2.0 does not display errors or exceptions.
+ ;S (PSOCPXB)=0 ;setting PSOCPXB=0 makes dosing summery not display when cycling through individual doses of a complex order.  Dose summary should only show after accept of order.
  S PSODLNVL=$$DOSEZ^PSODOSUN K ^TMP($J,"PSOPDOSA") K ^TMP($J,"PSOPDOSN")
- D HD^PSODDPR2():(($Y+5)>IOSL)
+ I $G(PSOEDDOS) D HD:(($Y+5)>IOSL) Q:$G(PSORX("DFLG")) 0
  I $P($G(PSODLNVL),"^")=1 Q 1
  I '$D(^XUSEC("PSORPH",DUZ)) S:$P($G(PSODLNVL),"^")=2 ^TMP("PSODOSF",$J,0)=$$CONVMSG($P(PSODLNVL,"^",2)) W ! Q 0
  I '$G(PSODLNVL) Q 0
  S PSODLNVT=$P(PSODLNVL,"^",2)
- I $D(PSORX("EDIT"))!($G(PSOCKCON))!$G(PSOEDDOS)!($G(PSOCOPY)&$G(PSODLBD4)) Q 0
+ I $D(PSORX("EDIT"))!($G(PSORXED)&$G(PSORXED)&$G(PSOEDDOS))!($G(PSOCOPY)&$G(PSODLBD4)) Q 0
  I $$EN3^PSORXI(PSODLNVT) W !!,"Unable to log intervention, cannot find intervention type.",! K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue" D ^DIR K DIR
  W !
  Q 0
  ;
 DCHK1 ;Dose check after entering a value at the Conjunction prompt
  Q:$G(PSORX("DFLG"))!($G(PSODLQT))
- I '$$DS^PSSDSAPI Q
- D HD^PSODDPR2():(($Y+5)>IOSL)
- N PSODLNNN,PSODLNVL,PSODLNVT,X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT,PSODLBS1,PSODLENT
+ N PSODONOF S PSODONOF="" D DOSEOFF Q:'+PSODONOF
+ ;D HD:(($Y+5)>IOSL) Q:$G(PSORX("DFLG"))
+ N PSODLNNN,PSODLNVL,PSODLNVT,X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT,PSODLBS1,PSODLENT,PSOCPXB
  ;Need to make sure Drug Name is what you set in the API
  ;Either pass in name here, or set in PSODOSCL to array name that PSSDSAPD uses, which is still the .01 of File 50
  I $$EXMT^PSSDSAPI(PSODRUG("IEN")) Q
@@ -172,9 +157,10 @@ DCHK1 ;Dose check after entering a value at the Conjunction prompt
  ;S PSODLNNN="O;1;PROSPECTIVE;1"
  K ^TMP($J,"PSOPDOSA") K ^TMP($J,"PSOPDOSN") S PSODLBS1(1)="PSOPDOSA",PSODLBS1(3)="PSOPDOSN"
  D FIN^PSODOSCL(.PSODLBS1,.PSORXED,.PSODRUG)
- S PSODLENT=ENT
+ S PSODLENT=ENT,PSOCPXB=0
+ F PSOCPXA=0:0 S PSOCPXA=$O(PSORXED("DOSE",PSOCPXA)) Q:'PSOCPXA  S PSOCPXB=PSOCPXB+1
  S PSODLNVL=$$DOSEX^PSODOSUN(PSODLENT)
- D HD^PSODDPR2():(($Y+5)>IOSL)
+ D HD:(($Y+5)>IOSL) Q:$G(PSORX("DFLG"))
  K ^TMP($J,"PSOPDOSA") K ^TMP($J,"PSOPDOSN") I $P($G(PSODLNVL),"^")=1 S PSORXED("DFLG")=1 Q
  I '$G(PSODLNVL) Q
  I '$D(^XUSEC("PSORPH",DUZ)) S:$P($G(PSODLNVL),"^")=2 ^TMP("PSODOSF",$J,0)=$$CONVMSG($P(PSODLNVL,"^",2)) W ! Q
@@ -184,8 +170,10 @@ DCHK1 ;Dose check after entering a value at the Conjunction prompt
  Q
  ;
 CONVMSG(MESS) ;Convert DOSE CHECK message to numeric value for field 8 of ^PS(52.4
+ ;For MOCHA 2.0, only returning "DOSAGE EXCEEDS MAX SINGLE DOSE" when a dosing error is present.
  N PSODOSF
- S PSODOSF=$S(MESS="MAX SINGLE DOSE & DAILY DOSE RANGE":3,MESS="MAX SINGLE DOSE":2,MESS="DAILY DOSE RANGE":1,1:"")
+ S MESS="DOSAGE EXCEEDS MAX SINGLE DOSE"
+ S PSODOSF=$S(MESS="DOSAGE EXCEEDS MAX SINGLE DOSE":4,MESS="MAX SINGLE DOSE & DAILY DOSE RANGE":3,MESS="MAX SINGLE DOSE":2,MESS="DAILY DOSE RANGE":1,1:"")
  Q PSODOSF
  ;
 DCHKV ;Dose check when verifying an order
@@ -210,7 +198,7 @@ DCHKV ;Dose check when verifying an order
  S DA=PSONV,RX=$G(^PSRX(PSONV,0)) D DOSIV  ;CRI^PSODGDG1
  Q
  ;
-DOSIV ;DOSE INTERVETION
+DOSIV ;DOSE INTERVENTION
  I PSOFROM="C",'$D(^XUSEC("PSORPH",DUZ)) Q
  I '$D(^XUSEC("PSORPH",DUZ)) S:$P($G(PSODLNVL),"^")=2 ^TMP("PSODOSF",$J,0)=$$CONVMSG($P(PSODLNVL,"^",2)) Q
  I '$G(PSODLNVL) Q
@@ -230,17 +218,42 @@ CANCEL(PSONV) ;CR2724 -  where PSONV = RXIEN
  Q
  ;
 DOSCK(PSOFROM,MSG) ;
- Q:'$$DS^PSSDSAPI
+ ;D HD
+ N PSODONOF S PSODONOF="" D DOSEOFF Q:'+PSODONOF
  I $G(PSORX("DFLG"))!($G(PSODOSD)) S PSORX("DFLG")=1 K PSODOSD Q
  N PSODLNNN,PSODLNVL,PSODLNVT,X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT,PSODLBS1,PSOCPXA,PSOCPXB,PSOCPXC
  Q:$$EXMT^PSSDSAPI(PSODRUG("IEN"))
  Q:$G(PSODRUG("BAD",PSODRUG("IEN")))
  K ^TMP($J,"PSOPDOSN"),^TMP($J,"PSOPDOSA"),^TMP("PSODOSF",$J) S PSODLBS1(1)="PSOPDOSA",PSODLBS1(3)="PSOPDOSN"
- D HD^PSODDPR2() I ($D(DTOUT))!($D(DUOUT))!($G(DIRUT))!(PSODLQT) K PSODLQT,DTOUT,DUOUT,DIRUT,PSORX("DFLG") Q
+ I ($D(DTOUT))!($D(DUOUT))!($G(DIRUT))!($G(PSODLQT)) K PSODLQT,DTOUT,DUOUT,DIRUT,PSORX("DFLG") Q
  ;D CLEAR^VALM1
  S PSOCPXB=0
  I PSOFROM="V" D DCHKV Q  ;PSOVER1 - verification 
  I PSOFROM="N" D DCHKN Q  ;PSOORNE1 & PSOORNEW - new & copy
  I PSOFROM="R" D DCHKR Q  ;PSORENW0 - renewal
  I PSOFROM="C" D DCHKC Q  ;PSOCAN2 - cancel
+ Q
+ ;
+RCONVMS(MESS) ;Convert DOSE CHECK from numeric to alpha
+ N PSODOSF
+ S MESS=4  ;For MOCHA 2.0, only returning "DOSAGE EXCEEDS MAX SINGLE DOSE" when a dosing error is present.
+ S PSODOSF=$S(MESS=4:"DOSAGE EXCEEDS MAX SINGLE DOSE",MESS=3:"MAX SINGLE DOSE & DAILY DOSE RANGE",MESS=2:"MAX SINGLE DOSE",MESS=1:"DAILY DOSE RANGE",1:"")
+ Q PSODOSF
+ ;
+DOSEOFF ;
+ S PSODONOF=$$DS^PSSDSAPI
+DOSEOFF2 ;
+ I $G(PSORX("DOSING OFF")),+PSODONOF K PSORX("DOSING OFF"),PSOREINF,PSOONOFC Q
+ Q:+PSODONOF
+ I ($G(PSOONOFC)!$G(PSOREINF)),'+PSODONOF S PSORX("DOSING OFF")=1  ;Reinstate news PSORX array so have to work around it
+ Q:$G(PSORX("DOSING OFF"))  ;only display 'dosing off' message once per patient 
+ N PSODOFFC
+ I '+PSODONOF&($P(PSODONOF,"^",2)'="") D
+ .S X=$P(PSODONOF,"^",2),DIWL=1,DIWR=73 K ^UTILITY($J,"W") D ^DIWP W !
+ .S PSODOFFC=0 F PSODOFFC=0:0 S PSODOFFC=$O(^UTILITY($J,"W",DIWL,PSODOFFC)) Q:'PSODOFFC  W !?5,$G(^UTILITY($J,"W",DIWL,PSODOFFC,0))
+ .N DIR,DIRUT,DUOUT,X,Y S DIR(0)="E"
+ .S DIR("A")="Press Return to continue...",DIR("?")="Press Return to continue"
+ .W ! D ^DIR K DIRUT,DUOUT,DIR,X,Y W !
+ .K ^UTILITY($J,"W")
+ .S PSORX("DOSING OFF")=1 S:$G(PSOREINS) (PSOREINF,PSOONOFC)=1  ;set this flag to only display 'dosing off' message once per session. 
  Q

@@ -1,7 +1,7 @@
-PSOLBL1 ;BHAM ISC/SAB - PRINTS LABEL ;1/20/93 14:25
- ;;7.0;OUTPATIENT PHARMACY;**107,110,225,326,367**;DEC 1997;Build 62
+PSOLBL1 ;BHAM ISC/SAB - PRINTS LABEL ; 6/21/13 2:55pm
+ ;;7.0;OUTPATIENT PHARMACY;**107,110,225,326,367,318**;DEC 1997;Build 13
 START S COPIES=COPIES-1
- W $C(13) S $X=0 W "VA (119)",?10,$E(DT,4,5),"/",$E(DT,6,7),"/",$E(DT,2,3) W:('SIDE)&(PRTFL) ?40,"PLEASE REFER ONLY TO '",$S(REF:"1. REFILL REQUEST",1:"2. RENEWAL ORDER"),"'" W:+$G(RXP) ?100,"(PARTIAL)" W:$D(REPRINT) ?110,"(REPRINT)"
+ W $C(13) S $X=0 W "VA (119)",?10,$E(DT,4,5),"/",$E(DT,6,7),"/",$E(DT,2,3) W:('SIDE)&(PRTFL) ?40,"PLEASE REFER ONLY TO '",$S(REF:"1. REFILL REQUEST",1:"2. RENEWAL ORDER"),"'" W:+$G(RXP) ?100,"(PARTIAL)" W:$G(REPRINT) ?110,"(REPRINT)"
  W !,$P(PS,"^",2) W:('SIDE)&(PRTFL) ?40,"INSTRUCTION ON REVERSE SIDE OF THIS FORM" W:'SIDE ?102,"(Filled at ",$P(PS2,"^",2),")"
  W !,$P(PS,"^",7),", ",STATE,"  ",$P(PS,"^",5) W:'SIDE ?83,"*** ",$P(PS2,"^")," ***"
  W !,?22,$S(MW["C":"CERTIFIED MAIL",1:"") W:'SIDE ?38,SSNP,?69,"RX: ",RXN
@@ -42,7 +42,7 @@ SIG F DR=1:1:$S(SGC<5:4,1:6) D SIG1
  D NOW^%DTC S NOW=% K %,%H,%I S RXF=0 F I=0:0 S I=$O(^PSRX(RX,1,I)) Q:'I  S RXF=I
  S IR=0 F FDA=0:0 S FDA=$O(^PSRX(RX,"L",FDA)) Q:'FDA  S IR=FDA
  S IR=IR+1,^PSRX(RX,"L",0)="^52.032DA^"_IR_"^"_IR
- S ^PSRX(RX,"L",IR,0)=NOW_"^"_$S($G(RXP):99-RXPI,1:RXF)_"^"_$S($G(PCOMX)]"":$G(PCOMX),1:"From RX number "_$P(^PSRX(RX,0),"^"))_$S($G(RXP):" (Partial)",1:"")_$S($D(REPRINT):" (Reprint)",1:"")_"^"_PDUZ
+ S ^PSRX(RX,"L",IR,0)=NOW_"^"_$S($G(RXP):99-RXPI,1:RXF)_"^"_$S($G(PCOMX)]"":$G(PCOMX),1:"From RX number "_$P(^PSRX(RX,0),"^"))_$S($G(RXP):" (Partial)",1:"")_$S($G(REPRINT):" (Reprint)",1:"")_"^"_PDUZ
  ;Storing FDA Medication Guide filename in the Prescription file
  I $$MGONFILE^PSOFDAUT(RX) D
  . I $G(RXRP(RX)),'$G(RXRP(RX,"MG")) Q

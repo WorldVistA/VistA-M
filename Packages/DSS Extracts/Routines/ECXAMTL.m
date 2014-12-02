@@ -1,5 +1,5 @@
-ECXAMTL ;ALB/JAM - MTL Extract Audit Report; May 24, 1999
- ;;3.0;DSS EXTRACTS;**24,44**;May 24, 1999
+ECXAMTL ;ALB/JAM - MTL Extract Audit Report; May 24, 1999 ;10/22/13  17:31
+ ;;3.0;DSS EXTRACTS;**24,44,148**;Dec 22, 1997;Build 3
 EN ;entry point for MTL extract audit report
  N %X,%Y
  ;ecxaud=0 for 'extract' audit

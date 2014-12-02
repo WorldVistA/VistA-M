@@ -1,5 +1,5 @@
 ONCMPC0 ;Hines CIOFO/GWB - PCE Study of Melanoma ;1/05/99
- ;;2.11;ONCOLOGY;**22**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Check PCE eligibility
  ;Check if Class of Case = 0, 1, 2 or 6.
  S COC=$P($G(^ONCO(165.5,ONCONUM,0)),U,4) I (COC'=0)&(COC'=1)&(COC'=2)&(COC'=6) S MSG="The Class of Case is not 0, 1, 2 or 6." D ERRMSG G EXIT

@@ -1,10 +1,12 @@
-ACKQUTL4 ;HCIOFO/BH-NEW/EDIT Visit Template Utilities for QUASAR ; 11/13/08 12:57pm
- ;;3.0;QUASAR;**1,8,14,17,16**;Feb 11, 2000;Build 37
- ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
+ACKQUTL4 ;HCIOFO/BH - NEW/EDIT Visit Template Utilities for QUASAR ;11/13/08 12:57pm
+ ;;3.0;QUASAR;**1,8,14,17,16,22,21**;Feb 11, 2000;Build 40
+ ;Per VHA Directive 2004-038, this routine SHOULD NOT be modified.
  ;
  ;Reference/IA
  ;GETCUR^DGNTAPI/3457
  ;CVEDT^DGCV/4156
+ ;$$CODEC^ICDEX - 5747
+ ;$$MOD^ICPTMOD - 1996
  ;
 CHK(Y,ACKVD) ;
  N ACKQQD
@@ -143,7 +145,7 @@ ELIG ;  Set up eligibiliy variables and if more than one eligibility create
  ;
  Q
  ;
-ELIGDIS  ;  Display patients eligibilities
+ELIGDIS ;  Display patients eligibilities
  ;
  N ACKK2,RC
  D ENS^%ZISS
@@ -245,7 +247,8 @@ DIAGDIS ;  Get diagnoses already filed and display
  S ACKK3="",ACKSP="                                   "
  F  S ACKK3=$O(ACKDIAGD("DILIST",1,ACKK3)) Q:ACKK3=""  D
  . S ACKK4=ACKDIAGD("DILIST",1,ACKK3)
- . S ACKI=$$GET1^DIQ(80,ACKK4,.01)
+ . ;ACKQ*3.0*22 updated api
+ . S ACKI=$$CODEC^ICDEX(80,ACKK4)
  . S ACKD($S(ACKI?.NP:+ACKI,1:ACKI))=ACKI_$E("   ",1,7-$L(ACKI))_"- "_$E($$DIAGTXT^ACKQUTL8(ACKK4,ACKVD)_ACKSP,1,35)_$S($G(ACKDIAGD("DILIST","ID",ACKK3,".12"))=1:"  * Primary Diagnosis *",1:"  * Secondary Diagnosis *")
  ;
  S ACK1=""
@@ -269,9 +272,12 @@ HLOSS ; Sets hearing loss variable if one or more diagnosis are for hearing
  ;
 MODDIS ;  Display Modifiers - Called within Executable Help of Modiifer
  ;  Enter Edit.
+ N ACKSRCE
  S ACK1="0"
  F  S ACK1=$O(^ACK(509850.5,ACK1)) Q:'+ACK1  D
- . W !,"  "_$$GET1^DIQ(81.3,ACK1,.01),?5,$$MODTXT^ACKQUTL8(ACK1,""),?53,$$GET1^DIQ(81.3,ACK1,.04)
+ . ;ACKQ*3.0*22 updated api
+ . S ACKSRCE=$P($$MOD^ICPTMOD(ACK1,"I"),U,5)
+ . W !,"  "_$P($$MOD^ICPTMOD(ACK1,"I"),U,2),?5,$$MODTXT^ACKQUTL8(ACK1,""),?53,$S(ACKSRCE="C":"CPT",ACKSRCE="H":"HCPCS",ACKSRCE="V":"VA NATIONAL",1:"")
  W ! Q
  ;
 CONVERT(ACKPRV) ; Converts the QSR Prov Code into a name string from file 200.

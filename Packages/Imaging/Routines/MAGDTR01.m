@@ -1,5 +1,5 @@
-MAGDTR01 ;WOIFO/PMK - Unread List for Consult/Procedure Request ; 20 Sep 2006  9:04 AM
- ;;3.0;IMAGING;**46**;16-February-2007;;Build 1023
+MAGDTR01 ;WOIFO/PMK/NST - Unread List for Consult/Procedure Request ; 12 Apr 2012  1:24 AM
+ ;;3.0;IMAGING;**46,127**;Mar 19, 2002;Build 4231;Apr 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -174,6 +174,7 @@ FINDLIST(GMRCIEN,ISPECIDX,IPROCIDX,ACQSITE,TRIGGER,TIUNOTE,ALTSERV) ;
  S XREF=$O(^MAG(2006.5841,"AC",TOSERV,+PROC,""))
  I 'XREF Q 0 ; no read/unread list
  S X=$G(^MAG(2006.5841,XREF,0))
+ I X="" Q 0  ; record doesn't exist
  S ISPECIDX=$P(X,"^",3),IPROCIDX=$P(X,"^",4),ACQSITE=$P(X,"^",5)
  S TRIGGER=$P(X,"^",6),TIUNOTE=$P(X,"^",7)
  Q XREF

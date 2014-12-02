@@ -1,5 +1,5 @@
-MAGQBUT4 ;WOIFO/RMP - BP Utilities ; 18 Jan 2011 5:17 PM
- ;;3.0;IMAGING;**7,8,48,20,81,39,121**;Mar 19, 2002;Build 2340;Oct 20, 2011
+MAGQBUT4 ;WOIFO/RMP - BP Utilities ; 27 Jun 2012 5:45 PM
+ ;;3.0;IMAGING;**7,8,48,20,81,39,121,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |

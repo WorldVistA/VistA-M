@@ -1,9 +1,16 @@
-PSBML3 ;BIRMINGHAM/TEJ-BCMA UTILITY TO EDIT THE PSB MED LOG  ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**3,13,39,41**;Mar 2004;Build 1
+PSBML3 ;BIRMINGHAM/TEJ-BCMA UTILITY TO EDIT THE PSB MED LOG  ;4/4/13 2:17pm
+ ;;3.0;BAR CODE MED ADMIN;**3,13,39,41,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
  ; $$GET1^DIQ/2056
+ ;
+ ;*70 - fix Tag CHANGE to compare the DD, Add, & Sol multiples for
+ ;      only the first 5 pieces and ignore the HR flag new 6th piece.
+ ;        example of pieces 1-5: "DD^363^1^3^TAB"
+ ;      Edit Medlog function in BCMA uses this compare to control
+ ;      Audit entries for the DD, Add, & Sol multiples & Edit Medlog
+ ;      updates.
  ;
 APATCH ; Maintain "APATCH" index...
  I $G(PSBTRAN)["MEDPASS" D:$P(PSBREC(9),U)="UDTAB"  Q
@@ -51,7 +58,8 @@ CHANGE(PSBREC,PSBEDIEN) ;Determine an order edit
  .....S PSBDATAX=PSBDFDA_"^"_$G(^PSB(53.79,+PSBEDIEN,PSBDDX,PSBXX,0))
  .....S:$P(PSBDATAX,U,3)?1"."1.N $P(PSBDATAX,U,3)=0_+$P(PSBDATAX,U,3)
  .....S:$P(PSBDATAX,U,4)?1"."1.N $P(PSBDATAX,U,4)=0_+$P(PSBDATAX,U,4)
- .....I PSBDATAX=PSBREC(PSBREC2X) K PSBREC2(PSBREC2X),PSBORDMD(PSBREC2X) S (PSBFIND(PSBREC2X,PSBXX),PSBFOUN(PSBDDX,PSBXX))=1 Q
+ .....; *70 compare only first 5 pieces ignoring the new HR piece
+ .....I $P(PSBDATAX,U,1,5)=$P(PSBREC(PSBREC2X),U,1,5) K PSBREC2(PSBREC2X),PSBORDMD(PSBREC2X) S (PSBFIND(PSBREC2X,PSBXX),PSBFOUN(PSBDDX,PSBXX))=1 Q
  .....S PSBUNTOR=$P(PSBDATAX,U,3),PSBUNTGN=$P(PSBDATAX,U,4),PSBUNTAD=$P(PSBDATAX,U,5)
  .....I PSBREC2(PSBREC2X)[(PSBDFDA_"^"_PSBDPTR_"^"_PSBUNTOR_"^") I '$D(PSBFOUN(PSBDDX,PSBXX)) S (PSBCHNG,PSBFIND(PSBREC2X,PSBXX),PSBFOUN(PSBDDX,PSBXX))=1 D  Q
  ......N PSBY,Y F Y=4,5 S PSBY=$P(PSBREC2(PSBREC2X),U,Y) S:PSBY'=$S(Y=4:PSBUNTGN,Y=5:PSBUNTAD) PSBORDMD(PSBREC2X,PSBDPTR,0)=""

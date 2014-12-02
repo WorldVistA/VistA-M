@@ -1,5 +1,5 @@
 ONCSG1 ;Hines OIFO/GWB - Automatic Staging Tables ;10/28/10
- ;;2.11;ONCOLOGY;**35,51,52,54,56,57**;Mar 07, 1995;Build 6
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  ;DIGESTIVE SYSTEM
  ;
@@ -293,10 +293,11 @@ COL7 ;Colon and Rectum - 7th edition
  .I TNM="12A0" S SG="3A" Q
  .I ((T=3)!(T="4A"))&($E(N,1)=1)&(M=0) S SG="3B" Q
  .I ((TNM="22A0")!(TNM="32A0")) S SG="3B" Q
- .I ((TNM="12B0")!(TNM="22A0")) S SG="3B" Q
+ .I ((TNM="12B0")!(TNM="22B0")) S SG="3B" Q
  .I TNM="4A2A0" S SG="3C" Q
- .I ((TNM="32B0")!(TNM="4A2B0")) S SG="3C" Q
+ .I ((TNM="32B0")!(TNM="4A2B0")!(TNM="4A20")) S SG="3C" Q
  .I ((TNM="4B10")!(TNM="4B20")) S SG="3C" Q
+ .I ((TNM="4B1A0")!(TNM="4B1B0")!(TNM="4B1C0")!(TNM="4B2A0")!(TNM="4B2B0")) S SG="3C" Q
  .I M="1A" S SG="4A" Q
  .I M="1B" S SG="4B" Q
  ;

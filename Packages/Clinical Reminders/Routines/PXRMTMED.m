@@ -1,5 +1,5 @@
-PXRMTMED ; SLC/PKR/PJH - Edit a reminder term. ;04/09/2009
- ;;2.0;CLINICAL REMINDERS;**1,4,6,12**;Feb 04, 2005;Build 73
+PXRMTMED ; SLC/PKR/PJH - Edit a reminder term. ;05/27/2014
+ ;;2.0;CLINICAL REMINDERS;**1,4,6,12,26**;Feb 04, 2005;Build 404
  ;
  ;=======================================================
  N CS1,CS2,DA,DIC,DLAYGO,DTOUT,DUOUT,Y
@@ -54,11 +54,11 @@ EDIT(ROOT,DA) ;
  . I $G(DA)'="" D CLASS(DA,DIE)
  I $G(DA)="" Q
  S TCONT=1
- F  D FINDING(DIE,DA)  Q:TCONT=0
+ F  D FINDING(ROOT,DA)  Q:TCONT=0
  Q
  ;
  ;=======================================================
-FINDING(DIE,DA,LIST) ;
+FINDING(DIE,DA) ;
  N CFIEN,GLOB,IEN,LIST,NODE,TERMSTAT,VF,WPIEN
  N DEF,DEF1,DEF2,STATUS
  S DIE("NO^")="OUTOK"
@@ -89,7 +89,7 @@ FINDING(DIE,DA,LIST) ;
  I GLOB="PXRMD(811.4," S DR=DR_";26"
  ;Taxonomy - use inactive problems
  I GLOB="PXD(811.2," D
- .S TERMSTAT=$$TAXNODE^PXRMSTA1($P($P(Y,U,2),";"),"H")
+ .S TERMSTAT=$$TAXNODE^PXRMSTA1($P($P(Y,U,2),";"))
  .I TERMSTAT="P" S DR=DR_";10" Q
  .I TERMSTAT'=0 S DR=DR_";10",STATUS=1
  ;Health Factor - within category rank

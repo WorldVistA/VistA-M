@@ -1,5 +1,5 @@
 IBCSC5 ;ALB/MJB - MCCR SCREEN 5 (OPT. EOC) ;27 MAY 88 10:15
- ;;2.0;INTEGRATED BILLING;**52,125,51,210,266,288,287,309,389,447**;21-MAR-94;Build 80
+ ;;2.0;INTEGRATED BILLING;**52,125,51,210,266,288,287,309,389,447,461**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRSC5
@@ -15,14 +15,14 @@ EN I $$INPAT^IBCEF(IBIFN) G ^IBCSC4
  S Z=1,IBW=1 X IBWW W " Event Date : " S Y=$P(IB(0),U,3) D DT^DIQ
  N IBPOARR,IBDATE
  D SET^IBCSC4D(IBIFN,"",.IBPOARR)
- S IBDATE=$$BDATE^IBACSV(IBIFN) ; Event date
- S Z=2,IBW=1 X IBWW W " Prin. Diag.: " S Y=$$DX^IBCSC4(0,IBDATE) W $S(Y'="":$P(Y,U,4)_" - "_$P(Y,U,2),$$DXREQ^IBCSC4(IBIFN):IBU,1:IBUN)
- F I=1:1:4 S Y=$$DX^IBCSC4(+Y,IBDATE) Q:Y=""  W !?4,"Other Diag.: ",$P(Y,U,4)_" - "_$P(Y,U,2)
+ S IBDATE=$$BDATE^IBACSV(IBIFN) ; Statement To date
+ S Z=2,IBW=1 X IBWW W " Prin. Diag.: " S Y=$$DX^IBCSC4(0,IBDATE) W $S(Y'="":$E($P(Y,U,4),1,47)_" - "_$P(Y,U,2),$$DXREQ^IBCSC4(IBIFN):IBU,1:IBUN)
+ F I=1:1:4 S Y=$$DX^IBCSC4(+Y,IBDATE) Q:Y=""  W !?4,"Other Diag.: ",$E($P(Y,U,4),1,47)_" - "_$P(Y,U,2)
  I +Y S Y=$$DX^IBCSC4(+Y,IBDATE) I +Y W !?4,"***There are more diagnoses associated with this bill.***"
 OP S Z=3,IBW=1 X IBWW W " OP Visits  : " F I=0:0 S I=$O(^DGCR(399,IBIFN,"OP",I)) Q:'I  S Y=I X ^DD("DD") W:$X>67 !?17 W Y_", "
  S:$D(^DGCR(399,"OP")) DGOPV=1 I '$O(^DGCR(399,IBIFN,"OP",0)) W IBU
  W !,?4,"Type       : ",$$GET1^DIQ(399,IBIFN_",",158)  ; Added with IB*2.0*447 BI
- S Z=4,IBW=1 X IBWW W " Cod. Method: ",$S($P(IB(0),U,9)="":IBUN,$P(IB(0),U,9)=9:"ICD-9-CM",$P(IB(0),U,9)=4:"CPT-4",1:"HCPCS")
+ S Z=4,IBW=1 X IBWW W " Cod. Method: ",$S($P(IB(0),U,9)="":IBUN,$P(IB(0),U,9)=9:"ICD",$P(IB(0),U,9)=4:"CPT-4",1:"HCPCS")
  D WRT:$D(IBPROC)
  S Z=5,IBW=1 X IBWW W " Rx. Refills: " S Y=$$RX I 'Y W IBUN
 OCC G OCC^IBCSC4

@@ -1,5 +1,5 @@
 PSGNE3 ;BIR/CML3,MLM-DETERMINE DEFAULT FOR START & STOP TIMES ; 12/13/10 2:46pm
- ;;5.0; INPATIENT MEDICATIONS ;**4,26,47,50,63,69,105,80,111,183,193,179**;16 DEC 97;Build 45
+ ;;5.0;INPATIENT MEDICATIONS ;**4,26,47,50,63,69,105,80,111,183,193,179,275**;16 DEC 97;Build 157
  ;
  ; Reference to ^PS(51.1 is supported by DBIA 2177
  ; Reference to ^PS(55 is supported by DBIA 2191
@@ -17,6 +17,7 @@ STOP ; exit when start date found
 ENFD(PSGDT) ; find default stop date
  N X1,X2,X3DMIN,Y
 SF I '$O(^PS(55,PSGP,5,"AUS",PSGDT)),'$D(^PS(53.1,"AC",PSGP)),+$G(^PS(55,PSGP,5.1)) S $P(^PS(55,PSGP,5.1),U)=""
+ S PSJSYSW0=$G(PSJSYSW0) ; Initialize/restore PSJSYSW0 ward parameters; clinic orders may not have them. Killed at exit in ENKV^PSGSETU
  I $G(PSGOEA)="R",$P(PSJSYSW0,"^",4) D ENWALL(%,0,PSGP)
  S PSGNEFD="",PSGNEW=$S('$P(PSJSYSW0,U,4):0,+$G(^PS(55,PSGP,5.1))'>PSGDT:0,1:+$G(^PS(55,PSGP,5.1))) S:PSGNEW<PSGNESD PSGNEW=0
  I PSGNEW,($G(PSGOEA)="R") S X1=$P(%,"."),X2=3 D C^%DTC S PSGNEW=$S($P(X,".")_(PSGNESD#1)'>PSGNEW:PSGNEW,1:0)
@@ -75,7 +76,7 @@ ENWALL(SD,FD,DFN) ; Update default stop date if appropriate.
  ;
 ENSD(SCH,AT,LI,OSD) ;Find start dt/tm
  ;SCH=schedule,AT=admin times,LI=login date/time,OSD=Renewed orders start
- I $G(APPT),$G(PSGORD)["P" S XD=$$DATE2^PSJUTL2(APPT) Q XD
+ I $G(APPT),$G(PSGORD)["P" S XD=$$DATE2^PSJUTL2($S(($$FMDIFF^XLFDT(APPT,PSGDT,2)<0):PSGDT,1:APPT)) Q XD
  N X,OSDLI D
  .I $L(LI)<13 S X=LI Q
  .I $L(LI)=14 S X=$E(LI,13,14) S:X>29 X=$E(LI,1,12)_5 S:X'>29 X=$E(LI,1,12)_1 Q

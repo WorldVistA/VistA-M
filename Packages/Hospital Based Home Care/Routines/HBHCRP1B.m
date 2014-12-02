@@ -1,5 +1,15 @@
-HBHCRP1B ; LR VAMC(IRMS)/MJT-HBHC report on files 634.1, 634.2, & 634.3, (Form 3/4/5 (A/V/D respectively) Error(s)), called by HBHCRP1A, entry points:  START, SETUP, PRTLOOP, EXIT ; April 2000
- ;;1.0;HOSPITAL BASED HOME CARE;**6,8,10,16**;NOV 01, 1993
+HBHCRP1B ;LR VAMC(IRMS)/MJT - HBHC report on files 634.1, 634.2, & 634.3, (Form 3/4/5 (A/V/D respectively) Error(s)), called by HBHCRP1A, entry points:  START, SETUP, PRTLOOP, EXIT ;April 2000
+ ;;1.0;HOSPITAL BASED HOME CARE;**6,8,10,16,25**;NOV 01, 1993;Build 45
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;HBH*1.0*25   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;******************************************************************************
+ ;******************************************************************************
+ ;
 START ; Entry point
  K ^TMP("HBHC",$J)
  ; Max length for HBHCHEAD = 50
@@ -30,7 +40,7 @@ PRINT ; Print report
  ; provider
  F HBHCI=1:1 S HBHCINFO=$G(^TMP("HBHC",$J,HBHCFORM,HBHCCLN,HBHCDAT,HBHCNAME,HBHCSSN,2,HBHCI)) Q:HBHCINFO=""  W !,"Provider:  ",$P(HBHCINFO,"$"),?54,"Encounter Prov #:",?72,$J($P(HBHCINFO,"$",2),8)
  ; Dx
- F HBHCI=1:1 S HBHCINFO=$G(^TMP("HBHC",$J,HBHCFORM,HBHCCLN,HBHCDAT,HBHCNAME,HBHCSSN,3,HBHCI)) Q:HBHCINFO=""  W !,"ICD9:  ",HBHCINFO
+ F HBHCI=1:1 S HBHCINFO=$G(^TMP("HBHC",$J,HBHCFORM,HBHCCLN,HBHCDAT,HBHCNAME,HBHCSSN,3,HBHCI)) Q:HBHCINFO=""  W !,"ICD:  ",HBHCINFO
  ; CPT code
  F HBHCI=1:1 S HBHCINFO=$G(^TMP("HBHC",$J,HBHCFORM,HBHCCLN,HBHCDAT,HBHCNAME,HBHCSSN,4,HBHCI)) Q:HBHCINFO=""  D CPT F HBHCJ=1:1 S HBHCINFO=$G(^TMP("HBHC",$J,HBHCFORM,HBHCCLN,HBHCDAT,HBHCNAME,HBHCSSN,4,HBHCI,HBHCJ)) Q:HBHCINFO=""   D MOD
  W !,HBHCY

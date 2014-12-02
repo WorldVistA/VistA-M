@@ -1,7 +1,7 @@
 FBAADEM1 ;AISC/DMK - DISPLAY PATIENT DEMOGRAPHICS ;6/5/2009
- ;;3.5;FEE BASIS;**13,51,103,108**;JAN 30, 1995;Build 115
- ;;Per VHA Directive 2004-038, this routine should not be modified.
-EN N FBDX,FBFDT,FBI,FBRR,FBT,FBTYPE,FBV,FBZ,PSA
+ ;;3.5;FEE BASIS;**13,51,103,108,139**;JAN 30, 1995;Build 127
+ ;;Per VA Directive 6402, this routine should not be modified.
+EN N FBDX,FBFDT,FBI,FBRR,FBT,FBTYPE,FBV,FBZ,PSA,FBDC
  S:'$D(FBPROG) FBPROG="I 1"
  ;
  S Y=$G(^FBAAA(DFN,4)) W:$P(Y,"^")]"" !,"Fee ID Card #: ",$P(Y,"^"),?40,"Fee Card Issue Date: " S Y=$P(Y,"^",2) D PDF W Y,!
@@ -23,7 +23,9 @@ EN N FBDX,FBFDT,FBI,FBRR,FBT,FBTYPE,FBV,FBZ,PSA
  . . . . S FBTYPE=$P(X,"^",3),FBTYPE=$S(FBTYPE=2:"Outpatient - "_$S(FBT=1:"Short Term",FBT=2:"Home Health",FBT=3:"ID Card",1:""),$D(^FBAA(161.8,+FBTYPE,0)):$P(^(0),"^"),1:"Unknown")
  . . . W FBTYPE W:$P(X,"^",7) !,?11,"Purpose of Visit: ",$P($G(^FBAA(161.82,$P(X,"^",7),0)),"^") I $P(X,"^",9)["FB583(" W !?25,">> Unauthorized Claim <<"
  . . . ; PRXM/KJH - Patch 103. Add Referring Provider and NPI to the display.
- . . . W !?11,"DX: ",$P(X,"^",8) W ?40,"REF: "
+ . . . ; JLG-FB*3.5*139-ICD10 REMEDIATION- print proper version of diagnosis code
+ . . . ;W !?11,"DX: ",$P(X,"^",8) W ?40,"REF: "
+ . . . D DC W !?11,"DX: ",FBDC W ?40,"REF: "
  . . . I $P(X,"^",21)'="" W $$GET1^DIQ(200,$P(X,"^",21),.01)
  . . . W !?11,"REF NPI: ",$$REFNPI^FBCH78($P(X,"^",21)),!
  . . . W:$P(FBDX,"^")]"" !?15,$P(FBDX,"^")
@@ -46,6 +48,16 @@ EN N FBDX,FBFDT,FBI,FBRR,FBT,FBTYPE,FBV,FBZ,PSA
  . . I $D(^FBAAA(DFN,2,FBI,1,0)) K ^UTILITY($J,"W") S DIWL=20,DIWR=70,DIWF="W" D HANG:$Y+5>IOSL Q:FBAAOUT  W !?11,"NARRATIVE:",! D
  . . . S FBRR=0 F  S FBRR=$O(^FBAAA(DFN,2,FBI,1,FBRR)) Q:'FBRR  S FBXX=^(FBRR,0) D HANG:$Y+5>IOSL Q:FBAAOUT  S X=FBXX D ^DIWP
  . . D ^DIWW:$D(FBXX) K FBXX W !
+ Q
+ ;
+DC ; JLG-FB*3.5*139-ICD10 REMEDIATION- determine diagnosis code based on authorization from date
+ S FBDC=""
+ N FBVERS S FBVERS=$S(FBFDT<$$IMPDATE^FBCSV1("10D"):"9",1:"10")
+ S:FBVERS=9 FBDC=$P(X,"^",8)
+ S:FBVERS=10 FBDC=$$ICD9^FBCSV1($P($G(^FBAAA(DFN,1,FBI,"C")),"^",2))
+ ;per SME requirement do not print ICD-10 diagnosis code for a CIVIL HOSPITAL unauthorized claim.
+ S:(FBVERS'=9)&($P(X,"^",3)=6)&($P(X,"^",9)["FB583(") FBDC=""
+ K FBVERS
  Q
  ;
 HANG I $E(IOST,1,2)="C-" S DIR(0)="E" D ^DIR K DIR S:'Y FBAAOUT=1

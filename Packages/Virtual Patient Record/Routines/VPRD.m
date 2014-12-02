@@ -1,5 +1,5 @@
 VPRD ;SLC/MKB -- Serve VistA data as XML via RPC ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2**;Sep 01, 2011;Build 317
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -11,6 +11,7 @@ VPRD ;SLC/MKB -- Serve VistA data as XML via RPC ;8/2/11  15:29
  ; VASITE                       10112
  ; XLFDT                        10103
  ; XLFSTR                       10104
+ ; XPAR                          2263
  ; XUAF4                         2171
  ;
 GET(VPR,DFN,TYPE,START,STOP,MAX,ID,FILTER) ; -- Return search results as XML in @VPR@(n) 
@@ -75,7 +76,7 @@ RTN(X) ; -- Return name of VPRDxxxx routine for clinical domain X
  I X["vital"        S Y="VPRDGMV",X="vitals"
  I X["rad"          S Y="VPRDRA",X="radiologyExams"
  I X["xray"         S Y="VPRDRA",X="radiologyExams"
- I X["new"          S Y="VPRDX",X="patients"
+ ; X["new"          S Y="VPRDX",X="patients"
  Q Y
  ;
 TAG(X) ; -- return plural name for group tags
@@ -139,5 +140,5 @@ VUID(IEN,FILE) ; -- Return VUID for item
  Q $$GET1^DIQ(FILE,IEN_",",99.99)
  ;
 VERSION(RET) ; -- Return current version of data extracts
- S RET="1.01"
+ S RET=$$GET^XPAR("ALL","VPR VERSION")
  Q

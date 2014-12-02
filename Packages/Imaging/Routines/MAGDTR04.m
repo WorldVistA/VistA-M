@@ -1,5 +1,5 @@
-MAGDTR04 ;WOIFO/PMK - Read a DICOM image file ; 13 Feb 2007  11:36 AM
- ;;3.0;IMAGING;**46**;16-February-2007;;Build 1023
+MAGDTR04 ;WOIFO/PMK/NST - Read a DICOM image file ; 13 Feb 2007  11:36 AM
+ ;;3.0;IMAGING;**46,127**;Mar 19, 2002;Build 4231;Apr 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,7 +15,16 @@ MAGDTR04 ;WOIFO/PMK - Read a DICOM image file ; 13 Feb 2007  11:36 AM
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
-LOCK(RETURN,UNREAD,LOCKFLAG,FULLNAME,INITIALS,DUZACQ,DUZREAD,DUZREAD2) ; RPC = MAG DICOM CON UNREADLIST LOCK
+LOCK(RETURN,UNREAD,LOCKFLAG,FULLNAME,INITIALS,DUZACQ,DUZREAD,DUZREAD2,DUZRDSTN) ; RPC = MAG DICOM CON UNREADLIST LOCK
+ ;
+ ; DUZREAD  -- User's DUZ at the Reading Site
+ ; DUZREAD2 -- DIC(4) pointer to Reading Site
+ ; DUZRDSTN -- Station Number to Reading Site
+ ; 
+ ; DUZRDSTN (Station Number, e.g. 660AA) and DUZREAD2 (IEN in INSTITUTION file (#4), e.g. 6001) describe same site
+ ; 
+ ; Cannot switch to Station Number only. Old GUI clients, before P127, send only Site IEN
+ S DUZREAD2=$$SITEIEN^MAGDTR05($G(DUZREAD2),$G(DUZRDSTN)) ; Use Station number to get IEN of the site
  N ACQSITE,LISTDATA,IPROCIDX,ISPECIDX,STATUS,X
  S DUZACQ=DUZ ; DUZ at the acquisition site is the DUZ for the RPC
  S STATUS=""

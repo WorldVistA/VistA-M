@@ -1,5 +1,5 @@
 LRSPSICP ;AVAMC/REG - SEARCH BY ICD CODE PRINT ;8/15/95  08:50 ;
- ;;5.2;LAB SERVICE;**72**;Sep 27, 1994
+ ;;5.2;LAB SERVICE;**72,422**;Sep 27, 1994;Build 29
  S N=0 D H,H1 S LR("F")=1
  F A=0:1 S N=$O(^TMP($J,"B",N)) Q:N=""!(LR("Q"))  S V(2)=$O(^(N,0)),V(3)=$O(^(V(2),0)),V=^TMP($J,V(2),V(3)) D:$Y>(IOSL-6) H,H1 Q:LR("Q")  W !,$E(N,1,18),?19,$P(V,"^",5),?25,$P(V,"^",3) D A
  S H(2)=1 D H,H2 Q:LR("Q")  D L
@@ -21,7 +21,7 @@ PT D:$Y>(IOSL-6) H,H2 Q:LR("Q")
  Q
 H I $D(LR("F")),IOST?1"C".E D M^LRU Q:LR("Q")
  D F^LRU W !,LRO(68)," SEARCH (",LRSTR,"=>",LRLST,")"
- W !!,"ICD CODE: ",I(1),?30,I
+ W !!,"ICD CODE: ",I(1),?20,I
  W !,LR("%") Q
 H1 Q:LR("Q")  W !!,?8,"NAME",?19,"ID",?23,"SEX",?27,"AGE",?32,"ACC #",!! Q
 H2 Q:LR("Q")  W !!,"ACC #",?9,"NAME",?28,"ID",?33,"SEX",?37,"AGE",?41,"MO/DA" Q

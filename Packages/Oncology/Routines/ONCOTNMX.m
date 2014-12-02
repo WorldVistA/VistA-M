@@ -1,5 +1,5 @@
 ONCOTNMX ;Hines OIFO/GWB - GUIDANCE INPUT TRANSFORM ;7/4/93
- ;;2.11;ONCOLOGY;**6,15,29,35**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 GUIT ; GUIDANCE INPUT TRANSFORM (#165.5,#142)
  ; New field - stores pointer to "GU5" mult in file #164

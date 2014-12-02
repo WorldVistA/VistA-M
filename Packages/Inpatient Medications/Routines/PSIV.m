@@ -1,5 +1,5 @@
 PSIV ;BIR/PR,MLM-MISC UTILITIES ;19 Mar 99 / 9:45 AM
- ;;5.0;INPATIENT MEDICATIONS;**7,16,29,38,53,56,72,58,110,181,267**;16 DEC 97;Build 158
+ ;;5.0;INPATIENT MEDICATIONS;**7,16,29,38,53,56,72,58,110,181,267,275**;16 DEC 97;Build 157
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191
  ; Reference to ^PSSLOCK is supported by DBIA 2789
@@ -104,6 +104,16 @@ GTON(X) ;
  I $D(^TMP("PSIV",$J,"NDB",X)) Q ^(X)
  I $D(^TMP("PSIV",$J,"PDB",X)) Q ^(X)
  I $D(^TMP("PSIV",$J,"RDB",X)) Q ^(X)
+ ; clinic orders
+ N REF,REF2,PSJCLND S (REF,REF2,PSJCLND)="" F  S PSJCLND=$O(^TMP("PSIV",$J,PSJCLND)) Q:($G(REF)]"")  D
+ .I $P(PSJCLND,"^",4)="AB" I $D(^TMP("PSIV",$J,PSJCLND,X)) S REF=^(X) Q
+ .I $P(PSJCLND,"^",4)="NB" I $D(^TMP("PSIV",$J,PSJCLND,X)) S REF=^(X) Q
+ .I $P(PSJCLND,"^",4)="PB" I $D(^TMP("PSIV",$J,PSJCLND,X)) S REF=^(X) Q
+ .I $P(PSJCLND,"^",4)="XB" I $D(^TMP("PSIV",$J,PSJCLND,X)) S REF=^(X) Q
+ .I $P(PSJCLND,"^",4)="NDB" I $D(^TMP("PSIV",$J,PSJCLND,X)) S REF=^(X) Q
+ .I $P(PSJCLND,"^",4)="PDB" I $D(^TMP("PSIV",$J,PSJCLND,X)) S REF=^(X) Q
+ .I $P(PSJCLND,"^",4)="RDB" I $D(^TMP("PSIV",$J,PSJCLND,X)) S REF=^(X) Q
+ I ($G(REF)]"") Q REF
  Q ""
 OV1 ;
  S (ON,ON55,P("PON"))=9999999999-ON_$S(ON["V":"V",1:"P")

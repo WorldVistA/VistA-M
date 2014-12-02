@@ -1,5 +1,5 @@
 PSDDSOR ;BHM/MHA/PWC - Digitally signed CS Orders Report; 08/30/02
- ;;3.0; CONTROLLED SUBSTANCES ;**40,42,45,67**;13 Feb 97;Build 8
+ ;;3.0;CONTROLLED SUBSTANCES;**40,42,45,67,73**;Feb 13,1997;Build 8
  ;Ref. to ^PSRX( supp. by IA 1977
  ;Ref. to ^PS(52.41, supp. by IA 3848
  ;Ref. to ^PS(59, supp. by IA 2621
@@ -27,6 +27,7 @@ DATE ;ask date range
  D ^DIR K DIR G:$D(DIRUT) END S PSDDF=Y
  W ! S DIR("A")="Include expired orders",DIR(0)="Y",DIR("B")="NO" D ^DIR
  K DIR G:$D(DIRUT) END S PSDXF=Y
+ I $G(PSDCSRX) S PSDPO="N" G SL
  W ! S DIR("A")="Include pending orders",DIR(0)="Y",DIR("B")="NO" D ^DIR
  K DIR G:$D(DIRUT) END S PSDPO=Y
 SL S (CT,PSDRG,PSDPR,PSDPT,PSDSC)=1,DP="Within ",DIR("B")="Drug" K SRT,SR
@@ -35,6 +36,7 @@ SL S (CT,PSDRG,PSDPR,PSDPT,PSDSC)=1,DP="Within ",DIR("B")="Drug" K SRT,SR
  .S:CT=1 DIR("B")="Drug" K:CT>1 DIR("B")
  .S DIR("A")=$S(CT>1:DP,1:"")_"Sort By: " D ^DIR
  .Q:$D(DIRUT)
+ .I Y="S" S PSDSC=0
  .S O="" F I=1:1:$L(OP,";") S J=$P(OP,";",I) I J'[Y(0) S O=O_$S(O="":"",1:";")_J
  .S OP=O
  .S SRT(CT)=Y,SR(Y)=CT S CT=CT+1,DP=DP_$S(Y="D":"Drug, ",Y="PR":"Provider, ",Y="PA":"Patient, ",1:"Schedule, ")
@@ -76,20 +78,18 @@ PA ;ask patient(s)
  I '$D(PAT)&(Y<0) G PA
  Q
 S ;
- W !! K SCH,PSDSC D KV S DIR("A")="Include All CS Schedules: ",DIR("B")="Y",DIR(0)="YN" D ^DIR
- Q:$D(DIRUT)
- I Y S PSDSC=1 Q
- F I=1:1:7 W !,?5,$S(I=1:"1 - SCHEDULE I",I=2:"2 - SCHEDULE II",I=3:"3 - SCHEDULE II NON-NARCOTICS",I=4:"4 - SCHEDULE III",I=5:"5 - SCHEDULE III NON-NARCOTICS",I=6:"6 - SCHEDULE IV NARCOTICS",1:"7 - SCHEDULE V NARCOTICS")
+ W !!,"Select controlled substance schedule(s)"
+ K DIR
+ S DIR(0)="S^1:"_$S($G(PSDCSRX):"SCHEDULE I - II",1:"SCHEDULE II")_";2:SCHEDULES III - V;3:SCHEDULES II - V",DIR("A")="Select Schedule(s)",DIR("B")=3
+ D ^DIR I $D(DTOUT)!($D(DUOUT))!($D(DIRUT)) Q
+ K SCH S I=$S($G(PSDCSRX)&(Y=1):1,Y=2:3,1:2),J=$S(Y=1:2,1:5) F K=I:1:J S SCH(K)=""
  W ! D KV
- S DIR(0)="L^1:7" D ^DIR Q:$D(DIRUT)
- I Y,$L(Y,",")-1=1 S Y=+Y,SCH($S(Y<3:Y,Y=3:"2n",Y=4:3,Y=5:"3n",1:Y-2))="" Q
- F I=1:1:$L(Y,",")-1 S J=+$P(Y,",",I) S SCH($S(J<3:J,J=3:"2n",J=4:3,J=5:"3n",1:J-2))=""
  Q
 DEV K %ZIS,IOP,POP,ZTSK S PSDIO=ION,%ZIS="QM" D ^%ZIS K %ZIS
  I POP S IOP=PSDIO D ^%ZIS K IOP,PSDIO W !,"Please try later!" G END
  K PSDIO I $D(IO("Q")) K IO("Q"),ZTIO,ZTSAVE,ZTDTH,ZTSK D  G END
  .S ZTRTN="EN^PSDDSOR",ZTDESC="Digitally Signed CS Orders Report"
- .F G="PSDDV","PSDSD","PSDBD","PSDED","PSDDF","PSDXF","PSDPO","PSDRG","PSDPR","PSDPT","PSDSC" S:$D(@G) ZTSAVE(G)=""
+ .F G="PSOSITE","PSDDV","PSDSD","PSDBD","PSDED","PSDDF","PSDXF","PSDPO","PSDRG","PSDPR","PSDPT","PSDSC" S:$D(@G) ZTSAVE(G)=""
  .S ZTSAVE("SRT(")="",ZTSAVE("SR(")="" S:$D(PRO) ZTSAVE("PRO(")="" S:$D(DRG) ZTSAVE("DRG(")="" S:$D(PAT) ZTSAVE("PAT(")="" S:$D(SCH) ZTSAVE("SCH(")=""
  .D ^%ZTLOAD W:$D(ZTSK) !,"Report is Queued to print !!" K ZTSK
 EN ;
@@ -98,51 +98,55 @@ EN ;
  D:PSDPO EN2 D PSTR G END
  Q
 EN1 S RX=0 F  S RX=$O(^PSRX(TY,PSDSD,RX)) Q:'RX  D
- .Q:'$D(^PSRX(RX,0))  Q:$P(^(2),"^",9)'=PSDDV  S RX0=^(0),ORD=$P($G(^("OR1")),"^",2)
+ .Q:'$D(^PSRX(RX,0))  Q:$P(^(2),"^",9)'=PSDDV  Q:($G(PSDCSRX))&('+$P(^(2),"^",2))  S RX0=^(0),ORD=$P($G(^("OR1")),"^",2)
  .Q:'$P(RX0,"^",2)!('$P(RX0,"^",4))!('$P(RX0,"^",6))!('ORD)
  .D GETD
  Q
 EN2 S DV=0,FI=52.41,PND=1
+ N PSIR,PSINST
+ S PSIR=0 F  S PSIR=$O(^PS(59,PSOSITE,"INI1",PSIR)) Q:'PSIR  I $P($G(^PS(59,PSOSITE,"INI1",PSIR,0)),"^") S PSINST($P($G(^(0)),"^"))=""
  F  S POS=$O(^PS(FI,TY,POS)) Q:'POS!(POS>(PSDED_".999999"))  S DV=0 F  S DV=$O(^PS(FI,TY,POS,DV)) Q:'DV  D
  .S RX=0 F  S RX=$O(^PS(FI,TY,POS,DV,RX)) Q:'RX  D
  ..Q:'$D(^PS(FI,RX,0))  S RX0=^(0)
- ..I $P(RX0,"^",3)["NW"!($P(RX0,"^",3)="DC") I $P(RX0,"^",24) S ORD=$P(RX0,"^") D GETD
+ ..I $P(RX0,"^",3)["NW"!($P(RX0,"^",3)="DC") I $P(RX0,"^",24),$D(PSINST($P($G(^PS(52.41,RX,"INI")),"^"))) S ORD=$P(RX0,"^") D GETD
  Q
 GETD ;
  I $G(PSDPT) G GETD1
  Q:'$D(PAT($P(RX0,"^",2)))
 GETD1 ;
- D GETDATA^ORWOR1(.Y,ORD,$P(RX0,"^",2)) Q:Y<0  D:$G(PND)
+ D GETDATA^PSDDSOR1(.Y,ORD,$P(RX0,"^",2)) Q:Y<0  D:$G(PND) 
  .S Y=Y_"^"_$P(RX0,"^",3)
  .I $P(RX0,"^",3)="DC",$G(^PS(52.41,RX,4))]"" D
- ..S Y=Y_"^"_$TR(^PS(52.41,RX,4),":",","),$P(Y,"^",4)="5;DISCONTINUED"
+ ..S Y=Y_"^"_$TR(^PS(52.41,RX,4),":",","),$P(Y,"^",4)="13;DISCONTINUED"
  D CONT
  Q
 CONT ;
- S ORS=+$P(Y,"^",4) Q:'ORS!('PSDXF&(ORS=7))
- Q:'PSDDF&(",1,12,13,"[(","_ORS_","))
- S S1=$S(ORS=5:4,ORS=7:3,",1,12,13,"[(","_ORS_","):2,1:1)
+ S ORS=+$P(Y,"^",4) Q:ORS=""  S $P(Y,"^",12)=$S($G(PND):"P",1:"R")
+ S $P(Y,"^",13)=$S($G(PND):$P(RX0,"^",13),1:$P(RX0,"^",5))
+ I '$P(Y,"^",10) Q:'PSDXF&(ORS=7)  Q:'PSDDF&(",1,12,13,"[(","_ORS_","))  S S1=$S(ORS=5:4,ORS=7:3,",1,12,13,"[(","_ORS_","):2,1:1)
+ I $P(Y,"^",10) Q:'PSDXF&(ORS=11)  Q:'PSDDF&(",12,13,14,15,"[(","_ORS_","))  S S1=$S(ORS=99:4,ORS=11:3,",12,13,14,15,"[(","_ORS_","):2,1:1)
  S PAT=$P($G(Y(1)),"^") Q:PAT=""
  S DRUG=$S($P($G(Y(2)),"^")]"":$P(Y(2),"^"),$P($G(Y(6)),"^")]"":$P(Y(6),"^"),1:"")
+ N DRGN S DRGN=$S(+$P($G(Y(2)),"^",2):+$P(Y(2),"^",2),+$P($G(Y(6)),"^",2):+$P(Y(6),"^",2),1:"")
  G:$G(PSDRG) CT1
- Q:'$D(DRG($P(Y(2),"^",2)))
+ Q:'$D(DRG(DRGN))
 CT1 S PROV=$P($G(Y(4)),"^") Q:PROV=""
  G:$G(PSDPR) CT2
  Q:'$D(PRO($P(Y(4),"^",2)))
-CT2 S SCH=$P($G(Y(2)),"^",5) Q:SCH=""
+CT2 S SCH=$P($G(Y(2)),"^",5) Q:SCH=""  ; check is this the DEA code?
  G:$G(PSDSC) CT3
- Q:'$D(SCH($P(Y(2),"^",5)))
+ Q:'$D(SCH(+$P(Y(2),"^",5)))  ;if schedule not selected then should include all schedules.
 CT3 I NS=4 D  Q
  .S ^TMP($J,S1,@(SR(1)),@(SR(2)),@(SR(3)),@(SR(4)),RX,0)=Y,I=0
- .F  S I=$O(Y(I)) Q:'I  S ^TMP($J,S1,@(SR(1)),@(SR(2)),@(SR(3)),@(SR(4)),RX,I)=Y(I)
+ .F  S I=$O(Y(I)) Q:'I  M ^TMP($J,S1,@(SR(1)),@(SR(2)),@(SR(3)),@(SR(4)),RX,I)=Y(I)
  I NS=3 D  Q
  .S ^TMP($J,S1,@(SR(1)),@(SR(2)),@(SR(3)),RX,0)=Y,I=0
- .F  S I=$O(Y(I)) Q:'I  S ^TMP($J,S1,@(SR(1)),@(SR(2)),@(SR(3)),RX,I)=Y(I)
+ .F  S I=$O(Y(I)) Q:'I  M ^TMP($J,S1,@(SR(1)),@(SR(2)),@(SR(3)),RX,I)=Y(I)
  I NS=2 D  Q
  .S ^TMP($J,S1,@(SR(1)),@(SR(2)),RX,0)=Y,I=0
- .F  S I=$O(Y(I)) Q:'I  S ^TMP($J,S1,@(SR(1)),@(SR(2)),RX,I)=Y(I)
+ .F  S I=$O(Y(I)) Q:'I  M ^TMP($J,S1,@(SR(1)),@(SR(2)),RX,I)=Y(I)
  S ^TMP($J,S1,@(SR(1)),RX,0)=Y,I=0
- F  S I=$O(Y(I)) Q:'I  S ^TMP($J,S1,@(SR(1)),RX,I)=Y(I)
+ F  S I=$O(Y(I)) Q:'I  M ^TMP($J,S1,@(SR(1)),RX,I)=Y(I)
  Q
  ;
 PSTR D NOW^%DTC S TDT=$E(%,4,5)_"/"_$E(%,6,7)_"/"_$E(%,2,3)_"@"_$E(%,9,10)_":"_$E(%,11,12)
@@ -167,19 +171,19 @@ N3 S AC="" F  S AC=$O(^TMP($J,AC)) Q:'AC  D WR D  Q:$D(DIRUT)  D HD1 Q:$D(DIRUT)
  ..S S3="" F  S S3=$O(^TMP($J,AC,S1,S2,S3)) Q:S3=""  D  Q:$D(DIRUT)
  ...S S5="" F  S S5=$O(^TMP($J,AC,S1,S2,S3,S5)) Q:S5=""  D STR3 Q:$D(DIRUT)
  Q
-STR3 D IN F  S S6=$O(^TMP($J,AC,S1,S2,S3,S5,S6)) Q:S6=""  S Z="Y"_S6,@Z=^TMP($J,AC,S1,S2,S3,S5,S6)
+STR3 D IN F  S S6=$O(^TMP($J,AC,S1,S2,S3,S5,S6)) Q:S6=""  S Z="Y"_S6 M @Z=^TMP($J,AC,S1,S2,S3,S5,S6)
  D PRT Q
 N2 S AC="" F  S AC=$O(^TMP($J,AC)) Q:'AC  D WR D  Q:$D(DIRUT)  D HD1 Q:$D(DIRUT)
  .S S1="" F  S S1=$O(^TMP($J,AC,S1)) Q:S1=""  S S2="" F  S S2=$O(^TMP($J,AC,S1,S2)) Q:S2=""  D  Q:$D(DIRUT)
  ..S S5="" F  S S5=$O(^TMP($J,AC,S1,S2,S5)) Q:S5=""  D STR2 Q:$D(DIRUT)
  Q
-STR2 D IN F  S S6=$O(^TMP($J,AC,S1,S2,S5,S6)) Q:S6=""  S Z="Y"_S6,@Z=^TMP($J,AC,S1,S2,S5,S6)
+STR2 D IN F  S S6=$O(^TMP($J,AC,S1,S2,S5,S6)) Q:S6=""  S Z="Y"_S6 M @Z=^TMP($J,AC,S1,S2,S5,S6)
  D PRT Q
 N1 S AC="" F  S AC=$O(^TMP($J,AC)) Q:'AC  D WR D  Q:$D(DIRUT)  D HD1 Q:$D(DIRUT)
  .S S1="" F  S S1=$O(^TMP($J,AC,S1)) Q:S1=""  D  Q:$D(DIRUT)
  ..S S5="" F  S S5=$O(^TMP($J,AC,S1,S5)) Q:S5=""  D STR1 Q:$D(DIRUT)
  Q
-STR1 D IN F  S S6=$O(^TMP($J,AC,S1,S5,S6)) Q:S6=""  S Z="Y"_S6,@Z=^TMP($J,AC,S1,S5,S6)
+STR1 D IN F  S S6=$O(^TMP($J,AC,S1,S5,S6)) Q:S6=""  S Z="Y"_S6 M @Z=^TMP($J,AC,S1,S5,S6)
  D PRT
  Q
 PRT D:($Y+4)>IOSL HD Q:$D(DIRUT)  D PRT^PSDDSOR1
@@ -192,6 +196,11 @@ HD D HD1 Q:$D(DIRUT)
 HD1 I PG>1,$E(IOST)="C" K DIR S DIR(0)="E",DIR("A")=" Press Return to Continue or ^ to Exit" D ^DIR K DIR
  Q
 END W ! D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@"
- K ^TMP($J),PSDDV,PSDSD,PSDED,PSDDF,PSDXF,DRG,PRO,PAT,PND,SCH,SRT,PSDRG,PSDPR,PSDPT,PSDSC,VA,Y0,Y1,Y2,Y3,Y4,Y5,Y6
+ K ^TMP($J),PSDDV,PSDSD,PSDED,PSDDF,PSDXF,DRG,PRO,PAT,PND,SCH,SRT,PSDRG,PSDPR,PSDPT,PSDSC,VA,Y0,Y1,Y2,Y3,Y4,Y5,Y6,I,J,K,PSDCSRX
 KV K DIR,DIRUT,DTOUT,DUOUT
+ Q
+ ;
+INST ;
+ N PSIR
+ S PSIR=0 F  S PSIR=$O(^PS(59,PSOSITE,"INI1",PSIR)) Q:'PSIR  I $P($G(^PS(59,PSOSITE,"INI1",PSIR,0)),"^") S PSINST($P($G(^(0)),"^"))=""
  Q

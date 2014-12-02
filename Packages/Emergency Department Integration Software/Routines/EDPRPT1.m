@@ -1,5 +1,5 @@
-EDPRPT1 ;SLC/MKB - Activity Report ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPRPT1 ;SLC/MKB - Activity Report ;4/25/13 3:15pm
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
 ACT(BEG,END,CSV) ; Get Activity Report for EDPSITE by date range
  N LOG,X,X0,X1,X3,DX,IN,OUT,ROW,PROV,I,CUTOFF
@@ -7,7 +7,10 @@ ACT(BEG,END,CSV) ; Get Activity Report for EDPSITE by date range
  D INIT ;set counters, sums to 0
  D:'$G(CSV) XML^EDPX("<logEntries>") I $G(CSV) D  ;headers
  . N TAB S TAB=$C(9)
- . S X="ED"_TAB_"Time In"_TAB_"Time Out"_TAB_"Complaint"_TAB_"MD"_TAB_"Acuity"_TAB_"Elapsed"_TAB_"Triage"_TAB_"Wait"_TAB_"Dispo"_TAB_"Adm Dec"_TAB_"Adm Delay"_TAB_"Arrival"_TAB_"Diagnosis"_TAB_"ICD9"
+ . ;***pij 4/19/2013 changed ED to IEN
+ . ;S X="ED"_TAB_"Time In"_TAB_"Time Out"_TAB_"Complaint"_TAB_"MD"_TAB_"Acuity"_TAB_"Elapsed"_TAB_"Triage"_TAB_"Wait"_TAB_"Dispo"_TAB_"Adm Dec"_TAB_"Adm Delay"_TAB_"Diagnosis"_TAB_"ICD9"
+ . S X="IEN"_TAB_"Time In"_TAB_"Time Out"_TAB_"Complaint"_TAB_"MD"_TAB_"Acuity"_TAB_"Elapsed"_TAB_"Triage"_TAB_"Wait"_TAB_"Dispo"_TAB_"Adm Dec"_TAB_"Adm Delay"_TAB_"Diagnosis"_TAB_"ICD9"
+ . ;***
  . D ADD^EDPCSV(X)
  S IN=BEG-.000001
 LOOP F  S IN=$O(^EDP(230,"ATI",EDPSITE,IN)) Q:'IN  Q:IN>END  D  I '$D(ZTQUEUED),$$LONG D ZTSAVE Q
@@ -50,6 +53,10 @@ A1 .. ; calculate times
  ... S NOT=NOT+1,NOT("elapsed")=NOT("elapsed")+ELAPSE
  ... S NOT("triage")=NOT("triage")+TRIAGE
  ... S NOT("wait")=NOT("wait")+WAIT
+ ... ;***pij 4/19/2013 if variables are null, change to zero
+ ... S ROW("admDec")=0
+ ... S ROW("admDel")=0
+ ... ;***
  .. E  D  ;decision to admit
  ... S ADMDEC=($$FMDIFF^XLFDT(X,IN,2)\60)
  ... S ADMDEL=$S(OUT:($$FMDIFF^XLFDT(OUT,X,2)\60),1:0)
@@ -64,7 +71,8 @@ A1 .. ; calculate times
  .. ;
  .. I '$G(CSV) S X=$$XMLA^EDPX("log",.ROW) D XML^EDPX(X) Q
  .. S X=ROW("id")
- .. F I="inTS","outTS","complaint","md","acuity","elapsed","triage","wait","disposition","admDec","admDel","arrival","dx","icd" S X=X_$C(9)_$G(ROW(I))
+ .. ;F I="inTS","outTS","complaint","md","acuity","elapsed","triage","wait","disposition","admDec","admDel","arrival","dx","icd" S X=X_$C(9)_$G(ROW(I))
+ .. F I="inTS","outTS","complaint","md","acuity","elapsed","triage","wait","disposition","admDec","admDel","dx","icd" S X=X_$C(9)_$G(ROW(I))
  .. D ADD^EDPCSV(X)
  I $D(ZTSAVE) D TASK^EDPRPT Q  ;too long -> queue rest of report
  D:'$G(CSV) XML^EDPX("</logEntries>")

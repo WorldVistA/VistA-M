@@ -1,5 +1,5 @@
 PSOBPSU2 ;BIRM/MFR - BPS (ECME) Utilities 2 ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359,385**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359,385,421**;DEC 1997;Build 15
  ;Reference to File 200 - NEW PERSON supported by IA 10060
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;Reference to $$NCPDPQTY^PSSBPSUT supported by IA 4992
@@ -116,21 +116,26 @@ ECMESTAT(RX,RFL) ;called from local mail
  ; 0 for not allowed to print from suspense
  ; 1 for allowed to print from suspense
  ;
- N STATUS,SHDT,PSOTRIC,TRICCK
+ N STATUS,PSOTRIC
  S STATUS=$$STATUS^PSOBPSUT(RX,RFL)
  ;IN PROGRESS claims - try again.  If still IN PROGRESS, do not allow to print
  I STATUS["IN PROGRESS" H 5 S STATUS=$$STATUS^PSOBPSUT(RX,RFL) I STATUS["IN PROGRESS" Q 0
+ ;
  ;no ECME status, allow to print.  This will eliminate 90% of the cases
  I STATUS="" Q 1
- ;check for TRICARE/CHAMPVA rejects, not allowed to go to print until resolved.
- ;it does not matter much for this API but usually TRICARE/CHAMPVA processing is done first.
- S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,.PSOTRIC)
- ;Add TRIAUD - if RX/RFL is in audit, allow to print even if not payable; PSO*7*358, cnf
- I PSOTRIC,STATUS'["PAYABLE",'$$TRIAUD^PSOREJU3(RX,RFL) Q 0
- ;DUR (88)/RTS (79) reject codes are not allowed to print until resolved.
- I $$FIND^PSOREJUT(RX,RFL,,"79,88") Q 0
+ ;
  ;check for suspense hold date/host reject errors
  I $$DUR(RX,RFL)=0 Q 0
+ ;
+ ;check for any TRICARE/CHAMPVA rejects, not allowed to go to print until resolved.
+ ;But allow to print if RX/RFL is in the TRI/CVA Audit Log with no unresolved rejects
+ S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,.PSOTRIC)
+ I PSOTRIC,STATUS'["PAYABLE",$$FIND^PSOREJUT(RX,RFL,,,1) Q 0  ; unresolved TRI/CVA rejects - no print  *421
+ I PSOTRIC,STATUS'["PAYABLE",$$TRIAUD^PSOREJU3(RX,RFL) Q 1    ; allow to print - on TRI/CVA Audit log  *421
+ ;
+ ;DUR (88)/RTS (79)/RRR reject codes are not allowed to print until resolved.
+ I $$FIND^PSOREJUT(RX,RFL,,"79,88",,1) Q 0
+ ;
  Q 1
  ;
  ;Description:

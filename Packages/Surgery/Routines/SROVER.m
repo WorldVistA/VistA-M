@@ -1,5 +1,5 @@
 SROVER ;BIR/MAM - VERIFY CASE ;[ 01/30/01  1:52 PM ]
- ;;3.0;Surgery;**7,34,38,86,88,100,119**;24 Jun 93
+ ;;3.0;Surgery;**7,34,38,86,88,100,119,177**;24 Jun 93;Build 89
 BEG S (SRSOUT,SRS,SR2)=0 I $D(^SRF(SRTN,.2)),$P(^(.2),"^",3) S SRS=1
 DONE K X I $D(^SRF(SRTN,"VER")),$P(^("VER"),"^")="Y" W !!,"The procedure has already been verified.  Do you wish to continue ?  YES// " R X:DTIME I '$T!(X["^") G END
  S:'$D(X) X="Y"
@@ -59,7 +59,7 @@ PRINT ; print information
  W !,"5. Postoperative Diagnosis: " I $D(^SRF(SRTN,34)) W ?30,$P(^(34),"^")
  W !,"6. Intraoperative Occurrences: "_$S($O(^SRF(SRTN,10,0)):"** INFORMATION ENTERED **",1:"NO OCCURRENCES HAVE BEEN ENTERED")
  W !,"7. Principal Pre-OP Diagnosis: " I $D(^SRF(SRTN,33)) W $P(^(33),"^")
- S SRDIAG="NOT ENTERED",SRDX=$P($G(^SRF(SRTN,34)),"^",3) I SRDX S SRDIAG=$$ICDDX^ICDCODE(SRDX,SRDATE),SRDIAG=$P(SRDIAG,"^",2)_"  "_$P(SRDIAG,"^",4)
- W !,"8. Principal Pre-OP Diagnosis Code: "_SRDIAG
+ S SRDIAG="NOT ENTERED",SRDX=$P($G(^SRF(SRTN,34)),"^",3) I SRDX S SRDIAG=$$ICD^SROICD(SRTN,SRDX),SRDIAG=$P(SRDIAG,"^",2)_"  "_$P(SRDIAG,"^",4)
+ W !,"8. Principal Pre-OP Diagnosis Code "_$$ICDSTR^SROICD(SRTN)_": "_SRDIAG
  W ! F LINE=1:1:80 W "-"
  Q

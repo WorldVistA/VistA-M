@@ -1,5 +1,5 @@
 VPRDLR ;SLC/MKB -- Laboratory extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;;Sep 01, 2011;Build 12
+ ;;1.0;VIRTUAL PATIENT RECORD;**2**;Sep 01, 2011;Build 317
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -12,42 +12,40 @@ VPRDLR ;SLC/MKB -- Laboratory extract ;8/2/11  15:29
  ; DIC                           2051
  ; DIQ                           2056
  ; LR7OR1,^TMP("LRRR",$J)        2503
+ ; LRPXAPIU                      4246
  ; XUAF4                         2171
  ;
  ; ------------ Get results from VistA ------------
  ;
 EN(DFN,BEG,END,MAX,ID) ; -- find patient's lab results
- N VPRSUB,VPRIDT,VPRN,VPRITM,LRDFN,SUB
+ N VPRSUB,VPRIDT,VPRN,VPRP,VPRITM,LRDFN,SUB,X
  S DFN=+$G(DFN) Q:$G(DFN)<1
  S BEG=$G(BEG,1410101),END=$G(END,4141015),MAX=$G(MAX,9999)
  K ^TMP("LRRR",$J,DFN) S LRDFN=$G(^DPT(DFN,"LR")),VPRSUB="CH"
  ;
  ; get result(s)
- I $L($G(ID)) D  Q:VPRN  ;done
- . S VPRSUB=$P(ID,";"),VPRIDT=+$P(ID,";",2),(BEG,END)=9999999-VPRIDT
- . S VPRN=$P(ID,";",3) I VPRN D  ;skip loop - single result
- .. D RR^LR7OR1(DFN,,BEG,END,VPRSUB)
- .. S SUB=$S("CH^MI"[VPRSUB:VPRSUB,1:"AP")_"(.VPRITM)"
- .. D @SUB,XML(.VPRITM)
- .. K ^TMP("LRRR",$J,DFN)
+ I $L($G(ID)) D  ;reset for LR7OR1
+ . S VPRSUB=$P(ID,";"),VPRIDT=+$P(ID,";",2)
+ . S:VPRIDT (BEG,END)=9999999-VPRIDT
  ;
  D RR^LR7OR1(DFN,,BEG,END,VPRSUB,,,MAX)
  S VPRSUB="" F  S VPRSUB=$O(^TMP("LRRR",$J,DFN,VPRSUB)) Q:VPRSUB=""  D
  . S VPRIDT=0 F  S VPRIDT=$O(^TMP("LRRR",$J,DFN,VPRSUB,VPRIDT)) Q:VPRIDT<1  D
- .. S VPRN=0 F  S VPRN=$O(^TMP("LRRR",$J,DFN,VPRSUB,VPRIDT,VPRN)) Q:VPRN<1  D
+ .. S VPRP=0 F  S VPRP=$O(^TMP("LRRR",$J,DFN,VPRSUB,VPRIDT,VPRP)) Q:VPRP<1  S X=+$G(^(VPRP)) D
+ ... S VPRN=$$LRDN^LRPXAPIU(X) I $L($G(ID),";")>2,VPRN'=$P(ID,";",3) Q
  ... K VPRITM S SUB=$S("CH^MI"[VPRSUB:VPRSUB,1:"AP")_"(.VPRITM)"
  ... D @SUB,XML(.VPRITM)
  K ^TMP("LRRR",$J,DFN)
  Q
  ;
 CH(LAB) ; -- return a Chemistry result in LAB("attribute")=value
- ;      Expects ^TMP("LRRR",$J,DFN,"CH",VPRIDT,VPRN),LRDFN
- N CDT,LR0,LRI,X0,X,LOINC,ORD,CMMT K LAB
+ ;      Expects ^TMP("LRRR",$J,DFN,"CH",VPRIDT,VPRP),VPRN,LRDFN
+ N X0,CDT,LR0,LRI,X,LOINC,ORD,CMMT K LAB
+ S X0=$G(^TMP("LRRR",$J,DFN,"CH",VPRIDT,VPRP))
  S LAB("id")="CH;"_VPRIDT_";"_VPRN,LAB("type")="CH"
  S CDT=9999999-VPRIDT,LAB("collected")=CDT
  S LR0=$G(^LR(LRDFN,"CH",VPRIDT,0)),LRI=$G(^(VPRN))
  S LAB("status")="completed",LAB("resulted")=$P(LR0,U,3)
- S X0=$G(^TMP("LRRR",$J,DFN,"CH",VPRIDT,VPRN))
  S LAB("test")=$P($G(^LAB(60,+X0,0)),U) ;$P(X0,U,10)?
  S:$L($P(X0,U,2)) LAB("result")=$P(X0,U,2)
  S:$L($P(X0,U,4)) LAB("units")=$P(X0,U,4)
@@ -78,10 +76,10 @@ ORDER(LABORD,TEST) ; -- return #100 order for Lab order# & Test
  Q Y
  ;
 MI(LAB) ; -- return a Microbiology result in LAB("attribute")=value
- ;    Expects ^TMP("LRRR",$J,DFN,"MI",VPRIDT,VPRN),LRDFN
+ ;    Expects ^TMP("LRRR",$J,DFN,"MI",VPRIDT,VPRP),LRDFN
  N ID,CDT,X0,X,CMMT,LR0 K LAB
- S X0=$G(^TMP("LRRR",$J,DFN,"MI",VPRIDT,VPRN)) Q:$L($P(X0,U))'>1
- S LAB("id")="MI;"_VPRIDT_"#"_VPRN,LAB("status")="completed"
+ S X0=$G(^TMP("LRRR",$J,DFN,"MI",VPRIDT,VPRP)) Q:$L($P(X0,U))'>1
+ S LAB("id")="MI;"_VPRIDT_"#"_VPRP,LAB("status")="completed"
  S LAB("type")="MI",CDT=9999999-VPRIDT,LAB("collected")=CDT
  S LR0=$G(^LR(LRDFN,"MI",VPRIDT,0)),LAB("resulted")=$P(LR0,U,3)
  S:$L($P(X0,U,2)) LAB("result")=$P(X0,U,2)

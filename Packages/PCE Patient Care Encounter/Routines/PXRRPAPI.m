@@ -1,5 +1,5 @@
 PXRRPAPI ;ISL/PKR - Build the patient specific info for each patient on the list. ;6/27/97
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**18,121,165**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**18,121,165,199**;Aug 12, 1996;Build 51
  ;
 PAT ;
  N ACTIVITY,BACDATE,BD,BUSY,DATE,DFN,EACDATE,ED,ERIEN,ERR
@@ -210,7 +210,7 @@ EXIT ;
  E  D ^PXRRPAPR
  Q
  ;
- ;=======================================================================
+ ;======================================================================
 ADMISS(DFN,DATE,IEN) ;Given a patient and an admission date find the
  ;associated discharge, if any.  Save the other information listed
  ;below.
@@ -239,7 +239,7 @@ ADMDONE ;
  D KVA^VADPT
  Q
  ;
- ;=======================================================================
+ ;======================================================================
 DISCHRG(DFN,DATE,IEN) ;Given a patient and a discharge date find the
  ;associated admission.  Determine if the combined admission-discharge
  ;data has already been stored.  If it has quit otherwise store it.
@@ -264,15 +264,14 @@ DISCHRG(DFN,DATE,IEN) ;Given a patient and a discharge date find the
  ;Will need a DBIA for these reads.
  ;Try to get DXLS
  I +VAIP(12)>0 S ICD9IEN=$P($G(^DGPT(VAIP(12),70)),U,10)
- ;I +$G(ICD9IEN)>0 S TEMP=TEMP_U_$P(^ICD9(ICD9IEN,0),U,3)
- I +$G(ICD9IEN)>0 S TEMP=TEMP_U_$P($$ICDDX^ICDCODE(ICD9IEN),U,4)
+ I +$G(ICD9IEN)>0 S TEMP=TEMP_U_$P($$ICDDATA^ICDXCODE("DIAG",ICD9IEN,DATE,"I"),U,4)
  ;
  S ^XTMP(PXRRXTMP,FACIEN,HLOCIEN,DFN,"ADMDIS",ADMDATE,DATE)=TEMP
 DISDONE ;
  D KVA^VADPT
  Q
  ;
- ;=======================================================================
+ ;======================================================================
 SSNFORM(SSN) ;Format the social security number with dashes.
  N FSSN,TEMP
  S TEMP=$E(SSN,1,3)
@@ -283,9 +282,9 @@ SSNFORM(SSN) ;Format the social security number with dashes.
  S FSSN=FSSN_TEMP
  Q FSSN
  ;
- ;=======================================================================
+ ;======================================================================
 FMDFINVL(INVDT,DATE) ;Convert an inverse date (LABORATORY format
- ;9999999-date) to Fileman format.
+ ;9999999-date) to FileMan format.
  I $L(INVDT)=0 Q INVDT
  N TEMP
  S TEMP=9999999-INVDT

@@ -1,5 +1,5 @@
 PSIVOPT ;BIR/PR,MLM-OPTION DRIVER ; 1/4/12 7:36am
- ;;5.0;INPATIENT MEDICATIONS;**17,27,58,88,104,110,155,181,271**;16 DEC 97;Build 2
+ ;;5.0;INPATIENT MEDICATIONS;**17,27,58,88,104,110,155,181,271,252**;16 DEC 97;Build 69
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191
  ; Reference to ^PSDRUG is supported by DBIA# 2192        
@@ -57,7 +57,10 @@ E ; Entry for Pharmacy edit
  Q
  ;
 R ; Renew order.
+ NEW PSJOCFG
+ S PSJOCFG="RENEW IV"
  D R^PSIVOPT2
+ K PSJOCFG
  Q
  ;
 H(DFN,ON,STAT,STOP)          ; Place order on hold.

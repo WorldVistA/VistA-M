@@ -1,5 +1,5 @@
 PSOHLNE2 ;BIR/RTR-Parsing out more OERR segments ;8/13/08 2:43pm
- ;;7.0;OUTPATIENT PHARMACY;**1,7,59,46,225,305**;DEC 1997;Build 8
+ ;;7.0;OUTPATIENT PHARMACY;**1,7,59,46,225,305,391**;DEC 1997;Build 13
  ;External reference to DG(40.8 supported by DBIA 728
  ;External reference to PS(50.606 supported by DBIA 2174
  ;External reference to PS(50.7 supported by DBIA 2223
@@ -21,7 +21,7 @@ EN ;RXO segment on new orders with multiple subscripts
 PARSE ;
  I NNNN=1 S PSORDITE=$P(POLIM,"^",4) G SET
  I NNNN=10 S PSODDRUG=$P(POLIM,"^",4) I $G(PSODDRUG),('$D(^PSDRUG(PSODDRUG,0))) S PSODDRUG="" G SET
- I NNNN=10 G SET
+ I NNNN=10 S DDR=1 G SET
  I NNNN=11 S PSOXQTY=POLIM G SET
  I NNNN=13 S PSOREFIL=POLIM G SET
  I NNNN=17 S PSODYSPL=POLIM

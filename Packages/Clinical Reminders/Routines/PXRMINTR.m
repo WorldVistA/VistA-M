@@ -1,5 +1,5 @@
-PXRMINTR ;SLC/PKR/PJH - Input transforms for Clinical Reminders. ;02/024/2011
- ;;2.0;CLINICAL REMINDERS;**4,12,16,18**;Feb 04, 2005;Build 152
+PXRMINTR ;SLC/PKR/PJH - Input transforms for Clinical Reminders. ;11/04/2013
+ ;;2.0;CLINICAL REMINDERS;**4,12,16,18,26**;Feb 04, 2005;Build 404
  ;=======================================================
 VASP(DA,X) ;Check for valid associate sponsor in file 811.6.
  ;Do not execute as part of a verify fields.
@@ -166,6 +166,11 @@ VNAME(NAME) ;Check for a valid .01 value. The names of national reminder
  N AUTH,STEXT,TEXT,VALID
  S NAME=$$UP^XLFSTR(NAME)
  S VALID=1
+ I NAME["~" D
+ . S TEXT="Name cannot contain the ""~"" character."
+ . D EN^DDIOL(TEXT)
+ . H 2
+ . S VALID=0
  S STEXT=$E(NAME,1,3)
  I (STEXT="VA-") D
  . S AUTH=($G(PXRMINST)=1)&(DUZ(0)="@")
@@ -174,6 +179,24 @@ VNAME(NAME) ;Check for a valid .01 value. The names of national reminder
  .. D EN^DDIOL(TEXT)
  .. H 2
  .. S VALID=0
+ Q VALID
+ ;
+ ;=======================================================
+VPRIOL(X) ;Check for a valid Priority List.
+ ;Do not execute as part of a verify fields.
+ I $L(X)=0 Q 1
+ I $G(DIUTIL)="VERIFY FIELDS" Q 1
+ ;Do not execute as part of exchange.
+ I $G(PXRMEXCH) Q 1
+ N IND,CHAR,TEXT,VALID
+ S X=$$UP^XLFSTR(X)
+ S VALID=1
+ F IND=1:1:$L(X) D
+ . S CHAR=$E(X,IND)
+ . I CHAR?0.1"A"0.1"C"0.1"U" Q
+ . S VALID=0
+ . S TEXT=CHAR_" is not valid for the Priority List"
+ . D EN^DDIOL(TEXT)
  Q VALID
  ;
  ;=======================================================
@@ -242,3 +265,4 @@ VUSAGE(X) ;Check X to see if it contains valid USAGE codes.
  . S TEXT=TEMP_" are not valid USAGE codes!"
  . D EN^DDIOL(TEXT)
  Q 1
+ ;

@@ -1,6 +1,12 @@
-LEXLK2 ;ISL/FJF-Look Up - Expression Attributes ;09-10-01
- ;;2.0;LEXICON UTILITY;**6,19**;Sep 23, 1996
- ;
+LEXLK2 ;ISL/KER - Look Up - Expression Attributes ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**6,19,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.13)        N/A
+ ;               
+ ; External References
+ ;    ^DIR                ICR  10026
+ ;               
 GET(Y) ; Build list in array LEX
  N LEXSPC,LEXSPCR,LEXSTR,LEXDIS,LEXMC,LEXMCE,LEXEXP
  S $E(LEXSPC,42)=" "

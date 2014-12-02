@@ -1,5 +1,5 @@
-MAGDQR21 ;WOIFO/EdM,NST,MLH,JSL,SAF - RPCs for Query/Retrieve SetUp ; 09 May 2011 4:27 PM
- ;;3.0;IMAGING;**83,104,123**;Mar 19, 2002;Build 67;Jul 24, 2012
+MAGDQR21 ;WOIFO/EdM,NST,MLH,JSL,SAF,BT - RPCs for Query/Retrieve SetUp ; 09 May 2011 4:27 PM
+ ;;3.0;IMAGING;**83,104,123,119**;Mar 19, 2002;Build 4396;Apr 19, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -82,245 +82,299 @@ SET(OUT,DATA,DEST,GATEWAY) ; RPC = MAG SET DICOM DEST
  . Q
  Q
  ;
-TMPOUT(NAME) N X
+TMPOUT(NAME) ; Return name of the temp
+ N X
  S X=$$RTRNFMT^XWBLIB("GLOBAL ARRAY",1)
  S X=$NA(^TMP("MAG",$J,NAME))
  K @X
  Q X
  ;
-STUDY1(OUT,STUDIES) ; RPC = MAG DOD GET STUDIES UID
- N I,N,STUDY,UID
- S N=1 S OUT=$$TMPOUT("STUDY")
- S UID=$G(STUDIES) S:UID'="" STUDY(UID)=""
- S I="" F  S I=$O(STUDIES(I)) Q:I=""  S UID=$G(STUDIES(I)) S:UID'="" STUDY(UID)=""
- S UID="" F  S UID=$O(STUDY(UID)) Q:UID=""  D STUDY(UID)
- S @OUT@(1)=N-1
- Q
- ;
-STUDY2(OUT,GROUPS,REQDFN,IMGLESS) ; RPC = MAG DOD GET STUDIES IEN
+STUDY2(OUT,GROUPS,REQDFN,IMGLESS,FLAGS) ; RPC = MAG DOD GET STUDIES IEN
  ; CR, 5-28-09
  ; IMGLESS is a new flag to speed up queries: if=1 (true), just get study-level 
- ; data, if null or zero get everything. This new flag is optional.
- N I0,I,N,P0,STUDY,UID
- S REQDFN=$G(REQDFN),IMGLESS=$G(IMGLESS)
- S N=1 S OUT=$$TMPOUT("STUDY")
- S I0=$G(GROUPS) D  S I="" F  S I=$O(GROUPS(I)) Q:I=""  S I0=$G(GROUPS(I)) D
- . Q:'I0
- . F  S P0=$P($G(^MAG(2005,+I0,0)),"^",10) Q:'P0  S I0=P0
- . S UID=$P($G(^MAG(2005,+I0,"PACS")),"^",1) S:UID="" UID="?"
- . S STUDY(UID,I0)=""
- . Q
- S UID="" F  S UID=$O(STUDY(UID)) Q:UID=""  D
- . I UID="?" D  Q
- . . S I0=""
- . . F  S I0=$O(STUDY(UID,I0)) Q:I0=""  D STUDY("",I0,REQDFN,IMGLESS)
- . . Q
- . D STUDY(UID,"",REQDFN,IMGLESS)  ; UID is not "?"
- . Q
- S @OUT@(1)=N-1
+ ;            data, if null or zero get everything. This new flag is optional.
+ ; BT, 01-06-12
+ ; FLAGS is ""  - Exclude Deleted records (default)
+ ;          "D" - Include Deleted records
+ ;       
+ ;
+ N STUDY,INCDEL
+ ;
+ S REQDFN=$G(REQDFN)
+ S INCDEL=$G(FLAGS)["D"
+ S IMGLESS=$G(IMGLESS)
+ S OUT=$$TMPOUT^MAGDQR21("STUDY")
+ S @OUT@(1)=1
+ ;
+ I $G(GROUPS) D CNVGRP^MAGDQR21(.GROUPS)
+ ;
+ D GETSTUDY^MAGDQR21(.GROUPS,.STUDY,INCDEL) ; read IENS in GROUPS and sort into STUDY by UID,IEN
+ ;
+ D GENOUT^MAGDQR21(.STUDY,REQDFN,IMGLESS,INCDEL) ; generate OUT based on STUDY
+ ;
+ ;update last counter
+ S @OUT@(1)=@OUT@(1)-1
  Q
  ;
-STUDY(UID,IEN,REQDFN,IMGLESS) ;
- N D0,D1,DFN,F1,F2,F3,I0,IMGCNT,IMGINFO,MAGR0,OBJGRP,OVRDDFN,PAT,QINTEG,STUDY,STUMO,X
+CNVGRP(GROUPS) ; Add top level GROUPS value to GROUPS array 
+ ; GROUPS=10, GROUPS(1)=11, GROUPS(2)=12 becomes GROUPS(1)=11, GROUPS(2)=12, GROUPS(3)=10
+ N LAST
+ S LAST=$O(GROUPS(""),-1)+1
+ S GROUPS(LAST)=GROUPS
+ Q
+ ;
+GETSTUDY(GROUPS,STUDY,INCDEL) ; Read IENS in GROUPS and sort into STUDY by UID,IEN
+ N I,IEN
+ S I=""
+ F  S I=$O(GROUPS(I)) Q:I=""  D
+ . S IEN=$G(GROUPS(I))
+ . Q:'IEN
+ . I 'INCDEL D SRTUID^MAGDQR21(IEN,.STUDY)
+ . I INCDEL D SRTUID2^MAGDQR21(IEN,.STUDY)
+ . Q
+ Q
+ ;
+SRTUID(IEN,STUDY) ; Sort group by UID, IEN
+ N PARENT,UID
+ ;get parent IEN
+ S PARENT=$P($G(^MAG(2005,IEN,0)),"^",10)
+ S:PARENT IEN=PARENT
+ ;IEN now is parent IEN or Individual Image
+ S UID=$P($G(^MAG(2005,IEN,"PACS")),"^",1) S:UID="" UID="?" ;no pacs
+ S STUDY(UID,IEN)=""
+ Q
+ ; 
+SRTUID2(IEN,STUDY) ; Sort group by UID, IEN (include Deleted Images)
+ N PARENT,UID,MAGFIL
+ ;get parent IEN
+ S PARENT=$P($G(^MAG(2005,IEN,0)),"^",10)
+ S:'PARENT PARENT=$P($G(^MAG(2005.1,IEN,0)),"^",10)
+ S:PARENT IEN=PARENT
+ ;IEN now is parent IEN or Individual Image
+ S MAGFIL=$$FILE^MAGGI11(IEN)
+ S UID=$S(MAGFIL:$P($G(^MAG(MAGFIL,IEN,"PACS")),"^",1),1:"")
+ S:UID="" UID="?" ;no pacs
+ S STUDY(UID,IEN)=""
+ Q
+ ;
+GENOUT(STUDY,REQDFN,IMGLESS,INCDEL) ; Generate output in ^TMP based on STUDY array
+ N UID,IEN
+ ;
+ S UID=""
+ F  S UID=$O(STUDY(UID)) Q:UID=""  D
+ . I UID="?" D  Q
+ . . S IEN=""
+ . . F  S IEN=$O(STUDY(UID,IEN)) Q:IEN=""  D STUDY^MAGDQR21("",IEN,REQDFN,IMGLESS,INCDEL)
+ . . Q
+ . ;ELSE
+ . D STUDY^MAGDQR21(UID,"",REQDFN,IMGLESS,INCDEL)
+ . Q
+ Q
+ ; 
+STUDY(UID,IEN,REQDFN,IMGLESS,INCDEL) ; Generate output in ^TMP based on parameters
+ N STUDY
  N SERIESARRAY ; array of series numbers for this study
  N TOTIMAGES ; total number of images for all series in this study
- N PATCOUNT ; array of patients having studies with the requested study instance UID
+ N PAT ; array of IENs by patient
+ N PATCOUNT ; array of patients, use for validation purposes, should contain only one patient
+ N I0 ;IEN where the patient found
+ N D0
+ N STUMO ;Procedure array
  ;
- S N=N+1,@OUT@(N)="NEXT_STUDY|"_UID_"|"_IEN
- I UID'="" S D0="" F  S D0=$O(^MAG(2005,"P",UID,D0)) Q:D0=""  D
- . S:'$P($G(^MAG(2005,D0,0)),"^",10) STUDY(D0)="" ; Get only image IEN
- . Q
- D:$G(IEN)
- . S:'$P($G(^MAG(2005,IEN,0)),"^",10) STUDY(IEN)="" ; Get only image IEN
- . Q
+ D WRTOUT^MAGDQR21("NEXT_STUDY|"_UID_"|"_IEN)
+ ;
+ D:UID'="" GETGPUID^MAGDQR21(UID,.STUDY,INCDEL) ;fill STUDY based on UID
+ D:IEN GETGPIEN^MAGDQR21(IEN,.STUDY,INCDEL) ;add IEN into STUDY
  Q:'$O(STUDY(""))
- S TOTIMAGES=0
- S D0="" F  S D0=$O(STUDY(D0)) Q:D0=""  D
- . S DFN=+$P($G(^MAG(2005,D0,0)),"^",7),PATCOUNT(DFN)=""
- . D  ; add to patient array unless single pt was requested and this isn't that pt
- . . I REQDFN'=DFN Q
- . . S:'$D(^MAG(2005,D0,1)) TOTIMAGES=TOTIMAGES+1 ; a single image (e.g., photo ID), not a group
- . . S PAT(DFN,D0)=""
- . . Q
- . S D1=0 F  S D1=$O(^MAG(2005,D0,1,D1)) Q:'D1  D
- . . S I0=+$G(^MAG(2005,D0,1,D1,0)) Q:'I0
- . . S DFN=+$P($G(^MAG(2005,I0,0)),"^",7),PATCOUNT(DFN)=""  ; Group DFN
- . . D  ; increment image count unless single pt was requested and this isn't that pt
- . . . I REQDFN'=DFN Q
- . . . S TOTIMAGES=TOTIMAGES+1
- . . . Q
- . . Q
- . Q
+ ; 
+ D GETPAT^MAGDQR21(.STUDY,.PAT,.PATCOUNT,.TOTIMAGES,REQDFN,INCDEL) ;get images for patient
+ Q:'$$VALPAT^MAGDQR21(UID,.PAT,.PATCOUNT,REQDFN)  ;validate to make sure all images belonged to one patient
  ;
- S PAT=0,DFN="" F  S DFN=$O(PATCOUNT(DFN)) Q:DFN=""  S PATCOUNT=$G(PATCOUNT)+1
- I PATCOUNT>1 D  Q:'REQDFN  Q:'$D(PAT(REQDFN))
- . ; duplicate study instance UID?
- . S N=N+1,@OUT@(N)="STUDY_ERR|"_UID_"|"_PATCOUNT_" different patients"
- . Q
+ S I0=$O(PAT(REQDFN,"")) ;include the first Image when writing out the STUDY section
+ Q:'$$WRTIEN^MAGDQR21(UID,I0,TOTIMAGES,REQDFN)
  ;
- S:UID'="" N=N+1,@OUT@(N)="STUDY_UID|"_UID
- S I0=$O(PAT(REQDFN,""))
- I 'I0 S N=N+1,@OUT@(N)="STUDY_ERR|"_UID_"|Matching study not found for patient "_REQDFN Q
- S OBJGRP=$$ONEGROUP(I0) ; get the first image IEN for group/image I0
- S N=N+1,@OUT@(N)="STUDY_IEN|"_I0_"|"_TOTIMAGES_"|"_OBJGRP_"|"_$$CPTCODE(I0)_"|"_$$GETSITE1(OBJGRP)
+ Q:'$$INTEGDFN^MAGDQR21(I0,REQDFN,INCDEL)
  ;
- ; check integrity of study record, bail out unless DFN is specified
- ; and matches study DFN (VA internal use only!)
- D CHK^MAGGSQI(.X,I0) S QINTEG='$G(X(0)) D:QINTEG
- . S @OUT@(N)=@OUT@(N)_"|"_$P($G(X(0)),"^",2)
- . Q
- ; override QI check only if image DFN = DFN specified in call
- ; (VA internal only!)
- I QINTEG Q:'REQDFN  Q:$P($G(^MAG(2005,I0,0)),"^",7)'=REQDFN
- ;
- S N=N+1,@OUT@(N)="STUDY_PAT|"_REQDFN_"|"_$S($T(GETICN^MPIF001)'="":$$GETICN^MPIF001(REQDFN),1:"-1^NO MPI")_"|"_$P($G(^DPT(REQDFN,0)),"^",1)
+ D WRTOUT^MAGDQR21("STUDY_PAT|"_REQDFN_"|"_$S($T(GETICN^MPIF001)'="":$$GETICN^MPIF001(REQDFN),1:"-1^NO MPI")_"|"_$P($G(^DPT(REQDFN,0)),"^",1))
  ;
  ; CR, 5-28-09
  ; For study-level data stop here without additional checks 
  Q:IMGLESS=1
  ;end of check above
  ;
- S D0="" F  S D0=$O(PAT(REQDFN,D0)) Q:D0=""  D
- . N ANY,I,INUM,SERID,SERIES,SNUM,STS,TMP,U1
- . K ^TMP("MAG",$J,"S")
- . K ^TMP("MAG",$J,"M")
- . D  ; retrieve info for either single or group image
- . . I $D(^MAG(2005,D0,1)) D  Q  ; image is part of a group
- . . . ; allow return of info if DFN defined
- . . . D GROUP^MAGGTIG(.TMP,D0,REQDFN)
- . . . Q
- . . D  ; DEFAULT - image is a single
- . . . N X
- . . . D IMAGEINF^MAGGTU3(.X,D0,REQDFN)
- . . . S TMP=$NA(^TMP("MAGGTIG",$J))
- . . . K @TMP S @TMP@(0)="1^1",@TMP@(1)=X(0)
- . . . Q
- . . Q
- . D:$E($G(TMP),1,5)="^TMP("
- . . N D,G,M,P,X
- . . K @TMP@(0)
- . . S I="" F  S I=$O(@TMP@(I)) Q:I=""  D
- . . . S X=$G(@TMP@(I)),D=$P(X,"^",2) Q:'D
- . . . ; Only if those two pieces really aren't used:
- . . . ;;S $P(X,"^",3)=""
- . . . ;;S $P(X,"^",4)=""
- . . . S ^TMP("MAG",$J,"S",D)=X
- . . . S X=$G(^MAG(2005,D,0)),G=+$P(X,"^",10)
- . . . S M=$P(X,"^",8) S:$E(M,1,4)="RAD " M=$E(M,5,$L(M)) Q:M=""
- . . . S G=$P($G(^MAG(2005,G,2)),"^",6),P=$P($G(^MAG(2005,D,2)),"^",6)
- . . . I P'=74,G'=74 Q
- . . . S ^TMP("MAG",$J,"M",1,D)=M,STUMO(M)=""
- . . . S G=$G(^MAG(2005,D,"SERIESUID"))
- . . . S:G'="" ^TMP("MAG",$J,"M",2,G,M)=""
- . . . Q
- . . Q
- . S (ANY,D1)=0 F  S D1=$O(^MAG(2005,D0,1,D1)) Q:'D1  D
- . . S X=$G(^MAG(2005,D0,1,D1,0)),I0=+X Q:'I0
- . . S ANY=1,I0=+X,SNUM=$P(X,"^",2),INUM=$P(X,"^",3)
- . . S U1=$G(^MAG(2005,I0,"SERIESUID"))
- . . S:SNUM="" SNUM="?" S:INUM="" INUM="?" S:U1="" U1="?"
- . . S SERIES(U1_"_"_SNUM,INUM,I0)="",SERID(U1_"_"_SNUM,U1)=""
- . . Q
- . D:'ANY
- . . S U1=$G(^MAG(2005,D0,"SERIESUID")) S:U1="" U1="?"
- . . S SERIES(U1_"_1",1,D0)="",SERID(U1_"_1",U1)=""
- . . Q
- . S SNUM="" F  S SNUM=$O(SERIES(SNUM)) Q:SNUM=""  D
- . . ; refresh temp image index
- . . N MAGTI S MAGTI=0 ; temp image index
- . . K ^TMP("MAG",$J,"TI")
- . . ;
- . . ; seek qualifying images (no QI or matching known DFN)
- . . S INUM="" F  S INUM=$O(SERIES(SNUM,INUM)) Q:INUM=""  D
- . . . S I0="" F  S I0=$O(SERIES(SNUM,INUM,I0)) Q:I0=""  D
- . . . . ; if dup study instance UID, purge image info and bail out
- . . . . ; unless pt is specified and this image is for that pt
- . . . . S MAGR0=$G(^MAG(2005,I0,0))
- . . . . I REQDFN,$P(MAGR0,"^",7)'=REQDFN K ^TMP("MAG",$J,"S",I0) Q
- . . . . ;
- . . . . S X=$P($G(^MAG(2005,I0,"PACS")),"^",1)
- . . . . S MAGTI=MAGTI+1,^TMP("MAG",$J,"TI",MAGTI)="NEXT_IMAGE"
- . . . . S:X'="" MAGTI=MAGTI+1,^TMP("MAG",$J,"TI",MAGTI)="IMAGE_UID|"_X
- . . . . S MAGTI=MAGTI+1,^TMP("MAG",$J,"TI",MAGTI)="IMAGE_IEN|"_I0
- . . . . S X=$P(MAGR0,"^",10)
- . . . . S:X MAGTI=MAGTI+1,^TMP("MAG",$J,"TI",MAGTI)="GROUP_IEN|"_X
- . . . . ; QI check - override only if DFN specified in call
- . . . . ; (VA internal only!)
- . . . . D CHK^MAGGSQI(.X,I0) I '$G(X(0)) D  Q:'REQDFN
- . . . . . S MAGTI=MAGTI+1,^TMP("MAG",$J,"TI",MAGTI)="IMAGE_ERR|"_$P($G(X(0)),"^",2)
- . . . . . Q
- . . . . ;
- . . . . S:INUM'="?" MAGTI=MAGTI+1,^TMP("MAG",$J,"TI",MAGTI)="IMAGE_NUMBER|"_INUM
- . . . . S IMGINFO=$G(^TMP("MAG",$J,"S",I0)) K ^TMP("MAG",$J,"S",I0)
- . . . . ; Get Site image parameters IEN from 16^ piece of IMGINFO
- . . . . S:IMGINFO'="" MAGTI=MAGTI+1,^TMP("MAG",$J,"TI",MAGTI)="IMAGE_INFO|"_IMGINFO_"|"_$$GETSNUM($P(IMGINFO,"^",16))
- . . . . Q
- . . . Q
- . . D:$D(^TMP("MAG",$J,"TI"))  ; qualifying images were found
- . . . S U1="" F  S U1=$O(SERID(SNUM,U1)) Q:U1=""  D
- . . . . N M,X
- . . . . S N=N+1,@OUT@(N)="NEXT_SERIES"
- . . . . S:U1'="?" N=N+1,@OUT@(N)="SERIES_UID|"_U1
- . . . . S N=N+1,@OUT@(N)="SERIES_IEN|"_D0
- . . . . ; Officially, there can be only one modality per series,
- . . . . ; so stop when the first modality is found...
- . . . . S X="",M="" F  S M=$O(^TMP("MAG",$J,"M",2,U1,M)) Q:M=""  D  Q:X'=""
- . . . . . S X=$S(X'="":"\",1:"")_M
- . . . . . Q
- . . . . S:X'="" N=N+1,@OUT@(N)="SERIES_MODALITY|"_X
- . . . . Q
- . . . D:SNUM'="?"  ; assign the series number
- . . . . N SERIESNUM
- . . . . D  ; - get series no from study itself if possible, else generate
- . . . . . N SERIESTEST,SGN
- . . . . . S SERIESTEST=$P(SNUM,"_",2)
- . . . . . Q:"+-1234567890"'[$E(SERIESTEST,1)  ; invalid number
- . . . . . S:"+-"[$E(SERIESTEST,1) SGN=$E(SERIESTEST,1)
- . . . . . S:$D(SGN) SERIESTEST=$E(SERIESTEST,2,$L(SERIESTEST))
- . . . . . Q:SERIESTEST'?1.12N
- . . . . . S SERIESTEST=$G(SGN)_SERIESTEST
- . . . . . Q:$D(SERIESARRAY(SERIESTEST))
- . . . . . S SERIESNUM=SERIESTEST
- . . . . . Q
- . . . . D:'$D(SERIESNUM)  ; still need to generate
- . . . . . F SERIESNUM=1:1 Q:'$D(SERIESARRAY(SERIESNUM))
- . . . . . Q
- . . . . S N=N+1,@OUT@(N)="SERIES_NUMBER|"_SERIESNUM
- . . . . S SERIESARRAY(SERIESNUM)=""
- . . . . Q
- . . . S MAGTI=""
- . . . F  S MAGTI=$O(^TMP("MAG",$J,"TI",MAGTI)) Q:'MAGTI  D
- . . . . S N=N+1,@OUT@(N)=^TMP("MAG",$J,"TI",MAGTI)
- . . . . Q
- . . . K ^TMP("MAG",$J,"TI")
- . . . Q
- . . Q
- . S I="" F  S I=$O(^TMP("MAG",$J,"S",I)) Q:I=""  D
- . . S N=N+1,@OUT@(N)="UNUSED_GROUP_INFO|"_^TMP("MAG",$J,"S",I)
- . . Q
- . K ^TMP("MAG",$J,"S")
- . K ^TMP("MAG",$J,"M")
+ S D0=""
+ F  S D0=$O(PAT(REQDFN,D0)) Q:D0=""  D WRTIMG^MAGDQR20(.SERIESARRAY,D0,REQDFN,.STUMO,INCDEL)
+ D WRTMOD^MAGDQR21(.STUMO) ; list all modalities
+ Q
+ ;
+GETGPUID(UID,STUDY,INCDEL) ; Given UID, populate STUDY array with Image IEN 
+ N D0
+ S D0=""
+ F  S D0=$O(^MAG(2005,"P",UID,D0)) Q:D0=""  D
+ . S:'$P($G(^MAG(2005,D0,0)),"^",10) STUDY(D0)=2005 ; add either Group IEN or individual IEN (not child IEN)
  . Q
- D  ; list all modalities
- . N M,X
- . S X="",M="" F  S M=$O(STUMO(M)) Q:M=""  S X=X_$S(X'="":",",1:"")_M
- . S:X'="" N=N+1,@OUT@(N)="STUDY_MODALITY|"_X
+ ;
+ I INCDEL D
+ . S D0=""
+ . F  S D0=$O(^MAG(2005.1,"P",UID,D0)) Q:D0=""  D
+ . . Q:'$$ISDEL^MAGGI11(D0)
+ . . S:'$P($G(^MAG(2005.1,D0,0)),"^",10) STUDY(D0)=2005.1 ; add either deleted Group IEN or deleted individual IEN (not child IEN)
+ . . Q
  . Q
  Q
  ;
-ONEGROUP(GROUP) ; Get the first IMAGE_IEN for this group
- N D1,IMGIEN
- I '$D(^MAG(2005,GROUP,1)) Q GROUP ; a single image (e.g., photo ID), not a group
+GETGPIEN(IEN,STUDY,INCDEL) ; Add IEN into STUDY (include deleted images)
+ S:'$P($G(^MAG(2005,IEN,0)),"^",10) STUDY(IEN)=2005 ; add image IEN
+ ;
+ I INCDEL,$$ISDEL^MAGGI11(IEN) D
+ . S:'$P($G(^MAG(2005.1,IEN,0)),"^",10) STUDY(IEN)=2005.1 ;add deleted image IEN
+ . Q
+ Q
+ ;
+GETPAT(STUDY,PAT,PATCOUNT,TOTIMAGES,REQDFN,INCDEL) ; Get Total Images count and fill Patient array based on STUDY
+ ;Input:
+ ;   STUDY     - array of all images
+ ;   REQDFN    - patient
+ ;   INCDEL    - include Deleted Images
+ ;Output:
+ ;   PAT       - array of all images for the patient
+ ;   PATCOUNT  - array to validate all images should belonged only to one patient
+ ;   TOTIMAGES - total images for the patient
+ ;
+ N D0,MAGFIL,DFN,ISGRP
+ S TOTIMAGES=0
+ S D0=""
+ ;
+ F  S D0=$O(STUDY(D0)) Q:D0=""  D
+ . S MAGFIL=STUDY(D0)
+ . S DFN=+$P($G(^MAG(MAGFIL,D0,0)),"^",7)
+ . S PATCOUNT(DFN)=""
+ . S:REQDFN=DFN PAT(DFN,D0)=""
+ . ;
+ . ;Add image count to Total Images for the study
+ . S ISGRP=$$ISGRP^MAGDQR21(D0,INCDEL)
+ . I 'ISGRP,REQDFN=DFN S TOTIMAGES=TOTIMAGES+1 Q
+ . I MAGFIL=2005 S TOTIMAGES=TOTIMAGES+$$GETGPIM^MAGDQR21(D0,REQDFN,.PATCOUNT) ; count group images
+ . I INCDEL S TOTIMAGES=TOTIMAGES+$$GETGPDIM^MAGDQR21(D0,REQDFN,.PATCOUNT) ; count deleted group images
+ . Q
+ Q
+ ;
+ISGRP(D0,INCDEL) ; return 1 if D0 is a group IEN, 0 otherwise
+ N ISGRP
+ S ISGRP=1
+ I 'INCDEL,'$D(^MAG(2005,D0,1)) S ISGRP=0 ; a single image (e.g., photo ID), not a group
+ I INCDEL,'$D(^MAG(2005,D0,1)),'$D(^MAG(2005.1,D0,1)) S ISGRP=0 ; a single deleted image (e.g., photo ID), not a group
+ Q ISGRP
+ ;
+GETGPIM(D0,REQDFN,PATCOUNT) ; return total images in the group and PATCOUNT array for patient validation
+ N D1,I0,DFN,IMGCNT
+ S IMGCNT=0
+ S D1=0 ;go through all images. They should belong to one pt
+ F  S D1=$O(^MAG(2005,D0,1,D1)) Q:'D1  D
+ . S I0=+$G(^MAG(2005,D0,1,D1,0)) Q:'I0
+ . S DFN=+$P($G(^MAG(2005,I0,0)),"^",7)
+ . S PATCOUNT(DFN)="" ;populate PATCOUNT with DFN for validation (DFN might be different in this case it's a corrupted record)
+ . ; increment image count unless single pt was requested and this isn't that pt
+ . I REQDFN'=DFN Q
+ . S IMGCNT=IMGCNT+1
+ . Q
+ Q IMGCNT
+ ;
+GETGPDIM(D0,REQDFN,PATCOUNT) ; return total images in the group and PATCOUNT array for patient validation
+ N I0,DFN,IMGCNT
+ S IMGCNT=0
+ S I0="" ;go through all AUDIT images.
+ F  S I0=$O(^MAG(2005.1,"AGP",D0,I0)) Q:I0=""  D
+ . S DFN=+$P($G(^MAG(2005.1,I0,0)),"^",7)
+ . S PATCOUNT(DFN)="" ;populate PATCOUNT with DFN for validation (DFN might be different in this case it's a corrupted record)
+ . ; increment image count unless single pt was requested and this isn't that pt
+ . I REQDFN'=DFN Q
+ . S IMGCNT=IMGCNT+1
+ . Q
+ Q IMGCNT
+ ;
+VALPAT(UID,PAT,PATCOUNT,REQDFN) ; Validate - should only have one patient
+ N CONT,DFN
+ ;
+ S CONT=1,PATCOUNT=0
+ S DFN="" F  S DFN=$O(PATCOUNT(DFN)) Q:DFN=""  S PATCOUNT=PATCOUNT+1
+ ;
+ I PATCOUNT>1 D
+ . ; duplicate study instance UID?
+ . D WRTOUT^MAGDQR21("STUDY_ERR|"_UID_"|"_PATCOUNT_" different patients")
+ . S CONT=$S('REQDFN:0,'$D(PAT(REQDFN)):0,1:1) ;continue processing with error if patient requested found 
+ . Q
+ ;
+ Q CONT
+ ;
+WRTIEN(UID,I0,TOTIMAGES,REQDFN) ; Output STUDY UID and IEN line
+ N OBJGRP
+ ; 
+ D:UID'="" WRTOUT^MAGDQR21("STUDY_UID|"_UID)
+ I 'I0 D WRTOUT^MAGDQR21("STUDY_ERR|"_UID_"|Matching study not found for patient "_REQDFN) Q 0
+ S OBJGRP=$$ONEGROUP^MAGDQR21(I0) ; get the first image IEN for group/image I0
+ D WRTOUT^MAGDQR21("STUDY_IEN|"_I0_"|"_TOTIMAGES_"|"_OBJGRP_"|"_$$CPTCODE^MAGDQR21(I0)_"|"_$$GETSITE1^MAGDQR21(OBJGRP))
+ Q 1
+ ; 
+INTEGDFN(I0,REQDFN,INCDEL) ; check integrity of study record
+ ;Return 1 if Specified DFN (REQDFN) matches study DFN (VA internal use only!)
+ ;       0 otherwise
+ N X,CONT,MAGFIL,QINTEG
+ ;
+ D CHK^MAGGSQI(.X,I0)
+ S QINTEG='$G(X(0))
+ D:QINTEG APDOUT^MAGDQR21("|"_$P($G(X(0)),"^",2))
+ S CONT=1
+ ; override QI check only if image DFN = DFN specified in call
+ ; (VA internal only!)
+ I QINTEG D
+ . I 'REQDFN S CONT=0 Q
+ . S MAGFIL=$$FILE^MAGGI11(I0)
+ . I MAGFIL="" S CONT=0 Q
+ . S:$P($G(^MAG(MAGFIL,I0,0)),"^",7)'=REQDFN CONT=0
+ . Q
+ ;
+ Q CONT
+ ;
+WRTMOD(STUMO) ; Output STUDY_MODALITY line
+ N M,X
+ S X="",M=""
+ F  S M=$O(STUMO(M)) Q:M=""  S X=X_$S(X'="":",",1:"")_M
+ D:X'="" WRTOUT^MAGDQR21("STUDY_MODALITY|"_X)
+ Q
+ ;
+ONEGROUP(GROUP) ; Get the first IMAGE_IEN for this group in IMAGE file (#2005)
+ ;                or IMAGE AUDIT file (#2005.1)  
+ N D1,IMGIEN,MAGNODE
+ S MAGNODE=$$NODE^MAGGI11(GROUP)
+ I MAGNODE="" Q "0^Error 2 - First Image not available; No Data"
+ I '$D(@MAGNODE@(1)) Q GROUP ; a single image (e.g., photo ID), not a group
  S IMGIEN=""
- S D1=$O(^MAG(2005,GROUP,1,0))
- I D1>0 S IMGIEN=+$G(^MAG(2005,GROUP,1,D1,0))
+ S D1=$O(@MAGNODE@(1,0))
+ I D1>0 S IMGIEN=+$G(@MAGNODE@(1,D1,0))
+ I IMGIEN'>0 S IMGIEN=$O(^MAG(2005.1,"AGP",GROUP,""))
  I IMGIEN'>0 S IMGIEN="0^Error 1 - First Image not available"
  Q IMGIEN
  ;
-CPTCODE(MAGIEN) ; Returns CPT code by IEN (image pointer) in IMAGE file (#2005) 
- ; MAGIEN = IEN in IMAGE file (#2005)
- N RAIEN,CPTCODE
- S RAIEN=+$$GET1^DIQ(2005,MAGIEN,62,"I")  ; Get PACS PROCEDURE field #62
+WRTOUT(S) ; Write a new line
+ N CNT
+ S CNT=^TMP("MAG",$J,"STUDY",1)+1
+ S ^TMP("MAG",$J,"STUDY",1)=CNT
+ S ^TMP("MAG",$J,"STUDY",CNT)=S
+ Q
+ ;
+APDOUT(S) ; Append to last line
+ N CNT
+ S CNT=^TMP("MAG",$J,"STUDY",1)
+ S ^TMP("MAG",$J,"STUDY",CNT)=$G(^TMP("MAG",$J,"STUDY",CNT))_S
+ Q
+ ;
+CPTCODE(MAGIEN) ; Returns CPT code by IEN (image pointer) in IMAGE file (#2005)
+ ;                or IMAGE AUDIT file (#2005.1)  
+ ; MAGIEN = IEN in IMAGE file (#2005) or IMAGE AUDIT file (#2005.1)
+ N RAIEN,CPTCODE,MAGFILE
+ S MAGFILE=$$FILE^MAGGI11(MAGIEN)
+ S RAIEN=+$$GET1^DIQ(MAGFILE,MAGIEN,62,"I")  ; Get PACS PROCEDURE field #62
  S CPTCODE=$P($G(^RAMIS(71,RAIEN,0)),"^",9) ; IA # 1174  get CPT Code
  Q:CPTCODE="" ""  ; quit with empty code
  S CPTCODE=$$CPT^ICPTCOD(CPTCODE) ; IA # 1995, supported reference
@@ -337,7 +391,7 @@ GETSITE1(MAGIEN) ; Returns STATION NUMBER where the image is stored
  S TMP=$G(@MAGNODE@(0))
  S NLOCIEN=+$S($P(TMP,U,3):$P(TMP,U,3),1:$P(TMP,U,5)) ; Get IEN in NETWORK LOCATION file (#2005.2)
  S PLC=$P($G(MAGJOB("NETPLC",NLOCIEN)),U,1)     ; Imaging Site Parameters IEN
- Q $$GETSNUM(PLC)  ; Return STATION NUMBER
+ Q $$GETSNUM^MAGDQR21(PLC)  ; Return STATION NUMBER
  ;
 GETSNUM(MAGPLC) ; Returns STATION NUMBER by Image Site Parameters IEN
  ; MAGPLC - IEN in IMAGING SITE PARAMETERS file (#2006.1)

@@ -1,5 +1,5 @@
 IBTOBI4 ;ALB/AAS - CLAIMS TRACKING BILLING INFORMATION PRINT ;27-OCT-93
- ;;2.0;INTEGRATED BILLING;**91,125,51,210,266,389**;21-MAR-94;Build 6
+ ;;2.0;INTEGRATED BILLING;**91,125,51,210,266,389,461**;21-MAR-94;Build 58
  ;
 CLIN ; -- output clinical information
  N IBOE,DGPM
@@ -15,9 +15,9 @@ DIAG ; -- print diagnosis information
  Q:$P(IBETYP,"^",3)>2
  I ($Y+9)>IOSL D HDR^IBTOBI Q:IBQUIT
 DIAG1 W !,"  Diagnosis Information "
- N IBXY,SDDXY,ICDVDT
+ N IBXY,IBSDX,ICDVDT
  I $G(DGPM) D SET^IBTRE3(+IBTRN) W:'$D(IBXY) !?6,"Nothing on File" D:$D(IBXY) LIST^IBTRE3(.IBXY)
- I $G(IBOE) D SET^SDCO4(IBOE) W:'$D(SDDXY) !?6,"Nothing on File" I $D(SDDXY) S ICDVDT=$$TRNDATE^IBACSV(+IBTRN) D LIST^SDCO4(.SDDXY)
+ I $G(IBOE) D SETSDX^IBTRE6(+IBOE,.IBSDX) W:'$G(IBSDX) !?6,"Nothing on File" I +$G(IBSDX) S ICDVDT=$$TRNDATE^IBACSV(+IBTRN) D LSTSDX^IBTRE6(.IBSDX)
  ; 
  D:$G(DGPM) DRG
  W:'IBQUIT !?4,$TR($J(" ",IOM-8)," ","-"),!
@@ -57,9 +57,9 @@ PROV ; -- print provider information
  Q:$P(IBETYP,"^",3)>2
  I ($Y+9)>IOSL D HDR^IBTOBI Q:IBQUIT
 PROV1 W !,"  Provider Information "
- N IBXY,SDPRY
+ N IBXY,IBSDV
  I $G(DGPM) D SET^IBTRE5(+IBTRN) W:'$D(IBXY) !?6,"Nothing on File" D:$D(IBXY) LIST^IBTRE5(.IBXY)
- I $G(IBOE) D SET^SDCO3(IBOE) W:'$D(SDPRY) !?6,"Nothing on File" D:$D(SDPRY) LIST^SDCO3(.SDPRY)
+ I $G(IBOE) D SETSDV^IBTRE6(+IBOE,.IBSDV) W:'$G(IBSDV) !?6,"Nothing on File" D:+$G(IBSDV) LSTSDV^IBTRE6(.IBSDV)
  W:'IBQUIT !?4,$TR($J(" ",IOM-8)," ","-"),!
  Q
  ;

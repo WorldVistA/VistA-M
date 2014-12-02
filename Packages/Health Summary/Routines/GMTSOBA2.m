@@ -1,5 +1,5 @@
 GMTSOBA2 ; SLC/KER - HS Object - Ask               ; 05/22/2008
- ;;2.7;Health Summary;**58,89**;Oct 20, 1995;Build 61
+ ;;2.7;Health Summary;**58,89,106**;Oct 20, 1995;Build 11
  ;
  ; External References
  ;   DBIA  10018  ^DIE  (file #142)
@@ -105,9 +105,10 @@ NODATA ; Override No Data Available output
  S GMTSOBJ("NO DATA")="",DIR("A")=" Overwrite No Data Available Message  "
  S GMTSDEF=$G(^GMT(142.5,+($G(GMTSDA)),2))
  S (DIR("?"),DIR("??"))="^D NODATA^GMTSOBH",DIR("B")=GMTSDEF,DIR(0)="FO^3:60"
+ S DIR("PRE")="S:X[""^"" X=""^^""" ; p.106 stops error caused by user using "^TEXT" at prompt
  D ^DIR S:$D(DIROUT)!($D(DTOUT)) GMTSQ=1
  I +($G(GMTSQ))>0 S GMTSOBJ("NO DATA")="" Q
- S GMTSOBJ("NO DATA")=Y
+ S GMTSOBJ("NO DATA")=$S(X="@":"@",1:Y) ; p.106 allows deletion of current field text 
  Q
  ;
 ET(X) ; Edit Type X

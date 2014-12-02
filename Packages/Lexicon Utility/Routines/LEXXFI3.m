@@ -1,13 +1,13 @@
-LEXXFI3 ; ISL/KER - File Info - Record Count            ; 07/28/2004
- ;;2.0;LEXICON UTILITY;**32**;Sep 23, 1996
- Q
- ;            
+LEXXFI3 ;ISL/KER - File Info - Record Count ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**32,80**;Sep 23, 1996;Build 1
+ ;               
  ; Global Variables
- ;   ^TMP("LEXCNT",$J    SACC 2.3.2.5.1
- ;                
+ ;    ^TMP("LEXCNT")      SACC 2.3.2.5.1
+ ;               
  ; External References
- ;   None
- ;                      
+ ;    None
+ ;               
+ Q
 ONE(X) ; Record Count for a File
  N LEXFI K ^TMP("LEXCNT",$J) S LEXFI=+($G(X)) Q:+X'>0  K LEXMD D CNT(LEXFI),DSP^LEXXFI4
  Q

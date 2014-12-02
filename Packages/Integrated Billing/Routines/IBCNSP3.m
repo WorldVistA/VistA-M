@@ -1,5 +1,5 @@
 IBCNSP3 ;ALB/AAS - INSURANCE MANAGEMENT EDIT ;06-JUL-93
- ;;2.0;INTEGRATED BILLING;**28,52,85,251,371**;21-MAR-94;Build 57
+ ;;2.0;INTEGRATED BILLING;**28,52,85,251,371,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % G ^IBCNSM4
@@ -12,6 +12,7 @@ SAVEPT(DFN,DA) ; -- Save the global before editing
  S ^TMP($J,"IBCNSPT",2.312,DFN,+DA,3)=$G(^DPT(DFN,.312,+DA,3))
  S ^TMP($J,"IBCNSPT",2.312,DFN,+DA,4)=$G(^DPT(DFN,.312,+DA,4))
  S ^TMP($J,"IBCNSPT",2.312,DFN,+DA,5)=$G(^DPT(DFN,.312,+DA,5))
+ S ^TMP($J,"IBCNSPT",2.312,DFN,+DA,7)=$G(^DPT(DFN,.312,+DA,7))    ; IB*2.0*497 (vd)
  Q
  ;
 COMPPT(DFN,DA) ; -- Compare before editing with globals
@@ -22,6 +23,7 @@ COMPPT(DFN,DA) ; -- Compare before editing with globals
  I $G(^DPT(DFN,.312,+DA,3))'=$G(^TMP($J,"IBCNSPT",2.312,DFN,+DA,3)) S IBDIF=1 G COMPPTQ
  I $G(^DPT(DFN,.312,+DA,4))'=$G(^TMP($J,"IBCNSPT",2.312,DFN,+DA,4)) S IBDIF=1 G COMPPTQ
  I $G(^DPT(DFN,.312,+DA,5))'=$G(^TMP($J,"IBCNSPT",2.312,DFN,+DA,5)) S IBDIF=1 G COMPPTQ
+ I $G(^DPT(DFN,.312,+DA,7))'=$G(^TMP($J,"IBCNSPT",2.312,DFN,+DA,7)) S IBDIF=1 G COMPPTQ    ; IB*2.0*497 (vd)
  ;
 COMPPTQ I IBDIF D:'$D(IBCOVP) COVERED^IBCNSM31(DFN,$P($G(^DPT(DFN,.31)),"^",11))
  Q
@@ -88,6 +90,7 @@ SAVE(IBCPOL) ; -- Save the global before editing
  K ^TMP($J,"IBCNSP")
  S ^TMP($J,"IBCNSP",355.3,+IBCPOL,0)=$G(^IBA(355.3,+IBCPOL,0))
  S ^TMP($J,"IBCNSP",355.3,+IBCPOL,1)=$G(^IBA(355.3,+IBCPOL,1))
+ S ^TMP($J,"IBCNSP",355.3,+IBCPOL,2)=$G(^IBA(355.3,+IBCPOL,2))   ; IB*2.0*497 (vd)
  ;;Daou/EEN - adding BIN and PCN
  S ^TMP($J,"IBCNSP",355.3,+IBCPOL,6)=$G(^IBA(355.3,+IBCPOL,6))
  Q
@@ -96,6 +99,7 @@ COMP(IBCPOL) ; -- Compare before editing with globals
  S IBDIF=0
  I $G(^IBA(355.3,+IBCPOL,0))'=$G(^TMP($J,"IBCNSP",355.3,+IBCPOL,0)) S IBDIF=1 Q
  I $G(^IBA(355.3,+IBCPOL,1))'=$G(^TMP($J,"IBCNSP",355.3,+IBCPOL,1)) S IBDIF=1 Q
+ I $G(^IBA(355.3,+IBCPOL,2))'=$G(^TMP($J,"IBCNSP",355.3,+IBCPOL,2)) S IBDIF=1 Q    ; IB*2.0*497 (vd)
  ;;Daou/EEN - adding BIN and PCN
  I $G(^IBA(355.3,+IBCPOL,6))'=$G(^TMP($J,"IBCNSP",355.3,+IBCPOL,6)) S IBDIF=1 Q
  Q

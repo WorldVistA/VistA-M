@@ -1,5 +1,7 @@
-SCMSVUT1 ;ALB/JLU;validation utility routine;06/19/99 ; 4/30/03 11:58am
- ;;5.3;Scheduling;**66,143,180,239,247,258,296,295,321,341,387,459,394,442**;AUG 13,1993
+SCMSVUT1 ;ALB/JLU - validation utility routine;06/19/99 ; 4/30/03 11:58am
+ ;;5.3;Scheduling;**66,143,180,239,247,258,296,295,321,341,387,459,394,442,593**;AUG 13,1993;Build 13
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
+ ; Reference to $$SYS^ICDEX supported by ICR #5747
  ;06/19/99 ACS - Added CPT Modifier API calls to PROCCOD(DATA)
  ;
 SEGERR(DATA,HLFS) ;
@@ -174,7 +176,7 @@ DCODMTHD(DATA) ;
  ;INPUT DATA - This is the coding method to be checked.
  ;
  I '$D(DATA) Q 0
- I DATA'="I9" Q 0
+ I (DATA'="I9"),(DATA'="I10") Q 0
  Q 1
  ;
 DIAGCOD(DATA,ENCDT) ;
@@ -185,7 +187,7 @@ DIAGCOD(DATA,ENCDT) ;
  I '$D(DATA) Q 0
  I DATA="" Q 0
  ;
- Q $P($$ICDDX^ICDCODE(DATA,ENCDT),"^",10)
+ Q +$P($$ICDDX^ICDEX(DATA,ENCDT,+$$SYS^ICDEX("DIAG",ENCDT,"I"),"E"),"^",10)
  ;
 PRIOR(DATA) ;
  ;INPUT DATA - The priority of the diagnosis found

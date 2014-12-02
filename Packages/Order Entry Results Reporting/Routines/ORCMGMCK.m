@@ -1,7 +1,12 @@
-ORCMGMCK ;SLC/JFR - FIND GMRC QO'S WITH INACTIVE CODES ;6/4/03 11:33
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**181**;Dec 17, 1997
+ORCMGMCK ;SLC/JFR - FIND GMRC QO'S WITH INACTIVE CODES ;12/04/12  10:02
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**181,361**;Dec 17, 1997;Build 39
  ;
  ; This routine invokes IA # 3990
+ ; Other external references:
+ ; $$FIND1^DIC             ICR #2051
+ ; $$STATCHK^ICDXCODE      ICR #5699
+ ; $$FMTE^XLFDT            ICR #10103
+ ; $$REPEAT^XLFSTR         ICR #10104
  ;
  Q
 FINDQOS ; find cons/proc quick orders with a default Prov. DX code
@@ -19,9 +24,9 @@ FINDQOS ; find cons/proc quick orders with a default Prov. DX code
  . I 'ORPRMPT Q  ;no PD prompt
  . S ORCODEF=$G(^ORD(101.41,ORDLG,6,ORPRMPT,1))
  . I '$L(ORPRMPT) Q  ; no default CODE stored.
- . I '$$STATCHK^ICDAPIU(ORCODEF,DT) D  Q
+ . I '$$STATCHK^ICDXCODE("DIAGNOSIS",ORCODEF,DT) D  Q
  .. S ^TMP("ORCMGMCK",$J,"I",ORDLG)=$P(^ORD(101.41,ORDLG,0),U)_U_ORCODEF
- . S ORAPIVAL=$$HIST^ICDAPIU(ORCODEF,.ORAPIVAL)
+ . D HIST^ICDXCODE("DIAGNOSIS",ORCODEF,.ORAPIVAL)
  . S ACTDT=$O(ORAPIVAL(DT))
  . I ACTDT,'$G(ORAPIVAL(ACTDT)) D  ; future inactivation
  .. S ^TMP("ORCMGMCK",$J,"F",ORDLG)=$P(^ORD(101.41,ORDLG,0),U)_U_ORCODEF_U_$$FMTE^XLFDT(ACTDT)

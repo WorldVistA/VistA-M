@@ -1,5 +1,5 @@
 PSOLLL8 ;BIR/JLC - LASER LABEL - CRITICAL INTERACTION ;12/13/02
- ;;7.0;OUTPATIENT PHARMACY;**120,251,387,367**;DEC 1997;Build 62
+ ;;7.0;OUTPATIENT PHARMACY;**120,251,387,367,372**;DEC 1997;Build 54
  ;Reference to PS(56 supported by DBIA 2229
  ;Reference to PSDRUG supported by DBIA 221
  ;External reference to $$DS^PSSDSAPI supported by DBIA 5424
@@ -22,7 +22,7 @@ START ;
  .S:SEV(X)=1 PSOSERV=1
  .S T=$P($G(^PSRX(RXX(X),0)),"^")_"     "_$S(SEV(X)=1:"CRITICAL",SEV(X)=2:"SIGNIFICANT",1:"UNKNOWN")_" INTERACTION    "_$P(^PSDRUG($P(^PSRX(RXX(X),0),"^",6),0),"^") S:SEV(X)=1 PSODRGI=1 D PRINT(T)
  I $$DS^PSSDSAPI,($D(^PS(52.4,RX,1))) S T="",T=$P(^PS(52.4,RX,1),"^") D  D:T'="" PRINT(T)
- . S T=$S(T=3:"MAX SINGLE DOSE & DAILY DOSE RANGE",T=2:"MAX SINGLE DOSE",T=1:"DAILY DOSE RANGE",1:""),PSODOSEW=1
+ . S T=$$RCONVMS^PSODOSUT(T),PSODOSEW=1
  S T="This prescription was entered by: "_TECH_"." D PRINT(T)
  S T="This prescription "_$S('$G(PSOSERV):"may require",1:"requires")_" "_$S('$G(PSOSERV):"reviewing",1:"intervention")_" by a pharmacist." D PRINT(T)
  S T=DATE1_"  Fill "_(RXF+1)_" of "_(1+$P(RXY,"^",9)) D PRINT(T)

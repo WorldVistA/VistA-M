@@ -1,5 +1,5 @@
-PXRMDLL ;SLC/PJH - REMINDER DIALOG LOADER ;07/29/2010
- ;;2.0;CLINICAL REMINDERS;**10,6,12,17,18**;Feb 04, 2005;Build 152
+PXRMDLL ;SLC/PJH - REMINDER DIALOG LOADER ;05/12/2014
+ ;;2.0;CLINICAL REMINDERS;**10,6,12,17,18,26**;Feb 04, 2005;Build 404
  ;
 OK(DIEN) ;Check if mental health test is for GUI
  I 'DIEN Q 0
@@ -13,28 +13,47 @@ TXT ;Format text
  S TEXT=$$STRREP^PXRMUTIL(TEXT,"\\","<br>")
  S LAST=0 I NULL S TEXT="<br>"_TEXT,LAST=1
  Q
- ; 
-EXP(TIEN,DITEM,DSUB) ;Expand taxonomy codes
- N ACNT,AHIS,ATYP,ARRAY,CODES,CNT,DPCE,DTAX
+ ;
+EXP(TIEN,DITEM,DSUB,DEXC,DMHEX,DRESL,DTXT) ;Expand taxonomy codes
+ N ACNT,AHIS,ATYP,ARRAY,BOTH,CODES,CNT,DDIS,DHIST,DPCE,DSUPP,DTAX,SUB,TAXTEXT,TEXT,TSEL
+ S TSEL=$P($G(^PXRMD(801.41,DITEM,"TAX")),U)
+ S DSUPP=$P($G(^PXRMD(801.41,DITEM,0)),U,11)
+ S DDIS=$S(DSUPP=1:"D",1:"S")
+ ;
+ S TEXT=""
  ;Get taxonomy file details
- D TAX(TIEN,.ARRAY)
+ I TSEL'="N" S BOTH=$$TAX(TIEN,DITEM,TEXT,.ARRAY)
+ I TSEL'="N",'$D(ARRAY) Q
+ S DHIS=$$AHIS(DITEM)
  ;
  ;Build dialog from the returned array
  ;
+ S OCNT=OCNT+1
+ ;this is new for Taxonomy selection types of N
+ I TSEL="N" D  Q
+ .N LAST,TEXT
+ .S ORY(OCNT)=1_U_DITEM_U_DSUB_U_DDIS_U_DEXC_U_U_U_DHIS_U_DMHEX_U_DRESL
+ .S SUB=0,LAST=0 F  S SUB=$O(DTXT(SUB)) Q:'SUB  D
+ ..D TXT
+ ..S OCNT=OCNT+1,ORY(OCNT)=2_U_DITEM_U_DSUB_U_TEXT
  ;Main Taxonomy prompt
- S DTXT=ARRAY
- S OCNT=OCNT+1
- S ORY(OCNT)=1_U_DITEM_U_DSUB_U_"S"_U_DEXC
  ;Default group indents and selection entry
- S $P(ORY(OCNT),U,16)=2,$P(ORY(OCNT),U,18)=2
- S OCNT=OCNT+1
- S ORY(OCNT)=2_U_DITEM_U_DSUB_U_DTXT
+ S TAXTEXT=ARRAY
+ ;S ORY(OCNT)=1_U_DITEM_U_DSUB_U_"S"_U_DEXC
+ S ORY(OCNT)=1_U_DITEM_U_DSUB_U_DDIS_U_DEXC
+ S $P(ORY(OCNT),U,16)=2,$P(ORY(OCNT),U,18)=$S(BOTH=1:2,1:0),$P(ORY(OCNT),U,8)=DHIS
+ N LAST,TEXT
+ S TEXT=""
+ S SUB=0,LAST=0 F  S SUB=$O(DTXT(SUB)) Q:'SUB  D
+ .D TXT
+ .S OCNT=OCNT+1
+ .S ORY(OCNT)=2_U_DITEM_U_DSUB_U_TEXT
  ;
  ;Taxonomy CPT/POV resolution prompts
  S ACNT=""
  F  S ACNT=$O(ARRAY(ACNT)) Q:ACNT=""  D
  .;Prompt text
- .S DTXT=$P(ARRAY(ACNT),U),DPCE=$P(ARRAY(ACNT),U,4)
+ .S TAXTEXT=$P(ARRAY(ACNT),U),DPCE=$P(ARRAY(ACNT),U,4)
  .;Historical/Current flag
  .S AHIS=0 I $P(ARRAY(ACNT),U,3)=2 S AHIS=1
  .;CPT/POV
@@ -44,13 +63,15 @@ EXP(TIEN,DITEM,DSUB) ;Expand taxonomy codes
  .;Construct ien for this level
  .S DTAX=DSUB_"."_ACNT
  .S OCNT=OCNT+1
+ .I BOTH=0 Q
+ .S DEXC=1
  .S ORY(OCNT)=1_U_DITEM_U_DTAX_U_"T"_U_DEXC_U_U_ATYP_U_AHIS
  .S OCNT=OCNT+1
- .S ORY(OCNT)=2_U_DITEM_U_DTAX_U_DTXT
+ .S ORY(OCNT)=2_U_DITEM_U_DTAX_U_TAXTEXT
  Q
  ;
 GROUP(DIEN,DSUB) ;Dialog group
- N DATA,DBOX,DCAP,DCHK,DENTRY,DEXC,DGIEN,DGRP,DGSEQ,DGSUB,DHIDE,DIND
+ N DATA,DBOX,DCAP,DCHK,DENTRY,DEXC,DCCNT,DGIEN,DGRP,DGSEQ,DGSUB,DHIDE,DIND
  N DINDPN,DMHEX,DRESL,DSHARE,SUB,DCOUNT
  ;Group caption text
  S DATA=$G(^PXRMD(801.41,DIEN,0))
@@ -77,9 +98,10 @@ GROUP(DIEN,DSUB) ;Dialog group
  .D TXT
  .S OCNT=OCNT+1,ORY(OCNT)=2_U_DIEN_U_DSUB_U_TEXT
  ;Get dialog group sub-elements
- N DTYP,DSUPP,DDIS,IDENT S DGSEQ=0
+ N DGCNT,DTYP,DSUPP,DDIS,IDENT S DGSEQ=0,DGCNT=0
  F  S DGSEQ=$O(^PXRMD(801.41,DIEN,10,"B",DGSEQ)) Q:'DGSEQ  D
  .S DGSUB=$O(^PXRMD(801.41,DIEN,10,"B",DGSEQ,"")) Q:'DGSUB
+ .S DGCNT=DGCNT+1
  .S DATA=$G(^PXRMD(801.41,DIEN,10,DGSUB,0))
  .S DGIEN=$P(DATA,U,2) Q:'DGIEN
  .;Check if element is disabled/invalid
@@ -113,7 +135,7 @@ GROUP(DIEN,DSUB) ;Dialog group
  .I DPCE="MH" Q:'$$OK(DFIEN)
  .S DGRP=DSUB_"."_DGSUB
  .;Taxonomy codes need expanding
- .I DPCE="T" D EXP(DFIEN,DGIEN,DGRP) Q
+ .I DPCE="T",DTYP'="G" D EXP(DFIEN,DGIEN,DGRP,DEXC,DMHEX,DRESL,.DTXT) Q
  .;Translate vitals ien to PCE code - This will need a DBIA
  .I DPCE="VIT" S DFIEN=$$GET1^DIQ(120.51,DFIEN,7,"E")
  .;Embedded Dialog Group
@@ -129,49 +151,59 @@ GROUP(DIEN,DSUB) ;Dialog group
  Q
  ;
 ISDISAB(PXRMIEN) ;
- N PXRMDATA
+ N CNT,PXRMDATA,ERRORTXT,HEADER,MSG,MSGCNT,RESULT,STDFILES,TYPE,ZTSAVE
  S PXRMDATA=$G(^PXRMD(801.41,PXRMIEN,0))
  I +$P(PXRMDATA,U,3)=0 Q 0
  I +$P(PXRMDATA,U,3)=2 Q 1
- N ZTDESC,ZTDTH,ZTRTN,ZTSAVE,ZTIO
- S ZTDESC="Reminder Dialog disable check"
- S ZTRTN="ISQDISB^PXRMDLL"
- S ZTSAVE("PXRMDATA")=""
- S ZTSAVE("PXRMIEN")=""
- S ZTIO=""
- S ZTDTH=$$NOW^XLFDT
- D ^%ZTLOAD
- Q 1
-ISQDISB ;
- N CNT,MSG,MSGCNT,RESULT,STDFILES,STR,TYPE
+ S HEADER="Disabled Dialog Item is being used in CPRS."
  S TYPE=$P(PXRMDATA,U,4)
  S CNT=1
  S TYPE=$S(TYPE="E":"Element",TYPE="G":"Group",TYPE="R":"Result Group",1:"Item")
- S STR="Disabled Dialog Item is being used in CPRS."
- S ^TMP("PXRMXMZ",$J,CNT,0)="Reminder Dialog "_TYPE_" "_$P(PXRMDATA,U)_" is inactive."
- D DIALDSAR^PXRMFRPT(.STDFILES) I '$D(STDFILES) G ISQDISBX
+ S ERRORTXT(CNT,0)="Reminder Dialog "_TYPE_" "_$P(PXRMDATA,U)_" is inactive."
+ D DIALDSAR^PXRMFRPT(.STDFILES) I '$D(STDFILES) G ISDISABX
  S RESULT=$$DISABCHK^PXRMDLG6(PXRMIEN,.STDFILES,.MSG)
- I '$D(MSG) G ISQDISBX
- S CNT=CNT+1,^TMP("PXRMXMZ",$J,CNT,0)="",CNT=CNT+1
+ I '$D(MSG) G ISDISABX
+ S CNT=CNT+1,ERRORTXT(CNT,0)="",CNT=CNT+1
  S MSGCNT=0
  F  S MSGCNT=$O(MSG(MSGCNT)) Q:MSGCNT'>0  D
  .S CNT=CNT+1
- .S ^TMP("PXRMXMZ",$J,CNT,0)="    "_$G(MSG(MSGCNT))
+ .S ERRORTXT(CNT,0)="    "_$G(MSG(MSGCNT))
  ;
-ISQDISBX ;
- D SEND^PXRMMSG("PXRMXMZ",STR,"",DUZ)
+ISDISABX ;
+ S ZTSAVE("HEADER")=""
+ S ZTSAVE("ERRORTXT(")=""
+ D ERROR("Reminder Dialog disable check",.ZTSAVE)
+ Q 1
+ ;
+ERROR(DESC,ZTSAVE) ;
+ N ZTDESC,ZTDTH,ZTRTN,ZTIO
+ S ZTDESC=DESC
+ S ZTRTN="ERRORQ^PXRMDLL"
+ S ZTIO=""
+ S ZTDTH=$$NOW^XLFDT
+ D ^%ZTLOAD
+ Q
+ERRORQ ;
+ M ^TMP("PXRMXMZ",$J)=ERRORTXT
+ D SEND^PXRMMSG("PXRMXMZ",HEADER,"",DUZ)
  Q
  ;
 LOAD(DIEN,DFN) ;Load dialog questions into array
  N DARRAY,DATA,DITEM,DFIND,DFIEN,DFTYP,DPCE,DRES,DSEQ,DSUB,DTXT,DTYP,OCNT
- N DDIS,DEXC,DHIDE,DCHECK,DDIS,DHIS,DMHEX,DRESL,DSUPP,SUB,IDENT,TXTCNT
+ N DDIS,DEXC,DHIDE,DCHECK,DDIS,DHIS,DMHEX,DRESL,DSUPP,SUB,IDENT,TXTCNT,REINDX
  ;Check Status of dialog
  S DATA=$G(^PXRMD(801.41,DIEN,0)) Q:DATA=""
  ;If disabled ignore
  I $$ISDISAB(DIEN)=1 Q
  ;Ignore if not a reminder dialog
  I $P(DATA,U,4)'="R" Q
- ;
+ ;check for disable evaluation disable if it contains branching logic
+ S REINDX=0
+ I $D(^XTMP("PXRM_DISEV",0)) D
+ .S ORY(1)=1_U_U_"1"_U_"D"_U_"1"_U_U_U_"0"_U_U
+ .S ORY(2)=2_U_U_"1"_U_"Dialog is disable for reminder re-indexing"
+ .S REINDX=1
+ I REINDX=1 Q
  ;List of PCE codes
  S DARRAY("AUTTEDT(")="PED"
  S DARRAY("AUTTEXAM(")="XAM"
@@ -181,6 +213,7 @@ LOAD(DIEN,DFN) ;Load dialog questions into array
  S DARRAY("GMRD(120.51,")="VIT"
  S DARRAY("ORD(101.41,")="Q"
  S DARRAY("YTT(601.71,")="MH"
+ ;AGP TODO before release ICD9 and CPT can be deleted
  S DARRAY("ICD9(")="POV"
  S DARRAY("ICPT(")="CPT"
  S DARRAY("PXD(811.2,")="T"
@@ -216,12 +249,12 @@ LOAD(DIEN,DFN) ;Load dialog questions into array
  .I DPCE="MH" Q:'$$OK(DFIEN)
  .;Exclude from PN
  .S DEXC=$P($G(^PXRMD(801.41,DITEM,2)),U,3)
- .;Taxonomy codes need expanding
- .I DPCE="T" D EXP(DFIEN,DITEM,DSUB) Q
- .;Translate vitals ien to PCE code - This will need a DBIA
- .I DPCE="VIT" S DFIEN=$P($G(^GMRD(120.51,DFIEN,0)),U,7)
  .;Done Elsewhere (historical)
  .S DHIS=$$AHIS(DITEM)
+ .;Taxonomy codes need expanding
+ .I DPCE="T",DTYP'="G" D EXP(DFIEN,DITEM,DSUB,DEXC,DMHEX,DRESL,.DTXT) Q
+ .;Translate vitals ien to PCE code - This will need a DBIA
+ .I DPCE="VIT" S DFIEN=$P($G(^GMRD(120.51,DFIEN,0)),U,7)
  .;Dialog Group
  .I DTYP="G" D GROUP(DITEM,DSUB) Q
  .;Dialog type/text and resolution 
@@ -234,19 +267,24 @@ LOAD(DIEN,DFN) ;Load dialog questions into array
  ..S OCNT=OCNT+1,ORY(OCNT)=2_U_DITEM_U_DSUB_U_TEXT
  Q
  ;
-TAX(TXIEN,ARRAY) ;Return list of resolutions/codes for taxonomy
- N CNT,DTXT,FNODE,RSUB,TDX,TNAME,TPAR,TPR,TYP
- N TCUR,TDTXT,TDHTXT,THIS,TPTXT,TPHTXT
+TAX(TXIEN,DITEM,TEXT,ARRAY) ;Return list of resolutions/codes for taxonomy
+ N CNT,DXNODE,DTXT,FAIL,HISTIEN,NODE,NUM,PRNODE,RESULT,RESVALUE,TNAME,TSEL,TYPE
+ N TDTXT,TDHTXT,TPTXT,TPHTXT
  ;
  ;Get taxonomy name
+ S RESULT=0
  S TNAME=$P($G(^PXD(811.2,TXIEN,0)),U,1)
+ I $P($G(^PXD(811.2,TXIEN,0)),U,6)=1 D TAXERROR(DITEM,TXIEN) Q RESULT
  ;
- ;Check what type of taxonomy codes exist
- S TDX=$$TOK^PXRMDLLA(TXIEN,"SDX")
- S TPR=$$TOK^PXRMDLLA(TXIEN,"SPR")
+ S TDX=$$TOK^PXRMDTAX(TXIEN,"POV")
+ S TPR=$$TOK^PXRMDTAX(TXIEN,"CPT")
+ S NODE=$G(^PXRMD(801.41,DITEM,"TAX"))
+ S TSEL=$P(NODE,U)
+ D TAXERROR(DITEM,TXIEN)
  ;
+ S DTXT=""
  ;Taxonomy dialog text
- S DTXT=$P($G(^PXD(811.2,TXIEN,0)),U,3)
+ I DTXT="" S DTXT=$P(NODE,U,4)
  ;default to taxonomy description if null
  I DTXT="" S DTXT=$P($G(^PXD(811.2,TXIEN,0)),U,2)
  ;default to taxonomy name if null
@@ -254,39 +292,37 @@ TAX(TXIEN,ARRAY) ;Return list of resolutions/codes for taxonomy
  ;
  S CNT=0,ARRAY=DTXT
  ;
+ ;make sure dialog is set to display diagnoses/procedure selection list
+ I TDX S TDX=$S("AD"[TSEL:1,1:0)
+ I TPR S TPR=$S("AP"[TSEL:1,1:0)
+ I TDX,TPR S RESULT=1
+ S HISTIEN=$O(^PXRMD(801.9,"B","DONE ELSEWHERE (HISTORICAL)",""))
+ S RESVALUE=$P($G(^PXRMD(801.41,DITEM,1)),U,3)
+ S TCUR=$S(RESVALUE'=HISTIEN:1,1:0)
  ;Diagnoses
  I TDX D
- .;Diagnosis texts
- .S TPAR=$G(^PXD(811.2,TXIEN,"SDZ"))
- .;Get parameter file node for this finding type
- .S FNODE=$O(^PXRMD(801.45,"B","POV","")) Q:FNODE=""
- .;check if finding parameters are disabled
- .S TCUR=$P($G(^PXRMD(801.45,FNODE,1,1,0)),U,2)
- .S THIS=$P($G(^PXRMD(801.45,FNODE,1,2,0)),U,2)
- .;get category text (diagnoses)
- .I 'TCUR D  ; Current
- ..S TDTXT=$P(TPAR,U,2) S:TDTXT="" TDTXT=TNAME
- ..S CNT=CNT+1,ARRAY(CNT)=TDTXT_U_80_U_1_U_"POV"
- .I 'THIS D  ; Historical
- ..S TDHTXT=$P(TPAR,U,3) S:TDHTXT="" TDHTXT=TNAME_" (HISTORICAL)"
- ..S CNT=CNT+1,ARRAY(CNT)=TDHTXT_U_80_U_2_U_"POV"
+ .S TDTXT=$P($G(^PXRMD(801.41,DITEM,"POV")),U) S:TDTXT="" TDTXT=TNAME_$S(TCUR=1:"",1:" (HISTORICAL)")
+ .S CNT=CNT+1,ARRAY(CNT)=TDTXT_U_80_U_$S(TCUR=1:1,1:2)_U_"POV"
  ;Procedures
  I TPR D
- .;Procedure texts
- .S TPAR=$G(^PXD(811.2,TXIEN,"SPZ"))
- .;Get parameter file node for this finding type
- .S FNODE=$O(^PXRMD(801.45,"B","CPT","")) Q:FNODE=""
- .;check if finding parameters are disabled
- .S TCUR=$P($G(^PXRMD(801.45,FNODE,1,1,0)),U,2)
- .S THIS=$P($G(^PXRMD(801.45,FNODE,1,2,0)),U,2)
- .;get category text (procedures)
- .I 'TCUR D  ; Current
- ..S TPTXT=$P(TPAR,U,2) S:TPTXT="" TPTXT=TNAME
- ..S CNT=CNT+1,ARRAY(CNT)=TPTXT_U_81_U_1_U_"CPT"
- .I 'THIS D  ; Historical
- ..S TPHTXT=$P(TPAR,U,3) S:TPHTXT="" TPHTXT=TNAME_" (HISTORICAL)"
- ..S CNT=CNT+1,ARRAY(CNT)=TPHTXT_U_81_U_2_U_"CPT"
+ .S TPTXT=$P($G(^PXRMD(801.41,DITEM,"CPT")),U) S:TPTXT="" TPTXT=TNAME_$S(TCUR=1:"",1:" (HISTORICAL)")
+ .S CNT=CNT+1,ARRAY(CNT)=TPTXT_U_81_U_$S(TCUR=1:1,1:2)_U_"CPT"
  ;
+ Q RESULT
+ ;
+TAXERROR(DIEN,TIEN) ;
+ N CNT,DNAME,ERRORTXT,FAIL,HEADER,LINE,NIN,NOUT,OUTPUT,TEMP,TNAME
+ S DNAME=$P($G(^PXRMD(801.41,DIEN,0)),U) Q:DNAME=""
+ S TNAME=$P($G(^PXD(811.2,TIEN,0)),U)
+ S HEADER="Problem with dialog in CPRS"
+ S FAIL=$$CHECKER^PXRMDTAX(DIEN,TIEN,15,.OUTPUT) I FAIL="" Q
+ S NIN=$O(OUTPUT(""),-1)
+ D FORMAT^PXRMTEXT(1,75,NIN,.OUTPUT,.NOUT,.TEMP)
+ S CNT=0 F LINE=1:1:NOUT S CNT=CNT+1,ERRORTXT(CNT,0)=TEMP(LINE)
+ ;S CNT=1 S ERRORTXT(CNT,0)="Dialog "_DNAME_" and taxonomy "_TNAME_" structures do not match."
+ S CNT=CNT+1,ERRORTXT(CNT,0)="Please review and correct either the taxonomy or the dialog."
+ S ZTSAVE("HEADER")="",ZTSAVE("ERRORTXT(")=""
+ D ERROR("Reminder Dialog/Taxonomy Loader check",.ZTSAVE)
  Q
  ;
 AHIS(DITEM) ;

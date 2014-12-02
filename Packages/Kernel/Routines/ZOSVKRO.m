@@ -1,5 +1,5 @@
-%ZOSVKR ;SF/KAK/RAK - Collect RUM Statistics for OpenM/Cache;8/20/99  08:43  ;3/27/00  11:24
- ;;8.0;KERNEL;**90,94,107,122,143,186**;May 1, 2003 11:49 am
+%ZOSVKR ;SF/KAK/RAK - ZOSVKRO - Collect RUM Statistics for Cache on VMS/Linux/Windows;8/20/99  08:43  ;7/29/10  09:57
+ ;;8.0;KERNEL;**90,94,107,122,143,186,550**;July 7, 2010 10:10 am;Build 23
  ;
 RO(OPT) ; Record option resource usage in ^KMPTMP("KMPR"
  ;
@@ -158,23 +158,57 @@ EN ;
  Q
  ;
 STATS() ;-- extrinsic - return current stats for this $job
+  ;
+ N MUMPS,OS,OSNUM,PROCESS,RETURN,V,VER,ZH,ZT
  ;
- N H,RETURN,V,VER,ZH,ZT
+ S RETURN=""
+ ; mumps implementation
+ S MUMPS=$$VERSION^%ZOSV(1)
+ ; quit if not cache
+ Q:$TR(MUMPS,"cahe","CAHE")'["CACHE" ""
+ ; operating system
+ S OS=$$OS^%ZOSV
+ ; mumps version
+ S VER=$P($$VERSION^%ZOSV(0),".",1,2)
+ ; $h
+ S ZT=$H_"."_$P($ZTIMESTAMP,".",2)
+ ; if version is greater than 2007
+ I VER>2007 D 
+ .S PROCESS=##class(%SYS.ProcessQuery).%OpenId($J)
+ .Q:PROCESS=""
+ .; cpu time
+ .S $P(RETURN,"^")=+($FN(($P(PROCESS.GetCPUTime(),",")/1000),"",2))
+ .; m commands
+ .S $P(RETURN,"^",5)=PROCESS.LinesExecuted
+ .; global references
+ .S $P(RETURN,"^",6)=PROCESS.GlobalReferences
+ .; $h date
+ .S $P(RETURN,"^",7)=$P(ZT,",")
+ .; $h seconds
+ .S $P(RETURN,"^",8)=$p($P(ZT,",",2),".")
+ .; $h seconds.thousandofsecond
+ .S $P(RETURN,"^",9)=$P(ZT,",",2)
  ;
- S RETURN="",ZT=$P($ZTIMESTAMP,".",2),V=$V(-1,$J),VER=$P($P($P($ZV,") ",2)," "),".",1,2)
- ;
- ; if version is less than 4
- I (+VER)<4 D
- .; cpu^dio^bio^pg_fault^cmd^glo^$H_date^$H_sec^time in thousands
- .; -> no cpu^dio^bio^pg_fault information is returned
- .S RETURN="^^^^"_$P($P(V,"^",7),",")_"^"_$P($P(V,"^",7),",",2)_"^"_+$H_"^"_$P($H,",",2)_"."_ZT_"^"_ZT
- ;
- ; if version is 4 or greater
- E  D
- .S ZH=$ZU(171),ZT=$P($ZTIMESTAMP,".",2)
- .S H=$P(ZH,",",3),H=$E(H,13,23),H=+$H_","_($P(H,":")*3600+($P(H,":",2)*60))_"."_ZT
- .; cpu^dio^bio^pg_fault^cmd^glo^$H_date^$H_sec^ascii_time^$s
- .S RETURN=$P(ZH,",")_"^"_$P(ZH,",",7)_"^"_$P(ZH,",",8)_"^"_$P(ZH,",",4)_"^"_$P($P(V,"^",7),",")_"^"_$P($P(V,"^",7),",",2)_"^"_$P(H,",")_"^"_$P(H,",",2)_"^"_$P(ZH,",",3)_"^"_$S
+ ; if version is 4 or greater and not linux and not unknown
+ E  I (+VER)'<4&(OS'["UNIX")&(OS'["UNK") D
+  .S V=$V(-1,$J),ZH=$ZU(171)
+ .; cpu time
+ .S $P(RETURN,"^")=$P(ZH,",")
+ .; direct io
+ .S $P(RETURN,"^",2)=$P(ZH,",",7)
+ .; buffered io
+ .S $P(RETURN,"^",3)=$P(ZH,",",8)
+ .; page faults
+ .S $P(RETURN,"^",4)=$P(ZH,",",4)
+ .; m commands
+ .S $P(RETURN,"^",5)=$P($P(V,"^",7),",")
+ .; global references
+ .S $P(RETURN,"^",6)=$P($P(V,"^",7),",",2)
+ .; $h date
+ .S $P(RETURN,"^",7)=$P(ZT,",")
+ .; $h seconds
+ .S $P(RETURN,"^",8)=$p($P(ZT,",",2),".")
+ .; $h seconds.thousandofsecond
+ .S $P(RETURN,"^",9)=$P(ZT,",",2)
  ;
  Q RETURN
- 

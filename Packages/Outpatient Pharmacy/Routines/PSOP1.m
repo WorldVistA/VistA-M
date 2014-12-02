@@ -1,5 +1,5 @@
 PSOP1 ;BHAM ISC/SAB - prints short medication profile ;02/25/94
- ;;7.0;OUTPATIENT PHARMACY;**15,46,103,132,148,233,326,251**;DEC 1997;Build 202
+ ;;7.0;OUTPATIENT PHARMACY;**15,46,103,132,148,233,326,251,313**;DEC 1997;Build 76
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.605 supported by DBIA 696
  K RX,DTOUT,DIRUT,DIROUT,DUOUT
@@ -19,7 +19,7 @@ W I $Y+6>IOSL,$E(IOST)="C" D DIR W @IOF Q:$D(PQT)  D HD
  I PSOBADR'="" S PSOBADR=$G(^PSRX(J,"L",PSOBADR,0)) I PSOBADR["(BAD ADDRESS)" S PSOBADR="B"
  I PSOBADR'="B" S PSOBADR=""
  S ST=ST_PSOBADR
- W !,CP_$P(RX0,"^"),$$ECME^PSOBPSUT(J),?13,$S($D(^PSDRUG(+$P(RX0,"^",6),0)):$P(^(0),"^"),1:"NOT ON FILE"),?54,$S($L(ST)=1:" "_ST,1:ST)
+ W !,CP_$P(RX0,"^"),$$ECME^PSOBPSUT(J),$$TITRX^PSOUTL(J),?14,$S($D(^PSDRUG(+$P(RX0,"^",6),0)):$E($P(^(0),"^"),1,39),1:"NOT ON FILE"),?54,$S($L(ST)=1:" "_ST,1:ST)
  S RXD=$P($G(^PSRX(J,3)),"^"),RXF=$P(RX0,"^",9) F II=0:0 S II=$O(^PSRX(J,1,II)) Q:'II  S RXF=RXF-1 S:$P(^PSRX(J,1,II,0),"^",16) RST($P(^(0),"^"))=1
  W ?58,$S($L(RXF)=1:" "_RXF,1:RXF)
  W ?61,$E($P(RX0,"^",13),4,5)_"-"_$E($P(RX0,"^",13),6,7)_"-"_$E($P(RX0,"^",13),2,3) W:RXD ?70,$E(RXD,4,5)_"-"_$E(RXD,6,7)_"-"_$E(RXD,2,3)_$S($G(RST(RXD)):"R",1:"")
@@ -35,7 +35,7 @@ W I $Y+6>IOSL,$E(IOST)="C" D DIR W @IOF Q:$D(PQT)  D HD
 HD D:PAGE>1
  .W !,"Patient: "_$P(^DPT(DFN,0),"^")_" ("_$E($P(^DPT(DFN,0),"^",9),6,9)_")",?70,"Page: "_PAGE
  .W !?(80-$L("Medication Profile Sorted by "_HDR))/2,"Medication Profile Sorted by "_HDR W:$G(FR)]"" !?(80-$L(FR_" to "_TO))/2,FR_" to "_TO
- W !?57,"REF",!?1,"Rx#",?13,"Drug",?54,"ST",?57,"REM",?62,"Issued",?70,"Last Fill",!,PSOPLINE S PAGE=PAGE+1
+ W !?57,"REF",!?1,"Rx#",?14,"Drug",?54,"ST",?57,"REM",?62,"Issued",?70,"Last Fill",!,PSOPLINE S PAGE=PAGE+1
  Q
 SORT K DIR,DUOUT,DTOUT
  S DIR("B")="All",DIR("A",1)=" ",DIR("A")="All Medications or Selection (A/S): ",DIR(0)="SAM^A:All;S:Select Range",DIR("?",1)="Enter 'A' to Print Entire Medication Profile",DIR("?")="   or 'S' for Selection Range" D ^DIR

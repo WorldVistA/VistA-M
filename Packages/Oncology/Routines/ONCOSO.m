@@ -1,5 +1,5 @@
 ONCOSO ;Hines OIFO/GWB - CALL TO ^DIS FOR FILEMANAGER SEARCH OPTION ;9/3/93
- ;;2.11;ONCOLOGY;**39**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 HD ;Header
  W @IOF,!!?10,"This option allows you to create 'SEARCH TEMPLATES'",!?10,"which are used in Cross-Tabs and Survival Analysis"

@@ -1,5 +1,5 @@
-PRCSECP ;SFISC/KSS,LJP/DAP - COPY A TRANSACTION ; 9/7/2010
-V ;;5.1;IFCAP;**81,148**;Oct 20, 2000;Build 5
+PRCSECP ;SFISC/KSS,LJP/DAP - COPY A TRANSACTION ;7/9/13  16:02
+V ;;5.1;IFCAP;**81,148,174**;Oct 20, 2000;Build 23
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 A I '$D(DT) S %DT="",X="T" D ^%DT S DT=Y
  W @IOF,!!
@@ -10,13 +10,38 @@ B D EN3^PRCSUT ;GO GET STATION AND CONTROL POINT
  S DIC("A")="Select the Transaction to be copied: "
 C W ! D ^PRCSDIC K PRCST
  I (X[U)!(Y<0) D END Q
- S DA=+Y D W1
+ S DA=+Y
  S PRCVFT=$P(^PRCS(410,DA,0),"^",4)
+ ;if 2237 transaction (Form Type IEN 2,3, or 4), do required field checks (PRC*5.1*174)
+ I $G(PRCVFT)>1&($G(PRCVFT)<5) D
+ . N PRCWARN
+ . ;warn user if required fields are missing from transaction that is going to be copied
+ . I '$$REQCHECK^PRCHJUTL($G(DA),.PRCWARN) D
+ . . W !?15,"********** WARNING **********",*7,!
+ . . W !,"Transaction to be copied ("_$$GET1^DIQ(410,$G(DA),.01)_") is missing required data!"
+ . . N PRCIDX S PRCIDX=0
+ . . F  S PRCIDX=$O(PRCWARN(PRCIDX)) Q:'PRCIDX  D
+ . . . W !?2,">>> "_$G(PRCWARN(PRCIDX))
+ . . W !,"This data will be required when entering information for the"
+ . . W !,"new transaction number.",!
+ ;
+ ;prompt user to review this request
+ D W1
+ ;
  ;*81 Check site parameter to see if Issue Books are allowed
  I $$GET^XPAR("SYS","PRCV COTS INVENTORY",1,"Q")=1 S PRCVZ=1
  I $$GET^XPAR("SYS","PRCV COTS INVENTORY",1,"Q")'=1 S PRCVZ=0
  I PRCVZ=1,PRCVFT=5 W !,"All Supply Warehouse requests must be processed in the new Inventory System.",!!,"Please cancel this IFCAP issue book order." D W3 G:%'=1 END W !! K PRCS,PRCS2 G B
- W !!,"Would you like to proceed " S %=1 D YN^DICN G C:%'=1
+ ;
+PROCEED ;modified prompt and added help (PRC*5.1*174)
+ W !!,"Would you like to proceed with copying this request"
+ S %=1 D YN^DICN
+ I %=0 D  G PROCEED
+ . W !?2,"Enter 'Yes' to proceed with copying transaction "_$$GET1^DIQ(410,$G(DA),.01)_"."
+ . W !?2,"Enter 'No' or '^' to abort copying this transaction."
+ I %'=1 D  G C
+ . W !!?2,">>> Transaction "_$$GET1^DIQ(410,$G(DA),.01)_" data was not copied.",!
+ ;
  S DIC="^PRCS(410," L +^PRCS(410,DA):15 G END:$T=0
  S T1=DA,T2=^PRCS(410,DA,0),T5=$P(T2,U,4),T4=$P(T2,U,2),T2=$P(T2,U),T3=$P(^(3),U)
  K ^TMP($J)

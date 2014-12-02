@@ -1,5 +1,5 @@
 FHSELA2 ;Hines OIFO/RTK - Map GMR Allergy file to Food Prefs ;3/07/2007
- ;;5.5;DIETETICS;**8,13,23,25,28**;Jan 28, 2005;Build 1
+ ;;5.5;DIETETICS;**8,13,23,25,28,35,37**;Jan 28, 2005;Build 2
  ;
  ;10/9/2009 SLC/GDU FH*5.5*23
  ;  Remedy 317642 FGH - patient food allergy not mapping to N&FS food preferences
@@ -10,6 +10,14 @@ FHSELA2 ;Hines OIFO/RTK - Map GMR Allergy file to Food Prefs ;3/07/2007
  ;6/22/2011 SLC/GDU FH*5.5*28
  ;  Remedy 490577 - Need N&FS patch to add OCTOPUS, KIDNEY BEANS as food allergies
  ;  Adding the following food allergies: Kidney Beans, Octopus
+ ;3/5/2013 SLC/GDU FH*5.5*35
+ ;  Remedy 742739 - FGH - SAGE FOOD ALLERGY
+ ;  Adding the following food allergy: Sage
+ ;9/13/2013 SLC/GDU FH*5.5*37
+ ;  Remedy 905481 - PSPO 1380 changes needed due to NTRT
+ ;  Adding the following food allergies: 
+ ;  Margarine, Raw Onions, Raw Vegetables, Turmeric, Canola Oil, Erythritol,
+ ;  Kale, Agave, Hemp Milk, Taro Root
 TMPGL ; Create ^TMP Global
  K ^TMP($J,"FHALG") S FHK=0
  F  S FHK=FHK+1,FHFPS=$T(FPS+FHK),FHZ1=$P(FHFPS,";",3) Q:FHZ1=""  D
@@ -330,3 +338,14 @@ FPS ;;
  ;;WATER CHESTNUTS;WATER CHESTNUTS
  ;;BEANS, KIDNEY;KIDNEY BEANS
  ;;OCTOPUS;OCTOPUS
+ ;;SAGE;SAGE
+ ;;MARGARINE;MARGARINE
+ ;;ONIONS, RAW;RAW ONIONS
+ ;;VEGETABLES, RAW;RAW VEGETABLES
+ ;;TURMERIC;TURMERIC
+ ;;OIL, CANOLA;CANOLA OIL
+ ;;ERYTHRITOL;ERYTHRITOL
+ ;;KALE;KALE
+ ;;AGAVE;AGAVE
+ ;;MILK, HEMP;HEMP MILK
+ ;;ROOT, TARO;TARO ROOT

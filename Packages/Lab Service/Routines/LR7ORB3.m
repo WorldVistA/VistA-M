@@ -1,5 +1,5 @@
-LR7ORB3 ;DALOI/JMC - Lab CPRS Notification Utility ;05/28/12  16:11
- ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+LR7ORB3 ;DALOI/JMC - Lab CPRS Notification Utility ;03/07/13  15:23
+ ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
  ;
  ; Reference to EN^ORB3 supported by ICR #1362
  ;
@@ -21,7 +21,7 @@ SETUP(LRDFN,LRSS,LRIDT,LRUID) ; Setup a CPRS notification
  ; Select test to alert
  S LRY=$$SELTEST(LRUID)
  I 'LRY Q LRY
- S LRTST=$P(LRY,"^",2)
+ S LRTST=$P(LRY,"^",2,4)
  ;
  ; Ask user type of CPRS notification to send
  S DIR(0)="SO^1:Lab results available;2:Abnormal lab results;3:Critical lab results"
@@ -183,7 +183,7 @@ OR(LRTYPE,LRDFN,LRSS,LRIDT,LRUID,LRXQA,LRTST) ; Send OR notification
  ;            LRIDT = inverse d/t of entry in file #63
  ;            LRUID = accession's UID
  ;            LRXQA = recipient array
- ;            LRTST = test name being alerted
+ ;            LRTST = test ien ^ test name being alerted ^ parent test ien
  ;
  ; Only supports CH and MI. AP subscript handled by separate API.
  ;
@@ -198,7 +198,11 @@ OR(LRTYPE,LRDFN,LRSS,LRIDT,LRUID,LRXQA,LRTST) ; Send OR notification
  S LRY=$G(^LRO(68,$P(LRX,"^",2),1,$P(LRX,"^",3),1,$P(LRX,"^",4),0))
  S LRODT=+$P(LRY,"^",4),LRSN=+$P(LRY,"^",5),(LROE,LROIFN)=""
  I LRODT,LRSN D
- . S LROIFN=$P($G(^LRO(69,LRODT,1,LRSN,0)),"^",11)
+ . N LR6903
+ . S LR6903=$O(^LRO(69,LRODT,1,LRSN,2,"B",+LRTST,0))
+ . I 'LR6903,$P(LRTST,"^",3) S LR6903=$O(^LRO(69,LRODT,1,LRSN,2,"B",+$P(LRTST,"^",3),0))
+ . I LR6903 S LROIFN=$P($G(^LRO(69,LRODT,1,LRSN,2,LR6903,0)),"^",7)
+ . I 'LROIFN S LROIFN=$P($G(^LRO(69,LRODT,1,LRSN,0)),"^",11)
  . S LROE=$P($G(^LRO(69,LRODT,1,LRSN,.1)),"^")
  ;
  S LRIENS=LROIFN_"@OR|"_LROE_";"_LRODT_";"_LRSN_";"_LRSS_";"_LRIDT_"@LRCH"
@@ -211,7 +215,7 @@ OR(LRTYPE,LRDFN,LRSS,LRIDT,LRUID,LRXQA,LRTST) ; Send OR notification
  . I LRTYPE=14!(LRTYPE=57) S LRMSG=LRPREFIX_"microbiology results:"
  . E  S LRMSG="Microbiology results:"
  ;
- S LRMSG=LRMSG_" - ["_LRTST_"]"
+ S LRMSG=LRMSG_" - ["_$P(LRTST,"^",2)_"]"
  ;
  ; OERR parameters:
  ;          ORN: notification id (#100.9 ien)
@@ -229,7 +233,7 @@ OR(LRTYPE,LRDFN,LRSS,LRIDT,LRUID,LRXQA,LRTST) ; Send OR notification
 SELTEST(LRUID) ; Select test on accession for alert messsage - screen out workload tests
  ;
  ; Call with LRUID = accession's UID
- ; Returns     LRY = 1^test names for alert message
+ ; Returns     LRY = 1^Test IEN^Test name for alert message^Parent Test IEN
  ;                   0^error message
  ;
  N DIC,DIR,DIROUT,DIRUT,DUOUT,LRAA,LRAD,LRADO,LRAN,LRI,LRJ,LRTEST,LRX,LRY,X,Y
@@ -248,7 +252,8 @@ SELTEST(LRUID) ; Select test on accession for alert messsage - screen out worklo
  . I LRJ=2,LRAD=LRADO Q
  . I LRJ=2 S LRAD=LRADO
  . S LRI=0
- . F  S LRI=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRI)) Q:'LRI  I $P(^LAB(60,LRI,0),"^",4)'="WK" S LRTEST(LRI)=""
+ . F  S LRI=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRI)) Q:'LRI  D
+ . . I $P(^LAB(60,LRI,0),"^",4)'="WK" S LRTEST(LRI)=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRI,0)),"^",9)
  ;
  I '$D(LRTEST) S LRY="O^No tests on accession"
  ;
@@ -259,6 +264,7 @@ SELTEST(LRUID) ; Select test on accession for alert messsage - screen out worklo
  D ^DIC
  I Y<1 S LRY="0^User aborted"
  E  S LRY="1^"_Y(0,0)
+ E  S LRY="1^"_+Y_"^"_Y(0,0)_"^"_$G(LRTEST(+Y))
  ;
  Q LRY
  ;

@@ -1,6 +1,11 @@
 PRCE58P1 ;WISC/SAW,LDB/BGJ-CONTROL POINT ACTIVITY 1358 DISPLAY CON'T ;6/17/11  17:51
-V ;;5.1;IFCAP;**158**;Oct 20, 2000;Build 1
+V ;;5.1;IFCAP;**158,168**;Oct 20, 2000;Build 3
  ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*168 will remove leading zeros when transactions compile into 
+ ;            temp global ^TMP("PRCSR") to insure correct sort for 1358
+ ;            having more than 999 transactions
+ ;
  S Z=$S($D(PRCSPO):PRC("SITE")_"-"_PRCSPO,1:0)
 I I 'Z!('$D(^PRC(424,"AD",Z))) W !,"Daily Record entries have not yet been entered for this request.",!,"The total committed cost of this request is $" W:$D(TRNODE(4)) $J($P(TRNODE(4),U),0,2) W !,L G P
  D HDR1 S PRCSX=0 D OB S (ET,AT,UT)="" D PO1 Q:Z3=U
@@ -24,12 +29,12 @@ PO1 I $D(TRNODE(10)) S PRCSY=$P(TRNODE(10),U,3) I PRCSY K PO D PO^PRCH58OB(PRCSY
 PO11 K ^TMP("PRCSR",$J)
  I IOSL-$Y<15 D HOLD^PRCE58P0 Q:Z3=U  D NEWP^PRCE58P0
  D HDR S CET=0 F  S PRCSX=$O(^PRC(424,"C",PRCSY,PRCSX)) Q:'PRCSX  D
- . I $D(^PRC(424,PRCSX,0)),"^AU^L^"[("^"_$P(^(0),U,3)_"^") S Z1=^(0) I Z1 S ^TMP("PRCSR",$J,$P($P(Z1,U),"-",3),PRCSX)=Z1
+ . I $D(^PRC(424,PRCSX,0)),"^AU^L^"[("^"_$P(^(0),U,3)_"^") S Z1=^(0) I Z1 S ^TMP("PRCSR",$J,+$P($P(Z1,U),"-",3),PRCSX)=Z1   ;PRC*5.1*168 will remove leading zeros in TX#
  S PRCSXX="" F  S PRCSXX=$O(^TMP("PRCSR",$J,PRCSXX)) Q:PRCSXX=""  S (A,E)=0 D PO12 Q:Z3=U
  K ^TMP("PRCSR",$J) Q
 PO12 S PRCSX=0 F  S PRCSX=$O(^TMP("PRCSR",$J,PRCSXX,PRCSX)) Q:PRCSX'>0  S Z1=^TMP("PRCSR",$J,PRCSXX,PRCSX),Y=$P(Z1,U,7) D T X "I IOSL-$Y<3 D HOLD^PRCE58P0 Q:Z3=U  D NEWP^PRCE58P0,HDR" D PO2 Q:Z3=U
  K A,E Q
-PO2 W !,Y,?7,PRCSXX,?12,$P(Z1,U,10),?29,"$"
+PO2 W !,Y,?7,$E("0000",1,4-$L(PRCSXX))_PRCSXX,?12,$P(Z1,U,10),?29,"$"   ;PRC*5.1*168 will zero pad TX# for print
  S E=$P(Z1,U,12),A=$P(Z1,U,5),UT=UT+$P(Z1,U,4),AT=AT+A,ET=ET+E,CET=CET+E
  ;Display of dollar amounts staggered if any amount $1 million or more
  D

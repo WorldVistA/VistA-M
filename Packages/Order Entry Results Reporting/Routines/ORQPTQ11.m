@@ -1,5 +1,5 @@
 ORQPTQ11 ; SLC/CLA - Functs which return patient lists and sources pt 1B ;12/15/97 [ 08/04/97  3:32 PM ] [6/6/03 2:36pm]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**82,85,109,132,173,253**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**82,85,109,132,173,253,320**;Dec 17, 1997;Build 16
  ;
  ; SLC/PKS - Modified to deal with "Combination" lists - 3/2000.
  ; SLC/PKS - Additions for "Restricted Pt. Lists" - 11/2001.
@@ -68,7 +68,7 @@ DEFLIST(Y) ; return current user's default patient list
  ..I BEG="T+0" S BEG=$$FMTE^XLFDT(DT,BEG)
  ..S END=$$UP^XLFSTR($$GET^XPAR("USR^SRV.`"_+$G(ORSRV)_"^DIV^SYS^PKG","ORLP DEFAULT CLINIC STOP DATE",1,"E"))
  ..I END="T+0" S END=$$FMTE^XLFDT(DT,END)
- ..D CLINPTS^ORQPTQ2(.Y,+$G(IEN),BEG,END)
+ ..D CLINPTS2^ORQPTQ2(.Y,+$G(IEN),BEG,END)
  I FROM="M" D
  .S IEN=$D(^OR(100.24,DUZ,0)) I +$G(IEN)>0 S IEN=DUZ D
  ..S BEG=$$UP^XLFSTR($$GET^XPAR("USR^SRV.`"_+$G(ORSRV)_"^DIV^SYS^PKG","ORLP DEFAULT CLINIC START DATE",1,"E"))
@@ -77,10 +77,9 @@ DEFLIST(Y) ; return current user's default patient list
  ..I END="T+0" S END=$$FMTE^XLFDT(DT,END)
  ..D COMBPTS^ORQPTQ6(0,+$G(IEN),BEG,END) ; "0"= GUI RPC call.
  I ($$BROKER^XWBLIB)&(FROM'="M") D  ; Combinations already written to global.
- .S ORQDAT="",ORQCNT=1
- .F  S ORQDAT=$G(Y(ORQCNT)) Q:ORQDAT=""  D
+ .S ORQDAT="",ORQCNT=0
+ .F  S ORQCNT=$O(Y(ORQCNT)) Q:ORQCNT=""  S ORQDAT=Y(ORQCNT) D
  ..S ^TMP("OR",$J,"PATIENTS",ORQCNT,0)=ORQDAT
- ..S ORQCNT=ORQCNT+1
  I ('$$BROKER^XWBLIB) S Y=FROM_";"_+$G(IEN)_";"_$G(BEG)_";"_$G(END) ; MKB 10/13/95
  Q
 DEFSORT(Y) ; Return user's default sort.

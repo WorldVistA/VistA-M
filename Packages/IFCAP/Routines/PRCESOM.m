@@ -1,6 +1,10 @@
 PRCESOM ;WISC/SJG/ASU - CONTINUATION OF 1358 ADJUST OBLIAGTION PRCEADJ1 ;4/27/94  2:13 PM
-V ;;5.1;IFCAP;**148,153**;Oct 20, 2000;Build 10
+V ;;5.1;IFCAP;**148,153,180**;Oct 20, 2000;Build 5
  ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*180 RGB 10/22/12  Added switch PRCE424 coming from 1358 processing
+ ;to insure new entry check (EN1^PRCSUT3) uses file 424, not file 410.
+ ;
  N TI,PRCFASYS,IOINLOW,IOINHI,IOINORM,DIR,AMT,OLDTT,CS,HASH,DIE,DR,LAUTH,LBAL,TAUTH,TBAL,DLAYGO
  D SCREEN
  S PRC("CP")=$P(TRNODE(0),"-",4)
@@ -156,8 +160,8 @@ POBAL ; Enter Obligation Data into Purchase Order Record
  ; Continue processing if this is not a rebuild
  I $D(PRCFA("RETRAN")),PRCFA("RETRAN")>0 G OUT
 Z S (X,Z)=$P(PO(0),U)
- S %=1
- D EN1^PRCSUT3
+ S %=1,PRCE424=1 D EN1^PRCSUT3 K PRCE424       ;PRC*5.1*180
+ I $D(MSG),MSG'="" W !!,MSG K MSG Q            ;PRC*5.1*180 
  S DLAYGO=424
  S DIC="^PRC(424,"
  S DIC(0)="L"

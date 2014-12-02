@@ -1,6 +1,16 @@
-RORX015 ;HOIFO/SG - PROCEDURES REPORT ; 6/23/06 1:36pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1**;Feb 17, 2006;Build 24
+RORX015 ;HOIFO/SG - PROCEDURES REPORT ;6/23/06 1:36pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,19**;Feb 17, 2006;Build 43
  ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ; --- ROUTINE MODIFICATION LOG ---
+ ; 
+ ;PKG/PATCH   DATE       DEVELOPER   MODIFICATION
+ ;----------- ---------- ----------- ----------------------------------------
+ ;ROR*1.5*19  FEB 2012   J SCOTT     Support for ICD-10 Coding System.
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
  Q
  ;
  ;***** OUTPUTS THE REPORT HEADER
@@ -40,9 +50,9 @@ PARAMS(PARTAG,STDT,ENDT,FLAGS) ;
  N PARAMS,TMP
  S PARAMS=$$PARAMS^RORXU002(.RORTSK,PARTAG,.STDT,.ENDT,.FLAGS)
  Q:PARAMS<0 PARAMS
- ;--- Process the list of ICD-9 codes
+ ;--- Process the list of ICD codes
  I $$PARAM^RORTSK01("PATIENTS","INPATIENT")  D  Q:TMP<0 TMP
- . S TMP=$$ICD9LST^RORXU008(.RORTSK,PARAMS,.RORICDL,.RORIGRP)
+ . S TMP=$$ICDLST^RORXU008(.RORTSK,PARAMS,.RORICDL,.RORIGRP)
  ;--- Process the list of CPT codes
  I $$PARAM^RORTSK01("PATIENTS","OUTPATIENT")  D  Q:TMP<0 TMP
  . S TMP=$$CPTLST^RORXU006(.RORTSK,PARAMS)
@@ -97,8 +107,8 @@ PARAMS(PARTAG,STDT,ENDT,FLAGS) ;
 PROCLST(RORTSK) ;
  N RORPROC       ; Procedures mode (-1|1)
  N ROREDT        ; End date
- N RORICDL       ; Prepared list of ICD-9 codes
- N RORIGRP       ; List of ICD-9 groups
+ N RORICDL       ; Prepared list of ICD codes
+ N RORIGRP       ; List of ICD groups
  N RORREG        ; Registry IEN
  N RORSDT        ; Start date
  N RORTMP        ; Closed root of the temporary buffer

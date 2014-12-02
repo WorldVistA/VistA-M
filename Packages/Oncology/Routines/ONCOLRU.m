@@ -1,5 +1,5 @@
-ONCOLRU ;HInes OIFO/GWB - LAB UTILITY ;8/21/93
- ;;2.11;ONCOLOGY;**16,34**;Mar 07, 1995
+ONCOLRU ;Hines OIFO/GWB - LAB UTILITY ;8/21/93
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 D S %=$E(Y,4,5)*3
  S Y=$E("JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC",%-2,%)_" "_$S($E(Y,6,7):$J(+$E(Y,6,7),2)_", ",1:"")_($E(Y,1,3)+1700)_$S(Y[".":"  "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12),1:"")

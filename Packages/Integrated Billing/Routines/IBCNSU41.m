@@ -1,5 +1,5 @@
 IBCNSU41 ;ALB/CPM - SPONSOR UTILITIES (CON'T) ; 5/9/03 1:25pm
- ;;2.0;INTEGRATED BILLING;**52,211,240**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**52,211,240,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 SPON(DFN) ; Add/edit sponsor/sponsor relationships for a patient.
@@ -72,7 +72,7 @@ POL(DFN) ; Update TRICARE policies with Sponsor information.
  ;  Input:   DFN  --  Pointer to the patient in file #2
  ;
  I '$G(DFN) G POLQ
- N IBX,IBY,SPON,X,X1,X3,Y,Z
+ N IBX,IBY,IBY7,SPON,X,X1,X3,Y,Z
  ;
  S X=0 F  S X=$O(^IBA(355.81,"B",DFN,X)) Q:'X  D  Q:$D(Z)
  .S Y=$G(^IBA(355.81,X,0))
@@ -97,7 +97,7 @@ POL(DFN) ; Update TRICARE policies with Sponsor information.
  I '$D(Z) G POLQ
  ;
  ; - update any policies with TRICARE plans
- S IBX=0 F  S IBX=$O(^DPT(DFN,.312,IBX)) Q:'IBX  S IBY=$G(^(IBX,0)) D
+ S IBX=0 F  S IBX=$O(^DPT(DFN,.312,IBX)) Q:'IBX  S IBY=$G(^(IBX,0)),IBY7=$G(^(7)) D       ; IB*2.0*497 (vd)
  .;
  .; - only consider TRICARE plans
  .Q:$P($G(^IBE(355.1,+$P($G(^IBA(355.3,+$P(IBY,"^",18),0)),"^",9),0)),"^",3)'=7
@@ -112,7 +112,7 @@ POL(DFN) ; Update TRICARE policies with Sponsor information.
  .;
  .S DR=""
  .;IB*2*211
- .I $P(IBY,"^",17)="" S DR=DR_"17////"_Z("NAME")_";"
+ .I $P(IBY7,"^")="" S DR=DR_"7.01////"_Z("NAME")_";"            ; IB*2.0*497 (vd)
  .I $P(X3,"^")="",Z("DOB") S DR=DR_"3.01////"_Z("DOB")_";"
  .I $P(X3,"^",2)="",Z("BRAN") S DR=DR_"3.02////"_Z("BRAN")_";"
  .I $P(X3,"^",3)="",Z("RANK")]"" S DR=DR_"3.03////"_Z("RANK")_";"

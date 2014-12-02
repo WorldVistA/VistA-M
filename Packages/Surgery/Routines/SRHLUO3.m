@@ -1,15 +1,19 @@
 SRHLUO3 ;BIR/DLR - Surgery Interface (Cont.) Utilities for building Outgoing HL7 Segments ; [ 05/20/99   7:14 AM ]
- ;;3.0; Surgery ;**41,88,127,151**;24 Jun 93
- ; Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
+ ;;3.0;Surgery;**41,88,127,151,177**;24 Jun 93;Build 89
  ;
  ; Reference to ^PSS50 supported by DBIA #4533
+ ; Reference to $$OBA^ICDEX supported by DBIA #5747
+ ; Reference to $$CODEABA^ICDEX supported by DBIA #5747
+ ; Reference to $$ICDDATA^ICDXCODE supported by DBIA #5699
+ ; Reference to $$IMPDATE^LEXU supported by DBIA #5679
+ ; 
  ;
  ;INIT^HLTRANS MUST BE called before calling this routine.
  ;Mandatory variables
  ;I    - IEN of the entry to be processed
  ;SRI  - next available number in ^TMP(SRENT... global
 MFE(SRI,REC,FILE,FIELD,SRENT) ;Master File Entry segment
- N I,ID,SRX,SRY,X,SRRX
+ N I,ID,SRCODE,SRORDER,SRX,SRY,X,SRRX,SRSYS
  ;event point processing
  I $G(SRENT)'="" S I=$P(SRENT,U),ID=$P(SRENT,U,2) D SMFE
  ;set of codes
@@ -22,7 +26,8 @@ MFE(SRI,REC,FILE,FIELD,SRENT) ;Master File Entry segment
  ..S X2=0 F  S X2=$O(^TMP("SRHL",$J,"MED",X2)) Q:'X2  S ID=^(X2) D SMFE,ZRX
  ..K ^TMP("SRHL",$J,"MED")
  .I FILE=44 S I=0 F  S I=$O(^SC(I)) Q:'I  S ID=$P(^(I,0),U)_HLCOMP_HLCOMP D SMFE
- .I FILE=80 S I=0 F  S I=$O(^ICD9(I)) Q:'I  S ID=$P(^(I,0),U)_HLCOMP_HLCOMP D SMFE,ZI9
+ .I FILE=80 F SRSYS=1,30 S SRORDER="" F  S SRORDER=$$OBA^ICDEX(80,SRORDER,+SRSYS) Q:'$L(SRORDER)  D
+ ..S SRCODE=$TR(SRORDER," ",""),I=$$CODEABA^ICDEX(SRCODE,FILE,SRSYS) S ID=SRCODE_HLCOMP_HLCOMP D SMFE,@$S(SRSYS=1:"ZI9",1:"ZI0")
  .I FILE=81 S I=0 F  S I=$O(^ICPT("B",I)) Q:I=""  S ID=I_HLCOMP_HLCOMP D SMFE,ZC4
  .I FILE=133.4 S I=0 F  S I=$O(^SRO(133.4,I)) Q:'I  S ID=HLCOMP_$P(^(I,0),U)_HLCOMP D SMFE,ZMN
  .I FILE=133.7 S I=0 F  S I=$O(^SRO(133.7,I)) Q:'I  S ID=HLCOMP_$P(^(I,0),U)_HLCOMP D SMFE,ZRF
@@ -46,14 +51,20 @@ SMFE ;
  S ^TMP("HLS",$J,SRI)="MFE"_HL("FS")_REC_HL("FS")_I_HL("FS")_$E(DT,1,8)_HL("FS")_ID,SRI=SRI+1
  Q
 MFI(SRI,ID,FEC,FILE,SRENT) ;Master File Identification segment
+ N SRY
  I '$D(ID)!'$D(FEC) W !!,"Invalid Master File Identifier or Event Code.",!! Q
- S ^TMP("HLS",$J,SRI)="MFI"_HL("FS")_HLCOMP_ID_HLCOMP_$S(FILE=80:"I9",FILE=81:"C4",$E(FILE,1,3)'=130:"99VA"_FILE,1:"L")_HL("FS")_HL("FS")_FEC_HL("FS")_HL("FS")_HL("FS")_"AL",SRI=SRI+1
+ ;S SRY=$$IMPDATE^SROICD("10D"),SRY=$S(DT'<IMPDATE:"10",1:"9")
+ S SRY=$$IMPDATE^SROICD("10D"),SRY=$S(DT'<SRY:"10",1:"9")
+ S ^TMP("HLS",$J,SRI)="MFI"_HL("FS")_HLCOMP_ID_HLCOMP_$S(FILE=80:$S(SRY=9:"I9",SRY=10:"I0",1:""),FILE=81:"C4",$E(FILE,1,3)'=130:"99VA"_FILE,1:"L")_HL("FS")_HL("FS")_FEC_HL("FS")_HL("FS")_HL("FS")_"AL",SRI=SRI+1
  Q
 STF ;staff master file
  S ^TMP("HLS",$J,SRI)="STF"_HL("FS")_$P($G(^VA(200,I,1)),U,9)_HLCOMP_HLCOMP_HL("FS")_HL("FS")_$P($$HNAME^SRHLU(I),HLCOMP,2,3),SRI=SRI+1
  Q
 ZI9 ;master file update to ICD-9 (File #80)
- S SRY=$$ICDDX^ICDCODE(I),^TMP("HLS",$J,SRI)="ZI9"_HL("FS")_$P(SRY,U,2)_HLCOMP_$P(SRY,U,4)_HLCOMP_HL("FS")_$S($P(SRY,U,10)'="":$P(SRY,U,10),1:0),SRI=SRI+1
+ S SRY=$$ICDDATA^ICDXCODE("DIAG",SRCODE,$$IMPDATE^LEXU("10D")-1),^TMP("HLS",$J,SRI)="ZI9"_HL("FS")_$P(SRY,U,2)_HLCOMP_$E($P(SRY,U,4),1,30)_HLCOMP_HL("FS")_$S($P(SRY,U,10)'="":$P(SRY,U,10),1:0),SRI=SRI+1
+ Q
+ZI0 ;master file update to ICD-10 (File #80)
+ S SRY=$$ICDDATA^ICDXCODE("DIAG",SRCODE,$$IMPDATE^LEXU("10D")+1),^TMP("HLS",$J,SRI)="ZI0"_HL("FS")_$P(SRY,U,2)_HLCOMP_$E($P(SRY,U,4),1,30)_HLCOMP_HL("FS")_$S($P(SRY,U,10)'="":$P(SRY,U,10),1:0),SRI=SRI+1
  Q
 ZC4 ;master file update to CPT-4 (File #81)
  S SRX=$$CPT^ICPTCOD(I),^TMP("HLS",$J,SRI)="ZC4"_HL("FS")_$P(SRX,U,2)_HLCOMP_$P(SRX,U,3)_HLCOMP_HL("FS")_$S($P(SRX,U,7)'="":$P(SRX,U,7),1:0),SRI=SRI+1

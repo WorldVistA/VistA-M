@@ -1,5 +1,5 @@
 ONCIPC2 ;Hines OIFO/GWB - Primary Intracranial/CNS Tumors PCE Study ;01/18/00
- ;;2.11;ONCOLOGY;**26**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Tumor Identification
  K TABLE,HTABLE
  S TABLE("17. CLASS OF CASE")="CC^ONCIPC2"

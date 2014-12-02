@@ -1,5 +1,9 @@
-LRAPQAT1 ;AVAMC/REG/CYM- QA CODE SEARCH ;2/12/98  14:31
- ;;5.2;LAB SERVICE;**201,315**;Sep 27, 1994;Build 25
+LRAPQAT1 ;AVAMC/REG/CYM - QA CODE SEARCH ;2/12/98  14:31
+ ;;5.2;LAB SERVICE;**201,315,422**;Sep 27, 1994;Build 29
+ ;
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
+ ; Reference to $$ICDOP^ICDEX supported by ICR #5747
+ ;
  D EN^LRUA S (LR("W"),LRS(5),LRQ(9),LRQ(3))=1,LRSDT=9999999-LRSDT,LRP=0
  F LRB=0:0 S LRP=$O(^TMP("LRAP",$J,LRP)) Q:LRP=""!(LR("Q"))  F LRDFN=0:0 S LRDFN=$O(^TMP("LRAP",$J,LRP,LRDFN)) Q:'LRDFN!(LR("Q"))  S X=^(LRDFN) D L
  Q
@@ -14,6 +18,7 @@ A S LRPTF=VAIN(10)
  S LRWARD=$P(VAIN(4),U,2)
  S LRTS=$P(VAIN(3),U,2)
  K VAIN
+ N LRC,LRF
  W !,"Adm: ",$P(LRADM,"@"),?35,LRWARD
  W !,?12,"Specialty: ",$P(LRADM,"@"),?35,LRTS
  Q:'LRPTF
@@ -24,12 +29,12 @@ A S LRPTF=VAIN(10)
  F Y=0:0 S Y=$O(^DGPT(LRPTF,"S",Y)) Q:'Y  S W=^(Y,0) F X=8:1:12 I $P(W,"^",X) S LRC($P(W,"^",X))=""
  N LRTMP,LRX
  F LRTMP=0:0 S LRTMP=$O(LRF(LRTMP)) Q:'LRTMP  D
- . S LRX=$$ICDDX^ICDCODE(LRTMP,,,1)
+ . S LRX=$$ICDDX^ICDEX(LRTMP,,,"I")
  . I +LRX=-1 Q
  . W !,$P(LRX,"^",2),?10,$P(LRX,"^",4)
  . Q
  F LRTMP=0:0 S LRTMP=$O(LRC(LRTMP)) Q:'LRTMP  D
- . S LRX=$$ICDOP^ICDCODE(LRTMP,,,1)
+ . S LRX=$$ICDOP^ICDEX(LRTMP,,,"I")
  . I +LRX=-1 Q
  . W !,$P(LRX,"^",2),?10,$P(LRX,"^",5)
  . Q

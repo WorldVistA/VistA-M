@@ -1,10 +1,10 @@
-PXRMOUTC ; SLC/PKR - Clinical Maintenance output. ;12/04/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,17**;Feb 04, 2005;Build 102
+PXRMOUTC ; SLC/PKR - Clinical Maintenance output. ;01/06/2014
+ ;;2.0;CLINICAL REMINDERS;**4,6,17,26**;Feb 04, 2005;Build 404
  ;================================================
 CM(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,OUTTYPE) ;Prepare the 
  ;Clinical maintenance (OUTTYPE=5) and order check (OUTTPYPE=55)
  ;output.
- N IND,JND,FIDATA,FINDING,FLIST,FTYPE
+ N IND,JND,FINDING,FLIST,FTYPE
  N HDR,NHDR,IFIEVAL,LIST,NFLINES,NTXT,NUM
  N TEMP,TEXT
  S NTXT=0
@@ -19,7 +19,6 @@ CM(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,OUTTYPE) ;Prepare the
  D AGE^PXRMFNFT(PXRMPDEM("DFN"),.DEFARR,.FIEVAL,.NTXT)
  ;Process the findings in the order: patient cohort, resolution,
  ;age, and informational.
- M FIDATA=FIEVAL
  F FTYPE="PCL","RES","AGE","INFO" D
  . S LIST=$S(FTYPE="PCL":DEFARR(32),FTYPE="RES":DEFARR(36),FTYPE="AGE":DEFARR(40),FTYPE="INFO":DEFARR(42))
  .;Output the general logic text.
@@ -34,8 +33,9 @@ CM(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,OUTTYPE) ;Prepare the
  .. S FINDING=$P(FLIST,";",IND)
  ..;No output for age or sex findings.
  .. I (FINDING="AGE")!(FINDING="SEX") Q
- ..;Make sure each finding is processed only once.
- .. I '$D(FIDATA(FINDING)) Q
+ ..;If the finding is not defined skip it. This can occur when the
+ ..;reminder is N/A.
+ .. I '$D(FIEVAL(FINDING)) Q
  .. K IFIEVAL
  .. I FIEVAL(FINDING) D
  ... M IFIEVAL=FIEVAL(FINDING)
@@ -43,14 +43,16 @@ CM(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,OUTTYPE) ;Prepare the
  ... S JND=0
  ... F  S JND=+$O(IFIEVAL(JND)) Q:JND=0  K:'IFIEVAL(JND) IFIEVAL(JND)
  .. E  S IFIEVAL=0
- ..;If the finding is false all we need to do is process the not found
- ..;text. If it is true we also need to output the finding information.
- .. I IFIEVAL D FOUT(1,.IFIEVAL,.NFLINES,.TEXT)
+ ..;If the regular finding is false all we need to do is process the
+ ..;not found text. If it is true we also need to output the finding
+ ..;information.
+ ..;Function findings are processed as a group.
+ .. I IFIEVAL,FINDING'["FF" D FOUT(1,.IFIEVAL,.NFLINES,.TEXT)
  ..;Output the found/not found text for the finding.
-FNF .. D FINDING^PXRMFNFT(3,PXRMPDEM("DFN"),FINDING,.IFIEVAL,.NFLINES,.TEXT)
- ..;Make sure each finding is processed only once.
- .. K FIDATA(FINDING)
+ .. D FINDING^PXRMFNFT(3,PXRMPDEM("DFN"),FINDING,.IFIEVAL,.NFLINES,.TEXT)
  .;
+ .;Display function finding values for this FTYPE, skip INFO only.
+ . I (FTYPE'="INFO"),(FLIST["FF") D FFOUT(3,NUM,FLIST,.FIEVAL,.NFLINES,.TEXT)
  .;If there was any text for this finding type create a header.
  . I OUTTYPE=5 D HEADER(FTYPE,NFLINES,RESDATE,.NHDR,.HDR)
  .;Output the header and the finding text.
@@ -90,6 +92,24 @@ FOUT(INDENT,IFIEVAL,NLINES,TEXT) ;Do output for individual findings
  Q
  ;
  ;================================================
+FFOUT(INDENT,NUM,FLIST,FIEVAL,NLINES,TEXT) ;Output for function findings.
+ I '$D(PXRMDEBG) Q
+ N IND,FFNUM,FFLIST,FFTEXT,FINDING,NOUT,TEXTOUT
+ F IND=1:1:NUM D
+ . S FINDING=$P(FLIST,";",IND)
+ . I '$D(FIEVAL(FINDING)) Q
+ . I $E(FINDING,1,2)="FF" S FFNUM=$P(FINDING,"FF",2),FFLIST(FFNUM)=""
+ I '$D(FFLIST) Q
+ S FFNUM=$O(FFLIST(0))
+ S FFTEXT="FF("_FFNUM_")="_FIEVAL("FF"_FFNUM)
+ F  S FFNUM=$O(FFLIST(FFNUM)) Q:FFNUM=""  D
+ . S FFTEXT=FFTEXT_", FF("_FFNUM_")="_FIEVAL("FF"_FFNUM)
+ S NLINES=NLINES+1,TEXT(NLINES)=""
+ D FORMATS^PXRMTEXT(INDENT,PXRMRM,FFTEXT,.NOUT,.TEXTOUT)
+ F IND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(IND)
+ Q
+ ;
+ ;================================================
 FREQ(DEFARR,NTXT,TEXT) ;Display the frequency information.
  N FREQ,TEMP
  ;If there was a custom date due print out that information.
@@ -115,7 +135,7 @@ HEADER(FTYPE,NLINES,RESDATE,NHDR,HDR) ;Create a finding header.
  K HDR
  I FTYPE="RES" D  Q
  . I +RESDATE'=0 D  Q
- .. S HDR(2)="Resolution: Last done "_$$EDATE^PXRMDATE(RESDATE)
+ .. S HDR(2)="Resolution: Last done - "_$$EDATE^PXRMDATE(RESDATE)
  .. S NHDR=2
  .. S HDR(1)="\\"
  . I '$D(HDR(2)),NLINES>0 D

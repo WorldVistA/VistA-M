@@ -1,5 +1,5 @@
 PSGOU ;BIR/CML3,MV-PROFILE UTILITIES ;19 SEP 96 / 3:59 PM
- ;;5.0; INPATIENT MEDICATIONS ;**34,110,181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS;**34,110,181,275**;16 DEC 97;Build 157
  ;
  ; Reference to ^PS(51.1 is supported by DBIA# 2177
  ; Reference to ^PS(55 is supported by DBIA# 2191.
@@ -12,10 +12,12 @@ ECHK ;
  I PSGOL="S",(SD>$P($G(PSJDCEXP),U,2)) S C="DF" G DS
  Q:PSGOL="S"  S C="O"
  ;
-DS ;
+DS ; Get drug name
  NEW DRUGNAME D DRGDISP^PSJLMUT1(PSGP,+O_"U",80,0,.DRUGNAME,1) S DRG=DRUGNAME(1)
  ;
-SET ;
+SET ; Set orders into TMP
+ N PSJCLN,CLINSORT
+ S PSJCLN=$$CLINIC^PSJO1(PSGP,ON) I (PSJCLN]""),($P(C,"^")'="Cz") S CLINSORT=$$CLINSORT^PSJO1(C) S C="Cz^"_PSJCLN_"^"_CLINSORT_"^"_C
  I ON["P",$G(P("PRNTON"))]"",$G(PRNTON)=+P("PRNTON") Q
  I ON["P",$G(P("PRNTON"))]"" S PRNTON=+P("PRNTON"),ON=+P("PRNTON")
  S ^TMP("PSG",$J,C,ST,DRG_"^"_ON)=$G(NF)
@@ -24,11 +26,13 @@ SET ;
 ENS F S=0:0 R !!,"Sort by DATE or MEDICATION:  M// ",PSGOS:DTIME D SCHK Q:CHK
  Q
  ;
-ENL ;
- F  W !!,"SHORT, LONG, or NO Profile?  ",$S('$D(PSJPDD):"SHORT",'PSJPDD:"SHORT",1:"LONG"),"// " R PSGOL:DTIME W:'$T $C(7) S:'$T PSGOL="^" Q:PSGOL="^"  D LCHK Q:"^SLN"[PSGOL&($L(PSGOL)=1)
+ENL ; Ask profile type
+ N PSJCLCHK
+ I $G(DFN),$$CLORCHK^PSJP(DFN) S PSJCLCHK=1
+ F  W !!,"SHORT, LONG, or NO Profile?  ",$S('$D(PSJPDD)!$G(PSJCLCHK):"SHORT",'PSJPDD:"SHORT",1:"LONG"),"// " R PSGOL:DTIME W:'$T $C(7) S:'$T PSGOL="^" Q:PSGOL="^"  D LCHK Q:"^SLN"[PSGOL&($L(PSGOL)=1)
  Q
  ;
-SCHK ;
+SCHK ; Sort type
  I '$T!(PSGOS["^") S PSGOS="^",CHK=1 Q
  S CHK=0 D:PSGOS["?" SM Q:PSGOS["?"  I PSGOS="" S PSGOS="M",CHK=1 W "MEDICATION" Q
  F X="DATE","MEDICATION" I $P(X,PSGOS)="" W $P(X,PSGOS,2) S PSGOS=$E(PSGOS),CHK=1 Q
@@ -37,9 +41,9 @@ SCHK ;
 SM W !!?3,"Enter 'MEDICATION' (or 'M', or press the RETURN key to have this patient's   orders shown alphabetically by drug name.  Enter 'DATE' (or 'D') to have this   patient's orders shown by start date (the newest orders showing first)."
  W "  Enter  a '^' to not show this patient's orders." Q
  ;
-LCHK ;
+LCHK ; Long or short profile
  I PSGOL?1."?" D LM Q
- I PSGOL="" S PSGOL=$S('$D(PSJPDD):"S",'PSJPDD:"S",1:"L") W $S('$D(PSJPDD):"  SHORT",'PSJPDD:"  SHORT",1:"  LONG") Q
+ I PSGOL="" S PSGOL=$S('$D(PSJPDD)!$G(PSJCLCHK):"S",'PSJPDD:"S",1:"L") W $S('$D(PSJPDD):"  SHORT",'PSJPDD:"  SHORT",1:"  LONG") Q
  I PSGOL?.E1L.E F Q=1:1:$L(PSGOL) I $E(PSGOL,Q)?1L S PSGOL=$E(PSGOL,1,Q-1)_$C($A(PSGOL,Q)-32)_$E(PSGOL,Q+1,$L(PSGOL))
  F X="NO PROFILE","LONG","SHORT" I $P(X,PSGOL)="" W $P(X,PSGOL,2) S PSGOL=$E(PSGOL) Q
  W:'$T $C(7),"  ??" Q

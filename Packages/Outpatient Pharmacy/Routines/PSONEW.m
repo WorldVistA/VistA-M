@@ -1,5 +1,5 @@
 PSONEW ;BIR/SAB-new rx order main driver ;07/26/96
- ;;7.0;OUTPATIENT PHARMACY;**11,27,32,46,94,130,268,225,251,379,390,417**;DEC 1997;Build 7
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,32,46,94,130,268,225,251,379,390,417,313**;DEC 1997;Build 76
  ;External references L and UL^PSSLOCK supported by DBIA 2789
  ;External reference to ^VA(200 supported by DBIA 224
  ;External reference to ^XUSEC supported by DBIA 10076
@@ -10,7 +10,7 @@ PSONEW ;BIR/SAB-new rx order main driver ;07/26/96
  ;External reference to ^ORD(100.05, supported by DBIA 5731
  ;---------------------------------------------------------------
 OERR ;backdoor new rx for v7
- K PSOREEDT,COPY,SPEED,PSOEDIT,DUR,DRET N PSOCKCON,PSODAOC
+ K PSOREEDT,COPY,SPEED,PSOEDIT,DUR,DRET,PSOTITRX,PSOMTFLG N PSOCKCON,PSODAOC
  S PSOPLCK=$$L^PSSLOCK(PSODFN,0) I '$G(PSOPLCK) D LOCK^PSOORCPY S VALMSG=$S($P($G(PSOPLCK),"^",2)'="":$P($G(PSOPLCK),"^",2)_" is working on this patient.",1:"Another person is entering orders for this patient.") K PSOPLCK S VALMBCK="" Q
  K PSOPLCK S X=PSODFN_";DPT(" D LK^ORX2 I 'Y S VALMSG="Another person is entering orders for this patient.",VALMBCK="" D UL^PSSLOCK(PSODFN) Q
 AGAIN N VALMCNT K PSODRUG,PSOCOU,PSOCOUU,PSONOOR,PSORX("FN"),PSORX("DFLG"),PSOQUIT,POERR S PSORX("DFLG")=0
@@ -26,6 +26,10 @@ AGAIN N VALMCNT K PSODRUG,PSOCOU,PSOCOUU,PSONOOR,PSORX("FN"),PSORX("DFLG"),PSOQU
  D EN^PSON52(.PSONEW) ; Files entry in File 52
  D NPSOSD^PSOUTIL(.PSONEW) ; Adds newly added rx to PSOSD array
  S VALMBCK="R"
+ ;
+ ; - Possible Titration prescription
+ I $G(PSONEW("IRXN")) D MARK^PSOOTMRX(PSONEW("IRXN"),0)
+ ;
 END D EOJ ; Clean up          
  I '$G(PSORX("FN")) W ! K DIR,DIRUT,DUOUT,DTOUT S DIR(0)="Y",DIR("B")="YES",DIR("A")="Another New Order for "_PSORX("NAME") D ^DIR K DIR,DIRUT,DUOUT,DTOUT I Y K PSONEW,PSDRUG,ORD G AGAIN
  D ^PSOBUILD,BLD^PSOORUT1 S X=PSODFN_";DPT(" D ULK^ORX2 D UL^PSSLOCK(PSODFN)

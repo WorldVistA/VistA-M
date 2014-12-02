@@ -1,5 +1,7 @@
 DGRP2 ;ALB/MRL,BRM - REGISTRATION SCREEN 2/CONTACT INFORMATION ;06 JUN 88@2300
- ;;5.3;Registration;**415,545,638,677,760**;Aug 13, 1993;Build 11
+ ;;5.3;Registration;**415,545,638,677,760,867**;Aug 13, 1993;Build 59
+ ;
+ D NEWB
  S DGRPS=2 D H^DGRPU F I=0,.24,57,1010.15 S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
  S DGRPX=DGRP(0)
  S (Z,DGRPW)=1 D WW^DGRPV W "  Marital: " S Z=$S($D(^DIC(11,+$P(DGRPX,"^",5),0)):$E($P(^(0),"^",1),1,28),1:DGRPU),Z1=30 D WW1^DGRPV
@@ -54,3 +56,12 @@ DGRP2 ;ALB/MRL,BRM - REGISTRATION SCREEN 2/CONTACT INFORMATION ;06 JUN 88@2300
  N DGEMRES S DGEMRES=$P($G(^DPT(DFN,.18)),"^")
  S Z=5 D WW^DGRPV W " Emergency Response: "_$$EXTERNAL^DILFD(2,.181,,DGEMRES)
  G ^DGRPP
+ ;
+ Q
+NEWB ;-- check patient DOB, if DOB<365 days, set marital status to "never married"
+ N DOB,NOW
+ S DOB=$P(^DPT(DFN,0),"^",3)
+ D NOW^%DTC S NOW=X
+ I $$FMDIFF^XLFDT(NOW,DOB,1)>365 Q  ;patient is not a newborn
+ S $P(^DPT(DFN,0),"^",5)=6 ;patient is a newborn
+ Q

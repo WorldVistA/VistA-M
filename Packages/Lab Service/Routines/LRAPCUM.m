@@ -1,5 +1,5 @@
-LRAPCUM ;DALOI/STAFF - AP PATIENT CUM ;Sep 17,2007
- ;;5.2;LAB SERVICE;**34,72,173,248,259,350**;Sep 27, 1994;Build 230
+LRAPCUM ;DALOI/STAFF - AP PATIENT CUM ;03/21/13  15:28
+ ;;5.2;LAB SERVICE;**34,72,173,248,259,350,427**;Sep 27, 1994;Build 33
  ;
  ;
  S IOP="HOME" D ^%ZIS,L^LRU
@@ -63,10 +63,11 @@ W S Y=+B D D^LRU S LRW(1)=Y,Y=$P(B,"^",10) D D^LRU S LRW(10)=Y,Y=$P(B,"^",3) D D
  .D B
  .I $D(^XUSEC("LRLAB",DUZ)) D ^LRAPCUM1
  Q:LRA(2)?1P
- I $D(^LR(LRDFN,LRSS,LRI,99)) D
- . N A
- . W !,"Comments:" S A=0
- . F  S A=$O(^LR(LRDFN,LRSS,LRI,99,A)) Q:'A  W !,$P(^(A,0),"^")
+ ; DALOI/LMT - LR,427 - Removed comments from report to restore pre-LR,350 behavior
+ ;I $D(^LR(LRDFN,LRSS,LRI,99)) D
+ ;. N A
+ ;. W !,"Comments:" S A=0
+ ;. F  S A=$O(^LR(LRDFN,LRSS,LRI,99,A)) Q:'A  W !,$P(^(A,0),"^")
  D MORE
  Q
  ;

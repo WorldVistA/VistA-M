@@ -1,0 +1,184 @@
+RORP019 ;ALB/KG - CCR PRE/POST-INSTALL PATCH 19 ;3/12/12
+ ;;1.5;CLINICAL CASE REGISTRIES;**19**;Feb 17, 2006;Build 43
+ ;
+ ; This routine uses the following IAs:
+ ; #2263         ADD^XPAR (supported)
+ ; #2263         DEL^XPAR (supported)
+ ;               FIND1^DIC (supported)
+ ; #2053         UPDATE^DIE (supported)
+ ; #10009        FILE^DICN (supported)
+ ; #10018        ^DIE (supported)
+ ; #10000        YMD^%DTC (supported)
+ ; #5747         CODEABA^ICDEX (controlled)
+ ; #5747         VSTD^ICDEX (controlled)
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;******************************************************************************
+ ;******************************************************************************
+ ;
+ Q
+ ;Pre-Install routine for Patch 19
+PRE ;
+ ;Save existing Common Templates in a ^XTMP global and then delete them
+ D SAVETMPL
+ Q
+ ;
+ ;Post-Install routine for Patch 19
+POST ;
+ N RORRULENAME,RORRULEIEN,RORRULEDESC,RORRULEFILE,RORRULEEXPR,RORHIVDXS,RORHEPCDXS
+ N RORREGNAME,RORREGIEN,RORRULENAMES,ROREXISTIEN,RORDATA,RORNUM,RORDXS,RORDX,RORICDIEN,ROREXISTICDIEN
+ ;
+ ;Updating existing Selection Rule records with Coding System
+ F RORRULENAME="VA HIV PROBLEM","VA HEPC PROBLEM","VA HIV PTF","VA HEPC PTF","VA HIV VPOV","VA HEPC VPOV" D
+ . S RORRULEIEN=$$SRLIEN^RORUTL02(RORRULENAME)
+ . Q:RORRULEIEN<0
+ . K DIE S DIE="^ROR(798.2,",DA=RORRULEIEN,DR="7////1"
+ . L +^ROR(798.2,RORRULEIEN):0 I $T D ^DIE L -^ROR(798.2,RORRULEIEN)
+ ;
+ ;Adding ICD-10 codes to ICD Search records (#798.5)
+ S RORHIVDXS="B20.,B97.35,Z21.,O98.711,O98.712,O98.713,O98.719,O98.72,O98.73"
+ S RORHEPCDXS="B17.10,B17.11,B18.2,B19.20,B19.21,Z22.52"
+ F RORREGNAME="VA HIV","VA HEPC" D
+ . S RORREGIEN=$$REGIEN^RORUTL02(RORREGNAME)  ;IEN of #798.5 is same as IEN of #798.1
+ . S RORDXS=$S(RORREGNAME="VA HIV":RORHIVDXS,1:RORHEPCDXS)
+ . F RORNUM=1:1 S RORDX=$P(RORDXS,",",RORNUM) Q:RORDX=""  D
+ . . S RORICDIEN=+$$CODEABA^ICDEX(RORDX,"",30)
+ . . Q:RORICDIEN<0
+ . . S ROREXISTICDIEN=$$FIND1^DIC(798.51,","_RORREGIEN_",","Q",RORICDIEN,"B")
+ . . Q:ROREXISTICDIEN'=0  ;quit if code is already assigned to rule 
+ . . K RORDATA
+ . . S RORDATA(1,798.51,"+2,"_RORREGIEN_",",.01)=RORICDIEN
+ . . D UPDATE^DIE("","RORDATA(1)")
+ ;
+ ;Creating new Selection Rule records (#798.2)
+ S RORRULEDESC="ICD-10 code in problem list"
+ S RORRULEFILE="9000011"
+ S RORRULEEXPR="+$D(^ROR(798.5,REGIEN,1,""B"",+{I:DIAGNOSIS}))"
+ F RORRULENAME="VA HIV PROBLEM (ICD10)","VA HEPC PROBLEM (ICD10)" D
+ . D NEWRULE(RORRULENAME,RORRULEEXPR,RORRULEFILE,RORRULEDESC)
+ ;
+ S RORRULEDESC="ICD-10 code in outpatient file"
+ S RORRULEFILE="9000010.07"
+ S RORRULEEXPR="+$D(^ROR(798.5,REGIEN,1,""B"",+{I:POV}))"
+ F RORRULENAME="VA HIV VPOV (ICD10)","VA HEPC VPOV (ICD10)" D
+ . D NEWRULE(RORRULENAME,RORRULEEXPR,RORRULEFILE,RORRULEDESC)
+ ;
+ S RORRULEDESC="ICD-10 code in inpatient file"
+ S RORRULEFILE="45"
+ S RORRULEEXPR="$$PTFRULE^RORUPD09(REGIEN)"
+ F RORRULENAME="VA HIV PTF (ICD10)","VA HEPC PTF (ICD10)" D
+ . D NEWRULE(RORRULENAME,RORRULEEXPR,RORRULEFILE,RORRULEDESC)
+ ;
+ ;Updating existing Registry records with new Selection Rules
+ S RORRULENAMES("VA HIV","VA HIV PROBLEM (ICD10)")=""
+ S RORRULENAMES("VA HIV","VA HIV VPOV (ICD10)")=""
+ S RORRULENAMES("VA HIV","VA HIV PTF (ICD10)")=""
+ S RORRULENAMES("VA HEPC","VA HEPC PROBLEM (ICD10)")=""
+ S RORRULENAMES("VA HEPC","VA HEPC VPOV (ICD10)")=""
+ S RORRULENAMES("VA HEPC","VA HEPC PTF (ICD10)")=""
+ F RORREGNAME="VA HIV","VA HEPC" D
+ . S RORREGIEN=$$REGIEN^RORUTL02(RORREGNAME)
+ . Q:RORREGIEN<0  ;quit if registry doesn't exist
+ . S RORRULENAME=""
+ . F  S RORRULENAME=$O(RORRULENAMES(RORREGNAME,RORRULENAME)) Q:RORRULENAME=""  D
+ . . S RORRULEIEN=$$SRLIEN^RORUTL02(RORRULENAME)
+ . . Q:RORRULEIEN<0  ;quit if rule doesn't exist in 798.2
+ . . S ROREXISTIEN=$$FIND1^DIC(798.13,","_RORREGIEN_",","X",RORRULENAME,"B")
+ . . Q:ROREXISTIEN'=0  ;quit if rule is already assigned to registry
+ . . K RORDATA
+ . . S RORDATA(1,798.13,"+2,"_RORREGIEN_",",.01)=RORRULENAME
+ . . D UPDATE^DIE("","RORDATA(1)")
+ ;
+ K DIE,DA,DR
+ ;
+ ;Build Common Templates with ICD-9 and ICD-10 codes
+ D UPDTMPL
+ ;Remove ROR LIST ICD-9 from file #8994. It was replaced by ROR LIST ICD
+ N DIK,DA
+ S DIK="^XWB(8994,",DA=$O(^XWB(8994,"B","ROR LIST ICD-9","")) I 'DA Q
+ D ^DIK
+ Q
+ ;
+ ;Creating a new Selection Rule record in File #798.2
+NEWRULE(NAME,EXPR,FILE,DESC) ;
+ N RORIEN
+ S RORIEN=$$SRLIEN^RORUTL02(NAME)  ;check if rule already exists
+ I RORIEN<0 S DIC(0)="",DIC="^ROR(798.2,",X=NAME D FILE^DICN S RORIEN=$P(Y,U,1)
+ K DIC,X,Y
+ Q:RORIEN<0
+ L +^ROR(798.2,RORIEN):0
+ Q:'$T
+ K DIE S DIE="^ROR(798.2,",DA=RORIEN,DR=".09////1;1////"_EXPR_";2////"_FILE_";4////"_DESC_";7////30"
+ D ^DIE
+ L -^ROR(798.2,RORIEN)
+ K DIE,DA,DR
+ Q
+ ;
+ ;Save existing Common Templates in a ^XTMP global
+SAVETMPL ;
+ N RORLST,RORDATE,%H,RORIPRT,RORBUF,RORENTITY,RORPARAM,RORINSTANCE,RORINSTNAME
+ ;Save existing common templates in a ^XTMP global
+ S %H=+$H+180 D YMD^%DTC S RORDATE=X K X
+ S ^XTMP("RORP19",$J,0)=RORDATE_U_DT_U_"Backup of Common Templates in File 8989.5 by "_$G(DUZ)
+ S RORENTITY="PKG.CLINICAL CASE REGISTRIES"
+ S RORPARAM="ROR REPORT PARAMS TEMPLATE"
+ D GETPLIST^RORRP038(.RORLST,"ROR REPORT PARAMS TEMPLATE","PKG")
+ S RORIPRT=0
+ F  S RORIPRT=$O(RORLST(RORIPRT))  Q:RORIPRT'>0  D
+ . S RORINSTANCE=$P(RORLST(RORIPRT),U,1)
+ . S RORINSTNAME=RORINSTANCE_U_"ROR REPORT PARAMS TEMPLATE"
+ . D GETPARM^RORRP038(.RORBUF,RORINSTNAME,"PKG")
+ . Q:$G(RORBUF(0))<0
+ . K RORBUF(0)  Q:$D(RORBUF)<10
+ . ;save an existing common template
+ . S ^XTMP("RORP19",$J,RORIPRT)=RORINSTANCE
+ . M ^XTMP("RORP19",$J,RORIPRT)=RORBUF
+ . ;delete an existing common template
+ . D DEL^XPAR(RORENTITY,RORPARAM,RORINSTANCE)
+ Q
+ ;
+ ;Build Common Templates with ICD-9 and ICD-10 codes
+UPDTMPL ;
+ N I,J,RORTMPL,RORVALUE,RORTYPE,RORENTITY,RORPARAM,RORGROUP,RORCNT,RORICDCODES,RORICDCODE,RORICDIEN,RORICDDESC
+ N RORVERSION,RORCSYS,ROREXTN
+ S RORENTITY="PKG.CLINICAL CASE REGISTRIES"
+ S RORPARAM="ROR REPORT PARAMS TEMPLATE"
+ F ROREXTN="A","B" D
+ . F I=1:1 S RORTMPL=$P($T(@("TMPLCODE+"_I_"^RORP019"_ROREXTN)),";;",2) Q:RORTMPL=""  D
+ . . S RORTYPE=$P(RORTMPL,"^",1)  ;1=XML Header, 2=ICD-9 codes, 3=ICD-10 codes, 9=XML Footer
+ . . I RORTYPE="1" D  ;XML Header Info
+ . . . S RORGROUP=$P(RORTMPL,"^",2)
+ . . . S RORINSTANCE="13::"_RORGROUP
+ . . . S RORVALUE="CCR Predefined Report Template"
+ . . . S RORCNT=0
+ . . . S RORCNT=RORCNT+1,RORVALUE(RORCNT,0)="<?xml version="_"""1.0"""_" encoding="_"""UTF-8"""_"?>"
+ . . . S RORCNT=RORCNT+1,RORVALUE(RORCNT,0)="<PARAMS>"
+ . . . S RORCNT=RORCNT+1,RORVALUE(RORCNT,0)="<ICDLST>"
+ . . . S RORCNT=RORCNT+1,RORVALUE(RORCNT,0)="<GROUP ID="""_RORGROUP_""">"
+ . . I (RORTYPE="2")!(RORTYPE="3") D  ;XML Body with ICD-9/ICD-10 codes
+ . . . S RORICDCODES=$P(RORTMPL,"^",2)
+ . . . F J=1:1 S RORICDCODE=$P(RORICDCODES,",",J) Q:RORICDCODE=""  D
+ . . . . S RORCNT=RORCNT+1
+ . . . . S RORCSYS=$S(RORTYPE=2:"1",1:"30")
+ . . . . S RORICDIEN=$$CODEABA^ICDEX(RORICDCODE,"",RORCSYS)
+ . . . . Q:'(RORICDIEN>0)
+ . . . . S RORVERSION=$S(RORTYPE=2:"ICD-9",1:"ICD-10")
+ . . . . S RORICDDESC=$$XMLENC^RORUTL03($$VSTD^ICDEX(RORICDIEN))
+ . . . . S RORVALUE(RORCNT,0)="<ICD ID="""_RORICDCODE_""" VERSION="""_RORVERSION_""">"_RORICDDESC_"</ICD>"
+ . . I RORTYPE="9" D  ;XML Footer Info
+ . . . S RORCNT=RORCNT+1,RORVALUE(RORCNT,0)="</GROUP>"
+ . . . S RORCNT=RORCNT+1,RORVALUE(RORCNT,0)="</ICDLST>"
+ . . . S RORCNT=RORCNT+1,RORVALUE(RORCNT,0)="<PANELS>"
+ . . . S RORCNT=RORCNT+1,RORVALUE(RORCNT,0)="<PANEL ID="_"""160"""_"/>"
+ . . . S RORCNT=RORCNT+1,RORVALUE(RORCNT,0)="</PANELS>"
+ . . . S RORCNT=RORCNT+1,RORVALUE(RORCNT,0)="</PARAMS>"
+ . . . D ADD^XPAR(RORENTITY,RORPARAM,RORINSTANCE,.RORVALUE)
+ . . . K RORVALUE
+ Q
+ ;

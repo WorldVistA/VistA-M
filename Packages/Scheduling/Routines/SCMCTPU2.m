@@ -1,5 +1,5 @@
 SCMCTPU2 ;ALB/REW - Team Position Utilities ; 9 Jun 1995
- ;;5.3;Scheduling;**41,148,204**;AUG 13, 1993
+ ;;5.3;Scheduling;**41,148,204,564**;AUG 13, 1993;Build 8
  ;1
 YSPTTPPC(DFN,SCACT,SCROLE) ;is it ok to give patient a new pc position
  ;  
@@ -58,6 +58,10 @@ CHKROLE(DFN,SCTP,DATE,ROLE) ;can position file role for patient?
  S SCDT=$O(^SCPT(404.43,"APCPOS",DFN,ROLE,3990101),-1)
  S SCTPRL=$O(^SCPT(404.43,"APCPOS",DFN,ROLE,+SCDT,0))
  S SCPTTP=$O(^SCPT(404.43,"APCPOS",DFN,ROLE,+SCDT,+SCTPRL,0))
+ ;check if hanging cross-reference - SD/564
+ I SCPTTP>0,'$D(^SCPT(404.43,SCPTTP,0)) D  Q SCOK
+ .K ^SCPT(404.43,"APCPOS",DFN,ROLE,+SCDT,+SCTPRL,SCPTTP)
+ ;
  ;check if active
  IF SCPTTP D
  .S SCNODE=$G(^SCPT(404.43,SCPTTP,0))

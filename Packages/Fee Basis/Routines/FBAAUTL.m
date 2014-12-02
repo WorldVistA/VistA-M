@@ -1,5 +1,5 @@
 FBAAUTL ;AISC/GRR,SBW-Fee Basis Utility Routine ; 4/23/10 3:06pm
- ;;3.5;FEE BASIS;**101,114,108,124**;JAN 30, 1995;Build 20
+ ;;3.5;FEE BASIS;**101,114,108,124,127**;JAN 30, 1995;Build 9
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 DATE N FBDT S FBPOP=0 K BEGDATE,ENDDATE K:$G(%DT)'["A" %DT W !!,"**** Date Range Selection ****"
  S FBDT=$S($D(%DT):1,1:0) W ! S %DT=$S(FBDT:%DT,1:"APEX"),%DT("A")="   Beginning DATE : " D ^%DT S:Y<0 FBPOP=1 Q:Y<0  S (%DT(0),BEGDATE)=Y
@@ -30,10 +30,12 @@ GETNXB ;GET NEXT AVAILABLE BATCH NUMBER
  I '$P($G(^FBAA(161.4,1,"FBNUM")),"^") S $P(^("FBNUM"),"^")=1
  S FBBN=$P(^FBAA(161.4,1,"FBNUM"),"^")
  ;I FBBN>99899,$S('$D(^FBAA(161.4,1,"PURGE")):1,$P(^FBAA(161.4,1,"PURGE"),"^",1)'>0:1,1:"") D WARNBT
- I $P(^FBAA(161.7,0),U,4)>99899 D WARNBT ;*114
+ N FBBATLT ;Batches Left *127
+ S FBBATLT=$P($G(^FBAA(161.7,0)),U,4)
+ I FBBATLT>99499 D WARNBT ;*114,127
  S $P(^FBAA(161.4,1,"FBNUM"),"^",1)=$S(FBBN+1>99999:1,1:FBBN+1) I '$$CHKBI^FBAAUTL4(FBBN,1) L -^FBAA(161.4) G GETNXB
  L -^FBAA(161.4) Q
-WARNBT W !,*7,"There are ",99999-FBBN," batches left before the BATCH PURGE routine",!,"needs to be run. Contact your IRM Service!",!!
+WARNBT W !,*7,"There are ",99999-FBBATLT," batches left before the BATCH PURGE routine",!,"needs to be run. Contact your IRM Service!",!!
  Q
 GETNXI ;GET NEXT AVAILABLE INVOICE NUMBER 
  L +^FBAA(161.4):$G(DILOCKTM,3) I '$T D  G GETNXI

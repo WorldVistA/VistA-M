@@ -1,81 +1,83 @@
-DINIT00T ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;11:00 AM  25 Aug 2000
- ;;22.0;VA FileMan;**8,18**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT00T ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;7:42 AM  6 Dec 2012
+ ;;22.0;VA FileMan;**8,18,169**;Mar 30, 1999;Build 26
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q
  ;;^UTILITY(U,$J,.84,9202,2,90,0)
- ;;=if screen 10 is a valid screen. L99 will go to line 99.
+ ;;='S' is optional when entering a screen number. 10 or S10 will Goto screen 10,
  ;;^UTILITY(U,$J,.84,9202,2,91,0)
- ;;=
+ ;;=if screen 10 is a valid screen. L99 will go to line 99.
  ;;^UTILITY(U,$J,.84,9202,2,92,0)
- ;;=To change the content of the Title Bar, press <PF1> <PF1> ARROW DOWN or ARROW
+ ;;= 
  ;;^UTILITY(U,$J,.84,9202,2,93,0)
- ;;=UP. This function replaces the content of the Title Bar with the text in the
+ ;;=To change the content of the Title Bar, press <PF1> <PF1> ARROW DOWN or ARROW
  ;;^UTILITY(U,$J,.84,9202,2,94,0)
- ;;=body of the document. Users with programmer access can also use <PF4> 'T', to
+ ;;=UP. This function replaces the content of the Title Bar with the text in the
  ;;^UTILITY(U,$J,.84,9202,2,95,0)
- ;;=permanently change the title of a hypertext document.
+ ;;=body of the document. Users with programmer access can also use <PF4> 'T', to
  ;;^UTILITY(U,$J,.84,9202,2,96,0)
- ;;=
+ ;;=permanently change the title of a hypertext document.
  ;;^UTILITY(U,$J,.84,9202,2,97,0)
- ;;=To copy text to VA FileMan's Clipboard, press <PF1><PF1>C. This open up a
+ ;;= 
  ;;^UTILITY(U,$J,.84,9202,2,98,0)
- ;;=dialog screen and prompts for a line or range of lines to copy or append to the
+ ;;=To copy text to VA FileMan's Clipboard, press <PF1><PF1>C. This open up a
  ;;^UTILITY(U,$J,.84,9202,2,99,0)
- ;;=clipboard. A range of lines are represented by two numeric values separated by
+ ;;=dialog screen and prompts for a line or range of lines to copy or append to the
  ;;^UTILITY(U,$J,.84,9202,2,100,0)
- ;;=a colon (:), the wild card (*) may also be used if the entire text is
+ ;;=clipboard. A range of lines are represented by two numeric values separated by
  ;;^UTILITY(U,$J,.84,9202,2,101,0)
- ;;=desired.  To append to the existing clipboard text, enter the letter 'A'
+ ;;=a colon (:), the wild card (*) may also be used if the entire text is
  ;;^UTILITY(U,$J,.84,9202,2,102,0)
- ;;=as the last character, when entering the range of lines to copy.  This
+ ;;=desired.  To append to the existing clipboard text, enter the letter 'A'
  ;;^UTILITY(U,$J,.84,9202,2,103,0)
- ;;=text is then retrieved for word-processing fields, when using VA FileMan's
+ ;;=as the last character, when entering the range of lines to copy.  This
  ;;^UTILITY(U,$J,.84,9202,2,104,0)
- ;;=Screen Editor.
+ ;;=text is then retrieved for word-processing fields, when using VA FileMan's
  ;;^UTILITY(U,$J,.84,9202,2,105,0)
- ;;=
+ ;;=Screen Editor.
  ;;^UTILITY(U,$J,.84,9202,2,106,0)
- ;;=To SPLIT SCREEN, while in Full (Browse Region) Screen mode, press <PF2>
+ ;;= 
  ;;^UTILITY(U,$J,.84,9202,2,107,0)
- ;;=followed by the letter 'S'. This causes the screen to split into two separate
+ ;;=To SPLIT SCREEN, while in Full (Browse Region) Screen mode, press <PF2>
  ;;^UTILITY(U,$J,.84,9202,2,108,0)
- ;;=scroll regions.
+ ;;=followed by the letter 'S'. This causes the screen to split into two separate
  ;;^UTILITY(U,$J,.84,9202,2,109,0)
- ;;=
+ ;;=scroll regions.
  ;;^UTILITY(U,$J,.84,9202,2,110,0)
- ;;=To navigate to the bottom screen, while in Split Screen mode, press <PF2>
+ ;;= 
  ;;^UTILITY(U,$J,.84,9202,2,111,0)
- ;;=followed by pressing the DOWN ARROW key.
+ ;;=To navigate to the bottom screen, while in Split Screen mode, press <PF2>
  ;;^UTILITY(U,$J,.84,9202,2,112,0)
- ;;=
+ ;;=followed by pressing the DOWN ARROW key.
  ;;^UTILITY(U,$J,.84,9202,2,113,0)
- ;;=To navigate to the top screen, while in Split Screen mode, press <PF2> followed
+ ;;= 
  ;;^UTILITY(U,$J,.84,9202,2,114,0)
- ;;=by pressing the UP ARRAY key.
+ ;;=To navigate to the top screen, while in Split Screen mode, press <PF2> followed
  ;;^UTILITY(U,$J,.84,9202,2,115,0)
- ;;=
+ ;;=by pressing the UP ARRAY key.
  ;;^UTILITY(U,$J,.84,9202,2,116,0)
- ;;=To return to FULL SCREEN mode, while in Split Screen mode, press <PF2> followed
+ ;;= 
  ;;^UTILITY(U,$J,.84,9202,2,117,0)
- ;;=by the letter 'F'. This causes the entire browse region to return to one Full
+ ;;=To return to FULL SCREEN mode, while in Split Screen mode, press <PF2> followed
  ;;^UTILITY(U,$J,.84,9202,2,118,0)
- ;;=(Browse) Screen scroll region.
+ ;;=by the letter 'F'. This causes the entire browse region to return to one Full
  ;;^UTILITY(U,$J,.84,9202,2,119,0)
- ;;=
+ ;;=(Browse) Screen scroll region.
  ;;^UTILITY(U,$J,.84,9202,2,120,0)
- ;;=The BOTTOM STATUS LINE shows that the Browser is in hypertext mode. It
+ ;;= 
  ;;^UTILITY(U,$J,.84,9202,2,121,0)
- ;;=indicates the line numbers that correspond to the bottom text line on the
+ ;;=The BOTTOM STATUS LINE shows that the Browser is in hypertext mode. It
  ;;^UTILITY(U,$J,.84,9202,2,122,0)
- ;;=screen, in the display text section, and provides the total line count. The
+ ;;=indicates the line numbers that correspond to the bottom text line on the
  ;;^UTILITY(U,$J,.84,9202,2,123,0)
- ;;=screen indicator shows what screen the last line is on and also provides the
+ ;;=screen, in the display text section, and provides the total line count. The
  ;;^UTILITY(U,$J,.84,9202,2,124,0)
- ;;=total number of screens.
+ ;;=screen indicator shows what screen the last line is on and also provides the
  ;;^UTILITY(U,$J,.84,9202,2,125,0)
- ;;=
+ ;;=total number of screens.
  ;;^UTILITY(U,$J,.84,9202,2,126,0)
+ ;;= 
+ ;;^UTILITY(U,$J,.84,9202,2,127,0)
  ;;=<<<Press 'R' or <PF1>'E' to exit this help document>>>
  ;;^UTILITY(U,$J,.84,9211,0)
  ;;=9211^3^^5

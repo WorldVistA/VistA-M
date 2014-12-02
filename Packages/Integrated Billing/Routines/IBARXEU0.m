@@ -1,6 +1,6 @@
 IBARXEU0 ;AAS/ALB - RX EXEMPTION UTILITY ROUTINE ; 2-NOV-92
- ;;2.0;INTEGRATED BILLING;**139**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**139,385**; 21-MAR-94;Build 35
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
 RXEXMT(DFN,IBDT) ; -- Check income exemption status of patient
@@ -16,11 +16,11 @@ RXEXMT(DFN,IBDT) ; -- Check income exemption status of patient
  ;*** START RT CLOCK
  ;S XRTN="ADD EXEMPTION",XRTL=$ZU(0) D T0^%ZOSV
  ;
- N X,Y,IBON,IBX,IBJOB,IBEXERR,IBWHER,DA,DR,DIC,DIE
+ N X,Y,IBON,IBX,IBJOB,IBEXERR,IBWHER,DA,DR,DIC,DIE,IBOUT
  ;
  S IBON=$$ON I IBON<1 Q IBON
  ;
- S IBX="",IBJOB=14,IBEXERR=""
+ S IBX="",IBJOB=14,IBEXERR="",IBOUT=0
  I '$G(IBDT) S IBDT=DT
  I IBDT>DT S IBDT=DT ; no future dates
  ;
@@ -36,7 +36,13 @@ RXEXMT(DFN,IBDT) ; -- Check income exemption status of patient
  I '+X D ADDP^IBAUTL6 S X=$G(^IBA(354,DFN,0)) G:$G(IBEXERR) RXEXMTQ D AEX(DFN,IBDT) S IBX=$$IBX(DFN,IBDT) G RXEXMTQ
  ;
  ; -- if current exemption older than 365 days add new one
- I IBDT'<$P(X,"^",3),IBDT>$$PLUS($P(X,"^",3)) D AEX(DFN,IBDT) S IBX=$$IBX(DFN,IBDT) G RXEXMTQ
+ I IBDT'<$P(X,"^",3),IBDT>$$PLUS($P(X,"^",3)) D  G RXEXMTQ
+ . ;
+ . ; -- is the exemption still ok under VFA rules
+ . I $$VFAOK^IBARXEU($$LST(DFN,IBDT)) S IBX=$$IBX(DFN,IBDT) Q
+ . ;
+ . ; add a new one
+ . D AEX(DFN,IBDT) S IBX=$$IBX(DFN,IBDT)
  ;
  ; -- if ibdt less than current date need old exemption data
  I IBDT<$P(X,"^",3) D
@@ -47,7 +53,13 @@ RXEXMT(DFN,IBDT) ; -- Check income exemption status of patient
  .I Y="" D AEX(DFN,IBDT)
  .;
  .; -- old data too old need to insert exemption
- .I IBDT>$$PLUS(+Y) D AEX(DFN,IBDT)
+ .I IBDT>$$PLUS(+Y) D  Q:IBOUT
+ .. ;
+ .. ; -- is old exemption still good under VFA
+ .. I $$VFAOK^IBARXEU(Y) S IBX=$$IBX(DFN,IBDT),IBOUT=1 Q
+ .. ;
+ .. ; -- need to insert exemption
+ .. D AEX(DFN,IBDT)
  .;
  .; -- if old exemption is current for this copay date
  .S IBX=$$IBXOLD(DFN,IBDT)

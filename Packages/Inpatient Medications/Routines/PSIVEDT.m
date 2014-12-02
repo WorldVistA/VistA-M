@@ -1,5 +1,5 @@
 PSIVEDT ;BIR/MLM-EDIT IV ORDER ;10 Feb 98 / 3:23 PM
- ;;5.0; INPATIENT MEDICATIONS ;**4,110,127,133,134,181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS ;**4,110,127,133,134,181,252**;16 DEC 97;Build 69
  ;
  ; Reference to ^DD(53.1 is supported by DBIA 2256.
  ; Reference to ^PS(52.7 is supported by DBIA 2173.
@@ -52,16 +52,18 @@ EDIT ;
  .S RT=$O(RT("")) I RT]"" S P("MR")=RT_"^"_$G(RT(RT))
  W !,"MED ROUTE: "_$S($P(P("MR"),U,2)]"":$P(P("MR"),U,2)_"//",1:"") R X:DTIME S:'$T X=U S:X=U DONE=1 I X=U!(X=""&P("MR"))!($E(X)=U) Q
  I X["???",($E(P("OT"))="I"),(PSIVAC["C") D ORFLDS^PSIVEDT1 G 3
- I X]"" K DIC S DIC=51.2,DIC(0)="EQMZ",DIC("S")="I $P(^(0),U,4)" D ^DIC K DIC I Y>0 S P("MR")=+Y_U_$P(Y(0),U,3) Q
+ I X]"" K DIC S DIC=51.2,DIC(0)="EQMZ",DIC("S")="I $P(^(0),U,4)" D ^DIC K DIC I Y>0 S P("MR")=+Y_U_$P(Y(0),U,3) S:$E($G(PSJOCFG),1,2)="FN" PSJFNDS=1 Q
  S F1=53.1,F2=3 D ENHLP^PSIVORC1 W $C(7),!!,"A Med Route must be entered." G 3
  Q
  ;
 10 ; Start Date.
  D 10^PSIVEDT1
+ I $E($G(PSJOCFG),1,2)="FN" S PSJFNDS=1
  Q
  ;
 25 ; Stop Date.
  D 25^PSIVEDT1
+ I $E($G(PSJOCFG),1,2)="FN" S PSJFNDS=1
  Q
 26 ; Schedule
  D 26^PSIVEDT1
@@ -81,8 +83,9 @@ EDIT ;
  ;I $G(X)="^" G DKILL
  ;If Solution prompt is next then wait to do dose checks after all solutions are entered.
  ;PSJFLG57 is set so OC is triggered when the user entered ^ADDITIVE.
- ;I $G(X)']"^",($$COMPARE^PSJMISC(.DRG,.TMPDRG)),($G(EDIT)'["58") D OC^PSIVOC
- I $$COMPARE^PSJMISC(.DRG,.TMPDRG),$S($G(PSJFLG57):1,($G(EDIT)'["58"):1,1:0) K PSJFLG57,PSJOCCHK D OC^PSIVOC
+ I $$COMPARE^PSJMISC(.DRG,.TMPDRG) D
+ . D ENSTOP^PSIVCAL
+ . I $S($G(PSJFLG57):1,($G(EDIT)'["58"):1,1:0) K PSJFLG57,PSJOCCHK D OC^PSIVOC
  I $G(X)="^" G DKILL
  Q
  ;
@@ -100,7 +103,7 @@ EDIT ;
  . D SETDD^PSIVOC(1)
  . D GMRAOC^PSJOC
  . K PSJALLGY
- I PSJCMPFG K PSJOCCHK D OC^PSIVOC
+ I PSJCMPFG K PSJOCCHK D ENSTOP^PSIVCAL D OC^PSIVOC
  K PSJCMPFG
  I $G(X)="^" G DKILL
  ;

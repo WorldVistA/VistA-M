@@ -1,6 +1,12 @@
-LEXDCCC ; ISL Default Display - Create             ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDCCC ;ISL/KER - Default Display - Create ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^TMP("LEXX")        SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    YN^DICN             ICR  10009
+ ;               
  ; Entry:  S X=$$EN^LEXDCCC
  ;
  ; Function returns a two piece string

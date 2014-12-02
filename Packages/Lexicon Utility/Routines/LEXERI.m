@@ -1,7 +1,16 @@
-LEXERI ; ISL Exc/Rep Word Input Transformations   ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
+LEXERI ;ISL/KER - Exc/Rep Word Input Transformations ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    $$UP^XLFSTR         ICR  10103
+ ;    HOME^%ZIS           ICR  10086
+ ;    ^%ZTLOAD            ICR  10063
+ ;    ^DIK                ICR  10013
+ ;               
  Q
- ;
 EXC ; Input transformation for ^LEX(757.04, - .01
  Q:'$D(X)  S LEXX=X
  I LEXX[" " D  K X Q

@@ -1,5 +1,5 @@
 PSOORRD2 ;BHAM-ISC/EJW - Remote Data Interoperability Order Checks - backdoor ;06/26/05
- ;;7.0;OUTPATIENT PHARMACY;**207,251,387**;DEC 1997;Build 13
+ ;;7.0;OUTPATIENT PHARMACY;**207,251,387,372**;DEC 1997;Build 54
  ;
 DUP ;Remote order - duplicate drug
  N PSOD0,PSOD1,PSOREMX,RDIINST,FSIG,PSOULN,PSOLF,PSORDI
@@ -90,7 +90,7 @@ DRGINT ;DRUG-DRUG INTERACTION WITH ORDER FROM REMOTE SITE
  ;
 CRI ;process new drug interactions entered by pharmacist
  K DIR S DIR("A",1)="",DIR("A",2)="Do you want to Process medication",DIR("A")=PSODRUG("NAME")_": ",DIR(0)="SA^1:PROCESS;0:ABORT ORDER ENTRY",DIR("B")="P"
- S DIR("?",1)="Enter '1' or 'P' to Activate medication",DIR("?")="      '0' or 'A' to Abort Order Entry process" D ^DIR K X1,DIR I 'Y S PSORX("DFLG")=1,DGI="" K DTOUT,DIRUT,DIROUT,DUOUT,PSORX("INTERVENE") Q
+ S DIR("?",1)="Enter '1' or 'P' to Process medication",DIR("?")="      '^' to EXIT",DIR("?",2)="      '0' or 'A' to Abort Order Entry process" D ^DIR K X1,DIR I 'Y S PSORX("DFLG")=1,DGI="" K DTOUT,DIRUT,DIROUT,DUOUT,PSORX("INTERVENE") Q
  D SIG^XUSESIG I X1="" K PSORX("INTERVENE") S PSORX("DFLG")=1 Q
  S PSORX("INTERVENE")=1
  K DUOUT,DTOUT,DIRUT,DIROUT

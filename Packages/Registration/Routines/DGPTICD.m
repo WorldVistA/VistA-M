@@ -1,7 +1,8 @@
-DGPTICD ;ALB/MTC - PTF DRG Grouper Utility ; 2/19/02 3:08pm
- ;;5.3;Registration;**375,441,510,559,599,606,775,785**;Aug 13, 1993;Build 7
+DGPTICD ;ALB/MTC - PTF DRG Grouper Utility ;2/19/02 3:08pm
+ ;;5.3;Registration;**375,441,510,559,599,606,775,785,850**;Aug 13, 1993;Build 171
  ;variables to pass in:
  ;  DGDX <- format: DX CODE1^DX CODE2^DX CODE3^...                      (REQUIRED)
+ ;  DGDXPOA <- format: poa1^poa2^poa3....                               (REQUIRED for ICD-10 diag)
  ;  DGSURG <- format: SURGERY CODE1^SURGERY CODE2^SURGERY CODE3^...       (OPTIONAL)
  ;  DGPROC <- format: PROCEDURE CODE1^PROCEDURE CODE2^PROCEDURE CODE3^... (OPTIONAL)
  ;  DGTRS  <- 1 if patient transferred to acute care facility             (REQUIRED)
@@ -14,39 +15,42 @@ DGPTICD ;ALB/MTC - PTF DRG Grouper Utility ; 2/19/02 3:08pm
  ;  DGDAT  <- Effective date to be used in calculating DRG
  ;
  ;-- check for required variables
+ ;
  Q:'$D(DGDX)!'$D(DGTRS)!'$D(DGEXP)!'$D(DGDMS)
  N DGI
  ;-- build ICDDX array
- K ICDDX
+ K ICDDX,ICDPOA
+ ;
+ I $G(EFFDATE)="" D EFFDATE^DGPTIC10($G(PTF))
+ S ICDEDT=EFFDATE
  S DGI=0 F  S DGI=DGI+1 Q:$P(DGDX,U,DGI)=""  D
- . S DGPTTMP=$$ICDDX^ICDCODE(+$P(DGDX,U,DGI),+$G(DGDAT))
- . I +DGPTTMP>0,($P(DGPTTMP,U,10)) S ICDDX(DGI)=$P(DGDX,U,DGI)
- G Q:'$D(ICDDX)
+ . S DGPTTMP=$$ICDDATA^ICDXCODE("DIAG",+$P(DGDX,U,DGI),EFFDATE)
+ . I +DGPTTMP>0,($P(DGPTTMP,U,10)) S ICDDX(DGI)=$P(DGDX,U,DGI) D
+ .. I EFFDATE'<$$IMPDATE^LEXU("10D") S ICDPOA(DGI)=$S($G(DGDXPOA)'="":$P($G(DGDXPOA),U,DGI),1:"Y")
+ I '$D(ICDDX) W ! G Q
  ;
  ;-- build ICDPRC array
  K ICDPRC
- ;I $D(DGPROC) S DGSURG=$S('$D(DGSURG):DGPROC,1:DGSURG_DGPROC)
- ;I $D(DGSURG) S DGI=0 F  S DGI=DGI+1 Q:$P(DGSURG,U,DGI)=""  D
- ;. I $D(^ICD0($P(DGSURG,U,DGI),0)) S ICDPRC(DGI)=$P(DGSURG,U,DGI)
  ;-- build ICDPRC array eliminating dupes as we go
  K ICDPRC
  N I,J,X,Y,FLG,SUB S SUB=0
  I $D(DGPROC) F I=2:1 S X=$P(DGPROC,U,I) Q:X=""  D
- . S DGPTTMP=$$ICDOP^ICDCODE(X,+$G(DGDAT))
+ . S DGPTTMP=$$ICDDATA^ICDXCODE("PROC",X,+$G(EFFDATE))
  . I +DGPTTMP>0,($P(DGPTTMP,U,10)) S SUB=SUB+1,ICDPRC(SUB)=X
  I $D(DGSURG) F I=2:1 S X=$P(DGSURG,U,I) Q:X=""  D
- .S J=0 F  S J=$O(ICDPRC(J)) Q:'J
- .;I X=$G(ICDPRC(J)) S FLG=1 Q
- .;I FLG Q
- . S DGPTTMP=$$ICDOP^ICDCODE(X,+$G(DGDAT))
+ . S J=0 F  S J=$O(ICDPRC(J)) Q:'J
+ . S DGPTTMP=$$ICDDATA^ICDXCODE("PROC",X,+$G(EFFDATE))
  . I +DGPTTMP>0,($P(DGPTTMP,U,10)) S SUB=SUB+1,ICDPRC(SUB)=X
  . S ICDSURG(SUB)=$P(DGPTTMP,U,2)
  ;
  ;-- set other required variables
  S ICDTRS=DGTRS,ICDEXP=DGEXP,ICDDMS=DGDMS
- S ICDDATE=$S($D(DGDAT):DGDAT,1:DT),DGDAT=ICDDATE  ;Ensure that DGDAT is defined prior to executing PRT
+ ;DRP S ICDDATE=$S($D(DGDAT):DGDAT,1:DT),DGDAT=ICDDATE  ;Ensure that DGDAT is defined prior to executing PRT
+ S ICDDATE=$S(+$G(DGDAT):DGDAT,1:DT),DGDAT=ICDDATE  ;Ensure that DGDAT is defined prior to executing PRT
  ;
  ;-- calculate DRG
+ ;reset ICD partition variables to prevent date/coding system conflicts
+ K ICDCSYS,ICD0,ICDCDSY,ICDEDT
  D ^ICDDRG S DRG=ICDDRG I '$D(DGDRGPRT) G Q
  ;
 PRT ;print DRG and national HCFA values
@@ -61,4 +65,10 @@ PRT ;print DRG and national HCFA values
  N DXD,DGDX
  S DXD=$$DRGD^ICDGTDRG(DRG,"DGDX",,DGDAT),DGI=0
  W !!,"DRG: ",DRG,"-" F  S DGI=$O(DGDX(DGI)) Q:'+DGI  Q:DGDX(DGI)=" "  W ?10,DGDX(DGI),!
-Q K ICDDMS,ICDDRG,ICDDX,ICDEXP,ICDMDC,ICDPRC,ICDRTC,ICDTRS,ICDDATE Q
+ K ICDDATE
+Q K ICDDMS,ICDDRG,ICDDX,ICDEXP,ICDMDC,ICDPRC,ICDRTC,ICDTRS Q
+ ;
+80 ;
+ N DIC S DIC=80,DIC(0)="AEQLIM" D ^DIC
+ S OUT=Y
+ Q

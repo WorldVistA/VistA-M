@@ -135,7 +135,7 @@ XM ;Send HFS checksum message
  N XMTEXT,C,RN,RN2,X,X2
  K ^TMP($J)
  S XMSUB="**KIDS** Checksum for "_XPDNM,XMTEXT="^TMP($J)"
- I $G(^XMB("NETNAME"))["domain.ext" S XMY("S.A1AE HFS CHKSUM SVR@FORUM.domain.ext")=""
+ I $G(^XMB("NETNAME"))["DOMAIN.EXT" S XMY("S.A1AE HFS CHKSUM SVR@DOMAIN.EXT")=""
  E  S X=$$GET^XPAR("PKG","XPD PATCH HFS SERVER",1,"Q") S:$L(X) XMY(X)=""
  I '$D(XMY) Q  ;No one to send it to.
  S C=1,@XMTEXT@(1,0)="~~1:"_XPDNM

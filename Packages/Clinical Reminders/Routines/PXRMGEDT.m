@@ -1,5 +1,5 @@
-PXRMGEDT ; SLC/PJH - PXRM General Edit/Add. ;11/08/2000
- ;;2.0;CLINICAL REMINDERS;;Feb 04, 2005
+PXRMGEDT ; SLC/PJH - PXRM General Edit/Add. ;01/28/2013
+ ;;2.0;CLINICAL REMINDERS;**26**;Feb 04, 2005;Build 404
  ;
  ;
  ;Called from protocol PXRM SELECTION ADD
@@ -129,7 +129,7 @@ EDIT(TYP,DA,ADD) ;
  ;
  ;
 LOCK(FILE) ;Lock the entire file
- L +^PXRMD(FILE):0 I  Q 1
+ L +^PXRMD(FILE):DILOCKTM I  Q 1
  E  W !!,?5,"Another user is editing this file, try later" H 2
  Q 0
  ;
@@ -248,7 +248,7 @@ ERR N ERROR,IC,REF
  Q
  ;
 TLOCK(FILE,DA) ;Lock the record
- L +^PXD(FILE,DA):0 I  Q 1
+ L +^PXD(FILE,DA):DILOCKTM I  Q 1
  E  W !!,?5,"Another user is editing this file, try later" H 2 Q 0
  ;
  ;

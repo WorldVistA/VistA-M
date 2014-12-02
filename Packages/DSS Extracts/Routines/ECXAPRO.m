@@ -1,8 +1,8 @@
-ECXAPRO ;ALB/JAP - PRO Extract Audit Report ;11/30/11  15:43
- ;;3.0;DSS EXTRACTS;**9,21,33,36,132,137**;Dec 22, 1997;Build 3
+ECXAPRO ;ALB/JAP - PRO Extract Audit Report ;3/12/13  16:30
+ ;;3.0;DSS EXTRACTS;**9,21,33,36,132,137,144**;Dec 22, 1997;Build 9
  ;
 EN ;entry point for PRO extract audit report
- N %X,%Y,DIV,X,Y,DIC,DA,DR,DIQ,DIR,DIRUT,DTOUT,DUOUT
+ N %X,%Y,DIV,X,Y,DIC,DA,DR,DIQ,DIR,DIRUT,DTOUT,DUOUT,CNT,ECXPORT ;144
  S ECXERR=0
  ;ecxaud=0 for 'extract' audit
  S ECXHEAD="PRO",ECXAUD=0
@@ -39,12 +39,21 @@ EN ;entry point for PRO extract audit report
  .D AUDIT^ECXKILL
  S ECXREPT=Y
  ;continue with detail report
- I ECXREPT="D" D
+ I ECXREPT="D" D  I $G(ECXPORT) Q  ;144 Stop processing if doing a detailed listing
  .F  D ASK2^ECXAPRO2 Q:$D(DIRUT)!($D(DTOUT))
  ;continue with summary report
  I ECXREPT="S" D
  .S ECXPGM="TASK^ECXAPRO",ECXDESC="PRO Extract Audit Report"
  .S ECXSAVE("ECXHEAD")="",ECXSAVE("ECXDIV(")="",ECXSAVE("ECXARRAY(")="",ECXSAVE("ECXREPT")="",ECXSAVE("ECXPRIME")="",ECXSAVE("ECXALL")=""
+ .S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I ECXPORT D  Q  ;144
+ ..K ^TMP($J) ;144
+ ..S ^TMP($J,"ECXPORT",0)="STATION #^EXTRACT LOG #^TYPE^NPPD GROUP^NPPD LINE^VA^COM^TOTAL^COST^AVE COM" ;144
+ ..S CNT=1 ;144
+ ..D PROCESS ;144
+ ..D DISP^ECXAPRO1 ;144
+ ..D EXPDISP^ECXUTL1 ;144
+ ..D ASK^ECXAPRO2 ;144
+ ..D ^ECXKILL ;144
  .W !
  .;determine output device and queue if requested
  .D DEVICE^ECXUTLA(ECXPGM,ECXDESC,.ECXSAVE) I ECXSAVE("POP")=1 D  Q
@@ -56,6 +65,7 @@ EN ;entry point for PRO extract audit report
  ..;allow user to get details
  ..D ASK^ECXAPRO2
  ;clean-up and close
+ I $G(ECXPORT) Q  ;144 Stop processing if exporting
  I IO'=IO(0) D ^%ZISC
  D HOME^%ZIS
  D AUDIT^ECXKILL
@@ -69,9 +79,9 @@ TASK ;entry point from taskmanager
  Q
  ;
 PROCESS ;process the data in file #727.826
- N J,CNT,CODE,COST,CPTNM,DATE,DESC,FLG,GN,IEN,KEY,LOC,LABLC,LABMC,NODE,PTNAM,PSASNM,QTY,QFLG,QQFLG,RD,SSN,STN,SRCE,TYPE
- K ^TMP($J)
- S (CNT,QQFLG)=0
+ N J,CODE,COST,CPTNM,DATE,DESC,FLG,GN,IEN,KEY,LOC,LABLC,LABMC,NODE,PTNAM,PSASNM,QTY,QFLG,QQFLG,RD,SSN,STN,SRCE,TYPE,NPPDED ;144 NPPD ENT DATE CVW DAN removed CNT
+ I '$G(ECXPORT) K ^TMP($J) ;144 Killed already if exporting
+ S QQFLG=0 ;144 CNT removed as no longer needed
  S ECXEXT=ECXARRAY("EXTRACT"),ECXDEF=ECXARRAY("DEF")
  S X=ECXARRAY("START") D ^%DT S ECXSTART=Y S X=ECXARRAY("END") D ^%DT S ECXEND=Y
  D NOW^%DTC S Y=$E(%,1,12) D DD^%DT S ECXRUN=Y
@@ -86,7 +96,7 @@ PROCESS ;process the data in file #727.826
  .;
  .;- Remove trailing "^" from ECXPRO if there
  .I $E(ECXPRO,$L(ECXPRO))="^" S ECXPRO=$E(ECXPRO,1,$L(ECXPRO)-1)
- .S ECXPRO=ECXPRO_U_$P(^ECX(727.826,IEN,1),U,4)
+ .S ECXPRO=ECXPRO_U_$P(^ECX(727.826,IEN,1),U,4)_U_$P(^ECX(727.826,IEN,2),U,4) ;NPPD ENTRY DATE 144 CVW
  .S DATE=$P(ECXPRO,U,9)
  .S $E(DATE,1,2)=$E(DATE,1,2)-17
  .Q:$L(DATE)<7  Q:(DATE<ECXSTART)  Q:(DATE>ECXEND)
@@ -94,7 +104,7 @@ PROCESS ;process the data in file #727.826
  .S PTNAM=$P(ECXPRO,U,7),SSN=$E($P(ECXPRO,U,6),6,9)
  .S LOC=$P(ECXPRO,U,10),KEY=$P(ECXPRO,U,11),QTY=$P(ECXPRO,U,12)
  .S COST=$P(ECXPRO,U,25),LABLC=$P(ECXPRO,U,26),LABMC=$P(ECXPRO,U,27)
- .S GN=$P(ECXPRO,U,34),GN=$S(GN="":" ",1:GN)
+ .S GN=$P(ECXPRO,U,34),GN=$S(GN="":" ",1:GN),NPPDED=$P(ECXPRO,U,35) ;NPPD ENTRY DATE 144 CVW
  .;don't double count lab items
  .Q:LOC["LAB"
  .;duplicate the logic in sort^rmprn6 that sets cost=0 if form=4
@@ -109,7 +119,7 @@ PROCESS ;process the data in file #727.826
  .Q:NODE=""
  .S CODE=$S(TYPE="X":$P(NODE,U,3),1:$P(NODE,U,4))
  .S FLG=$P(NODE,U,2),DESC=$P(NODE,U,5)
- .S ^TMP($J,"RMPRGN",STN,GN,FLG,CODE,IEN)=TYPE_U_SRCE_U_QTY_U_COST_U_LABLC_U_LABMC_U_PSASNM_U_DESC_U_PTNAM_U_SSN_U_DATE_U_LOC
+ .S ^TMP($J,"RMPRGN",STN,GN,FLG,CODE,IEN)=TYPE_U_SRCE_U_QTY_U_COST_U_LABLC_U_LABMC_U_PSASNM_U_DESC_U_PTNAM_U_SSN_U_DATE_U_LOC_U_NPPDED ;144 CVW
  ;accumulate summary & detail data
  S GN=""
  F  S GN=$O(^TMP($J,"RMPRGN",STN,GN)) Q:GN=""  D

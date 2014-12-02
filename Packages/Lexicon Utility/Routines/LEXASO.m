@@ -1,5 +1,5 @@
-LEXASO ;ISL/KER - Look-up Display String (Sources) ;01/03/2011
- ;;2.0;LEXICON UTILITY;**25,32,73**;Sep 23, 1996;Build 10
+LEXASO ;ISL/KER - Look-up Display String (Sources) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**25,32,73,80**;Sep 23, 1996;Build 1
  ;
  ; Entry S X=$$SO^LEXASO(IEN,SAB,ALL,DATE)
  ;
@@ -40,11 +40,8 @@ LEXASO ;ISL/KER - Look-up Display String (Sources) ;01/03/2011
  ; LEXX     Return value
  ;
 SO(LEXX,LEXSA,LEXA,LEXVDT) ; Return string of source codes for LEXX SAB
- Q:+($G(LEXX))=0!('$L($G(LEXSA))) ""
- Q:'$L($G(^LEX(757.01,LEXX,0))) ""
- ;
- N LEXCC,LEXM,LEXC,LEXMC,LEXME,LEXEX,LEXSO,LEXSC,LEXSR,LEXST
- ;
+ Q:+($G(LEXX))=0!('$L($G(LEXSA))) ""  Q:'$L($G(^LEX(757.01,LEXX,0))) ""
+ N LEXCC,LEXM,LEXC,LEXMC,LEXME,LEXEX,LEXSO,LEXSC,LEXSR,LEXST D VDT^LEXU
  S LEXEX=+LEXX,LEXX="",LEXA=+($G(LEXA)),LEXMC=0
  S LEXM=$P($G(^LEX(757.01,LEXEX,1)),"^",2),LEXST=""
  ; Codes for an expression     D EXP
@@ -82,10 +79,8 @@ CODES(LEXEX,LEXSA,LEXVDT) ; Get Source Codes
  . S:$P($G(^LEX(757.02,LEXSO,0)),"^",7)=1 LEXCC(LEXSR,"P",(($P($G(^LEX(757.02,LEXSO,0)),"^",2))_" "))=""
  Q
 ASSEM(LEXX) ; Assemble display string  (SOURCE CODE/CODE/CODE)
- Q:'$D(LEXCC) ""
- Q:$O(LEXCC(""))="" ""
- N LEXSR,LEXST S LEXSR=""
- F  S LEXSR=$O(LEXCC(LEXSR)) Q:LEXSR=""  D
+ Q:'$D(LEXCC) ""  Q:$O(LEXCC(""))="" ""  N LEXSR,LEXST S LEXSR=""
+ D SHELLY F  S LEXSR=$O(LEXCC(LEXSR)) Q:LEXSR=""  D
  . N LEXSC S LEXSC="",LEXST="("_LEXSR_" "
  . ; Primary Code listed first - p32
  . I $D(LEXCC(LEXSR,"P")) D
@@ -101,6 +96,12 @@ ASSEM(LEXX) ; Assemble display string  (SOURCE CODE/CODE/CODE)
  . S LEXST=LEXST_" "_LEXCC(LEXSR)
  F  Q:$E(LEXST,1)'=" "  S LEXST=$E(LEXST,2,$L(LEXST))
  S LEXX=LEXST Q LEXX
+SHELLY ; Suppress other (non-primary) codes
+ N LEXSY,LEXCD S LEXSY="" F  S LEXSY=$O(LEXCC(LEXSY)) Q:'$L(LEXSY)  D
+ . N LEXPF S LEXPF=$O(LEXCC(LEXSY,"P","")) Q:'$L(LEXPF)
+ . S LEXCD="" F  S LEXCD=$O(LEXCC(LEXSY,LEXCD)) Q:'$L(LEXCD)  D
+ . . Q:LEXCD="P"  K:LEXCD'=LEXPF LEXCC(LEXSY,LEXCD)
+ Q
 TRIM(LEXX) ; Trim spaces
  F  Q:$E(LEXX,1)'=" "  S LEXX=$E(LEXX,2,$L(LEXX))
  F  Q:$E(LEXX,$L(LEXX))'=" "  S LEXX=$E(LEXX,1,($L(LEXX)-1))

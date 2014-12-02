@@ -1,5 +1,5 @@
 ONCGPC1 ;Hines OIFO/GWB - 2001 Gastric Cancers PCE Study ;02/27/01
- ;;2.11;ONCOLOGY;**29**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Patient Information 
  S DIE="^ONCO(165.5,",DA=ONCONUM,DR=""
  W @IOF D HEAD^ONCGPC0

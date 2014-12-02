@@ -1,5 +1,5 @@
 RAEDCN1 ;HISC/GJC-Utility routine for RAEDCN ;9/18/97  13:49
- ;;5.0;Radiology/Nuclear Medicine;**18,45,93,106**;Mar 16, 1998;Build 2
+ ;;5.0;Radiology/Nuclear Medicine;**18,45,93,106,113**;Mar 16, 1998;Build 6
  ; last modif by SS for P18
  ; 07/15/2008 BAY/KAM rem call 249750 RA*5*93 Correct DIK Calls
 UNDEF ; Message for undefined imaging types
@@ -64,10 +64,14 @@ ASKDEL R !!,"Do you wish to delete this exam? NO// ",X:DTIME S:'$T!(X="")!(X["^"
  . K RAIENS,RAERR S RAIENS=""_RACNI_","_RADTI_","_RADFN_","_"",RAFDA(70.03,RAIENS,3)="CANCELLED" D FILE^DIE("KSE","RAFDA","RAERR") K RAIENS,RAERR,RAFDA D CANCEL^RAHLRPC
  . Q
  K RA7003 S RABULL="",DA(2)=RADFN,DA(1)=RADTI,DA=RACNI
+ S RAYY=$P($G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,1)),U,1)
  ;S DIK="^RADPT(DA(2),""DT"",DA(1),""P""," D ^DIK
  S DIK="^RADPT("_DA(2)_",""DT"","_DA(1)_",""P""," D ^DIK
  W !?10,"...deletion of exam complete."
- K %,D,D0,D1,D2,DA,DIC,DIK,RADELFLG,RABULL,RAPRTZ,RAAFTER,RABEFORE
+ ; --- delete the associated Rad dosage record RA5p113 ---
+ D:RAYY>0 DEL^RADUTL(RAYY)
+ ; --- end RA5P113
+ K %,D,D0,D1,D2,DA,DIC,DIK,RADELFLG,RABULL,RAPRTZ,RAAFTER,RABEFORE,RAYY
  ; Check if one exam or multiple exams exists below "DT" node.
  ; If no exams are present, delete "DT" node.
  I '+$O(^RADPT(RADFN,"DT",RADTI,"P",0)) D

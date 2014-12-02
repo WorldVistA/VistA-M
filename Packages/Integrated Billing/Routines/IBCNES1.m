@@ -1,5 +1,5 @@
 IBCNES1 ;ALB/ESG - eIV elig/benefit utilities ;14-Sept-2009
- ;;2.0;INTEGRATED BILLING;**416,438**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**416,438,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -62,8 +62,8 @@ EB(IBVF,IBVIENS,IBVV,IBVSUB) ; Main Eligibility/Benefit Information
  D SET(.LN,COL2,"Quantity Amount",$G(EB(IBVF,IBVIENS,.11,"E")))
  ;
  S LN=LN+1
- D SET(LN,COL1,"Auth/Certification Required",$G(EB(IBVF,IBVIENS,.12,"E")))
- D SET(.LN,COL2,"In-Plan-Network",$G(EB(IBVF,IBVIENS,.13,"E")))
+ D SET(LN,COL1,"Auth/Certification Required",$P($G(^IBE(365.033,+$G(EB(IBVF,IBVIENS,.12,"I")),0)),U,2))  ;IB*2*497
+ D SET(.LN,COL2,"In-Plan-Network",$P($G(^IBE(365.033,+$G(EB(IBVF,IBVIENS,.13,"I")),0)),U,2)) ;IB*2*497
  ;
  S LN=LN+1
  D SET(LN)
@@ -90,7 +90,7 @@ CMPI(IBVF,IBVIENS,IBVV,IBVSUB) ; Composite Medical Procedure Information
  D SET(LN,1,"Composite Medical Procedure Information",,IBVV)
  ;
  ; get procedure code, desc, and type information
- S PCTYP=$G(CMPI(IBVF,IBVIENS,1.01,"I"))
+ S PCTYP=$G(CMPI(IBVF,IBVIENS,1.01,"E"))  ;IB*2*497
  S PCODE=$G(CMPI(IBVF,IBVIENS,1.02,"E"))
  S PCIEN=0,PCDESC=""
  I PCTYP="CJ"!(PCTYP="HC") D     ; cpt or hcpcs procedure codes
@@ -127,6 +127,11 @@ CMPI(IBVF,IBVIENS,IBVV,IBVSUB) ; Composite Medical Procedure Information
  . S LN=LN+1
  . D SET(LN,COL1,"DX/Facility Qual","")
  . D SET(.LN,COL2,"DX/Facility","")
+ . S LN=LN+1
+ . D SET(LN,COL1,"Nature of Injury Code","")
+ . D SET(.LN,COL2,"Injury Category","")
+ . S LN=LN+1
+ . D SET(LN,COL1,"Nature of Injury Description","")
  . Q
  ;
  S ZIEN="" F  S ZIEN=$O(CMPI(ZF,ZIEN)) Q:ZIEN=""  D
@@ -150,6 +155,13 @@ CMPI(IBVF,IBVIENS,IBVV,IBVSUB) ; Composite Medical Procedure Information
  .. D SET(LN,COL1,"DX/Facility Qual","DX")
  .. D SET(.LN,COL2,"DX/Facility",$G(CMPI(ZF,ZIEN,.03,"E"))_" "_DXD)
  .. Q
+ . ;
+ . ; nature of injury code
+ . S LN=LN+1
+ . D SET(LN,COL1,"Nature of Injury Code",$G(CMPI(ZF,ZIEN,.05,"E")))
+ . D SET(.LN,COL2,"Injury Category",$G(CMPI(ZF,ZIEN,.06,"E")))
+ . S LN=LN+1
+ . D SET(LN,COL1,"Nature of Injury Description",$G(CMPI(ZF,ZIEN,.07,"E")))
  . Q
  ;
  S LN=LN+1
@@ -194,7 +206,7 @@ HCSD(IBVF,IBVIENS,IBVV,IBVSUB) ; Healthcare Services Delivery multiple display
  . D SET(.LN,COL2,"Benefit Quantity",$G(HCSD(ZF,ZIEN,.02,"E")))
  . ;
  . S LN=LN+1
- . D SET(LN,COL1,"Unit/Basis for Measurement",$G(HCSD(ZF,ZIEN,.05,"E")))
+  .D SET(LN,COL1,"Unit/Basis for Measurement",$P($G(^IBE(365.029,+$G(HCSD(ZF,ZIEN,.05,"I")),0)),U,2))  ;IB*2*497
  . D SET(.LN,COL2,"Sampling Frequency",$G(HCSD(ZF,ZIEN,.04,"E")))
  . ;
  . S LN=LN+1
@@ -205,7 +217,7 @@ HCSD(IBVF,IBVIENS,IBVV,IBVSUB) ; Healthcare Services Delivery multiple display
  . D SET(LN,COL1,"Delivery Freq. Code",$P($G(^IBE(365.025,+$G(HCSD(ZF,ZIEN,.08,"I")),0)),U,2))
  . ;
  . S LN=LN+1
- . D SET(LN,COL1,"Delivery Pattern Time Code",$G(HCSD(ZF,ZIEN,.09,"E")))
+ . D SET(LN,COL1,"Delivery Pattern Time Code",$P($G(^IBE(365.036,+$G(HCSD(ZF,ZIEN,.09,"I")),0)),U,2)) ;IB*2*497
  . ;
  . S LN=LN+1
  . D SET(LN)
@@ -222,13 +234,13 @@ NTE(IBVF,IBVIENS,IBVV,IBVSUB) ; Notes display
  ;  IBVSUB = display scratch global subscript
  ;
  N COL,DSP,LN,NTED,NTEDERR,ZIEN
- D GETS^DIQ(IBVF,IBVIENS,2,"IEN","NTED","NTEDERR")
+ D GETS^DIQ(IBVF,IBVIENS,2,"N","NTED","NTEDERR")
  S DSP=$NA(^TMP(IBVSUB,$J,"DISP"))       ; scratch global display array
  S LN=+$O(@DSP@(""),-1)                  ; last line# used in scratch global
  I '$D(NTED) G NTEX
  S COL=2
  S LN=LN+1 D SET(LN,1,"Notes and Comments",,IBVV)
- S ZIEN="" F  S ZIEN=$O(NTED(IBVF,IBVIENS,2,ZIEN)) Q:ZIEN=""  S LN=LN+1 D SET(LN,COL,$G(NTED(IBVF,IBVIENS,2,ZIEN)))
+ S ZIEN=0 F  S ZIEN=$O(NTED(IBVF,IBVIENS,2,ZIEN)) Q:'ZIEN  S LN=LN+1 D SET(LN,COL,$G(NTED(IBVF,IBVIENS,2,ZIEN)))
  S LN=LN+1
  D SET(LN)
  ;
@@ -255,7 +267,7 @@ BRE(IBVF,IBVIENS,IBVV,IBVSUB) ; Benefit Related Entity data extract/display
  ;
  S LN=LN+1
  D SET(LN,COL1,"Entity ID Code",$P($G(^IBE(365.022,+$G(BRE(IBVF,IBVIENS,3.01,"I")),0)),U,2))
- D SET(.LN,COL2,"Entity Type Qual",$G(BRE(IBVF,IBVIENS,3.02,"E")))
+ D SET(.LN,COL2,"Entity Type Qual",$P($G(^IBE(365.043,+$G(BRE(IBVF,IBVIENS,3.02,"I")),0)),U,2))  ; IB*2*497
  ;
  S LN=LN+1
  D SET(LN,COL1,"Entity ID Name",$G(BRE(IBVF,IBVIENS,3.03,"E")))
@@ -263,6 +275,9 @@ BRE(IBVF,IBVIENS,IBVV,IBVSUB) ; Benefit Related Entity data extract/display
  S LN=LN+1
  D SET(LN,COL1,"ID Qualifier",$P($G(^IBE(365.023,+$G(BRE(IBVF,IBVIENS,3.05,"I")),0)),U,2))
  D SET(.LN,COL2,"Entity ID Number",$G(BRE(IBVF,IBVIENS,3.04,"E")))
+ ;
+ S LN=LN+1  ;IB*2*497
+ D SET(LN,COL1,"Entity Relationship",$P($G(^IBE(365.031,+$G(BRE(IBVF,IBVIENS,3.06,"I")),0)),U,2))  ;IB*2*497
  ;
  S ADDR1=$G(BRE(IBVF,IBVIENS,4.01,"E"))
  S ADDR2=$G(BRE(IBVF,IBVIENS,4.02,"E"))
@@ -272,9 +287,10 @@ BRE(IBVF,IBVIENS,IBVV,IBVSUB) ; Benefit Related Entity data extract/display
  S ZIP=$G(BRE(IBVF,IBVIENS,4.05,"E"))
  S ADDR=ADDR1
  I ADDR2'="" S ADDR=ADDR_" "_ADDR2
- I CITY'="" S ADDR=ADDR_", "_CITY
- I ST'="" S ADDR=ADDR_","_ST
- I ZIP'="" S ADDR=ADDR_" "_ZIP
+ ;I CITY'="" S ADDR=ADDR_", "_CITY  
+ ;I ST'="" S ADDR=ADDR_","_ST
+ ;I ZIP'="" S ADDR=ADDR_" "_ZIP
+ S ADDR=ADDR_" "_CITY_" "_ST_" "_ZIP   ;IB*2*497  prevent orphan commas being displayed
  S LN=LN+1
  D SET(LN,COL1,"Entity Address",ADDR)
  ;
@@ -283,7 +299,7 @@ BRE(IBVF,IBVIENS,IBVV,IBVSUB) ; Benefit Related Entity data extract/display
  D SET(.LN,COL2,"Country Subdivision",$G(BRE(IBVF,IBVIENS,4.09,"E")))
  ;
  S LN=LN+1
- D SET(LN,COL1,"Location Qual",$G(BRE(IBVF,IBVIENS,4.08,"E")))
+ D SET(LN,COL1,"Location Qual",$P($G(^IBE(365.034,+$G(BRE(IBVF,IBVIENS,4.08,"I")),0)),U,2))  ;IB*2*497
  D SET(.LN,COL2,"DOD Health Service Region Code",$G(BRE(IBVF,IBVIENS,4.07,"E")))
  ;
  ; now loop through and display all of the benefit related entity contact information
@@ -291,9 +307,19 @@ BRE(IBVF,IBVIENS,IBVV,IBVSUB) ; Benefit Related Entity data extract/display
  I IBVF=365.02 S ZF=365.26       ; contact information subfile#
  I '$D(BRE(ZF)) S BRE(ZF,1)=""   ; so the fields display once
  S ZIEN="" F  S ZIEN=$O(BRE(ZF,ZIEN)) Q:ZIEN=""  D
+ . N IBDATA,IBLABEL,IBLEN
  . S LN=LN+1
  . D SET(LN,COL1,"Comm. Number Qual",$P($G(^IBE(365.021,+$G(BRE(ZF,ZIEN,.04,"I")),0)),U,2))
- . D SET(.LN,COL2,"Entity Comm. Number",$G(BRE(ZF,ZIEN,.03,"E")))
+ . S IBDATA=$G(BRE(ZF,ZIEN,1,"E")),IBLABEL="Entity Comm. Number"
+ . I $L(IBLABEL)+2+$L(IBDATA)<40 D  Q
+ .. D SET(.LN,COL2,IBLABEL,IBDATA)
+ . I $L(IBLABEL)+2+$L(IBDATA)<80 D  Q
+ .. S LN=LN+1
+ .. D SET(LN,COL1,IBLABEL,IBDATA)
+ . F  D  I '$L(IBDATA) Q
+ .. S IBLEN=80-$L(IBLABEL),LN=LN+1
+ .. D SET(LN,COL1,IBLABEL,$E(IBDATA,1,IBLEN))
+ .. S IBDATA=$E(IBDATA,IBLEN+1,$L(IBDATA)),IBLABEL=""
  . Q
  ;
  S LN=LN+1
@@ -304,7 +330,7 @@ BRE(IBVF,IBVIENS,IBVV,IBVSUB) ; Benefit Related Entity data extract/display
  ;
  S LN=LN+1
  D SET(LN,COL1,"Provider Code",$P($G(^IBE(365.024,+$G(BRE(IBVF,IBVIENS,5.01,"I")),0)),U,2))
- D SET(.LN,COL2,"Provider ID Qual",$G(BRE(IBVF,IBVIENS,5.03,"E")))
+ D SET(.LN,COL2,"Provider ID Qual",$P($G(^IBE(365.028,+$G(BRE(IBVF,IBVIENS,5.03,"I")),0)),U,2))  ;IB*2*497
  ;
  S LN=LN+1
  D SET(LN,COL1,"Provider ID",$G(BRE(IBVF,IBVIENS,5.02,"E")))

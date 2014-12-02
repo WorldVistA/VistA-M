@@ -1,5 +1,5 @@
-EASCM ;ALB/PJH - PROCESS INCOME TEST (Z10) TRANSMISSIONS ; 9/4/07 4:46pm
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**71**; 15-MAR-01;Build 18
+EASCM ;ALB/PJH - PROCESS INCOME TEST (Z10) TRANSMISSIONS ; 7/1/09 3:36pm
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**71,96**; 15-MAR-01;Build 18
  ;
  ;CLONED FROM IVMCM (ESR EVENT DRIVER)
  ;
@@ -37,7 +37,7 @@ ORF ; Handler for ORF type HL7 messages received from HEC
  I EVENT="Z06" D ORF^IVMPREC7
  ;
  ; Handle income test ORF (Z10) event
- I EVENT="Z10" D Z10
+ I EVENT="Z10" D Z10^IVMCM
  ;
  ; Handle enrollment/elig. ORF (Z11) event
  I EVENT="Z11" D
@@ -46,8 +46,8 @@ ORF ; Handler for ORF type HL7 messages received from HEC
  ;
  K ^TMP($J,IVMRTN)
  Q
- ;
- ;
+ ; Code below this line is not used - left in place for reference only
+ ; all Z10 processing performed within IVMCM
 Z10 ; Entry point for receipt of ORF~Z10 transmission
  ; The Income Test (Z10) transmission has the following format:
  ;

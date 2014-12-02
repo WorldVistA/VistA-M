@@ -1,5 +1,5 @@
 IBCU72 ;ALB/CPM - ADD/EDIT/DELETE PROCEDURE DIAGNOSES ;18-JUN-96
- ;;2.0;INTEGRATED BILLING;**62,210,473**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**62,210,473,461**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 DX(IBIFN,IBPROC) ; Add/edit/delete procedure diagnoses.
@@ -43,7 +43,7 @@ DISP(X) ; Display of existing dx's for a bill.
  S IBDATE=$$BDATE^IBACSV($G(IBIFN))
  W !!,?5,"-----------------  Existing Diagnoses for Bill  -----------------",!
  S IBX=0 F  S IBX=$O(X(IBX)) Q:'IBX  S IBZ=X(IBX),IBY=$$ICD9^IBACSV(+IBZ,IBDATE) D
- . W !?5,IBX,".",?12,$P(IBY,U),?26,$P(IBY,U,3),?60,$S($P(IBZ,U,2)<1000:"("_$P(IBZ,U,2)_")",1:"")
+ . W !?2,IBX,".",?6,$P(IBY,U),?18,$E($P(IBY,U,3),1,54),?74,$S($P(IBZ,U,2)<1000:"("_$P(IBZ,U,2)_")",1:"")
  W !
  Q
  ;

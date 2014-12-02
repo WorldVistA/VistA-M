@@ -1,11 +1,10 @@
-MDHL7U3 ; HOIFO/WAA -Utilities for CP to process HL7 messages  ;02/17/10  15:59
- ;;1.0;CLINICAL PROCEDURES;**6,21**;Apr 01, 2004;Build 30
+MDHL7U3 ;HOIFO/WAA - Utilities for CP to process HL7 messages ;02/17/10  15:59
+ ;;1.0;CLINICAL PROCEDURES;**6,21,29**;Apr 01, 2004;Build 22
  ; Reference DBIA #2729 [Supported]  for XMXPAI
  ; Reference DBIA #4262 [Supported] for HLUOPT2 call.
  ; Reference DBIA #3244 [Subscription] for MSH node of HLMA file (#773).
  ; Reference DBIA #3273 [Subscription] for reference HLMA of file (#773).
  ; Reference DBIA #10138 [Supported] for reference of HL file (#772).
- ; Reference DBIA #3990 [Supported] for ICDCODE call
  ; Reference DBIA #1131 [Supported] for XMB("NETNAME") reference
  ; Reference DBIA #1995 [Supported] for ICPTCOD to handle CPT Codes call
  ; Reference DBIA #10060 [Supported] NEW PERSON FILE (#200) Lookup.
@@ -147,7 +146,7 @@ PROCESS(MDIEN,NODE,TYPE,ARRAY) ; This will process the data for each
  F  S CNT=$O(^MDD(703.1,MDIEN,.1,NODE,.2,CNT)) Q:CNT<1  D
  . S CODE=$G(^MDD(703.1,MDIEN,.1,NODE,.2,CNT,0),"") ; Grabbing the ICD9 AND CPT codes
  . I CODE="" Q
- . I TYPE=8 S AR=1,TP="POV",X=$$ICDDX^ICDCODE(CODE) Q:X=""  ; Reference DBIA #3990 [Supported] for ICDCODE call
+ . I TYPE=8 S AR=1,TP="POV",X=$$ICDDATA^ICDXCODE(80,CODE,$P($P(^MDD(703.1,MDIEN,0),"^",3),".",1)) Q:X=""
  . I TYPE=7 S AR=2,TP="CPT",X=$$CPT^ICPTCOD(CODE) Q:X=""  ; Reference DBIA #1995 [Supported] for ICPTCOD to handle CPT Codes call
  . S CONT=CONT+1
  . S ARRAY(AR)=CONT_"^"_CONT

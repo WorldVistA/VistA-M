@@ -1,5 +1,5 @@
-ECXSCXN ;ALB/JAP  Clinic Extract ;6/6/12  13:33
- ;;3.0;DSS EXTRACTS;**24,27,29,30,31,32,33,39,46,49,52,71,84,92,107,105,120,124,127,132,136**;Dec 22, 1997;Build 28
+ECXSCXN ;ALB/JAP  Clinic Extract ;4/16/14  15:03
+ ;;3.0;DSS EXTRACTS;**24,27,29,30,31,32,33,39,46,49,52,71,84,92,107,105,120,124,127,132,136,144,149**;Dec 22, 1997;Build 27
  ;
 BEG ;entry point from option
  D SETUP Q:ECFILE=""  D ^ECXTRAC,^ECXKILL
@@ -36,6 +36,7 @@ START ;entry point from taskmgr
  ;
 ENCNTR(ECSD1,ECED) ;search file #409.68 for encounter data
  N CHKOUT,ECD,STAT,STOP,MDIV,ECXEDIS,CNT,ECXARR,NODE ;136
+ N ECXESC,ECXECL,ECXCLST,ECXPP ;149
  S ECD=ECSD1
  F  S ECD=$O(^SCE("B",ECD)) Q:('ECD!(ECD>ECED))!(QFLG)  S ECXIEN=0 D
  .F  S ECXIEN=$O(^SCE("B",ECD,ECXIEN)) Q:'ECXIEN  D  Q:QFLG
@@ -76,16 +77,18 @@ ENCNTR(ECSD1,ECED) ;search file #409.68 for encounter data
  ..;get visit specific data
  ..S ECXERR=0 D VISIT^ECXSCX1(ECXDFN,ECXVISIT,.ECXVIST,.ECXERR) Q:ECXERR
  ..F I=1:1:8 S @("ECXCPT"_I)=$G(ECXVIST("CPT"_I))
+ ..S ECXPP=$G(ECXVIST("PRIMPROC")) ;149 Get primary procedure if available
  ..S ECXICD9P=$G(ECXVIST("ICD9P"))
  ..F I=1:1:4 S @("ECXICD9"_I)=$G(ECXVIST("ICD9"_I))
  ..S SOURCE=ECXVIST("SOURCE"),ECXAO=ECXVIST("AO"),ECXIR=ECXVIST("IR")
  ..S ECXMIL=ECXVIST("MST"),ECXPROV=ECXVIST("PROV"),ECXSHAD=ECXVIST("SHAD")
+ ..S ECXECL=ECXVIST("ENCCL"),ECXESC=ECXVIST("ENCSC") ;144
  ..S ECPRNPI=$$NPI^XUSNPI("Individual_ID",ECXPROV,ECXDATE)
  ..S:+ECPRNPI'>0 ECPRNPI="" S ECPRNPI=$P(ECPRNPI,U)
  ..S ECXPROVP=ECXVIST("PROV CLASS"),ECXPROVN=ECXVIST("PROV NPI")
- ..F I=1:1:5 S @("ECSP"_I)=$P($G(ECXVIST("PROVS"_I)),U)
- ..F I=1:1:5 S @("ECSPPC"_I)=$P($G(ECXVIST("PROVS"_I)),U,2)
- ..F I=1:1:5 S @("ECSPNPI"_I)=$P($G(ECXVIST("PROVS"_I)),U,3)
+ ..F I=1:1:7 S @("ECSP"_I)=$P($G(ECXVIST("PROVS"_I)),U) ;144 2 new prov
+ ..F I=1:1:7 S @("ECSPPC"_I)=$P($G(ECXVIST("PROVS"_I)),U,2) ;144 2 new person class
+ ..F I=1:1:7 S @("ECSPNPI"_I)=$P($G(ECXVIST("PROVS"_I)),U,3) ;144 2 new NPI
  ..S ECXECE=ECXVIST("PGE"),ECXHNC=ECXVIST("HNC")
  ..K LOCARR S DIC=8,DA=ECXENEL,DR="8",DIQ(0)="I",DIQ="LOCARR" D EN^DIQ1
  ..S ECXENEL=+$G(LOCARR(8,ECXENEL,8,"I"))
@@ -94,10 +97,6 @@ ENCNTR(ECSD1,ECED) ;search file #409.68 for encounter data
  ..S ECXEDIS=$$EDIS^ECXUTL1(ECXDFN,ECD,"C",ECXVISIT,ECXSTOP) ;136 Set emergency room disposition
  ..;setup feeder key and file in extract records
  ..S (ECXKEY,ECXDSSD)=""
- ..;xray (105) or lab (108)
- ..I (ECXSTOP=105)!(ECXSTOP=108) D  Q
- ...S ECXKEY=ECXSTOP_"00003000000",ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS,ECXKEY)
- ...S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADMDT,ECXDATE,ECXTS,ECXOBS,ECHEAD,ECXKEY,) D:ECXENC'="" FILE       ;- Don't file rec if no encounter num
  ..;appointments
  ..I PROCESS=1 D  Q     ;get appt length 136 Section changed to use SDAMA301 call
  ...N CNT,ECXARR
@@ -132,6 +131,58 @@ ENCNTR(ECSD1,ECED) ;search file #409.68 for encounter data
  Q
  ;
 FILE ;record setup for file #727.827
+ ;NODE(0)
+ ;Sequence Number,Year Month, Extract Number (EC23)^facility (ECXDIV)^
+ ;dfn (ECXDFN)^ssn (ECXSSN)^name (ECXPNM)^
+ ;in/out (ECXA)^Day $$ECXDATE^ECXUTL(ECXDATE,ECXYM)^Feeder Key (ECXKEY) ^
+ ;Overbooked Indicator (ECXOBI)^Clinic Name (ECXCLIN)^Treating Specialty (ECXTSC) ^
+ ;Time (ECXTI)^Primary Care Team (ECPTTM)^primary care provider(ECPTPR)^
+ ;Primary Care PRV Person Class(ECCLAS)^Provider (ECXPROV)^
+ ;provider person class (ECPROVP)^CPT Code Qty & Modifiers #1 (ECXCPT1)^
+ ;CPT Code Qty & Modifiers #3 (ECXCPT3)^CPT Code Qty & Modifiers #3 (ECXCPT3)^
+ ;CPT Code Qty & Modifiers #4 (ECXCPT4)^CPT Code Qty & Modifiers #5 (ECXCPT5)^
+ ;NODE(1)
+ ;CPT Code Qty & Modifiers #6 (ECXCPT6)^CPT Code Qty & Modifiers #7 (ECXCPT7)^
+ ;CPT Code Qty & Modifiers #8 (ECXCPT8)^Primary ICD9 Code (ECXICD9P)^
+ ;Secondary ICD9 Code 1 (ECXICD91)^Secondary ICD9 Code 2 (ECXICD92)
+ ;Secondary ICD9 Code 3 (ECXICD93)^Secondary ICD9 Code 4 (ECXICD94)
+ ;date of birth (ECDOB)^Eligibility (ECXELIG)^Veteran (ECXVET)^
+ ;Race (ECXRACE)^POW status (ECXPST)^POW Location (ECXPLOC)^ Radiation Status(ECXRST)^
+ ;Radiation Encounter Indicator (ECXIR)^Agent Orange Status (ECXAST)^
+ ;Agent Orange Location(ECXAO)^Master Patient Index ((ECXMPI)^DSS Product Department (ECXDSSD)^
+ ;Sex (ECXSEX)^zip code (ECXZIP)^Place Holder^Place Holder^Encounter Eligibility (ECXENEL)^
+ ;MST Status(ECXMST)^MST Encounter Indicator (ECXMIL)^Place Holder^Place Holder^
+ ;Enrollment Location ((ECXENRL)^State (ECXSTATE)^County (ECXCNTY)^
+ ;Associate PC Provider (ECASPR)^Associate PC Prov. Person Class (ECCLAS2)^Place Holder^
+ ;DOM, PRRTP AND SAARTP Indicator (ECXDOM)^ Enrollment Category (ECXCAT)^
+ ;NODE(2)
+ ;Enrollment Status (ECXSTAT)^ SHAD Status (ECXPRIOR or ECXSHADI) ^
+ ;Purple Heart Indicator (ECXPHI)^Period of Service (ECXPOS)^
+ ;Observation Patient Indicator (ECXOBS)^ Encounter Number (ECXENC)^
+ ;Agent Orange Location (ECXAOL)^Production Division Code (ECXPDIV)^ Appointment Type (ECXATYP)^
+ ;Purpose of Visit (ECXPVST)^Means Test (ECXMTST)^Head & Neck Cancer Indicator (ECXHNCI)^
+ ;Ethnicity(ECXETH)^Race 1(ECXRC1)^CBOC Status (ECXCBOC)^Place Holder^Enrollment Priority (ECXPRIOR_ECXSBGRP)^
+ ;User Enrollee (ECXUESTA)^ Patient Type(ECXPTYPE)^CV Status Eligibility (ECXCVE)^
+ ;CV Eligibility End Date (ECXCVEDT)^Encounter CV (ECXCVENC)^National Patient Record Flag (ECXNPRFI)^
+ ;SW Asia Conditions (ECXEST)^Encounter SWAC (ECXECE)^ERI (ECXERI)^Enc Head/Neck CA (ECXHNC)^
+ ;OEF/OIF (ECXOEF)^ OEF/OIF Return Date (ECXOEFDT)^Associate PC Provider NPI (ECASNPI)^
+ ;Primary Care Provider NPI (ECPTNPI)^Provider NPI(ECPRNPI)^
+ ;NODE(3)
+ ;Country Code (ECXCNTRY)^Encounter SHAD (ECXSHAD)^PATCAT (ECXPATCAT)^Secondary Provider #1 (ECSP1)^
+ ;Secondary Provider #1 PC (ECSPPC1)^Secondary Provider #1 NPI (ECSPNPI1)^Secondary Provider #2 (ECSP2)^
+ ;Secondary Provider #2 PC (ECSPPC2)^Secondary Provider #2 NPI (ECSPNPI2)^Secondary Provider #3 (ECSP3)^
+ ;Secondary Provider #3 PC (ECSPPC3)^Secondary Provider #3 NPI (ECSPNPI3)^Secondary Provider #4 (ECSP4)^
+ ;Secondary Provider #4 PC (ECSPPC4)^Secondary Provider #4 NPI (ECSPNPI4)^Secondary Provider #5 (ECSP5)^
+ ;Secondary Provider #5 PC (ECSPPC5)^Secondary Provider #5 NPI (ECSPNPI5)^
+ ;ED Disposition Code (ECXEDIS)^Primary ICD-10 Code (ECXICD10P)^Secondary ICD-10 Code #1 (ECXICD101)^
+ ;Secondary ICD-10 Code #2 (ECXICD102)^Secondary ICD-10 Code #3 (ECXICD103)^Secondary ICD-10 Code #4 (ECXICD104)^
+ ;Encounter SC (ECXESC)^Vietnam (ECXVNS)^Secondary Provider #6 (ECSP6)^Secondary Provider #6 PC (ECSPPC6)^
+ ;Secondary Provider #6 NPI (ECSPNPI6)^
+ ;NODE(4)
+ ;Secondary Provider #7 (ECSP7)^Secondary Provider #7 PC (ECSPPC7)^Secondary Provider #7 NPI (ECSPNPI7)^
+ ;Camp Lejeune Status (ECXCLST)^Encounter Camp Lejeune (ECXECL)^Primary Procedure (ECXPP)
+ ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
+ ;
  N STR
  S ECXPDIV=$$GETDIV^ECXDEPT(ECXDIV)  ; Get production division
  S EC7=$O(^ECX(727.827,999999999),-1),EC7=EC7+1
@@ -166,6 +217,9 @@ FILE ;record setup for file #727.827
  I ECXLOGIC>2011 S STR(3)=STR(3)_U_ECSP1_U_ECSPPC1_U_ECSPNPI1_U_ECSP2_U_ECSPPC2_U_ECSPNPI2_U_ECSP3_U_ECSPPC3_U_ECSPNPI3_U_ECSP4_U_ECSPPC4_U_ECSPNPI4_U_ECSP5_U_ECSPPC5_U_ECSPNPI5
  ;added icd-10 null for now
  I ECXLOGIC>2012 S STR(3)=STR(3)_U_$G(ECXEDIS)_U_ECXICD10P_U_ECXICD101_U_ECXICD102_U_ECXICD103_U_ECXICD104 ;136
+ I ECXLOGIC>2013 S STR(3)=STR(3)_U_ECXESC_U_ECXVNS_U_ECSP6_U_ECSPPC6_U_ECSPNPI6_U ; 144
+ I ECXLOGIC>2013 S STR(4)=ECSP7_U_ECSPPC7_U_ECSPNPI7_U_ECXCLST_U_ECXECL ; 144 new provider fields and camp lejeune fields
+ I ECXLOGIC>2014 S STR(4)=STR(4)_U_$G(ECXPP)_U_ECXSVCI_U_ECXSVCL ;149 add primary procedure, Comb SVC Ind, loc
  D FILE2^ECXSCX2(727.827,EC7,.STR)
  S ECRN=ECRN+1,$P(^ECX(727.827,0),U,3)=EC7
  Q

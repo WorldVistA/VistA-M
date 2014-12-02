@@ -1,5 +1,6 @@
-XWBVLL ;OIFO-Oakland/REM - M2M Broker Listener  ;06/08/2005  10:48
- ;;1.1;RPC BROKER;**28,41,34**;Mar 28, 1997
+XWBVLL ;OIFO-Oakland/REM - M2M Broker Listener  ;12/29/2010
+ ;;1.1;RPC BROKER;**28,41,34,62,63**;Mar 28, 1997;Build 4
+ ;Per VHA Directive 6402, this routine should not be modified
  ;
  QUIT
  ;
@@ -18,7 +19,8 @@ START(SOCKET) ;Entry point for Cache/NT
  D LISTEN^%ZISTCPS(SOCKET,"SPAWN^XWBVLL")
  Q
  ;
-UCX ;DMS/VMS UCX entry point, called from XWBSERVER_START.COM file,
+UCX ;Old entry point NOT used anymore.  *p55*
+ ;DMS/VMS UCX entry point, called from XWBSERVER_START.COM file,
  ;listener,  % = <input variable>
  ;IF $G(%)="" DO ^%ZTER QUIT
  SET (IO,IO(0))="SYS$NET"
@@ -34,7 +36,8 @@ STRT(PORT) ;*p34-This entry is called from option "XWB M2M CACHE LISTENER" and j
  Q
  ;
 CACHEVMS ;Cache/VMS tcpip entry point, called from XWBSERVER_START.COM fLle *p41*
- SET (IO,IO(0))="SYS$NET"
+ ;Update the SET (IO)="SYS$NET" *p55*
+ SET (IO,IO(0))=$S($ZV["VMS":"SYS$NET",1:$P) ;Support for both VMS/TCPIP and Linux/xinetd *p55*
  ; **CACHE/VMS specific code**
  OPEN IO::60 ELSE  SET ^TMP("XWB DSM CONNECT FAILURE",$H)="" QUIT
  X "U IO:(::""-M"")" ;Packet mode like DSM
@@ -42,39 +45,40 @@ CACHEVMS ;Cache/VMS tcpip entry point, called from XWBSERVER_START.COM fLle *p41
  QUIT
  ;
 SPAWN ; -- spawned process
- NEW XWBSTOP
- SET XWBSTOP=0
+ NEW U,DTIME,XWBROOT,XWBAVC,XWBSTOP
+ SET U="^",DUZ=0,DUZ(0)="",DTIME=900,XWBROOT=$NA(^TMP("XWBVLL",$J)),XWBSTOP=0
  ;
  ; -- initialize tcp processing variables
  DO INIT^XWBRL
  ;
  ; -- set error trap
- NEW $ESTACK,$ETRAP S $ETRAP="D ^%ZTER HALT"
- ;
+ NEW $ESTACK,$ETRAP S $ETRAP="D SYSERR^XWBVLL"
+ ;Get IP from client
+ S IO("IP")=$$GETPEER^%ZOSV()
  ; -- change job name if possible
  ;DO SETNM^%ZOSV("XWBSERVER: Server") ;**M2M - comment out for now
  DO SAVDEV^%ZISUTL("XWBM2M SERVER") ;**M2M save off server IO
  S XWBDEBUG=$$GET^XPAR("SYS","XWBDEBUG",,"Q")
  I XWBDEBUG D LOG^XWBRPC("Server Start @ "_$$NOW^XLFDT)
- ; -- loop until told to stop
- FOR  DO NXTCALL QUIT:XWBSTOP
+ ;check that XUS AV CODE is the 1st or 2nd RPC call P62
+ I '$$GET^XPAR("SYS","XWB62",1,"Q") F XWBAVC=1:1:2 D NXTCALL Q:DUZ
+ S XWBAVC=0
+ ; process rest of messages; loop until told to stop
+ D
+ .I '$$GET^XPAR("SYS","XWB62",1,"Q") Q:'DUZ
+ .F  DO NXTCALL QUIT:XWBSTOP
  ;
  ; -- final/clean tcp processing variables
  D RMDEV^%ZISUTL("XWBM2M SERVER") ;**M2M remove server IO
  Q
  ;
 NXTCALL ; -- do next call
- NEW U,DTIME,DT,X,XWBROOT,XWBREAD,XWBTO,XWBFIRST,XWBOK,XWBRL,BUG
- ;
- ; -- set error trap
- NEW $ESTACK,$ETRAP S $ETRAP="D SYSERR^XWBVLL"
+ NEW DT,X,XWBREAD,XWBTO,XWBFIRST,XWBOK,XWBRL,BUG
  ;
  ; -- setup environment variables
- SET U="^",DTIME=900,DT=$$DT^XLFDT()
- SET XWBREAD=20,XWBTO=36000,XWBFIRST=1
+ SET DT=$$DT^XLFDT(),XWBREAD=20,XWBTO=36000,XWBFIRST=1 ;p63
  ;
- ; -- setup intake global - root is request data
- SET XWBROOT=$NA(^TMP("XWBVLL",$J))
+ ; -- clean intake global - root is request data
  KILL @XWBROOT
  ;
  ; -- set parameters for RawLink

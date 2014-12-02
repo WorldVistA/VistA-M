@@ -1,9 +1,8 @@
 PSOORED6 ;BIR/SAB - edit orders from backdoor ;03/06/96
- ;;7.0;OUTPATIENT PHARMACY;**78,104,117,133,143,219,148,247,268,260,269,251**;DEC 1997;Build 202
+ ;;7.0;OUTPATIENT PHARMACY;**78,104,117,133,143,219,148,247,268,260,269,251,372**;DEC 1997;Build 54
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference ^PS(50.606 supported by DBIA 2174
- ;External reference to $$DS^PSSDSAPI supported by DBIA 5424
 DRG ;select drug
  S PSORX("EDIT")=1,RX0HLD=RX0
  S PSODRUG("IEN")=$S($G(PSODRUG("IEN"))]"":PSODRUG("IEN"),1:$P(RX0,"^",6)),PSODRUG("NAME")=$S($G(PSODRUG("NAME"))]"":PSODRUG("NAME"),1:$P(^PSDRUG($P(RX0,"^",6),0),"^"))
@@ -21,7 +20,7 @@ DRG ;select drug
  .S DIR("A")="Do You want to Edit the SIG"
  .D ^DIR K DIR I $D(DIRUT) S PSORX("DFLG")=1 D M1
  .Q:$D(DIRUT)
- .I 'Y D  D DOLST^PSOORED3 D:$$DS^PSSDSAPI DCHK1^PSODOSUT Q
+ .I 'Y D  D DOLST^PSOORED3 D DCHK1^PSODOSUT Q
  .. I '$G(PSORXED("ENT")) F  S I=$O(PSORXED("DOSE",I)) Q:'I  S PSORXED("ENT")=$G(PSORXED("ENT"))+1
  .. S ENT=1
  .S PSOREEDQ=1 D DOLST^PSOORED3,DOSE^PSOORED3 K PSOREEDQ

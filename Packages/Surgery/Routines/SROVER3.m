@@ -1,5 +1,5 @@
 SROVER3 ;BIR/ADM - Case Coding and Verification ;07/26/07
- ;;3.0; Surgery ;**86,88,127,119,152,159**;24 Jun 93;Build 4
+ ;;3.0;Surgery;**86,88,127,119,152,159,177**;24 Jun 93;Build 89
  ;;
  ; Reference to CL^SDCO21 supported by DBIA #406
  ;;
@@ -54,8 +54,8 @@ DOTH W !,"Other Postop Diagnosis:",!
  N SCEC,ENVARR S SCEC=$$SCEC()
  K SRSEL S CNT=1,OTH=0 F  S OTH=$O(^SRF(SRTN,15,OTH)) Q:'OTH!(SRSOUT)  D
  .S OTHER=$P(^SRF(SRTN,15,OTH,0),U),X=$P($G(^SRF(SRTN,15,OTH,0)),U,3),SRDIAG="NOT ENTERED"
- .I X S Y=$$ICDDX^ICDCODE(X,$P($G(^SRF(SRTN,9)),"^",9)),SRNUM=$P(Y,U,2),SRDES=$P(Y,U,4),SRDIAG=SRNUM_"  "_SRDES
- .W !,CNT_". "_OTHER,!,?5,"ICD9 Code: "_SRDIAG S SRSEL(CNT)=OTH_"^"_OTHER_"^ICD9 Code: "_SRDIAG
+ .I X S Y=$$ICD^SROICD(SRTN,X),SRNUM=$P(Y,U,2),SRDES=$P(Y,U,4),SRDIAG=SRNUM_"  "_SRDES
+ .W !,CNT_". "_OTHER,!,?5,"ICD"_$$ICD910^SROICD(SRTN)_" Code: "_SRDIAG S SRSEL(CNT)=OTH_"^"_OTHER_"^ICD Code: "_SRDIAG
  .D:SCEC
  ..D GETS^DIQ(130.18,OTH_","_SRTN_",","4:11","E","ENVARR")
  ..I $D(ENVARR(130.18,OTH_","_SRTN_",",4,"E")) D

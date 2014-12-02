@@ -1,5 +1,5 @@
-MAGDIR8 ;WOIFO/PMK - Read a DICOM image file ; 08 Feb 2008 11:27 AM
- ;;3.0;IMAGING;**11,51,54**;03-July-2009;;Build 1424
+MAGDIR8 ;WOIFO/PMK - Read a DICOM image file ; 21 Apr 2011 2:47 PM
+ ;;3.0;IMAGING;**11,51,54,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -59,11 +59,11 @@ ERROR(OPCODE,ERRCODE,MSG,ROUTINE) ; build the RESULT array for the error
  S OK=0,I="" F  S I=$O(MSG(I)) Q:'I  D
  . I MSG(I)?1"Problem detected by routine".E  D
  . . ; add error code to the message
- . . S MSG(I)=MSG(I)_"  Error Code: "_ERRCODE
+ . . S MSG(I)=MSG(I)_"     Error Code: """_ERRCODE_""""
  . . Q
  . S OK=1 D RESULT^MAGDIR8("MSG","|"_MSG(I))
  . Q
- D:'OK RESULT^MAGDIR8("MSG","|--no details specified--")
+ D:'OK RESULT^MAGDIR8("MSG","|Error Code: """_ERRCODE_"""  (no further information is available)")
  S $P(RESULT(RESULT(1)),"|",2)="END"
  Q
  ;

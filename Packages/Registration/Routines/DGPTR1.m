@@ -1,13 +1,20 @@
-DGPTR1 ;ALB/MTC - PTF VERIFICATION ; 01 MAR 91 @0800
- ;;5.3;Registration;**58,247,338,342,423,415,565,678,696,729,781,664,817**;Aug 13, 1993;Build 4
-START S T=$E(Y,2,3),T=$S(T=40&($E(Y,28)="P"):"P40",1:T),ERR=$P($T(@("T"_T)),";;",2,999),W=$P($T(@(T)),";;",2,999),F=31 D L
+DGPTR1 ;ALB/MTC - PTF VERIFICATION ;01 MAR 91 @0800
+ ;;5.3;Registration;**58,247,338,342,423,415,565,678,696,729,781,664,817,850**;Aug 13, 1993;Build 171
+START ;
+ S T=$E(Y,2,3),T=$S(T=40&($E(Y,28)="P"):"P40",1:T)
+ S ERR=$P($T(@("T"_T)),";;",2,999),W=$P($T(@(T)),";;",2,999),F=31 D L
  I T=70 S ERR=$P($T(T701),";;",2,999),W=$P($T(701),";;",2,999),F=72 D L
  D @("D"_T) Q
  K DGFILL
  Q
  ;
-L N DGFOR S DGFOR=$S($$FORIEN^DGADDUTL($P(DG11,U,10))<1:0,1:1) ;set foreign country flag =1, else, set as domestic
- F H=1:1 S DGO=$P(W,U,H) Q:'DGO  F Z=1:1:$P(DGO,";",3) S DGL=DGLOGIC(+DGO),X=$E(Y,F) D @("ERR:"_DGL) S F=F+1
+L ;
+ N DGFOR S DGFOR=$S($$FORIEN^DGADDUTL($P(DG11,U,10))<1:0,1:1) ;set foreign country flag =1, else, set as domestic
+ F H=1:1 S DGO=$P(W,U,H) Q:'DGO  D
+ . F Z=1:1:$P(DGO,";",3) D
+ .. S DGL=DGLOGIC(+DGO)
+ .. S X=$E(Y,F)
+ .. D @("ERR:"_DGL) S F=F+1
  Q
  ;
 T10 ;;1:NAME^2:SOURCE OF ADM^3:TRANS FAC.^4:SOURCE OF PAY^5:POW^6:MARITAL ST^7:SEX^8:DOB^9:POS^10:VIETNAM^11:ION RADIATION^12:RESIDENCE^13:MEANS TEST^14:INCOME^15:MST^16:COMBAT VET^17:CV END DT^18:PROJ 112/SHAD^19:ERI^20:COUNTRY
@@ -47,16 +54,16 @@ P40 ;;8;;1;^3;;11;^11;1;2;1^6;;3;1^3;1;2;1^6;;5;1^3;;2;1^6;;5;1^3;;2;1^6;;5;1^3;
  ;
 60 ;;1;1;10;1^13;2;2;2^4;3;1;3^4;4;3;4^11;5;3;5^6;;32;5^3;;44
  ;
-ERR S DGERR=1
+ERR ;
+ S DGERR=1
  W !,T,$S(T["H":" ",1:$E(Y,4)),"  "
  W:"45"[$E(T,1) $E(Y,31,32),"-",$E(Y,33,34),"-",$E(Y,35,36),"@",$E(Y,37,40)
  W ?25,$P($P(ERR,U,$P(DGO,";",4)),":",2),?40,"COL.",F,"  VALUE: ",$S($E(Y,F)=" ":"BLANK",1:$E(Y,F))
  S I=$S('$D(I):1,I>0:I,1:1),^(I)=$S($D(^UTILITY("DG",$J,T_$S(T["H":"",1:$E(Y,4)),I)):^(I),1:U) I $P(DGO,";",2),^(I)'[(U_$P(DGO,";",2)_U) S ^(I)=^(I)_$P(DGO,";",2)_U
  Q
  ;
-D10 I $E(Y,66)="Z" S (F,H)=68,W="11;10;1;10" D L
- ;Allow FEE BASIS with means test of U to transmit to Austin - DG*5.3*817
- ;I $P(^DGPT(J,0),"^",4),$P(^(0),"^",10)="U",$D(^DGPT(J,70)),+^(70)>2890700 S F=79,DGO="2;12;1;12" D ERR
+D10 ;
+ I $E(Y,66)="Z" S (F,H)=68,W="11;10;1;10" D L
  Q
  ;
 D40 Q
@@ -74,7 +81,7 @@ D60 I $E(Y,43) S F=44,W="1;4;3;4" D L
 HEAD S ERR="1:SSN^2:ADMISSION DATE^3:FACILITY #",W="8;1;1;1^1;1;9;1^1;2;10;2^1;3;3;3^6;;3;3",F=5,T="HEADER" D LOG
  D L
  Q
-LOG ;place DGLOGIC in array inorder to add more logic tests ;DG*5.3*664
+LOG ;place DGLOGIC in array in order to add more logic tests ;DG*5.3*664
  K DGLOGIC ;S DGLOGIC=$P($T(LOGIC),";;",2)
  N LOGX,LOGI,LOGCNT,II,XX
  S LOGI=0,LOGCNT=1

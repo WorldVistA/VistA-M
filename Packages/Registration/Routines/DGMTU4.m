@@ -1,5 +1,5 @@
-DGMTU4 ;ALB/CJM,SCG,LBD,EG,PHH MEANS TEST UTILITES ; 06/07/2005
- ;;5.3;Registration;**182,267,285,347,454,456,476,610,658**;Aug 13, 1993
+DGMTU4 ;ALB/CJM,SCG,LBD,EG,PHH,BDB MEANS TEST UTILITES ; 06/07/2005
+ ;;5.3;Registration;**182,267,285,347,454,456,476,610,658,858**;Aug 13, 1993;Build 30
  ;
 GETSITE(DUZ) ;
  ;Descripition:  Gets the users station number.  If not found, it will
@@ -113,7 +113,8 @@ MTPRIME(MTIEN) ;
  . N DATA S DATA(2)=0 I $$UPD^DGENDBS(408.31,+LSTNODE,.DATA)
  ;if means test is required and test is primary and not a CAT C, 
  ;and it hasn't expired, flip the test to Not Primary eg 02/23/2005
- I $P(LSTNODE,U,4)="R",+$G(^DGMT(408.31,+LSTNODE,"PRIM")),$P(^DGMT(408.31,MTIEN,0),U,3)'=6,'$$OLD(MTDATE) D
+ ;DG*5.3*858 MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ I $P(LSTNODE,U,4)="R",+$G(^DGMT(408.31,+LSTNODE,"PRIM")),$P(^DGMT(408.31,MTIEN,0),U,3)'=6,'$$OLDMTPF(MTDATE) D
  . N DATA S DATA(2)=0 I $$UPD^DGENDBS(408.31,+LSTNODE,.DATA)
  ;
  ;If this is a Z10 upload, call the means test event driver and quit.
@@ -125,8 +126,8 @@ MTPRIME(MTIEN) ;
  ;
  ;If the test is still in effect, need to do additional checks
  ;and call event driver
- ;
- I '$$OLD(MTDATE) D
+ ;DG*5.3*858 MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ I '$$OLDMTPF(MTDATE) D
  .;Mark this test as NO LONGER REQUIRED -  calling EN^DGMTR will
  .;change it back to its old status if required and will que the event
  .;driver
@@ -178,7 +179,8 @@ RXPRIME(RXIEN) ;
  ;don't want any old means tests marked as primary - unless they are actually needed!  In which case, do not make this Rx test primary.
  F TRIES=1,2 S NODE=$$LST^DGMTU(DFN,YREND,1) Q:'(+NODE)  Q:($E($P(NODE,"^",2),1,3)'=$E(MTDATE,1,3))  D
  .N DATA
- .I '$$OLD($P(NODE,"^",2)),$P(NODE,"^",4)'="","ACGP"[$P(NODE,"^",4) S QUIT=1 Q
+ .;DG*5.3*858 MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ .I '$$OLDMTPF($P(NODE,"^",2)),$P(NODE,"^",4)'="","ACGP"[$P(NODE,"^",4) S QUIT=1 Q
  .;set the old test to non-primary
  .S DATA(2)=0 I $$UPD^DGENDBS(408.31,+NODE,.DATA)
  ;
@@ -191,8 +193,8 @@ RXPRIME(RXIEN) ;
  ;
  ;If the test is still in effect, need to do additional checks
  ;and call event driver
- ;
- I '$$OLD(MTDATE) D
+ ;DG*5.3*858 MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ I '$$OLDMTPF(MTDATE) D
  .S DGMSGF=1,DGADDF=0 ;don't want new test added or messages
  .;
  .;EN^DGMTR will first create a stub for a required MT if needed, then
@@ -213,7 +215,23 @@ OLD(TESTDATE) ;
  ;Checks if the date is older than 365 days.  Returns 0 for no, 1 for yes
  ;if the test is exactly 365 days, 
  ;it is considered expired eg 03/09/2005
- I ($$FMDIFF^XLFDT(DT,TESTDATE)'<365) Q 1
+ ;I ($$FMDIFF^XLFDT(DT,TESTDATE)'<365) Q 1
+ I TESTDATE<(DT-10000) Q 1
+ Q 0
+ ;
+OLDMTPF(TESTDATE) ;
+ ;For the Discontinue Annual Means Test Renewal project DG*5.3*858
+ ;Checks if the date is more than 1 year older than the Discontinue
+ ; Annual Means Test Renewal Point Forward Date.
+ ;Discontinue Annual Means Test Renewal Point Forward Date
+ ;Input  TESTDATE - Means Test Date
+ ;       
+ ;Output 0 for No
+ ;       1 for Yes
+ ;
+ N DGMTPFD
+ S DGMTPFD=$P(^DG(43,1,"VFA"),"^",1)
+ I TESTDATE<(DGMTPFD-10000) Q 1
  Q 0
  ;
 TRANSFER(DFN,FROM,TO) ;

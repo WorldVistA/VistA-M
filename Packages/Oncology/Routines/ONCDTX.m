@@ -1,5 +1,5 @@
 ONCDTX ;Hines OIFO/GWB - Delete treatment data ;06/23/10
- ;;2.11;ONCOLOGY;**13,15,19,22,25,27,36,42,44,45,51**;Mar 07, 1995;Build 65
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 DEL ;Delete all First Course of Treatment data
  I '$D(DATEDX) Q

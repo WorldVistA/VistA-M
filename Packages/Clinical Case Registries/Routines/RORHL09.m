@@ -1,5 +1,5 @@
-RORHL09 ;HOIFO/BH - HL7 OUTPATIENT DATA: PV1,OBR,OBX ; 3/13/06 9:24am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,5**;Feb 17, 2006;Build 10
+RORHL09 ;HOIFO/BH - HL7 OUTPATIENT DATA: PV1,OBR,OBX ;3/13/06 9:24am
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,5,19**;Feb 17, 2006;Build 43
  ;
  ; 11/29/2007 BAY/KAM ROR*1.5*5 Rem Call 218601 Correct Outpatient
  ;                              CPTs not transmitting to the AAC
@@ -10,23 +10,34 @@ RORHL09 ;HOIFO/BH - HL7 OUTPATIENT DATA: PV1,OBR,OBX ; 3/13/06 9:24am
  ; #1889     Use of the ENCEVENT^PXKENC API
  ; #1995     $$CODEC^ICPTCOD (supported)
  ; #2309     Read access to the 'AA' x-ref in VISIT file (#9000010)
- ; #3990     $$CODEC^ICDCODE (supported)
  ; #10060    Read access to the file #200 (supported)
  ; #2438     Access to the file #40.8 (field #1) (controlled)
+ ; #5747     $$CODEC^ICDEX (controlled)
  ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ; --- ROUTINE MODIFICATION LOG ---
+ ; 
+ ;PKG/PATCH   DATE       DEVELOPER   MODIFICATION
+ ;----------- ---------- ----------- ----------------------------------------
+ ;ROR*1.5*19  MAY 2012   K GUPTA     Support for ICD-10 Coding System.
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
  Q
  ;
  ;***** PROCESSES DIAGNOSIS CODES
 DIAGS() ;
- N DIAG,IEN,K5,OID,REC,TMP
- S OID="OICD9"_RORCS_"Diagnosis"_RORCS_"VA080"
+ N DIAG,IEN,K5,OID,REC,RORICDSNAM
+ S OID="OICD"_RORCS_"Diagnosis"_RORCS_"VA080"
  S K5=""
  F  S K5=$O(^TMP("PXKENC",$J,RORIEN,"POV",K5))  Q:K5=""  D
  . S REC=^TMP("PXKENC",$J,RORIEN,"POV",K5,0)
  . S IEN=+$P(REC,U)  Q:IEN'>0
  . ;---
- . S DIAG=$$CODEC^ICDCODE(IEN)
- . D:DIAG'<0 SETOBX(OID,DIAG)
+ . S DIAG=$$CODEC^ICDEX(80,IEN) Q:+DIAG=-1
+ . S RORICDSNAM=$$CSNAME^RORHLUT1(80,IEN)
+ . D SETOBX(OID,RORICDSNAM_":"_DIAG)
  Q 0
  ;
  ;***** OUTPATIENT DATA SEGMENT BUILDER

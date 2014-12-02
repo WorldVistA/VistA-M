@@ -1,10 +1,10 @@
-ORKPS1 ; SLC/CLA - Order checking support procedures for medications ;04/06/2012  06:50
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,272,346,352**;Dec 17, 1997;Build 18
+ORKPS1 ; SLC/CLA - Order checking support procedures for medications ;03/29/13  09:01
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,272,346,352,345,311**;Dec 17, 1997;Build 30
  Q
 PROCESS(OI,DFN,ORKDG,ORPROSP,ORGLOBL) ;process data from pharmacy order check API
- ;ORPROSP = the med that is being checked
+ ;ORPROSP = pharmacy orderable item ien [file #50.7] ^ drug ien [file #50]
+ ;          NOTE: PIECE 1 WILL ONLY BE FILLED IN FOR ORDERABLE ITEMS THAT RESOLVE TO SUPPLY ITEMS
  Q:'$D(^TMP($J))
- ;K ^TMP($J,"ORMONOGRAPH")
  N II,XX,ZZ,ZZD,ORMTYPE,ORN,ORZ,RCNT,GL,I,J,K,L,M,TDATA,VADMVT,ORX,ORY
  S II=1,XX=0,ZZ="",ZZD="",RCNT=0
  I $G(^TMP($J,ORGLOBL,"OUT",0))<0 D  Q
@@ -13,6 +13,7 @@ PROCESS(OI,DFN,ORKDG,ORPROSP,ORGLOBL) ;process data from pharmacy order check AP
  I $D(^TMP($J,ORGLOBL,"OUT","EXCEPTIONS")) D
  .S ORX="" F  S ORX=$O(^TMP($J,ORGLOBL,"OUT","EXCEPTIONS",ORX)) Q:'$L(ORX)  D
  ..S ORY=0 F  S ORY=$O(^TMP($J,ORGLOBL,"OUT","EXCEPTIONS",ORX,ORY)) Q:'ORY  D
+ ...I $L($G(ORIFN))>0,$G(ORIFN)=$P($G(^TMP($J,ORGLOBL,"OUT","EXCEPTIONS",ORX,ORY)),U,5) Q
  ...S YY(II)="ERR^"_$P($G(^TMP($J,ORGLOBL,"OUT","EXCEPTIONS",ORX,ORY)),U,7)
  ...I $L($P($G(^TMP($J,ORGLOBL,"OUT","EXCEPTIONS",ORX,ORY)),U,10))>0 S YY(II)=YY(II)_"("_$P($G(^TMP($J,ORGLOBL,"OUT","EXCEPTIONS",ORX,ORY)),U,10)_")"
  ...S II=II+1
@@ -22,21 +23,22 @@ PROCESS(OI,DFN,ORKDG,ORPROSP,ORGLOBL) ;process data from pharmacy order check AP
  ..S ORZ=0 F  S ORZ=$O(^TMP($J,ORGLOBL,"OUT",ORX,"ERROR",ORY,ORZ)) Q:'ORZ  D
  ...S YY(II)="ERR^"_$$UPPER^ORWDPS32($G(^TMP($J,ORGLOBL,"OUT",ORX,"ERROR",ORY,ORZ,"SEV")))_": "_$P($G(^TMP($J,ORGLOBL,"OUT",ORX,"ERROR",ORY,ORZ,0)),U)_" - "_$G(^TMP($J,ORGLOBL,"OUT",ORX,"ERROR",ORY,ORZ,"TEXT"))
  ...S II=II+1
- ;set info about the drug being ordered
- S TDATA("NEW","TXT")=""
- S I="" F  S I=$O(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",I)) Q:'$L(I)  D
- .I $P($G(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",I)),U,3)=ORPROSP S TDATA("NEW","TXT")=$P($G(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",I)),U,4)
- .;I $P(I,";",4)=1 S TDATA("NEW","TXT")=$P($G(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",I)),U,4)
- I $L(ORKDG) S TDATA("NEW","PTYPE")=$S($G(ORKDG)="PSI":"I",$G(ORKDG)="PSO":"O",$G(ORKDG)="PSIV":"I",$G(ORKDG)="PSH":"O",1:"")
- I '$L(TDATA("NEW","PTYPE")) D  ;if no display group
- .D ADM^VADPT2
- .S TDATA("NEW","PTYPE")=$S(+$G(VADMVT)>0:"I",1:"O")
- .K VADMVT
- S TDATA("NEW","OTYPE")=TDATA("NEW","PTYPE")
- N ORPI S ORPI=0 F  S ORPI=$O(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",ORPI)) Q:'$L(ORPI)  I $P(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",ORPI),U,3)=+ORPROSP S TDATA("NEW","PROSP")=$P(ORPI,";",3,4)
+ I +$P(ORPROSP,U,2) D
+ .;set info about the drug being ordered
+ .S TDATA("NEW","TXT")=""
+ .S I="" F  S I=$O(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",I)) Q:'$L(I)  D
+ ..I $P($G(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",I)),U,3)=+$P(ORPROSP,U,2) D
+ ...S TDATA("NEW","TXT")=$P($G(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",I)),U,4)
+ ...S TDATA("NEW","PROSP")=$P(I,";",3,4)
+ .S TDATA("NEW","PTYPE")=$S($G(ORKDG)="PSI":"I",$G(ORKDG)="PSO":"O",$G(ORKDG)="PSIV":"I",$G(ORKDG)="PSH":"O",1:"")
+ .S TDATA("NEW","OTYPE")=$S($G(ORKDG)="PSI":"UD",$G(ORKDG)="PSO":"OP",$G(ORKDG)="PSIV":"IV",$G(ORKDG)="PSH":"NV",1:"")
+ .I '$L(TDATA("NEW","PTYPE")) D  ;if no display group
+ ..D ADM^VADPT2
+ ..S TDATA("NEW","PTYPE")=$S(+$G(VADMVT)>0:"I",1:"O")
+ ..K VADMVT
+ D DD(.TDATA,$S(+ORPROSP>0:0,1:1))
  Q:'$L($G(TDATA("NEW","PROSP")))
- I $L(ORKDG) S TDATA("NEW","OTYPE")=$S($G(ORKDG)="PSI":"UD",$G(ORKDG)="PSO":"OP",$G(ORKDG)="PSIV":"IV",$G(ORKDG)="PSH":"NV",1:"")
- D DI(.TDATA),DD(.TDATA),DT(.TDATA)
+ D DI(.TDATA),DT(.TDATA)
  Q
  ;
 DI(TDATA) ;add drug interaction checks
@@ -86,9 +88,10 @@ DI(TDATA) ;add drug interaction checks
  ..S II=II+1
  Q
  ;
-DD(TDATA) ;add duplicate drug checks
- Q:$$SOLUT^ORKPS(OI)  ;quit if the orderable item is a solution
- ;require that we do not perform dup drug/class OCs for solutions)
+DD(TDATA,ORDPROSP) ;add duplicate drug checks
+ ;ORDPROSP: PERFORM PROSPECTIVE DRUG CHECK
+ ;          1 FOR YES
+ ;          0 FOR NO
  S XX=0,ZZ=""
  F  S XX=$O(^TMP($J,"DD",XX)) Q:XX<1  D
  .N ORREM
@@ -99,11 +102,11 @@ DD(TDATA) ;add duplicate drug checks
  ..S ORREMSIG=$G(^TMP($J,ORGLOBL,"OUT","REMOTE",+ORREM,"SIG",0))
  ..S ORTXT=" "_ORREMSIG_" ["_$P(ORREM1,U,4)_" -  Last Fill: "_$P(ORREM1,U,6)_"  Quantity Dispensed: "_$P(ORREM1,U,8)_"] >>"_$P(ORREM1,U)
  ..S $P(ZZ,U,2)=$P(ZZ,U,2)_ORTXT
- .I $G(TDATA("NEW","PTYPE"))'=$G(ORMTYPE),'$L($G(^TMP($J,"DD",XX,1))) Q
+ .I +ORDPROSP,$G(TDATA("NEW","PTYPE"))'=$G(ORMTYPE) Q
  .S ORN=$P($P(ZZ,U,3),";"),ORZ=""
  .I $L($G(ORN))>0,+$G(ORN)=+$G(ORIFN) Q  ;QUIT if dup med ord # = current ord #
  .I +$G(ORIFN),+$G(ORN)=$P(^OR(100,+ORIFN,3),U,5) Q  ;QUIT if dup med ord # = the current order #'s REPLACED ORDER (changing an order)
- .Q:ORPROSP'=+ZZ
+ .I +ORDPROSP,+$P(ORPROSP,U,2)'=+ZZ Q
  .I $L(ORN),$D(^OR(100,ORN,8,0)) S ORZ=^OR(100,ORN,8,0)
  .I $L($G(ORZ)),($P(^OR(100,ORN,8,$P(ORZ,U,3),0),U,2)="DC") Q
  .I $L(ORN),$P(^ORD(100.01,$P(^OR(100,ORN,3),U,3),0),U)="DISCONTINUED" Q
@@ -113,7 +116,6 @@ DD(TDATA) ;add duplicate drug checks
  ;
 DT(TDATA) ;add duplicate therapy checks
  N I
- Q:$$SUPPLY^ORKPS(OI)  ;quit if the orderable item is a supply
  S GL=$NA(^TMP($J,ORGLOBL,"OUT","THERAPY"))
  S I=0 F  S I=$O(@GL@(I)) Q:'I  D
  .;get all drug names
@@ -133,8 +135,9 @@ DT(TDATA) ;add duplicate therapy checks
  ....I $E($G(@GL@(I,"DRUGS",J)),1)="R" S $P(@GL@(I,"DRUGS",J),U,5)="O"
  ....I $G(TDATA("NEW","PTYPE"))'=$P($G(@GL@(I,"DRUGS",J)),U,5) Q
  ....S ORNUM=$P($P($G(@GL@(I,"DRUGS",J)),U),";",1,2)
- ....S ORDRUGS=ORDRUGS_$S($L(ORDRUGS):", ",1:"")_$P($G(@GL@(I,"DRUGS",J)),U,3)_" ["_$$PHSTAT(DFN,ORNUM)_"]"
- ....S DRUGS($P($G(@GL@(I,"DRUGS",J)),U,3))="",ORPROFCNT=ORPROFCNT+1
+ ....I $$INDD($P($G(@GL@(I,"DRUGS",J)),U,3))=0 D
+ .....S ORDRUGS=ORDRUGS_$S($L(ORDRUGS):", ",1:"")_$P($G(@GL@(I,"DRUGS",J)),U,3)_" ["_$$PHSTAT(DFN,ORNUM)_"]"
+ .....S DRUGS($P($G(@GL@(I,"DRUGS",J)),U,3))=$P($G(@GL@(I,"DRUGS",J)),U,4),ORPROFCNT=ORPROFCNT+1
  .Q:'$$CHKDD(.DRUGS)
  .;quit if ORNUM is not set and PROSPECTIVE count <=1
  .Q:('$L($G(ORNUM))&(ORPROSCNT<2))
@@ -150,7 +153,7 @@ PHSTAT(DFN,ORNUM) ;get the status of the order
  N RET,J,I
  S RET=""
  I $P(ORNUM,";")="P" S RET="PENDING"
- I $P(ORNUM,";")="N" S RET="NON-VA"
+ I $P(ORNUM,";")="N" S RET="ACTIVE NON-VA"
  I $P(ORNUM,";")="O" D
  .K ^TMP($J,"OROCLST") D RX^PSO52API(DFN,"OROCLST",$P(ORNUM,";",2),,"ST")
  .S RET=$P($G(^TMP($J,"OROCLST",DFN,$P(ORNUM,";",2),100)),U,2)
@@ -174,13 +177,23 @@ PHSTAT(DFN,ORNUM) ;get the status of the order
  I $P(ORNUM,";")="R" D
  .N ORREMOTE S ORREMOTE=$G(^TMP($J,ORGLOBL,"OUT","REMOTE",$P(ORNUM,";",2)))
  .S RET=$P(ORREMOTE,U,4)_" >> "_$P(ORREMOTE,U)
+ I "^PENDING^NON-VERIFIED^NON VERIFIED^INCOMPLETE^DRUG INTERACTIONS^"[(U_RET_U) S RET="PENDING"
  Q RET
  ;
 CHKDD(DARRAY) ;check the duplicate drug OCs returned
  ;if all drugs in DARRAY are already displayed in a DD OC then don't show the DT OC (return 0)
- ;check the ^TMP($J,"DD"I,"OC") node to see if the DD entry turned into an OC
+ ;check the ^TMP($J,"DD",I,"OC") node to see if the DD entry turned into an OC
  N I S I=0 F  S I=$O(^TMP($J,"DD",I)) Q:'I  D
  .I $D(DARRAY($P($G(^TMP($J,"DD",I,0)),U,2))),$D(^TMP($J,"DD",I,"OC")) D
  ..K DARRAY($P($G(^TMP($J,"DD",I,0)),U,2))
+ .N J S J=0 F  S J=$O(DARRAY(J)) Q:'$L(J)  D
+ ..I DARRAY(J)=$P($G(^TMP($J,"DD",I,0)),U,3),($L(DARRAY(J))>0) D
+ ...K DARRAY(J)
  Q $D(DARRAY)
+ ;
+INDD(ORDRUG) ;checks if ORDRUG is in the duplicate drug OCs returned
+ N RET S RET=0
+ N I S I=0 F  S I=$O(^TMP($J,"DD",I)) Q:'I  D
+ .I ORDRUG=$P($G(^TMP($J,"DD",I,0)),U,2),$D(^TMP($J,"DD",I,"OC")) S RET=1
+ Q RET
  ;

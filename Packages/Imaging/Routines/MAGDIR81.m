@@ -1,5 +1,5 @@
-MAGDIR81 ;WOIFO/PMK/JSL/SAF - Read a DICOM image file ; 25 Feb 2008 11:06 AM
- ;;3.0;IMAGING;**11,30,51,50,46,54,53,123**;Mar 19, 2002;Build 67;Jul 24, 2012
+MAGDIR81 ;WOIFO/PMK - Read a DICOM image file ; 03 Jul 2013 9:12 AM
+ ;;3.0;IMAGING;**11,30,51,50,46,54,53,123,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -29,6 +29,9 @@ ENTRY ; process one image
  N GMRCIEN ;-- internal entry number of consult/procedure request
  N IMPORTER ;- flag set by a gateway that is running the IMPORTER app
  N LASTDCM ;-- patient last name from the image header (ie, PNAMEDCM)
+ N LRDFN ;---- patient ien in LAB DATA file (#60)
+ N LRI ;------ inverse date for LAB DATA file (#60)
+ N LRSS ;----- lab section (CY, EM, or SP)
  N MEDIA ;---- source of DICOM object for Importer (D=disk, T=transmission)
  N MAGGP ;---- image's group pointer in ^MAG(2005)
  N MAGIEN ;--- pointer to the entry for the image in ^MAG(2005)
@@ -45,7 +48,6 @@ ENTRY ; process one image
  N INSTLOC,INSTNAME,LASTIMG,LOCATION,MACHID,MFGR,MODALITY,MODEL,MODPARMS
  N MULTFRAM,PID,PNAMEDCM,ROUTRULE,SERINUMB,SERIEUID,SOPCLASS,STAMP,STATUS
  N STUDYDAT,STUDYTIM,STUDYDAT,STUDYTIM,STUDYUID,SYSTITLE
- ;
  S STATUS=$P(ARGS,"|",1),LOCATION=$P(ARGS,"|",2)
  S MACHID=$P(ARGS,"|",3),IMGSVC=$P(ARGS,"|",4)
  S INSTNAME=$P(ARGS,"|",5),FROMPATH=$P(ARGS,"|",6)
@@ -96,7 +98,7 @@ ENTRY ; process one image
  . Q
  S FILEDATA("ABSTRACT")="ABS^STUFFONLY" ; specify the abstract net loc
  ;
- S ERRCODE=$$IMAGE^MAGDIR9B ; create the ^MAG(2005) entry for the image
+ S ERRCODE=$$ERRCHECK($$IMAGE^MAGDIR9B,"MAGDIR9B",.MSG) ; create the ^MAG(2005) entry for the image
  I ERRCODE D  ; error - abort image processing
  . D ERROR^MAGDIR8("STORE",ERRCODE,.MSG,$T(+0))
  . Q
@@ -160,10 +162,13 @@ NEWIMAGE() ; processing for a new image
  . Q
  ; create the group pointer
  I IMGSVC="RAD" D  Q:ERRCODE ERRCODE
- . S ERRCODE=$$GROUP^MAGDIR9A
+ . S ERRCODE=$$ERRCHECK($$GROUP^MAGDIR9A,"MAGDIR9A",.MSG)
  . Q
  E  I IMGSVC="CON" D  Q:ERRCODE ERRCODE
- . S ERRCODE=$$GROUP^MAGDIR9E
+ . S ERRCODE=$$ERRCHECK($$GROUP^MAGDIR9E,"MAGDIR9E",.MSG)
+ . Q
+ E  I IMGSVC="LAB" D  Q:ERRCODE ERRCODE
+ . S ERRCODE=$$ERRCHECK($$GROUP^MAGDIR9F,"MAGDIR9F",.MSG)
  . Q
  E  D  Q 3  ; undefined imaging service - same as error #4 in LOOKUP
  . K MSG
@@ -232,12 +237,39 @@ MULTFRAM ; Handle additional images in a multiframe object
  Q
  ;
 LOOKUP() ; lookup the patient/study using cross-reference
- I IMGSVC="RAD" D
+ K DFN
+ S ACNUMB=CASENUMB
+ I IMGSVC="RAD" D  ; radiology storage SCP port
  . D RADLKUP^MAGDIR8A
+ . I '$D(DFN) D  ; may be a consult procedure
+ . . D CONLKUP^MAGDIR8A
+ . . I $D(DFN) S IMGSVC="CON" ; it was a consult
+ . . E  D  ;  may be a lab procedure
+ . . . D LABLKUP^MAGDIR8A
+ . . . I $D(DFN) S IMGSVC="LAB" ; it was a lab procedure
+ . . Q
  . Q
- E  I IMGSVC="CON" D
- . S ACNUMB=CASENUMB
+ E  I IMGSVC="CON" D  ; consult storage SCP port
  . D CONLKUP^MAGDIR8A
+ . I '$D(DFN) D  ; may be a radiology or lab procedure
+ . . D RADLKUP^MAGDIR8A
+ . . I $D(DFN) S IMGSVC="RAD" ; it was a radiology procedure
+ . . E  D  ; may be a lab procedure
+ . . . D LABLKUP^MAGDIR8A
+ . . . I $D(DFN) S IMGSVC="LAB" ; it was a lab procedure
+ . . . Q
+ . . Q
+ . Q
+ E  I IMGSVC="LAB" D  ; lab lookup
+ . D LABLKUP^MAGDIR8A
+ . I '$D(DFN) D  ; may be a radiology or consult procedure
+ . . D RADLKUP^MAGDIR8A
+ . . I $D(DFN) S IMGSVC="RAD" ; it was a radiology procedure
+ . . E  D  ; may be a consult procedure
+ . . . D CONLKUP^MAGDIR8A
+ . . . I $D(DFN) S IMGSVC="CON" ; it was a consult
+ . . . Q
+ . . Q
  . Q
  E  D  Q 4 ; undefined imaging service - same as error #3 in NEWIMAGE
  . K MSG
@@ -245,3 +277,13 @@ LOOKUP() ; lookup the patient/study using cross-reference
  . D ERROR^MAGDIRVE($T(+0),"DICOM IMAGE PROCESSING ERROR",.MSG)
  . Q
  Q 0
+ ;
+ERRCHECK(FUNCTION,ROUTINE,MSG) ; check the return code of the function
+ N ERRCODE
+ S ERRCODE=FUNCTION
+ I ERRCODE D
+ . N I
+ . S I=$O(MSG(""),-1)
+ . S I=I+1,MSG(I)="A problem was encountered by routine "_ROUTINE_ "     Error Code: """_ERRCODE_""""
+ . Q
+ Q ERRCODE

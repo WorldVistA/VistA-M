@@ -1,5 +1,5 @@
 ONCOFLF ;Hines OIFO/GWB - FOLLOWUP LETTER FUNCTIONS ;11/1/93
- ;;2.11;ONCOLOGY;**5,6,11,36,37,48,50**;Mar 07, 1995;Build 29
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 AED ;[EL Add/Edit Follow-up Letter]
  W !

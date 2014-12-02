@@ -1,5 +1,5 @@
-MAGUE002 ;WOIFO/MLH - database encapsulation - radiology order record ; 08 Aug 2008 9:41 AM
- ;;3.0;IMAGING;**54**;03-July-2009;;Build 1424
+MAGUE002 ;WOIFO/MLH - database encapsulation - radiology order record ; 29 Feb 2012 5:50 PM
+ ;;3.0;IMAGING;**54,118**;Mar 19, 2002;Build 4525;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -30,6 +30,7 @@ RORDRR(MAGRRPTI,ERR) ;FUNCTION - return a radiology order record
  N MAGRORDR ; -- radiology order record
  N MAGRPROC ; -- radiology procedure code
  S ERR=""
+ I MAGRRPTI="" S ERR="5~Radiology report pointer required" Q
  S MAGRRPTR=$G(^RARPT(MAGRRPTI,0))
  S MAGD0=$P(MAGRRPTR,"^",2)
  I 'MAGD0 S ERR="1~Radiology patient not found" Q ""

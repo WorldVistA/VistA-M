@@ -1,5 +1,5 @@
-PSIVEDT1 ;BIR/MLM-EDIT IV ORDER (CONT) ; 2/14/12 7:20am
- ;;5.0;INPATIENT MEDICATIONS;**3,7,41,47,50,64,58,116,110,111,113,267**;16 DEC 97;Build 158
+PSIVEDT1 ;BIR/MLM-EDIT IV ORDER (CONT) ;2/14/12 7:20am
+ ;;5.0;INPATIENT MEDICATIONS;**3,7,41,47,50,64,58,116,110,111,113,267,279,305**;16 DEC 97;Build 3
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^PS(51.1 is supported by DBIA# 2177.
@@ -47,6 +47,8 @@ A25 I $G(ON)["V"!($G(ON)["U") I $$COMPLEX^PSJOE(DFN,ON) D  Q
  .Q:$G(PSJBKDR)  W !!?5,"This is a Complex Order. Schedule may not be edited at this point." D PAUSE^VALM1
  W !,"SCHEDULE: ",$S(P(9)]"":P(9)_"// ",1:"") R X:DTIME S:'$T X=U S:X=U DONE=1 I $E(X)=U!(X="") Q
  I X="@" D DEL^PSIVEDRG S:%=1 P(9)="" G 26
+ I '$$SCHREQ^PSJLIVFD(.P) S P(7)="" I $P(X,"@",2)=0 D  G 26
+ .W $C(7),!!?2,"'@0' is not permitted for Continuous IV's",!
  I X["???",($E(P("OT"))="I"),(PSIVAC["C") D ORFLDS G 26
  I X?1."?"!($L(X)>22)!($L(X," ")>3) S F1=55.01,F2=.09 D ENHLP^PSIVORC1 G 26
  S CHG=0 I P(9)]"",X'=P(9) S CHG=1
@@ -79,15 +81,46 @@ A39 I $G(P("RES"))="R" I $G(ON)["P",($P($G(^PS(53.1,+ON,0)),"^",24)="R") D  Q
  Q
  ;
 59 ; Infusion Rate
+ ;*305
+ N P8BADDEF S P8BADDEF=0 K PSJEXMSG
  I $G(P("RES"))="R" I $G(ON)["P",$P($G(^PS(53.1,+ON,0)),"^",24)="R" D  Q
  . Q:'$G(PSIVRENW)  W !!?5,"This is a Renewal Order. Infusion Rate may not be edited at this point." D PAUSE^VALM1
- W !,"INFUSION RATE: ",$S(P(8)]"":P(8)_"//",1:"") R X:DTIME S:'$T X=U S:X=U DONE=1 I $S($E(X)=U:1,X]"":0,1:P(8)]"") Q
- I X=""&(("C^P"[P(4))!(("C^S"[P(4))&(P(5)=1))) Q
+ W !,"INFUSION RATE: ",$S(P(8)]"":$P(P(8),"@")_"//",1:"") R X:DTIME S:'$T X=U S:X=U DONE=1 I $S($E(X)=U:1,X]"":0,1:P(8)]"") D:'$G(DONE) EXPINF(.X) D:'$G(DONE) NUMLAB(.P) G:$G(P8BADDEF) 59 Q
+ S X=$TR(X,$C(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,127)) ; Strip out control characters
+ I ((P(4)="P")!((P(4)="C")&(P(23)="P"))!(("C^S"[P(4))&(P(5)=1)))&(X["@") D  G 59
+ .W $C(7),!!?2,"'@' is not permitted for Intermittent IV's",!
+ I (X["^") D  G 59
+ .W $C(7),!!?2,"'^' is not permitted",!
+ I X=""&((P(4)="P")!((P(4)="C")&(P(23)="P"))!(("C^S"[P(4))&(P(5)=1))) Q
  I X="@" D DEL^PSIVEDRG S:%=1 P(8)="" G 59
  I X["???",($E(P("OT"))="I"),(PSIVAC["C") D ORFLDS G 59
  I X["?" S F1=53.1,F2=59 D ENHLP^PSIVORC1 G 59
+ D EXPINF(.X)
+ I ($L(X)>30!($L(X)=1)),(X'?1N) D  G 59
+ .W $C(7),!!?3,"Free text entries must contain a minimum of 2 characters",!?3,"and a maximum of 30 characters",!
  I X]"" D ENI^PSIVSP W:'$D(X) $C(7)," ??" G:'$D(X) 59 S P(8)=X
  I P(8)="" W $C(7),!!,"An infusion rate must be entered!" G 59
+ D NUMLAB(.P)
+ Q
+ ;
+NUMLAB(P) ; Prompt for Number of Labels
+ N PSJILBS
+NUMLAB2 ; Loop ;*305
+ ; Quit if no Infusion Rate
+ Q:($G(P(8))="")
+ I ((P(4)="P")!((P(4)="C")&(P(23)="P"))!(("C^S"[P(4))&(P(5)=1))) D  Q
+ .I $G(X)="",$G(P(8))["@" S P(8)=$P(P(8),"@")
+ K DIR S PSJILBS=$P($G(P(8)),"@",2) S:'(PSJILBS?1.N) PSJILBS=$G(P("NUMLBL")) I $G(PSJILBS)?1.N S DIR("B")=PSJILBS
+ D NLBHLP(1)
+ S DIR(0)="FAO",DIR("A")="NUMBER OF LABELS PER DAY: " D ^DIR Q:X="^"
+ I X="@" D DEL^PSIVEDRG S:%=1 P("NUMLBL")="",P(8)=$P(P(8),"@") G NUMLAB2
+ I X?1."?" D NLBHLP G NUMLAB2
+ I X?1.2N S P("NUMLBL")=+X,P(8)=$P(P(8),"@")_"@"_P("NUMLBL") Q
+ I X="",(P(8)'?1N.N.1".".1N1" ml/hr") D  G NUMLAB2
+ .W $C(7),!!,"Number of Labels is required for continuous IV's with free text Infusion Rate.",!
+ Q:X=""
+ I X'?1.2N D  G NUMLAB2
+ .W $C(7),!!,"Type a number between 0 and 99, 0 decimal digits",!
  Q
  ;
 63 ; Remarks
@@ -170,3 +203,36 @@ CONTIN(SCHD) ; Check if a schedule is type On Call (all schedules with a given n
  I $O(SCHARR("C"))]""!($O(SCHARR("C"),-1)]"") S OCCHK=0 Q OCCHK
  I $D(SCHARR("C")) S OCCHK=1
  Q OCCHK
+ ;
+NLBHLP(OUT) ; Help text for Number of Labels per day
+ I OUT=1 D  Q
+ .S DIR("?",1)="Enter the # of labels per day that will be needed."
+ .S DIR("?",2)=""
+ .S DIR("?",3)="Example:   0 = 0 labels per day."
+ .S DIR("?",4)="           2 = 2 labels per day."
+ .S DIR("?",5)="Note:  Number of Labels per day is required for continuous IV orders"
+ .S DIR("?",6)="       with free text Infusion Rate. Number of labels per day is not"
+ .S DIR("?",7)="       permitted for Intermittent (IVPB) type orders; for Intermittent"
+ .S DIR("?",8)="       orders, the schedule and administration time(s) will be used to"
+ .S DIR("?")="       determine the number of labels needed."
+ ;
+ W !,"Enter the # of labels per day that will be needed."
+ W !,"Example:   0 = 0 labels per day."
+ W !,"           2 = 2 labels per day."
+ W !!,"Note: Number of Labels per day is required for continuous IV orders"
+ W !,"       with free text Infusion Rate. Number of labels per day is not"
+ W !,"       permitted for Intermittent (IVPB) type orders; for Intermittent"
+ W !,"       orders, the schedule and administration time(s) will be used to"
+ W !,"       determine the number of labels needed."
+ Q
+ ;
+EXPINF(P8,SILENT) ; Expand Infusion Rate
+ ;*305
+ Q:$G(P8)!($G(PSJEXMSG))  N P8TMP S P8TMP=$$UP^XLFSTR($P(P8,"@"))
+ N EXPANDED S EXPANDED="" D INFCHK^PSJLIVFD(P8TMP,.EXPANDED)
+ I (EXPANDED=$P(P8,"@"))!(EXPANDED=P8TMP) Q
+ S PSJEXMSG=1 I '$G(SILENT) W "     Now expanding text"
+ I P8["@" S $P(P8,"@")=EXPANDED
+ I P8'["@" S P8=EXPANDED
+ I '$G(SILENT) W:$G(PSJEXMSG) !," Input expanded to ",EXPANDED
+ Q

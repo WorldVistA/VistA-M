@@ -1,11 +1,13 @@
-GMPLEDT1 ; SLC/MKB/KER/AJB -- Edit Problem List fields ; 04/21/2003
- ;;2.0;Problem List;**17,20,26,28,35**;Aug 25, 1994;Build 26
+GMPLEDT1 ; SLC/MKB/KER/AJB/TC -- Edit Problem List fields ;03/31/14  12:24
+ ;;2.0;Problem List;**17,20,26,28,35,42**;Aug 25, 1994;Build 46
  ;
  ; External References
  ;   DBIA 10006  ^DIC
  ;   DBIA 10026  ^DIR
  ;   DBIA   341  DIS^SDROUT2
- ;                
+ ;   ICR   5699  $$ICDDATA^ICDXCODE
+ ;   ICR   5747  $$CODECS^ICDEX
+ ;
 ONSET ; Edit Date of Onset - field .13
  N X,Y,ENTERED,PROMPT,HELPMSG,DEFAULT
  S ENTERED=$S($G(GMPFLD(.08)):+GMPFLD(.08),1:DT),DEFAULT=$G(GMPFLD(.13))
@@ -18,7 +20,7 @@ O1 ;   Get Date of Onset
  Q
 STATUS ; Edit Status - field .12
  ;   Then Edit Date Resolved - Field 1.07, if inactive
- N DIR,X,Y
+ N DIR,X,Y,DTOUT
  S DIR(0)="9000011,.12"
  S:$L($G(GMPFLD(.12))) DIR("B")=$P(GMPFLD(.12),U,2)
 ST1 ;   Get Status
@@ -39,10 +41,10 @@ RC1 ;   Get Date
  S GMPFLD(1.09)=Y S:Y'="" GMPFLD(1.09)=GMPFLD(1.09)_U_$$EXTDT^GMPLX(Y)
  Q
 SC ; Edit Service Connected - field 1.1
- N DFN,DIR,X,Y
+ N DFN,DIR,X,Y,DTOUT
  ;
  ;   The following allows changing a problem's SC/NSC to
- ;   NSC if there is no SC on file for patient and Problem 
+ ;   NSC if there is no SC on file for patient and Problem
  ;   original SC was set to "YES"
  ;
  I +$G(GMPORIG(1.1))=1 D
@@ -74,7 +76,7 @@ SP ; Edit Exposures/Conditions
  Q
 SOURCE ; Edit Service - field 1.06
  ; or Clinic - field 1.08
- N DIC,X,Y,HELPMSG,PROMPT,DEFAULT,VIEW S VIEW=$E(GMPLVIEW("VIEW"))
+ N DIC,DTOUT,X,Y,HELPMSG,PROMPT,DEFAULT,VIEW S VIEW=$E(GMPLVIEW("VIEW"))
  S DIC=$S(VIEW="S":"^DIC(49,",1:"^SC("),DIC(0)="EMQ"
  S DIC("S")="I $P(^(0),U,"_$S(VIEW="S":9,1:3)_")=""C"""
  I VIEW="S" S PROMPT="SERVICE: ",DEFAULT=$P(GMPFLD(1.06),U,2)
@@ -103,11 +105,11 @@ PROV ; Edit Responsible Provider - field 1.05
  D NPERSON^GMPLEDT2 Q:$D(GMPQUIT)!($G(GMPLJUMP))
  S GMPFLD(1.05)=$S(+Y>0:Y,1:"")
  Q
-ICD ; Edit ICD-9-CM Code - field .01
- N DIC,DIR,X,Y
+ICD ; Edit ICD Code - field .01
+ N DIC,DIR,X,Y,DTOUT
 ICD0 ;   Prompt for ICD Code
  K DIR S DIR(0)="FAO^2:6",DIR("A")="ICD CODE: "
- S:$P($G(GMPFLD(.01)),U,2)="799.9" DIR("A")=IORVON_"ICD CODE: "
+ S:($P($G(GMPFLD(.01)),U,2)="799.9")!($P($G(GMPFLD(.01)),U,2)="R69.") DIR("A")=IORVON_"ICD CODE: "
  S:+$G(GMPFLD(.01)) DIR("B")=$P(GMPFLD(.01),U,2)
  S DIR("?")="Enter the ICD code to be associated with this problem"
 ICD1 ;   Get ICD Code
@@ -119,12 +121,7 @@ ICD1 ;   Get ICD Code
  S GMPFLD(.01)=Y
  Q
 NOTE ; Attach a note to problem - field 11
- N X,Y,I,DEFAULT,PROMPT,DONE,NXT,NCNT S (I,NCNT,DONE)=0
- ; added for Code Set Versioning (CSV)
- I $G(GMPICD),'+$$STATCHK^ICDAPIU(GMPICD,DT) D  Q
- . W !!,"This problem has an inactive ICD code. Please edit the problem before using.",! H 3
- I $G(GMPIFN),'$$CODESTS^GMPLX(GMPIFN,DT) D  Q
- . W !!,"This problem has an inactive ICD code. Please edit the problem before using.",! H 3
+ N X,Y,I,DEFAULT,PROMPT,DONE,NXT,NCNT,GMPLCPTR S (I,NCNT,DONE)=0
  F  D  Q:$D(GMPQUIT)!($G(GMPLJUMP))!DONE
  . S NXT=$O(GMPFLD(10,"NEW",I)) S:'NXT NXT=I+1
  . S I=NXT,NCNT=NCNT+1

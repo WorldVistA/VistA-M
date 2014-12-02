@@ -1,0 +1,132 @@
+IBDEI1B0 ; ; 12-AUG-2014
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,23350,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23350,1,2,0)
+ ;;=2^053.9
+ ;;^UTILITY(U,$J,358.3,23350,1,5,0)
+ ;;=5^Herpes Zoster NOS
+ ;;^UTILITY(U,$J,358.3,23350,2)
+ ;;=^56946
+ ;;^UTILITY(U,$J,358.3,23351,0)
+ ;;=053.71^^148^1451^4
+ ;;^UTILITY(U,$J,358.3,23351,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23351,1,2,0)
+ ;;=2^053.71
+ ;;^UTILITY(U,$J,358.3,23351,1,5,0)
+ ;;=5^Herpes Zoster, Otitis Externa
+ ;;^UTILITY(U,$J,358.3,23351,2)
+ ;;=^266557
+ ;;^UTILITY(U,$J,358.3,23352,0)
+ ;;=V16.8^^148^1452^5
+ ;;^UTILITY(U,$J,358.3,23352,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23352,1,2,0)
+ ;;=2^V16.8
+ ;;^UTILITY(U,$J,358.3,23352,1,5,0)
+ ;;=5^Family History of SCC/BCC
+ ;;^UTILITY(U,$J,358.3,23352,2)
+ ;;=Family Hx of Skin Cancer^295300
+ ;;^UTILITY(U,$J,358.3,23353,0)
+ ;;=V10.82^^148^1452^10
+ ;;^UTILITY(U,$J,358.3,23353,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23353,1,2,0)
+ ;;=2^V10.82
+ ;;^UTILITY(U,$J,358.3,23353,1,5,0)
+ ;;=5^Personal History of Malig Melanoma
+ ;;^UTILITY(U,$J,358.3,23353,2)
+ ;;=Personal History of Malig Melanoma^295240
+ ;;^UTILITY(U,$J,358.3,23354,0)
+ ;;=V15.82^^148^1452^7
+ ;;^UTILITY(U,$J,358.3,23354,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23354,1,2,0)
+ ;;=2^V15.82
+ ;;^UTILITY(U,$J,358.3,23354,1,5,0)
+ ;;=5^History Of Tobacco Use
+ ;;^UTILITY(U,$J,358.3,23354,2)
+ ;;=^303405
+ ;;^UTILITY(U,$J,358.3,23355,0)
+ ;;=V13.3^^148^1452^6
+ ;;^UTILITY(U,$J,358.3,23355,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23355,1,2,0)
+ ;;=2^V13.3
+ ;;^UTILITY(U,$J,358.3,23355,1,5,0)
+ ;;=5^History Of Other Skin Disorder
+ ;;^UTILITY(U,$J,358.3,23355,2)
+ ;;=^295266
+ ;;^UTILITY(U,$J,358.3,23356,0)
+ ;;=V10.83^^148^1452^9
+ ;;^UTILITY(U,$J,358.3,23356,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23356,1,2,0)
+ ;;=2^V10.83
+ ;;^UTILITY(U,$J,358.3,23356,1,5,0)
+ ;;=5^Personal History of BCC/SCC
+ ;;^UTILITY(U,$J,358.3,23356,2)
+ ;;=Hx of Skin Cancer^295241
+ ;;^UTILITY(U,$J,358.3,23357,0)
+ ;;=V15.89^^148^1452^2
+ ;;^UTILITY(U,$J,358.3,23357,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23357,1,2,0)
+ ;;=2^V15.89
+ ;;^UTILITY(U,$J,358.3,23357,1,5,0)
+ ;;=5^Exposure to Env Contaminants in Pers Gulf
+ ;;^UTILITY(U,$J,358.3,23357,2)
+ ;;=Exposure to Env Contaminante in Pers Gulf^295291
+ ;;^UTILITY(U,$J,358.3,23358,0)
+ ;;=V15.81^^148^1452^8
+ ;;^UTILITY(U,$J,358.3,23358,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23358,1,2,0)
+ ;;=2^V15.81
+ ;;^UTILITY(U,$J,358.3,23358,1,5,0)
+ ;;=5^History of non-compliance
+ ;;^UTILITY(U,$J,358.3,23358,2)
+ ;;=^295290
+ ;;^UTILITY(U,$J,358.3,23359,0)
+ ;;=757.1^^148^1453^2
+ ;;^UTILITY(U,$J,358.3,23359,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23359,1,2,0)
+ ;;=2^757.1
+ ;;^UTILITY(U,$J,358.3,23359,1,5,0)
+ ;;=5^Ichthyosis Congenital
+ ;;^UTILITY(U,$J,358.3,23359,2)
+ ;;=^61019
+ ;;^UTILITY(U,$J,358.3,23360,0)
+ ;;=911.4^^148^1454^7
+ ;;^UTILITY(U,$J,358.3,23360,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23360,1,2,0)
+ ;;=2^911.4
+ ;;^UTILITY(U,$J,358.3,23360,1,5,0)
+ ;;=5^Insect Bite, Trunk, W/O Infection
+ ;;^UTILITY(U,$J,358.3,23360,2)
+ ;;=^275279
+ ;;^UTILITY(U,$J,358.3,23361,0)
+ ;;=913.4^^148^1454^1
+ ;;^UTILITY(U,$J,358.3,23361,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23361,1,2,0)
+ ;;=2^913.4
+ ;;^UTILITY(U,$J,358.3,23361,1,5,0)
+ ;;=5^Insect Bite, Arm, W/O Infection
+ ;;^UTILITY(U,$J,358.3,23361,2)
+ ;;=^275301
+ ;;^UTILITY(U,$J,358.3,23362,0)
+ ;;=910.4^^148^1454^2
+ ;;^UTILITY(U,$J,358.3,23362,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23362,1,2,0)
+ ;;=2^910.4
+ ;;^UTILITY(U,$J,358.3,23362,1,5,0)
+ ;;=5^Insect Bite, Face, W/O Infection
+ ;;^UTILITY(U,$J,358.3,23362,2)
+ ;;=^275267

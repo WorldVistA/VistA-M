@@ -1,5 +1,7 @@
 SDOEDX ;ALB/MJK - ACRP DX APIs For An Encounter ;8/12/96
- ;;5.3;Scheduling;**131,556**;Aug 13, 1993;Build 3
+ ;;5.3;Scheduling;**131,556,586**;Aug 13, 1993;Build 28
+ ;
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
  ;
 DX(SDOE,SDERR) ; -- SDOE ASSIGNED A DIAGNOSIS
  ;   API ID: 64
@@ -34,11 +36,13 @@ FINDDX(SDOE,SDDXID,SDERR) ; -- SDOE FIND DIAGNOSIS
  ;   API ID: 70
  ;
  ;
- N SDDXS,SDOK,I
+ N SDDXS,SDOK,I,SDOEDT
  S SDDXS="SDDXS"
  ;
+ ;get encounter date to pass to $$VALDX - SD*5.3*586
+ S SDOEDT=$P($$GET1^DIQ(409.68,SDOE_",",.01,"I"),".",1)
  ; -- do validation checks
- IF '$$VALDX(.SDDXID,$G(SDERR)) S SDOK=0 G FINDDXQ
+ IF '$$VALDX(.SDDXID,SDOEDT,$G(SDERR)) S SDOK=0 G FINDDXQ
  ;
  D GETDX(.SDOE,.SDDXS,$G(SDERR))
  S (I,SDOK)=0
@@ -82,11 +86,11 @@ GETPDX(SDOE,SDERR) ; -- SDOE GET PRIMARY DIAGNOSIS
 GETPDXQ Q SDPDX
  ;
  ;
-VALDX(SDDXID,SDERR) ; -- validate dx input
+VALDX(SDDXID,SDOEDT,SDERR) ; -- validate dx input
  ;
  ; -- do checks
- ;IF SDDXID,$D(^ICD9(SDDXID,0)) Q 1
- I SDDXID,+$$ICDDX^ICDCODE(SDDXID)>0 Q 1
+ ;Patch SD*5.3*586
+ I SDDXID,+$$ICDDX^ICDEX(SDDXID,SDOEDT,+$$SYS^ICDEX("DIAG",SDOEDT,"I"),"I") Q 1
  ;
  ; -- build error msg
  N SDIN,SDOUT

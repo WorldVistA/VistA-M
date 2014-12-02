@@ -1,47 +1,66 @@
-LEXABC ;ISL/KER - Look-up by Code ;01/26/2012
- ;;2.0;LEXICON UTILITY;**4,25,26,29,38,73,51**;Sep 23, 1996;Build 77
- ;
- ; S X=$$EN^LEXABC(CODE,LEXVDT)
- ;
+LEXABC ;ISL/KER - Look-up by Code ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**4,25,26,29,38,73,51,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^ICPT("BA")         ICR   5408
+ ;    ^TMP("LEXFND")      SACC 2.3.2.5.1
+ ;    ^TMP("LEXHIT")      SACC 2.3.2.5.1
+ ;    ^TMP("LEXL")        SACC 2.3.2.5.1
+ ;    ^TMP("LEXLE")       SACC 2.3.2.5.1
+ ;    ^TMP("LEXSCH")      SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    $$CODEABA^ICDEX     ICR   5747
+ ;               
+ ; Local Variables NEWed or KILLed LEXA and LEXA1
+ ;     DIC,LEXFIL,LEXISCD
+ ;               
  ; INPUT
  ;   LEXSO   Code     Preferred terms only
  ;           Code+    All terms
  ;   LEXVDT  Version  Date to screen against (default = today)
- ;                  
+ ;         
 EN(LEXSO,LEXVDT) ; Entry from LEXA
- S LEXSO=$G(LEXSO) Q:'$L(LEXSO) 0  Q:$L(LEXSO)>40 0  S:$D(LEXISCD) LEXISCD=$$IS(LEXSO)
- D BLD S:$L($G(^TMP("LEXSCH",$J,"NAR",0))) LEX("NAR")=$G(^TMP("LEXSCH",$J,"NAR",0)) Q:$D(^TMP("LEXHIT",$J)) 1 Q 0
+ S LEXSO=$$UP^XLFSTR($G(LEXSO)) Q:'$L(LEXSO) 0  Q:$L(LEXSO)>40 0  S:$D(LEXISCD) LEXISCD=$$IS(LEXSO)
+ D VDT^LEXU,BLD S:$L($G(^TMP("LEXSCH",$J,"NAR",0))) LEX("NAR")=$G(^TMP("LEXSCH",$J,"NAR",0)) Q:$D(^TMP("LEXHIT",$J)) 1
+ Q 0
 BLD ; Build List
  N LEXSO2 D CLR K ^TMP("LEXSCH",$J,"LST",0),^TMP("LEXSCH",$J,"TOL",0),LEX S ^TMP("LEXSCH",$J,"NUM",0)=0,LEXSO=$G(LEXSO)
- I $E(LEXSO,$L(LEXSO))'="+"&($L(LEXSO)'>2)!($E(LEXSO,$L(LEXSO))="+"&($L(LEXSO)'>3)) D CLR Q
+ I $E(LEXSO,$L(LEXSO))'="+"&($L(LEXSO)'>1)!($E(LEXSO,$L(LEXSO))="+"&($L(LEXSO)'>3)) D CLR Q
  S LEXSO2="" S:$E(LEXSO,$L(LEXSO))="+" LEXSO2=$E(LEXSO,$L(LEXSO)),LEXSO=$E(LEXSO,1,($L(LEXSO)-1)) I '(+($$IN(LEXSO))) D CLR Q
  Q:$E(LEXSO,1,3)="U00"  D FND D:$D(^TMP("LEXFND",$J)) BEG^LEXAL Q:$D(^TMP("LEXFND",$J))  D:'$D(^TMP("LEXFND",$J)) CLR
  Q
 FND ; Find expressions
  K ^TMP("LEXL",$J),^TMP("LEXLE",$J)
  N LEXSIEN,LEXMIEN,LEXEIEN,LEXDESF,LEXDSPL,LEXDSPLA,LEXFORM,LEXFMTY,LEXS,LEXSAB,LEXSRC,LEXSDATA
- N LEXP,LEXTP,LEXTYPE,LEXFILR,LEXFORM,LEXC,LEXCSTAT,LEXDSAB,LEXSSAB
+ N LEXP,LEXTP,LEXTYPE,LEXFILR,LEXFORM,LEXC,LEXCSTAT,LEXDSAB,LEXSSAB,LEXLKT S LEXLKT="ABC"
  S LEXSSAB=$G(^TMP("LEXSCH",$J,"DIS",0)),U="^",LEXS=$$SCH(LEXSO)_" "
  S:'$L($G(LEXFIL))&($L($G(DIC("S")))) LEXFIL=DIC("S")
  S:'$L($G(LEXFIL))&($L($G(^TMP("LEXSCH",$J,"LEXFIL",0)))) LEXFIL=$G(^TMP("LEXSCH",$J,"LEXFIL",0))
  F  S LEXS=$O(^LEX(757.02,"AVA",LEXS)) Q:$E(LEXS,1,$L(LEXSO))'=LEXSO  D
  . S LEXEIEN=0 F  S LEXEIEN=$O(^LEX(757.02,"AVA",LEXS,LEXEIEN)) Q:+LEXEIEN=0  D
- . .; Q:$$INSUB(LEXEIEN)=0 
- . .I $L($G(LEXFIL)) S LEXFILR=$$EN^LEXAFIL($G(LEXFIL),+($G(^LEX(757,+($G(^LEX(757.01,LEXEIEN,1))),0)))) Q:LEXFILR=0
+ . . I $L($G(LEXFIL)) D  Q:+($G(LEXFILR))=0
+ . . . I LEXFIL'["$$SO^LEXU(Y",LEXFIL'["ONE^LEXU" D  Q
+ . . . . S LEXFILR=$$EN^LEXAFIL($G(LEXFIL),+($G(^LEX(757,+($G(^LEX(757.01,LEXEIEN,1))),0))))
+ . . . S LEXFILR=$$EN^LEXAFIL($G(LEXFIL),+LEXEIEN)
  . . S LEXSAB="" F  S LEXSAB=$O(^LEX(757.02,"AVA",LEXS,LEXEIEN,LEXSAB)) Q:LEXSAB=""  D
  . . . S LEXSIEN=0 F  S LEXSIEN=$O(^LEX(757.02,"AVA",LEXS,LEXEIEN,LEXSAB,LEXSIEN)) Q:+LEXSIEN=0  D
- . . . . S LEXSDATA=$G(^LEX(757.02,LEXSIEN,0))
- . . . . S LEXC=$P(LEXSDATA,"^",2),LEXSRC=$P(LEXSDATA,"^",3)
+ . . . . N LEXEXI,LEXSTAC,STATI,STATT S LEXSDATA=$G(^LEX(757.02,LEXSIEN,0))
+ . . . . S LEXC=$P(LEXSDATA,"^",2),LEXSRC=$P(LEXSDATA,"^",3),LEXEXI=$P(LEXSDATA,"^",1)
  . . . . Q:$$INSUB(+LEXSDATA)=0
- . . . . Q:+$$STATCHK^LEXSRC2(LEXC,$G(LEXVDT),,LEXSRC)'=1
+ . . . . S LEXSTAC=+$$STATCHK^LEXSRC2(LEXC,$G(LEXVDT),,LEXSRC)
+ . . . . Q:'$D(LEXIGN)&(+LEXSTAC'=1)
  . . . . S LEXTYPE=+$P(LEXSDATA,"^",3)
  . . . . S LEXDSAB=$E($G(^LEX(757.03,+LEXTYPE,0)),1,3)
  . . . . S LEXMIEN=+$P(LEXSDATA,"^",4),(LEXP,LEXTP)=+$P(LEXSDATA,"^",5)
- . . . . Q:$$STATIEN(LEXSIEN)=0
+ . . . . S STATI=$$STATIEN(LEXSIEN)
+ . . . . S STATT=$P(STATI,"^",2),STATI=+($P(STATI,"^",1))
+ . . . . Q:'$D(LEXIGN)&(+STATI=0)
  . . . . S LEXDESF=$$DC(LEXEIEN,LEXTP)
- . . . . S LEXDSPL=$$DP(LEXS,LEXTYPE)
+ . . . . S LEXDSPL=$$DP(LEXS,LEXTYPE,LEXSSAB)
  . . . . S LEXDSPLA=$$DSO(+LEXEIEN,$G(LEXVDT),$G(LEXSSAB),$G(LEXDSAB))
- . . . . S LEXDSPL=$$MDS(LEXDSPL,LEXDSPLA)
+ . . . . S LEXDSPL=$$TM($$MDS(LEXDSPL,LEXDSPLA),"/")
+ . . . . S:$D(LEXIGN)&("^Pending^Inactive^"[("^"_STATT_"^")) LEXDSPL=LEXDSPL_"/"_STATT
  . . . . S LEXFORM=$$F(LEXEIEN),LEXFMTY=$P(LEXFORM,"^",1),LEXFORM=$P(LEXFORM,"^",2)
  . . . . I LEXTYPE>3,LEXTYPE'=17 D NP Q
  . . . . D PF
@@ -72,23 +91,29 @@ F(LEX) ; Form
  S LEX=$S(LEX=1:"A^Concept:  ",LEX=2:"B^Synonym:  ",LEX=3:"C^Variant:  ",LEX=4:"D^Related:  ",LEX=5:"E^Modified: ",1:"F^Other:    ")
  Q LEX
 DE(LEX) ; Deactivated 757.01
- S LEX=+($G(LEX)) Q:'$D(^LEX(757.01,LEX,0)) 1 Q:+($P($G(^LEX(757.01,LEX,1)),"^",5))=1 1
+ S LEX=+($G(LEX)) Q:'$D(^LEX(757.01,LEX,0)) 1
+ Q:'$D(LEXIGN)&(+($P($G(^LEX(757.01,LEX,1)),"^",5))=1) 1
  S LEX=+($G(^LEX(757.01,LEX,1)))
  Q:'$D(^LEX(757,LEX,0)) 1 S LEX=+($G(^LEX(757,LEX,0)))
  Q:'$D(^LEX(757.01,LEX,1)) 1
- Q:+($P($G(^LEX(757.01,LEX,1)),"^",5))=1 1
+ Q:'$D(LEXIGN)&(+($P($G(^LEX(757.01,LEX,1)),"^",5))=1) 1
  Q 0
 DC(LEX,LEXT) ; Description
  N LEXD,LEXM S LEXD="",LEX=+($G(LEX)),LEXM=$P($G(^LEX(757.01,+($G(LEX)),1)),"^",1),LEXM=+($G(^LEX(757,+($G(LEXM)),0))) S:$D(^LEX(757.01,LEXM,3))&(+($G(LEXT))'=2) LEXD="*" S LEX=$G(LEXD) Q LEX
-DP(LEXS,LEXT) ; Display
- S LEXT=+($G(LEXT)),LEXT=$P($G(^LEX(757.03,LEXT,0)),"^",2)
+DP(LEXS,LEXT,LEXD) ; Display
+ N LEXA S LEXT=+($G(LEXT)),LEXD=$G(LEXD)
+ S LEXA=$E($P($G(^LEX(757.03,LEXT,0)),"^",1),1,3)
+ Q:'$L(LEXD) ""  Q:'$L(LEXA) ""  Q:LEXD'[LEXA ""
+ S LEXT=$P($G(^LEX(757.03,LEXT,0)),"^",2)
  S LEXS=$G(LEXS) S:$E(LEXS,$L(LEXS))=" " LEXS=$E(LEXS,1,($L(LEXS)-1))
  S:$L(LEXS)&($L(LEXT)) LEXS=LEXT_" "_LEXS Q:$L(LEXS)&($L(LEXT)) LEXS Q ""
 DSO(X,LEXVDT,LEXS,LEXD) ; Display Sources String
  N LEXT,LEXIEN,LEXSAB S LEXIEN=+($G(X)) Q:+LEXIEN'>0 ""
- S LEXT=$G(LEXS),LEXSAB=$G(LEXD) S:$L(LEXSAB)=3&(LEXT'[LEXSAB) LEXT=LEXT_"/"_LEXSAB
+ S LEXT=$G(LEXS),LEXSAB=$G(LEXD)
  F  Q:$E(LEXT,1)'="/"  S LEXT=$E(LEXT,2,$L(LEXT))
- S X=$$SO^LEXASO(LEXIEN,LEXT,1,$G(LEXVDT))
+ S X=$$SO^LEXASO(LEXIEN,LEXT,1,$G(LEXVDT)) Q:$L(X) X
+ S:$L(LEXSAB)=3&(LEXT'[LEXSAB) LEXT=LEXT_"/"_LEXSAB
+ F  Q:$E(LEXT,1)'="/"  S LEXT=$E(LEXT,2,$L(LEXT))
  Q X
 MDS(LEXD,LEXA) ; Merge Display Strings
  S LEXA=$G(LEXA) F  Q:LEXA'[") ("  S LEXA=$P(LEXA,") (",1)_"/"_$P(LEXA,") (",2,299)
@@ -98,21 +123,13 @@ MDS(LEXD,LEXA) ; Merge Display Strings
  Q LEXA
 CLR ; Clear
  K ^TMP("LEXFND",$J),^TMP("LEXHIT",$J),^TMP("LEXL",$J),LEX S LEX=0 Q
+CLR2 ; Clear 2
+ N LEXIGN
+ Q
 IN(LEX) ; Flag in/not in file 757.02
  Q:$O(^LEX(757.02,"AVA",(($$SCH($E(LEX,1,61)))_" ")))[LEX 1 Q 0
 SCH(LEX) ; Search
  S LEX=$E(LEX,1,($L(LEX)-1))_$C($A($E(LEX,$L(LEX)))-1)_"~" Q LEX
-STATIEN(LEXCIEN)        ; Determine status of code-expression pairing based
- ;                 on code IEN
- N STATDAT,STATIEN
- S STATDAT=$O(^LEX(757.02,LEXCIEN,4,"B",$S($G(LEXVDT)'="":LEXVDT+1,1:"")),-1)
- Q:STATDAT="" 0
- S STATIEN=$O(^LEX(757.02,LEXCIEN,4,"B",STATDAT,""),-1)
- Q +$P(^LEX(757.02,LEXCIEN,4,STATIEN,0),"^",2)
-NONPLUS(STRING) ; Remove trialing plus from a string
- S STRING=$G(STRING)
- I $E($RE(STRING))="+" Q $RE($E($RE(STRING),2,$L(STRING)))
- Q STRING
 INSUB(EXIEN) ; Check if selected code in vocab
  N LEXFLN,LEXVOC,SUBIEN
  S LEXFLN=$G(^TMP("LEXSCH",$J,"FLN",0)) Q:LEXFLN=""!(LEXFLN="757.01") 1
@@ -126,15 +143,47 @@ INPSUB(PRF,SUB) ; Check if concept PRF is member of subset SUB
  F  S SIEN=$O(^LEX(757.21,"B",PRF,SIEN)) Q:SIEN=""  D  Q:IN=1
  . I $P(^LEX(757.21,SIEN,0),U,2)=$G(SUB) S IN=1
  Q IN
- ;
+STATIEN(LEXCIEN)        ; Determine status of code-expression pairing based
+ ;                 on code IEN
+ N STATDAT,STATIEN,LEXH,LEXI,LEXT,LEXTD S LEXT="",LEXCIEN=+($G(LEXCIEN))
+ Q:'$D(^LEX(757.02,LEXCIEN)) 0
+ I $D(LEXIGN) D
+ . N LEXTD S LEXTD=$G(DT) S:LEXTD'?7N LEXTD=$$DT^XLFDT
+ . S LEXH=$O(^LEX(757.02,LEXCIEN,4,"B",(LEXTD+.00001)),-1)
+ . I LEXH'?7N,$O(^LEX(757.02,LEXCIEN,4,"B",(LEXTD-.00001)))>0 S LEXT="Pending" Q
+ . S LEXI=$O(^LEX(757.02,LEXCIEN,4,"B",+LEXH," "),-1)
+ . S LEXT=$P($G(^LEX(757.02,LEXCIEN,4,+LEXI,0)),"^",2)
+ . S LEXT=$S(LEXT="1":"",LEXT="0":"Inactive",1:"")
+ I $D(LEXIGN) Q:LEXT="Pending" "0^Pending"
+ S STATDAT=$O(^LEX(757.02,LEXCIEN,4,"B",$S($G(LEXVDT)'="":(LEXVDT+.001),1:"")),-1)
+ S STATIEN=$O(^LEX(757.02,LEXCIEN,4,"B",+STATDAT,""),-1)
+ S STATDAT=+$P($G(^LEX(757.02,LEXCIEN,4,+STATIEN,0)),"^",2)
+ S:$D(LEXIGN)&($L($G(LEXT))) STATDAT=STATDAT_"^"_LEXT
+ Q STATDAT
+NONPLUS(STRING) ; Remove trialing plus from a string
+ S STRING=$G(STRING)
+ I $E($RE(STRING))="+" Q $RE($E($RE(STRING),2,$L(STRING)))
+ Q STRING
 IS(X) ; Is a Code
  N CODE,ISACODE S CODE=$G(X),ISACODE=0
+ ; If the user intended to search for a key VA code then ISACODE =1
+ Q:$O(^LEX(757.02,"ADX",(CODE_" ")))[CODE 1
+ Q:$O(^LEX(757.02,"APR",(CODE_" ")))[CODE 1
+ Q:$O(^LEX(757.02,"AVA",(CODE_" ")))[CODE 1
  ; If the user input is a valid code (active or inactive) ISACODE=1
- S:$D(^ICPT("BA",(CODE_" ")))!$D(^ICD9("BA",(CODE_" ")))!$D(^ICD0("BA",(CODE_" "))) ISACODE=1 I ISACODE>0 S X="1" Q X
+ Q:$D(^ICPT("BA",(CODE_" "))) 1
+ Q:$$CODEABA^ICDEX(CODE,80,1)>0 1
+ Q:$$CODEABA^ICDEX(CODE,80,30)>0 1
+ Q:$$CODEABA^ICDEX(CODE,80.1,2)>0 1
+ Q:$$CODEABA^ICDEX(CODE,80.1,31)>0 1
  ; If the user intended to search for a code (pattern match) with a typo, then ISACODE =1
- S:(CODE?5N)!(CODE?1A4N)!(CODE?4N1"T")!(CODE?4N1"F") ISACODE=1
- S:(CODE?3N1"."2N)!(CODE?3N1"."1N)!(CODE?3N1".") ISACODE=1
- S:(CODE?1"E"3N1"."2N)!(CODE?1"E"3N1"."1N)!(CODE?1"E"3N1".") ISACODE=1
- S:(CODE?1"V"2N1"."2N)!(CODE?1"V"2N1"."1N)!(CODE?1"V"2N1".") ISACODE=1
- S:(CODE?2N1"."2N)!(CODE?2N1"."1N)!(CODE?2N1".") ISACODE=1
+ Q:(CODE?5N)!(CODE?1A4N)!(CODE?4N1"T")!(CODE?4N1"F") 1
+ Q:(CODE?3N1"."2N)!(CODE?3N1"."1N)!(CODE?3N1".") 1
+ Q:(CODE?1"E"3N1"."2N)!(CODE?1"E"3N1"."1N)!(CODE?1"E"3N1".") 1
+ Q:(CODE?1"V"2N1"."2N)!(CODE?1"V"2N1"."1N)!(CODE?1"V"2N1".") 1
+ Q:(CODE?2N1"."2N)!(CODE?2N1"."1N)!(CODE?2N1".") 1
  S X=+ISACODE Q X
+TM(X,Y) ;   Trim Character Y - Default " "
+ S X=$G(X) Q:X="" X  S Y=$G(Y) S:'$L(Y) Y=" " F  Q:$E(X,1)'=Y  S X=$E(X,2,$L(X))
+ F  Q:$E(X,$L(X))'=Y  S X=$E(X,1,($L(X)-1))
+ Q X

@@ -1,0 +1,11 @@
+QUEUE
+ZWR
+^MAGV(2006.927,0)="QUEUE^2006.927^4^4"
+^MAGV(2006.927,1,0)="Async Storage Request Queue^S^1^5^1200^1200"
+^MAGV(2006.927,2,0)="Async Storage Request Error Queue^E^1^5^1200^1200"
+^MAGV(2006.927,3,0)="ASYNC_ICON_QUEUE^I^1^3^30^30"
+^MAGV(2006.927,4,0)="E-Mail Queue^M^1^5^1200^1200"
+^MAGV(2006.927,"B","ASYNC_ICON_QUEUE",3)=""
+^MAGV(2006.927,"B","Async Storage Request Error Queue",2)=""
+^MAGV(2006.927,"B","Async Storage Request Queue",1)=""
+^MAGV(2006.927,"B","E-Mail Queue",4)=""

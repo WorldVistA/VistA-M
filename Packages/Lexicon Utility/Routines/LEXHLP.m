@@ -1,6 +1,15 @@
-LEXHLP ; ISL Help/input transformations              ; 05/25/1998
- ;;2.0;LEXICON UTILITY;**11**;Sep 23, 1996
- ;
+LEXHLP ;ISL/KER - Help/input transformations ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**11,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^TMP("LEXSCH")      SACC 2.3.2.5.1
+ ;    ^TMP("XTLKHITS")    SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    $$UP^XLFSTR         ICR  10103
+ ;    ^DIC                ICR  10006
+ ;    ^DIR                ICR  10026
+ ;               
 EXC ; Excluded Word Help
  I '$D(X) Q
  S X=$$UP^XLFSTR(X) I $D(^LEX(757.05,"AB",$E(X,1,40))) D  Q
@@ -88,6 +97,9 @@ XTLKRED ; Post-Help, redisplay the last segment of the list
  . I $D(XTLKKSCH("DSPLY")) D @XTLKKSCH("DSPLY") Q
  . W:XTLKMULT $J(XTLKH,4),": " W $P(@(XTLKREF1_"XTLKI,0)"),"^",1),!
  W ! K LEXSTRT,LEXEND Q
+XTLKC ;
+ N DA,DIC,LEXAP,LEXSUB,VALM,XTLKH,XTLKHLP,XTLKI,XTLKKSCH,XTLKMULT,XTLKREF0,XTLKREF1
+ Q
 SUB(LEXS) ; Subset help
  W ! N X,Y,LEXDICA,LEXDIC0,LEXDICW,LEXDIC S LEXS=""
  S:$D(DIC)#2>0 LEXDIC=DIC S:$D(DIC(0)) LEXDIC0=DIC(0) S:$D(DIC("A")) LEXDICA=DIC("A") S:$D(DIC("W")) LEXDICW=DIC("W")

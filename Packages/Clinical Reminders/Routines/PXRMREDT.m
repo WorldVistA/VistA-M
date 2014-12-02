@@ -1,5 +1,5 @@
-PXRMREDT ;SLC/PKR,PJH - Edit PXRM reminder definition. ;03/08/2011
- ;;2.0;CLINICAL REMINDERS;**4,6,12,18**;Feb 04, 2005;Build 152
+PXRMREDT ;SLC/PKR,PJH - Edit PXRM reminder definition. ;01/30/2013
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26**;Feb 04, 2005;Build 404
  ;
  ;=======================================================
 EEDIT ;Entry point for PXRM DEFINITION EDIT option.
@@ -96,7 +96,7 @@ STRTEDIT S BLDLOGIC=0
  I CS2=0 Q
  ;If the file has been edited, do an integrity check.
  I CS2'=CS1 D
- . I OPTION="^" Q
+ . ;I OPTION="^" Q
  . W !,"Checking integrity of the definition ...",#
  . I OPTION'="^",'$$DEF^PXRMICHK(DA) G STRTEDIT
  .;If it passes the integrity check save the edit history.

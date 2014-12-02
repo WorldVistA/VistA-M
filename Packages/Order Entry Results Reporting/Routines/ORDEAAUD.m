@@ -1,0 +1,9 @@
+ORDEAAUD ;ISL/TC & JMH & JLC - DEA related items ;08/27/12  07:49
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**306**;Dec 17, 1997;Build 43
+ ;
+AUDIT ;
+ N A,ORI
+ S A="",ORI=0
+ F  S A=A_">>"_$ST(ORI,"PLACE"),ORI=ORI+1 Q:ORI>$ST(-1)
+ S ^ORPA(101.52,DA,8)=A
+ Q

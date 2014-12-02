@@ -1,9 +1,10 @@
-RGMTAUDP ;BIR/CML,PTD-MPI/PD AUDIT File Print of Patient Data ;01/06/99
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**19,30,46**;30 Apr 99
+RGMTAUDP ;BIR/CML,PTD-MPI/PD AUDIT File Print of Patient Data ;20 May 2013  12:13 PM
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**19,30,46,60**;30 Apr 99;Build 2
  ;Reference to ^DD(2 supported by IA #2695.
  ;Reference to ^DIA(2 and data derived from the AUDIT file (#1.1)
  ;supported by IA #2097 and #2602.
  ;Reference to ^ORD(101 supported by IA #2596
+ ;**60 MVI_1901 (cml) made extensive changes to accommodate the audit data for multiple subfields within the PATIENT file.
  ;
 BEGIN ;
  S QFLG=1
@@ -31,12 +32,18 @@ FLDLOOP ;
  W ! K FLD
  ;stuff all fields
  I ANS1="A" D  G ASKPAT
- .S FLD=0 F  S FLD=$O(^DD(2,"AUDIT",FLD)) Q:'FLD  S FLD(FLD)=""
+ .S FLD=0 F  S FLD=$O(^DD(2,"AUDIT",FLD)) Q:'FLD  S FLD(2,FLD)=""   ;**60 MVI_1901 (cml)
+ .S FILE=2 F  S FILE=$O(^DD(FILE)) Q:FILE>2.999  S FLD=0 F  S FLD=$O(^DD(FILE,"AUDIT",FLD)) Q:'FLD  S FLD(FILE,FLD)=""   ;**60 MVI_1901 (cml)
+ ;
  ;ask for specific fields
- K DIR S DIR(0)="NAOC^.0000001:9999999:7^K:'$D(^DD(2,""AUDIT"",X)) X S RGERR=1"
- S DIR("A")="Select FIELD NUMBER of audited field (enter ""?"" for list): "
+ S RGERR=0 D FLDLIST
+ ; **60 MVI_1901 (cml)changes start here
+ K DIR W !
+ S DIR(0)="NAO^1:"_MAX_":0^K:'$D(FLDCNT(X)) X S RGERR=1" S DIR("A")="Select list number 1-"_MAX_":  "
  S DIR("?")="^D FLDLIST^RGMTAUDP"
- F QQ=0:0 S RGERR=0 D ^DIR Q:$D(DIRUT)  S FLD(+Y)=""
+ F QQ=0:0 S RGERR=0 D ^DIR Q:$D(DIRUT)  S SEL(+Y)=""
+ S CNT=0 F  S CNT=$O(SEL(CNT)) Q:'CNT  S FILE=$O(FLDCNT(CNT,0)),FLDLP=$O(FLDCNT(CNT,FILE,0)),FLD(FILE,FLDLP)=""
+ ; **60 MVI_1901 (cml) changes stop here
  ;
 ASKPAT ;Ask for Patient
  I '$O(FLD(0))!($D(DUOUT)) S QFLG=1 G QUIT
@@ -92,13 +99,21 @@ LOOP ;Loop on "B" xref of the AUDIT file
  Q:'$D(^DPT(RGDFN,0))
  I ANS2="S" D
  . S PATNM=$P(^DPT(RGDFN,0),U)_U_RGDFN
- . I '$O(^DIA(2,"B",RGDFN,0)) S ^TMP("RGMTAUDP2",$J,"NO AUDIT",PATNM)=" has no audit data available for any date."
  S IEN=0 F  S IEN=$O(^DIA(2,"B",RGDFN,IEN)) Q:'IEN  D
  .I $D(^DIA(2,IEN,0)) S IEN0=(^(0)),EDITDT=$P(IEN0,U,2) I EDITDT>RGBDT,EDITDT<STOP D
- ..S FLD=$P(IEN0,U,3) I $D(FLD(FLD)) D
+ ..S FLD=$P(IEN0,U,3) I $D(FLD(2,FLD)) D
+ ...S USER=$P(IEN0,U,4)
+ ...I $D(USERSCRN) I USER'=USERSCRN Q
+ ...S ^TMP("RGMTAUDP",$J,PATNM,EDITDT,IEN)=""
+ ;
+ ;add new FOR loop to find any audit data for audited fields that are multiples  - **60 MVI_1901 (cml)
+ S DFNMULT=RGDFN_",0" F  S DFNMULT=$O(^DIA(2,"B",DFNMULT)) Q:DFNMULT=""  Q:$P(DFNMULT,",")'=RGDFN  I $D(^DIA(2,"B",DFNMULT)) S IEN=0 F  S IEN=$O(^DIA(2,"B",DFNMULT,IEN)) Q:'IEN  D
+ .I $D(^DIA(2,IEN,0)) S IEN0=(^(0)),EDITDT=$P(^(0),U,2) I EDITDT>RGBDT,EDITDT<STOP D
+ ..S FLD=$P(IEN0,U,3),PC1=$P(FLD,","),PC2=$P(FLD,",",2),FILE=+$P($G(^DD(2,PC1,0)),"^",2) I FILE,$D(FLD(FILE,PC2)) D
  ...S USER=$P(IEN0,U,4)
  ...I $D(USERSCRN) I USER'=USERSCRN Q
  ...S PATNM=$P(^DPT(RGDFN,0),U)_U_RGDFN,^TMP("RGMTAUDP",$J,PATNM,EDITDT,IEN)=""
+ ;
  I ANS2="S" D
  . I '$D(^TMP("RGMTAUDP",$J,PATNM)) S ^TMP("RGMTAUDP2",$J,"NO AUDIT",PATNM)=" has no audit data available for selected parameters."
  Q
@@ -116,8 +131,11 @@ PRT ;Print report
  ..S IEN=0 F  S IEN=$O(^TMP("RGMTAUDP",$J,PATNM,EDITDT,IEN)) Q:QFLG  Q:'IEN  D
  ...S PRTDT=$$FMTE^XLFDT($E(EDITDT,1,12))
  ...S IEN0=^DIA(2,IEN,0)
- ...K RGARR D FIELD^DID(2,$P(IEN0,U,3),"","LABEL","RGARR")
- ...S FLD=$G(RGARR("LABEL"))  Q:FLD=""
+ ... ;**60 MVI_1901 (cml) modified to pick up audit data for multiple subfields and check for bad DD references
+ ...S FILE=2,FIELD=$P(IEN0,"^",3) I FIELD["," S FILE=+$P($G(^DD(2,$P(FIELD,","),0)),"^",2) Q:FILE=""  S FIELD=$P(FIELD,",",2)
+ ...K RGARR D FIELD^DID(FILE,FIELD,"","LABEL","RGARR")
+ ...S FLD=$G(RGARR("LABEL")) Q:FLD=""
+ ... ; **60 MVI_1901 (cml) changes stop here
  ...S USER=$P(IEN0,U,4)
  ...I 'USER S USER="UNKNOWN"
  ...I USER'="UNKNOWN" S DIC="^VA(200,",DIC(0)="MZO",X="`"_USER D ^DIC S USER=$P(Y,"^",2)
@@ -141,7 +159,7 @@ QUIT ;
  I $E(IOST,1,2)="C-"&('QFLG) S DIR(0)="E" D  D ^DIR K DIR
  .S SS=22-$Y F JJ=1:1:SS W !
  K ^TMP("RGMTAUDP",$J),^TMP("RGMTAUDP2",$J)
- K %,%I,ANS1,ANS2,C,CNT,RGDFN,DIR,DIRUT,DTOUT,DUOUT,EDITDT,FLD,FLDLP,FLDNM,HDR
+ K %,%I,ANS1,ANS2,CNT,RGDFN,DIR,DIRUT,DTOUT,DUOUT,EDITDT,FLD,FLDLP,FLDNM,HDR,DFNMULT,FIELD,FILE,SUB,MAX,PC1,PC2,SEL   ;**60 MVI_1901 (cml)
  K HDT,IEN,IEN0,JJ,LN,NEW,OLD,OPTDA1,OPTDA2,OPTION,OPTNM,PAT,PATNM,PG,PRGBDT,PRGEDT,PRTDT,QFLG,QQ,RGARR,RGBDT,RGNAUD
  K RGEDT,RGERR,SITE,SS,STOP,USER,X,Y,ZTSK
  D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@" Q
@@ -158,13 +176,24 @@ HDR ;HEADER
  ;
 FLDLIST ;Help for Field # List
  K RG N DIR S QFLG=0 I RGERR W $C(7)," ??"
- S HDR="Select a FIELD NUMBER from the audited field(s) in the PATIENT file:"
+ S HDR="Select a LIST NUMBER from the audited field(s) in the PATIENT file:"
  W @IOF,HDR,!
- S FLDLP=0 F  S FLDLP=$O(^DD(2,"AUDIT",FLDLP)) Q:'FLDLP  Q:QFLG  D
+ ;
+ ; **60 MVI_1901 (cml)changes start here
+ K FLD,FLDCNT
+ S FLD=0 F  S FLD=$O(^DD(2,"AUDIT",FLD)) Q:'FLD  S FLD(2,FLD)=""
+ S FILE=2 F  S FILE=$O(^DD(FILE)) Q:FILE>2.999  Q:'FILE  S FLD=0 F  S FLD=$O(^DD(FILE,"AUDIT",FLD)) Q:'FLD  S FLD(FILE,FLD)=""
+ I '$D(FLD) W !!,"No fields are currently being audited in the Patient file." Q
+ ; set up counter array
+ S (CNT,FILE)=0 F  S FILE=$O(FLD(FILE)) Q:'FILE  S FLDLP=0 F  S FLDLP=$O(FLD(FILE,FLDLP))  Q:'FLDLP  S CNT=CNT+1,FLDCNT(CNT,FILE,FLDLP)=""
+ K FLD S MAX=CNT
+ ;
+ S CNT=0 F  S CNT=$O(FLDCNT(CNT)) Q:'CNT  S FILE=0 F  S FILE=$O(FLDCNT(CNT,FILE)) Q:'FILE  S FLDLP=0 F  S FLDLP=$O(FLDCNT(CNT,FILE,FLDLP)) Q:'FLDLP  Q:QFLG  D
+ . ; **60 MVI_1901 (cml) changes stop here
  .I $Y+6>IOSL D  Q:QFLG
  ..S DIR(0)="E" W ! D ^DIR K DIR I 'Y S QFLG=1 Q
  ..E  W @IOF,HDR,!
- .K RGARR D FIELD^DID(2,FLDLP,"","LABEL","RGARR")
+ .K RGARR D FIELD^DID(FILE,FLDLP,"","LABEL","RGARR")
  .S FLDNM=$G(RGARR("LABEL")) Q:FLDNM=""
- .W !,FLDLP,?13,FLDNM
+ .W !,CNT,".   ",FILE,",",FLDLP,?17,FLDNM   ;**60 MVI_1901 (cml)
  Q

@@ -1,5 +1,5 @@
 PSJOCDT ;BIR/MV - PROCESS DUPLICATE THERAPY ORDER CHECKS ;6 Jun 07 / 3:37 PM
- ;;5.0;INPATIENT MEDICATIONS;**181,260,288**;16 DEC 97;Build 7
+ ;;5.0;INPATIENT MEDICATIONS;**181,260,288,257**;16 DEC 97;Build 105
  ;
  ; Reference to EN^PSODRDU2 is supported by DBIA# 2189.
  ;
@@ -134,6 +134,7 @@ SORTLST() ;Sort orders into a numeric list
  . S PSJPONX=$P(PSJS,";",2)
  . S PSJCLINF="",PSJCLINF=PSJOCDT(10,PSJDNM,PSJS)
  . ;Business Rule(s): don't show orders that have a status of DISCONTINUED in list
+ . Q:$D(PSJDSPON(PSJPONX))
  . S PSJDSPON(PSJPONX)=""
  . S:'$$CKDC^PSJOCDT PSJN=PSJN+1,PSJOCDTL(PSJN)=PSJPONX
  Q PSJN
@@ -143,7 +144,7 @@ LST() ;
  . I ($Y+6)>IOSL D PAUSE^PSJMISC(1,) W @IOF
  . D DSPORD^PSJOC(PSJOCDTL(PSJX),PSJX_".  ")
  W !
- K DIR S DIR(0)="LO^1:"_$O(PSJOCDTL(""),-1),DIR("A")="Enter a list or range of numbers to discontinue" D ^DIR
+ K DIR S DIR(0)="LO^1:"_$O(PSJOCDTL(""),-1),DIR("A")="Enter a list or range of numbers to discontinue" D ^DIR K DIR
  Q Y
 PROCLST(PSJY) ;DC the orders selected by user
  NEW PSJX,PSJX1,PSJON,PSJCLINF

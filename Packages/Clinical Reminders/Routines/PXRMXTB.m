@@ -1,5 +1,5 @@
-PXRMXTB ; SLC/PJH - Reminder Reports Template Load ;07/30/2009
- ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
+PXRMXTB ; SLC/PJH - Reminder Reports Template Load ;01/28/2013
+ ;;2.0;CLINICAL REMINDERS;**6,12,26**;Feb 04, 2005;Build 404
  ; 
  ; Called from PXRMXD
  ;
@@ -36,7 +36,7 @@ START N X,Y,CNT,FOUND,PXRMFLD,DIC,MSG
  ;
  ;Load template into local array
  I (+Y'=-1)&('$D(DTOUT))&('$D(DUOUT)) D
- .L +^PXRMPT(810.1,$P(Y,U)):0
+ .L +^PXRMPT(810.1,$P(Y,U)):DILOCKTM
  .E  W !!?5,"Another user is editing this entry." S DUOUT=1 Q
  .;Load template into an array
  .S PXRMTMP=Y_U_$P(Y(0),U,2) D LOAD^PXRMXT

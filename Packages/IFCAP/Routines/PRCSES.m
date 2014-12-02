@@ -1,6 +1,9 @@
 PRCSES ;WISC/SAW-SUB-MODULES CALLED BY FIELDS IN CONTROL POINT ACT. FILE ;1/20/98 3:07 PM [7/14/98 3:04pm]
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**150**;Oct 20, 2000;Build 24
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*150 Modifies TRAN* entrY point to quit if temp transaction
+ ;
  W !,"Major budget object code classifications are:"
  W !,"10 thru 13 - Personal Services and Benefits"
  W !,"        21 - Travel and Transportation of Persons"
@@ -115,7 +118,7 @@ INACT ; CHECK IF THE VENDOR SELECTED IS INACTIVE.
  ;        OF CHAIN.                       'LOOP' SET TO 1
  ; VENDOR SELECTED BY USER IS INACTIVE,
  ;        REPLACEMENT VENDOR AT END OF    'RV' SET TO SUBSTITUTE
- ;        CHAIN.                          VENDOR IEN
+ ;        CHAIN.XXVENDOR IEN
  ;                                        'LOOP' SET TO 1
  ;
  S N10=$G(^PRC(440,+IEN,10))
@@ -155,11 +158,15 @@ CC ;INPUT TRANSFORM FOR COST CENTER
  S X=$E($P(^PRCD(420.1,X,0),"^"),1,30)
 CC1 K DIC,Z0,Z1 Q
 TRANS ;SET FOR X-REF ON TRANS $ AMT FIELD
+ Q:+$G(DA)=0  Q:+$G(^PRCS(410,DA,0))=0   ;PRC*5.1*150 Check to exclude temp transaction processing
  G TRANS^PRCSEZ
-TRANS1 G TRANS1^PRCSEZ
+TRANS1 Q:+$G(DA)=0  Q:+$G(^PRCS(410,DA,0))=0   ;PRC*5.1*150 Check to exclude temp transaction processing
+ G TRANS1^PRCSEZ
 TRANK ;KILL FOR X-REF ON TRANS $ AMT FIELD
+ Q:+$G(DA)=0  Q:+$G(^PRCS(410,DA,0))=0   ;PRC*5.1*150 Check to exclude temp transaction processing
  G TRANK^PRCSEZ
-TRANK1 G TRANK1^PRCSEZ
+TRANK1 Q:+$G(DA)=0  Q:+$G(^PRCS(410,DA,0))=0   ;PRC*5.1*150 Check to exclude temp transaction processing
+ G TRANK1^PRCSEZ
 STATUS ;COMPUTES STATUS OF PO FOR FIELD 54, FILE 410
  S X="",Y(410)=$S($D(^PRCS(410,D0,10)):$P(^(10),"^",3),1:"")
  I $D(^PRC(443,D0,0)) S Y(411)=$P(^(0),"^",7) I Y(411),$D(^PRCD(442.3,Y(411),0)) S X=$P(^(0),"^")

@@ -78,7 +78,7 @@ MM442 ;send conversion done message
  N A,B,X,Y
  S (A,B)=0 F  S B=$O(^GECS(2100.1,B)) QUIT:'B  S A=A+1
  S X(1)="IFCAP V5 file 442 conversion done. Total FMS documents = "_A
- S Y(.5)="",Y(PRCDUZ)="",Y("G.CSFISMGMT@FORUM.domain.ext")=""
+ S Y(.5)="",Y(PRCDUZ)="",Y("G.CSFISMGMT@DOMAIN.EXT")=""
  D MM^PRC0B2("IFCAP V5 FILE 442 CONVERSION DONE^IFCAP V5 Installer","X(",.Y)
  K PRCDUZ
  QUIT

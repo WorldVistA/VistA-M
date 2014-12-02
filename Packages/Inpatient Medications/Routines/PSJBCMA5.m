@@ -1,5 +1,5 @@
 PSJBCMA5 ;BIR/JCH-RETRIEVE SPECIAL INSTRUCTIONS/OTHER PRINT INFO ; 1/9/12 11:12am
- ;;5.0;INPATIENT MEDICATIONS;**267**;16 DEC 97;Build 158
+ ;;5.0;INPATIENT MEDICATIONS;**267,275**;16 DEC 97;Build 157
  ;
  ;Reference to ^DPT is supported by DBIA 10035
  ;Reference to ^PS(55 is supported by DBIA 2191
@@ -14,6 +14,7 @@ GETSIOPI(DFN,ON,BCMA) ; Get appropriate field depending on order type
  ;
  I 'ON!'DFN Q 0
  K ^TMP("PSJBCMA5",$J,DFN,ON)
+ I '$G(PSJSYSP),'$G(BCMA) N PSJSYSP S PSJSYSP=$J
  I $G(BCMA) D  Q +$G(^TMP("PSJBCMA5",$J,DFN,ON))
  .N PSJSYSP S PSJSYSP=$J
  .I ON["V"!((ON["P")&($D(^PS(53.1,+ON,"AD"))!$D(^PS(53.1,+ON,"SOL")))) D  Q
@@ -33,6 +34,7 @@ MOVETMP(DFN,ON,OTYP) ; Move text from PS(53.45 to ^TMP for BCMA
 GETSI(DFN,ON,BC) ; Get Special Instructions for Unit Dose orders
  N PSJTXT,TXTLN
  I $G(DFN)=""!($G(ON)="") Q 0
+ I '$G(PSJSYSP) N PSJSYSP S PSJSYSP=$J
  I ON["P" D  Q +$P($G(^PS(53.45,+PSJSYSP,5,0)),"^",3)
  .Q:($G(^PS(53.45,+PSJSYSP,5,0))="^^0^0")
  .I $P($G(^PS(53.1,+ON,15,0)),"^",3) D  Q
@@ -56,6 +58,7 @@ GETSI(DFN,ON,BC) ; Get Special Instructions for Unit Dose orders
 GETOPI(DFN,ON,BC) ; Get Other Print Info for IV orders
  N PSJTXT,LN
  I $G(DFN)=""!($G(ON)="") Q 0
+ I '$G(PSJSYSP) N PSJSYSP S PSJSYSP=$J
  I ON["P" D  Q +$P($G(^PS(53.45,+PSJSYSP,6,0)),"^",3)
  .Q:$P($G(^PS(53.45,+PSJSYSP,6,0)),"^",3)
  .I $P($G(^PS(53.1,+ON,16,0)),"^",3) D  Q
@@ -74,7 +77,7 @@ GETOPI(DFN,ON,BC) ; Get Other Print Info for IV orders
  ..I $G(BC),$L(OLDOPI)>74 D TXT^PSGMUTL(OLDOPI,74) S TXTCNT=$O(MARX(" "),-1) S ^PS(53.45,+PSJSYSP,6,0)="^^"_TXTCNT_"^"_TXTCNT D  Q
  ...S TXTLN=0 F  S TXTLN=$O(MARX(TXTLN)) Q:'TXTLN  S ^PS(53.45,+PSJSYSP,6,TXTLN,0)=MARX(TXTLN)
  ..S ^PS(53.45,+PSJSYSP,6,1,0)=$P(^PS(55,DFN,"IV",+ON,3),"^"),^PS(53.45,+PSJSYSP,6,0)="^^1^1"
- I $O(^PS(53.45,+PSJSYSP,6," "),-1)=1,($TR(^PS(53.45,+PSJSYSP,6,1,0)," ")="") K ^PS(53.45,+PSJSYSP,6)
+ I $O(^PS(53.45,+PSJSYSP,6," "),-1)=1,($TR($G(^PS(53.45,+PSJSYSP,6,1,0))," ")="") K ^PS(53.45,+PSJSYSP,6)
  Q +$P($G(^PS(53.45,+PSJSYSP,6,0)),"^",3)
  ;
 EDITSI(DFN,PSJORD) ; Edit Special Instructions in ^PS(53.45 via Word Processing

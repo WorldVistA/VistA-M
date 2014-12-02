@@ -1,5 +1,5 @@
 ONCHPC8A ;Hines OIFO/GWB - 2000 Hepatocellular Cancers PCE Study ;01/12/00
- ;;2.11;ONCOLOGY;**26**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Print (continued)
 III K LINE S $P(LINE,"-",29)="-"
  S TABLE="STAGE OF DISEASE AT DIAGNOSIS"

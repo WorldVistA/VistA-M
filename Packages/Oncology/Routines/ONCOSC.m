@@ -1,5 +1,5 @@
 ONCOSC ;WASH ISC/SRR,MLH-CROSS TAB REPORTS ;9/29/93  11:40
- ;;2.11;ONCOLOGY;**5,24,28**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 ST ;Start
 H W !!!,?10,"CROSS TABS for Total Registry",!!
 AN ;ANNUAL (call ONCOST for time frames)

@@ -1,9 +1,9 @@
-ECXPROCT ;ALB/GTS - ProstheticS Cost by PSAS HCPC Report DSS ; 12/15/06 3:55pm
- ;;3.0;DSS EXTRACTS;**71,100**;Dec 22, 1997;Build 2
+ECXPROCT ;ALB/GTS - ProstheticS Cost by PSAS HCPC Report DSS ;3/4/13  15:58
+ ;;3.0;DSS EXTRACTS;**71,100,144**;Dec 22, 1997;Build 9
  ;
 EN ;entry point from option
  ;Initialize varables
- N DIR,ECSD1,ECED,X,Y
+ N DIR,ECSD1,ECED,X,Y,ECXPORT,I ;144
  ;Prompt for start date
  S DIR(0)="D^::EX"
  S DIR("A")="Enter Report Start Date"
@@ -17,6 +17,12 @@ EN ;entry point from option
  D ^DIR
  I $D(DIRUT) Q
  S ECED=Y
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I ECXPORT D  Q  ;144
+ .K ^TMP($J,"ECXPORT") ;144
+ .S ^TMP($J,"ECXPORT",0)="PSAS HCPC^DESCRIPTION^HCPC^QTY^UNIT OF ISSUE^COST" ;144
+ .D EN1 ;144
+ .M ^TMP($J,"ECXPORT")=^TMP("ECXDSS",$J) ;144 Move results to export display global
+ .D EXPDISP^ECXUTL1 ;144
  ;Queue Report
  W !!,"** REPORT REQUIRES 132 COLUMNS TO PRINT CORRECTLY **",!!
  N ZTDESC,ZTIO,ZTSAVE
@@ -34,12 +40,12 @@ EN1 ;Tasked entry point
  ;Output : None
  ;
  ;Declare variables
- N ECXPHCPC,ECXHCDES,ECXHCPC,ECXQTY,ECXUOFI,ECXCOST,ECXTCOST,PAGENUM
+ N ECXPHCPC,ECHCDES,ECXHCPC,ECXQTY,ECXUOFI,ECXCOST,ECXTCOST,PAGENUM ;144
  N ECXLNE,ECXCT,ECXDACT,ECX0,ECX1,ECXED1,ECINSTSV,ECXLNSTR,ECXP
- N DIC,DR,DA,DIQ
+ N DIC,DR,DA,DIQ,CNT,STOP,QFLG,ECXDIV,ECXDFN,ECXFORM ;144
  S ECXED1=ECED+.9999,ECXCT=ECSD1,(CNT,QFLG,PAGENUM,ECXTCOST,ECXQTY,STOP)=0
- D HEADER I STOP D EXIT Q
- D GETDATA
+ I '$G(ECXPORT) D HEADER I STOP D EXIT Q  ;144
+ D GETDATA I $G(ECXPORT) Q  ;144 Have data, no need to print.
  I '$D(^TMP("ECXDSS",$J)) D  Q
  .W !
  .W !,"***********************************************"
@@ -81,6 +87,7 @@ GETDATA ;Get data
  .Q
  Q
 HEADER ;print header
+ N LN ;144
  S PAGENUM=PAGENUM+1
  S $P(LN,"-",132)=""
  W @IOF
@@ -99,6 +106,7 @@ DETAIL ;Print detailed line
  ;          ECXUOFI   -   Unit of issue
  ;          ECXCOST   -   Total cost
  ;Output  : None
+ N RECORD,NODE ;144
  S RECORD=0 F  S RECORD=$O(^TMP("ECXDSS",$J,RECORD)) Q:'RECORD!(STOP)  D
  .S NODE=^TMP("ECXDSS",$J,RECORD)
  .W !?1,$$RJ^XLFSTR($P(NODE,U,1),6),?15,$P(NODE,U,2),?89,$$RJ^XLFSTR($P(NODE,U,3),U,6),?99,$$RJ^XLFSTR($P(NODE,U,4),U,6),?107,$P(NODE,U,5)

@@ -1,8 +1,11 @@
-ECXFEKEY ;BIR/DMA,CML-Print Feeder Keys; [ 05/15/96  9:44 AM ] ;5/3/12  11:33
- ;;3.0;DSS EXTRACTS;**10,11,8,40,84,92,123,132,136**;Dec 22, 1997;Build 28
+ECXFEKEY ;BIR/DMA,CML-Print Feeder Keys; [ 05/15/96  9:44 AM ] ;5/29/14  12:44
+ ;;3.0;DSS EXTRACTS;**10,11,8,40,84,92,123,132,136,149**;Dec 22, 1997;Build 27
 EN ;entry point from option
+ N ECXPORT,CNT,COL,LECOL,PCOL ;149
+ S ECXPORT=$$EXPORT Q:ECXPORT=-1  ;149
  W !!,"Print list of Feeder Keys:",!
- W !,"Select : 1. CLI",!,?9,"2. ECS",!,?9,"3. LAB",!,?9,"4. NUT",!,?9,"5. PHA",!,?9,"6. RAD",!,?9,"7. SUR",!,?9,"8. PRO",! S DIR(0)="L^1:8" D ^DIR Q:$D(DIRUT)  ;136
+ S DIR("?")=$S('$G(ECXPORT):"Select one or more feeder key systems to display",1:"Select one feeder key system to export") ;149
+ W !,"Select : 1. CLI",!,?9,"2. ECS",!,?9,"3. LAB",!,?9,"4. PHA",!,?9,"5. RAD",!,?9,"6. SUR",!,?9,"7. PRO",! S DIR(0)=$S('$G(ECXPORT):"L^1:7",1:"N^1:7:0") D ^DIR Q:$D(DIRUT)  ;136,149 (removed NUT)
  S ECY=Y
  I ECY["2" D
  .W !!,"The Feeder Key List for the Feeder System ECS can be printed by:",!?5,"(O)ld Feeder Key sort by Category-Procedure",!?5,"(N)ew Feeder Key sort by Procedure-CPT Code"
@@ -10,6 +13,17 @@ EN ;entry point from option
  S:ECY["3" ECLAB=$$SELLABKE^ECXFEKE1() ;**Prompt to select Lab Feeder key
  G:($G(ECLAB)=-1) QUIT ;**GOTO Exit point
  G:$D(DIRUT) QUIT
+ I ECXPORT D  Q  ;Section added in 149
+ .K ^TMP($J),^TMP("ECXPORT",$J) ;Temp storage for results as regular report stores in ^TMP($J)
+ .W !!,"Gathering data for export..."
+ .S COL="FEEDER SYSTEM^FEEDER KEY^DESCRIPTION"
+ .S LECOL="SORT METHOD"_U_COL
+ .S PCOL=COL_U_"PRICE PER DISPENSE UNIT"
+ .S CNT=0
+ .D START
+ .M ^TMP($J,"ECXPORT")=^TMP("ECXPORT",$J) ;copy temp into exportable area
+ .D EXPDISP^ECXUTL1
+ .K ^TMP($J),^TMP("ECXPORT",$J)
  K %ZIS,IOP S %ZIS="QM",%ZIS("B")="" D ^%ZIS
  I POP W !,"NO DEVICE SELECTED!!" G QUIT
  I $D(IO("Q")) K IO("Q") D  G QUIT
@@ -20,8 +34,8 @@ EN ;entry point from option
  ;
 START ;queued entry point
  I '$D(DT) S DT=$$HTFM^XLFDT(+$H)
- K ^TMP($J)
- F ECLIST=1:1 S EC=$P(ECY,",",ECLIST) Q:EC=""  D:EC=1 CLI D:EC=2 ECS D:EC=3 LAB D:EC=4 NUT D:EC=5 PHA D:EC=6 RAD D:EC=7 SUR^ECXFEKE1 D:EC=8 PRO ;136
+ K:'$G(ECXPORT) ^TMP($J) ;149
+ F ECLIST=1:1 S EC=$P(ECY,",",ECLIST) Q:EC=""  D:EC=1 CLI D:EC=2 ECS D:EC=3 LAB D:EC=4 PHA D:EC=5 RAD D:EC=6 SUR^ECXFEKE1 D:EC=7 PRO ;136,149 Remove NUT
  U IO D PRINT^ECXFEKE1
  Q
 LAB S EC=0
@@ -141,3 +155,13 @@ PRO ;Prosthetics Feeder Key section, API added in patch 136
 QUIT ;
  K ECY,ECPHA,ECECS,ECLAB,ECPPDU,DIR,DIRUT,DUOUT,X,Y
  Q
+EXPORT() ;Function indicates if report output is going to a device or to the screen in exportable format - API added in patch 149
+ N DIR,DIRUT,DTOUT,DUOUT,DIROUT,X,Y,VAL
+ W !
+ S DIR("?",1)="Enter yes if you want the data to be displayed in an '^' delimited format",DIR("?")="that can be captured for exporting."
+ S DIR(0)="SA^Y:YES;N:NO",DIR("B")="NO",DIR("A")="Do you want the output in exportable format? "
+ D ^DIR
+ S VAL=$S($D(DIRUT):-1,Y="N":0,1:1)
+ I VAL=1 W !!,"Please select one feeder key system to display."
+ Q VAL
+ ;

@@ -1,8 +1,8 @@
-ECXUPRO ;ALB/TJL-Prosthetic Extract Unusual Cost Report ; 1/08/08 1:00pm
- ;;3.0;DSS EXTRACTS;**49,111**;July 1, 2003;Build 4
+ECXUPRO ;ALB/TJL-Prosthetic Extract Unusual Cost Report ;4/2/14  11:30
+ ;;3.0;DSS EXTRACTS;**49,111,144,148,149**;Dec 22, 1997;Build 27
  ;
 EN ; entry point
- N X,Y,DATE,ECRUN,ECXDESC,ECXSAVE,ECXTL,ECTHLD
+ N X,Y,DATE,ECRUN,ECXDESC,ECXSAVE,ECXTL,ECTHLD,ECXPORT,CNT ;144
  N ECINST,ECSD,ECSD1,ECSTART,ECED,ECEND,ECXERR,QFLG
  S QFLG=0
  S ECINST=$$PDIV^ECXPUTL
@@ -10,6 +10,13 @@ EN ; entry point
  D NOW^%DTC S DATE=X,Y=$E(%,1,12) D DD^%DT S ECRUN=$P(Y,"@") K %DT
  D BEGIN Q:QFLG
  D SELECT Q:QFLG
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I ECXPORT D  Q  ;144
+ .K ^TMP($J) ;144
+ .S ^TMP($J,"ECXPORT",0)="NAME^SSN^DATE OF SERVICE^PSAS HCPCS CODE^FEEDER KEY^QUANTITY^COST OF TRANSACTION^TRANSACTION TYPE" ;144,149
+ .S CNT=1 ;144
+ .D PROCESS ;144
+ .D EXPDISP^ECXUTL1 ;144
+ ;device selection
  S ECXDESC="Prosthetic Extract Unusual Cost Report"
  S ECXSAVE("EC*")=""
  W !!,"This report requires 132-column format."
@@ -36,6 +43,7 @@ BEGIN ; display report description
  W !,"can be run as needed."
  W !!,"The report is sorted by Feeder Key, then by descending Cost of"
  W !,"Transaction and SSN."
+ W !!,"**NOTE: The feeder key on this report will match what appears in DSS.",!,"However, the feeder key on the report will be different than the feeder",!,"key on the PRO extract." ;149
  S DIR(0)="E" W ! D ^DIR K DIR I 'Y S QFLG=1 Q
  W:$Y!($E(IOST)="C") @IOF,!!
  Q
@@ -76,20 +84,21 @@ PROCESS ; entry point for queued report
  Q
  ;
 PRINT ; process temp file and print report
- N PG,QFLG,GTOT,LN,COUNT,FKEY,COST,SSN,REC,SDAY
+ N PG,QFLG,GTOT,LN,COUNT,FKEY,COST,SSN,REC,SDAY,I ;144
  U IO
  I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ Q
  S (PG,QFLG,GTOT)=0,$P(LN,"-",132)=""
- D HEADER Q:QFLG
+ I '$G(ECXPORT) D HEADER Q:QFLG  ;144
  S COUNT=0,FKEY=""
  F  S FKEY=$O(^TMP($J,FKEY)) Q:FKEY=""!QFLG  D
  .S COST="" F  S COST=$O(^TMP($J,FKEY,COST)) Q:COST=""!QFLG  D
  .. S SDAY="" F  S SDAY=$O(^TMP($J,FKEY,COST,SDAY)) Q:SDAY=""!QFLG  D
  ...S SSN="" F  S SSN=$O(^TMP($J,FKEY,COST,SDAY,SSN)) Q:SSN=""!QFLG  S REC=^(SSN)  D
+ ....I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=REC,CNT=CNT+1 Q  ;144
  ....S COUNT=COUNT+1
  ....I $Y+3>IOSL D HEADER Q:QFLG
- ....W !,$P(REC,U),?8,$P(REC,U,2),?21,$P(REC,U,3),?39,$P(REC,U,4),?70,$P(REC,U,5),?93,$$RJ^XLFSTR($P(REC,U,6),8),?110,$$RJ^XLFSTR($P(REC,U,7),11)
- Q:QFLG
+ ....W !,$P(REC,U),?8,$P(REC,U,2),?21,$P(REC,U,3),?39,$P(REC,U,4),?70,$P(REC,U,5),?93,$$RJ^XLFSTR($P(REC,U,6),8),?110,$$RJ^XLFSTR($P(REC,U,7),11),?127,$P(REC,U,8) ;149
+ Q:QFLG!($G(ECXPORT))  ;144
  I COUNT=0 W !!,?8,"No unusual costs to report for this extract"
 CLOSE ;
  I $E(IOST)="C",'QFLG D
@@ -107,9 +116,9 @@ HEADER ;header and page control
  W !,"Prosthetic Extract Unusual Cost Report",?124,"Page: "_PG
  W !,"Start Date: ",ECSTART,?97,"Report Run Date/Time: "_ECRUN
  W !,"  End Date: ",ECEND,?97,"     Threshold Value: ",ECTHLD
- W !!,?21,"Date of",?43,"PCE CPT/",?112,"Cost of"
- W !,"Name",?11,"SSN",?21,"Service",?36,"HCPCS CODE & Modifiers"
- W ?72,"Feeder Key",?93,"Quantity",?110,"Transaction"
+ W !!,?21,"Date of",?39,"PSAS",?112,"Cost of",?126,"Tran" ;149
+ W !,"Name",?11,"SSN",?21,"Service",?39,"HCPCS CODE" ;149
+ W ?70,"Feeder Key",?93,"Quantity",?110,"Transaction",?126,"Type" ;149
  W !,LN,!
  Q
  ;

@@ -1,5 +1,5 @@
-PSIVORE ;BIR/PR,MLM-ORDER ENTRY ; 4/1/08 2:37pm
- ;;5.0; INPATIENT MEDICATIONS ;**18,29,50,56,58,81,110,127,133,157,203,213,181**;16 DEC 97;Build 190
+PSIVORE ;BIR/PR,MLM-ORDER ENTRY ;1 APR 08 / 2:37 PM
+ ;;5.0;INPATIENT MEDICATIONS;**18,29,50,56,58,81,110,127,133,157,203,213,181,252,305**;16 DEC 97;Build 3
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191
  ; Reference to ^ORX2 is supported by DBIA #867
@@ -40,8 +40,10 @@ NEW ;Ask to enter new order.
  K P,PSIVCHG,PSIVTYPE,PSJOE,DIR S DIR(0)="Y",DIR("A")="New order for "_VADM(1),DIR("B")="YES",DIR("??")="^S HELP=""NEWORD"" D ^PSIVHLP" D ^DIR K DIR Q:'Y
  NEW X S X=DFN_";DPT(" D LK^ORX2 Q:'Y  S PSJLSORX=1
 INMED K ON55,PSJOUT S (P(4),P("OT"),P("FRES"))="" D NEW55^PSIVORFB I '$D(ON55) D ULK G:'$D(PSJOE)&('$D(PSJOUT)) NEW G Q
+ NEW PSJOCFG
+ S PSJOCFG="NEW OE IV"
  S P("RES")="N",PSIVAC="PN",P("PON")=ON55,PSIVUP=+$$GTPCI^PSIVUTL D NEW^PSIVORE2 I $G(P(2))="" D DEL55^PSIVORE2 D ULK G:'$D(PSJOE) NEW Q
- D OK L -^PS(55,DFN,"IV",+ON55) D ULK G:'$D(PSJOE) NEW
+ D OK L -^PS(55,DFN,"IV",+ON55) D ULK K PSJOCFG G:'$D(PSJOE) NEW
  ;
 Q ; Kill and exit.
  L:'$D(PSJOE) -^PS(53.45,DUZ) S PSJNKF=1 D Q^PSIV
@@ -72,7 +74,7 @@ OK ;Print example label, run order through checker, ask if it is ok.
  W ! D ^PSIVORLB K PSIVEXAM S Y=P(2) W !,"Start date: " X ^DD("DD") W $P(Y,"@")," ",$P(Y,"@",2),?30," Stop date: " S Y=P(3) X ^DD("DD") W $P(Y,"@")," ",$P(Y,"@",2),!
  ;PSJ*5*157 EFD for IVs
  D EFDIV^PSJUTL($G(ZZND))
- D:'$G(PSGORQF) IN^PSJOCDS($G(ON55),"IV","") Q:$G(PSGORQF)
+ D:'$G(PSGORQF) IN^PSJOCDS($G(ON55),"IV","") I $G(PSGORQF) D DEL55 Q
  W:$G(PSIVCHG) !,"*** This change will cause a new order to be created. ***"
  I '$G(PSIVCOPY) G:PSIVAC["R" OK1 S X="Is this O.K.: ^"_$S(ERR:"NO",1:"YES")_"^^NO"_$S(ERR'=1:",YES",1:"") D ENQ^PSIV
  S PSJIVBD=1 ;var use to indicate order enter from back door
@@ -109,7 +111,8 @@ ENIN ;Entry for Combined IV/UD order entry. Called by PSJOE0.
  W !
  N PSJOUT S (DONE,FLAG)=0,PSIVAC="PN"
 ENIN1 ;
- N DA,DIR,PSJOE,PSJPCAF,PSJSYSL,WSCHADM,PSJALLGY S:$G(VAIN(4)) WSCHADM=VAIN(4)
+ ;*305
+ N DA,DIR,PSJOE,PSJPCAF,PSJSYSL,WSCHADM,PSJALLGY,PSJEXMSG S:$G(VAIN(4)) WSCHADM=VAIN(4)
  K P,PSIVCHG,PSJCOM
  S PSJOE=1,DIR(0)="55.01,.04O",DIR("A")="Select IV TYPE" D ^DIR
  I X]"",X'="^",$P("^PROFILE",X)="" S PSJOEPF=X Q

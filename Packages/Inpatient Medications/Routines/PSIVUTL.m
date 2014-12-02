@@ -1,5 +1,5 @@
 PSIVUTL ;BIR/MLM-IV UTILITIES ;07 SEP 97 / 2:17 PM 
- ;;5.0;INPATIENT MEDICATIONS ;**69,58,81,85,110,133,181,263**;16 DEC 97;Build 51
+ ;;5.0;INPATIENT MEDICATIONS ;**69,58,81,85,110,133,181,263,275,279**;16 DEC 97;Build 150
  ;
  ; Reference to ^DD("DD" is supported by DBIA 10017.
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
@@ -52,6 +52,8 @@ WDTE(Y) ; Format and print date.
  E  X ^DD("DD") S Y=$P(Y,"@")_" "_$P($P(Y,"@",2),":",1,2)
  Q Y
 GTOT(Y) ; Get order type & protocol
+ I ($G(ON55)["V"),$G(DFN) D GTNUMLBL(DFN,ON55)
+ N DRGI,DRGT
  S P("OT")=$S(Y="A":"F",Y="H":"H",1:"I")
  I P("OT")="F" F DRGT="AD","SOL" F DRGI=0:0 S DRGI=$O(DRG(DRGT,DRGI)) Q:'DRGI  I '$P(DRG(DRGT,DRGI),U,5) S P("OT")="I" Q
  Q
@@ -65,7 +67,8 @@ PIV(ON) ; Display IV orders.
  .S X=$G(^PS(55,DFN,"IV",+ON,4)) I +PSJSYSU,'+$P(X,U,$S(+PSJSYSU=3:4,1:++PSJSYSU)) W "->"
  I ON=+ON N O S O="" F  S O=$O(^PS(53.1,"ACX",ON,O)) Q:O=""  D
  . S (P(2),P(3))="",P(17)=$P($G(^PS(53.1,+O,0)),U,9),Y=$G(^(8)),P(4)=$P(Y,U),P(8)=$P(Y,U,5),P(9)=$P($G(^(2)),U) D GTDRG^PSIVORFA,GTOT^PSIVUTL(P(4)) D PIV(O_"P") W !
- I ON["P" S (P(2),P(3))="",P(17)=$P($G(^PS(53.1,+ON,0)),U,9),Y=$G(^(8)),P(4)=$P(Y,U),P(8)=$P(Y,U,5),P(9)=$P($G(^(2)),U) D GTDRG^PSIVORFA,GTOT^PSIVUTL(P(4)) I $E(P("OT"))="I" D  Q
+ I ON["P" D GETP(ON) D GTDRG^PSIVORFA,GTOT^PSIVUTL(P(4)) I $E(P("OT"))="I" D  Q
+ . I $G(PSJCLOR) N ND2 S ND2=$G(^PS(53.1,+ON,2)) S P(2)=$P(ND2,"^",2),P(3)=$P(ND2,"^",4)
  . NEW MARX,PSIVX D DRGDISP^PSJLMUT1(PSGP,+ON_"P",40,54,.MARX,0)
  . F PSIVX=0:0 S PSIVX=$O(MARX(PSIVX)) Q:'PSIVX  W @($S(PSIVX=1:"?9",1:"!?11")),MARX(PSIVX) D:PSIVX=1 PIV1
  NEW DRGX S DRGX=0 F  S DRGX=$O(DRG("AD",DRGX)) Q:'DRGX  D PIVAD
@@ -93,6 +96,7 @@ PIV1 ; Print Sched type, start/stop dates, and status.
  I $G(^PS(57.1,PSJQO,4,1,0)) S DRG("SOL",1)=^(0),DRG("SOL",0)=1
  I X["?" S F1=53.1,F2=59 D ENHLP^PSIVORC1 G 59
  I X]"" D ENI^PSIVSP S:$D(X) P(8)=X
+ K F1,F2
  Q
 WRTDRG(X,L)       ; Format and print drug name, strength and bottle no.
  N Y S Y=" "_$P(X,U,3) S:$P(X,U,4) Y=Y_" ("_$P(X,U,4)_")"
@@ -127,3 +131,16 @@ DOW(SCHED) ;
  I '$D(^PS(51.1,"APPSJ",SCHED)) S PSIVX=1,P9=$P(SCHED,"@") F X=1:1:$L(P9,"-") D  Q:'$G(PSIVX)
  . I '(",MO,TU,WE,TH,FR,SA,SU,"[(","_$P(P9,"-",X)_",")) S PSIVX=0 Q
  Q +PSIVX
+ ;
+GETP(ON) ; Populate P array with data from order ON
+ I ON["P" S (P(2),P(3))="",P(17)=$P($G(^PS(53.1,+ON,0)),U,9),Y=$G(^(8)),P(4)=$P(Y,U),P(8)=$P(Y,U,5),P(9)=$P($G(^(2)),U) D
+ .I $G(PSJCLOR) N ND2 S ND2=$G(^PS(53.1,+ON,2)) S P(2)=$P(ND2,"^",2),P(3)=$P(ND2,"^",4) S TYP=$P(^PS(53.1,+ON,0),"^",7)
+ Q
+GTNUMLBL(DFN,ON) ; Get Number of Labels Per Day
+ Q:'$G(DFN)  Q:'$G(ON)
+ S:'$D(P("NUMLBL")) P("NUMLBL")=$S(($G(^PS(55,DFN,"IV",+ON55,11))?1.N):+$G(^(11)),($G(P(8))]""):$P($G(P(8)),"@",2),1:"")
+ S:(P("NUMLBL")'?1.N) P("NUMLBL")=""
+ N PSJABBIN S PSJABBIN=$P($G(P(8)),"@") D
+ .Q:(PSJABBIN?1"INFUSE OVER "1.N1" MINUTES")
+ .D EXPINF^PSIVEDT1(.PSJABBIN,1) S P(8)=PSJABBIN_$S($G(P("NUMLBL"))?1.N:"@"_P("NUMLBL"),1:"")
+ Q

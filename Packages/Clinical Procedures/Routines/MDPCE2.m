@@ -1,10 +1,10 @@
-MDPCE2 ; HOIFO/NCA - Routine For Data Extract For Hemo Dialysis;9/10/04  11:23 ;1/20/10  10:00
- ;;1.0;CLINICAL PROCEDURES;**6,21**;Apr 01, 2004;Build 30
+MDPCE2 ; HOIFO/NCA - Routine For Data Extract For Hemo Dialysis ;1/20/10  10:00
+ ;;1.0;CLINICAL PROCEDURES;**6,21,29**;Apr 01, 2004;Build 22
  ; Integration Agreements:
  ; IA# 1889 [Subscription] Create New Visit - DATA2PCE^PXAPI call
  ;     1890 [Subscription] Delete existing visit - DELVFILE^PXAPI call
  ;     1995 [Supported] ICPTCOD API Call
- ;     3990 [Supported] ICDCODE API Call
+ ;     5699 [Supported] ICDDATA^ICDXCODE calls
  ;    10040 [Supported] Hospital Location File Access
  ;    10048 [Supported] FILE 9.4 references
  ;    10103 [Supported] XLFDT calls
@@ -19,7 +19,7 @@ EN1(MDENC,MDINST,MDPDTE,MDPR,MDTYP,MDETYP,MDCLOC) ; [Function] PCE Visit Creatio
  ;  6. MDETYP [Literal/Required] Encounter Type (Primary or Ancillary)
  ;  7. MDCLOC [Literal/Required] Workload Reporting hospital location
  ;
- N DATA,DIAG,MDCCOD,MDCLIN,MDCLL,MDDESC,MDPERR,MDJ,MDK,MDL,MDLST,MDM,MDNOD,MDOK,MDOK1,MDOK2,MDPKG,MDPROV,MDRES,MDSC,MDSTR,MDV1,MDVISIT,MDDRES K ^TMP("MDPXAPI",$J)
+ N DATA,DIAG,MDCCOD,MDICDINFO,MDCLIN,MDCLL,MDDESC,MDPERR,MDJ,MDK,MDL,MDLST,MDM,MDNOD,MDOK,MDOK1,MDOK2,MDPKG,MDPROV,MDRES,MDSC,MDSTR,MDV1,MDVISIT,MDDRES K ^TMP("MDPXAPI",$J)
  S MDOUT="",(MDOK,MDOK1,MDOK2,MDSC)=0
  S MDPKG=$$FIND1^DIC(9.4,"","MX","CLINICAL PROCEDURES")
  I 'MDPKG Q "-1^CLINICAL PROCEDURES does not exist in Package File."
@@ -53,12 +53,13 @@ EN1(MDENC,MDINST,MDPDTE,MDPR,MDTYP,MDETYP,MDCLOC) ; [Function] PCE Visit Creatio
  ..Q
  .I $P(MDNOD,"^")="POV" D  Q
  ..Q:$P(MDNOD,"^",3)=""
- ..S MDCCOD=$$CODEN^ICDCODE($P(MDNOD,"^",3),"") S MDCCOD=+$P(MDCCOD,"^") Q:+MDCCOD<1
+ ..S MDICDINFO=$$ICDDATA^ICDXCODE(80,$P(MDNOD,"^",3),MDPDTE)
+ ..S MDCCOD=MDICDINFO S MDCCOD=+$P(MDCCOD,"^") Q:+MDCCOD<1
  ..S MDL=MDL+1,^TMP("MDPXAPI",$J,"DX/PL",MDL,"DIAGNOSIS")=MDCCOD
  ..S ^TMP("MDPXAPI",$J,"DX/PL",MDL,"PRIMARY")=$P(MDNOD,"^",6)
  ..S ^TMP("MDPXAPI",$J,"DX/PL",MDL,"ORD/RES")="R"
  ..S ^TMP("MDPXAPI",$J,"DX/PL",MDL,"CATEGORY")=$P(MDNOD,"^",4)
- ..S DIAG=$$ICDDX^ICDCODE($P(MDNOD,"^",3),"")
+ ..S DIAG=MDICDINFO
  ..S ^TMP("MDPXAPI",$J,"DX/PL",MDL,"NARRATIVE")=$P(DIAG,"^",4)
  ..S:MDPROV ^TMP("MDPXAPI",$J,"DX/PL",MDL,"ENC PROVIDER")=MDPROV
  ..S:'MDOK1 MDOK1=1

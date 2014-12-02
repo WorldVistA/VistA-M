@@ -36,7 +36,7 @@ EN ;
  .S XMB(2)=$$CONV($$DATE)
  .S XMB(3)="["_DUZ_"]  "_$P($G(^VA(200,DUZ,0)),U,1)
  .S XMB(4)=(OCXTIME\60)_" minutes "_(OCXTIME#60)_" seconds "
- .S XMY("G.OCX DEVELOPERS@ISC-SLC.domain.ext")=""
+ .S XMY("G.OCX DEVELOPERS@ISC-SLC.DOMAIN.EXT")=""
  .S XMY("G.OCX DEVELOPERS")=""
  .S XMDUZ=.5
  .S XMDT="N"

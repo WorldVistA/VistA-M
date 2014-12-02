@@ -1,6 +1,12 @@
-LEXAS2 ; ISL Look-up Check Input (ONE)            ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXAS2 ;ISL/KER - Look-up Check Input (ONE) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    $$UP^XLFSTR         ICR  10103
+ ;               
 ONE(LEXX) ; One letter missing/incorrect
  ;
  ; LEXRIM  Trimmed string

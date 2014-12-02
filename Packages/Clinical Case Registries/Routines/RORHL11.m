@@ -1,10 +1,20 @@
-RORHL11 ;HOIFO/BH,SG - HL7 CYTOPATHOLOGY DATA: OBR,OBX ; 3/13/06 9:24am
- ;;1.5;CLINICAL CASE REGISTRIES;**1**;Feb 17, 2006;Build 24
+RORHL11 ;HOIFO/BH,SG - HL7 CYTOPATHOLOGY DATA: OBR,OBX ;3/13/06 9:24am
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
  ; #4344         $$CYPATH^LA7UTL02 (controlled)
  ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ; --- ROUTINE MODIFICATION LOG ---
+ ; 
+ ;PKG/PATCH   DATE       DEVELOPER   MODIFICATION
+ ;----------- ---------- ----------- ----------------------------------------
+ ;ROR*1.5*19  MAY 2012   K GUPTA     Support for ICD-10 Coding System.
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
  Q
  ;
  ;***** SEARCHES BY SPECIMEN COLLECTION DATE
@@ -52,13 +62,14 @@ EN1(RORDFN,DXDTS,CDSMODE,RORPTR,RORFILE,HLFS,HLECH) ;
  ;*****
 ICD(RPS) ;
  Q:$D(@RORTMP@("ICD9"))<10
- N CNT,ICDLST,INDEX,RORICD,TMP
- S ICDID=$$SEGID("ICD9","ICD9",CS)
- S (INDEX,RORICD)="",CNT=0
+ N CNT,ICDID,INDEX,RORICD,TMP,RORICDSNAM
+ S ICDID=$$SEGID("ICD","ICD",CS)
+ S (INDEX,RORICD,RORICDSNAM)="",CNT=0
  F  S INDEX=$O(@RORTMP@("ICD9",INDEX))  Q:INDEX=""  D
- . S TMP=$G(@RORTMP@("ICD9",INDEX))
- . S:TMP'="" CNT=CNT+1,$P(RORICD,RPS,CNT)=TMP
- D:RORICD'="" SETOBX(ICDID,RORICD)
+ . S TMP=$G(@RORTMP@("ICD9",INDEX)) Q:TMP=""
+ . S CNT=CNT+1,$P(RORICD,RPS,CNT)=TMP
+ . S:RORICDSNAM="" RORICDSNAM=$$CSNAME^RORHLUT1(80,INDEX)
+ D:RORICD'="" SETOBX(ICDID,RORICDSNAM_":"_RORICD)
  Q
  ;
  ;***** CREATES OBR AND OBX SEGMENTS

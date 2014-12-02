@@ -1,5 +1,5 @@
 ONCOCC ;HINES OIFO/GWB - CLASS OF CASE stuffing and @FAC defaults ;06/23/10
- ;;2.11;ONCOLOGY;**5,13,16,19,20,22,24,26,30,33,36,37,39,47,50,51**;Mar 07, 1995;Build 65
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  ;CLASS OF CASE (165.5,.04) = 38 (Dx by autopsy at reporting facility)
  N COC,NTX,PAUSE

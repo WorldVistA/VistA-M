@@ -1,12 +1,12 @@
 PSJGMRA ;BIR/MV - Retrieve and display Allergy data ;6 Jun 07 / 3:37 PM
- ;;5.0;INPATIENT MEDICATIONS ;**181,270,260**;16 DEC 97;Build 94
+ ;;5.0;INPATIENT MEDICATIONS ;**181,270,260,252,257**;16 DEC 97;Build 105
  ;
  ; Reference to ^PS(50.605 is supported by DBIA 696.
  ; Reference to ^PSDRUG( is supported by DBIA 2192.
  ; Reference to ^TMP("GMRAOC" supported by DBIA 4848.
  ; Reference to GETDATA^GMRAOR supported by DBIA 4847.
  ; Reference to PSODGAL1 supported by DBIA 5764.
- ; Reference to ^PS(50.7 supported by DBIA 2180
+ ; Reference to ^PS(50.7 supported by DBIA 2180.
  ;
 EN(DFN,PSJDD) ;
  ;DFN - Patient IEN
@@ -19,7 +19,7 @@ EN(DFN,PSJDD) ;
  S PSODRUG("IEN")=PSJDD,PSODRUG("VA CLASS")=$P(Y(0),"^",2),PSODRUG("NAME")=$P(Y(0),"^")
  S:+$G(^PSDRUG(+Y,2)) PSODRUG("OI")=+$G(^(2)),PSODRUG("OIN")=$P(^PS(50.7,+$G(^(2)),0),"^")
  S PSODRUG("NDF")=$S($G(^PSDRUG(PSJDD,"ND"))]"":+^("ND")_"A"_$P(^("ND"),"^",3),1:0)
- ;changed n psj*5*260
+ ;changed in psj*5*260
  S PSODFN=DFN G ^PSODGAL1
  ;
  S PSJACK=0

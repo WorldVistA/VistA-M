@@ -1,5 +1,5 @@
 IBCNEDE ;DAOU/DAC - eIV DATA EXTRACTS ;04-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,438**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,497**;21-MAR-94;Build 120
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
@@ -58,6 +58,7 @@ EN1 I $G(ZTSTOP) G ENX
  ; Check to see if background process has been stopped, if so quit.
  I $G(ZTSTOP) G ENX
  D MMQ         ; Queue the Daily MailMan message
+ D DSTQ        ; queue daily statistical message to FSC
  ; Send MailMan message if first of month to report on records 
  ;  eligible to be purged
  I +$E($P($$NOW^XLFDT(),"."),6,7)=1 D MMPURGE^IBCNEKI2
@@ -147,3 +148,37 @@ ER ; Unlock the eIV Nightly Task and return to log error
  D UNWIND^%ZTER
  Q
  ;
+DSTQ ; This procedure is responsible for scheduling the creation and 
+ ; sending of the daily statistical message to FSC.
+ ;
+ N IIV,CURRTIME,MTIME,MSG,MGRP
+ N ZTRTN,ZTDESC,ZTDTH,ZTIO,ZTUCI,ZTCPU,ZTPRI,ZTSAVE,ZTKIL,ZTSYNC,ZTSK
+ ;
+ S IIV=$G(^IBE(350.9,1,51))
+ I '$P(IIV,U,3) G DSTQX          ; MM message time is not defined
+ ;
+ S CURRTIME=$P($H,",",2)        ; current $H time
+ S MTIME=DT_"."_$P(IIV,U,3)     ; build a FileMan date/time
+ S MTIME=$$FMTH^XLFDT(MTIME)    ; convert to $H format
+ S MTIME=$P(MTIME,",",2)        ; $H time of MM message
+ ;
+ ; If the current time is after the MailMan message time, then schedule the message for tomorrow at that time.
+ ; Otherwise, schedule it for later today.
+ S ZTDTH=$S(CURRTIME>MTIME:$H+1,1:+$H)_","_MTIME
+ ;
+ ; Set up the other TaskManager variables
+ S ZTRTN="EN1^IBCNEHLM"
+ S ZTDESC="eIV Daily Statistics HL7 Message"
+ S ZTIO=""
+ D ^%ZTLOAD            ; Call TaskManager
+ I $G(ZTSK) G DSTQX    ; Task# is OK so get out
+ ;
+ ; Send a MailMan message if this Task could not get scheduled
+ S MSG(1)="TaskManager could not schedule the daily eIV Statistics HL7 message"
+ S MSG(2)="at the specified time of "_$E($P(IIV,U,3),1,2)_":"_$E($P(IIV,U,3),3,4)_"."
+ S MSG(3)="This is defined in the eIV Site Parameters option."
+ ; Set to IB site parameter MAILGROUP
+ S MGRP=$$MGRP^IBCNEUT5() I MGRP'="" D MSG^IBCNEUT5(MGRP,"eIV Statistical HL7 Message Not Sent","MSG(")
+ ;
+DSTQX ;
+ Q

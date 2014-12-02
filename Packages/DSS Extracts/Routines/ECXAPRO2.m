@@ -1,5 +1,5 @@
-ECXAPRO2 ;ALB/JAP - PRO Extract Audit Report (cont) ; Nov 16, 1998
- ;;3.0;DSS EXTRACTS;**9,21,39**;Dec 22, 1997
+ECXAPRO2 ;ALB/JAP - PRO Extract Audit Report (cont) ;3/14/13  14:44
+ ;;3.0;DSS EXTRACTS;**9,21,39,144**;Dec 22, 1997;Build 9
  ;
 ASK ;further detail needed?
  K X,Y
@@ -35,7 +35,7 @@ ASK2 ;select nppd group to be expanded
  Q
  ;
 ASK3(ECXY) ;select nppd line item
- N BR,BRC,CODE
+ N BR,BRC,CODE,CNT,ECXPORT ;144
  S BR=0,BRC=0 K CODE W @IOF
  F  S BR=$O(^TMP($J,"RMPRCODE",BR)) Q:BR=""  I $L(BR)>3 D
  .I $E(BR,1,1)=ECXY S BRC=BRC+1 W !?5,BRC_".",?10,BR,?18,^TMP($J,"RMPRCODE",BR) S CODE(BRC,BR)=""
@@ -48,6 +48,13 @@ ASK3(ECXY) ;select nppd line item
  S ECXCODE="",ECXCODE=$O(CODE(Y,ECXCODE))
  S ECXPGM="TASK^ECXAPRO",ECXDESC="PRO Extract Audit Detail"
  S ECXSAVE("ECXHEAD")="",ECXSAVE("ECXDIV(")="",ECXSAVE("ECXARRAY(")="",ECXSAVE("ECXREPT")="",ECXSAVE("ECXPRIME")="",ECXSAVE("ECXALL")="",ECXSAVE("ECXCODE")=""
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I ECXPORT D  Q  ;144
+ .K ^TMP($J) ;144
+ .S ^TMP($J,"ECXPORT",0)="EXTRACT LOG #^NPPD GROUP^NPPD LINE^NAME^SSN^HCPCS^QTY^TYPE^COST^DATE^HCPCS DESC^STATION #^NPPD ENTRY DATE" ;144
+ .S CNT=1 ;144
+ .D PROCESS^ECXAPRO ;144
+ .D DISP ;144
+ .D EXPDISP^ECXUTL1
  W !
  ;determine output device and queue if requested
  D DEVICE^ECXUTLA(ECXPGM,ECXDESC,.ECXSAVE) I ECXSAVE("POP")=1 D  Q
@@ -70,11 +77,12 @@ CODE ;setup nppd codes
  ;
 DISP ;display all records within nppd code group
  ;based on desp^rmprn6pl
- N JJ,SS,LN,PG,COST,DATE,DESC,HCPCS,LOC,PTNAM,QFLG,QTY,RDX,RDXX,SSN,TYPE,DIR,DIRUT,DTOUT,DUOUT
+ N JJ,SS,LN,PG,COST,DATE,DESC,HCPCS,LOC,PTNAM,QFLG,QTY,RDX,RDXX,SSN,TYPE,DIR,DIRUT,DTOUT,DUOUT,NPPDED ;NPPD ENT DATE CVW 144
  U IO
- S (QFLG,PG)=0,$P(LN,"-",80)=""
- D HEADER
+ S (QFLG,PG)=0,$P(LN,"-",81)=""
+ I '$G(ECXPORT) D HEADER ;144
  I '$D(^TMP($J,ECXCODE)) D  Q
+ .I $G(ECXPORT) Q  ;144 Stop processing if exporting
  .W !,?14,"No data available.",!
  .I $E(IOST)="C",'QFLG D
  ..S SS=22-$Y F JJ=1:1:SS W !
@@ -83,10 +91,12 @@ DISP ;display all records within nppd code group
  F  S RDX=$O(^TMP($J,ECXCODE,RDX)) Q:RDX'>0  Q:QFLG  D
  .S RDXX=^TMP($J,ECXCODE,RDX)
  .S PTNAM=$P(RDXX,U,9),SSN=$P(RDXX,U,10)
- .D:($Y+3>IOSL) HEADER Q:QFLG
+ .I '$G(ECXPORT) D:($Y+3>IOSL) HEADER Q:QFLG  ;144 Don't display if exporting
  .S TYPE=$P(RDXX,U,1),TYPE=$S(TYPE="X":"R",1:"I")_" "_$P(RDXX,U,2)
- .S QTY=+$P(RDXX,U,3),COST=$P(RDXX,U,4),HCPCS=$P(RDXX,U,7),DESC=$P(RDXX,U,8),DATE=$P(RDXX,U,11),LOC=$P(RDXX,U,12)
- .W !,PTNAM,?6,SSN,?13,HCPCS,?20,QTY,?30,TYPE,?36,COST,?45,DATE,?52,DESC,?74,LOC
+ .S QTY=+$P(RDXX,U,3),COST=$P(RDXX,U,4),HCPCS=$P(RDXX,U,7),DESC=$P(RDXX,U,8),DATE=$P(RDXX,U,11),LOC=$P(RDXX,U,12),NPPDED=$P(RDXX,U,13) ;144 CVW
+ .I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=ECXEXT_U_ECXCODE_U_^TMP($J,"RMPRCODE",ECXCODE)_U_PTNAM_U_SSN_U_HCPCS_U_QTY_U_TYPE_U_COST_U_DATE_U_DESC_U_LOC_U_NPPDED,CNT=CNT+1 Q  ;144
+ .W !,PTNAM,?5,SSN,?10,HCPCS,?17,QTY,?26,TYPE,?30,COST,?37,DATE,?43,DESC,?64,LOC,?72,NPPDED ;144 CVW
+ I $G(ECXPORT) Q  ;144 Stop processing if exporting
  I $E(IOST)="C",'QFLG D
  .S SS=22-$Y F JJ=1:1:SS W !
  .S DIR(0)="E" D ^DIR K DIR
@@ -104,7 +114,7 @@ HEADER ;header and page control
  I ECXALL=1 W !,"Station:                 "_$P(ECXDIV,U,2)_" ("_$P(ECXDIV,U,3)_")"
  I ECXALL=0 W !,"Division:                "_$P(ECXDIV,U,2)_" ("_$P(ECXDIV,U,3)_")"
  W !,"Report Run Date/Time:    "_ECXRUN
- W !,LN,!,ECXCODE," -- ",^TMP($J,"RMPRCODE",ECXCODE)
- W !,"NAME",?6,"SSN",?13,"HCPCS",?20,"QTY",?30,"TYPE",?36,"COST",?45,"DATE",?52,"HCPCS DESC",?74,"STN #"
+ W !,LN,!,ECXCODE," -- ",^TMP($J,"RMPRCODE",ECXCODE),?74,"NPPD"
+ W !,"NAME",?5,"SSN",?10,"HCPCS",?17,"QTY",?26,"TYP",?30,"COST",?37,"DATE",?43,"HCPCS DESC",?64,"STN#",?72,"ENTRY DT"
  W !,LN,!
  Q

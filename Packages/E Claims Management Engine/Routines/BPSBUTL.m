@@ -1,5 +1,5 @@
 BPSBUTL ;BHAM ISC/MFR/VA/DLF - IB Communication Utilities ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,9,10,11**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,9,10,11,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;Reference to STORESP^IBNCPDP supported by DBIA 4299
  Q
@@ -177,7 +177,13 @@ DIVNCPDP(BPSDIV) ;
  ;Output:
  ;  1 - okay
  ; -1 - failed
-ADDCOMM(BPRX,BPREF,BPRCMNT) ;
+ADDCOMM(BPRX,BPREF,BPRCMNT,BPBKG) ;
+ ;
+ ;BPRX    (required) - Prescription IEN
+ ;BPREF   (optional) - Refill number
+ ;BPRCMNT (required) - Comment text
+ ;BPBKG   (optional) - Value 1 indicates process is running in background - BPS*1*15
+ ;
  N IEN59,BPNOW,BPREC,BPDA,BPERR
  ; Check parameters
  I '$G(BPRX) Q -1
@@ -194,7 +200,8 @@ ADDCOMM(BPRX,BPREF,BPRCMNT) ;
  D INSITEM^BPSCMT01(9002313.59111,+IEN59,BPNOW)
  S BPREC=$O(^BPST(IEN59,11,"B",BPNOW,99999999),-1)
  I BPREC>0 D
- . S BPDA(9002313.59111,BPREC_","_IEN59_",",.02)=+$G(DUZ)
+ .;If BPBKG is passed this is a background process and user is POSTMASTER - BPS*1*15
+ . S BPDA(9002313.59111,BPREC_","_IEN59_",",.02)=$S($G(BPBKG):.5,1:+$G(DUZ))
  . S BPDA(9002313.59111,BPREC_","_IEN59_",",.03)=$E($G(BPRCMNT),1,63)
  . D FILE^DIE("","BPDA","BPERR")
  L -^BPST(9002313.59111,+IEN59)
@@ -278,4 +285,64 @@ GETDAT(RX,FIL,COB,LDOS,LDSUP) ;Returns Last Date of Service and Last Days Supply
  S LDOS=$$GET1^DIQ(9002313.02,IEN02,401,"E")  ;LAST DATE OF SERVICE
  I LDOS S LDOS=LDOS-17000000    ;CONVERT DATE TO FILEMAN FORMAT
  S LDSUP=$$GET1^DIQ(9002313.0201,"1,"_IEN02,405,"I")  ;LAST DAYS SUPPLY
+ I LDSUP'="" S LDSUP=+$E(LDSUP,3,99)      ; remove the "D5" NCPDP field ID  (bps*1*15)
  Q
+ ;
+NFLDT(RX,FIL,COB) ;Returns Next Avail Fill Date (B04-BT) from ECME - BPS*1.0*15
+ ;Input:                                                                
+ ;  RX (req)  --> RX IEN                                                
+ ;  FIL (req) --> Fill number                                           
+ ;  COB (opt) --> Coordination of Benefits indicator; default is 1      
+ ;Output:
+ ;  NFLDT --> Next Avail Fill Date                                          
+ Q:'$G(RX)!($G(FIL)="") ""
+ S:'$G(COB) COB=1
+ N IEN59,IEN02,STAT,NFLDT,IEN03
+ S IEN02=""
+ S IEN59=$$IEN59^BPSOSRX(RX,FIL,COB)
+ S IEN03=+$P($G(^BPST(IEN59,0)),U,5),NFLDT=""
+ S:IEN03 NFLDT=$$GET1^DIQ(9002313.0301,"1,"_IEN03,2004,"I") ;NEXT FILL DATE
+ S:NFLDT NFLDT=NFLDT-17000000 ;CONVERT DATE TO FILEMAN FORMAT
+ Q NFLDT
+ ;
+BBILL(RX,RFILL,COB) ;Return Back Bill Indicator for Pharmacy - BPS*1.0*15
+ N IEN59,RXACT
+ ;Return 0 if no RXI value input 
+ I '$G(RX) Q 0
+ ; Note that $$IEN59 will treat RFILL="" as the original fill (0)
+ S IEN59=$$IEN59^BPSOSRX(RX,$G(RFILL),$G(COB))
+ ;No transaction found return 0
+ I '$D(^BPST(IEN59,0)) Q 0
+ ;Determine if RX ACTION (field #1201) is Back Bill
+ S RXACT=$P($G(^BPST(IEN59,12)),U)
+ ;Back Bill code not found return 0
+ I RXACT'="BB",RXACT'="P2",RXACT'="P2S" Q 0
+ ;Otherwise return Back Bill indicator
+ Q 1
+ ;
+AMT(RX,FIL,COB) ; Return Gross Amount Due - BPS*1*15
+ ;  RX - rx ien
+ ; FIL - fill#, defaults to original fill if not passed in
+ ; COB - cob payer sequence, defaults to 1 if not passed in
+ ;
+ N AMT,IEN59,QN
+ S AMT=""
+ I '$G(RX) G AMTX
+ S IEN59=$$IEN59^BPSOSRX(RX,$G(FIL),$G(COB))  ; ien to BPS Transaction file
+ I '$D(^BPST(IEN59,0)) G AMTX                 ; make sure it exists
+ S QN=+$O(^BPST(IEN59,10,0)) I 'QN G AMTX     ; get 9002313.59902 subfile ien
+ S AMT=+$P($G(^BPST(IEN59,10,QN,2)),U,4)      ; gross amount due, field 902.15
+AMTX ;
+ Q AMT
+ ;
+ELIG(RX,FIL,COB) ; Veteran Eligibility - BPS*1*15
+ ; RX  - rx ien
+ ; FIL - fill#, defaults to original fill if not passed in
+ ; COB - cob payer sequence, defaults to 1 if not passed in
+ ;
+ Q:'$G(RX) ""
+ ; ien to BPS Transaction file
+ N IEN59 S IEN59=$$IEN59^BPSOSRX(RX,$G(FIL),$G(COB)) Q:'IEN59 ""
+ Q:'$D(^BPST(IEN59,0)) ""
+ ; ELIGIBILITY field 901.04
+ Q $P($G(^BPST(IEN59,9)),U,4)

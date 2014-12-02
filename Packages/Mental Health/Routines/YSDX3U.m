@@ -1,8 +1,8 @@
-YSDX3U ;SLC/DJP/LJA-Utilities for Diagnoses Entered in the MH Medical Record ;12/17/93 14:52
- ;;5.01;MENTAL HEALTH;;Dec 30, 1994
+YSDX3U ;SLC/DJP/LJA - Utilities for Diagnoses Entered in MH Med Record ;13 May 2013  12:43 PM
+ ;;5.01;MENTAL HEALTH;**107**;Dec 30, 1994;Build 23
  ;D RECORD^YSDX0001("^YSDX3U") ;Used for testing.  Inactivated in YSDX0001...
  ;
-END D END^YSDX3U00 ;->
+END K YSDXDAT D END^YSDX3U00 ;->
  QUIT
  ;
 LIST ; Called by routines YSDX3, YSDX3A, YSDX3U
@@ -19,7 +19,7 @@ AXIS1 ;  DSM display
  .  F  S L2=$O(^YSD(627.8,"AC",YSDFN,L2)) Q:'L2  D
  .  .  S L3=""
  .  .  F  S L3=$O(^YSD(627.8,"AC",YSDFN,L2,L3)) Q:L3=""  I $P(L3,";",2)["YSD"  D SELECTL
-AXIS3 ;  ICD9 Display
+AXIS3 ;  ICD9/ICD10 Display
  ;D RECORD^YSDX0001("AXIS3^YSDX3U") ;Used for testing.  Inactivated in YSDX0001...
  I YSAX=3 D
  .  S L2=0
@@ -61,6 +61,7 @@ PLIST ;Sets variables for print of list line
  ;
  ;  Axis 1
  ;D RECORD^YSDX0001("PLIST^YSDX3U") ;Used for testing.  Inactivated in YSDX0001...
+ S YSDXCSTX=""
  I YSAX=1 D
  .  S P3=$P(L3,";",2)
  .  S P4=$P(L3,";")
@@ -68,6 +69,7 @@ PLIST ;Sets variables for print of list line
  .  S P50=@P5
  .  S YSDXN=^YSD(627.7,+P4,"D") ;  Diagnosis name
  .  S YSDXNN=$P(P50,U) ;           ICD#
+ .  S YSDXCSTX="(ICD-"_$S($P(P50,U,8)'="":$P(P50,U,8),1:"9")_")"
  ;
  ;  Axis 3
  I YSAX=3 D
@@ -75,13 +77,16 @@ PLIST ;Sets variables for print of list line
  .  S P4=$P(L3,";")
  .  S P5="^"_P3_P4_","_0_")"
  .  S P50=@P5
- .  S YSDXNN=$P(P50,U) ;           Diagnosis name
- .  S YSDXN=$P(P50,U,3) ;          ICD#
+ .  N YSDXDATA S YSDXDATA=$$ICDDATA^ICDXCODE("DIAG",P4,$P(^YSD(627.8,L5,0),U,3),"I")
+ .  S YSDXNN=$P(YSDXDATA,U,2)   ;  Diagnosis name
+ .  S YSDXCSTX=$P($P($$SINFO^ICDEX($P(YSDXDATA,U,20)),U,2),"-",2)
+ .  S YSDXCSTX="(ICD-"_YSDXCSTX_")"
+ .  S YSDXN=$P(YSDXDATA,U,4)    ;  ICD#
  ;
  S YSDXST=$S(L9="v":"VERIFIED",L9="p":"PROVISIONAL",L9="i":"INACTIVE",L9="r":"REFORMULATED",L9="n":"NOT FOUND",L9="ru":"RULE OUT",1:"")
  S Y=$P(^YSD(627.8,L5,0),U,3) D DD^%DT S YSDXDT=Y
  ;
- ;  Modifiers?
+ ;  Modifiers
  I $D(^YSD(627.8,L5,5)) D
  .  S L7=$P(^YSD(627.8,L5,5,0),U,3)
  .  F I=1:1:L7 S YSMOD(I)=$P(^YSD(627.8,L5,5,I,0),U,3)
@@ -97,7 +102,7 @@ PLIST ;Sets variables for print of list line
 PRINT ;
  ;D RECORD^YSDX0001("PRINT^YSDX3U") ;Used for testing.  Inactivated in YSDX0001...
  Q:YSDTY="IRN"&(L9="i")  ;->
- W !,P1,?3,YSDXNN,!?3,$E(YSDXN,1,75)
+ W !,P1,?3,YSDXCSTX," ",YSDXNN,!?3,$E(YSDXN,1,75)
  I $D(YSMOD) F I=1:1:L7 I $D(YSMOD(I)) W:$TR(YSMOD(I)," ","")]"" !?8," --- "_YSMOD(I)
  W !?8," --- "_YSDXST,?35,YSDXDT I $D(YSDXSTAT) W !?8," --- "_YSDXSTAT,?35,YSTATDT
  QUIT

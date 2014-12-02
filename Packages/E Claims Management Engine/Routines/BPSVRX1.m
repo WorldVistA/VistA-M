@@ -1,5 +1,5 @@
 BPSVRX1 ;ALB/ESG - View ECME Prescription continued ;5/23/2011
- ;;1.0;E CLAIMS MGMT ENGINE;**11**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**11,15**;JUN 2004;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference to ^IBCNR(366.14, supported by DBIA #5711
@@ -267,7 +267,7 @@ TPJILST(RXIEN,FILL,VIEWTYPE,BPSSNUM) ; List of TPJI bills - all fills
  . S NUM=NUM+1
  . S IB=$G(TPJI(FNG,FDG,IBIFN))
  . S L=$J(NUM,3)_"  "_$$LJ^XLFSTR($P(IB,U,1),9)_$$LJ^XLFSTR($$RXAPI1^BPSUTIL1(RXIEN,.01)_"-"_+$P(IB,U,7),14)
- . S L=L_$$LJ^XLFSTR($$FMTE^XLFDT($P(IB,U,3),"2DZ"),11)_$$LJ^XLFSTR($P(IB,U,4),19)_$P(IB,U,5)_"   "
+ . S L=L_$$LJ^XLFSTR($$FMTE^XLFDT($P(IB,U,3),"2DZ"),11)_$$LJ^XLFSTR($P(IB,U,4),"18T")_" "_$P(IB,U,5)_"   "
  . S L=L_$$LJ^XLFSTR($$RXAPI1^BPSUTIL1(RXIEN,2,"E"),"18T")
  . S LN=LN+1,TPJDISP(LN,0)=L
  . Q

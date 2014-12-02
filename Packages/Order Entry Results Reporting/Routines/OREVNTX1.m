@@ -1,5 +1,5 @@
 OREVNTX1 ; SLC/JLI - Event delayed orders RPC's ; 4/5/11 2:53pm
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,165,149,243,280,347**;Dec 17, 1997;Build 4
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,165,149,243,280,347,367**;Dec 17, 1997;Build 2
  ;
 PUTEVNT(ORY,DFN,EVT,ORIFN) ; Save new patient delayed events to file 100.2
  S ORY=$$NEW^OREVNT(DFN,EVT,ORIFN)
@@ -243,6 +243,8 @@ PRTIDS(ORY,IDS) ;Return some prompt ids from #101.41
  ;
 DFLTDLG(ORY,EVTID) ;Return event default dialog IEN
  S ORY=0
+ ; p.367 if this is a child event, dialog will be "" so use the parent's default dialog
+ S:$P($G(^ORD(100.5,+EVTID,0)),U,12) EVTID=$P($G(^ORD(100.5,+EVTID,0)),U,12)
  Q:'$D(^ORD(100.5,+EVTID,0))
  S ORY=$P(^ORD(100.5,+EVTID,0),U,4)
  Q

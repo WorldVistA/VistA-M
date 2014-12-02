@@ -1,5 +1,5 @@
-LR7OSAP ;DALOI/STAFF - Silent AP rpt (compare to LRAPCUM) ;12/03/09  15:42
- ;;5.2;LAB SERVICE;**121,187,230,256,259,317,350**;Sep 27, 1994;Build 230
+LR7OSAP ;DALOI/STAFF - Silent AP rpt (compare to LRAPCUM) ;03/21/13  15:30
+ ;;5.2;LAB SERVICE;**121,187,230,256,259,317,350,427**;Sep 27, 1994;Build 33
  ;
 GET I '$D(^LR(LRDFN,LRSS)) Q
  N FST,X
@@ -150,7 +150,8 @@ W ; Called from above and LR7OSAP4
  .. D:X U
  I $D(^LR(LRDFN,LRSS,LRI,2)) D B
  ;
- I $D(^LR(LRDFN,LRSS,LRI,99)) D LN S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(1,CCNT,"Comments:") S LRV=99 D F(1)
+ ; DALOI/LMT - LR,427 - Removed comments from report to restore pre-LR,350 behavior
+ ;I $D(^LR(LRDFN,LRSS,LRI,99)) D LN S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(1,CCNT,"Comments:") S LRV=99 D F(1)
  ;
  ; List performing labs
  D PPL^LR7OSMZ1(LRDFN,LRSS,LRI)

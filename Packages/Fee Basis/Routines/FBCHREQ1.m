@@ -1,5 +1,5 @@
 FBCHREQ1 ;AISC/DMK-FEE NOTIFICATION CONT ;31AUG90
- ;;3.5;FEE BASIS;**103**;JAN 30, 1995;Build 19
+ ;;3.5;FEE BASIS;**103,146**;JAN 30, 1995;Build 57
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 VENDOR ;ASK VENDOR FOR NOTIFICATION
  W ! K FBCHVEN S DIC="^FBAAV(",DIC(0)="AEQLM",DLAYGO=161.2 D ^DIC G END:X=""!(X="^"),VENDOR:Y<0 S (DA,FBCHVEN)=+Y,DIE=DIC I $P(Y,"^",3)=1 S FBVENEW=1 D NEW^FBAAVD K DIC,DIE,DA,DLAYGO Q
@@ -27,5 +27,15 @@ EDIT ;EDIT A REQUEST THAT'S NOT COMPLETE
 Q K DIE,DIC,DIRUT,DUOUT,DTOUT,X,Y,DR,FB,FBN,FBDA,FBDFN,FBNAME,FBSSN,DA,FBCHVEN,FBREQED,FBDOA,FBFRDT,J
  Q
 DATCK ;Verify authorized from date is > or = date of admission.
+ I '$D(DFN) I $D(FBDFN) S DFN=FBDFN
+ I '$D(DFN) I $D(FBVET) S DFN=FBVET
  S FBDOA=$P(^FBAA(162.2,DA,0),"^",19) I $G(FBDOA),X<FBDOA W !,*7,"Authorized From Date must be equal to or greater than the Date of Admission" S FBOUT=1
+ S FBDOB=$P(^DPT(DFN,0),"^",3) I $G(FBDOB),X<FBDOB W !,*7,"Authorized From Date cannot be before the Date of Birth" S FBOUT=1
+ ; Check if this is a Newborn. If Newborn Authorization date can not be after DOB+7
+ N ENTDATE,NOW
+ S ENTDATE=X
+ N X
+ D NOW^%DTC S NOW=X,X=ENTDATE
+ I $$FMDIFF^XLFDT(NOW,FBDOB,1)<365 D  ;PATIENT IS A NEWBORN
+ . I $$FMDIFF^XLFDT(X,FBDOB,1)>7 W !,*7,"Authorized From Date for a Newborn cannot be after DOB+7" S FBOUT=1
  Q

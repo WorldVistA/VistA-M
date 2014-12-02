@@ -1,12 +1,13 @@
-SCRPW23 ;RENO/KEITH - ACRP Ad Hoc Report (cont.) ; 15 Jul 98  02:38PM
- ;;5.3;Scheduling;**144,474**;AUG 13, 1993;Build 4
+SCRPW23 ;RENO/KEITH - ACRP Ad Hoc Report (cont.) ;15 Jul 98  02:38PM
+ ;;5.3;Scheduling;**144,474,593**;AUG 13, 1993;Build 13
 DIRB(SDFL) ;Get default values for range
  ;Required input: SDFL="F" for first, "L" for last
  N SDX S SDX=$O(SDPAR("X",SDS2,$S(SDDV:5,1:4),""),$S(SDFL="F":1,1:-1)) Q $S(SDX=""!'SDDV:SDX,1:SDPAR("X",SDS2,5,SDX))
  ;
 RL ;Prompt for range or list
- N SDI,SDIRQ X:$L($P(SDACT,T,9)) $P(SDACT,T,9) S SDDV=0 S:$P(SDACT,T,2)="D" SDDV=1,SDPAR("X",SDS2,6)="D"
+ N SDI,SDIRQ,SDCSYS X:$L($P(SDACT,T,9)) $P(SDACT,T,9) S SDDV=0 S:$P(SDACT,T,2)="D" SDDV=1,SDPAR("X",SDS2,6)="D"
  I $P(SDPAR("X",SDS2,2),U)="N" D NULL Q
+ I ($P(SDACT,T,2)="P"),($P(SDACT,T,3)="^ICD9(") S SDCSYS=$$ICDSYS()
  I $P(SDPAR("X",SDS2,2),U)="L" D LST Q
 RNG N SDR1,SDR2 D SUBT^SCRPW50("*** Item Range Selection ***")
 R1 W !!,"Start with:" S SDR1=$$SEL($P(SDACT,T,2),$$DIRB("F")) Q:SDOUT!SDNUL
@@ -16,6 +17,20 @@ R2 W !!,"End with:" S SDR2=$$SEL($P(SDACT,T,2),$$DIRB("L")) Q:SDOUT!SDNUL
  F SDX="SDR1","SDR2" S SDPAR("X",SDS2,4,$P(@SDX,U,2),$P(@SDX,U))=""
  F SDX="SDR1","SDR2" S SDPAR("X",SDS2,5,$P(@SDX,U))=$P(@SDX,U,2)
  Q
+ ;
+ICDSYS() ;Prompt for coding system.  (Structurally similar to $$RL^SCRPW22.)
+ N IEN,CSYS,I10DTI,I10DTE
+ I $D(SDPAR("X",SDS2,4)) D  I 1
+ . S IEN=$O(SDPAR("X",SDS2,5,"")) Q:IEN=""
+ . S CSYS=$$CSI^SCRPWICD(80,IEN)
+ E  I SDS1="P" D  I 1
+ . S Y=$$IMP^SCRPWICD(30) S I10DTI=Y X ^DD("DD") S I10DTE=Y
+ . K DIR S DIR(0)="S^9:ICD-9  (PRIOR TO "_I10DTE_");10:ICD-10 ("_I10DTE_" AND AFTER)"
+ . S DIR("A")="Select coding system" S DIR("B")=$S(DT'<I10DTI:"10",1:"9")
+ . D ^DIR K DIR S CSYS=$S($P(Y,U,1)="9":1,$P(Y,U,1)="10":30,1:$S(DT<I10DTI:1,1:30))
+ E  I SDS1="L" D  I 1
+ . S CSYS=$S($P(SDPAR("L",1),U,1)<$$IMP^SCRPWICD(30):1,1:30)
+ Q CSYS
  ;
 RCOL() ;Determine range collation validity
  ;Output: 1=valid, 0=invalid
@@ -32,7 +47,8 @@ LST I $D(SDPAR("X",SDS2,4)) D LST1
  Q
  ;
 LST0 I $D(SDPAR("X",SDS2,5,$P(SDX,U))) Q:$$LSD()
- S SDPAR("X",SDS2,5,$P(SDX,U))=$P(SDX,U,2),SDPAR("X",SDS2,4,$P(SDX,U,2),$P(SDX,U))=""
+ S SDPAR("X",SDS2,4,$P(SDX,U,2),$P(SDX,U))=""
+ S SDPAR("X",SDS2,5,$P(SDX,U))=$P(SDX,U,2)
  Q
  ;
 LSD() N DIR W !!,$C(7),$P(SDX,U,2)," is already selected." S DIR(0)="Y",DIR("A")="Do you want to delete it",DIR("B")="NO" D ^DIR I $D(DTOUT)!$D(DUOUT) S SDOUT=1 Q 0
@@ -57,12 +73,13 @@ D ;Get date values
  S SDX=Y X ^DD("DD") S SDX=SDX_U_Y X:$L($P(SDACT,T,8)) $P(SDACT,T,8) Q
  ;
 P ;Get pointer values ;SD*5.3*474 added PSCRN to screen certain status types
- N DIC M DIC=SDIRQ S DIC=$P(SDACT,T,3),DIC(0)="AEMQ",DIC("S")=$P(SDACT,T,4) K:'$L(DIC("S")) DIC("S") D:DIC="^SD(409.63," PSCRN D ^DIC I $D(DTOUT)!$D(DUOUT) S SDOUT=1 Q
+ N DIC M DIC=SDIRQ S DIC=$P(SDACT,T,3),DIC(0)="AEMQ",DIC("S")=$P(SDACT,T,4) K:'$L(DIC("S")) DIC("S") D PSCRN D ^DIC I $D(DTOUT)!$D(DUOUT) S SDOUT=1 Q
  I Y'>0 S SDNUL=1 Q
  S SDX=Y X:$L($P(SDACT,T,8)) $P(SDACT,T,8) Q
  ;
 PSCRN ;screen out the 4 cancellation type status' SD*5.3*474
- S DIC("S")="I $P(^(0),U,2)'=""C"",$P(^(0),U,2)'=""CA"",$P(^(0),U,2)'=""PC"",$P(^(0),U,2)'=""PCA"""
+ I DIC="^SD(409.63," S DIC("S")="I $P(^(0),U,2)'=""C"",$P(^(0),U,2)'=""CA"",$P(^(0),U,2)'=""PC"",$P(^(0),U,2)'=""PCA"""
+ I DIC="^ICD9(" S DIC("S")="I $$CSI^SCRPWICD(80,Y)="_SDCSYS
  Q
  ;
 F ;Get field values

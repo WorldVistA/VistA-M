@@ -1,5 +1,5 @@
-PXRMENOD ;SLC/PKR - Clinical Reminders "E" node routines. ;05/13/2010
- ;;2.0;CLINICAL REMINDERS;**4,6,18**;Feb 04, 2005;Build 152
+PXRMENOD ;SLC/PKR - Clinical Reminders "E" node routines. ;06/26/2013
+ ;;2.0;CLINICAL REMINDERS;**4,6,18,26**;Feb 04, 2005;Build 404
  ;
  ;========================================================
 DEPLIST(IEN,DEP) ;Build the evaluation dependency list.
@@ -15,19 +15,30 @@ DEPLIST(IEN,DEP) ;Build the evaluation dependency list.
  Q
  ;
  ;========================================================
-EVORDER(DEP,EORDER,NODEP,ERROR) ;Determine the evaluation order for findings
+EVORDER(IEN,DEP,EORDER,NODEP,ERROR) ;Determine the evaluation order for findings
  ;that depend of the date of other findings. The structure of EORDER
  ;is EORDER(N)=finding number, where N is the evaluation order.
- N CLIST,DONE,IND,JND,KND,ONLIST,NUM
- ;Check for reflective dependencies.
+ N CLIST,DONE,IND,JND,KND,ONLIST,NUM,TEXT
  S IND="",ERROR=0
  F  S IND=$O(DEP(IND)) Q:IND=""  D
+ .;If finding IND has no dependencies, i.e., $D=1 quit. If there are
+ .;dependencies $D=10.
  . I $D(DEP(IND))=1 Q
  . S JND=IND-1
  . F  S JND=$O(DEP(IND,JND)) Q:JND=""  D
+ ..;Make sure dependent finding exists.
+ .. I '$D(^PXD(811.9,IEN,20,JND,0)) D
+ ... K TEXT
+ ... S TEXT(1)="Error: date of finding "_IND_" depends of date of finding "_JND_" and finding "_JND_" does"
+ ... S TEXT(2)="       not exist."
+ ... D EN^DDIOL(.TEXT)
+ ... S ERROR=1
+ ..;Check for reflective dependencies.
  .. I $D(DEP(JND,IND)) D
- ... W !,"Error: date of finding ",IND," depends of date of finding ",JND," and"
- ... W !,"       date of finding ",JND," depends on date of finding ",IND
+ ... K TEXT
+ ... S TEXT(1)="Error: date of finding "_IND_" depends of date of finding "_JND_" and"
+ ... S TEXT(2)="       date of finding "_JND_" depends on date of finding "_IND
+ ... D EN^DDIOL(.TEXT)
  ... S ERROR=1
  I ERROR Q
  ;No errors found, build evaluation order lists.
@@ -58,11 +69,13 @@ EVORDER(DEP,EORDER,NODEP,ERROR) ;Determine the evaluation order for findings
  . S CLIST(JND)=""
  . S IND=JND
  I ERROR D
- . W !,"Error: found circular redundancy."
+ . S TEXT="Error: found circular redundancy."
+ . D EN^DDIOL(TEXT)
  . S IND=""
  . F  S IND=$O(CLIST(IND)) Q:IND=""  D
  .. S JND=$O(DEP(IND,""))
- .. W !," Finding ",IND," depends on finding ",JND
+ .. S TEXT=" Finding "_IND_" depends on finding "_JND
+ .. D EN^DDIOL(TEXT)
  Q
  ;
  ;========================================================
@@ -128,7 +141,7 @@ SENODES(X,DA) ;Set the "E" and "EDEP" node in the finding multiple for
  N DAS,DEP,EORDER,ERROR,FBDT,FEDT,FI,GLOBAL,IEN,IND,JND,NODEP,PT01
  ;Build dependency list.
  D DEPLIST(DA(1),.DEP)
- D EVORDER(.DEP,.EORDER,.NODEP,.ERROR)
+ D EVORDER(DA(1),.DEP,.EORDER,.NODEP,.ERROR)
  ;If EVORDER returns an error quit.
  I ERROR Q
  K ^PXD(811.9,DA(1),20,"E"),^PXD(811.9,DA(1),20,"EDEP")

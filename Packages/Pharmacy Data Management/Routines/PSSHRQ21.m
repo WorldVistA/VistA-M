@@ -1,5 +1,5 @@
 PSSHRQ21 ;WOIFO/AV,TS - Parses a PEPS drugDrugChecks XML element ;09/20/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136**;9/30/97;Build 89
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,160**;9/30/97;Build 76
  ;
  ; @authors - Alex Vazquez, Tim Sabat
  ; @date    - September 19, 2007
@@ -334,7 +334,7 @@ COPYRITE(SOURCE) ;
  ;
  D  ;Case on Source
  .I SOURCE="Custom" S PSS("source")="Information provided by VA PBM-SHG" Q
- .S PSS("source")="Copyright "_PSS("year")_" First DataBank, Inc."
+ .S PSS("source")="Copyright "_PSS("year")_" First Databank, Inc."
  QUIT PSS("source")
  ;;
  ;;

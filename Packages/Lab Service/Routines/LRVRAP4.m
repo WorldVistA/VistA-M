@@ -1,5 +1,5 @@
-LRVRAP4 ;DALOI/STAFF - LAB AP INTERFACE ;12/07/11  12:25
- ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+LRVRAP4 ;DALOI/STAFF - LAB AP INTERFACE ;06/19/13  11:48
+ ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
  ;
  ; Extracts the results information in the ^LAH(LWL,1,ISQN... global and stores it in the Lab Data AP subfile.
  ;
@@ -76,13 +76,13 @@ ACCEPT ; Ask if want to accept results
  S DIR("?")="Enter Y if you want to accept these results"
  S DIR("?",1)="Entering Y will store the results for this accession"
  D ^DIR
- I $D(DIRUT) Q
+ I $D(DIRUT) S LRNOP=1 Q
  I 'Y D PURG Q
  ;
 STORE ;
  ; First, some setup stuff
  ;
- N FIELD,FILE,DIC,LRI
+ N FIELD,FILE,DIC,LRA,LRI,LRSF,LRP,LRAC
  ;
  S DIC(0)="LXZ"
  ; Begin actual processing of the data
@@ -96,7 +96,7 @@ STORE ;
  S LRI=LRIDT,LRDATE=$$NOW^XLFDT,IEN=LRIDT_","_LRDFN_","
  S FDA(1,FILE,IEN,.03)=LRDATE
  S FDA(1,FILE,IEN,.11)=LRDATE
- S FDA(1,FILE,IEN,.13)=DUZ(2)
+ S FDA(1,FILE,IEN,.13)=DUZ
  D FILE^DIE("","FDA(1)","LRERR")
  ;
  F LRI=99,.2,.3,.4,.5,1,1.1,1.2,1.3,1.4 I $D(^LAH(LRLL,1,LRISQN,LRSS,LRI)) D
@@ -113,6 +113,10 @@ STORE ;
  ;
  ; Store reporting lab
  D SETRL^LRVERA(LRDFN,LRSS,LRIDT,DUZ(2))
+ S LRI=LRIDT,LRSF=FILE,LRP=PNM,LRAC=LRACC
+ S LRA=^LR(LRDFN,LRSS,LRIDT,0)
+ D ACCCOMP^LRAPRES
+ D MAIN^LRAPRES1(LRDFN,LRSS,LRI,LRSF,LRP,LRAC)
  ;
  ; Update clinical reminders
  D UPDATE^LRPXRM(LRDFN,LRSS,LRIDT)
@@ -160,7 +164,8 @@ PURG ; Ask if the entry should be purged from ^LAH(
  S DIR(0)="Y",DIR("A")="Do you want to purge this entry from ^LAH Global"
  S DIR("?")="Remove the entry from the list",DIR("B")="No"
  D ^DIR
- I $G(Y)=1 D ZAP^LRVR0 S LRNOP=1
+ I $D(DIRUT) S LRNOP=1 Q
+ I $G(Y)=1 D ZAP^LRVR0
  Q
  ;
  ;

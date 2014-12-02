@@ -1,5 +1,5 @@
 EDPQPCE ;SLC/KCM - Retrieve PCE information for ED Visits ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
 DXPRI(AREA,LOG) ; return primary diagnosis
  N DXLST
@@ -29,5 +29,13 @@ DXFREE(LOG,DXLST) ; return free text diagnoses from ED LOG file
  . S CODE=$P(X4,U,2) S:CODE CODE=$P(^ICD9(CODE,0),U)
  . S NAME=$P(X4,U,1)
  . S DX=DX+1,DX($S(+$P(X4,U,3):DX,1:DX*10000))=CODE_U_NAME
+ S X="",DXLST=DX F I=1:1 S X=$O(DX(X)) Q:X=""  S DXLST(I)=DX(X)
+ Q
+DXFREE2(LOG,DXLST) ; return ONLY the free text diagnosis
+ N I,CODE,NAME,X4,DX
+ S I=0,DX=0 F  S I=$O(^EDP(230,LOG,4,I)) Q:'I  D
+ . S X4=^EDP(230,LOG,4,I,0)
+ . S NAME=$P(X4,U,1)
+ . S DX=DX+1,DX($S(+$P(X4,U,3):DX,1:DX*10000))=NAME
  S X="",DXLST=DX F I=1:1 S X=$O(DX(X)) Q:X=""  S DXLST(I)=DX(X)
  Q

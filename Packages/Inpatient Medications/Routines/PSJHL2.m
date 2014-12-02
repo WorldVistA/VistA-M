@@ -1,9 +1,12 @@
-PSJHL2 ;BIR/RLW-PATIENT ID AND VISIT SEGMENTS ;22 Nov 1999  9:27 AM
- ;;5.0; INPATIENT MEDICATIONS ;**1,18,16,23,28,42,50,70,58,100,102,110,111,112,144,141,134**;16 DEC 97;Build 124
+PSJHL2 ;BIR/RLW-PATIENT ID AND VISIT SEGMENTS ; 9/24/12 3:17pm
+ ;;5.0;INPATIENT MEDICATIONS;**1,18,16,23,28,42,50,70,58,100,102,110,111,112,144,141,134,279**;16 DEC 97;Build 150
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^ORERR is supported by DBIA# 2187.
  ; Reference to ^ORHLESC IS supported by DBIA# 4922.
+ ;
+ ;*279 Add Clinic name to ORC.21 (Ordering institution) used to send
+ ;     to the BCBU contingent system.
  ;
 EN1(PSJHLDFN,PSOC,PSJORDER,PSREASON) ; start here
  ; passed in are PSJHLDFN (patient ien)
@@ -14,6 +17,7 @@ EN1(PSJHLDFN,PSOC,PSJORDER,PSREASON) ; start here
 START ;
  K ^TMP("PSJHLS",$J,"PS")
  N CLERK,J,LIMIT,NAME,NEXT,NODE1,NODE2,NODE4,NOO,PSJCLEAR,PSJHINST,PSJHLSDT,PROVIDER,PSJI,ROOMBED,RXORDER,STATUS,UNDO,VERIFY,WARD,PSGST,DUR
+ N NODE8,NODEDSS     ;*279
  S RXORDER=PSJORDER,PSJORDER=$S((PSJORDER["N")!(PSJORDER["P"):"^PS(53.1,"_+PSJORDER,PSJORDER["V":"^PS(55,"_PSJHLDFN_",""IV"","_+PSJORDER,1:"^PS(55,"_PSJHLDFN_",5,"_+PSJORDER)_","
  I RXORDER["P",$P($G(@(PSJORDER_"0)")),U,15)'=PSJHLDFN S ORDCON="Patient does not match/PSJHL2" S X="ORERR" X ^%ZOSF("TEST") I  D EN^ORERR(ORDCON) Q
  S UNDO=$S("OC^CR"[PSOC:1,1:0)
@@ -48,11 +52,11 @@ PV1 ; get patient visit information, format PV1 segment
  I PSJHLMTN="ORR" S FIELD(3)=LOC
  I PSJHLMTN="ORM" D
  .S LOC="",WARD=$G(^DPT(PSJHLDFN,.1)),LOC=$S($G(WARD)]"":$O(^SC("B",WARD,LOC)),1:LOC)
- .I $G(LOC)="" D
- .. N A
- .. I RXORDER["P",($G(^PS(53.1,+RXORDER,"DSS"))) S A=^("DSS"),LOC=$P(A,"^"),PSJAPPT=$P(A,"^",2)
- .. I RXORDER["V",($G(^PS(55,PSJHLDFN,"IV",+RXORDER,"DSS"))) S A=^("DSS"),LOC=$P(A,"^"),PSJAPPT=$P(A,"^",2)
- .. I RXORDER["U",$G(^PS(55,PSJHLDFN,5,+RXORDER,8)) S A=^(8),LOC=$P(A,"^"),PSJAPPT=$P(A,"^",2)
+ .;I $G(LOC)="" D
+ .N A
+ .I RXORDER["P",($G(^PS(53.1,+RXORDER,"DSS"))) S A=^("DSS") I (LOC="")!($P(A,"^",2)) S LOC=$P(A,"^"),PSJAPPT=$P(A,"^",2)
+ .I RXORDER["V",($G(^PS(55,PSJHLDFN,"IV",+RXORDER,"DSS"))) S A=^("DSS") I (LOC="")!($P(A,"^",2)) S LOC=$P(A,"^"),PSJAPPT=$P(A,"^",2)
+ .I RXORDER["U",$G(^PS(55,PSJHLDFN,5,+RXORDER,8)) S A=^(8) I (LOC="")!($P(A,"^",2)) S LOC=$P(A,"^"),PSJAPPT=$P(A,"^",2)
  .I $G(LOC)]"" S ROOMBED=$G(^DPT(PSJHLDFN,.101)) S LOC=LOC_"^"_$S($G(PSJBCBU):ROOMBED,1:$$ESC^ORHLESC(ROOMBED))
  .S FIELD(3)=LOC I $G(PSJAPPT)]"" S FIELD(44)=$$FMTHL7^XLFDT(PSJAPPT)
  S FIELD(2)=$S($G(CLASS)="O":CLASS,1:"I")
@@ -61,10 +65,14 @@ PV1 ; get patient visit information, format PV1 segment
  Q
  ;
 ORC ; order control segment
- S LIMIT=18 X PSJCLEAR
+ S LIMIT=21 X PSJCLEAR            ;*279 mod from 18 to 21
  Q:'$D(PSJORDER)!'$D(PSOC)
  S NODE1=$G(@(PSJORDER_"0)")),NODE2=$G(@(PSJORDER_"2)"))
  S NODE4=$G(@(PSJORDER_"4)"))
+ ;*270 add clinic appt node
+ I RXORDER["U" S NODE8=$G(@(PSJORDER_"8)"))
+ I (RXORDER["V")!(RXORDER["P") S NODEDSS=$G(@(PSJORDER_"""DSS"")"))
+ ;
  I $G(PSGST)="" N PSGST D
  .S PSGST=$P($G(NODE1),"^",7)
  S FIELD(0)="ORC"
@@ -92,6 +100,12 @@ ORC ; order control segment
  N FIELD9 S FIELD9=$$FMTHL7^XLFDT($$LASTREN^PSJLMPRI(PSJHLDFN,RXORDER)) I FIELD9>FIELD(9) S FIELD(9)=FIELD9,FIELD(15)=FIELD9,FIELD(10)=$$LASTRNBY^PSJLMPRI(PSJHLDFN,RXORDER)
  S NOO=$S(PSJORDER["IV":$G(P("NAT")),(($G(PSJNOO)="")&($G(P("NAT"))]"")):$G(P("NAT")),1:$G(PSJNOO)),PSREASON=$S(NOO="D":"",1:$G(PSREASON))
  S FIELD(16)=NOO_U_$S(NOO="P":"Telephoned",NOO="D":"Duplicate",NOO="X":"Rejected",NOO="A":"Auto",NOO="S":"Service Correction",NOO="W":"Written",NOO="V":"Verbal",NOO="E":"Physician Entered",NOO="I":"Policy",1:"")_U_"99ORN"_U_U_$G(PSREASON)_U
+ ;*279 is clinic order?  if so save clinic name
+ I $D(NODE8),$P(NODE8,U)]"",$P(NODE8,U,2) D
+ .S FIELD(21)=$S($D(^SC($P(NODE8,U),0)):$P(^(0),"^"),1:"")
+ I $D(NODEDSS),$P(NODEDSS,U)]"",$P(NODEDSS,U,2) D
+ .S FIELD(21)=$S($D(^SC($P(NODEDSS,U),0)):$P(^(0),"^"),1:"")
+ ;
  D SEGMENT^PSJHLU(LIMIT),DISPLAY
  Q
  ;

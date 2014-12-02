@@ -1,5 +1,5 @@
-PSBVITFL ;BIRMINGHAM/TEJ - BCMA VITAL MEASUREMENT FILER ;8/31/10 11:03am
- ;;3.0;BAR CODE MED ADMIN;**31,42**;Mar 2004;Build 23
+PSBVITFL ;BIRMINGHAM/TEJ - BCMA VITAL MEASUREMENT FILER ;7/25/12 11:57pm
+ ;;3.0;BAR CODE MED ADMIN;**31,42,70**;Mar 2004;Build 101
  ; Per VHA Directive 2004-038, this routine should not be modified.
  ; 
  ; Reference/IA
@@ -7,6 +7,7 @@ PSBVITFL ;BIRMINGHAM/TEJ - BCMA VITAL MEASUREMENT FILER ;8/31/10 11:03am
  ; 44/908
  ; 42/10039
  ; 
+ ;*70 remove discharge test
  ;
  ; Description:
  ; This routine is to service BCMA 3.0 functionality and store VITALs'
@@ -37,14 +38,12 @@ RPC(RESULTS,PSBDFN,PSBRATE,PSBVTYPE,PSBDTTKN) ;
  ; Set up the input array for the API
  ;
  ;PSB*3*31 Quit if patient has been discharged.
- K VADM,VAIN
- N DFN,VA S DFN=$G(PSBDFN),VAIP("D")=""
- D DEM^VADPT,IN5^VADPT
+ N VAIP,DFN S DFN=$G(PSBDFN) D IN5^VADPT
+ ;*70 removed discharge code & test that was -here-
  S RESULTS(0)=1,RESULTS(1)="-1^ERROR * "_$S($G(PSBVTYPE)']""!($G(PSBVTYPE)="PN"):"Pain Score",1:"Vital Measurement")_" NOT filed successfully."
- I 'VAIP(13)&('VADM(6)) S RESULTS(1)=RESULTS(1)_"  Patient has been DISCHARGED." Q
  S:$G(PSBVTYPE)']"" PSBVTYPE="PN"
  S:$G(PSBDTTKN)']"" PSBDTTKN=$$NOW^XLFDT()
- S PSBHLOC=^DIC(42,+$G(VAIP(5)),44)
+ S:+$G(VAIP(5)) PSBHLOC=^DIC(42,+$G(VAIP(5)),44)  ;*70 clinic, no Hosp
  ;
  ;Store Vitals info into either the VA Vitals package or the IHS PCC
  ; V measurement package, based on agency variable and Vitals package ; flag setting=1 for PCC V Measurement 

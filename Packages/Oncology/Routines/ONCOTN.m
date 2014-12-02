@@ -1,5 +1,5 @@
 ONCOTN ;Hines OIFO/GWB - TNM Staging ;02/28/11
- ;;2.11;ONCOLOGY;**1,3,6,7,11,15,19,22,25,28,29,35,36,37,41,42,43,44,46,47,49,50,51,52,53,54,56**;Mar 07, 1995;Build 10
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  N DATEDX,H,ONCED,S,YR
  S DATEDX=$P(^ONCO(165.5,D0,0),U,16)
@@ -207,19 +207,19 @@ ES ;Automatic Staging
  I N="",ST'=58,'$$GTT^ONCOU55(D0) D  G SG
  .W !!?3,"No ",STGTYP," N category has been assigned."
  .S SG=99
- I M="" D  G SG
+ I M="",'$$OCULAR D  G SG
  .W !?3,"No ",STGTYP," M category has been assigned."
  .S SG=99
- ;
- ;Esophagus/GE Junction C16.0-C16.2
- I TX=67160,ONCED>6 S AG="9" G AG
- I TX=67161!(TX=67162),ONCED>6,SD="010"!(SD="020")!(SD="040")!(SD="060") S AG="9" G AG
  ;
  ;Gastrointestinal Stromal Tumor (Gist) 8935-8936
  I ($E(HT,1,4)=8935)!($E(HT,1,4)=8936),(($E(TX,3,4)=15)!($E(TX,3,4)=16)!($E(TX,3,4)=17)!($E(TX,3,4)=18)!($E(TX,3,4)=21)!($E(TX,3,4)=48)!(TX=67199)!(TX=67209)),ONCED>6 S AG="121" G AG
  ;
  ;Neuroendocrine Tumor 8153, 8240-8242, 8246, 8249
  I ONCED>6,(($E(HT,1,4)=8153)!($E(HT,1,4)=8240)!($E(HT,1,4)=8241)!($E(HT,1,4)=8242)!($E(HT,1,4)=8246)!($E(HT,1,4)=8249)),(($E(TX,3,4)=16)!($E(TX,3,4)=17)!($E(TX,3,4)=18)!(TX=67241)!(TX=67199)!(TX=67209)) S AG=122 G AG
+ ;
+ ;Esophagus/GE Junction C16.0-C16.2
+ I TX=67160,ONCED>6 S AG="9" G AG
+ I TX=67161!(TX=67162),ONCED>6,SD="010"!(SD="020")!(SD="040")!(SD="060") S AG="9" G AG
  ;
  ;Gallbladder
  ;Distal Bile Duct
@@ -328,6 +328,11 @@ PSTG88 ;PATHOLOGIC STAGE 88
  S TMP=$G(X),X=88 D PSSG^ONCOCRC S X=TMP
  K TMP
  Q
+ ;
+OCULAR() ;
+ I $G(HT14)="" S HT14=$E(HT,1,4)
+ I ONCED>6,$$LYMPHOMA^ONCFUNC(D0),((TX=67441)!(TX=67690)!(TX=67695)!(TX=67696)),((HT14>9589)&(HT14<9700)!(HT14>9701)&(HT14<9739)!(HT14>9810)&(HT14<9819)!(HT14>9819)&(HT14<9838)) Q 1
+ Q 0
  ;
 CN1 ;No longer used. Called by PCEs.
 CN3 ;No longer used. Called by PCEs.

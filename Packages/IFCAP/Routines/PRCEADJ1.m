@@ -1,6 +1,6 @@
 PRCEADJ1 ;WISC/CLH/LDB/SJG-FISCAL 1358 ADJUSTMENTS ; 04/21/93  4:20 PM
-V ;;5.1;IFCAP;**23**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**23,176**;Oct 20, 2000;Build 11
+ ;Per VHA Directive 2004-038, this routine should not be modified
  ; Adjustment processing FISCAL
  N PRC410,PRC442,DA,I,PO,PRC,PRCB,PRCF,PRCFA,DIC,TRNODE,X,Y,FSO,PX,TRDA,X1,PODA,NOGO
 V1 D OUT S PRCF("X")="AB" D ^PRCFSITE Q:'%
@@ -50,6 +50,7 @@ CHECK ; Check adjustment amount with obligation/liquidation/authorization amount
  I Y K DIR,Y D ^PRCESOM G:'$G(PRCFA("RETRAN")) V1 S Y=0    ; patch 23
  I 'Y!($D(DIRUT)) W ! D EN^DDIOL("No further processing is being taken on this adjustment.")
 OUT K DTOUT,DIR,DUOUT,DIRUT,DIROUT
+ I $G(PRC410) L -^PRCS(410,PRC410) ;Unlock when exiting opiton, PRC*5.1*176
 OUT1 K DA,D0,ACCEDIT,BBFY,BEGDATE,CONT,CONTEND,CONTIEN,ENDDATE,ESIGMSG,EXIT
  K FMSMOD,FMSVENID,GECSFMS,I,NEWACC,NEWDATE,NOGO
  K NUMB,OB,PARAM1,PO,PODA,PODATE,POIEN,PRC410,PRC442,PRCCC,PRCCCC,PRCCSCC

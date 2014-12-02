@@ -1,5 +1,5 @@
 ONCBPC2 ;HIRMFO/GWB - PCE Study of Cancers of the Urinary Bladder Table II;6/19/96
- ;;2.11;ONCOLOGY;**6**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  K TABLE,HTABLE
  S TABLE("CLINICAL DETECTION")="CLI"
  S TABLE("ONSET OF SYMPTOMS")="ONS"

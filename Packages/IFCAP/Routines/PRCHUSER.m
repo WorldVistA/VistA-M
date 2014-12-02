@@ -1,6 +1,6 @@
 PRCHUSER ;WISC/AKS-Add/Edit purchase card user ;9/12/00  22:52
- ;;5.1;IFCAP;**8,125**;Oct 20, 2000;Build 15
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;5.1;IFCAP;**8,125,165**;Oct 20, 2000;Build 12
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  N DIC,DA,Y,DIE,DR,PRCF,%,PRCHORIG,PRCRI
  S PRCF("X")="S" D ^PRCFSITE Q:'$D(PRC("SITE"))  Q:$G(X)="^"
 MORE S DIC="^PRC(440.5,",DIC(0)="AELQM",DLAYGO=440.5
@@ -21,6 +21,14 @@ MORE S DIC="^PRC(440.5,",DIC(0)="AELQM",DLAYGO=440.5
  . D ^DIE
  . S $P(^PRC(440.5,DA(1),1,0),U,3)=DA,$P(^(0),U,4)=$P(^(0),U,4)+1
  . K DIE,DR,PRCHUSER
+ ;PRC*5.1*165 Text added to inform user that surrogates lookup/add will only
+ ;            show those having access to FCP linked to PCard.
+ W !!,?25,"*** ATTENTION ***"
+ W !,?5,"Adding a new surrogate will now check surrogate name entered"
+ W !,?5,"for valid access to the Fund Control Point linked to the PCard."
+ W !,?5,"It will be possible to enter a name search and not find any"
+ W !,?5,"due to an invalid name entry or user name with no access to"
+ W !,?5,"Purchase Card FCP.",!
 MORES S:'$D(DA(1)) DA(1)=DA S DIC="^PRC(440.5,"_DA(1)_",1,",DIC(0)="AELQ"
  S DIC("S")="I +Y'=$P(^PRC(440.5,DA(1),0),U,8)" D ^DIC
  G:$D(DUOUT)!$D(DTOUT) Q G REPL:Y'>0  S DA=+Y

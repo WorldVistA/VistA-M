@@ -1,5 +1,5 @@
-MAGDRPC1 ;WOIFO/EdM,JSL - Imaging RPCs ; 27 Jul 2010 6:50 AM
- ;;3.0;IMAGING;**11,30,51,50,54,49,122**;Mar 19, 2002;Build 92;Aug 02, 2012
+MAGDRPC1 ;WOIFO/EdM - Imaging RPCs ; 12 Feb 2013 5:53 PM
+ ;;3.0;IMAGING;**11,30,51,50,54,49,122,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,6 +15,10 @@ MAGDRPC1 ;WOIFO/EdM,JSL - Imaging RPCs ; 27 Jul 2010 6:50 AM
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ Q
+ ;
+GETPID(OUT) ; RPC = MAG DICOM GET PROCESS ID
+ S OUT=$J
  Q
  ;
 GETID(OUT,HOSTNAME) ; RPC = MAG DICOM GET MACHINE ID
@@ -36,7 +40,7 @@ GETID(OUT,HOSTNAME) ; RPC = MAG DICOM GET MACHINE ID
  ;
 DOMAIN(OUT) ; RPC = MAG DICOM GET DOMAIN
  N X
- I $T(WHERE^XUPARAM)'="" S OUT=$$KSP^XUPARAM("WHERE") Q
+ S OUT=$$KSP^XUPARAM("WHERE") Q:OUT'=""  ; ICR 2541
  ; The coding standards frown upon the line below,
  ; but it is the best we can do when the line above cannot be used.
  S X=^DD("SITE") S:X'[".DOMAIN.EXT" X=X_".DOMAIN.EXT"
@@ -182,7 +186,7 @@ VALDEST(OUT,NAME) ; RPC = MAG DICOM ROUTE VALID DEST
  Q
  ;
 PAT(OUT,DFN) ; RPC = MAG DICOM GET PATIENT
- N DIQUIET,I,N,VADM,VAIN,VAPA,VASD
+ N DIQUIET,I,N,VA,VADM,VAIN,VAPA,VASD
  K OUT
  I '$G(DFN) S OUT(1)="-1,No Patient Identified" Q
  S N=1,DIQUIET=1
@@ -191,8 +195,7 @@ PAT(OUT,DFN) ; RPC = MAG DICOM GET PATIENT
  D INP^VADPT,VA("INP","VAIN","")
  D SDA^VADPT,VA("SDA","VASD","")
  I $T(GETICN^MPIF001)'="" S X=$$GETICN^MPIF001(DFN) S:X'<0 N=N+1,OUT(N)="ICN^1^"_X
- S N=N+1,OUT(N)="Site-DFN^1^"_$P($$SITE^VASITE(),"^",3)_"-"_DFN
- ;S N=N+1,OUT(N)="Site-DFN^1^"_$E($P($$NS^XUAF4($$KSP^XUPARAM("INST")),U,2),1,3)_"-"_DFN
+ S N=N+1,OUT(N)="Site-DFN^1^"_$$STATNUMB^MAGDFCNV()_"-"_DFN
  S OUT(1)=N-1
  Q
  ;

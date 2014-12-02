@@ -1,6 +1,14 @@
-LEXDM3 ; ISL Default Misc - Name Default          ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDM3 ;ISL/KER - Default Misc - Name Default ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    $$LOW^XLFSTR        ICR  10103
+ ;    $$UP^XLFSTR         ICR  10103
+ ;    ^DIR                ICR  10026
+ ;               
  ; LEXFIL    Flag for Filter v.s. Display
  ; LEXX      Value returned
  ; LEXY      Local Value of Y

@@ -1,5 +1,5 @@
 SDRRRECL ;10N20/MAH;Recall Reminder Manual Printing; 09/20/2004
- ;;5.3;Scheduling;**536,561,569**;Aug 13, 1993;Build 3
+ ;;5.3;Scheduling;**536,561,569,579**;Aug 13, 1993;Build 3
  ;;This routine is called from SDRRLRP 
  ;;If the site has set TYPE OF NOTIFICATION to LETTER this routine
  ;;will run.
@@ -49,12 +49,21 @@ QUIT K ADTA,D0,DFN,DIC,DIR,DIRUT,DTA,I,L,PN,POP,Y,DIV,EDT,PR,SDT,FAST,TIME,ACC
 SELDT S %DT="AEX",%DT("A")="Start with RECALL DATE: " D ^%DT Q:Y<0  S SDT=Y,%DT("A")="End with RECALL DATE: " D ^%DT I Y<SDT W $C(7),"  ??" G SELDT
  S EDT=Y Q
 PR S LETTER=0
- W @IOF F L=1:1:11 W !
- W !?20,$P(PN,",",2)," ",$P(PN,",")
+ ; SD*579 - Add date printed and last 4
+ S PRNDT=$TR($$FMTE^XLFDT(DT,"5DF")," ","0")
+ S LAST4=$E($P(VA("BID"),U),1,4)
+ W @IOF
+ W !,?65,PRNDT
+ W !,?65,$E(PN,1)_LAST4
+ F L=1:1:9 W !
+ ;
+ ; SD*579 - Fix suffix listed problem
+ S PNAME=$$NAMEFMT^XLFNAME(PN,"G","")
+ W !?20,PNAME
  I $P(VAPA(1),U)'="" W !?20,$P(VAPA(1),U)
  I $P(VAPA(2),U)'="" W !?20,$P(VAPA(2),U)
  I $P(VAPA(3),U)'="" W !?20,$P(VAPA(3),U)
- W !?20,$P(VAPA(4),U),", "_STATE_"  ",$P(VAPA(6),U)
+ W !?20,$P(VAPA(4),U)," "_STATE_"  ",$P(VAPA(6),U)
  I $D(MESSAGE) W !!!!!,?25,MESSAGE
  ; SD*569 - Adjust the tab starting position
  I TIME'="" W !!!!?2,TIME
@@ -62,7 +71,7 @@ PR S LETTER=0
  W !!!
  S:'$D(MESSAGE) LETTER=$O(^SD(403.52,"B",DIV,LETTER))
  I LETTER>0 S LINE=0 F  S LINE=$O(^SD(403.52,LETTER,1,LINE)) Q:'LINE  W !,?2,$P(^SD(403.52,LETTER,1,LINE,0),"^",1)
- K MESSAGE
+ K MESSAGE,PRNDT,LAST4,PNAME
  Q
 EN1 ;print letters by provider
  S DIC="^SD(403.54,",DIC(0)="AEQMZ",DIC("A")="Select Provider: " D ^DIC G:Y<0 QUIT S PR=+Y
@@ -70,12 +79,14 @@ EN1 ;print letters by provider
  S %ZIS="QM" D ^%ZIS G:POP QUIT I $D(IO("Q")) S ZTDESC="Print Recall Letters by Provider",ZTRTN="DQD1^SDRRRECL" S ZTSAVE("*")="" D ^%ZTLOAD G QUIT
 DQD1 K ^TMP($J)
  U IO S D0=0 F  S D0=$O(^SD(403.5,"C",PR,D0)) Q:D0=""  S (CLINIC,FAIL)=0 S CLINIC=$P($G(^SD(403.5,D0,0)),"^",2) D
+ .; SD*579 - If entry not exist, kill x-refs and quit.
+ .I '$D(^SD(403.5,D0)) D KXREF Q
  .S DTA=$G(^SD(403.5,D0,0))
  .I CLINIC="" S FAIL=1 S MESSAGE="***NO CLINIC ON FILE**"
  .I CLINIC'=""  I '$D(^SD(403.52,"B",CLINIC))  S MESSAGE="***NO CLINIC LETTER ON FILE**" S FAIL=1
  .I CLINIC'="",(FAIL=0) S DIV=CLINIC S LETTER=0,LETTER=$O(^SD(403.52,"B",CLINIC,LETTER))
  .S TIME=""
- .I $P(^SD(403.5,D0,0),"^",9)>30 S TIME=$P(^SD(403.5,D0,0),"^",9) S TIME="**"_TIME_"**"
+ .I $P($G(^SD(403.5,D0,0)),"^",9)>30 S TIME=$P($G(^SD(403.5,D0,0)),"^",9) S TIME="**"_TIME_"**"
  .S LAB=$S($P($G(^SD(403.5,D0,0)),"^",8)="f":"Lab test(s) have been ordered that require you to FAST",$P(^SD(403.5,D0,0),"^",8)="n":"Lab test(s) have been ordered, which need to be done before an appointment is made",1:"")
  .S DFN=+DTA
  .Q:$P(DTA,U,6)<SDT!($P(DTA,U,6)>EDT)
@@ -99,12 +110,14 @@ EN3 ;PRINT LETTER FOR A TEAM
  S %ZIS="QM" D ^%ZIS G:POP QUIT I $D(IO("Q")) S ZTDESC="Print Recall Letters for a Team",ZTRTN="DQD4^SDRRRECL" S ZTSAVE("*")="" D ^%ZTLOAD G QUIT
 DQD4 S PR=0 F  S PR=$O(^SD(403.54,"C",TEAM,PR)) Q:'PR  S D0=0 D
  .F  S D0=$O(^SD(403.5,"C",PR,D0)) Q:D0=""  S (CLINIC,FAIL)=0 S CLINIC=$P($G(^SD(403.5,D0,0)),"^",2) D
+ ..; SD*579 - If entry not exist, kill x-refs and quit.
+ ..I '$D(^SD(403.5,D0)) D KXREF Q
  ..S DTA=$G(^SD(403.5,D0,0))
  ..I CLINIC="" S FAIL=1 S MESSAGE="***NO CLINIC ON FILE**"
  ..I CLINIC'=""  I '$D(^SD(403.52,"B",CLINIC))  S MESSAGE="***NO CLINIC LETTER ON FILE**" S FAIL=1
  ..I CLINIC'="",(FAIL=0) S DIV=CLINIC S LETTER=0,LETTER=$O(^SD(403.52,"B",CLINIC,LETTER))
  ..S TIME=""
- ..I $P(^SD(403.5,D0,0),"^",9)>30 S TIME=$P(^SD(403.5,D0,0),"^",9) S TIME="**"_TIME_"**"
+ ..I $P($G(^SD(403.5,D0,0)),"^",9)>30 S TIME=$P($G(^SD(403.5,D0,0)),"^",9) S TIME="**"_TIME_"**"
  ..S LAB=$S($P($G(^SD(403.5,D0,0)),"^",8)="f":"Lab test(s) have been ordered that require you to FAST",$P(^SD(403.5,D0,0),"^",8)="n":"Lab test(s) have been ordered, which need to be done before an appointment is made",1:"")
  ..S DFN=+DTA
  ..Q:$P(DTA,U,6)<SDT!($P(DTA,U,6)>EDT)  ;SD*561 check selected date range
@@ -159,6 +172,8 @@ DQD5 N CHKDATE
  ;SD*5.3*561 remove extraneous write command following $O on next line
  S PR=0,CHKDATE=5 F  S PR=$O(^SD(403.54,"C",TEAM,PR)) Q:'PR  D
  .S D0=0 F  S D0=$O(^SD(403.5,"C",PR,D0)) Q:'D0  S (CLINIC,FAIL)=0 S CLINIC=$P($G(^SD(403.5,D0,0)),"^",2) D
+ ..; SD*579 - If entry not exist, kill x-refs and quit
+ ..I '$D(^SD(403.5,D0)) D KXREF Q
  ..I $P($G(^SD(403.5,D0,0)),"^",10)="" QUIT
  ..; SD*569 - Prevent from printing more than ONE second letter.
  ..I $P($G(^SD(403.5,D0,0)),"^",13)'="" QUIT
@@ -185,4 +200,14 @@ DQD5 N CHKDATE
  ..S $P(^SD(403.5,D0,0),"^",13)=DT
  ..D PR
  D ^%ZISC G QUIT
+ Q
+ ;
+KXREF ; SD*579 - kill x-refs if entry not exist
+ S STR="BCDE"
+ F I=1:1:$L(STR) D
+ .S X=$E(STR,I,I)
+ .S N3=0 F  S N3=$O(^SD(403.5,X,N3)) Q:N3'>0  D
+ ..S N4=0 F  S N4=$O(^SD(403.5,X,N3,N4)) Q:N4'>0  D
+ ...I N4=D0 K ^SD(403.5,X,N3,N4)
+ K I,STR,X,N3,N4
  Q

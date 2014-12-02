@@ -1,5 +1,21 @@
-LEXXII ;ISL/KER - Lexicon Status (Install Info) ;01/03/2011
- ;;2.0;LEXICON UTILITY;**32,46,49,50,41,59,73**;Sep 23, 1996;Build 10
+LEXXII ;ISL/KER - Lexicon Status (Install Info) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**32,46,49,50,41,59,73,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^%ZOSF("UCI")       ICR  10096
+ ;    ^LEXM(0)            N/A
+ ;    ^TMP("LEX*",$J)     SACC 2.3.2.5.1
+ ;    ^TMP("LEX*",$J)     SACC 2.3.2.5.1
+ ;    ^VA(200)            ICR  10060
+ ;               
+ ; External References
+ ;    $$FMDIFF^XLFDT      ICR  10103
+ ;    $$FMTE^XLFDT        ICR  10103
+ ;    $$GET1^DIQ          ICR   2056
+ ;    $$NOW^XLFDT         ICR  10103
+ ;    FIND^DIC            ICR   2051
+ ;    GETS^DIQ            ICR   2056
+ ;    $$PROD^XUPROD       ICR   4440
  ;              
  ; Variables NEWed or KILLed Elsewhere
  ;   LEXACCT  NEWed by LEXXFI sending message
@@ -7,21 +23,6 @@ LEXXII ;ISL/KER - Lexicon Status (Install Info) ;01/03/2011
  ;   LEXCRE   NEWed by LEXXGI loading data
  ;   LEXIGHF  NEWed by Post Install routine LEX20nnP
  ;   XPDA     NEWed by KIDS during Install
- ;              
- ; Global Variables
- ;   DBIA 10096  ^%ZOSF("PROD"
- ;   DBIA 10096  ^%ZOSF("UCI"
- ;   DBIA 10060  ^VA(200
- ;   ^LEXM(0
- ;   ^TMP("LEX*",$J    SACC 2.3.2.5.1
- ;              
- ; External References
- ;   DBIA 10103  $$FMTE^XLFDT
- ;   DBIA 10103  $$NOW^XLFDT
- ;   DBIA 10103  $$FMDIFF^XLFDT
- ;   DBIA  2056  $$GET1^DIQ (file #200)
- ;   DBIA  2051  FIND^DIC
- ;   DBIA  2056  GETS^DIQ
  ;              
 EN ; Main Entry
  N LEXSUB S LEXSUB=$G(LEXID) S:LEXSUB="" LEXSUB="LEXXII" K ^TMP(LEXSUB,$J) D II
@@ -31,8 +32,11 @@ II ; Install Information
  N LEXT,LEXA,LEXACT,LEXB,LEXD,LEXE,LEXL,LEXU,LEXN,LEXP,LEXPROF,LEXDA H 2
  S LEXA="",LEXACT=$G(LEXACCT),LEXPRO=$G(LEXPRO),LEXPRON=$G(LEXPRON)
  S:'$L(LEXPRON) LEXPRON="LEXICAL SERVICES UPDATE" S:'$L(LEXPRO) LEXPRO=$G(^LEXM(0,"PRO")) S:+LEXPRO>0 LEXPRO=$$ED(LEXPRO)
- S LEXT="Lexicon/ICD/CPT Installation" D TL(LEXT)
- S LEXT="============================" D TL(LEXT),BL
+ I $L($G(LEXSUBH)) D
+ . N LEXL S LEXT=$G(LEXSUBH),$P(LEXL,"=",$L(LEXT))="=" D TL(LEXT),TL(LEXL),BL
+ I '$L($G(LEXSUBH)) D
+ . S LEXT="Lexicon/ICD/CPT Installation" D TL(LEXT)
+ . S LEXT="============================" D TL(LEXT),BL
  S LEXD=$$ASOF,LEXA=$$UCI,LEXU=$$USR,LEXN=$P(LEXU,"^",1)
  S:$L($P(LEXACT,"^",1))&($L($P(LEXACT,"^",1))) LEXA=LEXACT
  S LEXP=$P(LEXU,"^",2),LEXN=$$PM^LEXXFI7(LEXN)
@@ -75,8 +79,10 @@ II ; Install Information
  ;                             
  ; Miscellaneous
 UCI(X) ;   UCI where Lexicon is installed
- N LEXU,LEXP,LEXT,Y X ^%ZOSF("UCI") S LEXU=Y,LEXP="" S:LEXU=^%ZOSF("PROD")!($P(LEXU,",",1)=^%ZOSF("PROD")) LEXP=" (Production)"
- S:LEXU'=^%ZOSF("PROD")&($P(LEXU,",",1)'=^%ZOSF("PROD")) LEXP=" (Test)" S X="",$P(X,"^",1)=LEXU,$P(X,"^",2)=LEXP
+ N LEXU,LEXP,LEXT,Y X ^%ZOSF("UCI") S LEXU=Y,LEXP=""
+ S LEXP=$S($$PROD^XUPROD(1):" (Production)",1:" (Test)")
+ S:LEXU[","&($L($P(LEXU,",",1))>3) LEXU=$P(LEXU,",",1)
+ S X="",$P(X,"^",1)=LEXU,$P(X,"^",2)=LEXP
  Q X
 USR(LEX) ;   User/Person
  N LEXDUZ,LEXPH,LEXNM

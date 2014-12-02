@@ -1,7 +1,11 @@
 PRCEDRE0 ;WISC/LDB-ENTER/EDIT DAILY RECORD CONT ; 06/09/93  1:24 PM
- ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;5.1;IFCAP;**180**;Oct 20, 2000;Build 5
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;Called from PRCEDRE and PRCEDRE1 to increase authorization amount
+ ;
+ ;PRC*5.1*180 RGB 10/22/12  Added switch PRCE424 coming from 1358 processing
+ ;to insure new entry check (EN1^PRCSUT3) uses file 424, not file 410.
+ ;
 AMTOVR W $C(7),!,"This amount exceeds the authorization balance by $",$FN((AAMT-ABAL),",P",2)
  W !!,"The available authorization balance is $",$FN(ABAL,",P",2)
  W $C(7),!!,"This daily record amount cannot be entered until an",!,"increase has been made to the authorization."
@@ -25,7 +29,8 @@ AU(PRC424) ;add an authorization record called from PRCEDRE
  N AMT,PRCF,DIC,DIR,DLAYGO,DIE,DA,DR,Y,X,TRDA,ER,TIME,IN,ABAL,ACT,AUDA,BAL1,BAL2,Z,X,Y
  D NOW^%DTC S TIME=% K Y
  S (X,Z)=PRC("SITE")_"-"_$P($G(TRNODE(4)),U,5)
- D WAIT^PRCFYN,EN1^PRCSUT3 S DIC="^PRC(424,",DLAYGO=424,DIC(0)="LXZ" D ^DIC I Y<0 S X="Unable to create an new entry.  Contact Application Coordinator.*" D MSG^PRCFQ G EXIT
+ D WAIT^PRCFYN S PRCE424=1 K MSG D EN1^PRCSUT3 K PRCE424 I $D(MSG),MSG'="" S X=MSG D MSG^PRCFQ K MSG G EXIT   ;PRC*5.1*180
+ S DIC="^PRC(424,",DLAYGO=424,DIC(0)="LXZ" D ^DIC I Y<0 S X="Unable to create an new entry.  Contact Application Coordinator.*" D MSG^PRCFQ K MSG G EXIT    ;PRC*5.1*180
  W !,"This entry has been assigned transaction number: ",$P(X,"-",3),"."
  S DIE=DIC,(AUDA,DA)=+Y,AUDA0=Y(0)
  D NOW^%DTC S TIME=% K Y

@@ -1,5 +1,16 @@
-ORLP1 ; SLC/DCM,CLA - Patient Lists, Store ; [1/3/01 1:37pm]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**11,63,90,98**;Dec 17, 1997
+ORLP1 ; SLC/DCM,CLA - Patient Lists, Store ; 1/19/11 10:12am
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**11,63,90,98,273**;Dec 17, 1997;Build 17
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;DBIA reference section
+ ;2160  - ^XUTL("OR"
+ ;10006 - DIC
+ ;10009 - YN^DICN
+ ;10018 - DIE
+ ;10013 - DIK
+ ;10026 - DIR
+ ;2957  - CLNLIST^GMRCTU
+ ;2263  - XPAR
  ;
 STOR ;called by ORLP0 - Store lists
  N %,DA,DIC,DIK,DIR,DLAYGO,DR,ORLIST,ORLN,I,J,X,Y
@@ -25,6 +36,7 @@ GETNAME ; Call DIR to get user entry for new list name:
  ;
 OVRWR ;
  N ORABORT ; Flag for aborting process.
+ N ERROR
  S ORABORT=0
  ;
  ; Check for problems with name entry:
@@ -33,7 +45,7 @@ OVRWR ;
  I ORABORT G GETNAME
  ;
  ; Ask - overwrite if an existing team by that name already?:
- I 'ORNEWL D
+ I 'ORNEWL D  Q:$G(ERROR)
  .I $O(^OR(100.21,+Y,10,0)) D  Q:%'=1  ; Any patients on list yet?
  ..F  D  Q:%
  ...W !,ORLN_" already has patients.  Do you want to overwrite it"
@@ -41,7 +53,7 @@ OVRWR ;
  ...I %=2!(%=-1) W !,"List ",ORLN," unchanged.",! S ORABORT=1 Q
  ...I '% W !,"Answer YES or NO, if you answer YES the list "_ORLN_" will be cleared,",!,"and this temporary list will overwrite it.",! Q
  .I ORABORT Q
- .L +^OR(100.21,+ORLIST)
+ .L +^OR(100.21,+ORLIST):$G(DILOCKTM,3) I '$T W !,"Another user is editing this entry." S ERROR=1 Q
  .I '$D(^OR(100.21,ORLIST,10,0))#2 S ^(0)="^100.2101AV^"
  .I '$D(^OR(100.21,ORLIST,1,0))#2 S ^(0)="^100.212PA^"
  .S I=0 F  S I=$O(^OR(100.21,ORLIST,10,I)) Q:'I  S DA=+I,DA(1)=+ORLIST,DIK="^OR(100.21,"_ORLIST_",10," D ^DIK
@@ -65,7 +77,7 @@ OVRWR ;
  .I '$D(^OR(100.21,+ORLIST,1,DUZ)) S DA(1)=ORLIST,DIC="^OR(100.21,"_DA(1)_",1,",DIC(0)="LX",X="`"_DUZ D ^DIC K DIC
  ;
  ; Add selected patients to list (if any):
- L +^OR(100.21,+ORLIST)
+ L +^OR(100.21,+ORLIST):$G(DILOCKTM,3) I '$T W !,"Another user is editing this entry." Q
  S ORI=0
  F  S ORI=$O(^XUTL("OR",$J,"ORLP",ORI)) Q:ORI<1  I $D(^(ORI,0)) S X=^(0),X="PT.`"_+$P(X,"^",3),DA(1)=ORLIST,DIC="^OR(100.21,"_ORLIST_",10,",DIC(0)="LX" D ^DIC
  K DIC,ORI
@@ -97,33 +109,34 @@ DEL ;called by option ORLP DELETE - delete a list
  D ^DIC
  K DIC
  I Y<1 Q
- S DLIST=Y
+ S ORPTEAM=Y
  ;
 D2 ;
  S %=""
- I $$GET^XPAR("USR.`"_DUZ,"ORLP DEFAULT TEAM",1,"I")=+DLIST W !!,"This is your primary patient list, are you sure you want to remove it" S %=2 D YN^DICN
+ I $$GET^XPAR("USR.`"_DUZ,"ORLP DEFAULT TEAM",1,"I")=+ORPTEAM W !!,"This is your primary patient list, are you sure you want to remove it" S %=2 D YN^DICN
  I %=0 W !,"Answer YES if you really want to remove this list." G D2
  I %'="" Q:%'=1
  W !!,"WARNING - Deleting a patient list will disable access by providers who use the",!,"list as their preferred patient list."
  ;
 D1 ;
- W !,"Are you ready to delete list ",$P(DLIST,"^",2)
+ L +^OR(100.21,+ORPTEAM):$G(DILOCKTM,3) I '$T W !,"Another user is editing this entry." Q
+ W !,"Are you ready to delete list ",$P(ORPTEAM,"^",2)
  S %=2 D YN^DICN
  I %=0 W !,"Enter YES to delete the list, NO to quit." G D1
  Q:%'=1
  W !,"Processing........"
- L +^OR(100.21,+DLIST)
- S DA=+DLIST,DIK="^OR(100.21,"
+ ;L +^OR(100.21,+ORPTEAM)
+ S DA=+ORPTEAM,DIK="^OR(100.21,"
  D ^DIK
  K DA,DIC,DIK
  ;
  ; Next 2 lines added by PKS, 2/8/2000:
  W !,"Searching for/removing Consults pointers to deleted team..."
- D CLNLIST^GMRCTU(+DLIST,0) ; Dump pointers to team in file 123.5.
+ D CLNLIST^GMRCTU(+ORPTEAM,0) ; Dump pointers to team in file 123.5.
  ;
  W !,"List deletion completed.",!
- L -^OR(100.21,+DLIST)
- K DLIST,ORLPDUZ,Y,XX,^TMP("ORLP",$J,"TLIST") ;KILL temporary list
+ L -^OR(100.21,+ORPTEAM)
+ K ORPTEAM,ORLPDUZ,Y,XX,^TMP("ORLP",$J,"TLIST") ;KILL temporary list
  G DEL
  Q
  ;

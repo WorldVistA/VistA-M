@@ -1,5 +1,5 @@
-LR7OR1 ;DALIO/JMC - Get Lab results ;11/10/10  17:38
- ;;5.2;LAB SERVICE;**121,187,219,230,256,310,340,348,350**;Sep 27, 1994;Build 230
+LR7OR1 ;DALIO/JMC - Get Lab results ;03/13/13  09:08
+ ;;5.2;LAB SERVICE;**121,187,219,230,256,310,340,348,350,427**;Sep 27, 1994;Build 33
  ;
 RR(DFN,ORD,SDATE,EDATE,SUB,TEST,FLAG,COUNT,SPEC,UNVER) ;Get LAB results for patient
  ;DFN = Patient DFN, ptr to file 2 (Required)
@@ -107,7 +107,7 @@ DTRNG ; Date range setup
  ;
 SN ; Get the subs
  ;
- N II,III,LRPLSAVE
+ N I,II,III,LRPLSAVE
  ;
  ; Set flag to not print performing lab in called routines, wait for control returns to this routine.
  S LRPLSAVE=1
@@ -127,7 +127,9 @@ SN ; Get the subs
  . S III=0
  . F  S III=$O(^TMP("LRX",$J,69,II,63,III)) Q:III<1  I $S($D(TSTY):$D(TSTY(III)),1:1) D
  . . I $P(^TMP("LRX",$J,69,II,63,III),U,6)="" Q
- . . S ^TMP("LRRR",$J,DFN,SS,9999999-DRAW,III)=^TMP("LRX",$J,69,II,63,III)
+ . . S I=III
+ . . I $D(^TMP("LRRR",$J,DFN,SS,9999999-DRAW,I)) F  S I=I+.00000001 I '$D(^TMP("LRRR",$J,DFN,SS,9999999-DRAW,I)) Q
+ . . S ^TMP("LRRR",$J,DFN,SS,9999999-DRAW,I)=^TMP("LRX",$J,69,II,63,III)
  . I $D(^TMP("LRX",$J,69,II,63,"N")),$O(^TMP("LRRR",$J,DFN,SS,9999999-DRAW,0)) M ^TMP("LRRR",$J,DFN,SS,9999999-DRAW,"N")=^TMP("LRX",$J,69,II,63,"N")
  ;
  F I="LRPLS","LRPLS-ADDR" K ^TMP(I,$J)

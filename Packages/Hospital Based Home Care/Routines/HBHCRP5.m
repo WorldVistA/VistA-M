@@ -1,5 +1,19 @@
-HBHCRP5 ; LR VAMC(IRMS)/MJT-HBHC report on file 631, individual patient discharge data, includes all fields ;9204
- ;;1.0;HOSPITAL BASED HOME CARE;**2,5,6,22**;NOV 01, 1993;Build 2
+HBHCRP5 ;LR VAMC(IRMS)/MJT - HBHC report on file 631, individual patient discharge data, includes all fields ;2/5/07
+ ;;1.0;HOSPITAL BASED HOME CARE;**2,5,6,22,25**;NOV 01, 1993;Build 45
+ ;
+ ; This routine references the following supported ICRs:
+ ; 5747    $$CODEC^ICDEX
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;HBH*1.0*25   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;******************************************************************************
+ ;******************************************************************************
+ ;
 PROMPT ; Prompt user for patient name
  K DIC S DIC="^HBHC(631,",DIC(0)="AEMQZ" D ^DIC
  G:Y=-1 EXIT
@@ -13,7 +27,7 @@ DQ ; De-queue
 PROCESS ; Process record
  S HBHCDPT0=^DPT(+(HBHCY0),0),HBHCNOD1=$G(^HBHC(631,HBHCDFN,1))
  W !,"Patient Name:  ",$P(HBHCDPT0,U),?46,"Last Four:",?58,$E($P(HBHCDPT0,U,9),6,9),!,HBHCZ
- W !," 1.  Hospital Number:",?29,$J(HBHCHOSP,7),?38,"|",?41,"20.  Primary Diagnosis @ D/C:",?74,$J($S($P(HBHCY0,U,47)]"":$P(^ICD9($P(HBHCY0,U,47),0),U),1:""),6),!,HBHCY
+ W !," 1.  Hospital Number:",?29,$J(HBHCHOSP,7),?38,"|",?41,"20.  Primary Diagnosis @ D/C:",?72,$J($S($P(HBHCY0,U,47)]"":$$CODEC^ICDEX(80,$P(HBHCY0,U,47)),1:""),8),!,HBHCY
  W !," 2.  Discharge Date:",?28,$S($P(HBHCY0,U,40)]"":$E($P(HBHCY0,U,40),4,5)_"-"_$E($P(HBHCY0,U,40),6,7)_"-"_$E($P(HBHCY0,U,40),2,3),1:""),?38,"|",?41,"21.  Secondary Diagnoses @ D/C:"
  I HBHCNOD1]"" W:$P(HBHCNOD1,U,16)]"" !?38,"|",?46,$P(HBHCNOD1,U,16)
  W !,HBHCY

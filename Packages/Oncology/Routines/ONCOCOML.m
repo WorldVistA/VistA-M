@@ -1,5 +1,5 @@
 ONCOCOML ;Hines OIFO/GWB - Display abstract summary; 07/13/00
- ;;2.11;ONCOLOGY;**16,25,26,48**;Mar 07, 1995;Build 13
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  N ACS,TOP,LTS,DDX,ABS,DIV
  S ACS=$$GET1^DIQ(165.5,XD1,.061)

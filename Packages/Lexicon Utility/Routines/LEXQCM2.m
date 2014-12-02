@@ -1,5 +1,5 @@
-LEXQCM2 ;ISL/KER - Query - CPT Modifiers - Save ;10/30/2008
- ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
+LEXQCM2 ;ISL/KER - Query - CPT Modifiers - Save ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**62,80**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
@@ -45,7 +45,9 @@ COD(X,Y,LEXLEN) ;   Code Line
 STA(X,LEXLEN) ;   Status Line
  N LEX,LEXC,LEXI,LEXN,LEXX,LEXE,LEXS,LEXT,LEXW,LEXEFF,LEXSTA S LEXX=$G(X),LEXEFF=$P(LEXX,"^",5),LEXSTA=$P(LEXX,"^",4),LEXEFF=$TR(LEXEFF,"()","")
  S LEXW=$P(LEXX,"^",6),LEXT="  Status:  ",LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT))),LEXT=LEXT_LEXSTA
- S LEXT=LEXT_$J(" ",(35-$L(LEXT)))_"Effective:  "_$$UP^XLFSTR($E(LEXEFF,1))_$E(LEXEFF,2,$L(LEXEFF)) D BL,TL(LEXT)
+ S LEXT=LEXT_$J(" ",(35-$L(LEXT)))
+ S:LEXEFF'["future" LEXT=LEXT_"Effective:  "
+ S LEXT=LEXT_$$UP^XLFSTR($E(LEXEFF,1))_$E(LEXEFF,2,$L(LEXEFF)) D BL,TL(LEXT)
  I $L(LEXW) D
  . N LEX,LEXT,LEXC,LEXI,LEXN S LEX(1)=LEXW D PR^LEXQM(.LEX,(+($G(LEXLEN))-7)) Q:+($O(LEX(" "),-1))'>0
  . S LEXT=$J(" ",((79-+($G(LEXLEN)))))

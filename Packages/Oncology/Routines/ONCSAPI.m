@@ -1,5 +1,5 @@
 ONCSAPI ;Hines OIFO/SG - ONCOLOGY WEB-SERVICE  ; 12/7/06 10:37am
- ;;2.11;ONCOLOGY;**40,47**;Mar 07, 1995;Build 19
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  ; ONCSAPI ------------- API DESCRIPTOR
  ;
@@ -99,8 +99,27 @@ ONCSAPI ;Hines OIFO/SG - ONCOLOGY WEB-SERVICE  ; 12/7/06 10:37am
  ;              12       CS Site-Specific Factor 3
  ;              13       CS Site-Specific Factor 4
  ;              14       CS Site-Specific Factor 5
- ;              15       CS Site-Specific Factor 6
- ;              16       Histologies
+ ;              15       CS Site-Specific Factor 6 
+ ;              16       CS Site-Specific Factor 7 
+ ;              17       CS Site-Specific Factor 8
+ ;              18       CS Site-Specific Factor 9
+ ;              19       CS Site-Specific Factor 10
+ ;              20       CS Site-Specific Factor 11
+ ;              21       CS Site-Specific Factor 12
+ ;              22       CS Site-Specific Factor 13
+ ;              23       CS Site-Specific Factor 14
+ ;              24       CS Site-Specific Factor 15
+ ;              25       CS Site-Specific Factor 16
+ ;              26       CS Site-Specific Factor 17
+ ;              27       CS Site-Specific Factor 18
+ ;              28       CS Site-Specific Factor 19
+ ;              29       CS Site-Specific Factor 20
+ ;              30       CS Site-Specific Factor 21
+ ;              31       CS Site-Specific Factor 22
+ ;              32       CS Site-Specific Factor 23
+ ;              33       CS Site-Specific Factor 24
+ ;              34       CS Site-Specific Factor 25
+ ;              35       Histologies
  ;
  ; CS ENTRY POINT ------ DESCRIPTION
  ;

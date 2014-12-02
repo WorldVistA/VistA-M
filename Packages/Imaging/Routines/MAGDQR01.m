@@ -1,5 +1,5 @@
-MAGDQR01 ;WOIFO/EdM - Imaging RPCs for Query/Retrieve ; 14 Oct 2008 3:45 PM
- ;;3.0;IMAGING;**51,54,66**;Mar 19, 2002;Build 1836;Sep 02, 2010
+MAGDQR01 ;WOIFO/EdM,MLH,DAC - Imaging RPCs for Query/Retrieve ; 15 Feb 2013 10:12 PM
+ ;;3.0;IMAGING;**51,54,66,118**;Mar 19, 2002;Build 4525;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -17,11 +17,15 @@ MAGDQR01 ;WOIFO/EdM - Imaging RPCs for Query/Retrieve ; 14 Oct 2008 3:45 PM
  ;;
  Q
  ;
-FIND(OUT,TAGS,RESULT,OFFSET,MAX) ; RPC = MAG CFIND QUERY
- N ERROR,I,N,P,REQ,T,V,X,ZTDESC,ZTDTH,ZTRTN,ZTSAVE,ZTSK
+FIND(OUT,TAGS,RESULT,OFFSET,MAX,AENAME) ; RPC = MAG CFIND QUERY
+ N ERROR,I,L,MAGDUZ,N,P,REQ,T,V,X,ZTDESC,ZTDTH,ZTRTN,ZTSAVE,ZTSK
+ K ^TMP("MAG",$J,"ERR") ; common error array (foreground)
  ;
- S RESULT=$G(RESULT),OFFSET=$G(OFFSET)
+ S RESULT=$G(RESULT),OFFSET=$G(OFFSET),AENAME=$G(AENAME)
  S ERROR=0
+ ;
+ ; The MAGDUZ identifier is now the DUZ of the logged in user
+ S MAGDUZ=$G(DUZ)
  ;
  I 'RESULT D  Q
  . ; TAGS(i) = tag | VR | flag | value
@@ -64,6 +68,7 @@ FIND(OUT,TAGS,RESULT,OFFSET,MAX) ; RPC = MAG CFIND QUERY
  . S ZTDESC="Perform DICOM Query, result-set="_RESULT
  . S ZTDTH=$H
  . S ZTSAVE("RESULT")=RESULT
+ . S ZTSAVE("MAGDUZ")=$G(MAGDUZ)
  . S T="" F  S T=$O(REQ(T)) Q:T=""  D
  . . S ZTSAVE("REQ("""_T_""")")=REQ(T)
  . . S P="" F  S P=$O(REQ(T,P)) Q:P=""  S ZTSAVE("REQ("""_T_""","_P_")")=REQ(T,P)
@@ -72,11 +77,11 @@ FIND(OUT,TAGS,RESULT,OFFSET,MAX) ; RPC = MAG CFIND QUERY
  . D:'$G(ZTSK) ERR("TaskMan did not Accept Request")
  . S:$G(ZTSK) $P(^MAGDQR(2006.5732,RESULT,0),"^",4)=ZTSK
  . I ERROR D ERRLOG Q
- . D LOG("TaskMan","","0,"_RESULT_",Query Started through TaskMan")
+ . D LOG^MAGDQRUL("TaskMan","","0,"_RESULT_",Query Started through TaskMan")
  . Q
  ;
  I OFFSET<0 D  Q  ; All done, clean up result-set
- . D LOG("CleanUp","","1,Result Set Cleaned Up")
+ . D LOG^MAGDQRUL("CleanUp","","1,Result Set Cleaned Up")
  . Q:'$D(^MAGDQR(2006.5732,RESULT))
  . L +^MAGDQR(2006.5732,0):1E9 ; Background process MUST wait
  . S X=$G(^MAGDQR(2006.5732,0))
@@ -91,11 +96,11 @@ FIND(OUT,TAGS,RESULT,OFFSET,MAX) ; RPC = MAG CFIND QUERY
  I 'OFFSET D  Q:V'="OK"  ; Is the query done?
  . S X=$G(^MAGDQR(2006.5732,RESULT,0))
  . S V=$P(X,"^",2) Q:V="OK"
- . I V="X" D LOG("NoResult","","-2,No result returned") S V="OK" Q
+ . I V="X" D LOG^MAGDQRUL("NoResult","","-2,No result returned") S V="OK" Q
  . S ZTSK=$P(X,"^",4) D STAT^%ZTLOAD
  . I $G(ZTSK(2))'["Inactive" S OUT(1)="-1,TaskMan still active" Q
  . I ZTSK(2)["Finished" S V="OK" Q
- . D LOG("TaskManAbort",ZTSK(2),"-13,TaskMan aborted: "_ZTSK(2))
+ . D LOG^MAGDQRUL("TaskManAbort",ZTSK(2),"-13,TaskMan aborted: "_ZTSK(2))
  . Q
  ;
  S:'$G(MAX) MAX=100
@@ -108,9 +113,9 @@ FIND(OUT,TAGS,RESULT,OFFSET,MAX) ; RPC = MAG CFIND QUERY
  . . S X=$G(^MAGDQR(2006.5732,RESULT,1,I,0)) Q:X'["0000,0902^Result #"
  . . S N=$P(X," # ",2),I=0
  . . Q
- . D LOG("Done",N,"0,No more results.")
+ . D LOG^MAGDQRUL("Done",N,"0,No more results.")
  . Q
- I N=2,OFFSET=1 D LOG("Error",$P(OUT(2),"^",2),"")
+ I N=2,OFFSET=1 D LOG^MAGDQRUL("Error",$P(OUT(2),"^",2),"")
  S OUT(1)=(N-1)_","_OFFSET_",result(s)."
  Q
  ;
@@ -147,62 +152,23 @@ VA2DCM(NAME) N I,P
  . Q
  Q NAME
  ;
-ERR(X) S ERROR=ERROR+1,ERROR(ERROR)=X
+ERR(X) S ^TMP("MAG",$J,"ERR",$O(^TMP("MAG",$J,"ERR"," "),-1)+1)=X
  Q
  ;
-ERRLOG N I,O
- S O=1,I="" F  S I=$O(ERROR(I)) Q:I=""  S O=O+1,OUT(O)=ERROR(I)
- D LOG("Error","",(-O)_",Errors encountered")
+ERRLOG N I,O,X
+ S O=1,I=""
+ F  S I=$O(^TMP("MAG",$J,"ERR",I)) Q:I=""  S X=$G(^(I)) D
+ . S O=O+1,OUT(O)=X
+ . Q
+ D LOG^MAGDQRUL("Error","",(-O)_",Errors encountered")
  Q
  ;
-ERRSAV N I,O
- S $P(^MAGDQR(2006.5732,RESULT,0),"^",2,3)="OK^"_$$NOW^XLFDT()
- K ^MAGDQR(2006.5732,RESULT,1)
- S O=0,I="" F  S I=$O(ERROR(I)) Q:I=""  D
- . S O=O+1,^MAGDQR(2006.5732,RESULT,1,O,0)="0000,0902^"_ERROR(I)
+ERRSAV N I,O,RESGBL,X
+ Q:'$G(RESULT)  S RESGBL=$NA(^MAGDQR(2006.5732,RESULT))
+ S $P(@RESGBL@(0),"^",2,3)="OK^"_$$NOW^XLFDT()
+ K @RESGBL@(1)
+ S O=0,I=""
+ F  S I=$O(^TMP("MAG",$J,"ERR",I)) Q:I=""  S X=$G(^(I)) D
+ . S O=O+1,@RESGBL@(1,O,0)="0000,0902^"_X
  . Q
  Q
- ;
-LOG(TYP,DETAIL,TXT) N D1,D2,D3,LOC,X
- D:'$G(DT) DT^DICRW
- S D1=$O(^MAGDAUDT(2006.5733,"B",DT,""))
- S:'D1 D1=$$ADD($NA(^MAGDAUDT(2006.5733)),"QUERY/RETRIEVE STATISTICS",2006.57633,DT,1)
- ;
- S LOC=$G(DUZ(2)) S:'LOC LOC=$$KSP^XUPARAM("INST")
- S D1=$O(^MAGDAUDT(2006.5733,DT,1,"B",LOC,""))
- S:'D1 D1=$$ADD($NA(^MAGDAUDT(2006.5733,DT,1)),"",2006.576331,LOC,1)
- ;
- S D2=$O(^MAGDAUDT(2006.5733,DT,1,D1,1,"B",TYP,""))
- S:'D2 D2=$$ADD($NA(^MAGDAUDT(2006.5733,DT,1,D1,1)),"",2006.576332,TYP,0)
- L +^MAGDAUDT(2006.5733,DT,1,D1,1,D2):1E9 ; Background job MUST wait
- S X=$G(^MAGDAUDT(2006.5733,DT,1,D1,1,D2,0))
- S $P(X,"^",2)=$P(X,"^",2)+1
- S ^MAGDAUDT(2006.5733,DT,1,D1,1,D2,0)=X
- L -^MAGDAUDT(2006.5733,DT,1,D1,1,D2)
- ;
- D:DETAIL'=""
- . S D3=$O(^MAGDAUDT(2006.5733,DT,1,D1,1,D2,1,"B",DETAIL,""))
- . S:'D3 D3=$$ADD($NA(^MAGDAUDT(2006.5733,DT,1,D1,1,D2,1)),"",2006.576333,DETAIL,0)
- . L +^MAGDAUDT(2006.5733,DT,1,D1,1,D2,1,D3):1E9 ; Background job MUST wait
- . S X=$G(^MAGDAUDT(2006.5733,DT,1,D1,1,D2,1,D3,0))
- . S $P(X,"^",2)=$P(X,"^",2)+1
- . S ^MAGDAUDT(2006.5733,DT,1,D1,1,D2,1,D3,0)=X
- . L -^MAGDAUDT(2006.5733,DT,1,D1,1,D2,1,D3)
- . Q
- ;
- S OUT(1)=TXT
- Q
- ;
-ADD(ROOT,F1,F2,VAL,DINUM) N D0,NAM,O,X
- S ROOT=$E(ROOT,1,$L(ROOT)-1)_",",NAM=ROOT_"0)",O=ROOT_""" "")"
- L +@NAM:1E9 ; Background job MUST wait
- S X=$G(@NAM)
- S $P(X,"^",1,2)=F1_"^"_F2
- S D0=$S(DINUM:+VAL,1:$O(@O,-1)+1),$P(X,"^",3)=D0
- S $P(X,"^",4)=$P(X,"^",4)+1
- S @NAM=X
- S @(ROOT_D0_",0)")=VAL
- S @(ROOT_"""B"",$P(VAL,""^"",1),D0)")=""
- L -@NAM
- Q D0
- ;

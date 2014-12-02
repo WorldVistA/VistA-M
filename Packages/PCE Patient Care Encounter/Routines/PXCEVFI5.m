@@ -1,11 +1,11 @@
 PXCEVFI5 ;ISL/dee - Check to see if the encounter is a standalone and if it needs to be deleted ;3/17/04 12:24pm
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**14,99,124**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**14,99,124,199**;Aug 12, 1996;Build 51
  ;
  Q
 CHECK ;Check to see if this is a standalone and if it is make sure it has
  ;  a procedure or stop code.  If it does not have either then allow the
- ;  user to continueing edit it or delete the encounter.
- ;Also check that if there are diagnosis for the encounter that one of
+ ;  user to continue editing it or to delete the encounter.
+ ;Also check that if there are diagnoses for the encounter that one of
  ;  them is primary.
  ;
  ;Quit if no visit ien
@@ -31,7 +31,7 @@ CHECK ;Check to see if this is a standalone and if it is make sure it has
  S DIR(0)="Y"
  S PXCECNT=1
  I 'PXCEPDX D
- . S DIR("A",PXCECNT)="None of the diagnosis for this encounter are Primary."
+ . S DIR("A",PXCECNT)="None of the diagnoses for this encounter are Primary."
  . S PXCECNT=PXCECNT+1
  I 'PXCEAPPT,'$D(^AUPNVCPT("AD",PXCEVIEN)),'$D(^AUPNVSIT("AD",PXCEVIEN)) D
  . I $G(PXQUIT) D  Q

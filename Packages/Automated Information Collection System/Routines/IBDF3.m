@@ -1,18 +1,22 @@
-IBDF3 ;ALB/CJM - Edit Selection List ;NOV 16,1992
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**15**;APR 24, 1997
+IBDF3 ;ALB/CJM - Edit Selection List ;11/16/92
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**15,63**;APR 24, 1997;Build 80
+ ;
  ;
 EDITLIST ;expects IBBLK to be defined
  N IBLIST,IBVALMBG
  D FULL^VALM1
  S IBVALMBG=VALMBG,VALMBCK="R"
  D SELECT
+ I '$D(^TMP("IBDF DELETE SELECTION OPTION",$J)) S ^TMP("IBDF DELETE SELECTION OPTION",$J)=0
  I IBLIST D
  .Q:$$LSTDSCR2^IBDFU1(.IBLIST)
  .;I IBLIST("DYNAMIC"),$G(IBLIST("CLRM")) D SEL^IBDFN15(.IBLIST)
- .I IBLIST("DYNAMIC"),'$G(IBLIST("CLRM")) W !,"You can not edit the contents of this list - it is determined at print time!" D PAUSE^IBDFU5 Q
+ .I IBLIST("DYNAMIC"),'$G(IBLIST("CLRM")) W !,"You cannot edit the contents of this list - it is determined at print time!" D PAUSE^IBDFU5 Q
  .;I '$G(IBLIST("CLRM")) D EN^VALM("IBDF DISPLAY GROUPS FOR EDIT")
  .I $G(IBLIST("CLRM")) S IBLIST("EDITING CLRM")=1
  .D EN^VALM("IBDF DISPLAY GROUPS FOR EDIT")
+ .I ^TMP("IBDF DELETE SELECTION OPTION",$J)=1,'$O(^IBE(357.3,"C",IBLIST,"")) D  ;Deleted all selections from Delete Group (DG) option.
+ ..S ^TMP("IBDF DELETED ALL SELECTIONS",$J)=1
  .K IBLIST
  .D UNCMPBLK^IBDF19(IBBLK)
  .I '$G(IBFASTXT) D
@@ -134,13 +138,16 @@ DELSLCTN ;deletes a group's selections
  K DIK,DA
  Q
 DELGRP ;delete a group and all of its selections
- N SEL,GRP
+ N SEL,GRP,IBDSEL
  S VALMBCK="R"
  D EN^VALM2($G(XQORNOD(0)))
+ S IBDSEL=0
+ I $O(^IBE(357.3,"C",IBLIST,"")) S IBDSEL=1  ;Check to see if block contains selection list. Needed for updating form history fields.
  S SEL="" F  S SEL=$O(VALMY(SEL)) Q:'SEL  D
  .S GRP=$G(@VALMAR@("IDX",SEL,SEL))
  .Q:'$$RUSURE^IBDFU5($P($G(^IBE(357.4,GRP,0)),"^"))
  .I GRP D DELSLCTN K DA S DIK="^IBE(357.4,",DA=GRP D ^DIK K DIK
+ .I IBDSEL,'$G(^TMP("IBDF ADDSLCTN",$J)) S ^TMP("IBDF DELETE SELECTION OPTION",$J)=1
  D IDXGRP
  S VALMBCK="R"
  Q

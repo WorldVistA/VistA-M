@@ -1,5 +1,5 @@
-DGPTC1 ;ALN/MJK - Census Record Processing; JAN 27, 2005
- ;;5.3;Registration;**37,413,643,701**;Aug 13, 1993
+DGPTC1 ;ALN/MJK - Census Record Processing;JAN 27, 2005
+ ;;5.3;Registration;**37,413,643,701,850**;Aug 13, 1993;Build 171
  ;
 CEN ; -- determine if PTF rec is current Census rec
  ; input: PTF   := ptf rec #
@@ -12,9 +12,7 @@ CEN ; -- determine if PTF rec is current Census rec
  K DGCST,DGCI,DGCN,DGCN0,DGFEE
  S DGFEE=0
  G CENQ:'$D(^DGPT(PTF,0)) N DFN S DGPTF0=^(0),DFN=+DGPTF0
- ;G CENQ:$P(DGPTF0,U,4)
  D CEN^DGPTUTL I DGCN0=""!(DT'>DGCN0) K DGCN G CENQ
- ;I $P(DGPTF0,U,4) D FEE G CENQ  ;DG*701 reposition line 
  S DGT=$P(DGCN0,U)_".9" I '$P(DGPTF0,U,4) D WARD I 'Y K DGCN G CENQ
  ;if Fee Basis quit if admit > census date or admit < census date if disch
  I $P(DGPTF0,U,4)=1,$P(DGPTF0,U,2)>DGT G CENQ
@@ -56,8 +54,9 @@ CLS ;
  ;-- init for Austin Edits
  K ^TMP("AEDIT",$J),^TMP("AERROR",$J) S DGACNT=0
  ;
- D LOG^DGPTFTR1:DGPTFMT=1,LOG^DGPTR1:DGPTFMT=2,COM1^DGPTFTR
+ D LOG^DGPTFTR1:DGPTFMT=1,LOG^DGPTR1:DGPTFMT=2,LOG^DGPTR1:DGPTFMT=3,COM1^DGPTFTR
  K DGLOGIC,T1,T2,DGCCO D LO^DGUTL
+ D VERCHK^DGPTRI3(DGPTF) I DGERR>0 D HANG^DGPTUTL K DGERR G CLSQ
  I DGERR>0 K DGERR D ^DGPTF2 G CLSQ
  ;-- do austin edits
  ;
@@ -67,7 +66,7 @@ CLS ;
  I $P(^DGPT(PTF,0),U,4)'=1 D CREATE G CLSQ:'DGCI
  S DR="7////"_DUZ_";8///T",DA=DGCI,DIE="^DGPT(" D ^DIE K DIE,DR
  S (X,DINUM)=DGCI,DIC(0)="L",DIC="^DGP(45.84,",DIC("DR")="2///NOW;3////"_DUZ
- K DD,DO D FILE^DICN K DIC,DINUM
+ K DD,DO D FILE^DICN K DIC,DINUM,DO
  F I=0,.11,.52,.321,.32,57,.3 S:$D(^DPT(DFN,I)) ^DGP(45.84,DGCI,$S(I=0:10,1:I))=^DPT(DFN,I)
  W !,"****** CENSUS CLOSED OUT ******" D HANG^DGPTUTL
  S DGCST=1
@@ -82,6 +81,7 @@ CREATE ; -- create census record
  S Y=DGEND D BS^DGPTC2 S X="",$P(X,U)=DGEND,$P(X,U,14)=Y
  I $D(^DGPT(PTF,70)) S Y=^(70) F I=8,9,10 S $P(X,U,I)=$P(Y,U,I)
  S ^DGPT(DGCI,70)=X D ASIH
+ I $D(^DGPT(PTF,82)) S ^DGPT(DGCI,82)=^DGPT(PTF,82)
  I $D(^DGPT(PTF,101)) S ^DGPT(DGCI,101)=^DGPT(PTF,101)
  F NODE="M","P","S",535 F I=0:0 S I=$O(^DGPT(PTF,NODE,I)) Q:'I  I $D(^DGPT(PTF,NODE,I,0)) S X=^(0) D @("SET"_NODE_"^DGPTC2")
  K DA,DIKLM S DA=DGCI,DIK="^DGPT(" D IX1^DIK
@@ -111,7 +111,9 @@ WARD ; -- ward @ census d/t for an adm(even if nhcu/dom adm that is ASIH)
  S Y=""
  I +DGPMAN>DGT Q
  I $D(^DGPM(+$P(DGPMAN,U,17),0)),+^(0)<DGT Q
- F %=(9999999.9999999-DGT):0 S %=$O(^DGPM("APMV",DFN,DGPMCA,%)) Q:'%  F MVT=0:0 S MVT=$O(^DGPM("APMV",DFN,DGPMCA,%,MVT)) Q:'MVT  I $D(^DGPM(MVT,0)) S M=^(0) I "^13^43^44^45^"'[(U_$P(M,U,18)_U),$D(^DIC(42,+$P(M,U,6),0)) S Y=+$P(M,U,6) G WARDQ
+ F %=(9999999.9999999-DGT):0 S %=$O(^DGPM("APMV",+$G(DFN),+$G(DGPMCA),%)) Q:'%  D
+ . F MVT=0:0 S MVT=$O(^DGPM("APMV",$G(DFN),$G(DGPMCA),%,MVT)) Q:'MVT  D
+ .. I $D(^DGPM(MVT,0)) S M=^(0) I "^13^43^44^45^"'[(U_$P(M,U,18)_U),$D(^DIC(42,+$P(M,U,6),0)) S Y=+$P(M,U,6) G WARDQ
 WARDQ Q
  ;
 ASIH ; -- calc asih days

@@ -1,5 +1,5 @@
-ECPROV2 ;BIR/MAM-Event Capture Provider Summary (cont'd) ;20 Sep 93
- ;;2.0; EVENT CAPTURE ;**5,47,69**;8 May 96
+ECPROV2 ;BIR/MAM-Event Capture Provider Summary (cont'd) ;12/11/12  09:40
+ ;;2.0;EVENT CAPTURE;**5,47,69,119**;8 May 96;Build 12
  ;
  D REASON^ECRUTL ;* Prompt to report Procedure Reasons
  ;
@@ -15,9 +15,9 @@ DATE W ! K %DT S %DT="AEX",%DT("A")="Start with Date: " D ^%DT I Y<0 S ECOUT=1 Q
  U IO
 START ; entry when queued
  N ECPRV
- K ^TMP($J) S ECINC=0
+ K ^TMP("ECTMP",$J) S ECINC=0 ;119 Change temporary storage location
  S ECPRV=$S(ECD="SOME":1,ECD="ALL":2,1:0) D ^ECPROV3
- K ^TMP($J) I $D(ECGUI) D ^ECKILL Q
+ K ^TMP("ECTMP",$J) I $D(ECGUI) D ^ECKILL Q  ;119
  G:$D(ZTQUEUED) END
  Q
 VAR ; set ZTSAVE array

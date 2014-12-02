@@ -1,5 +1,5 @@
 DGPFLMA2 ;ALB/KCL - PRF ASSIGNMENT LM PROTOCOL ACTIONS CONT. ; 6/12/06 12:46pm
- ;;5.3;Registration;**425,623,554,650**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**425,623,554,650,864**;Aug 13, 1993;Build 16
  ;
  ;no direct entry
  QUIT
@@ -22,6 +22,8 @@ AF ;Entry point for DGPF ASSIGN FLAG action protocol.
  N DGRESULT  ;result of STOALL api call
  N DGERR     ;if unable to add assignment
  N DGPFERR   ;if error returned from STOALL
+ N PRFIEN    ;PRF IEN from file 26.15 dg*5.3*864
+ N PRFNAME   ;PRF NAME (.01) field dg*5.3*864
  ;
  ;set screen to full scroll region
  D FULL^VALM1
@@ -52,6 +54,16 @@ AF ;Entry point for DGPF ASSIGN FLAG action protocol.
  . ;select flag for assignment
  . S DGPFA("FLAG")=$$ANSWER^DGPFUT("Select a flag for this assignment","","26.13,.02")
  . Q:(DGPFA("FLAG")'>0)
+ . ; Urgent    Address is Female,check if user has programmer access dg*5.3*864.
+ . N PRFIEN,PRFNAME,PRFNAT
+ . S PRFNAT="" I $P(DGPFA("FLAG"),";",2)="DGPF(26.15," S PRFNAT=1
+ . S PRFIEN="" I PRFNAT=1 S PRFIEN=$P(DGPFA("FLAG"),";")
+ . S PRFNAME="" I PRFIEN'="" S PRFNAME=$$GET1^DIQ(26.15,PRFIEN,.01)
+ . I PRFNAME="URGENT    ADDRESS AS FEMALE"&(DUZ("0")'="@") D  Q
+ . . W !!!,"The URGENT    ADDRESS AS FEMALE National Flag is limited to purposes"
+ . . W !,"authorized by the Undersecretary for Health only."
+ . . W !!!
+ . . D PAUSE^VALM1
  . ;
  . ;National ICN when Cat I assignment?
  . I $P(DGPFA("FLAG"),U)["26.15",'$$MPIOK^DGPFUT(DGPFA("DFN")) D  Q

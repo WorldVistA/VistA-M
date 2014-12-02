@@ -1,13 +1,5 @@
-LEXXGI3 ;ISL/KER/FJF - Global Import (Needs ^LEXM) ;07/16/2008
- ;;2.0;LEXICON UTILITY;**59**;Sep 23, 1996;Build 6
- ;              
- ; Local Variables NEWed or KILLed Elsewhere (LEXXGI)
- ;                
- ;   LEXFL        Array of Files
- ;   LEXOK        LEXM exist
- ;   LEXSCHG      Changes
- ;   ZTQUEUED     Queued Task
- ;   ZTSK         Task Number
+LEXXGI3 ;ISL/KER - Global Import (Load Data in ^LEXM) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**59,80**;Sep 23, 1996;Build 1
  ;              
  ; Global Variables
  ;    ^LEXM(              N/A
@@ -15,10 +7,18 @@ LEXXGI3 ;ISL/KER/FJF - Global Import (Needs ^LEXM) ;07/16/2008
  ; External References
  ;    $$S^%ZTLOAD         ICR  10063
  ;    ^DIM                ICR  10016
+ ;    $$ROOT^ICDEX        ICR   5747
  ;    $$DT^XLFDT          ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
  ;               
- ;                
+ ; Local Variables NEWed or KILLed Elsewhere
+ ;               
+ ;    LEXFL        Array of Files
+ ;    LEXOK        LEXM exist
+ ;    LEXSCHG      Changes
+ ;    ZTQUEUED     Queued Task
+ ;    ZTSK         Task Number
+ ; 
 FILES ;   Load Data for all files
  Q:'$L($G(LEXB))  N LEXHDR,LEXBLD,LEXDAT,LEXFI,LEXFIC,LEXHDRS,LEXLOG,LEXINS,LEXTOTI,LEXTOTN,LEXPER,LEXPRE
  S (LEXFI,LEXFIC,LEXHDR,LEXTOTI,LEXTOTN,LEXPER,LEXPRE)=0,LEXBLD=LEXB
@@ -56,17 +56,14 @@ FILE ;     Load Data for one file
  . I LEXCNT'<LEXS S LEXLC=LEXLC+1 W:LEXLC'>LEXL "." S LEXCNT=0
  . S LEXRT=$P(LEXMUMPS,"^",2),LEXFIL=""
  . S:LEXMUMPS["^LEX("!(LEXMUMPS["^LEXT(")!(LEXMUMPS["^LEXC(") LEXFIL=+($P(LEXRT,"(",2)),LEXFL(+($P(LEXRT,"(",2)))=""
- . S:LEXMUMPS["^ICD9(" LEXFIL=80,LEXFL(80)=""
- . S:LEXMUMPS["^ICD0(" LEXFIL=80.1,LEXFL(80.1)=""
+ . S:LEXMUMPS[$$ROOT^ICDEX(80) LEXFIL=80,LEXFL(80)=""
+ . S:LEXMUMPS[$$ROOT^ICDEX(80.1) LEXFIL=80.1,LEXFL(80.1)=""
  . S:LEXMUMPS["^ICPT(" LEXFIL=81,LEXFL(81)=""
  . S:LEXMUMPS["^DIC(81.3" LEXFIL=81.3,LEXFL(81.3)=""
  . S:LEXMUMPS["^DIC(81.2" LEXFIL=81.2,LEXFL(81.2)=""
- . S:LEXMUMPS["^LEX("!(LEXMUMPS["^LEXT(")!(LEXMUMPS["^LEXC(") LEXFIL=+($P(LEXRT,"(",2))
- . S:LEXMUMPS["^ICD9(" LEXFIL=80 S:LEXMUMPS["^ICD0(" LEXFIL=80.1
- . S:LEXMUMPS["^ICPT(" LEXFIL=81 S:LEXMUMPS["^DIC(81.3" LEXFIL=81.3
  . S:+LEXFIL>0 LEXSCHG(+LEXFIL,0)=""
  . I $L(LEXMUMPS) D
- . . N X S X=LEXMUMPS D ^DIM Q:'$D(X)  X LEXMUMPS S LEXIGO=1
+ . . X LEXMUMPS S LEXIGO=1
  . . S LEXTOTI=+($G(LEXTOTI))+1 I +($G(LEXTOTN))>0,+($G(LEXTOTI))>0,$D(ZTQUEUED),+($G(ZTSK))>0 D
  . . . N LEXT,LEXTSK S (LEXT,LEXPER)=(+($G(LEXTOTI))/+($G(LEXTOTN)))*100 Q:+LEXPER-(+($G(LEXPRE)))'>2  S LEXPRE=+($G(LEXPER))
  . . . S LEXPER=$J(LEXPER,6,2) I +LEXT>0 S LEXPER=LEXPER_"% complete" S LEXTSK=$$S^%ZTLOAD(LEXPER)

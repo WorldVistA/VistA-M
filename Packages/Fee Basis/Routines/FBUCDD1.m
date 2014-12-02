@@ -1,5 +1,5 @@
 FBUCDD1 ;ALBISC/TET - DD UTILITY (cont'd.) ;5/27/93
- ;;3.5;FEE BASIS;**60,72**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**60,72,127**;JAN 30, 1995;Build 9
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
 DEL(DA) ;del node on .01 field of 162.7, unauthorized claim file
  ;INPUT:  DA = ien of 162.7
@@ -53,8 +53,15 @@ DELA(DA,M) ;delete authorization node
  .S FBI=0
  .F  S FBI=$O(^FBAAC(DA(1),1,FBV,1,FBI)) Q:'FBI!($P(M,U,2))  S FBI(0)=$G(^FBAAC(DA(1),1,FBV,1,FBI,0)) I $P(FBI(0),U,4)=DA,$O(^FBAAC(DA(1),1,FBV,1,FBI,1,1,0)) S $P(M,U,2)=1
  I FBVAR]"",$$PAY^FBUCUTL($P(FBVAR,";"),$P(FBVAR,";",2)) S $P(M,U,2)=1
+ I $P(^FBAAA(DA(1),1,DA,0),U,13)=2!($P(^FBAAA(DA(1),1,DA,0),U,13)=3) S $P(M,U,2)=3
+ I $P(^FBAAA(DA(1),1,DA,0),U,13)=1,$D(FBAA(161.26,"B",DA(1))) D
+ . N FBCROSS,FBDA,DIK,DA
+ . S FBCROSS=$Q(^FB(161.26,"B",DA(1)))
+ . S FBDA=$QS(FBCROSS,4)
+ . S DIK="^FBAA(161.26,",DA=FBDA D ^DIK
  I '$P(M,U,2),FBVAR]"" S $P(M,U,2)=2
  I +M,$P(M,U,2) W !! D  W !
  .W:$P(M,U,2)=1 "Cannot delete Authorization because payments already exist!"
  .W:$P(M,U,2)=2 "Cannot delete Authorization because a 7078/583 entry has already been established!"
+ .W:$P(M,U,2)=3 "Cannot delete Authorization, please create a Delete type Veteran MRA!"
 DELAQ Q $S('+$P($G(M),U,2):0,$P(M,U,2):1,1:0)

@@ -1,5 +1,5 @@
 IBTOBI3 ;ALB/AAS - CLAIMS TRACKING BILLING INFORMATION PRINT ; 27-OCT-93
- ;;Version 2.0 ; INTEGRATED BILLING ;**40,56**; 21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**40,56,458**;21-MAR-94;Build 4
  ;
 HR ; -- print hospital review information
  Q:'$O(^IBT(356.1,"C",+IBTRN,0))  ; -no reivews
@@ -27,6 +27,8 @@ HR1 ; -- print one review
 10 ; -- precert review
 15 ; -- admission review
 20 ; -- urgent adm. review
+25 ; -- snf/nhcu review
+35 ; -- inpt retrospective review
  S IBD(1,2)=" Severity of Ill: "_$$SI^IBTRVD0($P(IBTRVD,"^",4))
  S IBD(2,2)="Intensity of Svc: "_$$SI^IBTRVD0($P(IBTRVD,"^",5))
  S IBD(3,2)="    Criteria Met: "_$$EXPAND^IBTRE(356.1,.06,$P(IBTRVD,"^",6))
@@ -56,7 +58,9 @@ HR1 ; -- print one review
  Q
  ;
 50 ;
+55 ;
 60 ;
+65 ;
 70 ;
 80 ;
 85 ;

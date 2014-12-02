@@ -1,5 +1,5 @@
 DGMTDD4 ;ALB/AMA - Individual Annual Income file (#408.21) Data Dictionary Calls, CON'T ; 10/3/07 1:44pm
- ;;5.3;Registration;**688**;Aug 13, 1993;Build 29
+ ;;5.3;Registration;**688,812**;Aug 13, 1993;Build 19
  ;
 14 ;Executable Help for Total Employment Income (408.21/.14)
  Q:(X="?")
@@ -19,37 +19,68 @@ DGMTDD4 ;ALB/AMA - Individual Annual Income file (#408.21) Data Dictionary Calls
  . W !!?8,"A monthly amount can be entered with an '*' after it."
  Q
 17 ;Executable Help for Net Income from Farm (408.21/.17)
+   ;DG*5.3*812
  Q:(X="?")
+ N DGAIA
  I +$$MTVERS($G(DGMTI))=0 D  Q
  . ;Help text for pre-Feb 2005 Data Collection format
- . W !?8,"Enter in this field the annual amount of All Other Income received"
- . W !?8,"during the previous calendar year."
- . W !!?8,"Business or Farm Income.  Net income from operation of a farm or other"
- . W !?8,"business is countable.  If a veteran reports this type of income, have"
- . W !?8,"the veteran complete VA Form 21-4165, Pension Claim Questionnaire for"
- . W !?8,"Farm Income, or VA Form 21-4185, Report of Income from Property or"
- . W !?8,"Business.  Subtract the veteran's business or farm expenses from gross"
- . W !?8,"income.  The result should be entered in this field.  If the veteran or"
- . W !?8,"veteran's spouse or child receives a salary from the business, it"
- . W !?8,"should be reported in the 'Total Employment Income' field.  Also, note"
- . W !?8,"that depreciation is not a deductible expense for VA purposes."
- . W !!?8,"A monthly amount can be entered with an '*' after it."
+ .S DGAIA(1)="Enter in this field the annual amount of All Other Income received"
+ .S DGAIA(1,"F")="!,?8"
+ .S DGAIA(2)="during the previous calendar year."
+ .S DGAIA(2,"F")="!,?8"
+ .S DGAIA(3)="Business or Farm Income.  Net income from operation of a farm or other"
+ .S DGAIA(3,"F")="!,?8"
+ .S DGAIA(4)="business is countable.  If a veteran reports this type of income, have"
+ .S DGAIA(4,"F")="!,?8"
+ .S DGAIA(5)="the veteran complete VA Form 21-4165, Pension Claim Questionnaire for"
+ .S DGAIA(5,"F")="!,?8"
+ .S DGAIA(6)="Farm Income, or VA Form 21-4185, Report of Income from Property or"
+ .S DGAIA(6,"F")="!,?8"
+ .S DGAIA(7)="Business.  Subtract the veteran's business or farm expenses from gross"
+ .S DGAIA(7,"F")="!,?8"
+ .S DGAIA(8)="income.  The result should be entered in this field.  If the veteran or"
+ .S DGAIA(8,"F")="!,?8"
+ .S DGAIA(9)="veteran's spouse or child receives a salary from the business, it"
+ .S DGAIA(9,"F")="!,?8"
+ .S DGAIA(10)="should be reported in the 'Total Employment Income' field.  Also, note"
+ .S DGAIA(10,"F")="!,?8"
+ .S DGAIA(11)="that depreciation is not a deductible expense for VA purposes."
+ .S DGAIA(11,"F")="!,?8"
+ .S DGAIA(12)="A monthly amount can be entered with an '*' after it."
+ .S DGAIA(12,"F")="!!,?8"
+ .S DGAIA(13,"F")="!"
+ .D EN^DDIOL(.DGAIA)
  . Q
  E  D
  . ;Help text for Feb 2005 Data Collection format
- . W !?8,"Enter in this field the net income amount from your farm, ranch,"
- . W !?8,"property, or business received during the previous calendar year."
- . W !!?8,"Business or Farm Income.  Net income from operation of a farm or other"
- . W !?8,"business is countable.  If a veteran reports this type of income, have"
- . W !?8,"the veteran complete VA Form 21-4165, Pension Claim Questionnaire for"
- . W !?8,"Farm Income, or VA Form 21-4185, Report of Income from Property or"
- . W !?8,"Business.  To identify the net income, subtract the veteran's business"
- . W !?8,"or farm expenses from the gross income derived from the business or"
- . W !?8,"farm.  The result should be entered in this field.  If the veteran or"
- . W !?8,"veteran's spouse or child receives a salary from the business, it"
- . W !?8,"should be reported in the 'Total Employment Income' field.  Also, note"
- . W !?8,"that depreciation is not a deductible expense for VA purposes."
- . W !!?8,"A monthly amount can be entered with an '*' after it."
+ .S DGAIA(1)="Enter in this field the net income amount from your farm, ranch,"
+ .S DGAIA(1,"F")="!,?8"
+ .S DGAIA(2)="property, or business received during the previous calendar year."
+ .S DGAIA(2,"F")="!,?8"
+ .S DGAIA(3)="Business or Farm Income.  Net income from operation of a farm or other"
+ .S DGAIA(3,"F")="!,?8"
+ .S DGAIA(4)="business is countable.  If a veteran reports this type of income, have"
+ .S DGAIA(4,"F")="!,?8"
+ .S DGAIA(5)="the veteran complete VA Form 21-4165, Pension Claim Questionnaire for"
+ .S DGAIA(5,"F")="!,?8"
+ .S DGAIA(6)="Farm Income, or VA Form 21-4185, Report of Income from Property or"
+ .S DGAIA(6,"F")="!,?8"
+ .S DGAIA(7)="Business.  To identify the net income, subtract the veteran's business"
+ .S DGAIA(7,"F")="!,?8"
+ .S DGAIA(8)="or farm expenses from the gross income derived from the business or"
+ .S DGAIA(8,"F")="!,?8"
+ .S DGAIA(9)="farm.  The result should be entered in this field.  If the veteran or"
+ .S DGAIA(9,"F")="!,?8"
+ .S DGAIA(10)="veteran's spouse or child receives a salary from the business, it"
+ .S DGAIA(10,"F")="!,?8"
+ .S DGAIA(11)="should be reported in the 'Total Employment Income' field.  Also, note"
+ .S DGAIA(11,"F")="!,?8"
+ .S DGAIA(12)="that depreciation is not a deductible expense for VA purposes."
+ .S DGAIA(12,"F")="!,?8"
+ .S DGAIA(13)="A monthly amount can be entered with an '*' after it."
+ .S DGAIA(13,"F")="!!,?8"
+ .S DGAIA(14,"F")="!"
+ .D EN^DDIOL(.DGAIA)
  Q
 8 ;Executable Help for Other Income Amounts (408.21/.08)
  Q:(X="?")

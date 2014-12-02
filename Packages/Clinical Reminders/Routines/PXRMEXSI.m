@@ -1,5 +1,5 @@
-PXRMEXSI ;SLC/PKR/PJH - Silent Exchange entry install. ;07/29/2010
- ;;2.0;CLINICAL REMINDERS;**6,12,17,18**;Feb 04, 2005;Build 152
+PXRMEXSI ;SLC/PKR/PJH - Silent Exchange entry install. ;04/19/2012
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,18,24**;Feb 04, 2005;Build 193
  ;
  ;=======================================
 DELEXE(ENTRY,ROUTINE) ;If the Exchange File entry already exists delete it.
@@ -34,7 +34,7 @@ EXFINC(Y,ENTRY,ROUTINE) ;Return a 1 if the Exchange file entry is in the list
  Q FOUND
  ;
  ;=======================================
-INSCOM(PXRMRIEN,ACTION,IND,TEMP,REMNAME,HISTSUB) ;Install component IND
+INSCOM(PXRMRIEN,ACTION,IND,TEMP,HISTSUB) ;Install component IND
  ;of PXRMRIEN.
  N ATTR,CSUM,END,EXISTS,FILENUM,IND120,JND120,NAME
  N PT01,RTN,SAME,START,TEXT
@@ -44,8 +44,7 @@ INSCOM(PXRMRIEN,ACTION,IND,TEMP,REMNAME,HISTSUB) ;Install component IND
  S TEMP=^PXD(811.8,PXRMRIEN,120,IND120,1,JND120,0)
  ;If the component does not exist then the action has to be "I".
  ;If the component exists and the action is "I" change it to "O".
- ;If the component exists and the action is "M" leave it "M".
- ;If the component exists and the action is "O" leave it "O".
+ ;Otherwise leave the action as is.
  S ACTION=$S('EXISTS:"I",ACTION="I":"O",1:ACTION)
  S SAME=0
  S START=$P(TEMP,U,2)
@@ -57,11 +56,11 @@ INSCOM(PXRMRIEN,ACTION,IND,TEMP,REMNAME,HISTSUB) ;Install component IND
  .. S CSUM=$$RTNCS^PXRMEXCS(ATTR("NAME"))
  .. I ATTR("CHECKSUM")=CSUM S SAME=1,ACTION="S"
  . S ^TMP("PXRMEXIA",$J,IND,"ROUTINE",ATTR("NAME"),ACTION)=""
- E  D 
+ E  D
  . S TEMP=^PXD(811.8,PXRMRIEN,100,START,0)
  . S PT01=$P(TEMP,"~",2)
  .;Save reminder name for dialog install.
- . I FILENUM=811.9 S REMNAME=PT01
+ . ;I FILENUM=811.9 S REMNAME=PT01
  . D SETATTR^PXRMEXFI(.ATTR,FILENUM,PT01)
  . I EXISTS D
  .. D CHECKSUM^PXRMEXCS(.ATTR,START,END)
@@ -80,9 +79,9 @@ INSCOM(PXRMRIEN,ACTION,IND,TEMP,REMNAME,HISTSUB) ;Install component IND
  ;=======================================
 INSDLG(PXRMRIEN,IND120,JND120,ACTION) ;Install dialog components directly
  ;from the "SEL" array.
- N IND,FILENUM,ITEMP,NAME,REMNAME,TEMP
+ N IND,FILENUM,ITEMP,NAME,TEMP
  ;Build the selection array in ^TMP("PXRMEXLD",$J,"SEL"). For dialogs
- ;the selection array is: 
+ ;the selection array is:
  ;file no.^FDA start^FDA end^EXISTS^IND120^JND120^NAME
  S FILENUM=801.41
  D DBUILD^PXRMEXLB(PXRMRIEN,IND120,JND120)
@@ -96,15 +95,16 @@ INSDLG(PXRMRIEN,IND120,JND120,ACTION) ;Install dialog components directly
  .;Dialog elements may be used more than once in a dialog so make sure
  .;the element has not already been installed.
  . S ITEMP=$P(TEMP,U,1)_U_$P(TEMP,U,4,5)_U_$$EXISTS^PXRMEXIU(FILENUM,NAME)
- . D INSCOM(PXRMRIEN,ACTION,IND,ITEMP,.REMNAME,"PXRMEXIAD")
+ . D INSCOM(PXRMRIEN,ACTION,IND,ITEMP,"PXRMEXIAD")
  Q
  ;
  ;=======================================
-INSTALL(PXRMRIEN,ACTION,NOR) ;Install all components in a repository entry.
- ;If NOR is true do not install routines.
- N CLOK,DNAME,FILENUM,IND,PXRMDONE,PXRMNMCH,REMNAME,TEMP
+INSTALL(PXRMRIEN,ACTION,NOCF,NOR) ;Install all components in a repository entry.
+ ;If NOCF is true do not install computed findings, if NOR is true
+ ;do not install routines.
+ N CLOK,DNAME,FILENUM,IND,PXRMDONE,PXRMNMCH,REMNAME,TEMP,RNAME
  S PXRMDONE=0
- S NOR=$G(NOR)
+ S NOCF=$G(NOCF),NOR=$G(NOR)
  ;Initialize ^TMP globals.
  D INITMPG^PXRMEXLM
  ;Build the component list.
@@ -122,6 +122,8 @@ INSTALL(PXRMRIEN,ACTION,NOR) ;Install all components in a repository entry.
  F  S IND=$O(^TMP("PXRMEXLC",$J,"SEL",IND)) Q:(IND="")!(PXRMDONE)  D
  . S TEMP=^TMP("PXRMEXLC",$J,"SEL",IND)
  . S FILENUM=$P(TEMP,U,1)
+ .;If NOCF is true do not install computed findings.
+ . I FILENUM=811.4,NOCF Q
  .;If NOR is true do not install routines.
  . I FILENUM=0,NOR Q
  . ;Install dialog components
@@ -130,20 +132,20 @@ INSTALL(PXRMRIEN,ACTION,NOR) ;Install all components in a repository entry.
  .. S IND120=$P(TEMP,U,2),JND120=$P(TEMP,U,3),PXRMDONE=0
  .. D INSDLG(PXRMRIEN,IND120,JND120,ACTION)
  . ;Install component
- . E  D INSCOM(PXRMRIEN,ACTION,IND,TEMP,.REMNAME,"PXRMEXIA")
+ . E  D INSCOM(PXRMRIEN,ACTION,IND,TEMP,"PXRMEXIA")
  ;
  ;Get the dialog name
- S DNAME=$G(^TMP("PXRMEXTMP",$J,"PXRMDNAME"))
- ;Link the dialog if it exists
- I DNAME'="" D
- . N DIEN,RIEN
- .;Get the dialog ien
- . S DIEN=$$EXISTS^PXRMEXIU(801.41,DNAME) Q:'DIEN
- .;Get the reminder ien
- . S RIEN=+$$EXISTS^PXRMEXIU(811.9,$G(REMNAME)) Q:'RIEN
- . I RIEN>0 D
+ S DNAME="" F  S DNAME=$O(^TMP("PXRMEXDL",$J,DNAME)) Q:DNAME=""  D
+ . S RNAME=""
+ . F  S RNAME=$O(^TMP("PXRMEXDL",$J,DNAME,RNAME)) Q:RNAME=""  D
+ ..;Link the dialog if it exists
+ .. N DIEN,RIEN
+ ..;Get the dialog ien.
+ .. S DIEN=$$EXISTS^PXRMEXIU(801.41,DNAME) Q:'DIEN
+ ..;Get the reminder ien.
+ .. S RIEN=+$$EXISTS^PXRMEXIU(811.9,$G(RNAME)) Q:'RIEN
  .. N DA,DIE,DIK,DR
- ..;Set reminder to dialog pointer
+ ..;Set reminder to dialog pointer.
  .. S DR="51///^S X=DNAME",DIE="^PXD(811.9,",DA=RIEN
  .. D ^DIE
  ;
@@ -163,7 +165,7 @@ INSTALL(PXRMRIEN,ACTION,NOR) ;Install all components in a repository entry.
  Q
  ;
  ;=======================================
-LDARRAY(MODE,ENTRY,ROUTINE,ARRAY) ;Load ARRAY with 
+LDARRAY(MODE,ENTRY,ROUTINE,ARRAY) ;Load ARRAY with
  ;MODE is a string that may contain any of the following:
  ; A = include action, stored in the third column of the ARRAY entry.
  ; I = include in build, used for the data screen in the KIDS build.
@@ -195,6 +197,6 @@ SMEXINS(ENTRY,ROUTINE) ;Silent mode install.
  . D COLFMT^PXRMTEXT(FMTSTR,TEXT," ",.NOUT,.TEXTOUT)
  . D MES^XPDUTL(.TEXTOUT)
  . S ACTION=EXARRAY(IC,3)
- . D INSTALL^PXRMEXSI(IEN,ACTION,1)
+ . D INSTALL^PXRMEXSI(IEN,ACTION,1,1)
  Q
  ;

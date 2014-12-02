@@ -1,5 +1,5 @@
-PSBODL ;BIRMINGHAM/EFC-DUE LIST ;1/10/12 8:47pm
- ;;3.0;BAR CODE MED ADMIN;**5,9,38,32,25,63,68**;Mar 2004;Build 26
+PSBODL ;BIRMINGHAM/EFC-DUE LIST ;3/19/13 19:13pm
+ ;;3.0;BAR CODE MED ADMIN;**5,9,38,32,25,63,68,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified. 
  ;
  ; Reference/IA
@@ -9,13 +9,18 @@ PSBODL ;BIRMINGHAM/EFC-DUE LIST ;1/10/12 8:47pm
  ; GETSIOPI^PSJBCMA5/5763
  ;
  ;*68 - add call to retrieve New WP Special Instructions/OPI fields
+ ;*70 - add Clinic filter and issert clinic name into array to force
+ ;      it to sort before admin times & print clinic name when changes
  ;
 EN ; Prt DL
- N PSBGBL,PSBHDR,IOINHI,IOINORM,PSBGIVEN,PSBIEN,PSBLGDT,PSBEVDT,DFN,PSBFLAG
+ N PSBGBL,PSBHDR,IOINHI,IOINORM,PSBGIVEN,PSBIEN,PSBLGDT,PSBEVDT,DFN,PSBFLAG,PSBSRCHL
  S X="IOINHI;IOINORM" D ENDR^%ZISS S X=""
  I '$D(^TMP("PSBO",$J,"B")) S ^TMP("PSBO",$J,"B","EMPTY")=""
  S PSBGBL="^TMP(""PSBO"",$J,""B"")"
  I $G(PSBRPT(.4)) S $P(PSBRPT(.2),U,8)=1
+ ;check Clinic or Nurs Unit search list                *70
+ S PSBSRCHL=$$SRCHLIST^PSBOHDR()
+ ;
  F  S PSBGBL=$Q(@PSBGBL) Q:PSBGBL=""  Q:$QS(PSBGBL,1)'="PSBO"!($QS(PSBGBL,2)'=$J)  D
  .S DFN=$QS(PSBGBL,5)
  .K PSBHDR
@@ -26,21 +31,32 @@ EN ; Prt DL
  .F Y=1:1:4 I $P(PSBRPT(.2),U,Y) S $P(PSBHDR(2),": ",2)=$P(PSBHDR(2),": ",2)_$S(PSBHDR(2)["--":"",1:"/ ")_$P("Continuous^PRN^On-Call^One-Time",U,Y)_" " S PSBHDR(2)=$TR(PSBHDR(2),"-","")
  .S PSBHDR(3)="Order Type(s): --"
  .F Y=6,7,8 I $P(PSBRPT(.2),U,Y) S $P(PSBHDR(3),": ",2)=$P(PSBHDR(3),": ",2)_$S(PSBHDR(3)["--":"",1:"/ ")_$P("^^^^^IV^Unit Dose^Future Orders",U,Y)_" " S PSBHDR(3)=$TR(PSBHDR(3),"-","")
+ .D:$G(PSBSRCHL)]""                                          ;*70
+ ..S PSBHDR(4)=""
+ ..S:$P(PSBRPT(4),U,2)="C" PSBHDR(5)="Clinic Search List: "
+ ..S:$P(PSBRPT(4),U,2)="I" PSBHDR(5)="Ward Location: "
+ .;
  .I $QS(PSBGBL,4)="EMPTY" D  Q
- ..S X="" F  S X=$O(PSBHDR(X)) Q:X=""  D  W !!?10,"** NO DATA FOR ENTIRE NURSE/WARD LOCATION **",! Q
- ...W !,PSBHDR(X)
+ ..W $$EMPTYHDR^PSBOHDR(PSBSRCHL)
+ ..W !!?10,"** NO DATA FOUND for "_$S(PSBCLINORD:"Clinic Search List",1:"Entire Ward/Nurse Location")_" **",! Q
+ .;
  .D PRINT(DFN)
+ ;
  K ^TMP("PSJ",$J),^TMP("PSB",$J),^TMP("PSBO",$J)
  Q
 PRINT(DFN) ;^TMP($J.
  N PSBGBL,PSBOSTRT,PSBOSTOP,PSBINDX,PSBTYPE,PSBSCH,PSBSCHT
  N PSBMED,PSBORD,PSB,PSBX,PSBY,PSBZ,PSBSTOP,PSBSTRT,PSBSM,PSBNUM,PSBAT
- N PSBADMIN,PSBADM,PSBSTAT,PSBWFLAG,PSBODATE
+ N PSBADMIN,PSBADM,PSBSTAT,PSBWFLAG,PSBODATE,PSBCLINIC,PSBCLNMB,PSBTMPSD,PSBSTTMP   ;*70
  W $$HDR()
  S PSBOSTRT=$P(PSBRPT(.1),U,6)+$P(PSBRPT(.1),U,7)
  S PSBOSTOP=$P(PSBRPT(.1),U,6)+$P(PSBRPT(.1),U,9)
  K ^TMP("PSJ",$J),^TMP("PSB",$J)
  D EN^PSJBCMA(DFN,PSBOSTRT,"")
+ D:PSBCLINORD                                    ;*70 filer clinics
+ . I $D(PSBRPT(2)) D FILTERCO^PSBO Q
+ . D INCLUDCO^PSBVDLU1
+ I 'PSBCLINORD D REMOVECO^PSBVDLU1               ;*70
  I $G(^TMP("PSJ",$J,1,0))=-1 W !!?10,"** NO SPECIFIED MEDICATIONS TO PRINT **",!,$$BLANKS(),$$FTR^PSBODL1() Q
  S PSBI1=0 F  S PSBODATE=$$FMADD^XLFDT(PSBEVDT,PSBI1) Q:PSBODATE>PSBEVDT2  Q:PSBODATE=-1  D  ;Quit if Date is not valid Fileman Date added in PSB*3*63
  .S PSBI1=1
@@ -48,6 +64,7 @@ PRINT(DFN) ;^TMP($J.
  .W !!,"Administration Date: "_Y,!
  .S PSBINDX=0
  .F  S PSBINDX=$O(^TMP("PSJ",$J,PSBINDX)) Q:'PSBINDX  D
+ ..S PSBCLINIC=$P(^TMP("PSJ",$J,PSBINDX,0),U,11),PSBCLNMB=$P(^TMP("PSJ",$J,PSBINDX,0),U,12)                  ;*70
  ..S PSBTYPE=$P(^TMP("PSJ",$J,PSBINDX,0),U,3),PSBTYPE=$E(PSBTYPE,$L(PSBTYPE))
  ..Q:PSBTYPE=""!(PSBTYPE="P")  ; No Pend this ver
  ..S PSBSTAT=^TMP("PSJ",$J,PSBINDX,1)
@@ -65,6 +82,7 @@ PRINT(DFN) ;^TMP($J.
  ..S PSBMED=$P(^TMP("PSJ",$J,PSBINDX,3),U,2)
  ..S PSBORD=$P(^TMP("PSJ",$J,PSBINDX,0),U,3)
  ..S ^TMP("PSB",$J,"B",PSBTYPE,PSBSCHT,PSBMED,PSBORD)=""
+ ..I PSBCLINIC]"" S ^TMP("PSB",$J,"C",DFN,PSBORD)=PSBCLNMB_"^"_PSBCLINIC
  .I '$D(^TMP("PSB",$J,"B")) W !!?10,"** NO SPECIFIED MEDICATIONS TO PRINT **",!,$$BLANKS(),$$FTR^PSBODL1() Q
  .S PSBGBL=$NAME(^TMP("PSB",$J,"B")),PSBWFLAG=0
  .F  S PSBGBL=$Q(@PSBGBL) Q:PSBGBL=""  Q:($QS(PSBGBL,1)'="PSB")!($QS(PSBGBL,2)'=$J)!($QS(PSBGBL,3)'="B")  D
@@ -121,7 +139,9 @@ PRINT(DFN) ;^TMP($J.
  ...Q:((%'>PSBOST)!(%'=PSBOST))
  ...S PSBRMN=0
  ..Q:'PSBRMN
- ..I PSBOST>$$FMADD^XLFDT(PSBNOW,"","",+($$GET^XPAR("DIV","PSB ADMIN BEFORE"))) S ^TMP("PSBO",$J,DFN,PSBORD,PSBTYPE)="" Q
+ ..I $G(PSBORD) S PSBCLINIC=$P($G(^TMP("PSB",$J,"C",+$G(DFN),PSBORD)),"^",2)
+ ..I +$G(PSBCLINIC) I PSBOST>PSBNOW S ^TMP("PSBO",$J,DFN,PSBORD,PSBTYPE)="" Q
+ ..I '$G(PSBCLINIC) I PSBOST>$$FMADD^XLFDT(PSBNOW,"","",+($$GET^XPAR("DIV","PSB ADMIN BEFORE"))) S ^TMP("PSBO",$J,DFN,PSBORD,PSBTYPE)="" Q
  ..I PSBSCHT="OC" D  Q:PSBGVN&('$$GET^XPAR("DIV","PSB ADMIN MULTIPLE ONCALL"))
  ...S (PSBGVN,X,Y)=""
  ...F  S X=$O(^PSB(53.79,"AOIP",DFN,PSBOIT,X),-1) Q:'X  D
@@ -153,7 +173,9 @@ PRINT(DFN) ;^TMP($J.
  ......I PSBFLAG Q:PSBAT<PSBOSTRT!(PSBAT>PSBOSTOP)
  ......D VAL^PSBMLVAL(.PSBZ,DFN,PSBON,PSBOTYP,PSBAT)
  ......I (PSBZ(0)<0)&(PSBCNT=1) S ^TMP("PSBO",$J,DFN,PSBORD,PSBTYPE,PSBAT)="" Q
- ......I (PSBAT'["."),($G(PSBORD)["V") I (PSBOST<PSBOSTOP),(PSBOST'<PSBOSTRT) S ^TMP("PSBO",$J,DFN,PSBORD,PSBTYPE,PSBAT)="" Q
+ ......I (PSBAT'["."),($G(PSBORD)["V") I (PSBOST<PSBOSTOP) K PSBSTTMP D  Q:$G(PSBSTTMP)
+ .......I ('$G(PSBCLINIC)&(PSBOST'<$$FMADD^XLFDT(PSBNOW,"","",($$GET^XPAR("DIV","PSB ADMIN BEFORE"))))) S PSBSTTMP=1 Q
+ .......I ($G(PSBCLINIC)&(PSBOST'<PSBNOW)) S ^TMP("PSBO",$J,DFN,PSBORD,PSBTYPE,PSBAT)="",PSBSTTMP=1 Q
  ......Q:+PSBZ(0)<0
  ......I $G(PSBOST)'>$G(PSBAT) D
  .......Q:($G(PSBOSP)'>$G(PSBAT))
@@ -163,6 +185,7 @@ PRINT(DFN) ;^TMP($J.
  ..I $Y>(IOSL-(12+($L(PSBADMIN)/27))) W !?(IOM-36\2),"(Medications Continued on Next Page)",$$FTR^PSBODL1(),$$HDR()
  ..I PSBSM S PSBSM=$S(PSBSMX:"H",1:"")_"SM"
  ..E  S PSBSM=""
+ ..W !,PSBCLINIC                                                  ;*70
  ..W !,$J(PSBSM,3),?6,PSBTYPE,$E(PSBSCHT,1,4),?12 S PSBWFLAG=1
  ..S X="",Y=0
  ..D WRAPPUP^PSBODL1
@@ -175,10 +198,12 @@ PRINT(DFN) ;^TMP($J.
  K ^TMP("PSJBCMA5",$J)
  Q
 HDR() ;
- D PT^PSBOHDR(DFN,.PSBHDR)
- W !,"Self",?85,"Last",?100,"Start",?110,"Stop",?120,"Verifying"
- W !,"Med",?6,"Sched",?14,"Medication",?50,"Dose",?78,"Route",?85,"Given",?100,"Date",?110,"Date",?120,"Rph/Rn"
- W !,?100,"@Time",?110,"@Time"
+ D PT^PSBOHDR(DFN,.PSBHDR,,,PSBSRCHL)
+ W !
+ W:PSBCLINORD "Location"
+ W ?100,"Start",?110,"Stop"
+ W !,"Self",?85,"Last",?100,"Date",?110,"Date",?120,"Verifying"
+ W !,"Med",?6,"Sched",?14,"Medication",?50,"Dose",?78,"Route",?85,"Given",?100,"@Time",?110,"@Time",?120,"Rph/Rn"
  W !,$TR($J("",IOM)," ","-")
  Q ""
 BLANKS() ;

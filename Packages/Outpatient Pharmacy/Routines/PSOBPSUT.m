@@ -1,5 +1,5 @@
 PSOBPSUT ;BIRM/MFR - BPS (ECME) Utilities ;07 Jun 2005  8:39 PM
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,358,385,403**;DEC 1997;Build 9
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,358,385,403,408**;DEC 1997;Build 100
  ;Reference to $$ECMEON^BPSUTIL supported by IA 4410
  ;Reference to IBSEND^BPSECMP2 supported by IA 4411
  ;Reference to $$STATUS^BPSOSRX supported by IA 4412
@@ -86,17 +86,19 @@ RXRLDT(RX,RFL) ; Returns the Rx Release Date
  S RXRLDT=$$GET1^DIQ(52,RX,31,"I")
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  I RFL S RXRLDT=$$GET1^DIQ(52.1,RFL_","_RX,17,"I")
+ I RFL["P" S RXRLDT=$$GET1^DIQ(52.2,+$E(RFL,2,9)_","_RX,8,"I")
  Q RXRLDT
  ;
 RXFLDT(RX,RFL) ; Returns the Rx Fill Date
  ; Input:  (r) RX  - Rx IEN (#52) 
  ;         (o) RFL - Refill # (Default: most recent)      
- ; Output:  RXFLDT - Rx Fill Date
+ ; Output:  RXFLDT - Rx Fill Date (FM format)
  N RXFLDT
  I '$G(RX) Q ""
  S RXFLDT=$$GET1^DIQ(52,RX,22,"I")
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  I RFL S RXFLDT=$$GET1^DIQ(52.1,RFL_","_RX,.01,"I")
+ I RFL["P" S RXFLDT=$$GET1^DIQ(52.2,+$E(RFL,2,9)_","_RX,.01,"I")
  Q RXFLDT
  ;
 RXSUDT(RX,RFL) ; Returns the prescription/fill Suspense Date for the RX/Reject passed in
@@ -120,8 +122,82 @@ RXSITE(RX,RFL) ; Returns the Rx DIVISION
  I '$G(RX) Q ""
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  I RFL S SITE=$$GET1^DIQ(52.1,RFL_","_RX,8,"I")
- I 'RFL!'$G(SITE) S SITE=$$GET1^DIQ(52,RX,20,"I")
+ I RFL["P" S SITE=$$GET1^DIQ(52.2,+$E(RFL,2,9)_","_RX,.09,"I")
+ I (RFL=0)!'$G(SITE) S SITE=$$GET1^DIQ(52,RX,20,"I")
  Q SITE
+ ;
+RXSTATE(RX,RFL) ; Returns the Rx Division STATE
+ ; Input:  (r) RX  - Rx IEN (#52) 
+ ;         (o) RFL - Refill #
+ ; Output:  SITE - Rx Fill Date
+ N SITE
+ S SITE=$$RXSITE(RX,RFL) I 'SITE Q ""
+ Q +$$GET1^DIQ(59,SITE,.08,"I")
+ ;
+RXQTY(RXIEN,FILL) ; Returns the Quantity Dispense for the Fill
+ ; Input:  (r) RXIEN - Rx IEN (#52) 
+ ;         (o) FILL  - Refill # (Default: most recent)
+ ; Output:  RXQTY - Quantity Dispensed
+ N RXQTY
+ I '$G(RXIEN) Q ""
+ S RXQTY=$$GET1^DIQ(52,RXIEN,7,"I")
+ I '$D(FILL) S FILL=$$LSTRFL^PSOBPSU1(RXIEN)
+ I FILL S RXQTY=$$GET1^DIQ(52.1,FILL_","_RXIEN,1,"I")
+ I FILL["P" S RXQTY=$$GET1^DIQ(52.2,+$E(FILL,2,9)_","_RXIEN,.04,"I")
+ Q RXQTY
+ ;
+RXDAYSUP(RXIEN,FILL) ; Returns the Days Supply for the Fill
+ ; Input:  (r) RXIEN - Rx IEN (#52) 
+ ;         (o) FILL  - Refill # (Default: most recent)
+ ; Output:  RXDAYSUP - Days Supply
+ N RXDAYSUP
+ I '$G(RXIEN) Q ""
+ S RXDAYSUP=$$GET1^DIQ(52,RXIEN,8,"I")
+ I '$D(FILL) S FILL=$$LSTRFL^PSOBPSU1(RXIEN)
+ I FILL S RXDAYSUP=$$GET1^DIQ(52.1,FILL_","_RXIEN,1.1,"I")
+ I FILL["P" S RXDAYSUP=$$GET1^DIQ(52.2,+$E(FILL,2,9)_","_RXIEN,.041,"I")
+ Q RXDAYSUP
+ ;
+RXPRV(RXIEN,FILL) ; Returns the Rx Fill Provider IEN
+ ; Input:  (r) RXIEN  - Rx IEN (#52) 
+ ;         (o) FILL - Refill # (Default: most recent - except Partial)
+ ;                    Note: "P1", "P2"... represent partial fills
+ ; Output:  RXPRV - Rx Fill Provider IEN
+ N RXPRV
+ I '$G(RXIEN) Q ""
+ I '$D(FILL) S RFL=$$LSTRFL^PSOBPSU1(RXIEN)
+ I FILL S RXPRV=$$GET1^DIQ(52.1,FILL_","_RXIEN,15,"I")
+ I FILL["P" S RXPRV=$$GET1^DIQ(52.2,+$E(FILL,2,9)_","_RXIEN,6,"I")
+ I '$G(RXPRV) S RXPRV=$$GET1^DIQ(52,RXIEN,4,"I")
+ Q RXPRV
+ ;
+RXRPH(RXIEN,FILL) ; Returns the Pharmacist IEN for the Fill
+ ; Input:  (r) RXIEN - Rx IEN (#52) 
+ ;         (o) FILL  - Refill # (Default: most recent)
+ ; Output:  RXRPH - Pharmacist IEN (Pointer to File #200)
+ N RXRPH
+ I '$G(RXIEN) Q ""
+ I '$D(FILL) S FILL=$$LSTRFL^PSOBPSU1(RXIEN)
+ I FILL S RXRPH=$$GET1^DIQ(52.1,FILL_","_RXIEN,4,"I")
+ I FILL["P" S RXRPH=$$GET1^DIQ(52.2,+$E(FILL,2,9)_","_RXIEN,.05,"I")
+ I '$G(RXRPH) S RXRPH=$$GET1^DIQ(52,RXIEN,23,"I")
+ Q RXRPH
+ ;
+VALUE(RX,FILL,ORFLD,RFFLD,PRFLD,OROK) ; Retrieve corresponding Internal value for the specific prescription fill
+ ; Input:  (r) RX  - Rx IEN (#52) 
+ ;         (r) FILL - Refill #
+ ;         (r) ORFLD - Original Fill Field #
+ ;         (r) RFFLD - Refill Field #
+ ;         (r) PRFLD - Partial Field #
+ ;         (o) OROK  - OK to retrieve from Original Fill (1: YES/0:NO)
+ ; Output:  VALUE - Fill Field Value
+ ;
+ N VALUE
+ I '$G(RX)!($G(FILL)="") Q ""
+ I RFFLD,FILL S VALUE=$$GET1^DIQ(52.1,FILL_","_RX,RFFLD,"I")
+ I PRFLD,FILL["P" S VALUE=$$GET1^DIQ(52.2,+$E(FILL,2,9)_","_RX,PRFLD,"I")
+ I ORFLD,(FILL=0!(($G(VALUE)="")&$G(OROK))) S VALUE=$$GET1^DIQ(52,RX,ORFLD,"I")
+ Q $G(VALUE)
  ;
 MANREL(RX,RFL,PID) ; ePharmacy Manual Rx Release
  ;Input: (r) RX  - Rx IEN (#52)
@@ -157,7 +233,7 @@ TRIC ;
  Q
  ;
 AUTOREL(RX,RFL,RLDT,NDC,SRC,STS,HNG) ; Sends Rx Release information to ECME/IB and updates NDC
- ;                                 in the DRUG/PRESCRIPTION files
+ ;                                     in the DRUG/PRESCRIPTION files
  ;Input: (r) RX  - Rx IEN (#52)
  ;       (o) RFL - Refill #  (Default: most recent)
  ;       (r) RLDT- Release Date

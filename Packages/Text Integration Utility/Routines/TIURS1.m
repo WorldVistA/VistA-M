@@ -1,5 +1,5 @@
-TIURS1 ; SLC/JER - Additional /es/ actions ;06/07/11  17:19
- ;;1.0;TEXT INTEGRATION UTILITIES;**7,36,58,100,109,142,156,184,233,261**;Jun 20, 1997;Build 7
+TIURS1 ; SLC/JER - Additional /es/ actions ; 11/21/12 4:18pm
+ ;;1.0;TEXT INTEGRATION UTILITIES;**7,36,58,100,109,142,156,184,233,261,274**;Jun 20, 1997;Build 6
 ELSIG ; Sign rec
  N TIULST,TIUSLST,TIURJCT,TIUES,TIUI,X,X1,Y,TIUDAARY,TIUCHNG
  I '$D(TIUPRM0) D SETPARM^TIULE
@@ -58,6 +58,11 @@ ELSIG ; Sign rec
  . . . . W !!,"Item #",TIUI,": MUST have a cosigner, before you may sign."
  . . . . W !!,"Removed from signature list.",!
  . . . . I $$READ^TIUU("FOA","Press RETURN to continue...")
+ . . ; TIU*1.0*274 DJH Do not allow notes without any text to be signed
+ . . I $$EMPTYDOC^TIULF(+TIUDA)  D  Q
+ . . . W !!,"Item #",TIUI,": This note contains no text and cannot be signed."
+ . . . W !!,"Removed from signature list.",!
+ . . . I $$READ^TIUU("FOA","Press RETURN to continue...")
  . . N TIU,TIUY
  . . D EN^VALM("TIU SIGN/COSIGN")
  I $D(TIUSLST)'>9 D  G ELSIGX

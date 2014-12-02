@@ -1,5 +1,5 @@
-EDPRPT13 ;SLC/BWF - Removed in Error Report ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPRPT13 ;SLC/BWF - Removed in Error Report ;4/25/13 3:15pm
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;May 2, 2012;Build 200
  ;
  Q
  ; INPUT:
@@ -16,7 +16,10 @@ EN(BEG,END,CSV) ; Get report of patients removed in error
  F  S CHKDT=$O(^EDP(230,"ARIE",CHKDT)) Q:'CHKDT!(CHKDT>END)  D
  .S LOG=0 F  S LOG=$O(^EDP(230,"ARIE",CHKDT,LOG)) Q:'LOG  D
  ..S X0=^EDP(230,LOG,0),X1=$G(^(1)),X3=$G(^(3))
- ..N ROW S ROW("ID")=LOG
+ ..;***pij change "ID" due to undef error 4/24/2013
+ ..;N ROW S ROW("ID")=LOG
+ ..N ROW S ROW("id")=LOG
+ ..;***
  ..S ROW("patientName")=$$GET1^DIQ(2,$P(X0,U,6),.01)
  ..S ROW("timeInED")=$P(X0,U,8)
  ..S ROW("timeOutED")=$p(X0,U,9)

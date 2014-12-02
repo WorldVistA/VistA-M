@@ -1,5 +1,5 @@
-MAGJUTL3 ;WIRMFO/JHC - VistARad subrtns & RPCs ; 20 Sep 2011  1:50 PM
- ;;3.0;IMAGING;**16,9,22,18,65,76,101,90,120**;Mar 19, 2002;Build 27;May 23, 2012
+MAGJUTL3 ;WIRMFO/JHC - VistARad subrtns & RPCs ; 29 Mar 2013  5:02 PM
+ ;;3.0;IMAGING;**16,9,22,18,65,76,101,90,120,133**;Mar 19, 2002;Build 5393;Sep 09, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -67,7 +67,7 @@ LOG(ACTION,LOGDATA,PSETLST) ; Log exam access
  S PSETLST=$G(PSETLST)
  S PRTSET=$L(PSETLST,U)
  I PRTSET>1 D
- . N I F I=1:1:PRTSET S PRTSET(I)="VR-PRINTSET~"_$P(PSETLST,U,I)_"~"_I_"~"_PRTSET
+ . N I,T F I=1:1:PRTSET S T=$P(PSETLST,U,I),T=$P(T,"-",$L(T,"-")),PRTSET(I)="VR-PRINTSET~"_T_"~"_I_"~"_PRTSET
  I ACTION="" S ACTION="UNKNOWN"  ; Should never happen
  S PTCT=RADFN'=$G(MAGJOB("LASTPT",ACTION))
  I PTCT S MAGJOB("LASTPT",ACTION)=RADFN
@@ -217,9 +217,36 @@ USERKEYS ; Store Security Keys in MagJob
  Q
  ;
 PINF1(MAGGRY,MAGDFN) ;RPC Call MAGJ PT INFO -- Get pt info
+ N AGE,DFN,DOB,MAGSSN,X
  S X="ERR3^MAGJUTL3",@^%ZOSF("TRAP")
- D INFO^MAGGTPT1(.MAGGRY,MAGDFN_"^1") ; 1=Don't log to session file
+ S (AGE,MAGSSN)=""
+ D INFO^MAGGTPT1(.MAGGRY,MAGDFN_"^1^^^1") ; 1=Don't log to session file; 4-digit yr
+ I +MAGGRY D
+ . ; calculate Age & SSN/MRN display strings
+ . S DOB=$P(MAGGRY,U,5)
+ . I DOB D DT^DILF("",DOB,.X,"") S AGE=$$AGECALC(X)
+ . S DFN=MAGDFN D PID^VADPT6 S MAGSSN=$S(VAERR:"Unknown",1:VA("PID")) ; IA #10062 (Supported)
+ . K VA("PID"),VA("BID"),VAERR
+ S MAGGRY=MAGGRY_"|"_AGE_U_MAGSSN
  Q
+ ;
+AGECALC(DOB) ; calculate age from DOB til now
+ ; format for age-appropriate display
+ ; Input DOB in Fileman format
+ ;   Note: assumes a previously validated date is passed in
+ N AGE,NDAYS,X,X1,X2
+ S AGE="unknown"
+ I DOB?7N1"."0.N S DOB=$E(DOB,1,7) ; strip off time value
+ I DOB?7N D
+ . D NOW^%DTC S X1=X K %I
+ . s X2=DOB D ^%DTC S NDAYS=X
+ . I NDAYS<0 Q  ; * Invalid DOB later than today --> Unknown
+ . I NDAYS<32 S AGE=NDAYS_"d" Q  ; days
+ . I NDAYS<365 S AGE=$J(NDAYS\30.5,0,0)_"m" Q  ; months
+ . I NDAYS=365 S AGE="1y 0m" Q  ; special case
+ . S AGE=NDAYS\365.25_"y"  ; years
+ . I AGE<16 S AGE=AGE_" "_(($J(NDAYS#365.25,0,0))\30.5)_"m" Q  ; years & months
+ Q AGE
  ; 
  ;+++++ INITIALIZE SESSION (VERSION CHK, DISPLAY RES CHK, COLLECT USER INFO).
  ; RPC: MAGJ USER2
@@ -323,19 +350,12 @@ USERINF2(MAGGRY,DATA) ; RPC: MAGJ USER2--get user info
  S ICNT=ICNT+1,MAGGRY(ICNT)="*END"
 USERIN2Z Q
  ;
-MAMMOCHK(X) ; return true if the screen resolution is 5 megapixels, and grayscale
- ; note--as of 4/09 there is only one size display for mammo interpretation
- ; and the resolution is 2048x2560, or 5,242,880 pixels; the algorithm allows 
- ; a little wiggle room, but excludes a 6MP display.  Can update when real life changes
- N T,XX,YY,RES,MSG
- S X=$$UPCASE(X)
- S T=0
- I X?4N1"X"4N1","4.5A D
- . S XX=+X,YY=+$P(X,"X",2),C=$P(X,",",2)
- . S RES=XX*YY I RES>5000000,(RES<5314800) S T=1 ; resolution OK
- . I T S T=(C="GRAY") ; and, is grayscale
- I T S MSG="Primary diagnostic interpretation of mammography images may only be performed on medical devices that are cleared for that intended use, and that use display hardware conforming to technical specifications set by the FDA."
- E  S MSG="This device does not conform to technical specifications set by the FDA for primary diagnostic interpretation of mammography images."
+MAMMOCHK(X) ; P133--now ignoring screen resolution, etc.
+ ; note--as of ??/12 there are other sized displaysapproved for mammo
+ ; now returns just a single disclaimer message, regardless of display
+ ; keeping this structure for possible change in the future
+ N MSG
+ S MSG="Primary diagnostic interpretation of mammography images may only be performed on medical devices that are cleared for that intended use, and that use display hardware conforming to technical specifications set by the FDA."
  Q:$Q MSG Q
  ;
 UPCASE(X) ; strip spaces, and cx to uppercase

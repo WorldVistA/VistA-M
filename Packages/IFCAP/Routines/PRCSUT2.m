@@ -1,5 +1,5 @@
-PRCSUT2 ;WISC/SAW/CTB/DXH - TRANSACTION UTILITY ; 9/15/2010
-V ;;5.1;IFCAP;**13,135,148**;Oct 20, 2000;Build 5
+PRCSUT2 ;WISC/SAW/CTB/DXH - TRANSACTION UTILITY ;5/20/13  16:22
+V ;;5.1;IFCAP;**13,135,148,150,174**;Oct 20, 2000;Build 23
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; assigns a permanent transaction number to an existing transaction
  ; if the existing transaction is temporary, it is converted to 
@@ -8,7 +8,7 @@ V ;;5.1;IFCAP;**13,135,148**;Oct 20, 2000;Build 5
  ;   populated with info from the existing transaction, then canceled.  
  ;   The original transaction is updated with the new transaction number.
 ANTN ;
- N ODA,PNW,TX1,T1,T2,T3,T4,T5,PRCSY,PRCSDIC,PRCSAPP
+ N ODA,PNW,TX1,T1,T2,T3,T4,T5,PRCSY,PRCSDIC,PRCSAPP,PRCECMS,PRCOLDI
 ANTN1 D EN3^PRCSUT ; ask site, CP
  G W5:'$D(PRC("SITE"))
  G EXIT:Y<0
@@ -25,6 +25,7 @@ ANTN1 D EN3^PRCSUT ; ask site, CP
  S T4=$P(T2,"^",2) ; txn type of transaction to be replaced
  S T2=$P(T2,"^") ; txn number to be replaced
  S T3=$P(^PRCS(410,DA,3),"^") ; control point of txn to be replaced
+ S PRCECMS=$P($G(^PRCS(410,DA,1)),U,8),PRCOLDI=DA
  K DA,DIC,Y
  W !!,"Enter the information for the new transaction number",!
  D EN^PRCSUT3 ; ask SITE, FY, QRTR, CP for new txn
@@ -67,14 +68,21 @@ CK1 ; set new txn name into old (original) ien
  ; delete old txn from temp txn x-ref & remove temp txn flag
  K ^PRCS(410,"K",+T3,ODA) S $P(^PRCS(410,ODA,6),"^",4)=""
  S PRC("OCP")=$P(^PRCS(410,ODA,3),U)
+ ; If the old transaction had eCMS identifiers, remove them from the old
+ ; entry which has been assigned the new transaction number.
+ I PRCECMS>0 D
+ . N PRCX S PRCX=$$XECMSIDS^PRCHJR03(PRCOLDI)
  ; if old txn name is non-numeric (temp txn), force new site & CP into record at old ien
- I '+T2 S DA=ODA,DIE="^PRCS(410,",DR=".5///"_PRC("SITE")_";S X=X;15///"_PRC("CP") D ^DIE G EN
+ ;PRC*5.1*150 add x-ref kill for old txn non-numeric name
+ I '+T2 S DA=ODA,DIE="^PRCS(410,",DR=".5///"_PRC("SITE")_";S X=X;15///"_PRC("CP") D ^DIE D  G EN
+ . K ^PRCS(410,"B",T2,ODA)
  ; else: cancel txn at old ien; force old site & CP info into new ien
  ;(Shortened comment and added cancel flag with patch 182
  S DIE="^PRCS(410,",DR=".5///"_+T2_";S X=X;15///"_T3
  S DR=DR_";60///Transaction "_T2_" replaced by trans. "_TX1
  S DR=DR_";450///C" ;put cancel flag in Running Bal status 
  D ^DIE
+ S DR="104////^S X=DUZ" D ^DIE K DR
  I T5'="" S $P(^PRCS(410,DA,0),U,10)=T5 ; save substation in new ien
  S $P(^PRCS(410,DA,0),U,2)="CA" ; cancel txn at new ien
  D ERS410^PRC0G(DA_"^C")
@@ -138,6 +146,17 @@ REVIEW W !!,"Would you like to review this request"
  Q
  ;
 W1 S %=2 Q:T4'="O"
+ ;*****PRC*5.1*174 start*****
+ N PRCFTYPE,PRCFAIL
+ S PRCFTYPE=+$$GET1^DIQ(410,$G(DA)_",",3,"I")
+ ;if a 2237 transaction (Form Type IEN 2,3, or 4)
+ I $G(PRCFTYPE)>1&($G(PRCFTYPE)<5) D
+ . ;if 2237 required field check fails, output warning
+ . ;and force user to edit (S %=1)
+ . I '$$REQCHECK^PRCHJUTL($G(DA),,1) S (PRCFAIL,%)=1
+ ;if 2237 required field checks fail, force edit and don't prompt user
+ Q:$G(PRCFAIL)
+ ;*****PRC*5.1*174 end*****
  W !!,"Would you like to edit this request"
  D YN^DICN G W1:%=0
  Q

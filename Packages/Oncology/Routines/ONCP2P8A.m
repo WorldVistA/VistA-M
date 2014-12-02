@@ -1,5 +1,5 @@
 ONCP2P8A ;HINES CIOFO/GWB - 1998 Prostate Cancer Study - print ;6/1/98
- ;;2.11;ONCOLOGY;**18**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 III S TABLE="TABLE III - EXTENT AND STAGE OF DISEASE"
  I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HEAD^ONCP2P0
  W !?4,TABLE,!?4,"---------------------------------------" D P Q:EX=U

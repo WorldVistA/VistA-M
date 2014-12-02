@@ -1,5 +1,5 @@
 PXCEVIMM ;ISL/dee - Used to edit and display V IMMUNIZATION ;3/11/04 3:00pm
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,124**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,124,199**;Aug 12, 1996;Build 51
  ;; ;
  Q
  ;
@@ -7,10 +7,10 @@ PXCEVIMM ;ISL/dee - Used to edit and display V IMMUNIZATION ;3/11/04 3:00pm
  ;;Long name~File Number~Node Subscripts~Allow Duplicate entries (1=yes, 0=no)~File global name
  ;     1         2             3                   4                                   5
  ;
- ;Followning lines:
+ ;Following lines:
  ;;Node~Piece~,Field Number~Edit Label~Display Label~Display Routine~Edit Routine~Help Text for DIR("?")~Set of PXCEKEYS that can Edit~D if Detail Display Only~
  ;  1  ~  2  ~      3      ~     4    ~        5    ~        6      ~     7      ~       8              ~          9                  ~       10
- ;The Display & Edit routines are for special caces.
+ ;The Display & Edit routines are for special cases.
  ;  (The .01 field cannot have a special edit.)
  ;
 FORMAT ;;Immunization~9000010.11~0,11,12,811,812~0~^AUPNVIMM
@@ -78,19 +78,29 @@ ELOT ;
  ;
  ;
 EPOV ;Edit the Associated DX
+ N PXACS,PXACSREC,PXDATE,PXDEF,PXDXASK,PXXX
+ S PXDATE=$S($D(PXCEVIEN)=1:$$CSDATE^PXDXUTL(PXCEVIEN),$D(PXCEAPDT)=1:PXCEAPDT,1:DT)
+ S PXACSREC=$$ACTDT^PXDXUTL(PXDATE),PXACS=$P(PXACSREC,"^",3)
+ I PXACS["-" S PXACS=$P(PXACS,"-",1,2)
  I $P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))'="" D
  .N DIERR,PXCEDILF,PXCEINT,PXCEEXT
  .S PXCEINT=$P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))
  .S PXCEEXT=$$EXTERNAL^DILFD(PXCEFILE,$P(PXCETEXT,"~",3),"",PXCEINT,"PXCEDILF")
  .S DIR("B")=$S('$D(DIERR):PXCEEXT,1:PXCEINT)
- S DIR(0)=PXCEFILE_","_$P(PXCETEXT,"~",3)_"A"
- S DIR("A")=$P(PXCETEXT,"~",4)
- S:$P(PXCETEXT,"~",8)]"" DIR("?")=$P(PXCETEXT,"~",8)
- D ^DIR
+ I $P(PXACSREC,U,1)'="ICD" D
+ . S PXDXASK=PXACS_" "_$P(PXCETEXT,"~",4)
+ . S PXDEF=$G(DIR("B")),PXAGAIN=0 D ^PXDSLK I PXXX=-1 S Y=-1 Q
+ . I PXXX="@" S Y="@" Q
+ . S Y=$P($$ICDDATA^ICDXCODE("DIAG",$P($P(PXXX,U,1),";",2),PXDATE,"E"),U,1)
+ I $P(PXACSREC,U,1)="ICD" D
+ . S DIR(0)=PXCEFILE_","_$P(PXCETEXT,"~",3)_"A"
+ . S DIR("A")=PXACS_" "_$P(PXCETEXT,"~",4)
+ . S:$P(PXCETEXT,"~",8)]"" DIR("?")=$P(PXCETEXT,"~",8)
+ . D ^DIR
  K DIR,DA
  I X="@" S Y="@" S $P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))=$P(Y,"^") Q
  I $D(DTOUT)!$D(DUOUT) S PXCEEND=1,PXCEQUIT=1 Q
- I '+Y S PXCEEND=1 Q  ;S:$P(PXCETEXT,"~",3)=".08" PXCEQUIT=1 Q
+ I +Y'>0 S PXCEEND=1 Q  ;S:$P(PXCETEXT,"~",3)=".08" PXCEQUIT=1 Q
  ;See if this diagnosis is in the PXCEAFTR(0)
  I $P(PXCETEXT,"~",2)'=8,(+Y=$P($G(PXCEAFTR(0)),"^",8)) S PXCEEND=1
  I $P(PXCETEXT,"~",2)'=9,(+Y=$P($G(PXCEAFTR(0)),"^",9)) S PXCEEND=1
@@ -100,7 +110,7 @@ EPOV ;Edit the Associated DX
  I $P(PXCETEXT,"~",2)'=13,(+Y=$P($G(PXCEAFTR(0)),"^",13)) S PXCEEND=1
  I $P(PXCETEXT,"~",2)'=14,(+Y=$P($G(PXCEAFTR(0)),"^",14)) S PXCEEND=1
  I $P(PXCETEXT,"~",2)'=15,(+Y=$P($G(PXCEAFTR(0)),"^",15)) S PXCEEND=1
- I PXCEEND=1 W !,$C(7),"Duplicate Diagnosis on this CPT code is not allowed." D WAIT^PXCEHELP Q
+ I $G(PXCEEND)=1 W !,$C(7),"Duplicate Diagnosis is not allowed." D WAIT^PXCEHELP Q
  S $P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))=$P(Y,"^")
  D:+Y>0 DIAGNOS^PXCEVFI4(+Y)
  Q

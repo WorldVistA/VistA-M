@@ -1,10 +1,14 @@
-RMPRSE21 ;HINES CIOFO/HNB-SEARCH FILE 660 ENTRIES PSAS HCPCS HISTORY;1/23/1998
- ;;3.0;PROSTHETICS;**36,62,77,92,90,128**;Feb 09, 1996
+RMPRSE21 ;HINES CIOFO/HNB - SEARCH FILE 660 ENTRIES PSAS HCPCS HISTORY;1/23/1998
+ ;;3.0;PROSTHETICS;**36,62,77,92,90,128,168**;Feb 09, 1996;Build 43
+ ;
+ ; Reference to $$SINFO^ICDEX supported by ICR #5747
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
+ ; Reference to $$VLT^ICDEX   supported by ICR #5747
+ ;
  ; RVD patch #62 - add ICD9 code and Description in the output
  ; RVD patch #77 3/17/03 - use RMPR("STA") instead of $$STA^RMPRUTIL
  ;
  ; AAC Patch 92 08/03/04 - Code Set Versioning (CSV)
- ;                       - Used API=ICDDX^ICDCODE to replace direct calls to global ICD9(80).
  ;
 EN S (ITEM,RMPRARR,RMPRI,RMPRDA)=""
  K KILL
@@ -66,19 +70,57 @@ CON I $Y>(IOSL-6),PAGE=1,'RMPRCOUN W @IOF
  ;
  ; Patch 92 - Code Set Versioning (CSV) changes below
  ; AAC - 08/03/04
+ ; Changes for ICD-10 Class I Remediation Project
  ;
- S (RMPRICD,RMPRIC9,RMPRCOD,RMPRDAT)="" S RMPRERR=0
+ N RMPRACS,RMPRACSI,RMPRCNT,RMPRDAT,RMPRDATA,RMPRERR,RMPRICD,RMPRSICD
+ N RMPRPROD,RMPRTOR,RMPRTXT1
+ S (RMPRACS,RMPRACSI,RMPRDAT,RMPRDATA,RMPRICD,RMPRSICD)=""
+ S (RMPRPROD,RMPRTOR,RMPRTXT1)=""
+ S RMPRERR=0
  S RMPRDAT=$P($G(^RMPR(660,RP,0)),U,1)
- I $D(^RMPR(660,RP,10)) S RMPRIC9=$P(^RMPR(660,RP,10),U,8)
- I RMPRIC9'=""  D
- .S RMPRICD=$$ICDDX^ICDCODE(RMPRIC9,RMPRDAT)
- .S RMPRERR=$P(RMPRICD,U,1)
- .I RMPRERR<0 W !,"ICD-9 Message: ",$P(RMPRICD,U,2)
- W !,"ICD-9 Code: "
- I $G(RMPRICD)'="" W $P(RMPRICD,U,2),?19,$E($P(RMPRICD,U,4),1,55) I $P(RMPRICD,U,10)'>0 W " ","** Inactive ** Date: " S Y=$P(RMPRICD,U,12) D DD^%DT W Y
- W !
+ ; Determine Active Coding System based on Date of Interest
+ S RMPRACS=$$SINFO^ICDEX("DIAG",RMPRDAT) ; Supported by ICR 5747
+ S RMPRACSI=$P(RMPRACS,U,1)
+ S RMPRACS=$P(RMPRACS,U,2)
+ S RMPRACS=$S(RMPRACS="ICD-9-CM":"ICD-9 ",RMPRACS="ICD-10-CM":"ICD-10 ",1:"ICD: ")
  ;
- ; END PATCH 92
+ ; Load Suspense data
+ S RMPRDATA=$G(^RMPR(660,RP,10))
+ I RMPRDATA'="" D
+ .S RMPRTOR=$P(RMPRDATA,U,5) ; TYPE OF REQUEST #8.5
+ .S RMPRPROD=$P(RMPRDATA,U,7) ; PROVISIONAL DIAGNOSIS #8.7
+ .S RMPRSICD=$P(RMPRDATA,U,8) ; SUSPENSE ICD #8.8
+ ;
+ ; If SUSPENSE ICD existed, retrieve data
+ I RMPRSICD'="" D
+ .; Use new API to return ICD Data
+ .S RMPRICD=$$ICDDX^ICDEX(RMPRSICD,RMPRDAT,RMPRACSI,"I") ; Supported by ICR 5747
+ .S RMPRERR=$P(RMPRICD,U,1)
+ .; Update error message to display either ICD-9 or ICD-10 based on Date Of Interest
+ .I RMPRERR<0 W !,RMPRACS_"Message: "_$P(RMPRICD,U,2) Q
+ .; Retrieve full ICD Description
+ .S RMPRTXT(2)=$$VLT^ICDEX(80,+RMPRICD,RMPRDAT) ; Supported by ICR 5747
+ ;
+ ; Check for Manual Suspense and adjust line label if needed
+ S RMPRTXT(1)=$S(RMPRTOR="MANUAL"&(RMPRSICD=""):"MANUAL SUSPENSE: ",1:RMPRACS_"CODE: ")
+ ;
+ I +$G(RMPRSICD) D
+ .S RMPRTXT(1)=RMPRTXT(1)_$P(RMPRICD,U,2)_"  "
+ .;
+ .; Process SUSPENSE ICD
+ .I $P(RMPRICD,U,10)'>0 D
+ ..S Y=$P(RMPRICD,U,12) ; Inactive Date
+ ..D DD^%DT
+ ..S RMPRTXT(3)="  ** Inactive ** Date: "_Y
+ .;
+ .; Parse ICD data into 80 char array
+ .D PARSE^RMPOPED(.RMPRTXT)
+ ;
+ ; Loop to display ICD and Suspense info
+ F RMPRCNT=1:1 Q:'$D(RMPRTXT(RMPRCNT))  W !,RMPRTXT(RMPRCNT)
+ K RMPRTXT
+ ;
+ ; End of Patch 92 & ICD-10 mods
  ;
  I $E(IOST)["C"&($Y>(IOSL-6)) S DIR(0)="E" D ^DIR S:Y<1 KILL=1 Q:Y<1  K DIR W @IOF D HEAD Q
  I $Y>(IOSL-6) W @IOF D HEAD

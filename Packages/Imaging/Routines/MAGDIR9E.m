@@ -1,5 +1,5 @@
-MAGDIR9E ;WOIFO/PMK - Read a DICOM image file ; 23 Apr 2009 9:07 AM
- ;;3.0;IMAGING;**11,51,46,54,99**;Mar 19, 2002;Build 2057;Apr 19, 2011
+MAGDIR9E ;WOIFO/PMK - Read a DICOM image file ; 14 Sep 2012 2:36 PM
+ ;;3.0;IMAGING;**11,51,46,54,99,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -30,6 +30,7 @@ MAGDIR9E ;WOIFO/PMK - Read a DICOM image file ; 23 Apr 2009 9:07 AM
  ;
 GROUP() ; entry point from ^MAGDIR8 for consult/procedure groups
  N ACQDEVP ;-- pointer to acquisition device file (#2006.04)
+ N COMPLETE ;- GMRC consult complete flag
  N D0 ;------- fileman variable
  N ERRCODE ;-- error trap code
  N GROUP ;---- array to pass group data to ^MAGGTIA
@@ -60,7 +61,8 @@ GROUP() ; entry point from ^MAGDIR8 for consult/procedure groups
  ; check if there already is a TIU note attached to this request
  ;
  S TIUIEN=$$TIULAST^MAGDGMRC(GMRCIEN)
- I TIUIEN D  Q:ERRCODE ERRCODE ; there is TIU note already
+ S COMPLETE=$$GET1^DIQ(123,GMRCIEN,8) ; get the consult status
+ I TIUIEN,COMPLETE'="COMPLETE" D  Q:ERRCODE ERRCODE ; there is TIU note already
  . ; double check TIU note DFN to make sure that it matches
  . N HIT ; scratch variable used in finding corresponding image group
  . N TIUDFN ; DFN value from ^TIU for double checking
@@ -154,37 +156,35 @@ GROUP() ; entry point from ^MAGDIR8 for consult/procedure groups
  ; add the study to the Consult Unread List, if necessary
  D ADD^MAGDTR03(.RESULT,GMRCIEN,"I",1) ; add if "on image" is set
  ;
+ S (FILEDATA("SPEC/SUBSPEC"),FILEDATA("PROC/EVENT"))=""
+ ;
  ; lookup study in ^GMR(123) and get FILEDATA variables
+ ;
  S SERVICE=$$GET1^DIQ(123,GMRCIEN,1,"I")
- I SERVICE D
- . N ISPECIDX,IPROCIDX,UNREAD,X,Y
+ I SERVICE D  ; look for ISPECIDX and IPROCIDX
+ . N DONE,ISPECIDX1,ISPECIDX2,IPROCIDX1,IPROCIDX2,MWLCONFIG,UNREAD,X,Y
+ . ;
+ . S (ISPECIDX1,ISPECIDX2,IPROCIDX1,IPROCIDX2)=""
+ . ;
+ . ; look in CLINICAL SPECIALTY DICOM & HL7 file #2006.5831 first
+ . S MWLCONFIG=$$MWLFIND^MAGDHOW1(SERVICE,GMRCIEN)
+ . I MWLCONFIG D  Q:DONE
+ . . S X=^MAG(2006.5831,MWLCONFIG,0)
+ . . S ISPECIDX1=$P(X,"^",3),IPROCIDX1=$P(X,"^",4)
+ . . S DONE=$$IMAGEIDX(ISPECIDX1,IPROCIDX1,.FILEDATA)
+ . . Q
+ . ;
+ . ; look in TeleReader READ/UNREAD LIST file #2006.5849 next
  . S UNREAD=$O(^MAG(2006.5849,"B",GMRCIEN,""))
- . I UNREAD D  ; get indices from Unread List
+ . I UNREAD D  Q:DONE
  . . S X=^MAG(2006.5849,UNREAD,0)
- . . S ISPECIDX=$P(X,"^",3),IPROCIDX=$P(X,"^",4)
- . . S FILEDATA("SPEC/SUBSPEC")=ISPECIDX
- . . I "A"[$P(^MAG(2005.85,IPROCIDX,0),"^",3) D
- . . . S FILEDATA("PROC/EVENT")=IPROCIDX
- . . . Q
- . . E  D  ; inactive index to procedure
- . . . S X=$$FIELD43^MAGXMA(MODALITY,ISPECIDX,.Y)
- . . . S FILEDATA("PROC/EVENT")=$S(X=0:Y,1:"")
- . . . Q
+ . . S ISPECIDX2=$P(X,"^",3),IPROCIDX2=$P(X,"^",4)
+ . . S DONE=$$IMAGEIDX(ISPECIDX2,IPROCIDX2,.FILEDATA)
  . . Q
- . E  I $D(^MAG(2006.5831,SERVICE,0)) D
- . . S ISPECIDX=$P(^MAG(2006.5831,SERVICE,0),"^",2)
- . . S X=$$FIELD43^MAGXMA(MODALITY,ISPECIDX,.Y)
- . . S FILEDATA("PROC/EVENT")=$S(X=0:Y,1:"")
- . . S FILEDATA("SPEC/SUBSPEC")=ISPECIDX
- . . Q
- . E  D  ; service was removed from ^MAG(2006.5831)
- . . S FILEDATA("PROC/EVENT")=""
- . . S FILEDATA("SPEC/SUBSPEC")=""
- . . Q
- . Q
- E  D
- . S FILEDATA("PROC/EVENT")=""
- . S FILEDATA("SPEC/SUBSPEC")=""
+ . ;
+ . ; inactive index to procedure
+ . S X=$$FIELD43^MAGXMA(FILEDATA("MODALITY"),ISPECIDX1,.Y)
+ . S FILEDATA("PROC/EVENT")=$S(X=0:Y,1:"")
  . Q
  ;
  ; if the 2005 group node does not yet exist, create it
@@ -212,6 +212,26 @@ GROUP() ; entry point from ^MAGDIR8 for consult/procedure groups
  I IMAGNAME'="" S FILEDATA("SHORT DESCRIPTION")=IMAGNAME
  ;
  Q 0
+ ;
+IMAGEIDX(ISPECIDX,IPROCIDX,FILEDATA) ; set image index for specialty and procedure
+ N NFIELDS
+ ;
+ S NFIELDS=0
+ ;
+ I FILEDATA("SPEC/SUBSPEC") S NFIELDS=NFIELDS+1
+ E  I ISPECIDX,"A"[$P(^MAG(2005.84,ISPECIDX,0),"^",4) D
+ . S FILEDATA("SPEC/SUBSPEC")=ISPECIDX
+ . S NFIELDS=NFIELDS+1
+ . Q
+ ;
+ I FILEDATA("PROC/EVENT") S NFIELDS=NFIELDS+1
+ E  I IPROCIDX,"A"[$P(^MAG(2005.85,IPROCIDX,0),"^",3) D
+ . S FILEDATA("PROC/EVENT")=IPROCIDX
+ . S NFIELDS=NFIELDS+1
+ . Q
+ . I 
+ ;
+ Q NFIELDS=2
  ;
 TIUXLINK() ; create the cross-linkages to TIU EXTERNAL DATA LINK file
  N TIUXDIEN

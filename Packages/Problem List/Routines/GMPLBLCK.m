@@ -1,7 +1,7 @@
-GMPLBLCK ;SLC/JFR - check selection list ICD9 codes; 3/20/03 09:05
- ;;2.0;Problem List;**28**;Aug 25, 1994
+GMPLBLCK ;SLC/JFR/TC - check selection list ICD codes ;04/09/12  11:44
+ ;;2.0;Problem List;**28,42**;Aug 25, 1994;Build 46
  ;
- ; This routine invokes IA #3990
+ ; This routine invokes IA #5699 & #5747
  Q
 CSVPEP ;called from protocol GMPL SELECTION LIST CSV EVENT
  N CAT,LN,LST,LIST,XMSUB,XMTEXT,XMDUZ,XMY
@@ -10,7 +10,7 @@ CSVPEP ;called from protocol GMPL SELECTION LIST CSV EVENT
  S LN=1
  I $D(^TMP("GMPLSL",$J,"I")) D
  . S ^TMP("GMPLMSG",$J,LN)="The following Problem Selection Lists contain one or more problems that",LN=LN+1
- . S ^TMP("GMPLMSG",$J,LN)="have inactive ICD-9 codes attached to them. Any current users or clinics using",LN=LN+1
+ . S ^TMP("GMPLMSG",$J,LN)="have inactive ICD codes attached to them. Any current users or clinics using",LN=LN+1
  . S ^TMP("GMPLMSG",$J,LN)="these Selection Lists, will not be able to add the problems with inactive ",LN=LN+1
  . S ^TMP("GMPLMSG",$J,LN)="codes, until the list and the inactive codes are updated. The list may not be",LN=LN+1
  . S ^TMP("GMPLMSG",$J,LN)="assigned to any additional users or clinics until updated.",LN=LN+1
@@ -22,7 +22,7 @@ CSVPEP ;called from protocol GMPL SELECTION LIST CSV EVENT
  I $D(^TMP("GMPLSL",$J,"F")) D  ;no future inact. dates
  . S ^TMP("GMPLMSG",$J,LN)="",LN=LN+1
  . S ^TMP("GMPLMSG",$J,LN)="",LN=LN+1
- . S ^TMP("GMPLMSG",$J,LN)="The following Problem Selection List categories contain problems with ICD9 ",LN=LN+1
+ . S ^TMP("GMPLMSG",$J,LN)="The following Problem Selection List categories contain problems with ICD",LN=LN+1
  . S ^TMP("GMPLMSG",$J,LN)="codes that have a future inactivation date. These Categories should be updated",LN=LN+1
  . S ^TMP("GMPLMSG",$J,LN)="as soon as possible after the inactivation date to reduce the interruption of",LN=LN+1
  . S ^TMP("GMPLMSG",$J,LN)="use of the selection list(s) by users or clinics.",LN=LN+1
@@ -32,7 +32,7 @@ CSVPEP ;called from protocol GMPL SELECTION LIST CSV EVENT
  .. S ^TMP("GMPLMSG",$J,LN)=" Category name: "_$$GET1^DIQ(125.11,CAT,.01)
  .. S LN=LN+1
  .. S ^TMP("GMPLMSG",$J,LN)="",LN=LN+1
- .. S ^TMP("GMPLMSG",$J,LN)="    Problems with ICD9 codes due to be inactivated:",LN=LN+1
+ .. S ^TMP("GMPLMSG",$J,LN)="    Problems with ICD codes due to be inactivated:",LN=LN+1
  .. S ^TMP("GMPLMSG",$J,LN)="",LN=LN+1
  .. N PROB,TXT
  .. S PROB=0
@@ -91,7 +91,7 @@ QUEUE ; entry point for tasked report
  ;
  I $D(^TMP("GMPLSL",$J,"I")) D  ; some inactive problem codes
  . W !,"The following Problem Selection List(s) contain one or more problems that"
- . W !,"have inactive ICD-9 codes attached to them. Any current users or clinics using"
+ . W !,"have inactive ICD codes attached to them. Any current users or clinics using"
  . W !,"these Selection Lists, will not be able to add the problems with inactive "
  . W !,"codes, until the list and the inactive codes are updated. The list may not be"
  . W !,"assigned to any additional users or clinics until updated.",!
@@ -102,7 +102,7 @@ QUEUE ; entry point for tasked report
  ;
  I $D(^TMP("GMPLSL",$J,"F")) D  ; future inact. dates
  . D PAGE(.PAGE) Q:'PAGE
- . W !,"The following Problem Selection List categories contain problems with ICD9 "
+ . W !,"The following Problem Selection List categories contain problems with ICD"
  . W !,"codes that have a future inactivation date. These Categories should be updated"
  . W !,"as soon as possible after the inactivation date to reduce the interruption of"
  . W !,"use of the selection list(s) by users or clinics.",!
@@ -110,7 +110,7 @@ QUEUE ; entry point for tasked report
  . F  S CAT=$O(^TMP("GMPLSL",$J,"F",CAT)) Q:'CAT  D
  .. I IOSL-$Y<8 D PAGE(.PAGE) Q:'PAGE
  .. W !!!," Category name: "_$$GET1^DIQ(125.11,CAT,.01),!
- .. W !,"    Problems with ICD9 codes due to be inactivated:",!
+ .. W !,"    Problems with ICD codes due to be inactivated:",!
  .. N PROB,TXT
  .. S PROB=0
  .. F  S PROB=$O(^TMP("GMPLSL",$J,"F",CAT,PROB)) Q:'PROB!(PAGE<1)  D
@@ -156,10 +156,10 @@ CKCODES ; check probs on lists for future inactivation dates
  N PROB,CAT,LIST
  S PROB=0
  F  S PROB=$O(^GMPL(125.12,PROB)) Q:'PROB  I $L($P(^(PROB,0),U,5)) D
- . N PROB0,PROBTX,APIDATA,PROBCAT,ACTDT
- . S PROB0=^GMPL(125.12,PROB,0)
- . I '$$STATCHK^ICDAPIU($P(PROB0,U,5),DT) Q  ;already inactive
- . S APIDATA=$$HIST^ICDAPIU($P(PROB0,U,5),.APIDATA)
+ . N PROB0,PROBTX,APIDATA,PROBCAT,ACTDT,GMPCSPTR
+ . S PROB0=^GMPL(125.12,PROB,0),GMPCSPTR=+$$CODECS^ICDEX($P(PROB0,U,5),80,DT)
+ . I '$$STATCHK^ICDXCODE(GMPCSPTR,$P(PROB0,U,5),DT) Q  ;already inactive
+ . S APIDATA=$$HIST^ICDXCODE(GMPCSPTR,$P(PROB0,U,5),.APIDATA)
  . S ACTDT=+$O(APIDATA(DT))
  . Q:'ACTDT  ; no future activity
  . I $G(APIDATA(ACTDT)) Q  ; no future inactivation = OK

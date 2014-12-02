@@ -1,142 +1,143 @@
 PSSDSAPM ;BIR/RTR-Dose Check utilities routine ;09/13/10
- ;;1.0;PHARMACY DATA MANAGEMENT;**117,168**;9/30/97;Build 4
+ ;;1.0;PHARMACY DATA MANAGEMENT;**117,168,160,173**;9/30/97;Build 9
  ;
  ;
  ;DRG - returns best Dispense Drug to use for Order Checks when only the Orderable Item is available
  ;Input:
  ;   PSSNBOI - Pharmacy orderable Item from #50.7
  ;   PSSNBPK - package Use,  I for Inpatient, O for Outpatient, X for Non-VA Meds
+ ;   PSSNBOR - defined only if being called from CPRS, 1 for Enhanced Order Checks, 2 for Dosing
  ;Output:
  ;   nnn;nnn;nnnn - First piece is File 50 Internal Number, Second piece is VA Generic Internal number, Third piece
- ;   will be the GCNSEQNO number                              
- ;   Peice 2 will be null if drug not matched to National Drug File
- ;   Peice 3 will be the GCNSEQNO number, if the NDF match has a GCNSEQNO number
- ;   0 will be returned if no drug found
+ ;   will be the GCNSEQNO number. Piece 1 ';' is 0 if no drug found.                              
+ ;   Piece 2 will be null if drug not matched to National Drug File
+ ;   Piece 3 will be the GCNSEQNO number, if the NDF match has a GCNSEQNO number
+ ;   Piece 4 is returned as 1 if the call is from CPRS for enhanced order checks, and it indicates no drug was returned
+ ;   or a drug was returned, but there is an active supply tied to the Orderable Item, indicating CPRS should also do
+ ;   the duplicate supply check
+ ;   Piece 5 is returned as 1 if CPRS is getting a drug for the Enhanced Order Checks call, and they should
+ ;   display the error message for all order checks and not do the Dosing call
  ;
- ;heirarcy: (Drug must be active)
+ ;
+ ;hierarchy: (Drug must be active)
  ;1 - Exact Package Match, matched to NDF with GCNSEQNO
  ;2 - No package match, but second choice package exists, matched to NDF with GCNSEQNO
  ;3 - No package match, but third choice package exists, matched to NDF with GCNSEQNO
- ;4 - No package match, matched to NDF with GCNSEQNO
- ;5 - Exact Package Match, matched to NDF with no GCNSEQNO
- ;6 - No package match, but second choice package exists, matched to NDF with no GCNSEQNO
- ;7 - No package match, but third choice package exists, matched to NDF with no GCNSEQNO
- ;8 - No package match, matched to NDF with no GCNSEQNO
- ;9 - Exact Package Match, not matched to NDF
- ;10 - No package match, but second choice package exists, not matched to NDF
- ;11 - No package match, but third choice package exists, not matched to NDF
- ;12 - No package match, not matched to NDF
+ ;4 - No package match, but fourth choice package exists, matched to NDF with GCNSEQNO
+ ;5 - No package match, matched to NDF with GCNSEQNO
+ ;6 - Exact Package Match, matched to NDF with no GCNSEQNO
+ ;7 - No package match, but second choice package exists, matched to NDF with no GCNSEQNO
+ ;8 - No package match, but third choice package exists, matched to NDF with no GCNSEQNO
+ ;9 - No package match, but fourth choice package exists, matched to NDF with no GCNSEQNO
+ ;10 - No package match, matched to NDF with no GCNSEQNO
+ ;11 - Exact Package Match, not matched to NDF
+ ;12 - No package match, but second choice package exists, not matched to NDF
+ ;13 - No package match, but third choice package exists, not matched to NDF
+ ;14 - No package match, but fourth choice package exists, not matched to NDF
+ ;15 - No package match, package is null or some other package that is not one of the 4 primary packages (O, I U, X), matched to NDF
+ ;16 - No package match, not matched to NDF, package is null or some other package that is not one of the 4 primary packages (O, I U, X)
+ ;
+ ;** CPRS and Inpatient always passes in "I" for PSSNBPK variable, so drugs with "I" and "U" application packages are 
+ ;         evaluated as either or in the APP subroutine.  In the hierarchy above 1 or 2,  6 or 7 and 11 or 12 are 
+ ;         considered to be exact matches.  Outpatient evaluates "I" and "U" separately.  
  ;
  ;Second/Third Choice packages:
- ;Outpatient - U or I, the X
- ;Inpatient - O, then X
- ;Non-VA Meds - O, then U or I
+ ;Outpatient - U for Unit dose, I for IV, then X for Non-VA med
+ ;Inpatient - O for outpatient then X
+ ;Non-VA Meds - O, U then I
  ;
- ;PSNBLOW holds current number in array, only reset arrar entry if lower number is found
+ ;PSNBLOW holds current number in array, only reset array entry if lower number is found
  ;PSSNBSTP stops the loop because you found the best possible drug, no need to set PSSNBLOW in this case
  ;
-DRG(PSSNBOI,PSSNBPK) ;
- I '$G(PSSNBOI) Q "0;;"
- I $G(PSSNBPK)'="O",$G(PSSNBPK)'="I",$G(PSSNBPK)'="X" Q "0;;"
- N PSSNB1,PSSNBRS,PSSNBSTP,PSSNBIN,PSSNBAPP,PSSNBLOW,PSSNBARR,PSSNBAP1,PSSNBARX
- S PSSNBSTP=0,PSSNBLOW=13
+ ;
+DRG(PSSNBOI,PSSNBPK,PSSNBOR) ;
+ I '$G(PSSNBOI) Q "0;;"_$S($G(PSSNBOR)=1&($G(PSSNBPK)="I"!($G(PSSNBPK)="U")):";1;1",$G(PSSNBOR)=1:";1",1:"")
+ I $G(PSSNBPK)'="O",$G(PSSNBPK)'="I",$G(PSSNBPK)'="U",$G(PSSNBPK)'="X" Q "0;;"_$S($G(PSSNBOR)=1:";1;1",1:"")
+ N PSSNB1,PSSNBRS,PSSNBSTP,PSSNBIN,PSSNBAPP,PSSNBLOW,PSSNBARR,PSSNBAP1,PSSNBARX,PSSNONE,PSSNS1,PSSNS2,PSSNS3,PSSNS4,PSSNBOF,PSSNBOD,PSSNBOL,PSSNBOA,PSSNBO3
+ S PSSNBSTP=0,PSSNBLOW=16
  S PSSNBRS="0;;"
+ ;package preference sequence defined
+ I PSSNBPK["O" S PSSNS1="O",PSSNS2="U",PSSNS3="I",PSSNS4="X"
+ I PSSNBPK["I" S PSSNS1="I",PSSNS2="U",PSSNS3="O",PSSNS4="X"
+ I PSSNBPK["U" S PSSNS1="U",PSSNS2="I",PSSNS3="O",PSSNS4="X"
+ I PSSNBPK["X" S PSSNS1="X",PSSNS2="O",PSSNS3="U",PSSNS4="I"
  F PSSNB1=0:0 S PSSNB1=$O(^PSDRUG("ASP",PSSNBOI,PSSNB1)) Q:'PSSNB1!(PSSNBSTP)  D:'$$DREX
- .S PSSNBIN=$P($G(^PSDRUG(PSSNB1,"I")),"^") I PSSNBIN,PSSNBIN<DT Q
+ .S PSSNBIN=$P($G(^PSDRUG(PSSNB1,"I")),"^") I PSSNBIN,PSSNBIN'>DT Q
  .S PSSNBAPP=$P($G(^PSDRUG(PSSNB1,2)),"^",3)
  .S PSSNBAP1=$$GCN
- .I PSSNBPK="O" D APPO Q
- .I PSSNBPK="I" D APPI Q
- .I PSSNBPK="X" D APPX
+ .D APP
  S PSSNBARX=$O(PSSNBARR(0))
  I PSSNBARX S PSSNBRS=$G(PSSNBARR(PSSNBARX))
+ I $G(PSSNBOR)=1 D
+ .I '$P(PSSNBRS,";") S $P(PSSNBRS,";",4)=1 Q
+ .S PSSNBOF=0 F PSSNBOL=0:0 S PSSNBOL=$O(^PSDRUG("ASP",PSSNBOI,PSSNBOL)) Q:'PSSNBOL!(PSSNBOF)  D
+ ..I '$$SUP^PSSDSAPI(PSSNBOL) Q
+ ..S PSSNBO3=$P($G(^PSDRUG(PSSNBOL,2)),"^",3),PSSNBOA=$S(PSSNBPK["I"!(PSSNBPK["U"):1,1:0)
+ ..I PSSNBOA,PSSNBO3'["I",PSSNBO3'["O" Q
+ ..I 'PSSNBOA,PSSNBO3'["O",PSSNBO3'["X" Q
+ ..S PSSNBOD=$P($G(^PSDRUG(PSSNBOL,"I")),"^") I PSSNBOD,PSSNBOD'>DT Q
+ ..S $P(PSSNBRS,";",4)=1,PSSNBOF=1 Q
+ I $G(PSSNBOR)=1,'$P(PSSNBRS,";") I $$EMSY^PSSDSAPI S $P(PSSNBRS,";",5)=$$EMS I '$P(PSSNBRS,";",5) S $P(PSSNBRS,";",5)=$$EMSX
  Q PSSNBRS
  ;
- ;
 DREX() ;Quit if drug is exempt from order check
- I $G(PSSINCFO) Q $$EXMT^PSSDSAPI(PSSNB1)
+ I $G(PSSINCFO)!($G(PSSNBOR)=2) Q $$EXMT^PSSDSAPI(PSSNB1)
  Q $$SUP^PSSDSAPI(PSSNB1)
  ;
+EMS() ;Sets piece 5 of output to 1 if CPRS needs to show error message and not do Dose check
+ I PSSNBPK'="U",PSSNBPK'="I" Q 0
+ I $$PRE^PSSDSAPK(PSSNBOI,"U")=1 Q 1
+ Q 0
  ;
-APPO ;Outpatient order
- I PSSNBAPP["O",$P(PSSNBAP1,"^",3) S PSSNBARR(1)=PSSNBAP1,PSSNBSTP=1 Q
+EMSX() ;Sets piece 5 of output to 1 if no active drugs are tied to the orderable Item
+ N PSSKRC1,PSSKRC2,PSSKRC3,PSSKRC4,PSSKRC9
+ S (PSSKRC3,PSSKRC9,PSSKRC4)=0
+ F PSSKRC1=0:0 S PSSKRC1=$O(^PSDRUG("ASP",PSSNBOI,PSSKRC1)) Q:'PSSKRC1!(PSSKRC9)  D
+ .S PSSKRC2=$P($G(^PSDRUG(PSSKRC1,"I")),"^") I PSSKRC2,PSSKRC2'>DT D:'PSSKRC4  Q
+ ..I '$$SUP^PSSDSAPI(PSSKRC1) S PSSKRC4=1
+ .S PSSKRC3=1
+ .I '$$SUP^PSSDSAPI(PSSKRC1) S PSSKRC9=1
+ I 'PSSKRC3,PSSKRC4 S PSSKRC9=1
+ Q PSSKRC9
+ ;
+APP ;
+ I PSSNBAPP[PSSNS1,$P(PSSNBAP1,";",3) S PSSNBARR(1)=PSSNBAP1,PSSNBSTP=1 Q
+ Q:PSSNBLOW<2
+ I PSSNBAPP[PSSNS2,$P(PSSNBAP1,";",3) S PSSNBARR(2)=PSSNBAP1,PSSNBLOW=2 Q
+ I PSSNBAPP[PSSNS1!(PSSNBAPP[PSSNS2),$P(PSSNBAP1,";",3) S PSSNBARR(1)=PSSNBAP1,PSSNBSTP=1 Q
  Q:PSSNBLOW<3
- I PSSNBAPP["I"!(PSSNBAPP["U") I $P(PSSNBAP1,"^",3) S PSSNBARR(2)=PSSNBAP1,PSSNBLOW=2 Q
+ I PSSNBAPP[PSSNS3,$P(PSSNBAP1,";",3) S PSSNBARR(3)=PSSNBAP1,PSSNBLOW=3 Q
  Q:PSSNBLOW<4
- I PSSNBAPP["X",$P(PSSNBAP1,"^",3) S PSSNBARR(3)=PSSNBAP1,PSSNBLOW=3 Q
+ I PSSNBAPP[PSSNS4,$P(PSSNBAP1,";",3) S PSSNBARR(4)=PSSNBAP1,PSSNBLOW=4 Q
  Q:PSSNBLOW<5
- I $P(PSSNBAP1,"^",3) S PSSNBARR(4)=PSSNBAP1,PSSNBLOW=4 Q
+ I $P(PSSNBAP1,";",3) S PSSNBARR(5)=PSSNBAP1,PSSNBLOW=5 Q
  Q:PSSNBLOW<6
- I PSSNBAPP["O",PSSNBAP1 S PSSNBARR(5)=PSSNBAP1,PSSNBLOW=5 Q
+ I PSSNBAPP[PSSNS1,PSSNBAP1 S PSSNBARR(6)=PSSNBAP1,PSSNBLOW=6 Q
  Q:PSSNBLOW<7
- I PSSNBAPP["I"!(PSSNBAPP["U") I PSSNBAP1 S PSSNBARR(6)=PSSNBAP1,PSSNBLOW=6 Q
+ I PSSNBAPP[PSSNS2,PSSNBAP1 S PSSNBARR(7)=PSSNBAP1,PSSNBLOW=7 Q
+ I PSSNBAPP[PSSNS1!(PSSNBAPP[PSSNS2),PSSNBAP1 S PSSNBARR(6)=PSSNBAP1,PSSNBLOW=6,PSSNBSTP=1 Q
  Q:PSSNBLOW<8
- I PSSNBAPP["X",PSSNBAP1 S PSSNBARR(7)=PSSNBAP1,PSSNBLOW=7 Q
+ I PSSNBAPP[PSSNS3,PSSNBAP1 S PSSNBARR(8)=PSSNBAP1,PSSNBLOW=8 Q
  Q:PSSNBLOW<9
- I PSSNBAP1 S PSSNBARR(8)=PSSNBAP1,PSSNBLOW=8 Q
+ I PSSNBAPP[PSSNS4,PSSNBAP1 S PSSNBARR(9)=PSSNBAP1,PSSNBLOW=9 Q
  Q:PSSNBLOW<10
- I PSSNBAPP["O" S PSSNBARR(9)=PSSNB1_";;",PSSNBLOW=9 Q
+ I $P(PSSNBAP1,";",2) S PSSNBARR(10)=PSSNBAP1,PSSNBLOW=10 Q
  Q:PSSNBLOW<11
- I PSSNBAPP["I"!(PSSNBAPP["U") S PSSNBARR(10)=PSSNB1_";;",PSSNBLOW=10 Q
+ I PSSNBAPP[PSSNS1 S PSSNBARR(11)=PSSNB1_";;",PSSNBLOW=11 Q
  Q:PSSNBLOW<12
- I PSSNBAPP["X" S PSSNBARR(11)=PSSNB1_";;",PSSNBLOW=11 Q
+ I PSSNBAPP[PSSNS2 S PSSNBARR(12)=PSSNB1_";;",PSSNBLOW=12 Q
+ I PSSNBAPP[PSSNS1!(PSSNBAPP[PSSNS2) S PSSNBARR(11)=PSSNB1_";;",PSSNBLOW=11,PSSNBSTP=1 Q
  Q:PSSNBLOW<13
- S PSSNBARR(12)=PSSNB1_";;",PSSNBLOW=12
+ I PSSNBAPP[PSSNS3 S PSSNBARR(13)=PSSNB1_";;",PSSNBLOW=13 Q
+ Q:PSSNBLOW<14
+ I PSSNBAPP[PSSNS4 S PSSNBARR(14)=PSSNB1_";;",PSSNBLOW=14 Q
+ Q:PSSNBLOW<15
+ I PSSNBAP1 S PSSNBARR(15)=PSSNBAP1,PSSNBLOW=15 Q
+ Q:PSSNBLOW<16
+ S PSSNBARR(16)=PSSNB1_";;",PSSNBLOW=16
  Q
  ;
-APPI ;Inpatient Order
- I PSSNBAPP["I"!(PSSNBAPP["U") I $P(PSSNBAP1,"^",3) S PSSNBARR(1)=PSSNBAP1,PSSNBSTP=1 Q
- Q:PSSNBLOW<3
- I PSSNBAPP["O" I $P(PSSNBAP1,"^",3) S PSSNBARR(2)=PSSNBAP1,PSSNBLOW=2 Q
- Q:PSSNBLOW<4
- I PSSNBAPP["X" I $P(PSSNBAP1,"^",3) S PSSNBARR(3)=PSSNBAP1,PSSNBLOW=3 Q
- Q:PSSNBLOW<5
- I $P(PSSNBAP1,"^",3) S PSSNBARR(4)=PSSNBAP1,PSSNBLOW=4 Q
- Q:PSSNBLOW<6
- I PSSNBAPP["I"!(PSSNBAPP["U") I PSSNBAP1 S PSSNBARR(5)=PSSNBAP1,PSSNBLOW=5 Q
- Q:PSSNBLOW<7
- I PSSNBAPP["O" I PSSNBAP1 S PSSNBARR(6)=PSSNBAP1,PSSNBLOW=6 Q
- Q:PSSNBLOW<8
- I PSSNBAPP["X" I PSSNBAP1 S PSSNBARR(7)=PSSNBAP1,PSSNBLOW=7 Q
- Q:PSSNBLOW<9
- I PSSNBAP1 S PSSNBARR(8)=PSSNBAP1,PSSNBLOW=8 Q
- Q:PSSNBLOW<10
- I PSSNBAPP["I"!(PSSNBAPP["U") S PSSNBARR(9)=PSSNB1_";;",PSSNBLOW=9 Q
- Q:PSSNBLOW<11
- I PSSNBAPP["O" S PSSNBARR(10)=PSSNB1_";;",PSSNBLOW=10 Q
- Q:PSSNBLOW<12
- I PSSNBAPP["X" S PSSNBARR(11)=PSSNB1_";;",PSSNBLOW=11 Q
- Q:PSSNBLOW<13
- S PSSNBARR(12)=PSSNB1_";;",PSSNBLOW=12
- Q
- ;
-APPX ;Non-VA Meds Order
- I PSSNBAPP["X",$P(PSSNBAP1,"^",3) S PSSNBARR(1)=PSSNBAP1,PSSNBSTP=1 Q
- Q:PSSNBLOW<3
- I PSSNBAPP["O" I $P(PSSNBAP1,"^",3) S PSSNBARR(2)=PSSNBAP1,PSSNBLOW=2 Q
- Q:PSSNBLOW<4
- I PSSNBAPP["I"!PSSNBAPP["U" I $P(PSSNBAP1,"^",3) S PSSNBARR(3)=PSSNBAP1,PSSNBLOW=3 Q
- Q:PSSNBLOW<5
- I $P(PSSNBAP1,"^",3) S PSSNBARR(4)=PSSNBAP1,PSSNBLOW=4 Q
- Q:PSSNBLOW<6
- I PSSNBAPP["X",PSSNBAP1 S PSSNBARR(5)=PSSNBAP1,PSSNBLOW=5 Q
- Q:PSSNBLOW<7
- I PSSNBAPP["O" I PSSNBAP1 S PSSNBARR(6)=PSSNBAP1,PSSNBLOW=6 Q
- Q:PSSNBLOW<8
- I PSSNBAPP["I"!(PSSNBAPP["U") I PSSNBAP1 S PSSNBARR(7)=PSSNBAP1,PSSNBLOW=7 Q
- Q:PSSNBLOW<9
- I PSSNBAP1 S PSSNBARR(8)=PSSNBAP1,PSSNBLOW=8 Q
- Q:PSSNBLOW<10
- I PSSNBAPP["X" S PSSNBARR(9)=PSSNB1_";;",PSSNBLOW=9 Q
- Q:PSSNBLOW<11
- I PSSNBAPP["O" S PSSNBARR(10)=PSSNB1_";;",PSSNBLOW=10 Q
- Q:PSSNBLOW<12
- I PSSNBAPP["I"!(PSSNBAPP["U") S PSSNBARR(11)=PSSNB1_";;",PSSNBLOW=11 Q
- Q:PSSNBLOW<13
- S PSSNBARR(12)=PSSNB1_";;",PSSNBLOW=12
- Q
- ;
-GCN() ;Return 0 for not matched, 1 for matched with no GCNSEQNO, 1^1 for matched with a GCNSEQNO
+GCN() ;Returns drug matching information
  N PSSNBGC1,PSSNBGC3,PSSNBGRS
  S PSSNBGC1=$P($G(^PSDRUG(PSSNB1,"ND")),"^"),PSSNBGC3=$P($G(^PSDRUG(PSSNB1,"ND")),"^",3)
  I 'PSSNBGC1!('PSSNBGC3) Q 0
@@ -148,10 +149,10 @@ GCN() ;Return 0 for not matched, 1 for matched with no GCNSEQNO, 1^1 for matched
 MLT ;Multi Ingredient check called from PSSDSAPD
  D ITEM^PSSDSAPK D:'PSSDBFAL NUM^PSSDSAPL
  I '$G(PSSDBIFG) Q
- N PSSMLT1,PSSMLT2,PSSMLT3,PSSMLG4,DA
+ N PSSMLT1,PSSMLT2,PSSMLT3,DA
  S PSSMLT1=$P($G(^PSDRUG(PSSDBIFG,"ND")),"^"),PSSMLT3=$P($G(^PSDRUG(PSSDBIFG,"ND")),"^",3)
  I 'PSSMLT1!('PSSMLT3) D MLTS Q
- S PSSMLT2=$$PSJING^PSNAPIS(PSSMLT1,PSSMLT3,.PSSMLG4) I +PSSMLT2>1 D MLTS Q
+ S PSSMLT2=$$TLS^PSSDSAPA(PSSMLT1,PSSMLT3) I PSSMLT2 D MLTS Q
  I $$MLTSU D MLTS
  Q
  ;
@@ -173,8 +174,6 @@ MLTSU() ;
  ;
 UNITM(PSSXUTUN) ;Find First DataBank Unit, can't do DIC Lookup because of exact match check
  ;Returns Null or First DataBank Unit for text passed in
- ;Not a true conversion, because if Unit contains "/", we convert only piece 1
- ;Only returns data if Dose Form Indicator is Set to Yes
  N PSSXUTX,PSSXUTZ,PSSXUTAA,PSSXUTFL
  S PSSXUTFL=0 I $G(PSSXUTUN)="" S PSSXUTZ="" G UNITDX
  S PSSXUTAA=$$UP^XLFSTR(PSSXUTUN)
@@ -207,7 +206,7 @@ FDRUG ; Find drug, called from PSSDSAPD
 INERR ;Set OI error
  N PSSNOOIX
  S PSSNOOIX=$G(PSSDBFDB(PSSDBLP,"OI_ERROR",PSSDBFDB(PSSDBLP,"DRUG_NM")))
- I PSSNOOIX'="" S ^TMP($J,PSSDBASE,"IN","EXCEPTIONS","OI",PSSDBFDB(PSSDBLP,"RX_NUM"))=$P(PSSNOOIX,"^")_"^"_$P(PSSNOOIX,"^",2)
+ I PSSNOOIX'="" S ^TMP($J,PSSDBASE,"IN","EXCEPTIONS","OI",PSSDBFDB(PSSDBLP,"DRUG_NM"))=$P(PSSNOOIX,"^")_"^"_$P(PSSNOOIX,"^",2),PSSENO=1 D STDB
  Q
  ;
  ;
@@ -292,7 +291,7 @@ ADDCTA ;Add counter to CPRS global
  ;
 ADDCTB ;Add counter to Pharmacy global
  I '$D(^TMP($J,PSSDBASG)) Q 
- N PSSJW7,PSSJW8,PSSJW9,PSSJWNUM,PSSJWVAL
+ N PSSJW7,PSSJW8,PSSJW9,PSSJWNUM,PSSJWVAL,PSSJW56,PSSJW57
  K ^TMP($J,"PSSJWTM2") M ^TMP($J,"PSSJWTM2")=^TMP($J,PSSDBASG) K ^TMP($J,PSSDBASG)
  ;
  S PSSJW7="" F  S PSSJW7=$O(^TMP($J,"PSSJWTM2","OUT",PSSJW7)) Q:PSSJW7=""  D
@@ -300,6 +299,7 @@ ADDCTB ;Add counter to Pharmacy global
  .S PSSJW8="" F  S PSSJW8=$O(^TMP($J,"PSSJWTM2","OUT",PSSJW7,"ERROR",PSSJW8)) Q:PSSJW8=""  D
  ..I $D(^TMP($J,"PSSJWTM2","OUT",PSSJW7,"ERROR",PSSJW8,"MSG")) S ^TMP($J,PSSDBASG,"OUT",PSSJWNUM,PSSJW7,"ERROR",PSSJW8,"MSG")=$G(^TMP($J,"PSSJWTM2","OUT",PSSJW7,"ERROR",PSSJW8,"MSG"))
  ..I $D(^TMP($J,"PSSJWTM2","OUT",PSSJW7,"ERROR",PSSJW8,"TEXT")) S ^TMP($J,PSSDBASG,"OUT",PSSJWNUM,PSSJW7,"ERROR",PSSJW8,"TEXT")=$G(^TMP($J,"PSSJWTM2","OUT",PSSJW7,"ERROR",PSSJW8,"TEXT"))
+ ..I $G(^TMP($J,"PSSJWTM2","OUT",PSSJW7,"ERROR",PSSJW8,"WARN"))="Warning" S ^TMP($J,PSSDBASG,"OUT",PSSJWNUM,PSSJW7,"ERROR",PSSJW8,"WARN")="Warning"
  .;
  .S PSSJW8="" F  S PSSJW8=$O(^TMP($J,"PSSJWTM2","OUT",PSSJW7,"EXCEPTIONS",PSSJW8)) Q:PSSJW8=""  D
  ..S PSSJW9=$G(^TMP($J,"PSSJWTM2","OUT",PSSJW7,"EXCEPTIONS",PSSJW8))
@@ -307,6 +307,10 @@ ADDCTB ;Add counter to Pharmacy global
  .;
  .S PSSJW8="" F  S PSSJW8=$O(^TMP($J,"PSSJWTM2","OUT",PSSJW7,"MESSAGE",PSSJW8)) Q:PSSJW8=""  D
  ..S PSSJW9="" F  S PSSJW9=$O(^TMP($J,"PSSJWTM2","OUT",PSSJW7,"MESSAGE",PSSJW8,PSSJW9)) Q:PSSJW9=""  D
+ ...I +PSSJW8=3 D  Q
+ ....S PSSJW56="" F  S PSSJW56=$O(^TMP($J,"PSSJWTM2","OUT",PSSJW7,"MESSAGE",PSSJW8,PSSJW9,PSSJW56)) Q:PSSJW56=""  D
+ .....S PSSJW57=$G(^TMP($J,"PSSJWTM2","OUT",PSSJW7,"MESSAGE",PSSJW8,PSSJW9,PSSJW56))
+ .....S ^TMP($J,PSSDBASG,"OUT",PSSJWNUM,PSSJW7,"MESSAGE",PSSJW8,PSSJW9,PSSJW56)=PSSJW57
  ...S PSSJWVAL=$G(^TMP($J,"PSSJWTM2","OUT",PSSJW7,"MESSAGE",PSSJW8,PSSJW9))
  ...S ^TMP($J,PSSDBASG,"OUT",PSSJWNUM,PSSJW7,"MESSAGE",PSSJW8,PSSJW9)=PSSJWVAL
  ; 
@@ -315,7 +319,7 @@ ADDCTB ;Add counter to Pharmacy global
  ;
  ;
 DSP(PSSDBDS,PSSDBFDB) ;Return Dose and Dose Unit to Inpatient for complex order display
- ;Return value set into the parameter 1 as "DRG_DISP" 
+ ;Return value set into parameter 1 as "DRG_DISP" 
  N PSSDBAR,PSSINDSP,PSSIND1,PSSIND2,PSSIND3,PSSDSLCL,PSSDBNOD,PSSDBXP,PSSDBLPD,PSSDSXTD,PSSDBNT,PSSDBFAL,PSSDBLP,PSSDBIFL
  S PSSDBLP="" F  S PSSDBLP=$O(PSSDBDS(PSSDBLP)) Q:PSSDBLP=""  D
  .S PSSINDSP="",(PSSDBLPD,PSSDBFAL,PSSDBIFL)=0 K PSSDBAR
@@ -347,4 +351,20 @@ DSP(PSSDBDS,PSSDBFDB) ;Return Dose and Dose Unit to Inpatient for complex order 
 DSPL ;Add leading zero
  I $E(PSSINDSP)="." S PSSINDSP="0"_PSSINDSP
  S PSSDBDS(PSSDBLP,"DRG_DISP")=PSSINDSP
+ Q
+ ;
+ ;
+NXDRUG ;No Drug found
+ I $G(PSSDBFDB("PACKAGE"))="X",$$DLTM^PSSDSAPI(PSSDBFDB("OI")) K ^TMP($J,PSSDBASE,"IN","EXCEPTIONS","OI",PSSDBFDB(PSSDBLP,"DRUG_NM")),PSSDBCAZ(PSSDBFDB(PSSDBLP,"RX_NUM"),"NO_DRUG") Q
+ I $D(^TMP($J,PSSDBASE,"IN","EXCEPTIONS","OI",PSSDBFDB(PSSDBLP,"DRUG_NM"))) D DPL^PSSDSAPK Q
+ I PSSDSIVF S ^TMP($J,PSSDBASE,"IN","EXCEPTIONS","OI",PSSDBFDB(PSSDBLP,"DRUG_NM"))="4^"_PSSDBFDB(PSSDBLP,"RX_NUM") D STDB Q
+ S ^TMP($J,PSSDBASE,"IN","EXCEPTIONS","DOSE",PSSDBFDB(PSSDBLP,"RX_NUM"))="1^"_PSSDBFDB(PSSDBLP,"DRUG_NM") D STDB
+ Q
+ ;
+ ;
+STDB ;Set PSSDBCAR array for Input Exceptions
+ S PSSDBCAR(PSSDBFDB(PSSDBLP,"RX_NUM"))="B^"_PSSDBFDB(PSSDBLP,"DRUG_NM")
+ S $P(PSSDBCAR(PSSDBFDB(PSSDBLP,"RX_NUM")),"^",18)=1,$P(PSSDBCAR(PSSDBFDB(PSSDBLP,"RX_NUM")),"^",13)=1
+ ;S PSSENHKZ(PSSDBFDB(PSSDBLP,"RX_NUM"))=1
+ D DPL^PSSDSAPK
  Q

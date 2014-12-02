@@ -1,5 +1,5 @@
-ORWDBA1 ;; SLC OIFO/DKK/GSS - Order Dialogs Billing Awareness;[10/21/03 3:16pm]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**190,195,229,215,243**;Dec 17, 1997;Build 242
+ORWDBA1 ; SLC OIFO/DKK/GSS - Order Dialogs Billing Awareness ;12/04/12  09:39
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**190,195,229,215,243,361**;Dec 17, 1997;Build 39
  ;
  ; External References
  ;   DBIA    406  CL^SDCO21 - call to determine Treatment Factors
@@ -34,7 +34,7 @@ GETORDX(Y,ORIEN) ; Retrieve Diagnoses for an order - RPC
  . F  S DXN=$O(^OR(100,ORIEN,5.1,DXN)) Q:DXN'?1N.N  D
  .. ; Get diagnosis record and IEN
  .. S DXREC=$G(^OR(100,ORIEN,5.1,DXN,0)),DXIEN=$P(DXREC,U)
- .. S ICDR=$$ICDDX^ICDCODE($G(DXIEN),ORFMDAT)
+ .. S ICDR=$$ICDDATA^ICDXCODE("DIAGNOSIS",$G(DXIEN),ORFMDAT)
  .. S DXV=$P(ICDR,U,4),ICD9=$P(ICDR,U,2)
  .. ; Convert internal to external Treatment Factors
  .. S TXFACTRS=$$TFGBLGUI(^OR(100,ORIEN,5.2))
@@ -188,7 +188,7 @@ RCVORCI(Y,DIAG) ;Receive order related Clinical Indicators & Diagnoses from GUI
  . S ORFMDAT=$$ORFMDAT^ORWDBA3(ORIEN)
  . ; Go through the diagnoses entered
  . F OCT=2:1 Q:$P(DIAG(ODN),U,OCT)=""  D
- .. S DXIEN=$P($$ICDDX^ICDCODE($P(DIAG(ODN),U,OCT),ORFMDAT),U,1)  ;Dx IEN
+ .. S DXIEN=$P($$ICDDATA^ICDXCODE("DIAGNOSIS",$P(DIAG(ODN),U,OCT),ORFMDAT),U,1)  ;Dx IEN
  .. I DXIEN=-1!(DXIEN="") Q  ;No or invalid code passed in
  .. S OCDXCT=OCDXCT+1
  .. S ^OR(100,ORIEN,5.1,0)="^100.051PA^"_OCDXCT_U_OCDXCT ;Set 5.1 zero node

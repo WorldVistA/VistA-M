@@ -1,5 +1,5 @@
-PSBVDLU3 ;BIRMINGHAM/TEJ-BCMA VDL UTILITIES 3 ; 27 Aug 2008  9:06 PM
- ;;3.0;BAR CODE MED ADMIN;**13,38,28,50**;Mar 2004;Build 78
+PSBVDLU3 ;BIRMINGHAM/TEJ-BCMA VDL UTILITIES 3 ;5/1/13 1:13pm
+ ;;3.0;BAR CODE MED ADMIN;**13,38,28,50,64,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ;This routine file has been created to serve as a container
@@ -11,6 +11,8 @@ PSBVDLU3 ;BIRMINGHAM/TEJ-BCMA VDL UTILITIES 3 ; 27 Aug 2008  9:06 PM
  ; File 50/221
  ; File 52.6/436
  ; File 52.7/437
+ ;
+ ;*70 - Do not send UTS mailman msg for Clinic only patients.
  ;
 IVPTAB(PSBORTYP,PSBIVTYP,PSBINTSY,PSBCHMTY,PSBPUSH)  ;
  ;
@@ -182,7 +184,7 @@ SCANFAIL(RESULTS,PSBPARAM) ;  TEJ 05/12/2006  BCMA-Managing Scanning Failures (M
  ;
  K RESULTS,PSBSFUID,PSBMEDOI,PSBMEDNM
  S RESULTS(0)=1,RESULTS(1)="-1^Unable to Scan documentation NOT successful!"
- N PSBDAT,PSBDAT1,PSBXON,PSBSCHAD
+ N PSBDAT,PSBDAT1,PSBXON,PSBSCHAD,PSBFILE
  S PSBDAT=PSBPARAM(0) I $D(PSBPARAM(1)) S PSBDAT1=PSBPARAM(1)
  S PSBXON=$P(PSBDAT,"^",2)
  S PSB8=$G(PSBXON)
@@ -190,6 +192,7 @@ SCANFAIL(RESULTS,PSBPARAM) ;  TEJ 05/12/2006  BCMA-Managing Scanning Failures (M
  ;
  ; Changed the ward+room delimiter from / to $.
  S PSB2=" *UNIDENTIFIABLE PATIENT* " I +$G(PSB1)>0 S PSB2=$$GET1^DIQ(2,PSB1_",",.1)_"$"_$$GET1^DIQ(2,PSB1_",",.101)
+ N VAIP,DFN S DFN=PSBDFN D IN5^VADPT Q:VAIP(5)=""   ;not admitted, *70
  S PSB3=$P(PSBDAT,"^",3) I PSB3="Manual Medication Entry" S PSBMMEN=1
  S PSB4=$S($P(PSBDAT,"^",5)="W":"Wristband",$P(PSBDAT,"^",5)="M":"Medication",1:" *UNDEFINED* ")
  I PSB4="Medication"&($D(PSBDAT1)) D

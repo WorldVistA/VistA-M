@@ -1,5 +1,5 @@
-LEXRXXS ;ISL/KER - Re-Index Save/Send ;08/17/2011
- ;;2.0;LEXICON UTILITY;**81**;Sep 23, 1996;Build 1
+LEXRXXS ;ISL/KER - Re-Index Save/Send ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**81,80**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^LEX(               SACC 1.3
@@ -7,8 +7,10 @@ LEXRXXS ;ISL/KER - Re-Index Save/Send ;08/17/2011
  ;    ^TMP("LEXRX")       SACC 2.3.2.5.1
  ;               
  ; External References
- ;    HOME^%ZIS           ICR  10086
+ ;    $$FMDIFF^XLFDT      ICR  10103
  ;    $$TITLE^XLFSTR      ICR  10104
+ ;    HOME^%ZIS           ICR  10086
+ ;    ^DIC                ICR  10006
  ;    ^XMD                ICR  10070
  ;               
  ; Local Variables NEWed or KILLed Elsewhere
@@ -256,9 +258,9 @@ ERR ;   Error Summary
 ADR(LEX) ; Mailing Address -G.LEXINS@FO-SLC.DOMAIN.EXT,
  N DIC,DTOUT,DUOUT,X,Y
  S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
- S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.domain.ext" D ^DIC Q:+Y>0 LEX
+ S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
  S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="ISC-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
- Q "ISC-SLC.domain.ext"
+ Q "ISC-SLC.DOMAIN.EXT"
 FN(X) ;   Filename
  Q:$D(^LEX(+($G(X)),0)) $$TITLE^XLFSTR($P($G(^LEX(+($G(X)),0)),"^",1))
  Q:$D(^LEXT(+($G(X)),0)) $$TITLE^XLFSTR($P($G(^LEXT(+($G(X)),0)),"^",1))

@@ -1,6 +1,6 @@
 IBAMTED1 ;ALB/AAS - MEANS TEST EVENT DRIVER - EXEMPTION PROCESSING ; 18-DEC-92
- ;;2.0;INTEGRATED BILLING;**15,112,153**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**15,112,153,385**;21-MAR-94;Build 35
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN N IBAD,IBADDE,IBADD,IBDT,IBEXREA,IBAUTO,IBAX,IBAX1,IBOLDAUT,IBWHER,IBEXERR,IBJOB,IBON
  N IBAFY,IBATYP,IBBDT,IBCANDT,IBCHRG,IBCODA,IBCODP,IBCRES,IBDEPEN,IBFAC,IBIL,IBL,IBAST,IBLDT,IBN,IBND,IBNN,IBNOW,IBPARNT,IBPARNT1,IBSEQNO,IBSITE,IBUNIT
@@ -80,14 +80,17 @@ DEL ; -- means test deleted
  ;    find exemption for date and inactivate
  ;    update current exemption status
  ;
- N IBFORCE
+ N IBFORCE,IBVFAOK
  Q:'$D(^IBA(354.1,"AIVDT",1,DFN,-DGMTP))
  S IBFORCE=+DGMTP ; force inactivate entries for deleted date
  ;
  S IBEXREA=$$STATUS^IBARXEU1(DFN,+DGMTP),IBSTAT=$P($G(^IBE(354.2,+IBEXREA,0)),"^",4)
  ;
- ; -- cancel prior exemption with a no data exemption if last date older than 1 year
- I $$PLUS^IBARXEU0($P(IBEXREA,"^",2))<DT D ADDEX^IBAUTL6(+$O(^IBE(354.2,"ACODE",210,0)),+DGMTP) G DELQ
+ ; -- look up VFA status
+ S IBVFAOK=$$VFAOK^IBARXEU($$LST^IBARXEU0(DFN,$P(IBEXREA,"^",2)))
+ ;
+ ; -- cancel prior exemption with a no data exemption if last date older than 1 year, only if it is not VFA OK.
+ I $$PLUS^IBARXEU0($P(IBEXREA,"^",2))<DT,'IBVFAOK D ADDEX^IBAUTL6(+$O(^IBE(354.2,"ACODE",210,0)),+DGMTP) G DELQ
  ;
  ; -- add correct exemption and update current status
  D ADDEX^IBAUTL6(+IBEXREA,+$P(IBEXREA,"^",2))

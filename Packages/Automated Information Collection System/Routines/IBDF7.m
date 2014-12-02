@@ -1,8 +1,9 @@
-IBDF7 ;ALB/CJM - ENCOUNTER FORM - BUILD FORM(ADDING TOOLKIT BLKS) ; 08-JAN-1993
- ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+IBDF7 ;ALB/CJM - ENCOUNTER FORM - BUILD FORM(ADDING TOOLKIT BLKS) ;01/08/93
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**63**;APR 24, 1997;Build 80
+ ;
  ;
 ADD ;create a new block by copying a toolkit block
- N BLKLIST,OLDBLOCK,NEWBLOCK,TOP,BOT,IBBG,IBLFT
+ N BLKLIST,OLDBLOCK,NEWBLOCK,TOP,BOT,IBBG,IBLFT,IBDLST,IBDCS,IBDX,IBDY
  S VALMBCK="R",IBBG=+$G(VALMBG),OLDBLOCK="",IBLFT=+$G(VALMLFT)
  D EN^VALM("IBDF TOOL KIT BLOCK LIST") ;list processor displays list of tool kit blocks
  I '$G(IBFASTXT) D
@@ -13,6 +14,12 @@ ADD ;create a new block by copying a toolkit block
  .S VALMBCK="R"
  .D TOPNBOT^IBDFU5(NEWBLOCK,.TOP,.BOT)
  .D IDXFORM^IBDF5A(TOP,BOT)
+ .;Now check if new block contains any selection lists that specify ICD-9 or ICD-10
+ .;if so, update history field at #357 .19 or .2 plus field .21
+ .S IBDLST=0 F  S IBDLST=$O(^IBE(357.2,"C",NEWBLOCK,IBDLST)) Q:IBDLST=""  S IBDX=$P(^IBE(357.2,IBDLST,0),U,11) D:IBDX?1.N
+ ..S IBDCS=$P(^IBE(357.6,IBDX,0),U,22) D:IBDCS=1!(IBDCS=30)  ;Coding System 1=ICD-9 30=ICD-10
+ ...I '$O(^IBE(357.3,"C",IBDLST,"")) Q  ;Only log history fields if ICD-9 or ICD-10 codes are contained in block.
+ ...S IBDY=$$CSUPD357^IBDUTICD(IBFORM,IBDCS,"",$$NOW^XLFDT(),DUZ)
  Q
  ;
 INIT ;entry code to list

@@ -1,7 +1,14 @@
-ORAM2 ;POR/RSF - ANTICOAGULATION MANAGEMENT RPCS (3 of 4) ; 4/11/11 7:06am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**307,339**;Dec 17, 1997;Build 7
+ORAM2 ;POR/RSF - ANTICOAGULATION MANAGEMENT RPCS (3 of 4) ;02/11/13  08:15
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**307,339,354,361**;Dec 17, 1997;Build 39
  ;;Per VHA Directive 2004-038, this routine should not be modified
  Q
+ ;
+ ;  External References:
+ ;  $$GET1^DIQ                             ICR #2056
+ ;  $$SETSTR^VALM1                         ICR #10116
+ ;  $$FMADD/$$FMDIFF/$$FMTE/$$NOW^XLFDT    ICR #10103
+ ;  $$TITLE/$$UP^XLFSTR                    ICR #10104
+ ;  $$GET^XPAR                             ICR #2263
  ;
 ALLGOAL(RESULT,DAYS,CLINIC) ; last inr for all pts seen in last x days
  ;;RPC = ORAM2 ALLGOAL
@@ -51,19 +58,28 @@ PTAPPTQ Q
  ;
 NOACT(RESULT,DAYS,CLINIC) ; Finds pts w/o AC activity past X days
  ;RPC=ORAM2 NOACT
- N ORAMDT,ORAMFDT,ORAMVST,ORAMDFN,ORAMPT,ORAMSSN,ORAMSTAT,ORAMSORT,ORAMC,ORAMI
+ N ORAMDT,ORAMFDT,ORAMVST,ORAMDFN,ORAMPT,ORAMSSN,ORAMSORT,ORAMC,ORAMI,ORAMMIS,ORAMLAST,ORAMFS,ORMISVST,ORAMCLIN,ORAMDONE,ORAMFSTA
  S ORAMDT=$$NOW^XLFDT,ORAMFDT=$$FMADD^XLFDT(ORAMDT,-DAYS),ORAMDFN=0
  F  S ORAMDFN=$O(^ORAM(103,ORAMDFN)) Q:+ORAMDFN'>0  D
- . N ORAMFS,ORAMCLIN S ORAMCLIN=$P($G(^ORAM(103,ORAMDFN,6)),U,2)
- . Q:ORAMCLIN'=$G(CLINIC)
- . S ORAMFS=$O(^ORAM(103,ORAMDFN,3," "),-1) Q:ORAMFS']""
- . S ORAMSTAT=$P(^ORAM(103,ORAMDFN,0),"^",10),ORAMVST=$P(^ORAM(103,ORAMDFN,3,ORAMFS,0),"^")
- . I ORAMSTAT'=2&(ORAMVST'>ORAMFDT) D
+ . S ORAMFS=" ",ORAMLAST=0,ORAMMIS=0,ORAMCLIN=$P($G(^ORAM(103,ORAMDFN,6)),U,2),ORAMDONE=0
+ . Q:(ORAMCLIN'=$G(CLINIC))!(2=$$GET1^DIQ(103,ORAMDFN,15,"I"))
+ . F  S ORAMFS=$O(^ORAM(103,ORAMDFN,3,ORAMFS),-1) Q:(ORAMFS']"")!ORAMDONE  D
+ . . I '$G(ORAMMIS)&$$MISSED(ORAMDFN,ORAMFS) S ORAMMIS=ORAMFS Q
+ . . I '$G(ORAMLAST)&'$$MISSED(ORAMDFN,ORAMFS) S ORAMLAST=ORAMFS,ORAMDONE=1
+ . Q:($$GET1^DIQ(103.011,ORAMLAST_","_ORAMDFN,.01,"I")'<ORAMFDT)
+ . F ORAMFS="ORAMMIS","ORAMLAST" D
+ . . K ORMISVST,ORAMFSTA
+ . . I (ORAMFS="ORAMMIS") S ORMISVST=$$GET1^DIQ(103.011,@ORAMFS_","_ORAMDFN,80,"I"),ORAMFSTA=1
+ . . Q:(ORAMFS="ORAMMIS")&($G(ORMISVST)'>ORAMFDT)
+ . . S ORAMFS=@ORAMFS
+ . . Q:'ORAMFS
  . . N LINE S LINE=""
  . . S ORAMPT=$P(^DPT(ORAMDFN,0),"^"),ORAMPT=$P(ORAMPT,","),ORAMSSN=$E($P(^DPT(ORAMDFN,0),"^",9),6,9)
+ . . S ORAMVST=$P(^ORAM(103,ORAMDFN,3,ORAMFS,0),"^")
+ . . I $G(ORMISVST) S ORAMVST=ORMISVST
  . . S LINE=$$SETSTR^VALM1(ORAMPT,LINE,1,15)
  . . S LINE=$$SETSTR^VALM1("("_ORAMSSN_")",LINE,17,6)
- . . S LINE=$$SETSTR^VALM1("Last Seen: "_$$FMTE^XLFDT($P(ORAMVST,"."),"2DF"),LINE,25,19)
+ . . S LINE=$$SETSTR^VALM1($S($G(ORAMFSTA):"Missed Ap: ",1:"Last Seen: ")_$$FMTE^XLFDT($P(ORAMVST,"."),"2DF"),LINE,25,19)
  . . S ORAMSORT($P(ORAMVST,"."),ORAMPT_ORAMSSN)=LINE
  S (ORAMC,ORAMI)=0
  F  S ORAMI=$O(ORAMSORT(ORAMI)) Q:+ORAMI'>0  D
@@ -72,6 +88,19 @@ NOACT(RESULT,DAYS,CLINIC) ; Finds pts w/o AC activity past X days
  . . S ORAMC=ORAMC+1,RESULT(ORAMC)=$G(ORAMSORT(ORAMI,ORAMJ))
  I ORAMC=0 S RESULT(0)="No patients lost to follow-up "_DAYS_" days or longer."
 NOACTQ Q
+ ;
+MISSED(DFN,FS) ;*354 Added
+ ;Input DFN -> Patient IEN
+ ;      FS  -> FlowSheet IEN
+ ;Output 1 if this flowsheet entry was a missed appt.
+ ;       0 if this flowsheet entry was not a missed appt.
+ ;
+ N ORAMCM,IENS,I,RSLT
+ Q:'$G(DFN)!'$G(FS) 0
+ S IENS=FS_","_DFN_",",(I,RSLT)=0
+ I $$GET1^DIQ(103.011,IENS,99,"","ORAMCM")="" Q RSLT
+ F  S I=$O(ORAMCM(I)) Q:'I!RSLT  I ORAMCM(I)["Missed Appt; return:" S RSLT=1
+ Q RSLT
  ;
 SHOWRATE(RESULT,DFN) ; CALCULATES SHOWRATE
  ;;RPC=ORAM2 NOSHOW
@@ -112,8 +141,8 @@ RPT(ROOT,DFN,ID,ALPHA,OMEGA,DTRANGE,REMOTE,MAX,ORFHIE) ;
  . N ICDC
  . S ICDC=$$GET^XPAR(ORAMCLIN_";SC(","ORAM AUTO PRIMARY INDICATION",1,"E")
  . I ICDC]"" D
- . . N ICDD,ICDDL,ICDDESC
- . . S ICDDL=$$ICDD^ICDCODE(ICDC,"ICDDESC",DT)
+ . . N ICDD,ICDDESC
+ . . D ICDDESC^ICDXCODE("DIAGNOSIS",ICDC,DT,.ICDDESC)
  . . S ORAMPIND=ICDC_U_$$TITLE^XLFSTR($G(ICDDESC(1)))_" ("_ICDC_")"
  I ORAMPIND]"" D
  . W !!,"Primary Indication: ",$P(ORAMPIND,U,2)
@@ -146,9 +175,9 @@ RPT(ROOT,DFN,ID,ALPHA,OMEGA,DTRANGE,REMOTE,MAX,ORFHIE) ;
  W !
  I $P(^ORAM(103,DFN,0),"^",5)'="" W !,"Start Date: ",$P(^ORAM(103,DFN,0),"^",5)
  I $P(^ORAM(103,DFN,0),"^",7)'="" W ?35,"Duration: ",$P(^ORAM(103,DFN,0),"^",7)
-  W !,"==========================================================================="
-  W !,"DATE",?10,"INR",?18,"Notified",?30,"TWD",?36,"Comments:"
-  W !,"---------------------------------------------------------------------------"
+ W !,"==========================================================================="
+ W !,"DATE",?10,"INR",?18,"Notified",?30,"TWD",?36,"Comments:"
+ W !,"---------------------------------------------------------------------------"
  I $D(^ORAM(103,DFN,3,"B")) D
  . N ORAMFSD S ORAMFSD=" ",ORAMCNT=0
  . F  S ORAMFSD=$O(^ORAM(103,DFN,3,ORAMFSD),-1) Q:$G(ORAMFSD)<1  D

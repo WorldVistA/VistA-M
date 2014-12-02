@@ -1,5 +1,5 @@
 ONCHPC3 ;Hines OIFO/GWB - 2000 Hepatocellular Cancers PCE Study ;01/10/00
- ;;2.11;ONCOLOGY;**26**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Stage of Disease at Diagnosis 
  K TABLE,HTABLE
  S TABLE("23. SIZE OF TUMOR")="ST"

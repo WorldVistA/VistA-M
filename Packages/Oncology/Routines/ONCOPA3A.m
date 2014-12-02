@@ -1,5 +1,5 @@
 ONCOPA3A ;Hines OIFO/RTK - [PA Print Complete Abstract (132c) ;03/11/11
- ;;2.11;ONCOLOGY;**15,17,25,26,44,50,51,52,53**;Mar 07, 1995;Build 31
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;[PA Print Complete Abstract (132c)] continued
  S NAME="FOLLOW-UP HISTORY" D FORMAT^ONCOPA1
  W !!,TITLE,!

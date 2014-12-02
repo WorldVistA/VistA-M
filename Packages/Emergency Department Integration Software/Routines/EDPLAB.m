@@ -1,5 +1,5 @@
-EDPLAB ;SLC/MKB - EDIS lab result utilities ;4/25/12 12:51pm
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPLAB ;SLC/MKB - EDIS lab result utilities ;6/14/13 9:30am
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;May 2, 2012;Build 200
  ;
 EN(EDPRES,PARAM) ; -- Return lab results as XML in EDPRES
  ; Required:  "patient" identifier (DFN)
@@ -15,15 +15,16 @@ EN(EDPRES,PARAM) ; -- Return lab results as XML in EDPRES
  ;
  ;
  ; validate input parameters
- N DFN,TEST,TESTIDS,BEG,END,MAX,X,I,LIST
+ N DFN,TEST,TESTIDS,BEG,END,MAX,X,I,LIST,TSEQ,TIDT
  S DFN=+$$VAL("patient") I DFN<1 D  G ENQ
  . ;D XML^EDPX("<error msg='Missing or invalid patient identifier' />")
  . S @ARRAY@("error",1,"msg")="Missing or invalid patient identifier"
  ;S I=0 F  S I=$O(PARAM("testID",I)) Q:I<1  S X=+PARAM("testID",I),TEST(X)=""
  S TESTIDS=$$VAL("testID")
  I $L(TESTIDS) D
- .F I=1:1 S X=$P(TESTIDS,U,I) Q:'X  D
- ..I X S TEST(X)=""
+ .F I=1:1 S X=$P(TESTIDS,U,I) Q:'$L(X)  D
+ ..S TSEQ=$P(X,";"),TIDT=$P(X,";",2) Q:'TSEQ!('$L(TIDT))
+ ..I X S TEST(TIDT,TSEQ)=""
  ;
  ; get optional date range, max# accessions
  S BEG=$$VAL("start"),END=$$VAL("stop"),MAX=$$VAL("total"),LIST=$$VAL("list")
@@ -40,6 +41,7 @@ EN(EDPRES,PARAM) ; -- Return lab results as XML in EDPRES
  .. I $D(TEST) Q:'$D(TEST(IDT))
  .. S (MORE,SEQ)=0
  .. F  S SEQ=$O(^TMP("LRRR",$J,DFN,SUB,IDT,SEQ)) Q:SEQ<1  S X=$G(^(SEQ)) D
+ ... I $D(TEST) Q:'$D(TEST(IDT,SEQ))
  ... K EDPX
  ... I '$G(LIST) S EDPX("id")=SUB_";"_IDT_";"_SEQ
  ... S MORE=1
@@ -149,12 +151,13 @@ TMP(Y,DFN,SUB,IDT,SEQ,LIST) ; -- Return ^TMP("LRRR",$J,DFN,SUB,IDT,SEQ) data
  ; a list of the available labs. The client side will then be able to call back in
  ; with a list of labs being requested in smaller chunks. 
  ; If LIST is passed as '1', only pass back the list of testID's and collected date
- I $G(LIST) S Y("testID")=IDT Q
+ I $G(LIST) S Y("testID")=SEQ_";"_IDT Q
  ;
  S Y("subscript")=SUB,Y("accession")=SUB_";"_IDT
  ;S Y("collectedTS")=$$FMTHL7^XLFDT(9999999-IDT)
  S Y("collectedTS")=(9999999-IDT)
- S Y("testID")=+X0,Y("testName")=$P($G(^LAB(60,+X0,0)),U),X=+$P($G(^(.1)),U,6)
+ ; BWF 6/14/13 - Added $$ESC for testName
+ S Y("testID")=+X0,Y("testName")=$$ESC($P($G(^LAB(60,+X0,0)),U)),X=+$P($G(^(.1)),U,6)
  S Y("printOrder")=$S(X:+X,1:SEQ/1000000)
  S:$L($P(X0,U,2)) Y("result")=$P(X0,U,2)
  I $G(Y("result"))'="" D

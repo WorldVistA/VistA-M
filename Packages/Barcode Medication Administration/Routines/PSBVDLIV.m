@@ -1,5 +1,5 @@
-PSBVDLIV ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE LIST ;7/13/11 11:46am
- ;;3.0;BAR CODE MED ADMIN;**6,38,32,58**;Mar 2004;Build 37
+PSBVDLIV ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE LIST ;1/18/13 2:15pm
+ ;;3.0;BAR CODE MED ADMIN;**6,38,32,58,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -9,6 +9,8 @@ PSBVDLIV ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE LIST ;7/13/11 11:46am
  ; INTRDIC^PSGSICH1/5654
  ;
  ;*58 - add 29th piece to Results for Override/Intervention flag 1/0
+ ;*70 - add 32nd piece to Results for Clinic Order name
+ ;    - add 33rd piece to Results for Clinic ien ptr to file #44
  ;
 EN(DFN,PSBDT) ; Default Order List Return for Today
  ;
@@ -18,16 +20,23 @@ EN(DFN,PSBDT) ; Default Order List Return for Today
  ; Returns the current IV order set for today to display on the
  ; client VDL
  ;
- N PSBDATA,PSBTBOUT,PSBDOADD
+ N PSBDATA,PSBTBOUT,PSBDOADD,PSBDT2,X,PSHIST                ;*70
  S PSBTBOUT=0,PSBDOADD=0
  S:PSBTAB="IVTAB" PSBDOADD=1
  ;
  ; Passing PSBDT as 3rd parameter turns off the V.1.0 One-Time lookback
- K ^TMP("PSJ",$J),^TMP("PSB",$J,"ON IVTAB") S X1=PSBDT,X2=-3 D C^%DTC S PSBDT2=X D EN^PSJBCMA(DFN,PSBDT2,PSBDT)
+ K ^TMP("PSJ",$J),^TMP("PSB",$J,"ON IVTAB")
+ S PSBHIST=$S(PSBCLINORD:-7,1:-3)          ;*70 default hist days back
+ S X1=PSBDT,X2=PSBHIST D C^%DTC S PSBDT2=X                  ;*70
+ D EN^PSJBCMA(DFN,PSBDT2,PSBDT)
+ ;Filter in/out Clinic Orders                               ;*70
+ D:PSBCLINORD INCLUDCO^PSBVDLU1
+ D:'PSBCLINORD REMOVECO^PSBVDLU1
  ;
  I $G(^TMP("PSJ",$J,1,0))=-1 Q  ; No orders
  ;
  F PSBX=0:0 S PSBX=$O(^TMP("PSJ",$J,PSBX)) Q:('PSBX)!(PSBTBOUT)  D
+ .N PSBRTNOW S PSBRTNOW=$$NOW^XLFDT()
  .D CLEAN^PSBVT,PSJ^PSBVT(PSBX)
  .;
  .; << Standard checks for ALL orders >>
@@ -35,7 +44,9 @@ EN(DFN,PSBDT) ; Default Order List Return for Today
  .Q:PSBONX'["V"  ; IVs only
  .Q:PSBIVT["P"  ; No piggybacks
  .Q:PSBONX["P"  ;     No Pending Orders
- .Q:PSBOST>($$FMADD^XLFDT($$NOW^XLFDT,,,$$GET^XPAR("DIV","PSB ADMIN BEFORE")))
+ .Q:('PSBCLINORD)&(PSBOST>($$FMADD^XLFDT($$NOW^XLFDT,,,$$GET^XPAR("DIV","PSB ADMIN BEFORE"))))    ;*70 don't check this for CO's
+ .Q:($G(PSBCLORD)]"")&(PSBOST>PSBRTNOW)   ;CL order start day in future *70
+ .;
  .; Need to see if "last order" in chain is active/not pending.
  .S PSBFON1=PSBFON,PSBLOOP=0 I $G(PSBFON)]"" S PSBLACTV=$S($G(PSBFON)["P":0,1:1) S PSBFON2=$G(PSBFON) I 'PSBLACTV F  D  Q:($G(PSBFON)="")!($G(PSBFON1)=$G(PSBFON2))!(PSBLOOP)!(PSBLACTV)  ;
  ..I $G(PSBFON)["P" K ^TMP("PSJ1",$J) D EN^PSJBCMA1(DFN,PSBFON2,1) I ^TMP("PSJ1",$J,0)=-1 S PSBFON=""
@@ -122,6 +133,10 @@ OK .S PSBSTRT=PSBOST ; Order Start Date/Time
  .N PSBARR D GETPROVL^PSGSICH1(DFN,PSBONX,.PSBARR)
  .I $O(PSBARR(""))="" D INTRDIC^PSGSICH1(DFN,PSBONX,.PSBARR,2)
  .S $P(PSBREC,U,29)=$S($O(PSBARR(""))]"":1,1:0)
+ .;       piece 30 reserved by UNIT DOSE tab for last injection
+ .;       piece 31 reserved by IVPB tab for injection flag
+ .S $P(PSBREC,U,32)=$G(PSBCLORD)                 ;clinic name          *70
+ .S $P(PSBREC,U,33)=$G(PSBCLIEN)                 ;clinic ien ptr       *70
  .;
  .; Gather Dispense Drugs
  .D NOW^%DTC

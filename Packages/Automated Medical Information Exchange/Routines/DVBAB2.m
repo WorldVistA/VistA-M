@@ -1,12 +1,12 @@
 DVBAB2 ;ALB/KLB - CAPRI RO AMIS REPORT CONT. ;05/01/00
- ;;2.7;AMIE;**35,42,149**;Apr 10, 1995;Build 16
+ ;;2.7;AMIE;**35,42,149,184**;Apr 10, 1995;Build 10
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 DAY30 ;exam completion
  N DVBADTS,DVBAPPTS,DVBACNT,DVBADTM,DVBANDE,X,X1,X2
  K ^TMP("DVBC",$J),^TMP($J,"SDAMA301")
  ;DES Type exams required to be completed in 45 days, all others 30
- S DVBADTS=$S(((";DCS;DFD;")[(";"_DVBAPREXM_";")):45,1:30)
+ S DVBADTS=$S(((";IDES;")[(";"_DVBAPREXM_";")):45,1:30)
  ;setup call to scheduling API
  S DVBAPPTS(1)=DTRPT_";"_EDATE,DVBAPPTS(4)=PNAM,DVBAPPTS(3)="R;I;NT"
  S DVBAPPTS("SORT")="P",DVBAPPTS("FLDS")="10"
@@ -43,7 +43,7 @@ SET ;
  ;check for Parent Request (retrieve current/parent Priority of Exam)
  S DVBAPREXM=$$CHKREQ^DVBCIRP1(REQDA)
  ;original report run (Exclude new priorities)
- Q:((DVBAEXMP']"")&((";BDD;QS;DCS;DFD;AO;")[(";"_DVBAPREXM_";")))
+ Q:((DVBAEXMP']"")&((";BDD;QS;IDES;AO;")[(";"_DVBAPREXM_";")))
  ;report for specific priority
  Q:((DVBAEXMP]"")&(DVBAEXMP'[(";"_DVBAPREXM_";")))
  S:(DVBAEXMP']"") DVBAPREXM="ALL"  ;identifier for totals
@@ -60,12 +60,12 @@ SET ;
  ;
 GO ;
  N DVBAEXMP,DVBAP,DVBAPREXM,DVBATOT,DVBALNE
- S DVBAEXMP=$S($G(DVBAPRTY)["BDD":";BDD;QS;",($G(DVBAPRTY)["DES"):";DCS;DFD;",($G(DVBAPRTY)["AO"):";AO;",1:"")
+ S DVBAEXMP=$S($G(DVBAPRTY)["BDD":";BDD;QS;",($G(DVBAPRTY)["IDES"):";IDES;",($G(DVBAPRTY)["AO"):";AO;",1:"")
  S DVBABCNT=0,DVBALNE="" K ^TMP($J)
  S %DT="TS",X="NOW" D ^%DT S DVBCNOW=Y
  S PNAM="" F JJ=0:0 S PNAM=$O(^DVB(396.3,"B",PNAM)) Q:PNAM=""  F REQDA=0:0 S REQDA=$O(^DVB(396.3,"B",PNAM,REQDA)) Q:REQDA=""  D SET
  ;
- S DVBAEXMP=$S($G(DVBAPRTY)["BDD":"BDD,QS",($G(DVBAPRTY)["DES"):"DCS,DFD",($G(DVBAPRTY)["AO"):"AO",1:"ALL")
+ S DVBAEXMP=$S($G(DVBAPRTY)["BDD":"BDD,QS",($G(DVBAPRTY)["IDES"):"IDES",($G(DVBAPRTY)["AO"):"AO",1:"ALL")
  M DVBATOT=TOT  ;save totals for all priorities into new array
  F DVBAP=1:1:$L(DVBAEXMP,",") D
  .S DVBAPREXM=$P(DVBAEXMP,",",DVBAP)

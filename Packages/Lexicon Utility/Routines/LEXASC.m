@@ -1,6 +1,16 @@
-LEXASC ; ISL/KER Look-up by Shortcuts ; 05/14/2003
- ;;2.0;LEXICON UTILITY;**25**;Sep 23, 1996
- ;
+LEXASC ;ISL/KER - Look-up by Shortcuts ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**25,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.4)         N/A
+ ;    ^LEX(757.41)        N/A
+ ;    ^TMP("LEXFND")      SACC 2.3.2.5.1
+ ;    ^TMP("LEXHIT")      SACC 2.3.2.5.1
+ ;    ^TMP("LEXSCH")      SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    None
+ ;               
  ; ^TMP("LEXFND",$J)  Entries found
  ; ^TMP("LEXHIT",$J)  Entries returned
  ;
@@ -23,14 +33,14 @@ EN(LEXSCH,LEXC,LEXVDT) ; Check Shortcuts file 757.4 for LEXSCH
  Q:'$D(^LEX(757.41,LEXC)) 0
  Q:$L(LEXSCH)<2!($L(LEXSCH)>63) 0
  Q:'$D(^LEX(757.4,"ARA",LEXSCH,LEXC)) 0
- N LEXS S LEXS=0
+ D VDT^LEXU N LEXS S LEXS=0
  F  S LEXS=$O(^LEX(757.4,"ARA",LEXSCH,LEXC,LEXS)) Q:+LEXS=0  D
- . N LEXE,LEXDES,LEXDSP
+ . N LEXE,LEXDES,LEXDSP,LEXLKT S LEXLKT="ASC"
  . S LEXE=+($G(^LEX(757.4,LEXS,0))) Q:LEXE'>0
  . ; Filter
  . S LEXFILR=$$EN^LEXAFIL($G(LEXFIL),LEXE) Q:LEXFILR=0
  . ; Deactivated Term
- . Q:+($P($G(^LEX(757.01,LEXE,1)),"^",5))=1
+ . Q:'$D(LEXIGN)&(+($P($G(^LEX(757.01,LEXE,1)),"^",5))=1)
  . Q:+($$SUB(LEXE))=0
  . S LEXDES=$$DES(LEXE)
  . S LEXDSP="",LEXSHOW=$G(^TMP("LEXSCH",$J,"DIS",0)) S:$L($G(LEXSHOW)) LEXDSP=$$DSP(LEXE,$G(LEXSHOW),$G(LEXVDT))
@@ -62,3 +72,6 @@ SUB(LEXX) ;
  F  S LEXR=$O(^LEX(757.21,"B",LEXX,LEXR)) Q:+LEXR=0  D
  . I $P($G(^LEX(757.21,LEXR,0)),"^",2)=LEXSN S LEXOK=1
  S LEXX=LEXOK Q LEXX
+CLR ; Clear
+ N LEXIGN
+ Q

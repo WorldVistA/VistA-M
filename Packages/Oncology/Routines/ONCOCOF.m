@@ -1,5 +1,5 @@
 ONCOCOF ;Hines OIFO/GWB - [RS Registry Summary Reports - Follow Up] ;06/23/10
- ;;2.11;ONCOLOGY;**13,25,28,39,41,45,51,57**;Mar 07, 1995;Build 6
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 FR ;[RS Registry Summary Reports - Follow Up]
  N AA,AB,AC,AD,AE,AF,AG,AN,AS,BEH,CC,MO,ONCODF,PA,PB,PC,PD,PE,PL,PP,PSFC
@@ -75,7 +75,7 @@ SUB ;Subtract non-reportables
  I ST="" S AA=AA-1 D KILL Q  ;No SITE/GP
  S DATEDX=$P($G(^ONCO(165.5,X0,0)),U,16)
  S COC=$E($$GET1^DIQ(165.5,X0,.04),1,2)
- I (COC="00")&(DATEDX>3051231) S CC=CC+1 D KILL Q
+ I COC="00" S CC=CC+1 D KILL Q
  S ONCPT=$P(^ONCO(160,$P(^ONCO(165.5,X0,0),U,2),0),";",1)
  S ONCAGE=$$PTAGE(ONCPT,DATEDX) I ONCAGE>100 S P100=P100+1 D KILL Q
  I BEH=0!(BEH=1) S AB=AB+1 D KILL Q

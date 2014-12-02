@@ -1,5 +1,5 @@
 PRCHNPO6 ;WISC/RHD-MISCELLANEOUS ROUTINES FROM P.O.ADD/EDIT 442 ;6/22/94  3:19 PM
-V ;;5.1;IFCAP;**129**;Oct 20, 2000;Build 5
+V ;;5.1;IFCAP;**129,173**;Oct 20, 2000;Build 9
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN1 ;INPUT TRANSFORM FOR FILE 442, P.O.DATE #.1
@@ -49,13 +49,21 @@ EN7 ;FILE 442, PKG.MULT. #3.1
  Q
  ;
 EN8 ;FILE 442, P.O.NO. .01  CALLED BY THE SCREEN ON THE .01 FIELD
+ ;PRC*5.1*173 Will insure that the next IEN used is not below 20,000,000
+ ;            Start back at closest ien to last realistic ien using for 
+ ;            loop check to look for last used ien.
  Q:'$D(X)  Q:$D(PRCHNEW)&$D(^PRC(442,"B",X))
+ N PRCEN442
  ;PRC*5.1*129 modifies SACC lock violations
- L +^PRC(442,0):$S($G(DILOCKTM)>5:DILOCKTM,1:5) I '$T W $C(7),"ANOTHER USER IS EDITING SOME FILE 442 ENTRY! Please retry in a minute." K X Q
- S Z=$P(^PRC(442,0),"^",3)-1 S:Z<1 Z=100000000 F Z=Z-1:-1 I '$D(^PRC(442,Z)) L +^PRC(442,Z):$S($D(DILOCKTM):DILOCKTM,1:3) Q:$T
- L -^PRC(442,0) I Z'>0 K X L -^PRC(442,Z)
- E  S DINUM=Z
- K Z
+ L +^PRC(442,0):$S($G(DILOCKTM)>5:DILOCKTM,1:5) I '$T W $C(7),"ANOTHER USER IS IS EDITING FILE 442 CONTROL NODE! Please retry in a minute." K X Q
+ S PRCEN442=$P(^PRC(442,0),"^",3)-2
+ I PRCEN442<20000000 D  S:PRCEN442=20000000 PRCEN442=99999999
+ . F I=90000000:-10000000:20000000 I $O(^PRC(442,I))-I>1000 S PRCEN442=$O(^PRC(442,I)) Q
+ F PRCEN442=PRCEN442:-2 I '$D(^PRC(442,PRCEN442)) L +^PRC(442,PRCEN442):$S($D(DILOCKTM):DILOCKTM,1:3) Q:$T
+ L -^PRC(442,0)
+ I PRCEN442'>0 K X
+ E  S DINUM=PRCEN442
+ L -^PRC(442,PRCEN442)
  Q
  ;
 EN9 ;FILE 442, MAX.ORD.QTY.#9.6

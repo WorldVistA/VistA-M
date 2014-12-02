@@ -1,14 +1,18 @@
-LRRMM ;CIOFO-DALLAS/JMC/SED -Lab Reports via Network Mail
- ;;5.2;LAB SERVICE;**164**;Apr 09, 1993
+LRRMM ;DALOI/JMC/SED - Lab Reports via Network Mail ;01/29/13  10:26
+ ;;5.2;LAB SERVICE;**164,427**;Sep 27, 1994;Build 33
+ ;
+ ;
 LAB ;Requires Lab 5.0 and Mailman 7.0 (Spooling to XMBS GlobaL)
  ;Enter with LRRLROC=Interim Report Location (File 44 Abbreviation)
- ;    LRRVDT=Date to produce reports for (i.e. "T-1" would 
+ ;    LRRVDT=Date to produce reports for (i.e. "T-1" would
  ;           produce reports for work verified yesterday)
- ;    LRRDEV=Name of the spool Device. 
+ ;    LRRDEV=Name of the spool Device.
  ;           Default is "SPOOL80"  if not defined.
  ;   LRRSITE=Name Of Referring Lab (Should be domain file
- ;           entry i.e "MILWAUKEE.domain.ext")
+ ;           entry i.e "MILWAUKEE.DOMAIN.EXT")
  ;   LRRNORP=1 If "NEGATIVE" Mail Messages are -NOT- Required.
+ ;
+ N LRRMMPG1
  ;
  S U="^" S:'$D(DTIME) DTIME=600
  S:'$D(LRRNORP) LRRNORP=0 S X=$S($D(LRRVDT):LRRVDT,1:"T-1"),%DT="" D ^%DT Q:Y<1  S LRRVDT=Y D DD^LRX S LRRDATE=Y D ^LRPARAM
@@ -18,10 +22,43 @@ LAB ;Requires Lab 5.0 and Mailman 7.0 (Spooling to XMBS GlobaL)
  S LRRNAME="LAB REPORTS "_$P(LRRSITE,".",1)_" "_%,IO("DOC")=LRRNAME,IOP=LRRDEV_";"_IO("DOC") D ^%ZIS
  S (LRLAB,LREND,LRSTOP,LRFOOT)=0,(LRH,LRONESPC,LRONETST)="",LRCW=8,LRHF=1
  U IO I '$D(^LRO(69,LRRVDT,1,"AN",LRRLROC)) W !,"No reports to transmit today." G MAIL
- S LRDFN=0 F  S LRDFN=$O(^LRO(69,LRRVDT,1,"AN",LRRLROC,LRDFN)) Q:LRDFN<1  D
- .S LROC=LRRLROC D:LRFOOT FOOT^LRRP1 S LRFOOT=0,LRHF=1,LRDPF=$P(^LR(LRDFN,0),U,2),DFN=$P(^(0),U,3) D PT^LRX D
- ..S LRIDT=0 F  S LRIDT=$O(^LRO(69,LRRVDT,1,"AN",LRRLROC,LRDFN,LRIDT)) Q:LRIDT<1  D:$D(^LR(LRDFN,"CH",LRIDT)) CH^LRRP2 D:$D(^LR(LRDFN,"MI",LRIDT)) MI^LRRP2
-MAIL D:LRFOOT FOOT^LRRP1 W ! D ^%ZISC,KILL^XM
+ ;
+ S LRRMMPG1=1 ; Flag for first-page. After first report is printed, set flag to 0.
+ ;
+ S LRDFN=0
+ F  S LRDFN=$O(^LRO(69,LRRVDT,1,"AN",LRRLROC,LRDFN)) Q:LRDFN<1  D
+ . ;
+ . S LROC=LRRLROC
+ . I LRFOOT D FOOT^LRRP1
+ . S LRFOOT=0,LRHF=1
+ . S LRDPF=$P(^LR(LRDFN,0),U,2)
+ . S DFN=$P(^LR(LRDFN,0),U,3)
+ . D PT^LRX
+ . ;
+ . S LRIDT=0
+ . F  S LRIDT=$O(^LRO(69,LRRVDT,1,"AN",LRRLROC,LRDFN,LRIDT)) Q:LRIDT<1  D
+ . . ;
+ . . I $D(^LR(LRDFN,"CH",LRIDT)) D
+ . . . D CH^LRRP2
+ . . . S LRRMMPG1=0 ; set "first-page flag" to 0
+ . . ;
+ . . I $D(^LR(LRDFN,"MI",LRIDT)) D
+ . . . ; print form-feed before printing Micro report
+ . . . ; (did not use LRMLTRPT flag (used by RPT^LRMIPSZ1 to print form-feed) - as there it prints form-feed AFTER
+ . . . ;  the report and Chem prints the form-feed BEFORE the report, and we need them to be consistent here)
+ . . . I LRFOOT D FOOT^LRRP1 S LRFOOT=0 ; print footer of prev report before form-feed
+ . . . I $G(IOF)'="",'LRRMMPG1 W @IOF
+ . . . ;
+ . . . D MI^LRRP2
+ . . . S LRRMMPG1=0 ; set "first-page flag" to 0
+ ;
+ D MAIL
+ ;
+ Q
+ ;
+MAIL ; Send the message
+ ;
+ D:LRFOOT FOOT^LRRP1 W ! D ^%ZISC,KILL^XM
  S XMDF=1,XMDUZ=DUZ,X="G.LAB REPORT" D WHO^XMA21
  S X="G.LAB REPORT@"_LRRSITE D INST^XMA21
  S XMSUB=^DD("SITE")_" LAB REPORTS FOR "_$P(LRRSITE,".",1)_" ON "_LRRDATE
@@ -32,16 +69,16 @@ ONELOC ;Entry point to create lab reports for one location.
  D LAB,KILL Q
  ;
 MANYLOC ;Entry point to create lab reports for several sites.
- ;Enter with LRRLST=List of File #44 Locations (abbreviations) 
+ ;Enter with LRRLST=List of File #44 Locations (abbreviations)
  ;Separated by ";" (i.e. LRRLST="XXX;YYY")
  ;LRRDLST=List of corresponding domain names to send reports
- ;         to (i.e. LRRDLST="AAA.domain.ext;BBB.domain.ext")
+ ;         to (i.e. LRRDLST="AAA.DOMAIN.EXT;BBB.DOMAIN.EXT")
  F LRRZZ=1:1 S LRRLROC=$P(LRRLST,";",LRRZZ) Q:LRRLROC=""  S LRRSITE=$P(LRRDLST,";",LRRZZ) D LAB
  D KILL Q
  ;
-ALLOC ;Entry point to send lab reports to all locations defined in 
+ALLOC ;Entry point to send lab reports to all locations defined in
  ;file #64.6 (interim reports) that have a domain name entered.
- ;This requires a field "domain name" being added to #64.6 at 
+ ;This requires a field "domain name" being added to #64.6 at
  ;subscript ^LAB(64.6,D0,0), this is a pointer to the domain file.
  S LRRZZ=0
  F  S LRRZZ=$O(^LAB(64.6,LRRZZ)) Q:'LRRZZ  D
@@ -85,7 +122,7 @@ LIST ;Select the message.
  F  S I=$O(^TMP($J,"B",I)) Q:'I  S LRRMZ=^TMP($J,"B",I) D  Q:LRROUT
  .I $Y>(IOSL-5) K DIR S DIR(0)="E" D ^DIR K DIR S LRROUT=Y-1 W @IOF Q:LRROUT
  .S LRRMR=$G(^XMB(3.9,LRRMZ,0)) Q:LRRMR=""  S LRRMSUB=$P(LRRMR,U,1)
- .I LRRMSUB["~U~" F  S LRRMSUB=$P(LRRMSUB,"~U~",1)_"^"_$P(LRRMSUB,"~U~",2,99) Q:LRRMSUB'["~U~" 
+ .I LRRMSUB["~U~" F  S LRRMSUB=$P(LRRMSUB,"~U~",1)_"^"_$P(LRRMSUB,"~U~",2,99) Q:LRRMSUB'["~U~"
  .W !,I," Subj: ",LRRMSUB,"  "
  .S Y=$P(LRRMR,U,3),X1=+$P($G(^XMB(3.9,LRRMZ,2,0)),"^",4)
  .I Y'?7N.E W Y

@@ -1,13 +1,15 @@
-IBDFU3 ;ALB/CJM - ENCOUNTER FORM - BUILD FORM(deleting blocks) ; 08-JAN-1993
- ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+IBDFU3 ;ALB/CJM - ENCOUNTER FORM - BUILD FORM(deleting blocks) ;01/08/93
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**63**;APR 24, 1997;Build 80
+ ;
  ;
 DLTBLK(BLOCK,FORM,FILE) ;deletes BLOCK (in FILE) if not part of the toolkit (unless IBTKBLK=1) and, if FORM is passed in, the block actually is on FORM
+ N IBDX,IBDPI,IBDCS
  Q:('$G(BLOCK))
  Q:(FILE'=357.1)&(FILE'=358.1)
  N NODE,DIK,DA
  S NODE=$G(^IBE(FILE,BLOCK,0))
  K DA S DA=BLOCK,DIK="^IBE("_FILE_","
- ;don't delete it if part of the toolkit or doesn't belong to the form (messed up cross-references), unless IBTKBLK=1 (means deletion is durring special option for editing the tk)
+ ;don't delete it if part of the toolkit or doesn't belong to the form (messed up cross-references), unless IBTKBLK=1 (means deletion is during special option for editing the tk)
  G:$G(IBTKBLK) JUSTDOIT
  I ($P(NODE,"^",14)) D  Q
  .S $P(^IBE(FILE,BLOCK,0),"^",2)=$O(^IBE(FILE\1,"B","TOOL KIT",""))
@@ -48,7 +50,8 @@ DLTCNTNT(BLOCK,FILE) ;delete everything in BLOCK, but not the block itself
  ;
 DLTLIST(FILE,BLOCK,LIST) ;delete the LIST, its selections and groups
  Q:'$G(LIST)!'$G(BLOCK)!(($G(FILE)'=357.2)&($G(FILE)'=358.2))
- N GRP,SLCTN,DIK,DA
+ N GRP,SLCTN,DIK,DA,IBDX,IBDPI,IBDCS,IBDFLD
+ S IBDPI=0,IBDCS="" I FILE=357.2 S IBDPI=$P(^IBE(357.2,LIST,0),U,11) I IBDPI?1.N S IBDX=^IBE(357.6,IBDPI,0),IBDCS=+$P(IBDX,U,22)  ;Coding System
  S DIK="^IBE("_FILE_",",DA=LIST
  ;don't delete it if it does not belong to BLOCK - instead, reindex it and quit
  I $P($G(^IBE(FILE,LIST,0)),"^",2)'=BLOCK K ^IBE(FILE,"C",BLOCK,LIST) D IX1^DIK Q
@@ -58,7 +61,7 @@ DLTLIST(FILE,BLOCK,LIST) ;delete the LIST, its selections and groups
  D ^DIK
  Q
 DLISTCNT(LIST,FILE) ;delete the list's selections and groups
- N GRP,SLCTN,DIK,DA,GFILE,SFILE
+ N GRP,SLCTN,DIK,DA,GFILE,SFILE,IBDX,IBDCS,IBDPI
  Q:('$G(LIST))!('$G(FILE))
  Q:(FILE'=357.2)&(FILE'=358.2)
  S GFILE=$S(FILE[358:358.4,1:357.4)

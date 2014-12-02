@@ -1,5 +1,5 @@
 LRHYB ;DALOI/HOAK - HOWDY B DRIVER ;9/16/2000
- ;;5.2;LAB SERVICE;**405**;Sep 27, 1994;Build 93
+ ;;5.2;LAB SERVICE;**405,417**;Sep 27, 1994;Build 1
  ;
 TEST ;
  S DIC=2 S DIC(0)="AEMQZ" D ^DIC
@@ -75,7 +75,6 @@ ORDCHK ; Here is where the search for an order number starts
  ...  F  S LRTST6=$O(^LRO(69,LR3DTN,1,LR3SN,2,"B",LRTST6)) Q:+LRTST6'>0  D
  ....  S LRTSTZ99(LRTST6)=""
  ....  I LRTST6 S LRSUB1=$P(^LAB(60,LRTST6,0),U,4) ; subscript
- ....  I $G(LRSUB1)="MI" Q:$G(^LRO(69,LR3DTN,1,LR3SN,4,1,0))'=71
  ....  Q:$D(LRNPZZX(^LRO(69,LR3DTN,1,LR3SN,.1),LR3SN,LRTST6))
  ....  S LRORD=$G(^LRO(69,LR3DTN,1,LR3SN,.1))
  ....  I $G(LRORD) I $D(^TMP("LRHYDY",$J,"STATUS",LRORD)) QUIT

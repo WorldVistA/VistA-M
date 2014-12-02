@@ -1,5 +1,5 @@
-LA7VIN4A ;DALOI/JMC - Process Incoming UI Msgs, continued ;11/17/11  15:59
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**74**;Sep 27, 1994;Build 229
+LA7VIN4A ;DALOI/JMC - Process Incoming UI Msgs, continued ;08/12/13  10:54
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**74,80**;Sep 27, 1994;Build 19
  ;
  ;This routine is a continuation of LA7VIN4 and is only called from there.
  Q
@@ -30,24 +30,31 @@ LAGEN ; Sets up variables for call to ^LAGEN,  build entry in LAH
  I '$D(^LRO(68,+WL,0)) D  Q
  . D CREATE^LA7LOG(20)
  S LROVER=$P(LA7624(0),"^",12)
- ; LEDI(MI & AP) override #62.4 setting so results always overlay
+ ; LEDI(MI & AP) override #62.4 setting so results never overlay unless same message
  I LA7INTYP=10 D
  . I LA7SS'?1(1"MI",1"SP",1"CY",1"EM") Q
- . S LROVER=1
+ . ; Use same entry in LAH if handling multiple OBR within same message for same accession/test
+ . I $P($G(LA7INTYP("ISQN",LWL)),"^",1,3)=(LA76249_"^"_LA7UID_"^"_LA7ONLT) S ISQN=$P(LA7INTYP("ISQN",LWL),"^",4),LROVER=2 Q
+ . S LROVER=0
  S METH=$P(LA7624(0),"^",10)
  S LOG=LA7AN
  S IDENT=$P($G(^LRO(68,LA7AA,1,LA7AD,1,LA7AN,0)),"^",6) ;identity field
  S IDE=+LA7IDE
  S LADT=LA7AD
  ;
- ; If POC interface call special entry point
- D
+ I LROVER<2 D
  . N LRDFN ; Protect LRDFN - call into LAGEN can set to 0
+ . ;
+ . ; If POC interface call special entry point
  . I LA7INTYP>19,LA7INTYP<30 S IDE=LA76249 D POC^LAGEN Q
+ . ;
  . D @(LA7ENTRY_"^LAGEN") ;this disregards the CROSS LINK field in 62.4
+ ;
  S LA7ISQN=$G(ISQN)
  ;
  I LA7ISQN<1 Q
+ ; Save entry made in LAH for this load list and message for this accession (UID)
+ I LA7INTYP=10 S LA7INTYP("ISQN",LWL)=LA76249_"^"_LA7UID_"^"_LA7ONLT_"^"_LA7ISQN
  ;
  ; Build/store patient demographics array
  N I,J,LA7OBRA,LA7PIDA,X,Y
@@ -76,7 +83,7 @@ LAGEN ; Sets up variables for call to ^LAGEN,  build entry in LAH
  ;
  ; Store interface type with results
  D LATYP^LAGEN(LA7LWL,LA7ISQN,LA7INTYP)
- ; 
+ ;
  ; Store #62.49 ien with results
  D LAMSGID^LAGEN(LA7LWL,LA7ISQN,LA76249)
  ;

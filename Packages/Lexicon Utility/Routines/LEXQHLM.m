@@ -1,18 +1,14 @@
-LEXQHLM ;ISL/KER - Query History - Extract Misc ;10/30/2008
- ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;;
+LEXQHLM ;ISL/KER - Query History - Extract Misc ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**62,80**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
- ;    ^ICD0(              ICR   4485
  ;    ^TMP("LEXQHO")      SACC 2.3.2.5.1
  ;    ^UTILITY($J         ICR  10011
  ;               
  ; External References
  ;    ^DIWP               ICR  10011
+ ;    $$ROOT^ICDEX        ICR   5747
  ;    $$FMTE^XLFDT        ICR  10103
- ;               
- ; Local Variables NEWed or KILLed Elsewhere
- ;     LEXTEST
  ;               
  Q
  ; Miscellaneous
@@ -26,8 +22,11 @@ TL(X) ;   Text Line
 SD(X) ;   Short Date
  Q $TR($$FMTE^XLFDT(+($G(X)),"5DZ"),"@"," ")
 IA(X) ;   Initial Activation
- N LEXEF,LEXH,LEXN,LEXS,LEXE,LEXIEN S LEXIEN=+($G(X)),LEXE="" Q:+LEXIEN'>0 ""  Q:'$D(^ICD0(+LEXIEN,66,0)) ""  S LEXEF="" F  S LEXEF=$O(^ICD0(+LEXIEN,66,"B",LEXEF)) Q:'$L(LEXEF)  D  Q:$G(LEXE)?7N
- . S LEXH=0 F  S LEXH=$O(^ICD0(+LEXIEN,66,"B",LEXEF,LEXH)) Q:+LEXH'>0  S LEXN=$G(^ICD0(+LEXIEN,66,+LEXH,0)) S:+($P(LEXN,U,2))>0 LEXE=$P(LEXN,U,1) Q:$G(LEXE)?7N
+ N LEXEF,LEXH,LEXN,LEXS,LEXE,LEXIEN,LEXRT,LEXARY S LEXIEN=+($G(X)),LEXE="" Q:+LEXIEN'>0 ""
+ S LEXRT=$$ROOT^ICDEX(80.1) M LEXARY=@(LEXRT_+LEXIEN_",66)") Q:'$D(LEXARY(0)) ""
+ S LEXEF="" F  S LEXEF=$O(LEXARY("B",LEXEF)) Q:'$L(LEXEF)  D  Q:$G(LEXE)?7N
+ . S LEXH=0 F  S LEXH=$O(LEXARY("B",LEXEF,LEXH)) Q:+LEXH'>0  D
+ . . S LEXN=$G(LEXARY(+LEXH,0)) S:+($P(LEXN,U,2))>0 LEXE=$P(LEXN,U,1) Q:$G(LEXE)?7N
  S X="" S:$G(LEXE)?7N X=$G(LEXE)
  Q X
 MS(X,Y) ;   Date Message

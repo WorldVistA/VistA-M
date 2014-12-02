@@ -1,5 +1,6 @@
-XQARPRT1 ;sgh/mtz,JLI/OAK_OIFO-ROUTINE TO PROVIDE COUNTS OF ALERTS ; 2/17/04 7:57am
- ;;8.0;KERNEL;**316,338**;Jul 10, 1995
+XQARPRT1 ;sgh/mtz,JLI/OAK_OIFO-ROUTINE TO PROVIDE COUNTS OF ALERTS ;9/3/03  11:17
+ ;;8.0;KERNEL;**316,338,631**;Jul 10, 1995;Build 5
+ ;Per VA Directive 6402, this routine should not be modified.
  ; based on an original routine AMNUALT
 EN1 ; OPT - generates a listing of the number of alerts a user has as well as last sign-on date, number of critical and/or abnomal imaging alerts, and the date of the oldest alert
  N XQACRIT S XQACRIT=0
@@ -68,18 +69,21 @@ DQ1 ;
  Q
  ;
 G1 ;gather
- N COUNT,MSG,DATE
+ N COUNT,MSG,DATE,CRITMSG
  F XQAN1=0:0 S XQAN1=$O(^XTV(8992,XQAN1)) Q:XQAN1'>0  D
  . S COUNT=0,OLDEST=0,NCRIT=0 F I=0:0 S I=$O(^XTV(8992,XQAN1,"XQA",I)) Q:I'>0  D
  . . S DATE=$P($P(^XTV(8992,XQAN1,"XQA",I,0),U,2),";",3)  S:OLDEST=0 OLDEST=DATE\1 I (DATE<XQASDT)!(DATE>XQAEDT) Q
- . . S MSG=$$UP^XLFSTR($P(^XTV(8992,XQAN1,"XQA",I,0),U,3)) I (MSG["CRITICAL")!(MSG["ABNORMAL IMA") S NCRIT=NCRIT+1
- . . I $D(XQAWORDS)'>0 S COUNT=COUNT+1
+ . . S MSG=$$UP^XLFSTR($P(^XTV(8992,XQAN1,"XQA",I,0),U,3))
+ . . S CRITMSG=$G(^XTV(8992,XQAN1,"XQA",I,0)) I CRITMSG'="" D  ; begin P631
+ . . I $D(XQAWORDS)'>0 S COUNT=COUNT+1 I $$CHKCRIT^XQALSUR2(CRITMSG) S NCRIT=NCRIT+1
  . . I $D(XQAWORDS)>1 D  I MSG'="" S COUNT=COUNT+1
  . . . N MSG1,I,J S MSG1=MSG F J=0:0 S J=$O(XQAWORDS(J)) Q:J'>0  S MSG=MSG1 D  Q:MSG'=""
- . . . . F I=0:0 S I=$O(XQAWORDS(J,I)) Q:I'>0  I MSG'[XQAWORDS(J,I) S MSG="" Q
+ . . . . F I=0:0 S I=$O(XQAWORDS(J,I)) Q:I'>0  D  I MSG'[XQAWORDS(J,I) S MSG="" Q
+ . . . . . I $D(XQAWORDS)>1,MSG[XQAWORDS(J,I),$$CHKCRIT^XQALSUR2(CRITMSG) S NCRIT=NCRIT+1
+ . . . . . Q
  . . . . Q
  . . . Q
- . . Q
+ . . Q  ; end P631
  . I $S(XQACRIT:NCRIT,1:COUNT)<XQAC1 Q
  . S VALUE=COUNT_U_XQAN1_U_$$FMTE^XLFDT(OLDEST,"5DZ")_U_NCRIT_U_$$GET1^DIQ(200,XQAN1_",",.01)
  . I DIVISION D  I 1
@@ -112,7 +116,8 @@ HEADER ;
  N XQACTR S XQACTR=0
  W @IOF W " COUNT of ",$S($D(XQAWORDS)>1:"SELECTED ",1:""),"ALERTS - users with more than ",XQAC1," on ",$$FMTE^XLFDT($$NOW^XLFDT())
  W !,"   for date range ",$$FMTE^XLFDT(XQASDT,"5DZ")," to ",$$FMTE^XLFDT(XQAEDT,"5DZ")
- W !,"CRIT column indicates number of CRITICAL alerts and ABNORMAL IMAGING alerts"
+ ;W !,"CRIT column indicates number of CRITICAL alerts and ABNORMAL IMAGING alerts"
+  W !,"CRIT column indicates number of alerts containing critical text"
  D WORDHDR^XQARPRT2
  W !!,?42,$S($D(XQAWORDS)>1:"Selected",1:"  Total"),?70,"Oldest"
  W !,"Name",?25,"Service/section",?43,"Alerts",?50,"Last Sign-on",?64,"CRIT   Alert"

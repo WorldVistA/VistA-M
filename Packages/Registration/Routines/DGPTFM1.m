@@ -1,5 +1,5 @@
 DGPTFM1 ;ALB/MTC - MASTER DIAG/OP/PRO CODE ENTER/EDIT ;4/4/05 3:08pm
- ;;5.3;Registration;**114,517,635**;Aug 13, 1993
+ ;;5.3;Registration;**114,517,635,850**;Aug 13, 1993;Build 171
  ;
 D G D^DGPTFM0
  ;
@@ -10,7 +10,7 @@ A1 I 'Z W !!,"Add to movement record <",L,"> : " R RC:DTIME G ^DGPTFM:RC[U!('$T)
  E  S RC=+$E(A,2,99)
 A2 I +RC'=RC!(","_L_","'[(","_RC_",")) W !!,"Enter the movement record number to add ICD diagnosis to: ",L S Z="" G A1
  S DIE="^DGPT(",(DA,DGPTF)=PTF,DR="[DG501]",DGJUMP=""
- S DGMOV=+M(RC),DGADD=1 D ^DIE K DR,DA,DGADD,DIE,DGJUMP D CHK501^DGPTSCAN K DGPTF,DGMOV,DGADD
+ S DGMOV=+M(RC),DGADD=1 D ^DIE K DR,DA,DGADD,DIE,DGJUMP,DGCODSYS,DGXX,DGTYPE D CHK501^DGPTSCAN K DGPTF,DGMOV,DGADD
  G ^DGPTFM
  ;
 M I DGPTFE G ADD^DGPTFM4
@@ -19,7 +19,7 @@ M I DGPTFE G ADD^DGPTFM4
  S X=$S($D(^DIC(42.4,+$P(Y,U,2),0)):$P(^(0),U,1),1:""),Y=$P(Y,U,10)
  D D^DGPTUTL K M W !,"Editing ",$S(DA=1:"Discharge ",1:""),"Movement " W:Y]"" "of ",Y W "  Losing Specialty ",X
  S DGMOV=DA,(DA,DGPTF)=PTF,DIE="^DGPT(",DR="[DG501]",DGJUMP="1-2" D ^DIE
- K DA,DR,DIE,DGJUMP D CHK501^DGPTSCAN K DGPTF,DGMOV
+ K DA,DR,DIE,DGJUMP,DGCODSYS,DGXX,DGTYPE D CHK501^DGPTSCAN K DGPTF,DGMOV
  ;- update MT indicator after edit movement
  N DGPMCA,DGPMAN D PM^DGPTUTL
  I '$G(DGADM) S DGADM=+^DGPT(PTF,0)
@@ -66,8 +66,13 @@ QQ R !!,"Enter the item #'s of the ICD Procedure codes to delete: ",A1:DTIME
  S:'$T A1=U I A1'?1N.NP G ^DGPTFM:"^"[A1 W:A1'["?" "  ???",*7 D Q^DGPTFM0 G QQ
  S A=A_A1
 QEL S DGA=$E(A,2,999) K X,A1 S DIE="^DGPT(",DA=PTF W !!
- F J=1:1 S DP=45,L=+$P(DGA,",",J) Q:'L  S L1=$S($D(P2(L)):P2(L),1:"Undefined, ") W:'L1 " ",L,"-",L1 I L1 S DR=+P2(+L)/100+45_"///@",DA(1)=PTF D ^DIE K DR W " ",L,"-Deleted, " W:$X>70 !
- H 2 G ^DGPTFM
+ F J=1:1 S DP=45,L=+$P(DGA,",",J) Q:'L  D
+ . S L1=$S($D(P2(L)):P2(L),1:"Undefined, ")
+ . W:'L1 " ",L,"-",L1
+ . I L1 S DR=+P2(+L)/100+45_"///@",DA(1)=PTF D
+ .. D ^DIE
+ .. K DR W " ",L,"-Deleted, " W:$X>70 !
+ H 1 G ^DGPTFM
  ;
 P G P^DGPTFM6
 Q1 Q
@@ -86,3 +91,4 @@ Y G DEL^DGPTFM2
 N G N^DGPTFM2
 G G DC^DGPTFM2
 F G F^DGPTFM2
+ Q

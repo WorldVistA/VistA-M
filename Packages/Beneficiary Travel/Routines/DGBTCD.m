@@ -1,10 +1,11 @@
 DGBTCD ;ALB/SCK/BLD - BENEFICIARY TRAVEL CLAIM DISPLAY; 12/15/92 4/14/93
- ;;1.0;Beneficiary Travel;**2,7,9,20**;September 25, 2001;Build 185
+ ;;1.0;Beneficiary Travel;**2,7,9,20,22**;September 25, 2001;Build 5
  Q
 SCREEN ;this will display the information screen at the end of a claim and 
  Q:'$D(^DGBT(392,DGBTDT,0))  S U="^" K DGBTVAR F I=0,"A","C","D","M","R","T" S DGBTVAR(I)=$S($D(^DGBT(392,DGBTDT,I)):^(I),1:"")
  S DGBTACCT=$S($D(^DGBT(392.3,+$P(DGBTVAR(0),U,6),0)):$P($G(^(0)),U,5),1:0)
  I 'DGBTACCT W !!,*7,">> WARNING! No ACCOUNT TYPE for this claim, Please correct through Claim Enter/Edit!" G QUIT
+ I '$P(DGBTVAR(0),U,11) W !!,*7,">> WARNING! No DIVISION specified for this claim, please correct through Claim Enter/Edit." G QUIT ;dbe patch DGBT*1*22
  W @IOF
  W !?18,"Beneficiary Travel Claim Information <Display>"
  W !!,?2,"Claim Date: ",DGBTDTE W:$P(DGBTVAR(0),U,11)'=""&($D(^DG(40.8,$P(DGBTVAR(0),U,11),0))) ?40,"Division: ",$P(^DG(40.8,$P(DGBTVAR(0),U,11),0),U)

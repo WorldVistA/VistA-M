@@ -1,5 +1,5 @@
-DGBTALTI ;PAV - BENEFICIARY/TRAVEL Alternate Income Enter/Edit; 4/23/2012@1130 ;11/14/11  09:58
- ;;1.0;Beneficiary Travel;**20**;September 25, 2001;Build 185
+DGBTALTI ;PAV - BENEFICIARY/TRAVEL Alternate Income Enter/Edit;4/23/2012@1130
+ ;;1.0;Beneficiary Travel;**20,24**;September 25, 2001;Build 13
 ALT ;BT Alternate Income Enter/Edit
  D KILL S DGBTIME=300 S:'$D(DTIME) DTIME=DGBTIME S:'$D(U) U="^"
  I '$D(DT)#2 S %DT="",S="T" D ^%DT S DT=Y
@@ -117,6 +117,9 @@ PD ;Display patient information
  .S DGBTINC=X_U_$G(DGBTIFL)
  S DGBTDT=DGBTDTI,DGBTINCA=XX(3)
  I $$DAYSTEST^DGBT1(DFN,.DAYFLG,.RXDAYS,.RXCPST,.LOWINC,.DGNOTEST)
+ ; Inserted PATCH 24
+ I $$MTCHK^DGBTUTL1(DFN,DGBTDT)>0 D
+ . S (DAYFLG,DGBTDYFL)=1
  S X=$$LST^DGMTCOU1(DFN,DT,3),DGBTMTS=$P(X,U,4)_U_$P(X,U,3)
  S:XX(3) RXCPST=0,DGBTMTS=U,DAYFLG=1 ; PAVEL
  ;I DAYFLG,$G(RXCPST),$G(RXCP)'=1 S DGBTINC="^",DGBTIFL=""
@@ -126,7 +129,6 @@ PD ;Display patient information
  W $S($G(DGBTIFL)="M":"MEANS TEST",$G(DGBTIFL)="C":"COPAY TEST",$G(DGBTIFL)="P":"Alt. Income POW",$G(DGBTIFL)="H":"Alt. Income Hardship",1:"")
  I XX(3) W !,?40," (Expire: ",$$FMTE^XLFDT($P(XX(3),U,5)),")"
  W !?2,"No. of Dependents: ",+DGBTDEP
- ;
  I DGBTMTS]"" W:$P(DGBTMTS,"^")'="N" ?35,"MT Status: ",$S($P(DGBTMTS,"^")="EX":"EXPIRED",$P(DGBTMTS,"^")="R":"REQUIRED",$P(DGBTMTS,"^")="P":$P($P(DGBTMTS,"^",2)," "),DGBTMTS=U!($G(RXCPST)):" NOT APPLICABLE",1:$P(DGBTMTS,"^",2))
  ;
  Q

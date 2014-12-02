@@ -1,6 +1,10 @@
-ACKQASU ;HCIOFO/BH-New/Edit Visit Utilities  ;  04/01/99
- ;;3.0;QUASAR;**8,15,16**;Feb 11, 2000;Build 37
+ACKQASU ;HCIOFO/BH - New/Edit Visit Utilities ;04/01/99
+ ;;3.0;QUASAR;**8,15,16,22,21**;Feb 11, 2000;Build 40
  ;Per VHA Directive 2004-038, this routine SHOULD NOT be modified.
+ ;
+ ;  Reference/ICR
+ ;  $$CODEC^ICDEX - 5747
+ ;
  ;
 ELIGCHK() ; Checks to see if there is a Primary Eligibility (which there
  ; always should be) if there's not (i.e. data error) pass back zero.
@@ -58,7 +62,8 @@ KILL ;  Kill off values at end of processing
 DC ;  CHECK OUT DIAGNOSTIC CONDITION - ENTER IF NEEDED
  N ACKY
  Q:$D(^ACK(509850.2,DFN,1,"B",ACKDC))
- S ACKY=Y D DEM^VADPT S Y=ACKY,X=$$GET1^DIQ(80,ACKDC,.01),ACKLN=$P(VADM(1),","),ACKSX=$P(VADM(5),U)
+ ;ACKQ*3.0*22 updated api
+ S ACKY=Y D DEM^VADPT S Y=ACKY,X=$$CODEC^ICDEX(80,ACKDC),ACKLN=$P(VADM(1),","),ACKSX=$P(VADM(5),U)
  I $G(ACKBGRD)'="1" D
  . W !!,X,"   ",$$DIAGTXT^ACKQUTL8(ACKDC,ACKVD)
  . W !,"We have no previous record of diagnostic condition ",X," for ",$S(ACKSX="F":"Ms.",1:"Mr.")," ",ACKLN,"." D ADCODE

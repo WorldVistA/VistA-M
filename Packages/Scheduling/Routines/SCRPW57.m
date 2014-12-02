@@ -1,7 +1,7 @@
-SCRPW57 ;RENO/KEITH - Most Frequent 50 ICD-9-CM Codes (OP7) or (IP7) ; 5/6/03 1:18pm
- ;;5.3;Scheduling;**144,295,466**;AUG 13, 1993;Build 2
+SCRPW57 ;RENO/KEITH - Most Frequent 50 ICD Diagnosis Codes (OP7) or (IP7) ;5/6/03 1:18pm
+ ;;5.3;Scheduling;**144,295,466,593**;AUG 13, 1993;Build 13
  S SDSTA=$G(SDSTA,2)
- D RQUE^SCRPW50("START^SCRPW57","Most Frequent 50 ICD-9-CM Codes "_$S(SDSTA=2:"(OP7)",1:"(IP7)"),1) Q
+ D RQUE^SCRPW50("START^SCRPW57","Most Frequent 50 ICD Diagnosis Codes "_$S(SDSTA=2:"(OP7)",1:"(IP7)"),1) Q
  ;
 START ;Print report
  K ^TMP("SCRPW",$J) S (SDSTOP,SDOUT)=0,SDT=SD("FYD")
@@ -16,7 +16,7 @@ START ;Print report
  ..Q
  .S SDDX=0 F  S SDDX=$O(^TMP("SCRPW",$J,SDIV,0,SDDX)) Q:'SDDX  S SDI=^TMP("SCRPW",$J,SDIV,0,SDDX),^TMP("SCRPW",$J,SDIV,1,SDI,SDDX)=""
  .Q
- G:SDOUT EXIT S SDLINE="",$P(SDLINE,"-",(IOM+1))="" D NOW^%DTC S Y=% X ^DD("DD") S SDPNOW=$P(Y,":",1,2),SDTIT(1)="<*>  MOST FREQUENT 50 ICD-9-CM CODES "_$S(SDSTA=2:"(OP7)",1:"(IP7)")_"  <*>",SDPG=0 D:$E(IOST)="C" DISP0^SCRPW23
+ G:SDOUT EXIT S SDLINE="",$P(SDLINE,"-",(IOM+1))="" D NOW^%DTC S Y=% X ^DD("DD") S SDPNOW=$P(Y,":",1,2),SDTIT(1)="<*>  MOST FREQUENT 50 ICD DIAGNOSIS CODES "_$S(SDSTA=2:"(OP7)",1:"(IP7)")_"  <*>",SDPG=0 D:$E(IOST)="C" DISP0^SCRPW23
  I '$D(^TMP("SCRPW",$J)) S SDPAGE=1,SDX="No activity found within report parameters." D HDR G:SDOUT EXIT W !!?(IOM-$L(SDX)\2),SDX G EXIT
  G:SDOUT EXIT S SDIVN="" F  S SDIVN=$O(SDIV(SDIVN)) Q:SDIVN=""!SDOUT  D DPRT(SDIV(SDIVN))
  G:SDOUT EXIT D:SDVCT>1 DPRT(0)
@@ -33,10 +33,14 @@ DPRT(SDV) ;Print division
  Q
  ;
 PLINE ;Print output line
+ N DIWL,DIWF,SDL2 S DIWL=1 S DIWF="C38|"
  D:$Y>(IOSL-8) HDR Q:SDOUT  D HD1
- ;S SDDIAG=$G(^ICD9(SDDX,0)),SDDIAG=$P(SDDIAG,U)_"  "_$P(SDDIAG,U,3),SDII=SDII+1
- S SDDIAG=$$ICDDX^ICDCODE(SDDX,,,1),SDDIAG=$P(SDDIAG,U,2)_"  "_$P(SDDIAG,U,4),SDII=SDII+1
- W !,$J(SDII,3),?6,$E(SDDIAG,1,38) D  W !
+ S SDDIAG=$$ICDDX^SCRPWICD(SDDX),SDDIAG=$P(SDDIAG,U,2)_"  "_$P(SDDIAG,U,4),SDII=SDII+1
+ K ^UTILITY($J,"W") S X=SDDIAG D ^DIWP
+ F SDL2=1:1:^UTILITY($J,"W",DIWL) D
+ .I SDL2=1 W !,$J(SDII,3),?6,$E(^UTILITY($J,"W",DIWL,SDL2,0),1,38) I 1
+ .E  W !,?6,$E(^UTILITY($J,"W",DIWL,SDL2,0),1,38)
+ D  W !
  .S (SDFL,SDPT)="" F  S SDPT=$O(^TMP("SCRPW",$J,SDV,0,SDDX,SDPT)) Q:SDPT=""!SDOUT  D
  ..I $Y>(IOSL-3) D HDR,HD1 Q:SDOUT  S SDFL=1
  ..S SDPTV=^TMP("SCRPW",$J,SDV,0,SDDX,SDPT)
@@ -54,7 +58,7 @@ HDR ;Print header
  W !,SDLINE,!,"For Fiscal Year activity through ",SD("PEDT"),!,"Date printed: ",SDPNOW,?(IOM-6-$L(SDPAGE)),"Page: ",SDPAGE,!,SDLINE S SDPAGE=SDPAGE+1,SDPG=1 Q
  ;
 HD1 ;Print subheader
- Q:SDOUT  W !?87,"Prim. Dx.",?103,"Total",?111,"Prim. Dx.",?127,"Total",!,"Rank  IDC-9-DM Diagnosis code",?48,"Provider Type",?89,"Uniques",?101,"Uniques",?110,"Encounters",?122,"Encounters"
+ Q:SDOUT  W !?87,"Prim. Dx.",?103,"Total",?111,"Prim. Dx.",?127,"Total",!,"Rank  ICD Diagnosis code",?48,"Provider Type",?89,"Uniques",?101,"Uniques",?110,"Encounters",?122,"Encounters"
  N SDI W !,"----",?6,$E(SDLINE,1,38),?46,$E(SDLINE,1,38) F SDI=0:1:3 W ?(86+(12*SDI)),$E(SDLINE,1,10)
  Q
  ;
@@ -62,6 +66,7 @@ DLIST ;Create alphabetic list of divisions found
  Q:'SDIV  S SDX=$P($G(^DG(40.8,SDIV,0)),U) S:'$L(SDX) SDX="*** UNKNOWN ***" S SDIV(SDX)=SDIV,SDVCT=SDVCT+1 Q
  ;
 VALID() ;Check encounter record
+ Q 1
  I $P(SDOE0,U,4),$P($G(^SC($P(SDOE0,U,4),0)),U,17)="Y" Q 0
  I SDIV,$$DIV(),$P(SDOE0,U,2),'$P(SDOE0,U,6),$P(SDOE0,U,7),$P(SDOE0,U,12)=SDSTA Q 1
  Q 0
@@ -87,3 +92,4 @@ SET(SDIV) ;Set division lists
  ..Q
  .Q
  Q
+ ;

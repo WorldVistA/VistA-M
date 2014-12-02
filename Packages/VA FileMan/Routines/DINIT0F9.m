@@ -1,6 +1,7 @@
-DINIT0F9 ;SFISC/MKO-DATA FOR FORM AND BLOCK FILES ;10:49 AM  30 Mar 1999
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT0F9 ;SFISC/MKO-DATA FOR FORM AND BLOCK FILES ;17DEC2010
+ ;;22.0;VA FileMan;**167**;Mar 30, 1999;Build 18
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ; TAG 'ENTRY+172' CHANGED TO REMEMBER LANGUAGE OF PRINT TEMPLATE HEADER
  F I=1:2 S X=$T(ENTRY+I) G:X="" ^DINIT0FA S Y=$E($T(ENTRY+I+1),5,999),X=$E(X,4,999),@X=Y
  Q
 ENTRY ;
@@ -175,7 +176,7 @@ ENTRY ;
  ;;^DIST(.404,.10011,40,12,22)
  ;;=I '$$DHD^DIP3(X,+$P($G(^DIPT(DA,0)),U,4),0) K X
  ;;^DIST(.404,.10011,40,12,23)
- ;;=S ^DIPT(DA,"H")=$S(DDSEXT="":"@",1:DDSEXT)
+ ;;=S ^DIPT(DA,"H")=$S(DDSEXT="":"@",1:DDSEXT) I $G(DUZ("LANG")) S ^("HLANG")=DUZ("LANG")
  ;;^DIST(.404,.10011,40,13,0)
  ;;=5^^4
  ;;^DIST(.404,.10011,40,13,2)
@@ -262,3 +263,9 @@ ENTRY ;
  ;;=12,15^16^12,10
  ;;^DIST(.404,.110101,40,9,14)
  ;;=D USEVAL^DIKCFORM
+ ;;^DIST(.404,.110101,40,666,0)
+ ;;=666^Do Not ReIndex^3
+ ;;^DIST(.404,.110101,40,666,1)
+ ;;=666
+ ;;^DIST(.404,.110101,40,666,2)
+ ;;=14,26^22^14,10

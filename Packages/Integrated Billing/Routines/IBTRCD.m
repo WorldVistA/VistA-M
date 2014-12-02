@@ -1,6 +1,6 @@
 IBTRCD ;ALB/AAS - CLAIMS TRACKING - EXPAND CONTACTS SCREEN ; 02-JUL-1993
- ;;2.0;INTEGRATED BILLING;**210**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**210,458**;21-MAR-94;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % ;
 EN ; -- main entry point for IBT EXPAND/EDIT COMMUNICATIONS
@@ -11,8 +11,9 @@ EN ; -- main entry point for IBT EXPAND/EDIT COMMUNICATIONS
  Q
  ;
 HDR ; -- header code
- D PID^VADPT
- S VALMHDR(1)="Expanded Insurance Reviews for: "_$$PT^IBTUTL1(DFN)_"   ROI: "_$$EXPAND^IBTRE(356,.31,$P($G(^IBT(356,+$G(IBTRN),0)),"^",31))
+ D PID^VADPT N IBXR
+ S VALMHDR(1)="Expanded Insurance Reviews for: "_$$PT^IBTUTL1(DFN)
+ S IBXR=$$ROIEVT^IBTRR1(IBTRN) I IBXR'="" S VALMHDR(1)=VALMHDR(1)_$J(" ",(60-$L(VALMHDR(1))))_"ROI: "_IBXR
  S VALMHDR(2)="                           for: "_$$EXPAND^IBTRE(356,.18,$P(IBTRND,"^",18))_" on "_$$DAT1^IBOUTL($P(IBTRND,"^",6),"2P")
  Q
  ;
@@ -44,7 +45,9 @@ ACTION ; -- Ins. Action infomation display
 10 ; -- pre-cert contact
 15 ; -- admission review
 20 ; -- urgent/emergent ins. contact
+25 ; -- snf/nhcu review
 30 ; -- continued stay contact
+35 ; -- inpt retrospective review
  S IBLCNT=2
  D SET^IBCNSP(START+IBLCNT,OFFSET,"         Action: "_$$EXPAND^IBTRE(356.2,.11,$P(IBTRCD,"^",11)))
  S IBACTION=$P($G(^IBE(356.7,+$P(IBTRCD,"^",11),0)),"^",3)
@@ -56,12 +59,13 @@ ACTION ; -- Ins. Action infomation display
 100 ; -- No type of action
  Q
 50 ; -- outpatient treatment
+55 ; -- opt retrospective review
  S IBLCNT=2
  D SET^IBCNSP(START+IBLCNT,OFFSET," Opt Treatment: "_$$EXPAND^IBTRE(356.2,.26,$P(IBTRCD,"^",26)))
  S IBLCNT=IBLCNT+1
  D SET^IBCNSP(START+IBLCNT,OFFSET,"         Action: "_$$EXPAND^IBTRE(356.2,.11,$P(IBTRCD,"^",11)))
  S IBLCNT=IBLCNT+1
- D SET^IBCNSP(START+IBLCNT,OFFSET,"   Auth. Number: "_$P(IBTRCD,"^",28))
+ D SET^IBCNSP(START+IBLCNT,OFFSET,"   Auth. Number: "_$$AUTHN^IBTRC(IBTRC,18))
  ;D SET^IBCNSP(START+IBLCNT,OFFSET,"Treatment Auth: "_$$EXPAND^IBTRE(356.2,.27,$P(IBTRCD,"^",27)))
  Q
 60 ; -- Appeal
@@ -84,7 +88,7 @@ ACTION ; -- Ins. Action infomation display
  S IBLCNT=IBLCNT+1
  D SET^IBCNSP(START+IBLCNT,OFFSET,"Authorized Diag: "_$$DIAG^IBTRE6($P(IBTRCD,"^",14),1,$$TRNDATE^IBACSV($G(IBTRN))))
  S IBLCNT=IBLCNT+1
- D SET^IBCNSP(START+IBLCNT,OFFSET,"   Auth. Number: "_$P(IBTRCD,"^",28))
+ D SET^IBCNSP(START+IBLCNT,OFFSET,"   Auth. Number: "_$$AUTHN^IBTRC(IBTRC,18))
  Q
 120 ; -- denial actions
  S IBLCNT=IBLCNT+1

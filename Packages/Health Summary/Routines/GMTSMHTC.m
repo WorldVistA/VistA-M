@@ -1,11 +1,47 @@
-GMTSMHTC ;SLC/WAT - Driver for MH Treatment Coordinator component ;06/08/11  08:35
- ;;2.7;Health Summary;**99**;Oct 20, 1995;Build 45
+GMTSMHTC ;SLC/WAT - Driver for MH Treatment Coordinator component ;04/11/12  11:56
+ ;;2.7;Health Summary;**99,104**;Oct 20, 1995;Build 38
  ;
  Q
  ;
-EN ;start
- ;get MHTC for this DFN and display
+ ;;ICRs
+ ;;10060 ^VA(200 FM only reads
+ ;;2056 GETS^DIQ
+ ;;5697 $$START^SCMCMHTC
+ ;;
+EN ; get MHTC
+ N GMTSMHTC,GMTSIEN,GMTSARR,GMTSOUT,GMTSERR,GMTSCNT
+ S GMTSCNT=1
+ S GMTSMHTC=$$START^SCMCMHTC(DFN) ;Retrieve Mental Health Provider
+ ;GMTSMHTC=IEN^MHTC^Team Position^Role^Team
+ I +GMTSMHTC>0 D  Q:$D(GMTSERR)
+ . S GMTSIEN=$P(GMTSMHTC,"^"),GMTSIEN=GMTSIEN_","
+ . D GETS^DIQ(200,GMTSIEN,".137;.138;.132",,"GMTSARR","GMTSERR")
+ . I $D(GMTSERR) D ERROR Q
+ . S GMTSOUT(GMTSCNT)="        MH Treatment Team:  "_$P(GMTSMHTC,U,5),GMTSCNT=GMTSCNT+1
+ . S GMTSOUT(GMTSCNT)=" MH Treatment Coordinator:  "_$P(GMTSMHTC,U,2),GMTSCNT=GMTSCNT+1
+ . S GMTSOUT(GMTSCNT)="             Office Phone:  "_GMTSARR(200,GMTSIEN,.132),GMTSCNT=GMTSCNT+1
+ . S GMTSOUT(GMTSCNT)="             Analog Pager:  "_GMTSARR(200,GMTSIEN,.137),GMTSCNT=GMTSCNT+1
+ . S GMTSOUT(GMTSCNT)="            Digital Pager:  "_GMTSARR(200,GMTSIEN,.138)
+ I $D(GMTSOUT) D PRINT
+ K:$D(MHTC) MHTC K:$D(TPIEN) TPIEN ;needed to clean up as these are leftover from the call to SCMCMHTC
  Q
-PRINT ;show output
+PRINT ;SHOW MHTC
+ N I
  D CKP^GMTSUP Q:$D(GMTSQIT)
+ F I=1:1:GMTSCNT D
+ .W GMTSOUT(I),!
  Q
+ ;
+ERROR ;inform user
+ N ERRCNT S ERRCNT=""
+ S GMTSOUT(GMTSCNT)="An error has ocurred while processing your request.",GMTSCNT=GMTSCNT+1
+ S GMTSOUT(GMTSCNT)="Please try your request again.  If the error continues",GMTSCNT=GMTSCNT+1
+ S GMTSOUT(GMTSCNT)="please contact IRM for assistance.",GMTSCNT=GMTSCNT+1
+ S GMTSOUT(GMTSCNT)="The error message is:"
+ I $P(GMTSERR("DIERR"),"^")=1 S GMTSCNT=GMTSCNT+1,GMTSOUT(GMTSCNT)=GMTSERR("DIERR",1)_": "_GMTSERR("DIERR",1,"TEXT",1) D PRINT Q
+ F  S ERRCNT=$O(GMTSERR("DIERR",ERRCNT)) Q:+ERRCNT'>0  D
+ . S GMTSCNT=GMTSCNT+1
+ . S GMTSOUT(GMTSCNT)=GMTSERR("DIERR",ERRCNT)_": "_GMTSERR("DIERR",ERRCNT,"TEXT",ERRCNT)
+ D PRINT
+ Q
+ ;

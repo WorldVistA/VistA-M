@@ -1,5 +1,5 @@
 ONCOANC4 ;Hines OIFO/GWB - ACOS DATA TAPE UTILITY FUNCTIONS ;7/20/93
- ;;2.11;ONCOLOGY;**1,25,26**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 AASDC(YYYMMDD,ZERO) ; CONVERTS YYYMMDD TO MMDDCCYY
  ;    returns blank input as zeros if ZERO defined, else blanks

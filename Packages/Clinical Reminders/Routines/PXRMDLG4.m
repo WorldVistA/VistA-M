@@ -1,5 +1,5 @@
-PXRMDLG4 ; SLC/PJH - Reminder Dialog Edit/Inquiry ;01/18/2010
- ;;2.0;CLINICAL REMINDERS;**4,6,12,16**;Feb 04, 2005;Build 119
+PXRMDLG4 ; SLC/PJH - Reminder Dialog Edit/Inquiry ;08/20/2012
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,16,26**;Feb 04, 2005;Build 404
  ;
 WP(SUB,SUB1,WIDTH,SEQ,VALMCNT) ;Format WP text
  N DIWF,DIWL,DIWR,IC,TEXT,X,TXTCNT,DTXT,CNT,SUB2
@@ -40,14 +40,16 @@ ADD ;PXRM DIALOG ADD ELEMENT validation
  D BUILD^PXRMDLG(PXRMMODE)
  Q
  ;
-FADD(DIEN,FTAB) ;Additional Findings
+FADD(DIEN,FTAB,VIEW,NLINE) ;Additional Findings
  N FIND,FSUB,FTYP,FNAME,FNUM
  S FSUB=0
  F  S FSUB=$O(^PXRMD(801.41,DIEN,3,FSUB)) Q:'FSUB  D
  .S FIND=$P($G(^PXRMD(801.41,DIEN,3,FSUB,0)),U) Q:FIND=""
  .S FNAME="" D FDESC(FIND) Q:FNAME=""
+ .;
  .;Save additional finding name
  .S FOUND=1 D FSAVE(2,FNAME,FTYP,FTAB,FIND)
+ .I VIEW=2,FIND["PXD(811.2," D TAXDISP^PXRMDTAX(FIND,"",DIEN,.NLINE,NODE,1,0)
  Q
  ;
 DETAIL(DIEN,LEV,VIEW,NODE) ;;Build listman global for all components
@@ -151,13 +153,12 @@ DLINE(DIEN,LEV,DSEQ,NODE) ;Save individual component details
  ...S TEMP=$J("",TAB)_"Result Group: "_RESNM
  ...S NLINE=NLINE+1,^TMP(NODE,$J,NLINE,0)=TEMP
  .;Additional findings
- .D FADD(DIEN,TAB)
+ .D FADD(DIEN,TAB,VIEW,.NLINE)
  ;Get additional prompts
  I VIEW=2 D
  .S FIEN=$P($G(^PXRMD(801.41,DIEN,1)),U,5)
- .I $G(FIEN)["PXD(811.2," D TAX^PXRMDLG1(FIEN,DSEQ,DIEN,.NLINE,NODE)
- .I $G(FIEN)["ICPT"!($G(FIEN)["ICD9") D FIND^PXRMDLG1(FIEN,DSEQ,DIEN,.NLINE,NODE)
- .D FADD(DIEN,TAB)
+ .I $G(FIEN)["PXD(811.2," D TAXDISP^PXRMDTAX(FIEN,DSEQ,DIEN,.NLINE,NODE,0,0)
+ .D FADD(DIEN,TAB,VIEW,.NLINE)
  I VIEW,VIEW<5,"Element;Group"[DTYP D PROMPT(DIEN,TAB,"Prompts: ",VIEW)
  ;
  I VIEW=4,$D(^PXRMD(801.41,DIEN,49))>0 D ALT^PXRMDLG5(DIEN,LEV,DSEQ,NODE,VIEW,.NLINE,CNT,ALTLEN)
@@ -205,7 +206,6 @@ FSAVE(DSUB,FNAME,FTYP,FTAB,FIEN) ;Save finding details
  F IND=1:1:NL D
  . S NLINE=NLINE+1
  . S ^TMP(NODE,$J,NLINE,0)=OUTPUT(IND)
- I VIEW=2,($G(FIEN)["ICPT"!($G(FIEN)["ICD9")) D FIND^PXRMDLG1(FIEN,DSEQ,DIEN,.NLINE,NODE)
  Q
  ;
 PROMPT(IEN,TAB,TEXT,VIEW) ;additional prompts in the dialog file
@@ -246,7 +246,7 @@ SEQ(SEQ,PIEN) ;Select sequence number to add
  I $D(^TMP("PXRMDLG4",$J,"SEQ",X)) D  Q
  .W !,"Sequence number "_X_" already in use."
  ;
- ;Then check that the parent is a group or reminder dialog
+ ;Check that the parent is a group or reminder dialog
  I X["." D  Q:X=""
  .N CLASS,SUB
  .;Sequence number of parent

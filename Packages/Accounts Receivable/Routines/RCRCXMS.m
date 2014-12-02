@@ -37,16 +37,16 @@ SITE ;RC Site Parameter Edit
  S RCSITE=$P($$SITE^RCMSITE,U,2)
  I 'DA G SITEQ
  ;S DR=".04;W !!,""Primary Division: "",$P($G(^DIC(4,$$SITE^RCMSITE,0)),U,1);32R~PRIMARY RC REMOTE DOMAIN"_";I $E($G(^DIC(4.2,X,0)),1,3)'=""RC-"" W !,""   <<RC DOMAIN MUST START WITH 'RC-'>>"" S Y=32" D ^DIE
- S DR=".04;W !!,""Primary Division: "",$P($G(^DIC(4,$$SITE^RCMSITE,0)),U,1);34R~RC MAIL ADDRESS"_";I $E($G(X),1,3)'=""OGC""!($E($G(X),7,20)'=""RI@MAIL.domain.ext"") D MAILADD^RCRCXMS S Y=34"
+ S DR=".04;W !!,""Primary Division: "",$P($G(^DIC(4,$$SITE^RCMSITE,0)),U,1);34R~RC MAIL ADDRESS"_";I $E($G(X),1,3)'=""OGC""!($E($G(X),7,20)'=""RI@MAIL.DOMAIN.EXT"") D MAILADD^RCRCXMS S Y=34"
  S DR=DR_";35R~RC DEATH NOTIFICATION ADDRESS"_";I $E($G(X),1,9)'=""OGCRegion"" D DEATHADD^RCRCXMS S Y=35" D ^DIE
  I ($D(DTOUT))!($D(Y)) G SITEQ
  ;
 DR61 W !!,"Enter Division(s) of care if domain is different then primary RC Mail Address.",!
  S DR=61
  ;S DR(2,349.161)=".01;.02R~RC MAIL ADDRESS"_";I $E($G(^DIC(4.2,X,0)),1,3)'=""RC-"" W !,"" <<RC DOMAIN MUST START WITH 'RC-'>>"" S Y=.02" D ^DIE
- S DR(2,349.161)=".01;.03R~RC MAIL ADDRESS"_";I $E($G(X),1,3)'=""OGC""!($E($G(X),7,20)'=""RI@MAIL.domain.ext"") D MAILADD^RCRCXMS S Y=.03"_";N RCFLAG D DIK^RCRCXMS I $G(RCFLAG) S Y=.01"
+ S DR(2,349.161)=".01;.03R~RC MAIL ADDRESS"_";I $E($G(X),1,3)'=""OGC""!($E($G(X),7,20)'=""RI@MAIL.DOMAIN.EXT"") D MAILADD^RCRCXMS S Y=.03"_";N RCFLAG D DIK^RCRCXMS I $G(RCFLAG) S Y=.01"
  S DR(2,349.161)=DR(2,349.161)_";.04R~RC DEATH NOTIFICATION ADDRESS"_";I $E($G(X),1,9)'=""OGCRegion"" D DEATHADD^RCRCXMS S Y=.04" D ^DIE
- ;S DR(2,349.161)=".04R~RC DEATH NOTIFICATION ADDRESS"_";I $E($G(X),1,3)'=""OGC""!($E($G(X),7,20)'=""RI@MAIL.domain.ext"") D DEATHADD^RCRCXMS S Y=.04" D ^DIE
+ ;S DR(2,349.161)=".04R~RC DEATH NOTIFICATION ADDRESS"_";I $E($G(X),1,3)'=""OGC""!($E($G(X),7,20)'=""RI@MAIL.DOMAIN.EXT"") D DEATHADD^RCRCXMS S Y=.04" D ^DIE
  ;
 SITEQ Q
  ;
@@ -60,7 +60,7 @@ MAILADD ;MAIL ADDRESS FOR REGIONAL COUNSEL
  W !!,"Please enter an Regional Counsel mail address that adheres to the"
  W !,"following format:"
  W !!," The first three characters must be 'OGC'"
- W !," Characters 7 through 20 should be 'RI@MAIL.domain.ext'"
+ W !," Characters 7 through 20 should be 'RI@MAIL.DOMAIN.EXT'"
  W !!,"Choose one of the following RC addresses:",!
  N RCCT,RCMAIL,RCUP
  F RCCT=1:1 S RCMAIL=$P($T(ADDR+RCCT),";;",2) Q:RCMAIL="END"!(+$G(RCUP))  D
@@ -82,29 +82,29 @@ DEATHADD ;DEATH ADDRESSES FOR REGIONAL COUNSEL
  .Q
  Q
 ADDR ;
- ;;OGCBOSRI@MAIL.domain.ext^OGCRegion1DeathNotification@mail.domain.ext
- ;;OGCNYNRI@MAIL.domain.ext^OGCRegion2DeathNotification@mail.domain.ext
- ;;OGCBALRI@MAIL.domain.ext^OGCRegion3DeathNotification@mail.domain.ext
- ;;OGCPHIRI@MAIL.domain.ext^OGCRegion4DeathNotification@mail.domain.ext
- ;;OGCATLRI@MAIL.domain.ext^OGCRegion5DeathNotification@mail.domain.ext
- ;;OGCBAYRI@MAIL.domain.ext^OGCRegion6DeathNotification@mail.domain.ext
- ;;OGCCLERI@MAIL.domain.ext^OGCRegion7DeathNotification@mail.domain.ext
- ;;OGCNASRI@MAIL.domain.ext^OGCRegion8DeathNotification@mail.domain.ext
- ;;OGCJACRI@MAIL.domain.ext^OGCRegion9DeathNotification@mail.domain.ext
- ;;OGCCHIRI@MAIL.domain.ext^OGCRegion10DeathNotification@mail.domain.ext
- ;;OGCDETRI@MAIL.domain.ext^OGCRegion11DeathNotification@mail.domain.ext
- ;;OGCSTLRI@MAIL.domain.ext^OGCRegion12DeathNotification@mail.domain.ext
- ;;OGCWACRI@MAIL.domain.ext^OGCRegion13DeathNotification@mail.domain.ext
- ;;OGCHOURI@MAIL.domain.ext^OGCRegion14DeathNotification@mail.domain.ext
- ;;OGCMINRI@MAIL.domain.ext^OGCRegion15DeathNotification@mail.domain.ext
- ;;OGCDENRI@MAIL.domain.ext^OGCRegion16DeathNotification@mail.domain.ext
- ;;OGCLOSRI@MAIL.domain.ext^OGCRegion17DeathNotification@mail.domain.ext
- ;;OGCSFCRI@MAIL.domain.ext^OGCRegion18DeathNotification@mail.domain.ext
- ;;OGCPHORI@MAIL.domain.ext^OGCRegion19DeathNotification@mail.domain.ext
- ;;OGCPORRI@MAIL.domain.ext^OGCRegion20DeathNotification@mail.domain.ext
- ;;OGCBUFRI@MAIL.domain.ext^OGCRegion21DeathNotification@mail.domain.ext
- ;;OGCINDRI@MAIL.domain.ext^OGCRegion22DeathNotification@mail.domain.ext
- ;;OGCWINRI@MAIL.domain.ext^OGCRegion23DeathNotification@mail.domain.ext
+ ;;OGCBOSRI@MAIL.DOMAIN.EXT^OGCRegion1DeathNotification@mail.domain.ext
+ ;;OGCNYNRI@MAIL.DOMAIN.EXT^OGCRegion2DeathNotification@mail.domain.ext
+ ;;OGCBALRI@MAIL.DOMAIN.EXT^OGCRegion3DeathNotification@mail.domain.ext
+ ;;OGCPHIRI@MAIL.DOMAIN.EXT^OGCRegion4DeathNotification@mail.domain.ext
+ ;;OGCATLRI@MAIL.DOMAIN.EXT^OGCRegion5DeathNotification@mail.domain.ext
+ ;;OGCBAYRI@MAIL.DOMAIN.EXT^OGCRegion6DeathNotification@mail.domain.ext
+ ;;OGCCLERI@MAIL.DOMAIN.EXT^OGCRegion7DeathNotification@mail.domain.ext
+ ;;OGCNASRI@MAIL.DOMAIN.EXT^OGCRegion8DeathNotification@mail.domain.ext
+ ;;OGCJACRI@MAIL.DOMAIN.EXT^OGCRegion9DeathNotification@mail.domain.ext
+ ;;OGCCHIRI@MAIL.DOMAIN.EXT^OGCRegion10DeathNotification@mail.domain.ext
+ ;;OGCDETRI@MAIL.DOMAIN.EXT^OGCRegion11DeathNotification@mail.domain.ext
+ ;;OGCSTLRI@MAIL.DOMAIN.EXT^OGCRegion12DeathNotification@mail.domain.ext
+ ;;OGCWACRI@MAIL.DOMAIN.EXT^OGCRegion13DeathNotification@mail.domain.ext
+ ;;OGCHOURI@MAIL.DOMAIN.EXT^OGCRegion14DeathNotification@mail.domain.ext
+ ;;OGCMINRI@MAIL.DOMAIN.EXT^OGCRegion15DeathNotification@mail.domain.ext
+ ;;OGCDENRI@MAIL.DOMAIN.EXT^OGCRegion16DeathNotification@mail.domain.ext
+ ;;OGCLOSRI@MAIL.DOMAIN.EXT^OGCRegion17DeathNotification@mail.domain.ext
+ ;;OGCSFCRI@MAIL.DOMAIN.EXT^OGCRegion18DeathNotification@mail.domain.ext
+ ;;OGCPHORI@MAIL.DOMAIN.EXT^OGCRegion19DeathNotification@mail.domain.ext
+ ;;OGCPORRI@MAIL.DOMAIN.EXT^OGCRegion20DeathNotification@mail.domain.ext
+ ;;OGCBUFRI@MAIL.DOMAIN.EXT^OGCRegion21DeathNotification@mail.domain.ext
+ ;;OGCINDRI@MAIL.DOMAIN.EXT^OGCRegion22DeathNotification@mail.domain.ext
+ ;;OGCWINRI@MAIL.DOMAIN.EXT^OGCRegion23DeathNotification@mail.domain.ext
  ;;END
 EN(RCTAG) ;
  ;ENTRY POINT FROM RC TRANSMISSIONS LIST TEMPLATE

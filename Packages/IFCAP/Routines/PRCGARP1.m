@@ -1,6 +1,9 @@
 PRCGARP1 ;WIRMFO/CTB/BGJ-IFCAP PURGEMASTER ROUTINE FOR FILE 442 ;12/10/97  9:07 AM
-V ;;5.1;IFCAP;**46,131**;Oct 20, 2000;Build 13
+V ;;5.1;IFCAP;**46,131,150**;Oct 20, 2000;Build 24
  ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*150 RGB 4/23/12  Control the node 0 counter for file 410
+ ;kill (DIK) since DIK call does not handle descending file logic
 START(X) ;
  NEW BEGDA,ENDA,SITE,DIK,DA,MOP,ZNODE
  S BEGDA=$P(X,"-",1),ENDA=+$P(X,"-",2),SITE=$P(X,";",2)
@@ -73,7 +76,9 @@ K4215(PRCHDA) ;
  QUIT
 KILL410(DA) ;
  Q:'$D(^PRCS(410,DA,0))
+ S PRCIENCT=$P(^PRCS(410,0),"^",3)      ;PRC*5.1*150
  S DIK="^PRCS(410," D ^DIK
+ S $P(^PRCS(410,0),"^",3)=PRCIENCT K PRCIENCT     ;PRC*5.1*150
  K DIK
  QUIT
 KILL443(DA) ;

@@ -1,6 +1,6 @@
-FBSHAUT ;WCIOFO/SAB - ENTER/EDIT STATE HOME AUTHORIZATION ;6/5/2009
- ;;3.5;FEE BASIS;**13,108**;JAN 30, 1995;Build 115
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBSHAUT ;WCIOFO/SAB - ENTER/EDIT STATE HOME AUTHORIZATION ;5/19/2014
+ ;;3.5;FEE BASIS;**13,108,151**;JAN 30, 1995;Build 14
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Enter new authorization
  ; Called from option FBSH ENTER AUTH
@@ -15,18 +15,19 @@ ADD ; Enter new authorization
  . S FBPROG=FBPROG(0)
  . ; get dates
  . D BDATES
- . I FBBEGDT]"" D
+ . ; get POV
+ . D POV
+ . I FBBEGDT]"",FBPOV D
  . . ; add/edit authorization
  . . S DA(1)=DFN,X=FBBEGDT
  . . S DIC="^FBAAA("_DA(1)_",1,",DIC(0)="LQ",DLAYGO=161
- . . S DIC("DR")=".02////^S X=FBENDDT;.03////^S X=FBPROG;.095////4;100////^S X=DUZ;S FBTYPE=FBPROG;.07"
  . . S DIC("P")=$P(^DD(161,1,0),U,2)
  . . K DD,DO D FILE^DICN K DIC,DLAYGO
  . . I Y'>0 W $C(7),!,"AUTH. NOT ADDED" Q
  . . S (DA,FBAAADA)=+Y
- . . ; edit remaining fields
+ . . ; stuff required fields and edit remaining fields
  . . S DIE="^FBAAA("_DA(1)_",1,"
- . . S DR=".04;.021"
+ . . S DR=".02////^S X=FBENDDT;.03////^S X=FBPROG;.07////^S X=FBPOV;.095////^S X=4;100////^S X=DUZ;.04;.021"
  . . D ^DIE K DIE
  . . ; queue MRA
  . . S FBX=$$QMRA(DFN,FBAAADA,"A")
@@ -164,7 +165,7 @@ PAT ; select patient
  ;
 WRAPUP ; clean-up
  K DFN,FB,FBAAADA,FBAAASKV,FBAADDYS,FBANEW,FBAOLD,FBBEGDT
- K FBDMRA,FBENDDT,FBOPT,FBPOP,FBPROG,FBSITE,FTP,FBTYPE,FBX
+ K FBDMRA,FBENDDT,FBOPT,FBPOP,FBPOV,FBPROG,FBSITE,FTP,FBTYPE,FBX
  K DA,DIC,DIE,DIR,DIROUT,DIRUT,DR,DTOUT,DUOUT,X,Y
  D GETAUTHK^FBAAUTL1
  Q
@@ -249,7 +250,7 @@ RCON(DFN,LIST) ; Report Conflicts
  W $C(7)
  W !!,"The specified dates conflict with other authorization(s)."
  W !,"Please specify different dates for this authorization or"
- W !,"remove the conflcit by first editing the other authorization(s)."
+ W !,"remove the conflict by first editing the other authorization(s)."
  W !!,"Conflict with  FROM DATE",?30,"TO DATE",?45,"PURPOSE OF VISIT"
  F FBP=1:1 S FBI=$P(LIST,U,FBP) Q:FBI=""  D
  . S FBFD=$P($G(^FBAAA(DFN,1,FBI,0)),U)
@@ -278,5 +279,14 @@ QMRA(DFN,AUT,TYP) ; Queue MRA for transmission to Austin
  S DIC("DR")="1///^S X=""P"";2///^S X=AUT;3///^S X=TYP"
  K DD,DO D FILE^DICN K DIC,DLAYGO
  Q +Y
+ ;
+POV ; get purpose of visit
+ N DIR,DA,FBTYPE
+ S FBPOV=""
+ S FBTYPE=FBPROG
+ S DIR(0)="161.01,.07"
+ D ^DIR Q:$D(DIRUT)
+ S FBPOV=Y
+ Q
  ;
  ;FBSHAUT

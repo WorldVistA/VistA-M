@@ -1,5 +1,5 @@
 ONCGPC4 ;Hines OIFO/GWB - 2001 Gastric Cancers PCE Study ;03/08/01
- ;;2.11;ONCOLOGY;**29**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Treatment Complications 
  K DR S DIE="^ONCO(165.5,",DA=ONCONUM,DR=""
  W @IOF D HEAD^ONCGPC0

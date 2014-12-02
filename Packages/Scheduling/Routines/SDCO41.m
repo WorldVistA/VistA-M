@@ -1,5 +1,10 @@
 SDCO41 ;ALB/RMO - Diagnosis Cont. - Check Out;19 MAR 1993 9:15 am
- ;;5.3;Scheduling;**15,351**;Aug 13, 1993
+ ;;5.3;Scheduling;**15,351,586**;Aug 13, 1993;Build 28
+ ;
+ ; Reference to $$IMP^ICDEX supported by ICR #5747
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
+ ; Reference to $$SYS^ICDEX supported by ICR #5747
+ ; Reference to $$VLTD^ICDEX supported by ICR #5747
  ;
 DXHLP(SDCL) ;Diagnosis Help for Clinic
  ; Input  -- SDCL     Hospital Location file IEN
@@ -28,7 +33,9 @@ DX(SDICDI,SDDXDT) ;Diagnosis Display Data
  ; Input  -- SDICDI   IDC Diagnosis IEN
  ;        -- SDDXDT   Date to screen against
  ; Output -- Diagnosis Display Data - Code Number^Diagnosis
- N Y,SDXINF
- S SDXINF=$$ICDDX^ICDCODE(SDICDI,$G(SDDXDT,$G(ICDVDT)))
- S Y=$S(+SDXINF>0:$P(SDXINF,"^",2)_"^"_$P(SDXINF,"^",4),1:"^Unknown")
+ N Y,SDXINF,IMPDT,DXTXT
+ S SDDXDT=$G(SDDXDT,$G(ICDVDT)),IMPDT=$$IMP^ICDEX(30)
+ S SDXINF=$$ICDDX^ICDEX(SDICDI,SDDXDT,+$$SYS^ICDEX("DIAG",SDDXDT,"I"),"I") ;SD*5.3*586
+ S DXTXT=$S(SDDXDT<IMPDT:$P(SDXINF,"^",4),1:$$VLTD^ICDEX(SDICDI,SDDXDT))
+ S Y=$S(+SDXINF>0:$P(SDXINF,"^",2)_"^"_DXTXT,1:"^Unknown")
  Q $G(Y)

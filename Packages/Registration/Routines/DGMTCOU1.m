@@ -1,5 +1,5 @@
-DGMTCOU1 ;ALB/REW,LD,JAN,AEG,LBD - COPAY UTILITIES;8/13/04 8:31am
- ;;5.3;Registration;**33,45,54,335,358,401,436,445,564,840**;Aug 13, 1993;Build 20
+DGMTCOU1 ;ALB/REW,LD,JAN,AEG,LBD,BDB - COPAY UTILITIES;8/13/04 8:31am
+ ;;5.3;Registration;**33,45,54,335,358,401,436,445,564,840,858**;Aug 13, 1993;Build 30
 AUTO(DFN,AUTOEX) ;
  ; Returns 1 if Exempt from CP w/o needing MT/CP information
  ;  INPUT: DFN     [Required]
@@ -80,7 +80,7 @@ DISPMAS(DFN) ; Displays Co
  ..W !,"Patient's Copay Status is ",$P(DGCPS,U,3)
  ..W ".  Last Test Date: ",Y,"."
  Q
-LST365(DFN,DGDT,DGMTYPT1) ;RETURNS CURRENT MT/CP  (WITHIN 365 DAYS)
+LST365(DFN,DGDT,DGMTYPT1) ;RETURNS CURRENT MT/CP  (WITHIN 1 YEAR OF VFA START DATE)
  ;  Input:   DGDT - IB DATE
  ;           DGMTYPT1 (Optional (1:MT, 2:CP, Null/Default or 3:Either)
  ;  Output -- MT IEN^Date of Test ^Status Name^Status Code^Type of Test
@@ -90,7 +90,6 @@ LST365(DFN,DGDT,DGMTYPT1) ;RETURNS CURRENT MT/CP  (WITHIN 365 DAYS)
  I '$D(DGMTYPT1) S DGMTYPT1=3
  S DGLST=$$LST(DFN,DGDT,DGMTYPT1)
  S:$P(DGLST,U,4)="N" DGLST=$$LST(DFN,DGDT,2)
- S:$$365($P(DGLST,U,2),DGDT) DGLST="" ;RETURN NULL IF LAST >365
+ ;DG*5.3*858 MT less than 1 year old as of "VFA Start Date" and point forward do not expire
+ S:$$OLDMTPF^DGMTU4($P(DGLST,U,2)) DGLST=""
  Q DGLST
-365(X1,DGDT) ; RETURNS 1 IF X1 IS MORE THAN 1 YEAR BEFORE DGDT
- Q X1+10000'>DGDT

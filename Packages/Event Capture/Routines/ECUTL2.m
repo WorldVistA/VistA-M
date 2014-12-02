@@ -1,5 +1,9 @@
 ECUTL2 ;ALB/JAM - Event Capture Diagnosis Code Selection ;23 Aug 2007
- ;;2.0; EVENT CAPTURE ;**23,33,47,63,72,95**;8 May 96;Build 26
+ ;;2.0;EVENT CAPTURE;**23,33,47,63,72,95,114**;8 May 96;Build 20
+ ;
+ ; Reference to $$SINFO^ICDEX supported by ICR #5747
+ ; Reference to $$ICDDX^ICDEX supported by ICR5747
+ ;
 DIAG ;ask dx question (primary and multiple secondary) 
  ;check for primary dx and display message
  D PDXMSG
@@ -37,32 +41,38 @@ PDXCK(ECDFN,ECDTX,ECLX,EC4X) ;Get primary dx frm file #721 for pat encounter
  ;            ECDXN     = Primary diagnoses code
  ;            ECDXIEN   = Array of encounter IENs w primary dx
  ;
- N PDXF,PCEF,DA,DXIEN,DXS,DXN
+ N PDXF,PCEF,DA,DXIEN,DXS,DXN,ECCS
  S (PDXF,PCEF)=0,DA="" K ECDXIEN
  I $G(ECDFN)=""!($G(ECDTX)="")!($G(ECLX)="")!($G(EC4X)="") Q PDXF_U_PCEF
  I $O(^ECH("APAT",ECDFN,ECDTX,""))="" Q PDXF_U_PCEF
  F  S DA=$O(^ECH("APAT",ECDFN,ECDTX,DA)) Q:DA=""  D
- . I EC4X'=$P($G(^ECH(DA,0)),U,19) Q
- . S ECDX=$P($G(^ECH(DA,"P")),U,2) I ECDX="" Q
- . S ECDXN=$P($$ICDDX^ICDCODE(ECDX,ECDTX),U,2)
- . S ECDXIEN(DA)=ECDXN_U_ECDX,PDXF=1
- . I $D(^ECH(DA,"SEND")),^("SEND")="" S PCEF=1
- . I $D(^ECH(DA,"DX")) D
- . . S DXS=0 F  S DXS=$O(^ECH(DA,"DX",DXS)) Q:'DXS  D
+ .I EC4X'=$P($G(^ECH(DA,0)),U,19) Q
+ .S ECDX=$P($G(^ECH(DA,"P")),U,2) I ECDX="" Q
+ .; Determine Active Coding System Based on Date of Interest
+ .S ECCS=$$SINFO^ICDEX("DIAG",ECDTX) ; Supported by ICR 5747
+ .; Retrieve ICD info - Supported by ICR 5747
+ .S ECDXN=$P($$ICDDX^ICDEX(ECDX,ECDTX,+ECCS,"I"),U,2)
+ .S ECDXIEN(DA)=ECDXN_U_ECDX,PDXF=1
+ .I $D(^ECH(DA,"SEND")),^("SEND")="" S PCEF=1
+ .I $D(^ECH(DA,"DX")) D
+ ..S DXS=0 F  S DXS=$O(^ECH(DA,"DX",DXS)) Q:'DXS  D
  ...S DXIEN=$P($G(^ECH(DA,"DX",DXS,0)),U)
- ...S DXN=$P($$ICDDX^ICDCODE(DXIEN,ECDTX),U,2) S:DXN'="" ECDXS(DXN)=DXIEN
+ ...; Retrieve ICD info - Supported by ICR 5747
+ ...S DXN=$P($$ICDDX^ICDEX(DXIEN,ECDTX,+ECCS,"I"),U,2) S:DXN'="" ECDXS(DXN)=DXIEN
  Q PDXF_U_PCEF
 PDX ;Ask primary diagnoses code
  ;   Variables:   ECDX    = Primary diagnoses ien
  ;                ECDXN   = Primary diagnoses code, default if define
  ;                ECOUT   = Error flag (1/0)
  ;   
- N DIC,X,Y,DTOUT,DUOUT,DEFX,ECODE,PROMPT
- S ECDX=$G(ECDX),ECDXN=$G(ECDXN),PROMPT="Primary ICD-9 Code: "
+ N DIC,X,Y,DTOUT,DUOUT,DEFX,ECODE,PROMPT,ECCS
+ S ECDX=$G(ECDX),ECDXN=$G(ECDXN),PROMPT="Primary ICD Code: "
  S:ECDXN'="" DEFX=ECDXN
  F  D LEX Q:$G(ECOUT)  D  I $D(ECODE) Q
  .I X="" W !,"This is a required response. Enter '^' to exit" Q
- .S ECDXN=ECODE,ECDX=+$$ICDDX^ICDCODE(ECODE,$G(ECDT))
+ .S ECDXN=ECODE
+ .S ECCS=$$SINFO^ICDEX("DIAG",$G(ECDT)) ; Supported by ICR 5747 
+ .S ECDX=$$ICDDX^ICDEX(ECODE,$G(ECDT),+ECCS,"E") ; Supported by ICR 5747
  Q
 SDX ;Ask secondary diagnoses code
  ;   Variables:   ECDX    = Primary diagnoses ien, default if define
@@ -71,13 +81,15 @@ SDX ;Ask secondary diagnoses code
  ;                ECDXS   = Array with secondary diagnosis code
  ;                          subscript=dx code and set equal to dx ien
  ;
- N Y,X,DEFX,DIC,DTOUT,DUOUT,ECODE
- S ECOUT=$G(ECOUT),PROMPT="Secondary ICD-9 Code: "
+ N Y,X,DEFX,DIC,DTOUT,DUOUT,ECODE,ECCS
+ S ECOUT=$G(ECOUT),PROMPT="Secondary ICD Code: "
  F  D LSTDXS,LEX Q:Y<0  D  I ECOUT Q
  .I ECODE="" Q
  .I ECODE=$G(ECDXN) W "  Already exist as primary dx." Q
  .I $D(ECDXS(ECODE)) D DELDUP Q
- .S ECDXS(ECODE)=+$$ICDDX^ICDCODE(ECODE,$G(ECDT))
+ .; Determine Active Coding System Based on Date of Interest
+ .S ECCS=$$SINFO^ICDEX("DIAG",$G(ECDT)) ; Supported by ICR 5747
+ .S ECDXS(ECODE)=+$$ICDDX^ICDEX(ECODE,$G(ECDT),+ECCS,"E") ; Supported by ICR 5747
  Q
 DELDUP ;Delete secondary diagnosis code from list
  N DIR,DIRUT,DTOUT,DUOUT,DIROUT
@@ -87,24 +99,32 @@ DELDUP ;Delete secondary diagnosis code from list
  I $D(DIRUT)!($D(DIROUT)) S ECOUT=1 Q
  I Y K ECDXS(ECODE)
  Q
+ ;
 LEX ;ICD code from LEX database
  ;K X,Y
- S X=$G(DEFX)
+ N IMP,APP,ECX
+ S (ECX,X)=$G(DEFX)
  ;LEX DBIA1577
- D CONFIG^LEXSET("ICD",,$G(ECDT))
+ S IMP=$$IMPDATE^LEXU("10D"),APP=$S(ECDT<IMP:"ICD",1:"10D") ; Supported by ICR 5679
+ D CONFIG^LEXSET(APP,APP,$G(ECDT))
+ D LOOK^LEXA(ECX,APP,1,"",ECDT)   ;LEX DBIA2950
  S DIC="757.01",DIC(0)=$S('$L($G(X)):"A",1:"")_"EQM",DIC("A")=PROMPT
  D ^DIC
  I $D(DTOUT)!$D(DUOUT) S ECOUT=1 Q
  I X="" Q
  I Y<0 S ECOUT=1 Q
  S ECODE=$G(Y(1))
- Q
-LSTDXS ;list icd9-code
- N DXS
+ Q 
+ ;
+LSTDXS ;list ICD code
+ N DXS,ECCS
  I $D(ECDXS) D
- . W !?1,"Secondary ICD-9 code entered:"
+ . W !?1,"Secondary ICD code entered:"
  . S DXS=""
- . F  S DXS=$O(ECDXS(DXS)) Q:DXS=""  W !,?4,DXS,?15,$P($$ICDDX^ICDCODE(DXS,$G(ECDT)),"^",4)
+ . F  S DXS=$O(ECDXS(DXS)) Q:DXS=""  D
+ . . ; Determine Active Coding System Based on Date of Interest
+ . . S ECCS=$$SINFO^ICDEX("DIAG",$G(ECDT)) ; Supported by ICR 5747
+ . . W !,?4,DXS,?15,$P($$ICDDX^ICDEX(DXS,$G(ECDT),+ECCS,"E"),"^",4) ; Supported by ICR 5747
  Q
 PXUPD(ECDFN,ECDT,ECL,EC4,ECDXP,ECDXX,ECXIEN) ; Update all associated
  ; procedures for an EC Patient encounter with the same primary and 

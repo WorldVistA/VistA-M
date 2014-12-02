@@ -1,5 +1,5 @@
 IBCSC4B ;ALB/MJB - MCCR PTF SCREEN (CONT.) ;24 FEB 89  9:52
- ;;2.0;INTEGRATED BILLING;**210,228,304**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**210,228,304,479**;21-MAR-94;Build 29
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;MAP TO DGCRSC4B
@@ -62,8 +62,9 @@ TYPE ; cleans up the ^utility based on the type of coding
  K ^UTILITY($J,"IB")
  S (IBA,IBB)=0 F  S IBA=$O(^TMP("IBTYPE",$J,IBA)) Q:IBA<1  D
  . I $P($G(^TMP("IBTYPE",$J,IBA,1)),"^",4)["+",IBPROT=5 D  Q
- .. S IBB=IBB+1,(IBC,IBD)=0 F  S IBC=$O(^TMP("IBTYPE",$J,IBA,IBC)) Q:IBC<1  S IBE=^TMP("IBTYPE",$J,IBA,IBC),IBD=IBD+1,^UTILITY($J,"IB",IBB,IBD)=$P(IBE,"^",1,2)_"^"_$C(64+IBB)_"^"_$P(IBE,"^",4,14)
+ .. ; ibb=31 to skip '^'
+ .. S IBB=IBB+1,(IBC,IBD)=0 S:IBB=30 IBB=31 F  S IBC=$O(^TMP("IBTYPE",$J,IBA,IBC)) Q:IBC<1  S IBE=^TMP("IBTYPE",$J,IBA,IBC),IBD=IBD+1,^UTILITY($J,"IB",IBB,IBD)=$P(IBE,"^",1,2)_"^"_$C(64+IBB)_"^"_$P(IBE,"^",4,14)
  . I $P($G(^TMP("IBTYPE",$J,IBA,1)),"^",4)["+" Q
- . I IBPROT'=5 S IBB=IBB+1,(IBC,IBD)=0 F  S IBC=$O(^TMP("IBTYPE",$J,IBA,IBC)) Q:IBC<1  D
+ . I IBPROT'=5 S IBB=IBB+1,(IBC,IBD)=0 S:IBB=30 IBB=31 F  S IBC=$O(^TMP("IBTYPE",$J,IBA,IBC)) Q:IBC<1  D
  .. S IBE=^TMP("IBTYPE",$J,IBA,IBC),IBD=IBD+1,^UTILITY($J,"IB",IBB,IBD)=$P(IBE,"^",1)_$S(IBD=1:"^"_$P(IBE,"^",2)_"^"_$C(64+IBB)_$S($L($P(IBE,"^",4)):"^"_$P(IBE,"^",4),1:""),1:"")
  Q

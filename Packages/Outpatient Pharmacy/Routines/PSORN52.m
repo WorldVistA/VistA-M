@@ -1,5 +1,5 @@
 PSORN52 ;BIR/DSD - files renewal entries in prescription file ;08/09/93
- ;;7.0;OUTPATIENT PHARMACY;**1,11,27,37,46,79,71,100,117,157,143,219,148,239,201,225,303,358,251,387,379**;DEC 1997;Build 28
+ ;;7.0;OUTPATIENT PHARMACY;**1,11,27,37,46,79,71,100,117,157,143,219,148,239,201,225,303,358,251,387,379,362**;DEC 1997;Build 8
  ;Ext ref to PSOUL^PSSLOCK sup by DBIA 2789
  ;Ext ref to SWSTAT^IBBAPI sup by DBIA 4663
  ;External reference to $$DS^PSSDSAPI supported by DBIA 5425
@@ -19,7 +19,7 @@ START ;
  I $G(PSOFDR),$G(ORD) I $D(^PS(52.41,ORD,"ICD")) S FILE=52.41 D GET^PSORN52D
  ;Set ans to renew from Rx, only if no ans from Pend file
  I $G(PSORENW("OIRXN")) D
- .N PSOLDIBQ S PSOLDIBQ=$G(^PSRX(PSORENW("OIRXN"),"IBQ"))
+ .N PSOLDIBQ S PSOLDIBQ=""  ;*362 ;do not copy over IBQ node for a renewal
  .I $P(PSOIBHLD,"^")="" D
  ..I $P($G(^PSRX(PSORENW("OIRXN"),"IB")),"^")=2 S $P(PSOIBHLD,"^")=0
  .I '$$DT^PSOMLLDT Q

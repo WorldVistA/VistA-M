@@ -1,5 +1,5 @@
-RORX019 ;BPOIFO/ACS - LIVER SCORE BY RANGE ; 5/18/11 12:39pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15**;Feb 17, 2006;Build 27
+RORX019 ;BPOIFO/ACS - LIVER SCORE BY RANGE ;5/18/11 12:39pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19**;Feb 17, 2006;Build 43
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -7,12 +7,13 @@ RORX019 ;BPOIFO/ACS - LIVER SCORE BY RANGE ; 5/18/11 12:39pm
  ;        
  ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
  ;-----------  ----------  -----------  ----------------------------------------
- ;ROR*1.5*10   MAR  2010   A SAUNDERS   Routine created
- ;ROR*1.5*13   DEC  2010   A SAUNDERS   User can select specific patients,
+ ;ROR*1.5*10   MAR 2010    A SAUNDERS   Routine created
+ ;ROR*1.5*13   DEC 2010    A SAUNDERS   User can select specific patients,
  ;                                      clinics, or divisions for the report.
  ;                                      Modified XML tags for sort.
- ;ROR*1.5*14   APR  2011   A SAUNDERS   Added APRI and FIB4 scores.
- ;ROR*1.5*15   MAY  2011   C RAY        Modified to exclude null tests
+ ;ROR*1.5*14   APR 2011    A SAUNDERS   Added APRI and FIB4 scores.
+ ;ROR*1.5*15   MAY 2011    C RAY        Modified to exclude null tests
+ ;ROR*1.5*19   FEB 2012    J SCOTT      Support for ICD-10 Coding System
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -33,7 +34,7 @@ RORX019 ;BPOIFO/ACS - LIVER SCORE BY RANGE ; 5/18/11 12:39pm
  ;  RORTSK("EP")="$$MLDRANGE^RORX019"
  ;  RORTSK("PARAMS","DATE_RANGE_3","A","END")=3031231
  ;  RORTSK("PARAMS","DATE_RANGE_3","A","START")=3030101
- ;  RORTSK("PARAMS","ICD9FILT","A","FILTER")="ALL"
+ ;  RORTSK("PARAMS","ICDFILT","A","FILTER")="ALL"
  ;  RORTSK("PARAMS","LRGRANGES","C",1)=""
  ;  RORTSK("PARAMS","LRGRANGES","C",1,"H")=30
  ;  RORTSK("PARAMS","LRGRANGES","C",1,"L")=10
@@ -165,7 +166,7 @@ MLDRANGE(RORTSK) ;
  ;--- Get registry records
  N RCC,FLAG,TMP,DFN,SKIP
  S (CNT,RORPTIEN,RC)=0
- S FLAG=$G(RORTSK("PARAMS","ICD9FILT","A","FILTER"))
+ S FLAG=$G(RORTSK("PARAMS","ICDFILT","A","FILTER"))
  F  S RORPTIEN=$O(^RORDATA(798,"AC",RORREG,RORPTIEN))  Q:RORPTIEN'>0  D  Q:RC<0
  . ;--- Calculate 'progress' for the GUI display
  . S TMP=$S(RORPTCNT>0:CNT/RORPTCNT,1:"")
@@ -177,10 +178,10 @@ MLDRANGE(RORTSK) ;
  . I $D(RORTSK("PARAMS","PATIENTS","C")),'$D(RORTSK("PARAMS","PATIENTS","C",DFN)) Q
  . ;--- Check if the patient should be skipped
  . Q:$$SKIP^RORXU005(RORPTIEN,SFLAGS,SKIPSDT,SKIPEDT)
- . ;--- Check if patient has passed the ICD9 filter
+ . ;--- Check if patient has passed the ICD filter
  . S RCC=0
  . I FLAG'="ALL" D
- . . S RCC=$$ICD^RORXU010(DFN,RORREG)
+ . . S RCC=$$ICD^RORXU010(DFN)
  . I (FLAG="INCLUDE")&(RCC=0) Q
  . I (FLAG="EXCLUDE")&(RCC=1) Q
  . ;

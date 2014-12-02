@@ -1,58 +1,136 @@
-IBDEI0IL ; ; 20-FEB-2013
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 20, 2013
- Q:'DIFQ(358.7)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0IL ; ; 12-AUG-2014
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.7,0,"GL")
- ;;=^IBE(358.7,
- ;;^DIC("B","IMP/EXP FORM LINE",358.7)
- ;;=
- ;;^DIC(358.7,"%D",0)
- ;;=^^3^3^2940217^
- ;;^DIC(358.7,"%D",1,0)
- ;;=This file is nearly identical to file #357.7. It is used by the
- ;;^DIC(358.7,"%D",2,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.7,"%D",3,0)
- ;;=that is being imported or exported.
- ;;^DD(358.7,0)
- ;;=FIELD^^.08^8
- ;;^DD(358.7,0,"DDA")
- ;;=N
- ;;^DD(358.7,0,"DT")
- ;;=2950717
- ;;^DD(358.7,0,"ID",.02)
- ;;=W " STARTING COL=",$P(^(0),U,2)+1
- ;;^DD(358.7,0,"ID",.03)
- ;;=W " STARTING ROW=",$P(^(0),U,3)+1
- ;;^DD(358.7,0,"ID",.06)
- ;;=W ""
- ;;^DD(358.7,0,"IX","B",358.7,.01)
- ;;=
- ;;^DD(358.7,0,"IX","C",358.7,.06)
- ;;=
- ;;^DD(358.7,0,"NM","IMP/EXP FORM LINE")
- ;;=
- ;;^DD(358.7,0,"VRPK")
- ;;=IBD
- ;;^DD(358.7,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.7,.01,1,0)
- ;;=^.1
- ;;^DD(358.7,.01,1,1,0)
- ;;=358.7^B
- ;;^DD(358.7,.01,1,1,1)
- ;;=S ^IBE(358.7,"B",$E(X,1,30),DA)=""
- ;;^DD(358.7,.01,1,1,2)
- ;;=K ^IBE(358.7,"B",$E(X,1,30),DA)
- ;;^DD(358.7,.01,3)
- ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
- ;;^DD(358.7,.01,21,0)
- ;;=^^4^4^2930527^
- ;;^DD(358.7,.01,21,1,0)
- ;;= 
- ;;^DD(358.7,.01,21,2,0)
- ;;=The name given to the line. Lines should be given names that will allow
- ;;^DD(358.7,.01,21,3,0)
- ;;=them to be identifies, such as V(1,1), meaning a vertical line starting at
- ;;^DD(358.7,.01,21,4,0)
- ;;=coordinates (1,1).
+ ;;^UTILITY(U,$J,358.3,9056,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9056,1,4,0)
+ ;;=4^CA of Stomach Fundus
+ ;;^UTILITY(U,$J,358.3,9056,1,5,0)
+ ;;=5^151.3
+ ;;^UTILITY(U,$J,358.3,9056,2)
+ ;;=CA of Fundus of Stomach^267066
+ ;;^UTILITY(U,$J,358.3,9057,0)
+ ;;=151.6^^61^636^33
+ ;;^UTILITY(U,$J,358.3,9057,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9057,1,4,0)
+ ;;=4^CA of Stomach Great Curve
+ ;;^UTILITY(U,$J,358.3,9057,1,5,0)
+ ;;=5^151.6
+ ;;^UTILITY(U,$J,358.3,9057,2)
+ ;;=^267069
+ ;;^UTILITY(U,$J,358.3,9058,0)
+ ;;=151.5^^61^636^34
+ ;;^UTILITY(U,$J,358.3,9058,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9058,1,4,0)
+ ;;=4^CA of Stomach Less Curv
+ ;;^UTILITY(U,$J,358.3,9058,1,5,0)
+ ;;=5^151.5
+ ;;^UTILITY(U,$J,358.3,9058,2)
+ ;;=CA of Lesser Curve of Stomach^267068
+ ;;^UTILITY(U,$J,358.3,9059,0)
+ ;;=151.1^^61^636^26
+ ;;^UTILITY(U,$J,358.3,9059,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9059,1,4,0)
+ ;;=4^CA of Pylorus
+ ;;^UTILITY(U,$J,358.3,9059,1,5,0)
+ ;;=5^151.1
+ ;;^UTILITY(U,$J,358.3,9059,2)
+ ;;=Cancer of Pylorus^267064
+ ;;^UTILITY(U,$J,358.3,9060,0)
+ ;;=151.8^^61^636^35
+ ;;^UTILITY(U,$J,358.3,9060,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9060,1,4,0)
+ ;;=4^CA of Stomach,Other
+ ;;^UTILITY(U,$J,358.3,9060,1,5,0)
+ ;;=5^151.8
+ ;;^UTILITY(U,$J,358.3,9060,2)
+ ;;=CA, Stomach, Other^267070
+ ;;^UTILITY(U,$J,358.3,9061,0)
+ ;;=150.9^^61^636^14
+ ;;^UTILITY(U,$J,358.3,9061,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9061,1,4,0)
+ ;;=4^CA of Esophagus
+ ;;^UTILITY(U,$J,358.3,9061,1,5,0)
+ ;;=5^150.9
+ ;;^UTILITY(U,$J,358.3,9061,2)
+ ;;=CA of Esophagus^267055
+ ;;^UTILITY(U,$J,358.3,9062,0)
+ ;;=150.2^^61^636^3
+ ;;^UTILITY(U,$J,358.3,9062,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9062,1,4,0)
+ ;;=4^CA of Abdominal Esophagus
+ ;;^UTILITY(U,$J,358.3,9062,1,5,0)
+ ;;=5^150.2
+ ;;^UTILITY(U,$J,358.3,9062,2)
+ ;;=CA of Abdominal Esophagus^267058
+ ;;^UTILITY(U,$J,358.3,9063,0)
+ ;;=150.0^^61^636^7
+ ;;^UTILITY(U,$J,358.3,9063,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9063,1,4,0)
+ ;;=4^CA of Cervical Esophagus
+ ;;^UTILITY(U,$J,358.3,9063,1,5,0)
+ ;;=5^150.0
+ ;;^UTILITY(U,$J,358.3,9063,2)
+ ;;=CA of Cervical Esophagus^267056
+ ;;^UTILITY(U,$J,358.3,9064,0)
+ ;;=150.5^^61^636^15
+ ;;^UTILITY(U,$J,358.3,9064,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9064,1,4,0)
+ ;;=4^CA of Esophagus,Lower
+ ;;^UTILITY(U,$J,358.3,9064,1,5,0)
+ ;;=5^150.5
+ ;;^UTILITY(U,$J,358.3,9064,2)
+ ;;=CA of Lower Esophagus^267061
+ ;;^UTILITY(U,$J,358.3,9065,0)
+ ;;=150.4^^61^636^16
+ ;;^UTILITY(U,$J,358.3,9065,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9065,1,4,0)
+ ;;=4^CA of Esophagus,Middle
+ ;;^UTILITY(U,$J,358.3,9065,1,5,0)
+ ;;=5^150.4
+ ;;^UTILITY(U,$J,358.3,9065,2)
+ ;;=CA of Middle Esoph^267060
+ ;;^UTILITY(U,$J,358.3,9066,0)
+ ;;=150.3^^61^636^17
+ ;;^UTILITY(U,$J,358.3,9066,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9066,1,4,0)
+ ;;=4^CA of Esophagus,Upper
+ ;;^UTILITY(U,$J,358.3,9066,1,5,0)
+ ;;=5^150.3
+ ;;^UTILITY(U,$J,358.3,9066,2)
+ ;;=CA, Upper Esophagus^267059
+ ;;^UTILITY(U,$J,358.3,9067,0)
+ ;;=150.1^^61^636^36
+ ;;^UTILITY(U,$J,358.3,9067,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9067,1,4,0)
+ ;;=4^CA of Thoracic Esophagus
+ ;;^UTILITY(U,$J,358.3,9067,1,5,0)
+ ;;=5^150.1
+ ;;^UTILITY(U,$J,358.3,9067,2)
+ ;;=CA of Thoracic Esophagus^267057
+ ;;^UTILITY(U,$J,358.3,9068,0)
+ ;;=157.9^^61^636^20
+ ;;^UTILITY(U,$J,358.3,9068,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,9068,1,4,0)
+ ;;=4^CA of Pancreas
+ ;;^UTILITY(U,$J,358.3,9068,1,5,0)
+ ;;=5^157.9
+ ;;^UTILITY(U,$J,358.3,9068,2)
+ ;;=CA of Pancreas^267103
+ ;;^UTILITY(U,$J,358.3,9069,0)
+ ;;=157.1^^61^636^22
+ ;;^UTILITY(U,$J,358.3,9069,1,0)
+ ;;=^358.31IA^5^2

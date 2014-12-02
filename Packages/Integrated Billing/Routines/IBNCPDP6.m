@@ -1,6 +1,6 @@
 IBNCPDP6 ;OAK/ELZ - TRICARE NCPDP TOOLS; 02-AUG-96
- ;;2.0;INTEGRATED BILLING;**383,384,411,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**383,384,411,452,526**;21-MAR-94;Build 17
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
 START(IBKEY,IBELIG,IBRT) ; initial storage done during
  ; billing determination check (updates allowed)
@@ -75,6 +75,8 @@ BILL(IBKEY,IBCHG,IBRT) ; Create the TRICARE Rx copay charge.
  ; - add the charge to file #350
  D ADD^IBECEAU3 I IBY<0 G BILLQ
  ;
+ ; *526 set approving official #4129
+ I '$D(^VA(200,DUZ,0)) D DUZ^XUP(.5)
  ; - release the charge to AR
  D AR^IBR
  ;

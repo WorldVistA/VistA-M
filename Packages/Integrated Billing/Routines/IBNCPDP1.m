@@ -1,5 +1,5 @@
 IBNCPDP1 ;OAK/ELZ - IB BILLING DETERMINATION PROCESSING FOR NEW RX REQUESTS ;5/22/08
- ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435,455,452,473**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435,455,452,473,494**;21-MAR-94;Build 11
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference to CL^SDCO21 supported by IA# 406
@@ -81,8 +81,6 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  ;
  ; -- claims tracking info
  I IBTRKRN,$$PAPERBIL^IBNCPNB(IBTRKRN) S IBRES="0^Existing IB Bill in CT",IBD("NO ECME INSURANCE")=1 G RXQ
- ; already billed as TRICARE
- I $D(^IBA(351.5,"B",IBRXN_";"_IBFIL)) S IBRES="0^Already billed under prior TRICARE process",IBD("NO ECME INSURANCE")=1 G RXQ
  ;
  ; -- no pharmacy coverage, update ct if applicable, quit
  I '$$PTCOV^IBCNSU3(DFN,IBADT,"PHARMACY",.IBANY) S IBRMARK=$S($G(IBANY):"SERVICE NOT COVERED",1:"NOT INSURED") D:$P(IBTRKR,U,4)=2 CT S IBRES="0^"_IBRMARK,IBD("NO ECME INSURANCE")=1 G RXQ
@@ -184,9 +182,6 @@ RATEPRIC ;
  ;
  ; store the pricing data string on each node 2 that may exist
  S IBX=0 F  S IBX=$O(IBD("INS",IBX)) Q:'IBX  S IBD("INS",IBX,2)=IBPRDATA
- ;
- ;Check for non-covered drugs
- S IBRES=$$CHCK^IBNCDNC(.IBD) I IBRES]"" S IBRMARK=$P(IBRES,U,2) D CT G RXQ
  ;
  S IBRES=$S($D(IBRMARK):"0^"_IBRMARK,1:1)
  I IBRES,'$G(IBD("RELEASE DATE")) S IBRMARK="PRESCRIPTION NOT RELEASED"

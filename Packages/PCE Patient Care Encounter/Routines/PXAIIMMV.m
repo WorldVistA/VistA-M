@@ -1,8 +1,8 @@
-PXAIIMMV ;ISL/PKR - VALIDATE IMMUNIZATION DATA ;7/24/96  13:57
- ;;1.0;PCE PATIENT CARE ENCOUNTER;;Aug 12, 1996
+PXAIIMMV ;ISL/PKR - VALIDATE IMMUNIZATION DATA ;24 May 2013  7:50 AM
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**199**;Aug 12, 1996;Build 51
  ;
 VAL ;Make sure the required field is present.
- I '$D(PXAA("IMMUN")) D
+ I '$D(PXAA("IMMUN")) D  Q:$G(STOP)=1
  . S STOP=1
  . S PXAERRF=1
  . S PXADI("DIALOG")=8390001.001
@@ -10,4 +10,29 @@ VAL ;Make sure the required field is present.
  . S PXAERR(10)="AFTER"
  . S PXAERR(11)=$G(PXAA("IMMUNIZATION"))
  . S PXAERR(12)="You are missing the name of the immunization"
+ Q:$G(PXAA("DELETE"))=1  ; don't bother checking diagnoses if this is a deletion
+ ; confirm valid diagnosis pointers
+ N DIAGNUM,DIAGSTR,ICDDATA,PXDXDATE
+ S PXDXDATE=$$CSDATE^PXDXUTL(PXAVISIT)
+ F DIAGNUM=1:1:8 D  Q:$G(STOP)=1
+ . S DIAGSTR="DIAGNOSIS"_$S(DIAGNUM>1:" "_DIAGNUM,1:"")
+ . I $G(PXAA(DIAGSTR))]"" D
+ .. S ICDDATA=$$ICDDATA^ICDXCODE("DIAG",$G(PXAA(DIAGSTR)),PXDXDATE,"I")
+ .. I $P(ICDDATA,"^",1)'>0 D  Q:$G(STOP)=1
+ ... S STOP=1
+ ... S PXAERRF=1
+ ... S PXADI("DIALOG")=8390001.001
+ ... S PXAERR(9)="IMMUNIZATION"
+ ... S PXAERR(10)="AFTER"
+ ... S PXAERR(11)=$G(PXAA(DIAGSTR))
+ ... S PXAERR(12)="IMMUNIZATION DIAGNOSIS #"_DIAGNUM_" ("_PXAERR(11)_") is NOT a valid pointer value to the ICD DIAGNOSIS FILE #80"
+ .. I $P(ICDDATA,"^",10)'=1 D  Q:$G(STOP)=1
+ ... S STOP=1
+ ... S PXAERRF=1
+ ... S PXADI("DIALOG")=8390001.001
+ ... S PXAERR(9)="IMMUNIZATION"
+ ... S PXAERR(10)="AFTER"
+ ... S PXAERR(11)=$G(PXAA(DIAGSTR))
+ ... S PXAERR(12)="IMMUNIZATION DIAGNOSIS #"_DIAGNUM_" ("_PXAERR(11)_") is NOT an Active ICD code"
+ ;
  Q

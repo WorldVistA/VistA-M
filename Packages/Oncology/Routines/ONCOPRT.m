@@ -1,6 +1,7 @@
 ONCOPRT ;Hines OIFO/GWB - OncoTrax reports ;05/03/12
- ;;2.11;ONCOLOGY;**24,25,26,27,36,50,51,52,53,56**;Mar 07, 1995;Build 10
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;This routine invokes Integration Agreement #3151
+ ;add to suspense if Disease Index for Casefinding is not already in suspense
 SUS ;[SP Print Suspense List by Suspense Date (132c)]
  S BY="@75,INTERNAL(#3),@75,.01,75,2;C2"
  S (FR,TO)=DUZ(2)_",?"
@@ -47,7 +48,7 @@ DISUS ;Add DISEASE INDEX case to suspense
  S ICD=$P(^AUPNVPOV(D0,0),U,1)
  S DPTIEN=$P(^AUPNVPOV(D0,0),U,2)
  I '$D(POV(DPTIEN)) S COUNT=COUNT+1,POV(DPTIEN)=""
- Q:SORT="[ONC DISEASE INDEX]"
+ ;Q:SORT="[ONC DISEASE INDEX]"  ;comment this for v2.2
  S ONCPAT=DPTIEN_";DPT("
  S ONCIEN=$O(^ONCO(160,"B",ONCPAT,0))
  I ONCIEN'>0 D

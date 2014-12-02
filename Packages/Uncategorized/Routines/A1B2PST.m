@@ -36,7 +36,7 @@ POS ; -- add ODS period of service
  ;
 PAR ; -- set up parameter file entry
  Q:$D(^A1B2(11500.5,1,0))
- S Y=$O(^DIC(4.2,"B","ISC-ALBANY.domain.ext",0))
+ S Y=$O(^DIC(4.2,"B","ISC-ALBANY.DOMAIN.EXT",0))
  S DIC(0)="L",X=1,DIC="^A1B2(11500.5,",DIC("DR")=".02////0;.06////"_Y
  D ^DIC K DIC
  I $P(Y,U,3) W !!,">>> ODS PARAMETER file entry added."

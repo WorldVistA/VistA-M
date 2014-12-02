@@ -1,9 +1,9 @@
-ECXASUR ;ALB/JAP - SUR Extract Audit Report ; 4/26/02 11:16am
- ;;3.0;DSS EXTRACTS;**8,33,44,123**;Dec 22, 1997;Build 8
+ECXASUR ;ALB/JAP - SUR Extract Audit Report ;5/9/14  14:59
+ ;;3.0;DSS EXTRACTS;**8,33,44,123,149**;Dec 22, 1997;Build 27
  ;
 EN ;entry point for SUR extract audit report
  ;select extract
- N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,SITES,ECX
+ N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,SITES,ECX,ECXPORT,RCNT ;149
  ;ecxaud=0 for 'extract' audit
  S ECXERR=0
  S ECXHEAD="SUR",ECXAUD=0
@@ -29,6 +29,12 @@ EN ;entry point for SUR extract audit report
  D SUR^ECXDVSN2(.ECXDIV,ECXALL,.ECXERR)
  I ECXERR=1 D  Q
  .W !!,?5,"Try again later... exiting.",!
+ .D AUDIT^ECXKILL
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I $G(ECXPORT) D  Q  ;149 Section added
+ .K ^TMP($J,"ECXPORT")
+ .S ^TMP($J,"ECXPORT",0)="EXTRACT LOG #^SURGERY DIVISION^TYPE OF PROCEDURES^CPT CODE^PROCEDURE^# OF PROCEDURES",RCNT=1
+ .D PROCESS
+ .D EXPDISP^ECXUTL1
  .D AUDIT^ECXKILL
  ;determine output device and queue if requested
  S ECXPGM="PROCESS^ECXASUR",ECXDESC="SUR Extract Audit Report"
@@ -86,6 +92,7 @@ PROCESS ;process data in file #727.811
  K ^TMP($J,"ECXS")
  ;print the report
  D PRINT
+ I $G(ECXPORT) Q  ;149
  D AUDIT^ECXKILL
  Q
  ;
@@ -97,20 +104,29 @@ PRINT ;print the SUR audit report by location and division
  F  S DIV=$O(ECXDIV(DIV)) Q:DIV=""  F LOC=1:1:3 D  Q:QFLG
  .S DIVNM=$P(ECXDIV(DIV),U,2)_" ("_DIV_")",GTOT(LOC)=0
  .S LOCNM=$S(LOC=1:"O.R. Surgical Procedures",LOC=2:"Non-O.R. Surgical Procedures",1:"Cancelled/Aborted Procedures")
- .D HEADER
+ .I '$G(ECXPORT) D HEADER ;149
  .I '$D(^TMP($J,"ECXAUD",DIV,LOC)) D
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=ECXARRAY("EXTRACT")_U_DIVNM_U_"No data available for "_LOCNM,RCNT=RCNT+1 Q  ;149
  ..W !!,?3,"No data available for "_LOCNM_".",!!
  .I $D(^TMP($J,"ECXAUD",DIV,LOC)) S CPT="" F  S CPT=$O(^TMP($J,"ECXAUD",DIV,LOC,CPT)) Q:CPT=""  S TOT(LOC)=$P(^(CPT),U,1),PROCN=$P(^(CPT),U,2),CPTN=$E(CPT,2,99) D  Q:QFLG
  ..S GTOT(LOC)=GTOT(LOC)+TOT(LOC)
  ..;write procedure and total
- ..D:($Y+3>IOSL) HEADER Q:QFLG  W !,?3,CPTN,?14,$E(PROCN,1,40),?63,$$RJ^XLFSTR(TOT(LOC),5," ")
+ ..I '$G(ECXPORT) D:($Y+3>IOSL) HEADER Q:QFLG  W !,?3,CPTN,?14,$E(PROCN,1,40),?63,$$RJ^XLFSTR(TOT(LOC),5," ") ;149
+ ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)=ECXARRAY("EXTRACT")_U_DIVNM_U_LOCNM_U_CPTN_U_PROCN_U_TOT(LOC),RCNT=RCNT+1 ;149
  .;write the division totals
+ .I $G(ECXPORT) D  Q  ;149 Section added
+ ..S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1
+ ..S ^TMP($J,"ECXPORT",RCNT)="^For Division "_DIVNM_"^^^"_"Total "_LOCNM_U_GTOT(LOC),RCNT=RCNT+1
+ ..S LOCNMC=$P(LOCNM,"Pro",1) S:'$D(CASES(DIV,LOC)) CASES(DIV,LOC)=0
+ ..S ^TMP($J,"ECXPORT",RCNT)="^For Division "_DIVNM_"^^^"_"Total "_LOCNMC_"Cases"_U_CASES(DIV,LOC),RCNT=RCNT+1
+ ..S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1
  .D:($Y+3>IOSL) HEADER Q:QFLG  W !,?3,$E(LN,1,65)
  .D:($Y+3>IOSL) HEADER Q:QFLG  W !!,"For Division "_DIVNM_"--"
  .D:($Y+3>IOSL) HEADER Q:QFLG  W !,?3,"Total "_LOCNM_":",?63,$$RJ^XLFSTR(GTOT(LOC),5," ")
  .S LOCNMC=$P(LOCNM,"Pro",1) S:'$D(CASES(DIV,LOC)) CASES(DIV,LOC)=0
  .D:($Y+3>IOSL) HEADER Q:QFLG  W !,?3,"Total "_LOCNMC_"Cases:",?63,$$RJ^XLFSTR(CASES(DIV,LOC),5," ")
  ;print the audit descriptive narrative
+ I $G(ECXPORT) Q  ;149
  I $E(IOST)'="C" D
  .W @IOF S PG=PG+1
  .W !,ECXARRAY("TYPE")_" ("_ECXHEAD_") Extract Audit Report"
@@ -125,6 +141,7 @@ PRINT ;print the SUR audit report by location and division
  Q
  ;
 HEADER ;header and page control
+ Q:QFLG  ;149 Don't print header if user entered "^"
  N JJ,SS
  I $E(IOST)="C" D
  .S SS=22-$Y F JJ=1:1:SS W !

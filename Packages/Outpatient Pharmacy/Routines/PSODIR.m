@@ -1,5 +1,5 @@
 PSODIR ;BHAM ISC/SAB - asks data for rx order entry ; 9/17/07 5:03pm
- ;;7.0;OUTPATIENT PHARMACY;**37,46,111,117,146,164,211,264,275**;DEC 1997;Build 8
+ ;;7.0;OUTPATIENT PHARMACY;**37,46,111,117,146,164,211,264,275,391,372,416**;DEC 1997;Build 32
  ;External reference PSDRUG( supported by DBIA 221
  ;External reference PS(50.7 supported by DBIA 2223
  ;External reference to VA(200 is supported by DBIA 10060
@@ -8,6 +8,8 @@ PSODIR ;BHAM ISC/SAB - asks data for rx order entry ; 9/17/07 5:03pm
 PROV(PSODIR) ;
 PROVEN ; Entry point for failed lookup
  K DIC,X,Y S:$G(PSOFDR)&($G(OR0)) DIC("B")=$P(^VA(200,$P($G(OR0),"^",5),0),"^")
+ I '$D(PSODIR("CS")),$D(PSODRUG("DEA")) D
+ .N DEA S PSODIR("CS")=0 F DEA=1:1 Q:$E(PSODRUG("DEA"),DEA)=""  I $E(+PSODRUG("DEA"),DEA)>1,$E(+PSODRUG("DEA"),DEA)<6 S PSODIR("CS")=1
  I $G(PSODIR("PROVIDER"))]"" S PSODIR("OLD VAL")=PSODIR("PROVIDER")
  S DIC="^VA(200,",DIC(0)="QEAM",PSODIR("FIELD")=0
  S DIC("W")="W ""     "",$P(^(""PS""),""^"",9)"
@@ -20,13 +22,14 @@ PROVEN ; Entry point for failed lookup
  I '$G(SPEED),Y=-1 G PROVEN
  Q:$G(SPEED)&(Y=-1)
  ;PSO*7*211; ADD CHECK FOR DEA# AND VA#
- I $P($G(PSODIR("CS")),"^",1)!($D(CLOZPAT)) I '$L($P($G(^VA(200,+Y,"PS")),U,2)),'$L($P($G(^VA(200,+Y,"PS")),U,3)) D  G PROVEN
- .W $C(7),!!,"Provider must have a DEA# or VA#"_$S($D(CLOZPAT):" to write prescriptions for clozapine.",1:""),!
+ I $P($G(PSODIR("CS")),"^",1)!($D(CLOZPAT)) N NDEA,SDEA S SDEA=$$DRGSCH() S NDEA=$$SDEA^XUSER(0,+Y,SDEA) I $L($P(NDEA,"^"))<3 D  G PROVEN
+ .I NDEA=2 W $C(7),!!,"Provider not authorized to write Federal Schedule "_SDEA_" prescriptions.",! Q
+ .W $C(7),!!,"Provider must have a DEA# or VA# to write prescriptions for this drug.",!
+ ;PSO*7.0*391; Added check for DETOX#
+ I $$DETOX^PSSOPKI($G(PSODRUG("IEN"))),$$DETOX^XUSER(+Y)="" W $C(7),!!,"Provider must have a DETOX# to order this drug.",! G PROVEN
  I $D(CLOZPAT),'$D(^XUSEC("YSCL AUTHORIZED",+Y)) D  G PROVEN
  .W $C(7),!!,"Provider must hold YSCL AUTHORIZED key to write prescriptions for clozapine.",!
  I '$G(PSODRUG("IEN")),'$G(PSORENW("DRUG IEN")) G NODRUG
- ;I '$G(SPEED),$P($G(^PSDRUG($S($G(PSODRUG("IEN")):PSODRUG("IEN"),1:PSORENW("DRUG IEN")),"CLOZ1")),"^")="PSOCLO1",$P(^VA(200,+Y,"PS"),"^",2)'?2U7N D  K Y,PSORX("PROVIDER NAME"),DIC("B") G PROVEN
- ;.W $C(7),!!,"Only providers with DEA numbers can write prescriptions for clozapine.",!
 NODRUG S PSODIR("PROVIDER")=+Y
  S (PSODIR("PROVIDER NAME"),PSORX("PROVIDER NAME"))=$P(Y,"^",2)
  I $G(PSODIR("OLD VAL"))'=+Y K PSODIR("GENERIC PROVIDER"),PSODIR("COSIGNING PROVIDER")
@@ -35,6 +38,13 @@ NODRUG S PSODIR("PROVIDER")=+Y
  I $G(PSODIR("COSIGNING PROVIDER")),'$P(^VA(200,PSODIR("PROVIDER"),"PS"),"^",7) K PSODIR("COSIGNING PROVIDER")
 PROVX K X,Y
  Q
+ ;
+DRGSCH() ; determine the drug schedule
+ N ND3,SCH
+ S SCH="",ND3=$P($G(^PSDRUG(PSODRUG("IEN"),"ND")),"^",3) S:+ND3 SCH=$$GET1^DIQ(50.68,ND3,19,"I")
+ I +SCH>0!($G(PSODRUG("DEA"))="") Q SCH
+ I "^4^5^"[+PSODRUG("DEA") Q +PSODRUG("DEA")
+ Q $S($G(PSODRUG("DEA"))["A":+PSODRUG("DEA"),1:+PSODRUG("DEA")_"n")
  ;
 GENERIC ;
  K DIR,DIC,PSODIR("GENERIC PROVIDER")
@@ -59,6 +69,7 @@ COSIGN1 S DIC(0)="QEAM",DIC="^VA(200,",DIC("B")=$S($G(PSODIR("COSIGNING PROVIDER
 COSIGNX K X,Y
  Q
 DOSE(PSODIR) ;add dosing info
+ N PSODOSNW S PSODOSNW=1
  D DOSE1^PSOORED5(.PSODIR)
 EX K PSODOSE,PSOSCH,DOSE,DOOR,SCH,VERB,NOUN,DOSEOR,ENT,PSORTE,DRUA,DIR,X,Y,DIRUT,RTE,ERTE,DD,INS1,SINS1
  Q

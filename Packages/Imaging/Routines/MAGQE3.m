@@ -1,5 +1,5 @@
-MAGQE3 ;WOIFO/RMP - Support for MAG Enterprise ; 05/06/2004  06:32
- ;;3.0;IMAGING;**27,29,30,20,46**;16-February-2007;;Build 1023
+MAGQE3 ;WOIFO/RMP - Support for MAG Enterprise ; 25 Jun 2012 4:20 PM
+ ;;3.0;IMAGING;**27,29,30,20,46,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -33,12 +33,14 @@ COUNT(SDATE,EDATE,INST,AI,IQ,DUP,TIOP,TGPP,TIEDP,GRPPRNT,IMAGE,DELETED) ;
  . S PCE=$P(CNODE,"^",3) Q:((PCE'=INST)&(AI'[("^"_PCE_"^")))
  . S ZNODE=$G(^MAG(2005,D0,0))
  . I $P(ZNODE,"^",2)="" S TGPP=TGPP+1 ;TOTAL FILE WIDE by Place 
- . E  S TIOP=TIOP+1
+ . E  D
+ . . S TIOP=TIOP+1
+ . . S:($P(ZNODE,U,11)="") $P(IQ,U,1)=$P(IQ,U,1)+1
+ . . S:($P(ZNODE,U,11)="0") $P(IQ,U,2)=$P(IQ,U,2)+1
+ . . S:($P(ZNODE,U,11)="1") $P(IQ,U,3)=$P(IQ,U,3)+1
+ . . Q
  . S X=$P($G(^MAG(2005,D0,2)),"^",1)\1 Q:'X  Q:X<SDATE  Q:X>EDATE
  . S:$P(ZNODE,U,12) DUP=DUP+1
- . S:($P(ZNODE,U,11)="") $P(IQ,U,1)=$P(IQ,U,1)+1
- . S:($P(ZNODE,U,11)="0") $P(IQ,U,2)=$P(IQ,U,2)+1
- . S:($P(ZNODE,U,11)="1") $P(IQ,U,3)=$P(IQ,U,3)+1
  . S PCE=$P(CNODE,"^",5),TRK="" I PCE'="" D
  . . S TRK=$P($G(^MAG(2006.04,$P(CNODE,U,4),0)),U)
  . . S TRK=$S(TRK'="":TRK,1:"?") Q

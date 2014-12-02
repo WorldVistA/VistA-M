@@ -1,5 +1,5 @@
 PSODDPR3 ;BIR/SAB - display NVA enhanced order checks ;10/04/06 3:38pm
- ;;7.0;OUTPATIENT PHARMACY;**251,375,379**;DEC 1997;Build 28
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,379,372**;DEC 1997;Build 54
  ;Reference ^PSDRUG supported by DBIA 221
  ;Reference ^PS(55 supported by DBIA 2228
  ;Reference ^PS(50.7 is supported by DBIA 2223
@@ -102,7 +102,6 @@ FSTART S (FVAR,FVAR1)="",II=1
 FQUIT ;
  Q
 DCOR ;dc duplicate therapy
- D HD^PSODDPR2()  Q:$G(PSODLQT)
  Q:'$D(^XUSEC("PSORPH",DUZ))!$G(PSODLQT)
  S MSG="Discontinued During "_$S('$G(PSONV):"New Prescription Entry",1:"Verification")_" - Duplicate Therapy"
  S ACT="Duplicate Therapy Discontinued while "_$S('$G(PSONV):"entering",1:"verifying")_" new RX"
@@ -122,7 +121,6 @@ DCOR ;dc duplicate therapy
  S:($D(DTOUT))!($D(DUOUT))!($G(DIRUT)) PSODLQT=1,PSORX("DFLG")=1 Q:$G(PSODLQT)
  I 'Y K DIR,X,Y Q
  K DIR S DIR(0)="LO^1:"_THERO
- D HD^PSODDPR2()  Q:$G(PSODLQT)
  F I=1:1:THERO S DIR("A",I)=I_". "_$S($P(^TMP($J,"PSODCOR",I),"^")="P":"Pending Order "_$P(^TMP($J,"PSODCOR",I),"^",4),1:"Rx #"_$P(^PSRX($P(^TMP($J,"PSODCOR",I),"^",2),0),"^")_" "_$P(^TMP($J,"PSODCOR",I),"^",4))
  S DIR("A")="Select Order(s)" D ^DIR S:($D(DTOUT))!($D(DUOUT))!($G(DIRUT)) PSODLQT=1,PSORX("DFLG")=1 Q:$G(PSODLQT)  K DIR,DIRUT I 'Y K THER,THERO Q
  S LST=Y(0) F DCRD=1:1:$L(LST,",") Q:$P(LST,",",DCRD)']""!$G(PSODLQT)  D

@@ -1,11 +1,22 @@
-RORHL10 ;HOIFO/BH - HL7 SURGICAL PATHOLOGY DATA: OBR,OBX ; 3/13/06 9:24am
- ;;1.5;CLINICAL CASE REGISTRIES;**1**;Feb 17, 2006;Build 24
+RORHL10 ;HOIFO/BH - HL7 SURGICAL PATHOLOGY DATA: OBR,OBX ;3/13/06 9:24am
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,19**;Feb 17, 2006;Build 43
  ;
  ; This routine uses the following IAs:
  ;
  ; #525          Read access to the multiple #63.08 (controlled)
  ; #4343         $$SPATH^LA7UTL03 (controlled)
+ ; #10040        ^SC("B" (supported)
  ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ; --- ROUTINE MODIFICATION LOG ---
+ ; 
+ ;PKG/PATCH   DATE       DEVELOPER   MODIFICATION
+ ;----------- ---------- ----------- ----------------------------------------
+ ;ROR*1.5*19  MAY 2012   K GUPTA     Support for ICD-10 Coding System.
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
  Q
  ;
  ;***** SEARCHES FOR SURGICAL PATHOLOGY DATA
@@ -180,15 +191,16 @@ SPECIMEN ;
  . D:RORSPEC'="" SETOBX(SPECID,RORSPEC)
  Q
  ;
- ;***** ICD-9
+ ;***** ICD Codes
 ICD(RPS) ;
- N CNT,ICDLST,INDEX,RORICD,TMP
- S ICDID=$$SEGID("ICD9","ICD9",CS)
- S (INDEX,RORICD)="",CNT=0
+ N CNT,ICDID,INDEX,RORICD,TMP,RORICDSNAM
+ S ICDID=$$SEGID("ICD","ICD",CS)
+ S (INDEX,RORICD,RORICDSNAM)="",CNT=0
  F  S INDEX=$O(@RORTMP@("ICD9",INDEX))  Q:INDEX=""  D
- . S TMP=$G(@RORTMP@("ICD9",INDEX))
- . S:TMP'="" CNT=CNT+1,$P(RORICD,RPS,CNT)=TMP
- D:RORICD'="" SETOBX(ICDID,RORICD)
+ . S TMP=$G(@RORTMP@("ICD9",INDEX)) Q:TMP=""
+ . S CNT=CNT+1,$P(RORICD,RPS,CNT)=TMP
+ . S:RORICDSNAM="" RORICDSNAM=$$CSNAME^RORHLUT1(80,INDEX)
+ D:RORICD'="" SETOBX(ICDID,RORICDSNAM_":"_RORICD)
  Q
  ;
  ;***** CONSTRUCTS SEGMENT IDENTIFIER

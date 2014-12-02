@@ -1,5 +1,5 @@
-SCRPW46 ;RENO/KEITH/MLR - Outpatient Diagnosis/Procedure Search (cont.) ; 9/27/00 10:29am
- ;;5.3;Scheduling;**144,180,199,295,324,351**;AUG 13, 1993
+SCRPW46 ;RENO/KEITH/MLR - Outpatient Diagnosis/Procedure Search (cont.) ;9/27/00 10:29am
+ ;;5.3;Scheduling;**144,180,199,295,324,351,593**;AUG 13, 1993;Build 13
  ;  *199* 
  ;  - Creation of Division subscript in ^TMP after DFN to capture,
  ;    display, & count multi-divisional patients in Summary Section.
@@ -102,7 +102,7 @@ START ;Print report
  .I $D(SD("LIST","D","R")) D
  .. N SDIV S SDIV="" F  S SDIV=$O(SDPDIV(SDIV)) Q:'SDIV  D
  ... S SDI=0 F  S SDI=$O(^TMP("SCRPW",$J,0,0,DFN,SDIV,"DX",SDI)) Q:'SDI  D
- ....S SDX=$$ICDDX^ICDCODE(SDI,+SDOE0),SDX=$P(SDX,"^",2)_" "_$P(SDX,"^",4)
+ ....S SDX=$$ICDDX^SCRPWICD(SDI,+SDOE0),SDX=$P(SDX,"^",2)_" "_$P(SDX,"^",4)
  .... S:$L(SDX)>1 ^TMP("SCRPW",$J,0,0,DFN,SDIV,"DXR",SDX)=SDI
  .;Building text list for Procedure ranges
  .I $D(SD("LIST","P","R")) S SDI=0 F  S SDI=$O(^TMP("SCRPW",$J,0,0,DFN,SDIV,"CPT",SDI)) Q:'SDI  D
@@ -166,8 +166,8 @@ START ;Print report
  .;Move item ifn lists to text lists
  .N SDIV S SDIV="" F  S SDIV=$O(SDPDIV(SDIV)) Q:SDIV=""  D
  .. S SDI=0 F  S SDI=$O(^TMP("SCRPW",$J,0,1,DFN,SDIV,"DL",SDI)) Q:'SDI  D
- ... S SDX=$$ICDDX^ICDCODE(SDI,+SDOE0),SDX=$P(SDX,"^",2)_" "_$P(SDX,"^",4) S:$L(SDX)>1 ^TMP("SCRPW",$J,0,1,DFN,SDIV,"DR",SDX)=$G(SDT)
-        ... Q
+ ... S SDX=$$ICDDX^SCRPWICD(SDI,+SDOE0),SDX=$P(SDX,"^",2)_" "_$P(SDX,"^",4) S:$L(SDX)>1 ^TMP("SCRPW",$J,0,1,DFN,SDIV,"DR",SDX)=$G(SDT)
+ ... Q
  .N SDIV S SDIV="" F  S SDIV=$O(SDPDIV(SDIV)) Q:SDIV=""  D
  .. S SDI=0 F  S SDI=$O(^TMP("SCRPW",$J,0,1,DFN,SDIV,"PL",SDI)) Q:'SDI  D
  ... N CPTINFO,CPTCODE,CPTTEXT

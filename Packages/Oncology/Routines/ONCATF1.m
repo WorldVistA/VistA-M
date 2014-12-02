@@ -1,5 +1,5 @@
 ONCATF1 ;Hines OIFO/RTK - Treatment AT THIS FACILITY stuffing (cont.); 06/23/10
- ;;2.11;ONCOLOGY;**19,22,25,36,37,41,42,51**;Mar 07, 1995;Build 65
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 RAD ;Radiation @fac
  N COC

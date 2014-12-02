@@ -1,5 +1,5 @@
-PSOORRL ;BHAM ISC/SAB - returns patient's outpatient meds ;07/21/96
- ;;7.0;OUTPATIENT PHARMACY;**4,20,9,34,54,82,124,132,159,214,225**;DEC 1997;Build 29
+PSOORRL ;BHAM ISC/SAB - returns patient's outpatient meds ; 7/3/13 4:00pm
+ ;;7.0;OUTPATIENT PHARMACY;**4,20,9,34,54,82,124,132,159,214,225,318**;DEC 1997;Build 13
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^VA(200 supported by DBIA 10060
@@ -63,6 +63,7 @@ OEL(DFN,RXNUM) ;returns expanded list on specific order
  K INST,IFN,^TMP("PS",$J) S FL=$P(RXNUM,";"),IFN=+FL,RXNUM=$P(RXNUM,";",2)
  I $G(FL)["P"!($G(FL)["S") D PEN^PSOORRL1 Q
  I $G(FL)["N" D NVA^PSOORRL1 Q
+ I $G(FL)["V" Q  ;QUIT IF IV ORDER  ;*318
  Q:'$D(^PSRX(IFN,0))
  S RX0=^PSRX(IFN,0),RX2=$G(^(2)),RX3=$G(^(3)),STA=+$G(^("STA")),TRM=0,LSTFD=$P(RX2,"^",2)
  S ^TMP("PS",$J,"RXN",0)=$P(RX0,"^")_"^"_$E($P(RX2,"^",13),1,7)_"^"_$S($P(RX0,"^",11)="W":"W",1:"M")_"^"_$P(RX3,"^",7)_"^"_$S($P($G(^PSRX(IFN,"OR1")),"^",5):$P(^PSRX(IFN,"OR1"),"^",5),1:"")_"^"_$E($P(RX2,"^",2),1,7)_"^"_$E($P(RX2,"^",13),1,7)

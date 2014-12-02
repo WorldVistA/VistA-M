@@ -1,4 +1,4 @@
-MCARORA ; GENERATED FROM 'MCRHPROG' PRINT TEMPLATE (#1010) ; 10/04/96 ; (FILE 701, MARGIN=80)
+MCARORA ; GENERATED FROM 'MCRHPROG' PRINT TEMPLATE (#1010) ; 08/18/14 ; (FILE 701, MARGIN=80)
  G BEGIN
 N W !
 T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
@@ -11,24 +11,25 @@ M D @DIXX
  Q
 BEGIN ;
  S:'$D(DN) DN=1 S DISTP=$G(DISTP),DILCT=$G(DILCT)
+ S I(0)="^MCAR(701,",J(0)=701
  D T Q:'DN  D N D N D N:$X>0 Q:'DN  W ?0 W "PROVIDER: "
- S X=$G(^MCAR(701,D0,"PROV")) S Y=$P(X,U,1) S Y=$S(Y="":Y,$D(^VA(200,Y,0))#2:$P(^(0),U,1),1:Y) W $E(Y,1,35)
+ S X=$G(^MCAR(701,D0,"PROV")) S Y=$P(X,U,1) S Y=$S(Y="":Y,$D(^VA(200,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,35)
  D N:$X>0 Q:'DN  W ?0 W "PROBLEM LIST"
  S X=$G(^MCAR(701,D0,0)) D T Q:'DN  D N D N D N:$X>0 Q:'DN  W ?0 S Y=$P(X,U,1) D DT
  D N:$X>0 Q:'DN  W ?0 W "PATIENT"
  D N:$X>16 Q:'DN  W ?16 W "DATE"
  D N:$X>29 Q:'DN  W ?29 W "DIAGNOSIS"
- D N:$X>67 Q:'DN  W ?67 W "ICD9 CODE"
+ D N:$X>67 Q:'DN  W ?67 W "ICD CODE"
  D N:$X>0 Q:'DN  W ?0 W "-------"
  D N:$X>16 Q:'DN  W ?16 W "----"
  D N:$X>29 Q:'DN  W ?29 W "---------"
  D N:$X>67 Q:'DN  W ?67 W "---------"
- D N:$X>0 Q:'DN  W ?0 S Y=$P(X,U,2) S Y=$S(Y="":Y,$D(^MCAR(690,Y,0))#2:$P(^(0),U,1),1:Y) S Y=$S(Y="":Y,$D(^DPT(Y,0))#2:$P(^(0),U,1),1:Y) W $E(Y,1,15)
+ D N:$X>0 Q:'DN  W ?0 S Y=$P(X,U,2) S Y=$S(Y="":Y,$D(^MCAR(690,Y,0))#2:$P(^(0),U),1:Y) S Y=$S(Y="":Y,$D(^DPT(Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,15)
  S I(1)=13,J(1)=701.0615 F D1=0:0 Q:$O(^MCAR(701,D0,13,D1))'>0  X:$D(DSC(701.0615)) DSC(701.0615) S D1=$O(^(D1)) Q:D1'>0  D:$X>17 T Q:'DN  D A1
  G A1R
 A1 ;
  D N:$X>16 Q:'DN  W ?16 S DIP(1)=$S($D(^MCAR(701,D0,13,D1,0)):^(0),1:"") S X=$P(DIP(1),U,2) S:X X=$E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3) K DIP K:DN Y W $E(X,1,10)
- S X=$G(^MCAR(701,D0,13,D1,0)) D N:$X>29 Q:'DN  W ?29 S Y=$P(X,U,1) S Y=$S(Y="":Y,$D(^MCAR(697.5,Y,0))#2:$P(^(0),U,1),1:Y) W $E(Y,1,35)
+ S X=$G(^MCAR(701,D0,13,D1,0)) D N:$X>29 Q:'DN  W ?29 S Y=$P(X,U,1) S Y=$S(Y="":Y,$D(^MCAR(697.5,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,35)
  W ?66 D PRINT^MCRH2 K DIP K:DN Y
  Q
 A1R ;

@@ -1,5 +1,5 @@
-MAGDQR05 ;WOIFO/EdM - Imaging RPCs for Query/Retrieve ; 26 Mar 2009 11:33 PM
- ;;3.0;IMAGING;**54**;03-July-2009;;Build 1424
+MAGDQR05 ;WOIFO/EdM,MLH,DAC - Imaging RPCs for Query/Retrieve ; 07 Feb 2013 5:18 PM
+ ;;3.0;IMAGING;**54,118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -17,101 +17,105 @@ MAGDQR05 ;WOIFO/EdM - Imaging RPCs for Query/Retrieve ; 26 Mar 2009 11:33 PM
  ;;
  Q
  ;
-TIM ; Overflow from MAGDQR02
- N D0,D1,D2,PAT,SDT,V,X
- ; The references below to ^RADPT are permitted according to the
- ; existing Integration Agreement # 1172
- S V="" F  S V=$O(^RADPT("ADC",V)) Q:V=""  D
- . S D0="" F  S D0=$O(^RADPT("ADC",V,D0)) Q:D0=""  D
- . . S D1="" F  S D1=$O(^RADPT("ADC",V,D0,D1)) Q:D1=""  D
+TIM(REQ,FD,LD,TIM,ANY,SID) ; Overflow from MAGDQR02
+ N D0,D1,D2,I,PAT,SDT,V,X,STDATE,STTIME,STUDYIX,STUTYP,STUDTA,DAT0,DATF,TIM0,TIMF,T,P
+ N PROCIX,PATREFIX,PATREFDTA,SERIX,SOPIX
+ D:$D(REQ("0008,0020"))>9
+ . ; search old structure for studies by date and time
+ . ; The references below to ^RADPT are permitted according to the
+ . ; existing Integration Agreement # 1172
+ . S V="" F  S V=$O(^RADPT("ADC",V)) Q:V=""  D
+ . . S D0="" F  S D0=$O(^RADPT("ADC",V,D0)) Q:D0=""  D
+ . . . S D1="" F  S D1=$O(^RADPT("ADC",V,D0,D1)) Q:D1=""  D
+ . . . . S SDT=9999999.9999-D1 Q:SDT<FD  Q:SDT>LD
+ . . . . S D2="" F  S D2=$O(^RADPT("ADC",V,D0,D1,D2)) Q:D2=""  D
+ . . . . . Q:'$P($G(^RADPT(D0,"DT",D1,"P",D2,0)),"^",17)
+ . . . . . S ^TMP("MAG",$J,"QR",10,"R^"_D0_"^"_D1_"^"_D2)="",TIM=2
+ . . . . . S ANY=1,SID=1
+ . . . . . Q
+ . . . . Q
+ . . . Q
+ . . Q
+ . S PAT="" F  S PAT=$O(^MAG(2005,"APDTPX",PAT)) Q:PAT=""  D
+ . . S D1="" F  S D1=$O(^MAG(2005,"APDTPX",PAT,D1)) Q:D1=""  D
  . . . S SDT=9999999.9999-D1 Q:SDT<FD  Q:SDT>LD
- . . . S D2="" F  S D2=$O(^RADPT("ADC",V,D0,D1,D2)) Q:D2=""  D
- . . . . Q:'$P($G(^RADPT(D0,"DT",D1,"P",D2,0)),"^",17)
- . . . . S ^TMP("MAG",$J,"QR",10,"R^"_D0_"^"_D1_"^"_D2)="",TIM=2
+ . . . S D0="" F  S D0=$O(^MAG(2005,"APDTPX",PAT,D1,"CON/PROC",D0)) Q:D0=""  D
+ . . . . S X=$G(^MAG(2005,D0,2)),V=""
+ . . . . D:$P(X,"^",6)=2006.5839
+ . . . . . S V="123^"_$P(X,"^",7)_"^"_D0_"^"_$P(X,"^",7)
+ . . . . . Q
+ . . . . D:$P(X,"^",6)=8925
+ . . . . . N T
+ . . . . . S T=$P($G(^TIU(8925,+$P(X,"^",7),14)),"^",5) ; IA# 3268
+ . . . . . S T=$S(T[";GMR(123,":$$GMRCACN^MAGDFCNV(+T),1:"") ; Should use FileMan
+ . . . . . S V="8925^"_$P(X,"^",7)_"^"_D0_"^"_T
+ . . . . . Q
+ . . . . S ^TMP("MAG",$J,"QR",10,"C^"_PAT_"^"_V)="",TIM=2
  . . . . S ANY=1,SID=1
  . . . . Q
  . . . Q
  . . Q
  . Q
- S PAT="" F  S PAT=$O(^MAG(2005,"APDTPX",PAT)) Q:PAT=""  D
- . S D1="" F  S D1=$O(^MAG(2005,"APDTPX",PAT,D1)) Q:D1=""  D
- . . S SDT=9999999.9999-D1 Q:SDT<FD  Q:SDT>LD
- . . S D0="" F  S D0=$O(^MAG(2005,"APDTPX",PAT,D1,"CON/PROC",D0)) Q:D0=""  D
- . . . S X=$G(^MAG(2005,D0,2)),V=""
- . . . D:$P(X,"^",6)=2006.5839
- . . . . S V="123^"_$P(X,"^",7)_"^"_D0_"^"_$P(X,"^",7)
+ ; search new structure for studies by date and time
+ S T="0008,0020" ; search by date and time
+ D:$D(REQ(T))>9
+ . S P=$O(REQ(T,"")) Q:P=""  S (DAT0,DATF)=$G(REQ(T,P)) Q:DAT0=""
+ . S:DAT0["-" DATF=$P(DAT0,"-",2),DAT0=$P(DAT0,"-",1)
+ . S DAT0=DAT0-17000000,DATF=DATF-17000000
+ . S T="0008,0030" D:$D(REQ(T))>9
+ . . S P=$O(REQ(T,"")),(TIM0,TIMF)=$G(REQ(T,P)) Q:TIM0=""
+ . . S:TIM0["-" TIMF=$P(TIM0,"-",2),TIM0=$P(TIM0,"-",1)
+ . . S TIM0=$E(TIM0_"000000",1,6),TIMF=$E(TIMF_"000000",1,6)
+ . . Q
+ . S STDATE=$O(^MAGV(2005.62,"J",DAT0),-1)
+ . F  S STDATE=$O(^MAGV(2005.62,"J",STDATE)) Q:STDATE>DATF  Q:'STDATE  D
+ . . S STUDYIX=""
+ . . F  S STUDYIX=$O(^MAGV(2005.62,"J",STDATE,STUDYIX)) Q:STUDYIX=""  D
+ . . . Q:$P($G(^MAGV(2005.62,STUDYIX,5)),"^",2)="I"  ; study marked inaccessible
+ . . . N HIT
+ . . . S HIT=1
+ . . . D:$D(TIM0)
+ . . . . S HIT=0
+ . . . . S STTIME=$P($P($G(^MAGV(2005.62,STUDYIX,2)),"^",1),".",2) Q:STTIME=""
+ . . . . S STTIME=$E((STTIME\1)_"000000",1,6)
+ . . . . I STTIME'<TIM0,STTIME'>TIMF S HIT=1
  . . . . Q
- . . . D:$P(X,"^",6)=8925
- . . . . N T
- . . . . S T=$P($G(^TIU(8925,+$P(X,"^",7),14)),"^",5) ; IA# 3268
- . . . . S T=$S(T[";GMR(123,":"GMRC-"_(+T),1:"") ; Should use FileMan
- . . . . S V="8925^"_$P(X,"^",7)_"^"_D0_"^"_T
- . . . . Q
- . . . S ^TMP("MAG",$J,"QR",10,"C^"_PAT_"^"_V)="",TIM=2
- . . . S ANY=1,SID=1
+ . . . S:HIT ^TMP("MAG",$J,"QR",30,STUDYIX)=""
  . . . Q
  . . Q
+ . Q
+ S T="0008,0030" ; search by time alone
+ D:$D(REQ(T))>9
+ . Q:$D(REQ("0008,0020"))>9  ; already did date & time search
+ . S P=$O(REQ(T,"")) Q:P=""  S (TIM0,TIMF)=$G(REQ(T,P)) Q:TIM0=""
+ . S:TIM0["-" TIMF=$P(TIM0,"-",2),TIM0=$P(TIM0,"-",1)
+ . S TIM0=$E(TIM0_"000000",1,6),TIMF=$E(TIMF_"000000",1,6)
+ . S STTIME=$O(^MAGV(2005.62,"K",TIM0),-1)
+ . F  S STTIME=$O(^MAGV(2005.62,"K",STTIME)) Q:STTIME>TIMF  Q:'STTIME  D
+ . . S STUDYIX=""
+ . . F  S STUDYIX=$O(^MAGV(2005.62,"K",STTIME,STUDYIX)) Q:STUDYIX=""  D
+ . . . Q:$P($G(^MAGV(2005.62,STUDYIX,5)),"^",2)="I"  ; study marked inaccessible
+ . . . S ^TMP("MAG",$J,"QR",30,STUDYIX)=""
+ . . . Q
+ . . Q
+ . Q
+ D:$D(^TMP("MAG",$J,"QR",30))
+ . S TIM=2,STUDYIX=""
+ . F  S STUDYIX=$O(^TMP("MAG",$J,"QR",30,STUDYIX)) Q:'STUDYIX  D
+ . . S PROCIX=$P($G(^MAGV(2005.62,STUDYIX,6)),"^",1) Q:'PROCIX
+ . . S PATREFIX=$P($G(^MAGV(2005.61,PROCIX,6)),"^",1) Q:'PATREFIX
+ . . S PATREFDTA=$G(^MAGV(2005.6,PATREFIX,0)) Q:$P(PATREFDTA,"^",3)'="D"
+ . . S PAT=$P(PATREFDTA,"^",1) Q:PAT=""
+ . . S ^TMP("MAG",$J,"QR",10,"N^"_PAT_"^"_STUDYIX)=""
+ . . S ANY=1,SID=1
+ . . Q
+ . K ^TMP("MAG",$J,"QR",30)
  . Q
  I TIM=1 D  Q
- . D ERR^MAGDQR01("No matches for tag 0008,0020 / 0008,0030")
- . D ERRSAV^MAGDQR01
+ . D ERR^MAGDQRUE("No matches for tag 0008,0020 / 0008,0030")
+ . D ERRSAV^MAGDQRUE
  . Q
  ;
- Q
- ;
-AETITLE(OUT,TITLE,SERVICE,MODE,LOCATION) ; RPC = MAG DICOM CHECK AE TITLE
- N D0,D1,LO,N,OK,SERV,T,UP,X,L
- I $G(TITLE)="" S OUT(1)="-1,No AE Title specified" Q
- S LO="abcdefghijklmnopqrstuvwxyz"
- S UP="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
- S TITLE=$TR(TITLE,UP,LO),N=1
- S D0=0 F  S D0=$O(^MAG(2006.587,D0)) Q:'D0  D
- . S X=$G(^MAG(2006.587,D0,0)) S T=$TR($P(X,"^",2),UP,LO) Q:T'=TITLE
- . S L=$P(X,"^",7)  Q:L'=LOCATION
- . S SERV=$P(X,"^",1) S:SERV="" SERV="?" Q:$G(SERV(SERV))
- . I $G(SERVICE)'="",$G(MODE)'="" D  Q:'OK
- . . S OK=0,D1=0 F  S D1=$O(^MAG(2006.587,D0,1,D1)) Q:'D1  D  Q:OK
- . . . S T=$G(^MAG(2006.587,D0,1,D1,0)) Q:T=""
- . . . Q:$TR($P(T,"^",1),UP,LO)'=$TR(SERVICE,UP,LO)
- . . . I $TR(MODE,UP,LO)="scu",'$P(T,"^",2) Q
- . . . I $TR(MODE,UP,LO)="scp",'$P(T,"^",3) Q
- . . . S OK=1
- . . . Q
- . . Q
- . S SERV(SERV)=1
- . S N=N+1,OUT(N)=SERV_"^"_$P(X,"^",3)_"^"_$P(X,"^",4)
- . Q
- I N=1 S OUT(1)="-2,No entry for AE Title """_TITLE_""" at location """_LOCATION_"""." Q
- S OUT(1)=N-1_",OK"
- Q
- ;
-VATITLE(OUT,SERVICE,MODE,LOCATION) ; RPC = MAG DICOM VISTA AE TITLE
- N AE,D0,D1,LO,OK,UP,X0,X1,L
- S LO="abcdefghijklmnopqrstuvwxyz"
- S UP="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
- S SERVICE=$TR($G(SERVICE),LO,UP)
- S MODE=$TR($G(MODE),LO,UP)
- S AE("C-MOVE","SCU")="VistA_QR_SCU"
- S AE("C-STORE","SCU")="VistA_Send_Image"
- S AE("C-FIND","SCU")="VISTA_QR_SCU"
- S AE("C-MOVE","SCP")="VistA_QR_SCP"
- S AE("C-STORE","SCP")="VistA_Storage"
- S AE("C-FIND","SCP")="VISTA_QR_SCP"
- S OUT="" I SERVICE'="",MODE'="" D
- . S OUT=$G(AE(SERVICE,MODE)) S:OUT'="" OUT="1,"_OUT
- . S (D0,OK)=0 F  S D0=$O(^MAG(2006.587,D0)) Q:'D0  D  Q:OK
- . . S X0=$G(^MAG(2006.587,D0,0))
- . . S L=$P(X0,"^",7)  Q:L'=LOCATION
- . . S D1=0 F  S D1=$O(^MAG(2006.587,D0,1,D1)) Q:'D1  D  Q:OK
- . . . S X1=$G(^MAG(2006.587,D0,1,D1,0))
- . . . Q:$P(X1,"^",1)'=SERVICE
- . . . I MODE="SCU",$P(X1,"^",2) S OK=1
- . . . I MODE="SCP",$P(X1,"^",3) S OK=1
- . . . S:OK OUT="1,"_$P(X0,"^",2)
- . . . Q
- . . Q
- . Q
- S:OUT="" OUT="-1,No title for """_SERVICE_""", """_MODE_""" at location """_LOCATION_"""."
  Q
  ;
 GWINFO(OUT,HOSTNAME,LOCATION,FILES,VER) ; RPC = MAG DICOM STORE GATEWAY INFO
@@ -159,7 +163,7 @@ GETINFO(OUT,HOSTNAME) ; RPC = MAG DICOM GET GATEWAY INFO
  I 'D0 S OUT(1)="-2,Cannot find info for """_HOSTNAME_"""." Q
  S N=1
  S X=$G(^MAG(2006.87,D0,0))
- S:$P(X,"^",3) N=N+1,OUT(N)="Loc="_$P(X,"^",3)
+ S:$P(X,"^",3) N=N+1,OUT(N)="Loc="_$$STA^XUAF4($P(X,"^",3))
  D GWGET($G(^MAG(2006.87,D0,1)),"In")
  D GWGET($G(^MAG(2006.87,D0,2)),"Mo")
  D GWGET($G(^MAG(2006.87,D0,3)),"PL")

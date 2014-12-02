@@ -1,5 +1,5 @@
-PXRMTDLG ; SLC/PJH - Edit/Inquire Taxonomy Dialog ;9/9/2003
- ;;2.0;CLINICAL REMINDERS;;Feb 04, 2005
+PXRMTDLG ; SLC/PJH - Edit/Inquire Taxonomy Dialog ;9/7/2012
+ ;;2.0;CLINICAL REMINDERS;**26**;Feb 04, 2005;Build 404
  ;
  ;Called by option PXRM TAXONOMY DIALOG
  ;

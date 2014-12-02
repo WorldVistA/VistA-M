@@ -1,9 +1,10 @@
-IBDF9A1 ;ALB/CJM - ENCOUNTER FORM - (create,edit,delete selection list - continued) ;FEB 1,1993
- ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
+IBDF9A1 ;ALB/CJM - ENCOUNTER FORM - (create,edit,delete selection list - continued) ;02/01/93
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**63**;APR 24, 1997;Build 80
+ ;
  ;
 NEWLIST ;creates a new list
  ;expects IBBLK to be defined
- N IBLIST,IBLEN,IBP,IBRTN,NAME,IBDELETE,IBDYN,IBINPUT,IBDFLTF,IBDFLTB,IBDFLTL
+ N IBLIST,IBLEN,IBP,IBRTN,NAME,IBDELETE,IBDYN,IBINPUT,IBDFLTF,IBDFLTB,IBDFLTL,IBDX,IBDCS,IBDPI
  S (IBDFLTF,IBDFLTB,IBDFLTL,IBOLD,IBLIST)=0,VALMBCK="R"
  D FULL^VALM1
  S IBRTN=$$RTN^IBDF9A Q:'IBRTN
@@ -46,7 +47,7 @@ ADDGROUP(NAME,ORDER) ;adds a group to the selection list=IBLIST
 FORMAT ;allows the user to format all of the selections on the list in mass
  ;
  ;
- ;TYPE = type of formating - U=upper case,L=lower case,C=capitalize
+ ;TYPE = type of formatting - U=upper case,L=lower case,C=capitalize
  ;SUBCOL is the subcolumn to format
  ;
  N TYPE,SUBCOL,SLCTN
@@ -54,7 +55,7 @@ FORMAT ;allows the user to format all of the selections on the list in mass
  ;ask for the subcolumn to format
  S SUBCOL=$$SUBCOL
  ;
- ;ask for the type of fomatting
+ ;ask for the type of formatting
  S TYPE=$S(SUBCOL:$$TYPE,1:"")
  ;
  ;find all the sections to be formatted and do so
@@ -66,7 +67,7 @@ FORMAT ;allows the user to format all of the selections on the list in mass
 FORMAT2 ;allows the user to format all of the selections in the group in mass
  ;
  ;
- ;TYPE = type of formating - U=upper case,L=lower case,C=capitalize
+ ;TYPE = type of formatting - U=upper case,L=lower case,C=capitalize
  ;SUBCOL is the subcolumn to format
  ;
  N TYPE,SUBCOL,SLCTN
@@ -74,7 +75,7 @@ FORMAT2 ;allows the user to format all of the selections in the group in mass
  ;ask for the subcolumn to format
  S SUBCOL=$$SUBCOL
  ;
- ;ask forthe type of fomatting
+ ;ask for the type of formatting
  S TYPE=$S(SUBCOL:$$TYPE,1:"")
  ;
  ;find all the sections to be formatted and do so
@@ -119,7 +120,7 @@ CAPS(STR) ;returns STR with each word in it capitalized
  Q STR
  ;
 SUBCOL() ;ask what subcolumn to format
- ;SCLIST - used to record the subcolumns that can be formated - each digit will signify a subcolum
+ ;SCLIST - used to record the subcolumns that can be formatted - each digit will signify a subcolumn
  ;
  N SCLIST,NODE,SUBCOL,ANS
  ;first get the list of subcolumns that can be formatted
@@ -129,7 +130,7 @@ SUBCOL() ;ask what subcolumn to format
  I $L(SCLIST)<3 Q $E(SCLIST,2)
  ;
  ;now ask what subcolumn to format
-AGAIN W !,"What subcolumn do you want formated? Choose from (",$E(SCLIST,2,10),"): "
+AGAIN W !,"What subcolumn do you want formatted? Choose from (",$E(SCLIST,2,10),"): "
  R ANS:DTIME
  I '$T!(ANS["^") Q ""
  I ANS?1N,SCLIST[ANS Q ANS

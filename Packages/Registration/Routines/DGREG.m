@@ -1,5 +1,5 @@
 DGREG ;ALB/JDS,MRL/PJR/PHH-REGISTER PATIENT ; 8/24/05 1:40pm
- ;;5.3;Registration;**1,32,108,147,149,182,245,250,513,425,533,574,563,624,658**;Aug 13, 1993
+ ;;5.3;Registration;**1,32,108,147,149,182,245,250,513,425,533,574,563,624,658,864**;Aug 13, 1993;Build 16
 START ;
 EN D LO^DGUTL S DGCLPR=""
  N DGDIV
@@ -21,6 +21,7 @@ A D ENDREG($G(DFN))
  . ; query CMOR for Patient Record Flag Assignments if NEW patient and
  . ; display results.
  . I $$PRFQRY^DGPFAPI(DFN) D DISPPRF^DGPFAPI(DFN)
+ . I $$EN^DGPFMPI(DFN)
  ;
  D ROMQRY
  ;

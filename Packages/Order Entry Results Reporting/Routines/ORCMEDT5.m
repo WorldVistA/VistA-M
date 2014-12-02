@@ -1,5 +1,5 @@
 ORCMEDT5 ;SLC/MKB-Misc menu utilities ;03:29 PM  12 Feb 1999
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,296,314**;Dec 17, 1997;Build 3
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,296,314,375**;Dec 17, 1997;Build 1
 SEARCH ; -- Search/replace menu items
  N ORDLG
  F  S ORDLG=$$DIC Q:ORDLG'>0  D SR1(ORDLG) W !!
@@ -78,7 +78,9 @@ VQ Q Y
  ;
 RECURSV(ITEM,MENU,MSG) ; -- Return 1 or 0, if recursive reference to ITEM
  N STACK,CNT S STACK=0,CNT=0
- K MSG D CHKPAR(MENU)
+ K MSG
+ I ITEM=MENU S MSG="Recursive Reference: "_$P($G(^ORD(101.41,ITEM,0)),U) Q  ;p375 prevents menu on itself
+ D CHKPAR(MENU)
  Q
 CHKPAR(MENU) ; follow tree to check parents
  N PMENU,I

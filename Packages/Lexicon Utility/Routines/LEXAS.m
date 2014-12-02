@@ -1,5 +1,5 @@
-LEXAS ; ISL Look-up Check Input                  ; 09-23-96
- ;;2.0;LEXICON UTILITY;**4**;Sep 23, 1996
+LEXAS ;ISL/KER - Look-up Check Input ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**4,80**;Sep 23, 1996;Build 1
  ;
 SPL(LEXX) ; Check word
  S LEXX=$G(LEXX) Q:LEXX="" LEXX

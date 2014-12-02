@@ -1,5 +1,5 @@
-RAMAG06 ;HCIOFO/SG - ORDERS/EXAMS API (EXAM COMPLETION) ; 3/6/09 4:20pm
- ;;5.0;Radiology/Nuclear Medicine;**90**;Mar 16, 1998;Build 20
+RAMAG06 ;HCIOFO/SG,GJC - ORDERS/EXAMS API (EXAM COMPLETION) ; 4/12/13 6:21pm
+ ;;5.0;Radiology/Nuclear Medicine;**90,116**;Mar 16, 1998;Build 1
  ;
  Q
  ;
@@ -90,6 +90,7 @@ RAMAG06 ;HCIOFO/SG - ORDERS/EXAMS API (EXAM COMPLETION) ; 3/6/09 4:20pm
  ;   "PRIMINTSTF")
  ;   "PRINCLIN")
  ;   "RDPHARMS",#,"RDPH-...")
+ ;   "SECDXCODE",#)
  ;   "SERVICE")
  ;   "TECH",#)
  ;   "TECHCOMM")

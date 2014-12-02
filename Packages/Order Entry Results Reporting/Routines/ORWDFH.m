@@ -1,5 +1,5 @@
 ORWDFH ; SLC/KCM/JLI - Diet Order calls for Windows Dialogs ;12/12/00  14:44
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,92,141,187,215,243**;Dec 17, 1997;Build 242
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,92,141,187,215,243,375**;Dec 17, 1997;Build 1
 TXT(LST,DFN)    ; Return text of current & future diets for a patient
  S LST(1)="Current Diet:  "_$$DIET^ORCDFH(DFN)
  N FUTLST D FUT(.FUTLST,DFN) I $D(FUTLST)>1 D
@@ -32,7 +32,8 @@ PARAM(ORLST,ORVP,ORLOC)  ; Return dietetics parameters for a patient at a locati
  E  S ORLOC=ORLOC_";SC("
  D EN1^FHWOR8(ORLOC,.ORLST)
  ;
- I '$L($G(ORLST(3))) S ORLST(3)="T"
+ S:'$D(ORLST(1)) ORLST(1)="" S:'$D(ORLST(2)) ORLST(2)="" ;p375 corrected array return for missing/invalid location
+ I '$L($G(ORLST(3))) S ORLST(3)="TCD" ;p375 changed default from "T" to "TCD" 
  S $P(ORLST(3),U,2)=$O(^ORD(101.43,"S.DIET","REGULAR",0))
  S $P(ORLST(3),U,3)=$O(^ORD(101.43,"S.DIET","NPO",0))
  S $P(ORLST(3),U,4)=$O(^ORD(101.43,"S.E/L T","EARLY TRAY",0))

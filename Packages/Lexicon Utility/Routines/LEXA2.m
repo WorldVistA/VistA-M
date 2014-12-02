@@ -1,5 +1,5 @@
-LEXA2 ;ISL/KER-Look-up (Loud) Select ; 02/02/2006
- ;;2.0;LEXICON UTILITY;**38**;Sep 23, 1996
+LEXA2 ;ISL/KER - Look-up (Loud) Select ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**38,80**;Sep 23, 1996;Build 1
  ;
 SELECT ; Select from List
  ; Display Help                 DH^LEXA3
@@ -18,7 +18,7 @@ ASK ; Get users response
  I $L($G(DIC("B"))),LEXUR="" D 
  . S LEXUR=DIC("B") W " ",LEXUR
  . I +($G(LEX))=1,$D(LEX("LIST",1)) D
- . . W "  ",$P(LEX("LIST",1),"^",2) S LEXUR=1
+ . . W:'$D(LEXQUIET) "  ",$P(LEX("LIST",1),"^",2) S LEXUR=1
  . I +LEXUR K DIC("B")
  . K DIC("B")
  Q

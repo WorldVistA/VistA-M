@@ -1,10 +1,10 @@
-GMPLBLD1 ; SLC/MKB -- Bld PL Selection Lists cont ;;3/12/03 13:48
- ;;2.0;Problem List;**3,28**;Aug 25, 1994
+GMPLBLD1 ; ISL/MKB,JER,TC - Bld PL Selection Lists cont ;11/27/12  08:13
+ ;;2.0;Problem List;**3,28,36,42**;Aug 25, 1994;Build 46
  ;
- ; This routine invokes IA #3991,#10082
+ ; This routine invokes ICR #5747
  ;
 SEL() ; Select item(s) from list
- N DIR,X,Y,MAX,GRP S GRP=$D(GMPLGRP) ; =1 if editing groups, 0 if lists
+ N DIR,X,Y,MAX,GRP,DTOUT S GRP=$D(GMPLGRP) ; =1 if editing groups, 0 if lists
  S MAX=$P($G(^TMP("GMPLST",$J,0)),U,1) I MAX'>0 Q "^"
  S DIR(0)="LAO^1:"_MAX,DIR("A")="Select "_$S('GRP:"Category",1:"Problem")_"(s)"
  S:MAX>1 DIR("A")=DIR("A")_" (1-"_MAX_"): "
@@ -14,7 +14,7 @@ SEL() ; Select item(s) from list
  Q Y
  ;
 SEL1() ; Select item from list
- N DIR,X,Y,MAX,GRP S GRP=$D(GMPLGRP) ; =1 if editing groups, 0 if lists
+ N DIR,X,Y,MAX,GRP,DTOUT S GRP=$D(GMPLGRP) ; =1 if editing groups, 0 if lists
  S MAX=$P($G(^TMP("GMPLST",$J,0)),U,1) I MAX'>0 Q "^"
  S DIR(0)="NAO^1:"_MAX_":0",DIR("A")="Select "_$S('GRP:"Category",1:"Problem")
  S:MAX>1 DIR("A")=DIR("A")_" (1-"_MAX_"): "
@@ -24,7 +24,7 @@ SEL1() ; Select item from list
  Q Y
  ;
 SEQ(NUM) ; Enter/edit seq #, returns new #
- N DIR,X,Y,GRP S GRP=$D(GMPLGRP) ; =1 if editing groups, 0 if lists
+ N DIR,X,Y,GRP,DTOUT S GRP=$D(GMPLGRP) ; =1 if editing groups, 0 if lists
  S DIR(0)="NA^.01:999.99:2",DIR("A")="SEQUENCE: " S:NUM DIR("B")=NUM
  S DIR("?",1)="Enter a number indicating the sequence of this item in the "_$S('GRP:"list;",1:"category;")
  S DIR("?")="up to 2 decimal places may be used, to order these items."
@@ -37,7 +37,7 @@ SQ D ^DIR I $D(DTOUT)!(X="^") Q "^"
  Q Y
  ;
 HDR(TEXT) ; Enter/edit group subheader text in list
- N DIR,X,Y S:$L(TEXT) DIR("B")=TEXT
+ N DIR,X,Y,DTOUT S:$L(TEXT) DIR("B")=TEXT
  S DIR(0)="FAO^2:30",DIR("A")="HEADER: "
  S DIR("?")="Enter the text you wish displayed as a header for this category of problems"
  S:$D(DIR("B")) DIR("?",1)=DIR("?")_";",DIR("?")="enter '@' if no header text is desired."
@@ -47,27 +47,31 @@ H1 D ^DIR I $D(DTOUT)!(X="^") Q "^"
  Q Y
  ;
 TEXT(TEXT) ; Edit problem text
- N DIR,X,Y S:$L(TEXT) DIR("B")=TEXT
- S DIR(0)="FAO^2:80",DIR("A")="DISPLAY TEXT: "
+ N DIR,X,Y,DTOUT S:$L(TEXT) DIR("B")=TEXT
+ S DIR(0)="FAO^2:80",DIR("A")=" DISPLAY TEXT: "
  S DIR("?")="Enter the text you wish presented here for this problem."
 T1 D ^DIR I $D(DTOUT)!("^"[X) S Y="^" G TQ
  I X?1"^".E W $C(7),$$NOJUMP G T1
  I X="@" G:'$$SURE^GMPLX T1 S Y="@" G TQ
 TQ Q Y
  ;
-CODE(CODE) ; Enter/edit problem code
- N DIR,X,Y
- S DIR(0)="PAO^ICD9(:QEMZ",DIR("A")="ICD CODE: " S:$L(CODE) DIR("B")=CODE
- S DIR("?")="Enter the code you wish to be displayed with this problem."
- S DIR("S")="I $$STATCHK^ICDAPIU($P(^(0),U),DT)"
+CODE(SCTCODE,ICDCODE) ; Confirm problem codes
+ N DIR,X,Y,CODESYS,GMPCSREC,DTOUT
+ S GMPCSREC=$$CODECS^ICDEX(ICDCODE,80,DT),CODESYS=$P(GMPCSREC,U,2)
+ W !!?2,"The following ",$S(SCTCODE]"":"SNOMED CT & ",1:""),CODESYS," Code(s) are associated with the problem",!?2,"you selected:"
+ I SCTCODE]"" W !!?2,"SNOMED CT: ",SCTCODE,?24,CODESYS,": ",ICDCODE,!
+ E  W !!?2,CODESYS,": ",ICDCODE,!
+ S DIR(0)="YA",DIR("A")="  ... Ok? "
+ S DIR("?")="Please indicate ((Y)es or (N)o) whether the problem/code(s) specified are appropriate."
 C1 D ^DIR I $D(DTOUT)!(X="^") S Y="^" G CQ
  I X?1"^".E W $C(7),$$NOJUMP G C1
  I X="@" G:'$$SURE^GMPLX C1 S Y=""
- S:+Y'>0 Y="" S:+Y>0 Y=Y(0,0)
+ S:+Y'>0 Y="" S:+Y>0 Y=ICDCODE
+ W !
 CQ Q Y
  ;
 FLAG(DFLT) ; Edit category flag
- N DIR,X,Y S DIR(0)="YAO",DIR("B")=$S(+DFLT:"YES",1:"NO")
+ N DIR,X,Y,DTOUT S DIR(0)="YAO",DIR("B")=$S(+DFLT:"YES",1:"NO")
  S DIR("A")="SHOW PROBLEMS AUTOMATICALLY? "
  S DIR("?",1)="Enter YES if you wish the problems contained in this category to be",DIR("?",2)="automatically displayed upon entry to this list; NO will display only the",DIR("?")="category header until the user selects it to view."
 F1 D ^DIR I $D(DTOUT)!(X="^") Q "^"
@@ -102,7 +106,7 @@ RESEQ ; Resequence items
  . S NUM=$P(SEL,",",PIECE) Q:NUM'>0
  . S IFN=$P($G(^TMP("GMPLST",$J,"B",NUM)),U,1) Q:+IFN'>0  S SEQ=$P(^TMP("GMPLIST",$J,IFN),U,1)
  . W !!,$P(^TMP("GMPLIST",$J,IFN),U,3)
- . S NSEQ=$$SEQ(SEQ) I NSEQ="^" S GMPQUIT=1 Q 
+ . S NSEQ=$$SEQ(SEQ) I NSEQ="^" S GMPQUIT=1 Q
  .I SEQ'=NSEQ S ^TMP("GMPLIST",$J,IFN)=NSEQ_U_$P(^TMP("GMPLIST",$J,IFN),U,2,$L(^TMP("GMPLIST",$J,IFN),U)),^TMP("GMPLIST",$J,"SEQ",NSEQ)=IFN,GMPREBLD=1 K ^TMP("GMPLIST",$J,"SEQ",SEQ)
  I $D(GMPREBLD) S VALMBCK="R",GMPLSAVE=1 ; D BUILD in exit action
 RSQ S:'VALMCC VALMBCK="R" S VALMSG=$$MSG^GMPLX

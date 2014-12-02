@@ -1,5 +1,5 @@
 PSODGDG2 ;BIR/RTR-drug drug interaction continued ;8/8/96
- ;;7.0;OUTPATIENT PHARMACY;**27,130,251,375**;DEC 1997;Build 17
+ ;;7.0;OUTPATIENT PHARMACY;**27,130,251,375,372**;DEC 1997;Build 54
  ;External reference to ^DPT supported by DBIA 10035
  ;External references to U, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to $$DS^PSSDSAPI supported by DBIA 5424
@@ -10,6 +10,7 @@ EN ;Activate or process an Rx
 PROC I '$D(PSOPAR) D ^PSOLSET I '$D(PSOPAR) W $C(7),$C(7),!!,"SITE PARAMETERS MUST BE DEFINED !",! G EX
  I '$D(^XUSEC("PSORPH",DUZ)) W $C(7),$C(7),!,"YOU MUST BE A PHARMACIST TO COMPLETE THIS PROCEDURE !",!! Q
  I $P($G(^VA(200,DUZ,20)),"^",4)']"" W $C(7),$C(7),!,"YOU DO NOT HAVE AN ELECTRONIC SIGNATURE CODE !",!! Q
+ N PSOODOSP
 BEG S DIC="^PS(52.4,",DIC(0)="AQXEZ",DIC("S")="I $D(^PS(52.4,""ADI"",+Y))!($D(^PS(52.4,""DW"",+Y)))"
  S DIC("A")=$S($$DS^PSSDSAPI:"Select RX with Order Checks: ",1:"Select RX with Drug Interaction: ")
  S DIC("W")="W ?$X+5,$P(^DPT($P(^PS(52.4,+Y,0),""^"",2),0),""^"")_"" "",?40,$E($P(^(0),""^"",9),1,3)_""-""_$E($P(^(0),""^"",9),4,5)_""-""_$E($P(^(0),""^"",9),6,9)"
@@ -19,6 +20,7 @@ ENT S (PSODFN,PSOVRDFN,DFN,PSDFN)=$P(Y(0),"^",2),PPL="",PSONAM=$P(^DPT(PSDFN,0),
  K PSOPLCK D PSOL^PSSLOCK(PSONV) I '$G(PSOMSG) D UL^PSSLOCK(PSODFN) D  K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to Continue" D ^DIR K DIR,PSOMSG G BEG
  .I $P($G(PSOMSG),"^",2)'="" W !!,$P(PSOMSG,"^",2),! Q
  .W !!,"Another person is editing this order.",!
+ I $G(PSOODOSP)'=DFN S PSOODOSP=DFN K PSORX("DOSING OFF")
  D PID^VADPT
  K PSODLQT N PSOPOCK S PSOPOCK=1 D DGDGI^PSOVER
  I $G(VERLFLAG) D UL^PSSLOCK(PSOVRDFN) D PSOUL^PSSLOCK(PSONVXX) K VERLFLAG G BEG

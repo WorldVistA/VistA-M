@@ -1,6 +1,6 @@
-FBAAMP ;AISC/CMR-MULTIPLE PAYMENT ENTRY ;9/29/2003
- ;;3.5;FEE BASIS;**4,21,38,55,61,67,116,108**;JAN 30, 1995;Build 115
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBAAMP ;AISC/CMR-MULTIPLE PAYMENT ENTRY ; 11/21/12 4:12pm
+ ;;3.5;FEE BASIS;**4,21,38,55,61,67,116,108,143**;JAN 30, 1995;Build 20
+ ;;Per VA Directive 6402, this routine should not be modified.
  S FBMP=1 ;multiple payment flag
  G ^FBAACO
 1 ;return from FBAACO
@@ -41,7 +41,7 @@ FILE S TP="",DR="1///^S X=FBJ;Q;2///^S X=FBK;47///^S X=FBUNITS"
  I FBFPPSC]"" S DR=DR_";50///^S X=FBFPPSC;51///^S X=FBFPPSL"
  I FBAARC]"" S DR=DR_";48////^S X=FBAARC"
  ;S DR=DR_$S(FBJ-FBK:";3///^S X=FBAAAS;3.5////^S X=DT;4////^S X=FBAASC;D DESC^FBAAMP1",1:"")
- S DR(1,162.03,1)="6////^S X=DUZ;7////^S X=FBAABE;8////^S X=BO;13///^S X=FBAAID;14///^S X=FBAAIN;15///^S X=FBPT;16////^S X=FBPOV;17///^S X=FBTT;18///^S X=FBAAPTC;23////^S X=2;26////^S X=FBPSA"
+ S DR(1,162.03,1)="6////^S X=DUZ;7////^S X=FBAABE;8////^S X=BO;13///^S X=FBAAID;14///^S X=FBAAIN;15///^S X=FBPT;16////^S X=FBPOV;17///^S X=FBTT;18///^S X=FBAAPTC;23////^S X=FBTYPE;26////^S X=FBPSA"
  S DR(1,162.03,2)="34///^S X=$G(FBAAMM1);54////^S X=$G(FBCNTRP);28////^S X=FBHCFA(28);30////^S X=FBHCFA(30);31////^S X=FBHCFA(31);32////^S X=FBHCFA(32);33///^S X=FBAAVID;44///^S X=FBFSAMT;45////^S X=FBFSUSD"
  S DIE="^FBAAC("_DFN_",1,"_FBV_",1,"_FBSDI_",1,"
  S DA=FBAACPI,DA(1)=FBSDI,DA(2)=FBV,DA(3)=DFN
@@ -82,7 +82,9 @@ FEE N FBX,FB1725
  S FB1725=$S($G(FB583):+$P($G(^FB583(+FB583,0)),U,28),1:0)
  S FBFY=FY-1
  S (FBFSAMT,FBFSUSD,FBAMFS)=""
- S FBX=$$GET^FBAAFS($$CPT^FBAAUTL4(FBAACP),$$MODL^FBAAUTL4("FBMODA","E"),FBMPDT,$G(FBZIP),$$FAC^FBAAFS($G(FBHCFA(30))),$G(FBTIME))
+ ; FB*3.5*143 Adding FB1725 as a parameter to prevent reduction 
+ ; of local fee schedule payments
+ S FBX=$$GET^FBAAFS($$CPT^FBAAUTL4(FBAACP),$$MODL^FBAAUTL4("FBMODA","E"),FBMPDT,$G(FBZIP),$$FAC^FBAAFS($G(FBHCFA(30))),$G(FBTIME),$G(FB1725))
  ;
  I '$G(FBAAMM1) D
  . S FBFSAMT=$P(FBX,U),FBFSUSD=$P(FBX,U,2)
@@ -96,7 +98,8 @@ FEE N FBX,FB1725
  . W:$P(FBX,U,2)]"" $$EXTERNAL^DILFD(162.03,45,"",$P(FBX,U,2))
  E  W !?2,"Unable to determine a FEE schedule amount."
  ;
- I FB1725 D
+ ; FB*3.5*143 - Preventing 70% reduction of 75th percentile rates
+ I FB1725,FBFSUSD'="F" D
  . W !!?2,"**Payment is for emergency treatment under 38 U.S.C. 1725."
  . I FBFSAMT D
  . . S FBFSAMT=$J(FBFSAMT*.7,0,2)
@@ -106,7 +109,7 @@ FEE N FBX,FB1725
  . W !!?2,"Units Paid = ",FBUNITS
  . Q:FBFSAMT'>0
  . N FBFSUNIT
- . ; determine if fee schedule can be multipled by units
+ . ; determine if fee schedule can be multiplied by units
  . S FBFSUNIT=$S(FBFSUSD="R":1,FBFSUSD="F"&(FBMPDT>3040930):1,1:0)
  . I FBFSUNIT D
  . . S FBFSAMT=$J(FBFSAMT*FBUNITS,0,2)
@@ -121,7 +124,7 @@ FEE N FBX,FB1725
  W !
  ;
 AMTPD S DIR(0)="162.5,9",DIR("A")="Amount Paid: $",DIR("B")=$G(FBAMFS),DIR("?")="^D HELP1^FBAAMP" K:$G(FBAMFS)="" DIR("B") D ^DIR K DIR I $D(DIRUT) S FBAAOUT=1 Q
- I +Y>FBJ W !!,*7,"Amount paid cannot be greater than the amount claimed." G AMTPD
+ ;I +Y>FBJ W !!,*7,"Amount paid cannot be greater than the amount claimed." G AMTPD ; Removed in patch FB*143 as overpayment may be allowed per Medicare & Medicaid Services (CMS) reimbursement methodology
  I FBAMFS]"" I +Y>FBAMFS&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) W !!,*7,"You must be a holder of the 'FBAASUPERVISOR' key in order to",!,"exceed the Fee Schedule.",! G AMTPD
  S FBAMTPD=+Y K FBAMFS Q
 HELP1 W !!,"Enter a dollar amount that does not exceed the amount claimed.",!
@@ -144,7 +147,7 @@ CHKFS() ; check if fee schedule amount is different on date of service
  S FBRET=1 ; return value - true if date of service allowed
  ; set FB1725 flag = true if payment for a 38 U.S.C. 1725 claim
  S FB1725=$S($G(FB583):+$P($G(^FB583(+FB583,0)),U,28),1:0)
- S FBX=$$GET^FBAAFS($$CPT^FBAAUTL4(FBAACP),$$MODL^FBAAUTL4("FBMODA","E"),FBDT,$G(FBZIP),$$FAC^FBAAFS($G(FBHCFA(30))),$G(FBTIME))
+ S FBX=$$GET^FBAAFS($$CPT^FBAAUTL4(FBAACP),$$MODL^FBAAUTL4("FBMODA","E"),FBDT,$G(FBZIP),$$FAC^FBAAFS($G(FBHCFA(30))),$G(FBTIME),$G(FB1725))
  ; set FB1725 flag = true if payment for a 38 U.S.C. 1725 claim
  S FB1725=$S($G(FB583):+$P($G(^FB583(+FB583,0)),U,28),1:0)
  ; adjust amount if mill bill

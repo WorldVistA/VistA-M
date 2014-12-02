@@ -1,6 +1,6 @@
 IBCNSOK ;ALB/AAS - Patient Insurance consistency checker ; 2/22/93
- ;;Version 2.0 ; INTEGRATED BILLING ;; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**497**;21-MAR-94;Build 120
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % I '$D(DT) D DT^DICRW
  K ^TMP("IBCNS-ERR",$J)
@@ -97,9 +97,12 @@ ONE ; -- print one line
  S IBCDFND=$G(^DPT(DFN,.312,IBCDFN,0))
  W ?39,$E($P($G(^DIC(36,+IBCDFND,0)),"^"),1,25)
  S IBCPOLD=$G(^IBA(355.3,+IBDATA,0))
- I +IBCPOLD W ?68,$E($P(IBCPOLD,"^",4)_"("_$P($G(^DIC(36,+IBCPOLD,0)),"^"),1,33)_")"
+ N IBCPOLD2 ;WCJ;IB*2*497
+ S IBCPOLD2=$G(^IBA(355.3,+IBDATA,2)) ;WCJ;IB*2*497
+ I +IBCPOLD W ?68,$E($P(IBCPOLD2,"^",2)_"("_$P($G(^DIC(36,+IBCPOLD,0)),"^"),1,33)_")" ;WCJ;IB*2*497
  S IBCPOLD=$G(^IBA(355.3,$P(IBDATA,"^",2),0))
- I +IBCPOLD W ?105,$E($P(IBCPOLD,"^",4)_"("_$P($G(^DIC(36,+IBCPOLD,0)),"^"),1,20)_")"
+ S IBCPOLD2=$G(^IBA(355.3,$P(IBDATA,"^",2),2)) ;WCJ;IB*2*497
+ I +IBCPOLD W ?105,$E($P(IBCPOLD2,"^",2)_"("_$P($G(^DIC(36,+IBCPOLD,0)),"^"),1,20)_")" ;WCJ;IB*2*497
  W ?127,$S($G(IBUPDAT):"YES",1:"NO")
  W !?5,"Error: ",$S($P(IBDATA,"^",3)="IBCNS-ERR1":"Policy is missing group Plan",$P(IBDATA,"^",3)="IBCNS-ERR3":"Dangling insurance node detected",1:"Group Plan is with different insurance company")
  Q

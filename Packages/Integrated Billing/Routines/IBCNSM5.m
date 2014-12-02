@@ -1,6 +1,6 @@
 IBCNSM5 ;ALB/NLR - INSURANCE MANAGEMENT WORKSHEET ; 23-JUL-93
- ;;Version 2.0 ; INTEGRATED BILLING ;**28**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,497**;21-MAR-94;Build 120
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % G EN^IBCNSM
  ;
@@ -96,7 +96,7 @@ HDR ; -- print header
  W !,$TR($J(" ",IOM)," ","_")
  D DEM^VADPT
  W !!,VADM(1),?34,"PT ID:  "_VA("PID"),?79,"DOB:  "_$P(VADM(3),"^",2)
- W !,$E($P($G(^DIC(36,+IBCDFND,0)),"^"),1,28),?31," GROUP #:  ",$$DOL^IBCNSM6(355.3,.04,$P(IBCPOLD,"^",4),$G(IBLINE))
+ W !,$E($P($G(^DIC(36,+IBCDFND,0)),"^"),1,28),?31," GROUP #:  ",$$DOL^IBCNSM6(355.3,2.02,$P(IBCPOLD,"^",4),$G(IBLINE))  ;WCJ;IB*2.0*497 changed .04 to 2.02 for new Group# field
  W ?74,"For YEAR:  "_$S($G(IBCAB):$$DAT1^IBOUTL(IBYR),1:"______________")
  W !?30,"Ins. Type:  ",$$DOL^IBCNSM6(355.1,.01,$P($G(^IBE(355.1,+$P(IBCPOLD,"^",9),0)),"^"),$G(IBLINE))
  Q

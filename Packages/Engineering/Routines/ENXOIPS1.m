@@ -32,7 +32,7 @@ MSG ;Mail message to developer
  S (ENX,X)=0 F  S X=$O(^TMP($J,"CMR69",X)) Q:X'>0  S ENX=ENX+$P(^(X),U,3)
  I COUNT("FAP")=0 S ^TMP($J,"CMR69",1)="No FAs transmitted.",^TMP($J,"CMR69",2)=^ENG(6914,0) D PS
  E  S ENI=$O(^TMP($J,"CMR69",9999999999),-1),^TMP($J,"CMR69",ENI+1)="FAP Records from CMRs 69x Total $"_ENX,^TMP($J,"CMR69",ENI+2)=^ENG(6914,0) D PS
- S XMY("HEIBY,D@FORUM.domain.ext")="",XMY(DUZ)="",XMDUZ=.5
+ S XMY("HEIBY,D@DOMAIN.EXT")="",XMY(DUZ)="",XMDUZ=.5
  S XMSUB="FAP Records in EIL 69",XMTEXT="^TMP($J,""CMR69"","
  D ^XMD
  K XMY,XMDUZ,XMSUB,XMTEXT

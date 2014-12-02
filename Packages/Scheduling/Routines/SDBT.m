@@ -1,17 +1,17 @@
-SDBT ; GENERATED FROM 'SDB' INPUT TEMPLATE(#485), FILE 44;12/14/10
+SDBT ; GENERATED FROM 'SDB' INPUT TEMPLATE(#485), FILE 44;08/05/14
  D DE G BEGIN
 DE S DIE="^SC(",DIC=DIE,DP=44,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^SC(DA,""))=""
- I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=% S %=$P(%Z,U,2) S:%]"" DE(2)=% S %=$P(%Z,U,7) S:%]"" DE(12)=% S %=$P(%Z,U,8) S:%]"" DE(4)=% S %=$P(%Z,U,11) S:%]"" DE(42)=% S %=$P(%Z,U,15) S:%]"" DE(10)=% S %=$P(%Z,U,17) S:%]"" DE(5)=%
- I  S %=$P(%Z,U,18) S:%]"" DE(36)=% S %=$P(%Z,U,19) S:%]"" DE(3)=% S %=$P(%Z,U,21) S:%]"" DE(7)=% S %=$P(%Z,U,24) S:%]"" DE(22)=% S %=$P(%Z,U,25) S:%]"" DE(14)=% S %=$P(%Z,U,30) S:%]"" DE(26)=%
+ I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=% S %=$P(%Z,U,2) S:%]"" DE(2)=% S %=$P(%Z,U,7) S:%]"" DE(12)=% S %=$P(%Z,U,8) S:%]"" DE(4)=% S %=$P(%Z,U,11) S:%]"" DE(40)=% S %=$P(%Z,U,15) S:%]"" DE(10)=% S %=$P(%Z,U,17) S:%]"" DE(5)=%
+ I  S %=$P(%Z,U,18) S:%]"" DE(35)=% S %=$P(%Z,U,19) S:%]"" DE(3)=% S %=$P(%Z,U,21) S:%]"" DE(7)=% S %=$P(%Z,U,24) S:%]"" DE(22)=% S %=$P(%Z,U,25) S:%]"" DE(14)=% S %=$P(%Z,U,30) S:%]"" DE(26)=%
  I $D(^(99)) S %Z=^(99) S %=$P(%Z,U,1) S:%]"" DE(15)=%
  I $D(^("AT")) S %Z=^("AT") S %=$P(%Z,U,1) S:%]"" DE(13)=%
  I $D(^("LTR")) S %Z=^("LTR") S %=$P(%Z,U,1) S:%]"" DE(18)=% S %=$P(%Z,U,2) S:%]"" DE(19)=% S %=$P(%Z,U,3) S:%]"" DE(20)=% S %=$P(%Z,U,4) S:%]"" DE(21)=%
  I $D(^("PC")) S %Z=^("PC") S %=$P(%Z,U,1) S:%]"" DE(24)=%
  I $D(^("PS")) S %Z=^("PS") S %=$P(%Z,U,1) S:%]"" DE(17)=%
  I $D(^("RAD")) S %Z=^("RAD") S %=$P(%Z,U,1) S:%]"" DE(16)=%
- I $D(^("SDP")) S %Z=^("SDP") S %=$P(%Z,U,1) S:%]"" DE(27)=% S %=$P(%Z,U,2) S:%]"" DE(28)=% S %=$P(%Z,U,3) S:%]"" DE(33)=% S %=$P(%Z,U,4) S:%]"" DE(34)=%
- I $D(^("SDPROT")) S %Z=^("SDPROT") S %=$P(%Z,U,1) S:%]"" DE(37)=%
- I $D(^("SL")) S %Z=^("SL") S %=$P(%Z,U,3) S:%]"" DE(30)=% S %=$P(%Z,U,5) S:%]"" DE(43)=% S %=$P(%Z,U,7) S:%]"" DE(44)=% S %=$P(%Z,U,8) S:%]"" DE(35)=%
+ I $D(^("SDP")) S %Z=^("SDP") S %=$P(%Z,U,1) S:%]"" DE(27)=% S %=$P(%Z,U,2) S:%]"" DE(28)=% S %=$P(%Z,U,3) S:%]"" DE(32)=% S %=$P(%Z,U,4) S:%]"" DE(33)=%
+ I $D(^("SDPROT")) S %Z=^("SDPROT") S %=$P(%Z,U,1) S:%]"" DE(36)=%
+ I $D(^("SL")) S %Z=^("SL") S %=$P(%Z,U,3) S:%]"" DE(30)=% S %=$P(%Z,U,5) S:%]"" DE(41)=% S %=$P(%Z,U,7) S:%]"" DE(42)=% S %=$P(%Z,U,8) S:%]"" DE(34)=%
  K %Z Q
  ;
 W W !?DL+DL-2,DLB_": "
@@ -142,14 +142,20 @@ X7 Q
 9 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=9 D X9 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X9 S:$S('$D(^DG(43,1,"GL")):1,$D(^DG(43,1,"GL"))&('$P(^DG(43,1,"GL"),"^",2)):1,1:0) Y="@10"
  Q
-10 S DW="0;15",DV="P40.8'",DU="",DLB="DIVISION",DIFLD=3.5
+10 S DW="0;15",DV="P40.8'a",DU="",DLB="DIVISION",DIFLD=3.5
+ S DE(DW)="C10^SDBT"
  S DU="DG(40.8,"
  S X=+$O(^DG(40.8,0)),X=$S($D(^(X,0)):$P(^(0),"^"),1:"")
  S Y=X
  G Y
+C10 G C10S:$D(DE(10))[0 K DB
+ S X=DE(10),DIIX=2_U_DIFLD D AUDIT^DIET
+C10S S X="" G:DG(DQ)=X C10F1 K DB
+ I $D(DE(10))'[0!(^DD(DP,DIFLD,"AUDIT")'="e") S X=DG(DQ),DIIX=3_U_DIFLD D AUDIT^DIET
+C10F1 Q
 X10 Q
 11 S DQ=12 ;@10
-12 S DW="0;7",DV="R*P40.7'Xa",DU="",DLB="STOP CODE NUMBER",DIFLD=8
+12 D:$D(DG)>9 F^DIE17,DE S DQ=12,DW="0;7",DV="R*P40.7'Xa",DU="",DLB="STOP CODE NUMBER",DIFLD=8
  S DE(DW)="C12^SDBT",DE(DW,"INDEX")=1
  S DU="DIC(40.7,"
  G RE
@@ -280,7 +286,7 @@ R23 D DE
  G RE
 X24 Q
 25 S D=0 K DE(1) ;2700
- S DIFLD=2700,DGO="^SDBT2",DC="2^44.11P^DX^",DV="44.11M*P80'",DW="0;1",DOW="DIAGNOSIS",DLB=$P($$EZBLD^DIALOG(8042,DOW),": ") S:D DC=DC_D
+ S DIFLD=2700,DGO="^SDBT2",DC="2^44.11P^DX^",DV="44.11M*P80'X",DW="0;1",DOW="DIAGNOSIS",DLB=$P($$EZBLD^DIALOG(8042,DOW),": ") S:D DC=DC_D
  S DU="ICD9("
  G RE:D I $D(DSC(44.11))#2,$P(DSC(44.11),"I $D(^UTILITY(",1)="" X DSC(44.11) S D=$O(^(0)) S:D="" D=-1 G M25
  S D=$S($D(^SC(DA,"DX",0)):$P(^(0),U,3,4),$O(^(0))'="":$O(^(0)),1:-1)
@@ -311,78 +317,76 @@ X29 S:+$O(^SC(DA,"ST",0))>0 Y="@25"
 X30 K:+X'=X!(X>16)!(X<0)!(X?.E1"."1N.N) X
  Q
  ;
-31 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=31 G A
-32 S DQ=33 ;@25
-33 S DW="SDP;3",DV="NJ2,0X",DU="",DLB="START TIME FOR AUTO REBOOK",DIFLD=2003
+31 S DQ=32 ;@25
+32 S DW="SDP;3",DV="NJ2,0X",DU="",DLB="START TIME FOR AUTO REBOOK",DIFLD=2003
  G RE
-X33 K:+X'=X!(X>16)!(X<0)!(X?.E1"."1N.N) X I $D(X),$D(^SC(DA,"SL")) I X<$S('$P(^("SL"),"^",3):8,1:$P(^("SL"),"^",3)) W !,*7,"MUST NOT BE EARLIER THAN CLINIC START TIME" K X
+X32 K:+X'=X!(X>16)!(X<0)!(X?.E1"."1N.N) X I $D(X),$D(^SC(DA,"SL")) I X<$S('$P(^("SL"),"^",3):8,1:$P(^("SL"),"^",3)) W !,*7,"MUST NOT BE EARLIER THAN CLINIC START TIME" K X
  Q
  ;
-34 S DW="SDP;4",DV="RNJ3,0",DU="",DLB="MAX # DAYS FOR AUTO-REBOOK",DIFLD=2005
+33 S DW="SDP;4",DV="RNJ3,0",DU="",DLB="MAX # DAYS FOR AUTO-REBOOK",DIFLD=2005
  G RE
-X34 K:+X'=X!(X>365)!(X<1)!(X?.E1"."1N.N) X
+X33 K:+X'=X!(X>365)!(X<1)!(X?.E1"."1N.N) X
  Q
  ;
-35 S DW="SL;8",DV="S",DU="",DLB="SCHEDULE ON HOLIDAYS?",DIFLD=1918.5
+34 S DW="SL;8",DV="S",DU="",DLB="SCHEDULE ON HOLIDAYS?",DIFLD=1918.5
  S DU="Y:YES;"
  G RE
-X35 Q
-36 S DW="0;18",DV="*P40.7'Xa",DU="",DLB="CREDIT STOP CODE",DIFLD=2503
- S DE(DW)="C36^SDBT",DE(DW,"INDEX")=1
+X34 Q
+35 S DW="0;18",DV="*P40.7'Xa",DU="",DLB="CREDIT STOP CODE",DIFLD=2503
+ S DE(DW)="C35^SDBT",DE(DW,"INDEX")=1
  S DU="DIC(40.7,"
  G RE
-C36 G C36S:$D(DE(36))[0 K DB
- S X=DE(36),DIIX=2_U_DIFLD D AUDIT^DIET
-C36S S X="" G:DG(DQ)=X C36F1 K DB
- I $D(DE(36))'[0!(^DD(DP,DIFLD,"AUDIT")'="e") S X=DG(DQ),DIIX=3_U_DIFLD D AUDIT^DIET
-C36F1 N X,X1,X2 S DIXR=457 D C36X1(U) K X2 M X2=X D C36X1("O") K X1 M X1=X
+C35 G C35S:$D(DE(35))[0 K DB
+ S X=DE(35),DIIX=2_U_DIFLD D AUDIT^DIET
+C35S S X="" G:DG(DQ)=X C35F1 K DB
+ I $D(DE(35))'[0!(^DD(DP,DIFLD,"AUDIT")'="e") S X=DG(DQ),DIIX=3_U_DIFLD D AUDIT^DIET
+C35F1 N X,X1,X2 S DIXR=457 D C35X1(U) K X2 M X2=X D C35X1("O") K X1 M X1=X
  I $G(X(1))]"" D
  . K ^SC("ACST",X,DA)
  K X M X=X2 I $G(X(1))]"" D
  . S ^SC("ACST",X,DA)=""
- G C36F2
-C36X1(DION) K X
+ G C35F2
+C35X1(DION) K X
  S X(1)=$G(@DIEZTMP@("V",44,DIIENS,2503,DION),$P($G(^SC(DA,0)),U,18))
  S X=$G(X(1))
  Q
-C36F2 Q
-X36 S DIC("S")="I $P(^(0),U,2)'=900&$S('$P(^(0),U,3):1,$P(^(0),U,3)>DT:1,1:0),""SE""[$P(^(0),U,6),$S('$P(^(0),U,7):1,$P(^(0),U,7)'>DT:1,1:0)" D ^DIC K DIC S DIC=DIE,X=+Y K:Y<0 X
+C35F2 Q
+X35 S DIC("S")="I $P(^(0),U,2)'=900&$S('$P(^(0),U,3):1,$P(^(0),U,3)>DT:1,1:0),""SE""[$P(^(0),U,6),$S('$P(^(0),U,7):1,$P(^(0),U,7)'>DT:1,1:0)" D ^DIC K DIC S DIC=DIE,X=+Y K:Y<0 X
  Q
  ;
-37 D:$D(DG)>9 F^DIE17,DE S DQ=37,DW="SDPROT;1",DV="S",DU="",DLB="PROHIBIT ACCESS TO CLINIC?",DIFLD=2500
+36 D:$D(DG)>9 F^DIE17,DE S DQ=36,DW="SDPROT;1",DV="S",DU="",DLB="PROHIBIT ACCESS TO CLINIC?",DIFLD=2500
  S DU="Y:YES;"
  G RE
-X37 Q
-38 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=38 D X38 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X38 S:X'="Y" Y="@30"
+X36 Q
+37 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=37 D X37 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X37 S:X'="Y" Y="@30"
  Q
-39 S D=0 K DE(1) ;2501
+38 S D=0 K DE(1) ;2501
  S DIFLD=2501,DGO="^SDBT3",DC="1^44.04PA^SDPRIV^",DV="44.04MP200'X",DW="0;1",DOW="PRIVILEGED USER",DLB=$P($$EZBLD^DIALOG(8042,DOW),": ") S:D DC=DC_D
  S DU="VA(200,"
- G RE:D I $D(DSC(44.04))#2,$P(DSC(44.04),"I $D(^UTILITY(",1)="" X DSC(44.04) S D=$O(^(0)) S:D="" D=-1 G M39
+ G RE:D I $D(DSC(44.04))#2,$P(DSC(44.04),"I $D(^UTILITY(",1)="" X DSC(44.04) S D=$O(^(0)) S:D="" D=-1 G M38
  S D=$S($D(^SC(DA,"SDPRIV",0)):$P(^(0),U,3,4),$O(^(0))'="":$O(^(0)),1:-1)
-M39 I D>0 S DC=DC_D I $D(^SC(DA,"SDPRIV",+D,0)) S DE(39)=$P(^(0),U,1)
+M38 I D>0 S DC=DC_D I $D(^SC(DA,"SDPRIV",+D,0)) S DE(38)=$P(^(0),U,1)
  G RE
-R39 D DE
- S D=$S($D(^SC(DA,"SDPRIV",0)):$P(^(0),U,3,4),1:1) G 39+1
+R38 D DE
+ S D=$S($D(^SC(DA,"SDPRIV",0)):$P(^(0),U,3,4),1:1) G 38+1
  ;
-40 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=40 G A
-41 S DQ=42 ;@30
-42 S DW="0;11",DV="F",DU="",DLB="PHYSICAL LOCATION",DIFLD=10
+39 S DQ=40 ;@30
+40 S DW="0;11",DV="F",DU="",DLB="PHYSICAL LOCATION",DIFLD=10
  G RE
-X42 K:$L(X)>25!($L(X)<1) X
+X40 K:$L(X)>25!($L(X)<1) X
  I $D(X),X'?.ANP K X
  Q
  ;
-43 S DW="SL;5",DV="*P44'",DU="",DLB="PRINCIPAL CLINIC",DIFLD=1916
+41 S DW="SL;5",DV="*P44'",DU="",DLB="PRINCIPAL CLINIC",DIFLD=1916
  S DU="SC("
  G RE
-X43 S DIC("S")="I $P(^(0),""^"",3)=""C"",'$G(^(""OOS""))" D ^DIC K DIC S DIC=DIE,X=+Y K:Y<0 X
+X41 S DIC("S")="I $P(^(0),""^"",3)=""C"",'$G(^(""OOS""))" D ^DIC K DIC S DIC=DIE,X=+Y K:Y<0 X
  Q
  ;
-44 S DW="SL;7",DV="RNJ4,0",DU="",DLB="OVERBOOKS/DAY MAXIMUM",DIFLD=1918
+42 S DW="SL;7",DV="RNJ4,0",DU="",DLB="OVERBOOKS/DAY MAXIMUM",DIFLD=1918
  G RE
-X44 K:+X'=X!(X>9999)!(X<0)!(X?.E1"."1N.N) X
+X42 K:+X'=X!(X>9999)!(X<0)!(X?.E1"."1N.N) X
  Q
  ;
-45 D:$D(DG)>9 F^DIE17 G ^SDBT4
+43 D:$D(DG)>9 F^DIE17 G ^SDBT4

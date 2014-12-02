@@ -1,5 +1,5 @@
 PSXRPPL2 ;BIR/WPB - Print From Suspense Utilities ;06/10/08
- ;;2.0;CMOP;**65,69,73**;11 Apr 97;Build 24
+ ;;2.0;CMOP;**65,69,73,74**;11 Apr 97;Build 11
  ;Reference to ^PSRX( supported by DBIA #1977
  ;Reference to ^PS(52.5, supported by DBIA #1978
  ;Reference to ^PSSLOCK  supported by DBIA #2789
@@ -10,6 +10,7 @@ PSXRPPL2 ;BIR/WPB - Print From Suspense Utilities ;06/10/08
  ;Reference to ^PSOREJU3 supported by DBIA #5186
  ;Reference to $$DEA^IBNCPDP controlled subscription by IA 4299
  ;Reference to CHANGE^PSOSUCH1 suppored by DBIA #5427
+ ;Reference to PREVRX^PSOREJP2 supported by DBIA #5912
  ;
 CHKDFN(THRDT) ; use the patient 'C' index under RX multiple in file 550.2 to GET dfn to gather Patients' future RXs
  ;Input: THRDT - THROUGH DATE to run CMOP transmission
@@ -28,7 +29,7 @@ CHKDFN(THRDT) ; use the patient 'C' index under RX multiple in file 550.2 to GET
  . . . . . . I $$PATCH^XPDUTL("PSO*7.0*148") D
  . . . . . . . I $$RETRX^PSOBPSUT(RX,RFL),SDT>DT Q
  . . . . . . . I $$DOUBLE^PSXRPPL1(RX,RFL) Q
- . . . . . . . I $$FIND^PSOREJUT(RX,RFL,,"79,88") Q
+ . . . . . . . I $$FIND^PSOREJUT(RX,RFL,,"79,88",,1) Q
  . . . . . . . I '$$RETRX^PSOBPSUT(RX,RFL),$$ECMESTAT(RX,RFL) Q
  . . . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),'$$DUR(RX,RFL),'$$DSH(REC) Q
  . . . . . . . D ECMESND^PSOBPSU1(RX,RFL,"","PC",,1,,,,.RESP)
@@ -43,7 +44,7 @@ CHKDFN(THRDT) ; use the patient 'C' index under RX multiple in file 550.2 to GET
 EPHARM ; - ePharmacy checks for third party billing
  I $$DOUBLE^PSXRPPL1(RXN,RFL) S EPHQT=1 Q
  I $$RETRX^PSOBPSUT(RXN,RFL),SDT>DT S EPHQT=1 Q
- I $$FIND^PSOREJUT(RXN,RFL,,"79,88") S EPHQT=1 Q
+ I $$FIND^PSOREJUT(RXN,RFL,,"79,88",,1) S EPHQT=1 Q
  I $$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RXN,RFL,.RESP,"PC") D EPH Q
  I $$PATCH^XPDUTL("PSO*7.0*287"),$D(^TMP("PSXEPHNB",$J,RXN,RFL)) D EPH Q
  I $$STATUS^PSOBPSUT(RXN,RFL)="IN PROGRESS" D EPH Q
@@ -90,30 +91,29 @@ ECMESTAT(RX,RFL) ;
  ;condition.
  ;Input: REC = Pointer to Suspense file (#52.5)
  ;Returns: 1 or 0
- ;1 (one) if ¾ of days supply has elapsed.
- ;0 (zero) is returned if ¾ of days supply has not elapsed. 
+ ;1 (one) if 3/4 of days supply has elapsed.
+ ;0 (zero) is returned if 3/4 of days supply has not elapsed. 
  ;
 DSH(REC) ;ePharmacy API to check for 3/4 days supply hold
  N PSINSUR,PSARR,SHDT,DSHOLD,DSHDT,PS0,COMM,DIE,DA,DR,RXIEN,RFL,DAYSSUP,LSTFIL,PTDFN,IBINS,DRG
  N DEA,DEAOK,ICD,SFN,SDT
  S DSHOLD=1,PS0=^PS(52.5,REC,0),RXIEN=$P(PS0,U,1),RFL=$P(PS0,U,13)
  S LSTFIL=$$LSTRFL^PSOBPSU1(RXIEN),PTDFN=$$GET1^DIQ(52,RXIEN,"2","I")
+ I RFL="" S RFL=LSTFIL
  S IBSTAT=$$INSUR^IBBAPI(PTDFN,,"E",.IBINS,"1"),DRG=$$GET1^DIQ(52,RXIEN,"6","I")
  S (ICD,DEA)="",DEA=$$GET1^DIQ(50,DRG,3)
  I $D(^PSRX(RXIEN,"ICD",1,0)) S ICD=^PSRX(RXIEN,"ICD",1,0)
  ;
  ; Don't hold Rx where the previous fill was not ebillable
- I $$STATUS^BPSOSRX(RXIEN,LSTFIL-1)="" Q DSHOLD
+ I LSTFIL>0,$$STATUS^BPSOSRX(RXIEN,LSTFIL-1)="" Q DSHOLD
  ; Don't hold when the Rx has SC/EI flagged
  I ICD[1 Q DSHOLD
  ; Don't hold rx if DEA special Handling code is non billable (i.e. has M or 0 (zero) or I, S, N, and/or 9)) without an E
  S DEAOK=$$DEA^IBNCPDP(DEA) I 'DEAOK Q DSHOLD
- ; Don't hold for zero fill renewals
- I 'LSTFIL,$$GET1^DIQ(52,RXIEN_",","PRIOR FILL DATE",,,)="" Q DSHOLD
  ; Don't hold if no insurance
  I 'IBSTAT!(IBSTAT=-1) Q DSHOLD
  ;
- S DSHDT=$$DSHDT(RXIEN) ; 3/4 of days supply date
+ S DSHDT=$$DSHDT(RXIEN,RFL) ; 3/4 of days supply date
  I DSHDT>DT S DSHOLD=0 D
  . I DSHDT'=$P(PS0,U,14) D  ; Update Suspense Hold Date and Activity Log
  . . S COMM="3/4 of Days Supply SUSPENSE HOLD until "_$$FMTE^XLFDT(DSHDT,"2D")_"."
@@ -125,39 +125,33 @@ DSH(REC) ;ePharmacy API to check for 3/4 days supply hold
  . . S SFN=REC,DEAD=0,INDT=DSHDT D CHANGE^PSOSUCH1(RXIEN,RFL)
  Q DSHOLD
  ;
- ;Description: ePharmacy
- ;This function determines the date that 3/4 of the days supply for the
- ;last refill will occur.
- ;Input: RXIEN = Prescription file #52 IEN
- ;Returns: DATE/TIME value
-DSHDT(RXIEN) ;
+DSHDT(RXIEN,RFL) ; ePharmacy function to determine the 3/4 of the days supply date
+ ; Input: RXIEN = Prescription file #52 ien
+ ;          RFL = fill#
+ ; Returns: DATE value of last date of service plus 3/4 of days supply
+ ;
  N FILLDT,DAYSSUP,DSH34
  I '$D(^PSRX(RXIEN,0)) Q -1
- S FILLDT=$$LDPFDT(RXIEN) ; Last Dispensed Date or Prior Fill Date for renewal
- S DAYSSUP=$$LFDS(RXIEN) ; Days Supply of Last Refill
- ;SLT - PSX*2.0*73
- S DSH34=DAYSSUP*.75 ;3/4 of days supply
- S:DSH34["." DSH34=(DSH34+1)\1
- Q $$FMADD^XLFDT(FILLDT,DSH34) ; Return today plus 3/4 of Days Supply date
+ I $G(RFL)="" Q -1
  ;
- ;Description:
- ;This function returns the DAYS SUPPLY for the Latest Fill for a Prescription
- ;Input: RXIEN = Prescription file #52 IEN
- ;Returns: DAYS SUPPLY for the latest fill or -1 if RXIEN is not valid
+ D PREVRX^PSOREJP2(RXIEN,RFL,,.FILLDT,.DAYSSUP)     ; DBIA #5912
+ I FILLDT="" Q -1
+ ;
+ S DSH34=DAYSSUP*.75 ; 3/4 of Days Supply
+ S:DSH34["." DSH34=(DSH34+1)\1
+ Q $$FMADD^XLFDT(FILLDT,DSH34) ; Return last date of service plus 3/4 of Days Supply date
+ ;
+ ; Description: This function returns the DAYS SUPPLY for the Latest Fill
+ ; for a Prescription
+ ; Input: RXIEN = Prescription file #52 IEN
+ ; Returns: DAYS SUPPLY for the latest fill
+ ;          -1 if RXIEN is not valid
 LFDS(RXIEN) ;
  N RXFIL
  Q:'$D(^PSRX(RXIEN)) -1
  S RXFIL=$$LSTRFL^PSOBPSU1(RXIEN)
  Q $S(RXFIL=0:$P(^PSRX(RXIEN,0),U,8),1:$P(^PSRX(RXIEN,1,RXFIL,0),U,10))
  ;
-LDPFDT(RXIEN) ; Returns PRIOR FILL DATE if renewal otherwise LAST DISPENSED DATE or -1 if not valid
- Q $S('$D(^PSRX(RXIEN)):-1,$$PRFDT(RXIEN):$$PRFDT(RXIEN),1:$$LDT(RXIEN))
- ;
-PRFDT(RXIEN) ; Returns PRIOR FILL DATE in internal format
- Q $$GET1^DIQ(52,RXIEN_",","PRIOR FILL DATE","I",,)
- ;
-LDT(RXIEN) ; Returns LAST DISPENSED DATE in internal format
- Q $$GET1^DIQ(52,RXIEN_",","LAST DISPENSED DATE","I",,)
  ;
  ;Description: ePharmacy API to check for host errors.
  ;Input: RX = Prescription file #52 IEN

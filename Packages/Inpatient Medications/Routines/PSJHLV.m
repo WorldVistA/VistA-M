@@ -1,5 +1,5 @@
 PSJHLV ;BIR/CML3-VERIFY (MAKE ACTIVE) ORDERS ;4/8/99  08:16
- ;;5.0;INPATIENT MEDICATIONS;**39,42,78,92,127,133,268**;16 DEC 97;Build 9
+ ;;5.0;INPATIENT MEDICATIONS;**39,42,78,92,127,133,268,257**;16 DEC 97;Build 105
  ;
  ; Reference to ^PS(50.7 is supported by DBIA# 2180.
  ; Reference to ^PS(55 is supported by DBIA# 2191.
@@ -31,6 +31,7 @@ VFY ; change status, move to 55, and change label record
  ..S PSGORD=PSGORDR
  ;
  S DIE="^PS(53.1,",DA=+PSGORD,DR="28////A" D ^DIE I $P(PSJRPND0,U,24)'="R" D ^PSGOT
+ D CIMOU^PSJIMO1(PSJHLDFN,+PSGORD,"",PSGORDP)
  S DA=+PSGORD,DA(1)=PSJHLDFN,PSGAL("C")=22010
  D ^PSGAL5 S VND4=$G(^PS(55,PSJHLDFN,5,DA,4)) I $P(PSJRPND0,U,24)="R",$P(VND4,U,4) D
  .K DA,DIE,DR I $P(VND4,U,4)<$$LASTREN^PSJLMPRI(PSJHLDFN,PSGORDP) S DIE="^PS(55,"_PSJHLDFN_",5,",DA(1)=PSJHLDFN,DA=+PSGORD,DR="18////@;19////@" D ^DIE
@@ -94,3 +95,4 @@ DDOK(PSJF,OI) ;Check to be sure all dispense drugs that are active in the
   .S DDCNT=DDCNT+1
   .S X=$S('$D(^PSDRUG(+ND,0)):1,$P($G(^(2)),U,3)'["U":1,+$G(^(2))'=+OI:1,$G(^("I"))="":0,1:^("I")'>PSGDT)
   Q $S('DDCNT:0,X=1:0,1:1)
+  ;

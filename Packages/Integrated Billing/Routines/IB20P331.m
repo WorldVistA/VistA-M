@@ -91,7 +91,7 @@ MMSG ; MailMan message to report update problem to billing groups, patch install
  S IBPARAM("FROM")="PATCH IB*2.0*331 CY 2006 RATE UPDATE"
  F IBGROUP="IB EDI SUPERVISOR","IB ERROR","MCCR" D
  . I $D(^XMB(3.8,"B",IBGROUP)) S IBGROUP="G."_IBGROUP,XMY(IBGROUP)=""
- S XMY(DUZ)="",XMY("HUA.PATRICK@FORUM.domain.ext")=""
+ S XMY(DUZ)="",XMY("HUA.PATRICK@DOMAIN.EXT")=""
  ;
  S IBC=0
  S IBC=IBC+1,IBTXT(IBC)="This message has been sent by patch IB*2.0*331. If you have received this"

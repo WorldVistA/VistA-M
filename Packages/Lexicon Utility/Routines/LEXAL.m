@@ -1,6 +1,17 @@
-LEXAL ;ISL/KER - Look-up List (Global) ;11/30/2008
- ;;2.0;LEXICON UTILITY;**6,55**;Sep 23, 1996;Build 11
- ;
+LEXAL ;ISL/KER - Look-up List (Global) ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**6,55,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.13         N/A
+ ;    ^LEX(757.14         N/A
+ ;    ^TMP("LEXFND"       SACC 2.3.2.5.1
+ ;    ^TMP("LEXHIT"       SACC 2.3.2.5.1
+ ;    ^TMP("LEXSCH"       SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    $$DT^XLFDT          ICR  10103
+ ;    $$UP^XLFSTR         ICR  10103
+ ;               
  ; Add to the list
 ADDL(LEXI,LEXDS,LEXDP) ; Add
  N LEXA S LEXA=$G(LEXI) Q:LEXA=0  Q:'$D(^LEX(757.01,LEXA))  S LEXI=$$SIEN(LEXA)
@@ -8,6 +19,7 @@ ADDL(LEXI,LEXDS,LEXDP) ; Add
  S LEXDS=$G(LEXDS),LEXDP=$G(LEXDP)
  N LEXF,LEXT,LEXL,LEXC
  S LEXT=$$DISP(LEXA,LEXDS,LEXDP)
+ S:$D(LEXIGN)&($P($G(^LEX(757.01,LEXA,1)),"^",5)>0) LEXT=LEXT_" (Deactivated Term)"
  S LEXF=$$LSTN(LEXA,"A")
  S:'$D(^TMP("LEXFND",$J,-LEXF,LEXA)) ^TMP("LEXSCH",$J,"NUM",0)=$G(^TMP("LEXSCH",$J,"NUM",0))+1
  S ^TMP("LEXFND",$J,-LEXF,LEXA)=LEXT
@@ -23,6 +35,7 @@ ADDN(LEXI,LEXDS,LEXDP) ; Near match
  . S LEXA=+($G(^LEX(757.01,LEXA,1))),LEXA=+($G(^LEX(757,LEXA,0)))
  S LEXDS=$G(LEXDS),LEXDP=$G(LEXDP)
  N LEXT S LEXT=$$DISP(LEXA,LEXDS,LEXDP)
+ S:$D(LEXIGN)&($P($G(^LEX(757.01,LEXA,1)),"^",5)>0) LEXT=LEXT_"(Deactivated Term)"
  S:'$D(^TMP("LEXFND",$J,-LEXF,LEXA)) ^TMP("LEXSCH",$J,"NUM",0)=$G(^TMP("LEXSCH",$J,"NUM",0))+1
  S ^TMP("LEXFND",$J,LEXN,LEXA)=LEXT
  S:LEXN<$G(^TMP("LEXFND",$J,0)) ^TMP("LEXFND",$J,0)=LEXN
@@ -31,6 +44,7 @@ ADDN(LEXI,LEXDS,LEXDP) ; Near match
 ADDE(LEXI,LEXDS,LEXDP) ; Exact match
  N LEXA S LEXA=$G(LEXI) Q:LEXA=0  Q:'$D(^LEX(757.01,LEXA))  S LEXI=$$SIEN(LEXA) S:+LEXI>0&(LEXI'=LEXA) LEXA=LEXI Q:LEXA=0  Q:'$D(^LEX(757.01,LEXA))
  N LEXR,LEXT S LEXR=LEXA,LEXDS=$G(LEXDS),LEXDP=$G(LEXDP),LEXT=$$DISP(LEXA,LEXDS,LEXDP)
+ S:$D(LEXIGN)&($P($G(^LEX(757.01,LEXA,1)),"^",5)>0) LEXT=LEXT_"(Deactivated Term)"
  S:'$D(^TMP("LEXFND",$J,-99999999,LEXA)) ^TMP("LEXSCH",$J,"NUM",0)=$G(^TMP("LEXSCH",$J,"NUM",0))+1
  S ^TMP("LEXFND",$J,-99999999,LEXA)=LEXT,^TMP("LEXFND",$J,0)=-99999999
  S LEX=$G(^TMP("LEXSCH",$J,"NUM",0))
@@ -39,6 +53,7 @@ ADDEM(LEXI,LEXDS,LEXDP) ; Exact match Major Concept
  N LEXA S LEXA=$G(LEXI) Q:LEXA=0  Q:'$D(^LEX(757.01,LEXA))  S LEXI=$$SIEN(LEXA) S:+LEXI>0&(LEXI'=LEXA) LEXA=LEXI Q:LEXA=0  Q:'$D(^LEX(757.01,LEXA))
  N LEXR,LEXT S LEXR=LEXA Q:$P($G(^LEX(757.01,LEXA,1)),"^",2)'=1
  S LEXDS=$G(LEXDS),LEXDP=$G(LEXDP),LEXT=$$DISP(LEXA,LEXDS,LEXDP)
+ S:$D(LEXIGN)&($P($G(^LEX(757.01,LEXA,1)),"^",5)>0) LEXT=LEXT_"(Deactivated Term)"
  S:'$D(^TMP("LEXFND",$J,-99999998,LEXA)) ^TMP("LEXSCH",$J,"NUM",0)=$G(^TMP("LEXSCH",$J,"NUM",0))+1
  S ^TMP("LEXFND",$J,-99999998,LEXA)=LEXT,^TMP("LEXFND",$J,0)=-99999998,LEX=$G(^TMP("LEXSCH",$J,"NUM",0))
  Q
@@ -48,6 +63,7 @@ ADDC(LEXI,LEXDS,LEXDP) ; Code
  N LEXT,LEXF,LEXC S LEXC=+($G(^LEX(757.01,LEXA,1))) Q:LEXC=0
  S LEXF=$G(^TMP("LEXFND",$J,0)) S:+LEXF=0 LEXF=-999999
  S LEXF=LEXF+1 S LEXT=$$DISP(LEXA,LEXDS,LEXDP)
+ S:$D(LEXIGN)&($P($G(^LEX(757.01,LEXA,1)),"^",5)>0) LEXT=LEXT_"(Deactivated Term)"
  S:'$D(^TMP("LEXFND",$J,-LEXF,LEXA)) ^TMP("LEXSCH",$J,"NUM",0)=$G(^TMP("LEXSCH",$J,"NUM",0))+1
  S ^TMP("LEXFND",$J,LEXF,LEXA)=LEXT
  S ^TMP("LEXFND",$J,0)=LEXF
@@ -94,18 +110,49 @@ BEG ; Begin List
  Q:'$D(^TMP("LEXFND",$J))  K:+($G(LEXRL))>0 LEXLL
  Q
 LSTN(LEXA,LEXM) ; List Number
+ N LEXC,LEXL,LEXF,LEXK,LEXT,LEXU,LEXN,LEXI S LEXK=0
+ S LEXC=+($G(^LEX(757.01,LEXA,1))) Q:LEXC=0 0
+ S LEXT=$G(^LEX(757.01,LEXA,0)) Q:'$L(LEXT) 0
+ S LEXU=$$UP^XLFSTR(LEXT),LEXL=$L(LEXT) Q:LEXL=0 0
+ S LEXN=$$CON(LEXU,.LEXTKN),LEXI=$P(LEXN,"^",2)
+ S LEXN=+$P(LEXN,"^",1) S:LEXN>9 LEXN=9
+ S LEXL=245-LEXL S:$L(LEXL)=1 LEXL="00"_LEXL
  N LEXC,LEXL,LEXF,LEXK S LEXK=0
  S LEXC=+($G(^LEX(757.01,LEXA,1))) Q:LEXC=0 0
  S LEXL=$L($G(^LEX(757.01,LEXA,0))) Q:LEXL=0 0
  S LEXL=245-LEXL S:$L(LEXL)=1 LEXL="00"_LEXL
  S:$L(LEXL)=2 LEXL="0"_LEXL S LEXL=$E(LEXL,1,3)
- S LEXF=$O(^LEX(757.001,"B",LEXC,0))
- S:+LEXF>0&($L($G(^LEX(757.001,+LEXF,0)))) LEXF=(+($P($G(^LEX(757.001,LEXF,0)),"^",3))+1)
- S:+LEXF=0 LEXF=1 I +($G(LEXTKN(0)))>0 D
- . N LEXI S LEXI=0 F  S LEXI=$O(LEXTKN(LEXI)) Q:+LEXI=0  D
- . . I $$UP^XLFSTR($G(^LEX(757.01,LEXA,0)))[LEXTKN(LEXI) S:LEXK<8 LEXK=LEXK+1
- S LEXK=$E(LEXK,1),LEXM=LEXF_"."_LEXK_LEXL
+ ; Disable until after OCT 1, 2014
+ ; S LEXF=$O(^LEX(757.001,"B",LEXC,0))
+ ; S:+LEXF>0&($L($G(^LEX(757.001,+LEXF,0)))) LEXF=(+($P($G(^LEX(757.001,LEXF,0)),"^",3))+1)
+ S LEXF=+($$FREQ(LEXC,$G(LEXVDT)))+1,LEXN=+($G(LEXN))
+ S LEXK=$E(LEXN,1),LEXM=LEXF_"."_LEXK_LEXL
  Q LEXM
+CON(X,LEXX) ; Contains
+ ; 
+ ; Input
+ ; 
+ ;    X       Text String
+ ;    LEXX()  An array of words passed by reference
+ ;              LEXX(1)=Word1
+ ;              LEXX(2)=Word2
+ ;              LEXX(n)=Wordn
+ ;           
+ ; Output
+ ; 
+ ;    $$CON    A 2 piece "^" delimited string
+ ;    
+ ;                1  Number of words in LEXX() found in text X
+ ;                2  The total number of words in array LEXX
+ ;                
+ N LEXI,LEXS,LEXN,LEXT S LEXN=0,LEXT=0,LEXU=$$UP^XLFSTR($G(X)) Q:'$L(LEXU) 0
+ S LEXI=0 F  S LEXI=$O(LEXX(LEXI)) Q:+LEXI'>0  D
+ . N LEXS S LEXT=LEXT+1,LEXS=$$UP^XLFSTR($G(LEXX(LEXI))) Q:'$L(LEXS)
+ . I $E(LEXU,1,$L(LEXS))=LEXS S LEXN=LEXN+1 Q
+ . F LEXC=" ","/","-","(","[","<",">","{",":",";" I LEXU[(LEXC_LEXS) S LEXN=LEXN+1 Q
+ S X=LEXN_"^"_LEXT
+ Q X
+ Q
 SIEN(X) ; Sourced IEN (PCH 55)
  S X=$G(X) Q:+($G(LEXXSR))'>0&(+($G(LEXXCT))'>0) X  Q:+($G(LEXXSR))>0&('$D(^LEX(757.14,+($G(LEXXSR)),0))) X  Q:+($G(LEXXCT))>0&('$D(^LEX(757.13,+($G(LEXXCT)),0))) X
  N LEXIEN,LEXSX,LEXEX,LEXMC S (X,LEXSX,LEXIEN)=+($G(X)) Q:+LEXIEN'>0 X  Q:'$D(^LEX(757.01,+LEXIEN,1)) X  S LEXMC=+($G(^LEX(757.01,+LEXIEN,1))) Q:+LEXMC'>0 X  Q:'$D(^LEX(757,+LEXMC,0)) X
@@ -117,3 +164,62 @@ SIEN(X) ; Sourced IEN (PCH 55)
  . . N LEXC S LEXC=$P($G(^LEX(757.01,+LEXEX,1)),"^",12) S:LEXC=LEXXSR LEXSX=LEXEX
  S X=LEXIEN
  Q X
+FREQ(X,Y) ; Get frequency based on codes and semantics
+ N LEXBD,LEXBEH,LEXCLA,LEXDIA,LEXEFF,LEXHIS,LEXI10
+ N LEXMC,LEXNF,LEXNUR,LEXPRO,LEXSAB,LEXSIEN,LEXSMC
+ N LEXTD,SA,SIEN S LEXMC=+($G(X)),X=0 Q:'$D(^LEX(757,LEXMC,0)) X
+ S LEXTD=$G(Y) S:LEXTD'?7N LEXTD=$$DT^XLFDT
+ N SA,LEXSAB,LEXSMC,LEXNUR,LEXI10,LEXBEH,LEXPRO,LEXDIA
+ S (SA,LEXNUR,LEXBEH,LEXPRO,LEXDIA,LEXI10,LEXSMC,X)=0,LEXNF=""
+ ;   ICD-10-CM                       6
+ ;   ICD-10-PCS                      5
+ ;   ICD-9 coded Diagnosis           4
+ ;   Behavior or non-ICD diagnosis   3
+ ;   Procedures                      2
+ ;   Nursing                         1
+ D SO I +LEXI10>0 S:+LEXDIA=1 (LEXNF,X)=6 Q X
+ I +LEXI10>0 S:+LEXDIA'=1 (LEXNF,X)=5 Q X
+ I X=0,+LEXDIA=1 S (LEXNF,X)=4 Q X
+ I '$L(LEXNF),+($G(LEXPRO))=1 S (LEXNF,X)=2 Q X
+ I '$L(LEXNF),+($G(LEXNUR))=1 S (LEXNF,X)=1 Q X
+ D SM I '$L(LEXNF),+($G(LEXSMC))>0 S (LEXNF,X)=3 Q X
+ I '$L(LEXNF) S (LEXNF,X)=0
+ Q X
+ ;              
+SO ; Codes
+ N SIEN S LEXSIEN=0 F  S LEXSIEN=$O(^LEX(757.02,"AMC",LEXMC,LEXSIEN)) Q:+LEXSIEN=0  D SOC
+ Q
+SOC ;   Set frequencey based on code
+ N LEXEFF,LEXHIS
+ S LEXEFF=$O(^LEX(757.02,LEXSIEN,4,"B",(LEXTD+.001)),-1) Q:LEXEFF'?7N
+ S LEXHIS=$O(^LEX(757.02,LEXSIEN,4,"B",LEXEFF," "),-1)
+ Q:$P($G(^LEX(757.02,LEXSIEN,4,+LEXHIS,0)),"^",2)'>0
+ S LEXSAB=$P($G(^LEX(757.02,LEXSIEN,0)),"^",3)
+ Q:LEXSAB=0
+ ;     ICD-10 CM/PCS
+ S:LEXSAB=30!(LEXSAB=31) LEXI10=1
+ ;     Diagnosis    ICD-9 and ICD-10
+ S:LEXSAB=1!(LEXSAB=30) LEXDIA=1
+ ;     Procedures   ICD-9, ICD-10, CPT and HCPCS
+ S:LEXSAB=2!(LEXSAB=31)!(LEXSAB=3)!(LEXSAB=4) LEXPRO=1
+ ;     Behaviors    DSM-III and DSM-IV
+ S:LEXSAB=5!(LEXSAB=6) LEXBEH=1
+ ;     Nursing      NANDA, NIC, NOC, HHC and Omaha
+ S:LEXSAB>10&(LEXSAB<16) LEXNUR=1
+ Q
+ ;          
+SM ; Semantics - LEXBD Behavior and Disorders
+ S LEXSMC=0,LEXMC=+($G(LEXMC)) Q:'$D(^LEX(757,LEXMC,0))  N LEXCLA,LEXBD,LEXSIEN S (LEXBD,LEXSIEN)=0
+ F  S LEXSIEN=$O(^LEX(757.1,"B",LEXMC,LEXSIEN)) Q:+LEXSIEN=0  D SMC
+ S LEXSMC=LEXBD
+ Q
+SMC ;   Set frequency based on semantic class
+ S LEXCLA=+($P($G(^LEX(757.1,LEXSIEN,0)),U,2))
+ ;     Behavior
+ S:LEXCLA=3&(LEXBD'>0) LEXBD=1
+ ;     Disease
+ S:LEXCLA=6 LEXBD=2
+ Q
+CLR ;   Clear
+ N LEXIGN
+ Q

@@ -1,9 +1,10 @@
-SDSCRPT2 ;ALB/JAM/RBS - ASCD SB/Reports for Service Connected Automated Monitor ; 3/5/07 12:11pm
- ;;5.3;Scheduling;**495**;Aug 13, 1993;Build 50
+SDSCRPT2 ;ALB/JAM/RBS - ASCD SB/Reports for Service Connected Automated Monitor ;3/5/07 12:11pm
+ ;;5.3;Scheduling;**495,586**;Aug 13, 1993;Build 28
  ;;MODIFIED FOR NATIONAL RELEASE from a Class III software product
  ;;known as Service Connected Automated Monitoring (SCAM).
  ;
  ; Routine should be called at specified tags only.
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
  Q
 HEADER ; Display an appropriate header for this report.
  ; Do standard header setup
@@ -161,7 +162,7 @@ POV2S ; Loop through and display all POV entries for the specified visit.
  N SDICD,SDVPOV0
  W !!,?10,"POVs/ICDs:" S L=L+2
  S SDVPOV0=0 F  S SDVPOV0=$O(^AUPNVPOV("AD",SDV0,SDVPOV0)) Q:'SDVPOV0  D
- . S SDPOV=$P($G(^AUPNVPOV(SDVPOV0,0)),U),SDICD=$$ICDDX^ICDCODE(SDPOV)
+ . S SDPOV=$P($G(^AUPNVPOV(SDVPOV0,0)),U),SDICD=$$ICDDX^ICDEX(SDPOV,SDOEDT,+$$SYS^ICDEX("DIAG",SDOEDT,"I"),"I") ;SD*5.3*586
  . W !?15,$P(SDICD,U,2),?23,$P(SDICD,U,4) S L=L+1
  . Q
  Q

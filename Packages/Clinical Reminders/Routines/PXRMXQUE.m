@@ -1,5 +1,5 @@
-PXRMXQUE ; SLC/PJH - Reminder reports general queuing routine.;02/10/2010
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17**;Feb 04, 2005;Build 102
+PXRMXQUE ;SLC/PJH - Reminder reports general queuing routine. ;09/12/2012
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,24**;Feb 04, 2005;Build 193
  ;
  ;===============================
 DEVICE(RTN,DESC,SAVE,%ZIS,RETZTSK) ;
@@ -40,7 +40,7 @@ QUE(ZTDESC,ZTRTN,ZTDTH,SAVERTN) ;Queue a task.
  S ZTIO=""
  D @SAVERTN
  D ^%ZTLOAD
- I $D(ZTSK)=0 W !!,DESC," cancelled"
+ I $D(ZTSK)=0 W !!,DESC," cancelled." Q ""
  Q ZTSK
  ;
  ;===============================

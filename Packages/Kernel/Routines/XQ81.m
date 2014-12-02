@@ -1,5 +1,7 @@
-XQ81 ;SEA/AMF/LUKE,SF/RWF - Build menu trees ;12/10/07
- ;;8.0;KERNEL;**81,116,157,253,478**;Jul 10, 1995;Build 3
+XQ81 ;SEA/AMF/LUKE,SF/RWF,ISD/HGW - Build menu trees ;03/19/13  09:21
+ ;;8.0;KERNEL;**81,116,157,253,478,614**;Jul 10, 1995;Build 11
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
 BUILD ;
  ;
 RD2 N XQSTAT S XQSTAT=$$STATUS()
@@ -21,14 +23,14 @@ RD2 N XQSTAT S XQSTAT=$$STATUS()
  .Q
  ;
  I $D(ZTSK) K ^DIC(19,"AXQ","P0") S XQALLDON="" G BLDEND
- E  S ^DIC(19,"AXQ","P0")=$H L +^DIC(19,"AXQ","P0")
+ E  S ^DIC(19,"AXQ","P0")=$H L +^DIC(19,"AXQ","P0"):DILOCKTM
  ;
  I 'XQVE S DIR(0)="Y",DIR("A")="Do you really wish to run this DIRECTLY (it may take some time)",DIR("B")="NO" D ^DIR K DIR G:$D(DIRUT) BLDEND1 G:Y'=1 RD2
  ;
 KIDS ;Entry from KIDS
  I '$D(XQSTAT),$D(^DIC(19,"AXQ","P0")) S XQSTAT=$$STATUS I 'XQSTAT W !!,"  Some one else is building menus.  Sorry." K XQSTAT Q
  I '$D(^DIC(19,"AXQ","P0","STOP")) D MICRO
- I '$D(^DIC(19,"AXQ","P0")) S ^DIC(19,"AXQ","P0")=$H L +^DIC(19,"AXQ","P0")
+ I '$D(^DIC(19,"AXQ","P0")) S ^DIC(19,"AXQ","P0")=$H L +^DIC(19,"AXQ","P0"):DILOCKTM
  I '$D(XQVE) S XQFG=0,XQBSEC=1,XQVE=0
  N XQNTREE,XQNDONE S (XQNTREE,XQNDONE)=0
  ;
@@ -138,9 +140,9 @@ BLDEND ;File a report, cleanup, and quit.
  K ^TMP($J),^TMP("XQO",$J)
  ;
  ;Clear the flags and locks.
- K ^XUTL("XQMERGED") ;Menues merged since last rebuild REACT^XQ84
+ K ^XUTL("XQO","XQMERGED") ;Menus merged since last rebuild REACT^XQ84
  K ^DIC(19,"AT") ;Micro message nodes
- S ^XUTL("XQ","MICRO")=0 ;Number of Micro instances since last build
+ S ^XUTL("XQO","MICRO")=0 ;Number of Micro instances since last build
  K ^DIC(19,"AXQ","P0","STOP") ;Allow Micro surgery to start up
  K ^DIC(19,"AXQ","P0") ;Clear the rebuild flag (redundant, I know)
  L -^DIC(19,"AXQ","P0") ;Unlock the rebuild flag, everybody's good to go

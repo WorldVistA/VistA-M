@@ -1,5 +1,5 @@
 SCAPMC28 ;ALB/REW - Patients with an Appointment ; 1/10/05 2:49pm
- ;;5.3;Scheduling;**41,140,346**;AUG 13, 1993
+ ;;5.3;Scheduling;**41,140,346,564**;AUG 13, 1993;Build 8
  ;;1.0
 PTAP(SCCL,SCDATES,SCMAXCNT,SCLIST,SCERR,MORE) ; -- list of patients with an appointment in a given clinic
  ; 
@@ -69,7 +69,9 @@ PTAPX(SCCL,SCBEGIN,SCEND,MAXCNT,SCLIST,SCERR,SCSTART) ;return appointments in dt
  N SCDT,SCARRAY,DFN,SDAPTCNT,SDARRAY,SDERR,SDX,SDY
  K ^TMP($J,"SDAMA301")
  ;setup call to SDAPI
- S SDARRAY(1)=$G(SCBEGIN)_";"_$G(SCEND),SDARRAY(2)=$G(SCCL),SDARRAY("FLDS")=4
+ ;filter for OUTPATIENT ENCOUNTER (OE) pointer for only "KEPT" appointment- sd/564
+ ;include field 12 - pointer to OE file
+ S SDARRAY(1)=$G(SCBEGIN)_";"_$G(SCEND),SDARRAY(2)=$G(SCCL),SDARRAY("FLDS")="4;12"
  S SDARRAY("SORT")="P"
  ;call SDAPI to retrieve appointments
  S SDAPTCNT=$$SDAPI^SDAMA301(.SDARRAY)
@@ -91,6 +93,14 @@ PTAPX(SCCL,SCBEGIN,SCEND,MAXCNT,SCLIST,SCERR,SCSTART) ;return appointments in dt
  .;only 1st appt date/time is needed for each patient
  .;as patient can only be added to the list once.
  .K ^TMP($J,"RE-SORT","SDAMA301")
+ .;
+ .;identify appointment entries without pointers to OE to exclude them - SD/564
+ .S (SDY,SDX)=0
+ .F  S SDX=$O(^TMP($J,"SDAMA301",SDX)) Q:'SDX  D
+ ..S SDY="" F  S SDY=$O(^TMP($J,"SDAMA301",SDX,SDY)) Q:SDY=""  D
+ ...;eliminate not kept appointments; no entry in OUTPATIENT ENCOUNTER
+ ...I $P(^TMP($J,"SDAMA301",SDX,SDY),U,12)="" K ^TMP($J,"SDAMA301",SDX,SDY)
+ .;
  .S (SDY,SDX)=0
  .F  S SDX=$O(^TMP($J,"SDAMA301",SDX)) Q:'SDX  D
  ..S SDY=$O(^TMP($J,"SDAMA301",SDX,""))

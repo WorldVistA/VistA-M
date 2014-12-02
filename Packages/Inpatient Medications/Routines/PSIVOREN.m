@@ -1,5 +1,5 @@
 PSIVOREN ;BIR/MLM-UTILITIES FOR IV FLUIDS - OE/RR INTERFACE ; 8/10/09 7:12am
- ;;5.0; INPATIENT MEDICATIONS ;**3,18,69,110,127,133,140,134,207**;16 DEC 97;Build 31
+ ;;5.0;INPATIENT MEDICATIONS;**3,18,69,110,127,133,140,134,207,279**;16 DEC 97;Build 150
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ; Reference to ^VA(200 is supported by DBIA 10060.
@@ -74,12 +74,13 @@ NATURE ; Ask nature of order.
  K:P("NAT")=-1 P("NAT")
  Q
 CLINIC ;Ask clinic where outpt is being seen for DSS
+ Q:($G(P("CLIN"))]"")
  K P("CLIN") NEW X1,X2,X,PSJDT,DIC,Y
  S X1=DT,X2=-7 D C^%DTC S PSJDT=X
  S DIC("S")="I $P($G(^SC(Y,0)),U,3)=""C"",$S('$P($G(^(""I"")),U):1,($P($G(^(""I"")),U)>PSJDT):1,(($P($G(^(""I"")),U)<PSJDT)&($P($G(^(""I"")),U,2)]"""")&(DT>$P($G(^(""I"")),U,2))):1,1:0)"
  S DIC=44,DIC(0)="QEAZ",DIC("A")="Select CLINIC LOCATION: " D ^DIC
  I $S($D(DTOUT):1,$D(DUOUT):1,1:0) Q
- S:+Y>0 P("CLIN")=+Y,$P(^PS(55,DFN,"IV",+ON55,"DSS"),"^")=+Y
+ S:+Y>0 P("CLIN")=+Y I ($G(ON55)["V"),$P($G(^PS(55,DFN,"IV",+ON55,0)),"^",2),(Y>0) S $P(^PS(55,DFN,"IV",+ON55,"DSS"),"^")=+Y
  Q
  ;
 STIX(OST,OON,DFN) ; Check start index, cleanup old start

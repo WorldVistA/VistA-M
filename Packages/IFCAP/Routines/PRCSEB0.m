@@ -1,5 +1,5 @@
-PRCSEB0 ;SF-ISC/LJP/SAW/DGL/DAP-CPA EDITS CON'T ; 7/29/99 1:01pm
-V ;;5.1;IFCAP;**81**;Oct 20, 2000
+PRCSEB0 ;SF-ISC/LJP/SAW/DGL/DAP-CPA EDITS CON'T ;7/9/13  16:01
+V ;;5.1;IFCAP;**81,174**;Oct 20, 2000;Build 23
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 EDTD ;EDIT TRANSACTION DATA
  N TYPE,TYPE1,CHECK,JUMP S JUMP=1
@@ -43,6 +43,10 @@ ED1 K DTOUT,DUOUT,Y S PRCSDAA=DA D ^DIE I $D(DTOUT) S DA=PRCSDAA G EXIT
  K PRCSERR
  I PRCSDR="[PRCSENCOD]" D W7 D:$D(PRCSOB) ENOD1^PRCSEB1 K PRCSOB
  S:$P($G(^PRCS(410,DA,7)),U)="" $P(^PRCS(410,DA,7),U)=DUZ,$P(^PRCS(410,DA,7),U,2)=$P($G(^VA(200,DUZ,20)),U,3)
+ ;
+ ;if 2237 required field checks fail, warn user (PRC*5.1*174)
+ I PRCSDR'="[PRCSENCOD]",'$$REQCHECK^PRCHJUTL($G(DA),,1)
+ ;
  D:PRCSDR'="[PRCSENCOD]" W1 I $D(PRCS2),+^PRCS(410,DA,0) D W6^PRCSEB
 EDTD2 S DA=PRCSDAA L -^PRCS(410,DA) G EXIT:$D(PRCSQ) D W3 G EXIT:%'=1 W !! K PRCS,PRCS2 G EDTD
 ASK W !!,"This transaction does not have a valid transaction type (e.g.,O for Obligation, A for Adjustment, C for Ceiling).  Please enter one now.",! S DR="1" D ^DIE K DR G EDTD1

@@ -1,8 +1,9 @@
-LREPISRV ;DALOI/RLM-EPI data server ;8/2/2000
- ;;5.2;LAB SERVICE;**260,281**;Sep 27, 1994
+LREPISRV ;DALOI/RLM - EPI data server ;11 Oct 2013  9:49 AM
+ ;;5.2;LAB SERVICE;**260,281,421**;Sep 27, 1994;Build 48
  ; Reference to $$SITE^VASITE supported by IA #10112
  ; Reference to ^%ZOSF supported by IA #10096
- ; Reference to ^ICD9( supported by IA #10082
+ ; Reference to $$CODEC^ICDEX supported by IA #5747
+ ; Reference to $$CSI^ICDEX supported by IA #5747
  ; Reference to ^ORD(101 supported by IA #872
 START ;
  K ^TMP($J,"LREPDATA")
@@ -18,14 +19,14 @@ START ;
  ;If the subject contains "REPORT" send a report
 EXIT ;If all went well, report that too.
  S %H=$H D YMD^%DTC S XMDUN="EPI SYSTEM",XMDUZ=".5",XMSUB=LREPST_" EPI ("_X_%_")",XMTEXT="^TMP($J,""LREPDATA"","
- S XMY("G.EPI-SITE@CINCINNATI.domain.ext")=""
+ S XMY("G.EPI-SITE@CINCINNATI.DOMAIN.EXT")=""
  ;S XMY("ANZALDUA,CAROL@VAHVSS.FO-ALBANY.DOMAIN.EXT")="" ;,XMY("CAROL.ANZALDUA@DOMAIN.EXT")=""
  D ^XMD
  ;Mail the errors and successes back to the EPI group at Cincinnati.
  K ^TMP($J,"LREPDATA")
  K %,%DT,%H,D,DIC,X,XMDUN,XMDUZ,XMER,XMFROM,XMREC,XMRG,XMSUB,XMTEXT,XMY,XMZ,XQDATE,XQSUB,Y,LREPA,LREPB,LREPDA,LREPDA1,LREPDATA,LREPDFN,LREPDM,LREPDOC
  K LREPDOM,LREPDTA,LREPED,LREPER,LREPLNT,LREPNM,LREPPT,LREPSD1,LREPSDT,LREPSSN,LREPST,LREPSUB,LREPTC,YSPR,LREPWB,LREPX,ZTQUEUED,ZTSK
- K LRICD9,LRA,LRCOND,LRDATA,LRFILL,LRI,LRPATH,LRTEST
+ K LRCSI,LRICD,LRA,LRCOND,LRDATA,LRFILL,LRI,LRLENGTH,LRPATH,LRPCECNT,LRSPACES,LRTEST
  Q
  ;F  X XMREC Q:XMER<0  S XMRG=$TR(XMRG,"- ","") D
 REPORT ;send report
@@ -39,27 +40,31 @@ REPORT ;send report
   . S LRDATA=$P(LRPATH,"^")_$E(LRFILL,$L($P(LRPATH,"^")),30)_$J($P(LRPATH,"^",9),4)_$J($P(LRPATH,"^",5),3)_$J($P(LRPATH,"^",3),3)_$J($P(^ORD(101,$P(LRPATH,"^",7),0),"^"),9)_$J($P(LRPATH,"^",8),4)_$J($P(LRPATH,"^",2),4)
   . S LREPLNT=$G(LREPLNT)+1,^TMP($J,"LREPDATA",LREPLNT)=LRDATA
   . S LREPLNT=$G(LREPLNT)+1,^TMP($J,"LREPDATA",LREPLNT)="   Lab Test                                          Indicator      Value"
-LTEST  . S LRI=0 F  S LRI=$O(^LAB(69.5,LRA,1,LRI)) Q:'LRI  D
+LTEST . S LRI=0 F  S LRI=$O(^LAB(69.5,LRA,1,LRI)) Q:'LRI  D
   . . S LRTEST=$G(^LAB(69.5,LRA,1,LRI,0))
   . . I $P(LRTEST,"^")="" S LREPLNT=$G(LREPLNT)+1,^TMP($J,"LREPDATA",LREPLNT)="IEN # "_LRA_" damaged. (No Test)" Q
   . . S LRCOND=$P(LRTEST,"^",2),LRCOND=$S(LRCOND=1:"Ref. Range",LRCOND=2:"Contains",LRCOND=3:"Greater Than",LRCOND=4:"Less Than",LRCOND=5:"Equal To",1:"Unknown")
   . . S LRDATA=$P($G(^LAB(60,$P(LRTEST,"^"),0),0),"^")_$E(LRFILL,$L($P($G(^LAB(60,$P(LRTEST,"^"),0),0),"^")),40)_$J(LRCOND,20)_$J($P(LRTEST,"^",3),10)
   . . S LREPLNT=$G(LREPLNT)+1,^TMP($J,"LREPDATA",LREPLNT)=LRDATA
   . S LREPLNT=$G(LREPLNT)+1,^TMP($J,"LREPDATA",LREPLNT)="   Etiology"
-ETIO  . S LRI=0 F  S LRI=$O(^LAB(69.5,LRA,2,LRI)) Q:'LRI  D
+ETIO . S LRI=0 F  S LRI=$O(^LAB(69.5,LRA,2,LRI)) Q:'LRI  D
   . . S LRTEST=$G(^LAB(69.5,LRA,2,LRI,0))
   . . I $P(LRTEST,"^")="" S LREPLNT=$G(LREPLNT)+1,^TMP($J,"LREPDATA",LREPLNT)="IEN # "_LRA_" damaged. (No Etiology)" Q
   . . S LRCOND=$P(LRTEST,"^",2),LRCOND=$S(LRCOND=1:"Ref. Range",LRCOND=2:"Contains",LRCOND=3:"Greater Than",LRCOND=4:"Less Than",LRCOND=5:"Equal To",1:"Unknown")
   . . S LRDATA=$P($G(^LAB(61.2,$P(LRTEST,"^"),0),0),"^")
   . . S LREPLNT=$G(LREPLNT)+1,^TMP($J,"LREPDATA",LREPLNT)=LRDATA
- .  S LREPLNT=$G(LREPLNT)+1,^TMP($J,"LREPDATA",LREPLNT)="    ICD9"
-ICD9  . S LRI=0 F  S LRI=$O(^LAB(69.5,LRA,3,LRI)) Q:'LRI  D
-  . . S LRICD9=$G(^LAB(69.5,LRA,3,LRI,0))
-  . . I $P(LRICD9,"^")="" S LREPLNT=$G(LREPLNT)+1,^TMP($J,"LREPDATA",LREPLNT)="IEN # "_LRA_" damaged. (No ICD9)" Q
-  . . S LRDATA=$P($G(^ICD9($P(LRICD9,"^"),0),0),"^")
+ .  S LREPLNT=$G(LREPLNT)+1,^TMP($J,"LREPDATA",LREPLNT)="    ICD"
+ICD . S LRI=0 F  S LRI=$O(^LAB(69.5,LRA,3,LRI)) Q:'LRI  D
+  . . S LRICD=$G(^LAB(69.5,LRA,3,LRI,0))
+  . . I $P(LRICD,"^")="" S LREPLNT=$G(LREPLNT)+1,^TMP($J,"LREPDATA",LREPLNT)="IEN # "_LRA_" damaged. (No ICD)" Q
+  . . S LRDATA=$$CODEC^ICDEX(80,$P(LRICD,"^"))
+  . . S LRCSI=$$CSI^ICDEX(80,$P(LRICD,"^"))
+  . . S LRLENGTH=11-$L(LRDATA),LRSPACES=""
+  . . F LRPCECNT=1:1:LRLENGTH S LRSPACES=LRSPACES_" "
+  . . S LRDATA=LRDATA_LRSPACES_"(ICD-"_$S(LRCSI=30:"10",1:"9")_")"
   . . S LREPLNT=$G(LREPLNT)+1,^TMP($J,"LREPDATA",LREPLNT)=LRDATA
   . S LREPLNT=$G(LREPLNT)+1,^TMP($J,"LREPDATA",LREPLNT)="      Microbial Susceptibility                      Indicator       Value"
-MICROB  . S LRI=0 F  S LRI=$O(^LAB(69.5,LRA,4,LRI)) Q:'LRI  D
+MICROB . S LRI=0 F  S LRI=$O(^LAB(69.5,LRA,4,LRI)) Q:'LRI  D
   . . S LRTEST=$G(^LAB(69.5,LRA,4,LRI,0))
   . . I $P(LRTEST,"^")="" S LREPLNT=$G(LREPLNT)+1,^TMP($J,"LREPDATA",LREPLNT)="IEN # "_LRA_" damaged. (No Microbial Susceptibility)" Q
   . . S LRCOND=$P(LRTEST,"^",2),LRCOND=$S(LRCOND=1:"Contains",LRCOND=2:"Greater Than",LRCOND=3:"Less Than",LRCOND=4:"Equal To",1:"Unknown")

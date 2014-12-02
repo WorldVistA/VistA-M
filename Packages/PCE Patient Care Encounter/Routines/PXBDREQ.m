@@ -1,5 +1,5 @@
 PXBDREQ ;ISL/JVS - DISPLAY REQUESTS ;6/17/03  10:29
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**73,124**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**73,124,199**;Aug 12, 1996;Build 51
  ;
  ; Variable list
  ; These two variables represent the data that has been selected
@@ -13,7 +13,7 @@ REQ(NO) ;--Display the REQUESTED Data
  N ENTRY,VAR
  S VAR="N"_NO D @VAR
  Q
-N4 ;---Fourth Method--for the CPT promts
+N4 ;---Fourth Method--for the CPT prompts
  W !,"PROVIDER: ...Enter the provider associated with the CPT'S....."
  D UNDON^PXBCC
  W !,?5,"CPT: "
@@ -91,11 +91,11 @@ ZP12 ;
 ZP13 ;
 ZP14 ;
 ZP15 ;
- I $D(REQE) D LOC^PXBCC(1,0) W "DIAGNOSIS: ",$P(REQE,"^",NO+6),IOELEOL
+ I $D(REQE) D LOC^PXBCC(1,0) W "DIAGNOSIS: ",$E($P(REQE,"^",NO+6),1,68),IOELEOL
  Q
  ;               
-RSET(CATEGORY) ; Reset the data in the REQ,REQI and REQE variables
- ; CATEGORY IS EQUAL TO FILE NEUMONICS (eg. CPT,POV,PRV)
+RSET(CATEGORY) ; Reset the data in the REQ, REQI and REQE variables
+ ; CATEGORY IS EQUAL TO FILE MNEMONIC (e.g. CPT, POV, PRV)
  D @CATEGORY
  Q
 CPT ;CPT CODES

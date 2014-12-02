@@ -1,5 +1,6 @@
-IBDFQEA ;ALB/CJM/MAF - ENCOUNTER FORM - BUILD FORM(editing action for group's selections list) ;JUN 16,1995
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**15,38**;APR 24, 1997
+IBDFQEA ;ALB/CJM/MAF - ENCOUNTER FORM - BUILD FORM(editing action for group's selections list) ;06/16/95
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**15,38,63**;APR 24, 1997;Build 80
+ ;
  ;
 EDIT ;allows editing of an existing selection
  D FULL^VALM1
@@ -10,7 +11,7 @@ EDIT ;allows editing of an existing selection
  .S SLCTN=$P($G(^TMP("SELIDX",$J,SEL)),"^",3) Q:'SLCTN
  .S NODE=$G(^IBE(357.3,SLCTN,0))
  .S IBGRP=$P(NODE,"^",4),ORD=$P(NODE,"^",5)
- .;re-index the record, to insure it is good                             
+ .;re-index the record, to insure it is good
  .K DIK,DA S DIK="^IBE(357.3,",DA=SLCTN D IX^DIK K DIK
  .;edit the order of the selection - also, for placeholders, the text, then quit
  .I $P(NODE,"^",2) S DA=SLCTN,DIE=357.3,DR="[IBDF EDIT PLACE HOLDER]" D ^DIE K DIE,DA,DR Q
@@ -52,16 +53,18 @@ DELETE ;allows the user to select selections to delete
  .Q:'$$RUSURE^IBDFU5("Selection #"_SEL)
  .D ^DIK
  .D KILL^VALM10(SEL)
- K DIK,DA
+ .I '$D(^TMP("IBDF ADDSLCTN",$J)) S ^TMP("IBDF DELETE SELECTION OPTION",$J)=1
+  K DIK,DA
  G EXIT
 ADDSLCTN ;allows the user to add a selection to the selection group
- N QUIT,SUB
+ N QUIT,SUB,IBDSLCTN,IBGRP
  ;
  D FULL^VALM1
  S IBRTN=IBLIST("RTN")
  I $G(IBLIST("CLRM")) S IBLIST("EDITING CLRM")=1
  D RTNDSCR^IBDFU1B(.IBRTN)
  I IBRTN("ACTION")'=3 D NOGOOD^IBDF4 G ADDEXIT
+ S ^TMP("IBDF ADDSLCTN",$J)=0  ;Track if the user added a selection but did not save changes. Needed for form history fields.
  K @IBRTN("DATA_LOCATION")
  S QUIT=0 F  D  G:QUIT EXIT  W !,"Now for another!",!
  .I '$$DORTN^IBDFU1B(.IBRTN) S QUIT=1 D NOGOOD^IBDF4 Q
@@ -69,7 +72,8 @@ ADDSLCTN ;allows the user to add a selection to the selection group
  .S DIC="^IBE(357.4,",DIC(0)="AEMN",DIC("S")="I $P(^IBE(357.4,+Y,0),""^"",3)=IBLIST" D ^DIC K DIC S:X="^" QUIT=1 Q:QUIT  S IBGRP=+Y I Y<0 D  Q:QUIT=1
  ..W !!,"A SELECTION GROUP HEADER IS REQUIRED.... The selection will not be added if none is provided....Enter '??' for a list of choices.",!!
  ..S DIC="^IBE(357.4,",DIC(0)="AEMN",DIC("S")="I $P(^IBE(357.4,+Y,0),""^"",3)=IBLIST" D ^DIC K DIC S IBGRP=+Y I Y<0 S QUIT=1 Q
- .D ADDREC^IBDF4(.QUIT) ;edits and adds the selection
+ .D ADDREC^IBDF4(.QUIT,"",.IBDSLCTN) ;edits and adds the selection
+ .I QUIT=1 D:$D(IBDSLCTN) KILL3573(IBDSLCTN)
  .K @IBRTN("DATA_LOCATION")
 ADDEXIT ;
  G EXIT
@@ -84,19 +88,27 @@ ADDBLANK ;allows the user to add a dummy selection to the selection group
  D INIT^IBDFQSL1
  S VALMBCK="R"
  Q
+ ;To kill incomplete entries in ^IBE(357.3
+KILL3573(IBDSEL) ;
+ N DA,DIK
+ S DA=IBDSEL,DIK="^IBE(357.3," D ^DIK K DIK ;D BLKCHNG^IBDF19(IBFORM,IBBLK)
+ Q
 FORMAT ;allows the user to format all of the selections in the group in mass
  ;
  D FORMAT^IBDF9A1
  G EXIT
  ;
 GRPDEL ;  -- Group Delete
+ N GRP,IBDSEL
  D FULL^VALM1
- N GRP
+ S IBDSEL=0
+ I $O(^IBE(357.3,"C",IBLIST,"")) S IBDSEL=1  ;Group has selections.
  S DIC="^IBE(357.4,",DIC(0)="AEMN",DIC("S")="I $P(^IBE(357.4,+Y,0),""^"",3)=IBLIST" D ^DIC K DIC S IBGRP=+Y I Y<0 G EXIT
  S GRP=+Y
  Q:'$$RUSURE^IBDFU5($P($G(^IBE(357.4,GRP,0)),"^"))
  I GRP D DELSLCTN^IBDF3 K DA S DIK="^IBE(357.4,",DA=GRP D ^DIK K DIK
  D IDXGRP^IBDF3
+ I IBDSEL,'$G(^TMP("IBDF ADDSLCTN",$J)) S ^TMP("IBDF DELETE SELECTION OPTION",$J)=1  ;User deleted a group that had selections.
  S VALMBCK="R"
  D EXIT Q
  ;
@@ -126,7 +138,7 @@ GRPEDIT ;
  D EXIT Q
  Q
  ;
-EXIT D INIT^IBDFQSL1 S VALMBCK="R"
+EXIT D INIT^IBDFQSL1 S VALMBCK="R" I $D(^TMP("IBDF ADDSLCTN",$J)) S ^TMP("IBDF ADDSLCTN",$J)=1
  Q
 GRPRESEQ ;  -- Resequence numerically or alphabetically a group
  ;     within a block.

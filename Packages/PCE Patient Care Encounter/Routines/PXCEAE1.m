@@ -1,5 +1,5 @@
 PXCEAE1 ;ISL/dee,ISA/KWP - Builds the List Manager display of a visit and related v-files ;6/20/96
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,199**;Aug 12, 1996;Build 51
  ;; ;
  Q
  ;
@@ -62,6 +62,15 @@ ADDLINE ;
  S LINE=LINE+1
  I PXCELINE=1!(PXCECODE="PXCECSTP") S @ARRAY@(LINE,0)=$J(COUNT,3)_" "
  E  S @ARRAY@(LINE,0)="    "
+ I $P(PXCETEXT,"~",5)["Diagnosis" D
+ . N PXDATE,PXACSREC,PXACS
+ . S PXDATE=$S($D(PXCEVIEN)=1:$$CSDATE^PXDXUTL(PXCEVIEN),$D(PXCEAPDT)=1:PXCEAPDT,1:DT)
+ . S PXACSREC=$$ACTDT^PXDXUTL(PXDATE),PXACS=$P(PXACSREC,"^",3)
+ . I PXACS["-" S PXACS=$P(PXACS,"-",1,2)
+ . I $P(PXCETEXT,"~",5)'["ICD Code or Diagnosis" D
+ .. S $P(PXCETEXT,"~",5)=$P($P(PXCETEXT,"~",5),"Diagnosis",1)_PXACS_" Diagnosis"_$P($P(PXCETEXT,"~",5),"Diagnosis",2)
+ . I $P(PXCETEXT,"~",5)["ICD Code or Diagnosis" D
+ .. S $P(PXCETEXT,"~",5)=PXACS_$P($P(PXCETEXT,"~",5),"ICD",2)
  S @ARRAY@(LINE,0)=@ARRAY@(LINE,0)_$P(PXCETEXT,"~",5)
  I ($L(@ARRAY@(LINE,0))+$L(PXCEEXT))'>80 D
  . S @ARRAY@(LINE,0)=@ARRAY@(LINE,0)_PXCEEXT

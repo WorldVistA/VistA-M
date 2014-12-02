@@ -1,5 +1,5 @@
-TIUSRVP ; SLC/JER - RPCs for CREATE & UPDATE ;8/16/05
- ;;1.0;TEXT INTEGRATION UTILITIES;**1,7,19,28,47,89,104,100,115,109,167,113,112,175,157,184,239**;Jun 20, 1997;Build 4
+TIUSRVP ; SLC/JER - RPCs for CREATE & UPDATE ; 8/31/12 12:41pm
+ ;;1.0;TEXT INTEGRATION UTILITIES;**1,7,19,28,47,89,104,100,115,109,167,113,112,175,157,184,239,271**;Jun 20, 1997;Build 12
 MAKE(SUCCESS,DFN,TITLE,VDT,VLOC,VSIT,TIUX,VSTR,SUPPRESS,NOASF) ; New Document
  ; SUCCESS = (by ref) TIU DOCUMENT # (PTR to 8925)
  ;         = 0^Explanatory message if no SUCCESS
@@ -152,6 +152,8 @@ FILE(SUCCESS,TIUDA,TIUX,SUPPRESS,TIUCPF) ; Call FM Filer & commit
  ;If the document is a member of the Clinical Procedures Class, set the
  ;Entered By field to the Author/Dictator field
  I $G(TIUCPF),+$G(TIUX(1202)) S TIUX(1302)=+$G(TIUX(1202))
+ ;*271 Prevent string date in 1301
+ S:$G(TIUX(1301)) TIUX(1301)=+TIUX(1301)
  M @FDARR=TIUX
  D FILE^DIE(FLAGS,"FDA","TIUMSG") ; File record
  I $D(TIUMSG)>9 S SUCCESS=0_U_$G(TIUMSG("DIERR",1,"TEXT",1)) Q

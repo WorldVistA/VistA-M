@@ -18,7 +18,7 @@ EXIT ; Exit module
  K DA,DIE,DR,HBHCCNT,HBHCDAT,HBHCDATE,HBHCDT,HBHCFLG,HBHCMSG,HBHCNODE,HBHCZ,XMSUB,XMTEXT,XMY,XMZ,X,Y,%,%DT,^TMP("HBHC",$J)
  Q
 MAIL ; Send mail message
- S XMSUB="HBHC Site: "_$S($P(^HBHC(631.9,1,0),U,5)]"":$E($P($G(^DIC(4,$P(^HBHC(631.9,1,0),U,5),99)),U),1,3),1:"")_"  Message: "_HBHCMSG_"  "_HBHCDATE_" Transmission",XMTEXT="^TMP(""HBHC"",$J,HBHCMSG,",XMY("XXX@Q-HBH.domain.ext")=""
+ S XMSUB="HBHC Site: "_$S($P(^HBHC(631.9,1,0),U,5)]"":$E($P($G(^DIC(4,$P(^HBHC(631.9,1,0),U,5),99)),U),1,3),1:"")_"  Message: "_HBHCMSG_"  "_HBHCDATE_" Transmission",XMTEXT="^TMP(""HBHC"",$J,HBHCMSG,",XMY("XXX@Q-HBH.DOMAIN.EXT")=""
  D ^XMD
  S HBHCMSG=HBHCMSG+1,HBHCCNT=0
 LOOP ; Loop thru ^HBHC(631,"AG") (Form 3 Mail Message Date), ^HBHC(631,"AH") (Form 5 Mail Message Date), & ^HBHC(632,"AD") (Form 4 Mail Message Date) cross-refs

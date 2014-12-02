@@ -1,5 +1,5 @@
 OOPSGUIR ;WIOFO/LLH-RPC routine for misc reports ; 6/11/09 10:32am
- ;;2.0;ASISTS;**8,7,11,14,20**;Jun 03, 2002;Build 2
+ ;;2.0;ASISTS;**8,7,11,14,20,25**;Jun 03, 2002;Build 4
  ;
 ENT(RESULTS,INPUT,CALL) ; get the data for the report
  ;   Input:  INPUT - contains 3 values, the START AND END DATE, 
@@ -169,7 +169,8 @@ FLD95 ; use OUTC subrecord to retrieve data
  .S AVAIL=0
  .I DAYS>179 S AVAIL=(180-(DAYA+DAYJ))
  .I (DAYS<180) D
- ..I (DAYS+DAYA+DAYJ)<180 S AVAIL=DAYS
+ ..;rra oops*25 - INC809171 account for exactly 180 days
+ ..I (DAYS+DAYA+DAYJ)<=180 S AVAIL=DAYS
  ..I (DAYS+DAYA+DAYJ)>180 S AVAIL=(180-(DAYA+DAYJ))
  .I $G(OC)="A" S DAYA=DAYA+AVAIL
  .I $G(OC)="J" S DAYJ=DAYJ+AVAIL

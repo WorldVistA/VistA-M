@@ -1,13 +1,20 @@
-ECXFELOC ;BIR/DMA,CML-Print Feeder Locations; [ 05/07/96  8:41 AM ] ;5/10/12  10:52
- ;;3.0;DSS EXTRACTS;**1,8,105,132,136**;Dec 22, 1997;Build 28
+ECXFELOC ;BIR/DMA,CML-Print Feeder Locations; [ 05/07/96  8:41 AM ] ;5/7/14  13:34
+ ;;3.0;DSS EXTRACTS;**1,8,105,132,136,149**;Dec 22, 1997;Build 27
 EN ;entry point from option
  W !!,"Print list of feeder locations.",! S QFLG=1
+ N ECXPORT,CNT ;149
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  ;149
+ I $G(ECXPORT) D  Q  ;Section added in 149
+ .K ^TMP($J)
+ .S ^TMP($J,"ECXPORT",0)="FEEDER SYSTEM^FEEDER LOCATION^DESCRIPTION",CNT=1
+ .D START
+ .D EXPDISP^ECXUTL1
  K %ZIS S %ZIS="Q" D ^%ZIS Q:POP 
  I $D(IO("Q")) S ZTDESC="Feeder Location List (DSS)",ZTRTN="START^ECXFELOC" D ^%ZTLOAD D ^%ZISC G OUT
  U IO
 START ;queued entry point
  I '$D(DT) S DT=$$HTFM^XLFDT(+$H)
- K ^TMP($J) S (QFLG,PG)=0,$P(LN,"-",81)=""
+ K:'$G(ECXPORT) ^TMP($J) S (QFLG,PG)=0,$P(LN,"-",81)="" ;149
 LAB S EC=0 F  S EC=$O(^LRO(68,EC)) Q:'EC  I $D(^(EC,0)) S EC1=^(0),^TMP($J,"LAB",$P(EC1,U,11),EC)=$P(EC1,U)
 ECS S EC=0 I $P($G(^EC(720.1,1,0)),U,2) D  G IV
  .F  S EC=$O(^ECJ(EC)) Q:'EC  I $D(^(EC,0)) S EC1=$P(^(0),"-",1,2),EC2=$P($G(^ECD(+$P(EC1,"-",2),0)),U),^TMP($J,"ECS",EC1,EC1)=EC2
@@ -57,12 +64,14 @@ PRO ;Prosthetics Location Information. API added in patch 136
  .S ^TMP($J,"PRO",LOC,LOC)=$P(Y,U,2)_" "_$S(ORDER="HO2":"Home Oxygen",ORDER="NONL":"Non Lab Location",ORDER="LAB":"Prosthetics Lab",ORDER="ORD":"Ordering Location",1:"")
  ;
 PRINT ;
- S EC="" F  S EC=$O(^TMP($J,EC)),EC1="" Q:EC=""  Q:QFLG  D HEAD Q:QFLG  F  S EC1=$O(^TMP($J,EC,EC1)),EC2=""  Q:EC1=""  Q:QFLG  F  S EC2=$O(^TMP($J,EC,EC1,EC2)) Q:EC2=""  Q:QFLG  D
+ S EC="" F  S EC=$O(^TMP($J,EC)),EC1="" Q:EC=""  Q:QFLG  D:'$G(ECXPORT) HEAD Q:QFLG  F  S EC1=$O(^TMP($J,EC,EC1)),EC2=""  Q:EC1=""  Q:QFLG  F  S EC2=$O(^TMP($J,EC,EC1,EC2)) Q:EC2=""  Q:QFLG  D  ;149
+ .I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=EC_U_EC1_U_^(EC2),CNT=CNT+1 Q  ;149
  .W !,?5,EC1,?23,^(EC2) I $Y+3>IOSL D HEAD Q:QFLG
-OUT I $E(IOST)="C"&('QFLG) S DIR(0)="E" D  D ^DIR K DIR
+OUT I '$G(ECXPORT) I $E(IOST)="C"&('QFLG) S DIR(0)="E" D  D ^DIR K DIR ;149
  .S SS=22-$Y F JJ=1:1:SS W !
- K ^TMP($J),DAT,EC,EC1,EC2,EC3,ECD,ECD1,ECS,ECSC,ID,JJ,LN,PG,POP,QFLG,RD,SS,X,Y
- W:$E(IOST)'="C" @IOF D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@" Q
+ K:'$G(ECXPORT) ^TMP($J) K DAT,EC,EC1,EC2,EC3,ECD,ECD1,ECS,ECSC,ID,JJ,LN,PG,POP,QFLG,RD,SS,X,Y ;149
+ I '$G(ECXPORT) W:$E(IOST)'="C" @IOF D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@" Q  ;149
+ Q  ;149
 HEAD ;
  I $E(IOST)="C" S SS=22-$Y F JJ=1:1:SS W !
  I $E(IOST)="C",PG>0 S DIR(0)="E" W ! D ^DIR K DIR I 'Y S QFLG=1 Q

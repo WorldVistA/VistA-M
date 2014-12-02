@@ -1,5 +1,5 @@
 TIUDPEDT ; SLC/JER - Document Parameter Edit ;2/19/93  16:15
- ;;1.0;TEXT INTEGRATION UTILITIES;**198,206,212**;Jun 20, 1997
+ ;;1.0;TEXT INTEGRATION UTILITIES;**198,206,212,282**;Jun 20, 1997;Build 1
 MAIN ; Controls branching
  N DIC,DA,DIE,DR,DLAYGO,X,Y,DWPK,TIUFPRIV S TIUFPRIV=1
  W !,"First edit Institution-wide parameters:",!
@@ -20,7 +20,8 @@ CONT ;
  N TIUDR
  S TIUDR=$S($P($G(TIURESP),U)="@":$P($G(TIURESP),U),1:$P($G(^TIU(8925.1,$P(TIURESP,U),0)),U))
  Q:$L(TIUDR)'>0
- S DIE="^TIU(8925.95,",DR=".01///"_TIUDR
+ ;*282 - Prevent filing error
+ S DIE="^TIU(8925.95,",DR=".01///`"_$P($G(TIURESP),U)
  L +^TIU(8925.95,DA):0 I '$T W !,"Another user is editing this entry" H 1 Q
  N TIUSAVDA S TIUSAVDA=DA
  D ^DIE

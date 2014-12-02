@@ -1,9 +1,12 @@
 PRCHAMU ;WISC/AKS-Modules helpful in amendments ;8/18/97  9:12
- ;;5.1;IFCAP;**21,117,175**;Oct 20, 2000;Build 4
+ ;;5.1;IFCAP;**21,117,175,180**;Oct 20, 2000;Build 5
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;Patch PRC*5.1*175 modifies cancel error switch used in template
  ;                  PRCHAMENDPRO to be PRCPROSW. 
- ;     
+ ;   
+ ;Patch PRC*5.1*180 Ask Delivery Date field edit each time
+ ;                  amendment process is used
+ ;  
  W !,"Call at the appropriate entry point",$C(7)
  Q
  ;
@@ -109,11 +112,11 @@ ASK ;Ask type amendment
  Q
 UPDATE ;Update Delivery date, Original Delivery Date, Amendment status and
  ;Justification.
- I $G(DELIVER) D
- .S PRCHDT=$P(^PRC(443.6,PRCHPO,0),U,10)
- .I $P($G(^PRC(442,PRCHPO,23)),"^",11)'="S" S DIE="^PRC(443.6,",DA=PRCHPO,DR=7 D ^DIE K DIE
- .I PRCHDT,$P(^PRC(443.6,PRCHPO,0),U,20)="",$P(^(0),U,10)'=PRCHDT S $P(^(0),U,20)=PRCHDT
- .K PRCHDT
+ ;;PRC*5.1*180   Ask Delivery date every time, regardless of amendment types. Replaces DELIVER=1 control set by certain amendment types which drove Delivery Date query
+ S PRCHDT=$P(^PRC(443.6,PRCHPO,0),U,10)
+ I $P($G(^PRC(442,PRCHPO,23)),"^",11)'="S" S DIE="^PRC(443.6,",DA=PRCHPO,DR=7 D ^DIE K DIE
+ I PRCHDT,$P(^PRC(443.6,PRCHPO,0),U,20)="",$P(^(0),U,10)'=PRCHDT S $P(^(0),U,20)=PRCHDT
+ K PRCHDT
  S POSTAT=+$G(^PRC(443.6,PRCHPO,7))
  S AMSTAT=$S(POSTAT=25:26,POSTAT=30:31,POSTAT=40:71,POSTAT=6:83,POSTAT=84:85,POSTAT=86:87,POSTAT=90:91,POSTAT=92:93,POSTAT=94:95,POSTAT=96:97,POSTAT=45:45,1:POSTAT)
  I $G(PRCHAUTH)=1,(AMSTAT=40!(AMSTAT=71)) S AMSTAT=83

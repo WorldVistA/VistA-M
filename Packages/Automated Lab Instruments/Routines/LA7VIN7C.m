@@ -1,5 +1,5 @@
-LA7VIN7C ;DALOI/JDB - Process ORU's OBX for Micro ;11/18/11  14:35
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**74**;Sep 27, 1994;Build 229
+LA7VIN7C ;DALOI/JDB - Process ORU's OBX for Micro ;08/16/13  16:09
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**74,80**;Sep 27, 1994;Build 19
  ;
  ; Continuation of LA7VIN7 and is only called from there.
  ; Process OBX segments for "MI" subscript tests.
@@ -139,6 +139,25 @@ LA7VIN7C ;DALOI/JDB - Process ORU's OBX for Micro ;11/18/11  14:35
  . . S ISQN2=ISQN2+1
  . . S SUB="18,"_ISQN2_",0"
  . ;
+ D NTE^LA7VIN71(LA76247,ISQN)
+ Q
+ ;
+ ;
+48 ; Process Sterility Results (Subscript 31)
+ ;
+ N LRX,SUB,ISQN2
+ S ISQN2=$O(^LAH(LWL,1,LA7ISQN,"MI",31,"A"),-1)+1
+ S SUB="31,"_ISQN2_",0"
+ S LRX=$$UNESC^LA7VHLU3(OBX5,LA7FS_LA7ECH)
+ D  ;
+ . N LRZ,LAMSG
+ . D CHK^DIE(63.292,.01,"",LRX,.LRZ,"LAMSG")
+ . I $G(LRZ)'="^" S LRX=LRZ
+ ;
+ D LAH(SUB,1,LRX)
+ ;
+ D ADDINFO(31,ISQN2) ;
+ ;
  D NTE^LA7VIN71(LA76247,ISQN)
  Q
  ;

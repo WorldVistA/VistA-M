@@ -1,10 +1,10 @@
-PXRMEXMM ; SLC/PKR - Routines to select and deal with MailMan messages ;01/18/2008
- ;;2.0;CLINICAL REMINDERS;**12**;Feb 04, 2005;Build 73
+PXRMEXMM ; SLC/PKR - Routines to select and deal with MailMan messages ;01/22/2013
+ ;;2.0;CLINICAL REMINDERS;**12,26**;Feb 04, 2005;Build 404
  ;=============================================================
 CMM(SUCCESS,LIST) ;Create a MailMan message containing the repository
  ;entries in LIST.
  ;Get a new MailMan message number.
- N IC,IND,LC,LIEN,RIEN,TEMP,TLC,XMSUB
+ N IC,IND,LC,LEN,LNUM,RIEN,TEMP,TLC,XMSUB
  S TEMP=$$GETSUB
  I (TEMP["^")!(TEMP="") Q
  S XMSUB="CREX: "_TEMP
@@ -17,9 +17,10 @@ RETRY ;
  S SUCCESS("SUB")=XMSUB
  ;
  S (IC,TLC)=0
- S LIEN=""
- F  S LIEN=$O(LIST(LIEN)) Q:+LIEN=0  D
- . S RIEN=$$RIEN^PXRMEXU1(LIEN)
+ S LEN=$L(LIST,",")-1
+ F IND=1:1:LEN D
+ . S LNUM=$P(LIST,",",IND)
+ . S RIEN=$$RIEN^PXRMEXU1(LNUM)
  . S LC=$O(^PXD(811.8,RIEN,100,""),-1)
  . S TLC=TLC+LC
  . F IND=1:1:LC D

@@ -1,5 +1,5 @@
-RAMAGU01 ;HCIOFO/SG - ORDERS/EXAMS API (RAMISC UTILITIES) ; 3/13/08 11:54am
- ;;5.0;Radiology/Nuclear Medicine;**90**;Mar 16, 1998;Build 20
+RAMAGU01 ;HCIOFO/SG,GJC - ORDERS/EXAMS API (RAMISC UTILITIES) ; 4/12/13  6:27pm
+ ;;5.0;Radiology/Nuclear Medicine;**90,116**;Mar 16, 1998;Build 1
  ;
  Q
  ;
@@ -65,6 +65,7 @@ MSCPRMS ;+++++ DEFINITIONS OF MISCELLANEOUS PARAMETERS
  ;;|REQURG      |75.1   |   6 |     |    |   $$ORDER^RAMAG02|
  ;;|RPTDTE      |74     |   8 | D   |    |$$COMPLETE^RAMAG06|
  ;;|RPTSTATUS   |74     |   5 |     |    |$$COMPLETE^RAMAG06|
+ ;;|SECDXCODE   |70.14  | .01 | PM  |    |$$COMPLETE^RAMAG06|
  ;;|SERVICE     |70.03  |   7 | P   |    |$$REGISTER^RAMAG03|
  ;;|SINGLERPT   |70.03  |  25 |     |    |$$REGISTER^RAMAG03|
  ;;|TECH        |70.12  | .01 | PM  |  1 |$$EXAMINED^RAMAG07|

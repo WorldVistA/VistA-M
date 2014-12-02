@@ -1,14 +1,25 @@
-ORLP2 ; SLC/Staff - Remove Autolinks from Team List ; [1/2/01 11:43am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**47,98**;Dec 17, 1997
+ORLP2 ; SLC/Staff - Remove Autolinks from Team List ; 11/3/10 12:44pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**47,98,273**;Dec 17, 1997;Build 17
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;DBIA reference section
+ ;10035 - ^DPT(
+ ;3070  - PTCL^SCAPMC,^TMP("SC TMP LIST"
+ ;10006 - DIC
+ ;10009 - YN^DICN
+ ;10018 - DIE
+ ;10013 - DIK
+ ;10026 - DIR
+ ;
  ;from option ORLP REMOVE AUTOLINKS - remove autolinks from team lists
- N %X,%Y,ACT,ALINK,CNT,DA,DIC,DIE,DIK,DIR,DLAYGO,DR,DTOUT,DUOUT,FILE,K,LINK,LIST,LNAME,LNK,LST,ORLPT,ORSTOP,ORUS,REF,TEAM,USER,VP,Y
+ N %X,%Y,ACT,ALINK,CNT,DA,DIC,DIE,DIK,DIR,DLAYGO,DR,DTOUT,DUOUT,ERROR,FILE,K,LINK,LIST,LNAME,LNK,LST,ORLPT,ORSTOP,ORUS,REF,TEAM,USER,VP,Y
  D CLEAR^ORLP
  W @IOF
  W !,"A team list is a list containing patients related to several providers.",!,"These providers are the list's users.  You may select one of these lists"
  W !,"and remove one or more autolinks.  Removal of autolinks will stop the",!,"automatic addition or deletion of patients with ADT movements associated",!,"with the deleted autolink."
  W !!,"Patients that were placed on the list using the deleted autolink will be",!,"removed from the list if they were not placed on the list by another Autolink.",!!
  D ASKLIST I $D(DTOUT)!($G(ORSTOP)) D END Q
- D ASKLINK(LIST) I $D(DTOUT)!($G(ORSTOP)) D END Q
+ I '$G(ERROR) D ASKLINK(LIST) I $D(DTOUT)!($G(ORSTOP)) D END Q
  D END
  Q
  ;
@@ -21,7 +32,7 @@ ASKLIST ;ask for team list
  I '$O(^OR(100.21,+LIST,2,0)) W !,"No Autolinks established for this team",! S ORSTOP=1 Q
  I $O(^OR(100.21,+Y,10,0)) D
  . F  D  Q:%
- .. S ORSTOP=0 W !,"List ",$P(Y,"^",2)," already contains patients and/or users.",!,"Do you want to remove some of them" S %=1 D YN^DICN I %=1 L +^OR(100.21,+LIST) Q
+ .. S ORSTOP=0 W !,"List ",$P(Y,"^",2)," already contains patients and/or users.",!,"Do you want to remove some of them" S %=1 D YN^DICN I %=1 L +^OR(100.21,+LIST):$G(DILOCKTM,3) I '$T W !,"Another user is editing this entry." S ERROR=1 Q
  .. I '% W !,"Answer 'YES' to delete existing 'Autolinks' and the associated patients,",!,"'NO' to return to the menus.",!
  .. S ORSTOP=%'=1
  Q
@@ -137,6 +148,9 @@ REN ; SLC/PKS - 7/99
  S ORTEAM=$P(Y,"^")           ; Assign IEN of list selected by user.
  K DIC
  ;
+ L +^OR(100.21,ORTEAM):$G(DILOCKTM,3) ; Lock the file at the Team List level.
+ I ('$TEST) W !,"Another user is editing this entry." QUIT  ; Punt if there's a file locking conflict.
+ ;
  ; Call Fileman's DIR to get formatted user input:
  ;
  S DIR(0)="FA^3:30^KILL:(X?.N)!'(X'?1P.E) X"
@@ -149,8 +163,8 @@ REN ; SLC/PKS - 7/99
  S ORNEW=X
  K DIR
  ;
- L +^OR(100.21,ORTEAM):3 ; Lock the file at the Team List level.
- I ('$TEST) W !,"Another user is editing this entry." QUIT  ; Punt if there's a file locking conflict.
+ ;L +^OR(100.21,ORTEAM):3 ; Lock the file at the Team List level.
+ ;I ('$TEST) W !,"Another user is editing this entry." QUIT  ; Punt if there's a file locking conflict.
  ;
  ; Call Fileman function to implement renaming:
  S DIE="^OR(100.21,"
@@ -160,7 +174,7 @@ REN ; SLC/PKS - 7/99
  S DR=".1///^SET X=ORNEW"
  D ^DIE ; Writes to third field of .01 record.
  ;
- L -^OR(100.12,ORTEAM) ; Unlock file.
+ L -^OR(100.21,ORTEAM) ; Unlock file.
  K DIE
  Q
  ;

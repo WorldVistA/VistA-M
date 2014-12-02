@@ -1,5 +1,5 @@
 PSOORNE5 ;BIR/SAB - display orders from backdoor con't ;5/10/07 8:29am
- ;;7.0;OUTPATIENT PHARMACY;**11,27,32,46,78,99,117,131,146,171,180,210,222,268,206,225**;DEC 1997;Build 29
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,32,46,78,99,117,131,146,171,180,210,222,268,206,225,391**;DEC 1997;Build 13
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External references L and UL^PSSLOCK supported by DBIA 2789
  ;External reference to ^PS(51.2 supported by DBIA 2226
@@ -19,7 +19,9 @@ PEN ;pending orders
  I '$G(PSOFIN) S PSOPLCK=$$L^PSSLOCK(PSODFN,0) I '$G(PSOPLCK) S VALMSG=$S($P($G(PSOPLCK),"^",2)'="":$P($G(PSOPLCK),"^",2)_" is working on this patient.",1:"Another person is entering orders for this patient."),VALMBCK="" K PSOPLCK Q
  K PSOPLCK ; D PSOL^PSSLOCK($P(PSOLST(ORN),"^",2)_"S") I '$G(PSOMSG) S VAMLSG=$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing this order."),PSOACT="" K PSOMSG G OK ;VALMBCK="" Q
  S PSODRG=+$P($G(^PS(52.41,ORD,0)),"^",9) I $G(^PSDRUG(PSODRG,"I"))]"",DT>$G(^("I")) S VALMSG="This Drug has been Inactivated."
- K PSOMSG S PSOACT=$S($D(^XUSEC("PSORPH",DUZ)):"DEFX",'$D(^XUSEC("PSORPH",DUZ))&($P($G(PSOPAR),"^",2)):"F",1:"")
+ I $P($G(^PS(52.41,ORD,0)),"^",24) S PSOACT=$S($D(^XUSEC("PSDRPH",DUZ)):"DEFX",$D(^XUSEC("PSORPH",DUZ)):"F",$P($G(PSOPAR),"^",2):"F",1:"")
+ E  S PSOACT=$S($D(^XUSEC("PSORPH",DUZ)):"DEFX",'$D(^XUSEC("PSORPH",DUZ))&($P($G(PSOPAR),"^",2)):"F",1:"")
+ K PSOMSG
 OK S PAT=PSODFN,PSORNSV=ORN,PSORNLT=PSLST D ORD^PSOORFIN S PSLST=PSORNLT,ORD=ORSV,ORN=PSORNSV K ORSV,PSORNSV,PSORNLT,PSODRUG S VALMBCK="R"
  K ORCHK,ORDRG,PSOFDR,SIGOK,PSONEW,PSORX("ISSUE DATE"),PSORX("FILL DATE"),PSORX("FN")
  K:'$G(MEDP) PAT
@@ -127,4 +129,16 @@ SPINS K T,SG,MIG
  I $P($G(^PS(55,PSODFN,"LAN")),"^") S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="  Other Pat. Instruc: "_$S($G(^PSRX(RXN,"INSS"))]"":^PSRX(RXN,"INSS"),1:"")
  Q
 SV S VALMSG="Pre-POE Rx. Please Compare Dosing Fields with SIG!"
+ Q
+PRV ;
+ N DETN,DEA,I,LBL,VADD,SPC,ORN S ORN=ORD
+ S DEA=$$DEA^XUSER(0,$P(RX0,"^",4))
+ S LBL=$S(DEA["-":"  VA#: ",1:" DEA#: ")
+ I $$DETOX^PSSOPKI($P(RX0,"^",6)) S DETN=$$DETOX^XUSER($P(RX0,"^",4))
+ S $P(SPC," ",(28-$L(DEA)))=" "
+ I (DEA'="")!($G(DETN)'="") S IEN=IEN+1,$E(^TMP("PSOAO",$J,IEN,0),16)=LBL_DEA_$S($G(DETN)]"":SPC_"DETOX#: "_$G(DETN),1:"")
+ D PRVAD^PSOPKIV2
+ I $G(VADD(1))]"" D
+ .S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="        Site Address: "_VADD(1)
+ .S:VADD(2)'="" IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="                      "_VADD(2) S:VADD(3)'="" IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="                      "_VADD(3)
  Q

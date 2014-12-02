@@ -1,5 +1,5 @@
-XUSTERM ;SEA/AMF/WDE - DEACTIVATE USER ;5/5/09
- ;;8.0;KERNEL;**36,73,135,148,169,222,313,384,489,527**;Jul 10, 1995;Build 1
+XUSTERM ;SEA/AMF/WDE - DEACTIVATE USER ;01/04/12
+ ;;8.0;KERNEL;**36,73,135,148,169,222,313,384,489,527,588,645**;Jul 10, 1995;Build 1
  ;;"Per VHA Directive 2004-038, this routine should not be modified".
 LKUP N DIRUT,DIC,DIR,XUDA,DA
  S DIC=200,DIC("S")="I $L($P(^(0),U,3))",DIC(0)="AEQMZ",DIC("A")="Select USER to be deactivated: "
@@ -31,7 +31,7 @@ GET ;XUGRP=mail group, XUKEY=keys, XUSUR=mail surrogates, XUJ=# baskets, XUK=# m
  S (XU10,XU20)=0,(XU11,XU21,XU31)=""
  S DA=XUDA,XUNAM=$P(^VA(200,XUDA,0),U,1)
  F XUI=0:0 S XUI=$O(^XMB(3.8,"AB",XUDA,XUI)) Q:XUI'>0  D  ;Mail groups
- . S XUK=^XMB(3.8,XUI,0) S:'$L($P(XUK,U,2)) $P(XUK,U,2)="PU"
+ . S XUK=$G(^XMB(3.8,XUI,0)) I XUK="" Q  S:'$L($P(XUK,U,2)) $P(XUK,U,2)="PU" ;588 added $G and I XUK="" Q
  . S XUGRP(XUI)=$P(XUK,U,1,2)_U_$S('$D(^XMB(3.8,XUI,3)):0,1:^(3)=XUDA)
  . S XU10=XU10+1 S:$L(XU11)<70 XU11=XU11_","_$P(XUK,U)
  F XUI=0:0 S XUI=$O(^VA(200,XUDA,51,XUI)) Q:XUI'>0  D  ;Get keys
@@ -55,8 +55,13 @@ ACT ;First let others clean-up, Then do our part.
  ;D ^XUSTERM2 ;Cleanup by other packages.
  N DIC,DA,DIE,DR
  L +^VA(200,XUDA,0):6
- ;Delete some fields first.
- ;Access;Verify;PAC;Last signon;SMD delegate;electronic signature,Primary menu,Hinq Employee #
+ ;Delete Verify code, prevents user from logging on p645
+ ;need Access code for XUSTERM1 to find terminated users
+ S DIE=200,DA=XUDA,DR="11///@" D ^DIE
+ ;check Purge flag, quit if no p645
+ I '$$GET^XPAR("SYS","XU645",1,"Q") L -^VA(200,XUDA,0) Q 
+ ;Delete other fields
+ ;Access code;Verify Code;PAC;Last signon;SMD delegate;electronic signature,Primary menu,Hinq Employee #
  S DIE=200,DA=XUDA,DR="2///@;11///@;14///@;1.1///@;19///@;19.2///@;20.4///@;201///@;14.9///@" D ^DIE
  L -^VA(200,XUDA,0)
  D DEQUE^XUSERP(XUDA,3) ;Cleanup by other packages.

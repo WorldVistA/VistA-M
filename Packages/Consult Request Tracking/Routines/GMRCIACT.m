@@ -1,5 +1,5 @@
-GMRCIACT ;SLC/JFR - PROCESS ACTIONS ON IFC ;08/16/10  08:46
- ;;3.0;CONSULT/REQUEST TRACKING;**22,47,58,66**;DEC 27, 1997;Build 30
+GMRCIACT ;SLC/JFR - PROCESS ACTIONS ON IFC ;03/18/14  05:42
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,47,58,66,73**;DEC 27, 1997;Build 22
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;#2051($$FIND1^DIC), #2053(DIE), #2165 HLMA1, #2701 MPIF001, #10103 XLFDT, #3065 XLFNAME, #2171 XUAF4
  Q  ;don't start here!
@@ -74,8 +74,18 @@ NW(ARRAY) ;process and file new order
  . S GMRCFDA(.133)=$P(GMRCP14,"B",2) ; requestor's dig pager
  S GMRCFDA(13)=$S($D(GMRCFDA(4)):"P",1:"C")
  I $D(^TMP("GMRCIN",$J,"OBX",2)) D
+ . N GMRCCSYS,CODINTXT
  . S GMRCFDA(30)=$P($P(^TMP("GMRCIN",$J,"OBX",2,1),"|",5),U,2)
  . S GMRCFDA(30.1)=$P($P(^TMP("GMRCIN",$J,"OBX",2,1),"|",5),U)
+ . S GMRCFDA(30.2)=$$HL7TFM^XLFDT($P($P(^TMP("GMRCIN",$J,"OBX",2,1),"|",14),U)) ;date OBX-14 WAT/73
+ . S GMRCCSYS=$P($P(^TMP("GMRCIN",$J,"OBX",2,1),"|",5),U,3) ;code system WAT/73
+ . S GMRCCSYS=$S($G(GMRCCSYS)="I9C":"ICD",1:"10D")
+ . S GMRCFDA(30.3)=GMRCCSYS
+ . I $D(GMRCFDA(30.1)) D  ;if dx code exists, ensure that code is removed from dx text
+ .. S CODINTXT="("_GMRCFDA(30.1)_")"
+ .. I GMRCFDA(30)[CODINTXT D
+ ... S GMRCFDA(30)=$E(GMRCFDA(30),0,($L(GMRCFDA(30))-$L(CODINTXT)))
+ ... S GMRCFDA(30)=$$TRIM^XLFSTR(GMRCFDA(30),"R")
  M FDA(1,123,"+1,")=GMRCFDA
  D UPDATE^DIE("","FDA(1)","GMRCDA","GMRCERR")
  I '$D(GMRCDA) D  Q  ;couldn't get new consult #

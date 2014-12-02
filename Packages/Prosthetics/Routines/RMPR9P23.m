@@ -1,5 +1,5 @@
 RMPR9P23 ;PHX/HNB -PRINT PURCHASE CARD FORM ;3/1/1996
- ;;3.0;PROSTHETICS;**153**;Feb 09, 1996;Build 10
+ ;;3.0;PROSTHETICS;**153,166**;Feb 09, 1996;Build 2
 PRI ;ENTRY POINT FOR PRINTING PRIVACY ACT (GUI WINDOWS) FOR 10-2421 AND 10-55 AND 2419
  N CT,PRTW
  F CT=1:1 S PRTW=$T(TEXT+CT) Q:PRTW=""  S CNT=CNT+1,^TMP($J,"RMPRPRT",CNT)=$P(PRTW,";",2)
@@ -7,31 +7,33 @@ PRI ;ENTRY POINT FOR PRINTING PRIVACY ACT (GUI WINDOWS) FOR 10-2421 AND 10-55 AN
 TEXT ;Privacy Act text
  ;
  ;
- ;VAAR- 852.273-75 SECURITY REQUIREMENTS FOR UNCLASSIFIED INFORMATION
- ;                 TECHNOLOGY RESOURCES (Interim - October 2008)
+ ;Security Requirements Interim Guidance - January 2013 (Per Acquisition Policy
+ ;               Flash 12-04, dated 2/2/12, suspending VAAR clause 852.273-75)
  ;
- ;(a) The contractor and their personnel shall be subject to the same Federal laws
- ;,regulations, standards and VA policies as VA personnel, regarding information
- ;and information system security. These include, but are not limited to Federal
- ;Information Security Management Act (FISMA), Appendix III of 0MB Circular A-130,
- ;and guidance and standards, available from the Department of Commerce's National
- ;Institute of Standards and Technology (NIST). This also includes the use of
- ;common security configurations available from NIST's Web site at:
- ;http://checklists.nist.gov.
+ ;A.    Any contractor and/or subcontractor retained to do work for VA under
+ ;this Contract that requires the access, use, storage, modification, or 
+ ;transmission of VA Sensitive Personal Information (SPI) must follow and 
+ ;adhere to the security controls, enhancements, compensating controls,
+ ;protocols, regulations, and VA directions as the Contracting Officer 
+ ;(CO) shall direct, including, but not limited to those derived from the
+ ;Federal Information Security Management Act (FISMA), OMB Circular No. 
+ ;A-130, and VA Handbook 6500/6500.6.  The contractor must report any data
+ ;breach according to the protocols and timeframes in HB 6500. 
  ;
-PRI1 ;(b) To ensure that appropriate security controls are in place, contractors must
- ;follow the procedures set forth in 'VA Information and Information System
- ;Security/Privacy Requirements for IT Contracts' located at the following Web
- ;site: http://www.iprm.oit.domain.ext.
- ;
-PRI2 ;(c) These provisions shall apply to all contracts in which VA sensitive
- ;information is stored, generated, transmitted, or exchanged by VA, a contractor,
- ;subcontractor or a third-party, or on behalf of any of these entities regardless
- ;of format or whether it resides on a VA system or contractor/subcontractor's
- ;electronic information system(s) operating for or on the VA's behalf.
- ;
-PRI3 ;(d) Clauses (a) and (b) shall apply to current and future contracts and
- ;acquisition vehicles including, but not limited to, job orders, task orders
- ;letter contracts, purchase orders, and modifications. Contracts do not include
- ;grants and cooperative agreements covered by 31 U.S.C. §6301 et seq.
+PRI1 ;B.      If any contractor/sub-contractor retained to do work for VA under
+ ;this Contract requires access, use, etc., of VA SPI as aforesaid, and if an
+ ;actionable data breach occurs because of the contractor/subcontractor's acts, 
+ ;omissions, or negligence in following the VA-directed security controls, 
+ ;enhancements, compensating controls, protocols, and/or measures, including,
+ ;but not limited to the sources above, the contractor/subcontractor is 
+ ;further subject to the statutory requirement to assess liquidated damages 
+ ;against contractors and/or subcontractors under 38 U.S.C. §5725 in the event
+ ;of a breach of Sensitive Personal Information (SPI)/Personally Identifiable 
+ ;Information (PII).  Said liquidated damages shall be assessed at $37.50 
+ ;per affected Veteran or beneficiary.  A breach in this context includes 
+ ;the unauthorized acquisition, access, use, or disclosure of VA SPI which
+ ;compromises not only the information's security or privacy but that of the
+ ;Veteran or beneficiary as well as the potential exposure or wrongful 
+ ;disclosure of such information as a result of a failure to follow proper 
+ ;data security controls and protocols.
  Q

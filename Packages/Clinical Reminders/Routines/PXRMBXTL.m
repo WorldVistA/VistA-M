@@ -1,5 +1,5 @@
-PXRMBXTL ; SLC/PKR - Build expanded taxonomies. ;08/12/2009
- ;;2.0;CLINICAL REMINDERS;**12**;Feb 04, 2005;Build 73
+PXRMBXTL ; SLC/PKR - Build expanded taxonomies. ;03/26/2013
+ ;;2.0;CLINICAL REMINDERS;**12,26**;Feb 04, 2005;Build 404
  ;
  ;====================================================
 CHECK(TAXIEN,KI) ;Check for expanded taxonomy, build it if it does not
@@ -88,10 +88,10 @@ EXPAND(TAXIEN,KI) ;Build an expanded taxonomy. If KI is defined then
  S $P(^PXD(811.3,TAXIEN,0),U,7,9)=NICPT_U_CPTDATE_U_NRCPT
  ;
  ;Create the patient data source.
- S (X1,X2)="TAX"
- S X=$P(^PXD(811.2,TAXIEN,0),U,4)
- D KPDS^PXRMPDS(X,X1,X2,TAXIEN)
- D SPDS^PXRMPDS(X,X1,X2,TAXIEN)
+ ;S (X1,X2)="TAX"
+ ;S X=$P(^PXD(811.2,TAXIEN,0),U,4)
+ ;D KPDS^PXRMPDS(X,X1,X2,TAXIEN)
+ ;D SPDS^PXRMPDS(X,X1,X2,TAXIEN)
  ;
  D SZN
  D ULOCKXTL(TAXIEN)
@@ -158,7 +158,7 @@ LOCKXTL(TAXIEN) ;Lock the expanded taxonomy entry. This may be called during
  E  S LC=2
  S LOCK=0
  F IND=1:1:LC Q:LOCK  D
- . L +^PXD(811.3,TAXIEN):1
+ . L +^PXD(811.3,TAXIEN):DILOCKTM
  . S LOCK=$T
  ;If we can't a get a lock take appropriate action.
  I 'LOCK D

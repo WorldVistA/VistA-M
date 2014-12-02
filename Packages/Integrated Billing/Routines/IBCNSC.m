@@ -1,5 +1,5 @@
 IBCNSC ;ALB/NLR - INSURANCE COMPANY EDIT ;6/1/05 9:42am
- ;;2.0;INTEGRATED BILLING;**46,137,184,276,320,371,400**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**46,137,184,276,320,371,400,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;also used for IA #4694
@@ -84,12 +84,16 @@ EXIT ; -- exit code
  Q
  ;
 INSCO ; -- select insurance company
- NEW DLAYGO,DIC,X,Y,DTOUT,DUOUT
+ NEW DLAYGO,DIC,X,Y,DTOUT,DUOUT,IBCNS3
  I '$D(IBCNS) D  G:$D(VALMQUIT) INSCOQ
  .S DIC="^DIC(36,",DIC(0)="AEQMZ",DIC("S")="I '$G(^(5))"
  .I '$G(IBVIEW) S DLAYGO=36,DIC(0)=DIC(0)_"L"
  .D ^DIC K DIC
  .S IBCNS=+Y
+ .;/Beginning of IB*2.0*488 (vd)
+ .I +IBCNS I $P($G(^DIC(36,+IBCNS,3)),"^",1)="" D     ; Set default for EDI=Transmit? to YES-LIVE
+ ..S DR="3.01////1",DIE="^DIC(36,",DA=IBCNS D ^DIE K DIE
+ ..;/End of IB*2.0*488 (vd)
  I $G(IBCNS)<1 K IBCNS S VALMQUIT="" G INSCOQ
 INSCOQ ;
  K DIC

@@ -1,5 +1,5 @@
-PXRMRDI ;SLC/PKR - Routines to support RDI list building. ;09/16/2011
- ;;2.0;CLINICAL REMINDERS;**4,17,18**;Feb 04, 2005;Build 152
+PXRMRDI ;SLC/PKR - Routines to support RDI list building. ;11/05/2013
+ ;;2.0;CLINICAL REMINDERS;**4,17,18,24,26**;Feb 04, 2005;Build 404
  ;=========================================================
 APPERR(TYPE) ;Handle errors getting appointment data.
  N ECODE,MGIEN,MGROUP,NL,TIME,TO,USER
@@ -126,7 +126,7 @@ PAPPL(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;Multiple type computed
  . S ALLNULL=1
  . I TMP'="" F IND=1:1:$L(TMP,U) I $P(TMP,U,IND)'="" S ALLNULL=0
  . I 'ALLNULL S $P(DATALIST,U,28)=TMP
- . F IND=2:1:$L(DATALIST,U) D
+ . F IND=1:1:$L(DATALIST,U) D
  .. S FIELD=$P(DATALIST,U,IND)
  .. I IND=6 S FIELD=$G(^TMP($J,"SDAMA301",DFN,APPDATE,"C"))
  .. I FIELD="" Q
@@ -145,20 +145,20 @@ PAPPL(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;Multiple type computed
  ;=========================================================
 SFILTER(PARAM,FILTER,FLDS) ;Parse the PARMETER and set the appropriate
  ;fields.
- N IND,LL,P1,P2,STATUS,TEMP
- S (FLDS,LL,STATUS)=""
+ N IND,LLNAME,LLP,P1,P2,STATUS,TEMP
+ S (FLDS,LLNAME,STATUS)=""
  F IND=1:1:$L(PARAM,U) D
  . S TEMP=$P(PARAM,U,IND)
  . S P1=$P(TEMP,":",1),P2=$P(TEMP,":",2)
  . I P1="FLDS" S FLDS=$TR(P2,",",";") Q
- . I P1="LL" S LL=P2 Q
+ . I P1="LL" S LLNAME=P2 Q
  . I P1="STATUS" S STATUS=$TR(P2,",",";") Q
  S FILTER("FLDS")=$S(FLDS="":"1;2",1:FLDS)
  S FILTER(3)=$S(STATUS="":"I;R",1:STATUS)
- I LL="" Q
- S LL=$O(^PXRMD(810.9,"B",LL,""))
- I LL="" S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","NO LL")="Location List "_P2_" does not exist."
- D LOCLIST^PXRMLOCF(LL,"HLOCL")
+ I LLNAME="" Q
+ S LLP=$O(^PXRMD(810.9,"B",LLNAME,""))
+ ;The LL VA-ALL LOCATIONS means no clinic filter.
+ I LLNAME'="VA-ALL LOCATIONS" D LOCLIST^PXRMLOCF(LLP,"HLOCL")
  I $D(^TMP($J,"HLOCL")) S FILTER(2)="^TMP($J,""HLOCL"","
  Q
  ;

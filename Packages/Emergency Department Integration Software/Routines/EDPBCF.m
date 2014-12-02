@@ -1,5 +1,5 @@
 EDPBCF ;SLC/KCM - Display Board Configuration ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+ ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
  ;
 LOAD(AREA) ; Load General Configuration for an Area
  N I,NODE
@@ -112,10 +112,12 @@ UPDBRD(AREA,EDPIEN,NAME,SPEC,MSG) ; Add/Update a Spec
  . I $D(DIERR) S MSG="save board spec failed: "_$G(EDPIEN)
  D CLEAN^DILF
  Q
+ ;bwf - 3/1/2013 removed below lines from column list per request from Dr. T
+ ;;Patient X9999^@last4^Patient
+ ;;Alerts^@alerts^Alerts
 COLUMNS ;; Available Columns
  ;;Room / Bed^@bedNm^Room
  ;;Patient Name^@ptNm^Patient
- ;;Patient X9999^@last4^Patient
  ;;Visit Created^@visit^Visit
  ;;Clinic^@clinicNm^Clinic
  ;;Complaint^@complaint^Complaint
@@ -130,5 +132,5 @@ COLUMNS ;; Available Columns
  ;;New (Unverified) Orders^@ordNew^New
  ;;Total Minutes^@emins^E Mins
  ;;Minutes at Location^@lmins^Mins
- ;;Alerts^@alerts^Alerts
+ ;;Disposition^@disposition^Disposition
  ;;zzzzz

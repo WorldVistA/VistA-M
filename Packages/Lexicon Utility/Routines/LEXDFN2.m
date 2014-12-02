@@ -1,6 +1,12 @@
-LEXDFN2 ; ISL Default Names                        ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDFN2 ;ISL/KER - Default Names ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    None
+ ;               
+ ; External References
+ ;    $$UP^XLFSTR         ICR  10103
+ ;               
 AP(X) ; Application Pointer
  S X=$G(X) S X=$$NS(X) Q:X="" 1
  N LEXIEN,LEXNS
@@ -17,7 +23,7 @@ AP(X) ; Application Pointer
  Q 1
 NS(X) ; Namespace
  S X=$G(X) Q:X="" "LEX"
- I +X>0,$D(^LEXT(757.2,+X)) S X=$P($G(^LEXT(757.2,+X,5)),"^",5) S:X="" X="LEX" Q X
+ I +X>0,X?1N.N,$D(^LEXT(757.2,+X)) S X=$P($G(^LEXT(757.2,+X,5)),"^",5) S:X="" X="LEX" Q X
  I X'="",$D(^LEXT(757.2,"AA",X)) D  S:X="" X="LEX" Q X
  . N LEXR S LEXR=$O(^LEXT(757.2,"AA",X,0)) I +LEXR>0,$D(^LEXT(757.2,+LEXR,0)) S X=$P($G(^LEXT(757.2,+LEXR,5)),"^",5)
  I X'="",$D(^LEXT(757.2,"AB",X)) D  S:X="" X="LEX" Q X

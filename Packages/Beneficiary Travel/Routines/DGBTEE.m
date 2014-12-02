@@ -1,5 +1,5 @@
 DGBTEE ;ALB/SCK - BENEFICIARY TRAVEL ENTER/EDIT; 12/3/92@1600 ;12/15/11  11:17
- ;;1.0;Beneficiary Travel;**2,14,20**;September 25, 2001;Build 185
+ ;;1.0;Beneficiary Travel;**2,14,20,21**;September 25, 2001;Build 7
  Q
 SCREEN ;
  ;
@@ -25,7 +25,7 @@ DIE1 ;  stuff from,to address, meals, ferry's/bridges
  D ^DIE I X=""!(X="^") S DGBTTOUT=-1 Q
  ;
  I DGBTACCT=4!(DGBTACCT=5) D
- . W !!,"Please wait, Checking Mileage ..."
+ . W !!,"Please enter mileage obtained from BT Dashboard ..."
  .S DGBTRMK=$S($D(DGBTREC):$$DICLKUP^DGBTUTL(DGBTREC,DGBTDV1,4),1:"") I $D(DGBTDEF),DGBTDEF S DGBTRMK="DEFAULT MILEAGE USED"
  .I DGBTRMK]"" W !,*7,"MILEAGE REMARKS: ",DGBTRMK,!
  ;

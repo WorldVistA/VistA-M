@@ -1,5 +1,8 @@
-ECV5RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;07 Aug 01
- ;;2.0; EVENT CAPTURE ;**25,30,36,47**;8 May 96
+ECV5RPC ;ALB/ACS - Event Capture Spreadsheet Data Validation ;07 Aug 01
+ ;;2.0;EVENT CAPTURE;**25,30,36,47,114**;8 May 96;Build 20
+ ;
+ ; Reference to $$SINFO^ICDEX supported by ICR #5747
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
  ;
  ;-----------------------------------------------------------------------
  ;  Validates the following Event Capture Spreadsheet Upload fields for
@@ -13,7 +16,7 @@ ECV5RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;07 Aug 01
  ;=======================================================================
  ;
 VALDIAG ;Validate Diagnosis Code.  Make sure it exists on the ICD9 file
- N ECDT
+ N ECDT,ECCS
  S %DT="XST",X=$G(ECENCV,"NOW") D ^%DT S ECDT=+Y
  I ECDXV="" D
  . ; Spreadsheet is missing diagnosis code
@@ -22,7 +25,9 @@ VALDIAG ;Validate Diagnosis Code.  Make sure it exists on the ICD9 file
  . D ERROR
  ;if diag invalid, send error message
  I ECDXV'="" S (ECDXIEN,ECSFOUND)=0 D
- . S ECDXIEN=$$ICDDX^ICDCODE(ECDXV,ECDT)
+ . ; Updates for ICD10
+ . S ECCS=$$SINFO^ICDEX("DIAG",ECDT) ; Supported by ICR 5747
+ . S ECDXIEN=$$ICDDX^ICDEX(ECDXV,ECDT,+ECCS,"E") ; Supported by ICR 5747
  . I +ECDXIEN>0,$P(ECDXIEN,"^",10) S ECDXIEN=+ECDXIEN,ECSFOUND=1 Q
  . I 'ECSFOUND D
  . . ; Invalid Diagnosis code

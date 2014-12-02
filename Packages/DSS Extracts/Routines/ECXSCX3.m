@@ -1,10 +1,17 @@
-ECXSCX3 ;ALB/DHE- DSS Clinic & Stop Codes Validity Report 728.44 ; 6/11/09 3:21pm
- ;;3.0;DSS EXTRACTS;**120**;Dec 22, 1997;Build 43
+ECXSCX3 ;ALB/DHE- DSS Clinic & Stop Codes Validity Report 728.44 ;2/11/14  17:03
+ ;;3.0;DSS EXTRACTS;**120,144,149**;Dec 22, 1997;Build 27
 EN ;entry point from option
  ;
- N ZTDESC,ZTRTN,ZTSAVE,ZTSK,ZUSR,ZTDTH,POP
- W !!,"This report will display stop code information of the ACTIVE ",!,"clinics in the Clinics and Stop Code file (#728.44).  It will",!,"display stop codes that do not conform to the Business Rules for ",!,"Valid Stop Codes.",!!
+ N ZTDESC,ZTRTN,ZTSAVE,ZTSK,ZUSR,ZTDTH,POP,ECXPORT,CNT,NUM ;144
+ W !!,"This report will display stop code information of the ACTIVE ",!,"clinics in the Clinics and Stop Code file (#728.44).  It will",!,"display stop codes that do not conform to the Business Rules for ",!,"Valid Stop Codes." ;144
  I '$D(^ECX(728.44)) W !,"DSS Clinic stop code file does not exist",!! R X:5 K X Q
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I ECXPORT D  Q  ;144
+ .K ^TMP($J,"ECXPORT") ;144
+ .S ^TMP($J,"ECXPORT",0)="IEN^CLINIC NAME^STOP CODE^CREDIT STOP CODE^DSS STOP CODE^DSS CREDIT STOP CODE^CHAR4 CODE^ERROR 1^ERROR 2^ERROR 3^WARNING" ;144,149
+ .S CNT=1 ;144
+ .D START ;144
+ .D EXPDISP^ECXUTL1 ;144
+ .K ECXERR,WARNING D ^ECXKILL ;144
  S %ZIS="Q" D ^%ZIS G:POP EXIT
  I $D(IO("Q")) D  Q
  . K ZTSAVE S ZTDESC="DSS Identify Invalid Stop and Credit Stop Codes",ZTRTN="START^ECXSCX3",ZTDTH=$H
@@ -16,14 +23,15 @@ EXIT D ^%ZISC,HOME^%ZIS
  Q
 START ; queued entry to print report
  U IO
- N CLIEN,CODE,ERR,QUIT,WRN,TOT,CODE1,CODE2,CODE3,CODE4,CLNAME,DATE
+ N CLIEN,CODE,ERR,QUIT,WRN,TOT,CODE1,CODE2,CODE3,CODE4,CODE5,CLNAME,DATE
  N I,INACT,Y,HEAD,NONAME,QFLG,LN,PG,DAT,REACT
  K WARNING,ECXERR,TYPE
  S QFLG=0,$P(LN,"-",80)="",PG=0
  S TOT=0,QUIT=""
- D HEAD
+ I '$G(ECXPORT) D HEAD ;144
  S CLIEN=0 F  S CLIEN=$O(^ECX(728.44,CLIEN)) Q:'CLIEN  D  Q:QUIT
  . Q:'$D(^ECX(728.44,CLIEN,0))
+ . I $P($G(^SC(CLIEN,0)),U,3)'="C" Q  ;149 Don't include it on report if it's not a clinic
  . S DAT=$G(^SC(CLIEN,"I")),INACT=+DAT,REACT=$P(DAT,"^",2)
  . ;S INACT=$P(^ECX(728.44,CLIEN,0),"^",10)
  . ;I (INACT'>DT)&(INACT'="") Q
@@ -36,16 +44,22 @@ START ; queued entry to print report
  . S CODE2=$P(^ECX(728.44,CLIEN,0),"^",3),TYPE="Credit Stop Code" D STOP^ECXSTOP(CODE2,TYPE,CLIEN,DATE)
  . S CODE3=$P(^ECX(728.44,CLIEN,0),"^",4),TYPE="DSS Stop Code" D STOP^ECXSTOP(CODE3,TYPE,CLIEN,DATE)
  . S CODE4=$P(^ECX(728.44,CLIEN,0),"^",5),TYPE="DSS Credit Stop Code" D STOP^ECXSTOP(CODE4,TYPE,CLIEN,DATE)
+ . S CODE5=$P(^ECX(728.44,CLIEN,0),"^",8),TYPE="CHAR4 Code" D STOP^ECXSTOP(CODE5,TYPE,CLIEN,DATE) ;149 CVW
  . I $D(ECXERR)!($D(WARNING)) S TOT=TOT+1 D  Q:QUIT
+ . . I (CODE5'="")&($$GET1^DIQ(728.441,CODE5,.01)'="") S CODE5=$$GET1^DIQ(728.441,CODE5,.01)
+ . . I $G(ECXPORT) D  Q  ;144
+ . . . S ^TMP($J,"ECXPORT",CNT)=CLIEN_"^"_CLNAME_"^"_$G(CODE1)_"^"_$G(CODE2)_"^"_$G(CODE3)_"^"_$G(CODE4)_"^"_$G(CODE5)_"^" ;144
+ . . . S NUM=0 F I=1:1:3 S:NUM'="" NUM=$O(ECXERR(NUM)) S ^TMP($J,"ECXPORT",CNT)=^TMP($J,"ECXPORT",CNT)_$S(NUM'="":$G(ECXERR(NUM)),1:"")_"^" ;144
+ . . . S NUM=+$O(WARNING(0)) S ^TMP($J,"ECXPORT",CNT)=^TMP($J,"ECXPORT",CNT)_$G(WARNING(NUM)),CNT=CNT+1 ;144
  . . I $Y>(IOSL-5) D HEAD
- . . W !!,CLIEN,?6,CLNAME,?46,$G(CODE1),?54,$G(CODE2),?62,$G(CODE3),?70,$G(CODE4)
+ . . W !!,CLIEN,?6,CLNAME,?46,$G(CODE1),?54,$G(CODE2),?61,$G(CODE3),?68,$G(CODE4),?75,$G(CODE5) ;149
  . . I $D(ECXERR) W !,"ERRORS:" D
  . . . S I=0 F  S I=$O(ECXERR(I)) Q:'I  D  Q:QUIT
  . . . . W !?6,ECXERR(I) D ADD
  . . I $D(WARNING) W !,"WARNINGS:" D
  . . . S I=0 F  S I=$O(WARNING(I)) Q:'I  D  Q:QUIT
  . . . . W !?6,WARNING(I) D ADD
- Q:QUIT
+ Q:QUIT!($G(ECXPORT))  ;144
  ;
 OUT ;
  I TOT'>0 W !!!?6,"NO PROBLEMS FOUND."
@@ -58,10 +72,10 @@ OUT ;
 HEAD ; header for worksheet
  W:$E(IOST,1,2)["C-"!(PG>1) @IOF S PG=PG+1
  W !,"DSS CLINIC & STOP CODES VALIDITY REPORT",?71,"Page: ",PG
- W !!,"IEN#",?6,"CLINIC NAME",?46,"PRIM",?54,"2NDARY",?62,"DSS",?70,"DSS"
- W !?46,"STOP",?54,"CREDIT",?62,"PRIM",?70,"2NDARY"
- W !?46,"CODE",?54,"STOP",?62,"STOP",?70,"CREDIT"
- W !?54,"CODE",?62,"CODE",?70,"CODE"
+ W !!,"IEN#",?6,"CLINIC NAME",?46,"STOP",?54,"CREDIT",?61,"DSS",?68,"DSS",?75,"CHAR4" ;144 CVW
+ W !?46,"CODE",?54,"STOP",?61,"STOP",?68,"CREDIT",?75,"CODE" ;144,149 CVW
+ W !?54,"CODE",?61,"CODE",?68,"STOP" ;149 CVW
+ W !?68,"CODE" ;144,149 CVW
  W !,LN
  Q
  ;

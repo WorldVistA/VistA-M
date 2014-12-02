@@ -1,5 +1,5 @@
 SROVER2 ;BIR/ADM - Case Coding and Verification ; 8/10/04 3:00pm
- ;;3.0;Surgery;**86,88,100,127,119**;24 Jun 93
+ ;;3.0;Surgery;**86,88,100,127,119,177**;24 Jun 93;Build 89
  I '$D(SRSITE) D ^SROVAR I '$D(SRSITE) S XQUIT="" Q
  I '$G(SRTN) D ^SROPS1 I '$D(SRTN) S XQUIT="" Q
 BEG N SRDES,SRDX,SREDIT,SRMOD,SRNON,SRSEL,SRTXT S (SREDIT,SRMOD,SRSOUT,SRS,SR2)=0 K ^TMP("SRV1",$J),^TMP("SRV2",$J) I $D(^SRF(SRTN,.2)),$P(^(.2),"^",3) S SRS=1
@@ -25,11 +25,11 @@ PRINT ; print information
  .S SRJ=0,Y="" F  S SRJ=$O(^SRF(SRTN,13,X,"MOD",SRJ)) Q:'SRJ  S Y=Y_$S($L(Y):",",1:"")_^SRF(SRTN,13,X,"MOD",SRJ,0)
  I SRNON S SRTXT=$P($G(^SRF(SRTN,33)),"^",2) W !,"4. Principal Diagnosis: "_SRTXT
  I 'SRNON S SRTXT=$P($G(^SRF(SRTN,34)),"^") W !,"4. Postoperative Diagnosis: "_SRTXT
- S SRDIAG="NOT ENTERED",SRDX=$P($G(^SRF(SRTN,34)),"^",2) I SRDX S SRDIAG=$$ICDDX^ICDCODE(SRDX,SRDATE),SRDIAG=$P(SRDIAG,"^",2)_"  "_$P(SRDIAG,"^",4)
+ S SRDIAG="NOT ENTERED",SRDX=$P($G(^SRF(SRTN,34)),"^",2) I SRDX S SRDIAG=$$ICD^SROICD(SRTN,SRDX),SRDIAG=$P(SRDIAG,"^",2)_"  "_$P(SRDIAG,"^",4)
  W !,"5. Principal Diagnosis Code: "_SRDIAG S ^TMP("SRV1",$J,34)=SRTXT_"^"_SRDX
  W !,"6. Other Postop Diagnosis: "_$S($O(^SRF(SRTN,15,0)):"** INFORMATION ENTERED **",1:"NO OTHER POSTOP DIAGNOSIS HAS BEEN ENTERED")
  W !,"7. Principal Pre-OP Diagnosis: " I $D(^SRF(SRTN,33)) W $P(^(33),"^")
- S SRDIAG="NOT ENTERED",SRDX=$P($G(^SRF(SRTN,34)),"^",3) I SRDX S SRDIAG=$$ICDDX^ICDCODE(SRDX,SRDATE),SRDIAG=$P(SRDIAG,"^",2)_"  "_$P(SRDIAG,"^",4)
+ S SRDIAG="NOT ENTERED",SRDX=$P($G(^SRF(SRTN,34)),"^",3) I SRDX S SRDIAG=$$ICD^SROICD(SRTN,SRDX),SRDIAG=$P(SRDIAG,"^",2)_"  "_$P(SRDIAG,"^",4)
  W !,"8. Principal Pre-OP Diagnosis Code: "_SRDIAG
  S X=0 F  S X=$O(^SRF(SRTN,15,X)) Q:'X  S Y=$G(^SRF(SRTN,15,X,0)),^TMP("SRV1",$J,15,X)=$P(Y,"^")_"^"_$P(Y,"^",3)
  W ! F LINE=1:1:80 W "-"

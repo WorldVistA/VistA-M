@@ -1,5 +1,5 @@
 IBCSC102 ;ALB/MJB - MCCR SCREEN 10 (UB-04 BILL SPECIFIC INFO) ;27 MAY 88 10:20
- ;;2.0;INTEGRATED BILLING;**432,447**;21-MAR-94;Build 80
+ ;;2.0;INTEGRATED BILLING;**432,447,461**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; DEM;432 - Moved IBCSC8* billing screen routines to IBCSC10* billing screen
@@ -74,7 +74,7 @@ EN S IBCUBFT=$$FT^IBCU3(IBIFN) I IBCUBFT=2 K IBCUBFT G ^IBCSC10H ;CMS-1500
  S Z=2,IBW=1 X IBWW
  S PRVS=$TR($P(IB("U3"),U,8,10),U) W " Pt Reason f/Visit : " I PRVS="" W IBU_$S(IBINP:" [NOT USED]",1:"")
  I PRVS'="" S FIRSTPRV=1 F I=8:1:10 D
- .S PRV=$$ICD9^IBACSV($P(IB("U3"),U,I),$$BDATE^IBACSV(IBIFN)) I PRV'="" W:'FIRSTPRV !,?24 W $P(PRV,U,3)_" - "_$P(PRV,U) S FIRSTPRV=0
+ .S PRV=$$ICD9^IBACSV($P(IB("U3"),U,I),$$BDATE^IBACSV(IBIFN)) I PRV'="" W:'FIRSTPRV !,?24 W $P(PRV,U,1)_" - "_$E($P(PRV,U,3),1,45) S FIRSTPRV=0
  .Q
  ;
  ; Section 3

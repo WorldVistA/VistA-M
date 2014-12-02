@@ -1,5 +1,5 @@
 ICDHLPD ;ALB/GRR/EG - HELP DISPLAY DIAGNOSIS IDENTIFIERS ; 9/22/04 9:41am
- ;;18.0;DRG Grouper;**10,14,20,24,55**;Oct 20, 2000;Build 20
+ ;;18.0;DRG Grouper;**10,14,20,24,55,62**;Oct 20, 2000;Build 10
 EN ;routine revised 12/94
  N ICDID,I,J,ID
  F I=1:1 S ICDID=$T(DXCODE+I),ICDID=$E($P(ICDID,";;",2),1,25) Q:ICDID="EXIT"  D
@@ -56,6 +56,7 @@ DXCODE ;DIAGNOSIS CODES
  ;;k=infection
  ;;l=Acute leuk.
  ;;m=hist malig as 2ry dx
+ ;;o=ovary
  ;;p=prematurity
  ;;r=Breast Malig
  ;;s=MCV in 2ndry

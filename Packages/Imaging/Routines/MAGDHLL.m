@@ -1,5 +1,5 @@
-MAGDHLL ;WOIFO/MLH - IHE-based ADT interface for PACS - log to gateway ; 11/15/2006 08:36
- ;;3.0;IMAGING;**49**;Mar 19, 2002;Build 2033;Apr 07, 2011
+MAGDHLL ;WOIFO/MLH - IHE-based ADT interface for PACS - log to gateway ; 12 Sep 2012 3:45 PM
+ ;;3.0;IMAGING;**49,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -30,20 +30,39 @@ LOGGW(XTYP) ; SUBROUTINE - log a generated message to the DICOM/text gateway
  N GWHDR ; ----- 0 node of gateway message file
  N MSH ; ------- message header for gateway
  N GWSGIX ; ---- gateway segment index
+ N FS ; -------- field separator
+ N I,IX ;------- scratch variables
  ;
+ ;
+ ; MSH, the HL7 message header segment, is passed in two different
+ ; variables, depending upon the subscribers to the event driver.
+ ; 
+ ; Originally, with just the MAG CPACS Axy SUBS subscriber, the value
+ ; was passed in HLHDR(1).
+ ; 
+ ; When the MAG CPACS Axy SUBS-HLO subscriber was added, because it has
+ ; a processing routine, the value was passed in HLREC("HDR") instead.
+ ; 
+ ; The code on the line below handles both situations.
+ ; 
+ S MSH=$G(HLHDR(1),$G(HLREC("HDR")))
+ I MSH'="" S FS=$E(MSH,4) D MAGDHL7
+ Q
+ ;
+MAGDHL7 ; output the ADT message to ^MAGDHL7 
  L +^MAGDHL7(2006.5,0):1E9 E  Q
  S GWIX=$O(^MAGDHL7(2006.5," "),-1)+1
  S GWHDR=$G(^MAGDHL7(2006.5,0))
  S $P(GWHDR,U,3)=GWIX,$P(GWHDR,U,4)=$P(GWHDR,U,4)+1
  S ^MAGDHL7(2006.5,0)=GWHDR
- S MSH=HLHDR(1),$P(MSH,HL("FS"),5)="VISTA DICOM/TEXT GATEWAY"
+ S $P(MSH,FS,5)="VISTA DICOM/TEXT GATEWAY"
  S ^MAGDHL7(2006.5,GWIX,1,1,0)=MSH
  S IX=0,GWSGIX=1
  F I=1:1 S IX=$O(HLA("HLS",IX)) Q:'IX  D
  . S GWSGIX=GWSGIX+1
  . S ^MAGDHL7(2006.5,GWIX,1,GWSGIX,0)=HLA("HLS",IX)
  . Q
- S MSGDT=$P($P(HLHDR(1),HL("FS"),7),"-",1) ; omit TZ offset
+ S MSGDT=$P($P(MSH,FS,7),"-",1) ; omit TZ offset
  S MSGDFM=$E(MSGDT,1,8)-17000000
  S MSGDTFM=+(MSGDFM_"."_$E(MSGDT,9,12))
  S ^MAGDHL7(2006.5,GWIX,1,0)=U_U_GWSGIX_U_GWSGIX_U_MSGDFM

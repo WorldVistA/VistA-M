@@ -1,6 +1,8 @@
 PRCSAPP ;WISC/KMB-NEW 2237 APPROVAL ; 10-27-93 12:00
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**165**;Oct 20, 2000;Build 12
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;Patch PRC*5.1*165 adds a check @SETUP to insure station is not only defined
+ ;                  but has a value >0.
 START ;
  N APPREQ,MESSAGE,YY,XY,SPENDCP,ALL,LOOP,FOUND,PRCS1,%,AA,TEST,II,CPARRAY
  N FND,CPVAR,STOP1,SLP,PRCSDA,PRCSI,CONT,LINE
@@ -8,7 +10,9 @@ START ;
  K CPCK S APPREQ=1 W !!,"Please wait while I check your control points..." D ^PRCSUT1
  I '$D(CPCK) W !,"You have no transactions ready for approval." Q
 SETUP ; set up array of all cps user has access to
- D STA^PRCSUT I '$D(PRC("SITE")) W !,$P($T(MESSAGE+1),";;",2) Q
+ D STA^PRCSUT I $D(DIRUT)!($D(DUOUT)) K DIRUT,DUOUT Q
+ I '$D(PRC("SITE")) W !,$P($T(MESSAGE+1),";;",2) Q
+ I +$G(PRC("SITE"))'>0 W !,$P($T(MESSAGE+7),";;",2) G SETUP
  S MESSAGE="" D ESIG^PRCUESIG(DUZ,.MESSAGE) I MESSAGE<1 W !,$P($T(MESSAGE+2),";;",2) Q
  ;
  S (AA,PRC("CP"))=0 F  S PRC("CP")=$O(^PRC(420,"A",DUZ,PRC("SITE"),PRC("CP"))) Q:PRC("CP")=""  D
@@ -63,3 +67,4 @@ MESSAGE ;
  ;;Control Point has no transactions for approval!
  ;;Enter yes or no
  ;;Enter the last four digits,i.e.,'0094',of transaction number
+ ;;Please select site

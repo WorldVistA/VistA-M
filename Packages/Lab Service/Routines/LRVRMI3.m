@@ -1,5 +1,5 @@
-LRVRMI3 ;DALOI/STAFF - LAB MICRO LEDI INTERFACE ;11/23/11  12:25
- ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+LRVRMI3 ;DALOI/STAFF - LAB MICRO LEDI INTERFACE ;08/15/13  16:08
+ ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
  ;
  ; Part of Micro LEDI interface.  It is a continuation of ^LRVRMI4 and ^LRVRMI2. Processes data in the temp global ^TMP("LRMI")
  ; and stores it into the appropriate sections of the Lab Data Microbiology file (#63.05).
@@ -21,9 +21,15 @@ NODE(LRNODE) ;  Process similar multiples - nodes 15,19-31
  . I LRX'=" ",$$DUPCHK^LRVRMI3(LRLL,LRPROF,.LRCMT,LRX) Q
  . S LRFDA(1,LRFILE,"+"_IEN_","_LRIDT_","_LRDFN_",",.01)=LRX
  . S LRFDAIEN(IEN)=IEN
- . S LRX=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,LRNODE,0))
- . I $P(LRX,"^") S LRPL(IEN)=$P(LRX,"^") Q
  . ;
+ . ; if result came across in NTE, PL and status info will be under ^(0) node
+ . I $D(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,LRNODE,0)) D  ;
+ . . S LRX=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,LRNODE,0))
+ . . S X=$P(LRX,"^",4)
+ . . D STAT4CMT(LRFILE,X,.LRSTATUS)
+ . . I $P(LRX,"^") S LRPL(IEN)=$P(LRX,"^")
+ . ;
+ . ; if result came across in OBX, PL and status info will be under ^(IEN,0,0) node
  . I $D(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,LRNODE,IEN,0,0)) D  ;
  . . S LRX=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,LRNODE,IEN,0,0))
  . . S X=$P(LRX,"^",4)
@@ -95,6 +101,17 @@ STAT4CMT(FILE,STAT,LRSTATUS) ; Calculate status for comment nodes (eg BACT SMEAR
  I FILE=63.291 S SUBF=63.05,FLD=11.5 ; Bact Smear
  I FILE=63.341 S SUBF=63.05,FLD=15 ; Para Smear
  I FILE=63.371 S SUBF=63.05,FLD=19 ; Myco Smear
+ I FILE=63.06 S SUBF=63.05,FLD=11.5 ; preliminary bacteria comment
+ I FILE=63.431 S SUBF=63.05,FLD=34 ; preliminary virus comment
+ I FILE=63.1 S SUBF=63.05,FLD=15 ; preliminary parasite comment
+ I FILE=63.11 S SUBF=63.05,FLD=19 ; preliminary mycology comment
+ I FILE=63.18 S SUBF=63.05,FLD=23 ; preliminary TB comment
+ I FILE=63.061 S SUBF=63.05,FLD=11.5 ; bacteria tests
+ I FILE=63.361 S SUBF=63.05,FLD=15 ; parasitology tests
+ I FILE=63.111 S SUBF=63.05,FLD=19 ; mycology tests
+ I FILE=63.181 S SUBF=63.05,FLD=23 ; TB tests
+ I FILE=63.432 S SUBF=63.05,FLD=34 ; virology tests
+ I FILE=63.292 S SUBF=63.05,FLD=11.5 ; sterility tests
  ;
  I FLD,SUBF D BLDSTAT^LRVRMI4A(SUBF,FLD,STAT,.LRSTATUS)
  ;
@@ -123,7 +140,7 @@ RPTDT(LRDFN,LRIDT,SUBSCR,RPTDT,USER) ; File Report Approved Date and Person Repo
  . S LRFDA(1,63.05,IEN,$P(FLDS,"^",1))=RPTDT
  . S LRFDA(1,63.05,IEN,$P(FLDS,"^",2))=USER
  . D FILE^DIE("","LRFDA(1)","LRMSG")
- . I '$D(LRMSG) S LRX=1 Q
+ . I '$D(LRMSG) S LRX=1,LRRPTAPP=1 Q
  . S LRX="0^2^FileMan error"
  E  S LRX="0^1^No Field #s found"
  ;

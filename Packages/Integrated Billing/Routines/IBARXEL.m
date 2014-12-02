@@ -1,6 +1,6 @@
 IBARXEL ;ALB/CPM - RX COPAY EXEMPTION INCOME TEST REMINDERS ;22-MAR-95
- ;;2.0;INTEGRATED BILLING;**34,139,206,217**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**34,139,206,217,385**;21-MAR-94;Build 35
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; Entry point for the generation of income test reminder letters.
  ; Invoked by the nightly IB Background job (routine IBAMTC).
@@ -36,6 +36,9 @@ EN ; Entry point for the generation of income test reminder letters.
  ..;
  ..S IBEXREA=$$ACODE^IBARXEU0(IBEXD)
  ..I IBEXREA'=110,IBEXREA'=120 Q  ;  exemption is not based on income
+ ..;
+ ..; -- veteran income test excempt from expiration under VFA rules
+ ..Q:$$VFAOK^IBARXEU(IBEXD)
  ..;
  ..S DFN=+$P(IBEXD,"^",2)
  ..Q:$$BIL^DGMTUB(DFN,IBD)  ; vet is cat c or pend. adj. & agreed to pay deductible

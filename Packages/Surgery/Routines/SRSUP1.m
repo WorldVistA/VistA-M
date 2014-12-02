@@ -1,5 +1,5 @@
 SRSUP1 ;BIR/MAM - UPDATE SCHEDULED OPERATION ; [ 01/29/01  2:13 PM ]
- ;;3.0; Surgery ;**7,16,19,47,58,67,77,50,93,107,114,100,131**;24 Jun 93
+ ;;3.0;Surgery;**7,16,19,47,58,67,77,50,93,107,114,100,131,177**;24 Jun 93;Build 89
  ;
  ; Reference to ^TMP("CSLSUR1" supported by DBIA #3498
  ;
@@ -14,6 +14,8 @@ CHANGE S SRC=1,SRI=$P($G(^SRF(SRTN,8)),"^"),SRS=$O(^SRO(133,"B",SRI,0)),SRTIME=$
  S SRYN=$E(SRYN) S:SRYN="" SRYN="N"
  I "YyNn"'[SRYN W !!,"Enter 'YES' if you need to change the ",$S(SRC:"date, ",1:""),"time or operating room for this",!,"case.  Enter RETURN to update other information related to this case." G CHANGE
 EDIT G:'$$LOCK^SROUTL(SRTN) END
+ ;JAS - 7/31/13 - Patch 177 (NEXT LINE)
+ N SRICDV S SRICDV=$$ICDSTR^SROICD(SRTN)
  I "Yy"'[SRYN D RT K ST,DR,DIE,DA S SPD=$$CHKS^SRSCOR(SRTN),DR="[SRSRES-SCHED]",DIE=130,DA=SRTN D EN2^SROVAR K Q3("VIEW") D ^SRCUSS D SRDYN D:$D(SRODR) ^SROCON1 D RISK^SROAUTL3,^SROPCE1,OERR G END
  D ^SRSTCH I SRSOUT G END
  D ^SRORESV S SRTN("OR")=SRSOR,SRTN("START")=SRSDT1,SRTN("END")=SRSDT2,SRSEDT=$E(SRSDT2,1,7) D ^SRSCG
@@ -41,7 +43,7 @@ NODATE ; new date not entered
  W !,"enter RETURN when prompted to select an operating room."
  R !!,"Press RETURN to continue  ",X:DTIME I '$T!(X["^") S SRSOUT=1
  Q
-DIE K ST,DR,DIE,DA S DR="[SRSRES-SCHED]",DIE=130,DA=SRTN D EN2^SROVAR K Q3("VIEW") D ^SRCUSS K DR D SRDYN
+DIE S SRICDV=$$ICDSTR^SROICD(SRTN) K ST,DR,DIE,DA S DR="[SRSRES-SCHED]",DIE=130,DA=SRTN D EN2^SROVAR K Q3("VIEW") D ^SRCUSS K DR D SRDYN
  Q
 RT ; start RT logging
  I $D(XRTL) S XRTN="SRSUP1" D T0^%ZOSV

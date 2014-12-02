@@ -1,5 +1,5 @@
 SROCMPED ;BIR/MAM - ENTER/EDIT OCCURRENCES ;08/16/2011
- ;;3.0;Surgery;**26,38,47,125,153,170,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**26,38,47,125,153,170,176,177**;24 Jun 93;Build 89
  I '$P(^SRF(SRTN,SRTYPE,SRENTRY,0),"^",2) D NOCAT I SRSOUT S SRSOUT=0 Q
  I '$D(^SRF(SRTN,SRTYPE,SRENTRY,0)) K SRENTRY S SRSOUT=0 Q
 START I '$D(^SRF(SRTN,SRTYPE,SRENTRY)) K SRENTRY S SRSOUT=0 Q
@@ -18,13 +18,14 @@ START I '$D(^SRF(SRTN,SRTYPE,SRENTRY)) K SRENTRY S SRSOUT=0 Q
  S SR(2)=$G(^SRF(SRTN,SRTYPE,SRENTRY,2)),SRO(4)=$P(SR(2),"^")_"^"_$S(SRTYPE=10:2,1:3)
  S X=$P(SR,"^",6),SHEMP=$S(X="U":"UNRESOLVED",X="I":"IMPROVED",X="D":"DEATH",X="W":"WORSE",1:""),SRO(5)=SHEMP_"^.05"
  K SRO(6) I SRTYPE=16 S X=$P(SR,"^",7) S:X X=$E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3) S SRO(6)=X_"^2"
-DISP W !,"1. Occurrence: ",?26,$P(SRO(1),"^"),!,"2. Occurrence Category: ",?26,$P(SRO(2),"^")
- W !,"3. "_$S($P(SR,"^",2)=3:"Sepsis Type",$P(SR,"^",2)=12:"Stroke/CVA Duration",$P(SR,"^",2)=27&($P($G(^SRF(SRTN,"RA")),"^",2)="C"):"CPB Status",1:"ICD Diagnosis Code")_":",?26,$P(SRO(3),"^")
- W !,"4. Treatment Instituted:",?26,$P(SRO(4),"^"),!,"5. Outcome to Date:",?26,$P(SRO(5),"^")
- I $D(SRO(6)) W !,"6. Date Noted: ",?26,$P(SRO(6),"^")
+DISP N SRSYS S SRSYS=$$ICD910^SROICD(SRTN)
+ W !,"1. Occurrence: ",?32,$P(SRO(1),"^"),!,"2. Occurrence Category: ",?32,$P(SRO(2),"^")
+ W !,"3. "_$S($P(SR,"^",2)=3:"Sepsis Type",$P(SR,"^",2)=12:"Stroke/CVA Duration",$P(SR,"^",2)=27&($P($G(^SRF(SRTN,"RA")),"^",2)="C"):"CPB Status",1:"ICD Diagnosis Code "_$$ICDSTR^SROICD(SRTN))_":",?32,$P(SRO(3),"^")
+ W !,"4. Treatment Instituted:",?32,$P(SRO(4),"^"),!,"5. Outcome to Date:",?32,$P(SRO(5),"^")
+ I $D(SRO(6)) W !,"6. Date Noted: ",?32,$P(SRO(6),"^")
  S SRX=$S(SRTYPE=10:6,1:7),SRO(SRX)="^" I $O(^SRF(SRTN,SRTYPE,SRENTRY,1,0)) S SRO(SRX)="*** INFORMATION ENTERED ***"_SRO(SRX)
  S X=$S(SRTYPE=10:1,1:4),SRO(SRX)=SRO(SRX)_X,SRMAX=SRX
- W !,SRX_". Occurrence Comments: ",?26,$P(SRO(SRX),"^")
+ W !,SRX_". Occurrence Comments: ",?31,$P(SRO(SRX),"^")
  W !!,SRLINE
  W !!,"Select Occurrence Information: " R X:DTIME I '$T!("^"[X) S:X["^" SRSOUT=1 G END
  I "Aa"[X S X="1:"_SRMAX
@@ -33,13 +34,14 @@ DISP W !,"1. Occurrence: ",?26,$P(SRO(1),"^"),!,"2. Occurrence Category: ",?26,$
  D HDR^SROAUTL W !
  I X?.N1":".N D RANGE G START
  I $$LOCK^SROUTL(SRTN) D  D UNLOCK^SROUTL(SRTN) D:SRZ=2 PRESS
- .S SRZ=X K DIE,DA,DR S DA(1)=SRTN,DA=SRENTRY,DIE="^SRF("_SRTN_","_SRTYPE_",",DR=$P(SRO(X),"^",2)_"T" D ^DIE K DR,DA
+ .S SRZ=X K DIE,DA,DR S DA(1)=SRTN,DA=SRENTRY,DIE="^SRF("_SRTN_","_SRTYPE_","
+ .S DR=$P(SRO(X),"^",2)_$S((SRTYPE=16&($P(SRO(X),"^",2)=6))!(SRTYPE=10&($P(SRO(X),"^",2)=4)):"ICD Diagnosis Code "_$$ICDSTR^SROICD(SRTN),1:"T") D ^DIE K DR,DA
  .I SRZ=3,$P(SR,"^",2)=12,$P(^SRF(SRTN,16,SRENTRY,0),"^",8)<2 D YUP
  G START
  Q
 ICDSTR ; get diagnosis info
  N SRICDSTR
- S SRICDSTR=$$ICDDX^ICDCODE(X,SRSDATE),X=$P(SRICDSTR,"^",2)_"  "_$P(SRICDSTR,"^",4)
+ S SRICDSTR=$$ICD^SROICD(SRTN,X),X=$P(SRICDSTR,"^",2)_"  "_$P(SRICDSTR,"^",4)
  Q
 HELP W @IOF,!!!!,"Enter the number, or range of numbers you want to edit.  Examples of proper",!,"responses are listed below."
  W !!,"1. Enter 'A' to update all occurrence information."
@@ -54,7 +56,12 @@ RANGE ; range of numbers
  I CURLEY=2 D PRESS
  Q
 ONE ; edit one item
- K DR,DA,DIE S DR=$P(SRO(EMILY),"^",2)_"T",DA=SRENTRY,DA(1)=SRTN,DIE="^SRF("_SRTN_","_SRTYPE_"," D ^DIE K DR,DA I '$D(^SRF(SRTN,SRTYPE,SRENTRY))!$D(DTOUT)!$D(Y) S SRSOUT=1
+ K DR,DA,DIE
+ S DR=$P(SRO(EMILY),"^",2)_$S((SRTYPE=16&($P(SRO(EMILY),"^",2)=6))!(SRTYPE=10&($P(SRO(EMILY),"^",2)=4)):"ICD Diagnosis Code "_$$ICDSTR^SROICD(SRTN),1:"T")
+ S DA=SRENTRY,DA(1)=SRTN
+ S DIE="^SRF("_SRTN_","_SRTYPE_","
+ D ^DIE K DR,DA
+ I '$D(^SRF(SRTN,SRTYPE,SRENTRY))!$D(DTOUT)!$D(Y) S SRSOUT=1
  Q
 END K SRO,SR,X,DA,DIE,DR,Y
  Q

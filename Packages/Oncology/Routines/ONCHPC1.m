@@ -1,5 +1,5 @@
 ONCHPC1 ;Hines OIFO/GWB - 2000 Hepatocellular Cancers PCE Study ;01/06/00
- ;;2.11;ONCOLOGY;**26**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Patient Information 
  K TABLE,HTABLE
  S TABLE("1. FACILITY ID NUMBER (FIN)")="FIN"

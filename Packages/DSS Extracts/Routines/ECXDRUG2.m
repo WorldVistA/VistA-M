@@ -1,9 +1,9 @@
-ECXDRUG2 ;ALB/TMD-Pharmacy Extracts Incomplete Feeder Key Report ; 2/19/08 3:44pm
- ;;3.0;DSS EXTRACTS;**40,68,84,105,111**;Dec 22, 1997;Build 4
+ECXDRUG2 ;ALB/TMD-Pharmacy Extracts Incomplete Feeder Key Report ;3/5/13  15:52
+ ;;3.0;DSS EXTRACTS;**40,68,84,105,111,144**;Dec 22, 1997;Build 9
  ;
 EN ; entry point
  N ECD,LINE,ECDRG,ECQTY,ECPRC
- K ^TMP($J)
+ I '$G(ECXPORT) K ^TMP($J) ;144 Already killed if exporting
  S ECD=ECSD1,ECED=ECED+.3
  S LINE=$S(ECXOPT=1:"PRE",ECXOPT=2:"IVP",ECXOPT=3:"UDP",1:"EXIT")
  D @LINE

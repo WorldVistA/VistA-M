@@ -1,5 +1,5 @@
 ONCOSSA3 ;WASH ISC/SRR-Print life tables ;11/1/93  12:34
- ;;2.11;ONCOLOGY;**13**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
 PRINT ;print actuarial life tables
  ;in:  CASES,LEN,GRP,HEADER,INTS,NGRPS,NPG,XCRT,^TMP($J

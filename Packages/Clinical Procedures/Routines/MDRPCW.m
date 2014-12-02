@@ -1,5 +1,5 @@
-MDRPCW ; HOIFO/NCA - Calls to AICS;04/01/2003 ;01/21/10  11:51
- ;;1.0;CLINICAL PROCEDURES;**6,21,20**;Apr 01, 2004;Build 9
+MDRPCW ; HOIFO/NCA - Calls to AICS ;01/21/10  11:51
+ ;;1.0;CLINICAL PROCEDURES;**6,21,20,29**;Apr 01, 2004;Build 22
  ; Reference Integration Agreement:
  ; IA #142 [Subscription] Access ^DIC(31 NAME field (#.01) with FM
  ; IA #174 [Subscription] Access DPT(DFN,.372) node.
@@ -12,9 +12,10 @@ MDRPCW ; HOIFO/NCA - Calls to AICS;04/01/2003 ;01/21/10  11:51
  ; IA #1995 [Supported] ICPTCOD calls
  ; IA #2054 [Supported] Call to DILF
  ; IA #2056 [Supported] Call to DIQ
- ; IA #3990 [Supported] ICDCODE calls
+ ; IA #5699 [Supported] ICDDATA^ICDXCODE calls
  ; IA #10060 [Supported] Access File 200
  ; IA #10061 [Supported] VADPT calls
+ ; IA #5747 [Subscription] Access to $$SINFO^ICDEX
  ;
  Q
 RPC(RESULTS,OPTION,DFN,MDSTUD) ; [Procedure] Main RPC call
@@ -52,14 +53,17 @@ PROC ; get list of procedures for clinic
  . I 'MDFST S $P(@RESULTS@(MDIDX),U,12)=CODES
  Q
 DIAG ; get list of diagnoses for clinic
- N CLIN,MDARR,MDPR,MDV
+ N CLIN,MDARR,MDPR,MDV,MDENCDT,MDCS,MDNAME
  S MDV=$$GET1^DIQ(702,+MDSTUD_",",.07,"I")
  I $G(MDV)="" S @RESULTS@(0)="-1^No Visit." Q
+ S MDENCDT=$P($P(MDV,";",2),".",1)
  S MDPR=$$GET1^DIQ(702,+MDSTUD_",",.04,"I")
  I '$G(MDPR) S @RESULTS@(0)="-1^No CP Definition." Q
  S CLIN=$$GET1^DIQ(702.01,+MDPR_",",.05,"I")
  I 'CLIN S CLIN=+$P(MDV,";",3) I 'CLIN S @RESULTS@(0)="-1^No Hospital Location." Q
- D GETLST^IBDF18A(CLIN,"DG SELECT ICD-9 DIAGNOSIS CODES","MDARR",,,,DT)
+ S MDCS=+$$SINFO^ICDEX("DIAG",MDENCDT)
+ S MDNAME="DG SELECT "_$S(MDCS=1:"ICD-9",MDCS=30:"ICD-10",1:"ICD")_" DIAGNOSIS CODES"
+ D GETLST^IBDF18A(CLIN,MDNAME,"MDARR",,,,MDENCDT)
  M @RESULTS=MDARR
  Q
 SCDISP ; Return Service Connected % and Rated Disabilities
@@ -114,7 +118,7 @@ PCEDISP ; Return print text to display PCE data
  .I +CODE S MDCTR=MDCTR+1,@RESULTS@(MDCTR)="Provider: "_$$GET1^DIQ(200,+CODE_",",.01,"E")_" "_$S($P(MDX0,U,4)="P":"Primary",1:"")
  I +MDVST>0 S MDICD=0 F  S MDICD=$O(^TMP("PXKENC",$J,MDVST,"POV",MDICD)) Q:'MDICD  D
  .S MDX0=$G(^TMP("PXKENC",$J,MDVST,"POV",MDICD,0)),MDX802=$G(^(802))
- .S CODE=+$G(MDX0,U),GDIAG=$$ICDDX^ICDCODE(CODE,"")
+ .S CODE=+$G(MDX0,U),GDIAG=$$ICDDATA^ICDXCODE(80,CODE,MDENCDT)
  .S:CODE DIAG=$P(GDIAG,U,2)_U_$P(GDIAG,U,4)
  .S CAT=$P(MDX802,U)
  .S:CAT CAT=$P($G(^AUTNPOV(CAT,0)),U)
@@ -153,7 +157,7 @@ PCEDISP ; Return print text to display PCE data
  ;^TMP("MDENC",$J,n)="POV"^ICD9 IEN^ICD9 CODE^provider narrative category^provider narrative (Short Description)^Primary (1=Yes,0=No)
  S MDICD=0 F  S MDICD=$O(^TMP("PXKENC",$J,MDVST,"POV",MDICD)) Q:'MDICD  D
  .S MDX0=$G(^TMP("PXKENC",$J,MDVST,"POV",MDICD,0)),MDX802=$G(^(802))
- .S CODE=+$G(MDX0,U),GDIAG=$$ICDDX^ICDCODE(CODE,"")
+ .S CODE=+$G(MDX0,U),GDIAG=$$ICDDATA^ICDXCODE(80,CODE,MDENCDT)
  .S:CODE DIAG=$P(GDIAG,U,2)_U_$P(GDIAG,U,4)
  .S CAT=$P(MDX802,U)
  .S:CAT CAT=$P($G(^AUTNPOV(CAT,0)),U)

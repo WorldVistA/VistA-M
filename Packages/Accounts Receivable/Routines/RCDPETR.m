@@ -1,5 +1,5 @@
 RCDPETR ;ALB/TMK,PJH - EOB TRANSFER IN/TRANSFER OUT REPORTS ; 9/17/10 6:31pm
- ;;4.5;Accounts Receivable;**173,269**;Mar 20, 1995;Build 113
+ ;;4.5;Accounts Receivable;**173,269,265**;Mar 20, 1995;Build 5
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ; IA for read access to ^IBM(361.1 = 4051
  Q
@@ -20,7 +20,7 @@ RPT ; Transfer In/Out Report
  ; Ask device
  S %ZIS="QM" D ^%ZIS G:POP RPTQ
  I $D(IO("Q")) D  G RPTQ
- . S ZTRTN="EN^RCDPETR("_RCRPT_","_RCDT1_","_RCDT2_")",ZTDESC="AR - EDI LOCKBOX TRANSFERRED EEOB REPORT"
+ . S ZTRTN="EN^RCDPETR("""_RCRPT_""","""_RCDT1_""","""_RCDT2_""")",ZTDESC="AR - EDI LOCKBOX TRANSFERRED EEOB REPORT"
  . D ^%ZTLOAD
  . W !!,$S($D(ZTSK):"Your task number "_ZTSK_" has been queued.",1:"Unable to queue this job.")
  . K ZTSK,IO("Q") D HOME^%ZIS

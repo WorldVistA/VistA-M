@@ -1,5 +1,7 @@
-ALPBUTL ;OIFO-DALLAS MW,SED,KC-BCMA BCBU REPORT FUNCTIONS AND UTILITIES ;01/01/03
- ;;3.0;BAR CODE MED ADMIN;**8**;Mar 2004
+ALPBUTL ;OIFO-DALLAS MW,SED,KC-BCMA BCBU REPORT FUNCTIONS AND UTILITIES ;2/28/13 8:13am
+ ;;3.0;BAR CODE MED ADMIN;**8,73**;Mar 2004;Build 31
+ ;
+ ;*73 add logic to handle Clinic Orders (CO)
  ;
 DEFPRT() ; fetch and return default printer...
  ; returns default printer entry from Device file based on entry in
@@ -172,7 +174,7 @@ OTYP(CODE) ; expand order type for printing...
  I $G(CODE)="" Q ""
  Q $S(CODE="U":"UNIT DOSE",CODE="V":"IV",CODE="P":"PENDING",1:CODE)
  ;
-ORDS(IEN,DATE,RESULTS) ; retrieve orders for a given patient...
+ORDS(IEN,DATE,RESULTS,CO,INCLIM) ; retrieve orders for a given patient... *73
  ; IEN  = patient's record number in file 53.7
  ; DATE = the date/time used to determine whether all or only current
  ;        orders are returned:
@@ -180,8 +182,14 @@ ORDS(IEN,DATE,RESULTS) ; retrieve orders for a given patient...
  ;          with a stop date/time equal to or greater than DATE are returned
  ;        >passed = "" then all orders are returned regardless of status
  ; returns RESULTS(order# ien) -- note:  RESULTS(0)=count of active orders
+ ; *73 add 2 new input varaibles below
+ ; CO     = Clinic name selected to match for return orders, if clinic
+ ;          report requested.
+ ; INCLIM = Include IM orders for a CO report request.  Y or N
+ ;
+ S CO=$G(CO),INCLIM=$G(INCLIM)   ;optional parameters
  I +$G(IEN)=0 S RESULTS(0)=0 Q
- N ALPBX,ALPBY,ORDERDAT,ORDERIEN,ORDERST
+ N ALPBX,ALPBY,ORDERDAT,ORIEN,ORDERST,CLNAM
  S (ORDERIEN,RESULTS(0))=0
  F  S ORDERIEN=$O(^ALPB(53.7,IEN,2,ORDERIEN)) Q:'ORDERIEN  D
  .S ORDERDAT(0)=$G(^ALPB(53.7,IEN,2,ORDERIEN,0))
@@ -189,6 +197,11 @@ ORDS(IEN,DATE,RESULTS) ; retrieve orders for a given patient...
  .S ORDERDAT(3)=$G(^ALPB(53.7,IEN,2,ORDERIEN,3))
  .S ORDERDAT(4)=$G(^ALPB(53.7,IEN,2,ORDERIEN,4))
  .S ORDERST=$P($P(ORDERDAT(0),"^",3),"~")
+ .;   *73 add CO logic below
+ .S:CO]"" CLNAM=$P(ORDERDAT(0),U,5)          ;is a Clinic report
+ .I CO]"",CLNAM]"",CO'=CLNAM K ORDERDAT Q    ;skip, not selected CLIN
+ .I CO]"",CLNAM="",INCLIM="N" K ORDERDAT Q   ;skip IM recs
+ .;
  .; is this order current?...
  .I $G(DATE)'=""&($P(ORDERDAT(1),"^",2)<$G(DATE)) K ORDERDAT Q
  .; if current, is it still active?...
@@ -246,4 +259,45 @@ STATUS ; return last update date/time and count of any errors...
  W !,"BCMA Backup System was last updated: ",$S($P($G(^ALPB(53.71,ALPBPARM,2)),"^")'="":$$FMTE^XLFDT($P(^ALPB(53.71,ALPBPARM,2),"^")),1:"UNKNOWN")
  S ALPBCNT=$$ERRCT^ALPBUTL2()
  I ALPBCNT>0 W !,"NOTICE! ",ALPBCNT_" filing error"_$S(ALPBCNT=1:" has",1:"s have")_" been logged."
+ Q
+ ;
+CLINLIST(DTYPE) ; list of Clinics on file...
+ ; DTYPE = 'C' for vertical (columnar) list
+ ;         'L' for horizontal list
+ I $G(DTYPE)="" S DTYPE="L"
+ N ALPBCLIN,ALPTOTCL
+ W !,"Clinics with BCMA Backup Data on this workstation:",!
+ S ALPBCLIN=""
+ F  S ALPBCLIN=$O(^ALPB(53.7,"AC",ALPBCLIN)) Q:ALPBCLIN=""  D
+ .I DTYPE="L" D  Q
+ ..I $X+$L(ALPBCLIN)>IOM W !
+ ..W ALPBCLIN S ALPTOTCL=$G(ALPTOTCL)+1
+ ..I $O(^ALPB(53.7,"AC",ALPBCLIN))'="" W ", "
+ .W !?5,ALPBCLIN
+ I '$D(^ALPB(53.7,"AC")) W !,"No Clinics on file",!
+ Q
+ ;
+CLINSEL(CLIN,RESULTS) ; find a selected Clinic...
+ ; CLIN    = a string representing a clinic input by the user
+ ; RESULTS = an array passed by reference in which possible matches
+ ;           are stored
+ ; returns possible matches for the CLIN in RESULTS
+ N ALPBCLIN,ALPBX
+ S RESULTS(0)=0
+ S ALPBCLIN=""
+ F  S ALPBCLIN=$O(^ALPB(53.7,"AC",ALPBCLIN)) Q:ALPBCLIN=""  D
+ .I ALPBCLIN=CLIN D  Q
+ ..S RESULTS(0)=RESULTS(0)+1,RESULTS(RESULTS(0))=ALPBCLIN
+ .I $E(ALPBCLIN,1,$L(CLIN))=CLIN D
+ ..S RESULTS(0)=RESULTS(0)+1,RESULTS(RESULTS(0))=ALPBCLIN
+ ; if a straight lookup failed, let's try making any alphas
+ ; entered by the user uppercase and try it once more...
+ I RESULTS(0)=0 D
+ .S CLIN=$$UP^XLFSTR(CLIN)
+ .S ALPBCLIN=""
+ .F  S ALPBCLIN=$O(^ALPB(53.7,"AC",ALPBCLIN)) Q:ALPBCLIN=""  D
+ ..I ALPBCLIN=CLIN D  Q
+ ...S RESULTS(0)=RESULTS(0)+1,RESULTS(RESULTS(0))=ALPBCLIN
+ ..I $E(ALPBCLIN,1,$L(CLIN))=CLIN D
+ ...S RESULTS(0)=RESULTS(0)+1,RESULTS(RESULTS(0))=ALPBCLIN
  Q

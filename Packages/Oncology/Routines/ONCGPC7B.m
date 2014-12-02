@@ -1,5 +1,5 @@
 ONCGPC7B ;Hines OIFO/GWB - 2001 Gastric Cancers PCE Study ;05/02/01
- ;;2.11;ONCOLOGY;**29**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;Print (continued)
 III S TABLE="FIRST COURSE OF TREATMENT - SURGERY"
  I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HEAD^ONCGPC0

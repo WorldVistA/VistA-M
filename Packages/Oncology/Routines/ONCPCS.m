@@ -1,5 +1,5 @@
 ONCPCS ;Hines OIFO/GWB - Collaborative Staging display ;11/09/11
- ;;2.11;ONCOLOGY;**40,48,51,53,54**;Mar 07, 1995;Build 10
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;
  Q:$G(TOP)=""
  N DISCRIM,HIST,MO,SCHNAME,SITE
@@ -16,7 +16,7 @@ ONCPCS ;Hines OIFO/GWB - Collaborative Staging display ;11/09/11
  N DI,DIC,DR,DA,DIQ,ONC
  K ONC
  S DIC="^ONCO(165.5,"
- S DR="29.2;30.2;29.1;31.1;32.1;32;33;34.3;34.4;44.1:44.999;160;161;162;163;164;165;166;167;168;169;160.7;161.7;162.7;163.7;164.7;165.7;166.7;247;283"
+ S DR="29.2;30.2;29.1;31.1;32.1;32;33;34.3;34.31;34.32;34.33;34.34;34.4;44.1:44.999;160;161;162;163;164;165;166;167;168;169;160.7;161.7;162.7;163.7;164.7;165.7;166.7;247;283"
  S DA=D0,DIQ="ONC",DIQ(0)="IE" D EN^DIQ1
  I $L(ONC(165.5,D0,32,"I"))=1 S ONC(165.5,D0,32,"I")="0"_ONC(165.5,D0,32,"I")
  I $L(ONC(165.5,D0,33,"I"))=1 S ONC(165.5,D0,33,"I")="0"_ONC(165.5,D0,33,"I")
@@ -36,24 +36,24 @@ ONCPCS ;Hines OIFO/GWB - Collaborative Staging display ;11/09/11
  W !," Regional Nodes Examined.: ",ONC(165.5,D0,33,"I"),?35,"AJCC-6 M Descriptor: ",ONC(165.5,D0,165,"E")
  W !," Regional Nodes Positive.: ",ONC(165.5,D0,32,"I"),?35,"AJCC-6 Stage Group.: ",ONC(165.5,D0,166,"E")
  W !," Mets at DX (CS).........: ",ONC(165.5,D0,34.3,"I"),?35,"AJCC-7 T...........: ",ONC(165.5,D0,160.7,"E")
- W !," Mets Eval (CS)..........: ",ONC(165.5,D0,34.4,"I"),?35,"AJCC-7 T Descriptor: ",ONC(165.5,D0,161.7,"E")
+ W !," Mets at DX-Bone.........: ",ONC(165.5,D0,34.31,"I"),?35,"AJCC-7 T Descriptor: ",ONC(165.5,D0,161.7,"E")
+ W !," Mets at DX-Brain........: ",ONC(165.5,D0,34.32,"I"),?35,"AJCC-7 N...........: ",ONC(165.5,D0,162.7,"E")
+ W !," Mets at DX-Liver........: ",ONC(165.5,D0,34.33,"I"),?35,"AJCC-7 N Descriptor: ",ONC(165.5,D0,163.7,"E")
+ W !," Mets at DX-Lung.........: ",ONC(165.5,D0,34.34,"I"),?35,"AJCC-7 M...........: ",ONC(165.5,D0,164.7,"E")
+ W !," Mets Eval (CS)..........: ",ONC(165.5,D0,34.4,"I"),?35,"AJCC-7 M Descriptor: ",ONC(165.5,D0,165.7,"E")
  ;
  S NUM=1 D SSF
- W ?35,"AJCC-7 N...........: ",ONC(165.5,D0,162.7,"E")
- S NUM=2 D SSF
- W ?35,"AJCC-7 N Descriptor: ",ONC(165.5,D0,163.7,"E")
- S NUM=3 D SSF
- W ?35,"AJCC-7 M...........: ",ONC(165.5,D0,164.7,"E")
- S NUM=4 D SSF
- W ?35,"AJCC-7 M Descriptor: ",ONC(165.5,D0,165.7,"E")
- S NUM=5 D SSF
  W ?35,"AJCC-7 Stage Group.: ",ONC(165.5,D0,166.7,"E")
- S NUM=6 D SSF
+ S NUM=2 D SSF
  W ?35,"SS1977.............: ",ONC(165.5,D0,167,"E")
- S NUM=7 D SSF
+ S NUM=3 D SSF
  W ?35,"SS2000.............: ",ONC(165.5,D0,168,"E")
- S NUM=8 D SSF
+ S NUM=4 D SSF
  W ?35,"CS version.........: ",ONC(165.5,D0,169,"E")
+ S NUM=5 D SSF
+ S NUM=6 D SSF
+ S NUM=7 D SSF
+ S NUM=8 D SSF
  S NUM=9 D SSF
  S NUM=10 D SSF
  S NUM=11 D SSF

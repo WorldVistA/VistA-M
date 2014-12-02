@@ -1,5 +1,5 @@
-LEXQCPA ;ISL/KER - Query - CPT Procedures - Ask ;10/30/2008
- ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
+LEXQCPA ;ISL/KER - Query - CPT Procedures - Ask ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**62,80**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    None
@@ -21,7 +21,7 @@ LEXQCPA ;ISL/KER - Query - CPT Procedures - Ask ;10/30/2008
 CPT(X) ; CPT Code
  Q:+($G(LEXEXIT))>0 "^^"  N DIC,DTOUT,DUOUT,LEXCP,LEXSO,LEXDTXT,LEXVTXT,LEXVDT,Y,ICPTVDT S:$G(LEXCDT)?7N ICPTVDT=$G(LEXCDT)
  S DIC(0)="AEQMZ",DIC="^ICPT(",DIC("A")=" Select a CPT/HCPCS Procedure code:  " W !
- D ^DIC  S:$G(X)["^^"!($D(DTOUT)) LEXEXIT=1 Q:$G(X)["^^"!(+($G(LEXEXIT))>0) "^^"
+ D ^DIC S:$G(X)["^^"!($D(DTOUT)) LEXEXIT=1 Q:$G(X)["^^"!(+($G(LEXEXIT))>0) "^^"
  Q:$G(X)="^" "^"  Q:$G(X)["^^" "^^"  Q:$D(DTOUT)!($D(DUOUT)) "^"  S LEXSO=$P($G(Y),"^",2) S X="" I +Y>0,$L(LEXSO) D
  . S LEXVDT=$G(LEXCDT) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S X=Y,LEXDTXT=$P($G(Y(0)),"^",2),LEXCP=$$CPT^ICPTCOD(LEXSO,LEXVDT)
  . S:$L($G(LEXDTXT)) LEXDTXT=LEXDTXT_" (Text not Versioned)" S LEXVTXT=$P(LEXCP,"^",3) S:'$L(LEXVTXT) LEXVTXT=LEXDTXT

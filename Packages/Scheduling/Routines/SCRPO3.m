@@ -1,5 +1,5 @@
 SCRPO3 ;BP-CIOFO/KEITH - Historical Provider Position Assignment Listing ; 9/14/99 10:06am
- ;;5.3;Scheduling;**177**;AUG 13, 1993
+ ;;5.3;Scheduling;**177,598**;AUG 13, 1993;Build 12
  ;
 EN ;Queue report
  N LIST,SORT,RTN,DESC,SCSP
@@ -128,7 +128,8 @@ BUILD(SCFMT) ;Build report data
  N SCTM,SCTP,SCPR,SCARR,ERR,SCI
  ;Build from provider list
  I $O(^TMP("SC",$J,"ASPR",0)) S SCPR=0 D  Q
- .F  S SCTP=$O(^TMP("SC",$J,"ASPR",SCPR)) Q:'SCPR!SCOUT  D
+ .;Corrected variable name SCTP to SCPR SD*5.3*598
+ .F  S SCPR=$O(^TMP("SC",$J,"ASPR",SCPR)) Q:'SCPR!SCOUT  D
  ..D STOP Q:SCOUT
  ..M SCDT=^TMP("SC",$J,"DTR") S SCDT="SCDT"
  ..S SCARR="^TMP(""SCARR"",$J,1)" K @SCARR

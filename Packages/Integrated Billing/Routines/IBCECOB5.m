@@ -1,5 +1,5 @@
 IBCECOB5 ;ALB/TMP - IB COB MANAGEMENT SCREEN ;31-JAN-01
- ;;2.0;INTEGRATED BILLING;**137,155,349,417**;21-MAR-94;Build 6
+ ;;2.0;INTEGRATED BILLING;**137,155,349,417,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 INIT ;
@@ -46,6 +46,24 @@ BLD(IBDA) ; Build list entrypoint
  . E  D
  .. S X=X_"NONE FOUND" D SET(X)
  I '$G(IBSRC) S CNT=20,IBREC=$G(^IBM(361.1,IBCNT,0)) K ^TMP("IBCECSD",$J) D MRALLA^IBCECSA5 M ^TMP("IBCECOB-X",$J)=^TMP("IBCECSD",$J) K ^TMP("IBCECSD",$J)
+ ;
+ ;/Beginning IB*2.0*488 (vd)
+ I '$D(^IBM(361.1,IBCNT,"ERR")) Q
+ D EOBERR
+ Q
+ ;
+EOBERR ; Display information about any 361.1 message storage or filing errors
+ N ERRTXT,DASHES,X,Z
+ S DASHES="---------------------------------------------------------------------"
+ I '$O(^IBM(361.1,IBCNT,"ERR",0)) Q
+ S X="VistA could not match all of the Line Level data received in the EEOB" D SET(X)
+ S X="(835 Record 40) to the claim in VistA." D SET(X)
+ S X=" " D SET(X)
+ S Z=0 F  S Z=$O(^IBM(361.1,IBCNT,"ERR",Z)) Q:'Z  D
+ .S ERRTXT=$G(^IBM(361.1,IBCNT,"ERR",Z,0))
+ .I ERRTXT["##RAW DATA" S ERRTXT=DASHES
+ .S X=$$SETLN^IBJTBA(ERRTXT,"",1,79) D SET(X)
+ ;/End of IB*2.0*488 (vd)
  ;
  Q
  ;

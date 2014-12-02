@@ -1,18 +1,24 @@
-LEXTRAN ;ISL/FJF/KER - Lexicon code and text wrapper API's ;01/03/2011
- ;;2.0;LEXICON UTILITY;**41,59,73**;Sep 23, 1996;Build 10
- ; Per VHA Directive 2004-038, this routine should not be modified.
+LEXTRAN ;ISL/KER - Lexicon code and text wrapper API's ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**41,59,73,80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.011)       N/A
+ ;    ^TMP("LEXSCH")      SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    ^%DT                ICR  10003
+ ;    $$GET1^DIQ          ICR   2056
+ ;    $$DT^XLFDT          ICR  10103
+ ;    $$UP^XLFSTR         ICR  10104
+ ;               
+CODE(CODE,SRC,CDT,LEXRAY) ; Get the Concept for a Code and Source
  ;
-CODE(LEXCODE,LEXSRC,LEXVDT,LEXRAY) ;
- ; Lexicon wrapper application to obtain concept data for a given code
- ; and source
- ; 
  ; Input
- ; 
- ;   LEXCODE  code - mandatory
- ;   LEXSRC   code system source abbreviation e.g. SCT (SNOMED CT)
- ;            - mandatory
- ;   LEXVDT   effective date (defaults to current date) - optional
- ;   LEXRAY   output array (defaults to 'LEX') optionaL
+ ;
+ ;   CODE     Code (required)
+ ;   SRC      Code System source abbreviation (required)
+ ;   CDT      Effective Date (optional, default TODAY)
+ ;   LEXRAY   Output array (optional, defaults to 'LEX')
  ;   
  ; Output
  ; 
@@ -52,96 +58,60 @@ CODE(LEXCODE,LEXSRC,LEXVDT,LEXRAY) ;
  ;     LEX("F")="Serum (Substance)"
  ;     LEX("P")="Serum"
  ;                        
- ; check passed parameter arguments
- ;
+ N LEXCODE,LEXSRC,LEXVDT S LEXCODE=$G(CODE),LEXSRC=$G(SRC),LEXVDT=$G(CDT)
  I $G(LEXCODE)="" Q "-1^no code specified"
- I $G(LEXSRC)="" Q "-1^no source specified"
- I '$D(^LEX(757.03,"B",LEXSRC)) Q "-1^source not recognized"
+ S LEXSRC=$E($G(LEXSRC),1,3) I $G(LEXSRC)="" Q "-1^no source specified"
+ I +($$CSYS^LEXU(LEXSRC))'>0 Q "-1^source not recognized"
  I $D(^TMP("LEXSCH",$J,"VDT",0)) S LEXVDT=^(0)
+ D:'$L($G(LEXVDT)) VDT^LEXU
  I $G(LEXVDT)'="" S LEXVDT=$$INTDAT(LEXVDT)
  I $G(LEXVDT)=-1 Q "-1^invalid date format"
  I $G(LEXVDT)="" S LEXVDT=$$DT^XLFDT
  I $G(LEXRAY)="" K LEXRAY
- ;
- ; obtain source mnemonic and ASAB
- ;
- N LEXSCNM,LEXSIEN,LEXASAB,LEXCIEN,VALCODE,LEXSTAT,LEXPIEN,T
- ;
- S LEXSIEN=$O(^LEX(757.03,"B",LEXSRC,""))
- S T=^LEX(757.03,LEXSIEN,0)
- S LEXSCNM=$P(T,U,2)
- S LEXASAB=$E($P(T,U),1,3)
- ;
- ; check for code existence for source
- ; 
+ N LEXSCNM,LEXSIEN,LEXASAB,LEXCIEN,VALCODE,LEXSTAT,LEXPIEN,LEXST
+ S LEXSIEN=+($$CSYS^LEXU(LEXSRC))
+ S LEXST=^LEX(757.03,LEXSIEN,0)
+ S LEXSCNM=$P(LEXST,U,2)
+ S LEXASAB=$E($P(LEXST,U),1,3)
  S LEXCIEN="",VALCODE=0
  F  Q:VALCODE=1  D  Q:LEXCIEN=""
  .S LEXCIEN=$O(^LEX(757.02,"CODE",LEXCODE_" ",LEXCIEN)) Q:LEXCIEN=""  D
  .I $D(^LEX(757.02,"ASRC",LEXASAB,LEXCIEN)) S VALCODE=1 Q
  I 'VALCODE Q "-2^"_LEXSCNM_" code "_LEXCODE_" not on file"
- ;
- ; now we know that the code belongs to the source and that it is known
- ; in our files
- ; check that code is valid for date
- ;
  K LEXSTAT,LEX
  K ^TMP("LEXSCH",$J)
  S LEXSTAT=$$STATCHK^LEXSRC2(LEXCODE,LEXVDT,.LEXSTAT,$E($G(LEXSRC),1,3)) ; Pch 73 adds parameter LEXSRC
  I +LEXSTAT=0 D  Q "-4^"_LEXSCNM_" code "_LEXCODE_" not active for "_LEXVDT
  .S LEXPIEN=$P(LEXSTAT(1),U)
- .;D INFO^LEXA(LEXPIEN)
  .D GETINFO
  .I $D(LEXRAY),LEXRAY'="LEX" M @LEXRAY=LEX K LEX
- ;
- ; if we've got this far we have a good code that is active
  S LEXPIEN=$P(LEXSTAT(1),U)
- ;Q "1^"_LEXCODE
- ;D INFO^LEXA(LEXPIEN)
  D GETINFO
  I $D(LEXRAY),LEXRAY'="LEX" M @LEXRAY=LEX K LEX
- ; 
  Q "1^"_LEXCODE
  ;
-GETINFO ; obtain information for code and populate LEX array
- ;
+GETINFO ; Get Information for a Code
  N LEXFSN,LEXHIER,LEXLGY,LEXVER,N,LEXSEP,I
- ;I $D(LEX("SEL","EXP","C","FUL")) D
- ;.S LEXFSN=LEX("SEL","EXP",$O(LEX("SEL","EXP","C","FUL","")))
- ;.S LEXHIER=$P($P(LEXFSN,"(",$L(LEXFSN,"(")),")")
- ; designations
+ S LEXSRC=$E($G(LEXSRC),1,3)
  S LEX=$$GETSYN^LEXTRAN1(LEXSRC,LEXCODE,LEXVDT)
- ; legacy code
  S LEXLGY=$$GET1^DIQ(757.02,LEXCIEN_",",13)
- ; hierarchy
  I $D(LEX("F")) S LEXHIER=$P($P(LEX("F"),"(",$L(LEX("F"),"(")),")")
- ; version
  S LEXVER=$$VERSION(LEXSRC,LEXCODE,LEXVDT)
- ; create return array
- ;S LEXSEP=" ["_LEXCODE_"]"
  S LEX(0)=LEXCODE_U_$G(LEXHIER)_U_$S(+LEXVER=-1:"",1:$P(LEXVER,U,3))
  S LEX(0)=LEX(0)_U_LEXLGY_U_+LEXSTAT
  I $D(LEX("F")) S LEXHIER=$P($P(LEX("F"),"(",$L(LEX("F"),"(")),")")
- ;S LEX("P")=$P(LEX("SEL","EXP",$O(LEX("SEL","EXP","C","MAJ",""))),U,2)
- ;I $D(LEXFSN) S LEX("F")=$P(LEXFSN,"^",2)
- ;S N=""
- ;F I=1:1 S N=$O(LEX("SEL","EXP","C","SYN",N)) Q:N=""  D
- ;.S LEX("S",I)=$P(LEX("SEL","EXP",N),U,2)
  K LEX("SEL")
  Q
  ;
-TEXT(LEXTEXT,LEXVDT,LEXSUB,LEXSRC,LEXRAY) ;
- ;
- ; Lexicon wrapper application to obtain concept data for a given text
- ; and source
+TEXT(TEXT,CDT,SUB,SRC,LEXRAY) ; Get the Concept for a text and source
  ; 
  ; Input
  ;   
- ;   LEXTEXT  the search string - mandatory
- ;   LEXVDT   effective date (defaults to current date) - optional
- ;   LEXSUB   subset or 'hierarchy' - optional
- ;   LEXSRC   code system source abbreviation e.g. SCT (SNOMED CT)
- ;            - optional
- ;   LEXRAY   output array  (defaults to 'LEX')- optional
+ ;   TEXT     The search string (required)
+ ;   CDT      Effective date (optional, default is TODAY)
+ ;   SUB      Subset or 'hierarchy' (optional)
+ ;   SRC      Code System source abbreviation
+ ;   LEXRAY   Output array (optional, defaults to 'LEX')
  ;   
  ; Output
  ;    
@@ -153,6 +123,10 @@ TEXT(LEXTEXT,LEXVDT,LEXSUB,LEXSRC,LEXRAY) ;
  ;               3. version
  ;               4. legacy code
  ;               5. code status
+ ;               
+ ;     LEX("F")    fully specified name ^ internal entry number
+ ;     LEX("P")    preferred term ^ internal entry number
+ ;     LEX("S",n)  synonyms (n is the nth synonym) ^ internal entry number
  ;     
  ;   otherwise
  ;     "-1^error text" 
@@ -162,40 +136,44 @@ TEXT(LEXTEXT,LEXVDT,LEXSUB,LEXSRC,LEXRAY) ;
  ;     LEX("F")="Serum (Substance)"
  ;     LEX("P")="Serum"
  ;     
+ N LEXTEXT,LEXVDT,LEXTD,LEXSUB,LEXSRC,LEXNOM,LEXID,DIC K LEX
+ S LEXTEXT=$G(TEXT),LEXVDT=$G(CDT),LEXSUB=$G(SUB),LEXSRC=$G(SRC)
  I $G(LEXTEXT)="" Q "-1^no search string specified"
- S LEXSRC=$G(LEXSRC)
+ S LEXSRC=$P($$CSYS^LEXU3(LEXSRC),"^",2),LEXNOM=""
+ S:$L(LEXSRC) LEXNOM=$P($G(^LEX(757.03,+($O(^LEX(757.03,"ASAB",LEXSRC,0))),0)),"^",2)
  I $G(LEXVDT)'="" S LEXVDT=$$INTDAT(LEXVDT)
  I $G(LEXVDT)=-1 Q "-1^invalid date format"
  I $G(LEXVDT)="" S LEXVDT=$$DT^XLFDT
- S LEXSRC=$G(LEXSRC)
  S LEXSUB=$G(LEXSUB) I LEXSUB="" S LEXSUB=LEXSRC
  I $G(LEXRAY)="" K LEXRAY
- ;
  N X,LEXPIEN,LEXCODE,LEXSTAT,LEXCIEN,Y
  K ^TMP("LEXSCH",$J),LEX
  S X=LEXTEXT
  D CONFIG^LEXSET(LEXSRC,LEXSUB,LEXVDT)
  D EN^LEXA1
  I +Y=-1 Q "-1^search could not find term"
- ;
  S LEXPIEN=+Y
  D INFO^LEXA(LEXPIEN)
- S LEXCODE=$O(LEX("SEL","SRC","C",""))
- S LEXSTAT=$$STATCHK^LEXSRC2(LEXCODE,LEXVDT,.LEXSTAT,$E(LEXSRC,1,3)) ; Pch 73 adds parameter LEXSRC
- S LEXCIEN=$P(LEXSTAT,U,2)
- S LEXSRC=$P(LEXSTAT(2),U,2)
+ S LEXCODE="",LEXSTAT=-1 I $L(LEXNOM) D
+ . S LEXID=$O(LEX("SEL","SRC","B",LEXNOM,0))
+ . S LEXCODE=$P($G(LEX("SEL","SRC",+LEXID)),"^",2)
+ I '$L(LEXCODE),$D(LEX("SEL","SRC","C")) D
+ . S LEXCODE=$O(LEX("SEL","SRC","C",""))
+ S LEXCIEN=0 I $L(LEXCODE) D
+ . S LEXSTAT=$$STATCHK^LEXSRC2(LEXCODE,LEXVDT,.LEXSTAT,$E(LEXSRC,1,3))
+ . S LEXCIEN=$P(LEXSTAT,U,2),LEXSRC=$E($P($G(LEXSTAT(2)),U,2),1,3)
  D GETINFO
  I $D(LEXRAY),LEXRAY'="LEX" M @LEXRAY=LEX K LEX
  Q "1^"_LEXPIEN
  ;
-VERSION(LEXSRC,LEXCODE,LEXVDT) ;
- ; infer version of code
+VERSION(SRC,CODE,VDT) ; Get the Code Version Number
+ ;
  ; Input
  ;   
- ;   LEXSRC   code system source abbreviation e.g. SCT (SNOMED CT)
- ;   LEXCODE  code - mandatory
- ;   LEXVDT   effective date (defaults to current date) - optional
- ;            - optional
+ ;   SRC      Code System source abbreviation e.g. SCT (SNOMED CT)
+ ;   CODE     Code - mandatory
+ ;   VDT      Effective date (defaults to current date) - optional
+ ;             - optional
  ;   
  ; Output
  ; 
@@ -203,28 +181,28 @@ VERSION(LEXSRC,LEXCODE,LEXVDT) ;
  ;     or
  ;   -1^error message
  ;      
+ N LEXSRC,LEXCODE,LEXVDT S LEXSRC=$G(SRC),LEXCODE=$G(CODE),LEXVDT=$G(VDT)
  I $G(LEXVDT)'="" S LEXVDT=$$INTDAT(LEXVDT)
  I $G(LEXVDT)=-1 Q "-1^invalid date format"
  I $G(LEXVDT)="" S LEXVDT=$$DT^XLFDT
- I $G(LEXSRC)="" Q "-1^invalid source" ; Pch 73 adds quit if LEXSRC is missing
+ S LEXSRC=$E($G(LEXSRC),1,3) I $G(LEXSRC)="" Q "-1^invalid source"
  N SIEN,VIEN,VDAT,LEXSTAT
- S SIEN=$O(^LEX(757.03,"B",LEXSRC,""))
- I '$D(^LEX(757.03,SIEN,1)) Q "-1^No source version data available"
+ S SIEN=+($$CSYS^LEXU(LEXSRC))
+ I '$D(^LEX(757.03,+SIEN,1)) Q "-1^No source version data available"
  S LEXSTAT=$$STATCHK^LEXSRC2(LEXCODE,LEXVDT,.LEXSTAT,$E($G(LEXSRC),1,3)) ; Pch 73 adds parameter LEXSRC
  I +LEXSTAT=0 Q "-1^Code not active for date specified"
  S VDAT=$O(^LEX(757.03,SIEN,1,"B",LEXVDT+1),-1)
  S VIEN=$O(^LEX(757.03,SIEN,1,"B",VDAT,""))
  Q "1^"_^LEX(757.03,SIEN,1,VIEN,0)
  ;
- ;
-TXT4CS(LEXTEXT,LEXSRC,LEXRAY,LEXSUB) ; Is text valid for an SCT code
+TXT4CS(TEXT,SRC,LEXRAY,SUB) ; Is text valid for an SCT code
  ;
  ; Input
  ; 
- ;   LEXTEXT is term being checked
- ;   LEXSRC is code system mnemonic or IEN
- ;   LEXRAY   output array (defaults to 'LEX') optional
- ;   LEXSUB   subset or 'hierarchy' - optional
+ ;   TEXT      Text to check
+ ;   SRC       Coding System Mnemonic or IEN
+ ;   LEXRAY    Output array (optional, defaults to 'LEX')
+ ;   SUB       Subset or 'hierarchy' (optional)
  ;   
  ; Output
  ; 
@@ -242,6 +220,7 @@ TXT4CS(LEXTEXT,LEXSRC,LEXRAY,LEXSUB) ; Is text valid for an SCT code
  ;      
  ;   -1^error message
  ;   
+ N LEXTEXT,LEXSRC,LEXSUB S LEXTEXT=$G(TEXT),LEXSRC=$G(SRC),LEXSUB=$G(SUB)
  N CODEC,EXP,EXIEN,MCIEN,FOUND,CIEN,CODE,EXPTYP,FINDS,LAR,HIER,HIERNAM,LEXW ; Pch 73 adds variable CODEC
  I $G(LEXTEXT)="" Q "-1^text not specified"
  I $G(LEXSRC)="" Q "-1^code system not specified"
@@ -270,7 +249,7 @@ TXT4CS(LEXTEXT,LEXSRC,LEXRAY,LEXSUB) ; Is text valid for an SCT code
  ...I LEXSUB'="" D
  ....K LAR
  ....S LAR=$$CODE(CODE,"SCT",,"LAR")
- ....S HIER=$P(LAR(0),U,2)
+ ....S HIER=$P($G(LAR(0)),U,2)
  ....S HIERNAM=$P(^LEXT(757.2,$O(^LEXT(757.2,"AA",LEXSUB,"")),0),U)
  ...I LEXSUB'="",HIER'=HIERNAM Q
  ...S FOUND=1
@@ -282,15 +261,17 @@ TXT4CS(LEXTEXT,LEXSRC,LEXRAY,LEXSUB) ; Is text valid for an SCT code
  I $D(LEXRAY),LEXRAY'="LEX" M @LEXRAY=LEX K LEX
  Q FOUND_"^"_FINDS
  ;
-CSYSIEN(MNEM) ; return code system IEN for mnemonic
- I '$D(^LEX(757.03,"B",MNEM)) Q "-1^code system unknown in Lexicon"
- Q "1^"_$O(^LEX(757.03,"B",MNEM,""))
+CSYSIEN(MNEM) ; Return code system IEN for mnemonic
+ Q:'$L($G(MNEM)) "-1^invalid code system" N LEXIEN
+ S LEXIEN=+($$CSYS^LEXU(MNEM)) Q:LEXIEN>0 "1^"_LEXIEN
+ Q "-1^code system unknown in Lexicon"
  ;
-CSYSMNEM(SIEN) ; return code system mnemonic for IEN
- I '$D(^LEX(757.03,SIEN)) Q "-1^code system unknown in Lexicon"
- Q "1^"_$P(^LEX(757.03,SIEN,0),"^")
+CSYSMNEM(SIEN) ; Return code system mnemonic for IEN
+ S SIEN=+($$CSYS^LEXU($G(SIEN)))
+ I '$D(^LEX(757.03,+($G(SIEN)),0)) Q "-1^code system unknown in Lexicon"
+ Q "1^"_$E($P(^LEX(757.03,SIEN,0),"^"),1,3)
  ;
-INTDAT(X) ; convert date from external format to VA internal format
- N Y
+INTDAT(X) ; Convert date from external format to VA internal format
+ N Y,%DT
  D ^%DT
  Q Y

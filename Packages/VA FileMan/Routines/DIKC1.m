@@ -1,6 +1,6 @@
-DIKC1 ;SFISC/MKO-LOAD XREF INFO ;8:19 AM  2 Aug 1999
- ;;22.0;VA FileMan;**11**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIKC1 ;SFISC/MKO-LOAD XREF INFO ;19DEC2010
+ ;;22.0;VA FileMan;**11,167**;Mar 30, 1999;Build 18
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;============================================
  ; LOADALL(File,Log,Activ,ValRt,Tmp,Flag,.MF)
@@ -19,6 +19,7 @@ DIKC1 ;SFISC/MKO-LOAD XREF INFO ;8:19 AM  2 Aug 1999
  ;       [ i : don't load index-type xrefs (only load whole file xrefs)
  ;       [ f : don't load field-type xrefs
  ;       [ r : don't load record-type xrefs
+ ;       [ x : don't load "NOREINDEX" xrefs
  ;
  ;Out:
  ; MF(file#,mField#)   = multiple node
@@ -37,6 +38,7 @@ LOADALL(RFIL,LOG,ACT,VALRT,TMP,FLAG,MF) ;
  . I $G(FLAG)["i",$P(^DD("IX",XR,0),U,8)="I" Q
  . I $G(FLAG)["f",$P(^DD("IX",XR,0),U,6)="F" Q
  . I $G(FLAG)["r",$P(^DD("IX",XR,0),U,6)="R" Q
+NOREIN .I $G(FLAG)["x",$G(^DD("IX",XR,"NOREINDEX")) Q  ;PATCH 167
  . ;
  . ;Load xref
  . D CRV^DIKC2(XR,$G(VALRT),TMP)
@@ -146,6 +148,7 @@ LOADFLD(FIL,FLD,LOG,ACT,VALRT,TMPF,TMPR,FLIST,RLIST,FLAG) ;
  . I $G(FLAG)["i",$P(^DD("IX",XR,0),U,8)="I" Q
  . I $G(FLAG)["f",$P(^DD("IX",XR,0),U,6)="F" Q
  . I $G(FLAG)["r",$P(^DD("IX",XR,0),U,6)="R" Q
+ . I $G(FLAG)["x",$G(^DD("IX",XR,"NOREINDEX")) Q
  . ;
  . ;Set TMP, RLIST, and FLIST
  . K TMP

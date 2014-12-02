@@ -1,5 +1,5 @@
 ONCSPC4A ;HIRMFO/GWB - PCE Study of Soft Tissue Sarcoma Table IV;6/19/96
- ;;2.11;ONCOLOGY;**6**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 C W !!,"CHEMOTHERAPY:",!
  S CHEMO=ONC(165.5,ONCONUM,53.2,"I"),CHEMOT=ONC(165.5,ONCONUM,53.2,"E")
  W !,"  CHEMOTHERAPY....................: ",CHEMOT

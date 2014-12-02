@@ -1,5 +1,16 @@
 ORCB ;SLC/MKB-Notifications followup for LMgr chart ;4/5/01  21:32
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,36,48,70,108,116,243**;Dec 17, 1997;Build 242
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,36,48,70,108,116,243,334**;Dec 17, 1997;Build 5
+ ;;Per VHA Directive 2004-038, this routine should not be modified
+ ;DBIA reference section
+ ;10035 - ^DPT
+ ;2437  - ^DGPM
+ ;10009 - DICN
+ ;10026 - DIR
+ ;10118 - VALM
+ ;10116 - VALM1
+ ;10103 - XLFDT
+ ;10104 - XLFSTR
+ ;10140 - XQORM
 EN(DFN,ORFLG,DGRP,DEL) ; -- main entry point
  Q:'$G(DFN)  Q:'$G(ORFLG)
  N BEG,END D SLCT1^ORQPT
@@ -117,13 +128,14 @@ SIGN ; -- Sign new order
  Q
  ;
 EXIT ; -- exit action
- I $P($P(^TMP("OR",$J,"CURRENT",0),U,3),";",3)=12 D  ; flagged orders
- . Q:'$$GET^XPAR("ALL","ORPF AUTO UNFLAG")
- . N ORI,ORIFN,ORA,XQAKILL,ORN,ORUNF
- . S ORUNF=+$E($$NOW^XLFDT,1,12)_U_DUZ_"^Auto-Unflagged"
- . S ORI=0 F  S ORI=$O(^TMP("OR",$J,"CURRENT","IDX",ORI)) Q:ORI'>0  S ORIFN=$P(^(ORI),U),ORA=+$P(ORIFN,";",2) I ORIFN,$D(^OR(100,+ORIFN,0)) S $P(^(8,ORA,3),U)=0,$P(^(3),U,6,8)=ORUNF D MSG^ORCFLAG(ORIFN) ; unflag
- . S ORN=+$O(^ORD(100.9,"B","FLAGGED ORDERS",0))
- . S XQAKILL=$$XQAKILL^ORB3F1(ORN) D:$D(XQAID) DELETE^XQALERT
+ ;*334/VMP-DJE Auto unflag has been disabled
+ ;I $P($P(^TMP("OR",$J,"CURRENT",0),U,3),";",3)=12 D  ; flagged orders
+ ;. Q:'$$GET^XPAR("ALL","ORPF AUTO UNFLAG")
+ ;. N ORI,ORIFN,ORA,XQAKILL,ORN,ORUNF
+ ;. S ORUNF=+$E($$NOW^XLFDT,1,12)_U_DUZ_"^Auto-Unflagged"
+ ;. S ORI=0 F  S ORI=$O(^TMP("OR",$J,"CURRENT","IDX",ORI)) Q:ORI'>0  S ORIFN=$P(^(ORI),U),ORA=+$P(ORIFN,";",2) I ORIFN,$D(^OR(100,+ORIFN,0)) S $P(^(8,ORA,3),U)=0,$P(^(3),U,6,8)=ORUNF D MSG^ORCFLAG(ORIFN) ; unflag
+ ;. S ORN=+$O(^ORD(100.9,"B","FLAGGED ORDERS",0))
+ ;. S XQAKILL=$$XQAKILL^ORB3F1(ORN) D:$D(XQAID) DELETE^XQALERT
  D EXIT^ORCHART
  Q
  ;

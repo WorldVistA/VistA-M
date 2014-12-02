@@ -1,5 +1,5 @@
-PSBCSUTL ;BIRMINGHAM/TEJ- BCMA-HSC COVER SHEET UTILITIES ;1/10/12 8:32pm
- ;;3.0;BAR CODE MED ADMIN;**16,13,38,32,50,60,58,68**;Mar 2004;Build 26
+PSBCSUTL ;BIRMINGHAM/TEJ- BCMA-HSC COVER SHEET UTILITIES ;11/15/12 2:40pm
+ ;;3.0;BAR CODE MED ADMIN;**16,13,38,32,50,60,58,68,70**;Mar 2004;Build 101
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -15,14 +15,19 @@ PSBCSUTL ;BIRMINGHAM/TEJ- BCMA-HSC COVER SHEET UTILITIES ;1/10/12 8:32pm
  ;
  ;*58 - add 30th piece to Results for Override/Intervention flag 1/0
  ;*68 - add new parameter to use new SI/OPI word processing fields
+ ;*70 - add Clinic order request IN param flag (true/false 0/1).
+ ;      also add to return array ORD line 32 piece Clinic name for CO.
+ ;      for CO mode: set to -7 days for pulling pull meds & viewing
+ ;       Expired/DC'd orders; set to +7 days to view future orders.
  ;
- ; ** Warning: PSBSIOPI will be used as a global variable for all down
- ;    streams calls from this RPC tag call.
+ ; ** Warning: PSBSIOPI & PSBCLINORD will be used as global variables
+ ;             for all down stream calls from this RPC tag.
  ;
-RPC(RESULTS,DFN,EXPWIN,PSBSIOPI) ;
+RPC(RESULTS,DFN,EXPWIN,PSBSIOPI,PSBCLINORD) ;
  K RESULTS,^TMP("PSB",$J),^TMP("PSJ",$J)
- S PSBXWIN=$G(EXPWIN,24)
+ S EXPWIN=+$G(EXPWIN)       ;*70
  S PSBSIOPI=+$G(PSBSIOPI)   ;*68 init to 0 if not present or 1 if sent
+ S PSBCLINORD=+$G(PSBCLINORD)                   ;*70 init to 0 if null
  S PSBTAB="CVRSHT"
  N PSBCNT S PSBTRFL=0,PSBDFNX=DFN
  D PAINCMT(DFN) ;;Correct Comment if Pain Score entered in BCMA was marked "Entered in Error" in Vitals. (PSB*3*50)
@@ -32,16 +37,30 @@ RPC(RESULTS,DFN,EXPWIN,PSBSIOPI) ;
  Q:$P(^TMP("PSB",$J,PSBTAB,1),U,4)=-1
  D NOW^%DTC S PSBNOW=+$E(%,1,10),PSBDT=$P(%,".",1)
  ;set range
- S PSBWBEG=$$FMADD^XLFDT(PSBNOW,"",-PSBXWIN),PSBWEND=$$FMADD^XLFDT(PSBNOW,"",PSBXWIN)
- S PSBTBEG=$$FMADD^XLFDT(PSBNOW,"",-12),PSBTEND=$$FMADD^XLFDT(PSBNOW,"",12)
+ ;*70 - use diff window values for CO mode vs IM mode
+ I PSBCLINORD D
+ . S:'EXPWIN EXPWIN=24*7   ;not passed in def to 7 days
+ . S PSBWBEG=$P($$FMADD^XLFDT(PSBNOW,-EXPWIN\24),".")
+ . S PSBWEND=$P($$FMADD^XLFDT(PSBNOW,EXPWIN\24),".")
+ E  D
+ . S:'EXPWIN EXPWIN=24   ;not passed in def to 24 hr
+ . S PSBWBEG=$$FMADD^XLFDT(PSBNOW,"",-EXPWIN)
+ . S PSBWEND=$$FMADD^XLFDT(PSBNOW,"",EXPWIN)
+ ;
  S PSBWADM=$$GET^XPAR("DIV","PSB ADMIN BEFORE"),PSBMHBCK=$$GET^XPAR("ALL","PSB MED HIST DAYS BACK",,"B") I +PSBMHBCK=0 S PSBMHBCK=30
  D NOW^%DTC S PSBWADM=$$FMADD^XLFDT(%,"","",+PSBWADM),PSBMHBCK=$$FMADD^XLFDT(%,-1*(PSBMHBCK))
  ;use lst movemnt for API
  S VAIP("D")="LAST" D IN5^VADPT S PSBTRDT=+VAIP(3),PSBTRTYP=$P(VAIP(2),U,2),PSBMVTYP=$P(VAIP(4),U,2) K VAIP
  S PSBPTTR=$$GET^XPAR("DIV","PSB PATIENT TRANSFER") I PSBPTTR="" S PSBPTTR=72
  D NOW^%DTC S PSBNTDT=$$FMADD^XLFDT(%,"",-PSBPTTR) I PSBNTDT'>PSBTRDT S PSBTRFL=1
- S X1=$P(PSBNOW,"."),X2=-3 D C^%DTC
+ ;*70  go back 7 days to pull meds for clinic orders
+ S X1=$P(PSBNOW,"."),X2=$S(PSBCLINORD:-7,1:-3) D C^%DTC
  D EN^PSJBCMA(PSBDFNX,X,$S(PSBMHBCK<PSBWBEG:PSBMHBCK,PSBWBEG<PSBMHBCK:PSBWBEG,1:PSBMHBCK))
+ ;Filter in/out Clinic Orders               *70
+ D:PSBCLINORD
+ . I $D(PSBRPT(2)) D FILTERCO^PSBO Q
+ . D INCLUDCO^PSBVDLU1
+ D:'PSBCLINORD REMOVECO^PSBVDLU1
  ;Devlop Outp
  S PSBTBOUT=0
  I ^TMP("PSJ",$J,1,0)>0 F PSBX=0:0 S PSBX=$O(^TMP("PSJ",$J,PSBX)) Q:('PSBX)!(PSBTBOUT)  D
@@ -101,6 +120,10 @@ RPC(RESULTS,DFN,EXPWIN,PSBSIOPI) ;
  .N PSBARR D GETPROVL^PSGSICH1(DFN,PSBONX,.PSBARR)
  .I $O(PSBARR(""))="" D INTRDIC^PSGSICH1(DFN,PSBONX,.PSBARR,2)
  .S $P(PSBREC,U,29)=$S($O(PSBARR(""))]"":1,1:0)
+ .;*70 add Clinic name & ien ptr to piece 32 and 33 for CO's, remember
+ .;   "ORD" is inserted later as piece 1 which offsets all here by +1
+ .S $P(PSBREC,U,31)=$G(PSBCLORD)
+ .S $P(PSBREC,U,32)=$G(PSBCLIEN)
  .;get all Admn(s) - DD info.
  .S (PSBDDS,PSBSOLS,PSBADDS,PSBFLAG)="0"
  .;PSB*3*60 adds additional checks to ensure an expired order is within the coversheet time parameter and an "END" is only added to the temp global after an order is added
@@ -152,7 +175,7 @@ RPC(RESULTS,DFN,EXPWIN,PSBSIOPI) ;
  D EN^PSBVDLPA
  I $G(^TMP("PSB",$J,PSBTAB,2))]"" S PSBI1=$O(^TMP("PSB",$J,PSBTAB,""),-1) I ^TMP("PSB",$J,PSBTAB,PSBI1)'="END" S ^TMP("PSB",$J,PSBTAB,PSBI1+1)="END"
  S ^TMP("PSB",$J,PSBTAB,0)=$O(^TMP("PSB",$J,PSBTAB,""),-1)
- I $G(^TMP("PSB",$J,PSBTAB,2))']"" S $P(^TMP("PSB",$J,PSBTAB,1),U,4)="-1^No orders To display on Coversheet"
+ I $G(^TMP("PSB",$J,PSBTAB,2))']"" S $P(^TMP("PSB",$J,PSBTAB,1),U,4)="-1^No orders to display on Coversheet"     ;*70 was "To" now "to"
  I $G(^TMP("PSB",$J,PSBTAB,2))]"" S $P(^TMP("PSB",$J,PSBTAB,1),U,4)="1^COVERSHEET DATA FOLLOWS" D ADD^PSBCSUTX
  D CLEAN
  Q
@@ -209,7 +232,7 @@ PAINCMT(DFN) ;;Add comment if Pain Score entered in BCMA was marked "Entered in 
  K ^TMP("PSBGMV",$J)
  Q
 LIGHTS(PSBDFN) ;
- D RPC^PSBVDLTB(,PSBDFN,"NO TAB",) S PSBTAB="CVRSHT"
+ D RPC^PSBVDLTB(,PSBDFN,"NO TAB",,PSBSIOPI,PSBCLINORD) S PSBTAB="CVRSHT"
  M ^TMP("PSB",$J,PSBTAB,1)=^TMP("PSB",$J,"NO TAB",1) K ^TMP("PSB",$J,"NO TAB")
  Q
 CLEAN ;

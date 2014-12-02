@@ -1,6 +1,15 @@
-LEXDM2 ; ISL Default Misc - Ask to delete         ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDM2 ;ISL/KER - Default Misc - Ask to delete ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.31)        N/A
+ ;    ^LEX(757.41)        N/A
+ ;               
+ ; External References
+ ;    $$GET1^DIQ          ICR   2056
+ ;    $$UP^XLFSTR         ICR  10103
+ ;    ^DIR                ICR  10026
+ ;               
  ; Entry:  S X=$$EN^LEXDM2(USER,AP,DEF)
  ;
  ; Input   
@@ -14,7 +23,7 @@ LEXDM2 ; ISL Default Misc - Ask to delete         ; 09-23-96
  ;
 EN(LEXUSER,LEXAP,LEXDEF) ;
  ; A few good reasons to quit
- Q:+($G(LEXUSER))=0 0  Q:'$D(^VA(200,+($G(LEXUSER)))) 0
+ Q:+($G(LEXUSER))=0 0  Q:'$L($$GET1^DIQ(200,+($G(DUZ)),.01)) 0
  Q:+($G(LEXAP))=0 0  Q:'$D(^LEXT(757.2,+($G(LEXAP)))) 0
  Q:+($P($G(^LEXT(757.2,+LEXAP,5)),"^",3))'>0 0
  Q:+($G(LEXDEF))<1!(+($G(LEXDEF))>4) 0

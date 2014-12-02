@@ -1,5 +1,5 @@
 RAHLRU1 ;HISC/PB,GJC - utilities for HL7 messaging ;1/28/00  11:03
- ;;5.0;Radiology/Nuclear Medicine;**47**;Mar 16, 1998;Build 21
+ ;;5.0;Radiology/Nuclear Medicine;**47,114**;Mar 16, 1998;Build 1
  ;
  ;IA 5023: builds the PID ($$PID^MAGDHLS) & PV1 ($$PV1^MAGDHLS) segments
  ;Integration Agreements
@@ -155,31 +155,34 @@ BLSEG2(YY,JJ,K) ;Split any subsequent times
  S:$G(K) JJ=J-$L(REMAIN,SS)   ;K,JJ for repeating field/double subscript
  S @A2=REMAIN
  Q
+ ;
 PARSEG(ARR,PAR) ;Parse segment from ARR array to PAR array
+ ;data passed in ARR(1) and ARR(1,n) if overflow. 
  Q:'$D(HLFS)
- N SS,I,II,D,FLDN,FLDN1,JJ,D1 S I=0,II=0,J=0,D="",SS=$E($G(HLECH),2) Q:'$L(SS)
- S DATA=$G(ARR(1)) D:$L(DATA) PARPROC(DATA,$O(ARR(1,0)))
- F  S I=$O(ARR(1,I)) Q:'I  D PARPROC(ARR(1,I),$O(ARR(1,I)))
+ N SS,I,II,D,FLDN,FLDN1,JJ,D1 S II=0,J=0,D=""
+ S SS=$E($G(HLECH),2) Q:'$L(SS)
+ S DATA=$G(ARR(1))
+ I $L(DATA) D
+ .D PARPROC(DATA) S I=0
+ .F  S I=$O(ARR(1,I)) Q:'I  D PARPROC(ARR(1,I))
+ .Q
  Q
-PARPROC(DATA,LAST) ;PROCES DATA
- ;LAST = Indication of last sequence IF LAST = "" (last sequence)
- S FLDN=$L(DATA,HLFS) ;Number of fields
- I FLDN=1 S D=D_DATA Q  ;No field separator
+ ;
+PARPROC(DATA) ;process data...
+ S FLDN=$L(DATA,HLFS) ;number of fields on this node
  F II=1:1:FLDN D
  .S D=$S(II=1:D,1:"")_$P(DATA,HLFS,II)
- .I II=1,FLDN=1,LAST Q  ;ONLY ONE FIELD..no field separators and not last sequence
- .I II=1,FLDN'=1 D GETPP(.D) Q  ; First field , more as one field in sequence
- .I II=1,FLDN=1,'LAST D GETPP(.D) Q  ; First field, no field delimiters, last sequence
- .I II=FLDN,LAST Q  ;Last field, but not last sequence
  .D GETPP(.D)
  S J=J+FLDN-1
  Q
-GETPP(D) ;GET REPEATED FIELDS
+ ;
+GETPP(D) ;get repeated fields...
  Q:'$L(D)
  I D'[SS S PAR(J+II)=D K D1 Q
  S FLDN1=$L(D,SS) F JJ=1:1:FLDN1 D
  .S D1=$P(D,SS,JJ) S:$L(D1) PAR(J+II,JJ)=D1
  Q
+ ;
 VFIER(X1,X2,X3) ; validation of OBR-32 , OBR-33  or OBR-35
  ; X1 = value to be Validated/Returned (IEN)
  ; Note: X1 is passed in as: ID Number (IEN)^Family Name^Given Name

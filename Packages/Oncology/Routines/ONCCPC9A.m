@@ -1,5 +1,5 @@
 ONCCPC9A ;HIRMFO/GWB - PCE Study of Colorectal Cancer - Print (continued);4/1/97
- ;;2.11;ONCOLOGY;**11,15,16**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 III S TABLE="TABLE III - EXTENT OF DISEASE AND AJCC STAGE"
  I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HDR^ONCCPC9
  W !?4,TABLE,!?4,"--------------------------------------------" D P Q:EX=U

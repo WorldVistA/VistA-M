@@ -1,5 +1,5 @@
 PXRRMDR1 ;HERN/BDB - PCE Missing Data Report ;11 Feb 04  10:10 AM
- ;;1.0;PCE;**174,168**;AUG 12, 1996;Build 14
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**174,168,199**;AUG 12, 1996;Build 51
  ;
 DATASRC ; get Data Sources to print
  N ID,REC
@@ -66,8 +66,8 @@ PRINT ; Print Report
  . . . . S TOT(4)=TOT(4)+TOT(5)
  . . . . S TOTE(4)=TOTE(4)+TOTE(5)
  . . . Q:POP
- . . . W !?4,DEFD_"SORT VALUE - "_SORT_": ",TOT(4)
- . . . W !?4,ENCD_"SORT VALUE - "_SORT_": ",TOTE(4)
+ . . . W !?4,DEFD_"SORT VALUE - "_$P(SORT,"_",1)_": ",TOT(4)
+ . . . W !?4,ENCD_"SORT VALUE - "_$P(SORT,"_",1)_": ",TOTE(4)
  . . . S TOT(3)=TOT(3)+TOT(4)
  . . . S TOTE(3)=TOTE(3)+TOTE(4)
  . . Q:POP
@@ -110,9 +110,11 @@ HEADER ;print header
  Q:SHDR
  W !,LOC
  W !?2,PROV
- N SORTD S SORTD=SORT
+ N SORTD S SORTD=$P(SORT,"_",1)
  S:SORTD=" " SORTD="Unknown"
- W !?4,"SORT VALUE:  ",$P(SORTHDR,U,PXSRT),"= ",SORTD
+ N SORTHDR2 S SORTHDR2=$P(SORTHDR,U,PXSRT)
+ I SORTHDR2="DIAGNOSIS" S SORTHDR2=$S($P(SORT,"_",2)="30":"ICD10",1:"ICD9")
+ W !?4,"SORT VALUE:  ",SORTHDR2,"= ",SORTD
  S:VDT="" VDT="Unknown"
  W !?6,$P(VDT,"@",1),":"
  S HDR=1

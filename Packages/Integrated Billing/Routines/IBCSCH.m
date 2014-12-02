@@ -1,5 +1,5 @@
 IBCSCH ;ALB/MJB - MCCR HELP ROUTINE ;03 JUN 88 15:25
- ;;2.0;INTEGRATED BILLING;**52,80,106,124,138,51,148,137,161,245,232,287,348,349,374,371,395,400,432,447**;21-MAR-94;Build 80
+ ;;2.0;INTEGRATED BILLING;**52,80,106,124,138,51,148,137,161,245,232,287,348,349,374,371,395,400,432,447,458,488**;21-MAR-94;Build 184
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRSCH
@@ -19,6 +19,7 @@ IBCSCH ;ALB/MJB - MCCR HELP ROUTINE ;03 JUN 88 15:25
  . I $G(IBSCNNZ)="?MRA",$$MCRONBIL^IBEFUNC(IBIFN),$T(SCR^IBCEMVU)'="" S IBQ=1 D SCR^IBCEMVU(IBIFN) Q
  . I $G(IBSCNNZ)="?ID" S IBQ=1 D DISPID^IBCEF74(IBIFN) Q
  . I $G(IBSCNNZ)="?RX" S IBQ=1 D DISPRX^IBCSCH1(IBIFN) Q
+ . I $G(IBSCNNZ)="?RNB" S IBQ=1 D EDITRNB^IBCSCH1(IBIFN) Q
  . Q
  ;
  S IBH("HELP")="" D ^IBCSCU,H^IBCSCU K IBH("HELP") W !,"Enter '^' to stop the display ",$S(IBV:"",1:"and edit "),"of data,"
@@ -40,6 +41,7 @@ M W "  Special help screens:"
  I $$MCRONBIL^IBEFUNC(IBIFN) W !?5,"Enter '?MRA' to view Medicare Remittance Advice EOB's on file."
  W !,?5,"Enter '?ID' to view all IDs to be electronically transmitted on this claim."
  W !,?5,"Enter '?RX' to view all prescriptions on this claim."
+ W !,?5,"Enter '?RNB' to enter an RNB for bill associated Claims Tracking entries."
  ;
  D S W ! F I=$Y:1:20 W !
  S Z="PRESS <RETURN> KEY" X IBWW W " to RETURN to SCREEN ",+IBSR
@@ -73,7 +75,7 @@ W ;
  ;
 BL24(IBIFN,IBNOSHOW) ; display block 24 of CMS-1500
  ; IBNOSHOW = 1 for not to show error/warning text line
- N X,Y,DIR,IBPG,IBLN,IBCOL,IBX,IBQ,IBLC,IBLIN,IBPFORM,IBD,IBC1,Z,Z0,IBXDATA,IBXSAVE,IBNXPG
+ N X,Y,DIR,IBPG,IBLN,IBCOL,IBX,IBQ,IBLC,IBLIN,IBPFORM,IBD,IBC1,Z,Z0,IBXDATA,IBXSAVE,IBNXPG,L,T,NUM
  K ^TMP("IBXSAVE",$J)
  S IBQ=0,IBLC=9 Q:'$G(IBIFN)  K ^TMP("IBXDISP",$J)
  ;
@@ -88,10 +90,20 @@ BL24(IBIFN,IBNOSHOW) ; display block 24 of CMS-1500
  F Z=+IBLIN,IBLIN+1 I $D(^TMP("IBXDISP",$J,1,Z)) S Z0=$G(^TMP("IBXDISP",$J,1,Z,+$O(^TMP("IBXDISP",$J,1,Z,20),-1))) I Z0'="" S:Z=+IBLIN Z0="BOX 19 DATA: "_Z0 W !,Z0
  ;
  ; box 21 - lines 39-41
- W !,"21. diagnosis"
- I $D(^TMP("IBXDISP",$J,2,IBLIN+3)) W ?16,"(1st 4 only)"
- W !,?5,"1. ",$G(^TMP("IBXDISP",$J,1,IBLIN+3,3)),?25,"3. ",$G(^TMP("IBXDISP",$J,1,IBLIN+3,30))
- W !,?5,"2. ",$G(^TMP("IBXDISP",$J,1,IBLIN+5,3)),?25,"4. ",$G(^TMP("IBXDISP",$J,1,IBLIN+5,30))
+ W !,"21. Diagnosis"
+ ;I $D(^TMP("IBXDISP",$J,2,IBLIN+3)) W ?16,"(1st 4 only)"   ; -> baa *488*
+ ; Print all 12 diagnosis codes  -> baa *488*
+ F L=3,4,5 D
+ .W !
+ .F T=3,16,29,42 D
+ ..S NUM=""
+ ..I L=3 S NUM=$S(T=3:1,T=16:2,T=29:3,T=42:4,1:"")
+ ..I L=4 S NUM=$S(T=3:5,T=16:6,T=29:7,T=42:8,1:"")
+ ..I L=5 S NUM=$S(T=3:9,T=16:10,T=29:11,T=42:12,1:"")
+ ..S T2=T+2,T1=T I NUM>9 S T1=T-1
+ ..W ?T1,NUM,".",?T2,$G(^TMP("IBXDISP",$J,1,IBLIN+L,T))
+ ;W !,?5,"1. ",$G(^TMP("IBXDISP",$J,1,IBLIN+3,3)),?25,"3. ",$G(^TMP("IBXDISP",$J,1,IBLIN+3,30))
+ ;W !,?5,"2. ",$G(^TMP("IBXDISP",$J,1,IBLIN+5,3)),?25,"4. ",$G(^TMP("IBXDISP",$J,1,IBLIN+5,30))
  ;
  ; box 24 - lines 44-55
  D PG

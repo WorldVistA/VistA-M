@@ -1,6 +1,6 @@
-DIKCUTL2 ;SFISC/MKO-UTILITY OPTION TO MODIFY INDEX ;12:15 PM  1 Nov 2001
- ;;22.0;VA FileMan;**68**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIKCUTL2 ;SFISC/MKO-UTILITY OPTION TO MODIFY INDEX ;17DEC2010
+ ;;22.0;VA FileMan;**68,167**;Mar 30, 1999;Build 18
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;========
  ; $$TYPE
@@ -47,6 +47,7 @@ GETXR(FIL,CNT,FLG) ;
  S (CNT,F)=0 F  S F=$O(SB(F)) Q:'F  D
  . S XR=0 F  S XR=$O(^DD("IX","AC",F,XR)) Q:'XR  D
  .. I $G(^DD("IX",XR,0))?."^" K ^DD("IX","AC",F,XR) Q
+ ..I $G(FLG)["x",$G(^("NOREINDEX")) Q  ;167
  .. S CNT=CNT+1
  .. S CNT(XR)=F_U_$P($G(^DD("IX",XR,0)),U,1,2)_U_$P(^(0),U,8)
  .. S:$D(^DD("KEY","AU",XR)) $P(CNT(XR),U,5)="UI"

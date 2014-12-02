@@ -1,5 +1,5 @@
 ONCBRP9B ;HINES CIOFO/GWB - 1998 Breast Cancer Study - print ;6/1/98
- ;;2.11;ONCOLOGY;**18**;Mar 07, 1995
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
 VI S TABLE="TABLE VI - FIRST RECURRENCE"
  I IOST'?1"C".E W !
  W !?4,TABLE,!?4,"---------------------------" D P Q:EX=U

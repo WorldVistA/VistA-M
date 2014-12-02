@@ -1,5 +1,5 @@
 GMTSVSS ; SLC/KER - Selected Vital Signs           ; 02/27/2002
- ;;2.7;Health Summary;**8,20,28,35,49,78**;Oct 20, 1995
+ ;;2.7;Health Summary;**8,20,28,35,49,78,107**;Oct 20, 1995;Build 3
  ;                          
  ; External References
  ;   DBIA  4791  EN1^GMVHS
@@ -65,7 +65,9 @@ BLDHDR ; Builds the HDR array
  . S (HDR(GMTSI-1),ABB)=$P(GMRVSTR,";",GMTSI)
  . S HDR(GMTSI-1)=HDR(GMTSI-1)_U
  . S HDR(GMTSI-1)=HDR(GMTSI-1)_$S(ABB="BP":"BP",ABB="PN":"PAIN",ABB="HT":"HEIGHT",ABB="WT":"WEIGHT",ABB="P":"PULSE",ABB="R":"RESP",ABB="T":"TEMP",ABB="PO2":"POx",1:ABB)
- . S WIDTH=$S($P(HDR(GMTSI-1),U)="T":13,$P(HDR(GMTSI-1),U)="P":8,$P(HDR(GMTSI-1),U)="R":12,$P(HDR(GMTSI-1),U)="WT":20,$P(HDR(GMTSI-1),U)="CG":34,$P(HDR(GMTSI-1),U)="CVP":16,$P(HDR(GMTSI-1),U)="HT":13,$P(HDR(GMTSI-1),U)="PO2":13,1:12)
+ . ;p.107 added "PN" and set to 18 to accomodate "Unable to Respond"
+ . S WIDTH=HDR(GMTSI-1)
+ . S WIDTH=$S($P(WIDTH,U)="T":13,$P(WIDTH,U)="P":8,$P(WIDTH,U)="R":12,$P(WIDTH,U)="WT":20,$P(WIDTH,U)="CG":34,$P(WIDTH,U)="CVP":16,$P(WIDTH,U)="HT":13,$P(WIDTH,U)="PO2":13,$P(WIDTH,U)="PN":18,1:12)
  . S COLL=$P(COL,U,GMTSI)+WIDTH
  . S COL=COL_U
  . S COL=COL_COLL
@@ -125,7 +127,7 @@ WRT ; Writes vitals record for one observation time
  . S GMTSVT=$P(HDR(GMTSVI),U),IEN=$O(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,0))
  . I +IEN D CKP^GMTSUP Q:$D(GMTSQIT)  D
  . . S GMTSVAL=$P(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,+IEN),U,8)
- . . S:GMTSVT="PN"&(GMTSVAL=99) GMTSVAL="No Response"
+ . . S:GMTSVT="PN"&(GMTSVAL=99) GMTSVAL="Unable to Respond" ;p.107 changed from "No Response" to "Unable to Respond"
  . . S:GMTSVT="P"&(GMTSVAL?1A.E) GMTSVAL=$E(GMTSVAL,1,7)
  . . W ?$P(COL,U,GMTSI+1),GMTSVAL
  . . S GMTSMET=$P(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,+IEN),U,13,17)

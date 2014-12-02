@@ -1,6 +1,6 @@
-ORKCHK ; slc/CLA - Main routine called by OE/RR to initiate order checks ;09/17/10  09:42
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,94,105,123,232,267,243,280**;Dec 17, 1997;Build 85
-EN(ORKY,ORKDFN,ORKA,ORKMODE,OROIL) ;initiate order checking
+ORKCHK ; SLC/CLA - Main routine called by OE/RR to initiate order checks ;04/24/12  11:49
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,94,105,123,232,267,243,280,345**;Dec 17, 1997;Build 32
+EN(ORKY,ORKDFN,ORKA,ORKMODE,OROIL,ORDODSG) ;initiate order checking
  ;ORKY: array of returned msgs in format: ornum^orderchk ien^clin danger^msg
  ;ORKDFN: patient dfn
  ;ORKA: array of order information in the format:
@@ -13,6 +13,9 @@ EN(ORKY,ORKDFN,ORKA,ORKMODE,OROIL) ;initiate order checking
  ;ORKMODE: mode/event trigger (DISPLAY,SELECT,ACCEPT,SESSION,ALL,NOTIF)
  ; PS: meds previously ordered during this session med1^med2^...
  ;OROIL: array containing the order info passed in (oly for ACCEPT mode)
+ ;ORDODSG: flag that denotes if dosage checks should be performed
+ ;         1 for perform dosage checks
+ ;         0 for do not perform dosage checks
  N ORKQ,ORKN S ORKQ=0,ORKN=1
  S:+$G(ORKDFN)<1 ORKY(ORKN)="^^^Order Checking Unavailable - invalid patient id",ORKQ=1,ORKN=ORKN+1
  S:'$L($G(ORKMODE)) ORKY(ORKN)="^^^Order Checking Unavailable - invalid mode/event",ORKQ=1,ORKN=ORKN+1
@@ -20,7 +23,7 @@ EN(ORKY,ORKDFN,ORKA,ORKMODE,OROIL) ;initiate order checking
  Q:+$G(ORKA)<1
  N ORKX,ORKS,DNGR,ORENT,ORKENT,ORKNENT,ORNUM,ORKOFF,ORKTMODE
  N ORKADUZ,ORKNDUZ,ORKI,ORKPRIM,ORKNMSG,ORKMSG,ORKLOG,ORKLD,ORKLI,ORKOI
- N ORKDG,ORKLPS,ORKPSA,ORKCNT,ORKDGI
+ N ORKDG,ORKLPS,ORKPSA,ORKCNT,ORKDGI,ORIVORDR
  ;
  ;save array of orders for use in session processing:
  M ^TMP("ORKA",$J)=ORKA
@@ -51,7 +54,7 @@ EN(ORKY,ORKDFN,ORKA,ORKMODE,OROIL) ;initiate order checking
  ..;store unsigned med orders in ^TMP("ORR",$J for processing in ORKPS
  ;
  ;main processing loop:
- S ORKX="" F  S ORKX=$O(ORKA(ORKX)) Q:ORKX=""  D
+ S (ORKX,ORIVORDR)="" F  S ORKX=$O(ORKA(ORKX)) Q:ORKX=""  D
  .S ORKOI=$P(ORKA(ORKX),"|")
  .;
  .;log debug msgs if parameter is enabled:
@@ -87,16 +90,16 @@ EN(ORKY,ORKDFN,ORKA,ORKMODE,OROIL) ;initiate order checking
  .;modes except SESSION which gets processed just before signature:
  .I ORKMODE="NOTIF"!(ORKMODE="ALL") S ORKTMODE=ORKMODE D
  ..D EN^ORKCHK3(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE)  ;DISPLAY
- ..D EN^ORKCHK4(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE)  ;SELECT
- ..D EN^ORKCHK5(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE,.OROIL)  ;ACCEPT
+ ..D EN^ORKCHK4(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE,.OROIL,.ORIVORDR,.ORDODSG)  ;SELECT
+ ..D EN^ORKCHK5(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE,.OROIL,.ORDODSG)  ;ACCEPT
  ..I ORKMODE="NOTIF" D EN^ORKCHK6(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE)  ;SESSION
  ..S ORKMODE=ORKTMODE
  .;
  .;Process regular orders/modes:
  .I '$L($G(ORKTMODE)) D
  ..I ORKMODE="DISPLAY" D EN^ORKCHK3(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE)
- ..I ORKMODE="SELECT" D EN^ORKCHK4(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE)
- ..I ORKMODE="ACCEPT" D EN^ORKCHK5(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE,.OROIL)
+ ..I ORKMODE="SELECT" D EN^ORKCHK4(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE,.OROIL,.ORIVORDR,.ORDODSG)
+ ..I ORKMODE="ACCEPT" D EN^ORKCHK5(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE,.OROIL,.ORDODSG)
  ..I ORKMODE="SESSION" D EN^ORKCHK6(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE)
  ;
  ;set messages into sorting array then into ORKY ORKS("ORK",clinical danger level,oi,msg)=ornum^order check ien^clin danger level^message
@@ -127,13 +130,6 @@ EN(ORKY,ORKDFN,ORKA,ORKMODE,OROIL) ;initiate order checking
  D CHKRMT
  Q
  ;
-OI2DD(ORPSA,OROI,ORPSPKG) ;rtn dispense drugs for a PS OI
- N PSOI
- Q:'$D(^ORD(101.43,OROI,0))
- S PSOI=$P($P(^ORD(101.43,OROI,0),U,2),";")
- Q:+$G(PSOI)<1
- D DRG^PSSUTIL1(.ORPSA,PSOI,ORPSPKG)
- Q
 CHKRMT ;
  N I,ORQFLAG
  S ORQFLAG=1

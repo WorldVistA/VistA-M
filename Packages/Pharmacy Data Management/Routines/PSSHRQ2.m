@@ -1,5 +1,5 @@
 PSSHRQ2 ;WOIFO/AV,TS - Makes a request to PEPS and returns as Global ;09/20/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,163,168**;9/30/97;Build 4
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,163,168,160**;9/30/97;Build 76
  ;
  ; @authors - Alex Vazquez, Tim Sabat
  ; @date    - September 19, 2007
@@ -58,7 +58,8 @@ END ; re-store "IN" nodes
  K ^TMP($J,"SAVE","IN")
  S PSSRBASX=$P($G(^TMP($J,PSSRBASE,"OUT",0)),"^") I PSSRBASX'=-1,PSSRBASX'=0,PSSRBASX'=1 D
  .K ^TMP($J,PSSRBASE,"OUT")
- .S ^TMP($J,PSSRBASE,"OUT",0)="-1^Unexpected error has occurred."
+ .S ^TMP($J,PSSRBASE,"OUT",0)="-1^An unexpected error has occurred."
+ I $P($G(^TMP($J,PSSRBASE,"OUT",0)),"^")'=-1 D CLEXP^PSSHRQ2O
  QUIT
  ;;
  ;

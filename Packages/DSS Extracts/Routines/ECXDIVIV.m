@@ -1,5 +1,5 @@
-ECXDIVIV ;BIR/CML-Enter/Edit and Print IV Room Division ; 3/13/07 10:48am
- ;;3.0;DSS EXTRACTS;**8,105**;Dec 22, 1997;Build 70
+ECXDIVIV ;BIR/CML-Enter/Edit and Print IV Room Division ;2/7/14  16:32
+ ;;3.0;DSS EXTRACTS;**8,105,149**;Dec 22, 1997;Build 27
  ;
 ED ;enter/edit division field for iv rooms
  N CHKFLG,DIC,DIE,DA,DR
@@ -15,11 +15,17 @@ ED ;enter/edit division field for iv rooms
  Q
  ;
 PRT ;print worksheet
+ N ECXPORT,CNT ;149
  W !!,"This option will produce a worksheet listing all entries in the IV Room file"
  W !,"(#59.5).  It should be used to help DSS and Pharmacy services define and"
  W !,"review the DIVISION assignments for each IV Room.",!! S QFLG=0
  S QFLG=0,CHKFLG=0
  D CHK Q:CHKFLG
+ S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I ECXPORT D  Q  ;Section added in 149
+ .K ^TMP($J,"ECXPORT")
+ .S ^TMP($J,"ECXPORT",0)="IV ROOM^DIVISION^INACTIVE DATE",CNT=1
+ .D START
+ .D EXPDISP^ECXUTL1
  D EN^XUTMDEVQ("START^ECXDIVIV","DSS - IV Room List")
  I POP D
  .W !,"NO DEVICE SELECTED OR REPORT PRINTED!!"
@@ -40,15 +46,17 @@ START ;queued entry point
  .S ^TMP("ECXDIVIV",$J,DIVNM,IVRM)=$S($D(INACT):INACT,1:"")
  ;print report
  S PG=0,PDT=$$FMTE^XLFDT(DT),$P(LN1,"-",81)="",$P(LN2,"_",30)=""
- D HDR
- I '$D(^TMP("ECXDIVIV",$J)) W !!,"No Data found for this worksheet."
+ I '$G(ECXPORT) D HDR ;149
+ I '$D(^TMP("ECXDIVIV",$J)) I '$G(ECXPORT) W !!,"No Data found for this worksheet."
  I $D(^TMP("ECXDIVIV",$J)) S DIVNM="" D
  .F  S DIVNM=$O(^TMP("ECXDIVIV",$J,DIVNM)) Q:DIVNM=""  Q:QFLG  D
  ..S IVRM=""
  ..F  S IVRM=$O(^TMP("ECXDIVIV",$J,DIVNM,IVRM)) Q:IVRM=""  Q:QFLG  D
  ...S INACT=^TMP("ECXDIVIV",$J,DIVNM,IVRM)
+ ...I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=IVRM_"^"_DIVNM_"^"_INACT,CNT=CNT+1 Q  ;149
  ...D:$Y+4>IOSL HDR Q:QFLG
  ...W !!,IVRM,?34,$S(DIVNM="ZZZ":LN2,1:DIVNM),?60,INACT
+ I $G(ECXPORT) K ^TMP("ECXDIVIV",$J) Q  ;149
  I $E(IOST)="C"&('QFLG) D PAUSE
  K ^TMP("ECXDIVIV",$J) S:$D(ZTQUEUED) ZTREQ="@"
  W:$E(IOST)'="C" @IOF

@@ -1,11 +1,12 @@
-RMPR9S4E ;HOIFO/SPS-GUI 2319 Extended Display Transaction screen 4 ;12/17/02  09:35
- ;;3.0;PROSTHETICS;**59,92,99,90,75**;Feb 09, 1996;Build 25
+RMPR9S4E ;HOIFO/SPS - GUI 2319 Extended Display Transaction screen 4 ;12/17/02  09:35
+ ;;3.0;PROSTHETICS;**59,92,99,90,75,168**;Feb 09, 1996;Build 43
+ ;
+ ; Reference to $$SINFO^ICDEX supported by ICR #5747
+ ; Reference to $$ICDDX^ICDEX supported by ICR #5747
  ;
  ;         (IEN)=ien of file 660
  ;
  ;AAC Patch 92 08/04/04 - Code Set Versioning (CSV)
- ;Used API=ICDDX^ICDCODE to replace direct calls to global ICD9(80)
- ;
  ;
  ;display detailed record
 A1(IEN) G A2
@@ -13,7 +14,7 @@ EN(RESULTS,IEN) ;Broker
 A2 ;
  I +IEN'>0 S RESULTS(0)="NOTHING TO REPORT" G EXIT
  I '$D(^RMPR(660,IEN)) S RESULTS(0)="NOTHING TO REPORT" G EXIT
- N DIC,DIQ,DR,DA,RMPRV,RMPRDA,RV
+ N DIC,DIQ,DR,DA,I,RMPRDFN,RMPRDOB,RMPRLA,RMPRNAM,RMPRSSN,RMPRV,RMPRDA,RV
  S DIC=660,DIQ="R19",DR=".01:96",DIQ(0)="EN"
  S (RMPRDA,DA)=(IEN)
  D EN^DIQ1
@@ -154,24 +155,39 @@ A2 ;
  ; "PSAS HCPCS DESC.
  S RESULTS(48)=""
  I $P($G(^RMPR(660,RMPRDA,1)),U,4) S RESULTS(48)=$P($G(^RMPR(661.1,$P(^RMPR(660,RMPRDA,1),U,4),0)),U,2)
- ;added by #69
  ;
- ; Patch 92 - Code Set Versioning (CSV) changes below inserted afer the line above for #69
- ; AAC - 08/04/04
- ;
- S (RMPRICD,RMPRIC0,RMPRCOD,RMPRIC9,RESULTS(49))="" S RMPRERR=0
- S RMPRDAT=$G(R19(660,RMPRDA,.01,"E"))
- I $D(^RMPR(660,RMPRDA,10)) S RMPRIC9=$P(^RMPR(660,RMPRDA,10),U,8)
- I RMPRIC9'=""  D
- .S RMPRICD=$$ICDDX^ICDCODE(RMPRIC9,RMPRDAT)
+ ; Updates for ICD10 project
+ N RMPRACS,RMPRCSI,RMPRDATE,RMPRICD,RMPRLLEN,RMPRSICD,RMPRTXT
+ S (RMPRACS,RMPRCSI,RMPRDATE,RMPRICD,RMPRLLEN,RMPRSICD,RMPRTXT,RESULTS(49))="",RMPRERR=0
+ S RMPRDATE=$P(^RMPR(660,RMPRDA,0),U,1)
+ I $D(^RMPR(660,RMPRDA,10)) S RMPRSICD=$P(^RMPR(660,RMPRDA,10),U,8) ; SUSPENSE ICD (#8.8)
+ ; Retrieve and process the Suspense ICD
+ I RMPRSICD'=""  D
+ .S RMPRCSI=$$SINFO^ICDEX("DIAG",RMPRDATE) ; Supported by ICR 5747
+ .S RMPRACS=$P(RMPRCSI,U,1) ; Internal format Active Coding System based on Date of Interest
+ .; Retrieve ICD Code Data
+ .S RMPRICD=$$ICDDX^ICDEX(RMPRSICD,RMPRDATE,RMPRACS,"I") ; Supported by ICR 5747
  .S RMPRERR=$P(RMPRICD,U,1)
  .I RMPRERR<0 S RESULTS(49)=$P(RMPRICD,U,2)
+ .S RMPRACS=$P(RMPRCSI,U,2) ; External format Active Coding System based on Date of Interest
+ .S RMPRACS=$S(RMPRACS="ICD-9-CM":9,RMPRACS="ICD-10-CM":10,1:"") ; adjust for 2nd return piece
 ZZ ;
- I RMPRERR>0 S RESULTS(49)=$P(RMPRICD,U,2)_" "_$E($P(RMPRICD,U,4),1,55) I $P(RMPRICD,U,10)'>0 S RESULTS(49)=RESULTS(49)_" "_"** Inactive ** Date: " S Y=$P(RMPRICD,U,12) D DD^%DT S RESULTS(49)=RESULTS(49)_" "_Y
- ; "ICD-9 Code: ",
- ; S RESULTS(49)=RMPRICC_"    "_$E($G(^ICD9(RMPRIC9,1)),1,55)
+ I RMPRERR>0 D
+ .S RESULTS(49)=$P(RMPRICD,U,2)_" "
+ .; Return brief description 
+ .S RESULTS(49)=RESULTS(49)_$S(RMPRACS=9:$E($P(RMPRICD,U,4),1,55),1:$P(RMPRICD,U,4))
+ .; Check for Inactive Status
+ .I $P(RMPRICD,U,10)'>0 D
+ ..S RMPRTXT=" ** Inactive ** Date: "
+ ..S Y=$P(RMPRICD,U,12) ; Inactive Date
+ ..D DD^%DT
+ ..S RMPRTXT=RMPRTXT_Y ; External format date
+ ..S RESULTS(49)=RESULTS(49)_RMPRTXT Q
+ .; Add Coding System for ICD as 2nd ^ delimited piece
+ .S RESULTS(49)=RESULTS(49)_"^"_RMPRACS
  ;
  ; End Patch 92
+ ; End of ICD10 Updates
  ;
  ; "CPT MODIFIER: ",
  S RESULTS(50)=$G(R19(660,RMPRDA,38.1,"E"))
@@ -182,6 +198,7 @@ ZZ ;
  I $D(R19(660,RMPRDA,28)) D
  .;command part of new standards
  .MERGE R28=R19(660,RMPRDA,28)
+ N CNT,LN
  S LN=0,CNT=52
  F  S LN=$O(R28(LN)) Q:LN'>0  D
  .S RESULTS(CNT)=R28(LN)
@@ -198,6 +215,6 @@ HDR ;display heading
  Q
 EXIT ;common exit point
  I '$D(RESULTS) S RESULTS(0)="NOTHING TO REPORT"
- K R19,RV,RMPRICC,RMPRICD,RMPRIC9,RMPRCOD,RMPRDAT,RMPRERR,RMPRIC0,Y
+ K R19,RV,RMPRICC,RMPRERR,Y
  Q
  ;end

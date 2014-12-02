@@ -1,5 +1,6 @@
-IBDFN14 ;ALB/CMR - ENCOUNTER FORM - OUTPUTS;JAN 4, 1996
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**12,38,51**;APR 24, 1997
+IBDFN14 ;ALB/CMR - ENCOUNTER FORM - OUTPUTS ;01/04/96
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**12,38,51,63**;APR 24, 1997;Build 80
+ ;
  ;
 CPT(X) ; -- return external value, descr and active flag for CPT code
  ; -- X passed equal to ien for cpt code
@@ -23,17 +24,33 @@ DX(X) ; -- return external value, descr and active flag for ICD9 diagnosis
  ; -- pass X equal to ien for icd9 code
  ;
  Q:'X
- N ICDNODE
+ N ICDNODE,IBDSTAT
  S (IBID,IBLABEL,IBINACT)=""
  ;;I $G(^ICD9(X,0))]"" S IBID=$P(^(0),"^"),IBLABEL=$P(^(0),"^",3),IBINACT=$P(^(0),"^",9)
  S ICDNODE=$$ICDDX^ICDCODE(X)
  Q:+ICDNODE=-1
  S IBID=$P(ICDNODE,U,2)     ;ICD code
  S IBLABEL=$P(ICDNODE,U,4)  ;ICD description
- S STATUS=$P(ICDNODE,U,10)  ;ICD status, 0-Not Active, 1-Acitve
+ S IBDSTAT=$P(ICDNODE,U,10)  ;ICD status, 0-Not Active, 1-Acitve
  ;
  ;Set inactive flag to 1, if the ICD code is not active (STATUS=0)
- I STATUS=0 S IBINACT=1
+ I IBDSTAT=0 S IBINACT=1
+ Q
+DX10(X) ; -- return external value, descr and active flag for ICD-10 diagnosis
+ ; -- pass X equal to ien for ICD-10 code
+ ;
+ Q:'X
+ N ICDNODE,IBDSTAT
+ S (IBID,IBLABEL,IBINACT)=""
+ ;;I $G(^ICD9(X,0))]"" S IBID=$P(^(0),"^"),IBLABEL=$P(^(0),"^",3),IBINACT=$P(^(0),"^",9)
+ S ICDNODE=$$ICDDATA^ICDXCODE("10D",X,DT)
+ Q:+ICDNODE<1
+ S IBID=$P(ICDNODE,U,2)     ;ICD code
+ S IBLABEL=$P(ICDNODE,U,4)  ;ICD description
+ S IBDSTAT=$P(ICDNODE,U,10)  ;ICD status, 0-Not Active, 1-Acitve
+ ;
+ ;Set inactive flag to 1, if the ICD code is not active (STATUS=0)
+ I IBDSTAT=0 S IBINACT=1
  Q
 VST(X) ; -- return external value, descr and active flag for VISIT TYPE 
  ; -- pass X equal to ien for visit type
@@ -42,7 +59,7 @@ VST(X) ; -- return external value, descr and active flag for VISIT TYPE
  S (IBID,IBLABEL,IBINACT)=""
  ;; --change to api cpt ; dhh
  I $G(^IBE(357.69,X,0))]"",+$$CPT^ICPTCOD(X)'=-1 D
- .S IBID=$P(^IBE(357.69,X,0),"^"),IBLABEL=$P(^(0),"^",3)
+ .S IBID=$P(^IBE(357.69,X,0),"^"),IBLABEL=$P(^IBE(357.69,X,0),"^",3)
  .S HDR=$P(^IBE(357.69,X,0),"^",2) I $L(HDR_IBLABEL)<75 S IBLABEL=HDR_" "_IBLABEL
  .K HDR
  .;; --change to api cpt ; dhh
@@ -53,21 +70,21 @@ ED(X) ; -- return descr and active flag for education topics
  ;
  Q:'X
  S (IBID,IBLABEL,IBINACT)=""
- I $G(^AUTTEDT(X,0))]"" S IBID="ED TOPIC",IBLABEL=$P(^(0),"^"),IBINACT=$P(^(0),"^",3)
+ I $G(^AUTTEDT(X,0))]"" S IBID="ED TOPIC",IBLABEL=$P(^AUTTEDT(X,0),"^"),IBINACT=$P(^AUTTEDT(X,0),"^",3)
  Q
 EXAM(X) ; -- return descr and active flag for exam
  ; -- pass X equal to ien for exam
  ;
  Q:'X
  S (IBID,IBLABEL,IBINACT)=""
- I $G(^AUTTEXAM(X,0))]"" S IBID="EXAM",IBLABEL=$P(^(0),"^"),IBINACT=$P(^(0),"^",4)
+ I $G(^AUTTEXAM(X,0))]"" S IBID="EXAM",IBLABEL=$P(^AUTTEXAM(X,0),"^"),IBINACT=$P(^AUTTEXAM(X,0),"^",4)
  Q
 HF(X) ; -- return descr and active flag for health factor
  ; -- pass X equal to ien for health factor
  ;
  Q:'X
  S (IBID,IBLABEL,IBINACT)=""
- I $G(^AUTTHF(X,0))]"" S IBID="FACTOR",IBLABEL=$P(^(0),"^"),IBINACT=$P(^(0),"^",11)
+ I $G(^AUTTHF(X,0))]"" S IBID="FACTOR",IBLABEL=$P(^AUTTHF(X,0),"^"),IBINACT=$P(^AUTTHF(X,0),"^",11)
  Q
  ;
 IMMUN(X) ; -- return descr and active flag for immunization
@@ -75,7 +92,7 @@ IMMUN(X) ; -- return descr and active flag for immunization
  ;
  Q:'X
  S (IBID,IBLABEL,IBINACT)=""
- I $G(^AUTTIMM(X,0))]"" S IBID="IMMUN",IBLABEL=$P(^(0),"^"),IBINACT=$P(^(0),"^",7)
+ I $G(^AUTTIMM(X,0))]"" S IBID="IMMUN",IBLABEL=$P(^AUTTIMM(X,0),"^"),IBINACT=$P(^AUTTIMM(X,0),"^",7)
  Q
  ;
 TREAT(X) ; -- return descr and active flag for treatment
@@ -83,7 +100,7 @@ TREAT(X) ; -- return descr and active flag for treatment
  ;
  Q:'X
  S (IBID,IBLABEL,IBINACT)=""
- I $G(^AUTTTRT(X,0))]"" S IBID="TREATMENT",IBLABEL=$P(^(0),"^"),IBINACT=$P(^(0),"^",4)
+ I $G(^AUTTTRT(X,0))]"" S IBID="TREATMENT",IBLABEL=$P(^AUTTTRT(X,0),"^"),IBINACT=$P(^AUTTTRT(X,0),"^",4)
  Q
  ;
 ST(X) ; -- return descr and active flag for immunization
@@ -91,7 +108,7 @@ ST(X) ; -- return descr and active flag for immunization
  ;
  Q:'X
  S (IBID,IBLABEL,IBINACT)=""
- I $G(^AUTTSK(X,0))]"" S IBID="SKIN TEST",IBLABEL=$P(^(0),"^"),IBINACT=$P(^(0),"^",3)
+ I $G(^AUTTSK(X,0))]"" S IBID="SKIN TEST",IBLABEL=$P(^AUTTSK(X,0),"^"),IBINACT=$P(^AUTTSK(X,0),"^",3)
  Q
 YN(X) ; -- return descr
  ; -- pass X equal to 1 or 0

@@ -1,6 +1,6 @@
 IBTRV2 ;ALB/AAS - CLAIMS TRACKING -  REVIEW ACTIONS ;19-JUL-93
- ;;2.0;INTEGRATED BILLING ;**60,210,266**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**60,210,266,461**;21-MAR-94;Build 58
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 % G EN^IBTRV
  ;
@@ -93,18 +93,19 @@ COMDRG(IBTRN) ; -- compute drg from tracking file
  ;    ICDTRS  = patient transfered to acute care facility
  ;    ICDDMS  = patient had irregular discharge
  ;    ICDDX(  = diagnosis codes
+ ;    ICDPOA( = POA indicator for dx
  ;    ICDPRC( = procedure codes
  ;*********************************************************
- N SEX,ICDEXP,ICDTRS,ICDDMS,ICDDX,ICDPRC,DX,PR,I,J,IBCNT,ICDMDC,ICDDRG,ICDDATE
+ N SEX,AGE,ICDEXP,ICDTRS,ICDDMS,ICDDX,ICDPOA,ICDPRC,DX,PR,I,J,IBCNT,ICDMDC,ICDDRG,ICDDATE
+ N ICDCSYS,ICD0,ICDCDSY,ICDEDT,ICDX,ICDTMP,ICDRG,ICD10ORNIT,ICD10ORT,X1,X2,ICDSEX,ICDY ; ICDDRG clean-up
  S ICDDRG="",(ICDEXP,ICDTRS,ICDDMS,IBCNT)=0,DFN=$P(^IBT(356,IBTRN,0),"^",2)
  ;
  S SEX=$P($G(^DPT(DFN,0)),U,2)
  S AGE=$$FMDIFF^XLFDT(DT,$P($G(^DPT(DFN,0)),U,3))\365.25
  S DGPMA=$P(^IBT(356,IBTRN,0),"^",5) G:'DGPMA COMDRGQ
  ;
- S IBCNT=1,DX=0
- S ICDDX(1)=+$G(^IBT(356.9,+$O(^IBT(356.9,"ATP",DGPMA,+$O(^IBT(356.9,"ATP",DGPMA,0)),0)),0))
- F  S DX=$O(^IBT(356.9,"C",DGPMA,DX)) Q:'DX  S X=$G(^IBT(356.9,DX,0)) I $P(X,"^",4)=2 S IBCNT=IBCNT+1,ICDDX(IBCNT)=+X
+ S IBCNT=0,J=""
+ F  S J=$O(^IBT(356.9,"ATP",DGPMA,J)) Q:'J  S DX=0 F  S DX=$O(^IBT(356.9,"ATP",DGPMA,J,DX)) Q:'DX  S X=$G(^IBT(356.9,DX,0)) I $P(X,U,4)<3 S IBCNT=IBCNT+1,ICDDX(IBCNT)=+X,ICDPOA(IBCNT)=$P(X,U,5)
  ;
  S IBCNT=0,J=""
  F  S J=$O(^IBT(356.91,"APP",DGPMA,J)) Q:'J  S PR="" F  S PR=$O(^IBT(356.91,"APP",DGPMA,J,PR)) Q:'PR  S IBCNT=IBCNT+1,ICDPRC(IBCNT)=+$G(^IBT(356.91,PR,0))

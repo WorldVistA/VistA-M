@@ -1,5 +1,5 @@
 IBCNEHLT ;DAOU/ALA - HL7 Process Incoming MFN Messages ; 09 Dec 2005  3:30 PM
- ;;2.0;INTEGRATED BILLING;**184,251,271,300,416,438**;21-MAR-94;Build 52
+ ;;2.0;INTEGRATED BILLING;**184,251,271,300,416,438,506**;21-MAR-94;Build 74
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;**Program Description**
@@ -19,6 +19,7 @@ EN ;  Entry Point
  ; Build local table of file numbers to determine if response is eIV or ePHARM
  F D=11:1:18 S X12TABLE("365.0"_D)=""
  F D=21:1:28 S X12TABLE("365.0"_D)=""
+ S X12TABLE(350.9)=""      ; IB*2.0*506
  ;
  ; Decide if message belongs to "E-Pharm" or "eIV"
  S APP=""
@@ -194,10 +195,18 @@ PFILX ;
  ;
 TFIL ;  Non Payer Tables Filer
  NEW DIC,X,DLAYGO,Y,IEN,MAX
+ ;
+ ; store the FILENAME, FIELDNAME and VALUE if the APP is IIV and FLN is 350.9.  - IB*2.0*506
+ ; For file #350.9, DESC represents the FIELD NUMBER and ID represents the VALUE.
+ I APP="IIV",FLN=350.9 D  Q
+ . S DIE=FLN,DA=1,DR=DESC_"///"_ID
+ . D ^DIE
+ ;
  S DIC(0)="X",X=ID,DIC=$$ROOT^DILFD(FLN)
  D ^DIC S IEN=+Y
  ; don't update existing entries
  I IEN>0 Q
+ ;
  D FIELD^DID(FLN,.02,,"FIELD LENGTH","MAX")
  I MAX("FIELD LENGTH")>0 S DESC=$E(DESC,1,MAX("FIELD LENGTH")) ; restriction of the field in the DD
  ; add new entry to the table

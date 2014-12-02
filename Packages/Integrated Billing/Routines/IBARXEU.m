@@ -1,6 +1,6 @@
 IBARXEU ;AAS/ALB - RX EXEMPTION UTILITY ROUTINE ;2-NOV-92
- ;;2.0;INTEGRATED BILLING;**20,222,293**;21-MAR-94;Build 1
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**20,222,293,385**;21-MAR-94;Build 35
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
 RXST(DFN,IBDT) ; -- Check rx income exemption status of patient
@@ -37,7 +37,8 @@ RXST(DFN,IBDT) ; -- Check rx income exemption status of patient
  .S Y=$$LST^IBARXEU0(DFN,IBDT)
  .;
  .; -- see if patient was SC>50, can't be updated so don't say previous
- .I $L($$ACODE^IBARXEU0(Y))<3 S IBX=+$P(X,U,4)_U_$$TEXT^IBARXEU0($P(X,U,4))_U_$$ACODE^IBARXEU0(Y)_U_$$REASON^IBARXEU0(X)_U_$P(X,U,3) Q
+ .;    also check to see if last is still ok under VFA rules
+ .I $L($$ACODE^IBARXEU0(Y))<3!($$VFAOK(Y)) S IBX=+$P(X,U,4)_U_$$TEXT^IBARXEU0($P(X,U,4))_U_$$ACODE^IBARXEU0(Y)_U_$$REASON^IBARXEU0(X)_U_$P(X,U,3) Q
  .;
  .S IBX=+$P(X,U,4)_U_"Previously "_$$TEXT^IBARXEU0($P(X,U,4))_U_$$ACODE^IBARXEU0(Y)_U_"Requires new exemption. Previously "_$$REASON^IBARXEU0(X)_U_$P(X,U,3)
  ;
@@ -66,7 +67,8 @@ RXST(DFN,IBDT) ; -- Check rx income exemption status of patient
  ..S X=$G(^IBE(354.2,+$P(Y,U,5),0)) ;exemption reason node
  ..;
  ..; -- see if patient was SC>50, can't be updated so don't say previous
- ..I $L($$ACODE^IBARXEU0(Y))<3 S IBX=+$P(X,U,4)_U_$$TEXT^IBARXEU0($P(X,U,4))_U_$$ACODE^IBARXEU0(Y)_U_$$REASON^IBARXEU0(X)_U_$P(X,U,3) Q
+ ..;    also check to see if last is still ok under VFA rules
+ ..I $L($$ACODE^IBARXEU0(Y))<3!($$VFAOK(Y)) S IBX=+$P(X,U,4)_U_$$TEXT^IBARXEU0($P(X,U,4))_U_$$ACODE^IBARXEU0(Y)_U_$$REASON^IBARXEU0(X)_U_$P(X,U,3) Q
  ..;
  ..S IBX=+$P(X,U,4)_U_"Previously "_$$TEXT^IBARXEU0($P(X,U,4))_U_$$ACODE^IBARXEU0(Y)_U_"Requires new exemption. Previously "_$$REASON^IBARXEU0(X)_U_$P(X,U,3)
  ..Q
@@ -108,3 +110,30 @@ ACTIVE(IBZ) ; -- SCREEN for active field of billing exemptions file
  I 'IBY!(IBY=DA) S T=1
  W:$D(IBTALK) !!,"Another entry is already Active, You must inactivate it first",!!
 ACTIVEQ Q T
+ ;
+VFA() ; -- returns VFA (no longer asking for mt income info) start date
+ ;  less One year
+ ; ICR #431
+ N IBDT
+ S IBDT=$$GET1^DIQ(43,"1,",1205,"I")
+ S:IBDT IBDT=$$MINUS^IBARXEU0(IBDT)
+ Q IBDT
+ ;
+VFAOK(X) ; - under VFA (veterans financial assestment) rules, MT no
+ ; longer required if within one year of VFA start date, use last test.
+ ; Pass in the zeroth node of the 354.1 exemption.
+ ;   Output = OK under VFA rules or not (1 or 0)
+ ;
+ N IBACODE,IBLST
+ ;
+ ; -- is this test income related, if not then not OK
+ S IBACODE=$$ACODE^IBARXEU0(X)
+ I IBACODE<100,IBACODE>200 Q 0
+ ;
+ ; -- is the test MT related, if not then not OK, ICR# 423
+ S IBLST=$$LST^DGMTCOU1(+$P(X,"^",2),+X,1)
+ I 'IBLST!($P(IBLST,"^",2)'=+X) Q 0
+ ;
+ ; -- is the test within dates needed?
+ Q $S(X<$$VFA:0,1:1)
+ ;

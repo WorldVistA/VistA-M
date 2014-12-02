@@ -1,5 +1,5 @@
-RAHLTCPX ;HIRMFO/RTK,RVD,GJC - Rad/Nuc Med HL7 TCP/IP Bridge;02/11/08
- ;;5.0;Radiology/Nuclear Medicine;**47**;Mar 16, 1998;Build 21
+RAHLTCPX ;HIRMFO/RTK,RVD,GJC - Rad/Nuc Med HL7 TCP/IP Bridge;02/11/08 ; 22 Feb 2013  12:30 PM
+ ;;5.0;Radiology/Nuclear Medicine;**47,114**;Mar 16, 1998;Build 1
  ;
  ; this is a modified copy of RAHLTCPB for HL7 v2.4
  ;
@@ -119,9 +119,9 @@ OBR ; Pick data off the 'OBR' segment.
  .S ^TMP(RARRR,$J,RASUB,"RACNI")=RACNI
  I $G(RADTI)'>0 S RAERR="Invalid exam registration timestamp" D XIT Q
  I $G(RACNI)'>0 S RAERR="Invalid exam record IEN" D XIT Q
- ;OBR-25/PAR(26) STATUS: 'C'orrected, 'F'inal, or 'R'esults filed, not verified
+ ;OBR-25/PAR(26) STATUS: 'C'orrected, 'F'inal, or 'R'esults filed, not verified & 'VAQ' NTP releases the study back to the VA
  I '$L(PAR(26)) S RAERR="Missing Report Status",RAEXIT=1 Q 
- I "CFR"'[PAR(26) S RAERR="Invalid Report Status: "_PAR(26),RAEXIT=1 Q
+ I "^C^F^R^VAQ^"'[("^"_PAR(26)_"^") S RAERR="Invalid Report Status: "_PAR(26),RAEXIT=1 Q
  S ^TMP(RARRR,$J,RASUB,"RASTAT")=PAR(26)
  G:$P(RARRR,"-",3) 112
  ;OBR-32 PAR(33) Principal Result Interpreter

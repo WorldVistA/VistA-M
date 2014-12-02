@@ -1,6 +1,12 @@
-LEXDVOS ; ISL Default Vocabulary - Select          ; 09-23-96
- ;;2.0;LEXICON UTILITY;;Sep 23, 1996
- ;
+LEXDVOS ;ISL/KER - Default Vocabulary - Select ;04/21/2014
+ ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^LEX(757.41)        N/A
+ ;               
+ ; External References
+ ;    ^DIR                ICR  10026
+ ;               
  ; Special Look-up in file 757.2 Subset Definitions
  ; Entry:  S X=$$EN^LEXDVOS
  ;

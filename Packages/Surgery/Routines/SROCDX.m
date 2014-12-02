@@ -1,5 +1,5 @@
 SROCDX ;BIR/ADM - CASE CODING INPUT/EDIT ;08/29/05
- ;;3.0; Surgery ;**142**;24 Jun 93
+ ;;3.0;Surgery;**142,177**;24 Jun 93;Build 89
 PCPT ; edit principal procedure code
  N SRPPY,SRPRIN S (SRPRIN,X)=$P(^SRO(136,SRTN,0),"^",2) I 'X D PPROC Q
  W !,"Principal Procedure:",! D CPTDISP,ASDX^SROCDX1
@@ -57,8 +57,9 @@ VALASC() I (Y["^")!('$G(Y(0)))!($G(DTOUT)) Q 1
  S:Y=""!(Y=U)!('+Y(0))!(Y[",0")!($P(Y,",",1)=0) VALA=0
  I 'VALA S DIR("A",1)="     **Invalid input",DIR(0)="FO^",DIR("A")="     Press Return to continue" D ^DIR
  Q VALA
-SRODIR N SRFLG,SRCNT,SRCNTR
- S DIR("A",1)="Only the following ICD Diagnosis Codes can be associated:"
+SRODIR N SRFLG,SRCNT,SRCNTR,SRSYS
+ S SRSYS=$$ICDSYS^SROICD($P(^SRF(SRTN,0),"^",9))
+ S DIR("A",1)="Only the following ICD"_$S(SRSYS="10D":"10",1:"9")_" Diagnosis Codes can be associated:"
  S DIR("A",2)=""
  S (SRFLG,SRCNT)=1,SRCNTR=3,ADCNT="" F  S ADCNT=$O(SRDIRX(ADCNT)) Q:'ADCNT  D
  .S:'$D(DIR("A",SRCNTR)) DIR("A",SRCNTR)=""

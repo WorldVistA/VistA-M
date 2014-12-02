@@ -1,5 +1,5 @@
 ONCOCFR ;Hines OIFO/GWB - RADIOLOGY CASEFINDING ;05/07/12
- ;;2.11;ONCOLOGY;**13,24,25,26,27,34,37,39,46,50,53,56**;Mar 07, 1995;Build 10
+ ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
  ;rvd - 05/07/12. Add the word 'cancer' to the search criteria
  ;
 ST ;Start RAD/NUC MED PATIENT (70) file search

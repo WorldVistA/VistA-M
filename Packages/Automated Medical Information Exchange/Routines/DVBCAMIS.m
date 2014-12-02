@@ -1,5 +1,5 @@
 DVBCAMIS ;ALB/GTS-557/THM-2507 AMIS REPORT ;21 MAY 89@0822 ; 5/23/91  1:30 PM
- ;;2.7;AMIE;**17,149**;Apr 10, 1995;Build 16
+ ;;2.7;AMIE;**17,149,184**;Apr 10, 1995;Build 10
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 SETUP ;
@@ -12,7 +12,7 @@ SETUP ;
  G:('(DVBAPRTY?.A)!(DVBAPRTY']"")) EXIT  ;quit if no priority of exam selected 
  ;
 INIT ;initialize counter arrays
- S DVBAEXMP=$S($G(DVBAPRTY)["BDD":"BDD,QS",($G(DVBAPRTY)["DES"):"DCS,DFD",($G(DVBAPRTY)["AO"):"AO",1:"ALL")
+ S DVBAEXMP=$S($G(DVBAPRTY)["BDD":"BDD,QS",($G(DVBAPRTY)["IDES"):"IDES",($G(DVBAPRTY)["AO"):"AO",1:"ALL")
  F JI="3DAYSCH","30DAYEX","PENDADJ","TRANSIN","TRNRETTO","TRNPNDTO","TRANSOUT","TRNRETFR","TRNPNDFR","INSUFF" D
  .F DVBAP=1:1:$L(DVBAEXMP,",") S TOT($P(DVBAEXMP,",",DVBAP),JI)=0
  F JI="RECEIVED","INCOMPLETE","DAYS","COMPLETED" D
@@ -56,15 +56,14 @@ EXIT K PREVMO,UPDATE G KILL^DVBCUTIL
  ;
  ;
  ;Input : DVBACDE - Code to get description for
- ;           [BDD,QS,DCS,DFD,AO]
+ ;           [BDD,QS,IDES,AO]
  ;Ouput : Corresponding description for code
 GPTYPE(DVBACDE) ;get exam priority desc
  N DVBATXT
  Q:($G(DVBACDE)']"") ""
  S DVBATXT=$S(DVBACDE="BDD":"'Benefits Delivery at Discharge ("_DVBACDE_")'",1:"")
  S:(DVBATXT']"") DVBATXT=$S(DVBACDE="QS":"'Quick Start ("_DVBACDE_")'",1:"")
- S:(DVBATXT']"") DVBATXT=$S(DVBACDE="DCS":"'DES Claimed Condition by Service Member ("_DVBACDE_")'",1:"")
- S:(DVBATXT']"") DVBATXT=$S(DVBACDE="DFD":"'DES Fit for Duty ("_DVBACDE_")'",1:"")
+ S:(DVBATXT']"") DVBATXT=$S(DVBACDE="IDES":"'Integrated Disability Evaluation System ("_DVBACDE_")'",1:"")
  S:(DVBATXT']"") DVBATXT=$S(DVBACDE="AO":"'Agent Orange ("_DVBACDE_")'",1:"")
- S:(DVBATXT']"") DVBATXT=$S(DVBACDE="ALL":"excluding BDD,QS,DCS,DFD and AO",1:"")
+ S:(DVBATXT']"") DVBATXT=$S(DVBACDE="ALL":"excluding BDD,QS,IDES and AO",1:"")
  Q DVBATXT
