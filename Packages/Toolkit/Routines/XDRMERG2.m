@@ -1,5 +1,5 @@
 XDRMERG2 ;SF-IRMFO.SEA/JLI - TENATIVE UPDATE POINTER NODES ; [6/12/02 9:48am]
- ;;7.3;TOOLKIT;**23,38,40,42,46,62**;Apr 25, 1995
+ ;;7.3;TOOLKIT;**23,38,40,42,46,62,137**;Apr 25, 1995;Build 10
  ;;
  Q
  ;
@@ -21,7 +21,16 @@ DINUM(XVAL,XR,XDRIENS) ; FIND AND MERGE DINUMMED POINTERS
  . D SAVEMERG^XDRMERGB(FILEI,IENOLD,IENNEW)
  . I '$D(@(XVAL_IENNEW_",0)")) D
  . . N DD,DO,DIC,X,DINUM,DA
- . . S DIC=XVAL,DIC(0)="L",X=IENNEW,DINUM=IENNEW D FILE^DICN Q:Y'>0
+ . . S DIC=XVAL,DIC(0)="L",X=IENNEW,DINUM=IENNEW D FILE^DICN D:$D(^DD("IX","F",FILEI,FLDJ))  Q:Y'>0  ;LLS 09-DEC-2013 - Added the conditional 'Do' to handle .01, DIMUMed, new style cross references to the Patient file
+ . . . ;LLS - 09-DEC-2013 begin added section:
+ . . . ;need to get the new style cross reference key values from the "FROM" patient and move to the "TO" Patient
+ . . . N XDRINDSB,XDRFFLD,XDRFLDI,Y,XDRARR
+ . . . S XDRINDSB=$O(^DD("IX","F",FILEI,FLDJ,"")) ;INDEX file subscript
+ . . . S XDRFLDI="" F  S XDRFLDI=$O(^DD("IX","F",FILEI,XDRFLDI)) Q:XDRFLDI=""  D:$D(^DD("IX","F",FILEI,XDRFLDI,XDRINDSB))  ;XDRFLDI will hold the field number that we want to file
+ . . . . S XDRFFLD=$$GET1^DIQ(FILEI,IENOLD_",",XDRFLDI,"I") ;get internal value of the field from "FROM" patient
+ . . . . S:XDRFLDI=FLDJ XDRFFLD=IENNEW ;want the pointer to the patient file set to the "TO" IEN not the "FROM" IEN
+ . . . . S XDRARR(FILEI,IENNEW_",",XDRFLDI)=XDRFFLD D UPDATE^DIE("","XDRARR") ;Set the internal value into "TO" patient
+ . . . ;LLS - 09-DEC-2013 end added section
  . D OVRWRI(FILEI,IENOLD,IENNEW)
  . D MERGEIT(XVAL,IENOLD,IENNEW)
  . D TIMSTAMP(2,FILEI,IENOLD)

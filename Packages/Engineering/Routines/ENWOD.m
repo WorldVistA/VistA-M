@@ -1,5 +1,5 @@
 ENWOD ;(WIRMFO)/DLM/DH/SAB-Formatted Work Order Display ;5/11/2000
- ;;7.0;ENGINEERING;**35,43,65**;Aug 17, 1993
+ ;;7.0;ENGINEERING;**35,43,65,96**;Aug 17, 1993;Build 5
 EDIT ;  Work order display/edit (screen) option
  D WO^ENWOUTL G:Y'>0 EXIT S DA=+Y
  D EDIT1
@@ -106,7 +106,8 @@ PRT1 U IO W:$E(IOST,1,2)="C-" @IOF
  D:ENBARCD BAR
  I $E(IOST,1,2)'="C-" W @IOF D PKILL^%ZISP
  N DA ; to protect DA when W.O. printed to P-MESSAGE
- D ^%ZISC
+ ; *96 close if the job is not queued in a task
+ I '$D(ZTQUEUED) D ^%ZISC
  Q
  ;
 BAR ; print barcode of w.o. #

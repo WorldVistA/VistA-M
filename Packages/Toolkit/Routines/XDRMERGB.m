@@ -1,5 +1,5 @@
 XDRMERGB ;SF-IRMFO.SEA/JLI - TENATIVE UPDATE POINTER NODES ;5/14/98  10:30
- ;;7.3;TOOLKIT;**23**;Apr 25, 1995
+ ;;7.3;TOOLKIT;**23,137**;Apr 25, 1995;Build 10
  ;;
  Q
  ;
@@ -39,8 +39,10 @@ MERGEIT ; MERGE TWO ENTRIES IN FILE
  . . F I=1:1 Q:X1=""  S X=$P(X1,U),X1=$P(X1,U,2,999) I X'="" D
  . . . S Y=$P(X2,U,I)
  . . . I Y=""  D
- . . . . S $P(X2,U,I)=X
+ . . . . ;S $P(X2,U,I)=X ;LLS 26-OCT-2013 replaced with conditional SET below
  . . . . S FLD=$O(^DD(XFILNO,"GL",NODE,I,0)) S JXFLD=FLD
+ . . . . I (XFILNO'=2)!(FLD'=.6) S $P(X2,U,I)=X ;LLS 26-OCT-2013 - replaced set of X2 so do not move 'test patient indicator'
+ . . . . I XFILNO=2,FLD=.6 Q  ;LLS 26-OCT-2013 - Do not want to move 'test patient indicator' 
  . . . . I FLD>0,$O(^DD(XFILNO,FLD,1,0))>0 S XDRXX(XFILNO,IENTOSTR,FLD)=X
  . . I X2'=X3 D
  . . . I $D(XDRXX) D

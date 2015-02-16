@@ -1,6 +1,7 @@
 IBDF18A2 ;WISC/TN - ENCOUNTER FORM - utilities for PCE ;04/30/03
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**51,55,63**;APR 30, 2003;Build 80
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**51,55,63,66**;APR 30, 2003;Build 5
  ;
+ ; Reference to $$STATCHK^ICDEX supported by ICR #5747
  ;
  QUIT  ;Call at CHKLST
  ;
@@ -59,11 +60,13 @@ CHKLST ;Create a new list to pass to calling packages.
  . ;Validate the ICD code for the date passed
  . S IBDIMPDA=$$IMPDATE^IBDUTICD("10D")
  . I TYPE="ICD10",ENCDATE'<IBDIMPDA D  Q
- . . S IBDX=$$STATCHK^IBDUTICD(30,CODE,ENCDATE) I $P(IBDX,U,1)>0 D  ;Active
+ . . ; IBD*3*66 - Call $$STATCHK^ICDEX to speed up dx status retrieval
+ . . S IBDX=$$STATCHK^ICDEX(CODE,ENCDATE,30) I +IBDX>0 D  ;Active
  . . . S CNT=CNT+1,@ARY@(CNT)=^TMP("IBDCSV",$J,AA)
  . I TYPE="ICD" D  ;This includes BOTH DG SELECT ICD-9 DIAGNOSIS CODES and DG SELECT ICD DIAGNOSIS CODES dependent upon ENCDATE
  . . S IBDCSYS=$S(ENCDATE<IBDIMPDA:1,1:30)
- . . S IBDX=$$STATCHK^IBDUTICD(IBDCSYS,CODE,ENCDATE) I $P(IBDX,U,1)>0 D  ;Active
+ . . ; IBD*3*66 - Call $$STATCHK^ICDEX to speed up dx status retrieval
+ . . S IBDX=$$STATCHK^ICDEX(CODE,ENCDATE,IBDCSYS) I +IBDX>0 D  ;Active
  . . . S CNT=CNT+1,@ARY@(CNT)=^TMP("IBDCSV",$J,AA)
  ;
  S @ARY@(0)=CNT

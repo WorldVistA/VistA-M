@@ -1,5 +1,5 @@
-ECXRAD ;ALB/JAP,BIR/PDW,PTD-Extract for Radiology ;7/31/14  12:38
- ;;3.0;DSS EXTRACTS;**11,8,13,16,24,33,39,46,71,84,92,105,120,127,136,144,149**;Dec 22, 1997;Build 27
+ECXRAD ;ALB/JAP,BIR/PDW,PTD-Extract for Radiology ;11/19/14  17:57
+ ;;3.0;DSS EXTRACTS;**11,8,13,16,24,33,39,46,71,84,92,105,120,127,136,144,149,153**;Dec 22, 1997;Build 2
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -17,19 +17,21 @@ START ;start rad extract
  ;
 GETCASE ;Find all cases associated with the verified report and store in extract
  ;149 Section added in this patch
- N CASE,ECXDFN,DATE,ECXMDA,ECXMDT,OCIEN,ECCN
+ N CASE,ECXDFN,DATE,ECXMDA,ECXMDT,OCIEN,ECCN,TAB ;153
  S CASE=$P($G(^RARPT(ECXDA,0)),U) Q:CASE=""
+ S TAB=$S($L(CASE,"-")=3:"ADC1",1:"ADC") ;153 Set xref table to use based on use of site accession numbering
  S ECXDFN=$P($G(^RARPT(ECXDA,0)),U,2) Q:ECXDFN=""
- I $D(^RADPT("ADC",CASE,ECXDFN)) D
- .S ECXMDA=$O(^RADPT("ADC",CASE,ECXDFN,0)) Q:'+ECXMDA
- .S ECCN=$O(^RADPT("ADC",CASE,ECXDFN,ECXMDA,0)) Q:'+ECCN
+ I $D(^RADPT(TAB,CASE,ECXDFN)) D  ;153
+ .S ECXMDA=$O(^RADPT(TAB,CASE,ECXDFN,0)) Q:'+ECXMDA  ;153
+ .S ECCN=$O(^RADPT(TAB,CASE,ECXDFN,ECXMDA,0)) Q:'+ECCN  ;153
  .S ECXMDT=$P($G(^RADPT(ECXDFN,"DT",ECXMDA,0)),U) ;Exam date/time
  .D GET
  S OCIEN=0 F  S OCIEN=$O(^RARPT(ECXDA,1,OCIEN)) Q:'+OCIEN  D
  .S CASE=$P($G(^RARPT(ECXDA,1,OCIEN,0)),U) Q:'+CASE
- .I $D(^RADPT("ADC",CASE,ECXDFN)) D
- ..S ECXMDA=$O(^RADPT("ADC",CASE,ECXDFN,0)) Q:'+ECXMDA
- ..S ECCN=$O(^RADPT("ADC",CASE,ECXDFN,ECXMDA,0)) Q:'+ECCN
+ .S TAB=$S($L(CASE,"-")=3:"ADC1",1:"ADC") ;153 Set xref table to use based on use of site accession numbering
+ .I $D(^RADPT(TAB,CASE,ECXDFN)) D  ;153
+ ..S ECXMDA=$O(^RADPT(TAB,CASE,ECXDFN,0)) Q:'+ECXMDA  ;153
+ ..S ECCN=$O(^RADPT(TAB,CASE,ECXDFN,ECXMDA,0)) Q:'+ECCN  ;153
  ..S ECXMDT=$P($G(^RADPT(ECXDFN,"DT",ECXMDA,0)),U) ;Exam date/time
  ..D GET
  Q

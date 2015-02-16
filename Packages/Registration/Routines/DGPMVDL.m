@@ -1,5 +1,5 @@
 DGPMVDL ;ALB/MIR - DELETE PATIENT MOVEMENTS ; 2/13/04 1:01pm
- ;;5.3;Registration;**161,517**;Aug 13, 1993
+ ;;5.3;Registration;**161,517,895**;Aug 13, 1993;Build 11
  ;
  ;D_DGPMT - these lines are used as DEL nodes.  If DGPMER=1, movement can
  ;          not be deleted.
@@ -11,8 +11,11 @@ D1 S DGPMER=0 F I=0:0 S I=$O(^DGPM("APMV",DFN,DGPMCA,I)) Q:I'>0  S J=$O(^(I,0)) 
  I $P(DGPMAN,"^",21),$P(DGPMAN,"^",17) S DGPMER=1 W !,"Must delete discharge first"
  I $O(^DGPT("ACENSUS",+$P(DGPMAN,U,16),0)) S DGPMER=1 W !,"Cannot delete while PTF Census record #",$O(^(0))," is closed."
  Q
-1 S DA=$P(DGPMAN,U,16),DIK="^DGPT(",FLAG=1,I=0 F  S I=$O(^DGCPT(46,"C",DA,I)) Q:'I  I '$G(^DGCPT(I,9)) S FLAG=0 Q
- I FLAG S I=0 F  S I=$O(^DGICD9(46.1,"C",DA,I)) Q:'I  I '$G(^DGICD9(I,9)) S FLAG=0 Q
+1 ;S DA=$P(DGPMAN,U,16),DIK="^DGPT(",FLAG=1,I=0 F  S I=$O(^DGCPT(46,"C",DA,I)) Q:'I  I '$G(^DGCPT(I,9)) S FLAG=0 Q
+ ;I FLAG S I=0 F  S I=$O(^DGICD9(46.1,"C",DA,I)) Q:'I  I '$G(^DGICD9(I,9)) S FLAG=0 Q
+ ;DG*5.3*895 corrects issue with deleting admissions
+ S DA=$P(DGPMAN,U,16),DIK="^DGPT(",FLAG=1,I=0 F  S I=$O(^DGCPT(46,"C",DA,I)) Q:'I  I '$G(^DGCPT(46,I,9)) S FLAG=0 Q
+ I FLAG S I=0 F  S I=$O(^DGICD9(46.1,"C",DA,I)) Q:'I  I '$G(^DGICD9(46.1,I,9)) S FLAG=0 Q
  I 'FLAG W !,"CANNOT DELETE THE PTF RECORD WHEN THERE ARE ACTIVE ORDERS OR CPT ENTRIES." K FLAG H 2 Q
  S DGMSG="Patient admission has been deleted for admit date: "_$$FMTE^XLFDT(+DGPMAN,"5DZ"),DGMSG1="Deleted Admission"
  D MSG^DGPTMSG1 S DA=$P(DGPMAN,U,16),DIK="^DGPT(" D ^DIK:DA>0 K FLAG,I,DA,DIK ; delete PTF record

@@ -1,5 +1,5 @@
 RORUPR1 ;HCIOFO/SG - SELECTION RULES PREPARATION ;11/20/05 4:56pm
- ;;1.5;CLINICAL CASE REGISTRIES;**12,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**12,19,24**;Feb 17, 2006;Build 15
  ;
  ;01/04/2011 BAY/KAM ROR*1.5*12 Remedy Call 421530 Populate a variable
  ;                              to assist with Lab Test Result Code
@@ -11,6 +11,10 @@ RORUPR1 ;HCIOFO/SG - SELECTION RULES PREPARATION ;11/20/05 4:56pm
  ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;ROR*1.5*24   AUG  2014   T KOPP       Change to lookup for selection rule names
+ ;                                       longer than 30 characters
+ ;                                      Added NEW of variable DIERR at FILETREE
+ ;                                       and METADATA
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -23,7 +27,7 @@ RORUPR1 ;HCIOFO/SG - SELECTION RULES PREPARATION ;11/20/05 4:56pm
  ; processed during the registry update.
  ;
 FILETREE() ;
- N FILE,PF,RC
+ N FILE,PF,RC,DIERR
  S FILE="",RC=0
  F  S FILE=$O(RORUPD("SR",FILE))  Q:FILE=""  D  Q:RC<0
  . S PF=+FILE,RC=0
@@ -151,7 +155,7 @@ LOADRULE(RULENAME,REGIEN,LEVEL) ;
  N DATELMT,DEPRLC,EXPR,FILE,I,IENS,RORBUF,RORMSG,RULIEN,TMP
  ;--- Load the rule data
  ;D FIND^DIC(798.2,,"@;1;2I","X",RULENAME,2,"B",,,"RORBUF","RORMSG")
- D FIND^DIC(798.2,,"@;1;2I;7I","X",RULENAME,2,"B",,,"RORBUF","RORMSG") ;load the new coding system internal value
+ D FIND^DIC(798.2,,"@;1;2I;7I","KO",RULENAME,2,,,,"RORBUF","RORMSG") ;load the new coding system internal value
  S RC=$$DBS^RORERR("RORMSG",-9)  Q:RC<0 RC
  Q:$G(RORBUF("DILIST",0))<1 $$ERROR^RORERR(-3,,RULENAME)
  Q:$G(RORBUF("DILIST",0))>1 $$ERROR^RORERR(-4,,RULENAME)
@@ -188,7 +192,7 @@ LOADRULE(RULENAME,REGIEN,LEVEL) ;
  ;
  ;***** LOADS AND PREPARES THE METADATA
 METADATA() ;
- N API,DATELMT,DEFL,FILE,I,IENS,IS,PIF,RC,ROOT,RORBUF,RORMSG,TMP,VT
+ N API,DATELMT,DEFL,DIERR,FILE,I,IENS,IS,PIF,RC,ROOT,RORBUF,RORMSG,TMP,VT
  S RC=$$FILETREE()  Q:RC<0 RC
  S DEFL="@;.02I;1I;4I;4.1;4.2;6I"
  ;--- Load and process the metadata

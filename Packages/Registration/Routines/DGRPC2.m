@@ -1,5 +1,5 @@
 DGRPC2 ;ALB/MRL/SCK/PJR/BAJ/LBD/BDB - CHECK CONSISTENCY OF PATIENT DATA (CONT) ; 10/14/10 9:56am
- ;;5.3;Registration;**45,69,108,121,205,218,342,387,470,467,489,505,507,528,451,564,570,657,688,780,797,858**;Aug 13, 1993;Build 30
+ ;;5.3;Registration;**45,69,108,121,205,218,342,387,470,467,489,505,507,528,451,564,570,657,688,780,797,858,895**;Aug 13, 1993;Build 11
  ;
 43 ;off
 44 ;off
@@ -190,7 +190,7 @@ CHECK55(DFN) ;Business rules for additional 55-INCOME DATA MISSING checks
  ;  Output 1 - If Income check passes additional business rules
  ;         0 - If Income check fails additional business rules
  ;
- N VAMB,VASV,VA,VADMVT,VAEL,VAINDT,DGRTN,DGMED,DG,DG1,DGWARD,DGSRVC
+ N VAMB,VASV,VA,VADMVT,VAEL,VAINDT,DGRTN,DGMED,DG,DG1,DGWARD,DGSRVC,DGCOPAY
  ;
  S DGRTN=0
  D MB^VADPT I +VAMB(7) S DGRTN=1 G Q55  ; Check if receiving VA Disability
@@ -225,6 +225,9 @@ CHECK55(DFN) ;Business rules for additional 55-INCOME DATA MISSING checks
  ; .. VAMB(1) $P 1 = RECEIVING A&A
  ; .. VAMB(4) $P 1 = RECEIVING VA PENSION
  I $P(VAEL(1),"^",2)="SC LESS THAN 50%",+VAEL(3) S PCNT=$P(VAEL(3),"^",2) I PCNT'<10,PCNT'>50 S DGRTN=$S(+VAMB(1):1,VAMB(4):1,1:DGRTN)
+ ; DG*5.3*895 Check if service connected between 0% & 50% and copay exempt
+ S DGCOPAY=$O(^DGMT(408.31,"C",DFN,""))
+ I DGCOPAY I $G(PCNT)>0,$G(PCNT)'>50,$P($G(^DGMT(408.31,DGCOPAY,2)),U,3)=8 S DGRTN=1
  I $P($G(VAEL(6)),"^",2)="NSC VETERAN" S DGRTN=$S(+VAMB(1):1,VAMB(4):1,1:DGRTN)
  ;
 Q55 D KVAR^VADPT

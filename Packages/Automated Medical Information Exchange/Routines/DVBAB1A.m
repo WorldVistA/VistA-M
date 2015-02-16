@@ -1,5 +1,5 @@
 DVBAB1A ;ALB/GAK - CAPRI Exam Complete Email Driver ; 03/13/2013 11:23 AM
- ;;2.7;AMIE;**185**;Apr 10, 1995;Build 18
+ ;;2.7;AMIE;**185,187**;Apr 10, 1995;Build 13
  ;
  Q
  ; 
@@ -81,7 +81,7 @@ MSG2(ERR,DUZ,RIEN,ELIST) ;
  ;
 ONEEMAIL ;
  K ERR
- N DVBA0,DVBADFN,DVBASITE,DVBADT,DVBAREQ
+ N DVBA0,DVBADFN,DVBASITE,DVBADT,DVBAREQ,DVBAEA
  S XMDUZ=DUZ
  ;following call supported by IA 3858
  N DUZ
@@ -94,7 +94,10 @@ ONEEMAIL ;
  S DVBA0=$G(^DVB(396.3,RIEN,0))
  S DVBADFN=$P(DVBA0,"^",1),DVBAREQ=$P(DVBA0,"^",4),DVBADT=$$FMTE^XLFDT($P(DVBA0,"^",2))
  ;following call supported by IA 3858
- S XMY($P($G(^VA(200,DVBAREQ,.15)),"^",1))=""
+ ;rra 938270 make sure email address exists prior to attempting to send notification
+ S DVBAEA=$P($G(^VA(200,DVBAREQ,.15)),"^",1)
+ I DVBAEA="" Q
+ S XMY(DVBAEA)=""
  ;
  S DVBASITE=$$SITE^VASITE
  I '$D(DVBASITE) S DVBASITE="^"

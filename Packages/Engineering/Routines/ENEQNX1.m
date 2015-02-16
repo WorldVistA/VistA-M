@@ -1,5 +1,5 @@
 ENEQNX1 ;(WASH ISC)/DH-Process Uploaded Equipment Inventory ;1/9/2001
- ;;7.0;ENGINEERING;**10,21,45,68**;Aug 17, 1993
+ ;;7.0;ENGINEERING;**10,21,45,68,96**;Aug 17, 1993;Build 5
 RES ;Restart an aborted process
  S X="",ENY=0 W !!,"Enter PROCESS ID: " R X:DTIME G:X="^"!(X="") EXIT^ENEQNX2 S ENCTID=$O(^PRCT(446.4,"C",X,"")) I ENCTID="" W !!,*7,"Wrong application. Aborting..." D HOLD G EXIT^ENEQNX2
  S X="" W !!,"Enter TIME STAMP of process to be restarted: " R X:DTIME G:X="^"!(X="") EXIT^ENEQNX2 S ENCTTI=$O(^PRCT(446.4,ENCTID,2,"B",X,"")) I ENCTTI="" W !!,"NO DATA. Aborting..." D HOLD G EXIT^ENEQNX2
@@ -19,6 +19,8 @@ EN ;Main entry point. Expects ENCTID and ENCTTI.
 CONT ;Physical processing of uploaded data
  U IO S (ENY,ENPG)=0,ENX=$O(^PRCT(446.4,ENCTID,2,ENCTTI,1,0)) I ENX'>0 D HDR W *7,!!,"No data to process." D HOLD G EXIT^ENEQNX2
  S ENX=$O(^PRCT(446.4,ENCTID,2,ENCTTI,1,ENX)) ;ignore file ID
+ ; *96 write a msg if no data
+ I 'ENX D HDR W *7,!!,"No data to process." G EXIT^ENEQNX2
 NEWLOC ;Beginning of a specific location
  S ENLBL=^PRCT(446.4,ENCTID,2,ENCTTI,1,ENX,0),ENLOC=$E(ENLBL,3,50) I $E(ENLBL,1,2)'="SP" S ENMSG="LOCATION EXPECTED." D XCPTN S ENX=$O(^PRCT(446.4,ENCTID,2,ENCTTI,1,ENX)) G:ENX'>0 EXIT^ENEQNX2 G NEWLOC
  I ENLOC["  " S ENLOC=$P(ENLOC,"  ")

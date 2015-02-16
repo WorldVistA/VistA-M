@@ -1,6 +1,6 @@
 INDEX
 ZWR
-^DD("IX",0)="INDEX^.11I^922^1121"
+^DD("IX",0)="INDEX^.11I^2^1127"
 ^DD("IX",.001,0)="0^ADEL^Delete Keys and Indexes associated with a deleted field.^MU^^F^R^I^0^^^^^A"
 ^DD("IX",.001,1)="Q"
 ^DD("IX",.001,2)="D:'$D(DICATTED)&'$D(DIU) DELXRF^DICATT4(DA(1),DA)"
@@ -9309,9 +9309,9 @@ ZWR
 ^DD("IX",569,.1,3,0)="document entry date/time. The mumps set and kill logic for this index"
 ^DD("IX",569,.1,4,0)="will control the existence of nodes in the ""AC"" index.  Nodes will only"
 ^DD("IX",569,.1,5,0)="exist for documents that have unsigned additional signatures."
-^DD("IX",569,1)="I $D(^TIU(8925,X2(1),0)) S ^TIU(8925.7,""AC"",$P($G(^TIU(8925,X2(1),12)),U),X2(1))="""""
+^DD("IX",569,1)="I $D(^TIU(8925,X2(1),0)) S ^TIU(8925.7,""AC"",$P($G(^TIU(8925,X2(1),12)),U),X2(1),DA)="""""
 ^DD("IX",569,1.4)="S X=(X2(1)'=""""&(X2(2)=""""))"
-^DD("IX",569,2)="I $D(^TIU(8925,X2(1),0)) K ^TIU(8925.7,""AC"",$P($G(^TIU(8925,X2(1),12)),U),X2(1))"
+^DD("IX",569,2)="I $D(^TIU(8925,X2(1),0)) K ^TIU(8925.7,""AC"",$P($G(^TIU(8925,X2(1),12)),U),X2(1),DA)"
 ^DD("IX",569,2.4)="S X=X2(2)'="""""
 ^DD("IX",569,2.5)="K ^TIU(8925.7,""AC"")"
 ^DD("IX",569,11.1,0)="^.114IA^2^2"

@@ -1,5 +1,5 @@
-RORUTL11 ;HCIOFO/SG - ACCESS AND SECURITY UTILITIES ;6/2/11 4:12pm
- ;;1.5;CLINICAL CASE REGISTRIES;**13,14,15,17,18,20,19**;Feb 17, 2006;Build 43
+RORUTL11 ;HCIOFO/SG - ACCESS AND SECURITY UTILITIES ;15 Aug 2013  11:31 AM
+ ;;1.5;CLINICAL CASE REGISTRIES;**13,14,15,17,18,20,19,21,22,24**;Feb 17, 2006;Build 15
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -94,5 +94,5 @@ RPCHECK(RPCNAME,REGIEN,FLAGS) ;
  ;associated M changes needed for it.
  ;
 VERSRV(VAL) ;
- S VAL="1.5.19"
+ S VAL="1.5.24"
  Q

@@ -1,5 +1,5 @@
 XDRMERGA ;SF-IRMFO.SEA/JLI - START OF NON-INTERACTIVE BATCH MERGE ;01/31/2000  09:14
- ;;7.3;TOOLKIT;**23,28,37,40,45**;Apr 25, 1995
+ ;;7.3;TOOLKIT;**23,28,37,40,45,137**;Apr 25, 1995;Build 10
  ;;
  Q
 APPROVE ; This is the entry point for approving a duplicate pair for merge
@@ -66,6 +66,7 @@ CHECK ;
  . . S XNCNT=XNCNT+1,XX(XNCNT)=I_U_J
  . . W !!,$J(XNCNT,3),"  ",?8,X1,?42,X1S,?60,"[",I,"]"
  . . W !,?8,X2,?42,X2S,?60,"[",J,"]"
+ . . S ^TMP("XDR",$J,XNCNT)=X1_U_X1S_U_I_U_X2_U_X2S_U_J ;LLS 07-NOV-2013 - save for possible verification prompt
  . . I '(XNCNT#6) D @ASKNAME Q:$D(DUOUT)!$D(DTOUT)  W @IOF
  I '($D(DUOUT)!$D(DTOUT)) D @ASKNAME
  Q
@@ -77,6 +78,14 @@ ASK1 ;
  S K="" F  S K=$O(Y(K)) Q:K=""  S Y=Y(K) K Y(K) D
  . F M=1:1 S N=$P(Y,",",M) Q:N=""  D
  . . S N1=+XX(N),N2=$P(XX(N),U,2)
+ . . I $$TESTPAT^VADPT(N1)=1,$$TESTPAT^VADPT(N2)'=1 D  Q:Y'=1  ;LLS - trying to merge test patient into real patient
+ . . . N XDRFLDI,XDRPC
+ . . . F XDRFLDI=1:1:6 S XDRPC(XDRFLDI)=$P(^TMP("XDR",$J,XNCNT),U,XDRFLDI) ;LLS 07-NOV-2013
+ . . . W !!,$J(N,3),"  ",?8,XDRPC(1),?42,XDRPC(2),?60,"[",XDRPC(3),"]" ;LLS 07-NOV-2013
+ . . . W !,?8,XDRPC(4),?42,XDRPC(5),?60,"[",XDRPC(6),"]" ;LLS 07-NOV-2013
+ . . . W !!!! S DIR(0)="Y^"_XNCNT,DIR("A")="Merge the above pair (a test patient into a real patient) SURE" ;LLS 07-NOV-2013
+ . . . D ^DIR K DIR ;LLS 07-NOV-2013
+ . . . I Y'=1 W !!,"*****[",XDRPC(3),"] WILL NOT BE MERGED INTO [",XDRPC(6),"]" ;LLS 07-NOV-2013
  . . S (DA,XDRX(N1,N2))=XDRY(N1,N2)
  . . N I,J,K,M,N,N1,N2,X1,X2,X,DIE,DR,Y
  . . S DIE="^VA(15,"
@@ -105,8 +114,24 @@ RESTART ;  Entry point to restart non-completed merges
 DOSUBS(XDRFROM,XDRTO,IENTOSTR,XDRDASEQ) ;
  N NODEA,SFILE,VALUE,XVALUE,XDRXX,XDRYY,YVALUE,XENTOSTR
  N XDRAA,XDRZZ ; DEBUG STATEMENT
+ N XDRALY1,XDRALY2,XDRALY1,XDRALY2,XDRALY1A,XDRALY2A,XDRDUPAF,XDRDUPAT,XDRALYSS,XDRALYNM,XDR1,NODEB ;;LLS 17-OCT-2013 - my new arrays and NODEB was not NEWed and thought it should be
  S SFILE=+$P($G(@(XDRFROM_"0)")),U,2)
  I SFILE'>0 Q  ; NO FILE NUMBER, NOT FILE MANAGER COMPATIBLE
+ ;
+ ;LLS 17-OCT-2013 added this section to setup arrays for fix duplicate (same Name & Social Security Number) aliases being merged:
+ I $G(FILE)=2,SFILE="2.01" D
+ . D GETS^DIQ(FILE,$P(XDRGID,U,2)_",","1*","","XDRALY1") ;Put 'FROM' patient ALIAS data into XDRALY1 array
+ . M XDRALY1A=XDRALY1(SFILE) ;strip first subscript
+ . D GETS^DIQ(FILE,$P(XDRGID,U,3)_",","1*","","XDRALY2") ;Put 'TO' patient ALIAS data into XDRALY2 array
+ . M XDRALY2A=XDRALY2(SFILE) ;strip first subscript
+ . S XDR1="" F  S XDR1=$O(XDRALY1A(XDR1)) Q:XDR1=""  D  ;Create new 'FROM' patient alias array subscripted by NAME^SSN
+ . . S XDRALYSS=XDRALY1A(XDR1,1),XDRALYNM=XDRALY1A(XDR1,.01)
+ . . S XDRDUPAF(XDRALYNM_U_XDRALYSS)=$P(XDR1,",",1) ;'FROM' array format: XDRDUPAF(NAME^SSN)=node
+ . S XDR1="" F  S XDR1=$O(XDRALY2A(XDR1)) Q:XDR1=""  D  ;Create new 'TO' patient alias array subscripted by NAME^SSN
+ . . S XDRALYSS=XDRALY2A(XDR1,1),XDRALYNM=XDRALY2A(XDR1,.01)
+ . . S XDRDUPAT(XDRALYNM_U_XDRALYSS)=$P(XDR1,",",1) ;'TO' array format: XDRDUPAT(NAME^SSN)=node 
+ ;LLS 17-OCT-2013 end of added section
+ ;
  I $P($G(^DD(SFILE,.01,0)),U,2)["W" D  Q  ; HANDLE WORD PROCESSING FIELDS
  . N XF,XT S XT=$E(XDRTO,1,$L(XDRTO)-1)_")"
  . I '$D(@XT) D
@@ -115,6 +140,10 @@ DOSUBS(XDRFROM,XDRTO,IENTOSTR,XDRDASEQ) ;
  . . Q
  . Q
  F NODEA=0:0 S NODEA=$O(@(XDRFROM_NODEA_")")) Q:NODEA'>0  D
+ . ;LLS 17-OCT-2013 - the following line of code was added to check patient alias multiple (file #2.01) and
+ . ;           skip moving this alias because it already exists in the 'merge to' patient file.
+ . ;           XDRDUPAF array contains 'FROM' file aliases and XDRDUPAT contains 'TO' file aliases
+ . I SFILE=2.01,$D(XDRDUPAF($P($G(@(XDRFROM_NODEA_",0)"),"*"),U,1,2))),$D(XDRDUPAT($P($G(@(XDRFROM_NODEA_",0)"),"*"),U,1,2))) Q  ;LLS 17-OCT-2013 - added
  . S VALUE=$P($G(@(XDRFROM_NODEA_",0)")),U) ; GET .01 VALUE
  . N XDRDT S XDRDT=^DD(SFILE,.01,0)
  . I $P(XDRDT,U,2)["D" S XDRDT=$P(XDRDT,U,5,999),XDRDINUM=$S(XDRDT["DINUM":1,1:0) I XDRDINUM S XDRDT=0 D DINUMDAT Q:XDRDT  ; HANDLE DINUMED DATES BY SIMPLY MOVING THEM
