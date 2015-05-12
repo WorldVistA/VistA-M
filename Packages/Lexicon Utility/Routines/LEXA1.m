@@ -1,5 +1,5 @@
-LEXA1 ;ISL/KER - Lexicon Look-up (Loud) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**3,4,6,11,15,38,55,73,80**;Sep 23, 1996;Build 1
+LEXA1 ;ISL/KER - Lexicon Look-up (Loud) ;12/19/2014
+ ;;2.0;LEXICON UTILITY;**3,4,6,11,15,38,55,73,80,86**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^DISV(              ICR    510
@@ -16,65 +16,61 @@ LEXA1 ;ISL/KER - Lexicon Look-up (Loud) ;04/21/2014
  ;     DIC,DTOUT,DUOUT,LEXCAT,LEXQUIET,LEXSRC
  ;     
 EN ; Fileman Special Lookup
- ;
+ ; 
  ; ^LEXA1 is the Lexicon's special lookup routine
- ; established by Fileman Data Dictionary's node:
- ;
+ ; 
  ;   ^DD(757.01,0,"DIC")=LEXA1
  ; 
  ; Input    All input variables are optional
- ;
+ ; 
  ;    X     User's input, if X does not exist the user
- ;          will be prompted for textto search for.
- ;  
+ ;          will be prompted
+ ; 
  ;    Fileman Variables used:
- ;    
+ ; 
  ;          DIC       Global Root (default ^LEX(757.01,)
  ;          DIC(0)    DIC response string (default AEQM)
  ;          DIC("A")  Prompt (default "Enter Term/Concept:")
  ;          DIC("B")  Default lookup value
  ;          DIC("S")  Screen
  ;          DIC("W")  Output string
- ;    
+ ; 
  ;    Special Input Variables:
- ;    
+ ; 
  ;          LEXVDT    Versioning Date - This is a date in
  ;                    Fileman format.  If set it will force
  ;                    the lookup to be date sensitive, 
  ;                    inactive and pending codes and terms 
  ;                    will not display on the selection 
  ;                    list. 
- ;                    
+ ; 
  ;     Developer Input Variables
- ;     
+ ; 
  ;          LEXIGN    Ignore - This flag, if set will ignore
- ;                    deactivation flags.  Deactivated terms
- ;                    will appear on the selection list.  This
- ;                    is used by developers in the mainteance
- ;                    of the Code Sets.
- ;                    
+ ;                    deactivation flags. 
+ ; 
  ;          LEXDISP   Display - Force overwrite of display default
  ;                    parameter.
- ;                    
+ ; 
  ; Output
- ;
+ ; 
  ;    Fileman
- ;
+ ; 
  ;       Y       2 piece string containing IEN and 
- ;               expression or -1 if X is not found
+ ;               expression or -1 if not found
  ;               or selection not made
- ;
+ ; 
  ;       Y(0)    If DIC(0) contains a Z this variable 
  ;               will be equal to the entire zero node
  ;               of the entry that was selected
- ;
+ ; 
  ;       Y(0,0)  If DIC(0) contains a Z this variable 
  ;               will be equal to the external form of
  ;               the .01 field of the entry that was
  ;               selected
  ; 
  ;    Non-Fileman
- ;
+ ; 
  ;       Y(1)    This is the external form of the ICD-9
  ;               diagnosis code when found
  ; 
@@ -89,40 +85,31 @@ EN ; Fileman Special Lookup
  ; 
  ;       Y(81)   This is the external form of the CPT-4
  ;               or HCPCS code when found
- ;               
- I $D(DIC(0)),$G(DIC(0))["A" K X
+ ; 
+ I '$D(DIC(0))!($G(DIC(0))["A") K X
  ; Date Check
- N LEXTD,LEXQ S LEXQ=0 D VDT^LEXU
+ N LEXTD,LEXQ,LEXXVDT,LEXASKC S LEXXVDT=$S($G(LEXVDT)?7N:1,1:0) S LEXQ=0 D VDT^LEXU
  ;
- ; LEXSUB  Special variable from version 1.0 specifying the
- ;         vocabulary subset to use during the search.  It is
- ;         a three character mnemonic taken from the Subset
- ;         Definition file #757.2.  The default is "WRD"
+ ; LEXSUB  Specifies the vocabulary subset to use during the search.  
+ ;         It is a three character mnemonic taken from file 757.2.
+ ;         The default is "WRD"
  S:'$L($G(LEXSUB)) LEXSUB="WRD"
  ;
- ; LEXAP   Special variable from version 1.0 specifying the
- ;         application using the Lexicon.  It is a pointer
- ;         value to the Subset Definition file #757.2.
- ;         The default is 1 (Lexicon)
+ ; LEXAP   Specifies the application using the Lexicon.  It is a pointer
+ ;         to file 757.2.  The default is 1 (Lexicon)
  S:'$L($G(LEXAP))&($L($G(^TMP("LEXSCH",$J,"APP",0)))) LEXAP=^TMP("LEXSCH",$J,"APP",0)
  S:'$L($G(LEXAP)) LEXAP=1
  ;
- ; LEXLL   Special variable (new) specifying the length of the
- ;         displayable list the user is to select from.  Default
- ;         is 5 (display 5 at a time until the entire list has 
- ;         been reviewed)
+ ; LEXLL   Specifies the displayable list length that the user selects
+ ;         from. Default is 5.
  S:'$L($G(LEXLL)) LEXLL=5
  ;
- ; LEXSRC  Special variable specifying the source of the 
- ;         vocabulary to use during the search.  It is
- ;         an Internal Entry Number to the Source File
- ;         #757.14.  There is no default value.
+ ; LEXSRC  Specifies the source of the vocabulary to use during the search.
+ ;         It is a pointer to file #757.14.
  N LEXXSR S:$L($G(LEXSRC)) LEXXSR=$G(LEXSRC)
  ;         
- ; LEXCAT  Special variable specifying the source category of
- ;         the vocabulary to use during the search.  It is
- ;         an Internal Entry Number in the Source Category
- ;         file #757.13.  There is no default value.
+ ; LEXCAT  Specifies the source category of the vocabulary to use during 
+ ;         the search.  It is a pointer to file #757.13.
  N LEXXCT S:$L($G(LEXCAT)) LEXXCT=$G(LEXCAT)
  ;         
  ; Check the DIC variables new LEXUR "user response"
@@ -138,16 +125,18 @@ EN ; Fileman Special Lookup
  ; ends.  If there is nothing to lookup (X="") or an uparrow
  ; is detected, the Lexicon shuts down killing LEX.
  ;
- F  D LK Q:'$D(LEX)!($D(LEX("SEL")))
+ S LEXASKC=0 F  D LK Q:'$D(LEX)!($D(LEX("SEL")))
  G EXIT
 LK ; Start Look-up
  ; X not provided
- D:'$D(LEXSAVE) ASK
+ K DTOUT,DUOUT S LEXASKC=+($G(LEXASKC))+1 W:+($G(LEXASKC))>1 !
+ D:'$D(LEXSAVE) ASK I $D(DTOUT)!($D(DUOUT)) K LEX Q
  ; X provided
  S:$D(LEXSAVE) X=LEXSAVE K LEXSAVE
  ; X was null with a default provided
  S:$D(DIC("B"))&($G(X)="") X=DIC("B")
  ; Lookup X - LOOK(LEXX,LEXAP,LEXLL,LEXSUB,LEXVDT,LEXXSR,LEXXCT)
+ I '$L($G(X)) K LEX Q
  D LOOK^LEXA(X,$G(LEXAP),$G(LEXLL),,$G(LEXVDT),$G(LEXXSR),$G(LEXXCT))
  K DIC("B")
  ;
@@ -156,9 +145,8 @@ NOTFND ; If X was not found
  ;    Write "??"
  ;
  ;    Calling application uses Unresolved Narratives
- ;      Prompt to "accept or reject" the narrative, if
- ;      no selection is made continue the search
- ;
+ ;      Prompt to "accept or reject" the narrative
+ ;      
  ;    Calling application does not use Unresolved Narratives
  ;      Display help, Re-prompt and Continue search
  ;
@@ -181,13 +169,17 @@ FOUND ; If X was found
  I $L($G(LEX)),'$D(LEX("SEL")),$D(^TMP("LEXSCH",$J)) D
  . D EN^LEXA4 S:'$D(LEX("SEL")) LEX=0
  Q
-EXIT ; Set/Kill variables Y, Y(0,0) from LEX("SEL")
- S:$L($G(LEXDICA)) DIC("A")=LEXDICA S:$L($G(LEXDICB)) DIC("B")=LEXDICB K Y
+EXIT ; Set/Kill variables Y, Y(0,0)
+ S:$L($G(LEX("NAR"))) X=$G(LEX("NAR"))
+ S:$L($G(LEXDICA)) DIC("A")=LEXDICA S:$L($G(LEXDICB)) DIC("B")=LEXDICB K Y K:+($G(LEXXVDT))'>0 LEXVDT
  I '$D(LEX("SEL","EXP",1)) K Y S Y=-1 D CL Q
- I $D(LEX("SEL","EXP",1)) S Y=LEX("SEL","EXP",1) D Y1,SSBR S:DIC(0)["Z" Y(0)=^LEX(757.01,+(LEX("SEL","EXP",1)),0),Y(0,0)=$P(^LEX(757.01,+(LEX("SEL","EXP",1)),0),"^",1)
+ I $D(LEX("SEL","EXP",1)) S Y=LEX("SEL","EXP",1) D
+ . D Y1,SSBR I DIC(0)["Z" D
+ . . S Y(0)=^LEX(757.01,+(LEX("SEL","EXP",1)),0)
+ . . S Y(0,0)=$P(^LEX(757.01,+(LEX("SEL","EXP",1)),0),"^",1)
  D CL
  Q
-CL ; Clear LEX and Multi-Term Lookup XTLK
+CL ; Clear Variables
  K LEX,LEXSUB,LEXAP,LEXLL D CLR
  Q
 CLR ; Clear ^TMP Global
@@ -203,6 +195,7 @@ Y1 ; ICD-9 DX in Y(1), ICD-10 DX in Y(30)
  . . S LEXCT=LEXCT+1,LEXLC=LEXLC+1 S:LEXLC>1 LEXLDR="      "
  . . Q:LEXCT>1  W:LEXCT=1 ! W !,LEXT
  . . S:'$L($G(Y(+LEXSY))) Y(+LEXSY)=LEXC
+ N IOINHI,IOINORM
  Q
 ASK ; Get user input
  N DIR,DIRUT,DIROUT S:$L($G(LEXDICA)) DIC("A")=LEXDICA
@@ -219,7 +212,8 @@ ASK ; Get user input
  I $D(DTOUT)!(X="^") S X=""
  S:X[U DUOUT=1 K DIRUT,DIROUT Q
 INPHLP ; Look-up help
- N IMP,CUT,FLG,LEXD S IMP=$$IMPDATE^LEXU(30) S CUR=$G(LEXVDT) S:CUR'?7N CUR=$$DT^XLFDT S FLG=$S(CUR<IMP:0,1:1)
+ N IMP,CUR,CUT,FLG,LEXD,LEXCAT,LEXQUIET,LEXSRC S IMP=$$IMPDATE^LEXU(30)
+ S CUR=$G(LEXVDT) S:CUR'?7N CUR=$$DT^XLFDT S FLG=$S(CUR<IMP:0,1:1)
  S LEXD=$G(^TMP("LEXSCH",$J,"FIL",0))
  I $G(X)["??",$L(LEXD),LEXD["LEXU(Y,""DS4""," K LEX("HLP") D  Q
  . D QMH^LEXAR3(X) N LEXI S LEXI=0

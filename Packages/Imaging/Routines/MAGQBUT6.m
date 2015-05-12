@@ -1,5 +1,5 @@
-MAGQBUT6 ;WIOFO/RMP - Utility to Consolidate Redundant Network Location file Entries ; 18 Jan 2011 5:21 PM
- ;;3.0;IMAGING;**39**;Mar 19, 2002;Build 2010;Mar 08, 2011
+MAGQBUT6 ;WIOFO/RMP,JSL - Utility to Consolidate Redundant Network Location file Entries ; 17 JUL 2014 3:21 PM
+ ;;3.0;IMAGING;**39,154**;Mar 19, 2002;Build 9;JUL 17, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -46,6 +46,7 @@ CHKNET(MAG) ; This is the input transform for the share path (PHYSICAL REFERENCE
  . D EN^DDIOL("You may only edit records for the configuration to which your login is associated!")
  . Q 
  S UPPER=$$UPPER^MAGQE4(MAG),FAILED=""
+ Q:$P($G(^MAG(2005.2,DA,0)),U,7)["EKG"  ;Allow to shared duplicate MUSE
  F  S VALUE=$O(^MAG(2005.2,"G",PLACE,VALUE)) Q:VALUE=""  D  Q:'$D(X)
  . I UPPER=$$UPPER^MAGQE4(VALUE) D
  . . S IEN=""

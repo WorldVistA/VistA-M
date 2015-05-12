@@ -1,5 +1,5 @@
 PSDOPTN ;BIR/LTL - Review OP Transactions for a Drug (cont.) ; 24 Jan 95
- ;;3.0; CONTROLLED SUBSTANCES ;**18,55**;13 Feb 97
+ ;;3.0;CONTROLLED SUBSTANCES ;**18,55,75**;13 Feb 97;Build 2
  ;
  ;References to ^PSD(58.8, covered by DBIA2711
  ;References to DD(58.81 and ^PSD(58.81 are covered by DBIA2808
@@ -26,6 +26,9 @@ START ;compiles
  ..S PSDT(2)=$P($G(^PSDRUG(+$P(PSDT(5),U,6),0)),U) Q:PSDT(2)']""
  ..Q:'$D(^TMP("PSD",$J,PSDT(2)))  S PSDT(4)=""
  ..F  S PSDT(4)=$O(^PSRX("AD",PSDT,PSDT(1),PSDT(4))) Q:PSDT(4)=""  D
+ ...S PSDCMOP=0
+ ...I $D(^PSRX(PSDT(1),4)) S PSDCMP=0 F  S PSDCMP=$O(^PSRX(PSDT(1),4,PSDCMP)) Q:'PSDCMP  D
+ ....I $P(^PSRX(PSDT(1),4,PSDCMP,0),U,4)<3 S PSDCMOP=1
  ...;Returned to stock?
  ...Q:$S('PSDT(4):$P($G(^PSRX(PSDT(1),2)),U,15),1:$P($G(^PSRX(PSDT(1),1,PSDT(4),0)),U,16))
  ...;posted to the vault?
@@ -40,7 +43,9 @@ START ;compiles
  ...S PSDT(6)=$S('PSDT(4):$P(PSDT(5),U,7),1:$P($G(^PSRX(PSDT(1),1,PSDT(4),0)),U,4))
  ...S DFN=$P(PSDT(5),U,2) N C S Y=DFN,C=$P(^DD(58.81,73,0),U,2) D Y^DIQ
  ...S PSDT(7)=Y D PID^VADPT6 S PSDT(7)=PSDT(7)_" ("_VA("BID")_")"
+ ...I $G(PSDCMOP) S PSDCMOP=0 Q
  ...S:$P(PSDT(5),U)]"" ^TMP("PSDO",$J,PSDT(2),$P(PSDT(5),U),PSDT(4))=PSDT(6)_U_PSDT_U_PSDT(7)
+ K PSDCMP
  I '$D(^TMP("PSDO",$J)) W !!,"Nothing to Report.",!! G END
  F  S PSDT=$O(^TMP("PSDO",$J,PSDT)) Q:PSDT']""!PSDOUT  D  Q:PSDOUT
  .D:$Y+5>IOSL HEADER Q:PSDOUT  W !!,"Drug =>  ",PSDT  S PSDT(1)=0
@@ -55,7 +60,7 @@ START ;compiles
 END W:$E(IOST)'="C" @IOF
  I $E(IOST)="C",'PSDOUT S DIR(0)="EA",DIR("A")="END OF REPORT!  Press <RET> to return to the menu." W ! D ^DIR
  D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@"
- D KVAR^VADPT K IO("Q"),VA("PID"),VA("BID"),^TMP("PSDO",$J)
+ D KVAR^VADPT K IO("Q"),VA("PID"),VA("BID"),^TMP("PSDO",$J),PSDCMOP
  Q
 HEADER I $E(IOST,1,2)'="P-",PG S DIR(0)="E" D ^DIR K DIR I 'Y S PSDOUT=1 Q
  I $$S^%ZTLOAD W !!,"Task #",$G(ZTSK),", ",$G(ZTDESC)," was stopped by ",$P($G(^VA(200,+$G(DUZ),0)),U),"." S PSDOUT=1

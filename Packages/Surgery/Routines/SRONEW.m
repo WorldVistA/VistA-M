@@ -1,5 +1,5 @@
 SRONEW ;BIR/MAM - ENTER A NEW CASE ;11/01/2011
- ;;3.0;Surgery;**3,23,26,30,47,58,48,67,107,100,144,175,176,177**;24 Jun 93;Build 89
+ ;;3.0;Surgery;**3,23,26,30,47,58,48,67,107,100,144,175,176,177,182**;24 Jun 93;Build 49
  ;
  ; Reference to ^TMP("CSLSUR1" supported by DBIA #3498
  ;
@@ -25,7 +25,7 @@ OPD ; Principal Preoperative Diagnosis
  I X[";" W !,"The Principal Preoperative Diagnosis cannot contain a semicolon (;).",!,"Please re-enter the Diagnosis, using commas in place of the semicolons." G OPD
  S SRSOPD=Y
  W !!,"The information entered into the Principal Preoperative Diagnosis field",!,"has been transferred into the Indications for Operation field.",!,"The Indications for Operation field can be updated later if necessary.",!
-DOC W ! S DIC("A")="Select Surgeon: ",DIC=200,DIC(0)="QEAM",SRSDOC="" D ^DIC K DIC("A") I $D(DTOUT)!(X="^") S SRSOUT=1 G END
+DOC W ! S DIC("A")="Select Primary Surgeon: ",DIC=200,DIC(0)="QEAM",SRSDOC="" D ^DIC K DIC("A") I $D(DTOUT)!(X="^") S SRSOUT=1 G END
  I Y<0!(X["^") W !!,"A Surgeon must be entered when creating a case.  Enter '^' to exit.",! G DOC
  S (DA,SRSDOC)=+Y
  S RESTRICT="130,.14",Y=SRSDOC K SROK D KEY^SROXPR I '$D(SROK) W !!,"The person you selected does not have the appropriate keys necessary to be",!,"entered as a surgeon.  Please make another selection.",! K SRSDOC,DA,DIC G DOC

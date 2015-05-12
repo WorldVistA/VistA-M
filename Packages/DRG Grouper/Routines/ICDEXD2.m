@@ -1,5 +1,5 @@
-ICDEXD2 ;SLC/KER - ICD Extractor - DRG APIs (cont) ;04/21/2014
- ;;18.0;DRG Grouper;**57**;Oct 20, 2000;Build 1
+ICDEXD2 ;SLC/KER - ICD Extractor - DRG APIs (cont) ;12/19/2014
+ ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
  ;               
  ; Global Variables
  ;    ^ICDS(              N/A
@@ -244,103 +244,6 @@ MOR(IEN) ; Major O.R. Procedure
  ;
  Q $G(^ICD0(+($G(IEN)),"M"))
  ;
-UPDX(IEN) ; Unacceptable as Principle DX
- ;
- ; Input:
- ;
- ;    IEN   Internal Entry Number for file 80
- ;
- ; Output:
- ;
- ;   $$UPDX  Boolean value only (default)
- ;   
- ;            0 No, Code is Acceptable as Principle DX
- ;            1 Yes, Code is Unacceptable as Principle DX
- ;
- N ICDEXC S ICDEXC=$$EXC^ICDEX(80,+($G(IEN))) Q:+ICDEXC>0 1
- Q +($P($G(^ICD9(+($G(IEN)),1)),"^",3))
-EFM(X) ; Convert External Date to FM
- ;
- ; Input:
- ;
- ;   X      External Date
- ;
- ; Output:
- ;
- ;   $$EFM  Internal Fileman Date
- ;
- ; Replaces unsupported $$DGY2K^DGPTOD0(X)
- ;
- N %DT,Y D ^%DT K %DT
- Q Y
-FY(X) ;Return FY
- ;
- ; Input:
- ;
- ;   X      Internal Fileman Date
- ;
- ; Output:
- ;
- ;   $$FY   FY Year YYYY
- ;
- ; Replaces unsupported $$FY^DGPTOD0(X)
- ; 
- S X=$P($G(X),".",1) Q:$L(X)>7 ""  Q:$E(X,1,5)'?5N ""
- S:$E(X,4,5)>9 X=$E(X,1,3)+1
- Q (17+$E(X))_$E(X,2,3)
-EFD(X) ; Get Effective date in range (interactive)
- ;
- ; Prompts for Effective Date for DRG grouper
- ; 
- ; The lower boundary for the date is the ICD-9 
- ; implementation date October 1, 1978.
- ; 
- ; The upper boundary for date is either
- ; 
- ;       3 years from the ICD-10 implementation date or
- ;       3 years from TODAY
- ;       
- ;       Whichever is further into the future
- ;
- ; Input:   
- ; 
- ;   None
- ;
- ; Output:
- ;
- ;   $$EFF  3 piece ^ delimited string
- ;   
- ;          1   Date Fileman format         nnnnnnn
- ;          2   Date External Short Format  mm/dd/yyyy
- ;          3   Date External Long Format   Mmm dd, yyyy
- ;
- N DIR,DIROUT,DIRUT,DTOUT,DUOUT,ICDH,ICDI,ICDIMP,ICDT,Y
- S ICDT=$$DT^XLFDT,ICDH="",ICDI=0
- F  S ICDI=$O(^ICDS(ICDI)) Q:+ICDI'>0  D
- . N ICDIMP S ICDIMP=$P($G(^ICDS(ICDI,0)),"^",3)
- . S:ICDIMP>ICDH ICDH=ICDIMP
- S:ICDT>ICDH ICDH=ICDT S ICDH=$$FMADD^XLFDT(ICDH,1095)
- S DIR(0)="DAO^2781001:"_ICDH_":AEX"
- S DIR("B")="TODAY",DIR("A")=" Effective Date:  " I ICDH?7N D 
- . S DIR("A")=" Effective Date ("_$$FMTE^XLFDT(2781001,"5Z")
- . S DIR("A")=DIR("A")_" to "_$$FMTE^XLFDT($G(ICDH),"5Z")_"):  "
- S DIR("PRE")="S:X[""?"" X=""??""",(DIR("?"),DIR("??"))="^D EFFH^ICDEXD"
- D ^DIR Q:$D(DIROUT) "^^"  Q:$D(DIRUT) "^"  Q:$D(DTOUT) ""
- S X=Y S:X?7N X=X_"^"_$$FMTE^XLFDT(X,"5Z")_"^"_$$FMTE^XLFDT(X)
- Q X
-EFFH ; Effective Date Help
- I $L($G(ICDH)) D
- . W !,?5,"Enter an effective date from ",$$FMTE^XLFDT(2781001,"5Z")
- . W " to ",$$FMTE^XLFDT($G(ICDH),"5Z")
- . W !,?5,"to be used to select or calculated time sensitive data.",!
- W !,?5,"Examples of Valid Dates:"
- W !,?5,"  JAN 20 1980 or 20 JAN 80 or 1/20/57 or 012080"
- W !,?5,"  T   (for TODAY),  T+1 (for TOMORROW),  T+2,  T+7, etc."
- W !,?5,"  T-1 (for YESTERDAY),  T-3W (for 3 WEEKS AGO), etc."
- W !,?5,"If the year is omitted, the computer uses CURRENT YEAR. "
- W !,?5,"Two digit year assumes no more than 20 years in the future,"
- W !,?5," or 80 years in the past."
- Q
 ISVALID(FILE,IEN,CDT) ; Is an ICD code Valid
  ;
  ; Input:
@@ -360,10 +263,9 @@ ISVALID(FILE,IEN,CDT) ; Is an ICD code Valid
  S FILE=$S(FILE="9":80,FILE="0":80.1,1:FILE)
  S ICDD=$P($G(CDT),".",1) S:ICDD'?7N ICDD=$$DT^XLFDT
  S ICDF=$$FILE^ICDEX(FILE) Q:"^80^80.1^"'[("^"_FILE_"^") ICDO
- S ICDR=$$ROOT^ICDEX(FILE),ICDI=+($G(IEN))
- Q:+ICDI'>0 ICDO  Q:'$D(@(ICDR_+ICDI_",0)")) ICDO
- S ICDX=$$EXC^ICDEX(ICDF,ICDI) Q:ICDX>0 ICDO
- I ICDF=80.1 S ICDT=$$ICDOP^ICDCODE(ICDI,ICDD,,"I") I ICDT>0,$P(ICDT,U,10) S ICDO=1
+ S ICDR=$$ROOT^ICDEX(FILE),ICDI=+($G(IEN)) Q:+ICDI'>0 ICDO
+ Q:'$D(@(ICDR_+ICDI_",0)")) ICDO  S ICDX=$$EXC^ICDEX(ICDF,ICDI) Q:ICDX>0 ICDO
+ I ICDF=80.1 S ICDT=$$ICDOP^ICDEX(ICDI,ICDD,,"I") I ICDT>0,$P(ICDT,U,10) S ICDO=1
  I ICDF=80 S ICDT=$$ICDDX^ICDEX(ICDI,ICDD,,"I") I ICDT>0,$P(ICDT,U,10) S ICDO=1
  Q ICDO
 REF(IEN,CDT) ; Return Reference Table

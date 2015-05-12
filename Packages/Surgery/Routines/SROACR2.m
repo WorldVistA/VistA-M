@@ -1,18 +1,18 @@
 SROACR2 ;BIR/SJA - OPERATIVE DATA, PAGE 2 ;12/03/07
- ;;3.0; Surgery ;**125,153,160,166**;24 Jun 93;Build 6
+ ;;3.0;Surgery;**125,153,160,166,182**;24 Jun 93;Build 49
  ;
  I '$D(SRTN) W !!,"A Surgery Risk Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
  S SRSOUT=0 D ^SROAUTL
 START G:SRSOUT END
  ;
-EDIT S SRR=0 S SRPAGE="PAGE: 2 OF 2" D HDR^SROAUTL W "Indicate other cardiac procedures only if done with cardiopulmonary bypass",! F K=1:1:80 W "-"
+EDIT S SRR=0 S SRPAGE="PAGE: 1" D HDR^SROAUTL
  ;
- K DR S SRQ=0,(DR,SRDR)="381;382;451;450;468;469"
+ K DR S SRQ=0,(DR,SRDR)="451;450;468;469"
  K DA,DIC,DIQ,SRY S DIC="^SRF(",DA=SRTN,DIQ="SRY",DIQ(0)="IE",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
  K SRX S SRX=0 F M=1:1 S I=$P(SRDR,";",M)  Q:'I  D
  .K SREXT D TR,GET
  .S SRX=SRX+1,Y=$P(X,";;",2),SRFLD=$P(Y,"^"),(Z,SRX(SRX))=$P(Y,"^",2)_"^"_SRFLD,SREXT=SRY(130,SRTN,SRFLD,"E")
- .I SRFLD=451 W !,"Other Operative Data details:",!,"------------------------------"
+ .I SRFLD=451 W !,"Operative Data details:",!,"-----------------------"
  .W !,$J(SRX,2)_". "_$P(Z,"^")_":" D EXT
  .W:SRFLD=382 !
  D CHCK W ! F K=1:1:80 W "-"
@@ -30,8 +30,8 @@ SEL S SRSOUT=0 W !!,"Select Cardiac Procedures Operative Information to Edit: " 
 EXT W ?30,SREXT
  Q
 HELP W @IOF,!!!!,"Enter the number or range of numbers you want to edit.  Examples of proper",!,"responses are listed below."
- W !!,"1. Enter 'A' to update all information.",!!,"2. Enter a number (1-6) to update the information in that field.  (For",!,"   example, enter '5' to update Incision Type.)"
- W !!,"3. Enter a range of numbers (1-6) separated by a ':' to enter a range of",!,"   information.  (For example, enter '3:5' to enter Total CPB time,",!,"   Total Ischemic time, and Incision Type.)"
+ W !!,"1. Enter 'A' to update all information.",!!,"2. Enter a number (1-4) to update the information in that field.  (For",!,"   example, enter '3' to update Incision Type.)"
+ W !!,"3. Enter a range of numbers (1-4) separated by a ':' to enter a range of",!,"   information.  (For example, enter '1:3' to enter Total CPB time,",!,"   Total Ischemic time, and Incision Type.)"
  D RET
  Q
 CHCK ; compare ischemic time to CPB time
@@ -55,8 +55,6 @@ GET S X=$T(@J)
  Q
 END W @IOF D ^SRSKILL
  Q
-CHA ;;381^Foreign Body Removal
-CHB ;;382^Pericardiectomy
 DEA ;;451^Total CPB Time
 DEJ ;;450^Total Ischemic Time
 DFH ;;468^Incision Type

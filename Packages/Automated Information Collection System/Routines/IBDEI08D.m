@@ -1,142 +1,58 @@
-IBDEI08D ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI08D ; ; 09-FEB-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQ(358.7)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3789,2)
- ;;=^268285
- ;;^UTILITY(U,$J,358.3,3790,0)
- ;;=780.52^^33^284^91
- ;;^UTILITY(U,$J,358.3,3790,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3790,1,4,0)
- ;;=4^780.52
- ;;^UTILITY(U,$J,358.3,3790,1,5,0)
- ;;=5^Insomnia, Unspec
- ;;^UTILITY(U,$J,358.3,3790,2)
- ;;=Insomnia, Unspec^87662
- ;;^UTILITY(U,$J,358.3,3791,0)
- ;;=302.71^^33^284^94
- ;;^UTILITY(U,$J,358.3,3791,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3791,1,4,0)
- ;;=4^302.71
- ;;^UTILITY(U,$J,358.3,3791,1,5,0)
- ;;=5^Loss of Libido
- ;;^UTILITY(U,$J,358.3,3791,2)
- ;;=^268178
- ;;^UTILITY(U,$J,358.3,3792,0)
- ;;=785.6^^33^284^97
- ;;^UTILITY(U,$J,358.3,3792,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3792,1,4,0)
- ;;=4^785.6
- ;;^UTILITY(U,$J,358.3,3792,1,5,0)
- ;;=5^Lymphadenopathy
- ;;^UTILITY(U,$J,358.3,3792,2)
- ;;=Lymphadenopathy^72368
- ;;^UTILITY(U,$J,358.3,3793,0)
- ;;=728.85^^33^284^103
- ;;^UTILITY(U,$J,358.3,3793,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3793,1,4,0)
- ;;=4^728.85
- ;;^UTILITY(U,$J,358.3,3793,1,5,0)
- ;;=5^Muscle Spasm
- ;;^UTILITY(U,$J,358.3,3793,2)
- ;;=Muscle Spasm^112558
- ;;^UTILITY(U,$J,358.3,3794,0)
- ;;=782.0^^33^284^49
- ;;^UTILITY(U,$J,358.3,3794,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3794,1,4,0)
- ;;=4^782.0
- ;;^UTILITY(U,$J,358.3,3794,1,5,0)
- ;;=5^Disturbance of Skin Sensation
- ;;^UTILITY(U,$J,358.3,3794,2)
- ;;=Disturbance of Skin Sensation^35757
- ;;^UTILITY(U,$J,358.3,3795,0)
- ;;=278.00^^33^284^108
- ;;^UTILITY(U,$J,358.3,3795,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3795,1,4,0)
- ;;=4^278.00
- ;;^UTILITY(U,$J,358.3,3795,1,5,0)
- ;;=5^Obesity
- ;;^UTILITY(U,$J,358.3,3795,2)
- ;;=Obesity^84823
- ;;^UTILITY(U,$J,358.3,3796,0)
- ;;=278.01^^33^284^109
- ;;^UTILITY(U,$J,358.3,3796,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3796,1,4,0)
- ;;=4^278.01
- ;;^UTILITY(U,$J,358.3,3796,1,5,0)
- ;;=5^Obesity, Morbid
- ;;^UTILITY(U,$J,358.3,3796,2)
- ;;=Obesity, Morbid^84844
- ;;^UTILITY(U,$J,358.3,3797,0)
- ;;=783.5^^33^284^119
- ;;^UTILITY(U,$J,358.3,3797,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3797,1,4,0)
- ;;=4^783.5
- ;;^UTILITY(U,$J,358.3,3797,1,5,0)
- ;;=5^Polydipsia
- ;;^UTILITY(U,$J,358.3,3797,2)
- ;;=Polydipsia^186699
- ;;^UTILITY(U,$J,358.3,3798,0)
- ;;=783.6^^33^284^120
- ;;^UTILITY(U,$J,358.3,3798,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3798,1,4,0)
- ;;=4^783.6
- ;;^UTILITY(U,$J,358.3,3798,1,5,0)
- ;;=5^Polyphagia
- ;;^UTILITY(U,$J,358.3,3798,2)
- ;;=Polyphagia^60236
- ;;^UTILITY(U,$J,358.3,3799,0)
- ;;=780.2^^33^284^135
- ;;^UTILITY(U,$J,358.3,3799,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3799,1,4,0)
- ;;=4^780.2
- ;;^UTILITY(U,$J,358.3,3799,1,5,0)
- ;;=5^Syncope and Collapse
- ;;^UTILITY(U,$J,358.3,3799,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,3800,0)
- ;;=783.1^^33^284^147
- ;;^UTILITY(U,$J,358.3,3800,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3800,1,4,0)
- ;;=4^783.1
- ;;^UTILITY(U,$J,358.3,3800,1,5,0)
- ;;=5^Weight gain, abnormal
- ;;^UTILITY(U,$J,358.3,3800,2)
- ;;=^998
- ;;^UTILITY(U,$J,358.3,3801,0)
- ;;=783.21^^33^284^148
- ;;^UTILITY(U,$J,358.3,3801,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3801,1,4,0)
- ;;=4^783.21
- ;;^UTILITY(U,$J,358.3,3801,1,5,0)
- ;;=5^Weight loss, abnormal
- ;;^UTILITY(U,$J,358.3,3801,2)
- ;;=^322005
- ;;^UTILITY(U,$J,358.3,3802,0)
- ;;=796.2^^33^284^32
- ;;^UTILITY(U,$J,358.3,3802,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3802,1,4,0)
- ;;=4^796.2
- ;;^UTILITY(U,$J,358.3,3802,1,5,0)
- ;;=5^Blood Pressure Elevated, w/o HTN
- ;;^UTILITY(U,$J,358.3,3802,2)
- ;;=^273464
- ;;^UTILITY(U,$J,358.3,3803,0)
- ;;=790.92^^33^284^9
- ;;^UTILITY(U,$J,358.3,3803,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3803,1,4,0)
- ;;=4^790.92
+ ;;^DIC(358.7,0,"GL")
+ ;;=^IBE(358.7,
+ ;;^DIC("B","IMP/EXP FORM LINE",358.7)
+ ;;=
+ ;;^DIC(358.7,"%D",0)
+ ;;=^^3^3^2940217^
+ ;;^DIC(358.7,"%D",1,0)
+ ;;=This file is nearly identical to file #357.7. It is used by the
+ ;;^DIC(358.7,"%D",2,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.7,"%D",3,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.7,0)
+ ;;=FIELD^^.08^8
+ ;;^DD(358.7,0,"DDA")
+ ;;=N
+ ;;^DD(358.7,0,"DT")
+ ;;=2950717
+ ;;^DD(358.7,0,"ID",.02)
+ ;;=W " STARTING COL=",$P(^(0),U,2)+1
+ ;;^DD(358.7,0,"ID",.03)
+ ;;=W " STARTING ROW=",$P(^(0),U,3)+1
+ ;;^DD(358.7,0,"ID",.06)
+ ;;=W ""
+ ;;^DD(358.7,0,"IX","B",358.7,.01)
+ ;;=
+ ;;^DD(358.7,0,"IX","C",358.7,.06)
+ ;;=
+ ;;^DD(358.7,0,"NM","IMP/EXP FORM LINE")
+ ;;=
+ ;;^DD(358.7,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.7,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.7,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.7,.01,1,1,0)
+ ;;=358.7^B
+ ;;^DD(358.7,.01,1,1,1)
+ ;;=S ^IBE(358.7,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.7,.01,1,1,2)
+ ;;=K ^IBE(358.7,"B",$E(X,1,30),DA)
+ ;;^DD(358.7,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.7,.01,21,0)
+ ;;=^^4^4^2930527^
+ ;;^DD(358.7,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.7,.01,21,2,0)
+ ;;=The name given to the line. Lines should be given names that will allow
+ ;;^DD(358.7,.01,21,3,0)
+ ;;=them to be identifies, such as V(1,1), meaning a vertical line starting at
+ ;;^DD(358.7,.01,21,4,0)
+ ;;=coordinates (1,1).

@@ -1,6 +1,6 @@
 IBNCPEV ;DALOI/SS - NCPDP BILLING EVENTS REPORT ;5/22/08  14:27
- ;;2.0;INTEGRATED BILLING;**342,363,383,384,411,435,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**342,363,383,384,411,435,452,521**;21-MAR-94;Build 33
+ ;;Per VA Directive 6402, this routine should not be modified.
 RPT ;
  N IBBDT,IBDIVS,IBDTL,IBEDT,IBM1,IBM2,IBM3,IBPAGE,IBPAT,IBQ,IBRX,IBSCR,Y
  N IBECME
@@ -171,10 +171,15 @@ DCLO ; close
  Q
  ;
 DSUB ; submit
+ N IBIN,IBHP
  D CHKP Q:IBQ
  D SUBHDR
  I $L($P(IBD1,U,6)) D CHKP W !?10,"PAYER RESPONSE: ",$P(IBD1,U,6)
- I $L($P(IBD3,U,3)) D CHKP Q:IBQ  W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,+$G(^IBA(355.3,+$P(IBD3,U,3),0)),0)),U)
+ ; IB*2.0*521 Display HPID but do not add '*' if it does not pass validation checks
+ ;I $L($P(IBD3,U,3)) D CHKP Q:IBQ  W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,+$G(^IBA(355.3,+$P(IBD3,U,3),0)),0)),U)
+ I $L($P(IBD3,U,3)) D CHKP Q:IBQ  D
+ .S IBIN=+$G(^IBA(355.3,+$P(IBD3,U,3),0)),IBHP=$$HPD^IBCNHUT1(IBIN)
+ .W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,IBIN,0)),U),!?10,"HPID/OEID:",IBHP
  D CHKP Q:IBQ
  D DISPUSR
  Q
@@ -184,11 +189,16 @@ DREL ; release
  Q
  ;
 DREV ; reverse
+ N IBIN,IBHP
  D CHKP Q:IBQ
  D SUBHDR
  I $L($P(IBD1,U,6)),$E($P(IBD1,U,6),1)'="A"&($E($P(IBD1,U,6),1)'="R") S $P(IBD1,U,6)=""  ; only display accepted and rejected on REVERSALS
  I $L($P(IBD1,U,6)) D CHKP W !?10,"PAYER RESPONSE: ",$P(IBD1,U,6)
- I $L($P(IBD3,U,3)) D CHKP Q:IBQ  W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,+$G(^IBA(355.3,+$P(IBD3,U,3),0)),0)),U)
+ ; IB*2.0*521 Display HPID and do not add '*' if it does not pass validation checks
+ ;I $L($P(IBD3,U,3)) D CHKP Q:IBQ  W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,+$G(^IBA(355.3,+$P(IBD3,U,3),0)),0)),U)
+ I $L($P(IBD3,U,3)) D CHKP Q:IBQ  D
+ .S IBIN=+$G(^IBA(355.3,+$P(IBD3,U,3),0)),IBHP=$$HPD^IBCNHUT1(IBIN)
+ .W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,IBIN,0)),U),!?10,"HPID/OEID:",IBHP
  D CLRS Q:IBQ
  D CHKP Q:IBQ
  D DISPUSR

@@ -1,9 +1,17 @@
-RORX008 ;HOIFO/BH,SG - VERA REIMBURSEMENT REPORT ; 11/8/05 8:38am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+RORX008 ;HOIFO/BH,SG - VERA REIMBURSEMENT REPORT ;11/8/05 8:38am
+ ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
  ;
  ;--------------------------------------------------------------------
  ; Registry: [VA ICR]
  ;--------------------------------------------------------------------
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
+ ;                                      additional identifier option selected
+ ;******************************************************************************
  Q
  ;
  ;***** COMPILES THE "VERA REIMBURSEMENT" REPORT
@@ -25,11 +33,12 @@ RORX008 ;HOIFO/BH,SG - VERA REIMBURSEMENT REPORT ; 11/8/05 8:38am
  ;                         ^02: Number of complex care patients
  ;                         ^03: Number of patients received ARVs
  ;     DFN)              Patient Descriptor
- ;                         ^01: Las 4 digits of SSN
+ ;                         ^01: Last 4 digits of SSN
  ;                         ^02: Name
  ;                         ^03: Date of Death (FileMan)
  ;                         ^04: Received ARV drugs(0/1)
  ;                         ^05: Complex care (0/1)
+ ;                         ^06: National ICN
  ;
  ; Return Values:
  ;       <0  Error code
@@ -80,7 +89,7 @@ ARVREIMB(RORTSK) ;
  ;
 HEADER(PARTAG) ;
  ;;DRUGS(#,NAME,NP,NPHIV,NPAIDS)         ^I $$PARAM^RORTSK01("OPTIONS","REGMEDSMRY")
- ;;PATIENTS(#,NAME,LAST4,DOD,AIDSTAT,ARV,COMPLEX)^I $$PARAM^RORTSK01("OPTIONS","PTLIST")
+ ;;PATIENTS(#,NAME,LAST4,DOD,AIDSTAT,ARV,COMPLEX,ICN)^I $$PARAM^RORTSK01("OPTIONS","PTLIST")
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)

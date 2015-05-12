@@ -1,6 +1,16 @@
 RORX022 ;BPOIFO/CLR - LAB DAA MONITOR REPORT ;4/9/09 9:40am
- ;;1.5;CLINICAL CASE REGISTRIES;**17**;;Build 33
+ ;;1.5;CLINICAL CASE REGISTRIES;**17,21**;Feb 17, 2006;Build 45
  ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
+ ;                                       requested.
+ ;******************************************************************************
+ ;******************************************************************************
  ;
  Q
  ;
@@ -15,7 +25,7 @@ RORX022 ;BPOIFO/CLR - LAB DAA MONITOR REPORT ;4/9/09 9:40am
 HEADER(PARTAG) ;
  ;;DRUGS(#,NAME,LAST4,DAA_FILL,FILL_DATE,RXNAME,DAYSPLY)
  ;;LABTESTS(#,NAME,LAST4,DAA_FILL,DATE,LTNAME,RESULT,WKS_LAB)
- ;;PATIENTS(#,NAME,LAST4)
+ ;;PATIENTS(#,NAME,LAST4,ICN)
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
@@ -90,6 +100,7 @@ PARAMS(PARTAG,STDT,ENDT,FLAGS) ;
  ;                         ^01: Last 4 digits of SSN
  ;                         ^02: Patient name
  ;                         ^03: Date of 1st DAA fill
+ ;                         ^04: National ICN
  ;       "LR",
  ;         TestName,
  ;          TestIEN

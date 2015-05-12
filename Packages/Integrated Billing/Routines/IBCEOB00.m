@@ -1,6 +1,6 @@
 IBCEOB00 ;ALB/ESG/PJH - 835 EDI EOB MSG PROCESSING CONT ;30-JUN-2003
- ;;2.0;INTEGRATED BILLING;**155,349,377,431,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**155,349,377,431,488,521**;21-MAR-94;Build 33
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 RCRU(IBZDATA,IB0,IBLN) ; Revenue Code Roll-up procedure check -
@@ -98,7 +98,8 @@ ICNX ;
  ;
  N A,IBOK
  ;
- S A="3;1.03;1;0;0^4;1.04;1;0;0^5;1.05;1;0;0^6;1.07;1;0;0^7;1.08;1;0;0^8;1.09;1;0;0^9;1.02;1;0;0^10;2.05;1;0;0"
+ ;IB*2.0*521/ZEB Added piece 11/field 2.06 for HPID
+ S A="3;1.03;1;0;0^4;1.04;1;0;0^5;1.05;1;0;0^6;1.07;1;0;0^7;1.08;1;0;0^8;1.09;1;0;0^9;1.02;1;0;0^10;2.05;1;0;0^11;2.06;0;0;0"
  ;
  S IBOK=$$STORE^IBCEOB1(A,IB0,IBEOB)
  I 'IBOK S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Bad record 15 data" G Q15

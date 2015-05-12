@@ -1,5 +1,5 @@
-MAGQBPG1 ;WOIFO/RMP - REMOTE Task SERVER Program ; 02 Apr 2013 4:12 PM
- ;;3.0;IMAGING;**7,8,20,81,39,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
+MAGQBPG1 ;WOIFO/RMP - REMOTE Task SERVER Program ; 14 SEP 2014 4:12 PM
+ ;;3.0;IMAGING;**7,8,20,81,39,135,154**;SEP 14, 2014;Build 9
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -163,7 +163,8 @@ JPUD(RESULT,JPTR,EXT,IEN) ; RPC[MAGQ JPUD]
  . S JPTR=""
  . S GL=$S($D(^MAG(2005,IEN)):"^MAG(2005,",$D(^MAG(2005.1,IEN)):"^MAG(2005.1,",1:0)
  . I GL=0 S RESULT="-1" Q
- . I $D(^MAGQUEUE(2006.033,"B",$P($G(@(GL_IEN_",0)")),U,2))) D  Q
+ . S GL=$G(@(GL_IEN_",0)")) I $P(GL,U,2)="" S RESULT=-1 Q  ;*154 No file ref.
+ . I $D(^MAGQUEUE(2006.033,"B",$P(GL,U,2))) D  Q  ;*154 +fix
  . . S RESULT=-2 Q  ;Don't clear the JB pointer if image is on an Offline Platter
  . . Q
  . Q

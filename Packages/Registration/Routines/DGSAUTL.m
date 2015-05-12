@@ -1,14 +1,14 @@
-DGSAUTL ;ALB/MTC - SHARING AGREEMENTS UTILITY FUNCTIONS ; 16 JAN 97
- ;;5.3;Registration;**114,194,216*****;Aug 13, 1993
+DGSAUTL ;ALB/MTC - SHARING AGREEMENTS UTILITY FUNCTIONS ; 9/12/13 9:54am
+ ;;5.3;Registration;**114,194,216,872**;Aug 13, 1993;Build 28
  ;
  Q
  ;
 EN(ORG) ;-- Entry point to Add/Edit Sharing Agreement Sub-Categories
  ;
- ;   ORG - This parameter specifies the orginating process
+ ;   ORG - This parameter specifies the originating process
  ;         "SD" - Appointment Type, "DG" - Admitting Regulation
  ;
- ;-- get the appropriate Admitting Reg or Appoitment Type
+ ;-- get the appropriate Admitting Reg or Appointment Type
  N DGAPT,DGCAT
  ;
  S DGAPT=$$GET(ORG)
@@ -113,18 +113,19 @@ SUB(ATAR,SOURCE,DEFAULT) ;-- This function will check and prompt for sharing
  ;
  ;   INPUT:  ATAR - IEN if Admitting Reg or Appointment Type
  ;           SOURCE - (1:ADT,2:SCHEDULING)
- ;           DEFALUT - IEN from file 35.2
+ ;           DEFAULT - IEN from file 35.2
  ;  OUTPUT:  IEN of file 35.2^Name
  ;
  ;
  N RESULT,ALLEL,EMP,X,DGDEF,Y
  ;
- ;-- get eligility codes
+ ;-- get eligibility codes
  D GETSA(ATAR,SOURCE,1)
  S DGDEF=$P($G(^DG(35.2,+$G(DEFAULT),0)),U)
  I DGDEF'="" S DGDEF=DEFAULT_U_DGDEF
  ;
  S RESULT=""
+ ;
  I '$D(DGSA) G SUBQ
  S X=0,X=$O(DGSA(1,X))
  I '$O(DGSA(1,X)) S RESULT=DGSA(1,X) G SUBQ
@@ -167,5 +168,7 @@ DISP ;-- display choices
  .S RESULT="" R X:DTIME I $D(RES(+X)) S RESULT=RES(+X) W " "_$P(RES(+X),U,2)
 SUBQ ;
  K DGSA
- Q +RESULT
- ;
+ S RESULT=$P(RESULT,U)
+ ;Q +RESULT
+ ;returning null if no result, to populate pointer field appt. type subcategory(.14)of the appt. sub-file(2.98) of the patient file(2) correctly.  Patch 872
+ Q RESULT

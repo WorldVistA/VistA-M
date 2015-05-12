@@ -1,5 +1,5 @@
 EDPCONV ;SLC/MKB - Process incoming mail to convert local ED Visits ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+ ;;2.0;EMERGENCY DEPARTMENT;**2**;Feb 24, 2012;Build 23
  ;
 AREA(DIV) ; -- Return #231.9 ien for DIVision (#4 ien)
  Q +$O(^EDPB(231.9,"C",DIV,0))
@@ -22,7 +22,9 @@ VST(OLD) ; -- Copy OLD(node) ER visit entry into ^EDP(230)
  .. S X=$P($G(EDPLOG(4,EDPI,0)),U,2) Q:'$L(X)  ;code -> ien
  .. I X?1"ICD-9-CODE-".E S X=$P(X,"-",4)
  .. I X["/" S X=$P(X,"/")
- .. S X=$$ICDDX^ICDCODE(X),$P(EDPLOG(4,EDPI,0),U,2)=$S(X>0:+X,1:"")
+ .. ;Begin EDP*2.0*2 CHANGES.
+ .. S X=$$ICDDX^EDPLEX(X,$P($G(^EDP(230,EDPY,0),2781001),U,8)),$P(EDPLOG(4,EDPI,0),U,2)=$S(X>0:+X,1:"")
+ .. ;End EDP*2.0*2 CHANGES.
  ; Save/Xref log entry
  M ^EDP(230,EDPY)=EDPLOG
  D XREF(230,EDPY)

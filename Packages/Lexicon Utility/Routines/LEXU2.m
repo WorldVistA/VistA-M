@@ -1,5 +1,5 @@
-LEXU2 ;ISL/KER - Miscellaneous Lexicon Utilities ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEXU2 ;ISL/KER - Miscellaneous Lexicon Utilities ;12/19/2014
+ ;;2.0;LEXICON UTILITY;**80,86**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^ICPT(              ICR   5408
@@ -44,7 +44,7 @@ CSDATA(CODE,CSYS,CDT,ARY) ; Get Information about a Code
  ;       It is considered partially successful if:
  ;              
  ;          1)  It is in the Lexicon and not in an SDO file 
- ;          2)  It is in am SDP file and not in the Lexicon
+ ;          2)  It is in an SDO file and not in the Lexicon
  ;          
  ;   ARY()
  ; 
@@ -112,11 +112,15 @@ CSDATA(CODE,CSYS,CDT,ARY) ; Get Information about a Code
  ;           NAME    This is the common name given to the 
  ;                   data element
  ;       
- N LEXSO,LEXSRC,LEXSAB,LEXVDT,LEXSCK,LEXSTA,LEXSIEN,LEXEIEN,LEXMIEN,LEXEFF
- S LEXSO=$G(CODE) Q:'$L(LEXSO) "-1^Code missing"  S LEXSAB=$G(CSYS)
+ N LEXSO,LEXSRC,LEXSAB,LEXVDT,LEXSCK,LEXSTA,LEXSIEN,LEXEIEN,LEXMIEN,LEXEFF,LEXOK
+ S LEXSO=$G(CODE) Q:'$L(LEXSO) "-1^Code missing"
+ Q:'$D(^LEX(757.02,"CODE",(LEXSO_" "))) "-1^Invalid Code"
+ S LEXSAB=$G(CSYS)
  S LEXSRC=+($$CSYS^LEXU(LEXSAB)) S:LEXSRC'>0 LEXSRC=$$SYSC^LEXU4(LEXSO)
  Q:+LEXSRC'>0 "-1^Invalid source"  S LEXSAB=$P($$CSYS^LEXU(+LEXSRC),"^",2)
- Q:$L(LEXSAB)'=3 "-1^Invalid source"  S LEXVDT=$G(CDT) D VDT^LEXU3 D LEX
+ Q:$L(LEXSAB)'=3 "-1^Invalid source"
+ Q:+($$CODSAB(LEXSO,LEXSAB))'>0 "-1^Invalid source for code"
+ S LEXVDT=$G(CDT) D VDT^LEXU3 D LEX
  I LEXSRC=1!(LEXSRC=30) D ICDDX
  I LEXSRC=2!(LEXSRC=31) D ICDOP
  I LEXSRC=3!(LEXSRC=4) D CPTCPC
@@ -276,6 +280,14 @@ MS(X,CDT,LEXS) ; Modifier Strings
  I $L($G(LEXMOD)) D
  . N LEXI S LEXI=$O(LEXS(" "),-1)+1 S LEXS(LEXI)=$$TM(LEXMOD,"^")
  Q
+CODSAB(X,Y) ; Is Code valid for SAB
+ N COD,SAB,SRC,OK,SIEN S COD=$G(X),SAB=$$CSYS^LEXU($G(Y)) Q:'$L(COD) 0  Q:+SAB'>0 0
+ S SAB=$P(SAB,"^",2) Q:'$L(SAB) 0  Q:'$D(^LEX(757.03,"ASAB",SAB)) 0
+ S SRC=$O(^LEX(757.03,"ASAB",SAB,0)) Q:+SRC'>0 0  S OK=0
+ S SIEN=0 F  S SIEN=$O(^LEX(757.02,"CODE",(COD_" "),SIEN)) Q:+SIEN'>0  D
+ . S:$P($G(^LEX(757.02,+SIEN,0)),"^",3)=SRC OK=1
+ S X=OK
+ Q X
 TM(X,Y) ;   Trim Character Y - Default " "
  S X=$G(X) Q:X="" X  S Y=$G(Y) S:'$L(Y) Y=" "
  F  Q:$E(X,1)'=Y  S X=$E(X,2,$L(X))

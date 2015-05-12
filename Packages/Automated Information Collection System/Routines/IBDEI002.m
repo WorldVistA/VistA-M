@@ -1,34 +1,50 @@
-IBDEI002 ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
- Q:'DIFQ(358)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI002 ; ; 09-FEB-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DD(358,.01,1,6,0)
- ;;=358^AB^MUMPS
- ;;^DD(358,.01,1,6,1)
- ;;=Q
- ;;^DD(358,.01,1,6,2)
- ;;=Q
- ;;^DD(358,.01,1,6,"%D",0)
- ;;=^^4^4^2940606^^
- ;;^DD(358,.01,1,6,"%D",1,0)
- ;;=This cross-reference will be used to store the boxes needed for the compiled
- ;;^DD(358,.01,1,6,"%D",2,0)
- ;;=forms. The format will be ..."AB",form ien,row #,column #, Block ien)=
- ;;^DD(358,.01,1,6,"%D",3,0)
- ;;=box width^box height. The index will be created by the 'compile'
- ;;^DD(358,.01,1,6,"%D",4,0)
- ;;=action of the encounter form utilities.
- ;;^DD(358,.01,1,6,"DT")
- ;;=2940606
- ;;^DD(358,.01,3)
- ;;=The form name must be 3-30 uppercase characters in length.
- ;;^DD(358,.01,21,0)
- ;;=^^2^2^2931110^^
- ;;^DD(358,.01,21,1,0)
- ;;= 
- ;;^DD(358,.01,21,2,0)
- ;;=The name of the encounter form.
- ;;^DD(358,.01,"DEL",1,0)
- ;;=I 1 W "...Encounter Forms can only be deleted through the",!," DELETE UNUSED FORM action in the Encounter Form Utilities!"
- ;;^DD(358,.01,"DT")
- ;;=2940606
+ ;;^UTILITY(U,$J,358)
+ ;;=^IBE(358,
+ ;;^UTILITY(U,$J,358,0)
+ ;;=IMP/EXP ENCOUNTER FORM^358I^21^21
+ ;;^UTILITY(U,$J,358,1,0)
+ ;;=INTERVENTIONAL RAD ICD-10^2^INTERVENTIONAL RADIOLOGY ICD-10 CODES September 2014^1^0^^1^^133^80^7^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,2,0)
+ ;;=LOW VISION ICD-10 CODES^2^LOW VISION ICD-10 CODES August 2014^1^0^^1^^133^80^5^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,3,0)
+ ;;=MENTAL HEALTH ICD-10^2^MENTAL HEALTH ICD-10 CODES March 2014^1^0^^1^^133^80^3^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,4,0)
+ ;;=MOVE ICD-10^2^MOVE! ICD-10 CODES March 2014^1^0^^1^^133^80^1^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,5,0)
+ ;;=NEUROLOGY ICD-10^2^NEUROLOGY ICD-10 CODES April 2014^1^0^^1^^133^80^3^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,6,0)
+ ;;=NURSING ICD-10^2^NURSING ICD-10 CODES May 2014^1^0^^1^^133^80^2^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,7,0)
+ ;;=PAIN ICD-10^2^PAIN ICD-10 CODES June 2014^1^0^^1^^133^80^3^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,8,0)
+ ;;=PLASTIC SURGERY ICD-10 CODES^2^PLASTIC SURGERY ICD-10 CODES August 2014^1^0^^1^^133^80^5^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,9,0)
+ ;;=PREVENTIVE HEALTH ICD-10^2^PREVENTIVE HEALTH ICD-10 CODES May 2014^1^0^^1^^133^80^3^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,10,0)
+ ;;=REC THERAPY ICD-10 CODES^2^RECREATION THERAPY ICD-10 CODES August 2014^1^0^^1^^133^80^1^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,11,0)
+ ;;=RHEUMATOLOGY ICD-10^2^RHEUMATOLOGY ICD-10 CODES May 2014^1^0^^1^^133^80^10^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,12,0)
+ ;;=SCI ICD-10^2^SCI ICD-10 CODES September 2014^1^0^^1^^133^80^2^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,13,0)
+ ;;=SECURE MESSAGES ICD-10^2^SECURE MESSAGES ICD-10 CODES April 2014^1^0^^1^^133^80^1^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,14,0)
+ ;;=SWS MED ICD-10 CODES^2^SOCIAL WORK SERVICE-MEDICAL ICD-10 CODES August 2014^1^0^^1^^133^80^3^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,15,0)
+ ;;=TELEHEALTH ICD-10^2^TELEHEALTH ICD-10 CODES April 2014^1^0^^1^^133^80^4^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,16,0)
+ ;;=TELEPHONE ICD-10^2^TELEPHONE ICD-10 CODES March 2014^1^0^^1^^133^80^2^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,17,0)
+ ;;=UROLOGY ICD-10^2^UROLOGY ICD-10 CODES April 2014^1^0^^1^^133^80^3^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,18,0)
+ ;;=VASCULAR ICD-10^2^TELEPHONE ICD-10 CODES March 2014^1^0^^1^^133^80^5^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,19,0)
+ ;;=WOMENS HEALTH ICD-10^2^NATIONAL WOMENS HEALTH ICD-10 BLOCK May 2014^1^0^1^1^^133^80^3^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,20,0)
+ ;;=WOUND OSTOMY ICD-10^2^WOUND OSTOMY ICD-10 CODES April 2014^1^0^^1^^133^80^3^0^^1^p^1^3
+ ;;^UTILITY(U,$J,358,21,0)
+ ;;=RAD ONCOLOGY ICD-10^2^RADIATION THERAPY ICD-10 CODES August 2014^1^0^^1^^133^80^13^0^^1^p^1^3

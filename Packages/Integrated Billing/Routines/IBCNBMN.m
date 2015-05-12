@@ -1,6 +1,6 @@
 IBCNBMN ;ALB/ARH-Ins Buffer: add new insurance file entrys ; 4/22/03 10:00am
- ;;2.0;INTEGRATED BILLING;**82,211**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**82,211,519**;21-MAR-94;Build 56
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 NEWINS(IBBUFDA) ; add new insurance carrier entry in Insurance Company (#36) file
@@ -25,6 +25,10 @@ NEWGRP(IBBUFDA,IBINSDA) ; add a new group/plan to the Group Insurance Plan (#355
  S IBFIELDS(355.3,IBXIFN,.02)=$P(IB40,U,1) ;                                           group plan?
  I $P(IB40,U,1)=0 S IBFIELDS(355.3,IBXIFN,.1)=+$G(^IBA(355.33,+$G(IBBUFDA),60)) ;   individual plan patient
  D FILE^DIE("","IBFIELDS","IBERR")
+ ;
+ ; IB*2.0*519: If new group added, check to see if we already have a NIF ID for this insurance company.
+ ; if no NIF and we have not yet requested one, send an HL7
+ I '$$NIF^IBCNHUT1(+$G(IBINSDA)),'$D(^IBCNH(367.1,"INS",+$G(IBINSDA))) D SEND^IBCNHHLO(+$G(IBINSDA))
  ;
 NGQ Q IBGRPDA
  ;

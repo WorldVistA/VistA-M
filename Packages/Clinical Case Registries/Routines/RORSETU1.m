@@ -1,5 +1,15 @@
-RORSETU1 ;HCIOFO/SG - SETUP UTILITIES (USER INTERFACE) ; 6/10/03 8:28am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+RORSETU1 ;HCIOFO/SG - SETUP UTILITIES (USER INTERFACE) ;6/10/03 8:28am
+ ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
+ ;
+ ;*****************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*21   NOV 2013    T KOPP       Changes to capture parameter info in
+ ;                                        post install log
+ ;                                               
+ ;******************************************************************************
  ;
  Q
  ;
@@ -64,19 +74,19 @@ ASKPARMS(MAXNTSK,SUSPEND) ;
  ;
 CONFTXT(MAXNTSK,SUSPEND) ;
  N TMP
- W !
- W !,"  ============================================="
+ D BMES^XPDUTL("")
+ D BMES^XPDUTL("  =============================================")
  S TMP=$S(MAXNTSK>0:MAXNTSK,1:1)
- W !,"  Number of registry update (sub)tasks... "_TMP
+ D BMES^XPDUTL("  Number of registry update (sub)tasks... "_TMP)
  S TMP=$S(SUSPEND:"Yes",1:"No")
- W !,"  Suspend the tasks during peak hours.... "_TMP
+ D BMES^XPDUTL("  Suspend the tasks during peak hours.... "_TMP)
  D:SUSPEND
  . S TMP=$P($$FMTE^XLFDT(DT+$P(SUSPEND,U,1),"F"),"@",2)
- . W !,"  Suspend the tasks at................... "_TMP
+ . D BMES^XPDUTL("  Suspend the tasks at................... "_TMP)
  . S TMP=$P($$FMTE^XLFDT(DT+$P(SUSPEND,U,2),"F"),"@",2)
- . W !,"  Resume the tasks at.................... "_TMP
- W !,"  ============================================="
- W !
+ . D BMES^XPDUTL("  Resume the tasks at.................... "_TMP)
+ D BMES^XPDUTL("  =============================================")
+ D BMES^XPDUTL("")
  Q
  ;
  ;***** ASKS FOR CONFIRMATION IF THERE ARE NO SEARCH INDICATORS

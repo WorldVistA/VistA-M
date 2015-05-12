@@ -1,6 +1,6 @@
 PSBOBZ ;BIRMINGHAM/TTH-BAR CODE LABELS (MAIN) ;11/08/12 3:23pm
- ;;3.0;BAR CODE MED ADMIN;**2,70**;Mar 2004;Build 101
- ;;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
+ ;;3.0;BAR CODE MED ADMIN;**2,70,81**;Mar 2004;Build 6
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference/IA
  ; ^%ZIS(2/3435
@@ -32,7 +32,7 @@ EN ;
  I PSBDOSE]"" S PSBDOSE="Dose:"_PSBDOSE
  I PSBDOSE="" S PSBDOSE="Dose:"
  S PSBNAME=$$GET1^DIQ(53.69,PSBIENS,.12)
- I PSBNAME]"" S PSBNAME=PSBNAME_" ("_$E($$GET1^DIQ(53.69,PSBIENS,.121),6,9)_")"
+ I PSBNAME]"" S PSBNAME=PSBNAME_" ("_$S(DUZ("AG")="I":$$HRN^AUPNPAT($P($G(^PSB(53.69,+PSBIENS,.1)),U,2),$P(^(0),U,4)),1:$E($$GET1^DIQ(53.69,PSBIENS,.121),6,9))_")" ;add code for IHS, PSB*3*81
  I PSBNAME="" S PSBNAME="Patient:"
  S PSBWARD=$$GET1^DIQ(53.69,PSBIENS,.122)
  S PSBCLIN=$$GET1^DIQ(53.69,PSBIENS,5)                        ;[*70-1459]

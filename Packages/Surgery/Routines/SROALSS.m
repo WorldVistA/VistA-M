@@ -1,10 +1,10 @@
 SROALSS ;BIR/ADM - ALL CASES BY SPECIALTY ;01/18/07
- ;;3.0; Surgery ;**38,47,50,100,142,153,160**;24 Jun 93;Build 7
+ ;;3.0;Surgery;**38,47,50,100,142,153,160,182**;24 Jun 93;Build 49
  I $E(IOST)="P" D ^SROALSSP Q
 START S SRSOUT=0 K ^TMP("SRA",$J)
  F  S SRSD=$O(^SRF("AC",SRSD)) Q:'SRSD!(SRSD>SRED)!SRSOUT  S SRTN=0 F  S SRTN=$O(^SRF("AC",SRSD,SRTN)) Q:'SRTN!SRSOUT  I $D(^SRF(SRTN,0)),$$MANDIV^SROUTL0(SRINSTP,SRTN) D UTL
  D PRINT Q
-UTL ; write to ^TMP("SRA,$J)
+UTL ; write to ^TMP("SRA",$J)
  S SRA(0)=^SRF(SRTN,0)
  S CAN=$P($G(^SRF(SRTN,30)),"^") I CAN Q
  S CAN=$P($G(^SRF(SRTN,31)),"^",8) I CAN'="" Q
@@ -43,7 +43,7 @@ CASE ; print a case
  W !,SRDOC W:$D(SROPS(2)) ?20,SROPS(2) W ?55,SREXCL
  I $D(SROPS(3)) W !,?20,SROPS(3) I $D(SROPS(4)) W !,?20,SROPS(4)
  N I,SRPROC,SRL S SRL=48 D CPTS^SROAUTL0 W !,?20,"CPT Codes: "
- F I=1:1 Q:'$D(SRPROC(I))  W:I=1 ?31,SRPROC(I) W:I'=1 !,?31,SRPROC(I)
+ F I=1:1 Q:'$D(SRPROC(I))  W:'I=1 ! W ?31,$$CPT($P(SRPROC(I),"-"))_SRPROC(I)
  W ! F LINE=1:1:80 W "-"
  Q
 SS ; print surgical specialty
@@ -68,3 +68,7 @@ SSCT ; write specialty count
  I $Y+5>IOSL D PAGE Q:SRSOUT
  W !,"TOTAL ",SRSS,": ",SRC,! F L=1:1:80 W "-"
  Q
+CPT(SRY) ; check code for exclusion
+ N SREX S SREX=""
+ I '$D(^SRO(137,SRY,0)) S SREX="*"
+ Q SREX

@@ -1,5 +1,5 @@
 VPRDGMV ;SLC/MKB -- Vitals extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,4**;Sep 01, 2011;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -30,7 +30,7 @@ EN(DFN,BEG,END,MAX,IFN) ; -- find patient's vitals
  S (IDT,CNT)=0 F  S IDT=$O(^UTILITY($J,"GMRVD",IDT)) Q:IDT<1  D  Q:CNT'<MAX
  . K VIT S VIT("taken")=9999999-IDT,CNT=CNT+1,N=0
  . S TYPE="" F  S TYPE=$O(^UTILITY($J,"GMRVD",IDT,TYPE)) Q:TYPE=""  D
- .. N NAME,VUID,RESULT,UNIT,MRES,MUNT,HIGH,LOW,QUAL
+ .. N NAME,VUID,RESULT,UNIT,MRES,MUNT,HIGH,LOW,BMI,QUAL
  .. S IFN=+$O(^UTILITY($J,"GMRVD",IDT,TYPE,0)),X0=$G(^(IFN))
  .. S X=+$P(X0,U,3),NAME=$$FIELD^GMVGETVT(X,1)
  .. S VUID=$$FIELD^GMVGETVT(X,4),RESULT=$P(X0,U,8),UNIT=$$UNIT(TYPE)
@@ -38,7 +38,8 @@ EN(DFN,BEG,END,MAX,IFN) ; -- find patient's vitals
  ... S X=$S(TYPE="T":"C",TYPE="HT":"cm",TYPE="WT":"kg",TYPE="CG":"cm",1:"")
  ... S MRES=$P(X0,U,13) S:$L(X) MUNT=X
  .. S X=$$RANGE(TYPE),(HIGH,LOW)="" I $L(X) S HIGH=$P(X,U),LOW=$P(X,U,2)
- .. S N=N+1,VIT("measurement",N)=IFN_U_VUID_U_NAME_U_RESULT_U_UNIT_U_MRES_U_MUNT_U_HIGH_U_LOW
+ .. S BMI=$S(TYPE="WT":$P(X0,U,14),1:"")
+ .. S N=N+1,VIT("measurement",N)=IFN_U_VUID_U_NAME_U_RESULT_U_UNIT_U_MRES_U_MUNT_U_HIGH_U_LOW_U_BMI
  .. S QUAL=$P(X0,U,17) I $L(QUAL) F I=1:1:$L(QUAL,";") D
  ... S X=$P(QUAL,";",I),Y=$$GETIEN^GMVGETQL(X,1)
  ... I Y S VIT("measurement",N,"qualifier",I)=X_U_$$FIELD^GMVGETQL(Y,3)
@@ -122,7 +123,7 @@ XML(VIT) ; -- Return vital measurement as XML in @VPR@(#)
  S ATT="" F  S ATT=$O(VIT(ATT)) Q:ATT=""  D
  . I ATT="measurement" D  Q
  .. D ADD("<measurements>")
- .. S NAMES="id^vuid^name^value^units^metricValue^metricUnits^high^low^Z"
+ .. S NAMES="id^vuid^name^value^units^metricValue^metricUnits^high^low^bmi^Z"
  .. S I=0 F  S I=$O(VIT(ATT,I)) Q:I<1  D
  ... S X=$G(VIT(ATT,I)),Y="<"_ATT_" "
  ... F P=1:1 S TAG=$P(NAMES,U,P) Q:TAG="Z"  I $L($P(X,U,P)) S Y=Y_TAG_"='"_$$ESC^VPRD($P(X,U,P))_"' "

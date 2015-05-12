@@ -1,5 +1,5 @@
 FBAAPET ;AISC/DMK - EDIT PAYMENT ;5/16/12 12:44pm
- ;;3.5;FEE BASIS;**4,38,55,61,77,116,122,133,108,124,132,139**;JAN 30, 1995;Build 127
+ ;;3.5;FEE BASIS;**4,38,55,61,77,116,122,133,108,124,132,139,123**;JAN 30, 1995;Build 51
  ;;Per VA Directive 6402, this routine should not be modified.
  S FBOT=1
 GETPT I $G(BAT) D
@@ -62,6 +62,9 @@ EDIT S DA=FBSV
  . D FILE^DIE("","FBFDA") D MSG^DIALOG()
  ; if modifiers changed then update file
  I FBMODL'=$$MODL^FBAAUTL4("FBMODA") D REPMOD^FBAAUTL4(FBDA(3),FBDA(2),FBDA(1),FBDA)
+ ;
+ ; Check for IPAC data requirements for Federal Vendors (FB*3.5*123)
+ I '$$IPACEDIT^FBAAPET1(162.03,.FBDA) G SERV
  ;
  ; now edit remaining fields
  S DIE("NO^")=""

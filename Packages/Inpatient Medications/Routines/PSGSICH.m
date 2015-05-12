@@ -1,5 +1,5 @@
 PSGSICH ;BIR/JCH-PROVIDER & PHARMACY OVERRIDE UTILITIES ; 08/19/11 1:02pm
- ;;5.0;INPATIENT MEDICATIONS;**254**;16 DEC 97;Build 84
+ ;;5.0;INPATIENT MEDICATIONS;**254,304**;16 DEC 97;Build 22
  ;
  ; Reference to ^APSPQA(32.4 is supported by DBIA #2179
  ;
@@ -106,5 +106,5 @@ SETIVIN2(PSJI1,PSJI2) ; Store Intervention pointers in the IV Intervention multi
  ..N IC,IG S (IG,IC)=0 F  Q:$G(IG)  S IC=$O(^PS(53.1,+PSJI2,11,IC)) Q:'IC!$G(IG)  S:(+$G(^PS(53.1,+PSJI2,11,IC,0))=+PSJINTER) IG=1
  ..Q:$G(IG)  Q:$D(^PS(53.1,+PSJI2,11,"B",+PSJINTER))  S PSJINCNT=$G(PSJINCNT)+1
  ..S DIC="^PS(53.1,"_+PSJI2_",11,",DIC(0)="L",DIC("P")="53.13PA",DA(2)=+PSJI2,X=+PSJINTER,(DINUM,DA(1))=+PSJINCNT
- ..S DIC("DR")=".01////"_+PSJINTER_";1////"_$P(PSJINTER,"^",2)_";" D FILE^DICN
+ ..S DIC("DR")=".01////"_+PSJINTER_";1////"_$P(PSJINTER,"^",2)_";" K DO D FILE^DICN K DO
  Q

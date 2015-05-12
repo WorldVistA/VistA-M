@@ -1,5 +1,5 @@
 SROQ30D ;BIR/ADM - 30-DAY READMISSION TRANSMISSION ;10/31/2011
- ;;3.0;Surgery;**176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**176,182**;24 Jun 93;Build 49
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -18,7 +18,7 @@ MSG ; create mail message to server
 EN ; entry point when run manually to generate current report
  D CURRENT
 EN1 D DATES K ^TMP("SRQTR",$J)
- S SRASITE=+$P($$SITE^SROVAR,"^",3),SRSD=SRSTART-.0001,SRED=SREND+.9999,SRCNT=0,^TMP("SRQTR",$J,1)=SRASITE_"^^^^^"
+ S SRASITE=+$P($$SITE^SROVAR,"^",3),SRSD=SRSTART-.0001,SRED=SREND+.9999,SRCNT=0,^TMP("SRQTR",$J,1)="#"_SRASITE_"^^^^^"
  F  S SRSD=$O(^SRF("AC",SRSD)) Q:SRSD>SRED!('SRSD)  S SRTN=0 F  S SRTN=$O(^SRF("AC",SRSD,SRTN)) Q:'SRTN  D CASE
  D MSG,END
  Q
@@ -33,7 +33,7 @@ CASE ; examine case
  S X1=SRDISCH,X2=30 D C^%DTC S SR30=X,SRADM=$O(^DGPM("APTT1",DFN,SRDISCH)) Q:'SRADM!(SRADM>SR30)
  S VAINDT=SRADM D INP^VADPT S SRX=$P(VAIN(3),"^"),SRSPE="" D SPEC
  S SRPTF=VAIN(10),SRRES="" D RPC^DGPTFAPI(.SRRES,SRPTF)
- S SRCNT=SRCNT+1,^TMP("SRQTR",$J,SRCNT)=SRASITE_"^"_SRTN_"^"_SRDIV_"^"_SRADM_"^"_SRSPE_"^"_$P($G(SRRES(1)),"^",3)
+ S SRCNT=SRCNT+1,^TMP("SRQTR",$J,SRCNT)="#"_SRASITE_"^"_SRTN_"^"_SRDIV_"^"_SRADM_"^"_SRSPE_"^"_$P($G(SRRES(1)),"^",3)
  Q
 PIMS ; determine if inpatient surgery
  N SRSDATE,SRSOUT S SRSOUT=0,(VAIP("D"),SRSDATE)=$P(SR(0),"^",9) D IN5^VADPT

@@ -1,0 +1,170 @@
+LEXRXC4 ;ISL/KER - Re-Index 757.01 ASL ;12/19/2014
+ ;;2.0;LEXICON UTILITY;**81,86**;Sep 23, 1996;Build 1
+ ;               
+ ; Global Variables
+ ;    ^TMP("LEXRXASL")    SACC 2.3.2.5.1
+ ;    ^TMP("LEXRXASLU")   SACC 2.3.2.5.1
+ ;    ^TMP("LEXRXAWRD")   SACC 2.3.2.5.1
+ ;    ^TMP("LEXRXERR")    SACC 2.3.2.5.1
+ ;    ^TMP("LEXRXPRO")    SACC 2.3.2.5.1
+ ;    ^TMP("LEXRXREP")    SACC 2.3.2.5.1
+ ;    ^TMP("LEXTKN")      SACC 2.3.2.5.1
+ ;               
+ ; External References
+ ;    $$FMDIFF^XLFDT      ICR  10103
+ ;    $$NOW^XLFDT         ICR  10103
+ ;    $$UP^XLFSTR         ICR  10104
+ ;               
+ ; Local Variables NEWed or KILLed Elsewhere
+ ;     LEXNAM     Task name       NEWed/KILLed by LEXRXXT
+ ;     LEXTEST    Test variable   NEWed/KILLed by Developer
+ ;     ZTQUEUED   Task flag       NEWed/KILLed by Taskman
+ ;               
+ ;   The AWRD cross-references is used to create the ASL
+ ;   cross-reference, hence the AWRD cross-reference must
+ ;   be repaired/re-indexed before ASL.
+ ;               
+ Q
+EN ; Main Entry Point
+R75701 ; Repair file 757.01
+ D:'$D(^TMP("LEXRXAWRD",$J)) RAWRD^LEXRXC3
+ D RASL,KGBL
+ Q
+ ;
+RASL ;   Index    ^LEX(757.01,"ASL",FRAG,FREQ)
+ N LEXA,LEXBEG,LEXC,LEXCHR,LEXCHRS,LEXCTL,LEXDIF,LEXE,LEXELP,LEXEND,LEXERR,LEXF,LEXFC,LEXFI,LEXFIR,LEXIDX,LEXIDXT,LEXIT
+ N LEXLTKN,LEXM,LEXN,LEXND,LEXNDS,LEXNOD,LEXO,LEXP,LEXPSCT,LEXRT,LEXRT1,LEXRT2,LEXS,LEXSCT,LEXSTR,LEXT,LEXTC
+ N LEXTK,LEXTK1,LEXTK2,LEXTK3,LEXTKN,LEXTNG,LEXTTKN,LEXVAL S LEXFI="757.01" N LEXTC
+ K ^TMP("LEXRXPRO",$J,"ASL"),^TMP("LEXRXERR",$J,"ASL"),^TMP("LEXRXASL",$J),^TMP("LEXRXASLU",$J)
+ S LEXTC=$$UPD^LEXRXXT3($G(LEXNAM),,"Repairing File #757.01 ""ASL""") Q:LEXTC=1
+ S LEXBEG=$$NOW^XLFDT,(LEXNDS,LEXERR)=0,LEXSTR="",LEXFI=757.01,LEXIDX="ASL",LEXIDXT="^LEX(757.01,""ASL"",STR,FREQ)"
+ ;     Build
+ S LEXRT="" S:$D(^LEX(757.01,"AWRD")) LEXRT="^LEX(757.01,""AWRD"","
+ S:$D(^TMP("LEXRXAWRD",$J)) LEXRT="^TMP(""LEXRXAWRD"","_$J_"," Q:'$L(LEXRT)
+ ;       For each Word
+ S (LEXFIR,LEXFC,LEXTK)=""
+ F  S LEXTK=$O(@(LEXRT_""""_LEXTK_""")")) Q:'$L(LEXTK)  D
+ . S ^TMP("LEXRXPRO",$J,"ASL","BUILD","TKN")=LEXTK
+ . N LEXP,LEXS,LEXC,LEXF,LEXTKN S LEXTKN=LEXTK
+ . F  Q:$E(LEXTKN,1)'=" "  S LEXTKN=$E(LEXTKN,2,$L(LEXTKN))
+ . F  Q:$E(LEXTKN,$L(LEXTKN))'=" "  S LEXTKN=$E(LEXTKN,1,($L(LEXTKN)-1))
+ . S LEXF=$E(LEXTKN,1)
+ . S LEXFIR=LEXF S:LEXFC'[LEXF LEXFC=LEXFC_LEXF
+ . ;       Count the occurrences of each string
+ . F LEXP=1:1:$L(LEXTKN)  S LEXS=$$UP^XLFSTR($E(LEXTKN,1,LEXP)) D
+ . . Q:'$L($G(LEXS))  I '$D(^TMP("LEXRXASLU",$J,LEXS)) D
+ . . . N LEXE,LEXM,LEXO,LEXT,LEXA,LEXN S (LEXA,LEXN,LEXT)=0
+ . . . S LEXT=$$SCT^LEXRXC3(LEXS) I +($G(LEXT))>0 D
+ . . . . K ^TMP("LEXRXASL",$J,LEXS)
+ . . . . S ^TMP("LEXRXASL",$J,LEXS,LEXT)=""
+ . . S ^TMP("LEXRXASLU",$J,LEXS)=""
+ ;     Replace
+ N LEXCHR,LEXCHRS S LEXERR=$G(LEXERR) D CHRS,ERRCHK
+ S LEXCHR="" F  S LEXCHR=$O(LEXCHRS(LEXCHR)) Q:'$L(LEXCHR)  D
+ . S ^TMP("LEXRXPRO",$J,"ASL","REPLACE","CHR")=LEXCHR
+ . ;       For strings beginning with character
+ . N LEXLTKN,LEXTTKN,LEXTK1,LEXTK2,LEXTK3,LEXTK4,LEXTK5,LEXTK,LEXIT
+ . ;         Delete strings from the ^LEX global
+ . S (LEXTK1,LEXTK2,LEXTK3,LEXTK4,LEXTK5)=""
+ . S LEXTK1=$C($A(LEXCHR)-1)_"~",LEXTK2=LEXCHR,LEXTK3=LEXCHR_" "
+ . S:LEXCHR?1N LEXTK4=LEXCHR-.00000001
+ . S:LEXCHR="." LEXTK5=.00000001
+ . F LEXTK=LEXTK1,LEXTK2,LEXTK3,LEXTK4,LEXTK5 D
+ . . Q:'$L(LEXTK)  S (LEXLTKN,LEXTTKN)=LEXTK S LEXIT=0
+ . . F  S LEXLTKN=$O(^LEX(757.01,"ASL",LEXLTKN)) D  Q:LEXIT>0
+ . . . S:'$L(LEXLTKN) LEXIT=1 S:$E(LEXLTKN,1)'=LEXCHR LEXIT=1
+ . . . Q:LEXIT>0  N LEXNOD,LEXCTL
+ . . . S LEXNOD="^LEX(757.01,""ASL"","_$$QQ(LEXLTKN)_")"
+ . . . S LEXCTL="^LEX(757.01,""ASL"","_$$QQ(LEXLTKN)_","
+ . . . F  S LEXNOD=$Q(@LEXNOD) Q:'$L(LEXNOD)!(LEXNOD'[LEXCTL)  D
+ . . . . N LEXTMP,LEXND S LEXTMP=$TR(LEXLTKN,"""","")
+ . . . . S LEXND="^LEX(757.01,""ASL"","_$$QQ(LEXLTKN)_")" K @LEXND
+ . ;         Add strings to the ^LEX global
+ . F LEXTTKN=LEXTK1,LEXTK2,LEXTK3,LEXTK4,LEXTK5 D
+ . . Q:'$L(LEXTTKN)  N LEXC,LEXIT S LEXIT=0,LEXC=LEXTTKN
+ . . F  S LEXTTKN=$O(^TMP("LEXRXASL",$J,LEXTTKN)) Q:'$L(LEXTTKN)  D  Q:LEXIT>0
+ . . . Q:$E(LEXTTKN,1)'=LEXCHR
+ . . . N LEXNOD,LEXCTL S LEXNOD="^TMP(""LEXRXASL"","_$J_","_$$QQ(LEXTTKN)_")"
+ . . . S LEXCTL="^TMP(""LEXRXASL"","_$J_","_$$QQ(LEXTTKN)_","
+ . . . F  S LEXNOD=$Q(@LEXNOD) Q:'$L(LEXNOD)!(LEXNOD'[LEXCTL)  D
+ . . . . N LEXSTR,LEXVAL,LEXND,LEXTMP S LEXSTR=$P($P(LEXNOD,(","_$J_","),2),",",1)
+ . . . . S LEXVAL=+$P($P(LEXNOD,(","_$J_","),2),",",2) Q:'$L(LEXSTR)  Q:+LEXVAL'>0
+ . . . . S LEXTMP=$TR(LEXSTR,"""",""),LEXND="^LEX(757.01,""ASL"","_$$QQ(LEXTMP)_")" K @LEXND
+ . . . . S LEXND="^LEX(757.01,""ASL"","_$$QQ(LEXTMP)_","_LEXVAL_")" S @LEXND=""
+ . . . . S ^TMP("LEXRXREP",$J,"ASL")=+($G(^TMP("LEXRXREP",$J,"ASL")))+1
+ . . . . S LEXNDS=+($G(LEXNDS))+1
+ S LEXERR=$S(+LEXERR>0:LEXERR,1:"")
+ I '$D(ZTQUEUED) W !,$J(LEXERR,5),?8,$G(LEXFI),?19,$G(LEXIDX),?30,$G(LEXIDXT)
+ S LEXEND=$$NOW^XLFDT,LEXELP=$$FMDIFF^XLFDT(LEXEND,LEXBEG,3)
+ S:$E(LEXELP,1)=" "&($E(LEXELP,3)=":") LEXELP=$TR(LEXELP," ","0")
+ D REP^LEXRXXS(LEXFI,LEXFI,LEXIDX,LEXNDS,LEXERR,LEXIDXT,LEXELP),KGBL
+ Q
+ ;              
+ ; Miscellaneous
+ERRCHK ;   Check for Errors - Sets LEXERR
+ K ^TMP("LEXRXERR",$J,"ASL")
+ N LEXCTL,LEXCHRS,LEXN1,LEXN2,LEXND,LEXNOD,LEXS,LEXT S LEXERR=0 D CHRS
+ S LEXNOD="^TMP(""LEXRXASL"","_$J_")",LEXCTL="^TMP(""LEXRXASL"","_$J_","
+ F  S LEXNOD=$Q(@LEXNOD) Q:'$L(LEXNOD)!(LEXNOD'[LEXCTL)  D
+ . N LEXS,LEXT,LEXND,LEXN1,LEXN2,LEXTND S LEXTND=$TR(LEXNOD,"""","")
+ . S LEXS=$P(LEXTND,",",3) Q:'$L(LEXS)
+ . S LEXT=+($P(LEXTND,",",4)) Q:+LEXT'>0
+ . S LEXN1="^LEX(757.01,""ASL"","_$$QQ(LEXS)_")"
+ . S LEXN2="^LEX(757.01,""ASL"","_$$QQ(LEXS)_","_LEXT_")"
+ . I '$D(@LEXN1) D
+ . . S LEXERR=+($G(LEXERR))+1
+ . . S ^TMP("LEXRXERR",$J,"ASL",0)=$G(^TMP("LEXRXERR",$J,"ASL",0))+1
+ . . S ^TMP("LEXRXERR",$J,"ASL",1)=$G(^TMP("LEXRXERR",$J,"ASL",1))+1
+ . . S ^TMP("LEXRXERR",$J,"ASL",1,0)="String missing in ""ASL"" index"
+ . . S ^TMP("LEXRXERR",$J,"ASL",1,"ERR",LEXS,LEXT)=""
+ . . S ^TMP("LEXRXPRO",$J,"ASL","ERR")=+($G(^TMP("LEXRXPRO",$J,"ASL","ERR")))+1
+ . I $D(@LEXN2),'$D(@LEXN2) D
+ . . S LEXERR=+($G(LEXERR))+1
+ . . S ^TMP("LEXRXERR",$J,"ASL",0)=$G(^TMP("LEXRXERR",$J,"ASL",0))+1
+ . . S ^TMP("LEXRXERR",$J,"ASL",2)=$G(^TMP("LEXRXERR",$J,"ASL",2))+1
+ . . S ^TMP("LEXRXERR",$J,"ASL",2,0)="Value missing in ""ASL"" index"
+ . . S ^TMP("LEXRXERR",$J,"ASL",2,"ERR",LEXS,LEXT)=""
+ . . S ^TMP("LEXRXPRO",$J,"ASL","ERR")=+($G(^TMP("LEXRXPRO",$J,"ASL","ERR")))+1
+ S LEXNOD="^LEX(757.01,""ASL"")",LEXCTL="^LEX(757.01,""ASL"","
+ F  S LEXNOD=$Q(@LEXNOD) Q:'$L(LEXNOD)!(LEXNOD'[LEXCTL)  D
+ . N LEXS,LEXT,LEXN1,LEXN2,LEXTND S LEXTND=$TR(LEXNOD,"""","")
+ . S LEXS=$P(LEXTND,",",3) Q:'$L(LEXS)
+ . S LEXT=+($P(LEXTND,",",4)) Q:+LEXT'>0
+ . S LEXN1="^TMP(""LEXRXASL"","_$J_","_$$QQ(LEXS)_")"
+ . S LEXN2="^TMP(""LEXRXASL"","_$J_","_$$QQ(LEXS)_","_LEXT_")"
+ . I '$D(@LEXN1) D
+ . . S LEXERR=+($G(LEXERR))+1
+ . . S ^TMP("LEXRXERR",$J,"ASL",0)=$G(^TMP("LEXRXERR",$J,"ASL",0))+1
+ . . S ^TMP("LEXRXERR",$J,"ASL",3)=$G(^TMP("LEXRXERR",$J,"ASL",3))+1
+ . . S ^TMP("LEXRXERR",$J,"ASL",3,0)="Invalid String found in ""ASL"" index"
+ . . S ^TMP("LEXRXERR",$J,"ASL",3,"ERR",LEXS,LEXT)=""
+ . . S ^TMP("LEXRXPRO",$J,"ASL","ERR")=+($G(^TMP("LEXRXPRO",$J,"ASL","ERR")))+1
+ . I $D(@LEXN1),'$D(@LEXN2) D
+ . . S LEXERR=+($G(LEXERR))+1
+ . . S ^TMP("LEXRXERR",$J,"ASL",0)=$G(^TMP("LEXRXERR",$J,"ASL",0))+1
+ . . S ^TMP("LEXRXERR",$J,"ASL",0)=$G(^TMP("LEXRXERR",$J,"ASL",0))+1
+ . . S ^TMP("LEXRXERR",$J,"ASL",4)=$G(^TMP("LEXRXERR",$J,"ASL",4))+1
+ . . S ^TMP("LEXRXERR",$J,"ASL",4,0)="Invalid Value found in ""ASL"" index"
+ . . S ^TMP("LEXRXERR",$J,"ASL",4,"ERR",LEXS,LEXT)=""
+ . . S ^TMP("LEXRXPRO",$J,"ASL","ERR")=+($G(^TMP("LEXRXPRO",$J,"ASL","ERR")))+1
+ S ^TMP("LEXRXERR",$J,"ASL",0)=+($G(^TMP("LEXRXERR",$J,"ASL",0)))
+ Q
+QQ(X) ;   Set Quotes
+ N LEXS,LEXT S LEXS=$TR($G(X),"""",""),LEXT=0
+ S:$TR(LEXS,".","")'?1N.N LEXT=1 I $TR(LEXS,".","")?1N.N S:$L(+LEXS)'=$L(LEXS) LEXT=1
+ S X=LEXS S:LEXT=1 X=""""_LEXS_""""
+ Q X
+CHRS ;   Get Characters - Sets LEXCHRS
+ N LEXCHR,LEXRT,LEXRT1,LEXRT2,LEXTK K LEXCHRS S LEXRT1="^LEX(757.01,""AWRD"","
+ S LEXRT2="^TMP(""LEXRXAWRD"","_$J_"," F LEXRT=LEXRT1,LEXRT2 D
+ . N LEXTK S LEXTK="#" F  S LEXTK=$O(@(LEXRT_""""_LEXTK_""")")) Q:'$L(LEXTK)  D
+ . . N LEXCHR S LEXCHR=$E($TR(LEXTK," ",""),1) S LEXTK=$E(LEXTK,1)_"~"
+ . . S:$L(LEXCHR) LEXCHRS(LEXCHR)=""
+ Q
+CLR ;   Clear
+ Q
+KGBL ;   Kill Global Arrays
+ K:'$D(LEXTEST) ^TMP("LEXRXASL",$J),^TMP("LEXRXASLU",$J),^TMP("LEXRXAWRD",$J),^TMP("LEXTKN",$J)
+ K:'$D(LEXTEST) ^TMP("LEXRXPRO",$J),^TMP("LEXRXERR",$J),^TMP("LEXRXREP",$J)
+ K:+($G(LEXRXTMP))'>0 ^TMP("LEXRX",$J) N LEXTEST,LEXRXTMP
+ Q

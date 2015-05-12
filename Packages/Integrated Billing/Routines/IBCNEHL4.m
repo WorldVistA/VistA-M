@@ -1,6 +1,6 @@
 IBCNEHL4 ;DAOU/ALA - HL7 Process Incoming RPI Msgs (cont.) ;26-JUN-2002  ; Compiled December 16, 2004 15:35:46
- ;;2.0;INTEGRATED BILLING;**300,416,438,497*506**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**300,416,438,497,506,519**;21-MAR-94;Build 56
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This pgm will process the non-repeating segments of the
@@ -25,6 +25,8 @@ IBCNEHL4 ;DAOU/ALA - HL7 Process Incoming RPI Msgs (cont.) ;26-JUN-2002  ; Compi
  ;
  Q  ; No direct calls
  ;
+ ; IB*2*519  Only fixed line 2 of the routine. Changed "..497*506" to "..497,506"
+ ; 
 MSA ;  Process the MSA seg
  ;
  ;  Input:

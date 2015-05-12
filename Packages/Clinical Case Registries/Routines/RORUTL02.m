@@ -1,9 +1,10 @@
 RORUTL02 ;HCIOFO/SG - UTILITIES  ; 8/25/05 10:20am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+ ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
  ; #2701         $$GETICN^MPIF001 Gets ICN (supported)
+ ;               $$IFLOCAL^MPIF001 (checks for local ICN) (supported)
  ; #3556         $$GCPR^LA7QRY
  ; #3557         Access to the field .01 and x-ref "B"
  ;               of the file 95.3
@@ -51,17 +52,18 @@ ARLST(REGLST) ;
  . S REGLST(REGNAME)=REGIEN
  Q RC
  ;
- ;***** RETURNS A FULL ICN OF THE PATIENT
+ ;***** RETURNS A FULL NATIONAL ICN OF THE PATIENT
  ;
  ; PTIEN         Patient IEN
  ;
  ; Return Values:
  ;       <0  Error code
- ;       ""  ICN has not been assigned
- ;       >0  Patient ICN
+ ;       ""  ICN has not been assigned or ICN is a local ICN
+ ;       >0  Patient National ICN
  ;
 ICN(PTIEN) ;
  N ICN,L,TMP
+ I $$IFLOCAL^MPIF001(PTIEN) Q ""
  S ICN=$$GETICN^MPIF001(PTIEN)
  I ICN'>0  D  Q ""
  . S TMP=$$ERROR^RORERR(-57,,$P(ICN,U,2),PTIEN,+ICN,"$$GETICN^MPIF001")

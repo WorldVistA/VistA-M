@@ -1,10 +1,11 @@
 PSBOML ;BIRMINGHAM/EFC-MEDICATION LOG ;11/14/12 11:58am
- ;;3.0;BAR CODE MED ADMIN;**3,11,50,54,70**;Mar 2004;Build 101
+ ;;3.0;BAR CODE MED ADMIN;**3,11,50,54,70,72**;Mar 2004;Build 16
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
  ; ^DPT/10035
  ; SENDMSG^XMXAPI/2729
+ ; ^XLFDT/10103
  ;
  ;*70 - Add Witness for High Risk Drug to report
  ;    - print Clinic name with each order that occurred in a clinic
@@ -19,7 +20,7 @@ EN ; Begin printing
  S PSBSTRT=$P(PSBRPT(.1),U,6)+$P(PSBRPT(.1),U,7)
  S PSBSTOP=$P(PSBRPT(.1),U,8)+$P(PSBRPT(.1),U,9)
  S PSBAUDF=$P(PSBRPT(.2),U,9)
- S PSBHDR(0)="Medication Log Report"
+ S PSBHDR(0)="Medication Log Report for "_$$FMTE^XLFDT(PSBSTRT)_" to "_$$FMTE^XLFDT(PSBSTOP) ;Add time frame for report header, PSB*3*72
  S PSBHDR(1)="Continuing/PRN/Stat/One Time Medication/Treatment Record (Detailed Log) (VAF 10-2970 B, C, D)"
  ;check Clinic or Nurs Unit search list                *70
  S PSBSRCHL=$$SRCHLIST^PSBOHDR()
@@ -95,7 +96,7 @@ LINE(PSBIEN) ; Displays the med log entry in PSBIEN
  S:$P($G(^PSB(53.79,PSBIEN,.1)),U,6)]"" Y=Y_" Inj Site: "_$P(^(.1),U,6)
  S Y=Y_"]"
  W $$WRAP^PSBO(16,32,Y)
- W ?50,$$GET1^DIQ(53.79,PSBIEN_",","ACTION BY:INITIAL")
+ W ?50,$$GETINIT^PSBCSUTX(PSBIEN,"I") ;Get initials of who took action, PSB*3*72
  S X=$P(PSBX(0),U,9)
  S PSBASTUS=$S(X="G":"Given",X="H":"Held",X="R":"Refused",X="I":"Infusing",X="C":"Completed",X="S":"Stopped",X="N":"Not Given",X="RM":"Removed",X="M":"Missing dose",1:"Status Unknown")
  S Y=$P(PSBX(0),U,6)+.0000001
@@ -112,7 +113,7 @@ LINE(PSBIEN) ; Displays the med log entry in PSBIEN
  .W $$WRAP^PSBO(75,28,Y)
  .I $P(PSBX(.1),U)["U" W ?105,$J($P(PSBX(PSBZ,PSBY,0),U,2),6,2),?113,$J($P(PSBX(PSBZ,PSBY,0),U,3),6,2) W $$WRAP^PSBO(120,12,$P(PSBX(PSBZ,PSBY,0),U,4)) S PSBDHIT=1
  .W:$P(PSBX(.1),U)["V"&($X+3+$L($P(PSBX(PSBZ,PSBY,0),U,3))>105) !?75
- .W:$P(PSBX(.1),U)["V" " - ",$P(PSBX(PSBZ,PSBY,0),U,3)
+ .W:$P(PSBX(.1),U)["V" " - ",$P(PSBX(PSBZ,PSBY,0),U,2) ;Use units ordered field for IV's, PSB*3*72
  D:$P($G(^PSB(53.79,PSBIEN,.1)),U,2)="P"
  .W !?16,"PRN Reason: ",?30,$$GET1^DIQ(53.79,PSBIEN_",",.21)
  .W !?16,"PRN Effectiveness: "

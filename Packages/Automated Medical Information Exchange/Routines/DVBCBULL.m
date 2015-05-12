@@ -1,16 +1,49 @@
 DVBCBULL ;ALB/GTS - 557/THM-SEND CANCELLATION BULLETIN ; 6/25/91  11:01 AM
- ;;2.7;AMIE;**42,184**;Apr 10, 1995;Build 10
+ ;;2.7;AMIE;**42,184,189**;Apr 10, 1995;Build 22
  ;
+ N MSG1,MERR1,CNT1,MSG2,MERR2,CNT2,RIEN
  K ^TMP("DVBC","BULL",$J),^TMP("DVBC","CMNT",$J) S DIC="^TMP(""DVBC"",""CMNT"",$J,99,",DWPK=1 W @IOF,!!,"Cancellation comments:",!! D EN^DIWE
  K DWPK I $O(^TMP("DVBC","CMNT",$J,99,0))]"" S ^TMP("DVBC","BULL",$J,98,0)=" ",^TMP("DVBC","BULL",$J,97,0)="==========================<  Additional comments  >=========================="
  F I=0:0 S I=$O(^TMP("DVBC","CMNT",$J,99,I)) Q:I=""  S ^TMP("DVBC","BULL",$J,(I+99),0)=^TMP("DVBC","CMNT",$J,99,I,0)
  K ^TMP("DVBC","CMNT",$J) S $P(DOTS,".",45)="." W !!,"A bulletin will now be sent to the 2507 Cancellation mail group.",!
+ ;
+ ;Build Claim Type Info
+ S RIEN=DA
+ K ^TMP($J,"DVBCBULL","CT")
+ N MSG1,MERR1,CTR1
+ S (MSG1,MERR1)="",CTR1=1
+ D GETS^DIQ(396.3,RIEN_",","9.1*","E","MSG1","MERR1")
+ I $G(MERR1)'="" S ^TMP($J,"DVBCBULL","CT",CTR1)="ERROR GETTING CLAIM TYPE CODES"
+ S J=""
+ F  S J=$O(MSG1(396.32,J)) Q:J=""  D
+ . S CTR1=CTR1+1
+ . S ^TMP($J,"DVBCBULL","CT",CTR1)=$G(MSG1(396.32,J,.01,"E"))
+ ;
+ ;Build Special Considerations Info
+ K ^TMP($J,"DVBCBULL","SC")
+ N MSG2,MERR2,CTR2
+ S (MSG2,MERR2)="",CTR2=1
+ D GETS^DIQ(396.3,RIEN,"50*","IE","MSG2","MERR2")
+ I $G(MERR2)'="" S ^TMP($J,"DVBCBULL","SC",CTR2)="ERROR GETTING SPECIAL CONSIDERATION CODES"
+ S J=""
+ F  S J=$O(MSG2(396.31,J)) Q:J=""  D
+ . S CTR2=CTR2+1
+ . S ^TMP($J,"DVBCBULL","SC",CTR2)=$G(MSG2(396.31,J,.01,"E"))
  ;
 GO S L=1,^TMP("DVBC","BULL",$J,L,0)="The following veteran had one or more 2507 exams cancelled:",L=L+1
  S ^TMP("DVBC","BULL",$J,L,0)="   ",L=L+1
  S ^TMP("DVBC","BULL",$J,L,0)="  DFN: `"_DFN_$E("                    ",1,20-$L(DFN))_"SITE: "_DVBCSITE,L=L+1
  S ^TMP("DVBC","BULL",$J,L,0)="  REQUEST DATE: "_DVBCRDAT,L=L+1
  S ^TMP("DVBC","BULL",$J,L,0)="  ",L=L+1
+ S ^TMP("DVBC","BULL",$J,L,0)="  Claim Type:",L=L+1
+ F  S J=$O(^TMP($J,"DVBCBULL","CT",J)) Q:J=""  D
+ . S ^TMP("DVBC","BULL",$J,L,0)="    "_^TMP($J,"DVBCBULL","CT",J),L=L+1
+ S ^TMP("DVBC","BULL",$J,L,0)=" ",L=L+1
+ S ^TMP("DVBC","BULL",$J,L,0)="  Special Consideration(s):",L=L+1
+ S J=""
+ F  S J=$O(^TMP($J,"DVBCBULL","SC",J)) Q:J=""  D
+ . S ^TMP("DVBC","BULL",$J,L,0)="    "_^TMP($J,"DVBCBULL","SC",J),L=L+1
+ S ^TMP("DVBC","BULL",$J,L,0)=" ",L=L+1
  S ^TMP("DVBC","BULL",$J,L,0)="Exams cancelled                               Reason",L=L+1
  S ^TMP("DVBC","BULL",$J,L,0)="  ",L=L+1
  S EXAM="",RSTAT=$P(^DVB(396.3,REQDA,0),U,18)
@@ -45,6 +78,7 @@ SEND ;remote sites get bulletins only on total cancellations
  I $D(^VA(200,DUZ,.15)) S XMY($P(^VA(200,DUZ,.15),"^",1))=""
 XMD D ^XMD
  K ^TMP("DVBC","BULL",$J),XMDUZ,DOTS,COMP,CMPC,XEXAM,REASON,L,JI,JY,XMY,XMSUB,XMTEXT,XMDUZ,ECNT
+ K ^TMP($J,"DVBCBULL","CT"),^TMP($J,"DVBCBULL","SC")
  Q
  ;
 EXAMS S REASON=$S($D(^DVB(396.5,+REAS,0)):$P(^(0),U,1),1:"Undetermined")

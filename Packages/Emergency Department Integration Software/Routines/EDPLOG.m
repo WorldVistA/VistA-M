@@ -1,5 +1,5 @@
 EDPLOG ;SLC/KCM - Update ED Log - Update ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
+ ;;2.0;EMERGENCY DEPARTMENT;**6,2**;Feb 24, 2012;Build 23
  ;
  ;TODO:  add transaction processing
  ;
@@ -83,6 +83,7 @@ UPD(REQ,REMOVE,RESTORE) ; Update a record
  L -^EDP(230,IEN)
  I $D(DIERR) D FAIL("upd",2300008) Q EDPFAIL
  ;
+ M ^XDJE(1)=PCE
  D UPDVISIT^EDPLPCE(IEN,.PCE)
  ;
  I (DFN&'$P(X0,U,6))!($G(REC("inTS"))&'$P(X0,U,8)) D EVT^EDPLOGA(IEN)
@@ -92,10 +93,11 @@ UPD(REQ,REMOVE,RESTORE) ; Update a record
 UPDDIAG ; process diagnoses
  ; called from UPD^EDPLOG
  ; expects REC,PCE,IEN,TIME,AREA to be defined
- N DIAG,I,FDA,FDAIEN,ERR,CODED,CODE
+ ; drp BEGIN EDP*2.0*2
+ N DIAG,I,FDA,FDAIEN,ERR,CODED,CODE,EDPLCIEN,EDPLCSYS
  S DIAG="diagnosis-0",I=0,CODED=$P($G(^EDPB(231.9,AREA,1)),U,2)
  F  S DIAG=$O(REC(DIAG)) Q:$E(DIAG,1,10)'="diagnosis-"  D
- . S I=I+1,REC("diagnosis",I)=REC(DIAG)
+ . S I=I+1,REC("diagnosis",I)=REC(DIAG),REC("inTS",I)=REC("inTS")
  . I CODED S PCE($P(REC(DIAG),U),I)=REC(DIAG)
  I $D(REC("diagnosis"))<10 Q
  ; replace the diagnosis multiple
@@ -103,12 +105,19 @@ UPDDIAG ; process diagnoses
  S FDA(230,IEN_",",1.4)=TIME
  S I=0 F  S I=$O(REC("diagnosis",I)) Q:'I  D
  . Q:$P(REC("diagnosis",I),U,6)  ; entry being removed
- . S CODE=$P(REC("diagnosis",I),U,2)
- . S CODE=$S(+CODE:$$ICDONE^LEXU(CODE,TIME),1:"")
- . S:'$L(CODE) CODE=$P($P(REC("diagnosis",I),U,3),"/",1)
- . S:$L(CODE) CODE=+$O(^ICD9("BA",CODE_" ",0))
+ . S EDPLCIEN=$P(REC("diagnosis",I),U,2)
+ . S EDPLCSYS=$$CSYS^EDPLEX(REC("inTS",I)) ; added drp
+ . ; EDPLCIEN for ICD9 will be a file 757.01 IEN
+ . ; for ICD10 "10D" codes it will be a File 80 IEN.
+ . ; Process below converts 757.01 pointer to an 80 pointer
+ . I EDPLCSYS="ICD" D
+ . . S CODE=$S(+EDPLCIEN:$$ONE^LEXU(EDPLCIEN,REC("inTS",I),EDPLCSYS),1:"") ;drp patch 2
+ . . S:'$L(CODE) CODE=$P($P(REC("diagnosis",I),U,3),"/",1)
+ . . S:$L(CODE) EDPLCIEN=$P($$ICDDATA^EDPLEX(EDPLCSYS,CODE,REC("inTS",I),"E"),U,1) ;drp patch 2
+ . .Q
  . S FDA(230.04,"+"_I_","_IEN_",",.01)=$P(REC("diagnosis",I),U,4)
- . S FDA(230.04,"+"_I_","_IEN_",",.02)=CODE
+ . S FDA(230.04,"+"_I_","_IEN_",",.02)=EDPLCIEN
+ . ;drp END EDP*2.0*2 CHANGES
  . S FDA(230.04,"+"_I_","_IEN_",",.03)=$P(REC("diagnosis",I),U,8)
  D UPDATE^DIE("","FDA","FDAIEN","ERR")
  Q

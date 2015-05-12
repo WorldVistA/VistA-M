@@ -1,5 +1,6 @@
-XUS1A ;SF-ISC/STAFF - SIGNON overflow from XUS1 ;01/28/2004  08:09
- ;;8.0;KERNEL;**153,149,183,258,265**;Jul 10, 1995
+XUS1A ;SF-ISC/STAFF - SIGNON overflow from XUS1 ;12/02/14  13:26
+ ;;8.0;KERNEL;**153,149,183,258,265,638**;Jul 10, 1995;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
 USER() ;
  N %B,%E,%T,I1,X1,X2
@@ -20,7 +21,7 @@ USER() ;
  S X1=$P($G(^VA(200,DUZ,1.1)),U,3),X2=$P(XOPT,U,4)
  I 'X2,X1 Q 9 ;Multi Sign-on not allowed
  I X2=2 D  Q:%B>0 %B ;Only from one IP
- . S %B=0 I '$D(IO("IP")) S:X1 %B=9 Q  ;Can't tell IP, 
+ . S %B=0 I '$D(IO("IP")) S:X1 %B=9 Q  ;Can't tell IP,
  . S X1=$$COUNT(DUZ,IO("IP")),%B=$S(X1<0:9,(X1+1)>$P(XOPT,U,19):9,1:0)
 USX S $P(^VA(200,DUZ,1.1),U,3)=1
  ;Call XQOR to handle SIGN-ON protocall.
@@ -50,12 +51,12 @@ XOPT ;Build the XOPT string
  Q
  ;
 COUNT(IEN,IP) ;Count sign-on log active connect from this IP
- N CNT,IX
- S CNT="",IX=0
- I '$D(^XUSEC(0,"AS3",IEN)) Q 0 ;First sign-on
- I $O(^XUSEC(0,"AS3",IEN,""))'=IP Q -1 ;Diff IP
- I $O(^XUSEC(0,"AS3",IEN,""),-1)'=IP Q -1 ;Diff IP
- F  S IX=$O(^XUSEC(0,"AS3",IEN,IP,IX)) Q:'IX  S CNT=CNT+1
+ N CNT,IX,IP6
+ S CNT="",IX=0,IP6=$$FORCEIP6^XLFIPV(IP) ;p638 use IPv6 xref
+ I '$D(^XUSEC(0,"AS5",IEN)) Q 0 ;First sign-on
+ I $O(^XUSEC(0,"AS5",IEN,""))'=IP6 Q -1 ;Diff IP
+ I $O(^XUSEC(0,"AS5",IEN,""),-1)'=IP6 Q -1 ;Diff IP
+ F  S IX=$O(^XUSEC(0,"AS5",IEN,IP6,IX)) Q:'IX  S CNT=CNT+1
  Q CNT ;Return Count
  ;
 INTRO(WNM) ;

@@ -1,5 +1,5 @@
-MAGBAPI ;WOIFO/PMK,RMP,SEB,MLH - Background Processor API to build queues ; 08 Sep 2010 5:12 PM
- ;;3.0;IMAGING;**1,7,8,20,39**;Mar 19, 2002;Build 2010;Mar 08, 2011
+MAGBAPI ;WOIFO/PMK,RMP,SEB,MLH - Background Processor API to build queues ; 27 Aug 2014 5:12 PM
+ ;;3.0;IMAGING;**1,7,8,20,39,154**;Mar 19, 2002;Build 9;Mar 08, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -114,7 +114,7 @@ NEXTQ(TYPE,PLACE) ;
  Q $S('X:X,1:$P(^MAGQUEUE(2006.031,X,0),"^",2))
  ;
 QUEUE(Q,INPUT,PLACE) ; Stuff the entry (header + INPUT) into the appropriate queue (Q)
- N MAGTIME,QPTR,QTR,X,Y,STATUS
+ N MAGTIME,QPTR,QTR,X,Y,STATUS,AQSQ
  S U="^",STATUS="NOT_PROCESSED"
  S PLACE=$$GETPLACE($G(PLACE)) Q:'PLACE 0 ; DBI - SEB Patch 4
  Q:(((Q'["DELETE")&(Q'["IMPORT"))&($P(INPUT,U,1)'?1N.N)) 0
@@ -122,7 +122,9 @@ QUEUE(Q,INPUT,PLACE) ; Stuff the entry (header + INPUT) into the appropriate que
  L +^MAGQUEUE(2006.03,0):1E9
  S X=^MAGQUEUE(2006.03,0)
  S QPTR=$O(^MAGQUEUE(2006.03," "),-1)+1
- S QPTR=$S(QPTR<+$P(X,U,3):$P(X,U,3)+1,1:QPTR)
+ S QPTR=$S(QPTR'>+$P(X,U,3):$P(X,U,3)+1,1:QPTR)  ;p154
+ S AQSQ=$O(^MAG(2006.041,"B"," "),-1)+1          ;p154
+ I AQSQ>QPTR S QPTR=AQSQ                         ;p154
  S $P(X,"^",3)=QPTR,$P(X,"^",4)=$P(X,"^",4)+1
  S ^MAGQUEUE(2006.03,0)=X
  S MAGTIME=$$NOW^XLFDT

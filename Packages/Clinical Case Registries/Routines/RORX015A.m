@@ -1,5 +1,5 @@
 RORX015A ;HOIFO/SG,VAC - OUTPATIENT PROCEDURES (QUERY & SORT) ;4/7/09 2:10pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13,19,21**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -22,6 +22,8 @@ RORX015A ;HOIFO/SG,VAC - OUTPATIENT PROCEDURES (QUERY & SORT) ;4/7/09 2:10pm
  ;ROR*1.5*13   DEC 2010   A SAUNDERS    User can select specific patients,
  ;                                      clinics, or divisions for the report.
  ;ROR*1.5*19   FEB 2012   J SCOTT       Support for ICD-10 Coding System.
+ ;ROR*1.5*21   SEP 2013   T KOPP        Added ICN as report column if
+ ;                                      additional identifier option selected
  ;                                      
  ;******************************************************************************
  ;******************************************************************************
@@ -173,7 +175,7 @@ QUERY(FLAGS) ;
  N RORCDENDT     ; End date for clinic/division utilization search
  ;
  N CNT,ECNT,IEN,IENS,MODE,PTIEN,RC,SKIP,SKIPEDT,SKIPSDT,TMP,UTEDT,UTSDT,XREFNODE
- N RCC,FLAG
+ N RCC,FLAG,UTIL
  S XREFNODE=$NA(^RORDATA(798,"AC",+RORREG))
  S ROREDT1=$$FMADD^XLFDT(ROREDT\1,1)
  S (CNT,ECNT,RC)=0,SKIPEDT=ROREDT,SKIPSDT=RORSDT
@@ -282,7 +284,8 @@ TOTALS(PTIEN) ;
  S PNODE=$NA(@RORTMP@("PAT",PTIEN))
  ;--- Get and store the patient's data
  D VADEM^RORUTL05(PTIEN,1)
- S @PNODE=VA("BID")_U_VADM(1)_U_$$DATE^RORXU002(VADM(6)\1)
+ S TMP=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PTIEN),1:"")
+ S @PNODE=VA("BID")_U_VADM(1)_U_$$DATE^RORXU002(VADM(6)\1)_U_TMP
  S ^("PAT")=$G(@RORTMP@("PAT"))+1 ;naked reference: ^TMP($J,"RORTMP-n") from RORX015
  ;
  F SRC="I","O"  D

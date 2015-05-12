@@ -1,5 +1,5 @@
 SROANT ;BIR/MAM - INCOMPLETE ASSESSMENTS ;01/18/07
- ;;3.0; Surgery ;**38,50,100,142,153,160**;24 Jun 93;Build 7
+ ;;3.0;Surgery;**38,50,100,142,153,160,182**;24 Jun 93;Build 49
  I $E(IOST)="P" D ^SROANTP Q
  S SRSOUT=0 D HDR
  F  S SRSD=$O(^SRF("AC",SRSD)) Q:'SRSD!(SRSD>SRED)!SRSOUT  S SRTN=0 F  S SRTN=$O(^SRF("AC",SRSD,SRTN)) Q:'SRTN!SRSOUT  S SR("RA")=$G(^SRF(SRTN,"RA")) I $P(SR("RA"),"^")="I",$D(^SRF(SRTN,0)),$$MANDIV^SROUTL0(SRINSTP,SRTN) D SET
@@ -35,5 +35,5 @@ LOOP ; break procedures
 PAGE W !!,"Press <RET> to continue, or '^' to quit  " R X:DTIME I '$T!(X["^") S SRSOUT=1 Q
  I X["?" W !!,"If you want to continue listing incomplete assessments, enter <RET>.  Enter",!,"'^' to return to the menu." G PAGE
 HDR W @IOF,!,?26,"INCOMPLETE RISK ASSESSMENTS",!,?(80-$L(SRFRTO)\2),SRFRTO,!!,"ASSESSMENT #",?20,"PATIENT",?55,"SURGICAL SPECIALTY"
- W !,"OPERATION DATE",?20,"OPERATION(S)",?55,"ANESTHESIA TECHNIQUE",!,"SURGEON",! F LINE=1:1:80 W "="
+ W !,"OPERATION DATE",?20,"OPERATION(S)",?55,"ANESTHESIA TECHNIQUE",!,"PRIMARY SURGEON",! F LINE=1:1:80 W "="
  Q

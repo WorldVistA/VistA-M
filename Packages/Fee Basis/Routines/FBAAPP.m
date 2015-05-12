@@ -1,6 +1,6 @@
 FBAAPP ;AISC/GRR-ENTER FEE PHARMACY DETERMINATION ;5/10/2005
- ;;3.5;FEE BASIS;**61,80,91**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;3.5;FEE BASIS;**61,80,91,123**;JAN 30, 1995;Build 51
+ ;;Per VA Directive 6402, this routine should not be modified.
  N FBADJ,FBRRMK
  D HOME^%ZIS S FBAAOUT=0 K ^TMP($J,"FBWP") D DT^DICRW
  I '$D(^FBAA(162.1,"AC",1)) W !!,"There are no Fee Basis prescriptions Pending Pharmacy review" G END
@@ -48,6 +48,11 @@ DIR1 S DIR("A")="Is Prescription for an Authorized Condition"
  S DIR(0)="Pr^50:EM"
  D ^DIR K DIR Q:$D(DIRUT)!('Y)
  S FBDA=+Y,FBDRUG=$P(Y,"^",2)
+ ;
+ ; FB*3.5*123 - Edit pharmacy IPAC data for Federal Vendors
+ ;              Added line to skip the asking of emergency medication
+ ;              if the vendor requires an IPAC Agreement
+ I $$IPACREQD^FBAAMP(VIFN) S FBNO2="N/A (IPAC Payment)" G REVIEW
  ;
  S DIR("A")="Is this an emergency medication"
  S DIR("B")=$S(FBNO2'="":FBNO2,1:"Yes")

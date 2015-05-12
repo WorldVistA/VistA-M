@@ -1,5 +1,5 @@
 PSGEUD ;BIR/CML3-EXTRA UNITS DISPENSED ;17 SEP 97 /  1:41 PM
- ;;5.0; INPATIENT MEDICATIONS ;**31,41,50,111,150,164**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS ;**31,41,50,111,150,164,304**;16 DEC 97;Build 22
  ;
  ; Reference to ^PSDRUG( is supported by DBIA 2192.
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
@@ -46,11 +46,14 @@ QS ;
  D ENTSK^PSGTI W "...DONE" S Y=0 Q
  ;
 ENQ ;
+ N PSGTAG
  D NOW^%DTC S DFN=PSGP D PID^VADPT
  S %=%_"0000000000000",BLKS="                    ",PN=$E($P(PSGP(0),"^")_BLKS,1,20),PID=$E(VA("PID")_BLKS,1,12),PL=$E($S($D(^DPT(PSGP,.1)):^(.1),1:"*N/F*")_BLKS,1,12)
  X ^%ZOSF("LABOFF") F PSGDRG=0:0 S PSGDRG=$O(^PS(55,PSGP,5,+PSGORD,1,PSGDRG)) Q:'PSGDRG  S X=$G(^(PSGDRG,0)) I X D
  .S C=$P(X,U,11),PSGEUDA=$P($G(^PSDRUG(+X,8.5)),U,2) Q:(PSGEUDA="")!('C)
- .S PSGEUDA=$E(PSGEUDA_BLKS,1,15) S:$L(C)<3 C=$E("000",1,3-$L(C))_C S C=C_$E(%,4,5)_$E(%,6,7)_$E(%,2,3)_$E(%,9,10)_$E(%,11,12) D @$S(PSGSPD:"S2",1:"S1")
+ .;NETWORK CHANNEL
+ .;S PSGEUDA=$E(PSGEUDA_BLKS,1,15) S:$L(C)<3 C=$E("000",1,3-$L(C))_C S C=C_$E(%,4,5)_$E(%,6,7)_$E(%,2,3)_$E(%,9,10)_$E(%,11,12) D @$S(PSGSPD:"S2",1:"S1")
+ .S PSGEUDA=$E(PSGEUDA_BLKS,1,15) S:$L(C)<3 C=$E("000",1,3-$L(C))_C S C=C_$E(%,4,5)_$E(%,6,7)_$E(%,2,3)_$E(%,9,10)_$E(%,11,12) S PSGTAG=$S(IOT="CHAN":"S3",PSGSPD:"S2",1:"S1") D @PSGTAG
  Q
  ;
 S1 ;
@@ -63,6 +66,12 @@ S2 ;
  W $C(48) F Q=1:1:75 R X:$S(Q<15:1,1:5) G:$A(X)=49 S2 I $A(X)=48 Q
  E  Q
  W $C(50),$C(52),PN_PID_PL_"IMD"_PSGEUDA_"1 ",$C(53),$C(54),C,$C(55),$C(13) F Q=1:1:75 R X:$S(Q<15:1,1:5) G:$A(X)=49 S2 I $A(X)=48 Q
+ Q
+ ;
+S3 ;Added ! to clear WR buffer for network channel
+ W $C(48),! F Q=1:1:75 R *X:$S(Q<15:1,1:5) G:X=49 S1 I X=48 Q
+ E  Q
+ W $C(50),$C(52),PN_PID_PL_"IMD"_PSGEUDA_"1 ",$C(53),$C(54),C,$C(55),$C(13),! F Q=1:1:75 R *X:$S(Q<15:1,1:5) G:X=49 S1 I X=48 Q
  Q
  ;
 QSH ;

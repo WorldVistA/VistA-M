@@ -1,49 +1,74 @@
-LEXTRAN1 ;ISL/KER - Lexicon code and text wrapper API's ;04/21/2014
- ;;2.0;LEXICON UTILITY;**59,73,51,80**;Sep 23, 1996;Build 1
- ; Per VHA Directive 2004-038, this routine should not be modified.
- ;               
+LEXTRAN1 ;ISL/KER - Lexicon code and text wrapper API's ;12/19/2014
+ ;;2.0;LEXICON UTILITY;**59,73,51,80,86**;Sep 23, 1996;Build 1
+ ;
  ; Global Variables
  ;    ^LEX(757.32)        N/A
  ;    ^LEX(757.33)        N/A
  ;    ^TMP("LEXSCH")      SACC 2.3.2.5.1
- ;               
+ ;
  ; External References
  ;    $$DT^XLFDT          ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
  ;    $$GET1^DIQ          ICR   2056
  ;    $$UP^XLFSTR         ICR  10103
  ;    ^%DT                ICR  10003
- ;               
-GETSYN(SRC,CODE,CDT,LEXARY,IENS) ; Get Synonyms for a Concept
- ;               
+ ;
+GETSYN(SRC,CODE,CDT,LEXARY,IENS,ID,INC) ; Get Synonyms for a Concept
+ ;
  ; Local Variables
  ;
- ;
  ; Input
- ;
- ;   SRC     Code System source abbreviation (required)
+ ; 
+ ;   SRC     Coding System (required)
  ;   CODE    Code (required)
- ;   CDT     Effective date (optoinal, default TODAY)
+ ;   CDT     Effective date (optional, default TODAY)
  ;   LEXARY  Output array (optional, defaults to 'LEX')
- ;   IENS    Include expression IENs in output array
- ;            - optional
- ;              1 include IENS
- ;              0 exclude IENS (default)
+ ;   IENS    Include expression IENs in output array (optional)
+ ;             1 return IENS (2nd piece)
+ ;             0 do not return IENS (default)
+ ;   ID      Designation Identifiers (optional)
+ ;              1 return Designation IDs (3rd piece)
+ ;              0 do not return Designation IDs (default)
+ ;   INC     Include Deactivated Terms (optional)
+ ;              1 return Deactivated Terms
+ ;              0 do not return Deactivated Terms (default)
  ;
  ; Output
  ;
- ;   if call finds an active code for the source
+ ;   If call finds an active code for the source
  ;     "1^LEXCODE"
- ;     LEX     -   an array containing information about the code
- ;     LEX("F")    fully specified name^IEN
- ;     LEX("P")    preferred term^IEN
- ;     LEX("S",n)  synonyms^IEN (n is the nth synonym)
+ ;     LEX               An array containing code information
+ ;     LEX("F")          Fully Specified Name^IEN^Designation ID
+ ;     LEX("P")          Preferred Term^IEN^Designation ID
+ ;     LEX("S",n)        Synonyms 4 Piece ^ Delimited string
+ ;                          1  Synonym (required)
+ ;                          2  IEN (optional)
+ ;                          3  Designation ID (optional)
+ ;                          4  Deactivation flag (optional)
+ ;                               1 = Deactivated Synonym
+ ;                              
+ ;                       n is the nth Synonym
  ;
- ;   if call cannot find specified code on file
+ ;   Errors:
+ ;   
+ ;     "-1^Code "_LEXCODE_" not yet active for "_LEXVDT
+ ;         where LEXCODE is the code
+ ;               LEXVDT is the versioning date
+ ;             
  ;     "-2^"_LEXSCNM_" code "_LEXCODE_" not on file"
- ;     where LEXSCNM is the source name
+ ;         where LEXSCNM is the source name
+ ;               LEXCODE is the code
  ;
- N LEXSRC,LEXCODE,LEXVDT,LEXIENS S LEXSRC=$G(SRC),LEXCODE=$G(CODE),LEXVDT=$G(CDT),LEXIENS=$G(IENS)
+ ;     "-4^"_LEXSNM_" code "_LEXCODE_" not active for "_LEXVDT
+ ;         where LEXSCNM is the source name
+ ;               LEXCODE is the code
+ ;               LEXVDT is the versioning date
+ ;               
+ ;   Otherwise
+ ;     "-1^error text"
+ ;
+ N LEXSRC,LEXCODE,LEXVDT,LEXIENS,LEXDID,LEXINC S LEXSRC=$G(SRC),LEXCODE=$G(CODE)
+ S LEXVDT=$G(CDT),LEXIENS=$G(IENS),LEXDID=$G(ID),LEXINC=+($G(INC))
  N LEX1,LEX2,LEX3,LEX4,LEXCIEN,LEXD,LEXDOW,LEXEX,LEXEXI,LEXFND,LEXI
  N LEXMCI,LEXOUT,LEXS,LEXSAB,LEXSNM,LEXSRD,LEXSTAT,LEXTY
  N LEXVAL S LEXSRC=$E($G(LEXSRC),1,3) S:'$L($G(LEXARY)) LEXARY="LEX"
@@ -85,11 +110,23 @@ GETSYN(SRC,CODE,CDT,LEXARY,IENS) ; Get Synonyms for a Concept
  K LEX2 F  S LEXEXI=$O(^LEX(757.01,"AMC",LEXMCI,LEXEXI)) Q:LEXEXI=""  D
  .S LEXFND=LEXFND+1,LEX2(LEXEXI)=""
  K LEX3 S LEXEXI="" F  S LEXEXI=$O(LEX2(LEXEXI)) Q:LEXEXI=""  D
- .S LEXEX=^LEX(757.01,LEXEXI,0)
- .S LEXTY=$P(^LEX(757.01,LEXEXI,1),U,2)
- .I LEXTY=1 S LEX3("P")=LEXEX_$S(+LEXEXI>0&(+($G(LEXIENS))>0):(U_LEXEXI),1:"") Q
- .I LEXTY=8 S LEX3("F")=LEXEX_$S(+LEXEXI>0&(+($G(LEXIENS))>0):(U_LEXEXI),1:"") Q
- .S LEX3("S",($O(LEX3("S"," "),-1)+1))=LEXEX_$S(+LEXEXI>0&(+($G(LEXIENS))>0):(U_LEXEXI),1:"")
+ . N LEXN1,LEXID,LEXC,LEXDEA S LEXEX=^LEX(757.01,LEXEXI,0),LEXDEA=0
+ . S LEXN1=$G(^LEX(757.01,LEXEXI,1)) Q:+($G(LEXINC))'>0&($P(LEXN1,"^",5)>0)
+ . S:+($G(LEXINC))>0&($P(LEXN1,"^",5)>0) LEXDEA=1
+ . S LEXID="" I LEXDID>0,$L($G(LEXSRC)) D
+ . . N LEXSI S LEXSI=$O(^LEX(757.03,"ASAB",LEXSRC,0)) Q:LEXSI'>0
+ . . S LEXID=$O(^LEX(757.01,LEXEXI,7,"C",LEXSI,""))
+ . S LEXTY=$P(^LEX(757.01,LEXEXI,1),U,2)
+ . I LEXTY=1 D  Q
+ . . S LEX3("P")=LEXEX_$S(+LEXEXI>0&(+($G(LEXIENS))>0):(U_LEXEXI),1:"")
+ . . S:$L(LEXID) $P(LEX3("P"),"^",3)=LEXID
+ . I LEXTY=8 D  Q
+ . . S LEX3("F")=LEXEX_$S(+LEXEXI>0&(+($G(LEXIENS))>0):(U_LEXEXI),1:"")
+ . . S:$L(LEXID) $P(LEX3("F"),"^",3)=LEXID
+ . S LEXC=$O(LEX3("S"," "),-1)+1
+ . S LEX3("S",LEXC)=LEXEX_$S(+LEXEXI>0&(+($G(LEXIENS))>0):(U_LEXEXI),1:"")
+ . S:$L(LEXID) $P(LEX3("S",LEXC),"^",3)=LEXID
+ . S:LEXDEA>0 $P(LEX3("S",LEXC),"^",4)=1
  K LEX4 M LEX4=LEX3
  S LEXFND=''$D(LEX4("F"))+''$D(LEX4("P"))+$O(LEX4("S"," "),-1)
  I $D(LEXARY),LEXARY'="LEX4" M @LEXARY=LEX4
@@ -100,16 +137,16 @@ GETFSN(SRC,CODE,CDT) ; Get Fully Specified Name for a Concept
  ;
  ; Input
  ;
- ;   SRC   Code System source abbreviation (required)
+ ;   SRC   Coding System (required)
  ;   CODE  Code (required)
  ;   CDT   Effective date (optional, default TODAY)
  ;
  ; Output
  ;
- ;   if call finds an active code for the source
+ ;   if found
  ;     "1^LEXFSN"
  ;     where LEXFSN is the fully specified name
- ;   if call cannot find specified code on file
+ ;   if not found
  ;     "-8^"_LEXSCNM_" code "_LEXCODE_" has no FSN"
  ;     where LEXSCNM is the source name
  ;       
@@ -130,16 +167,16 @@ GETPREF(SRC,CODE,CDT) ; Get the Preferred Term for a Code
  ;
  ; Input
  ;
- ;   SRC    Code System source abbreviation (required)
+ ;   SRC    Coding System (required)
  ;   CODE   Code (required)
  ;   CDT    Effective date (optional, default TODAY)
  ;
  ; Output
  ;
- ;   if call finds an active code for the source
+ ;   if found
  ;     "1^LEXPREF"
  ;     where LEXPREF is the preferred name
- ;   if call cannot find specified code on file
+ ;   if not found
  ;     "-2^"_LEXSCNM_" code "_LEXCODE_" not on file"
  ;     where LEXSCNM is the source name
  ;
@@ -160,16 +197,16 @@ GETDES(SRC,TEXT,CDT) ; Get the Designation Code for a Concept/Synonym
  ;
  ; Input
  ;
- ;   SRC    Code System source abbreviation (required)
+ ;   SRC    Coding System (required)
  ;   TEXT   Text (required)
  ;   CDT    Effective date (optional, default TODAY)
  ;
  ; Output
  ;
- ;   if call finds an active code for the source
+ ;   if found
  ;     "1^LEXDSG"
  ;     where LEXDSG is the designation code
- ;   if call cannot find specified code on file
+ ;   if not found
  ;     "-2^"_LEXSCNM_" code "_LEXCODE_" not on file"
  ;     where LEXSCNM is the source name
  ;
@@ -225,20 +262,22 @@ GETASSN(CODE,MAP,CDT,LEXRAY) ; Get Mapped Associated Codes
  ;
  ; Output
  ;
- ;   if call finds active mappings for passed arguments
+ ;   if found
  ;     "1^"_number_of_mappings
- ;     LEX     -        an array containing the mapping target codes
- ;     LEX = number of mappings
- ;     LEX(order,code)  mapped codes (order is the order of the mapping)
- ;                                   (code is the mapping target code)
  ;
- ;   if call finds no active mappings for passed arguments
+ ;     LEX is an array containing the mapping target codes
+ ;     LEX = number of mappings
+ ;     LEX(order,code)  mapped codes
+ ;                      order - is the order of the mapping
+ ;                      code - is the mapping target code
+ ;
+ ;   if not found
  ;     "0^0"
  ;
- ;   if a bad argument is passed for a parameter then the call returns
+ ;   if error
  ;     "-1^"_error_message
  ;
- ;   if call cannot find specified code on file
+ ;   if no code on file
  ;     "-2^"_LEXSCNM_" code "_LEXCODE_" not on file"
  ;     where LEXSCNM is the source name
  ;   
@@ -246,20 +285,18 @@ GETASSN(CODE,MAP,CDT,LEXRAY) ; Get Mapped Associated Codes
  ;   -------
  ;   When the API is invoked in the following way
  ;   S VAR=$$GETASSN^LEXTRAN1(CODE,MAP,[DATE],[ARR])
- ;   make sure that ARR'="VAR"
- ;   e.g. S ORY=$$GETASSN^LEXTRAN1(44452003,"SCT2ICD",,"VAR") is OK
- ;   but  S VAR=$$GETASSN^LEXTRAN1(44452003,"SCT2ICD",,"VAR") is not OK
- ;        this would be akin to using the same variable for two purposes. 
- ;
+ ;   
+ ;   Make sure that ARR'="VAR"
+ ;     e.g. S ORY=$$GETASSN^LEXTRAN1(CODE,MAP,,"VAR") is OK
+ ;     but  S VAR=$$GETASSN^LEXTRAN1(CODE,MAP,,"VAR") is not OK
+ ; 
  N LEXCODE,LEXMAP,LEXVDT S LEXCODE=$G(CODE),LEXMAP=$G(MAP),LEXVDT=$G(CDT)
  I $G(LEXCODE)="" Q -1_U_"no code specified"
  I $G(LEXMAP)="" Q -1_U_"no mapping specified"
  I $L($G(LEXVDT)),$P($G(LEXVDT),".",1)'?7N S LEXVDT=$$INTDAT(LEXVDT)
  D VDT^LEXU I $P($G(LEXVDT),".",1)'?7N Q -1_U_"invalid date format"
  S LEXRAY=$G(LEXRAY,"LEX")
- ;
  N MIDIEN,CSYS,CIEN,VALCD,MORD,MTAR,MIEN,EFDT,STAT,CT,VUID
- ;
  I '$D(^LEX(757.32,"B",LEXMAP)),'$D(^LEX(757.32,"C",LEXMAP)) Q -1_U_"unrecognized mapping identifier"
  I $D(^LEX(757.32,"C",LEXMAP)) D
  .S MIDIEN=$O(^LEX(757.32,"C",LEXMAP,""))
@@ -267,31 +304,27 @@ GETASSN(CODE,MAP,CDT,LEXRAY) ; Get Mapped Associated Codes
  .S MIDIEN=$O(^LEX(757.32,"B",LEXMAP,""))
  I '$D(MIDIEN) Q -1_U_"not a recognized mapping identifier"
  S CSYS=$$GET1^DIQ(757.32,MIDIEN_",",3)
- ;
- ; check that code exists for coding system
- ;
+ ;   Check that code exists for coding system
  S CIEN="",VALCD=0
  F  Q:VALCD=1  D  Q:CIEN=""
  .S CIEN=$O(^LEX(757.02,"CODE",LEXCODE_" ",CIEN)) Q:CIEN=""  D
  .S VALCD=''$D(^LEX(757.02,"ASRC",$$LEXASAB(CSYS),CIEN))
  I 'VALCD Q -2_U_$$LEXSCNM(CSYS)_" code "_LEXCODE_" not on file"
- ;
- ; obtain mappings that are valid for date passed
- ;
+ ;   Obtain valid mappings for date
  S (MORD,MTAR,MIEN)=""
  K LEX
  S LEX=0
  F  S MORD=$O(^LEX(757.33,"C",MIDIEN,LEXCODE,MORD)) Q:MORD=""  D
  .F  S MTAR=$O(^LEX(757.33,"C",MIDIEN,LEXCODE,MORD,MTAR)) Q:MTAR=""  D
  ..F  S MIEN=$O(^LEX(757.33,"C",MIDIEN,LEXCODE,MORD,MTAR,MIEN)) Q:MIEN=""  D
- ...N MAT S MAT=$P($G(^LEX(757.33,+MIEN,0)),U,5) ; Pch 73 adds variable MAT for match
+ ...N MAT S MAT=$P($G(^LEX(757.33,+MIEN,0)),U,5)
  ...S VUID=$P(^LEX(757.33,MIEN,0),U)
  ...S EFDT=+$O(^LEX(757.33,"G",VUID,LEXVDT+.0001),-1)
  ...Q:EFDT=0
  ...S STAT=+$O(^LEX(757.33,"G",VUID,EFDT,""))
  ...Q:STAT=0
  ...S LEX=LEX+1
- ...S LEX(MORD,MTAR)=MAT ; Pch 73 adds variable MAT for match
+ ...S LEX(MORD,MTAR)=MAT
  I LEXRAY'="LEX" M @LEXRAY=LEX K LEX
  Q ''@LEXRAY_U_@LEXRAY
  ;
@@ -308,13 +341,11 @@ CSI(LEXSRC) ; get source IEN
  ;
 INTDAT(X) ; convert date from external format to VA internal format
  S X=$G(X) Q:$P(X,".",1)?7N $P(X,".",1)
- N Y,%DT
- D ^%DT
+ N Y,%DT D ^%DT K %DT
  Q Y
  ;
 GETCIEN(CODE) ; get correct code ien for code and date
- ; CODE must be defined
- ; LEXVDT must be defined
+ ; CODE and LEXVDT must be defined
  N STA,DAT,CIEN,ARR,CDT S CDT=$G(LEXVDT)
  S (STA,DAT,CIEN)=""
  F  S STA=$O(^LEX(757.02,"ACT",CODE_" ",STA)) Q:STA=""  D

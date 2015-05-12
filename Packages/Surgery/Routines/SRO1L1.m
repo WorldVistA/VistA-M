@@ -1,5 +1,5 @@
 SRO1L1 ;BIR/ADM - UPDATE 1-LINER CASE, CONTINUED ;02/14/07
- ;;3.0; Surgery ;**86,88,100,129,142,153,160**;24 Jun 93;Build 7
+ ;;3.0;Surgery;**86,88,100,129,142,153,160,182**;24 Jun 93;Build 49
  S SRSOUT=0,SRSUPCPT=2 D NCODE^SROAUTL
  N SRLCK,SRCSTAT S SRLCK=$$LOCK^SROUTL(SRTN) I 'SRLCK Q
  D SRA^SROES
@@ -8,7 +8,7 @@ EDIT S SRA=$G(^SRF(SRTN,"RA")) I $P(SRA,"^",2)="N",$P(SRA,"^",6)="N",$P(SRA,"^",
  S SRR=0 D TSTAT,HDR^SROAUTL D TECH^SROPRIN
  S X=$P(^SRF(SRTN,"OP"),"^",2) I X S Y=$P($$CPT^ICPTCOD(X),"^",2) D SSPRIN^SROCPT S SRCPT=Y
  S SRQ=0,SRDR=".011;.04;.035;.166;1.09;1.13"
- S SRAO(1)="In/Out-Patient Status^.011",SRAO(2)="Major or Minor^.03",SRAO(2)="Surgical Specialty^.04",SRAO(3)="Surgical Priority^.035",SRAO(4)="Attending Code^.166"
+ S SRAO(1)="Hospital Admission Status^.011",SRAO(2)="Major or Minor^.03",SRAO(2)="Surgical Specialty^.04",SRAO(3)="Surgical Priority^.035",SRAO(4)="Attending/Res Sup Code^.166"
  S SRAO(5)="ASA Class^1.13",SRAO(6)="Wound Classification^1.09",SRAO(7)="Anesthesia Technique^.37",SRAO(8)="CPT Codes (view only)^",SRAO(9)="Other Procedures^.42"
  K DA,DIC,DIQ,DR,SRY S DIC="^SRF(",DA=SRTN,DIQ="SRY",DIQ(0)="E",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
  S SRY(130,SRTN,.37,"E")=SRTECH,SRY(130,SRTN,.42,"E")=$S($O(^SRF(SRTN,13,0)):"***INFORMATION ENTERED***",1:"***NONE ENTERED***"),SRY(130,SRTN,27,"E")=SRCPT

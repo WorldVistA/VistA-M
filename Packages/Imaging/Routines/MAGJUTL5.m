@@ -1,5 +1,5 @@
-MAGJUTL5 ;WOIFO/JHC - VistARad RPCs ; 9 Sep 2013  11:22 AM
- ;;3.0;IMAGING;**65,76,101,90,115,104,120,133**;Mar 19, 2002;Build 5393;Sep 09, 2013
+MAGJUTL5 ;WOIFO/JHC - VistARad RPCs ; 10 Sep 2014  10:37 AM
+ ;;3.0;IMAGING;**65,76,101,90,115,104,120,133,152**;Mar 19, 2002;Build 6;Jul 21, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -24,9 +24,9 @@ GETVER(SVRVER,SVRTVER,ALLOWCL,VIXVER) ;
  ;
  ;--- Synchronize the below information with that in MAGJTU4V.
  ;
- S SVRVER="3.0.133",SVRTVER=3  ; <*> Edit this line for each patch/T-version
+ S SVRVER="3.0.152",SVRTVER=3  ; <*> Edit this line for each patch/T-version
  ;
- S ALLOWCL="|3.0.120|"  ; back-compatible with prior client
+ S ALLOWCL="|3.0.133|3.0.120|"  ; back-compatible with prior client(s)
  ;
  S VIXVER=""
  ; VIX may present versions different from vrad Client/Server versions; this would

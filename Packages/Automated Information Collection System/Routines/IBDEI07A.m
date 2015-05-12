@@ -1,144 +1,64 @@
-IBDEI07A ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI07A ; ; 09-FEB-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQ(358.4)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3243,0)
- ;;=722.51^^33^275^27
- ;;^UTILITY(U,$J,358.3,3243,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3243,1,4,0)
- ;;=4^722.51
- ;;^UTILITY(U,$J,358.3,3243,1,5,0)
- ;;=5^Degen Disc Dis, Thoracic
- ;;^UTILITY(U,$J,358.3,3243,2)
- ;;=^272480
- ;;^UTILITY(U,$J,358.3,3244,0)
- ;;=715.90^^33^275^42
- ;;^UTILITY(U,$J,358.3,3244,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3244,1,4,0)
- ;;=4^715.90
- ;;^UTILITY(U,$J,358.3,3244,1,5,0)
- ;;=5^OA/DJD, Unspecified
- ;;^UTILITY(U,$J,358.3,3244,2)
- ;;=OA/DJD, Unspecified^272161
- ;;^UTILITY(U,$J,358.3,3245,0)
- ;;=720.0^^33^275^2
- ;;^UTILITY(U,$J,358.3,3245,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3245,1,4,0)
- ;;=4^720.0
- ;;^UTILITY(U,$J,358.3,3245,1,5,0)
- ;;=5^Ankylosing Spondylitis
- ;;^UTILITY(U,$J,358.3,3245,2)
- ;;=^113484
- ;;^UTILITY(U,$J,358.3,3246,0)
- ;;=726.33^^33^275^43
- ;;^UTILITY(U,$J,358.3,3246,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3246,1,4,0)
- ;;=4^726.33
- ;;^UTILITY(U,$J,358.3,3246,1,5,0)
- ;;=5^Olecranon Bursitis
- ;;^UTILITY(U,$J,358.3,3246,2)
- ;;=^259119
- ;;^UTILITY(U,$J,358.3,3247,0)
- ;;=726.19^^33^275^6
- ;;^UTILITY(U,$J,358.3,3247,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3247,1,4,0)
- ;;=4^726.19
- ;;^UTILITY(U,$J,358.3,3247,1,5,0)
- ;;=5^Bursitis, Subdeltoid/Acromioclavicular
- ;;^UTILITY(U,$J,358.3,3247,2)
- ;;=^272527
- ;;^UTILITY(U,$J,358.3,3248,0)
- ;;=727.3^^33^275^5
- ;;^UTILITY(U,$J,358.3,3248,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3248,1,4,0)
- ;;=4^727.3
- ;;^UTILITY(U,$J,358.3,3248,1,5,0)
- ;;=5^Bursitis, Other
- ;;^UTILITY(U,$J,358.3,3248,2)
- ;;=Bursitis, Other^87364
- ;;^UTILITY(U,$J,358.3,3249,0)
- ;;=354.0^^33^275^7
- ;;^UTILITY(U,$J,358.3,3249,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3249,1,4,0)
- ;;=4^354.0
- ;;^UTILITY(U,$J,358.3,3249,1,5,0)
- ;;=5^Carpal Tunnel Syndrome
- ;;^UTILITY(U,$J,358.3,3249,2)
- ;;=^19944
- ;;^UTILITY(U,$J,358.3,3250,0)
- ;;=733.92^^33^275^10
- ;;^UTILITY(U,$J,358.3,3250,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3250,1,4,0)
- ;;=4^733.92
- ;;^UTILITY(U,$J,358.3,3250,1,5,0)
- ;;=5^Chondromalacia
- ;;^UTILITY(U,$J,358.3,3250,2)
- ;;=^186943
- ;;^UTILITY(U,$J,358.3,3251,0)
- ;;=700.^^33^275^12
- ;;^UTILITY(U,$J,358.3,3251,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3251,1,4,0)
- ;;=4^700.
- ;;^UTILITY(U,$J,358.3,3251,1,5,0)
- ;;=5^Corns And Callouses
- ;;^UTILITY(U,$J,358.3,3251,2)
- ;;=^18351
- ;;^UTILITY(U,$J,358.3,3252,0)
- ;;=733.6^^33^275^13
- ;;^UTILITY(U,$J,358.3,3252,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3252,1,4,0)
- ;;=4^733.6
- ;;^UTILITY(U,$J,358.3,3252,1,5,0)
- ;;=5^Costochondritis
- ;;^UTILITY(U,$J,358.3,3252,2)
- ;;=^119586
- ;;^UTILITY(U,$J,358.3,3253,0)
- ;;=729.82^^33^275^14
- ;;^UTILITY(U,$J,358.3,3253,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3253,1,4,0)
- ;;=4^729.82
- ;;^UTILITY(U,$J,358.3,3253,1,5,0)
- ;;=5^Cramps Of Limb Muscles
- ;;^UTILITY(U,$J,358.3,3253,2)
- ;;=^29062
- ;;^UTILITY(U,$J,358.3,3254,0)
- ;;=737.9^^33^275^15
- ;;^UTILITY(U,$J,358.3,3254,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3254,1,4,0)
- ;;=4^737.9
- ;;^UTILITY(U,$J,358.3,3254,1,5,0)
- ;;=5^Curvature Of Spine
- ;;^UTILITY(U,$J,358.3,3254,2)
- ;;=^123799
- ;;^UTILITY(U,$J,358.3,3255,0)
- ;;=728.6^^33^275^28
- ;;^UTILITY(U,$J,358.3,3255,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3255,1,4,0)
- ;;=4^728.6
- ;;^UTILITY(U,$J,358.3,3255,1,5,0)
- ;;=5^Dupuytren's Contracture
- ;;^UTILITY(U,$J,358.3,3255,2)
- ;;=^28077
- ;;^UTILITY(U,$J,358.3,3256,0)
- ;;=719.00^^33^275^36
- ;;^UTILITY(U,$J,358.3,3256,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3256,1,4,0)
- ;;=4^719.00
- ;;^UTILITY(U,$J,358.3,3256,1,5,0)
- ;;=5^Joint Effusion
- ;;^UTILITY(U,$J,358.3,3256,2)
- ;;=^38674
+ ;;^DIC(358.4,0,"GL")
+ ;;=^IBE(358.4,
+ ;;^DIC("B","IMP/EXP SELECTION GROUP",358.4)
+ ;;=
+ ;;^DIC(358.4,"%D",0)
+ ;;=^^4^4^2940217^
+ ;;^DIC(358.4,"%D",1,0)
+ ;;= 
+ ;;^DIC(358.4,"%D",2,0)
+ ;;=This file is nearly identical to file #357.4. It is used by the
+ ;;^DIC(358.4,"%D",3,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.4,"%D",4,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.4,0)
+ ;;=FIELD^^.04^4
+ ;;^DD(358.4,0,"DDA")
+ ;;=N
+ ;;^DD(358.4,0,"DT")
+ ;;=2950717
+ ;;^DD(358.4,0,"ID",.02)
+ ;;=W "   ",$P(^(0),U,2)
+ ;;^DD(358.4,0,"ID",.03)
+ ;;=S %I=Y,Y=$S('$D(^(0)):"",$D(^IBE(358.2,+$P(^(0),U,3),0))#2:$P(^(0),U,1),1:""),C=$P(^DD(358.2,.01,0),U,2) D Y^DIQ:Y]"" W "   ",Y,@("$E("_DIC_"%I,0),0)") S Y=%I K %I
+ ;;^DD(358.4,0,"IX","APO",358.4,.02)
+ ;;=
+ ;;^DD(358.4,0,"IX","APO1",358.4,.03)
+ ;;=
+ ;;^DD(358.4,0,"IX","B",358.4,.01)
+ ;;=
+ ;;^DD(358.4,0,"IX","D",358.4,.03)
+ ;;=
+ ;;^DD(358.4,0,"NM","IMP/EXP SELECTION GROUP")
+ ;;=
+ ;;^DD(358.4,0,"PT",358.3,.04)
+ ;;=
+ ;;^DD(358.4,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.4,.01,0)
+ ;;=HEADER^RF^^0;1^K:$L(X)>40!($L(X)<1) X
+ ;;^DD(358.4,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.4,.01,1,1,0)
+ ;;=358.4^B
+ ;;^DD(358.4,.01,1,1,1)
+ ;;=S ^IBE(358.4,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.4,.01,1,1,2)
+ ;;=K ^IBE(358.4,"B",$E(X,1,30),DA)
+ ;;^DD(358.4,.01,3)
+ ;;=What text do you want to appear at the top of this group?
+ ;;^DD(358.4,.01,21,0)
+ ;;=^^2^2^2930604^^^^
+ ;;^DD(358.4,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.4,.01,21,2,0)
+ ;;=The name given to a group of selections appearing on a selection list.
+ ;;^DD(358.4,.01,"DEL",1,0)
+ ;;=I '$G(IBLISTPR) W "...Selection Groups can only be deleted through the Encounter Form Utilities!"
+ ;;^DD(358.4,.01,"DT")
+ ;;=2930604

@@ -1,7 +1,16 @@
-RORX016C ;HCIOFO/BH,SG - OUTPATIENT UTILIZATION (STORE) ; 9/14/05 9:43am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+RORX016C ;HCIOFO/BH,SG - OUTPATIENT UTILIZATION (STORE) ;9/14/05 9:43am
+ ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
  ;
  Q
+ ;
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
+ ;                                      additional identifier option selected
+ ;******************************************************************************
  ;
  ;***** HIGHEST UTILIZATION
  ;
@@ -41,6 +50,8 @@ HIGHUTIL(PRNTELMT,RORNODE) ;
  . . . . D ADDVAL^RORTSK11(RORTSK,"NV",+$P(BUF,U,4),ITEM,3)
  . . . . D ADDVAL^RORTSK11(RORTSK,"NSC",NUM,ITEM,3)
  . . . . D ADDVAL^RORTSK11(RORTSK,"NDS",+$P(BUF,U,2),ITEM,3)
+ . . . . I $$PARAM^RORTSK01("PATIENTS","ICN") D
+ . . . . . D ADDVAL^RORTSK11(RORTSK,"ICN",$P(BUF,U,5),ITEM,1)
  ;--- Disable the empty section
  D:RORTCNT'>0 UPDVAL^RORTSK11(RORTSK,SECTION,"",,1)
  Q 0

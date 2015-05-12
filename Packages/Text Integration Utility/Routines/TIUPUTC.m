@@ -1,5 +1,5 @@
-TIUPUTC ; SLC/JER - Document filer - captioned header ;5/20/05
- ;;1.0;TEXT INTEGRATION UTILITIES;**3,21,81,100,113,112,173,184**;Jun 20, 1997
+TIUPUTC ; SLC/JER - Document filer - captioned header ; 2/15/13 9:05am
+ ;;1.0;TEXT INTEGRATION UTILITIES;**3,21,81,100,113,112,173,184,277**;Jun 20, 1997;Build 6
  ;
 MAIN ; ---- Controls branching.
  ;      Attempts to file upload documents in the target file.
@@ -72,7 +72,8 @@ STUFREC(HEADER,RECORD) ; ---- Stuffs record with known fixed fields;
  S TIUI=0
  F  S TIUI=$O(HEADER(TIUI)) Q:+TIUI'>0  D
  . ; if field is Author/Dictator and title is OPERATION REPORT, ignore uploaded data *173
- . I (TIUI=1202!(TIUI=1209)),TIUREC("TYPE")=$$CHKFILE^TIUADCL(8925.1,"OPERATION REPORT","I $P(^(0),U,4)=""DOC""") S @FDARR@(1303)="U" Q
+ . ; *277 VMP/DJH Allow 1202/1209 to file if addendum
+ . I '+$$ISADDNDM^TIULC1(+RECORD("#")),(TIUI=1202!(TIUI=1209)),TIUREC("TYPE")=$$CHKFILE^TIUADCL(8925.1,"OPERATION REPORT","I $P(^(0),U,4)=""DOC""") S @FDARR@(1303)="U" Q
  . S:TIUI'=.001 @FDARR@(TIUI)=$$TRNSFRM^TIULX(.RECORD,TIUI,HEADER(TIUI))
  I $D(FDA) D FILE^DIE(FLAGS,"FDA","TIUMSG")
  I $D(TIUMSG) D

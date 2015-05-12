@@ -1,138 +1,358 @@
-IBDEI0IB ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI0IB ; ; 19-NOV-2014
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8920,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8920,1,4,0)
- ;;=4^BCC Skin,Arm/Shoulder
- ;;^UTILITY(U,$J,358.3,8920,1,5,0)
- ;;=5^173.61
- ;;^UTILITY(U,$J,358.3,8920,2)
- ;;=^340482
- ;;^UTILITY(U,$J,358.3,8921,0)
- ;;=173.62^^61^628^19
- ;;^UTILITY(U,$J,358.3,8921,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8921,1,4,0)
- ;;=4^SCC Skin,Arm/Shoulder
- ;;^UTILITY(U,$J,358.3,8921,1,5,0)
- ;;=5^173.62
- ;;^UTILITY(U,$J,358.3,8921,2)
- ;;=^340483
- ;;^UTILITY(U,$J,358.3,8922,0)
- ;;=173.71^^61^628^5
- ;;^UTILITY(U,$J,358.3,8922,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8922,1,4,0)
- ;;=4^BCC Skin,Leg/Hip
- ;;^UTILITY(U,$J,358.3,8922,1,5,0)
- ;;=5^173.71
- ;;^UTILITY(U,$J,358.3,8922,2)
- ;;=^340485
- ;;^UTILITY(U,$J,358.3,8923,0)
- ;;=173.72^^61^628^23
- ;;^UTILITY(U,$J,358.3,8923,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8923,1,4,0)
- ;;=4^SCC Skin,Leg/Hip
- ;;^UTILITY(U,$J,358.3,8923,1,5,0)
- ;;=5^173.72
- ;;^UTILITY(U,$J,358.3,8923,2)
- ;;=^340486
- ;;^UTILITY(U,$J,358.3,8924,0)
- ;;=239.2^^61^628^9
- ;;^UTILITY(U,$J,358.3,8924,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8924,1,4,0)
- ;;=4^Bone/Skin Neoplasm NOS
- ;;^UTILITY(U,$J,358.3,8924,1,5,0)
- ;;=5^239.2
- ;;^UTILITY(U,$J,358.3,8924,2)
- ;;=^267783
- ;;^UTILITY(U,$J,358.3,8925,0)
- ;;=172.0^^61^629^6
- ;;^UTILITY(U,$J,358.3,8925,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8925,1,4,0)
- ;;=4^ Melanoma Of Lip
- ;;^UTILITY(U,$J,358.3,8925,1,5,0)
- ;;=5^172.0
- ;;^UTILITY(U,$J,358.3,8925,2)
- ;;=Malig Melanoma of Lip^267175
- ;;^UTILITY(U,$J,358.3,8926,0)
- ;;=172.1^^61^629^3
- ;;^UTILITY(U,$J,358.3,8926,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8926,1,4,0)
- ;;=4^ Melanoma Of Eyelid
- ;;^UTILITY(U,$J,358.3,8926,1,5,0)
- ;;=5^172.1
- ;;^UTILITY(U,$J,358.3,8926,2)
- ;;=Malig Melanoma of Eyelid^267176
- ;;^UTILITY(U,$J,358.3,8927,0)
- ;;=172.2^^61^629^2
- ;;^UTILITY(U,$J,358.3,8927,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8927,1,4,0)
- ;;=4^ Melanoma Of Ear
- ;;^UTILITY(U,$J,358.3,8927,1,5,0)
- ;;=5^172.2
- ;;^UTILITY(U,$J,358.3,8927,2)
- ;;=Malig Melanoma of Ear^267177
- ;;^UTILITY(U,$J,358.3,8928,0)
- ;;=172.3^^61^629^4
- ;;^UTILITY(U,$J,358.3,8928,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8928,1,4,0)
- ;;=4^ Melanoma Of Face
- ;;^UTILITY(U,$J,358.3,8928,1,5,0)
- ;;=5^172.3
- ;;^UTILITY(U,$J,358.3,8928,2)
- ;;=Malig Melanoma of Face^267178
- ;;^UTILITY(U,$J,358.3,8929,0)
- ;;=172.4^^61^629^7
- ;;^UTILITY(U,$J,358.3,8929,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8929,1,4,0)
- ;;=4^ Melanoma Of Neck/Scalp
- ;;^UTILITY(U,$J,358.3,8929,1,5,0)
- ;;=5^172.4
- ;;^UTILITY(U,$J,358.3,8929,2)
- ;;=Malignant Melanoma of Neck^267179
- ;;^UTILITY(U,$J,358.3,8930,0)
- ;;=172.5^^61^629^9
- ;;^UTILITY(U,$J,358.3,8930,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8930,1,4,0)
- ;;=4^ Melanoma Of Trunk
- ;;^UTILITY(U,$J,358.3,8930,1,5,0)
- ;;=5^172.5
- ;;^UTILITY(U,$J,358.3,8930,2)
- ;;=Malignant Melanoma of Trunk^267180
- ;;^UTILITY(U,$J,358.3,8931,0)
- ;;=172.6^^61^629^1
- ;;^UTILITY(U,$J,358.3,8931,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8931,1,4,0)
- ;;=4^ Melanoma Of Arm/Shoulder
- ;;^UTILITY(U,$J,358.3,8931,1,5,0)
- ;;=5^172.6
- ;;^UTILITY(U,$J,358.3,8931,2)
- ;;=Malignant Melanoma of Arm^267181
- ;;^UTILITY(U,$J,358.3,8932,0)
- ;;=172.7^^61^629^5
- ;;^UTILITY(U,$J,358.3,8932,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8932,1,4,0)
- ;;=4^ Melanoma Of Leg/Hip
- ;;^UTILITY(U,$J,358.3,8932,1,5,0)
- ;;=5^172.7
- ;;^UTILITY(U,$J,358.3,8932,2)
- ;;=Malignant Melanoma of Leg^267182
- ;;^UTILITY(U,$J,358.3,8933,0)
- ;;=172.8^^61^629^8
- ;;^UTILITY(U,$J,358.3,8933,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8933,1,4,0)
- ;;=4^ Melanoma Of Skin
+ ;;^UTILITY(U,$J,358.3,24745,1,3,0)
+ ;;=3^486.
+ ;;^UTILITY(U,$J,358.3,24745,1,4,0)
+ ;;=4^Pneumonia,Organism Unspec
+ ;;^UTILITY(U,$J,358.3,24745,2)
+ ;;=Atypical Pneumonia^95632
+ ;;^UTILITY(U,$J,358.3,24746,0)
+ ;;=482.9^^130^1469^6
+ ;;^UTILITY(U,$J,358.3,24746,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24746,1,3,0)
+ ;;=3^482.9
+ ;;^UTILITY(U,$J,358.3,24746,1,4,0)
+ ;;=4^Bacterial Pneumonia,Unspec
+ ;;^UTILITY(U,$J,358.3,24746,2)
+ ;;=Bacterial Pneumonia^12347
+ ;;^UTILITY(U,$J,358.3,24747,0)
+ ;;=466.19^^130^1469^1
+ ;;^UTILITY(U,$J,358.3,24747,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24747,1,3,0)
+ ;;=3^466.19
+ ;;^UTILITY(U,$J,358.3,24747,1,4,0)
+ ;;=4^Acute Bronchiolitis
+ ;;^UTILITY(U,$J,358.3,24747,2)
+ ;;=Acute Bronchiolitis^304310
+ ;;^UTILITY(U,$J,358.3,24748,0)
+ ;;=491.21^^130^1469^9
+ ;;^UTILITY(U,$J,358.3,24748,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24748,1,3,0)
+ ;;=3^491.21
+ ;;^UTILITY(U,$J,358.3,24748,1,4,0)
+ ;;=4^COPD with Chronic Bronchitis, Acute exacerbation
+ ;;^UTILITY(U,$J,358.3,24748,2)
+ ;;=COPD with Chronic Bronchitis, Acute exacerbation^269954
+ ;;^UTILITY(U,$J,358.3,24749,0)
+ ;;=491.20^^130^1469^10
+ ;;^UTILITY(U,$J,358.3,24749,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24749,1,3,0)
+ ;;=3^491.20
+ ;;^UTILITY(U,$J,358.3,24749,1,4,0)
+ ;;=4^COPD with Chronic Bronchitis, Stable
+ ;;^UTILITY(U,$J,358.3,24749,2)
+ ;;=COPD with Chronic Bronchitis, Stable^269953
+ ;;^UTILITY(U,$J,358.3,24750,0)
+ ;;=116.0^^130^1469^13
+ ;;^UTILITY(U,$J,358.3,24750,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24750,1,3,0)
+ ;;=3^116.0
+ ;;^UTILITY(U,$J,358.3,24750,1,4,0)
+ ;;=4^Fungus, Blastomycosis
+ ;;^UTILITY(U,$J,358.3,24750,2)
+ ;;=Blastomycosis^15213
+ ;;^UTILITY(U,$J,358.3,24751,0)
+ ;;=117.5^^130^1469^15
+ ;;^UTILITY(U,$J,358.3,24751,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24751,1,3,0)
+ ;;=3^117.5
+ ;;^UTILITY(U,$J,358.3,24751,1,4,0)
+ ;;=4^Fungus, Cryptococcosis
+ ;;^UTILITY(U,$J,358.3,24751,2)
+ ;;=Cryptococcosis^29608
+ ;;^UTILITY(U,$J,358.3,24752,0)
+ ;;=117.3^^130^1469^12
+ ;;^UTILITY(U,$J,358.3,24752,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24752,1,3,0)
+ ;;=3^117.3
+ ;;^UTILITY(U,$J,358.3,24752,1,4,0)
+ ;;=4^Fungus, Aspergillosis
+ ;;^UTILITY(U,$J,358.3,24752,2)
+ ;;=Aspergillosis^10935
+ ;;^UTILITY(U,$J,358.3,24753,0)
+ ;;=115.95^^130^1469^16
+ ;;^UTILITY(U,$J,358.3,24753,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24753,1,3,0)
+ ;;=3^115.95
+ ;;^UTILITY(U,$J,358.3,24753,1,4,0)
+ ;;=4^Fungus, Histoplasmosis Pneumonia
+ ;;^UTILITY(U,$J,358.3,24753,2)
+ ;;=Histoplasmosis Pneumonia^266908
+ ;;^UTILITY(U,$J,358.3,24754,0)
+ ;;=114.5^^130^1469^14
+ ;;^UTILITY(U,$J,358.3,24754,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24754,1,3,0)
+ ;;=3^114.5
+ ;;^UTILITY(U,$J,358.3,24754,1,4,0)
+ ;;=4^Fungus, Coccidiomycosis
+ ;;^UTILITY(U,$J,358.3,24754,2)
+ ;;=Coccidiomycosis^295703
+ ;;^UTILITY(U,$J,358.3,24755,0)
+ ;;=491.1^^130^1469^25
+ ;;^UTILITY(U,$J,358.3,24755,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24755,1,3,0)
+ ;;=3^491.1
+ ;;^UTILITY(U,$J,358.3,24755,1,4,0)
+ ;;=4^Mucopurulent Chronic Bronchitis
+ ;;^UTILITY(U,$J,358.3,24755,2)
+ ;;=Mucopurulent Chronic Bronchitis^269949
+ ;;^UTILITY(U,$J,358.3,24756,0)
+ ;;=491.0^^130^1469^56
+ ;;^UTILITY(U,$J,358.3,24756,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24756,1,3,0)
+ ;;=3^491.0
+ ;;^UTILITY(U,$J,358.3,24756,1,4,0)
+ ;;=4^Simple Chronic Bronchitis
+ ;;^UTILITY(U,$J,358.3,24756,2)
+ ;;=Simple Chronic Bronchitis^269946
+ ;;^UTILITY(U,$J,358.3,24757,0)
+ ;;=079.99^^130^1469^64
+ ;;^UTILITY(U,$J,358.3,24757,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24757,1,3,0)
+ ;;=3^079.99
+ ;;^UTILITY(U,$J,358.3,24757,1,4,0)
+ ;;=4^Viral Infection
+ ;;^UTILITY(U,$J,358.3,24757,2)
+ ;;=Viral Infection^295798
+ ;;^UTILITY(U,$J,358.3,24758,0)
+ ;;=480.9^^130^1469^65
+ ;;^UTILITY(U,$J,358.3,24758,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24758,1,3,0)
+ ;;=3^480.9
+ ;;^UTILITY(U,$J,358.3,24758,1,4,0)
+ ;;=4^Viral Pneumonia NOS
+ ;;^UTILITY(U,$J,358.3,24758,2)
+ ;;=Viral Pneumonia^95657
+ ;;^UTILITY(U,$J,358.3,24759,0)
+ ;;=477.9^^130^1469^4
+ ;;^UTILITY(U,$J,358.3,24759,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24759,1,3,0)
+ ;;=3^477.9
+ ;;^UTILITY(U,$J,358.3,24759,1,4,0)
+ ;;=4^Allergic Rhinitis
+ ;;^UTILITY(U,$J,358.3,24759,2)
+ ;;=Allergic Rhinitis^4955
+ ;;^UTILITY(U,$J,358.3,24760,0)
+ ;;=460.^^130^1469^11
+ ;;^UTILITY(U,$J,358.3,24760,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24760,1,3,0)
+ ;;=3^460.
+ ;;^UTILITY(U,$J,358.3,24760,1,4,0)
+ ;;=4^Common Cold
+ ;;^UTILITY(U,$J,358.3,24760,2)
+ ;;=Common Cold^26543
+ ;;^UTILITY(U,$J,358.3,24761,0)
+ ;;=464.00^^130^1469^21
+ ;;^UTILITY(U,$J,358.3,24761,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24761,1,3,0)
+ ;;=3^464.00
+ ;;^UTILITY(U,$J,358.3,24761,1,4,0)
+ ;;=4^Laryngitis, Acute
+ ;;^UTILITY(U,$J,358.3,24761,2)
+ ;;=Laryngitis, Acute^323469
+ ;;^UTILITY(U,$J,358.3,24762,0)
+ ;;=464.20^^130^1469^22
+ ;;^UTILITY(U,$J,358.3,24762,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24762,1,3,0)
+ ;;=3^464.20
+ ;;^UTILITY(U,$J,358.3,24762,1,4,0)
+ ;;=4^Laryngotracheitis, Acute
+ ;;^UTILITY(U,$J,358.3,24762,2)
+ ;;=Laryngotracheitis, Acute^269869
+ ;;^UTILITY(U,$J,358.3,24763,0)
+ ;;=380.22^^130^1469^29
+ ;;^UTILITY(U,$J,358.3,24763,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24763,1,3,0)
+ ;;=3^380.22
+ ;;^UTILITY(U,$J,358.3,24763,1,4,0)
+ ;;=4^Otitis Externa
+ ;;^UTILITY(U,$J,358.3,24763,2)
+ ;;=Otitis Externa^269352
+ ;;^UTILITY(U,$J,358.3,24764,0)
+ ;;=382.9^^130^1469^30
+ ;;^UTILITY(U,$J,358.3,24764,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24764,1,3,0)
+ ;;=3^382.9
+ ;;^UTILITY(U,$J,358.3,24764,1,4,0)
+ ;;=4^Otitis Media
+ ;;^UTILITY(U,$J,358.3,24764,2)
+ ;;=Otitis Media^123967
+ ;;^UTILITY(U,$J,358.3,24765,0)
+ ;;=462.^^130^1469^31
+ ;;^UTILITY(U,$J,358.3,24765,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24765,1,3,0)
+ ;;=3^462.
+ ;;^UTILITY(U,$J,358.3,24765,1,4,0)
+ ;;=4^Pharyngitis
+ ;;^UTILITY(U,$J,358.3,24765,2)
+ ;;=Pharyngitis^2653
+ ;;^UTILITY(U,$J,358.3,24766,0)
+ ;;=461.9^^130^1469^57
+ ;;^UTILITY(U,$J,358.3,24766,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24766,1,3,0)
+ ;;=3^461.9
+ ;;^UTILITY(U,$J,358.3,24766,1,4,0)
+ ;;=4^Sinusitis, Acute
+ ;;^UTILITY(U,$J,358.3,24766,2)
+ ;;=Sinusitis, Acute^259080
+ ;;^UTILITY(U,$J,358.3,24767,0)
+ ;;=473.9^^130^1469^58
+ ;;^UTILITY(U,$J,358.3,24767,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24767,1,3,0)
+ ;;=3^473.9
+ ;;^UTILITY(U,$J,358.3,24767,1,4,0)
+ ;;=4^Sinusitis, Chronic
+ ;;^UTILITY(U,$J,358.3,24767,2)
+ ;;=Sinusitis, Chronic^123985
+ ;;^UTILITY(U,$J,358.3,24768,0)
+ ;;=463.^^130^1469^62
+ ;;^UTILITY(U,$J,358.3,24768,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24768,1,3,0)
+ ;;=3^463.
+ ;;^UTILITY(U,$J,358.3,24768,1,4,0)
+ ;;=4^Tonsillitis, Acute
+ ;;^UTILITY(U,$J,358.3,24768,2)
+ ;;=Tonsillitis, Acute^2695
+ ;;^UTILITY(U,$J,358.3,24769,0)
+ ;;=465.9^^130^1469^63
+ ;;^UTILITY(U,$J,358.3,24769,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24769,1,3,0)
+ ;;=3^465.9
+ ;;^UTILITY(U,$J,358.3,24769,1,4,0)
+ ;;=4^URI
+ ;;^UTILITY(U,$J,358.3,24769,2)
+ ;;=URI^269878
+ ;;^UTILITY(U,$J,358.3,24770,0)
+ ;;=478.30^^130^1469^66
+ ;;^UTILITY(U,$J,358.3,24770,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24770,1,3,0)
+ ;;=3^478.30
+ ;;^UTILITY(U,$J,358.3,24770,1,4,0)
+ ;;=4^Vocal Cord Paralysis
+ ;;^UTILITY(U,$J,358.3,24770,2)
+ ;;=Vocal Cord Paralysis^127133
+ ;;^UTILITY(U,$J,358.3,24771,0)
+ ;;=018.90^^130^1469^24
+ ;;^UTILITY(U,$J,358.3,24771,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24771,1,3,0)
+ ;;=3^018.90
+ ;;^UTILITY(U,$J,358.3,24771,1,4,0)
+ ;;=4^Miliary TB
+ ;;^UTILITY(U,$J,358.3,24771,2)
+ ;;=^122716
+ ;;^UTILITY(U,$J,358.3,24772,0)
+ ;;=137.0^^130^1469^28
+ ;;^UTILITY(U,$J,358.3,24772,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24772,1,3,0)
+ ;;=3^137.0
+ ;;^UTILITY(U,$J,358.3,24772,1,4,0)
+ ;;=4^Old TB
+ ;;^UTILITY(U,$J,358.3,24772,2)
+ ;;=Late Effect of TB^266974
+ ;;^UTILITY(U,$J,358.3,24773,0)
+ ;;=010.00^^130^1469^55
+ ;;^UTILITY(U,$J,358.3,24773,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24773,1,3,0)
+ ;;=3^010.00
+ ;;^UTILITY(U,$J,358.3,24773,1,4,0)
+ ;;=4^Primary TB Infection
+ ;;^UTILITY(U,$J,358.3,24773,2)
+ ;;=^265990
+ ;;^UTILITY(U,$J,358.3,24774,0)
+ ;;=011.90^^130^1469^61
+ ;;^UTILITY(U,$J,358.3,24774,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24774,1,3,0)
+ ;;=3^011.90
+ ;;^UTILITY(U,$J,358.3,24774,1,4,0)
+ ;;=4^TB, Active
+ ;;^UTILITY(U,$J,358.3,24774,2)
+ ;;=TB, Active^122756
+ ;;^UTILITY(U,$J,358.3,24775,0)
+ ;;=010.10^^130^1469^60
+ ;;^UTILITY(U,$J,358.3,24775,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24775,1,3,0)
+ ;;=3^010.10
+ ;;^UTILITY(U,$J,358.3,24775,1,4,0)
+ ;;=4^TB Pleurisy
+ ;;^UTILITY(U,$J,358.3,24775,2)
+ ;;=TB Pleurisy^265999
+ ;;^UTILITY(U,$J,358.3,24776,0)
+ ;;=491.22^^130^1469^8
+ ;;^UTILITY(U,$J,358.3,24776,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24776,1,3,0)
+ ;;=3^491.22
+ ;;^UTILITY(U,$J,358.3,24776,1,4,0)
+ ;;=4^COPD with Acute Bronchitis
+ ;;^UTILITY(U,$J,358.3,24776,2)
+ ;;=^331455
+ ;;^UTILITY(U,$J,358.3,24777,0)
+ ;;=795.51^^130^1469^54
+ ;;^UTILITY(U,$J,358.3,24777,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24777,1,3,0)
+ ;;=3^795.51
+ ;;^UTILITY(U,$J,358.3,24777,1,4,0)
+ ;;=4^Positive PPD
+ ;;^UTILITY(U,$J,358.3,24777,2)
+ ;;=^340572
+ ;;^UTILITY(U,$J,358.3,24778,0)
+ ;;=031.9^^130^1469^5
+ ;;^UTILITY(U,$J,358.3,24778,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24778,1,3,0)
+ ;;=3^031.9
+ ;;^UTILITY(U,$J,358.3,24778,1,4,0)
+ ;;=4^Atypical Mycobacteria
+ ;;^UTILITY(U,$J,358.3,24778,2)
+ ;;=^123817
+ ;;^UTILITY(U,$J,358.3,24779,0)
+ ;;=480.0^^130^1469^33
+ ;;^UTILITY(U,$J,358.3,24779,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24779,1,3,0)
+ ;;=3^480.0
+ ;;^UTILITY(U,$J,358.3,24779,1,4,0)
+ ;;=4^Pneumonia d/t Adenovirus
+ ;;^UTILITY(U,$J,358.3,24779,2)
+ ;;=^269928
+ ;;^UTILITY(U,$J,358.3,24780,0)
+ ;;=480.1^^130^1469^48
+ ;;^UTILITY(U,$J,358.3,24780,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24780,1,3,0)
+ ;;=3^480.1
+ ;;^UTILITY(U,$J,358.3,24780,1,4,0)
+ ;;=4^Pneumonia d/t Resp Syncyt Virus

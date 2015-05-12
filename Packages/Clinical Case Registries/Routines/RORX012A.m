@@ -1,5 +1,5 @@
 RORX012A ;HOIFO/SG,VAC - COMBINED MEDS AND LABS (QUERY & STORE) ;4/7/09 2:09pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -16,7 +16,8 @@ RORX012A ;HOIFO/SG,VAC - COMBINED MEDS AND LABS (QUERY & STORE) ;4/7/09 2:09pm
  ;ROR*1.5*13   DEC  2010   A SAUNDERS   User can select specific patients,
  ;                                      clinics, or divisions for the report.
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
- ;                                      
+ ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
+ ;                                       requested.
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -72,6 +73,7 @@ QUERY(FLAGS,NSPT) ;
  N RORCDLIST     ; Flag to indicate whether a clinic or division list exists
  N RORCDSTDT     ; Start date for clinic/division utilization search
  N RORCDENDT     ; End date for clinic/division utilization search
+ N RORICN        ; National ICN
  ;
  N CNT,ECNT,IEN,IENS,LTEDT,LTSDT,PATIEN,RC,RXEDT,SKIP,SKIPEDT,SKIPSDT,TMP,UTEDT,UTIL,UTSDT,VA,VADM,XREFNODE
  N RCC,FLAG
@@ -172,8 +174,9 @@ QUERY(FLAGS,NSPT) ;
  . ;
  . ;--- Get and store the patient's data
  . D VADEM^RORUTL05(PATIEN,1)
+ . S RORICN=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PATIEN),1:"")
  . S TMP=$$DATE^RORXU002(VADM(6)\1)
- . S ^TMP("RORX012",$J,"PAT",PATIEN)=VA("BID")_U_VADM(1)_U_TMP
+ . S ^TMP("RORX012",$J,"PAT",PATIEN)=VA("BID")_U_VADM(1)_U_TMP_U_RORICN
  . S NSPT=NSPT+1
  ;
  ;---
@@ -206,7 +209,7 @@ RXSCB(ROR8DST,ORDER,ORDFLG,DRUG,DATE) ;
  ;       >0  Number of non-fatal errors
  ;
 STORE(REPORT,NSPT) ;
- N CNT,DATE,DFN,DOD,ECNT,IEN,ITEM,LAST4,LTLST,NAME,NODE,PTCNT,PTLST,PTNAME,RC,RXLST,TMP,VAL
+ N CNT,DATE,DFN,DOD,ECNT,ICN,IEN,ITEM,LAST4,LTLST,NAME,NODE,PTCNT,PTLST,PTNAME,RC,RXLST,TMP,VAL
  S (ECNT,RC)=0,(LTLST,PTLST,RXLST)=-1
  ;--- Force the "patient data" note in the output
  D ADDVAL^RORTSK11(RORTSK,"PATIENT",,REPORT)
@@ -230,7 +233,7 @@ STORE(REPORT,NSPT) ;
  . S CNT=CNT+1,NODE=$NA(^TMP("RORX012",$J,"PAT",DFN))
  . ;--- Patient's data
  . S TMP=$G(@NODE)
- . S LAST4=$P(TMP,U),PTNAME=$P(TMP,U,2),DOD=$P(TMP,U,3)
+ . S LAST4=$P(TMP,U),PTNAME=$P(TMP,U,2),DOD=$P(TMP,U,3),ICN=$P(TMP,U,4)
  . ;--- Patient list
  . S TMP=$S(LTLST<0:1,1:$D(@NODE@("LR"))<10)
  . I TMP,$S(RXLST<0:1,1:$D(@NODE@("RX"))<10)  D  Q
@@ -238,6 +241,7 @@ STORE(REPORT,NSPT) ;
  . . D ADDVAL^RORTSK11(RORTSK,"NAME",PTNAME,ITEM,1)
  . . D ADDVAL^RORTSK11(RORTSK,"LAST4",LAST4,ITEM,2)
  . . D ADDVAL^RORTSK11(RORTSK,"DOD",DOD,ITEM,1)
+ . . I $$PARAM^RORTSK01("PATIENTS","ICN") D ADDVAL^RORTSK11(RORTSK,"ICN",ICN,ITEM,1)
  . . S PTCNT=PTCNT+1
  . ;--- List of Lab tests
  . S DATE=""
@@ -250,6 +254,7 @@ STORE(REPORT,NSPT) ;
  . . . . D ADDVAL^RORTSK11(RORTSK,"NAME",PTNAME,ITEM,1)
  . . . . D ADDVAL^RORTSK11(RORTSK,"LAST4",LAST4,ITEM,2)
  . . . . D ADDVAL^RORTSK11(RORTSK,"DOD",DOD,ITEM,1)
+ . . . . I $$PARAM^RORTSK01("PATIENTS","ICN") D ADDVAL^RORTSK11(RORTSK,"ICN",ICN,ITEM,1)
  . . . . D ADDVAL^RORTSK11(RORTSK,"DATE",DATE\1,ITEM,1)
  . . . . D ADDVAL^RORTSK11(RORTSK,"LTNAME",NAME,ITEM,1)
  . . . . S VAL=$G(@NODE@("LR",DATE,NAME,IEN))
@@ -262,6 +267,7 @@ STORE(REPORT,NSPT) ;
  . . D ADDVAL^RORTSK11(RORTSK,"NAME",PTNAME,ITEM,1)
  . . D ADDVAL^RORTSK11(RORTSK,"LAST4",LAST4,ITEM,2)
  . . D ADDVAL^RORTSK11(RORTSK,"DOD",DOD,ITEM,1)
+ . . I $$PARAM^RORTSK01("PATIENTS","ICN") D ADDVAL^RORTSK11(RORTSK,"ICN",ICN,ITEM,1)
  . . D ADDVAL^RORTSK11(RORTSK,"RXNAME",NAME,ITEM,1)
  ;--- Inactivate the patient list tag if the list is empty
  D:PTCNT'>0 UPDVAL^RORTSK11(RORTSK,PTLST,,,1)

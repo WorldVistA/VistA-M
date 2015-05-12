@@ -1,6 +1,6 @@
 PSBOPM1 ;BIRMINGHAM/BSR-BCMA OIT HISTORY API ;Oct 2005
- ;;3.0;BAR CODE MED ADMIN;**17**;Mar 2004;Build 1
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.0;BAR CODE MED ADMIN;**17,81**;Mar 2004;Build 6
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference/IA
  ; FILE 53.79
@@ -11,7 +11,7 @@ PSBOPM1 ;BIRMINGHAM/BSR-BCMA OIT HISTORY API ;Oct 2005
  ;
 GETORD(PSBORDNM) ;
  N XA,NDE
- S PSBORD=0,XA=PSBORDNM,PSBDT="",NDE=.1
+ S PSBORD=0,XA=PSBORDNM,PSBDT=$P($G(PSBSTRT),"."),NDE=.1 ;start with orders from start date/time of report, PSB*3*81
  Q:PSBORDNM="" PSBORD
  Q:'$D(^PSB(53.79,"AOIP",DFN,XA)) PSBORD
  F  S PSBDT=$O(^PSB(53.79,"AOIP",DFN,XA,PSBDT)) Q:PSBDT=""  D

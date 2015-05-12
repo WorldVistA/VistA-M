@@ -1,5 +1,5 @@
 RORX019 ;BPOIFO/ACS - LIVER SCORE BY RANGE ;5/18/11 12:39pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19,21**;Feb 17, 2006;Build 45
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -14,6 +14,8 @@ RORX019 ;BPOIFO/ACS - LIVER SCORE BY RANGE ;5/18/11 12:39pm
  ;ROR*1.5*14   APR 2011    A SAUNDERS   Added APRI and FIB4 scores.
  ;ROR*1.5*15   MAY 2011    C RAY        Modified to exclude null tests
  ;ROR*1.5*19   FEB 2012    J SCOTT      Support for ICD-10 Coding System
+ ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
+ ;                                      additional identifier option selected
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -254,6 +256,9 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  I RORDATA("IDLST")[3 D ADDVAL^RORTSK11(RORTSK,"APRI",$G(RORDATA("SCORE",3)),PTAG,3)
  ;---  FIB-4 Score
  I RORDATA("IDLST")[4 D ADDVAL^RORTSK11(RORTSK,"FIB4",$G(RORDATA("SCORE",4)),PTAG,3)
+ I $$PARAM^RORTSK01("PATIENTS","ICN") D
+ . S TMP=$$ICN^RORUTL02(DFN)
+ . D ADDVAL^RORTSK11(RORTSK,"ICN",TMP,PTAG,1)
  Q ($S($G(TTAG)<0:TTAG,1:1))
  ;
  ;*****************************************************
@@ -355,7 +360,7 @@ HEADER(PARTAG,PARAMS) ;
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
  Q:HEADER<0 HEADER
  ;manually build the table defintion(s) listed below
- ;PATIENTS(#,NAME,LAST4,DOD,TEST,DATE,RESULT,MELD,MELDNA,APRI,FIB4)
+ ;PATIENTS(#,NAME,LAST4,DOD,TEST,DATE,RESULT,MELD,MELDNA,APRI,FIB4,ICN)
  S COLUMNS=$$ADDVAL^RORTSK11(RORTSK,"TBLDEF",,HEADER)
  D ADDATTR^RORTSK11(RORTSK,COLUMNS,"NAME","PATIENTS")
  D ADDATTR^RORTSK11(RORTSK,COLUMNS,"HEADER","1")
@@ -380,6 +385,9 @@ HEADER(PARTAG,PARAMS) ;
  I RORDATA("IDLST")[4 D
  . S TMP=$$ADDVAL^RORTSK11(RORTSK,"COLUMN",,COLUMNS)
  . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME","FIB4")
+ I $$PARAM^RORTSK01("PATIENTS","ICN") D
+ . S TMP=$$ADDVAL^RORTSK11(RORTSK,"COLUMN",,COLUMNS)
+ . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME","ICN")
  ;--- LOINC codes
  N LTAG S LTAG=$$ADDVAL^RORTSK11(RORTSK,"LOINC_CODES",,PARTAG)
  N CTAG S CTAG=$$ADDVAL^RORTSK11(RORTSK,"CODE",,LTAG)

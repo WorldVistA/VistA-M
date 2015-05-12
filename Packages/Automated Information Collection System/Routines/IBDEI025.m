@@ -1,136 +1,356 @@
-IBDEI025 ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI025 ; ; 09-FEB-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,571,0)
- ;;=64418^^8^59^23^^^^1
- ;;^UTILITY(U,$J,358.3,571,1,0)
+ ;;^UTILITY(U,$J,358.3,2467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,571,1,2,0)
- ;;=2^NERVE BLOCK SUPRASCAPULAR NERVE
- ;;^UTILITY(U,$J,358.3,571,1,4,0)
- ;;=4^64418
- ;;^UTILITY(U,$J,358.3,572,0)
- ;;=64400^^8^59^24^^^^1
- ;;^UTILITY(U,$J,358.3,572,1,0)
+ ;;^UTILITY(U,$J,358.3,2467,1,3,0)
+ ;;=3^Compl rotatr-cuff tear/ruptr of lft shldr, not trauma
+ ;;^UTILITY(U,$J,358.3,2467,1,4,0)
+ ;;=4^M75.122
+ ;;^UTILITY(U,$J,358.3,2467,2)
+ ;;=^5013249
+ ;;^UTILITY(U,$J,358.3,2468,0)
+ ;;=M66.821^^12^104^272
+ ;;^UTILITY(U,$J,358.3,2468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,572,1,2,0)
- ;;=2^NERVE BLOCK TRIGEMINAL,ANY DIVIS/BRANCH
- ;;^UTILITY(U,$J,358.3,572,1,4,0)
- ;;=4^64400
- ;;^UTILITY(U,$J,358.3,573,0)
- ;;=64408^^8^59^25^^^^1
- ;;^UTILITY(U,$J,358.3,573,1,0)
+ ;;^UTILITY(U,$J,358.3,2468,1,3,0)
+ ;;=3^Spont rptr of oth tendons, rt upper arm
+ ;;^UTILITY(U,$J,358.3,2468,1,4,0)
+ ;;=4^M66.821
+ ;;^UTILITY(U,$J,358.3,2468,2)
+ ;;=^5012896
+ ;;^UTILITY(U,$J,358.3,2469,0)
+ ;;=M66.822^^12^104^270
+ ;;^UTILITY(U,$J,358.3,2469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,573,1,2,0)
- ;;=2^NERVE BLOCK VAGUS NERVE
- ;;^UTILITY(U,$J,358.3,573,1,4,0)
- ;;=4^64408
- ;;^UTILITY(U,$J,358.3,574,0)
- ;;=64417^^8^59^1^^^^1
- ;;^UTILITY(U,$J,358.3,574,1,0)
+ ;;^UTILITY(U,$J,358.3,2469,1,3,0)
+ ;;=3^Spont rptr of oth tendons, lft upper arm
+ ;;^UTILITY(U,$J,358.3,2469,1,4,0)
+ ;;=4^M66.822
+ ;;^UTILITY(U,$J,358.3,2469,2)
+ ;;=^5133838
+ ;;^UTILITY(U,$J,358.3,2470,0)
+ ;;=M66.231^^12^104^259
+ ;;^UTILITY(U,$J,358.3,2470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,574,1,2,0)
- ;;=2^NERV BLOCK AXILLARY NERVE
- ;;^UTILITY(U,$J,358.3,574,1,4,0)
- ;;=4^64417
- ;;^UTILITY(U,$J,358.3,575,0)
- ;;=93503^^8^60^1^^^^1
- ;;^UTILITY(U,$J,358.3,575,1,0)
+ ;;^UTILITY(U,$J,358.3,2470,1,3,0)
+ ;;=3^Spont rptr of extensor tendons, rt forearm
+ ;;^UTILITY(U,$J,358.3,2470,1,4,0)
+ ;;=4^M66.231
+ ;;^UTILITY(U,$J,358.3,2470,2)
+ ;;=^5012854
+ ;;^UTILITY(U,$J,358.3,2471,0)
+ ;;=M66.232^^12^104^255
+ ;;^UTILITY(U,$J,358.3,2471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,575,1,2,0)
- ;;=2^INSERT SWAN GANZ CATH
- ;;^UTILITY(U,$J,358.3,575,1,4,0)
- ;;=4^93503
- ;;^UTILITY(U,$J,358.3,576,0)
- ;;=36556^^8^61^1^^^^1
- ;;^UTILITY(U,$J,358.3,576,1,0)
+ ;;^UTILITY(U,$J,358.3,2471,1,3,0)
+ ;;=3^Spont rptr of extensor tendons, lft forearm
+ ;;^UTILITY(U,$J,358.3,2471,1,4,0)
+ ;;=4^M66.232
+ ;;^UTILITY(U,$J,358.3,2471,2)
+ ;;=^5012855
+ ;;^UTILITY(U,$J,358.3,2472,0)
+ ;;=M66.241^^12^104^260
+ ;;^UTILITY(U,$J,358.3,2472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,576,1,2,0)
- ;;=2^INSERT CENTRAL VENOUS CATHETER
- ;;^UTILITY(U,$J,358.3,576,1,4,0)
- ;;=4^36556
- ;;^UTILITY(U,$J,358.3,577,0)
- ;;=62273^^8^62^1^^^^1
- ;;^UTILITY(U,$J,358.3,577,1,0)
+ ;;^UTILITY(U,$J,358.3,2472,1,3,0)
+ ;;=3^Spont rptr of extensor tendons, rt hand
+ ;;^UTILITY(U,$J,358.3,2472,1,4,0)
+ ;;=4^M66.241
+ ;;^UTILITY(U,$J,358.3,2472,2)
+ ;;=^5012857
+ ;;^UTILITY(U,$J,358.3,2473,0)
+ ;;=M66.242^^12^104^256
+ ;;^UTILITY(U,$J,358.3,2473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,577,1,2,0)
- ;;=2^INJ,EPIDURAL OF BLOOD/CLOT PATCH
- ;;^UTILITY(U,$J,358.3,577,1,4,0)
- ;;=4^62273
- ;;^UTILITY(U,$J,358.3,578,0)
- ;;=01850^^8^63^1^^^^1
- ;;^UTILITY(U,$J,358.3,578,1,0)
+ ;;^UTILITY(U,$J,358.3,2473,1,3,0)
+ ;;=3^Spont rptr of extensor tendons, lft hand
+ ;;^UTILITY(U,$J,358.3,2473,1,4,0)
+ ;;=4^M66.242
+ ;;^UTILITY(U,$J,358.3,2473,2)
+ ;;=^5012858
+ ;;^UTILITY(U,$J,358.3,2474,0)
+ ;;=M66.331^^12^104^266
+ ;;^UTILITY(U,$J,358.3,2474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,578,1,2,0)
- ;;=2^VENOUS ANGIO FOREARM/WRIST/HAND,ANESTH
- ;;^UTILITY(U,$J,358.3,578,1,4,0)
- ;;=4^01850
- ;;^UTILITY(U,$J,358.3,579,0)
- ;;=00104^^8^64^1^^^^1
- ;;^UTILITY(U,$J,358.3,579,1,0)
+ ;;^UTILITY(U,$J,358.3,2474,1,3,0)
+ ;;=3^Spont rptr of flexor tendons, rt forearm
+ ;;^UTILITY(U,$J,358.3,2474,1,4,0)
+ ;;=4^M66.331
+ ;;^UTILITY(U,$J,358.3,2474,2)
+ ;;=^5012878
+ ;;^UTILITY(U,$J,358.3,2475,0)
+ ;;=M66.332^^12^104^263
+ ;;^UTILITY(U,$J,358.3,2475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,579,1,2,0)
- ;;=2^ECT,ANESTHESIA
- ;;^UTILITY(U,$J,358.3,579,1,4,0)
- ;;=4^00104
- ;;^UTILITY(U,$J,358.3,580,0)
- ;;=00534^^8^65^1^^^^1
- ;;^UTILITY(U,$J,358.3,580,1,0)
+ ;;^UTILITY(U,$J,358.3,2475,1,3,0)
+ ;;=3^Spont rptr of flexor tendons, lft forearm
+ ;;^UTILITY(U,$J,358.3,2475,1,4,0)
+ ;;=4^M66.332
+ ;;^UTILITY(U,$J,358.3,2475,2)
+ ;;=^5012879
+ ;;^UTILITY(U,$J,358.3,2476,0)
+ ;;=M66.341^^12^104^267
+ ;;^UTILITY(U,$J,358.3,2476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,580,1,2,0)
- ;;=2^AICD INSERT/REPLACE,ANESTH
- ;;^UTILITY(U,$J,358.3,580,1,4,0)
- ;;=4^00534
- ;;^UTILITY(U,$J,358.3,581,0)
- ;;=00560^^8^65^2^^^^1
- ;;^UTILITY(U,$J,358.3,581,1,0)
+ ;;^UTILITY(U,$J,358.3,2476,1,3,0)
+ ;;=3^Spont rptr of flexor tendons, rt hand
+ ;;^UTILITY(U,$J,358.3,2476,1,4,0)
+ ;;=4^M66.341
+ ;;^UTILITY(U,$J,358.3,2476,2)
+ ;;=^5012881
+ ;;^UTILITY(U,$J,358.3,2477,0)
+ ;;=M66.342^^12^104^264
+ ;;^UTILITY(U,$J,358.3,2477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,581,1,2,0)
- ;;=2^AORTIC ANGIOGRAPHY,ANESTH
- ;;^UTILITY(U,$J,358.3,581,1,4,0)
- ;;=4^00560
- ;;^UTILITY(U,$J,358.3,582,0)
- ;;=00537^^8^65^3^^^^1
- ;;^UTILITY(U,$J,358.3,582,1,0)
+ ;;^UTILITY(U,$J,358.3,2477,1,3,0)
+ ;;=3^Spont rptr of flexor tendons, lft hand
+ ;;^UTILITY(U,$J,358.3,2477,1,4,0)
+ ;;=4^M66.342
+ ;;^UTILITY(U,$J,358.3,2477,2)
+ ;;=^5012882
+ ;;^UTILITY(U,$J,358.3,2478,0)
+ ;;=M66.251^^12^104^262
+ ;;^UTILITY(U,$J,358.3,2478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,582,1,2,0)
- ;;=2^CARDIAC ABLATION ARTERY/PULM,ANESTH
- ;;^UTILITY(U,$J,358.3,582,1,4,0)
- ;;=4^00537
- ;;^UTILITY(U,$J,358.3,583,0)
- ;;=00560^^8^65^4^^^^1
- ;;^UTILITY(U,$J,358.3,583,1,0)
+ ;;^UTILITY(U,$J,358.3,2478,1,3,0)
+ ;;=3^Spont rptr of extensor tendons, rt thigh
+ ;;^UTILITY(U,$J,358.3,2478,1,4,0)
+ ;;=4^M66.251
+ ;;^UTILITY(U,$J,358.3,2478,2)
+ ;;=^5012860
+ ;;^UTILITY(U,$J,358.3,2479,0)
+ ;;=M66.252^^12^104^258
+ ;;^UTILITY(U,$J,358.3,2479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,583,1,2,0)
- ;;=2^CARDIAC/CORO ANGIOGRAPHY,ANESTH
- ;;^UTILITY(U,$J,358.3,583,1,4,0)
- ;;=4^00560
- ;;^UTILITY(U,$J,358.3,584,0)
- ;;=00560^^8^65^5^^^^1
- ;;^UTILITY(U,$J,358.3,584,1,0)
+ ;;^UTILITY(U,$J,358.3,2479,1,3,0)
+ ;;=3^Spont rptr of extensor tendons, lft thigh
+ ;;^UTILITY(U,$J,358.3,2479,1,4,0)
+ ;;=4^M66.252
+ ;;^UTILITY(U,$J,358.3,2479,2)
+ ;;=^5012861
+ ;;^UTILITY(U,$J,358.3,2480,0)
+ ;;=M66.261^^12^104^261
+ ;;^UTILITY(U,$J,358.3,2480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,584,1,2,0)
- ;;=2^COIL/STENT CARDIAC/CORO/CAROTID,ANESTH
- ;;^UTILITY(U,$J,358.3,584,1,4,0)
- ;;=4^00560
- ;;^UTILITY(U,$J,358.3,585,0)
- ;;=00528^^8^65^6^^^^1
- ;;^UTILITY(U,$J,358.3,585,1,0)
+ ;;^UTILITY(U,$J,358.3,2480,1,3,0)
+ ;;=3^Spont rptr of extensor tendons, rt lwr leg
+ ;;^UTILITY(U,$J,358.3,2480,1,4,0)
+ ;;=4^M66.261
+ ;;^UTILITY(U,$J,358.3,2480,2)
+ ;;=^5012863
+ ;;^UTILITY(U,$J,358.3,2481,0)
+ ;;=M66.262^^12^104^257
+ ;;^UTILITY(U,$J,358.3,2481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,585,1,2,0)
- ;;=2^MEDIASCPY/DX THORSCPY,ANETHS
- ;;^UTILITY(U,$J,358.3,585,1,4,0)
- ;;=4^00528
- ;;^UTILITY(U,$J,358.3,586,0)
- ;;=00537^^8^65^7^^^^1
- ;;^UTILITY(U,$J,358.3,586,1,0)
+ ;;^UTILITY(U,$J,358.3,2481,1,3,0)
+ ;;=3^Spont rptr of extensor tendons, lft lwr leg
+ ;;^UTILITY(U,$J,358.3,2481,1,4,0)
+ ;;=4^M66.262
+ ;;^UTILITY(U,$J,358.3,2481,2)
+ ;;=^5012864
+ ;;^UTILITY(U,$J,358.3,2482,0)
+ ;;=M66.361^^12^104^268
+ ;;^UTILITY(U,$J,358.3,2482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,586,1,2,0)
- ;;=2^NIPS PROCEDURE,ANESTH
- ;;^UTILITY(U,$J,358.3,586,1,4,0)
- ;;=4^00537
- ;;^UTILITY(U,$J,358.3,587,0)
- ;;=00530^^8^65^8^^^^1
- ;;^UTILITY(U,$J,358.3,587,1,0)
+ ;;^UTILITY(U,$J,358.3,2482,1,3,0)
+ ;;=3^Spont rptr of flexor tendons, rt lwr leg
+ ;;^UTILITY(U,$J,358.3,2482,1,4,0)
+ ;;=4^M66.361
+ ;;^UTILITY(U,$J,358.3,2482,2)
+ ;;=^5012887
+ ;;^UTILITY(U,$J,358.3,2483,0)
+ ;;=M66.362^^12^104^265
+ ;;^UTILITY(U,$J,358.3,2483,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2483,1,3,0)
+ ;;=3^Spont rptr of flexor tendons, lft lwr leg
+ ;;^UTILITY(U,$J,358.3,2483,1,4,0)
+ ;;=4^M66.362
+ ;;^UTILITY(U,$J,358.3,2483,2)
+ ;;=^5012888
+ ;;^UTILITY(U,$J,358.3,2484,0)
+ ;;=M66.871^^12^104^271
+ ;;^UTILITY(U,$J,358.3,2484,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2484,1,3,0)
+ ;;=3^Spont rptr of oth tendons, rt ankle & foot
+ ;;^UTILITY(U,$J,358.3,2484,1,4,0)
+ ;;=4^M66.871
+ ;;^UTILITY(U,$J,358.3,2484,2)
+ ;;=^5012901
+ ;;^UTILITY(U,$J,358.3,2485,0)
+ ;;=M66.872^^12^104^269
+ ;;^UTILITY(U,$J,358.3,2485,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2485,1,3,0)
+ ;;=3^Spont rptr of oth tendons, lft ankle & foot
+ ;;^UTILITY(U,$J,358.3,2485,1,4,0)
+ ;;=4^M66.872
+ ;;^UTILITY(U,$J,358.3,2485,2)
+ ;;=^5133843
+ ;;^UTILITY(U,$J,358.3,2486,0)
+ ;;=M67.01^^12^104^222
+ ;;^UTILITY(U,$J,358.3,2486,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2486,1,3,0)
+ ;;=3^Short Achilles tendon (acquired), rt ankle
+ ;;^UTILITY(U,$J,358.3,2486,1,4,0)
+ ;;=4^M67.01
+ ;;^UTILITY(U,$J,358.3,2486,2)
+ ;;=^5012906
+ ;;^UTILITY(U,$J,358.3,2487,0)
+ ;;=M67.02^^12^104^221
+ ;;^UTILITY(U,$J,358.3,2487,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2487,1,3,0)
+ ;;=3^Short Achilles tendon (acquired), lft ankle
+ ;;^UTILITY(U,$J,358.3,2487,1,4,0)
+ ;;=4^M67.02
+ ;;^UTILITY(U,$J,358.3,2487,2)
+ ;;=^5012907
+ ;;^UTILITY(U,$J,358.3,2488,0)
+ ;;=M65.20^^12^104^92
+ ;;^UTILITY(U,$J,358.3,2488,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2488,1,3,0)
+ ;;=3^Calcific tendinitis, unspec site
+ ;;^UTILITY(U,$J,358.3,2488,1,4,0)
+ ;;=4^M65.20
+ ;;^UTILITY(U,$J,358.3,2488,2)
+ ;;=^5012755
+ ;;^UTILITY(U,$J,358.3,2489,0)
+ ;;=M71.40^^12^104^93
+ ;;^UTILITY(U,$J,358.3,2489,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2489,1,3,0)
+ ;;=3^Calcium deposit in bursa, unspec site
+ ;;^UTILITY(U,$J,358.3,2489,1,4,0)
+ ;;=4^M71.40
+ ;;^UTILITY(U,$J,358.3,2489,2)
+ ;;=^5013169
+ ;;^UTILITY(U,$J,358.3,2490,0)
+ ;;=M67.51^^12^104^199
+ ;;^UTILITY(U,$J,358.3,2490,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2490,1,3,0)
+ ;;=3^Plica syndrome, rt knee
+ ;;^UTILITY(U,$J,358.3,2490,1,4,0)
+ ;;=4^M67.51
+ ;;^UTILITY(U,$J,358.3,2490,2)
+ ;;=^5012981
+ ;;^UTILITY(U,$J,358.3,2491,0)
+ ;;=M67.52^^12^104^198
+ ;;^UTILITY(U,$J,358.3,2491,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2491,1,3,0)
+ ;;=3^Plica syndrome, lft knee
+ ;;^UTILITY(U,$J,358.3,2491,1,4,0)
+ ;;=4^M67.52
+ ;;^UTILITY(U,$J,358.3,2491,2)
+ ;;=^5012982
+ ;;^UTILITY(U,$J,358.3,2492,0)
+ ;;=M65.011^^12^104^32
+ ;;^UTILITY(U,$J,358.3,2492,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2492,1,3,0)
+ ;;=3^Abscess of tendon sheath, rt shoulder
+ ;;^UTILITY(U,$J,358.3,2492,1,4,0)
+ ;;=4^M65.011
+ ;;^UTILITY(U,$J,358.3,2492,2)
+ ;;=^5012710
+ ;;^UTILITY(U,$J,358.3,2493,0)
+ ;;=M65.012^^12^104^24
+ ;;^UTILITY(U,$J,358.3,2493,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2493,1,3,0)
+ ;;=3^Abscess of tendon sheath, lft shoulder
+ ;;^UTILITY(U,$J,358.3,2493,1,4,0)
+ ;;=4^M65.012
+ ;;^UTILITY(U,$J,358.3,2493,2)
+ ;;=^5012711
+ ;;^UTILITY(U,$J,358.3,2494,0)
+ ;;=M65.022^^12^104^26
+ ;;^UTILITY(U,$J,358.3,2494,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2494,1,3,0)
+ ;;=3^Abscess of tendon sheath, lft upper arm
+ ;;^UTILITY(U,$J,358.3,2494,1,4,0)
+ ;;=4^M65.022
+ ;;^UTILITY(U,$J,358.3,2494,2)
+ ;;=^5012714
+ ;;^UTILITY(U,$J,358.3,2495,0)
+ ;;=M65.031^^12^104^29
+ ;;^UTILITY(U,$J,358.3,2495,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2495,1,3,0)
+ ;;=3^Abscess of tendon sheath, rt forearm
+ ;;^UTILITY(U,$J,358.3,2495,1,4,0)
+ ;;=4^M65.031
+ ;;^UTILITY(U,$J,358.3,2495,2)
+ ;;=^5012716
+ ;;^UTILITY(U,$J,358.3,2496,0)
+ ;;=M65.032^^12^104^21
+ ;;^UTILITY(U,$J,358.3,2496,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2496,1,3,0)
+ ;;=3^Abscess of tendon sheath, lft forearm
+ ;;^UTILITY(U,$J,358.3,2496,1,4,0)
+ ;;=4^M65.032
+ ;;^UTILITY(U,$J,358.3,2496,2)
+ ;;=^5012717
+ ;;^UTILITY(U,$J,358.3,2497,0)
+ ;;=M65.041^^12^104^30
+ ;;^UTILITY(U,$J,358.3,2497,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2497,1,3,0)
+ ;;=3^Abscess of tendon sheath, rt hand
+ ;;^UTILITY(U,$J,358.3,2497,1,4,0)
+ ;;=4^M65.041
+ ;;^UTILITY(U,$J,358.3,2497,2)
+ ;;=^5012719
+ ;;^UTILITY(U,$J,358.3,2498,0)
+ ;;=M65.042^^12^104^22
+ ;;^UTILITY(U,$J,358.3,2498,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2498,1,3,0)
+ ;;=3^Abscess of tendon sheath, lft hand
+ ;;^UTILITY(U,$J,358.3,2498,1,4,0)
+ ;;=4^M65.042
+ ;;^UTILITY(U,$J,358.3,2498,2)
+ ;;=^5012720
+ ;;^UTILITY(U,$J,358.3,2499,0)
+ ;;=M65.051^^12^104^33
+ ;;^UTILITY(U,$J,358.3,2499,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2499,1,3,0)
+ ;;=3^Abscess of tendon sheath, rt thigh
+ ;;^UTILITY(U,$J,358.3,2499,1,4,0)
+ ;;=4^M65.051
+ ;;^UTILITY(U,$J,358.3,2499,2)
+ ;;=^5012722
+ ;;^UTILITY(U,$J,358.3,2500,0)
+ ;;=M65.052^^12^104^25
+ ;;^UTILITY(U,$J,358.3,2500,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2500,1,3,0)
+ ;;=3^Abscess of tendon sheath, lft thigh
+ ;;^UTILITY(U,$J,358.3,2500,1,4,0)
+ ;;=4^M65.052
+ ;;^UTILITY(U,$J,358.3,2500,2)
+ ;;=^5012723
+ ;;^UTILITY(U,$J,358.3,2501,0)
+ ;;=M65.061^^12^104^31
+ ;;^UTILITY(U,$J,358.3,2501,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2501,1,3,0)
+ ;;=3^Abscess of tendon sheath, rt lwr leg
+ ;;^UTILITY(U,$J,358.3,2501,1,4,0)
+ ;;=4^M65.061
+ ;;^UTILITY(U,$J,358.3,2501,2)
+ ;;=^5012725
+ ;;^UTILITY(U,$J,358.3,2502,0)
+ ;;=M65.062^^12^104^23
+ ;;^UTILITY(U,$J,358.3,2502,1,0)
  ;;=^358.31IA^4^2

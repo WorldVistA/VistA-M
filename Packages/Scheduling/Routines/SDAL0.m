@@ -1,5 +1,5 @@
-SDAL0 ;ALB/GRR,TMP,MJK - APPOINTMENT LIST (CONTINUED FROM SDAL) ; 29 Jun 99  04:11PM
- ;;5.3;Scheduling;**28,37,106,149,171,177,193,305,373,266,572**;Aug 13, 1993;Build 13
+SDAL0 ;ALB/GRR,TMP,MJK - APPOINTMENT LIST (CONTINUED FROM SDAL) ;29 Jun 99  04:11PM
+ ;;5.3;Scheduling;**28,37,106,149,171,177,193,305,373,266,572,618**;Aug 13, 1993;Build 3
 LOOP I 'VAUTC,$G(^SC(SC,"ST",SDD,1))["CANCELLED"  D  Q
  .S SDPAGE=1 D HED^SDAL
  .S SDPCT="Clinic cancelled for this date!"
@@ -8,8 +8,9 @@ LOOP I 'VAUTC,$G(^SC(SC,"ST",SDD,1))["CANCELLED"  D  Q
  .S SDPAGE=1 D HED^SDAL Q:SDEND  S SDPCT=0,SDFLG=1   ;SD*572 set flag
  .;loop through sorted appointment data for the clinic
  .N SDT,SDDFN,SDDATA,SDDATAC S SDT="" F  S SDT=$O(^TMP($J,"SDAMA301","S",SC,SDT)) Q:'SDT  D
- ..S SDDFN="" F  S SDDFN=$O(^TMP($J,"SDAMA301","S",SC,SDT,SDDFN)) Q:'SDDFN!SDEND  D
+ ..S SDDFN="" F  S SDDFN=$O(^TMP($J,"SDAMA301","S",SC,SDT,SDDFN)) Q:(SDDFN="")!SDEND  D
  ...;store appt data and comments for later reference
+ ...;SD*618 Patient's name added to one of the sort filter (Patient's name~DFN)
  ...S SDDATA=$G(^TMP($J,"SDAMA301","S",SC,SDT,SDDFN)),SDDATAC=$G(^(SDDFN,"C"))
  ...D MORE
  .W ! D CCLK Q:SDEND

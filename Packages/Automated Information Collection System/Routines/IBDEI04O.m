@@ -1,138 +1,58 @@
-IBDEI04O ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI04O ; ; 09-FEB-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQ(358.7)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1913,1,2,0)
- ;;=2^V58.69
- ;;^UTILITY(U,$J,358.3,1913,1,5,0)
- ;;=5^L/T (CURRENT) USE - OTH MEDS
- ;;^UTILITY(U,$J,358.3,1913,2)
- ;;=^303460
- ;;^UTILITY(U,$J,358.3,1914,0)
- ;;=V65.40^^18^177^29
- ;;^UTILITY(U,$J,358.3,1914,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1914,1,2,0)
- ;;=2^V65.40
- ;;^UTILITY(U,$J,358.3,1914,1,5,0)
- ;;=5^OTH UNSP COUNSEL NOC
- ;;^UTILITY(U,$J,358.3,1914,2)
- ;;=^87449
- ;;^UTILITY(U,$J,358.3,1915,0)
- ;;=V65.41^^18^177^9
- ;;^UTILITY(U,$J,358.3,1915,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1915,1,2,0)
- ;;=2^V65.41
- ;;^UTILITY(U,$J,358.3,1915,1,5,0)
- ;;=5^EXERCISE COUNSELING
- ;;^UTILITY(U,$J,358.3,1915,2)
- ;;=^303466
- ;;^UTILITY(U,$J,358.3,1916,0)
- ;;=V65.43^^18^177^4
- ;;^UTILITY(U,$J,358.3,1916,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1916,1,2,0)
- ;;=2^V65.43
- ;;^UTILITY(U,$J,358.3,1916,1,5,0)
- ;;=5^COUNSEL-INJURY PREVEN
- ;;^UTILITY(U,$J,358.3,1916,2)
- ;;=^303468
- ;;^UTILITY(U,$J,358.3,1917,0)
- ;;=V65.45^^18^177^5
- ;;^UTILITY(U,$J,358.3,1917,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1917,1,2,0)
- ;;=2^V65.45
- ;;^UTILITY(U,$J,358.3,1917,1,5,0)
- ;;=5^COUNSEL-OTH SEX TX DISEASES
- ;;^UTILITY(U,$J,358.3,1917,2)
- ;;=^303470
- ;;^UTILITY(U,$J,358.3,1918,0)
- ;;=V71.09^^18^178^1
- ;;^UTILITY(U,$J,358.3,1918,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1918,1,2,0)
- ;;=2^V71.09
- ;;^UTILITY(U,$J,358.3,1918,1,5,0)
- ;;=5^OBSERV-MENTAL COND NEC
- ;;^UTILITY(U,$J,358.3,1918,2)
- ;;=^295604
- ;;^UTILITY(U,$J,358.3,1919,0)
- ;;=99080^^19^179^7^^^^1
- ;;^UTILITY(U,$J,358.3,1919,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1919,1,2,0)
- ;;=2^99080
- ;;^UTILITY(U,$J,358.3,1919,1,3,0)
- ;;=3^SPECIAL REPORTS OR FORMS
- ;;^UTILITY(U,$J,358.3,1920,0)
- ;;=97535^^19^179^6^^^^1
- ;;^UTILITY(U,$J,358.3,1920,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1920,1,2,0)
- ;;=2^97535
- ;;^UTILITY(U,$J,358.3,1920,1,3,0)
- ;;=3^SELF CARE MNGMENT TRAINING
- ;;^UTILITY(U,$J,358.3,1921,0)
- ;;=99366^^19^179^8^^^^1
- ;;^UTILITY(U,$J,358.3,1921,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1921,1,2,0)
- ;;=2^99366
- ;;^UTILITY(U,$J,358.3,1921,1,3,0)
- ;;=3^TEAM CONF W/PAT BY HC PRO
- ;;^UTILITY(U,$J,358.3,1922,0)
- ;;=A9279^^19^179^5^^^^1
- ;;^UTILITY(U,$J,358.3,1922,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1922,1,2,0)
- ;;=2^A9279
- ;;^UTILITY(U,$J,358.3,1922,1,3,0)
- ;;=3^MONITORING FEATURE/DEVICE NOC
- ;;^UTILITY(U,$J,358.3,1923,0)
- ;;=H0034^^19^179^4^^^^1
- ;;^UTILITY(U,$J,358.3,1923,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1923,1,2,0)
- ;;=2^H0034
- ;;^UTILITY(U,$J,358.3,1923,1,3,0)
- ;;=3^MED TRNG & SUPPORT PER 15MIN
- ;;^UTILITY(U,$J,358.3,1924,0)
- ;;=S9455^^19^179^1^^^^1
- ;;^UTILITY(U,$J,358.3,1924,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1924,1,2,0)
- ;;=2^S9455
- ;;^UTILITY(U,$J,358.3,1924,1,3,0)
- ;;=3^DIAB MANAGE TRN GROUP
- ;;^UTILITY(U,$J,358.3,1925,0)
- ;;=S9445^^19^179^2^^^^1
- ;;^UTILITY(U,$J,358.3,1925,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1925,1,2,0)
- ;;=2^S9445
- ;;^UTILITY(U,$J,358.3,1925,1,3,0)
- ;;=3^DIAB MANAGE TRN PER INDIV
- ;;^UTILITY(U,$J,358.3,1926,0)
- ;;=S9446^^19^179^3^^^^1
- ;;^UTILITY(U,$J,358.3,1926,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1926,1,2,0)
- ;;=2^S9446
- ;;^UTILITY(U,$J,358.3,1926,1,3,0)
- ;;=3^GROUP HEALTH EDUCATION
- ;;^UTILITY(U,$J,358.3,1927,0)
- ;;=S9445^^19^180^1^^^^1
- ;;^UTILITY(U,$J,358.3,1927,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1927,1,2,0)
- ;;=2^S9445
- ;;^UTILITY(U,$J,358.3,1927,1,3,0)
- ;;=3^PT EDUCATION NOC INDIVID
- ;;^UTILITY(U,$J,358.3,1928,0)
- ;;=99091^^19^181^1^^^^1
- ;;^UTILITY(U,$J,358.3,1928,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1928,1,2,0)
- ;;=2^99091
+ ;;^DIC(358.7,0,"GL")
+ ;;=^IBE(358.7,
+ ;;^DIC("B","IMP/EXP FORM LINE",358.7)
+ ;;=
+ ;;^DIC(358.7,"%D",0)
+ ;;=^^3^3^2940217^
+ ;;^DIC(358.7,"%D",1,0)
+ ;;=This file is nearly identical to file #357.7. It is used by the
+ ;;^DIC(358.7,"%D",2,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.7,"%D",3,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.7,0)
+ ;;=FIELD^^.08^8
+ ;;^DD(358.7,0,"DDA")
+ ;;=N
+ ;;^DD(358.7,0,"DT")
+ ;;=2950717
+ ;;^DD(358.7,0,"ID",.02)
+ ;;=W " STARTING COL=",$P(^(0),U,2)+1
+ ;;^DD(358.7,0,"ID",.03)
+ ;;=W " STARTING ROW=",$P(^(0),U,3)+1
+ ;;^DD(358.7,0,"ID",.06)
+ ;;=W ""
+ ;;^DD(358.7,0,"IX","B",358.7,.01)
+ ;;=
+ ;;^DD(358.7,0,"IX","C",358.7,.06)
+ ;;=
+ ;;^DD(358.7,0,"NM","IMP/EXP FORM LINE")
+ ;;=
+ ;;^DD(358.7,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.7,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.7,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.7,.01,1,1,0)
+ ;;=358.7^B
+ ;;^DD(358.7,.01,1,1,1)
+ ;;=S ^IBE(358.7,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.7,.01,1,1,2)
+ ;;=K ^IBE(358.7,"B",$E(X,1,30),DA)
+ ;;^DD(358.7,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.7,.01,21,0)
+ ;;=^^4^4^2930527^
+ ;;^DD(358.7,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.7,.01,21,2,0)
+ ;;=The name given to the line. Lines should be given names that will allow
+ ;;^DD(358.7,.01,21,3,0)
+ ;;=them to be identifies, such as V(1,1), meaning a vertical line starting at
+ ;;^DD(358.7,.01,21,4,0)
+ ;;=coordinates (1,1).

@@ -1,9 +1,10 @@
 PSBOSF ;BIRMINGHAM/EFC-UNABLE TO SCAN DETAIL REPORT ; 29 Aug 2008  11:33 PM
- ;;3.0;BAR CODE MED ADMIN;**28,52**;Mar 2004;Build 28
+ ;;3.0;BAR CODE MED ADMIN;**28,52,80**;Mar 2004;Build 6
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
  ; ^NURSF(211.4/1409
+ ; WARD^NURSUT5/3052
  ;
 EN ; UTS Report Entry Point - Report OPTION used by PSB UNABLE TO SCAN (UTS) key holders.
  N PSBX1,PSBX2,PSBX3,PSBIEN,PSBMRGST,PSBHDR,PSBTOT,PSBDSCN
@@ -33,7 +34,7 @@ EN ; UTS Report Entry Point - Report OPTION used by PSB UNABLE TO SCAN (UTS) key
  ..I '$D(^PSB(53.77,PSBX2,0))!($D(PSBLIST(PSBX2))) Q
  ..S PSBWRD=$P($P($G(^PSB(53.77,PSBX2,0)),U,3),"$",1)_"$"
  ..; Filter data by institution.
- ..I '$D(PSBWDDV(PSBWRD)) Q
+ ..I '$D(PSBWDDV(PSBWRD)),'$D(PSBWARD(+PSBSTWD,PSBWRD)) Q  ;Add check for report run by nursing ward, PSB*3*80 
  ..I $G(PSBSTWD)]"",'$D(PSBWARD(PSBSTWD)) Q
  ..I $G(PSBSTWD)]"",'$D(PSBWARD(PSBSTWD,PSBWRD)) Q
  ..L +^PSB(53.77,PSBX2):3 I  L -^PSB(53.77,PSBX2) S PSBLIST(PSBX2)=""
@@ -75,7 +76,7 @@ BLDRPT ; Compile the report.
  .I $P(^PSB(53.77,PSBX3,0),U,2)]"" D
  ..N DFN,VA,VADM S DFN=$P(^PSB(53.77,PSBX3,0),U,2)
  ..D DEM^VADPT,PID^VADPT
- ..S PSBDATA(1)=VADM(1),PSBDATA(1,0)="("_$E(VA("PID"),$L(VA("PID"))-3,999)_")"
+ ..S PSBDATA(1)=VADM(1),PSBDATA(1,0)="("_$S(DUZ("AG")="I":(VA("PID")),1:$E(VA("PID"),$L(VA("PID"))-3,999))_")" ;Add code to send full HRN for IHS sites, PSB*3*80
  .;
  .; Scan Failure Date/Time
  .S PSBINDAT=$$GET1^DIQ(53.77,PSBX3_",",.04,"I"),Y=PSBINDAT D DD^%DT
@@ -258,6 +259,7 @@ WRTRPT   ; Write the report.
  Q
  ;
 HDR      ; Write the report header.
+ N PSBDIV,PSBARRY,PSBNPAR ;New variables for PSB*3*80
  I '$D(PSBHDR) S PSBHDR=""
  W:$Y>1 @IOF W:$X>1 !
  S PSBPG="Page: "_PSBPGNUM_" of "_$S($O(^TMP("PSBSF",$J,""),-1)=0:1,1:$O(^TMP("PSBSF",$J,""),-1))
@@ -275,7 +277,8 @@ HDR      ; Write the report header.
  .I $P($G(PSBRPT(3)),",",2)=4 W "Scanning Equipment Failure" Q
  .I $P($G(PSBRPT(3)),",",2)=5 W "Unable to Determine" Q
  .I $P($G(PSBRPT(3)),",",2)=6 W "Dose Discrepancy" Q
- W !,"Division: ",$P($G(^DIC(4,DUZ("2"),0)),U,1)
+ S PSBDIV=$P($G(^DIC(4,DUZ("2"),0)),U,1) I $G(PSBWLOC) S PSBNPAR="L^"_PSBWLOC D WARD^NURSUT5(PSBNPAR,.PSBARRY) S PSBDIV=$P($G(PSBARRY(PSBWLOC,.02)),U,2) ;Set Division based on ward, PSB*3*80 
+ W !,"Division: ",PSBDIV
  W "    Nurse Location: " D
  .I $G(PSBSTWD)]"" W $$NURLOC(PSBSTWD) Q
  .W "All"

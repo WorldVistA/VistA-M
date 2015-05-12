@@ -1,6 +1,6 @@
 IBCNERPE ;DAOU/BHS - IBCNE eIV RESPONSE REPORT (cont'd);03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**271,300,416,438,497,506**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**271,300,416,438,497,506,519,521**;21-MAR-94;Build 33
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Must call at tag
  Q
@@ -171,11 +171,18 @@ DATAX ;
  ; Added the Elig. Ben. info to print at the end of the patient's display on the e-IV Response Report.
  S LCT=LCT+1,DISPDATA(LCT)=" "
  K ^TMP("EIV RESP. EB DATA",$J)
+ N VALMEVL    ; Important as the INIT^IBCNES kills an array we need to keep if VALMEVL is defined  (IB*519)
+ ; save off certain VALM variables because call to IBCNES changes them and throws off page counter when returning to EE screen (IB*519)
+ ; IB*2.0*521/ZEB use $G to prevent crash when report is run from outside of a ListMan context
+ I $G(VALMCNT) N IBVLSV S IBVLSV=VALMCNT_U_$G(VALM("LINES"))_U_$G(^TMP("IBCNBLE",$J,VALMCNT,0))
  D INIT^IBCNES(365.02,RSPIENS_",","A",1,"EIV RESP. EB DATA")
  N TCTR
  S TCTR=""
  F  S TCTR=$O(^TMP("EIV RESP. EB DATA",$J,"DISP",TCTR)) Q:TCTR=""  D
  . S LCT=LCT+1,DISPDATA(LCT)=$$FO^IBCNEUT1($G(^TMP("EIV RESP. EB DATA",$J,"DISP",TCTR,0)),76)
+ ; restore VALM page-counter values to pre-IBCNES values (IB*519)
+ ; IB*2.0*521/ZEB use $G to prevent crash when report is run from outside of a ListMan context
+ I $G(IBVLSV) S VALM("LINES")=$P(IBVLSV,U,2),VALMCNT=$P(IBVLSV,U),^TMP("IBCNBLE",$J,VALMCNT,0)=$P(IBVLSV,U,3) K IBVLSV
  ; /IB*2.0*506 End
  ;
  Q

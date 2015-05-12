@@ -1,5 +1,5 @@
 PSBOMH1 ;BIRMINGHAM/EFC-MAH ; 2/16/12 1:00pm
- ;;3.0;BAR CODE MED ADMIN;**6,3,9,11,26,38,45,51,50,57,67,64**;Mar 2004;Build 14
+ ;;3.0;BAR CODE MED ADMIN;**6,3,9,11,26,38,45,51,50,57,67,64,72**;Mar 2004;Build 16
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -43,8 +43,8 @@ EN ;
  ....S ^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT\1,0)=Y
  ....D PSBOUT($P((X),"^",1),$P((X),"^",2))
  ....K PSBAUD
- ...S PSBINIT=$$GET1^DIQ(53.79,PSBIEN_",","ACTION BY:INITIAL")
- ...S PSBNAME=$$GET1^DIQ(53.79,PSBIEN_",","ACTION BY:NAME")
+ ...S PSBINIT=$$GETINIT^PSBCSUTX(PSBIEN,"I") ;Get initials of who took action, PSB*3*72
+ ...S PSBNAME=$$GETINIT^PSBCSUTX(PSBIEN,"N") ;Get name of who took action, PSB*3*72
  ...I PSBINIT="" S PSBINIT=99
  ...;get instrc info - audt log
  ...I $D(^PSB(53.79,PSBIEN,.9,$P(PSBDT,"."))) D
@@ -71,8 +71,8 @@ EN ;
  ..; 1-Time On Call or PRN
  ..D:$P($G(^PSB(53.79,PSBIEN,.1)),U,2)'="C"
  ...I PSBDT'=$$GET1^DIQ(53.79,PSBIEN_",",.06,"I") Q
- ...S PSBINIT=$$GET1^DIQ(53.79,PSBIEN_",","ACTION BY:INITIAL")
- ...S PSBNAME=$$GET1^DIQ(53.79,PSBIEN_",","ACTION BY:NAME")
+ ...S PSBINIT=$$GETINIT^PSBCSUTX(PSBIEN,"I") ;Get initials of who took action, PSB*3*72
+ ...S PSBNAME=$$GETINIT^PSBCSUTX(PSBIEN,"N") ;Get name of who took action, PSB*3*72
  ...I PSBINIT="" S PSBINIT=99
  ...S (PSBXA,PSBM)=1,(PSBZ,PSBT,PSBFLG)=""
  ...I $$GET1^DIQ(53.79,PSBIEN_",",.09)="REMOVED"  D

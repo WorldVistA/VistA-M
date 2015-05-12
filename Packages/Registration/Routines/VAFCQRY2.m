@@ -1,5 +1,5 @@
-VAFCQRY2 ;BIR/DLR-Query for patient demographics ;10/18/2000
- ;;5.3;Registration;**428**;Aug 13, 1993
+VAFCQRY2 ;BIR/DLR-Query for patient demographics ; 8/12/14 1:24pm
+ ;;5.3;Registration;**428,876**;Aug 13, 1993;Build 6
  ;
  ;Reference to $$GETDFNS^MPIF002 supported by IA #3634.
  ;
@@ -39,7 +39,7 @@ CHKID(ICN,SSN,DFN) ;
  ... S VAFCER="-1^Unknown ICN#"_$G(ICN)_" for known SSN#"_$G(SSN)_" was "_$P(RDFN,"^",2) Q
  Q
 BLDEVN(DFN,SEQ,EVN,HL,EVR,ERR) ;build EVN for TF last treatment date and event reason
- N TFIEN,LTD,TFZN,USERID,COMP,SUBCOMP,USERNAME
+ N TFIEN,LTD,TFZN,USERID,COMP,SUBCOMP,USERNAME,USERDUZ
  S COMP=$E(HL("ECH"),1),SUBCOMP=$E(HL("ECH"),4)
  S LTD=""
  ;reset EVR
@@ -48,13 +48,15 @@ BLDEVN(DFN,SEQ,EVN,HL,EVR,ERR) ;build EVN for TF last treatment date and event r
  ;if patient is not already in the associated facility list add
  D EN1^VAFCTF(DFN,1) S TFIEN=$O(^DGCN(391.91,"APAT",DFN,+$$SITE^VASITE,0))  ;suppress messaging 
  I $G(TFIEN)'="" S TFZN=^DGCN(391.91,TFIEN,0) S LTD=$P(TFZN,"^",3) I +$P(TFZN,"^",7)'=0 S EVR=$$GET1^DIQ(391.91,TFIEN_",",.07)
+ ;**876 - MVI_4449 (ckn) - EVN was populating mismatched DUZ and USERNAME.
+ ;Fix is in place to use appropriate DUZ with USERNAME
  ;check to see if this is a pivot file trigger if so reset trigger
  I +$G(PIVOTPTR)>0 I $D(^VAT(391.71,+$G(PIVOTPTR),0)) D
- . S USERNAME=$P(^VAT(391.71,+$G(PIVOTPTR),0),"^",9)
- I $G(USERNAME)="" S USERNAME=DUZ
- S USERNAME=$$GET1^DIQ(200,+USERNAME_",",.01)
+ . S USERDUZ=$P(^VAT(391.71,+$G(PIVOTPTR),0),"^",9)
+ I $G(USERDUZ)="" S USERDUZ=DUZ
+ S USERNAME=$$GET1^DIQ(200,+USERDUZ_",",.01)
  S USERNAME=$$HLNAME^HLFNC(USERNAME,HL("ECH"))
- S USERID=DUZ_COMP_$P(USERNAME,COMP)_COMP_$P(USERNAME,COMP,2)_COMP_COMP_COMP_COMP_COMP_COMP_"USVHA"_SUBCOMP_SUBCOMP_"0363"_COMP_"L"_COMP_COMP_COMP_"NI"_COMP_"VA FACILITY ID"_SUBCOMP_$P($$SITE^VASITE,"^",3)_SUBCOMP_"L"
+ S USERID=USERDUZ_COMP_$P(USERNAME,COMP)_COMP_$P(USERNAME,COMP,2)_COMP_COMP_COMP_COMP_COMP_COMP_"USVHA"_SUBCOMP_SUBCOMP_"0363"_COMP_"L"_COMP_COMP_COMP_"NI"_COMP_"VA FACILITY ID"_SUBCOMP_$P($$SITE^VASITE,"^",3)_SUBCOMP_"L"
  I $G(EVN(1))="" S EVN(1)="EVN"_HL("FS")_HL("FS")_$$HLDATE^HLFNC(LTD)_HL("FS")_HL("FS")_HL("FS")_USERID_HL("FS")_$$HLDATE^HLFNC(LTD)_HL("FS")_$P($$SITE^VASITE,"^",3)
  I $G(EVN(1))'="" S $P(EVN(1),HL("FS"),2)=$G(EVR),$P(EVN(1),HL("FS"),5)=$G(EVR),$P(EVN(1),HL("FS"),3)=$$HLDATE^HLFNC(LTD),$P(EVN(1),HL("FS"),7)=$$HLDATE^HLFNC(LTD),$P(EVN(1),HL("FS"),8)=$P($$SITE^VASITE,"^",3),$P(EVN(1),HL("FS"),6)=USERID
  Q

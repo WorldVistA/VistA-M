@@ -1,5 +1,5 @@
-LEX10DL ;ISL/KER - ICD-10 Diagnosis Lookup ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEX10DL ;ISL/KER - ICD-10 Diagnosis Lookup ;12/19/2014
+ ;;2.0;LEXICON UTILITY;**80,86**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^%ZOSF("TEST")      ICR  10096
@@ -41,13 +41,16 @@ EN ; Main Entry Point
  S LEXDT=$G(LEXVDT) S:LEXDT'?7N LEXDT=$$DT^XLFDT S LEXMAX=$$MAX^LEXU(30)
  S LEXIM=$$IMP^ICDEX(30) S:LEXDT'>LEXIM LEXDT=LEXIM S LEXCONT=1
 X ; Get user input
- S X=$$SO S LEXFRQ=$$FREQ^LEXU(X)
+ K DIROUT,DUOUT,DTOUT,DIRUT
+ S X=$$SO Q:X["^"  S LEXFRQ=$$FREQ^LEXU(X)
  I LEXFRQ>LEXMAX D  Q:$D(DIRUT)  Q:$D(LEXCONT)["^"  G:LEXCONT'>0 X
  . N LEXX S LEXX=X S LEXCONT=$$CONT^LEX10DLS(LEXX,LEXFRQ) W !
- W ! K Y,LEXY D:$L(X)&(X'["^") BEG N LEXTEST
+ K Y,LEXY D:$L(X)&(X'["^") BEG I $D(DUOUT)&'$D(DIROUT) W ! G X
+ N LEXTEST
  Q 
 BEG ; Begin Recursive Loop
- N DIROUT,DUOUT,DTOUT,LEXIT,LEXVDT,LEXTXT,LEXUP,LEXY,LEXX
+ K DIROUT,DUOUT,DTOUT,DIRUT
+ N LEXIT,LEXVDT,LEXTXT,LEXUP,LEXY,LEXX
  N LEXBEG,LEXEND,LEXELP,LEXSEC
  K Y S Y=-1,U="^",LEXTXT=$G(X) Q:'$L(LEXTXT)
  S LEXVDT=$G(LEXDT),LEXIT=0
@@ -102,10 +105,8 @@ SO(X) ; Enter a Code/Code Fragment
  S (LEXSBR,DIRB)=$$RET("LEX10DL","SO",+($G(DUZ)),LEXCOM)
  S DIR("PRE")="S X=$$SOP^LEX10DL(X) W:X[""??"" ""  ??"""
  S (DIR("?"),DIR("??"))="^D SOH^LEX10DL" D ^DIR
- I $D(DTOUT) W !!,?3,"Try later",! Q "^"
- I '$L(X)!('$L(Y)) W !!,?3,"No selection made",! Q "^"
- S:$D(DUOUT) X="^" S:$D(DIROUT) X="^^"
- I $G(X)["^" W !!,?3,"Selection aborted",! Q "^"
+ Q:$D(DTOUT) "^"  Q:'$L(X)!('$L(Y)) "^"
+ S:$D(DUOUT) X="^" S:$D(DIROUT) X="^^"  Q:$G(X)["^" "^"
  S (LEX,X)=$G(Y) D:$L(LEX)&(LEX'["^") SAV("LEX10DL","SO",+($G(DUZ)),LEXCOM,LEX)
  Q X
 SOH ;   Select a Code Help

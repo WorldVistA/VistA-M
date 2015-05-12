@@ -1,5 +1,5 @@
-LEXQID2 ;ISL/KER - Query - ICD Diagnosis - Extract (cont) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**62,73,80**;Sep 23, 1996;Build 1
+LEXQID2 ;ISL/KER - Query - ICD Diagnosis - Extract (cont) ;12/19/2014
+ ;;2.0;LEXICON UTILITY;**62,73,80,86**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^ICM(               ICR   4488
@@ -70,7 +70,8 @@ LX(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Lexicon Expression
  Q:'$L(LEXSO)  S LEXFA=$$FA(+LEXIEN),LEXM="",LEXIA=$$IA(LEXVDT) S LEXSIEN=0
  F  S LEXSIEN=$O(^LEX(757.02,"CODE",(LEXSO_" "),LEXSIEN)) Q:+LEXSIEN'>0  D
  . N LEXN0 S LEXN0=$G(^LEX(757.02,+LEXSIEN,0)),LEXSAB=$P(LEXN0,"^",3)
- . Q:"^1^"'[("^"_LEXSAB_"^")  S LEXPF=+($P(LEXN0,"^",5)) S LEXLEF=$O(^LEX(757.02,+LEXSIEN,4,"B",(LEXVDT+.99999)),-1) I LEXLEF?7N D
+ . Q:"^1^30^"'[("^"_LEXSAB_"^")  S LEXPF=+($P(LEXN0,"^",5)) S LEXLEF=$O(^LEX(757.02,+LEXSIEN,4,"B",(LEXVDT+.99999)),-1)
+ . I LEXLEF?7N D
  . . S LEXLHS=$O(^LEX(757.02,+LEXSIEN,4,"B",+LEXLEF," "),-1) I +LEXLHS>0 D
  . . . S LEXLST=$G(^LEX(757.02,+LEXSIEN,4,+LEXLHS,0)),LEXLST=$P(LEXLST,"^",2)
  . . . S:LEXLST>0 LEXVTMP(+LEXPF,LEXSIEN)=+LEXN0_"^"_LEXLEF

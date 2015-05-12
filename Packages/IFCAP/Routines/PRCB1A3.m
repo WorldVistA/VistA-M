@@ -1,7 +1,9 @@
 PRCB1A3 ;WIOFO/DWA - CONTROL POINT LISTING W/COST CENTERS ;3/3/04 03:04 AM
- ;;5.1;IFCAP;**76,74**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;5.1;IFCAP;**76,74,188**;Oct 20, 2000;Build 1
+ ;Per VHA Directive 6402, this routine should not be modified.
  Q  ;invalid entry
+ ;
+ ;PRC*5.1*188 Removed exception check for FUND=0160, CC=824300
  ;
 EN1 ; entry point for CONTROL POINT LISTING W/COST CENTERS
  N L,DIC,FLDS,BY,DHD
@@ -99,7 +101,6 @@ PROCESS ; determine if exception exists
  . I CC>875200,CC<895900 S EXC=1
  . I CC>895900,CC<899100 S EXC=1
  . I CC>899600 S EXC=1
- . I CC=824300 S EXC=1
  . Q
  ;
  I $E(FUND,1,4)="0152" D

@@ -1,6 +1,6 @@
 IBCU4 ;ALB/AAS - BILLING UTILITY ROUTINE (CONTINUED) ;12-FEB-90
- ;;2.0;INTEGRATED BILLING;**109,122,137,245,349,371,399,461**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**109,122,137,245,349,371,399,461,532**;21-MAR-94;Build 26
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRU4
  ;
@@ -15,7 +15,7 @@ DDAT1 ;Input transform for Statement covers to
  I '$D(DA) G FROM
  S IB00=$S($D(^DGCR(399,+DA,"U")):$P(^("U"),"^",1),1:"") I 'IB00 W !?4,"'Start Date' must be specified first!",*7 K X G DDAT4
  I +X>DT W !?4,"Cannot bill for future treatment!",*7 K X G DDAT4
- I +X<IB00 W !?4,"Cannot preceed the 'Start Date'!",*7 K X G DDAT4
+ I +X<IB00 W !?4,"Cannot precede the 'Start Date'!",*7 K X G DDAT4
  I $P($G(^DGCR(399,+DA,0)),U,5)>2,$$ICD10S(+IB00,+X) W !?4,"Bill Statement dates cannot span ICD-10 activation date!",*7 K X G DDAT4
  ;I $S($E(IB00,4,5)<10:$E(IB00,2,3),1:$E(IB00,2,3)+1)'=$S($E(X,4,5)<10:$E(X,2,3),1:$E(X,2,3)+1) K X W !?4,"Must be in same fiscal year!",*7 G DDAT4
  ;I $$FY(+IB00)'=$$FY(X) K X W !?4,"Must be in same fiscal year!",*7 G DDAT4
@@ -47,16 +47,16 @@ OTDAT ; Input transform for Other Care Start Date (399,48,.02)
  I ('$G(DA(1)))!('$G(X)) Q
  N IBX S IBX=$G(^DGCR(399,DA(1),"U"))
  I +X<+IBX W !,?4,"Can Not Precede Bill Start Date!",!,*7 K X Q
- I +X>(+$P(IBX,U,2)+1) W !,?4,"Can not be after Bill End Date!",!,*7 K X Q
+ I +X>(+$P(IBX,U,2)+1) W !,?4,"Cannot be after Bill End Date!",!,*7 K X Q
  Q
  ;
-CHDAT ; Input transform for chiropractics-related dates (399/245,246,247)
+CHDAT ; Input transform for chiropractic-related dates (399/245,246,247)
  ; Make sure that date entered is not after end date of the bill
  Q:'$D(X)
  N IBX,Y
  S IBX=$P($G(^DGCR(399,+DA,"U")),U,2)
- I IBX="" W !?4,*7,"No end date of the bill on file - can't enter chiropractics-related dates " K X Q
- I X>+IBX S Y=IBX D DD^%DT W !,?4,*7,"This date can not be after the end date of the claim ("_Y_") " K X Q
+ I IBX="" W !?4,*7,"No end date of the bill on file - can't enter chiropractic-related dates " K X Q
+ I X>+IBX S Y=IBX D DD^%DT W !,?4,*7,"This date cannot be after the end date of the claim ("_Y_") " K X Q
  Q
  ;
 TO ;151 pseudo input x-form
@@ -65,7 +65,7 @@ TO ;151 pseudo input x-form
  Q
 FROM ;152 pseudo input x-form
  I '$D(IBIDS(151)) W !?4,"'Start Date' must be specified first!",*7 K X Q
- I +X<IBIDS(151) W !?4,"Cannot preceed the 'Start Date'!",*7 K X Q
+ I +X<IBIDS(151) W !?4,"Cannot precede the 'Start Date'!",*7 K X Q
  I IBIDS(.05)>2,$$ICD10S(+IBIDS(151),+X) W !?4,"Bill Statement dates cannot span ICD-10 activation date!",*7 K X Q
  ;I $S($E(IBIDS(151),4,5)<10:$E(IBIDS(151),2,3),1:$E(IBIDS(151),2,3)+1)'=$S($E(X,4,5)<10:$E(X,2,3),1:$E(X,2,3)+1) K X W !?4,"Must be in same fiscal year!",*7 Q
  ;I $$FY(IBIDS(151))'=$$FY(X) K X W !?4,"Must be in same fiscal year!",*7 Q
@@ -118,7 +118,8 @@ TRIG05(X,D0) ; Trigger executed on field .05 of file 399 to set field .25
  N Z,Z0,IEN,LOC
  S LOC=$P($G(^DGCR(399,D0,0)),U,4)
  S IEN="",Z=0
- I LOC'="" F  S Z=$O(^DGCR(399.1,"C",X,Z)) Q:'Z  S Z0=$P($G(^DGCR(399.1,Z,0)),U,23,24) I +Z0,(","_$P(Z0,U,2)_",")[(","_LOC_",") S IEN=Z Q
+ ; *532 return the last entry (eg. #4-lab)
+ I LOC'="" F  S Z=$O(^DGCR(399.1,"C",X,Z)) Q:'Z  S Z0=$P($G(^DGCR(399.1,Z,0)),U,23,24) I +Z0,(","_$P(Z0,U,2)_",")[(","_LOC_",") S IEN=Z
  Q IEN
  ;
 TOB(IBIFN,POS) ;Function returns the 3 digit type of bill from UB-04

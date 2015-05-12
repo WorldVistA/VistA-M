@@ -1,5 +1,5 @@
-LEXA ;ISL/KER - Look-up (Silent) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**3,4,6,19,25,36,38,43,55,73,80**;Sep 23, 1996;Build 1
+LEXA ;ISL/KER - Look-up (Silent) ;12/19/2014
+ ;;2.0;LEXICON UTILITY;**3,4,6,19,25,36,38,43,55,73,80,86**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^LEX(757.13         N/A
@@ -45,12 +45,12 @@ LOOK(LEXX,LEXAP,LEXLL,LEXSUB,LEXCDT,LEXXSR,LEXXCT) ; Main Lexicon Lookup
  ; 
  S LEXCDT=$P($G(LEXCDT),".",1) S:LEXCDT?7N LEXVDT=LEXCDT D VDT^LEXU K DIERR,LEX
  K ^TMP("LEXFND",$J),^TMP("LEXHIT",$J)
- K ^TMP("LEXSCH",$J,"EXC"),^TMP("LEXSCH",$J,"EXM")
+ K ^TMP("LEXSCH",$J,"EXC"),^TMP("LEXSCH",$J,"EXM"),^TMP("LEXSCH",$J,"NUM")
  K:+$G(^TMP("LEXSCH",$J,"ADF",0))=0 ^TMP("LEXSCH",$J)
  I $D(DIC(0)) D
  .S:DIC(0)["L" DIC(0)=$P(DIC(0),"L",1)_$P(DIC(0),"L",2)
  .S:DIC(0)["I" DIC(0)=$P(DIC(0),"I",1)_$P(DIC(0),"I",2)
- S LEXQ=1,LEXX=$$UP^XLFSTR($G(LEXX))
+ N LEXXNAR S LEXQ=1,LEXXNAR=$G(LEXX),LEXX=$$UP^XLFSTR($G(LEXX))
  I LEXX=""!(LEXX["^") D EN^LEXAR("^",$G(LEXVDT)) K LEXAP D EXIT Q
  N LEXSC S LEXSC=$$CAT($G(LEXXCT),$G(LEXXSR))
  N LEXXCT,LEXXSR S:+($P(LEXSC,"^",1))>0 LEXXCT=+($P(LEXSC,"^",1)) S:+($P(LEXSC,"^",2))>0 LEXXSR=+($P(LEXSC,"^",2))
@@ -89,7 +89,7 @@ DEF ; Defaults                     CONFIG^LEXSET
  S:$L($G(LEXDISP)) ^TMP("LEXSCH",$J,"DIS",0)=$G(LEXDISP)
  I '$L($G(LEXFIL)),$L($G(^TMP("LEXSCH",$J,"FIL",0))) S LEXFIL=^TMP("LEXSCH",$J,"FIL",0)
  S:$L($G(LEXFIL)) LEXFIL=$$FIL(LEXFIL)
- S LEXFIL=$G(LEXFIL)
+ S LEXFIL=$G(LEXFIL) N LEXDISP
  K ^TMP("LEXFND",$J),^TMP("LEXHIT",$J)
  D MAN
  I $D(LEX("ERR")) D EXIT Q
@@ -101,14 +101,18 @@ HLP ; Look-up Help                 ADDL^LEXAL
  . D QMH^LEXAR3(LEXX)
 IEN ; Look-up by IEN               ADDL^LEXAL PCH 4
  I ^TMP("LEXSCH",$J,"NAR",0)?1"`"1N.N D  I $D(LEX("LIST")) D EXIT Q
- . N LEXE,LEXUN
- . S LEXE=+$E(^TMP("LEXSCH",$J,"NAR",0),2,$L(^TMP("LEXSCH",$J,"NAR",0))) Q:LEXE=0
+ . N LEXE,LEXUN,LEXM,LEXL
+ . S LEXE=+$E(^TMP("LEXSCH",$J,"NAR",0),2,$L(^TMP("LEXSCH",$J,"NAR",0))) Q:LEXE'?1N.N
  . S LEXUN=+$G(^TMP("LEXSCH",$J,"UNR",0))
  . Q:'$D(^LEX(757.01,LEXE,0))
  . D ADDL^LEXAL(LEXE,$$DES^LEXASC(LEXE),$$SO^LEXASO(LEXE,$G(^TMP("LEXSCH",$J,"DIS",0)),1,$G(LEXVDT)))
  . I $D(^TMP("LEXFND",$J)) D BEG^LEXAL
- . I LEXUN>0,$L($G(^TMP("LEXSCH",$J,"NAR",0))) S LEX("NAR")=$G(^TMP("LEXSCH",$J,"NAR",0))
- . I LEXUN>0,$L($G(^LEX(757.01,+$G(LEXE),0))) S LEX("NAR")=$G(^LEX(757.01,+$G(LEXE),0))
+ . I $L($G(^TMP("LEXSCH",$J,"NAR",0))) S LEX("NAR")=$G(^TMP("LEXSCH",$J,"NAR",0))
+ . I $L($G(^LEX(757.01,+$G(LEXE),0))) S LEX("NAR")=$G(^LEX(757.01,+$G(LEXE),0))
+ . S:$L($G(LEX("NAR"))) ^TMP("LEXSCH",$J,"NAR",0)=$G(LEX("NAR"))
+ . S LEXM=$O(LEX("LIST"," "),-1),LEXL=$O(LEX("LIST",0))
+ . S:LEXM>0 LEX=LEXM,LEX("MAT")=(LEXM_" match"_$S(LEXM'>1:" ",1:"es ")_"found"),^TMP("LEXSCH",$J,"NUM",0)=LEXM
+ . S:LEXM>0&(LEXL>0) LEX("MAX")=LEXM,LEX("MIN")=LEXL,LEX("LIST",0)=(LEXM_"^"_LEXL)
 SCT ; Look-up by Shortcuts         EN^LEXASC  
  I +$G(^TMP("LEXSCH",$J,"SCT",0)),$D(^LEX(757.41,^TMP("LEXSCH",$J,"SCT",0))) D
  . S LEXFND=$$EN^LEXASC(^TMP("LEXSCH",$J,"SCH",0),^TMP("LEXSCH",$J,"SCT",0),$G(LEXVDT))
@@ -128,24 +132,27 @@ KEYWRD ; Look-up by word              EN^LEXALK
 EXIT ; Clean-up and quit
  K LEXQ,LEXDICS,LEXFIL,LEXFILR,LEXDSP,LEXSHOW,LEXSHCT,LEXSUB
  K LEXOVR,LEXUN,LEXLKFL,LEXLKGL,LEXLKIX,LEXLKSH,LEXTKNS,LEXTKN
- K LEXI Q:$D(LEX("HLP"))
+ K LEXI,LEXM Q:$D(LEX("HLP"))
+ S:$L(LEXX) LEX("NAR")=LEXX S:$L(LEXXNAR) LEX("NAR")=LEXXNAR S LEX=0
+ S:$L($G(LEX("NAR"))) ^TMP("LEXSCH",$J,"NAR",0)=$G(LEX("NAR"))
+ S:$G(^TMP("LEXSCH",$J,"NUM",0))>0 LEX=$G(^TMP("LEXSCH",$J,"NUM",0))
  D:$D(LEX("ERR")) CLN
  I $D(LEX),+$G(LEX)=0,'$D(LEX("LIST")),$L($G(LEXX)) D
- .N LEXC,LEXF,LEXV
- .S LEXC=1
- .S LEXF=$G(^TMP("LEXSCH",$J,"FIL",0))
- .S LEXV=$G(^TMP("LEXSCH",$J,"VOC",0))
- .D:+$G(^TMP("LEXSCH",$J,"UNR",0))>0 EN^LEXAR(LEXX,$G(LEXVDT))
- .S:'$D(LEX("NAR")) LEX("NAR")=LEXX
- .S LEX=0
- .S:'$D(LEX("HLP")) LEX("HLP",LEXC)="    A suitable term could not be found based on user input"
- .S:LEXF="I 1" LEXF=""
- .I $L(LEXF)!(LEXV'="WRD"),'$D(LEX("HLP")) D
- ..S LEX("HLP",LEXC)=$G(LEX("HLP",LEXC))_" and "
- ..S LEXC=LEXC+1
- ..S LEX("HLP",LEXC)="    current user defaults"
- ..S LEX("HLP",0)=LEXC
- .S:'$D(LEX("HLP")) LEX("HLP",LEXC)=$G(LEX("HLP",LEXC))_"."
+ . N LEXC,LEXF,LEXV,LEXM,LEXL
+ . S LEXC=1
+ . S LEXF=$G(^TMP("LEXSCH",$J,"FIL",0))
+ . S LEXV=$G(^TMP("LEXSCH",$J,"VOC",0))
+ . D:+$G(^TMP("LEXSCH",$J,"UNR",0))>0 EN^LEXAR(LEXX,$G(LEXVDT))
+ . S:$L(LEXX) LEX("NAR")=LEXX S:$L(LEXXNAR) LEX("NAR")=LEXXNAR S LEX=0
+ . S:$L($G(LEX("NAR"))) ^TMP("LEXSCH",$J,"NAR",0)=$G(LEX("NAR"))
+ . S:'$D(LEX("HLP")) LEX("HLP",LEXC)="    A suitable term could not be found based on user input"
+ . S:LEXF="I 1" LEXF=""
+ . I $L(LEXF)!(LEXV'="WRD"),'$D(LEX("HLP")) D
+ . . S LEX("HLP",LEXC)=$G(LEX("HLP",LEXC))_" and "
+ . . S LEXC=LEXC+1
+ . . S LEX("HLP",LEXC)="    current user defaults"
+ . . S LEX("HLP",0)=LEXC
+ . S:'$D(LEX("HLP")) LEX("HLP",LEXC)=$G(LEX("HLP",LEXC))_"."
  Q
 CLN ; Clean
  K LEXQ,LEXTKNS,LEXTKN,LEXI

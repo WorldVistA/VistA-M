@@ -1,144 +1,58 @@
-IBDEI07K ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI07K ; ; 09-FEB-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQ(358.7)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3383,0)
- ;;=789.64^^33^278^57
- ;;^UTILITY(U,$J,358.3,3383,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3383,1,4,0)
- ;;=4^789.64
- ;;^UTILITY(U,$J,358.3,3383,1,5,0)
- ;;=5^LLQ Abdominal Tenderness
- ;;^UTILITY(U,$J,358.3,3383,2)
- ;;=^303346
- ;;^UTILITY(U,$J,358.3,3384,0)
- ;;=789.65^^33^278^70
- ;;^UTILITY(U,$J,358.3,3384,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3384,1,4,0)
- ;;=4^789.65
- ;;^UTILITY(U,$J,358.3,3384,1,5,0)
- ;;=5^Periumbilical Tenderness
- ;;^UTILITY(U,$J,358.3,3384,2)
- ;;=^303347
- ;;^UTILITY(U,$J,358.3,3385,0)
- ;;=789.66^^33^278^22
- ;;^UTILITY(U,$J,358.3,3385,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3385,1,4,0)
- ;;=4^789.66
- ;;^UTILITY(U,$J,358.3,3385,1,5,0)
- ;;=5^Epigastric Tenderness
- ;;^UTILITY(U,$J,358.3,3385,2)
- ;;=^303348
- ;;^UTILITY(U,$J,358.3,3386,0)
- ;;=070.1^^33^278^39
- ;;^UTILITY(U,$J,358.3,3386,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3386,1,4,0)
- ;;=4^070.1
- ;;^UTILITY(U,$J,358.3,3386,1,5,0)
- ;;=5^Hepatitis A
- ;;^UTILITY(U,$J,358.3,3386,2)
- ;;=^126486
- ;;^UTILITY(U,$J,358.3,3387,0)
- ;;=070.30^^33^278^40
- ;;^UTILITY(U,$J,358.3,3387,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3387,1,4,0)
- ;;=4^070.30
- ;;^UTILITY(U,$J,358.3,3387,1,5,0)
- ;;=5^Hepatitis B, Acute
- ;;^UTILITY(U,$J,358.3,3387,2)
- ;;=^266626
- ;;^UTILITY(U,$J,358.3,3388,0)
- ;;=070.32^^33^278^41
- ;;^UTILITY(U,$J,358.3,3388,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3388,1,4,0)
- ;;=4^070.32
- ;;^UTILITY(U,$J,358.3,3388,1,5,0)
- ;;=5^Hepatitis B, Chronic
- ;;^UTILITY(U,$J,358.3,3388,2)
- ;;=^303249
- ;;^UTILITY(U,$J,358.3,3389,0)
- ;;=070.51^^33^278^42
- ;;^UTILITY(U,$J,358.3,3389,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3389,1,4,0)
- ;;=4^070.51
- ;;^UTILITY(U,$J,358.3,3389,1,5,0)
- ;;=5^Hepatitis C, Acute
- ;;^UTILITY(U,$J,358.3,3389,2)
- ;;=^266632
- ;;^UTILITY(U,$J,358.3,3390,0)
- ;;=070.54^^33^278^43
- ;;^UTILITY(U,$J,358.3,3390,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3390,1,4,0)
- ;;=4^070.54
- ;;^UTILITY(U,$J,358.3,3390,1,5,0)
- ;;=5^Hepatitis C, Chronic
- ;;^UTILITY(U,$J,358.3,3390,2)
- ;;=^303252
- ;;^UTILITY(U,$J,358.3,3391,0)
- ;;=571.41^^33^278^44
- ;;^UTILITY(U,$J,358.3,3391,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3391,1,4,0)
- ;;=4^571.41
- ;;^UTILITY(U,$J,358.3,3391,1,5,0)
- ;;=5^Hepatitis, Chronic Persist
- ;;^UTILITY(U,$J,358.3,3391,2)
- ;;=^259093
- ;;^UTILITY(U,$J,358.3,3392,0)
- ;;=571.1^^33^278^45
- ;;^UTILITY(U,$J,358.3,3392,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3392,1,4,0)
- ;;=4^571.1
- ;;^UTILITY(U,$J,358.3,3392,1,5,0)
- ;;=5^Hepatitis, ETOH Acute
- ;;^UTILITY(U,$J,358.3,3392,2)
- ;;=^2597
- ;;^UTILITY(U,$J,358.3,3393,0)
- ;;=070.59^^33^278^47
- ;;^UTILITY(U,$J,358.3,3393,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3393,1,4,0)
- ;;=4^070.59
- ;;^UTILITY(U,$J,358.3,3393,1,5,0)
- ;;=5^Hepatitis, Other Viral
- ;;^UTILITY(U,$J,358.3,3393,2)
- ;;=^266631
- ;;^UTILITY(U,$J,358.3,3394,0)
- ;;=573.3^^33^278^46
- ;;^UTILITY(U,$J,358.3,3394,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3394,1,4,0)
- ;;=4^573.3
- ;;^UTILITY(U,$J,358.3,3394,1,5,0)
- ;;=5^Hepatitis, Other
- ;;^UTILITY(U,$J,358.3,3394,2)
- ;;=^56268
- ;;^UTILITY(U,$J,358.3,3395,0)
- ;;=555.9^^33^278^13
- ;;^UTILITY(U,$J,358.3,3395,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3395,1,4,0)
- ;;=4^555.9
- ;;^UTILITY(U,$J,358.3,3395,1,5,0)
- ;;=5^Crohn's Disease
- ;;^UTILITY(U,$J,358.3,3395,2)
- ;;=Crohn's Disease^29356
- ;;^UTILITY(U,$J,358.3,3396,0)
- ;;=787.91^^33^278^14
- ;;^UTILITY(U,$J,358.3,3396,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3396,1,4,0)
- ;;=4^787.91
- ;;^UTILITY(U,$J,358.3,3396,1,5,0)
- ;;=5^Diarrhea
- ;;^UTILITY(U,$J,358.3,3396,2)
- ;;=^33921
+ ;;^DIC(358.7,0,"GL")
+ ;;=^IBE(358.7,
+ ;;^DIC("B","IMP/EXP FORM LINE",358.7)
+ ;;=
+ ;;^DIC(358.7,"%D",0)
+ ;;=^^3^3^2940217^
+ ;;^DIC(358.7,"%D",1,0)
+ ;;=This file is nearly identical to file #357.7. It is used by the
+ ;;^DIC(358.7,"%D",2,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.7,"%D",3,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.7,0)
+ ;;=FIELD^^.08^8
+ ;;^DD(358.7,0,"DDA")
+ ;;=N
+ ;;^DD(358.7,0,"DT")
+ ;;=2950717
+ ;;^DD(358.7,0,"ID",.02)
+ ;;=W " STARTING COL=",$P(^(0),U,2)+1
+ ;;^DD(358.7,0,"ID",.03)
+ ;;=W " STARTING ROW=",$P(^(0),U,3)+1
+ ;;^DD(358.7,0,"ID",.06)
+ ;;=W ""
+ ;;^DD(358.7,0,"IX","B",358.7,.01)
+ ;;=
+ ;;^DD(358.7,0,"IX","C",358.7,.06)
+ ;;=
+ ;;^DD(358.7,0,"NM","IMP/EXP FORM LINE")
+ ;;=
+ ;;^DD(358.7,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.7,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.7,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.7,.01,1,1,0)
+ ;;=358.7^B
+ ;;^DD(358.7,.01,1,1,1)
+ ;;=S ^IBE(358.7,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.7,.01,1,1,2)
+ ;;=K ^IBE(358.7,"B",$E(X,1,30),DA)
+ ;;^DD(358.7,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.7,.01,21,0)
+ ;;=^^4^4^2930527^
+ ;;^DD(358.7,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.7,.01,21,2,0)
+ ;;=The name given to the line. Lines should be given names that will allow
+ ;;^DD(358.7,.01,21,3,0)
+ ;;=them to be identifies, such as V(1,1), meaning a vertical line starting at
+ ;;^DD(358.7,.01,21,4,0)
+ ;;=coordinates (1,1).

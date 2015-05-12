@@ -1,5 +1,5 @@
 SROAPRE2 ;BIR/MAM - EDIT PAGE 2 PREOP ;07/18/2011
- ;;3.0;Surgery;**38,47,125,153,166,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,47,125,153,166,176,182**;24 Jun 93;Build 49
  D @EMILY Q
 1 ; edit renal information
  W ! K DIR S X=$P(SRAO(1),"^") I X'="" S DIR("B")=X
@@ -38,13 +38,13 @@ NOCNS ; no CNS problems
  F I=13,14 S $P(^SRF(SRTN,200.1),"^",I)=$S(SRAX="N":0,1:SRAX)
  Q
 NUT ; nutritional/immune/other
- W ! K DR,DIE S DIE=130,DA=SRTN,DR="338T;218T;339T;215T;216T;217T;338.1T;338.2T;218.1T;269T" D ^DIE K DA,DIE,DR
+ W ! K DR,DIE S DIE=130,DA=SRTN,DR="338T;218T;339T;215T;216T;642T;217T;338.1T;338.2T;218.1T;269T" D ^DIE K DA,DIE,DR
  S SRACLR=0
  Q
 NONUT ; no nutritional/immune/other
  F I=45:1:50 S $P(^SRF(SRTN,200),"^",I)=SRAX
  F I=3,4,8 S $P(^SRF(SRTN,206),"^",I)=SRAX
- S:SRAX="N" $P(^SRF(SRTN,200.1),"^",3)=$S($P($G(VADM(5)),"^")="M":"NA",1:"NO")
+ I SRAX="N" S $P(^SRF(SRTN,200.1),"^",3)=$S($P($G(VADM(5)),"^")="M":"NA",1:"NO"),$P(^SRF(SRTN,200),"^",58)="1"
  S:SRAX="" $P(^SRF(SRTN,200.1),"^",3)=""
  Q
 RET W !! K DIR S DIR(0)="E" D ^DIR I $D(DTOUT)!$D(DUOUT) S SRSOUT=1

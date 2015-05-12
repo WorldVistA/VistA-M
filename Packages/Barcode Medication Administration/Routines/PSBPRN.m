@@ -1,5 +1,5 @@
 PSBPRN ;BIRMINGHAM/EFC-BCMA PRN FUNCTIONS ;12/14/12 12:22pm
- ;;3.0;BAR CODE MED ADMIN;**5,3,13,61,68,70**;Mar 2004;Build 101
+ ;;3.0;BAR CODE MED ADMIN;**5,3,13,61,68,70,80**;Mar 2004;Build 6
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ;Reference/IA
@@ -100,6 +100,7 @@ GETPRNS(RESULTS,DFN,PSBORD,PSBSIOPI) ; Get the PRN's for a pt needing effectiven
  S PSBPRNDT=$S(PSBCOPRNDT<PSBIMPRNDT:PSBCOPRNDT,1:PSBIMPRNDT)
  ;use older of PSBPRNDT & PSBADMDT(admission) for loop quit value
  I PSBADMDT,PSBADMDT<PSBPRNDT S (PSBPRNDT,PSBIMPRNDT,PSBCOPRNDT)=PSBADMDT
+ I PSBADMDT,PSBPRNDT<PSBIMPRNDT S PSBIMPRNDT=PSBADMDT ;Preserve admission date for inpatient medications, PSB*3*80
  ;end dates                                                       *70
  ;
  ;begin loop of PRN records

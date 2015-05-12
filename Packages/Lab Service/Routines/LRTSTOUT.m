@@ -1,5 +1,5 @@
 LRTSTOUT ;DALOI/STAFF - JAM TESTS OFF ACCESSIONS ;10/12/11  11:54
- ;;5.2;LAB SERVICE;**100,121,153,202,221,337,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**100,121,153,202,221,337,350,445**;Sep 27, 1994;Build 6
  ;
  ; Cancel tests - Test are no longer deleted, instead the status is changed to Not Performed.
  ;
@@ -119,7 +119,7 @@ SET ;
  S LRNOW=$$NOW^XLFDT
  S LRLLOC=$P(^LRO(69,LRODT,1,LRSN,0),U,7)
  ;
- N II,X,LRI,LRSTATUS,OCXTRACE,ORIFN,ORSTS
+ N II,X,LRI,LRSTATUS,OCXTRACE,ORIFN,ORSTS,LRMERGSO
  S:$G(LRDBUG) OCXTRACE=1
  S LRI=0
  F  S LRI=$O(^LRO(69,LRODT,1,LRSN,2,LRI)) Q:LRI<1  I $D(^(LRI,0))#2,LRTSTS=+^(0) D
@@ -129,10 +129,17 @@ SET ;
  . S ^LRO(69,LRODT,1,LRSN,2,LRI,1.1,X,0)=$P($G(LRNATURE),U,5)_": "_LRCCOM,X=X+1,X(1)=X(1)+1
  . S ^LRO(69,LRODT,1,LRSN,2,LRI,1.1,X,0)=$S($G(LRMERG):"*Merged:",'$D(LRLABKY):"*Cancel by Floor: ",1:"*NP Action: ")_$$FMTE^XLFDT(LRNOW,"1FMZ")
  . S ^LRO(69,LRODT,1,LRSN,2,LRI,1.1,0)="^^"_X_"^"_X(1)_"^"_DT
+ . I $G(LRMERG),$P(^LRO(69,LRODT,1,LRSN,2,LRI,0),"^",3,5)'=(LRAD_"^"_LRAA_"^"_LRAN) D  ;Don't cancel test on order if accession merged to same order.
+ . . Q:'$G(LRSOF)  ;same order flag has not been set
+ . . S X=X+1,X(1)=X(1)+1
+ . . S ^LRO(69,LRODT,1,LRSN,2,LRI,1.1,X,0)="*Merge from: "_$G(^LRO(68,+$G(LR1AA),1,+$G(LR1AD),1,+$G(LR1AN),.2),"Unknown")
+ . . S ^LRO(69,LRODT,1,LRSN,2,LRI,1.1,0)="^^"_X_"^"_X(1)_"^"_DT
+ . . S LRMERGSO=1,LRMSTATI=6 ;indicate that a same order merge occurred & we want to keep #100 order
  . I $G(ORIFN),$D(II) D NEW^LR7OB1(LRODT,LRSN,$S($G(LRMSTATI)=""!($G(LRMSTATI)=1):"OC",1:"SC"),$G(LRNATURE),.II,LRSTATUS)
- . S $P(^LRO(69,LRODT,1,LRSN,2,LRI,0),"^",9)="CA",$P(^(0),U,10)="L",$P(^(0),U,11)=DUZ
+ . ;Keep ^LR7OB1 call before ^^ update to status/DUZ in File #69 (below); see warning in 69^LR7OB69:
+ . I '$D(LRMERGSO) S $P(^LRO(69,LRODT,1,LRSN,2,LRI,0),"^",9)="CA",$P(^(0),U,10)="L",$P(^(0),U,11)=DUZ
  . S:$D(^LRO(69,LRODT,1,LRSN,"PCE")) ^LRO(69,"AE",DUZ,LRODT,LRSN,LRI)=""
- . K II
+ . K II,LRMERGSO,LRSOF
  ;
  K ORIFN,ORSTS
  ;
@@ -161,7 +168,7 @@ SET ;
  ;
 ROL ;
  Q:+$G(^LRO(68,LRAA,1,LROWDT,1,LRAN,0))'=LRDFN  Q:'($D(^(4,LRTSTS,0))#2)
- S $P(^LRO(68,LRAA,1,LROWDT,1,LRAN,4,LRTSTS,0),U,4,6)=DUZ_U_LRNOW_U_"*Not performed"
+ S $P(^LRO(68,LRAA,1,LROWDT,1,LRAN,4,LRTSTS,0),U,4,6)=DUZ_U_LRNOW_U_$S($G(LRMERG):"*Merged",1:"*Not Performed")
  Q
  ;
  ;

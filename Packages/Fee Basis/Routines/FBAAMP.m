@@ -1,10 +1,10 @@
 FBAAMP ;AISC/CMR-MULTIPLE PAYMENT ENTRY ; 11/21/12 4:12pm
- ;;3.5;FEE BASIS;**4,21,38,55,61,67,116,108,143**;JAN 30, 1995;Build 20
+ ;;3.5;FEE BASIS;**4,21,38,55,61,67,116,108,143,123**;JAN 30, 1995;Build 51
  ;;Per VA Directive 6402, this routine should not be modified.
  S FBMP=1 ;multiple payment flag
  G ^FBAACO
 1 ;return from FBAACO
- D MMPPT^FBAACP G:$G(FBAAOUT) Q1
+ D MMPPT^FBAACO G:$G(FBAAOUT) Q1
  D MPDT I 'FBMPDT G Q1
  K FBAAOUT W ! D CPTM^FBAALU(FBMPDT,DFN) I 'FBGOT G Q1
  ; prompt revenue code
@@ -40,9 +40,9 @@ FILE S TP="",DR="1///^S X=FBJ;Q;2///^S X=FBK;47///^S X=FBUNITS"
  I FBCSID]"" S DR=DR_";49///^S X=FBCSID"
  I FBFPPSC]"" S DR=DR_";50///^S X=FBFPPSC;51///^S X=FBFPPSL"
  I FBAARC]"" S DR=DR_";48////^S X=FBAARC"
- ;S DR=DR_$S(FBJ-FBK:";3///^S X=FBAAAS;3.5////^S X=DT;4////^S X=FBAASC;D DESC^FBAAMP1",1:"")
  S DR(1,162.03,1)="6////^S X=DUZ;7////^S X=FBAABE;8////^S X=BO;13///^S X=FBAAID;14///^S X=FBAAIN;15///^S X=FBPT;16////^S X=FBPOV;17///^S X=FBTT;18///^S X=FBAAPTC;23////^S X=FBTYPE;26////^S X=FBPSA"
  S DR(1,162.03,2)="34///^S X=$G(FBAAMM1);54////^S X=$G(FBCNTRP);28////^S X=FBHCFA(28);30////^S X=FBHCFA(30);31////^S X=FBHCFA(31);32////^S X=FBHCFA(32);33///^S X=FBAAVID;44///^S X=FBFSAMT;45////^S X=FBFSUSD"
+ S DR(1,162.03,3)=".05////^S X=$G(FBIA);.055///^S X=$G(FBDODINV)"         ; FB*3.5*123
  S DIE="^FBAAC("_DFN_",1,"_FBV_",1,"_FBSDI_",1,"
  S DA=FBAACPI,DA(1)=FBSDI,DA(2)=FBV,DA(3)=DFN
  D LOCK^FBUCUTL(DIE,FBAACPI,1)
@@ -53,12 +53,11 @@ FILE S TP="",DR="1///^S X=FBJ;Q;2///^S X=FBK;47///^S X=FBUNITS"
  S FBINTOT=FBINTOT+FBK
  W " ....OK, DONE...."
  ; HIPAA 5010 - count line items that have 0.00 amount paid
- ;I FBK>0 S Z1=$P(^FBAA(161.7,FBAABE,0),"^",11)+1,$P(^(0),"^",11)=Z1
  S Z1=$P(^FBAA(161.7,FBAABE,0),"^",11)+1,$P(^(0),"^",11)=Z1
  W:Z1>(FBAAMPI-20) !,*7,"Warning, you can only enter ",(FBAAMPI-Z1)," more line items!" I Z1>(FBAAMPI-1) D  S FBMAX=1 G Q1
  .W !!,*7,"You have reached the maximum number of payments for a Batch!",!,"You must select another Batch for entering Payments!"
  G MULT
-Q1 K FBADJ,FBAADT,FBX,FBAACP,DIC,DIE,X,Y,DIRUT,DUOUT,DTOUT,FBOUT,FBSI,FBMPDT G ^FBAACO:$D(FBMAX),1^FBAACO
+Q1 K FBADJ,FBAADT,FBX,FBAACP,DIC,DIE,X,Y,DIRUT,DUOUT,DTOUT,FBOUT,FBSI,FBMPDT,FBIA,FBDODINV G ^FBAACO:$D(FBMAX),1^FBAACO
  ;
 Q ;kill variables and exit
  D Q^FBAACO
@@ -131,7 +130,7 @@ HELP1 W !!,"Enter a dollar amount that does not exceed the amount claimed.",!
  I FBAMFS>0 W "Only the holder of the 'FBAASUPERVISOR' key may exceed the",!,"Fee Schedule.",!
  Q
  ;
-CHKCPT() ; check if CPT/Modifer active on date of service
+CHKCPT() ; check if CPT/Modifier active on date of service
  N FBCPTX,FBI,FBMOD,FBMODX,FBRET
  S FBRET=1
  S FBCPTX=$$CPT^ICPTCOD(FBAACP,FBDT,1)
@@ -155,7 +154,7 @@ CHKFS() ; check if fee schedule amount is different on date of service
  ; adjust amount if units > 1
  I $G(FBUNITS) D
  . N FBFSUNIT
- . ; determine if fee schedule can be multipled by units
+ . ; determine if fee schedule can be multiplied by units
  . S FBFSUNIT=$S($P(FBX,U,2)="R":1,$P(FBX,U,2)="F"&(FBDT>3040930):1,1:0)
  . I FBFSUNIT S $P(FBX,U)=$J($P(FBX,U)*FBUNITS,0,2)
  ; issue warning if lesser of claim and fee schedule amount different
@@ -171,6 +170,154 @@ CHKFS() ; check if fee schedule amount is different on date of service
  . W:FBRET !,"  You may want to separately process this date of service."
  Q FBRET
  ;
-ANCIL ;ENTRY POINT FOR mutiple ancillary payment option
+IPACID(FBVEN,FBIPIEN) ; function to return IPAC agreement ID# if exactly 1 active IPAC on file for vendor (FB*3.5*123)
+ ; No user interface allowed with this function.  Called by background, Austin transmission process.
+ ;
+ ; Input:
+ ;   FBVEN - Vendor ien (ptr to file 161.2)
+ ;
+ ; Output:
+ ;   Function value = if exactly 1 active IPAC agreement is on file, then this returns the external agreement ID#
+ ;                    otherwise, this returns ""
+ ;   FBIPIEN (pass by reference) - internal entry ien of the active IPAC agreement on file
+ ;
+ N X1,X2,RET
+ S RET=""       ; default value
+ S FBIPIEN=""   ; initialize
+ S FBVEN=+$G(FBVEN)
+ I '$$IPACREQD(FBVEN) G IPACIDX                            ; IPAC not required
+ S X1=+$O(^FBAA(161.95,"AVA",FBVEN,"A",""))                ; first active IPAC entry
+ I 'X1 G IPACIDX                                           ; no IPAC data found for vendor so get out
+ S X2=+$O(^FBAA(161.95,"AVA",FBVEN,"A",""),-1)             ; last active IPAC entry
+ ;
+ ; only 1 IPAC on file - retrieve the ID# in this case only
+ I X1=X2 S RET=$P($G(^FBAA(161.95,X1,0)),U,1),FBIPIEN=X1   ; IPAC external agreement ID#
+ ;
+IPACIDX ;
+ Q RET
+ ;
+IPAC(FBVEN) ; Determine if active IPAC agreement data exists for vendor (FB*3.5*123)
+ ; Input:
+ ;   FBVEN - Vendor ien (ptr to file 161.2)
+ ;
+ ; Output:
+ ;   Function value = -1 if active IPAC records exist, but none were selected (this is an error condition)
+ ;                  = ien of IPAC entry in file 161.95 (if only 1 exists, or user selected it)
+ ;                  = "" if no IPAC data found or if IPAC not required
+ ;
+ N FBIA,X1,X2,DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ S FBIA=""
+ S FBVEN=+$G(FBVEN)
+ I '$$IPACREQD(FBVEN) G IPACX                          ; IPAC not required
+ S X1=+$O(^FBAA(161.95,"AVA",FBVEN,"A",""))            ; first active IPAC entry
+ I 'X1 G IPACX                                         ; no IPAC data found for vendor, get out with FBIA=""
+ W !!,"This is a Federal Vendor. IPAC payment information is required."
+ S X2=+$O(^FBAA(161.95,"AVA",FBVEN,"A",""),-1)         ; last active IPAC entry
+ ;
+ ; only 1 IPAC on file - select it automatically
+ I X1=X2 S FBIA=X1 D
+ . W !,"  - Required IPAC agreement information has been found."
+ . Q
+ ;
+ I X1'=X2 S FBIA=$$MULTIPAC(FBVEN)                     ; multiple IPAC selection for vendor
+ I FBIA'>0 G IPACX                                     ; get out if user failed to select one
+ ;
+ S DIR(0)="Y",DIR("A")="Would you like to display the detailed IPAC agreement information"
+ S DIR("B")="No"
+ W ! D ^DIR K DIR
+ I $D(DIRUT) W "  Not displaying detail ... "
+ I 'Y G IPACX   ; exit without displaying the data by user choice
+ ;
+ ; Display the IPAC data
+ W !
+ D VADISP^FBAAIAU(FBIA,1)
+ S DIR(0)="E" D ^DIR K DIR    ; press return to continue
+IPACX ;
+ Q FBIA
+ ;
+MULTIPAC(FBVEN) ; multiple IPAC agreement display, lister, selection
+ ; same input and output parameters as IPAC above
+ ;
+ N FBIA,Z,CNT,FBLN,FBG,ID,FY,DESC,DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y,LN,T,W
+ S FBVEN=+$G(FBVEN)
+ S FBIA=""
+ S Z=0,CNT=0 K FBLN
+ F  S Z=$O(^FBAA(161.95,"AVA",FBVEN,"A",Z)) Q:'Z  D
+ . S FBG=$G(^FBAA(161.95,Z,0)) I FBG="" Q
+ . S ID=$P(FBG,U,1)
+ . S FY=$P(FBG,U,3)
+ . S DESC=$P(FBG,U,5)
+ . S CNT=CNT+1,FBLN(CNT)=Z_U_ID_U_FY_U_DESC
+ . Q
+ ;
+ I 'CNT G MULIPACX    ; get out if nothing found (should not happen)
+ I CNT=1 S FBIA=$P(FBLN(1),U,1) G MULIPACX       ; only 1 found (also should not happen)
+ ;
+ ; Multiple found. Build list.
+ S DIR(0)="N"_U_"1:"_CNT,LN=0
+ S LN=LN+1,DIR("A",LN)=$$GET1^DIQ(161.2,FBVEN_",",.01)_" is a Federal Vendor with"
+ S LN=LN+1,DIR("A",LN)=CNT_" active IPAC agreements on file:"
+ S LN=LN+1,DIR("A",LN)=" "
+ S LN=LN+1,DIR("A",LN)="#   ID          FY   Description"
+ S LN=LN+1,DIR("A",LN)="-- ----------  ----  -----------"
+ S T=0 F  S T=$O(FBLN(T)) Q:'T  S W=FBLN(T) D
+ . S LN=LN+1,DIR("A",LN)=$$LJ^XLFSTR(T,3)_$$LJ^XLFSTR($P(W,U,2),12)_$$LJ^XLFSTR($P(W,U,3),6)_$E($P(W,U,4),1,58)
+ . Q
+ S LN=LN+1,DIR("A",LN)=" "
+ S LN=LN+1,DIR("A",LN)="Please select the IPAC agreement to be used with this invoice."
+ S LN=LN+1,DIR("A",LN)="This information is required."
+ S DIR("A")="Selection#"
+ W ! D ^DIR K DIR
+ I Y>0 S FBIA=$P($G(FBLN(Y)),U,1) G MULIPACX    ; user selection is good so set FBIA and get out
+ ;
+ ; in all other cases, user failed to make a selection so set FBIA=-1
+ S FBIA=-1
+ W !!,$C(7),"IPAC Agreement Selection is required for this vendor."
+ ;
+MULIPACX ;
+ Q FBIA
+ ;
+IPACINV(FBDODINV,FBDEF) ; function to get the DoD invoice number for IPAC (FB*3.5*123)
+ ; Function value is 1 if the DoD invoice number was obtained.
+ ; Function value is 0 if not.
+ ; FBDODINV - pass by reference. This is set to the DoD invoice number.
+ ; FBDEF is an optional default value
+ ;
+ N RET,DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
+ S FBDODINV="",RET=0   ; initialize
+ S DIR(0)="Fr^3:22",DIR("A")="Enter the DoD Invoice Number"
+ I $G(FBDEF)'="" S DIR("B")=FBDEF
+ S DIR("?",1)="If invoice is a UB-04 look in block 3a."
+ S DIR("?",2)="If invoice is a CMS-1500 look in block 26."
+ S DIR("?")="You must enter between 3-22 characters."
+ W ! D ^DIR K DIR
+ I $D(DIRUT),$G(FBDEF)'="" S Y=FBDEF K DIRUT
+ I '$D(DIRUT),Y'="" S FBDODINV=Y,RET=1 G IPINVX
+ W !!,$C(7),"The DoD Invoice Number is required for IPAC processing."
+IPINVX ;
+ W !
+ Q RET
+ ;
+IPACREQD(FBVEN) ; Is IPAC data required for vendor?  (FB*3.5*123)
+ I $G(FBAAPTC)="R" Q 0      ; IPAC is not applicable for Patient/Veteran reimbursements
+ I +$O(^FBAA(161.95,"AVA",+$G(FBVEN),"A","")) Q 1
+ Q 0
+ ;
+IPACDISP(FBIA,FBDODINV) ; Quick display of IPAC data currently on file for this invoice  (FB*3.5*123)
+ N G
+ S FBIA=+$G(FBIA)
+ S G=$G(^FBAA(161.95,FBIA,0))
+ I G="",$G(FBDODINV)="" G IDISPX
+ W !!,"IPAC Agreement Information on file for this Invoice/Payment"
+ W !,"-----------------------------------------------------------"
+ W !,"IPAC Agreement ID: ",$P(G,U,1),"  (",$$GET1^DIQ(161.95,FBIA,3),")"
+ W !?11,"Vendor: ",$$GET1^DIQ(161.95,FBIA,1)
+ W !?6,"Fiscal Year: ",$P(G,U,3)
+ W !,"Short Description: ",$P(G,U,5)
+ W !?5,"DoD Invoice#: ",$G(FBDODINV)
+IDISPX ;
+ Q
+ ;
+ANCIL ;ENTRY POINT FOR multiple ancillary payment option
  S FBCHCO=1 D ^FBAAMP
  K FBCHCO Q

@@ -1,9 +1,20 @@
-RORXU005 ;HCIOFO/SG - REPORT BUILDER UTILITIES ; 5/25/11 11:48am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,15**;Feb 17, 2006;Build 27
+RORXU005 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;5/25/11 11:48am
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,15,21,22**;Feb 17, 2006;Build 17
  ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ;
+ ;                 --- ROUTINE MODIFICATION LOG ---
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*22   FEB  2014   T KOPP       Added tag SKIPOEF to return the result
+ ;                                      if the period of service of patient
+ ;                                      matches OEF/OIF selection criteria.
+ ;****************************************************************************** 
  ; This routine uses the following IAs:
  ;
  ; #10035        Direct read of the DOD field of the file #2
+ ; #10061        DEM^VADPT (supported)
  ;
  Q
  ;
@@ -55,7 +66,7 @@ REIMBLVL(RORIEN,ROR8DRGS,STDT,ENDT) ;
  ;
 RISKS(RORIEN) ;
  Q:'$D(^RORDATA(799.4,+RORIEN,0)) ""
- N FLD,FLDLST,I,RISKLST,RORBUF,RORMSG,DIERR
+ N FLD,FLDLST,I,IENS,RISKLST,RORBUF,RORMSG,DIERR
  S FLDLST="14.01;14.02;14.03;14.04;14.08;14.07;14.09;14.1;14.11;14.12;14.13;14.16;14.17"
  ;--- Load the risk fields
  S IENS=(+RORIEN)_","
@@ -84,8 +95,16 @@ RISKS(RORIEN) ;
  ;                    time frame
  ;                 F  Skip patients added after the end date
  ;
+ ;                 H  Skip patients without local HIV diagnosis
+ ;
+ ;                 M  Skip male patients
+ ;                 W  Skip female patients
+ ;
  ;                 O  Process LOCAL_FIELDS
  ;                 R  Process OTHER_REGISTRIES
+ ;
+ ;                 E  Exclude patients with OEF/OIF period of service
+ ;                 I  Include only patients with OEF/OIF period of service
  ;
  ; [STDT]        Start date of the report (FileMan).
  ;               Time is ignored and the beginning of the day is
@@ -105,7 +124,7 @@ RISKS(RORIEN) ;
  ;        1  Skip the patient
  ;
 SKIP(RORIEN,FLAGS,STDT,ENDT) ;
- N DOD,IEN,MODE,NODE,PTIEN,REGIEN,SKIP,STATUS,TMP
+ N DOD,IEN,MODE,NODE,PTIEN,REGIEN,SEX,SKIP,STATUS,TMP
  S SKIP=0
  ;--- Always skip patients marked for deletion
  Q:$$SKIPNA(RORIEN,FLAGS,.STATUS) 1
@@ -121,6 +140,16 @@ SKIP(RORIEN,FLAGS,STDT,ENDT) ;
  . S:'$D(PTIEN) PTIEN=+$$PTIEN^RORUTL01(RORIEN)
  . S DOD=+$P($G(^DPT(PTIEN,.35)),U)
  . S TMP=$S(DOD>0:DOD'<STDT,1:1)
+ ;
+ ;--- Male/Female patients screen
+ I FLAGS["M"!(FLAGS["W") D  Q:SKIP 1
+ . S:'$D(PTIEN) PTIEN=+$$PTIEN^RORUTL01(RORIEN)  ;get dfn
+ . S SKIP=$$SKIPSEX(PTIEN,FLAGS)
+ ;
+ ;--- OEF/OIF period of service patients screen
+ I FLAGS["E"!(FLAGS["I") D  Q:SKIP 1
+ . S:'$D(PTIEN) PTIEN=+$$PTIEN^RORUTL01(RORIEN)  ;get dfn
+ . S SKIP=$$SKIPOEF(PTIEN,FLAGS)
  ;
  ;--- Confirmed before/during/after the date range
  S ENDT=$S($G(ENDT)>0:ENDT\1,1:9999999)+1
@@ -159,6 +188,7 @@ SKIP(RORIEN,FLAGS,STDT,ENDT) ;
  . S:RORV'=1 SKIP=1
  . S:MODE<0 SKIP='SKIP
  ;
+ ;
  ;--- Include in the report
  Q 0
  ;
@@ -179,3 +209,41 @@ SKIPNA(IEN798,FLAGS,STATUS) ;
  Q:(STATUS=5)!(STATUS="") 1           ; Deleted patient
  Q:(STATUS=4)&(FLAGS["G") 1           ; Pending patient
  Q 0
+ ;
+ ;***** CHECKS IF SEX OF PATIENT MATCHES SEX SELECTED FOR REPORT
+ ;
+ ; DFN           IEN of the patient's record in the patient file (#2)
+ ;
+ ; FLAGS         Flags that control the execution
+ ;
+ ; Return Values:
+ ;        0  Continue processing of the patient's data
+ ;        1  Skip the patient
+ ;
+SKIPSEX(DFN,FLAGS) ;
+ N VADM,VAPTYP,VAHOW,SEX
+ D DEM^VADPT
+ S SEX=$P($G(VADM(5)),U)
+ Q $S(FLAGS["M":SEX'="F",FLAGS["W":SEX'="M",1:0)
+ ;
+ ;***** CHECKS IF PERIOD OF SERVICE OF PATIENT MATCHES OEF/OIF SELECTION FOR
+ ;      REPORT
+ ;
+ ; DFN           IEN of the patient's record in the patient file (#2)
+ ;
+ ; FLAGS         Flags that control the execution
+ ;
+ ; Return Values:
+ ;        0  Continue processing of the patient's data
+ ;        1  Skip the patient
+ ;
+SKIPOEF(DFN,FLAGS) ;
+ N VASV,QUIT
+ D SVC^VADPT
+ S QUIT=0
+ ; Ignore if Only OEF/OIF selected and patient has no such POS
+ I FLAGS["I" S QUIT=$S($G(VASV(11))!($G(VASV(12)))!($G(VASV(13))):0,1:1)
+ ; Ignore if Exclude OEF/OIF selected and patient has such POS
+ I 'QUIT,FLAGS["E" S QUIT=$S($G(VASV(11))!($G(VASV(12)))!($G(VASV(13))):1,1:0)
+ Q QUIT
+ ; 

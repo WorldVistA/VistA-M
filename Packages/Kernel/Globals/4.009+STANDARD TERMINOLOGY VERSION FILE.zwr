@@ -8,7 +8,7 @@ ZWR
 ^DIC(4.009,0,"LAYGO")="@"
 ^DIC(4.009,0,"RD")="@"
 ^DIC(4.009,0,"WR")="@"
-^DIC(4.009,1,0)="GLOBAL VERSION^182"
+^DIC(4.009,1,0)="GLOBAL VERSION^0"
 ^DIC(4.009,"%",0)="^1.005^^0"
 ^DIC(4.009,"%D",0)="^^7^7^3050818^"
 ^DIC(4.009,"%D",1,0)="The file holds the last Version of Standard Terminology update. "

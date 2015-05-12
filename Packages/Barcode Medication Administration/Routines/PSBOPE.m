@@ -1,5 +1,5 @@
 PSBOPE ;BIRMINGHAM/EFC-PRN EFFECTIVENESS WORKSHEET ;8/12/12 10:57pm
- ;;3.0;BAR CODE MED ADMIN;**5,23,32*,70,78*;Mar 2004;Build 8
+ ;;3.0;BAR CODE MED ADMIN;**5,23,32,70,78,72**;Mar 2004;Build 16
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -47,7 +47,7 @@ PRINT ; Print meds stored in ^TMP("PSB",$J,DFN,....
  .F  S PSBIEN=$O(^TMP("PSB",$J,DFN,PSBIEN)) Q:PSBIEN=""  D
  ..S PSBIENS=PSBIEN_","
  ..I $Y>(IOSL-5) W $$PTFTR^PSBOHDR(),$$PTHDR()
- ..W !,$$GET1^DIQ(53.79,PSBIENS,.06),?30,$$GET1^DIQ(53.79,PSBIENS,.08),?64,$$GET1^DIQ(53.79,PSBIENS,"ACTION BY")                      ;*70
+ ..W !,$$GET1^DIQ(53.79,PSBIENS,.06),?30,$$GET1^DIQ(53.79,PSBIENS,.08),?64,$$GETINIT^PSBCSUTX(PSBIEN,"N") ;*70 - Get name of who took action, PSB*3*72
  ..W ?102,$$GET1^DIQ(53.79,PSBIENS,"PATIENT LOCATION")           ;*70
  ..W !,?5,"PRN Reason: ",$$GET1^DIQ(53.79,PSBIENS,.21)
  .W $$PTFTR^PSBOHDR()
@@ -75,7 +75,7 @@ PRINT ; Print meds stored in ^TMP("PSB",$J,DFN,....
  ...S PSBIEN=""
  ...F  S PSBIEN=$O(^TMP("PSB",$J,DFN,PSBIEN)) Q:PSBIEN=""  D
  ....I $Y>(IOSL-5) W $$WRDHDR()
- ....W !?5,$$GET1^DIQ(53.79,PSBIEN_",",.06),?35,$$GET1^DIQ(53.79,PSBIEN_",",.08),?68,$$GET1^DIQ(53.79,PSBIEN_",","ACTION BY")      ;*70
+ ....W !?5,$$GET1^DIQ(53.79,PSBIEN_",",.06),?35,$$GET1^DIQ(53.79,PSBIEN_",",.08),?68,$$GETINIT^PSBCSUTX(PSBIEN,"N") ;*70 - Get name of who took action, PSB*3*72
  ....W ?102,$$GET1^DIQ(53.79,PSBIEN_",","PATIENT LOCATION")   ;*70
  ....W !?10,"PRN Reason: ",$$GET1^DIQ(53.79,PSBIEN_",",.21)
  Q

@@ -1,5 +1,5 @@
 VPRDPT ;SLC/MKB -- Patient demographics extract ;8/11/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,4**;Sep 01, 2011;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -18,6 +18,7 @@ VPRDPT ;SLC/MKB -- Patient demographics extract ;8/11/11  15:29
  ; DILFD                         2055
  ; DIQ                           2056
  ; MPIF001                       2701
+ ; SCAPMC                        1916
  ; SDUTL3                        1252
  ; VADPT                        10061
  ; VAFCTFU1                      2990
@@ -30,7 +31,7 @@ EN(DFN,BEG,END,MAX,ID) ; -- find current patient demographics
  ; [BEG,END,MAX,ID not currently used]
  S DFN=+$G(DFN) Q:DFN<1  ;invalid patient
  N PAT,SYS S SYS=$$SITE^VASITE
- D DEM,SVC,PRF,ATC,SUPP,ALIAS,FAC
+ D DEM,SVC,PRF,ATC,SUPP,ALIAS,FAC,INPT
  I $D(PAT)>9 D XML(.PAT)
  Q
  ;
@@ -76,7 +77,7 @@ SVC ;-service data
  S I=0 F  S I=$O(VPRDIS(I)) Q:I<1  D
  . S DIS=VPRDIS(I)
  . S NM=$$GET1^DIQ(31,+DIS_",",.01),DX=$$GET1^DIQ(31,+DIS_",",2)
- . S PAT("disability",+DX)=NM_U_$P(DIS,U,2,3) ;name^%^sc
+ . S PAT("disability",+DX)=NM_U_$P(DIS,U,3)_U_$P(DIS,U,2) ;name^sc^%
  Q
 PRF ;-patient record flags
  N VPRPF,I,NAME,TEXT
@@ -109,8 +110,8 @@ SUPP ;-support contacts
  Q
 ALIAS ;-other names used
  N I,X
- S I=0 F  S I=$O(^DPT(DFN,.01,I)) Q:I<1  S X=$G(^(I,0)) D
- . S PAT("alias",I)=$P(X,U)
+ S I=0 F  S I=$O(^DPT(DFN,.01,I)) Q:I<1  S X=$P($G(^(I,0)),U) D
+ . S PAT("alias",I)=X_U_$P(X,",")_U_$P(X,",",2,99)
  Q
 FORMAT(X) ; -- enforce (xxx)xxx-xxxx phone format
  S X=$G(X) I X?1"("3N1")"3N1"-"4N.E Q X
@@ -132,13 +133,14 @@ FAC ;-treating facilities [see FACLIST^ORWCIRN]
  . S X=VPRY(I) Q:$P(X,U)=""  ;unknown
  . S IEN=+$$IEN^XUAF4($P(X,U))
  . I +X=776!(+X=200) S $P(X,U,2)="DEPT. OF DEFENSE"
- . S PAT("facility",IEN)=$P(X,U,1,3) ;stn# ^ name ^ last date ^ VistA domain
+ . S PAT("facility",IEN)=$P(X,U,1,2)_U_$P($P(X,U,3),".")
+ . ; = stn# ^ name ^ last date ^ VistA domain
  . S $P(PAT("facility",IEN),U,4)=$$GET1^DIQ(4,IEN_",",60)
  . I IEN=HOME S $P(PAT("facility",IEN),U,5)=1
  Q
  ;
 INPT ;-current inpt status data
- N ADM,X
+ N ADM,X,X13,X15
  S ADM=+$G(^DPT(DFN,.105)) I ADM D
  . N VAIN,VAERR,HLOC,SVC
  . D INP^VADPT S PAT("admitted")=ADM_U_+VAIN(7)
@@ -150,42 +152,54 @@ INPT ;-current inpt status data
  . S PAT("attending")=VAIN(11)
  . S X=$$FAC^VPRD(HLOC),PAT("site")=X
  S PAT("inpatient")=$S(ADM:"true",1:"false")
- S X=$$OUTPTPR^SDUTL3(DFN) S:X PAT("pcProvider")=X
- S X=$$OUTPTTM^SDUTL3(DFN) S:X PAT("pcTeam")=X
+ S X=$$OUTPTPR^SDUTL3(DFN),X13=$G(^VA(200,+X,.13)),X15=$G(^(.15))
+ S:X PAT("pcProvider")=X_U_$P(X13,U,2)_U_$P(X13,U,7,8)_U_$P(X15,U)_U_$$PROVSPC^VPRD(+X)
+ S X=$$OUTPTTM^SDUTL3(DFN) I X S PAT("pcTeam")=X D
+ . N VPRT,I,POS
+ . S X=$$PRTM^SCAPMC(+X,,,,.VPRT) Q:'X
+ . S I=0 F  S I=$O(@VPRT@(I)) Q:I<1  D
+ .. S X=$G(@VPRT@(I)),X13=$G(^VA(200,+X,.13)),X15=$G(^(.15))
+ .. S POS=$S($L($P(X,U,8)):$P(X,U,8),1:$P(X,U,4))
+ .. ; return ien^name^[std]position^phone^pagers
+ .. S PAT("pcTeamMember",I)=$P(X,U,1,2)_U_POS_U_$P(X13,U,2)_U_$P(X13,U,7,8)_U_$P(X15,U)_U_$$PROVSPC^VPRD(+X)
  Q
  ;
  ; ------------ Return data to middle tier ------------
  ;
 XML(ITEM) ; -- Return patient data as XML in @VPR@(n)
  ; as <element code='123' displayName='ABC' />
- N ATT,X,Y,I,ID
+ N ATT,X,Y,NAMES,I,ID
  D ADD("<patient>") S VPRTOTL=$G(VPRTOTL)+1
  S ATT="" F  S ATT=$O(ITEM(ATT)) Q:ATT=""  D  D:$L(Y) ADD(Y)
+ . I $L($O(ITEM(ATT,""))) D  Q  ;multiples
+ .. S ID=$S($E(ATT,$L(ATT))="s":ATT_"es",$E(ATT,$L(ATT))="y":$E(ATT,1,$L(ATT)-1)_"ies",1:ATT_"s")
+ .. D ADD("<"_ID_">")
+ .. S I="" F  S I=$O(ITEM(ATT,I)) Q:I=""  D
+ ... S X=ITEM(ATT,I),NAMES="value^Z",Y="<"_ATT_" "
+ ... I ATT="support" D  S Y="" Q
+ .... S NAMES="name^relationship^Z"
+ .... S Y=Y_"contactType='"_I_"' "_$$LOOP_">" D ADD(Y)
+ .... S X=$G(ITEM(ATT,I,"address")) I $L(X) D ADDR(X)
+ .... S X=$G(ITEM(ATT,I,"telecom")) I $L(X) D PHONE(X)
+ .... D ADD("</support>")
+ ... I ATT="disability" S Y=Y_"vaCode='"_I_"' ",NAMES="printName^sc^scPercent^Z"
+ ... I ATT="alias" S NAMES="fullName^familyName^givenNames^Z"
+ ... I ATT="flag" S NAMES="name^text^Z"
+ ... I ATT="facility" S NAMES="code^name^latestDate^domain^homeSite^Z"
+ ... I ATT="pcTeamMember" S NAMES="code^name^role^officePhone^analogPager^digitalPager^email^taxonomyCode^providerType^classification^specialization^Z"
+ ... S Y=Y_$$LOOP_"/>" D ADD(Y)
+ .. D ADD("</"_ID_">") S Y=""
+ . ;
+ . S X=$G(ITEM(ATT)),Y="" Q:'$L(X)
  . I ATT="exposures" D:X["1"  S Y="" Q
  .. S I=0,Y="<exposures>" D ADD(Y)
  .. F ID="AO","IR","PG","HNC","MST","CV" S I=I+1 I $P(X,U,I) S Y="<exposure value='"_ID_"' />" D ADD(Y)
  .. D ADD("</exposures>")
- . I $L($O(ITEM(ATT,""))) D  Q  ;multiples
- .. S ID=$S($E(ATT,$L(ATT))="s":ATT_"es",$E(ATT,$L(ATT))="y":$E(ATT,1,$L(ATT)-1)_"ies",1:ATT_"s")
- .. D ADD("<"_ID_">")
- .. S I="" F  S I=$O(ITEM(ATT,I)) Q:I=""  D  D:$L(Y) ADD(Y)
- ... S X=ITEM(ATT,I),Y="<"_ATT_" "
- ... I ATT="support" D  S Y="" Q
- .... S Y=Y_"contactType='"_I_"' name='"_$$ESC^VPRD($P(X,U))_$S($L($P(X,U,2)):"' relationship='"_$$ESC^VPRD($P(X,U,2)),1:"")_"' >" D ADD(Y)
- .... S X=$G(ITEM(ATT,I,"address")) I $L(X) D ADDR(X)
- .... S X=$G(ITEM(ATT,I,"telecom")) I $L(X) D PHONE(X)
- .... D ADD("</support>")
- ... I ATT="alias" S Y=Y_"fullName='"_$$ESC^VPRD(X)_$S(X[",":"' familyName='"_$$ESC^VPRD($P(X,","))_"' givenNames='"_$$ESC^VPRD($P(X,",",2,99)),1:"")_"' />" Q
- ... I ATT="flag" S Y=Y_"name='"_$$ESC^VPRD($P(X,U))_"' text='"_$$ESC^VPRD($P(X,U,2))_"' />" Q
- ... I ATT="facility" S Y=Y_"code='"_$P(X,U)_"' name='"_$$ESC^VPRD($P(X,U,2))_"'"_$S($P(X,U,3):" latestDate='"_$P($P(X,U,3),".")_"'",1:"")_$S($L($P(X,U,4))>0:" domain='"_$P(X,U,4)_"'",1:"")_$S($P(X,U,5):" homeSite='1'",1:"")_" />" Q
- ... I ATT="disability" S Y=Y_"vaCode='"_I_"' printName='"_$$ESC^VPRD($P(X,U))_$S($P(X,U,3):"' sc='"_$P(X,U,3)_"' scPercent='"_$P(X,U,2),1:"")_"' />" Q
- ... S Y=Y_"value='"_$$ESC^VPRD(ITEM(ATT,I))_"' />"
- .. D ADD("</"_ID_">") S Y=""
- . S X=$G(ITEM(ATT)),Y="" Q:'$L(X)
  . I ATT="address" D ADDR(X) S Y="" Q
  . I ATT="telecom" D PHONE(X) S Y="" Q
+ . S NAMES="code^name"_$S("pcProvider":"^officePhone^analogPager^digitalPager^email^taxonomyCode^providerType^classification^specialization",1:"")_"^Z"
  . I X'["^" S Y="<"_ATT_" value='"_$$ESC^VPRD(X)_"' />" Q
- . S Y="<"_ATT_" code='"_$P(X,U)_"' name='"_$$ESC^VPRD($P(X,U,2))_"' />"
+ . I $L(X)>1 S Y="<"_ATT_" "_$$LOOP_"/>"
  D ADD("</patient>")
  Q
  ;
@@ -207,6 +221,11 @@ PHONE(X) ; -- XML telecom node from X=home^cell^work numbers
  I $L($P(X,U,3)) S Y="<telecom usageType='WP' value='"_$P(X,U,3)_"' />" D ADD(Y)
  D ADD("</telecomList>")
  Q
+ ;
+LOOP() ; -- build sub-items string from NAMES and X
+ N STR,P,TAG S STR=""
+ F P=1:1 S TAG=$P(NAMES,U,P) Q:TAG="Z"  I $L($P(X,U,P)) S STR=STR_TAG_"='"_$$ESC^VPRD($P(X,U,P))_"' "
+ Q STR
  ;
 ADD(X) ; Add a line @VPR@(n)=X
  S VPRI=$G(VPRI)+1

@@ -1,5 +1,5 @@
-MPIFSA2 ;SF/CMC-STAND ALONE QUERY PART 2 ;11 Apr 2013  3:38 PM
- ;;1.0;MASTER PATIENT INDEX VISTA;**28,29,35,38,43,52,55,57**;30 Apr 99;Build 2
+MPIFSA2 ;SF/CMC,CKN-STAND ALONE QUERY PART 2 ; 4/29/14 1:34pm
+ ;;1.0;MASTER PATIENT INDEX VISTA;**28,29,35,38,43,52,55,57,59**;30 Apr 99;Build 1
  ;
  ;Integration Agreements: $$EN^HLCSAC - #3471
  ;
@@ -97,7 +97,7 @@ DISPLAY ; display data found
  I INDEX>1 W !!,"Found potential matches"
  I INDEX=1 W !!,"Found One Match"
  N CNT1,CNT2,STOP,CNTR2,TTF,CNT3,DIR,X,Y,DATA,PREFIX,ANAME,APRE,ALN,AFN,NAME,SSN,BIRTHDAY,CMOR,TF,ICN,POBC,POBS,PAST,XXX,AMID,ASUF
- N MNAME,SUFFIX,SEX,IEN,CMOR2,TF2,CLAIM,CASE,NOIS,CUSER,TFN,CMOR3,POW,MBIRTH,TIEN,MIDDLE,SCORE,ALTRSHLD,TKTRSHLD,I,FULLICN
+ N MNAME,SUFFIX,SEX,IEN,CMOR2,TF2,CLAIM,CASE,NOIS,CUSER,TFN,CMOR3,POW,MBIRTH,TIEN,MIDDLE,SCORE,ALTRSHLD,TKTRSHLD,I
  S (CNT1)=0
  F  S CNT1=$O(^TMP("MPIFVQQ",$J,CNT1)) Q:CNT1'>0!($D(STOP))  D
  . S DATA=$G(^TMP("MPIFVQQ",$J,CNT1,"DATA"))
@@ -110,9 +110,12 @@ DISPLAY ; display data found
  . ;I SCORE<ALTRSHLD,(SCORE>=TKTRSHLD) S M="P"
  . S M=$S(SCORE>=ALTRSHLD:"E",1:"P")
  . ;Rearranging array for sectional view display
- . S FULLICN=ICN   ;**57 - MVI_2350 (cml)
- . S ^TMP("MPIDOQ",$J,M,SCORE,+ICN)=NAME_"^"_SSN_"^"_BIRTHDAY_"^"_SEX
- . M ^TMP("MPIDOQ",$J,M,SCORE,+ICN,"TF")=^TMP("MPIFVQQ",$J,CNT1,"TF")
+ . ;S FULLICN=ICN   ;**57 - MVI_2350 (cml)
+ . ;**59 - MVI_3785 (ckn) - Storing full ICN in TMP global so it
+ . ;display full ICN correctly. Removing + sign in front of ICN
+ . ;in below lines.
+ . S ^TMP("MPIDOQ",$J,M,SCORE,ICN)=NAME_"^"_SSN_"^"_BIRTHDAY_"^"_SEX
+ . M ^TMP("MPIDOQ",$J,M,SCORE,ICN,"TF")=^TMP("MPIFVQQ",$J,CNT1,"TF")
  I $D(STOP) Q  ;Quit if no score is returned
 DISP2 ;
  S COUNT=0
@@ -124,14 +127,16 @@ DISP2 ;
  . . . S ICNARR(ICN)="",COUNT=COUNT+1
  . . . S DATA=$G(^TMP("MPIDOQ",$J,I,SCORE,ICN))
  . . . D HDR1
- . . . W !,COUNT_") ",?4,FULLICN,?22,$P(DATA,"^"),?54,$P(DATA,"^",2),?65,$P(DATA,"^",3),?76,$P(DATA,"^",4)  ;**57 - MVI_2350 (cml)
+ . . . ;**59 - MVI_3785 (ckn) - replacing FULLICN with ICN
+ . . . W !,COUNT_") ",?4,ICN,?22,$P(DATA,"^"),?54,$P(DATA,"^",2),?65,$P(DATA,"^",3),?76,$P(DATA,"^",4)  ;**57 - MVI_2350 (cml)
  . . . W ! N TMP S XXX=0 F  S XXX=$O(^TMP("MPIDOQ",$J,I,SCORE,ICN,"TF",XXX)) Q:XXX=""  S TMP=$G(^TMP("MPIDOQ",$J,I,SCORE,ICN,"TF",XXX)) Q:TMP=""  D
  . . . . S TMP=$P(TMP,"^",1) W !,?10,"Treating Facility: ",$P($$NS^XUAF4($$LKUP^XUAF4(TMP)),"^")," (",TMP,")"
  . . . W !
  S ENOUGH=0
  W !
  D ASK I ENOUGH G EXIT
- I TMPICN'="" W !,"Please wait..." D ENRPC(TMPICN)
+ ;**59 - MVI_3785 (ckn) - send short ICN in ENRPC tag.
+ I TMPICN'="" W !,"Please wait..." D ENRPC(+TMPICN)
  W !!
  K DIR,DA S DIR(0)="Y",DIR("B")="NO",DIR("A")="Would you like to see another record" D ^DIR
  I $D(DTOUT)!($D(DUOUT)) S ENOUGH=1 G EXIT

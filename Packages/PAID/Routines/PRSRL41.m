@@ -1,5 +1,7 @@
 PRSRL41 ;HISC/JH-INDIVIDUAL EMPLOYEE LEAVE USAGE PATTERN (Continued) ;09/24/01
- ;;4.0;PAID;**2,19,21,35,69**;Sep 21, 1995
+ ;;4.0;PAID;**2,19,21,35,69,141**;Sep 21, 1995;Build 3
+ ;;Per VHA Directive 2004-038, this routine should not be modified
+ ;
  S ORG=$E(ORG,1,12)
  D HDR1
  S (PP(1),DAY(1),DATT(1))=""
@@ -74,7 +76,7 @@ HDR1 ; Main header for report contains:
  ; Title, ALL/ONLY, date, date range, employee, cost center, T&L unit
  ;
  ; Subheader according to type of report user selected
- S SUBHDR=$S(ALOO="A":"All Leave Taken With Days Off",1:"Every Occurance of Leave, ONLY Before And After Days Off")
+ S SUBHDR=$S(ALOO="A":"All Leave Taken With Days Off",1:"Every Occurrence of Leave, ONLY Before And After Days Off")
  W @IOF
  W !?29,^TMP($J,"USE"),?66
  W "DATE: ",DAT,!?22,"from: ",XX," to ",YY

@@ -1,5 +1,5 @@
 LRHYPH2 ;DALOI/HOAK - HOWDY ORDER NUMBER SELECTION ;12/10/10 6:00pm
- ;;5.2;LAB SERVICE;**405**;Sep 27, 1994;Build 93
+ ;;5.2;LAB SERVICE;**405,444**;Sep 27, 1994;Build 5
  ;
  ; Reference to ^ORCSAVE2 supported by DBIA #2747.
  ;
@@ -51,7 +51,7 @@ Q17 ;
  ; updating of lab files
  ;
  S LR33ORD=LRORD
- K LRORD
+ ;K LRORD
  D OLD^LRORDST
  S LRORD=LR33ORD
  I $G(LRUID)'="" D NOW^%DTC S ^TMP("LRHYHOW1",$J,LRUID)=%_U_DUZ

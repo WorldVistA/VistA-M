@@ -1,148 +1,358 @@
-IBDEI02F ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI02F ; ; 09-FEB-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,721,1,4,0)
- ;;=4^Biliary Tract NOS
- ;;^UTILITY(U,$J,358.3,721,1,5,0)
- ;;=5^576.9
- ;;^UTILITY(U,$J,358.3,721,2)
- ;;=^14271
- ;;^UTILITY(U,$J,358.3,722,0)
- ;;=577.1^^9^90^4
- ;;^UTILITY(U,$J,358.3,722,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,722,1,4,0)
- ;;=4^Chr Pancreatitis
- ;;^UTILITY(U,$J,358.3,722,1,5,0)
- ;;=5^577.1
- ;;^UTILITY(U,$J,358.3,722,2)
- ;;=^259100
- ;;^UTILITY(U,$J,358.3,723,0)
- ;;=577.2^^9^90^7
- ;;^UTILITY(U,$J,358.3,723,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,723,1,4,0)
- ;;=4^Pancreatic Pseudocyst
- ;;^UTILITY(U,$J,358.3,723,1,5,0)
- ;;=5^577.2
- ;;^UTILITY(U,$J,358.3,723,2)
- ;;=^30078
- ;;^UTILITY(U,$J,358.3,724,0)
- ;;=573.9^^9^90^6
- ;;^UTILITY(U,$J,358.3,724,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,724,1,4,0)
- ;;=4^Liver Disorder NOS
- ;;^UTILITY(U,$J,358.3,724,1,5,0)
- ;;=5^573.9
- ;;^UTILITY(U,$J,358.3,724,2)
- ;;=^123854
- ;;^UTILITY(U,$J,358.3,725,0)
- ;;=569.9^^9^90^5
- ;;^UTILITY(U,$J,358.3,725,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,725,1,4,0)
- ;;=4^Intestinal Disorder NOS
- ;;^UTILITY(U,$J,358.3,725,1,5,0)
- ;;=5^569.9
- ;;^UTILITY(U,$J,358.3,725,2)
- ;;=^123842
- ;;^UTILITY(U,$J,358.3,726,0)
- ;;=053.13^^9^91^1
- ;;^UTILITY(U,$J,358.3,726,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,726,1,4,0)
- ;;=4^Postherpetic Polyneuro
- ;;^UTILITY(U,$J,358.3,726,1,5,0)
- ;;=5^053.13
- ;;^UTILITY(U,$J,358.3,726,2)
- ;;=^266550
- ;;^UTILITY(U,$J,358.3,727,0)
- ;;=053.12^^9^91^2
- ;;^UTILITY(U,$J,358.3,727,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,727,1,4,0)
- ;;=4^Postherpetic Trigem Neural
- ;;^UTILITY(U,$J,358.3,727,1,5,0)
- ;;=5^053.12
- ;;^UTILITY(U,$J,358.3,727,2)
- ;;=^266546
- ;;^UTILITY(U,$J,358.3,728,0)
- ;;=99211^^10^92^1
- ;;^UTILITY(U,$J,358.3,728,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,728,1,1,0)
- ;;=1^Walk In
- ;;^UTILITY(U,$J,358.3,728,1,2,0)
- ;;=2^99211
- ;;^UTILITY(U,$J,358.3,729,0)
- ;;=388.43^^11^93^51
- ;;^UTILITY(U,$J,358.3,729,1,0)
+ ;;^UTILITY(U,$J,358.3,2827,1,4,0)
+ ;;=4^M90.821
+ ;;^UTILITY(U,$J,358.3,2827,2)
+ ;;=^5015172
+ ;;^UTILITY(U,$J,358.3,2828,0)
+ ;;=M90.822^^12^110^56
+ ;;^UTILITY(U,$J,358.3,2828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,729,1,3,0)
- ;;=3^388.43
- ;;^UTILITY(U,$J,358.3,729,1,4,0)
- ;;=4^Impairm Auditory Discrim
- ;;^UTILITY(U,$J,358.3,729,2)
- ;;=^269533
- ;;^UTILITY(U,$J,358.3,730,0)
- ;;=780.4^^11^93^44
- ;;^UTILITY(U,$J,358.3,730,1,0)
+ ;;^UTILITY(U,$J,358.3,2828,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, lft upper arm
+ ;;^UTILITY(U,$J,358.3,2828,1,4,0)
+ ;;=4^M90.822
+ ;;^UTILITY(U,$J,358.3,2828,2)
+ ;;=^5015173
+ ;;^UTILITY(U,$J,358.3,2829,0)
+ ;;=M90.831^^12^110^60
+ ;;^UTILITY(U,$J,358.3,2829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,730,1,3,0)
- ;;=3^780.4
- ;;^UTILITY(U,$J,358.3,730,1,4,0)
- ;;=4^Dizziness And Giddiness
- ;;^UTILITY(U,$J,358.3,730,2)
- ;;=^35946
- ;;^UTILITY(U,$J,358.3,731,0)
- ;;=381.9^^11^93^47
- ;;^UTILITY(U,$J,358.3,731,1,0)
+ ;;^UTILITY(U,$J,358.3,2829,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, rt forearm
+ ;;^UTILITY(U,$J,358.3,2829,1,4,0)
+ ;;=4^M90.831
+ ;;^UTILITY(U,$J,358.3,2829,2)
+ ;;=^5015175
+ ;;^UTILITY(U,$J,358.3,2830,0)
+ ;;=M90.832^^12^110^51
+ ;;^UTILITY(U,$J,358.3,2830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,731,1,3,0)
- ;;=3^381.9
- ;;^UTILITY(U,$J,358.3,731,1,4,0)
- ;;=4^Eustachian Tube Dis Nos
- ;;^UTILITY(U,$J,358.3,731,2)
- ;;=^269394
- ;;^UTILITY(U,$J,358.3,732,0)
- ;;=381.81^^11^93^45
- ;;^UTILITY(U,$J,358.3,732,1,0)
+ ;;^UTILITY(U,$J,358.3,2830,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, lft forearm
+ ;;^UTILITY(U,$J,358.3,2830,1,4,0)
+ ;;=4^M90.832
+ ;;^UTILITY(U,$J,358.3,2830,2)
+ ;;=^5015176
+ ;;^UTILITY(U,$J,358.3,2831,0)
+ ;;=M90.841^^12^110^61
+ ;;^UTILITY(U,$J,358.3,2831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,732,1,3,0)
- ;;=3^381.81
- ;;^UTILITY(U,$J,358.3,732,1,4,0)
- ;;=4^Dysfunct Eustachian Tube
- ;;^UTILITY(U,$J,358.3,732,2)
- ;;=^259074
- ;;^UTILITY(U,$J,358.3,733,0)
- ;;=381.60^^11^93^62
- ;;^UTILITY(U,$J,358.3,733,1,0)
+ ;;^UTILITY(U,$J,358.3,2831,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, rt hand
+ ;;^UTILITY(U,$J,358.3,2831,1,4,0)
+ ;;=4^M90.841
+ ;;^UTILITY(U,$J,358.3,2831,2)
+ ;;=^5015178
+ ;;^UTILITY(U,$J,358.3,2832,0)
+ ;;=M90.842^^12^110^52
+ ;;^UTILITY(U,$J,358.3,2832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,733,1,3,0)
- ;;=3^381.60
- ;;^UTILITY(U,$J,358.3,733,1,4,0)
- ;;=4^Obstr Eustach Tube Nos
- ;;^UTILITY(U,$J,358.3,733,2)
- ;;=^259070
- ;;^UTILITY(U,$J,358.3,734,0)
- ;;=381.7^^11^93^75
- ;;^UTILITY(U,$J,358.3,734,1,0)
+ ;;^UTILITY(U,$J,358.3,2832,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, lft hand
+ ;;^UTILITY(U,$J,358.3,2832,1,4,0)
+ ;;=4^M90.842
+ ;;^UTILITY(U,$J,358.3,2832,2)
+ ;;=^5015179
+ ;;^UTILITY(U,$J,358.3,2833,0)
+ ;;=M90.851^^12^110^64
+ ;;^UTILITY(U,$J,358.3,2833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,734,1,3,0)
- ;;=3^381.7
- ;;^UTILITY(U,$J,358.3,734,1,4,0)
- ;;=4^Patulous Eustachian Tube
- ;;^UTILITY(U,$J,358.3,734,2)
- ;;=^269391
- ;;^UTILITY(U,$J,358.3,735,0)
- ;;=386.40^^11^93^54
- ;;^UTILITY(U,$J,358.3,735,1,0)
+ ;;^UTILITY(U,$J,358.3,2833,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, rt thigh
+ ;;^UTILITY(U,$J,358.3,2833,1,4,0)
+ ;;=4^M90.851
+ ;;^UTILITY(U,$J,358.3,2833,2)
+ ;;=^5015181
+ ;;^UTILITY(U,$J,358.3,2834,0)
+ ;;=M90.852^^12^110^55
+ ;;^UTILITY(U,$J,358.3,2834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,735,1,3,0)
- ;;=3^386.40
- ;;^UTILITY(U,$J,358.3,735,1,4,0)
- ;;=4^Labyrinthine Fistula Nos
- ;;^UTILITY(U,$J,358.3,735,2)
- ;;=^269496
+ ;;^UTILITY(U,$J,358.3,2834,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, lft thigh
+ ;;^UTILITY(U,$J,358.3,2834,1,4,0)
+ ;;=4^M90.852
+ ;;^UTILITY(U,$J,358.3,2834,2)
+ ;;=^5015182
+ ;;^UTILITY(U,$J,358.3,2835,0)
+ ;;=M90.861^^12^110^62
+ ;;^UTILITY(U,$J,358.3,2835,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2835,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, rt lower leg
+ ;;^UTILITY(U,$J,358.3,2835,1,4,0)
+ ;;=4^M90.861
+ ;;^UTILITY(U,$J,358.3,2835,2)
+ ;;=^5015184
+ ;;^UTILITY(U,$J,358.3,2836,0)
+ ;;=M90.862^^12^110^53
+ ;;^UTILITY(U,$J,358.3,2836,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2836,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, lft lower leg
+ ;;^UTILITY(U,$J,358.3,2836,1,4,0)
+ ;;=4^M90.862
+ ;;^UTILITY(U,$J,358.3,2836,2)
+ ;;=^5015185
+ ;;^UTILITY(U,$J,358.3,2837,0)
+ ;;=M90.871^^12^110^59
+ ;;^UTILITY(U,$J,358.3,2837,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2837,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, rt ankle & foot
+ ;;^UTILITY(U,$J,358.3,2837,1,4,0)
+ ;;=4^M90.871
+ ;;^UTILITY(U,$J,358.3,2837,2)
+ ;;=^5015187
+ ;;^UTILITY(U,$J,358.3,2838,0)
+ ;;=M90.872^^12^110^50
+ ;;^UTILITY(U,$J,358.3,2838,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2838,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, lft ankle & foot
+ ;;^UTILITY(U,$J,358.3,2838,1,4,0)
+ ;;=4^M90.872
+ ;;^UTILITY(U,$J,358.3,2838,2)
+ ;;=^5015188
+ ;;^UTILITY(U,$J,358.3,2839,0)
+ ;;=M90.88^^12^110^58
+ ;;^UTILITY(U,$J,358.3,2839,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2839,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, oth site
+ ;;^UTILITY(U,$J,358.3,2839,1,4,0)
+ ;;=4^M90.88
+ ;;^UTILITY(U,$J,358.3,2839,2)
+ ;;=^5015190
+ ;;^UTILITY(U,$J,358.3,2840,0)
+ ;;=M90.89^^12^110^57
+ ;;^UTILITY(U,$J,358.3,2840,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2840,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, mult sites
+ ;;^UTILITY(U,$J,358.3,2840,1,4,0)
+ ;;=4^M90.89
+ ;;^UTILITY(U,$J,358.3,2840,2)
+ ;;=^5015191
+ ;;^UTILITY(U,$J,358.3,2841,0)
+ ;;=M81.8^^12^111^1
+ ;;^UTILITY(U,$J,358.3,2841,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2841,1,3,0)
+ ;;=3^Osteoporosis w/o current path fx, oth
+ ;;^UTILITY(U,$J,358.3,2841,1,4,0)
+ ;;=4^M81.8
+ ;;^UTILITY(U,$J,358.3,2841,2)
+ ;;=^5013557
+ ;;^UTILITY(U,$J,358.3,2842,0)
+ ;;=M81.0^^12^111^2
+ ;;^UTILITY(U,$J,358.3,2842,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2842,1,3,0)
+ ;;=3^Osteoporosis, age-related w/o current path fx
+ ;;^UTILITY(U,$J,358.3,2842,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,2842,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,2843,0)
+ ;;=M00.9^^12^112^34
+ ;;^UTILITY(U,$J,358.3,2843,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2843,1,3,0)
+ ;;=3^Pyogenic arthritis, unspec
+ ;;^UTILITY(U,$J,358.3,2843,1,4,0)
+ ;;=4^M00.9
+ ;;^UTILITY(U,$J,358.3,2843,2)
+ ;;=^5009693
+ ;;^UTILITY(U,$J,358.3,2844,0)
+ ;;=M00.10^^12^112^16
+ ;;^UTILITY(U,$J,358.3,2844,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2844,1,3,0)
+ ;;=3^Pneumicoccal arthritis, unspec joint
+ ;;^UTILITY(U,$J,358.3,2844,1,4,0)
+ ;;=4^M00.10
+ ;;^UTILITY(U,$J,358.3,2844,2)
+ ;;=^5009621
+ ;;^UTILITY(U,$J,358.3,2845,0)
+ ;;=M00.011^^12^112^47
+ ;;^UTILITY(U,$J,358.3,2845,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2845,1,3,0)
+ ;;=3^Staphylococcal arthritis, rt shldr
+ ;;^UTILITY(U,$J,358.3,2845,1,4,0)
+ ;;=4^M00.011
+ ;;^UTILITY(U,$J,358.3,2845,2)
+ ;;=^5009598
+ ;;^UTILITY(U,$J,358.3,2846,0)
+ ;;=M00.012^^12^112^40
+ ;;^UTILITY(U,$J,358.3,2846,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2846,1,3,0)
+ ;;=3^Staphylococcal arthritis, lft shldr
+ ;;^UTILITY(U,$J,358.3,2846,1,4,0)
+ ;;=4^M00.012
+ ;;^UTILITY(U,$J,358.3,2846,2)
+ ;;=^5009599
+ ;;^UTILITY(U,$J,358.3,2847,0)
+ ;;=M00.111^^12^112^29
+ ;;^UTILITY(U,$J,358.3,2847,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2847,1,3,0)
+ ;;=3^Pneumococcal arthritis, rt shldr
+ ;;^UTILITY(U,$J,358.3,2847,1,4,0)
+ ;;=4^M00.111
+ ;;^UTILITY(U,$J,358.3,2847,2)
+ ;;=^5009622
+ ;;^UTILITY(U,$J,358.3,2848,0)
+ ;;=M00.112^^12^112^22
+ ;;^UTILITY(U,$J,358.3,2848,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2848,1,3,0)
+ ;;=3^Pneumococcal arthritis, lft shldr
+ ;;^UTILITY(U,$J,358.3,2848,1,4,0)
+ ;;=4^M00.112
+ ;;^UTILITY(U,$J,358.3,2848,2)
+ ;;=^5009623
+ ;;^UTILITY(U,$J,358.3,2849,0)
+ ;;=M00.211^^12^112^62
+ ;;^UTILITY(U,$J,358.3,2849,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2849,1,3,0)
+ ;;=3^Streptococcal arthritis, rt shldr, oth
+ ;;^UTILITY(U,$J,358.3,2849,1,4,0)
+ ;;=4^M00.211
+ ;;^UTILITY(U,$J,358.3,2849,2)
+ ;;=^5009646
+ ;;^UTILITY(U,$J,358.3,2850,0)
+ ;;=M00.212^^12^112^56
+ ;;^UTILITY(U,$J,358.3,2850,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2850,1,3,0)
+ ;;=3^Streptococcal arthritis, lft shldr, oth
+ ;;^UTILITY(U,$J,358.3,2850,1,4,0)
+ ;;=4^M00.212
+ ;;^UTILITY(U,$J,358.3,2850,2)
+ ;;=^5009647
+ ;;^UTILITY(U,$J,358.3,2851,0)
+ ;;=M00.811^^12^112^2
+ ;;^UTILITY(U,$J,358.3,2851,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2851,1,3,0)
+ ;;=3^Arthritis d/t oth bacteria, rt shldr
+ ;;^UTILITY(U,$J,358.3,2851,1,4,0)
+ ;;=4^M00.811
+ ;;^UTILITY(U,$J,358.3,2851,2)
+ ;;=^5009670
+ ;;^UTILITY(U,$J,358.3,2852,0)
+ ;;=M00.812^^12^112^1
+ ;;^UTILITY(U,$J,358.3,2852,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2852,1,3,0)
+ ;;=3^Arthritis d/t bacteria, lft shldr, oth
+ ;;^UTILITY(U,$J,358.3,2852,1,4,0)
+ ;;=4^M00.812
+ ;;^UTILITY(U,$J,358.3,2852,2)
+ ;;=^5009671
+ ;;^UTILITY(U,$J,358.3,2853,0)
+ ;;=M00.021^^12^112^43
+ ;;^UTILITY(U,$J,358.3,2853,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2853,1,3,0)
+ ;;=3^Staphylococcal arthritis, rt elbow
+ ;;^UTILITY(U,$J,358.3,2853,1,4,0)
+ ;;=4^M00.021
+ ;;^UTILITY(U,$J,358.3,2853,2)
+ ;;=^5009601
+ ;;^UTILITY(U,$J,358.3,2854,0)
+ ;;=M00.022^^12^112^36
+ ;;^UTILITY(U,$J,358.3,2854,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2854,1,3,0)
+ ;;=3^Staphylococcal arthritis, lft elbow
+ ;;^UTILITY(U,$J,358.3,2854,1,4,0)
+ ;;=4^M00.022
+ ;;^UTILITY(U,$J,358.3,2854,2)
+ ;;=^5009602
+ ;;^UTILITY(U,$J,358.3,2855,0)
+ ;;=M00.121^^12^112^25
+ ;;^UTILITY(U,$J,358.3,2855,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2855,1,3,0)
+ ;;=3^Pneumococcal arthritis, rt elbow
+ ;;^UTILITY(U,$J,358.3,2855,1,4,0)
+ ;;=4^M00.121
+ ;;^UTILITY(U,$J,358.3,2855,2)
+ ;;=^5009625
+ ;;^UTILITY(U,$J,358.3,2856,0)
+ ;;=M00.122^^12^112^18
+ ;;^UTILITY(U,$J,358.3,2856,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2856,1,3,0)
+ ;;=3^Pneumococcal arthritis, lft elbow
+ ;;^UTILITY(U,$J,358.3,2856,1,4,0)
+ ;;=4^M00.122
+ ;;^UTILITY(U,$J,358.3,2856,2)
+ ;;=^5009626
+ ;;^UTILITY(U,$J,358.3,2857,0)
+ ;;=M00.221^^12^112^58
+ ;;^UTILITY(U,$J,358.3,2857,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2857,1,3,0)
+ ;;=3^Streptococcal arthritis, rt elbow, oth
+ ;;^UTILITY(U,$J,358.3,2857,1,4,0)
+ ;;=4^M00.221
+ ;;^UTILITY(U,$J,358.3,2857,2)
+ ;;=^5009649
+ ;;^UTILITY(U,$J,358.3,2858,0)
+ ;;=M00.222^^12^112^52
+ ;;^UTILITY(U,$J,358.3,2858,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2858,1,3,0)
+ ;;=3^Streptococcal arthritis, lft elbow, oth
+ ;;^UTILITY(U,$J,358.3,2858,1,4,0)
+ ;;=4^M00.222
+ ;;^UTILITY(U,$J,358.3,2858,2)
+ ;;=^5009650
+ ;;^UTILITY(U,$J,358.3,2859,0)
+ ;;=M00.821^^12^112^10
+ ;;^UTILITY(U,$J,358.3,2859,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2859,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, rt elbow
+ ;;^UTILITY(U,$J,358.3,2859,1,4,0)
+ ;;=4^M00.821
+ ;;^UTILITY(U,$J,358.3,2859,2)
+ ;;=^5009673
+ ;;^UTILITY(U,$J,358.3,2860,0)
+ ;;=M00.822^^12^112^4
+ ;;^UTILITY(U,$J,358.3,2860,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2860,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, lft elbow
+ ;;^UTILITY(U,$J,358.3,2860,1,4,0)
+ ;;=4^M00.822
+ ;;^UTILITY(U,$J,358.3,2860,2)
+ ;;=^5009674
+ ;;^UTILITY(U,$J,358.3,2861,0)
+ ;;=M00.031^^12^112^48
+ ;;^UTILITY(U,$J,358.3,2861,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2861,1,3,0)
+ ;;=3^Staphylococcal arthritis, rt wrist
+ ;;^UTILITY(U,$J,358.3,2861,1,4,0)
+ ;;=4^M00.031
+ ;;^UTILITY(U,$J,358.3,2861,2)
+ ;;=^5009604
+ ;;^UTILITY(U,$J,358.3,2862,0)
+ ;;=M00.032^^12^112^41
+ ;;^UTILITY(U,$J,358.3,2862,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2862,1,3,0)
+ ;;=3^Staphylococcal arthritis, lft wrist
+ ;;^UTILITY(U,$J,358.3,2862,1,4,0)
+ ;;=4^M00.032
+ ;;^UTILITY(U,$J,358.3,2862,2)
+ ;;=^5009605

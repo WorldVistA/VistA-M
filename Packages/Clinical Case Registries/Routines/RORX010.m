@@ -1,5 +1,5 @@
 RORX010 ;HOIFO/SG,VAC - LAB TESTS BY RANGE REPORT ;4/7/09 2:08pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -17,7 +17,8 @@ RORX010 ;HOIFO/SG,VAC - LAB TESTS BY RANGE REPORT ;4/7/09 2:08pm
  ;ROR*1.5*13   DEC  2010   A SAUNDERS   User can select specific patients,
  ;                                      clinics, or divisions for the report.
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
- ;                                      
+ ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
+ ;                                      additional identifier option selected
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -31,7 +32,7 @@ RORX010 ;HOIFO/SG,VAC - LAB TESTS BY RANGE REPORT ;4/7/09 2:08pm
  ;        0  Ok
  ;
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,DOD,PTLRL(GROUP,DATE,NAME,RESULT))
+ ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PTLRL(GROUP,DATE,NAME,RESULT))
  N COLUMNS,HEADER,LT,NAME,TMP
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
  Q:HEADER<0 HEADER
@@ -191,7 +192,7 @@ PARAMS(PARTAG,FLAGS,LRGLST) ;
  ;        0  Ok
  ;
 PATIENT(IENS,PARTAG) ;
- N DFN,I,LABTESTS,LT,NAME,RC,RORBUF,RORMSG,TMP,VA,VADM
+ N DFN,I,LABTESTS,LT,NAME,PTAG,RC,RORBUF,RORMSG,TMP,VA,VADM
  ;--- Get the data from the ROR REGISTRY RECORD file
  K RORMSG D GETS^DIQ(798,IENS,".01","I","RORBUF","RORMSG")
  ;Q:$G(DIERR) $$DBS^RORERR("RORMSG",-9,,,798,IENS)
@@ -216,6 +217,9 @@ PATIENT(IENS,PARTAG) ;
  ;--- Date of death
  S TMP=$$DATE^RORXU002($P(VADM(6),U)\1)
  D ADDVAL^RORTSK11(RORTSK,"DOD",TMP,PTAG,1)
+ I $$PARAM^RORTSK01("PATIENTS","ICN") D
+ . S TMP=$$ICN^RORUTL02(DFN)
+ . D ADDVAL^RORTSK11(RORTSK,"ICN",TMP,PTAG,1)
  ;--- Lab results
  S LABTESTS=$$ADDVAL^RORTSK11(RORTSK,"PTLRL",,PTAG)
  S I=""

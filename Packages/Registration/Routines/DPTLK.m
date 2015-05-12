@@ -1,5 +1,5 @@
 DPTLK ;ALB/RMO,RTK - MAS Patient Look-up Main Routine ; 3/22/05 4:19pm
- ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769,857**;Aug 13, 1993;Build 8
+ ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769,857,876**;Aug 13, 1993;Build 6
  ;
  ; mods made for magstripe read 12/96 - JFP
  ; mods made for VIC 4.0 (barcode and magstripe) read 4/2012 - ELZ (*857)
@@ -25,10 +25,12 @@ ASKPAT ; -- Prompt for patient
  N MAG,GCHK,BARCODE,DGVIC40,DGCAC
  S (MAG,BARCODE,DGVIC40,DGCAC)=0
  I $E(DPTX)="%"!($E(DPTX)=";"),DPTX["?" S MAG=1,(X,DPTX)=$$IATA(DPTX)
- I 'MAG,DPTX?1"%"1N13UNP.3UN S BARCODE=1,(X,DPTX)=$$BARCODE(DPTX)
+ I 'MAG,DPTX?1"%"1N13ANP.3AN S BARCODE=1,(X,DPTX)=$$BARCODE($$UP^XLFSTR(DPTX))
  ; - read other line but don't use dbia#10096 don't display input
  I $G(DGVIC40),'BARCODE X ^%ZOSF("EOFF") R X(1):1 X ^%ZOSF("EON")
- I 'MAG,'BARCODE,DPTX?1N6UN1U7UN1U2UN S DGCAC=1,(X,DPTX)=$$CACCARD(DPTX)
+ I 'MAG,'BARCODE,DPTX?1N6AN1A7AN1A2AN S DGCAC=1,(X,DPTX)=$$CACCARD($$UP^XLFSTR(DPTX))
+ ; fail VHIC card match but starts with %, we're done
+ I 'MAG,'BARCODE,'DGCAC,$E(DPTX,1)="%" G CHKDFN
  ;
 CHKPAT ; -- Custom Patient Lookup
  D DO^DIC1
@@ -332,6 +334,7 @@ RPCVIC(RETURN,DPTX) ; - patient lookup from VIC card, rpc/api
  N MAG,BARCODE
  S (RETURN,MAG,BARCODE)=0
  I '$D(DPTX) Q -1
+ S DPTX=$$UP^XLFSTR(DPTX)
  I DPTX["?" S DPTX=$E(DPTX,1,$F(DPTX,"?")-1)
  I DPTX?9N S RETURN=$O(^DPT("SSN",DPTX,0))
  I $E(DPTX)="%"!($E(DPTX)=";"),DPTX["?",'RETURN S MAG=1,DPTX=$$IATA(DPTX)

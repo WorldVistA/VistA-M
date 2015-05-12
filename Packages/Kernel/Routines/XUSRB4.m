@@ -1,6 +1,6 @@
-XUSRB4 ;ISF/RWF - Build a temporary sign-on token ;10/12/11  14:53
- ;;8.0;KERNEL;**150,337,395,419,437,499,523,573,596**;Jul 10, 1995;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified
+XUSRB4 ;ISF/RWF - Build a temporary sign-on token ;01/29/14  14:56
+ ;;8.0;KERNEL;**150,337,395,419,437,499,523,573,596,638**;Jul 10, 1995;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 ASH(RET) ;rpc. Auto Signon Handle
@@ -32,7 +32,7 @@ HANDLE(NS,LT) ;Return a unique handle into ^XTMP (ef. sup)
  S %H=$H,J=NS_($J#2048)_"-"_(%H#7*86400+$P(%H,",",2))_"_",A=$R(10)
  F  S HL=J_A,A=A+1 L +^XTMP(HL):1 I $T Q:'$D(^XTMP(HL))  L -^XTMP(HL)
  S ^XTMP(HL,0)=$$HTFM^XLFDT(%H+LT)_"^"_$$DT^XLFDT()
- ;L -^XTMP(HL) Leave the unLock to tha caller
+ ;L -^XTMP(HL) Leave the Unlock to the caller
  Q HL
  ;
 TOK(H) ;Store a Token
@@ -42,7 +42,7 @@ TOK(H) ;Store a Token
  S R=$J_"|"_T_"|"_$G(DUZ)_"|"_H
  S ^XTMP(H,"D",0)="|"_$$ENCRYP^XUSRB1(R)_"|"
  S ^XTMP(H,"D2")=$G(DUZ(2))
- S %=$G(IO("IP")) I $L(%),%'?1.3N1P1.3N1P1.3N1P1.3N S %=$P($$ADDRESS^XLFNSLK(%),",")
+ S %=$G(IO("IP")) I $L(%),'$$VALIDATE^XLFIPV(%) S %=$P($$ADDRESS^XLFNSLK(%),",")  ;p638
  S ^XTMP(H,"D3")=%
  S ^XTMP(H,"CLNM")=$G(IO("CLNM"))
  S ^XTMP(H,"JOB",$J)=$G(IO("IP"))
@@ -59,7 +59,7 @@ CHKASH(HL) ;rpc. Check a Auto Signon Handle
  S RET=$$CHECK(HDL)
  I RET>0 D
  . S DUZ("ASH")=1,IEN=DUZ_","
- . I $$GET1^DIQ(200,IEN,7,"I") S FDA(200,DUZ_",",7)=0 D FILE^DIE("K","FDA") ;rwf 403
+ . I $$GET1^DIQ(200,IEN,7,"I") S FDA(200,DUZ_",",7)=0 D FILE^DIE("K","FDA") ;p403
  D REMOVE(HDL) ;Token only good for one try.
  Q RET
  ;
@@ -92,7 +92,7 @@ CHECK(HL,TOUT) ;Check a Token
  I $G(^VA(200,D,0))="" Q "0^Bad User"
  ;Do IP check
  S %=$G(IO("IP")),T=0,CLNM=""
- I $L(%),%'?1.3N1P1.3N1P1.3N1P1.3N S CLNM=%,%=$P($$ADDRESS^XLFNSLK(%),",")
+ I $L(%),'$$VALIDATE^XLFIPV(%) S CLNM=%,%=$P($$ADDRESS^XLFNSLK(%),",")  ;p638
  S CLNM=$S($L($G(IO("CLNM"))):IO("CLNM"),$L(CLNM):CLNM,1:"") ;p499
  I $L($G(^XTMP(HL,"D3"))),^XTMP(HL,"D3")=% S T=1
  I 'T,$L(CLNM),$G(^XTMP(HL,"CLNM"))=IO("CLNM") S T=1
@@ -115,7 +115,7 @@ CCOWIP(RET,CLIENTIP) ;rpc. CCOW Auto Signon Handle for middle tiered application
  N %
  S %=$G(IO("IP")) ; save original
  ; get actual ip address instead of localhost address if possible
- S IO("IP")=$S($G(CLIENTIP)="127.0.0.1":%,$G(CLIENTIP)="":%,1:$G(CLIENTIP))
+ S IO("IP")=$S($G(CLIENTIP)=$$CONVERT^XLFIPV("127.0.0.1"):%,$G(CLIENTIP)="":%,1:$G(CLIENTIP)) ;p638
  D CCOW(.RET)
  S IO("IP")=% ; revert to original
  Q

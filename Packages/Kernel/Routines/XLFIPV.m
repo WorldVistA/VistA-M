@@ -1,6 +1,6 @@
-XLFIPV ;ISD/HGW - IPv4 and IPv6 Utilities ;09/11/12  09:03
- ;;8.0;KERNEL;**605**;Aug 6, 2012;Build 4
- ;Per VHA Directive 2004-038, this routine should not be modified
+XLFIPV ;ISD/HGW - IPv4 and IPv6 Utilities ;06/17/14  08:20
+ ;;8.0;KERNEL;**605,638**;Aug 6, 2012;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 VALIDATE(IP) ; EXTRINSIC. ICR #5844 (supported)
@@ -14,6 +14,7 @@ VALIDATE(IP) ; EXTRINSIC. ICR #5844 (supported)
  N I,J,X,XLFIELD
  S X=1
  I '$D(IP) Q 0
+ I IP?1.3N1P1.3N1P1.3N1P1.3N1P.N S IP=$P(IP,":",1) ;p638 Strip off port information from IPv4 address
  ; If IP address contains both ":" and "." delimiters, then check IPv4 embedded in IPv6.
  I (IP[":")&(IP[".") D  Q X  ; IPv4-Mapped.
  . S IP=$$EXPAND6(IP,6) I IP="" S X=0 Q  ; Change the format of the first six high-order bytes
@@ -24,11 +25,11 @@ VALIDATE(IP) ; EXTRINSIC. ICR #5844 (supported)
  . . S X=$$EXAMINE4($P(XLFIELD,".",I))
  ; If IP address contains ":" delimiter, then IPv6. Otherwise IPv4.
  I IP[":" D  Q X  ; IPv6 address
- . S IP=$$EXPAND6(IP,7) I IP="" S X=0 Q  ; Change the format to a common format
+ . S IP=$$EXPAND6(IP,7) I IP="" S X=0 Q  ; Change to a common format
  . F I=1:1:8 Q:X=0  D  ; Examine field by field
  . . S X=$$EXAMINE6($P(IP,":",I))
  I IP'[":" D  Q X  ; IPv4 address
- . S IP=$$EXPAND4(IP) ; Change the format to a common format
+ . S IP=$$EXPAND4(IP) ; Change to a common format
  . F I=1:1:4 Q:X=0  D  ; Examine field by field
  . . S X=$$EXAMINE4($P(IP,".",I))
  Q 0
@@ -44,6 +45,7 @@ FORCEIP4(IP) ; EXTRINSIC. ICR #5844 (supported)
  N I,XLFIELD,XLMAP
  ; Return null address "0.0.0.0" if address is invalid
  Q:'$$VALIDATE(IP) "0.0.0.0"
+ I IP?1.3N1P1.3N1P1.3N1P1.3N1P.N S IP=$P(IP,":") ;p638 Strip off port information from IPv4 address
  S XLMAP="0000:0000:0000:0000:0000:FFFF:"
  ; If IP address contains both ":" and "." delimiters, then IPv4-Mapped IPv6 address.
  I (IP[":")&(IP[".") D  Q IP  ; IPv4-Mapped.
@@ -51,10 +53,11 @@ FORCEIP4(IP) ; EXTRINSIC. ICR #5844 (supported)
  . S IP=$$EXPAND4($E(IP,31,49)) ; Get last two bytes, IPv4 format (not interested in first six bytes)
  I IP[":" D  Q IP  ; IPv6 address (last two bytes might be IPv4-Mapped)
  . S IP=$$EXPAND6(IP,7) I IP="" S IP="0.0.0.0" Q  ; Change the format to standardized
+ . I IP="0000:0000:0000:0000:0000:0000:0000:0001" S IP="127.0.0.1" Q  ; Loopback address
  . I $E(IP,1,30)'=XLMAP S IP="0.0.0.0" Q  ; Invalid IPv4-Mapped address
  . S IP=$$DEC^XLFUTL($E(IP,31,32),16)_"."_$$DEC^XLFUTL($E(IP,33,34),16)_"."_$$DEC^XLFUTL($E(IP,36,37),16)_"."_$$DEC^XLFUTL($E(IP,38,39),16)
  I IP'[":" D  Q IP  ; IPv4 address
- . S IP=$$EXPAND4(IP) ; Change the format to a common format
+ . S IP=$$EXPAND4(IP) ; Change to a common format
  Q "0.0.0.0"
  ;
 FORCEIP6(IP) ; EXTRINSIC. ICR #5844 (supported)
@@ -65,18 +68,21 @@ FORCEIP6(IP) ; EXTRINSIC. ICR #5844 (supported)
  ;           input address is valid, or the null address "::0" if the input address is invalid.
  ;
  N XLMAP
- ; Return null address "::0" if address is invalid
- Q:'$$VALIDATE(IP) "::0"
+ ; Return expanded null address "0000:0000:0000:0000:0000:0000:0000:0000" if address is invalid
+ Q:'$$VALIDATE(IP) "0000:0000:0000:0000:0000:0000:0000:0000"
  S XLMAP="0000:0000:0000:0000:0000:FFFF:"
+ I IP?1.3N1P1.3N1P1.3N1P1.3N1P.N S IP=$P(IP,":") ;p638 Strip off port information from IPv4 address
  ; If IP address contains both ":" and "." delimiters, then IPv4 embedded in IPv6.
  I (IP[":")&(IP[".") D  Q IP  ; IPv4-Mapped address.
  . S IP=$$EXPAND6(IP,6) I IP="" S IP="0.0.0.0" Q  ; Change the format of the first six high-order bytes
  . S IP=$E(IP,1,30)_$$CNVF($$EXPAND4($E(IP,31,49))) ; Get last two bytes, IPv4 format -> IPv4-Mapped Address
  ; If IP address contains ":" delimiter, then IPv6. Otherwise IPv4.
  I IP[":" D  Q IP  ; IPv6 address
- . S IP=$$EXPAND6(IP,7) I IP="" S IP="::0" Q  ; Change the format to a common format
+ . S IP=$$EXPAND6(IP,7) I IP="" S IP="0000:0000:0000:0000:0000:0000:0000:0000" Q  ; Change to a common format
  I IP'[":" D  Q IP  ; IPv4 address
  . S IP=XLMAP_$$CNVF($$EXPAND4(IP)) ; IPv4-Mapped IPv6 Address
+ . I IP="0000:0000:0000:0000:0000:FFFF:0000:0000" S IP="0000:0000:0000:0000:0000:0000:0000:0000" Q  ; Null address
+ . I IP="0000:0000:0000:0000:0000:FFFF:7F00:0001" S IP="0000:0000:0000:0000:0000:0000:0000:0001" Q  ; Loopback address
  Q IP
  ;
 CONVERT(IP) ; EXTRINSIC. ICR #5844 (supported)
@@ -210,6 +216,7 @@ EXPAND6(IP,ZNUM) ; INTRINSIC.
  ; Output: returns:  An IPv6 address in the format "hhhh:hhhh:hhhh:hhhh:hhhh:hhhh:hhhh:hhhh".
  ;
  N I,XLBLANK,XLCNT,XLFIELD
+ S IP=$P($G(IP),"%") ;p638 Remove routing information
  I IP[":::" S IP="" Q IP  ; Cannot contain :::
  I $E(IP,1)="[" S IP=$P($P(IP,"[",2),"]") ; Strip brackets [] from around an address string
  S XLCNT=ZNUM-($L(IP)-$L($TR(IP,":",""))) ; Count the number of colons needed to be added in short form address

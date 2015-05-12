@@ -1,5 +1,5 @@
 EDPRPTBV ;SLC/MKB - BVAC Report ;4/25/13 03:15pm
- ;;2.0;EMERGENCY DEPARTMENT;**6**;May 2, 2012;Build 200
+ ;;2.0;EMERGENCY DEPARTMENT;**6,2**;Feb 24, 2012;Build 23
  ;
 EN(BEG,END,CSV) ; Get Activity Report for EDPSITE by date range
  N LOG,X,X0,X1,X3,DX,IN,OUT,ROW,ICD,I
@@ -7,7 +7,9 @@ EN(BEG,END,CSV) ; Get Activity Report for EDPSITE by date range
  D INIT ;set counters, sums to 0
  D:'$G(CSV) XML^EDPX("<logEntries>") I $G(CSV) D  ;headers
  . N TAB S TAB=$C(9)
- . S X="Patient"_TAB_"Time In"_TAB_"Time Out"_TAB_"Complaint"_TAB_"MD"_TAB_"Acuity"_TAB_"Elapsed"_TAB_"Triage"_TAB_"Dispo"_TAB_"Admit Dec"_TAB_"Admit Delay"_TAB_"Diagnosis"_TAB_"ICD9"
+ . ;Begin EDP*2.0*2 changes
+ . S X="Patient"_TAB_"Time In"_TAB_"Time Out"_TAB_"Complaint"_TAB_"MD"_TAB_"Acuity"_TAB_"Elapsed"_TAB_"Triage"_TAB_"Dispo"_TAB_"Admit Dec"_TAB_"Admit Delay"_TAB_"Diagnosis"_TAB_"ICD"_TAB_"ICD Type"
+ . ;End EDP*2.0*2 Changes
  . ;***pij 4/19/2013 removed Unemploy
  . ;S X=X_TAB_"Viet Vet"_TAB_"Agent Orange"_TAB_"OEF/OIF"_TAB_"Pers Gulf"_TAB_"VA Pension"_TAB_"POW"_TAB_"Serv Conn %"_TAB_"Purp Hrt"_TAB_"Unemploy"_TAB_"Combat End"
  . S X=X_TAB_"Viet Vet"_TAB_"Agent Orange"_TAB_"OEF/OIF"_TAB_"Pers Gulf"_TAB_"VA Pension"_TAB_"POW"_TAB_"Serv Conn %"_TAB_"Purp Hrt"_TAB_"Combat End"
@@ -42,7 +44,8 @@ BV1 . ; add row to report
  . S ROW("triage")=TRIAGE
  . S ROW("disposition")=$$ECODE^EDPRPT($P(X1,U,2))
  . S ROW("admDec")=ADMDEC,ROW("admDel")=ADMDEL
- . S ROW("icd")=$P(DX,U),ROW("dx")=$P(DX,U,2)
+ .; S ROW("icd")=$P(DX,U),ROW("dx")=$P(DX,U,2) replaced this line with one below
+ . S ROW("icd")=$P(DX,U),ROW("dx")=$P(DX,U,2),ROW("icdType")=$P(DX,"^",3)
  . ; get other patient attributes from VADPT
  . N DFN,VAEL,VASV,VAMB,VAERR
  . S DFN=$P(X0,U,6) I DFN D 8^VADPT D
@@ -63,7 +66,8 @@ BV1 . ; add row to report
 BV2 . ;
  . I '$G(CSV) S X=$$XMLA^EDPX("log",.ROW) D XML^EDPX(X) Q
  . S X=ROW("patient")
- . F I="inTS","outTS","complaint","md","acuity","elapsed","triage","disposition","admDec","admDel","dx","icd" S X=X_$C(9)_$G(ROW(I))
+ . F I="inTS","outTS","complaint","md","acuity","elapsed","triage","disposition","admDec","admDel","dx","icd","icdType" S X=X_$C(9)_$G(ROW(I))
+ . ;End EDP*2.0*2 Changes
  . ;***pij 4/19/2013 deleted unemployable
  . ;F I="vietnam","agentOrange","iraq","persGulf","vaPension","pow","servConn%","purpleHeart","unemployable","combatEndDT" S X=X_$C(9)_$G(ROW(I))
  . F I="vietnam","agentOrange","iraq","persGulf","vaPension","pow","servConn%","purpleHeart","combatEndDT" S X=X_$C(9)_$G(ROW(I))
@@ -104,5 +108,11 @@ ECODE(IEN) ; Return external value for a Code
 BVAC(AREA,LOG) ; -- Return ICD^text of diagnosis in range, else null
  N X,Y,I,EDPDX S Y=""
  D DXALL^EDPQPCE(AREA,LOG,.EDPDX)
- S I=0 F  S I=$O(EDPDX(I)) Q:I<1  S X=$G(EDPDX(I)) I 290<=+X,+X<=316 S Y=X Q
+ ; drp Begin EDP*2.0*2 Changes
+ S I=0 F  S I=$O(EDPDX(I)) Q:I<1  D
+ . S X=$G(EDPDX(I))
+ . I 290<=+X,+X<=316 S Y=X
+ . I $E(X,1)["F",10<=+($E(X,2,8)),+($E(X,2,8))<=99 S Y=X
+ .Q
+ ; End EDP*2.0*2 Changes
  Q Y

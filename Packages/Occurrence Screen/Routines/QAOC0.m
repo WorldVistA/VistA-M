@@ -1,5 +1,5 @@
-QAOC0 ;HISC/DAD-OCCURRENCE SCREEN AUTO ENROLLMENT ;10/19/92  14:29
- ;;3.0;Occurrence Screen;;09/14/1993
+QAOC0 ;HISC/DAD-OCCURRENCE SCREEN AUTO ENROLLMENT ; 6/11/14 10:16am
+ ;;3.0;Occurrence Screen;**9**;09/14/1993;Build 4
  ;AUTO ENROLL UTILITIES
  ;
 TXSP(CARETYPE,TXSP) ; Is TXSP of type CARETYPE ?
@@ -24,6 +24,16 @@ SCHED(DFN,DATE) ; Is DATE a scheduled admission for DFN ?
  Q:SCHED SCHED
  F S0=DATE-.0000001:0 S S0=$O(^DPT(DFN,"S",S0)) Q:$S(S0'>0:1,S0>(DATE+.24):1,S0\1'?7N:1,1:0)  S X=$G(^DPT(DFN,"S",S0,0)) I "I"[$P(X,"^",2),$P(X,"^",7)=3,$O(^QA(740,1,"OS1","B",+$P(X,"^"),0)) S SCHED=1 Q
  Q SCHED
+ ;
+SCHED2(DFN,DATE) ; Is DATE a scheduled admission for DFN ? DATE includes TIME (QAO*3*9)
+ ; Returns: 1 = Yes,  0 = No
+ ; DFN  = Patient file (#2) IEN
+ ; DATE = A date in internal FM form
+ N QAOS0,QAOSCHED,QAOX S QAOSCHED=0
+ F QAOS0=0:0 S QAOS0=$O(^DGS(41.1,"B",DFN,QAOS0)) Q:QAOS0'>0  S QAOX=$G(^DGS(41.1,QAOS0,0)) I $P(QAOX,"^",2)=DATE,+$P(QAOX,"^",13)=0 S QAOSCHED=1 Q
+ Q:QAOSCHED QAOSCHED
+ F QAOS0=DATE-.0000001:0 S QAOS0=$O(^DPT(DFN,"S",QAOS0)) Q:$S(QAOS0'>0:1,QAOS0>(DATE+.24):1,QAOS0\1'?7N:1,1:0)  S QAOX=$G(^DPT(DFN,"S",QAOS0,0)) I "I"[$P(QAOX,"^",2),$P(QAOX,"^",7)=3,$O(^QA(740,1,"OS1","B",+$P(QAOX,"^"),0)) S QAOSCHED=1 Q
+ Q QAOSCHED
  ;
 INACTIVE(SCRN) ; Is SCRN national, local, or inactive ?
  ; Returns: $S(N:National, L:Local, 1:Inactive)

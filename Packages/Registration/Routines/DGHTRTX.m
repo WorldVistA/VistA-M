@@ -1,5 +1,5 @@
-DGHTRTX ;ALB/JRC - Home Telehealth HL7 Message Monitoring Routine ;10 January 2005 ; 9/14/06 12:52pm
- ;;5.3;Registration;**644**;Aug 13, 1993;Build 11
+DGHTRTX ;ALB/JRC - Home Telehealth HL7 Message Monitoring Routine ;10 January 2005 ; 1/17/14 12:02pm
+ ;;5.3;Registration;**644,859**;Aug 13, 1993;Build 8
  ;
  ;This routine when tasked will run at predetermined time intervals
  ;and check to see if there are any HTH HL7 messages that have not
@@ -11,7 +11,7 @@ DGHTRTX ;ALB/JRC - Home Telehealth HL7 Message Monitoring Routine ;10 January 20
  ;(12 hours) and the process starts a new.
  ;
 EN ;entry point from tasked option, $O thru home telehealth file
- ;(#391.31) "HTHNOACK" xref and find mnessages to retransmit
+ ;(#391.31) "HTHNOACK" xref and find messages to retransmit
  N MSGID,NODE,STATUS,RECORD,TRANS,TYPE,ERROR,RETRANS,DTIME,XTIME
  N DGCOUNT,DGDATE,CNT
  S (MSGID,NODE,TRANS,ERROR)="",TYPE=1,CNT=0
@@ -75,6 +75,9 @@ MESSAGE ;Build bulletin and send to mail group
  ..S CNT=CNT+1,MSGTEXT(CNT+1)="Message ID: "_MSGID,CNT=CNT+1
  ..S MSGTEXT(CNT)="Error Code: "_ERROR,CNT=CNT+1
  ..S MSGTEXT(CNT)="",CNT=CNT+1
+ ..S MSGTEXT(CNT)="Message ID:        "_$P(TNODE,U,1),CNT=CNT+1
+ ..S MSGTEXT(CNT)="Activation Date:   "_$$GET1^DIQ(391.31,RECORD,5),CNT=CNT+1
+ ..S MSGTEXT(CNT)="Vendor:            "_$$GET1^DIQ(391.31,RECORD,2),CNT=CNT+1
  ;Send message to mail group
  S XMSUB="Home Telehealth Patient "_MSGTYPE_" Reject"
  S XMTEXT="MSGTEXT("

@@ -1,5 +1,5 @@
 SROQD1 ;BIR/ADM - CASES WITH DEATHS WITHIN 30 DAYS ;01/29/98
- ;;3.0; Surgery ;**62,70,77,142**;24 Jun 93
+ ;;3.0;Surgery;**62,70,77,142,182**;24 Jun 93;Build 49
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure.  Local modifications to this routine
  ;**         are prohibited.
@@ -13,7 +13,7 @@ NAT ; loop through national specialties
  D:'SRSOUT SUM1
  Q
 IP ; loop through index procedures
- D TMP^SROQ0A D HDR F SRNAT=1:1:12 S SRSNM=0 Q:SRSOUT  I $D(^TMP("SRSEC",$J,SRNAT)) S SRNATNM=^TMP("SRIP",$J,SRNAT),SRDNAT=0 D PATS
+ D HDR F SRNAT=1:1:12 S SRSNM=0 Q:SRSOUT  I $D(^TMP("SRSEC",$J,SRNAT)) S SRNATNM=^TMP("SRIP",$J,SRNAT),SRDNAT=0 D PATS
  D:'SRSOUT SUM1
  Q
 NEW ; print national specialty or index procedure category
@@ -29,7 +29,7 @@ CASE ; print case information
  S SRZ=^TMP("SRPAT",$J,SRNM,DFN),SRSSN=$P(SRZ,"^"),(SRDD,X1)=$P(SRZ,"^",3),X2=$P(SRZ,"^",2),SRAGE=$E(X1,1,3)-$E(X2,1,3)-($E(X1,4,7)<$E(X2,4,7))
  S X=SRDD,SRDD=$E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3)
  S SRTN=^TMP("SRSEC",$J,SRNAT,SRNM,DFN),SR=^SRF(SRTN,0),X=$P(SR,"^",9),SRX=^TMP("SR",$J,DFN,X,SRTN),SRSD=$E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3)
- S Y=$P(SRX,"^",2),SRIOSTAT=$S(Y="I":"INPAT",Y="O":"OUTPAT",1:"???")
+ S Y=$P(SRX,"^",2),SRIOSTAT=$S(Y="I":"INPAT",Y="O":"OUTPAT",Y=1:"OUTPAT",Y=2:"INPAT",Y=3:"INPAT",1:"???")
  S Y=$P(SRX,"^",3),SRREL=$S(Y="U":"UNRELATED",Y="R":"RELATED",1:"???")
  S X=$P(SR,"^",4),SRSS=$S(X:$P(^SRO(137.45,X,0),"^"),1:"SPECIALTY NOT ENTERED"),SRL=86,SRSUPCPT=1 D PROC^SROUTL
  W !,SRSD,?12,SRNM,?44,SRDD,?60,SRSS,?102,SRIOSTAT,?111,SRREL,!,SRTN,?12,SRSSN_"  ("_SRAGE_")" S I=0 F  S I=$O(SRPROC(I)) Q:'I  W ?44,SRPROC(I),!

@@ -1,5 +1,5 @@
-MAGDRPCA ;WOIFO/PMK/MLS/SG/DAC/JSL - Imaging RPCs for Importer ; 01 Apr 2013 1:03 PM
- ;;3.0;IMAGING;**53,123,118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDRPCA ;WOIFO/PMK/MLS/SG/DAC/JSL - Imaging RPCs for Importer ; 20 Oct 2014 4:01 PM
+ ;;3.0;IMAGING;**53,123,118,142**;Mar 19, 2002;Build 15;Oct 20, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -80,7 +80,7 @@ LOOKUP(OUT,MAGIEN) ; RPC = MAG DICOM IMPORTER LOOKUP
  Q
  ;
 LOOKUP1(MAGIEN) ; patient and accession number lookup
- N DFN,I,MAG0,MAG2,NUMBER,OUT,TMP,VA,VADM,X
+ N DFN,I,MAG0,MAG2,NUMBER,OUT,TMP,VADM,X
  S MAG0=$G(^MAG(2005,MAGIEN,0)),MAG2=$G(^(2))
  S DFN=+$P(MAG0,"^",7)
  D  ; Protect variables that are referenced by the DEM^VADPT
@@ -99,7 +99,7 @@ LOOKUP1(MAGIEN) ; patient and accession number lookup
  S X=X_"^"_$TR(TMP,"^",",") ; ICN
  I $P(MAG2,"^",6)=2006.5839 D  ; temporary consult association
  . N ACNUMB,GMRCIEN,MODIFIER,PROCNAME,STUDYDAT
- . S GMRCIEN=$P(MAG2,"^",7),ACNUMB=$$GMRCACN^MAGDFCNV(GMRCIEN)
+ . S GMRCIEN=$P(MAG2,"^",7),ACNUMB="GMRC-"_GMRCIEN
  . S TMP=$$GET1^DIQ(123,GMRCIEN,.01,"I")\1
  . S STUDYDAT=$S(TMP>0:17000000+TMP,1:"-1,Invalid study date")
  . S PROCNAME=$$GET1^DIQ(123,GMRCIEN,1) ; TO SERVICE
@@ -123,13 +123,49 @@ GETDFN(OUT,ICN) ; RPC = MAG DICOM GET DFN
  ;
 ACNUMB(OUT,ACNUMB) ; RPC = MAG DICOM GET RAD INFO BY ACN
  N RADFN,RADTI,LIST,STATUS
- S STATUS=$$ACCFIND^RAAPI(ACNUMB,.LIST) ; Private IA (#5020) 
+ I $T(ACCFIND^RAAPI)'="" D  ; requires RA*5.0*47
+ . S STATUS=$$ACCFIND^RAAPI(ACNUMB,.LIST) ; Private IA (#5020) 
+ . Q
+ E  D  ; before RA*5.0*47
+ . S STATUS=$$ACCFIND(ACNUMB,.LIST)
+ . Q
  I STATUS<0 S OUT=STATUS Q
  S OUT=STATUS_"^"_LIST(1)
  ; add the imaging location as 5th piece of the results
  S RADFN=$P(LIST(1),"^",1),RADTI=$P(LIST(1),"^",2)
  S OUT=OUT_"^"_$$GET1^DIQ(79.1,$P(^RADPT(RADFN,"DT",RADTI,0),"^",4),.01)
  Q
+ ;
+ACCFIND(Y,RAA) ; borrowed from RA*5.0*47
+ ;
+ ;input : Y=the accession number in either a 'sss-mmddyy-xxxxx' or
+ ;          'mmddyy-xxxxx' format
+ ;      : RAA(n)=the array used to return the data in the following
+ ;               format RADFN_^_RADTI_^_RACNI
+ ;
+ ;return: n>0 successful, else n<0... 'n' is the number of array
+ ;        elements when successful. When unsuccessful (n<0) 'n' is
+ ;        a specific error dialog which is returned along with the
+ ;        invalid accession number.
+ ;
+ ;        Examples:
+ ;        -1^"invalid site accession number format"^accession #
+ ;        -2^"invalid accession number format"^accession #
+ ;        -3^"no data associated with this accession number"^accession #
+ ;
+ I $L(Y,"-")=3 Q:Y'?3N1"-"6N1"-"1.5N "-1^invalid site accession number format^"_Y
+ I $L(Y,"-")=2 Q:Y'?6N1"-"1.5N "-2^invalid accession number format^"_Y
+ N X S X=$S($L(Y,"-")=3:$NA(^RADPT("ADC1")),1:$NA(^RADPT("ADC"))) ; Private IA (#1172)
+ Q:$O(@X@(Y,0))'>0 "-3^no data associated with this accession number^"_Y
+ N RADFN,RADTI,RACNI,Z S:$D(U)#2=0 U="^"
+ S (RADFN,Z)=0 F  S RADFN=$O(@X@(Y,RADFN)) Q:'RADFN  D
+ . S RADTI=0 F  S RADTI=$O(@X@(Y,RADFN,RADTI)) Q:'RADTI  D
+ . . S RACNI=0 F  S RACNI=$O(@X@(Y,RADFN,RADTI,RACNI)) Q:'RACNI  D
+ . . . S Z=Z+1,RAA(Z)=RADFN_U_RADTI_U_RACNI
+ . . . Q
+ . . Q
+ . Q
+ Q Z ;success
  ;
  ;
  ;
@@ -143,7 +179,7 @@ DELETE(OUT,IMAGEUID,MACHID,FILEPATH) ; RPC = MAG DICOM IMPORTER DELETE
  ; .ARRAY        Reference to a local variable where results
  ;               are returned to.
  ;
- ; DIV           IEN of a record in the INSTITUTION file (#4)
+ ; DIV           IEN or STATION NUMBER of a record in the INSTITUTION file (#4)
  ;
 PROC(ARRAY,DIV,FILTER) ;
  N IMAGTYPE      ; IEN of the imaging type (file #79.2)
@@ -153,19 +189,18 @@ PROC(ARRAY,DIV,FILTER) ;
  N RADPROC       ; Radiology procedure data (file #71)
  N TODAY         ; today's date in Fileman format
  N PROCTYPE      ; Type of procedure
+ N DIVSN         ; Division Station Number
  ;
  N BUF,ERROR,IEN,Z
  K ARRAY
  ;
  ;--- Validate parameters
  S DIV=$G(DIV)
- I (DIV'>0)!(DIV'=+DIV)  D  Q
- . S ARRAY(1)="-1,Invalid Institution IEN: '"_DIV_"'."
+ I ($$STA^XUAF4(DIV)="")!(DIV'=+DIV) D  Q:$D(ARRAY)  ; P142 DAC - Accept IEN or STATION NUMBER
+ . S DIVSN=$$IEN^XUAF4(DIV)  ; Check STATION NUMBER
+ . I DIVSN="" S ARRAY(1)="-2,Institution "_DIV_" does not exist." Q
+ . S DIV=DIVSN
  . Q
- I $D(^DIC(4,DIV))<10  D  Q
- . S ARRAY(1)="-2,Institution with IEN="_DIV_" does not exist."
- . Q
- ;
  S ERROR=$$DISPLAY^MAGDAIRG(0)
  I ERROR=-1 D  Q
  . S ARRAY(1)="-3,""No Credit"" entries must be added to the IMAGING LOCATIONS file (#79.1)"

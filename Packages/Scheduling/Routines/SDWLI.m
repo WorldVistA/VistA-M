@@ -1,5 +1,5 @@
 SDWLI ;BPOI/TEH - DISPLAY PENDING APPOINTMENTS;6/1/05
- ;;5.3;scheduling;**263,327,394,446,524,505**;08/13/93;Build 20
+ ;;5.3;scheduling;**263,327,394,446,524,505,611**;08/13/93;Build 9
  ;
  ;
  ;******************************************************************
@@ -11,6 +11,12 @@ SDWLI ;BPOI/TEH - DISPLAY PENDING APPOINTMENTS;6/1/05
  ;   04/22/2005      SD*5.3*327  UNDEFINED ERROR HD+1
  ;   08/07/2006      SD*5.3*446  proceed only when DFN defined
  ;   04/14/2006      SD*5.3*446  INTER-FACILITY TRANSFER
+ ;   01/14/2014      SD*5.3*611  Removed line
+ ;   01/14/2014      SD*5.3*611  Changed DIC lookup to use PATIENT (#2) file
+ ;
+ ;
+ ; Reference/ICR
+ ; PATIENT FILE/10035
  ;
  ;
 EN ;NEW AND INITIALIZE VARIABLES
@@ -41,8 +47,10 @@ EN1 K DIR,DIC,DR,DIE,SDWLDRG
 PAT ;PATIENT LOOK-UP
  ;PATCH SD*5.3*524 - SET DIC("S") FOR SCREEN OF OPEN/CLOSED ENTRIES
  K DIC,DIC("S")
- I $D(SDWLY),SDWLY S DIC("S")="I $P(^SDWL(409.3,+Y,0),U,17)=""O"""
- S DIC(0)="EMNQA",DIC=409.3 D ^DIC S (SDWLDFN,DFN)=$P(Y,U,2)
+ ;SD*5.3*611 removed line
+ ;I $D(SDWLY),SDWLY S DIC("S")="I $P(^SDWL(409.3,+Y,0),U,17)=""O"""
+ ;changed DIC lookup to the PATIENT (#2) file.
+ S DIC(0)="EMNQA",DIC=2 D ^DIC S (SDWLDFN,DFN)=+Y
  G PATEND:SDWLDFN=""
  Q:Y<0
  Q:$D(DUOUT)

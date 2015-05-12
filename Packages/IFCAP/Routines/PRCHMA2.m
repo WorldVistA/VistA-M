@@ -1,6 +1,12 @@
 PRCHMA2 ;WISC/AKS-Amendments to purchase orders and requisitions ;6/9/96  20:44
- ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;5.1;IFCAP;**189**;Oct 20, 2000;Build 1
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*189 Modify Prompt Pay % handling during Amendment to
+ ;            insure ONLY one PP entry is allowed and only able
+ ;            to allow/edit one entry in what is defined as a
+ ;            multiple field.
+ ;
 EN10 ;EST. SHIPPING Edit
  N X,I,PRCHO,PRCHN,PRCHOO,PRCH0,PRCHSBOC,PRCH12,PRCHGNP,PRCHGPO,PRCHGSHP
  N PRCHSHP
@@ -77,17 +83,29 @@ EN12 ;Change Vendor
  QUIT
  ;
 EN14 ;Prompt payment edit
- N DIC,DA,Y,PRCHX,PRCHXX,PRCHVAL,PRCHDA,%X,%Y
+ N DIC,DIE,DA,DR,Y,PRCHX,PRCHXX,PRCHVAL,PRCHDA,%X,%Y,PRCHPP
  I '$D(^PRC(443.6,PRCHPO,5)) D
  .S %X="^PRC(442,PRCHPO,5,",%Y="^PRC(443.6,PRCHPO,5," D %XY^%RCR
- S DA(1)=PRCHPO,DIC="^PRC(443.6,"_DA(1)_",5,",DIC(0)="AELQZ" D ^DIC Q:Y<0  S (PRCHDA,DA)=+Y,PRCHXX=$P(Y,U,3)
- S PRCHVAL=$G(^PRC(443.6,PRCHPO,5,DA,0))
- S PRCHP0=Y(0),PRCHO=$P(Y(0),U)_"/"_$P(Y(0),U,2)
- S $P(^PRC(443.6,PRCHPO,5,0),U,2)=$P(^DD(443.6,9.2,0),U,2)
- S DA(1)=PRCHPO,DIE="^PRC(443.6,"_DA(1)_",5,"
- S DR=".01//^S X=""NET"";1//^S X=30"
- D ^DIE K DIE
- S DA(1)=PRCHPO,DA=PRCHDA,PRCHX=X,X=$S(PRCHXX=1:0,1:$P(PRCHVAL,U)) D EN0^PRCHAMXB
+ ;PRC*5.1*189 Code below insures only a single Prompt Pay entry
+ ;            allowed and only that single entry can be edited,
+ ;            if one defined in multiple field.
+ ;Begin PRC*189
+ S PRCHPP=$O(^PRC(443.6,PRCHPO,5,0)) D:PRCHPP
+ . S (PRCHDA,DA)=PRCHPP
+ . S PRCHVAL=$G(^PRC(443.6,PRCHPO,5,DA,0)),Y(0)=PRCHVAL
+ . S PRCHP0=Y(0),PRCHO=$P(Y(0),U)_"/"_$P(Y(0),U,2),PRCHXX=$P(Y(0),U,3)
+ . S DR=".01//^S X=""NET"";1//^S X=30"
+ . S DA(1)=PRCHPO,DIE="^PRC(443.6,"_DA(1)_",5," D ^DIE
+ I 'PRCHPP S DA(1)=PRCHPO,DIC="^PRC(443.6,"_DA(1)_",5,",DIC(0)="AELQZ" D ^DIC Q:Y<0  S (PRCHDA,DA)=+Y,PRCHXX=$P(Y,U,3) D
+ . S PRCHVAL=$G(^PRC(443.6,PRCHPO,5,DA,0))
+ . S PRCHP0=Y(0),PRCHO=$P(Y(0),U)_"/"_$P(Y(0),U,2)
+ . S $P(^PRC(443.6,PRCHPO,5,0),U,2)=$P(^DD(443.6,9.2,0),U,2)
+ . S DA(1)=PRCHPO,DIE="^PRC(443.6,"_DA(1)_",5,"
+ . S DR=".01//^S X=""NET"";1//^S X=30"
+ . D ^DIE
+ ;End PRC*189
+ S DA(1)=PRCHPO,DA=PRCHDA,PRCHX=X
+ S X=$S(PRCHXX=1:0,1:$P(PRCHVAL,U)) D EN0^PRCHAMXB
  S X=$S(PRCHXX=1:0,1:$P(PRCHVAL,U,2)) D EN1^PRCHAMXB
  ;S X=$S(PRCHXX=1:0,1:$P(PRCHVAL,U,5)) D EN11^PRCHAMXB
  S X=PRCHX

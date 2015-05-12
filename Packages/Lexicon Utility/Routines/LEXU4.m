@@ -1,5 +1,5 @@
-LEXU4 ;ISL/KER - Miscellaneous Lexicon Utilities ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEXU4 ;ISL/KER - Miscellaneous Lexicon Utilities ;12/19/2014
+ ;;2.0;LEXICON UTILITY;**80,86**;Sep 23, 1996;Build 1
  ;               
  ;               
  ; Global Variables
@@ -11,6 +11,7 @@ LEXU4 ;ISL/KER - Miscellaneous Lexicon Utilities ;04/21/2014
  ;    $$ICDOP^ICDEX       ICR   5747
  ;    $$ROOT^ICDEX        ICR   5747
  ;    $$CPT^ICPTCOD       ICR   1995
+ ;    $$FMDIFF^XLFDT      ICR  10103
  ;    $$DT^XLFDT          ICR  10103
  ;               
 HIST(CODE,SYS,ARY) ; Get Activation History for a Code
@@ -121,13 +122,14 @@ PERIOD(CODE,SYS,ARY) ; Get Activation/Inactivation Periods for a Code
  ; Functions like PERIOD^ICDAPIU, except it can include
  ; any coding system in the Lexicon, not just ICD.
  ; 
- N LEXACT,LEXD,LEXDT,LEXEF,LEXEXI,LEXEXP,LEXI,LEXIDT,LEXIEN
+ N LEXACT,LEXC,LEXD,LEXDT,LEXEF,LEXEXI,LEXEXP,LEXI,LEXIDT,LEXIEN
  N LEXINA,LEXND,LEXPDT,LEXPER,LEXSD,LEXSO,LEXSY,LEXSYS,LEXVP
  S LEXSO=$G(CODE) Q:'$L(LEXSO) "-1^Missing Code"
  Q:'$D(^LEX(757.02,"CODE",(LEXSO_" "))) "-1^Invalid Code"
  S (LEXSD,LEXSYS)=$$CSYS^LEXU(SYS),LEXSYS=+LEXSYS
  Q:+LEXSYS'>0 "-1^Missing/Invalid Coding System"
  Q:'$D(^LEX(757.03,+LEXSYS,0)) "-1^Invalid Coding System"
+ Q:+($$CODSAB^LEXU2(LEXSO,LEXSYS))'>0 "-1^Invalid source for code"
  K ARY,LEXACT,LEXINA
  S LEXDT="" F  S LEXDT=$O(^LEX(757.02,"ACT",(LEXSO_" "),3,LEXDT)) Q:'$L(LEXDT)  D
  . N LEXIEN S LEXIEN=0 F  S LEXIEN=$O(^LEX(757.02,"ACT",(LEXSO_" "),3,LEXDT,LEXIEN)) Q:+LEXIEN'>0  D
@@ -186,6 +188,106 @@ VP(CODE,SYS,EFF) ; Variable Pointer ^ Description
  . S LEXDES=$P($$CPT^ICPTCOD(LEXSO,(LEXEF+.001)),U,3)
  Q:$L(LEXVP)&($L(LEXDES)) (LEXVP_"^"_LEXDES)
  Q ""
+REUSE(X,SYS) ; Is a code "re-used"
+ ;
+ ; Input
+ ; 
+ ;    X         Code
+ ;    SYS       Coding System
+ ;   
+ ; Output
+ ; 
+ ;   $$REUSE    2 Piece "^" delimited string
+ ;                 1  Boolean flag
+ ;                     1 if the code was reused
+ ;                     0 if the code has not been reused
+ ;                 2  If reused, the date it was reused
+ ;    
+ N LEXA,LEXAC,LEXEF,LEXH,LEXHARY,LEXI,LEXRU,LEXSO,LEXSRC,LEXSYS,LEXTD,LEXREU,LEXRD
+ S (LEXA,LEXI)=0,LEXTD=$G(DT) S:LEXTD'?7N LEXTD=$$DT^XLFDT S LEXSO=$G(X),LEXSYS=$G(SYS)
+ S LEXSRC=+($$CSYS^LEXU(LEXSYS)),LEXH=$$ACT($G(LEXSO),$G(LEXSYS),.LEXHARY) K LEXHARY(0,0),LEXHARY(0)
+ S LEXREU=0,(LEXRD,LEXD)=" " F  S LEXD=$O(LEXHARY(LEXD),-1) Q:'$L(LEXD)  D  Q:LEXREU>0
+ . N LEXS,LEXE,LEXPD,LEXPS,LEXPE,LEXDIF
+ . S LEXS=$O(LEXHARY(+LEXD," "),-1),LEXE=$G(LEXHARY(+LEXD,+LEXS))
+ . S LEXPD=$O(LEXHARY(LEXD),-1),LEXPS=$O(LEXHARY(+LEXPD," "),-1)
+ . S LEXPE=$G(LEXHARY(+LEXPD,+LEXPS))
+ . Q:LEXS'?1N  Q:LEXD'?7N  Q:LEXPS'?1N  Q:LEXPD'?7N
+ . S LEXDIF=$$FMDIFF^XLFDT(LEXD,LEXPD,1) Q:LEXDIF'>10
+ . I LEXS=1,LEXPS=0,LEXD'=LEXPD,LEXE'=LEXPE S LEXREU=1,LEXRD=LEXD
+ S X=LEXREU S:+X>0&(LEXRD?7N) $P(X,"^",2)=LEXRD
+ Q X
+REVISE(X,SYS) ; Is a code "revised"
+ ;
+ ; Input
+ ; 
+ ;    X         Code
+ ;    SYS       Coding System
+ ;   
+ ;   $$REVISE   2 Piece "^" delimited string
+ ;                 1  Boolean flag
+ ;                     1 if the code was reused
+ ;                     0 if the code has not been reused
+ ;                 2  If reused, the date it was reused
+ ;    
+ N LEXA,LEXAC,LEXEF,LEXH,LEXHARY,LEXI,LEXRU,LEXSO,LEXSRC,LEXSYS,LEXTD,LEXREV,LEXRD
+ S (LEXA,LEXI)=0,LEXTD=$G(DT) S:LEXTD'?7N LEXTD=$$DT^XLFDT S LEXSO=$G(X),LEXSYS=$G(SYS)
+ S LEXSRC=+($$CSYS^LEXU(LEXSYS)),LEXH=$$ACT($G(LEXSO),$G(LEXSYS),.LEXHARY) K LEXHARY(0,0),LEXHARY(0)
+ S LEXREV=0,(LEXRD,LEXD)=" " F  S LEXD=$O(LEXHARY(LEXD),-1) Q:'$L(LEXD)  D  Q:LEXREV>0
+ . N LEXS,LEXE,LEXPD,LEXPS,LEXPE,LEXDIF
+ . S LEXS=$O(LEXHARY(+LEXD," "),-1),LEXE=$G(LEXHARY(+LEXD,+LEXS))
+ . S LEXPD=$O(LEXHARY(LEXD),-1),LEXPS=$O(LEXHARY(+LEXPD," "),-1)
+ . S LEXPE=$G(LEXHARY(+LEXPD,+LEXPS))
+ . Q:LEXS'?1N  Q:LEXD'?7N  Q:LEXPS'?1N  Q:LEXPD'?7N
+ . I LEXPS=LEXS,LEXPD'=LEXD,LEXPE'=LEXE S LEXREV=1,LEXRD=LEXD
+ S X=LEXREV S:+X>0&(LEXRD?7N) $P(X,"^",2)=LEXRD
+ Q X
+LAST(X,SYS,CDT) ; Last Activation ^ Inactivation
+ ;
+ ; Input
+ ; 
+ ;    X         Code
+ ;    SYS       Coding System
+ ;    CDT       Versioning Date
+ ;   
+ ;   $$LAST     2 Piece "^" delimited string
+ ;                 1  Last Activation Date
+ ;                 2  Last Inactivation Date
+ ;              
+ ;              or -1 on error/no dates found
+ ;    
+ N LEXARY,LEXDT,LEXLA,LEXLI,LEXO,LEXSO,LEXT,LEXTD S LEXTD=$$DT^XLFDT,LEXDT=$G(CDT) S:LEXDT'?7N LEXDT=LEXTD
+ S LEXSO=$G(X) S X=$$PERIOD^LEXU4($G(LEXSO),$G(SYS),.LEXARY) Q:+($G(LEXARY(0)))'>0 -1
+ S (LEXLA,LEXLI)="",LEXO=0 F  S LEXO=$O(LEXARY(LEXO)) Q:+LEXO'>0  D
+ . N LEXT S LEXT=$P($G(LEXARY(LEXO)),"^",1)
+ . I LEXO?7N,LEXO'>LEXDT S LEXLA=LEXO
+ . I LEXT?7N,LEXT'>LEXDT S:+LEXT>+LEXLI LEXLI=LEXT
+ Q:+LEXLA'>0 -1  S X=LEXLA S:LEXLI>0 X=X_"^"_LEXLI
+ Q X
+ACT(CODE,SYS,ARY) ; Get Activations
+ N LEXA,LEXC,LEXE,LEXI,LEXN,LEXNOM,LEXP,LEXS,LEXSAB,LEXSI,LEXSO,LEXSRC,LEXTD,X S X=0
+ S LEXSO=$G(CODE) K ARY Q:'$L(LEXSO) "-1^Code missing"
+ Q:'$D(^LEX(757.02,"ACT",(LEXSO_" "))) "-1^Invalid code missing"
+ S LEXSAB=$G(SYS),LEXSRC=+($$CSYS^LEXU(LEXSAB))
+ S:LEXSRC'>0 LEXSRC=$$SYSC(LEXSO) Q:+LEXSRC'>0 "-1^Invalid source"
+ S LEXNOM=$P($G(^LEX(757.03,+LEXSRC,0)),"^",2)
+ S (LEXSI,LEXSAB)=$$CSYS^LEXU(+LEXSRC)
+ S LEXSI=$P(LEXSI,"^",3,4)
+ S LEXSAB=$P(LEXSAB,"^",2) Q:$L(LEXSAB)'=3 "-1^Invalid source"
+ S LEXTD=$$DT^XLFDT F LEXI=0,1 D
+ . N LEXE,LEXSTA S LEXE=0,LEXSTA=LEXI
+ . F  S LEXE=$O(^LEX(757.02,"ACT",(LEXSO_" "),LEXI,LEXE)) Q:+LEXE'>0  D
+ . . N LEXS S LEXS=0
+ . . F  S LEXS=$O(^LEX(757.02,"ACT",(LEXSO_" "),LEXI,LEXE,LEXS)) Q:+LEXS'>0  D
+ . . . N LEXN,LEXC S LEXN=$G(^LEX(757.02,LEXS,0))
+ . . . S LEXC=+($P(LEXN,"^",3)) Q:+LEXC'=LEXSRC
+ . . . S:'$D(ARY(LEXE,LEXSTA)) ARY(0)=+($G(ARY(0)))+1
+ . . . S ARY(LEXE,LEXSTA)=+LEXN
+ S LEXA=0,LEXE=0 F  S LEXE=$O(ARY(LEXE)) Q:+LEXE'>0  D
+ . S LEXS="" F  S LEXS=$O(ARY(LEXE,LEXS)) Q:'$L(LEXS)  D
+ . . K:+LEXS>0 ARY(LEXE,0)
+ S LEXE=0 F  S LEXE=$O(ARY(LEXE)) Q:+LEXE'>0  D
+ . N LEXS S LEXS="" F  S LEXS=$O(ARY(LEXE,LEXS)) Q:'$L(LEXS)  S X=X+1
+ Q X
 PFI(FRAG,CDT,ARY) ; Get Procedure Fragment Info
  ;
  ; Input

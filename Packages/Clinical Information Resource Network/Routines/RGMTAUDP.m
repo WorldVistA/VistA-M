@@ -1,5 +1,5 @@
-RGMTAUDP ;BIR/CML,PTD-MPI/PD AUDIT File Print of Patient Data ;20 May 2013  12:13 PM
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**19,30,46,60**;30 Apr 99;Build 2
+RGMTAUDP ;BIR/CML,PTD-MPI/PD AUDIT File Print of Patient Data ; 4/7/14 6:47pm
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**19,30,46,60,61**;30 Apr 99;Build 2
  ;Reference to ^DD(2 supported by IA #2695.
  ;Reference to ^DIA(2 and data derived from the AUDIT file (#1.1)
  ;supported by IA #2097 and #2602.
@@ -97,8 +97,12 @@ START ;
  ;
 LOOP ;Loop on "B" xref of the AUDIT file
  Q:'$D(^DPT(RGDFN,0))
- I ANS2="S" D
- . S PATNM=$P(^DPT(RGDFN,0),U)_U_RGDFN
+ ;I ANS2="S" D
+ ;. S PATNM=$P(^DPT(RGDFN,0),U)_U_RGDFN
+ ;**61 - MVI_3413 (ckn)
+ ;Remedy ticket 946297 - Undefined error issue
+ S PATNM=$P(^DPT(RGDFN,0),U)_U_RGDFN
+ I $P(PATNM,U)="" Q
  S IEN=0 F  S IEN=$O(^DIA(2,"B",RGDFN,IEN)) Q:'IEN  D
  .I $D(^DIA(2,IEN,0)) S IEN0=(^(0)),EDITDT=$P(IEN0,U,2) I EDITDT>RGBDT,EDITDT<STOP D
  ..S FLD=$P(IEN0,U,3) I $D(FLD(2,FLD)) D

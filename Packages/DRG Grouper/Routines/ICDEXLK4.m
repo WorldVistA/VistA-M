@@ -1,5 +1,5 @@
-ICDEXLK4 ;SLC/KER - ICD Extractor - Lookup, Text ;04/21/2014
- ;;18.0;DRG Grouper;**57**;Oct 20, 2000;Build 1
+ICDEXLK4 ;SLC/KER - ICD Extractor - Lookup, Search Text ;12/19/2014
+ ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
  ;               
  ; Global Variables
  ;    ^TMP(SUB,$J         SACC 2.3.2.5.1
@@ -60,62 +60,54 @@ TXT2 ;   Lookup by Text (loop)
  ; 
  ; Miscellaneous
 SE(RT,IE,TI,X) ;   Supplemental Word (exact match exist)
- N FIND,IIEN,PLUR,TEXT,ROOT,TIEN
- S FIND=$$UP^XLFSTR($G(X)) Q:'$L(FIND) 0
+ N CNTL,IIEN,PLUR,TEXT,ROOT,TIEN
+ S CNTL=$$UP^XLFSTR($G(X)) Q:'$L(CNTL) 0
  S ROOT=$$ROOT^ICDEX($G(RT)) Q:'$L(ROOT) 0
  S IIEN=+($G(IE)),TIEN=+($G(TI))
  S TEXT=$$UP^XLFSTR($G(@(ROOT_+IIEN_",68,"_+TIEN_",1)"))) Q:'$L(TEXT) 0
- Q:'$D(@(ROOT_+IIEN_",68,"_+TIEN_",2,""B"","""_FIND_""")")) 0
- S PLUR=$$EX(TEXT,(FIND_"S")) Q:PLUR>0 0
+ Q:'$D(@(ROOT_+IIEN_",68,"_+TIEN_",2,""B"","""_CNTL_""")")) 0
+ S PLUR=$$EX(TEXT,(CNTL_"S")) Q:PLUR>0 0
  Q 1
 SI(RT,IE,TI,X) ;   Supplemental Word (match exist)
- N FIND,IIEN,PLUR,TEXT,NEXT,TIEN,ORDR,ROOT
- S FIND=$$UP^XLFSTR($G(X)) Q:'$L(FIND) 0
+ N CNTL,IIEN,PLUR,TEXT,NEXT,TIEN,ORDR,ROOT
+ S CNTL=$$UP^XLFSTR($G(X)) Q:'$L(CNTL) 0
  S ROOT=$$ROOT^ICDEX($G(RT)) Q:'$L(ROOT) 0
  S IIEN=+($G(IE)),TIEN=+($G(TI))
- S:FIND?1N.N ORDR=FIND-.00000000000000009 I FIND'?1N.N D
- . S:$L(FIND)=1 ORDR=$C($A(FIND)-1)_"~"
- . S:$L(FIND)>1 ORDR=$E(FIND,1,($L(FIND)-1))_$C($A($E(FIND,$L(FIND)))-1)_"~"
+ S:CNTL?1N.N ORDR=CNTL-.00000000000000009 I CNTL'?1N.N D
+ . S:$L(CNTL)=1 ORDR=$C($A(CNTL)-1)_"~"
+ . S:$L(CNTL)>1 ORDR=$E(CNTL,1,($L(CNTL)-1))_$C($A($E(CNTL,$L(CNTL)))-1)_"~"
  S NEXT=$O(@(ROOT_+IIEN_",68,"_+TIEN_",2,""B"","""_ORDR_""")"))
- Q:$E(NEXT,1,$L(FIND))=FIND 1
+ Q:$E(NEXT,1,$L(CNTL))=CNTL 1
  Q 0
 EX(X,Y) ;   String Y is exactly in X
- N CON,FIND,TEXT,EXACT S TEXT=$G(X),FIND=$G(Y),EXACT=1
- S CON=$$CON(TEXT,FIND) S X=+($G(CON))
+ N CON,CNTL,TEXT,EXACT S TEXT=$G(X),CNTL=$G(Y),EXACT=1
+ S CON=$$CON(TEXT,CNTL) S X=+($G(CON))
  Q X
 IN(X,Y) ;   String Y is contained in X
- N CON,FIND,TEXT S TEXT=$G(X),FIND=$G(Y)
- S CON=$$CON(TEXT,FIND) S X=+($G(CON))
+ N CON,CNTL,TEXT S TEXT=$G(X),CNTL=$G(Y)
+ S CON=$$CON(TEXT,CNTL) S X=+($G(CON))
  Q X
 CON(X,Y) ;   Text X Contains String Y
- N FIND,FOUND,TEXT,LEAD,TRAIL,STR
- S TEXT=$$UP^XLFSTR($G(X)),FIND=$$UP^XLFSTR($G(Y))
- Q:'$L(TEXT) 0  Q:'$L(FIND) 0  Q:$L(FIND)>$L(TEXT) 0
- S (X,FOUND)=0
- I +($G(EXACT))>0 S X=0 D  Q X
- . F TRAIL=" ","-","(","<","{","[","," D  Q:FOUND>0
- . . N STR S STR=FIND_TRAIL
- . . S:$E(TEXT,1,$L(STR))=STR FOUND=1
- . . S:FOUND>0 X=FOUND
- . Q:FOUND>0  F LEAD=" ","-","(","<","{","[","," D  Q:FOUND>0
- . . N STR S STR=LEAD_FIND
- . . S:$E(TEXT,($L(TEXT)-$L(STR)),$L(TEXT))=STR FOUND=1
- . . S:FOUND>0 X=FOUND
- . Q:FOUND>0  F LEAD=" ","-","(","<","{","[","," D  Q:FOUND>0
- . . F TRAIL=" ","-",")",">","}","]","," D  Q:FOUND>0
- . . . N STR S STR=LEAD_FIND_TRAIL S:TEXT[STR FOUND=1
- . . . S:FOUND>0 X=FOUND
- . S:FOUND>0 X=FOUND
- S:$E(TEXT,1,$L(FIND))=FIND FOUND=1
- S:FOUND>0 X=FOUND Q:FOUND>0 X
- F LEAD=" ","-","(","<","{","[","," D  Q:FOUND>0
- . N STR S STR=LEAD_FIND S:TEXT[STR FOUND=1
- . S:FOUND>0 X=FOUND
- Q:FOUND>0 X  F LEAD=" ","-","(","<","{","[","," D  Q:FOUND>0
- . N TRAIL F TRAIL=" ","-",")",">","}","]","," D  Q:FOUND>0
- . . N STR S STR=LEAD_FIND_TRAIL S:TEXT[STR FOUND=1
- . . S:FOUND>0 X=FOUND
- S:FOUND>0 X=FOUND
+ N CNTL,CONT,TEXT,LEAD,TRAIL,STR
+ S TEXT=$$UP^XLFSTR($G(X)),CNTL=$$UP^XLFSTR($G(Y))
+ Q:'$L(TEXT) 0  Q:'$L(CNTL) 0  Q:$L(CNTL)>$L(TEXT) 0
+ S (X,CONT)=0 I +($G(EXACT))>0 S X=0 D  Q X
+ . F TRAIL=" ","-","(","<","{","[","," D  Q:CONT>0
+ . . N STR S STR=CNTL_TRAIL S:$E(TEXT,1,$L(STR))=STR CONT=1 S:CONT>0 X=CONT
+ . Q:CONT>0  F LEAD=" ","-","(","<","{","[","," D  Q:CONT>0
+ . . N STR S STR=LEAD_CNTL S:$E(TEXT,($L(TEXT)-$L(STR)),$L(TEXT))=STR CONT=1 S:CONT>0 X=CONT
+ . Q:CONT>0  F LEAD=" ","-","(","<","{","[","," D  Q:CONT>0
+ . . F TRAIL=" ","-",")",">","}","]","," D  Q:CONT>0
+ . . . N STR S STR=LEAD_CNTL_TRAIL S:TEXT[STR CONT=1 S:CONT>0 X=CONT
+ . S:CONT>0 X=CONT
+ S:$E(TEXT,1,$L(CNTL))=CNTL CONT=1
+ S:CONT>0 X=CONT Q:CONT>0 X
+ F LEAD=" ","-","(","<","{","[","," D  Q:CONT>0
+ . N STR S STR=LEAD_CNTL S:TEXT[STR CONT=1 S:CONT>0 X=CONT
+ Q:CONT>0 X  F LEAD=" ","-","(","<","{","[","," D  Q:CONT>0
+ . N TRAIL F TRAIL=" ","-",")",">","}","]","," D  Q:CONT>0
+ . . N STR S STR=LEAD_CNTL_TRAIL S:TEXT[STR CONT=1 S:CONT>0 X=CONT
+ S:CONT>0 X=CONT
  Q X
 LC(X) ;   Leading Character
  S X=$G(X) S X=$$UP^XLFSTR($E(X,1))_$$LOW^XLFSTR($E(X,2,$L(X)))

@@ -1,10 +1,18 @@
-RORX007 ;HCIOFO/BH,SG - RADIOLOGY UTILIZATION ; 10/14/05 1:37pm
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+RORX007 ;HCIOFO/BH,SG - RADIOLOGY UTILIZATION ;10/14/05 1:37pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
  ; #10061        DEM^VADPT (supported)
  ;
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
+ ;                                      additional identifier option selected
+ ;******************************************************************************
  Q
  ;
  ;***** COMPILES THE "RADIOLOGY UTILIZATION" REPORT
@@ -27,6 +35,7 @@ RORX007 ;HCIOFO/BH,SG - RADIOLOGY UTILIZATION ; 10/14/05 1:37pm
  ;           Last4)      Patient data
  ;                         ^01: Number of different procedures
  ;                         ^02: Date of death
+ ;                         ^03: National ICN
  ;
  ;     "PROC",
  ;       ProcName,
@@ -97,7 +106,7 @@ RADUTL(RORTSK) ;
  ;       >0  Number of non-fatal errors
  ;
 SORT(SPCNT) ;
- N DFN,DOD,DPCNT,ECNT,NAME,NODE,PRCNT,PQ,PRN,RC,TMP,TOTAL,VA,VADM,VAHOW,VAROOT
+ N DFN,DOD,DPCNT,ECNT,ICN,NAME,NODE,PRCNT,PQ,PRN,RC,TMP,TOTAL,VA,VADM,VAHOW,VAROOT
  S (ECNT,RC)=0
  S NODE=$NA(^TMP("RORX007",$J))
  Q:$D(@NODE)<10 0
@@ -124,12 +133,13 @@ SORT(SPCNT) ;
  . S NAME=$G(VADM(1))  Q:NAME=""
  . S LAST4=$G(VA("BID"))  S:LAST4="" LAST4=" "
  . S DOD=$$DATE^RORXU002($P(VADM(6),U)\1)
+ . S ICN=$$ICN^RORUTL02(DFN)
  . S PRN=""
  . F  S PRN=$O(@NODE@("PAT",DFN,PRN))  Q:PRN=""  D
  . . S PQ=$G(@NODE@("PAT",DFN,PRN))
  . . S DPCNT=DPCNT+1,PRCNT=PRCNT+PQ
  . ;---
- . S @NODE@("PATSORT",PRCNT,NAME,LAST4)=DPCNT_U_DOD
+ . S @NODE@("PATSORT",PRCNT,NAME,LAST4)=DPCNT_U_DOD_U_$S($$PARAM^RORTSK01("PATIENTS","ICN"):ICN,1:"")
  . S TOTAL("TPR")=$G(TOTAL("TPR"))+PRCNT  ; Number of procedures
  . S TOTAL("DPT")=$G(TOTAL("DPT"))+1      ; Different patients
  K @NODE@("PAT")
@@ -198,6 +208,8 @@ TBLPAT(PRNTELMT) ;
  . . . D ADDVAL^RORTSK11(RORTSK,"DOD",$P(BUF,U,2),ITEM,1)
  . . . D ADDVAL^RORTSK11(RORTSK,"TOTAL",PRCNT,ITEM,1)
  . . . D ADDVAL^RORTSK11(RORTSK,"UNIQUE",+BUF,ITEM,1)
+ . . . I $$PARAM^RORTSK01("PATIENTS","ICN") D
+ . . . . D ADDVAL^RORTSK11(RORTSK,"ICN",$P(BUF,U,3),ITEM,1)
  . . . S UTNUM=UTNUM+1  S:UTNUM'<MAXUTNUM RC=1
  Q:RC<0 RC
  ;---

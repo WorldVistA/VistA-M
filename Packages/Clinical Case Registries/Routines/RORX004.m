@@ -1,5 +1,5 @@
 RORX004 ;HOIFO/BH,SG,VAC - CLINIC FOLLOW UP ;4/7/09 2:06pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -21,6 +21,8 @@ RORX004 ;HOIFO/BH,SG,VAC - CLINIC FOLLOW UP ;4/7/09 2:06pm
  ;ROR*1.5*13   DEC  2010   A SAUNDERS   User can now select specific patients or
  ;                                      divisions for the report.
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
+ ;                                       requested.
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -98,7 +100,7 @@ CLNFLWUP(RORTSK) ;
  ;        0  Ok
  ;
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,DOD,SEEN,LSNDT)
+ ;;PATIENTS(#,NAME,LAST4,DOD,SEEN,LSNDT,ICN)
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
@@ -182,4 +184,8 @@ PATIENT(IENS,PARTAG) ;
  ;--- the given clinics
  S TMP=$$LASTVSIT^RORXU001(DFN)\1
  D ADDVAL^RORTSK11(RORTSK,"LSNDT",$$DATE^RORXU002(TMP),PTAG,1)
+ ; ICN, if requested
+ I $$PARAM^RORTSK01("PATIENTS","ICN") D
+ . S TMP=$$ICN^RORUTL02(DFN)
+ . D ADDVAL^RORTSK11(RORTSK,"ICN",TMP,PTAG,1)
  Q 0

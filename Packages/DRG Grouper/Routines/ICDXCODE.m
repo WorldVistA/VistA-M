@@ -1,5 +1,5 @@
-ICDXCODE ;ISL/KER - ICD basic data API's ;04/21/2014
- ;;18.0;DRG Grouper;**57**;Oct 20, 2000;Build 1
+ICDXCODE ;ISL/KER - ICD basic data API's ;12/19/2014
+ ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
  ;
  ; ICD wrapper APIs
  ;
@@ -7,15 +7,17 @@ EN ; Main Entry Point
 HELP ; Developer Help for an API
  D HLP^ICDEXH("SDD") Q
  ;
-ICDDATA(CSYS,CODE,DATE,FRMT) ; ICD data for code
+ICDDATA(CSYS,CODE,DATE,FRMT,LOC) ; ICD data for code
  ;
  ; Input:
  ;
  ;   CSYS   Coding system                           Required     
  ;   CODE   Code/IEN/variable pointer               Required
  ;   DATE   Code Set Date (default = TODAY)
- ;   FRMT   Code format "E" external (default)    
- ;                      "I" internal (IEN)
+ ;   FRMT   Code format   "E" external (default)    
+ ;                        "I" internal (IEN)
+ ;   LOC    Local codes    1 = Yes
+ ;                         0 = No (default)
  ;                      
  ; Output:
  ; 
@@ -72,8 +74,8 @@ ICDDATA(CSYS,CODE,DATE,FRMT) ; ICD data for code
  S ROOT=$$ROOT^ICDEX(SYS) Q:'$L(ROOT) "-1^Invalid Global Root"
  S:CODE[";"&($P(CODE,";",2)=$TR(ROOT,"^",""))&($L($P(CODE,";",1))) FRMT="I",CODE=$P(CODE,";",1)
  S:'$L($G(FRMT)) FRMT=$$IE^ICDEX($G(CODE))
- Q:ROOT["ICD9" $$ICDDX^ICDEX($G(CODE),$G(DATE),$G(SYS),$G(FRMT))
- Q:ROOT["ICD0" $$ICDOP^ICDEX($G(CODE),$G(DATE),$G(SYS),$G(FRMT))
+ Q:ROOT["ICD9" $$ICDDX^ICDEX($G(CODE),$G(DATE),$G(SYS),$G(FRMT),$G(LOC))
+ Q:ROOT["ICD0" $$ICDOP^ICDEX($G(CODE),$G(DATE),$G(SYS),$G(FRMT),$G(LOC))
  Q "-1^Not found"
  ;
 ICDDESC(CSYS,CODE,DATE,OUTARR) ; ICD description

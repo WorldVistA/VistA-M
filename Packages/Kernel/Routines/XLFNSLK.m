@@ -1,18 +1,26 @@
-XLFNSLK ;ISF/RWF - Calling a DNS server for name lookup ;5/21/07  14:47
- ;;8.0;KERNEL;**142,151,425**;Jul 10, 1995;Build 18
+XLFNSLK ;ISF/RWF,ISD/HGW - Calling a DNS server for name lookup ;07/11/14  11:18
+ ;;8.0;KERNEL;**142,151,425,638**;Jul 10, 1995;Build 15
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 TEST ;Test entry
- N XLF,XL1,XL3,Y,I S (XLF,XL3)=""
- R !,"Enter a IP address to lookup: www.domain.ext//",XL1:DTIME S:XL1="" XL1="www.domain.ext" Q:XL1["^"
- W !,"Looking up ",XL1 D NS(.XLF,XL1,"A",.XL3)
- S XL1="XL3" F  S XL1=$Q(@XL1) Q:XL1=""  W !,XL1," = ",@XL1
+ N XLF,XL1,XL4,XL6,XNAME,Y,I S (XLF,XL4,XL6)=""
+ R !,"Enter an IP address to lookup: www.domain.ext//",XNAME:DTIME S:XNAME="" XNAME="www.domain.ext" Q:XNAME["^"
+ S XL1=XNAME
+ W !!,"Looking up IPv4 address: ",XL1 D NS(.XLF,XL1,"A",.XL4)
+ S XL1="XL4" F  S XL1=$Q(@XL1) Q:XL1=""  W !,XL1," = ",@XL1
  S Y="" F  S Y=$O(XLF("B",Y)) Q:Y=""  W !,?5,Y," > ",XLF("B",Y)
+ S XL1=XNAME
+ W !!,"Looking up IPv6 address: ",XL1 D NS(.XLF,XL1,"AAAA",.XL6)
+ S XL1="XL6" F  S XL1=$Q(@XL1) Q:XL1=""  W !,XL1," = ",@XL1
+ S Y="" F  S Y=$O(XLF("B",Y)) Q:Y=""  W !,?5,Y," > ",XLF("B",Y)
+ W !
  Q
  ;
 ADDRESS(N,T) ;Get a IP address from a name
  N XLF,Y,I S XLF="",T=$G(T,"A")
+ I $$VERSION^XLFIPV S T=$G(T,"AAAA")      ; change default from "A" to "AAAA" if VistA has IPv6 enabled
  I ^%ZOSF("OS")["OpenM",T="A" D  Q $P(Y,",")
- . X "S Y=$ZU(54,13,N)"
+ . X "S Y=$ZU(54,13,N)"              ; $ZU(54,13,N) is gethostbyname(N) IPv4 address nslookup
  D NS(.XLF,N,T)
  S Y="" F I=1:1:XLF("ANCOUNT") S:$D(XLF("AN"_I_"DATA")) Y=Y_XLF("AN"_I_"DATA")_","
  Q $E(Y,1,$L(Y)-1)
@@ -34,7 +42,7 @@ NS2 S DNS=$$GETDNS(CNT) I DNS="" G EXIT
  D LOG("Call server: "_DNS)
  D CALL^%ZISTCP(DNS,53) I POP S CNT=CNT+1 G NS2
  D LOG("Got connection, Send message")
- D BUILD(NAME,$G(QTYPE,"A")),LOG("Wait for reply")
+ D BUILD(NAME,$G(QTYPE,"A")),LOG("Wait for reply")  ; Uses "A" type for IPv4 if QTYPE is not defined
  ;Close part of READ
  D READ,DECODE
  D RESDEV,LOG("Returned question: "_$G(XL("QD1NAME")))
@@ -42,14 +50,14 @@ NS2 S DNS=$$GETDNS(CNT) I DNS="" G EXIT
 EXIT D RESDEV
  Q
  ;
-BUILD(Y,T) ;BUILD A QUEARY
+BUILD(Y,T) ;BUILD A QUERY
  ; ID,PARAM,#of?, #ofA, #of Auth, #of add,
  N X,%,MSG,I
  S X=" M"_$C(1,0)_$C(0,1)_$C(0,0)_$C(0,0)_$C(0,0) ;Header
- I $E(Y,$L(Y))'="." S:$E(Y,$L(Y))'="." Y=Y_"."
- F I=1:1:$L(Y,".") S %=$P(Y,".",I) S:$L(%) X=X_$C($L(%))_% ;Address
- S X=X_$C(0) ;End of address
- ;Type A=1, NS=2, CNAME=5, MX=15
+ I $E(Y,$L(Y))'="." S:$E(Y,$L(Y))'="." Y=Y_"."                           ;future fix: implies IPv4 address for DNS server
+ F I=1:1:$L(Y,".") S %=$P(Y,".",I) S:$L(%) X=X_$C($L(%))_% ;Address      ;future fix: implies IPv4 address for DNS server
+ S X=X_$C(0) ;End of address                                             ;future fix: implies IPv4 address for DNS server
+ ;Type A=1, NS=2, CNAME=5, MX=15, AAAA=28                                ;p638 Added "AAAA" for IPv6
  S MSG=X_$C(0,$$TYPECODE(T))_$C(0,1) ;type and class
  D LOG("msg: "_MSG)
  U IO S %=$L(MSG) W $C(%\256,%#256)_MSG,!
@@ -90,8 +98,15 @@ RR(NSP) ;
  S Y=RI(IX)*256+RI(IX+1),Y=Y*256+RI(IX+2),Y=Y*256+RI(IX+3)
  S XL(NSP_"TTL")=Y,IX=IX+4
  S (X,XL(NSP_"LENGTH"))=$$BN(RI(IX),RI(IX+1)),IX=IX+2 Q:X=0
- I XL(NSP_"TYPE")=1 S XL(NSP_"DATA")=RI(IX)_"."_RI(IX+1)_"."_RI(IX+2)_"."_RI(IX+3),XL("B",NA)=XL(NSP_"DATA")
- I XL(NSP_"TYPE")=15 D MX(IX)
+ I XL(NSP_"TYPE")=1 D                                                                       ; IPv4 address
+ . S XL(NSP_"DATA")=RI(IX)_"."_RI(IX+1)_"."_RI(IX+2)_"."_RI(IX+3),XL("B",NA)=XL(NSP_"DATA")
+ I XL(NSP_"TYPE")=28 D                                                                      ; IPv6 address
+ . S XL(NSP_"DATA")=$$H1(RI(IX))_$$H1(RI(IX+1))_":"_$$H1(RI(IX+2))_$$H1(RI(IX+3))_":"
+ . S XL(NSP_"DATA")=XL(NSP_"DATA")_$$H1(RI(IX+4))_$$H1(RI(IX+5))_":"_$$H1(RI(IX+6))_$$H1(RI(IX+7))_":"
+ . S XL(NSP_"DATA")=XL(NSP_"DATA")_$$H1(RI(IX+8))_$$H1(RI(IX+9))_":"_$$H1(RI(IX+10))_$$H1(RI(IX+11))_":"
+ . S XL(NSP_"DATA")=XL(NSP_"DATA")_$$H1(RI(IX+12))_$$H1(RI(IX+13))_":"_$$H1(RI(IX+14))_$$H1(RI(IX+15))
+ . S XL("B",NA)=XL(NSP_"DATA")
+ I XL(NSP_"TYPE")=15 D MX(IX)                                                               ; MX entry
  S IX=IX+XL(NSP_"LENGTH")
  Q
 NAME(I,NM,F) ;Decode a NAME section
@@ -118,6 +133,10 @@ H2(Z2) ;Convert 2 byte string to HEX
  N B S B=$A(Z2,1)*256+$A(Z2,2)
  Q $$H(B)
  ;
+H1(Z1) ;Convert decimal number <= 256 to two digit HEX number
+ N Y S Y=$$CNV^XLFUTL(Z1,16)
+ Q $$RJ^XLFSTR(Y,2,"0")
+ ;
 H(Z1) Q $$BASE^XLFUTL(Z1,10,16)
  ;
 BIN16(S) ;Convert two byte string to 16 bit binary
@@ -130,9 +149,9 @@ PART(S,L) ;
  Q R_"."
  ;
 TYPECODE(T) ;
- ;1=A:address,2=NS:nameserver,5=CNAME,15=MX:mail exchange
- I +T Q $S(T=1:"A",T=2:"NS",T=5:"CNAME",T=15:"MX",1:"ZZ")
- Q $S(T="A":1,T="NS":2,T="CNAME":5,T="MX":15,1:1)
+ ;1=A:IPv4 address,2=NS:nameserver,5=CNAME,15=MX:mail exchange,28=AAAA:IPv6 address  ;p638 Added "AAAA" for IPv6
+ I +T Q $S(T=1:"A",T=2:"NS",T=5:"CNAME",T=15:"MX",T=28:"AAAA",1:"ZZ")                ;p638 Added "AAAA" for IPv6
+ Q $S(T="A":1,T="NS":2,T="CNAME":5,T="MX":15,T="AAAA":28,1:1)                        ;p638 Added "AAAA" for IPv6
  ;
 CLASS(T) ;
  Q $S(T=1:"IN",1:"ZZ")

@@ -1,5 +1,5 @@
 LRSORA2 ;DALOI/KCM/DRH/RLM-SEARCH LAB DATA AND PRINT REPORT ;8/28/89  12:07
- ;;5.2;LAB SERVICE;**2,62,201,272,369**;Sep 27, 1994;Build 2
+ ;;5.2;LAB SERVICE;**2,62,201,272,369,449**;Sep 27, 1994;Build 4
  ; Reference to $$FMTE^XLFDT supported by IA #10103
  ; Reference to DD^%DT supported by IA #10003
  ; Reference to ^DIR supported by IA #10026
@@ -98,10 +98,12 @@ PRSPEC ;
  W ?2,$E(LRSPEC,1,10)
  W ?14,$S(LRTHER:"Th. Range ",1:"Ref. Range:   "),LRLO
  W "-",LRHI," ",LRUNITS,!
+ S LRUNITS(1)=LRUNITS_U_LRLO_U_LRHI
  Q
 PRTEST ;
  Q:$G(LRCOMX)
  Q:$G(LREND)
+ I LRUNITS(1)'=($P(LRPREC,U,16)_U_$P(LRPREC,U,7)_U_$P(LRPREC,U,8)) W ! D PRSPEC
  S LRCOMX=0
  W ?4,$E(LRTEST,1,12),?14,LRAN,?30,$J(LRVAL,4)
  W ?33,LRMRK,?40,$E(LRCDT,1,6)_" "_$E($P(LRCDT,",",2),2,5)

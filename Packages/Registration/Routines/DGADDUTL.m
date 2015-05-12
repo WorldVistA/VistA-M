@@ -1,5 +1,5 @@
-DGADDUTL ;ALB/PHH,EG,BAJ,ERC,CKN,TDM,LBD-PATIENT ADDRESS ; 2/27/12 4:15pm
- ;;5.3;Registration;**658,695,730,688,808,851**;Aug 13, 1993;Build 10
+DGADDUTL ;ALB/PHH,EG,BAJ,ERC,CKN,TDM,LBD-PATIENT ADDRESS ; 8/19/13 11:13am
+ ;;5.3;Registration;**658,695,730,688,808,851,872**;Aug 13, 1993;Build 28
  Q
 ADDR ; validate/edit Patient address (entry for DG ADDRESS UPDATE option)
  N %,QUIT,DIC,Y,DFN,USERSEL
@@ -168,7 +168,9 @@ DISPTADR(DFN,DGARRY) ; Display Temporary Address
  S DGZIP=$G(DGARRY(.1216))
  S DGCOUNTY=$G(DGARRY(.12111))
  I DGCOUNTY'="",DGSTATE'="",$D(^DIC(5,DGSTATE,1,DGCOUNTY,0)) D
- .S DGCOUNTY=$P(^DIC(5,DGSTATE,1,DGCOUNTY,0),"^")_" ("_$P(^DIC(5,DGSTATE,1,DGCOUNTY,0),"^",4)_")"
+ .S DGCOUNTY=$P(^DIC(5,DGSTATE,1,DGCOUNTY,0),"^")_$S($P(^DIC(5,DGSTATE,1,DGCOUNTY,0),"^",4)'="":"("_$P(^DIC(5,DGSTATE,1,DGCOUNTY,0),"^",4)_")",1:"")
+ ;changing to remove display of empty (), will only display if a code is in the 4th piece of the state file-Patch 872
+ ;S DGCOUNTY=$P(^DIC(5,DGSTATE,1,DGCOUNTY,0),"^")_"( "_$P(^DIC(5,DGSTATE,1,DGCOUNTY,0),"^",4)
  I DGADRACT'="Y" S DGCOUNTY="NOT APPLICABLE"
  I DGSTATE'="",$D(^DIC(5,DGSTATE,0)) S DGSTATE=$P(^DIC(5,DGSTATE,0),"^",2)
  S DGPROV=$G(DGARRY(.1221))
@@ -187,11 +189,13 @@ DISPTADR(DFN,DGARRY) ; Display Temporary Address
  .W:DGADR3'="" !?9,DGADR3
  .I DGFORN=0 D
  ..W !?9,$S(DGCITY'="":DGCITY,1:"")_$S(DGCITY'="":",",1:" ")_$S(DGSTATE'="":DGSTATE,1:"")_" "_$S(DGZIP'="":DGZIP,1:"")
- .I DGFORN W !?9,$S(DGPCODE'="":DGPCODE,1:"")_" "_$S(DGCITY'="":DGCITY,1:"")_$S(DGCITY'="":",",1:" ")_$S(DGPROV'="":DGPROV,1:"")
- .W !?9,$S(DGCITY'="":DGCITY,1:"")_","_$S(DGSTATE'="":DGSTATE,1:"")_" "_$S(DGZIP'="":DGZIP,1:"")
- .W !," County: "_DGCOUNTY
- .W !,"  Phone: "_DGPHONE
- .W !,"From/To: "_$P(DGFROMDT,",")_","_$P(DGFROMDT,", ",2)_"-"_$P(DGTODT,",")_","_$P(DGTODT,", ",2)
+ .I DGFORN W !?8,$S(DGPCODE'="":DGPCODE,1:"")_" "_$S(DGCITY'="":DGCITY,1:"")_$S(DGCITY'="":",",1:" ")_$S(DGPROV'="":DGPROV,1:"")
+ ;commenting out, causes address to print 2x. Patch 872
+ ;W !?9,$S(DGCITY'="":DGCITY,1:"")_","_$S(DGSTATE'="":DGSTATE,1:"")_" "_$S(DGZIP'="":DGZIP,1:"")
+ ;Removing lines from dot structure Patch 872
+ W !," County: "_DGCOUNTY
+ W !,"  Phone: "_DGPHONE
+ W !,"From/To: "_$P(DGFROMDT,",")_","_$P(DGFROMDT,", ",2)_"-"_$P(DGTODT,",")_","_$P(DGTODT,", ",2)
  ;
  I $G(DGARRY(.12105))="N" D
  .W:$G(DGARRY(.1211))="" !?9,"NO TEMPORARY ADDRESS"

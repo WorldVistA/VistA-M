@@ -1,5 +1,5 @@
 FBAAV5 ;AISC/GRR - CREATE TRANSACTIONS FOR CH/CNH PAYMENTS ;11 Apr 2006  2:54 PM
- ;;3.5;FEE BASIS;**3,55,89,98,116,108,139**;JAN 30, 1995;Build 127
+ ;;3.5;FEE BASIS;**3,55,89,98,116,108,139,123**;JAN 30, 1995;Build 51
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to API $$CODEABA^ICDEX supported by ICR #5747
@@ -8,7 +8,6 @@ FBAAV5 ;AISC/GRR - CREATE TRANSACTIONS FOR CH/CNH PAYMENTS ;11 Apr 2006  2:54 PM
  G:FBSTAT="S"&(FBCHB="Y")&($P(Y(0),"^",18)'="Y") ^FBAAV6
 DETCH S FBTXT=0
  ; HIPAA 5010 - line items that have 0.00 amount paid are now required to go to Central Fee
- ;F K=0:0 S K=$O(^FBAAI("AC",J,K)) Q:K'>0  S Y(0)=$G(^FBAAI(K,0)),Y(2)=$G(^(2)) I Y(0)]"",+$P(Y(0),U,9) D
  F K=0:0 S K=$O(^FBAAI("AC",J,K)) Q:K'>0  S Y(0)=$G(^FBAAI(K,0)),Y(2)=$G(^(2)),Y(5)=$G(^(5)) I Y(0)]"" D
  .N FBPICN,FBY
  .S FBPICN=K
@@ -20,6 +19,7 @@ GOT ; process an inpatient invoice
  N DFN,FBADJ,FBADJA,FBADJR,FBADMIT,FBAUTHF,FBCDAYS,FBDISDT,FBDISTY,FBNPI
  N FBDRG,FBIENS,FBPA,FBPNAMX,FBVMID,FBX
  N FB4LN,FBADMTDX,FBCSVDT,FBCSID,FBEDIF,FBCNTRN
+ N FBIA,FBDODINV
  S FBIENS=K_","
  S FBCSVDT=$$FRDTINV^FBCSV1(K)
  I '$L($G(FBAASN)) D STATION^FBAAUTL
@@ -27,6 +27,34 @@ GOT ; process an inpatient invoice
  S FBPAYT=$P(Y(0),"^",13),FBPAYT=$S(FBPAYT]"":FBPAYT,1:"V")
  S L=$P(Y(0),"^",3)
  S FBVID=$S($D(^FBAAV(L,0)):$P(^(0),"^",2),1:"")
+ ;
+ ; FB*3.5*123 - gather and format IPAC agreement ID and DoD invoice# for federal vendors
+ S FBIA=+$P(Y(5),U,10)                                   ; IPAC vendor agreement pointer (FB*3.5*123)
+ S FBIA=$S(FBIA:$P($G(^FBAA(161.95,FBIA,0)),U,1),1:"")   ; IPAC external agreement ID# or ""
+ S FBDODINV=$P(Y(5),U,7)                                 ; DoD invoice#
+ I $$IPACREQD^FBAAMP(L) D
+ . N FBIPIEN
+ . ;
+ . ; If IPAC is required, but IPAC ID is not on file, and only 1 active IPAC agreement exists, then save it/use it
+ . I FBIA="" S FBIA=$$IPACID^FBAAMP(L,.FBIPIEN) I FBIA'="",FBIPIEN D
+ .. N FBIAFDA
+ .. S FBIAFDA(162.5,FBIENS,87)=FBIPIEN    ; ipac vendor agreement ien
+ .. D FILE^DIE("","FBIAFDA")              ; update the database
+ .. Q
+ . I FBIA="" S FBIA="9999999999"          ; if still not found, send error condition to Central Fee
+ . ;
+ . ; if IPAC is required, but DoD invoice# is not on file, then attempt to use PATIENT CONTROL NUMBER (field# 55)
+ . I FBDODINV="" S FBDODINV=$P(Y(2),U,11) I FBDODINV'="" D
+ .. N FBIAFDA
+ .. S FBIAFDA(162.5,FBIENS,86)=FBDODINV   ; DoD invoice# field
+ .. D FILE^DIE("","FBIAFDA")              ; update the database
+ .. Q
+ . I FBDODINV="" S FBDODINV="9999999999999999999999"  ; if still not found, send error condition to Central Fee
+ . Q
+ ;
+ S FBIA=$$LJ^XLFSTR(FBIA,"10T")                          ; format IPAC agreement ID to 10 characters
+ S FBDODINV=$$LJ^XLFSTR(FBDODINV,"22T")                  ; format DoD invoice# to 22 characters
+ ;
  S FBNPI=$$EN^FBNPILK(L)
  S FBVID=FBVID_$E(PAD,$L(FBVID)+1,11)
  S:FBPAYT="R" FBVID=$E(PAD,1,11)
@@ -125,7 +153,7 @@ GOT ; process an inpatient invoice
  S FBSTR=$$PADZ^FBAAV01(FBPICN,23)_$$AUSDT^FBAAV3(+FBY)
  F I=1:1:5 S FBSTR=FBSTR_FBPRC(I)
  S FBSTR=FBSTR_FBAC_FBPA_FBDRG_" "_FBADMIT_FBDISDT_FBDOB_FBDISTY_FBCDAYS_FBAUTHF_FBADJR_FBADJA_FBNPI_FBDX(0)_FBCSID_FBEDIF_FBCNTRN
- S FBSTR=FBSTR_$E(PAD,1,32)_"~" ; reserved for IPAC data
+ S FBSTR=FBSTR_FBIA_FBDODINV_"~"                          ; IPAC data from FB*3.5*123
  D STORE^FBAAV01
  ;
  ; build 3rd line

@@ -1,5 +1,5 @@
 WVSNOMED ;HIOFO/FT-IS LAB TEST A PAP SMEAR? ;2/12/04  14:37
- ;;1.0;WOMEN'S HEALTH;**16,23**;Sep 30, 1998;Build 5
+ ;;1.0;WOMEN'S HEALTH;**16,23,25**;Sep 30, 1998;Build 1
  ;
  ; This routine uses the following IAs:
  ;  #1362 - ^ORB3               (controlled)
@@ -58,6 +58,9 @@ SP() ; Check SNOMED codes used by surgical pathology entry
 ADD ; Add pap smear to FILE 790.1
  N WV7901,WVDR,WVPIEN,WVERR
  S WVERR=0
+ I $D(^WV(790.1,"F",WVLABAN)) D  Q
+ . I $$PATCH^XPDUTL("OR*3.0*210") D  Q
+ ..D CPRS^WVSNOMED(70,DFN,"",WVPROV,"Pap Smear results available.",LRSS_U_WVLABAN_U_LRI)
  I '$D(^WV(790,DFN,0)) D  ;add patient to File 790, if not there
  .D AUTOADD^WVPATE(DFN,DUZ(2),.WVERR)
  .Q
@@ -134,4 +137,4 @@ CPRS(WVORN,WVDFN,WVORDER,WVPROV,WVMSG,WVIEN) ; Generate a CPRS alert
  I WVCMGR]"" S WVARRAY(WVCMGR)="" ;women's health case manager's IEN
  D EN^ORB3(WVORN,WVDFN,WVORDER,.WVARRAY,WVMSG,WVIEN)
  K WVARRAY,WVCMGR
- Q
+ Q 

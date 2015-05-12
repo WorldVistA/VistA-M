@@ -1,5 +1,5 @@
 RORXU006 ;HCIOFO/SG - REPORT PARAMETERS ;6/21/06 1:41pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,13**;Feb 17, 2006;Build 27
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,13,21**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -22,6 +22,8 @@ RORXU006 ;HCIOFO/SG - REPORT PARAMETERS ;6/21/06 1:41pm
  ;                                      NOTE: Patch 11 became patch 13.
  ;                                      Any references to patch 11 in the code
  ;                                      below is referring to path 13.
+ ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
+ ;                                       requested.
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -233,3 +235,28 @@ SMRYONLY() ;
  Q:$$PARAM^RORTSK01("MAXUTNUM")'="" 0
  Q:$$PARAM^RORTSK01("MINRPNUM")'="" 0
  Q 1
+ ;
+ ;***** OUTPUTS ICN DATA IF ICN SHOULD BE THE FINAL COLUMN
+ ; TASK          Task number
+ ;
+ ; VALUE         DFN of patient
+ ;
+ ; PARENT        IEN of the parent element
+ ;
+ICNDATA(TASK,VALUE,PARENT) ;
+ N TMP
+ S TMP=$$ICN^RORUTL02(VALUE)
+ I TMP'<0 D ADDVAL^RORTSK11(TASK,"ICN",TMP,PARENT,1)
+ Q
+ ;
+ ;***** OUTPUTS ICN HEADER IF ICN SHOULD BE THE FINAL COLUMN
+ ; TASK          Task number
+ ;
+ ; PARENT        IEN of the parent element
+ ;
+ICNHDR(TASK,PARENT) ;
+ N TMP
+ S TMP=$$ADDVAL^RORTSK11(TASK,"COLUMN",,PARENT)
+ D ADDATTR^RORTSK11(TASK,TMP,"NAME","ICN")
+ Q
+ ;

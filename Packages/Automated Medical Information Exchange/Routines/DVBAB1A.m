@@ -1,5 +1,5 @@
 DVBAB1A ;ALB/GAK - CAPRI Exam Complete Email Driver ; 03/13/2013 11:23 AM
- ;;2.7;AMIE;**185,187**;Apr 10, 1995;Build 13
+ ;;2.7;AMIE;**185,187,189**;Apr 10, 1995;Build 22
  ;
  Q
  ; 
@@ -11,9 +11,13 @@ MSG2(ERR,DUZ,RIEN,ELIST) ;
  ;
  N DVBOPEN,DVBOPENS,DVBOPENC,J
  N PNAM,PSSN,CNUM,ERR3,ERR2,ERR4,RTN,RTN2,XX
- N POE
+ ;N POE
+ N MSG1,MERR1,CTR1
+ N MSG2,MERR2,CTR2
+ N CLMTYP
  N EIEN,EARY,EERR,ENAM,ESTA
  N XMTEXT,L,XMSUB,XMY
+ N MSG,MERR
  ;
  S ERR=""
  I DUZ="" S ERR="NO DUZ PASSED" Q ERR
@@ -63,14 +67,38 @@ MSG2(ERR,DUZ,RIEN,ELIST) ;
  . S ^TMP($J,"DVBAB1A","ELIST",J)=ENAM_$E("                                   ",1,35-$L(ENAM))_" "_ESTA
  ;
  ;Determine Priority of Exam
- K ERR4
- S POE=$$GET1^DIQ(396.3,RIEN_",",9,"E","","ERR4")
- I '$D(POE) S POE=""
+ ;K ERR4
+ ;S POE=$$GET1^DIQ(396.3,RIEN_",",9,"E","","ERR4")
+ ;I '$D(POE) S POE=""
  ;
+ ;Build Claim Type Info
+ N MSG1,MERR1,CTR1
+ K ^TMP($J,"DVBAB1A","CT")
+ S MSG1="",MERR1="",CTR1=1
+ D GETS^DIQ(396.3,RIEN_",","9.1*","E","MSG1","MERR1")
+ I $G(MERR1)'="" S ^TMP($J,"DVBAB1A","CT",CTR1)="ERROR GETTING CLAIM TYPE CODES"
+ S J=""
+ F  S J=$O(MSG1(396.32,J)) Q:J=""  D
+ . S CTR1=CTR1+1
+ . S ^TMP($J,"DVBAB1A","CT",CTR1)=$G(MSG1(396.32,J,.01,"E"))
+ ;
+ ;Build Special Considerations Info
+ N MSG2,MERR2,CTR2
+ K ^TMP($J,"DVBAB1A","SC")
+ S MSG2="",MERR2="",CTR2=1
+ D GETS^DIQ(396.3,RIEN,"50*","IE","MSG2","MERR2")
+ I $G(MERR2)'="" S ^TMP($J,"DVBAB1A","SC",CTR2)="ERROR GETTING SPECIAL CONSIDERATION CODES"
+ S J=""
+ F  S J=$O(MSG2(396.31,J)) Q:J=""  D
+ . S CTR2=CTR2+1
+ . S ^TMP($J,"DVBAB1A","SC",CTR2)=$G(MSG2(396.31,J,.01,"E"))
  ;
  ;
  D ONEEMAIL
+ ;
  K ^TMP($J,"DVBAB1A","ELIST")
+ K ^TMP($J,"DVBAB1A","CT")
+ K ^TMP($J,"DVBAB1A","SC")
  K ^TMP($J,"AMIE")
  K ^TMP($J,"AMIE1")
  I $D(ERR) Q ERR
@@ -113,7 +141,19 @@ ONEEMAIL ;
  S L=L+1
  S ^TMP($J,"AMIE",L)=" ",L=L+1
  ;
- S ^TMP($J,"AMIE",L)="  Priority of Exam: "_POE,L=L+1
+ S ^TMP($J,"AMIE",L)="  Special Consideration(s):",L=L+1
+ S J=""
+ F  S J=$O(^TMP($J,"DVBAB1A","SC",J)) Q:J=""  D
+ . S ^TMP($J,"AMIE",L)="    "_^TMP($J,"DVBAB1A","SC",J),L=L+1
+ S ^TMP($J,"AMIE",L)=" ",L=L+1
+ ;
+ ;S ^TMP($J,"AMIE",L)="  Priority of Exam: "_POE,L=L+1
+ ;S ^TMP($J,"AMIE",L)=" ",L=L+1
+ ;
+ S ^TMP($J,"AMIE",L)="  Claim Type:",L=L+1
+ S J=""
+ F  S J=$O(^TMP($J,"DVBAB1A","CT",J)) Q:J=""  D
+ . S ^TMP($J,"AMIE",L)="    "_^TMP($J,"DVBAB1A","CT",J),L=L+1
  S ^TMP($J,"AMIE",L)=" ",L=L+1
  ;
  S ^TMP($J,"AMIE",L)="Exam(s)",L=L+1

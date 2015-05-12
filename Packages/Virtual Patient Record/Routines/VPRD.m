@@ -1,11 +1,12 @@
 VPRD ;SLC/MKB -- Serve VistA data as XML via RPC ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,2**;Sep 01, 2011;Build 317
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2,4**;Sep 01, 2011;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
  ; ^DPT                         10035
  ; ^SC                          10040
+ ; ^USC(8932.1)                  4984
  ; DIQ                           2056
  ; MPIF001                       2701
  ; VASITE                       10112
@@ -13,6 +14,7 @@ VPRD ;SLC/MKB -- Serve VistA data as XML via RPC ;8/2/11  15:29
  ; XLFSTR                       10104
  ; XPAR                          2263
  ; XUAF4                         2171
+ ; XUSTAX                        4911
  ;
 GET(VPR,DFN,TYPE,START,STOP,MAX,ID,FILTER) ; -- Return search results as XML in @VPR@(n) 
  ; RPC = VPR GET PATIENT DATA
@@ -23,8 +25,8 @@ GET(VPR,DFN,TYPE,START,STOP,MAX,ID,FILTER) ; -- Return search results as XML in 
  ; parse & validate input parameters
  S ICN=+$P($G(DFN),";",2),DFN=+$G(DFN),ID=$G(ID)
  I DFN<1,ICN S DFN=+$$GETDFN^MPIF001(ICN)
+ I DFN<1!'$D(^DPT(DFN)) D ERR(1,DFN) G GTQ
  S TYPE=$$LOW^XLFSTR($G(TYPE)) I TYPE="" S TYPE=$$ALL
- I TYPE'="new",DFN<1!'$D(^DPT(DFN)) D ERR(1,DFN) G GTQ
  S:'$G(START) START=1410102 S:'$G(STOP) STOP=4141015 S:'$G(MAX) MAX=9999
  I START,STOP,STOP<START N X S X=START,START=STOP,STOP=X  ;switch
  I STOP,$L(STOP,".")<2 S STOP=STOP_".24"
@@ -32,7 +34,8 @@ GET(VPR,DFN,TYPE,START,STOP,MAX,ID,FILTER) ; -- Return search results as XML in 
  ;
  ; extract data
  N VPRTYPE,VPRP,VPRHDR,VPRTAG,VPRTN
- S VPRTYPE=TYPE D ADD("<results version='1.1' timeZone='"_$$TZ^XLFDT_"' >")
+ D ADD("<results version='"_$$GET^XPAR("ALL","VPR VERSION")_"' timeZone='"_$$TZ^XLFDT_"' >")
+ S VPRTYPE=TYPE
  F VPRP=1:1:$L(VPRTYPE,";") S VPRTAG=$P(VPRTYPE,";",VPRP) I $L(VPRTAG) D
  . S VPRTN="EN^"_$$RTN(.VPRTAG) Q:'$L($T(@VPRTN))  ;D ERR(2) Q
  . D ADD("<"_VPRTAG) S VPRHDR=VPRI,VPRTOTL=0
@@ -76,7 +79,6 @@ RTN(X) ; -- Return name of VPRDxxxx routine for clinical domain X
  I X["vital"        S Y="VPRDGMV",X="vitals"
  I X["rad"          S Y="VPRDRA",X="radiologyExams"
  I X["xray"         S Y="VPRDRA",X="radiologyExams"
- ; X["new"          S Y="VPRDX",X="patients"
  Q Y
  ;
 TAG(X) ; -- return plural name for group tags
@@ -91,7 +93,7 @@ ALL() ; -- return string for all types of data
  ;
 ERR(X,VAL) ; -- return error message
  N MSG  S MSG="Error"
- I X=1  S MSG="Patient with dfn '"_$G(VAL)_"' not found"
+ I X=1  S MSG="Patient with DFN '"_$G(VAL)_"' not found"
  I X=2  S MSG="Requested domain type '"_$G(VAL)_"' not recognized"
  I X=99 S MSG="Unknown request"
  ;
@@ -136,9 +138,28 @@ FAC(X) ; -- return Institution file station# for location X
  I $L(Y),'Y S $P(Y,U)=FAC
  Q Y
  ;
+PROVSPC(NP) ; -- Return specialty info for provider NP from 200/8932.1 as
+ ; X12 code ^ Provider Type ^ Classification ^ Area of Specialization
+ N X,Y,I,CLS S NP=+$G(NP) ;protect I for calling routine
+ S X=$$TAXIND^XUSTAX(NP) ;= X12 code ^ Person Class #8932.1 ien
+ S Y="^^^" I $P(X,U,2) D
+ . S CLS=$G(^USC(8932.1,$P(X,U,2),0)) Q:CLS=""
+ . S Y=$P(X,U)_U_$P(CLS,U,1,3)
+ Q Y
+ ;
 VUID(IEN,FILE) ; -- Return VUID for item
  Q $$GET1^DIQ(FILE,IEN_",",99.99)
  ;
 VERSION(RET) ; -- Return current version of data extracts
  S RET=$$GET^XPAR("ALL","VPR VERSION")
+ Q
+ ;
+TEST(DFN,TYPE,ID,START,STOP,MAX,TEXT,IN) ; -- test GET, write results to screen
+ N OUT,IDX S U="^"
+ S DFN=+$G(DFN) Q:DFN<1
+ S TYPE=$G(TYPE) Q:TYPE=""
+ D GET(.OUT,DFN,TYPE,$G(START),$G(STOP),$G(MAX),$G(ID),.IN)
+ ;
+ S IDX=OUT
+ F  S IDX=$Q(@IDX) Q:IDX'?1"^TMP(""VPR"","1.N.E  Q:+$P(IDX,",",2)'=$J  W !,@IDX
  Q

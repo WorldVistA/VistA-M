@@ -1,6 +1,6 @@
-FBCHVH ;AISC/DMK-VENDOR PAYMENT HISTORY ; 8/21/12 3:12pm
- ;;3.5;FEE BASIS;**4,61,122,133,108,135,144**;JAN 30, 1995;Build 8
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBCHVH ;AISC/DMK - VENDOR PAYMENT HISTORY ;7/17/2003
+ ;;3.5;FEE BASIS;**55,61,122,108,135,144,123**;JAN 30, 1995;Build 51
+ ;;Per VA Directive 6402, this routine should not be modified.
 GETVEN K FBAANQ D GETVEN^FBAAUTL1 G END:IFN']""
  D DATE^FBAAUTL G:FBPOP GETVEN S ZZ=9999999.9999,FBBEG=ZZ-ENDDATE,FBEND=ZZ-BEGDATE
  I '$D(^FBAAI("AF",IFN)) W !,*7,"No invoices on line for this vendor." G GETVEN
@@ -42,6 +42,8 @@ WRT I $Y+6>IOSL D HANG^FBAAUTL1:$E(IOST,1,2)["C-" Q:FBAAOUT  I $D(^FBAAI(FBI,4))
  ; write adjustment amounts, if null then write amount suspended
  W ?49,$S(FBADJLA]"":FBADJLA,1:$J(FBIN(10),1,2))
  W ?64,FBRRMKL
+ ;IPAC agreement data from patch FB*3.5*123
+ I +$P(FBY5,U,10) W !!?5,"IPAC Number: ",$P($G(^FBAA(161.95,+$P(FBY5,U,10),0)),U,1),?30,"DoD Invoice Number: ",$P(FBY5,U,7)
  ;write admitting diagnosis
  S FBADMTDX=$P(FBY5,"^",9) I FBADMTDX]"" W !?2,"Admit Dx: ",$$ICD9^FBCSV1((FBADMTDX),$P($G(FBIN),"^",6))
  ;write contract number

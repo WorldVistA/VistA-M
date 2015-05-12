@@ -1,5 +1,6 @@
-MAGGTID ;WOIFO/SRR/RED/SAF/GEK/SG/JSL/NST - Deletion of Images and Pointers ;  3 Sep 2013 4:35 PM
- ;;3.0;IMAGING;**8,59,93,118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGGTID ;WOIFO/SRR/RED/SAF/GEK/SG/JSL/NST - Deletion of Images and Pointers ;
+ ;;3.0;IMAGING;**8,59,93,118,150**;Mar 19, 2002;Build 18;Jan 22, 2015
+ ;;
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -39,8 +40,8 @@ DELETE(RY,MAGIEN,DF,GRPDF,REASON) ;RPC [MAGQ DIK] Entry point for silent call
  ;MAGIEN=Image entry number to be deleted
  ; if MAGIEN has a 2nd piece = 1 then we force delete, don't test 
  ; for MAG DELETE KEY
- ; if MAGIEN has a 3rd piece,  it's an Xtra PRocessing Flag 
- ; Patch 140 Capture and Patch 135 Import API Now send this flag.
+ ; if MAGIEN has a 3rd piece,  it's an Xtra PRocessing Flag ;P150
+ ; Patch 129 Capture and Patch 135 Import API Now send this flag.  ;P150
  ;DF=Delete file flag - 1=delete the Image file
  ;                    - 0=don't delete the image file
  ;
@@ -52,13 +53,13 @@ DELETE(RY,MAGIEN,DF,GRPDF,REASON) ;RPC [MAGQ DIK] Entry point for silent call
  . S MAGSYS=$P(Y,"^",2)
  . Q
  N MAGERR,SYSDEL,Z,GRPDEL,MAGACN
- N XPRC,NOIMG ; P140
- S XPRC=$$UP^XLFSTR($P(MAGIEN,U,3)) ; The new $p(,,3) says there is XtraPRocessing.
+ N XPRC,NOIMG ; P150
+ S XPRC=$$UP^XLFSTR($P(MAGIEN,U,3)) ;P150 The new $p(,,3) says there is XtraPRocessing.
  S SYSDEL=+$P(MAGIEN,U,2),MAGIEN=+MAGIEN
- S NOIMG=$S(XPRC="NOIMAGE":1,1:0) ; P140
- I NOIMG D NOIMAGE(MAGIEN)
+ S NOIMG=$S(XPRC="NOIMAGE":1,1:0) ; P150
+ I NOIMG D NOIMAGE(MAGIEN) ;P150
  ; Check the business rules for deleting an image
- I 'NOIMG D DELETE^MAGSIMBR(.RY,MAGIEN,SYSDEL) I +RY(0)=0 Q  ;140
+ I 'NOIMG D DELETE^MAGSIMBR(.RY,MAGIEN,SYSDEL) I +RY(0)=0 Q  ;150 put 'NOIMG
  ;  a couple tests of privilege and valid IEN
  I '$D(^MAG(2005,MAGIEN,0)) D  Q
  . S RY(0)="0^Image entry doesn't exist in image file"
@@ -97,8 +98,8 @@ DEL1IMG ;
  I $G(MAGERR) S RY(0)="0^Error deleting Group Pointers." Q
  ;
  ; write the deleted by, delete reason, and delete date to the file.
- ; P140   If NOIMAGE,  SetDel was already called.
- I 'NOIMG D SETDEL(MAGIEN,REASON)
+ ; P150   If NOIMAGE,  SetDel was already called.
+ I 'NOIMG D SETDEL(MAGIEN,REASON) ;P150 NOIMG
  ;
  ; save the Image record to the archive before we delete it.
  D ARCHIVE(MAGIEN)
@@ -116,14 +117,15 @@ DEL1IMG ;
  ; we were having problems with "AC" so lets check to make sure.
  I $D(^MAG(2005,"AC",MAGDFN,MAGIEN)) K ^MAG(2005,"AC",MAGDFN,MAGIEN)
  ; log it.
- S X=$S(NOIMG:"NOIMAGE",1:"DELETE") ; P140
- D ENTRY^MAGLOG(X,$G(DUZ),$G(MAGIEN),"PARENT:"_$G(MAGSTORE),$G(MAGDFN),1)
- S X=$S(NOIMG:"NOIMAGE^",1:"DEL^") ; 140
- S X=X_$G(MAGDFN)_"^"_$G(MAGIEN) ; 140 use X instead of "DEL^"
+ S X=$S(NOIMG:"NOIMAGE",1:"DELETE") ; P150 NOIMG
+ D ENTRY^MAGLOG(X,$G(DUZ),$G(MAGIEN),"PARENT:"_$G(MAGSTORE),$G(MAGDFN),1) ;P150
+ S X=$S(NOIMG:"NOIMAGE^",1:"DEL^") ; 150 NOIMG
+ S X=X_$G(MAGDFN)_"^"_$G(MAGIEN) ; 150 use X instead of "DEL^"
  D ACTION^MAGGTAU(X,"1")
- ; 140 The cross reference of 2005.1 has set the Status to 12,  here we change it to 13
- I NOIMG D SETSTAT(MAGIEN,13)
- ;
+ ; The 140 cross reference of 2005.1 has set the Status to 12,  here we change it to 13 ;P150
+ I NOIMG D SETSTAT(MAGIEN,13) ;P150
+ S RY(0)="1^Deletion of Image was Successful." ;P150 
+ ; P150 Put above line back in.  Code below is new for 118.
  I '$G(GRPDEL),$G(MAGACN)'="" D  ; If we delete a single image in a group and ACN is defined
  . N SSEP,OUT
  . S SSEP=$$STATSEP^MAGVRS41
@@ -132,7 +134,7 @@ DEL1IMG ;
  . E  S RY(0)="1^Deletion of Image was Successful."
  . Q
  Q
-NOIMAGE(MAGNOT) ; P140 This is called when No Image exists.
+NOIMAGE(MAGNOT) ; P150 Whole function is new. This is called when No Image exists.
  ; Clear the Fields #2,  #2.1 and 102 This is the Abstract, Full and BIG
  ;   pointers to the Image Share (Image Network Drive) ( Tier1 ) 
  ; Set Status and Status Reason
@@ -159,6 +161,7 @@ NOIMAGE(MAGNOT) ; P140 This is called when No Image exists.
  . D CLEAN^DILF
  Q
 RTRNERR(ETXT) ; There was error from UPDATE^DIE quit with error text
+ ; P150 this function put in to keep NOIMAGE same
  S ETXT="0^ERROR  "_MAGGXE("DIERR",1,"TEXT",1)
  Q
 DELGRP ;del grp ptrs and check to see if this is the last image in the group
@@ -203,7 +206,7 @@ SETDEL(MAGIEN,REASON) ; set deletion fields
  S DIE="2005",DA=MAGIEN D ^DIE
  Q
  ;
-SETSTAT(MAGIEN,STAT) ; set STATUS fields
+SETSTAT(MAGIEN,STAT) ; p150 new function.  Set STATUS fields
  N DA,DR,DIE
  ; 4 slash. to stop FM question marks. ??
  S DR="113////"_STAT

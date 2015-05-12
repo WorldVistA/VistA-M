@@ -1,5 +1,5 @@
-ICDEXS ;SLC/KER - ICD Extractor - Support ;04/21/2014
- ;;18.0;DRG Grouper;**57**;Oct 20, 2000;Build 1
+ICDEXS ;SLC/KER - ICD Extractor - Support ;12/19/2014
+ ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
  ;               
  ; Global Variables
  ;    ^ICD0(              N/A
@@ -85,7 +85,7 @@ LA(FILE,IEN,CDT) ; Last Current Activation Date
  ;   
  ; Output:
  ; 
- ;   $$LA   Last Current Activation Date OR -1 ^ Error Message
+ ;   $$LA   Last Activation Date OR -1 ^ Error Message
  ;   
  N ROOT,EFF,HIS,NOD,ACT,INA,ICDF
  S FILE=$$FILE($G(FILE)) Q:+FILE'>0 "-1^Invalid File"  S ROOT=$$ROOT(FILE)
@@ -109,7 +109,7 @@ LI(FILE,IEN,CDT) ; Last Current Inactivation Date
  ;   
  ; Output:
  ; 
- ;   $$LI   Last Current Inactivation Date OR -1 ^ Error Message
+ ;   $$LI   Last Inactivation Date OR -1 ^ Error Message
  ;   
  N ROOT,EFF,HIS,NOD,ACT,INA
  S FILE=$$FILE($G(FILE)) Q:+FILE'>0 "-12^Invalid File"  S ROOT=$$ROOT(FILE)
@@ -202,8 +202,8 @@ IE(X) ; Internal or External
  ; 
  ;   $$IE  Set of Codes
  ;   
- ;           I  X is in an internal format (IEN)
- ;           E  X is in an external format (Code)
+ ;           I  Internal format (IEN)
+ ;           E  External format (Code)
  ;           
  ;           Null on error
  ;
@@ -290,7 +290,6 @@ SYS(SYS,CDT,FMT) ; Resolve System (uses file 80.4)
  ;               2      ICD-9 Proc
  ;              30      ICD-10-CM
  ;              31      ICD-10-PCS
- ;   
  ;         or
  ;            -1   on error
  ;            
@@ -349,11 +348,11 @@ SINFO(SYS,CDT) ; System Info (uses file 80.4)
  ;            Internal  External
  ;               1      IEN to file 80.4
  ;               2      Coding System
- ;               3      Coding System Nomenclature
- ;               4      Coding system Abbreviation
- ;               5      File where the Coding System is stored
- ;               6      Implementation Date
- ;   
+ ;               3      Abbreviation
+ ;               4      File Number
+ ;               5      Implementation Date
+ ;               6      Content
+ ;               
  ;         or
  ;            -1   on error
  ;            

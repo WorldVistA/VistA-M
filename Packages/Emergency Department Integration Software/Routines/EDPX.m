@@ -1,5 +1,5 @@
 EDPX ;SLC/KCM - Common Utilities ;6/8/12 12:09pm
- ;;2.0;EMERGENCY DEPARTMENT;**6**;May 2, 2012;Build 200
+ ;;2.0;EMERGENCY DEPARTMENT;**6,2**;Feb 24, 2012;Build 23
  ;
 ESC(X) ; Escape for XML transmission
  ; Q $ZCONVERT(X,"O","HTML")  ; uncomment for fastest performance on Cache
@@ -42,6 +42,20 @@ XMLA(TAG,ATT,END) ; Return XML node as <TAG att1="a" att2="b"... />
  S NODE=NODE_$G(END,"/")_">"
  Q NODE
  ;
+XMLQA(EDPTAG,EDPATT,EDPEND) ; Return XML node as <TAG att1="a" att2="b"... />
+ ; tag is built this way to work with most any output array.drp 04122012 patch2
+ ; tag added with EDP*2.0*2
+ N EDPLNODE,EDPLSUB,EDPLX
+ S EDPLNODE="<"_EDPTAG_" "
+ S EDPLX="EDPATT" F  S EDPLX=$Q(@EDPLX) Q:EDPLX=""  D
+ . I $L($G(@EDPLX)) D
+ . . S EDPLSUB=$QL(EDPLX) ;returns number of subscripts
+ . . S EDPLNODE=EDPLNODE_$QS(EDPLX,EDPLSUB)_"="""_$$ESC(@EDPLX)_""" " ;makes an attribute out of the subscript
+ . .Q
+ .Q
+ S EDPLNODE=EDPLNODE_$G(EDPEND,"/")_">"
+ Q EDPLNODE
+ ; end EDP*2.0*2 changes - drp
 XMLE(SRC) ; Append list to XML array as elements
  N X,NODE
  S X="" F  S X=$O(SRC(X)) Q:X=""  D

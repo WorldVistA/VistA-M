@@ -1,5 +1,5 @@
 PSOORED4 ;BIR/SAB - Edit front door dosing ;07/13/00
- ;;7.0;OUTPATIENT PHARMACY;**46,91,78,99,111,117,133,159,148,251,391,372,416,313**;DEC 1997;Build 76
+ ;;7.0;OUTPATIENT PHARMACY;**46,91,78,99,111,117,133,159,148,251,391,372,416,313,437**;DEC 1997;Build 3
  ;External reference ^PS(51 supported by DBIA 2224
  ;External reference to PS(51.2 supported by DBIA 2226
  ;External reference to PS(51.1 supported by DBIA 2225
@@ -65,8 +65,9 @@ CON D CON^PSOOREDX I X[U,$L(X)>1 S FIELD="CON" G JUMP
  I X="@",$D(PSORXED("CONJUNCTION",ENT)) D CON1^PSOOREDX G:$D(DIRUT) EXQ G:'Y CON N CKX S CKX=1 D UPD^PSOOREDX G CON
  ;
  N PSODLBD4 S PSOSAVX=X,PSODLBD4=1
- I $G(PSORXED("CONJUNCTION",ENT))="T",$G(PSORXED("DURATION",ENT))="" D  G DUR
- . W $C(7),!!,"Duration is required for the dosage entered prior to the THEN conjunction.",!
+ ;*437
+ I '$$DUROK^PSOORED3(.PSORXED,ENT) D  G DUR
+ . W !!,"Duration is required for the dosage entered prior to the THEN conjunction.",$C(7),!
  I $G(PSORXED("CONJUNCTION",ENT))]"" S PSOCKCON=1 D DCHK1^PSODOSUT G:$G(PSONEW("DFLG")) EX S ENT=ENT+1 K DIR G ASK
  E  K PSOCKCON D DCHK1^PSODOSUT I $D(DTOUT)!($D(DUOUT)) S PSORX("DFLG")=1,PSONEW("DFLG")=1 G EX  ;don't need to print the full summary, just the last sequence. 
  I PSOSAVX="",$G(PSORXED) K PSOCKCON,PSOEDDOS

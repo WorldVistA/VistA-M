@@ -1,5 +1,5 @@
 FBCHEP1 ;AISC/DMK - EDIT PAYMENT FOR CONTRACT HOSPITAL ;5/16/12 3:31pm
- ;;3.5;FEE BASIS;**38,61,122,133,108,124,132,139**;JAN 30, 1995;Build 127
+ ;;3.5;FEE BASIS;**38,61,122,133,108,124,132,139,123**;JAN 30, 1995;Build 51
  ;;Per VA Directive 6402, this routine should not be modified.
 EDIT ;ENTRY POINT TO EDIT PAYMENT
  N LASTDX,LASTPROC
@@ -8,10 +8,14 @@ BT W ! S DIC="^FBAA(161.7,",DIC(0)="AEQMZ",DIC("S")="I $P(^(0),U,3)=""B9""&($P(^
  G END:X=""!(X="^"),BT:Y<0 S FBN=+Y,FBN(0)=Y(0)
  S FBEXMPT=$P(FBN(0),"^",18)
  S FBSTAT=^FBAA(161.7,FBN,"ST"),FBBAMT=$S($P(FBN(0),"^",9)="":0,1:$P(FBN(0),"^",9))
- I FBSTAT="C"&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) W !!,*7,?3,"You must Reopen the batch prior to editting the invoice.",! G END
+ I FBSTAT="C"&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) W !!,*7,?3,"You must Reopen the batch prior to editing the invoice.",! G END
  I FBSTAT="S"!(FBSTAT="P")!(FBSTAT="R")&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) W !!,*7,?3,"You must be a holder of the 'FBAASUPERVISOR' security key",!,?3,"to edit this invoice.",! G END
  I FBSTAT="T"!(FBSTAT="F")!(FBSTAT="V") W !!,?3,"Batch has already been sent to Austin for payment.",! G END
 INV W ! S DIC="^FBAAI(",DIC(0)="AEQZ",DIC("S")="I $P(^(0),U,17)=FBN" D ^DIC K DIC("S") G BT:X=""!(X="^"),INV:Y<0 S FBI=+Y
+ ;
+ ; FB*3.5*123 - edit inpatient invoice - check for IPAC data for Federal Vendors
+ I '$$IPACEDIT^FBAAPET1(162.5,FBI,.FBIA,.FBDODINV) G INV
+ ;
  S FBK=$S($P(^FBAAI(FBI,0),"^",9)="":0,1:$P(^(0),"^",9))
  S FBLISTC="",FBAAI=FBI W @IOF D START^FBCHDI2 S FBI=FBAAI I $P(^FBAAI(FBI,0),"^",9)="" S FBPRICE=""
  ; set FB1725 flag = true if payment for a 38 U.S.C. 1725 claim
@@ -37,7 +41,7 @@ INV W ! S DIC="^FBAAI(",DIC(0)="AEQZ",DIC("S")="I $P(^(0),U,17)=FBN" D ^DIC K DI
  D
  . N ICDVDT,DFN,FB583,FBAAMM1,FBAAPTC,FBCNTRA,FBCNTRP,FBV,FBVEN,FTP
  . S ICDVDT=$$FRDTINV^FBCSV1(DA) ;date for files 80 and 80.1 identifier
- . ;get variables for cal to PPT^FBAACO1
+ . ;get variables for call to PPT^FBAACO1
  . S FBAAMM1=$P($G(^FBAAI(DA,2)),U,3)
  . S FBCNTRP=$P($G(^FBAAI(DA,5)),U,8)
  . S FBV=$P($G(^FBAAI(DA,0)),U,3)
@@ -62,7 +66,7 @@ INV W ! S DIC="^FBAAI(",DIC(0)="AEQZ",DIC("S")="I $P(^(0),U,17)=FBN" D ^DIC K DI
  I FBNK-FBK S $P(^FBAA(161.7,FBN,0),"^",9)=FBBAMT+(FBNK-FBK)
 END K DA,DFN,DIC,DIE,DR,FBAAOUT,FBDX,FBI,FBIN,FBLISTC,FBN,FBPROC,FBSTAT,FBVEN,FBVID,J,K,L,POP,Q,VA,VADM,X,FBIFN,Y,FBPRICE,FBK,FBNK,FB583,FBAAPN,FBASSOC,FBDEL,FBLOC,DAT
  K CNT,D0,FB7078,FBAABDT,FBAAEDT,FBASSOC,FBAUT,FBLOC,FBPROG,FBPSA,FBPT,FBRR,FBTT,FBTYPE,FBXX,FTP,PI,PTYPE,T,Z,ZZ,F,FBPOV,I,TA,VAL,DUOUT,FBVET,FBBAMT,FBAAI,FBEXMPT,FB1725,FBPAMT
- K FBFPPSC,FBFPPSL,FBADJ,FBADJD,FBRRMK,FBRRMKD
+ K FBFPPSC,FBFPPSL,FBADJ,FBADJD,FBRRMK,FBRRMKD,FBIA,FBDODINV
  D END^FBCHDI
  Q
  ;
@@ -135,8 +139,25 @@ RMVGAP(FBDA,FBWRT) ;  Remove gaps in ICD diagnosis and procedure codes
  I $G(FBWRT),FBMOVED W !,"Procedure codes were moved to remove gaps"
  Q
  ;
-FLDLIST ; Provide list of fields for diagnosis, POA, and prodedures
+FLDLIST ; Provide list of fields for diagnosis, POA, and procedures
  S DXFLD="30^31^32^33^34^35^35.1^35.2^35.3^35.4^35.5^35.6^35.7^35.8^35.9^36^36.1^36.2^36.3^36.4^36.5^36.6^36.7^36.8^36.9"
  S POAFLD="30.02^31.02^32.02^33.02^34.02^35.02^35.12^35.22^35.32^35.42^35.52^35.62^35.72^35.82^35.92^36.02^36.12^36.22^36.32^36.42^36.52^36.62^36.72^26.82^36.92"
  S PROCFLD="40^41^42^43^44^44.06^44.07^44.08^44.09^44.1^44.11^44.12^44.13^44.14^44.15^44.16^44.17^44.18^44.19^44.2^44.21^44.22^44.23^44.24^44.25"
  Q
+ ;
+GETIPAC(FBDA,FBVEN,FBIA,FBDODINV) ; Get vendor/IPAC data for Inpatient (FB*3.5*123)
+ ; All parameters required and assumed to exist
+ ; Called by $$IPACEDIT^FBAAPET1
+ N GX5
+ S FBVEN=+$P($G(^FBAAI(FBDA,0)),U,3)    ; vendor ien
+ S GX5=$G(^FBAAI(FBDA,5))
+ S FBIA=+$P(GX5,U,10)                   ; ipac agreement ien
+ S FBDODINV=$P(GX5,U,7)                 ; ipac DoD invoice#
+ Q
+ ;
+DELIPAC(FBDA) ; Delete all IPAC data on file for Inpatient (FB*3.5*123)
+ ; Called by $$IPACEDIT^FBAAPET1
+ N DIE,DA,DR,DIC
+ S DIE=162.5,DA=FBDA,DR="86///@;87///@" D ^DIE
+ Q
+ ;

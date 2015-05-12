@@ -1,6 +1,6 @@
 FBPAID1 ;WOIFO/SAB - SERVER ROUTINE TO UPDATE PAYMENTS CON'T ;1/11/2012
- ;;3.5;FEE BASIS;**19,107,121,132**;JAN 30, 1995;Build 17
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.5;FEE BASIS;**19,107,121,132,123**;JAN 30, 1995;Build 51
+ ;;Per VA Directive 6402, this routine should not be modified.
 PARSE ;set-up variables for payment record called from FBPAID
  ;  FBPROG = 3 for Outpatient (file 162)
  ;         = T for Travel (file 162)
@@ -48,7 +48,11 @@ PARSE ;set-up variables for payment record called from FBPAID
  ..S FBIEN(1)=+$P(FBIEN,U),FBIEN=+$P(FBIEN,U,2)
  ..I '$D(^FBAAC(FBIEN(1),3,FBIEN,0)) D CHKMOVE
  ..I '$D(^FBAAC(FBIEN(1),3,FBIEN,0)) S FBERR=1,^TMP("FBERR",$J,3,I)=""
- S FBCKNUM=$$EXTRL^FBMRASVR($E(XMRG,39,46),1)
+ ;
+ ; esg - FB*3.5*123 - for IPAC payments, the check# is the IPAC document reference#. Don't strip leading zeros for IPAC.
+ S FBCKNUM=$E(XMRG,39,46)
+ I '$$IPACCHK(FBPROG,.FBIEN) S FBCKNUM=$$EXTRL^FBMRASVR(FBCKNUM,1)
+ ;
  S FBCKDT=$$DATE4^FBPAID1($E(XMRG,47,54))
  S FBINAMT=$S(+$E(XMRG,55,62):+$E(XMRG,55,60)_"."_$E(XMRG,61,62),1:0)
  S FBINAMT=$S(FBINAMT=0:0,$P(FBINAMT,".",2)'>0:$P(FBINAMT,"."),1:+FBINAMT)
@@ -119,3 +123,21 @@ CHKMOVE ;check if payment line item was moved by patient merge process
  . . S FBIEN=$P(FBCIENS,",",1)
  . . S FBIEN(1)=$P(FBCIENS,",",2)
  Q
+ ;
+IPACCHK(FBPROG,FBIEN) ; check if payment is an IPAC payment (FB*3.5*123)
+ ; Function value is 1 if the payment is an IPAC payment, 0 otherwise
+ ; This is determined by the existence of a pointer value to file 161.95.
+ ;
+ N RES,FBFILE,FBSIENS,FBFIELD
+ S RES=0
+ I '$F(".3.5.9.","."_+$G(FBPROG)_".") G IPACKX
+ ;
+ ; get variables by type
+ I FBPROG=3 S FBFILE=162.03,FBSIENS=FBIEN_","_FBIEN(1)_","_FBIEN(2)_","_FBIEN(3)_",",FBFIELD=.05   ; outpat/ancil
+ I FBPROG=5 S FBFILE=162.1,FBSIENS=FBIEN(1)_",",FBFIELD=14                                         ; pharmacy (top level)
+ I FBPROG=9 S FBFILE=162.5,FBSIENS=FBIEN_",",FBFIELD=87                                            ; inpatient
+ ;
+ I +$$GET1^DIQ(FBFILE,FBSIENS,FBFIELD,"I") S RES=1     ; IPAC payment found
+IPACKX ;
+ Q RES
+ ;

@@ -1,5 +1,5 @@
 LRHYB ;DALOI/HOAK - HOWDY B DRIVER ;9/16/2000
- ;;5.2;LAB SERVICE;**405,417**;Sep 27, 1994;Build 1
+ ;;5.2;LAB SERVICE;**405,417,446**;Sep 27, 1994;Build 1
  ;
 TEST ;
  S DIC=2 S DIC(0)="AEMQZ" D ^DIC
@@ -37,7 +37,7 @@ ORDCHK ; Here is where the search for an order number starts
  S X2=0 K LRNPZZX
  S LRAHEAD=$G(^LRHY(69.86,LRHYSITE,18))
  S LRPAST=$G(^LRHY(69.86,LRHYSITE,20))
- K LRWCZZZ
+ K LRWCZZZ,LREXORD
  F LRI=-LRPAST:1:LRAHEAD D  ;Search window set by site file.
  .  S X1=DT S X2=LRI D C^%DTC S LR3DTN=X
  .  I $D(^LRO(69,LR3DTN,1,"AA",LRDFN)) S LRHYOK=1 D
@@ -104,6 +104,7 @@ ORDCHK ; Here is where the search for an order number starts
  ;
 MOVE ;
  I $D(LRNOTST) I $G(LRHYT654) I $D(LRNOTST(LRHYT654)) K LRORD QUIT
+ I $G(LRORD),$D(LREXORD(LRORD)) K LRORD QUIT
  S LRHY3SN3=0
  S LRHY3DT3=0
  I $D(^TMP("LRHYDY",$J,"URG",LRORD)) K LRORD QUIT

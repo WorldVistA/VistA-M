@@ -1,4 +1,11 @@
 AUPNVSIT ;OHPRD/LAB - EDITS FOR AUPNVSIT (VISIT:9000010) ;10/25/96
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**204**;Aug 12, 1996;Build 14
+ ;
+ ; Patch PX*1*204 changes the 2nd line of this routine to reflect the
+ ; incorporation of the module into PCE.  For historical reference,
+ ; the old (VISIT TRACKING) 2nd line is included below to reference VSIT
+ ; patches. This is the same as what patch PX*1*76 did for the VSIT* routines.
+ ;
  ;;2.0;VISIT TRACKING;**1**;Aug 12, 1996
  ;;93.2;IHS PATIENT DICTIONARIES.;;JUL 01, 1993
  ;
@@ -21,7 +28,8 @@ POSTSLCT ;
  Q
  ;
 ADD ; ADD TO DEPENDENCY COUNT
- Q:'($D(^AUPNVSIT(X,0))#2)
+ S ^XTMP("AUPNVSIT",0)=$$FMADD^XLFDT(DT,1)_U_DT_U_"section ADD of AUPNVSIT and section KILL of VSITKIL communication",^XTMP("AUPNVSIT",X)=1 ;PX*1*204 - added
+ I '($D(^AUPNVSIT(X,0))#2) K ^XTMP("AUPNVSIT",X) Q  ;PX*1*204 added kill of ^XTMP
  L +^AUPNVSIT(X,0):60 ;E  W:'$D(ZTQUEUED) !!,"VISIT locked.  Notify programmer!",! Q
  S:$P(^AUPNVSIT(X,0),U,9)<0 $P(^(0),U,9)=0
  S $P(^AUPNVSIT(X,0),U,9)=$P(^AUPNVSIT(X,0),U,9)+1 ;,$P(^(0),U,11)="" ;*** WILL NOT UNDELETE ***
@@ -29,6 +37,7 @@ ADD ; ADD TO DEPENDENCY COUNT
  ;I $D(^AUPNVSIT("AMFI",X)),^AUPNVSIT("AMFI",X)="M"
  ;E  I DUZ'=".5",$D(^AUTTSITE(1,0)),$P(^AUTTSITE(1,0),U,16)="V",$P(^AUPNVSIT(X,0),U,15)'="A",$P(^(0),U,15)'="D" S $P(^AUPNVSIT(X,0),U,15)="M",^AUPNVSIT("AMFI",X)="M"
  L -^AUPNVSIT(X,0)
+ K ^XTMP("AUPNVSIT",X) ;PX*1*204 - added
  Q
 SUB ; SUBTRACT FROM DEPENDENCY COUNT
  Q:'($D(^AUPNVSIT(X,0))#2)

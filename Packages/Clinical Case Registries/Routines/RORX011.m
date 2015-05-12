@@ -1,5 +1,5 @@
 RORX011 ;HOIFO/SG,VAC - PATIENT MEDICATION HISTORY ;4/17/09 10:45am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13,19,21**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -19,6 +19,8 @@ RORX011 ;HOIFO/SG,VAC - PATIENT MEDICATION HISTORY ;4/17/09 10:45am
  ;                                      Any references to patch 11 in the code
  ;                                      below is referring to path 13.
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
+ ;                                      additional identifier option selected
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -33,7 +35,7 @@ RORX011 ;HOIFO/SG,VAC - PATIENT MEDICATION HISTORY ;4/17/09 10:45am
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,DOB,AGE,DOD)
+ ;;PATIENTS(#,NAME,LAST4,DOB,AGE,DOD,ICN)
  ;;PTRXL(DATE,ORDER,TYPE,NAME,GENERIC,DAYSPLY,FILLTYPE,REFILLS)
  ;REFILLS added to column headers (above) - Patch 11
  N HEADER,NOTES,RC
@@ -89,6 +91,8 @@ PATIENT(PTLIST,PATIEN,RORXDST) ;
  D ADDVAL^RORTSK11(RORTSK,"DOB",$$DATE^RORXU002(VADM(3)\1),PTAG,1)
  D ADDVAL^RORTSK11(RORTSK,"AGE",VADM(4),PTAG,3)
  D ADDVAL^RORTSK11(RORTSK,"DOD",$$DATE^RORXU002(VADM(6)\1),PTAG,1)
+ I $$PARAM^RORTSK01("PATIENTS","ICN") D
+ . D ADDVAL^RORTSK11(RORTSK,"ICN",$$ICN^RORUTL02(PATIEN),PTAG,1)
  ;--- List of drugs
  S TABLE=$$ADDVAL^RORTSK11(RORTSK,"PTRXL",,PTAG)
  Q:TABLE<0 TABLE
@@ -125,7 +129,7 @@ PATIENT(PTLIST,PATIEN,RORXDST) ;
  ;       >0  Number of non-fatal errors
  ;
 PROCESS(REPORT,FLAGS) ;
- N CNT,ECNT,IEN798,PTIEN,PTLIST,PTNODE,RC,RORPTN,RORXDST,RXFLAGS,TMP,DFN
+ N CNT,ECNT,IEN798,PTIEN,PTLIST,PTNODE,RC,RORPTN,RORXDST,RXFLAGS,SKIP,TMP,DFN
  N RORX011 S RORX011=1 ;Patch 11: needed for 'callback' function setup in PROCESS^RORUTL15
  S (CNT,ECNT,RC)=0
  N RCC,FLAG
@@ -164,6 +168,7 @@ PROCESS(REPORT,FLAGS) ;
  . S CNT=CNT+1,IEN798=$$PRRIEN^RORUTL01(PTIEN,RORREG)  Q:IEN798'>0
  . ;--- Check if the patient should be skipped
  . I RORALL  Q:$$SKIP^RORXU005(IEN798,FLAGS,RORSDT,ROREDT)
+ . ;
  . ;--- Check the patient against the ICD Filter
  . S RCC=0
  . I FLAG'="ALL" D

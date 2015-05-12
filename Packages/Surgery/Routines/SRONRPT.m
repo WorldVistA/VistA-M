@@ -1,5 +1,5 @@
 SRONRPT ;BIR/ADM - NURSE INTRAOP REPORT ; [ 06/16/04  10:12 AM ]
- ;;3.0; Surgery ;**100,129**;24 Jun 93
+ ;;3.0;Surgery;**100,129,182**;24 Jun 93;Build 49
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -37,9 +37,9 @@ RPT(SRTN) ; send text of nurse intraoperative report to ^TMP
  I (SRDISP="N/A"&SRALL)!(SRDISP'="N/A") D LINE(1) S @SRG@(SRI)="Operation Disposition: "_SRDISP
  S Y=$P(SR(.7),"^",4),C=$P(^DD(130,25,0),"^",2) D:Y'="" Y^DIQ S VIA=$S(Y'="":Y,1:"N/A")
  I (VIA="N/A"&SRALL)!(VIA'="N/A") D LINE(1) S @SRG@(SRI)="Discharged Via: "_VIA
- S Y=$P(SR(.1),"^",4),C=$P(^DD(130,.14,0),"^",2) D:Y'="" Y^DIQ,N(30) S:Y="" Y="NOT ENTERED" D LINE(2) S @SRG@(SRI)="Surgeon: "_Y
+ S Y=$P(SR(.1),"^",4),C=$P(^DD(130,.14,0),"^",2) D:Y'="" Y^DIQ,N(30) S:Y="" Y="NOT ENTERED" D LINE(2) S @SRG@(SRI)="Primary Surgeon: "_Y
  S Y=$P(SR(.1),"^",5),C=$P(^DD(130,.15,0),"^",2) D:Y'="" Y^DIQ,N(25) S:Y="" Y="N/A" S @SRG@(SRI)=@SRG@(SRI)_$$SPACE(40)_"First Assist: "_Y
- S Y=$P(SR(.1),"^",13),C=$P(^DD(130,.164,0),"^",2) D:Y'="" Y^DIQ,N(26) S:Y="" Y="N/A" D LINE(1) S @SRG@(SRI)="Attend Surg: "_Y
+ S Y=$P(SR(.1),"^",13),C=$P(^DD(130,.164,0),"^",2) D:Y'="" Y^DIQ,N(26) S:Y="" Y="N/A" D LINE(1) S @SRG@(SRI)="Attending Surgeon: "_Y
  S Y=$P(SR(.1),"^",6),C=$P(^DD(130,.16,0),"^",2) D:Y'="" Y^DIQ,N(24) S:Y="" Y="N/A" S @SRG@(SRI)=@SRG@(SRI)_$$SPACE(40)_"Second Assist: "_Y
  S Y=$P(SR(.3),"^"),C=$P(^DD(130,.31,0),"^",2) D:Y'="" Y^DIQ,N(26) S SRANES=$S(Y="":"NOT ENTERED",1:Y)
  S Y=$P(SR(.3),"^",3),C=$P(^DD(130,.33,0),"^",2) D:Y'="" Y^DIQ,N(21) S SRANESA=$S(Y="":"N/A",1:Y)

@@ -1,5 +1,5 @@
 VPRDTIU ;SLC/MKB -- TIU extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,2**;Sep 01, 2011;Build 317
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2,4**;Sep 01, 2011;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -90,13 +90,14 @@ EN1(VPRX,DOC) ; -- return a document in DOC("attribute")=value
  S DOC("encounter")=$G(VPRTIU(IEN,.03,"I"))
  S:$G(VPRTEXT) DOC("content")=$$TEXT(IEN)
  ; providers &/or signatures
- S X=$P(VPRX,U,5),I=0 S:X I=I+1,DOC("clinician",I)=+X_U_$P(X,";",3)_"^A" ;author
- M ES=VPRTIU(IEN) I ES(1501,"I") D
- . S I=I+1
- . S DOC("clinician",I)=ES(1502,"I")_U_ES(1502,"E")_"^S^"_ES(1501,"I")_U_$$SIG(ES(1502,"I"))
- I ES(1507,"I") D  ; cosigner
- . S I=I+1
- . S DOC("clinician",I)=ES(1508,"I")_U_ES(1508,"E")_"^C^"_ES(1507,"I")_U_$$SIG(ES(1508,"I"))
+ S X=$P(VPRX,U,5),I=0               ;author
+ S:X I=I+1,DOC("clinician",I)=+X_U_$P(X,";",3)_"^A^^^"_$$PROVSPC^VPRD(+X)
+ M ES=VPRTIU(IEN) I ES(1501,"I") D  ;signed
+ . S I=I+1,X=ES(1502,"I")
+ . S DOC("clinician",I)=X_U_ES(1502,"E")_"^S^"_ES(1501,"I")_U_$$SIG(X)_U_$$PROVSPC^VPRD(X)
+ I ES(1507,"I") D                   ;cosigned
+ . S I=I+1,X=ES(1508,"I")
+ . S DOC("clinician",I)=X_U_ES(1508,"E")_"^C^"_ES(1507,"I")_U_$$SIG(X)_U_$$PROVSPC^VPRD(X)
  Q
  ;
 CATG(DA) ; -- Return a code for document type #8925.1 DA
@@ -146,7 +147,7 @@ XML(DOC) ; -- Return patient documents as XML
  .. D ADD("<"_ATT_"s>")
  .. S I=0 F  S I=$O(DOC(ATT,I)) Q:I<1  D
  ... S X=$G(DOC(ATT,I)),NAMES=""
- ... I ATT="clinician" S NAMES="code^name^role^dateTime^signature^Z"
+ ... I ATT="clinician" S NAMES="code^name^role^dateTime^signature^taxonomyCode^providerType^classification^specialization^Z"
  ... S Y="<"_ATT_" "_$$LOOP_"/>" D ADD(Y)
  .. D ADD("</"_ATT_"s>")
  . S X=$G(DOC(ATT)),Y="" Q:'$L(X)

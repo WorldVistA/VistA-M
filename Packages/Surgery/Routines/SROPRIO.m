@@ -1,5 +1,5 @@
 SROPRIO ;B'HAM ISC/MAM - LIST OF OPERATIONS (BY PRIORITY) ; [ 09/22/98  11:36 AM ]
- ;;3.0; Surgery ;**77,50**;24 Jun 93
+ ;;3.0;Surgery;**77,50,182**;24 Jun 93;Build 49
 BEG S (SRSP,SRQ)=0,SRORD=1 W @IOF,!,"List of Operations by Surgical Priority:",!!
 DATE D DATE^SROUTL(.SRSD,.SRED,.SRQ) G:SRQ END
 PRIO W @IOF,! K DIR S DIR("A")="Print List of Operations for all priorities ",DIR("B")="Y",DIR(0)="Y"
@@ -47,7 +47,7 @@ HDR ; print heading
  I SRPRIO'="ALL" S SRP=SRPRIO
  I SRP'="" S SRTP="SURGICAL PRIORITY: "_SRCODE(SRP) W !,?(132-$L(SRTP)\2),SRTP,?100,"DATE REVIEWED:"
  I SRP="" W !,?100,"DATE REVIEWED:"
- W !!,"DATE",?13,"PATIENT",?38,"OPERATION(S)",?90,"SURGEON",?114,"ANESTHESIA TECH",!,"CASE #",?15,"ID#",?90,"1ST ASST",!,?90,"2ND ASST" W ! F I=1:1:132 W "-"
+ W !!,"DATE",?13,"PATIENT",?38,"OPERATION(S)",?90,"PRIMARY SURGEON",?114,"ANESTHESIA TECH",!,"CASE #",?15,"ID#",?90,"1ST ASST",!,?90,"2ND ASST" W ! F I=1:1:132 W "-"
  I $D(SRSPEC) W !,?(132-$L(">> "_SRSPEC_" <<")\2),">> "_SRSPEC_" <<",!
  S SRHDR=1,PAGE=PAGE+1
  Q

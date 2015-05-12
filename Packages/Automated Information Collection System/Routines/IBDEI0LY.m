@@ -1,132 +1,48 @@
-IBDEI0LY ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0LY ; ; 19-NOV-2014
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQ(358.8)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10766,0)
- ;;=36416^^69^695^1^^^^1
- ;;^UTILITY(U,$J,358.3,10766,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10766,1,1,0)
- ;;=1^36416
- ;;^UTILITY(U,$J,358.3,10766,1,2,0)
- ;;=2^Finger/Heel/Ear Stick
- ;;^UTILITY(U,$J,358.3,10767,0)
- ;;=82948^^69^695^2^^^^1
- ;;^UTILITY(U,$J,358.3,10767,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10767,1,1,0)
- ;;=1^82948
- ;;^UTILITY(U,$J,358.3,10767,1,2,0)
- ;;=2^Glucose,Reagent Strip
- ;;^UTILITY(U,$J,358.3,10768,0)
- ;;=90887^^69^696^1^^^^1
- ;;^UTILITY(U,$J,358.3,10768,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10768,1,1,0)
- ;;=1^90887
- ;;^UTILITY(U,$J,358.3,10768,1,2,0)
- ;;=2^Consultation With Family
- ;;^UTILITY(U,$J,358.3,10769,0)
- ;;=99510^^69^696^2^^^^1
- ;;^UTILITY(U,$J,358.3,10769,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10769,1,1,0)
- ;;=1^99510
- ;;^UTILITY(U,$J,358.3,10769,1,2,0)
- ;;=2^Home Visit-Ind/Fam/Marriage Couns
- ;;^UTILITY(U,$J,358.3,10770,0)
- ;;=43760^^69^697^1^^^^1
- ;;^UTILITY(U,$J,358.3,10770,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10770,1,1,0)
- ;;=1^43760
- ;;^UTILITY(U,$J,358.3,10770,1,2,0)
- ;;=2^Change Gastrostomy Tube
- ;;^UTILITY(U,$J,358.3,10771,0)
- ;;=97602^^69^697^2^^^^1
- ;;^UTILITY(U,$J,358.3,10771,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10771,1,1,0)
- ;;=1^97602
- ;;^UTILITY(U,$J,358.3,10771,1,2,0)
- ;;=2^Wound(S) Care And Instruction
- ;;^UTILITY(U,$J,358.3,10772,0)
- ;;=51701^^69^698^1^^^^1
- ;;^UTILITY(U,$J,358.3,10772,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10772,1,1,0)
- ;;=1^51701
- ;;^UTILITY(U,$J,358.3,10772,1,2,0)
- ;;=2^Insert Bladder Catheter
- ;;^UTILITY(U,$J,358.3,10773,0)
- ;;=51702^^69^698^2^^^^1
- ;;^UTILITY(U,$J,358.3,10773,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10773,1,1,0)
- ;;=1^51702
- ;;^UTILITY(U,$J,358.3,10773,1,2,0)
- ;;=2^Insert Foley Catheter
- ;;^UTILITY(U,$J,358.3,10774,0)
- ;;=86580^^69^699^1^^^^1
- ;;^UTILITY(U,$J,358.3,10774,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10774,1,1,0)
- ;;=1^86580
- ;;^UTILITY(U,$J,358.3,10774,1,2,0)
- ;;=2^TB Intradermal Test
- ;;^UTILITY(U,$J,358.3,10775,0)
- ;;=99001^^69^700^1^^^^1
- ;;^UTILITY(U,$J,358.3,10775,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10775,1,1,0)
- ;;=1^99001
- ;;^UTILITY(U,$J,358.3,10775,1,2,0)
- ;;=2^Specimen Handling
- ;;^UTILITY(U,$J,358.3,10776,0)
- ;;=99366^^69^701^1^^^^1
- ;;^UTILITY(U,$J,358.3,10776,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10776,1,1,0)
- ;;=1^99366
- ;;^UTILITY(U,$J,358.3,10776,1,2,0)
- ;;=2^Team Conf W/Pt By Hc Pro,30 Min+
- ;;^UTILITY(U,$J,358.3,10777,0)
- ;;=99368^^69^701^2^^^^1
- ;;^UTILITY(U,$J,358.3,10777,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10777,1,1,0)
- ;;=1^99368
- ;;^UTILITY(U,$J,358.3,10777,1,2,0)
- ;;=2^Team Conf W/O Pt Hc Pro,30 Min+
- ;;^UTILITY(U,$J,358.3,10778,0)
- ;;=99503^^69^702^5^^^^1
- ;;^UTILITY(U,$J,358.3,10778,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10778,1,1,0)
- ;;=1^99503
- ;;^UTILITY(U,$J,358.3,10778,1,2,0)
- ;;=2^Home Visit-Respiratory Tx Care
- ;;^UTILITY(U,$J,358.3,10779,0)
- ;;=99504^^69^702^4^^^^1
- ;;^UTILITY(U,$J,358.3,10779,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10779,1,1,0)
- ;;=1^99504
- ;;^UTILITY(U,$J,358.3,10779,1,2,0)
- ;;=2^Home Visit-Mech Ventilator Care
- ;;^UTILITY(U,$J,358.3,10780,0)
- ;;=99507^^69^702^1^^^^1
- ;;^UTILITY(U,$J,358.3,10780,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10780,1,1,0)
- ;;=1^99507
- ;;^UTILITY(U,$J,358.3,10780,1,2,0)
- ;;=2^Home Visit-Cath Maintenance
- ;;^UTILITY(U,$J,358.3,10781,0)
- ;;=99511^^69^702^2^^^^1
- ;;^UTILITY(U,$J,358.3,10781,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,10781,1,1,0)
- ;;=1^99511
- ;;^UTILITY(U,$J,358.3,10781,1,2,0)
- ;;=2^Home Visit-Fecal/Enema Mgmt
+ ;;^DIC(358.8,0,"GL")
+ ;;=^IBE(358.8,
+ ;;^DIC("B","IMP/EXP TEXT AREA",358.8)
+ ;;=
+ ;;^DIC(358.8,"%D",0)
+ ;;=^^3^3^2940217^
+ ;;^DIC(358.8,"%D",1,0)
+ ;;=This file is nearly identical to file #357.8. It is used by the
+ ;;^DIC(358.8,"%D",2,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.8,"%D",3,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.8,0)
+ ;;=FIELD^^1^7
+ ;;^DD(358.8,0,"DDA")
+ ;;=N
+ ;;^DD(358.8,0,"DT")
+ ;;=2930802
+ ;;^DD(358.8,0,"IX","B",358.8,.01)
+ ;;=
+ ;;^DD(358.8,0,"IX","C",358.8,.02)
+ ;;=
+ ;;^DD(358.8,0,"NM","IMP/EXP TEXT AREA")
+ ;;=
+ ;;^DD(358.8,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.8,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.8,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.8,.01,1,1,0)
+ ;;=358.8^B
+ ;;^DD(358.8,.01,1,1,1)
+ ;;=S ^IBE(358.8,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.8,.01,1,1,2)
+ ;;=K ^IBE(358.8,"B",$E(X,1,30),DA)
+ ;;^DD(358.8,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.8,.01,21,0)
+ ;;=^^2^2^2930528^
+ ;;^DD(358.8,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.8,.01,21,2,0)
+ ;;=The name of the text area.

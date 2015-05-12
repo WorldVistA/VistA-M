@@ -1,5 +1,5 @@
 PSBML ;BIRMINGHAM/EFC-BCMA MED LOG FUNCTIONS ;10/23/12 12:14pm
- ;;3.0;BAR CODE MED ADMIN;**6,3,4,9,11,13,25,45,33,52,70**;Mar 2004;Build 101
+ ;;3.0;BAR CODE MED ADMIN;**6,3,4,9,11,13,25,45,33,52,70,72**;Mar 2004;Build 16
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference/IA
  ; ^DPT/10035
@@ -161,8 +161,9 @@ MEDP D:PSBTRAN="MEDPASS"
  ...Q:'PSBDD
  ...S PSBIENS="+"_PSBCNT_","_PSBIEN
  ...D VAL(PSBDD,PSBIENS,.01,"`"_$P(PSBREC(PSBCNT),U,2))
- ...D VAL(PSBDD,PSBIENS,.02,$P(PSBREC(PSBCNT),U,3))
- ...D VAL(PSBDD,PSBIENS,.03,$P(PSBREC(PSBCNT),U,4))
+ ...D:PSBDD=53.795 VAL(PSBDD,PSBIENS,.02,$P(PSBREC(PSBCNT),U,3))
+ ...D:PSBDD=53.796!(PSBDD=53.797) VAL(PSBDD,PSBIENS,.02,$P(PSBREC(PSBCNT),U,4)) ;Store units in Units ordered field, PSB*3*72
+ ...D:PSBREC(3)="G"!(PSBREC(3)="I") VAL(PSBDD,PSBIENS,.03,$P(PSBREC(PSBCNT),U,4)) ;only store units given when infusing or given, PSB*3*72
  ...D:(PSBTAB="UDTAB")!(PSBTAB="PBTAB") VAL(PSBDD,PSBIENS,.04,$E($P(PSBREC(PSBCNT),U,5),1,40))
  ...D VAL(PSBDD,PSBIENS,.05,$P(PSBREC(PSBCNT),U,7))        ;HR ind *70
  .;Modify Filing Transaction Medpass error message too inclde details - PSB*3*52

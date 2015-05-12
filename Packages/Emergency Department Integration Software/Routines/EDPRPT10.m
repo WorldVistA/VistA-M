@@ -1,5 +1,5 @@
 EDPRPT10 ;SLC/MKB - Admissions Report ;4/25/13 3:15pm
- ;;2.0;EMERGENCY DEPARTMENT;**6**;May 2, 2012;Build 200
+ ;;2.0;EMERGENCY DEPARTMENT;**6,2**;Feb 24, 2012;Build 23
  ;
 ADM(BEG,END,CSV) ; Get Admissions Report for EDPSITE by date range
  N IN,OUT,LOG,X,X0,X1,X3,DX,DISP,ROW,TAB
@@ -9,7 +9,9 @@ ADM(BEG,END,CSV) ; Get Admissions Report for EDPSITE by date range
  . S TAB=$C(9)
  . ;***pij 4/19/2013 changed ED to IEN
  . ;S X="ED"_TAB_"Time Out"_TAB_"Complaint"_TAB_"MD"_TAB_"Acuity"_TAB_"Dispo"_TAB_"Adm Dec"_TAB_"Adm Delay"_TAB_"Diagnosis"_TAB_"ICD9" ;_TAB_"ER Spec Visit"
- . S X="IEN"_TAB_"Time Out"_TAB_"Complaint"_TAB_"MD"_TAB_"Acuity"_TAB_"Dispo"_TAB_"Adm Dec"_TAB_"Adm Delay"_TAB_"Diagnosis"_TAB_"ICD9" ;_TAB_"ER Spec Visit"
+ . ;Begin EDP*2.0*2 changes - drp
+ . S X="IEN"_TAB_"Time Out"_TAB_"Complaint"_TAB_"MD"_TAB_"Acuity"_TAB_"Dispo"_TAB_"Adm Dec"_TAB_"Adm Delay"_TAB_"Diagnosis"_TAB_"ICD"_TAB_"ICD Type" ;_TAB_"ER Spec Visit"
+ . ;end EDP*2.0*2 changes
  . ;***
  . D ADD^EDPCSV(X)
  S IN=BEG-.000001
@@ -31,7 +33,8 @@ ADM(BEG,END,CSV) ; Get Admissions Report for EDPSITE by date range
  . S ROW("md")=$$EPERS^EDPRPT($P(X3,U,5))
  . S ROW("acuity")=$$ECODE^EDPRPT($P(X3,U,3))
  . S ROW("disposition")=DISP,DISP=$$UP^XLFSTR(DISP)
- . S ROW("icd")=$P(DX,U),ROW("dx")=$P(DX,U,2)
+ . ;Begin EDP*2.0*2 changes - drp
+ . S ROW("icd")=$P(DX,U),ROW("dx")=$P(DX,U,2),ROW("icdType")=$P(DX,U,3)
  . ; ER Special Visit ?? -- ck ^DPT dispositions
  . S CNT("ALL")=CNT("ALL")+1,CNT(DISP)=CNT(DISP)+1
  . ;
@@ -59,7 +62,8 @@ A1 . ; calculate times
  . ;
  . I '$G(CSV) S X=$$XMLA^EDPX("log",.ROW) D XML^EDPX(X) Q
  . S X=ROW("id")
- . F I="outTS","complaint","md","acuity","disposition","admDec","admDel","dx","icd" S X=X_$C(9)_$G(ROW(I))
+ . F I="outTS","complaint","md","acuity","disposition","admDec","admDel","dx","icd","icdType" S X=X_$C(9)_$G(ROW(I))
+ . ;End EDP*2.0*2 changes - drp
  . D ADD^EDPCSV(X)
  D:'$G(CSV) XML^EDPX("</logEntries>")
  ;

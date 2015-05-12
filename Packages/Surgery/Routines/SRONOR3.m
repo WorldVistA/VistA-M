@@ -1,5 +1,5 @@
 SRONOR3 ;B'HAM ISC/MAM - REPORT OF NON-O.R. PROCEDURES (1 SPECIALTY) ; [ 07/27/98   2:33 PM ]
- ;;3.0;Surgery;**50,175**;24 Jun 93;Build 6
+ ;;3.0;Surgery;**50,175,182**;24 Jun 93;Build 49
  ;
  ; Reference to ^ECC(723 supported by DBIA #205
  ;
@@ -11,7 +11,7 @@ SET ; set and print info
  N SRANEST,SRANESUP
  I $Y+5>IOSL D HDR I SRSOUT Q
  S SR=^SRF(SROP,0),DFN=$P(SR,"^") D DEM^VADPT S SRNM=VADM(1),SRSSN=VA("PID")
- S X=$P(SR,"^",12),SRINOUT=$S(X="I":"INPATIENT",X="O":"OUTPATIENT",1:"???")
+ S X=$P(SR,"^",12),SRINOUT=$S(X="I":"INPATIENT",X="O":"OUTPATIENT",X=1:"OUTPATIENT",X=2:"INPATIENT",X=3:"INPATIENT",1:"???")
  S Y=SRSD D DD^%DT S SRSDATE=$E(SRSD,4,5)_"/"_$E(SRSD,6,7)_"/"_$E(SRSD,2,3)_" "_$P(Y,"@",2)
  S SRSUR=$P(^SRF(SROP,"NON"),"^",6) I SRSUR S SRSUR=$P(^VA(200,SRSUR,0),"^") S:$L(SRSUR)>30 SRSUR=$P(SRSUR,",")_", "_$E($P(SRSUR,",",2))_"."
  S SRANEST=$P($G(^SRF(SROP,.3)),"^") I SRANEST S SRANEST=$P(^VA(200,SRANEST,0),"^") S:$L(SRANEST)>30 SRANEST=$P(SRANEST,",")_", "_$E($P(SRANEST,",",2))_"."

@@ -1,142 +1,64 @@
-IBDEI04H ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI04H ; ; 09-FEB-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQ(358.4)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1815,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1815,1,2,0)
- ;;=2^301.81
- ;;^UTILITY(U,$J,358.3,1815,1,5,0)
- ;;=5^NARCISSISTIC PERSONALITY
- ;;^UTILITY(U,$J,358.3,1815,2)
- ;;=^331919
- ;;^UTILITY(U,$J,358.3,1816,0)
- ;;=301.4^^18^171^9
- ;;^UTILITY(U,$J,358.3,1816,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1816,1,2,0)
- ;;=2^301.4
- ;;^UTILITY(U,$J,358.3,1816,1,5,0)
- ;;=5^OBSESSIVE-COMPULSIVE DIS
- ;;^UTILITY(U,$J,358.3,1816,2)
- ;;=^331918
- ;;^UTILITY(U,$J,358.3,1817,0)
- ;;=301.0^^18^171^10
- ;;^UTILITY(U,$J,358.3,1817,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1817,1,2,0)
- ;;=2^301.0
- ;;^UTILITY(U,$J,358.3,1817,1,5,0)
- ;;=5^PARANOID PERSONALITY
- ;;^UTILITY(U,$J,358.3,1817,2)
- ;;=^89982
- ;;^UTILITY(U,$J,358.3,1818,0)
- ;;=301.20^^18^171^11
- ;;^UTILITY(U,$J,358.3,1818,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1818,1,2,0)
- ;;=2^301.20
- ;;^UTILITY(U,$J,358.3,1818,1,5,0)
- ;;=5^SCHIZOID PERSONALITY NOS
- ;;^UTILITY(U,$J,358.3,1818,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,1819,0)
- ;;=301.22^^18^171^12
- ;;^UTILITY(U,$J,358.3,1819,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1819,1,2,0)
- ;;=2^301.22
- ;;^UTILITY(U,$J,358.3,1819,1,5,0)
- ;;=5^SCHIZOTYPAL PERSONALITY
- ;;^UTILITY(U,$J,358.3,1819,2)
- ;;=^331917
- ;;^UTILITY(U,$J,358.3,1820,0)
- ;;=295.40^^18^172^1
- ;;^UTILITY(U,$J,358.3,1820,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1820,1,2,0)
- ;;=2^295.40
- ;;^UTILITY(U,$J,358.3,1820,1,5,0)
- ;;=5^ACUTE SCHIZOPHRENIFORM
- ;;^UTILITY(U,$J,358.3,1820,2)
- ;;=^331845
- ;;^UTILITY(U,$J,358.3,1821,0)
- ;;=295.20^^18^172^2
- ;;^UTILITY(U,$J,358.3,1821,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1821,1,2,0)
- ;;=2^295.20
- ;;^UTILITY(U,$J,358.3,1821,1,5,0)
- ;;=5^CATATONIC SCHIZOPHRENIC
- ;;^UTILITY(U,$J,358.3,1821,2)
- ;;=^108310
- ;;^UTILITY(U,$J,358.3,1822,0)
- ;;=295.10^^18^172^3
- ;;^UTILITY(U,$J,358.3,1822,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1822,1,2,0)
- ;;=2^295.10
- ;;^UTILITY(U,$J,358.3,1822,1,5,0)
- ;;=5^DISORGANIZED SCHIZOPHRENIC
- ;;^UTILITY(U,$J,358.3,1822,2)
- ;;=^108319
- ;;^UTILITY(U,$J,358.3,1823,0)
- ;;=295.30^^18^172^4
- ;;^UTILITY(U,$J,358.3,1823,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1823,1,2,0)
- ;;=2^295.30
- ;;^UTILITY(U,$J,358.3,1823,1,5,0)
- ;;=5^PARANOID SCHIZOPHRENIC
- ;;^UTILITY(U,$J,358.3,1823,2)
- ;;=^108330
- ;;^UTILITY(U,$J,358.3,1824,0)
- ;;=295.70^^18^172^5
- ;;^UTILITY(U,$J,358.3,1824,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1824,1,2,0)
- ;;=2^295.70
- ;;^UTILITY(U,$J,358.3,1824,1,5,0)
- ;;=5^SCHIZOAFFECTIVE DIS NOS
- ;;^UTILITY(U,$J,358.3,1824,2)
- ;;=^331857
- ;;^UTILITY(U,$J,358.3,1825,0)
- ;;=295.32^^18^172^6
- ;;^UTILITY(U,$J,358.3,1825,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1825,1,2,0)
- ;;=2^295.32
- ;;^UTILITY(U,$J,358.3,1825,1,5,0)
- ;;=5^SCHIZOPHRENIA,CHRONIC
- ;;^UTILITY(U,$J,358.3,1825,2)
- ;;=^268061
- ;;^UTILITY(U,$J,358.3,1826,0)
- ;;=295.60^^18^172^7
- ;;^UTILITY(U,$J,358.3,1826,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1826,1,2,0)
- ;;=2^295.60
- ;;^UTILITY(U,$J,358.3,1826,1,5,0)
- ;;=5^SCHIZOPHRENIA,RESIDUAL
- ;;^UTILITY(U,$J,358.3,1826,2)
- ;;=^331851
- ;;^UTILITY(U,$J,358.3,1827,0)
- ;;=295.90^^18^172^8
- ;;^UTILITY(U,$J,358.3,1827,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1827,1,2,0)
- ;;=2^295.90
- ;;^UTILITY(U,$J,358.3,1827,1,5,0)
- ;;=5^SCHIZOPHRENIA,UNDIFFERENTIATED
- ;;^UTILITY(U,$J,358.3,1827,2)
- ;;=^108287
- ;;^UTILITY(U,$J,358.3,1828,0)
- ;;=303.00^^18^173^1
- ;;^UTILITY(U,$J,358.3,1828,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1828,1,2,0)
- ;;=2^303.00
- ;;^UTILITY(U,$J,358.3,1828,1,5,0)
- ;;=5^ACUTE ALCOHOL INTOXICATION
- ;;^UTILITY(U,$J,358.3,1828,2)
- ;;=^268183
+ ;;^DIC(358.4,0,"GL")
+ ;;=^IBE(358.4,
+ ;;^DIC("B","IMP/EXP SELECTION GROUP",358.4)
+ ;;=
+ ;;^DIC(358.4,"%D",0)
+ ;;=^^4^4^2940217^
+ ;;^DIC(358.4,"%D",1,0)
+ ;;= 
+ ;;^DIC(358.4,"%D",2,0)
+ ;;=This file is nearly identical to file #357.4. It is used by the
+ ;;^DIC(358.4,"%D",3,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.4,"%D",4,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.4,0)
+ ;;=FIELD^^.04^4
+ ;;^DD(358.4,0,"DDA")
+ ;;=N
+ ;;^DD(358.4,0,"DT")
+ ;;=2950717
+ ;;^DD(358.4,0,"ID",.02)
+ ;;=W "   ",$P(^(0),U,2)
+ ;;^DD(358.4,0,"ID",.03)
+ ;;=S %I=Y,Y=$S('$D(^(0)):"",$D(^IBE(358.2,+$P(^(0),U,3),0))#2:$P(^(0),U,1),1:""),C=$P(^DD(358.2,.01,0),U,2) D Y^DIQ:Y]"" W "   ",Y,@("$E("_DIC_"%I,0),0)") S Y=%I K %I
+ ;;^DD(358.4,0,"IX","APO",358.4,.02)
+ ;;=
+ ;;^DD(358.4,0,"IX","APO1",358.4,.03)
+ ;;=
+ ;;^DD(358.4,0,"IX","B",358.4,.01)
+ ;;=
+ ;;^DD(358.4,0,"IX","D",358.4,.03)
+ ;;=
+ ;;^DD(358.4,0,"NM","IMP/EXP SELECTION GROUP")
+ ;;=
+ ;;^DD(358.4,0,"PT",358.3,.04)
+ ;;=
+ ;;^DD(358.4,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.4,.01,0)
+ ;;=HEADER^RF^^0;1^K:$L(X)>40!($L(X)<1) X
+ ;;^DD(358.4,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.4,.01,1,1,0)
+ ;;=358.4^B
+ ;;^DD(358.4,.01,1,1,1)
+ ;;=S ^IBE(358.4,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.4,.01,1,1,2)
+ ;;=K ^IBE(358.4,"B",$E(X,1,30),DA)
+ ;;^DD(358.4,.01,3)
+ ;;=What text do you want to appear at the top of this group?
+ ;;^DD(358.4,.01,21,0)
+ ;;=^^2^2^2930604^^^^
+ ;;^DD(358.4,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.4,.01,21,2,0)
+ ;;=The name given to a group of selections appearing on a selection list.
+ ;;^DD(358.4,.01,"DEL",1,0)
+ ;;=I '$G(IBLISTPR) W "...Selection Groups can only be deleted through the Encounter Form Utilities!"
+ ;;^DD(358.4,.01,"DT")
+ ;;=2930604

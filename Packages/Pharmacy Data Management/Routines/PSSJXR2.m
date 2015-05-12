@@ -1,4 +1,4 @@
-PSSJXR2 ; COMPILED XREF FOR FILE #55.01 ; 04/07/14
+PSSJXR2 ; COMPILED XREF FOR FILE #55.01 ; 03/09/15
  ; 
  S DA(1)=DA S DA=0
 A1 ;
@@ -19,7 +19,7 @@ A S DA=$O(^PS(55,DA(1),"IV",DA)) I DA'>0 S DA=0 G END
  S X=$P($G(DIKZ(0)),U,3)
  I X'="" X ^DD(55.01,.03,1,2,2)
  S X=$P($G(DIKZ(0)),U,3)
- I X'="" K ^PS(55,DA(1),"IV","AIS",$E(X,1,30),DA)
+ I X'="" K ^PS(55,DA(1),"IV","AIS",+X,DA)
  S X=$P($G(DIKZ(0)),U,3)
  I X'="" I $P($G(^PS(55,DA(1),"IV",DA,0)),U,4)]"" K ^PS(55,DA(1),"IV","AIT",$P(^(0),U,4),+X,DA)
  S DIKZ(0)=$G(^PS(55,DA(1),"IV",DA,0))

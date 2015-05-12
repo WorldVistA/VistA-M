@@ -1,5 +1,5 @@
 SROQIDP ;BIR/ADM - LIST OF INVASIVE DIAGNOSTIC PROCEDURES ;12/16/98  12:11 PM
- ;;3.0; Surgery ;**62,77,50,88,142**;24 Jun 93
+ ;;3.0;Surgery;**62,77,50,88,142,182**;24 Jun 93;Build 49
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure.  Local modifications to this routine
  ;**         are prohibited.
@@ -21,7 +21,8 @@ AC F  S SRSD=$O(^SRF("AC",SRSD)) Q:'SRSD!(SRSD>SRED)!SRSOUT  S SRTN=0 F  S SRTN=
 CASE ; determine if case is invasive procedure
  Q:'$P($G(^SRF(SRTN,.2)),"^",12)!($P($G(^SRF(SRTN,"NON")),"^")="Y")!$P($G(^SRF(SRTN,30)),"^")
  S SR(0)=^SRF(SRTN,0),SRSS=$P(SR(0),"^",4) I SRSPEC Q:SRSS'=SRSPEC
- S SRIOSTAT=$P(SR(0),"^",12) I SRIOSTAT'="I"&(SRIOSTAT'="O") S VAIP("D")=SRSD D IN5^VADPT S SRIOSTAT=$S(VAIP(13):"I",1:"O") K VAIP
+ S SRIOSTAT=$P(SR(0),"^",12) S SRIOSTAT=$S(SRIOSTAT=1:"O",SRIOSTAT=2:"I",SRIOSTAT=3:"I",1:"")
+ I SRIOSTAT'="I"&(SRIOSTAT'="O") S VAIP("D")=SRSD D IN5^VADPT S SRIOSTAT=$S(VAIP(13):"I",1:"O") K VAIP
  I SRIO'="A" Q:SRIOSTAT'=SRIO
  D IDP I SRIDP S ^TMP("SR",$J,SRSD,SRTN)=$P(SR(0),"^")_"^"_SRSS_"^"_SRIOSTAT,SRIDPT=SRIDPT+1,SRIOT(SRIOSTAT)=SRIOT(SRIOSTAT)+1
  Q

@@ -1,5 +1,5 @@
 DGPFRAL1 ;ALB/RBS - PRF ACTION NOT LINKED REPORT CONT. ; 10/12/05 2:48pm
- ;;5.3;Registration;**554,650**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**554,650,892**;Aug 13, 1993;Build 9
  ;
  ;This routine will be used to display or print all of the patient
  ;assignment history records that are not linked to a progress note.
@@ -115,6 +115,11 @@ BLDTMP(DGPFA,DGPAT,DGHIENS,DGCATG,DGLIST) ; list global builder
  N DGPDFN  ;pointer to patient
  N DGPFAH  ;assignment history record data
  N DGPNM   ;patient name
+ N DGFLAG   ;change of assignment flag
+ ;
+ ; Check to see if this was a change of assignment
+ S DGFLAG=0
+ D FLGXFER
  ;
  ; loop all assignment history ien's
  S DGHIEN="",DGLNCNT=0
@@ -125,6 +130,7 @@ BLDTMP(DGPFA,DGPAT,DGHIENS,DGCATG,DGLIST) ; list global builder
  . Q:+$G(DGPFAH("TIULINK"))   ;progress note pointer is setup
  . Q:+$G(DGPFAH("ACTION"))=5  ;don't report on ENTERED IN ERROR action
  . S DGACTDT=$$FDATE^VALM1(+DGPFAH("ASSIGNDT"))
+ . I DGFLAG I +DGPFAH("ASSIGNDT")'>DGFLAG Q   ; Quit if < assignment chg
  . S DGPNM=DGPAT("NAME")
  . S:DGPNM']"" DGPNM="MISSING PATIENT NAME"
  . S DGPDFN=$P(DGPFA("DFN"),U)
@@ -246,7 +252,7 @@ EXIT ;
  . K %ZIS,POP
  . D ^%ZISC,HOME^%ZIS
  Q
- ;
+ ; 
 ENTINERR(DGIEN) ;is last action ENTERED IN ERROR
  ;  Input:
  ;    DGIEN - (required) Pointer to PRF ASSIGNMENT (#26.13) file
@@ -258,3 +264,13 @@ ENTINERR(DGIEN) ;is last action ENTERED IN ERROR
  ;
  I $$GETHIST^DGPFAAH($$GETLAST^DGPFAAH(DGIEN),.DGPFAH)
  Q +$G(DGPFAH("ACTION"))=5
+ ;
+FLGXFER ;If flag transferred and prior to assignment chg dt, do not rpt missing TIU link
+ N DGHIEN,DGHACT
+ Q:$P($G(DGPFA("ORIGSITE")),U)=$P($G(DGPFA("OWNER")),U)
+ S DGHIEN=""
+ F  S DGHIEN=$O(DGHIENS(DGHIEN)) Q:DGHIEN=""  D
+ . S DGHACT=DGHIENS(DGHIEN)
+ . I $G(^DGPF(26.14,DGHACT,1,1,0))["Change of flag assignment ownership." S DGFLAG=$P(DGHIEN,U)
+ Q
+ ;

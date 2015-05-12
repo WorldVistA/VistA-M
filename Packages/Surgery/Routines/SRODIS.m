@@ -1,5 +1,5 @@
 SRODIS ;BIR/ADM - LIST OF OPERATIONS BY DISPOSITION ; [ 09/22/98  11:33 AM ]
- ;;3.0; Surgery ;**48,77,50**;24 Jun 93
+ ;;3.0;Surgery;**48,77,50,182**;24 Jun 93;Build 49
 BEG S (SRSP,SRQ)=0,SRORD=1 W @IOF,!,"List of Operations by Postoperative Disposition:",!!
 DATE D DATE^SROUTL(.SRSD,.SRED,.SRQ) G:SRQ END
 DISP W @IOF,!,"Print the List of Operations for which of the following ?",!!,?10,"1. All Dispositions",!,?10,"2. A Specific Disposition",!,?10,"3. No Disposition Entered",!
@@ -42,7 +42,7 @@ HDR ; print heading
  S SRDISP1=$S(SRP:$P(^SRO(131.6,SRP,0),"^"),SRP="ZZ":"DISPOSITION NOT ENTERED",1:"")
  I SRP'="" S SRTP="POSTOP DISPOSITION: "_SRDISP1 W !,?(132-$L(SRTP)\2),SRTP,?100,"DATE REVIEWED:"
  I SRP="" W !,?100,"DATE REVIEWED:"
- W !!,"DATE",?13,"PATIENT",?38,"OPERATION(S)",?90,"SURGEON",?114,"ANESTHESIA TECH",!,"CASE #",?15,"ID#",?90,"1ST ASST",?114,"IN/OUT-PAT STATUS",!,?90,"2ND ASST",?114,"OP TIME" W ! F I=1:1:132 W "-"
+ W !!,"DATE",?13,"PATIENT",?38,"OPERATION(S)",?90,"PRIMARY SURGEON",?114,"ANESTHESIA TECH",!,"CASE #",?15,"ID#",?90,"1ST ASST",?114,"IN/OUT-PAT STATUS",!,?90,"2ND ASST",?114,"OP TIME" W ! F I=1:1:132 W "-"
  I $D(SRSPEC) W !,?(132-$L(">> "_SRSPEC_" <<")\2),">> "_SRSPEC_" <<",!
  S SRHDR=1,PAGE=PAGE+1
  Q

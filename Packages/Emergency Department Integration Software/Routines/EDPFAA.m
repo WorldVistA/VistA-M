@@ -1,5 +1,5 @@
 EDPFAA ;SLC/KCM - RPC Calls to Facility ;5/2/12 3:36pm
- ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
+ ;;2.0;EMERGENCY DEPARTMENT;**6,2**;Feb 24, 2012;Build 23
  ;
 BOOT(APP) ; bootstrap appliction
  D USER
@@ -100,6 +100,10 @@ SESS ; set up session -- (OLD from version 1?)
  S X("progMode")=($D(^XUSEC("XUPROGMODE",DUZ))>0)
  S X("version")=$$VERSRV^EDPQAR
  ;
+ ;DRP Begin EDP*2.0*2 changes
+ ; added line below
+ S X("icd10ActDate")=$$IMPDATE^EDPLEX("10D")
+ ;End EDP*2.0*2 changes
  ;
  ; PATCH 6 - BWF - Adding 'defaultRoom' = true/false to identify wheteher or not a default room has been set.
  S DFLTROOM=$$GET1^DIQ(231.9,AREA,1.12,"I")

@@ -1,5 +1,6 @@
-XIPSRVR ;SFISC/SO- SERVER TO UPDATE THE POSTAL CODE(#5.12) FILE ;7:03 AM  12 Apr 2007
- ;;8.0;KERNEL;**449**;Jul 10, 1995;Build 24
+XIPSRVR ;SFISC/SO- SERVER TO UPDATE THE POSTAL CODE(#5.12) FILE ;3/12/13
+ ;;8.0;KERNEL;**449,625**;Jul 10, 1995;Build 4
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
 E1 ;
@@ -74,6 +75,7 @@ EDIT . ;
  .. N DA,DIE,DR
  .. S DA=IEN,DIE="^XIP(5.12,"
  .. S DR="1///^S X=$P(DATA,U,2);2///^S X=""`""_FIPSPTR;3///^S X=""`""_STPTR;"
+ .. I $P(DATA,U,5)="" S DR=DR_"4///^S X=""@"";" ;Ba added to reactivate a Postal code. P625
  .. S DR=DR_"5///^S X=$P(DATA,U,6);6///^S X=$P(DATA,U,7);7///^S X=$P(DATA,U,8)"
  .. F  L +^XIP(5.12,DA,0):$S($D(DILOCKTM):DILOCKTM,1:3) Q:$T  H $S($D(DILOCKTM):DILOCKTM,1:3)
  .. D ^DIE
@@ -109,6 +111,30 @@ SEND ; Send 'Results' message If & Only If there are MEMBERS
  . S WHO("G.XIP POSTAL CODE UPDATE")=""
  . D SENDMSG^XMXAPI(DUZ,MSGSBJ,.MSG,.WHO)
  . I $G(ODUZ)'="" S DUZ=ODUZ ;** Change POSTMASTER back to current user **
- . K ^TMP("XIPDATA",$J)
  . Q
+ K ^TMP("XIP DATA",$J) ; p461
+ Q
+ ;
+POST ;
+ N XU625
+ S XU625=$G(^XIP(5.12,52000,0))
+ I $P(XU625,"^",1,2)="34607^SPRING HILL" D REACT(52000,"@","34607 SPRING HILL")
+ S XU625=$G(^XIP(5.12,52003,0))
+ I $P(XU625,"^",1,2)="34610^SPRING HILL" D REACT(52003,"@","34610 SPRING HILL")
+ D DEL
+ Q
+ ;
+REACT(IEN,DATA,POSTAL) ;
+ N DIE,DA,DR
+ S DIE="^XIP(5.12,",DA=IEN,DR="4///^S X=DATA"
+ F  L +^XIP(5.12,DA,0):$S($D(DILOCKTM):DILOCKTM,1:3) Q:$T  H $S($D(DILOCKTM):DILOCKTM,1:3)
+ D MES^XPDUTL("Reactivate Postal Code "_POSTAL)
+ D ^DIE
+ L -^XIP(5.12,DA,0)
+ Q
+ ;
+DEL ;
+ ;D MES^XPDUTL("Deleting ""AD"" Cross Reference")
+ K ^XIP(5.12,"AD")
+ ;D MES^XPDUTL("Finished Deleting the ""AD"" Cross Reference")
  Q

@@ -1,5 +1,5 @@
 LREGFR ;DALOI/STAFF - Calculate Creatinine-eGFR ;02/28/12  20:15
- ;;5.2;LAB SERVICE;**289,313,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**289,313,350,449**;Sep 27, 1994;Build 4
  ;
  ; Reference to EN^DDIOL supported by IA #10142
  ; Reference to $$GET1^DIQ supported by IA #2056
@@ -68,6 +68,7 @@ STRT(DFN,LRTR) ; Start Processing the Routine
  S SEX=""
  I LRDPF=2 S SEX=$P(VADM(5),U)
  I LRDPF=67 S SEX=$$GET1^DIQ(67,DFN_",",.02,"I")
+ I LRDPF=67.1 S SEX=$$GET1^DIQ(67.1,DFN_",",2,"I")
  I SEX=""!("MF"'[SEX) D  Q
  . S $P(LRSB(LRTN),"^")="canc"
  . I $$CHKDUP(LRDFN,LRIDT,"For eGFR: **eGFR not Calculated - No Sex Recorded**") Q

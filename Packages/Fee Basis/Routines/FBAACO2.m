@@ -1,22 +1,26 @@
-FBAACO2 ;AISC/GRR - PAYMENT PROCESS FOR DUPLICATE ;7/13/2003
- ;;3.5;FEE BASIS;**4,55,61,77,116,122,133,108,135,139**;JAN 30, 1995;Build 127
+FBAACO2 ;AISC/GRR - PAYMENT PROCESS FOR DUPLICATE ;12/19/2014
+ ;;3.5;FEE BASIS;**4,55,61,77,116,122,133,108,135,139,123,157**;JAN 30, 1995;Build 1
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;FB*3.5*157 Modify file 162, Diagnosis (field 28) stuff from '///' to '////'
+ ;           since needed file 80 dx IEN is already passed back from DX 
+ ;           lookup.
+ ;
 RD S DIR(0)="Y",DIR("A")="Want this payment stored as a Medical Denial",DIR("B")="YES",DIR("?")="Enter 'Yes' to store payment entry as a denial and send a Suspension letter.  Enter 'No' to have nothing happen." D ^DIR K DIR Q:$D(DIRUT)!('Y)
  S FBDEN=1 Q
 FILE ;files sp multiple entry
  K DR S TP="" I $G(FBDEN) S FBAMTPD=0
- S DR="49///^S X=$G(FBCSID);50///^S X=$G(FBFPPSC);81///^S X=$G(FBUCI135);I $G(FBDEN) S Y=1;48;47//1;S FBUNITS=X;S:$G(FBFPPSC)="""" Y=""@11"";S FBX=$$FPPSL^FBUTL5();S:FBX=-1 Y=0;51///^S X=FBX;@11"
+ ; FB*3.5*123 - set IPAC fields .05 and .055 on the next line
+ S DR="49///^S X=$G(FBCSID);50///^S X=$G(FBFPPSC);81///^S X=$G(FBUCI135);.05////^S X=$G(FBIA);.055///^S X=$G(FBDODINV);I $G(FBDEN) S Y=1;48;47//1;S FBUNITS=X;S:$G(FBFPPSC)="""" Y=""@11"";S FBX=$$FPPSL^FBUTL5();S:FBX=-1 Y=0;51///^S X=FBX;@11"
  ; fb*3.5*116 do not enable different interest indicator values at line item level; interest indicator set at invoice level
- ;S DR(1,162.03,1)="D PPT^FBAACO1();34///^S X=$G(FBAAMM1);D POS^FBAACO1;S:'$G(FBHCFA(30)) Y=0;1;S J=X;I $G(FBDEN) S Y=2;D FEE^FBAACO0;44////^S X=FBFSAMT;45///^S X=FBFSUSD;2///^S X=FBAMTPD;S K=X"
  S DR(1,162.03,1)="34///^S X=$G(FBAAMM);D POS^FBAACO1;S:'$G(FBHCFA(30)) Y=0;1;S J=X;I $G(FBDEN) S Y=2;D FEE^FBAACO0;44////^S X=FBFSAMT;45///^S X=FBFSUSD;2///^S X=FBAMTPD;S K=X"
- ;S DR(1,162.03,2)="S:J-K=0 Y=6;3//^S X=$S(J-K:J-K,1:"""");S:'X Y=6;3.5///^S X=DT;@4;4;I X']"""" D SC^FBAACO3;S:X'=4 Y=6;22;6////^S X=DUZ"
  S DR(1,162.03,2)="S FBX=$$ADJ^FBUTL2(J-K,.FBADJ,2);S:FBX=0 Y=0;6////^S X=DUZ"
  S DR(1,162.03,3)="7////^S X=FBAABE;8////^S X=BO;13///^S X=FBAAID;14///^S X=FBAAIN;33///^S X=FBAAVID;I $G(FBDEN) S FBTST=1"
  I '$G(FBDEN) D
  . ; FB*3.5*139-JLG/JAS-ICD10 REMEDIATION - Made modifications to DR strings for ICD-10, added FBDXCHK1 and FBDXCHK2 for this
  .N FBCSVSTR S FBCSVSTR="I X]"""" S:$$INPICD9^FBCSV1(X,"""",$G(FBAADT)) Y=""@30"";"
- .N FBDXCHK1 S FBDXCHK1=";@20;S XX1=-1 S XX1=$$FBDXCHK^FBAACO2(FBAADT) S:XX1<0 Y=""@20"";28///^S X=XX1;S Y=""@6"";"
- .N FBDXCHK2 S FBDXCHK2=";@25;S XX1=-1 S XX1=$$FBDXCHK^FBAACO2(FBAADT) S:XX1<0 Y=""@25"";28///^S X=XX1;S Y=""@35"";@30;"
+ .N FBDXCHK1 S FBDXCHK1=";@20;S XX1=-1 S XX1=$$FBDXCHK^FBAACO2(FBAADT) S:XX1<0 Y=""@20"";28////^S X=XX1;S Y=""@6"";"   ;FB*3.5*157
+ .N FBDXCHK2 S FBDXCHK2=";@25;S XX1=-1 S XX1=$$FBDXCHK^FBAACO2(FBAADT) S:XX1<0 Y=""@25"";28////^S X=XX1;S Y=""@35"";@30;"    ;FB*3.5*157
  .S DR(1,162.03,4)="S:$$EXTPV^FBAAUTL5(FBPOV)=""01"" Y=""@1"";S:FB7078]""""!($D(FB583)) Y=30"_FBDXCHK1_"@6;30////^S X=FBHCFA(30);"
  .S DR(1,162.03,5)="31;32R;S Y=15;@1"_FBDXCHK2_FBCSVSTR_"@35;30////^S X=FBHCFA(30);31;15///^S X=FBPT;S FBX=$$RR^FBUTL4(.FBRRMK,2);S:FBX=0 Y=0"
  . ;end 139

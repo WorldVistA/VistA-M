@@ -1,5 +1,5 @@
 SROCAN0 ;BIR/MAM - REPORT OF CANCELLATIONS (CONT.) ;08/08/2011
- ;;3.0;Surgery;**14,94,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**14,94,176,182**;24 Jun 93;Build 49
  U IO K ^TMP("SR",$J),SRSPEC S SRD=SRSD-.0001,SRE=SRED+.9999,(SRHDR,SRQ)=0,PAGE=1
  S Y=DT D D^DIQ S SRPRINT=$E(Y,1,12)
  N SRNME,SROPP
@@ -46,7 +46,7 @@ HDR ; print heading
  I SRHDR,$E(IOST)'="P" W !!,"Press RETURN to continue, or '^' to quit:  " R X:DTIME I '$T!(X["^") S SRQ=1 Q
  W:$Y @IOF W !,?(132-$L(SRINST)\2),SRINST,?115,"PAGE: "_PAGE,!,?55,"REPORT OF CANCELLATIONS",?100,"REVIEWED BY:"
  W !,"PRINTED: ",SRPRINT,?53,"FROM ",$E(SRSD,4,5),"/",$E(SRSD,6,7),"/",$E(SRSD,2,3),"  TO ",$E(SRED,4,5),"/",$E(SRED,6,7),"/",$E(SRED,2,3),?100,"DATE REVIEWED:"
- W !!,"DATE",?15,"PATIENT",?44,"OPERATION(S)",?95,"CANCEL DATE",!,"CASE #",?15,"ID#",?95,"REASON",! F I=1:1:IOM W "="
+ W !!,"DATE",?15,"PATIENT",?44,"OPERATION(S)",?95,"CANCEL DATE",!,"CASE #",?15,"ID#",?95,"PRIMARY REASON",! F I=1:1:IOM W "="
  S (SRHDR,SRPAGE)=1,PAGE=PAGE+1 D:$D(SRSPEC) SUB1
  Q
 SUB ; print specialty sub-heading

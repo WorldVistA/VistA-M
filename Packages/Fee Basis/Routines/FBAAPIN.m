@@ -1,6 +1,6 @@
-FBAAPIN ;AISC/GRR-INVOICE DISPLAY ;7/17/2003
- ;;3.5;FEE BASIS;**4,61,122,133,108,135**;JAN 30, 1995;Build 3
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAAPIN ;AISC/GRR - INVOICE DISPLAY ;7/17/2003
+ ;;3.5;FEE BASIS;**4,61,122,133,108,135,123**;JAN 30, 1995;Build 51
+ ;;Per VA Directive 6402, this routine should not be modified.
  D DT^DICRW
 RD1 W ! S (FBHDONE,FBAAOUT,FBINTOT)=0,FBSW=0 K FBHED S DIR(0)="NO",DIR("A")="Select Invoice Number",DIR("?")="^D HELP^FBAAPIN1" D ^DIR K DIR G Q:$D(DIRUT)!'Y
  I '$D(^FBAAC("C",X)) W !,*7,"Invalid selection.",! G RD1
@@ -15,7 +15,7 @@ SET S FBFILE="^FBAAC("_J_",1,"_K_",1,"_L_",1,"_M_",1,",D=$P($G(^FBAAC(J,1,K,1,L,
  D SET2
  Q
 SET2 ;
- N FBX
+ N FBX,FBIA,FBDODINV
  S N=$S($D(^DPT(J,0)):$P(^(0),"^",1),1:""),S=$S(N]"":$P(^DPT(J,0),"^",9),1:""),V=$S($D(^FBAAV(K,0)):$P(^FBAAV(K,0),"^",1),1:"")
  S T=$P(FBYY,"^",5),D2=$P(FBYY,"^",6),ZS=$P(FBYY,"^",20),VP=$P(FBYY,"^",21)
  S T=$P($G(^FBAA(161.27,+T,0)),U)
@@ -29,6 +29,9 @@ SET2 ;
  S FBADJLA=$P(FBX,U,2)
  S FBRRMKL=$$RRL^FBAAFR(M_","_L_","_K_","_J_",")
  S FBCNTRN=$S($P(FBY3,U,8):$P($G(^FBAA(161.43,$P(FBY3,U,8),0)),U),1:"")
+ S FBIA=+$P($G(^FBAAC(J,1,K,1,L,1,M,3)),U,6)              ; IPAC agreement pointer (*123)
+ S FBIA=$S(FBIA:$P($G(^FBAA(161.95,FBIA,0)),U,1),1:"")    ; IPAC vendor agreement ID (*123)
+ S FBDODINV=$P($G(^FBAAC(J,1,K,1,L,1,M,3)),U,7)           ; DoD invoice number (*123)
  S A1=$P(FBYY,"^",2)+.0001,A2=$P(FBYY,"^",3)+.0001,A3=$P(FBYY,"^",12)+.0001,A1=$P(A1,".",1)_"."_$E($P(A1,".",2),1,2),A2=$P(A2,".",1)_"."_$E($P(A2,".",2),1,2),A3=$P(A3,".",1)_"."_$E($P(A3,".",2),1,2),FBINTOT=FBINTOT+A2+.0001
  S FBINTOT=$P(FBINTOT,".")_"."_$E($P(FBINTOT,".",2),1,2)
  S FBBN=$S($P(FBYY,"^",8)]"":$S($D(^FBAA(161.7,$P(FBYY,"^",8),0)):$P(^(0),"^",1),1:""),$P(FBYY("REJ"),"^",3)]"":$S($D(^FBAA(161.7,$P(FBYY("REJ"),"^",3),0)):$P(^(0),"^",1),1:""),1:"")
@@ -57,6 +60,7 @@ WRT I ($Y+5)>IOSL S DIR(0)="E" D ^DIR K DIR S:'Y FBAAOUT=1 Q:FBAAOUT  D HED
  ; if adjustment reasons null and suspend code = other then write desc.
  I FBADJLR="",T=4 D ^FBAAPIN1
  I FBCNTRN]"" W !!,?2,"Contract Number: ",FBCNTRN
+ I FBIA'=""!(FBDODINV'="") W !!?5,"IPAC Number: ",FBIA,?30,"DoD Invoice Number: ",FBDODINV
  D PMNT^FBAACCB2
  ; Display LI Rendering Provider data
  N FBLIPRV S FBLIPRV=$G(^FBAAC(J,1,K,1,L,1,M,3))  ; FB*3.5*135

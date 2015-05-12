@@ -1,6 +1,6 @@
 IBCNBLL ;ALB/ARH - Ins Buffer: LM main screen, list buffer entries ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435,506**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435,506,519**;21-MAR-94;Build 56
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DBIA# 642 for call to $$LST^DGMTU
  ; DBIA# 4433 for call to $$SDAPI^SDAMA301
@@ -293,5 +293,5 @@ GETKEYS(DUZ) ;
  ;
 ACTIVE(DFN) ;Check for active insurance
  N IBINSCO
- D ALL^IBCNS1(DFN,"IBINSCO",1,DT,0)
+ D ALL^IBCNS1(DFN,"IBINSCO",3,DT,0)  ;IB*2.0*519 allow WNRs and Indemnity plans
  Q +$G(IBINSCO(0))

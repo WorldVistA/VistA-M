@@ -1,5 +1,5 @@
-LEXQIP3 ;ISL/KER - Query - ICD Procedure - Save ;04/21/2014
- ;;2.0;LEXICON UTILITY;**62,73,80**;Sep 23, 1996;Build 1
+LEXQIP3 ;ISL/KER - Query - ICD Procedure - Save ;12/19/2014
+ ;;2.0;LEXICON UTILITY;**62,73,80,86**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^TMP("LEXQIPO")     SACC 2.3.2.5.1
@@ -22,6 +22,7 @@ LEXQIP3 ;ISL/KER - Query - ICD Procedure - Save ;04/21/2014
  ;    LEXMOR             Major O.R. Procedure
  ;    LEXDG              MDC/DRG
  ;    LEXELDT            External Last Date
+ ;    LEXLX              Lexicon Expressioin
  ;              
 EN ; Main Entry Point
  K ^TMP("LEXQIPO",$J) Q:'$L($G(LEXELDT))  I +($G(LEXST))<0 D FUT D:$D(^TMP("LEXQIPO",$J)) DSP^LEXQO("LEXQIPO") Q
@@ -63,6 +64,7 @@ FUL ; Full Display
  D LIM(+($G(LEXIEN)),+($G(LEXL)))
  D SD(.LEXSD,+($G(LEXL)))
  D LD(.LEXLD,+($G(LEXL)))
+ D LX(.LEXLX,+($G(LEXL)))
  D WN(.LEXWN,+($G(LEXL)))
  D MOR(.LEXMOR,+($G(LEXL)))
  D DRG(.LEXDG,+($G(LEXL)))
@@ -81,6 +83,11 @@ LD(X,LEXLEN) ;   Long Description
  N LEXI,LEXH,LEXE,LEXN,LEXT Q:'$D(X(1))  S LEXN=$G(X(1)),LEXT="  Description: ",LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN D BL,TL(LEXT)
  S LEXE=$G(X(0)),LEXT="    "_LEXE,LEXN=$G(X(2)),LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN D TL(LEXT)
  S LEXT=$J(" ",((79-+($G(LEXLEN))))) S LEXI=2 F  S LEXI=$O(X(LEXI)) Q:+LEXI'>0  S LEXN=LEXT_$G(X(LEXI)) D TL(LEXN)
+ Q
+LX(X,LEXLEN) ;   Lexicon Expression
+ N LEXI,LEXH,LEXE,LEXN,LEXT Q:'$D(X(1))  S LEXN=$G(X(1)),LEXT="  Lexicon Term:",LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN D BL,TL(LEXT)
+ S LEXE=$G(X(0)),LEXT="    "_LEXE,LEXN=$G(X(2)),LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN D TL(LEXT)
+ S LEXT=$J(" ",((79-+($G(LEXLEN))))),LEXI=2 F  S LEXI=$O(X(LEXI)) Q:+LEXI'>0  S LEXN=LEXT_$G(X(LEXI)) D TL(LEXN)
  Q
 WN(X,LEXLEN) ;   Warning
  N LEXI,LEXH,LEXE,LEXN,LEXT,LEXC Q:'$D(X(1))  S LEXC=0,LEXN=$G(X(1)),LEXT="",LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN

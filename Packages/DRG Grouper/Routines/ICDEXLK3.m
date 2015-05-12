@@ -1,5 +1,5 @@
-ICDEXLK3 ;SLC/KER - ICD Extractor - Lookup, Search ;04/21/2014
- ;;18.0;DRG Grouper;**57**;Oct 20, 2000;Build 1
+ICDEXLK3 ;SLC/KER - ICD Extractor - Lookup, Search ;12/19/2014
+ ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
  ;               
  ; Global Variables
  ;    ^ICDS(              N/A
@@ -90,7 +90,7 @@ CD(TXT,ROOT,CDT,SYS,VER,OUT) ; Lookup Code - Versioned
  Q
 LK2() ; Lookup - Part 2
  N FILE,IEN,INP1,INP2,KEY,SUB,NUM,NXT,OK,ORD,SEQ,TDT,VCC,VCD,VDS,VSD,VST,PR,PARS,LOR,VII,VNM,Y
- S TXT=$$TM($TR($G(TXT),"#"," ")) Q:'$L(TXT) 0  S ROOT=$$ROOT^ICDEX(ROOT) Q:'$L(ROOT) 0
+ S TXT=$$TM($TR($G(TXT),"#"," ")) Q:'$L(TXT) 0  S ROOT=$$ROOT^ICDEX($G(ROOT)) Q:'$L(ROOT) 0
  S FILE=$$FILE^ICDEX(ROOT) Q:"^80^80.1^"'[("^"_FILE_"^") 0
  S SUB=$TR(ROOT,"^(","") Q:'$L(SUB) 0  K ^TMP(SUB,$J) S CDT=$$CDT($G(CDT))
  S SYS=$S($L($G(SYS)):$$SYS^ICDEX($G(SYS)),1:""),VER=+($G(VER))

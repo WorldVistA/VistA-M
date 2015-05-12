@@ -1,5 +1,5 @@
 RORX013 ;HOIFO/SG - DIAGNOSIS CODES REPORT ;6/21/06 3:05pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,19,21**;Feb 17, 2006;Build 45
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -9,6 +9,8 @@ RORX013 ;HOIFO/SG - DIAGNOSIS CODES REPORT ;6/21/06 3:05pm
  ;----------- ---------- ----------- ----------------------------------------
  ;ROR*1.5*19  FEB 2012   J SCOTT     Support for ICD-10 Coding System.
  ;ROR*1.5*19  FEB 2012   J SCOTT     Change entry point ICD9LST to ICDLST. 
+ ;ROR*1.5*21  SEP 2013   T KOPP      Add ICN column if Additional Identifier
+ ;                                    requested.
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -24,7 +26,7 @@ RORX013 ;HOIFO/SG - DIAGNOSIS CODES REPORT ;6/21/06 3:05pm
  ;
 HEADER(PARTAG) ;
  ;;ICDLST(#,CODE,DIAG,NP,NC)
- ;;PATIENTS(#,NAME,LAST4,DOD,PTICDL(CODE,DIAG,DATE,SOURCE))
+ ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PTICDL(CODE,DIAG,DATE,SOURCE))
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)

@@ -1,5 +1,5 @@
 LRHYBC1 ;DALOI/HOAK - LAB PHLEB AND COLLECTION TIME UPDATER ;11/8/10 1:50pm
- ;;5.2;LAB SERVICE;**405,417,430**;Sep 27, 1994;Build 2
+ ;;5.2;LAB SERVICE;**405,417,430,446**;Sep 27, 1994;Build 1
  ;
  ; This routine will be used to capture the phlebotomist and the
  ; specimen collection time.
@@ -91,7 +91,10 @@ SETFILE ;
  S LRUNC=1
  S LRORDT1=$P(^LRO(68,LRAA,1,LRAD,1,LRAN,0),U,4)
  S LRHYD123=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,.3))
- ;  mdofied by Hoak per Joe for prior to free t-4
+ I $G(LRHYD123)>0,$D(^LRHY(69.87,"B",LRHYD123)) D  Q
+ . W !,"Sorry, Collection Time already recorded!!.",! H 2
+ . I $G(LRCNTX) S LRCNTX=LRCNTX-1
+ ;  modified by Hoak per Joe for prior to free t-4
  I '$O(^LRHY(69.87,"B",LRHYD123,0)) D
  .  S DA=$P(^LRHY(69.87,0),U,3)
  .  S DA=DA+1
@@ -241,6 +244,7 @@ LABIN ;
  S LRUID=X
  S DA=$O(^LRHY(69.87,"B",LRUID,0))
  I '$G(DA) W !,"Incorrect UID try again..." H 2 G LABIN
+ I $D(^LRHY(69.87,DA,10)) W !,"Sorry, Lab Arrival Time already recorded!!",! H 2 G LABIN
  D NOW^%DTC K LRLABIN S LRLABIN=%
  K DIE
  S DIE=69.87

@@ -1,7 +1,8 @@
 PSOPATLK ;BIR/JAM - Patient Lookup utility ;7/21/08
- ;;7.0;OUTPATIENT PHARMACY;**326,348**;DEC 1997;Build 50
+ ;;7.0;OUTPATIENT PHARMACY;**326,348,438**;DEC 1997;Build 4
  ;
- ; This API looks for a patient using a prescription number, barcode
+ ; This API looks for a patient using a prescription number, barcode,
+ ; universal Member ID number from the patient's VHIC Card
  ; or the registration standard patient lookup.
  ;
 EN ;Entry point - Prompts for Patient, Prescription Number or Barcode
@@ -27,6 +28,9 @@ PATHLP ;Help text for patient prompt
  .W !?1,"Enter the prescription number prefixed by a # (ex. #XXXXXXX) or"
  .W !?1,"Wand the barcode of the prescription. The format of the barcode is"
  .W !?1,"NNN-NNNNNNN where the first 3 digits are your station number."
+ .W !?1,"         - OR -           "
+ .W !?1,"Enter the universal Member ID number from the patient's VHIC Card"
+ .W !?1,"or wand the barcode of the VHIC card"
  .W !?1,"         - OR -           "
  S DIC="^DPT(",DIC(0)="QZEXN" D ^DIC
  Q

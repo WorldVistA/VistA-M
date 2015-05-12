@@ -1,5 +1,5 @@
 RORX008A ;HOIFO/BH,SG,VAC - VERA REIMBURSEMENT REPORT ;4/7/09 2:08pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21**;Feb 17, 2006;Build 45
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -12,6 +12,8 @@ RORX008A ;HOIFO/BH,SG,VAC - VERA REIMBURSEMENT REPORT ;4/7/09 2:08pm
  ;ROR*1.5*13   DEC  2010   A SAUNDERS   User can select specific patients,
  ;                                      clinics, or divisions for the report.
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
+ ;                                      additional identifier option selected
  ;                                      
  ;******************************************************************************
  ;******************************************************************************
@@ -32,7 +34,7 @@ QUERY(FLAGS) ;
  N RORCDSTDT     ; Start date for clinic/division utilization search
  N RORCDENDT     ; End date for clinic/division utilization search
  ;
- N CLINAIDS,CMPXCARE,CNT,CNTARV,CNTBASIC,CNTCMPX,ECNT,IEN,NAME,PATIEN,RC,RORIEN,RORXDST,TMP,UTLCHK,VA,VADM,VAERR,XREFNODE
+ N CLINAIDS,CMPXCARE,CNT,CNTARV,CNTBASIC,CNTCMPX,ECNT,FLAG,IEN,NAME,PATIEN,RC,RCC,RORIEN,RORXDST,TMP,UTLCHK,VA,VADM,VAERR,XREFNODE
  ;
  S XREFNODE=$NA(^RORDATA(798,"AC",+RORREG))
  S RORPTN=$$REGSIZE^RORUTL02(+RORREG)  S:RORPTN<0 RORPTN=0
@@ -101,6 +103,7 @@ QUERY(FLAGS) ;
  . . S TMP=$$DATE^RORXU002(VADM(6)\1)
  . . S TMP=TMP_U_($D(RORXDST("ARV"))>0)_U_CMPXCARE_U_CLINAIDS
  . . S ^TMP("RORX008",$J,"PAT",PATIEN)=VA("BID")_U_VADM(1)_U_TMP
+ . . S $P(^TMP("RORX008",$J,"PAT",PATIEN),U,6)=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PATIEN),1:"")
  ;
  ;--- Totals
  S ^TMP("RORX008",$J,"PAT")=CNTBASIC_U_CNTCMPX_U_CNTARV
@@ -163,6 +166,7 @@ STORE(REPORT) ;
  . . D ADDVAL^RORTSK11(RORTSK,"AIDSTAT",+$P(BUF,U,6),ITEM,1)
  . . D ADDVAL^RORTSK11(RORTSK,"ARV",+$P(BUF,U,4),ITEM,1)
  . . D ADDVAL^RORTSK11(RORTSK,"COMPLEX",+$P(BUF,U,5),ITEM,1)
+ . . I $$PARAM^RORTSK01("PATIENTS","ICN") D ADDVAL^RORTSK11(RORTSK,"ICN",$P(BUF,U,6),ITEM,1)
  ;
  ;--- Summary
  S BUF=@NODE@("PAT")

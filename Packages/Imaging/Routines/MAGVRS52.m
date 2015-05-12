@@ -1,5 +1,5 @@
-MAGVRS52 ;WOIFO/EdM/DAC/NST - Imaging RPCs for Query/Retrieve ; 29 Aug 2013  2:00 PM
- ;;3.0;IMAGING;**118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGVRS52 ;WOIFO/EdM/DAC/NST - Imaging RPCs for Query/Retrieve ; 21 Aug 2014  8:05 AM
+ ;;3.0;IMAGING;**118,145**;Mar 19, 2002;Build 7;Aug 21, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -35,20 +35,17 @@ AETITLE(OUT,RTITLE,LOCATION) ; MAG DICOM CHECK AE TITLE RPC
  . S AEINST=$G(^MAGV(2006.9192,AEIEN,0))
  . S LOCIEN=$P(AEINST,U,3)
  . Q:LOCIEN=""
+ . S STATION=$$STA^XUAF4(LOCIEN) ; P145 DAC
  . ; Perform case-insensitive DICOM AE Title check
  . S AEINST=$$UP^XLFSTR(AEINST) ; IA #10104
  . S RTITLE=$$UP^XLFSTR(RTITLE) ; IA #10104
- . I $P(AEINST,U,6)=RTITLE D
+ . I (LOCATION=STATION)&(($P(AEINST,U,6))=RTITLE) D  ; P145 DAC
  . . ; If 1st match write all AE Instance info and Service Role
  . . I MATCH=0 D AEINST(.OUT,AEIEN,AEINST,LOCATION) S OUT(1)=OUT(1)_"SERVICE MESSAGE="
  . . S I=I+1
  . . S MATCH=MATCH+1
  . . ; Add Services and Roles to output
  . . D AESECMX(.OUT,AEIEN)
- . . ;--- Add N-Response Delay (#13) in seconds, N-Response Retries (#14) *79.
- . . S OUT(1)=OUT(1)_OSEP_(60*$$GET1^DIQ(2006.9192,AEIEN,13,"I"))
- . . S OUT(1)=OUT(1)_OSEP_(1*$$GET1^DIQ(2006.9192,AEIEN,14,"I"))
- . . Q
  . Q
  I MATCH=0 S OUT(1)="-2,No entry for AE Title """_RTITLE_""" at location """_LOCATION_"""."
  Q

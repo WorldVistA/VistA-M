@@ -1,5 +1,5 @@
 RORX006A ;HOIFO/BH,SG,VAC - LAB UTILIZATION (QUERY & SORT) ;4/7/09 2:07pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -16,7 +16,9 @@ RORX006A ;HOIFO/BH,SG,VAC - LAB UTILIZATION (QUERY & SORT) ;4/7/09 2:07pm
  ;ROR*1.5*13   DEC  2010   A SAUNDERS   User can select specific patients,
  ;                                      clinics, or divisions for the report.
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
- ;                                      
+ ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
+ ;                                       requested.
+ ;
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -63,7 +65,7 @@ LABDATA(DFN) ;
  S @DST@("RES1",PTNR,RORPNAME,DFN)=""
  ;
  ;--- Other totals
- S @DST@("PAT",DFN)=RORLAST4_U_RORDOD
+ S @DST@("PAT",DFN)=RORLAST4_U_RORDOD_U_$G(RORICN)
  S @DST@("PAT",DFN,"R")=PTNR_U_PTNT
  S @DST@("PAT")=$G(@DST@("PAT"))+1
  S @DST@("RES")=$G(@DST@("RES"))+PTNR
@@ -109,6 +111,7 @@ QUERY(FLAGS) ;
  N RORLAST4      ; Last 4 digits of the current patient's SSN
  N RORPNAME      ; Name of the current patient
  N RORPTN        ; Number of patients in the registry
+ N RORICN        ; National ICN of patient
  ;
  N CNT,ECNT,IEN,IENS,PATIEN,RC,TMP,VA,VADM,XREFNODE
  N RCC,FLAG
@@ -149,6 +152,7 @@ QUERY(FLAGS) ;
  . D VADEM^RORUTL05(PATIEN,1)
  . S RORPNAME=VADM(1),RORLAST4=VA("BID")
  . S RORDOD=$$DATE^RORXU002($P(VADM(6),U)\1)
+ . I $$PARAM^RORTSK01("PATIENTS","ICN") S RORICN=$$ICN^RORUTL02(PATIEN)
  . ;
  . ;--- Get the Lab data
  . S RC=$$LABDATA(PATIEN)

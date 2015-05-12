@@ -1,5 +1,5 @@
 SDM2A ;ALB/OG - MAKE APPOINTMENT - overflow routine  ;24 Jun 2008 11:57 AM
- ;;5.3;Scheduling;**446,528,567,594**;Aug 13 1993;Build 3
+ ;;5.3;Scheduling;**446,528,567,594,611**;Aug 13 1993;Build 9
  ;
  ;
 WL(SC) ;Wait List Hook/teh patch 263 ;SD/327 passed 'SC'
@@ -79,12 +79,16 @@ DELETE ; SD*567 delete bad record
  Q
  ;
 WLCL120A(SDWLAPDT,SDDATE1,SC) ;
- N %DT,DIR,X,X1,X2,Y,SDRET
+ N %DT,DIR,X,X1,X2,Y,SDRET,SDWLDFN
  Q:$$GET1^DIQ(44,SC,2502,"I")="Y" 1  ; Non-count clinic. Allow > 120 days.
  S X=SDWLAPDT,%DT="TXF" D ^%DT
  Q:Y=-1 1
  S X1=Y,X2=SDDATE1 D ^%DTC
  I X'>120 Q 1
+ ;SD*5.3*611 will not allow a prompt to create a wait list entry when clinic has an inactive date
+ ;in the SD WAIT LIST LOCATION (#409.3) file.
+ S SDWLDFN=$O(^SDWL(409.32,"B",+SC,0))
+ I SDWLDFN'="",$P($G(^SDWL(409.32,SDWLDFN,0)),U,4)'="" Q 1
  S DIR(0)="Y",DIR("B")="YES"
  S DIR("A")="Add to EWL",DIR("A",1)="The date is more than 120 days beyond the Desired Date"
  W ! D ^DIR

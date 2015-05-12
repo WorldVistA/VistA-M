@@ -1,6 +1,6 @@
-PSNPSS ;BIR/WRT-kills off orderable item ; 04/18/01 14:58
- ;;4.0; NATIONAL DRUG FILE;**33,51**; 30 Oct 98
- ;References to ^PSDRUG supported by DBIAs #221 and #2352
+PSNPSS ;BIR/WRT-kills off orderable item ; 12/26/13 14:58
+ ;;4.0;NATIONAL DRUG FILE;**33,51,365**;30 Oct 98;Build 9
+ ;References to ^PSDRUG supported by DBIAs #221 and #2192
  ;Reference to ^PS(50.606 supported by DBIA #2174
  ;Reference to ^PS(50.7 supported by DBIA #2180
  ;Reference to ^PS(52.6 supported by DBIA #1231
@@ -13,9 +13,9 @@ KILLOI S ^TMP("PSNDP",$J,$P(^PSDRUG(PSNB,0),"^",1))="",DA=PSNB,DIE="^PSDRUG(",DR
  Q
 SOL I $D(^PS(52.7,"AC",PSNB)) F BBC=0:0 S BBC=$O(^PS(52.7,"AC",PSNB,BBC)) Q:'BBC  S SOLITM=$P(^PS(52.7,BBC,0),"^",11) I SOLITM]"" I $D(^PS(52.7,"AOI",SOLITM,BBC)) D SOLCK
  Q
-SOLCK S IVDFPTR=$P(^PS(50.7,SOLITM,0),"^",2),IVDF=$P(^PS(50.606,IVDFPTR,0),"^",1) I IVDF'=DFM,$P(^PS(52.7,BBC,0),"^",11)]"" S SOLNM=$P(^PS(52.7,BBC,0),"^",1),^TMP("PSNSL",$J,SOLNM)="" S DA=BBC,DIE="^PS(52.7,",DR="9///"_"@" D ^DIE
+SOLCK S IVDFPTR=$P(^PS(50.7,SOLITM,0),"^",2),IVDF=$P(^PS(50.606,IVDFPTR,0),"^",1) I IVDFPTR'=DFM,$P(^PS(52.7,BBC,0),"^",11)]"" S SOLNM=$P(^PS(52.7,BBC,0),"^",1),^TMP("PSNSL",$J,SOLNM)="" S DA=BBC,DIE="^PS(52.7,",DR="9///"_"@" D ^DIE
  Q
 ADD I $D(^PS(52.6,"AC",PSNB)) F BBC=0:0 S BBC=$O(^PS(52.6,"AC",PSNB,BBC)) Q:'BBC  S ADDITM=$P(^PS(52.6,BBC,0),"^",11) I ADDITM]"" I $D(^PS(52.6,"AOI",ADDITM,BBC)) D ADDCK
  Q
-ADDCK S IVDFPTR=$P(^PS(50.7,ADDITM,0),"^",2),IVDF=$P(^PS(50.606,IVDFPTR,0),"^",1) I IVDF'=DFM,$P(^PS(52.6,BBC,0),"^",11)]"" S ADDNM=$P(^PS(52.6,BBC,0),"^",1),^TMP("PSNAD",$J,ADDNM)="" S DA=BBC,DIE="^PS(52.6,",DR="15///"_"@" D ^DIE
+ADDCK S IVDFPTR=$P(^PS(50.7,ADDITM,0),"^",2),IVDF=$P(^PS(50.606,IVDFPTR,0),"^",1) I IVDFPTR'=DFM,$P(^PS(52.6,BBC,0),"^",11)]"" S ADDNM=$P(^PS(52.6,BBC,0),"^",1),^TMP("PSNAD",$J,ADDNM)="" S DA=BBC,DIE="^PS(52.6,",DR="15///"_"@" D ^DIE
  Q

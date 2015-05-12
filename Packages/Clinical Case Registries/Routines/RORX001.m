@@ -1,5 +1,5 @@
 RORX001 ;HOIFO/SG,VAC - LIST OF REGISTRY PATIENTS ;4/16/09 11:53am
- ;;1.5;CLINICAL CASE REGISTRIES;**8,10,14,17,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,10,14,17,19,21**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -20,6 +20,8 @@ RORX001 ;HOIFO/SG,VAC - LIST OF REGISTRY PATIENTS ;4/16/09 11:53am
  ;ROR*1.5*14   APR  2011   A SAUNDERS   Added column and data for 'FIRSTDIAG'.
  ;ROR*1.5*17   AUG  2011   C RAY        Added params 'CONFIRM_AFTER', 'CONFDT_AFTER' 
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
+ ;                                      additional identifier option selected
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -48,6 +50,8 @@ HEADER(PARTAG) ;
  . Q:'$$OPTCOL^RORXU006(COL)
  . S TMP=$$ADDVAL^RORTSK11(RORTSK,"COLUMN",,COLUMNS)
  . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME",COL)
+ ; --- ICN if selected must be last column on report
+ I $$PARAM^RORTSK01("PATIENTS","ICN") D ICNHDR^RORXU006(RORTSK,COLUMNS)
  ;---
  S:$$OPTCOL^RORXU006("CONFDT") RORFLDS=RORFLDS_";2"
  S:$$OPTCOL^RORXU006("SELDT") RORFLDS=RORFLDS_";3.2"
@@ -107,6 +111,10 @@ PATIENT(IENS,PARTAG) ;
  . S TMP=$G(RORBUF(799.4,IENS,12.08,"I"))
  . S TMP=$S($G(TMP)=1:"Yes",$G(TMP)=0:"No",$G(TMP)=9:"Unknown",1:"")
  . D ADDVAL^RORTSK11(RORTSK,"FIRSTDIAG",$G(TMP),PTAG,1)
+ ;--- ICN
+ I $$PARAM^RORTSK01("PATIENTS","ICN") D
+ . S:'$D(DFN) DFN=$G(RORBUF(798,IENS,.01,"I"))
+ . D ICNDATA^RORXU006(RORTSK,DFN,PTAG)
  ;
  Q 0
  ;
@@ -209,4 +217,7 @@ SELRULES(IENS,PARTAG) ;
  D:CNT'>0
  . S RT=$$ADDVAL^RORTSK11(RORTSK,"RULE",,SRLTAG)
  . D ADDATTR^RORTSK11(RORTSK,RT,"DESCR","Manual Entry")
+ ;
  Q 0
+ ;
+         

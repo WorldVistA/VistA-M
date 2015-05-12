@@ -1,5 +1,5 @@
-LEXXM2 ;ISL/KER - Convert Text to Mix Case (2) ;04/21/2014
- ;;2.0;General Lexicon Utilities;**80**;Sep 23, 1996;Build 1
+LEXXM2 ;ISL/KER - Convert Text to Mix Case (2) ;12/19/2014
+ ;;2.0;General Lexicon Utilities;**80,86**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    None
@@ -12,13 +12,15 @@ LEXXM2 ;ISL/KER - Convert Text to Mix Case (2) ;04/21/2014
  ;     Y Set and returned to LEXXM
  ;               
 T2 ; 2 Characters
- N XU,CHR,PRE,ORG,NXT S ORG=$G(LEXORG),PRE=$G(LEXPRE),NXT=$G(LEXNXT),UIN=$G(UIN) S XU=$$UP(X),CHR=$E(XU,1)
+ N XU,CHR,PRE,ORG,NXT,USE S ORG=$G(LEXORG),PRE=$G(LEXPRE),NXT=$G(LEXNXT),UIN=$G(UIN),USE=$G(LEXUSE) S XU=$$UP(X),CHR=$E(XU,1)
  ;   Exceptions
  S:$E(XU,1)?1U&($E(XU,2)?1N) Y=XU Q:$L($G(Y))  S:$E(XU,1)?1N&($E(XU,2)?1U) Y=XU Q:$L($G(Y))
  I $E(XU,($L(XU)-1),$L(XU))="CC",$E(XU,($L(XU)-2))?1N S Y=$$LO(XU) Q
  I XU="SO",$E(NXT,1,7)="STATED " S Y=$$LO(X) Q
  S:$G(LEXCTL)["OR ROOM"!($G(LEXCTL)["OR-ROOM") Y=XU Q:$L($G(Y))
  S:XU="ST"&($G(PRE)=1) Y="st" S:XU="ND"&($G(PRE)=2) Y="nd" S:XU="RD"&($G(PRE)=3) Y="rd" S:XU="TH"&(+($G(PRE))>3) Y="th" Q:$L($G(Y))
+ S:XU="KR"&($G(UIN)["KRYPTON")&($G(UIN)["KR-") Y=XU Q:$L($G(Y))
+ S:XU="CO"&($G(UIN)["COBALT")&($G(UIN)["CO-") Y=XU Q:$L($G(Y))
  S:XU="CO"&($G(UIN)["CO-") Y=$$MX(XU) Q:$L($G(Y))
  S:XU="SO"&(($G(UIN)["SO STATED")!($G(UIN)["SO DESCRIBED")) Y=$$LO(XU) Q:$L($G(Y))
  S:XU="SO"&(($G(UIN)["SHOULDER ORTHOSIS")!($G(UIN)["SUPERIOR OBLIQUE")) Y=XU Q:$L($G(Y))
@@ -83,3 +85,8 @@ UP(X) ; Uppercase
  Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 MX(X) ; Mix Case
  Q $TR($E(X,1),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")_$TR($E(X,2,$L(X)),"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")
+TRIM(X) ; Trim Spaces
+ S X=$G(X) F  Q:$E(X,1)'=" "  S X=$E(X,2,$L(X))
+ F  Q:$E(X,$L(X))'=" "  S X=$E(X,1,($L(X)-1))
+ N LEXCTL,LEXNXT,LEXORG,LEXPRE,LEXUSE,UIN,Y
+ Q X

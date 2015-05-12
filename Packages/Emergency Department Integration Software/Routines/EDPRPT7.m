@@ -1,5 +1,6 @@
 EDPRPT7 ;SLC/MKB - Exposure Report ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+ ;;2.0;EMERGENCY DEPARTMENT;**2**;Feb 24, 2012;Build 23
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EXP(IEN,CSV) ; Get Exposure Report for IEN at EDPSITE
  S IEN=+$G(IEN)  Q:IEN<1  Q:'$D(^EDP(230,IEN,0))
@@ -92,7 +93,9 @@ ADD(LOG) ; Add row to XML for each room used during visit
  . ;TDP - Patch 2 mod to capture all dispositions
  . S X=$P($G(^EDP(230,LOG,1)),U,2),ROW("disposition")=$S($$ECODE^EDPRPT(X)'="":$$ECODE^EDPRPT(X),1:$$DISP^EDPRPT(X))
  . S X0=$G(^EDP(230,LOG,0)),X=$P(X0,U,10),ROW("arrival")=$$ENAME^EDPRPT(X)
- . S X=$$DXPRI^EDPQPCE(+$P(X0,U,3),LOG),ROW("dx")=$P(X,U,2)
+ . ;Begin EDP*2.0*2 changes - drp added icd and icdtype column headers to line below
+ . S X=$$DXPRI^EDPQPCE(+$P(X0,U,3),LOG),ROW("dx")=$P(X,U,2),ROW("icd")=$P(X,U,1),ROW("icdType")=$P(X,U,3)
+ . ;End EDP*2.0*2 changes - drp
  . S LABS=$D(^EDP(230,LOG,8,"AC","L")),XRAY=$D(^("R")),X=""
  . I LABS!XRAY D  S X=X_" ordered"
  .. I LABS&XRAY S X="Labs and Imaging" Q

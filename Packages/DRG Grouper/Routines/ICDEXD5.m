@@ -1,5 +1,5 @@
-ICDEXD5 ;SLC/KER - ICD Extractor - DRG APIs (cont) ;04/21/2014
- ;;18.0;DRG Grouper;**57**;Oct 20, 2000;Build 1
+ICDEXD5 ;SLC/KER - ICD Extractor - DRG APIs (cont) ;12/19/2014
+ ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
  ;               
  ; Global Variables
  ;    ^DG(45.86)          ICR   5821
@@ -218,53 +218,8 @@ TM(X) ; Trim Spaces
  S X=$G(X) Q:X="" X F  Q:$E(X,1)'=" "  S X=$E(X,2,$L(X))
  F  Q:$E(X,$L(X))'=" "  S X=$E(X,1,($L(X)-1))
  F  Q:X'["  "  S X=$P(X,"  ",1)_" "_$P(X,"  ",2,229)
+ N ICDOP
  Q X
-DRGN(CODE) ; Return the IEN of DRG
- ;
- ;   Input:  
- ;   
- ;     CODE     DRG code
- ;       
- ;  Output:  
- ;  
- ;     $$DRGN   IEN of DRG code
- ;       
- ;              or 
- ;       
- ;              -1 on error
- ;
- Q:$G(CODE)="" -1
- N COD S COD=+$O(^ICD("B",CODE,0))
- Q $S(COD>0:COD,1:-1)
- Q
-DRGC(IEN) ; DRG Code
- ;
- ; Input:
- ; 
- ;    IEN      Internal Entry Number file 80.2
- ;
- ; Output:
- ; 
- ;    $$DRGC   Code (field .01)
- ;
- ; Replaces ICR 370
- ; 
- S IEN=+($G(IEN)) Q:'$D(^ICD(+IEN,0)) ""
- Q $P($G(^ICD(+IEN,0)),"^",1)
-DRGW(IEN) ; DRG Weighted Work Unit (WWU)
- ;
- ; Input:
- ; 
- ;    IEN      Internal Entry Number file 80.2
- ;
- ; Output:
- ; 
- ;    $$WT     Weight
- ;
- ; Replaces ICR 48
- ; 
- S IEN=+($G(IEN)) Q:'$D(^ICD(+IEN,0)) ""
- Q $P($G(^ICD(+IEN,0)),"^",2)
 CARD(X) ; Implants/Insertion Cardio Device (EN1^ICDDRG5)
  N SO S X="^" S:$D(ICDOP(" 00.50")) $P(X,"^",2)=1 S:$D(ICDOP(" 00.52"))&($D(ICDOP(" 00.53"))) $P(X,"^",2)=1
  I $D(ICDOP(" 37.70"))!($D(ICDOP(" 37.71")))!($D(ICDOP(" 37.73"))) D  Q X

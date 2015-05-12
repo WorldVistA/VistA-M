@@ -1,12 +1,12 @@
 SRSCHUN ;BIR/ADM - MAKE UNREQUESTED OPERATION ; 31 Jul 2014  2:41 PM
- ;;3.0;Surgery;**3,67,68,88,103,100,144,158,175,177**;24 Jun 93;Build 89
+ ;;3.0;Surgery;**3,67,68,88,103,100,144,158,175,177,182**;24 Jun 93;Build 49
 MUST S SRLINE="" F I=1:1:80 S SRLINE=SRLINE_"="
  W @IOF W:$D(SRCC) !,?29,$S(SRSCON=1:"FIRST",1:"SECOND")_" CONCURRENT CASE" W !,?14,"SCHEDULE UNREQUESTED OPERATION: REQUIRED INFORMATION",!!,SRNM_" ("_$G(SRSSN)_")",?65,SREQDT,!,SRLINE,!
 ODP N SRSODP K DIR S DIR(0)="130,616",DIR("A")="Desired Procedure Date" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G END
  I Y=""!(X["^")!(Y<SRSDATE) W !!,"The Desired Procedure Date MUST be entered and should be greater than or equal  to date of operation.  Enter '^' to exit.",! G ODP
  S SRSODP=+Y
 SURG ; surgeon
- K DIR S DIR(0)="130,.14",DIR("A")="Surgeon" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G END
+ K DIR S DIR(0)="130,.14",DIR("A")="Primary Surgeon" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G END
  I Y=""!(X["^") W !!,"To create a surgical case, a surgeon MUST be selected.  Enter '^' to exit.",! G SURG
  S SRSDOC=+Y
 CASE ; create case in SURGERY file

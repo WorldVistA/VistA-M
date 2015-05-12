@@ -1,142 +1,62 @@
-IBDEI07F ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI07F ; ; 09-FEB-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQ(358.5)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3313,1,5,0)
- ;;=5^Neuropathic Pain
- ;;^UTILITY(U,$J,358.3,3313,2)
- ;;=Neuropathic Pain^82605
- ;;^UTILITY(U,$J,358.3,3314,0)
- ;;=053.19^^33^276^32
- ;;^UTILITY(U,$J,358.3,3314,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3314,1,4,0)
- ;;=4^053.19
- ;;^UTILITY(U,$J,358.3,3314,1,5,0)
- ;;=5^Post-Herpetic Neuralgia
- ;;^UTILITY(U,$J,358.3,3314,2)
- ;;=^266544
- ;;^UTILITY(U,$J,358.3,3315,0)
- ;;=310.9^^33^276^26
- ;;^UTILITY(U,$J,358.3,3315,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3315,1,4,0)
- ;;=4^310.9
- ;;^UTILITY(U,$J,358.3,3315,1,5,0)
- ;;=5^Organic Brain Syndrome
- ;;^UTILITY(U,$J,358.3,3315,2)
- ;;=^123952
- ;;^UTILITY(U,$J,358.3,3316,0)
- ;;=332.0^^33^276^28
- ;;^UTILITY(U,$J,358.3,3316,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3316,1,4,0)
- ;;=4^332.0
- ;;^UTILITY(U,$J,358.3,3316,1,5,0)
- ;;=5^Parkinson's Disease
- ;;^UTILITY(U,$J,358.3,3316,2)
- ;;=Parkinson's Disease^304847
- ;;^UTILITY(U,$J,358.3,3317,0)
- ;;=250.60^^33^276^29
- ;;^UTILITY(U,$J,358.3,3317,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3317,1,4,0)
- ;;=4^250.60
- ;;^UTILITY(U,$J,358.3,3317,1,5,0)
- ;;=5^Peripheral Neuropathy, Diabetic
- ;;^UTILITY(U,$J,358.3,3317,2)
- ;;=^267841^357.2
- ;;^UTILITY(U,$J,358.3,3318,0)
- ;;=356.9^^33^276^31
- ;;^UTILITY(U,$J,358.3,3318,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3318,1,4,0)
- ;;=4^356.9
- ;;^UTILITY(U,$J,358.3,3318,1,5,0)
- ;;=5^Peripheral Neuropathy, Unsp
- ;;^UTILITY(U,$J,358.3,3318,2)
- ;;=^123931
- ;;^UTILITY(U,$J,358.3,3319,0)
- ;;=780.2^^33^276^39
- ;;^UTILITY(U,$J,358.3,3319,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3319,1,4,0)
- ;;=4^780.2
- ;;^UTILITY(U,$J,358.3,3319,1,5,0)
- ;;=5^Syncope Or Presyncope
- ;;^UTILITY(U,$J,358.3,3319,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,3320,0)
- ;;=724.3^^33^276^35
- ;;^UTILITY(U,$J,358.3,3320,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3320,1,4,0)
- ;;=4^724.3
- ;;^UTILITY(U,$J,358.3,3320,1,5,0)
- ;;=5^Sciatica
- ;;^UTILITY(U,$J,358.3,3320,2)
- ;;=^108484
- ;;^UTILITY(U,$J,358.3,3321,0)
- ;;=780.39^^33^276^37
- ;;^UTILITY(U,$J,358.3,3321,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3321,1,4,0)
- ;;=4^780.39
- ;;^UTILITY(U,$J,358.3,3321,1,5,0)
- ;;=5^Seizure Disorder NOS
- ;;^UTILITY(U,$J,358.3,3321,2)
- ;;=^28162
- ;;^UTILITY(U,$J,358.3,3322,0)
- ;;=782.0^^33^276^27
- ;;^UTILITY(U,$J,358.3,3322,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3322,1,4,0)
- ;;=4^782.0
- ;;^UTILITY(U,$J,358.3,3322,1,5,0)
- ;;=5^Parasthesia
- ;;^UTILITY(U,$J,358.3,3322,2)
- ;;=Parasthesia^35757
- ;;^UTILITY(U,$J,358.3,3323,0)
- ;;=435.9^^33^276^41
- ;;^UTILITY(U,$J,358.3,3323,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3323,1,4,0)
- ;;=4^435.9
- ;;^UTILITY(U,$J,358.3,3323,1,5,0)
- ;;=5^Transient Ischemic Attack
- ;;^UTILITY(U,$J,358.3,3323,2)
- ;;=^21635
- ;;^UTILITY(U,$J,358.3,3324,0)
- ;;=354.2^^33^276^43
- ;;^UTILITY(U,$J,358.3,3324,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3324,1,4,0)
- ;;=4^354.2
- ;;^UTILITY(U,$J,358.3,3324,1,5,0)
- ;;=5^Ulnar Nerve Entrapment
- ;;^UTILITY(U,$J,358.3,3324,2)
- ;;=^268506
- ;;^UTILITY(U,$J,358.3,3325,0)
- ;;=729.1^^33^276^18
- ;;^UTILITY(U,$J,358.3,3325,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3325,1,4,0)
- ;;=4^729.1
- ;;^UTILITY(U,$J,358.3,3325,1,5,0)
- ;;=5^Fibromyalgia
- ;;^UTILITY(U,$J,358.3,3325,2)
- ;;=Fibromyalgia^80160
- ;;^UTILITY(U,$J,358.3,3326,0)
- ;;=438.20^^33^276^6
- ;;^UTILITY(U,$J,358.3,3326,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3326,1,4,0)
- ;;=4^438.20
- ;;^UTILITY(U,$J,358.3,3326,1,5,0)
- ;;=5^CVA w/Hemiplegia (late effect)
- ;;^UTILITY(U,$J,358.3,3326,2)
- ;;=CVA w/Hemiplegia^317910
- ;;^UTILITY(U,$J,358.3,3327,0)
- ;;=438.12^^33^276^5
- ;;^UTILITY(U,$J,358.3,3327,1,0)
- ;;=^358.31IA^5^2
+ ;;^DIC(358.5,0,"GL")
+ ;;=^IBE(358.5,
+ ;;^DIC("B","IMP/EXP DATA FIELD",358.5)
+ ;;=
+ ;;^DIC(358.5,"%D",0)
+ ;;=^^1^1^2940829^^^^
+ ;;^DIC(358.5,"%D",1,0)
+ ;;=Used by the import/export utility as a workspace.
+ ;;^DIC(358.5,"%D",2,0)
+ ;;= 
+ ;;^DIC(358.5,"%D",3,0)
+ ;;= 
+ ;;^DIC(358.5,"%D",4,0)
+ ;;=This file is nearly identical to file #357.5. It is used by the
+ ;;^DIC(358.5,"%D",5,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.5,"%D",6,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.5,0)
+ ;;=FIELD^^2^13
+ ;;^DD(358.5,0,"DDA")
+ ;;=N
+ ;;^DD(358.5,0,"DT")
+ ;;=2930730
+ ;;^DD(358.5,0,"ID",.02)
+ ;;=W ""
+ ;;^DD(358.5,0,"ID",.03)
+ ;;=W ""
+ ;;^DD(358.5,0,"IX","B",358.5,.01)
+ ;;=
+ ;;^DD(358.5,0,"IX","C",358.5,.02)
+ ;;=
+ ;;^DD(358.5,0,"NM","IMP/EXP DATA FIELD")
+ ;;=
+ ;;^DD(358.5,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.5,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.5,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.5,.01,1,1,0)
+ ;;=358.5^B
+ ;;^DD(358.5,.01,1,1,1)
+ ;;=S ^IBE(358.5,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.5,.01,1,1,2)
+ ;;=K ^IBE(358.5,"B",$E(X,1,30),DA)
+ ;;^DD(358.5,.01,3)
+ ;;=Answer must be 3-30 characters in length.
+ ;;^DD(358.5,.01,21,0)
+ ;;=^^3^3^2930419^^^
+ ;;^DD(358.5,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.5,.01,21,2,0)
+ ;;=The name is used to identify the field within a block. It can be anything
+ ;;^DD(358.5,.01,21,3,0)
+ ;;=the designer of a form wants it to be.
+ ;;^DD(358.5,.01,"DT")
+ ;;=2930419

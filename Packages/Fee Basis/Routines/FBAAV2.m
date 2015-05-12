@@ -1,12 +1,12 @@
 FBAAV2 ;AISC/GRR-ELECTRONICALLY TRANSMIT PHARMACY PAYMENTS ;11 Apr 2006  2:52 PM
- ;;3.5;FEE BASIS;**3,89,98,116,108**;JAN 30, 1995;Build 115
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.5;FEE BASIS;**3,89,98,116,108,123**;JAN 30, 1995;Build 51
+ ;;Per VA Directive 6402, this routine should not be modified.
 DETP ; ENTRY FROM FBAAV0
  S FBTXT=0
  D CKB5V^FBAAV01 I $G(FBERR) K FBERR Q
  ; HIPAA 5010 - line items that have 0.00 amount paid are now required togo to Central Fee
- ;F K=0:0 S K=$O(^FBAA(162.1,"AE",J,K)) Q:K'>0  F L=0:0 S L=$O(^FBAA(162.1,"AE",J,K,L)) Q:L'>0  S Y(0)=$G(^FBAA(162.1,K,"RX",L,0)),Y(2)=$G(^(2)),Y=$G(^FBAA(162.1,K,0)) I Y(0)]"",Y]"",+$P(Y(0),U,16) D
  F K=0:0 S K=$O(^FBAA(162.1,"AE",J,K)) Q:K'>0  F L=0:0 S L=$O(^FBAA(162.1,"AE",J,K,L)) Q:L'>0  S Y(0)=$G(^FBAA(162.1,K,"RX",L,0)),Y(2)=$G(^(2)),Y=$G(^FBAA(162.1,K,0)) I Y(0)]"",Y]"" D
+ .S Y(6)=$G(^FBAA(162.1,K,"RX",L,6))       ; FB*3.5*123
  .N FBPICN,FBY
  .S FBPICN=K_U_L
  .S FBY=$S($P(Y,U,12):$P(Y,U,12),1:$P(Y,U,2))_U_+$P(Y(2),U,9)
@@ -17,7 +17,7 @@ DETP ; ENTRY FROM FBAAV0
  ;
 GOTP ; process a B5 line item
  N DFN,FBADJ,FBADJA1,FBADJA2,FBADJR1,FBADJR2,FBIENS,FBPNAMX,FBVY0,FBX
- N FBNPI,FBEDIF
+ N FBNPI,FBEDIF,FBIA,FBDODINV
  ;
  S FBIENS=$P(FBPICN,U,2)_","_$P(FBPICN,U,1)_","
  S FBPAYT=$P(Y(0),"^",20),FBPAYT=$S(FBPAYT]"":FBPAYT,1:"V")
@@ -28,6 +28,13 @@ GOTP ; process a B5 line item
  S FBVFN=$P(Y,"^",4)
  S FBNPI=$$EN^FBNPILK(FBVFN)
  S FBVY0=$G(^FBAAV(FBVFN,0)) ; vendor 0 node
+ ;
+ S FBIA=+$P(Y,U,23)                                      ; IPAC agreement ptr
+ S FBIA=$S(FBIA:$P($G(^FBAA(161.95,FBIA,0)),U,1),1:"")   ; IPAC external agreement ID# or ""
+ S FBIA=$$LJ^XLFSTR(FBIA,"10T")                          ; format to 10 characters
+ S FBDODINV=$P(Y(6),U,1)                                 ; DoD invoice#
+ S FBDODINV=$$LJ^XLFSTR(FBDODINV,"22T")                  ; format to 22 characters
+ ;
  S FBVID=$P(FBVY0,U,2),FBVID=$E(FBVID,1,9)_$E(PAD,$L(FBVID)+1,9)
  S FBCSN=$S($P(FBVY0,U,2)]"":$P(FBVY0,U,10),1:"")
  S FBCSN=$E("0000",$L(FBCSN)+1,4)_FBCSN
@@ -75,7 +82,7 @@ GOTP ; process a B5 line item
  ;
  ; build 2nd line
  S FBSTR=FBADJR1_FBADJR2_FBADJA1_FBADJA2_FBNPI_FBEDIF
- S FBSTR=FBSTR_$E(PAD,1,32)_"~$" ; reserved for IPAC data
+ S FBSTR=FBSTR_FBIA_FBDODINV_"~$"                          ; IPAC data from FB*3.5*123
  D STORE^FBAAV01
  Q
  ;

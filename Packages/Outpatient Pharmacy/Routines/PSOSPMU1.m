@@ -1,5 +1,5 @@
 PSOSPMU1 ;BIRM/MFR - State Prescription Monitoring Program Utilities ;10/07/12
- ;;7.0;OUTPATIENT PHARMACY;**408**;DEC 1997;Build 100
+ ;;7.0;OUTPATIENT PHARMACY;**408,437**;DEC 1997;Build 3
  ; 
 SETLN(NSPC,TEXT,REV,UND,HIG) ; Sets a line to be displayed in the Body section
  N X
@@ -242,7 +242,7 @@ PAUSE ; Pauses screen until user hits Return
  Q
  ;
 XVMSDIR(VMSDIR) ; Converts a VMS directory from "USER$:[SPMP]" to "/USER$/SPMP/" format
- Q "/"_$TR(VMSDIR,"[]:","//")
+ Q "/"_$TR(VMSDIR,".[]:","///") ;*437
  ;
 SAVEKEYS(STATE,LOCDIR) ; Saves Key
  N WLINE

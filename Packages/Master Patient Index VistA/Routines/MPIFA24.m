@@ -1,5 +1,5 @@
 MPIFA24 ;BPOFO/CMC-A24 PROCESSING ROUTINE ;18 Mar 02
- ;;1.0; MASTER PATIENT INDEX VISTA ;**22,24,27,31,25,41,39,48,52**;30 Apr 99;Build 7
+ ;;1.0;MASTER PATIENT INDEX VISTA;**22,24,27,31,25,41,39,48,52,59**;30 Apr 99;Build 1
  ;
  ; Integration Agreements Utilized:
  ;  START, EXC, STOP^RGHLLOG - #2796
@@ -32,7 +32,7 @@ A24 ;
  . I $G(ARRY("ICN",2))=""!(+$G(DFN)'>0) D
  .. I $G(ARRY("DFN",2))'="" S DFN=ARRY("DFN",2)
  .. I $G(ARRY("DFN",2))="" S DFN=ARRY("DFN",1)
- S ARRY(991.03)=$$LKUP^XUAF4(ARRY(991.03))
+ S ARRY(991.03)=$S(ARRY(991.03)="":"@",1:$$LKUP^XUAF4(ARRY(991.03))) ;**59 - MVI_2688 (dri)
  I +$G(DFN)'>0 S ERR="-1^Unknown Identifier(s) ICN#"_$G(ARRY("ICN",2))_" and DFN#"_$G(ARRY("DFN",2))
  I +$G(DFN)>0 S ERR=$$UPDATE^MPIFAPI(DFN,"ARRY",0) D
  .;remove ALL Treating Facilities except your sites and add the CMOR

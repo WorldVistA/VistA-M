@@ -1,5 +1,5 @@
-VAFCPTAD ; ISA/RJS,Zoltan;BIR/PTD - ADD NEW PATIENT ENTRY ;APR 6, 1999
- ;;5.3;Registration;**149,800**;Aug 13, 1993;Build 4
+VAFCPTAD ; ISA/RJS,Zoltan;BIR/PTD,CKN - ADD NEW PATIENT ENTRY ; 8/14/14 6:07pm
+ ;;5.3;Registration;**149,800,876**;Aug 13, 1993;Build 6
  ;
 ADD(RETURN,PARAM) ;Add an entry to the PATIENT (#2) file for VOA
  ;
@@ -22,6 +22,7 @@ ADD(RETURN,PARAM) ;Add an entry to the PATIENT (#2) file for VOA
  ;  PARAM("POBCTY")=PLACE OF BIRTH [CITY]
  ;  PARAM("POBST")=PLACE OF BIRTH [STATE]
  ;  PARAM("MMN")=MOTHER'S MAIDEN NAME
+ ;  PARAM("MBI")=MULTIPLE BIRTH INDICATOR
  ;  PARAM("ALIAS",#)=ALIAS NAME(last^first^middle^suffix)^ALIAS SSN
  ;
  ;Output:
@@ -31,7 +32,7 @@ ADD(RETURN,PARAM) ;Add an entry to the PATIENT (#2) file for VOA
 EN1 ;Check value of all required fields
  N ALSERR,DIERR,DPTIDS,DPTX,ERROR,FLG,FDA,FN,LN,MN,RESULT,RGRSICN,SFX,VAL,VAFCA08,X,Y
  N VAFCDFN,VAFCDOB,VAFCICN,VAFCMMN,VAFCNAM,VAFCPF,VAFCPOBC,VAFCPOBS
- N VAFCRSN,VAFCSRV,VAFCSSN,VAFCSUM,VAFCSX,VAFCTYP,VAFCVET
+ N VAFCRSN,VAFCSRV,VAFCSSN,VAFCSUM,VAFCSX,VAFCTYP,VAFCVET,VAFCMBI
  K RETURN
  S (RGRSICN,VAFCA08)=1 S FLG=0 ;allow update to ICN; prevent triggering of messages
  ;
@@ -123,16 +124,24 @@ EN1 ;Check value of all required fields
  I $D(PARAM("MMN")) S VAL=$G(PARAM("MMN")) D CHK^DIE(2,.2403,,VAL,.RESULT) I RESULT="^" S RETURN(1)="-1^"_^TMP("DIERR",$J,1,"TEXT",1) Q
  I $D(PARAM("MMN")) S VAFCMMN=VAL,FLG=1
  ;
+ ;**876 - MVI_2788 (ckn) - Add MBI
+ ;Optional - MULTIPLE BIRTH INDICATOR
+ I $D(PARAM("MBI")) S VAL=$G(PARAM("MBI")) D CHK^DIE(2,994,,VAL,.RESULT) I RESULT="^" S RETURN(1)="-1^"_^TMP("DIERR",$J,1,"TEXT",1) Q
+ I $G(PARAM("MBI"))'="" S VAFCMBI=VAL,FLG=1
+ ;
  I FLG=0 S RETURN(1)="-1^Required information is missing; please check input and try again." Q
  ;Else ok to file entry
 FILE ;Call FILE^DICN to add new entry to PATIENT (#2) file
  N DA,DIC,DR K DD,DO
  S DIC="^DPT(",DIC(0)="FLZ",DLAYGO=2,X=VAFCNAM
- S DIC("DR")=".09///"_VAFCSSN_";.03///"_VAFCDOB_";.02///"_VAFCSX_";391///"_VAFCTYP_";1901////"_VAFCVET_";.301///"_VAFCSRV_";991.01///"_VAFCICN_";991.02///"_VAFCSUM_";27.02///"_VAFCPF
+ ;**876 MVI_2788 (ckn) - Remove four slash use for field 1901
+ S DIC("DR")=".09///"_VAFCSSN_";.03///"_VAFCDOB_";.02///"_VAFCSX_";391///"_VAFCTYP_";1901///"_VAFCVET_";.301///"_VAFCSRV_";991.01///"_VAFCICN_";991.02///"_VAFCSUM_";27.02///"_VAFCPF
  I VAFCSSN="P" S DIC("DR")=DIC("DR")_";.0906///"_VAFCRSN
  I $G(VAFCPOBC)'="" S DIC("DR")=DIC("DR")_";.092///"_VAFCPOBC
  I $G(VAFCPOBS)'="" S DIC("DR")=DIC("DR")_";.093///"_VAFCPOBS
  I $G(VAFCMMN)'="" S DIC("DR")=DIC("DR")_";.2403///"_VAFCMMN
+ ;**876 - MVI_2788 (ckn)
+ I $G(VAFCMBI)'="" S DIC("DR")=DIC("DR")_";994///"_VAFCMBI
  L +^DPT(0):10
  D FILE^DICN K DA,DIC,DD,DLAYGO,DO,DR
  L -^DPT(0)

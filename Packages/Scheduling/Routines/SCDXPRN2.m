@@ -1,5 +1,5 @@
 SCDXPRN2 ;ALB/JRP - HISTORY FILE REPORTS;21-JUL-1997
- ;;5.3;Scheduling;**128,135,405**;AUG 13, 1993
+ ;;5.3;Scheduling;**128,135,405,621**;AUG 13, 1993;Build 4
  ;
 FULLHIST ;Print full transmission history report
  ; - Report based within the ACRP Transmission History file (#409.77)
@@ -61,17 +61,9 @@ FULLHIST ;Print full transmission history report
  S ^TMP("RPT-LOCK",$J,DUZ)=""  ;SD*5.3*405 set lock for current user
  ;Queue/run
  W !!
- S ZTDESC="ACRP TRANSMISSION HISTORY REPORT"
- S ZTSAVE("SCDXBEG")=""
- S ZTSAVE("SCDXEND")=""
- S ZTSAVE("SCDXGLO")=""
- S ZTSAVE("SCDXLOCK")=""  ;SD*5.3*405
- S ZTSAVE($$OREF^DILF(SCDXGLO))=""
- S IOP="Q"
- D EN^XUTMDEVQ("PRINT^SCDXPRN2",ZTDESC,.ZTSAVE)
+ D PRINT^SCDXPRN2
  ;Done - reset IO variables (safety measure) and quit
- I POP K ^TMP("RPT-LOCK",$J,DUZ)
- I $D(X) I X="^" K ^TMP("RPT-LOCK",$J,DUZ)
+ K ^TMP("RPT-LOCK",$J,DUZ)
  D HOME^%ZIS
  Q
  ;
@@ -95,7 +87,7 @@ PRINT ;Print report
  ;       : User will be prompted for device except on queued entry
  ;
  ;Declare variables
- N DIC,L,BY,FR,TO,DHD,FLDS,DISPAR,DIOBEG,DIOEND,IOP,SCDXSLVE,DOLJ
+ N DIC,L,BY,FR,TO,DHD,FLDS,DISPAR,DIOBEG,DIOEND,IOP,DOLJ
  ;Define sort criteria
  S DIC="^SD(409.77,"
  S L=0
@@ -114,14 +106,9 @@ PRINT ;Print report
  S FLDS="[SCDX XMIT HIST FULL PRINT]"
  ;Define header & footer
  S DHD="[SCDX XMIT HIST FULL HEADER]-[SCDX XMIT HIST FULL FOOTER]"
- ;Use current device
- S IOP=IO
- ;Remember IO("S")
- S SCDXSLVE=+$G(IO("S"))
  ;Print report
+ S %ZIS="QM"
  D EN1^DIP
- ;Reset IO("S")
- S:(SCDXSLVE) IO("S")=SCDXSLVE
  ;Delete input array & variables
  K @SCDXGLO
  K SCDXBEG,SCDXEND,SCDXGLO

@@ -1,6 +1,6 @@
-FBAAEPI ;AISC/GRR - EDIT PREVIOUSLY ENTERED PHARMACY INVOICE ; 5/16/12 12:24pm
- ;;3.5;FEE BASIS;**38,61,124,132**;JAN 30, 1995;Build 17
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBAAEPI ;AISC/GRR - EDIT PREVIOUSLY ENTERED PHARMACY INVOICE ;7/16/2003
+ ;;3.5;FEE BASIS;**38,61,124,132,123**;JAN 30, 1995;Build 51
+ ;;Per VA Directive 6402, this routine should not be modified.
 RD W ! S DIC="^FBAA(162.1,",DIC(0)="AEQM",DIC("A")="Select Invoice #: ",DIC("S")="I $P(^(0),U,5)'=4!($P(^(0),U,5)=4&$D(^XUSEC(""FBAASUPERVISOR"",DUZ)))" D ^DIC K DIC("S") G END:X=""!(X="^"),RD:Y<0
  S (DA,FBDA)=+Y,DIE=DIC
  ; save FPPS data prior to edit session
@@ -20,6 +20,10 @@ RD W ! S DIC="^FBAA(162.1,",DIC(0)="AEQM",DIC("A")="Select Invoice #: ",DIC("S")
  .I $S(FBSTAT="T":1,FBSTAT="F":1,FBSTAT="V":1,1:0) D
  .. W !,*7,"You cannot edit an invoice when the batch has been sent to Austin",! S FBOUT=1
  I $G(FBOUT) D END G FBAAEPI
+ ;
+ ; FB*3.5*123 - Edit pharmacy IPAC data for Federal Vendors
+ I '$$IPACEDIT^FBAAPET1(162.1,.DA) D END G FBAAEPI
+ ;
  S DIE="^FBAA(162.1,FBDA,""RX"","
  ; get current value of FPPS LINE ITEM to use as default
  S FBFPPSL=$P($G(^FBAA(162.1,FBDA,"RX",DA,3)),U)
@@ -62,3 +66,33 @@ BADDATE(LASTRXDT,INVRCVDT) ;Reject entry if InvRcvDt is Prior to the last Rx Fil
 END K D,DA,DIC,DIE,DR,FBJ,FBK,FBDA,FBOUT,FBSTAT,FBHAP,X,Y,FBA,FB1725
  K FBADJ,FBADJD,FBADJL,FBFPPSC,FBFPPSL,FBRRMK,FBRRMKD,FBRRMKL,LASTRXDT,RXNUM
  Q
+ ;
+GETIPAC(FBDA,FBVEN,FBIA,FBDODINV) ; Get vendor/IPAC data for Pharmacy (FB*3.5*123)
+ ; All parameters required and assumed to exist
+ ; Called by $$IPACEDIT^FBAAPET1
+ S FBVEN=+$P($G(^FBAA(162.1,FBDA(1),0)),U,4)               ; vendor ien
+ S FBIA=+$P($G(^FBAA(162.1,FBDA(1),0)),U,23)               ; IPAC agreement ien
+ S FBDODINV=$P($G(^FBAA(162.1,FBDA(1),"RX",FBDA,6)),U,1)   ; DoD invoice#
+ Q
+ ;
+DELIPAC(FBDA) ; Delete all IPAC data on file for Pharmacy (FB*3.5*123)
+ ; Called by $$IPACEDIT^FBAAPET1
+ N FBIENS,FBIAFDA,DIE,DA,DR,DIC
+ S FBIENS=FBDA_","_FBDA(1)_","
+ S FBIAFDA(162.11,FBIENS,39)=""       ; remove DoD invoice# from subfile 162.11
+ D FILE^DIE("","FBIAFDA")
+ S DIE=162.1,DA=FBDA(1),DR="14///@" D ^DIE  ; remove IPAC ptr from file top level 162.1
+ Q
+ ;
+SAVEIPAC(FBDA,FBIA,FBDODINV,WHICH) ; Store IPAC data into the database for Pharmacy (FB*3.5*123)
+ ; Called by $$IPACEDIT^FBAAPET1
+ N FBIENS,FBIAFDA,DIE,DA,DR,DIC
+ S:'$D(WHICH) WHICH=""
+ S FBIENS=FBDA_","_FBDA(1)_","
+ I WHICH'=1 D
+ . S FBIAFDA(162.11,FBIENS,39)=FBDODINV       ; store DoD invoice# in subfile 162.11
+ . D FILE^DIE("","FBIAFDA")
+ I WHICH'=2 D
+ . S DIE=162.1,DA=FBDA(1),DR="14////^S X=FBIA" D ^DIE    ; store IPAC pointer ien in file top level 162.1
+ Q
+ ;

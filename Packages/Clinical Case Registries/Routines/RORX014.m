@@ -1,7 +1,15 @@
-RORX014 ;HOIFO/SG - REGISTRY MEDICATIONS REPORT ; 11/25/05 5:57pm
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+RORX014 ;HOIFO/SG - REGISTRY MEDICATIONS REPORT ;11/25/05 5:57pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
  ;
  Q
+ ;******************************************************************************
+ ;                 --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
+ ;                                      additional identifier option selected
+ ;******************************************************************************
  ;
  ;***** OUTPUTS THE REPORT HEADER
  ;
@@ -12,7 +20,7 @@ RORX014 ;HOIFO/SG - REGISTRY MEDICATIONS REPORT ; 11/25/05 5:57pm
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;RXCOMBLST(NP,PATIENTS(NAME,LAST4,DOD))^I $$PARAM^RORTSK01("OPTIONS","COMPLETE")
+ ;;RXCOMBLST(NP,PATIENTS(NAME,LAST4,DOD,ICN))^I $$PARAM^RORTSK01("OPTIONS","COMPLETE")
  ;;RXCOMBLST(NP,RXCOMB)^I $$PARAM^RORTSK01("OPTIONS","SUMMARY")
  ;
  N HEADER,RC
@@ -65,6 +73,7 @@ PARAMS(PARTAG,STDT,ENDT,FLAGS) ;
  ;                         ^01: Las 4 digits of SSN
  ;                         ^02: Name
  ;                         ^03: Date of Death
+ ;                         ^04: ICN
  ;     "B",
  ;       RxcNdx,
  ;         RxcIEN)       ""

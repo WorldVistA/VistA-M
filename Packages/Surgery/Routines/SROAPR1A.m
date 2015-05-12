@@ -1,5 +1,5 @@
 SROAPR1A ;B'HAM ISC/MAM - EDIT PREOP INFO ; [ 03/16/04  2:44 PM ]
- ;;3.0; Surgery ;**38,125**;24 Jun 93
+ ;;3.0;Surgery;**38,125,182**;24 Jun 93;Build 49
  K DA D @EMILY Q
 4 ; edit gastrointestinal information
  W ! K DIR S X=$P(SRAO(4),"^") I X'="" S DIR("B")=X
@@ -30,18 +30,27 @@ NOGAST ; no gastointectinal problems
  S $P(^SRF(SRTN,200),"^",16)=SRAX
  Q
 CARD ; cardiac
- W ! K DR,DIE S DA=SRTN,DIE=130,DR="396T;394T;220T;266T;395T;208T" D ^DIE K DR
+ W ! K DR,DIE S DA=SRTN,DIE=130,DR="207T;205T;640T" D ^DIE K DR
+ S X="5D" D ^SROACL2  S SRYY=Y D
+ .K DR,DIE S DA=SRTN,DR="485///"_$P(SRYY,"^"),DIE=130 D ^DIE K DR
+ W ! K DR,DIE S DA=SRTN,DIE=130,DR="267T;643T;641T" D ^DIE K DR
  S SRACLR=0
  Q
 NOCARD ; no cardiac problems
- F I=31:1:36 S $P(^SRF(SRTN,200),"^",I)=SRAX
+ F I=32,36 S $P(^SRF(SRTN,200),"^",I)=SRAX
+ S $P(^SRF(SRTN,206),"^",19)="N",$P(^SRF(SRTN,206),"^",18)="N"
+ S $P(^SRF(SRTN,206),"^",42)=0
+ S $P(^SRF(SRTN,206),"^",14)=0
+ S $P(^SRF(SRTN,200),"^",56)=1,$P(^SRF(SRTN,200),"^",57)=1
+ S $P(^SRF(SRTN,200),"^",59)=1
  Q
 VAS ; vascular
- W ! K DR,DIE S DA=SRTN,DIE=130,DR="329T;330T" D ^DIE K DR
+ W ! K DR,DIE S DA=SRTN,DIE=130,DR="265T;330T" D ^DIE K DR
  S SRACLR=0
  Q
 NOVAS ; no vascular problems
- F I=41,42 S $P(^SRF(SRTN,200),"^",I)=SRAX
+ S $P(^SRF(SRTN,200),"^",42)=SRAX
+ S $P(^SRF(SRTN,206),"^",16)=1
  Q
 RET W !! K DIR S DIR(0)="E" D ^DIR I $D(DTOUT)!$D(DUOUT) S SRSOUT=1
  Q

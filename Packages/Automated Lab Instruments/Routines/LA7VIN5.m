@@ -1,5 +1,5 @@
 LA7VIN5 ;DALOI/JMC - Process Incoming UI Msgs, continued ;11/17/11  16:03
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,68,74**;Sep 27, 1994;Build 229
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,68,74,84**;Sep 27, 1994;Build 2
  ;
  ; This routine is a continuation of LA7VIN1 and is only called from there.
  ; It is called to process OBX segments for "CH" subscript tests.
@@ -113,6 +113,7 @@ PROCESS ; Process results for a given test code
  S LA7VAL=$$P^LA7VHLU(.LA7SEG,6,LA7FS)
  I LA7VTYP="CE",$P(LA7VAL,LA7CS,2)'="" S LA7VAL=$P(LA7VAL,LA7CS,2)
  E  S LA7VAL=$P(LA7VAL,LA7CS)
+ S LA7VAL=$$UNESC^LA7VHLU3(LA7VAL,LA7FS_LA7ECH)
  ;
  ; Setup LA7RMK(0) variable in case comments (NTE) sent with test results.
  S LA7RMK(0,+LA76241(0))=+$P(LA76241(2),"^",7)_"^"_$P(LA76241(2),"^",8)

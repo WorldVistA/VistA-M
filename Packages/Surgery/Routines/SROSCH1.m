@@ -1,5 +1,5 @@
 SROSCH1 ;B'HAM ISC/MAM - OR SCHEDULE ; [ 09/22/98  11:49 AM ]
- ;;3.0; Surgery ;**63,77,50**;24 Jun 93
+ ;;3.0;Surgery;**63,77,50,182**;24 Jun 93;Build 49
 EN I '$D(SRSITE) W @IOF D ^SROVAR I '$D(SRSITE) Q
  W @IOF S %DT="AEFX",%DT("A")="Print Schedule of Operations for which date ?   " D ^%DT K %DT Q:Y<1  S SRDT=Y D D^DIQ S SRDT1=Y
  D ALL G:SRYN["^" END I "Yy"[SRYN W !!,"Schedule will be queued to print at all locations defined in the SURGERY",!,"SITE PARAMETERS file...." D ^SROSCH2 W !!,"Press RETURN to continue  " R X:DTIME G END
@@ -20,7 +20,7 @@ HDR ; print heading
  W !,?58,"SURGICAL SERVICE",!,?55,"SCHEDULE OF OPERATIONS",?90,"SIGNATURE OF CHIEF: ",SRCHF,!
  D NOW^%DTC S Y=% D DD^%DT W "PRINTED: ",$P(Y,"@")_" "_$E($P(Y,"@",2),1,5),?58,"FOR: ",SRDT1,?110,"____________________"
  W !!!,"PATIENT",?23,"DISPOSITION",?40,"PREOPERATIVE DIAGNOSIS",?92,"REQ ANESTHESIA"
- W ?116,"SURGEON",!,"ID#",?15,"AGE",?23,"START TIME",?40,"OPERATION(S)",?92,"ANESTHESIOLOGIST",?115,"FIRST ASST.",!,"WARD",?24,"END TIME",?92,"PRIN. ANESTHETIST",?115,"ATT SURGEON",! F LINE=1:1:132 W "="
+ W ?116,"PRIMARY SURGEON",!,"ID#",?15,"AGE",?23,"START TIME",?40,"OPERATION(S)",?92,"ANESTHESIOLOGIST",?115,"FIRST ASST.",!,"WARD",?24,"END TIME",?92,"PRIN. ANESTHETIST",?115,"ATT SURGEON",! F LINE=1:1:132 W "="
  S SRPAGE=SRPAGE+1
  Q
 CON ; print concurrent procedure

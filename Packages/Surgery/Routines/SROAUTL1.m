@@ -1,19 +1,20 @@
 SROAUTL1 ;BIR/ADM - RISK ASSESSMENT UTILITY ;07/19/2011
- ;;3.0;Surgery;**38,47,81,125,153,160,166,174,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,47,81,125,153,160,166,174,176,182**;24 Jun 93;Build 49
  S SRZ=0 F  S SRZ=$O(SRY(130,SRTN,SRZ)) Q:'SRZ  I SRY(130,SRTN,SRZ,"I")="" D TR S X=$T(@SRP),SRFLD=$P(X,";;",2),SRX(SRZ)=$P(SRFLD,"^",2)
  Q
 TR S SRP=SRZ,SRP=$TR(SRP,"1234567890.","ABCDEFGHIJP")
  Q
 GET S X=$T(@J)
  Q
-BJH ;;208^History of Hypertension Requiring Medication (Y/N)^Hypertension Requiring Meds^
+FDA ;;641^Hypertension^Hypertension^
 BAC ;;213^Esophageal Varices (Y/N)^Esophogeal Varices^
-BBJ ;;220^Previous PCI (Y/N)^Previous PCI^
-BFF ;;266^Previous Cardiac Surgery (Y/N)^Previous Cardiac Surgery^
-CBI ;;329^History of Revascularization/Amputation for PVD (Y/N)^Revascularization/Amputation^
+FDJ ;;640^PCI^PCI^
+DHE ;;485^Prior Heart Surgery^Prior Heart Surgery
+BFE ;;265^Peripheral Arterial Disease^Peripheral Arterial Disease^
 CCJ ;;330^Rest Pain/Gangrene (Y/N)^Rest Pain/Gangrene^
-CID ;;394^History of MI Within Past 6 Months (Y/N)^MI Within 6 Months^
-CIE ;;395^Angina within One Month Preceding Surgery (Y/N)^Angina Within 1 Month^
+BJE ;;205^Prior MI^Prior MI^
+BFG ;;267^Angina Severity^Angina Severity^
+FDC ;;643^Angina Timeframe^Angina Timeframe^
 BCF ;;236^Patient's Height^Height^
 BCG ;;237^Patient's Weight^Weight^
 EAI ;;519^Diabetes Mellitus: Chronic, Long-term Management^Diabetes Mellitus: Chronic, Long-term Management^
@@ -29,7 +30,7 @@ BJD ;;204^Ventilator Dependent Greater than 48 Hrs (Y/N)^Ventilator Dependent^
 BJC ;;203^History of COPD (Y/N)^History of Severe COPD^
 CBF ;;326^Current Pneumonia (Y/N)^Current Pneumonia^
 BAB ;;212^Ascites (Y/N)^Ascites^
-CIF ;;396^CHF within One Month Preceding Surgery (Y/N)^CHF Within 1 Month^
+BJG ;;207^Congestive Heart Failure^Congestive Heart Failure^
 CBH ;;328^Acute Renal Failure (Y/N)^Acute Renal Failure^
 BAA ;;211^Currently on Dialysis (Y/N)^Currently on Dialysis^
 CCB ;;332^Impaired Sensorium (Y/N)^Impaired Sensorium^
@@ -42,14 +43,15 @@ CCH ;;338^Disseminated Cancer (Y/N)^Disseminated Cancer^
 BAH ;;218^Open Wound or Skin Infection (Y/N)^Open Wound or Infection^
 CCI ;;339^Steroid Use for Chronic Condition (Y/N)^Steroid Use for Chronic Cond.^
 BAE ;;215^Weight Loss > 10% of Usual Body Weight (Y/N)^Weight Loss > 10%^
-BAF ;;216^History of Bleeding Disorders (Y/N)^Bleeding Disorders^
+BAF ;;216^Bleeding (Coagulation) Disorder^Bleeding (Coagulation) Disorde^
+FDB ;;642^Bleeding Risk Due To Medication^Bleeding Risk Due To Medication^
 BAG ;;217^Transfusion Greater than 4 RBC Units this Admission (Y/N)^Transfusion > 4 RBC Units^
 CCHPA ;;338.1^Chemotherapy Within Last 30 Days (Y/N)^Chemotherapy W/I 30 Days^
 CCHPB ;;338.2^Radiotherapy Within Last 90 Days (Y/N)^Radiotherapy W/I 90 Days^
 BAHPA ;;218.1^Preoperative Sepsis (Y/N)^Preoperative Sepsis^
 BFI ;;269^Pregnancy Status^Pregnancy Status^
 DAC ;;413^Transfer Status^Transfer Status^
-PJAA ;;.011^In/Out-Patient Status
+PJAA ;;.011^Hospital Admission Status
 BDG ;;247^Length of Postoperative Hospital Stay
 CDB ;;342^Date/Time of Death^Date/Time of Death
 DAG ;;417^Patient's Race

@@ -1,5 +1,5 @@
 VSITKIL ;ISL/ARS,JVS - NON INTERACTIVE CHECK DEPENDENT ENTRY COUNT ;8/15/97
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**76**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**76,204**;Aug 12, 1996;Build 14
  ; Patch PX*1*76 changes the 2nd line of all VSIT* routines to reflect
  ; the incorporation of the module into PCE.  For historical reference,
  ; the old (VISIT TRACKING) 2nd line is included below to reference VSIT
@@ -16,6 +16,7 @@ KILL(VSITKDFN) ; ENTER THE VSIT YOU WANT CHECKED SET VSITKDFN=IEN
  G:VSITKDFN'=+VSITKDFN!(VSITKDFN="") XIT
  G:'$D(^AUPNVSIT(VSITKDFN,0)) XIT
  ;
+ G:$D(^XTMP("AUPNVSIT",VSITKDFN)) XIT ;PX*1*204 - added
  L +^AUPNVSIT(VSITKDFN):45
  S VSITKDEC=$P(^AUPNVSIT(VSITKDFN,0),"^",9)
  S VSITKND=$$DEC^VSITKIL(VSITKDFN)

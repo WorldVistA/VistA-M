@@ -1,5 +1,5 @@
 SROAUTL2 ;BIR/ADM - RISK ASSESSMENT UTILITY ;08/25/2011
- ;;3.0;Surgery;**38,47,63,88,125,153,160,176,177**;24 Jun 93;Build 89
+ ;;3.0;Surgery;**38,47,63,88,125,153,160,176,177,182**;24 Jun 93;Build 49
  S SRZ=0 F  S SRZ=$O(SRY(130,SRTN,SRZ)) Q:'SRZ  D
  .I SRY(130,SRTN,SRZ,"I")="" D TR S X=$T(@SRP),SRFLD=$P(X,";;",2),SRX(SRZ)=$P(SRFLD,"^",2)
  .I SRY(130,SRTN,SRZ,"I")="NS" D TR S X=$T(@SRP),SRFLD=$P(X,";;",2),SRDT=$P(SRFLD,"^",4) S:SRDT'="" SRLR(SRDT)=""
@@ -90,7 +90,7 @@ DDF ;;446^Intraoperative Ascites (Y/N)^Intraoperative Ascites
 FF ;;66^Principal Diagnosis Code (ICD)^Postop Diagnosis Code (ICD)^
 BDG ;;247^Length of Postoperative Stay^Length of Postoperative Hospital Stay^
 AJB ;;102^Reason for not Creating an Assessment^Exclusion Criteria^
-PJAA ;;.011^In/Out-Patient Status^Hospital Admission Status^
-PAFF ;;.166^Attending Code^Attending Code
+PJAA ;;.011^Hospital Admission Status^Hospital Admission Status^
+PAFF ;;.166^Attending/Res Sup Code^Attending/Res Sup Code
 PBA ;;.21^Anesthesia Care Start Time^Anesthesia Start^
 PBD ;;.24^Anesthesia Care End Time^Anesthesia Finish^

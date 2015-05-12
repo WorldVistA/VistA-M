@@ -1,5 +1,5 @@
 PSBOMT ;BIRMINGHAM/TEJ-BCMA MEDICATION THERAPY REPORT ;8/12/12 9:56pm
- ;;3.0;BAR CODE MED ADMIN;**32,50,70**;Mar 2004;Build 101
+ ;;3.0;BAR CODE MED ADMIN;**32,50,70,72**;Mar 2004;Build 16
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -111,7 +111,7 @@ OUTPUT ;
  S:$P(^PSB(53.79,PSBIEN,0),U,9)="" PSBUNK=1
  S W=W_$E($P($G(^PSB(53.79,PSBIEN,.1)),U,2)_PSBSPC,1,2)_"  "
  S W=W_$E($E($$GET1^DIQ(53.79,PSBIENS,.06),1,18)_PSBSPC,1,21)_" "
- S W=W_$E($$GET1^DIQ(53.79,PSBIENS,"ACTION BY:INITIAL")_PSBSPC,1,10)_" ",PSBLGD("INITIALS",$$GET1^DIQ(53.79,PSBIENS,"ACTION BY","I"))=""
+ S W=W_$E($$GETINIT^PSBCSUTX(PSBIEN,"I")_PSBSPC,1,10)_" ",PSBLGD("INITIALS",$$GETINIT^PSBCSUTX(PSBIEN,"II"))="" ;Get IEN and initials of who took action, PSB*3*72
  S W=W_$$GET1^DIQ(53.79,PSBIENS,.16)
  D ADD(W)
  K PSBV
@@ -148,6 +148,7 @@ COMNTS ;
  ..S Z=XBR_"   "_$P(^VA(200,$P(^PSB(53.79,PSBIEN,.3,XT,0),"^",2),0),"^",2)
  ..D WRAP($P(^PSB(53.79,PSBIEN,.3,XT,0),"^",1),Z,PSBIEN)
  ..S CNT=1
+ ..S PSBLGD("INITIALS",$$GET1^DIQ(53.793,XT_","_PSBIEN_",",.02,"I"))="" ;Get name for legend for those who entered comments
  .D ADD($J("",54)_$$MAKELINE^PSBOMT1("-",78))
  Q
 WRAPMEDS(MED,UG,UO,UOA) ;

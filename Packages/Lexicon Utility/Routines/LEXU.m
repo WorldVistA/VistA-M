@@ -1,5 +1,5 @@
-LEXU ;ISL/KER - Miscellaneous Lexicon Utilities ;04/21/2014
- ;;2.0;LEXICON UTILITY;**2,6,9,15,25,36,73,51,80**;Sep 23, 1996;Build 1
+LEXU ;ISL/KER - Miscellaneous Lexicon Utilities ;12/19/2014
+ ;;2.0;LEXICON UTILITY;**2,6,9,15,25,36,73,51,80,86**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    None
@@ -13,38 +13,9 @@ HELP ; API Help
  D EN^LEXUH
  Q
 SC(LEX,LEXS,LEXVDT) ; Filter by Semantic Class
- ;
- ; Input
- ;
- ;    LEX      IEN of file 757.01
- ;    LEXS     Filter
- ;    LEXVDT   Date to use for screening by codes
- ;
- ; Output
- ;
- ;    $$SC     1/0
- ;
- N LEXINC,LEXEXC,LEXIC,LEXEC,LEXRREC,X D VDT
- S LEXRREC=LEX Q:'$D(^LEX(757.01,LEXRREC,0)) 0
- I $L(LEXS,";")=3,$P(LEXS,";",3)'="" D  Q:+LEXINC>0 LEXINC
- . S LEXINC=0 S LEXINC=$$SO(LEXRREC,$P(LEXS,";",3),$G(LEXVDT))
- S LEXRREC=$P(^LEX(757.01,LEXRREC,1),U,1)
- S LEXINC=0 F LEXIC=1:1:$L($P(LEXS,";",1),"/") D
- . N LEXP,LEX1,LEX2 S LEXP=$P($P(LEXS,";",1),"/",LEXIC)
- . S LEX1=$D(^LEX(757.1,"AMCC",LEXRREC,LEXP))
- . S LEX2=$D(^LEX(757.1,"AMCT",LEXRREC,LEXP))
- . I LEX1!(LEX2) D
- . . S LEXINC=1,LEXIC=$L($P(LEXS,";",1),"/")+1
- I LEXINC=0!($P(LEXS,";",2)="") K LEXIC,LEXS,LEXEC Q LEXINC
- S LEXEXC=0 F LEXEC=1:1:$L($P(LEXS,";",2),"/") D
- . N LEXP,LEX1,LEX2 S LEXP=$P($P(LEXS,";",2),"/",LEXEC)
- . S LEX1=$D(^LEX(757.1,"AMCC",LEXRREC,LEXP))
- . S LEX2=$D(^LEX(757.1,"AMCT",LEXRREC,LEXP))
- . I LEX1!(LEX2) D
- . . S LEXEXC=1,LEXEC=$L($P(LEXS,";",2),"/")+1
- I LEXINC,'LEXEXC K LEXIC,LEXS,LEXEC Q 1
- K LEXIC,LEXS,LEXEC
- Q 0
+ Q $$SC^LEXU6($G(LEX),$G(LEXS),$G(LEXVDT))
+SO(LEX,LEXS,LEXVDT) ; Filter by Source
+ Q $$SO^LEXU6($G(LEX),$G(LEXS),$G(LEXVDT))
 ICDDP(LEX,LEXT,LEXVDT) ; Filter by ICD Diagnosis/Procedure System
  ;
  ; Input
@@ -109,41 +80,6 @@ DX(LEX,LEXVDT) ; Filter by Diagnosis System
  . . Q:+LEXSTA'>0  S LEXF=1
  K LEX S LEX=$G(LEXF)
  Q LEX
-SO(LEX,LEXS,LEXVDT) ; Filter by Source
- ;
- ; Input
- ; 
- ;    LEX      IEN of file 757.01
- ;    LEXS     Filter
- ;    LEXVDT   Date to use for screening by codes
- ;
- ; Output
- ;
- ;    $$SO     1/0
- ;
- N LEXABR,LEXCR,LEXF,LEXMC,LEXMCE,LEXN0,LEXSAB,LEXSO,LEXSR,LEXSTA,LEXTR
- S LEXTR=+LEX,LEXF=0 Q:'$D(^LEX(757.01,LEXTR,0)) LEXF
- Q:'$D(^LEX(757.01,LEXTR)) LEXF
- S LEXMC=$P(^LEX(757.01,LEXTR,1),U,1)
- S LEXMCE=+(^LEX(757,+($P(^LEX(757.01,LEXTR,1),U,1)),0))
- D VDT I LEXTR>0,LEXMCE>0,LEXTR=LEXMCE D  G SOQ
- . S LEXF=0 F LEXSR=1:1:$L(LEXS,"/") D  Q:LEXF>0
- . . S LEXABR=$P(LEXS,"/",LEXSR),LEXCR=0
- . . F  S LEXCR=$O(^LEX(757.02,"AMC",LEXMC,LEXCR)) Q:+LEXCR=0  D  Q:LEXF>0
- . . . N LEXN0,LEXSAB,LEXQ S LEXQ=0
- . . . S LEXN0=$G(^LEX(757.02,LEXCR,0))
- . . . S LEXSAB=+($P(LEXN0,U,3)),LEXSO=$P(LEXN0,U,2)
- . . . I $G(LEXLKT)["BC" D  Q:LEXQ
- . . . . N LEXNAR S LEXNAR=$G(^TMP("LEXSCH",$J,"NAR",0))
- . . . . I $L($G(LEXNAR)) S:$E(LEXSO,1,$L($G(LEXNAR)))'=$G(LEXNAR) LEXQ=1
- . . . S LEXSTA=$$STATCHK^LEXSRC2(LEXSO,$G(LEXVDT),,LEXSAB)
- . . . Q:+LEXSTA'>0  Q:$P(LEXSTA,U,2)'=LEXCR
- . . . Q:'$D(^LEX(757.03,LEXSAB,0))
- . . . S LEXSAB=$E(^LEX(757.03,LEXSAB,0),1,3)
- . . . I LEXSAB=LEXABR S LEXF=1
-SOQ ; Quit Source Filter
- K LEXCR,LEXMC,LEXMCE,LEXN0,LEXSAB,LEXABR,LEXSO,LEXSR,LEXSTA,LEXTR
- Q LEXF
 SRC(LEX,LEXS) ; Filter by Expression Source
  ;    LEX      Expression  IEN of file 757.01
  ;    LEXS     Source      IEN of 757.14
@@ -250,12 +186,14 @@ DSMONE(LEX,LEXVDT) ; Get One DSM Code for a Term
  ;
  ;    $$DSMONE DSM-IV Code or Null
  ;
- N LEXDSM D VDT S LEXDSM=$$ONE^LEXSRC(LEX,"DS4")
+ N LEXDSM,LEXCD,LEXDAT D VDT S LEXDSM=$$ONE^LEXSRC($G(LEX),"DS4")
  I LEXDSM'="" D  Q LEX
- . S LEX=LEXDSM N LEXDAT S LEXDAT=$$ICDDX^ICDEX(LEXDSM,$G(LEXVDT),1,"E")
+ . S LEX=LEXDSM N LEXDAT,LEXCD S LEXCD=LEXDSM S:$L(LEXCD)=3 LEXCD=LEXCD_"."
+ . S LEXDAT=$$ICDDX^ICDEX(LEXCD,$G(LEXVDT),1,"E")
  . S:$P(LEXDAT,"^",10)'>0 LEX=""
- S LEXDSM=$$ONE^LEXSRC(LEX,"DS3") I LEXDSM'="" D  Q LEX
- . S LEX=LEXDSM N LEXDAT S LEXDAT=$$ICDDX^ICDEX(LEXDSM,$G(LEXVDT),1,"E")
+ S LEXDSM=$$ONE^LEXSRC($G(LEX),"DS3") I LEXDSM'="" D  Q LEX
+ . S LEX=LEXDSM N LEXDAT,LEXCD S LEXCD=LEXDSM S:$L(LEXCD)=3 LEXCD=LEXCD_"."
+ . S LEXDAT=$$ICDDX^ICDEX(LEXCD,$G(LEXVDT),1,"E")
  . S:$P(LEXDAT,"^",10)'>0 LEX=""
  Q ""
  ;
@@ -390,9 +328,9 @@ ADR(LEX) ; Mailing Address
 VDT ; Resolve LEXVDT
  D VDT^LEXU3 Q
 IMPDATE(CSYS) ; Return the implementation date for a coding system
- Q $$IMPDATE^LEXU3($G(CSYS))
+ Q $$IMPDATE^LEXU5($G(CSYS))
 CSYS(SYS) ; Coding System Info
- Q $$CSYS^LEXU3($G(SYS))
+ Q $$CSYS^LEXU5($G(SYS))
 FREQ(TXT) ; Frequency of text - ICR 5679
  Q $$FREQ^LEXU3($G(TXT))
 MAX(SYS) ; Coding System search Threshold - ICR 5679
@@ -416,3 +354,9 @@ RUPD(X) ; Recent Update Date
  Q $$RUPD^LEXU3($G(X))
 LUPD(X,Y) ; Last Update
  Q $$LUPD^LEXU3($G(X),$G(Y))
+REUSE(X,SYS) ; Is a code "re-used" (1/0)
+ Q $$REUSE^LEXU4($G(X),$G(SYS))
+REVISE(X,SYS) ; Is a code "revised" (1/0)
+ Q $$REVISE^LEXU4($G(X),$G(SYS))
+LAST(X,SYS,CDT) ; Last Activation ^ Last Inactivation Date
+ Q $$LAST^LEXU4($G(X),$G(SYS),$G(CDT))

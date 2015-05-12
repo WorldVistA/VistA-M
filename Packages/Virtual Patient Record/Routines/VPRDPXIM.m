@@ -1,5 +1,5 @@
 VPRDPXIM ;SLC/MKB -- Immunizations extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**2**;Sep 01, 2011;Build 317
+ ;;1.0;VIRTUAL PATIENT RECORD;**2,4**;Sep 01, 2011;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -70,7 +70,8 @@ EN1(IEN,IMM) ; -- return an immunization in IMM("attribute")=value
  S X=$P(X12,U,4) S:'X X=$P(X12,U,2)
  I 'X S I=0 F  S I=$O(^TMP("PXKENC",$J,VISIT,"PRV",I)) Q:I<1  I $P($G(^(I,0)),U,4)="P" S X=+^(0) Q
  S:X IMM("provider")=X_U_$P($G(^VA(200,X,0)),U)
- ; CPT mapping
+ ; CVX, CPT mappings
+ S X=$$GET1^DIQ(9999999.14,+TMP_",",.03) S:$L(X) IMM("cvx")=X
  S X=+$$FIND1^DIC(811.1,,"QX",+TMP_";AUTTIMM(","B") I X>0 D
  . S Y=$$GET1^DIQ(811.1,X_",",.02,"I") Q:Y<1
  . N CPT S CPT=$G(@(U_$P(Y,";",2)_+Y_",0)"))

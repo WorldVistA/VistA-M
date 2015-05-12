@@ -1,5 +1,5 @@
 SRSCAN0 ;BIR/MAM - CANCEL SCHEDULED OPERATIONS (CONT) ;08/10/2011
- ;;3.0;Surgery;**34,42,67,103,107,114,100,144,175,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**34,42,67,103,107,114,100,144,175,176,182**;24 Jun 93;Build 49
  ;
  G SWAP ; change of SR*3*176
 CUT S X1=SRSDATE,X2=-1 D C^%DTC S SRSDT=X,X=$P($G(^SRO(133,SRSITE,0)),"^",12) S SRTIME=SRSDT_"."_$S(X'="":X,1:1500)
@@ -26,9 +26,9 @@ NOCC ; no longer concurrent cases
  S DA=$P(^SRF(SRTN,"CON"),"^"),DIE=130,DR="35///@" D ^DIE S SROERR=DA D ^SROERR0 S DA=SRTN D ^DIE,OERR,UNLOCK^SROUTL(DA)
  Q
 SWAP ; move data into a new entry and set up the cancel date in the old
- W ! K DIR S DIR(0)="130,18",DIR("A")="Cancellation Reason" D ^DIR S SRSCAN=$P(Y,"^") I $D(DIRUT) W !!,"Case NOT cancelled." D PRESS G END
- N SRSCOM S SRSCOM="" I $P(Y,"^",2)="OTHER" W ! K DIR S DIR(0)="130,19",DIR("A")="Cancellation Comments" D ^DIR S SRSCOM=$P(Y,"^") I $D(DIRUT) W !!,"Case NOT cancelled." D PRESS G END
- K DR S SRCON=0,DA=SRTN,DR=".02///@;102///@;235///@;284///@;323///@;18////"_SRSCAN_";19////"_SRSCOM_";67T;70////"_DUZ,DIE=130 D ^DIE S:$D(DTOUT)!$D(DUOUT) SRSOUT=1
+ W ! K DIR S DIR(0)="130,17.5",DIR("A")="Cancellation Timeframe" D ^DIR S SRTF=$P(Y,"^") I $D(DIRUT) W !!,"Case NOT cancelled." D PRESS G END
+ K DIR S DIR(0)="130,18",DIR("A")="Primary Cancellation Reason" D ^DIR S SRSCAN=$P(Y,"^") I $D(DIRUT) W !!,"Case NOT cancelled." D PRESS G END
+ K DR S SRCON=0,DA=SRTN,DR=".02///@;102///@;235///@;284///@;323///@;17.5////"_SRTF_";18////"_SRSCAN_";67T;70////"_DUZ,DIE=130 D ^DIE S:$D(DTOUT)!$D(DUOUT) SRSOUT=1
  S SRSCHST=$P($G(^SRF(SRTN,31)),"^",4),AVOID=$P(^(30),"^",2)
  I '$P($G(^SRF(SRTN,"CON")),"^") D ^SRSCG
  S SRSDPT=$P(^SRF(SRTN,0),"^"),SRSOP=$P(^SRF(SRTN,"OP"),"^")
@@ -43,7 +43,7 @@ CON I '$D(SRSCC),$D(^SRF(SRTN,"CON")),$P(^("CON"),"^")'="" D CANCC^SRSUTL2 Q:SRB
 END D UNLOCK^SROUTL(SRTN),^SRSKILL K SRTN W @IOF
  Q
 CON1 I SRDEAD=0 G SWAP2
- K DR S DA=SRTN,DR=".02///@;102///@;235///@;284///@;323///@;18///"_$P(^SRO(135,SRSCAN,0),"^")_";19////"_SRSCOM_";67///"_AVOID_";70////"_DUZ,DIE=130 D ^DIE
+ K DR S DA=SRTN,DR=".02///@;102///@;235///@;284///@;323///@;17.5////"_SRTF_";18///"_$P(^SRO(135,SRSCAN,0),"^")_";67///"_AVOID_";70////"_DUZ,DIE=130 D ^DIE
  D NOW^%DTC S $P(^SRF(SRTN,30),"^")=$E(%,1,12),$P(^SRF(SRTN,31),"^",4)="",$P(^SRF(SRTN,31),"^",5)=""
 OERR ; update ORDER file (100)
  S SROERR=SRTN K SRTX D ^SROERR0

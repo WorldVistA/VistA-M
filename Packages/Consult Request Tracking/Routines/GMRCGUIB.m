@@ -1,5 +1,6 @@
-GMRCGUIB ;SLC/DCM,JFR,MA - GUI actions for consults ;8/19/03 07:31
- ;;3.0;CONSULT/REQUEST TRACKING;**4,12,18,20,17,22,29,30,35,45,53,55,64,46**;DEC 27, 1997;Build 23
+GMRCGUIB ;SLC/DCM,JFR,MA - GUI actions for consults ;4/29/14
+ ;;3.0;CONSULT/REQUEST TRACKING;**4,12,18,20,17,22,29,30,35,45,53,55,64,46,75**;DEC 27, 1997;Build 22
+ ;
  ; This routine invokes IA #2980
  ;
 SETDA() ;set DA of where audit actions are to be filed
@@ -41,6 +42,8 @@ CMT(GMRCO,GMRCOM,GMRCADUZ,GMRCWHN,GMRCWHO) ;add comment to consult
  S DA=$$SETDA ; get next activity tracking entry
  S GMRCA=20,GMRCAD=GMRCWHN S:$G(GMRCWHO) GMRCORNP=GMRCWHO
  D SETCOM(.GMRCOM,$G(GMRCWHO))
+ ;if a Non VA Care consult, notify HCP of the comment
+ I $$FEE^GMRCHL7H($$GET1^DIQ(123,+GMRCO,1,"I")) D COMMENT^GMRCHL7H(+GMRCO)
  D  ;update LAST ACTION field even though no status change
  . N GMRCDR,GMRCSTS
  . S GMRCSTS="",GMRCDR="9////20"

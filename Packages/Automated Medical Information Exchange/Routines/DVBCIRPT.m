@@ -1,11 +1,12 @@
 DVBCIRPT ;ALB/GTS-AMIE C&P INSUFF EXAM TRACKING RPT ; 11/9/94  2:00 PM
- ;;2.7;AMIE;**13,19,27,149,184,185**;Apr 10, 1995;Build 18
+ ;;2.7;AMIE;**13,19,27,149,184,185,191**;Apr 10, 1995;Build 5
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;** Version Changes
  ;   2.7 - New routine (Enhc 15)
  ;
-MAIN ;**Select Dte Rng & Rpt Type; call report routine
+MAIN ;**Select Dte Rng & Rpt Type; call report routine **
+ ;**DVBA*2.7*191 initializes variable DVBADLMTR to zero before taskman call on detailed report**
  F  Q:$D(DVBAOUT)  DO
  .D HOME^%ZIS
  .S TVAR(1,0)="0,0,1,2:2,1^Insufficient 2507 Exam Report"
@@ -41,10 +42,10 @@ MAIN ;**Select Dte Rng & Rpt Type; call report routine
  ....I POP D KVARS^DVBCIRP1
  ....I 'POP DO
  .....I $D(IO("Q")) DO
- ......N DVBAI
+ ......N DVBAI,ZTSAVE
  ......S ZTRTN="DETAIL^DVBCIRP1",ZTIO=ION
  ......S ZTDESC="Detailed Insufficient Exam Report"
- ......F DVBAI="BEGDT","ENDDT","DVBAPRTY","DVBAARY(""REASON"",","^TMP($J,""XMTYPE""," S ZTSAVE(DVBAI)=""
+ ......F DVBAI="BEGDT","ENDDT","DVBAPRTY","DVBAARY(""REASON"",","^TMP($J,""XMTYPE""," S ZTSAVE(DVBAI)="",ZTSAVE("DVBADLMTR")=0
  ......D ^%ZTLOAD
  ......N TSK S TSK=$S($D(ZTSK)=0:"C",1:"Y")
  ......I TSK="Y" W !!,"Detail Report Queued. Task number: ",ZTSK

@@ -1,5 +1,5 @@
-PSNCMOP ;BIR/DMA&WRT-print products marked for CMOP ; 12/07/98 14:33
- ;;4.0; NATIONAL DRUG FILE;**3**; 30 Oct 98
+PSNCMOP ;BIR/DMA&WRT-print products marked for CMOP ; 12/26/13 14:33
+ ;;4.0;NATIONAL DRUG FILE;**3,365**;30 Oct 98;Build 9
 PRELIM W !,"This report will print out all VA Product Names marked for CMOP transmission.",!,"You may either sort by VA Product Name or by VA Identifier.",!
  W "This information comes from the VA Products file (NATIONALLY MARKED).",!,?15,"*** This is a long report ***",!,"You may queue the report to print, if you wish.",!!
  K DIR S DIR(0)="SA^I:IDENTIFIER;N:NAME",DIR("A")="Sort by VA Identifier (I) or VA Product Name (N)? " D ^DIR G END:$D(DIRUT) S S=Y
@@ -20,7 +20,7 @@ HEADID W:$Y @IOF W !,?12,"VA PRODUCT LIST",?IOM-35," ",TD," PAGE ",PG,!,"ID#",?1
  ;
  ;
 N ;SORT BY NAME
- S DA=0 F  S DA=$O(^PSNDF(50.68,DA)) Q:'DA  S X0=^(DA,0),X1=^(1) I $P(X1,"^",3)]"" S NA=$P(X0,"^"),PR=$P(X1,"^"),UN=$P(X1,"^",4),UN=$P($G(^PSNDF(50.64,+UN,0)),"^"),ID=$P(X1,"^",2),^TMP($J,"PSN",NA,PR,UN,ID)=""
+ S DA=0 F  S DA=$O(^PSNDF(50.68,DA)) Q:'DA  S X0=^(DA,0),X1=^(1) I $P(X1,"^",3) S NA=$P(X0,"^"),PR=$P(X1,"^"),UN=$P(X1,"^",4),UN=$P($G(^PSNDF(50.64,+UN,0)),"^"),ID=$P(X1,"^",2),^TMP($J,"PSN",NA,PR,UN,ID)=""
  S PG=1,TD=$TR($$HTE^XLFDT($H),"@"," "),$P(LINE,"-",IOM-1)="" D HEADNA
  S NA="" F  S NA=$O(^TMP($J,"PSN",NA)),PR="" Q:NA=""  F  S PR=$O(^TMP($J,"PSN",NA,PR)),UN="" Q:PR=""  F  S UN=$O(^TMP($J,"PSN",NA,PR,UN)),ID="" Q:UN=""  F  S ID=$O(^TMP($J,"PSN",NA,PR,UN,ID)) Q:ID=""  D
  .W !,NA,!,?7,PR,?60,UN,?70,ID I $Y+4>IOSL D HEADNA

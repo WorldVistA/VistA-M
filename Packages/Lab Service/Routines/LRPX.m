@@ -1,5 +1,5 @@
 LRPX ;SLC/STAFF - Process lab indexes ;9/26/03  15:39
- ;;5.2;LAB SERVICE;**295**;Sep 27, 1994
+ ;;5.2;LAB SERVICE;**295,445**;Sep 27, 1994;Build 6
  ;
  ;
 CHKILL(LRDFN,LRIDT) ; from LROC
@@ -43,7 +43,7 @@ PATIENT(LRDFN,DFN,OK) ;
 TESTS(LRDFN,LRIDT,LRDN,TEST) ;
  N DATA
  S DATA=^LR(LRDFN,"CH",LRIDT,LRDN)
- S TEST=+$P($P(DATA,U,3),"!",6)
+ S TEST=+$P($P(DATA,U,3),"!",7)
  I 'TEST S TEST=+$O(^LAB(60,"C","CH;"_LRDN_";1",0))
  Q
  ;

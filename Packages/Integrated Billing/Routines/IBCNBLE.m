@@ -1,6 +1,6 @@
 IBCNBLE ;ALB/ARH - Ins Buffer: LM buffer entry screen ;1-Jun-97
- ;;2.0;INTEGRATED BILLING;**82,231,184,251,371,416,435,452,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**82,231,184,251,371,416,435,452,497,519**;21-MAR-94;Build 56
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - main entry point for list manager display
  N DFN
@@ -222,10 +222,15 @@ SERVLN(IBBUFDA,SRVARRAY) ; create a service date/service type line for the displ
  N NODE0,RIEN,SRVCODE,SRVDT,SRVSTR,TQIEN
  S SRVSTR=""
  I '$G(IBBUFDA) G SERVLNX
+ ;IB*2.0*519 Start: Fix retrieving RIEN and TQIEN so display gets correct values
+ S RIEN=+$O(^IBCN(365,"AF",IBBUFDA,""))
  S TQIEN=+$O(^IBCN(365.1,"D",IBBUFDA,""),-1)
+ I TQIEN=0 S TQIEN=$P($G(^IBCN(365,RIEN,0)),U,5)
+ ;IB*2.0*519 End: Fix retrieving RIEN and TQIEN so display gets correct values
+ ;
  S (SRVDT,SRVCODE)="" I TQIEN D
  .S NODE0=$G(^IBCN(365.1,TQIEN,0)),SRVCODE=$P(NODE0,U,20)
- .S RIEN=+$O(^IBCN(365,"AF",IBBUFDA,""))
+ .;S RIEN=+$O(^IBCN(365,"AF",IBBUFDA,""))  ;IB*2.0*519: RIEN already retrieved above
  .I RIEN S SRVDT=$P($G(^IBCN(365,RIEN,1)),U,10) ; try to get service date from file 365
  .I SRVDT="" S SRVDT=$P(NODE0,U,12) ; if unsuccessful, get it from file 365.1
  .Q

@@ -1,6 +1,6 @@
 BPSSCRLG ;BHAM ISC/SS - ECME LOGINFO ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,15**;JUN 2004;Build 13
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,15,18**;JUN 2004;Build 31
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -352,6 +352,8 @@ DISPRSP(BPLN,BP59,BPIEN03,BP57,BPSTYPE,BPSDTALT) ;
  D SETLINE(.BPLN,"Reason for Service Code: "_$$DURREAS(BPIEN03))
  D SETLINE(.BPLN,"DUR Text: "_$$DURTEXT(BPIEN03))
  D WRAPLN^BPSSCRU5(.BPLN,$$DURADD(BPIEN03),76,"DUR Additional Text: ",5)
+ ; BPS*1*18:  Print Claim Log [BPS PRTCL USRSCR CLAIM LOG] (when included in the incoming response)
+ D SETLINE(.BPLN,"HPID/OEID: "_$$HPID(BPIEN03,BP57))
  F BPCNT=1:1:2 D SETLINE(.BPLN,"")
  Q
  ;
@@ -425,6 +427,15 @@ DURREAS(BPIEN03) ;
 DURADD(BPIEN03) ;
  ; DUR ADDITIONAL TEXT from first instance of DUR PPS RESPONSE
  Q $P($G(^BPSR(BPIEN03,1000,1,567.01,1,1)),U)
+ ;
+ ;Payer HPID from response  ***BPS*1*18 IB ICR #6061
+HPID(BPIEN03,BP57) ;
+ N BPHPD
+ Q:$P($G(^BPSR(BPIEN03,560)),U,8)'="01" ""
+ S BPHPD=$P($G(^BPSR(BPIEN03,560)),U,9)
+ ; 6/25/14 no validation of HPID for this screen
+ ;S:BPHPD'="" BPHPD=BPHPD_$P($$HOD^IBCNHUT1(BPHPD,BP57),U,3)
+ Q BPHPD
  ;
 RXCOB57(BPIEN57) ;
  N BPCOB

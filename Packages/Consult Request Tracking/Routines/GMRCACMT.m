@@ -1,5 +1,6 @@
-GMRCACMT ;SLC/DLT,DCM,MA,JFR - Comment Action and alerting ;8/19/03 07:27
- ;;3.0;CONSULT/REQUEST TRACKING;**4,14,18,20,22,29,35,47,55**;DEC 27, 1997;Build 4
+GMRCACMT ;SLC/DLT,DCM,MA,JFR - Comment Action and alerting ;4/29/14
+ ;;3.0;CONSULT/REQUEST TRACKING;**4,14,18,20,22,29,35,47,55,75**;DEC 27, 1997;Build 22
+ ;
  ; This routine invokes IA #10060
  ;
 COMMENT(GMRCO) ;Add a comment without changing the status
@@ -18,6 +19,8 @@ COMMENT(GMRCO) ;Add a comment without changing the status
  .. W !!,"The ordering provider for this inter-facility consult will"
  .. W " automatically be ",!,"notified.",!
  . D PROCALRT("",1,20,GMRCO)
+ . ;if a Non VA Care consult, notify HCP of the comment
+ . I $$FEE^GMRCHL7H($$GET1^DIQ(123,GMRCO,1,"I")) D COMMENT^GMRCHL7H(GMRCO)
  . ;update LAST ACTION field even though no status change
  . N GMRCDR,GMRCSTS
  . S GMRCSTS="",GMRCDR="9////20"

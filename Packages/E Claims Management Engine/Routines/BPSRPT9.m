@@ -1,6 +1,6 @@
 BPSRPT9 ;BHAM ISC/BNT - ECME REPORTS ;19-SEPT-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8**;01-JUN-04;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,18**;01-JUN-04;Build 31
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ; Front End for Potential Secondary and Tricare Rx Claims Reports
@@ -77,11 +77,17 @@ PRNTTRI(BPARR) ;
  . . . . S INSC=0 F  S INSC=$O(BPARR(PSRT,SSRT,TSRT,CNT,"INS",INSC)) Q:INSC=""  D
  . . . . . S COB=$S(INSC=1:"p",INSC=2:"s",1:"t")
  . . . . . S ELIG=$P(BPARR(PSRT,SSRT,TSRT,CNT,"ELIG"),U)
- . . . . . S PAYER=$E($P(BPARR(PSRT,SSRT,TSRT,CNT,"INS",INSC),U)_" - "_$P(BPARR(PSRT,SSRT,TSRT,CNT,"INS",INSC),U,2),1,23)
+ . . . . . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
+ . . . . . ;S PAYER=$E($P(BPARR(PSRT,SSRT,TSRT,CNT,"INS",INSC),U)_" - "_$P(BPARR(PSRT,SSRT,TSRT,CNT,"INS",INSC),U,2),1,23)
+ . . . . . S PAYER=$E($P(BPARR(PSRT,SSRT,TSRT,CNT,"INS",INSC),U)_"-"_$P(BPARR(PSRT,SSRT,TSRT,CNT,"INS",INSC),U,2),1,16)
  . . . . . I $Y>(IOSL-4) D HDR(BPRTYPE) Q:BPQUIT
- . . . . . W !,RX,?10,FILL,?15,FILLDT,?24,$E(PATNAME,1,15),?40,$P(DATA,U,6),?45,COB,?49,ELIG,?55,PAYER
+ . . . . . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
+ . . . . . ;W !,RX,?10,FILL,?15,FILLDT,?24,$E(PATNAME,1,15),?40,$P(DATA,U,6),?45,COB,?49,ELIG,?55,PAYER
+ . . . . . W !,RX,?10,FILL,?13,FILLDT,?22,$E(PATNAME,1,15),?38,$P(DATA,U,6),?44,COB,?47,ELIG,?52,PAYER,?69,$P(BPARR(PSRT,SSRT,TSRT,CNT,"INS",INSC),U,3)
  . . . . . S ELIG=$S($P(BPARR(PSRT,SSRT,TSRT,CNT,"ELIG"),U,2)]"":$P(BPARR(PSRT,SSRT,TSRT,CNT,"ELIG"),U,2),1:"")
- . . . . . I ELIG]"" W !,?49,ELIG
+ . . . . . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
+ . . . . . ;I ELIG]"" W !,?49,ELIG
+ . . . . . I ELIG]"" W !,?47,ELIG
  Q
  ;
  ; Print Secondary Report
@@ -110,14 +116,18 @@ PRNTSEC(BPARR) ;
  . . . S CNT=0 F  S CNT=$O(BPARR(PSRT,SSRT,TSRT,CNT)) Q:CNT=""  D  Q:BPQUIT
  . . . . S DATA=$G(BPARR(PSRT,SSRT,TSRT,CNT))
  . . . . I $Y>(IOSL-4) D HDR(BPRTYPE) Q:BPQUIT
- . . . . I DATA]"" W !,$P(DATA,U,2),?11,$P(DATA,U,3),?21,$P(DATA,U,4),?26,$E($P(DATA,U,6),1,15),?42,$P(DATA,U,9),?47,$P(DATA,U,7),?51,$P(DATA,U,5),?60,$E($P(DATA,U,8),1,20)
+ . . . . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
+ . . . . ;I DATA]"" W !,$P(DATA,U,2),?11,$P(DATA,U,3),?21,$P(DATA,U,4),?26,$E($P(DATA,U,6),1,15),?42,$P(DATA,U,9),?47,$P(DATA,U,7),?51,$P(DATA,U,5),?60,$E($P(DATA,U,8),1,20)
+ . . . . I DATA]"" W !,$P(DATA,U,2),?11,$P(DATA,U,3),?21,$P(DATA,U,4),?26,$E($P(DATA,U,6),1,10),?37,$P(DATA,U,9),?43,$P(DATA,U,7),?46,$P(DATA,U,5),?55,$E($P(DATA,U,8),1,13),?69,$P(DATA,U,10)
  . . . . ;
  . . . . ; If the bill# contains "(P)" it is a primary ECME reject, flag it for the legend
  . . . . I $P(DATA,U,2)["(P)" S LGFLG1=1
  . . . . S INSC=0 F  S INSC=$O(BPARR(PSRT,SSRT,TSRT,CNT,INSC)) Q:INSC=""  D  Q:BPQUIT
  . . . . . S INSDATA=BPARR(PSRT,SSRT,TSRT,CNT,INSC)
  . . . . . I $Y>(IOSL-4) D HDR(BPRTYPE) Q:BPQUIT
- . . . . . W !,?47,$P(INSDATA,U),?60,$E($P(INSDATA,U,2),1,20)
+ . . . . . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
+ . . . . . ;W !,?47,$P(INSDATA,U),?60,$E($P(INSDATA,U,2),1,20)
+ . . . . . W !,?43,$P(INSDATA,U),?55,$E($P(INSDATA,U,2),1,13),?69,$P(INSDATA,U,3)
  . . . . . I $P(INSDATA,U,1)["-" S LGFLG2=1
  ;
  Q:BPQUIT
@@ -247,11 +257,17 @@ HDR(BPRTYPE) ;
  I 'BPPHARM W "ALL"
  I BPPHARM S X=0 F  S X=$O(BPPHARM(X)) Q:X=""  W $P(BPPHARM(X),U,2),"; "
  W !,"Sorted By: "_$P($P(BPSORT,U),":",2)_" "_$P($P(BPSORT,U,2),":",2)_" "_$P($P(BPSORT,U,3),":",2)
+ ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
+ W !,"'*' indicates the HPID/OEID failed validation checks"
  ; Write header for Potential Secondary Claims Rpt
  I BPRTYPE=9 D
- . W !,"Bill#",?11,"RX#",?21,"Fill",?26,"Patient",?41,"PatID",?47,"COB",?51,"Date",?60,"Payers",!
+ . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
+ . ;W !,"Bill#",?11,"RX#",?21,"Fill",?26,"Patient",?41,"PatID",?47,"COB",?51,"Date",?60,"Payers",!
+ . W !,"Bill#",?11,"RX#",?21,"Fill",?26,"Patient",?36,"PatID",?42,"COB",?46,"Date",?55,"Payers",?69,"HPID/OEID",!
  ; Write header for Potential Tricare Claims Rpt
  I BPRTYPE=8 D
- . W !,"RX#",?10,"Fill",?15,"Date",?24,"Patient",?39,"PatID",?45,"COB",?49,"Elig",?55,"Payers",!
+ . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
+ . ;W !,"RX#",?10,"Fill",?15,"Date",?24,"Patient",?39,"PatID",?45,"COB",?49,"Elig",?55,"Payers",!
+ . W !,"RX#",?9,"Fill",?14,"Date",?22,"Patient",?37,"PatID",?43,"COB",?47,"Elig",?53,"Payers",?69,"HPID/OEID",!
  F X=1:1:IOM W "-"
  Q

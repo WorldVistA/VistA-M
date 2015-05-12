@@ -1,148 +1,132 @@
-IBDEI07I ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI07I ; ; 09-FEB-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQ(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3354,2)
- ;;=^92451
- ;;^UTILITY(U,$J,358.3,3355,0)
- ;;=298.9^^33^277^20
- ;;^UTILITY(U,$J,358.3,3355,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3355,1,4,0)
- ;;=4^298.9
- ;;^UTILITY(U,$J,358.3,3355,1,5,0)
- ;;=5^Psychosis
- ;;^UTILITY(U,$J,358.3,3355,2)
- ;;=^1
- ;;^UTILITY(U,$J,358.3,3356,0)
- ;;=309.81^^33^277^18
- ;;^UTILITY(U,$J,358.3,3356,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3356,1,4,0)
- ;;=4^309.81
- ;;^UTILITY(U,$J,358.3,3356,1,5,0)
- ;;=5^PTSD (chronic)
- ;;^UTILITY(U,$J,358.3,3356,2)
- ;;=^114716
- ;;^UTILITY(U,$J,358.3,3357,0)
- ;;=295.90^^33^277^21
- ;;^UTILITY(U,$J,358.3,3357,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3357,1,4,0)
- ;;=4^295.90
- ;;^UTILITY(U,$J,358.3,3357,1,5,0)
- ;;=5^Schizophrenia 
- ;;^UTILITY(U,$J,358.3,3357,2)
- ;;=^108287
- ;;^UTILITY(U,$J,358.3,3358,0)
- ;;=300.81^^33^277^22
- ;;^UTILITY(U,$J,358.3,3358,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3358,1,4,0)
- ;;=4^300.81
- ;;^UTILITY(U,$J,358.3,3358,1,5,0)
- ;;=5^Somatization Disorder
- ;;^UTILITY(U,$J,358.3,3358,2)
- ;;=^112280
- ;;^UTILITY(U,$J,358.3,3359,0)
- ;;=306.9^^33^277^23
- ;;^UTILITY(U,$J,358.3,3359,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3359,1,4,0)
- ;;=4^306.9
- ;;^UTILITY(U,$J,358.3,3359,1,5,0)
- ;;=5^Somatization Reaction
- ;;^UTILITY(U,$J,358.3,3359,2)
- ;;=^123979
- ;;^UTILITY(U,$J,358.3,3360,0)
- ;;=305.1^^33^277^24
- ;;^UTILITY(U,$J,358.3,3360,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3360,1,4,0)
- ;;=4^305.1
- ;;^UTILITY(U,$J,358.3,3360,1,5,0)
- ;;=5^Tobacco Dependence
- ;;^UTILITY(U,$J,358.3,3360,2)
- ;;=^119899
- ;;^UTILITY(U,$J,358.3,3361,0)
- ;;=304.90^^33^277^6
- ;;^UTILITY(U,$J,358.3,3361,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3361,1,4,0)
- ;;=4^304.90
- ;;^UTILITY(U,$J,358.3,3361,1,5,0)
- ;;=5^DRUG ABUSE
- ;;^UTILITY(U,$J,358.3,3361,2)
- ;;=^36870
- ;;^UTILITY(U,$J,358.3,3362,0)
- ;;=785.9^^33^278^1
- ;;^UTILITY(U,$J,358.3,3362,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3362,1,4,0)
- ;;=4^785.9
- ;;^UTILITY(U,$J,358.3,3362,1,5,0)
- ;;=5^Abdominal Bruit
- ;;^UTILITY(U,$J,358.3,3362,2)
- ;;=^273372
- ;;^UTILITY(U,$J,358.3,3363,0)
- ;;=789.30^^33^278^2
- ;;^UTILITY(U,$J,358.3,3363,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3363,1,4,0)
- ;;=4^789.30
- ;;^UTILITY(U,$J,358.3,3363,1,5,0)
- ;;=5^Abdominal/Pelvic Mass, 
- ;;^UTILITY(U,$J,358.3,3363,2)
- ;;=^917
- ;;^UTILITY(U,$J,358.3,3364,0)
- ;;=578.1^^33^278^60
- ;;^UTILITY(U,$J,358.3,3364,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3364,1,4,0)
- ;;=4^578.1
- ;;^UTILITY(U,$J,358.3,3364,1,5,0)
- ;;=5^Melena
- ;;^UTILITY(U,$J,358.3,3364,2)
- ;;=^276839
- ;;^UTILITY(U,$J,358.3,3365,0)
- ;;=112.84^^33^278^5
- ;;^UTILITY(U,$J,358.3,3365,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3365,1,4,0)
- ;;=4^112.84
- ;;^UTILITY(U,$J,358.3,3365,1,5,0)
- ;;=5^Candidiasis Esophagitis
- ;;^UTILITY(U,$J,358.3,3365,2)
- ;;=^259729
- ;;^UTILITY(U,$J,358.3,3366,0)
- ;;=112.0^^33^278^6
- ;;^UTILITY(U,$J,358.3,3366,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3366,1,4,0)
- ;;=4^112.0
- ;;^UTILITY(U,$J,358.3,3366,1,5,0)
- ;;=5^Candidiasis, Oral
- ;;^UTILITY(U,$J,358.3,3366,2)
- ;;=^18599
- ;;^UTILITY(U,$J,358.3,3367,0)
- ;;=575.10^^33^278^7
- ;;^UTILITY(U,$J,358.3,3367,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3367,1,4,0)
- ;;=4^575.10
- ;;^UTILITY(U,$J,358.3,3367,1,5,0)
- ;;=5^Cholecystitis
- ;;^UTILITY(U,$J,358.3,3367,2)
- ;;=^23341
- ;;^UTILITY(U,$J,358.3,3368,0)
- ;;=574.20^^33^278^32
- ;;^UTILITY(U,$J,358.3,3368,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3368,1,4,0)
- ;;=4^574.20
- ;;^UTILITY(U,$J,358.3,3368,1,5,0)
- ;;=5^Gallstones
- ;;^UTILITY(U,$J,358.3,3368,2)
- ;;=^18282
- ;;^UTILITY(U,$J,358.3,3369,0)
- ;;=571.2^^33^278^8
+ ;;^DIC(358.6,0,"GL")
+ ;;=^IBE(358.6,
+ ;;^DIC("B","IMP/EXP PACKAGE INTERFACE",358.6)
+ ;;=
+ ;;^DIC(358.6,"%D",0)
+ ;;=^^1^1^2950927^^^^
+ ;;^DIC(358.6,"%D",1,0)
+ ;;=This file is used as a workspace by the import/export utility.
+ ;;^DIC(358.6,"%D",2,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.6,"%D",3,0)
+ ;;=that is being imported or exported.
+ ;;^DIC(358.6,"%D",4,0)
+ ;;= 
+ ;;^DIC(358.6,"%D",5,0)
+ ;;=This file contains a description of all of the interfaces with other packages.
+ ;;^DIC(358.6,"%D",6,0)
+ ;;=The form will invoke the proper interface routines by doing a lookup on
+ ;;^DIC(358.6,"%D",7,0)
+ ;;=this file and then invoking the routine by indirection. The INPUT VARIABLE
+ ;;^DIC(358.6,"%D",8,0)
+ ;;=fields are for documentation purposes and to verify that the proper
+ ;;^DIC(358.6,"%D",9,0)
+ ;;=variables are defined. Data will be exchanged between the encounter form
+ ;;^DIC(358.6,"%D",10,0)
+ ;;=utilities and other packages by putting the data in a predefined location.
+ ;;^DIC(358.6,"%D",11,0)
+ ;;=The first part of the subscript is always be ^TMP("IB",$J,"INTERFACES".
+ ;;^DIC(358.6,"%D",12,0)
+ ;;=For output routines, but not selection routines, the fourth subscript is
+ ;;^DIC(358.6,"%D",13,0)
+ ;;=be the patient DFN. The next subscript is the name of the Package
+ ;;^DIC(358.6,"%D",14,0)
+ ;;=Interface. For single valued data and record valued data there is no
+ ;;^DIC(358.6,"%D",15,0)
+ ;;=additional subscript. For interfaces returning a list there is one
+ ;;^DIC(358.6,"%D",16,0)
+ ;;=additional subscript level, the number of the item on the list. For
+ ;;^DIC(358.6,"%D",17,0)
+ ;;=word processing type data the data will be in FM word-processing format,
+ ;;^DIC(358.6,"%D",18,0)
+ ;;=i.e., the final subscripts will be ...1,0),...2,0),...3,0), etc.
+ ;;^DIC(358.6,"%D",19,0)
+ ;;=these items of data can have its own entry in the Package Interface file,
+ ;;^DIC(358.6,"%D",20,0)
+ ;;=but by using the same entry point there is a savings because all of the
+ ;;^DIC(358.6,"%D",21,0)
+ ;;=data on that node can be obtained at once. The routines that invoke the
+ ;;^DIC(358.6,"%D",22,0)
+ ;;=entry point keep track of the entry points already invoked so they are
+ ;;^DIC(358.6,"%D",23,0)
+ ;;=not repeated.
+ ;;^DD(358.6,0)
+ ;;=FIELD^^21^76
+ ;;^DD(358.6,0,"DDA")
+ ;;=N
+ ;;^DD(358.6,0,"DT")
+ ;;=3000124
+ ;;^DD(358.6,0,"ID",.06)
+ ;;=W ""
+ ;;^DD(358.6,0,"ID","WRITE")
+ ;;=N IBDWNAM S IBDWNAM=$E($P(^(0),U),1,40) D EN^DDIOL(IBDWNAM,"","!?0")
+ ;;^DD(358.6,0,"ID","WRITE1")
+ ;;=N IBDWTYPE S IBDWTYPE=$S($P(^(0),"^",6)=1:"INPUT",$P(^(0),"^",6)=2:"OUTPUT",$P(^(0),"^",6)=3:"SELECTION",1:"REPORT")_$S($P(^(0),U,6)=3&'$P(^(0),"^",13):"  ** NOT SCANNABLE **",1:"") D EN^DDIOL("TYPE="_IBDWTYPE,"","?45")
+ ;;^DD(358.6,0,"IX","B",358.6,.01)
+ ;;=
+ ;;^DD(358.6,0,"IX","C",358.6,.04)
+ ;;=
+ ;;^DD(358.6,0,"IX","D",358.6,3)
+ ;;=
+ ;;^DD(358.6,0,"IX","E",358.6,.01)
+ ;;=
+ ;;^DD(358.6,0,"NM","IMP/EXP PACKAGE INTERFACE")
+ ;;=
+ ;;^DD(358.6,0,"PT",358.2,.11)
+ ;;=
+ ;;^DD(358.6,0,"PT",358.5,.03)
+ ;;=
+ ;;^DD(358.6,0,"PT",358.6,.13)
+ ;;=
+ ;;^DD(358.6,0,"PT",358.93,.06)
+ ;;=
+ ;;^DD(358.6,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.6,.01,0)
+ ;;=NAME^RF^^0;1^K:X[""""!($A(X)=45) X I $D(X) K:$L(X)>40!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.6,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.6,.01,1,1,0)
+ ;;=358.6^B
+ ;;^DD(358.6,.01,1,1,1)
+ ;;=S ^IBE(358.6,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.6,.01,1,1,2)
+ ;;=K ^IBE(358.6,"B",$E(X,1,30),DA)
+ ;;^DD(358.6,.01,1,2,0)
+ ;;=358.6^E^MUMPS
+ ;;^DD(358.6,.01,1,2,1)
+ ;;=S ^IBE(358.6,"E",$E(X,$F(X," "),40),DA)=""
+ ;;^DD(358.6,.01,1,2,2)
+ ;;=K ^IBE(358.6,"E",$E(X,$F(X," "),40),DA)
+ ;;^DD(358.6,.01,1,2,"%D",0)
+ ;;=^^4^4^2940224^
+ ;;^DD(358.6,.01,1,2,"%D",1,0)
+ ;;= 
+ ;;^DD(358.6,.01,1,2,"%D",2,0)
+ ;;=For package interfaces that are output routines the name has the custodial
+ ;;^DD(358.6,.01,1,2,"%D",3,0)
+ ;;=package's name space as a prefix. This cross-reference removes that
+ ;;^DD(358.6,.01,1,2,"%D",4,0)
+ ;;=prefix. It is used to improve the display of output routines for the user.
+ ;;^DD(358.6,.01,1,2,"DT")
+ ;;=2930409
+ ;;^DD(358.6,.01,3)
+ ;;=Answer must be 3-40 characters in length. All entries with Action Type other than PRINT REPORT must be be prefixed with the namespace of the package that is responsible for the data.
+ ;;^DD(358.6,.01,21,0)
+ ;;=^^3^3^2950412^^^^
+ ;;^DD(358.6,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.6,.01,21,2,0)
+ ;;=The name of the Package Interface. For interfaces returning data the name
+ ;;^DD(358.6,.01,21,3,0)
+ ;;=should be preceded with the namespace of the package.
+ ;;^DD(358.6,.01,23,0)
+ ;;=^^1^1^2950412^
+ ;;^DD(358.6,.01,23,1,0)
+ ;;= 
+ ;;^DD(358.6,.01,"DT")
+ ;;=2930409

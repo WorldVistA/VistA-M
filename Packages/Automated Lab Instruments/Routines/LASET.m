@@ -1,5 +1,5 @@
 LASET ;SLC/RWF - AUTO INSTRUMENTS SETUP VAR FOR DATA COLECTION ;2/19/91  12:03
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,42,46**;Sep 27, 1994
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,42,46,84**;Sep 27, 1994;Build 2
  ;
 LA1 ;
  S:$D(ZTQUEUED) ZTREQ="@" ;Clean up
@@ -54,7 +54,7 @@ RMKSET(LAWL,LAISQN,LARMK,LARMKP) ; Set remark in LAH global
  . S ^LAH(LAWL,1,LAISQN,1,LAI)=LARMKP_LARMK ; Store comment
  ; Comment greater than 68 characters, need to reformat.
  K ^UTILITY($J,"W")
- S X=LARMK,DIWL=1,DIWR=68-$L(LARMKP),DIWF="",LAX=0 D ^DIWP ; Call FileMan to reformat.
+ S X=LARMK,DIWL=1,DIWR=68-$L(LARMKP),DIWF="|",LAX=0 D ^DIWP ; Call FileMan to reformat.
  F  S LAX=$O(^UTILITY($J,"W",DIWL,LAX)) Q:'LAX  D
  . S LAI=$O(^LAH(LAWL,1,LAISQN,1,""),-1)+1
  . S ^LAH(LAWL,1,LAISQN,1,LAI)=LARMKP_$G(^UTILITY($J,"W",DIWL,LAX,0))

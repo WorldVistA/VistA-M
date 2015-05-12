@@ -1,6 +1,6 @@
 IBCNSJ3 ;ALB/CPM - ADD NEW INSURANCE PLAN ; 11-JAN-95
- ;;2.0;INTEGRATED BILLING;**28,497,506**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,497,506,519**;21-MAR-94;Build 56
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 NEW(IBCNS,IBCPOL,IBFG,IBKEY) ; Add a new insurance plan
  ;  Input:   IBCNS  --  Pointer to an insurance company in file #36
@@ -32,6 +32,11 @@ MORE S IBTL="  "_$S(IBGRP:"GROUP",1:"INDIVIDUAL")_" PLAN "
  ;
  ; - check for duplicates and file the plan
  I $$CHECK(IBCNS,IBGNA,IBGNU) S IBCPOL=$$ADDH^IBCNSU(IBCNS,IBGRP,IBGNA,IBGNU)
+ ; IB*2.0*519: If new group added, check to see if we already have a NIF ID for this insurance company.
+ Q:IBCPOL<1
+ Q:$$NIF^IBCNHUT1(IBCNS)
+ ; if no NIF and we have not yet requested one, send an HL7
+ I '$D(^IBCNH(367.1,"INS",IBCNS)) D SEND^IBCNHHLO(IBCNS)
 NEWQ Q
  ;
  ;

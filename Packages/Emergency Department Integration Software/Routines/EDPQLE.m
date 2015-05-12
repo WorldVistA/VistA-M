@@ -1,5 +1,9 @@
 EDPQLE ;SLC/KCM - Retrieve Log Entry ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
+ ;;2.0;EMERGENCY DEPARTMENT;**6,2**;Feb 24, 2012;Build 23
+ ;
+ ; ; DBIA#  SUPPORTED
+ ; -----  ---------  ------------------------------------
+ ;  1894  Cont Sub   ENCEVENT^PXAPI
  ;
 GET(LOG,CHOICES) ; Get a log entry by request
  N CURBED,CURVAL,PERSON,CODED,CHTS,CHLOAD,CLINIC
@@ -89,13 +93,16 @@ PRIMPCE(EDPVISIT) ; return primary provider from PCE
  ;
 DIAGPCE(EDPVISIT) ; add PCE diagnoses
  Q:'EDPVISIT
- N I,X,CODE
+ ;BEGIN EDP*2.0*2 CHANGES replace line below with one that follows
+ N I,X,CODE,EDPLVDT,EDPLCIEN,EDPLCTYPE
  S I=0 F  S I=$O(^TMP("PXKENC",$J,EDPVISIT,"POV",I)) Q:'I  D
  . K X S X=^TMP("PXKENC",$J,EDPVISIT,"POV",I,0)
- . S X("type")="POV"
- . S CODE=$P(X,U) S:CODE CODE=$P(^ICD9(CODE,0),U)
- . S X("code")=$P(^ICD9($P(X,U),0),U)
- . S X("label")=^AUTNPOV($P(X,U,4),0)
+ . S X("type")="POV",EDPLVDT=$P($G(^TMP("PXKENC",$J,EDPVISIT,"VST",EDPVISIT,0)),U)
+ . S EDPLCIEN=$P(X,U),EDPLCTYPE=$$VER^EDPLEX($$CSYS^EDPLEX(EDPLVDT)) ;DRP Added this line
+ . S:EDPLCIEN (X("code"),CODE)=$P($$ICDDATA^EDPLEX("DIAG",EDPLCIEN,EDPLVDT),U,2)
+ . S X("label")=^AUTNPOV($P(X,U,4),0),X("icdType")=EDPLCTYPE,X("ien")=EDPLCIEN
+ . S:X("label")'[EDPLCTYPE X("label")=X("label")_" ("_$G(EDPLCTYPE)_" "_$G(CODE)_")" ; drp added this line
+ . ;END EDP*2.0*2 CHANGES
  . S X("primary")=($P(X,U,12)="P")
  . D XML^EDPX($$XMLA^EDPX("diagnosis",.X))
  S I=0 F  S I=$O(^TMP("PXKENC",$J,EDPVISIT,"CPT",I)) Q:'I  D
@@ -110,11 +117,16 @@ DIAGPCE(EDPVISIT) ; add PCE diagnoses
 DIAGFREE(LOG) ; add free text diagnoses
  N DIAG,CODE,LABEL,X4
  S DIAG=0 F  S DIAG=$O(^EDP(230,LOG,4,DIAG)) Q:'DIAG  D
+ . S EDPLVDT=$P(^EDP(230,LOG,0),U,8) ;drp EDP*2.0*2 added to retrieve Date of Interest
  . S X4=^EDP(230,LOG,4,DIAG,0)
+ . ;BEGIN EDP*2.0*2 CHANGES
  . S X4("type")="POV"
- . S CODE=$P(X4,U,2) S:CODE CODE=$P(^ICD9(CODE,0),U)
- . S X4("code")=CODE
+ . S EDPLCIEN=$P(X4,U,2) S:EDPLCIEN CODE=$P($$ICDDATA^EDPLEX("DIAG",EDPLCIEN,EDPLVDT),U,2) ;drp
+ . S:$G(CODE)'="" X4("code")=CODE,EDPLCTYPE=$$VER^EDPLEX($$CSYS^EDPLEX(EDPLVDT)),X4("ien")=EDPLCIEN
+ . S:$G(EDPLCTYPE)'="" X4("icdType")=EDPLCTYPE ; added this line drp
  . S X4("label")=$P(X4,U,1)
+ . S:X4("label")'[$G(EDPLCTYPE) X4("label")=X4("label")_" ("_$G(EDPLCTYPE)_" "_$G(CODE)_")" ; drp added this line
+ . ;drp END EDP*2.0*2 CHANGES
  . S X4("primary")=+$P(X4,U,3)
  . D XML^EDPX($$XMLA^EDPX("diagnosis",.X4))
  Q

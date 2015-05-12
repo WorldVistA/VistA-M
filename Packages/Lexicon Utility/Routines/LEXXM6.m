@@ -1,5 +1,5 @@
-LEXXM6 ;ISL/KER - Convert Text to Mix Case (6+) ;04/21/2014
- ;;2.0;General Lexicon Utilities;**80**;Sep 23, 1996;Build 1
+LEXXM6 ;ISL/KER - Convert Text to Mix Case (6+) ;12/19/2014
+ ;;2.0;General Lexicon Utilities;**80,86**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    None
@@ -16,6 +16,7 @@ T6 ; 6 Characters
  ;   Exceptions
  S P1=$E(XU,1,($L(XU)-2)),P2=$E(XU,($L(XU)-1),$L(XU)) I "^CC^ML^GM^"[("^"_P2_"^"),$E(P1,$L(P1))?1N S Y=$$LO(XU) Q
  S NUM=$E(XU,1,4),TRL=$E(XU,5,6) I +NUM=NUM,((TRL="TH")!(TRL="ST")!(TRL="RD")!(TRL="ND")) S Y=$$LO(XU) Q:$L($G(Y))
+ I "SNOMED"=XU S Y=XU Q
  I "STATED"=XU&(PRE="SO") S Y=$$LO(X) Q
  I "^DEVICE^"[("^"_XU_"^")&($L(PRE)>5) S Y=$$MX(X) Q
  S:$E(XU,1)?1U&($E(XU,6)?1N) Y=XU Q:$L($G(Y))  S:$E(XU,1)?1N Y=XU Q:$L($G(Y))
@@ -52,14 +53,14 @@ T7 ; 7 Characters
  I "^EFFECTS^BETWEEN^ONESELF^HERSELF^HIMSELF^OUTSIDE^"[("^"_XU_"^") S Y=$$LO(X) Q
  I "^THEREOF^ANOTHER^THEREBY^WITHOUT^MENTION^THROUGH^"[("^"_XU_"^") S Y=$$LO(X) Q
  ;   Mixed Case
- I "^ALTOONA^ANTONIO^ATLANTA^AUGUSTA^BATAVIA^BECKLEY^"[("^"_XU_"^") S Y=$$MX(X) Q
+ I "^APHAKIA^APHAKIC^ALTOONA^ANTONIO^ATLANTA^AUGUSTA^BATAVIA^BECKLEY^"[("^"_XU_"^") S Y=$$MX(X) Q
  I "^BEDFORD^BUFFALO^CENTRAL^CHICAGO^EASTERN^FLORIDA^"[("^"_XU_"^") S Y=$$MX(X) Q
  I "^GEORGIA^GREATER^HAMPTON^HOUSTON^JACKSON^JANUARY^"[("^"_XU_"^") S Y=$$MX(X) Q
  I "^LEBANON^LINCOLN^MADISON^MEMPHIS^OCTOBER^ORLEANS^"[("^"_XU_"^") S Y=$$MX(X) Q
  I "^PATIENT^PHOENIX^SAGINAW^SEATTLE^SPOKANE^SPRINGS^"[("^"_XU_"^") S Y=$$MX(X) Q
  I "^WESTERN^WICHITA^"[("^"_XU_"^") S Y=$$MX(X) Q
  ;   Uppercase
- I "^APHAKIC^ASPSCR1^CBFA2T1^CMVIGIV^S30R060^S30R080^S30R100^"[("^"_XU_"^") S Y=XU Q
+ I "^ASPSCR1^CBFA2T1^CMVIGIV^S30R060^S30R080^S30R100^"[("^"_XU_"^") S Y=XU Q
  Q
  ;          
 T8 ; 8 Characters
@@ -144,4 +145,5 @@ LD(X) ; Leading Character
 TRIM(X) ; Trim Spaces
  S X=$G(X) F  Q:$E(X,1)'=" "  S X=$E(X,2,$L(X))
  F  Q:$E(X,$L(X))'=" "  S X=$E(X,1,($L(X)-1))
+ n LEXNXT,LEXPRE,LEXUSE,Y
  Q X

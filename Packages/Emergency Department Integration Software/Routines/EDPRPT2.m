@@ -1,5 +1,5 @@
 EDPRPT2 ;SLC/MKB - Delay Report ;6/13/12 12:33pm
- ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
+ ;;2.0;EMERGENCY DEPARTMENT;**6,2**;Feb 24, 2012;Build 23
  ;
 DEL(BEG,END,CSV) ; Get Delay Report for EDPSITE by date range
  ;   CNT = counters
@@ -8,7 +8,9 @@ DEL(BEG,END,CSV) ; Get Delay Report for EDPSITE by date range
  D INIT ;set counters, sums to 0
  D:'$G(CSV) XML^EDPX("<logEntries>") I $G(CSV) D  ;headers
  . N TAB S TAB=$C(9)
- . S X="ED IEN"_TAB_"Patient Name"_TAB_"Time In"_TAB_"Elapsed"_TAB_"Dispo"_TAB_"Delay Reason"_TAB_"MD"_TAB_"Adm Dec"_TAB_"Adm Delay"_TAB_"Acuity"_TAB_"Diagnosis"
+ . ;drp 9/27/2012 begin EDP*2.0*2 changes
+ . S X="ED IEN"_TAB_"Patient Name"_TAB_"Time In"_TAB_"Elapsed"_TAB_"Dispo"_TAB_"Delay Reason"_TAB_"MD"_TAB_"Adm Dec"_TAB_"Adm Delay"_TAB_"Acuity"_TAB_"Diagnosis"_TAB_"ICD"_TAB_"ICD Type"
+ . ;End EDP*2.0*2 Changes
  . D ADD^EDPCSV(X)
  S IN=BEG-.000001
  F  S IN=$O(^EDP(230,"ATI",EDPSITE,IN)) Q:'IN  Q:IN>END  S LOG=0 F  S LOG=+$O(^EDP(230,"ATI",EDPSITE,IN,LOG)) Q:LOG<1  D
@@ -48,6 +50,8 @@ D3 . ; elapsed visit time >=6 hrs
  .. S ROW("delayReason")=$$ENAME^EDPRPT(DEL)
  .. S ROW("md")=$$EPERS^EDPRPT($P(X3,U,5))
  .. S ROW("dx")=$P(DX,U,2)
+ .. S ROW("icd")=$P(DX,U,1)
+ .. S ROW("icdType")=$P(DX,U,3)
  .. S ROW("admDec")=ADMDEC
  .. S ROW("admDel")=ADMDEL
  .. D LOCTIMES ;split Elapsed into Time in/out of ED
@@ -55,7 +59,9 @@ D3 . ; elapsed visit time >=6 hrs
  .. S ROW("timeOutED")=$$ETIME^EDPRPT(NOT)
  .. I '$G(CSV) S X=$$XMLA^EDPX("log",.ROW) D XML^EDPX(X) Q
  .. S X=ROW("id")
- .. ;F I="inTS","elapsed","timeInED","timeOutED","disposition","delayReason","md","admDec","admDel","acuity","dx" S X=X_$C(9)_$G(ROW(I))
+ .. ;Begin EDP*2.0*2 Changes
+ .. F I="patientName","inTS","elapsed","disposition","delayReason","md","admDec","admDel","acuity","dx","icd","icdType" S X=X_$C(9)_$G(ROW(I))
+ .. ; End EDP*2.0*2 changes
  .. F I="patientName","inTS","elapsed","disposition","delayReason","md","admDec","admDel","acuity","dx" S X=X_$C(9)_$G(ROW(I))
  .. D ADD^EDPCSV(X)
  D:'$G(CSV) XML^EDPX("</logEntries>")

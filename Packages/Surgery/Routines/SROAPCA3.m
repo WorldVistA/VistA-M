@@ -1,9 +1,8 @@
 SROAPCA3 ;BIR/MAM - CARDIAC OCCURRENCE DATA ;09/28/2011
- ;;3.0;Surgery;**38,71,95,101,125,160,164,166,174,175,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,71,95,101,125,160,164,166,174,175,176,182**;24 Jun 93;Build 49
  D EN^SROCCAT K SRA S SRA(205)=$G(^SRF(SRTN,205)),SRA(208)=$G(^SRF(SRTN,208)),SRA(206)=$G(^SRF(SRTN,206)),SRA(209)=$G(^SRF(SRTN,209))
- S NYUK=$P(SRA(208),"^") D YN S SRAO(1)=SHEMP_"^384"
  S Y=$P($G(^DPT(DFN,.35)),"^") D DT^SROAPCA1 S SRAO(2)=X
- S NYUK=$P(SRA(205),"^",27) D YN S SRAO(3)=SHEMP_"^258",NYUK=$P(SRA(208),"^",3) D YN S SRAO(4)=SHEMP_"^386",NYUK=$P(SRA(205),"^",17) D YN S SRAO(5)=SHEMP_"^254",NYUK=$P(SRA(209),"^",12) D YN S SRAO(6)=SHEMP_"^490"
+ S NYUK=$P(SRA(205),"^",27) D YN S SRAO(3)=SHEMP_"^258",NYUK=$P(SRA(208),"^",3) D YN S SRAO(4)=SHEMP_"^386",NYUK=$P(SRA(205),"^",17) D YN S SRAO(5)=SHEMP_"^254",NYUK=$P(SRA(205),"^",43) D YN S SRAO(6)=SHEMP_"^645"
  S NYUK=$P(SRA(208),"^",5) D YN S SRAO(7)=SHEMP_"^388",NYUK=$P(SRA(208),"^",6) D YN S SRAO(8)=SHEMP_"^389",NYUK=$P(SRA(205),"^",13) D YN S SRAO(9)=SHEMP_"^285"
  S NYUK=$P(SRA(208),"^",7) D YN S SRAO(10)=SHEMP_"^391",NYUK=$P(SRA(205),"^",22) D YN S SRAO(11)=SHEMP_"^410"
  S NYUK=$P(SRA(205),"^",21) D YN S SRAO(12)=SHEMP_"^256" D DUR
@@ -11,12 +10,12 @@ SROAPCA3 ;BIR/MAM - CARDIAC OCCURRENCE DATA ;09/28/2011
  S NYUK=$P(SRA(206),"^",39) D YN S SRAO(14)=SHEMP_"^466"
  S NYUK=$P(SRA(206),"^",40) D YN S SRAO(15)=SHEMP_"^467",NYUK=$P(SRA(205),"^",6) D YN S SRAO(18)=SHEMP_"^248"
  S NYUK=$P(SRA(205),"^",40) D YN S SRAO(16)=SHEMP_"^448",NYUK=$P(SRA(205),"^",8) D YN S SRAO(17)=SHEMP_"^404"
-  I $Y+5>IOSL D PAGE^SROAPCA I SRSOUT Q
+ I $Y+5>IOSL D PAGE^SROAPCA I SRSOUT Q
  W !!,"VII. OUTCOMES"
- W !,"Operative Death:",?18,$P(SRAO(1),"^"),?43,"Date of Death:",?58,$P(SRAO(2),"^")
+ W !,"Date of Death:",?58,$P(SRAO(2),"^")
  W !!,"Perioperative (30 day) Occurrences:"
- W !,?2,"Perioperative MI:",?35,$P(SRAO(3),"^"),?41,"Tracheostomy:",?75,$P(SRAO(14),"^")
- W !,?2,"Endocarditis:",?35,$P(SRAO(4),"^"),?41,"Ventilator supp within 30 days:",?75,$P(SRAO(6),"^")
+ W !,?2,"Myocardial Infarction:",?35,$P(SRAO(3),"^"),?41,"Tracheostomy:",?75,$P(SRAO(14),"^")
+ W !,?2,"Endocarditis:",?35,$P(SRAO(4),"^"),?41,"Mechanical Vent within 30 Days:",?75,$P(SRAO(6),"^")
  W !,?2,"Superficial Incisional SSI:",?35,$P(SRAO(18),"^"),?41,"Stroke/CVA:",?68,$J($P(SRAO(12),"^"),11)
  W !,?2,"Mediastinitis:",?35,$P(SRAO(7),"^"),?41,"Coma > or = 24 Hours:",?75,$P(SRAO(11),"^")
  W !,?2,"Cardiac Arrest Requiring CPR:",?35,$P(SRAO(13),"^"),?41,"New Mech Circulatory Support:",?75,$P(SRAO(15),"^")
@@ -52,7 +51,6 @@ RES I $Y+12>IOSL D PAGE^SROAPCA I SRSOUT Q
  S Y=$P(SRA(208),"^",23) I Y>1 D DT^SROAPCA1 S Y=X
  S Y=$S(Y="NS":"Unable to determine",Y="RI":"Remains in ICU at 30 days",1:Y) W !,"Date and Time Patient Discharged from ICU: ",?47,Y
  S Y=$P(SRA(209),"^") W !,"Patient is Homeless: ",?47,$S(Y="Y":"YES",Y="N":"NO",Y="NS":"NS",1:"")
- S Y=$P(SRA(206),"^",41) W !,"Cardiac Surg Performed at Non-VA Facility: ",?47,$S(Y="Y":"YES",Y="N":"NO",Y="NS":"UNKNOWN",1:"")
  W !,"Resource Data Comments: "
  I $G(^SRF(SRTN,206.2))'="" S SRQ=0 S X=$G(^SRF(SRTN,206.2)) W:$L(X)<49 X,! I $L(X)>48 S Z=$L(X) D
  .I X'[" " W ?25,X Q

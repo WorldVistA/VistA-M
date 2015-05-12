@@ -1,5 +1,5 @@
 LRGP2 ;DALOI/STAFF - COMMON PARTS TO INSTRUMENT GROUP VERIFY/CHECK ;11/18/11  15:52
- ;;5.2;LAB SERVICE;**153,221,263,290,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**153,221,263,290,350,446**;Sep 27, 1994;Build 1
  ;
  Q
  ;
@@ -47,7 +47,7 @@ EX2 ;
  K LRVTS,DIC
  S LRVTS=11,LRI=0,C=0
  F  S LRI=$O(^TMP("LR",$J,"T",LRI)) Q:LRI<1  D
- . S X=^TMP("LR",$J,"T",LRI),LRVTS($P(X,";",2))=LRI
+ . S X=$P(^TMP("LR",$J,"T",LRI),U,5),LRVTS($P(X,";",2))=LRI
  . S LRVTS=LRVTS+1
  . S ^TMP("LR",$J,"VTO",LRI)=$P(X,";",2)
  . S C=C+1
@@ -87,7 +87,7 @@ EX4 ;
  . S LREXCL="",DIC("A")="Select ATOMIC test(s) you wish to exclude: ",DIC="^LAB(60,",DIC(0)="AEMOQ"
  . S DIC("S")="I $D(^TMP(""LR"",$J,""T"",Y))"
  . F  D ^DIC Q:Y<1  D
- . . S X1=$P(^TMP("LR",$J,"T",+Y),";",2)
+ . . S X1=$P($P(^TMP("LR",$J,"T",+Y),U,5),";",2)
  . . I X1 K LRVTS(X1)
  . . K ^TMP("LR",$J,"VTO",+Y),^TMP("LR",$J,"T",+Y) S LREXCL(+Y)=$P(Y,U,2) D
  . . .N I,X

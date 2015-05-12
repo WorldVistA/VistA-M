@@ -1,5 +1,5 @@
 WVLRLINK ;HIOFO/FT-LAB-WOMEN'S HEALTH LINK  ;9/29/04  14:34
- ;;1.0;WOMEN'S HEALTH;**6,10,16**;Sep 30, 1998
+ ;;1.0;WOMEN'S HEALTH;**6,10,16,25**;Sep 30, 1998;Build 1
  ;
  ; This routine uses the following IAs:
  ; #10035 - ^DPT references     (supported)
@@ -45,7 +45,7 @@ CREATEQ ; Called from CREATE above
  I WVLOC]"" S WVLOC=$$HL(WVLOC) ;convert location to File 44 pointer
  S WVPROV=$P(LRA,U,7) ;requesting provider
  ; Quit if this lab test has already been sent to FILE 790.1.
- Q:$D(^WV(790.1,"F",WVLABAN))
+ ;Q:$D(^WV(790.1,"F",WVLABAN))
  I LRSS'="CY",LRSS'="SP" Q  ;not cytology or surgical pathology
  ; ===============================================================
  ; Check SNOMED codes and determine if lab test is a pap smear and
@@ -54,6 +54,7 @@ CREATEQ ; Called from CREATE above
  .D ADD^WVSNOMED
  .Q
  ; ===============================================================
+ Q:$D(^WV(790.1,"F",WVLABAN))
  S WVDR=".02////"_DFN
  S:WVPROV]"" WVDR=WVDR_";.07////"_WVPROV
  S WVDR=WVDR_";.1////"_$G(DUZ(2))

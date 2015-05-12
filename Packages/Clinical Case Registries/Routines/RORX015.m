@@ -1,5 +1,5 @@
 RORX015 ;HOIFO/SG - PROCEDURES REPORT ;6/23/06 1:36pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,19,21**;Feb 17, 2006;Build 45
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -8,6 +8,8 @@ RORX015 ;HOIFO/SG - PROCEDURES REPORT ;6/23/06 1:36pm
  ;PKG/PATCH   DATE       DEVELOPER   MODIFICATION
  ;----------- ---------- ----------- ----------------------------------------
  ;ROR*1.5*19  FEB 2012   J SCOTT     Support for ICD-10 Coding System.
+ ;ROR*1.5*21  SEP 2013   T KOPP      Added ICN as report column if
+ ;                                    additional identifier option selected
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -23,8 +25,8 @@ RORX015 ;HOIFO/SG - PROCEDURES REPORT ;6/23/06 1:36pm
  ;
 HEADER(PARTAG) ;
  ;;PROCLST(#,PROCODE,PROCNAME,NP,NC,SOURCE)
- ;;PROCEDURES(#,NAME,LAST4,DOD,PROCODE,PROCNAME,DATE,SOURCE)
- ;;PATIENTS(#,NAME,LAST4,DOD)
+ ;;PROCEDURES(#,NAME,LAST4,DOD,ICN,PROCODE,PROCNAME,DATE,SOURCE)
+ ;;PATIENTS(#,NAME,LAST4,DOD,ICN)
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
@@ -68,9 +70,10 @@ PARAMS(PARTAG,STDT,ENDT,FLAGS) ;
  ;
  ;   "PAT",              Number of patients
  ;     DFN,              Descriptor
- ;                         ^01: Las 4 digits of SSN
+ ;                         ^01: Last 4 digits of SSN
  ;                         ^02: Name
  ;                         ^03: Date of Death
+ ;                         ^04: National ICN
  ;       "I",
  ;         ICDIEN,       Earliest Code Descriptor
  ;                         ^01: Date

@@ -1,5 +1,5 @@
 SDWLRP1 ;;IOFO BAY PINES/TEH - WAITING LIST - RPC;06/28/2002 ; 26 Aug 2002  1:25 PM  ; Compiled April 16, 2007 10:15:05
- ;;5.3;scheduling;**263,273,485,497,446**;AUG 13 1993;Build 77
+ ;;5.3;scheduling;**263,273,485,497,446,611**;AUG 13 1993;Build 9
  ;
  ;
  ;******************************************************************
@@ -9,6 +9,7 @@ SDWLRP1 ;;IOFO BAY PINES/TEH - WAITING LIST - RPC;06/28/2002 ; 26 Aug 2002  1:25
  ;   ----                        -----                   -----------
  ;   2/21/03                     SD*5.3*273              Line new+12 added "/"
  ;   5/10/06                     SD*5.3*446              New field: INTRA-transfer
+ ;   1/14/14                     SD*5.3*611              Removed variables SDWLDUZ,SDWLDFN,SDWLDA from kill command
 OUTPUT(SDWLOUT,SDWLDFN) ;-FULL
  ; input:
  ;   DFN = Patient
@@ -37,6 +38,9 @@ OUTPUT(SDWLOUT,SDWLDFN) ;-FULL
  ;               23              17                      CURRENT STATUS
  ;               25              18                      COMMENTS
  ;               27              20                      NEW ENROLLE
+ ;
+ ; Reference/ICR
+ ; Registration/4943
  ;
  N DIERR,SDWLDAX
  I '$D(^SDWL(409.3,"B",SDWLDFN)) S SDWLRES=-1 Q  ;- No Entry in Wait List file.
@@ -70,7 +74,7 @@ OUTPUT3(SDWLOUT,SDWLDFN) ;Disposition Data
  ;    DFN = Patient Internal ID
  ;    
  ;  output: Subscript 'DIS'
- ;    Date Dsipositioned^Disposition by^Disposition  
+ ;    Date Dispositioned^Disposition by^Disposition  
  ;
  N SDWLRES,SDWLDFN,SDWLDA,DIERR
  I '$D(^SDWL(409.3,"B",SDWLDFN)) S SDWLRES=-1 Q  ;- No Entry in Wait List file.
@@ -102,7 +106,8 @@ INPUT(SDWLRES,SDWLSTR) ;
  ;D VAL I SDWLRES<0 D DEL Q
  D SET I SDWLRES<0 D DEL Q
  D CLEAN^DILF K ^TMP("SDWLIN",$J),^TMP("SDWLOUT",$J)
- K SDWLDUZ,SDWLDFN,SDWLDA,Y
+ ; SD*5.3*611 stops variables SDWLDUZ,SDWLDFN,SDWLDA from being killed until END^SDWLE113
+ K Y
  Q
 NEW ;Get IEN from ^SDWL(409.3,IEN,0).
  N DA,DIC,DIE,DIK,DR,SDREJ,SDINTRA,SDMULTI
@@ -148,11 +153,11 @@ SB0 I $D(SDWLRNE),$P(SDWLRNE,U,4)="A" D
  Q
 SB1 I '$D(^DGCN(391.91,"B",SDWLDFN)) N SDWLDB S SDWLE=3 Q
  S SDWLX="" F  S SDWLX=$O(^DGCN(391.91,"B",SDWLDFN,SDWLX)) Q:SDWLX=""  D
- .S SDWLY=$G(^DGCN(391.91,SDWLX,0)) D
+ .S SDWLY=$P($G(^DGCN(391.91,SDWLX,0)),U,2,3) D
  ..;CHECK FOR TREATING FACILITY
- ..I $$TF^XUAF4(+$P(SDWLY,U,2)) D
+ ..I $$TF^XUAF4(+$P(SDWLY,U)) D
  ...;SORT FOR LAST TREATMENT DATE
- ...S SDWLD=$P(SDWLY,U,3) I SDWLD S SDWLDTF(9999999-SDWLD)=SDWLX
+ ...S SDWLD=$P(SDWLY,U,2) I SDWLD S SDWLDTF(9999999-SDWLD)=SDWLX
  I '$D(SDWLDTF) Q
  S SDWLDTF=$O(SDWLDTF(0)) I SDWLDTF S (SDWLD,X)=9999999-SDWLDTF D H^%DTC S SDWLEE=SDWLDE-%H,SDWLDB=1 I SDWLEE<730 S SDWLE=2
  I $D(SDWLEE),SDWLEE>730!(SDWLEE=730) S SDWLE=3

@@ -1,9 +1,8 @@
 SROAUTL4 ;BIR/ADM - RISK ASSESSMENT UTILITY ;07/19/2011
- ;;3.0;Surgery;**38,71,95,125,153,160,164,166,174,175,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,71,95,125,153,160,164,166,174,175,176,182**;24 Jun 93;Build 49
  N SRZZ,SRXX,SRX1
  S SRZ=0 F  S SRZ=$O(SRY(130,SRTN,SRZ)) Q:'SRZ  D
  .I SRY(130,SRTN,SRZ,"I")="" D TR S (SRX1,X)=$T(@SRP),SRFLD=$P(X,";;",2) D
- ..I SRZ=484,$P($G(^SRF(SRTN,209)),"^",13)'="Y" Q
  ..S X=SRX1,SRX(SRZ)=$P(SRFLD,"^",2)_"^"_$P(X,";;",3)
  .I SRY(130,SRTN,SRZ,"I")="NS" D TR S X=$T(@SRP),SRFLD=$P(X,";;",2),SRDT=$P(SRFLD,"^",4) S:SRDT'="" SRLR(SRDT)=""
  S SRDT=0 F  S SRDT=$O(SRLR(SRDT)) Q:'SRDT  K SRX(SRDT)
@@ -29,20 +28,21 @@ FAH ;;618^Positive Drug Screening^Positive Drug Screening^;;1-11
 CDI ;;349^Active Endocarditis (Y/N)^Active Endocarditis^;;1-12
 CEJ ;;350^Resting ST Depression (Y/N)^Resting ST Depression^;;1-13
 BDJ ;;240^Functional Health Status^Functional Status^;;1-14
-CEA ;;351^PCI Status^PCI^;;1-15
+FDJ ;;640^PCI^PCI^;;1-15
 BJE ;;205^Prior Myocardial Infarction^Prior MI^;;1-16
 CEB ;;352^Number of Prior Heart Surgeries^Number of Prior Heart Surgeries^;;1-17
-DHE ;;485^Prior Heart Surgeries;;1-18
-BFE ;;265^Peripheral Vascular Disease (Y/N)^Peripheral Vascular Disease^;;1-19
+DHE ;;485^Prior Heart Surgeries^;;1-18
+BFE ;;265^Peripheral Arterial Disease^Peripheral Arterial Disease^;;1-19
 EBA ;;521^Prior Surgical Repair/Carotid Artery Obstruction^Prior Surgical Repair/Carotid Artery Obstruction^;;1-20
 EBB ;;522^History of CVD Events^History of CVD Events^;;1-21
-BFG ;;267^Angina (use CCS Functional Class)^Angina (use CCS Functional Class)^;;1-22
-BJG ;;207^Congestive Heart Failure (use NYHA Functional Class)^CHF (use NYHA Class)^;;1-23
+BFG ;;267^Angina Severity^Angina Severity^;;1-22
+FDC ;;643^Angina Timeframe^Angina Timeframe^;;1-22A
+BJG ;;207^Congestive Heart Failure^Congestive Heart Failure^;;1-23
 CEC ;;353^Current Diuretic Use (Y/N)^Current Diuretic Use^;;1-24
 CED ;;354^Current Digoxin Use (Y/N)^Current Digoxin Use^;;1-25
 CEE ;;355^IV NTG within 48 Hours Preceding Surgery (Y/N)^IV NTG within 48 Hours^;;1-26
 DGD ;;474^Preop use of Circulatory Device^Preop Circulatory Device^;;1-27
-DFC ;;463^Hypertension (Y/N)^Hypertension (Y/N)^;;1-28
+FDA ;;641^Hypertension^Hypertension^;;1-28
 EJI ;;509^Preoperative Atrial Fibrillation^Preoperative Atrial Fibrillation^;;1-29
 DEG ;;457^HDL^^457.1;;2-01
 DEGPA ;;457.1^HDL, Date;;2-02
@@ -87,31 +87,6 @@ APAC ;;1.13^ASA Class^ASA Classification^;;4-03
 DAD ;;414^Cardiac Surgical Priority^Surgical Priority^;;4-04
 DADPA ;;414.1^Date/Time of Cardiac Surgical Priority^Date/Time of Cardiac Surgical Priority^;;4-05
 APJI ;;1.09^Wound Classification^Wound Classification^;;4-06
-CFE ;;365^CABG Distal Anastomoses with Vein^^;;5-01
-CFF ;;366^CABG Distal Anastomoses with IMA^^;;5-02
-DFD ;;464^Number with Radial Artery^;;5-03
-DFE ;;465^Number with Other Artery^;;5-04
-DAF ;;416^CABG Distal Anastomoses with Other Conduit^^;;5-05
-CFG ;;367^Aortic Valve Procedure^Aortic Valve Procedure^;;5-09
-CFH ;;368^Mitral Valve Procedure^Mitral Valve Procedure^;;5-10
-CFI ;;369^Tricuspid Valve Procedure^Tricuspid Valve Procedure^;;5-11
-DIC ;;493^Pulmonary Valve Procedure^Pulmonary Valve Procedure^;;5-12
-CGA ;;371^LV Aneurysmectomy (Y/N)^LV Aneurysmectomy^;;5-06
-DHA ;;481^Bridge to transplant/Device;;5-07
-DHC ;;483^Transmyocardial Laser Revascularization;;5-08
-EAB ;;512^Maze Procedure;;5-13
-CGF ;;376^ASD Repair (Y/N)^ASD Repair^;;5-14
-CHJ ;;380^VSD Repair (Y/N)^VSD Repair^;;5-15
-CGH ;;378^Myectomy (Y/N)^Myectomy^;;5-16
-CGG ;;377^Myxoma Resection (Y/N)^Myxoma Resection^;;5-17
-CGI ;;379^Other Tumor Resection (Y/N)^Other Tumor Resection^;;5-18
-CGC ;;373^Cardiac Transplant (Y/N)^Cardiac Transplant^;;5-19
-CGB ;;372^Great Vessel Repair(Y/N)^Great Vessel Repair^;;5-20
-EJE ;;505^Endovascular Repair of Aorta (Y/N)^Endovascular Repair;;5-21
-EJB ;;502^Other Cardiac Procedures (Y/N);;5-22
-DHD ;;484^Other cardiac procedures (specify);;5-23
-CHA ;;381^Foreign Body Removal (Y/N)^Foreign Body Removal^;;5-24
-CHB ;;382^Pericardiectomy (Y/N)^Pericardiectomy^;;5-25
 DEA ;;451^Total CPB Time;;5-26
 DEJ ;;450^Total Ischemic Time;;5-27
 DFH ;;468^Incision Type^;;5-28
@@ -127,5 +102,5 @@ PBCB ;;.232^Time Patient Out OR;;7-07
 DGJ ;;470^Date and Time Patient Extubated;;7-08
 DGA ;;471^Date and Time Patient Discharged from ICU;;7-09
 DGC ;;473^Homeless(Y/N);;7-10
-DGB ;;472^Cardiac Surgery to NON-VA Facility;;7-11
 DDB ;;442^Employment Status;;7-12
+BCGPA ;;237.1^Preoperative Sleep Apnea^Preoperative Sleep Apnea^;;1-31

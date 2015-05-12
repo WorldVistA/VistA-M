@@ -1,5 +1,14 @@
-RORX021 ;BPOIFO/CLR - HCV DAA CANDIDATES REPORT ; 7/21/11 1:04pm
- ;;1.5;CLINICAL CASE REGISTRIES;**17**;;Build 33
+RORX021 ;BPOIFO/CLR - HCV DAA CANDIDATES REPORT ;7/21/11 1:04pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**17,21**;Feb 17, 2006;Build 45
+ ;
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
+ ;                                      additional identifier option selected
+ ;******************************************************************************
  ;
  Q
  ;
@@ -12,7 +21,7 @@ RORX021 ;BPOIFO/CLR - HCV DAA CANDIDATES REPORT ; 7/21/11 1:04pm
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,STATUS,HCV_DATE,HCV,GT,FILL_DATE,FILL_MED)
+ ;;PATIENTS(#,NAME,LAST4,STATUS,HCV_DATE,HCV,GT,FILL_DATE,FILL_MED,ICN)
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
@@ -33,6 +42,7 @@ HEADER(PARTAG) ;
  ;                         ^01: Last 4 digits of SSN
  ;                         ^02: Patient name
  ;                         ^03: Treatment History
+ ;                         ^04: National ICN
  ;       "LR",
  ;         Category,
  ;           Date(inverse) = Result

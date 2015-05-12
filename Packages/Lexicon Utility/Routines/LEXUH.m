@@ -1,5 +1,5 @@
-LEXUH ;ISL/KER - Miscellaneous Lexicon Utilities (Help) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEXUH ;ISL/KER - Miscellaneous Lexicon Utilities (Help) ;12/19/2014
+ ;;2.0;LEXICON UTILITY;**80,86**;Sep 23, 1996;Build 1
  ;               
 EN ; Main Entry Point
  N %ZIS,ACT,ANS,CAL,CF,COM,CONT,CT,DIR,DIRB,DIROUT,DIRUT,DNC,DTOUT,DUOUT,ENT,EOP,EXEC,EXIT
@@ -129,8 +129,8 @@ APIS ;   List of APIs
  ;;$$PCSDIG;;LEX10CS;;"(FRAG,DATE)";;5681;;2;;$$;;PCSDIG;;LEX10CS;;"(X,CDT)";;ICD-10 Procedure Lookup
  ;;$$CODELIST;;LEX10CS;;"(SYS,SPEC,SUB,DATE,LEN,FMT)";;5681;;2;;$$;;CODELIST;;LEX10CS2;;"(X,SPEC,SUB,CDT,LEN,FIL)";;Wild Card Code Lookup
  ;;CONFIG;;LEXSET;;"(LEXNS,LEXSS,DATE)";;1609;;1;;;;CONFIG;;LEXSET;;"(NS,SS,CDT)";;Setup Search Parameters
- ;;$$SC;;LEXU;;"(Y,STRING,DATE)";;5386;;1;;$$;;SC;;LEXU;;"(IEN,SEM,CDT)";;Filter Search by Semantics
- ;;$$SO;;LEXU;;"(Y,STRING,DATE)";;5386;;1;;$$;;SO;;LEXU;;"(IEN,SRC,CDT)";;Filter Search by Coding System
+ ;;$$SC;;LEXU;;"(Y,STRING,DATE)";;5386;;1;;$$;;SC;;LEXU6;;"(IEN,SEM,CDT)";;Filter Search by Semantics
+ ;;$$SO;;LEXU;;"(Y,STRING,DATE)";;5386;;1;;$$;;SO;;LEXU6;;"(IEN,SRC,CDT)";;Filter Search by Coding System
  ;;$$SCT;;LEXU;;"(Y,DATE)";;5679;;1;;$$;;SCT;;LEXU;;"(IEN,CDT)";;Filter by SNOMED CT (Human)
  ;;$$DX;;LEXU;;"(IEN,VDT)";;5679;;3;;$$;;DX;;LEXU;;"(IEN,CDT)";;Filter by Diagnosis System
  ;;$$ONE;;LEXU;;"(IEN,DATE,SAB)";;5679;;2;;$$;;ONE;;LEXU;;"(IEN,CDT,SAB)";;One Code for Source
@@ -156,8 +156,8 @@ APIS ;   List of APIs
  ;;$$MAX;;LEXU;;(SYS);;5679;;2;;$$;;MAX;;LEXU3;;(SYS);;Maximum Number to Search
  ;;$$NXSAB;;LEXU;;"(SAB,REV)";;5679;;3;;$$;;NXSAB;;LEXU3;;"(SYS,REV)";;Get Next Source Abbrievation
  ;;$$PFI;;LEXU;;"(FRAG,CDT,.ARY)";;5679;;3;;$$;;PFI;;LEXU4;;"(FRAG,CDT,.ARY)";;Get Procedure Fragment Info
- ;;$$CSYS;;LEXU;;"(SYS)";;5679;;2;;$$;;CSYS;;LEXU3;;(SYS);;Get Coding System Info
- ;;$$IMPDATE;;LEXU;;(SAB);;5679;;2;;$$;;IMPDATE;;LEXU3;;(SYS);;Get System Implementation Date
+ ;;$$CSYS;;LEXU;;"(SYS)";;5679;;2;;$$;;CSYS;;LEXU5;;(SYS);;Get Coding System Info
+ ;;$$IMPDATE;;LEXU;;(SAB);;5679;;2;;$$;;IMPDATE;;LEXU5;;(SYS);;Get System Implementation Date
  ;;$$LUPD;;LEXU;;"(SAB,DATE)";;5679;;3;;$$;;LUPD;;LEXU3;;"(SYS,CDT)";;Get System Last Updated
  ;;$$RUPD;;LEXU;;(SAB);;5679;;3;;$$;;RUPD;;LEXU3;;(SYS);;Get System Recent Update
  ;;$$CODE;;LEXTRAN;;"(CODE,SOURCE,DATE,ARRAY)";;4912;;3;;$$;;CODE;;LEXTRAN;;"(CODE,SRC,CDT,ARRAY)";;Get Concept for Code/Source

@@ -1,5 +1,5 @@
-ICDEXA3 ;SLC/KER - ICD Extractor - APIs/Utilities (cont) ;04/21/2014
- ;;18.0;DRG Grouper;**57**;Oct 20, 2000;Build 1
+ICDEXA3 ;SLC/KER - ICD Extractor - APIs/Utilities (cont) ;12/19/2014
+ ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
  ;               
  ; Global Variables
  ;    ^ICDS(              N/A
@@ -358,20 +358,6 @@ DPH ; File Help
  Q
  ;
 FIT(FILE,FMT) ; File Input Transform
- ;
- ; Input:
- ;
- ;   FILE  File number or identifier
- ;   FMT   Format
- ;           
- ;           0  Fileman DIR format (default)
- ;           1 - File number 80 or 80.1 or null
- ;
- ; Output:
- ; 
- ;   X     Fileman output format 1, 2, ??, ^ or ^^
- ;         File number output format 80, 80.1 or null
- ;
  N ICDF,ICDT,ICDO S ICDF=$G(FILE),ICDT=+($G(FMT)) Q:'ICDT&(ICDF["^^") "^^"  Q:'ICDT&(ICDF["^") "^"
  S ICDO="" S:ICDF["?" ICDO="??" Q:'ICDT&($L(ICDO)) ICDO
  S:ICDF="80"!(ICDF="1")!(ICDF="30")!(ICDF["ICD9")!(ICDF["ICD-9")!(ICDF["DX")!(ICDF["DIAG")!(ICDF="ICD")!(ICDF="10D") ICDO=1

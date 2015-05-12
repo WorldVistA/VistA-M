@@ -1,5 +1,5 @@
-LEXQHL2 ;ISL/KER - Query History - ICD-9/10 Procedure Extract ;04/21/2014
- ;;2.0;LEXICON UTILITY;**62,80**;Sep 23, 1996;Build 1
+LEXQHL2 ;ISL/KER - Query History - ICD-9/10 Procedure Extract ;12/19/2014
+ ;;2.0;LEXICON UTILITY;**62,80,86**;Sep 23, 1996;Build 1
  ;           
  ; Global Variables
  ;    ^ICM(               ICR   4488
@@ -82,11 +82,11 @@ MD ;   4  MDC/DRG Groups
  . S LEX1=0 F  S LEX1=$O(LEXNMD(LEXEF,LEX1)) Q:+LEX1'>0  S LEXC1=LEXC1+1,LEX2=0,LEXC2=0 F  S LEX2=$O(LEXNMD(LEXEF,LEX1,LEX2)) Q:+LEX2'>0  D
  . . S LEXC2=LEXC2+1 S:LEX2=1 LEXCMD(+LEXC1,1)=LEXEF_U_$G(LEXNMD(LEXEF,LEX1,LEX2)) S:LEX2=2 LEXCMD(+LEXC1,2)=$G(LEXNMD(LEXEF,LEX1,LEX2))
  S (LEXCT,LEXVT,LEXMC,LEX1)=0,LEXP="" F  S LEX1=$O(LEXCMD(LEX1)) Q:+LEX1'>0  D
- . S LEXN=$G(LEXCMD(LEX1,1)) S LEXE=$P(LEXN,U,1),LEXM=$P(LEXN,U,2) Q:LEXE'?7N  Q:'$L(LEXM)  S LEXG=$G(LEXCMD(LEX1,2)) Q:'$L(LEXG)
+ . N LEXS S LEXN=$G(LEXCMD(LEX1,1)) S LEXE=$P(LEXN,U,1),LEXM=$P(LEXN,U,2) Q:LEXE'?7N  Q:'$L(LEXM)  S LEXG=$G(LEXCMD(LEX1,2)) Q:'$L(LEXG)
  . I LEXE'=LEXP S LEXCT=LEXCT+1 S:LEXE'=LEXIA LEXVT=LEXVT+1
- . S LEXMC=0,LEXMC=LEXMC+1 I +($G(LEXUN))>0,LEXE=LEXIA S LEXS="Initial Unversioned Major Diagnostic Category/DRG Groups"
+ . S LEXMC=0,LEXMC=LEXMC+1 I +($G(LEXUN))'>0,LEXE=LEXIA S LEXS="Initial Unversioned Major Diagnostic Category/DRG Groups"
  . I +($G(LEXUN))>0,LEXE'=LEXIA,LEXVT=1 S LEXS="Initial Versioned Major Diagnostic Category/DRG Groups"
- . I LEXCT>1,LEXVT>1 S LEXS="Updated Major Diagnostic Category/DRG Groups"
+ . I LEXCT>1 S LEXS="Updated Major Diagnostic Category/DRG Groups"
  . S LEXD=$$SD^LEXQHLM(LEXE),^TMP("LEXQHL",$J,LEXE,4,LEX1,1)=LEXD_U_LEXS,^TMP("LEXQHL",$J,LEXE,4,LEX1,2)=U_LEXM,^TMP("LEXQHL",$J,LEXE,4,LEX1,3)=U_("  "_LEXG)
  . S LEXP=LEXE
  Q

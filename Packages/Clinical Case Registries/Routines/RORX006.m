@@ -1,5 +1,14 @@
-RORX006 ;HCIOFO/BH,SG - LAB UTILIZATION ; 11/8/05 8:53am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+RORX006 ;HCIOFO/BH,SG - LAB UTILIZATION ;11/8/05 8:53am
+ ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
+ ;
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
+ ;                                       requested.
+ ;******************************************************************************
  ;
  Q
  ;
@@ -13,7 +22,7 @@ RORX006 ;HCIOFO/BH,SG - LAB UTILIZATION ; 11/8/05 8:53am
  ;
 HEADER(PARTAG) ;
  ;;LABTESTS(#,NAME,NP,NR,MAXNRPP,MAXNP)
- ;;PATIENTS(#,NAME,LAST4,DOD,NO,NR,NDT)
+ ;;PATIENTS(#,NAME,LAST4,DOD,NO,NR,NDT,ICN)
  ;;RESULTS(NP,NR)
  ;
  N HEADER,RC
@@ -124,7 +133,7 @@ LABUTL(RORTSK) ;
  ;       >0  IEN of the PARAMETERS element
  ;
 PARAMS(PARTAG,STDT,ENDT,FLAGS) ;
- N PARAMS,TMP
+ N NAME,PARAMS,TMP
  S PARAMS=$$PARAMS^RORXU002(.RORTSK,PARTAG,.STDT,.ENDT,.FLAGS)
  Q:PARAMS<0 PARAMS
  ;--- Additional parameters

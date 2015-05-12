@@ -1,5 +1,5 @@
-MAGQCBP ;WOIFO/RP - Background Processor Queue Processor Monitor ; 18 Jan 2011 5:25 PM
- ;;3.0;IMAGING;**39**;Mar 19, 2002;Build 2010;Mar 08, 2011
+MAGQCBP ;WOIFO/RP,JSL - Background Processor Queue Processor Monitor ; 28 JUL 2014 3:25 PM
+ ;;3.0;IMAGING;**39,154**;Mar 19, 2002;Build 9;JUL 28, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -82,7 +82,7 @@ NQP(WS,PLACE,NQ) ; Returns the date and time that the next queue to be processed
  . Q
  Q TDATE
 BPMSG(PLACE,WS,MIN,NQ,LASTDT,NQDATE,DATA) ;
- N MSG,TMP
+ N MSG,TMP,SITE
  S MSG="VistA Imaging BP Server, "_WS_", has failed to process"
  D DFNIQ^MAGQBPG1("",MSG,0,PLACE,"MAGQCBP")
  S MSG="a "_NQ_" queue within "_MIN_" minutes."
@@ -93,14 +93,15 @@ BPMSG(PLACE,WS,MIN,NQ,LASTDT,NQDATE,DATA) ;
  D DFNIQ^MAGQBPG1("",MSG,0,PLACE,"MAGQCBP")
  S MSG="Total "_NQ_" queues is: "_$P(DATA,U,2)_"."
  D DFNIQ^MAGQBPG1("",MSG,0,PLACE,"MAGQCBP")
- S TMP=$P(^DIC(4,$O(^DIC(4,"D",$P($G(^MAG(2006.1,PLACE,0)),U,1),"")),0),U,1)
+ S SITE=$P($G(^MAG(2006.1,PLACE,0)),U,1) S:(SITE'="") SITE=$$LKUP^XUAF4(SITE) ;Get Division #
+ S TMP=$$GET1^DIQ(4,SITE,.01,"E")
  S MSG="This BP Queue processor was supporting the VI implementation serving: "_TMP_"."
  D DFNIQ^MAGQBPG1("",MSG,0,PLACE,"MAGQCBP")
  S MSG="VI_BP_Queue_Processor_failure"
  D DFNIQ^MAGQBPG1("",MSG,1,PLACE,"MAGQCBP")
  Q
 BMSGF(PLACE,WS,NQ,DATA) ;
- N MSG,TMP
+ N MSG,TMP,SITE
  ;DATA=FAILQUECNT_U_QUEUE CNT_U_TOTAL QUE TYPE
  S MSG="VistA Imaging BP Server "_WS_" has "_NQ_" failed queues ("_$P(DATA,U)_")."
  D DFNIQ^MAGQBPG1("",MSG,0,PLACE,"MAGQCBP")
@@ -108,14 +109,15 @@ BMSGF(PLACE,WS,NQ,DATA) ;
  D DFNIQ^MAGQBPG1("",MSG,0,PLACE,"MAGQCBP")
  S MSG="The last date/time this queue was processed was on: "_$$FMTE^XLFDT($P(DATA,U,4))_"."
  D DFNIQ^MAGQBPG1("",MSG,0,PLACE,"MAGQCBP")
- S TMP=$P(^DIC(4,$O(^DIC(4,"D",$P($G(^MAG(2006.1,PLACE,0)),U,1),"")),0),U,1)
+ S SITE=$P($G(^MAG(2006.1,PLACE,0)),U,1) S:(SITE'="") SITE=$$LKUP^XUAF4(SITE) ;Get Division #
+ S TMP=$$GET1^DIQ(4,SITE,.01,"E") ;IA fix
  S MSG="This BP Queue processor was supporting the VI implementation serving: "_TMP
  D DFNIQ^MAGQBPG1("",MSG,0,PLACE,"MAGQCBP")
  S MSG="VI_BP_Queue_Processor_failure"
  D DFNIQ^MAGQBPG1("",MSG,1,PLACE,"MAGQCBP")
  Q
 CAUTO(PLACE) ;
- N ASSIGN,BPPURGE,BPTIME,BPVER,MSG,NODE5,TMP,AUTO
+ N ASSIGN,BPPURGE,BPTIME,BPVER,MSG,NODE5,TMP,AUTO,SITE
  S BPPURGE=$G(^MAG(2006.1,PLACE,"BPPURGE")),BPTIME=0
  S ASSIGN=$$GTASK(PLACE,3),ASSIGN=$S(ASSIGN["is not currently assigned":0,1:1)
  ; ASSIGN is a flag whether the AUTO PURGE task has been assigned to a BP Server. 
@@ -126,7 +128,8 @@ CAUTO(PLACE) ;
  . ;DATE OF SCHEDULED PURGE (#61.3) & SCHEDULED PURGE TIME (#61.4) of SITE PARAMETERS (2006.1)
  . I ($$NOW^XLFDT)>BPTIME D  ;2006.1 
  . . Q:($P(BPPURGE,U,7)=$P(BPPURGE,U,10))    ; DATE OF LAST PURGE (#61.1) & DATE OF SCHEDULED PURGE (#61.3) of SITE PARAMETERS 2006.1 - Purge active
- . . S TMP=$P(^DIC(4,$O(^DIC(4,"D",$P($G(^MAG(2006.1,PLACE,0)),U,1),"")),0),U,1)
+ . . S SITE=$P($G(^MAG(2006.1,PLACE,0)),U,1) S:(SITE'="") SITE=$$LKUP^XUAF4(SITE) ;Get Division #
+ . . S TMP=$$GET1^DIQ(4,SITE,.01,"E")
  . . S MSG="The "_TMP_" implementation of VistA Imaging has failed to start the schedule Purge activity!"
  . . D DFNIQ^MAGQBPG1("",MSG,0,PLACE,"MAGQCBP")
  . . S MSG="The task is currently assigned to BP Server: "_$$GTASK(PLACE,3)  ;AUTO PURGE is assigned to BP Server field #3
@@ -145,7 +148,8 @@ CAUTO(PLACE) ;
  . I ($$NOW^XLFDT)>BPTIME D
  . . ;Quit if the verifier has already processed.
  . . Q:($P(BPVER,U,2)=$P(BPVER,U,4))  ; DATE OF LAST VERIFY (#62.1) & DATE OF SCHEDULED VERIFY (#62.3) - Verifier is active
- . . S TMP=$P(^DIC(4,$O(^DIC(4,"D",$P($G(^MAG(2006.1,PLACE,0)),U,1),"")),0),U,1)
+ . . S SITE=$P($G(^MAG(2006.1,PLACE,0)),U,1) S:(SITE'="") SITE=$$LKUP^XUAF4(SITE) ;Get Division #
+ . . S TMP=$$GET1^DIQ(4,SITE,.01,"E")
  . . S MSG="The "_TMP_" implementation of VistA Imaging has failed to start the schedule Verifier activity!"
  . . D DFNIQ^MAGQBPG1("",MSG,0,PLACE,"MAGQCBP")
  . . S MSG="The task is currently assigned to BP Server: "_$$GTASK(PLACE,4)  ;AUTO VERIFY is assigned to BP Server field #3

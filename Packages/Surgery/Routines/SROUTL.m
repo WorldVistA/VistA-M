@@ -1,5 +1,5 @@
 SROUTL ;BIR/ADM - UTILITY ROUTINE ;02/14/07
- ;;3.0; Surgery ;**58,62,69,77,50,88,94,100,129,134,141,142,160**;24 Jun 93;Build 7
+ ;;3.0;Surgery;**58,62,69,77,50,88,94,100,129,134,141,142,160,182**;24 Jun 93;Build 49
  ;
  ; Reference to $P(^SC(SRLOC,0),"^",17) supported by DBIA #964
  ;
@@ -121,4 +121,7 @@ DESC ; output attending code description when doing lookup
  S SRX=0,SRY=Y F  S SRX=$O(^SRO(132.9,SRY,1,SRX)) Q:'SRX  S SRZ(SRX)=^SRO(132.9,SRY,1,SRX,0),SRZ(SRX,"F")="!?2"
  I $O(SRZ(0)) D EN^DDIOL(.SRZ)
  D EN^DDIOL(" ","","!")
+ Q
+TIME ; transform time to date and time
+ S X=$S(X?1.4N.A!(X?1.2N1":"2N.A):"T@"_X,1:X) S %DT="EXR" D ^%DT S X=Y
  Q

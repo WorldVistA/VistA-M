@@ -1,5 +1,5 @@
-PXCEAE1 ;ISL/dee,ISA/KWP - Builds the List Manager display of a visit and related v-files ;6/20/96
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,199**;Aug 12, 1996;Build 51
+PXCEAE1 ;ISL/dee,ISA/KWP,SLC/ajb - Builds the List Manager display of a visit and related v-files ;08/12/2014
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,199,201**;Aug 12, 1996;Build 41
  ;; ;
  Q
  ;
@@ -43,7 +43,14 @@ DISPLAY(ENTRY,PXCECODE,ARRAY,ARRAYIX,LINE,COUNT,VIEW) ; -- display the data
  N PXCEFILE,PXCELINE,PXCETEXT,PXCEINT,PXCEEXT
  S PXCEFILE=$P($T(FORMAT^@PXCECODE),"~",2)
  F PXCELINE=1:1 S PXCETEXT=$P($T(FORMAT+PXCELINE^@PXCECODE),";;",2) Q:PXCETEXT']""  D
+ . ; save original PXCETEXT for multiple diagnosis ouput ; ajb
+ . I VFILE="^AUPNVIMM",+PXCETEXT=3 N TMPTXT S TMPTXT=PXCETEXT ; ajb
  . S (PXCEEXT,PXCEINT)=$P(ENTRY($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))
+ . ; get entries from diagnosis multiple ; ajb
+ . I VFILE="^AUPNVIMM",+PXCETEXT=3 D  S:PXCEINT="" PXCEINT="^" S PXCEEXT=PXCEINT ; ajb
+ . . N CNT,NIEN S (CNT,NIEN)=0 F  S NIEN=$O(^AUPNVIMM(IEN,3,NIEN)) Q:'+NIEN  D  ; ajb
+ . . . S CNT=CNT+1,$P(PXCEINT,U,CNT)=$G(^AUPNVIMM(IEN,3,NIEN,0)) ; ajb
+ . ; ajb
  . I PXCETEXT'["CPT Modifier",PXCEINT="" Q  ;Q:PXCEINT=""
  . Q:$P(PXCETEXT,"~",10)="N"
  . I VIEW'="D",$P(PXCETEXT,"~",10)="D" Q
@@ -55,8 +62,12 @@ DISPLAY(ENTRY,PXCECODE,ARRAY,ARRAYIX,LINE,COUNT,VIEW) ; -- display the data
  .. N PXCEDILF,DIERR,PXCEI
  .. S PXCEEXT=$$EXTERNAL^DILFD(PXCEFILE,$P(PXCETEXT,"~",3),"",PXCEINT,"PXCEDILF")
  .. S PXCEEXT=$S('$D(DIERR):PXCEEXT,1:PXCEINT)
- . S TEMP=PXCEEXT
- . F PXI=1:1 Q:$P(TEMP,"^",PXI)=""  S PXCEEXT=$P(TEMP,"^",PXI) D ADDLINE
+ . ; get ICD info for multiple diagnosis ; ajb
+ . I VFILE="^AUPNVIMM",+PXCETEXT=3,+PXCEINT D  ; ajb
+ . . S PXCEEXT="" ; ajb
+ . . N CNT F CNT=1:1:$L(PXCEINT,U) S $P(PXCEEXT,U,CNT)=$$DISPLY01^PXCEPOV($P(PXCEINT,U,CNT)) ; ajb
+ . N TEMP S TEMP=PXCEEXT
+ . N PXI F PXI=1:1 Q:$P(TEMP,"^",PXI)=""  S PXCEEXT=$P(TEMP,"^",PXI) D ADDLINE S:+$D(TMPTXT) PXCETEXT=TMPTXT ; replace modified with original for multiple diagnosis ; ajb
  Q
 ADDLINE ;
  S LINE=LINE+1

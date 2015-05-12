@@ -1,0 +1,10 @@
+XU8P638 ;ISD/HGW - Patch XU*8*638 Post-init ;02/05/15  14:27
+ ;;8.0;KERNEL;**638**;May 30, 2014;Build 15
+ Q
+POST  ;
+ ;I '$D(^XTV(8989.3,1,"PEER")) S ^XTV(8989.3,1,"PEER")="127.0.0.1"
+ ;X ^%ZOSF("EON")
+ ;W ! D RELOAD^ZTMGRSET W !
+ ;X ^%ZOSF("EOFF")
+ D PATCH^ZTMGRSET(638)
+ Q

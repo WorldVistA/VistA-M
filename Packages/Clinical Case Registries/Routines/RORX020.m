@@ -1,5 +1,5 @@
 RORX020 ;BPOIFO/ACS - RENAL FUNCTION BY RANGE ;6/2/11 4:19pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19,21**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -24,6 +24,8 @@ RORX020 ;BPOIFO/ACS - RENAL FUNCTION BY RANGE ;6/2/11 4:19pm
  ;                                      $$AGE^RORX019A.
  ;ROR*1.5*15   JUN 2011   C RAY         Added calculation for eGRF by CKD-EPI.
  ;ROR*1.5*19   FEB 2012   J SCOTT       Support for ICD-10 Coding System.
+ ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
+ ;                                       requested.
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -220,7 +222,7 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  I RORDATA("IDLST")[3 D CKDCAT^RORX020A(.RORDATA)
  Q:'RORDATA("COMPLETE") 1  ;continue only if 'complete' report is requested
  ;--- Get patient data and put into the report
- N VADM,VA,RORDOD,TTAG,RTAG
+ N VADM,VA,RORDOD,TTAG,RTAG,TMP
  D VADEM^RORUTL05(DFN,1)
  ;--- The <PATIENT> tag
  S PTAG=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,PTAG,,DFN)
@@ -255,5 +257,7 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  I RORDATA("IDLST")[2 D ADDVAL^RORTSK11(RORTSK,"MDRD",$G(RORDATA("SCORE",2)),PTAG,3)
  ;---  Calculated eGFR by CKD-EPI
  I RORDATA("IDLST")[3 D ADDVAL^RORTSK11(RORTSK,"CKD",$G(RORDATA("SCORE",3)),PTAG,3)
+ ;--- ICN
+ I $$PARAM^RORTSK01("PATIENTS","ICN") D ICNDATA^RORXU006(RORTSK,DFN,PTAG)
  Q ($S(TTAG<0:TTAG,1:1))
  ;

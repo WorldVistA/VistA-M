@@ -1,5 +1,5 @@
 DGREGTZL ;ALB/BDB - Temporary & Confidential Address Edits API ; 11/30/11 10:00am
- ;;5.3;Registration;**851**;Aug 13, 1993;Build 10
+ ;;5.3;Registration;**851,892**;Aug 13, 1993;Build 9
 EN(RESULT,DFN) ;Let user edit zip+4, city, state, county based on zip-linking
  ; Output: RESULT(field#) = User Input External ^ Internal
  K RESULT
@@ -101,8 +101,11 @@ CAGN2 . I '$D(^XUSEC("EAS GMT COUNTY EDIT",+DUZ)) Q
  . I $D(DUOUT)!$D(DIROUT) D UPCT^DGREGTED G CAGN2
  . S RESULT=$G(Y)
  I $L($G(RESULT))>15 D
- . S DGN=Y
- . S RESULT=$G(DGDATA(DGN,"CITY ABBREVIATION"))
+ . ;S DGN=Y
+ . S DGN=$G(Y)
+ . I 'DGN S RESULT=$E(RESULT,1,15)
+ . E  S RESULT=$G(DGDATA(DGN,"CITY ABBREVIATION"))
+ . ;S RESULT=$G(DGDATA(DGN,"CITY ABBREVIATION"))
  Q DGIND
  ;
 LINK(RESULT,ZIP,DGN) ;From zip, get the linked state,county

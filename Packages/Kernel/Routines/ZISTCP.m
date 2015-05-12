@@ -1,5 +1,6 @@
-%ZISTCP ;ISC-SF/RWF - DEVICE HANDLER TCP/IP CALLS ;06/23/2004  09:09
- ;;8.0;KERNEL;**36,34,59,69,118,225,275**;Jul 10, 1995
+%ZISTCP ;ISC/RWF,ISD/HGW - DEVICE HANDLER TCP/IP CALLS ;07/11/14  11:37
+ ;;8.0;KERNEL;**36,34,59,69,118,225,275,638**;Jul 10, 1995;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 CALL(IP,SOCK,TO) ;Open a socket to the IP address <procedure>
@@ -7,8 +8,8 @@ CALL(IP,SOCK,TO) ;Open a socket to the IP address <procedure>
  S ZISOS=^%ZOSF("OS"),TO=$G(TO,30)
  N $ETRAP S $ETRAP="G OPNERR^%ZISTCP"
  S POP=1
- I IP'?1.3N1P1.3N1P1.3N1P1.3N S IP=$$ADDRESS^XLFNSLK(IP)  ;Lookup the name
- I IP'?1.3N1P1.3N1P1.3N1P1.3N Q  ;Not in the IP format
+ I '$$VALIDATE^XLFIPV(IP) S IP=$$ADDRESS^XLFNSLK(IP)  ;Lookup the name
+ I '$$VALIDATE^XLFIPV(IP) Q  ;Not in the IP format
  I (SOCK<1)!(SOCK>65535) Q
  G CVXD:ZISOS["VAX",CONT:ZISOS["OpenM",CGTM:ZISOS["GT.M",CMSM:ZISOS["MSM"
  S POP=1
@@ -26,7 +27,12 @@ CMSM ;Open MSM Socket
 CONT ;Open OpenM socket
  I $$VERSION^%ZOSV'<5 S %A=$ZUTIL(68,55,1)
  S NIO="|TCP|"_SOCK
- O NIO:(IP:SOCK:"-M"::512:512):TO G:'$T NOOPN ;Make work like DSM
+ ;p638 If IP contains ".", use IPv4 IP address (may be IPv4-mapped, so convert)
+ ;     Else use IPv6 address
+ I IP["." D
+ . O NIO:($$FORCEIP4^XLFIPV(IP):SOCK:"-M"::512:512):TO G:'$T NOOPN
+ E  D
+ . O NIO:("["_IP_"]":SOCK:"-M"::512:512):TO G:'$T NOOPN
  U NIO D VAR(NIO)
  Q
 CGTM ;Open GT.M Socket
@@ -40,7 +46,6 @@ CGTM ;Open GT.M Socket
  U NIO:(SOCKET=NIO("SOCKET"):WIDTH=512:NOWRAP:EXCEPT="G GTMERR^%ZISTCP")
  D VAR(NIO) S IOF="#" ;Set buffer flush
  Q
- ;
 VAR(%IO) ;Setup IO variables
  S:'$D(IO(0)) IO(0)=$I
  S IO=%IO,IO(1,IO)=$G(IP),POP=0
@@ -62,7 +67,6 @@ UCXOPEN(NIO) ;This call only applies to SERVER jobs tied to UCX/VMS
  I %ZISOS["DSM",%ZISV<7 O NIO:(SHARE):5 D:$T VAR(NIO)
  I %ZISOS["DSM",%ZISV'<7 S NIO="SYS$NET" O NIO:(TCPDEV):5 D:$T VAR(NIO)
  Q
- ;
 CLOSE ;Close and reset
  N NIO,$ETRAP S $ETRAP="G CLOSEX^%ZISTCP"
  S NIO=IO,IO=$S($G(IO(0))]"":IO(0),1:$P)
@@ -94,7 +98,6 @@ LOOP S POP=1 D LVXD:ZISOS["DSM",LONT:ZISOS["OpenM",LGTM:ZISOS["GT.M",LMSM:ZISOS[
  E  C NIO ;
  Q:EXIT  ;Quit server, App set IO("C"), Logon inhibit.
  G LOOP
- ;
 LMSM ;MSM
  ;For multi thread use MSM's MSERVER process.
  ;This is the listener for  TCP connects.
@@ -102,7 +105,6 @@ LMSM ;MSM
  U NIO::"TCP" W /SOCKET("",SOCK)
  S POP=$$EXIT
  Q
- ;
 LONT ;Open port in Accept mode with standard terminators, standard buffers.
  N %ZA,%ZB
  S NIO="|TCP|"_SOCK,%A=0
@@ -124,7 +126,7 @@ LVXD ;Open port and listen
  ;
 LGTM ;GT.M single thread server
  N %A K ^TMP("ZISTCP",$J)
- S $ZINTERRUPT="I $$JOBEXAM^ZU($ZPOSITION)"
+ ;S $ZINTERRUPT="I $$JOBEXAM^ZU($ZPOSITION)"
  S NIO="SCK$"_$S($J>86400:$J,1:84600+$J) ;Construct a dummy, but "unique" devicename for job
  D LOG("Open for Listen "_NIO)
  ;Open the device
@@ -161,7 +163,7 @@ EXIT() ;See if time to exit
  I $L(ZRULE) X ZRULE I $G(ZISQUIT) Q 1
  Q 0
  ;
-LAUNCH(IO,RTN) ;Run job for this conncetion.
+LAUNCH(IO,RTN) ;Run job for this connection.
  N NIO,SOCK,EXIT,XQVOL
  D VAR(IO)
  S ^XUTL("XQ",$J,0)=$$DT^XLFDT

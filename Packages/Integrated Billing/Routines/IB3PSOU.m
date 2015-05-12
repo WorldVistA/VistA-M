@@ -1,6 +1,6 @@
 IB3PSOU ;WOIFO/PLT-Outpatient Pharmacy Administrative Fee Change Update ;8/17/10  10:24
- ;;2.0;INTEGRATED BILLING;**437,510**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**437,510,538**;21-MAR-94;Build 29
+ ;;Per VA Directive 6402, this routine should not be modified.
  QUIT  ;invalid entry
  ; Procedure updates rate schedules for default rate types or types
  ; specified in IBRATY by inactivating currently active rate
@@ -41,7 +41,8 @@ ENT(IBRATY,IBEFFDT,IBADFE,IBDISP,IBADJUST) ;update admin/disp fee and adjustment
  S IBRATY="^"_IBRATY_"^"
  S X=IBEFFDT D ^%DT S IBEFFDT=Y,IBINADT=$$FMADD^XLFDT(IBEFFDT,-1)
  ;get iens of 'tl-rx fill' and 'rx cost' of charge set file #363.1
- S (IBRFRC,IBRCOST)="^" F A="TL-RX FILL","RX COST" S B=0 F B=$O(^IBE(363.1,"B",A,B)) QUIT:'B  S IBRFRC=IBRFRC_B_"^" S:A="RX COST" IBRCOST=IBRCOST_B_"^"
+ ;set ien of 'ia-rx fill' in ibrfrc to create ia-rx rate schedule *538
+ S (IBRFRC,IBRCOST)="^" F A="TL-RX FILL","RX COST","IA-RX FILL" S B=0 F B=$O(^IBE(363.1,"B",A,B)) QUIT:'B  S IBRFRC=IBRFRC_B_"^" S:A="RX COST" IBRCOST=IBRCOST_B_"^"
  ;loop through charge set iens of 'ti-rx til' and'rx cost' in ibrfrc
  F IBA=2:1 S IBB=$P(IBRFRC,U,IBA) QUIT:'IBB  D
  . N IBIEN,IBRTNM

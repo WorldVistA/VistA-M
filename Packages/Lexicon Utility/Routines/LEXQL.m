@@ -1,5 +1,5 @@
-LEXQL ;ISL/KER - Query - Lookup Code ;04/21/2014
- ;;2.0;LEXICON UTILITY;**62,80**;Sep 23, 1996;Build 1
+LEXQL ;ISL/KER - Query - Lookup Code ;12/19/2014
+ ;;2.0;LEXICON UTILITY;**62,80,86**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
@@ -38,7 +38,8 @@ SO(X) ; Select a Code
  ;            
  ;            or "^" if no code is found/selected
  ;               
- K ^TMP("LEXQL",$J) Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,DIRB,LEXTD,Y,LEX S LEXTD=$G(LEXVDT) S:LEXTD'?7N LEXTD=$$DT^XLFDT
+ K ^TMP("LEXQL",$J) Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,DIRB,LEXTD,Y,LEX,LEXIT
+ S LEXTD=$G(LEXVDT) S:LEXTD'?7N LEXTD=$$DT^XLFDT S LEXIT=0
  S DIR(0)="FAO^1:30",DIR("A")=" Select a Code:  "
  S DIRB=$$RET^LEXQD("LEXQL","SO",+($G(DUZ)),"Select a Code") S:$L(DIRB) DIR("B")=DIRB
  S DIR("PRE")="S:'$L(X)&($L($G(DIR(""B"")))) X=$G(DIR(""B"")) S X=$TR($$UP^XLFSTR(X),""#"""""",""""),X=$$VSO^LEXQL2(X) S X=$$SEL^LEXQL(X)"
@@ -84,7 +85,7 @@ SOGD(X) ;   Select a Code Global/Data
  ;            
 SEL(X) ; Select from List
  Q:'$L($G(X)) ""  Q:$G(X)["^" $G(X)  Q:$G(X)["?" "??"  K ^TMP("LEXQL",$J) D ADD^LEXQL2($G(X)) Q:'$D(^TMP("LEXQL",$J)) "??"  D ASK
- K ^TMP("LEXQL",$J) Q:+X'>0 "??"  S:+($G(X))>0 ^TMP("LEXQL",$J,"X")=X S:+($G(X))>0 X=$P($G(X),"^",4)
+ K ^TMP("LEXQL",$J) Q:+($G(LEXEXIT))>0 "^^"  Q:+X'>0 "??"  S:+($G(X))>0 ^TMP("LEXQL",$J,"X")=X S:+($G(X))>0 X=$P($G(X),"^",4)
  Q X
 ASK ;   Ask for Selection
  K X N LEXTOT S LEXTOT=+($G(^TMP("LEXQL",$J,0))) S:+LEXTOT'>0 X="^" Q:+LEXTOT'>0  K X
@@ -98,7 +99,7 @@ ONE(X) ;     One Entry Found
  S DIR("A",1)=" One code found",DIR("A",2)=" ",DIR("A",3)="     "_$G(LEX(1)),LEXC=3
  S:$L($G(LEX(2))) LEXC=LEXC+1,DIR("A",LEXC)="                         "_$G(LEX(2))
  S LEXC=LEXC+1,DIR("A",LEXC)=" ",LEXC=LEXC+1,DIR("A")="   OK?  (Yes/No)  ",DIR("B")="Yes",DIR(0)="YAO" W !
- D ^DIR S:X["^^"!($D(DTOUT)) LEXEXIT=1,X="^^" I X["^^"!(+($G(LEXEXIT))>0) K ^TMP("LEXQL",$J) Q "^^"
+ D ^DIR S:X["^^"!($D(DTOUT)) LEXEXIT=1,X="^^" I X["^^"!(+($G(LEXEXIT))>0)!($D(DIROUT)) K ^TMP("LEXQL",$J) S LEXEXIT=1 Q "^^"
  S X=$S(+Y>0:$$X(1),1:-1)
  Q X
 MUL(X) ;     Multiple Entries Found

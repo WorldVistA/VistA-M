@@ -1,5 +1,5 @@
-MAGVAG03 ;WOIFO/NST - Write Location calls ; 13 Feb 2012 4:23 PM
- ;;3.0;IMAGING;**118**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGVAG03 ;WOIFO/NST/DAC - Write Location calls ; 20 Oct 2014 10:23 AM
+ ;;3.0;IMAGING;**118,142**;Mar 19, 2002;Build 15;Oct 20, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -47,18 +47,20 @@ GETCWL(MAGRY,MAGPARAM) ; RPC [MAGVA GET CWL]
  S RESDEL=$$RESDEL^MAGVAF02()  ; Result delimiter
  S PLACE=0
  I $G(MAGPARAM("INSTITUTION IEN"))'="" D  Q:'PLACE  ; Error - MAGRY(0) is already set
- . S PLACE=+MAGPARAM("INSTITUTION IEN")
+ . S PLACE=MAGPARAM("INSTITUTION IEN") ; P142 DAC
  . I 'PLACE D
  . . N MSG
  . . S MSG="Invalid INSTITUTION IEN"
  . . S MAGRY(0)=$$FAILED^MAGVAF02()_RESDEL_MSG
  . . Q
  . Q
+ I ((PLACE)&($$STA^XUAF4(PLACE)=""))!(PLACE'=+PLACE) S MAGPARAM("STATION NUMBER")=$G(MAGPARAM("INSTITUTION IEN")) ; P142 DAC
  I $G(MAGPARAM("STATION NUMBER"))'="" D  Q:'PLACE  ; Error - MAGRY(0) is already set
  . S PLACE=$$IEN^XUAF4(MAGPARAM("STATION NUMBER")) ; IA # 2171 find the Institution IEN
  . I 'PLACE  D
  . . N MSG
  . . S MSG="Invalid STATION NUMBER: "_MAGPARAM("STATION NUMBER")
+ . . I $G(MAGPARAM("INSTITUTION IEN"))'="" S MSG="Invalid INSTITUTION IEN: "_MAGPARAM("INSTITUTION IEN") ; P142 DAC
  . . S MAGRY(0)=$$FAILED^MAGVAF02()_RESDEL_MSG
  . . Q
  . Q

@@ -1,5 +1,5 @@
 VPRDGMRC ;SLC/MKB -- Consult extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,4**;Sep 01, 2011;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -35,6 +35,7 @@ EN1(ID,CONS) ; -- return a consult in CONS("attribute")=value
  I $P(VPRX,U,6)="*" S CONS("result")="SIGNIFICANT FINDINGS"
  S CONS("orderID")=$P(VPRX,U,8),CONS("type")=$P(VPRX,U,9)
  D DOCLIST^GMRCGUIB(.VPRD,ID) S X0=$G(VPRD(0)) ;=^GMR(123,ID,0)
+ S X=$P(X0,U,14) S:X CONS("provider")=X_U_$P($G(^VA(200,X,0)),U)_U_$$PROVSPC^VPRD(X)
  S VPRJ=0 F  S VPRJ=$O(VPRD(50,VPRJ)) Q:VPRJ<1  S X=$G(VPRD(50,VPRJ)) D
  . Q:'$D(@(U_$P(X,";",2)_+X_")"))  ;text deleted
  . D EXTRACT^TIULQ(+X,"VPRTIU",,.01)
@@ -52,7 +53,7 @@ XML(CONS) ; -- Return patient consult as XML
  N ATT,X,Y,I,J,NAMES
  D ADD("<consult>") S VPRTOTL=$G(VPRTOTL)+1
  S ATT="" F  S ATT=$O(CONS(ATT)) Q:ATT=""  D  D:$L(Y) ADD(Y)
- . S NAMES=$S(ATT="document":"id^localTitle^nationalTitle^Z",1:"code^name^Z")
+ . S NAMES=$S(ATT="document":"id^localTitle^nationalTitle",ATT="provider":"code^name^taxonomyCode^providerType^classification^specialization",1:"code^name")_"^Z"
  . I $O(CONS(ATT,0)) D  S Y="" Q  ;multiples
  .. D ADD("<"_ATT_"s>")
  .. S I=0 F  S I=$O(CONS(ATT,I)) Q:I<1  D

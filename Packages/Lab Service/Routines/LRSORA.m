@@ -1,5 +1,5 @@
 LRSORA ;DRH/DALISC - HIGH/LOW VALUE REPORT ;2/19/91  11:42 ;
- ;;5.2;LAB SERVICE;**344,357,369**;Sep 27, 1994;Build 2
+ ;;5.2;LAB SERVICE;**344,357,369,449**;Sep 27, 1994;Build 4
 MAIN D INIT,GDT,GAA:'LREND,GLRT:'LREND,GLOG:'LREND,SORTBY^LRSORA1:'LREND
  D PATS^LRSORA1:'LREND,LOCS^LRSORA1:'LREND,GDV:'LREND,RUN:'LREND
  D STOP
@@ -8,8 +8,8 @@ RUN ;
  K ^TMP("LR",$J)
  S:$D(ZTQUEUED) ZTREQ="@" U IO
  S (LRPAG,LREND)=0,$P(LRDASH,"-",IOM)="-"
- K %DT S X=$P(LRSDT,"."),%DT="X" D ^%DT,DD^LRX S LRSDAT=Y
- K %DT S X=LREDT,%DT="X" D ^%DT,DD^LRX S LREDAT=Y
+ S X=LRSDT,LRSDAT=$$FMTE^XLFDT(X,"")
+ S X=LREDT,LREDAT=$$FMTE^XLFDT(X,"")
  S LRHDR2="For date range: "_LREDAT_" to "_LRSDAT
  D:'LREND START^LRSORA2
  D:$D(ZTQUEUED) STOP
@@ -99,9 +99,9 @@ INIT ;
  S:'$D(DTIME) DTIME=300
  W !,"SPECIAL REPORT - Search for high/low values" Q
 GDT ;
- F W=0:0 D SDF,GSD Q:LREND  S LRSDT=Y D GED I Y>0 S LREDT=Y S:LREDT>LRSDT X=LREDT,LREDT=LRSDT,LRSDT=X D CXR W:Y'>0 !!,"No data for the year selected.",! Q:Y>0
- K %DT S X=$P(LRSDT,"."),%DT="X" D ^%DT,DD^LRX S LRSDAT=Y
- K %DT S X=$P(LREDT,"."),%DT="X" D ^%DT,DD^LRX S LREDAT=Y
+ D SDF,GSD Q:LREND  S LRSDT=Y D GED I Y>0 S LREDT=Y S:LREDT>LRSDT X=LREDT,LREDT=LRSDT,LRSDT=X D CXR
+ S X=LRSDT,LRSDAT=$$FMTE^XLFDT(X,"")
+ S X=LREDT,LREDAT=$$FMTE^XLFDT(X,"")
  S LRHDR2="For date range: "_LREDAT_" to "_LRSDAT
  K LRSDAT,LREDAT,%DT Q
 GSD ;
@@ -110,11 +110,12 @@ GSD ;
 GED ;
  S %DT("A")="Enter END date: ",%DT("B")=LREDT D ^%DT Q
 CXR ;
- S Y=$E(LREDT,1,3)_"0000" F I=0:0 S Y=$O(^LRO(69,Y)) Q:Y=""!($D(^LRO(69,+Y,1,"AN")))
- I Y>LREDT D DD^LRX W !,"The earliest date in the X-ref is ",Y,".  Long search required.",! D CXR1
+ S LRLONG=1
+ W !!,"This search may take a few minutes to accumulate precise data.",!
+ D CXR1
  Q
 CXR1 ;
- F I=0:0 S %=2 W "  OK to continue" D YN^DICN S:%=2!(%<0) LREND=1 S:%=1 LRLONG=1 Q:%  W !,"Enter 'YES' for the long search, 'NO' to exit.",!
+ F I=0:0 S %=2 W "  OK to continue" D YN^DICN S:%=2!(%<0) LREND=1 Q:%  W !,"Enter 'YES' to begin the search, 'NO' to exit.",!
  Q
 SDF ;
  I LRSDT?1.7N S Y=LRSDT D DD^LRX S LRSDT=Y

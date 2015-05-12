@@ -1,5 +1,5 @@
-SDM0 ;SF/GFT - MAKE APPOINTMENT ; 11 Jun 2001  5:20 PM
- ;;5.3;Scheduling;**140,167,206,186,223,237,241,384,334,547**;Aug 13, 1993;Build 17
+SDM0 ;SF/GFT - MAKE APPOINTMENT ;11 Jun 2001  5:20 PM
+ ;;5.3;Scheduling;**140,167,206,186,223,237,241,384,334,547,621**;Aug 13, 1993;Build 4
  I $D(SDXXX) S SDOK=1 Q
  N SDSRTY,SDDATE,SDSDATE,SDSRFU,SDDMAX,SDONCE
  ;Prompt for scheduling request type
@@ -171,16 +171,24 @@ DASK N DIR,X,Y,SDX,DTOUT,DUOUT
  .W "    First available"
  .S (SDDATE,SDSRTY)=$TR(Y,"f","F")
  .Q
- N %DT,SDX,SDI
+ N %DT,SDX,SDI,POP
  S SDX="N^n^NOW^now^Now" F SDI=1:1:5 S:X=$P(SDX,U,SDI) X="T"
  S %DT="EFT" D ^%DT
  G:Y<1 DASK S SDDATE=Y
  I DFN<1 S SDDATE=SDDATE\1
+ ;SD*5.3*621 - check if desired date if prior to DOB and if clinic schedule is available.
+ I DFN>0 S POP=0 D DDCHK I POP G DASK
  I DFN>0,Y'<DT,(Y\1)>SDMAX D  G DASK
  .W !,$C(7)
  .W "Scheduling cannot be more than ",SDMAX(1)," days in the future"
  .Q
  Q 1
+ ;
+DDCHK ;SD*5.3*621 - check if desired date if prior to DOB and if clinic schedule is available.
+ N X
+ S X=SDDATE D AVCHK^SDM1 I POP Q
+ D AVCHK1^SDM1
+ Q
  ;
 DOWCHK ;SD*5.3*547 check if date is prior to date DOW was added to pattern
  S (DY,DYW)="" S:'$D(DWFLG) DWFLG=0

@@ -1,5 +1,5 @@
 LROE ;DALOI/CJS/FHS-LAB ORDER ENTRY AND ACCESSION ;8/11/97
- ;;5.2;LAB SERVICE;**100,121,201,221,263,286,360,423,432**;Sep 27, 1994;Build 2
+ ;;5.2;LAB SERVICE;**100,121,201,221,263,286,360,423,432,438**;Sep 27, 1994;Build 18
  K LRORIFN,LRNATURE,LREND,LRORDRR
  S LRLWC="WC"
  D ^LRPARAM
@@ -26,6 +26,7 @@ NEXT ;from LROE1
  F  S LRODT=+$O(^LRO(69,"C",LRORD,LRODT)) Q:LRODT<1  D
  . S DA=0 F  S DA=$O(^LRO(69,"C",LRORD,LRODT,DA)) Q:DA<1  S LRCHK=LRCHK-1 S:LRNONE'=2 LRNONE=0 D LROE2
  I DOD'="" S Y=DOD D DD^LRX W !,!,?5,@LRVIDO,"Patient ",PNM," died on: ",Y,@LRVIDOF W !
+ I '$$GOT(LRORD,LRODT) W !,"All tests for this order have been canceled." H 1 G NEXT
  I DOD'="" D  I Y=0!($D(DIRUT)) K DIRUT,DTOUT,DUOUT,Y D KVAR^LRX G NEXT
  . K Y
  . S DIR(0)="Y"
@@ -35,7 +36,7 @@ NEXT ;from LROE1
  I LRNONE=2,LRCHK<1 W !,"The order has already been partially accessioned." H 1
  I LRNONE=2,LRCHK>0 W !,"The order has already been accessioned." H 1 G NEXT
  I LRNONE=1 W !,"No order exists with that number." H 1 G NEXT
- I '$$GOT(LRORD,LRODT) G NEXT ;W !!,"All tests for this order have been canceled.",!,"Are you sure you want to accession it" S %=1 D YN^DICN I %'=1 G NEXT
+ ;I '$$GOT(LRORD,LRODT) G NEXT ;W !!,"All tests for this order have been canceled.",!,"Are you sure you want to accession it" S %=1 D YN^DICN I %'=1 G NEXT
  K DIR S DIR("A")="Is this the correct order",DIR(0)="Y"
  S DIR("B")="Yes"
  D ^DIR K DIR

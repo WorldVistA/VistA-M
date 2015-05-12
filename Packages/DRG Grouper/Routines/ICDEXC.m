@@ -1,5 +1,5 @@
-ICDEXC ;SLC/KER - ICD Extractor - Code APIs ;04/21/2014
- ;;18.0;DRG Grouper;**57**;Oct 20, 2000;Build 1
+ICDEXC ;SLC/KER - ICD Extractor - Code APIs ;12/19/2014
+ ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
  ;               
  ; Global Variables
  ;    None
@@ -66,15 +66,16 @@ ICDDX(CODE,CDT,SYS,FMT,LOC) ; Return ICD Dx Code Info
  S SNAM=$$SNAM^ICDEX(+SYS),LOC=+($G(LOC))
  S IEN=$S(+SYS>0:$$CODEABA(CODE,ROOT,SYS),1:$$CODEBA(CODE,ROOT))
  S:+IEN'>0 IEN=$S(+SYS>0:$$CODEABA(UPC,ROOT,SYS),1:$$CODEBA(UPC,ROOT))
- S:+IEN'>0&(+($G(LOC))>0)&($D(^ICD9("AVA",(CODE_" ")))) IEN=$O(^ICD9("AVA",(CODE_" "),0))
- Q:IEN<1&(+SYS>0)&($L(SNAM)) ("-1^Invalid Code (not found in the "_SNAM_" system)")
+ S:+IEN'>0&($G(LOC)>0)&($D(^ICD9("AVA",(CODE_" ")))) IEN=$O(^ICD9("AVA",(CODE_" "),0))
+ Q:'$G(LOC)&($D(^ICD9("AVA",(CODE_" ")))) ("-1^VA Local Code ("_CODE_")")
+ Q:IEN<1&(+SYS>0)&($L(SNAM))&('$D(^ICD9("AVA",(CODE_" ")))) ("-1^Invalid Code (not found in the "_SNAM_" system)")
  Q:IEN<1 "-1^Invalid Code"  Q:'$D(^ICD9(IEN,0)) "-1^Invalid Code (not found)"
  S ICDY=$P($G(^ICD9(IEN,1)),"^",1) Q:+ICDY'>0 "-1^Invalid Coding System"
  S CDT=$P($G(CDT),".",1) S:'$L($G(CDT)) CDT=$$DT^XLFDT
  S CDT=$$DTBR^ICDEX($G(CDT),,ICDY) Q:CDT'?7N "-1^No Date Provided"
  S NODE=$P($G(^ICD9(IEN,0)),"^",1) Q:'$L(NODE) "-1^Code not found"
- Q:'$G(SRC)&($P(^ICD9(IEN,1),U,7)) ("-1^VA Local Code Selected ("_NODE_")")
- N SRC S OUT=IEN_"^"_NODE,SAI=$$SAI^ICDEX(80,IEN,CDT)
+ Q:'$G(LOC)&($L(NODE))&($P(^ICD9(IEN,1),U,7)) ("-1^VA Local Code ("_NODE_")")
+ S OUT=IEN_"^"_NODE,SAI=$$SAI^ICDEX(80,IEN,CDT)
  S NODE=$G(^ICD9(IEN,1)) Q:'$L(NODE) "-1^Data not found"
  S $P(OUT,"^",3)=$$IDSTR^ICDEX(80,IEN)
  S $P(OUT,"^",4)=$$VSTD^ICDEX(IEN,CDT)
@@ -148,14 +149,15 @@ ICDOP(CODE,CDT,SYS,FMT,LOC) ; Return ICD Operation/Procedure Code Info
  Q:+SYS>0&('$D(@(ROOT_"""ABA"","_+SYS_")"))) "-1^Invalid Coding System"
  S SNAM=$$SNAM^ICDEX(+SYS),IEN=$S(+SYS>0:$$CODEABA(CODE,ROOT,SYS),1:$$CODEBA(CODE,ROOT))
  S:+IEN'>0&(+($G(LOC))>0)&($D(^ICD0("AVA",(CODE_" ")))) IEN=$O(^ICD0("AVA",(CODE_" "),0))
+ Q:'$G(LOC)&($D(^ICD0("AVA",(CODE_" ")))) ("-1^VA Local Code ("_CODE_")")
  Q:IEN<1&(+SYS>0)&($L(SNAM)) ("-1^Invalid Code (not found in the "_SNAM_" system)")
  Q:IEN<1 "-1^Invalid Code"  Q:'$D(^ICD0(IEN,0)) "-1^Invalid Code (not found)"
  S ICDY=$P($G(^ICD0(IEN,1)),"^",1) Q:+ICDY'>0 "-1^Invalid Coding System"
  S CDT=$P($G(CDT),".",1) S:'$L($G(CDT)) CDT=$$DT^XLFDT
  S CDT=$$DTBR^ICDEX($G(CDT),,ICDY) Q:CDT'?7N "-1^No Date Provided"
  S NODE=$P($G(^ICD0(+IEN,0)),"^",1) Q:'$L(NODE) "-1^Code not found"
- Q:'$G(SRC)&($P(^ICD0(IEN,1),U,7)) ("-1^VA Local Code Selected ("_NODE_")")
- N SRC S OUT=IEN_"^"_NODE,SAI=$$SAI^ICDEX(80.1,IEN,CDT)
+ Q:'$G(LOC)&($P(^ICD0(IEN,1),U,7)) ("-1^VA Local Code Selected ("_NODE_")")
+ S OUT=IEN_"^"_NODE,SAI=$$SAI^ICDEX(80.1,IEN,CDT)
  S NODE=$G(^ICD0(IEN,1)) Q:'$L(NODE) "-1^Data not found"
  S $P(OUT,"^",3)=$$IDSTR^ICDEX(80.1,IEN)
  S $P(OUT,"^",4)=$P(NODE,"^",5)
@@ -228,11 +230,10 @@ CODEN(CODE,FILE) ; Return IEN of ICD code
  ; 
  ;   IEN~Global Root    or    -1~error message
  ;
- N ROOT,IEN,ERR,SYS,EIEN,ICDU S ERR=""
+ N ROOT,IEN,ERR,EIEN,ICDU S ERR=""
  Q:$G(CODE)="" "-1~Missing required input parameter CODE"
  S CODE=$TR(CODE," ",""),ICDU=$$UP^XLFSTR(CODE)
  S:"^80^80.1^"'[("^"_$G(FILE)_"^") FILE=$$CODEFI^ICDEX(CODE)
- S SYS=$P($$CODECS^ICDEX(CODE,FILE),"^",1)
  S ROOT=$$ROOT^ICDEX($G(FILE)) Q:'$L(ROOT) "-1~Invalid File"
  S IEN=$$CODEBA(CODE,ROOT) S:+IEN'>0 ERR="-1~Invalid or Code not found"
  I $D(ICDVP),CODE?1N.N,+ERR<0,$L(ROOT) S:$D(@(ROOT_+CODE_",0)")) IEN=+CODE,ERR="" N ICDVP

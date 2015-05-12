@@ -1,5 +1,5 @@
 RORX018 ;BPOIFO/ACS - BMI BY RANGE REPORT ;11/1/09
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,19,21**;Feb 17, 2006;Build 45
  ;
  ;
  ; This routine uses the following IAs:
@@ -19,6 +19,8 @@ RORX018 ;BPOIFO/ACS - BMI BY RANGE REPORT ;11/1/09
  ;                                      clinics, or divisions for the report.
  ;                                      Modified XML tags for sort.
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
+ ;                                       requested.
  ;                                      
  ;******************************************************************************
  ;******************************************************************************
@@ -224,6 +226,9 @@ PATIENT(DFN,PTAG,RORDATA) ;
  D ADDVAL^RORTSK11(RORTSK,"RESULT",$G(RORDATA("WGT")),WTAG)
  ;---  Calculated BMI value goes on PATIENT tag
  D ADDVAL^RORTSK11(RORTSK,"BMI",$G(RORDATA("SCORE",1)),PTAG,3)
+ ; --- ICN if selected must be last column on report
+ I $$PARAM^RORTSK01("PATIENTS","ICN") D ICNDATA^RORXU006(.RORTSK,DFN,PTAG)
+ ;
  Q 1
  ;
  ;*****************************************************************************
@@ -427,7 +432,7 @@ RTEXT(GRC) ;
  ;  >0      'Header' XML tag number or error code
  ;*****************************************************************************
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,DOD,VITAL,DATE,RESULT,BMI)
+ ;;PATIENTS(#,NAME,LAST4,DOD,VITAL,DATE,RESULT,BMI,ICN)
  ;
  N HEADER,RC
  ;call to $$HEADER^RORXU002 will populate the report created date, task number,

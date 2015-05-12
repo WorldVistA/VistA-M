@@ -1,5 +1,5 @@
 VPRDPSO ;SLC/MKB -- Outpatient Pharmacy extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,4**;Sep 01, 2011;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -62,8 +62,8 @@ RX(ID,MED) ; -- return a prescription in MED("attribute")=value
  . S END=$S(DUR:$$STOP(START,DUR),1:STOP)
  . S MED("dose",I)=DOSE_U_UNIT_U_UD_U_NOUN_U_RTE_U_SCH_U_DUR_U_CONJ_U_START_U_END
  . I $E(CONJ)="T",DUR S START=END
- S:RX1 X=$TR($P(RX1,U),";","^"),MED("orderingProvider")=X,MED("currentProvider")=X
- S:$G(PRV) MED("currentProvider")=$TR(PRV,";","^")
+ S:RX1 X=$TR($P(RX1,U),";","^")_U_$$PROVSPC^VPRD(+RX1),MED("orderingProvider")=X,MED("currentProvider")=X
+ S:$G(PRV) MED("currentProvider")=$TR(PRV,";","^")_U_$$PROVSPC^VPRD(+PRV)
  S:$P(RX1,U,9) MED("pharmacist")=$TR($P(RX1,U,9),";","^")
  S:$P(RX1,U,4) MED("location")=$TR($P(RX1,U,4),";","^")
  S MED("facility")=$$FAC^VPRD(+$P(RX1,U,4))

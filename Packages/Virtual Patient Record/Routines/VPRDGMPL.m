@@ -1,5 +1,5 @@
 VPRDGMPL ;SLC/MKB -- Problem extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,2**;Sep 01, 2011;Build 317
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2,4**;Sep 01, 2011;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -41,10 +41,10 @@ EN1(ID,PROB) ; -- return a problem in PROB("attribute")=value
  N VPRL,X,I,J K PROB
  S ID=+$G(ID) Q:ID<1  ;invalid ien
  D DETAIL^GMPLUTL2(ID,.VPRL) Q:'$D(VPRL)  ;doesn't exist
- S PROB("id")=ID ;,PROB("lexiconID")=+X1 ;SNOMED?
- S PROB("name")=$G(VPRL("NARRATIVE"))
+ S PROB("id")=ID,PROB("name")=$G(VPRL("NARRATIVE"))
  S X=$G(VPRL("MODIFIED")) S:$L(X) PROB("updated")=$$DATE(X)
  S PROB("icd")=$G(VPRL("DIAGNOSIS"))
+ F I="SCTC","SCTD","SCTT" S X=$G(VPRL(I)) S:$L(X) PROB($$LOW^XLFSTR(I))=X
  S X=$G(VPRL("STATUS")) S:$L(X) PROB("status")=$E(X)_U_X
  S X=$G(VPRL("HISTORY"))  S:$L(X) PROB("history")=$E(X)_U_X
  S X=$G(VPRL("PRIORITY")) S:$L(X) PROB("acuity")=$E(X)_U_X

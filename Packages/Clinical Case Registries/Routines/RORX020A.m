@@ -1,5 +1,5 @@
-RORX020A ;BPOIFO/ACS - RENAL FUNCTION BY RANGE (CONT.) ; 5/20/11 12:11pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10,14,15**;Feb 17, 2006;Build 27
+RORX020A ;BPOIFO/ACS - RENAL FUNCTION BY RANGE (CONT.) ;5/20/11 12:11pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,14,15,21**;Feb 17, 2006;Build 45
  ;
  Q
  ;******************************************************************************
@@ -9,7 +9,8 @@ RORX020A ;BPOIFO/ACS - RENAL FUNCTION BY RANGE (CONT.) ; 5/20/11 12:11pm
  ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*14   APR  2011   A SAUNDERS   HEADER: Added LOINCs to report header
- ;                                      
+ ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
+ ;                                      additional identifier option selected
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -53,6 +54,8 @@ HEADER(PARTAG,RORTSK) ;
  N LTAG S LTAG=$$ADDVAL^RORTSK11(RORTSK,"LOINC_CODES",,PARTAG)
  N CTAG S CTAG=$$ADDVAL^RORTSK11(RORTSK,"CODE",,LTAG)
  D ADDATTR^RORTSK11(RORTSK,CTAG,"CODE","Creatinine: 15045-8, 21232-4, 2160-0")
+ ;--- ICN
+ I $$PARAM^RORTSK01("PATIENTS","ICN") D ICNHDR^RORXU006(RORTSK,COLUMNS)
  ;---
  Q $S(RC<0:RC,1:HEADER)
  ;

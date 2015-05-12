@@ -1,5 +1,5 @@
 PSBPXLP ;BIR/RMS - BCMA2PCE FOR IMMUNIZATIONS, TASKED ; 6/23/09 4:16pm
- ;;3.0;BAR CODE MED ADMIN;**47**;Mar 2004;Build 7
+ ;;3.0;BAR CODE MED ADMIN;**47,76**;Mar 2004;Build 10
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -9,7 +9,7 @@ PSBPXLP ;BIR/RMS - BCMA2PCE FOR IMMUNIZATIONS, TASKED ; 6/23/09 4:16pm
  ;
  ;Class III to Class I Conversion Project
  ;Contributions of George Holcomb (West Palm Beach) and
- ;Geri Wittenberg (Hines, now at North Chicago) are acknowleged.
+ ;Geri Wittenberg (Hines, now at North Chicago) are acknowledged.
  ;--------------------------------------------------------------
  ;
 TASK I $D(ZTQUEUED) G TASK2
@@ -25,7 +25,7 @@ TASK I $D(ZTQUEUED) G TASK2
  Q
  ;
 TASK2 N PAT,REC,STARTDT,X,X1,X2
- N PSB507,PSBDFN,PSBIMM,PSBDX,PSBDT,PSBDATE,PSBWHO
+ N PSB507,PSBDFN,PSBIMM,PSBDX,PSBDT,PSBDATE,PSBWHO,PSBLOC
  S X1=$G(PSBUDT,DT),X2=-1 D C^%DTC S STARTDT=X-.000001
  S PAT=0 F  S PAT=$O(^PSB(53.79,"AADT",PAT)) Q:'PAT  D
  .S PSBDATE=STARTDT F  S PSBDATE=$O(^PSB(53.79,"AADT",PAT,PSBDATE)) Q:'PSBDATE!(PSBDATE'<DT)  D
@@ -36,8 +36,9 @@ TASK2 N PAT,REC,STARTDT,X,X1,X2
  ...S PSBDFN=$P(^PSB(53.79,REC,0),"^")
  ...S PSBDT=$P(^PSB(53.79,REC,0),"^",6)\1
  ...S PSBWHO=$P(^PSB(53.79,REC,0),"^",7)
+ ...S PSBLOC=$P(^PSB(53.79,REC,0),"^",2)
  ...W:$E(IOST)="C" !,$E($$GET1^DIQ(2,PSBDFN,.01),1,20),?25,$E($$GET1^DIQ(9999999.14,PSBIMM,.01),1,12)," (",$$FMTE^XLFDT(PSBDT,2),")",?50,$$GET1^DIQ(200,PSBWHO,.01) ; FOR TROUBLESHOOTING ASSISTANCE
  ...I $D(^AUPNVIMM("AA",PSBDFN,PSBIMM,9999999-PSBDT)) D  Q  ;->
  ....I $E(IOST)="C" W !,"Result: Immunization already on file."
- ...D BCMA2PCE^PSBPXFL(PSBDFN,PSBIMM,"",PSBDT,PSBWHO)
+ ...D BCMA2PCE^PSBPXFL(PSBDFN,PSBIMM,"",PSBDT,PSBWHO,PSBLOC)
  Q

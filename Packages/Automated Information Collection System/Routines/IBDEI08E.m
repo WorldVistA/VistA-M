@@ -1,140 +1,48 @@
-IBDEI08E ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI08E ; ; 09-FEB-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQ(358.8)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3803,1,5,0)
- ;;=5^Abnorm Coagulation Profile
- ;;^UTILITY(U,$J,358.3,3803,2)
- ;;=Abnorm Coagulation Profile^295771
- ;;^UTILITY(U,$J,358.3,3804,0)
- ;;=794.31^^33^284^10
- ;;^UTILITY(U,$J,358.3,3804,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3804,1,4,0)
- ;;=4^794.31
- ;;^UTILITY(U,$J,358.3,3804,1,5,0)
- ;;=5^Abnormal EKG
- ;;^UTILITY(U,$J,358.3,3804,2)
- ;;=Abnormal EKG^83844
- ;;^UTILITY(U,$J,358.3,3805,0)
- ;;=790.1^^33^284^61
- ;;^UTILITY(U,$J,358.3,3805,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3805,1,4,0)
- ;;=4^790.1
- ;;^UTILITY(U,$J,358.3,3805,1,5,0)
- ;;=5^Elevated Sedimentation Rate
- ;;^UTILITY(U,$J,358.3,3805,2)
- ;;=Elevated Sedimentation Rate^39339
- ;;^UTILITY(U,$J,358.3,3806,0)
- ;;=790.93^^33^284^60
- ;;^UTILITY(U,$J,358.3,3806,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3806,1,4,0)
- ;;=4^790.93
- ;;^UTILITY(U,$J,358.3,3806,1,5,0)
- ;;=5^Elevated PSA
- ;;^UTILITY(U,$J,358.3,3806,2)
- ;;=Elevated PSA^295772
- ;;^UTILITY(U,$J,358.3,3807,0)
- ;;=791.0^^33^284^124
- ;;^UTILITY(U,$J,358.3,3807,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3807,1,4,0)
- ;;=4^791.0
- ;;^UTILITY(U,$J,358.3,3807,1,5,0)
- ;;=5^Proteinuria
- ;;^UTILITY(U,$J,358.3,3807,2)
- ;;=Proteinuria^99873
- ;;^UTILITY(U,$J,358.3,3808,0)
- ;;=791.9^^33^284^14
- ;;^UTILITY(U,$J,358.3,3808,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3808,1,4,0)
- ;;=4^791.9
- ;;^UTILITY(U,$J,358.3,3808,1,5,0)
- ;;=5^Abnormal UA
- ;;^UTILITY(U,$J,358.3,3808,2)
- ;;=Abnormal UA^273408
- ;;^UTILITY(U,$J,358.3,3809,0)
- ;;=789.01^^33^284^7
- ;;^UTILITY(U,$J,358.3,3809,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3809,1,4,0)
- ;;=4^789.01
- ;;^UTILITY(U,$J,358.3,3809,1,5,0)
- ;;=5^Abdominal pain, RUQ
- ;;^UTILITY(U,$J,358.3,3809,2)
- ;;=^303318
- ;;^UTILITY(U,$J,358.3,3810,0)
- ;;=789.02^^33^284^4
- ;;^UTILITY(U,$J,358.3,3810,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3810,1,4,0)
- ;;=4^789.02
- ;;^UTILITY(U,$J,358.3,3810,1,5,0)
- ;;=5^Abdominal pain, LUQ
- ;;^UTILITY(U,$J,358.3,3810,2)
- ;;=^303319
- ;;^UTILITY(U,$J,358.3,3811,0)
- ;;=789.03^^33^284^6
- ;;^UTILITY(U,$J,358.3,3811,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3811,1,4,0)
- ;;=4^789.03
- ;;^UTILITY(U,$J,358.3,3811,1,5,0)
- ;;=5^Abdominal pain, RLQ
- ;;^UTILITY(U,$J,358.3,3811,2)
- ;;=^303320
- ;;^UTILITY(U,$J,358.3,3812,0)
- ;;=789.04^^33^284^3
- ;;^UTILITY(U,$J,358.3,3812,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3812,1,4,0)
- ;;=4^789.04
- ;;^UTILITY(U,$J,358.3,3812,1,5,0)
- ;;=5^Abdominal pain, LLQ
- ;;^UTILITY(U,$J,358.3,3812,2)
- ;;=^303321
- ;;^UTILITY(U,$J,358.3,3813,0)
- ;;=789.06^^33^284^2
- ;;^UTILITY(U,$J,358.3,3813,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3813,1,4,0)
- ;;=4^789.06
- ;;^UTILITY(U,$J,358.3,3813,1,5,0)
- ;;=5^Abdominal pain, Epigastric
- ;;^UTILITY(U,$J,358.3,3813,2)
- ;;=^303323
- ;;^UTILITY(U,$J,358.3,3814,0)
- ;;=789.05^^33^284^5
- ;;^UTILITY(U,$J,358.3,3814,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3814,1,4,0)
- ;;=4^789.05
- ;;^UTILITY(U,$J,358.3,3814,1,5,0)
- ;;=5^Abdominal pain, Periumbilical
- ;;^UTILITY(U,$J,358.3,3814,2)
- ;;=^303322
- ;;^UTILITY(U,$J,358.3,3815,0)
- ;;=789.40^^33^284^8
- ;;^UTILITY(U,$J,358.3,3815,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3815,1,4,0)
- ;;=4^789.40
- ;;^UTILITY(U,$J,358.3,3815,1,5,0)
- ;;=5^Abdominal rigidity, unsp site
- ;;^UTILITY(U,$J,358.3,3815,2)
- ;;=^273393
- ;;^UTILITY(U,$J,358.3,3816,0)
- ;;=789.1^^33^284^74
- ;;^UTILITY(U,$J,358.3,3816,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3816,1,4,0)
- ;;=4^789.1
- ;;^UTILITY(U,$J,358.3,3816,1,5,0)
- ;;=5^Hepatomegaly
- ;;^UTILITY(U,$J,358.3,3816,2)
- ;;=Hepatomegaly^56494
- ;;^UTILITY(U,$J,358.3,3817,0)
- ;;=789.30^^33^284^1
+ ;;^DIC(358.8,0,"GL")
+ ;;=^IBE(358.8,
+ ;;^DIC("B","IMP/EXP TEXT AREA",358.8)
+ ;;=
+ ;;^DIC(358.8,"%D",0)
+ ;;=^^3^3^2940217^
+ ;;^DIC(358.8,"%D",1,0)
+ ;;=This file is nearly identical to file #357.8. It is used by the
+ ;;^DIC(358.8,"%D",2,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.8,"%D",3,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.8,0)
+ ;;=FIELD^^1^7
+ ;;^DD(358.8,0,"DDA")
+ ;;=N
+ ;;^DD(358.8,0,"DT")
+ ;;=2930802
+ ;;^DD(358.8,0,"IX","B",358.8,.01)
+ ;;=
+ ;;^DD(358.8,0,"IX","C",358.8,.02)
+ ;;=
+ ;;^DD(358.8,0,"NM","IMP/EXP TEXT AREA")
+ ;;=
+ ;;^DD(358.8,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.8,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.8,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.8,.01,1,1,0)
+ ;;=358.8^B
+ ;;^DD(358.8,.01,1,1,1)
+ ;;=S ^IBE(358.8,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.8,.01,1,1,2)
+ ;;=K ^IBE(358.8,"B",$E(X,1,30),DA)
+ ;;^DD(358.8,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.8,.01,21,0)
+ ;;=^^2^2^2930528^
+ ;;^DD(358.8,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.8,.01,21,2,0)
+ ;;=The name of the text area.

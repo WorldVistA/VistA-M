@@ -1,5 +1,5 @@
 SROPCE0 ;BIR/ADM - PCE FILING STATUS REPORT ;03/17/05
- ;;3.0; Surgery ;**58,62,69,77,50,119,142**;24 Jun 93
+ ;;3.0;Surgery;**58,62,69,77,50,119,142,182**;24 Jun 93;Build 49
  W @IOF,!,?26,"Report of PCE Filing Status",!!,"This report displays the filing status of completed cases performed during the",!,"selected date range.",!
  S (SRFLG,SRSOUT)=0,SRSPEC=""
 ASK W ! K DIR S DIR("A",1)="Print PCE filing status of completed cases for",DIR("A",2)="",DIR("A",3)="1. O.R. Surgical Procedures",DIR("A",4)="2. Non-O.R. Procedures"
@@ -52,11 +52,11 @@ CLINIC N SRCLINIC S SRCLINIC=$P(^SRF(SRTN,0),"^",21) D
  Q
 TR S SRP=SRZ,SRP=$TR(SRP,"1234567890.","ABCDEFGHIJP")
  Q
-PJAA ;;.011^IN/OUT-PATIENT STATUS
+PJAA ;;.011^HOSPITAL ADMISSION STATUS
 PJAEE ;;.0155^CLASSIFICATION INFORMATION
 PJBA ;;.021^ASSOCIATED CLINIC
 PJD ;;.04^SURGERY SPECIALTY
-PAFD ;;.164^ATTEND SURG
+PAFD ;;.164^ATTENDING SURGEON
 PBJE ;;.205^TIME PAT IN OR
 PBCB ;;.232^TIME PAT OUT OR
 AAI ;;119^NON-OR LOCATION

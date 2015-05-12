@@ -1,5 +1,5 @@
-ICDEXLK2 ;SLC/KER - ICD Extractor - Lookup, Ask ;04/21/2014
- ;;18.0;DRG Grouper;**57**;Oct 20, 2000;Build 1
+ICDEXLK2 ;SLC/KER - ICD Extractor - Lookup, SBR/Ask/One/Mul ;12/19/2014
+ ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
  ;               
  ; Global Variables
  ;    ^TMP(SUB,$J         SACC 2.3.2.5.1
@@ -10,23 +10,25 @@ ICDEXLK2 ;SLC/KER - ICD Extractor - Lookup, Ask ;04/21/2014
  ;    ^DIR                ICR  10026
  ;    $$DT^XLFDT          ICR  10103
  ;    $$FMADD^XLFDT       ICR  10103
+ ;    $$UP^XLFSTR         ICR  10104
  ;               
  ; Local Variables NEWed or KILLed Elsewhere
- ;     DDS,DICR,FND,ICDCDT,ICDDIC0,ICDDICA,
- ;     ICDDICB,ICDDICN,ICDISF,ICDOFND,ICDOREV,
- ;     ICDOSEL,ICDOUT,ICDREDO,ICDX
+ ;     DDS,DIC,DICR,ICDCDT,ICDDIC0,ICDDICA,
+ ;     ICDDICB,ICDDICN,ICDFMT,ICDISF,ICDOFND,
+ ;     ICDOINP,ICDOREV,ICDOSEL,ICDOTIM,ICDOUPA
+ ;     ICDOUT,ICDSYS,ICDVER,ICDX,INP1,INP2
  ;     
  Q
 ASK ; Ask for Selection
- K X,Y N ANS S FND=+($G(FND)) Q:+FND'>0
- I FND=1,DIC(0)'["E" D  Q
+ K X,Y N ANS S ICDOFND=+($G(ICDOFND)) Q:+ICDOFND'>0
+ I ICDOFND=1,DIC(0)'["E" D  Q
  . K X,Y D X(1,SUB) S (ICDOFND,ICDOSEL,ICDOREV)=1
  . D Y($G(ROOT),+($G(^TMP(SUB,$J,"SEL",1))),$G(ICDCDT))
  . I +($G(Y))'>0,$L($G(INP)) S X=$G(INP) Q
  . I +($G(Y))>0 D:$G(DIC(0))'["F" SAV^ICDEXLK6(+($G(Y)),ROOT)
- I FND>1,DIC(0)'["E" D  Q
+ I ICDOFND>1,DIC(0)'["E" D  Q
  . K Y S Y="-1^Selection not made" S ICDOSEL=0
- S:+FND=1 ANS=$$ONE S:+FND>1 ANS=$$MUL S ICDOSEL=0
+ S:+ICDOFND=1 ANS=$$ONE S:+ICDOFND>1 ANS=$$MUL S ICDOSEL=0
  I ANS>0 D
  . D X(+ANS,SUB) S ICDOSEL=1
  . D Y($G(ROOT),+($G(^TMP(SUB,$J,"SEL",+ANS))),$G(ICDCDT))
@@ -51,7 +53,7 @@ ONE(X) ;   One Entry Found
  S:'$D(DDS) X=$$ONERS S:$D(DDS) X=$$ONESM S ICDOREV=1
  Q X
 ONERS(X) ;     One Entry Found           Roll and Scroll
- N DIR,IEN,LN,LN2,ICDI,TEXT,TXT,TX,CT,Y S ICDOREV=1
+ N DIROUT,DIRUT,DIR,IEN,LN,LN2,ICDI,ICDPR,TEXT,TXT,TX,CT,Y S ICDOREV=1
  S TEXT=$G(^TMP(SUB,$J,"SEL",1)) Q:$G(DIC(0))'["E" 1
  S IEN=+TEXT,TEXT=$P(TEXT,U,2),TXT(1)=TEXT
  I $G(ICDFMT)=1!($G(ICDFMT)=2) D
@@ -71,26 +73,25 @@ ONERS(X) ;     One Entry Found           Roll and Scroll
  . S DIR("A",CT)=("     "_$G(TX(ICDI)))
  S CT=$O(DIR("A"," "),-1)+1,DIR("A",CT)=" ",DIR("A")="   OK?  "
  S DIR("B")="Yes",DIR(0)="YAO" W !
- I $G(DICR(2,1))="^ACK(509850.1,",$G(DICR(1,1))["^ACK(509850.6," N ICDQUASR S ICDQUASR=DICR(1,1)_$C(34)_"B"_$C(34)_","_IEN_")" I $D(@ICDQUASR) D  Q 1
- . S LN=$O(DIR("A"," "),-1) N LN2 F LN2=1:1:(LN-1) W !,DIR("A",LN2)
- K DIROUT,DIRUT,DUOUT,DTOUT D ^DIR
- S ICDOUPA=$S(X["^"&(X'["^^"):1,X["^^":2,1:0)
- S:X["^" ICDOUPA=1 S:X["^" ICDOUPA=1
- I $L($G(ICDX)),$L($G(DIC("S"))),$L($G(DICR(1))),$L($G(DICR(1,1))),+Y'>0 Q -1
- Q:+Y>0 1  Q:X["^^"!($D(DTOUT)) "^^"
+ S ICDPR="" I $L($G(DICR(2,1))),$L($G(DICR(1,1))) D
+ . S ICDPR=DICR(1,1)_$C(34)_"B"_$C(34)_","_+IEN_")"
+ I $L(ICDPR),$D(@ICDPR) D  Q 1
+ . S LN=$O(DIR("A"," "),-1) I LN>0 N LN2 F LN2=1:1:(LN-1) W !,DIR("A",LN2)
+ K DIROUT,DIRUT,DUOUT,DTOUT D ^DIR S:$D(DTOUT) ICDOTIM=1,Y=-1
+ S:$D(DUOUT) ICDOUPA=1,Y=-1 S:$D(DIROUT) ICDOUPA=2,Y=-1
+ Q:+Y>0 1
  Q -1
 ONESM(X) ;     One Entry Found           ScreenMan
- N ANS,CODE,ICDMENU,IEN,ITEM,TEXT,VST S ICDOREV=1
+ N DIROUT,DIRUT,ANS,CODE,ICDMENU,IEN,ITEM,TEXT,VST S ICDOREV=1
  S ITEM=$G(^TMP(SUB,$J,"SEL",1)) Q:'$L(ITEM) -1
  S IEN=+ITEM,TEXT=$P(ITEM,U,2) S CODE=$$CODEC^ICDEX(+($G(FILE)),IEN)
  S VST=$$VST^ICDEX(+($G(FILE)),IEN,ICDCDT)
  I $L(CODE),$L(VST) S TEXT=CODE,TEXT=TEXT_$J(" ",(9-$L(TEXT)))_VST
  Q:'$L(TEXT) -1 S ICDMENU(1)=("     "_$G(TEXT)),ICDMENU(2)="   OK? Yes//  "
- S ICDMENU="ICDMENU" K DTOUT,DUOUT,DIROUT,DIRUT
- D HLP^DDSMSG(.ICDMENU) S ICDOREV=1 R ANS:300 S:'$L(ANS) ANS="Y" D CLRMSG^DDS
- I '$T S X="^^",DTOUT=1,DIRUT=1 Q X
- I ANS["^",ANS'["^^" S X="^",DUOUT=1,DIRUT=1 Q X
- I ANS["^^" S X="^^",DIROUT=1,DUOUT=1,DIRUT=1 Q X
+ S ICDMENU="ICDMENU" D HLP^DDSMSG(.ICDMENU) S ICDOREV=1
+ R ANS:300 S X="" S:'$T ICDOTIM=1 S:'$L(ANS) ANS="Y" S:$G(ANS)["^" ICDOUPA=1
+ S:$G(ANS)["^^" ICDOUPA=2 S:$G(ICDOTIM)=1 X="^^" S:$G(ICDOUPA)=1 X="^"
+ S:$G(ICDOUPA)=2 X="^^" D CLRMSG^DDS Q:X["^" X
  S ANS=$E(ANS,1) S X=$S("^Y^y^"[("^"_ANS_"^"):1,1:-1)
  Q X
 MUL(X) ;   Multiple Entries Found
@@ -111,9 +112,10 @@ MULRS(X) ;     Multiple Entries Found    Roll and Scroll
  Q X
 MULRSW ;       Write Multiple          Roll and Scroll
  Q:+($G(IEN))'>0  Q:'$L($G(ROOT))  Q:'$L($G(TEXT))
- N ICDI,IND,NR,TAB,TX2,TXT,Y,RT S (TAB,IND)=8
+ N ICDI,IND,NR,TAB,TX2,TXT,Y,RT,LEN S (TAB,IND)=8
  S RT=$$ROOT^ICDEX(ROOT)
  S:+($G(ICDOUT))<3 IND=18 W !,$J(ENT,5),".",?TAB
+ S:$G(DIC(0))["S"&($G(IND))>7 IND=TAB
  I +($G(ICDISF))'>0,$L($G(DIC("W"))) D  Q
  . N Y,NR D Y(ROOT,IEN,ICDCDT)
  . S NR=$G(@(RT_+IEN_",0)"))
@@ -121,18 +123,20 @@ MULRSW ;       Write Multiple          Roll and Scroll
  I +($G(ICDISF))'>0,$D(DIC("W")),DIC("W")="" D  Q
  . W $P($G(@(RT_+IEN_",0)")),"^",1)
  I +($G(ICDOUT))<3 D  Q
- . N ICDI S TXT(1)=TEXT D PAR^ICDEX(.TXT,64) K TX2 F ICDI=2:1:8 D
+ . N ICDI,LEN S TXT(1)=TEXT D PAR^ICDEX(.TXT,64) K TX2 F ICDI=2:1:8 D
  . . S:$L($G(TXT(ICDI))) TX2(1)=$G(TX2(1))_" "_$G(TXT(ICDI))
  . W $G(TXT(1)) I $D(TX2) D
- . . D PAR^ICDEX(.TX2,54) S ICDI=0
+ . . N LEN S LEN=54 S:$G(DIC(0))["S" LEN=64
+ . . S:$G(DIC(0))["S" IND=TAB
+ . . D PAR^ICDEX(.TX2,LEN) S ICDI=0
  . . F  S ICDI=$O(TX2(ICDI)) Q:+ICDI'>0  W !,?IND,$G(TX2(ICDI))
  S TXT(1)=TEXT
  D PAR^ICDEX(.TXT,64) S ICDI=0 F  S ICDI=$O(TXT(ICDI)) Q:+ICDI'>0  D
  . Q:'$L($G(TXT(ICDI)))  W:ICDI>1 ! W ?IND,$G(TXT(ICDI))
  Q
 MULRSS(LEX,LS) ;       Select Multiple         Roll and Scroll
- Q:+($G(EXIT))>0 "^^"  N DIR,DIRB,HLP,LAST,MAX,NEXT,RAN,X,Y
- S MAX=+($G(LEX)),LAST=+($G(LS)) Q:MAX=0 -1
+ Q:+($G(EXIT))>0 "^^"  N DTOUT,DUOUT,DIRUT,DIROUT,DIR,DIRB,HLP
+ N LAST,MAX,NEXT,RAN,X,Y S MAX=+($G(LEX)),LAST=+($G(LS)) Q:MAX=0 -1
  S RAN=" Select 1-"_MAX_":  ",NEXT=$O(^TMP(SUB,$J,"SEL",+LAST))
  S:+NEXT>0 DIR("A")=" Press <RETURN> for more, '^' to exit, or"_RAN
  S:+NEXT'>0 DIR("A")=RAN
@@ -140,12 +144,8 @@ MULRSS(LEX,LS) ;       Select Multiple         Roll and Scroll
  S DIR("PRE")="S:X[""?"" X=""??"""
  S (DIR("?"),DIR("??"))="^D MULRSSH^ICDEXLK2"
  S DIR(0)="NAO^1:"_MAX_":0" K DIROUT,DIRUT,DUOUT,DTOUT D ^DIR
- S ICDOUPA=$S(X["^"&(X'["^^"):1,X["^^":2,1:0)
- S:X["^"&(LS=+($G(TOT))) (X,Y)="^",DIROUT=1,DIRUT=1,DUOUT=1
- S:X["^^"&(LS=+($G(TOT))) (X,Y)="^^",DIROUT=1,DIRUT=1,DUOUT=1
- S:X["^"&(X'["^^") X="^",DUOUT=1,DIRUT=1,(X,Y)="^"
- S:X["^^"!($D(DTOUT)) EXIT=1,(X,Y)="^^"
- S LEX=+Y S:$D(DTOUT)!(X[U) LEX=U
+ S:$D(DTOUT) ICDOTIM=1,EXIT=1,Y=-1,X="^^" S:$D(DUOUT) ICDOUPA=1,Y=-1,X="^"
+ S:$D(DIROUT) ICDOUPA=2,Y=-1,X="^^" S LEX=+Y S:$D(DTOUT)!(X[U) LEX=U
  Q LEX
 MULRSSH ;       Select Multiple Help    Roll and Scroll
  I $L($G(HLP)) W !,$G(HLP) Q
@@ -160,16 +160,12 @@ MULSM(X) ;     Multiple Entries Found    ScreenMan
  . S VST=$$VST^ICDEX(+($G(FILE)),IEN,ICDCDT)
  . I $L(CODE),$L(VST) S TEXT=CODE,TEXT=TEXT_$J(" ",(9-$L(TEXT)))_VST
  . Q:'$L(TEXT)  S MAX=ENT D MULSMW S:ENT=TOT ICDOREV=1
- . S:ENT#LEN=0 SEL=$$MULSMS(MAX,ENT)
- . S:SEL["^" (DUOUT,DIROUT,EXIT)=1
+ . S:ENT#LEN=0 SEL=$$MULSMS(MAX,ENT) S:SEL["^" EXIT=1
  K:$D(DUOUT) ICDMENU
  I ENT#LEN'=0,+SEL=0,'EXIT D
- . Q:$G(DUOUT)>0  Q:$G(DIROUT)>0
- . S SEL=$$MULSMS(MAX,ENT)
- . S:SEL["^" (DUOUT,DIROUT,EXIT)=1
+ . Q:+($G(ICDOUPA))>0  S SEL=$$MULSMS(MAX,ENT) S:SEL["^" EXIT=1
  I EXIT>0 D  G MULQ
- . K ICDMENU S:$L($G(DICR("1"))) DICR("1")="^^" S:$L($G(ICDOINP)) ICDOINP="^^"
- . ;D CLRMSG^DDS
+ . D CLRMSG^DDS K ICDMENU S:$L($G(DICR("1"))) DICR("1")="^^" S:$L($G(ICDOINP)) ICDOINP="^^"
  D CLRMSG^DDS
  G MULQ
 MULSMW ;       Write Multiple          ScreenMan
@@ -177,23 +173,21 @@ MULSMW ;       Write Multiple          ScreenMan
  S ICDMENU(CTR)=$J(ENT,3)_"."_"  "_$G(TEXT)
  Q
 MULSMS(LEX,LS) ;       Select Multiple         ScreenMan
- Q:+($G(EXIT))>0 "^^"  N ANS,CTR,LAST,MAX,PMT,X Q:'$D(ICDMENU)
- S MAX=+($G(LEX)),LAST=+($G(LS)) Q:MAX=0 -1
+ Q:+($G(EXIT))>0 "^^"  N DIROUT,DUOUT,DTOUT,DIRUT,ANS,CTR,LAST,MAX,PMT,X
+ Q:'$D(ICDMENU) "^" S MAX=+($G(LEX)),LAST=+($G(LS)) Q:MAX=0 -1
  S PMT=" Select 1-"_MAX_", <RETURN> for more or '^' to exit:  "
  S CTR=$O(ICDMENU(" "),-1)+1,ICDMENU(CTR)=PMT
  S ICDMENU="ICDMENU" D HLP^DDSMSG(.ICDMENU)
- K ICDMENU R ANS:300 D CLRMSG^DDS S X=""
- I '$T S X="^^",DTOUT=1,DIRUT=1 Q X
- I ANS["^",ANS'["^^" S X="^",DUOUT=1 Q X
- I ANS["^^" S X="^^",DIROUT=1,DUOUT=1,DIRUT=1 Q X
- S ANS=+ANS Q:ANS'>0 ""  Q:ANS>MAX ""  S X=ANS
+ K ICDMENU R ANS:300 S X="" S:'$T ICDOTIM=1,X="^^"
+ S:ANS["^" ICDOUPA=1,X="^" S:ANS["^^" ICDOUPA=2,X="^^" Q:X["^" X
+ D CLRMSG^DDS S ANS=+ANS Q:ANS'>0 ""  Q:ANS>MAX ""  S X=ANS
  Q X
 MULQ ;     Quit Multiple
  S X=+($G(SEL)) Q:X'>0 -1
  Q X
  ;
 INP(X,VER,CDT) ; Get User Input
- Q:$G(DIC(0))'["A" ""  N DIR,DIRA,DIRB,SBR,SBT,FILE,ROOT
+ Q:$G(DIC(0))'["A" ""  N DIROUT,DIRUT,DUOUT,DTOUT,DIR,DIRA,DIRB,SBR,SBT,FILE,ROOT
  S VER=+($G(VER)),CDT=+($G(CDT))
  S FILE=$G(X) Q:"^80^80.1^"'[("^"_FILE_"^") ""  S ROOT=$$ROOT^ICDEX(FILE)
  S:$L($G(ICDDICB)) DIRB=ICDDICB S:$L($G(ICDDICA)) DIRA=ICDDICA
@@ -216,13 +210,14 @@ INP(X,VER,CDT) ; Get User Input
  S DIR("??")="^D INPH2^ICDEXLK2($G(FILE))"
  N Y S DIR(0)="FAO^0:245"
  K X,DIROUT,DIRUT,DUOUT,DTOUT D ^DIR
- S ICDOUPA=$S(X["^"&(X'["^^"):1,X["^^":2,1:0)
- Q:$D(DIROUT) "^^"  Q:$D(DUOUT) "^"  Q:$G(X)="" X
- S:X=""&('$L($G(DIR("B")))) X="^" S:X["^"&(X'["^^") X="^"
- S:X["^^" X="^^" Q:X["^" X
+ S:$G(X)="@"&($G(Y)="") Y=$G(X)
+ S:$D(DTOUT) ICDOTIM=1 S:$D(DUOUT) ICDOUPA=1 S:$D(DIROUT) ICDOUPA=2
+ Q:$G(ICDOUPA)=1 "^"  Q:$G(ICDOUPA)=2 "^^"  Q:$G(ICDOTIM)>0 "^^"
+ I '$L(X) S (X,ICDX,INP,INP1,INP2)="",Y=-1 Q X
+ S:X=""&('$L($G(DIR("B")))) X="^" S:X["^"&(X'["^^") X="^" S:X["^^" X="^^" Q:X["^" X
  I $E(X,1)=" ",$L(SBT),+SBR>0 S X=("`"_+SBR) Q X
- W:$G(DIC(0))'["Q"&($E(X,1)'=" ") ! S X=$$TM(X)
- S:$D(DTOUT)!(X="^") X="" S:X[U DUOUT=1
+ W:$G(DIC(0))'["Q"&($E(X,1)'=" ")&('$D(DDS)) !
+ S X=$$UP^XLFSTR($$TM(Y))
  Q X
 INPH(X) ;   Input Help
  N FILE,TYPE,TMP,TXT S FILE=$G(X)

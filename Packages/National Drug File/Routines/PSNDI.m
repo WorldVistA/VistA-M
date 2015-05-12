@@ -1,5 +1,5 @@
 PSNDI ;BIR/LDT - API FOR FILEMAN CALLS; 5 Sep 03
- ;;4.0; NATIONAL DRUG FILE;**80,109,157**; 30 Oct 98;Build 9
+ ;;4.0;NATIONAL DRUG FILE;**80,109,157,406**; 30 Oct 98;Build 7
  ;
 DIC(PSNFILE,PSNPACK,DIC,X,DLAYGO,PSNSCRDT) ;
  S PSNDIY=""
@@ -69,5 +69,6 @@ FILE1 ;Package listed if Write access (DLAYGO) is allowed
 FILE2 ;For Lookup calls, check for Inactive Date Screen
  ;;50.67;;0;;7
  ;;56;;0;;7
+ ;;50.416;;2;;1
  ;;
  Q

@@ -1,9 +1,9 @@
 SRSRQST ;BIR/MAM,ADM - MAKE OPERATION REQUESTS ;11/01/01  9:40 AM
- ;;3.0;Surgery;**3,58,67,88,103,105,100,144,175,177**;24 Jun 93;Build 89
+ ;;3.0;Surgery;**3,58,67,88,103,105,100,144,175,177,182**;24 Jun 93;Build 49
 MUST S SRLINE="" F I=1:1:80 S SRLINE=SRLINE_"="
  W @IOF W:$D(SRCC) !,?29,$S(SRSCON=1:"FIRST",1:"SECOND")_" CONCURRENT CASE" W !,?20,"OPERATION REQUEST: REQUIRED INFORMATION",!!,SRNM_" ("_SRSSN_")",?65,SREQDT,!,SRLINE,!
 SURG ; surgeon
- K DIR S DIR(0)="130,.14",DIR("A")="Surgeon" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G END
+ K DIR S DIR(0)="130,.14",DIR("A")="Primary Surgeon" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G END
  I Y=""!(X["^") W !!,"To make an operation request, a Surgeon MUST be selected.  Enter '^' to exit.",! G SURG
  S SRSDOC=+Y
 CASE K DA,DIC,DD,DO,DINUM,SRTN S X=SRSDPT,DIC="^SRF(",DIC(0)="L",DLAYGO=130 D FILE^DICN K DD,DO,DIC,DLAYGO S SRTN=+Y
@@ -32,7 +32,16 @@ OPD ; Principal Preoperative Diagnosis
  S SRSOPD=Y
  W !!,"The information entered into the Principal Preoperative Diagnosis field",!,"has been transferred into the Indications for Operation field.",!,"The Indications for Operation field can be updated later if necessary.",!
  W !!,"Press RETURN to continue  " R X:DTIME
-UPDATE S DA=SRTN,DIE=130,DR="26////"_SRSOP_";68////"_SRSOP_";.04////"_SRSS_";.164////"_SRATTND_";32////"_SRSOPD D ^DIE
+ ;
+LP ; LATERALITY OF PROCEDURE
+ K DIR W ! S DIR(0)="130,638",DIR("A")="Laterality Of Procedure" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G DEL
+ I Y=""!(X["^") W !!,"To make an operation request, Laterality Of Procedure MUST be entered.   Enter '^' to exit.",! G LP
+ S SRLP=Y
+HAS ; Hospital Admission Status
+ K DIR S DIR(0)="130,.011",DIR("A")="Hospital Admission Status" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G DEL
+ I Y=""!(X["^") W !!,"To make an operation request, Hospital Admission Status field MUST be entered. Enter '^' to exit.",! G HAS
+ S SRHAS=Y
+UPDATE S DA=SRTN,DIE=130,DR="26////"_SRSOP_";68////"_SRSOP_";.04////"_SRSS_";.164////"_SRATTND_";32////"_SRSOPD_";638////"_SRLP_";.011////"_SRHAS D ^DIE
  I SRWL K DA,DIE,DR S DA=SRTN,DIE=130,DR=".016////"_SRCL(16)_";.017////"_SRCL(17)_";.018////"_SRCL(18)_";.019////"_SRCL(19)_";.0155////"_SRCL(20)_";.022////"_SRCL(21)_";.023////"_SRCL(22) D ^DIE
  K DR,DA S DR="[SRO-NOCOMP]",DA=SRTN,DIE=130 D ^DIE K DR
  S ^SRF(SRTN,8)=SRSITE("DIV") D ^SROXRET K SRNOCON

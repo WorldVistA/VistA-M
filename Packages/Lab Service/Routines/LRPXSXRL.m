@@ -1,5 +1,5 @@
 LRPXSXRL ; SLC/PKR - Build indexes for Lab. ;9/27/03  22:37
- ;;5.2;LAB SERVICE;**295**;Sep 27, 1994
+ ;;5.2;LAB SERVICE;**295,445**;Sep 27, 1994;Build 6
  Q
  ;===============================================================
 LAB ; this entry point is called to rebuild ALL Lab indexes in ^PXRMINDX(63
@@ -50,7 +50,7 @@ LAB ; this entry point is called to rebuild ALL Lab indexes in ^PXRMINDX(63
  .. F  S LRDN=$O(^LR(LRDFN,"CH",LRIDT,LRDN)) Q:LRDN<1  D
  ... S DAS=DAT_";"_LRDN
  ... S TEMP=^LR(LRDFN,"CH",LRIDT,LRDN)
- ... S TEST=+$P($P(TEMP,U,3),"!",6) ; get test, use ^LR node
+ ... S TEST=+$P($P(TEMP,U,3),"!",7) ; get test, use ^LR node
  ... I 'TEST D  ; if not available on ^LR node
  .... I $P($G(^TMP("LRPXSXRL",$J,LRDN)),U,2) D  ; if duplicates, use file 60
  ..... S TEST=+$O(^LAB(60,"C","CH;"_$G(LRDN)_";1",0))

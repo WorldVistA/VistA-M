@@ -1,5 +1,5 @@
 PSDESTP ;BIR/BJW-Destroyed CS Drugs Report ; 28 Feb 98
- ;;3.0; CONTROLLED SUBSTANCES ;**8,62,71**;13 Feb 97;Build 29
+ ;;3.0;CONTROLLED SUBSTANCES ;**8,62,71,75**;13 Feb 97;Build 2
  ;**Y2K compliance**,"P" added to date input string 2/9/98
  ;*Y2K* chg to print four digit year in body of report
  I '$D(PSDSITE) D ^PSDSET Q:'$D(PSDSITE)
@@ -46,7 +46,7 @@ START ;start looping
  F PSD=PSDSD:0 S PSD=$O(^PSD(58.86,"AC",PSD)) Q:'PSD!(PSD>PSDED)   S PSDS=0 F  S PSDS=$O(^PSD(58.86,"AC",PSD,PSDS)) Q:'PSDS  D:$D(PSDVAU(PSDS))
  .F PSDR=0:0 S PSDR=$O(^PSD(58.86,"AC",PSD,PSDS,PSDR)) Q:'PSDR  D
  ..F PSDA=0:0 S PSDA=$O(^PSD(58.86,"AC",PSD,PSDS,PSDR,PSDA)) Q:'PSDA  I $D(ALL)!($D(PSDRG(+PSDR))) D SET
- I $D(ALL) F PSD=PSDSD:0 S PSD=$O(^PSD(58.86,"AD",PSD)) Q:'PSD!(PSD>PSDED)  F  S PSDS=$O(^PSD(58.86,"AD",PSD,PSDS)) Q:'PSDS  D:$D(PSDVAU(PSDS))
+ I $D(ALL) F PSD=PSDSD:0 S PSD=$O(^PSD(58.86,"AD",PSD)) Q:'PSD!(PSD>PSDED)  S PSDS=0 F  S PSDS=$O(^PSD(58.86,"AD",PSD,PSDS)) Q:'PSDS  D:$D(PSDVAU(PSDS))
  .S PSDN="" F  S PSDN=$O(^PSD(58.86,"AD",PSD,PSDS,PSDN)) Q:PSDN=""  F PSDA=0:0 S PSDA=$O(^PSD(58.86,"AD",PSD,PSDS,PSDN,PSDA)) Q:'PSDA  D SET
  I CNT=0 D HDR W !!,?10,"*** NO CONTROLLED SUBSTANCE DESTRUCTIONS ***",!! G DONE
 PRINT ;prints data,L-6 added 8/24/95 accum summ.total,10/20/95 chgs made

@@ -1,5 +1,16 @@
-ROR ;HCIOFO/SG - CLINICAL CASE REGISTRIES ; 1/26/07 4:54pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,3**;Feb 17, 2006;Build 7
+ROR ;HCIOFO/SG - CLINICAL CASE REGISTRIES ;1/26/07 4:54pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,3,22**;Feb 17, 2006;Build 17
+ ;
+ ;***************************************************************************
+ ;***************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*22   FEB 2014    T KOPP       Added check for ROR VA IRM security key
+ ;                                      for nightly task job ROR TASK
+ ;                                      
+ ;***************************************************************************
  ;
  ; LOCAL VARIABLE ------ DESCRIPTION
  ;
@@ -135,14 +146,35 @@ TASK ;
  N RORLOG        ; Log subsystem constants & variables
  N RORPARM       ; Application parameters
  ;
- N CNT,FLAGS,I,RC,REGLST,REGNAME,RORERRDL  K ZTREQ
+ N CNT,FLAGS,I,RC,RORKEY,RORSITE,RORT,RORUSER,REGLST,REGNAME,RORERRDL  K ZTREQ
  ;--- Initialize constants and variables
  D INIT^RORUTL01("ROR",1)
  D CLEAR^RORERR("TASK^ROR",1)
- ;--- Open a new log
  S RC=$$SETUP^RORLOG()
  S RC=$$OPEN^RORLOG(,7,"ROR TASK STARTED")
  ;
+ ; Make sure user has the ROR VA IRM key
+ S RC=1
+ D OWNSKEY^XUSRB(.RORKEY,"ROR VA IRM",DUZ)
+ I '$G(RORKEY(0)) D  S RC=-1
+ . N XMINSTR,XMY
+ . ; Quit if not a production environment
+ . Q:'$$CCRNTFY^RORUTL05(0)
+ . ; Send bulletin if user not assigned key
+ . S XMY("CCRAutoNotification@domain.ext")=""
+ . S RORSITE=$$SITE^RORUTL03()
+ . S RORUSER=$$GET1^DIQ(200,DUZ_",",.01)
+ . S RORT(1)="At station #"_$P(RORSITE,U)_" "_$P(RORSITE,U,2)_", the user running the ROR TASK nightly job"
+ . S RORT(2)="no longer has the appropriate keys to run this job.  Contact the site to inform"
+ . S RORT(3)="them they must cancel the ROR TASK job and then must have it restarted by a user"
+ . S RORT(4)="who currently possesses the ROR VA IRM key."
+ . S RORT(5)=" "
+ . S RORT(6)="USER OF RECORD: "_RORUSER_" ("_DUZ_")"
+ . S XMINSTR("ADDR FLAGS")="I",XMINSTR("FROM")=.5
+ . D SENDMSG^XMXAPI(DUZ,"ROR TASK NIGHTLY JOB NEEDS ATTENTION","RORT",.XMY,.XMINSTR)
+ . ;File in the error log
+ . D ACVIOLTN^RORLOG(-113,"",RORUSER)
+ G:RC<0 ABORT
  ;--- Check and log the task parameters and force the <UNDEF>
  ;--- error in case of a missing/invalid critical value
  I $$TASKPRMS^ROR10(.REGLST)<0  K ZTQPARAM  S RC=ZTQPARAM

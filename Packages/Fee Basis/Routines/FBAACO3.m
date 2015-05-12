@@ -1,6 +1,11 @@
-FBAACO3 ;AISC/GRR - ENTER PAYMENT CONTINUED ;10/31/12 2:56pm
- ;;3.5;FEE BASIS;**4,38,55,61,116,122,133,108,124,143,139**;JAN 30, 1995;Build 127
+FBAACO3 ;AISC/GRR - ENTER PAYMENT CONTINUED ;12/19/2014
+ ;;3.5;FEE BASIS;**4,38,55,61,116,122,133,108,124,143,139,157**;JAN 30, 1995;Build 1
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;FB*3.5*157 Modify file 162, Diagnosis (field 28) stuff from '///' to '////'
+ ;           since needed file 80 dx IEN is already passed back from DX 
+ ;           lookup.
+ ;
 DOEDIT ;
  N FB1725,FBFPPSC
  W ! S FBAACP(0)=FBAACP
@@ -42,9 +47,9 @@ DOEDIT ;
  ; now edit remaining fields
  D SETO K DR
  ;JAS - 09/13/13 - PATCH 139 - Added FBDXCHK1 and FBDXCHK2
- N FBDXCHK1 S FBDXCHK1=";S:FBAADT<$$IMPDATE^FBCSV1(""10D"") Y=""@20"";@15;S XX1=-1 S XX1=$$ASKICD10^FBAACO2(FBAADT) S:XX1<0 Y=""@15"";28///^S X=XX1;S Y=""@21"";"
+ N FBDXCHK1 S FBDXCHK1=";S:FBAADT<$$IMPDATE^FBCSV1(""10D"") Y=""@20"";@15;S XX1=-1 S XX1=$$ASKICD10^FBAACO2(FBAADT) S:XX1<0 Y=""@15"";28////^S X=XX1;S Y=""@21"";"   ;;FB*3.5*157
  S FBDXCHK1=FBDXCHK1_"@20;S XX1=$$ASKICD9^FBAACO2(FBAADT) S:+XX1<0 Y=""@20"";28////^S X=+XX1;@21;31;32R;S Y=""@7"";"
- N FBDXCHK2 S FBDXCHK2=";S:FBAADT<$$IMPDATE^FBCSV1(""10D"") Y=""@26"";@25;S XX1=-1 S XX1=$$ASKICD10^FBAACO2(FBAADT) S:XX1<0 Y=""@25"";28///^S X=XX1;S Y=""@30"";@26;"
+ N FBDXCHK2 S FBDXCHK2=";S:FBAADT<$$IMPDATE^FBCSV1(""10D"") Y=""@26"";@25;S XX1=-1 S XX1=$$ASKICD10^FBAACO2(FBAADT) S:XX1<0 Y=""@25"";28////^S X=XX1;S Y=""@30"";@26;"   ;;FB*3.5*157
  S DR="48;47;S FBUNITS=X;42R;S FBZIP=X;S:$$ANES^FBAAFS($$CPT^FBAAUTL4(FBAACP)) Y=""@2"";43///@;S FBTIME=X;S Y=""@3"";@2;43R;S FBTIME=X;@3"
  ; fb*3.5*116 remove edit of interest indicator (162.03,34) to prevent different interest indicator values at line item level; interest indicator set at invoice level only
  S DR(1,162.03,1)="S FBAAMM=$S(FBAAPTC=""R"":"""",1:1);D PPT^FBAACO1(FBAAMM1,FBCNTRP,1);34///@;34////^S X=FBAAMM1;54///@;54////^S X=FBCNTRP;30R;S FBHCFA(30)=X;1;S J=X;Q"

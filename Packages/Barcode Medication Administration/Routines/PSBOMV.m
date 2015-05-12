@@ -1,10 +1,11 @@
 PSBOMV ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**60,78**;Mar 2004;Build 8
+ ;;3.0;BAR CODE MED ADMIN;**60,78,72**;Mar 2004;Build 16
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
  ; ^DPT/10035
  ; ^NURSF(211.4/1409
+ ; ^XLFDT/10103
  ;
 EN ;
  N CNT,PSBHDR,PSBPT,PSBINDX,DFN,PSBY,PSBSORT,PSBPRINT,PSBDT,PSBEV,PSBLOG,PSBPRCX,PSBRB,PSBSTOP,PSBSTRT,PSBTIME,PSBWLF,PSBWRD,PSBWRDA,PSBX,PSBY,PSBXX
@@ -104,7 +105,7 @@ BYDFN ;Print by Patient.
  ;
 WRDHDR() ;
  N PSBSRCHL ;Add PSBSRCHL variable and additional PSBHDR array spacers for PSBOHDR call, PSB*3*78
- S PSBHDR(1)="MEDICATION VARIANCE LOG"
+ S PSBHDR(1)="MEDICATION VARIANCE LOG for "_$$FMTE^XLFDT(PSBSTRT)_" to "_$$FMTE^XLFDT(PSBSTOP) ;Add time frame for report header, PSB*3*72
  S PSBSRCHL=$$SRCHLIST^PSBOHDR()
  S PSBHDR(2)="",PSBHDR(3)="",PSBHDR(4)="Ward Location: "
  D WARD^PSBOHDR(PSBWRD,.PSBHDR,,,PSBSRCHL)
@@ -112,7 +113,7 @@ WRDHDR() ;
  Q ""
  ;
 PTHDR() ;
- S PSBHDR(1)="MEDICATION VARIANCE LOG"
+ S PSBHDR(1)="MEDICATION VARIANCE LOG for "_$$FMTE^XLFDT(PSBSTRT)_" to "_$$FMTE^XLFDT(PSBSTOP) ;Add time frame for report header, PSB*3*72
  D PT^PSBOHDR(PSBDFN,.PSBHDR)
  W !,"Event Date/Time",?23,"Event",?43,"Var",?50,"Medication",!,$TR($J("",IOM)," ","-")
  Q ""

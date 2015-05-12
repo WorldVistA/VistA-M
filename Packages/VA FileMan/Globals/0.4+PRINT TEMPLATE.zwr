@@ -152,7 +152,7 @@ ZWR
 ^DIPT(26,"F",2)="19.5,X DXS(1,9.2) S DIP(101)=$S($D(^DIC(19,D0,0)):^(0),1:"""") S X=$P(DIP(101),U,2) S D0=I(0,0) S D1=I(1,0) W X K DIP;""MENU TEXT"";N;L25;Z;"".01:MENU TEXT""~"
 ^DIPT(26,"F",200)=".01;L25~"
 ^DIPT(26,"H")="DELEGATED OPTIONS BY USER"
-^DIPT(27,0)="XUSERINQ^3070803.1149^^200^^@^3130319"
+^DIPT(27,0)="XUSERINQ^3070803.1149^^200^^@^3141114"
 ^DIPT(27,"DXS",1,9.2)="S DIP(1)=$S($D(^VA(200,D0,0)):^(0),1:"""") S X=$P(DIP(1),U,1)_""  (#""_$S('$D(D0):"""",D0<0:"""",1:D0)_"")"""
 ^DIPT(27,"DXS",2,9.2)="S DIP(1)=$S($D(^VA(200,D0,0)):^(0),1:"""") S X=$P(DIP(1),U,11),DIP(2)=$G(X) S X=1,X1=DIP(2) S X=$$FMTE^XLFDT(X1,X) S X=X,DIP(3)=$G(X) S X=""TD"""
 ^DIPT(27,"DXS",3,9.2)="S DIP(2)=$C(59)_$P($G(^DD(200,7,0)),U,3),DIP(1)=$S($D(^VA(200,D0,0)):^(0),1:"""") S X=$P($P(DIP(2),$C(59)_$P(DIP(1),U,7)_"":"",2),$C(59)),DIP(3)=$G(X) S X=""DIS"""

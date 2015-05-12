@@ -1,5 +1,5 @@
 LRUMDP ;AVAMC/REG/CYM - MD SELECTED LAB RESULTS ;2/19/98  09:16 ;
- ;;5.2;LAB SERVICE;**3,153,201**;Sep 27, 1994
+ ;;5.2;LAB SERVICE;**3,153,201,439**;Sep 27, 1994;Build 2
  W !!,"New page for each patient " S %=2 D YN^LRU G:%<1 END S:%=1 LRK=1
  S ZTRTN="QUE^LRUMDP" D BEG^LRUTL G:POP!($D(ZTSK)) END
 QUE U IO K ^TMP($J) S Z(2)=$O(^LAB(61,"B","SERUM",0)),Z(3)=$O(^LAB(61,"B","BLOOD",0)),Z(5)=$O(^LAB(61,"B","PLASMA",0))
@@ -17,7 +17,7 @@ T S LRI=LRLDT,W(1)=0 F  S LRI=$O(^LR(LRDFN,"CH",LRI)) Q:'LRI!(LRI>LRSDT)!(LR("Q"
  Q:LR("Q")  W:W(1) !,LR("%") Q
  ;
 W I $Y>(IOSL-6) D H1 Q:LR("Q")  S W(1)=W(1)+1
- S W(1)=W(1)+1,X=^LR(LRDFN,"CH",LRI,0),Y=+X_"000",T=$P(X,"^",5),LRDATE=$TR($$Y2K^LRX(Y,"5M"),"@"," ")
+ S W(1)=W(1)+1,X=^LR(LRDFN,"CH",LRI,0),Y=+X,T=$P(X,"^",5),LRDATE=$TR($$Y2K^LRX(Y,"5M"),"@"," ")
  D:W(1)=1 A W !,LRDATE W:T'=Z(2)&(T'=Z(3))&(T'=Z(5)) ?15,$E($P(^LAB(61,T,0),"^"),1,7)
  F X=0:0 S X=$O(^TMP($J,"L",LR,X)) Q:'X  S LRT=^(X) I LRT'="",$D(^LR(LRDFN,"CH",LRI,LRT)) S Y=^(LRT) W ?(16+(X*8)),$J($P(Y,"^"),6),$P(Y,"^",2)
  Q

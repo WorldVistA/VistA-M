@@ -1,5 +1,5 @@
 PSODDPR5 ;BIR/SAB - displays OP/rdi/pending/nva orders ;09/320/06 11:33am
- ;;7.0;OUTPATIENT PHARMACY;**251,375,379,390,372,416**;DEC 1997;Build 32
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,379,390,372,416,438**;DEC 1997;Build 4
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.606 supported by DBIA 2174
  ;External reference to ^PS(50.7 supported by DBIA 2223
@@ -103,7 +103,7 @@ NSRT ;sort of drug interactions ; called by psoddpr2
  ..I $P(ON,";")'="Z",$P(ON,";")="O",$P(^PSRX($P(ON,";",2),"STA"),"^")>5,$P(^PSRX($P(ON,";",2),"STA"),"^")'=16 Q
  ..I $P(ON,";")'="Z",$P(ON,";")="R" D RVAGEN Q
  ..I $P(ON,";")'="Z",$P(ON,";")="P",'$P($G(^PS(52.41,$P(ON,";",2),0)),"^",9) S PSORDIT=$P($G(^PS(52.41,$P(ON,";",2),0)),"^",8) D:$G(PSORDIT) DVAGEN Q
- ..I $P(ON,";")'="Z",$P(ON,";")="N",'$P($G(^PS(55,PSODFN,"NVA",$P(ON,";",2),0)),"^",2) S PSORDIT=$P($G(^PS(55,PSODFN,"NVA",$P(ON,";",2),0)),"^") D:$G(PSORDIT) DVAGEN Q
+ ..I $P(ON,";")'="Z",$P(ON,";")="N",'$P($G(^PS(55,PSODFN,"NVA",$P(ON,";",2),0)),"^",2) S PSORDIT=$P($G(^PS(55,PSODFN,"NVA",$P(ON,";",2),0)),"^") D:$G(PSORDIT) DVAGEN ;Q  ;*438
  ..S PSODD=$O(^PSDRUG("B",DRG,0)) D:PSODD'="" VAGEN^PSODDPR3(PSODD)
  ..S:PSOVAG="" PSOVAG=DRG
  ..S ZOT=$S($P(ON,";")["C":1,$P(ON,";")="O":2,$P(ON,";")="R":3,$P(ON,";")="P":4,1:5)

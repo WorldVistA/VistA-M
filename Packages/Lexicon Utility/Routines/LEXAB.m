@@ -1,5 +1,5 @@
-LEXAB ;ISL/KER - Look-up Exact Match "B" index ;04/21/2014
- ;;2.0;LEXICON UTILITY;**25,80**;Sep 23, 1996;Build 1
+LEXAB ;ISL/KER - Look-up Exact Match "B" index ;12/19/2014
+ ;;2.0;LEXICON UTILITY;**25,80,86**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^TMP("LEXFND"       SACC 2.3.2.5.1
@@ -8,6 +8,9 @@ LEXAB ;ISL/KER - Look-up Exact Match "B" index ;04/21/2014
  ; External References
  ;    $$UP^XLFSTR         ICR  10104
  ;               
+ ; Killed in LEXA
+ ;    LEXFIL
+ ;    
  ; Exact match  S X=$$EN^LEXAB("LEXSCH",LEXVDT)
  ;                   
  ;   INPUT
@@ -41,9 +44,9 @@ EN(LEXSCH,LEXVDT) ; Check "B" index for exact match
  S:+($G(LEXEMC))=1 LEXOK=$G(LEXEM) S:+($G(LEXEMC))'=1 LEXOK=0
  ; Exact Match Found
  I +LEXOK>0 D
- . S LEXE=LEXOK
+ . N LEXFILR S LEXE=LEXOK
  . ; Filter
- . S LEXFILR=$$EN^LEXAFIL($G(LEXFIL),LEXE) Q:LEXFILR=0
+ . I $L($G(LEXFIL)),LEXE>0 S LEXFILR=$$EN^LEXAFIL($G(LEXFIL),LEXE) Q:LEXFILR=0
  . ; Deactivated
  . Q:'$D(LEXIGN)&(+($P($G(^LEX(757.01,LEXE,1)),"^",5))=1)
  . S LEXDES=$$DES(LEXE)

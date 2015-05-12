@@ -1,5 +1,5 @@
 MAGGSIU5 ;WOIFO/GEK - Utilities for Image Import API ; 11 Jun 2013 5:37 PM
- ;;3.0;IMAGING;**121,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
+ ;;3.0;IMAGING;**121,135,154**;Mar 19, 2002;Build 9;Nov 07, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -52,7 +52,7 @@ RSND1(MAGRY,MAGIEN,TIUDA,DELREAS) ; Main entry point to rescind an Image
  N QARR,TRKID,CALLBACK
  N RSLT,REASON,REASDA,MAGTDAT
  N I,QCT,N0,N2,N40,N100,MAGLT
- N IMGSPLCS,MAGRQA
+ N IMGSPLCS,MAGRQA,MAGRDY
  N MAGTMP,X
  N $ETRAP,$ESTACK S $ETRAP="D ERRA^"_$T(+0)
  ;
@@ -81,6 +81,9 @@ RSND1(MAGRY,MAGIEN,TIUDA,DELREAS) ; Main entry point to rescind an Image
  . S MAGRY(0)="0^Image is already Rescinded."
  . S MAGRY(1)="RESCIND Action is Canceled."
  . Q
+ ; Now we check for OffLine Platters and other OffLine Issues.
+ I '$$DATAOK(.MAGRDY,MAGIEN,TIUDA) D  Q
+ . M MAGRY=MAGRDY
  ;
  S MAGRY(0)="0^Processing Rescind request..."
  ;
@@ -213,3 +216,29 @@ IMGPLC(MAGIEN) ; return a string of FullFile^AbsFile^BigFile|FullPlace^AbsPlace^
  S RFILE=RFILE_"^"_FPATH,RPLC=RPLC_"^"_MAGPLC
  ; get rid of first '^'
  Q $E(RFILE,2,999)_"|"_$E(RPLC,2,999)
+ ;
+DATAOK(RY,MAGIEN,TIUDA) ;
+ ; We access more data from MAGFILEB, and stop the Rescinding of Adv Directives
+ ; if the Platter is Offline, Network Location is OffLine, Image can't be found
+ ;
+ ; Here we 'New' the variables returned by MAGFILEB so they are cleared after this call.
+ N MAGFILE,MAGFILE1,MAGFILE2,MAGJBOL,MAGOFFLN
+ S MAGXX=MAGIEN,MAGPLC=$$DA2PLC^MAGBAPIP(MAGIEN,"F")
+ D VSTNOCP^MAGFILEB
+ ; P154 Quit if Image is Offline
+ I $G(MAGOFFLN)!$$IMOFFLN^MAGFILEB($P(^MAG(2005,MAGIEN,0),"^",2)) D  Q 0
+ . S RY(0)="0^Image is on an OffLine Platter"
+ . S RY(1)="Platter: "_$G(MAGJBOL)
+ . S RY(2)="Contact Imaging staff to get Platter on line"
+ . Q
+ ; Get here so, Image is not off line, but we'll also flag Invalid
+ ; or other Errors.
+ ; If other problem getting path to image then :
+ ; MAGFILE1  is of format "-1~message"
+ I +MAGFILE1="-1" D  Q 0
+ . S RY(0)="0^Error getting Image Data"
+ . S RY(1)="TIU Note: "_TIUDA_"   Image: "_MAGIEN
+ . I $D(MAGFILE1("ERROR")) S RY(2)=MAGFILE1("ERROR")
+ . E  S RY(2)=MAGFILE1
+ . Q
+ Q 1

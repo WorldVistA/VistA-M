@@ -1,5 +1,5 @@
-ICDEXLK6 ;SLC/KER - ICD Extractor - Lookup, Miscellaneous ;04/21/2014
- ;;18.0;DRG Grouper;**57**;Oct 20, 2000;Build 1
+ICDEXLK6 ;SLC/KER - ICD Extractor - Lookup, Miscellaneous ;12/19/2014
+ ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
  ;               
  ; Global Variables
  ;    ^DISV(              ICR    510
@@ -18,6 +18,9 @@ ICDEXLK6 ;SLC/KER - ICD Extractor - Lookup, Miscellaneous ;04/21/2014
  ;    $$FMTE^XLFDT        ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
  ;               
+ ; Local Variables NEWed in ICDEXLK
+ ;    ICDDIC0,ICDDIC00,ICDDICA,ICDDICB,ICDDICS,ICDDICW,ICDX
+ ;     
 DX9 ;   Fileman Lookup ICD-9 Diagnosis (interactive)
  ;
  ; This API forces the lookup in file 80 to use the ICD-9-CM
@@ -99,7 +102,7 @@ FILE(FILE,SYS) ; File
  S SYS=$$SYS^ICDEX($G(SYS)),TMP=$$FILE^ICDEX(+SYS) Q:$D(^ICDS("F",+TMP)) TMP
  S TMP=$$FILN($G(FILE)) Q:$D(^ICDS("F",+TMP)) TMP
  N DIR,DTOUT,DUOUT,DIROUT,DIRUT S DIR(0)="SAO^DX:ICD DIAGNOSIS;PR:ICD OPERATION/PROCEDURE"
- S DIR("A")=" Select ICD File:  ",DIR("PRE")="S X=$$FILT^ICDEXLK5(X)" S (DIR("?"),DIR("??"))="^D FILH^ICDEXLK5"
+ S DIR("A")=" Select ICD File:  ",DIR("PRE")="S X=$$FILT^ICDEXLK6(X)" S (DIR("?"),DIR("??"))="^D FILH^ICDEXLK6"
  D ^DIR S Y=$S(Y="DX":80,Y="PR":80.1,1:-1)
  Q Y
 FILT(X) ;   File Transform
@@ -134,7 +137,7 @@ CDT(CDT,SYS) ; Date
  S TD=$$DT^XLFDT,TMP=$TR($$UP^XLFSTR($$FMTE^XLFDT(TD)),",","") S:TD>LO&(TD<HI) DIR("B")=TMP
  S DIR(0)="DAO^"_LO_":"_HI_":EX"
  S DIR("A")=" Enter a Versioning Date:  "
- S DIR("PRE")="S X=$$CDTT^ICDEXLK5(X)" S (DIR("?"),DIR("??"))="^D CDTH^ICDEXLK5"
+ S DIR("PRE")="S X=$$CDTT^ICDEXLK6(X)" S (DIR("?"),DIR("??"))="^D CDTH^ICDEXLK6"
  D ^DIR
  Q Y
 CDTT(X) ;   Date Transform
@@ -191,32 +194,42 @@ DIC0(X) ; Correct DIC(0) for a versioned file
  S:STR'["A"&(STR'["E")&(STR'["X") STR=STR_"X"
  S X=STR
  Q X
+DICU ;   Undo DIC
+ S:$L($G(ICDDICW)) DIC("W")=$G(ICDDICW)
+ S:$L($G(ICDDICA)) DIC("A")=$G(ICDDICA)
+ S:$L($G(ICDDICB)) DIC("B")=$G(ICDDICB)
+ S:$L($G(ICDDICS)) DIC("S")=$G(ICDDICS)
+ S:$L($G(ICDDIC0)) DIC(0)=$G(ICDDIC0)
+ S:$L($G(ICDDIC00)) DIC(0)=$G(ICDDIC00)
+ Q
+DIE ;   Set for DIE call
+ Q:'$L($G(DIE))  S:'$L($G(DIC("A")))&($L($G(DIP))) DIC("A")=$G(DIP)
+ S:$L($G(DIC("A")))&($G(DIC("A"))'[": ") DIC("A")=$G(DIC("A"))_":  "
+ N DIE,DIP,DZ,X1
+ Q
+DICS(ICDS) ;   Check DIC("S")
+ N ICDT1,ICDT2,ICDTS S ICDT1=$D(X),ICDT2=$G(X) Q:'$L($G(ICDS)) ""
+ S (ICDTS,X)=$G(ICDS) D ^DIM I '$D(X) S:ICDT1>0 X=$G(ICDT2) Q ""
+ S ICDS=$G(ICDTS) S:ICDT1>0 X=$G(ICDT2) S:$L($G(ICDX)) X=$G(ICDX)
+ Q ICDS
  ;
 SAV(X,DIC) ;   Save Defaults
- N NUM,CM,VAL,NAM,ID,CUR,FUT,KEY,FILE,ROOT,SUB
- Q:+($G(DUZ))'>0  Q:'$L($G(DIC))  Q:+($G(Y))'>0
- S ROOT=$$ROOT^ICDEX(DIC) Q:'$L(ROOT)
- S SUB=$TR(ROOT,"^(,","") Q:'$L(SUB)
- S FILE=$$FILE^ICDEX(ROOT) Q:+FILE'>0
- Q:"^80^80.1^"'[("^"_FILE_"^") ""
- S CM=$S(FILE=80:" ICD Diagnosis",FILE=80.1:" ICD Procedure",1:"")
- S NUM=+($G(DUZ)) Q:+NUM'>0
- S VAL=$G(Y) Q:'$L(VAL)  S NAM=$$GET1^DIQ(200,(NUM_","),.01) Q:'$L(NAM)
- S CM=FILE_CM,KEY=$E(CM,1,18) S:$L(KEY)'>16 KEY=KEY_$J(" ",17-$L(KEY))
- S ID=NUM_" "_KEY S CUR=$$DT^XLFDT,FUT=$$FMADD^XLFDT(CUR,60)
- S ^XTMP(ID,0)=FUT_"^"_CUR_"^"_CM,^XTMP(ID,SUB)=VAL
- S:$D(@(ROOT_+($G(Y))_",0)")) ^DISV(DUZ,ROOT)=+($G(Y))
+ N NUM,COM,VAL,ID,CUR,FUT,FILE,ROOT,SUB Q:+($G(DUZ))'>0  Q:'$L($G(DIC))  Q:+($G(Y))'>0
+ S ROOT=$$ROOT^ICDEX(DIC) Q:'$L(ROOT)  S SUB=$TR(ROOT,"^(,","") Q:'$L(SUB)
+ S FILE=$$FILE^ICDEX(ROOT) Q:+FILE'>0  Q:"^80^80.1^"'[("^"_FILE_"^")
+ S NUM=+($G(DUZ)) Q:+NUM'>0  Q:'$L($$GET1^DIQ(200,(NUM_","),.01))  S VAL=$G(Y) Q:'$L(VAL)
+ S COM=$S(FILE=80:"DX",FILE=80.1:"PR",1:""),ID=$$TM(("ICDEXLK "_NUM_" "_COM))
+ S CUR=$$DT^XLFDT,FUT=$$FMADD^XLFDT(CUR,60)
+ S ^XTMP(ID,0)=FUT_"^"_CUR_"^"_"ICD "_$S(COM="DX":"Diagnosis",COM="PR":"Procedures",1:"")
+ S ^XTMP(ID,SUB)=VAL S:$D(@(ROOT_+($G(Y))_",0)")) ^DISV(DUZ,ROOT)=+($G(Y))
  Q
 RET(DIC) ;   Retrieve Defaults
- N NUM,CM,NAM,ID,CUR,FUT,KEY,FILE,ROOT,SUB
- S ROOT=$$ROOT^ICDEX($G(DIC)) Q:'$L(ROOT) ""
- S SUB=$TR(ROOT,"^(,","") Q:'$L(SUB)
+ N NUM,COM,ID,CUR,FUT,FILE,ROOT,SUB Q:+($G(DUZ))'>0 ""  Q:'$L($G(DIC)) ""
+ S ROOT=$$ROOT^ICDEX($G(DIC)) Q:'$L(ROOT) ""  S SUB=$TR(ROOT,"^(,","") Q:'$L(SUB) ""
  S FILE=$$FILE^ICDEX(ROOT) Q:+FILE'>0 ""  Q:"^80^80.1^"'[("^"_FILE_"^") ""
- S CM=$S(FILE=80:" ICD Diagnosis",FILE=80.1:" ICD Procedure",1:"") Q:'$L(CM)
- S NUM=+($G(DUZ)) Q:+NUM'>0 ""  S NAM=$$GET1^DIQ(200,(NUM_","),.01) Q:'$L(NAM) ""
- S CM=FILE_CM,KEY=$E(CM,1,18) S:$L(KEY)'>16 KEY=KEY_$J(" ",17-$L(KEY))
- S ID=NUM_" "_KEY S X=$G(^XTMP(ID,SUB))
- S:+X'>0&(+($G(^DISV(NUM,ROOT)))>0) X=+($G(^DISV(NUM,ROOT)))
+ S NUM=+($G(DUZ)) Q:+NUM'>0 ""  Q:'$L($$GET1^DIQ(200,(NUM_","),.01)) ""
+ S COM=$S(FILE=80:"DX",FILE=80.1:"PR",1:""),ID=$$TM(("ICDEXLK "_NUM_" "_COM))
+ S X=$G(^XTMP(ID,SUB)) S:+X'>0&(+($G(^DISV(NUM,ROOT)))>0) X=+($G(^DISV(NUM,ROOT)))
  Q X
 PA(ICD,X) ;   Parse Array
  N DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,ICDI,ICDLEN,ICDC K ^UTILITY($J,"W") Q:'$D(ICD)
@@ -236,6 +249,9 @@ OUT(X,Y,Z,ARY) ;   Output Array
  Q:'$L(TERM)  Q:$P(TERM,"^",1)=-1  S ARY(1)=TERM Q:+($G(FMT))=1!(+($G(FMT))=3)
  D:+($G(FMT))=2 PAR^ICDEX(.ARY,60) D:+($G(FMT))=4 PAR^ICDEX(.ARY,70)
  Q
+XT(X) ;   Input Transform for X
+ S X=$TR($G(X),"""","") S:X="#" X="" S X=$$TM(X,"#")
+ Q X
 TM(X,Y) ;   Trim Y
  S Y=$G(Y) S:'$L(Y) Y=" "
  F  Q:$E(X,1)'=Y  S X=$E(X,2,$L(X))

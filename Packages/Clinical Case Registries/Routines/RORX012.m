@@ -1,11 +1,14 @@
 RORX012 ;HOIFO/SG,VAC - COMBINED MEDS AND LABS REPORT ;4/9/09 9:40am
- ;;1.5;CLINICAL CASE REGISTRIES;**8**;Feb 17, 2006;Build 8
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,21**;Feb 17, 2006;Build 45
  ;
  ;Modified Feb 2009, to permit only the most recent test to be
  ;    displayed on the report - a call to ^RORXU009
  ;
  ;Modified March 2009 to filter patients on Include or Exclude ICD9
  ;    codes.  Call to ^RORXU010
+ ;
+ ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
+ ;                                       requested.
  ;
  Q
  ;
@@ -20,7 +23,7 @@ RORX012 ;HOIFO/SG,VAC - COMBINED MEDS AND LABS REPORT ;4/9/09 9:40am
 HEADER(PARTAG) ;
  ;;DRUGS(#,NAME,LAST4,DOD,RXNAME)
  ;;LABTESTS(#,NAME,LAST4,DOD,DATE,LTNAME,RESULT)
- ;;PATIENTS(#,NAME,LAST4,DOD)
+ ;;PATIENTS(#,NAME,LAST4,DOD,ICN)
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
@@ -81,6 +84,7 @@ RPTMODE(NAME) ;
  ;                         ^01: Last 4 digits of SSN
  ;                         ^02: Patient name
  ;                         ^03: Date of Death
+ ;                         ^04: ICN
  ;       "LR",
  ;         Date,
  ;           TestName,

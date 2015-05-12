@@ -1,5 +1,5 @@
-LEXTRAN ;ISL/KER - Lexicon code and text wrapper API's ;04/21/2014
- ;;2.0;LEXICON UTILITY;**41,59,73,80**;Sep 23, 1996;Build 1
+LEXTRAN ;ISL/KER - Lexicon code and text wrapper API's ;12/19/2014
+ ;;2.0;LEXICON UTILITY;**41,59,73,80,86**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^LEX(757.011)       N/A
@@ -11,7 +11,7 @@ LEXTRAN ;ISL/KER - Lexicon code and text wrapper API's ;04/21/2014
  ;    $$DT^XLFDT          ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
  ;               
-CODE(CODE,SRC,CDT,LEXRAY) ; Get the Concept for a Code and Source
+CODE(CODE,SRC,CDT,LEXRAY,IENS,ID,INC) ; Get the Concept for a Code and Source
  ;
  ; Input
  ;
@@ -19,6 +19,18 @@ CODE(CODE,SRC,CDT,LEXRAY) ; Get the Concept for a Code and Source
  ;   SRC      Code System source abbreviation (required)
  ;   CDT      Effective Date (optional, default TODAY)
  ;   LEXRAY   Output array (optional, defaults to 'LEX')
+ ;   IENS    Include expression IENs in output array
+ ;            - optional
+ ;              1 return IENS (2nd piece)
+ ;              0 do not return IENS (default)
+ ;   ID      Designation Identifiers
+ ;            - optional
+ ;              1 return Designation IDs (3rd piece)
+ ;              0 do not return Designation IDs (default)
+ ;   INC     Include Deactivated Expressions
+ ;            - optional
+ ;              1 return Deactivated Expressions
+ ;              0 do not return Deactivated Expressions (default)
  ;   
  ; Output
  ; 
@@ -37,11 +49,15 @@ CODE(CODE,SRC,CDT,LEXRAY) ; Get the Concept for a Code and Source
  ;     
  ;   if call cannot find specified code on file
  ;     "-2^"_LEXSCNM_" code "_LEXCODE_" not on file"
- ;     where LEXSCNM is the source name
- ;           LEXCODE is the code
+ ;         where LEXSCNM is the source name
+ ;               LEXCODE is the code
  ;                 
  ;   if call finds an inactive code for the source
  ;     "-4^"_LEXSCNM_" code "_LEXCODE_" not active for "_LEXVDT
+ ;         where LEXSCNM is the source name
+ ;               LEXCODE is the code
+ ;               LEXVDT is the versioning date
+ ;     
  ;     LEX    - an array containing information about the code
  ;     LEX(0) -  a five piece string:
  ;               1. code
@@ -58,8 +74,10 @@ CODE(CODE,SRC,CDT,LEXRAY) ; Get the Concept for a Code and Source
  ;     LEX("F")="Serum (Substance)"
  ;     LEX("P")="Serum"
  ;                        
- N LEXCODE,LEXSRC,LEXVDT S LEXCODE=$G(CODE),LEXSRC=$G(SRC),LEXVDT=$G(CDT)
+ N LEXCODE,LEXSRC,LEXVDT,LEXIENS,LEXDID,LEXINC
+ S LEXCODE=$G(CODE),LEXSRC=$G(SRC),LEXVDT=$G(CDT)
  I $G(LEXCODE)="" Q "-1^no code specified"
+ S LEXIENS=$G(IENS),LEXDID=$G(ID),LEXINC=+($G(INC))
  S LEXSRC=$E($G(LEXSRC),1,3) I $G(LEXSRC)="" Q "-1^no source specified"
  I +($$CSYS^LEXU(LEXSRC))'>0 Q "-1^source not recognized"
  I $D(^TMP("LEXSCH",$J,"VDT",0)) S LEXVDT=^(0)
@@ -93,7 +111,7 @@ CODE(CODE,SRC,CDT,LEXRAY) ; Get the Concept for a Code and Source
 GETINFO ; Get Information for a Code
  N LEXFSN,LEXHIER,LEXLGY,LEXVER,N,LEXSEP,I
  S LEXSRC=$E($G(LEXSRC),1,3)
- S LEX=$$GETSYN^LEXTRAN1(LEXSRC,LEXCODE,LEXVDT)
+ S LEX=$$GETSYN^LEXTRAN1(LEXSRC,LEXCODE,LEXVDT,,$G(LEXIENS),$G(LEXDID),$G(LEXINC))
  S LEXLGY=$$GET1^DIQ(757.02,LEXCIEN_",",13)
  I $D(LEX("F")) S LEXHIER=$P($P(LEX("F"),"(",$L(LEX("F"),"(")),")")
  S LEXVER=$$VERSION(LEXSRC,LEXCODE,LEXVDT)
@@ -136,25 +154,21 @@ TEXT(TEXT,CDT,SUB,SRC,LEXRAY) ; Get the Concept for a text and source
  ;     LEX("F")="Serum (Substance)"
  ;     LEX("P")="Serum"
  ;     
- N LEXTEXT,LEXVDT,LEXTD,LEXSUB,LEXSRC,LEXNOM,LEXID,DIC K LEX
+ N LEXTEXT,LEXVDT,LEXDT,LEXTD,LEXSUB,LEXSRC,LEXNOM,LEXID,DIC K LEX
  S LEXTEXT=$G(TEXT),LEXVDT=$G(CDT),LEXSUB=$G(SUB),LEXSRC=$G(SRC)
  I $G(LEXTEXT)="" Q "-1^no search string specified"
- S LEXSRC=$P($$CSYS^LEXU3(LEXSRC),"^",2),LEXNOM=""
+ S LEXSRC=$P($$CSYS^LEXU(LEXSRC),"^",2),LEXNOM=""
  S:$L(LEXSRC) LEXNOM=$P($G(^LEX(757.03,+($O(^LEX(757.03,"ASAB",LEXSRC,0))),0)),"^",2)
  I $G(LEXVDT)'="" S LEXVDT=$$INTDAT(LEXVDT)
  I $G(LEXVDT)=-1 Q "-1^invalid date format"
  I $G(LEXVDT)="" S LEXVDT=$$DT^XLFDT
- S LEXSUB=$G(LEXSUB) I LEXSUB="" S LEXSUB=LEXSRC
- I $G(LEXRAY)="" K LEXRAY
+ S LEXDT=LEXVDT,LEXSUB=$G(LEXSUB) I LEXSUB="" S LEXSUB=LEXSRC
+ K:$G(LEXRAY)="" LEXRAY
  N X,LEXPIEN,LEXCODE,LEXSTAT,LEXCIEN,Y
- K ^TMP("LEXSCH",$J),LEX
- S X=LEXTEXT
+ K ^TMP("LEXSCH",$J),LEX S X=LEXTEXT
  D CONFIG^LEXSET(LEXSRC,LEXSUB,LEXVDT)
- D EN^LEXA1
- I +Y=-1 Q "-1^search could not find term"
- S LEXPIEN=+Y
- D INFO^LEXA(LEXPIEN)
- S LEXCODE="",LEXSTAT=-1 I $L(LEXNOM) D
+ S LEXVDT=LEXDT D EN^LEXA1 Q:+($G(Y))=-1 "-1^search could not find term"
+ S LEXPIEN=+Y D INFO^LEXA(LEXPIEN) S LEXCODE="",LEXSTAT=-1 I $L(LEXNOM) D
  . S LEXID=$O(LEX("SEL","SRC","B",LEXNOM,0))
  . S LEXCODE=$P($G(LEX("SEL","SRC",+LEXID)),"^",2)
  I '$L(LEXCODE),$D(LEX("SEL","SRC","C")) D

@@ -1,5 +1,5 @@
 DGENACL2 ;ALB/MRY - NEW ENROLLEE APPOINTMENT CALL LIST - UPDATE ;08/14/2008
- ;;5.3;Registration;**788**;08/13/93;Build 18
+ ;;5.3;Registration;**788,893**;08/13/93;Build 8
  ;
 EXTRACT ;
  N DGNAM,DGSSN,DGENRIEN,DGENR,DGENCAT,DGENSTA,DGSTA1,DGENPRI,DGENCV,DGENCVDT,DGENCVEL,DGCOM,DGPFSITE
@@ -7,7 +7,7 @@ EXTRACT ;
  ;get preferred facility
  S DGPFSITE=$$GET1^DIQ(4,+$$GET1^DIQ(2,DFNIEN,27.02,"I"),99)
  S DGPFTF=$S(+$$GET1^DIQ(2,DFNIEN,27.02,"I"):$$GET1^DIQ(2,DFNIEN,27.02,"I"),1:"NULL")
- I +DGSITE'=+DGPFSITE Q  ;if not same division skip
+ I $E(DGSITE,1,3)'=$E(DGPFSITE,1,3) Q  ;DG*5.3*893 LLS replaced: I +DGSITE'=+DGPFSITE Q  ;if not same division skip
  I DGPFTFLG=1,'$D(DGPFTF(DGPFTF)) Q  ;selection of preferred facilities
  ;get enrollment information
  S DGENRIEN=$$FINDCUR^DGENA(DFNIEN)
@@ -56,15 +56,19 @@ APPTCK ;
  S SDARRY(1)=DGRDTI_";" ;look out from 'notify of request date' to future.
  S SDARRY(3)="R;I;NT"
  S SDARRY(4)=DFNIEN,SDARRY("FLDS")=1
+ K SDARRY("MAX") ;DG*5.3*893 LLS - added
  S SDCNT=$$SDAPI^SDAMA301(.SDARRY) Q:(SDCNT'>0)
- ;Exclude no count clinic appointments from appointment count
- N SDCOUNT
- S SDCOUNT=0 ;count clinic
- S SDCL=0 F  S SDCL=$O(^TMP($J,"SDAMA301",DFNIEN,SDCL)) Q:'SDCL  D  Q:SDCOUNT
- . I $$GET1^DIQ(44,SDCL,2502,"I")="Y" Q  ;don't include no-count
- . S SDADT=$O(^TMP($J,"SDAMA301",DFNIEN,SDCL,0)) ;get appointment date of count clinic
- . S SDCOUNT=SDCOUNT+1
- I SDCOUNT=0 S SDCNT=0 Q  ;if no-count clinics was only one found, keep on call list.
+ ;
+ ;DG*5.3*893 - LLS - This is the begin of the modified section.
+ K ^TMP("DGEN",$J,"BY_APPT_DT")
+ S SDCL=0 F  S SDCL=$O(^TMP($J,"SDAMA301",DFNIEN,SDCL)) Q:'SDCL  D  ;re-sort by appt dt/tm
+ . I $$GET1^DIQ(44,SDCL,2502,"I")="Y" Q  ;don't include no-count clinic appointment
+ . S SDADT="" F  S SDADT=$O(^TMP($J,"SDAMA301",DFNIEN,SDCL,SDADT)) Q:'SDADT  D
+ . . S ^TMP("DGEN",$J,"BY_APPT_DT",SDADT)=^TMP($J,"SDAMA301",DFNIEN,SDCL,SDADT)
+ S SDADT=$O(^TMP("DGEN",$J,"BY_APPT_DT",""))
+ I SDADT="" Q  ;no appointments found for 'count' clinics, so keep on call list
+ ;DG*5.3*893 - LLS - This is the end of the modified section.
+ ;
  ;if appointment found and status '="filled", set status to 'filled'
  I DGSTA'="F" D
  . S DGCOM=$$GET1^DIQ(2,DFNIEN,1010.163)

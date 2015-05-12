@@ -1,5 +1,5 @@
 RORX015C ;HCIOFO/SG - OUTPATIENT PROCEDURES (STORE) ;6/27/06 10:54am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,19,21**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -13,6 +13,8 @@ RORX015C ;HCIOFO/SG - OUTPATIENT PROCEDURES (STORE) ;6/27/06 10:54am
  ;PKG/PATCH   DATE       DEVELOPER   MODIFICATION
  ;----------- ---------- ----------- ----------------------------------------
  ;ROR*1.5*19  FEB 2012   J SCOTT     Support for ICD-10 Coding System.
+ ;ROR*1.5*21  SEP 2013   T KOPP      Added ICN as last report column if
+ ;                                    additional identifier option selected
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -67,7 +69,7 @@ CODES(PTAG,NODE) ;
  ;       >0  Number of non-fatal errors
  ;
 PATIENTS(PTAG,NODE) ;
- N DATE,DOD,IEN,ITEM,LAST4,PTIEN,PROCLST,PTCPTL,PTLST,PTNAME,SRC,TMP,RORPROCSYS,RORPROCCODE
+ N DATE,DOD,ICN,IEN,ITEM,LAST4,PTIEN,PROCLST,PTCPTL,PTLST,PTNAME,SRC,TMP,RORPROCSYS,RORPROCCODE
  S (PROCLST,PTLST)=-1
  ;--- Table for patients with procedures
  I RORPROC>0  D  Q:PROCLST<0 PROCLST
@@ -83,13 +85,14 @@ PATIENTS(PTAG,NODE) ;
  S PTIEN=0
  F  S PTIEN=$O(@NODE@("PAT",PTIEN))  Q:PTIEN'>0  D
  . S TMP=@NODE@("PAT",PTIEN)
- . S LAST4=$P(TMP,U),PTNAME=$P(TMP,U,2),DOD=$P(TMP,U,3)
+ . S LAST4=$P(TMP,U),PTNAME=$P(TMP,U,2),DOD=$P(TMP,U,3),ICN=$P(TMP,U,4)
  . ;--- Patient list
  . I RORPROC<0  D  Q
  . . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,PTLST,,PTIEN)
  . . D ADDVAL^RORTSK11(RORTSK,"NAME",PTNAME,ITEM,2)
  . . D ADDVAL^RORTSK11(RORTSK,"LAST4",LAST4,ITEM,2)
  . . D ADDVAL^RORTSK11(RORTSK,"DOD",DOD,ITEM,1)
+ . . I $$PARAM^RORTSK01("PATIENTS","ICN") D ADDVAL^RORTSK11(RORTSK,"ICN",ICN,ITEM,1)
  . ;--- Patients and procedures
  . F SRC="I","O"  D
  . . S IEN=0
@@ -98,6 +101,7 @@ PATIENTS(PTAG,NODE) ;
  . . . D ADDVAL^RORTSK11(RORTSK,"NAME",PTNAME,ITEM,2)
  . . . D ADDVAL^RORTSK11(RORTSK,"LAST4",LAST4,ITEM,2)
  . . . D ADDVAL^RORTSK11(RORTSK,"DOD",DOD,ITEM,1)
+ . . . I $$PARAM^RORTSK01("PATIENTS","ICN") D ADDVAL^RORTSK11(RORTSK,"ICN",ICN,ITEM,1)
  . . . S TMP=$G(@NODE@("PAT",PTIEN,SRC,IEN))
  . . . S DATE=$P(TMP,U)
  . . . I SRC="O"  D

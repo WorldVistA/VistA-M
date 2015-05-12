@@ -1,5 +1,5 @@
 SDCNSLT ;ALB/HAG-LINK APPOINTMENTS TO CONSULTS; 4/12/05 3:44pm
- ;;5.3;Scheduling;**478,496,605**;Aug 13, 1993;Build 9
+ ;;5.3;Scheduling;**478,496,630**;Aug 13, 1993;Build 2
 A ;===GET ACTIVE AND PENDING CONSULT
  N A,ND,CNT,CONS,CPRSTAT,DTENTR,DTIN,DTLMT,DTR,NOS,NOSHOW,SENDER,SERVICE,SRV,P8,PROC,PT,PTNM,STATUS
  K TMP S NOSHOW="no-show",CNT=0,$P(DSH,"-",IOM-1)="",PT=DFN,X1=DT,X2=-365 D C^%DTC S DTLMT=X
@@ -15,10 +15,10 @@ A ;===GET ACTIVE AND PENDING CONSULT
 QST N DIR,DTOUT,DUOUT,CNSULT
  S DIR(0)="Y",DIR("A")="Will this appointment be for a CONSULT/PROCEDURE",DIR("B")="YES",DIR("?")="Answer 'Y'es if appointment is for a Consult or Procedure." W ! D ^DIR S CNSULT=Y
  I CNSULT[U!(CNSULT=0)!(CNSULT="") K TMP Q
-HDR W !!,"Please select from the list of consult(s), press 0 for none.",! ;LLS 12-MAR-2014 SD*5.3*605
- W !,PTNM,!!,"# Service",?68,"Cons #",!,DSH ;LLS 12-MAR-2014 SD*5.3*605
- S A=0 F  S A=$O(TMP(A)) Q:'+A  S ND=TMP(A),P8=$P(ND,U,8) D  ;LLS - 12-MAR-2014 SD*5.3*605
- . W !,A,".",?3,$S(P8="P":$E($P(ND,U,9),1,63),1:$E($P(ND,U,2),1,63)),?68,$P(ND,U,6) W !,?4,"Request DT: ",$E($P(ND,U,5),1,14),?31,"FROM: ",$E($P(ND,U,3),1,33),?71,"TYPE: ",$S(P8="P":"P",P8="C":"C",1:"") ;LLS 12-MAR-2014 SD*5.3*605
+HDR W !!,"Please select from the list of consult(s), press 0 for none.",! ;LLS 05-JAN-2015 SD*5.3*630
+ W !,PTNM,!!,"# Service",?68,"Cons #",!,DSH ;LLS 05-JAN-2015 SD*5.3*630
+ S A=0 F  S A=$O(TMP(A)) Q:'+A  S ND=TMP(A),P8=$P(ND,U,8) D  ;LLS 05-JAN-2015 SD*5.3*630
+ . W !,A,".",?3,$S(P8="P":$E($P(ND,U,9),1,63),1:$E($P(ND,U,2),1,63)),?68,$P(ND,U,6) W !,?4,"Request DT: ",$E($P(ND,U,5),1,14),?31,"FROM: ",$E($P(ND,U,3),1,33),?71,"TYPE: ",$S(P8="P":"P",P8="C":"C",1:"") ;LLS 05-JAN-2015 SD*5.3*630
  W !
 READ R !,"Select Consult: ",CONS:DTIME G:CONS="" A
  I CONS=0!(CONS[U) W " ... NONE." K TMP Q

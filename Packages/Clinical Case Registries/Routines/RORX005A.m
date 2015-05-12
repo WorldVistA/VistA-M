@@ -1,5 +1,5 @@
 RORX005A ;HOIFO/BH,SG - INPATIENT UTILIZATION (QUERY) ;4/21/09 2:20pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,8,10,13,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,8,10,13,19,21**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -141,6 +141,7 @@ QUERY(FLAGS) ;
  N ROREDT1       ; Day after the end date
  N RORLAST4      ; Last 4 digits of the current patient's SSN
  N RORPNAME      ; Name of the current patient
+ N RORICN        ; National ICN
  N RORPTN        ; Number of patients in the registry
  ;
  N CNT,ECNT,IEN,IENS,PATIEN,RC,TMP,VA,VADM,XREFNODE
@@ -173,6 +174,7 @@ QUERY(FLAGS) ;
  . ;--- Get the patient's data
  . D VADEM^RORUTL05(PATIEN,1)
  . S RORPNAME=VADM(1),RORLAST4=VA("BID")
+ . S RORICN=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PATIEN),1:"")
  . ;
  . ;--- Get the inpatient data
  . S RC=$$IPDATA(PATIEN)

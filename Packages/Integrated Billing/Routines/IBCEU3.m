@@ -1,6 +1,6 @@
 IBCEU3 ;ALB/TMP - EDI UTILITIES FOR 1500 CLAIM FORM ;12/29/05 9:58am
- ;;2.0;INTEGRATED BILLING;**51,137,155,323,348,371,400,432,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,137,155,323,348,371,400,432,488,519**;21-MAR-94;Build 56
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BOX19(IBIFN) ; New Box 19 added for patch 488.  This is for workman's comp?
  ; This returns the Paperwork Attachment 
@@ -213,9 +213,9 @@ TEXT24(FLD,IBXSAVE,IBXDATA,IBSUB) ; Format the text line of box 24 by fld
  ... I NUM=12 S $P(LET,",",I)="L"
  .. S IBVAL=$TR(LET,","),IBS=45,IBE=48  ; diagnosis pointer
  . I FLD="F" S IBVAL=$P(IBDAT,U,8)*$P(IBDAT,U,9),IBS=49,IBE=57 D
- .. ; total charges
- .. S IBVAL=$$DOL^IBCEF77(IBVAL,9)
- .. I $L(IBVAL)>9 S IBVAL=$E(IBVAL,$L(IBVAL)-8,$L(IBVAL))
+ .. ; total charges  **519 returned field length back to 8, 9 is too long for BOX24F
+ .. S IBVAL=$$DOL^IBCEF77(IBVAL,8)
+ .. I $L(IBVAL)>8 S IBVAL=$E(IBVAL,$L(IBVAL)-7,$L(IBVAL))
  .. Q
  . ;
  . I FLD="G" S IBVAL=$S($P(IBDAT,U,12):$P(IBDAT,U,12),1:$P(IBDAT,U,9)),IBS=58,IBE=61 D

@@ -1,10 +1,10 @@
 SROATCM1 ;BIR/MAM - STUFF TRANMISSION IN ^TMP ;09/28/2011
- ;;3.0;Surgery;**38,71,79,90,88,93,95,111,125,135,134,142,153,160,174,175,176,177**;24 Jun 93;Build 89
+ ;;3.0;Surgery;**38,71,79,90,88,93,95,111,125,135,134,142,153,160,174,175,176,177,182**;24 Jun 93;Build 49
  K SRA F I=0,.2,52,200,201,202,205:1:208,207.1,209,202.1,200.1,"1.0" S SRA(I)=$G(^SRF(SRTN,I))
  S DFN=$P(SRA(0),"^") N I D DEM^VADPT S SRANAME=VADM(1),SEX=$P(VADM(5),"^"),Z=$P(VADM(3),"^"),SRSDATE=$P(SRA(0),"^",9),Y=$E(SRSDATE,1,7),AGE=$E(Y,1,3)-$E(Z,1,3)-($E(Y,4,7)<$E(Z,4,7))
  N SRPID S SRPID=VA("PID"),SRPID=$TR(SRPID,"-","") ; remove hyphens from PID
- ;JAS - 06/06/14 - PATCH 177 - Changed first character from "~" to "$" to denote new format for ICD-10
- S SHEMP="$"_$J(SRASITE,3)_$J(SRTN,7)_" 1 "_DT_$J(AGE,3)_$J(SEX,1)_$J(SRSDATE,12,4)_SRPID
+ ;
+ S SHEMP="#"_$J(SRASITE,3)_$J(SRTN,7)_" 1 "_DT_$J(AGE,3)_$J(SEX,1)_$J(SRSDATE,12,4)_SRPID
  S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP,SHEMP=$E(SHEMP,1,11)_" 2 ",SRACNT=SRACNT+1
  S SRHD=$P(SRA(206),"^")
  I SRHD["C" S SRH="C",SRHD=$E(SRHD,1,$L(SRHD)-1)
@@ -16,7 +16,7 @@ SROATCM1 ;BIR/MAM - STUFF TRANMISSION IN ^TMP ;09/28/2011
  S SRCT=$P($G(^SRF(SRTN,201)),"^",4) S:SRCT["NS" SRCT=""
  S SHEMP=SHEMP_$J($P(SRA(200.1),"^",5),2)_$J(SRCT,4)_$J($P(SRA(206),"^",10),2)_$J($P(SRA(206),"^",11),2)_$J($P(SRA(200),"^",8),2)_$J(" ",2)_$J($P(SRA(206),"^",14),2)_$J(" ",2)
  S SHEMP=SHEMP_$J($P(SRA(206),"^",16),2)_$J($P(SRA(206),"^",17),2)_$J($P(SRA(206),"^",18),3)_$J($P(SRA(206),"^",19),3)_$J($P(SRA(206),"^",20),2)_$J($P(SRA(206),"^",21),2)_$J($P(SRA(206),"^",22),2)_$J($P(SRA(206),"^",23),2)
- S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP_$J($P(SRA(208),"^",19),2)_$J($P(SRA(205),"^",8),2)_$J($P(SRA(205),"^",6),2)
+ S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP_$J($P(SRA(208),"^",19),2)_$J($P(SRA(205),"^",8),2)_$J($P(SRA(205),"^",6),2)_$J($P(SRA(200),"^",59),1)
  S SHEMP=$E(SHEMP,1,11)_" 3 ",SRACNT=SRACNT+1
  S SHEMP=SHEMP_$J($P(SRA(206),"^",24),2)_$J($P(SRA(206),"^",25),3)_$J($P(SRA(206),"^",26),3)_$J($P(SRA(206),"^",27),3)
  ; Left Main (node 3 pos 26-28), LAD (node 3 pos 29-31), Right Coronary (node 3 pos 32-34) & Circumflex Stenosis (node 3 pos 35-37)
@@ -41,8 +41,9 @@ SROATCM1 ;BIR/MAM - STUFF TRANMISSION IN ^TMP ;09/28/2011
  S SHEMP=SHEMP_$J($P(SRA(207),"^",8),2)_$J($P(SRA(207),"^",9),2)_$J($P(SRA(207),"^",10),2)_$J($P(SRA(207),"^",12),2)_$J($P(SRA(207),"^",13),2)_$J($P(SRA(207),"^",14),2)_$J($P(SRA(207),"^",15),2)
  S SHEMP=SHEMP_$J($P(SRA(207),"^",16),2)_$J($P(SRA(207),"^",17),2)_$J($P(SRA(207),"^",18),2)_"  "
  S SRDEATH=$P($G(SRA(208)),"^"),SRDDATE=$E($P($G(^DPT(DFN,.35)),"^"),1,12) I SRDDATE'="" S SRDDATE=$$LJ^XLFSTR(SRDDATE,12,0)
- S SHEMP=SHEMP_$J(SRDEATH,2)_$J(SRDDATE,12)
- S SHEMP=SHEMP_$P(SRA(207),"^",20)_$J($P(SRA(207),"^",28),2)
+ S SHEMP=SHEMP_$J("",2)_$J(SRDDATE,12)
+ N SRDIS S SRDIS=$P($G(^SRF(SRTN,.4)),"^",6) S:SRDIS SRDIS=$P($G(^SRO(131.6,SRDIS,0)),"^",2)
+ S SHEMP=SHEMP_$J($P(SRA(207),"^",20),1)_$J($P(SRA(207),"^",28),2)_$J($P(SRA(200.1),"^",8),1)_$J(SRDIS,3)
  S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP,SHEMP=$E(SHEMP,1,11)_" 5 ",SRACNT=SRACNT+1
  N SROR S SROR="",Y=$P(^SRF(SRTN,0),"^",2),C=$P(^DD(130,.02,0),"^",2) I Y'="" D Y^DIQ S SROR=Y
  S SHEMP=SHEMP_$J($E(SROR,1,30),30) F I=1:1:6 S SHEMP=SHEMP_$J($P(SRA(52),"^",I),2)
@@ -116,3 +117,10 @@ CPR S SRIP=$P(SRA(205),"^",26) I SRIP'="Y" Q
  N SROCC S SROCC=0 F  S SROCC=$O(^SRF(SRTN,10,SROCC)) Q:'SROCC  I $P(^SRF(SRTN,10,SROCC,0),"^",2)=16 S SRIP="I" Q
  I SRIP="Y" S SROCC=0 F  S SROCC=$O(^SRF(SRTN,16,SROCC)) Q:'SROCC  I $P(^SRF(SRTN,16,SROCC,0),"^",2)=16 S SRIP="P" Q
  Q
+ADD182(SRTN) ; SR*3*182 change
+ N I,SRC,SRMP,SRN25,SRT
+ S SRN25=$G(^SRF(SRTN,25)),SRMP=""
+ S SRMP=$J($P(SRN25,"^"),3)_$J($P(SRN25,"^",2),3)_$J($P(SRN25,"^",3),3)_$J($P(SRN25,"^",6),1)_$J($P(SRN25,"^",7),1)_$J($P(SRN25,"^",8),1)
+ S (I,SRC,SRT)=0 F  S I=$O(^SRF(SRTN,1,I)) Q:'I  I $D(^(I,0)) S SRT=SRT+1 I $P($G(^SRF(SRTN,1,I,1)),"^",5)="Y" S SRC=SRC+1
+ S SRMP=SRMP_$J(SRT,3)_$J(SRC,3)
+ Q SRMP

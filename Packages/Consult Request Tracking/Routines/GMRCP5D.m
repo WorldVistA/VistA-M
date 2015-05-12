@@ -1,9 +1,8 @@
-GMRCP5D ;SLC/DCM,RJS,JFR,WAT - Print Consult form 513 (Gather Data - Addendums, Headers, Service reports and Comments) ;03/18/09  15:00
- ;;3.0;CONSULT/REQUEST TRACKING;**4,12,15,22,29,35,38,61,65,66**;Dec 27, 1997;Build 30
- ;
+GMRCP5D ;SLC/DCM,RJS,JFR,WAT,DEH - Print Consult form 513 (Gather Data - Addendums, Headers, Service reports and Comments) ;03/18/09  15:00
+ ;;3.0;CONSULT/REQUEST TRACKING;**4,12,15,22,29,35,38,61,65,66,82**;Dec 27, 1997;Build 11
  ;This routine invokes the following ICR(s):
  ;2056 $$GET1^DIQ, 2541 $$KSP^XUPARAM, 10103 $$FMTE^XLFDT, 10104 $$UP^XLFSTR, 10061 VADPT API
- ;10040 ^SC(, 4156 $$CVEDT^DGCV, 10060 ^VA(200
+ ;10040 ^SC(, 4156 $$CVEDT^DGCV
  ;
 FORMAT(GMRCIFN,GMRCRD,PAGEWID) ;
  ;
@@ -132,7 +131,7 @@ HDR ; Header code for form 513
  .D BLD("HDR",SUB,1,0,GMRCDVL)
  .D BLD("HDR",SUB,1,0,GMRCFLN)
  .D BLD("HDR",SUB,0,45,GMRCPEL)
- .D BLD("HDR",SUB,1,0,GMRCSN)
+ .D BLD("HDR",SUB,1,0,"XXX-XX-"_$P(GMRCSN,"-",3))
  .D BLD("HDR",SUB,0,16,$$EXDT(GMRCDOB))
  .D BLD("HDR",SUB,0,45,GMRCELIG)
  .D:$G(CVELIG)["CV" BLD("HDR",SUB,1,45,CVELIG)

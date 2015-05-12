@@ -1,6 +1,6 @@
 IBCNSGE ;ALB/ESG - Insurance Company EDI Parameter Report ;07-JAN-2005
- ;;2.0;INTEGRATED BILLING;**296,400**;21-MAR-94;Build 52
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**296,400,521**;21-MAR-94;Build 33
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eClaims Plus
  ; Identify insurance companies and display EDI parameter information.
@@ -118,7 +118,7 @@ SORTX ;
 COMPILE ; Entry point for task; compile scratch global, print, clean-up
  ;
  NEW RTN,INSIEN,INSNM,DATA,ADDR,EDI,PROFID,INSTID,NAME,STREET,CITY
- NEW STATE,TYPCOV,TRANS,INSTYP,SORT,TMP,FLG,FLGP,FLGI,SWBCK
+ NEW STATE,TYPCOV,TRANS,INSTYP,SORT,TMP,FLG,FLGP,FLGI,SWBCK,IBHPD
  ;
  S RTN="IBCNSGE"
  KILL ^TMP($J,RTN)   ; init
@@ -185,7 +185,6 @@ CALC(INS) ; extract insurance data for company ien=INS
  I IBRSORT=4,INSTYP'="" S SORT=" "_INSTYP
  I IBRSORT=5,TYPCOV'="" S SORT=" "_TYPCOV
  I IBRSORT=6,SWBCK'="" S SORT=" "_SWBCK
- ;
  S TMP=NAME_U_STREET_U_CITY_U_STATE_U_INSTYP_U_TYPCOV_U_TRANS_U_INSTID_U_PROFID_U_SWBCK
  S ^TMP($J,RTN,SORT,NAME,INS)=TMP
 CALCX ;
@@ -216,8 +215,13 @@ PRINT ; print the report to the specified device
  ... W ?65,$E($P(DATA,U,7),1,8)      ; transmit elec
  ... W ?75,$E($P(DATA,U,8),1,8)      ; inst payer id
  ... W ?84,$E($P(DATA,U,9),1,8)      ; prof payer id
- ... W ?94,$E($P(DATA,U,5),1,12)     ; ins type
- ... W ?108,$E($P(DATA,U,6),1,18)    ; type of cov
+ ... ; IB*2.0*521 add validated HPID to report and adjust Electronic type display
+ ... S IBHPD=$$HPD^IBCNHUT1(INS,1)
+ ... W ?93,IBHPD
+ ... ;W ?94,$E($P(DATA,U,5),1,12)     ; ins type
+ ... ;W ?108,$E($P(DATA,U,6),1,18)    ; type of cov
+ ... W ?105,$S($E($P(DATA,U,5))="G":"GP PLAN",1:$E($P(DATA,U,5),1,7))     ; ins type
+ ... W ?113,$E($P(DATA,U,6),1,14)    ; type of cov
  ... W ?128,$E($P(DATA,U,10),1,4)    ; switchback flag
  ... Q
  .. Q
@@ -263,11 +267,15 @@ HEADER ; page break and report header information
  S HDR=$$FMTE^XLFDT($$NOW^XLFDT,"1Z"),TAB=132-$L(HDR)-1
  W ?TAB,HDR
  ;
- W !,"Only Blank or 'PRNT' Bill ID's = ",$S(IBRBID:"YES",1:"NO"),?128,"VAMC"
- ;
- W !?65,"Electron",?75,"Inst",?84,"Prof",?94,"Electronic",?128,"Bill"
+ ; IB*2.0*521 add validated HPID to report
+ ;W !,"Only Blank or 'PRNT' Bill ID's = ",$S(IBRBID:"YES",1:"NO"),?128,"VAMC"
+ ;W !?65,"Electron",?75,"Inst",?84,"Prof",?94,"Electronic",?128,"Bill"
+ W !,"Only Blank or 'PRNT' Bill ID's = ",$S(IBRBID:"YES",1:"NO")
+ W !,"'*' indicates the HPID/OEID failed validation checks",?128,"VAMC"
+ W !?65,"Electron",?75,"Inst",?84,"Prof",?93,"HPID/",?102,"Electronic",?128,"Bill"
  W !,"Insurance Company Name",?27,"Street Address",?47,"City"
- W ?65,"Transmit",?76,"ID",?85,"ID",?97,"Type",?108,"Type of Coverage",?128,"Prov"
+ ;W ?65,"Transmit",?76,"ID",?85,"ID",?97,"Type",?108,"Type of Coverage",?128,"Prov"
+ W ?65,"Transmit",?76,"ID",?85,"ID",?93,"OEID",?105,"Type",?113,"Coverage Type",?128,"Prov"
  W !,$$RJ^XLFSTR("",132,"=")
  ;
  ; check for a stop request

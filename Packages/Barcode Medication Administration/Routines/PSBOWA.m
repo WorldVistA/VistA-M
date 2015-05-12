@@ -1,5 +1,5 @@
 PSBOWA ;BIRMINGHAM/EFC-WARD ADMINISTRATION TIMES ;9/29/12 1:57am
- ;;3.0;BAR CODE MED ADMIN;**9,32,56,70**;Mar 2004;Build 101
+ ;;3.0;BAR CODE MED ADMIN;**9,32,56,70,80**;Mar 2004;Build 6
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -73,8 +73,8 @@ EN ;
  .....I PSBONX["V",PSBSCH'=""  Q:'$$OKAY^PSBVDLU1(PSBOST,PSBRPDT,PSBSCH,PSBONX,PSBOIT,PSBFREQ)   ;[*70-1480]
  .....F PSBXX=0:1 Q:'$D(^TMP("PSB",$J,"GETADMIN",PSBXX))  S PSBADST=$G(^TMP("PSB",$J,"GETADMIN",PSBXX)) D
  ......F Y=1:1:$L(PSBADST,"-") S Z=+("."_$E($P(PSBADST,"-",Y),1,2)) D
- .......Q:(($P(PSBRPT(.1),U,6)+Z)<$E(PSBOST,1,12))&($G(Z)'=0)  ;Start Date
- .......Q:($P(PSBRPT(.1),U,6)+Z)'<$E(PSBOSP,1,12)  ;Stop Date
+ .......Q:((PSBRPDT+Z)<$E(PSBOST,1,12))&($G(Z)'=0)  ;Start Date
+ .......Q:(PSBRPDT+Z)'<$E(PSBOSP,1,12)  ;Stop Date
  .......;For invalid admin times
  .......D:($P(PSBADST,"-",Y)'?2N)&($P(PSBADST,"-",Y)'?4N)
  ........D ERROR^PSBMLU(PSBONX,PSBOITX,DFN,"Invalid Admin times",PSBSCH)

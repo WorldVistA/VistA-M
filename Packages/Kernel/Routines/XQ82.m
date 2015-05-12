@@ -1,5 +1,7 @@
-XQ82 ;SF-ISC.SEA/JLI - CLEAN OLD $JOB DATA OUT OF XUTL("XQ", & OTHERS ;11/30/10  08:34
- ;;8.0;KERNEL;**59,67,157,258,312,353,542,554**;Jul 10, 1995;Build 4
+XQ82 ;SF-ISC.SEA/JLI - CLEAN OLD $JOB DATA OUT OF XUTL("XQ", & OTHERS ;12/03/14  08:32
+ ;;8.0;KERNEL;**59,67,157,258,312,353,542,554,638**;Jul 10, 1995;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
  ;Make sure that can run from a DCL script
  N A,X,%DT,Y,J,K,DDATE,HDATE,HJOB,HPID3,XQOS,XQVND
  S U="^",DT=$$DT^XLFDT
@@ -11,13 +13,13 @@ XQ82 ;SF-ISC.SEA/JLI - CLEAN OLD $JOB DATA OUT OF XUTL("XQ", & OTHERS ;11/30/10 
  D L0,L1,L2,L3,L4,L5,L6,L7,L8
 EXIT ;
  Q
- ;We keep track of jobs by putting data in ^XUTL("XQ",$J).
+L0 ;We keep track of jobs by putting data in ^XUTL("XQ",$J).
  ;Sign-on time is in ^($J,0) points to sign-on log.
  ;Holds the Menu stack.
  ;For any entry in user stack '^XUTL("XQ",$J)' w/ date older than 7 days or w/o zero node
  ;kill XUTL("XQ",n) and corresponding UTILITY(n), TMP(n), & XUTL(n) nodes.
  ;Long running jobs should call TOUCH^XUSCLEAN once a day to update KEEPALIVE.
-L0 N %T S J=0
+ N %T S J=0
  F  S J=$O(^XUTL("XQ",J)) Q:J'>0  I $S('$D(^(J,0)):1,1:^(0)<DDATE) D
  . I '$D(^XUTL("XQ",J,0)) K ^XUTL("XQ",J) Q  ;Missing zero node
  . I $G(^XUTL("XQ",J,"KEEPALIVE"))>HDATE Q  ;For long running jobs
@@ -30,16 +32,18 @@ L0 N %T S J=0
  . I $$DEAD(J) K ^XUTL("XQ",J),^UTILITY(J),^TMP(J),^XUTL(J)
  Q
  ;
- ;Loop thru UTILITY and look for nodes w/o corresponding XUTL("XQ",n)
-L1 S A="" F  S A=$O(^UTILITY(A)) Q:A=""  D
+L1 ;Loop thru UTILITY and look for nodes w/o corresponding XUTL("XQ",n)
+ N A,J
+ S A="" F  S A=$O(^UTILITY(A)) Q:A=""  D
  . I A>0,'$D(^XUTL("XQ",A)) K ^UTILITY(A) Q  ;UTILITY($J) w/o XUTL("XQ",$J) node.
  . Q:A>0  Q:"^ROU^GLO^LRLTR^"[("^"_A_"^")
  . F J=0:0 S J=$O(^UTILITY(A,J)) Q:J'>0  I '$D(^XUTL("XQ",J)) K ^UTILITY(A,J) ;Remove UTILITY(namespace,$J) w/o XUTL("XQ",$J)
  . Q
  Q
  ;
- ;Loop thru TMP and look for nodes w/o corresponding XUTL("XQ",n)
-L2 S A="" F  S A=$O(^TMP(A)) Q:A=""  D
+L2 ;Loop thru TMP and look for nodes w/o corresponding XUTL("XQ",n)
+ N A,J
+ S A="" F  S A=$O(^TMP(A)) Q:A=""  D
  . I A>0,'$D(^XUTL("XQ",A)) K ^TMP(A) Q  ;TMP($J) w/o XUTL("XQ",$J) node.
  . Q:A>0  ;Q:"^ROU^GLO^LRLTR^"[("^"_A_"^")
  . F J=0:0 S J=$O(^TMP(A,J)) Q:J'>0  I '$D(^XUTL("XQ",J)) K ^TMP(A,J) ;Remove TMP(namespace,$J) w/o XUTL("XQ",$J)
@@ -47,6 +51,7 @@ L2 S A="" F  S A=$O(^TMP(A)) Q:A=""  D
  Q
  ;
 L3 ;Now to cleanup the XTMP global w/ XTMP(namespace,0)<DT
+ N A,J
  S A="" F  S A=$O(^XTMP(A)) Q:A=""  S J=$G(^XTMP(A,0)) I J<DT K ^XTMP(A)
  Q
  ;
@@ -55,10 +60,11 @@ L4 ;Now go thru and clean old ^XUSEC(0,"CUR",duz,sign-on) nodes.
  Q
  ;
 L5 ;Now go through and clean old ^XUSEC(0,"AS*" nodes.
- D L51("AS1"),L51("AS2")
+ D L51("AS1"),L51("AS2"),L51("AS4")
  Q
  ;
 L6 ;Clean out old build nodes from ^XUTL
+ N K
  S K=""
  F  S K=$O(^XUTL("XQO",K)) Q:K=""  D
  . I $D(^XUTL("XQO",K,"^BUILD")),($P($H,",",2)-^("^BUILD")>1800)!(^("^BUILD")>$P($H,",",2)) K ^("^BUILD")
@@ -71,6 +77,7 @@ L7 ;Kill ^DISV for TERMINATED or DISUSER Users.
  Q
  ;
 L8 ;Loop top level of ^XUTL
+ N A
  S A=0
  F  S A=$O(^XUTL(A)) Q:'A  I '$D(^XUTL("XQ",A)) K ^XUTL(A)
  Q

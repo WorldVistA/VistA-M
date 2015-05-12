@@ -1,7 +1,15 @@
-RORX016B ;HCIOFO/BH,SG - OUTPATIENT UTILIZATION (SORT) ; 9/14/05 10:08am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+RORX016B ;HCIOFO/BH,SG - OUTPATIENT UTILIZATION (SORT) ;9/14/05 10:08am
+ ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
  ;
  Q
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
+ ;                                      additional identifier option selected
+ ;******************************************************************************
  ;
  ;***** SORTS THE RESULTS AND COMPILES THE TOTALS
  ;
@@ -65,7 +73,7 @@ TOTALS(PATIEN) ;
  . S:NV>0 @NODE@("OPV")=$G(@NODE@("OPV"))+NV
  . ;--- Count the stop codes
  . D:NPSC>0
- . . S @NODE@("OP",PATIEN)=NPSC_U_NDSC_U_$G(VA("BID"))_U_NV
+ . . S @NODE@("OP",PATIEN)=NPSC_U_NDSC_U_$G(VA("BID"))_U_NV_U_$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PATIEN),1:"")
  . . S @NODE@("OPS1",NPSC)=$G(@NODE@("OPS1",NPSC))+1
  . . S @NODE@("OPS1",NPSC,RORPNAME,PATIEN)=""
  Q 0

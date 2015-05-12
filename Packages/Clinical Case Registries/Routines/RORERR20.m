@@ -1,5 +1,5 @@
-RORERR20 ;HCIOFO/SG - LIST OF ERROR MESSAGES  ; 1/22/06 7:00pm
- ;;1.5;CLINICAL CASE REGISTRIES;**18**;Feb 17, 2006;Build 25
+RORERR20 ;HCIOFO/SG - LIST OF ERROR MESSAGES  ;1/22/06 7:00pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**18,22**;Feb 17, 2006;Build 17
  ;
  ;***************************************************************************
  ;***************************************************************************
@@ -8,6 +8,7 @@ RORERR20 ;HCIOFO/SG - LIST OF ERROR MESSAGES  ; 1/22/06 7:00pm
  ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*18   APR  2012   C RAY        Added error code -112
+ ;ROR*1.5*22   FEB 2014    T KOPP       Added error code -113
  ;                                      
  ;***************************************************************************
  ;***************************************************************************
@@ -171,3 +172,4 @@ MSGLIST ; Code Type  Message Text
  ;;-110 ^ 5 ^ Pointer(s) in the restored data cannot be resolved.
  ;;-111 ^ 2 ^ Patient "merge" from DFN #|2| to DFN #|3|.
  ;;-112 ^ 5 ^ Intialization of |2| could not be completed.
+ ;;-113 ^ 6 ^ Cannot run nightly task.  User |2| does not have ROR VA IRM key.

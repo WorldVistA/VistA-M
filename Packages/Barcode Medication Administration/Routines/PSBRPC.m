@@ -1,5 +1,5 @@
 PSBRPC ;BIRMINGHAM/EFC - BCMA RPC BROKER CALLS ; 19 Jul 2013  12:34 PM
- ;;3.0;BAR CODE MED ADMIN;**6,3,4,13,32,28,42,58,66,70**;Mar 2004;Build 101
+ ;;3.0;BAR CODE MED ADMIN;**6,3,4,13,32,28,42,58,66,70,76**;Mar 2004;Build 10
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -158,7 +158,7 @@ SCANPT(RESULTS,PSBDATA) ; Lookup Pt by Full SSN
  ; returns -1 on error or patient data
  ; Check for Interleave 2 of 5 Check Digit on SSN and remove
  ; 
- N DFN,PSBWARD   ;[*70-1489]
+ N DFN,PSBWARD,PSBHDR   ;[*70-1489]
  I "SS"[$P($G(PSBDATA),"^",3)  D  Q:RESULTS(1)<0
  .S:$P(PSBDATA,"^")?1"0"9N.U PSBDATA=$E(PSBDATA,2,99) N PSBCNT
  .;  IHS vs VA Agency check for Patient ID info
@@ -171,7 +171,7 @@ SCANPT(RESULTS,PSBDATA) ; Lookup Pt by Full SSN
  ..;*70 Implement VIC 4.0 cards. Old Bar code with SSN still accepted
  ..S DPTDATA=$P(PSBDATA,U) ;,DPTDATA=$TR(DPTDATA,"|","^") ; ST - $TR not needed
  ..D RPCVIC^DPTLK(.DFN,DPTDATA)
- ..I DFN=""!(DFN<0) S DFN=$$FIND1^DIC(2,"","",DPTDATA,"SSN") S:'DFN DFN=-1 ;old SSN lookup
+ ..I DFN=""!(DFN<0) S:$P(PSBDATA,U)?9N.1U DFN=$$FIND1^DIC(2,"","",DPTDATA,"SSN") S:'DFN DFN=-1 ;old SSN lookup, added full SSN check, PSB*3*76
  .I DFN=-1 S RESULTS(0)=1,RESULTS(1)="-1^Invalid Patient Lookup"
  .;*End *70 Implement VIC 4.0 cards.
  .Q:$G(RESULTS(1))<0
@@ -211,7 +211,7 @@ SCANPT(RESULTS,PSBDATA) ; Lookup Pt by Full SSN
  .S X=+$P($$VITAL^APSPFUNC(DFN,"WT"),U,2),X=$$VITCWT^APSPFUNC(X)\1,PSBHDR("WEIGHT")=$S(X:X_"kg",1:"*")
  E  D
  .S GMRVSTR="HT" D EN6^GMRVUTL
- .S X=+$P(X,U,8) S:X X=X*2.54\1 S PSBHDR("HEIGHT")=$S(X:X_"cm",1:"*")
+ .S X=+$P(X,U,8) S:X X=$J((X*2.54),3,0) S PSBHDR("HEIGHT")=$S(X:X_"cm",1:"*") ;Rounding correction, PSB*3*76
  .S GMRVSTR="WT" D EN6^GMRVUTL
  .S X=+$P(X,U,8) S X=$J(X/2.2,0,2) S PSBHDR("WEIGHT")=$S(X:X_"kg",1:"*")
  ;

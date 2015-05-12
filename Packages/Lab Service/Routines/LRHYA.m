@@ -1,5 +1,5 @@
 LRHYA ;DALOI/HOAK - HOWDY UTILITY-A ;9/16/2000
- ;;5.2;LAB SERVICE;**405**;Sep 27, 1994;Build 93
+ ;;5.2;LAB SERVICE;**405,446**;Sep 27, 1994;Build 1
  ;
  ;
 OLT ; This block looks in the Howdy site file for tests that will print
@@ -40,7 +40,7 @@ LTE ; This block looks in the Howdy site file for those test to exclude
  F  S LRTSTS=$O(^LRO(69,LR3DTN,1,LR3SN,2,"B",LRTSTS)) Q:+LRTSTS'>0  S LRHYHOK=0 D
  .  ;
  .  S LRORD=^LRO(69,LR3DTN,1,LR3SN,.1)
- .  I $D(^LRHY(69.86,LRHYSITE,2,"B",LRTSTS)) S LRHYHOK=1 S LRHYT654=LRTSTS S LRNOTST(LRTSTS)="" QUIT
+ .  I $D(^LRHY(69.86,LRHYSITE,2,"B",LRTSTS)) S LRHYHOK=1 S LRHYT654=LRTSTS S LRNOTST(LRTSTS)="",LREXORD(LRORD)="" QUIT
  .  K LRNPZZX
  .  K LRCCOM
  .  S LRCOL99=$P(^LRO(69,LR3DTN,1,LR3SN,0),U,3)

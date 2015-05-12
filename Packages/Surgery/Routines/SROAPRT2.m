@@ -1,5 +1,5 @@
 SROAPRT2 ;BIR/MAM - PRINT PREOP INFO (PAGE 2) ;07/19/2011
- ;;3.0;Surgery;**38,125,137,153,160,166,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,125,137,153,160,166,176,182**;24 Jun 93;Build 49
  I $E(IOST)'="P" W !,?28,"PREOPERATIVE INFORMATION"
  N SRX,Y F I=200,200.1,206 S SRA(I)=$G(^SRF(SRTN,I))
  S Y=$P(SRA(200),"^",37),SRX=243,SRAO(1)=$$OUT(SRX,Y)_"^"_SRX
@@ -18,6 +18,7 @@ SROAPRT2 ;BIR/MAM - PRINT PREOP INFO (PAGE 2) ;07/19/2011
  S Y=$P(SRA(200),"^",47),SRX=339,SRAO("3C")=$$OUT(SRX,Y)_"^"_SRX
  S Y=$P(SRA(200),"^",48),SRX=215,SRAO("3D")=$$OUT(SRX,Y)_"^"_SRX
  S Y=$P(SRA(200),"^",49),SRX=216,SRAO("3E")=$$OUT(SRX,Y)_"^"_SRX
+ S Y=$P(SRA(200),"^",58),SRX=642,SRAO("3EE")=$$OUT(SRX,Y)_"^"_SRX
  S Y=$P(SRA(200),"^",50),SRX=217,SRAO("3F")=$$OUT(SRX,Y)_"^"_SRX
  S Y=$P(SRA(206),"^",3),SRX=338.1,SRAO("3G")=$$OUT(SRX,Y)_"^"_SRX
  S Y=$P(SRA(206),"^",4),SRX=338.2,SRAO("3H")=$$OUT(SRX,Y)_"^"_SRX
@@ -29,6 +30,7 @@ SROAPRT2 ;BIR/MAM - PRINT PREOP INFO (PAGE 2) ;07/19/2011
  W !,?40,"Steroid Use for Chronic Cond.:",?72,$P(SRAO("3C"),"^")
  W !,"CENTRAL NERVOUS SYSTEM:",?31,$P(SRAO(2),"^"),?40,"Weight Loss > 10%:",?72,$P(SRAO("3D"),"^")
  W !,"Impaired Sensorium: ",?31,$P(SRAO("2A"),"^"),?40,"Bleeding Disorders:",?72,$P(SRAO("3E"),"^")
+ W !,?40,"Bleeding Due To Med: ",$E($P(SRAO("3EE"),"^"),1,15)
  W !,"Coma:",?31,$P(SRAO("2B"),"^"),?40,"Transfusion > 4 RBC Units:",?72,$P(SRAO("3F"),"^")
  W !,"Hemiplegia:",?31,$P(SRAO("2C"),"^"),?40,"Chemotherapy W/I 30 Days:",?72,$P(SRAO("3G"),"^")
  W !,"CVD Repair/Obstruct:",?(35-$L($P(SRAO("2D"),"^"))),$P(SRAO("2D"),"^"),?40,"Radiotherapy W/I 90 Days:",?72,$P(SRAO("3H"),"^")

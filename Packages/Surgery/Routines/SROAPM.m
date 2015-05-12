@@ -1,5 +1,5 @@
 SROAPM ;BIR/ADM - PATIENT DEMOGRAPHIC INFO ;05/28/10
- ;;3.0;Surgery;**47,81,111,107,100,125,142,160,166,174,175**;24 Jun 93;Build 6
+ ;;3.0;Surgery;**47,81,111,107,100,125,142,160,166,174,175,182**;24 Jun 93;Build 49
  I '$D(SRTN) W !!,"A Surgery Risk Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
  S SRSOUT=0,SRSUPCPT=1 D ^SROAUTL
 START G:SRSOUT END D HDR^SROAUTL
@@ -114,7 +114,7 @@ GET S X=$T(@J)
  Q
 END W @IOF D ^SRSKILL
  Q
-PJAA ;;.011^In/Out-Patient Status
+PJAA ;;.011^Hospital Admission Status
 BDG ;;247^Length of Postop Hospital Stay
 CDB ;;342^Date of Death
 DAC ;;413^Transfer Status

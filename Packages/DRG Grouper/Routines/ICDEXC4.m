@@ -1,5 +1,5 @@
-ICDEXC4 ;SLC/KER - ICD Extractor - Code APIs (cont) ;04/21/2014
- ;;18.0;DRG Grouper;**57**;Oct 20, 2000;Build 1
+ICDEXC4 ;SLC/KER - ICD Extractor - Code APIs (cont) ;12/19/2014
+ ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
  ;               
  ; Global Variables
  ;    None
@@ -89,6 +89,48 @@ LDH(FILE,IEN,ARY) ; Long Description History
  . S:$L(TYP) ERR="-1^No "_TYP_" Long Descriptions found"
  . S:'$L(TYP) ERR="-1^No Long Descriptions found"
  Q CNT
+RDX(CODE,CDT) ; Resolve Diagnosis Code Fragment
+ ;
+ ; Input
+ ; 
+ ;    X         Code or Code Fragment (Required)
+ ;    CDT       Versioning Date (Optional, Default TODAY)
+ ;    
+ ; Output
+ ; 
+ ;    $$RDX     Code if resolved
+ ;              -1 ^ error message if not resolved
+ ;    
+ ; Example: 
+ ;    
+ ;    Fragment    Oct 1, 2014     Oct 1, 2015
+ ;    E8310         E831.0           E83.10
+ ;    311           311.             311.
+ ;    A870          A87.0            A87.0
+ ;    A0201         -1^Could not resolve code fragment
+ ;    
+ N ICD1,ICD2,ICDC,ICDCD,ICDID,ICDIN,ICDND,ICDNX,ICDO,ICDON,ICDOP,ICDPR,ICDR,ICDS,ICDT,ICDX
+ S (ICDO,ICDX)=$$UP^XLFSTR(CODE),ICDC=$E(ICDO,1),ICDR="^ICD9(" Q:'$L(ICDX) "-1^Invalid input"  S ICDCD=$P($G(CDT),".",1)
+ S:'$L(ICDCD) ICDCD=$$DT^XLFDT S ICDID=$$IMP^ICDEX(30) S ICDS="" S:ICDCD?7N ICDS=$S((ICDCD+.001)>ICDID:30,1:1)
+ S:ICDS=1&("ABCDFGHIJKLMNOPQRSTUWXYZ"[ICDC) ICDS=30 S:ICDS=30&(ICDC?1N) ICDS=1
+ Q:'$L(ICDS)!(ICDS'?1N.N) "-1^Invalid system"  I $D(@(ICDR_"""ABA"","_+ICDS_","""_ICDX_" "")")) S CODE=ICDX Q CODE
+ F ICDT=".",".0",".00","0","00" D
+ . S:$E(ICDX,1)?1N&($D(@(ICDR_"""ABA"","_+ICDS_","""_ICDX_ICDT_" "")"))) ICDX=ICDX_ICDT
+ . S:$E(ICDX,1)="E"&($E(ICDX,2,4)?3N)&($D(@(ICDR_"""ABA"","_+ICDS_","""_ICDX_ICDT_" "")"))) ICDX=ICDX_ICDT
+ . S:$E(ICDX,1)?1U&($E(ICDX,2,3)?2N)&($D(@(ICDR_"""ABA"","_+ICDS_","""_ICDX_ICDT_" "")"))) ICDX=ICDX_ICDT
+ I ICDX'=ICDO,$D(@(ICDR_"""ABA"","_+ICDS_","""_ICDX_" "")")) S CODE=ICDX Q CODE
+ I ICDX=ICDO,ICDX'["." D
+ . N ICD1,ICD2 S ICD1=$E(ICDX,1,3),ICD2=$E(ICDX,4,$L(ICDX)) S:$E(ICDX,1)="E"&(ICDS=1) ICD1=$E(ICDX,1,4),ICD2=$E(ICDX,5,$L(ICDX))
+ . S:$E(ICDX,1)="E"&(ICDS=30) ICD1=$E(ICDX,1,3),ICD2=$E(ICDX,4,$L(ICDX)) Q:$E(ICDX,1)="E"&(ICDS=1)&($L(ICD1)'=4)
+ . Q:$E(ICDX,1)="E"&(ICDS=30)&($L(ICD1)'=3)  Q:$E(ICDX,1)'="E"&($L(ICD1)'=3)  S ICDX=ICD1_"."_ICD2
+ I ICDX'=ICDO,$D(@(ICDR_"""ABA"","_+ICDS_","""_ICDX_" "")")) S CODE=ICDX Q CODE
+ I ICDX=ICDO D
+ . F ICDT=".",".0",".00","0","00" D
+ . . S:$E(ICDX,1)?1N&($D(@(ICDR_"""BA"","""_ICDX_ICDT_" "")"))) ICDX=ICDX_ICDT
+ . . S:$E(ICDX,1)="E"&($E(ICDX,2,4)?3N)&($D(@(ICDR_"""BA"","""_ICDX_ICDT_" "")"))) ICDX=ICDX_ICDT
+ . . S:$E(ICDX,1)?1U&($E(ICDX,2,3)?2N)&($D(@(ICDR_"""BA"","""_ICDX_ICDT_" "")"))) ICDX=ICDX_ICDT
+ S CODE="-1^Could not resolve code fragment" S:$D(@(ICDR_"""BA"","""_ICDX_" "")")) CODE=ICDX
+ Q CODE
 TRIM(X,Y) ; Trim Character
  ;
  ; Input:

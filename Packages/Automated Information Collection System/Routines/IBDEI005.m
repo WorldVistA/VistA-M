@@ -1,128 +1,76 @@
-IBDEI005 ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
- Q:'DIFQR(358)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI005 ; ; 09-FEB-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQ(358.2)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358,29,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,29,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,29,2,4,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,29,2,5,0)
- ;;=4^1
- ;;^UTILITY(U,$J,358,29,2,6,0)
- ;;=5^1
- ;;^UTILITY(U,$J,358,30,0)
- ;;=NATIONAL MEDICINE FY14-Q4^1^National Medicine Form July 2014^1^0^1^1^^133^80^10^1^^1^p^1^2.1
- ;;^UTILITY(U,$J,358,30,2,0)
- ;;=^358.02I^6^6
- ;;^UTILITY(U,$J,358,30,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,30,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,30,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,30,2,4,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,30,2,5,0)
- ;;=4^1
- ;;^UTILITY(U,$J,358,30,2,6,0)
- ;;=5^1
- ;;^UTILITY(U,$J,358,31,0)
- ;;=NATIONAL MH MHICM FY14-Q4^1^National MH Intensive Program August 2014^1^0^1^1^^133^80^4^1^^1^p^1^3
- ;;^UTILITY(U,$J,358,31,2,0)
- ;;=^358.02I^3^3
- ;;^UTILITY(U,$J,358,31,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,31,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,31,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,32,0)
- ;;=NATIONAL NEPHROLOGY FY14-Q4^2^National Nephrology August 2014^1^0^1^1^^133^80^3^1^^1^p^1^3
- ;;^UTILITY(U,$J,358,32,2,0)
- ;;=^358.02I^2^2
- ;;^UTILITY(U,$J,358,32,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,32,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,33,0)
- ;;=NATIONAL NEUROLOGY FY14-Q4^0^National Neurology July 2014^1^0^1^1^^133^80^2^1^^1^p^1
- ;;^UTILITY(U,$J,358,34,0)
- ;;=NATIONAL NEUROSURGERY FY14-Q4^0^National Neurosurgery July 2014^1^0^0^1^^133^80^2^1^^1^p^1^3
- ;;^UTILITY(U,$J,358,34,2,0)
- ;;=^358.02I^2^2
- ;;^UTILITY(U,$J,358,34,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,34,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,35,0)
- ;;=NATL NURSING CLINIC FY14-Q4^1^National Nursing Clinic EEF-June 2014^1^0^1^1^^133^80^3^1^^1^p^1^2.1
- ;;^UTILITY(U,$J,358,35,2,0)
- ;;=^358.02I^4^4
- ;;^UTILITY(U,$J,358,35,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,35,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,35,2,3,0)
- ;;=4^1
- ;;^UTILITY(U,$J,358,35,2,4,0)
- ;;=4^1
- ;;^UTILITY(U,$J,358,36,0)
- ;;=NATIONAL OB/GYN FY14-Q4^2^NATIONAL OB/GYN August 2014^1^0^1^1^^133^80^4^1^^1^p^1^3
- ;;^UTILITY(U,$J,358,37,0)
- ;;=NATL ONC/CHEMO INF FY14-Q4^0^National Oncology & Chemotherapy Infusion July 2014^1^0^1^1^^133^80^5^1^^1^p^1^3
- ;;^UTILITY(U,$J,358,37,2,0)
- ;;=^358.02I^2^2
- ;;^UTILITY(U,$J,358,37,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,37,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,38,0)
- ;;=NATIONAL PAIN FY14-Q4^0^National Pain May 2014^1^0^1^1^^133^80^2^1^^1^p^1^2.1
- ;;^UTILITY(U,$J,358,39,0)
- ;;=NATIONAL PEER SUPPORT FY14-Q4^1^National Peer Specialist August 2014^1^0^1^1^^133^80^3^1^^1^p^1^3
- ;;^UTILITY(U,$J,358,39,2,0)
- ;;=^358.02I^3^3
- ;;^UTILITY(U,$J,358,39,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,39,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,39,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,40,0)
- ;;=NATIONAL PLASTIC SURG FY14-Q4^2^National Plastic Surgery August 2014^1^0^1^1^^133^80^5^1^^1^p^1^3
- ;;^UTILITY(U,$J,358,41,0)
- ;;=NATIONAL PODIATRY FY14-Q4^0^National Podiatry July 2014^1^0^1^1^^133^80^5^1^^1^p^1^3
- ;;^UTILITY(U,$J,358,41,2,0)
- ;;=^358.02I^6^6
- ;;^UTILITY(U,$J,358,41,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,41,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,41,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,41,2,4,0)
- ;;=4^1
- ;;^UTILITY(U,$J,358,41,2,5,0)
- ;;=5^1
- ;;^UTILITY(U,$J,358,41,2,6,0)
- ;;=6^1
- ;;^UTILITY(U,$J,358,42,0)
- ;;=NATIONAL POD NAIL NURS FY14-Q4^0^National Podiatry Nail Clinic Nursing July 2014^1^0^1^1^^133^80^1^1^^1^p^1^3
- ;;^UTILITY(U,$J,358,42,2,0)
- ;;=^358.02I^6^6
- ;;^UTILITY(U,$J,358,42,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,42,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,42,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,42,2,4,0)
- ;;=4^1
- ;;^UTILITY(U,$J,358,42,2,5,0)
- ;;=5^1
- ;;^UTILITY(U,$J,358,42,2,6,0)
- ;;=6^1
- ;;^UTILITY(U,$J,358,43,0)
- ;;=NATIONAL POLYTRAUMA FY14-Q4^1^National Polytrauma July 2014^1^0^1^1^^133^80^2^1^^1^p^1^2.1
+ ;;^DIC(358.2,0,"GL")
+ ;;=^IBE(358.2,
+ ;;^DIC("B","IMP/EXP SELECTION LIST",358.2)
+ ;;=
+ ;;^DIC(358.2,"%D",0)
+ ;;=^^1^1^2940829^^^^
+ ;;^DIC(358.2,"%D",1,0)
+ ;;=Used by the import/export utility as a workspace.
+ ;;^DIC(358.2,"%D",2,0)
+ ;;= 
+ ;;^DIC(358.2,"%D",3,0)
+ ;;= 
+ ;;^DIC(358.2,"%D",4,0)
+ ;;= 
+ ;;^DIC(358.2,"%D",5,0)
+ ;;= 
+ ;;^DIC(358.2,"%D",6,0)
+ ;;= 
+ ;;^DIC(358.2,"%D",7,0)
+ ;;= 
+ ;;^DIC(358.2,"%D",8,0)
+ ;;=This file is nearly identical to file #357.2 . It is used by the
+ ;;^DIC(358.2,"%D",9,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.2,"%D",10,0)
+ ;;=that is being imported or exported.
+ ;;^DIC(358.2,"%D",11,0)
+ ;;=provisions have been made to specify up to 4 columns per list.
+ ;;^DD(358.2,0)
+ ;;=FIELD^^2^19
+ ;;^DD(358.2,0,"DDA")
+ ;;=N
+ ;;^DD(358.2,0,"DT")
+ ;;=2960123
+ ;;^DD(358.2,0,"ID",.02)
+ ;;=W ""
+ ;;^DD(358.2,0,"ID",.11)
+ ;;=W ""
+ ;;^DD(358.2,0,"IX","B",358.2,.01)
+ ;;=
+ ;;^DD(358.2,0,"IX","C",358.2,.02)
+ ;;=
+ ;;^DD(358.2,0,"NM","IMP/EXP SELECTION LIST")
+ ;;=
+ ;;^DD(358.2,0,"PT",358.3,.03)
+ ;;=
+ ;;^DD(358.2,0,"PT",358.4,.03)
+ ;;=
+ ;;^DD(358.2,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.2,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.2,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.2,.01,1,1,0)
+ ;;=358.2^B
+ ;;^DD(358.2,.01,1,1,1)
+ ;;=S ^IBE(358.2,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.2,.01,1,1,2)
+ ;;=K ^IBE(358.2,"B",$E(X,1,30),DA)
+ ;;^DD(358.2,.01,3)
+ ;;=Answer must be 3-30 characters in length.
+ ;;^DD(358.2,.01,21,0)
+ ;;=^^2^2^2930527^
+ ;;^DD(358.2,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.2,.01,21,2,0)
+ ;;=The name of the list.
+ ;;^DD(358.2,.01,"DEL",1,0)
+ ;;=I '$G(IBLISTPR) W "...Selection Lists can only be deleted through the Encounter Form Utilities!"
+ ;;^DD(358.2,.01,"DT")
+ ;;=2921119

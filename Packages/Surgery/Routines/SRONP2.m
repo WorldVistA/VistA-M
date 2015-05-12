@@ -1,5 +1,5 @@
 SRONP2 ;BIR/ADM - PROCEDURE REPORT (NON-OR) ;07/26/04  9:45 AM
- ;;3.0;Surgery;**132,142,177**;24 Jun 93;Build 89
+ ;;3.0;Surgery;**132,142,177,182**;24 Jun 93;Build 49
  Q
 OPTOP(SRTN) ; send op-top to ^TMP
  ; SRTN   - case number in file 130
@@ -20,7 +20,7 @@ OPTOP(SRTN) ; send op-top to ^TMP
  S Y=$P(SR("NON"),"^",6),C=$P(^DD(130,123,0),"^",2) D:Y'="" Y^DIQ D LINE(2) S @SRG@(SRI)="Provider: "_Y
  S X=$P($G(SR(0)),"^",12),SRSTATUS=$S(X="I":"INPATIENT",X="O":"OUTPATIENT",1:"NOT ENTERED")
  S @SRG@(SRI)=@SRG@(SRI)_$$SPACE(50)_"Patient Status: "_SRSTATUS
- S Y=$P(SR("NON"),"^",7),C=$P(^DD(130,124,0),"^",2) D:Y'="" Y^DIQ,N(28) S:Y="" Y="N/A" D LINE(1) S @SRG@(SRI)="Attending: "_Y
+ S Y=$P(SR("NON"),"^",7),C=$P(^DD(130,124,0),"^",2) D:Y'="" Y^DIQ,N(28) S:Y="" Y="N/A" D LINE(1) S @SRG@(SRI)="Attending/Res Sup Code: "_Y
  D RS S:SRATT="" SRATT="NOT ENTERED" D LINE(1) S @SRG@(SRI)="Attending Code: "_SRATT
  S Y=$P(SR(.3),"^",4),C=$P(^DD(130,.34,0),"^",2) D:Y'="" Y^DIQ S:Y="" Y="N/A" D LINE(2) S @SRG@(SRI)="Attend Anesth: "_Y
  S X=$P(SR(.3),"^",6),X=$S(X:$P(^SRO(132.95,X,0),"^"),1:"N/A")
@@ -54,7 +54,7 @@ AGENT ; print agents
  .I SRDOSE S @SRG@(SRI)=@SRG@(SRI)_"   "_SRDOSE_" mg"
  Q
 RS ; attending code
- I $$GET1^DID(130,.166,"","LABEL")["ATTENDING CODE" D  Q
+ I $$GET1^DID(130,.166,"","LABEL")["ATTENDING/RES SUP CODE" D  Q
  .S Y=$P(SR(.1),"^",10),C=$P(^DD(130,.166,0),"^",2) D Y^DIQ S SRATT=Y
  S Y=$P(SR(.1),"^",16),C=$P(^DD(130,.165,0),"^",2) D Y^DIQ S SRATT=Y
  Q

@@ -1,5 +1,5 @@
 LRCAPES1 ;DALOI/FHS/KLL - CONT MANUAL PCE CPT WORKLOAD CAPTURE ;02/28/12  20:29
- ;;5.2;LAB SERVICE;**274,308,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**274,308,350,448**;Sep 27, 1994;Build 1
  ;
  ;Continuation of LRCAPES
  ;
@@ -79,19 +79,20 @@ SETWKL(LRAA,LRAD,LRAN) ; Set workload into 68 from CPT coding
  ;
  ;
 DIS ;
- N LRNOTFD,LRNOLK,LRIA81,LRIA64,LRRF64,X9
+ N LRNOTFD,LRNOLK,LRIA81,LRIA64,LRRF64,LRINVES,X9
  K X,LRLST,LRCNT,LRI,LRX,LRXY,LRXTST
  K ^TMP("LR",$J,"LRLST")
  I $G(LRANSX) D
  . S X=LRANSX D RANGE^LRWU2
  . X (X9_"S LRX=T1 D EX1^LRCAPES")
  I '$O(^TMP("LR",$J,"LRLST",0)) D  Q
- . I $G(LRNOTFD)!$G(LRIA81)!$G(LRIA64)!$G(LRNOLK)!$G(LRRF64) D
+ . I $G(LRNOTFD)!$G(LRIA81)!$G(LRIA64)!$G(LRNOLK)!$G(LRRF64)!$G(LRINVES) D
  . . W !,?5,"The following CPT Code(s) are not selected:"
  . . W:$G(LRNOTFD) !?8,"Not found in #81: ",LRNOTFD
  . . W:$G(LRIA81) !?8,"Inactive in #81: ",LRIA81
  . . W:$G(LRIA64) !?8,"Inactive in #64: ",LRIA64
  . . W:$G(LRNOLK) !?8,"Not linked to workload: ",LRNOLK
+ . . W:$G(LRINVES) !?8,"Invalid ES Display Order number: ",LRINVES
  . W !
  . S LRANSY=0
  D DEM
@@ -179,13 +180,14 @@ DEM ;
  . . W !?5,"("_LRX_")  "_$P(LRTMP,U)_" "_$E($P(LRTMP,U,3),1,50),!
  . . W:$P(LRTMP,U,5) ?10,$E($P(LRTMP,U,4),1,50)_"  {"_$P(LRTMP,U,5)_"}"
  ;
- I $G(LRNOTFD)!$G(LRIA81)!$G(LRIA64)!$G(LRNOLK)!$G(LRRF64) D
+ I $G(LRNOTFD)!$G(LRIA81)!$G(LRIA64)!$G(LRNOLK)!$G(LRRF64)!$G(LRINVES) D
  . W !!!?5,"The following CPT Codes are NOT Selected"
  . W:$G(LRNOTFD) !?8,"Not found in #81: ",LRNOTFD
  . W:$G(LRIA81) !?8,"Inactive in #81: ",LRIA81
  . W:$G(LRIA64) !?8,"Inactive in #64: ",LRIA64
  . W:$G(LRNOLK) !?8,"Not Linked to Workload: ",LRNOLK
  . W:$G(LRRF64) !?8,"Inactive in #64\Active Replacement Found: ",LRRF64
+ . W:$G(LRINVES) !?8,"Invalid ES Display Order number: ",LRINVES
  Q
  ;
  ;
@@ -197,13 +199,17 @@ CHKCPT ; Edit CPT code - does it exist,active in 81 or 64, linked to workload?
  I '$O(^LAM("AB",LRXY1_";ICPT(",0)) D  Q
  . S LRNOLK=$S($G(LRNOLK):LRNOLK_LRXY1_",",1:LRXY1_","),LRNR=1
  ;If CPT is not active in 64, look for alternative active CPT
- S LRWL2=+$O(^LAM("AB",LRXY1_";ICPT(",0))
- S:$G(LRQ)'="" LRWL2=$P(@LRQ,"^") ;For ES Display CPTs
+ ;S LRWL2=+$O(^LAM("AB",LRXY1_";ICPT(",0))
+ ;S:$G(LRQ)'="" LRWL2=$P(@LRQ,"^") ;For ES Display CPTs
+ S LRWLQUFL=0
+ D GETWL2
  Q:'LRWL2
- S LRD2=+$O(^LAM("AB",LRXY1_";ICPT(",LRWL2,LRD2))
- S LRREL2=$P(^LAM(LRWL2,4,LRD2,0),U,3),LRINA2=$P(^(0),U,4)
- Q:LRREL2&(LRINA2="")
- Q:LREDT>(LRREL2-1)&((LREDT<LRINA2)!(LRINA2=""))
+ ;S LRD2=+$O(^LAM("AB",LRXY1_";ICPT(",LRWL2,LRD2))
+ ;S LRREL2=$P(^LAM(LRWL2,4,LRD2,0),U,3),LRINA2=$P(^(0),U,4)
+ ;Q:LRREL2&(LRINA2="")
+ ;Q:LREDT>(LRREL2-1)&((LREDT<LRINA2)!(LRINA2=""))
+ Q:LRWLQUFL
+ K LRWLQUFL
  ; CPT is inactive, search for another linked, active CPT to replace it
  S LRD2="A",LRD2=$O(^LAM(LRWL2,4,LRD2),-1)
  I LRD2>1 D
@@ -216,6 +222,31 @@ CHKCPT ; Edit CPT code - does it exist,active in 81 or 64, linked to workload?
  . . I LREDT>(LRREL2-1)&((LREDT<LRINA2)!(LRINA2="")) S LRACTV=1  Q
  ; No replacement active CPT found, 
  I 'LRACTV S LRIA64=$S($G(LRIA64):LRIA64_LRXY1_",",1:LRXY1_","),LRNR=1 Q
+ Q
+ ;
+ ;
+GETWL2 ;
+ ;
+ N LRWL,LRD2
+ S LRD2=0
+ ;
+ I $G(LRQ)'="" S LRWL2=$P(@LRQ,"^") D  Q
+ . S LRD2=+$O(^LAM("AB",LRXY1_";ICPT(",LRWL2,LRD2))
+ . S LRREL2=$P(^LAM(LRWL2,4,LRD2,0),U,3),LRINA2=$P(^(0),U,4)
+ . I LRREL2&(LRINA2="") S LRWLQUFL=1
+ . I LREDT>(LRREL2-1)&((LREDT<LRINA2)!(LRINA2="")) S LRWLQUFL=1
+ ;
+ S LRWL2=""
+ ;
+ S LRWL=""
+ F  S LRWL=$O(^LAM("AB",LRXY1_";ICPT(",LRWL)) Q:LRWL=""  D  Q:LRWL2'=""
+ . S LRD2=0 F  S LRD2=$O(^LAM("AB",LRXY1_";ICPT(",LRWL,LRD2)) Q:LRD2=""  D  Q:LRWL2'=""
+ . . S LRREL2=$P(^LAM(LRWL,4,LRD2,0),U,3),LRINA2=$P(^(0),U,4)
+ . . I LRREL2&(LRINA2="") S LRWL2=LRWL,LRWLQUFL=1
+ . . I LREDT>(LRREL2-1)&((LREDT<LRINA2)!(LRINA2="")) S LRWL2=LRWL,LRWLQUFL=1
+ ;
+ I LRWL2="" S LRWL2=+$O(^LAM("AB",LRXY1_";ICPT(",0))
+ ;
  Q
  ;
  ;

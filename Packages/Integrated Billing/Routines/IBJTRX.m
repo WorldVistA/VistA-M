@@ -1,6 +1,6 @@
 IBJTRX ;ALB/ESG - TPJI ePharmacy ECME claim information ;22-Oct-2010
- ;;2.0;INTEGRATED BILLING;**435,452,494**;21-MAR-94;Build 11
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**435,452,494,521**;21-MAR-94;Build 33
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$CLAIM^BPSBUTL supported by IA# 4719
  ; Reference to BPS RESPONSES file# 9002313.03 supported by IA# 4813
@@ -33,7 +33,7 @@ HDR ; -- header code
  ;
 INIT ; -- init variables and list array
  N IBM1,ECME,ECMEAP,RXORG,DOCIEN,PHARMNPI,DOCNPI,RESPIEN,ZR,RSPSUB,ZM,BPSM,BPSMCOB,IBLINE,ZC,ZCTOT,ZCN
- N IBZ,IBRXDATA,IBRXIEN,IBRXFILL,IBCOBN,IBBPS,IB0,IBS
+ N IBZ,IBRXDATA,IBRXIEN,IBRXFILL,IBCOBN,IBBPS,IB0,IBS,IBHPD,IBVL,IBCPY,IBM0
  K ^TMP("IBJTRX",$J)
  S VALMCNT=0
  ;
@@ -59,6 +59,9 @@ INIT ; -- init variables and list array
  ;
  S RESPIEN=+$P(IBBPS,U,3)    ; BPS response file ien
  I RESPIEN D
+ . ; IB*2.0*521 - add HPID from response to TPJI screen
+ . S IBM0=$G(^DGCR(399,IBIFN,"M")),IBCPY=$S($P(IB0,U,21)="P":$P(IBM0,U),$P(IB0,U,21)="S":$P(IBM0,U,2),1:$P(IBM0,"^",3))
+ . I $P($G(^BPSR(RESPIEN,560)),U,8)="01" S IBHPD=$P($G(^BPSR(RESPIEN,560)),U,9) S IBVL=$$HOD^IBCNHUT1(IBHPD,IBCPY)
  . S ZR=RESPIEN_","
  . S RSPSUB=+$O(^BPSR(RESPIEN,1000,0))
  . I RSPSUB D
@@ -74,6 +77,9 @@ INIT ; -- init variables and list array
  ;
  S IBLINE=$$SETL("",ECMEAP,"ECME Ap No",25,11,1)
  S IBLINE=$$SETL(IBLINE,DOCNPI,"Provider NPI",14,15,40)
+ D SET(IBLINE)
+ ; IB*2.0*521 - add validated HPID from response to TPJI screen
+ S:$G(IBVL)="" IBVL="^HPID/OEID" S IBLINE=$$SETL("",$G(IBHPD),$P(IBVL,U,2),25,11,1)
  D SET(IBLINE)
  ;
  D SET(" ")

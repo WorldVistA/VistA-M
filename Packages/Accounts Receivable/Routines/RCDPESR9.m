@@ -1,6 +1,6 @@
 RCDPESR9 ;ALB/TMK,DWA - ERA return file field captions ;09-SEP-2003
- ;;4.5;Accounts Receivable;**173,252,269**;Mar 20, 1995;Build 113
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**173,252,269,302**;Mar 20, 1995;Build 28
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Note: if the 835 flat file changes, make the corresponding changes
  ;       in this routine.
@@ -93,6 +93,7 @@ RCDPESR9 ;ALB/TMK,DWA - ERA return file field captions ;09-SEP-2003
  ;;15^1^Total Before Taxes Amt^S Y=$$ZERO^RCDPESR9(X,1,1)
  ;;15^^Patient Responsibility Amount^S Y=$$ZERO^RCDPESR9(X,1)
  ;;15^1^Negative Reimbursement^S Y=$$ZERO^RCDPESR9(X,1,1)
+ ;;15^^Health Plan Identifier
  ;
 17 ;;CLAIM LEVEL PAYER CONTACT INFORMATION
  ;;17^^Line Type^S Y=X_" (CLAIM LEVEL PAYER CONTACT INFO)"

@@ -1,5 +1,5 @@
 LRCAPES ;DALOI/FHS/KLL -MANUAL PCE CPT WORKLOAD CAPTURE ;11/18/11  15:21
- ;;5.2;LAB SERVICE;**274,259,349,308,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**274,259,349,308,350,448**;Sep 27, 1994;Build 1
  ;
  ;Reference to $$GET^XUA4A72 - Supported by DBIA #1625
 EN ;
@@ -27,6 +27,7 @@ EX1 ;Parse the read entry
  ;Edit on ES Display Order # entry
  S LRQ="^TMP(""LR"","_$J_",""AK"","_LRX_")"
  S LRQ=$Q(@LRQ)
+ I LRX'=$QS(LRQ,4) S LRINVES=LRX Q 
  S LRXY=$$CPT^ICPTCOD($QS(LRQ,6),DT)
  D CHKCPT^LRCAPES1
  Q:'$P(LRXY,U,7)!(LRNR)

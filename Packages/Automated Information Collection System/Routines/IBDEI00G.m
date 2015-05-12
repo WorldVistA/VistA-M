@@ -1,70 +1,382 @@
-IBDEI00G ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
- Q:'DIFQR(358.1)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI00G ; ; 09-FEB-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.1,230,0)
- ;;=HEADER^47^^1^52^27^1^^^2
- ;;^UTILITY(U,$J,358.1,231,0)
- ;;=PATIENT INFORMATION^47^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,232,0)
- ;;=PROCEDURES (V2.1)^47^^17^0^133^63^^^1^MARK ALL PROCEDURES PERFORMED^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,233,0)
- ;;=DIAGNOSIS NAT PC^47^^81^0^133^44^^^1^DIAGNOSES^CR^Common ICD-9 diagnoses^0
- ;;^UTILITY(U,$J,358.1,234,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^47^^6^0^132^10^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,235,0)
- ;;=DIAGNOSIS NAT PC^48^^31^0^133^204^^^1^DIAGNOSES^CR^Common ICD-9 diagnoses^0
- ;;^UTILITY(U,$J,358.1,236,0)
- ;;=HEADER^48^^1^49^51^1^^^2
- ;;^UTILITY(U,$J,358.1,237,0)
- ;;=PATIENT INFORMATION^48^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,238,0)
- ;;=CPT CODES (3 COL)^48^^7^0^132^23^^^1^PLEASE CHECK OFF PROCEDURES PERFORMED THIS VISIT^BCU^Selection list - CPT codes^0
- ;;^UTILITY(U,$J,358.1,239,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^49^^6^0^132^10^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,240,0)
- ;;=HEADER^49^^1^49^12^1^^^2
- ;;^UTILITY(U,$J,358.1,241,0)
- ;;=PATIENT INFORMATION^49^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,242,0)
- ;;=DIAGNOSIS NAT PC^49^^61^0^133^119^^^1^DIAGNOSES^CR^Common ICD-9 diagnoses^0
- ;;^UTILITY(U,$J,358.1,243,0)
- ;;=PROCEDURES (V2.1)^49^^17^0^133^43^^^1^MARK ALL PROCEDURES PERFORMED^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,244,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^50^^6^0^132^10^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,245,0)
- ;;=HEADER^50^^1^49^17^1^^^2
- ;;^UTILITY(U,$J,358.1,246,0)
- ;;=PATIENT INFORMATION^50^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,247,0)
- ;;=CPT CODES (3 COL)^50^^17^0^132^7^^^1^PLEASE CHECK OFF PROCEDURES PERFORMED THIS VISIT^BCU^Selection list - CPT codes^0
- ;;^UTILITY(U,$J,358.1,248,0)
- ;;=DIAGNOSIS CODES^50^^25^0^132^274^^^1^DIAGNOSES^RC^Selection list - ICD-9 dx codes^
- ;;^UTILITY(U,$J,358.1,249,0)
- ;;=HEADER^51^^1^59^26^1^^^2
- ;;^UTILITY(U,$J,358.1,250,0)
- ;;=CPT CODES^51^^7^0^132^9^^^1^FILL IN BUBBLE FOR TELEPHONE CALL PERFORMED^UBRC^Selection list - CPT codes^0
- ;;^UTILITY(U,$J,358.1,251,0)
- ;;=PATIENT INFORMATION^51^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,252,0)
- ;;=ICD-9 DIAGNOSES (V2.1)^51^^15^0^132^15^^^1^DIAGNOSIS^CR^Common ICD-9 diagnoses^0
- ;;^UTILITY(U,$J,358.1,253,0)
- ;;=CPT CODES (3 COL)^52^^16^0^132^54^^^1^PLEASE CHECK OFF PROCEDURES PERFORMED THIS VISIT^BCU^Selection list - CPT codes^0
- ;;^UTILITY(U,$J,358.1,254,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^52^^5^0^132^10^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,255,0)
- ;;=HEADER^52^^1^57^19^1^^^2
- ;;^UTILITY(U,$J,358.1,256,0)
- ;;=PATIENT INFORMATION^52^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,257,0)
- ;;=DIAGNOSIS CODES^52^^71^0^132^119^^^1^DIAGNOSES^RC^Selection list - ICD-9 dx codes^0
- ;;^UTILITY(U,$J,358.1,258,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^53^^6^0^132^9^^^1^^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,259,0)
- ;;=HEADER^53^^1^54^25^1^^^2
- ;;^UTILITY(U,$J,358.1,260,0)
- ;;=PATIENT INFORMATION^53^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,261,0)
- ;;=DIAGNOSES - 1^53^^46^0^132^109^^^1^^RC^3 COLUMN ICD-9 CODES^0
- ;;^UTILITY(U,$J,358.1,262,0)
- ;;=CPT CODES^53^^15^0^132^30^^^1^MARK PROCEDURE(S) PERFORMED THIS VISIT^RC^Selection list - CPT codes^0
+ ;;^UTILITY(U,$J,358.3,257,1,4,0)
+ ;;=4^R11.11
+ ;;^UTILITY(U,$J,358.3,257,2)
+ ;;=^5019233
+ ;;^UTILITY(U,$J,358.3,258,0)
+ ;;=R12.^^1^5^45
+ ;;^UTILITY(U,$J,358.3,258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,258,1,3,0)
+ ;;=3^Heartburn
+ ;;^UTILITY(U,$J,358.3,258,1,4,0)
+ ;;=4^R12.
+ ;;^UTILITY(U,$J,358.3,258,2)
+ ;;=^5019238
+ ;;^UTILITY(U,$J,358.3,259,0)
+ ;;=R13.10^^1^5^24
+ ;;^UTILITY(U,$J,358.3,259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,259,1,3,0)
+ ;;=3^Dysphagia,Unspec
+ ;;^UTILITY(U,$J,358.3,259,1,4,0)
+ ;;=4^R13.10
+ ;;^UTILITY(U,$J,358.3,259,2)
+ ;;=^335307
+ ;;^UTILITY(U,$J,358.3,260,0)
+ ;;=R14.1^^1^5^43
+ ;;^UTILITY(U,$J,358.3,260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,260,1,3,0)
+ ;;=3^Gas Pain
+ ;;^UTILITY(U,$J,358.3,260,1,4,0)
+ ;;=4^R14.1
+ ;;^UTILITY(U,$J,358.3,260,2)
+ ;;=^5019241
+ ;;^UTILITY(U,$J,358.3,261,0)
+ ;;=R14.0^^1^5^1
+ ;;^UTILITY(U,$J,358.3,261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,261,1,3,0)
+ ;;=3^Abdominal Distension
+ ;;^UTILITY(U,$J,358.3,261,1,4,0)
+ ;;=4^R14.0
+ ;;^UTILITY(U,$J,358.3,261,2)
+ ;;=^5019240
+ ;;^UTILITY(U,$J,358.3,262,0)
+ ;;=R14.2^^1^5^26
+ ;;^UTILITY(U,$J,358.3,262,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,262,1,3,0)
+ ;;=3^Eructation
+ ;;^UTILITY(U,$J,358.3,262,1,4,0)
+ ;;=4^R14.2
+ ;;^UTILITY(U,$J,358.3,262,2)
+ ;;=^5019242
+ ;;^UTILITY(U,$J,358.3,263,0)
+ ;;=R14.3^^1^5^30
+ ;;^UTILITY(U,$J,358.3,263,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,263,1,3,0)
+ ;;=3^Flatulence
+ ;;^UTILITY(U,$J,358.3,263,1,4,0)
+ ;;=4^R14.3
+ ;;^UTILITY(U,$J,358.3,263,2)
+ ;;=^5019243
+ ;;^UTILITY(U,$J,358.3,264,0)
+ ;;=R19.2^^1^5^80
+ ;;^UTILITY(U,$J,358.3,264,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,264,1,3,0)
+ ;;=3^Visible Peristalsis
+ ;;^UTILITY(U,$J,358.3,264,1,4,0)
+ ;;=4^R19.2
+ ;;^UTILITY(U,$J,358.3,264,2)
+ ;;=^5019265
+ ;;^UTILITY(U,$J,358.3,265,0)
+ ;;=R19.12^^1^5^48
+ ;;^UTILITY(U,$J,358.3,265,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,265,1,3,0)
+ ;;=3^Hyperactive Bowel Sounds
+ ;;^UTILITY(U,$J,358.3,265,1,4,0)
+ ;;=4^R19.12
+ ;;^UTILITY(U,$J,358.3,265,2)
+ ;;=^5019263
+ ;;^UTILITY(U,$J,358.3,266,0)
+ ;;=R19.15^^1^5^8
+ ;;^UTILITY(U,$J,358.3,266,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,266,1,3,0)
+ ;;=3^Bowel Sound Abnormality NEC
+ ;;^UTILITY(U,$J,358.3,266,1,4,0)
+ ;;=4^R19.15
+ ;;^UTILITY(U,$J,358.3,266,2)
+ ;;=^5019264
+ ;;^UTILITY(U,$J,358.3,267,0)
+ ;;=R15.9^^1^5^41
+ ;;^UTILITY(U,$J,358.3,267,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,267,1,3,0)
+ ;;=3^Full Incontinence of Feces
+ ;;^UTILITY(U,$J,358.3,267,1,4,0)
+ ;;=4^R15.9
+ ;;^UTILITY(U,$J,358.3,267,2)
+ ;;=^5019247
+ ;;^UTILITY(U,$J,358.3,268,0)
+ ;;=R19.7^^1^5^22
+ ;;^UTILITY(U,$J,358.3,268,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,268,1,3,0)
+ ;;=3^Diarrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,268,1,4,0)
+ ;;=4^R19.7
+ ;;^UTILITY(U,$J,358.3,268,2)
+ ;;=^5019276
+ ;;^UTILITY(U,$J,358.3,269,0)
+ ;;=T33.522A^^1^5^32
+ ;;^UTILITY(U,$J,358.3,269,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,269,1,3,0)
+ ;;=3^Frostbite of Left Hand,Superficial,Init Encntr
+ ;;^UTILITY(U,$J,358.3,269,1,4,0)
+ ;;=4^T33.522A
+ ;;^UTILITY(U,$J,358.3,269,2)
+ ;;=^5049079
+ ;;^UTILITY(U,$J,358.3,270,0)
+ ;;=T33.521A^^1^5^34
+ ;;^UTILITY(U,$J,358.3,270,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,270,1,3,0)
+ ;;=3^Frostbite of Right Hand,Superficial,Init Encntr
+ ;;^UTILITY(U,$J,358.3,270,1,4,0)
+ ;;=4^T33.521A
+ ;;^UTILITY(U,$J,358.3,270,2)
+ ;;=^5049076
+ ;;^UTILITY(U,$J,358.3,271,0)
+ ;;=T34.521A^^1^5^38
+ ;;^UTILITY(U,$J,358.3,271,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,271,1,3,0)
+ ;;=3^Frostbite w/ Tissue Necrosis of Right Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,271,1,4,0)
+ ;;=4^T34.521A
+ ;;^UTILITY(U,$J,358.3,271,2)
+ ;;=^5049187
+ ;;^UTILITY(U,$J,358.3,272,0)
+ ;;=T34.522A^^1^5^36
+ ;;^UTILITY(U,$J,358.3,272,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,272,1,3,0)
+ ;;=3^Frostbite w/ Tissue Necrosis of Left Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,272,1,4,0)
+ ;;=4^T34.522A
+ ;;^UTILITY(U,$J,358.3,272,2)
+ ;;=^5049190
+ ;;^UTILITY(U,$J,358.3,273,0)
+ ;;=T33.821A^^1^5^33
+ ;;^UTILITY(U,$J,358.3,273,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,273,1,3,0)
+ ;;=3^Frostbite of Right Foot,Superficial,Init Encntr
+ ;;^UTILITY(U,$J,358.3,273,1,4,0)
+ ;;=4^T33.821A
+ ;;^UTILITY(U,$J,358.3,273,2)
+ ;;=^5049121
+ ;;^UTILITY(U,$J,358.3,274,0)
+ ;;=T33.822A^^1^5^31
+ ;;^UTILITY(U,$J,358.3,274,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,274,1,3,0)
+ ;;=3^Frostbite of Left Foot,Superficial,Init Encntr
+ ;;^UTILITY(U,$J,358.3,274,1,4,0)
+ ;;=4^T33.822A
+ ;;^UTILITY(U,$J,358.3,274,2)
+ ;;=^5049124
+ ;;^UTILITY(U,$J,358.3,275,0)
+ ;;=T34.821A^^1^5^37
+ ;;^UTILITY(U,$J,358.3,275,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,275,1,3,0)
+ ;;=3^Frostbite w/ Tissue Necrosis of Right Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,275,1,4,0)
+ ;;=4^T34.821A
+ ;;^UTILITY(U,$J,358.3,275,2)
+ ;;=^5049232
+ ;;^UTILITY(U,$J,358.3,276,0)
+ ;;=T34.822A^^1^5^35
+ ;;^UTILITY(U,$J,358.3,276,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,276,1,3,0)
+ ;;=3^Frostbite w/ Tissue Necrosis of Left Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,276,1,4,0)
+ ;;=4^T34.822A
+ ;;^UTILITY(U,$J,358.3,276,2)
+ ;;=^5049235
+ ;;^UTILITY(U,$J,358.3,277,0)
+ ;;=T33.90XA^^1^5^39
+ ;;^UTILITY(U,$J,358.3,277,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,277,1,3,0)
+ ;;=3^Frostbite,Superficial,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,277,1,4,0)
+ ;;=4^T33.90XA
+ ;;^UTILITY(U,$J,358.3,277,2)
+ ;;=^5049139
+ ;;^UTILITY(U,$J,358.3,278,0)
+ ;;=T34.90XA^^1^5^40
+ ;;^UTILITY(U,$J,358.3,278,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,278,1,3,0)
+ ;;=3^Frostbitre w/ Tissue Necrosis of Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,278,1,4,0)
+ ;;=4^T34.90XA
+ ;;^UTILITY(U,$J,358.3,278,2)
+ ;;=^5049250
+ ;;^UTILITY(U,$J,358.3,279,0)
+ ;;=T69.021A^^1^5^52
+ ;;^UTILITY(U,$J,358.3,279,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,279,1,3,0)
+ ;;=3^Immersion Right Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,279,1,4,0)
+ ;;=4^T69.021A
+ ;;^UTILITY(U,$J,358.3,279,2)
+ ;;=^5053963
+ ;;^UTILITY(U,$J,358.3,280,0)
+ ;;=T69.022A^^1^5^51
+ ;;^UTILITY(U,$J,358.3,280,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,280,1,3,0)
+ ;;=3^Immersion Left Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,280,1,4,0)
+ ;;=4^T69.022A
+ ;;^UTILITY(U,$J,358.3,280,2)
+ ;;=^5053966
+ ;;^UTILITY(U,$J,358.3,281,0)
+ ;;=Z02.3^^1^5^27
+ ;;^UTILITY(U,$J,358.3,281,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,281,1,3,0)
+ ;;=3^Exam for Recruitment to Armed Forces
+ ;;^UTILITY(U,$J,358.3,281,1,4,0)
+ ;;=4^Z02.3
+ ;;^UTILITY(U,$J,358.3,281,2)
+ ;;=^5062636
+ ;;^UTILITY(U,$J,358.3,282,0)
+ ;;=Z02.89^^1^5^4
+ ;;^UTILITY(U,$J,358.3,282,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,282,1,3,0)
+ ;;=3^Administrative Exam
+ ;;^UTILITY(U,$J,358.3,282,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,282,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,283,0)
+ ;;=Z02.1^^1^5^67
+ ;;^UTILITY(U,$J,358.3,283,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,283,1,3,0)
+ ;;=3^Pre-Employment Exam
+ ;;^UTILITY(U,$J,358.3,283,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,283,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,284,0)
+ ;;=C02.9^^1^6^1
+ ;;^UTILITY(U,$J,358.3,284,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,284,1,3,0)
+ ;;=3^Malig Neop of Tongue,Unspec
+ ;;^UTILITY(U,$J,358.3,284,1,4,0)
+ ;;=4^C02.9
+ ;;^UTILITY(U,$J,358.3,284,2)
+ ;;=^5000891
+ ;;^UTILITY(U,$J,358.3,285,0)
+ ;;=C06.9^^1^6^2
+ ;;^UTILITY(U,$J,358.3,285,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,285,1,3,0)
+ ;;=3^Malig Neop of Mouth,Unspec
+ ;;^UTILITY(U,$J,358.3,285,1,4,0)
+ ;;=4^C06.9
+ ;;^UTILITY(U,$J,358.3,285,2)
+ ;;=^5000901
+ ;;^UTILITY(U,$J,358.3,286,0)
+ ;;=C10.9^^1^6^3
+ ;;^UTILITY(U,$J,358.3,286,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,286,1,3,0)
+ ;;=3^Malig Neop of Oropharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,286,1,4,0)
+ ;;=4^C10.9
+ ;;^UTILITY(U,$J,358.3,286,2)
+ ;;=^5000909
+ ;;^UTILITY(U,$J,358.3,287,0)
+ ;;=C11.9^^1^6^4
+ ;;^UTILITY(U,$J,358.3,287,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,287,1,3,0)
+ ;;=3^Malig Neop of Nasopharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,287,1,4,0)
+ ;;=4^C11.9
+ ;;^UTILITY(U,$J,358.3,287,2)
+ ;;=^5000911
+ ;;^UTILITY(U,$J,358.3,288,0)
+ ;;=C15.9^^1^6^5
+ ;;^UTILITY(U,$J,358.3,288,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,288,1,3,0)
+ ;;=3^Malig Neop of Esophagus,Unspec
+ ;;^UTILITY(U,$J,358.3,288,1,4,0)
+ ;;=4^C15.9
+ ;;^UTILITY(U,$J,358.3,288,2)
+ ;;=^5000919
+ ;;^UTILITY(U,$J,358.3,289,0)
+ ;;=C16.9^^1^6^6
+ ;;^UTILITY(U,$J,358.3,289,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,289,1,3,0)
+ ;;=3^Malig Neop of Stomach,Unspec
+ ;;^UTILITY(U,$J,358.3,289,1,4,0)
+ ;;=4^C16.9
+ ;;^UTILITY(U,$J,358.3,289,2)
+ ;;=^5000923
+ ;;^UTILITY(U,$J,358.3,290,0)
+ ;;=C17.9^^1^6^7
+ ;;^UTILITY(U,$J,358.3,290,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,290,1,3,0)
+ ;;=3^Malig Neop of Small Intestine,Unspec
+ ;;^UTILITY(U,$J,358.3,290,1,4,0)
+ ;;=4^C17.9
+ ;;^UTILITY(U,$J,358.3,290,2)
+ ;;=^5000926
+ ;;^UTILITY(U,$J,358.3,291,0)
+ ;;=C18.9^^1^6^8
+ ;;^UTILITY(U,$J,358.3,291,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,291,1,3,0)
+ ;;=3^Malig Neop of Colon,Unspec
+ ;;^UTILITY(U,$J,358.3,291,1,4,0)
+ ;;=4^C18.9
+ ;;^UTILITY(U,$J,358.3,291,2)
+ ;;=^5000929
+ ;;^UTILITY(U,$J,358.3,292,0)
+ ;;=C20.^^1^6^9
+ ;;^UTILITY(U,$J,358.3,292,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,292,1,3,0)
+ ;;=3^Malig Neop of Rectum
+ ;;^UTILITY(U,$J,358.3,292,1,4,0)
+ ;;=4^C20.
+ ;;^UTILITY(U,$J,358.3,292,2)
+ ;;=^267090
+ ;;^UTILITY(U,$J,358.3,293,0)
+ ;;=C21.0^^1^6^10
+ ;;^UTILITY(U,$J,358.3,293,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,293,1,3,0)
+ ;;=3^Malig Neop of Anus,Unspec
+ ;;^UTILITY(U,$J,358.3,293,1,4,0)
+ ;;=4^C21.0
+ ;;^UTILITY(U,$J,358.3,293,2)
+ ;;=^5000930
+ ;;^UTILITY(U,$J,358.3,294,0)
+ ;;=C22.8^^1^6^11
+ ;;^UTILITY(U,$J,358.3,294,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,294,1,3,0)
+ ;;=3^Malig Neop of Liver,Primary
+ ;;^UTILITY(U,$J,358.3,294,1,4,0)
+ ;;=4^C22.8
+ ;;^UTILITY(U,$J,358.3,294,2)
+ ;;=^5000939
+ ;;^UTILITY(U,$J,358.3,295,0)
+ ;;=C22.7^^1^6^12
+ ;;^UTILITY(U,$J,358.3,295,1,0)
+ ;;=^358.31IA^4^2

@@ -1,5 +1,5 @@
 MAGGTIG ;WOIFO/GEK/SG/NST - MAGGT Image Get. Callbacks to Get Image lists ; 14 Sep 2010 10:15 AM
- ;;3.0;IMAGING;**8,48,93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+ ;;3.0;IMAGING;**8,48,93,117,150**;Mar 19, 2002;Build 18;Jan 22, 2015
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -142,7 +142,6 @@ GROUP(MAGRY,MAGIEN,NOCHK,FLAGS) ;RPC [MAGG GROUP IMAGES]
  N Y,MAGDFN,I,MAGCHILD,MAGCT,MAGTMPAR,MSGX,MAGQI,MAGY,MAGFILE
  N MAGNOCHK
  S FLAGS=$G(FLAGS)
- ;
  ;Test BigGroup S BKG=+$G(BKG)
  ;Test BigGroup K ^TMP("MAGBGRP")
  S MAGIEN=+MAGIEN,MSGX=""
@@ -215,6 +214,7 @@ GROUP(MAGRY,MAGIEN,NOCHK,FLAGS) ;RPC [MAGG GROUP IMAGES]
  . ; Get Deleted images
  . S MAGCHILD=0
  . F  S MAGCHILD=$O(^MAG(2005.1,"AGP",MAGIEN,MAGCHILD)) Q:'MAGCHILD  D
+ . . I ($P(^MAG(2005.1,MAGCHILD,100),"^",8)=13) Q  ;If ImageNeverExisted Quit.
  . . S MAGCT=MAGCT+1
  . . S MAGFILE=$$INFO^MAGGAII(MAGCHILD,"D")
  . . S @MAGRY@(MAGCT)="B2^"_MAGFILE

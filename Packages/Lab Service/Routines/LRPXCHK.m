@@ -1,5 +1,5 @@
 LRPXCHK ;SLC/STAFF - Lab PXRMINDX Index Validation ;3/30/04  12:01
- ;;5.2;LAB SERVICE;**295**;Sep 27, 1994
+ ;;5.2;LAB SERVICE;**295,445**;Sep 27, 1994;Build 6
  ;
 PATS ; select patients for index check
  N DFN,ERR,REPAIR
@@ -217,7 +217,7 @@ CH(DFN,LRDFN,DATE,LRIDT) ;
  F  S LRDN=$O(^LR(LRDFN,"CH",LRIDT,LRDN)) Q:LRDN<1  D
  . S NODE=DAT_";"_LRDN
  . S TEMP=^LR(LRDFN,"CH",LRIDT,LRDN)
- . S TEST=+$P($P(TEMP,U,3),"!",6)
+ . S TEST=+$P($P(TEMP,U,3),"!",7)
  . I 'TEST S TEST=$$TEST^LRPXAPIU(LRDN)
  . I 'TEST Q
  . D SLAB^LRPX(DFN,DATE,TEST,NODE)

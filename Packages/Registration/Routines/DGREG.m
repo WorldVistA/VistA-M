@@ -1,5 +1,5 @@
-DGREG ;ALB/JDS,MRL/PJR/PHH-REGISTER PATIENT ; 8/24/05 1:40pm
- ;;5.3;Registration;**1,32,108,147,149,182,245,250,513,425,533,574,563,624,658,864**;Aug 13, 1993;Build 16
+DGREG ;ALB/JDS,MRL/PJR/PHH-REGISTER PATIENT ; 3/28/14 12:38pm
+ ;;5.3;Registration;**1,32,108,147,149,182,245,250,513,425,533,574,563,624,658,864,886**;Aug 13, 1993;Build 5
 START ;
 EN D LO^DGUTL S DGCLPR=""
  N DGDIV
@@ -56,13 +56,15 @@ REG S (DIE,DIC)="^DPT("_DFN_",""DIS"",",%DT="PTEX",%DT("A")="Registration login 
  I (RESULT'="^") W "  ("_RESULT(0)_")"
  S DINUM=9999999-RESULT
  S (DFN1,Y1)=DINUM,APD=Y I $D(^DPT(DFN,"DIS",Y1)) W !!,"You must enter a date that does not exist.",$C(7),$C(7) G REG
- G:$D(^DPT("ADA",1,DA)) CH1 L @(DIE_DINUM_")"):2 G:'$T MSG S:'($D(^DPT(DA(1),"DIS",0))#2) ^(0)="^2.101D^^" S DIC(0)="L",X=+Y D ^DIC
+ ;patch 886 changed to incremental lock and dilocktm
+ G:$D(^DPT("ADA",1,DA)) CH1 L +@(DIE_DINUM_")"):$G(DILOCKTM,3) G:'$T MSG S:'($D(^DPT(DA(1),"DIS",0))#2) ^(0)="^2.101D^^" S DIC(0)="L",X=+Y D ^DIC
  ;
  ;SAVE OFF DATE/TIME OF REGISTRATION FOR HL7 V2.3 MESSAGING, IN VAFCDDT
  S VAFCDDT=X
  ;
  S DA=DFN1,DIE("NO^")="",DA(1)=DFN,DP=2.101,DR="1///"_$S(SEEN=2:2,CURR=1:1,1:0)_";Q;2"_$S(CURR=1:"///3",1:"")_";2.1;3//"_$S($P(^DG(43,1,"GL"),"^",2):"",1:"/")_$S($D(^DG(40.8,+$P(^DG(43,1,"GL"),"^",3),0)):$P(^(0),"^",1),1:"")_";4////"_DUZ
- D EL K DIC("A") N DGNDLOCK S DGNDLOCK=DIE_DFN1_")" L +@DGNDLOCK:2 G:'$T MSG D ^DIE L -@DGNDLOCK
+ ;patch 886 changed lock to use dilocktm
+ D EL K DIC("A") N DGNDLOCK S DGNDLOCK=DIE_DFN1_")" L +@DGNDLOCK:$G(DILOCKTM,3) G:'$T MSG D ^DIE L -@DGNDLOCK
  I $D(DTOUT) D  G Q
  .K DTOUT
  .N DA,DIK
@@ -103,7 +105,8 @@ BEGINREG(DFN) ;
  ;
  Q:'$G(DFN) 0
  I $$QRY^DGENQRY(DFN) W !!,"Enrollment/Eligibility Query sent ...",!!
- L +^TMP(DFN,"REGISTRATION IN PROGRESS"):1
+ ;patch 886 changed lock to use dilocktm
+ L +^TMP(DFN,"REGISTRATION IN PROGRESS"):$G(DILOCKTM,3)
  I $$LOCK^DGENPTA1(DFN) ;try to lock the patient record
  Q
  ;
@@ -124,7 +127,8 @@ IFREG(DFN) ;
  ;
  N RETURN
  Q:'$G(DFN) 0
- L +^TMP(DFN,"REGISTRATION IN PROGRESS"):1
+ ;patch 886 changed lock to use dilocktm
+ L +^TMP(DFN,"REGISTRATION IN PROGRESS"):$G(DILOCKTM,3)
  S RETURN='$T
  L -^TMP(DFN,"REGISTRATION IN PROGRESS")
  Q RETURN

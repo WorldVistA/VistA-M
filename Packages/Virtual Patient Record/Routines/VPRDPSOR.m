@@ -1,5 +1,5 @@
 VPRDPSOR ;SLC/MKB -- Medication extract by order ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,4**;Sep 01, 2011;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -54,8 +54,8 @@ EN1(IFN,MED) ; -- return an order in MED("attribute")=value [from EN]
  S MED("id")=IFN,MED("orderID")=IFN,MED("vaType")=CLS
  S:ORPK MED("medID")=ORPK_";"_CLS
  D EN^ORX8(IFN) S X="" F  S X=$O(ORUPCHUK(X)) Q:X=""  S:$D(ORUPCHUK(X))#2 @X=ORUPCHUK(X)
- S MED("ordered")=$G(ORODT),MED("orderingProvider")=$G(ORNP)
- S MED("currentProvider")=$$LASTPROV(IFN)
+ S MED("ordered")=$G(ORODT),MED("orderingProvider")=$G(ORNP)_U_$$PROVSPC^VPRD(+ORNP)
+ S X=$$LASTPROV(IFN),MED("currentProvider")=X_U_$$PROVSPC^VPRD(+X)
  S MED("start")=$G(ORSTRT),MED("stop")=$G(ORSTOP)
  S MED("vaStatus")=$P($G(ORSTS),U,2),MED("status")=$$STATUS(+$G(ORSTS))
  S LOC=+$G(ORL) S:LOC MED("location")=LOC_U_$P(^SC(LOC,0),U)
@@ -121,7 +121,7 @@ DOSE(N) ; --add dosage data from VPRESP(ID,N) [instance N]
  Q DOSE
  ;
 LASTPROV(IFN) ; -- return last provider who took action on order IFN
- N I,X,Y S Y=""
+ N I,X,Y S Y="^"
  S I="A" F  S I=$O(^OR(100,IFN,8,I),-1) Q:I<1  S X=$G(^(I,0)) D  Q:Y
  . I $P(X,U,5) S Y=+$P(X,U,5) Q  ;signer
  . I $P(X,U,3) S Y=+$P(X,U,3) Q  ;orderer

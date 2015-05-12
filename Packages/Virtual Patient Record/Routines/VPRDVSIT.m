@@ -1,5 +1,5 @@
 VPRDVSIT ;SLC/MKB -- Visit/Encounter extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,2**;Sep 01, 2011;Build 317
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2,4**;Sep 01, 2011;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -88,9 +88,15 @@ EN1(IEN,VST) ; -- return a visit in VST("attribute")=value
  . S VST("location")=$P(L0,U),VST("service")=$$SERV($P(L0,U,20))
  . S X=$P(L0,U,18) S:X VST("creditStopCode")=$$AMIS(X)
  S VST("reason")=$$POV(IEN)
- ; provider(s)
+ ; provider(s), including taxonomy/specialty info
  S DA=0 F  S DA=$O(^TMP("PXKENC",$J,IEN,"PRV",DA)) Q:DA<1  S X0=$G(^(DA,0)) D
- . S VST("provider",DA)=+X0_U_$P($G(^VA(200,+X0,0)),U)_$S($P(X0,U,4)="P":"^P^1",1:"^S^")
+ . S VST("provider",DA)=+X0_U_$P($G(^VA(200,+X0,0)),U)_$S($P(X0,U,4)="P":"^P^1",1:"^S^")_U_$$PROVSPC^VPRD(+X0)
+ ; cpt(s)
+ S DA=0 F  S DA=$O(^TMP("PXKENC",$J,IEN,"CPT",DA)) Q:DA<1  S X0=$G(^(DA,0)) D
+ . S VST("cpt",DA)=$P($$CPT^ICPTCOD(+X0),U,2,3)
+ ; icd(s)
+ S DA=0 F  S DA=$O(^TMP("PXKENC",$J,IEN,"POV",DA)) Q:DA<1  S X0=$G(^(DA,0)) D
+ . S VST("icd",DA)=$$ICD(+X0)_U_$$EXTERNAL^DILFD(9000010.07,.04,,$P(X0,U,4))_U_$S($L($P(X0,U,12)):$P(X0,U,12),1:"U")
  ; note(s)
  D TIU(IEN)
  K ^TMP("PXKENC",$J,IEN)
@@ -164,8 +170,8 @@ ADM(IEN,DATE,ADM) ; -- return an admission in ADM("attribute")=value
  S ADM("id")=IEN,ADM("patientClass")="IMP"
  ; ADM("admitType")=$P($G(VAIP(4)),U,2)
  S DATE=+$G(VAIP(13,1)),(ADM("dateTime"),ADM("arrivalDateTime"))=DATE,I=0
- S:$G(VAIP(7)) I=I+1,ADM("provider",I)=VAIP(7)_"^P^1" ;primary
- S:$G(VAIP(18)) I=I+1,ADM("provider",I)=VAIP(18)_"^A" ;attending
+ S X=$G(VAIP(7)) S:X I=I+1,ADM("provider",I)=X_"^P^1"_U_$$PROVSPC^VPRD(+X) ;primary
+ S X=$G(VAIP(18)) S:X I=I+1,ADM("provider",I)=X_"^A^"_U_$$PROVSPC^VPRD(+X) ;attending
  S ADM("specialty")=$P($G(VAIP(8)),U,2)
  S X=$$SERV(+$G(VAIP(8))),ADM("service")=X
  S ICD=$$POV(IEN) S:'ICD ICD=$$PTF(DFN,VAIP(12)) ;PTF>ICD
@@ -187,8 +193,8 @@ INPT ; -- return current admission in ADM("attribute")=value [from ADM]
  S ADM("id")=IEN,ADM("patientClass")="IMP"
  ; ADM("admitType")=$P($G(VAIN(8)),U,2)
  S DATE=+$G(VAIN(7)),(ADM("dateTime"),ADM("arrivalDateTime"))=DATE,I=0
- S:$G(VAIN(2)) I=I+1,ADM("provider",I)=VAIN(2)_"^P^1" ;primary
- S:$G(VAIN(11)) I=I+1,ADM("provider",I)=VAIN(11)_"^A" ;attending
+ S X=$G(VAIN(2)) S:X I=I+1,ADM("provider",I)=X_"^P^1"_U_$$PROVSPC^VPRD(+X) ;primary
+ S X=$G(VAIN(11)) S:X I=I+1,ADM("provider",I)=X_"^A^"_U_$$PROVSPC^VPRD(+X) ;attending
  S ADM("specialty")=$P($G(VAIN(3)),U,2)
  S X=$$SERV(+$G(VAIN(3))),ADM("service")=X
  S ICD=$$POV(IEN) S:'ICD ICD=$$PTF(DFN,VAIN(10)) ;PTF>ICD
@@ -239,7 +245,9 @@ XML(VISIT) ; -- Return patient visit as XML
  .. S I=0 F  S I=$O(VISIT(ATT,I)) Q:I<1  D
  ... S X=$G(VISIT(ATT,I)),NAMES=""
  ... I ATT="document" S NAMES="id^localTitle^nationalTitle^Z"
- ... I ATT="provider" S NAMES="code^name^role^primary^Z"
+ ... I ATT="provider" S NAMES="code^name^role^primary^taxonomyCode^providerType^classification^specialization^Z"
+ ... I ATT="cpt" S NAMES="code^name^Z"
+ ... I ATT="icd" S NAMES="code^name^narrative^ranking^Z"
  ... S Y="<"_ATT_" "_$$LOOP ;_"/>" D ADD(Y)
  ... S X=$G(VISIT(ATT,I,"content")) I '$L(X) S Y=Y_"/>" D ADD(Y) Q
  ... S Y=Y_">" D ADD(Y)

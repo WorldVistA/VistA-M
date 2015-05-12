@@ -20,7 +20,11 @@ RORUTL11 ;HCIOFO/SG - ACCESS AND SECURITY UTILITIES ;15 Aug 2013  11:31 AM
  ;
  ;ROR*1.5*20   DEC 2012    C RAY        Updated version
  ;
- ;ROR*1.5*19   APR 2012    K GUPTA      Updated version                                    
+ ;ROR*1.5*19   APR 2012    K GUPTA      Updated version
+ ;                                    
+ ;ROR*1.5*21   AUG 2013    T KOPP       Updated version
+ ;
+ ;ROR*1.5*22   FEB 2014    T KOPP       Updated version                                    
  ;******************************************************************************
  ; This routine uses the following IAs:
  ;
@@ -75,7 +79,7 @@ RPCHECK(RPCNAME,REGIEN,FLAGS) ;
  . . . I KEY?1"ROR"1.E  S:KEY["ADMIN" RC=0
  . S ACCESS=1
  ;---
- D ACVIOLTN^RORLOG(X,$G(REGIEN),RPCNAME)
+ D ACVIOLTN^RORLOG(-91,$G(REGIEN),RPCNAME)
  Q 1
  ;
  ;***** RETURNS SERVER VERSION

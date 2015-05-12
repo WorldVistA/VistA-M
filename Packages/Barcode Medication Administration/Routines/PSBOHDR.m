@@ -1,5 +1,5 @@
 PSBOHDR ;BIRMINGHAM/EFC - REPORT HEADERS ;12/12/12 12:12pm
- ;;3.0;BAR CODE MED ADMIN;**5,13,42,74,70**;Mar 2004;Build 101
+ ;;3.0;BAR CODE MED ADMIN;**5,13,42,74,70,76**;Mar 2004;Build 10
  ;
  ; Reference/IA
  ; EN6^GMRVUTL/1120
@@ -46,9 +46,9 @@ PT(DFN,PSBHDR,PSBCONT,PSBDT,SRCHTXT,SUBHD) ;
  ..S X=$$VITCWT^APSPFUNC(X)\1,PSBHDR("WEIGHT")=$S(X:X_"kg",1:"*")
  .E  D
  ..S GMRVSTR="HT" D EN6^GMRVUTL
- ..S X=+$P(X,U,8) S:X X=X*2.54\1 S PSBHDR("HEIGHT")=$S(X:X_"cm",1:"*")
+ ..S X=+$P(X,U,8) S:X X=$J((X*2.54),3,0) S PSBHDR("HEIGHT")=$S(X:X_"cm",1:"*") ;Rounding correction, PSB*3*76
  ..S GMRVSTR="WT" D EN6^GMRVUTL
- ..S X=+$P(X,U,8) S:X X=X*.45\1 S PSBHDR("WEIGHT")=$S(X:X_"kg",1:"*")
+ ..S X=+$P(X,U,8) S:X X=$J(X/2.2,0,2) S PSBHDR("WEIGHT")=$S(X:X_"kg",1:"*") ;Rounding correction, PSB*3*76
  .;
  .N PSBADRX D ALLR^PSBALL(.PSBADRX,DFN) S X=0,Y=""
  .F  S X=$O(PSBADRX(X)) Q:'X  D

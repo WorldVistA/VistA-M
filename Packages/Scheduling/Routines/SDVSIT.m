@@ -1,5 +1,5 @@
 SDVSIT ;MJK/ALB - Visit Tracking Processing ; 12/19/12 10:13am
- ;;5.3;Scheduling;**27,44,75,96,132,161,219,605**;Aug 13, 1993;Build 9
+ ;;5.3;Scheduling;**27,44,75,96,132,161,219,630**;Aug 13, 1993;Build 2
  ;
 AEUPD(SDVIEN,SDATYPE,SDOEP) ; -- update one entry in multiple
  ; input: SDVIEN := Visit file pointer
@@ -154,7 +154,7 @@ ARRAY(DFN,SDT,SDDA,SDIS,SDVSIT) ; -- setup sdvsit for disposition
  Q
  ;
 LOCK(SDLOCK) ; -- lock "ADFN" node
- F  L +^SCE("ADFN",+$G(SDLOCK("DFN")),+$G(SDLOCK("EVENT DATE/TIME"))):$G(DILOCKTM,3) Q:$T  ;LLS - 28-MAR-14 - SD*5.3*605 added timeout on lock
+ F  L +^SCE("ADFN",+$G(SDLOCK("DFN")),+$G(SDLOCK("EVENT DATE/TIME"))):$G(DILOCKTM,3) Q:$T  ;LLS - 05-JAN-15 - SD*5.3*630 added timeout on lock
  Q
  ;
 UNLOCK(SDLOCK) ; -- unlock "ADFN" node
@@ -169,12 +169,20 @@ DIVQ Q DIV
  ; -- see bottom of SDVSIT0 for additional doc
  ;
 SDOE(SDT,SDVSIT,SDVIEN,SDOEP) ; -- get visit & encounter
- ;LLS 18-FEB-2014 - SD*5.3*605 This fix assumes there is only one visit for any exact D/T for any one patient
- ;                             Parent-child visits are protected by check of SDVSIT("PAR")
- N SDTR,SDI ;LLS 18-FEB-2014 - SD*5.3*605 added
- S SDTR=9999999-$P(SDT,".") ;LLS 18-FEB-2014 - SD*5.3*605 added
- I SDT["." S SDTR=SDTR_"."_$P(SDT,".",2) ;LLS 18-FEB-2014 - SD*5.3*605 added
- I '$D(SDVSIT("PAR")) S SDVIEN=$O(^AUPNVSIT("AA",DFN,SDTR,"")) ;LLS 18-FEB-2014 - SD*5.3*605
+ N SDTR,SDI ;LLS 22-DEC-2014 - SD*5.3*630 - added
+ S SDTR=9999999-$P(SDT,".") ;LLS 22-DEC-2014 - SD*5.3*630 - added
+ I SDT["." S SDTR=SDTR_"."_$P(SDT,".",2) ;LLS 22-DEC-2014 - SD*5.3*630 - added
+ I '$D(SDVSIT("PAR")),$G(SDVIEN)="" D  ;LLS 22-DEC-2014 - SD*5.3*630 - added the following section
+ . N SDVISARR,SDVIEN1
+ . S SDVIEN1="" F  S SDVIEN1=$O(^AUPNVSIT("AA",DFN,SDTR,SDVIEN1)) Q:SDVIEN1=""  D  Q:$G(SDVIEN)]""
+ . . ; COMPARE VISIT: SERVICE CATEGORY, POINTER TO CLINIC STOP FILE, POINTER TO HOSPITAL LOCATION
+ . . ; FILE, & ENCOUNTER TYPE BEFORE SELECTING EXISTING VISIT INSTEAD OF CREATING A NEW ONE
+ . . D GETS^DIQ(9000010,SDVIEN1_",",".07;.08;.22;15003","I","SDVISARR")
+ . . Q:SDVISARR(9000010,SDVIEN1_",",.07,"I")'=$S($G(SDVSIT("SVC"))]"":SDVSIT("SVC"),$$INP^SDAM2(DFN,SDTR)="I":"I",1:"A")
+ . . Q:SDVISARR(9000010,SDVIEN1_",",.08,"I")'=$G(SDVSIT("CLN"))
+ . . Q:SDVISARR(9000010,SDVIEN1_",",.22,"I")'=$G(SDVSIT("LOC"))
+ . . Q:SDVISARR(9000010,SDVIEN1_",",15003,"I")'="P"
+ . . S SDVIEN=SDVIEN1
  S SDVSIT("VST")=$G(SDVIEN)
  IF 'SDVSIT("VST") D VISIT^SDVSIT0(SDT,.SDVSIT)
  Q $$NEW^SDVSIT0(SDT,.SDVSIT)

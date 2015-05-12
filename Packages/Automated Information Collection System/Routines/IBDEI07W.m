@@ -1,140 +1,24 @@
-IBDEI07W ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI07W ; ; 09-FEB-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.99)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3551,1,4,0)
- ;;=4^197.0
- ;;^UTILITY(U,$J,358.3,3551,1,5,0)
- ;;=5^Mets To Lung
- ;;^UTILITY(U,$J,358.3,3551,2)
- ;;=Mets to Lung^267322
- ;;^UTILITY(U,$J,358.3,3552,0)
- ;;=196.2^^33^281^87
- ;;^UTILITY(U,$J,358.3,3552,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3552,1,4,0)
- ;;=4^196.2
- ;;^UTILITY(U,$J,358.3,3552,1,5,0)
- ;;=5^Mets To Lymph Nodes, Abdominal
- ;;^UTILITY(U,$J,358.3,3552,2)
- ;;=^267316
- ;;^UTILITY(U,$J,358.3,3553,0)
- ;;=196.3^^33^281^88
- ;;^UTILITY(U,$J,358.3,3553,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3553,1,4,0)
- ;;=4^196.3
- ;;^UTILITY(U,$J,358.3,3553,1,5,0)
- ;;=5^Mets To Lymph Nodes, Axillary Or Brachial
- ;;^UTILITY(U,$J,358.3,3553,2)
- ;;=^267317
- ;;^UTILITY(U,$J,358.3,3554,0)
- ;;=196.0^^33^281^89
- ;;^UTILITY(U,$J,358.3,3554,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3554,1,4,0)
- ;;=4^196.0
- ;;^UTILITY(U,$J,358.3,3554,1,5,0)
- ;;=5^Mets To Lymph Nodes, Cervical
- ;;^UTILITY(U,$J,358.3,3554,2)
- ;;=Lymph Nodes^267314
- ;;^UTILITY(U,$J,358.3,3555,0)
- ;;=196.1^^33^281^90
- ;;^UTILITY(U,$J,358.3,3555,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3555,1,4,0)
- ;;=4^196.1
- ;;^UTILITY(U,$J,358.3,3555,1,5,0)
- ;;=5^Mets To Lymph Nodes, Mediastinal 
- ;;^UTILITY(U,$J,358.3,3555,2)
- ;;=Lymph Nodes^267315
- ;;^UTILITY(U,$J,358.3,3556,0)
- ;;=196.8^^33^281^91
- ;;^UTILITY(U,$J,358.3,3556,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3556,1,4,0)
- ;;=4^196.8
- ;;^UTILITY(U,$J,358.3,3556,1,5,0)
- ;;=5^Mets To Lymph Nodes, Multiple Sites
- ;;^UTILITY(U,$J,358.3,3556,2)
- ;;=^267320
- ;;^UTILITY(U,$J,358.3,3557,0)
- ;;=V10.51^^33^281^49
- ;;^UTILITY(U,$J,358.3,3557,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3557,1,4,0)
- ;;=4^V10.51
- ;;^UTILITY(U,$J,358.3,3557,1,5,0)
- ;;=5^H/O Bladder Cancer
- ;;^UTILITY(U,$J,358.3,3557,2)
- ;;=^295228
- ;;^UTILITY(U,$J,358.3,3558,0)
- ;;=V10.3^^33^281^50
- ;;^UTILITY(U,$J,358.3,3558,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3558,1,4,0)
- ;;=4^V10.3
- ;;^UTILITY(U,$J,358.3,3558,1,5,0)
- ;;=5^H/O Breast Cancer
- ;;^UTILITY(U,$J,358.3,3558,2)
- ;;=^295217
- ;;^UTILITY(U,$J,358.3,3559,0)
- ;;=V10.41^^33^281^51
- ;;^UTILITY(U,$J,358.3,3559,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3559,1,4,0)
- ;;=4^V10.41
- ;;^UTILITY(U,$J,358.3,3559,1,5,0)
- ;;=5^H/O Cervical Cancer
- ;;^UTILITY(U,$J,358.3,3559,2)
- ;;=^295219
- ;;^UTILITY(U,$J,358.3,3560,0)
- ;;=V10.05^^33^281^52
- ;;^UTILITY(U,$J,358.3,3560,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3560,1,4,0)
- ;;=4^V10.05
- ;;^UTILITY(U,$J,358.3,3560,1,5,0)
- ;;=5^H/O Colon Cancer
- ;;^UTILITY(U,$J,358.3,3560,2)
- ;;=H/O Colon Cancer^295207
- ;;^UTILITY(U,$J,358.3,3561,0)
- ;;=V10.03^^33^281^53
- ;;^UTILITY(U,$J,358.3,3561,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3561,1,4,0)
- ;;=4^V10.03
- ;;^UTILITY(U,$J,358.3,3561,1,5,0)
- ;;=5^H/O Esophageal Cancer
- ;;^UTILITY(U,$J,358.3,3561,2)
- ;;=^295205
- ;;^UTILITY(U,$J,358.3,3562,0)
- ;;=V10.60^^33^281^55
- ;;^UTILITY(U,$J,358.3,3562,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3562,1,4,0)
- ;;=4^V10.60
- ;;^UTILITY(U,$J,358.3,3562,1,5,0)
- ;;=5^H/O Leukemia
- ;;^UTILITY(U,$J,358.3,3562,2)
- ;;=H/O Leukemia^295231
- ;;^UTILITY(U,$J,358.3,3563,0)
- ;;=V10.11^^33^281^56
- ;;^UTILITY(U,$J,358.3,3563,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3563,1,4,0)
- ;;=4^V10.11
- ;;^UTILITY(U,$J,358.3,3563,1,5,0)
- ;;=5^H/O Lung Cancer
- ;;^UTILITY(U,$J,358.3,3563,2)
- ;;=H/O Lung Cancer^295211
- ;;^UTILITY(U,$J,358.3,3564,0)
- ;;=V10.79^^33^281^57
- ;;^UTILITY(U,$J,358.3,3564,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3564,1,4,0)
- ;;=4^V10.79
- ;;^UTILITY(U,$J,358.3,3564,1,5,0)
- ;;=5^H/O Lymphoma
- ;;^UTILITY(U,$J,358.3,3564,2)
- ;;=H/O Lymphoma^295238
+ ;;^UTILITY(U,$J,358.99)
+ ;;=^IBE(358.99,
+ ;;^UTILITY(U,$J,358.99,0)
+ ;;=IMP/EXP AICS DATA ELEMENTS^358.99^3^3
+ ;;^UTILITY(U,$J,358.99,1,0)
+ ;;=SHORT NARRATIVE (30 CHAR)^^^^_______________________________^30^10^^^^^NARR
+ ;;^UTILITY(U,$J,358.99,1,10)
+ ;;=a^^^################################
+ ;;^UTILITY(U,$J,358.99,2,0)
+ ;;=CPT-4 PROCEDURE CODE^5^^^^5^10^^^^^CPT-4
+ ;;^UTILITY(U,$J,358.99,2,1)
+ ;;=D INPUTCPT^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.99,2,10)
+ ;;=a^XNNNN
+ ;;^UTILITY(U,$J,358.99,3,0)
+ ;;=ICD-9 DIAGNOSIS CODE^7^^^____.__^7^10^^^^^ICD-9
+ ;;^UTILITY(U,$J,358.99,3,1)
+ ;;=D INPUTICD^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.99,3,10)
+ ;;=a^XF^^NNNN.NN

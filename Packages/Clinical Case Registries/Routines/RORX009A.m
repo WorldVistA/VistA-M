@@ -1,5 +1,5 @@
 RORX009A ;HOIFO/SG,VAC - PRESCRIPTION UTILIZ. (QUERY & SORT) ;4/7/09 2:08pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -16,6 +16,8 @@ RORX009A ;HOIFO/SG,VAC - PRESCRIPTION UTILIZ. (QUERY & SORT) ;4/7/09 2:08pm
  ;ROR*1.5*13   DEC  2010   A SAUNDERS   User can select specific patients,
  ;                                      clinics, or divisions for the report.
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
+ ;                                      additional identifier option selected
  ;                                      
  ;******************************************************************************
  ;******************************************************************************
@@ -261,7 +263,8 @@ TOTALS(PATIEN) ;
  . . . S $P(@NODE@(RXS,IEN,"M"),U,2)=$P(TMP,U,2)+1
  . ;---
  . S @NODE@(SUBS)=$G(@NODE@(SUBS))+1
- . S @NODE@(SUBS,PATIEN)=LAST4_U_PTNAME_U_DOD_U_PTNRX_U_NDRUGS
+ . S TMP=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PATIEN),1:"")
+ . S @NODE@(SUBS,PATIEN)=LAST4_U_PTNAME_U_DOD_U_PTNRX_U_NDRUGS_U_TMP
  . ;---
  . S RXS=SUBS_"RX"
  . S @NODE@(RXS)=$G(@NODE@(RXS))+PTNRX

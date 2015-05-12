@@ -1,7 +1,15 @@
 PRCHREC ;ID/RSD,SF/TKW/RHD,DWA-PROCESS RECEIVING ;6/10/97  9:40
-V ;;5.1;IFCAP;**22,81**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**22,81,189**;Oct 20, 2000;Build 1
+ ;Per VA Directive 6402, this routine should not be modified.
  ;NOTE: VARIABLE 'PRCHIMP'-IMPREST FUND, 'PRCHPOO'-GENERATE PROOF OF ORDER ON GUARANTEED DELIVERY.
+ ;
+ ;PRC*5.1*189 Check order before entering receipts to insure there is
+ ;            no outstanding amendment (file 443.6) with any items that
+ ;            could overwrite the current items with new receipts in
+ ;            file 442. The previous check was ONLY looking for an 
+ ;            amendment existing, but not if 443.6 entry created with
+ ;            no actual amendment as yet, only a record of each item
+ ;            transferred over.
  ;
  S PRCF("X")="SP" D ^PRCFSITE Q:'$D(PRC("SITE"))!('$D(PRC("PER")))  I '$D(DT) D NOW^%DTC S DT=$P(%,".",1)
  D SWITCH^PRCHUTL ;SET ISMS SWITCH
@@ -22,7 +30,9 @@ EN I $D(PRCHPGM),PRCHPGM="EN5^PRCHEB" S PRCHIMP=1
  I $D(^PRC(443.6,PRCHPO)) S PRCHAM=$O(^PRC(443.6,PRCHPO,6,0)) D:$G(PRCHAM)]""
  .I $P($G(^PRC(443.6,PRCHPO,6,PRCHAM,1)),U,2)]"" D
  ..W !!,?5,"Purchase Order "_$P(^PRC(442,PRCHPO,0),U)_" cannot be processed at this time due",!,?5,"to pending amendment action - please contact purchasing agent." S FIS=1
- I $D(FIS) K PRCHAM,FIS Q
+ I $D(^PRC(443.6,PRCHPO,6)) S PRCHIT=$O(^PRC(443.6,PRCHPO,2,0)) D:PRCHIT]""     ;PRC*5.1*189
+ .W !!,?5,"Purchase Order "_$P(^PRC(442,PRCHPO,0),U)_" cannot be processed at this time due",!,?5,"to pending amendment w/ item info - please contact purchasing agent." S FIS=1   ;PRC*5.1*189
+ I $D(FIS) K PRCHAM,PRCHIT,FIS Q    ;PRC*5.1*189
  S PRCHENTY=$O(^PRC(442,PRCHPO,13,0))
  S:$G(PRCHENTY) PRCP("I")=$P($G(^PRC(442,PRCHPO,13,PRCHENTY,0)),U,11)
  I $G(PRCP("I")) S N=0,INVITEM=0 F  S N=$O(^PRC(442,PRCHPO,2,N)) Q:'N!$G(INVITEM)  S PRCHITM=$P(^PRC(442,PRCHPO,2,N,0),U,5) I PRCHITM'="",$D(^PRCP(445,PRCP("I"),1,PRCHITM)) S INVITEM=1

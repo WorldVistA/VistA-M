@@ -1,5 +1,5 @@
-MAGQBUT5 ;WOIFO/RMP - BP Utilities ; 18 Jan 2011 5:19 PM
- ;;3.0;IMAGING;**20,81,39**;Mar 19, 2002;Build 2010;Mar 08, 2011
+MAGQBUT5 ;WOIFO/RMP - BP Utilities ; 17 JUL 2014 10:19 AM
+ ;;3.0;IMAGING;**20,81,39,154**;Mar 19, 2002;Build 9;Jul 28, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -34,7 +34,7 @@ AI(RESULT) ; List of Associated Institution candidates;
  S RESULT(K)="your system:" D
  . S INDEX="",K=K+1,L=K  F  S INDEX=$O(^MAG(2006.1,"B",INDEX)) Q:'INDEX  D
  . . Q:$P($G(^MAG(2006.1,$O(^MAG(2006.1,"B",INDEX,"")),0)),U)=INDEX
- . . S RESULT(K)=$P($G(^DIC(4,INDEX,0)),U)_" "_INDEX,K=K+1 Q
+ . . S RESULT(K)=$$GET1^DIQ(4,INDEX,.01,"E")_" "_INDEX,K=K+1 Q  ;IA fix
  . Q
  I K=L S RESULT(K)="None",K=K+1
  S RESULT(K)="The following Medical Center Divisions have NO Imaging parameter affiliations ",K=K+1
@@ -52,7 +52,7 @@ PLNM(PLACE) ;  Returns the Institution name of the Place
  N INST
  Q:'PLACE " "
  S INST=$P($G(^MAG(2006.1,PLACE,0)),U)
- Q $P($G(^DIC(4,INST,0)),U)
+ Q $$GET1^DIQ(4,INST,.01,"E")  ;IA fix
 TPMESS(PLACE) ;Trigger a purge message
  N Y,LOC,CNT,XMSUB
  S Y=$$FMTE^XLFDT($$NOW^XLFDT)

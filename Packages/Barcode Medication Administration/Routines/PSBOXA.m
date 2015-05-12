@@ -1,5 +1,6 @@
 PSBOXA ;BIRMINGHAM/EFC-MEDICATION LOG ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**13**;Mar 2004
+ ;;3.0;BAR CODE MED ADMIN;**13,81**;Mar 2004;Build 6
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference/IA
  ;
@@ -40,7 +41,7 @@ BLDRPT ;
  .S PSBTOT1=PSBTOT1+1
  .D CLEAN^PSBVT,PSJ1^PSBVT($$GET1^DIQ(53.79,PSBX1_",",.01,"I"),$$GET1^DIQ(53.79,PSBX1_",",.11))
  .S PSBOUTP($$PGTOT,PSBLNTOT)="W """_PSBTOT1_".)"",!,?5,""Action Status...: "_$S($$GET1^DIQ(53.79,PSBX1_",",.09)']"":"*UNKNOWN*",1:$$GET1^DIQ(53.79,PSBX1_",",.09))_""""
- .S PSBOUTP($$PGTOT,PSBLNTOT)="W !,?5,""Patient.........: ("_$$GET1^DIQ(2,PSBDFN_",",.09)_") "_$$GET1^DIQ(2,PSBDFN_",",.01)_""""
+ .S PSBOUTP($$PGTOT,PSBLNTOT)="W !,?5,""Patient.........: ("_$S(DUZ("AG")="I":$$HRN^AUPNPAT(PSBDFN,DUZ(2)),1:$$GET1^DIQ(2,PSBDFN_",",.09))_") "_$$GET1^DIQ(2,PSBDFN_",",.01)_"""" ;add code for IHS, PSB*3*81
  .S PSBOUTP($$PGTOT,PSBLNTOT)="W !,?5,""Ward/Bed........: "_$$GET1^DIQ(2,PSBDFN_",",.1)_$S($$GET1^DIQ(2,PSBDFN_",",.101)']"":"",1:"/"_$$GET1^DIQ(2,PSBDFN_",",.101))_""""
  .S PSBOUTP($$PGTOT,PSBLNTOT)="W !,?5,""Order Number....: "_PSBONX_""""
  .S PSBOUTP($$PGTOT,PSBLNTOT)="W !,?5,""Orderable Item..: "_PSBOITX_""""

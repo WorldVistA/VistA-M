@@ -1,5 +1,5 @@
-ICDEX ;SLC/KER - ICD Extractor - Main Entry Points ;04/21/2014
- ;;18.0;DRG Grouper;**57**;Oct 20, 2000;Build 1
+ICDEX ;SLC/KER - ICD Extractor - Main Entry Points ;12/19/2014
+ ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
  ;
  ; Global Variables
  ;    None
@@ -102,6 +102,8 @@ CODEBA(CODE,ROOT) ; IEN from Code/Root
  Q $$CODEBA^ICDEXC($G(CODE),$G(ROOT))
 CODEABA(CODE,ROOT,SYS) ; IEN from Code/Root/Coding System
  Q $$CODEABA^ICDEXC($G(CODE),$G(ROOT),$G(SYS))
+RDX(CODE,CDT) ; Resolve Diagnosis Code Fragment
+ Q $$RDX^ICDEXC4($G(CODE),$G(CDT))
  ;  
  ; Code APIs (code data/versioned data)
 CODEFI(CODE) ; File for code
@@ -227,9 +229,9 @@ GETDRG(FILE,IEN,CDT,MDC) ; DRGs for an Fiscal Year (ICDGTDRG)
 MD(FILE,IEN,CDT,ARY,FLAG) ; MDC DRGs
  D MD^ICDEXD2($G(FILE),$G(IEN),$P($G(CDT),".",1),.ARY,$G(FLAG))
 EFM(EDT) ; Convert External Date to FM (ICDGTDRG)
- Q $$EFM^ICDEXD2($G(EDT))
+ Q $$EFM^ICDEXD6($G(EDT))
 FY(CDT) ; FY 4 digit year (ICDGTDRG)
- Q $$FY^ICDEXD2($P($G(CDT),".",1))
+ Q $$FY^ICDEXD6($P($G(CDT),".",1))
 VMDCDX(IEN,CDT) ; Versioned MDC for DX (ICDREF)
  Q $$VMDCDX^ICDEXD2($G(IEN),$P($G(CDT),".",1))
 VMDCOP(IEN,MDC,CDT) ; Versioned MDC for Op/Pro (ICDREF)
@@ -247,7 +249,11 @@ MDCN(IEN) ; Major Diagnostic Category Name
 MOR(IEN) ; Major O.R. Procedure (ICDDRG)
  Q $$MOR^ICDEXD2($G(IEN))
 UPDX(IEN) ; Unacceptable as Principle DX
- Q $$UPDX^ICDEXD2($G(IEN))
+ Q $$UPDX^ICDEXD6($G(IEN))
+POAE(IEN) ; Present on Admission Exempt
+ Q $$POAE^ICDEXD6($G(IEN))
+HAC(IEN) ; Hospital Acquired Conditions
+ Q $$HAC^ICDEXD6($G(IEN))
 NOT(IEN,SUB,FMT) ; Codes not Used With
  Q $$NOT^ICDEXD3($G(IEN),$G(SUB),$G(FMT))
 REQ(IEN,SUB,FMT) ; Codes Required With
@@ -267,21 +273,21 @@ ICDRGCC(DRG,CDT) ; Get CC/MCC flag from DRG
 INQ ; Inquire to the ICD Files
  D INQ^ICDEXD4 Q
 EFD(X) ; Get Effective date in range (interactive)
- Q $$EFD^ICDEXD2
+ Q $$EFD^ICDEXD6
 PDXE(IEN) ; Primary DX Exclusion Code
  Q $$PDXE^ICDEXD3($G(IEN))
 DRG(CODE,CDT) ; Returns information about a DRG
  Q $$DRG^ICDEXD5($G(CODE),$G(CDT))
 DRGW(IEN) ; DRG Weighted Work Unit (WWU)
- Q $$DRGW^ICDEXD5($G(IEN))
+ Q $$DRGW^ICDEXD6($G(IEN))
 DRGDES(IEN,CDT,ARY,LEN) ; Formatted DRG Description
  Q $$DRGDES^ICDEXD5($G(IEN),$G(CDT),.ARY,$G(LEN))
 DRGD(CODE,OUTARR,CDT) ; Unformatted DRG Description
  Q $$DRGD^ICDEXD5($G(CODE),$G(OUTARR),$G(CDT))
 DRGN(CODE) ; Return the IEN of DRG
- Q $$DRGN^ICDEXD5($G(CODE))
+ Q $$DRGN^ICDEXD6($G(CODE))
 DRGC(IEN) ; DRG Code
- Q $$DRGC^ICDEXD5($G(IEN))
+ Q $$DRGC^ICDEXD6($G(IEN))
 GETDATE(IEN) ; Calculate Effective Date
  Q $$GETDATE^ICDEXD5($G(IEN))
  ;  

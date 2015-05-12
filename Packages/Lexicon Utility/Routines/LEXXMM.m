@@ -1,5 +1,5 @@
-LEXXMM ;ISL/KER - Convert Text to Mix Case (Misc) ;04/21/2014
- ;;2.0;General Lexicon Utilities;**80**;Sep 23, 1996;Build 1
+LEXXMM ;ISL/KER - Convert Text to Mix Case (Misc) ;12/19/2014
+ ;;2.0;General Lexicon Utilities;**80,86**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^UTILITY($J)        ICR  10011
@@ -44,12 +44,13 @@ EW4 ;   Exported Word Display
  Q
  ;                 
 QWIC ; Create AEXC Index
+ N BEG,CHR,DA,END,IEN,TXT,WD,WRD
  N IEN S IEN=0 F  S IEN=$O(^LEX(757.01,IEN)) Q:+IEN'>0  D
- . N %,%1,X,DA S X=$P($G(^LEX(757.01,+IEN,0)),"^",1),DA=+($G(IEN)) Q:+DA'>0  Q:'$L(X)
- . S %1=1 F %=1:1:$L(X)+1 D
- . . S I=$E(X,%) I "~!@#$%&*()_+`-=[]{};'\:|,./?<> """[I D
- . . . S I=$E(X,%1,%-1),%1=%+1 I $L(I)>0,$L(I)<31 D
- . . . . N WD S WD=$$UP(I) S:$L(WD) ^LEX(757.01,"AEXC",WD,DA)=""
+ . N BEG,END,TXT,DA S TXT=$P($G(^LEX(757.01,+IEN,0)),"^",1) Q:'$L(TXT)
+ . S DA=+($G(IEN)),BEG=1 F END=1:1:$L(TXT)+1 D
+ . . N CHR S CHR=$E(TXT,END) I "~!@#$%&*()_+`-=[]{};'\:|,./?<> """[CHR D
+ . . . N WRD S WRD=$E(TXT,BEG,(END-1)),BEG=END+1 I $L(WRD)>0,$L(WRD)<31 D
+ . . . . N WD S WD=$$UP(WRD) S:$L(WD) ^LEX(757.01,"AEXC",WD,DA)=""
  Q
 PR(LEX,X) ; Parse Array LEX in X Length Strings (default 79)
  N DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,LEXI,LEXLEN,LEXC,Z K ^UTILITY($J,"W") Q:'$D(LEX)
@@ -70,6 +71,8 @@ SW1(X) ;   Switch Text (before setting case)
 SW2(X) ;   Switch Text (after setting case)
  N TXT,SWAP,WITH S TXT=$G(X) Q:'$L(TXT) TXT
  S SWAP="(S)",WITH="(s)",TXT=$$SWAP(TXT,SWAP,WITH)
+ S SWAP=" (E)",WITH="(e)",TXT=$$SWAP(TXT,SWAP,WITH)
+ S SWAP="(E)",WITH="(e)",TXT=$$SWAP(TXT,SWAP,WITH)
  S SWAP=" A ",WITH=" a ",TXT=$$SWAP(TXT,SWAP,WITH)
  S SWAP="Class a",WITH="Clas A",TXT=$$SWAP(TXT,SWAP,WITH)
  S SWAP="Type a",WITH="Type A",TXT=$$SWAP(TXT,SWAP,WITH)
@@ -80,12 +83,17 @@ SW2(X) ;   Switch Text (after setting case)
  Q X
 SW3(X) ;   Switch Text (after assembling string)
  N TXT,C1,C2,SWAP,WITH,PIE S TXT=$G(X) Q:'$L(TXT) TXT
- S SWAP=" (S)",WITH="(s)",TXT=$$SWAP(TXT,SWAP,WITH) S SWAP="(S)",WITH="(s)",TXT=$$SWAP(TXT,SWAP,WITH)
+ S SWAP=" (S)",WITH="(s)",TXT=$$SWAP(TXT,SWAP,WITH)
+ S SWAP="(S)",WITH="(s)",TXT=$$SWAP(TXT,SWAP,WITH)
+ S SWAP=" (E)",WITH="(e)",TXT=$$SWAP(TXT,SWAP,WITH)
+ S SWAP="(E)",WITH="(e)",TXT=$$SWAP(TXT,SWAP,WITH)
+ S SWAP="CR(e)St",WITH="CR(E)ST",TXT=$$SWAP(TXT,SWAP,WITH)
+ S SWAP="CR(e),St",WITH="CR(E)ST",TXT=$$SWAP(TXT,SWAP,WITH)
  S SWAP="'S",WITH="'s",TXT=$$SWAP(TXT,SWAP,WITH)
  S SWAP=" (Only)",WITH=" (only)",TXT=$$SWAP(TXT,SWAP,WITH) S SWAP="(Only)",WITH="(only)",TXT=$$SWAP(TXT,SWAP,WITH)
  S SWAP=" (Each)",WITH=" (each)",TXT=$$SWAP(TXT,SWAP,WITH) S SWAP="(Each)",WITH="(each)",TXT=$$SWAP(TXT,SWAP,WITH)
  F PIE=1:1 Q:'$L($P(TXT,"&",PIE))  D
- . S P1=$P(TXT,"&",1,PIE) Q:'$L(P1)  S P2=$P(TXT,"&",(PIE+1),$L(TXT,"&")) Q:'$L(P2)  S:P1[" "&($E(P2,1)'=" ") TXT=$$TM(P1)_"&"_$$TM(P2)
+ . N P1,P2 S P1=$P(TXT,"&",1,PIE) Q:'$L(P1)  S P2=$P(TXT,"&",(PIE+1),$L(TXT,"&")) Q:'$L(P2)  S:P1[" "&($E(P2,1)'=" ") TXT=$$TM(P1)_"&"_$$TM(P2)
  S X=TXT Q:$D(LOW) X  S C1=$E(X,1),C2=$E(X,2),C1=C1?1U,C2=C2?1U
  S:(C1+C2)'=1 X=$TR($E(X,1),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")_$E(X,2,$L(X))
  N LOW

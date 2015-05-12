@@ -1,5 +1,5 @@
-LEXXM1 ;ISL/KER - Convert Text to Mix Case (1) ;04/21/2014
- ;;2.0;General Lexicon Utilities;**80**;Sep 23, 1996;Build 1
+LEXXM1 ;ISL/KER - Convert Text to Mix Case (1) ;12/19/2014
+ ;;2.0;General Lexicon Utilities;**80,86**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    None
@@ -7,8 +7,11 @@ LEXXM1 ;ISL/KER - Convert Text to Mix Case (1) ;04/21/2014
  ; External References
  ;    None
  ;               
+ ; Local Variables NEWed or KILLed Elsewhere
+ ;     LEXNXT,LEXUSE
+ ;     
 T1 ; 1 Character
- N XU,CHR,PRE,LEXPRE,UIN,NXT S PRE=$G(LEXPRE),UIN=$G(UIN),NXT=$G(LEXNXT) S XU=$$UP(X),CHR=$E(XU,1)
+ N XU,CHR,PRE,LEXPRE,UIN,NXT,USE S PRE=$G(LEXPRE),UIN=$G(UIN),NXT=$G(LEXNXT),USE=$G(LEXUSE) S XU=$$UP(X),CHR=$E(XU,1)
  S:XU="W"&(($G(UIN)["W/WO")!($G(UIN)["W/")) Y=$$LO(XU) Q:$L($G(Y))
  ;   Special Case "A"
  S Y="" I XU="A",$E(NXT,1,7)["SINGLE" S Y=$$LO(XU) Q
@@ -48,3 +51,8 @@ UP(X) ; Uppercase
  Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 MX(X) ; Mix Case
  Q $TR($E(X,1),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")_$TR($E(X,2,$L(X)),"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")
+TRIM(X) ; Trim Spaces
+ S X=$G(X) F  Q:$E(X,1)'=" "  S X=$E(X,2,$L(X))
+ F  Q:$E(X,$L(X))'=" "  S X=$E(X,1,($L(X)-1))
+ N LEXNXT,LEXUSE
+ Q X

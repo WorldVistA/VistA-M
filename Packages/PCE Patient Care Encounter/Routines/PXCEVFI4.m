@@ -1,5 +1,5 @@
-PXCEVFI4 ;ISL/dee - Routine to display a visit or v-file entry and input providers in to V PROVIDER from other V Files ;6/20/96
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**124,203,199**;Aug 12, 1996;Build 51
+PXCEVFI4 ;ISL/dee,SLC/ajb - Routine to display a visit or v-file entry and input providers in to V PROVIDER from other V Files ;6/20/96
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**124,203,199,201**;Aug 12, 1996;Build 41
  Q
 DISPLAY ; -- display the data
  Q:PXCECAT="CSTP"
@@ -65,11 +65,11 @@ PROVIDER(PXCEPRV) ;See if it is a new provider and if it is add them.
  S ^TMP("PXK",$J,"PRV",PXCENPRV,812,"AFTER")="^"_PXCEPKG_"^"_PXCESOR
  Q
  ;
-DIAGNOS(PXCEPOV) ;See if it is a new diagnosis and if it is add them.
+DIAGNOS(PXCEPOV,OTHER) ;See if it is a new diagnosis and if it is add them. ; added OTHER ; ajb
  N DA,DIR,PXCEDXSC,PXCEKPOV,PXCEMOD,PXCENARR,PXCENPOV,PXCEPMSC,PXCEVDT
  N PXCEVPOV,PXCEX,PXCEY,X,Y
  S (PXCEVPOV,PXCEKPOV)=""
- S PXCEPRIM=0
+ S PXCEPRIM=$S(+$G(OTHER):0,1:1) S:+PXCEPRIM PXCEPMSC="P" ; set as primary diagnosis unless OTHER DIAGNOSIS is indicated
  ;See if this diagnosis is already in V POV for this Encounter
  F  S PXCEVPOV=$O(^AUPNVPOV("AD",PXCEVIEN,PXCEVPOV)) Q:PXCEVPOV'>0  Q:PXCEPOV=$P(^AUPNVPOV(PXCEVPOV,0),"^",1)  S:"P"=$P(^AUPNVPOV(PXCEVPOV,0),"^",12) PXCEPRIM=1
  Q:PXCEVPOV>0
@@ -77,7 +77,7 @@ DIAGNOS(PXCEPOV) ;See if it is a new diagnosis and if it is add them.
  F  S PXCEKPOV=$O(^TMP("PXK",$J,"POV",PXCEKPOV)) Q:PXCEKPOV'>0  Q:PXCEPOV=+^TMP("PXK",$J,"POV",PXCEKPOV,0,"AFTER")  S:"P"=$P(^TMP("PXK",$J,"POV",PXCEKPOV,0,"AFTER"),"^",12) PXCEPRIM=1
  Q:PXCEKPOV>0
  ;Is this diagnosis primary P/S
- I 'PXCEPRIM D  I $D(DTOUT)!$D(DUOUT) S PXCEEND=1,PXCEQUIT=1 Q
+ I 'PXCEPRIM,'+$G(OTHER) D  I $D(DTOUT)!$D(DUOUT) S PXCEEND=1,PXCEQUIT=1 Q  ; check if OTHER
  . N DIR,DA
  . S DIR(0)="9000010.07,.12A"
  . S DIR("A")="Diagnosis is Primary?  "

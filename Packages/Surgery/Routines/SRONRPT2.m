@@ -1,27 +1,38 @@
 SRONRPT2 ;BIR/ADM - NURSE INTRAOP REPORT ; [ 09/08/03  2:47 PM ]
- ;;3.0; Surgery ;**100**;24 Jun 93
+ ;;3.0;Surgery;**100,182**;24 Jun 93;Build 49
  ;
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure.  Local modifications to this routine
  ;**         are prohibited.
  ;
- N BLOOD,COLOR,CONS,COUNTER,DRESS,INSTR,INTEG,MOOD,PACK,SHARP,SPONGE,URINE,VERIFY
+ N BLOOD,COLOR,CONS,COUNTER,DRESS,INSTR,INTEG,INTXRAY,MOOD,PACK,SHARP,SPONGE,SRPIR,URINE,VERIFY,WOUND
  S SRLF=1,SRLINE="Irrigation Solution(s): " I '$O(^SRF(SRTN,26,0)),SRALL D LINE(1) S @SRG@(SRI)=SRLINE_"N/A"
  I $O(^SRF(SRTN,26,0)) D LINE(1) S @SRG@(SRI)=SRLINE D IRR
  S SRLF=1,SRLINE="Blood Replacement Fluids: " I '$O(^SRF(SRTN,4,0)),SRALL D LINE(1) S @SRG@(SRI)=SRLINE_"N/A"
  I $O(^SRF(SRTN,4,0)) D LINE(1) S @SRG@(SRI)=SRLINE D REP
  S SRLF=1,SR(25)=$G(^SRF(SRTN,25)),SPONGE=$P(SR(25),"^"),SHARP=$P(SR(25),"^",2),INSTR=$P(SR(25),"^",3)
+ S SRPIR=$P(SR(25),"^",6),WOUND=$P(SR(25),"^",7),INTXRAY=$P(SR(25),"^",8)
  S Y=$P(SR(25),"^",5),C=$P(^DD(130,48,0),"^",2) D:Y'="" Y^DIQ S:Y="" Y="N/A" S VERIFY=Y
- S Y=SPONGE,C=$P(^DD(130,44,0),"^",2) D:Y'="" Y^DIQ S SPONGE=$S(Y'="":Y,VERIFY'="N/A":"* NOT ENTERED *",1:"N/A")
- S Y=SHARP,C=$P(^DD(130,45,0),"^",2) D:Y'="" Y^DIQ S SHARP=$S(Y'="":Y,VERIFY'="N/A":"* NOT ENTERED *",1:"N/A")
- S Y=INSTR,C=$P(^DD(130,46,0),"^",2) D:Y'="" Y^DIQ S INSTR=$S(Y'="":Y,VERIFY'="N/A":"* NOT ENTERED *",1:"N/A")
+ S Y=SRPIR,C=$P(^DD(130,630,0),"^",2) D:Y'="" Y^DIQ S SRPIR=$S(Y'="":Y,1:"* NOT ENTERED *")
+ S Y=WOUND,C=$P(^DD(130,633,0),"^",2) D:Y'="" Y^DIQ S WOUND=$S(Y'="":Y,1:"* NOT ENTERED *")
+ S Y=INTXRAY,C=$P(^DD(130,636,0),"^",2) D:Y'="" Y^DIQ S INTXRAY=$S(Y'="":Y,1:"* NOT ENTERED *")
+ S Y=SPONGE,C=$P(^DD(130,44,0),"^",2) D:Y'="" Y^DIQ S SPONGE=$S(Y'="":Y,VERIFY'="N/A"!(VERIFY'="NA"):"* NOT ENTERED *",1:"N/A")
+ S Y=SHARP,C=$P(^DD(130,45,0),"^",2) D:Y'="" Y^DIQ S SHARP=$S(Y'="":Y,VERIFY'="N/A"!(VERIFY'="NA"):"* NOT ENTERED *",1:"N/A")
+ S Y=INSTR,C=$P(^DD(130,46,0),"^",2) D:Y'="" Y^DIQ S INSTR=$S(Y'="":Y,VERIFY'="N/A"!(VERIFY'="NA"):"* NOT ENTERED *",1:"N/A")
  S Y=$P(SR(25),"^",4),C=$P(^DD(130,47,0),"^",2) D:Y'="" Y^DIQ S COUNTER=$S(Y'="":Y,VERIFY'="N/A":"* NOT ENTERED *",1:"N/A")
- I 'SRALL,SPONGE="N/A" G SHARP
- D LINE(1) S @SRG@(SRI)="Sponge Count Correct:",@SRG@(SRI)=@SRG@(SRI)_$$SPACE(26)_SPONGE
-SHARP I 'SRALL,SHARP="N/A" G INSTR
- D LINE(1) S @SRG@(SRI)="Sharps Count Correct:",@SRG@(SRI)=@SRG@(SRI)_$$SPACE(26)_SHARP
-INSTR I 'SRALL,INSTR="N/A" G COUNT
- D LINE(1) S @SRG@(SRI)="Instrument Count Correct: "_INSTR
+ D LINE(1) S @SRG@(SRI)="Possible Item Retention:",@SRG@(SRI)=@SRG@(SRI)_$$SPACE(28)_SRPIR
+SPONGE I 'SRALL,(SPONGE="NA"!(SPONGE="N/A")) G SHARP
+ D LINE(1) S @SRG@(SRI)="Sponge Final Count Correct:",@SRG@(SRI)=@SRG@(SRI)_$$SPACE(28)_SPONGE
+SHARP I 'SRALL,(SHARP="NA"!(SHARP="N/A")) G INSTR
+ D LINE(1) S @SRG@(SRI)="Sharps Final Count Correct:",@SRG@(SRI)=@SRG@(SRI)_$$SPACE(28)_SHARP
+INSTR I 'SRALL,(INSTR="NA"!(INSTR="N/A")) G WS
+ D LINE(1) S @SRG@(SRI)="Instrument Final Count Correct: "_INSTR
+WS I 'SRALL,INSTR="N/A" G XRAY
+ D LINE(1) S @SRG@(SRI)="Wound Sweep:",@SRG@(SRI)=@SRG@(SRI)_$$SPACE(28)_WOUND
+ S II=53 D ENSC^SRONRPT0
+XRAY I 'SRALL,INSTR="N/A" G COUNT
+ D LINE(1) S @SRG@(SRI)="Intra-Operative X-Ray:",@SRG@(SRI)=@SRG@(SRI)_$$SPACE(28)_INTXRAY
+ S II=54 D ENSC^SRONRPT0
 COUNT I 'SRALL,COUNTER="N/A" G CNTV
  D LINE(1) S @SRG@(SRI)="Counter:",@SRG@(SRI)=@SRG@(SRI)_$$SPACE(26)_COUNTER
 CNTV I 'SRALL,VERIFY="N/A" G DRESS

@@ -1,5 +1,5 @@
 LR7OMERG ;DALOI/STAFF-MERGE ACCESSION ;07/27/09  17:14
- ;;5.2;LAB SERVICE;**121,221,386,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**121,221,386,350,445**;Sep 27, 1994;Build 6
  ;
  ; ZEXCEPT is used to identify variables which are external to a specific TAG
  ;         used in conjunction with Eclipse M-editor.
@@ -59,7 +59,13 @@ OK ;
  S LRII=0
  F  S LRII=$O(LRT1SAD(LRII)) Q:LRII<1  D
  . S X=LRT1SAD(LRII),URG=$P(X,"^",2),LRTSORU=$P(X,U,9)
- . I '$D(LRTSORU(LRTSORU)) D ORUT^LRWLST11
+ . I '$D(LRTSORU(LRTSORU)) D  ;Set variables for call to update ORUT node in #63
+ . . N LRORIFN,LRPRAC,LRSAMP,LRSPEC,LRURG,LRX
+ . . S LRX=$O(^LRO(69,LRODT,1,LRSN,2,"B",LRII,0))
+ . . S LRORIFN=$S(LRX>0:$P($G(^LRO(69,LR1ODT,1,LR1SN,2,LRX,0)),U,7),1:"")
+ . . S LRPRAC=$P($G(^LRO(68,LR1AA,1,LR1AD,1,LR1AN,0)),U,8)
+ . . S LRURG=URG,LRSPEC=$P(SPEC,U),LRSAMP=$P(SPEC,U,2)
+ . . D ORUT^LRWLST11
  . S LRTSORU(LRTSORU)=""
  . I $D(LRLFTOVR(LRII)) D
  . . I $O(^LAB(60,LRII,2,0)) D  Q
@@ -181,8 +187,17 @@ SET69(LRODT,LRSN,LRTS,LRURG,LRAA,LRAODT,LRAN) ;Set file 69
  ;
  S (LRFLG,LRPHSET)=1,LRNATURE="^^^6^SERVICE CORRECTION^99ORR"
  ;
- ; Test already on order
- I $D(^LRO(69,LRODT,1,LRSN,2,"B",LRTS)) Q
+ ; Test already on order - update order with merged accession info when merging accession on same order entry (LRODT, LRSN)
+ I $D(^LRO(69,LRODT,1,LRSN,2,"B",LRTS)) D  Q
+ . N LRDIE,LRFDA,LRIENS,LRXDA
+ . S LRSOF=1 ;set same order flag for LRTSTOUT
+ . S LRXDA=$O(^LRO(69,LRODT,1,LRSN,2,"B",LRTS,0)),LRIENS=LRXDA_","_LRSN_","_LRODT_","
+ . S LRXDA(3)=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,.3))
+ . S LRFDA(1,69.03,LRIENS,2)=LRAODT
+ . S LRFDA(1,69.03,LRIENS,3)=LRAA
+ . S LRFDA(1,69.03,LRIENS,4)=LRAN
+ . I $P(LRXDA(3),"^")'="" S LRFDA(1,69.03,LRIENS,13)=$P(LRXDA(3),"^")
+ . D FILE^DIE("","LRFDA(1)","LRDIE(1)")
  ;
  ; Add stub entry for new test.
  S DIC="^LRO(69,"_LRODT_",1,"_LRSN_",2,",DA(2)=LRODT,DA(1)=LRSN

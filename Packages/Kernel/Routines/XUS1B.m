@@ -1,6 +1,6 @@
-XUS1B ;ISCSF/RWF - Auto sign-on ;10/27/10  15:14
- ;;8.0;KERNEL;**59,337,395,469,543,594**;Jul 10, 1995;Build 6
- ;Per VHA Directive 2004-038, this routine should not be modified.
+XUS1B ;ISF/RWF - Auto sign-on ;12/04/14  14:57
+ ;;8.0;KERNEL;**59,337,395,469,543,594,638**;Jul 10, 1995;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 AUTOXUS() ;Do the check for XUS and Auto Sign-on
@@ -25,8 +25,8 @@ CHKVIP() ;Check for a Valid current IP
  N REF,XREF,IEN,R0,ENV,JOB,HNDL,XTMP
  ;D SETUP ;To log data for debug
  S IEN=0,ENV=$$ENV,REF=$G(IO("IP")) I $L(REF) D GETHNDL(.HNDL)
- ;Look thru the IP X-ref
- I $L(REF) D LKUP("AS1",$P(REF,":")) ;Will set IEN
+ ;p638   - Look thru the IPv6 X-ref
+ I $L(REF) D LKUP("AS4",$$FORCEIP6^XLFIPV(REF)) ;Will set IEN
  Q IEN
  ;
 LKUP(XREF,LK) ;Check one X-ref
@@ -35,14 +35,18 @@ LKUP(XREF,LK) ;Check one X-ref
  F  S IX=$O(^XUSEC(0,XREF,LK,IX)) Q:'$L(IX)  D CHK Q:IEN>0
  Q
 CHK ;Could this be a good one.
+ N R0,R1,D1,XIPV6,REF6,XNM,REFNM
  S R0=$G(^XUSEC(0,IX,0))
- ;Check that IP really matches
- I $P(R0,U,11)'=REF Q  ;p543
+ ;Check that IP really matches (Q if IPv6<>REF6)
+ S XIPV6=$P($G(^XUSEC(0,IX,1)),U,1)  ;Stored IPv6 address
+ S REF6=$$FORCEIP6^XLFIPV(REF)       ;Reference address converted to IPv6
+ I XIPV6'=REF6 Q
  ;Check entry does not have sign-off D/T. p543
  I $P(R0,U,4) Q
- ;If have a Client name check that same as log.
- S NM=$$LOW^XLFSTR($P(R0,U,12))
- I $D(IO("CLNM")),$L(NM),NM'=$$LOW^XLFSTR(IO("CLNM")) Q
+ ;Check that Client name matches
+ S XNM=$$LOW^XLFSTR($P(R0,U,12))     ;Stored client name
+ S REFNM=$$LOW^XLFSTR($P($G(IO("CLNM")),"."))  ;Reference client name
+ I $L(XNM),$L(REFNM),XNM'=REFNM Q
  ;Check date within 8 hours p543
  S D1=$$FMDIFF^XLFDT(XUNOW,IX,2) I (D1>28800)!(D1<-5) Q
  ;Check handle. Use timeout on Lock p543

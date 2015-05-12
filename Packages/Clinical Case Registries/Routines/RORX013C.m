@@ -1,5 +1,5 @@
 RORX013C ;HCIOFO/SG - DIAGNOSIS CODES (STORE) ;10/27/05 11:11am
- ;;1.5;CLINICAL CASE REGISTRIES;**19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**19,21**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -12,6 +12,8 @@ RORX013C ;HCIOFO/SG - DIAGNOSIS CODES (STORE) ;10/27/05 11:11am
  ;PKG/PATCH   DATE       DEVELOPER   MODIFICATION
  ;----------- ---------- ----------- ----------------------------------------
  ;ROR*1.5*19  FEB 2012   J SCOTT     Support for ICD-10 Coding System.
+ ;ROR*1.5*21  SEP 2013   T KOPP      Add ICN column if Additional Identifier
+ ;                                    requested.
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -70,6 +72,7 @@ PATIENTS(PTAG,NODE) ;
  . D ADDVAL^RORTSK11(RORTSK,"NAME",$P(TMP,U,2),ITEM,2)
  . D ADDVAL^RORTSK11(RORTSK,"LAST4",$P(TMP,U,1),ITEM,2)
  . D ADDVAL^RORTSK11(RORTSK,"DOD",$P(TMP,U,3),ITEM,1)
+ . I $$PARAM^RORTSK01("PATIENTS","ICN") D ADDVAL^RORTSK11(RORTSK,"ICN",$P(TMP,U,4),ITEM,1)
  . S PTICDL=$$ADDVAL^RORTSK11(RORTSK,"PTICDL",,ITEM)
  . S ICDIEN=0
  . F  S ICDIEN=$O(@NODE@("PAT",PATIEN,ICDIEN))  Q:ICDIEN'>0  D

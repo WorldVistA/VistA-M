@@ -1,12 +1,12 @@
 GMPLHIST ; SLC/MKB/KER/TC -- Problem List Historical data ;08/21/12  14:16
- ;;2.0;Problem List;**7,26,31,35,36,42**;Aug 25, 1994;Build 46
+ ;;2.0;Problem List;**7,26,31,35,36,42,46**;Aug 25, 1994;Build 2
  ;
  ; External References
  ;   DBIA 10060  ^VA(200
  ;
 DT ; Add historical data (audit trail) to DT list
  ;   Called from ^GMPLDISP, requires AIFN and adds to GMPDT()
- N NODE,DATE,FLD,PROV,OLD,NEW,ROOT,CHNGE,GMPLCSYS
+ N NODE,DATE,FLD,PROV,OLD,OLDVAL,NEW,NEWVAL,ROOT,CHNGE,GMPLCSYS
  S NODE=$G(^GMPL(125.8,AIFN,0)) Q:NODE=""
  S DATE=$$EXTDT^GMPLX($P(NODE,U,3)),FLD=+$P(NODE,U,2),PROV=+$P(NODE,U,8)
  S:'PROV PROV=$P(NODE,U,4)
@@ -41,8 +41,10 @@ DT ; Add historical data (audit trail) to DT list
  I (+FLD=80001)!(+FLD=80002) S GMPDT(LCNT,0)=$J("from ",17)_OLD_" to "_NEW
  I "^.05^1.01^1.04^1.05^1.06^1.08^"[(U_+FLD_U) D
  . S ROOT=$S(+FLD=.05:"AUTNPOV(",+FLD=1.01:"LEX(757.01,",(+FLD=1.04)!(+FLD=1.05):"VA(200,",+FLD=1.06:"DIC(49,",+FLD=1.08:"SC(",1:"") Q:ROOT=""
- . S GMPDT(LCNT,0)=$J("from ",17)_$S(OLD:$P(@(U_ROOT_OLD_",0)"),U)_$$PAD^GMPLX($P(@(U_ROOT_OLD_",0)"),U),6),1:"UNSPECIFIED")
- . S LCNT=LCNT+1,GMPDT(LCNT,0)=$J("to ",17)_$S(NEW:$P(@(U_ROOT_NEW_",0)"),U),1:"UNSPECIFIED")
+ . S OLDVAL=$S(OLD="":"",1:$P($G(@(U_ROOT_OLD_",0)")),U))
+ . S NEWVAL=$S(NEW="":"",1:$P($G(@(U_ROOT_NEW_",0)")),U))
+ . S GMPDT(LCNT,0)=$J("from ",17)_$S(OLDVAL'="":OLDVAL_$$PAD^GMPLX(OLDVAL,6),1:"UNSPECIFIED")
+ . S LCNT=LCNT+1,GMPDT(LCNT,0)=$J("to ",17)_$S(NEWVAL'="":NEWVAL,1:"UNSPECIFIED")
  Q
  ;
 FLDNAME(NUM) ; Returns Field Name for Display

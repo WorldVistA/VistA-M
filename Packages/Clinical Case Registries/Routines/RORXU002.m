@@ -1,5 +1,5 @@
 RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;8/3/11 3:55pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,10,13,15,17,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,10,13,15,17,19,21,22**;Feb 17, 2006;Build 17
  ;
  ; This routine uses the following IAs:
  ;
@@ -30,6 +30,14 @@ RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;8/3/11 3:55pm
  ;                                      values besides boolean
  ;                                      Modified to add DATE_RANGE_4
  ;ROR*1.5*19   FEB  2012   J SCOTT      Support for ICD-10 Coding System.
+ ;
+ ;ROR*1.5*21   SEP 2013    T KOPP       Added flags for GENDER (SEX) selection on
+ ;                                      reports in PATIENTS XML tag
+ ;                                      Added ICN column if Additional Identifier
+ ;                                       requested.
+ ;
+ ;ROR*1.5*22   FEB 2014    T KOPP       Added flags for OEF/OIF period of service
+ ;                                      selection on reports in PATIENTS XML tag
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -212,6 +220,9 @@ PARAMS(RORTSK,PARTAG,STDT,ENDT,FLAGS) ;
  . . S:'$D(BUF("DE_BEFORE")) FLAGS=FLAGS_"P"
  . . S:'$D(BUF("DE_DURING")) FLAGS=FLAGS_"N"
  . . S:'$D(BUF("DE_AFTER")) FLAGS=FLAGS_"F"
+ . . I $D(BUF("SEX")) S FLAGS=FLAGS_$S(BUF("SEX")="M":"W",BUF("SEX")="F":"M",1:"")
+ . . I $D(BUF("OEF")) D
+ . . . S FLAGS=FLAGS_$S(BUF("OEF")=1:"I",BUF("OEF")=-1:"E",1:"")
  Q:RC<0 RC
  ;
  ;=== Other Registries
@@ -317,6 +328,7 @@ PARAMS(RORTSK,PARTAG,STDT,ENDT,FLAGS) ;
  ;
 TBLDEF(TBLREF,HEADER) ;
  N COND,IT,NAME,RC,RORSRC,TBLDEF,TERM,TGET
+ K ^TMP($J,"RORSELCOL")
  S TGET="S RORSRC=$T("_$P(TBLREF,"^")_"+IT^"_$P(TBLREF,"^",2)_")"
  S RC=0
  F IT=1:1  X TGET  S RORSRC=$P(RORSRC,";;",2)  Q:RORSRC=""  D  Q:RC<0
@@ -330,6 +342,7 @@ TBLDEF(TBLREF,HEADER) ;
  . D ADDATTR^RORTSK11(RORTSK,TBLDEF,"HEADER","1")
  . D ADDATTR^RORTSK11(RORTSK,TBLDEF,"FOOTER","1")
  . D TBLDEF1(TBLDEF)
+ K ^TMP($J,"RORSELCOL")
  Q $S(RC<0:RC,1:0)
  ;
  ;***** GENERATES <COLUMN> ELEMENTS FROM TABLE DEFINITION (RORSRC)
@@ -337,9 +350,21 @@ TBLDEF(TBLREF,HEADER) ;
  ; PTAG          IEN of the parent element
  ;
 TBLDEF1(PTAG) ;
- N COLUMN,NAME,TERM
+ N COLUMN,IT,NAME,OK,ROR,TERM
  F  S NAME=$$COLSCAN(.TERM)  Q:NAME=""  D  Q:")"[TERM
+ . I '$D(^TMP($J,"RORSELCOL")) D  ; set up special columns selection criteria
+ . . F IT=1:1 X "S ROR=$P($T(SELCOL+"_IT_"^RORXU002),"";;"",2)" Q:$P(ROR,U)=""  D
+ . . . S ^TMP($J,"RORSELCOL",$P(ROR,U))=$P(ROR,U,2,999)
+ . I $D(^TMP($J,"RORSELCOL",NAME)) D  Q:'OK
+ . . X ^TMP($J,"RORSELCOL",NAME) S OK=$T
  . S COLUMN=$$ADDVAL^RORTSK11(RORTSK,"COLUMN",,PTAG)
  . D ADDATTR^RORTSK11(RORTSK,COLUMN,"NAME",NAME)
  . D:TERM="(" TBLDEF1(COLUMN)
  Q
+ ;
+ ;Setup of values in SELCOL is:
+ ;name of selected optional column^statement to execute to set $T if the condition to include this field has been met
+ ;
+SELCOL ;selected optional fields and screen criteria is listed here
+ ;;ICN^I $$PARAM^RORTSK01("PATIENTS","ICN")
+ ;;

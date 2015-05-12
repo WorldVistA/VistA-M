@@ -1,6 +1,6 @@
 FBCHRR ;AISC/DMK - RE-INITIATE REJECTS FROM PRICER ;6/30/2009
- ;;3.5;FEE BASIS;**61,108**;JAN 30, 1995;Build 115
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.5;FEE BASIS;**61,108,123**;JAN 30, 1995;Build 51
+ ;;Per VA Directive 6402, this routine should not be modified.
 DIC S FBTYPE="B9"
  W ! S DIC="^FBAA(161.7,",DIC(0)="AEQMZ",DIC("S")="I $P(^(0),U,15)=""Y""&($P(^(0),U,17)]"""")"_$S($D(^XUSEC("FBAASUPERVISOR",DUZ)):"",1:"&($P(^(0),U,5)=DUZ)"),DIC("A")="Select Batch with Pricer Rejects: " D ^DIC
  G END:X="^"!(X=""),DIC:Y<0 S FBN=+Y,FBN(0)=Y(0)
@@ -16,6 +16,10 @@ ASK S DIR(0)="Y",DIR("A")="Want to re-initiate this payment",DIR("B")="NO" D ^DI
  I $D(^FBAAI("AH",FBN)) G DIC2
 EDIT S DIR(0)="Y",DIR("A")="Want to edit payment now",DIR("B")="YES" D ^DIR K DIR G END:$D(DIRUT)!'Y
  S FBPRICE=""
+ ;
+ ; FB*3.5*123 - edit inpatient invoice - check for IPAC data for Federal Vendors
+ I '$$IPACEDIT^FBAAPET1(162.5,FBI,.FBIA,.FBDODINV) G DIC2
+ ;
  ; get values of FPPS Claim ID and Line Item
  S FBFPPSC=$P($G(^FBAAI(FBI,3)),U)
  S FBFPPSL=$P($G(^FBAAI(FBI,3)),U,2)
@@ -52,6 +56,6 @@ EDIT S DIR(0)="Y",DIR("A")="Want to edit payment now",DIR("B")="YES" D ^DIR K DI
  D RMVGAP^FBCHEP1(FBI,1)
 END K DIC,D,DA,DIRUT,DR,DTOUT,DUOUT,FBPRICE,VAL,DIE,FBI,FBN,FBNB,FBTYPE,I,POP,X,Y,FBLISTC
  K FBFPPSC,FBFPPSL,FBADJ,FBADJL,FBRRMK,FBRRMKL
- K LASTDX,LASTPROC
+ K LASTDX,LASTPROC,FBIA,FBDODINV
  D END^FBCHDI
  Q

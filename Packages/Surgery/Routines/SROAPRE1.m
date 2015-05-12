@@ -1,5 +1,5 @@
 SROAPRE1 ;BIR/MAM - EDIT PAGE 1 PREOP ;08/11/2011
- ;;3.0;Surgery;**38,47,125,135,141,166,174,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,47,125,135,141,166,174,176,182**;24 Jun 93;Build 49
  K DA D @EMILY Q
 1 ; edit general information
  W ! K DIR S X=$P(SRAO(1),"^") I X'="" S DIR("B")=X
@@ -35,7 +35,7 @@ NOGEN ; no general problems
  S $P(^SRF(SRTN,200),"^",6)=$S(X="":"",1:1) F I=2,4,7 S $P(^SRF(SRTN,200),"^",I)=SRAX
  S $P(^SRF(SRTN,200.1),"^",2)=$S(X="":"",X="NS":"NS",1:1)
  S $P(^SRF(SRTN,200.1),"^",8)=$S(X="":"",X="NS":"NS",1:1)
- S $P(^SRF(SRTN,200),"^",55)=$S(X="":"",X="NA":"NA",X="N":"NA",1:"NA")
+ S $P(^SRF(SRTN,200),"^",55)=$S(X="":"",1:1)
  F I=9,11,12 S $P(^SRF(SRTN,200.1),"^",I)=$S(SRAX="N":1,1:"")
  S $P(^SRF(SRTN,200.1),"^",10)=$S(SRAX="N":"NA",1:"")
  Q

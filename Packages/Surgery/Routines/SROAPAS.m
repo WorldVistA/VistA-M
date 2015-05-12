@@ -1,5 +1,5 @@
 SROAPAS ;BIR/MAM - PRINT A COMPLETE ASSESSMENT ;05/28/10
- ;;3.0;Surgery;**38,47,81,88,111,112,100,125,153,166,174,175**;24 Jun 93;Build 6
+ ;;3.0;Surgery;**38,47,81,88,111,112,100,125,153,166,174,175,182**;24 Jun 93;Build 49
  S SRSOUT=0,SRPG=0,SR("RA")=$G(^SRF(SRTN,"RA")),SRATYPE=$P(SR("RA"),"^",2) F I=200:1:208,200.1 S SRA(I)=$G(^SRF(SRTN,I))
  S SRA("OP")=^SRF(SRTN,"OP"),SRA("CON")=$G(^SRF(SRTN,"CON"))
  S SR(0)=^SRF(SRTN,0),DFN=$P(SR(0),"^"),SRSDATE=$P(SR(0),"^",9) D DEM^VADPT S SRANM=VADM(1)_"  "_VA("PID"),Z=$P(VADM(3),"^"),Y=$E(SRSDATE,1,7),AGE=$E(Y,1,3)-$E(Z,1,3)-($E(Y,4,7)<$E(Z,4,7))
@@ -46,7 +46,8 @@ SROAPAS ;BIR/MAM - PRINT A COMPLETE ASSESSMENT ;05/28/10
  S (X,Z)=SRPTMODT(15) S:X'="" Z=$P(X,"@")_"  "_$E($P(X,"@",2),1,5) W !,"Hospital Discharge Date:",?47,Z
  S (X,Z)=SRPTMODT(16) S:X'="" Z=$P(X,"@")_"  "_$E($P(X,"@",2),1,5) W !,"Admitted/Transferred to Surgical Service:",?47,Z
  S (X,Z)=SRPTMODT(17) S:X'="" Z=$P(X,"@")_"  "_$E($P(X,"@",2),1,5) W !,"Discharged/Transferred to Chronic Care:",?47,Z
- W !,"In/Out-Patient Status:",?47,$S($P($G(^SRF(SRTN,0)),"^",12)="I":"INPATIENT",$P($G(^SRF(SRTN,0)),"^",12)="O":"OUTPATIENT",1:"")
+ S X=$P($G(^SRF(SRTN,0)),"^",12)
+ W !,"Hospital Admission Status:",?47,$S(X="I":"INPATIENT",X="O":"OUTPATIENT",X=1:"OUTPATIENT",X=2:"OUTPATIENT",X=3:"OUTPATIENT",1:"")
  S X=$P(SR("RA"),"^",9) W !,"Assessment Completed by:" I $G(X) W ?47,$P($G(^VA(200,X,0)),"^")
  I $E(IOST)="P" W ! F MOE=1:1:80 W "-"
  I $E(IOST)'="P" D PAGE I SRSOUT G END

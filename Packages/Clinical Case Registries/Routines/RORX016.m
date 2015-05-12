@@ -1,7 +1,15 @@
-RORX016 ;HCIOFO/BH,SG - OUTPATIENT UTILIZATION ; 10/14/05 2:06pm
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+RORX016 ;HCIOFO/BH,SG - OUTPATIENT UTILIZATION ;10/14/05 2:06pm
+ ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
  ;
  Q
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
+ ;                                      additional identifier option selected
+ ;******************************************************************************
  ;
  ;***** OUTPUTS THE REPORT HEADER
  ;
@@ -13,7 +21,7 @@ RORX016 ;HCIOFO/BH,SG - OUTPATIENT UTILIZATION ; 10/14/05 2:06pm
  ;
 HEADER(PARTAG) ;
  ;;CLINICS(#,STOP,NAME,NP,NV,NSC)
- ;;HU_STOPS(#,NAME,LAST4,NV,NSC,NDS)
+ ;;HU_STOPS(#,NAME,LAST4,NV,NSC,NDS,ICN)
  ;;STOPS(NP,NSC)
  ;
  N HEADER,RC
@@ -38,6 +46,7 @@ HEADER(PARTAG) ;
  ;                         ^02: Number of different stops
  ;                         ^03: Last 4 digits of SSN
  ;                         ^04: Number of visits
+ ;                         ^05: National ICN
  ;                       Children of this node are KILL'ed by
  ;                       the $$TOTALS^RORX016B function.
  ;         Date,         Number of stops associated with the visit
@@ -114,7 +123,7 @@ OPUTL(RORTSK) ;
  ;       >0  IEN of the PARAMETERS element
  ;
 PARAMS(PARTAG,STDT,ENDT,FLAGS) ;
- N PARAMS,TMP
+ N NAME,PARAMS,TMP
  S PARAMS=$$PARAMS^RORXU002(.RORTSK,PARTAG,.STDT,.ENDT,.FLAGS)
  Q:PARAMS<0 PARAMS
  ;--- Process the list of divisions

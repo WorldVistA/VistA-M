@@ -1,11 +1,19 @@
 FBAAV0 ;AISC/GRR - ELECTRONICALLY TRANSMIT FEE DATA ;3/22/2012
- ;;3.5;FEE BASIS;**3,4,55,89,98,116,108,132,139**;JAN 30, 1995;Build 127
+ ;;3.5;FEE BASIS;**3,4,55,89,98,116,108,132,139,123**;JAN 30, 1995;Build 51
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; References to API $$CODEABA^ICDEX supported by ICR #5747
  ;
  K ^TMP($J,"FBAABATCH"),^TMP($J,"FBVADAT") D DT^DICRW
- I '$D(^FBAA(161.7,"AC","S")),'$D(^FBAA(161.7,"AC","R")),'$D(^FBAA(161.25,"AE")),$S('$D(^FBAA(161.26,"AC","P")):1,$O(^FBAA(161.26,"AC","P",0))'>0:1,1:0) W !,*7,"There are no transactions requiring transmission",*7 Q
+ ;
+ N FBTRT S FBTRT=0   ; Flag indicating if any transactions are found that need to be transmitted
+ I $D(^FBAA(161.7,"AC","S")) S FBTRT=1       ; supervisor closed batch
+ I $D(^FBAA(161.7,"AC","R")) S FBTRT=1       ; reviewed after pricer batch
+ I $D(^FBAA(161.25,"AE")) S FBTRT=1          ; vendor correction
+ I +$O(^FBAA(161.26,"AC","P",0)) S FBTRT=1   ; FB patient master record changes
+ I +$O(^FBAA(161.96,"AS","P",0)) S FBTRT=1   ; ipac vendor agreement MRA changes (FB*3.5*123)
+ I 'FBTRT W !,*7,"There are no transactions requiring transmission",*7 Q
+ ;
  W !!,"This option will transmit all Batches and MRA's ready to be transmitted",!,"to Austin"
 RD W !! S DIR(0)="Y",DIR("A")="Are you sure you want to continue",DIR("B")="No" D ^DIR K DIR G END:'Y
  L +^FBAA(161.7,"AC"):0 G:'$T LOCK^FBAAUTL1
@@ -16,8 +24,10 @@ RTRAN ;Entry from Re-transmit MRA routine
  D ADDRESS^FBAAV01 G END:VATERR K VAT
  D WAIT^DICD,STATION^FBAAUTL,HD^FBAAUTL I $D(FB("ERROR")) G END
  S TOTSTR=0,$P(PAD," ",200)=" "
- D ^FBAAV1:$D(^FBAA(161.25,"AE"))
- D ^FBAAV4:$D(^FBAA(161.26,"AC","P"))
+ D ^FBAAV1:$D(^FBAA(161.25,"AE"))         ; Vendor MRA
+ D ^FBAAV4:$D(^FBAA(161.26,"AC","P"))     ; Patient MRA
+ D ^FBAAV8:$D(^FBAA(161.96,"AS","P"))     ; IPAC agreement MRA (FB*3.5*123)
+ ;
  F J=0:0 S J=$O(^TMP($J,"FBAABATCH",J)) Q:J'>0  I $D(^FBAA(161.7,J,0)) S Y(0)=^(0) D SET1,DET:FBAABT="B3",DETP^FBAAV2:FBAABT="B5",DETT^FBAAV3:FBAABT="B2",^FBAAV5:FBAABT="B9"
 END L -^FBAA(161.7,"AC") D KILL^FBAAV1 Q
 SET1 ; build the payment batch header string (used by all four formats)
@@ -42,7 +52,6 @@ DET ;entry point to process B3 (outpatient/ancillary) batch
  S FBTXT=0
  D CKB3V^FBAAV01 I $G(FBERR) K FBERR Q
  ; HIPAA 5010 - line items that have 0.00 amount paid are now required to go to Central Fee
- ;F K=0:0 S K=$O(^FBAAC("AC",J,K)) Q:K'>0  F L=0:0 S L=$O(^FBAAC("AC",J,K,L)) Q:L'>0  F M=0:0 S M=$O(^FBAAC("AC",J,K,L,M)) Q:M'>0  F N=0:0 S N=$O(^FBAAC("AC",J,K,L,M,N)) Q:N'>0  S Y(0)=$G(^FBAAC(K,1,L,1,M,1,N,0)) I Y(0)]"",+$P(Y(0),U,3) D
  F K=0:0 S K=$O(^FBAAC("AC",J,K)) Q:K'>0  F L=0:0 S L=$O(^FBAAC("AC",J,K,L)) Q:L'>0  F M=0:0 S M=$O(^FBAAC("AC",J,K,L,M)) Q:M'>0  F N=0:0 S N=$O(^FBAAC("AC",J,K,L,M,N)) Q:N'>0  S Y(0)=$G(^FBAAC(K,1,L,1,M,1,N,0)) I Y(0)]"" D
  .N FBDTSR1,FBPICN
  .S FBDTSR1=+$G(^FBAAC(K,1,L,1,M,0))
@@ -61,6 +70,7 @@ GOT ; process a B3 line item
  N DFN,FBADJ,FBADJA1,FBADJA2,FBADJR1,FBADJR2,FBADMIT,FBAUTHF,FBIENS
  N FBMOD1,FBMOD2,FBMOD3,FBMOD4,FBPNAMX,FBUNITS,FBX,FBNPI
  N FBCSID,FBEDIF,FBCNTRN
+ N FBIA,FBDODINV
  ;
  S FBIENS=N_","_M_","_L_","_K_","
  ;
@@ -79,6 +89,13 @@ GOT ; process a B3 line item
  ;
  S FBVID=$P($G(^FBAAV(L,0)),U,2)
  S FBVID=FBVID_$E(PAD,$L(FBVID)+1,11)
+ ;
+ ; FB*3.5*123 - get IPAC variables
+ S FBIA=+$P(FBY3,U,6)                                            ; IPAC agreement ptr
+ S FBIA=$S(FBIA:$P($G(^FBAA(161.95,FBIA,0)),U,1),1:"")           ; IPAC external agreement id# or ""
+ S FBIA=$$LJ^XLFSTR(FBIA,"10T")                                  ; format to 10 characters
+ S FBDODINV=$P(FBY3,U,7),FBDODINV=$$LJ^XLFSTR(FBDODINV,"22T")    ; DoD invoice# formatted to 22 characters
+ ;
  S:FBPAYT="R" FBVID=$E(PAD,1,11)
  S FBNPI=$$EN^FBNPILK(L)  ;SET THE NPI TO BE PASSED TO FBAAV01,FBAAV2,FBAAV5
  ;

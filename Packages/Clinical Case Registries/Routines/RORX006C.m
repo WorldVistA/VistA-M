@@ -1,6 +1,15 @@
-RORX006C ;HCIOFO/BH,SG - LAB UTILIZATION (STORE) ; 9/19/05 9:39am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+RORX006C ;HCIOFO/BH,SG - LAB UTILIZATION (STORE) ;9/19/05 9:39am
+ ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
  ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
+ ;                                       requested.
+ ;******************************************************************************
  Q
  ;
  ;***** PATIENTS WITH HIGHEST UTILIZATION
@@ -40,6 +49,9 @@ PATIENTS(PRNTELMT,NODE) ;
  . . . D ADDVAL^RORTSK11(RORTSK,"NR",NUM,ITEM,3)
  . . . S TMP=+$P($G(@NODE@("PAT",DFN,"R")),U,2)
  . . . D ADDVAL^RORTSK11(RORTSK,"NDT",TMP,ITEM,3)
+ . . . I $$PARAM^RORTSK01("PATIENTS","ICN") D
+ . . . . S TMP=$P($G(@NODE@("PAT",DFN)),U,3)
+ . . . . D ADDVAL^RORTSK11(RORTSK,"ICN",TMP,ITEM,1)
  Q $S(RC<0:RC,1:0)
  ;
  ;***** NUMBERS OF PATIENTS AND RESULTS
